@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="yes"?>
+  <ElementSet>
+    <MmPtr>
+      <Name>Server Options</Name>
+      <Object>
+        <MmDiagram>
+          <kind>1</kind>
+          <FilePath>.\Server Options.vcd</FilePath>
+        </MmDiagram>
+      </Object>
+    </MmPtr>
+  </ElementSet>

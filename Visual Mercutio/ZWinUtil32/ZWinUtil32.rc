@@ -1,0 +1,1568 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "ZWinUtil32.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+#include "zFormsRes\zFormsRes.h"
+#include "zRes32\zRes.h"
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Français (France) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_INFO                ICON                    "res\\icon1.ico"
+IDI_REF_FILE            ICON                    "res\\ref_file.ico"
+IDI_TABLE               ICON                    "res\\table.ico"
+IDI_USERS_INLSTUSER     ICON                    "res\\ico00001.ico"
+IDI_USERS2              ICON                    "RES\\USERS.ICO"
+IDI_DELETEACTIVITY      ICON                    "RES\\SCDCNCLL.ICO"
+IDI_ACCEPTACTIVITY      ICON                    "RES\\SCDRESPL.ICO"
+IDI_ASSIGNACTIVITY      ICON                    "RES\\SCDRESTL.ICO"
+IDI_SENDACTIVITY        ICON                    "RES\\SCDREQL.ICO"
+IDI_TRASH               ICON                    "RES\\TRASH01.ICO"
+IDI_FORMS               ICON                    "res\\icon2.ico"
+IDI_REJECTACTIVITY      ICON                    "res\\rejectac.ico"
+IDI_SUSPENDACTIVITY     ICON                    "res\\suspenda.ico"
+IDI_TIPS                ICON                    "res\\tips.ico"
+IDI_ICON53              ICON                    "Res\\Exitems.ico"
+IDI_ICON54              ICON                    "Res\\Activits.ico"
+IDI_ICON55              ICON                    "Res\\Apptl.ico"
+IDI_ICON56              ICON                    "Res\\Appts.ico"
+IDI_ICON57              ICON                    "Res\\Contactl.ico"
+IDI_ICON58              ICON                    "Res\\Contacts.ico"
+IDI_USERINFO            ICON                    "Res\\Distlstl.ico"
+IDI_ICON60              ICON                    "Res\\Distlsts.ico"
+IDI_ICON61              ICON                    "Res\\Docl.ico"
+IDI_ICON62              ICON                    "Res\\Docs.ico"
+IDI_ICON63              ICON                    "Res\\Exiteml.ico"
+IDI_ICON64              ICON                    "Res\\Activitl.ico"
+IDI_ICON65              ICON                    "Res\\Reports.ico"
+IDI_ICON66              ICON                    "Res\\Ipms.ico"
+IDI_ICON67              ICON                    "Res\\Notel.ico"
+IDI_ICON68              ICON                    "Res\\Notes.ico"
+IDI_EXITDOOR            ICON                    "Res\\Oofl.ico"
+IDI_ICON70              ICON                    "Res\\Oofs.ico"
+IDI_ICON71              ICON                    "Res\\Postitl.ico"
+IDI_ICON72              ICON                    "Res\\Postits.ico"
+IDI_ICON73              ICON                    "Res\\Postl.ico"
+IDI_ICON74              ICON                    "Res\\Posts.ico"
+IDI_ICON75              ICON                    "Res\\Recl.ico"
+IDI_ICON76              ICON                    "Res\\Recs.ico"
+IDI_ICON77              ICON                    "res\\icon77.ico"
+IDI_ICON78              ICON                    "Res\\Remotel.ico"
+IDI_ICON79              ICON                    "Res\\Remotes.ico"
+IDI_ICON80              ICON                    "Res\\Reportl.ico"
+IDI_ICON81              ICON                    "Res\\Ipml.ico"
+IDI_ICON82              ICON                    "Res\\Taskdecs.ico"
+IDI_ICON83              ICON                    "res\\icon83.ico"
+IDI_ICON84              ICON                    "Res\\Scdresps.ico"
+IDI_ICON85              ICON                    "res\\icon85.ico"
+IDI_ICON86              ICON                    "Res\\Scdrests.ico"
+IDI_ICON87              ICON                    "Res\\Securl.ico"
+IDI_ICON88              ICON                    "Res\\Securs.ico"
+IDI_ICON89              ICON                    "Res\\Signl.ico"
+IDI_ICON90              ICON                    "Res\\Signs.ico"
+IDI_ICON91              ICON                    "res\\icon91.ico"
+IDI_ICON92              ICON                    "Res\\Taskaccl.ico"
+IDI_ICON93              ICON                    "Res\\Taskaccs.ico"
+IDI_ICON94              ICON                    "Res\\Taskdecl.ico"
+IDI_ICON95              ICON                    "Res\\Scdresns.ico"
+IDI_ICON96              ICON                    "Res\\Tasks.ico"
+IDI_ICON97              ICON                    "res\\icon97.ico"
+IDI_ICON98              ICON                    "res\\icon98.ico"
+IDI_ICON99              ICON                    "res\\icon99.ico"
+IDI_ICON100             ICON                    "res\\icon100.ico"
+IDI_ICON101             ICON                    "res\\icon101.ico"
+IDI_ICON102             ICON                    "res\\icon102.ico"
+IDI_ICON103             ICON                    "Res\\Taskl.ico"
+IDI_ICON104             ICON                    "Res\\Taskreql.ico"
+IDI_ICON105             ICON                    "Res\\Taskreqs.ico"
+IDI_ICON106             ICON                    "res\\icon106.ico"
+IDI_ACTCHOOSE           ICON                    "res\\actchoos.ico"
+IDI_SERVER              ICON                    "res\\server.ico"
+IDI_INCREMENTVERSION    ICON                    "res\\incremen.ico"
+IDI_SYSVAR              ICON                    "res\\sysvar.ico"
+IDI_SCANNER             ICON                    "res\\icon1.ico"
+IDI_PAPER               ICON                    "Res\\newstech.ico"
+IDI_DONOTOPEN           ICON                    "res\\donotope.ico"
+IDI_LOUPE               ICON                    "res\\loupe.ico"
+IDI_GOWEB               ICON                    "res\\ico00002.ico"
+IDI_COMMANDLINE         ICON                    "res\\commandl.ico"
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "ZWinUtil32.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "#include ""zFormsRes\\zFormsRes.h""\r\n"
+    "#include ""zRes32\\zRes.h""\r\n"
+    "\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\0"
+END
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#include ""res\\planfin.rc2""  // non-App Studio edited resources\r\n"
+    "\r\n"
+    "#include ""afxres.rc""  \t// Standard components\r\n"
+    "#include ""afxprint.rc""\t// printing/print preview resources\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ANIMATEDLG DIALOG  0, 0, 164, 52
+STYLE DS_SETFONT | WS_POPUP | WS_CAPTION
+CAPTION "En traitement"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Arrêter",IDCANCEL,56,35,50,14
+END
+
+IDD_CALCOPTION DIALOG  13, 54, 270, 185
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Calculation"
+FONT 8, "Helv"
+BEGIN
+    CONTROL         "Calculation automatique",IDC_AUTOCALCULATION,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,17,199,10
+END
+
+IDD_EXPORTPAGE DIALOG  13, 54, 270, 185
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Import/Export"
+FONT 8, "Helv"
+BEGIN
+    GROUPBOX        "Importation",IDC_STATIC,3,5,246,118
+    LTEXT           "Schéma de calcul utilisé:",IDC_STATIC,7,22,85,10
+    EDITTEXT        IDC_SCHEMANAME,96,20,103,13,ES_AUTOHSCROLL
+    GROUPBOX        "Propagation des valeurs des champs",IDC_STATIC,7,61,238,
+                    57
+    CONTROL         "Aucune",IDC_PROPAGATION,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT | WS_GROUP,12,75,35,8
+    CONTROL         "En avant",IDC_PROPAGATION2,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT,60,75,41,8
+    CONTROL         "Sur toutes les pages",IDC_PROPAGATION3,"Button",
+                    BS_AUTORADIOBUTTON | BS_LEFTTEXT,112,75,79,8
+    LTEXT           "Il est conseillé d'utiliser en avant.",IDC_STATIC,35,96,
+                    106,10
+    CONTROL         "Considérer vide lorsque les nombres sont à zéro",
+                    IDC_EMPTYWHENZERO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    7,42,178,13
+    ICON            IDI_TIPS,IDC_STATIC,12,90,20,20
+END
+
+IDD_GLOBALOPTIONPAGE DIALOG  13, 54, 270, 185
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Global"
+FONT 8, "Helv"
+BEGIN
+    EDITTEXT        IDC_TEMPLATEDIRECTORY,46,35,176,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Choisir...",IDC_SELECTTEMPLATEDIRECTORY,227,35,39,12
+    EDITTEXT        IDC_FILEDIRECTORY,46,73,176,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Choisir...",IDC_SELECTFILEDIRECTORY,227,73,39,12
+    GROUPBOX        "Fichier des noms de champs communs",IDC_STATIC,2,121,
+                    233,29
+    EDITTEXT        IDC_GLOBALFIELD_REP,6,131,177,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Choisir...",IDC_SELECTGFIELDREP,190,131,39,12
+    EDITTEXT        IDC_ROOTDIR,46,16,176,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Choisir...",IDC_SELECTROOTDIR,227,16,39,12
+    EDITTEXT        IDC_TEMPLATEPROCESSDIRECTORY,46,54,176,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Choisir...",IDC_SELECTTEMPLATEPROCESSDIRECTORY,227,54,
+                    39,12
+    LTEXT           "Emplacements",IDC_STATIC,5,3,50,9
+    RTEXT           "Serveur:",IDC_STATIC,10,18,31,8
+    RTEXT           "Formes:",IDC_STATIC,13,37,28,10
+    RTEXT           "Processus:",IDC_STATIC,4,56,37,10
+    RTEXT           "Fichiers:",IDC_STATIC,10,77,31,8
+    EDITTEXT        IDC_LOGFILE,46,92,176,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Choisir...",IDC_SELECTLOGFILE,227,92,39,12
+    RTEXT           "Log:",IDC_STATIC,19,94,22,10
+END
+
+IDD_SYSOPTIONPAGE DIALOG  13, 54, 270, 185
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Général"
+FONT 8, "Helv"
+BEGIN
+    CONTROL         "Sauvegarder la position de l'application",IDC_SCREENPOS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,2,53,146,12
+    CONTROL         "Créer un modèle lors du lancement de l'application",
+                    IDC_STARTUPOPENFILE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,2,16,199,10
+    CONTROL         "Ouvrir le dernier fichier lors du lancement de l'application",
+                    IDC_RELOADLASTFILE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    2,27,205,12
+    CONTROL         "Montrer la fenêtre de démarrage",IDC_SHOWWELCOME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,2,3,189,12
+    CONTROL         "Ouvrir les fichiers sous forme maximiséee",
+                    IDC_MAXIMIZE_FORMS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    2,40,160,12
+    CONTROL         "Forcer la connexion sur le serveur (recommandé pour un réseau WorkGroup)",
+                    IDC_FORCENETWORK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,2,
+                    76,257,8
+    CONTROL         "Ne pas montrer les astuces au démarrage",
+                    IDC_DONTSHOWTIPS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,2,
+                    89,257,8
+    CONTROL         "Ne pas montrer la fenêtre des tâches pour les processus",
+                    IDC_DONTSHOWTASKLIST,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,2,102,257,8
+END
+
+IDD_SYSOPTION DIALOG  13, 54, 291, 245
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Options du système"
+FONT 8, "Helv"
+BEGIN
+    CONTROL         "OK_PROP",IDOK,"Button",BS_OWNERDRAW | WS_GROUP | 
+                    WS_TABSTOP,1,233,10,10
+    CONTROL         "CANCEL_PROP",IDCANCEL,"Button",BS_OWNERDRAW | WS_GROUP | 
+                    WS_TABSTOP,13,233,10,10
+    CONTROL         "HELP",ID_HELP_INDEX,"Button",BS_OWNERDRAW | WS_GROUP | 
+                    WS_TABSTOP,273,230,15,13
+END
+
+IDD_VIEWPAGE DIALOG  13, 54, 270, 185
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Visualisation"
+FONT 8, "Helv"
+BEGIN
+    CONTROL         "Montrer les symboles",IDC_ANIMATION,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,2,7,199,10
+    CONTROL         "Montrer les champs résultats (calculés)",
+                    IDC_CALCULATEDFIELD,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,2,19,199,10
+    CONTROL         "Montrer les champs cachés",IDC_SHOWHIDDENFIELDS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,2,31,108,10
+    CONTROL         "Dessiner la zone représentant les champs",
+                    IDC_SHOWBOUNDSRECT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    2,55,183,10
+    CONTROL         "Création automatique des noms de champs",
+                    IDC_AUTOCREATEFIELDNAME,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,2,67,154,10
+    CONTROL         "Montrer les champs référencés dans les formules",
+                    IDC_SHOWREFERENCE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    2,43,185,10
+END
+
+IDD_NAVIGATIONPAGE DIALOG  13, 54, 270, 185
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Navigation"
+FONT 8, "Helv"
+BEGIN
+    CONTROL         "Passer à la zone d'édition suivante après Entrée",
+                    IDC_GONEXTEDIT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,9,
+                    173,11
+END
+
+IDD_VIEWPAGE_REDUCED DIALOG  13, 54, 270, 185
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Visualisation"
+FONT 8, "Helv"
+BEGIN
+    CONTROL         "Montrer les symboles",IDC_ANIMATION,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,2,7,199,10
+    CONTROL         "Montrer les champs résultats (calculés)",
+                    IDC_CALCULATEDFIELD,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,2,19,199,10
+    CONTROL         "Montrer les champs cachés",IDC_SHOWHIDDENFIELDS,"Button",
+                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,2,31,108,
+                    10
+END
+
+IDD_WELCOME_WRITER DIALOG  0, 0, 285, 122
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Démarrage"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Fermer",IDCANCEL,"Button",BS_OWNERDRAW | BS_LEFT | 
+                    WS_TABSTOP,173,93,108,14
+    CONTROL         "Ouvrir processus existant",ID_WELCOME_PROCESSOPEN,
+                    "Button",BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,173,40,108,
+                    14
+    CONTROL         "Ouvrir dernier fichier",ID_WELCOME_LASTFILE,"Button",
+                    BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,173,74,108,14
+    CONTROL         "Démarrer un formulaire vierge",ID_WELCOME_NEWFORM,
+                    "Button",BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,173,19,108,
+                    14
+    CONTROL         "Ne plus montrer cette fenêtre",IDC_DONOTSTART,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,178,111,103,
+                    11
+    CONTROL         "Démarrer un processus",ID_WELCOME_NEWPROCESS,"Button",
+                    BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,173,3,108,14
+    LTEXT           "Pour obtenir des informations, visitez notre site Internet",
+                    IDC_HYPERLINK_HTTP,1,112,173,10
+    CONTROL         "Ouvrir formulaire existant",ID_WELCOME_FILEOPEN,"Button",
+                    BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,173,56,108,14
+END
+
+IDD_CALENDAR DIALOG  0, 0, 242, 149
+STYLE DS_SETFONT | WS_POPUP | WS_VISIBLE | WS_BORDER
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Static",IDC_CALENDAR_FRAME,7,7,228,135,NOT WS_VISIBLE
+END
+
+IDD_WZTIMERESOURCE_ATTR DIALOGEX 0, 0, 286, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Attribution des ressources, du temps et de la visibilité"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_ACTIVITYNAME,41,49,113,15,ES_AUTOHSCROLL,
+                    WS_EX_STATICEDGE
+    EDITTEXT        IDC_TIMEOUT,90,139,24,12,ES_AUTOHSCROLL
+    CONTROL         "Visible",IDC_VISIBILITYTYPE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,10,158,38,8
+    CONTROL         "Invisible",IDC_VISIBILITYTYPE2,"Button",
+                    BS_AUTORADIOBUTTON,52,158,38,8
+    PUSHBUTTON      "Suivant >>",IDNEXT,84,181,50,14
+    PUSHBUTTON      "Accepter",IDOK,151,181,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+    CONTROL         "Activité:",IDC_STATIC,"Static",SS_LEFTNOWORDWRAP | 
+                    WS_GROUP,10,51,30,8
+    GROUPBOX        "Ressource(s)",IDC_STATIC,10,64,204,72
+    PUSHBUTTON      "Ajouter ressource",IDC_ADDUSER,147,76,63,14
+    PUSHBUTTON      "Ajouter email",IDC_ADDEMAIL,147,94,63,14
+    PUSHBUTTON      "Enlever",IDC_REMOVEUSER,147,118,63,14
+    LISTBOX         IDC_USERLIST,17,76,126,56,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_GROUP | 
+                    WS_TABSTOP
+    LTEXT           "Temps limite de l'activité:",IDC_STATIC,10,140,79,10
+END
+
+IDD_LIST_OF_USERS DIALOG  0, 0, 186, 254
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Liste des utilisateurs"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Insérer",IDOK,132,6,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,132,23,50,14
+    ICON            IDI_USERS2,IDC_STATIC,4,4,21,20,WS_TABSTOP
+    LISTBOX         IDC_LIST_OF_USERS,4,30,120,115,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_USER_DESCRIPTION,4,207,178,43,ES_MULTILINE | 
+                    ES_READONLY
+    LTEXT           "email:",IDC_STATIC,4,150,21,9
+    LTEXT           "responsable:",IDC_STATIC,4,164,45,9
+    EDITTEXT        IDC_EMAIL,51,149,130,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_RESPONSIBLE,51,163,130,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "département:",IDC_STATIC,3,178,45,9
+    EDITTEXT        IDC_DEPARTEMENT,51,177,130,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    CONTROL         "Droit d'Administrateur",IDC_ISADMINISTRATOR,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | BS_RIGHT | WS_TABSTOP,99,
+                    193,82,11
+END
+
+IDD_REJECTACTIVITYINFO DIALOG  0, 0, 302, 154
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Rejeter une activité"
+FONT 8, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_REJECTCATEGORY,2,58,295,77,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_REJECT_TEXT,2,80,295,70,ES_MULTILINE | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Confirmer",IDOK,247,3,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,247,20,50,14
+    ICON            IDI_REJECTACTIVITY,IDC_STATIC,2,3,20,20
+    LTEXT           "Texte de confirmation du rejet:",IDC_STATIC,2,47,105,8
+    LTEXT           "Veuillez choisir un texte prédéfini dans la liste. Si vous voulez spécifier un texte spécialisé, veuillez sélectionner le premier élément dans la liste ""Texte Utilisateur""",
+                    IDC_STATIC,35,3,198,25
+END
+
+IDD_NEWFORM DIALOG  0, 0, 354, 274
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Créer un nouveau formulaire"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Créer",IDOK,302,46,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,302,63,50,14
+    EDITTEXT        IDC_COMMENT,0,217,352,42,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_READONLY
+    CONTROL         "Copier les formats des champs",IDC_COPYFORMAT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,2,262,131,8
+    CONTROL         "GEN",IDC_MOVE_TOGENERAL,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,302,117,50,14
+END
+
+IDD_GENERICFORM DIALOG  0, 0, 284, 134
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Général"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_LISTPLANFIN,1,2,281,132,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+END
+
+IDD_WZTIMERESOURCE_ATTRST DIALOG  0, 0, 286, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Attribution des ressources, du temps et de la visibilité"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Suivant >>",IDOK,84,181,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+    ICON            IDI_ASSIGNACTIVITY,IDC_STATIC,2,59,20,20
+    LTEXT           "Texte",IDC_STATIC_TEXTATTR,5,86,272,78
+END
+
+IDD_WZPREACT_FORMPROC DIALOG  0, 0, 286, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Sélectionner "
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_ACTIVITYNAME,57,46,113,15,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    PUSHBUTTON      "Suivant >>",IDNEXT,84,181,50,14
+    PUSHBUTTON      "Accepter",IDOK,151,181,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+    ICON            IDI_FORMS,-1,2,41,20,20
+    LTEXT           "Activité:",-1,26,48,30,8
+    LTEXT           "Formulaire à sélectionner:",IDC_FORM_TEXT,6,128,81,8
+    EDITTEXT        IDC_PROCFORMFILENAME,5,145,240,14,ES_AUTOHSCROLL
+    LTEXT           "Processus à sélectionner:",IDC_PROC_TEXT,6,128,82,8
+    EDITTEXT        IDC_FORMPROCNAME,96,126,149,13,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "Text",IDC_FORMPROC_EXPLANATION,7,75,238,42
+END
+
+IDD_WZPREACTST_FORMPROC DIALOG  0, 0, 286, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Basé sur un formulaire ou un processus"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_ACTIVITYNAME,57,46,113,15,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    PUSHBUTTON      "Suivant >>",IDNEXT,84,181,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+    ICON            IDI_FORMS,-1,2,43,20,20
+    LTEXT           "Activité:",-1,26,48,30,8
+    LTEXT           "Cette activité peut se baser sur un formulaire ou un processus existant. Vous devez sélectionner le fichier correspondant au formulaire ou/et au processus.",
+                    IDC_FORMPROC_EXPLANATION,7,75,238,28
+    LTEXT           "Veuillez presser sur le bouton Suivant pour commencer la sélection.",
+                    IDC_FORMPROC_EXPLANATION2,7,152,238,13
+    LTEXT           "Si l'activité a été définie avec plusieurs formulaires ou plusieurs processus, le système vous les demandera à la suite.",
+                    IDC_FORMPROC_EXPLANATION3,7,106,238,28
+END
+
+PREVIEWFILEOPEN_TEMPLATE DIALOG  0, 0, 95, 15
+STYLE DS_SETFONT | DS_3DLOOK | DS_CONTROL | WS_CHILD | WS_CLIPSIBLINGS
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "",6000,10,2,81,9,NOT WS_VISIBLE
+    LTEXT           "",stc32,0,2,8,8,NOT WS_VISIBLE | NOT WS_GROUP
+END
+
+IDD_WZCREATEFOLDERFILE_ST DIALOG  0, 0, 286, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Création d'un nouveau dossier"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_FOLDERFILENAME,70,107,149,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_COMPLETEFILENAME,70,122,149,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_FOLDERCOMMENT,5,141,214,33,ES_AUTOHSCROLL
+    PUSHBUTTON      "Créer",IDOK,84,181,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+    ICON            IDI_PAPER,IDC_STATIC,2,41,20,20
+    LTEXT           "Ce guide vous permet de facilement créer un nouveau dossier. Le système attribue automatiquement un nom de fichier par rapport au nom de dossier que vous allez introduire.",
+                    IDC_STATIC,26,48,197,28
+    LTEXT           "Nom du dossier:",IDC_STATIC,6,109,52,8
+    LTEXT           "Veuillez spécifier le nom du dossier. Ce nom sera l'identifiant de votre dossier. Lorsque vous voudrez ré-utiliser ce dossier, il vous faudra le spécifier à nouveau.",
+                    IDC_STATIC,5,76,228,26
+    LTEXT           "Nom du fichier:",IDC_FILE_TEXT,6,123,48,8
+END
+
+IDD_WZCREATEFOLDERFILE_EXIST DIALOG  0, 0, 286, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Création d'un nouveau dossier - Dossier existant"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "spécifier un autre nom de dossier",IDC_FOLDERCHOICE,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,5,84,
+                    132,13
+    CONTROL         "garder le nom choisi, spécifier un autre emplacement sur disque",
+                    IDC_FOLDERCHOICE2,"Button",BS_AUTORADIOBUTTON,5,99,222,
+                    13
+    CONTROL         "garder le nom choisi, spécifier un autre nom de fichier",
+                    IDC_FOLDERCHOICE3,"Button",BS_AUTORADIOBUTTON,5,114,222,
+                    13
+    CONTROL         "écraser le dossier existant",IDC_FOLDERCHOICE4,"Button",
+                    BS_AUTORADIOBUTTON,5,129,222,13
+    EDITTEXT        IDC_OTHERFILENAME,83,152,149,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_FOLDERDIRECTORY,83,152,149,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_FOLDERFILENAME,83,152,149,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "Créer",IDOK,84,181,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+    LTEXT           "Le nom de dossier que vous avez spécifié existe déjà.",
+                    IDC_STATIC,31,45,216,10
+    LTEXT           "Nom du dossier:",IDC_FOLDER_TEXT,6,154,52,8
+    LTEXT           "Vous avez trois possibilités:",IDC_STATIC,5,72,90,10
+    LTEXT           "Nom de l'emplacement:",IDC_DIRECTORY_TEXT,6,154,74,8
+    LTEXT           "Nom du fichier:",IDC_FILE_TEXT,6,154,48,8
+    ICON            IDI_PAPER,IDC_STATIC,2,41,20,20
+END
+
+IDD_FOLDER_INFORMATION DIALOG  0, 0, 246, 207
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Information sur le dossier"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_FOLDERNAME,52,6,189,15,ES_AUTOHSCROLL
+    EDITTEXT        IDC_FOLDERDESCRIPTION,28,39,213,48,ES_MULTILINE | 
+                    ES_AUTOHSCROLL
+    CONTROL         "List1",IDC_LIST_INFORMATION,"SysListView32",LVS_REPORT | 
+                    LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,28,97,213,90
+    DEFPUSHBUTTON   "Accepter",IDOK,191,189,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,138,189,50,14
+    LTEXT           "Nom:",IDC_STATIC,28,8,19,10
+    LTEXT           "Description:",IDC_STATIC,28,28,43,10
+    ICON            3,IDC_STATIC,4,0,20,20
+    LTEXT           "Informations:",IDC_STATIC,28,88,43,8
+END
+
+IDD_WZCHOOSEPROC_WELCOME DIALOG  0, 0, 286, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Choisir un sous-processus"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_PROCESSNAME,65,46,113,15,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    DEFPUSHBUTTON   "Suivant >>",IDOK,84,181,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+    ICON            IDI_ACTCHOOSE,IDC_STATIC,2,43,20,20
+    LTEXT           "Processus:",IDC_STATIC,26,48,36,8
+    LTEXT           "Ce processus a été défini comme étant un processus à choix. Vous allez devoir choisir quelle activité vous voulez exécuter.",
+                    IDC_STATIC,7,75,238,28
+    LTEXT           "Veuillez presser sur le bouton Suivant pour commencer la sélection.",
+                    IDC_STATIC,7,152,238,13
+    LTEXT           "Si vous ne choisissez pas d'activité, vous ne pouvez continuer l'exécution de ce processus.",
+                    IDC_STATIC,7,106,238,28
+END
+
+IDD_WZCHOOSEPROC_SEL DIALOGEX 0, 0, 286, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Choisir un sous-processus"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "List1",IDC_ACTIVITYPROC_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | 
+                    WS_BORDER | WS_TABSTOP,7,91,265,82,WS_EX_STATICEDGE
+    PUSHBUTTON      "Confirmer",IDOK,84,181,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    EDITTEXT        IDC_PROCESSNAME,65,46,113,15,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+    ICON            IDI_ACTCHOOSE,IDC_STATIC,2,43,20,20
+    LTEXT           "Processus:",IDC_STATIC,26,48,36,8
+    LTEXT           "Veuillez sélectionner le sous-processus ou l'activité dans la liste ci-dessous:",
+                    IDC_STATIC,7,75,238,14
+END
+
+IDD_WZCHOOSESRV_WELCOME DIALOG  0, 0, 286, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Sélection d'un serveur"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Suivant >>",IDOK,84,181,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+    LTEXT           "Un serveur est un référentiel qui contient la définition des formulaires et des processus. Pour pouvoir créer des nouveaux formulaires ou des nouveaux processus, vous devez définir un serveur.",
+                    IDC_STATIC,7,75,238,28
+    LTEXT           "Veuillez presser sur le bouton Suivant pour sélectionner le serveur.",
+                    IDC_STATIC,7,152,238,13
+    LTEXT           "Si vous ne choisissez pas de serveur local, vous ne pouvez pas travailler avec l'application.",
+                    IDC_STATIC_LOCAL,7,110,238,17
+    LTEXT           "Si vous ne choisissez pas de serveur global, vous ne pouvez pas travailler avec l'application.",
+                    IDC_STATIC_GLOBAL,7,110,238,17
+    ICON            IDI_SERVER,IDC_STATIC,2,43,20,20
+END
+
+IDD_WZCHOOSESRV_SEL DIALOGEX 0, 0, 286, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Sélection d'un serveur"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_SERVERCHOOSED,35,54,244,11,ES_AUTOHSCROLL
+    CONTROL         "Tree1",IDC_SERVERDIRECTORY,"SysTreeView32",TVS_HASLINES | 
+                    TVS_LINESATROOT | TVS_DISABLEDRAGDROP | 
+                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,3,70,276,104,
+                    WS_EX_STATICEDGE
+    DEFPUSHBUTTON   "Sélectionner",IDOK,84,181,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+    ICON            IDI_SERVER,IDC_STATIC,2,43,20,20
+END
+
+IDD_WZBACKRESOURCE_ATTR DIALOGEX 0, 0, 286, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Attribution des ressources de remplacement"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_ACTIVITYNAME,41,49,113,15,ES_AUTOHSCROLL,
+                    WS_EX_STATICEDGE
+    PUSHBUTTON      "Suivant >>",IDNEXT,84,181,50,14
+    PUSHBUTTON      "Accepter",IDOK,151,181,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+    CONTROL         "Activité:",-1,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,10,
+                    51,30,8
+    GROUPBOX        "Ressource(s)",-1,10,64,204,81
+    PUSHBUTTON      "Ajouter ressource",IDC_ADDUSER,147,76,63,14
+    PUSHBUTTON      "Ajouter email",IDC_ADDEMAIL,147,94,63,14
+    PUSHBUTTON      "Enlever",IDC_REMOVEUSER,147,124,63,14
+    LISTBOX         IDC_USERLIST,17,76,126,63,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_GROUP | 
+                    WS_TABSTOP
+END
+
+IDD_DATABASE_TABLE DIALOG  0, 0, 220, 186
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Liste des tables"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Sélectionner",IDOK,163,165,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,109,165,50,14
+    LISTBOX         IDC_LISTBOX,7,32,206,128,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    ICON            IDI_TABLE,IDC_STATIC,7,7,20,20
+END
+
+IDD_WZSCANNING_WELCOME DIALOG  0, 0, 286, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Numérisation d'un document"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Suivant >>",IDOK,84,181,50,14
+    PUSHBUTTON      "Pas de numérisation",IDCANCEL,5,181,71,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+    ICON            IDI_SCANNER,IDC_STATIC,2,43,20,20
+    LTEXT           "L'activité courante comporte la numérisation d'un document.",
+                    IDC_STATIC,17,78,258,8
+    LTEXT           "Vous pouvez numériser un document ou attacher un fichier. Ce fichier peut être de n'importe quel type. Vous pouvez attacher une image du type JPG, TIFF, BMP ou un fichier de type Microsoft Word, Microsoft Excel, Adobe PDF, HTML, etc.",
+                    IDC_STATIC,17,98,258,25
+END
+
+IDD_WZSCANNING_CONTINUESEL DIALOG  0, 0, 286, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Numérisation d'un document"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Numériser un document",IDC_SCAN_TYPE,"Button",
+                    BS_AUTORADIOBUTTON | WS_DISABLED | WS_GROUP,17,128,114,
+                    10
+    CONTROL         "Attacher un fichier",IDC_SCAN_TYPE2,"Button",
+                    BS_AUTORADIOBUTTON,17,139,114,10
+    EDITTEXT        IDC_FILE_SCAN,17,152,258,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Continuer >>",IDCONTINUE,79,181,50,14
+    PUSHBUTTON      "Terminer",IDOK,141,181,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    181,18,16
+    ICON            IDI_SCANNER,IDC_STATIC,2,43,20,20
+    LTEXT           "Vous venez de numériser un document ou d'attacher un fichier, voulez numériser un autre document ou attacher un autre fichier.",
+                    IDC_STATIC,17,78,258,17
+    LTEXT           "Si vous ne voulez plus numériser un document ou attacher un fichier, Clicker sur Terminer.",
+                    IDC_STATIC,17,103,258,16
+END
+
+IDD_WZSCANNING_INFODOC DIALOG  0, 0, 286, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Numérisation d'un document"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    181,18,16
+    ICON            IDI_SCANNER,IDC_STATIC,2,43,20,20
+    LTEXT           "Vous venez de numériser un document ou d'attacher un fichier. Vous pouvez changer les informations relatives à cette numérisation.",
+                    IDC_STATIC,17,78,258,17
+    DEFPUSHBUTTON   "Suivant >>",IDOK,79,181,50,14
+    LTEXT           "Nom:",IDC_STATIC,17,104,19,10
+    LTEXT           "Description:",IDC_STATIC,17,121,45,10
+    EDITTEXT        IDC_SCAN_NAME,43,104,232,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SCAN_DESCRIPTION,17,133,258,33,ES_MULTILINE | 
+                    ES_AUTOVSCROLL
+END
+
+IDD_TEMPLATESAVE DIALOG  36, 24, 327, 201
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Sauvegarder une nouvelle forme"
+FONT 8, "Helv"
+BEGIN
+    EDITTEXT        IDC_TITLE,89,4,121,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_FILENAME,89,25,121,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DESCRIPTION,46,49,164,47,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | WS_VSCROLL
+    DEFPUSHBUTTON   "Sauvegarder",IDOK,161,183,50,14,WS_GROUP
+    PUSHBUTTON      "&Abandonner",IDCANCEL,215,183,50,14,WS_GROUP
+    PUSHBUTTON      "Aide",IDHELP,272,183,50,14,WS_GROUP
+    LTEXT           "Catégorie:",IDC_STATIC,222,4,92,9
+    LTEXT           "Nom du fichier:",IDC_STATIC,32,26,52,10
+    LTEXT           "Nom de la forme:",IDC_STATIC,32,6,55,10
+    LTEXT           "Explications:",IDC_STATIC,3,50,41,10
+    GROUPBOX        "",IDC_STATIC,3,105,319,73
+    LTEXT           "Le nom de fichier est automatiquement ajusté selon le nom de la forme. Vous pouvez donner un autre nom. ",
+                    IDC_STATIC,32,132,284,17
+    LTEXT           "Le nom de la forme permettra son identification lors de son utilisation future.",
+                    IDC_STATIC,32,115,284,11
+    ICON            5,IDC_STATIC,4,4,20,20
+    CONTROL         "Tree1",IDC_TEMPLATEDIR,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_SHOWSELALWAYS | 
+                    WS_BORDER | WS_TABSTOP,223,15,99,81
+    ICON            251,IDC_STATIC,6,113,20,20
+    LTEXT           "Veuillez sélectionner un catégorie. Par défaut la nouvelle forme est placée sous l'onglet général.",
+                    IDC_STATIC,32,153,284,17
+END
+
+IDD_PROCESSCLOSE DIALOG  0, 0, 303, 255
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Fermer un processus"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDI_SENDACTIVITY,IDC_STATIC,43,51,21,20
+    LTEXT           "Vous avez choisi de fermer ce processus sans avoir éxécuté les actions qui lui sont assignés. Vous ne pouvez pas sortir de ce processus sans avoir préalablement déclenché une des actions possibles.",
+                    IDC_STATIC,7,7,289,25
+    ICON            IDI_REJECTACTIVITY,IDC_STATIC,43,109,21,20
+    ICON            IDI_ACCEPTACTIVITY,IDC_STATIC,43,80,21,20
+    ICON            IDI_FORMS,IDC_STATIC,43,225,21,20
+    ICON            IDI_SUSPENDACTIVITY,IDC_STATIC,43,138,21,20
+    ICON            IDI_DELETEACTIVITY,IDC_STATIC,43,167,21,20
+    LTEXT           "Veuillez sélectionner ci-dessous une des actions disponibles.",
+                    IDC_STATIC,43,37,253,10
+    CONTROL         "Faire suivre l'activité",IDC_SENDCOMMAND,"Button",
+                    BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,77,56,88,15
+    CONTROL         "Accepter l'activité",IDC_ACCEPTCOMMAND,"Button",
+                    BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,77,85,86,15
+    CONTROL         "Refuser l'activité",IDC_REJECTCOMMAND,"Button",
+                    BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,77,114,98,15
+    CONTROL         "Suspendre l'activité",IDC_SUSPENDCOMMAND,"Button",
+                    BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,77,143,85,15
+    CONTROL         "Abandonner et perdre les modifications apportées",
+                    IDC_TRASHCOMMAND,"Button",BS_OWNERDRAW | BS_LEFT | 
+                    WS_TABSTOP,77,201,172,15
+    CONTROL         "Revenir au processus en cours",IDC_CANCELCOMMAND,"Button",
+                    BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,77,230,149,15
+    CONTROL         "Arrêter le processus définitivement",IDC_ABORTCOMMAND,
+                    "Button",BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,77,172,172,
+                    15
+    ICON            IDI_EXITDOOR,IDC_STATIC,43,196,21,20
+END
+
+IDD_CONFIRM_DELETE_MSGEVT DIALOG  0, 0, 288, 178
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Message d'information"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Enlever le message",IDOK,"Button",BS_OWNERDRAW | 
+                    BS_LEFT | WS_TABSTOP,197,142,84,14
+    CONTROL         "Fermer",IDCANCEL,"Button",BS_OWNERDRAW | BS_LEFT | 
+                    WS_TABSTOP,197,157,84,14
+    ICON            IDI_INFO,IDC_STATIC,7,7,20,20
+    LTEXT           "Procéssus:",IDC_STATIC,7,34,39,9
+    LTEXT           "Activité:",IDC_STATIC,7,48,39,9
+    LTEXT           "Status:",IDC_STATIC,7,62,39,9
+    LTEXT           "Message:",IDC_STATIC,7,76,39,9
+    EDITTEXT        IDC_PROCESS_NAME,56,32,129,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_ACTIVITY_NAME,56,46,129,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_STATUS_TEXT,56,60,129,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_MESSAGE_TEXT,56,76,225,43,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_READONLY
+END
+
+IDD_OBJECTNOTES DIALOG  0, 0, 292, 162
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Note"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_NOTESEDIT,7,7,278,129,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_WANTRETURN
+    DEFPUSHBUTTON   "Fermer",IDOK,235,141,50,14
+    PUSHBUTTON      "Détruire",IDC_DELETENOTES,120,141,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,183,141,50,14
+END
+
+IDD_FILEVERSION DIALOG  0, 0, 246, 138
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Version"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Changer",IDOK,189,117,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,132,117,50,14
+    ICON            IDI_INCREMENTVERSION,IDC_STATIC,7,7,20,20
+    LTEXT           "Les versions vous permettent de tracer l'évolution de votre référentiel de formulaires ou de processus.",
+                    IDC_STATIC,36,7,203,24
+    LTEXT           "numéro de version actuelle:",IDC_STATIC,7,56,90,10
+    EDITTEXT        IDC_FILEVERSION,107,54,24,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_FILEVERSION_SPIN,"msctls_updown32",
+                    UDS_ARROWKEYS,132,53,11,16
+    LTEXT           "Une fois le numéro de version changée, veuillez Clicker sur le bouton Changer. Si vous ne voulez pas changer la valeure actuelle, veuillez Clicker sur Abandonner",
+                    IDC_STATIC,7,79,106,52
+END
+
+IDD_USERINFO DIALOG  0, 0, 219, 194
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Utilisateur"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_DISPLAYNAME_USER,34,30,178,11,ES_AUTOHSCROLL
+    EDITTEXT        IDC_USERNAME_USER,34,46,178,11,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EMAIL_USER,34,62,178,11,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DEPARTEMENT_USER,62,81,150,11,ES_AUTOHSCROLL
+    EDITTEXT        IDC_RESPONSIBLE_USER,62,98,150,11,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DESCRIPTION_USER,62,118,150,34,ES_MULTILINE | 
+                    ES_WANTRETURN | WS_VSCROLL
+    CONTROL         "Droits administrateur",IDC_ADMIN_USER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,162,111,11
+    DEFPUSHBUTTON   "Créer",IDOK,162,173,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,106,173,50,14
+    ICON            IDI_USERINFO,IDC_STATIC,7,7,20,20
+    LTEXT           "Nom:",IDC_STATIC,7,32,24,9
+    LTEXT           "Login:",IDC_STATIC,7,48,24,9
+    LTEXT           "Description:",IDC_STATIC,7,118,40,9
+    LTEXT           "Responsable:",IDC_STATIC,7,100,50,9
+    LTEXT           "Département:",IDC_STATIC,7,83,47,9
+    LTEXT           "E-Mail:",IDC_STATIC,7,64,25,9
+END
+
+IDD_SYSTEMVAR DIALOG  0, 0, 230, 207
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Variables systèmes"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Sélectionner",IDOK,173,186,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,117,186,50,14
+    ICON            IDI_SYSVAR,IDC_STATIC,7,7,20,20
+    LISTBOX         IDC_SYSTEMVARLIST,7,35,216,144,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_CHOOSE_RESOURCE DIALOG  0, 0, 319, 239
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Choisir la ou les ressources"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Fermer",IDOK,262,219,50,13
+    CONTROL         "Tree1",IDC_RESOURCE_TREE,"SysTreeView32",
+                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,17,143,215
+    LTEXT           "Ressources existantes:",IDC_STATIC,7,7,77,10
+    PUSHBUTTON      "Ajouter >>",IDC_ADDRESOURCE,155,82,47,13
+    PUSHBUTTON      "<< Enlever",IDC_REMOVERESOURCE,155,99,47,13
+    LISTBOX         IDC_RESOURCE_LIST,207,17,105,199,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_PROCESS_TAKEOWNERSHIP DIALOG  0, 0, 303, 138
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Activité partagée"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDI_LOUPE,-1,43,51,20,20
+    LTEXT           "L'activité <%s> peut être exécutée par plusieurs ressources. Si vous prennez la responsabilité de cette activité, l'attribution de cette activité aux autres ressources va être enlevée et un message va être envoyé.",
+                    IDC_OWNERSHIP_TEXT,7,7,289,25
+    ICON            IDI_ICON104,-1,43,80,20,20
+    ICON            IDI_DONOTOPEN,-1,43,112,20,20
+    LTEXT           "Veuillez sélectionner ci-dessous une des actions disponibles.",
+                    -1,43,37,253,10
+    CONTROL         "Visualiser le processus",IDC_VISUALIZE,"Button",
+                    BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,77,56,88,15
+    CONTROL         "Prendre la responsabilité et continuer l'exécution",
+                    IDC_TAKEOWNERSHIP,"Button",BS_OWNERDRAW | BS_LEFT | 
+                    WS_TABSTOP,77,85,168,15
+    CONTROL         "Ne pas ouvrir",IDC_CANCELCOMMAND,"Button",BS_OWNERDRAW | 
+                    BS_LEFT | WS_TABSTOP,77,117,149,15
+END
+
+IDD_PROCESSOPEN DIALOG  0, 0, 303, 138
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Ouverture d'un processus"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDI_LOUPE,-1,43,51,20,20
+    LTEXT           "Vous n'êtes pas autorisé à ouvrir l'activité <%s> de ce processus. Du fait que vous avez des droits d'Administrateur, vous pouvez visualiser le processus avant de l'ouvrir et continuer l'exécution.",
+                    IDC_OPENADMIN_TEXT,7,7,289,25
+    ICON            IDI_FORMS,-1,43,80,20,20
+    ICON            IDI_DONOTOPEN,-1,43,112,20,20
+    LTEXT           "Veuillez sélectionner ci-dessous une des actions disponibles.",
+                    -1,43,37,253,10
+    CONTROL         "Visualiser le processus",IDC_VISUALIZE,"Button",
+                    BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,77,56,88,15
+    CONTROL         "Ouvrir et continuer l'exécution",IDC_OPENPROCESS,"Button",
+                    BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,77,85,113,15
+    CONTROL         "Ne pas ouvrir",IDC_CANCELCOMMAND,"Button",BS_OWNERDRAW | 
+                    BS_LEFT | WS_TABSTOP,77,117,149,15
+END
+
+IDD_FORM_FILEPREVIEW DIALOGEX 0, 0, 321, 209
+STYLE DS_SETFONT | DS_SETFOREGROUND | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Aperçu du fichier:"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Static",IDC_FILE_CONTROL,3,22,311,186,NOT WS_VISIBLE
+    LTEXT           "Static",IDC_FLATTOOLBAR,3,7,311,13,SS_CENTERIMAGE,
+                    WS_EX_STATICEDGE
+END
+
+IDD_INPUT_URL DIALOGEX 0, 0, 399, 14
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW | WS_EX_CLIENTEDGE
+CAPTION "Adresse Internet"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_URL,2,1,372,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,375,1,24,11
+END
+
+IDD_URLWINDOW DIALOGEX 0, 0, 195, 335
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_URL,1,15,176,12,ES_AUTOHSCROLL
+    CONTROL         "",IDC_GOWEB,"Button",BS_OWNERDRAW | WS_TABSTOP,178,15,
+                    14,12
+    CONTROL         "",IDC_WEBCTRL,"Static",SS_BLACKFRAME | NOT WS_VISIBLE,1,
+                    28,191,303
+    LTEXT           "Static",IDC_FLATTOOLBAR,0,0,193,13,SS_CENTERIMAGE,
+                    WS_EX_STATICEDGE
+END
+
+IDD_FILEWINDOW DIALOGEX 0, 0, 195, 318
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_FILENAME,1,15,192,12,ES_AUTOHSCROLL
+    LTEXT           "Static",IDC_FLATTOOLBAR,1,0,192,13,SS_CENTERIMAGE,
+                    WS_EX_STATICEDGE
+    CONTROL         "Tree1",IDC_FILETREE,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_SHOWSELALWAYS | 
+                    WS_BORDER | WS_TABSTOP,1,30,192,284
+END
+
+IDD_SYSOPTIONPAGE1 DIALOG  13, 54, 270, 185
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Général"
+FONT 8, "Helv"
+BEGIN
+    CONTROL         "Sauvegarder la position écran",IDC_SCREENPOS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,2,40,113,12
+    CONTROL         "Créer un modèle lors du lancement de l'application",
+                    IDC_STARTUPOPENFILE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,2,16,199,10
+    CONTROL         "Ouvrir le dernier fichier lors du lancement de l'application",
+                    IDC_RELOADLASTFILE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    2,27,205,12
+    CONTROL         "Montrer la fenêtre de démarrage",IDC_SHOWWELCOME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,2,3,189,12
+    CONTROL         "Ouvrir les fichiers sous forme maximisée",
+                    IDC_MAXIMIZE_FORMS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    2,53,132,12
+    CONTROL         "Forcer la connexion sur le serveur (recommandé pour un réseau WorkGroup)",
+                    IDC_FORCENETWORK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,2,
+                    76,257,8
+    CONTROL         "Ne pas montrer les astuces au démarrage",
+                    IDC_DONTSHOWTIPS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,2,
+                    89,257,8
+    CONTROL         "Ne pas montrer la fenêtre des tâches pour les processus",
+                    IDC_DONTSHOWTASKLIST,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,2,102,257,8
+END
+
+IDD_COMMANDLINE DIALOG  0, 0, 269, 165
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Lancer une application"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_CMD_JOBNAME,55,42,208,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_CMD_APPLICATION,55,59,208,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_CMD_STARTUPDIRECTORY,87,75,176,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_CMD_ARGUMENTS,55,91,208,12,ES_AUTOHSCROLL
+    COMBOBOX        IDC_CMD_PRIORITY,51,108,101,50,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_CMD_WINDOWMODE,51,125,101,50,CBS_DROPDOWN | 
+                    WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "Accepter",IDOK,213,144,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,159,144,50,14
+    LTEXT           "Vous pouvez lancer une tâche externe. Pour cela, il vous suffit de sélectionner l'application. Cette tâche externe sera lancée lorsque cette activité sera terminée.",
+                    IDC_STATIC,44,4,219,32
+    LTEXT           "Application:",IDC_STATIC,8,62,40,9
+    LTEXT           "Dossier de démarrage:",IDC_STATIC,8,78,72,9
+    LTEXT           "Priorité:",IDC_STATIC,8,111,29,9
+    ICON            IDI_COMMANDLINE,IDC_STATIC,7,9,20,20
+    LTEXT           "Arguments:",IDC_STATIC,8,94,37,9
+    LTEXT           "Fenêtre:",IDC_STATIC,8,127,29,9
+    LTEXT           "Nom du job:",IDC_STATIC,7,45,40,9
+END
+
+IDD_REFERENCE_FILE DIALOG  0, 0, 271, 156
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Définition d'une référence"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_REFERENCE_FILE,9,51,254,12,ES_AUTOHSCROLL
+    COMBOBOX        IDC_INSERTIONTYPE,9,81,122,63,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_ACTIVATIONTYPE,9,108,122,49,CBS_DROPDOWN | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Formulaire Scriptor",IDC_SCRIPTOR,193,68,70,13
+    PUSHBUTTON      "Fichier",IDC_ADDFILE,193,85,70,13
+    PUSHBUTTON      "URL",IDC_ADDURL,193,102,70,13
+    DEFPUSHBUTTON   "Accepter",IDOK,213,136,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,159,136,50,14
+    LTEXT           "Une référence peut être un formulaire Scriptor, un fichier ou une URL",
+                    IDC_STATIC,35,10,221,13
+    ICON            IDI_REF_FILE,IDC_STATIC,5,6,20,20
+    LTEXT           "Mode d'insertion:",IDC_STATIC,9,70,82,8
+    LTEXT           "Mode d'activation:",IDC_STATIC,9,99,82,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1             BITMAP                  ".\\RES\\BITMAP1.BMP"
+IDB_BITMAP10            BITMAP                  ".\\RES\\BITMAP10.BMP"
+IDB_BITMAP11            BITMAP                  ".\\RES\\BITMAP11.BMP"
+IDB_BITMAP12            BITMAP                  ".\\RES\\BITMAP12.BMP"
+IDB_BITMAP13            BITMAP                  ".\\RES\\BITMAP13.BMP"
+IDB_BITMAP14            BITMAP                  ".\\RES\\BITMAP14.BMP"
+IDB_BITMAP15            BITMAP                  ".\\RES\\BITMAP15.BMP"
+IDB_BITMAP16            BITMAP                  ".\\RES\\BITMAP16.BMP"
+IDB_BITMAP17            BITMAP                  ".\\RES\\BITMAP17.BMP"
+IDB_BITMAP2             BITMAP                  ".\\RES\\BITMAP2.BMP"
+IDB_BITMAP3             BITMAP                  ".\\RES\\BITMAP3.BMP"
+IDB_BITMAP4             BITMAP                  ".\\RES\\BITMAP4.BMP"
+IDB_BITMAP5             BITMAP                  ".\\RES\\BITMAP5.BMP"
+IDB_BITMAP6             BITMAP                  ".\\RES\\BITMAP6.BMP"
+IDB_BITMAP7             BITMAP                  ".\\RES\\BITMAP7.BMP"
+IDB_BITMAP8             BITMAP                  ".\\RES\\BITMAP8.BMP"
+IDB_BITMAP9             BITMAP                  ".\\RES\\BITMAP9.BMP"
+CANCEL_PROPU            BITMAP                  "RES\\BMP00007.BMP"
+CANCEL_PROPF            BITMAP                  "RES\\BMP00006.BMP"
+CANCEL_PROPD            BITMAP                  "RES\\ID_CANCE.BMP"
+OK_PROPU                BITMAP                  "RES\\BMP00004.BMP"
+OK_PROPF                BITMAP                  "RES\\BMP00005.BMP"
+OK_PROPD                BITMAP                  "RES\\ID_OK_PR.BMP"
+COL_SELU                BITMAP                  "RES\\COL_SELU.BMP"
+COL_SELF                BITMAP                  "RES\\COL_SELF.BMP"
+COL_SELD                BITMAP                  "RES\\COL_SELD.BMP"
+IDB_RBD                 BITMAP                  "res\\rbs.bmp"
+IDB_RBF                 BITMAP                  "res\\rbo.bmp"
+IDB_RBU                 BITMAP                  "res\\rbu.bmp"
+IDB_RBX                 BITMAP                  "res\\rbx.bmp"
+IDB_TEMPLATEFILEITEM    BITMAP                  "res\\templatef.bmp"
+IDB_TEMPLATEFOLDERITEM  BITMAP                  "res\\template.bmp"
+IDB_PROCESSITEM         BITMAP                  ".\\res\\processi.bmp"
+IDB_ACTIVITYITEM        BITMAP                  ".\\res\\activity.bmp"
+IDB_WZBMP1              BITMAP                  "res\\wz1.bmp"
+IDB_WZBMP2              BITMAP                  ".\\res\\wzbmp2.bmp"
+IDB_USERITEM            BITMAP                  "useritem.bmp"
+IDB_MESSAGEITEM1_ACTEVT BITMAP                  ".\\res\\messagei.bmp"
+IDB_MESSAGEITEM2_ACTEVT BITMAP                  ".\\res\\bmp00001.bmp"
+IDB_MESSAGEITEM3_ACTEVT BITMAP                  ".\\res\\bmp00002.bmp"
+IDB_MESSAGEITEM4_ACTEVT BITMAP                  ".\\res\\bmp00003.bmp"
+IDB_MESSAGEITEM5_ACTEVT BITMAP                  ".\\res\\bmp00004.bmp"
+IDB_MESSAGEITEM6_ACTEVT BITMAP                  ".\\res\\bmp00005.bmp"
+IDB_MESSAGEITEM7_ACTEVT BITMAP                  ".\\res\\bmp00006.bmp"
+IDB_MESSAGEITEM8_ACTEVT BITMAP                  ".\\res\\bmp00007.bmp"
+IDB_MESSAGEITEM9_ACTEVT BITMAP                  ".\\res\\bmp00008.bmp"
+IDB_MESSAGEITEM10_ACTEVT BITMAP                  ".\\res\\bmp00009.bmp"
+IDB_MESSAGEITEM0_ACTEVT BITMAP                  ".\\res\\bmp00010.bmp"
+IDB_MESSAGEITEM11_ACTEVT BITMAP                  ".\\res\\bmp00011.bmp"
+IDB_MESSAGEITEM12_ACTEVT BITMAP                  ".\\res\\bmp00012.bmp"
+IDB_WELCOME             BITMAP                  "Res\\welcome.bmp"
+IDB_MESSAGEITEM13_ACTEVT BITMAP                  ".\\res\\bmp00013.bmp"
+IDB_FOLDERITEM          BITMAP                  ".\\res\\folderit.bmp"
+IDB_MESSAGEITEM14_ACTEVT BITMAP                  ".\\res\\bmp00014.bmp"
+IDB_MESSAGEITEM15_ACTEVT BITMAP                  ".\\res\\bmp00015.bmp"
+IDB_MESSAGEITEM16_ACTEVT BITMAP                  ".\\res\\bmp00016.bmp"
+IDB_MENU_BUTTON         BITMAP                  "res\\menu_but.bmp"
+IDB_PROCESSCHOOSEITEM   BITMAP                  ".\\res\\bmp00017.bmp"
+IDB_WZBMP3              BITMAP                  "Res\\wz2.bmp"
+IDB_POINTERWINDOW       BITMAP                  "Res\\Pointerw.bmp"
+IDB_POINTERWINDOWEMPTY  BITMAP                  "Res\\POINTERWE.BMP"
+IDB_IL_PROCESSITEM      BITMAP                  "res\\il_stand.bmp"
+IDB_BUTTONSFILEPREVIEWDLG BITMAP                  "res\\buttons.bmp"
+IDB_URL_FV_BUTTONS      BITMAP                  ".\\res\\url_fv_b.bmp"
+IDB_GO_OVER_FB          BITMAP                  ".\\res\\bitmap18.bmp"
+IDB_FILE_FV_BUTTONS     BITMAP                  ".\\res\\bmp00018.bmp"
+IDB_WORKSPACE_TMPL_DEF  BITMAP                  ".\\res\\workspac.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_POINTER             CURSOR                  "RES\\POINTER.CUR"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_SYSOPTIONPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+    END
+
+    IDD_WELCOME_WRITER, DIALOG
+    BEGIN
+        LEFTMARGIN, 1
+        RIGHTMARGIN, 281
+        TOPMARGIN, 3
+    END
+
+    IDD_CALENDAR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 235
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 142
+    END
+
+    IDD_WZTIMERESOURCE_ATTR, DIALOG
+    BEGIN
+        LEFTMARGIN, 10
+    END
+
+    IDD_REJECTACTIVITYINFO, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 297
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 150
+    END
+
+    IDD_NEWFORM, DIALOG
+    BEGIN
+        RIGHTMARGIN, 352
+    END
+
+    IDD_WZTIMERESOURCE_ATTRST, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+    END
+
+    "PREVIEWFILEOPEN_TEMPLATE", DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 88
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 8
+    END
+
+    IDD_WZCREATEFOLDERFILE_ST, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+    END
+
+    IDD_WZCREATEFOLDERFILE_EXIST, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+    END
+
+    IDD_FOLDER_INFORMATION, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 241
+        BOTTOMMARGIN, 203
+    END
+
+    IDD_WZBACKRESOURCE_ATTR, DIALOG
+    BEGIN
+        LEFTMARGIN, 10
+    END
+
+    IDD_DATABASE_TABLE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 213
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 179
+    END
+
+    IDD_WZSCANNING_WELCOME, DIALOG
+    BEGIN
+        VERTGUIDE, 17
+        VERTGUIDE, 275
+    END
+
+    IDD_WZSCANNING_CONTINUESEL, DIALOG
+    BEGIN
+        VERTGUIDE, 17
+        VERTGUIDE, 275
+        HORZGUIDE, 195
+    END
+
+    IDD_WZSCANNING_INFODOC, DIALOG
+    BEGIN
+        VERTGUIDE, 17
+        VERTGUIDE, 275
+        HORZGUIDE, 195
+    END
+
+    IDD_TEMPLATESAVE, DIALOG
+    BEGIN
+        LEFTMARGIN, 3
+        RIGHTMARGIN, 322
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 197
+    END
+
+    IDD_SYSOPTIONPAGE1, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+    END
+
+    IDD_COMMANDLINE, DIALOG
+    BEGIN
+        RIGHTMARGIN, 263
+        BOTTOMMARGIN, 158
+    END
+
+    IDD_REFERENCE_FILE, DIALOG
+    BEGIN
+        RIGHTMARGIN, 263
+        VERTGUIDE, 9
+        BOTTOMMARGIN, 150
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_REJECTACTIVITYINFO DLGINIT
+BEGIN
+    IDC_REJECTCATEGORY, 0x403, 18, 0
+0x6f44, 0x7373, 0x6569, 0x2072, 0x6e69, 0x6f63, 0x706d, 0x656c, 0x0074, 
+
+    IDC_REJECTCATEGORY, 0x403, 19, 0
+0x614d, 0x716e, 0x6575, 0x6920, 0x666e, 0x726f, 0x616d, 0x6974, 0x6e6f, 
+"\000" 
+    IDC_REJECTCATEGORY, 0x403, 14, 0
+0x6150, 0x2073, 0x6564, 0x6220, 0x6475, 0x6567, 0x0074, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x21L
+#else
+ FILEFLAGS 0x20L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040c04b0"
+        BEGIN
+            VALUE "CompanyName", "Advanced Dedicated Software"
+            VALUE "FileDescription", "ZWinUtil"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "ZWinUtil"
+            VALUE "LegalCopyright", "Advanced Dedicated Software - Copyright (C)"
+            VALUE "OriginalFilename", "ZWinUtil32.dll"
+            VALUE "ProductName", "Advanced Dedicated Software - ZWinUtil"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+            VALUE "SpecialBuild", "301"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x40c, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_AUTOMATIC_TEXT      "Automatique"
+    IDS_SYSTEMOPTION_TITLE  "Options du système"
+    IDS_COLUMN1_FOLDERINFO  "Type"
+    IDS_COLUMN2_FOLDERINFO  "Contenu"
+    IDS_FOLDERNAME_TITLE    "Dossier"
+    IDS_FOLDERNAME_DESCRIPTION "Commentaire"
+    IDS_FOLDERNAME_CREATIONUSER "Créé par"
+    IDS_FOLDERNAME_CREATIONDATE "Créé le"
+    IDS_FOLDERNAME_PUBLISHVERSION "Version"
+    IDS_FOLDERNAME_TEMPLATENAME "Forme"
+    IDS_FOLDERNAME_TYPE     "Type"
+    IDS_FOLDERNAME_FILENAME "Fichier"
+    IDS_TEMPLATENAME_FILENAME "Fichier Forme"
+    IDS_COLUMN1_ACTIVITY    "Activité"
+    IDS_COLUMN2_ACTIVITY    "Attribuée à l'activité"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MODELTEXT           "Modèle"
+    IDS_CONFIRM_INSERT_SCANDOC 
+                            "Est-ce bien ce document que vous voulez insérer?"
+    IDS_NEXTPAGE_BUTTON     "Page suivante"
+    IDS_PREVPAGE_BUTTON     "Page précédente"
+    IDS_LISTOFUSEREMPTY_CONTINUE 
+                            "Vous n'avez sélectionné aucune ressource. Voulez-vous continuer?"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_COLUMN1_TASKACTIVITY "Activité"
+    IDS_COLUMN2_TASKACTIVITY "Statut"
+    IDS_COLUMN3_TASKACTIVITY "Initié par"
+    IDS_COLUMN4_TASKACTIVITY "le"
+    IDS_COLUMN5_TASKACTIVITY "Prévu pour finir le"
+    IDS_COLUMN6_TASKACTIVITY "Nb. jours restants"
+    IDS_ATTRIBUTIONTITLE_WZ "Attribution d'activité"
+    IDS_ATTRIBUTIONTEXTE_WZ "Veuillez attribuer l'activité ci-dessous"
+    IDS_SELFTEXT_REJECTCATEGORY "Texte utilisateur"
+    IDS_PROCESSTEXT         "Processus"
+    IDS_FORMSTEXT           "Formulaires"
+    IDS_ATTRIBUTIONTITLEST_WZ "Attribution d'activité"
+    IDS_ATTRIBUTIONSTTEXTE_WZ 
+                            "Vous êtes responsable d'attribué une ou plusieurs activités."
+    IDS_ATTRIBUTIONACTIVITY_WTEXT 
+                            "L'activité %1 est une activité d'attribution de ressources, de temps et de visibilité. Veuillez attribuer toutes les activités qui sont sous votre responsabilité."
+    IDS_WZPREACTIVITYTITLE_WZ "Explications"
+    IDS_WZPREACTIVITYTITLEPROC_T 
+                            "Veuillez sélectionner ou spécifier le fichier processus"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_COLUMN1_EVENTLOG    "Date&Heure"
+    IDS_COLUMN2_EVENTLOG    "Fichier"
+    IDS_COLUMN3_EVENTLOG    "Statut"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_COLUMN0_EVENTACTIVITY "Date&Heure"
+    IDS_PROCFORMFILEMISSING "Vous devez spécifier un fichier pour pouvoir continuer."
+    IDS_PROCFORMFILEINVALID "Le fichier que vous avez spécifié est invalide. Veuillez spécifier un autre fichier."
+    IDS_PROCFORMFILE_TITLENEQ 
+                            "Le fichier que vous avez spécifié ne correspond pas au type requis. Veuillez spécifier un fichier valide."
+    IDS_COLUMN1_EVENTACTIVITY "Dossier"
+    IDS_COLUMN2_EVENTACTIVITY "Processus"
+    IDS_COLUMN3_EVENTACTIVITY "Créé le"
+    IDS_COLUMN4_EVENTACTIVITY "Fin prévue le"
+    IDS_COLUMN5_EVENTACTIVITY "Activité"
+    IDS_COLUMN6_EVENTACTIVITY "Créée le"
+    IDS_COLUMN7_EVENTACTIVITY "Fin prévue le"
+    IDS_COLUMN8_EVENTACTIVITY "Généré par"
+    IDS_COLUMN9_EVENTACTIVITY "Destiné à"
+    IDS_COLUMN10_EVENTACTIVITY "Fichier"
+    IDS_COLUMN11_EVENTACTIVITY "Fichier d'échange"
+    IDS_COLUMN12_EVENTACTIVITY "Statut"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_COLUMN13_EVENTACTIVITY "Commentaire"
+    IDS_COLUMN2_EVENTREMINDER "Processus"
+    IDS_COLUMN3_EVENTREMINDER "Activité"
+    IDS_COLUMN4_EVENTREMINDER "Jours restants"
+    IDS_COLUMN5_EVENTREMINDER "Echéance"
+    IDS_COLUMN1_EVENTREMINDER "Dossier"
+    IDS_COLUMN6_EVENTREMINDER "Statut"
+    IDS_COLUMN7_EVENTREMINDER "Message"
+    IDS_COLUMN0_EVENTREMINDER "Priorité"
+    IDS_REJECTTEXTEMPTY     "Vous n'avez spécifier aucun texte de rejet. Voulez-vous continuer sans spécifier un texte de rejet?"
+    IDS_NOCOLUMNHEADER      " "
+    IDS_COLUMN14_EVENTACTIVITY "Fichier processus d'échange"
+    IDS_COLUMN15_EVENTACTIVITY "Type d'activité"
+    IDS_BASEONFORM_EXPLANATION 
+                            "L'activité <%1> doit se baser sur un formulaire. Ce formulaire doit être du type <%2>. Veuillez spécifier le formulaire qui doit être utilisé."
+    IDS_BASEONPROC_EXPLANATION 
+                            "L'activité <%1> doit se baser sur un processus. Ce processus doit être du type <%2>. Veuillez spécifier le processus qui doit être utilisé."
+    IDS_BASEONFORMNONAME_EXPLANATION 
+                            "L'activité <%1> doit se baser sur un formulaire. Ce formulaire n'est pas d'un type spécifique. Veuillez spécifier le formulaire qui doit être utilisé."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_WZPREACTIVITYTITLEFORM_T 
+                            "Veuillez sélectionner ou spécifier le formulaire"
+    IDS_WZPREACTIVITYTITLE_T 
+                            "L'activité courante à besoin de se baser sur un processus ou un formulaire"
+    IDS_CREATEFOLDERST_S    "Création"
+    IDS_CREATEFOLDERST_T    "Choisir un nom de dossier"
+    IDS_CREATEFOLDEREXIST_S "Conflit"
+    IDS_CREATEFOLDEREXIST_T "Le dossier existe déjà"
+    IDS_SELECTIONPROCESSST_S "Information"
+    IDS_SELECTIONPROCESSST_T 
+                            "Vous allez devoir choisir une activité ou un sous-processus"
+    IDS_SELECTIONPROCESSCS_S "Sélection"
+    IDS_SELECTIONPROCESSCS_T "Une activité ou un sous-processus"
+    IDS_COLUMNDESC_ACTIVITY "Commentaire"
+    IDS_SELECTIONSERVERWLC_SL "Local"
+    IDS_SELECTIONSERVERWLC_TL "Choix d'un serveur local"
+    IDS_SELECTIONSERVERWLC_SG "Global"
+    IDS_SELECTIONSERVERWLC_TG "Choix d'un serveur global"
+    IDS_ATTRIBUTIONBACKUPTEXTE_WZ 
+                            "Veuillez attribuer la ou les ressources de remplacement de l'activité ci-dessous"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_BASEONPROCNONAME_EXPLANATION 
+                            "L'activité <%1> doit se baser sur un processus. Ce processus n'est pas d'un type spécifique. Veuillez spécifier le processus qui doit être utilisé."
+    IDS_SELECTPROCESS_TITLE "Sélectionner un processus"
+    IDS_SELECTFORM_TITLE    "Sélectionner un formulaire"
+    IDS_CHOOSEDIRECTORYFORFOLDER "Choisir un emplacement pour le dossier"
+    IDS_CHOOSEFILENAMEFORFOLDER "Choisir un autre fichier pour le dossier"
+    IDS_SAVETEXTBUTTON      "Sauvegarder"
+    IDS_REFRESH_BUTTON      "Rafraîchir le formulaire"
+    IDS_ZOOM_OUT_BUTTON     "Zoomer le formulaire (Agrandir)"
+    IDS_ZOOM_IN_BUTTON      "Zoomer le formulaire (Diminuer)"
+    IDS_NEXTFILE_BUTTON     "Formulaire suivant"
+    IDS_PREVFILE_BUTTON     "Formulaire précédent"
+    IDS_CLOSEFILE_BUTTON    "Fermer"
+    IDS_COLUMN1_WKSTEMPLATE "Projet"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TODAY_SYSVAR        "Date du jour"
+    IDS_FILENAME_SYSVAR     "Nom du document"
+    IDS_EXCHFILENAME_SYSVAR "Nom du fichier d'échange des données"
+    IDS_PROCEXCHFILENAME_SYSVAR "Nom du fichier d'échange des processus"
+    IDS_AUTHOR_SYSVAR       "Auteur du document"
+    IDS_MODIFIER_SYSVAR     "Dernière personne ayant modifié le document"
+    IDS_CREATIONDATE_SYSVAR "Date de création du document"
+    IDS_MODIFICATIONDATE_SYSVAR "Date de modification du document"
+    IDS_PUBLISHDATE_SYSVAR  "Date de publication du document"
+    IDS_FILEVER_SYSVAR      "Version du document"
+    IDS_SCANNINGWLC_S       "Démarrage"
+    IDS_SCANNINGWLC_T       "Numérisation de documents ou attacher un fichier ou plusieurs fichiers."
+    IDS_SCANNINGINFO_S      "Information"
+    IDS_SCANNINGINFO_T      "Spécifier des informations sur le document."
+    IDS_SCANNINGSELECT_S    "Fichier"
+    IDS_SCANNINGSELECT_T    "Spécifier ou sélectionner le fichier à attacher."
+END
+
+#endif    // Français (France) resources
+/////////////////////////////////////////////////////////////////////////////
+
+

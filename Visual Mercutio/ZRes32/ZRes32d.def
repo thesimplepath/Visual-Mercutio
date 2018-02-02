@@ -1,0 +1,10 @@
+; ZRes32d.def : Declares the module parameters for the DLL.
+
+LIBRARY      "ZRes32d"
+
+; JMR-MODIF - le 19 mai 2005 - DESCRIPTION supprimé car non pris en charge par le compilateur.
+;DESCRIPTION  'ZRes32d Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here
+	InitZRes32DLL	@1

@@ -1,0 +1,10 @@
+; zModelD.def : Declares the module parameters for the DLL.
+
+LIBRARY      "zModelD"
+
+; JMR-MODIF - Le 23 mai 2005 - DESCRIPTION supprimé car non pris en charge par le compilateur.
+;DESCRIPTION  'zModelD Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here
+	

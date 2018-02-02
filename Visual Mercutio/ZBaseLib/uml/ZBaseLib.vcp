@@ -1,0 +1,95 @@
+<?xml version="1.0" standalone="yes"?>
+  <ElementSet>
+    <MmPtr>
+      <Name>Basic Interfaces</Name>
+      <Object>
+        <MmPackage>
+          <PersistentName>Basic Interfaces.vcx</PersistentName>
+        </MmPackage>
+      </Object>
+    </MmPtr>
+    <MmPtr>
+      <Name>Controls Package</Name>
+      <Object>
+        <MmPackage>
+          <PersistentName>Controls Package.vcx</PersistentName>
+        </MmPackage>
+      </Object>
+    </MmPtr>
+    <MmPtr>
+      <Name>Document</Name>
+      <Object>
+        <MmPackage>
+          <PersistentName>Document.vcx</PersistentName>
+        </MmPackage>
+      </Object>
+    </MmPtr>
+    <MmPtr>
+      <PtrRevMark>2</PtrRevMark>
+      <Name>Input Scenarios</Name>
+      <Object>
+        <MmPackage>
+          <PersistentName>Input Scenarios.vcx</PersistentName>
+        </MmPackage>
+      </Object>
+    </MmPtr>
+    <MmPtr>
+      <PtrRevMark>2</PtrRevMark>
+      <Name>Log package</Name>
+      <Object>
+        <MmPackage>
+          <PersistentName>Log package.vcx</PersistentName>
+        </MmPackage>
+      </Object>
+    </MmPtr>
+    <MmPtr>
+      <PtrRevMark>2</PtrRevMark>
+      <Name>Objects</Name>
+      <Object>
+        <MmPackage>
+          <PersistentName>Objects.vcx</PersistentName>
+        </MmPackage>
+      </Object>
+    </MmPtr>
+    <MmPtr>
+      <Name>Properties Package</Name>
+      <Object>
+        <MmPackage>
+          <PersistentName>Properties Package.vcx</PersistentName>
+        </MmPackage>
+      </Object>
+    </MmPtr>
+    <MmPtr>
+      <Name>Server</Name>
+      <Object>
+        <MmPackage>
+          <PersistentName>Server.vcx</PersistentName>
+        </MmPackage>
+      </Object>
+    </MmPtr>
+    <MmPtr>
+      <Name>User Package</Name>
+      <Object>
+        <MmPackage>
+          <PersistentName>User Package.vcx</PersistentName>
+        </MmPackage>
+      </Object>
+    </MmPtr>
+    <MmPtr>
+      <Name>Views Package</Name>
+      <Object>
+        <MmPackage>
+          <PersistentName>Views Package.vcx</PersistentName>
+        </MmPackage>
+      </Object>
+    </MmPtr>
+    <MmPtr>
+      <PtrRevMark>2</PtrRevMark>
+      <Name>Workspace Package</Name>
+      <Object>
+        <MmPackage>
+          <PersistentName>Workspace Package.vcx</PersistentName>
+        </MmPackage>
+      </Object>
+    </MmPtr>
+  </ElementSet>

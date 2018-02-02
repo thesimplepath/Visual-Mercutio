@@ -1,0 +1,35 @@
+<?xml version="1.0" standalone="yes"?>
+  <ElementSet>
+    <MmPtr>
+      <Name>MVC Package</Name>
+      <Object>
+        <MmPackage>
+          <PersistentName>MVC Package.vcx</PersistentName>
+        </MmPackage>
+      </Object>
+    </MmPtr>
+    <MmPtr>
+      <Name>Symbol Package</Name>
+      <Object>
+        <MmPackage>
+          <PersistentName>Symbol Package.vcx</PersistentName>
+        </MmPackage>
+      </Object>
+    </MmPtr>
+    <MmPtr>
+      <Name>UserGroup Package</Name>
+      <Object>
+        <MmPackage>
+          <PersistentName>UserGroup Package.vcx</PersistentName>
+        </MmPackage>
+      </Object>
+    </MmPtr>
+    <MmPtr>
+      <Name>Window Control Package</Name>
+      <Object>
+        <MmPackage>
+          <PersistentName>Window Control Diagram.vcx</PersistentName>
+        </MmPackage>
+      </Object>
+    </MmPtr>
+  </ElementSet>

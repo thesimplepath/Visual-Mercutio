@@ -1,0 +1,6 @@
+; zReportWeb.def : déclare les paramètres de module pour la DLL.
+
+LIBRARY      "zReportWebD"
+
+EXPORTS
+    ; Les exportations explicites peuvent être placées ici

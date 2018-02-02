@@ -1,0 +1,324 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "zReportWebRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Français (France) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "100c04e4"
+        BEGIN
+            VALUE "CompanyName", "TODO : <Nom de la société>"
+            VALUE "FileDescription", "TODO : <Description de fichier>"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "zReportWeb.dll"
+            VALUE "LegalCopyright", "TODO : (c) <Nom de la société>. Tous droits réservés."
+            VALUE "OriginalFilename", "zReportWeb.dll"
+            VALUE "ProductName", "TODO : <Nom du produit>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x100c, 1252
+    END
+END
+
+#endif    // Français (France) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Français (Suisse) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRS)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH_SWISS
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "zReportWebRes.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRS)\r\n"
+    "LANGUAGE 12, 4\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\zReportWeb.rc2""  // ressources non modifiées par Microsoft Visual C++\r\n"
+    "#include ""afxres.rc""     // Composants standard\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_CONCEPTOR_HTML_1    "<HTML>\n<HEAD>\n<TITLE>"
+    IDS_CONCEPTOR_HTML_2    "</TITLE>\n<META http-equiv=""Content-Type"" content=""text/html; charset=iso-8859-1"">\n"
+    IDS_CONCEPTOR_HTML_3    "</HEAD>\n<BODY>\n<TABLE width=""75%"" border=""1"">\n"
+    IDS_CONCEPTOR_HTML_4    "<TR>\n\t<TD colSpan=""3"">\n\t\t"
+    IDS_CONCEPTOR_HTML_5    "<P align=""center"">\n\t\t<FONT size=""5""><FONT face=""Arial""></FONT></FONT>\n\t\t<B><FONT face=""Arial"" size=""5"">"
+    IDS_CONCEPTOR_HTML_6    "</FONT></B>\n\t\t<FONT size=""5""><FONT face=""Arial""></FONT></FONT>\n\t\t</P>\n\t</TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_7    "<TR>\n\t<TD bgColor=""#999999"" colSpan=""3"" rowSpan=""1"">\n\t\t"
+    IDS_CONCEPTOR_HTML_8    "<P align=""center"">\n\t\t<FONT size=""5""><FONT face=""Arial""></FONT></FONT>\n\t\t<FONT face=""Arial"" color=""#ffffff"" size=""5""><STRONG>"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CONCEPTOR_HTML_9    "</STRONG></FONT>\n\t\t<FONT size=""5""><FONT face=""Arial""><STRONG></STRONG></FONT></FONT>\n\t\t</P>\n\t</TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_10   "<TR>\n\t<TD colSpan=""3"">\n\t\t<FONT face=""Arial""></FONT>\n\t\t<FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_11   "</FONT>\n\t\t<FONT face=""Arial""></FONT>\n\t</TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_12   "<TR>\n\t<TD bgColor=""#999999"" colSpan=""3"" rowSpan=""1"">\n\t\t"
+    IDS_CONCEPTOR_HTML_13   "<P align=""center"">\n\t\t<FONT size=""5""><FONT face=""Arial""></FONT></FONT>\n\t\t<FONT face=""Arial"" color=""#ffffff"" size=""5""><STRONG>"
+    IDS_CONCEPTOR_HTML_14   "</STRONG></FONT>\n\t\t<FONT size=""5""><FONT face=""Arial""><STRONG></STRONG></FONT></FONT>\n\t\t</P>\n\t</TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_15   "<TR>\n\t<TD bgColor=""#ff9966"" colSpan=""1"" rowSpan=""1""><FONT face=""Arial"" color=""#ffffff"" size=""4""><STRONG>"
+    IDS_CONCEPTOR_HTML_16   "</STRONG></FONT></TD>\n\t<TD bgColor=""#0099ff""><FONT face=""Arial"" color=""#ffffff"" size=""4""><STRONG>"
+    IDS_CONCEPTOR_HTML_17   "</STRONG></FONT></TD>\n\t<TD bgColor=""#ffffff""><FONT face=""Arial"" color=""#000000"" size=""4""><STRONG>"
+    IDS_CONCEPTOR_HTML_18   "</STRONG></FONT></TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_19   "<TR>\n\t<TD bgColor=""#999999"" colSpan=""3"" rowSpan=""1"">\n\t\t"
+    IDS_CONCEPTOR_HTML_20   "<P align=""center"">\n\t\t<FONT size=""5""><FONT face=""Arial""></FONT></FONT>\n\t\t<FONT face=""Arial"" color=""#ffffff"" size=""5""><STRONG>"
+    IDS_CONCEPTOR_HTML_21   "</STRONG></FONT>\n\t\t<FONT size=""5""><FONT face=""Arial""><STRONG></STRONG></FONT></FONT>\n\t\t</P>\n\t</TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_22   "</TABLE>\n</BODY>\n</HTML>\n"
+    IDS_CONCEPTOR_HTML_23   "<TR>\n\t<TD colSpan=""3""></TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_24   "<TR>\n\t<TD colSpan=""3""></TD>\n</TR>\n"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CONCEPTOR_HTML_25   "<TR>\n\t<TD bgColor=""#ff9966""><FONT face=""Arial"" color=""#ffffff""><STRONG>"
+    IDS_CONCEPTOR_HTML_26   "</STRONG></FONT></TD>\n\t<TD bgColor=""#0099ff""><FONT face=""Arial"" color=""ffffff""><STRONG>"
+    IDS_CONCEPTOR_HTML_27   "</STRONG></FONT></TD>\n\t<TD bgColor=""#0099ff""><FONT face=""Arial"" color=""ffffff""><STRONG>"
+    IDS_CONCEPTOR_HTML_28   "</STRONG></FONT></TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_29   "<TR>\n\t<TD colSpan=""3""></TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_30   "<TR>\n\t<TD bgColor=""#ffffff""><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_31   "</FONT></TD>\n\t<TD><FONT face=""Arial""><STRONG>"
+    IDS_CONCEPTOR_HTML_32   "</STRONG></FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_33   "</FONT></TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_34   "<TR>\n\t<TD bgColor=""#ffffff""><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_35   "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_36   "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_37   "</FONT></TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_38   "<TR>\n\t<TD bgColor=""#ffffff""><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_39   "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_40   "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CONCEPTOR_HTML_41   "</FONT></TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_42   "<TR>\n\t<TD colSpan=""3""></TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_43   "<TR>\n\t<TD bgColor=""#ff9966"" height=""21""><FONT face=""Arial"" color=""ffffff"">"
+    IDS_CONCEPTOR_HTML_44   "</FONT></TD>\n\t<TD bgColor=""#0099ff"" height=""21""><FONT face=""Arial"" color=""ffffff"">"
+    IDS_CONCEPTOR_HTML_45   "</FONT></TD>\n\t<TD height=""21""><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_46   "</FONT></TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_47   "<TR>\n\t<TD bgColor=""#ffffff""><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_48   "</FONT></TD>\n\t<TD><FONT face=""Arial""><STRONG>"
+    IDS_CONCEPTOR_HTML_49   "</STRONG></FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_50   "</FONT></TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_51   "<TR>\n\t<TD bgColor=""#ffffff""><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_52   "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_53   "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_54   "</FONT></TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_55   "<TR>\n\t<TD bgColor=""#bbbbbb"" colSpan=""3"">\n\t\t<FONT face=""Arial"" color=""#ffffff""><STRONG>"
+    IDS_CONCEPTOR_HTML_56   "</STRONG></FONT>\n\t\t<STRONG><FONT color=""#ffffff""><FONT face=""Arial""></FONT></FONT></STRONG>\n\t\t<STRONG><FONT color=""#ffffff""><FONT face=""Arial""></FONT></FONT></STRONG>\n\t</TD>\n</TR>\n"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CONCEPTOR_HTML_57   "<TR>\n\t<TD bgColor=""#ffffff""><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_58   "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_59   "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_60   "</FONT></TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_61   "<TR>\n\t<TD bgColor=""#bbbbbb"" colSpan=""3"">\n\t\t<FONT face=""Arial"" color=""#ffffff""><STRONG>"
+    IDS_CONCEPTOR_HTML_62   "</STRONG></FONT>\n\t\t<STRONG><FONT color=""#ffffff""><FONT face=""Arial""></FONT></FONT></STRONG>\n\t\t<STRONG><FONT color=""#ffffff""><FONT face=""Arial""></FONT></FONT></STRONG>\n\t</TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_63   "<TR>\n\t<TD bgColor=""#ffffff""><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_64   "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_65   "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_66   "</FONT></TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_67   "<TR>\n\t<TD bgColor=""#ffffff""><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_68   "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_69   "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_70   "</FONT></TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_71   "<TR>\n\t<TD bgColor=""#bbbbbb"" height=""21"" colSpan=""3"">\n\t\t<FONT face=""Arial"" color=""#ffffff""><STRONG>"
+    IDS_CONCEPTOR_HTML_72   "</STRONG></FONT>\n\t\t<STRONG><FONT color=""#ffffff""><FONT face=""Arial""></FONT></FONT></STRONG>\n\t\t<STRONG><FONT color=""#ffffff""><FONT face=""Arial""></FONT></FONT></STRONG>\n\t</TD>\n</TR>\n"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CONCEPTOR_HTML_73   "<TR>\n\t<TD bgColor=""#ffffff""><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_74   "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_75   "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_76   "</FONT></TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_77   "<TR>\n\t<TD bgColor=""#ffffff""><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_78   "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_79   "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_80   "</FONT></TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_81   "<TR>\n\t<TD bgColor=""#bbbbbb"" height=""21"" colSpan=""3"">\n\t\t<FONT face=""Arial"" color=""#ffffff""><STRONG>"
+    IDS_CONCEPTOR_HTML_82   "</STRONG></FONT>\n\t\t<STRONG><FONT color=""#ffffff""><FONT face=""Arial""></FONT></FONT></STRONG>\n\t\t<STRONG><FONT color=""#ffffff""><FONT face=""Arial""></FONT></FONT></STRONG>\n\t</TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_83   "<TR>\n\t<TD bgColor=""#ffffff""><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_84   "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_85   "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_86   "</FONT></TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_87   "<TR>\n\t<TD bgColor=""#bbbbbb"" colSpan=""3"">\n\t\t<FONT face=""Arial"" color=""#ffffff""><STRONG>"
+    IDS_CONCEPTOR_HTML_88   "</STRONG></FONT>\n\t\t<STRONG><FONT color=""#ffffff""><FONT face=""Arial""></FONT></FONT></STRONG>\n\t\t<STRONG><FONT color=""#ffffff""><FONT face=""Arial""></FONT></FONT></STRONG>\n\t</TD>\n</TR>\n"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CONCEPTOR_HTML_89   "<TR>\n\t<TD bgColor=""#ffffff""><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_90   "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_91   "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_92   "</FONT></TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_93   "<TR>\n\t<TD bgColor=""#bbbbbb"" colSpan=""3"">\n\t\t<FONT face=""Arial"" color=""#ffffff""><STRONG>"
+    IDS_CONCEPTOR_HTML_94   "</STRONG></FONT>\n\t\t<STRONG><FONT color=""#ffffff""><FONT face=""Arial""></FONT></FONT></STRONG>\n\t\t<STRONG><FONT color=""#ffffff""><FONT face=""Arial""></FONT></FONT></STRONG>\n\t</TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_95   "<TR>\n\t<TD bgColor=""#ffffff""><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_96   "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_97   "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_98   "</FONT></TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_99   "<TR>\n\t<TD bgColor=""#bbbbbb"" colSpan=""3"">\n\t\t<FONT face=""Arial"" color=""#ffffff""><STRONG>"
+    IDS_CONCEPTOR_HTML_100  "</STRONG></FONT>\n\t\t<STRONG><FONT color=""#ffffff""><FONT face=""Arial""></FONT></FONT></STRONG>\n\t\t<STRONG><FONT color=""#ffffff""><FONT face=""Arial""></FONT></FONT></STRONG>\n\t</TD>\n</TR>\n"
+    IDS_CONCEPTOR_HTML_101  "<TR>\n\t<TD bgColor=""#ffffff""><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_102  "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_103  "</FONT></TD>\n\t<TD><FONT face=""Arial"">"
+    IDS_CONCEPTOR_HTML_104  "</FONT></TD>\n</TR>\n"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PROCESSREPORT_HTML_1 
+                            "<HTML>\n<HEAD>\n<TITLE>%s</TITLE>\n<META http-equiv=""Content-Type"" content=""text/html; charset=iso-8859-1"">\n</HEAD>\n<BODY>\n"
+    IDS_PROCESSREPORT_HTML_2 "</BODY>\n</HTML>\n"
+    IDS_PROCESSREPORT_HTML_3 
+                            "<TABLE width=""100%"" border=""1"" cellspacing=""0"" cellpadding=""0"" bordercolor=""#999999"">\n"
+    IDS_PROCESSREPORT_HTML_4 "</TABLE>\n"
+    IDS_PROCESSREPORT_HTML_5 
+                            "<TABLE width=""100%%"" border=""1"" bordercolor=""#999999"">\n<TR>\n\t<TD width=""21%%"" bgColor=""ff9966"" colSpan=""1"" rowSpan=""1""><FONT face=""Arial"" color=""#ffffff"" size=""4""><STRONG>%s</STRONG></FONT></TD>\n\t<TD width=""79%%"" bgColor=""0099ff""><FONT face=""Arial"" color=""#ffffff"" size=""4""><STRONG>%s</STRONG></FONT></TD>\n</TR>\n</TABLE>\n"
+    IDS_PROCESSREPORT_HTML_6 
+                            "<TABLE width=""100%%"" border=""1"" bordercolor=""#999999"">\n<TR>\n\t<TD width=""6%%"" bgColor=""#%6x"" colSpan=""1"" rowSpan=""1""><FONT face=""Arial"" color=""#000000"" size=""4""><STRONG>%i</STRONG></FONT></TD>\n\t<TD width=""79%%"" bgColor=""#ffffff"" colSpan=""2"" rowSpan=""1""><FONT face=""Arial"" color=""#000000"" size=""4"">%s</FONT></TD>\n\t<TD width=""15%%"" bgColor=""#%6x"" colSpan=""3"" rowSpan=""1""><FONT face=""Arial"" color=""#000000"" size=""4"">%s</FONT></TD>\n</TR>\n</TABLE>\n<TABLE width=""100%%"" border=""1"" bordercolor=""#999999"">\n"
+    IDS_PROCESSREPORT_HTML_7 
+                            "<TR>\n\t<TD width=""6%%"" bgColor=""#%6x"" colSpan=""1"" rowSpan=""1""><FONT face=""Arial"" color=""#000000"" size=""4""><STRONG>%d</STRONG></FONT></TD>\n\t<TD width=""94%%"" bgColor=""#ffffff"" colSpan=""2"" rowSpan=""1""><FONT face=""Arial"" color=""#000000"" size=""4"">%s</FONT></TD>\n</TR>\n"
+    IDS_PROCESSREPORT_HTML_8 
+                            "<TR>\n\t<TD bgColor=""#999999"" colSpan=""3"" rowSpan=""1"">\n\t\t<P align=""left""><FONT face=""Arial"" color=""#000000"" size=""2""><STRONG>%s</STRONG></FONT></P>\n\t</TD>\n</TR>\n"
+    IDS_PROCESSREPORT_HTML_9 
+                            "<TR>\n\t<TD width=""6%%"">%s</TD>\n\t<TD width=""15%%""><FONT size=""2"" face=""Verdana, Arial, Helvetica, sans-serif"">%s</FONT></TD>\n\t<TD width=""79%%""><FONT size=""2"" face=""Verdana, Arial, Helvetica, sans-serif"">%s</FONT></TD>\n</TR>\n"
+    IDS_PRESTATIONSREPORT_HTML_1 
+                            "<HTML>\n<HEAD>\n<TITLE>%s</TITLE>\n<META http-equiv=""Content-Type"" content=""text/html; charset=iso-8859-1"">\n</HEAD>\n<BODY>\n"
+    IDS_PRESTATIONSREPORT_HTML_2 "</BODY>\n</HTML>\n"
+    IDS_PRESTATIONSREPORT_HTML_3 
+                            "<TABLE width=""75%"" border=""1"" bordercolor=""#999999"">\n"
+    IDS_PRESTATIONSREPORT_HTML_4 "</TABLE>\n"
+    IDS_PRESTATIONSREPORT_HTML_5 
+                            "<TR>\n\t<TD bgColor=""#0099ff"" colSpan=""1"" rowSpan=""1""><FONT face=""Arial"" color=""#000000"" size=""4""><STRONG>%s</STRONG></FONT></TD>\n</TR>\n<TR>\n\t<TD bgColor=""#ffffff"" colSpan=""1"" rowSpan=""1""><FONT face=""Arial"" color=""#000000"" size=""3""><STRONG>%s</STRONG></FONT></TD>\n</TR>\n<TR>\n\t<TD bgColor=""#ffffff"" colSpan=""1"" rowSpan=""1""><FONT face=""Arial"" color=""#000000"" size=""2"">%s</FONT></TD>\n</TR>\n"
+    IDS_PRESTATIONSREPORT_HTML_6 
+                            "<TR>\n\t<TD width=""40%%"" bgColor=""#c0c0c0"" colSpan=""1"" rowSpan=""1""><FONT size=""3"" face=""Arial"" color=""#000000""><STRONG>%s</STRONG></FONT></TD>\n\t<TD width=""30%%"" bgColor=""#0099ff"" colSpan=""1"" rowSpan=""1""><FONT size=""3"" face=""Arial"" color=""#000000""><STRONG>%s</STRONG></FONT></TD>\n\t<TD width=""30%%"" bgColor=""#c0c0c0"" colSpan=""1"" rowSpan=""1""><FONT size=""3"" face=""Arial"" color=""#000000""><STRONG>%s</STRONG></FONT></TD>\n</TR>\n"
+    IDS_PRESTATIONSREPORT_HTML_7 
+                            "<TR>\n\t<TD colSpan=""1"" rowSpan=""1""><FONT size=""1"" face=""Arial"">%s</FONT></TD>\n\t<TD colSpan=""1"" rowSpan=""1""><FONT size=""1"" face=""Arial"">%s</FONT></TD>\n\t<TD colSpan=""1"" rowSpan=""1""><FONT size=""1"" face=""Arial"">%s</FONT></TD>\n</TR>\n"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PROCESSREPORT_HTML_10 
+                            "<TABLE width=""100%"" border=""1"" bordercolor=""#999999"">\n<TR>\n\t<TD width=""44%"" height=""20"" bgColor=""#000000"" colSpan=""1"" rowSpan=""1""></TD>\n</TR>\n</TABLE>\n"
+    IDS_PROCESSREPORT_HTML_11 "<P></P>\n"
+    IDS_RULEBOOK_HTML_1     "<HTML>\n<HEAD>\n<TITLE>%s</TITLE>\n<META http-equiv=""Content-Type"" content=""text/html; charset=iso-8859-1"">\n</HEAD>\n<BODY>\n"
+    IDS_RULEBOOK_HTML_2     "</BODY>\n</HTML>\n"
+    IDS_RULEBOOK_HTML_3     "<TABLE width=""75%%"" border=""1"" bordercolor=""#FFFFFF"">\n<TR>\n\t<TD width=""6%%"" bgColor=""#999999"" colSpan=""1"" rowSpan=""1"">\n\t\t<FONT face=""Arial"" color=""#000000"" size=""5""><STRONG>%s</STRONG></FONT>\n\t</TD>\n\t<TD width=""94%%"" bgColor=""#FFFFFF"">\n\t\t<FONT face=""Arial"" color=""#000000"" size=""5""><STRONG>%s</STRONG></FONT>\n\t</TD>\n</TR>\n</TABLE>\n<TABLE width=""75%%"" border=""1"" bordercolor=""#FFFFFF"">\n<TR>\n\t<TD width=""100%%"" bgColor=""#FFFFFF"">\n\t\t<FONT face=""Arial"" color=""#000000"" size=""2""><STRONG>%s</STRONG></FONT>\n\t</TD>\n</TR>\n</TABLE>\n"
+    IDS_RULEBOOK_HTML_4     "<TABLE width=""75%%"" border=""1"" bordercolor=""#FFFFFF"">\n<TR>\n\t<TD width=""6%%"" bgColor=""#FFFFFF"" colSpan=""1"" rowSpan=""1"">\n\t\t<FONT face=""Arial"" color=""#000000"" size=""4""><STRONG> </STRONG></FONT>\n\t</TD>\n\t<TD width=""6%%"" bgColor=""999999"" colSpan=""1"" rowSpan=""1"">\n\t\t<FONT face=""Arial"" color=""#000000"" size=""4""><STRONG>%s</STRONG></FONT>\n\t</TD>\n\t<TD width=""88%%"" bgColor=""FFFFFF"">\n\t\t<FONT face=""Arial"" color=""#000000"" size=""4""><STRONG>%s</STRONG></FONT>\n\t</TD>\n</TR>\n</TABLE>\n<TABLE width=""75%%"" border=""1"" bordercolor=""#FFFFFF"">\n<TR>\n\t<TD width=""6%%"" bgColor=""#FFFFFF"" colSpan=""1"" rowSpan=""1"">\n\t\t<FONT face=""Arial"" color=""#000000"" size=""4""><STRONG> </STRONG></FONT>\n\t</TD>\n\t<TD width=""100%%"" bgColor=""FFFFFF"">\n\t\t<FONT face=""Arial"" color=""#000000"" size=""2""><STRONG>%s</STRONG></FONT>\n\t</TD>\n</TR>\n</TABLE>\n"
+    IDS_RULEBOOK_HTML_5     "<TABLE width=""75%%"" border=""1"" bordercolor=""#FFFFFF"">\n<TR>\n\t<TD width=""12%%"" bgColor=""#FFFFFF"" colSpan=""1"" rowSpan=""1"">\n\t\t<FONT face=""Arial"" color=""#000000"" size=""3""><STRONG> </STRONG></FONT>\n\t</TD>\n\t<TD width=""6%%"" bgColor=""999999"" colSpan=""1"" rowSpan=""1"">\n\t\t<FONT face=""Arial"" color=""#000000"" size=""3""><STRONG>%s</STRONG></FONT>\n\t</TD>\n\t<TD width=""82%%"" bgColor=""FFFFFF"">\n\t\t<FONT face=""Arial"" color=""#000000"" size=""3""><STRONG>%s</STRONG></FONT>\n\t</TD>\n</TR>\n</TABLE>\n<TABLE width=""75%%"" border=""1"" bordercolor=""#FFFFFF"">\n<TR>\n\t<TD width=""12%%"" bgColor=""#FFFFFF"" colSpan=""1"" rowSpan=""1"">\n\t\t<FONT face=""Arial"" color=""#000000"" size=""4""><STRONG> </STRONG></FONT>\n\t</TD>\n\t<TD width=""100%%"" bgColor=""FFFFFF"">\n\t\t<FONT face=""Arial"" color=""#000000"" size=""2""><STRONG>%s</STRONG></FONT>\n\t</TD>\n</TR>\n</TABLE>\n"
+    IDS_RULEBOOK_HTML_6     "<TABLE width=""75%%"" border=""1"" bordercolor=""#FFFFFF"">\n<TR>\n\t<TD width=""100%%"" bgColor=""#FFFFFF"">\n\t\t<FONT face=""Arial"" color=""#000000"" size=""6""><STRONG>%s</STRONG></FONT>\n\t</TD>\n</TR>\n</TABLE>\n<TABLE width=""75%%"" border=""1"" bordercolor=""#FFFFFF"">\n<TR>\n\t<TD width=""100%%"" bgColor=""#FFFFFF"">\n\t\t<FONT face=""Arial"" color=""#000000"" size=""2""><STRONG>%s</STRONG></FONT>\n\t</TD>\n</TR>\n</TABLE>\n<TABLE width=""75%%"" border=""0"" bordercolor=""#000000"">\n<TR>\n\t<TD width=""100%%"" height=""5"" bgColor=""#000000"" colSpan=""1"" rowSpan=""1""></TD>\n</TR>\n</TABLE>\n"
+    IDS_RULEBOOKDETAILS_HTML_1 
+                            "<HTML>\n<HEAD>\n<TITLE>%s</TITLE>\n<META http-equiv=""Content-Type"" content=""text/html; charset=iso-8859-1"">\n</HEAD>\n<BODY>\n"
+    IDS_RULEBOOKDETAILS_HTML_2 "</TABLE>\n</BODY>\n</HTML>\n"
+    IDS_RULEBOOKDETAILS_HTML_3 
+                            "<TABLE width=""100%%"" border=""1"" bordercolor=""#000000"">\n<TR>\n\t<TD width=""20%%"" bgColor=""#000077"">\n\t\t<FONT face=""Arial"" color=""#FFFFFF"" size=""2""><STRONG>%s</STRONG></FONT>\n\t</TD>\n\t<TD width=""20%%"" bgColor=""#000099"">\n\t\t<FONT face=""Arial"" color=""#FFFFFF"" size=""2""><STRONG>%s</STRONG></FONT>\n\t</TD>\n\t<TD width=""20%%"" bgColor=""#0000BB"">\n\t\t<FONT face=""Arial"" color=""#FFFFFF"" size=""2""><STRONG>%s</STRONG></FONT>\n\t</TD>\n\t<TD width=""20%%"" bgColor=""#0000DD"">\n\t\t<FONT face=""Arial"" color=""#FFFFFF"" size=""2""><STRONG>%s</STRONG></FONT>\n\t</TD>\n\t<TD width=""20%%"" bgColor=""#0000FF"">\n\t\t<FONT face=""Arial"" color=""#FFFFFF"" size=""2""><STRONG>%s</STRONG></FONT>\n\t</TD>\n</TR>\n"
+    IDS_RULEBOOKDETAILS_HTML_4 
+                            "<TR>\n\t<TD width=""20%%"" bgColor=""#FFFFFF"">\n\t\t<FONT face=""Arial"" color=""#000000"" size=""2""><STRONG>%s</STRONG></FONT>\n\t</TD>\n\t<TD width=""20%%"" bgColor=""#FFFFFF"">\n\t\t<FONT face=""Arial"" color=""#000000"" size=""2""><STRONG>%s</STRONG></FONT>\n\t</TD>\n\t<TD width=""20%%"" bgColor=""#FFFFFF"">\n\t\t<FONT face=""Arial"" color=""#000000"" size=""2""><STRONG>%s</STRONG></FONT>\n\t</TD>\n\t<TD width=""20%%"" bgColor=""#FFFFFF"">\n\t\t<FONT face=""Arial"" color=""#000000"" size=""2""><STRONG>%s</STRONG></FONT>\n\t</TD>\n\t<TD width=""20%%"" bgColor=""#FFFFFF"">\n\t\t<FONT face=""Arial"" color=""#000000"" size=""2""><STRONG>%s</STRONG></FONT>\n\t</TD>\n</TR>\n"
+END
+
+#endif    // Français (Suisse) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRS)
+LANGUAGE 12, 4
+#pragma code_page(1252)
+#include "res\zReportWeb.rc2"  // ressources non modifiées par Microsoft Visual C++
+#include "afxres.rc"     // Composants standard
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

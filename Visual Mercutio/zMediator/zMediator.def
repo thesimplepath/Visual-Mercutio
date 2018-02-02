@@ -1,0 +1,6 @@
+; zMediator.def : déclare les paramètres de module pour la DLL.
+
+LIBRARY      "zMediator"
+
+EXPORTS
+    ; Les exportations explicites peuvent être placées ici

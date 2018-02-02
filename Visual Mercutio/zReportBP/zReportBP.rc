@@ -1,0 +1,364 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "zReportBPRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+#include "zFormsRes\zFormsRes.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Anglais (États-Unis) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "zReportBPRes.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "#include ""zFormsRes\\zFormsRes.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\zReportBP.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "FileDescription", "zReportBP DLL"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "zReportBP"
+            VALUE "LegalCopyright", "Copyright (C)"
+            VALUE "OriginalFilename", "zReportBP.DLL"
+            VALUE "ProductName", "zReportBP Dynamic Link Library"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // Anglais (États-Unis) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Français (France) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_WZ_REPORTGENERATION_START DIALOG  0, 0, 292, 199
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Génération d'un rapport"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Inclure la saisonnalité (détail des mois)",
+                    IDC_INCLUDE_MONTHDETAILS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,64,88,146,12
+    CONTROL         "Format Microsoft Excel",IDC_EXCEL_FORMAT,"Button",
+                    BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,64,130,148,11
+    DEFPUSHBUTTON   "Générer",IDOK,144,184,50,14
+    PUSHBUTTON      "Suivant >>",IDNEXT,80,184,50,14,WS_DISABLED
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,184,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,270,
+                    182,18,16
+    ICON            IDI_MONTH_DETAIL_ICON,IDC_STATIC,38,85,20,20
+    ICON            IDI_XL_REPORT_ICON,IDC_STATIC,38,125,20,20
+    GROUPBOX        "Options de génération",IDC_STATIC,6,59,276,106
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_XL_REPORT_ICON      ICON                    "res\\App19.ico"
+IDI_REPORT_ICON         ICON                    "res\\Book7.ico"
+IDI_MONTH_DETAIL_ICON   ICON                    "res\\Date2.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_WZ_REPORTGENERATION_START, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 288
+        VERTGUIDE, 38
+        VERTGUIDE, 64
+        BOTTOMMARGIN, 198
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_WIZ_REPORT          BITMAP                  "res\\wzreport.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_MERCUTIO_RPT_T      "Rapport Mercutio"
+    IDS_CHECK_RPT_T         "Rapport de contrôle"
+    IDS_PROCEDURES_TAB      "Procédures"
+    IDS_DELIVERABLES_TAB    "Livrables"
+    IDS_DESC_LBLRPT         "Description"
+    IDS_KEYINFO_LBLRPT      "Liste des Informations clés"
+    IDS_FORMLST_LBLRPT      "Liste des Formulaires et Supports spécifiques aux livrables"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INPUTPROC_LBLRPT    "En entrée de la procédure"
+    IDS_OUTPUTPROC_LBLRPT   "En sortie de la procédure"
+    IDS_COMINGFROMPROC_LBLRPT "Du processus"
+    IDS_GOINGTOPROC_LBLRPT  "Du processus"
+    IDS_INITIALPROC_LBLRPT  "Initial"
+    IDS_FINALPROC_LBLRPT    "Final"
+    IDS_UNIT_LBLRPT         "Unité"
+    IDS_COMBINATION_LBLRPT  "Combinaisons en entrée"
+    IDS_TASKLIST_LBLRPT     "Liste des Tâches"
+    IDS_DECISIONLIST_LBLRPT "Liste des Décisions"
+    IDS_FORMS_LBLRPT        "Liste des Formulaires mis à jour"
+    IDS_OUTPUTDELIVERABLES_LBLRPT "Livrables en Sortie"
+    IDS_SESTERCE_RPT_T      "Rapport Sesterces"
+    IDS_ACTPROCESS_LBLRPT   "Nombre d'activation du processus"
+    IDS_FORECWORKLOADPROCESS_LBLRPT 
+                            "Charge de travail prévisionnelle du processus"
+    IDS_PERACTPROCESS_LBLRPT "Charge de travail par activation du processus"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PERCACT_LBLRPT      "% d'activation"
+    IDS_PERCOUT_LBLRPT      "% en sortie"
+    IDS_PERCIN_LBLRPT       "% en entrée"
+    IDS_UNITARYCOST_LBLRPT  "Coût unitaire hors temps de travail"
+    IDS_COMBINATIONNAME_LBLRPT "Combinaison"
+    IDS_COMBPERC_LBLRPT     "% d'activation de la combinaison"
+    IDS_MULTIPLICATOR_LBLRPT "Multiplicateur"
+    IDS_STANDARDTIME_LBLRPT "Temps Standard (jours)"
+    IDS_QUANTITY_LBLRPT     "Quantité"
+    IDS_PERCACTPROCEDURE_LBLRPT "Nombre d'activation de la procédure"
+    IDS_PROCEDURECOST_LBLRPT "Coût de la procédure hors temps de travail"
+    IDS_FORCPROCWORKLOAD_LBLRPT 
+                            "Charge de travail prévisionnelle de la procédure"
+    IDS_FORCPROCCOST_LBLRPT "Coût prévisionnel de la procédure"
+    IDS_PROCCOSTPERACT_LBLRPT "Coût par activation de la procédure"
+    IDS_STDTIMEPROCESSPEREND_LBLRPT 
+                            "Temps standard du processus par livrable bonne fin"
+    IDS_FORCPROCESSCOST_LBLRPT "Coût prévisionnel du processus"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PERACTPROCESSCOST_LBLRPT "Coût par activation du processus"
+    IDS_APP_LBLRPT          "Liste des Applications mise à jour"
+    IDS_PROCWORKLOADPERACT_LBLRPT "Charge par activation de la procédure"
+    IDS_FORCPROCWORKLOAD_LBLRPT2 
+                            "Charge de travail prévisionnelle de la période"
+    IDS_FORCPROCCOST_LBLRPT2 "Coût prévisionnel de la période"
+    IDS_MONTH_LBLRPT1       "Janvier"
+    IDS_MONTH_LBLRPT2       "Février"
+    IDS_MONTH_LBLRPT3       "Mars"
+    IDS_MONTH_LBLRPT4       "Avril"
+    IDS_MONTH_LBLRPT5       "Mai"
+    IDS_MONTH_LBLRPT6       "Juin"
+    IDS_MONTH_LBLRPT7       "Juillet"
+    IDS_MONTH_LBLRPT8       "Août"
+    IDS_MONTH_LBLRPT9       "Septembre"
+    IDS_MONTH_LBLRPT10      "Octobre"
+    IDS_MONTH_LBLRPT11      "Novembre"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_ZOOMIN          "Zoomer le document (Agrandir)."
+    ID_VIEW_ZOOMOUT         "Zoomer le document (Diminuer)."
+    ID_VIEW_FULLSCREEN      "Mettre en plein écran.\nPlein écran"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_OD_ZOOM_NORMAL       "Zoom to Normal Scale (100%)\nZoom Normal"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_OD_ZOOM_100PCT       "Zoom to 100% Scale (1:1)\nZoom 100%"
+    ID_OD_ZOOM_200PCT       "Zoom to 200% Scale\nZoom 200%"
+    ID_OD_ZOOM_50PCT        "Zoom to 50% Scale\nZoom 50%"
+    ID_OD_ZOOM_75PCT        "Zoom to 75% Scale\nZoom 75%"
+    ID_OD_ZOOM_CUSTOM       "Set Custom Zoom Factors\nZoom Custom"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MONTH_LBLRPT12      "Décembre"
+    IDS_CHKBOX_LABEL        "Par mois"
+    IDS_CHKBOX_TTP          "Veuillez clicker sur le bouton pour montrer ou cacher les valeurs mensualisées"
+    IDS_SESTERCE_UNIT_RPT_T "Rapport Sesterces Unités"
+    IDS_SESTERCE_CONSOLIDATED_RPT_T "Rapport Sesterces Consolidé"
+    IDS_COST_TAB            "Coûts"
+    IDS_WORKLOAD_LBLRPT     "Charge de travail / Unités"
+    IDS_COSTUNIT_LBLRPT     "Coûts / Unités"
+    IDS_COSTHMO_TAB         "Coûts HMO"
+    IDS_WORKLOAD_TAB        "Charge"
+    IDS_COSTHMOUNIT_LBLRPT  "Coûts HMO / Unités"
+    IDS_WORKLOAD_LBLRPT2    "Charge de travail Consolidée"
+    IDS_COSTUNIT_LBLRPT2    "Coûts Consolidés"
+    IDS_COSTHMOUNIT_LBLRPT2 "Coûts HMO Consolidés"
+    IDS_WZ_REPORTGENERATION_ST_T 
+                            "Lors de la création de votre rapport, vous pouvez spécifier différentes options qui conditionneront le format de sortie du rapport choisi."
+    IDS_WZ_REPORTGENERATION_ST_S "Rapport"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RULELIST_LBLRPT     "Liste des Règles"
+    IDS_LATERALDELIVERABLES_LBLRPT "Livrables Lateraux"
+    IDS_SYNTHESIS_TAB       "Synthèse"
+    IDS_CONCEPTOR_RPT_T     "Rapport Conceptor"
+    IDS_PRESTATIONS_RPT_T   "Rapport Prestations"
+    IDS_WORKLOAD_PRESTATIONREPORT_LBLRPT2 "Charge de travail des prestations"
+    IDS_COSTUNIT_PRESTATIONREPORT_LBLRPT2 "Coûts"
+    IDS_COSTHMOUNIT_PRESTATIONREPORT_LBLRPT2 "Coûts HMO"
+    IDS_CONCEPTOR_SYNTHESYS "Synthèse"
+    IDS_CONCEPTOR_DOMAINTOPIC "Domaine/Thème"
+    IDS_CONCEPTOR_PROCESS   "Processus"
+    IDS_CONCEPTOR_PROCEDURE "Procédure"
+    IDS_CONCEPTOR_DESCRIPTION "Description"
+    IDS_CONCEPTOR_DELIVERABLE_ENTRY "Liste des livrables en entrée"
+    IDS_CONCEPTOR_DELIVERABLE_LATERAL_OUTPUT 
+                            "Liste des livrables latéraux en sortie"
+    IDS_CONCEPTOR_DELIVERABLE_LATERAL_ENTRY 
+                            "Liste des livrables latéraux en entrée"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CONCEPTOR_RULESLIST "Liste des règles"
+    IDS_CONCEPTOR_RULE_NB   "Règle %d"
+    IDS_CONCEPTOR_TASKSLIST "Liste des tâches"
+    IDS_CONCEPTOR_TASK_NB   "Tâche %d"
+    IDS_CONCEPTOR_DECISIONSLIST "Liste des décisions"
+    IDS_CONCEPTOR_DECISION_NB "Décision %d"
+    IDS_CONCEPTOR_DELIVERABLE_OUTPUT "Liste des livrables en sortie"
+    IDS_CONCEPTOR_NOT_FOUND "Not found"
+    IDS_CONCEPTOR_STARTPOINT "Point start"
+    IDS_CONCEPTOR_DELIVERABLE "Livrable"
+    IDS_SYNTHESYS_NOT_FOUND "Not found"
+END
+
+#endif    // Français (France) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\zReportBP.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

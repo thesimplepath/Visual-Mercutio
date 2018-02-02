@@ -1,0 +1,2219 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "ZRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+#include "zFormsRes\zFormsRes.h"
+#include "Toolkit\secres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Anglais (États-Unis) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CANTCONTINUE DIALOG  0, 0, 267, 221
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Attention !!!"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Fermer",IDOK,90,204,50,14
+    LTEXT           "La période d'essai est maintenant dépassée. Vous ne pouvez plus utiliser cette version d'évaluation.",
+                    IDC_STATIC,6,4,246,16
+    LTEXT           "envoyant un email à info@processsoft.com",IDC_STATIC,24,
+                    108,155,9
+    LTEXT           "téléphonant au numéro 0878 800 381",IDC_STATIC,24,128,
+                    157,9
+    GROUPBOX        "",IDC_STATIC,4,77,252,67
+    PUSHBUTTON      "",1005,13,110,6,5,WS_DISABLED
+    PUSHBUTTON      "",1006,13,130,6,5,WS_DISABLED
+    LTEXT           "Vous pourrez à nouveau utiliser vos fichiers créés en acquérant la version finale.",
+                    IDC_STATIC,6,177,246,18
+    DEFPUSHBUTTON   "Déverrouiller",IDDELOCK,195,204,50,14
+    LTEXT           "Si vous avez reçu le numéro du produit, veuillez clicker sur Déverrouiller.",
+                    IDC_STATIC,6,31,246,13
+    LTEXT           "Si vous n'avez pas le numéro du produit et que vous possédez une version d'évaluation, alors vous pouvez acquérir la version finale en:",
+                    IDC_STATIC,6,49,246,19
+    LTEXT           "allant sur le site http://www.processsoft.com",
+                    IDC_STATIC,25,88,220,9
+    PUSHBUTTON      "",1007,14,90,6,5,WS_DISABLED
+END
+
+IDD_CODE2INSTALL DIALOG  0, 0, 235, 105
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Déverrouillage"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_CODEINSTALL,6,90,171,12,ES_UPPERCASE | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Déverouiller",IDOK,183,90,50,12
+    LTEXT           "Si c'est une version d'évaluation et que vous vouler installer le produit une seconde fois ou si vous désirez continuer à tester cette application, veuillez contacter ProcessSoft.",
+                    IDC_STATIC,6,34,220,26
+    ICON            IDI_INSERT,IDC_STATIC,7,61,20,20
+    LTEXT           "Veuillez introduire le code de déverrouillage pour continuer à utiliser cette application.",
+                    IDC_STATIC,6,5,172,21
+END
+
+IDD_EVALUATIONWARNING DIALOG  0, 0, 231, 191
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Attention"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,90,175,50,14
+    ICON            IDI_USERS,IDC_STATIC,3,4,20,20
+    CTEXT           "ProcessSoft",IDC_STATIC,55,2,121,8
+    CTEXT           "version d'évaluation",IDC_STATIC,78,14,75,8
+    CTEXT           "Copyright ProcessSoft",IDC_STATIC,63,26,104,10
+    LTEXT           "Cette application est une version d'évaluation uniquement. Cette version peut-être utilisée pendant une période restreinte. ",
+                    IDC_STATIC,4,73,223,22
+    LTEXT           "Cette application est protégée par les lois en vigueur dans le monde et en Suisse sur la protection intellectuelle. La loi fédérale Suisse sur les droits d'auteurs édictée par la protection intellectuelle est décrite dans le recueil systématique.",
+                    IDC_STATIC,4,99,223,37
+    LTEXT           "Vous pouvez utiliser cette version d'évaluation uniquement dans les limites fixées pour la période d'évaluation.",
+                    IDC_STATIC,4,140,223,23
+END
+
+#endif    // Anglais (États-Unis) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Français (France) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_TOOLBARS DIALOGEX 0, 0, 158, 145
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Barre d'outils"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Outils:",IDC_STATIC,7,7,20,8
+    LISTBOX         IDC_TOOLBAR_LIST,7,17,86,64,LBS_OWNERDRAWFIXED | 
+                    LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    DEFPUSHBUTTON   "&Fermer",IDOK,101,7,50,14
+    PUSHBUTTON      "&Nouvelle...",IDC_TOOLBAR_NEW,101,24,50,14
+    PUSHBUTTON      "C&ustomiser...",IDC_TOOLBAR_CUSTOMIZE,101,41,50,14
+    PUSHBUTTON      "&Reset",IDC_TOOLBAR_RESET,101,58,50,14
+    PUSHBUTTON      "&Aide",ID_HELP,101,75,50,14
+    LTEXT           "Nom de la barre:",IDC_TOOLBAR_STATIC,7,84,53,8,
+                    WS_DISABLED
+    EDITTEXT        IDC_TOOLBAR_NAME,7,94,86,13,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "",IDC_STATIC,7,112,144,1,0,WS_EX_STATICEDGE
+    CONTROL         "&Montrer les tooltips",IDC_TOOLBAR_TOOLTIPS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,117,75,10
+    CONTROL         "Avec &Gripper",IDC_TOOLBAR_COOLLOOK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,88,117,61,10
+    CONTROL         "&Butons larges",IDC_TOOLBAR_LARGEBTNS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,129,61,10
+END
+
+IDD_TOOLBAR_CUSTOMIZE DIALOG  0, 0, 251, 181
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Commandes"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Boutons",IDC_TOOLBAR_FRAME,74,7,170,100
+    LISTBOX         IDC_TOOLBAR_LIST,7,16,59,91,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Catégories:",IDC_STATIC,8,7,36,8
+    LTEXT           "Sélectionnez une catégorie, clicker sur un bouton pour voir sa description. Déplacer le bouton sur n'importe quelle barre d'outils.",
+                    IDC_STATIC,7,113,237,18
+    GROUPBOX        "Description",IDC_STATIC,7,133,237,34
+    LTEXT           "",IDC_TOOLBAR_DESCRIPTION,13,144,225,19
+END
+
+IDD_TOOLBAR_NEW DIALOG  0, 0, 174, 62
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Nouvelle barre d'outils"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "&Nom de la barre:",IDC_STATIC,7,7,53,8
+    EDITTEXT        IDC_TOOLBAR_NAME_EDIT,7,17,98,13,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "&OK",IDOK,117,7,50,14
+    PUSHBUTTON      "&Abandonner",IDCANCEL,117,24,50,14
+    PUSHBUTTON      "A&ide",ID_HELP,117,41,50,14
+END
+
+IDD_TOOLBARS_PAGE DIALOG  0, 0, 251, 181
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Barre d'outils"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Barre d'outils:",IDC_STATIC,7,7,43,8
+    LISTBOX         IDC_TOOLBAR_LIST,7,17,100,124,LBS_OWNERDRAWFIXED | 
+                    LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_HSCROLL | WS_TABSTOP
+    LTEXT           "Nom de la barre",IDC_TOOLBAR_STATIC,7,146,51,8,
+                    WS_DISABLED
+    EDITTEXT        IDC_TOOLBAR_NAME,7,156,100,13,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    CONTROL         "&Montrer Tooltips",IDC_TOOLBAR_TOOLTIPS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,117,17,67,10
+    CONTROL         "Avec &Gripper",IDC_TOOLBAR_COOLLOOK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,117,29,61,10
+    CONTROL         "&Boutons larges",IDC_TOOLBAR_LARGEBTNS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,117,41,61,10
+    PUSHBUTTON      "&Nouveau...",IDC_TOOLBAR_NEW,189,16,50,14
+    PUSHBUTTON      "&Reset",IDC_TOOLBAR_RESET,189,33,50,14
+END
+
+IDD_CHANGETYPE_WELCOME DIALOG  0, 0, 285, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Modifier le type d'un champ - Etape 1 sur 3"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Continuer >>",IDOK,3,182,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,55,182,50,14
+    LTEXT           "Ce magicien vous permet de changer le type initial d'un champ. Attention le changement d'un type peu altérer le fonctionnement du formulaire.",
+                    IDC_STATIC,5,58,218,25
+    ICON            175,IDC_STATIC,263,58,18,20
+    GROUPBOX        "Information",IDC_STATIC,3,117,218,55
+    LTEXT           "Champ de type",IDC_STATIC,8,152,52,9
+    EDITTEXT        IDC_INITIALTYPE,60,150,86,12,ES_AUTOHSCROLL | 
+                    ES_READONLY | WS_DISABLED | NOT WS_BORDER
+    LTEXT           "Champ ",IDC_STATIC,8,134,29,9
+    EDITTEXT        IDC_FIELDNAME,60,132,86,12,ES_AUTOHSCROLL | ES_READONLY | 
+                    WS_DISABLED | NOT WS_BORDER
+    LTEXT           "Le comportement d'un champ est défini par son type. Un champ texte accèpte tous les caractères alors qu'un champ date n'accèpte que des dates.",
+                    IDC_STATIC,4,87,218,27
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+END
+
+IDD_CHANGETYPE_PROPAGATE DIALOG  0, 0, 285, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Modifier le type d'un champ - Etape 3 sur 3"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Appliquer le changement sur tous les champs",
+                    IDC_PROPAGATE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,3,
+                    122,161,11
+    EDITTEXT        IDC_FINALVALUE,35,166,185,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Appliquer",IDOK,2,181,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,54,181,50,14
+    LTEXT           "Un champ peut être référencé plusieurs fois dans un même formulaire. Si vous voulez changer le type pour tous les champs ayant le même nom, sélectionnez l'option Appliquer le changement sur tous les champs.",
+                    IDC_STATIC,3,87,217,34
+    GROUPBOX        "Information",IDC_STATIC,2,42,218,43
+    LTEXT           "Type",IDC_STATIC,7,71,28,9
+    EDITTEXT        IDC_INITIALTYPE,34,69,81,12,ES_AUTOHSCROLL | ES_READONLY | 
+                    WS_DISABLED | NOT WS_BORDER
+    LTEXT           "Champ ",IDC_STATIC,7,53,29,9
+    EDITTEXT        IDC_FIELDNAME,34,51,81,12,ES_AUTOHSCROLL | ES_READONLY | 
+                    WS_DISABLED | NOT WS_BORDER
+    LTEXT           "Contenu:",IDC_STATIC,3,167,30,10
+    LTEXT           "Vous pouvez modifier le contenu du champs dont vous venez de modifier le type.",
+                    IDC_STATIC,3,144,180,16
+    EDITTEXT        IDC_FINALTYPE,136,69,81,12,ES_AUTOHSCROLL | ES_READONLY | 
+                    WS_DISABLED | NOT WS_BORDER
+    LTEXT           "vers",IDC_STATIC,119,69,14,11
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+END
+
+IDD_CHANGETYPE DIALOG  0, 0, 285, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Modifier le type d'un champ - Etape 2 sur 3"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_CHOICELIST,2,90,104,84,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Pour changer le type, il vous suffit de choisir son nouveau type dans la liste de gauche.",
+                    IDC_STATIC,110,90,98,54
+    GROUPBOX        "Information",IDC_STATIC,2,40,218,46
+    LTEXT           "Type",IDC_STATIC,7,71,24,9
+    EDITTEXT        IDC_INITIALTYPE,35,69,86,12,ES_AUTOHSCROLL | ES_READONLY | 
+                    WS_DISABLED | NOT WS_BORDER
+    LTEXT           "Champ ",IDC_STATIC,7,53,29,9
+    EDITTEXT        IDC_FIELDNAME,35,51,86,12,ES_AUTOHSCROLL | ES_READONLY | 
+                    WS_DISABLED | NOT WS_BORDER
+    DEFPUSHBUTTON   "Continuer >>",IDOK,2,182,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,54,182,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+END
+
+IDD_WIZARDFORMULA DIALOG  0, 0, 285, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Magicien pour changer la formule d'un champs calculé"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Vous pouvez changer la formule en l'éditant. Le pointeur qui se trouve dans la cible vous permet de sélectionner directement un champs dans le formulaire.",
+                    IDC_STATIC,8,51,267,20
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    DEFPUSHBUTTON   "Suivant >>",IDNEXT,84,181,50,14
+    LTEXT           "The Pointer Window",IDC_POINTERWINDOW,10,148,19,18,NOT 
+                    WS_VISIBLE | NOT WS_GROUP
+    PUSHBUTTON      "7",IDC_BTN_7,9,104,9,10
+    PUSHBUTTON      "8",IDC_BTN_8,18,104,9,10
+    PUSHBUTTON      "9",IDC_BTN_9,27,104,9,10
+    PUSHBUTTON      "4",IDC_BTN_4,9,113,9,10
+    PUSHBUTTON      "5",IDC_BTN_5,18,113,9,10
+    PUSHBUTTON      "6",IDC_BTN_6,27,113,9,10
+    PUSHBUTTON      "1",IDC_BTN_1,9,123,9,10
+    PUSHBUTTON      "2",IDC_BTN_2,18,123,9,10
+    PUSHBUTTON      "3",IDC_BTN_3,27,123,9,10
+    PUSHBUTTON      "0",IDC_BTN_0,9,134,18,10
+    PUSHBUTTON      ".",IDC_BTN_DECIMAL,27,134,9,10
+    PUSHBUTTON      "/",IDC_BTNDIV,49,123,9,10
+    PUSHBUTTON      "(",IDC_BTNPARENTLEFT,40,104,9,10
+    PUSHBUTTON      ")",IDC_BTNPARENTRIGHT,49,104,9,10
+    PUSHBUTTON      "*",IDC_BTNMULT,40,123,9,10
+    PUSHBUTTON      "+",IDC_BTNADD,40,113,9,10
+    PUSHBUTTON      "-",IDC_BTNMINUS,49,113,9,10
+    EDITTEXT        IDC_FORMULA,9,86,264,12,ES_AUTOHSCROLL
+    LTEXT           "Formule:",IDC_STATIC,9,73,31,8
+    PUSHBUTTON      "Evaluer la formule",IDC_EVALUATE,206,104,67,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+END
+
+IDD_WIZARDFORMAT_STEP1 DIALOG  0, 0, 285, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Magicien pour formatter un champ"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Le magicien vous aide pas à pas a formatter le champ que vous avez sélectionné.",
+                    IDC_STATIC,8,51,267,13
+    LTEXT           "Les formats des champs sont définis par la forme utilisée. Il est possible de changer le format d'affichage, le style, la police de caractères, la couleur du texte ou encore la couleur du fond.",
+                    IDC_STATIC,8,71,267,47
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    DEFPUSHBUTTON   "Suivant >>",IDNEXT,84,181,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+END
+
+IDD_WIZARDFORMAT_CHOOSEASPECT DIALOG  0, 0, 285, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Formatter un champ en 5 étapes"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Appliquer une police de caractères, un alignement, une couleur de texte et de fond",
+                    IDC_STATIC,27,111,169,41
+    CONTROL         "Appliquer un style existant",IDC_STYLECHOICE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,18,90,128,16
+    CONTROL         "",IDC_STYLECHOICE2,"Button",BS_AUTORADIOBUTTON,18,110,8,
+                    12
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    DEFPUSHBUTTON   "Suivant >>",IDNEXT,84,181,50,14
+    LTEXT           "Pour être affiché, un champ se base sur un style. Vous pouver soit appliquer un nouveau style, soit définir une police de caractères, un alignement, une couleur pour le texte et pour le fond.",
+                    IDC_STATIC,8,51,267,34
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+END
+
+IDD_WIZARDFORMAT DIALOG  0, 0, 285, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Changez de format"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_FORMATLIST,6,104,84,57,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Formats disponibles:",IDC_STATIC,6,93,70,10
+    LTEXT           "Par défaut vous avez un format pour ce champ. Vous pouvez aisemment le changer en sélectionnant un format qui vous convient dans la liste.",
+                    IDC_STATIC,6,61,261,20
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    DEFPUSHBUTTON   "Suivant >>",IDNEXT,84,181,50,14
+    PUSHBUTTON      "Accepter",IDOK,151,181,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+END
+
+IDD_WIZARDFONT DIALOG  0, 0, 285, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Assignez une police de caractère"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    DEFPUSHBUTTON   "Suivant >>",IDNEXT,84,181,50,14
+    PUSHBUTTON      "Accepter",IDOK,151,181,50,14
+    PUSHBUTTON      "Police de caractères",IDC_FONT,11,118,76,16
+    PUSHBUTTON      "Couleur de fond",IDC_BACKCOLOR,11,142,76,16
+    LTEXT           "Pour change la police de caractères, appuyez sur le bouton Police de caractères.",
+                    IDC_STATIC,11,55,252,19
+    LTEXT           "Pour changer la couleur de fond où seront affichés les caractères, appuyez sur le bouton Couleur de fond.",
+                    IDC_STATIC,11,74,252,19
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+END
+
+IDD_WIZARDFINISH DIALOG  0, 0, 285, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Fin du Magicien"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Vous êtes arrivé à la fin du Magicien !!!",IDC_STATIC,
+                    10,49,261,13
+    LTEXT           "Vous pouvez accepter les modifications que vous venez d'apporter ou abandonner. A tout moment vous pouvez rechanger les paramatères d'un champ.",
+                    IDC_STATIC,10,65,261,26
+    LTEXT           "Ce que vous voyez est la copie exacte de ce qui sera inséré dans le plan financier.",
+                    IDC_STATIC,10,99,261,22
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    DEFPUSHBUTTON   "Appliquer",IDOK,84,181,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+END
+
+IDD_WIZARDCREATIONFIELD_START DIALOG  0, 0, 285, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Magicien pour la création de champs"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Vous pouvez aisemment rajouter des champs dans un formulaire.",
+                    IDC_STATIC,8,51,267,13
+    LTEXT           "Le formulaire gère plusieurs type de champs tels que des textes, des nombres, des lignes, des rectangeles et bien d'autres.",
+                    IDC_STATIC,8,64,267,21
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    DEFPUSHBUTTON   "Suivant >>",IDNEXT,84,181,50,14
+    LTEXT           "Pour créer des champs plus rapidement, utilisez la boîte à outil spécialisée qui se trouve dans la barre à outils principale. ",
+                    IDC_STATIC,8,128,264,20
+    LTEXT           "Ce magicien vous permet de créer de nouveaux champs en 2 étapes.",
+                    IDC_STATIC,8,89,267,16
+    LTEXT           "Pour la rendre visible appuyez sur ce bouton:",
+                    IDC_STATIC,8,155,149,10
+    ICON            IDI_INSERTFIELD_TOOLBAR,IDC_STATIC,159,155,20,20
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+END
+
+IDD_WIZARDCREATIONFIELD_ONVIEW DIALOG  13, 54, 285, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Dessin du champ"
+FONT 8, "Helv"
+BEGIN
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    PUSHBUTTON      "Création",ID_CREATE,5,58,50,14
+    PUSHBUTTON      "Proposition de nom",IDC_AUTOMATICFIELDCREATION,5,80,72,
+                    13
+    EDITTEXT        IDC_FIELDNAME,5,97,178,13,ES_AUTOHSCROLL
+    LTEXT           "Pour créer le champ sur le formulaire appuyez sur le bouton Création.",
+                    IDC_TEXT1,5,45,270,9
+    LTEXT           "Il faut spécifier un nom de champ. Si vous n'avez pas d'idée, en appuyant sur le bouton Propostion de nom, le système vous proposera un nom standard.",
+                    IDC_TEXT2,5,45,231,31
+    DEFPUSHBUTTON   "Accepter",IDOK,151,181,50,14
+    CONTROL         "Afficher les propriétés de l'objet après sa création",
+                    IDC_SHOWPROPERTY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,
+                    157,175,10
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+END
+
+IDD_WIZARDCREATIONFIELD_LISTFIELD DIALOG  0, 0, 285, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Choix d'un type de champs"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_CHOICELIST,2,61,104,112,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    DEFPUSHBUTTON   "Suivant >>",IDNEXT,84,181,50,14
+    LTEXT           "Liste des champs disponibles:",IDC_STATIC,2,49,102,10
+    EDITTEXT        IDC_FIELDEXPLANATION,112,61,162,54,ES_MULTILINE | 
+                    ES_READONLY | WS_VSCROLL
+    LTEXT           "Description:",IDC_STATIC,112,49,102,10
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+END
+
+IDD_WIZARDCREATEFORMULA_START DIALOG  0, 0, 285, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Magicien pour la création d'une formule"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Avec l'aide de ce magicien, vous allez pouvoir créer facilement une formule.",
+                    -1,8,51,267,13
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    DEFPUSHBUTTON   "Suivant >>",IDNEXT,84,181,50,14
+    LTEXT           "La création d'une formule se fait en deux étapes:",-1,7,
+                    92,162,12
+    LTEXT           "1. sélectionner le champ qui sera calculé",-1,14,105,
+                    155,12
+    LTEXT           "2. créer la formule.",-1,14,119,234,12
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+END
+
+IDD_WIZARDCHOOSEFIELD DIALOG  0, 0, 285, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Magicien pour changer la formule d'un champs calculé"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Le pointeur qui se trouve dans la cible vous permet de sélectionner directement le champs dans le formulaire.",
+                    IDC_STATIC,8,51,267,20
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    DEFPUSHBUTTON   "Suivant >>",IDNEXT,84,181,50,14
+    LTEXT           "The Pointer Window",IDC_POINTERWINDOW,10,148,19,18,NOT 
+                    WS_VISIBLE | NOT WS_GROUP
+    EDITTEXT        IDC_FIELD,46,154,166,12,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "Champs sélectionné avec le pointeur:",IDC_STATIC,46,140,
+                    126,8
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+END
+
+IDD_WIZARDCALCULATED_START DIALOG  0, 0, 285, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Magicien pour les champs calculés"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Un champs calculé est le résultat d'une formule.",
+                    IDC_STATIC,8,51,267,13
+    LTEXT           "Le comportement par défaut est l'affichage du résultat de la formule.",
+                    IDC_STATIC,8,64,267,12
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    DEFPUSHBUTTON   "Suivant >>",IDNEXT,84,181,50,14
+    LTEXT           "Le magicien vous permet de:",IDC_STATIC,8,84,99,12
+    LTEXT           "3. d'appliquer un arrondi d'une certaine valeur",
+                    IDC_STATIC,14,131,155,12
+    LTEXT           "1. de bloquer le calcul du champ et d'introduire une valeur fixe",
+                    IDC_STATIC,14,101,234,12
+    LTEXT           "2. de modifier la formule",IDC_STATIC,14,116,234,12
+    LTEXT           "Si vous bloquer le calcul du champ pour introduire une valeur fixe, le magicien ne vous présentera pas l'étape 2 et l'étape 3.",
+                    IDC_STATIC,8,158,252,18
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+END
+
+IDD_WIZARDALIGN DIALOG  0, 0, 285, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Alignement"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Gauche",IDC_ALIGN_LEFT,"Button",BS_AUTOCHECKBOX,106,94,
+                    39,8
+    CONTROL         "Centre",IDC_ALIGN_CENTER,"Button",BS_AUTOCHECKBOX,159,
+                    94,39,8
+    CONTROL         "Droite",IDC_ALIGN_RIGHT,"Button",BS_AUTOCHECKBOX,212,94,
+                    39,8
+    CONTROL         "Haut",IDC_ALIGN_TOP,"Button",BS_AUTOCHECKBOX,38,107,39,
+                    8
+    CONTROL         "Centre",IDC_ALIGN_VCENTER,"Button",BS_AUTOCHECKBOX,38,
+                    133,39,8
+    CONTROL         "Bas",IDC_ALIGN_BOTTOM,"Button",BS_AUTOCHECKBOX,38,161,
+                    39,8
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    DEFPUSHBUTTON   "Suivant >>",IDNEXT,84,181,50,14
+    PUSHBUTTON      "Accepter",IDOK,151,181,50,14
+    LTEXT           "Vous pouvez changer l'alignement par défaut du texte. Il vous suffit de choisir celui que vous désirez appliquer.",
+                    IDC_STATIC,12,44,261,18
+    CONTROL         "",IDC_LEFT_FRAME,"Static",SS_BLACKFRAME | NOT 
+                    WS_VISIBLE,106,74,18,16
+    CONTROL         "",IDC_CENTER_FRAME,"Static",SS_BLACKFRAME | NOT 
+                    WS_VISIBLE,159,74,18,16
+    CONTROL         "",IDC_RIGHT_FRAME,"Static",SS_BLACKFRAME | NOT 
+                    WS_VISIBLE,212,74,18,16
+    CONTROL         "",IDC_TOP_FRAME,"Static",SS_BLACKFRAME | NOT WS_VISIBLE,
+                    18,101,18,16
+    CONTROL         "",IDC_VCENTER_FRAME,"Static",SS_BLACKFRAME | NOT 
+                    WS_VISIBLE,18,128,18,16
+    CONTROL         "",IDC_BOTTOM_FRAME,"Static",SS_BLACKFRAME | NOT 
+                    WS_VISIBLE,18,156,18,16
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+END
+
+IDD_WIZARDSTYLE DIALOG  0, 0, 285, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Styles"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_STYLE,11,104,84,57,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    DEFPUSHBUTTON   "Suivant >>",IDNEXT,84,181,50,14
+    LTEXT           "Styles existants:",IDC_STATIC,11,93,57,10
+    LTEXT           "Vous pouvez choisir un autre styles dans la liste des styles existants.",
+                    IDC_STATIC,12,52,261,25
+    PUSHBUTTON      "Accepter",IDOK,151,181,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+END
+
+IDD_WIZARDSCENARIO DIALOG  0, 0, 285, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Changez de scénario de calcul"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Suivant >>",IDNEXT,84,181,50,14
+    LISTBOX         IDC_SCENARIOLIST,11,104,84,57,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Accepter",IDOK,151,181,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    LTEXT           "Scénario disponibles pour ce champ:",IDC_STATIC,11,93,
+                    132,10
+    LTEXT           "En fonction du champ sur lequel vous vous trouvez, certains scénarios sont plus appropriés. Vous pouvez changer de scénario en sélectionnant un scénario dans la liste.",
+                    IDC_STATIC,12,67,261,24
+    LTEXT           "Les scénarios de calculs vous donnent la possibilités de changer la façon de calculer votre formulaire. ",
+                    IDC_STATIC,12,46,261,20
+    EDITTEXT        IDC_COMMENTARY,107,113,162,48,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_READONLY | WS_DISABLED
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+END
+
+IDD_WIZARDROUNDED DIALOG  0, 0, 285, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Magicien pour arrondir un champs calculé"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Un champs calculé est le résultat d'une formule.",-1,8,
+                    51,267,13
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    DEFPUSHBUTTON   "Suivant >>",IDNEXT,84,181,50,14
+    CONTROL         "Calculer en tenant compte des arrondis",IDC_MAKEROUNDED,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,73,165,10
+    LTEXT           "Tous les ",IDC_TEXTROUNDED,20,89,31,10
+    COMBOBOX        IDC_ROUNDED,52,88,53,69,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Arrondis",-1,7,63,221,45
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+END
+
+IDD_WIZARDLOCKED DIALOG  0, 0, 285, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Magicien pour bloquer un champs calculé"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Si vous bloquer le champ, celui-ci ne sera plus calculé et vous pourrez saisir une valeur.",
+                    -1,8,51,267,20
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    DEFPUSHBUTTON   "Suivant >>",IDNEXT,84,181,50,14
+    CONTROL         "Bloqué",IDC_STATUS,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,117,98,36,10
+    CONTROL         "Calculé",IDC_STATUS2,"Button",BS_AUTORADIOBUTTON,117,
+                    111,36,10
+    ICON            IDI_CALCULATOR,IDC_ICON_STATUS,153,98,18,20
+    LTEXT           "Bloquer le champ calculer pour permettre la saisie d'un nombre",
+                    IDC_TEXTCHOICE,10,97,105,19
+    EDITTEXT        IDC_INPUTVALUE,179,96,97,16,ES_AUTOHSCROLL
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+END
+
+IDD_WIZARDASSOCIATION_LIST DIALOG  0, 0, 285, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Associations"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_ASSOCIATEDSCENARIO_LIST,2,61,67,112,
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Abandonner",IDCANCEL,57,181,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,264,
+                    181,19,14
+    LTEXT           "Liste des formules de l'association:",IDC_STATIC,112,51,
+                    130,10
+    PUSHBUTTON      "Ajouter",IDC_ADD,246,61,37,14
+    PUSHBUTTON      "Détruire",IDC_REMOVE,246,79,37,14
+    PUSHBUTTON      "Détruire",IDC_REMOVEASSOC,72,81,37,14
+    LTEXT           "Liste des associations",IDC_STATIC,2,49,75,10
+    PUSHBUTTON      "Créer",IDC_ADDASSOC,72,61,37,14
+    LISTBOX         IDC_FORMULA_LIST,113,62,131,112,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "Appliquer",IDOK,2,181,50,14
+END
+
+IDD_NUMBERED_PROPERTY DIALOG  0, 0, 230, 145
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Spécifiques"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Texte statique",IDC_NUMBEREDTYPE,"Button",
+                    BS_AUTORADIOBUTTON | BS_LEFTTEXT | WS_GROUP | WS_TABSTOP,
+                    9,17,88,8
+    CONTROL         "Texte",IDC_NUMBEREDTYPE2,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT,9,29,88,8
+    CONTROL         "Nombre",IDC_NUMBEREDTYPE3,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT,9,41,88,8
+    CONTROL         "Date",IDC_NUMBEREDTYPE6,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT,9,53,88,8
+    CONTROL         "Conserver l'historique",IDC_KEEP_HISTORY_SPEC,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,9,66,88,10
+    GROUPBOX        "Type",IDC_STATIC,4,4,98,87
+    LTEXT           "Niveau de chapitre",IDC_TEXT_CHAP,4,108,67,9
+    CONTROL         "Numérotation automatique",IDC_AUTONUMBERED,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,4,96,106,8
+    EDITTEXT        IDC_LEVELNUMBER,102,107,33,12,ES_AUTOHSCROLL
+    LTEXT           "Ecart du numéro de chapitre",IDC_TEXT_NUMCHAP,4,121,98,
+                    9
+    EDITTEXT        IDC_OFFSET,102,120,33,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_LEVELTEXT,102,107,44,12,ES_AUTOHSCROLL | NOT 
+                    WS_VISIBLE
+    LTEXT           "Texte de l'entête",IDC_TEXT_HEADER,4,108,80,9,NOT 
+                    WS_VISIBLE
+END
+
+IDD_SIZE_POSITION_PROPERTY DIALOG  0, 0, 230, 145
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Position&Taille"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_POSITION_X,40,13,29,10,ES_AUTOHSCROLL
+    EDITTEXT        IDC_POSITION_Y,40,27,29,10,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SIZE_X,56,63,29,10,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SIZE_Y,56,77,29,10,ES_AUTOHSCROLL
+    ICON            IDI_POS_IMAGE,IDC_STATIC_ICON,9,12,20,20
+    ICON            IDI_SIZEOBJECT_IMAGE,IDC_STATIC_ICON1,9,62,20,20
+    GROUPBOX        "Position",IDC_STATIC,6,2,120,41
+    LTEXT           "x:",IDC_STATIC,31,13,8,11
+    LTEXT           "y:",IDC_STATIC,31,27,8,11
+    LTEXT           "millimètres",IDC_STATIC,74,13,45,11
+    LTEXT           "millimètres",IDC_STATIC,74,27,45,11
+    GROUPBOX        "Taille",IDC_STATIC,6,52,120,41
+    LTEXT           "largeur:",IDC_STATIC,31,63,25,11
+    LTEXT           "hauteur:",IDC_STATIC,31,77,24,11
+    LTEXT           "millimètres",IDC_STATIC,87,63,34,11
+    LTEXT           "millimètres",IDC_STATIC,87,77,35,11
+END
+
+IDD_RECT_PROPERTY DIALOG  0, 0, 230, 145
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Spécifiques"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_RAYON,150,31,23,12,ES_AUTOHSCROLL
+    CONTROL         "Rectangle arrondis",IDC_ROUNDED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,7,77,11
+    ICON            IDI_RECTANGLEROUNDED,IDC_STATIC,5,26,20,20
+    LTEXT           "Longueur du rayon (R) de l'arrondis:",IDC_TEXT_FORRAYON,
+                    30,33,116,9
+END
+
+IDD_PROPERTY DIALOG  13, 54, 243, 186
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Propriétés"
+FONT 8, "Helv"
+BEGIN
+    CONTROL         "OK_PROP",IDOK,"Button",BS_OWNERDRAW | WS_GROUP | 
+                    WS_TABSTOP,0,176,8,10
+    CONTROL         "CANCEL_PROP",IDCANCEL,"Button",BS_OWNERDRAW | WS_GROUP | 
+                    WS_TABSTOP,10,176,8,10
+    CONTROL         "APPLY_PROP",IDAPPLY,"Button",BS_OWNERDRAW | WS_GROUP | 
+                    WS_TABSTOP,211,172,8,10
+    CONTROL         "HELP",ID_HELP_INDEX,"Button",BS_OWNERDRAW | WS_GROUP | 
+                    WS_TABSTOP,226,172,11,13
+END
+
+IDD_LONG_PROPERTY DIALOG  0, 0, 230, 145
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Spécifiques"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Bloqué",IDC_STATUS,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,114,41,52,10
+    CONTROL         "Calculé",IDC_STATUS2,"Button",BS_AUTORADIOBUTTON,114,54,
+                    52,10
+    ICON            607,IDC_ICON_STATUS,6,14,18,20
+    GROUPBOX        "Champs calculé",IDC_STATIC,2,4,221,69
+    LTEXT           "Bloquer le champ calculer pour permettre la saisie d'un nombre",
+                    IDC_TEXTCHOICE,7,40,105,19
+    CONTROL         "Calculer en tenant compte des arrondis",IDC_MAKEROUNDED,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,92,165,10
+    LTEXT           "Tous les ",IDC_TEXTROUNDED,15,108,31,10
+    COMBOBOX        IDC_ROUNDED,47,107,53,62,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Arrondis",IDC_STATIC,2,82,221,51
+END
+
+IDD_GRAPHIC_PROPERTY DIALOG  0, 0, 230, 145
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Graphiques"
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "Epaisseur du stylo:",IDC_STATIC,5,17,62,11
+    EDITTEXT        IDC_PENWIDTH,72,16,14,12,ES_AUTOHSCROLL
+    RTEXT           "Couleur du stylo:",IDC_STATIC,8,37,59,11
+    CONTROL         "COL_SEL",IDC_COLORSELECTIONBUTTON,"Button",BS_OWNERDRAW | 
+                    WS_GROUP | WS_TABSTOP,83,37,9,9
+    CONTROL         "",IDC_COLORFRAME,"Static",SS_BLACKFRAME,72,36,10,10
+END
+
+IDD_GENERALTEXT_PROPERTY DIALOG  0, 0, 230, 145
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Générales"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_VALUE,47,24,135,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NAME,47,6,135,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_FIELD_DESCRIPTION,47,44,135,29,ES_MULTILINE | 
+                    WS_VSCROLL
+    EDITTEXT        IDC_FIELDTYPE_DESCRIPTION,47,77,135,23,ES_MULTILINE | 
+                    ES_READONLY | WS_VSCROLL
+    CONTROL         "",IDC_STRIKED,"Button",BS_AUTOCHECKBOX | BS_LEFTTEXT | 
+                    WS_TABSTOP,5,131,16,11
+    CONTROL         "Normal",IDC_TYPE,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT | WS_GROUP | WS_TABSTOP,37,131,33,11
+    CONTROL         "Diag.",IDC_TYPE2,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT,78,131,28,11
+    CONTROL         "Croix",IDC_TYPE3,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT,114,131,28,11
+    CONTROL         "Onde",IDC_TYPE4,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT,146,131,30,11
+    LTEXT           "Nom:",IDC_STATIC,5,6,40,10
+    LTEXT           "Contenu:",IDC_STATIC,5,24,40,10
+    LTEXT           "Description:",IDC_STATIC,5,44,40,10
+    LTEXT           "Type:",IDC_STATIC,5,78,40,10
+    GROUPBOX        "Barré",IDC_STATIC,2,122,180,22
+    CONTROL         "Conserver l'historique",IDC_KEEP_HISTORY,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,95,102,87,9
+    CONTROL         "Valeur par défaut",IDC_DEFAULTVALUE,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,109,113,73,9
+    CONTROL         "Lecture seule",IDC_READONLY,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,5,110,73,8
+END
+
+IDD_GENERAL_PROPERTY DIALOG  0, 0, 230, 145
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Générales"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_VALUE,47,24,135,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NAME,47,6,135,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_FIELD_DESCRIPTION,47,44,135,47,ES_MULTILINE | 
+                    WS_VSCROLL
+    EDITTEXT        IDC_FIELDTYPE_DESCRIPTION,47,96,135,40,ES_MULTILINE | 
+                    ES_READONLY | WS_VSCROLL
+    LTEXT           "Nom:",IDC_STATIC,5,6,40,10
+    LTEXT           "Contenu:",IDC_STATIC,5,24,40,10
+    LTEXT           "Description:",IDC_STATIC,5,44,40,10
+    LTEXT           "Type:",IDC_STATIC,5,96,40,10
+END
+
+IDD_CHECKBOX_PROPERTY DIALOG  0, 0, 201, 138
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Spécifiques"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Rond",IDC_SHAPE,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT | WS_GROUP | WS_TABSTOP,7,17,57,9
+    CONTROL         "Carré",IDC_SHAPE2,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT,7,32,57,10
+    EDITTEXT        IDC_SIZEVALUE,133,7,23,13,ES_AUTOHSCROLL
+    CONTROL         "Montrer le texte",IDC_SHOWTEXT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,71,63,8
+    EDITTEXT        IDC_TEXT,28,85,165,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_OFFSET,105,101,24,12,ES_AUTOHSCROLL
+    CONTROL         "Le texte fait office de control",IDC_TEXTISCTRL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,119,127,10
+    LTEXT           "Taille:",IDC_STATIC,109,9,22,10
+    GROUPBOX        "Forme",IDC_STATIC,4,4,98,57
+    LTEXT           "Texte:",IDC_STATIC,4,87,22,11
+    LTEXT           "Afficher avec un décalage de:",IDC_STATIC,4,102,100,11
+    CONTROL         "Afficher le texte à gauche",IDC_LEFTTEXT,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,98,67,95,12
+END
+
+IDD_BOUNDTEXT_PROPERTY DIALOG  0, 0, 230, 145
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Spécifiques"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_OFFSETTEXT,106,17,35,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NBLINES,106,37,20,13,ES_AUTOHSCROLL | WS_DISABLED
+    CONTROL         "Automatique",IDC_INTERLINETYPE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,10,82,62,14
+    CONTROL         "Définis en cm.",IDC_INTERLINETYPE2,"Button",
+                    BS_AUTORADIOBUTTON,10,97,62,14
+    EDITTEXT        IDC_INTERLINEVALUE,74,97,55,13,ES_AUTOHSCROLL | WS_GROUP
+    LTEXT           "Décalage du texte en cm.",IDC_STATIC,9,19,90,10
+    GROUPBOX        "Texte",IDC_STATIC,4,6,161,51
+    LTEXT           "Nombre de lignes décalées",IDC_STATIC,9,38,94,12,
+                    WS_DISABLED
+    GROUPBOX        "Inter-ligne",IDC_STATIC,4,69,161,47
+    CONTROL         "Texte statique",IDC_ISSTATIC,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,121,62,9
+END
+
+IDD_CHOOSEFIELDNAME DIALOG  0, 0, 194, 100
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Nom de champ"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_FIELDNAME,4,84,178,13,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Créer",IDOK,142,3,50,14
+    LTEXT           "Pour pouvoir reconnaître le champ que vous venez de créer, veuillez spécifier un nom.",
+                    IDC_STATIC,25,3,114,29
+    ICON            176,IDC_STATIC,4,3,18,20
+    PUSHBUTTON      "Abandonner",IDCANCEL,142,19,50,14
+    PUSHBUTTON      "Créer un nom automatiquement",
+                    IDC_AUTOMATICFIELDCREATION,4,67,117,13
+    LTEXT           "Si vous le désirez, le système peut vous créer un nom automatiquement en appuyant sur le bouton ""Créer un nom automatiquement"".",
+                    IDC_STATIC,4,36,187,29
+END
+
+IDD_SQUARED_PROPERTY DIALOG  0, 0, 230, 145
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Spécifiques"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Texte statique",IDC_SQUAREDTYPE,"Button",
+                    BS_AUTORADIOBUTTON | BS_LEFTTEXT | WS_GROUP | WS_TABSTOP,
+                    9,17,88,8
+    CONTROL         "Texte",IDC_SQUAREDTYPE2,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT,9,29,88,8
+    CONTROL         "Nombre",IDC_SQUAREDTYPE3,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT,9,41,88,8
+    CONTROL         "Date",IDC_SQUAREDTYPE6,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT,9,53,88,8
+    CONTROL         "Conserver l'historique",IDC_KEEP_HISTORY_SQUARE,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,9,66,88,10
+    GROUPBOX        "Type",IDC_STATIC,4,4,98,87
+    EDITTEXT        IDC_VERTICALVALUE,205,27,18,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_HORIZONTALVALUE,154,27,18,12,ES_AUTOHSCROLL
+    GROUPBOX        "Définition des carrés",IDC_STATIC,105,4,123,137
+    LTEXT           "Vertical:",IDC_STATIC,176,29,27,8
+    LTEXT           "Horizontal:",IDC_STATIC,117,29,36,8
+    LTEXT           "caractères maximum",IDC_STATIC,129,71,68,10
+    EDITTEXT        IDC_MAXLENGTH,108,69,18,12,ES_AUTOHSCROLL
+    COMBOBOX        IDC_SQUARETYPE,134,104,88,62,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_PARSINGMODE,134,123,88,58,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Type:",IDC_STATIC,109,106,23,12
+    LTEXT           "Mode:",IDC_STATIC,109,125,21,10
+    CONTROL         "Ajuster la taille automatiquement",IDC_AUTOADJUST,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,108,14,116,11
+    LTEXT           "caractères par case",IDC_STATIC,129,54,68,8
+    EDITTEXT        IDC_NBCHARPERSQUARE,108,50,18,12,ES_AUTOHSCROLL
+    LTEXT           "(-1 = pas limité)",IDC_STATIC,129,83,66,9
+END
+
+IDD_GLOBALFIELD_VIEW DIALOG  0, 0, 288, 231
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_LISTOFHISTORICFIELDVALUE,7,6,139,218,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_GFIELDDEFINITION DIALOG  0, 0, 239, 277
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Définition d'un champ commun"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Accepter",IDOK,133,261,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,186,261,50,14
+    LTEXT           "Nom du champ:",IDC_STATIC,4,11,54,10
+    EDITTEXT        IDC_FIELDNAME,59,10,150,13,ES_AUTOHSCROLL
+    LTEXT           "Type de champ:",IDC_STATIC,4,27,53,10
+    EDITTEXT        IDC_FIELDTYPE,60,26,149,13,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Commentaire général sur le type de champ:",IDC_STATIC,4,
+                    46,146,9
+    EDITTEXT        IDC_FIELDTYPECOMMENT,4,61,232,49,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_READONLY
+    LTEXT           "Commentaire spécifique:",IDC_STATIC,4,114,81,9
+    EDITTEXT        IDC_FIELDDESCRIPTION,4,126,232,52,ES_MULTILINE | 
+                    ES_AUTOVSCROLL
+    LTEXT           "Commentaire destiné à l'utilisateur:",IDC_STATIC,4,183,
+                    144,9
+    EDITTEXT        IDC_HELPUSERDESCRIPTION,4,194,232,62,ES_MULTILINE | 
+                    ES_AUTOVSCROLL
+END
+
+IDD_FEEDFILE_VIEW DIALOG  0, 0, 288, 231
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_LISTOFHISTORICFIELDVALUE,7,6,139,218,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_HISTORYFIELD_DEF DIALOG  0, 0, 185, 174
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Définition des valeures historiques"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Fermer",IDOK,133,158,50,14
+    LISTBOX         IDC_LIST_HISTORYVALUE,4,5,126,126,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Ajouter",IDC_ADDVALUE,133,5,50,15
+    PUSHBUTTON      "Enlever",IDC_REMOVEVALUE,133,24,50,15
+    PUSHBUTTON      "Vider",IDC_REMOVEALLVALUE,133,43,50,15
+    CONTROL         "Historique en lecture seulement",IDC_READONLY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,153,122,11
+    PUSHBUTTON      "Importer...",IDC_IMPORTVALUE,133,116,50,15
+    CONTROL         "Trié",IDC_SORTED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    4,139,68,9
+END
+
+IDD_INPUT_VALUE DIALOG  0, 0, 191, 42
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Valeur"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_VALUE,29,6,157,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Accepter",IDOK,3,26,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,58,26,50,14
+    RTEXT           "Valeur:",-1,2,6,27,10
+END
+
+IDD_LIST_OF_FIELDS DIALOG  0, 0, 185, 281
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Liste des champs"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Insérer",IDOK,132,6,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,132,23,50,14
+    ICON            IDI_INSERT,IDC_STATIC,4,4,20,20
+    LISTBOX         IDC_LIST_OF_FIELDS,4,37,120,108,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_FIELD_DESCRIPTION,4,179,178,43,ES_MULTILINE | 
+                    ES_READONLY
+    LTEXT           "Contenu:",IDC_STATIC,4,150,31,9
+    LTEXT           "Page:",IDC_STATIC,4,163,25,9
+    EDITTEXT        IDC_CONTAINS,40,149,141,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_PAGENUMBER,40,163,24,12,ES_AUTOHSCROLL | ES_READONLY
+    CONTROL         "Du document",IDC_SOURCE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,46,6,60,12
+    CONTROL         "De la base globale",IDC_SOURCE2,"Button",
+                    BS_AUTORADIOBUTTON,46,18,78,12
+    EDITTEXT        IDC_FIELD_COMMENTS,4,236,178,43,ES_MULTILINE | 
+                    ES_READONLY
+    LTEXT           "Commentaire spécifique:",IDC_STATIC_COMMENTS,4,225,97,8
+END
+
+IDD_PROJECTWINDOW DIALOG  0, 0, 113, 202
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_DOCUMENTLIST,2,11,101,86,LBS_USETABSTOPS | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "CANCEL_PROP",IDC_CLOSEWINDOW,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,104,2,9,11
+    LTEXT           "Formulaires",IDC_STATIC,3,1,43,8
+    PUSHBUTTON      "Insérer un fichier",IDC_INSERTFILE,3,105,74,15
+    PUSHBUTTON      "Détruire le formulaire",IDC_DELETEFILE,3,145,74,15,
+                    WS_DISABLED
+    PUSHBUTTON      "Propriétés...",IDC_PROPERTY,3,165,74,15,WS_DISABLED
+    PUSHBUTTON      "Associations...",IDC_ASSOCIATE,3,185,74,15,WS_DISABLED
+    PUSHBUTTON      "Insérer un formulaire",IDC_INSERTFORM,3,125,74,15
+END
+
+IDD_POINTER DIALOG  0, 0, 145, 20
+STYLE DS_SETFONT | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "The Pointer Window",IDC_POINTERWINDOW,0,0,19,18,NOT 
+                    WS_VISIBLE | NOT WS_GROUP
+    EDITTEXT        IDC_FIELD,24,5,118,12,ES_AUTOHSCROLL
+END
+
+IDD_GENERALBASIC_PROPERTY DIALOG  0, 0, 230, 145
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Générales"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_NAME,47,6,135,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_FIELD_DESCRIPTION,47,44,135,47,ES_MULTILINE | 
+                    WS_VSCROLL
+    EDITTEXT        IDC_FIELDTYPE_DESCRIPTION,47,96,135,40,ES_MULTILINE | 
+                    ES_READONLY | WS_VSCROLL
+    LTEXT           "Nom:",-1,5,6,40,10
+    LTEXT           "Description:",-1,5,44,40,10
+    LTEXT           "Type:",-1,5,96,40,10
+END
+
+IDD_GENERALDATE_PROPERTY DIALOG  0, 0, 230, 145
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Générales"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_VALUE,47,24,135,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NAME,47,6,135,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_FIELD_DESCRIPTION,47,44,135,29,ES_MULTILINE | 
+                    WS_VSCROLL
+    EDITTEXT        IDC_FIELDTYPE_DESCRIPTION,47,77,135,31,ES_MULTILINE | 
+                    ES_READONLY | WS_VSCROLL
+    CONTROL         "",IDC_STRIKED,"Button",BS_AUTOCHECKBOX | BS_LEFTTEXT | 
+                    WS_TABSTOP,5,131,16,11
+    CONTROL         "Normal",IDC_TYPE,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT | WS_GROUP | WS_TABSTOP,37,131,33,11
+    CONTROL         "Diag.",IDC_TYPE2,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT,78,131,28,11
+    CONTROL         "Croix",IDC_TYPE3,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT,114,131,28,11
+    CONTROL         "Onde",IDC_TYPE4,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT,146,131,30,11
+    LTEXT           "Nom:",IDC_STATIC,5,6,40,10
+    LTEXT           "Contenu:",IDC_STATIC,5,24,40,10
+    LTEXT           "Description:",IDC_STATIC,5,44,40,10
+    LTEXT           "Type:",IDC_STATIC,5,78,40,10
+    GROUPBOX        "Barré",IDC_STATIC,2,122,180,22
+    CONTROL         "Valeur par défaut",IDC_DEFAULTVALUE,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,109,112,73,9
+    CONTROL         "Lecture seule",IDC_READONLY,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,5,112,73,8
+END
+
+IDD_GENERALBOUNDTEXT_PROPERTY DIALOG  0, 0, 230, 145
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Générales"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_VALUE,47,21,135,36,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_WANTRETURN
+    EDITTEXT        IDC_NAME,47,4,135,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_FIELD_DESCRIPTION,47,59,135,22,ES_MULTILINE | 
+                    WS_VSCROLL
+    EDITTEXT        IDC_FIELDTYPE_DESCRIPTION,47,83,135,19,ES_MULTILINE | 
+                    ES_READONLY | WS_VSCROLL
+    CONTROL         "",IDC_STRIKED,"Button",BS_AUTOCHECKBOX | BS_LEFTTEXT | 
+                    WS_TABSTOP,5,131,16,11
+    CONTROL         "Normal",IDC_TYPE,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT | WS_GROUP | WS_TABSTOP,37,131,33,11
+    CONTROL         "Diag.",IDC_TYPE2,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT,78,131,28,11
+    CONTROL         "Croix",IDC_TYPE3,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT,114,131,28,11
+    CONTROL         "Onde",IDC_TYPE4,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT,146,131,30,11
+    LTEXT           "Nom:",IDC_STATIC,5,4,40,10
+    LTEXT           "Contenu:",IDC_STATIC,5,21,40,10
+    LTEXT           "Description:",IDC_STATIC,5,59,40,10
+    LTEXT           "Type:",IDC_STATIC,5,83,40,10
+    GROUPBOX        "Barré",IDC_STATIC,2,122,180,22
+    CONTROL         "Conserver l'historique",IDC_KEEP_HISTORY,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,95,104,87,9
+    CONTROL         "Valeur par défaut",IDC_DEFAULTVALUE,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,109,114,73,9
+    CONTROL         "Lecture seule",IDC_READONLY,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,110,73,8
+END
+
+IDD_GENERALSTATIC_PROPERTY DIALOG  0, 0, 230, 145
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Générales"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_VALUE,47,24,135,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NAME,47,6,135,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_FIELD_DESCRIPTION,47,44,135,29,ES_MULTILINE | 
+                    WS_VSCROLL
+    EDITTEXT        IDC_FIELDTYPE_DESCRIPTION,47,77,135,27,ES_MULTILINE | 
+                    ES_READONLY | WS_VSCROLL
+    CONTROL         "",IDC_STRIKED,"Button",BS_AUTOCHECKBOX | BS_LEFTTEXT | 
+                    WS_TABSTOP,5,131,16,11
+    CONTROL         "Normal",IDC_TYPE,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT | WS_GROUP | WS_TABSTOP,37,131,33,11
+    CONTROL         "Diag.",IDC_TYPE2,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT,78,131,28,11
+    CONTROL         "Croix",IDC_TYPE3,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT,114,131,28,11
+    CONTROL         "Onde",IDC_TYPE4,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT,146,131,30,11
+    LTEXT           "Nom:",IDC_STATIC,5,6,40,10
+    LTEXT           "Contenu:",IDC_STATIC,5,24,40,10
+    LTEXT           "Description:",IDC_STATIC,5,44,40,10
+    LTEXT           "Type:",IDC_STATIC,5,78,40,10
+    GROUPBOX        "Barré",IDC_STATIC,2,122,180,22
+END
+
+IDD_DOCUMENT_OPTIONS DIALOG  0, 0, 263, 294
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Les options du document"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Vide",IDC_EMPTYSTYLES,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,12,20,45,12
+    CONTROL         "Point",IDC_EMPTYSTYLES2,"Button",BS_AUTORADIOBUTTON,12,
+                    35,45,12
+    CONTROL         "Petite ligne",IDC_EMPTYSTYLES3,"Button",
+                    BS_AUTORADIOBUTTON,12,50,51,12
+    CONTROL         "Ligne pointillée",IDC_EMPTYSTYLES4,"Button",
+                    BS_AUTORADIOBUTTON,12,65,61,12
+    CONTROL         "Ligne",IDC_EMPTYSTYLES5,"Button",BS_AUTORADIOBUTTON,12,
+                    80,61,12
+    CONTROL         "oui",IDC_SHOWEMPTYLINE,"Button",BS_AUTORADIOBUTTON | 
+                    NOT WS_VISIBLE | WS_GROUP | WS_TABSTOP,170,22,26,10
+    CONTROL         "non",IDC_SHOWEMPTYLINE2,"Button",BS_AUTORADIOBUTTON | 
+                    NOT WS_VISIBLE,199,22,26,10
+    CONTROL         "oui",IDC_SYNCHRONIZATION,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,120,137,23,11
+    CONTROL         "non",IDC_SYNCHRONIZATION2,"Button",BS_AUTORADIOBUTTON,
+                    147,137,26,11
+    EDITTEXT        IDC_SYNCHRO_TIME,118,152,21,12,ES_AUTOHSCROLL
+    CONTROL         "oui",IDC_AUTOMATICFILENAME,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,120,170,26,11
+    CONTROL         "non",IDC_AUTOMATICFILENAME2,"Button",BS_AUTORADIOBUTTON,
+                    147,170,26,11
+    CONTROL         "dossier",IDC_AUTOMATICFILENAME3,"Button",
+                    BS_AUTORADIOBUTTON,174,170,35,11
+    EDITTEXT        IDC_FLF_FILENAME,19,184,185,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "Sélectionner",IDC_SELECT_FLF,207,182,47,15
+    CONTROL         "oui",IDC_HEADER,"Button",BS_AUTORADIOBUTTON | WS_GROUP | 
+                    WS_TABSTOP,42,204,22,9
+    CONTROL         "non",IDC_HEADER2,"Button",BS_AUTORADIOBUTTON,68,204,22,
+                    9
+    CONTROL         "Défaut",IDC_SEPARATOR,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,57,217,39,11
+    CONTROL         "Tab",IDC_SEPARATOR2,"Button",BS_AUTORADIOBUTTON,103,217,
+                    29,11
+    CONTROL         ",",IDC_SEPARATOR3,"Button",BS_AUTORADIOBUTTON,137,217,
+                    16,11
+    CONTROL         ";",IDC_SEPARATOR4,"Button",BS_AUTORADIOBUTTON,157,217,
+                    13,11
+    CONTROL         """",IDC_SEPARATOR5,"Button",BS_AUTORADIOBUTTON,176,217,
+                    13,11
+    CONTROL         "oui",IDC_HIDDENFIELDS_SHOW,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,116,248,27,11
+    CONTROL         "non",IDC_HIDDENFIELDS_SHOW2,"Button",BS_AUTORADIOBUTTON,
+                    142,248,27,11
+    CONTROL         "option de l'application",IDC_HIDDENFIELDS_SHOW3,"Button",
+                    BS_AUTORADIOBUTTON,169,248,82,11
+    DEFPUSHBUTTON   "Accepter",IDOK,2,277,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,56,277,50,14
+    GROUPBOX        "Style des champs vides",IDC_STATIC,4,6,254,112
+    LTEXT           "Point",IDC_POINT,76,37,47,10,NOT WS_VISIBLE
+    LTEXT           "SmalLine",IDC_SMALLLINE,76,52,47,10,NOT WS_VISIBLE
+    LTEXT           "DashLined",IDC_DASHEDLINE,76,67,47,10,NOT WS_VISIBLE
+    LTEXT           "Lined",IDC_LINED,76,82,47,10,NOT WS_VISIBLE
+    GROUPBOX        "Synchronisation des données",IDC_STATIC,4,123,255,109
+    RTEXT           "Synchroniser sur fichier FLF :",IDC_STATIC,10,138,102,
+                    10
+    RTEXT           "temps (secondes):",IDC_STATIC_TIME,51,153,61,9
+    GROUPBOX        "Champs cachés",IDC_STATIC,4,236,255,31
+    RTEXT           "Montrer les champs cachés :",IDC_STATIC,8,249,102,10
+    LTEXT           "Si vide montrer",IDC_EMPTYLINE_STATIC,114,22,53,10,NOT 
+                    WS_VISIBLE
+    RTEXT           "Nom de fichier automatique:",IDC_STATIC_FILE,19,170,93,
+                    11
+    LTEXT           "Entête:",IDC_STATIC,17,203,26,10
+    LTEXT           "Séparateur:",IDC_STATIC,17,218,39,10
+    CONTROL         "Imprimer lorsque le champ est vide",IDC_PRINTEMPTYLINE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,100,179,8
+END
+
+IDD_MASKTEXT_PROPERTY DIALOG  0, 0, 230, 145
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Masque"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_MASK,6,36,221,12,ES_AUTOHSCROLL
+    LTEXT           "Contenu du masque:",IDC_STATIC,6,22,107,9
+END
+
+IDD_TOOLBARSDX DIALOGEX 0, 0, 158, 145
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Barre d'outils"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Barres:",IDC_STATIC,7,7,23,8
+    LISTBOX         IDC_TOOLBAR_LIST,7,17,86,64,LBS_OWNERDRAWFIXED | 
+                    LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    DEFPUSHBUTTON   "&Fermer",IDOK,101,17,50,14
+    PUSHBUTTON      "&Nouvelle...",IDC_TOOLBAR_NEW,93,128,50,14,NOT 
+                    WS_VISIBLE
+    PUSHBUTTON      "&C&ustomiser...",IDC_TOOLBAR_CUSTOMIZE,99,129,50,14,NOT 
+                    WS_VISIBLE
+    PUSHBUTTON      "&Reset",IDC_TOOLBAR_RESET,107,126,50,14,NOT WS_VISIBLE
+    PUSHBUTTON      "&Help",ID_HELP,101,93,50,14,NOT WS_VISIBLE
+    LTEXT           "Nom:",IDC_TOOLBAR_STATIC,7,84,18,8,WS_DISABLED
+    EDITTEXT        IDC_TOOLBAR_NAME,7,94,86,13,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "",IDC_STATIC,7,112,144,1,0,WS_EX_STATICEDGE
+    CONTROL         "&Montrer Tooltips",IDC_TOOLBAR_TOOLTIPS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,117,67,10
+    CONTROL         "Avec &Gripper",IDC_TOOLBAR_COOLLOOK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,88,117,61,10
+    CONTROL         "&Butons large",IDC_TOOLBAR_LARGEBTNS,"Button",
+                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,8,129,61,
+                    10
+    ICON            128,IDC_GRIDICON,113,44,20,20
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_TOOLBAR_CUSTOMIZE, DIALOG
+    BEGIN
+        RIGHTMARGIN, 245
+    END
+
+    IDD_TOOLBARS_PAGE, DIALOG
+    BEGIN
+        RIGHTMARGIN, 241
+    END
+
+    IDD_GENERALTEXT_PROPERTY, DIALOG
+    BEGIN
+        VERTGUIDE, 5
+        VERTGUIDE, 182
+    END
+
+    IDD_HISTORYFIELD_DEF, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        VERTGUIDE, 133
+    END
+
+    IDD_GENERALDATE_PROPERTY, DIALOG
+    BEGIN
+        VERTGUIDE, 5
+    END
+
+    IDD_GENERALBOUNDTEXT_PROPERTY, DIALOG
+    BEGIN
+        VERTGUIDE, 7
+        VERTGUIDE, 182
+    END
+
+    IDD_DOCUMENT_OPTIONS, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        BOTTOMMARGIN, 291
+    END
+
+    IDD_MASKTEXT_PROPERTY, DIALOG
+    BEGIN
+        VERTGUIDE, 6
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "ZRes.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "#include ""zFormsRes\\zFormsRes.h""\r\n"
+    "#include ""Toolkit\\secres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\0"
+END
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#include ""res\\planfin.rc2""  // non-App Studio edited resources\r\n"
+    "\r\n"
+    "#include ""afxres.rc""  \t// Standard components\r\n"
+    "#include ""afxprint.rc""\t// printing/print preview resources\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_ALIGNVCENTER_BITMAP BITMAP                  "RES\\ALIGNVCE.BMP"
+IDB_ALIGNTOP_BITMAP     BITMAP                  "RES\\ALIGNTOP.BMP"
+IDB_ALIGNRIGHT_BITMAP   BITMAP                  "RES\\ALIGNRIG.BMP"
+IDB_ALIGNLEFT_BITMAP    BITMAP                  "RES\\ALIGNLEF.BMP"
+IDB_CALC_BITMAP         BITMAP                  "RES\\CALC_BIT.BMP"
+IDB_AMOUNT_BITMAP       BITMAP                  "RES\\AMOUNT_B.BMP"
+IDB_DATE_BITMAP         BITMAP                  "RES\\DATE_BIT.BMP"
+IDB_LINE_BITMAP         BITMAP                  "RES\\LINE_BIT.BMP"
+IDB_IMAGE_BITMAP        BITMAP                  "RES\\IMAGE_BI.BMP"
+IDB_MULTILINE_BITMAP    BITMAP                  "RES\\MULTILIN.BMP"
+IDB_RECTROUNDED_BITMAP  BITMAP                  "RES\\BMP00011.BMP"
+IDB_RECT_BITMAP         BITMAP                  "RES\\RECTANGL.BMP"
+IDB_TEXT_BITMAP         BITMAP                  "RES\\TEXT_BIT.BMP"
+IDB_STEXT_BITMAP        BITMAP                  "RES\\STEXT_BI.BMP"
+IDB_SQUARE_BITMAP       BITMAP                  "RES\\SQUARE_B.BMP"
+IDB_SMULTILINE_BITMAP   BITMAP                  "RES\\SMULTILI.BMP"
+IDB_SECTION_BITMAP      BITMAP                  "RES\\SECTION_.BMP"
+IDB_WZFORMATBITMAP      BITMAP                  "RES\\WZFORMAT.BMP"
+IDB_WZCHGTYPBITMAP      BITMAP                  "RES\\WZCHGTYP.BMP"
+IDB_WZCALCBITMAP        BITMAP                  "RES\\WZCALCBI.BMP"
+IDB_WZCRTCALCBITMAP     BITMAP                  "RES\\WZCRTCAL.BMP"
+IDB_WZCREATEBITMAP      BITMAP                  "RES\\WZCREATE.BMP"
+IDB_WZATTACHBITMAP      BITMAP                  "RES\\WZATTACH.BMP"
+IDB_WZASSCBITMAP        BITMAP                  "RES\\WZASSCBI.BMP"
+IDB_SHHELP_NUMBER       BITMAP                  "RES\\SHHELP_N.BMP"
+IDB_SHHELP_NUM_SCENARIO BITMAP                  "RES\\SHNUMB.BMP"
+IDB_SHHELP              BITMAP                  "RES\\SHHELP.BMP"
+IDB_SHHELP_T1           BITMAP                  "RES\\SHHELP_T.BMP"
+IDB_SHHELP_NUM_SCN_T1   BITMAP                  "RES\\BMP00002.BMP"
+IDB_SHHELP_NUMBER_T1    BITMAP                  "RES\\BMP00003.BMP"
+IDB_SHHELP_DATE         BITMAP                  "res\\shhelp_d.bmp"
+IDB_SHHELP_DATE_T1      BITMAP                  "res\\bmp00001.bmp"
+IDB_DATABASEIMAGELIST   BITMAP                  "res\\bitmap1.bmp"
+IDB_SHORTCUT            BITMAP                  "res\\shortcut.bmp"
+IDB_USERSYMBOL          BITMAP                  "res\\usersymb.bmp"
+IDB_LINKTOMODEL         BITMAP                  "res\\linktomo.bmp"
+IDB_FORMSYMBOL          BITMAP                  "res\\formsymb.bmp"
+IDB_BACKUPUSERSYMBOL    BITMAP                  "res\\backupus.bmp"
+IDB_ATTRUSERSYMBOL      BITMAP                  "res\\attruser.bmp"
+IDB_RESPUSERSYMBOL      BITMAP                  "res\\respuser.bmp"
+IDB_USEROFACTSYMBOL     BITMAP                  "res\\userofac.bmp"
+IDB_CHOICEACTSYMBOL     BITMAP                  "res\\choiceac.bmp"
+IDB_ATTRSYMBOL          BITMAP                  "res\\attrsymb.bmp"
+IDB_ALIGNBOTTOM_BITMAP  BITMAP                  "RES\\ALIGNBOT.BMP"
+IDB_ALIGNCENTER_BITMAP  BITMAP                  "RES\\ALIGNCEN.BMP"
+IDB_BACKASSC            BITMAP                  "RES\\BACKASSC.BMP"
+IDB_CALCBACKASSC        BITMAP                  "RES\\CALCBACK.BMP"
+IDB_CALCSHOWASSC        BITMAP                  "RES\\CALCSHOW.BMP"
+IDB_CALCULATOR          BITMAP                  "RES\\CALCULAT.BMP"
+IDB_CALCWITHASSC        BITMAP                  "res\\calcwith.bmp"
+IDB_ADMIN               BITMAP                  "res\\admin.bmp"
+IDB_FIELDINFO_TYPES     BITMAP                  "res\\fieldtypes.bmp"
+IDB_SINGLEUSER          BITMAP                  "res\\singleus.bmp"
+IDB_USERADMIN           BITMAP                  "res\\useradmi.bmp"
+IDB_USERDEPT            BITMAP                  "res\\userdept.bmp"
+IDB_DOCUMENT_TYPES      BITMAP                  "res\\document.bmp"
+IDB_FIELDDOCUMENT_TYPES BITMAP                  "res\\fielddoc.bmp"
+IDB_IL_USERIMAGES       BITMAP                  "res\\il_stand.bmp"
+IDB_IL_FORMIMAGES       BITMAP                  "res\\il_formi.bmp"
+IDB_FILE_TYPES          BITMAP                  "Res\\filetypes.bmp"
+IDB_IL_ATTRIBUTESIMAGES BITMAP                  "res\\il_attri.bmp"
+IDB_NOTES               BITMAP                  "res\\notes.bmp"
+IDB_PRINTER             BITMAP                  "RES\\PRINTER.BMP"
+IDB_LOCKED              BITMAP                  "Res\\LOCKED.BMP"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_WIZARDROUNDED DLGINIT
+BEGIN
+    IDC_ROUNDED, 0x403, 3, 0
+0x3031, "\000" 
+    IDC_ROUNDED, 0x403, 4, 0
+0x3031, 0x0030, 
+    IDC_ROUNDED, 0x403, 5, 0
+0x3031, 0x3030, "\000" 
+    IDC_ROUNDED, 0x403, 6, 0
+0x3031, 0x3030, 0x0030, 
+    IDC_ROUNDED, 0x403, 7, 0
+0x3031, 0x3030, 0x3030, "\000" 
+    IDC_ROUNDED, 0x403, 8, 0
+0x3031, 0x3030, 0x3030, 0x0030, 
+    0
+END
+
+IDD_LONG_PROPERTY DLGINIT
+BEGIN
+    IDC_ROUNDED, 0x403, 3, 0
+0x3031, "\000" 
+    IDC_ROUNDED, 0x403, 4, 0
+0x3031, 0x0030, 
+    IDC_ROUNDED, 0x403, 5, 0
+0x3031, 0x3030, "\000" 
+    IDC_ROUNDED, 0x403, 6, 0
+0x3031, 0x3030, 0x0030, 
+    IDC_ROUNDED, 0x403, 7, 0
+0x3031, 0x3030, 0x3030, "\000" 
+    IDC_ROUNDED, 0x403, 8, 0
+0x3031, 0x3030, 0x3030, 0x0030, 
+    0
+END
+
+IDD_SQUARED_PROPERTY DLGINIT
+BEGIN
+    IDC_SQUARETYPE, 0x403, 7, 0
+0x6f4e, 0x6d72, 0x6c61, "\000" 
+    IDC_SQUARETYPE, 0x403, 8, 0
+0x6e45, 0x6820, 0x7561, 0x0074, 
+    IDC_SQUARETYPE, 0x403, 7, 0
+0x6e45, 0x6220, 0x7361, "\000" 
+    IDC_PARSINGMODE, 0x403, 7, 0
+0x6f4e, 0x6d72, 0x6c61, "\000" 
+    IDC_PARSINGMODE, 0x403, 12, 0
+0xe953, 0x6170, 0x6172, 0x6574, 0x7275, 0x0073, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_POS_IMAGE           ICON                    "res\\pos_imag.ico"
+IDI_INSERT              ICON                    "RES\\INSERT.ICO"
+IDI_CALCULATOR          ICON                    "RES\\CALCULAT.ICO"
+IDI_USERS               ICON                    "RES\\USERS.ICO"
+IDI_SIZEOBJECT_IMAGE    ICON                    "res\\sizeobje.ico"
+IDI_RECTANGLEROUNDED    ICON                    "res\\rectangl.ico"
+IDI_INSERTFIELD_TOOLBAR ICON                    "res\\insertfi.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x21L
+#else
+ FILEFLAGS 0x20L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040c04b0"
+        BEGIN
+            VALUE "CompanyName", "Advanced Dedicated Software"
+            VALUE "FileDescription", "ZRes"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "ZRes"
+            VALUE "LegalCopyright", "Advanced Dedicated Software - Copyright (C)"
+            VALUE "OriginalFilename", "ZRes.dll"
+            VALUE "ProductName", "Advanced Dedicated Software - ZRes"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+            VALUE "SpecialBuild", "301"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x40c, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_WIZARDMENU MENU 
+BEGIN
+    POPUP "Calculated"
+    BEGIN
+        MENUITEM "Formattage",                  ID_WIZARD_FORMATFIELD
+        MENUITEM "Edition de la formule",       ID_WIZARD_CALCULATED
+        MENUITEM "Changer le type",             ID_EDITION_CHANGETYPE
+    END
+    POPUP "Number"
+    BEGIN
+        MENUITEM "Formattage",                  ID_WIZARD_FORMATFIELD
+        MENUITEM "Créer une formule",           ID_WIZARD_CREATEFORMULA
+        MENUITEM "Changer le type",             ID_EDITION_CHANGETYPE
+    END
+    POPUP "Date"
+    BEGIN
+        MENUITEM "Aujourd'hui",                 ID_TODAY
+        MENUITEM "Formattage",                  ID_WIZARD_FORMATFIELD
+        MENUITEM "Changer le type",             ID_EDITION_CHANGETYPE
+    END
+    POPUP "Default"
+    BEGIN
+        MENUITEM "Formattage",                  ID_WIZARD_FORMATFIELD
+        MENUITEM "Changer le type",             ID_EDITION_CHANGETYPE
+    END
+END
+
+IDR_CONTEXT_VIEWCODE MENU 
+BEGIN
+    POPUP "Afficher les codes"
+    BEGIN
+        MENUITEM "Imprimer",                    ID_FILEPRINT_PAGE_FIELDNAME
+        MENUITEM "Aperçu avant impression",     ID_FILEPRINTPREVIEW_PAGE_FIELDNAME
+
+        POPUP "Afficher les champs"
+        BEGIN
+            MENUITEM "Tous",                        ID_DISPLAYALLCODE
+            MENUITEM "Numériques",                  ID_ONLY_NUMERICFIELDS
+            MENUITEM "Calculés",                    ID_DISPLAYCALCULATEDCODE
+            MENUITEM "Textes",                      ID_DISPLAYTEXTCODE
+            MENUITEM "Textes statiques",            ID_DISPLAYSTATICCODE
+            MENUITEM "Graphiques",                  ID_DISPLAYGRAPHICCODE
+            POPUP "Exporté"
+            BEGIN
+                MENUITEM "O.C.L. 97",                   ID_DISPLAYFIELDNAME_EXPORT_SVM
+
+            END
+        END
+    END
+END
+
+IDR_ARGUMENTS MENU 
+BEGIN
+    POPUP "_IDR_ARGUMENTS"
+    BEGIN
+        MENUITEM "Un fichier",                  ID_FILE_ARG
+        MENUITEM "Un répertoire",               ID_DIR_ARG
+        MENUITEM "Une variable système",        ID_SYSVAR_ARG
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_EMPTY               CURSOR                  "RES\\EMPTY.CUR"
+IDC_WIZARD              CURSOR                  "RES\\CUR00003.CUR"
+IDC_SCENARIO            CURSOR                  "RES\\SCENARIO.CUR"
+IDC_NUMBER              CURSOR                  "RES\\NUMBER.CUR"
+IDC_PROPERTY_CURSOR     CURSOR                  "RES\\PROPERTY.CUR"
+IDC_CALENDAR            CURSOR                  "res\\cur00001.cur"
+IDC_NOTE                CURSOR                  "res\\calendar.cur"
+IDC_SELECTOROBJECT      CURSOR                  "RES\\SELECTOR.CUR"
+IDC_POINTER             CURSOR                  "RES\\POINTER.CUR"
+IDC_NOMOVE              CURSOR                  "RES\\CUR00002.CUR"
+IDC_NEWOBJECT           CURSOR                  "RES\\NEWOBJEC.CUR"
+IDC_MOVE                CURSOR                  "res\\move.cur"
+IDC_EDITABLE            CURSOR                  "RES\\CUR00004.CUR"
+IDC_DURINGMOVE          CURSOR                  "RES\\CURSOR1.CUR"
+IDC_TABORDER            CURSOR                  "res\\taborder.cur"
+IDC_PANMOVE             CURSOR                  "res\\panmove.cur"
+IDC_DESIGN              CURSOR                  "Res\\design.cur"
+IDC_OD_CONNECT          CURSOR                  "res\\OdConnect.cur"
+IDC_OD_DELETE_VERTEX    CURSOR                  "res\\OdDeleteVertex.cur"
+IDC_OD_INSERT_IMAGE     CURSOR                  "res\\OdInsertImage.cur"
+IDC_OD_INSERT_PORT      CURSOR                  "res\\OdInsertPort.cur"
+IDC_OD_INSERT_SYMBOL    CURSOR                  "res\\OdInsertSymbol.cur"
+IDC_OD_INSERT_TEXT      CURSOR                  "res\\OdInsertText.cur"
+IDC_OD_INSERT_VERTEX    CURSOR                  "res\\OdInsertVertex.cur"
+IDC_OD_MOVE             CURSOR                  "res\\OdMove.cur"
+IDC_OD_MOVE_COPY        CURSOR                  "res\\OdMoveCopy.cur"
+IDC_OD_MOVE_READY       CURSOR                  "res\\OdMoveReady.cur"
+IDC_OD_MOVE_VERTEX      CURSOR                  "res\\OdMoveVertex.cur"
+IDC_OD_PAN              CURSOR                  "res\\OdPan.cur"
+IDC_OD_PAN_READY        CURSOR                  "res\\OdPanReady.cur"
+IDC_OD_ROTATE           CURSOR                  "res\\OdRotate.cur"
+IDC_OD_ROTATE_COPY      CURSOR                  "res\\OdRotateCopy.cur"
+IDC_OD_ROTATE_READY     CURSOR                  "res\\OdRotateReady.cur"
+IDC_OD_SMALL_CROSS      CURSOR                  "res\\OdSmallCross.cur"
+IDC_OD_ZOOM             CURSOR                  "res\\OdZoom.cur"
+IDC_OD_ZOOM_RECT        CURSOR                  "res\\OdZoomRect.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AVI
+//
+
+IDR_FILEMOVE            AVI                     "res\\Filemove.avi"
+IDR_FILESEARCH          AVI                     "res\\Download.avi"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_HISTOAMOUNT_CLASS   "Montant avec historique"
+    IDS_UNMODIFIED_CLASS    "Non-modifiable"
+    IDS_FILEPROBLEM         "Le fichier que vous avez chargé comporte des erreurs dans le format. Pour plus de sécurité, il est conseillé de réattacher une forme. Aller dans le menu ""Formulaires"" et ""Formes"" et sélectionnez ""Attacher une autre forme""."
+    IDS_FILECORRUPTED       "Le fichier que vous désirez ouvrir est corrompu. Il n'est pas possible de le récupérer."
+    IDS_FILECORRUPTED_RECOVER 
+                            "Le fichier que vous désirez ouvrir est corrompu. Voulez-vous essayer de le récupérer."
+    IDS_FILECORRUPTED_MISSINGINFO 
+                            "Le fichier a été récupéré. Certaines informations et certains champs n'ont pu être récupérés."
+    IDS_TEMPLATEPROBLEM     "Le fichier que vous avez chargé n'est pas attaché à une forme. Il est conseillé de réattacher une forme. Pour cela, aller dans le menu ""Formulaires"" et ""Formes"" et sélectionnez ""Attacher une autre forme""."
+    IDS_DESCRIPTIONSTANDARDSCHEMA "Calcul standard"
+    IDS_OBJECTMISSING       "Le champ >> %1 << est manquant dans le formulaire et une formule fait encore référence à ce champ. Veuillez corriger le problème avec l'éditeur de scénarios."
+    IDS_MULTITEXTSTATIC_CLASS "Texte multi-ligne static"
+    IDS_NUMBEREDSECTION_CLASS "Section numérotée"
+    IDS_SQUARETEXT_CLASS    "Texte encasé"
+    IDS_LINE_CLASS          "Ligne"
+    IDS_RECTANGLE_CLASS     "Rectangle"
+    IDS_RECTANGLEROUNDED_CLASS "Rectangle arrondis"
+    IDS_BITMAP_CLASS        "Image"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DOCUMENTFILTER      ".plf"
+    IDS_ATTACHTITLE         "Attacher une nouvelle forme"
+    IDS_ATTACHBUTTONTEXT    "Attacher"
+    IDS_REFRESH             "Rafraîchir"
+    IDS_CHECK_CLASS         "Bouton de sélection"
+    IDS_ROOTTEMPLATETITLE   "Général"
+    IDS_OPENTITLE           "Ouvrir une forme existante"
+    IDS_OPENBUTTONTEXT      "Ouvrir"
+    IDS_OPENPROCESSTITLE    "Ouvrir une forme processus existante"
+    IDS_GO_UP               "Remonter vers le parent"
+    IDS_RADIO_CLASS         "Bouton d'option"
+    IDS_EXPORTFILE_CHOOSETITLE "Choisir un fichier d'export"
+    IDS_EXPORTFILE_FILTER   "Fichiers d'export (*.txt)"
+    IDS_EXPORTOCL_FILTER    "Fichiers d'export (*.exp)"
+    IDS_IMPORTFILE_CHOOSETITLE "Choisir un fichier d'import"
+    IDS_FEEDFILE_CHOOSETITLE "Fichier d'échange des données"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PASSWORDRETRYCAPTION "Erreur"
+    IDS_PASSWORDRETRY       "Le code que vous avez introduit est erroné. Veuillez essayer à nouveau."
+    IDS_PASSWORDCAPTION     "Arrêt"
+    IDS_PASSWORDFAILED      "Vous avez introduit un code erroné plus de trois fois. Nous sommes obligé de terminer l'application. Si vous n'êtes pas sûr du code, veuillez téléphoner  à nouveau à ADSoft."
+    IDS_PASSWORDCAPTION2    "Code produit"
+    IDS_PASSWORDFAILED2     "Le système ne peut pas contrôler le numéro de série de votre application. Le configuration initiale a été changée. Le système ne peut pas continuer."
+    IDS_PASSWORDFAILED3     "Le système a détecté un changement de clé de produit. Ou la clé de votre produit a été altérée. L'application ne peut continuer. Veuillez contacter ProcessSoft."
+    IDS_PRODUCTUNLOCK       "Le produit a été correctement déverrouillé. Vous pouvez utiliser l'application dans les limites décrites par le contrat de licence."
+    IDS_SERVERISEMPTYORMOVED_INIT 
+                            "Le référentiel n'a pas encore été initialisé ou a été déplacé. Voulez-vous l'initialiser, afin de pouvoir l'utiliser? (Aucun fichier ne sera altéré)"
+    IDS_ONSERVEREMPTYINIT_FAIL 
+                            "L'initialisation du référentiel a échoué. L'application ne peut pas continuer."
+    IDS_ONSERVEREMPTYINIT_FAIL_TITLE "Problème d'initialisation"
+    IDS_LANGUAGE_LIST       "Français;Anglais;Allemand"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_GHISTORVAL_FILTER   "*.plh"
+    IDS_GFIELD_FILTER       "*.pld"
+    IDS_GHISTORVAL_FILTERTXT "Fichiers val. histo. (*.plh)"
+    IDS_GFIELD_FILTERTXT    "Fichiers champs com. (*.pld)"
+    IDS_STANDARDFORMULA_DLL "FORMULA.DLL"
+    IDS_STANDARDFORMULA1_DLL "FORMUL1.DLL"
+    IDS_ASK_INSERTINGLOBALREP 
+                            "Le champ que vous venez de créer n'existe pas dans la base des noms communs. Voulez-vous insérer ce champ dans la base commune?"
+    IDS_EXISTINGLOBALREP    "Le champ que vous voulez créer existe déjà dans la base des champs communs. Voulez-vous l'insérer en reprenant ses définitions?"
+    IDS_EXISTINGLOBALREP_REN 
+                            "Le nom du champ que vous venez de spécifier existe déjà dans la base des champs communs. Voulez-vous continuer en reprenant ses définitions?"
+    IDS_STATICTEXT_CLASS    "Texte statique"
+    IDS_TEXT_CLASS          "Texte"
+    IDS_MULTITEXT_CLASS     "Texte multi-ligne"
+    IDS_DATE_CLASS          "Date"
+    IDS_AMOUNT_CLASS        "Montant"
+    IDS_CALCULATED_CLASS    "Montant calculé"
+    IDS_HISTOTEXT_CLASS     "Texte avec historique"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TITLEMISSING        "Vous devez spécifier un titre pour pouvoir ultérieurement identifier cette nouvelle forme."
+    IDS_TEMPLATEFILENAMEERROR 
+                            "Le nom de fichier que vous avez spécifier comporte plus de 8 caractères. Le nom de fichier que vous devez spécifier ne doit pas comporter d'extension."
+    IDS_FORMALREADYEXIST_CONTREPLACE 
+                            "La forme que vous avez choisi existe déjà. Voulez-vous continuer et la remplacer?"
+    IDS_DEFINITIONFILENAME  "Def.PLD"
+    IDS_NOGHISTORYFILEVALUE "Le fichier contenant les valeures historiques n'est pas défini. Veuillez le définir dans les Options sous l'onglet Global. Une fois défini, veuillez sortir de l'application et la relancer."
+    IDS_NOACTIVITYNAME      "Vous devez spécifier un nom d'activité."
+    IDS_RESPONSIBLEUSERNAMESTR "Responsable"
+    IDS_REQUESTUSERNAMESTR  "Attribution de ressources"
+    IDS_NOPROCESSNAME       "Vous devez spécifier un nom de processus."
+    IDS_ACTIVITY_COMPLETED  "terminée"
+    IDS_DELETEALLGLOBALFIELD 
+                            "Etes-vous sûr de vouloir détruire tous les champs communs?"
+    IDS_DELETEGLOBALFIELD   "Etes-vous sûr de vouloir détruire le champ <%1> ?"
+    IDS_MODIFYGLOBALFIELD   "Voulez-vous sauvegarder les modifications que vous venez d'apporter au champ <%1> ?"
+    IDS_NF_SELECTSERVER_TITLE "Sélection du serveur"
+    IDS_HISTORYFILENAME     "Histo.PLH"
+    IDS_NOGFIELDFILEVALUE   "Le fichier contenant les champs communs n'est pas défini. Veuillez le définir dans les Options sous l'onglet Global. Une fois défini, veuillez sortir de l'application et la relancer."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_NF_SELECTSERVER     "L'endroit sur disque que vous avez sélectionné ne contient aucun serveur de Formulaires. Le serveur actuel a été conservé. Si le serveur se trouve bien à l'endroit que vous avez sélectionné, il est possible que le serveur soit corrompu."
+    IDS_NOSERVERDEFINED     "Aucun serveur de Formulaires n'est défini. Voulez-vous le sélectionner?"
+    IDS_NOSERVER_SELECTED   "Du fait qu'aucun serveur de Formulaires n'a été défini, il est impossible d'utiliser l'application. Veuillez sélectionner un serveur pour pouvoir utiliser cette application."
+    IDS_NOSERVER_SELECTED_TITLE "Serveur de Formulaires non défini"
+    IDS_NOT_SUPPORTED       "GetErrorCode: Function Not Supported"
+    IDS_SUCCESS             "Success, No Error"
+    IDS_ADVISEBACKUP_RES    "L'activité est passée sur la ou les ressources de remplacement"
+    IDS_NET_ERROR           "Misc Network Error"
+    IDS_MORE_DATA           "Warning: Buffer Too Small"
+    IDS_BAD_POINTER         "Invalid Pointer Specified"
+    IDS_BAD_VALUE           "Invalid Number Value Specified"
+    IDS_BAD_PASSWORD        "Incorrect Password Specified"
+    IDS_ACCESS_DENIED       "Security Violation: Access Denied"
+    IDS_FUNCTION_BUSY       "Function Can't Be Renentered, Currently Being Used"
+    IDS_WINDOWS_ERROR       "Windows Error"
+    IDS_BAD_USER            "Invalid User Name Specified"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OUT_OF_MEMORY       "Out Of Memory"
+    IDS_CANCEL              "Bad Cancel"
+    IDS_NOT_CONNECTED       "Device is Not Redirected"
+    IDS_OPEN_FILES          "Connection Not Cancelled, Files/Jobs Still Open"
+    IDS_BAD_NETNAME         "Network Name is Invalid"
+    IDS_BAD_LOCALNAME       "Invalid Local Name"
+    IDS_DOCUMENTFEEDFILTER  ".flf"
+    IDS_RTEXPORT_CREATIONFAILED 
+                            "La création du fichier de synchronisation des données n'a pu se faire correctement. Veuillez vérifier que le fichier .FLF n'est pas corrompu."
+    IDS_BAD_JOBID           "Invalid Job ID"
+    IDS_JOB_NOT_FOUND       "No Job Found With This ID"
+    IDS_JOB_NOT_HELD        "Job Can't Be Released, Not Currently Held"
+    IDS_BAD_QUEUE           "No Queue For Network Name or Redirected Device"
+    IDS_BAD_FILE_HANDLE     "Not a Valid File Handle or Print File Open By DRV"
+    IDS_CANT_SET_COPIES     "Warning: Can't Set Number of Copies; Printing One"
+    IDS_ALREADY_LOCKED      "Queue Specified is Already Locked by LockQueue"
+    IDS_UNKNOWN_ERROR_CODE  "GetError success but\n undoc'ed code returned by driver!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ADVISEBACKUP_INITIALRES 
+                            "Le temps imparti a été dépassé. L'activité a été envoyée aux ressources de remplacement."
+    IDS_ACTIVITYRESSHARED_SEND 
+                            "L'activité %1 peut être exécutée par plusieurs ressources. L'attribution de cette activité aux autres ressources va être enlevée et un message va être envoyé. Voulez-vous continuer?"
+    IDS_ALREADY_CONNECTED   "Network drive allready connected"
+    IDS_ACTIVITYRESSHARED_UNCHANGED 
+                            "Le processus reste inchangé et va être fermé automatiquement."
+    IDS_PROCESSWILLBECLOSED_TITLE "Fermeture du processus"
+    IDS_ACTIVITYTAKENBY     "L'activité %1 a été ouverte par l'utilisateur %2. L'activité %1 qui vous avait été assignée a été enlevée de votre liste."
+    IDS_ACTIVITY_OWNERSHIPTAKEN 
+                            "Vous avez pris le contrôle de l'activité %1. Cette activité vous est maintenant assignée."
+    IDS_DOCUMENTPROCESSFEEDFILTER "xlf"
+    IDS_NOTAUTHORIZEDTOPEN  "Vous n'êtes pas autorisé à ouvrir l'activité <%1> de ce processus. L'application ne peut ouvrir le processus sélectionné."
+    IDS_NOTAUTHORIZEDTOPEN_ADMIN 
+                            "Vous n'êtes pas autorisé à ouvrir l'activité <%1> de ce processus. Du fait que vous avez des droits d'Administrateur, vous pouvez l'ouvrir et continuer l'exécution. Voulez-vous ouvrir ce processus et continuer son exécution?"
+    IDS_SERVERCANNOTBEOPEN  "Le serveur choisit ne peut être ouvert."
+    IDS_DEFAULTSERVERCANNOTBEOPEN 
+                            "Le serveur par défaut ne peut être ouvert. Voulez-vous en sélectionner un autre?"
+    IDS_INTERNALDOCUMENTTYPE "Formulaires"
+    IDS_EXTERNALDOCUMENTTYPE "Fichiers"
+    IDS_BINARYDOC_DRAWMESSAGE 
+                            "Ceci est un document importé. Le contenu du document est affiché dans la vue du bas. Si le contenu du document n'est pas affiché, le système a ouvert l'application qui permet de voir son contenu. Si l'application n'est pas active, veuillez la sélectionner dans la barre de tâche."
+    IDS_DELETESTRING        "Détruire"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_DEFINE_HISTORY       "Définir les valeures historique du champs"
+    ID_DEFINEFIELD_GLOBAL   "Définir le champ comme champ global."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_FILEGENERATEDNEWERVER 
+                            "Ce fichier a été créé par une version plus récente que vous possedez. Veuillez contacter votre Administrateur pour mettre à jour votre version."
+    IDS_APPINFO_MISSING_TITLE "Fichier manquant"
+    IDS_APPINFO_MISSING     "Un fichier d'information est manquant. Sans ce fichier vous ne pouvez pas démarrer les applications de la suite zForms. Pour obtenir ce fichier, veuillez contacter le support."
+    IDS_APPINFO_INCOMP_TITLE "Version incompatible"
+    IDS_APPINFO_INCOMP      "Le type de licence que vous avez ne vous permet pas d'utiliser cette application. Veuillez commander la licence adéquate si vous voulez utiliser cette application."
+    IDS_PREVWEB             "Afficher la page précédente"
+    IDS_NEXTWEB             "Afficher la page suivante"
+    IDS_STOPWEB             "Arrêter l'accès à la page"
+    IDS_REFRESHWEB          "Rafraîchir la page courante"
+    IDS_GOWEB               "Naviguer sur l'addresse Internet saisie"
+    IDS_STOPFILE            "Arrêter"
+    IDS_REFRESHFILE         "Rafraîchir"
+    IDS_APPINFO_WRONGKEY_TITLE "Clé invalide"
+    IDS_APPINFO_WRONGKEY    "La clé du produit est incompatible avec la clé de licence. Vous ne pouvez pas démarrer les applications de la suite zForms. Pour obtenir cette clé, veuillez contacter le support."
+    IDS_GHISTOVALREP_CHOOSETITLE "Fichier des valeures historiques"
+    IDS_GFIELDREP_CHOOSETITLE "Fichier des noms communs"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_FEEDFILE_FILTERTXT  "Fichiers d'échange (*.flf)"
+    IDS_TEMPLATEDEF_TITLE   "Forme : "
+    IDS_TEMPLATE_FILETYPE   "Fichier du type forme - "
+    IDS_ACTIVITY_ACCEPTED   "activité acceptée"
+    IDS_ACTIVITY_REJECTED   "activité rejetée"
+    IDS_ACTIVITY_NOTSTARTED "activité pas démarrée"
+    IDS_ACTIVITY_UNKNOWNSTATE "activité - état inconnu"
+    IDS_ACTIVITY_FORACCEPTATION "activité en demande d'acceptation"
+    IDS_PROCESS_COMPLETED   "processus terminé"
+    IDS_PROCESS_ABORTED     "processus arrêté"
+    IDS_ACTIVITY_NEXTPERSON "a remplir"
+    IDS_WORKSPACEFILE_FILTER "Projet Conceptor (*.klf)"
+    IDS_STARTPROCESSDLG_TEXT 
+                            "Choisissez le processus que vous voulez démarrer."
+    IDS_WORKSPACE_FILEOPEN_T "Choisir un projet"
+    IDS_CREATETITLE         "Créer une nouvelle forme"
+    IDS_WKS_GROUP_MODEL     "Modèles"
+END
+
+STRINGTABLE 
+BEGIN
+    IDP_ASK_TO_SAVE         "Le formulaire %1 a été modifié, désirez-vous le sauvegarder?"
+    IDP_ASK_TO_SAVE_TEMPLATE 
+                            "La forme %1 a été modifié, désirez-vous la sauvegarder?"
+    IDP_ASK_TO_SAVEPROCESS  "Le processus %1 a été modifié, désirez-vous le sauvegarder?"
+    IDP_ASK_TO_SAVE_MODEL   "Le modèle %1 a été modifié, désirez-vous le sauvegarder?"
+    IDS_ONFIRSTUSE_FAIL     "L'initialization du référentiel lors de la première utilisation de l'application a échoué. Veuillez relance l'application. Si le problème persiste, veuillez contacter votre revendeur local."
+    IDS_ONFIRSTUSE_FAIL_TITLE "Erreur fatale !!!!!!"
+    IDS_ONFIRSTUSE_SUCCESS  "L'initialisation de l'application lors de la première utilisation s'est terminée correctement. Vous pouvez commencer à utiliser l'application."
+    IDS_ONFIRSTUSE_SUCCESS_TITLE 
+                            "Initialisation lors de la première utilisation"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_WZNOSELECTION       "Vous n'avez sélectionné aucune croix. Si vous désirez quitter le Magicien pressez le bouton Abandonner."
+    IDS_WZFORMATNUMBERERROR "Vous ne pouvez pas avoir le signe % pour un pourcentage et en même temps les séparateurs de milliers."
+    IDS_YES                 "oui"
+    IDS_NO                  "non"
+    IDS_MODIFYTEXT          "Modifier"
+    IDS_STATUSACT_COMPLETED "Activité terminée"
+    IDS_STATUSACT_SENT      "Activité envoyée"
+    IDS_STATUSACT_ATTRIBUTION "Activité d'attribution"
+    IDS_STATUSACT_REJECTED  "Activité rejetée"
+    IDS_STATUSACT_SENTFORACPT "Activité en demande d'acceptation"
+    IDS_STATUSACT_NOTSTARTED "Activité pas démarrée"
+    IDS_STATUSPROC_NOTSTARTED "Processus pas démarré"
+    IDS_STATUSPROC_COMPLETED "Processus terminé"
+    IDS_STATUSPROC_SUSPENDED "Processus mis en suspens"
+    IDS_STATUSPROC_ABORTED  "Processus arrêté"
+    IDS_STATUSACT_UNKNOWN   "Status de l'activité inconnu"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPENFORMDLG_TEXT    "Choisissez la forme que vous désirez ouvrir."
+    IDS_ENTER_EMAILADRESS   "Entrez une addresse email"
+    IDS_ONEPERSON_REQUIRED  "Il est obligatoire d'assigner au moins une ressource pour l'activité."
+    IDS_NO_FOLDERNAME       "Vous devez spécifier un nom de dossier."
+    IDS_ACTIVITY_INVALIDUSERNAME 
+                            "La ou les ressources définies pour l'activité %1 sont introuvables."
+    IDS_WARNINGONEPERSON_REQUIRED 
+                            "Vous n'avez pas assigner un acteur, ou son responsable ou  une commande d'assignation de ressource pour votre activité. Cela signifie, qu'une liste des acteurs disponibles sera affichée."
+    IDS_TIMEOUT_REQUIRED    "Il est obligatoire d'assigner un temps plus grand que zéro pour une activité."
+    IDS_ACCEPT_REJECT_ACTIVITY 
+                            "Vous devez accepter ou rejeter l'activité '%1' avant de continuer."
+    IDS_SELECT_A_FILE       "Sélection d'un fichier"
+    IDS_NOACTIVITYFOR_REJECT 
+                            "Si vous désirez rediriger les rejets vers une autre activité, vous devez la spécifier dans la liste."
+    IDS_LOGFILECHOOSE_TITLE "Sélectionner un fichier de log"
+    IDS_WARNING_PROCESSCOMPLETED 
+                            "Ce processus est terminé. Vous ne pouvez effectuer aucune opération sur celui-ci."
+    IDS_PROCESSFINISHED_MESSAGE 
+                            "Le processus %1 est terminé. Un message de clôture a été envoyé à son initiateur."
+    IDS_ACTIVITYFINISHED_MESSAGE 
+                            "L'activité a été acceptée. Un message d'acceptation a été envoyé à son initiateur."
+    IDS_ACTIVITYREJECT_MESSAGE 
+                            "L'activité a été rejetée. Un message de rejet a été envoyé à son initiateur."
+    IDS_ACTIVITYFINISHED_MESSAGE_CONTINUE 
+                            "L'activité a été acceptée. Un message d'acceptation a été envoyé à son initiateur.\nVous pouvez poursuivre le traitement."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ACCEPT_REJECT_ACTIVITY_TITLE "Processus %1, Activité %2"
+    IDS_MUSTACCEPT_REJECT_ACTIVITY 
+                            "Vous devez accepter ou rejeter l'activité '%1' avant de pouvoir fermer le document.\nUtilisez la commande Accepter l'activité ou Rejeter l'activité qui se trouve dans le menu Processus."
+    IDS_WARNINGEVALVER      "Commande non disponible !!!"
+    IDS_UNABLECOMMANDEVALVER 
+                            "En version d'évaluation, cette commande n'est pas disponible."
+    IDS_VERSIONINFO_REG     "finale enregistrée.\nCette version est protégée par les lois sur la protection intellectuelle Suisse et mondiale."
+    IDS_VERSIONINFO_NONREG  "d'évaluation non enregistrée.\nVous pouvez utiliser cette version durant trois mois. Après vous êtes soumis au copyright."
+    IDS_PREVIEWFONTTEXT     "Abcdef MNOPQR"
+    IDS_PREVIEWSAMPLETEXT   "Texte"
+    IDS_OPEN_A_TEMPLATE     "Ouverture d'une forme"
+    IDS_MISSINGINFOTITLE    "Informations manquantes !!!"
+    IDS_FILENAMEMISSING     "Vous devez obligatoirement spécifier un nom de fichier."
+    IDS_ERRORTITLE          "Erreur de fichier"
+    IDS_OPEN_A_FILE         "Ouverture d'un fichier"
+    IDS_CONFIRM_FORMSAVE    "Cette opération va prendre la forme actuelle de votre formulaire et va la sauvegarder comme défaut. Cela signifie que le prochain formulaire de ce type aura la forme actuelle. Voulez-vous procéder à la sauvegarde de la forme?"
+    IDS_DOCUMENTMODIFIED_ASKCONFIRMATION_FORMATTACH 
+                            "Le formulaire ""%s"" a été modifié. Si vous voulez attacher une autre forme, il est conseillé de sauvegarder les modifications avant de continuer?"
+    IDS_PAGESTRING          "Page : "
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_NOTEMPLATEINSTALLED "Il n'y a pas de formulaires installés sur votre système. Si vous en aviez précédemment, votre système est peut-être instable et il est préférable de quitter l'application. Si l'erreur persiste, veuillez contacter le support technique."
+    IDS_IMPORTFILE_NF       "Le fichier d'import n'existe pas ou est vide."
+    IDS_EXPORTFILE_FAIL     "Il est impossible de créer le fichier d'export. Il est possible qu'il soit bloqué par quelqu'un. Veuillez contrôler et réessayer."
+    IDS_CHOOSESERVER        "Choix du serveur"
+    IDS_SERVER_CHOOSED      "Vous avez été enregistré auprès du nouveau serveur.\nLe serveur pointe sur %1"
+    IDS_CATEGORYMISSING     "Vous devez obligatoirement sélectionner une catégorie."
+    IDS_TEMPLATE            "Forme"
+    IDS_DOCUMENT            "Formulaire"
+    IDS_CLOSE_TEXT          "Fermer"
+    IDS_PROCESSMISSING      "Vous devez obligatoirement sélectionner un processus."
+    IDS_ACTIVITYFINISHED_TITLE "L'activité %1 terminée"
+    IDS_ACTIVITYFINISHED_CLOSE 
+                            "L'activité %1 est terminée. Le formulaire va être automatiquement fermé."
+    IDS_PROCESSFINISHED_TITLE "Processus terminé"
+    IDS_STARTBUTTONTEXT     "Démarrer"
+    IDS_STARTTITLE          "Démarrer un formulaire"
+    IDS_STARTPROCESSTITLE   "Démarrer un processus"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_SELECTBUTTONTEXT    "Sélectionner"
+    IDS_SELECTTITLE         "Sélectionner un formulaire"
+    IDS_SELECTPROCESSTITLE  "Sélectionner un processus"
+    IDS_OPENPROCESSDLG_TEXT "Choisissez la forme processus que vous désirez ouvrir."
+    IDS_SELECTPROCESSDLG_TEXT "Choisissez un processus."
+    IDS_STARTFORMDLG_TEXT   "Choisissez le formulaire que vous désirez créer."
+    IDS_SELECTFORMDLG_TEXT  "Sélectionner un formulaire."
+    IDS_ACTIVITYREMIND_TEXT "L'activité %1 doit être terminée avant le %2. "
+    IDS_ACTIVITYREMIND_TITLE "Activité %1"
+    IDS_ACTIVITYINBACKUP_TEXT 
+                            "Du fait que l'activité %1 a dépassée le temps limite et que des ressources de remplacement avaient été définies, celle-ci a été assignée à ces ressources. Vous ne pouvez par conséquent modifier ce dossier."
+    IDS_ACTIVITYINBACKUP_TITLE "Activité %1"
+    IDS_ATTACHFORMDLG_TEXT  "Choisissez la forme que vous désirez attacher."
+    IDS_PROCESSFINISHED_MESSAGE_CONTINUE 
+                            "L'activité %1 a été acceptée. Un message d'acceptation a été envoyé à son initiateur.\nC'est la dernière activité du processus. Pour clôre celui-ci, veuillez utiliser la commande clôre le processus du menu Processus."
+    IDS_PROCESS_SUSPENDED   "processus suspendu"
+    IDS_DOCUMENTPROCESSFEEDFILE_CHOOSETITLE 
+                            "Fichier d'échange des données du processus"
+    IDS_DOCUMENTPROCESSFEEDFILE_FILTERTXT "Fichiers d'échange (*.slf)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_EXPORTPROCESSFILE_CHOOSETITLE "Choisir un fichier d'export"
+    IDS_PROCESSFILE_FILTERTXT "Fichiers processus (*.wlf)"
+    IDS_FORMFILE_FILTERTXT  "Fichiers formulaires (*.plf)"
+    IDS_VISIBILITY_REQUIRED "Il est obligatoire de spécifier la visibilité de l'activité."
+    IDS_PROCESS_UNKNOWNSTATE "processus - état inconnu"
+    IDS_PROCESS_NOTSTARTED  "processus pas démarré"
+    IDS_PROCESS_STARTED     "processus démarré"
+    IDS_PROCESS_INPROCESS   "processus en traitement"
+    IDS_WARNING_PROCESSABORTED 
+                            "Ce processus a été arrêté en cours d'exécution. Vous ne pouvez effectuer aucune opération sur celui-ci."
+    IDS_ACTIVITYSWITCHBACKUP_TEXT 
+                            "L'activité %1 a dépassée le temps limite. Vous faites partie des ressources de remplacement. L'activité %1 vous a été assignée."
+    IDS_ACTIVITYSWITCHBACKUP_TITLE "Activité %1"
+    IDS_ACTIVITYSWITCHBACKUP_ERRORTEXT 
+                            "Une erreur s'est produite lorsque le système a voulu assigner l'activité %1 vers les ressources de remplacement. Veuillez fermer l'application et réessayer d'ouvrir ce dossier. Si l'erreur persiste, veuillez appeler l'administrateur du système."
+    IDS_ACTIVITYSWITCHBACKUP_ERRORTITLE "Erreur sur l'activité %1"
+    IDS_TOOLTIPNOTETEXT     "Note:"
+    IDS_TOOLTIPOBJECTTYPE   "Type: "
+    IDS_TOOLTIPOBJECTPOSITION "Position: "
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ACTIVITY_STARTED    "démarrée"
+    IDS_CONFIRM_ABORTPROCESS 
+                            "Vous avez décidé de terminer le processus <%1> en cours d'exécution. Cela signifie que celui-ci ne pourra être redémarré. Etes-vous certain de vouloir terminer ce processus?"
+    IDS_ABORTPROCESS_MSG    "Le processus <%1> a été terminé. Un message d'avertissement a été envoyé à son initiateur."
+    IDS_ABORTPROCESS_MSGTITLE "Processus <%1> terminé"
+    IDS_CONFIRM_SUSPENDPROCESS 
+                            "Vous avez décidé de suspendre le processus <%1> en cours d'exécution. Etes-vous certain de vouloir suspendre ce processus?"
+    IDS_SUSPENDPROCESS_MSG  "Le processus <%1> a été suspendu. Un message d'avertissement a été envoyé à son initiateur. Un événement a également été placé dans votre boîte aux lettres."
+    IDS_WKS_GROUP_DOCUMENT  "Documents"
+    IDS_WKS_GROUP_REPORT    "Rapports"
+    IDS_IMPORTFILE_FAIL     "Il est impossible d'ouvrir le fichier d'import. Il est possible qu'il soit bloqué par quelqu'un. Veuillez contrôler et réessayer."
+    IDS_EXPORTFILE_FILTERGIF "Image gif (*.gif)"
+    IDS_EXPORTFILE_FILTERJPEG "Image jpeg (*.jpg)"
+    IDS_EXPORTFILE_FILTERPCX "Image pcx (*.pcx)"
+    IDS_EXPORTFILE_FILTERDIB "Image dib (*.dib)"
+    IDS_EXPORTFILE_FILTERTGA "Image tga (*.tga)"
+    IDS_EXPORTFILE_FILTERTIF "Image tif (*.tif)"
+    IDS_IMAGEFILE_CHOOSETITLE "Choisir une image"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_SUSPENDPROCESS_MSGTITLE "Processus <%1> suspendu"
+    IDS_USERNOTREGISTERED_WT "Utilisateur inconnu"
+    IDS_USERNOTREGISTERED_T "Vous n'êtes pas enregistré en tant qu'utilisateur de la Suite zForms. Veuillez faire une demande d'enregistrement auprès de votre administrateur système."
+    IDS_LOADUSERSFAIL_WT    "Chargement des utilisateurs"
+    IDS_LOADUSERSFAIL_T     "Une erreur s'est produite lors du chargement de la base utilisateurs. Veuillez contacter votre administrateur système si le problème se reproduit. L'application va automatiquement sortir."
+    IDS_EXPORTPROCESS_BUTTON "Exporter"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_FEEDDATA_NOTMPLNOFILE 
+                            "Le fichier d'échange que vous voulez ouvrir ne contient ni de forme valide ni de fichier valide. Veuillez consulter votre Administrateur système."
+    IDS_FEEDDATA_OPENFILEPRB 
+                            "Un problème s'est produit lors de l'ouverture du fichier attaché au fichier d'échange que vous voulez ouvrir. Veuillez contrôler que vous avez accès au serveur global."
+    IDS_OBJECTSAMEREFERENCE "Le fichier est corrompu. Le fichier contient des références croisées. Le champ <%1> en est la cause. Voulez-vous corriger le problème pour pouvoir ouvrir le fichier?"
+    IDS_SPL_LOADOPTIONS     "chargement des options"
+    IDS_SPL_OPENSERVER      "connection avec le serveur"
+    IDS_SPL_LOADUSERS       "chargement des utilisateurs"
+    IDS_SPL_LOADPROCTMPL    "chargement des formes processus"
+    IDS_SPL_LOADTMPL        "chargement des formes formulaire"
+    IDS_SPL_LOADFIELD       "chargement des champs communs"
+    IDS_FIELDDOCUMENTTYPE   "Document"
+    IDS_REPOSITORYDOCUMENTTYPE "Champs communs"
+    IDS_NODOCUMENTSELECTED  "Aucun document"
+    IDS_NOREPOSITORYFIELDS  "Aucun champs communs"
+    IDS_ZWRITER_CANNOTOPENTEMPLATE 
+                            "Vous ne pouvez pas ouvrir des fichiers de type Forme avec zWriter. Vous devez utiliser zDesigner. Le fichier va être automatiquement fermé."
+    IDS_SPL_LOADMODELTMPL   "chargement des formes modèles"
+    IDS_PROPERTY_TEXT       "Propriétés"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TOOLTIPOBJECTDEFVALUE "Valeur par défaut: "
+    IDS_TOOLTIPOBJECTREADONLY "En lecture seule: "
+    IDS_SELECTBITMAP_TITLE  "Sélectionner un fichier Bitmap"
+    IDS_TOOLTIPOBJECTSIZE   "Taille: "
+    IDS_MODIFY_TEXT         "Modifier"
+    IDS_MASKSTRING_CLASS    "Texte avec masque"
+    IDS_MASKSTRINGHISTO_CLASS "Texte historique avec masque"
+    IDS_OPENMODELTITLE      "Ouvrir un modèle existant"
+    IDS_OPENMODELDLG_TEXT   "Choisissez le modèle que vous désirez ouvrir."
+    IDS_STARTMODELDLG_TEXT  "Choisissez le modèle que vous voulez démarrer."
+    IDS_STARTMODELTITLE     "Démarrer un modèle"
+    IDS_SELECTMODELTITLE    "Sélectionner un modèle"
+    IDS_SELECTMODELDLG_TEXT "Choisissez un modèle."
+    IDS_CANCEL_TEXT         "Abandonner"
+    IDS_APPLY_TEXT          "Appliquer"
+    IDS_HELP_TEXT           "Aide"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CREATEBUTTON_TEXT   "Créer"
+    IDS_NEXTBUTTON_TEXT     "Suivant >>"
+    IDS_RESOURCEWILLBELOST  "En passant en mode séquence, les ressources définies auparavant vont être enlevées. Voulez-vous continuer?"
+    IDS_WARNING_DONOTUSEINTERNALSRV 
+                            "En décidant de ne pas utiliser la messagerie interne, vous ne pourrez pas bénéficier de la gestion des ressources de remplacements, ainsi que de la gestion du multi-ressources. Voulez-vous quand même enlever cette option?"
+    IDS_NAMECOLUMN_USER     "Nom (identifiant)"
+    IDS_DESCRIPTIONCOLUMN_USER "Description"
+    IDS_DEPARTEMENTCOLUMN_USER "Département"
+    IDS_ADDRESSCOLUMN_USER  "Adresse"
+    IDS_RESPONSIBLECOLUMN_USER "Responsable"
+    IDS_ADMINCOLUMN_USER    "Administrateur"
+    IDS_DESCFIELD_DESCRIPTION "Description : %s"
+    IDS_DESCFIELD_USERHELP  "Aide : %s"
+    IDS_DESCFIELD_READONLY  "Lecture seule : %s"
+    IDS_DESCFIELD_SORTED    "Trié : %s"
+    IDS_DESCFIELD_CLASSNAME "Type : %s"
+    IDS_DESCFIELD_HISTORY   "Valeures"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DISPLAYNAMECOLUMN_USER "Nom"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ACTIVITY_INVALIDUSERNAME_CHOOSE 
+                            "La ou les ressources définies pour l'activité %1 sont introuvables. Veuillez choisir une ressource pour pouvoir continuer."
+    IDS_WARNING_PROCESSABORTED_ADMIN 
+                            "Ce processus a été arrêté en cours d'exécution. Du fait que vous avez des droits administrateur, vous ne pouvez redémarrer ce processus. Une fois redémarré le processus repartira à l'endroit où il a été arrêté. Voulez-vous redémarrer ce processus?"
+    IDS_PROCESS_RESTARTED   "processus redémarré"
+    IDS_SHOWSUMMARYREPORT   "Rapport Récapitulatif"
+    IDS_SHOWSUMMARYDETAILREPORT "Rapport Récapitulatif Détaillé"
+    IDS_SHOWSUMMARYPROCESSTODAY "Rapport + Graphique (aujourd'hui)"
+    IDS_SHOWSUMMARYREJECTSTODAY "Rapport + Graphique des rejets (aujourd'hui)"
+    IDS_SHOWTODOACTIVITYREPORT "Rapport sur les activité(s) à effectuer"
+    IDS_SHOWPARTICIPATINGACTIVITYREPORT "Rapport sur les processus en cours"
+    IDS_SHOWCOMPLETEDPROCESS "Rapport sur les processus terminés"
+    IDS_SHOWSUSPENDEDPROCESS "Rapport sur les processus suspendus"
+    IDS_SHOWABORTEDPROCESS  "Rapport sur les process arrêtés"
+    IDS_FILEDOESNOTEXIST    "Le fichier que vous avez spécifié n'existe pas."
+    IDS_MULTICOLUMN_CLASS   "Multi-colonnes"
+    IDS_TEMPLATE_FORM_NF    "Le formulaire <%s> défini pour l'activité <%s> n'existe plus. Le système est obliger d'enlever la référence sur ce formulaire. Vous devez modifier l'activité et spécifier un nouveau formulaire."
+    IDS_TEMPLATE_FORM_NF2   "Le formulaire <%s> défini pour l'activité <%s> n'existe plus. Le système est obliger d'enlever la référence sur ce formulaire. Vous devez modifier l'activité et spécifier un nouveau formulaire."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_SYNCHRO_TIMERANGE   "Vous pouvez spécifier un temps de synchronisation compris entre 0 et 9999.\n0 signifie synchronisation en temps réel.\n9999 signifie synchronisation sur demande."
+    IDS_MAILSUBJECTEMPTY    "Le sujet est vide. Vous devez obligatoirement spécifier un sujet pour pouvoir envoyer un message."
+    IDS_APPLICATIONMISSING  "Vous devez spécifier une application."
+    IDS_ATTRIBUTEDACTIVITIES_NF 
+                            "L'activité <%1> a été définie comme étant une activité d'attribution, mais elle n'a aucune activité rattachée. Voulez-vous rattacher une ou plusieurs activités?"
+    IDS_NOATTRIBUTIONFORACTIVITIES 
+                            "L'activité <%1> n'a pas été attribuée à une activité d'attribution. Il est obligatoire qu'elle soit attribuée."
+    IDS_PROCFORM_NOTATTACH  "Aucun processus ou formulaire n'a été attaché. Cela peut altérer le fonctionnement de ce processus. Le processus va néanmoins continuer."
+    IDS_REMOVEATTRIBUTIONFLAG 
+                            "L'option d'attribution pour l'activité <%1> a été enlevée. Si vous désirez la conserver, il faut que vous la redéfinissiez comme tâche d'attribution et que des activités tâches lui soit attribuées."
+    IDS_ATTRIBUTIONTITLE    "Les attributions"
+    IDS_NOATTRIBUTIONFORACTIVITIES_W 
+                            "Du fait que l'activité <%1> n'a toujours pas été attribuée à une activité d'attribution, votre processus n'est pas cohérent."
+    IDS_SERVERCREATIONSTART "Création du serveur"
+    IDS_SERVERCREATIONFAIL  "La création du serveur ne s'est pas terminée correctement"
+    IDS_SERVERCREATIONSUCCESS 
+                            "La création du serveur s'est terminée correctement"
+    IDS_SERVERCREATIONDIRFAIL "Impossible de créer le répertoire <%s>"
+    IDS_SERVERCREATIONFILEFAIL "Impossible de créer le fichier <%s>"
+    IDS_SERVERCREATIONPARAMFAIL 
+                            "Impossible d'initialiser les paramètres du serveur"
+    IDS_FORMALREADYEXIST    "Le nom de fichier que vous avez choisit pour cette nouvelle forme existe déjà. Veuillez choisir un autre nom."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CONF_WKS_DELETEFILE "Voulez-vous continuer avec la suppression du fichier sélectionné dans le projet? (Cette action ne supprime pas physiquement le fichier sur disque, mais uniquement sa référence au sein du projet)"
+    IDS_CONF_WKS_DELETEGROUP 
+                            "Voulez-vous continuer avec la suppression du groupe sélectionné et de tous les fichiers contenus dans ce groupe? (Cette action ne supprime pas physiquement les fichiers sur disque, mais uniquement les références au sein du projet)"
+    IDS_DIR_NEEDCREATE      "Le répertoire spécifié n'existe pas, voulez-vous le créer?"
+    IDS_DIR_FAILCREATE      "La création du répertoire spécifié n'a pas réussi. Veuillez contrôler que le répertoire spécifié est valide."
+END
+
+#endif    // Français (France) resources
+/////////////////////////////////////////////////////////////////////////////
+
+

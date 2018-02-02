@@ -1,0 +1,9 @@
+; zPtyMgrD.def : Declares the module parameters for the DLL.
+
+LIBRARY      "zPtyMgrD"
+
+; JMR-MODIF - Le 23 mai 2005 - DESCRIPTION supprimé car non pris en charge par le compilateur.
+;DESCRIPTION  'zPtyMgrD Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

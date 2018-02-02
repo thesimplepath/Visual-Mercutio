@@ -1,0 +1,345 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "zModelWebRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Anglais (États-Unis) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "zModelWebRes.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\zModelWeb.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Anglais (États-Unis) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Français (France) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040c04b0"
+        BEGIN
+            VALUE "FileDescription", "zModelWeb DLL"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "zModelWeb"
+            VALUE "LegalCopyright", "Copyright (C)"
+            VALUE "OriginalFilename", "zModelWeb.DLL"
+            VALUE "ProductName", "zModelWeb Dynamic Link Library"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x40c, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_WZPUBMODEL_WELCOME DIALOG  0, 0, 286, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Publication d'un modèle Conceptor vers un document HTML"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Suivant >>",IDOK,84,181,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+    LTEXT           "Vous pouvez publier votre modèle créé avec l'aide de Conceptor sous format HTML. Ceci vous donnera la possibilité d'offrir la visualisation de vos modèles depuis un navigateur.",
+                    IDC_STATIC,7,75,238,28
+    LTEXT           "Veuillez presser sur le bouton Suivant pour sélectionner le répertoire.",
+                    IDC_STATIC,7,152,238,13
+    LTEXT           "La publication de votre modèle se fait sur disque et vous devrez spécifier un répertoire. Le résultat de la publication ne se résume pas a un seul fichier. C'est pour cette raison que nous demandons un répertoire pour la publication.",
+                    IDC_STATIC,7,108,238,33
+    ICON            IDI_WEBPUB,IDC_STATIC,2,43,20,20
+END
+
+IDD_WZPUBMODEL_SEL DIALOGEX 0, 0, 286, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Publication d'un modèle Conceptor vers un document HTML"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_DIRECTORYCHOOSED,35,62,244,11,ES_AUTOHSCROLL
+    CONTROL         "Tree1",IDC_TREEOFDIRECTORY,"SysTreeView32",TVS_HASLINES | 
+                    TVS_LINESATROOT | TVS_DISABLEDRAGDROP | 
+                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,3,76,276,98,
+                    WS_EX_STATICEDGE
+    DEFPUSHBUTTON   "Sélectionner",IDOK,84,181,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+    ICON            IDI_WEBPUB,IDC_STATIC,2,43,20,20
+    LTEXT           "Vous pouvez spécifier un répertoire qui n'existe pas. Le système créera le répertoire spécifié.",
+                    IDC_STATIC,35,45,237,17
+END
+
+IDD_WZPUBMODEL_OPTIONS DIALOGEX 0, 0, 286, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Publication d'un modèle Conceptor vers un document HTML"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    COMBOBOX        IDC_LANGUAGE,67,138,188,100,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Visualiser le résultat avec le navigateur installé sur votre machine",
+                    IDC_VISUALIZERESULT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,17,158,234,9
+    DEFPUSHBUTTON   "Publier >>",IDOK,84,181,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+    ICON            IDI_WEBPUB,IDC_STATIC,2,43,20,20
+    GROUPBOX        "Publication des rapports",IDC_STATIC,17,64,238,66
+    LTEXT           "Généré en :",IDC_STATIC,17,140,46,8
+    CONTROL         "Publier le rapport Conceptor",IDC_PUBLISH_CONCEPTOR,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,25,95,225,10
+    CONTROL         "Détails",IDC_CONCEPTOR_DETAILS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,59,105,191,10
+    CONTROL         "Inclure les livrables",IDC_CONCEPTOR_DELIVERABLES,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,59,115,191,10
+    CONTROL         "Publier le rapport des processus",IDC_PUBLISH_PROCESS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,25,75,225,10
+    CONTROL         "Publier le livre des règles",IDC_PUBLISH_RULEBOOK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,25,85,225,10
+END
+
+IDD_WZPUBMODEL_GENERATE DIALOGEX 0, 0, 286, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Publication d'un modèle Conceptor vers un document HTML"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "En cours...",IDOK,84,181,50,14,WS_DISABLED
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+    ICON            IDI_WEBPUB,IDC_STATIC,2,43,20,20
+    LTEXT           "Veuillez patienter durant la publication des fichiers.",
+                    IDC_STATIC,7,87,202,9
+    CONTROL         "Animate1",IDC_AVIFILEMOVE,"SysAnimate32",
+                    ACS_TRANSPARENT | ACS_AUTOPLAY | WS_TABSTOP,41,47,144,21,
+                    WS_EX_TRANSPARENT
+    LTEXT           "Cela peut prendre plusieurs minutes........",IDC_STATIC,
+                    7,140,219,9
+    LTEXT           "Fichier:",IDC_STATIC,7,98,63,9
+    EDITTEXT        IDC_FILEDESTINATION,7,110,269,12,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_BORDER,WS_EX_STATICEDGE
+END
+
+IDD_WZPUBMODEL_BANNER DIALOG  0, 0, 286, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Publication d'un modèle Conceptor vers un document HTML"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_BANNERIMAGE,22,93,244,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Suivant >>",IDOK,84,181,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+    ICON            IDI_WEBPUB,IDC_STATIC,2,43,21,20
+    LTEXT           "Vous pouvez changer le logo qui apparaîtra sur la bannière des pages HTML publiées.",
+                    IDC_STATIC,22,70,237,17
+    LTEXT           "Vous pouvez également spécifier l'adresse http de l'hyperlien du logo",
+                    IDC_STATIC,22,120,237,11
+    EDITTEXT        IDC_BANNERHYPERLINK,22,136,244,12,ES_AUTOHSCROLL
+END
+
+IDD_WZPUBMODEL_ATTRIBUTE DIALOG  0, 0, 286, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Publication d'un modèle Conceptor vers un document HTML"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Suivant >>",IDOK,84,181,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
+                    180,18,16
+    ICON            15111,-1,2,43,20,20
+    LTEXT           "Vous pouvez sélectionner les attributs que vous voulez publier pour le modèle HTML.",
+                    -1,25,44,237,17
+    CONTROL         "Tree1",IDC_HTMLATTRIBUTE_TREE,"SysTreeView32",
+                    TVS_HASBUTTONS | TVS_HASLINES | TVS_DISABLEDRAGDROP | 
+                    TVS_SHOWSELALWAYS | TVS_CHECKBOXES | WS_BORDER | 
+                    WS_TABSTOP,22,63,252,110
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_WEBPUB              ICON                    "icon1.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_WZPUBMODEL_GENERATE, DIALOG
+    BEGIN
+        VERTGUIDE, 7
+    END
+
+    IDD_WZPUBMODEL_BANNER, DIALOG
+    BEGIN
+        VERTGUIDE, 22
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AVI
+//
+
+IDR_FILEMOVE            AVI                     "res\\Filemove.avi"
+IDR_FILESEARCH          AVI                     "res\\Download.avi"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_PUBLISHMODELWELCOME_S "Publication d'un modèle"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PUBLISHMODELWELCOME_T 
+                            "A l'aide de ce guide, vous allez pouvoir publier votre modèle sous format Web."
+    IDS_PUBLISHMODELSELDIR_S "Sélection du répertoire"
+    IDS_PUBLISHMODELSELDIR_T 
+                            "Les fichiers HTML seront créés à l'intérieur d'un répertoire. Veuillez sélectionner le répertoire de publication."
+    IDS_PUBLISHMODELOPTIONS_S "Options"
+    IDS_PUBLISHMODELOPTIONS_T 
+                            "Veuillez sélectionner les options adéquates en fonction du type de publication."
+    IDS_PUBLISHMODELGENERATE_S "Génération"
+    IDS_PUBLISHMODELGENERATE_T "La génération des fichiers est en cours."
+    IDS_IMAGEFILENAME_MISSING 
+                            "Vous devez spécifier un fichier image pour le logo."
+    IDS_IMAGEFILENAME_NOTFOUND 
+                            "Le fichier image que vous avez spécifié n'existe pas."
+    IDS_PUBLISHMODELBANNER_S "Bannière"
+    IDS_PUBLISHMODELBANNER_T "Customisation de la bannière"
+    IDS_PUBLISHMODELATTRIBUTES_S "Attributs"
+    IDS_PUBLISHMODELATTRIBUTES_T 
+                            "Sélectionnez les attributs que vous voulez publier."
+END
+
+#endif    // Français (France) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\zModelWeb.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

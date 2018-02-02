@@ -1,0 +1,193 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "..\include\zRBProp.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Français (France) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "..\\include\\zRBProp.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 12, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\zRBPropFr.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.fra\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040C04B0"
+        BEGIN
+            VALUE "FileDescription", "zRBPropFr DLL"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "zRBPropFr"
+            VALUE "LegalCopyright", "Copyright (C)"
+            VALUE "OriginalFilename", "zRBPropFr.DLL"
+            VALUE "ProductName", "Bibliothèque de liaison dynamique zRBPropFr"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x40c, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_Z_SYMBOL_NAME_NAME  "Nom"
+    IDS_Z_SYMBOL_NAME_DESC  "Le nom du symbole."
+    IDS_Z_SYMBOL_DESCRIPTION_NAME "Description"
+    IDS_Z_SYMBOL_DESCRIPTION_DESC "La description du symbole."
+    IDS_Z_SYMBOL_NUMBER_NAME "Référence"
+    IDS_Z_SYMBOL_NUMBER_DESC 
+                            "Le numéro de référence. Ce numéro de référence est unique au sein du même modèle."
+    IDS_ZS_BP_PROP_BASIC_TITLE "Général"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_Z_MODEL_DESCRIPTION_NAME "Description"
+    IDS_Z_MODEL_DESCRIPTION_DESC "La description du modèle."
+    IDS_Z_MODEL_NAME_NAME   "Nom"
+    IDS_Z_MODEL_NAME_DESC   "Le nom du modèle."
+    IDS_ZS_BP_PROP_MODEL_BASIC_TITLE "Modèle"
+    IDS_ZS_BP_PROP_EXTFILE_TITLE "Lien externe"
+    IDS_ZS_BP_PROP_EXTAPP_TITLE "Système externe"
+    IDS_Z_FILE_TITLE_NAME   "Titre lien"
+    IDS_Z_FILE_TITLE_DESC   "Contient le nom du fichier qui peut être utilisé comme variable système."
+    IDS_Z_FILE_NAME_NAME    "Lien"
+    IDS_Z_FILE_NAME_DESC    "Le nom du lien externe peut être un formulaire Scriptor, un fichier externe ou une URL Internet."
+    IDS_Z_INSERTION_TYPE_NAME "Mode d'insertion"
+    IDS_Z_INSERTION_TYPE_DESC "Définit le mode d'insertion du fichier."
+    IDS_Z_ACTIVATION_TYPE_NAME "Mode d'activation"
+    IDS_Z_ACTIVATION_TYPE_DESC 
+                            "Définit le mode d'activation du lien externe dans Messenger."
+    IDS_Z_COMMAND_TITLE_NAME "Titre Sys."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_Z_COMMAND_TITLE_DESC "Le nom du système externe."
+    IDS_Z_COMMAND_LINE_NAME "Commande"
+    IDS_Z_COMMAND_LINE_DESC "Contient la ligne de commande sans les paramètres."
+    IDS_Z_COMMAND_PARAM_NAME "Paramètres"
+    IDS_Z_COMMAND_PARAM_DESC 
+                            "Contient les paramètres qui seront passés à la ligne de commande. Ces paramètres peuvent contenir des noms systèmes."
+    IDS_Z_PRIORITY_LEVEL_NAME "Priorité"
+    IDS_Z_PRIORITY_LEVEL_DESC 
+                            "Vous pouvez spécifier la priorité de votre commande."
+    IDS_Z_WINDOW_STARTMODE_NAME "Fenêtre"
+    IDS_Z_WINDOW_STARTMODE_DESC 
+                            "Définit le mode d'ouverture de la fenêtre de la commande."
+    IDS_Z_COMMAND_STARTUPDIR_NAME "Répertoire"
+    IDS_Z_COMMAND_STARTUPDIR_DESC 
+                            "Contient le répertoire de démarrage de la ligne de commande."
+    IDS_Z_LANGUAGE_NAME     "Langue"
+    IDS_Z_LANGUAGE_DESC     "Définit la langue du modèle."
+    IDS_ZS_BP_PROP_LANGUAGE_TITLE "Langue"
+    IDS_Z_SYMBOL_RISK_LEVEL_NAME "Niveau du risque"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_Z_SYMBOL_RISK_LEVEL_DESC 
+                            "Niveau d'intervention et de monitoring nécessité selon la sévérité du risque."
+END
+
+#endif    // Français (France) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE 12, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\zRBPropFr.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.fra\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

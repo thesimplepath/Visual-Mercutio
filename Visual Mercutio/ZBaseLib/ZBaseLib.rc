@@ -1,0 +1,742 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "ZBaseLibRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+#include "zFormsRes\zFormsRes.h"
+#include "zRes32\zRes.h"
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Français (France) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_EMPTYVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 271
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 88
+    END
+
+    IDD_WKS_NEWGROUP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 186
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 66
+    END
+
+    IDD_WKS_RENAMEGROUP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 186
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 40
+    END
+
+    IDD_WKS_FILEPROP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 229
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 72
+    END
+
+    IDD_MGVALUE_INTELLI, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 317
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 163
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_TIPS7               ICON                    ".\\res\\tips7.ico"
+IDI_ICONAPP1            ICON                    ".\\RES\\ICONAPP1.ICO"
+IDI_ICONAPP2            ICON                    ".\\RES\\ICONAPP2.ICO"
+IDI_ICONAPP3            ICON                    ".\\RES\\ICONAPP3.ICO"
+IDI_ICONAPP4            ICON                    ".\\RES\\ICONAPP4.ICO"
+IDI_ICONAPP5            ICON                    ".\\RES\\ICONAPP5.ICO"
+IDI_ICONAPP6            ICON                    ".\\RES\\ICONAPP6.ICO"
+IDI_ICONAPP7            ICON                    ".\\RES\\ICONAPP7.ICO"
+IDI_ICONAPP_1           ICON                    ".\\RES\\ICONAPP_.ICO"
+IDI_ICONAPP_2           ICON                    ".\\RES\\ICO00006.ICO"
+IDI_ICONAPP_3           ICON                    ".\\RES\\ICO00004.ICO"
+IDI_ICONAPP_4           ICON                    ".\\RES\\ICO00003.ICO"
+IDI_ICONAPP_5           ICON                    ".\\RES\\ICO00002.ICO"
+IDI_ICONAPP_6           ICON                    ".\\RES\\ICO00001.ICO"
+IDI_ICONAPP_7           ICON                    ".\\RES\\ICO00005.ICO"
+IDI_ICONAPP_8           ICON                    ".\\RES\\ICO00007.ICO"
+IDI_ICONAPP_9           ICON                    ".\\RES\\ICO00008.ICO"
+IDI_TIPS1               ICON                    "RES\\TIPS.ICO"
+IDI_TIPS10              ICON                    ".\\res\\tips10.ico"
+IDI_TIPS11              ICON                    ".\\res\\tips11.ico"
+IDI_TIPS12              ICON                    ".\\res\\tips12.ico"
+IDI_TIPS13              ICON                    ".\\res\\tips13.ico"
+IDI_TIPS14              ICON                    ".\\res\\tips14.ico"
+IDI_TIPS15              ICON                    ".\\res\\tips15.ico"
+IDI_TIPS16              ICON                    ".\\res\\tips16.ico"
+IDI_TIPS2               ICON                    ".\\RES\\TIPS2.ICO"
+IDI_TIPS3               ICON                    ".\\RES\\TIPS3.ICO"
+IDI_TIPS4               ICON                    ".\\RES\\TIPS4.ICO"
+IDI_TIPS5               ICON                    ".\\RES\\TIPS5.ICO"
+IDI_TIPS6               ICON                    ".\\RES\\TIPS6.ICO"
+IDI_TIPS8               ICON                    ".\\res\\tips8.ico"
+IDI_TIPS9               ICON                    ".\\res\\tips9.ico"
+IDI_CLOSEWINDOW         ICON                    ".\\res\\icon1.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MESSAGEDLG DIALOG  0, 0, 248, 168
+STYLE DS_SETFONT | WS_POPUP | WS_CAPTION
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Pour fermer, clicker dans la fenêtre",IDC_CLOSEWINDOW,
+                    "Button",BS_OWNERDRAW | WS_TABSTOP,85,154,161,11
+    ICON            IDI_TIPS1,IDC_DIALOGMESSAGE_ICON,2,33,20,20
+END
+
+IDD_DIALOG_FORSAVE DIALOG  0, 0, 276, 72
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "&Oui",IDYES,37,50,50,14
+    PUSHBUTTON      "&Abandon",IDCANCEL,187,50,50,14
+    PUSHBUTTON      "&Non",IDNO,112,50,50,14
+    ICON            IDI_ICONAPP1,IDC_DIALOGSAVE_ICON,4,4,18,20
+END
+
+IDD_EMPTYVIEW DIALOG  0, 0, 278, 95
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Veuillez sélectionner une catégorie dans la barre verticale de gauche.",
+                    IDC_STATIC,7,43,264,24
+    ICON            IDI_TIPS7,IDC_STATIC,7,7,20,20
+END
+
+IDD_WKS_NEWGROUP DIALOG  0, 0, 193, 73
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Nouveau dossier"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_WKS_GROUPNAME,7,21,122,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_WKS_EXTENSIONS,7,49,122,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Créer",IDOK,136,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,136,24,50,14
+    LTEXT           "Nom du dossier:",IDC_STATIC,7,7,56,9
+    LTEXT           "Extensions: (optionnel)",IDC_STATIC,7,38,127,9
+END
+
+IDD_WKS_RENAMEGROUP DIALOG  0, 0, 193, 47
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Renommer un dossier"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_WKS_GROUPNAME,7,21,122,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Renommer",IDOK,136,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,136,24,50,14
+    LTEXT           "Nom du dossier:",-1,7,7,56,9
+END
+
+IDD_WKS_FILEPROP DIALOG  0, 0, 236, 79
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Propriétés du fichier"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Fermer",IDOK,179,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,179,24,50,14
+    LTEXT           "Nom:",IDC_STATIC,7,7,48,9
+    EDITTEXT        IDC_FILE_TITLE,7,21,164,14,ES_AUTOHSCROLL
+    LTEXT           "Fichier:",IDC_STATIC,7,40,54,9
+    EDITTEXT        IDC_FILE_COMPLETEPATH,7,53,222,13,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+END
+
+IDD_MGVALUE_INTELLI DIALOG  0, 0, 324, 170
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Gérer les valeures de la liste"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Fermer",IDOK,267,7,50,14
+    LISTBOX         IDC_VALUES,7,7,249,156,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Supprimer",IDC_DELVALUE,267,28,50,14
+    PUSHBUTTON      "Ajouter",IDC_ADDVALUE,267,49,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_REDLIGHT            BITMAP                  "RES\\REDLIGHT.BMP"
+IDB_GREENLIGHT          BITMAP                  "RES\\GREENLIG.BMP"
+IDB_ANILOADBACK         BITMAP                  "RES\\ANILOADB.BMP"
+CANCEL_PROPD            BITMAP                  "RES\\ID_CANCE.BMP"
+CANCEL_PROPF            BITMAP                  "RES\\BMP00006.BMP"
+CANCEL_PROPU            BITMAP                  "RES\\BMP00007.BMP"
+OK_PROPD                BITMAP                  "RES\\ID_OK_PR.BMP"
+OK_PROPF                BITMAP                  "RES\\BMP00005.BMP"
+OK_PROPU                BITMAP                  "RES\\BMP00004.BMP"
+IDB_BTNARROWDWN         BITMAP                  "res\\bitmap1.bmp"
+HELPU                   BITMAP                  "res\\bmp00002.bmp"
+HELPF                   BITMAP                  "res\\bmp00001.bmp"
+HELPD                   BITMAP                  "res\\cancel_p.bmp"
+IDB_HIDDEN              BITMAP                  "RES\\HIDDEN.BMP"
+IDB_IL_WORKSPACEENV     BITMAP                  "res\\il_works.bmp"
+IDB_IL_USERGROUP        BITMAP                  "res\\il_userg.bmp"
+IDB_BTNSPEDITARROWDWN   BITMAP                  "res\\btnarrow.bmp"
+IDB_BTNSPEDITARROWDWN1  BITMAP                  "res\\btnspedi.bmp"
+IDB_IL_LOGICALSYSTEM    BITMAP                  "res\\bmp00003.bmp"
+IDB_PLUSMINUS           BITMAP                  "res\\bmp00008.bmp"
+IDB_IL_PRESTATIONS      BITMAP                  "res\\PrestationsIcons.bmp"
+IDB_IL_RULES            BITMAP                  "res\\RulesIcons.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_SELECTOROBJECT      CURSOR                  "RES\\SELECTOR.CUR"
+IDC_CLICKTOCLOSE        CURSOR                  "res\\clicktoc.cur"
+IDC_DIALOGMESSAGE_ICON  CURSOR                  "res\\cur27363.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x21L
+#else
+ FILEFLAGS 0x20L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040c04b0"
+        BEGIN
+            VALUE "CompanyName", "Advanced Dedicated Software"
+            VALUE "FileDescription", "ZBaseLib DLL"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "ZBaseLib"
+            VALUE "LegalCopyright", "Advanced Dedicated Software - Copyright (C)"
+            VALUE "OriginalFilename", "ZBaseLib.DLL"
+            VALUE "ProductName", "Advanced Dedicated Software - ZBaseLib"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+            VALUE "SpecialBuild", "301"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x40c, 1200
+    END
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "ZBaseLibRes.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "#include ""zFormsRes\\zFormsRes.h""\r\n"
+    "#include ""zRes32\\zRes.h""\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 12, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\ZBaseLib.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.fra\\afxres.rc""          // Standard components\r\n"
+    "#include ""..\\zFormsRes\\zFormsRes.rc""\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_OBJECTS_POPUP MENU 
+BEGIN
+    POPUP "Object"
+    BEGIN
+        MENUITEM "Zoom intérieur",              ID_VIEW_ZOOMIN
+        MENUITEM "Zoom extérieur",              ID_VIEW_ZOOMOUT
+        MENUITEM SEPARATOR
+        MENUITEM "Page suivante\tCtrl+->",      ID_PAGE_NEXT
+        MENUITEM "Page précédente\tCtrl+<-",    ID_PAGE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "Formulaire suivant",          ID_FILE_NEXT
+        MENUITEM "Formulaire précédent",        ID_FILE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "&Recalculer",                 ID_PAGE_RECALCULATE
+        MENUITEM "Rafraîchir",                  ID_PAGE_REFRESH
+    END
+    POPUP "Graphic"
+    BEGIN
+        MENUITEM "Zoom intérieur",              ID_VIEW_ZOOMIN
+        MENUITEM "Zoom extérieur",              ID_VIEW_ZOOMOUT
+        MENUITEM SEPARATOR
+        MENUITEM "Page suivante\tCtrl+->",      ID_PAGE_NEXT
+        MENUITEM "Page précédente\tCtrl+<-",    ID_PAGE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "Formulaire suivant",          ID_FILE_NEXT
+        MENUITEM "Formulaire précédent",        ID_FILE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "&Recalculer",                 ID_PAGE_RECALCULATE
+        MENUITEM "Rafraîchir",                  ID_PAGE_REFRESH
+    END
+    POPUP "AutoNumbered"
+    BEGIN
+        MENUITEM "Zoom intérieur",              ID_VIEW_ZOOMIN
+        MENUITEM "Zoom extérieur",              ID_VIEW_ZOOMOUT
+        MENUITEM SEPARATOR
+        MENUITEM "Page suivante\tCtrl+->",      ID_PAGE_NEXT
+        MENUITEM "Page précédente\tCtrl+<-",    ID_PAGE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "Formulaire suivant",          ID_FILE_NEXT
+        MENUITEM "Formulaire précédent",        ID_FILE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "&Recalculer",                 ID_PAGE_RECALCULATE
+        MENUITEM "Rafraîchir",                  ID_PAGE_REFRESH
+    END
+    POPUP "Calculated"
+    BEGIN
+        MENUITEM "Zoom intérieur",              ID_VIEW_ZOOMIN
+        MENUITEM "Zoom extérieur",              ID_VIEW_ZOOMOUT
+        MENUITEM SEPARATOR
+        MENUITEM "Page suivante\tCtrl+->",      ID_PAGE_NEXT
+        MENUITEM "Page précédente\tCtrl+<-",    ID_PAGE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "Formulaire suivant",          ID_FILE_NEXT
+        MENUITEM "Formulaire précédent",        ID_FILE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "&Recalculer",                 ID_PAGE_RECALCULATE
+        MENUITEM "Rafraîchir",                  ID_PAGE_REFRESH
+    END
+    POPUP "Number"
+    BEGIN
+        MENUITEM "Zoom intérieur",              ID_VIEW_ZOOMIN
+        MENUITEM "Zoom extérieur",              ID_VIEW_ZOOMOUT
+        MENUITEM SEPARATOR
+        MENUITEM "Page suivante\tCtrl+->",      ID_PAGE_NEXT
+        MENUITEM "Page précédente\tCtrl+<-",    ID_PAGE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "Formulaire suivant",          ID_FILE_NEXT
+        MENUITEM "Formulaire précédent",        ID_FILE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "&Recalculer",                 ID_PAGE_RECALCULATE
+        MENUITEM "Rafraîchir",                  ID_PAGE_REFRESH
+    END
+    POPUP "Bitmap"
+    BEGIN
+        MENUITEM "Zoom intérieur",              ID_VIEW_ZOOMIN
+        MENUITEM "Zoom extérieur",              ID_VIEW_ZOOMOUT
+        MENUITEM SEPARATOR
+        MENUITEM "Page suivante\tCtrl+->",      ID_PAGE_NEXT
+        MENUITEM "Page précédente\tCtrl+<-",    ID_PAGE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "Formulaire suivant",          ID_FILE_NEXT
+        MENUITEM "Formulaire précédent",        ID_FILE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "&Recalculer",                 ID_PAGE_RECALCULATE
+        MENUITEM "Rafraîchir",                  ID_PAGE_REFRESH
+    END
+    POPUP "TwoStates"
+    BEGIN
+        MENUITEM "Zoom intérieur",              ID_VIEW_ZOOMIN
+        MENUITEM "Zoom extérieur",              ID_VIEW_ZOOMOUT
+        MENUITEM SEPARATOR
+        MENUITEM "Page suivante\tCtrl+->",      ID_PAGE_NEXT
+        MENUITEM "Page précédente\tCtrl+<-",    ID_PAGE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "Formulaire suivant",          ID_FILE_NEXT
+        MENUITEM "Formulaire précédent",        ID_FILE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "&Recalculer",                 ID_PAGE_RECALCULATE
+        MENUITEM "Rafraîchir",                  ID_PAGE_REFRESH
+    END
+    POPUP "BoundText"
+    BEGIN
+        MENUITEM "Zoom intérieur",              ID_VIEW_ZOOMIN
+        MENUITEM "Zoom extérieur",              ID_VIEW_ZOOMOUT
+        MENUITEM SEPARATOR
+        MENUITEM "Page suivante\tCtrl+->",      ID_PAGE_NEXT
+        MENUITEM "Page précédente\tCtrl+<-",    ID_PAGE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "Formulaire suivant",          ID_FILE_NEXT
+        MENUITEM "Formulaire précédent",        ID_FILE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "&Recalculer",                 ID_PAGE_RECALCULATE
+        MENUITEM "Rafraîchir",                  ID_PAGE_REFRESH
+    END
+    POPUP "Date"
+    BEGIN
+        MENUITEM "Zoom intérieur",              ID_VIEW_ZOOMIN
+        MENUITEM "Zoom extérieur",              ID_VIEW_ZOOMOUT
+        MENUITEM SEPARATOR
+        MENUITEM "Page suivante\tCtrl+->",      ID_PAGE_NEXT
+        MENUITEM "Page précédente\tCtrl+<-",    ID_PAGE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "Formulaire suivant",          ID_FILE_NEXT
+        MENUITEM "Formulaire précédent",        ID_FILE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "&Recalculer",                 ID_PAGE_RECALCULATE
+        MENUITEM "Rafraîchir",                  ID_PAGE_REFRESH
+    END
+    POPUP "MaskText"
+    BEGIN
+        MENUITEM "Zoom intérieur",              ID_VIEW_ZOOMIN
+        MENUITEM "Zoom extérieur",              ID_VIEW_ZOOMOUT
+        MENUITEM SEPARATOR
+        MENUITEM "Page suivante\tCtrl+->",      ID_PAGE_NEXT
+        MENUITEM "Page précédente\tCtrl+<-",    ID_PAGE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "Formulaire suivant",          ID_FILE_NEXT
+        MENUITEM "Formulaire précédent",        ID_FILE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "&Recalculer",                 ID_PAGE_RECALCULATE
+        MENUITEM "Rafraîchir",                  ID_PAGE_REFRESH
+    END
+    POPUP "MultiColumn"
+    BEGIN
+        MENUITEM "Zoom intérieur",              ID_VIEW_ZOOMIN
+        MENUITEM "Zoom extérieur",              ID_VIEW_ZOOMOUT
+        MENUITEM SEPARATOR
+        MENUITEM "Page suivante\tCtrl+->",      ID_PAGE_NEXT
+        MENUITEM "Page précédente\tCtrl+<-",    ID_PAGE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "Formulaire suivant",          ID_FILE_NEXT
+        MENUITEM "Formulaire précédent",        ID_FILE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "&Recalculer",                 ID_PAGE_RECALCULATE
+        MENUITEM "Rafraîchir",                  ID_PAGE_REFRESH
+    END
+    POPUP "OnPage"
+    BEGIN
+        MENUITEM "Zoom intérieur",              ID_VIEW_ZOOMIN
+        MENUITEM "Zoom extérieur",              ID_VIEW_ZOOMOUT
+        MENUITEM SEPARATOR
+        MENUITEM "Page suivante\tCtrl+->",      ID_PAGE_NEXT
+        MENUITEM "Page précédente\tCtrl+<-",    ID_PAGE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "Formulaire suivant",          ID_FILE_NEXT
+        MENUITEM "Formulaire précédent",        ID_FILE_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "&Recalculer",                 ID_PAGE_RECALCULATE
+        MENUITEM "Rafraîchir",                  ID_PAGE_REFRESH
+    END
+END
+
+IDR_WORKSPACE_SUBMENUS MENU 
+BEGIN
+    POPUP "Workspace"
+    BEGIN
+        MENUITEM "Nouveau dossier",             ID_WKS_NEWGROUP
+        MENUITEM "Insérer un fichier",          ID_WKS_ADDFILE
+        MENUITEM "Propriétés",                  ID_WKS_PROPERTIES
+        MENUITEM SEPARATOR
+        MENUITEM "Etendre",                     ID_EXPAND_BRANCH
+        MENUITEM "Refermer",                    ID_COLLAPSE_BRANCH
+    END
+    POPUP "Group"
+    BEGIN
+        MENUITEM "Nouveau dossier",             ID_WKS_NEWGROUP
+        MENUITEM "Renommer le dossier",         ID_WKS_RENAMEGROUP
+        MENUITEM "Supprimer le dossier",        ID_WKS_DELETEGROUP
+        MENUITEM "Insérer un fichier",          ID_WKS_ADDFILE
+        MENUITEM "Propriétés",                  ID_WKS_PROPERTIES
+        MENUITEM SEPARATOR
+        MENUITEM "Etendre",                     ID_EXPAND_BRANCH
+        MENUITEM "Refermer",                    ID_COLLAPSE_BRANCH
+    END
+    POPUP "File"
+    BEGIN
+        MENUITEM "Ouvrir",                      ID_WKS_OPENFILE
+        MENUITEM "Supprimer",                   ID_WKS_DELETEFILE
+        MENUITEM "Propriétés",                  ID_WKS_PROPERTIES
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_MATHERROR           "Impossible de calculer une expression."
+    IDS_WORKSPACE_FILEADD_T "Sélectionner le fichier à ajouter"
+    IDS_WKS_GROUP_ALREADYEXIST 
+                            "Ce dossier existe déjà. Veuillez choisir un autre nom."
+    IDS_WKS_ILLEGAL_EXTENSION_LIST 
+                            "Les extensions doivent être spécifiées sans point et doivent être séparées par des points virgules."
+    IDS_UGP_GROUP_ALREADYEXIST 
+                            "Ce groupe existe déjà. Veuillez choisir un autre nom."
+    IDS_UGP_NEWGROUP_T      "Nouveau groupe"
+    IDS_UGP_RENAMEGROUP_T   "Renommer un groupe existant"
+    IDS_UGP_NEWROLE_T       "Nouvelle équipe"
+    IDS_UGP_RENAMEROLE_T    "Renommer une équipe existante"
+    IDS_UGP_PROPERTY_T      "Propriétés"
+    IDS_WORKSPACE_FILESELECT_T "Sélectionner le fichier"
+    IDS_LOGICALSYSTEM_ALREADYEXIST 
+                            "Ce système logique existe déjà. Veuillez choisir un autre nom."
+    IDS_NEW_LOGICALSYSTEM_T "Nouveau système logique"
+    IDS_RENAME_LOGICALSYSTEM_T "Renommer un système logique existant"
+    IDS_LOGICALSYSTEM_PROPERTY_T "Propriétés"
+    IDS_UGP_MOVE_T          "Déplacer sous..."
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WKS_ADDFILE          "Insérer un fichier.\nInsérer un fichier"
+    ID_WKS_DELETEFILE       "Supprimer.\nSupprimer"
+    ID_WKS_OPENFILE         "Ouvrir le fichier.\nOuvrir"
+    ID_WKS_PROPERTIES       "Propriétés.\nPropriétés"
+    ID_UGP_ADDGROUP         "Ajouter un groupe.\nAjouter un groupe"
+    ID_UGP_DELETEGROUP      "Supprimer le groupe.\nSupprimer le groupe"
+    ID_UGP_RENAMEGROUP      "Renommer le groupe.\nRenommer le groupe"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WKS_NEWGROUP         "Nouveau dossier.\nNouveau dossier"
+    ID_WKS_DELETEGROUP      "Supprimer un dossier.\nSupprimer un dossier"
+    ID_WKS_RENAMEGROUP      "Renommer un dossier.\nRenommer un dossier"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_NEXT            "Passer au formulaire suivant.\nFormulaire suivant"
+    ID_FILE_PREV            "Passer au formulaire précédent.\nFormulaire précédent"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_UGP_PROPERTIES       "Propriétés.\nPropriétés"
+    ID_UGP_ADDROLE          "Ajouter une équipe.\nAjouter une équipe"
+    ID_UGP_DELETEROLE       "Supprimer l'équipe.\nSupprimer l'équipe"
+    ID_UGP_RENAMEROLE       "Renommer l'équipe.\nRenommer l'équipe"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INSERTVALUE_INTELLI "Insérer une nouvelle valeur"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_WKS_PROPGROUP_T     "Propriétés du dossier"
+    IDS_WKS_SELECTANOTHERFILE "Sélectionner un autre fichier"
+    IDS_WKS_FILENAME_DEXIST "Le fichier spécifié n'existe plus ou a été déplacé. Voulez-vous sélectionner un fichier valide?"
+    IDS_ENGLISH_FMONTHS     "January;February;March;April;May;June;July;August;September;October;November;December"
+    IDS_ENGLISH_SMONTHS     "Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sep;Oct;Nov;Dec"
+    IDS_FRENCH_FMONTHS      "Janvier;Février;Mars;Avril;Mai;Juin;Juillet;Août;Septembre;Octobre;Novembre;Décembre"
+    IDS_FRENCH_SMONTHS      "Jan;Fév;Mar;Avr;Mai;Jun;Jul;Aoû;Sep;Oct;Nov;Déc"
+    IDS_ENGLISH_DAYS        "Sunday;Monday;Tuesday;Wednesday;Thursday;Friday;Saturday"
+    IDS_FRENCH_DAYS         "Dimanche;Lundi;Mardi;Mercredi;Jeudi;Vendredi;Samedi"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MONTH_PREFIX        "month;mois;monat"
+    IDS_WEEK_PREFIX         "week;semaine;woche"
+    IDS_DAY_PREFIX          "day;jour;tag"
+    IDS_MONTH_PREFIX2       "m;m;m"
+    IDS_WEEK_PREFIX2        "w;s;w"
+    IDS_DAY_PREFIX2         "d;j;t"
+    IDS_HOUR_PREFIX         "hour;heure;hüre"
+    IDS_HOUR_PREFIX2        "h;h;h"
+    IDS_WINDOW_MODE         "Normale;Minimisée;Maximisée"
+    IDS_PRIORITY_JOB        "Haute;Au dessus de Normal;Normal;En dessous de normal;Basse"
+    IDS_INSERTIONTYPE_ARRAY "Externe;Interne (copie)"
+    IDS_ACTIVATIONTYPE_ARRAY 
+                            "Point Courant -> Fin;Point courant;Début -> Point Courant;Toujours"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_COLLAPSE_BRANCH      "Refermer complètement l'arbre depuis cette branche.\nRefermer"
+    ID_EXPAND_BRANCH        "Etendre complètement depuis cette branche.\nEtendre"
+    ID_LS_ADDLOGICALSYSTEM  "Ajouter un système logique.\nAjouter un système logique"
+    ID_LS_DELLOGICALSYSTEM  "Supprimer le système logique.\nSupprimer le système logique"
+    ID_LS_RENAMELOGICALSYSTEM 
+                            "Renommer le système logique.\nRenommer le système logique"
+    ID_LS_PROPLOGICALSYSTEM "Propriétés.\nPropriétés"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_NEW_PRESTATION_T    "Nouvelle prestation"
+    IDS_RENAME_PRESTATION_T "Renommer une prestation existante"
+    IDS_PRESTATION_PROPERTY_T "Propriétés"
+    IDS_PRESTATION_ALREADYEXIST 
+                            "Cette prestation existe déjà. Veuillez choisir un autre nom."
+    IDS_WZ_PAGESETUP_S      "Mise en page"
+    IDS_WZ_PAGESETUP_T      "Vous pouvez effectuer ici la mise en page qui sera utilisée pour l'ensemble des documents que vous allez créer."
+    IDS_PRS_MOVE_T          "Déplacer sous..."
+    IDS_LGS_MOVE_T          "Déplacer sous..."
+    IDS_NO_PRINTER_BY_DEFAULT "Aucune imprimante par défaut n'est installée."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_NEW_RULE_T          "Nouvelle règle"
+    IDS_RENAME_RULE_T       "Renommer une règle existante"
+    IDS_RUL_MOVE_T          "Déplacer sous..."
+    IDS_RULE_PROPERTY_T     "Propriétés"
+    IDS_RULE_ALREADYEXIST   "Cette règle existe déjà. Veuillez choisir un autre nom."
+END
+
+#endif    // Français (France) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Français (Suisse) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRS)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH_SWISS
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_WZ_DOCUMENT_PAGESETUP, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 288
+        BOTTOMMARGIN, 199
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_WZ_DOCUMENT_PAGESETUP DIALOGEX 0, 0, 292, 201
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Mise en page du document"
+FONT 8, "MS Sans Serif", 400, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "Suivant >>",IDOK,80,184,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,184,50,14
+    GROUPBOX        "Orientation",IDC_GP_ORIENTATION,6,63,282,40
+    CONTROL         "Portrait",IDC_PORTRAIT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,23,73,49,10
+    CONTROL         "Paysage",IDC_LANDSCAPE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,23,86,49,10
+    GROUPBOX        "Trame de fond",IDC_GP_BKGND,6,105,282,50
+    LTEXT           "Nom et emplacement du fichier",IDC_LBL_FILENAME,23,117,
+                    117,8
+    EDITTEXT        IDC_EDIT_FILENAME,23,130,233,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BT_OPENFILE,261,130,18,14
+END
+
+#endif    // Français (Suisse) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE 12, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\ZBaseLib.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.fra\afxres.rc"          // Standard components
+#include "..\zFormsRes\zFormsRes.rc"
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,168 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "zBaseSymRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+#include "Views\OdRes.h"
+#include "zFormsRes\zFormsRes.h"
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Français (France) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "zBaseSymRes.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "#include ""Views\\OdRes.h""\r\n"
+    "#include ""zFormsRes\\zFormsRes.h""\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\zBaseSym.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// SYMBOL
+//
+
+IDR_ACTIVITY_SYM        SYMBOL                  "res\\Activity.sym"
+IDR_BP_DOOR             SYMBOL                  "res\\Door.sym"
+IDR_BP_PAGE             SYMBOL                  "res\\Page.sym"
+IDR_BP_PROCEDURE        SYMBOL                  "res\\Procedure.sym"
+IDR_BP_PROCESS          SYMBOL                  "res\\BPProcess.sym"
+IDR_BP_START            SYMBOL                  "res\\Start.sym"
+IDR_BP_STOP             SYMBOL                  "res\\Stop.sym"
+IDR_COMMENT_SYM         SYMBOL                  "res\\Comment.sym"
+IDR_DECISION_SYM        SYMBOL                  "res\\Decision.sym"
+IDR_PACKAGE_SYM         SYMBOL                  "res\\Package.sym"
+IDR_PROCESS_SYM         SYMBOL                  "res\\Process.sym"
+IDR_UML_ACTIVITY_SYM    SYMBOL                  "res\\UML_Activity.sym"
+IDR_UML_END_SYM         SYMBOL                  "res\\UML_End.sym"
+IDR_UML_START_SYM       SYMBOL                  "res\\UML_Start.sym"
+IDR_INDICATOR           SYMBOL                  "res\\Indicateur.sym"
+IDR_ALERT               SYMBOL                  "res\\Alerte.sym"
+IDR_CRE					SYMBOL					"res\\CRE.sym"
+IDR_CRI					SYMBOL					"res\\CRI.sym"
+IDR_CRO					SYMBOL					"res\\CRO.sym"
+IDR_DOCUMENT			SYMBOL					"res\\Document.sym"
+IDR_DELAY				SYMBOL					"res\\Délai.sym"
+IDR_IN_PROCESS			SYMBOL					"res\\En cours.sym"
+IDR_INCIDENT			SYMBOL					"res\\Incident.sym"
+IDR_NOT_VALIDATED		SYMBOL					"res\\Non validé.sym"
+IDR_OPAP1				SYMBOL					"res\\OPAP 1.sym"
+IDR_OPAP2				SYMBOL					"res\\OPAP 2.sym"
+IDR_OPAP3				SYMBOL					"res\\OPAP 3.sym"
+IDR_QUALITY				SYMBOL					"res\\Qualité.sym"
+IDR_RISK				SYMBOL					"res\\Risque.sym"
+IDR_VALIDATED			SYMBOL					"res\\Validé.sym"
+IDR_BP_PACKAGE          SYMBOL                  "package_.bin"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040c04b0"
+        BEGIN
+            VALUE "FileDescription", "zBaseSym DLL"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "zBaseSym"
+            VALUE "LegalCopyright", "Copyright (C)"
+            VALUE "OriginalFilename", "zBaseSym.DLL"
+            VALUE "ProductName", "zBaseSym Dynamic Link Library"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x40c, 1200
+    END
+END
+
+#endif    // Français (France) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\zBaseSym.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

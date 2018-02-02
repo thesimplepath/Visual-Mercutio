@@ -1,0 +1,536 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "..\include\zRMdlBP.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Français (France) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "..\\include\\zRMdlBP.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 12, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\zRMdlBPEn.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.fra\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "FileDescription", "zRMdlBPEn DLL"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "zRMdlBPEn"
+            VALUE "LegalCopyright", "Copyright (C)"
+            VALUE "OriginalFilename", "zRMdlBPEn.DLL"
+            VALUE "ProductName", "Bibliothèque de liaison dynamique zRMdlBPEn"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_Z_MANAGEMENT_CASE_NAME "Case"
+    IDS_Z_MANAGEMENT_CASE_DESC 
+                            "Permet de définir le cas de gestion lié au processus"
+    IDS_Z_TASK_LIST_NAME    "Task"
+    IDS_Z_TASK_LIST_DESC    "Permet de définir une tâche pour la procédure"
+    IDS_Z_DECISION_LIST_NAME "Decision"
+    IDS_Z_DECISION_LIST_DESC 
+                            "Permet de définir une décision pour la procédure"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_Z_COST_MULTIPLIER_NAME "Multiplier"
+    IDS_Z_COST_MULTIPLIER_DESC "Permet de définir le multiplicateur"
+    IDS_Z_COST_PROCESSING_TIME_NAME "Standard time"
+    IDS_Z_COST_PROCESSING_TIME_DESC "Temps de traitement standard"
+    IDS_Z_COST_IN_WORKLOAD_PERCENT_NAME "% in input"
+    IDS_Z_COST_IN_WORKLOAD_PERCENT_DESC 
+                            "Permet de définir le pourcentage de charge en entrée"
+    IDS_Z_COST_OUT_WORKLOAD_PERCENT_NAME "% in output"
+    IDS_Z_COST_OUT_WORKLOAD_PERCENT_DESC 
+                            "Permet de définir le pourcentage de charge en sortie"
+    IDS_Z_COST_UNITARY_COST_NAME "Unit cost"
+    IDS_ZS_BP_PROP_PROCESS_TITLE "Process"
+    IDS_ZS_BP_PROP_PROCEDURE_TITLE "Procedure"
+    IDS_ZS_BP_PROP_DELIVERABLE_TITLE "Deliverable"
+    IDS_ZS_BP_PROP_PAGE_TITLE "Page"
+    IDS_ZS_BP_PROP_DOOR_TITLE "Door"
+    IDS_ZS_BP_PROP_START_TITLE "Start point"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ZS_BP_PROP_STOP_TITLE "End point"
+    IDS_ZS_BP_PROP_DOCUMENTATION_TITLE "Documentation"
+    IDS_ZS_BP_PROP_COST_TITLE "Costs"
+    IDS_Z_UNIT_GUID_NAME    "Guid"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ZS_BP_PROP_COST_DELIV_TITLE "Deliverable"
+    IDS_ZS_BP_PROP_NUMBER_TITLE "Quantities"
+    IDS_ZS_BP_PROP_UNIT_TITLE "Unit"
+    IDS_ZS_BP_PROP_COMBINATION_TITLE "Combination"
+    IDS_Z_SIM_PROCESS_WORKLOAD_FORECAST_DESC 
+                            "Charge de travail prévisionnelle du processus"
+    IDS_Z_SIM_PROCESS_COST_FORECAST_NAME "Cost"
+    IDS_Z_SIM_PROCESS_COST_FORECAST_DESC "Process forecast cost"
+    IDS_Z_SIM_PROCESS_WORKLOAD_P_ACTIV_NAME "Load / Activation"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_Z_SIM_PROCESS_WORKLOAD_P_ACTIV_DESC 
+                            "Charge de travail par activation du processus"
+    IDS_Z_SIM_PROCESS_COST_P_ACTIV_NAME "Cost / Activation"
+    IDS_Z_SIM_PROCESS_COST_P_ACTIV_DESC "Coût par activation du processus"
+    IDS_Z_SIM_DELIV_QUANTITY_NAME "#"
+    IDS_Z_SIM_DELIV_QUANTITY_DESC "# deliverables"
+    IDS_Z_SIM_DELIV_COST_NAME "Cost"
+    IDS_Z_SIM_DELIV_COST_DESC "Coût du livrable hors temps de travail"
+    IDS_Z_SIM_DELIV_WORKLOAD_FORECAST_NAME "Workload"
+    IDS_Z_SIM_DELIV_WORKLOAD_FORECAST_DESC 
+                            "Charge de travail prévisionnelle du livrable"
+    IDS_Z_SIM_PROCEDURE_ACTIVATION_NAME "Activation"
+    IDS_Z_SIM_PROCEDURE_ACTIVATION_DESC "Nombre d'activation de la procédure"
+    IDS_Z_SIM_PROCEDURE_COST_NAME "WLC"
+    IDS_Z_SIM_PROCEDURE_COST_DESC "Coût de la procédure hors temps de travail"
+    IDS_Z_SIM_PROCEDURE_WORKLOAD_FORECAST_NAME "Load"
+    IDS_Z_SIM_PROCEDURE_WORKLOAD_FORECAST_DESC 
+                            "Charge de travail prévisionnelle de la procédure"
+    IDS_Z_SIM_PROCEDURE_COST_FORECAST_NAME "Cost"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_Z_SIM_PROCEDURE_COST_FORECAST_DESC "Coût prévisionel de la procédure"
+    IDS_Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV_NAME "Load / Activation"
+    IDS_Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV_DESC 
+                            "Charge par activation de la procédure"
+    IDS_Z_SIM_PROCEDURE_COST_P_ACTIV_NAME "Cost / Activation"
+    IDS_Z_SIM_PROCEDURE_COST_P_ACTIV_DESC 
+                            "Coût par activation de la procédure"
+    IDS_ZS_BP_PROP_SIM_PROCESS "Calculation"
+    IDS_ZS_BP_PROP_SIM_PROCEDURE "Calculation"
+    IDS_ZS_BP_PROP_SIM_DELIVERABLE "Calculation"
+    IDS_Z_COST_UNITARY_COST_DESC "Coût unitaire hors temps de travail"
+    IDS_Z_NUMBER_YEAR_NAME  "Quantity"
+    IDS_Z_NUMBER_YEAR_DESC  "Quantité de livrable en une année"
+    IDS_Z_NUMBER_JANUARY_NAME "Quantité Janvier"
+    IDS_Z_NUMBER_JANUARY_DESC "Quantité pour le mois de Janvier"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_Z_NUMBER_FEBRUARY_NAME "Quantité Février"
+    IDS_Z_NUMBER_FEBRUARY_DESC "Quantité pour le mois de Février"
+    IDS_Z_NUMBER_MARCH_NAME "Quantité Mars"
+    IDS_Z_NUMBER_MARCH_DESC "Quantité pour le mois de Mars"
+    IDS_Z_NUMBER_APRIL_NAME "Quantité Avril"
+    IDS_Z_NUMBER_APRIL_DESC "Quantité pour le mois de Avril"
+    IDS_Z_NUMBER_MAY_NAME   "Quantité Mai"
+    IDS_Z_NUMBER_MAY_DESC   "Quantité pour le mois de Mai"
+    IDS_Z_NUMBER_JUNE_NAME  "Quantité Juin"
+    IDS_Z_NUMBER_JUNE_DESC  "Quantité pour le mois de Juin"
+    IDS_Z_NUMBER_JULY_NAME  "Quantité Juillet"
+    IDS_Z_NUMBER_JULY_DESC  "Quantité pour le mois de Juillet"
+    IDS_Z_NUMBER_AUGUST_NAME "Quantité Août"
+    IDS_Z_NUMBER_SEPTEMBER_DESC "Quantité pour le mois de Septembre"
+    IDS_Z_NUMBER_OCTOBER_NAME "Quantité Octobre"
+    IDS_Z_NUMBER_OCTOBER_DESC "Quantité pour le mois de Octobre"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_Z_NUMBER_NOVEMBER_NAME "Quantité Novembre"
+    IDS_Z_NUMBER_NOVEMBER_DESC "Quantité pour le mois de Novembre"
+    IDS_Z_NUMBER_DECEMBER_NAME "Quantité Décembre"
+    IDS_Z_NUMBER_DECEMBER_DESC "Quantité pour le mois de Décembre"
+    IDS_Z_LOCKED_YEAR_NAME  "Lock"
+    IDS_Z_LOCKED_YEAR_DESC  "Bloquer la quantité annuelle"
+    IDS_Z_LOCKED_JANUARY_NAME "Bloquer Janvier"
+    IDS_Z_LOCKED_JANUARY_DESC "Bloquer la quantité du mois de Janvier"
+    IDS_Z_LOCKED_FEBRUARY_NAME "Bloquer Février"
+    IDS_Z_LOCKED_FEBRUARY_DESC "Bloquer la quantité du mois de Février"
+    IDS_Z_LOCKED_MARCH_NAME "Bloquer Mars"
+    IDS_Z_LOCKED_MARCH_DESC "Bloquer la quantité du mois de Mars"
+    IDS_Z_LOCKED_APRIL_NAME "Bloquer Avril"
+    IDS_Z_LOCKED_APRIL_DESC "Bloquer la quantité du mois de Avril"
+    IDS_Z_LOCKED_MAY_NAME   "Bloquer Mai"
+    IDS_Z_LOCKED_MAY_DESC   "Bloquer la quantité du mois de Mai"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_Z_LOCKED_JUNE_NAME  "Bloquer Juin"
+    IDS_Z_LOCKED_JUNE_DESC  "Bloquer la quantité du mois de Juin"
+    IDS_Z_LOCKED_JULY_NAME  "Bloquer Juillet"
+    IDS_Z_LOCKED_JULY_DESC  "Bloquer la quantité du mois de Juillet"
+    IDS_Z_LOCKED_AUGUST_NAME "Bloquer Août"
+    IDS_Z_LOCKED_AUGUST_DESC "Bloquer la quantité du mois de Août"
+    IDS_Z_LOCKED_SEPTEMBER_NAME "Bloquer Septembre"
+    IDS_Z_LOCKED_SEPTEMBER_DESC "Bloquer la quantité du mois de Septembre"
+    IDS_Z_LOCKED_OCTOBER_NAME "Bloquer Octobre"
+    IDS_Z_LOCKED_OCTOBER_DESC "Bloquer la quantité du mois de Octobre"
+    IDS_Z_LOCKED_NOVEMBER_NAME "Bloquer Novembre"
+    IDS_Z_LOCKED_NOVEMBER_DESC "Bloquer la quantité du mois de Novembre"
+    IDS_Z_LOCKED_DECEMBER_NAME "Bloquer Décembre"
+    IDS_Z_LOCKED_DECEMBER_DESC "Bloquer la quantité du mois de Décembre"
+    IDS_Z_FORCE_EQUALIZER_NAME "Forced"
+    IDS_Z_FORCE_EQUALIZER_DESC 
+                            "Forcer le calcul à utiliser cette saisonnalité"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_Z_UNIT_NAME_NAME    "Unit"
+    IDS_Z_UNIT_NAME_DESC    "Nom de l'unité de traitement"
+    IDS_Z_UNIT_COST_NAME    "Cost"
+    IDS_Z_UNIT_COST_DESC    "Coût de l'unité de traitement"
+    IDS_Z_COMBINATION_NAME_NAME "Combination title"
+    IDS_Z_COMBINATION_NAME_DESC "Nom de la combinaison"
+    IDS_Z_COMBINATION_DELIVERABLES_NAME "Deliverables"
+    IDS_Z_COMBINATION_DELIVERABLES_DESC 
+                            "Contient la liste des livrables qui définit la combinaison"
+    IDS_Z_COMBINATION_ACTIVATION_PERC_NAME "Percent"
+    IDS_Z_COMBINATION_ACTIVATION_PERC_DESC 
+                            "Pourcentage d'activation de la combinaison. (Calculé)"
+    IDS_Z_SIM_PROCESS_ACTIVATION_NAME "Activation"
+    IDS_Z_SIM_PROCESS_ACTIVATION_DESC "Nombre d'activation du processus"
+    IDS_Z_SIM_PROCESS_STD_TIME_NAME "Standard time"
+    IDS_Z_SIM_PROCESS_STD_TIME_DESC 
+                            "Temps standard du processus par livrable bonne fin"
+    IDS_Z_SIM_PROCESS_WORKLOAD_FORECAST_NAME "Load"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_Z_NUMBER_AUGUST_DESC "Quantité pour le mois de Août"
+    IDS_Z_NUMBER_SEPTEMBER_NAME "Quantité Septembre"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ZS_BP_PROP_PROCEDURE_TSKLST_TITLE "Tasks"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ZS_BP_PROP_PROCEDURE_DECLST_TITLE "Decisions"
+    IDS_Z_TEXTITEM_LIST_NAME "Information"
+    IDS_Z_TEXTITEM_LIST_DESC "Contient une information clé d'un livrable"
+    IDS_ZS_BP_PROP_PROCEDURE_ITMTXTLST_TITLE "Liste des Informations clés"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_Z_COMBINATION_MASTER_NAME "Master"
+    IDS_Z_COMBINATION_MASTER_DESC 
+                            "Défini le délivrable maître de la combinaison."
+    IDS_Z_UNIT_GUID_DESC    "Défini le unique identifier"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_Z_COST_PROCESSING_DURATION_NAME "Average duration"
+    IDS_Z_COST_PROCESSING_DURATION_DESC 
+                            "La durée moyeene pondérée est exprimée en nombre de jours, heures, minutes et secondes"
+    IDS_Z_COST_CASE_DURATION_NAME "Age of the case (average)"
+    IDS_Z_COST_CASE_DURATION_DESC 
+                            "L'âge du cas pondéré est exprimée en nombre de jours, heures, minutes et secondes."
+    IDS_Z_UNIT_DOUBLE_VALIDATION_NAME "Validation"
+    IDS_Z_UNIT_DOUBLE_VALIDATION_DESC 
+                            "Veuillez choisir le type de double validation des livrables en sortie. Par défaut aucune double validation n'est requise."
+    IDS_ZS_BP_PROP_RULELST_TITLE "Controls"
+    IDS_Z_RULE_LIST_NAME    "Control"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_Z_RULE_LIST_DESC    "Permet de définir vos règles de gestion."
+    IDS_Z_COST_TARGET_DURATION_NAME "Target duration"
+    IDS_Z_COST_TARGET_DURATION_DESC 
+                            "Veuillez saisir la durée cible de ce livrable"
+    IDS_Z_COST_GREENLINE_DURATION_NAME "Green line"
+    IDS_Z_COST_GREENLINE_DURATION_DESC 
+                            "Correspond à la gestion de production dans Messenger"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_Z_COST_PROCESSING_DURATIONMAX_NAME "Maximum duration"
+    IDS_Z_COST_PROCESSING_DURATIONMAX_DESC 
+                            "La durée moyenne maximum est exprimée en nombre de jours, heures, minutes et secondes"
+    IDS_Z_COST_CASE_DURATIONMAX_NAME "Age of the case (maximum)"
+    IDS_Z_COST_CASE_DURATIONMAX_DESC 
+                            "L'âge du cas maximum est exprimé en nombre de jours, heures, minutes et secondes."
+    IDS_MODELGENHTML_18     "<table width=""100%"" border=""0"" cellspacing=""0"" cellpadding=""0"">\n  <tr>\n    <td width=""28%"">&nbsp;</td>\n    <td width=""39%"">&nbsp;</td>\n    <td width=""33%"">&nbsp;</td>\n  </tr>\n  <tr>\n    <td width=""28%""><font face=""Verdana, Arial, Helvetica, sans-serif"" size=""3""><b>Main \n      model page of</b></font></td>\n    <td width=""39%"">"
+    IDS_MODELGENHTML_28     "<table width=""100%"" border=""0"" cellspacing=""0"" cellpadding=""0"">\n  <tr bgcolor=""#999999""> \n    <td width=""28%""><font color=""#FFFFFF"" face=""Verdana, Arial, Helvetica, sans-serif""><b><font size=""3"">Units</font></b></font></td>\n    <td width=""72%""><font color=""#000000""></font></td>\n  </tr>"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MODELGENHTML_29     "<table width=""100%"" border=""0"" cellspacing=""0"" cellpadding=""0"">\n  <tr bgcolor=""#999999""> \n    <td width=""28%""><font color=""#FFFFFF"" face=""Verdana, Arial, Helvetica, sans-serif""><b><font size=""3"">Systems</font></b></font></td>\n    <td width=""72%""><font color=""#000000""></font></td>\n  </tr>"
+    IDS_MODELGENHTML_32     "</font></td>\n  </tr>\n  <tr> \n    <td>&nbsp;</td>\n    <td>&nbsp;</td>\n    <td>&nbsp;</td>\n  </tr>\n  <tr> \n    <td>&nbsp;</td>\n    <td bgcolor=""#999999""><strong><font size=""2"" face=""Verdana, Arial, Helvetica, sans-serif"">Symbol</font></strong></td>\n    <td bgcolor=""#999999""><strong><font size=""2"" face=""Verdana, Arial, Helvetica, sans-serif"">Path</font></strong></td>\n  </tr>"
+    IDS_SYMBOLNAME_HTML     "Name: %s"
+    IDS_SYMBOLDESCRIPTION_HTML "Description: %s"
+    IDS_SYMBOLEXTFILE_HTML  "External link %d: %s"
+    IDS_SYMBOLREF_HTML      "Reference: %d"
+    IDS_MODELGENHTML_70     "<!DOCTYPE HTML PUBLIC ""-//W3C//DTD HTML 4.01 Transitional//EN"">\n<html>\n<head>\n<title>Units</title>\n<meta http-equiv=""Content-Type"" content=""text/html; charset=iso-8859-1"">\n</head>\n\n<body>\n<table width=""100%"" border=""0"" cellspacing=""0"" cellpadding=""0"">\n  <tr> \n    <td>&nbsp;</td>\n    <td>&nbsp;</td>\n    <td>&nbsp;</td>\n  </tr>\n  <tr> \n    <td width=""15%"">&nbsp;</td>\n    <td width=""70%""><font size=""2"" face=""Verdana, Arial, Helvetica, sans-serif"">Please select a unit in the left navigation bar</font></td>\n    <td width=""15%"">&nbsp;</td>\n  </tr>\n  <tr> \n    <td>&nbsp;</td>\n    <td>&nbsp;</td>\n    <td>&nbsp;</td>\n  </tr>\n</table>\n</body>\n</html>\n"
+    IDS_MODELGENHTML_71     "<!DOCTYPE HTML PUBLIC ""-//W3C//DTD HTML 4.01 Transitional//EN"">\n<html>\n<head>\n<title>Systems</title>\n<meta http-equiv=""Content-Type"" content=""text/html; charset=iso-8859-1"">\n</head>\n\n<body>\n<table width=""100%"" border=""0"" cellspacing=""0"" cellpadding=""0"">\n  <tr> \n    <td>&nbsp;</td>\n    <td>&nbsp;</td>\n    <td>&nbsp;</td>\n  </tr>\n  <tr> \n    <td width=""15%"">&nbsp;</td>\n    <td width=""70%""><font size=""2"" face=""Verdana, Arial, Helvetica, sans-serif"">Please select a system in the left navigation bar.</font></td>\n    <td width=""15%"">&nbsp;</td>\n  </tr>\n  <tr> \n    <td>&nbsp;</td>\n    <td>&nbsp;</td>\n    <td>&nbsp;</td>\n  </tr>\n</table>\n</body>\n</html>\n"
+    IDS_MODELGENHTML_72     "<!DOCTYPE HTML PUBLIC ""-//W3C//DTD HTML 4.01 Transitional//EN"">\n<html>\n<head>\n<title>Properties...</title>\n<meta http-equiv=""Content-Type"" content=""text/html; charset=iso-8859-1"">\n</head>\n\n<body>\n<table width=""100%"" border=""0"" cellspacing=""0"" cellpadding=""0"">\n  <tr> \n<td bgcolor=""#999999""><font size=""2"" face=""Verdana, Arial, Helvetica, sans-serif""><strong>Properties</strong></font></td>\n  </tr>\n  <p>&nbsp;</p>\n</body>\n</html>"
+    IDS_GOINSYMBOL_HTML     "Click this link to enter in %s"
+    IDS_SYMBOLEXTAPP_HTML   "System %d: %s"
+    IDS_SYMBOLUNIT_HTML     "Unit: %s"
+    IDS_INDEXPAGE_HTML      "Main page"
+    IDS_MODELGENHTML_19     "<table width=""100%"" border=""0"" cellspacing=""0"" cellpadding=""0"">\n  <tr bgcolor=""#999999""> \n    <td width=""28%""><font color=""#FFFFFF"" face=""Verdana, Arial, Helvetica, sans-serif""><b><font size=""3"">Page(s)</font></b></font></td>\n    <td width=""72%""><font color=""#000000""></font></td>\n  </tr>"
+    IDS_LOGICALSYSTEM_HTML  "System"
+    IDS_USERGROUP_HTML      "Units"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_SYMBOLPROPERTY_HTML "Properties..."
+    IDS_Z_PRESTATIONS_TITLE "Prestation"
+    IDS_Z_PRESTATION_PERCENTAGE_DESC "Percentage of activity"
+    IDS_ZS_BP_PROP_DELIVERY_TITLE "Deliveries"
+    IDS_Z_DELIVERY_NAME_NAME "Delivery title"
+    IDS_Z_DELIVERY_NAME_DESC "Name for the delivery"
+    IDS_Z_DELIVERY_DELIVERABLES_NAME "Deliverables"
+    IDS_Z_DELIVERY_DELIVERABLES_DESC 
+                            "Contain the list of deliverables that define the delivery"
+    IDS_Z_DELIVERY_QUANTITY_NAME "Quantity"
+    IDS_Z_DELIVERY_QUANTITY_DESC "Contain the quantity for the delivery"
+    IDS_Z_DELIVERY_MAIN_NAME "Main"
+    IDS_Z_DELIVERY_MAIN_DESC "Define the main deliverable for the delivery"
+    IDS_Z_DELIVERY_PERCENTAGE_NAME "Percentage"
+    IDS_Z_DELIVERY_PERCENTAGE_DESC 
+                            "Represent the quantity divided by the sum of all deliveries"
+    IDS_Z_SIM_PROCESS_SUM_DELIVERIES_NAME "Deliveries sum"
+    IDS_Z_SIM_PROCESS_SUM_DELIVERIES_DESC 
+                            "Represent the sum of all deliveries"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MODELGENHTML_80     "<table width=""100%"" border=""0"" cellspacing=""0"" cellpadding=""0"">\n  <tr bgcolor=""#999999""> \n    <td width=""28%""><font color=""#FFFFFF"" face=""Verdana, Arial, Helvetica, sans-serif""><b><font size=""3"">Prestations</font></b></font></td>\n    <td width=""72%""><font color=""#000000""></font></td>\n  </tr>"
+    IDS_MODELGENHTML_81     "<!DOCTYPE HTML PUBLIC ""-//W3C//DTD HTML 4.01 Transitional//EN"">\n<html>\n<head>\n<title>Prestations</title>\n<meta http-equiv=""Content-Type"" content=""text/html; charset=iso-8859-1"">\n</head>\n\n<body>\n<table width=""100%"" border=""0"" cellspacing=""0"" cellpadding=""0"">\n  <tr> \n    <td>&nbsp;</td>\n    <td>&nbsp;</td>\n    <td>&nbsp;</td>\n  </tr>\n  <tr> \n    <td width=""15%"">&nbsp;</td>\n    <td width=""70%""><font size=""2"" face=""Verdana, Arial, Helvetica, sans-serif"">Please select a prestation in the left navigation bar.</font></td>\n    <td width=""15%"">&nbsp;</td>\n  </tr>\n  <tr> \n    <td>&nbsp;</td>\n    <td>&nbsp;</td>\n    <td>&nbsp;</td>\n  </tr>\n</table>\n</body>\n</html>\n"
+    IDS_LOGICALPRESTATIONS_HTML "Prestations"
+    IDS_Z_PRESTPROCESS_TITLE "Prest. of proc."
+    IDS_Z_PRESTPROCESS_DESC "Represent the sum of all quantities divided by the precentage of activity of the prestation"
+    IDS_Z_SIM_PROCESS_WORKLOAD_BY_DELIVERIES "Workload / Delivery"
+    IDS_Z_SIM_PROCESS_WORKLOAD_BY_DELIVERIES_DESC 
+                            "Represent the workload divided by the sum of deliveries"
+    IDS_Z_SIM_PROCESS_COST_BY_DELIVERIES "Cost / Delivery"
+    IDS_Z_SIM_PROCESS_COST_BY_DELIVERIES_DESC 
+                            "Represent the cost divided by the sum of deliveries"
+    IDS_CONCEPTOR_MTL_HTML_1 "Mission"
+    IDS_CONCEPTOR_MTL_HTML_2 "No mission has been defined."
+    IDS_CONCEPTOR_MTL_HTML_3 "Synthesys"
+    IDS_CONCEPTOR_MTL_HTML_4 "Domain / Topic"
+    IDS_CONCEPTOR_MTL_HTML_5 "Process"
+    IDS_CONCEPTOR_MTL_HTML_6 "Procedure"
+    IDS_CONCEPTOR_MTL_HTML_7 "Detail by process"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CONCEPTOR_MTL_HTML_8 "Process"
+    IDS_CONCEPTOR_MTL_HTML_9 "Start point"
+    IDS_CONCEPTOR_MTL_HTML_10 "Description"
+    IDS_CONCEPTOR_MTL_HTML_11 "Procedure"
+    IDS_CONCEPTOR_MTL_HTML_12 "Description"
+    IDS_CONCEPTOR_PROCESSREPORT_MTL_HTML_1 "List of entry variables"
+    IDS_CONCEPTOR_PROCESSREPORT_MTL_HTML_2 
+                            "List of output laterals deliverables"
+    IDS_CONCEPTOR_PROCESSREPORT_MTL_HTML_3 
+                            "List of input laterals deliverables"
+    IDS_CONCEPTOR_MTL_HTML_16 "Rules list"
+    IDS_CONCEPTOR_MTL_HTML_17 "Rule %d"
+    IDS_CONCEPTOR_MTL_HTML_18 "Tasks list"
+    IDS_CONCEPTOR_MTL_HTML_19 "Task %d"
+    IDS_CONCEPTOR_MTL_HTML_20 "Decisions list"
+    IDS_CONCEPTOR_MTL_HTML_21 "Decision %d"
+    IDS_CONCEPTOR_PROCESSREPORT_MTL_HTML_4 "List of output deliveries"
+    IDS_GOINREPORT_HTML     "Open the report for this process"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_REPORTWEB_NOTFOUND  "The result was not found"
+    IDS_Z_SIM_PROCESS_COST_NAME "Cost EWT"
+    IDS_Z_SIM_PROCESS_COST_DESC "Represent the cost except working time"
+    IDS_PRESTATIONSREPORT_MTL_HTML_1 "Description"
+    IDS_PRESTATIONSREPORT_MTL_HTML_2 
+                            "List of contributions for the prestation"
+    IDS_PRESTATIONSREPORT_MTL_HTML_3 "Procedures"
+    IDS_PRESTATIONSREPORT_MTL_HTML_4 "Nothing"
+    IDS_Z_PRESTATION_PERCENTAGE_TITLE "Percentage"
+    IDS_Z_PRESTATION_NAME_DESC "The name of the prestation"
+    IDS_Z_PRESTATION_NAME_TITLE "Name"
+    IDS_PRESTATIONSREPORT_MTL_HTML_5 "Process"
+    IDS_MODELGENHTML_18a    "<table width=""100%"" border=""0"" cellspacing=""0"" cellpadding=""0"">\n  <tr>\n    <td width=""28%"">&nbsp;</td>\n    <td width=""39%"">&nbsp;</td>\n    <td width=""33%"">&nbsp;</td>\n  </tr>\n  <tr>\n    <td width=""67%"">"
+    IDS_OBJECTTYPE_PROCESS  "Process"
+    IDS_OBJECTTYPE_PROCEDURE "Procedure"
+    IDS_OBJECTTYPE_START    "Start point"
+    IDS_OBJECTTYPE_STOP     "Stop point"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OBJECTTYPE_DELIVERABLE "Deliverable"
+    IDS_OBJECTTYPE_DOOR     "Door"
+    IDS_Z_RULES_NAME        "Rule %d"
+    IDS_Z_RULES_DESC        "Rules list linked to this object."
+    IDS_Z_RULES_TITLE       "Rules"
+    IDS_RULEBOOK_TITLE      "Rules book"
+    IDS_RULEBOOK_MTL_HTML_1 "<table width=""100%"" border=""0"" cellspacing=""0"" cellpadding=""0"">\n  <tr bgcolor=""#999999""> \n    <td width=""28%""><font color=""#FFFFFF"" face=""Verdana, Arial, Helvetica, sans-serif""><b><font size=""3"">Rules book</font></b></font></td>\n    <td width=""72%""><font color=""#000000""></font></td>\n  </tr>"
+    IDS_RULEBOOKDETAILS_TITLE "Rules details"
+    IDS_RULEBOOKDETAILS_MTL_HTML_1 "Rule nb."
+    IDS_RULEBOOKDETAILS_MTL_HTML_2 "Rule name"
+    IDS_RULEBOOKDETAILS_MTL_HTML_3 "Linked object type"
+    IDS_RULEBOOKDETAILS_MTL_HTML_4 "Linked object name"
+    IDS_RULEBOOKDETAILS_MTL_HTML_5 "Unit responsible for the object"
+    IDS_RULEBOOKDETAILS_MTL_HTML_6 "Rule book details"
+    IDS_ZS_BP_PROP_RISK_TITLE "Risk"
+    IDS_Z_RISK_NAME_NAME    "Risk title"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_Z_RISK_NAME_DESC    "The name for the risk."
+    IDS_Z_RISK_DESC_NAME    "Description"
+    IDS_Z_RISK_DESC_DESC    "The risk description. (conditions of supervening and consequences)."
+    IDS_Z_RISK_TYPE_NAME    "Type"
+    IDS_Z_RISK_TYPE_DESC    "Selection of the type of risk in the nomenclature."
+    IDS_Z_RISK_IMPACT_NAME  "Impact"
+    IDS_Z_RISK_IMPACT_DESC  "Selection of the importance of the impact."
+    IDS_Z_RISK_PROBABILITY_NAME "Probability"
+    IDS_Z_RISK_PROBABILITY_DESC 
+                            "Selection of the frequency of supervening or the level of probability."
+    IDS_Z_RISK_SEVERITY_NAME "Severity"
+    IDS_Z_RISK_SEVERITY_DESC "Level of severity calculated by the system."
+    IDS_Z_RISK_UE_NAME      "Unit estimate"
+    IDS_Z_RISK_UE_DESC      "Estimate of the unit cost of a supervening of the risk."
+    IDS_Z_RISK_POA_NAME     "Annual op. loss"
+    IDS_Z_RISK_POA_DESC     "Probable annual operational loss or of experiment."
+    IDS_Z_RISK_ACTION_NAME  "Action in hand"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_Z_RISK_ACTION_DESC  "Indicate if a correct action is in hand."
+    IDS_Z_RISK_NORMAL_LEVEL "Possible local follow-up"
+    IDS_Z_RISK_SERIOUS_LEVEL "Follow-up of Manager"
+    IDS_Z_RISK_SEVERE_LEVEL "Follow-up of Direction"
+    IDS_Z_RISK_SERIOUS_MESSAGE 
+                            "The symbol %s comprises a level of serious risk."
+    IDS_Z_RISK_SEVERE_MESSAGE 
+                            "The symbol %s comprises a severe level of risk."
+END
+
+#endif    // Français (France) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE 12, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\zRMdlBPEn.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.fra\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

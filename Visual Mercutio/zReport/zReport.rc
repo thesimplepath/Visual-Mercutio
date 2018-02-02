@@ -1,0 +1,207 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "zReportRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+#include "zFormsRes\zFormsRes.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Anglais (États-Unis) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "zReportRes.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "#include ""zFormsRes\\zFormsRes.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\zReport.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Anglais (États-Unis) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Français (France) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040c04b0"
+        BEGIN
+            VALUE "FileDescription", "zReport DLL"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "zReport"
+            VALUE "LegalCopyright", "Copyright (C)"
+            VALUE "OriginalFilename", "zReport.DLL"
+            VALUE "ProductName", "zReport Dynamic Link Library"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x40c, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_GRIDREPORT_SUBMENU MENU 
+BEGIN
+    POPUP "GridReport"
+    BEGIN
+        MENUITEM "Ajouter le fichier au projet", ID_WKS_ADD_CURRENTFILE
+        MENUITEM SEPARATOR
+        MENUITEM "Plein écran",                 ID_VIEW_FULLSCREEN
+        MENUITEM "&Zoom Normal",                ID_OD_ZOOM_NORMAL
+        POPUP "&Zoom"
+        BEGIN
+            MENUITEM "&50%",                        ID_OD_ZOOM_50PCT
+            MENUITEM "&75%",                        ID_OD_ZOOM_75PCT
+            MENUITEM "&100%",                       ID_OD_ZOOM_100PCT
+            MENUITEM "&200%",                       ID_OD_ZOOM_200PCT
+        END
+        MENUITEM "Zoom agrandir",               ID_VIEW_ZOOMIN
+        MENUITEM "Zoom diminuer",               ID_VIEW_ZOOMOUT
+        MENUITEM "Zoom P&articulier...",        ID_OD_ZOOM_CUSTOM
+        MENUITEM SEPARATOR
+        MENUITEM "Figer les volets",            ID_FREEZE_SPLITTER
+        MENUITEM "Libérer les volets",          ID_UNFREEZE_SPLITTER
+        MENUITEM "Montrer toutes les lignes et colonnes", ID_GRID_UNHIDEALL
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_CHECK_GRID          BITMAP                  "check_gr.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_UNITNAME_TAB        "Unités"
+    IDS_UNITNAME_H          "Nom"
+    IDS_UNITDES_H           "Description"
+    IDS_UNITCOST_H          "Coût"
+    IDS_UNITOWNER_H         "Appartenance"
+    IDS_SYMBOLREF_H         "Référence"
+    IDS_SYMBOLNAME_H        "Nom"
+    IDS_SYMBOLDES_H         "Description"
+    IDS_SYMBOLUNIT_H        "Unité"
+    IDS_MASTERDATA_CHANGE_RELOAD 
+                            "Les données de base liées au rapport sont plus récentes. Voulez-vous recharger le rapport?"
+    IDS_PRESTATIONNAME_H    "Liste des prestations"
+    IDS_PROCESSNAME_H       "Processus"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_UNFREEZE_SPLITTER    "Libérer les volets.\nLibérer les volets"
+    ID_FREEZE_SPLITTER      "Figer les volets.\nFiger les volets"
+    ID_GRID_UNHIDEALL       "Montrer toutes les lignes et colonnes.\nMontrer lignes / colonnes"
+END
+
+#endif    // Français (France) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\zReport.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,9 @@
+; zSctyD.def : Declares the module parameters for the DLL.
+
+LIBRARY      "zSctyD"
+
+; JMR-MODIF - Le 19 mai 2005 - DESCRIPTION supprimé car non pris en charge par le compilateur.
+;DESCRIPTION  'zSctyD Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

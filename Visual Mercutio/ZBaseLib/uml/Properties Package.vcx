@@ -1,0 +1,30 @@
+<?xml version="1.0" standalone="yes"?>
+  <ElementSet>
+    <MmPtr>
+      <Name>Properties Class Diagram</Name>
+      <Object>
+        <MmDiagram>
+          <kind>1</kind>
+          <FilePath>.\Properties Class Diagram.vcd</FilePath>
+        </MmDiagram>
+      </Object>
+    </MmPtr>
+    <MmPtr>
+      <Name>ZBProperty</Name>
+      <Object>
+        <MmClassAsCpp></MmClassAsCpp>
+      </Object>
+    </MmPtr>
+    <MmPtr>
+      <Name>ZBPropertyItemObserverMsg</Name>
+      <Object>
+        <MmClassAsCpp></MmClassAsCpp>
+      </Object>
+    </MmPtr>
+    <MmPtr>
+      <Name>ZBPropertyObserverMsg</Name>
+      <Object>
+        <MmClassAsCpp></MmClassAsCpp>
+      </Object>
+    </MmPtr>
+  </ElementSet>

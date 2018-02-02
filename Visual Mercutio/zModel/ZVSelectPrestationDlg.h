@@ -1,0 +1,108 @@
+// **************************************************************************************************************
+// *										Classe ZVSelectPrestationDlg										*
+// **************************************************************************************************************
+// * JMR-MODIF - Le 27 février 2006 - Ajout de la classe ZVSelectPrestationDlg.									*
+// **************************************************************************************************************
+// * Cette classe représente l'interface de sélection d'une prestation, ou d'un groupe de prestations, dans la	*
+// * liste.																										*
+// **************************************************************************************************************
+
+#if !defined(AFX_ZVSELECTPRESTATIONDLG_H__16B257AC_C5CD_4411_8750_F4510E61718B__INCLUDED_)
+#define AFX_ZVSELECTPRESTATIONDLG_H__16B257AC_C5CD_4411_8750_F4510E61718B__INCLUDED_
+
+#if _MSC_VER > 1000
+#pragma once
+#endif // _MSC_VER > 1000
+
+// Change the definition of AFX_EXT... to make it import
+#undef AFX_EXT_CLASS
+#undef AFX_EXT_API
+#undef AFX_EXT_DATA
+#define AFX_EXT_CLASS AFX_CLASS_IMPORT
+#define AFX_EXT_API AFX_API_IMPORT
+#define AFX_EXT_DATA AFX_DATA_IMPORT
+
+#include "ZCPrestationsTreeCtrl.h"
+#include "zModelRes.h"
+
+#ifdef _ZMODELEXPORT
+// Put the values back to make AFX_EXT_CLASS export again
+#undef AFX_EXT_CLASS
+#undef AFX_EXT_API
+#undef AFX_EXT_DATA
+#define AFX_EXT_CLASS AFX_CLASS_EXPORT
+#define AFX_EXT_API AFX_API_EXPORT
+#define AFX_EXT_DATA AFX_DATA_EXPORT
+#endif
+
+// Forward class declaration
+class ZBPrestationsEntity;
+class ZBLogicalPrestationsEntity;
+
+/////////////////////////////////////////////////////////////////////////////
+// ZVSelectPrestationDlg dialog
+
+class AFX_EXT_CLASS ZVSelectPrestationDlg : public CDialog
+{
+// Construction
+public:
+
+	// Standard constructor
+	ZVSelectPrestationDlg( const CString				Title						= _T( "" ),
+						   ZBLogicalPrestationsEntity*	pMainPrestation				= NULL,
+						   bool							AllowPrestationSelection	= true,
+						   CWnd*						pParent						= NULL );
+
+	// Standard constructor
+	ZVSelectPrestationDlg( UINT							nTitle,
+						   ZBLogicalPrestationsEntity*	pMainPrestation,
+						   bool							AllowPrestationSelection	= true,
+						   CWnd*						pParent						= NULL );
+
+	~ZVSelectPrestationDlg();
+
+	void Release();
+
+	ZBPrestationsEntity* GetSelectedPrestationEntity() const
+	{
+		return m_pPrestationEntity;
+	};
+
+private:
+
+	// Dialog Data
+	//{{AFX_DATA(ZVSelectPrestationDlg)
+	enum { IDD = IDD_PRESTATION_SELECTION };
+	ZCPrestationsTreeCtrl	m_Ctrl;
+	//}}AFX_DATA
+
+	// Overrides
+	// ClassWizard generated virtual function overrides
+	//{{AFX_VIRTUAL(ZVSelectPrestationDlg)
+	protected:
+	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
+	//}}AFX_VIRTUAL
+
+// Implementation
+protected:
+
+	// Generated message map functions
+	//{{AFX_MSG(ZVSelectPrestationDlg)
+	virtual BOOL OnInitDialog();
+	afx_msg void OnSelchangedPrestationsTree(NMHDR* pNMHDR, LRESULT* pResult);
+	virtual void OnOK();
+	//}}AFX_MSG
+	DECLARE_MESSAGE_MAP()
+
+private:
+
+	CString						m_Title;
+	ZBPrestationsEntity*		m_pPrestationEntity;
+	ZBLogicalPrestationsEntity*	m_pMainPrestation;
+	bool						m_AllowPrestationSelection;
+};
+
+//{{AFX_INSERT_LOCATION}}
+// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
+
+#endif // !defined(AFX_ZVSELECTPRESTATIONDLG_H__16B257AC_C5CD_4411_8750_F4510E61718B__INCLUDED_)

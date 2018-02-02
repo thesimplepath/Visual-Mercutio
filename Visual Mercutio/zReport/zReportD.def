@@ -1,0 +1,9 @@
+; zReportD.def : Declares the module parameters for the DLL.
+
+LIBRARY      "zReportD"
+
+; JMR-MODIF - Le 30 mai 2005 - DESCRIPTION supprimé car non pris en charge par le compilateur.
+;DESCRIPTION  'zReportD Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

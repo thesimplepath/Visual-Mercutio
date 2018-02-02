@@ -1,0 +1,9 @@
+; zRBPropFrD.def : Declares the module parameters for the DLL.
+
+LIBRARY      "zRBPropFrD"
+
+; JMR-MODIF - Le 2 juin 2005 - DESCRIPTION supprimé car non pris en charge par le compilateur.
+;DESCRIPTION  'zRBPropFrD Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

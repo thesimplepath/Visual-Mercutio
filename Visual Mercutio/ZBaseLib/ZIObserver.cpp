@@ -1,0 +1,26 @@
+// ZIObserver.cpp: implementation of the ZIObserver class.
+//
+//////////////////////////////////////////////////////////////////////
+
+#include "stdafx.h"
+#include "ZIObserver.h"
+
+#ifdef _DEBUG
+#undef THIS_FILE
+static char THIS_FILE[]=__FILE__;
+#define new DEBUG_NEW
+#endif
+
+//////////////////////////////////////////////////////////////////////
+// Construction/Destruction
+//////////////////////////////////////////////////////////////////////
+
+ZIObserver::ZIObserver()
+{
+
+}
+
+ZIObserver::~ZIObserver()
+{
+
+}

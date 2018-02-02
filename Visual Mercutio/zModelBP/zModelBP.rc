@@ -1,0 +1,2506 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "zModelBPRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+#include "Views\OdRes.h"
+#include "zFormsRes\zFormsRes.h"
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Français (France) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "zModelBPRes.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "#include ""Views\\OdRes.h""\r\n"
+    "#include ""zFormsRes\\zFormsRes.h""\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 12, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\zModelBP.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040c04b0"
+        BEGIN
+            VALUE "FileDescription", "zModelBP DLL"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "zModelBP"
+            VALUE "LegalCopyright", "Copyright (C)"
+            VALUE "OriginalFilename", "zModelBP.DLL"
+            VALUE "ProductName", "zModelBP Dynamic Link Library"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x40c, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_EQUALIZE_ACTIVATION DIALOG  0, 0, 256, 266
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Nombre d'activation d'un processus"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Valider",IDOK,199,245,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,146,245,50,14
+    GROUPBOX        "Mensualisé",IDC_STATIC,7,25,242,217
+    LTEXT           "Total d'activiations:",IDC_STATIC,7,7,65,10
+    EDITTEXT        IDC_TOTAL_ACTIVATION,73,7,61,12,ES_AUTOHSCROLL
+    LTEXT           "janvier",IDC_STATIC,16,46,26,10
+    LTEXT           "février",IDC_STATIC,16,62,26,10
+    LTEXT           "mars",IDC_STATIC,16,78,26,10
+    LTEXT           "avril",IDC_STATIC,16,94,26,10
+    LTEXT           "mai",IDC_STATIC,16,110,26,10
+    LTEXT           "juin",IDC_STATIC,16,126,26,10
+    LTEXT           "juillet",IDC_STATIC,16,142,26,10
+    LTEXT           "août",IDC_STATIC,16,158,26,10
+    LTEXT           "septembre",IDC_STATIC,16,174,42,10
+    LTEXT           "octobre",IDC_STATIC,16,190,26,10
+    LTEXT           "novembre",IDC_STATIC,16,206,40,10
+    LTEXT           "décembre",IDC_STATIC,16,222,38,10
+    EDITTEXT        IDC_JAN_ACTIVATION,182,46,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_FEB_ACTIVATION,182,62,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MAR_ACTIVATION,182,78,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_APR_ACTIVATION,182,94,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MAY_ACTIVATION,182,110,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JUN_ACTIVATION,182,126,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JUL_ACTIVATION,182,142,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_AUG_ACTIVATION,182,158,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SEP_ACTIVATION,182,174,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_OCT_ACTIVATION,182,190,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NOV_ACTIVATION,182,206,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DEC_ACTIVATION,182,222,63,12,ES_AUTOHSCROLL
+    CONTROL         "Slider1",IDC_JAN_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,46,108,8
+    CONTROL         "Slider1",IDC_FEB_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,62,108,8
+    CONTROL         "Slider1",IDC_MAR_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,78,108,8
+    CONTROL         "Slider1",IDC_APR_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,94,108,8
+    CONTROL         "Slider1",IDC_MAY_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,110,108,8
+    CONTROL         "Slider1",IDC_JUN_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,126,108,8
+    CONTROL         "Slider1",IDC_JUL_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,142,108,8
+    CONTROL         "Slider1",IDC_AUG_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,158,108,8
+    CONTROL         "Slider1",IDC_SEP_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,174,108,8
+    CONTROL         "Slider1",IDC_OCT_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,190,108,8
+    CONTROL         "Slider1",IDC_NOV_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,206,108,8
+    CONTROL         "Slider1",IDC_DEC_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,222,108,8
+    LTEXT           "(par année)",IDC_STATIC,151,7,67,10
+END
+
+IDD_EQUALIZE_QUANTITY DIALOG  0, 0, 256, 276
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Quantité saisonnalisée d'un livrable"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_TOTAL_ACTIVATION,73,7,61,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JAN_ACTIVATION,156,55,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_FEB_ACTIVATION,156,71,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MAR_ACTIVATION,156,87,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_APR_ACTIVATION,156,103,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MAY_ACTIVATION,156,119,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JUN_ACTIVATION,156,135,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_JUL_ACTIVATION,156,151,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_AUG_ACTIVATION,156,167,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SEP_ACTIVATION,156,183,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_OCT_ACTIVATION,156,199,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NOV_ACTIVATION,156,215,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DEC_ACTIVATION,156,231,63,12,ES_AUTOHSCROLL
+    CONTROL         "Slider1",IDC_JAN_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
+                    WS_TABSTOP,67,55,84,8
+    CONTROL         "Slider1",IDC_FEB_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
+                    WS_TABSTOP,67,71,84,8
+    CONTROL         "Slider1",IDC_MAR_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
+                    WS_TABSTOP,67,87,84,8
+    CONTROL         "Slider1",IDC_APR_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
+                    WS_TABSTOP,67,103,84,8
+    CONTROL         "Slider1",IDC_MAY_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
+                    WS_TABSTOP,67,119,84,8
+    CONTROL         "Slider1",IDC_JUN_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
+                    WS_TABSTOP,67,135,84,8
+    CONTROL         "Slider1",IDC_JUL_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
+                    WS_TABSTOP,67,151,84,8
+    CONTROL         "Slider1",IDC_AUG_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
+                    WS_TABSTOP,67,167,84,8
+    CONTROL         "Slider1",IDC_SEP_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
+                    WS_TABSTOP,67,183,84,8
+    CONTROL         "Slider1",IDC_OCT_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
+                    WS_TABSTOP,67,199,84,8
+    CONTROL         "Slider1",IDC_NOV_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
+                    WS_TABSTOP,67,215,84,8
+    CONTROL         "Slider1",IDC_DEC_ACT_SLIDER,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | 
+                    WS_TABSTOP,67,231,84,8
+    DEFPUSHBUTTON   "Valider",IDOK,199,255,50,14
+    CONTROL         "bloquer",IDC_YEAR_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,197,7,52,11
+    CONTROL         "",IDC_JAN_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,229,55,12,11
+    CONTROL         "",IDC_FEB_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,229,71,12,11
+    CONTROL         "",IDC_MAR_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,229,87,12,11
+    CONTROL         "",IDC_APR_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,229,103,12,11
+    CONTROL         "",IDC_MAY_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,229,119,12,11
+    CONTROL         "",IDC_JUN_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,229,135,12,11
+    CONTROL         "",IDC_JUL_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,229,151,12,11
+    CONTROL         "",IDC_AUG_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,229,167,12,11
+    CONTROL         "",IDC_SEP_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,229,183,12,11
+    CONTROL         "",IDC_OCT_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,229,199,12,11
+    CONTROL         "",IDC_NOV_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,229,215,12,11
+    CONTROL         "",IDC_DEC_ACT_LOCK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,229,231,12,11
+    PUSHBUTTON      "Abandonner",IDCANCEL,143,255,50,14
+    GROUPBOX        "Mensualisé",IDC_STATIC,7,34,242,217
+    LTEXT           "Quantité totale:",IDC_STATIC,7,7,53,10
+    LTEXT           "janvier",IDC_STATIC,16,55,26,10
+    LTEXT           "février",IDC_STATIC,16,71,26,10
+    LTEXT           "mars",IDC_STATIC,16,87,26,10
+    LTEXT           "avril",IDC_STATIC,16,103,26,10
+    LTEXT           "mai",IDC_STATIC,16,119,26,10
+    LTEXT           "juin",IDC_STATIC,16,135,26,10
+    LTEXT           "juillet",IDC_STATIC,16,151,26,10
+    LTEXT           "août",IDC_STATIC,16,167,26,10
+    LTEXT           "septembre",IDC_STATIC,16,183,42,10
+    LTEXT           "octobre",IDC_STATIC,16,199,26,10
+    LTEXT           "novembre",IDC_STATIC,16,215,40,10
+    LTEXT           "décembre",IDC_STATIC,16,231,38,10
+    LTEXT           "(par année)",IDC_STATIC,151,7,39,10
+    CONTROL         "Forcer le système de calcul à utiliser cette saisonnalité",
+                    IDC_FORCE_EQUALIZER,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,22,212,11
+    PUSHBUTTON      "Valeurs par défaut",IDC_DEFAULT,7,256,76,14
+END
+
+IDD_ADD_DELIV_COMBINATION DIALOG  0, 0, 327, 127
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Ajouter un ou des livrables à la combinaison"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Valider",IDOK,270,106,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,217,106,50,14
+    LTEXT           "Livrable(s) disponible(s)",IDC_STATIC,7,7,78,8
+    LTEXT           "Livrable(s) de la combinaison",IDC_STATIC,221,7,99,8
+    LISTBOX         IDC_REMAIN_DELIV,7,21,145,79,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+    LISTBOX         IDC_COMB_DELIV,175,21,145,79,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      ">>",IDC_ADD_DELIV,155,44,18,12
+    PUSHBUTTON      "<<",IDC_DEL_DELIV,155,59,18,12
+END
+
+IDD_DEL_DELIV_COMBINATION DIALOG  0, 0, 329, 198
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Enlever un ou des livrables de la combinaison"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Valider",IDOK,272,177,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,219,177,50,14
+    LTEXT           "Livrable(s) de la combinaison",-1,7,7,99,8
+    LISTBOX         IDC_COMB_DELIV,7,19,270,155,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "Enlever",IDC_DEL_DELIV,280,19,42,12
+END
+
+IDD_CHOOSE_MASTERDELIV DIALOG  0, 0, 291, 150
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Choisir le livrable maître"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Valider",IDOK,234,129,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,181,129,50,14
+    LISTBOX         IDC_LISTOFDELIVERABLE,7,7,277,117,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+END
+
+IDD_WZ_PUBLISHTOMESSENGER_AUTH DIALOGEX 0, 0, 292, 199
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Publication vers Messenger"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    EDITTEXT        IDC_MESSENGER_USERNAME,105,103,177,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MESSENGER_PASSWORD,105,120,177,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Publier",IDOK,80,184,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,184,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,270,
+                    182,18,16
+    LTEXT           "Utilisateur:",IDC_LBL_USERNAME,48,105,48,10
+    LTEXT           "Mot de passe:",IDC_LBL_PASSWORD,48,123,48,10
+    ICON            IDI_KEYMANAGER,IDC_STATIC,15,108,21,20
+    GROUPBOX        "Date de validité",IDC_DATEGRP,6,44,282,38
+    GROUPBOX        "Données d'authentification",IDC_AUTHGRP,6,88,282,53
+    CONTROL         "",IDC_MESSENGER_DATE_BEGIN,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | WS_TABSTOP,105,58,177,15
+    LTEXT           "Début:",IDC_LBL_DATE_BEGIN,48,60,48,10
+END
+
+IDD_WZ_PUBLISHTOMESSENGER_START DIALOGEX 0, 0, 292, 199
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Publication vers Messenger"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    EDITTEXT        IDC_MESSENGER_ADR,64,58,216,12,ES_AUTOHSCROLL
+    CONTROL         "Inclure la définition des groupes",IDC_INCLUDE_GROUPS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,31,129,159,10
+    CONTROL         "Inclure la définition des systèmes",IDC_INCLUDE_SYSTEMS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,31,145,159,10
+    DEFPUSHBUTTON   "Suivant >>",IDNEXT,80,184,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,17,184,50,14
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,270,
+                    182,18,16
+    CONTROL         17341,IDC_BMP_USER,"Static",SS_BITMAP | SS_REALSIZEIMAGE,
+                    13,129,11,10
+    GROUPBOX        "Options de publication",IDC_OPTIONSGRP,6,98,282,78
+    CONTROL         17337,IDC_BMP_LOGICALSYSTEM,"Static",SS_BITMAP | 
+                    SS_REALSIZEIMAGE,13,145,11,10
+    LTEXT           "Adresse:",IDC_LBL_PUB_ADRESS,13,59,43,8
+    CONTROL         17339,IDC_BMP_MODEL,"Static",SS_BITMAP | 
+                    SS_REALSIZEIMAGE,13,113,11,10
+    CONTROL         "Inclure le modèle",IDC_INCLUDE_MODEL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,31,113,159,10
+    CONTROL         "Inclure la définition des prestations",
+                    IDC_INCLUDE_PRESTATIONS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,31,161,159,10
+    CONTROL         17336,IDC_BMP_PRESTATIONS,"Static",SS_BITMAP | 
+                    SS_REALSIZEIMAGE,13,161,11,10
+    EDITTEXT        IDC_MESSENGER_ALIAS,64,75,216,12,ES_AUTOHSCROLL
+    LTEXT           "Alias:",IDC_LBL_PUB_ALIAS,13,76,43,10
+    GROUPBOX        "Publication vers Messenger",IDC_ALIASGRP,6,43,282,51
+END
+
+IDD_INPUTATTRIBUTES DIALOG  0, 0, 355, 279
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Les attributs de saisie du modèle"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,298,258,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,243,258,50,14
+    CONTROL         "List1",IDC_INPUTATTRIBUTE_LIST,"SysListView32",
+                    LVS_REPORT | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,
+                    7,7,341,244
+END
+
+IDD_INPUTATTRIBUTES_DEF DIALOG  0, 0, 243, 198
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Attribut de saisie"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,186,177,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,127,177,50,14
+    LTEXT           "Basé sur attribut dynamique:",IDC_STATIC,7,8,90,9
+    EDITTEXT        IDC_DYNATTRIB,7,21,173,13,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Valeure par défaut:",IDC_STATIC,7,42,90,9
+    EDITTEXT        IDC_INPATTR_DEFVALUE,7,55,229,13,ES_AUTOHSCROLL
+    LTEXT           "Visibilité:",IDC_STATIC,7,77,90,9
+    COMBOBOX        IDC_INPATTR_VISIBILITY,7,89,229,68,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Option de saisie:",IDC_STATIC,7,112,90,9
+    COMBOBOX        IDC_INPATTR_FLAG,7,123,229,68,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Sélectionner",IDC_CHOOSE_DYNATTR,184,21,52,13
+END
+
+IDD_DISTRIBUTIONATTRIBUTES DIALOG  0, 0, 355, 279
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Les attributs de distribution du modèle"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,298,258,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,243,258,50,14
+    CONTROL         "List1",IDC_DISTRIBUTIONATTRIBUTE_LIST,"SysListView32",
+                    LVS_REPORT | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,
+                    7,7,341,244
+END
+
+IDD_DISTRIBUTIONATTRIBUTES_DEF DIALOG  0, 0, 397, 306
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Attribut de distribution"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Sélectionner",IDC_CHOOSE_DYNATTR,338,21,52,13
+    PUSHBUTTON      "Sélectionner",IDC_CHOOSE_USERGROUP,338,55,52,13
+    DEFPUSHBUTTON   "OK",IDOK,340,285,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,288,285,50,14
+    LTEXT           "Basé sur attribut dynamique:",IDC_STATIC,7,8,90,9
+    EDITTEXT        IDC_DYNATTRIB,7,21,173,13,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Basé sur groupe:",IDC_STATIC,7,42,90,9
+    EDITTEXT        IDC_USERGROUPNAME,7,55,173,13,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    CONTROL         "List1",IDC_DISTRIBLIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,13,107,371,172
+    GROUPBOX        "Règles",IDC_STATIC,7,74,383,210
+    PUSHBUTTON      "Ajouter",IDC_ADDRULE_BUTTON,15,93,47,12
+    PUSHBUTTON      "Supprimer",IDC_DELRULE_BUTTON,64,93,47,12
+    PUSHBUTTON      "Modifier",IDC_MODRULE_BUTTON,113,93,47,12
+END
+
+IDD_DISTRIBUTIONRULE_DEF DIALOG  0, 0, 388, 60
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Règle"
+FONT 8, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_OPERATOR_RULE,7,19,51,137,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_VALUE_RULE,73,19,243,12,ES_AUTOHSCROLL
+    COMBOBOX        IDC_LOGICALOPERATOR_RULE,330,19,51,137,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,331,39,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,278,39,50,14
+    LTEXT           "Opérateur:",IDC_STATIC,7,7,38,8
+    LTEXT           "Valeur:",IDC_STATIC,73,7,38,8
+    LTEXT           "et/ou:",IDC_STATIC,330,7,38,8
+END
+
+IDD_ADD_DELIV_DELIVERY DIALOGEX 0, 0, 327, 142
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Ajouter un ou des livrables à la livraison"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Valider",IDOK,270,121,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,217,121,50,14
+    LTEXT           "Livrable(s) disponible(s)",IDC_STATIC,7,7,78,8
+    LTEXT           "Livrable(s) de la livraison",IDC_STATIC,221,7,99,8
+    LISTBOX         IDC_AVAILABLE_DELIV,7,21,145,79,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+    LISTBOX         IDC_SELECTED_DELIV,175,21,144,79,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      ">>",IDC_ADD_DELIV,155,53,18,12
+    PUSHBUTTON      "Supprimer ce livrable de la livraison",IDC_DEL_DELIV,
+                    176,103,144,14
+END
+
+IDD_CHOOSE_MAINDELIV DIALOGEX 0, 0, 291, 150
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Choisir le livrable principal"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Valider",IDOK,234,129,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,181,129,50,14
+    LISTBOX         IDC_LISTOFDELIVERABLE,7,7,277,117,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_EQUALIZE_ACTIVATION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 249
+        VERTGUIDE, 16
+        VERTGUIDE, 67
+        VERTGUIDE, 245
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 259
+        HORZGUIDE, 33
+        HORZGUIDE, 242
+    END
+
+    IDD_EQUALIZE_QUANTITY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 249
+        VERTGUIDE, 16
+        VERTGUIDE, 67
+        VERTGUIDE, 219
+        VERTGUIDE, 229
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 269
+        HORZGUIDE, 33
+    END
+
+    IDD_ADD_DELIV_COMBINATION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 320
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 120
+    END
+
+    IDD_DEL_DELIV_COMBINATION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 322
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 191
+    END
+
+    IDD_CHOOSE_MASTERDELIV, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 284
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 143
+    END
+
+    IDD_WZ_PUBLISHTOMESSENGER_AUTH, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 288
+        VERTGUIDE, 48
+        VERTGUIDE, 105
+        BOTTOMMARGIN, 198
+    END
+
+    IDD_WZ_PUBLISHTOMESSENGER_START, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 288
+        VERTGUIDE, 13
+        VERTGUIDE, 31
+        BOTTOMMARGIN, 198
+    END
+
+    IDD_INPUTATTRIBUTES, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 348
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 272
+    END
+
+    IDD_INPUTATTRIBUTES_DEF, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 236
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 191
+    END
+
+    IDD_DISTRIBUTIONATTRIBUTES, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 348
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 272
+    END
+
+    IDD_DISTRIBUTIONATTRIBUTES_DEF, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 390
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 299
+    END
+
+    IDD_DISTRIBUTIONRULE_DEF, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 381
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 53
+    END
+
+    IDD_ADD_DELIV_DELIVERY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 320
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 135
+    END
+
+    IDD_CHOOSE_MAINDELIV, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 284
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 143
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_SYMBOL_REF_RIGHTMENU_BP MENU 
+BEGIN
+    POPUP "Multiples"
+    BEGIN
+        MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM SEPARATOR
+        POPUP "&Ordre"
+        BEGIN
+            MENUITEM "Placer tout de&vant",         ID_OD_FRONT
+            MENUITEM "&Placer tout de&rrière",      ID_OD_BACK
+            MENUITEM "Remonter devant",             ID_OD_FORWARD
+            MENUITEM "Redescendre derrière",        ID_OD_BACKWARD
+        END
+        POPUP "&Groupage"
+        BEGIN
+            MENUITEM "&Grouper",                    ID_OD_GROUP
+            MENUITEM "&Dégrouper",                  ID_OD_UNGROUP
+        END
+        POPUP "&Rotation"
+        BEGIN
+            MENUITEM "&Rotation libre",             ID_OD_FREE_ROTATE
+            MENUITEM "Rotation &Gauche",            ID_OD_ROTATE_LEFT
+            MENUITEM "Rotation &Droite",            ID_OD_ROTATE_RIGHT
+            MENUITEM "Inverser &Horizontalement",   ID_OD_FLIP_HORIZONTAL
+            MENUITEM "Inverser &Verticalement",     ID_OD_FLIP_VERTICAL
+        END
+        POPUP "Déplacement"
+        BEGIN
+            MENUITEM "Déplacer &Haut",              ID_OD_NUDGE_UP
+            MENUITEM "Déplacer &Bas",               ID_OD_NUDGE_DOWN
+            MENUITEM "Déplacer &Gauche",            ID_OD_NUDGE_LEFT
+            MENUITEM "Déplacer &Droite",            ID_OD_NUDGE_RIGHT
+        END
+        POPUP "Alignement"
+        BEGIN
+            MENUITEM "Aligner &Haut",               ID_OD_ALIGN_TOP
+            MENUITEM "Aligner &Milieu",             ID_OD_ALIGN_MIDDLE
+            MENUITEM "Aligner &Bas",                ID_OD_ALIGN_BOTTOM
+            MENUITEM "Aligner &Gauche",             ID_OD_ALIGN_LEFT
+            MENUITEM "Aligner &Centre",             ID_OD_ALIGN_CENTER
+            MENUITEM "Aligner &Droite",             ID_OD_ALIGN_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
+    END
+    POPUP "Process"
+    BEGIN
+        MENUITEM "Aller au symbole source",     ID_BROWSE_SOURCESYMBOL
+        MENUITEM SEPARATOR
+        MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM SEPARATOR
+        POPUP "&Ordre"
+        BEGIN
+            MENUITEM "Placer tout de&vant",         ID_OD_FRONT
+            MENUITEM "&Placer tout de&rrière",      ID_OD_BACK
+            MENUITEM "Remonter devant",             ID_OD_FORWARD
+            MENUITEM "Redescendre derrière",        ID_OD_BACKWARD
+        END
+        POPUP "&Rotation"
+        BEGIN
+            MENUITEM "&Rotation libre",             ID_OD_FREE_ROTATE
+            MENUITEM "Rotation &Gauche",            ID_OD_ROTATE_LEFT
+            MENUITEM "Rotation &Droite",            ID_OD_ROTATE_RIGHT
+            MENUITEM "Inverser &Horizontalement",   ID_OD_FLIP_HORIZONTAL
+            MENUITEM "Inverser &Verticalement",     ID_OD_FLIP_VERTICAL
+        END
+        POPUP "Déplacement"
+        BEGIN
+            MENUITEM "Déplacer &Haut",              ID_OD_NUDGE_UP
+            MENUITEM "Déplacer &Bas",               ID_OD_NUDGE_DOWN
+            MENUITEM "Déplacer &Gauche",            ID_OD_NUDGE_LEFT
+            MENUITEM "Déplacer &Droite",            ID_OD_NUDGE_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Montrer la zone du Nom",      ID_SYM_SHOWNAMEAREA
+        MENUITEM "Montrer la zone de Description", 
+                                                ID_SYM_SHOWDESCRIPTIONAREA
+        MENUITEM "Montrer la zone des Attributs", ID_SYM_SHOWATTRIBUTEAREA
+        MENUITEM "Sélectionner les attributs à afficher", 
+                                                ID_SYM_SELECTATTRIBUTES
+        MENUITEM "Label des attributs",         ID_SYM_SHOWLABELATTRIBUTES
+        MENUITEM SEPARATOR
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
+    END
+    POPUP "Procedure"
+    BEGIN
+        MENUITEM "Aller au symbole source",     ID_BROWSE_SOURCESYMBOL
+        MENUITEM SEPARATOR
+        MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM SEPARATOR
+        POPUP "&Ordre"
+        BEGIN
+            MENUITEM "Placer tout de&vant",         ID_OD_FRONT
+            MENUITEM "&Placer tout de&rrière",      ID_OD_BACK
+            MENUITEM "Remonter devant",             ID_OD_FORWARD
+            MENUITEM "Redescendre derrière",        ID_OD_BACKWARD
+        END
+        POPUP "&Rotation"
+        BEGIN
+            MENUITEM "&Rotation libre",             ID_OD_FREE_ROTATE
+            MENUITEM "Rotation &Gauche",            ID_OD_ROTATE_LEFT
+            MENUITEM "Rotation &Droite",            ID_OD_ROTATE_RIGHT
+            MENUITEM "Inverser &Horizontalement",   ID_OD_FLIP_HORIZONTAL
+            MENUITEM "Inverser &Verticalement",     ID_OD_FLIP_VERTICAL
+        END
+        POPUP "Déplacement"
+        BEGIN
+            MENUITEM "Déplacer &Haut",              ID_OD_NUDGE_UP
+            MENUITEM "Déplacer &Bas",               ID_OD_NUDGE_DOWN
+            MENUITEM "Déplacer &Gauche",            ID_OD_NUDGE_LEFT
+            MENUITEM "Déplacer &Droite",            ID_OD_NUDGE_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Montrer la zone du Nom",      ID_SYM_SHOWNAMEAREA
+        MENUITEM "Montrer la zone de Description", 
+                                                ID_SYM_SHOWDESCRIPTIONAREA
+        MENUITEM "Montrer la zone des Attributs", ID_SYM_SHOWATTRIBUTEAREA
+        MENUITEM "Sélectionner les attributs à afficher", 
+                                                ID_SYM_SELECTATTRIBUTES
+        MENUITEM "Label des attributs",         ID_SYM_SHOWLABELATTRIBUTES
+        MENUITEM SEPARATOR
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
+    END
+    POPUP "Deliverable"
+    BEGIN
+        MENUITEM "Aller au symbole source",     ID_BROWSE_SOURCESYMBOL
+        MENUITEM SEPARATOR
+        MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM SEPARATOR
+        POPUP "&Ordre"
+        BEGIN
+            MENUITEM "Placer tout de&vant",         ID_OD_FRONT
+            MENUITEM "&Placer tout de&rrière",      ID_OD_BACK
+            MENUITEM "Remonter devant",             ID_OD_FORWARD
+            MENUITEM "Redescendre derrière",        ID_OD_BACKWARD
+        END
+        POPUP "&Rotation"
+        BEGIN
+            MENUITEM "&Rotation libre",             ID_OD_FREE_ROTATE
+            MENUITEM "Rotation &Gauche",            ID_OD_ROTATE_LEFT
+            MENUITEM "Rotation &Droite",            ID_OD_ROTATE_RIGHT
+            MENUITEM "Inverser &Horizontalement",   ID_OD_FLIP_HORIZONTAL
+            MENUITEM "Inverser &Verticalement",     ID_OD_FLIP_VERTICAL
+        END
+        POPUP "Déplacement"
+        BEGIN
+            MENUITEM "Déplacer &Haut",              ID_OD_NUDGE_UP
+            MENUITEM "Déplacer &Bas",               ID_OD_NUDGE_DOWN
+            MENUITEM "Déplacer &Gauche",            ID_OD_NUDGE_LEFT
+            MENUITEM "Déplacer &Droite",            ID_OD_NUDGE_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Montrer la zone du Nom",      ID_SYM_SHOWNAMEAREA
+        MENUITEM "Montrer la zone de Description", 
+                                                ID_SYM_SHOWDESCRIPTIONAREA
+        MENUITEM "Montrer la zone des Attributs", ID_SYM_SHOWATTRIBUTEAREA
+        MENUITEM "Sélectionner les attributs à afficher", 
+                                                ID_SYM_SELECTATTRIBUTES
+        MENUITEM "Label des attributs",         ID_SYM_SHOWLABELATTRIBUTES
+        MENUITEM SEPARATOR
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
+    END
+    POPUP "Start"
+    BEGIN
+        MENUITEM "Aller au symbole source",     ID_BROWSE_SOURCESYMBOL
+        MENUITEM SEPARATOR
+        MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM SEPARATOR
+        POPUP "&Ordre"
+        BEGIN
+            MENUITEM "Placer tout de&vant",         ID_OD_FRONT
+            MENUITEM "&Placer tout de&rrière",      ID_OD_BACK
+            MENUITEM "Remonter devant",             ID_OD_FORWARD
+            MENUITEM "Redescendre derrière",        ID_OD_BACKWARD
+        END
+        POPUP "&Rotation"
+        BEGIN
+            MENUITEM "&Rotation libre",             ID_OD_FREE_ROTATE
+            MENUITEM "Rotation &Gauche",            ID_OD_ROTATE_LEFT
+            MENUITEM "Rotation &Droite",            ID_OD_ROTATE_RIGHT
+            MENUITEM "Inverser &Horizontalement",   ID_OD_FLIP_HORIZONTAL
+            MENUITEM "Inverser &Verticalement",     ID_OD_FLIP_VERTICAL
+        END
+        POPUP "Déplacement"
+        BEGIN
+            MENUITEM "Déplacer &Haut",              ID_OD_NUDGE_UP
+            MENUITEM "Déplacer &Bas",               ID_OD_NUDGE_DOWN
+            MENUITEM "Déplacer &Gauche",            ID_OD_NUDGE_LEFT
+            MENUITEM "Déplacer &Droite",            ID_OD_NUDGE_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Montrer la zone du Nom",      ID_SYM_SHOWNAMEAREA
+        MENUITEM "Montrer la zone de Description", 
+                                                ID_SYM_SHOWDESCRIPTIONAREA
+        MENUITEM "Montrer la zone des Attributs", ID_SYM_SHOWATTRIBUTEAREA
+        MENUITEM "Sélectionner les attributs à afficher", 
+                                                ID_SYM_SELECTATTRIBUTES
+        MENUITEM "Label des attributs",         ID_SYM_SHOWLABELATTRIBUTES
+        MENUITEM SEPARATOR
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
+    END
+    POPUP "Stop"
+    BEGIN
+        MENUITEM "Aller au symbole source",     ID_BROWSE_SOURCESYMBOL
+        MENUITEM SEPARATOR
+        MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM SEPARATOR
+        POPUP "&Ordre"
+        BEGIN
+            MENUITEM "Placer tout de&vant",         ID_OD_FRONT
+            MENUITEM "&Placer tout de&rrière",      ID_OD_BACK
+            MENUITEM "Remonter devant",             ID_OD_FORWARD
+            MENUITEM "Redescendre derrière",        ID_OD_BACKWARD
+        END
+        POPUP "&Rotation"
+        BEGIN
+            MENUITEM "&Rotation libre",             ID_OD_FREE_ROTATE
+            MENUITEM "Rotation &Gauche",            ID_OD_ROTATE_LEFT
+            MENUITEM "Rotation &Droite",            ID_OD_ROTATE_RIGHT
+            MENUITEM "Inverser &Horizontalement",   ID_OD_FLIP_HORIZONTAL
+            MENUITEM "Inverser &Verticalement",     ID_OD_FLIP_VERTICAL
+        END
+        POPUP "Déplacement"
+        BEGIN
+            MENUITEM "Déplacer &Haut",              ID_OD_NUDGE_UP
+            MENUITEM "Déplacer &Bas",               ID_OD_NUDGE_DOWN
+            MENUITEM "Déplacer &Gauche",            ID_OD_NUDGE_LEFT
+            MENUITEM "Déplacer &Droite",            ID_OD_NUDGE_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Montrer la zone du Nom",      ID_SYM_SHOWNAMEAREA
+        MENUITEM "Montrer la zone de Description", 
+                                                ID_SYM_SHOWDESCRIPTIONAREA
+        MENUITEM "Montrer la zone des Attributs", ID_SYM_SHOWATTRIBUTEAREA
+        MENUITEM "Sélectionner les attributs à afficher", 
+                                                ID_SYM_SELECTATTRIBUTES
+        MENUITEM "Label des attributs",         ID_SYM_SHOWLABELATTRIBUTES
+        MENUITEM SEPARATOR
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
+    END
+    POPUP "Door"
+    BEGIN
+        MENUITEM "Aller au symbole source",     ID_BROWSE_SOURCESYMBOL
+        MENUITEM SEPARATOR
+        MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM SEPARATOR
+        POPUP "&Ordre"
+        BEGIN
+            MENUITEM "Placer tout de&vant",         ID_OD_FRONT
+            MENUITEM "&Placer tout de&rrière",      ID_OD_BACK
+            MENUITEM "Remonter devant",             ID_OD_FORWARD
+            MENUITEM "Redescendre derrière",        ID_OD_BACKWARD
+        END
+        POPUP "&Rotation"
+        BEGIN
+            MENUITEM "&Rotation libre",             ID_OD_FREE_ROTATE
+            MENUITEM "Rotation &Gauche",            ID_OD_ROTATE_LEFT
+            MENUITEM "Rotation &Droite",            ID_OD_ROTATE_RIGHT
+            MENUITEM "Inverser &Horizontalement",   ID_OD_FLIP_HORIZONTAL
+            MENUITEM "Inverser &Verticalement",     ID_OD_FLIP_VERTICAL
+        END
+        POPUP "Déplacement"
+        BEGIN
+            MENUITEM "Déplacer &Haut",              ID_OD_NUDGE_UP
+            MENUITEM "Déplacer &Bas",               ID_OD_NUDGE_DOWN
+            MENUITEM "Déplacer &Gauche",            ID_OD_NUDGE_LEFT
+            MENUITEM "Déplacer &Droite",            ID_OD_NUDGE_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
+    END
+    POPUP "Page"
+    BEGIN
+        MENUITEM "Aller au symbole source",     ID_BROWSE_SOURCESYMBOL
+        MENUITEM SEPARATOR
+        MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM SEPARATOR
+        POPUP "&Ordre"
+        BEGIN
+            MENUITEM "Placer tout de&vant",         ID_OD_FRONT
+            MENUITEM "&Placer tout de&rrière",      ID_OD_BACK
+            MENUITEM "Remonter devant",             ID_OD_FORWARD
+            MENUITEM "Redescendre derrière",        ID_OD_BACKWARD
+        END
+        POPUP "&Rotation"
+        BEGIN
+            MENUITEM "&Rotation libre",             ID_OD_FREE_ROTATE
+            MENUITEM "Rotation &Gauche",            ID_OD_ROTATE_LEFT
+            MENUITEM "Rotation &Droite",            ID_OD_ROTATE_RIGHT
+            MENUITEM "Inverser &Horizontalement",   ID_OD_FLIP_HORIZONTAL
+            MENUITEM "Inverser &Verticalement",     ID_OD_FLIP_VERTICAL
+        END
+        POPUP "Déplacement"
+        BEGIN
+            MENUITEM "Déplacer &Haut",              ID_OD_NUDGE_UP
+            MENUITEM "Déplacer &Bas",               ID_OD_NUDGE_DOWN
+            MENUITEM "Déplacer &Gauche",            ID_OD_NUDGE_LEFT
+            MENUITEM "Déplacer &Droite",            ID_OD_NUDGE_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
+    END
+    POPUP "Comment"
+    BEGIN
+        MENUITEM "Aller au symbole source",     ID_BROWSE_SOURCESYMBOL
+        MENUITEM SEPARATOR
+        MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM SEPARATOR
+        POPUP "&Ordre"
+        BEGIN
+            MENUITEM "Placer tout de&vant",         ID_OD_FRONT
+            MENUITEM "&Placer tout de&rrière",      ID_OD_BACK
+            MENUITEM "Remonter devant",             ID_OD_FORWARD
+            MENUITEM "Redescendre derrière",        ID_OD_BACKWARD
+        END
+        POPUP "&Rotation"
+        BEGIN
+            MENUITEM "&Rotation libre",             ID_OD_FREE_ROTATE
+            MENUITEM "Rotation &Gauche",            ID_OD_ROTATE_LEFT
+            MENUITEM "Rotation &Droite",            ID_OD_ROTATE_RIGHT
+            MENUITEM "Inverser &Horizontalement",   ID_OD_FLIP_HORIZONTAL
+            MENUITEM "Inverser &Verticalement",     ID_OD_FLIP_VERTICAL
+        END
+        POPUP "Déplacement"
+        BEGIN
+            MENUITEM "Déplacer &Haut",              ID_OD_NUDGE_UP
+            MENUITEM "Déplacer &Bas",               ID_OD_NUDGE_DOWN
+            MENUITEM "Déplacer &Gauche",            ID_OD_NUDGE_LEFT
+            MENUITEM "Déplacer &Droite",            ID_OD_NUDGE_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Propriété&s...\tCtrl+Enter",  ID_OD_PROPERTIES
+    END
+    POPUP "Package"
+    BEGIN
+        MENUITEM "Aller au symbole source",     ID_BROWSE_SOURCESYMBOL
+        MENUITEM SEPARATOR
+        MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM SEPARATOR
+        POPUP "&Ordre"
+        BEGIN
+            MENUITEM "Placer tout de&vant",         ID_OD_FRONT
+            MENUITEM "&Placer tout de&rrière",      ID_OD_BACK
+            MENUITEM "Remonter devant",             ID_OD_FORWARD
+            MENUITEM "Redescendre derrière",        ID_OD_BACKWARD
+        END
+        POPUP "&Rotation"
+        BEGIN
+            MENUITEM "&Rotation libre",             ID_OD_FREE_ROTATE
+            MENUITEM "Rotation &Gauche",            ID_OD_ROTATE_LEFT
+            MENUITEM "Rotation &Droite",            ID_OD_ROTATE_RIGHT
+            MENUITEM "Inverser &Horizontalement",   ID_OD_FLIP_HORIZONTAL
+            MENUITEM "Inverser &Verticalement",     ID_OD_FLIP_VERTICAL
+        END
+        POPUP "Déplacement"
+        BEGIN
+            MENUITEM "Déplacer &Haut",              ID_OD_NUDGE_UP
+            MENUITEM "Déplacer &Bas",               ID_OD_NUDGE_DOWN
+            MENUITEM "Déplacer &Gauche",            ID_OD_NUDGE_LEFT
+            MENUITEM "Déplacer &Droite",            ID_OD_NUDGE_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Propriété&s...\tCtrl+Enter",  ID_OD_PROPERTIES
+    END
+END
+
+IDR_SYMBOL_RIGHTMENU_BP MENU 
+BEGIN
+    POPUP "Multiple"
+    BEGIN
+        MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "Dupliquer\tCtrl+D",           ID_EDIT_DUPLICATE
+        MENUITEM SEPARATOR
+        POPUP "&Ordre"
+        BEGIN
+            MENUITEM "Placer tout de&vant",         ID_OD_FRONT
+            MENUITEM "&Placer tout de&rrière",      ID_OD_BACK
+            MENUITEM "Remonter devant",             ID_OD_FORWARD
+            MENUITEM "Redescendre derrière",        ID_OD_BACKWARD
+        END
+        POPUP "&Groupage"
+        BEGIN
+            MENUITEM "&Grouper",                    ID_OD_GROUP
+            MENUITEM "&Dégrouper",                  ID_OD_UNGROUP
+        END
+        POPUP "&Rotation"
+        BEGIN
+            MENUITEM "&Rotation libre",             ID_OD_FREE_ROTATE
+            MENUITEM "Rotation &Gauche",            ID_OD_ROTATE_LEFT
+            MENUITEM "Rotation &Droite",            ID_OD_ROTATE_RIGHT
+            MENUITEM "Inverser &Horizontalement",   ID_OD_FLIP_HORIZONTAL
+            MENUITEM "Inverser &Verticalement",     ID_OD_FLIP_VERTICAL
+        END
+        POPUP "Déplacement"
+        BEGIN
+            MENUITEM "Déplacer &Haut",              ID_OD_NUDGE_UP
+            MENUITEM "Déplacer &Bas",               ID_OD_NUDGE_DOWN
+            MENUITEM "Déplacer &Gauche",            ID_OD_NUDGE_LEFT
+            MENUITEM "Déplacer &Droite",            ID_OD_NUDGE_RIGHT
+        END
+        POPUP "Alignement"
+        BEGIN
+            MENUITEM "Aligner &Haut",               ID_OD_ALIGN_TOP
+            MENUITEM "Aligner &Milieu",             ID_OD_ALIGN_MIDDLE
+            MENUITEM "Aligner &Bas",                ID_OD_ALIGN_BOTTOM
+            MENUITEM "Aligner &Gauche",             ID_OD_ALIGN_LEFT
+            MENUITEM "Aligner &Centre",             ID_OD_ALIGN_CENTER
+            MENUITEM "Aligner &Droite",             ID_OD_ALIGN_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
+    END
+    POPUP "Process"
+    BEGIN
+        MENUITEM "Editer le nom\tF2",           ID_EDIT_NAME
+        MENUITEM "Editer la description\tF3",   ID_EDIT_COMMENT
+        MENUITEM SEPARATOR
+        MENUITEM "Ouvrir le contenu\tDouble-Click", ID_GOIN_SYMBOL
+        MENUITEM SEPARATOR
+        MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "Dupliquer\tCtrl+D",           ID_EDIT_DUPLICATE
+        MENUITEM SEPARATOR
+        POPUP "&Ordre"
+        BEGIN
+            MENUITEM "Placer tout de&vant",         ID_OD_FRONT
+            MENUITEM "&Placer tout de&rrière",      ID_OD_BACK
+            MENUITEM "Remonter devant",             ID_OD_FORWARD
+            MENUITEM "Redescendre derrière",        ID_OD_BACKWARD
+        END
+        POPUP "&Rotation"
+        BEGIN
+            MENUITEM "&Rotation libre",             ID_OD_FREE_ROTATE
+            MENUITEM "Rotation &Gauche",            ID_OD_ROTATE_LEFT
+            MENUITEM "Rotation &Droite",            ID_OD_ROTATE_RIGHT
+            MENUITEM "Inverser &Horizontalement",   ID_OD_FLIP_HORIZONTAL
+            MENUITEM "Inverser &Verticalement",     ID_OD_FLIP_VERTICAL
+        END
+        POPUP "Déplacement"
+        BEGIN
+            MENUITEM "Déplacer &Haut",              ID_OD_NUDGE_UP
+            MENUITEM "Déplacer &Bas",               ID_OD_NUDGE_DOWN
+            MENUITEM "Déplacer &Gauche",            ID_OD_NUDGE_LEFT
+            MENUITEM "Déplacer &Droite",            ID_OD_NUDGE_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Montrer la zone du Nom",      ID_SYM_SHOWNAMEAREA
+        MENUITEM "Montrer la zone de Description", 
+                                                ID_SYM_SHOWDESCRIPTIONAREA
+        MENUITEM "Montrer la zone des Attributs", ID_SYM_SHOWATTRIBUTEAREA
+        MENUITEM "Sélectionner les attributs à afficher", 
+                                                ID_SYM_SELECTATTRIBUTES
+        MENUITEM "Label des attributs",         ID_SYM_SHOWLABELATTRIBUTES
+        MENUITEM SEPARATOR
+        MENUITEM "Insérer Attribut Dynamique...", ID_DYNATTR_ADD
+        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", 
+                                                ID_DYNATTR_DUPLICATE
+        MENUITEM SEPARATOR
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
+    END
+    POPUP "Procedure"
+    BEGIN
+        MENUITEM "Editer le nom\tF2",           ID_EDIT_NAME
+        MENUITEM "Editer la description\tF3",   ID_EDIT_COMMENT
+        MENUITEM SEPARATOR
+        MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "Dupliquer\tCtrl+D",           ID_EDIT_DUPLICATE
+        MENUITEM SEPARATOR
+        MENUITEM "Ajouter une application",     ID_ADD_NEWEXTAPP
+        MENUITEM "Ajouter un lien externe",     ID_ADD_NEWEXTFILE
+        MENUITEM SEPARATOR
+        POPUP "&Ordre"
+        BEGIN
+            MENUITEM "Placer tout de&vant",         ID_OD_FRONT
+            MENUITEM "&Placer tout de&rrière",      ID_OD_BACK
+            MENUITEM "Remonter devant",             ID_OD_FORWARD
+            MENUITEM "Redescendre derrière",        ID_OD_BACKWARD
+        END
+        POPUP "&Rotation"
+        BEGIN
+            MENUITEM "&Rotation libre",             ID_OD_FREE_ROTATE
+            MENUITEM "Rotation &Gauche",            ID_OD_ROTATE_LEFT
+            MENUITEM "Rotation &Droite",            ID_OD_ROTATE_RIGHT
+            MENUITEM "Inverser &Horizontalement",   ID_OD_FLIP_HORIZONTAL
+            MENUITEM "Inverser &Verticalement",     ID_OD_FLIP_VERTICAL
+        END
+        POPUP "Déplacement"
+        BEGIN
+            MENUITEM "Déplacer &Haut",              ID_OD_NUDGE_UP
+            MENUITEM "Déplacer &Bas",               ID_OD_NUDGE_DOWN
+            MENUITEM "Déplacer &Gauche",            ID_OD_NUDGE_LEFT
+            MENUITEM "Déplacer &Droite",            ID_OD_NUDGE_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Montrer la zone du Nom",      ID_SYM_SHOWNAMEAREA
+        MENUITEM "Montrer la zone de Description", 
+                                                ID_SYM_SHOWDESCRIPTIONAREA
+        MENUITEM "Montrer la zone des Attributs", ID_SYM_SHOWATTRIBUTEAREA
+        MENUITEM "Sélectionner les attributs à afficher", 
+                                                ID_SYM_SELECTATTRIBUTES
+        MENUITEM "Label des attributs",         ID_SYM_SHOWLABELATTRIBUTES
+        MENUITEM SEPARATOR
+        MENUITEM "Insérer Attribut Dynamique...", ID_DYNATTR_ADD
+        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", 
+                                                ID_DYNATTR_DUPLICATE
+        MENUITEM SEPARATOR
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
+    END
+    POPUP "Deliverable"
+    BEGIN
+        MENUITEM "Editer le nom\tF2",           ID_EDIT_NAME
+        MENUITEM "Editer la description\tF3",   ID_EDIT_COMMENT
+        MENUITEM SEPARATOR
+        MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "Dupliquer\tCtrl+D",           ID_EDIT_DUPLICATE
+        MENUITEM SEPARATOR
+        MENUITEM "Ajouter un lien externe",     ID_ADD_NEWEXTFILE
+        MENUITEM SEPARATOR
+        POPUP "&Ordre"
+        BEGIN
+            MENUITEM "Placer tout de&vant",         ID_OD_FRONT
+            MENUITEM "&Placer tout de&rrière",      ID_OD_BACK
+            MENUITEM "Remonter devant",             ID_OD_FORWARD
+            MENUITEM "Redescendre derrière",        ID_OD_BACKWARD
+        END
+        POPUP "&Rotation"
+        BEGIN
+            MENUITEM "&Rotation libre",             ID_OD_FREE_ROTATE
+            MENUITEM "Rotation &Gauche",            ID_OD_ROTATE_LEFT
+            MENUITEM "Rotation &Droite",            ID_OD_ROTATE_RIGHT
+            MENUITEM "Inverser &Horizontalement",   ID_OD_FLIP_HORIZONTAL
+            MENUITEM "Inverser &Verticalement",     ID_OD_FLIP_VERTICAL
+        END
+        POPUP "Déplacement"
+        BEGIN
+            MENUITEM "Déplacer &Haut",              ID_OD_NUDGE_UP
+            MENUITEM "Déplacer &Bas",               ID_OD_NUDGE_DOWN
+            MENUITEM "Déplacer &Gauche",            ID_OD_NUDGE_LEFT
+            MENUITEM "Déplacer &Droite",            ID_OD_NUDGE_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Montrer la zone du Nom",      ID_SYM_SHOWNAMEAREA
+        MENUITEM "Montrer la zone de Description", 
+                                                ID_SYM_SHOWDESCRIPTIONAREA
+        MENUITEM "Montrer la zone des Attributs", ID_SYM_SHOWATTRIBUTEAREA
+        MENUITEM "Sélectionner les attributs à afficher", 
+                                                ID_SYM_SELECTATTRIBUTES
+        MENUITEM "Label des attributs",         ID_SYM_SHOWLABELATTRIBUTES
+        MENUITEM SEPARATOR
+        MENUITEM "Insérer Attribut Dynamique...", ID_DYNATTR_ADD
+        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", 
+                                                ID_DYNATTR_DUPLICATE
+        MENUITEM SEPARATOR
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
+    END
+    POPUP "Start"
+    BEGIN
+        MENUITEM "Editer le nom\tF2",           ID_EDIT_NAME
+        MENUITEM "Editer la description\tF3",   ID_EDIT_COMMENT
+        MENUITEM SEPARATOR
+        MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "Dupliquer\tCtrl+D",           ID_EDIT_DUPLICATE
+        MENUITEM SEPARATOR
+        POPUP "&Ordre"
+        BEGIN
+            MENUITEM "Placer tout de&vant",         ID_OD_FRONT
+            MENUITEM "&Placer tout de&rrière",      ID_OD_BACK
+            MENUITEM "Remonter devant",             ID_OD_FORWARD
+            MENUITEM "Redescendre derrière",        ID_OD_BACKWARD
+        END
+        POPUP "&Rotation"
+        BEGIN
+            MENUITEM "&Rotation libre",             ID_OD_FREE_ROTATE
+            MENUITEM "Rotation &Gauche",            ID_OD_ROTATE_LEFT
+            MENUITEM "Rotation &Droite",            ID_OD_ROTATE_RIGHT
+            MENUITEM "Inverser &Horizontalement",   ID_OD_FLIP_HORIZONTAL
+            MENUITEM "Inverser &Verticalement",     ID_OD_FLIP_VERTICAL
+        END
+        POPUP "Déplacement"
+        BEGIN
+            MENUITEM "Déplacer &Haut",              ID_OD_NUDGE_UP
+            MENUITEM "Déplacer &Bas",               ID_OD_NUDGE_DOWN
+            MENUITEM "Déplacer &Gauche",            ID_OD_NUDGE_LEFT
+            MENUITEM "Déplacer &Droite",            ID_OD_NUDGE_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Montrer la zone du Nom",      ID_SYM_SHOWNAMEAREA
+        MENUITEM "Montrer la zone de Description", 
+                                                ID_SYM_SHOWDESCRIPTIONAREA
+        MENUITEM "Montrer la zone des Attributs", ID_SYM_SHOWATTRIBUTEAREA
+        MENUITEM "Sélectionner les attributs à afficher", 
+                                                ID_SYM_SELECTATTRIBUTES
+        MENUITEM "Label des attributs",         ID_SYM_SHOWLABELATTRIBUTES
+        MENUITEM SEPARATOR
+        MENUITEM "Insérer Attribut Dynamique...", ID_DYNATTR_ADD
+        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", 
+                                                ID_DYNATTR_DUPLICATE
+        MENUITEM SEPARATOR
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
+    END
+    POPUP "Stop"
+    BEGIN
+        MENUITEM "Editer le nom\tF2",           ID_EDIT_NAME
+        MENUITEM "Editer la description\tF3",   ID_EDIT_COMMENT
+        MENUITEM SEPARATOR
+        MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "Dupliquer\tCtrl+D",           ID_EDIT_DUPLICATE
+        MENUITEM SEPARATOR
+        POPUP "&Ordre"
+        BEGIN
+            MENUITEM "Placer tout de&vant",         ID_OD_FRONT
+            MENUITEM "&Placer tout de&rrière",      ID_OD_BACK
+            MENUITEM "Remonter devant",             ID_OD_FORWARD
+            MENUITEM "Redescendre derrière",        ID_OD_BACKWARD
+        END
+        POPUP "&Rotation"
+        BEGIN
+            MENUITEM "&Rotation libre",             ID_OD_FREE_ROTATE
+            MENUITEM "Rotation &Gauche",            ID_OD_ROTATE_LEFT
+            MENUITEM "Rotation &Droite",            ID_OD_ROTATE_RIGHT
+            MENUITEM "Inverser &Horizontalement",   ID_OD_FLIP_HORIZONTAL
+            MENUITEM "Inverser &Verticalement",     ID_OD_FLIP_VERTICAL
+        END
+        POPUP "Déplacement"
+        BEGIN
+            MENUITEM "Déplacer &Haut",              ID_OD_NUDGE_UP
+            MENUITEM "Déplacer &Bas",               ID_OD_NUDGE_DOWN
+            MENUITEM "Déplacer &Gauche",            ID_OD_NUDGE_LEFT
+            MENUITEM "Déplacer &Droite",            ID_OD_NUDGE_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Montrer la zone du Nom",      ID_SYM_SHOWNAMEAREA
+        MENUITEM "Montrer la zone de Description", 
+                                                ID_SYM_SHOWDESCRIPTIONAREA
+        MENUITEM "Montrer la zone des Attributs", ID_SYM_SHOWATTRIBUTEAREA
+        MENUITEM "Sélectionner les attributs à afficher", 
+                                                ID_SYM_SELECTATTRIBUTES
+        MENUITEM "Label des attributs",         ID_SYM_SHOWLABELATTRIBUTES
+        MENUITEM SEPARATOR
+        MENUITEM "Insérer Attribut Dynamique...", ID_DYNATTR_ADD
+        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", 
+                                                ID_DYNATTR_DUPLICATE
+        MENUITEM SEPARATOR
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
+    END
+    POPUP "Door"
+    BEGIN
+        MENUITEM "Editer le nom\tF2",           ID_EDIT_NAME
+        MENUITEM "Editer la description\tF3",   ID_EDIT_COMMENT
+        MENUITEM SEPARATOR
+        MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "Dupliquer\tCtrl+D",           ID_EDIT_DUPLICATE
+        MENUITEM SEPARATOR
+        POPUP "&Ordre"
+        BEGIN
+            MENUITEM "Placer tout de&vant",         ID_OD_FRONT
+            MENUITEM "&Placer tout de&rrière",      ID_OD_BACK
+            MENUITEM "Remonter devant",             ID_OD_FORWARD
+            MENUITEM "Redescendre derrière",        ID_OD_BACKWARD
+        END
+        POPUP "&Rotation"
+        BEGIN
+            MENUITEM "&Rotation libre",             ID_OD_FREE_ROTATE
+            MENUITEM "Rotation &Gauche",            ID_OD_ROTATE_LEFT
+            MENUITEM "Rotation &Droite",            ID_OD_ROTATE_RIGHT
+            MENUITEM "Inverser &Horizontalement",   ID_OD_FLIP_HORIZONTAL
+            MENUITEM "Inverser &Verticalement",     ID_OD_FLIP_VERTICAL
+        END
+        POPUP "Déplacement"
+        BEGIN
+            MENUITEM "Déplacer &Haut",              ID_OD_NUDGE_UP
+            MENUITEM "Déplacer &Bas",               ID_OD_NUDGE_DOWN
+            MENUITEM "Déplacer &Gauche",            ID_OD_NUDGE_LEFT
+            MENUITEM "Déplacer &Droite",            ID_OD_NUDGE_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Insérer Attribut Dynamique...", ID_DYNATTR_ADD
+        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", 
+                                                ID_DYNATTR_DUPLICATE
+        MENUITEM SEPARATOR
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
+    END
+    POPUP "Page"
+    BEGIN
+        MENUITEM "Editer le nom\tF2",           ID_EDIT_NAME
+        MENUITEM "Editer la description\tF3",   ID_EDIT_COMMENT
+        MENUITEM SEPARATOR
+        MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "Dupliquer\tCtrl+D",           ID_EDIT_DUPLICATE
+        MENUITEM SEPARATOR
+        POPUP "&Ordre"
+        BEGIN
+            MENUITEM "Placer tout de&vant",         ID_OD_FRONT
+            MENUITEM "&Placer tout de&rrière",      ID_OD_BACK
+            MENUITEM "Remonter devant",             ID_OD_FORWARD
+            MENUITEM "Redescendre derrière",        ID_OD_BACKWARD
+        END
+        POPUP "&Rotation"
+        BEGIN
+            MENUITEM "&Rotation libre",             ID_OD_FREE_ROTATE
+            MENUITEM "Rotation &Gauche",            ID_OD_ROTATE_LEFT
+            MENUITEM "Rotation &Droite",            ID_OD_ROTATE_RIGHT
+            MENUITEM "Inverser &Horizontalement",   ID_OD_FLIP_HORIZONTAL
+            MENUITEM "Inverser &Verticalement",     ID_OD_FLIP_VERTICAL
+        END
+        POPUP "Déplacement"
+        BEGIN
+            MENUITEM "Déplacer &Haut",              ID_OD_NUDGE_UP
+            MENUITEM "Déplacer &Bas",               ID_OD_NUDGE_DOWN
+            MENUITEM "Déplacer &Gauche",            ID_OD_NUDGE_LEFT
+            MENUITEM "Déplacer &Droite",            ID_OD_NUDGE_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Insérer Attribut Dynamique...", ID_DYNATTR_ADD
+        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", 
+                                                ID_DYNATTR_DUPLICATE
+        MENUITEM SEPARATOR
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
+    END
+    POPUP "Comment"
+    BEGIN
+        MENUITEM "Editer le commentaire\tF2",   ID_EDIT_NAME
+        MENUITEM SEPARATOR
+        MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "Dupliquer\tCtrl+D",           ID_EDIT_DUPLICATE
+        MENUITEM SEPARATOR
+        POPUP "&Ordre"
+        BEGIN
+            MENUITEM "Placer tout de&vant",         ID_OD_FRONT
+            MENUITEM "&Placer tout de&rrière",      ID_OD_BACK
+            MENUITEM "Remonter devant",             ID_OD_FORWARD
+            MENUITEM "Redescendre derrière",        ID_OD_BACKWARD
+        END
+        POPUP "&Rotation"
+        BEGIN
+            MENUITEM "&Rotation libre",             ID_OD_FREE_ROTATE
+            MENUITEM "Rotation &Gauche",            ID_OD_ROTATE_LEFT
+            MENUITEM "Rotation &Droite",            ID_OD_ROTATE_RIGHT
+            MENUITEM "Inverser &Horizontalement",   ID_OD_FLIP_HORIZONTAL
+            MENUITEM "Inverser &Verticalement",     ID_OD_FLIP_VERTICAL
+        END
+        POPUP "Déplacement"
+        BEGIN
+            MENUITEM "Déplacer &Haut",              ID_OD_NUDGE_UP
+            MENUITEM "Déplacer &Bas",               ID_OD_NUDGE_DOWN
+            MENUITEM "Déplacer &Gauche",            ID_OD_NUDGE_LEFT
+            MENUITEM "Déplacer &Droite",            ID_OD_NUDGE_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Insérer Attribut Dynamique...", ID_DYNATTR_ADD
+        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", 
+                                                ID_DYNATTR_DUPLICATE
+        MENUITEM SEPARATOR
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_OD_PROPERTIES
+    END
+    POPUP "Package"
+    BEGIN
+        MENUITEM "Editer le nom\tF2",           ID_EDIT_NAME
+        MENUITEM SEPARATOR
+        MENUITEM "Ouvrir le contenu\tDouble-Click", ID_GOIN_SYMBOL
+        MENUITEM SEPARATOR
+        MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Détuire\tDel",               ID_EDIT_CLEAR
+        MENUITEM "Dupliquer\tCtrl+D",           ID_EDIT_DUPLICATE
+        MENUITEM SEPARATOR
+        MENUITEM "Lier à un fichier...",        ID_LINKTOFILE_PACKAGE
+        MENUITEM "Enlever le lien sur le fichier", ID_UNLINKFROMFILE_PACKAGE
+        MENUITEM "Charger le paquet",           ID_LOAD_PACKAGE
+        MENUITEM "Décharger le paquet",         ID_UNLOAD_PACKAGE
+        MENUITEM SEPARATOR
+        POPUP "&Ordre"
+        BEGIN
+            MENUITEM "Placer tout de&vant",         ID_OD_FRONT
+            MENUITEM "&Placer tout de&rrière",      ID_OD_BACK
+            MENUITEM "Remonter devant",             ID_OD_FORWARD
+            MENUITEM "Redescendre derrière",        ID_OD_BACKWARD
+        END
+        POPUP "&Rotation"
+        BEGIN
+            MENUITEM "&Rotation libre",             ID_OD_FREE_ROTATE
+            MENUITEM "Rotation &Gauche",            ID_OD_ROTATE_LEFT
+            MENUITEM "Rotation &Droite",            ID_OD_ROTATE_RIGHT
+            MENUITEM "Inverser &Horizontalement",   ID_OD_FLIP_HORIZONTAL
+            MENUITEM "Inverser &Verticalement",     ID_OD_FLIP_VERTICAL
+        END
+        POPUP "Déplacement"
+        BEGIN
+            MENUITEM "Déplacer &Haut",              ID_OD_NUDGE_UP
+            MENUITEM "Déplacer &Bas",               ID_OD_NUDGE_DOWN
+            MENUITEM "Déplacer &Gauche",            ID_OD_NUDGE_LEFT
+            MENUITEM "Déplacer &Droite",            ID_OD_NUDGE_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Insérer Attribut Dynamique...", ID_DYNATTR_ADD
+        MENUITEM "Dupliquer Attribut(s) Dynamique(s)...", 
+                                                ID_DYNATTR_DUPLICATE
+        MENUITEM SEPARATOR
+        MENUITEM "Propriété&s...\tCtrl+Enter",  ID_OD_PROPERTIES
+    END
+END
+
+IDR_COMBINATION_MENU MENU 
+BEGIN
+    POPUP "Combination"
+    BEGIN
+        MENUITEM "Ajouter une nouvelle combinaison", ID_ADD_NEWCOMBINATION
+        MENUITEM "Supprimer la combinaison",    ID_DEL_CURRENTCOMBINATION
+    END
+    POPUP "Combination (2)"
+    BEGIN
+        MENUITEM "Ajouter une nouvelle combinaison", ID_ADD_NEWCOMBINATION
+        MENUITEM "Supprimer la combinaison",    ID_DEL_CURRENTCOMBINATION
+        MENUITEM SEPARATOR
+        MENUITEM "Ajouter un livrable",         ID_ADD_DELIVERABLE_COMBINATION
+
+        MENUITEM "Supprimer un livrable",       ID_DEL_DELIVERABLE_COMBINATION
+
+    END
+END
+
+IDR_DELIVERIES_MENU MENU 
+BEGIN
+    POPUP "Livraisons"
+    BEGIN
+        MENUITEM "Ajouter une nouvelle livraison", ID_ADD_NEWDELIVERY
+        MENUITEM "supprimer la livraison",      ID_DEL_CURRENTDELIVERY
+    END
+END
+
+IDR_PRESTATIONS_MENU MENU 
+BEGIN
+    POPUP "Prestations"
+    BEGIN
+        MENUITEM "Supprimer la prestation",     17332
+    END
+END
+
+IDR_RULES_MENU MENU 
+BEGIN
+    POPUP "Rules"
+    BEGIN
+        MENUITEM "Supprimer",                   17334
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_BP_MODELISATION TOOLBAR  18, 18
+BEGIN
+    BUTTON      ID_OD_DRAW_SELECT
+    BUTTON      ID_INS_BP_PROCEDURE
+    BUTTON      ID_INS_BP_PROCESS
+    BUTTON      ID_INS_BP_PAGE
+    BUTTON      ID_INS_BP_DOOR
+    BUTTON      ID_INS_BP_START
+    BUTTON      ID_INS_BP_STOP
+    BUTTON      ID_INS_BP_DELIVERABLE
+    BUTTON      ID_INS_BP_PACKAGE
+    BUTTON      ID_CHECK_MODEL
+    BUTTON      ID_RECALCULATE_MODEL_PARAM
+    BUTTON      ID_RECALCULATE_MODEL_DURATION
+    BUTTON      ID_CALCULATE_RISKS
+    BUTTON      ID_GENERATE_REPORT_CHECK
+    BUTTON      ID_GENERATE_REPORT_MERCUTIO
+    BUTTON      ID_GENERATE_REPORT_CONCEPTOR
+    BUTTON      ID_GENERATE_REPORT_SESTERCE
+    BUTTON      ID_GENERATE_REPORT_SESTERCE_UNIT
+    BUTTON      ID_GENERATE_REPORT_SESTERCE_CONSOLIDATED
+    BUTTON      ID_GENERATE_REPORT_PRESTATIONS
+END
+
+IDR_BP_ADDSYMBOLS TOOLBAR  18, 18
+BEGIN
+    BUTTON      ID_INS_BP_ALERT
+    BUTTON      ID_INS_BP_DOCUMENT
+    BUTTON      ID_INS_BP_INDICATOR
+    BUTTON      ID_INS_BP_QUALITY
+    BUTTON      ID_INS_BP_DELAY
+    BUTTON      ID_INS_BP_IN_PROCESS
+    BUTTON      ID_INS_BP_NOT_VALIDATED
+    BUTTON      ID_INS_BP_VALIDATED
+    BUTTON      ID_INS_BP_RISK
+    BUTTON      ID_INS_BP_INCIDENT
+    BUTTON      ID_INS_BP_CRI
+    BUTTON      ID_INS_BP_CRE
+    BUTTON      ID_INS_BP_CRO
+    BUTTON      ID_INS_BP_OPAP1
+    BUTTON      ID_INS_BP_OPAP2
+    BUTTON      ID_INS_BP_OPAP3
+    BUTTON      ID_INS_BP_TEXTZONE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_BP_MODELISATION     BITMAP                  "bmp27320.bmp"
+IDB_INPUTATTRIBUTE_FLATTOOLBAR BITMAP                  "res\\bitmap1.bmp"
+IDB_IL_INPUTATTRIBUTELIST BITMAP                  "res\\bmp00001.bmp"
+IDB_DISTRIBATTRIBUTE_FLATTOOLBAR BITMAP                  "res\\inputatt.bmp"
+IDB_IL_DISTRIBUTIONATTRIBUTELIST BITMAP                  "res\\il_distr.bmp"
+IDR_BP_ADDSYMBOLS       BITMAP                  "res\\bp_addsy.bmp"
+IDB_MESG_PRESTATIONSVIEW BITMAP                  "res\\bmp00002.bmp"
+IDB_MESG_LOGICALSYSTEMVIEW BITMAP                  "res\\bmp00003.bmp"
+IDB_MESG_PROPERTIESVIEW BITMAP                  "res\\bitmap2.bmp"
+IDB_MESG_MODELBP        BITMAP                  "res\\bmp00004.bmp"
+IDB_MESG_USERVIEW       BITMAP                  "res\\bmp00006.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_INS_PROCESSBP       CURSOR                  "Res\\design.cur"
+IDC_INS_                CURSOR                  "res\\cur00001.cur"
+IDC_INS_PROCEDUREBP     CURSOR                  "res\\ins_1.cur"
+IDC_INS_DELIVERABLEBP   CURSOR                  "res\\ins_2.cur"
+IDC_INS_DOORBP          CURSOR                  "res\\ins_3.cur"
+IDC_INS_PAGEBP          CURSOR                  "res\\ins_4.cur"
+IDC_INS_STARTBP         CURSOR                  "res\\ins_5.cur"
+IDC_INS_STOPBP          CURSOR                  "res\\ins_6.cur"
+IDC_INS_PACKAGEBP       CURSOR                  "res\\ins_7.cur"
+IDC_INS_ALERTBP         CURSOR                  "res\\cursor1.cur"
+IDC_INS_INDICATORBP     CURSOR                  "res\\cursor2.cur"
+IDC_INS_DOCUMENTBP      CURSOR                  "res\\cur00002.cur"
+IDC_INS_CREBP           CURSOR                  "res\\cur00003.cur"
+IDC_INS_CROBP           CURSOR                  "res\\cur00004.cur"
+IDC_INS_DELAYBP         CURSOR                  "res\\cur00005.cur"
+IDC_INS_IN_PROCESSBP    CURSOR                  "res\\cur00006.cur"
+IDC_INS_INCIDENTBP      CURSOR                  "res\\cur00007.cur"
+IDC_INS_NOT_VALIDATEDBP CURSOR                  "res\\cur00008.cur"
+IDC_INS_OPAP1BP         CURSOR                  "res\\cur00009.cur"
+IDC_INS_OPAP2BP         CURSOR                  "res\\cur00010.cur"
+IDC_INS_OPAP3BP         CURSOR                  "res\\cur00011.cur"
+IDC_INS_QUALITYBP       CURSOR                  "res\\cur00012.cur"
+IDC_INS_RISKBP          CURSOR                  "res\\cur00013.cur"
+IDC_INS_CRIBP           CURSOR                  "res\\cur00015.cur"
+IDC_INS_VALIDATEDBP     CURSOR                  "res\\cur00016.cur"
+IDC_INS_TEXTZONEBP      CURSOR                  "res\\cur00014.cur"
+IDC_FORMATPAINTER       CURSOR                  "res\\formatpa.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_KEYMANAGER          ICON                    "res\\Key manager.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_INPUTATTRIBUTES_DEF DLGINIT
+BEGIN
+    IDC_INPATTR_VISIBILITY, 0x403, 16, 0
+0x6f50, 0x7275, 0x6320, 0x2065, 0x7973, 0x626d, 0x6c6f, 0x0065, 
+    IDC_INPATTR_VISIBILITY, 0x403, 15, 0
+0x6f50, 0x7275, 0x6c20, 0x2065, 0x6f6d, 0xe864, 0x656c, "\000" 
+    IDC_INPATTR_FLAG, 0x403, 6, 0
+0x6143, 0x6863, 0x00e9, 
+    IDC_INPATTR_FLAG, 0x403, 17, 0
+0x6e45, 0x6c20, 0x6365, 0x7574, 0x6572, 0x7320, 0x7565, 0x656c, "\000" 
+    IDC_INPATTR_FLAG, 0x403, 9, 0
+0x6445, 0x7469, 0x6261, 0x656c, "\000" 
+    0
+END
+
+IDD_DISTRIBUTIONRULE_DEF DLGINIT
+BEGIN
+    IDC_OPERATOR_RULE, 0x403, 1, 0
+"\000" 
+    IDC_OPERATOR_RULE, 0x403, 3, 0
+0x3d3d, "\000" 
+    IDC_OPERATOR_RULE, 0x403, 2, 0
+0x003c, 
+    IDC_OPERATOR_RULE, 0x403, 3, 0
+0x3d3c, "\000" 
+    IDC_OPERATOR_RULE, 0x403, 3, 0
+0x3d3e, "\000" 
+    IDC_OPERATOR_RULE, 0x403, 2, 0
+0x003e, 
+    IDC_OPERATOR_RULE, 0x403, 3, 0
+0x3d21, "\000" 
+    IDC_LOGICALOPERATOR_RULE, 0x403, 1, 0
+"\000" 
+    IDC_LOGICALOPERATOR_RULE, 0x403, 7, 0
+0x2026, 0x6528, 0x2974, "\000" 
+    IDC_LOGICALOPERATOR_RULE, 0x403, 7, 0
+0x207c, 0x6f28, 0x2975, "\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_MODELISATION_TITLE  "Outils B-Process"
+    IDS_MODELGENERATION_TITLE "Génération B-Process"
+    IDS_CANNOTDELETE_ALLDELIVERIES 
+                            "Vous ne pouvez pas supprimer toutes les livraisons. Il doit en rester au moins une."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_AL_START            "Démarrage du calcul pour le modèle: %s"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CANNOTDELETE_ALLCOMBINATIONS 
+                            "Vous ne pouvez pas supprimer toutes les combinaisons. Il doit en rester au moins une."
+    IDS_AL_STOP             "Fin du calcul"
+    IDS_AL_MAXIMUMLOOP_REACHED 
+                            "Le compteur de boucle maximum a été atteint. Il est possible que le modèle ne soit pas cohérent."
+END
+
+STRINGTABLE 
+BEGIN
+    ISD_DOOR_SELECTMODEL    "Sélectionner le modèle"
+    IDS_FS_BPPROCESS_TOOLTIP "Processus: %s\nDescription: %s\nRéférence: %s"
+    IDS_FS_BPPROCEDURE_TOOLTIP "Procédure: %s\nDescription: %s\nRéférence: %s"
+    IDS_FS_BPDELIVERABLE_TOOLTIP 
+                            "Livrable: %s\nDescription: %s\nRéférence: %s"
+    IDS_FS_BPPAGE_TOOLTIP   "Référence sur la page <<%s>>"
+    IDS_FS_BPPAGE_ERR_TOOLTIP "Page référencée inconnue"
+    IDS_FS_BPDOOR_TOOLTIP   "Porte d'accès au processus: %s"
+    IDS_FS_BPDOOR_ERR_TOOLTIP "Porte d'accès n'ayant pas de processus attaché"
+    IDS_FS_BPPACKAGE_TOOLTIP "Paquet: %s"
+    IDS_FS_BPPACKAGE_LINKTF_TOOLTIP "\nlié au fichier: %s"
+    IDS_EL_DOOR_INC_IN_1    "Une porte ne peut pas accepter plus d'une connexion en entrée."
+    IDS_EL_DOOR_INC_IN_2    "Une porte ne peut pas accepter plus d'une connexion en sortie."
+END
+
+STRINGTABLE 
+BEGIN
+    ID_RENAME_MODELPAGE     "Renommer une page.\nRenommer une page"
+    ID_DELETE_MODELPAGE     "Supprimer une page.\nSupprimer une page"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DOUBLEVALID_NONE    "Aucune"
+    IDS_DOUBLEVALID_EMPLOYEE "Collaborateur"
+    IDS_DOUBLEVALID_MANAGER "Chef"
+    IDS_DELETEDOORSYM_CONF  "La suppression de cette porte va également supprimer la porte rattachée à celle-ci. Voulez-vous continuer?"
+    IDS_DELETEPAGESYM_CONF  "La suppression de ce symbole page va également supprimer l'autre symbole page rattaché à celui-ci. Voulez-vous continuer?"
+    IDS_AL_UNITREASSIGNED   "Certaines informations de l'unité de traitement assignée au symbole <%s> sont manquantes. Le problème a été corrigé."
+    IDS_EL_PROCEDURE_INC_9  "Le livrable maître <%s> de la combinaison <%s> n'est plus rattaché à cette procédure."
+    IDS_EL_PROCEDURE_INC_10 "Le livrable <%s> de la combinaison <%s> n'est plus rattaché à cette procédure."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_EL_DOOR_INC_OUT_1   "Une porte doit obligatoirement être connectée en entrée ou en sortie."
+    IDS_EL_START_INC_1      "Un symbole de démarrage n'accepte pas de connexion en entrée."
+    IDS_EL_START_INC_2      "Un symbole de démarrage n'accepte qu'une seule connexion en sortie."
+    IDS_EL_START_INC_3      "Un symbole de démarrage doit contenir une  connexion en sortie."
+    IDS_EL_STOP_INC_1       "Un symbole d'arrêt ne peut pas contenir de connexion en sortie."
+    IDS_EL_STOP_INC_2       "Un symbole d'arrêt ne peut pas contenir plus d'une  connexion en entrée."
+    IDS_EL_STOP_INC_3       "Un symbole d'arrêt doit contenir une  connexion en entrée."
+    IDS_EL_SYMBOLNAME_TEXT  "Nom"
+    IDS_EL_SYMBOLPATH_TEXT  "Chemin"
+    IDS_EL_PROCEDURE_INC_1  "Aucune connexion ne peut partir depuis le côté haut d'une procédure."
+    IDS_EL_PROCEDURE_INC_2  "Le nombre de livrables latéraux sortant n'équivaut pas au nombre de livrables latéraux entrants. Vous avez une boucle latérale gauche incomplète."
+    IDS_EL_PROCEDURE_INC_3  "Une procédure ne peut pas être attachée à un processus."
+    IDS_EL_PROCESS_INC_1    "Aucune connexion ne peut partir depuis le côté haut d'un processus."
+    IDS_EL_PROCESS_INC_2    "Aucune connexion ne peut partir depuis le côté gauche d'un processus."
+    IDS_EL_PROCESS_INC_3    "Aucune connexion ne peut partir depuis le côté droit d'un processus."
+    IDS_EL_PROCESS_INC_4    "Un processus ne peut pas être connecté à une procédure."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_SYMBOL_SELECTDOOR   "Sélectionner la porte"
+    IDS_SYMBOL_SELECTDELIVERABLE "Sélectionner le livrable"
+    IDS_P2P_FIRSTDELIVERABLE_SELECTED 
+                            "Le premier livrable du processus a été sélectionné."
+    IDS_TB_BPMODELGENERATIONBUTTONS "Génération"
+    IDS_TB_BPMODELISATIONBUTTONS "Modélisation"
+    IDS_EL_PROCEDURE_INC_4  "Auncune connexion ne peut entrer du côté haut d'une procédure."
+    IDS_EL_PROCEDURE_INC_5  "Une procédure doit avoir au moins une connexion en sortie."
+    IDS_EL_PROCEDURE_INC_6  "Une procédure doit avoir au moins une connexion en entrée."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_AL_WAITINGFOROTHER_REACHED 
+                            "Le compteur maximum qui permet d'attendre sur d'autres livrables a été atteint. Il est possible que le modèle ne soit pas cohérent."
+    IDS_AL_INPAUSECOUNTER_REACHED 
+                            "Le compteur qui limite le nombre de cycles d'attente des activités en pause a été atteint. Si c'est un cas normal, vous pouvez changer cette limite dans les options du modèle. Autrement, il faut contrôler le modèle, car celui-ci pourrait contenir des incohérences."
+    IDS_AL_SYMB_REACHED_DBG "Le symbole %s a été atteint et sera traité au cycle suivant"
+    IDS_AL_SYMB_BEFOREMOVE_DBG 
+                            "Le symbole %s a retourné ok pour se déplacer vers le ou les symboles suivants"
+    IDS_AL_SYMB_ISPAUSED_DBG "le symbole %s est en pause"
+    IDS_AL_SYMB_ISFINISHED_DBG "Le symbole %s est un point terminal"
+    IDS_AL_SYMB_ISWAITINGONOTHER_DBG 
+                            "Le symbole %s attend sur d'autres livrables pour pouvoir continuer"
+    IDS_AL_SYMB_ISINERROR_DBG "Le symbole %s a généré une erreur"
+    IDS_AL_SYMB_REQUESTMOVE_DBG 
+                            "Le workflow va traiter le symbole %s pour se déplacer en avant"
+    IDS_AL_SYMB_AFTERMOVE_DBG "Le symbole %s a été traité"
+    IDS_FS_BPSTART_TOOLTIP  "Point de démarrage: %s\nDescription: %s\nRéférence: %s"
+    IDS_EL_DOOR_INC_IN_3    "La porte n'est plus rattachée."
+    IDS_EL_PAGE_INC_IN_1    "Une page ne peut pas accepter plus d'une connexion en entrée."
+    IDS_EL_PAGE_INC_IN_2    "Une page ne peut pas accepter plus d'une connexion en sortie."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_SELECTAGROUP_T      "Sélectionnez un groupe"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_EL_PAGE_INC_OUT_1   "Une page doit obligatoirement être connectée en entrée ou en sortie."
+    IDS_EL_PAGE_INC_IN_3    "La page n'est plus rattachée."
+    IDS_FS_BPSTOP_TOOLTIP   "Point de fin: %s\nDescription: %s\nRéférence: %s"
+    IDS_AL_STOP2            "Fin du calcul (%d erreurs détectées, %d warnings détectés)"
+    IDS_AL_DELIV_QUANTITY_LOCKED 
+                            "La quantité de ce livrable n'a pas été calculée, car celle-ci est bloquée."
+    IDS_FS_BPDELIVERABLE_MISSING_INCONX_TOOLTIP 
+                            "Manque la connexion à un symbole en entrée"
+    IDS_FS_BPDELIVERABLE_MISSING_OUTCONX_TOOLTIP 
+                            "Manque la connexion à un symbole en sortie"
+    IDS_ZS_START            "Démarrage du contrôle du modèle: %s"
+    IDS_ZS_STOP             "Fin du contrôle du modèle"
+    IDS_ZS_STOP2            "Fin du contrôle du modèle (%d erreurs détectées, %d warnings détectés)"
+    IDS_EL_PROCESS_INC_5    "Attention, ce processus n'est connecté à aucun autre processus."
+    IDS_EL_DELIVERABLE_INC_1 
+                            "Attention, un livrable doit être connecté à un symbole en entrée."
+    IDS_EL_DELIVERABLE_INC_2 
+                            "Attention, un livrable doit être connecté à un symbole en sortie. "
+    IDS_EL_PROCEDURE_INC_7  "Le nombre de livrables latéraux sortant n'équivaut pas au nombre de livrables latéraux entrants. Vous avez une boucle latérale droite incomplète."
+    IDS_AL_PROCEDURE_INC_8  "Le nombre de livrables droits réentrants de cette procédure n'est pas égal au nombre de livrable sortants. Veuillez contrôler votre modèle."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_AL_PROCEDURE_INC_9  "Le nombre de livrables gauches réentrants de cette procédure n'est pas égal au nombre de livrable sortants. Veuillez contrôler votre modèle."
+    IDS_AL_PROCEDURE_INC_10 "Aucune unité de travail n'a été assignée à cette procédure. Par conséquent le coût de l'unité pris en compte sera zéro."
+    IDS_AL_PROCEDURE_INC_11 "L'unité de travail assignée à cette procédure a un coût égal à zéro. Veuillez vérifier que c'est bien le coût approprié."
+    IDS_AL_PROCEDURE_INC_12 "Cette procédure a un multiplicateur égal à zéro. Veuillez vérifier que c'est bien le multiplicateur approprié."
+    IDS_AL_START_INC_10     "Aucune unité de travail n'a été assignée à ce point de démarrage. Par conséquent le coût de l'unité pris en compte sera zéro."
+    IDS_AL_START_INC_11     "L'unité de travail assignée à ce point de démarrage a un coût égal à zéro. Veuillez vérifier que c'est bien le coût approprié."
+    IDS_AL_DELIVERABLE_INC_1 
+                            "La quantité pour ce livrable est inférieur ou égal à zéro. Veuillez vérifier que c'est une quantité appropriée."
+    IDS_AL_DELIVERABLE_INC_2 
+                            "Le pourcentage en entrée de ce livrable est égal à 0%."
+    IDS_AL_DELIVERABLE_INC_3 
+                            "Le pourcentage en entrée de ce livrable est supérieur à 100%."
+    IDS_AL_DELIVERABLE_INC_4 
+                            "Le pourcentage en sortie de ce livrable est égal à 0%."
+    IDS_AL_DELIVERABLE_INC_5 
+                            "Le pourcentage en sortie de ce livrable est supérieur à 100%."
+    IDS_AL_PROCEDURE_INC_13 "La somme des combinaisons de cette procédure n'est pas égale à 100%."
+END
+
+STRINGTABLE 
+BEGIN
+    ID_OD_PAGE_BOUNDS       "Montrer ou Cacher les bords de pages\nMontrer ou Cacher bords de pages"
+    ID_OD_PROPERTIES        "Show the properties of the selected symbol(s)\nProperties"
+    ID_OD_ROTATE_LEFT       "Rotation de 90 degré sens-inverse des aiguille d'une montre\nRotation à gauche"
+    ID_OD_ROTATE_RIGHT      "Rotation 90 degré sens des aiguille d'une montre\nRotation Droite"
+    ID_OD_SNAP_TO_GRID      "Aligner les composants sur la grille\nAligner sur la grille"
+    ID_OD_UNGROUP           "Dégrouper les composants\nDégrouper"
+    ID_OD_ZOOM_100PCT       "Zoom to 100% Scale (1:1)\nZoom 100%"
+    ID_OD_ZOOM_200PCT       "Zoom to 200% Scale\nZoom 200%"
+    ID_OD_ZOOM_50PCT        "Zoom to 50% Scale\nZoom 50%"
+    ID_OD_ZOOM_75PCT        "Zoom to 75% Scale\nZoom 75%"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_OD_FLIP_HORIZONTAL   "Inverser le composant autour de son axe horizontal\nInverser Horizontalement"
+    ID_OD_FLIP_VERTICAL     "Inverser le composant autour de son axe vertical\nInverser Verticalement"
+    ID_OD_FORWARD           "Remonter devant\nRemonter devant"
+    ID_OD_FREE_ROTATE       "Rotation libre du composant\nRotation libre"
+    ID_OD_FRONT             "Placer tout devant\nPlacer tout devant"
+    ID_OD_GRID              "Monter ou Cacher la grille\nMonter ou Cacher la grille"
+    ID_OD_GRID_PROPS        "Set the grid properties\nGrid Properties"
+    ID_OD_GROUP             "Grouper les composants\nGrouper"
+    ID_OD_NUDGE_DOWN        "Déplacer Bas\nDéplacer Bas"
+    ID_OD_NUDGE_LEFT        "Déplacer Gauche\nDéplacer Gauche"
+    ID_OD_NUDGE_RIGHT       "Déplacer Droite\nDéplacer Droite"
+    ID_OD_NUDGE_UP          "Déplacer Haut\nDéplacer Haut"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_OD_ALIGN_BOTTOM      "Aligner Bas\nAligner Bas"
+    ID_OD_ALIGN_CENTER      "Aligner Centre\nAligner Centre"
+    ID_OD_ALIGN_LEFT        "Aligner Gauche\nAligner Gauche"
+    ID_OD_ALIGN_MIDDLE      "Aligner Milieu\nAligner Milieu"
+    ID_OD_ALIGN_RIGHT       "Aligner Droite\nAligner Droite"
+    ID_OD_ALIGN_TOP         "Aligner Haut\nAligner Haut"
+    ID_OD_ANGLE_SNAP        "Snap symbols to 15 degree angle increments\nAngle Snap"
+    ID_OD_BACK              "Placer tout derrière\nPlacer tout derrière"
+    ID_OD_BACKWARD          "Redescendre derrière\nRedescendre derrière"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_OD_ZOOM_FIT          "Zoomer pour que tous les composants soient visibles.\nZoomer pour voir tous les composants"
+    ID_OD_MEASUREMENTS      "Définir la taille et les unités de mesures du modèle"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_BROWSE_SOURCESYMBOL  "Se positionner sur le symbole source.\nAller au symbole source"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Effacer la selection"
+    ID_EDIT_COPY            "Copier la selection dans le presse-papier"
+    ID_EDIT_CUT             "Couper la selection dans le presse-papier"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_GOIN_SYMBOL          "Ouvrir le contenu.\nOuvrir le contenu"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_GENERATE_REPORT_MERCUTIO 
+                            "Générer le rapport Mercutio.\nRapport Mercutio"
+    ID_GENERATE_REPORT_SESTERCE 
+                            "Générer le rapport Sesterce.\nRapport Sesterce"
+    ID_GENERATE_REPORT_CHECK 
+                            "Générer le rapport de contrôle.\nRapport de contrôle"
+    ID_ADD_NEWEXTFILE       "Ajouter un lien externe.\nAjouter un lien externe"
+    ID_ADD_NEWEXTAPP        "Ajouter une application.\nAjouter une application"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CHECK_MODEL          "Contrôler la cohérence du modèle.\nContrôler la cohérence"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_RECALCULATE_MODEL_PARAM 
+                            "Recalculer les paramètres Sesterce.\nRecalculer les paramètres Sesterce"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_RECALCULATE_SELECTEDMODEL_PARAM 
+                            "Recalculer les paramètres Sesterce du modèle sélectionné uniquement.\nRecalculer paramètres Sesterce (modèle sélectionné)"
+    ID_SYM_SHOWNAMEAREA     "Montrer ou cacher la zone contenant le nom du symbole.\nMontrer/Cacher la zone du Nom"
+    ID_SYM_SHOWDESCRIPTIONAREA 
+                            "Montrer ou cacher la zone contenant la description du symbole.\nMontrer/Cacher la zone de Description"
+    ID_SYM_SHOWATTRIBUTEAREA 
+                            "Montrer ou cacher la zone contenant les attributs du symbole.\nMontrer/Cacher la zone des Attributs"
+    ID_SYM_SHOWLABELATTRIBUTES 
+                            "Montrer/Cacher le label des attributs.\nLabel des attributs"
+    ID_SYM_SELECTATTRIBUTES "Sélectionner les attributs à afficher.\nSélectionner les attributs"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPERATORRULE_MISSING "Veuillez sélectionner un opérateur."
+    IDS_OPERATORVALUE_MISSING "Veuillez spécifier une valeur."
+    IDS_ADDINPUTATTRIBUTE_TTIPS "Ajouter un attribut de saisie"
+    IDS_DELETEINPUTATTRIBUTE_TTIPS "Supprimer un attribut de saisie"
+    IDS_DELETERULE_CONFIRM  "Veuillez confirmer la suppression de la règle sélectionnée."
+    IDS_DISTRIBUTIONATTR_WRONGSYMBOLSEL 
+                            "Le symbole sélectionné ne permet pas la définition des attributs de distribution."
+    IDS_DISTRIBUTIONATTR_NOUSERGROUPDEF 
+                            "Le symbole sélectionné n'a pas de groupe défini. Veuillez définir un groupe préalablement."
+    IDS_SELECTRULE_MSG      "Veuillez sélectionner une règle de distribution."
+    IDS_SELECTROLE_MSG      "Veuillez sélectionner une équipe."
+    IDS_SELECTDISTRIBATTR_MSG 
+                            "Veuillez sélectionner un attribut de distribution."
+    IDS_AL_START_SOAPPUBLICATION 
+                            "Démarrage de la publication vers le server Messenger"
+    IDS_AL_STOP_SOAPPUBLICATION 
+                            "Fin de la publication vers le server Messenger"
+    IDS_AL_MODELHTML_SOAPPUBLICATION_ERR 
+                            "Erreur dans la publication du modèle sous format HTML"
+    IDS_AL_MODELHTML_SOAPPUBLICATION 
+                            "Publication du modèle sous format HTML terminée"
+    IDS_AL_MODEL_SOAPPUBLICATION_ERR "Erreur dans la publication du modèle"
+    IDS_AL_MODEL_SOAPPUBLICATION "Publication du modèle terminée"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_WZ_PUBLISHTOMESSENGER_ST_S "Publication"
+    IDS_WZ_PUBLISHTOMESSENGER_ST_T 
+                            "La publication vers un serveur Messenger nécessite de connaître son emplacement."
+    IDS_WZ_PUBLISHTOMESSENGERLOGON_ST_S "Authentification"
+    IDS_WZ_PUBLISHTOMESSENGERLOGON_ST_T 
+                            "Veuillez spécifier votre nom d'utilisateur et le mot de passe associé afin de vous authentifier sur le serveur."
+    IDS_INVALID_MESSENGER_USERPSWD 
+                            "Le server Messenger a retourné nom d'utilisateur ou mot de passe invalide. Veuillez réessayer."
+    IDS_EL_SYMBOL_INC_1     "Le symbole suivant a un numéro de référence déjà alloué. Un nouveau numéro de référence lui a été attribué."
+    IDS_FILEBETA2_CONVERTED "Ce fichier a été créé à l'aide de Conceptor - Sesterces Beta 2. Il a été converti en format valide pour la Release. Veuillez sauvegarder ce fichier pour éviter des conversions intempestives.\nDes nouvelles propriétés liées à la méthode de modélisation Mercutio ont été ajoutées."
+    IDS_FILEBETA2_CONVERTED_TITLE "Conversion réussie"
+    IDS_INPUTATTRIB_NAME_COLUMN "Nom"
+    IDS_INPUTATTRIB_DEFVALUE_COLUMN "Valeur par défaut"
+    IDS_INPUTATTRIB_FLAG_COLUMN "Type"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_EL_PAGE_INC_IN_4    "La page n'a pas de modèle attaché. Ceci est une erreur fatale. Le système ne peut pas continuer. Veuillez fermer le fichier, le réouvrir et relancer le calcul. Si le problème persiste, veuillez supprimer le symbole page et le recréer."
+    IDS_EL_DOOR_INC_IN_4    "La porte n'a pas de modèle attaché. Ceci est une erreur fatale. Le système ne peut pas continuer. Veuillez fermer le fichier, le réouvrir et relancer le calcul. Si le problème persiste, veuillez supprimer la porte et la recréer."
+    IDS_EL_START_INC_4      "Le livrable lié au symbole start doit être lié à un symbole. Le système ne peut pas continuer"
+    IDS_FILEBETA1_CONVERTED "Ce fichier a été créé à l'aide de Conceptor - Sesterces Beta 1. Il a été converti en format valide pour la Beta 2. Veuillez sauvegarder ce fichier pour éviter des conversions intempestives.\nDes nouvelles propriétés liées à la méthode de modélisation Mercutio ont été ajoutées."
+    IDS_FILEBETA1_CONVERTED_TITLE "Conversion réussie"
+    IDS_AL_PROCEDURE_INC_14 "La combinaison %s n'a pas de livrable maître défini."
+    IDS_EL_DELIVERABLE_INC_3 
+                            "Cette référence ne pointe plus sur le livrable source. Veuillez le détruire et le recréer."
+    IDS_AL_DELIV_QUANTITY_FORCED "Ce livrable force la saisonnalité calculée."
+    IDS_LOCKEDTOTAL_GREATERINPUT 
+                            "La quantité que vous avez saisie est plus petite que la somme des quantités bloquées. Veuillez débloquer des quantités. La quantité initiale va être remise."
+    IDS_AL_START_PROCESSCALCULATION 
+                            "Démarrage du calcul des processus du modèle: %s"
+    IDS_AL_STOP_PROCESSCALCULATION "Fin du calcul des processus du modèle."
+    IDS_EL_PROCEDURE_INC_8  "La somme des pourcentages des livrables en sortie de la procédure est inférieure à 100%"
+    IDS_AL_DELIVERABLE_INC_6 
+                            "Ce livrable est une référence. Le livrable principal est introuvable."
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_DUPLICATE       "Dupliquer l'objet.\nDupliquer l'objet"
+    ID_GENERATE_REPORT_SESTERCE_UNIT 
+                            "Générer le rapport Sesterces Unités.\nRapport Sesterces Unités"
+    ID_GENERATE_REPORT_SESTERCE_CONSOLIDATED 
+                            "Générer le rapport Sesterces Consolidé.\nRapport Sesterces Consolidé"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INPUTATTRIB_ATTACHEDSYMBOL_COLUMN "Symbole"
+    IDS_MODIFYINPUTATTRIBUTE_TTIPS "Modifier l'attribut de saisie sélectionné"
+    IDS_DYNAMICATTRIBUTES_REQUIRED 
+                            "Vous devez sélectionner un attribut lié à cet attribut de saisie."
+    IDS_DELETEINPUTATTR_CONF 
+                            "Veuillez confirmer la suppression de l'attribut de saisie sélectionné?"
+    IDS_ADDDISTRIBUTIONATTRIBUTE_TTIPS "Ajouter un attribut de distribution"
+    IDS_DELETEDISTRIBUTIONATTRIBUTE_TTIPS 
+                            "Supprimer l'attribut de distribution sélectionné"
+    IDS_MODIFYDISTRIBUTIONATTRIBUTE_TTIPS 
+                            "Modifier l'attribut de distribution sélectionné"
+    IDS_CHOOSEDISTRIBGROUP_TITLE 
+                            "Veuillez choisir le groupe lié à cet attribut de distribution"
+    IDS_DISTRIBUTIONGROUP_REQUIRED "Vous devez sélectionner un groupe."
+    IDS_DELETEDISTRIBUTIONATTR_CONF 
+                            "Veuillez confirmer la suppression de l'attribut de distribution sélectionné."
+    IDS_DISTRIBUTIONATTRIB_ROLENAME_COLUMN "Equipe"
+    IDS_DISTRIBUTION_OPERATOR_COLUMN "Opérateur"
+    IDS_SOAPMODELGENHTML_1  "<!--This file has been generated by ProcessSoft Conceptor 1.0 -->\n<!--ProcessSoft Copyright-->\n\n<html>\n<head>\n<title>%s</title>\n<meta http-equiv=""Content-Type"" content=""text/html; charset=iso-8859-1"">\n<meta name=""description"" content=""Conceptor file"">\n<!-- ProcessSoft Conceptor 1.0  target.  Created %s -->\n\n</head>\n<body bgcolor=""#ffffff"">"
+    IDS_SOAPMODELGENHTML_2  "<!--HOTSPOT TABLE-->\n<img name=""%s"" src=""%s"" border=""0"" usemap=""#m_process""><map name=""m_process"">\n"
+    IDS_SOAPMODELGENHTML_3  "<area shape=""rect"" coords=""%d,%d,%d,%d"" href=""%s"" >"
+    IDS_SOAPMODELGENHTML_4  "</map>\n<!--END HOTSPOT TABLE-->\n"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_SOAPMODELGENHTML_5  "</body>\n</html>\n"
+    IDS_SOAPMODELGENHTML_6  "<table width=""100%"" border=""0"" cellspacing=0 cellpadding=0>\n  \n<tr bgcolor=""#CCCCCC"">"
+    IDS_SOAPMODELGENHTML_7  "<td><font face=""Verdana""><a href=""%s""><img src=""%s"" border=""0""></a><font size=""1""><a href=""%s"">%s</a></font></font></td>"
+    IDS_SOAPMODELGENHTML_8  "    <td>&nbsp;</td>"
+    IDS_SOAPMODELGENHTML_9  "  </tr>\n</table>"
+    IDS_SOAPMODELGENHTML_10 "<hr size=""1"">"
+    IDS_SOAPMODELGENHTML_11 "<td><font face=""Verdana""><a href=""%s""><img src=""%s"" border=""0""></a><font size=""1""><a href=""%s"">%s</a></font></font></td>"
+    IDS_SOAPMODELGENHTML_12 "<table width=""100%"" border=""0"" cellspacing=0 cellpadding=0>\n  <tr bgcolor=""#CCCCCC"">   \n\t"
+    IDS_SOAPMODELGENHTML_17 "<area shape=""rect"" coords=""%d,%d,%d,%d"" href=""javascript:top.selectStart(%d)"" >"
+    IDS_SOAPMODELGENHTML_13 "<td><font face=""Verdana"" size=""4""><a href=""%s""><img src=""%s"" border=""0""></a><font size=""1"" face=""Verdana, Arial, Helvetica, sans-serif""> \n      </font></font></td> </tr>"
+    IDS_SOAPMODELGENHTML_14 "  <tr bgcolor=""#CCCCCC""> \n    <td>\n      <div align=""right""><font face=""Verdana"" size=""4""><font size=""1"" face=""Verdana, Arial, Helvetica, sans-serif"" color=""#FFFFFF""><b>Généré \n        par ProcessSoft Conceptor - Copyright</b></font></font> </div>\n    </td>\n  </tr>\n </table>"
+    IDS_DISTRIBUTION_VALUE_COLUMN "Valeur"
+    IDS_DISTRIBUTION_BOOLEANOPERATOR_COLUMN "et/ou"
+    IDS_SOAPMODELGENHTML_15 "<td><font face=""Verdana""><a href=""%s""><img src=""%s"" border=""0""></a><font size=""1""></a></font></font></td>"
+    IDS_SOAPMODELGENHTML_16 "<img src=""%s"">"
+    IDS_USERGROUP_HASNOROLE "Le groupe sélectionné ne contient aucune équipe. Vous ne pouvez pas créer de règles de distribution sur ce groupe. Vous devez définir au moins une équipe sous ce groupe."
+END
+
+STRINGTABLE 
+BEGIN
+    ID_DYNATTR_ADD          "Insérer un attribut dynamique.\nInsérer un attribut dynamique"
+    ID_RECALCULATE_MODEL_DURATION 
+                            "Recalculer les délais.\nRecalculer les délais"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_AL_SYSTEM_SOAPPUBLICATION_ERR 
+                            "Erreur dans la publication des systèmes logiques"
+    IDS_AL_SYSTEM_SOAPPUBLICATION "Publication des systèmes logiques terminée"
+    IDS_AL_GROUP_SOAPPUBLICATION_ERR 
+                            "Erreur dans la publication des unités de travail"
+    IDS_AL_GROUP_SOAPPUBLICATION "Publication des unités de travail terminée"
+    IDS_AL_ATTRIBUTES_SOAPPUBLICATION_ERR 
+                            "Erreur dans la publication des attributs du modèle"
+    IDS_AL_ATTRIBUTES_SOAPPUBLICATION 
+                            "Publication des attributs du modèle terminée"
+    IDS_AL_AUTHENTICATIONOK_SOAPPUBLICATION 
+                            "Authentification sur serveur Messenger réussie"
+    IDS_AL_CANCEL_SOAPPUBLICATION "Publication annulée par l'utilisateur"
+    IDS_AL_START_DURATIONCALCULATION "Démarrage du calcul des délais"
+    IDS_AL_STOP_DURATIONCALCULATION "Fin du calcul des délais"
+    IDS_DB_PROCEDURE_INC_1  "Valeurs pour le calcul des délais remises à zéro pour cette procédure <%s>"
+    IDS_DB_DELIVERABLE_INC_1 
+                            "Valeurs pour le calcul des délais remises à zéro pour ce livrable <%s>"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DB_DELIV_INC_1      "Livrable <%s> Age du cas pondéré: %f, Age du cas maximum: %f"
+    IDS_DB_PROCEDURE_INC_2  "Procédure <%s> délai pondéré: %f délai maximum: %f"
+    IDS_AL_START_SESTERCESCALCULATION "Calcul Sesterces"
+    IDS_DB_DELIV_INC_2      "Générer le rapport prestations.\nGénérer le rapport prestations."
+    IDS_DB_DELIV_INC_3      "Livrable suivant symbole start ou porte <%s> Age du cas pondéré: %f, Age du cas maximum: %f"
+    IDS_DB_PROCEDURE_INC_3  "Procédure <%s> Livrable <%s> sortie * age du cas: %f"
+    IDS_DB_PROCEDURE_INC_4  "Procédure <%s> numérateur: %f / dénominateur: %f - (Sum age pondéré*qty): %f / SumQty livrable in: %f"
+    IDS_DB_PROCEDURE_INC_5  "Procédure <%s> Age du cas pondéré: %f, Age du cas maximum: %f"
+    IDS_DB_DELIV_INC_4      "Livrable latéral entrant calculé <%s> Livrable in sommé <%s> somme des livrables in: %f, Valeur maximum: %f"
+    IDS_AL_DELIV_NOTDEFINED_COMBINATION 
+                            "Le livrable n'est pas défini dans une combinaison. Veuillez contrôler et relancer le calcul."
+    IDS_DB_DELIV_INC_5      "Livrable calculé <%s> Livrable in lateral sommé <%s> somme des livrables latéraux in: %f, valeure maximum des livrables latéraux in: %f"
+    IDS_AL_DELIV_QUANTITY_ZERO 
+                            "La quantité de ce livrable est à zéro. Cela génère une division par zéro. Le calcul a été effectué en prenant une quantité égale à 1. Veuillez contrôler et relancer le calcul."
+    IDS_DB_PROCEDURE_INC_6  "Procédure <%s> numérateur MAX: %f / dénominateur: %f (Sum ageMAX*qty): %f / SumQty livrable in: %f"
+    IDS_DB_DELIV_INC_6      "Calcul de la somme des livrables pondéré Sumof (age * qty) / SumQty. Livrable <%s> Age du cas pondéré: %f, Age du cas maximum: %f, Quantité du livrable: %f"
+    IDS_DB_DELIV_INC_7      "Copie information du Livrable source <%s> vers Livrable destination <%s> Age du cas pondéré: %f, Age du cas maximum: %f"
+    IDS_AL_USERGROUP_NOTINLINE 
+                            "Le modèle n'est pas en ligne avec le fichier de définition des groupes de travail. Les prix des unités ne seront pas mis à jour."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_AL_PUBLISHLOGICALSYSTEM "Publier le système logique : %s"
+    IDS_AL_PUBLISHUSERGROUP "Publier le groupe : %s"
+    IDS_AL_PUBLISHROLE      "Publier l'équipe : %s"
+    IDS_AL_PUBLISHMODELATTRIBUTE 
+                            "Publier l'attribut du modèle. ItemID : %d Label : %s Type : %d"
+    IDS_AL_PUBLISHINPUTATTRIBUTE 
+                            "Publier l'attribut de saisie. Symbole : %d Key : %d Valeure par défaut : %s"
+    IDS_AL_PUBLISHDISTRIBATTRIBUTE 
+                            "Publier l'attribut de distribution. Equipe : %s Key : %d Opérateur : %d Valeur : %s"
+    IDS_AL_PUBLISHDISTRIBATTRIBUTEMAP 
+                            "Publier mapping sur attribut de saisie. Symbole : %d Key : %d Valeur : %s Opérateur Logique : %d"
+    IDS_AL_PUBLISHSYMBOLATTRIBUTE 
+                            "Publier l'attribut du symbole. Ref : %d Key : %d Valeur : %s Dynamique : %d"
+    IDS_AL_PUBLISHHTMLFILE  "Publier le fichier HTML : %s"
+    IDS_SHOWSYMBOLATTRIBUTE_TTIPS 
+                            "Montrer les attributs de saisie pour ce symbole uniquement"
+    IDS_SHOWALLATTRIBUTE_TTIPS 
+                            "Montrer les attributs de saisie pour tout les symboles."
+    IDS_AL_PROCEDURE_INC_15 "Le coût de l'unité définie pour cette procédure n'a pas pû être assignée."
+    IDS_AL_START_INC_12     "Le coût de l'unité définie pour ce point de démarrage n'a pas pû être assignée."
+    IDS_AL_STOP_INC_5       "Le coût de l'unité définie pour ce point d'arrêt n'a pas pû être assignée."
+    IDS_AL_STOP_INC_10      "Aucune unité de travail n'a été assignée à ce point d'arrêt. Par conséquent le coût de l'unité pris en compte sera zéro."
+    IDS_AL_STOP_INC_11      "L'unité de travail assignée à ce point d'arrêt a un coût égal à zéro. Veuillez vérifier que c'est bien le coût approprié."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_AL_STOP_INC_6       "L'unité définie pour ce point d'arrêt n'existe plus."
+    IDS_AL_START_INC_13     "L'unité définie pour ce point de démarrage n'existe plus."
+    IDS_AL_PROCEDURE_INC_16 "L'unité définie pour cette procédure n'existe plus."
+    IDS_AL_PROCEDURE_INC_17 "Aucune unité définie pour cette procédure."
+    IDS_AL_START_INC_14     "Aucune unité définie pour ce point de démarrage."
+    IDS_AL_STOP_INC_7       "Aucune unité définie pour ce point d'arrêt."
+    IDS_AL_START_MESSENGERCHECK 
+                            "Démarrage du contrôle d'intégrité du modèle pour la publication Messenger."
+    IDS_AL_PROCESS_INC_1    "La livraison %s n'a pas de livrable principal défini."
+    IDS_AL_DELIV_QUANTITY_SUM "Livrable: %s, Quantité calculée: %f"
+    IDS_AL_DELIV_WORKLOAD   "Livrable: %s, Charge de travail prévisionnelle calculée: %f"
+    IDS_AL_DELIV_COST       "Livrable: %s, Coût du livrable hors temps de travail calculée: %f"
+    IDS_AL_PROCESS_COST_OUTOFTIME 
+                            "Procédure: %s, Coût de la procédure hors temps de travail calculé: %f"
+    IDS_AL_PROCESS_COST_PREV 
+                            "Procédure: %s, Coût prévisionnel de la procédure calculé: %f"
+    IDS_AL_PROCESS_COST_BYPROC 
+                            "Procédure: %s, Coût par activation de la procédure calculé: %f"
+    IDS_AL_PROCESS_CALC_ACTIV "Procédure: %s, activation calculée: %f"
+    IDS_AL_PROCESS_LOADBYACTIV 
+                            "Procédure: %s, Charge / Activation calculée: %f"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_AL_PROCESS_WORKLOAD "Procédure: %s, Charge de travail prévisionnelle calculée: %f"
+    IDS_TEXTZONE            "Zone de texte"
+    IDS_AL_PRESTATIONS_SOAPPUBLICATION "Publication des prestations terminée"
+    IDS_AL_PRESTATIONS_SOAPPUBLICATION_ERR 
+                            "Erreur dans la publication des prestations"
+    IDS_AL_PUBLISHPRESTATION "Publier la prestation : %s"
+    IDS_AL_GROUP_SOAPPUBLICATION_START 
+                            "Publication des unités de travail en cours..."
+    IDS_AL_SYSTEM_SOAPPUBLICATION_START 
+                            "Publication des systèmes logiques en cours..."
+    IDS_AL_PRESTATIONS_SOAPPUBLICATION_START 
+                            "Publication des prestations en cours..."
+    IDS_AL_ATTRIBUTES_SOAPPUBLICATION_START 
+                            "Publication des attributs du modèle en cours..."
+    IDS_AL_MODEL_SOAPPUBLICATION_START "Publication du modèle en cours..."
+    IDS_AL_MODELHTML_SOAPPUBLICATION_START 
+                            "Publication du modèle sous format HTML en cours..."
+    IDS_WZ_PUBLISHTOMESSENGERALIAS_ST_S "Création d'un alias"
+    IDS_WZ_PUBLISHTOMESSENGERALIAS_ST_T 
+                            "Vous devez créer un alias afin d'identifier le serveur de destination."
+    IDS_ADRESS_ALIAS_IS_EMPTY 
+                            "Vous devez spécifier une adresse de serveur et un alias pour pouvoir publier. Veuillez SVP compléter ces champs."
+    IDS_AL_GROUP_MULTIMODELS_CHECK_START 
+                            "Contrôle de la validité des réferentiels en cours..."
+    IDS_AL_GROUP_MULTIMODELS_CHECK_ERR 
+                            "Les réferentiels en cours d'utilisation ne correspondent pas à ceux existants dans la base de données. La publication va être interrompue."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_AL_GROUP_MULTIMODELS_CHECK_END 
+                            "Contrôle de la validité des réferentiels terminé"
+    IDS_AL_CHECKUNIVERSE    "Contrôle de l'univers : %s"
+    IDS_ZS_DELETE_CORRUPED_SYMBOLS 
+                            "Le modèle %s contenait des symboles considérés comme corrompus. Ceux-ci ont été supprimés."
+    IDS_CANNOTDELETE_ALLRISKS 
+                            "Vous ne pouvez pas supprimer tous les risques. Il doit en rester au moins un."
+    IDS_CANNOT_OPEN_RISK_FILE 
+                            "Un problème est survenu lors de l'ouverture du fichier. Le fichier a pu être supprimé ou déplacé par erreur. Si c'est le cas, veuillez utiliser le bouton 'Ouvrir' du formulaire précédent ou le bouton 'Nouveau' du prochain formulaire pour corriger le problème. Aucune modification n'est possible pour le moment."
+    IDS_BAD_DIRECTORY       "Le répertoire sélectionné n'est pas valide. Veuillez choisir un répertoire existant."
+    IDS_RISK_OPENFILE       "Ovrir un fichier de risque"
+    IDS_CORRUPTED_RISK_FILE "Le fichier en cours d'ouverture ne contient pas le bon nombre d'éléments. Vous ne pouvez pas modifier ce fichier, car il n'est pas compatible."
+    IDS_RISK_STRING_FORMATER "%d -"
+    IDS_RISK_STRING_ENTRY   "%d - Entrée %d"
+    IDS_RISK_FILE_ALREADY_EXIST 
+                            "Un fichier portant ce nom existe déjà. Veuillez choisir un autre nom, ou un autre répertoire."
+    IDS_NO_RISK_TYPE        "Aucun type défini"
+    IDS_RISK_TYPE_FILE_DESCRIPTION 
+                            "Fichiers d'initialisation des types (*.typ)"
+    IDS_RISK_IMPACT_FILE_DESCRIPTION 
+                            "Fichiers d'initialisation des impacts (*.imp)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RISK_PROBABILITY_FILE_DESCRIPTION 
+                            "Fichiers d'initialisation des probabilités (*.pro)"
+    IDS_RISK_CALCULATE_START "Début du calcul des risques."
+    IDS_RISK_CALCULATE_END  "Fin du calcul des risques."
+    IDS_RISK_CALCULATE_END_INFOS 
+                            "Fin du calcul des risques : %d risque(s) sérieux détécté(s), %d risque(s) sévères détecté(s)."
+    IDS_RULE_IS_NOT_SYNC    "Cette règle n'est plus synchronisée avec le référentiel du modèle :"
+END
+
+#endif    // Français (France) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutre (Par défaut système) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEUSD)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_SYS_DEFAULT
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_RISK_OPTIONS DIALOGEX 0, 0, 290, 202
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Options des risques"
+FONT 8, "MS Sans Serif", 400, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "Valider",IDOK,233,184,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,176,184,50,14
+    EDITTEXT        IDC_RISK_TITLE_EDIT,50,18,139,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_RISK_DESCRIPTION_EDIT,50,34,139,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_RISK_PROBABILITY,51,98,139,61,CBS_DROPDOWN | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_RISK_IMPACT,51,83,139,62,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_RISK_TYPE,51,69,139,58,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    CTEXT           "",IDC_RISK_SEVERITY,51,114,14,9,WS_BORDER
+    CONTROL         "Action en cours",IDC_ACTION,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,195,114,65,8
+    EDITTEXT        IDC_POA,51,161,139,14,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_UE,51,145,139,14,ES_AUTOHSCROLL | ES_NUMBER
+    GROUPBOX        "Risque",IDC_RISK_GROUP,7,7,276,46
+    LTEXT           "Titre",IDC_RISK_TITLE,12,18,36,14
+    LTEXT           "Description",IDC_RISK_DESCRIPTION,12,34,36,14
+    GROUPBOX        "Influence",IDC_INFLUENCE_GROUP,7,58,276,71
+    LTEXT           "Type",IDC_TYPE_TITLE,12,69,36,14
+    PUSHBUTTON      "Modifier...",IDC_MODIFY_RISK_TYPE,195,69,39,12
+    PUSHBUTTON      "Ouvrir...",IDC_OPEN_RISK_TYPE,238,69,39,12
+    GROUPBOX        "Valeurs monétaires",IDC_MONEY_GROUP,7,133,276,48
+    LTEXT           "Impact",IDC_IMPACT_TITLE,12,83,36,14
+    LTEXT           "Probabilité",IDC_PROBABILITY_TITLE,12,98,36,14
+    LTEXT           "Sévérité",IDC_SEVERITY_TITLE,12,114,36,9
+    LTEXT           "= Impact * Probabilité",IDC_SEVERITY_DESC,67,114,68,9
+    LTEXT           "Estimation",IDC_UE_TITLE,12,145,36,14
+    LTEXT           "POA",IDC_POA_TITLE,12,161,36,14
+    PUSHBUTTON      "Modifier...",IDC_MODIFY_RISK_IMPACT,195,83,39,12
+    PUSHBUTTON      "Modifier...",IDC_MODIFY_RISK_PROBABILITY,195,98,39,12
+    PUSHBUTTON      "Ouvrir...",IDC_OPEN_RISK_IMPACT,238,83,39,12
+    PUSHBUTTON      "Ouvrir...",IDC_OPEN_RISK_PROBABILITY,238,98,39,12
+    LTEXT           "SFr.",IDC_UE_FRS_LABEL,195,148,14,8
+    LTEXT           "SFr.",IDC_POA_FRS_LABEL,195,163,14,8
+END
+
+IDD_MODIFY_RISK DIALOGEX 0, 0, 247, 171
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Modifier les types du risque"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "OK",IDOK,190,7,50,14
+    PUSHBUTTON      "Annuler",IDCANCEL,190,23,50,14
+    LISTBOX         IDC_ELEMENTS_LIST,7,7,177,128,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_NEW_ELEMENT,7,150,177,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Ajouter",IDC_ADD_ELEMENT,190,55,50,14,WS_DISABLED
+    PUSHBUTTON      "Supprimer",IDC_DEL_ELEMENT,190,39,50,14,WS_DISABLED
+    PUSHBUTTON      "Nouveau...",IDC_NEW_FILE,190,150,50,14
+END
+
+IDD_MODIFY_RISK_STATIC DIALOGEX 0, 0, 247, 171
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Modifier les libellés des impacts/probabilités"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "OK",IDOK,190,7,50,14
+    PUSHBUTTON      "Annuler",IDCANCEL,190,23,50,14
+    LISTBOX         IDC_STATIC_ELEMENTS_LIST,7,7,177,128,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_STATIC_MODIFY_ELEMENT,20,150,164,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Nouveau...",IDC_STATIC_NEW_FILE,190,150,50,14
+    LTEXT           "",IDC_ELEMENT_NUMBER,7,152,10,12
+END
+
+IDD_NEW_RISK_FILE DIALOGEX 0, 0, 192, 90
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Nouveau fichier"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,135,69,50,14
+    PUSHBUTTON      "Annuler",IDCANCEL,7,69,50,14
+    EDITTEXT        IDC_FILENAME,7,18,155,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DIRECTORY,7,48,155,14,ES_AUTOHSCROLL
+    LTEXT           "Nom du fichier, sans extension",IDC_FILENAME_CAPTION,7,
+                    7,155,8
+    LTEXT           "Répertoire",IDC_DIRECTORY_CAPTION,7,38,155,8
+    PUSHBUTTON      "...",IDC_DIRECTORY_SELECT,169,48,16,14
+END
+
+IDD_RISK_CALCULATE_PARAMETERS DIALOGEX 0, 0, 251, 215
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Calcul des risques"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,194,194,50,14
+    PUSHBUTTON      "Annuler",IDCANCEL,7,194,50,14
+    CONTROL         "",IDC_ORANGE_SEVERITY,"msctls_trackbar32",TBS_AUTOTICKS | 
+                    WS_TABSTOP,14,19,118,19
+    CONTROL         "",IDC_RED_SEVERITY,"msctls_trackbar32",TBS_AUTOTICKS | 
+                    WS_TABSTOP,14,103,118,19
+    CTEXT           "1",IDC_ORANGE_SEVERITY_LEVEL,136,22,11,8
+    CTEXT           "1",IDC_RED_SEVERITY_LEVEL,136,106,11,8
+    GROUPBOX        "Niveau de sévérité orange",IDC_ORANGE_SEVERITY_GROUP,7,
+                    7,237,79
+    CONTROL         "Action en cours",IDC_ORANGE_ACTION,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,159,23,81,10
+    CONTROL         "Action en cours",IDC_RED_ACTION,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,159,106,81,10
+    GROUPBOX        "Niveau de sévérité rouge",IDC_RED_SEVERITY_GROUP,7,89,
+                    237,79
+    CONTROL         "Objets aux couleurs par défaut",IDC_DEFAULT_COLORS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,19,175,114,10
+    EDITTEXT        IDC_ORANGE_UE,123,49,37,14,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_ORANGE_POA,123,65,37,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Estimation unitaire",IDC_ORANGE_UE_LABEL,19,51,98,8
+    LTEXT           "Perte opérationnelle annuelle",IDC_ORANGE_POA_LABEL,19,
+                    67,98,8
+    CONTROL         "Pas d'action en cours",IDC_ORANGE_NO_ACTION,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,159,33,81,10
+    LTEXT           "SFr.",IDC_ORANGE_UE_FRS_LABEL,171,51,26,8
+    LTEXT           "SFr.",IDC_ORANGE_POA_FRS_LABEL,171,67,26,8
+    EDITTEXT        IDC_RED_UE,123,133,37,14,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_RED_POA,123,149,37,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Estimation unitaire",IDC_RED_UE_LABEL,19,134,98,8
+    LTEXT           "Perte opérationnelle annuelle",IDC_RED_POA_LABEL,19,150,
+                    98,8
+    CONTROL         "Pas d'action en cours",IDC_RED_NO_ACTION,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,159,117,81,10
+    LTEXT           "SFr.",IDC_RED_UE_FRS_LABEL,171,134,26,8
+    LTEXT           "SFr.",IDC_RED_POA_FRS_LABEL,171,150,26,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_RISK_OPTIONS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 283
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_MODIFY_RISK, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 240
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 164
+    END
+
+    IDD_MODIFY_RISK_STATIC, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 240
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 164
+    END
+
+    IDD_NEW_RISK_FILE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 185
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 83
+    END
+
+    IDD_RISK_CALCULATE_PARAMETERS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 244
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 208
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_RISK_MENU MENU 
+BEGIN
+    POPUP "Risque"
+    BEGIN
+        MENUITEM "Ajouter un nouveau risque",   ID_ADD_NEWRISK
+        MENUITEM "Supprimer le risque",         ID_DEL_CURRENTRISK
+    END
+END
+
+#endif    // Neutre (Par défaut système) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Français (Suisse) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRS)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH_SWISS
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_MESG_HTMLVIEW       BITMAP                  "res\\bmp00005.bmp"
+#endif    // Français (Suisse) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE 12, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\zModelBP.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

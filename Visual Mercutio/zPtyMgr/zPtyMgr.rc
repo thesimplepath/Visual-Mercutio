@@ -1,0 +1,213 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "zPtyMgrRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+#include "zFormsRes\zFormsRes.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// French (France) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "zPtyMgrRes.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "#include ""zFormsRes\\zFormsRes.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_PROP_FLATTOOLBAR    BITMAP  DISCARDABLE     "res\\bitmap1.bmp"
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040c04b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "ProcessSoft\0"
+            VALUE "FileDescription", "zPtyMgrD\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "zPtyMgrD\0"
+            VALUE "LegalCopyright", "Copyright ©\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "zPtyMgrD.dll\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "ProcessSoft zPtyMgrD\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x40c, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_SPLITTER_H          CURSOR  DISCARDABLE     "res\\sym_spli.cur"
+IDC_SPLITTER_V          CURSOR  DISCARDABLE     "res\\cur00001.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_INPUT_DURATION DIALOGEX 0, 0, 228, 41
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Durée"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "jour(s)",IDC_STATIC,7,7,23,8
+    LTEXT           "heure(s)",IDC_STATIC,63,7,30,8
+    LTEXT           "minute(s)",IDC_STATIC,119,7,30,8
+    LTEXT           "seconde(s)",IDC_STATIC,175,7,36,8
+    EDITTEXT        IDC_DURATION_DAY,7,23,46,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DURATION_HOUR,63,23,46,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DURATION_MINUTE,119,23,46,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DURATION_SECOND,175,23,46,12,ES_AUTOHSCROLL
+END
+
+IDD_ALL_PROPERTIES DIALOG DISCARDABLE  0, 0, 308, 269
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Liste des attributs"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Tous",IDC_PROPTYPE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,7,7,39,9
+    CONTROL         "Statiques",IDC_PROPTYPE2,"Button",BS_AUTORADIOBUTTON,52,
+                    7,45,9
+    CONTROL         "Dynamiques",IDC_PROPTYPE3,"Button",BS_AUTORADIOBUTTON,
+                    103,7,54,9
+    LISTBOX         IDC_PROPERTIES_LIST,7,23,294,221,LBS_OWNERDRAWFIXED | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,251,248,50,14
+    PUSHBUTTON      "Abandonner",IDCANCEL,199,248,50,14
+    PUSHBUTTON      "Supprimer",ID_DELATTRIBUTE,7,248,50,14
+    PUSHBUTTON      "Renommer",ID_RENAMEATTRIBUTE,60,248,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_INPUT_DURATION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 221
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 34
+        HORZGUIDE, 23
+    END
+
+    IDD_ALL_PROPERTIES, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 301
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 262
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SHOWORGANIZED       "Montrer par catégorie"
+    IDS_SHOWDETAILED        "Montrer par détails"
+    IDS_MUSTSELECT_ATTRIBUTE "Vous devez sélectionner un attribut."
+    IDS_SHOWALLTYPES        "Montrer tous les attributs"
+    IDS_SHOWSTATICTYPE      "Montrer les attributs statiques uniquement"
+    IDS_SHOWDYNAMICTYPE     "Montrer les attributs dynamiques uniquement"
+    IDS_RENAMEATTRIB        "Renommer un attribut dynamique"
+    IDS_CONFIRMDELATTRIB    "L'attribut dynamique sélectionné va être supprimé du modèle et de tous les symboles qui ont cet attribut dynamique défini. Voulez-vous continuer?"
+END
+
+#endif    // French (France) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

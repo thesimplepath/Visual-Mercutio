@@ -1,0 +1,27 @@
+<?xml version="1.0" standalone="yes"?>
+  <ElementSet>
+    <MmPtr>
+      <Name>Automation Machine Package</Name>
+      <Object>
+        <MmPackage>
+          <PersistentName>Automation Machine Package.vcx</PersistentName>
+        </MmPackage>
+      </Object>
+    </MmPtr>
+    <MmPtr>
+      <Name>Interfaces Package</Name>
+      <Object>
+        <MmPackage>
+          <PersistentName>Interfaces Package.vcx</PersistentName>
+        </MmPackage>
+      </Object>
+    </MmPtr>
+    <MmPtr>
+      <Name>State Machine Package</Name>
+      <Object>
+        <MmPackage>
+          <PersistentName>State Machine Package.vcx</PersistentName>
+        </MmPackage>
+      </Object>
+    </MmPtr>
+  </ElementSet>

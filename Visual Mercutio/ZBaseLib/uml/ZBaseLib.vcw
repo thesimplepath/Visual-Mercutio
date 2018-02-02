@@ -1,0 +1,36 @@
+<?xml version="1.0" standalone="yes"?>
+  <VcUmlWorkspace>
+    <ElementSet>
+      <MmPtr>
+        <Name>ZBaseLib</Name>
+        <Object>
+          <MmSystemModel>
+            <ElementCount>71</ElementCount>
+            <ElementSet>
+              <MmPtr>
+                <Name>ZBaseLib</Name>
+                <Object>
+                  <VcProject></VcProject>
+                </Object>
+              </MmPtr>
+            </ElementSet>
+          </MmSystemModel>
+        </Object>
+      </MmPtr>
+      <MmPtr>
+        <Name>Roundtrip</Name>
+        <Object>
+          <VcRoundTripModel></VcRoundTripModel>
+        </Object>
+      </MmPtr>
+      <MmPtr>
+        <PtrRevMark>2</PtrRevMark>
+        <Name>Libraries</Name>
+        <Object>
+          <MmLibraryManager></MmLibraryManager>
+        </Object>
+      </MmPtr>
+    </ElementSet>
+    <LibraryPersistentPath>Z:\ADSoft Development\Design\UML\ZBaseLib.vcl</LibraryPersistentPath>
+    <ShellIntegratedUMLModeling>1</ShellIntegratedUMLModeling>
+  </VcUmlWorkspace>
