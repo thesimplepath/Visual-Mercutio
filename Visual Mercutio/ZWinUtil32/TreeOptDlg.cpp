@@ -206,7 +206,7 @@ void ZVisualStackedDialog::DelPage(ZVisualStackedPageInfo *page)
 {
     ASSERT(page != NULL);
     if (page->Created) 
-	{
+    {
         page->Created = FALSE;
         ASSERT(page->Dialog != NULL);
         page->Dialog->OnKillActive();
@@ -217,10 +217,10 @@ void ZVisualStackedDialog::DelPage(ZVisualStackedPageInfo *page)
     }
     POSITION pos = List.GetHeadPosition();
     while (pos) 
-	{
+    {
         ZVisualStackedPageInfo *ptr = (ZVisualStackedPageInfo*)List.GetAt(pos);
         if (ptr == page) 
-		{
+        {
             List.RemoveAt(pos);
             delete ptr;
             break;

@@ -29,13 +29,13 @@ ZUSymbolLoaderFTP::~ZUSymbolLoaderFTP()
 
 int ZUSymbolLoaderFTP::LoadSymbol( const CString Location, ZBSymbolEntitySet& CompSet )
 {
-	return 0;
+    return 0;
 }
 
 
 int ZUSymbolLoaderFTP::LoadSymbols( const CString Location, ZBSymbolEntitySet& CompSet, bool LoadSubFolders /*= false*/ )
 {
-	return 0;
+    return 0;
 }
 
 

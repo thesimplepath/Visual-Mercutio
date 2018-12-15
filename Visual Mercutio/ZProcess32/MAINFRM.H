@@ -18,46 +18,46 @@
 
 class ZIMainFrame : public ZIBaseMainFrame
 {
-	DECLARE_DYNAMIC( ZIMainFrame )
+    DECLARE_DYNAMIC( ZIMainFrame )
 
 public:
 
-	ZIMainFrame();
+    ZIMainFrame();
 
-	// Return the workspace reference
-	ZVProcessWorkspace* GetWorkspace()
-	{
-		return &m_wndWorkspace;
-	};
+    // Return the workspace reference
+    ZVProcessWorkspace* GetWorkspace()
+    {
+        return &m_wndWorkspace;
+    };
 
-	// Return the output workspace reference
-	ZVOutputWorkspace* GetOutputWorkspace()
-	{
-		return &m_wndOutputWorkspace;
-	};
+    // Return the output workspace reference
+    ZVOutputWorkspace* GetOutputWorkspace()
+    {
+        return &m_wndOutputWorkspace;
+    };
 
-	// Return the output workspace reference
-	ZVPropertiesWorkspace* GetPropertiesWorkspace()
-	{
-		return &m_wndPropertiesWorkspace;
-	};
+    // Return the output workspace reference
+    ZVPropertiesWorkspace* GetPropertiesWorkspace()
+    {
+        return &m_wndPropertiesWorkspace;
+    };
 
-	ZIProjectBar& GetProjectWindowBar()
-	{
-		return m_ProjectWindowBar;
-	};
+    ZIProjectBar& GetProjectWindowBar()
+    {
+        return m_ProjectWindowBar;
+    };
 
-	ZTipOfDayBar& GetwndTipOfDayBar()
-	{
-		return m_wndTipOfDayBar;
-	};
+    ZTipOfDayBar& GetwndTipOfDayBar()
+    {
+        return m_wndTipOfDayBar;
+    };
 
-	virtual void OnReloadBarState( bool Reset = false );
-	virtual void OnSaveBarState();
+    virtual void OnReloadBarState( bool Reset = false );
+    virtual void OnSaveBarState();
 
-	// Call back for Zoom In&Out
-	virtual void ViewZoomIn();
-	virtual void ViewZoomOut();
+    // Call back for Zoom In&Out
+    virtual void ViewZoomIn();
+    virtual void ViewZoomOut();
 
 // Operations
 public:
@@ -65,69 +65,69 @@ public:
 // Implementation
 public:
 
-	virtual ~ZIMainFrame();
-	
+    virtual ~ZIMainFrame();
+    
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 protected:
-	////////////////////////////////////////////////////////////
-	// Menu and Toolbar pure virtual functions
-	
-	// CreateToolBars function must be implemented by the derived class
-	// it lets the user create all the toolbars
-	virtual BOOL CreateToolBars();
+    ////////////////////////////////////////////////////////////
+    // Menu and Toolbar pure virtual functions
+    
+    // CreateToolBars function must be implemented by the derived class
+    // it lets the user create all the toolbars
+    virtual BOOL CreateToolBars();
 
-	// CreateMainStatusBar function mus be implement by the derived class
-	// it lets the user create the main status bar
-	virtual BOOL CreateStatusBar();
+    // CreateMainStatusBar function mus be implement by the derived class
+    // it lets the user create the main status bar
+    virtual BOOL CreateStatusBar();
 
-	// CreateMenuBars function mus be implement by the derived class
-	// it lets the user create the all the menus
-	virtual BOOL CreateMenuBars();
+    // CreateMenuBars function mus be implement by the derived class
+    // it lets the user create the all the menus
+    virtual BOOL CreateMenuBars();
 
-	// InitializeDockingWindows function must be implement by the derived class
-	// it lets the user initializing all docking windows
-	virtual BOOL InitializeDockingWindows();
+    // InitializeDockingWindows function must be implement by the derived class
+    // it lets the user initializing all docking windows
+    virtual BOOL InitializeDockingWindows();
 
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZIMainFrame)
-	afx_msg int  OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg void OnClose();
-	afx_msg void OnUpdatePage(CCmdUI *pCmdUI);
-	afx_msg void OnViewFullScreen();
-	afx_msg void OnUpdateViewFullScreen(CCmdUI* pCmdUI);
-	afx_msg void OnViewProjectWindow();
-	afx_msg void OnUpdateViewProjectWindow(CCmdUI* pCmdUI);
-	afx_msg void OnViewTipOfDayBar();
-	afx_msg void OnUpdateViewTipOfDayBar(CCmdUI* pCmdUI);
-	afx_msg void OnViewHelpContextBar();
-	afx_msg void OnUpdateViewHelpContextBar(CCmdUI* pCmdUI);
-	afx_msg void OnViewWorkspace();
-	afx_msg void OnUpdateViewWorkspace(CCmdUI* pCmdUI);
-	afx_msg void OnViewOutputWorkspace();
-	afx_msg void OnUpdateViewOutputWorkspace(CCmdUI* pCmdUI);
-	afx_msg void OnViewProperties();
-	afx_msg void OnUpdateViewProperties(CCmdUI* pCmdUI);
-	afx_msg void OnCustomize();
-	afx_msg void OnViewToolbar();
-	afx_msg void OnUpdateViewToolbar(CCmdUI* pCmdUI);
-	afx_msg LRESULT OnDocumentLoaded( WPARAM wParam, LPARAM lParam );
-	afx_msg LRESULT OnDDEExecute( WPARAM wParam, LPARAM lParam );
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZIMainFrame)
+    afx_msg int  OnCreate(LPCREATESTRUCT lpCreateStruct);
+    afx_msg void OnClose();
+    afx_msg void OnUpdatePage(CCmdUI *pCmdUI);
+    afx_msg void OnViewFullScreen();
+    afx_msg void OnUpdateViewFullScreen(CCmdUI* pCmdUI);
+    afx_msg void OnViewProjectWindow();
+    afx_msg void OnUpdateViewProjectWindow(CCmdUI* pCmdUI);
+    afx_msg void OnViewTipOfDayBar();
+    afx_msg void OnUpdateViewTipOfDayBar(CCmdUI* pCmdUI);
+    afx_msg void OnViewHelpContextBar();
+    afx_msg void OnUpdateViewHelpContextBar(CCmdUI* pCmdUI);
+    afx_msg void OnViewWorkspace();
+    afx_msg void OnUpdateViewWorkspace(CCmdUI* pCmdUI);
+    afx_msg void OnViewOutputWorkspace();
+    afx_msg void OnUpdateViewOutputWorkspace(CCmdUI* pCmdUI);
+    afx_msg void OnViewProperties();
+    afx_msg void OnUpdateViewProperties(CCmdUI* pCmdUI);
+    afx_msg void OnCustomize();
+    afx_msg void OnViewToolbar();
+    afx_msg void OnUpdateViewToolbar(CCmdUI* pCmdUI);
+    afx_msg LRESULT OnDocumentLoaded( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnDDEExecute( WPARAM wParam, LPARAM lParam );
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	ZIProjectBar			m_ProjectWindowBar;
-	ZTipOfDayBar			m_wndTipOfDayBar;
-	ZVProcessWorkspace		m_wndWorkspace;
-	ZVOutputWorkspace		m_wndOutputWorkspace;
-	ZVPropertiesWorkspace	m_wndPropertiesWorkspace;
+    ZIProjectBar            m_ProjectWindowBar;
+    ZTipOfDayBar            m_wndTipOfDayBar;
+    ZVProcessWorkspace        m_wndWorkspace;
+    ZVOutputWorkspace        m_wndOutputWorkspace;
+    ZVPropertiesWorkspace    m_wndPropertiesWorkspace;
 };
 
 #endif // __DSGNFRM_H

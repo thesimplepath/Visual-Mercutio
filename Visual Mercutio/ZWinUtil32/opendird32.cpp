@@ -21,22 +21,22 @@ ZIOpenDirDlg::ZIOpenDirDlg(CString Title, CWnd* pParentWnd)
 ZIOpenDirDlg::ZIOpenDirDlg(UINT nID, CWnd* pParentWnd)
 : m_pParentWnd(pParentWnd)
 {
-	if (nID > 0)
-		m_Title.LoadString( nID );
+    if (nID > 0)
+        m_Title.LoadString( nID );
 }
 
 
-CString	ZIOpenDirDlg::ProcessDirectory()
+CString    ZIOpenDirDlg::ProcessDirectory()
 {
-	CSHFileInfo sfi;
-	if (!m_Title.IsEmpty())
-		sfi.m_strTitle = _T(m_Title);
-	else
-		sfi.m_strTitle = _T("...");
-	if (sfi.BrowseForFolder( (m_pParentWnd) ? m_pParentWnd : CWnd::GetDesktopWindow() ) == IDOK) 
-	{
-		m_strDirectory = sfi.m_strPath;
-	}
-	return m_strDirectory;
+    CSHFileInfo sfi;
+    if (!m_Title.IsEmpty())
+        sfi.m_strTitle = _T(m_Title);
+    else
+        sfi.m_strTitle = _T("...");
+    if (sfi.BrowseForFolder( (m_pParentWnd) ? m_pParentWnd : CWnd::GetDesktopWindow() ) == IDOK) 
+    {
+        m_strDirectory = sfi.m_strPath;
+    }
+    return m_strDirectory;
 }
 

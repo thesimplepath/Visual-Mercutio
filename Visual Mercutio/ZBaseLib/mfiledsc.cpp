@@ -1,10 +1,10 @@
 //## begin module%366EBC140324.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%366EBC140324.cm
 
 //## begin module%366EBC140324.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%366EBC140324.cp
 
 //## Module: MFileDsc%366EBC140324; Package body
@@ -54,7 +54,7 @@ ZUMailFileDescription::ZUMailFileDescription (CStringArray& FileList, Attachemen
   //## end ZUMailFileDescription::ZUMailFileDescription%913223370.initialization
 {
   //## begin ZUMailFileDescription::ZUMailFileDescription%913223370.body preserve=yes
-  	Fill( FileList, AttachType );
+      Fill( FileList, AttachType );
   //## end ZUMailFileDescription::ZUMailFileDescription%913223370.body
 }
 
@@ -66,7 +66,7 @@ ZUMailFileDescription::ZUMailFileDescription (ZFileManager& FileList, Attachemen
   //## end ZUMailFileDescription::ZUMailFileDescription%913659110.initialization
 {
   //## begin ZUMailFileDescription::ZUMailFileDescription%913659110.body preserve=yes
-  	Fill( FileList, AttachType );
+      Fill( FileList, AttachType );
   //## end ZUMailFileDescription::ZUMailFileDescription%913659110.body
 }
 
@@ -74,8 +74,8 @@ ZUMailFileDescription::ZUMailFileDescription (ZFileManager& FileList, Attachemen
 ZUMailFileDescription::~ZUMailFileDescription()
 {
   //## begin ZUMailFileDescription::~ZUMailFileDescription%.body preserve=yes
-  	if (m_MapiFileDescPtr)
-  		delete [] m_MapiFileDescPtr;
+      if (m_MapiFileDescPtr)
+          delete [] m_MapiFileDescPtr;
   //## end ZUMailFileDescription::~ZUMailFileDescription%.body
 }
 
@@ -85,62 +85,62 @@ ZUMailFileDescription::~ZUMailFileDescription()
 void ZUMailFileDescription::Fill (CStringArray& FileList, AttachementType AttachType)
 {
   //## begin ZUMailFileDescription::Fill%913223371.body preserve=yes
-  	RemoveAllFiles();
-  	for (register i = 0; i < FileList.GetSize(); ++i)
-  		AddFile( FileList[i] );
+      RemoveAllFiles();
+      for (register i = 0; i < FileList.GetSize(); ++i)
+          AddFile( FileList[i] );
   //## end ZUMailFileDescription::Fill%913223371.body
 }
 
 void ZUMailFileDescription::Fill (ZFileManager& FileList, AttachementType AttachType)
 {
   //## begin ZUMailFileDescription::Fill%913659108.body preserve=yes
-  	RemoveAllFiles();
-  	for (register size_t i = 0; i < FileList.GetCount(); ++i)
-  		AddFile( *FileList.GetAt(i) );
+      RemoveAllFiles();
+      for (register size_t i = 0; i < FileList.GetCount(); ++i)
+          AddFile( *FileList.GetAt(i) );
   //## end ZUMailFileDescription::Fill%913659108.body
 }
 
 BOOL ZUMailFileDescription::AddFile (ZFile& File, AttachementType AttachType)
 {
   //## begin ZUMailFileDescription::AddFile%913659109.body preserve=yes
-  	SetAttachementType( File.GetAttachementType() );
-  	return (m_FileArray.Add( File.GetCompleteFileName() ) >= 0 );
+      SetAttachementType( File.GetAttachementType() );
+      return (m_FileArray.Add( File.GetCompleteFileName() ) >= 0 );
   //## end ZUMailFileDescription::AddFile%913659109.body
 }
 
 MapiFileDesc* ZUMailFileDescription::GetMapiFileDescPtr ()
 {
   //## begin ZUMailFileDescription::GetMapiFileDescPtr%913223374.body preserve=yes
-  	if (m_MapiFileDescPtr)
-  		delete [] m_MapiFileDescPtr;
-  	
-  	m_MapiFileDescPtr = new FAR MapiFileDesc[GetCount()];
-  	
-  	for (register i = 0; i < m_FileArray.GetSize(); ++i)
-  	{
-		memset((lpMapiFileDesc)(&m_MapiFileDescPtr[i]), 0, sizeof(MapiFileDesc));
-		m_MapiFileDescPtr[i].nPosition = (ULONG)-1;
-		m_MapiFileDescPtr[i].lpszPathName = (char*)((const char*)m_FileArray[i]);
-//	fileDesc.lpszFileName = szTitle;
-  		
-	}
-	return m_MapiFileDescPtr;
+      if (m_MapiFileDescPtr)
+          delete [] m_MapiFileDescPtr;
+      
+      m_MapiFileDescPtr = new FAR MapiFileDesc[GetCount()];
+      
+      for (register i = 0; i < m_FileArray.GetSize(); ++i)
+      {
+        memset((lpMapiFileDesc)(&m_MapiFileDescPtr[i]), 0, sizeof(MapiFileDesc));
+        m_MapiFileDescPtr[i].nPosition = (ULONG)-1;
+        m_MapiFileDescPtr[i].lpszPathName = (char*)((const char*)m_FileArray[i]);
+//    fileDesc.lpszFileName = szTitle;
+          
+    }
+    return m_MapiFileDescPtr;
   //## end ZUMailFileDescription::GetMapiFileDescPtr%913223374.body
 }
 
 const CString& ZUMailFileDescription::GetHyperLinkText ()
 {
   //## begin ZUMailFileDescription::GetHyperLinkText%913459630.body preserve=yes
-  	m_HyperLinkText.Empty();
-  	
-  	for (register i = 0; i < m_FileArray.GetSize(); ++i)
-  	{
-  		m_HyperLinkText += "\n";
-  		m_HyperLinkText += "<file://" + m_FileArray[i];
-		m_HyperLinkText += ">";
-	}
-	m_HyperLinkText += "\n";
-	return m_HyperLinkText;
+      m_HyperLinkText.Empty();
+      
+      for (register i = 0; i < m_FileArray.GetSize(); ++i)
+      {
+          m_HyperLinkText += "\n";
+          m_HyperLinkText += "<file://" + m_FileArray[i];
+        m_HyperLinkText += ">";
+    }
+    m_HyperLinkText += "\n";
+    return m_HyperLinkText;
   //## end ZUMailFileDescription::GetHyperLinkText%913459630.body
 }
 

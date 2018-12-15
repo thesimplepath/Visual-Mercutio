@@ -36,69 +36,69 @@ class AFX_EXT_CLASS ZBTimeSpan : public COleDateTimeSpan
 {
 public:
 // Inherited feature
-	typedef COleDateTimeSpan inherited;
+    typedef COleDateTimeSpan inherited;
 
 public:
-	// Constructors
-	ZBTimeSpan();
-	ZBTimeSpan( double dblSpanSrc );
-	ZBTimeSpan( long lDays, int nHours, int nMins, int nSecs );
+    // Constructors
+    ZBTimeSpan();
+    ZBTimeSpan( double dblSpanSrc );
+    ZBTimeSpan( long lDays, int nHours, int nMins, int nSecs );
 
-	// Destructor
-	virtual ~ZBTimeSpan();
+    // Destructor
+    virtual ~ZBTimeSpan();
 
-	// Copy constructors
-	ZBTimeSpan( const ZBTimeSpan &right );
-	ZBTimeSpan( const CTimeSpan &right );
-	ZBTimeSpan( const COleDateTimeSpan &right );
-	ZBTimeSpan( int nYear, int nMonth, int nDay, int nHour, int nMin, int nSec, int nDST = -1 );
+    // Copy constructors
+    ZBTimeSpan( const ZBTimeSpan &right );
+    ZBTimeSpan( const CTimeSpan &right );
+    ZBTimeSpan( const COleDateTimeSpan &right );
+    ZBTimeSpan( int nYear, int nMonth, int nDay, int nHour, int nMin, int nSec, int nDST = -1 );
 
-	BOOL	IsEmpty();
-	void	Clear();
+    BOOL    IsEmpty();
+    void    Clear();
 
-	const ZBTimeSpan & operator=( const ZBTimeSpan &right );
-	const ZBTimeSpan & operator=( const COleDateTimeSpan &right );
-	const ZBTimeSpan & operator=( const CTimeSpan &right );
+    const ZBTimeSpan & operator=( const ZBTimeSpan &right );
+    const ZBTimeSpan & operator=( const COleDateTimeSpan &right );
+    const ZBTimeSpan & operator=( const CTimeSpan &right );
 
-	//	Make a clone of the object.
-	virtual ZBTimeSpan* Clone();
+    //    Make a clone of the object.
+    virtual ZBTimeSpan* Clone();
 
-	CString GetStandardFormatedTimeSpan();
-	CString GetFormatedTimeSpan( CString Format );
-	CString GetFormatedTimeSpan( UINT nFormatID );
+    CString GetStandardFormatedTimeSpan();
+    CString GetFormatedTimeSpan( CString Format );
+    CString GetFormatedTimeSpan( UINT nFormatID );
 
-	void	ClearTime();
+    void    ClearTime();
 };
 
 inline ZBTimeSpan::ZBTimeSpan( double dblSpanSrc )
-	: COleDateTimeSpan( dblSpanSrc )
+    : COleDateTimeSpan( dblSpanSrc )
 {
 }
 
 inline ZBTimeSpan::ZBTimeSpan( long lDays, int nHours, int nMins, int nSecs )
-	: COleDateTimeSpan( lDays, nHours, nMins, nSecs )
+    : COleDateTimeSpan( lDays, nHours, nMins, nSecs )
 {
 }
 
 
 inline ZBTimeSpan::ZBTimeSpan( const ZBTimeSpan &right )
-	: COleDateTimeSpan( right )
+    : COleDateTimeSpan( right )
 {
 }
 
 inline ZBTimeSpan::ZBTimeSpan( const CTimeSpan &right )
-	: COleDateTimeSpan( (long)right.GetDays(), right.GetHours(), right.GetMinutes(), right.GetSeconds() )
+    : COleDateTimeSpan( (long)right.GetDays(), right.GetHours(), right.GetMinutes(), right.GetSeconds() )
 {
 }
 
 inline ZBTimeSpan::ZBTimeSpan( const COleDateTimeSpan &right )
-	: COleDateTimeSpan( right )
+    : COleDateTimeSpan( right )
 {
 }
 
 inline BOOL ZBTimeSpan::IsEmpty()
 {
-	return ( m_span == 0 ) ? TRUE : FALSE;
+    return ( m_span == 0 ) ? TRUE : FALSE;
 }
 
 #endif // __ZBTIMESPAN_H

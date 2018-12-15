@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 06/2001
+// <nl>Created:         06/2001
 // <nl>Description:  ZINavigableModel interface for model navigation
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -58,11 +58,11 @@
 class AFX_EXT_CLASS ZINavigableModel  
 {
 public:
-	ZINavigableModel();
-	virtual ~ZINavigableModel();
+    ZINavigableModel();
+    virtual ~ZINavigableModel();
 
-	// Methods to obtain start symbols
-	virtual size_t GetStartSymbols( CODNodeArray& Nodes, bool Deep = false ) = 0;
+    // Methods to obtain start symbols
+    virtual size_t GetStartSymbols( CODNodeArray& Nodes, bool Deep = false ) = 0;
 
 };
 

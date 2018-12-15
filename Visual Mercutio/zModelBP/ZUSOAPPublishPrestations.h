@@ -1,9 +1,9 @@
 // **************************************************************************************************************
-// *									Classe ZUSOAPPublishPrestations											*
+// *                                    Classe ZUSOAPPublishPrestations                                            *
 // **************************************************************************************************************
-// * JMR-MODIF - Le 30 mars 2006 - Création de la classe ZUSOAPPublishPrestations.								*
+// * JMR-MODIF - Le 30 mars 2006 - Création de la classe ZUSOAPPublishPrestations.                                *
 // **************************************************************************************************************
-// * Cette classe prend en charge la publication des prestations vers Messenger.								*
+// * Cette classe prend en charge la publication des prestations vers Messenger.                                *
 // **************************************************************************************************************
 
 #if !defined(AFX_ZUSOAPPUBLISHPRESTATIONS_H__D709CBA3_F30E_4D59_80D9_F6AADB7A8749__INCLUDED_)
@@ -53,20 +53,20 @@ class AFX_EXT_CLASS ZUSOAPPublishPrestations
 {
 public:
 
-	ZUSOAPPublishPrestations( ZBPublishMessengerModelInformation* pInfo, ZILog* pLog = NULL );
-	virtual ~ZUSOAPPublishPrestations();
+    ZUSOAPPublishPrestations( ZBPublishMessengerModelInformation* pInfo, ZILog* pLog = NULL );
+    virtual ~ZUSOAPPublishPrestations();
 
-	bool Publish();
-
-private:
-
-	void _PublishPrestations( ZBLogicalPrestationsEntity* p_Prestations  );
+    bool Publish();
 
 private:
 
-	ZBPublishMessengerModelInformation*	m_pInfo;
-	pPublishPrestations					m_pp;
-	ZILog*								m_pLog;
+    void _PublishPrestations( ZBLogicalPrestationsEntity* p_Prestations  );
+
+private:
+
+    ZBPublishMessengerModelInformation*    m_pInfo;
+    pPublishPrestations                    m_pp;
+    ZILog*                                m_pLog;
 };
 
 #endif // !defined(AFX_ZUSOAPPUBLISHPRESTATIONS_H__D709CBA3_F30E_4D59_80D9_F6AADB7A8749__INCLUDED_)

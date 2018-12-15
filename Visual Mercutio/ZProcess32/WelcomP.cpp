@@ -15,36 +15,36 @@ static char THIS_FILE[] = __FILE__;
 // JMR-MODIF - Le 17 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
 BEGIN_MESSAGE_MAP( ZIWelcomeProcess, ZIWelcomeDialog )
-	//{{AFX_MSG_MAP(ZIWelcomeProcess)
-	ON_BN_CLICKED(ID_WELCOME_CREATE_NEWMODEL, OnWelcomeCreateNewModel)
-	ON_BN_CLICKED(ID_WELCOME_CREATE_NEWPROJECT, OnWelcomeCreateNewProject)
-	ON_BN_CLICKED(ID_WELCOME_OPENMODEL, OnWelcomeOpenModel)
-	ON_BN_CLICKED(ID_WELCOME_OPENPROJECT, OnWelcomeOpenProject)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZIWelcomeProcess)
+    ON_BN_CLICKED(ID_WELCOME_CREATE_NEWMODEL, OnWelcomeCreateNewModel)
+    ON_BN_CLICKED(ID_WELCOME_CREATE_NEWPROJECT, OnWelcomeCreateNewProject)
+    ON_BN_CLICKED(ID_WELCOME_OPENMODEL, OnWelcomeOpenModel)
+    ON_BN_CLICKED(ID_WELCOME_OPENPROJECT, OnWelcomeOpenProject)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // ZIWelcomeProcess dialog
 
-ZIWelcomeProcess::ZIWelcomeProcess( ZAApplicationOption*	pApplicationOptions,
-								    BOOL					EnableMoveToGeneral,
-									CWnd*					pParent /*=NULL*/ )
-	: ZIWelcomeDialog( ZIWelcomeProcess::IDD, IDB_WELCOME_P, pApplicationOptions, EnableMoveToGeneral, pParent )
+ZIWelcomeProcess::ZIWelcomeProcess( ZAApplicationOption*    pApplicationOptions,
+                                    BOOL                    EnableMoveToGeneral,
+                                    CWnd*                    pParent /*=NULL*/ )
+    : ZIWelcomeDialog( ZIWelcomeProcess::IDD, IDB_WELCOME_P, pApplicationOptions, EnableMoveToGeneral, pParent )
 {
-	//{{AFX_DATA_INIT(ZIWelcomeProcess)
-		// NOTE: the ClassWizard will add member initialization here
-	//}}AFX_DATA_INIT
+    //{{AFX_DATA_INIT(ZIWelcomeProcess)
+        // NOTE: the ClassWizard will add member initialization here
+    //}}AFX_DATA_INIT
 }
 
 void ZIWelcomeProcess::DoDataExchange( CDataExchange* pDX )
 {
-	ZIWelcomeDialog::DoDataExchange( pDX );
-	//{{AFX_DATA_MAP(ZIWelcomeProcess)
-	DDX_Control(pDX, ID_WELCOME_OPENMODEL, m_OpenModel);
-	DDX_Control(pDX, ID_WELCOME_OPENPROJECT, m_OpenProject);
-	DDX_Control(pDX, ID_WELCOME_CREATE_NEWMODEL, m_CreateNewModel);
-	DDX_Control(pDX, ID_WELCOME_CREATE_NEWPROJECT, m_CreateNewProject);
-	//}}AFX_DATA_MAP
+    ZIWelcomeDialog::DoDataExchange( pDX );
+    //{{AFX_DATA_MAP(ZIWelcomeProcess)
+    DDX_Control(pDX, ID_WELCOME_OPENMODEL, m_OpenModel);
+    DDX_Control(pDX, ID_WELCOME_OPENPROJECT, m_OpenProject);
+    DDX_Control(pDX, ID_WELCOME_CREATE_NEWMODEL, m_CreateNewModel);
+    DDX_Control(pDX, ID_WELCOME_CREATE_NEWPROJECT, m_CreateNewProject);
+    //}}AFX_DATA_MAP
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -52,32 +52,32 @@ void ZIWelcomeProcess::DoDataExchange( CDataExchange* pDX )
 
 void ZIWelcomeProcess::OnWelcomeCreateNewModel() 
 {
-	SaveState();
-	EndDialog( ID_WELCOME_CREATE_NEWMODEL );
+    SaveState();
+    EndDialog( ID_WELCOME_CREATE_NEWMODEL );
 }
 
 void ZIWelcomeProcess::OnWelcomeCreateNewProject() 
 {
-	SaveState();
-	EndDialog( ID_WELCOME_CREATE_NEWPROJECT );
+    SaveState();
+    EndDialog( ID_WELCOME_CREATE_NEWPROJECT );
 }
 
 void ZIWelcomeProcess::OnWelcomeOpenModel() 
 {
-	SaveState();
-	EndDialog( ID_WELCOME_OPENMODEL );
+    SaveState();
+    EndDialog( ID_WELCOME_OPENMODEL );
 }
 
 void ZIWelcomeProcess::OnWelcomeOpenProject() 
 {
-	SaveState();
-	EndDialog( ID_WELCOME_OPENPROJECT );
+    SaveState();
+    EndDialog( ID_WELCOME_OPENPROJECT );
 }
 
 BOOL ZIWelcomeProcess::OnInitDialog() 
 {
-	ZIWelcomeDialog::OnInitDialog();
-	
-	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX Property Pages should return FALSE
+    ZIWelcomeDialog::OnInitDialog();
+    
+    return TRUE;  // return TRUE unless you set the focus to a control
+                  // EXCEPTION: OCX Property Pages should return FALSE
 }

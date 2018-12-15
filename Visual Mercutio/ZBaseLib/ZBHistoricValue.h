@@ -14,7 +14,7 @@
 // zForms libraries.
 //
 // Author:       Dom
-// <nl>Created:		 03/2000
+// <nl>Created:         03/2000
 // <nl>Description:  ZBHistoricValue keep historic values for a specific name
 //
 
@@ -43,56 +43,56 @@ class AFX_EXT_CLASS ZBHistoricValue
 {
 public:
 
-	// Default contructor
-	ZBHistoricValue( const CString EntityName = "" );
+    // Default contructor
+    ZBHistoricValue( const CString EntityName = "" );
 
-	// Copy constructor
-	ZBHistoricValue( const ZBHistoricValue &right );
+    // Copy constructor
+    ZBHistoricValue( const ZBHistoricValue &right );
 
-	// Destructor
-	virtual ~ZBHistoricValue();
+    // Destructor
+    virtual ~ZBHistoricValue();
 
-	// Assignement operator
-	const ZBHistoricValue & operator=( const ZBHistoricValue &right );
+    // Assignement operator
+    const ZBHistoricValue & operator=( const ZBHistoricValue &right );
 
-	// Clone method
-	ZBHistoricValue* Clone ();
+    // Clone method
+    ZBHistoricValue* Clone ();
 
-	// Return the number of values.
-	size_t GetCount () const;
+    // Return the number of values.
+    size_t GetCount () const;
 
-	// return the index of an historic value, 
-	// if not found return -1
-	int FindHistoricValue ( const CString& Value ) const;
+    // return the index of an historic value, 
+    // if not found return -1
+    int FindHistoricValue ( const CString& Value ) const;
 
-	// return true if the historic value already exist
-	bool HistoricValueExist ( const CString& Value ) const
-	{
-		return ( FindHistoricValue( Value ) != -1 ) ? true : false;
-	}
+    // return true if the historic value already exist
+    bool HistoricValueExist ( const CString& Value ) const
+    {
+        return ( FindHistoricValue( Value ) != -1 ) ? true : false;
+    }
 
-	// Add a new historic value into the FieldValueHistoryArray.
-	void AddHistoricValue ( const CString Value );
+    // Add a new historic value into the FieldValueHistoryArray.
+    void AddHistoricValue ( const CString Value );
 
-	// Remove a specific historic value from the manager.
-	bool RemoveHistoricValue ( const CString& Value );
+    // Remove a specific historic value from the manager.
+    bool RemoveHistoricValue ( const CString& Value );
 
-	CString GetValueAt( size_t Index ) const;
+    CString GetValueAt( size_t Index ) const;
 
-	const CStringArray& GetValueArray () const;
+    const CStringArray& GetValueArray () const;
 
-	// remove the history.
-	void FreeHistoric ();
+    // remove the history.
+    void FreeHistoric ();
 
-	// The field name.
-	const CString GetEntityName () const;
-	void SetEntityName ( CString value );
+    // The field name.
+    const CString GetEntityName () const;
+    void SetEntityName ( CString value );
 
 private:
 
-	// Contains the history string values.
-	CStringArray	m_ValueHistoryArray;
-	CString			m_EntityName;
+    // Contains the history string values.
+    CStringArray    m_ValueHistoryArray;
+    CString            m_EntityName;
 };
 
 #ifdef _DEBUG
@@ -106,17 +106,17 @@ CArchive& AFXAPI operator>>( CArchive& ar, ZBHistoricValue& src );
 
 inline size_t ZBHistoricValue::GetCount () const
 {
-  	return m_ValueHistoryArray.GetSize();
+      return m_ValueHistoryArray.GetSize();
 }
 
 inline CString ZBHistoricValue::GetValueAt( size_t Index ) const
 {
-	return ( Index < GetCount() ) ? m_ValueHistoryArray.GetAt( Index ) : _T( "" );
+    return ( Index < GetCount() ) ? m_ValueHistoryArray.GetAt( Index ) : _T( "" );
 }
 
 inline const CStringArray& ZBHistoricValue::GetValueArray () const
 {
-  	return m_ValueHistoryArray;
+      return m_ValueHistoryArray;
 }
 
 inline const CString ZBHistoricValue::GetEntityName () const

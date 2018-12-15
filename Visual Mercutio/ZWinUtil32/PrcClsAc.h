@@ -20,10 +20,10 @@
 #include "HoverButton.h"
 
 #ifndef _WIN32
-	#include "ZWinUtil.h"
+    #include "ZWinUtil.h"
 #endif
 #ifdef _WIN32
-	#include "ZWinUtil32.h"
+    #include "ZWinUtil32.h"
 #endif
 
 const UINT IDACCEPTCOMMAND = 10;
@@ -55,48 +55,48 @@ class AFX_EXT_CLASS ZIProcessCloseActions : public ZIDialog
 {
 // Construction
 public:
-	ZIProcessCloseActions(BOOL SendCommand = TRUE, BOOL AcceptRejectCommand = TRUE, BOOL SuspendCommand = TRUE, CWnd* pParent = NULL);   // standard constructor
+    ZIProcessCloseActions(BOOL SendCommand = TRUE, BOOL AcceptRejectCommand = TRUE, BOOL SuspendCommand = TRUE, CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(ZIProcessCloseActions)
-	enum { IDD = IDD_PROCESSCLOSE };
-	ZUHoverButton	m_AbortCommand;
-	ZUHoverButton	m_TrashCommandBtn;
-	ZUHoverButton	m_SuspendCommandBtn;
-	ZUHoverButton	m_SendCommandBtn;
-	ZUHoverButton	m_RejectCommandBtn;
-	ZUHoverButton	m_CancelCommandBtn;
-	ZUHoverButton	m_AcceptCommandBtn;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZIProcessCloseActions)
+    enum { IDD = IDD_PROCESSCLOSE };
+    ZUHoverButton    m_AbortCommand;
+    ZUHoverButton    m_TrashCommandBtn;
+    ZUHoverButton    m_SuspendCommandBtn;
+    ZUHoverButton    m_SendCommandBtn;
+    ZUHoverButton    m_RejectCommandBtn;
+    ZUHoverButton    m_CancelCommandBtn;
+    ZUHoverButton    m_AcceptCommandBtn;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIProcessCloseActions)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIProcessCloseActions)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZIProcessCloseActions)
-	afx_msg void OnAcceptCommand();
-	afx_msg void OnRejectCommand();
-	afx_msg void OnSendCommand();
-	afx_msg void OnSuspendCommand();
-	afx_msg void OnTrashCommand();
-	virtual BOOL OnInitDialog();
-	afx_msg void OnCancelCommand();
-	afx_msg void OnAbortCommand();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZIProcessCloseActions)
+    afx_msg void OnAcceptCommand();
+    afx_msg void OnRejectCommand();
+    afx_msg void OnSendCommand();
+    afx_msg void OnSuspendCommand();
+    afx_msg void OnTrashCommand();
+    virtual BOOL OnInitDialog();
+    afx_msg void OnCancelCommand();
+    afx_msg void OnAbortCommand();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	BOOL	m_SendCommand;
-	BOOL	m_AcceptRejectCommand;
-	BOOL	m_SuspendCommand;
+    BOOL    m_SendCommand;
+    BOOL    m_AcceptRejectCommand;
+    BOOL    m_SuspendCommand;
 
 };
 

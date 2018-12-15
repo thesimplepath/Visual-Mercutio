@@ -33,40 +33,40 @@
 
 class AFX_EXT_CLASS ZBSymbolLabel : public CODLabelComponent  
 {
-	DECLARE_SERIAL(ZBSymbolLabel)
+    DECLARE_SERIAL(ZBSymbolLabel)
 
 public:
-	//@cmember
-	/* Constructor. */
-	ZBSymbolLabel( bool NotifyParent = false );
-	//@cmember
-	/* Constructor. */
-	ZBSymbolLabel(CODSymbolComponent* pOwner, bool NotifyParent = false);
-	//@cmember
-	/* Constructor. */
-	ZBSymbolLabel(const OD_CONTROL_POINT ctlPoint, bool NotifyParent = false);
+    //@cmember
+    /* Constructor. */
+    ZBSymbolLabel( bool NotifyParent = false );
+    //@cmember
+    /* Constructor. */
+    ZBSymbolLabel(CODSymbolComponent* pOwner, bool NotifyParent = false);
+    //@cmember
+    /* Constructor. */
+    ZBSymbolLabel(const OD_CONTROL_POINT ctlPoint, bool NotifyParent = false);
 
-	virtual ~ZBSymbolLabel();
+    virtual ~ZBSymbolLabel();
 
-	/* Copy constructor. */
-	ZBSymbolLabel(const ZBSymbolLabel& src);
-	/* Assignment operator. */
-	ZBSymbolLabel& operator=(const ZBSymbolLabel& src);
-	/* Create a duplicate copy of this object. */
-	virtual CODComponent* Dup() const;
+    /* Copy constructor. */
+    ZBSymbolLabel(const ZBSymbolLabel& src);
+    /* Assignment operator. */
+    ZBSymbolLabel& operator=(const ZBSymbolLabel& src);
+    /* Create a duplicate copy of this object. */
+    virtual CODComponent* Dup() const;
 
 
-	bool GetNotifyParent() const;
-	void SetNotifyParent( bool value );
+    bool GetNotifyParent() const;
+    void SetNotifyParent( bool value );
 
-	// Called by the framework, when the label move
-	virtual void OnMove();
+    // Called by the framework, when the label move
+    virtual void OnMove();
 
-	/* Serializes the symbol. */
-	virtual void Serialize(CArchive& ar);
+    /* Serializes the symbol. */
+    virtual void Serialize(CArchive& ar);
 
 private:
-	bool m_NotifyParent;
+    bool m_NotifyParent;
 
 };
 
@@ -74,25 +74,25 @@ private:
 
 inline bool ZBSymbolLabel::GetNotifyParent() const 
 {
-	return m_NotifyParent;
+    return m_NotifyParent;
 }
 inline void ZBSymbolLabel::SetNotifyParent( bool value )
 {
-	m_NotifyParent = value;
+    m_NotifyParent = value;
 }
 
 inline void ZBSymbolLabel::OnMove()
 {
-	CODLabelComponent::OnMove();
+    CODLabelComponent::OnMove();
 
-	if (m_NotifyParent)
-	{
-		CODSymbolComponent* pComp = GetOwner();
-		if (pComp)
-			// call the function to adjust 
-			// the position of embedded elements
-			pComp->OnMove();
-	}
+    if (m_NotifyParent)
+    {
+        CODSymbolComponent* pComp = GetOwner();
+        if (pComp)
+            // call the function to adjust 
+            // the position of embedded elements
+            pComp->OnMove();
+    }
 }
 
 #endif // !defined(AFX_ZBSymbolLabel_H__86F89ED1_2090_4F65_8977_AA7C1277980E__INCLUDED_)

@@ -25,31 +25,31 @@ class ZVConceptorReportOptions : public ZIWizardDialog
 // Construction
 public:
 
-	// Standard constructor
-	ZVConceptorReportOptions( CWnd* pParent = NULL );
+    // Standard constructor
+    ZVConceptorReportOptions( CWnd* pParent = NULL );
 
-	// Dialog Data
-	//{{AFX_DATA(ZVConceptorReportOptions)
-	enum { IDD = IDD_CONCEPTOR_REPORT };
-	BOOL	m_Deliverables;
-	BOOL	m_Detail;
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZVConceptorReportOptions)
+    enum { IDD = IDD_CONCEPTOR_REPORT };
+    BOOL    m_Deliverables;
+    BOOL    m_Detail;
+    //}}AFX_DATA
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVConceptorReportOptions)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVConceptorReportOptions)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 protected:
 
-	// Implementation
-	// Generated message map functions
-	//{{AFX_MSG(ZVConceptorReportOptions)
-	virtual void OnOK();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Implementation
+    // Generated message map functions
+    //{{AFX_MSG(ZVConceptorReportOptions)
+    virtual void OnOK();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

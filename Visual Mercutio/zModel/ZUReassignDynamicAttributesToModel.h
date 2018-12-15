@@ -13,9 +13,9 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 05/2002
+// <nl>Created:         05/2002
 // <nl>Description:  ZUReassignDynamicAttributesToModel navigates through the model and
-//					 reassigns the property object to all symbols.
+//                     reassigns the property object to all symbols.
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -69,22 +69,22 @@ class ZIBasicSymbol;
 class AFX_EXT_CLASS ZUReassignDynamicAttributesToModel : public ZUModelNavigation
 {
 public:
-	ZUReassignDynamicAttributesToModel(ZDProcessGraphModelMdl* pModel = NULL, 
-									 ZBProperty* pProperty = NULL, 
-									 void* pClass = NULL);
-	virtual ~ZUReassignDynamicAttributesToModel();
+    ZUReassignDynamicAttributesToModel(ZDProcessGraphModelMdl* pModel = NULL, 
+                                     ZBProperty* pProperty = NULL, 
+                                     void* pClass = NULL);
+    virtual ~ZUReassignDynamicAttributesToModel();
 
 
-	// Call-back methods
-	virtual bool OnStart();
-	virtual bool OnFinish();
+    // Call-back methods
+    virtual bool OnStart();
+    virtual bool OnFinish();
 
-	virtual bool OnSymbol( ZBSymbol* pSymbol );
-	virtual bool OnLink( ZBLinkSymbol* pLink );
+    virtual bool OnSymbol( ZBSymbol* pSymbol );
+    virtual bool OnLink( ZBLinkSymbol* pLink );
 
 
 private:
-	ZBProperty* m_pProperty;
+    ZBProperty* m_pProperty;
 
 };
 

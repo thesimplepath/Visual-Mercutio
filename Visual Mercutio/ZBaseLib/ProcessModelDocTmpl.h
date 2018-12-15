@@ -32,18 +32,18 @@
 
 class AFX_EXT_CLASS ZDProcessModelDocTmpl : public ZDDocTemplateEx
 {
-	DECLARE_DYNAMIC( ZDProcessModelDocTmpl )
+    DECLARE_DYNAMIC( ZDProcessModelDocTmpl )
 
 public:
 
-	ZDProcessModelDocTmpl( UINT				nIDResource,
-						   CRuntimeClass*	pDocClass,
-						   CRuntimeClass*	pFrameClass,
-						   CRuntimeClass*	pViewClass,
-						   WORD				nMenuId			= 0,
-						   UINT				nMaxMRU			= _AFX_MRU_COUNT );
+    ZDProcessModelDocTmpl( UINT                nIDResource,
+                           CRuntimeClass*    pDocClass,
+                           CRuntimeClass*    pFrameClass,
+                           CRuntimeClass*    pViewClass,
+                           WORD                nMenuId            = 0,
+                           UINT                nMaxMRU            = _AFX_MRU_COUNT );
 
-	virtual ~ZDProcessModelDocTmpl();
+    virtual ~ZDProcessModelDocTmpl();
 };
 
 #endif // !defined(AFX_PROCESSMODELDOCTMPL_H__774B92A7_A6E0_4F8A_BA01_43592BFF4A62__INCLUDED_)

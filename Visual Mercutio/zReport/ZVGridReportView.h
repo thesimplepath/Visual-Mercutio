@@ -39,40 +39,40 @@ class AFX_EXT_CLASS ZVGridReportView : public ZVGridView
 {
 protected:
 
-	// Create from serialization only
-	GXDECLARE_DYNCREATE( ZVGridReportView )
-	ZVGridReportView();
+    // Create from serialization only
+    GXDECLARE_DYNCREATE( ZVGridReportView )
+    ZVGridReportView();
 
 // Operations
 public:
 
-	// User attributes initialization 
-	virtual void SetupUserAttributes();
+    // User attributes initialization 
+    virtual void SetupUserAttributes();
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVGridReportView)
-	public:
-	virtual void OnDraw(CDC* pDC);	// overridden to draw this view
-	protected:
-	virtual void OnInitialUpdate();	// called first time after construct
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVGridReportView)
+    public:
+    virtual void OnDraw(CDC* pDC);    // overridden to draw this view
+    protected:
+    virtual void OnInitialUpdate();    // called first time after construct
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
 
-	virtual ~ZVGridReportView();
+    virtual ~ZVGridReportView();
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 // Generated message map functions
 protected:
-	//{{AFX_MSG(ZVGridReportView)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZVGridReportView)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

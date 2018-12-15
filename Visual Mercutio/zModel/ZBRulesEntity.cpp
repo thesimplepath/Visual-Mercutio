@@ -1,7 +1,7 @@
 // ******************************************************************************************************************
-// *										Classe ZBRulesEntity													*
+// *                                        Classe ZBRulesEntity                                                    *
 // ******************************************************************************************************************
-// * JMR-MODIF - Le 14 novembre 2006 - Ajout de la classe ZBRulesEntity.											*
+// * JMR-MODIF - Le 14 novembre 2006 - Ajout de la classe ZBRulesEntity.                                            *
 // ******************************************************************************************************************
 // * Cette classe représente une entité de type règle. Une entité peut être considérée comme un élément du document.*
 // ******************************************************************************************************************
@@ -25,14 +25,14 @@ IMPLEMENT_SERIAL( ZBRulesEntity, CObject, def_Version )
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBRulesEntity::ZBRulesEntity( const CString		Name		/*= _T( "" )*/, 
-							  const CString		Description	/*= _T( "" )*/, 
-							  ZBRulesEntity*	pParent		/*= NULL*/ )
-	: m_EntityName			( Name ),
-	  m_EntityDescription	( Description ),
-	  m_pParent				( pParent )
+ZBRulesEntity::ZBRulesEntity( const CString        Name        /*= _T( "" )*/, 
+                              const CString        Description    /*= _T( "" )*/, 
+                              ZBRulesEntity*    pParent        /*= NULL*/ )
+    : m_EntityName            ( Name ),
+      m_EntityDescription    ( Description ),
+      m_pParent                ( pParent )
 {
-	CreateGUID();
+    CreateGUID();
 }
 
 ZBRulesEntity::~ZBRulesEntity()
@@ -41,7 +41,7 @@ ZBRulesEntity::~ZBRulesEntity()
 
 void ZBRulesEntity::CreateGUID()
 {
-	m_GUID = ZUGUID::CreateNewGUID();
+    m_GUID = ZUGUID::CreateNewGUID();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -49,12 +49,12 @@ void ZBRulesEntity::CreateGUID()
 #ifdef _DEBUG
 void ZBRulesEntity::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void ZBRulesEntity::Dump( CDumpContext& dc ) const
 {
-	CObject::Dump( dc );
+    CObject::Dump( dc );
 }
 #endif //_DEBUG
 
@@ -63,18 +63,18 @@ void ZBRulesEntity::Dump( CDumpContext& dc ) const
 
 void ZBRulesEntity::Serialize( CArchive& ar )
 {
-	if ( ar.IsStoring() )
-	{
-		// Write the elements
-		ar << m_GUID;
-		ar << m_EntityName;
-		ar << m_EntityDescription;
-	}
-	else
-	{
-		// Read the elements
-		ar >> m_GUID;
-		ar >> m_EntityName;
-		ar >> m_EntityDescription;
-	}
+    if ( ar.IsStoring() )
+    {
+        // Write the elements
+        ar << m_GUID;
+        ar << m_EntityName;
+        ar << m_EntityDescription;
+    }
+    else
+    {
+        // Read the elements
+        ar >> m_GUID;
+        ar >> m_EntityName;
+        ar >> m_EntityDescription;
+    }
 }

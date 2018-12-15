@@ -37,47 +37,47 @@
 
 class AFX_EXT_CLASS ZBWorkflowDefinition : public CObject  
 {
-	DECLARE_SERIAL(ZBWorkflowDefinition)
+    DECLARE_SERIAL(ZBWorkflowDefinition)
 public:
-	ZBWorkflowDefinition();
-	virtual ~ZBWorkflowDefinition();
+    ZBWorkflowDefinition();
+    virtual ~ZBWorkflowDefinition();
 
-	// Copy constructor
-	ZBWorkflowDefinition(const ZBWorkflowDefinition& right);
-	// Assignment operator
-	ZBWorkflowDefinition& operator=(const ZBWorkflowDefinition& right);
+    // Copy constructor
+    ZBWorkflowDefinition(const ZBWorkflowDefinition& right);
+    // Assignment operator
+    ZBWorkflowDefinition& operator=(const ZBWorkflowDefinition& right);
 
-	ZBWorkflowDefinition*	Clone();
-
-
-	CString		GetWorkflowFilename() const { return m_WorkflowFilename; };
-	void		ClearWorkflowFilename();
-	void		SetWorkflowFilename( CString value ) { m_WorkflowFilename = value; };
-
-	ZBDate&		GetWorkflowLastUpdateDate() { return m_WorkflowLastUpdateDate; };
-	void		SetWorkflowLastUpdateDate( ZBDate value ) { m_WorkflowLastUpdateDate = value; };
-
-	bool		GetCheckConsistency() const { return m_CheckConsistency; };
-	void		SetCheckConsistency( bool value ) { m_CheckConsistency = value; };
-
-	bool		GetSaveModelInWorkflow() const { return m_SaveModelInWorkflow; };
-	void		SetSaveModelInWorkflow( bool value ) { m_SaveModelInWorkflow = value; };
+    ZBWorkflowDefinition*    Clone();
 
 
-	// Serializes the unit
-	virtual void Serialize(CArchive& ar);
+    CString        GetWorkflowFilename() const { return m_WorkflowFilename; };
+    void        ClearWorkflowFilename();
+    void        SetWorkflowFilename( CString value ) { m_WorkflowFilename = value; };
+
+    ZBDate&        GetWorkflowLastUpdateDate() { return m_WorkflowLastUpdateDate; };
+    void        SetWorkflowLastUpdateDate( ZBDate value ) { m_WorkflowLastUpdateDate = value; };
+
+    bool        GetCheckConsistency() const { return m_CheckConsistency; };
+    void        SetCheckConsistency( bool value ) { m_CheckConsistency = value; };
+
+    bool        GetSaveModelInWorkflow() const { return m_SaveModelInWorkflow; };
+    void        SetSaveModelInWorkflow( bool value ) { m_SaveModelInWorkflow = value; };
+
+
+    // Serializes the unit
+    virtual void Serialize(CArchive& ar);
 
 private:
-	CString			m_WorkflowFilename;
-	ZBDate			m_WorkflowLastUpdateDate;
-	bool			m_CheckConsistency;
-	bool			m_SaveModelInWorkflow;
+    CString            m_WorkflowFilename;
+    ZBDate            m_WorkflowLastUpdateDate;
+    bool            m_CheckConsistency;
+    bool            m_SaveModelInWorkflow;
 
 };
 
-inline void	ZBWorkflowDefinition::ClearWorkflowFilename()
+inline void    ZBWorkflowDefinition::ClearWorkflowFilename()
 {
-	m_WorkflowFilename.Empty();
+    m_WorkflowFilename.Empty();
 }
 
 #endif // !defined(AFX_ZBWORKFLOWDEFINITION_H__CEAF3A15_5BDA_4083_A524_CC2A20C65C65__INCLUDED_)

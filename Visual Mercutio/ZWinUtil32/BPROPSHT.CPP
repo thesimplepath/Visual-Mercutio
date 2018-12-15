@@ -1,10 +1,10 @@
 //## begin module%3705B620027B.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%3705B620027B.cm
 
 //## begin module%3705B620027B.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%3705B620027B.cp
 
 //## Module: BPropSht%3705B620027B; Package body
@@ -32,8 +32,8 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 IMPLEMENT_DYNAMIC(ZIBasePropSheet, CPropertySheet)
 
 BEGIN_MESSAGE_MAP(ZIBasePropSheet, CPropertySheet)
-	//{{AFX_MSG_MAP(ZIBasePropSheet)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZIBasePropSheet)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //## end module%3705B620027B.additionalDeclarations
 
@@ -78,7 +78,7 @@ ZIBasePropSheet::ZIBasePropSheet (LPCTSTR pszCaption, int DefaultTab)
 ZIBasePropSheet::~ZIBasePropSheet()
 {
   //## begin ZIBasePropSheet::~ZIBasePropSheet%.body preserve=yes
-	DeleteAllPropertyPages();
+    DeleteAllPropertyPages();
   //## end ZIBasePropSheet::~ZIBasePropSheet%.body
 }
 
@@ -89,9 +89,9 @@ int ZIBasePropSheet::GetCurPage () const
 {
   //## begin ZIBasePropSheet::GetCurPage%923121220.body preserve=yes
 #ifndef _WIN32
-	return m_nCurPage;
+    return m_nCurPage;
 #else
-	return GetActiveIndex();
+    return GetActiveIndex();
 #endif
   //## end ZIBasePropSheet::GetCurPage%923121220.body
 }
@@ -103,44 +103,44 @@ int ZIBasePropSheet::GetCurPage () const
 //## begin module%3705B620027B.epilog preserve=yes
 int  ZIBasePropSheet::FindPropertyPage( CPropertyPage* pPage )
 {
-  	for (int i = 0; i < m_PageArray.GetSize(); ++i)
-	{
-		if ( pPage == m_PageArray[i])
-			return i;
-	}
-	return -1;
+      for (int i = 0; i < m_PageArray.GetSize(); ++i)
+    {
+        if ( pPage == m_PageArray[i])
+            return i;
+    }
+    return -1;
 }
 
 bool ZIBasePropSheet::DeletePropertyPage( CPropertyPage* pPage )
 {
-	int  Index = FindPropertyPage( pPage );
-	if (Index != -1)
-		return DeletePropertyPageAt( Index );
-	return false;
+    int  Index = FindPropertyPage( pPage );
+    if (Index != -1)
+        return DeletePropertyPageAt( Index );
+    return false;
 }
 
 bool ZIBasePropSheet::DeletePropertyPageAt( size_t Index )
 {
-  	if (Index < (size_t)m_PageArray.GetSize())
-	{
-  		delete ((ZIGenericPropPage*)(m_PageArray[Index]));
-		m_PageArray.RemoveAt( Index );
-		RemovePage( Index );
-		return true;
-	}
-	return false;
+      if (Index < (size_t)m_PageArray.GetSize())
+    {
+          delete ((ZIGenericPropPage*)(m_PageArray[Index]));
+        m_PageArray.RemoveAt( Index );
+        RemovePage( Index );
+        return true;
+    }
+    return false;
 }
 
 
 void ZIBasePropSheet::DeleteAllPropertyPages()
 {
-	// Free the pages allocated on the fly by the ZINewForm class
-  	for (int i = 0; i < m_PageArray.GetSize(); ++i)
-	{
-  		delete ((ZIGenericPropPage*)(m_PageArray[i]));
-		RemovePage( 0 );
-	}
-	m_PageArray.RemoveAll();
+    // Free the pages allocated on the fly by the ZINewForm class
+      for (int i = 0; i < m_PageArray.GetSize(); ++i)
+    {
+          delete ((ZIGenericPropPage*)(m_PageArray[i]));
+        RemovePage( 0 );
+    }
+    m_PageArray.RemoveAll();
 }
 
 //## end module%3705B620027B.epilog

@@ -1,10 +1,10 @@
 //## begin module%33CA78FC01AE.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%33CA78FC01AE.cm
 
 //## begin module%33CA78FC01AE.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%33CA78FC01AE.cp
 
 //## Module: ZAFontMg%33CA78FC01AE; Package body
@@ -53,7 +53,7 @@ ZAFontManager::ZAFontManager(const ZAFontManager &right)
   //## end ZAFontManager::ZAFontManager%copy.initialization
 {
   //## begin ZAFontManager::ZAFontManager%copy.body preserve=yes
-  	*this = right;
+      *this = right;
   //## end ZAFontManager::ZAFontManager%copy.body
 }
 
@@ -61,10 +61,10 @@ ZAFontManager::ZAFontManager(const ZAFontManager &right)
 ZAFontManager::~ZAFontManager()
 {
   //## begin ZAFontManager::~ZAFontManager%.body preserve=yes
-  	for (int i = 0; i < m_FontArray.GetSize(); ++i)
-  		delete ((ZAFont*)(m_FontArray[i]));
+      for (int i = 0; i < m_FontArray.GetSize(); ++i)
+          delete ((ZAFont*)(m_FontArray[i]));
 
-	m_FontArray.RemoveAll();
+    m_FontArray.RemoveAll();
   //## end ZAFontManager::~ZAFontManager%.body
 }
 
@@ -72,14 +72,14 @@ ZAFontManager::~ZAFontManager()
 const ZAFontManager & ZAFontManager::operator=(const ZAFontManager &right)
 {
   //## begin ZAFontManager::operator=%.body preserve=yes
-  	if (right.m_FontArray.GetSize() > 0)
-  	{
-	  	m_FontArray.SetSize( right.m_FontArray.GetSize() );
-	  	for (int i = 0; i < right.m_FontArray.GetSize(); ++i)
-	  		if (right.m_FontArray[i])
-		  		m_FontArray.InsertAt(i, ((ZAFont*)right.m_FontArray[i])->Clone());
-	}
-  	return *this;
+      if (right.m_FontArray.GetSize() > 0)
+      {
+          m_FontArray.SetSize( right.m_FontArray.GetSize() );
+          for (int i = 0; i < right.m_FontArray.GetSize(); ++i)
+              if (right.m_FontArray[i])
+                  m_FontArray.InsertAt(i, ((ZAFont*)right.m_FontArray[i])->Clone());
+    }
+      return *this;
   //## end ZAFontManager::operator=%.body
 }
 
@@ -89,86 +89,86 @@ const ZAFontManager & ZAFontManager::operator=(const ZAFontManager &right)
 BOOL ZAFontManager::RemoveFont (HandleFont hFont)
 {
   //## begin ZAFontManager::RemoveFont%868907716.body preserve=yes
-  	for (int i = 0; i < m_FontArray.GetSize(); ++i)
-  		if ( ((ZAFont*)(m_FontArray[i]))->GethFontNumber() == hFont)
-  		{
-  			// First free memory pointed at location
-	  		delete ((ZAFont*)(m_FontArray[i]));
-	  		// Second remove the element from the array
-  			m_FontArray.RemoveAt( i );	
-  			return TRUE;
-  		}
-  	return FALSE;
+      for (int i = 0; i < m_FontArray.GetSize(); ++i)
+          if ( ((ZAFont*)(m_FontArray[i]))->GethFontNumber() == hFont)
+          {
+              // First free memory pointed at location
+              delete ((ZAFont*)(m_FontArray[i]));
+              // Second remove the element from the array
+              m_FontArray.RemoveAt( i );    
+              return TRUE;
+          }
+      return FALSE;
   //## end ZAFontManager::RemoveFont%868907716.body
 }
 
 HandleFont ZAFontManager::FindFont (LOGFONT* pLogFont, COLORREF Col)
 {
   //## begin ZAFontManager::FindFont%868907717.body preserve=yes
-	LOGFONT		lf;
-		
-  	for (int i = 0; i < m_FontArray.GetSize(); ++i)
-  	{
-  		// Check the color first
-  		if (((ZAFont*)(m_FontArray[i]))->GetFontColor() != Col)
-  			continue;
-  		// Check each element of the LOGFONT
-		((ZAFont*)(m_FontArray[i]))->GetObject( sizeof(LOGFONT), &lf );
-  		if (
-			strcmp( pLogFont->lfFaceName, lf.lfFaceName ) == 0 &&
-			pLogFont->lfHeight == lf.lfHeight &&
-			pLogFont->lfWidth == lf.lfWidth &&
-			pLogFont->lfEscapement == lf.lfEscapement &&
-			pLogFont->lfOrientation == lf.lfOrientation &&
-			pLogFont->lfWeight == lf.lfWeight &&
-			pLogFont->lfItalic == lf.lfItalic &&
-			pLogFont->lfUnderline == lf.lfUnderline &&
-			pLogFont->lfStrikeOut == lf.lfStrikeOut &&
-			pLogFont->lfCharSet == lf.lfCharSet )
-  			// Return the handle
-	  		return ((ZAFont*)(m_FontArray[i]))->GethFontNumber();
-  	}
-  	return NoFontDefined;
+    LOGFONT        lf;
+        
+      for (int i = 0; i < m_FontArray.GetSize(); ++i)
+      {
+          // Check the color first
+          if (((ZAFont*)(m_FontArray[i]))->GetFontColor() != Col)
+              continue;
+          // Check each element of the LOGFONT
+        ((ZAFont*)(m_FontArray[i]))->GetObject( sizeof(LOGFONT), &lf );
+          if (
+            strcmp( pLogFont->lfFaceName, lf.lfFaceName ) == 0 &&
+            pLogFont->lfHeight == lf.lfHeight &&
+            pLogFont->lfWidth == lf.lfWidth &&
+            pLogFont->lfEscapement == lf.lfEscapement &&
+            pLogFont->lfOrientation == lf.lfOrientation &&
+            pLogFont->lfWeight == lf.lfWeight &&
+            pLogFont->lfItalic == lf.lfItalic &&
+            pLogFont->lfUnderline == lf.lfUnderline &&
+            pLogFont->lfStrikeOut == lf.lfStrikeOut &&
+            pLogFont->lfCharSet == lf.lfCharSet )
+              // Return the handle
+              return ((ZAFont*)(m_FontArray[i]))->GethFontNumber();
+      }
+      return NoFontDefined;
   //## end ZAFontManager::FindFont%868907717.body
 }
 
 HandleFont ZAFontManager::FindFont (ZAFont* pFont)
 {
   //## begin ZAFontManager::FindFont%869402481.body preserve=yes
-  	for (int i = 0; i < m_FontArray.GetSize(); ++i)
-  		if ( ((ZAFont*)(m_FontArray[i])) == pFont)
-  		{
-  			// Return the handle
-	  		return ((ZAFont*)(m_FontArray[i]))->GethFontNumber();
-  		}
-  	return NoFontDefined;
+      for (int i = 0; i < m_FontArray.GetSize(); ++i)
+          if ( ((ZAFont*)(m_FontArray[i])) == pFont)
+          {
+              // Return the handle
+              return ((ZAFont*)(m_FontArray[i]))->GethFontNumber();
+          }
+      return NoFontDefined;
   //## end ZAFontManager::FindFont%869402481.body
 }
 
 void ZAFontManager::Serialize (CArchive& ar)
 {
   //## begin ZAFontManager::Serialize%869764511.body preserve=yes
-  	m_FontArray.Serialize( ar );
+      m_FontArray.Serialize( ar );
   //## end ZAFontManager::Serialize%869764511.body
 }
 
 HandleFont ZAFontManager::RotateFont (HandleFont hFont, int iAngle)
 {
   //## begin ZAFontManager::RotateFont%880893867.body preserve=yes
-	LOGFONT		lf;
-	ZAFont*		pInitialFont = GetFont( hFont );
-	pInitialFont->GetObject( sizeof(LOGFONT), &lf );
-	// Set the new angle
-	lf.lfEscapement = iAngle;
-	// Return the specific Font assigned directly
-	HandleFont hRetFont;
-	if ((hRetFont=FindFont( &lf, pInitialFont->GetFontColor() )) == NoFontDefined)
-	{
-		ZAFont*	pFont = new ZAFont;
-		pFont->Create( &lf, pInitialFont->GetFontColor() );
-		hRetFont = AddFont( pFont );
-  	}
-  	return hRetFont;
+    LOGFONT        lf;
+    ZAFont*        pInitialFont = GetFont( hFont );
+    pInitialFont->GetObject( sizeof(LOGFONT), &lf );
+    // Set the new angle
+    lf.lfEscapement = iAngle;
+    // Return the specific Font assigned directly
+    HandleFont hRetFont;
+    if ((hRetFont=FindFont( &lf, pInitialFont->GetFontColor() )) == NoFontDefined)
+    {
+        ZAFont*    pFont = new ZAFont;
+        pFont->Create( &lf, pInitialFont->GetFontColor() );
+        hRetFont = AddFont( pFont );
+      }
+      return hRetFont;
   //## end ZAFontManager::RotateFont%880893867.body
 }
 
@@ -180,12 +180,12 @@ HandleFont ZAFontManager::RotateFont (HandleFont hFont, int iAngle)
 #ifdef _DEBUG
 void ZAFontManager::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void ZAFontManager::Dump(CDumpContext& dc) const
 {
-	CObject::Dump(dc);
+    CObject::Dump(dc);
 }
 #endif //_DEBUG
 

@@ -25,9 +25,9 @@ ZIDropScrollView::~ZIDropScrollView()
 
 
 BEGIN_MESSAGE_MAP(ZIDropScrollView, ZVBasicScrollView)
-	//{{AFX_MSG_MAP(ZIDropScrollView)
-		// NOTE - the ClassWizard will add and remove mapping macros here.
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZIDropScrollView)
+        // NOTE - the ClassWizard will add and remove mapping macros here.
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 
@@ -36,7 +36,7 @@ END_MESSAGE_MAP()
 
 void ZIDropScrollView::OnDraw(CDC* pDC)
 {
-	CDocument* pDoc = GetDocument();
+    CDocument* pDoc = GetDocument();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -45,12 +45,12 @@ void ZIDropScrollView::OnDraw(CDC* pDC)
 #ifdef _DEBUG
 void ZIDropScrollView::AssertValid() const
 {
-	ZVBasicScrollView::AssertValid();
+    ZVBasicScrollView::AssertValid();
 }
 
 void ZIDropScrollView::Dump(CDumpContext& dc) const
 {
-	ZVBasicScrollView::Dump(dc);
+    ZVBasicScrollView::Dump(dc);
 }
 #endif //_DEBUG
 

@@ -31,11 +31,11 @@
 
 class AFX_EXT_CLASS ZVGridChildFrame : public CGXWChildFrame
 {
-	DECLARE_DYNCREATE( ZVGridChildFrame )
+    DECLARE_DYNCREATE( ZVGridChildFrame )
 
 public:
 
-	ZVGridChildFrame();
+    ZVGridChildFrame();
 
 // Attributes
 public:
@@ -43,30 +43,30 @@ public:
 // Operations
 public:
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVGridChildFrame)
-	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVGridChildFrame)
+    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
 
-	virtual ~ZVGridChildFrame();
+    virtual ~ZVGridChildFrame();
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 // Generated message map functions
 protected:
 
-	//{{AFX_MSG(ZVGridChildFrame)
-	afx_msg void OnDeletewksheet();
-	afx_msg void OnInsertsksheet();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZVGridChildFrame)
+    afx_msg void OnDeletewksheet();
+    afx_msg void OnInsertsksheet();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

@@ -39,21 +39,21 @@ unsigned int ViewReducedOptionPage = 0x0020;
 
 class AFX_EXT_CLASS ZISystemOption : public ZIBasePropSheet  //## Inherits: <unnamed>%334FC4610037
 {
-//	DECLARE_DYNAMIC(ZISystemOption)
+//    DECLARE_DYNAMIC(ZISystemOption)
 
   public:
       ZISystemOption(ZAApplicationOption* ApplicationOptions, unsigned int PageOptions = GeneralOptionPage);
       ~ZISystemOption();
-	  // Simulate the DoModal for capturing the OnOk.
-	  int	DoModal();
+      // Simulate the DoModal for capturing the OnOk.
+      int    DoModal();
 
 // Implementation
 protected:
-	// Generated message map functions
-	//{{AFX_MSG(ZIOption)
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZIOption)
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
   private:
       ZISystemOption(const ZISystemOption &right);

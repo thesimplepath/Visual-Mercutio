@@ -1,10 +1,10 @@
 //## begin module%363DC9C701C0.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%363DC9C701C0.cm
 
 //## begin module%363DC9C701C0.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%363DC9C701C0.cp
 
 //## Module: FldDesc%363DC9C701C0; Package specification
@@ -53,7 +53,7 @@
 
 
 //## Class: ZAObjectDefinition%363DC8FB02A3
-//	This class defines the object.
+//    This class defines the object.
 //## Category: ZBaseLib::History Field manager%36347B0E0308
 //## Subsystem: ZBaseLib%37A08E0C019D
 //## Persistence: Transient
@@ -62,9 +62,9 @@
 class AFX_EXT_CLASS ZAObjectDefinition : public CObject  //## Inherits: <unnamed>%363DC8FB02A4
 {
   //## begin ZAObjectDefinition%363DC8FB02A3.initialDeclarations preserve=yes
-	public:
-	// Inherited feature
-		typedef CObject inherited;
+    public:
+    // Inherited feature
+        typedef CObject inherited;
   //## end ZAObjectDefinition%363DC8FB02A3.initialDeclarations
 
   public:
@@ -82,7 +82,7 @@ class AFX_EXT_CLASS ZAObjectDefinition : public CObject  //## Inherits: <unnamed
 
     //## Other Operations (specified)
       //## Operation: Serialize%910019970
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: Clone%939069933
@@ -91,28 +91,28 @@ class AFX_EXT_CLASS ZAObjectDefinition : public CObject  //## Inherits: <unnamed
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: Description%363DC8FB02B1
-      //	The field description.
+      //    The field description.
       const CString GetDescription () const;
       void SetDescription (CString value);
 
       //## Attribute: ClassName%363DCB0502FE
-      //	The class name.
+      //    The class name.
       const CString GetClassName () const;
       void SetClassName (CString value);
 
       //## Attribute: pObject%363DCCEF02BD
-      //	This is the pointer to an object.
+      //    This is the pointer to an object.
       PlanFinObject* GetpObject ();
       void SetpObject (PlanFinObject* value);
 
       //## Attribute: FieldName%363DD5B200C3
-      //	The field name.
+      //    The field name.
       const CString GetFieldName () const;
       void SetFieldName (CString value);
 
       //## Attribute: HelpUserDescription%36CE7ACC020F
-      //	The field description used for wizard. Destinated to
-      //	users.
+      //    The field description used for wizard. Destinated to
+      //    users.
       const CString GetHelpUserDescription () const;
       void SetHelpUserDescription (CString value);
 
@@ -125,14 +125,14 @@ class AFX_EXT_CLASS ZAObjectDefinition : public CObject  //## Inherits: <unnamed
 
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
       //## end ZAObjectDefinition%363DC8FB02A3.public
   protected:
     // Additional Protected Declarations
       //## begin ZAObjectDefinition%363DC8FB02A3.protected preserve=yes
-	DECLARE_SERIAL(ZAObjectDefinition)
+    DECLARE_SERIAL(ZAObjectDefinition)
       //## end ZAObjectDefinition%363DC8FB02A3.protected
   private:
     // Data Members for Class Attributes
@@ -159,7 +159,7 @@ class AFX_EXT_CLASS ZAObjectDefinition : public CObject  //## Inherits: <unnamed
 
     // Additional Private Declarations
       //## begin ZAObjectDefinition%363DC8FB02A3.private preserve=yes
-	  BOOL	m_Sorted;
+      BOOL    m_Sorted;
       //## end ZAObjectDefinition%363DC8FB02A3.private
   private:  //## implementation
     // Additional Implementation Declarations
@@ -248,11 +248,11 @@ inline void ZAObjectDefinition::SetHelpUserDescription (CString value)
 //## begin module%363DC9C701C0.epilog preserve=yes
 inline const BOOL ZAObjectDefinition::IsSorted () const
 {
-	return m_Sorted;
+    return m_Sorted;
 }
 inline void ZAObjectDefinition::SetSorted (BOOL value)
 {
-	m_Sorted = value;
+    m_Sorted = value;
 }
 //## end module%363DC9C701C0.epilog
 

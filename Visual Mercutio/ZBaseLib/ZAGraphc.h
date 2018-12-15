@@ -1,10 +1,10 @@
 //## begin module%33747B910140.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%33747B910140.cm
 
 //## begin module%33747B910140.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%33747B910140.cp
 
 //## Module: ZAGraphc%33747B910140; Package specification
@@ -52,7 +52,7 @@
 //## end PLFNGraphic%33747B5B0226.preface
 
 //## Class: PLFNGraphic%33747B5B0226
-//	Graphic object functionnalities.
+//    Graphic object functionnalities.
 //## Category: PlanFin::Objects%334FC461017C
 //## Subsystem: PlanFin%334FC46302B2
 //## Persistence: Transient
@@ -61,9 +61,9 @@
 class AFX_EXT_CLASS PLFNGraphic : public PlanFinObject  //## Inherits: <unnamed>%33747B5B0227
 {
   //## begin PLFNGraphic%33747B5B0226.initialDeclarations preserve=yes
-	public:
-	// Inherited feature
-		typedef PlanFinObject inherited;
+    public:
+    // Inherited feature
+        typedef PlanFinObject inherited;
   //## end PLFNGraphic%33747B5B0226.initialDeclarations
 
   public:
@@ -81,74 +81,74 @@ class AFX_EXT_CLASS PLFNGraphic : public PlanFinObject  //## Inherits: <unnamed>
 
     //## Other Operations (specified)
       //## Operation: operator =%863265788
-      //	A copy constructor with a pointer.
+      //    A copy constructor with a pointer.
       const PLFNGraphic& operator = (const PLFNGraphic* right);
 
       //## Operation: Serialize%863265789
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: Clone%863265790
-      //	Make a clone of the object.
+      //    Make a clone of the object.
       virtual PlanFinObject* Clone ();
 
       //## Operation: GetGraphicPen%863265791
-      //	With the pen passed in parameters, build a corresponding
-      //	pen to the graphic color and the width.
+      //    With the pen passed in parameters, build a corresponding
+      //    pen to the graphic color and the width.
       CPen& GetGraphicPen (CPen& pen);
 
       //## Operation: GetGraphicBrush%863265792
-      //	Return a brush corresponding to the brush defined in the
-      //	object. The brush returned is the brush passed in
-      //	parameter.
+      //    Return a brush corresponding to the brush defined in the
+      //    object. The brush returned is the brush passed in
+      //    parameter.
       CBrush& GetGraphicBrush (CBrush& brush);
 
       //## Operation: CopyObject%863615077
       virtual void CopyObject (PlanFinObject* pSrc);
 
       //## Operation: GetRightSubMenu%864336731
-      //	Return the number of the submenu when the user click the
-      //	right mouse button.
+      //    Return the number of the submenu when the user click the
+      //    right mouse button.
       virtual UINT GetRightSubMenu () const;
 
       //## Operation: GetPropertyTabs%925634619
-      //	Return the list of tabs that should be displayed when
-      //	the user asks for object properties.
+      //    Return the list of tabs that should be displayed when
+      //    the user asks for object properties.
       virtual UINT GetPropertyTabs () const;
 
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: GraphicColor%33747C220258
-      //	Define the color of graphic object.
+      //    Define the color of graphic object.
       const COLORREF GetGraphicColor () const;
       void SetGraphicColor (COLORREF value);
 
       //## Attribute: GraphicWidth%33747C5A02A8
-      //	Define the widht of all graphic objects.
+      //    Define the widht of all graphic objects.
       const WORD GetGraphicWidth () const;
       void SetGraphicWidth (WORD value);
 
       //## Attribute: bShadow%33747CC900BE
-      //	Define if the graphic object has a shadow
+      //    Define if the graphic object has a shadow
       const BOOL GetbShadow () const;
       void SetbShadow (BOOL value);
 
       //## Attribute: GraphicStyle%3374812403B6
-      //	Define the style of the graphic object.
+      //    Define the style of the graphic object.
       const WORD GetGraphicStyle () const;
       void SetGraphicStyle (WORD value);
 
     // Additional Public Declarations
       //## begin PLFNGraphic%33747B5B0226.public preserve=yes
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
       //## end PLFNGraphic%33747B5B0226.public
   protected:
     // Additional Protected Declarations
       //## begin PLFNGraphic%33747B5B0226.protected preserve=yes
-	DECLARE_SERIAL(PLFNGraphic)
+    DECLARE_SERIAL(PLFNGraphic)
       //## end PLFNGraphic%33747B5B0226.protected
   private:
     // Data Members for Class Attributes
@@ -190,14 +190,14 @@ class AFX_EXT_CLASS PLFNGraphic : public PlanFinObject  //## Inherits: <unnamed>
 inline UINT PLFNGraphic::GetRightSubMenu () const
 {
   //## begin PLFNGraphic::GetRightSubMenu%864336731.body preserve=yes
-  	return GraphicRightSubMenu;
+      return GraphicRightSubMenu;
   //## end PLFNGraphic::GetRightSubMenu%864336731.body
 }
 
 inline UINT PLFNGraphic::GetPropertyTabs () const
 {
   //## begin PLFNGraphic::GetPropertyTabs%925634619.body preserve=yes
-  	return PropertyGeneralBasicPage | PropertySizePage;
+      return PropertyGeneralBasicPage | PropertySizePage;
   //## end PLFNGraphic::GetPropertyTabs%925634619.body
 }
 

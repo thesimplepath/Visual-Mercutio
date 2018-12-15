@@ -31,14 +31,14 @@
 class AFX_EXT_CLASS ZUGUID
 {
 public:
-	ZUGUID();
-	virtual ~ZUGUID();
+    ZUGUID();
+    virtual ~ZUGUID();
 
-	// Returns a new GUID 
-	static CString CreateNewGUID();
+    // Returns a new GUID 
+    static CString CreateNewGUID();
 
-	// Returns true if the string contains a valid GUID
-	static bool GUIDIsValid( const CString s );
+    // Returns true if the string contains a valid GUID
+    static bool GUIDIsValid( const CString s );
 };
 
 #endif // !defined(AFX_ZUGUID_H__04FCF69B_C60A_4906_B330_4ECC3EAE4EB7__INCLUDED_)

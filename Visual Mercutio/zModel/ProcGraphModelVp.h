@@ -45,53 +45,53 @@ class AFX_EXT_CLASS ZIProcessGraphModelViewport : public CODBufferedRulerViewpor
 {
 public:
 
-	ZIProcessGraphModelViewport();
+    ZIProcessGraphModelViewport();
 
 // Operations
 public:
 
-	virtual void OnInitialUpdate();
+    virtual void OnInitialUpdate();
 
-	// OnInitialUpdateVp is calling OnInitialUpdate()
-	void OnInitialUpdateVp()
-	{
-		ZIProcessGraphModelViewport::OnInitialUpdate();
-	};
+    // OnInitialUpdateVp is calling OnInitialUpdate()
+    void OnInitialUpdateVp()
+    {
+        ZIProcessGraphModelViewport::OnInitialUpdate();
+    };
 
-	virtual void OnUpdate( IMvcSubject* pSubject, IMvcMessage* pMsg );
+    virtual void OnUpdate( IMvcSubject* pSubject, IMvcMessage* pMsg );
 
-	// Resize the model
-	void SizeVp( ZVDocumentPageSetup* PageSetup );
+    // Resize the model
+    void SizeVp( ZVDocumentPageSetup* PageSetup );
 
-	// Update the page look according to model settings
-	void UpdatePageLook( ZVDocumentPageSetup* PageSetup );
+    // Update the page look according to model settings
+    void UpdatePageLook( ZVDocumentPageSetup* PageSetup );
 
-	ZDProcessGraphModelController*	GetModelController();
-	ZDProcessGraphModelMdl*			GetModel();
+    ZDProcessGraphModelController*    GetModelController();
+    ZDProcessGraphModelMdl*            GetModel();
 
-	void	SetRuler( CODRuler& Ruler );
-	void	SetPageUnits( ZBPageUnits& PageUnits );
+    void    SetRuler( CODRuler& Ruler );
+    void    SetPageUnits( ZBPageUnits& PageUnits );
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIProcessGraphModelViewport)
-	virtual BOOL CreateController();
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIProcessGraphModelViewport)
+    virtual BOOL CreateController();
+    //}}AFX_VIRTUAL
 
-	BOOL AssignNewController( ZDProcessGraphModelController* pCtlr, ZDProcessGraphModelMdl* pModel );
+    BOOL AssignNewController( ZDProcessGraphModelController* pCtlr, ZDProcessGraphModelMdl* pModel );
 
-	static SECImage* CreateImageObjectFromFileExtension( const CString Filename );
-	static SECImage* LoadImageFromFile( const CString Filename );
-	bool ExportModelToImageFile( const CString Filename, CDC& dc );
+    static SECImage* CreateImageObjectFromFileExtension( const CString Filename );
+    static SECImage* LoadImageFromFile( const CString Filename );
+    bool ExportModelToImageFile( const CString Filename, CDC& dc );
 
 protected:
 
-	void CenterOrigin();
+    void CenterOrigin();
 
 // Implementation
 public:
 
-	virtual ~ZIProcessGraphModelViewport();
+    virtual ~ZIProcessGraphModelViewport();
 };
 
 //{{AFX_INSERT_LOCATION}}

@@ -22,69 +22,69 @@ ZNetResourceManager::ZNetResourceManager()
 
 ZNetResourceManager::~ZNetResourceManager()
 {
-	RemoveAllNetResources( true );
+    RemoveAllNetResources( true );
 }
 
 
-bool	ZNetResourceManager::AddNetResource( LPNETRESOURCE pNetResource )
+bool    ZNetResourceManager::AddNetResource( LPNETRESOURCE pNetResource )
 {
-	// Construct the network class object
-	ZNetResource*	pResource = new ZNetResource( pNetResource );
+    // Construct the network class object
+    ZNetResource*    pResource = new ZNetResource( pNetResource );
 
-	return AddNetResource( pResource );
+    return AddNetResource( pResource );
 }
 
-bool	ZNetResourceManager::AddNetResource( ZNetResource* pNetResource )
+bool    ZNetResourceManager::AddNetResource( ZNetResource* pNetResource )
 {
-	return m_NetResourceArray.Add( (CObject*)pNetResource ) >= 0;
+    return m_NetResourceArray.Add( (CObject*)pNetResource ) >= 0;
 }
 
-bool	ZNetResourceManager::RemoveNetResource( ZNetResource* pNetResource )
+bool    ZNetResourceManager::RemoveNetResource( ZNetResource* pNetResource )
 {
-	for (int i = 0; i < m_NetResourceArray.GetSize(); ++i)
-	{
-		if (m_NetResourceArray.GetAt(i) == (CObject*)pNetResource)
-		{
-			m_NetResourceArray.RemoveAt(i);
-			return true;
-		}
-	}
-	return false;
+    for (int i = 0; i < m_NetResourceArray.GetSize(); ++i)
+    {
+        if (m_NetResourceArray.GetAt(i) == (CObject*)pNetResource)
+        {
+            m_NetResourceArray.RemoveAt(i);
+            return true;
+        }
+    }
+    return false;
 }
 
-bool	ZNetResourceManager::RemoveNetResourceAt( size_t Index )
+bool    ZNetResourceManager::RemoveNetResourceAt( size_t Index )
 {
-	if ((int)Index < m_NetResourceArray.GetSize())
-	{
-		m_NetResourceArray.RemoveAt( Index );
-		return true;
-	}
-	return false;
+    if ((int)Index < m_NetResourceArray.GetSize())
+    {
+        m_NetResourceArray.RemoveAt( Index );
+        return true;
+    }
+    return false;
 }
 
-ZNetResource*	ZNetResourceManager::GetNetResourceAt( size_t Index )
+ZNetResource*    ZNetResourceManager::GetNetResourceAt( size_t Index )
 {
-	if ((int)Index < m_NetResourceArray.GetSize())
-	{
-		return (ZNetResource*)m_NetResourceArray.GetAt( Index );
-	}
-	return NULL;;
+    if ((int)Index < m_NetResourceArray.GetSize())
+    {
+        return (ZNetResource*)m_NetResourceArray.GetAt( Index );
+    }
+    return NULL;;
 }
 
 
-bool	ZNetResourceManager::RemoveAllNetResources( bool DeleteFromMemory /*= true*/ )
+bool    ZNetResourceManager::RemoveAllNetResources( bool DeleteFromMemory /*= true*/ )
 {
-	if (DeleteFromMemory)
-	{
-		// Run throught objects and delete the pointer
-		for (int i = 0; i < m_NetResourceArray.GetSize(); ++i)
-		{
-			if (m_NetResourceArray.GetAt(i))
-				delete (ZNetResource*)m_NetResourceArray.GetAt(i);
-			m_NetResourceArray.SetAt(i, NULL);
-		}
+    if (DeleteFromMemory)
+    {
+        // Run throught objects and delete the pointer
+        for (int i = 0; i < m_NetResourceArray.GetSize(); ++i)
+        {
+            if (m_NetResourceArray.GetAt(i))
+                delete (ZNetResource*)m_NetResourceArray.GetAt(i);
+            m_NetResourceArray.SetAt(i, NULL);
+        }
 
-	}
-	m_NetResourceArray.RemoveAll();
-	return m_NetResourceArray.GetSize() == 0;
+    }
+    m_NetResourceArray.RemoveAll();
+    return m_NetResourceArray.GetSize() == 0;
 }

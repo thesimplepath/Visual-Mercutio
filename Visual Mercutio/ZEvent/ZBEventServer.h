@@ -40,18 +40,18 @@ enum EventResult { EventNF, EventImported, EventRejected, EventLogAdded, EventLo
 class AFX_EXT_CLASS ZBEventServer : public ZBEvent  
 {
 public:
-	ZBEventServer();
-	ZBEventServer( COleDateTime Time, CString Filename, EventResult EventResultValue );
-	virtual ~ZBEventServer();
+    ZBEventServer();
+    ZBEventServer( COleDateTime Time, CString Filename, EventResult EventResultValue );
+    virtual ~ZBEventServer();
     ZBEventServer(const ZBEventServer &right);
     const ZBEventServer & operator=(const ZBEventServer &right);
-	CString		GetFilename() const { return m_Filename; };
-	EventResult	GetEventResult() const { return m_EventResult; };
-	CString		GetEventResultStr() const;
+    CString        GetFilename() const { return m_Filename; };
+    EventResult    GetEventResult() const { return m_EventResult; };
+    CString        GetEventResultStr() const;
 
 protected:
-	CString			m_Filename;
-	EventResult		m_EventResult;
+    CString            m_Filename;
+    EventResult        m_EventResult;
 };
 
 

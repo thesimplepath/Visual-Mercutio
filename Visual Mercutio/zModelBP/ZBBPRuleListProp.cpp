@@ -41,19 +41,19 @@ IMPLEMENT_SERIAL( ZBBPRuleListProperties, CODIntProperty, def_Version )
 //@parmopt int | nId | OD_PROP_FILL | The identifier of the property.
 //@parm ZBBPRuleListProperties& | propProcess | The fill property to copy.
 ZBBPRuleListProperties::ZBBPRuleListProperties( int nId )
-	: CODIntProperty( nId )
+    : CODIntProperty( nId )
 {
-	m_RuleList = _T( "" );
+    m_RuleList = _T( "" );
 
-	RegisterProperties();
+    RegisterProperties();
 }
 
 ZBBPRuleListProperties::ZBBPRuleListProperties( const ZBBPRuleListProperties& propProcess )
-	: CODIntProperty( propProcess.GetId() )
+    : CODIntProperty( propProcess.GetId() )
 {
-	m_RuleList = propProcess.GetRuleList();
+    m_RuleList = propProcess.GetRuleList();
 
-	RegisterProperties();
+    RegisterProperties();
 }
 
 //@mfunc Destructor.
@@ -69,15 +69,15 @@ ZBBPRuleListProperties::~ZBBPRuleListProperties()
 //@parm The new task list.
 void ZBBPRuleListProperties::SetRuleList( LPCTSTR lpszValue )
 {
-	if ( lpszValue != NULL )
-	{
-		m_RuleList = lpszValue;
-	}
-	else
-	{
-		TRACE0( _T( "Z -> Invalid Task List pointer!\n" ) );
-		ASSERT( FALSE );
-	}
+    if ( lpszValue != NULL )
+    {
+        m_RuleList = lpszValue;
+    }
+    else
+    {
+        TRACE0( _T( "Z -> Invalid Task List pointer!\n" ) );
+        ASSERT( FALSE );
+    }
 }
 
 //@mfunc Sets the task list.
@@ -85,7 +85,7 @@ void ZBBPRuleListProperties::SetRuleList( LPCTSTR lpszValue )
 //@parm The new task list.
 void ZBBPRuleListProperties::SetRuleListEx( const CString value )
 {
-	SetRuleList( value );
+    SetRuleList( value );
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -96,10 +96,10 @@ void ZBBPRuleListProperties::SetRuleListEx( const CString value )
 //@parm Property identifier to compare to.
 BOOL ZBBPRuleListProperties::CompareId( const int nId ) const
 {
-	int nIdMin = m_nId;
-	int nIdMax = m_nId + Z_RULE_LIST;
+    int nIdMin = m_nId;
+    int nIdMax = m_nId + Z_RULE_LIST;
 
-	return ( nId >= nIdMin && nId <= nIdMax );
+    return ( nId >= nIdMin && nId <= nIdMax );
 }
 
 //@mfunc Sets this property object equal to the one passed in.
@@ -107,10 +107,10 @@ BOOL ZBBPRuleListProperties::CompareId( const int nId ) const
 //@parm The property to copy.
 ZBBPRuleListProperties& ZBBPRuleListProperties::operator=( const ZBBPRuleListProperties& propProcess )
 {
-	SetId( propProcess.GetId() );
-	SetRuleList( propProcess.GetRuleList() );
+    SetId( propProcess.GetId() );
+    SetRuleList( propProcess.GetRuleList() );
 
-	return *this;
+    return *this;
 }
 
 //@mfunc Tests if this property is equal to the one passed in.
@@ -118,7 +118,7 @@ ZBBPRuleListProperties& ZBBPRuleListProperties::operator=( const ZBBPRuleListPro
 //@parm The property to test against.
 BOOL ZBBPRuleListProperties::operator==( const ZBBPRuleListProperties propProcess ) const
 {
-	return ( GetRuleList() == propProcess.GetRuleList() );
+    return ( GetRuleList() == propProcess.GetRuleList() );
 }
 
 //@mfunc Merges the values of the property passed in with the values in this
@@ -129,15 +129,15 @@ BOOL ZBBPRuleListProperties::operator==( const ZBBPRuleListProperties propProces
 // to merge into this property object.
 void ZBBPRuleListProperties::Merge( CODProperty* pProperty, DWORD dwChangeFlags )
 {
-	ZBBPRuleListProperties* pProcessProps = (ZBBPRuleListProperties*)pProperty;
+    ZBBPRuleListProperties* pProcessProps = (ZBBPRuleListProperties*)pProperty;
 
-	if ( pProcessProps )
-	{
-		if ( dwChangeFlags & Z_CHANGE_RULE_LIST )
-		{
-			m_RuleList = pProcessProps->GetRuleList();
-		}
-	}
+    if ( pProcessProps )
+    {
+        if ( dwChangeFlags & Z_CHANGE_RULE_LIST )
+        {
+            m_RuleList = pProcessProps->GetRuleList();
+        }
+    }
 }
 
 //@mfunc Tests if this property is equal to the one passed in. This method
@@ -146,17 +146,17 @@ void ZBBPRuleListProperties::Merge( CODProperty* pProperty, DWORD dwChangeFlags 
 //@parm A pointer to the property to test against.
 BOOL ZBBPRuleListProperties::IsEqual( CODProperty* pProp )
 {
-	if ( GetId() == pProp->GetId() )
-	{
-		ZBBPRuleListProperties* pProcessProp = (ZBBPRuleListProperties*)pProp;
+    if ( GetId() == pProp->GetId() )
+    {
+        ZBBPRuleListProperties* pProcessProp = (ZBBPRuleListProperties*)pProp;
 
-		if ( pProcessProp )
-		{
-			return ( *this == *pProcessProp );
-		}
-	}
+        if ( pProcessProp )
+        {
+            return ( *this == *pProcessProp );
+        }
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -186,97 +186,97 @@ BOOL ZBBPRuleListProperties::IsEqual( CODProperty* pProp )
 
 BOOL ZBBPRuleListProperties::GetValue( const int nPropId, CString& strValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_RULE_LIST:
-		{
-			strValue = m_RuleList;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_RULE_LIST:
+        {
+            strValue = m_RuleList;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPRuleListProperties::GetValue( const int nPropId, int& nValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_RULE_LIST:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_RULE_LIST:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPRuleListProperties::GetValue( const int nPropId, UINT& nValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_RULE_LIST:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_RULE_LIST:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPRuleListProperties::GetValue( const int nPropId, DWORD& dwValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_RULE_LIST:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_RULE_LIST:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPRuleListProperties::GetValue( const int nPropId, float& fValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_RULE_LIST:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_RULE_LIST:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 //@mfunc | ZBBPRuleListProperties | SetValue | Sets the value of the given property.
@@ -303,97 +303,97 @@ BOOL ZBBPRuleListProperties::GetValue( const int nPropId, float& fValue ) const
 
 BOOL ZBBPRuleListProperties::SetValue( const int nPropId, LPCTSTR lpszValue )
 {
-	switch ( nPropId )
-	{
-		case Z_RULE_LIST:
-		{
-			m_RuleList = lpszValue;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_RULE_LIST:
+        {
+            m_RuleList = lpszValue;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPRuleListProperties::SetValue( const int nPropId, const int nValue )
 {
-	switch ( nPropId )
-	{
-		case Z_RULE_LIST:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_RULE_LIST:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPRuleListProperties::SetValue( const int nPropId, const UINT nValue )
 {
-	switch ( nPropId )
-	{
-		case Z_RULE_LIST:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_RULE_LIST:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPRuleListProperties::SetValue( const int nPropId, const DWORD dwValue )
 {
-	switch ( nPropId )
-	{
-		case Z_RULE_LIST:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_RULE_LIST:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPRuleListProperties::SetValue( const int nPropId, const float fValue )
 {
-	switch ( nPropId )
-	{
-		case Z_RULE_LIST:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_RULE_LIST:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -401,32 +401,32 @@ BOOL ZBBPRuleListProperties::SetValue( const int nPropId, const float fValue )
 
 bool ZBBPRuleListProperties::RegisterProperties()
 {
-	static bool propsRegistered = false;
+    static bool propsRegistered = false;
 
-	if ( !propsRegistered )
-	{
-		bool success = true;
+    if ( !propsRegistered )
+    {
+        bool success = true;
 
-		if ( success )
-		{
-			success = RegisterProperty( Z_RULE_LIST,
-										IDS_Z_RULE_LIST_NAME,
-										IDS_Z_RULE_LIST_DESC,
-										_PropertyAccessor( &ZBBPRuleListProperties::GetRuleList,
-														   &ZBBPRuleListProperties::SetRuleListEx ),
-										VT_BSTR,
-										PROP_DIRECT );
-		}
+        if ( success )
+        {
+            success = RegisterProperty( Z_RULE_LIST,
+                                        IDS_Z_RULE_LIST_NAME,
+                                        IDS_Z_RULE_LIST_DESC,
+                                        _PropertyAccessor( &ZBBPRuleListProperties::GetRuleList,
+                                                           &ZBBPRuleListProperties::SetRuleListEx ),
+                                        VT_BSTR,
+                                        PROP_DIRECT );
+        }
 
-		if ( !success )
-		{
-			ZBBPRuleListProperties::GetPropertyMap().DeleteAll();
-		}
+        if ( !success )
+        {
+            ZBBPRuleListProperties::GetPropertyMap().DeleteAll();
+        }
 
-		propsRegistered = success;
-	}
+        propsRegistered = success;
+    }
 
-	return propsRegistered;
+    return propsRegistered;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -435,14 +435,14 @@ bool ZBBPRuleListProperties::RegisterProperties()
 #ifdef _DEBUG
 void ZBBPRuleListProperties::AssertValid() const
 {
-	CODIntProperty::AssertValid();
+    CODIntProperty::AssertValid();
 }
 
 void ZBBPRuleListProperties::Dump( CDumpContext& dc ) const
 {
-	CODIntProperty::Dump( dc );
+    CODIntProperty::Dump( dc );
 
-	dc << _T( "Rule list = " ) << m_RuleList << _T( "\n" );
+    dc << _T( "Rule list = " ) << m_RuleList << _T( "\n" );
 }
 #endif //_DEBUG
 
@@ -454,27 +454,27 @@ void ZBBPRuleListProperties::Dump( CDumpContext& dc ) const
 //@parm The archive to use for serialization.
 void ZBBPRuleListProperties::Serialize( CArchive& ar )
 {
-	CODIntProperty::Serialize( ar );
+    CODIntProperty::Serialize( ar );
 
-	if ( ar.IsStoring() )
-	{
-		TRACE( _T( "ZBBPRuleListProperties::Serialize : Start Save\n" ) );
+    if ( ar.IsStoring() )
+    {
+        TRACE( _T( "ZBBPRuleListProperties::Serialize : Start Save\n" ) );
 
-		PUT_SCHEMA( ar, ZBBPRuleListProperties );
+        PUT_SCHEMA( ar, ZBBPRuleListProperties );
 
-		ar << m_RuleList;
+        ar << m_RuleList;
 
-		TRACE( _T( "ZBBPRuleListProperties::Serialize : End Save\n" ) );
-	}
-	else
-	{
-		TRACE( _T( "ZBBPRuleListProperties::Serialize : Start Read\n" ) );
+        TRACE( _T( "ZBBPRuleListProperties::Serialize : End Save\n" ) );
+    }
+    else
+    {
+        TRACE( _T( "ZBBPRuleListProperties::Serialize : Start Read\n" ) );
 
-		UINT nSchema;
-		GET_SCHEMA( ar, nSchema );
+        UINT nSchema;
+        GET_SCHEMA( ar, nSchema );
 
-		ar >> m_RuleList;
+        ar >> m_RuleList;
 
-		TRACE( _T( "ZBBPRuleListProperties::Serialize : End Read\n" ) );
-	}
+        TRACE( _T( "ZBBPRuleListProperties::Serialize : End Read\n" ) );
+    }
 }

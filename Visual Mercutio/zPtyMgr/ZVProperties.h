@@ -36,48 +36,48 @@
 // _ZIFlatToolBar window
 
 class _ZIFlatToolBar : public CStatic,
-					   public ZISubject
+                       public ZISubject
 {
 // Construction / Destruction
 public:
 
-	_ZIFlatToolBar();
-	virtual ~_ZIFlatToolBar();
+    _ZIFlatToolBar();
+    virtual ~_ZIFlatToolBar();
 
 // Operations
 public:
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(_ZIFlatToolBar)
-	public:
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	protected:
-	virtual void PreSubclassWindow();
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(_ZIFlatToolBar)
+    public:
+    virtual BOOL PreTranslateMessage(MSG* pMsg);
+    protected:
+    virtual void PreSubclassWindow();
+    //}}AFX_VIRTUAL
 
 // Generated message map functions
 protected:
 
-	//{{AFX_MSG(_ZIFlatToolBar)
-	afx_msg void OnRefreshButton();
-	afx_msg void OnShowAllTypesButton();
-	afx_msg void OnShowStaticTypeButton();
-	afx_msg void OnShowDynamicTypeButton();
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(_ZIFlatToolBar)
+    afx_msg void OnRefreshButton();
+    afx_msg void OnShowAllTypesButton();
+    afx_msg void OnShowStaticTypeButton();
+    afx_msg void OnShowDynamicTypeButton();
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 // Attributes
 private:
 
-	CCJFlatButton	m_RefreshButton;
-	CCJFlatButton	m_ShowAllTypesButton;
-	CCJFlatButton	m_ShowStaticTypeButton;
-	CCJFlatButton	m_ShowDynamicTypeButton;
+    CCJFlatButton    m_RefreshButton;
+    CCJFlatButton    m_ShowAllTypesButton;
+    CCJFlatButton    m_ShowStaticTypeButton;
+    CCJFlatButton    m_ShowDynamicTypeButton;
 
-	CImageList		m_ImageList;
-	CToolTipCtrl	m_tooltip;
+    CImageList        m_ImageList;
+    CToolTipCtrl    m_tooltip;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -86,103 +86,103 @@ private:
 // ZVProperties view
 
 class AFX_EXT_CLASS ZVProperties : public CWnd,
-								   public ZISubject,
-								   public ZIObserver
+                                   public ZISubject,
+                                   public ZIObserver
 {
 private:
 
-	DECLARE_DYNCREATE( ZVProperties )
+    DECLARE_DYNCREATE( ZVProperties )
 
 private:
 
-	enum ZPropertiesView
-	{
-		AllTypes	= 0,
-		StaticType	= 1,
-		DynamicType	= 2,
-		None		= 3
-	};
+    enum ZPropertiesView
+    {
+        AllTypes    = 0,
+        StaticType    = 1,
+        DynamicType    = 2,
+        None        = 3
+    };
 
 public:
 
-	ZVProperties();
-	virtual ~ZVProperties();
+    ZVProperties();
+    virtual ~ZVProperties();
 
 public:
 
-	// Observer call back
-	virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    // Observer call back
+    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
 
-	// Attributes
-	void SetPropertyItemManager( ZBPropertyItemManager* pPropertyItemManager )
-	{
-		m_listctrl.SetPropertyItemManager( pPropertyItemManager );
-	}
+    // Attributes
+    void SetPropertyItemManager( ZBPropertyItemManager* pPropertyItemManager )
+    {
+        m_listctrl.SetPropertyItemManager( pPropertyItemManager );
+    }
 
-	void LoadStateFromIniFile( const CString IniFile )
-	{
-		m_listctrl.LoadStateFromIniFile( IniFile );
-	}
+    void LoadStateFromIniFile( const CString IniFile )
+    {
+        m_listctrl.LoadStateFromIniFile( IniFile );
+    }
 
-	ZBPropertyItem* GetPropertyItem( int nIndex )
-	{
-		return m_listctrl.GetPropertyItem( nIndex );
-	}
+    ZBPropertyItem* GetPropertyItem( int nIndex )
+    {
+        return m_listctrl.GetPropertyItem( nIndex );
+    }
 
-	// Operations
-	void InsertPropertyItem( ZBPropertyItem* pPropertyItem, int nIndex = 0 )
-	{
-		m_listctrl.InsertPropertyItem( pPropertyItem, nIndex );
-	}
+    // Operations
+    void InsertPropertyItem( ZBPropertyItem* pPropertyItem, int nIndex = 0 )
+    {
+        m_listctrl.InsertPropertyItem( pPropertyItem, nIndex );
+    }
 
-	void ResetContent()
-	{
-		m_listctrl.ResetContent();
-	}
+    void ResetContent()
+    {
+        m_listctrl.ResetContent();
+    }
 
-	void ShowInPlaceControl( bool bShow = true )
-	{
-		m_listctrl.ShowInPlaceControl( bShow );
-	}
+    void ShowInPlaceControl( bool bShow = true )
+    {
+        m_listctrl.ShowInPlaceControl( bShow );
+    }
 
-	void Refresh()
-	{
-		m_listctrl.Refresh();
-	}
+    void Refresh()
+    {
+        m_listctrl.Refresh();
+    }
 
-	void EmptyControl()
-	{
-		OnEmptyControl();
-	}
+    void EmptyControl()
+    {
+        OnEmptyControl();
+    }
 
 // Generated message map functions
 protected:
 
-	//{{AFX_MSG(ZVProperties)
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg void OnSize(UINT nType, int cx, int cy);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZVProperties)
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    afx_msg void OnSize(UINT nType, int cx, int cy);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
-	void OnShowAllTypes();
-	void OnShowStaticType();
-	void OnShowDynamicType();
-	void OnRefresh();
-	void OnEmptyControl();
+    void OnShowAllTypes();
+    void OnShowStaticType();
+    void OnShowDynamicType();
+    void OnRefresh();
+    void OnEmptyControl();
 
-	void SwitchToView( ZVProperties::ZPropertiesView View = AllTypes );
-	void RefreshCurrentView();
-	void ShowAllTypes();
-	void ShowStaticType();
-	void ShowDynamicType();
+    void SwitchToView( ZVProperties::ZPropertiesView View = AllTypes );
+    void RefreshCurrentView();
+    void ShowAllTypes();
+    void ShowStaticType();
+    void ShowDynamicType();
 
 private:
 
-	_ZIFlatToolBar			m_FlatToolBar;
-	ZCPropertyListCtrl		m_listctrl;
-	ZCPropertyDescription	m_PropDesc;
+    _ZIFlatToolBar            m_FlatToolBar;
+    ZCPropertyListCtrl        m_listctrl;
+    ZCPropertyDescription    m_PropDesc;
 
-	ZPropertiesView			m_CurrentView;
+    ZPropertiesView            m_CurrentView;
 };
 
 /////////////////////////////////////////////////////////////////////////////

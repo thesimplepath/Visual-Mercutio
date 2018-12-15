@@ -20,32 +20,32 @@ static char THIS_FILE[] = __FILE__;
 // ZVPublishModelAttributes dialog
 
 BEGIN_MESSAGE_MAP( ZVPublishModelAttributes, ZIWizardDialog )
-	//{{AFX_MSG_MAP(ZVPublishModelAttributes)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZVPublishModelAttributes)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZVPublishModelAttributes::ZVPublishModelAttributes( ZBPropertyAttributes*	pPropAttributes	/*= NULL*/,
-													ZBPropertySet*			pPropSet		/*= NULL*/,
-													CWnd*					pParent			/*= NULL*/ )
-	: ZIWizardDialog	( ZVPublishModelAttributes::IDD,	// Dialog template
-						  IDB_WZBMP1,						// Bitmap to display
-						  0,								// Icon do display
-						  0,								// Window Title
-						  IDS_PUBLISHMODELATTRIBUTES_S,		// Wizard title
-						  IDS_PUBLISHMODELATTRIBUTES_T ),	// Wizard text
-	  m_pPropAttributes	( pPropAttributes ),
-	  m_pPropSet		( pPropSet )
+ZVPublishModelAttributes::ZVPublishModelAttributes( ZBPropertyAttributes*    pPropAttributes    /*= NULL*/,
+                                                    ZBPropertySet*            pPropSet        /*= NULL*/,
+                                                    CWnd*                    pParent            /*= NULL*/ )
+    : ZIWizardDialog    ( ZVPublishModelAttributes::IDD,    // Dialog template
+                          IDB_WZBMP1,                        // Bitmap to display
+                          0,                                // Icon do display
+                          0,                                // Window Title
+                          IDS_PUBLISHMODELATTRIBUTES_S,        // Wizard title
+                          IDS_PUBLISHMODELATTRIBUTES_T ),    // Wizard text
+      m_pPropAttributes    ( pPropAttributes ),
+      m_pPropSet        ( pPropSet )
 {
-	//{{AFX_DATA_INIT(ZVPublishModelAttributes)
-	//}}AFX_DATA_INIT
+    //{{AFX_DATA_INIT(ZVPublishModelAttributes)
+    //}}AFX_DATA_INIT
 }
 
 void ZVPublishModelAttributes::DoDataExchange( CDataExchange* pDX )
 {
-	ZIWizardDialog::DoDataExchange( pDX );
-	//{{AFX_DATA_MAP(ZVPublishModelAttributes)
-	DDX_Control(pDX, IDC_HTMLATTRIBUTE_TREE, m_Attributes);
-	//}}AFX_DATA_MAP
+    ZIWizardDialog::DoDataExchange( pDX );
+    //{{AFX_DATA_MAP(ZVPublishModelAttributes)
+    DDX_Control(pDX, IDC_HTMLATTRIBUTE_TREE, m_Attributes);
+    //}}AFX_DATA_MAP
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -53,19 +53,19 @@ void ZVPublishModelAttributes::DoDataExchange( CDataExchange* pDX )
 
 BOOL ZVPublishModelAttributes::OnInitDialog()
 {
-	ZIWizardDialog::OnInitDialog();
+    ZIWizardDialog::OnInitDialog();
 
-	// Initialize the attribute tree control
-	m_Attributes.Initialize( m_pPropAttributes,m_pPropSet );
+    // Initialize the attribute tree control
+    m_Attributes.Initialize( m_pPropAttributes,m_pPropSet );
 
-	return TRUE;	// return TRUE unless you set the focus to a control
-					// EXCEPTION: OCX Property Pages should return FALSE
+    return TRUE;    // return TRUE unless you set the focus to a control
+                    // EXCEPTION: OCX Property Pages should return FALSE
 }
 
 void ZVPublishModelAttributes::OnOK()
 {
-	UpdateData();
-	m_Attributes.FillCorrespondingCheckedItems();
+    UpdateData();
+    m_Attributes.FillCorrespondingCheckedItems();
 
-	ZIWizardDialog::OnOK();
+    ZIWizardDialog::OnOK();
 }

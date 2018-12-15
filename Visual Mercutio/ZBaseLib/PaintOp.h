@@ -1,10 +1,10 @@
 //## begin module%37EA7A640312.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%37EA7A640312.cm
 
 //## begin module%37EA7A640312.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%37EA7A640312.cp
 
 //## Module: PaintOp%37EA7A640312; Package specification
@@ -47,7 +47,7 @@
 
 
 //## Class: ZBPaintOperations%37EA7946011C
-//	Encapsulates some painting operations.
+//    Encapsulates some painting operations.
 //## Category: ZBaseLib::Painting classes%37EA70B902D7
 //## Subsystem: ZBaseLib%37A08E0C019D
 //## Persistence: Transient
@@ -68,19 +68,19 @@ class AFX_EXT_CLASS ZBPaintOperations
 
     //## Other Operations (specified)
       //## Operation: SetLogicalBasicUnits%938112081
-      //	Save the basic logical units.
+      //    Save the basic logical units.
       static void SetLogicalBasicUnits (const CSize LogicalBasicUnits);
 
       //## Operation: GetLogicalBasicUnits%938112082
-      //	Retreive the logical basic units
+      //    Retreive the logical basic units
       static const CSize& GetLogicalBasicUnits ();
 
       //## Operation: ConvertLogicalUnitsMillimeters%938112083
-      //	Convert logical units in millimeters
+      //    Convert logical units in millimeters
       static CSize ConvertLogicalUnitsMillimeters (const CSize LogicalUnits);
 
       //## Operation: ConvertMillimetersLogicalUnits%938112084
-      //	Convert millimeters in logical units
+      //    Convert millimeters in logical units
       static CSize ConvertMillimetersLogicalUnits (const CSize Millimetres);
 
     // Additional Public Declarations
@@ -127,32 +127,32 @@ class AFX_EXT_CLASS ZBPaintOperations
 inline void ZBPaintOperations::SetLogicalBasicUnits (const CSize LogicalBasicUnits)
 {
   //## begin ZBPaintOperations::SetLogicalBasicUnits%938112081.body preserve=yes
-  	m_LogicalBasicUnits = LogicalBasicUnits;
+      m_LogicalBasicUnits = LogicalBasicUnits;
   //## end ZBPaintOperations::SetLogicalBasicUnits%938112081.body
 }
 
 inline const CSize& ZBPaintOperations::GetLogicalBasicUnits ()
 {
   //## begin ZBPaintOperations::GetLogicalBasicUnits%938112082.body preserve=yes
-  	return m_LogicalBasicUnits;
+      return m_LogicalBasicUnits;
   //## end ZBPaintOperations::GetLogicalBasicUnits%938112082.body
 }
 
 inline CSize ZBPaintOperations::ConvertLogicalUnitsMillimeters (const CSize LogicalUnits)
 {
   //## begin ZBPaintOperations::ConvertLogicalUnitsMillimeters%938112083.body preserve=yes
-  	return CSize(
-				  (int) ((double)LogicalUnits.cx / ((double)m_LogicalBasicUnits.cx / (double)2540)),
-				  (int) ((double)LogicalUnits.cy / ((double)m_LogicalBasicUnits.cy / (double)2540)) );
+      return CSize(
+                  (int) ((double)LogicalUnits.cx / ((double)m_LogicalBasicUnits.cx / (double)2540)),
+                  (int) ((double)LogicalUnits.cy / ((double)m_LogicalBasicUnits.cy / (double)2540)) );
   //## end ZBPaintOperations::ConvertLogicalUnitsMillimeters%938112083.body
 }
 
 inline CSize ZBPaintOperations::ConvertMillimetersLogicalUnits (const CSize Millimetres)
 {
   //## begin ZBPaintOperations::ConvertMillimetersLogicalUnits%938112084.body preserve=yes
-  	return CSize(
-				  (int) ((double)Millimetres.cx * ((double)m_LogicalBasicUnits.cx / (double)2540)),
-				  (int) ((double)Millimetres.cy * ((double)m_LogicalBasicUnits.cy / (double)2540)) );
+      return CSize(
+                  (int) ((double)Millimetres.cx * ((double)m_LogicalBasicUnits.cx / (double)2540)),
+                  (int) ((double)Millimetres.cy * ((double)m_LogicalBasicUnits.cy / (double)2540)) );
   //## end ZBPaintOperations::ConvertMillimetersLogicalUnits%938112084.body
 }
 

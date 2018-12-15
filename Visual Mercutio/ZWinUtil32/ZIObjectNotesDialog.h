@@ -40,37 +40,37 @@ class AFX_EXT_CLASS ZIObjectNotesDialog : public ZIDialog
 {
 // Construction
 public:
-	ZIObjectNotesDialog(const CString Comment = "", const CString Username = "", CWnd* pParent = NULL);   // standard constructor
-	const CString	GetComment() const { return m_Comment; };
+    ZIObjectNotesDialog(const CString Comment = "", const CString Username = "", CWnd* pParent = NULL);   // standard constructor
+    const CString    GetComment() const { return m_Comment; };
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIObjectNotesDialog)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIObjectNotesDialog)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZIObjectNotesDialog)
-	afx_msg void OnDeleteNotes();
-	afx_msg void OnChangeNotesEdit();
-	virtual void OnOK();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZIObjectNotesDialog)
+    afx_msg void OnDeleteNotes();
+    afx_msg void OnChangeNotesEdit();
+    virtual void OnOK();
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 // Dialog Data
-	//{{AFX_DATA(ZIObjectNotesDialog)
-	enum { IDD = IDD_OBJECTNOTES };
-	CString	m_Comment;
-	//}}AFX_DATA
-	CString	m_Username;
-	CString	m_SaveText;
-	BOOL	m_TextChanged;
+    //{{AFX_DATA(ZIObjectNotesDialog)
+    enum { IDD = IDD_OBJECTNOTES };
+    CString    m_Comment;
+    //}}AFX_DATA
+    CString    m_Username;
+    CString    m_SaveText;
+    BOOL    m_TextChanged;
 
 };
 

@@ -1,10 +1,10 @@
 //## begin module%363DC9F601E6.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%363DC9F601E6.cm
 
 //## begin module%363DC9F601E6.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%363DC9F601E6.cp
 
 //## Module: FldMng%363DC9F601E6; Package specification
@@ -52,7 +52,7 @@
 //## end module%363DC9F601E6.additionalDeclarations
 
 //## Class: ZAGlobalFieldManager%363DC8B30079
-//	Manage the global field container for the document.
+//    Manage the global field container for the document.
 //## Category: ZBaseLib::History Field manager%36347B0E0308
 //## Subsystem: ZBaseLib%37A08E0C019D
 //## Persistence: Transient
@@ -65,122 +65,122 @@ class AFX_EXT_CLASS ZAGlobalFieldManager : public CObject  //## Inherits: <unnam
 {
 protected:
 
-	// Additional Protected Declarations
-	//## begin ZAGlobalFieldManager%363DC8B30079.protected preserve=yes
-	DECLARE_SERIAL( ZAGlobalFieldManager )
-	//## end ZAGlobalFieldManager%363DC8B30079.protected
+    // Additional Protected Declarations
+    //## begin ZAGlobalFieldManager%363DC8B30079.protected preserve=yes
+    DECLARE_SERIAL( ZAGlobalFieldManager )
+    //## end ZAGlobalFieldManager%363DC8B30079.protected
 
 //## begin ZAGlobalFieldManager%363DC8B30079.initialDeclarations preserve=yes
 public:
 
-	// Inherited feature
-	typedef CObject inherited;
-	//## end ZAGlobalFieldManager%363DC8B30079.initialDeclarations
+    // Inherited feature
+    typedef CObject inherited;
+    //## end ZAGlobalFieldManager%363DC8B30079.initialDeclarations
 
 public:
-	
-	//## Constructors (generated)
-	ZAGlobalFieldManager();
+    
+    //## Constructors (generated)
+    ZAGlobalFieldManager();
 
-	//## Destructor (generated)
-	~ZAGlobalFieldManager();
+    //## Destructor (generated)
+    ~ZAGlobalFieldManager();
 
-	//## Other Operations (specified)
-	//## Operation: Serialize%910019974
-	// Serialization function required for MFC mecanism.
-	virtual void Serialize ( CArchive& ar );
+    //## Other Operations (specified)
+    //## Operation: Serialize%910019974
+    // Serialization function required for MFC mecanism.
+    virtual void Serialize ( CArchive& ar );
 
-	//## Operation: GetCount%910019975
-	// Return the number of elements of the Global field
-	// manager.
-	size_t GetCount ();
+    //## Operation: GetCount%910019975
+    // Return the number of elements of the Global field
+    // manager.
+    size_t GetCount ();
 
-	//## Operation: AddField%910019976
-	// Add a new field.
-	// Returns the index of the added field.
-	int AddField ( ZAObjectDefinition* Field );
+    //## Operation: AddField%910019976
+    // Add a new field.
+    // Returns the index of the added field.
+    int AddField ( ZAObjectDefinition* Field );
 
-	//## Operation: DeleteField%910019977
-	// Delete a field.
-	BOOL DeleteField ( const CString& Name );
+    //## Operation: DeleteField%910019977
+    // Delete a field.
+    BOOL DeleteField ( const CString& Name );
 
-	//## Operation: DeleteAllField%919498957
-	// Delete all field.
-	BOOL DeleteAllField ();
+    //## Operation: DeleteAllField%919498957
+    // Delete all field.
+    BOOL DeleteAllField ();
 
-	//## Operation: FindField%910019978
-	// Find if a field exists.
-	ZAObjectDefinition* FindField ( const CString& Name );
+    //## Operation: FindField%910019978
+    // Find if a field exists.
+    ZAObjectDefinition* FindField ( const CString& Name );
 
-	//## Operation: GetAt%910019979
-	// Get the object at a specific location.
-	ZAObjectDefinition* GetAt ( int Index );
+    //## Operation: GetAt%910019979
+    // Get the object at a specific location.
+    ZAObjectDefinition* GetAt ( int Index );
 
-	//## Operation: GetDescription%910019980
-	// Get the description of a field.
-	CString GetDescription ( const CString& Name );
+    //## Operation: GetDescription%910019980
+    // Get the description of a field.
+    CString GetDescription ( const CString& Name );
 
-	//## Operation: GetClassName%910019981
-	// Get the class name of a field.
-	CString GetClassName ( const CString& Name );
+    //## Operation: GetClassName%910019981
+    // Get the class name of a field.
+    CString GetClassName ( const CString& Name );
 
-	//## Operation: GetFieldNameArray%910019982
-	// Returns the fieldname array of all fields contained in
-	// the manager.
-	const CStringArray& GetFieldNameArray ();
+    //## Operation: GetFieldNameArray%910019982
+    // Returns the fieldname array of all fields contained in
+    // the manager.
+    const CStringArray& GetFieldNameArray ();
 
-	//## Operation: CopyFieldDefinition%910104707
-	// Copy the field definition of the ObjectDefinition to the
-	// PlanfinObject.
-	void CopyFieldDefinition ( const CString Name, PlanFinObject* pObj, ZDDocument* pDoc );
+    //## Operation: CopyFieldDefinition%910104707
+    // Copy the field definition of the ObjectDefinition to the
+    // PlanfinObject.
+    void CopyFieldDefinition ( const CString Name, PlanFinObject* pObj, ZDDocument* pDoc );
 
-	// Additional Public Declarations
-	//## begin ZAGlobalFieldManager%363DC8B30079.public preserve=yes
+    // Additional Public Declarations
+    //## begin ZAGlobalFieldManager%363DC8B30079.public preserve=yes
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
-	//## end ZAGlobalFieldManager%363DC8B30079.public
+    //## end ZAGlobalFieldManager%363DC8B30079.public
 
 private:
-	
-	//## Constructors (generated)
-	ZAGlobalFieldManager( const ZAGlobalFieldManager &right );
-	
-	//## Assignment Operation (generated)
-	const ZAGlobalFieldManager & operator=( const ZAGlobalFieldManager &right );
+    
+    //## Constructors (generated)
+    ZAGlobalFieldManager( const ZAGlobalFieldManager &right );
+    
+    //## Assignment Operation (generated)
+    const ZAGlobalFieldManager & operator=( const ZAGlobalFieldManager &right );
 
-	//## Other Operations (specified)
-	//## Operation: FreeList%910019983
-	// remove all the fields.
-	void FreeList ();
+    //## Other Operations (specified)
+    //## Operation: FreeList%910019983
+    // remove all the fields.
+    void FreeList ();
 
-private:	//## Data members
+private:    //## Data members
 
-	// Data Members for Class Attributes
+    // Data Members for Class Attributes
 
-	//## Attribute: GlobalFieldArray%363DC8B3008C
-	// Contains all fields' definition.
-	//## begin ZAGlobalFieldManager::GlobalFieldArray%363DC8B3008C.attr preserve=no  public: CObArray {U} 
-	CObArray m_GlobalFieldArray;
-	//## end ZAGlobalFieldManager::GlobalFieldArray%363DC8B3008C.attr
+    //## Attribute: GlobalFieldArray%363DC8B3008C
+    // Contains all fields' definition.
+    //## begin ZAGlobalFieldManager::GlobalFieldArray%363DC8B3008C.attr preserve=no  public: CObArray {U} 
+    CObArray m_GlobalFieldArray;
+    //## end ZAGlobalFieldManager::GlobalFieldArray%363DC8B3008C.attr
 
-	//## Attribute: FieldNameArray%363DD30E00F3
-	// A field name array used to store the field names.
-	//## begin ZAGlobalFieldManager::FieldNameArray%363DD30E00F3.attr preserve=no  public: CStringArray {U} 
-	CStringArray m_FieldNameArray;
-	//## end ZAGlobalFieldManager::FieldNameArray%363DD30E00F3.attr
+    //## Attribute: FieldNameArray%363DD30E00F3
+    // A field name array used to store the field names.
+    //## begin ZAGlobalFieldManager::FieldNameArray%363DD30E00F3.attr preserve=no  public: CStringArray {U} 
+    CStringArray m_FieldNameArray;
+    //## end ZAGlobalFieldManager::FieldNameArray%363DD30E00F3.attr
 
-	// Additional Private Declarations
-	//## begin ZAGlobalFieldManager%363DC8B30079.private preserve=yes
-	//## end ZAGlobalFieldManager%363DC8B30079.private
+    // Additional Private Declarations
+    //## begin ZAGlobalFieldManager%363DC8B30079.private preserve=yes
+    //## end ZAGlobalFieldManager%363DC8B30079.private
 
-private:	//## implementation
-	
-	// Additional Implementation Declarations
-	//## begin ZAGlobalFieldManager%363DC8B30079.implementation preserve=yes
-	//## end ZAGlobalFieldManager%363DC8B30079.implementation
+private:    //## implementation
+    
+    // Additional Implementation Declarations
+    //## begin ZAGlobalFieldManager%363DC8B30079.implementation preserve=yes
+    //## end ZAGlobalFieldManager%363DC8B30079.implementation
 };
 
 //## begin ZAGlobalFieldManager%363DC8B30079.postscript preserve=yes
@@ -191,9 +191,9 @@ private:	//## implementation
 //## Other Operations (inline)
 inline size_t ZAGlobalFieldManager::GetCount ()
 {
-	//## begin ZAGlobalFieldManager::GetCount%910019975.body preserve=yes
-	return m_GlobalFieldArray.GetSize();
-	//## end ZAGlobalFieldManager::GetCount%910019975.body
+    //## begin ZAGlobalFieldManager::GetCount%910019975.body preserve=yes
+    return m_GlobalFieldArray.GetSize();
+    //## end ZAGlobalFieldManager::GetCount%910019975.body
 }
 
 //## begin module%363DC9F601E6.epilog preserve=yes

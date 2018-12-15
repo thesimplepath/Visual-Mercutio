@@ -20,10 +20,10 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 ZCGridCheckBox::ZCGridCheckBox( CGXGridCore* pGrid )
-	: CGXCheckBox( pGrid, TRUE, IDB_CHECK_GRID, IDB_CHECK_GRID )
+    : CGXCheckBox( pGrid, TRUE, IDB_CHECK_GRID, IDB_CHECK_GRID )
 {
-	// size of a checkbox
-	m_nCheckBoxSize = 16;
+    // size of a checkbox
+    m_nCheckBoxSize = 16;
 }
 
 ZCGridCheckBox::~ZCGridCheckBox()
@@ -33,17 +33,17 @@ ZCGridCheckBox::~ZCGridCheckBox()
 // Override GetColorValue to ajust colors in the bitmap with system colors
 COLORREF ZCGridCheckBox::GetColorValue( COLORREF rgb, BOOL bPrint )
 {
-	switch ( rgb )
-	{
-		case RGB( 255, 255, 255 ):
-		{
-			// Replace the white color in the bitmap with the background color of the window
-			return bPrint ? RGB( 255, 255, 255 ) : GetSysColor( COLOR_WINDOW );
-		}
+    switch ( rgb )
+    {
+        case RGB( 255, 255, 255 ):
+        {
+            // Replace the white color in the bitmap with the background color of the window
+            return bPrint ? RGB( 255, 255, 255 ) : GetSysColor( COLOR_WINDOW );
+        }
 
-		default:
-		{
-			return rgb;
-		}
-	}
+        default:
+        {
+            return rgb;
+        }
+    }
 }

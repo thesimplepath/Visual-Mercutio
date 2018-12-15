@@ -19,25 +19,25 @@ static char THIS_FILE[] = __FILE__;
 IMPLEMENT_DYNCREATE( ZCProcessModelDocument, ZCProcessModelTree )
 
 BEGIN_MESSAGE_MAP( ZCProcessModelDocument, ZCProcessModelTree )
-	//{{AFX_MSG_MAP(ZCProcessModelDocument)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZCProcessModelDocument)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 ZCProcessModelDocument::ZCProcessModelDocument()
 {
-	if ( m_SymbolPopupMainMenu.GetSafeHmenu() != NULL )
-	{
-		m_SymbolPopupMainMenu.DestroyMenu();
-	}
+    if ( m_SymbolPopupMainMenu.GetSafeHmenu() != NULL )
+    {
+        m_SymbolPopupMainMenu.DestroyMenu();
+    }
 
-	if ( m_SymbolRefPopupMainMenu.GetSafeHmenu() != NULL )
-	{
-		m_SymbolRefPopupMainMenu.DestroyMenu();
-	}
+    if ( m_SymbolRefPopupMainMenu.GetSafeHmenu() != NULL )
+    {
+        m_SymbolRefPopupMainMenu.DestroyMenu();
+    }
 
-	// Load the right main menu for components
-	m_SymbolPopupMainMenu.LoadMenu( IDR_NAVSYMBOL_POPUP );
-	m_SymbolRefPopupMainMenu.LoadMenu( IDR_NAVSYMBOL_REF_POPUP );
+    // Load the right main menu for components
+    m_SymbolPopupMainMenu.LoadMenu( IDR_NAVSYMBOL_POPUP );
+    m_SymbolRefPopupMainMenu.LoadMenu( IDR_NAVSYMBOL_REF_POPUP );
 }
 
 ZCProcessModelDocument::~ZCProcessModelDocument()

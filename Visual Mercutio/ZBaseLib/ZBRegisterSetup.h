@@ -34,12 +34,12 @@
 class AFX_EXT_CLASS ZBRegisterSetup  
 {
 public:
-	ZBRegisterSetup();
-	virtual ~ZBRegisterSetup();
+    ZBRegisterSetup();
+    virtual ~ZBRegisterSetup();
 
-	bool CreateEntry( const CString EntityName, const CString KeyName, const CString DefaultValue = "" );
-	bool UpdateRegValue( const CString EntityName, const CString KeyName, const CString Value );
-	bool GetRegValue( const CString EntityName, const CString KeyName, CString& Value, bool bCreateEntry = false );
+    bool CreateEntry( const CString EntityName, const CString KeyName, const CString DefaultValue = "" );
+    bool UpdateRegValue( const CString EntityName, const CString KeyName, const CString Value );
+    bool GetRegValue( const CString EntityName, const CString KeyName, CString& Value, bool bCreateEntry = false );
 
 
 };

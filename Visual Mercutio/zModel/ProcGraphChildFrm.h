@@ -30,44 +30,44 @@
 
 class AFX_EXT_CLASS ZIProcessGraphChildFrame : public SECMDIChildWnd
 {
-	DECLARE_DYNCREATE( ZIProcessGraphChildFrame )
+    DECLARE_DYNCREATE( ZIProcessGraphChildFrame )
 
 public:
 
-	ZIProcessGraphChildFrame();
+    ZIProcessGraphChildFrame();
 
 // Overrides
 public:
 
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIProcessGraphChildFrame)
-	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIProcessGraphChildFrame)
+    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
 
-	virtual ~ZIProcessGraphChildFrame();
+    virtual ~ZIProcessGraphChildFrame();
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 // Generated message map functions
 protected:
 
-	//{{AFX_MSG(ZIProcessGraphChildFrame)
-	afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
-	afx_msg int OnMouseActivate(CWnd* pDesktopWnd, UINT nHitTest, UINT message);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZIProcessGraphChildFrame)
+    afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
+    afx_msg int OnMouseActivate(CWnd* pDesktopWnd, UINT nHitTest, UINT message);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
-	virtual void OnUpdateFrameTitle( BOOL bAddToTitle );
+    virtual void OnUpdateFrameTitle( BOOL bAddToTitle );
 
 private:
 
-	static CDocument* m_pLastDocumentActivated;
+    static CDocument* m_pLastDocumentActivated;
 };
 
 /////////////////////////////////////////////////////////////////////////////

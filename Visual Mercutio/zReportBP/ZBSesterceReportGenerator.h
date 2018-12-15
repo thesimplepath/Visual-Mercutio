@@ -38,40 +38,40 @@ class ZBUserRoleEntity;
 
 class AFX_EXT_CLASS ZBSesterceReportGenerator : public ZBModelBPReportGenerator
 {
-	DECLARE_SERIAL( ZBSesterceReportGenerator )
+    DECLARE_SERIAL( ZBSesterceReportGenerator )
 
 public:
 
-	ZBSesterceReportGenerator( ZDGridDocument*				pDoc		= NULL,
-							   ZDProcessGraphModelMdlBP*	pModel		= NULL,
-							   ZDProcessGraphModelDoc*		pSourceDoc	= NULL );
+    ZBSesterceReportGenerator( ZDGridDocument*                pDoc        = NULL,
+                               ZDProcessGraphModelMdlBP*    pModel        = NULL,
+                               ZDProcessGraphModelDoc*        pSourceDoc    = NULL );
 
-	virtual ~ZBSesterceReportGenerator();
+    virtual ~ZBSesterceReportGenerator();
 
-	/////////////////////////////////////////////////////////////////////////////
-	// ZIGridReportGenerator methods
-	
-	// Called by the framework to request a grid to be filled
-	// The implementation uses the delegation
-	virtual bool FillGrid( CGXGridCore& GridCore, size_t Index );
+    /////////////////////////////////////////////////////////////////////////////
+    // ZIGridReportGenerator methods
+    
+    // Called by the framework to request a grid to be filled
+    // The implementation uses the delegation
+    virtual bool FillGrid( CGXGridCore& GridCore, size_t Index );
 
-	virtual const CString GetReportTitle() const;
+    virtual const CString GetReportTitle() const;
 
 protected:
 
-	virtual void FillTabArray();
+    virtual void FillTabArray();
 
 private:
 
-	bool FillGridUnit		( CGXGridCore& GridCore );
-	void FillGridUnitGroup	( ZBUserGroupEntity* pGroup, ZBOStreamGrid &ostream );
-	void FillGridUnitRole	( ZBUserRoleEntity* pRole, ZBOStreamGrid &ostream );
-	bool FillGridProcess	( CGXGridCore& GridCore, size_t Index );
+    bool FillGridUnit        ( CGXGridCore& GridCore );
+    void FillGridUnitGroup    ( ZBUserGroupEntity* pGroup, ZBOStreamGrid &ostream );
+    void FillGridUnitRole    ( ZBUserRoleEntity* pRole, ZBOStreamGrid &ostream );
+    bool FillGridProcess    ( CGXGridCore& GridCore, size_t Index );
 
 private:
 
-	CGXStyle m_HeaderStyle;
-	CGXStyle m_NormalStyle;
+    CGXStyle m_HeaderStyle;
+    CGXStyle m_NormalStyle;
 };
 
 #endif // !defined(AFX_ZBSesterceReportGenerator_H__92F0037B_1EAF_4F26_BE0A_CFBCC6D7C6FD__INCLUDED_)

@@ -13,7 +13,7 @@
 // See these sources for detailed information regarding
 // zADS libraries.
 //
-// <nl>Created:		 03/2000
+// <nl>Created:         03/2000
 // <nl>Description:  ZIStopPrint stop print dialog box
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -51,35 +51,35 @@ class AFX_EXT_CLASS ZIStopPrint : public CDialog
 {
 // Construction
 public:
-	ZIStopPrint(CWnd* pParent = NULL);	// standard constructor
+    ZIStopPrint(CWnd* pParent = NULL);    // standard constructor
 
-	CString GetCode() const
-	{
-		return m_Code;
-	};
+    CString GetCode() const
+    {
+        return m_Code;
+    };
 
 private:
 // Dialog Data
-	//{{AFX_DATA(ZIStopPrint)
+    //{{AFX_DATA(ZIStopPrint)
 /*
-	enum { IDD = IDD_CANTCONTINUE };
+    enum { IDD = IDD_CANTCONTINUE };
 */
-		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+        // NOTE: the ClassWizard will add data members here
+    //}}AFX_DATA
 
 // Implementation
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	// Generated message map functions
-	//{{AFX_MSG(ZIStopPrint)
-	afx_msg void OnDelock();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZIStopPrint)
+    afx_msg void OnDelock();
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	CString m_Code;
+    CString m_Code;
 };
 
 

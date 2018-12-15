@@ -1,10 +1,10 @@
 //## begin module%334FC46302C2.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%334FC46302C2.cm
 
 //## begin module%334FC46302C2.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%334FC46302C2.cp
 
 //## Module: GenPage%334FC46302C2; Package specification
@@ -57,7 +57,7 @@
 //## end ZIGeneralPage%334FC461003C.preface
 
 //## Class: ZIGeneralPage%334FC461003C
-//	This page contains general options for the system.
+//    This page contains general options for the system.
 //## Category: ZWinUtil library::Options classes::Property page for options%3705BE0901B4
 //## Subsystem: ZWinUtil%36DEE1730346
 //## Persistence: Transient
@@ -68,19 +68,19 @@
 class AFX_EXT_CLASS ZIGeneralPage : public ZIGenericPropPage  //## Inherits: <unnamed>%334FC461003D
 {
   //## begin ZIGeneralPage%334FC461003C.initialDeclarations preserve=yes
-	public:
-	// Dialog Data
-		//{{AFX_DATA(ZIGeneralPage)
-	enum { IDD = IDD_SYSOPTIONPAGE };
-		CButton	m_btnMaximizeForm;
-		CButton	m_btnShowWelcome;
-		CButton	m_btnReloadLastFile;
-		CButton	m_btnStartupOpenFile;
-		CButton	m_btnScreenPos;
-	BOOL	m_DontShowTaskList;
-	BOOL	m_DontShowTips;
-	BOOL	m_ForceNetwork;
-	//}}AFX_DATA
+    public:
+    // Dialog Data
+        //{{AFX_DATA(ZIGeneralPage)
+    enum { IDD = IDD_SYSOPTIONPAGE };
+        CButton    m_btnMaximizeForm;
+        CButton    m_btnShowWelcome;
+        CButton    m_btnReloadLastFile;
+        CButton    m_btnStartupOpenFile;
+        CButton    m_btnScreenPos;
+    BOOL    m_DontShowTaskList;
+    BOOL    m_DontShowTips;
+    BOOL    m_ForceNetwork;
+    //}}AFX_DATA
   //## end ZIGeneralPage%334FC461003C.initialDeclarations
 
   public:
@@ -104,22 +104,22 @@ class AFX_EXT_CLASS ZIGeneralPage : public ZIGenericPropPage  //## Inherits: <un
 
     //## Other Operations (specified)
       //## Operation: DoDataExchange%827992043
-      //	Do data exchange mecanism of MFC dialog
+      //    Do data exchange mecanism of MFC dialog
       virtual void DoDataExchange (CDataExchange* pDX);
 
     // Additional Protected Declarations
       //## begin ZIGeneralPage%334FC461003C.protected preserve=yes
       
-	// Generated message map functions
-	//{{AFX_MSG(ZIGeneralPage)
-//	afx_msg void OnSavesettings();
-	virtual BOOL OnInitDialog();
-	afx_msg void OnReloadLastFile();
-	afx_msg void OnStartupOpenFile();
-	afx_msg void OnShowWelcomeScreen();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
-	virtual void OnOK();	
+    // Generated message map functions
+    //{{AFX_MSG(ZIGeneralPage)
+//    afx_msg void OnSavesettings();
+    virtual BOOL OnInitDialog();
+    afx_msg void OnReloadLastFile();
+    afx_msg void OnStartupOpenFile();
+    afx_msg void OnShowWelcomeScreen();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
+    virtual void OnOK();    
       //## end ZIGeneralPage%334FC461003C.protected
   private:
     //## Constructors (generated)

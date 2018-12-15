@@ -31,15 +31,15 @@
 
 class AFX_EXT_CLASS ZIObserverMsg : public CObject
 {
-	DECLARE_DYNAMIC( ZIObserverMsg )
+    DECLARE_DYNAMIC( ZIObserverMsg )
 
 public:
 
-	virtual ~ZIObserverMsg();
+    virtual ~ZIObserverMsg();
 
 protected:
 
-	ZIObserverMsg();
+    ZIObserverMsg();
 };
 
 #endif // !defined(AFX_ZIOBSERVERMSG_H__16115A8A_1A36_4F89_B8D2_FE7E2BAB2749__INCLUDED_)

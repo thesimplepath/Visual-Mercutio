@@ -41,34 +41,34 @@ class AFX_EXT_CLASS ZDAOTableDlg : public ZIDialog
 {
 // Construction
 public:
-	ZDAOTableDlg(CWnd* pParent = NULL);   // standard constructor
-	ZDAOTableDlg(CDaoDatabase* pDB, CWnd* pParent = NULL);   // standard constructor
-	CString	GetTableName() const { return m_TableName; };
+    ZDAOTableDlg(CWnd* pParent = NULL);   // standard constructor
+    ZDAOTableDlg(CDaoDatabase* pDB, CWnd* pParent = NULL);   // standard constructor
+    CString    GetTableName() const { return m_TableName; };
 
 // Dialog Data
-	//{{AFX_DATA(ZDAOTableDlg)
-	enum { IDD = IDD_DATABASE_TABLE };
-	ZCDAOTableList	m_ListBox;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZDAOTableDlg)
+    enum { IDD = IDD_DATABASE_TABLE };
+    ZCDAOTableList    m_ListBox;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZDAOTableDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZDAOTableDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
-	CDaoDatabase* m_pDB;
-	CString m_TableName;
-	// Generated message map functions
-	//{{AFX_MSG(ZDAOTableDlg)
-	virtual BOOL OnInitDialog();
-	virtual void OnOK();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    CDaoDatabase* m_pDB;
+    CString m_TableName;
+    // Generated message map functions
+    //{{AFX_MSG(ZDAOTableDlg)
+    virtual BOOL OnInitDialog();
+    virtual void OnOK();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

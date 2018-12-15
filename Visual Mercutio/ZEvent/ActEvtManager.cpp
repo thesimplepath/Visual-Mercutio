@@ -27,54 +27,54 @@ ZBActivityEventManager::~ZBActivityEventManager()
 
 
 ZBEventActivity* ZBActivityEventManager::AddEvent(ActivityEventType EventType,
-												  CString Filename,
-												  COleDateTime Time, 
-												  CString FolderName,
-												  CString ProcessName,
-												  COleDateTime ProcessCreationDate,
-												  COleDateTime ProcessDueDate,
-				 								  CString ActivityType,
-												  CString ActivityName,
-												  COleDateTime ActivityCreationDate,
-												  COleDateTime ActivityDueDate,
-												  CString Sender,
-												  CString Receiver,
-												  CString ProcessFilename,
-												  CString ExchangeDataFilename,
-												  CString ProcessExchangeDataFilename,
-												  CString ActivityStatus,
-												  CString Comments)
+                                                  CString Filename,
+                                                  COleDateTime Time, 
+                                                  CString FolderName,
+                                                  CString ProcessName,
+                                                  COleDateTime ProcessCreationDate,
+                                                  COleDateTime ProcessDueDate,
+                                                   CString ActivityType,
+                                                  CString ActivityName,
+                                                  COleDateTime ActivityCreationDate,
+                                                  COleDateTime ActivityDueDate,
+                                                  CString Sender,
+                                                  CString Receiver,
+                                                  CString ProcessFilename,
+                                                  CString ExchangeDataFilename,
+                                                  CString ProcessExchangeDataFilename,
+                                                  CString ActivityStatus,
+                                                  CString Comments)
 {
-	ZBEventActivity*	pEvent = new ZBEventActivity( EventType, Filename, Time, FolderName, ProcessName, ProcessCreationDate, ProcessDueDate,
-													  ActivityType, ActivityName, ActivityCreationDate, ActivityDueDate,
-													  Sender, Receiver, ProcessFilename, ExchangeDataFilename, ProcessExchangeDataFilename,
-													  ActivityStatus, Comments);
-	if (!ZBEventManager::AddEvent( pEvent ))
-	{
-		delete pEvent;
-		pEvent = NULL;
-	}
-	return pEvent;
+    ZBEventActivity*    pEvent = new ZBEventActivity( EventType, Filename, Time, FolderName, ProcessName, ProcessCreationDate, ProcessDueDate,
+                                                      ActivityType, ActivityName, ActivityCreationDate, ActivityDueDate,
+                                                      Sender, Receiver, ProcessFilename, ExchangeDataFilename, ProcessExchangeDataFilename,
+                                                      ActivityStatus, Comments);
+    if (!ZBEventManager::AddEvent( pEvent ))
+    {
+        delete pEvent;
+        pEvent = NULL;
+    }
+    return pEvent;
 }
 
 
-ZBEvent*	ZBActivityEventManager::LoadEventFromFile( const CString Filename )
+ZBEvent*    ZBActivityEventManager::LoadEventFromFile( const CString Filename )
 {
-	ZBEventActivityFile	EventActivityFile;
-	ZBEvent*	pEvent = EventActivityFile.ImportActivityFromFile( Filename );
+    ZBEventActivityFile    EventActivityFile;
+    ZBEvent*    pEvent = EventActivityFile.ImportActivityFromFile( Filename );
 
-	if (pEvent)
-	{
-		ZFile	File(Filename);
-		CString	Path = ZDirectory::NormalizeDirectory( File.GetFilePath() );
-		// If are not in root directory
-		if (Path.CompareNoCase( GetRootDirectory() ) != 0)
-		{
-			// Set the user queue name
-			pEvent->SetUserQueue( ZDirectory::GetShortDirectoryName( Path ) );
-		}
-	}
-	return pEvent;
+    if (pEvent)
+    {
+        ZFile    File(Filename);
+        CString    Path = ZDirectory::NormalizeDirectory( File.GetFilePath() );
+        // If are not in root directory
+        if (Path.CompareNoCase( GetRootDirectory() ) != 0)
+        {
+            // Set the user queue name
+            pEvent->SetUserQueue( ZDirectory::GetShortDirectoryName( Path ) );
+        }
+    }
+    return pEvent;
 }
 
 

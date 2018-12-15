@@ -37,44 +37,44 @@ class AFX_EXT_CLASS ZDProcessHistoryDAO
 {
 
   public:
-		ZDProcessHistoryDAO (CString DatabaseFileName = "");
+        ZDProcessHistoryDAO (CString DatabaseFileName = "");
 
-		~ZDProcessHistoryDAO();
+        ~ZDProcessHistoryDAO();
 
-		void Create (CString DatabaseFileName);
+        void Create (CString DatabaseFileName);
 
-		BOOL AppendEventToHistoric (ZBEventActivity& EventActivity);
-		BOOL Close ();
+        BOOL AppendEventToHistoric (ZBEventActivity& EventActivity);
+        BOOL Close ();
 
-		CString GetDatabaseFileName () const;
-		
+        CString GetDatabaseFileName () const;
+        
   private:
 
-		CDaoDatabase						m_ProcessHistoryDatabase;
-		ZDHistoryActivityRecordset*			m_pHistoryActivityRecordset;
-		ZDHistoryActivityStatusRecordset*	m_pHistoryActivityStatusRecordset;
-		ZDHistoryProcessRecordset*			m_pHistoryProcessRecordset;
-		ZDHistoryProcessStatusRecordset*	m_pHistoryProcessStatusRecordset;
-		ZDHistoryFolderStatusRecordset*		m_pHistoryFolderStatusRecordset;
-        CString								m_DatabaseFileName;
+        CDaoDatabase                        m_ProcessHistoryDatabase;
+        ZDHistoryActivityRecordset*            m_pHistoryActivityRecordset;
+        ZDHistoryActivityStatusRecordset*    m_pHistoryActivityStatusRecordset;
+        ZDHistoryProcessRecordset*            m_pHistoryProcessRecordset;
+        ZDHistoryProcessStatusRecordset*    m_pHistoryProcessStatusRecordset;
+        ZDHistoryFolderStatusRecordset*        m_pHistoryFolderStatusRecordset;
+        CString                                m_DatabaseFileName;
 
   private:
-		ZDProcessHistoryDAO(const ZDProcessHistoryDAO &right);
-		const ZDProcessHistoryDAO & operator=(const ZDProcessHistoryDAO &right);
+        ZDProcessHistoryDAO(const ZDProcessHistoryDAO &right);
+        const ZDProcessHistoryDAO & operator=(const ZDProcessHistoryDAO &right);
 
-		long	FindProcess( ZBEventActivity& EventActivity );
-		long	FindActivity( long ProcessID, ZBDate& CurrentDate, ZBEventActivity& EventActivity );
-		bool	AddNewProcessRecord( ZBEventActivity& EventActivity );
-		bool	ModifyProcessStatusRecord( long ProcessID, ZBEventActivity& EventActivity );
-		bool	AddProcessStatusRecord( long ProcessID, ZBEventActivity& EventActivity );
-		bool	ModifyActivityStatusRecord( long ProcessID, long ActivityID, ZBEventActivity& EventActivity );
-		bool	AddActivityStatusRecord( long ProcessID, long ActivityID, ZBEventActivity& EventActivity );
-		bool	ModifyFolderStatusRecord( long ProcessID, long ActivityID, ZBEventActivity& EventActivity );
-		bool	AddFolderStatusRecord( long ProcessID, long ActivityID, ZBEventActivity& EventActivity );
+        long    FindProcess( ZBEventActivity& EventActivity );
+        long    FindActivity( long ProcessID, ZBDate& CurrentDate, ZBEventActivity& EventActivity );
+        bool    AddNewProcessRecord( ZBEventActivity& EventActivity );
+        bool    ModifyProcessStatusRecord( long ProcessID, ZBEventActivity& EventActivity );
+        bool    AddProcessStatusRecord( long ProcessID, ZBEventActivity& EventActivity );
+        bool    ModifyActivityStatusRecord( long ProcessID, long ActivityID, ZBEventActivity& EventActivity );
+        bool    AddActivityStatusRecord( long ProcessID, long ActivityID, ZBEventActivity& EventActivity );
+        bool    ModifyFolderStatusRecord( long ProcessID, long ActivityID, ZBEventActivity& EventActivity );
+        bool    AddFolderStatusRecord( long ProcessID, long ActivityID, ZBEventActivity& EventActivity );
 
 
-		BOOL OpenRead ();
-		BOOL OpenWrite ();
+        BOOL OpenRead ();
+        BOOL OpenWrite ();
 
 };
 
@@ -83,4 +83,4 @@ class AFX_EXT_CLASS ZDProcessHistoryDAO
 //#undef  AFX_DATA
 //#define AFX_DATA
 
-#endif	  // ProcHistoDAO_h
+#endif      // ProcHistoDAO_h

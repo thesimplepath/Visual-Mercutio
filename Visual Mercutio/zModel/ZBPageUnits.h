@@ -36,45 +36,45 @@
 class AFX_EXT_CLASS ZBPageUnits : public CObject  
 {
 public:
-	// Inherited feature
-	typedef CObject inherited;
+    // Inherited feature
+    typedef CObject inherited;
 
 protected: // create from serialization only
-	DECLARE_SERIAL(ZBPageUnits)
+    DECLARE_SERIAL(ZBPageUnits)
 
 public:
-	ZBPageUnits();
-	ZBPageUnits(const ZBPageUnits &right);
-	ZBPageUnits(const CODRuler &right);
+    ZBPageUnits();
+    ZBPageUnits(const ZBPageUnits &right);
+    ZBPageUnits(const CODRuler &right);
 
-	const ZBPageUnits& operator=(const ZBPageUnits &right);
-	const ZBPageUnits& operator=(const CODRuler &right);
+    const ZBPageUnits& operator=(const ZBPageUnits &right);
+    const ZBPageUnits& operator=(const CODRuler &right);
 
 
-	virtual ~ZBPageUnits();
+    virtual ~ZBPageUnits();
 
-	/* Gets the current unit of measure. */
-	OD_UNIT_OF_MEASURE GetUnitOfMeasure() const;
-	/* Sets the current unit of measure. */
-	void SetUnitOfMeasure(const OD_UNIT_OF_MEASURE units);
-	/* Gets the size of one logical unit on the output device. */
-	void GetLogicalUnitMeasure(CODMeasure& logXUnit, CODMeasure& logYUnit);
-	/* Sets the size of one logical unit on the output device. */
-	void SetLogicalUnitMeasure(const CODMeasure& logXUnit, const CODMeasure& logYUnit);
-	/* Gets scaling factor for measurements. */
-	void GetMeasurementScale(CODMeasure& scaleFrom, CODMeasure& scaleTo);
-	/* Sets a scaling factor for measurements. */
-	void SetMeasurementScale(const CODMeasure& scaleFrom, const CODMeasure& scaleTo);
+    /* Gets the current unit of measure. */
+    OD_UNIT_OF_MEASURE GetUnitOfMeasure() const;
+    /* Sets the current unit of measure. */
+    void SetUnitOfMeasure(const OD_UNIT_OF_MEASURE units);
+    /* Gets the size of one logical unit on the output device. */
+    void GetLogicalUnitMeasure(CODMeasure& logXUnit, CODMeasure& logYUnit);
+    /* Sets the size of one logical unit on the output device. */
+    void SetLogicalUnitMeasure(const CODMeasure& logXUnit, const CODMeasure& logYUnit);
+    /* Gets scaling factor for measurements. */
+    void GetMeasurementScale(CODMeasure& scaleFrom, CODMeasure& scaleTo);
+    /* Sets a scaling factor for measurements. */
+    void SetMeasurementScale(const CODMeasure& scaleFrom, const CODMeasure& scaleTo);
 
-	virtual void Serialize( CArchive& ar );
+    virtual void Serialize( CArchive& ar );
 
 
 protected:
-	OD_UNIT_OF_MEASURE	m_units;
-	CODMeasure			m_ScaleFrom;
-	CODMeasure			m_ScaleTo;
-	CODMeasure			m_logXUnit;
-	CODMeasure			m_logYUnit;
+    OD_UNIT_OF_MEASURE    m_units;
+    CODMeasure            m_ScaleFrom;
+    CODMeasure            m_ScaleTo;
+    CODMeasure            m_logXUnit;
+    CODMeasure            m_logYUnit;
 
 };
 
@@ -82,36 +82,36 @@ protected:
 
 inline OD_UNIT_OF_MEASURE ZBPageUnits::GetUnitOfMeasure() const
 {
-	return m_units;
+    return m_units;
 }
 
 inline void ZBPageUnits::SetUnitOfMeasure(const OD_UNIT_OF_MEASURE units)
 {
-	m_units = units;
+    m_units = units;
 }
 
 inline void ZBPageUnits::GetLogicalUnitMeasure(CODMeasure& logXUnit, CODMeasure& logYUnit)
 {
-	logXUnit = m_logXUnit;
-	logYUnit = m_logYUnit;
+    logXUnit = m_logXUnit;
+    logYUnit = m_logYUnit;
 }
 
 inline void ZBPageUnits::SetLogicalUnitMeasure(const CODMeasure& logXUnit, const CODMeasure& logYUnit)
 {
-	m_logXUnit = logXUnit;
-	m_logYUnit = logYUnit;
+    m_logXUnit = logXUnit;
+    m_logYUnit = logYUnit;
 }
 
 inline void ZBPageUnits::GetMeasurementScale(CODMeasure& scaleFrom, CODMeasure& scaleTo)
 {
-	scaleFrom = m_ScaleFrom;
-	scaleTo = m_ScaleTo;
+    scaleFrom = m_ScaleFrom;
+    scaleTo = m_ScaleTo;
 }
 
 inline void ZBPageUnits::SetMeasurementScale(const CODMeasure& scaleFrom, const CODMeasure& scaleTo)
 {
-	m_ScaleFrom = scaleFrom;
-	m_ScaleTo = scaleTo;
+    m_ScaleFrom = scaleFrom;
+    m_ScaleTo = scaleTo;
 }
 
 #endif // !defined(AFX_ZBPAGEUNITS_H__F2584E08_0478_11D4_96F4_0000B45D7C6F__INCLUDED_)

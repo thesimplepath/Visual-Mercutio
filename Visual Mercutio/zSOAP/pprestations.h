@@ -1,10 +1,10 @@
 // **************************************************************************************************************
-// *										  Classe pprestations												*
+// *                                          Classe pprestations                                                *
 // **************************************************************************************************************
-// * JMR-MODIF - Le 30 mars 2006 - Création de la classe pprestations.											*
+// * JMR-MODIF - Le 30 mars 2006 - Création de la classe pprestations.                                            *
 // **************************************************************************************************************
 // * Cette classe contient les attributs de publication des prestations pour Messenger. Elle effectue également *
-// * la conversion des chaînes de caractères au format string.													*
+// * la conversion des chaînes de caractères au format string.                                                    *
 // **************************************************************************************************************
 
 #ifndef __PPRESTATIONS_HDR_
@@ -36,22 +36,22 @@ class AFX_EXT_CLASS pprestations
 {
 public:
 
-	pprestations()
-	{
-	}
+    pprestations()
+    {
+    }
 
-	pprestations( String16	prestationid,
-				  String16	prestationparent,
-				  String16	prestationtitle )
-	{
-		this->prestationid		= convertTo( prestationid );
-		this->prestationparent	= convertTo( prestationparent );
-		this->prestationtitle	= convertTo( prestationtitle );
-	}
+    pprestations( String16    prestationid,
+                  String16    prestationparent,
+                  String16    prestationtitle )
+    {
+        this->prestationid        = convertTo( prestationid );
+        this->prestationparent    = convertTo( prestationparent );
+        this->prestationtitle    = convertTo( prestationtitle );
+    }
 
-	string	prestationid;
-	string	prestationparent;
-	string	prestationtitle;
+    string    prestationid;
+    string    prestationparent;
+    string    prestationtitle;
 };
 
 #endif // __PPRESTATIONS_HDR_

@@ -43,23 +43,23 @@ class AFX_EXT_CLASS ZUSOAPPublishUserGroup
 {
 public:
 
-	ZUSOAPPublishUserGroup( ZBPublishMessengerModelInformation* pInfo, ZILog* pLog = NULL );
-	virtual ~ZUSOAPPublishUserGroup();
+    ZUSOAPPublishUserGroup( ZBPublishMessengerModelInformation* pInfo, ZILog* pLog = NULL );
+    virtual ~ZUSOAPPublishUserGroup();
 
-	bool Publish();
-
-private:
-
-	void _PublishUserGroup( ZBUserGroupEntity* pGroup );
-
-	// JMR-MODIF - Le 24 janvier 2006 - Suppression de la routine de publication des rôles.
-//	void _PublishUserRole( ZBUserRoleEntity* pRole );
+    bool Publish();
 
 private:
 
-	ZBPublishMessengerModelInformation* m_pInfo;
-	pPublishWorkgroup					m_pw;
-	ZILog*								m_pLog;
+    void _PublishUserGroup( ZBUserGroupEntity* pGroup );
+
+    // JMR-MODIF - Le 24 janvier 2006 - Suppression de la routine de publication des rôles.
+//    void _PublishUserRole( ZBUserRoleEntity* pRole );
+
+private:
+
+    ZBPublishMessengerModelInformation* m_pInfo;
+    pPublishWorkgroup                    m_pw;
+    ZILog*                                m_pLog;
 };
 
 #endif // !defined(AFX_ZUSOAPPUBLISHUSERGROUP_H__007D541D_39C0_4FA9_A177_CB51E06B7DE7__INCLUDED_)

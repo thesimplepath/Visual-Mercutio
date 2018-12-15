@@ -37,45 +37,45 @@
 class AFX_EXT_CLASS ZIOutlookBarView : public CView
 {
 protected:
-	ZIOutlookBarView();           // protected constructor used by dynamic creation
-	DECLARE_DYNCREATE(ZIOutlookBarView)
+    ZIOutlookBarView();           // protected constructor used by dynamic creation
+    DECLARE_DYNCREATE(ZIOutlookBarView)
 
 // Operations
 public:
-	void			InitializeMenuControl(CContentItems* pContents, size_t ContentSize, CImageList* pImageListSmall=NULL, CImageList* pImageListLarge=NULL);
-	virtual BOOL	ChangeContext( size_t Context );
+    void            InitializeMenuControl(CContentItems* pContents, size_t ContentSize, CImageList* pImageListSmall=NULL, CImageList* pImageListLarge=NULL);
+    virtual BOOL    ChangeContext( size_t Context );
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIOutlookBarView)
-	protected:
-	virtual void OnDraw(CDC* pDC);      // overridden to draw this view
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIOutlookBarView)
+    protected:
+    virtual void OnDraw(CDC* pDC);      // overridden to draw this view
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
-	virtual ~ZIOutlookBarView();
+    virtual ~ZIOutlookBarView();
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZIOutlookBarView)
-	afx_msg void OnSize(UINT nType, int cx, int cy);
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	//}}AFX_MSG
-	afx_msg BOOL OnOutbarNotify(WPARAM wParam, LPARAM lParam);
-	
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZIOutlookBarView)
+    afx_msg void OnSize(UINT nType, int cx, int cy);
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    //}}AFX_MSG
+    afx_msg BOOL OnOutbarNotify(WPARAM wParam, LPARAM lParam);
+    
+    DECLARE_MESSAGE_MAP()
 
 // Attributes
 protected:
-	CCJOutlookBar	m_OutBar;
-	CCJPagerCtrl	m_Pager;
-	CFont			m_Font;
-	CRect			m_pRect;
+    CCJOutlookBar    m_OutBar;
+    CCJPagerCtrl    m_Pager;
+    CFont            m_Font;
+    CRect            m_pRect;
 };
 
 

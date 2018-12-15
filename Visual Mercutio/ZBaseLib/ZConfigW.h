@@ -14,7 +14,7 @@
 // zForms libraries.
 //
 // Author:       Dom
-// <nl>Created:		 03/2000
+// <nl>Created:         03/2000
 // <nl>Description:  ZAWindowConfiguration windows position and state configuration
 //
 
@@ -35,7 +35,7 @@
 
 
 
-const	char	WindowsConfigSectionName[] = "WindowsConfigValues";
+const    char    WindowsConfigSectionName[] = "WindowsConfigValues";
 
 
 
@@ -64,28 +64,28 @@ class AFX_EXT_CLASS ZAWindowConfiguration
 
       BOOL Create (CString IniFile = "");
 
-      //	Sets the ini file.
+      //    Sets the ini file.
       void SetIniFile (const CString& File);
 
-      //	Read the Window size, position and attribute, and saves
-      //	this values.
+      //    Read the Window size, position and attribute, and saves
+      //    this values.
       BOOL SaveWindowPosition (CWnd* pWnd, const CString WndName, BOOL PositionOnly = FALSE);
 
-      //	Read saved values and restore the size, position and
-      //	attributes to the Window.
+      //    Read saved values and restore the size, position and
+      //    attributes to the Window.
       BOOL RestoreWindowPosition (CWnd* pWnd, const CString WndName, BOOL PositionOnly = FALSE);
 
-      //	Read the desktop and saves all windows size, position
-      //	and attribute, and saves these values.
+      //    Read the desktop and saves all windows size, position
+      //    and attribute, and saves these values.
       BOOL SaveWindowDesktop (CWnd* pDesktopWnd, const CString WndName = "", BOOL PositionOnly = FALSE);
 
-      //	Read the values of desktop windows and restores it.
+      //    Read the values of desktop windows and restores it.
       BOOL RestoreWindowDesktop (CWnd* pDesktopWnd, const CString WndName = "", BOOL PositionOnly = FALSE);
 
 
   protected:
-	  BOOL ReadWindowPlacement(LPWINDOWPLACEMENT pwp, const CString WndName);
-	  void WriteWindowPlacement(LPWINDOWPLACEMENT pwp, const CString WndName);
+      BOOL ReadWindowPlacement(LPWINDOWPLACEMENT pwp, const CString WndName);
+      void WriteWindowPlacement(LPWINDOWPLACEMENT pwp, const CString WndName);
 
   private:
       ZAWindowConfiguration(const ZAWindowConfiguration &right);
@@ -104,7 +104,7 @@ class AFX_EXT_CLASS ZAWindowConfiguration
 
 inline void ZAWindowConfiguration::SetIniFile (const CString& File)
 {
-  	m_SystemOption.SetIniFile( File );
+      m_SystemOption.SetIniFile( File );
 }
 
 

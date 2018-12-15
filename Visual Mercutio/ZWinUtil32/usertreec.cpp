@@ -7,10 +7,10 @@
 #include "zRes32\ZRes.h"
 
 #ifndef _WIN32
-	#include "ZWinUtil.h"
+    #include "ZWinUtil.h"
 #endif
 #ifdef _WIN32
-	#include "ZWinUtil32.h"
+    #include "ZWinUtil32.h"
 #endif
 
 #ifdef _DEBUG
@@ -20,8 +20,8 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 BEGIN_MESSAGE_MAP(ZCUserTree, ZITreeCtrl)
-	//{{AFX_MSG_MAP(ZCUserTree)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZCUserTree)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 
@@ -31,8 +31,8 @@ END_MESSAGE_MAP()
 ZCUserTree::ZCUserTree (ZUUserManager* pUserManager)
       : m_pUserManager(pUserManager)
 {
-	if (m_pUserManager)
-		m_UserTree.Initialize( this, m_pUserManager );
+    if (m_pUserManager)
+        m_UserTree.Initialize( this, m_pUserManager );
 }
 
 
@@ -45,26 +45,26 @@ ZCUserTree::~ZCUserTree()
 void ZCUserTree::Initialize (ZUUserManager* pUserManager)
 {
     m_pUserManager = pUserManager;
-	m_UserTree.Initialize( this, pUserManager );
+    m_UserTree.Initialize( this, pUserManager );
 }
 
 void ZCUserTree::ReInitialize (ZUUserManager* pUserManager)
 {
     m_pUserManager = pUserManager;
-	m_UserTree.ReInitialize( pUserManager );
+    m_UserTree.ReInitialize( pUserManager );
 }
 
 void ZCUserTree::Refresh ()
 {
-	m_UserTree.Refresh();
+    m_UserTree.Refresh();
 }
 
 ZUser* ZCUserTree::GetSelectedUser ()
 {
-	return m_UserTree.GetSelectedUser();
+    return m_UserTree.GetSelectedUser();
 }
 
-CString	ZCUserTree::GetSelectedDepartement()
+CString    ZCUserTree::GetSelectedDepartement()
 {
-	return m_UserTree.GetSelectedDepartement();
+    return m_UserTree.GetSelectedDepartement();
 }

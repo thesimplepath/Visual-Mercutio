@@ -31,158 +31,158 @@ IMPLEMENT_SERIAL( ZBMercutioReportGenerator, ZBModelBPReportGenerator, def_Versi
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBMercutioReportGenerator::ZBMercutioReportGenerator( ZDGridDocument*			pDoc		/*= NULL*/,
-													  ZDProcessGraphModelMdlBP*	pModel		/*= NULL*/,
-													  ZDProcessGraphModelDoc*	pSourceDoc	/*= NULL*/ )
-	: ZBModelBPReportGenerator( pDoc, pModel, pSourceDoc )
+ZBMercutioReportGenerator::ZBMercutioReportGenerator( ZDGridDocument*            pDoc        /*= NULL*/,
+                                                      ZDProcessGraphModelMdlBP*    pModel        /*= NULL*/,
+                                                      ZDProcessGraphModelDoc*    pSourceDoc    /*= NULL*/ )
+    : ZBModelBPReportGenerator( pDoc, pModel, pSourceDoc )
 {
-	// Store the model name
-	if ( m_pModel )
-	{
-		m_SubModelName = m_pModel->GetAbsolutePath();
-	}
+    // Store the model name
+    if ( m_pModel )
+    {
+        m_SubModelName = m_pModel->GetAbsolutePath();
+    }
 
-	// Fill the tab name array
-	FillTabArray();
+    // Fill the tab name array
+    FillTabArray();
 }
 
 ZBMercutioReportGenerator::~ZBMercutioReportGenerator()
 {
 }
 
-void ZBMercutioReportGenerator::Initialize( ZDGridDocument*				pDoc,
-											ZDProcessGraphModelMdlBP*	pModel,
-											ZDProcessGraphModelDoc*		pSourceDoc )
+void ZBMercutioReportGenerator::Initialize( ZDGridDocument*                pDoc,
+                                            ZDProcessGraphModelMdlBP*    pModel,
+                                            ZDProcessGraphModelDoc*        pSourceDoc )
 {
-	// Store the model name
-	if ( m_pModel )
-	{
-		m_SubModelName = m_pModel->GetAbsolutePath();
-	}
+    // Store the model name
+    if ( m_pModel )
+    {
+        m_SubModelName = m_pModel->GetAbsolutePath();
+    }
 
-	// Call the base class
-	ZBModelBPReportGenerator::Initialize( pDoc, pModel, pSourceDoc );
+    // Call the base class
+    ZBModelBPReportGenerator::Initialize( pDoc, pModel, pSourceDoc );
 }
 
 // To fill the tab array, use a visitor class 
 void ZBMercutioReportGenerator::FillTabArray()
 {
-	// if no doc nor model defined. nothing to do.
-	if ( !m_pDoc || !m_pModel )
-	{
-		return;
-	}
+    // if no doc nor model defined. nothing to do.
+    if ( !m_pDoc || !m_pModel )
+    {
+        return;
+    }
 
-	// First, remove all elements
-	m_TabNameArray.RemoveAll();
+    // First, remove all elements
+    m_TabNameArray.RemoveAll();
 
-	// First tab is for the procedures
-	CString s;
-	s.LoadString( IDS_PROCEDURES_TAB );
-	m_TabNameArray.Add( s );
+    // First tab is for the procedures
+    CString s;
+    s.LoadString( IDS_PROCEDURES_TAB );
+    m_TabNameArray.Add( s );
 
-	// Second tab is for the deliverables
-	s.LoadString( IDS_DELIVERABLES_TAB );
-	m_TabNameArray.Add( s );
+    // Second tab is for the deliverables
+    s.LoadString( IDS_DELIVERABLES_TAB );
+    m_TabNameArray.Add( s );
 }
 
 bool ZBMercutioReportGenerator::FillGrid( CGXGridCore& GridCore, size_t Index )
 {
-	// Default size
-	GridCore.SetRowCount( 60 );		// 60 rows
-	GridCore.SetColCount( 15 );		// 15 columns
+    // Default size
+    GridCore.SetRowCount( 60 );        // 60 rows
+    GridCore.SetColCount( 15 );        // 15 columns
 
-	switch ( Index )
-	{
-		case 0 :
-		{
-			return FillGridProcedures( GridCore, Index );
-		}
+    switch ( Index )
+    {
+        case 0 :
+        {
+            return FillGridProcedures( GridCore, Index );
+        }
 
-		case 1 :
-		{
-			return FillGridDeliverables( GridCore, Index );
-		}
-	}
+        case 1 :
+        {
+            return FillGridDeliverables( GridCore, Index );
+        }
+    }
 
-	return false;
+    return false;
 }
 
 bool ZBMercutioReportGenerator::FillGridProcedures( CGXGridCore& GridCore, size_t Index )
 {
-	// Check the index validity
-	if ( Index >= (size_t)m_TabNameArray.GetSize() )
-	{
-		return false;
-	}
+    // Check the index validity
+    if ( Index >= (size_t)m_TabNameArray.GetSize() )
+    {
+        return false;
+    }
 
-	if ( !m_pModel )
-	{
-		return false;
-	}
+    if ( !m_pModel )
+    {
+        return false;
+    }
 
-	// Construct the output stream grid object
-	ZBOStreamGrid ostream( &GridCore );
+    // Construct the output stream grid object
+    ZBOStreamGrid ostream( &GridCore );
 
-	// Construct the navigation grid for procedure
-	ZUGridMercutioRepProcedureNavigation Navigation( m_pModel, static_cast<void*>( &ostream ) );
+    // Construct the navigation grid for procedure
+    ZUGridMercutioRepProcedureNavigation Navigation( m_pModel, static_cast<void*>( &ostream ) );
 
-	// Now navigate through process symbols
-	return Navigation.Navigate();
+    // Now navigate through process symbols
+    return Navigation.Navigate();
 }
 
 bool ZBMercutioReportGenerator::FillGridDeliverables( CGXGridCore& GridCore, size_t Index )
 {
-	// Check the index validity
-	if ( Index >= (size_t)m_TabNameArray.GetSize() )
-	{
-		return false;
-	}
+    // Check the index validity
+    if ( Index >= (size_t)m_TabNameArray.GetSize() )
+    {
+        return false;
+    }
 
-	if ( !m_pModel )
-	{
-		return false;
-	}
+    if ( !m_pModel )
+    {
+        return false;
+    }
 
-	// Construct the output stream grid object
-	ZBOStreamGrid ostream( &GridCore );
+    // Construct the output stream grid object
+    ZBOStreamGrid ostream( &GridCore );
 
-	// Construct the navigation grid for deliverables
-	ZUGridMercutioRepDeliverableNavigation Navigation( m_pModel, static_cast<void*>( &ostream ) );
+    // Construct the navigation grid for deliverables
+    ZUGridMercutioRepDeliverableNavigation Navigation( m_pModel, static_cast<void*>( &ostream ) );
 
-	// Now navigate through process symbols
-	return Navigation.Navigate();
+    // Now navigate through process symbols
+    return Navigation.Navigate();
 }
 
 const CString ZBMercutioReportGenerator::GetReportTitle() const
 {
-	// Build the title function of the model
-	CString s;
+    // Build the title function of the model
+    CString s;
 
-	if ( m_pDoc )
-	{
-		s = m_pDoc->GetTitle();
-	}
+    if ( m_pDoc )
+    {
+        s = m_pDoc->GetTitle();
+    }
 
-	CString ReportType;
-	ReportType.LoadString( IDS_MERCUTIO_RPT_T );
+    CString ReportType;
+    ReportType.LoadString( IDS_MERCUTIO_RPT_T );
 
-	s += _T( " [" );
-	s += ReportType;
-	s += _T( " : " );
+    s += _T( " [" );
+    s += ReportType;
+    s += _T( " : " );
 
-	if ( m_pModel )
-	{
-		s += m_pModel->GetModelName();
-	}
-	else
-	{
-		s += _T( "???" );
-	}
+    if ( m_pModel )
+    {
+        s += m_pModel->GetModelName();
+    }
+    else
+    {
+        s += _T( "???" );
+    }
 
-	s += _T( " ]" );
+    s += _T( " ]" );
 
-	return s;
+    return s;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -191,12 +191,12 @@ const CString ZBMercutioReportGenerator::GetReportTitle() const
 #ifdef _DEBUG
 void ZBMercutioReportGenerator::AssertValid() const
 {
-	ZBModelBPReportGenerator::AssertValid();
+    ZBModelBPReportGenerator::AssertValid();
 }
 
 void ZBMercutioReportGenerator::Dump( CDumpContext& dc ) const
 {
-	ZBModelBPReportGenerator::Dump( dc );
+    ZBModelBPReportGenerator::Dump( dc );
 }
 #endif //_DEBUG
 
@@ -205,39 +205,39 @@ void ZBMercutioReportGenerator::Dump( CDumpContext& dc ) const
 
 void ZBMercutioReportGenerator::OnPostRead( CArchive& ar )
 {
-	if ( m_pSourceDoc == NULL && !m_Filename.IsEmpty() )
-	{
-		m_pSourceDoc = new ZDProcessGraphModelDoc();
+    if ( m_pSourceDoc == NULL && !m_Filename.IsEmpty() )
+    {
+        m_pSourceDoc = new ZDProcessGraphModelDoc();
 
-		// If the document is valid, assign the right model pointer
-		if ( m_pSourceDoc								&&
-			 m_pSourceDoc->ReadFromFile( m_Filename )	&&
-			 m_pSourceDoc->GetModel()					&&
-			 ISA( m_pSourceDoc->GetModel(), ZDProcessGraphModelMdlBP ) )
-		{
-			m_pModel = dynamic_cast<ZDProcessGraphModelMdlBP*>( m_pSourceDoc->GetModel() );
+        // If the document is valid, assign the right model pointer
+        if ( m_pSourceDoc                                &&
+             m_pSourceDoc->ReadFromFile( m_Filename )    &&
+             m_pSourceDoc->GetModel()                    &&
+             ISA( m_pSourceDoc->GetModel(), ZDProcessGraphModelMdlBP ) )
+        {
+            m_pModel = dynamic_cast<ZDProcessGraphModelMdlBP*>( m_pSourceDoc->GetModel() );
 
-			if ( m_SubModelName )
-			{
-				m_pModel = dynamic_cast<ZDProcessGraphModelMdlBP*>( m_pModel->FindModelFromPath( m_SubModelName ) );
-			}
+            if ( m_SubModelName )
+            {
+                m_pModel = dynamic_cast<ZDProcessGraphModelMdlBP*>( m_pModel->FindModelFromPath( m_SubModelName ) );
+            }
 
-			m_InChargeOfClosingFile = true;
-		}
-	}
+            m_InChargeOfClosingFile = true;
+        }
+    }
 }
 
 void ZBMercutioReportGenerator::Serialize( CArchive& ar )
 {
-	ZBModelBPReportGenerator::Serialize( ar );
+    ZBModelBPReportGenerator::Serialize( ar );
 
-	// Serialize the sub model name
-	if ( ar.IsStoring() )
-	{
-		ar << m_SubModelName;
-	}
-	else
-	{
-		ar >> m_SubModelName;
-	}
+    // Serialize the sub model name
+    if ( ar.IsStoring() )
+    {
+        ar << m_SubModelName;
+    }
+    else
+    {
+        ar >> m_SubModelName;
+    }
 }

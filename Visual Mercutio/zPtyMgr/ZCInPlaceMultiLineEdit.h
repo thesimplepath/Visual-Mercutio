@@ -37,72 +37,72 @@
 
 class AFX_EXT_CLASS ZCInPlaceMultiLineEdit : public ZCMultiLineEdit, public ZIInPlaceEdit
 {
-	ZCInPlaceMultiLineEdit(const ZCInPlaceMultiLineEdit& d);
-	ZCInPlaceMultiLineEdit operator=(const ZCInPlaceMultiLineEdit& d);
+    ZCInPlaceMultiLineEdit(const ZCInPlaceMultiLineEdit& d);
+    ZCInPlaceMultiLineEdit operator=(const ZCInPlaceMultiLineEdit& d);
 
 protected:
-	DECLARE_DYNAMIC(ZCInPlaceMultiLineEdit)
+    DECLARE_DYNAMIC(ZCInPlaceMultiLineEdit)
 
 public:
-	ZCInPlaceMultiLineEdit( bool IsReadOnly = false );
-	virtual ~ZCInPlaceMultiLineEdit();
+    ZCInPlaceMultiLineEdit( bool IsReadOnly = false );
+    virtual ~ZCInPlaceMultiLineEdit();
 
-	// Operations
+    // Operations
 public:
 
-	// Initialize the edit control
-	virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0);
-	virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, double dInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0);
-	virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, float fInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0);
-	// Initialize the edit text value
-	virtual void SetEditText(const CString& strText);
-	virtual void SetEditText(double dValue);
-	virtual void SetEditText(float fValue);
-	// Retreive the text entered
-	virtual CString GetEditText() const;
+    // Initialize the edit control
+    virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0);
+    virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, double dInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0);
+    virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, float fInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0);
+    // Initialize the edit text value
+    virtual void SetEditText(const CString& strText);
+    virtual void SetEditText(double dValue);
+    virtual void SetEditText(float fValue);
+    // Retreive the text entered
+    virtual CString GetEditText() const;
 
-	// ZIObserver OnUpdate call-back function
-	virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    // ZIObserver OnUpdate call-back function
+    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
 
-	// Call when requires to process the extended command
-	virtual void OnExtendedCommand();
+    // Call when requires to process the extended command
+    virtual void OnExtendedCommand();
 
-	// ZCMultiLineEdit call-back. Used to trap when the edit has changed using the extended edit
-	virtual void	OnEditTextChanged();
+    // ZCMultiLineEdit call-back. Used to trap when the edit has changed using the extended edit
+    virtual void    OnEditTextChanged();
 
-	bool IsEditCtrlHit( CPoint point ) const;
-	bool IsEditButtonCtrlHit( CPoint point ) const;
+    bool IsEditCtrlHit( CPoint point ) const;
+    bool IsEditButtonCtrlHit( CPoint point ) const;
 
-	// Virtual function to cancel and save the edition
-	virtual void CancelEdit();
-	virtual void SaveValue();
+    // Virtual function to cancel and save the edition
+    virtual void CancelEdit();
+    virtual void SaveValue();
 
-	// Returns the extended size of the edit
-	virtual CSize GetExtendedSize() const
-	{
-		return ZCMultiLineEdit::GetExtendedSize();
-	};
+    // Returns the extended size of the edit
+    virtual CSize GetExtendedSize() const
+    {
+        return ZCMultiLineEdit::GetExtendedSize();
+    };
 
 private:
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCInPlaceMultiLineEdit)
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCInPlaceMultiLineEdit)
 public:
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	//}}AFX_VIRTUAL
+    virtual BOOL PreTranslateMessage(MSG* pMsg);
+    //}}AFX_VIRTUAL
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZCInPlaceMultiLineEdit)
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
-	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
-	afx_msg void OnSetFocus(CWnd* pOldWnd);
-	//}}AFX_MSG
+    //{{AFX_MSG(ZCInPlaceMultiLineEdit)
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+    afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
+    afx_msg void OnSetFocus(CWnd* pOldWnd);
+    //}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 
-	// Data
+    // Data
 private:
 };
 

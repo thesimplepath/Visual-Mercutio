@@ -12,7 +12,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 05/2002
+// <nl>Created:         05/2002
 // <nl>Description:  PropertyLib include file for automatic library linking
 //
 /////////////////////////////////////////////////////////////////////////////

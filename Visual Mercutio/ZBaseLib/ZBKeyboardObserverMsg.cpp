@@ -18,8 +18,8 @@ IMPLEMENT_DYNAMIC( ZBKeyboardObserverMsg, ZIObserverMsg )
 //////////////////////////////////////////////////////////////////////
 
 ZBKeyboardObserverMsg::ZBKeyboardObserverMsg( UINT MessageID /*= 0*/, UINT Key /*= 0*/ )
-	: m_MessageID	( MessageID ),
-	  m_Key			( Key )
+    : m_MessageID    ( MessageID ),
+      m_Key            ( Key )
 {
 }
 

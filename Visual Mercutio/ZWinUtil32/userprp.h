@@ -1,6 +1,6 @@
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
-//	Source file: UserPrp.h
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
+//    Source file: UserPrp.h
 
 #ifndef UserPrp_h
 #define UserPrp_h 1
@@ -44,34 +44,34 @@ class AFX_EXT_CLASS ZCUserProperty : public ZIListCtrl
 class AFX_EXT_CLASS ZCUserProperty : public CListBox  
 {
 #endif
-//	DECLARE_DYNAMIC(ZCUserProperty)
+//    DECLARE_DYNAMIC(ZCUserProperty)
 
   public:
       ZCUserProperty (ZUser* pUser = NULL, BOOL EnableModify = FALSE);
       ~ZCUserProperty();
-	  BOOL	IsModified() const { return m_IsModified; };
+      BOOL    IsModified() const { return m_IsModified; };
 
-      int	Initialize (ZUser* pUser, BOOL EnableModify = FALSE);
-      void	EnableModify (BOOL EnableModify = TRUE) { m_EnableModify = EnableModify; };
-      int	Refresh ();
+      int    Initialize (ZUser* pUser, BOOL EnableModify = FALSE);
+      void    EnableModify (BOOL EnableModify = TRUE) { m_EnableModify = EnableModify; };
+      int    Refresh ();
 
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCUserProperty)
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCUserProperty)
+    //}}AFX_VIRTUAL
   protected:
-	//{{AFX_MSG(ZCUserProperty)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZCUserProperty)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
   private:
     ZCUserProperty(const ZCUserProperty &right);
-    const	ZCUserProperty & operator=(const ZCUserProperty &right);
-	void	BuildColumns();
+    const    ZCUserProperty & operator=(const ZCUserProperty &right);
+    void    BuildColumns();
 
   private: //## implementation
-	    ZUser*			m_pUser;
-		BOOL			m_EnableModify;
-		BOOL			m_ColumnsBuilt;
-		BOOL			m_IsModified;
+        ZUser*            m_pUser;
+        BOOL            m_EnableModify;
+        BOOL            m_ColumnsBuilt;
+        BOOL            m_IsModified;
 };
 
 //#undef  AFX_DATA

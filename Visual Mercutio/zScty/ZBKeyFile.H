@@ -1,4 +1,4 @@
-																				   /////////////////////////////////////////////////////////////////////////////
+                                                                                   /////////////////////////////////////////////////////////////////////////////
 //@doc ZBKeyFile
 //@module ZBKeyFile.h | Interface of the <c ZBKeyFile> class.
 //
@@ -13,7 +13,7 @@
 // See these sources for detailed information regarding
 // zADS libraries.
 //
-// <nl>Created:		 03/2000
+// <nl>Created:         03/2000
 // <nl>Description:  ZBKeyFile implements a file containing keys for licenses.
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -62,13 +62,13 @@ class AFX_EXT_CLASS ZBKeyEntity
       // This function generates a random key.
       CString GenerateRandomEntity();
 
-	  bool IsEqual( ZBKeyEntity& Entity );
+      bool IsEqual( ZBKeyEntity& Entity );
 
-      //	The entity
+      //    The entity
       const CString GetsEntity() const;
       void SetsEntity(const CString value);
 
-      //	Take the key and cript it.
+      //    Take the key and cript it.
       void CriptEntity();
 
   private:  //## implementation
@@ -92,14 +92,14 @@ class AFX_EXT_CLASS ZBKeyFile
 
       virtual ~ZBKeyFile();
 
-      //	Create the security filename with the creation date and
-      //	counters.
+      //    Create the security filename with the creation date and
+      //    counters.
       BOOL GenerateFile();
 
-	  // Check if the key is a valid key
-	  BOOL IsKeyValid( const CString Key );
+      // Check if the key is a valid key
+      BOOL IsKeyValid( const CString Key );
 
-//	const fstream GetSecurityFile() const;
+//    const fstream GetSecurityFile() const;
 
       const CString GetFilename() const;
       void SetFilename(const CString value);
@@ -115,17 +115,17 @@ class AFX_EXT_CLASS ZBKeyFile
 
       // Write the entity table to disk.
       BOOL WriteEntityTable( CString Filename );
-	  // Load the security entities from the file to the table.
+      // Load the security entities from the file to the table.
       BOOL LoadSecurityTable( CString Filename );
 
 
 private:
-	CStdioFile	m_SecurityFile;
-    CString		m_sFilename;
-    CString		m_sClearFilename;
-	int			m_Count;
+    CStdioFile    m_SecurityFile;
+    CString        m_sFilename;
+    CString        m_sClearFilename;
+    int            m_Count;
 
-	ZBKeyEntity  m_KeyEntityTable[10000];
+    ZBKeyEntity  m_KeyEntityTable[10000];
 };
 
 
@@ -137,7 +137,7 @@ private:
 // JMR-MODIF - Le 19 mai 2005 - Fonction inline supprimée car incompatible, et apparamment inutilisée.
 //inline const fstream ZBKeyFile::GetSecurityFile() const
 //{
-//	return m_SecurityFile;
+//    return m_SecurityFile;
 //}
 
 inline const CString ZBKeyFile::GetFilename() const
@@ -179,6 +179,6 @@ inline void ZBKeyEntity::SetsEntity(const CString value)
 
 
 
-#endif	 // _ZBKeyFile_h__
+#endif     // _ZBKeyFile_h__
 
 

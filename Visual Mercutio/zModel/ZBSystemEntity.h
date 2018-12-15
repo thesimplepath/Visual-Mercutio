@@ -30,104 +30,104 @@
 
 class AFX_EXT_CLASS ZBSystemEntity : public CObject
 {
-	DECLARE_SERIAL( ZBSystemEntity )
+    DECLARE_SERIAL( ZBSystemEntity )
 
 public:
 
-	ZBSystemEntity( const CString	Name		= _T( "" ),
-				    const CString	Description	= _T( "" ),
-				    ZBSystemEntity*	pParent		= NULL );
+    ZBSystemEntity( const CString    Name        = _T( "" ),
+                    const CString    Description    = _T( "" ),
+                    ZBSystemEntity*    pParent        = NULL );
 
-	virtual ~ZBSystemEntity();
+    virtual ~ZBSystemEntity();
 
-	ZBSystemEntity* GetParent()
-	{
-		return m_pParent;
-	}
+    ZBSystemEntity* GetParent()
+    {
+        return m_pParent;
+    }
 
-	virtual ZBSystemEntity* GetRoot()
-	{
-		if ( m_pParent )
-		{
-			return m_pParent->GetRoot();
-		}
+    virtual ZBSystemEntity* GetRoot()
+    {
+        if ( m_pParent )
+        {
+            return m_pParent->GetRoot();
+        }
 
-		return this;
-	}
+        return this;
+    }
 
-	virtual bool ContainEntity() const
-	{
-		return false;
-	}
+    virtual bool ContainEntity() const
+    {
+        return false;
+    }
 
-	virtual size_t GetEntityCount() const
-	{
-		return 0;
-	}
+    virtual size_t GetEntityCount() const
+    {
+        return 0;
+    }
 
-	virtual ZBSystemEntity* GetEntityAt( size_t Index )
-	{
-		return NULL;
-	}
+    virtual ZBSystemEntity* GetEntityAt( size_t Index )
+    {
+        return NULL;
+    }
 
-	CString GetGUID() const
-	{
-		return m_GUID;
-	}
+    CString GetGUID() const
+    {
+        return m_GUID;
+    }
 
-	void SetGUID( CString value )
-	{
-		m_GUID = value;
-	}
+    void SetGUID( CString value )
+    {
+        m_GUID = value;
+    }
 
-	virtual CString GetEntityName() const
-	{
-		return m_EntityName;
-	}
+    virtual CString GetEntityName() const
+    {
+        return m_EntityName;
+    }
 
-	virtual void SetEntityName( const CString value )
-	{
-		m_EntityName = value;
-	}
+    virtual void SetEntityName( const CString value )
+    {
+        m_EntityName = value;
+    }
 
-	virtual CString GetEntityDescription() const
-	{
-		return m_EntityDescription;
-	}
+    virtual CString GetEntityDescription() const
+    {
+        return m_EntityDescription;
+    }
 
-	virtual void SetEntityDescription( const CString value )
-	{
-		m_EntityDescription = value;
-	}
+    virtual void SetEntityDescription( const CString value )
+    {
+        m_EntityDescription = value;
+    }
 
-	virtual bool DisplayProperties()
-	{
-		return false;
-	}
+    virtual bool DisplayProperties()
+    {
+        return false;
+    }
 
-	void SetParent( ZBSystemEntity* pParent )
-	{
-		m_pParent = pParent;
-	}
+    void SetParent( ZBSystemEntity* pParent )
+    {
+        m_pParent = pParent;
+    }
 
-	// Serialization mechanism
-	virtual void Serialize( CArchive& ar );	// overridden for document i/o
+    // Serialization mechanism
+    virtual void Serialize( CArchive& ar );    // overridden for document i/o
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 protected:
 
-	void CreateGUID();
+    void CreateGUID();
 
 private:
 
-	CString			m_GUID;
-	CString			m_EntityName;
-	CString			m_EntityDescription;
-	ZBSystemEntity*	m_pParent;
+    CString            m_GUID;
+    CString            m_EntityName;
+    CString            m_EntityDescription;
+    ZBSystemEntity*    m_pParent;
 };
 
 #endif // !defined(AFX_ZBSystemEntity_H__DBE9270D_4DE8_4EF3_91EA_E18EDEF6DE04__INCLUDED_)

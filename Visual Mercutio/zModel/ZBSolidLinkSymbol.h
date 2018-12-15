@@ -38,8 +38,8 @@
 class AFX_EXT_CLASS ZBSolidLinkSymbol : public ZBLinkSymbol  
 {
 public:
-	ZBSolidLinkSymbol();
-	virtual ~ZBSolidLinkSymbol();
+    ZBSolidLinkSymbol();
+    virtual ~ZBSolidLinkSymbol();
 
 };
 

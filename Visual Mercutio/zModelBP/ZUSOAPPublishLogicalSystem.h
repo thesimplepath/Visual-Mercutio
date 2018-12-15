@@ -41,20 +41,20 @@ class AFX_EXT_CLASS ZUSOAPPublishLogicalSystem
 {
 public:
 
-	ZUSOAPPublishLogicalSystem( ZBPublishMessengerModelInformation* pInfo, ZILog* pLog = NULL );
-	virtual ~ZUSOAPPublishLogicalSystem();
+    ZUSOAPPublishLogicalSystem( ZBPublishMessengerModelInformation* pInfo, ZILog* pLog = NULL );
+    virtual ~ZUSOAPPublishLogicalSystem();
 
-	bool Publish();
-
-private:
-
-	void _PublishLogicalSystem( ZBLogicalSystemEntity* pSystem );
+    bool Publish();
 
 private:
 
-	ZBPublishMessengerModelInformation*	m_pInfo;
-	pPublishSystem						m_ps;
-	ZILog*								m_pLog;
+    void _PublishLogicalSystem( ZBLogicalSystemEntity* pSystem );
+
+private:
+
+    ZBPublishMessengerModelInformation*    m_pInfo;
+    pPublishSystem                        m_ps;
+    ZILog*                                m_pLog;
 };
 
 #endif // !defined(AFX_ZUSOAPPUBLISHLOGICALSYSTEM_H__D709CBA3_F30E_4D59_80D9_F6AADB7A8749__INCLUDED_)

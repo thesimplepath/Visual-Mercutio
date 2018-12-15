@@ -11,11 +11,11 @@
 
 
 #ifndef _WIN32
-	extern "C" extern void WINAPI InitZWinUtilDLL();
-	extern AFX_EXTENSION_MODULE NEAR extensionZWinUtilDLL;
-	#define	AFX_EXT_CLASS
+    extern "C" extern void WINAPI InitZWinUtilDLL();
+    extern AFX_EXTENSION_MODULE NEAR extensionZWinUtilDLL;
+    #define    AFX_EXT_CLASS
 #else // Only in 16bit
-	extern AFX_EXTENSION_MODULE extensionZWinUtil32DLL;
+    extern AFX_EXTENSION_MODULE extensionZWinUtil32DLL;
 #endif // Only in 32bit
 
 
@@ -39,31 +39,31 @@ class AFX_EXT_CLASS ZIAnimateDlg : public CDialog
 {
 // Construction
 public:
-	ZIAnimateDlg( CWnd* pParent = NULL);	// standard constructor
-	BOOL DisplayNext();
-	void CloseAnimation();
+    ZIAnimateDlg( CWnd* pParent = NULL);    // standard constructor
+    BOOL DisplayNext();
+    void CloseAnimation();
 
 // Dialog Data
-	//{{AFX_DATA(ZIAnimateDlg)
-		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+    //{{AFX_DATA(ZIAnimateDlg)
+        // NOTE: the ClassWizard will add data members here
+    //}}AFX_DATA
 
 // Data
 private:
-	UINT	m_uID;
-	BOOL	m_bStop;
-	CRect	m_ImageRect;
+    UINT    m_uID;
+    BOOL    m_bStop;
+    CRect    m_ImageRect;
 // Implementation
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	// Generated message map functions
-	//{{AFX_MSG(ZIAnimateDlg)
-	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
-	virtual void OnCancel();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZIAnimateDlg)
+    afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+    virtual void OnCancel();
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 

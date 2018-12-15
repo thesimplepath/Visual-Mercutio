@@ -51,62 +51,62 @@ class AFX_EXT_CLASS ZVFindSymbolExtDlg : public ZIDialog
 {
 // Construction
 public:
-	ZVFindSymbolExtDlg(ZBPropertyAttributes* pPropAttributes = NULL, 
-					   ZBPropertySet* pPropSet = NULL,
-					   CWnd* pParent = NULL);   // standard constructor
+    ZVFindSymbolExtDlg(ZBPropertyAttributes* pPropAttributes = NULL, 
+                       ZBPropertySet* pPropSet = NULL,
+                       CWnd* pParent = NULL);   // standard constructor
 
-	BOOL GetInAllModels() const
-	{
-		return m_InAllModels;
-	};
-	BOOL GetCaseSensitive() const
-	{
-		return m_CaseSensitive;
-	};
-	BOOL GetPartialSearch() const
-	{
-		return m_PartialSearch;
-	};
-	CString GetWhat() const
-	{
-		return m_What;
-	};
+    BOOL GetInAllModels() const
+    {
+        return m_InAllModels;
+    };
+    BOOL GetCaseSensitive() const
+    {
+        return m_CaseSensitive;
+    };
+    BOOL GetPartialSearch() const
+    {
+        return m_PartialSearch;
+    };
+    CString GetWhat() const
+    {
+        return m_What;
+    };
 
 private:
 // Dialog Data
-	//{{AFX_DATA(ZVFindSymbolExtDlg)
-	enum { IDD = IDD_FIND_SYMBOL_EXT };
-	ZCSymbolAttributesTreeCtrl	m_AttributeText;
-	BOOL						m_InAllModels;
-	BOOL						m_CaseSensitive;
-	BOOL						m_PartialSearch;
-	CString						m_What;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZVFindSymbolExtDlg)
+    enum { IDD = IDD_FIND_SYMBOL_EXT };
+    ZCSymbolAttributesTreeCtrl    m_AttributeText;
+    BOOL                        m_InAllModels;
+    BOOL                        m_CaseSensitive;
+    BOOL                        m_PartialSearch;
+    CString                        m_What;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVFindSymbolExtDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVFindSymbolExtDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVFindSymbolExtDlg)
-	virtual BOOL OnInitDialog();
-	afx_msg void OnChangeSymbolName();
-	virtual void OnOK();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVFindSymbolExtDlg)
+    virtual BOOL OnInitDialog();
+    afx_msg void OnChangeSymbolName();
+    virtual void OnOK();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
-	void	CheckControlState();
+    void    CheckControlState();
 
 private:
-	ZBPropertyAttributes* m_pPropAttributes;
-	ZBPropertySet* m_pPropSet;
+    ZBPropertyAttributes* m_pPropAttributes;
+    ZBPropertySet* m_pPropSet;
 
 };
 

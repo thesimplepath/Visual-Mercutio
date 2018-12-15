@@ -18,7 +18,7 @@ IMPLEMENT_DYNAMIC( ZBCommandObserverMsg, ZIObserverMsg )
 //////////////////////////////////////////////////////////////////////
 
 ZBCommandObserverMsg::ZBCommandObserverMsg( int CommandID /*= 0*/ )
-	: m_CommandID( CommandID )
+    : m_CommandID( CommandID )
 {
 }
 

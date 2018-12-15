@@ -41,8 +41,8 @@ class AFX_EXT_CLASS zUtf
 {
 public:
 
-	static std::string UTF16toUTF8( const String16& src );
-	static String16 UTF8toUTF16( const std::string& src );
+    static std::string UTF16toUTF8( const String16& src );
+    static String16 UTF8toUTF16( const std::string& src );
 };
 
 #endif

@@ -18,8 +18,8 @@
 // ZVPublishModelOptions dialog
 
 // ******************************************************************************************************************
-// * JMR-MODIF - Le 4 juillet 2005 - Supprimé l'option de publication HTML en chemin relatif ou absolu. Ajouté		*
-// * l'option de publication du rapport Conceptor.																	*
+// * JMR-MODIF - Le 4 juillet 2005 - Supprimé l'option de publication HTML en chemin relatif ou absolu. Ajouté        *
+// * l'option de publication du rapport Conceptor.                                                                    *
 // ******************************************************************************************************************
 
 class ZVPublishModelOptions : public ZIWizardDialog
@@ -27,90 +27,90 @@ class ZVPublishModelOptions : public ZIWizardDialog
 // Construction
 public:
 
-	// Standard constructor
-	ZVPublishModelOptions( BOOL		Visualize								= TRUE,
-						   BOOL		PublishConceptorIsChecked				= TRUE,
-						   BOOL		PublishConceptorDetailsIsChecked		= FALSE,
-						   BOOL		PublishConceptorDeliverablesIsChecked	= FALSE,
-						   BOOL		PublishProcessIsChecked					= TRUE,
-						   BOOL		PublishRuleBookIsChecked				= FALSE,
-						   Language	InitialLanguage							= UnknownLang,
-						   CWnd*	pParent									= NULL );
+    // Standard constructor
+    ZVPublishModelOptions( BOOL        Visualize                                = TRUE,
+                           BOOL        PublishConceptorIsChecked                = TRUE,
+                           BOOL        PublishConceptorDetailsIsChecked        = FALSE,
+                           BOOL        PublishConceptorDeliverablesIsChecked    = FALSE,
+                           BOOL        PublishProcessIsChecked                    = TRUE,
+                           BOOL        PublishRuleBookIsChecked                = FALSE,
+                           Language    InitialLanguage                            = UnknownLang,
+                           CWnd*    pParent                                    = NULL );
 
-	BOOL GetVisualize() const
-	{
-		return m_Visualize;
-	}
+    BOOL GetVisualize() const
+    {
+        return m_Visualize;
+    }
 
-	Language GetLanguage() const
-	{
-		return m_Language;
-	}
+    Language GetLanguage() const
+    {
+        return m_Language;
+    }
 
-	// JMR-MODIF - Le 5 juillet 2005 - Ajout de la fonction GetPublishConceptor.
-	BOOL GetPublishConceptor() const
-	{
-		return m_PublishConceptorIsChecked;
-	}
+    // JMR-MODIF - Le 5 juillet 2005 - Ajout de la fonction GetPublishConceptor.
+    BOOL GetPublishConceptor() const
+    {
+        return m_PublishConceptorIsChecked;
+    }
 
-	// JMR-MODIF - Le 5 août 2005 - Ajout de la fonction GetPublishConceptorDetails.
-	BOOL GetPublishConceptorDetails() const
-	{
-		return m_PublishConceptorDetailsIsChecked;
-	}
+    // JMR-MODIF - Le 5 août 2005 - Ajout de la fonction GetPublishConceptorDetails.
+    BOOL GetPublishConceptorDetails() const
+    {
+        return m_PublishConceptorDetailsIsChecked;
+    }
 
-	// JMR-MODIF - Le 5 août 2005 - Ajout de la fonction GetPublishConceptorDeliverables.
-	BOOL GetPublishConceptorDeliverables() const
-	{
-		return m_PublishConceptorDeliverablesIsChecked;
-	}
+    // JMR-MODIF - Le 5 août 2005 - Ajout de la fonction GetPublishConceptorDeliverables.
+    BOOL GetPublishConceptorDeliverables() const
+    {
+        return m_PublishConceptorDeliverablesIsChecked;
+    }
 
-	// JMR-MODIF - Le 2 mars 2006 - Ajout de la fonction GetPublishProcess.
-	BOOL GetPublishProcess() const
-	{
-		return m_PublishProcessIsChecked;
-	}
+    // JMR-MODIF - Le 2 mars 2006 - Ajout de la fonction GetPublishProcess.
+    BOOL GetPublishProcess() const
+    {
+        return m_PublishProcessIsChecked;
+    }
 
-	// JMR-MODIF - Le 14 janvier 2007 - Ajout de la fonction GetPublishRuleBook.
-	BOOL GetPublishRuleBook() const
-	{
-		return m_PublishRuleBookIsChecked;
-	}
+    // JMR-MODIF - Le 14 janvier 2007 - Ajout de la fonction GetPublishRuleBook.
+    BOOL GetPublishRuleBook() const
+    {
+        return m_PublishRuleBookIsChecked;
+    }
 
 private:
 
-	// Dialog Data
-	//{{AFX_DATA(ZVPublishModelOptions)
-	enum { IDD = IDD_WZPUBMODEL_OPTIONS };
-	ZCLanguageCombo	m_cbLanguage;
-	BOOL			m_Visualize;
-	BOOL			m_PublishConceptorIsChecked;
-	BOOL			m_PublishConceptorDetailsIsChecked;
-	BOOL			m_PublishConceptorDeliverablesIsChecked;
-	BOOL			m_PublishProcessIsChecked;
-	BOOL			m_PublishRuleBookIsChecked;
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZVPublishModelOptions)
+    enum { IDD = IDD_WZPUBMODEL_OPTIONS };
+    ZCLanguageCombo    m_cbLanguage;
+    BOOL            m_Visualize;
+    BOOL            m_PublishConceptorIsChecked;
+    BOOL            m_PublishConceptorDetailsIsChecked;
+    BOOL            m_PublishConceptorDeliverablesIsChecked;
+    BOOL            m_PublishProcessIsChecked;
+    BOOL            m_PublishRuleBookIsChecked;
+    //}}AFX_DATA
 
 // Implementation
 protected:
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVPublishModelOptions)
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVPublishModelOptions)
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVPublishModelOptions)
-	afx_msg void OnBnClickedPublishConceptor();
-	virtual BOOL OnInitDialog();
-	virtual void OnOK();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVPublishModelOptions)
+    afx_msg void OnBnClickedPublishConceptor();
+    virtual BOOL OnInitDialog();
+    virtual void OnOK();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	Language m_Language;
+    Language m_Language;
 };
 
 //{{AFX_INSERT_LOCATION}}

@@ -37,37 +37,37 @@ class PlanFinObject;
 
 class AFX_EXT_CLASS ZBFieldObserverMsg : public ZIObserverMsg  
 {
-	DECLARE_DYNAMIC( ZBFieldObserverMsg )
+    DECLARE_DYNAMIC( ZBFieldObserverMsg )
 
 public:
-	ZBFieldObserverMsg( UINT MessageID = 0, PlanFinObject* pObject = NULL );
-	virtual ~ZBFieldObserverMsg();
+    ZBFieldObserverMsg( UINT MessageID = 0, PlanFinObject* pObject = NULL );
+    virtual ~ZBFieldObserverMsg();
 
-	UINT GetMessageID() const
-	{
-		return m_MessageID;
-	};
+    UINT GetMessageID() const
+    {
+        return m_MessageID;
+    };
 
-	void SetMessageID( UINT value )
-	{
-		m_MessageID = value;
-	};
+    void SetMessageID( UINT value )
+    {
+        m_MessageID = value;
+    };
 
-	PlanFinObject* GetpObject() const
-	{
-		return m_pObject;
-	};
+    PlanFinObject* GetpObject() const
+    {
+        return m_pObject;
+    };
 
-	void SetpObject( PlanFinObject* value )
-	{
-		m_pObject = value;
-	};
+    void SetpObject( PlanFinObject* value )
+    {
+        m_pObject = value;
+    };
 
 private:
 
-	UINT			m_MessageID;
-	PlanFinObject*	m_pObject;
-	CView*			m_pView;
+    UINT            m_MessageID;
+    PlanFinObject*    m_pObject;
+    CView*            m_pView;
 };
 
 #endif // !defined(AFX_ZBFieldObserverMsg_H__31A212D8_7CA2_4BEB_9709_8C785F4909B3__INCLUDED_)

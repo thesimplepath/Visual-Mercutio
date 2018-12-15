@@ -24,59 +24,59 @@ ZBTimeSpan::~ZBTimeSpan()
 
 const ZBTimeSpan & ZBTimeSpan::operator=( const ZBTimeSpan &right )
 {
-	this->COleDateTimeSpan ::operator=( (COleDateTimeSpan &)right );
-	return *this;
+    this->COleDateTimeSpan ::operator=( (COleDateTimeSpan &)right );
+    return *this;
 }
 
 const ZBTimeSpan & ZBTimeSpan::operator=( const COleDateTimeSpan &right )
 {
-	this->COleDateTimeSpan ::operator=( (COleDateTimeSpan &)right );
-	return *this;
+    this->COleDateTimeSpan ::operator=( (COleDateTimeSpan &)right );
+    return *this;
 }
 
 const ZBTimeSpan & ZBTimeSpan::operator=( const CTimeSpan &right )
 {
-	SetDateTimeSpan( (long)right.GetDays(), right.GetHours(), right.GetMinutes(), right.GetSeconds() );
-	return *this;
+    SetDateTimeSpan( (long)right.GetDays(), right.GetHours(), right.GetMinutes(), right.GetSeconds() );
+    return *this;
 }
 
 void ZBTimeSpan::Clear()
 {
-	m_span = 0;
+    m_span = 0;
 }
 
 ZBTimeSpan* ZBTimeSpan::Clone()
 {
-	ZBTimeSpan*	pObject = new ZBTimeSpan( *this );
-	return pObject;
+    ZBTimeSpan*    pObject = new ZBTimeSpan( *this );
+    return pObject;
 }
 
 CString ZBTimeSpan::GetStandardFormatedTimeSpan()
 {
-	if ( IsEmpty() )
-	{
-		return _T( "" );
-	}
+    if ( IsEmpty() )
+    {
+        return _T( "" );
+    }
 
-	return COleDateTimeSpan::Format( _T( "%H:%M:%S" ) );
+    return COleDateTimeSpan::Format( _T( "%H:%M:%S" ) );
 }
 
 CString ZBTimeSpan::GetFormatedTimeSpan( UINT nFormatID )
 {
-	if ( IsEmpty() )
-	{
-		return _T( "" );
-	}
+    if ( IsEmpty() )
+    {
+        return _T( "" );
+    }
 
-	return COleDateTimeSpan::Format( nFormatID );
+    return COleDateTimeSpan::Format( nFormatID );
 }
 
 CString ZBTimeSpan::GetFormatedTimeSpan( CString Format )
 {
-	if ( IsEmpty() )
-	{
-		return _T( "" );
-	}
+    if ( IsEmpty() )
+    {
+        return _T( "" );
+    }
 
-	return COleDateTimeSpan::Format( (LPCTSTR)Format );
+    return COleDateTimeSpan::Format( (LPCTSTR)Format );
 }

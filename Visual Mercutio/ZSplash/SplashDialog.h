@@ -18,44 +18,44 @@ class ZSplashDialog : public CDialog
 {
 // Construction
 public:
-	ZSplashDialog(UINT nResID = 0, const CString Info = "", CWnd* pParent = NULL);   // standard constructor
-	ZSplashDialog(LPCTSTR szFilename, const CString Info = "", CWnd* pParent = NULL);
+    ZSplashDialog(UINT nResID = 0, const CString Info = "", CWnd* pParent = NULL);   // standard constructor
+    ZSplashDialog(LPCTSTR szFilename, const CString Info = "", CWnd* pParent = NULL);
 
 // Dialog Data
-	//{{AFX_DATA(ZSplashDialog)
-	enum { IDD = IDD_SPLASH_IMAGE };
-		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+    //{{AFX_DATA(ZSplashDialog)
+    enum { IDD = IDD_SPLASH_IMAGE };
+        // NOTE: the ClassWizard will add data members here
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZSplashDialog)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZSplashDialog)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZSplashDialog)
-	afx_msg void OnPaint();
-	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
-	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZSplashDialog)
+    afx_msg void OnPaint();
+    afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
+    afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	CString			m_BitmapFilename;
-	UINT			m_BitmapResID;
-	ZBitmap			m_Bitmap;
-	CString			m_Info;
-	CFont			m_Font;
-	CRect			m_InfoRect;
-	COLORREF		m_clrFont;
-	COLORREF		m_clrBackground;
+    CString            m_BitmapFilename;
+    UINT            m_BitmapResID;
+    ZBitmap            m_Bitmap;
+    CString            m_Info;
+    CFont            m_Font;
+    CRect            m_InfoRect;
+    COLORREF        m_clrFont;
+    COLORREF        m_clrBackground;
 
 };
 

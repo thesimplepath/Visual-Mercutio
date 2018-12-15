@@ -1,10 +1,10 @@
 // **************************************************************************************************************
-// *										  Classe ZVRiskImpactContainer										*
+// *                                          Classe ZVRiskImpactContainer                                        *
 // **************************************************************************************************************
-// * JMR-MODIF - Le 11 juillet 2007 - Ajout de la classe ZVRiskImpactContainer.									*
+// * JMR-MODIF - Le 11 juillet 2007 - Ajout de la classe ZVRiskImpactContainer.                                    *
 // **************************************************************************************************************
-// * Cette classe contient en mémoire les impacts pour les risques, en synchronisation avec le fichier des		*
-// * impacts.																									*
+// * Cette classe contient en mémoire les impacts pour les risques, en synchronisation avec le fichier des        *
+// * impacts.                                                                                                    *
 // **************************************************************************************************************
 
 #if !defined(AFX_ZVRISKIMPACTCONTAINER_H__F8225CF5_FC88_4006_829D_3079998B03A7__INCLUDED_)
@@ -36,30 +36,30 @@ class AFX_EXT_CLASS ZVRiskImpactContainer : public CObject
 {
 public:
 
-	ZVRiskImpactContainer();
-	~ZVRiskImpactContainer();
+    ZVRiskImpactContainer();
+    ~ZVRiskImpactContainer();
 
 public:
 
-	BOOL LoadFile( CString Filename );
+    BOOL LoadFile( CString Filename );
 
-	CStringArray* GetElementsArray();
+    CStringArray* GetElementsArray();
 
-	CString GetElementAt( size_t Index ) const;
-	CString GetFilename();
+    CString GetElementAt( size_t Index ) const;
+    CString GetFilename();
 
-	void RemoveAllElements();
+    void RemoveAllElements();
 
-	// Obtient le nombre de propriétés contenues dans l'ensemble.
-	size_t GetElementCount() const
-	{
-		return m_Set.GetSize();
-	};
+    // Obtient le nombre de propriétés contenues dans l'ensemble.
+    size_t GetElementCount() const
+    {
+        return m_Set.GetSize();
+    };
 
 private:
 
-	CString			m_Filename;
-	CStringArray	m_Set;
+    CString            m_Filename;
+    CStringArray    m_Set;
 };
 
 #endif // !defined(AFX_ZVRISKIMPACTCONTAINER_H__F8225CF5_FC88_4006_829D_3079998B03A7__INCLUDED_)

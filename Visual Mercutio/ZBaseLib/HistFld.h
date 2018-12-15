@@ -1,10 +1,10 @@
 //## begin module%363481AB01AE.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%363481AB01AE.cm
 
 //## begin module%363481AB01AE.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%363481AB01AE.cp
 
 //## Module: HistFld%363481AB01AE; Package specification
@@ -57,9 +57,9 @@
 class AFX_EXT_CLASS ZAHistoryField : public CObject  //## Inherits: <unnamed>%36347F4A0325
 {
   //## begin ZAHistoryField%36347E3600E3.initialDeclarations preserve=yes
-	public:
-	// Inherited feature
-		typedef CObject inherited;
+    public:
+    // Inherited feature
+        typedef CObject inherited;
   //## end ZAHistoryField%36347E3600E3.initialDeclarations
 
   public:
@@ -77,30 +77,30 @@ class AFX_EXT_CLASS ZAHistoryField : public CObject  //## Inherits: <unnamed>%36
 
     //## Other Operations (specified)
       //## Operation: Serialize%909410992
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: GetCount%909410993
-      //	Return the number of values.
+      //    Return the number of values.
       size_t GetCount ();
 
       //## Operation: AddFieldValue%909410994
-      //	Add a new historic value into the FieldValueHistoryArray.
+      //    Add a new historic value into the FieldValueHistoryArray.
       void AddFieldValue (const CString& Value);
 
       //## Operation: RemoveFieldValue%909410995
-      //	Remove a specific historic value from the manager.
+      //    Remove a specific historic value from the manager.
       BOOL RemoveFieldValue (const CString& Value);
 
       //## Operation: GetValueArray%909410996
       const CStringArray& GetValueArray () const;
 
       //## Operation: IsReadOnly%909410997
-      //	If the field history is read-only.
+      //    If the field history is read-only.
       BOOL IsReadOnly () const;
 
       //## Operation: FreeList%909411006
-      //	remove the history.
+      //    remove the history.
       void FreeList ();
 
       //## Operation: Clone%939069934
@@ -109,31 +109,31 @@ class AFX_EXT_CLASS ZAHistoryField : public CObject  //## Inherits: <unnamed>%36
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: ReadOnly%363480D5034B
-      //	If the list can growth.
+      //    If the list can growth.
       void SetReadOnly (BOOL value);
 
       //## Attribute: FieldName%363489DA02A1
-      //	The field name.
+      //    The field name.
       const CString GetFieldName () const;
       void SetFieldName (CString value);
 
     // Additional Public Declarations
       //## begin ZAHistoryField%36347E3600E3.public preserve=yes
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
       //## end ZAHistoryField%36347E3600E3.public
   protected:
     // Additional Protected Declarations
       //## begin ZAHistoryField%36347E3600E3.protected preserve=yes
-	DECLARE_SERIAL(ZAHistoryField)
+    DECLARE_SERIAL(ZAHistoryField)
       //## end ZAHistoryField%36347E3600E3.protected
   private:
     // Data Members for Class Attributes
 
       //## Attribute: FieldValueHistoryArray%36347EF80133
-      //	Contains the history string values.
+      //    Contains the history string values.
       //## begin ZAHistoryField::FieldValueHistoryArray%36347EF80133.attr preserve=no  public: CStringArray {U} 
       CStringArray m_FieldValueHistoryArray;
       //## end ZAHistoryField::FieldValueHistoryArray%36347EF80133.attr
@@ -167,21 +167,21 @@ class AFX_EXT_CLASS ZAHistoryField : public CObject  //## Inherits: <unnamed>%36
 inline size_t ZAHistoryField::GetCount ()
 {
   //## begin ZAHistoryField::GetCount%909410993.body preserve=yes
-  	return m_FieldValueHistoryArray.GetSize();
+      return m_FieldValueHistoryArray.GetSize();
   //## end ZAHistoryField::GetCount%909410993.body
 }
 
 inline const CStringArray& ZAHistoryField::GetValueArray () const
 {
   //## begin ZAHistoryField::GetValueArray%909410996.body preserve=yes
-  	return m_FieldValueHistoryArray;
+      return m_FieldValueHistoryArray;
   //## end ZAHistoryField::GetValueArray%909410996.body
 }
 
 inline BOOL ZAHistoryField::IsReadOnly () const
 {
   //## begin ZAHistoryField::IsReadOnly%909410997.body preserve=yes
-  	return m_ReadOnly;
+      return m_ReadOnly;
   //## end ZAHistoryField::IsReadOnly%909410997.body
 }
 

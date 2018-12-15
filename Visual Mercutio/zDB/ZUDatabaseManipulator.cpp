@@ -29,11 +29,11 @@ ZUDatabaseManipulator::~ZUDatabaseManipulator()
 
 bool ZUDatabaseManipulator::CreateDatabase()
 {
-	return true;
+    return true;
 }
 
 bool ZUDatabaseManipulator::GetTableList( CStringArray& TableArray )
 {
-	return true;
+    return true;
 }
 

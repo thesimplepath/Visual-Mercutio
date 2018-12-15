@@ -27,259 +27,259 @@ ZBUnitManager::ZBUnitManager(ZDProcessModelDocTmpl* pDocTmpl)
 
 ZBUnitManager::~ZBUnitManager()
 {
-	UnloadAllUnits();
+    UnloadAllUnits();
 }
 
-void	ZBUnitManager::Initialize(ZDProcessModelDocTmpl* pDocTmpl)
+void    ZBUnitManager::Initialize(ZDProcessModelDocTmpl* pDocTmpl)
 {
-	m_pDocTmpl = pDocTmpl;
+    m_pDocTmpl = pDocTmpl;
 }
 
 
-size_t	ZBUnitManager::FillModelSet( ZBModelSet& Set )
+size_t    ZBUnitManager::FillModelSet( ZBModelSet& Set )
 {
-	Set.RemoveAllModel();
-	for (size_t i = 0; i < GetUnitCount(); ++i)
-	{
-		ZBUnit*	pU = GetUnitAt( i );
-		if (pU && pU->GetUnitDocumentPtr()->GetModel())
-			Set.AddModel( pU->GetUnitDocumentPtr()->GetModel() );
-	}
-	return Set.GetModelCount();
+    Set.RemoveAllModel();
+    for (size_t i = 0; i < GetUnitCount(); ++i)
+    {
+        ZBUnit*    pU = GetUnitAt( i );
+        if (pU && pU->GetUnitDocumentPtr()->GetModel())
+            Set.AddModel( pU->GetUnitDocumentPtr()->GetModel() );
+    }
+    return Set.GetModelCount();
 }
 
 // Load and Unload unit functions
 
-bool	ZBUnitManager::LoadAllUnits()
+bool    ZBUnitManager::LoadAllUnits()
 {
-	// No document template, error
-	if (!m_pDocTmpl)
-		return false;
+    // No document template, error
+    if (!m_pDocTmpl)
+        return false;
 
-	bool	ContainsError = false;
-	for (size_t i = 0; i < GetUnitCount(); ++i)
-	{
-		ZBUnit*	pU = GetUnitAt( i );
-		if (!pU->LoadUnit( m_pDocTmpl ))
-		{
-			ContainsError = true;
-		}
-	}
-	return ContainsError;
+    bool    ContainsError = false;
+    for (size_t i = 0; i < GetUnitCount(); ++i)
+    {
+        ZBUnit*    pU = GetUnitAt( i );
+        if (!pU->LoadUnit( m_pDocTmpl ))
+        {
+            ContainsError = true;
+        }
+    }
+    return ContainsError;
 }
 
-bool	ZBUnitManager::LoadUnit( ZBUnit* pUnit )
+bool    ZBUnitManager::LoadUnit( ZBUnit* pUnit )
 {
-	// No document template, error
-	if (!m_pDocTmpl)
-		return false;
-	return pUnit->LoadUnit( m_pDocTmpl );
+    // No document template, error
+    if (!m_pDocTmpl)
+        return false;
+    return pUnit->LoadUnit( m_pDocTmpl );
 }
 
-bool	ZBUnitManager::LoadUnit( const CString Name )
+bool    ZBUnitManager::LoadUnit( const CString Name )
 {
-	// No document template, error
-	if (!m_pDocTmpl)
-		return false;
+    // No document template, error
+    if (!m_pDocTmpl)
+        return false;
 
-	ZBUnit*	pU = FindUnit( Name );
-	if (pU)
-		return pU->LoadUnit( m_pDocTmpl );
-	return false;
+    ZBUnit*    pU = FindUnit( Name );
+    if (pU)
+        return pU->LoadUnit( m_pDocTmpl );
+    return false;
 }
 
-bool	ZBUnitManager::LoadUnitByKey( const CString Key )
+bool    ZBUnitManager::LoadUnitByKey( const CString Key )
 {
-	// No document template, error
-	if (!m_pDocTmpl)
-		return false;
+    // No document template, error
+    if (!m_pDocTmpl)
+        return false;
 
-	ZBUnit*	pU = FindUnitByKey( Key );
-	if (pU)
-		return pU->LoadUnit( m_pDocTmpl );
-	return false;
+    ZBUnit*    pU = FindUnitByKey( Key );
+    if (pU)
+        return pU->LoadUnit( m_pDocTmpl );
+    return false;
 }
 
 
-bool	ZBUnitManager::UnloadAllUnits()
+bool    ZBUnitManager::UnloadAllUnits()
 {
-	bool	ContainsError = false;
-	for (size_t i = 0; i < GetUnitCount(); ++i)
-	{
-		ZBUnit*	pU = GetUnitAt( i );
-		if (!pU->UnloadUnit())
-		{
-			ContainsError = true;
-		}
-	}
-	return ContainsError;
+    bool    ContainsError = false;
+    for (size_t i = 0; i < GetUnitCount(); ++i)
+    {
+        ZBUnit*    pU = GetUnitAt( i );
+        if (!pU->UnloadUnit())
+        {
+            ContainsError = true;
+        }
+    }
+    return ContainsError;
 }
 
-bool	ZBUnitManager::UnloadUnit( ZBUnit* pUnit )
+bool    ZBUnitManager::UnloadUnit( ZBUnit* pUnit )
 {
-	return pUnit->UnloadUnit();
+    return pUnit->UnloadUnit();
 }
 
-bool	ZBUnitManager::UnloadUnit( const CString Name )
+bool    ZBUnitManager::UnloadUnit( const CString Name )
 {
-	ZBUnit*	pU = FindUnit( Name );
-	if (pU)
-		return pU->UnloadUnit();
-	return false;
+    ZBUnit*    pU = FindUnit( Name );
+    if (pU)
+        return pU->UnloadUnit();
+    return false;
 }
 
-bool	ZBUnitManager::UnloadUnitByKey( const CString Key )
+bool    ZBUnitManager::UnloadUnitByKey( const CString Key )
 {
-	ZBUnit*	pU = FindUnitByKey( Key );
-	if (pU)
-		return pU->UnloadUnit();
-	return false;
+    ZBUnit*    pU = FindUnitByKey( Key );
+    if (pU)
+        return pU->UnloadUnit();
+    return false;
 }
 
 
 
 // UnitSet management
 
-void	ZBUnitManager::RemoveAllUnits()
+void    ZBUnitManager::RemoveAllUnits()
 {
-	m_UnitSet.RemoveAll();
+    m_UnitSet.RemoveAll();
 }
 
 
-bool	ZBUnitManager::RemoveUnitAt( size_t Index )
+bool    ZBUnitManager::RemoveUnitAt( size_t Index )
 {
-	if (Index < GetUnitCount())
-	{
-		m_UnitSet.RemoveAt( Index );
-		return true;
-	}
-	return false;
+    if (Index < GetUnitCount())
+    {
+        m_UnitSet.RemoveAt( Index );
+        return true;
+    }
+    return false;
 }
 
-bool	ZBUnitManager::RemoveUnit( ZBUnit* pUnit )
+bool    ZBUnitManager::RemoveUnit( ZBUnit* pUnit )
 {
-	for (size_t i = 0; i < GetUnitCount(); ++i)
-	{
-		ZBUnit*	pU = GetUnitAt( i );
-		if (pU == pUnit)
-		{
-			RemoveUnitAt( i );
-			return true;
-		}
-	}
-	return false;
+    for (size_t i = 0; i < GetUnitCount(); ++i)
+    {
+        ZBUnit*    pU = GetUnitAt( i );
+        if (pU == pUnit)
+        {
+            RemoveUnitAt( i );
+            return true;
+        }
+    }
+    return false;
 }
 
-bool	ZBUnitManager::RemoveUnit( const CString Name )
+bool    ZBUnitManager::RemoveUnit( const CString Name )
 {
-	for (size_t i = 0; i < GetUnitCount(); ++i)
-	{
-		ZBUnit*	pU = GetUnitAt( i );
-		if (pU->GetName() == Name)
-		{
-			RemoveUnitAt( i );
-			return true;
-		}
-	}
-	return false;
+    for (size_t i = 0; i < GetUnitCount(); ++i)
+    {
+        ZBUnit*    pU = GetUnitAt( i );
+        if (pU->GetName() == Name)
+        {
+            RemoveUnitAt( i );
+            return true;
+        }
+    }
+    return false;
 }
 
-bool	ZBUnitManager::RemoveUnitByKey( const CString Key )
+bool    ZBUnitManager::RemoveUnitByKey( const CString Key )
 {
-	for (size_t i = 0; i < GetUnitCount(); ++i)
-	{
-		ZBUnit*	pU = GetUnitAt( i );
-		if (pU->GetKey() == Key)
-		{
-			RemoveUnitAt( i );
-			return true;
-		}
-	}
-	return false;
-}
-
-
-ZBUnit*	ZBUnitManager::FindUnit( const CString Name )
-{
-	for (size_t i = 0; i < GetUnitCount(); ++i)
-	{
-		ZBUnit*	pU = GetUnitAt( i );
-		if (pU->GetName() == Name)
-			return pU;
-	}
-	return NULL;
+    for (size_t i = 0; i < GetUnitCount(); ++i)
+    {
+        ZBUnit*    pU = GetUnitAt( i );
+        if (pU->GetKey() == Key)
+        {
+            RemoveUnitAt( i );
+            return true;
+        }
+    }
+    return false;
 }
 
 
-ZBUnit*	ZBUnitManager::FindUnitByKey( const CString Key )
+ZBUnit*    ZBUnitManager::FindUnit( const CString Name )
 {
-	for (size_t i = 0; i < GetUnitCount(); ++i)
-	{
-		ZBUnit*	pU = GetUnitAt( i );
-		if (pU->GetKey() == Key)
-			return pU;
-	}
-	return NULL;
+    for (size_t i = 0; i < GetUnitCount(); ++i)
+    {
+        ZBUnit*    pU = GetUnitAt( i );
+        if (pU->GetName() == Name)
+            return pU;
+    }
+    return NULL;
 }
 
 
-int	ZBUnitManager::FindUnitIndex( const CString Name )
+ZBUnit*    ZBUnitManager::FindUnitByKey( const CString Key )
 {
-	for (size_t i = 0; i < GetUnitCount(); ++i)
-	{
-		ZBUnit*	pU = GetUnitAt( i );
-		if (pU->GetName() == Name)
-			return (int)i;
-	}
-	return -1;
+    for (size_t i = 0; i < GetUnitCount(); ++i)
+    {
+        ZBUnit*    pU = GetUnitAt( i );
+        if (pU->GetKey() == Key)
+            return pU;
+    }
+    return NULL;
 }
 
-int	ZBUnitManager::FindUnitIndexByKey( const CString Key )
+
+int    ZBUnitManager::FindUnitIndex( const CString Name )
 {
-	for (size_t i = 0; i < GetUnitCount(); ++i)
-	{
-		ZBUnit*	pU = GetUnitAt( i );
-		if (pU->GetKey() == Key)
-			return (int)i;
-	}
-	return -1;
+    for (size_t i = 0; i < GetUnitCount(); ++i)
+    {
+        ZBUnit*    pU = GetUnitAt( i );
+        if (pU->GetName() == Name)
+            return (int)i;
+    }
+    return -1;
+}
+
+int    ZBUnitManager::FindUnitIndexByKey( const CString Key )
+{
+    for (size_t i = 0; i < GetUnitCount(); ++i)
+    {
+        ZBUnit*    pU = GetUnitAt( i );
+        if (pU->GetKey() == Key)
+            return (int)i;
+    }
+    return -1;
 
 }
 
-ZBUnit*	ZBUnitManager::GetUnitAt( size_t Index )
+ZBUnit*    ZBUnitManager::GetUnitAt( size_t Index )
 {
-	if (Index < GetUnitCount())
-		return (ZBUnit*)m_UnitSet.GetAt( Index );
-	return NULL;
+    if (Index < GetUnitCount())
+        return (ZBUnit*)m_UnitSet.GetAt( Index );
+    return NULL;
 }
 
-bool	ZBUnitManager::AddUnit( ZBUnit* pUnit )
+bool    ZBUnitManager::AddUnit( ZBUnit* pUnit )
 {
-	size_t	PreviousCount = GetUnitCount();
-	m_UnitSet.Add( pUnit );
-	return GetUnitCount() > PreviousCount;
+    size_t    PreviousCount = GetUnitCount();
+    m_UnitSet.Add( pUnit );
+    return GetUnitCount() > PreviousCount;
 }
 
-ZBUnit*	ZBUnitManager::CreateNewUnit( const CString Name, const CString Filename /*= ""*/ )
+ZBUnit*    ZBUnitManager::CreateNewUnit( const CString Name, const CString Filename /*= ""*/ )
 {
-	ZBUnit*	pNewUnit = new ZBUnit;
-	if (!pNewUnit->Create( Name, Filename ))
-	{
-		delete pNewUnit;
-		pNewUnit = NULL;
-	}
-	if (!AddUnit( pNewUnit ))
-	{
-		delete pNewUnit;
-		pNewUnit = NULL;
-	}
+    ZBUnit*    pNewUnit = new ZBUnit;
+    if (!pNewUnit->Create( Name, Filename ))
+    {
+        delete pNewUnit;
+        pNewUnit = NULL;
+    }
+    if (!AddUnit( pNewUnit ))
+    {
+        delete pNewUnit;
+        pNewUnit = NULL;
+    }
 
-	return pNewUnit;
+    return pNewUnit;
 }
 
 
 // Serializes the unit
 void ZBUnitManager::Serialize(CArchive& ar)
 {
-	m_UnitSet.Serialize( ar );
+    m_UnitSet.Serialize( ar );
 }

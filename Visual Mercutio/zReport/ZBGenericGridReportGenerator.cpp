@@ -22,8 +22,8 @@ IMPLEMENT_SERIAL( ZBGenericGridReportGenerator, CObject, def_Version )
 //////////////////////////////////////////////////////////////////////
 
 ZBGenericGridReportGenerator::ZBGenericGridReportGenerator( ZDGridDocument* pDoc /*= NULL*/ )
-	: m_pDoc	( pDoc ),
-	  m_TypeID	( -1 )
+    : m_pDoc    ( pDoc ),
+      m_TypeID    ( -1 )
 {
 }
 
@@ -33,13 +33,13 @@ ZBGenericGridReportGenerator::~ZBGenericGridReportGenerator()
 
 CDocTemplate* ZBGenericGridReportGenerator::GetDocTemplate() const
 {
-	return ( m_pDoc ) ? m_pDoc->GetDocTemplate() : NULL;
+    return ( m_pDoc ) ? m_pDoc->GetDocTemplate() : NULL;
 }
 
 void ZBGenericGridReportGenerator::OnPostDataFilled( size_t Index )
 {
-	// Saves the last update date/time
-	m_LastUpdateDateTime.SetToday();
+    // Saves the last update date/time
+    m_LastUpdateDateTime.SetToday();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -48,12 +48,12 @@ void ZBGenericGridReportGenerator::OnPostDataFilled( size_t Index )
 #ifdef _DEBUG
 void ZBGenericGridReportGenerator::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void ZBGenericGridReportGenerator::Dump( CDumpContext& dc ) const
 {
-	CObject::Dump( dc );
+    CObject::Dump( dc );
 }
 #endif //_DEBUG
 
@@ -62,32 +62,32 @@ void ZBGenericGridReportGenerator::Dump( CDumpContext& dc ) const
 
 void ZBGenericGridReportGenerator::Serialize( CArchive& ar )
 {
-	if ( ar.IsStoring() )
-	{
-		// Write the filename
-		ar << m_Filename;
+    if ( ar.IsStoring() )
+    {
+        // Write the filename
+        ar << m_Filename;
 
-		// Write the report type
-		ar << m_TypeID;
+        // Write the report type
+        ar << m_TypeID;
 
-		// Write the last update date
-		ar << m_LastUpdateDateTime;
+        // Write the last update date
+        ar << m_LastUpdateDateTime;
 
-		// Call-back
-		OnPostWrite( ar );
-	}
-	else
-	{
-		// Read the filename
-		ar >> m_Filename;
+        // Call-back
+        OnPostWrite( ar );
+    }
+    else
+    {
+        // Read the filename
+        ar >> m_Filename;
 
-		// Read the report type
-		ar >> m_TypeID;
+        // Read the report type
+        ar >> m_TypeID;
 
-		// Read the last update date
-		ar >> m_LastUpdateDateTime;
+        // Read the last update date
+        ar >> m_LastUpdateDateTime;
 
-		// Call-back
-		OnPostRead( ar );
-	}
+        // Call-back
+        OnPostRead( ar );
+    }
 }

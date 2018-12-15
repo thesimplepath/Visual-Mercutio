@@ -13,9 +13,9 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 07/2001
+// <nl>Created:         07/2001
 // <nl>Description:  ZUProcedureCalculateTotals navigates through the process and
-//					 write process information to the grid
+//                     write process information to the grid
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -60,22 +60,22 @@ class AFX_EXT_CLASS ZBProcedureCalculateTotalsInformation
 {
 public:
 
-	ZBProcedureCalculateTotalsInformation( const CString		UnitName,
-										   bool					Consolidated,
-										   ZBUserGroupEntity*	pGroup			= NULL )
-	{
-		m_UnitName		= UnitName;
-		m_Consolidated	= Consolidated;
-		m_pGroup		= pGroup;
-	};
+    ZBProcedureCalculateTotalsInformation( const CString        UnitName,
+                                           bool                    Consolidated,
+                                           ZBUserGroupEntity*    pGroup            = NULL )
+    {
+        m_UnitName        = UnitName;
+        m_Consolidated    = Consolidated;
+        m_pGroup        = pGroup;
+    };
 
-	virtual ~ZBProcedureCalculateTotalsInformation()
-	{
-	};
+    virtual ~ZBProcedureCalculateTotalsInformation()
+    {
+    };
 
-	CString				m_UnitName;
-	bool				m_Consolidated;
-	ZBUserGroupEntity*	m_pGroup;
+    CString                m_UnitName;
+    bool                m_Consolidated;
+    ZBUserGroupEntity*    m_pGroup;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -86,55 +86,55 @@ class AFX_EXT_CLASS ZUProcedureCalculateTotals : public ZUProcessNavigation
 {
 public:
 
-	ZUProcedureCalculateTotals( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
-	virtual ~ZUProcedureCalculateTotals();
+    ZUProcedureCalculateTotals( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
+    virtual ~ZUProcedureCalculateTotals();
 
-	ZBBPAnnualNumberProperties& GetProcedureCost()
-	{
-		return m_ProcedureCost;
-	};
+    ZBBPAnnualNumberProperties& GetProcedureCost()
+    {
+        return m_ProcedureCost;
+    };
 
-	ZBBPAnnualNumberProperties& GetProcedureWorkloadForecast()
-	{
-		return m_ProcedureWorkloadForecast;
-	};
+    ZBBPAnnualNumberProperties& GetProcedureWorkloadForecast()
+    {
+        return m_ProcedureWorkloadForecast;
+    };
 
-	ZBBPAnnualNumberProperties& GetProcedureCostForecast()
-	{
-		return m_ProcedureCostForecast;
-	};
+    ZBBPAnnualNumberProperties& GetProcedureCostForecast()
+    {
+        return m_ProcedureCostForecast;
+    };
 
-	double GetProcedureWorkloadPerActivity() const
-	{
-		return m_ProcedureWorkloadPerActivity;
-	};
+    double GetProcedureWorkloadPerActivity() const
+    {
+        return m_ProcedureWorkloadPerActivity;
+    };
 
-	double GetProcedureCostPerActivity() const
-	{
-		return m_ProcedureCostPerActivity;
-	};
+    double GetProcedureCostPerActivity() const
+    {
+        return m_ProcedureCostPerActivity;
+    };
 
-	// Call-back methods
-	virtual bool OnStart					();
-	virtual bool OnFinish					();
-	virtual bool OnDoorSymbol				( ZBBPDoorSymbol* pSymbol );
-	virtual bool OnPageSymbol				( ZBBPPageSymbol* pSymbol );
-	virtual bool OnProcedureSymbol			( ZBBPProcedureSymbol* pSymbol );
-	virtual bool OnProcessSymbol			( ZBBPProcessSymbol* pSymbol );
-	virtual bool OnStartSymbol				( ZBBPStartSymbol* pSymbol );
-	virtual bool OnStopSymbol				( ZBBPStopSymbol* pSymbol );
-	virtual bool OnDeliverableLinkSymbol	( ZBDeliverableLinkSymbol* pSymbol );
+    // Call-back methods
+    virtual bool OnStart                    ();
+    virtual bool OnFinish                    ();
+    virtual bool OnDoorSymbol                ( ZBBPDoorSymbol* pSymbol );
+    virtual bool OnPageSymbol                ( ZBBPPageSymbol* pSymbol );
+    virtual bool OnProcedureSymbol            ( ZBBPProcedureSymbol* pSymbol );
+    virtual bool OnProcessSymbol            ( ZBBPProcessSymbol* pSymbol );
+    virtual bool OnStartSymbol                ( ZBBPStartSymbol* pSymbol );
+    virtual bool OnStopSymbol                ( ZBBPStopSymbol* pSymbol );
+    virtual bool OnDeliverableLinkSymbol    ( ZBDeliverableLinkSymbol* pSymbol );
 
 private:
 
-	CString						m_UnitName;
-	bool						m_Consolidated;
-	ZBUserGroupEntity*			m_pGroup;
-	ZBBPAnnualNumberProperties	m_ProcedureCost;
-	ZBBPAnnualNumberProperties	m_ProcedureWorkloadForecast;
-	ZBBPAnnualNumberProperties	m_ProcedureCostForecast;
-	double						m_ProcedureWorkloadPerActivity;
-	double						m_ProcedureCostPerActivity;
+    CString                        m_UnitName;
+    bool                        m_Consolidated;
+    ZBUserGroupEntity*            m_pGroup;
+    ZBBPAnnualNumberProperties    m_ProcedureCost;
+    ZBBPAnnualNumberProperties    m_ProcedureWorkloadForecast;
+    ZBBPAnnualNumberProperties    m_ProcedureCostForecast;
+    double                        m_ProcedureWorkloadPerActivity;
+    double                        m_ProcedureCostPerActivity;
 };
 
 #endif // !defined(AFX_ZUProcedureCalculateTotals_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)

@@ -31,16 +31,16 @@
 class AFX_EXT_CLASS ZDProcessHistoryDb 
 {
 public:
-	enum DatabaseType { DAODatabase, ODBCDatabase };
+    enum DatabaseType { DAODatabase, ODBCDatabase };
   public:
       ZDProcessHistoryDb(CString DatabaseFileName = "", DatabaseType DatabaseTp = DAODatabase);
       BOOL Create(CString DatabaseFileName, DatabaseType DatabaseTp = DAODatabase);
-	  BOOL Initialize();
+      BOOL Initialize();
 
       ~ZDProcessHistoryDb();
 
 
-      //	The log filename.
+      //    The log filename.
       const CString GetDatabaseFileName () const;
       void SetDatabaseFileName (CString value);
 
@@ -53,9 +53,9 @@ public:
 
     // Data Members for Class Attributes
 
-	   CString						m_DatabaseFileName;
-	   DatabaseType					m_DatabaseTp;
-	   ZDProcessHistoryDAO*			m_pProcessHistoDAO;
+       CString                        m_DatabaseFileName;
+       DatabaseType                    m_DatabaseTp;
+       ZDProcessHistoryDAO*            m_pProcessHistoDAO;
 };
 
 

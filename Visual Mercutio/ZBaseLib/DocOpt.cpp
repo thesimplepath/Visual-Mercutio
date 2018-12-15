@@ -1,10 +1,10 @@
 //## begin module%351657D400C8.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%351657D400C8.cm
 
 //## begin module%351657D400C8.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%351657D400C8.cp
 
 //## Module: DocOpt%351657D400C8; Package body
@@ -76,17 +76,17 @@ ZDDocumentOptions::~ZDDocumentOptions()
 const ZDDocumentOptions & ZDDocumentOptions::operator=(const ZDDocumentOptions &right)
 {
   //## begin ZDDocumentOptions::operator=%.body preserve=yes
-	m_EmptyStyle = right.m_EmptyStyle;
-	m_IsSynchronizeExchangeFeedFile = right.m_IsSynchronizeExchangeFeedFile;
-	m_SynchronizeTimeSequence = right.m_SynchronizeTimeSequence;
-	m_ShowHiddenField = right.m_ShowHiddenField;
-	m_ShowEmptyLine = right.m_ShowEmptyLine;
-	m_AutomaticSynchronizeFilename = right.m_AutomaticSynchronizeFilename;
-	m_SynchronizationHeader = right.m_SynchronizationHeader;
-	m_SynchronizationSeparator = right.m_SynchronizationSeparator;
-	m_SynchronizeFilename = right.m_SynchronizeFilename;
-	m_PrintEmptyStyleWhenEmpty = right.m_PrintEmptyStyleWhenEmpty;
-	return *this;
+    m_EmptyStyle = right.m_EmptyStyle;
+    m_IsSynchronizeExchangeFeedFile = right.m_IsSynchronizeExchangeFeedFile;
+    m_SynchronizeTimeSequence = right.m_SynchronizeTimeSequence;
+    m_ShowHiddenField = right.m_ShowHiddenField;
+    m_ShowEmptyLine = right.m_ShowEmptyLine;
+    m_AutomaticSynchronizeFilename = right.m_AutomaticSynchronizeFilename;
+    m_SynchronizationHeader = right.m_SynchronizationHeader;
+    m_SynchronizationSeparator = right.m_SynchronizationSeparator;
+    m_SynchronizeFilename = right.m_SynchronizeFilename;
+    m_PrintEmptyStyleWhenEmpty = right.m_PrintEmptyStyleWhenEmpty;
+    return *this;
   //## end ZDDocumentOptions::operator=%.body
 }
 
@@ -96,103 +96,103 @@ const ZDDocumentOptions & ZDDocumentOptions::operator=(const ZDDocumentOptions &
 CArchive& operator >> (CArchive& ar, ZDDocumentOptions& DocOptions)
 {
   //## begin ZDDocumentOptions::operator >>%890656168.body preserve=yes
-	WORD	wValue;
-	ar >> wValue;
-	DocOptions.m_EmptyStyle = (LineType)wValue;
-	// If before Version 4 read the FontType
-	// And assign the font
-	if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 10)
-	{
-		ar >> wValue;
-		DocOptions.m_IsSynchronizeExchangeFeedFile = (BOOL)wValue;
+    WORD    wValue;
+    ar >> wValue;
+    DocOptions.m_EmptyStyle = (LineType)wValue;
+    // If before Version 4 read the FontType
+    // And assign the font
+    if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 10)
+    {
+        ar >> wValue;
+        DocOptions.m_IsSynchronizeExchangeFeedFile = (BOOL)wValue;
 
-		LONG	lValue;
-		ar >> lValue;
-		DocOptions.m_SynchronizeTimeSequence = (int)lValue;
+        LONG    lValue;
+        ar >> lValue;
+        DocOptions.m_SynchronizeTimeSequence = (int)lValue;
 
-		ar >> wValue;
-		DocOptions.m_ShowHiddenField = (OptionType)wValue;
+        ar >> wValue;
+        DocOptions.m_ShowHiddenField = (OptionType)wValue;
 
-		ar >> wValue;
-		DocOptions.m_ShowEmptyLine = (OptionType)wValue;
-		
-		ar >> wValue;
-  		DocOptions.m_AutomaticSynchronizeFilename = (SynchronizationFileType)wValue;
-  		
-		ar >> wValue;
-  		DocOptions.m_SynchronizationHeader = (BOOL)wValue;
+        ar >> wValue;
+        DocOptions.m_ShowEmptyLine = (OptionType)wValue;
+        
+        ar >> wValue;
+          DocOptions.m_AutomaticSynchronizeFilename = (SynchronizationFileType)wValue;
+          
+        ar >> wValue;
+          DocOptions.m_SynchronizationHeader = (BOOL)wValue;
 
-		ar >> wValue;
-  		DocOptions.m_SynchronizationSeparator = (SynchronizationSeparatorType)wValue;
-		
-		ar >> DocOptions.m_SynchronizeFilename;
+        ar >> wValue;
+          DocOptions.m_SynchronizationSeparator = (SynchronizationSeparatorType)wValue;
+        
+        ar >> DocOptions.m_SynchronizeFilename;
 
-	}
-	// Version 17
-	if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 17)
-	{
-		ar >> wValue;
-		DocOptions.m_PrintEmptyStyleWhenEmpty = (BOOL)wValue;
-	}
-	return ar;
+    }
+    // Version 17
+    if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 17)
+    {
+        ar >> wValue;
+        DocOptions.m_PrintEmptyStyleWhenEmpty = (BOOL)wValue;
+    }
+    return ar;
   //## end ZDDocumentOptions::operator >>%890656168.body
 }
 
 CArchive& operator << (CArchive& ar, const ZDDocumentOptions& DocOptions)
 {
   //## begin ZDDocumentOptions::operator <<%890656169.body preserve=yes
-	ar << (WORD)DocOptions.m_EmptyStyle;
-	ar << (WORD)DocOptions.m_IsSynchronizeExchangeFeedFile;
-	ar << (LONG)DocOptions.m_SynchronizeTimeSequence;
-	ar << (WORD)DocOptions.m_ShowHiddenField;
-	ar << (WORD)DocOptions.m_ShowEmptyLine;
-	ar << (WORD)DocOptions.m_AutomaticSynchronizeFilename;
-	ar << (WORD)DocOptions.m_SynchronizationHeader;
-	ar << (WORD)DocOptions.m_SynchronizationSeparator;
-	ar << DocOptions.m_SynchronizeFilename;
-	ar << (WORD)DocOptions.m_PrintEmptyStyleWhenEmpty;
-	return ar;
+    ar << (WORD)DocOptions.m_EmptyStyle;
+    ar << (WORD)DocOptions.m_IsSynchronizeExchangeFeedFile;
+    ar << (LONG)DocOptions.m_SynchronizeTimeSequence;
+    ar << (WORD)DocOptions.m_ShowHiddenField;
+    ar << (WORD)DocOptions.m_ShowEmptyLine;
+    ar << (WORD)DocOptions.m_AutomaticSynchronizeFilename;
+    ar << (WORD)DocOptions.m_SynchronizationHeader;
+    ar << (WORD)DocOptions.m_SynchronizationSeparator;
+    ar << DocOptions.m_SynchronizeFilename;
+    ar << (WORD)DocOptions.m_PrintEmptyStyleWhenEmpty;
+    return ar;
   //## end ZDDocumentOptions::operator <<%890656169.body
 }
 
 CString ZDDocumentOptions::BuildSynchronizationFileName (CString DocumentFilename)
 {
   //## begin ZDDocumentOptions::BuildSynchronizationFileName%931459606.body preserve=yes
-  	// If the document option specifies a document filename, assigns it
-  	if (GetAutomaticSynchronizeFilename() == FilenameSpecified)
-		return m_SynchronizeFilename;
-  	// If the filename does not exists, do nothing
-	if (DocumentFilename.IsEmpty())
-		return "";
-		
-  	// If the synchro filename does not exist, build it
-	// Extract the filename
-	CString		Extension;
-	char 		drive[_MAX_DRIVE];
-	char 		dir[_MAX_DIR];
-	char 		fname[_MAX_FNAME];
-	char 		ext[_MAX_EXT];
+      // If the document option specifies a document filename, assigns it
+      if (GetAutomaticSynchronizeFilename() == FilenameSpecified)
+        return m_SynchronizeFilename;
+      // If the filename does not exists, do nothing
+    if (DocumentFilename.IsEmpty())
+        return "";
+        
+      // If the synchro filename does not exist, build it
+    // Extract the filename
+    CString        Extension;
+    char         drive[_MAX_DRIVE];
+    char         dir[_MAX_DIR];
+    char         fname[_MAX_FNAME];
+    char         ext[_MAX_EXT];
 
-	_splitpath( (const char*)DocumentFilename, drive, dir, fname, ext );
-	Extension.LoadString( IDS_DOCUMENTFEEDFILTER );
+    _splitpath( (const char*)DocumentFilename, drive, dir, fname, ext );
+    Extension.LoadString( IDS_DOCUMENTFEEDFILTER );
 
-	CString	Filename;
-  	// If the document option specifies a folder, create the filename with the folder
-  	if (GetAutomaticSynchronizeFilename() == FolderSpecified)
-  	{
-  		// In case where it is a folder, the GetSynchronizeFilename returns a folder
-		Filename = m_SynchronizeFilename;
-		Filename += "\\";
-		Filename += fname;
-		Filename += Extension;
-		return Filename;
-  	}
+    CString    Filename;
+      // If the document option specifies a folder, create the filename with the folder
+      if (GetAutomaticSynchronizeFilename() == FolderSpecified)
+      {
+          // In case where it is a folder, the GetSynchronizeFilename returns a folder
+        Filename = m_SynchronizeFilename;
+        Filename += "\\";
+        Filename += fname;
+        Filename += Extension;
+        return Filename;
+      }
 
-	Filename = drive;
-	Filename += dir;
-	Filename += fname;
-	Filename += Extension;
-	return Filename;
+    Filename = drive;
+    Filename += dir;
+    Filename += fname;
+    Filename += Extension;
+    return Filename;
   //## end ZDDocumentOptions::BuildSynchronizationFileName%931459606.body
 }
 

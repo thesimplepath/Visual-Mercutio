@@ -10,10 +10,10 @@
 #include "zBaseLib\ZWizard.h"
 
 #ifndef _WIN32
-	#include "ZWinUtil.h"
+    #include "ZWinUtil.h"
 #endif
 #ifdef _WIN32
-	#include "ZWinUtil32.h"
+    #include "ZWinUtil32.h"
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
@@ -23,30 +23,30 @@ class ZIScanWelcome : public ZIWizardDialog
 {
 // Construction
 public:
-	ZIScanWelcome(CWnd* pParent = NULL);   // standard constructor
+    ZIScanWelcome(CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(ZIScanWelcome)
-	enum { IDD = IDD_WZSCANNING_WELCOME };
-		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+    //{{AFX_DATA(ZIScanWelcome)
+    enum { IDD = IDD_WZSCANNING_WELCOME };
+        // NOTE: the ClassWizard will add data members here
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIScanWelcome)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIScanWelcome)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZIScanWelcome)
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZIScanWelcome)
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 
 private:

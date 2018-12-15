@@ -1,9 +1,9 @@
 // **************************************************************************************************************
-// *											 Classe ZVRiskNewFileDlg										*
+// *                                             Classe ZVRiskNewFileDlg                                        *
 // **************************************************************************************************************
-// * JMR-MODIF - Le 12 juillet 2007 - Ajout de la classe ZVRiskNewFileDlg.										*
+// * JMR-MODIF - Le 12 juillet 2007 - Ajout de la classe ZVRiskNewFileDlg.                                        *
 // **************************************************************************************************************
-// * Cette classe permet à l'utilisateur de créer un nouveau fichier pour les éléments des menus des risques.	*
+// * Cette classe permet à l'utilisateur de créer un nouveau fichier pour les éléments des menus des risques.    *
 // **************************************************************************************************************
 
 #if !defined(AFX_ZVRISKNEWFILEDLG_H__F8225CF5_FC88_4006_829D_3079998B03A7__INCLUDED_)
@@ -42,52 +42,52 @@ class AFX_EXT_CLASS ZVRiskNewFileDlg : public CDialog
 // Construction / Destruction
 public:
 
-	ZVRiskNewFileDlg( CString Extension, CWnd* pParent = NULL );
+    ZVRiskNewFileDlg( CString Extension, CWnd* pParent = NULL );
 
 public:
 
-	CString GetDirectory();
-	CString GetFilename();
+    CString GetDirectory();
+    CString GetFilename();
 
 private:
 
-	void CheckUserEntry();
+    void CheckUserEntry();
 
 private:
 
-	// Dialog Data
-	//{{AFX_DATA(ZVRiskNewFileDlg)
-	enum { IDD = IDD_NEW_RISK_FILE };
-	CString m_Filename;
-	CString m_Directory;
-	CEdit m_Filename_Ctrl;
-	CEdit m_Directory_Ctrl;
-	CButton m_OK_Ctrl;
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZVRiskNewFileDlg)
+    enum { IDD = IDD_NEW_RISK_FILE };
+    CString m_Filename;
+    CString m_Directory;
+    CEdit m_Filename_Ctrl;
+    CEdit m_Directory_Ctrl;
+    CButton m_OK_Ctrl;
+    //}}AFX_DATA
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVRiskNewFileDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVRiskNewFileDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVRiskNewFileDlg)
-	virtual BOOL OnInitDialog();
-	afx_msg void OnBnClickedDirectorySelect();
-	afx_msg void OnEnChangeFilename();
-	afx_msg void OnEnChangeDirectory();
-	afx_msg void OnBnClickedOk();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVRiskNewFileDlg)
+    virtual BOOL OnInitDialog();
+    afx_msg void OnBnClickedDirectorySelect();
+    afx_msg void OnEnChangeFilename();
+    afx_msg void OnEnChangeDirectory();
+    afx_msg void OnBnClickedOk();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	CString m_Extension;
+    CString m_Extension;
 };
 
 //{{AFX_INSERT_LOCATION}}

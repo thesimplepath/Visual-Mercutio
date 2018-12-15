@@ -1,5 +1,5 @@
 //## begin module%33D8F933017C.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%33D8F933017C.cm
 
 //## begin module%33D8F933017C.cp preserve=no
@@ -35,9 +35,9 @@
 //## end module%33D8F933017C.declarations
 
 //## begin module%33D8F933017C.additionalDeclarations preserve=yes
-typedef 	int		HandleStyle;
-const		int		NormalStyle = 0;	// Define the handle of the Normal Style
-const		int		NoStyleDefined = -1;
+typedef     int        HandleStyle;
+const        int        NormalStyle = 0;    // Define the handle of the Normal Style
+const        int        NoStyleDefined = -1;
 
 
 #ifdef _ZBASELIBEXPORT
@@ -60,7 +60,7 @@ const		int		NoStyleDefined = -1;
 //## end ZAStyle%33D8F8010118.preface
 
 //## Class: ZAStyle%33D8F8010118
-//	Defines what is a style.
+//    Defines what is a style.
 //## Category: ZUtil library::Font & Style classes%36F91D94013C
 //## Subsystem: ZUtil%366D71940075
 //## Persistence: Transient
@@ -72,9 +72,9 @@ const		int		NoStyleDefined = -1;
 class AFX_EXT_CLASS ZAStyle : public CObject  //## Inherits: <unnamed>%33D8F81100A0
 {
   //## begin ZAStyle%33D8F8010118.initialDeclarations preserve=yes
-	public:
-	// Inherited feature
-		typedef CObject inherited;
+    public:
+    // Inherited feature
+        typedef CObject inherited;
   //## end ZAStyle%33D8F8010118.initialDeclarations
 
   public:
@@ -92,64 +92,64 @@ class AFX_EXT_CLASS ZAStyle : public CObject  //## Inherits: <unnamed>%33D8F8110
 
     //## Other Operations (specified)
       //## Operation: Serialize%869857712
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: Clone%869857713
-      //	Make a clone of the object.
+      //    Make a clone of the object.
       virtual ZAStyle* Clone ();
 
       //## Operation: HasBorder%871228837
-      //	Inform if the style has a border defined.
+      //    Inform if the style has a border defined.
       BOOL HasBorder () const;
 
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: hFont%33D8F81F0334
-      //	Points to the handle of a font.
+      //    Points to the handle of a font.
       const HandleFont GethFont () const;
       void SethFont (HandleFont value);
 
       //## Attribute: BackColor%33D8F86902BC
-      //	Define the back color. -1 for none.
+      //    Define the back color. -1 for none.
       const COLORREF GetBackColor () const;
       void SetBackColor (COLORREF value);
 
       //## Attribute: hStyleNumber%33D8F96B02A8
-      //	Used to keep the Style Handle.
+      //    Used to keep the Style Handle.
       const HandleStyle GethStyleNumber () const;
       void SethStyleNumber (HandleStyle value);
 
       //## Attribute: StyleName%33D8F9E803CA
-      //	Stores the name of the style.
+      //    Stores the name of the style.
       const CString GetStyleName () const;
       void SetStyleName (CString value);
 
       //## Attribute: pBorder%33EC67B30136
-      //	Define border for fields.
+      //    Define border for fields.
       ZABorder* GetpBorder ();
       void SetpBorder (ZABorder* value);
 
       //## Attribute: Justify%34118F2200B4
-      //	Define the justification such as
-      //	DT_LEFT
-      //	DT_BOTTOM
-      //	DT_SINGLELINE
-      //	etc.
+      //    Define the justification such as
+      //    DT_LEFT
+      //    DT_BOTTOM
+      //    DT_SINGLELINE
+      //    etc.
       const UINT GetJustify () const;
       void SetJustify (UINT value);
 
     // Additional Public Declarations
       //## begin ZAStyle%33D8F8010118.public preserve=yes
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
       //## end ZAStyle%33D8F8010118.public
   protected:
     // Additional Protected Declarations
       //## begin ZAStyle%33D8F8010118.protected preserve=yes
-	DECLARE_SERIAL(ZAStyle)
+    DECLARE_SERIAL(ZAStyle)
       //## end ZAStyle%33D8F8010118.protected
   private:
     // Data Members for Class Attributes
@@ -201,7 +201,7 @@ class AFX_EXT_CLASS ZAStyle : public CObject  //## Inherits: <unnamed>%33D8F8110
 inline BOOL ZAStyle::HasBorder () const
 {
   //## begin ZAStyle::HasBorder%871228837.body preserve=yes
-  	return m_pBorder != NULL;
+      return m_pBorder != NULL;
   //## end ZAStyle::HasBorder%871228837.body
 }
 

@@ -33,38 +33,38 @@ class AFX_EXT_CLASS ZHtmlDialog
 {
 public:
 
-	ZHtmlDialog( LPCTSTR lpszURL, BOOL bRes = FALSE, CWnd* pParent = NULL );
-	ZHtmlDialog( UINT nResID, CWnd* pParent = NULL );
-	ZHtmlDialog();
+    ZHtmlDialog( LPCTSTR lpszURL, BOOL bRes = FALSE, CWnd* pParent = NULL );
+    ZHtmlDialog( UINT nResID, CWnd* pParent = NULL );
+    ZHtmlDialog();
 
-	virtual ~ZHtmlDialog();
+    virtual ~ZHtmlDialog();
 
 public:
 
-	void SetDlgOptions( LPCTSTR lpszOptions );
-	void SetSize( int x, int y );
-	void SetParam( LPCTSTR lpszArgs );
-	void SetParam( VARIANT* pvarArgs );
+    void SetDlgOptions( LPCTSTR lpszOptions );
+    void SetSize( int x, int y );
+    void SetParam( LPCTSTR lpszArgs );
+    void SetParam( VARIANT* pvarArgs );
 
-	LPCVARIANT GetReturnVariant();
+    LPCVARIANT GetReturnVariant();
 
-	CString GetReturnString();
+    CString GetReturnString();
 
-	virtual int DoModal();
+    virtual int DoModal();
 
 private:
 
-	inline void ResourceToURL( LPCTSTR lpszURL );
-	void CommonConstruct();
+    inline void ResourceToURL( LPCTSTR lpszURL );
+    void CommonConstruct();
 
 protected:
 
-	HWND		m_hWndParent;
-	CString		m_strOptions;
-	COleVariant	m_varArgs;
-	COleVariant	m_varReturn;
-	CString		m_strURL;
-	HINSTANCE	m_hInstMSHTML;
+    HWND        m_hWndParent;
+    CString        m_strOptions;
+    COleVariant    m_varArgs;
+    COleVariant    m_varReturn;
+    CString        m_strURL;
+    HINSTANCE    m_hInstMSHTML;
 };
 
 #endif // !defined(AFX_ZDLGHTML_H__00C54337_702E_11D2_ABF7_CCFAF0973072__INCLUDED_)

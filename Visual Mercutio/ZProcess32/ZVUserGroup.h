@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 05/2001
+// <nl>Created:         05/2001
 // <nl>Description:  ZVUserGroup user and group window support
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -39,56 +39,56 @@ class _ZIUserGroupFlatToolBar : public CStatic, public ZISubject
 // Construction / destruction
 public:
 
-	_ZIUserGroupFlatToolBar();
-	virtual ~_ZIUserGroupFlatToolBar();
+    _ZIUserGroupFlatToolBar();
+    virtual ~_ZIUserGroupFlatToolBar();
 
-	virtual void RefreshButtonNow();
+    virtual void RefreshButtonNow();
 
 // Operations
 public:
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(_ZIUserGroupFlatToolBar)
-	public:
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	protected:
-	virtual void PreSubclassWindow();
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(_ZIUserGroupFlatToolBar)
+    public:
+    virtual BOOL PreTranslateMessage(MSG* pMsg);
+    protected:
+    virtual void PreSubclassWindow();
+    //}}AFX_VIRTUAL
 
 // Generated message map functions
 protected:
 
-	//{{AFX_MSG(_ZIUserGroupFlatToolBar)
-	afx_msg void OnAddGroupButton();
-	afx_msg void OnRenameGroupButton();
-	afx_msg void OnDeleteGroupButton();
-	afx_msg void OnAddRoleButton();
-	afx_msg void OnRenameRoleButton();
-	afx_msg void OnDeleteRoleButton();
-	afx_msg void OnPropertiesButton();
-	afx_msg void OnRefreshButton();
-	afx_msg void OnMoveButton();
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	//}}AFX_MSG
+    //{{AFX_MSG(_ZIUserGroupFlatToolBar)
+    afx_msg void OnAddGroupButton();
+    afx_msg void OnRenameGroupButton();
+    afx_msg void OnDeleteGroupButton();
+    afx_msg void OnAddRoleButton();
+    afx_msg void OnRenameRoleButton();
+    afx_msg void OnDeleteRoleButton();
+    afx_msg void OnPropertiesButton();
+    afx_msg void OnRefreshButton();
+    afx_msg void OnMoveButton();
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    //}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 
 // Attributes
 private:
 
-	CCJFlatButton	m_RefreshButton;
-	CCJFlatButton	m_AddGroupButton;
-	CCJFlatButton	m_RenameGroupButton;
-	CCJFlatButton	m_DeleteGroupButton;
-	CCJFlatButton	m_AddRoleButton;
-	CCJFlatButton	m_RenameRoleButton;
-	CCJFlatButton	m_DeleteRoleButton;
-	CCJFlatButton	m_PropertiesButton;
-	CCJFlatButton	m_MoveButton;
+    CCJFlatButton    m_RefreshButton;
+    CCJFlatButton    m_AddGroupButton;
+    CCJFlatButton    m_RenameGroupButton;
+    CCJFlatButton    m_DeleteGroupButton;
+    CCJFlatButton    m_AddRoleButton;
+    CCJFlatButton    m_RenameRoleButton;
+    CCJFlatButton    m_DeleteRoleButton;
+    CCJFlatButton    m_PropertiesButton;
+    CCJFlatButton    m_MoveButton;
 
-	CImageList		m_ImageList;
-	CToolTipCtrl	m_tooltip;
+    CImageList        m_ImageList;
+    CToolTipCtrl    m_tooltip;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -98,58 +98,58 @@ class ZVUserGroup : public CWnd, public ZISubject, public ZIObserver
 {
 public:
 
-	DECLARE_DYNCREATE( ZVUserGroup )
+    DECLARE_DYNCREATE( ZVUserGroup )
 
-	// Protected constructor used by dynamic creation
-	ZVUserGroup();
+    // Protected constructor used by dynamic creation
+    ZVUserGroup();
 
-	virtual ~ZVUserGroup();
+    virtual ~ZVUserGroup();
 
-	// Observer call back
-	virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    // Observer call back
+    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
 
-	////////////////////////////////////////////////////////////////////
-	// Context menu function
-	int HasContextMenu( CWnd* pWnd, CPoint point );
-	void DisplayContextMenu( CWnd* pWnd, CPoint point );
+    ////////////////////////////////////////////////////////////////////
+    // Context menu function
+    int HasContextMenu( CWnd* pWnd, CPoint point );
+    void DisplayContextMenu( CWnd* pWnd, CPoint point );
 
-	////////////////////////////////////////////////////////////////////
-	// Group functions
-	void OnRefresh();
-	void OnAddGroup();
-	void OnRenameGroup();
-	void OnDeleteGroup();
-	void OnAddRole();
-	void OnRenameRole();
-	void OnDeleteRole();
-	void OnMove();
-	void OnProperties();
+    ////////////////////////////////////////////////////////////////////
+    // Group functions
+    void OnRefresh();
+    void OnAddGroup();
+    void OnRenameGroup();
+    void OnDeleteGroup();
+    void OnAddRole();
+    void OnRenameRole();
+    void OnDeleteRole();
+    void OnMove();
+    void OnProperties();
 
-	bool CanAddGroup();
-	bool CanRenameGroup();
-	bool CanDeleteGroup();
-	bool CanAddRole();
-	bool CanRenameRole();
-	bool CanDeleteRole();
-	bool CanMove();
-	bool CanProperties();
+    bool CanAddGroup();
+    bool CanRenameGroup();
+    bool CanDeleteGroup();
+    bool CanAddRole();
+    bool CanRenameRole();
+    bool CanDeleteRole();
+    bool CanMove();
+    bool CanProperties();
 
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZVUserGroup)
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg void OnSize(UINT nType, int cx, int cy);
-	afx_msg void OnPaint();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZVUserGroup)
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    afx_msg void OnSize(UINT nType, int cx, int cy);
+    afx_msg void OnPaint();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 
 
 private:
-	_ZIUserGroupFlatToolBar		m_FlatToolBar;
-	ZCUserGroupTreeCtrl			m_Ctrl;
-	COLORREF					m_clrBtnFace;
+    _ZIUserGroupFlatToolBar        m_FlatToolBar;
+    ZCUserGroupTreeCtrl            m_Ctrl;
+    COLORREF                    m_clrBtnFace;
 };
 
 /////////////////////////////////////////////////////////////////////////////

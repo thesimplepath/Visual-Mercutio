@@ -1,5 +1,5 @@
 //## begin module.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module.cm
 
 //## begin module.cp preserve=no
@@ -52,7 +52,7 @@
 
 
 //## Class: ZITextAlignButton
-//	Defines a text button with alignement style.
+//    Defines a text button with alignement style.
 //## Category: Sources
 //## Subsystem: Source
 //## Persistence: Transient
@@ -63,16 +63,16 @@ class AFX_EXT_CLASS ZITextAlignButton : public CBitmapButton  //## Inherits: <un
 
 {
   //## begin ZITextAlignButton.initialDeclarations preserve=yes
-	DECLARE_DYNCREATE(ZITextAlignButton)
-	public:
-	// Inherited feature
-		typedef CBitmapButton inherited;
+    DECLARE_DYNCREATE(ZITextAlignButton)
+    public:
+    // Inherited feature
+        typedef CBitmapButton inherited;
   //## end ZITextAlignButton.initialDeclarations
 
   public:
     //## Constructors (specified)
       //## Operation: ZITextAlignButton%833240214
-      //	The default constructor with default parameters.
+      //    The default constructor with default parameters.
       ZITextAlignButton(const CString sText = "", UINT nStyle = DT_SINGLELINE | DT_BOTTOM | DT_LEFT, BOOL bCheck = FALSE, CWnd* pParentWnd = NULL, UINT nID = 0);
 
     //## Destructor (generated)
@@ -81,7 +81,7 @@ class AFX_EXT_CLASS ZITextAlignButton : public CBitmapButton  //## Inherits: <un
 
     //## Other Operations (specified)
       //## Operation: Create%833240214
-      //	The create function.
+      //    The create function.
       void Create(const CString sText, UINT nStyle, BOOL bCheck, CWnd* pParentWnd, UINT nID);
 
       //## Operation: SetCheck%833261590
@@ -99,15 +99,15 @@ class AFX_EXT_CLASS ZITextAlignButton : public CBitmapButton  //## Inherits: <un
 
     //## Other Operations (specified)
       //## Operation: DrawItem%833240215
-      //	Used to draw the button.
+      //    Used to draw the button.
       virtual void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
 
     // Additional Protected Declarations
       //## begin ZITextAlignButton.protected preserve=yes
-		// Generated message map functions
-		//{{AFX_MSG(ZITextAlignButton)
-	//}}AFX_MSG
-		DECLARE_MESSAGE_MAP()
+        // Generated message map functions
+        //{{AFX_MSG(ZITextAlignButton)
+    //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
       //## end ZITextAlignButton.protected
 
 
@@ -121,31 +121,31 @@ class AFX_EXT_CLASS ZITextAlignButton : public CBitmapButton  //## Inherits: <un
     // Data Members for Class Attributes
 
       //## Attribute: nStyle
-      //	Define the button style.
+      //    Define the button style.
       //## begin ZITextAlignButton::nStyle.attr preserve=no  public: UINT {V} 
       UINT m_nStyle;
       //## end ZITextAlignButton::nStyle.attr
 
       //## Attribute: pParentWnd
-      //	The parent window of the button.
+      //    The parent window of the button.
       //## begin ZITextAlignButton::pParentWnd.attr preserve=no  public: CWnd* {V} 
       CWnd* m_pParentWnd;
       //## end ZITextAlignButton::pParentWnd.attr
 
       //## Attribute: nID
-      //	The resource ID of the button.
+      //    The resource ID of the button.
       //## begin ZITextAlignButton::nID.attr preserve=no  public: UINT {V} 
       UINT m_nID;
       //## end ZITextAlignButton::nID.attr
 
       //## Attribute: sText
-      //	The button's text.
+      //    The button's text.
       //## begin ZITextAlignButton::sText.attr preserve=no  public: CString {V} 
       CString m_sText;
       //## end ZITextAlignButton::sText.attr
 
       //## Attribute: bCheck
-      //	State the button for checked or not.
+      //    State the button for checked or not.
       //## begin ZITextAlignButton::bCheck.attr preserve=no  public: BOOL {V} 
       BOOL m_bCheck;
       //## end ZITextAlignButton::bCheck.attr
@@ -171,15 +171,15 @@ class AFX_EXT_CLASS ZITextAlignButton : public CBitmapButton  //## Inherits: <un
 inline void ZITextAlignButton::SetCheck(BOOL bValue)
 {
   //## begin ZITextAlignButton::SetCheck%833261590.body preserve=yes
-  	m_bCheck = bValue;
-  	Invalidate();
+      m_bCheck = bValue;
+      Invalidate();
   //## end ZITextAlignButton::SetCheck%833261590.body
 }
 
 inline BOOL ZITextAlignButton::GetCheck() const
 {
   //## begin ZITextAlignButton::GetCheck%833261591.body preserve=yes
-  	return m_bCheck;
+      return m_bCheck;
   //## end ZITextAlignButton::GetCheck%833261591.body
 }
 

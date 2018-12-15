@@ -39,30 +39,30 @@
 class AFX_EXT_CLASS ZIProcessTemplateView : public ZITemplateView
 {
 protected:
-	ZIProcessTemplateView();           // protected constructor used by dynamic creation
-	DECLARE_DYNCREATE(ZIProcessTemplateView)
+    ZIProcessTemplateView();           // protected constructor used by dynamic creation
+    DECLARE_DYNCREATE(ZIProcessTemplateView)
 
 
 // Operations
 public:
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIProcessTemplateView)
-	protected:
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIProcessTemplateView)
+    protected:
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
-	virtual ~ZIProcessTemplateView();
+    virtual ~ZIProcessTemplateView();
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZIProcessTemplateView)
-	afx_msg LRESULT OnReloadTemplateManager( WPARAM wParam, LPARAM lParam );
-	afx_msg LRESULT OnInitializeTemplateManager( WPARAM wParam, LPARAM lParam );
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZIProcessTemplateView)
+    afx_msg LRESULT OnReloadTemplateManager( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnInitializeTemplateManager( WPARAM wParam, LPARAM lParam );
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

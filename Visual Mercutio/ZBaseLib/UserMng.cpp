@@ -1,10 +1,10 @@
 //## begin module%36725FC1029F.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%36725FC1029F.cm
 
 //## begin module%36725FC1029F.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%36725FC1029F.cp
 
 //## Module: UserMng%36725FC1029F; Package body
@@ -44,7 +44,7 @@ ZUUserManager::ZUUserManager()
 ZUUserManager::~ZUUserManager()
 {
   //## begin ZUUserManager::~ZUUserManager%.body preserve=yes
-  	RemoveAllUsers();
+      RemoveAllUsers();
   //## end ZUUserManager::~ZUUserManager%.body
 }
 
@@ -54,78 +54,78 @@ ZUUserManager::~ZUUserManager()
 void ZUUserManager::AddUser (CString UserName, CString MailAddress, CString Description, CString Responsible, CString Departement, BOOL IsAdministrator, CString DisplayName)
 {
   //## begin ZUUserManager::AddUser%913459633.body preserve=yes
-  	m_UserArray.Add( (CObject*)new ZUser(UserName, MailAddress, Description, Responsible, Departement, IsAdministrator, DisplayName) );
+      m_UserArray.Add( (CObject*)new ZUser(UserName, MailAddress, Description, Responsible, Departement, IsAdministrator, DisplayName) );
   //## end ZUUserManager::AddUser%913459633.body
 }
 
 void ZUUserManager::AddUser (ZUser& User)
 {
   //## begin ZUUserManager::AddUser%913459634.body preserve=yes
-  	m_UserArray.Add( (CObject*)&User );
+      m_UserArray.Add( (CObject*)&User );
   //## end ZUUserManager::AddUser%913459634.body
 }
 
 void ZUUserManager::Serialize (CArchive& ar)
 {
   //## begin ZUUserManager::Serialize%913459635.body preserve=yes
-  	m_UserArray.Serialize( ar );
+      m_UserArray.Serialize( ar );
   //## end ZUUserManager::Serialize%913459635.body
 }
 
 void ZUUserManager::RemoveAllUsers ()
 {
   //## begin ZUUserManager::RemoveAllUsers%913459636.body preserve=yes
-  	for (size_t i = 0; i < GetCount(); ++i)
-  		delete GetAt(i);
-  	m_UserArray.RemoveAll();
+      for (size_t i = 0; i < GetCount(); ++i)
+          delete GetAt(i);
+      m_UserArray.RemoveAll();
   //## end ZUUserManager::RemoveAllUsers%913459636.body
 }
 
 ZUser* ZUUserManager::FindUser (const CString& UserName, BOOL ByDisplayName)
 {
   //## begin ZUUserManager::FindUser%913459637.body preserve=yes
-  	for (size_t i = 0; i < GetCount(); ++i)
-	{
-		if (ByDisplayName)
-		{
-  			if (GetAt(i) && GetAt(i)->GetDisplayName() == UserName)
-  				return GetAt(i);
-		}
-		else
-		{
-  			if (GetAt(i) && *GetAt(i) == UserName)
-  				return GetAt(i);
-		}
-	}
-  	return NULL;
+      for (size_t i = 0; i < GetCount(); ++i)
+    {
+        if (ByDisplayName)
+        {
+              if (GetAt(i) && GetAt(i)->GetDisplayName() == UserName)
+                  return GetAt(i);
+        }
+        else
+        {
+              if (GetAt(i) && *GetAt(i) == UserName)
+                  return GetAt(i);
+        }
+    }
+      return NULL;
   //## end ZUUserManager::FindUser%913459637.body
 }
 
 BOOL ZUUserManager::RemoveUser (const CString& UserName, BOOL ByDisplayName)
 {
   //## begin ZUUserManager::RemoveUser%913459638.body preserve=yes
-  	for (size_t i = 0; i < GetCount(); ++i)
-	{
-		if (ByDisplayName)
-		{
-  			if (GetAt(i) && GetAt(i)->GetDisplayName() == UserName)
-  			{
-  				delete GetAt(i);
-  				m_UserArray.RemoveAt(i);
-  				return TRUE;
-  			}
-		}
-		else
-		{
-  			if (GetAt(i) && *GetAt(i) == UserName)
-  			{
-  				delete GetAt(i);
-  				m_UserArray.RemoveAt(i);
-  				return TRUE;
-  			}
-		}
-	}		
-  	return FALSE;
+      for (size_t i = 0; i < GetCount(); ++i)
+    {
+        if (ByDisplayName)
+        {
+              if (GetAt(i) && GetAt(i)->GetDisplayName() == UserName)
+              {
+                  delete GetAt(i);
+                  m_UserArray.RemoveAt(i);
+                  return TRUE;
+              }
+        }
+        else
+        {
+              if (GetAt(i) && *GetAt(i) == UserName)
+              {
+                  delete GetAt(i);
+                  m_UserArray.RemoveAt(i);
+                  return TRUE;
+              }
+        }
+    }        
+      return FALSE;
   //## end ZUUserManager::RemoveUser%913459638.body
 }
 

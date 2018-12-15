@@ -28,52 +28,52 @@ class AFX_EXT_CLASS _ZBPropertyAttribute
 {
 public:
 
-	_ZBPropertyAttribute( int CategoryID = -1, int ItemID = -1 );
+    _ZBPropertyAttribute( int CategoryID = -1, int ItemID = -1 );
 
-	~_ZBPropertyAttribute()
-	{
-	};
+    ~_ZBPropertyAttribute()
+    {
+    };
 
-	_ZBPropertyAttribute (_ZBPropertyAttribute& src);
-	const _ZBPropertyAttribute & operator= ( const _ZBPropertyAttribute &right );
+    _ZBPropertyAttribute (_ZBPropertyAttribute& src);
+    const _ZBPropertyAttribute & operator= ( const _ZBPropertyAttribute &right );
 
-	_ZBPropertyAttribute* Clone();
+    _ZBPropertyAttribute* Clone();
 
-	// Attribute accessor
-	int GetCategoryID() const;
-	void SetCategoryID( int value );
+    // Attribute accessor
+    int GetCategoryID() const;
+    void SetCategoryID( int value );
 
-	int GetItemID() const;
-	void SetItemID( int value );
+    int GetItemID() const;
+    void SetItemID( int value );
 
-	// Serialization
-	AFX_EXT_API friend CArchive& operator >> ( CArchive& ar, _ZBPropertyAttribute& src );
-	AFX_EXT_API friend CArchive& operator << ( CArchive& ar, _ZBPropertyAttribute& src );
+    // Serialization
+    AFX_EXT_API friend CArchive& operator >> ( CArchive& ar, _ZBPropertyAttribute& src );
+    AFX_EXT_API friend CArchive& operator << ( CArchive& ar, _ZBPropertyAttribute& src );
 
 private:
 
-	int m_CategoryID;
-	int m_ItemID;
+    int m_CategoryID;
+    int m_ItemID;
 };
 
 inline int _ZBPropertyAttribute::GetCategoryID() const
 {
-	return m_CategoryID;
+    return m_CategoryID;
 }
 
 inline void _ZBPropertyAttribute::SetCategoryID( int value )
 {
-	m_CategoryID = value;
+    m_CategoryID = value;
 }
 
 inline int _ZBPropertyAttribute::GetItemID() const
 {
-	return m_ItemID;
+    return m_ItemID;
 }
 
 inline void _ZBPropertyAttribute::SetItemID( int value )
 {
-	m_ItemID = value;
+    m_ItemID = value;
 }
 
 using namespace sfl;
@@ -90,109 +90,109 @@ class AFX_EXT_CLASS ZBPropertyAttributes
 {
 public:
 
-	ZBPropertyAttributes();
-	~ZBPropertyAttributes();
+    ZBPropertyAttributes();
+    ~ZBPropertyAttributes();
 
-	ZBPropertyAttributes( ZBPropertyAttributes& src );
-	const ZBPropertyAttributes & operator= ( const ZBPropertyAttributes &right );
+    ZBPropertyAttributes( ZBPropertyAttributes& src );
+    const ZBPropertyAttributes & operator= ( const ZBPropertyAttributes &right );
 
-	ZBPropertyAttributes* Clone();
+    ZBPropertyAttributes* Clone();
 
-	bool LoadStateFromIniFile( const CString IniFile, int ObjectID );
-	bool SaveStateToIniFile( const CString IniFile, int ObjectID );
+    bool LoadStateFromIniFile( const CString IniFile, int ObjectID );
+    bool SaveStateToIniFile( const CString IniFile, int ObjectID );
 
-	// RS-MODIF 12.12.04 delete attributes from inifile
-	bool DeleteAttributesFromIniFile( const CString IniFile, int ObjectID );
+    // RS-MODIF 12.12.04 delete attributes from inifile
+    bool DeleteAttributesFromIniFile( const CString IniFile, int ObjectID );
 
-	_ZBPropertyAttributeSet& GetAttributeSet()
-	{
-		return m_AttributeSet;
-	};
+    _ZBPropertyAttributeSet& GetAttributeSet()
+    {
+        return m_AttributeSet;
+    };
 
-	const _ZBPropertyAttributeSet& GetAttributeSetConst() const
-	{
-		return m_AttributeSet;
-	};
+    const _ZBPropertyAttributeSet& GetAttributeSetConst() const
+    {
+        return m_AttributeSet;
+    };
 
-	void RemoveAllAttributes();
+    void RemoveAllAttributes();
 
-	size_t GetAttributeCount() const
-	{
-		return m_AttributeSet.GetSize();
-	};
+    size_t GetAttributeCount() const
+    {
+        return m_AttributeSet.GetSize();
+    };
 
-	_ZBPropertyAttribute* GetAttributeAt( size_t Index )
-	{
-		if ( Index < GetAttributeCount() )
-		{
-			return m_AttributeSet.GetAt( Index );
-		}
+    _ZBPropertyAttribute* GetAttributeAt( size_t Index )
+    {
+        if ( Index < GetAttributeCount() )
+        {
+            return m_AttributeSet.GetAt( Index );
+        }
 
-		return NULL;
-	};
+        return NULL;
+    };
 
-	void AddAttribute( _ZBPropertyAttribute* pAttribute );
-	void AddAttributeAt( size_t Index, _ZBPropertyAttribute* pAttribute );
+    void AddAttribute( _ZBPropertyAttribute* pAttribute );
+    void AddAttributeAt( size_t Index, _ZBPropertyAttribute* pAttribute );
 
-	void AddAttribute( int CategoryID, int ItemID = -1 )
-	{
-		AddAttribute( new _ZBPropertyAttribute( CategoryID, ItemID ) );
-	};
+    void AddAttribute( int CategoryID, int ItemID = -1 )
+    {
+        AddAttribute( new _ZBPropertyAttribute( CategoryID, ItemID ) );
+    };
 
-	void AddAttributeAt( size_t Index, int CategoryID, int ItemID = -1 )
-	{
-		if ( Index < GetAttributeCount() )
-		{
-			AddAttributeAt( Index, new _ZBPropertyAttribute( CategoryID, ItemID ) );
-		}
-		else
-		{
-			AddAttribute( CategoryID, ItemID );
-		}
-	};
+    void AddAttributeAt( size_t Index, int CategoryID, int ItemID = -1 )
+    {
+        if ( Index < GetAttributeCount() )
+        {
+            AddAttributeAt( Index, new _ZBPropertyAttribute( CategoryID, ItemID ) );
+        }
+        else
+        {
+            AddAttribute( CategoryID, ItemID );
+        }
+    };
 
-	bool DeleteAttribute( int CategoryID, int ItemID );
-	void DeleteCategoryAttribute( int CategoryID );
-	bool DeleteAttributeAt( size_t Index );
+    bool DeleteAttribute( int CategoryID, int ItemID );
+    void DeleteCategoryAttribute( int CategoryID );
+    bool DeleteAttributeAt( size_t Index );
 
-	_ZBPropertyAttribute* FindAttribute( int CategoryID, int ItemID );
-	bool AttributeExist( int CategoryID, int ItemID )
-	{
-		return (FindAttribute( CategoryID, ItemID ) != NULL) ? true : false;
-	};
+    _ZBPropertyAttribute* FindAttribute( int CategoryID, int ItemID );
+    bool AttributeExist( int CategoryID, int ItemID )
+    {
+        return (FindAttribute( CategoryID, ItemID ) != NULL) ? true : false;
+    };
 
-	// Return true if one of the property content defined in this object
-	// matches with the property set passed as a parameter
-	bool Match( ZBPropertySet&	PropSet,
-				const CString	What,
-				bool			CaseSensitive = false,
-				bool			PartialSearch = false );
+    // Return true if one of the property content defined in this object
+    // matches with the property set passed as a parameter
+    bool Match( ZBPropertySet&    PropSet,
+                const CString    What,
+                bool            CaseSensitive = false,
+                bool            PartialSearch = false );
 
-	// Construct the right string
-	CString GetString( ZBPropertySet* pPropSet, bool KeepOnlyNotEmpty = true );
+    // Construct the right string
+    CString GetString( ZBPropertySet* pPropSet, bool KeepOnlyNotEmpty = true );
 
-	// Attribute accessor
-	bool GetDisplayTitleText() const;
-	void SetDisplayTitleText( bool value );
+    // Attribute accessor
+    bool GetDisplayTitleText() const;
+    void SetDisplayTitleText( bool value );
 
-	// Serialization
-	AFX_EXT_API friend CArchive& operator >> ( CArchive& ar, ZBPropertyAttributes& src );
-	AFX_EXT_API friend CArchive& operator << ( CArchive& ar, ZBPropertyAttributes& src );
+    // Serialization
+    AFX_EXT_API friend CArchive& operator >> ( CArchive& ar, ZBPropertyAttributes& src );
+    AFX_EXT_API friend CArchive& operator << ( CArchive& ar, ZBPropertyAttributes& src );
 
 private:
 
-	_ZBPropertyAttributeSet	m_AttributeSet;
-	bool					m_DisplayTitleText;
+    _ZBPropertyAttributeSet    m_AttributeSet;
+    bool                    m_DisplayTitleText;
 };
 
 inline bool ZBPropertyAttributes::GetDisplayTitleText() const
 {
-	return m_DisplayTitleText;
+    return m_DisplayTitleText;
 }
 
 inline void ZBPropertyAttributes::SetDisplayTitleText( bool value )
 {
-	m_DisplayTitleText = value;
+    m_DisplayTitleText = value;
 }
 
 #endif

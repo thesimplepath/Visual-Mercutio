@@ -1,10 +1,10 @@
 //## begin module%3624CA5100B6.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%3624CA5100B6.cm
 
 //## begin module%3624CA5100B6.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%3624CA5100B6.cp
 
 //## Module: ViewMod%3624CA5100B6; Package specification
@@ -42,21 +42,21 @@ class ZDDocumentReadWrite;
 class ZIViewModify : public ZIViewRead  //## Inherits: <unnamed>%3624C90D00CE
 {
   //## begin ZIViewModify%3624C8EC015D.initialDeclarations preserve=yes
-	DECLARE_DYNCREATE(ZIViewModify)
-	public:
-	// Inherited feature
-		typedef ZIViewRead inherited;
+    DECLARE_DYNCREATE(ZIViewModify)
+    public:
+    // Inherited feature
+        typedef ZIViewRead inherited;
   //## end ZIViewModify%3624C8EC015D.initialDeclarations
 
   public:
 
     //## Other Operations (specified)
       //## Operation: GetDocument%908380078
-      //	Return a cast document pointer.
+      //    Return a cast document pointer.
       ZDDocumentReadWrite* GetDocument ();
 
       //## Operation: EditObject%938177640
-      //	Process the edition of the object.
+      //    Process the edition of the object.
       virtual void EditObject (PlanFinObject* pObj = NULL);
 
     // Additional Public Declarations
@@ -79,107 +79,107 @@ class ZIViewModify : public ZIViewRead  //## Inherits: <unnamed>%3624C90D00CE
       afx_msg LONG OnCalculateAllFormula (UINT message, LONG wParam);
 
       //## Operation: OnFieldChange%938112088
-      //	When a field change this function is called.
-      //	This function check if another field have the same
-      //	name and copy the contain of the current to the other.
-      //	Parameters:
-      //	message is the message.
-      //	wParam  points to the adress of the object contain.
+      //    When a field change this function is called.
+      //    This function check if another field have the same
+      //    name and copy the contain of the current to the other.
+      //    Parameters:
+      //    message is the message.
+      //    wParam  points to the adress of the object contain.
       afx_msg LONG OnFieldChange (UINT message, LONG wParam);
 
       //## Operation: CreateEditControl%938177641
-      //	returns the right edit control. Based on the object.
+      //    returns the right edit control. Based on the object.
       virtual Edit* CreateEditControl (PlanFinObject* pObj, CDC* pDC = NULL);
 
       //## Operation: AddObjectNotes%941353880
-      //	Add an object notes.
+      //    Add an object notes.
       void AddObjectNotes (PlanFinObject* pObj);
 
-	  virtual UINT GetRightPopupMenuID();
+      virtual UINT GetRightPopupMenuID();
 
     // Data Members for Class Attributes
 
       //## Attribute: ToolTipTypeObject%381BEA780035
-      //	Contains the type object text. Used in tooltip.
+      //    Contains the type object text. Used in tooltip.
       //## begin ZIViewModify::ToolTipTypeObject%381BEA780035.attr preserve=no  protected: CString {U} 
       CString m_ToolTipTypeObject;
       //## end ZIViewModify::ToolTipTypeObject%381BEA780035.attr
 
       //## Attribute: ToolTipNoteText%381BEA9A01E3
-      //	Contains the note object text. Used in tooltip
+      //    Contains the note object text. Used in tooltip
       //## begin ZIViewModify::ToolTipNoteText%381BEA9A01E3.attr preserve=no  protected: CString {U} 
       CString m_ToolTipNoteText;
       //## end ZIViewModify::ToolTipNoteText%381BEA9A01E3.attr
 
     // Additional Protected Declarations
       //## begin ZIViewModify%3624C8EC015D.protected preserve=yes
-		// Generated message map functions
-		//{{AFX_MSG(ZIViewModify)
-		afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+        // Generated message map functions
+        //{{AFX_MSG(ZIViewModify)
+        afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 
 #if defined( _ZDESIGNER ) || defined( _ZSCRIPTOR )
-		afx_msg void OnToday();
-		afx_msg void OnEditionProtectObject();
-		afx_msg void OnUpdateEditionProtectObject(CCmdUI* pCmdUI);
-		afx_msg LONG ProcessCalculate(WPARAM wParam, LPARAM lParam);
-		afx_msg LONG OnProcessFieldEditNext(WPARAM wParam, LPARAM lParam);
-		afx_msg LONG ProcessFieldChange(WPARAM wParam, LPARAM lParam);
-		afx_msg BOOL OnToolTipNeedText(UINT id, NMHDR * pNMHDR, LRESULT * pResult);
-		afx_msg void OnAddObjectNotes();
-		afx_msg void OnDeleteObjectNotes();
-		afx_msg void OnUpdateDeleteObjectNotes(CCmdUI* pCmdUI);
-		afx_msg LONG OnEmptyObject(WPARAM wParam, LPARAM lParam);
-		afx_msg LONG OnWizardMenu(WPARAM wParam, LPARAM lParam);
-		afx_msg LONG OnCalendarObject(WPARAM wParam, LPARAM lParam);
-		afx_msg LONG OnObjectNote(WPARAM wParam, LPARAM lParam);
-		afx_msg LONG OnAssociationMenu(WPARAM wParam, LPARAM lParam);
-		afx_msg LONG OnMenuSelected(WPARAM wParam, LPARAM lParam);
-		afx_msg void OnSubmenu1Selectobject();
-		afx_msg void OnSubmenu1Unselectobject();
-		afx_msg LONG OnClearSelectionAll(WPARAM wParam, LPARAM lParam);
-		afx_msg LONG OnPointerSelection(WPARAM wParam, LPARAM lParam);
-		afx_msg LONG OnPointerHasSelected(WPARAM wParam, LPARAM lParam);
-		afx_msg LONG OnFieldEditNext (WPARAM wParam, LPARAM lParam);
-		afx_msg LONG OnDeselectAllObjects(WPARAM wParam, LPARAM lParam);
-		afx_msg void OnInsertFile();
-		afx_msg void OnUpdateInsertFile(CCmdUI* pCmdUI);
-		afx_msg LONG OnObjectProperty(WPARAM wParam, LPARAM lParam);
-		afx_msg void OnFieldPositionSize();
-		afx_msg void OnFieldProperty();
-		afx_msg void OnWizardCreateFormula();
-		afx_msg void OnSubmenu1Fontchange();
-		afx_msg void OnUpdateSubmenu1Fontchange(CCmdUI* pCmdUI);
-		afx_msg void OnSubmenuFormat();
-		afx_msg void OnSubmenuModifyFormula();
-		afx_msg void OnUpdateSubMenuFormat(CCmdUI* pCmdUI);
-		afx_msg void OnUpdateSubmenuAlign(CCmdUI* pCmdUI);
-		afx_msg void OnUpdateSubmenuModifyFormula(CCmdUI* pCmdUI);
-		afx_msg void OnSubmenuAlign();
-		afx_msg void OnSubmenuHidePrtObject();
-		afx_msg void OnUpdateSubmenuHidePrtObject(CCmdUI* pCmdUI);
-		afx_msg void OnSubmenuObjectHide();
-		afx_msg void OnUpdateSubmenuObjectHide(CCmdUI* pCmdUI);
-		afx_msg void OnSubmenuChangeColor();
-		afx_msg void OnWizardFormat();
-		afx_msg void OnWizardCalculated();
-		afx_msg void OnFieldAlignCenter();
-		afx_msg void OnFieldAlignLeft();
-		afx_msg void OnFieldAlignRight();
-		afx_msg void OnUpdateFieldAlignCenter(CCmdUI* pCmdUI);
-		afx_msg void OnUpdateFieldAlignLeft(CCmdUI* pCmdUI);
-		afx_msg void OnUpdateFieldAlignRight(CCmdUI* pCmdUI);
-		afx_msg void OnFieldApplyRounded();
-		afx_msg void OnSubmenuChangeFillcolor();
-		afx_msg void OnSectionAlign();
-		afx_msg void OnSectionChangeStyle();
-		afx_msg void OnSectionChangeColor();
-		afx_msg void OnSectionChangeFillColor();
-		afx_msg void OnSectionFontChange();
-		afx_msg void OnChangeBorder();
-		afx_msg void OnChangeLineColor();
+        afx_msg void OnToday();
+        afx_msg void OnEditionProtectObject();
+        afx_msg void OnUpdateEditionProtectObject(CCmdUI* pCmdUI);
+        afx_msg LONG ProcessCalculate(WPARAM wParam, LPARAM lParam);
+        afx_msg LONG OnProcessFieldEditNext(WPARAM wParam, LPARAM lParam);
+        afx_msg LONG ProcessFieldChange(WPARAM wParam, LPARAM lParam);
+        afx_msg BOOL OnToolTipNeedText(UINT id, NMHDR * pNMHDR, LRESULT * pResult);
+        afx_msg void OnAddObjectNotes();
+        afx_msg void OnDeleteObjectNotes();
+        afx_msg void OnUpdateDeleteObjectNotes(CCmdUI* pCmdUI);
+        afx_msg LONG OnEmptyObject(WPARAM wParam, LPARAM lParam);
+        afx_msg LONG OnWizardMenu(WPARAM wParam, LPARAM lParam);
+        afx_msg LONG OnCalendarObject(WPARAM wParam, LPARAM lParam);
+        afx_msg LONG OnObjectNote(WPARAM wParam, LPARAM lParam);
+        afx_msg LONG OnAssociationMenu(WPARAM wParam, LPARAM lParam);
+        afx_msg LONG OnMenuSelected(WPARAM wParam, LPARAM lParam);
+        afx_msg void OnSubmenu1Selectobject();
+        afx_msg void OnSubmenu1Unselectobject();
+        afx_msg LONG OnClearSelectionAll(WPARAM wParam, LPARAM lParam);
+        afx_msg LONG OnPointerSelection(WPARAM wParam, LPARAM lParam);
+        afx_msg LONG OnPointerHasSelected(WPARAM wParam, LPARAM lParam);
+        afx_msg LONG OnFieldEditNext (WPARAM wParam, LPARAM lParam);
+        afx_msg LONG OnDeselectAllObjects(WPARAM wParam, LPARAM lParam);
+        afx_msg void OnInsertFile();
+        afx_msg void OnUpdateInsertFile(CCmdUI* pCmdUI);
+        afx_msg LONG OnObjectProperty(WPARAM wParam, LPARAM lParam);
+        afx_msg void OnFieldPositionSize();
+        afx_msg void OnFieldProperty();
+        afx_msg void OnWizardCreateFormula();
+        afx_msg void OnSubmenu1Fontchange();
+        afx_msg void OnUpdateSubmenu1Fontchange(CCmdUI* pCmdUI);
+        afx_msg void OnSubmenuFormat();
+        afx_msg void OnSubmenuModifyFormula();
+        afx_msg void OnUpdateSubMenuFormat(CCmdUI* pCmdUI);
+        afx_msg void OnUpdateSubmenuAlign(CCmdUI* pCmdUI);
+        afx_msg void OnUpdateSubmenuModifyFormula(CCmdUI* pCmdUI);
+        afx_msg void OnSubmenuAlign();
+        afx_msg void OnSubmenuHidePrtObject();
+        afx_msg void OnUpdateSubmenuHidePrtObject(CCmdUI* pCmdUI);
+        afx_msg void OnSubmenuObjectHide();
+        afx_msg void OnUpdateSubmenuObjectHide(CCmdUI* pCmdUI);
+        afx_msg void OnSubmenuChangeColor();
+        afx_msg void OnWizardFormat();
+        afx_msg void OnWizardCalculated();
+        afx_msg void OnFieldAlignCenter();
+        afx_msg void OnFieldAlignLeft();
+        afx_msg void OnFieldAlignRight();
+        afx_msg void OnUpdateFieldAlignCenter(CCmdUI* pCmdUI);
+        afx_msg void OnUpdateFieldAlignLeft(CCmdUI* pCmdUI);
+        afx_msg void OnUpdateFieldAlignRight(CCmdUI* pCmdUI);
+        afx_msg void OnFieldApplyRounded();
+        afx_msg void OnSubmenuChangeFillcolor();
+        afx_msg void OnSectionAlign();
+        afx_msg void OnSectionChangeStyle();
+        afx_msg void OnSectionChangeColor();
+        afx_msg void OnSectionChangeFillColor();
+        afx_msg void OnSectionFontChange();
+        afx_msg void OnChangeBorder();
+        afx_msg void OnChangeLineColor();
 #endif
-	//}}AFX_MSG
-		DECLARE_MESSAGE_MAP()
+    //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
       //## end ZIViewModify%3624C8EC015D.protected
   private:
     //## Constructors (generated)
@@ -209,21 +209,21 @@ class ZIViewModify : public ZIViewRead  //## Inherits: <unnamed>%3624C90D00CE
 inline ZDDocumentReadWrite* ZIViewModify::GetDocument ()
 {
   //## begin ZIViewModify::GetDocument%908380078.body preserve=yes
-  	return (ZDDocumentReadWrite*)CView::GetDocument();
+      return (ZDDocumentReadWrite*)CView::GetDocument();
   //## end ZIViewModify::GetDocument%908380078.body
 }
 
 inline UINT ZIViewModify::GetRightPopupMenuID()
 {
 #ifdef _ZSCRIPTOR
-	return IDR_CONTEXT1_SCRIPTOR;
+    return IDR_CONTEXT1_SCRIPTOR;
 #endif
 
 #ifdef _ZDESIGNER
-	return IDR_CONTEXT1;
+    return IDR_CONTEXT1;
 #endif
 
-	return -1;
+    return -1;
 }
 
 //## begin module%3624CA5100B6.epilog preserve=yes

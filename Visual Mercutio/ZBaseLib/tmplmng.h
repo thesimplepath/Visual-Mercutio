@@ -1,10 +1,10 @@
 //## begin module%345A3C3800BE.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%345A3C3800BE.cm
 
 //## begin module%345A3C3800BE.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%345A3C3800BE.cp
 
 //## Module: TmplMng%345A3C3800BE; Package specification
@@ -49,8 +49,8 @@
 //## end ZDTemplateManager%345A3E310190.preface
 
 //## Class: ZDTemplateManager%345A3E310190
-//	The template manager manages all templates contained in
-//	sub-directories.
+//    The template manager manages all templates contained in
+//    sub-directories.
 //## Category: ZUtil library::Templates%3747CDAD02D3
 //## Subsystem: ZUtil%366D71940075
 //## Persistence: Transient
@@ -69,10 +69,10 @@ class AFX_EXT_CLASS ZDTemplateManager
 
     //## Constructors (specified)
       //## Operation: ZDTemplateManager%878377701
-      //	Create the object ZDTemplateManager. You must specify
-      //	the directory and the object automatically scans all
-      //	sub-template directories and initialize correctly the
-      //	manager.
+      //    Create the object ZDTemplateManager. You must specify
+      //    the directory and the object automatically scans all
+      //    sub-template directories and initialize correctly the
+      //    manager.
       ZDTemplateManager (CString RootDirectory, CString FileExtension);
 
     //## Destructor (generated)
@@ -81,49 +81,49 @@ class AFX_EXT_CLASS ZDTemplateManager
 
     //## Other Operations (specified)
       //## Operation: Create%878329367
-      //	Create the object ZDTemplateManager. You must specify
-      //	the root template directory and the object automatically
-      //	scans all directories and initialize all ZDTemplateDir
-      //	objects correctly.
+      //    Create the object ZDTemplateManager. You must specify
+      //    the root template directory and the object automatically
+      //    scans all directories and initialize all ZDTemplateDir
+      //    objects correctly.
       BOOL Create (CString RootDirectory, CString FileExtension);
 
       //## Operation: Scan%878329368
-      //	REScans all directories and reinitialize all ZDTemplate
-      //	Dir objects.
+      //    REScans all directories and reinitialize all ZDTemplate
+      //    Dir objects.
       BOOL Scan ();
 
       //## Operation: GetSize%878329369
-      //	Return the number of template directory.
+      //    Return the number of template directory.
       size_t GetSize () const;
 
       //## Operation: GetTemplateDirAt%878329370
-      //	Returns the template directory object at the specified
-      //	index.
+      //    Returns the template directory object at the specified
+      //    index.
       ZDTemplateDir* GetTemplateDirAt (size_t Index);
 
       //## Operation: FindTemplateDir%878492724
-      //	Finds the template directory object corresponding to the
-      //	template directory name.
+      //    Finds the template directory object corresponding to the
+      //    template directory name.
       ZDTemplateDir* FindTemplateDir (CString TemplateDir);
 
       //## Operation: FindTemplate%915657290
-      //	Finds the template file corresponding to the template
-      //	name.
+      //    Finds the template file corresponding to the template
+      //    name.
       ZDTemplateFile* FindTemplate (CString TemplateName);
 
       //## Operation: GetRootCaption%902335798
-      //	Returns the root caption equivalent to the root
-      //	directory.
+      //    Returns the root caption equivalent to the root
+      //    directory.
       CString GetRootCaption ();
 
       //## Operation: MoveTemplateFile%902335799
-      //	This method move one template file from one template to
-      //	another.
+      //    This method move one template file from one template to
+      //    another.
       BOOL MoveTemplateFile (CString Filename, CString SourceTemplateDir, CString DestinationTemplateDir);
 
       //## Operation: MoveTemplateFile%902335800
-      //	This method move one template file from one template to
-      //	another.
+      //    This method move one template file from one template to
+      //    another.
       BOOL MoveTemplateFile (ZDTemplateFile& Filename, ZDTemplateDir& SourceTemplateDir, ZDTemplateDir& DestinationTemplateDir);
 
     //## Get and Set Operations for Class Attributes (generated)
@@ -132,13 +132,13 @@ class AFX_EXT_CLASS ZDTemplateManager
       const CString& GetRootDirectory () const;
 
       //## Attribute: FileExtension%368FB40B0384
-      //	The file extension type.
+      //    The file extension type.
       const CString GetFileExtension () const;
       void SetFileExtension (CString value);
 
     // Additional Public Declarations
       //## begin ZDTemplateManager%345A3E310190.public preserve=yes
-      const CStringArray&	GetTemplateDirList() const { return m_TemplateDirList; };
+      const CStringArray&    GetTemplateDirList() const { return m_TemplateDirList; };
       //## end ZDTemplateManager%345A3E310190.public
   protected:
     // Additional Protected Declarations
@@ -155,13 +155,13 @@ class AFX_EXT_CLASS ZDTemplateManager
 
     //## Other Operations (specified)
       //## Operation: FreeList%878377702
-      //	Free the list of object.
+      //    Free the list of object.
       void FreeList ();
 
     // Data Members for Class Attributes
 
       //## Attribute: TemplateList%345A3F5F0366
-      //	Contains the list of ZDTemplateDir.
+      //    Contains the list of ZDTemplateDir.
       //## begin ZDTemplateManager::TemplateList%345A3F5F0366.attr preserve=no  public: CObArray {V} 
       CObArray m_TemplateList;
       //## end ZDTemplateManager::TemplateList%345A3F5F0366.attr
@@ -181,7 +181,7 @@ class AFX_EXT_CLASS ZDTemplateManager
   private: //## implementation
     // Additional Implementation Declarations
       //## begin ZDTemplateManager%345A3E310190.implementation preserve=yes
-      CStringArray	m_TemplateDirList;
+      CStringArray    m_TemplateDirList;
       //## end ZDTemplateManager%345A3E310190.implementation
 };
 
@@ -195,14 +195,14 @@ class AFX_EXT_CLASS ZDTemplateManager
 inline size_t ZDTemplateManager::GetSize () const
 {
   //## begin ZDTemplateManager::GetSize%878329369.body preserve=yes
-  	return (size_t)m_TemplateList.GetSize();
+      return (size_t)m_TemplateList.GetSize();
   //## end ZDTemplateManager::GetSize%878329369.body
 }
 
 inline ZDTemplateDir* ZDTemplateManager::GetTemplateDirAt (size_t Index)
 {
   //## begin ZDTemplateManager::GetTemplateDirAt%878329370.body preserve=yes
-	return (Index <= (size_t)m_TemplateList.GetSize()) ? ((ZDTemplateDir*)(m_TemplateList[Index])): NULL;
+    return (Index <= (size_t)m_TemplateList.GetSize()) ? ((ZDTemplateDir*)(m_TemplateList[Index])): NULL;
   //## end ZDTemplateManager::GetTemplateDirAt%878329370.body
 }
 

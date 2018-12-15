@@ -41,23 +41,23 @@ IMPLEMENT_SERIAL( ZBExtAppProperties, CObject, def_Version )
 //@parm ZBExtAppProperties& | propProcess | The fill property to copy.
 ZBExtAppProperties::ZBExtAppProperties()
 {
-	m_CommandTitle				= _T( "" );
-	m_CommandLine				= _T( "" );
-	m_CommandParameters			= _T( "" );
-	m_CommandStartupDirectory	= _T( "" );
+    m_CommandTitle                = _T( "" );
+    m_CommandLine                = _T( "" );
+    m_CommandParameters            = _T( "" );
+    m_CommandStartupDirectory    = _T( "" );
 
-	m_PriorityLevel				= 0;
-	m_WindowStartMode			= 0;
+    m_PriorityLevel                = 0;
+    m_WindowStartMode            = 0;
 }
 
 ZBExtAppProperties::ZBExtAppProperties( const ZBExtAppProperties& propProcess )
 {
-	m_CommandTitle				= propProcess.GetCommandTitle();
-	m_CommandLine				= propProcess.GetCommandLine();
-	m_CommandParameters			= propProcess.GetCommandParameters();
-	m_CommandStartupDirectory	= propProcess.GetCommandStartupDirectory();
-	m_PriorityLevel				= propProcess.GetPriorityLevel();
-	m_WindowStartMode			= propProcess.GetWindowStartMode();
+    m_CommandTitle                = propProcess.GetCommandTitle();
+    m_CommandLine                = propProcess.GetCommandLine();
+    m_CommandParameters            = propProcess.GetCommandParameters();
+    m_CommandStartupDirectory    = propProcess.GetCommandStartupDirectory();
+    m_PriorityLevel                = propProcess.GetPriorityLevel();
+    m_WindowStartMode            = propProcess.GetWindowStartMode();
 }
 
 //@mfunc Destructor.
@@ -73,15 +73,15 @@ ZBExtAppProperties::~ZBExtAppProperties()
 //@parm The new task list.
 void ZBExtAppProperties::SetCommandTitle( LPCTSTR lpszValue )
 {
-	if ( lpszValue != NULL )
-	{
-		m_CommandTitle = lpszValue;
-	}
-	else
-	{
-		TRACE0( _T( "Z -> Invalid command title pointer!\n" ) );
-		ASSERT( FALSE );
-	}
+    if ( lpszValue != NULL )
+    {
+        m_CommandTitle = lpszValue;
+    }
+    else
+    {
+        TRACE0( _T( "Z -> Invalid command title pointer!\n" ) );
+        ASSERT( FALSE );
+    }
 }
 
 //@mfunc Sets the task list.
@@ -89,7 +89,7 @@ void ZBExtAppProperties::SetCommandTitle( LPCTSTR lpszValue )
 //@parm The new task list.
 void ZBExtAppProperties::SetCommandTitleEx( const CString value )
 {
-	SetCommandTitle( value );
+    SetCommandTitle( value );
 }
 
 //@mfunc Sets the decision list.
@@ -97,15 +97,15 @@ void ZBExtAppProperties::SetCommandTitleEx( const CString value )
 //@parm The new decision list.
 void ZBExtAppProperties::SetCommandLine( LPCTSTR lpszValue )
 {
-	if ( lpszValue != NULL )
-	{
-		m_CommandLine = lpszValue;
-	}
-	else
-	{
-		TRACE0( _T( "Z -> Invalid command line pointer!\n" ) );
-		ASSERT( FALSE );
-	}
+    if ( lpszValue != NULL )
+    {
+        m_CommandLine = lpszValue;
+    }
+    else
+    {
+        TRACE0( _T( "Z -> Invalid command line pointer!\n" ) );
+        ASSERT( FALSE );
+    }
 }
 
 //@mfunc Sets the decision list.
@@ -113,7 +113,7 @@ void ZBExtAppProperties::SetCommandLine( LPCTSTR lpszValue )
 //@parm The new decision list.
 void ZBExtAppProperties::SetCommandLineEx( const CString value )
 {
-	SetCommandLine( value );
+    SetCommandLine( value );
 }
 
 //@mfunc Sets the decision list.
@@ -121,15 +121,15 @@ void ZBExtAppProperties::SetCommandLineEx( const CString value )
 //@parm The new decision list.
 void ZBExtAppProperties::SetCommandParameters( LPCTSTR lpszValue )
 {
-	if ( lpszValue != NULL )
-	{
-		m_CommandParameters = lpszValue;
-	}
-	else
-	{
-		TRACE0( _T( "Z -> Invalid command parameters pointer!\n" ) );
-		ASSERT( FALSE );
-	}
+    if ( lpszValue != NULL )
+    {
+        m_CommandParameters = lpszValue;
+    }
+    else
+    {
+        TRACE0( _T( "Z -> Invalid command parameters pointer!\n" ) );
+        ASSERT( FALSE );
+    }
 }
 
 //@mfunc Sets the decision list.
@@ -137,7 +137,7 @@ void ZBExtAppProperties::SetCommandParameters( LPCTSTR lpszValue )
 //@parm The new decision list.
 void ZBExtAppProperties::SetCommandParametersEx( const CString value )
 {
-	SetCommandParameters( value );
+    SetCommandParameters( value );
 }
 
 //@mfunc Sets the decision list.
@@ -145,15 +145,15 @@ void ZBExtAppProperties::SetCommandParametersEx( const CString value )
 //@parm The new decision list.
 void ZBExtAppProperties::SetCommandStartupDirectory( LPCTSTR lpszValue )
 {
-	if ( lpszValue != NULL )
-	{
-		m_CommandStartupDirectory = lpszValue;
-	}
-	else
-	{
-		TRACE0( _T( "Z -> Invalid command startup directory pointer!\n" ) );
-		ASSERT( FALSE );
-	}
+    if ( lpszValue != NULL )
+    {
+        m_CommandStartupDirectory = lpszValue;
+    }
+    else
+    {
+        TRACE0( _T( "Z -> Invalid command startup directory pointer!\n" ) );
+        ASSERT( FALSE );
+    }
 }
 
 //@mfunc Sets the decision list.
@@ -161,7 +161,7 @@ void ZBExtAppProperties::SetCommandStartupDirectory( LPCTSTR lpszValue )
 //@parm The new decision list.
 void ZBExtAppProperties::SetCommandStartupDirectoryEx( const CString value )
 {
-	SetCommandStartupDirectory( value );
+    SetCommandStartupDirectory( value );
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -172,14 +172,14 @@ void ZBExtAppProperties::SetCommandStartupDirectoryEx( const CString value )
 //@parm The property to copy.
 ZBExtAppProperties& ZBExtAppProperties::operator=( const ZBExtAppProperties& propProcess )
 {
-	SetCommandTitle				( propProcess.GetCommandTitle() );
-	SetCommandLine				( propProcess.GetCommandLine() );
-	SetCommandParameters		( propProcess.GetCommandParameters() );
-	SetCommandStartupDirectory	( propProcess.GetCommandStartupDirectory() );
-	SetPriorityLevel			( propProcess.GetPriorityLevel() );
-	SetWindowStartMode			( propProcess.GetWindowStartMode() );
+    SetCommandTitle                ( propProcess.GetCommandTitle() );
+    SetCommandLine                ( propProcess.GetCommandLine() );
+    SetCommandParameters        ( propProcess.GetCommandParameters() );
+    SetCommandStartupDirectory    ( propProcess.GetCommandStartupDirectory() );
+    SetPriorityLevel            ( propProcess.GetPriorityLevel() );
+    SetWindowStartMode            ( propProcess.GetWindowStartMode() );
 
-	return *this;
+    return *this;
 }
 
 //@mfunc Tests if this property is equal to the one passed in.
@@ -187,12 +187,12 @@ ZBExtAppProperties& ZBExtAppProperties::operator=( const ZBExtAppProperties& pro
 //@parm The property to test against.
 BOOL ZBExtAppProperties::operator==( const ZBExtAppProperties propProcess ) const
 {
-	return ( GetCommandTitle()				== propProcess.GetCommandTitle() &&
-			 GetCommandLine()				== propProcess.GetCommandLine() &&
-			 GetCommandParameters()			== propProcess.GetCommandParameters() &&
-			 GetCommandStartupDirectory()	== propProcess.GetCommandStartupDirectory() &&
-			 GetPriorityLevel()				== propProcess.GetPriorityLevel() &&
-			 GetWindowStartMode()			== propProcess.GetWindowStartMode() );
+    return ( GetCommandTitle()                == propProcess.GetCommandTitle() &&
+             GetCommandLine()                == propProcess.GetCommandLine() &&
+             GetCommandParameters()            == propProcess.GetCommandParameters() &&
+             GetCommandStartupDirectory()    == propProcess.GetCommandStartupDirectory() &&
+             GetPriorityLevel()                == propProcess.GetPriorityLevel() &&
+             GetWindowStartMode()            == propProcess.GetWindowStartMode() );
 }
 
 //@mfunc Merges the values of the property passed in with the values in this
@@ -203,38 +203,38 @@ BOOL ZBExtAppProperties::operator==( const ZBExtAppProperties propProcess ) cons
 // to merge into this property object.
 void ZBExtAppProperties::Merge( ZBExtAppProperties* pProperty, DWORD dwChangeFlags )
 {
-	if ( pProperty )
-	{
-		if ( dwChangeFlags & Z_CHANGE_COMMAND_TITLE )
-		{
-			m_CommandTitle = pProperty->GetCommandTitle();
-		}
+    if ( pProperty )
+    {
+        if ( dwChangeFlags & Z_CHANGE_COMMAND_TITLE )
+        {
+            m_CommandTitle = pProperty->GetCommandTitle();
+        }
 
-		if ( dwChangeFlags & Z_CHANGE_COMMAND_LINE )
-		{
-			m_CommandLine = pProperty->GetCommandLine();
-		}
+        if ( dwChangeFlags & Z_CHANGE_COMMAND_LINE )
+        {
+            m_CommandLine = pProperty->GetCommandLine();
+        }
 
-		if ( dwChangeFlags & Z_CHANGE_COMMAND_PARAM )
-		{
-			m_CommandParameters = pProperty->GetCommandParameters();
-		}
+        if ( dwChangeFlags & Z_CHANGE_COMMAND_PARAM )
+        {
+            m_CommandParameters = pProperty->GetCommandParameters();
+        }
 
-		if ( dwChangeFlags & Z_CHANGE_COMMAND_STARTUPDIR )
-		{
-			m_CommandStartupDirectory = pProperty->GetCommandStartupDirectory();
-		}
+        if ( dwChangeFlags & Z_CHANGE_COMMAND_STARTUPDIR )
+        {
+            m_CommandStartupDirectory = pProperty->GetCommandStartupDirectory();
+        }
 
-		if ( dwChangeFlags & Z_CHANGE_PRIORITY_LEVEL )
-		{
-			m_PriorityLevel = pProperty->GetPriorityLevel();
-		}
+        if ( dwChangeFlags & Z_CHANGE_PRIORITY_LEVEL )
+        {
+            m_PriorityLevel = pProperty->GetPriorityLevel();
+        }
 
-		if ( dwChangeFlags & Z_CHANGE_WINDOW_STARTMODE )
-		{
-			m_WindowStartMode = pProperty->GetWindowStartMode();
-		}
-	}
+        if ( dwChangeFlags & Z_CHANGE_WINDOW_STARTMODE )
+        {
+            m_WindowStartMode = pProperty->GetWindowStartMode();
+        }
+    }
 }
 
 //@mfunc Tests if this property is equal to the one passed in. This method
@@ -243,12 +243,12 @@ void ZBExtAppProperties::Merge( ZBExtAppProperties* pProperty, DWORD dwChangeFla
 //@parm A pointer to the property to test against.
 BOOL ZBExtAppProperties::IsEqual( ZBExtAppProperties* pProp )
 {
-	if ( pProp )
-	{
-		return ( *this == *pProp );
-	}
+    if ( pProp )
+    {
+        return ( *this == *pProp );
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -278,156 +278,156 @@ BOOL ZBExtAppProperties::IsEqual( ZBExtAppProperties* pProp )
 
 BOOL ZBExtAppProperties::GetValue( const int nPropId, CString& strValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_COMMAND_TITLE:
-		{
-			strValue = m_CommandTitle;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_COMMAND_TITLE:
+        {
+            strValue = m_CommandTitle;
+            break;
+        }
 
-		case Z_COMMAND_LINE:
-		{
-			strValue = m_CommandLine;
-			break;
-		}
+        case Z_COMMAND_LINE:
+        {
+            strValue = m_CommandLine;
+            break;
+        }
 
-		case Z_COMMAND_PARAM:
-		{
-			strValue = m_CommandParameters;
-			break;
-		}
+        case Z_COMMAND_PARAM:
+        {
+            strValue = m_CommandParameters;
+            break;
+        }
 
-		case Z_COMMAND_STARTUPDIR:
-		{
-			strValue = m_CommandStartupDirectory;
-			break;
-		}
+        case Z_COMMAND_STARTUPDIR:
+        {
+            strValue = m_CommandStartupDirectory;
+            break;
+        }
 
-		default:
-		{
-			throw new CODPropertyConversionException();
-			return FALSE;
-		}
-	}
+        default:
+        {
+            throw new CODPropertyConversionException();
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBExtAppProperties::GetValue( const int nPropId, int& nValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_COMMAND_TITLE:
-		case Z_COMMAND_LINE:
-		case Z_COMMAND_PARAM:
-		case Z_COMMAND_STARTUPDIR:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_COMMAND_TITLE:
+        case Z_COMMAND_LINE:
+        case Z_COMMAND_PARAM:
+        case Z_COMMAND_STARTUPDIR:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		case Z_PRIORITY_LEVEL:
-		{
-			nValue = m_PriorityLevel;
-			break;
-		}
+        case Z_PRIORITY_LEVEL:
+        {
+            nValue = m_PriorityLevel;
+            break;
+        }
 
-		case Z_WINDOW_STARTMODE:
-		{
-			nValue = m_WindowStartMode;
-			break;
-		}
+        case Z_WINDOW_STARTMODE:
+        {
+            nValue = m_WindowStartMode;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBExtAppProperties::GetValue( const int nPropId, UINT& nValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_COMMAND_TITLE:
-		case Z_COMMAND_LINE:
-		case Z_COMMAND_PARAM:
-		case Z_COMMAND_STARTUPDIR:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_COMMAND_TITLE:
+        case Z_COMMAND_LINE:
+        case Z_COMMAND_PARAM:
+        case Z_COMMAND_STARTUPDIR:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		case Z_PRIORITY_LEVEL:
-		{
-			nValue = (UINT)m_PriorityLevel;
-			break;
-		}
+        case Z_PRIORITY_LEVEL:
+        {
+            nValue = (UINT)m_PriorityLevel;
+            break;
+        }
 
-		case Z_WINDOW_STARTMODE:
-		{
-			nValue = (UINT)m_WindowStartMode;
-			break;
-		}
+        case Z_WINDOW_STARTMODE:
+        {
+            nValue = (UINT)m_WindowStartMode;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBExtAppProperties::GetValue( const int nPropId, DWORD& dwValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_COMMAND_TITLE:
-		case Z_COMMAND_LINE:
-		case Z_COMMAND_PARAM:
-		case Z_COMMAND_STARTUPDIR:
-		case Z_PRIORITY_LEVEL:
-		case Z_WINDOW_STARTMODE:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_COMMAND_TITLE:
+        case Z_COMMAND_LINE:
+        case Z_COMMAND_PARAM:
+        case Z_COMMAND_STARTUPDIR:
+        case Z_PRIORITY_LEVEL:
+        case Z_WINDOW_STARTMODE:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBExtAppProperties::GetValue( const int nPropId, float& fValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_COMMAND_TITLE:
-		case Z_COMMAND_LINE:
-		case Z_COMMAND_PARAM:
-		case Z_COMMAND_STARTUPDIR:
-		case Z_PRIORITY_LEVEL:
-		case Z_WINDOW_STARTMODE:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_COMMAND_TITLE:
+        case Z_COMMAND_LINE:
+        case Z_COMMAND_PARAM:
+        case Z_COMMAND_STARTUPDIR:
+        case Z_PRIORITY_LEVEL:
+        case Z_WINDOW_STARTMODE:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 //@mfunc | ZBExtAppProperties | SetValue | Sets the value of the given property.
@@ -452,158 +452,158 @@ BOOL ZBExtAppProperties::GetValue( const int nPropId, float& fValue ) const
 // if the data type of the argument passed in is not compatible with the
 // given property identifier.
 
-BOOL ZBExtAppProperties::SetValue( const int nPropId, LPCTSTR lpszValue	)
+BOOL ZBExtAppProperties::SetValue( const int nPropId, LPCTSTR lpszValue    )
 {
-	switch ( nPropId )
-	{
-		case Z_COMMAND_TITLE:
-		{
-			m_CommandTitle = lpszValue;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_COMMAND_TITLE:
+        {
+            m_CommandTitle = lpszValue;
+            break;
+        }
 
-		case Z_COMMAND_LINE:
-		{
-			m_CommandLine = lpszValue;
-			break;
-		}
+        case Z_COMMAND_LINE:
+        {
+            m_CommandLine = lpszValue;
+            break;
+        }
 
-		case Z_COMMAND_PARAM:
-		{
-			m_CommandParameters = lpszValue;
-			break;
-		}
+        case Z_COMMAND_PARAM:
+        {
+            m_CommandParameters = lpszValue;
+            break;
+        }
 
-		case Z_COMMAND_STARTUPDIR:
-		{
-			m_CommandStartupDirectory = lpszValue;
-			break;
-		}
+        case Z_COMMAND_STARTUPDIR:
+        {
+            m_CommandStartupDirectory = lpszValue;
+            break;
+        }
 
-		default:
-		{
-			throw new CODPropertyConversionException();
-			return FALSE;
-		}
-	}
+        default:
+        {
+            throw new CODPropertyConversionException();
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBExtAppProperties::SetValue( const int nPropId, const int nValue )
 {
-	switch ( nPropId )
-	{
-		case Z_COMMAND_TITLE:
-		case Z_COMMAND_LINE:
-		case Z_COMMAND_PARAM:
-		case Z_COMMAND_STARTUPDIR:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_COMMAND_TITLE:
+        case Z_COMMAND_LINE:
+        case Z_COMMAND_PARAM:
+        case Z_COMMAND_STARTUPDIR:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		case Z_PRIORITY_LEVEL:
-		{
-			m_PriorityLevel = nValue;
-			break;
-		}
+        case Z_PRIORITY_LEVEL:
+        {
+            m_PriorityLevel = nValue;
+            break;
+        }
 
-		case Z_WINDOW_STARTMODE:
-		{
-			m_WindowStartMode = nValue;
-			break;
-		}
+        case Z_WINDOW_STARTMODE:
+        {
+            m_WindowStartMode = nValue;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBExtAppProperties::SetValue( const int nPropId, const UINT nValue )
 {
-	switch ( nPropId )
-	{
-		case Z_COMMAND_TITLE:
-		case Z_COMMAND_LINE:
-		case Z_COMMAND_PARAM:
-		case Z_COMMAND_STARTUPDIR:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_COMMAND_TITLE:
+        case Z_COMMAND_LINE:
+        case Z_COMMAND_PARAM:
+        case Z_COMMAND_STARTUPDIR:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		case Z_PRIORITY_LEVEL:
-		{
-			m_PriorityLevel = (int)nValue;
-			break;
-		}
+        case Z_PRIORITY_LEVEL:
+        {
+            m_PriorityLevel = (int)nValue;
+            break;
+        }
 
-		case Z_WINDOW_STARTMODE:
-		{
-			m_WindowStartMode = (int)nValue;
-			break;
-		}
+        case Z_WINDOW_STARTMODE:
+        {
+            m_WindowStartMode = (int)nValue;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBExtAppProperties::SetValue( const int nPropId, const DWORD dwValue )
 {
-	switch ( nPropId )
-	{
-		case Z_COMMAND_TITLE:
-		case Z_COMMAND_LINE:
-		case Z_COMMAND_PARAM:
-		case Z_COMMAND_STARTUPDIR:
-		case Z_PRIORITY_LEVEL:
-		case Z_WINDOW_STARTMODE:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_COMMAND_TITLE:
+        case Z_COMMAND_LINE:
+        case Z_COMMAND_PARAM:
+        case Z_COMMAND_STARTUPDIR:
+        case Z_PRIORITY_LEVEL:
+        case Z_WINDOW_STARTMODE:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBExtAppProperties::SetValue( const int nPropId, const float fValue )
 {
-	switch ( nPropId )
-	{
-		case Z_COMMAND_TITLE:
-		case Z_COMMAND_LINE:
-		case Z_COMMAND_PARAM:
-		case Z_COMMAND_STARTUPDIR:
-		case Z_PRIORITY_LEVEL:
-		case Z_WINDOW_STARTMODE:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_COMMAND_TITLE:
+        case Z_COMMAND_LINE:
+        case Z_COMMAND_PARAM:
+        case Z_COMMAND_STARTUPDIR:
+        case Z_PRIORITY_LEVEL:
+        case Z_WINDOW_STARTMODE:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -612,19 +612,19 @@ BOOL ZBExtAppProperties::SetValue( const int nPropId, const float fValue )
 #ifdef _DEBUG
 void ZBExtAppProperties::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void ZBExtAppProperties::Dump( CDumpContext& dc ) const
 {
-	CObject::Dump( dc );
+    CObject::Dump( dc );
 
-	dc << _T( "Title = " )					<< m_CommandTitle				<< _T( "\n" );
-	dc << _T( "Command line = " )			<< m_CommandLine				<< _T( "\n" );
-	dc << _T( "Command param = " )			<< m_CommandParameters			<< _T( "\n" );
-	dc << _T( "Command startup dir = " )	<< m_CommandStartupDirectory	<< _T( "\n" );
-	dc << _T( "Priority = " )				<< m_PriorityLevel				<< _T( "\n" );
-	dc << _T( "Window mode = " )			<< m_WindowStartMode			<< _T( "\n" );
+    dc << _T( "Title = " )                    << m_CommandTitle                << _T( "\n" );
+    dc << _T( "Command line = " )            << m_CommandLine                << _T( "\n" );
+    dc << _T( "Command param = " )            << m_CommandParameters            << _T( "\n" );
+    dc << _T( "Command startup dir = " )    << m_CommandStartupDirectory    << _T( "\n" );
+    dc << _T( "Priority = " )                << m_PriorityLevel                << _T( "\n" );
+    dc << _T( "Window mode = " )            << m_WindowStartMode            << _T( "\n" );
 }
 #endif //_DEBUG
 
@@ -636,22 +636,22 @@ void ZBExtAppProperties::Dump( CDumpContext& dc ) const
 //@parm The archive to use for serialization.
 void ZBExtAppProperties::Serialize( CArchive& ar )
 {
-	if ( ar.IsStoring() )
-	{
-		ar << m_CommandTitle;
-		ar << m_CommandLine;
-		ar << m_CommandParameters;
-		ar << m_CommandStartupDirectory;
-		ar << m_PriorityLevel;
-		ar << m_WindowStartMode;
-	}
-	else
-	{
-		ar >> m_CommandTitle;
-		ar >> m_CommandLine;
-		ar >> m_CommandParameters;
-		ar >> m_CommandStartupDirectory;
-		ar >> m_PriorityLevel;
-		ar >> m_WindowStartMode;
-	}
+    if ( ar.IsStoring() )
+    {
+        ar << m_CommandTitle;
+        ar << m_CommandLine;
+        ar << m_CommandParameters;
+        ar << m_CommandStartupDirectory;
+        ar << m_PriorityLevel;
+        ar << m_WindowStartMode;
+    }
+    else
+    {
+        ar >> m_CommandTitle;
+        ar >> m_CommandLine;
+        ar >> m_CommandParameters;
+        ar >> m_CommandStartupDirectory;
+        ar >> m_PriorityLevel;
+        ar >> m_WindowStartMode;
+    }
 }

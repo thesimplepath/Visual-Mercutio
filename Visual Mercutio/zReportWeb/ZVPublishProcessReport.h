@@ -1,9 +1,9 @@
 // ******************************************************************************************************
-// *									Classe ZVPublishProcessReport									*
+// *                                    Classe ZVPublishProcessReport                                    *
 // ******************************************************************************************************
-// * JMR-MODIF - Le 1er mars 2006 - Création de la nouvelle classe ZVPublishProcessReport.				*
+// * JMR-MODIF - Le 1er mars 2006 - Création de la nouvelle classe ZVPublishProcessReport.                *
 // ******************************************************************************************************
-// * Cette classe effectue la publication du rapport processus en tant que pages Internet.				*
+// * Cette classe effectue la publication du rapport processus en tant que pages Internet.                *
 // ******************************************************************************************************
 
 #if !defined(AFX_ZVPUBLISHPROCESSREPORT_H__2911BA6F_30D8_459C_9B9A_A644F79B704F__INCLUDED_)
@@ -54,128 +54,128 @@
 #endif
 
 // ******************************************************************************************************
-// *						  Classes utilisées pour la gestion interne des données						*
+// *                          Classes utilisées pour la gestion interne des données                        *
 // ******************************************************************************************************
 
 class AFX_EXT_CLASS _ZVSymbolEntity : public CObject
 {
 public:
 
-	_ZVSymbolEntity();
-	_ZVSymbolEntity( int			Ref,
-					 CString		Name,
-					 CString		Description );
+    _ZVSymbolEntity();
+    _ZVSymbolEntity( int            Ref,
+                     CString        Name,
+                     CString        Description );
 
-	~_ZVSymbolEntity();
+    ~_ZVSymbolEntity();
 
-	void			SetRef( int Ref );
-	int				GetRef();
+    void            SetRef( int Ref );
+    int                GetRef();
 
-	void			SetName( CString Name );
-	CString			GetName();
+    void            SetName( CString Name );
+    CString            GetName();
 
-	void			SetDescription( CString Description );
-	CString			GetDescription();
+    void            SetDescription( CString Description );
+    CString            GetDescription();
 
 private:
 
-	int				nRef;
+    int                nRef;
 
-	CString			m_Name;
-	CString			m_Description;
+    CString            m_Name;
+    CString            m_Description;
 };
 
 class AFX_EXT_CLASS _ZVSymbolContainer
 {
 public:
 
-	_ZVSymbolContainer();
-	~_ZVSymbolContainer();
+    _ZVSymbolContainer();
+    ~_ZVSymbolContainer();
 
-	void AddSymbol( _ZVSymbolEntity* SymbolEntity );
-	void RemoveAll();
-	void Sort();
+    void AddSymbol( _ZVSymbolEntity* SymbolEntity );
+    void RemoveAll();
+    void Sort();
 
-	_ZVSymbolEntity* GetAt ( POSITION Pos );
+    _ZVSymbolEntity* GetAt ( POSITION Pos );
 
-	POSITION GetHeadPosition();
-	POSITION GetTailPosition();
-	POSITION GetPrevPosition();
-	POSITION GetNextPosition();
-
-private:
-
-	// JMR-MODIF - Le 13 juin 2006 - Ajout de la fonction WashString.
-	CString WashString( CString EntryString );
+    POSITION GetHeadPosition();
+    POSITION GetTailPosition();
+    POSITION GetPrevPosition();
+    POSITION GetNextPosition();
 
 private:
 
-	CObList		m_SymbolList;
-	POSITION	m_Pos;
+    // JMR-MODIF - Le 13 juin 2006 - Ajout de la fonction WashString.
+    CString WashString( CString EntryString );
+
+private:
+
+    CObList        m_SymbolList;
+    POSITION    m_Pos;
 };
 
 // ******************************************************************************************************
-// *									 Classe ZVPublishProcessReport									*
+// *                                     Classe ZVPublishProcessReport                                    *
 // ******************************************************************************************************
 class AFX_EXT_CLASS ZVPublishProcessReport
 {
 public:
 
-	ZVPublishProcessReport			( ZDProcessGraphModelMdlBP*	pModel			= NULL,
-									  ZBPropertyAttributes*		pPropAttributes	= NULL );
+    ZVPublishProcessReport            ( ZDProcessGraphModelMdlBP*    pModel            = NULL,
+                                      ZBPropertyAttributes*        pPropAttributes    = NULL );
 
-	virtual ~ZVPublishProcessReport	();
+    virtual ~ZVPublishProcessReport    ();
 
-	bool Publish					( CString Directory );
-
-private:
-
-	bool CreateFileSystem			( CString Directory, ZDProcessGraphModelMdlBP* m_StartRootModel = NULL );
-
-	CString GenerateFilename		( CString Directory, CString ProcessName );
-
-	ZBSymbol* FindSymbol			( const CString SymbolName, ZDProcessGraphModelMdlBP* m_StartRootModel = NULL );
-	ZBLinkSymbol* FindLinkSymbol	( const CString SymbolName, ZDProcessGraphModelMdlBP* m_StartRootModel = NULL );
-
-	void CreateReport				( ZBBPProcessSymbol* m_pProcessSymbol );
-	void GeneratePageFile			( CString Name, CString Description );
-	void GenerateSection			( ZBPropertySet& PropSet );
-	void GenerateHTMLPageHead		( CString Title );
-	void GenerateHTMLPageFoot		();
-	void GenerateHTMLTableHead		();
-	void GenerateHTMLTableFoot		();
-
-	// JMR-MODIF - Le 18 avril 2007 - Suppression du 3ème paramètre.
-	void GenerateHTMLReportTitle	( CString DomainName, CString Title );
-
-	void GenerateHTMLSymbolTitle	( int NbRef, CString Title, CString ObjectType, COLORREF ColorTitle );
-	void GenerateHTMLSymbolTitle	( int NbRef, CString Title, COLORREF ColorTitle );
-	void GenerateHTMLSectionTitle	( CString Title );
-	void GenerateHTMLSectionLine	( CString NbRef, CString Title, CString Description );
-	void GenerateBlackLine			();
-	void GenerateSeparation			();
-
-	void WriteLine					( CString Text );
-	void WriteLine					( int nID );
-
-	void ResetDatas					();
+    bool Publish                    ( CString Directory );
 
 private:
 
-	ZBPropertyAttributes*			m_pPropAttributes;
+    bool CreateFileSystem            ( CString Directory, ZDProcessGraphModelMdlBP* m_StartRootModel = NULL );
 
-	ZDProcessGraphModelMdl*			m_pRootModel;
+    CString GenerateFilename        ( CString Directory, CString ProcessName );
 
-	ZDHtmlFile						HtmlFile;
+    ZBSymbol* FindSymbol            ( const CString SymbolName, ZDProcessGraphModelMdlBP* m_StartRootModel = NULL );
+    ZBLinkSymbol* FindLinkSymbol    ( const CString SymbolName, ZDProcessGraphModelMdlBP* m_StartRootModel = NULL );
 
-	ZVPublishModelGenerate			m_FileGenerateWindow;
+    void CreateReport                ( ZBBPProcessSymbol* m_pProcessSymbol );
+    void GeneratePageFile            ( CString Name, CString Description );
+    void GenerateSection            ( ZBPropertySet& PropSet );
+    void GenerateHTMLPageHead        ( CString Title );
+    void GenerateHTMLPageFoot        ();
+    void GenerateHTMLTableHead        ();
+    void GenerateHTMLTableFoot        ();
 
-	_ZVSymbolContainer				m_StartContainer;
-	_ZVSymbolContainer				m_StopContainer;
-	_ZVSymbolContainer				m_ProcedureContainer;
+    // JMR-MODIF - Le 18 avril 2007 - Suppression du 3ème paramètre.
+    void GenerateHTMLReportTitle    ( CString DomainName, CString Title );
 
-	// JMR-MODIF - Le 31 mai 2006 - Ajout de la variable m_DoorContainer.
-	_ZVSymbolContainer				m_DoorContainer;
+    void GenerateHTMLSymbolTitle    ( int NbRef, CString Title, CString ObjectType, COLORREF ColorTitle );
+    void GenerateHTMLSymbolTitle    ( int NbRef, CString Title, COLORREF ColorTitle );
+    void GenerateHTMLSectionTitle    ( CString Title );
+    void GenerateHTMLSectionLine    ( CString NbRef, CString Title, CString Description );
+    void GenerateBlackLine            ();
+    void GenerateSeparation            ();
+
+    void WriteLine                    ( CString Text );
+    void WriteLine                    ( int nID );
+
+    void ResetDatas                    ();
+
+private:
+
+    ZBPropertyAttributes*            m_pPropAttributes;
+
+    ZDProcessGraphModelMdl*            m_pRootModel;
+
+    ZDHtmlFile                        HtmlFile;
+
+    ZVPublishModelGenerate            m_FileGenerateWindow;
+
+    _ZVSymbolContainer                m_StartContainer;
+    _ZVSymbolContainer                m_StopContainer;
+    _ZVSymbolContainer                m_ProcedureContainer;
+
+    // JMR-MODIF - Le 31 mai 2006 - Ajout de la variable m_DoorContainer.
+    _ZVSymbolContainer                m_DoorContainer;
 };
 
 #endif // !defined(AFX_ZVPUBLISHPROCESSREPORT_H__2911BA6F_30D8_459C_9B9A_A644F79B704F__INCLUDED_)

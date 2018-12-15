@@ -44,24 +44,24 @@ class _ZVGraphModelViewport : public CODBufferedRulerViewport, public ZIObserver
 {
 public:
 
-	_ZVGraphModelViewport();
+    _ZVGraphModelViewport();
 
-	void ReSizeToWnd( CWnd& Wnd );
+    void ReSizeToWnd( CWnd& Wnd );
 
-	//////////////////////////////////////////////////////////////////////
-	// ZIObserver method
-	virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    //////////////////////////////////////////////////////////////////////
+    // ZIObserver method
+    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(_ZVGraphModelViewport)
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(_ZVGraphModelViewport)
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
 
-	virtual ~_ZVGraphModelViewport();
-	virtual BOOL CreateController();
+    virtual ~_ZVGraphModelViewport();
+    virtual BOOL CreateController();
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -71,43 +71,43 @@ class _ZVGraphModelController : public CODController, public ZIObserver
 {
 public:
 
-	_ZVGraphModelController( CODViewport* pViewport );
+    _ZVGraphModelController( CODViewport* pViewport );
 
-	CODSymbolComponent* GetSelectedSymbol()
-	{
-		return m_pSelectedSymbol;
-	};
+    CODSymbolComponent* GetSelectedSymbol()
+    {
+        return m_pSelectedSymbol;
+    };
 
-	//////////////////////////////////////////////////////////////////////
-	// ZIObserver method
-	virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    //////////////////////////////////////////////////////////////////////
+    // ZIObserver method
+    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
 
 // Implementation
 public:
 
-	virtual ~_ZVGraphModelController();
+    virtual ~_ZVGraphModelController();
 
-	/* Called whenever the selection changes. */
-	virtual void OnSelectionChange( CODComponentSet* pChangedSet );
+    /* Called whenever the selection changes. */
+    virtual void OnSelectionChange( CODComponentSet* pChangedSet );
 
 // Generated message map functions
 protected:
 
-	//{{AFX_MSG(_ZVGraphModelController)
-	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(_ZVGraphModelController)
+    afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
-	void OnRefresh();
-	void OnGoUp();
-
-private:
-
-	CODSymbolComponent* GetSymbolSelected();
+    void OnRefresh();
+    void OnGoUp();
 
 private:
 
-	CODSymbolComponent* m_pSelectedSymbol;
+    CODSymbolComponent* GetSymbolSelected();
+
+private:
+
+    CODSymbolComponent* m_pSelectedSymbol;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -118,62 +118,62 @@ class _ZVGraphModelWnd : public CWnd, public ZISubject, public ZIObserver
 // Construction
 public:
 
-	_ZVGraphModelWnd();
+    _ZVGraphModelWnd();
 
-	bool	GetEnableNavigate () const;
-	void	SetEnableNavigate ( bool value );
+    bool    GetEnableNavigate () const;
+    void    SetEnableNavigate ( bool value );
 
-	//////////////////////////////////////////////////////////////////////
-	// ZIObserver method
-	virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    //////////////////////////////////////////////////////////////////////
+    // ZIObserver method
+    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
 
 public:
 
-	virtual CWnd* GetWnd() const;
-	CODModel* GetModel();
-	void SetModel( CODModel* pModel );
-	void SetCurrentSymbol( CODSymbolComponent* pComp );
-	void Initialize();
+    virtual CWnd* GetWnd() const;
+    CODModel* GetModel();
+    void SetModel( CODModel* pModel );
+    void SetCurrentSymbol( CODSymbolComponent* pComp );
+    void Initialize();
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(_ZVGraphModelWnd)
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(_ZVGraphModelWnd)
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
 
-	virtual ~_ZVGraphModelWnd();
+    virtual ~_ZVGraphModelWnd();
 
 // Generated message map functions
 protected:
 
-	//{{AFX_MSG(_ZVGraphModelWnd)
-	afx_msg void OnPaint();
-	afx_msg void OnSize(UINT nType, int cx, int cy);
-	virtual BOOL OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
-	virtual BOOL OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(_ZVGraphModelWnd)
+    afx_msg void OnPaint();
+    afx_msg void OnSize(UINT nType, int cx, int cy);
+    virtual BOOL OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+    virtual BOOL OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 protected:
 
-	stingray::foundation::MvcScrollWrapper_T<_ZVGraphModelViewport> m_vpDialog;
-	CODModel*	m_pModel;
+    stingray::foundation::MvcScrollWrapper_T<_ZVGraphModelViewport> m_vpDialog;
+    CODModel*    m_pModel;
 
 private:
 
-	bool		m_EnableNavigate;
+    bool        m_EnableNavigate;
 };
 
 inline bool _ZVGraphModelWnd::GetEnableNavigate() const
 {
-	return m_EnableNavigate;
+    return m_EnableNavigate;
 }
 
 inline void _ZVGraphModelWnd::SetEnableNavigate( bool value )
 {
-	m_EnableNavigate = value;
+    m_EnableNavigate = value;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -181,26 +181,26 @@ inline void _ZVGraphModelWnd::SetEnableNavigate( bool value )
 
 class _ZBSelectSymbolObserverMsg : public ZIObserverMsg
 {
-	DECLARE_DYNAMIC( _ZBSelectSymbolObserverMsg )
+    DECLARE_DYNAMIC( _ZBSelectSymbolObserverMsg )
 
 public:
 
-	_ZBSelectSymbolObserverMsg( CODSymbolComponent* pComp = NULL );
-	virtual ~_ZBSelectSymbolObserverMsg();
+    _ZBSelectSymbolObserverMsg( CODSymbolComponent* pComp = NULL );
+    virtual ~_ZBSelectSymbolObserverMsg();
 
-	CODSymbolComponent* GetpComponent() const
-	{
-		return m_pComp;
-	};
+    CODSymbolComponent* GetpComponent() const
+    {
+        return m_pComp;
+    };
 
-	void SetpComponent( CODSymbolComponent* value )
-	{
-		m_pComp = value;
-	};
+    void SetpComponent( CODSymbolComponent* value )
+    {
+        m_pComp = value;
+    };
 
 private:
 
-	CODSymbolComponent* m_pComp;
+    CODSymbolComponent* m_pComp;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -210,44 +210,44 @@ class _ZVSelectSymbolFlatToolBar : public CStatic, public ZISubject
 {
 public:
 
-	// Construction
-	_ZVSelectSymbolFlatToolBar();
-	virtual ~_ZVSelectSymbolFlatToolBar();
+    // Construction
+    _ZVSelectSymbolFlatToolBar();
+    virtual ~_ZVSelectSymbolFlatToolBar();
 
-	void EnableNavigate( bool EnableNavigate = true );
+    void EnableNavigate( bool EnableNavigate = true );
 
 // Operations
 public:
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(_ZVSelectSymbolFlatToolBar)
-	public:
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	protected:
-	virtual void PreSubclassWindow();
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(_ZVSelectSymbolFlatToolBar)
+    public:
+    virtual BOOL PreTranslateMessage(MSG* pMsg);
+    protected:
+    virtual void PreSubclassWindow();
+    //}}AFX_VIRTUAL
 
 // Generated message map functions
 protected:
 
-	//{{AFX_MSG(_ZVSelectSymbolFlatToolBar)
-	afx_msg void OnRefreshButton();
-	afx_msg void OnGoUpButton();
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(_ZVSelectSymbolFlatToolBar)
+    afx_msg void OnRefreshButton();
+    afx_msg void OnGoUpButton();
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 // Attributes
 private:
 
-	CCJFlatButton	m_RefreshButton;
-	CCJFlatButton	m_GoUpButton;
+    CCJFlatButton    m_RefreshButton;
+    CCJFlatButton    m_GoUpButton;
 
-	CImageList		m_ImageList;
-	CToolTipCtrl	m_tooltip;
+    CImageList        m_ImageList;
+    CToolTipCtrl    m_tooltip;
 
-	bool			m_EnableNavigate;
+    bool            m_EnableNavigate;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -258,89 +258,89 @@ class AFX_EXT_CLASS ZVSelectSymbolFromGraphModel : public ZIDialog, public ZIObs
 // Construction
 public:
 
-	ZVSelectSymbolFromGraphModel( ZDProcessGraphModelMdl*	pModel,
-								  const CString				Title				= _T( "" ),
-								  int						SelectableItem		= Selectable_All,
-								  bool						EnableNavigate		= true,
-								  CWnd*						pParent				= NULL );
+    ZVSelectSymbolFromGraphModel( ZDProcessGraphModelMdl*    pModel,
+                                  const CString                Title                = _T( "" ),
+                                  int                        SelectableItem        = Selectable_All,
+                                  bool                        EnableNavigate        = true,
+                                  CWnd*                        pParent                = NULL );
 
-	ZVSelectSymbolFromGraphModel( ZDProcessGraphModelMdl*	pModel,
-								  const CString				Title,
-								  CRuntimeClass*			pSelectableClass,
-								  bool						EnableNavigate		= true,
-								  CWnd*						pParent				= NULL );
+    ZVSelectSymbolFromGraphModel( ZDProcessGraphModelMdl*    pModel,
+                                  const CString                Title,
+                                  CRuntimeClass*            pSelectableClass,
+                                  bool                        EnableNavigate        = true,
+                                  CWnd*                        pParent                = NULL );
 
-	ZVSelectSymbolFromGraphModel( ZDProcessGraphModelMdl*	pModel,
-								  UINT						nIDResTitle,
-								  int						SelectableItem		= Selectable_All,
-								  bool						EnableNavigate		= true,
-								  CWnd*						pParent				= NULL );
+    ZVSelectSymbolFromGraphModel( ZDProcessGraphModelMdl*    pModel,
+                                  UINT                        nIDResTitle,
+                                  int                        SelectableItem        = Selectable_All,
+                                  bool                        EnableNavigate        = true,
+                                  CWnd*                        pParent                = NULL );
 
-	ZVSelectSymbolFromGraphModel( ZDProcessGraphModelMdl*	pModel,
-								  UINT						nIDResTitle,
-								  CRuntimeClass*			pSelectableClass,
-								  bool						EnableNavigate		= true,
-								  CWnd*						pParent				= NULL );
+    ZVSelectSymbolFromGraphModel( ZDProcessGraphModelMdl*    pModel,
+                                  UINT                        nIDResTitle,
+                                  CRuntimeClass*            pSelectableClass,
+                                  bool                        EnableNavigate        = true,
+                                  CWnd*                        pParent                = NULL );
 
-	CODSymbolComponent* GetSelectedSymbol()
-	{
-		return m_pSelectedSymbol;
-	};
+    CODSymbolComponent* GetSelectedSymbol()
+    {
+        return m_pSelectedSymbol;
+    };
 
-	CString GetSymbolPath() const
-	{
-		return m_SymbolPath;
-	};
+    CString GetSymbolPath() const
+    {
+        return m_SymbolPath;
+    };
 
-	CString GetSymbolName() const
-	{
-		return m_SymbolName;
-	};
+    CString GetSymbolName() const
+    {
+        return m_SymbolName;
+    };
 
-	//////////////////////////////////////////////////////////////////////
-	// ZIObserver method
-	virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    //////////////////////////////////////////////////////////////////////
+    // ZIObserver method
+    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
 
-	// Dialog Data
-	//{{AFX_DATA(ZVSelectSymbolFromGraphModel)
-//	enum { IDD = IDD_SELECTSYMBOL_GRAPH };
-	CString	m_SymbolPath;
-	CString	m_SymbolName;
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZVSelectSymbolFromGraphModel)
+//    enum { IDD = IDD_SELECTSYMBOL_GRAPH };
+    CString    m_SymbolPath;
+    CString    m_SymbolName;
+    //}}AFX_DATA
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVSelectSymbolFromGraphModel)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVSelectSymbolFromGraphModel)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVSelectSymbolFromGraphModel)
-	virtual void OnOK();
-	virtual BOOL OnInitDialog();
-	afx_msg void OnSize(UINT nType, int cx, int cy);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVSelectSymbolFromGraphModel)
+    virtual void OnOK();
+    virtual BOOL OnInitDialog();
+    afx_msg void OnSize(UINT nType, int cx, int cy);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	void MoveControls( int cx, int cy );
-	void CheckSymbol( CODSymbolComponent* pComp );
+    void MoveControls( int cx, int cy );
+    void CheckSymbol( CODSymbolComponent* pComp );
 
 private:
 
-	ZDProcessGraphModelMdl*		m_pModel;
-	_ZVSelectSymbolFlatToolBar	m_FlatToolBar;
-	_ZVGraphModelWnd			m_wndModelGraph;
-	CString						m_Title;
-	CODSymbolComponent*			m_pSelectedSymbol;
-	CRuntimeClass*				m_pSelectableClass;
-	int							m_SelectableItem;
-	bool						m_EnableNavigate;
+    ZDProcessGraphModelMdl*        m_pModel;
+    _ZVSelectSymbolFlatToolBar    m_FlatToolBar;
+    _ZVGraphModelWnd            m_wndModelGraph;
+    CString                        m_Title;
+    CODSymbolComponent*            m_pSelectedSymbol;
+    CRuntimeClass*                m_pSelectableClass;
+    int                            m_SelectableItem;
+    bool                        m_EnableNavigate;
 };
 
 //{{AFX_INSERT_LOCATION}}

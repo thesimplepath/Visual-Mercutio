@@ -38,52 +38,52 @@ ZBEventServer::~ZBEventServer()
 
 ZBEventServer::ZBEventServer(const ZBEventServer &right)
 {
-	*this = right;
+    *this = right;
 }
 
 const ZBEventServer & ZBEventServer::operator=(const ZBEventServer &right)
 {
-	ZBEvent::operator=( right );
-	m_Filename = right.m_Filename;
-	m_EventResult = right.m_EventResult;
-	return *this;
+    ZBEvent::operator=( right );
+    m_Filename = right.m_Filename;
+    m_EventResult = right.m_EventResult;
+    return *this;
 }
 
 
-CString		ZBEventServer::GetEventResultStr() const
+CString        ZBEventServer::GetEventResultStr() const
 {
-	CString	Text;
-	UINT	nID;
-	switch (GetEventResult())
-	{
-		case EventImported:
-		{
-			nID = IDS_EVENTIMPORTED;
-			break;
-		}
-		case EventRejected:
-		{
-			nID = IDS_EVENTREJECTED;
-			break;
-		}
-		case EventLogAdded:
-		{
-			nID = IDS_EVENTLOGADDED;
-			break;
-		}
-		case EventLogProblem:
-		{
-			nID = IDS_EVENTLOGPROBLEM;
-			break;
-		}
-		case EventNF:
-		default:
-		{
-			nID = IDS_EVENTUNDEFINED;
-			break;
-		}
-	}
-	Text.LoadString( nID );
-	return Text;
+    CString    Text;
+    UINT    nID;
+    switch (GetEventResult())
+    {
+        case EventImported:
+        {
+            nID = IDS_EVENTIMPORTED;
+            break;
+        }
+        case EventRejected:
+        {
+            nID = IDS_EVENTREJECTED;
+            break;
+        }
+        case EventLogAdded:
+        {
+            nID = IDS_EVENTLOGADDED;
+            break;
+        }
+        case EventLogProblem:
+        {
+            nID = IDS_EVENTLOGPROBLEM;
+            break;
+        }
+        case EventNF:
+        default:
+        {
+            nID = IDS_EVENTUNDEFINED;
+            break;
+        }
+    }
+    Text.LoadString( nID );
+    return Text;
 }
 

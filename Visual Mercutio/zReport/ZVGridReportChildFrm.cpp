@@ -22,10 +22,10 @@ static char THIS_FILE[] = __FILE__;
 IMPLEMENT_DYNCREATE( ZVGridReportChildFrame, ZVGridChildFrame )
 
 BEGIN_MESSAGE_MAP( ZVGridReportChildFrame, ZVGridChildFrame )
-	//{{AFX_MSG_MAP(ZVGridReportChildFrame)
-	ON_MESSAGE(WM_GX_INITNEW, OnInitNew)
-	ON_MESSAGE(WM_GX_INITFILE, OnInitFromFile)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZVGridReportChildFrame)
+    ON_MESSAGE(WM_GX_INITNEW, OnInitNew)
+    ON_MESSAGE(WM_GX_INITFILE, OnInitFromFile)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -33,16 +33,16 @@ END_MESSAGE_MAP()
 
 ZVGridReportChildFrame::ZVGridReportChildFrame()
 {
-	SetDocRuntimeClass( RUNTIME_CLASS( ZDGridReportDocument ) );
-	SetViewRuntimeClass( RUNTIME_CLASS( ZVGridReportView ) );
+    SetDocRuntimeClass( RUNTIME_CLASS( ZDGridReportDocument ) );
+    SetViewRuntimeClass( RUNTIME_CLASS( ZVGridReportView ) );
 }
 
 ZVGridReportChildFrame::~ZVGridReportChildFrame()
 {
-	// RS-MODIF 20.12.04 We need to remove the tab manager when destroying the child frame, because sometimes it remains for no reason
-	// and causes the application to crash
-	CGXAppAdapter* pAppAdapt = dynamic_cast<CGXAppAdapter*>( AfxGetApp() );
-	pAppAdapt->RemoveTabManager( CGXFrameAdapter::GetWindow()->GetRuntimeClass(), m_pContext->m_pCurrentDoc );
+    // RS-MODIF 20.12.04 We need to remove the tab manager when destroying the child frame, because sometimes it remains for no reason
+    // and causes the application to crash
+    CGXAppAdapter* pAppAdapt = dynamic_cast<CGXAppAdapter*>( AfxGetApp() );
+    pAppAdapt->RemoveTabManager( CGXFrameAdapter::GetWindow()->GetRuntimeClass(), m_pContext->m_pCurrentDoc );
 }
 
 //////////////////
@@ -50,16 +50,16 @@ ZVGridReportChildFrame::~ZVGridReportChildFrame()
 
 void ZVGridReportChildFrame::OnUpdateFrameTitle( BOOL bAddToTitle )
 {
-	ZVGridChildFrame::OnUpdateFrameTitle( bAddToTitle );
-	CDocument* pDoc = GetActiveDocument();
+    ZVGridChildFrame::OnUpdateFrameTitle( bAddToTitle );
+    CDocument* pDoc = GetActiveDocument();
 
-	if ( pDoc && ISA( pDoc, ZDGridReportDocument ) )
-	{
-		CString WndText = ( (ZDGridReportDocument*)pDoc )->GetReportTitle();
+    if ( pDoc && ISA( pDoc, ZDGridReportDocument ) )
+    {
+        CString WndText = ( (ZDGridReportDocument*)pDoc )->GetReportTitle();
 
-		// Set the right title
-		SetWindowText( WndText );
-	}
+        // Set the right title
+        SetWindowText( WndText );
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -68,54 +68,54 @@ void ZVGridReportChildFrame::OnUpdateFrameTitle( BOOL bAddToTitle )
 // default initialization for the tabs
 LRESULT ZVGridReportChildFrame::OnInitNew( WPARAM wParam, LPARAM lParam )
 {
-	// RS-MODIF 15.12.04 doc bug => the crash occurs in this routine
-	// when the pointer m_hWnd from m_pActivePane is wrong
-	LRESULT lResult = CGXWChildFrame::OnInitNew( wParam, lParam );
+    // RS-MODIF 15.12.04 doc bug => the crash occurs in this routine
+    // when the pointer m_hWnd from m_pActivePane is wrong
+    LRESULT lResult = CGXWChildFrame::OnInitNew( wParam, lParam );
 
-	CGXAppAdapter* pAppAdapt = dynamic_cast<CGXAppAdapter*>( AfxGetApp() );
+    CGXAppAdapter* pAppAdapt = dynamic_cast<CGXAppAdapter*>( AfxGetApp() );
 
-	ASSERT( pAppAdapt != NULL );
+    ASSERT( pAppAdapt != NULL );
 
-	// We need a valid create context --> END
-	ASSERT( m_pContext != NULL );
+    // We need a valid create context --> END
+    ASSERT( m_pContext != NULL );
 
-	// RS-MODIF 15.12.04 doc bug test
-	// the call to GetTabManager fails to create a new tab manager depending on an information in m_pContext->m_pCurrentDoc
-	// stingray calls a routine where GetMap()->Lookup(dw, pObject) should return FALSE (that is, the object at memory dw should not exist)
-	// when the object exist, the crash occurs
-	CGXTabWndMgr* pMgr =
-		pAppAdapt->GetTabManager( CGXFrameAdapter::GetWindow()->GetRuntimeClass(), m_pContext->m_pCurrentDoc );
+    // RS-MODIF 15.12.04 doc bug test
+    // the call to GetTabManager fails to create a new tab manager depending on an information in m_pContext->m_pCurrentDoc
+    // stingray calls a routine where GetMap()->Lookup(dw, pObject) should return FALSE (that is, the object at memory dw should not exist)
+    // when the object exist, the crash occurs
+    CGXTabWndMgr* pMgr =
+        pAppAdapt->GetTabManager( CGXFrameAdapter::GetWindow()->GetRuntimeClass(), m_pContext->m_pCurrentDoc );
 
-	// Call the post initialization handler
-	if ( ISA( m_pContext->m_pCurrentDoc, ZDGridReportDocument ) )
-	{
-		dynamic_cast<ZDGridReportDocument*>( m_pContext->m_pCurrentDoc )->OnPostInitialized( pMgr, pAppAdapt, true );
-	}
+    // Call the post initialization handler
+    if ( ISA( m_pContext->m_pCurrentDoc, ZDGridReportDocument ) )
+    {
+        dynamic_cast<ZDGridReportDocument*>( m_pContext->m_pCurrentDoc )->OnPostInitialized( pMgr, pAppAdapt, true );
+    }
 
-	return lResult;
+    return lResult;
 }
 
 // When initializing from a file
 LRESULT ZVGridReportChildFrame::OnInitFromFile( WPARAM wParam, LPARAM lParam )
 {
-	LRESULT lResult = CGXWChildFrame::OnInitFromFile( wParam, lParam );
+    LRESULT lResult = CGXWChildFrame::OnInitFromFile( wParam, lParam );
 
-	CGXAppAdapter* pAppAdapt = dynamic_cast<CGXAppAdapter*>( AfxGetApp() );
-	ASSERT( pAppAdapt != NULL );
+    CGXAppAdapter* pAppAdapt = dynamic_cast<CGXAppAdapter*>( AfxGetApp() );
+    ASSERT( pAppAdapt != NULL );
 
-	// We need a valid create context --> END
-	ASSERT( m_pContext != NULL );
+    // We need a valid create context --> END
+    ASSERT( m_pContext != NULL );
 
-	CGXTabWndMgr* pMgr =
-		pAppAdapt->GetTabManager( CGXFrameAdapter::GetWindow()->GetRuntimeClass(), m_pContext->m_pCurrentDoc );
+    CGXTabWndMgr* pMgr =
+        pAppAdapt->GetTabManager( CGXFrameAdapter::GetWindow()->GetRuntimeClass(), m_pContext->m_pCurrentDoc );
 
-	// Call the post initialization handler
-	if ( ISA( m_pContext->m_pCurrentDoc, ZDGridReportDocument ) )
-	{
-		dynamic_cast<ZDGridReportDocument*>( m_pContext->m_pCurrentDoc )->OnPostInitialized( pMgr, pAppAdapt, false );
-	}
+    // Call the post initialization handler
+    if ( ISA( m_pContext->m_pCurrentDoc, ZDGridReportDocument ) )
+    {
+        dynamic_cast<ZDGridReportDocument*>( m_pContext->m_pCurrentDoc )->OnPostInitialized( pMgr, pAppAdapt, false );
+    }
 
-	return lResult;
+    return lResult;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -124,11 +124,11 @@ LRESULT ZVGridReportChildFrame::OnInitFromFile( WPARAM wParam, LPARAM lParam )
 #ifdef _DEBUG
 void ZVGridReportChildFrame::AssertValid() const
 {
-	ZVGridChildFrame::AssertValid();
+    ZVGridChildFrame::AssertValid();
 }
 
 void ZVGridReportChildFrame::Dump( CDumpContext& dc ) const
 {
-	ZVGridChildFrame::Dump( dc );
+    ZVGridChildFrame::Dump( dc );
 }
 #endif //_DEBUG

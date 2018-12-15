@@ -8,7 +8,7 @@
 #endif // _MSC_VER > 1000
 
 #ifndef __AFXWIN_H__
-	#error include 'stdafx.h' before including this file for PCH
+    #error include 'stdafx.h' before including this file for PCH
 #endif
 
 // Change the definition of AFX_EXT... to make it import
@@ -19,7 +19,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "ddeml.h"	// DDE definition
+#include "ddeml.h"    // DDE definition
 
 // JMR-MODIF - Le 31 décembre 2006 - Ajout de l'en-tête zMediatorZAApp.h
 #include "zMediator\zMediatorZAApp.h"
@@ -43,42 +43,42 @@ class AFX_EXT_CLASS ZASingleInstanceApplication : public zMediatorZAApp
 {
 public:
 
-	ZASingleInstanceApplication();
+    ZASingleInstanceApplication();
 
 public:
 
-	HDDEDATA AppDdeCallback( WORD, WORD, HCONV, HSZ, HSZ, HDDEDATA, DWORD, DWORD );
+    HDDEDATA AppDdeCallback( WORD, WORD, HCONV, HSZ, HSZ, HDDEDATA, DWORD, DWORD );
 
 // Overrides
 public:
 
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZASingleInstanceApplication)
-	public:
-	virtual BOOL InitInstance();
-	virtual int ExitInstance();
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZASingleInstanceApplication)
+    public:
+    virtual BOOL InitInstance();
+    virtual int ExitInstance();
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
 
-	//{{AFX_MSG(ZASingleInstanceApplication)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZASingleInstanceApplication)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 protected:
 
-	CString m_CppServerName;
-	CString m_CppTopicName;
+    CString m_CppServerName;
+    CString m_CppTopicName;
 
 private:
 
-	bool	isRun;
-	DWORD	idInst;
-	HSZ		hszCppServer;
-	HSZ		hszCppTopic;
-	HCONV	hconvCppServer;
-	DWORD	dderesult;
+    bool    isRun;
+    DWORD    idInst;
+    HSZ        hszCppServer;
+    HSZ        hszCppTopic;
+    HCONV    hconvCppServer;
+    DWORD    dderesult;
 };
 
 HDDEDATA CALLBACK DdeCallback( WORD, WORD, HCONV, HSZ, HSZ, HDDEDATA, DWORD, DWORD );

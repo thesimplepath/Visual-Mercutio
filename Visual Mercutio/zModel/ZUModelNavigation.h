@@ -13,9 +13,9 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 06/2001
+// <nl>Created:         06/2001
 // <nl>Description:  ZUModelNavigation offers the possibility to navigate
-//					 through process symbols
+//                     through process symbols
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -58,50 +58,50 @@ class AFX_EXT_CLASS ZUModelNavigation : public ZIBasicSymbolVisitor
 {
 public:
 
-	ZUModelNavigation( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
-	virtual ~ZUModelNavigation();
+    ZUModelNavigation( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
+    virtual ~ZUModelNavigation();
 
-	bool Navigate( ZDProcessGraphModelMdl* pModel, void* pClass );
-	bool Navigate( ZDProcessGraphModelMdl* pModel );
-	bool Navigate();
+    bool Navigate( ZDProcessGraphModelMdl* pModel, void* pClass );
+    bool Navigate( ZDProcessGraphModelMdl* pModel );
+    bool Navigate();
 
-	// Call-back methods
-	virtual bool OnStart()
-	{
-		return true;
-	};
+    // Call-back methods
+    virtual bool OnStart()
+    {
+        return true;
+    };
 
-	virtual bool OnFinish()
-	{
-		return true;
-	};
+    virtual bool OnFinish()
+    {
+        return true;
+    };
 
-	virtual bool OnSymbol( ZBSymbol* pSymbol )
-	{
-		return true;
-	};
+    virtual bool OnSymbol( ZBSymbol* pSymbol )
+    {
+        return true;
+    };
 
-	virtual bool OnLink( ZBLinkSymbol* pLink )
-	{
-		return true;
-	};
+    virtual bool OnLink( ZBLinkSymbol* pLink )
+    {
+        return true;
+    };
 
-	void SetLog( ZILog* pLog )
-	{
-		m_pLog = pLog;
-	};
+    void SetLog( ZILog* pLog )
+    {
+        m_pLog = pLog;
+    };
 
-	/* Each concrete derived ZIBasicSymbolVisitor class
-	   must implement Visit to implement the appropriate algorithm
-	   In this concrete class the Visit will On the
-	   BasicSymbol passes as an argument */
-	virtual bool Visit( CODComponent& Symbol );
+    /* Each concrete derived ZIBasicSymbolVisitor class
+       must implement Visit to implement the appropriate algorithm
+       In this concrete class the Visit will On the
+       BasicSymbol passes as an argument */
+    virtual bool Visit( CODComponent& Symbol );
 
 protected:
 
-	ZDProcessGraphModelMdl*	m_pModel;
-	void*					m_pClass;
-	ZILog*					m_pLog;
+    ZDProcessGraphModelMdl*    m_pModel;
+    void*                    m_pClass;
+    ZILog*                    m_pLog;
 };
 
 #endif // !defined(AFX_ZUModelNavigation_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)

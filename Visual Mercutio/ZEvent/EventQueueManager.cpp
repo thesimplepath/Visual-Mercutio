@@ -23,51 +23,51 @@ ZBEventQueueManager::~ZBEventQueueManager()
 
 BOOL ZBEventQueueManager::Create( const CString Directory )
 {
-	if (Directory.GetAt( Directory.GetLength()-1 ) == '\\')
-		m_Directory = Directory.Left( Directory.GetLength()-1 );
-	else
-		m_Directory = Directory;
+    if (Directory.GetAt( Directory.GetLength()-1 ) == '\\')
+        m_Directory = Directory.Left( Directory.GetLength()-1 );
+    else
+        m_Directory = Directory;
 
-	// Make the queue directory lower case.
-	m_Directory.MakeLower();
+    // Make the queue directory lower case.
+    m_Directory.MakeLower();
 
-	return TRUE;
+    return TRUE;
 }
 
-BOOL	ZBEventQueueManager::DispatchToEventQueue( ZBEventActivity& EventActivity )
+BOOL    ZBEventQueueManager::DispatchToEventQueue( ZBEventActivity& EventActivity )
 {
-	CString	Filename = BuildActivityEventFilename( EventActivity );
-	m_EventActivityFile.ExportActivityToFile( Filename, &EventActivity );
-	return TRUE;
+    CString    Filename = BuildActivityEventFilename( EventActivity );
+    m_EventActivityFile.ExportActivityToFile( Filename, &EventActivity );
+    return TRUE;
 }
 
-CString	ZBEventQueueManager::BuildActivityEventFilename( ZBEventActivity& EventActivity )
+CString    ZBEventQueueManager::BuildActivityEventFilename( ZBEventActivity& EventActivity )
 {
-	CString	File = m_Directory + "\\" + EventActivity.GetFilename() + EventActivity.GetFileExtension();
-	for (int i = 0; i < 20; ++i)
-	{
-		// Check if the file exists
-		CFileStatus status;
-		if (CFile::GetStatus( File, status ))
-		{
-			TRACE("SLEEP IN DISPATCH TO EVENT QUEUE");
-			::Sleep(100);
-			continue;
-		}
-		else
-			break;
-	}
-	if (i < 20)
-		return File;
-	char FileBuffer[MAX_PATH];
-	// If the filename already exists, choose another name
-	GetTempFileName( m_Directory,	// pointer to directory name for temporary file
-	  "Exp",						// pointer to file name prefix
-	  0,							// number used to create temporary file name
-	  FileBuffer);					// pointer to buffer that receives the new 
-									// file name
-	TRACE("TEMPORARY FILE CREATED");
-	return FileBuffer;
+    CString    File = m_Directory + "\\" + EventActivity.GetFilename() + EventActivity.GetFileExtension();
+    for (int i = 0; i < 20; ++i)
+    {
+        // Check if the file exists
+        CFileStatus status;
+        if (CFile::GetStatus( File, status ))
+        {
+            TRACE("SLEEP IN DISPATCH TO EVENT QUEUE");
+            ::Sleep(100);
+            continue;
+        }
+        else
+            break;
+    }
+    if (i < 20)
+        return File;
+    char FileBuffer[MAX_PATH];
+    // If the filename already exists, choose another name
+    GetTempFileName( m_Directory,    // pointer to directory name for temporary file
+      "Exp",                        // pointer to file name prefix
+      0,                            // number used to create temporary file name
+      FileBuffer);                    // pointer to buffer that receives the new 
+                                    // file name
+    TRACE("TEMPORARY FILE CREATED");
+    return FileBuffer;
 }
 
 

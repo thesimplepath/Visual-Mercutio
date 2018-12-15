@@ -38,55 +38,55 @@ class AFX_EXT_CLASS ZVDistributionAttributesSelectionDlg : public CDialog
 {
 // Construction
 public:
-	ZVDistributionAttributesSelectionDlg(ZBDistributionAttributeManager* pDistribManager, 
-										 ZBDynamicPropertiesManager* pPropManager, 
-										 ZBUserGroupEntity* pMainUserGroup,
-										 CWnd* pParent = NULL);   // standard constructor
+    ZVDistributionAttributesSelectionDlg(ZBDistributionAttributeManager* pDistribManager, 
+                                         ZBDynamicPropertiesManager* pPropManager, 
+                                         ZBUserGroupEntity* pMainUserGroup,
+                                         CWnd* pParent = NULL);   // standard constructor
 
-	ZBDistributionAttribute* GetSelectedDistributionAttribute()
-	{
-		return m_List.GetSelectedDistributionAttribute();
-	};
-	ZBDistributionRule*	GetSelectedDistributionRule()
-	{
-		return m_List.GetSelectedDistributionRule();
-	};
+    ZBDistributionAttribute* GetSelectedDistributionAttribute()
+    {
+        return m_List.GetSelectedDistributionAttribute();
+    };
+    ZBDistributionRule*    GetSelectedDistributionRule()
+    {
+        return m_List.GetSelectedDistributionRule();
+    };
 
 
 private:
 // Dialog Data
-	//{{AFX_DATA(ZVDistributionAttributesSelectionDlg)
-	enum { IDD = IDD_DISTRIBUTIONATTRIBUTES };
-	ZCDistributionAttributesList	m_List;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZVDistributionAttributesSelectionDlg)
+    enum { IDD = IDD_DISTRIBUTIONATTRIBUTES };
+    ZCDistributionAttributesList    m_List;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVDistributionAttributesSelectionDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVDistributionAttributesSelectionDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVDistributionAttributesSelectionDlg)
-	afx_msg void OnClickDistribattributeList(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnDblclkDistribattributeList(NMHDR* pNMHDR, LRESULT* pResult);
-	virtual void OnOK();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVDistributionAttributesSelectionDlg)
+    afx_msg void OnClickDistribattributeList(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnDblclkDistribattributeList(NMHDR* pNMHDR, LRESULT* pResult);
+    virtual void OnOK();
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	void CheckControlState();
+    void CheckControlState();
 
 private:
-	ZBDistributionAttributeManager* m_pDistribManager;
-	ZBDynamicPropertiesManager* m_pPropManager;
-	ZBUserGroupEntity* m_pMainUserGroup;
+    ZBDistributionAttributeManager* m_pDistribManager;
+    ZBDynamicPropertiesManager* m_pPropManager;
+    ZBUserGroupEntity* m_pMainUserGroup;
 };
 
 //{{AFX_INSERT_LOCATION}}

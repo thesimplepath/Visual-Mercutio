@@ -22,12 +22,12 @@ ZDModelStateMachineDocument::ZDModelStateMachineDocument(ZBStateMachineCollectio
 
 BOOL ZDModelStateMachineDocument::OnNewDocument()
 {
-	ASSERT(FALSE);
-	return FALSE;
+    ASSERT(FALSE);
+    return FALSE;
 /*
-	if (!CDocument::OnNewDocument())
-		return FALSE;
-	return TRUE;
+    if (!CDocument::OnNewDocument())
+        return FALSE;
+    return TRUE;
 */
 }
 
@@ -38,83 +38,83 @@ ZDModelStateMachineDocument::~ZDModelStateMachineDocument()
 
 bool ZDModelStateMachineDocument::ReadFromFile( const CString Filename, ZBStateMachineCollection* pModelStateMachine /*= NULL*/ )
 {
-	// Check if necessary to assign a model state machine pointer
-	if (pModelStateMachine)
-		m_pStateMachineCollection = pModelStateMachine;
-	// Check if a model state machine pointer is valid
-	if (!m_pStateMachineCollection)
-		return false;
+    // Check if necessary to assign a model state machine pointer
+    if (pModelStateMachine)
+        m_pStateMachineCollection = pModelStateMachine;
+    // Check if a model state machine pointer is valid
+    if (!m_pStateMachineCollection)
+        return false;
 
-	bool			RetValue = false;
-	CFile			file;
-	CFileException	fe;
-	if (!file.Open( Filename, CFile::modeRead | CFile::shareDenyWrite, &fe ))
-		return FALSE;
-	CArchive loadArchive(&file, CArchive::load | CArchive::bNoFlushOnDelete);
-	loadArchive.m_pDocument = this;
-	loadArchive.m_bForceFlat = FALSE;
-	TRY
-	{
-		Serialize( loadArchive );
-		RetValue = TRUE;
-	}
-	CATCH( CArchiveException, e )
-	{
-		RetValue = FALSE;
-	}
-	END_CATCH
+    bool            RetValue = false;
+    CFile            file;
+    CFileException    fe;
+    if (!file.Open( Filename, CFile::modeRead | CFile::shareDenyWrite, &fe ))
+        return FALSE;
+    CArchive loadArchive(&file, CArchive::load | CArchive::bNoFlushOnDelete);
+    loadArchive.m_pDocument = this;
+    loadArchive.m_bForceFlat = FALSE;
+    TRY
+    {
+        Serialize( loadArchive );
+        RetValue = TRUE;
+    }
+    CATCH( CArchiveException, e )
+    {
+        RetValue = FALSE;
+    }
+    END_CATCH
 
-	loadArchive.Close();
-	file.Close();
-	// If everything is ok, set the pathname.
-	if (RetValue)
-		SetPathName( Filename, FALSE );
-	// Set IsLoaded member
-	m_IsLoaded = (RetValue) ? true : false;
-	return RetValue;
+    loadArchive.Close();
+    file.Close();
+    // If everything is ok, set the pathname.
+    if (RetValue)
+        SetPathName( Filename, FALSE );
+    // Set IsLoaded member
+    m_IsLoaded = (RetValue) ? true : false;
+    return RetValue;
 }
 
 
 bool ZDModelStateMachineDocument::SaveToFile( const CString Filename, ZBStateMachineCollection* pModelStateMachine /*= NULL*/ )
 {
-	// Check if necessary to assign a model state machine pointer
-	if (pModelStateMachine)
-		m_pStateMachineCollection = pModelStateMachine;
-	// Check if a model state machine pointer is valid
-	if (!m_pStateMachineCollection)
-		return false;
+    // Check if necessary to assign a model state machine pointer
+    if (pModelStateMachine)
+        m_pStateMachineCollection = pModelStateMachine;
+    // Check if a model state machine pointer is valid
+    if (!m_pStateMachineCollection)
+        return false;
 
-	bool			RetValue = false;
-	CFile			file;
-	CFileException	fe;
-	if (!file.Open( Filename, CFile::modeCreate | CFile::modeWrite | CFile::shareDenyWrite, &fe ))
-		return FALSE;
-	CArchive saveArchive(&file, CArchive::store | CArchive::bNoFlushOnDelete);
-	saveArchive.m_pDocument = this;
-	saveArchive.m_bForceFlat = FALSE;
-	TRY
-	{
-		Serialize( saveArchive );
-		RetValue = TRUE;
-	}
-	CATCH( CArchiveException, e )
-	{
-		RetValue = FALSE;
-	}
-	END_CATCH
+    bool            RetValue = false;
+    CFile            file;
+    CFileException    fe;
+    if (!file.Open( Filename, CFile::modeCreate | CFile::modeWrite | CFile::shareDenyWrite, &fe ))
+        return FALSE;
+    CArchive saveArchive(&file, CArchive::store | CArchive::bNoFlushOnDelete);
+    saveArchive.m_pDocument = this;
+    saveArchive.m_bForceFlat = FALSE;
+    TRY
+    {
+        Serialize( saveArchive );
+        RetValue = TRUE;
+    }
+    CATCH( CArchiveException, e )
+    {
+        RetValue = FALSE;
+    }
+    END_CATCH
 
-	saveArchive.Close();
-	file.Close();
-	// After a save, clear the modified flag
-	SetModifiedFlag(FALSE);
-	return RetValue;
+    saveArchive.Close();
+    file.Close();
+    // After a save, clear the modified flag
+    SetModifiedFlag(FALSE);
+    return RetValue;
 }
 
 
 
 BEGIN_MESSAGE_MAP(ZDModelStateMachineDocument, CDocument)
-	//{{AFX_MSG_MAP(ZDModelStateMachineDocument)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZDModelStateMachineDocument)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -123,12 +123,12 @@ END_MESSAGE_MAP()
 #ifdef _DEBUG
 void ZDModelStateMachineDocument::AssertValid() const
 {
-	CDocument::AssertValid();
+    CDocument::AssertValid();
 }
 
 void ZDModelStateMachineDocument::Dump(CDumpContext& dc) const
 {
-	CDocument::Dump(dc);
+    CDocument::Dump(dc);
 }
 #endif //_DEBUG
 
@@ -137,20 +137,20 @@ void ZDModelStateMachineDocument::Dump(CDumpContext& dc) const
 
 void ZDModelStateMachineDocument::Serialize(CArchive& ar)
 {
-	ASSERT( m_pStateMachineCollection );
-	// Serialize the environement
-	m_pStateMachineCollection->Serialize(ar);
+    ASSERT( m_pStateMachineCollection );
+    // Serialize the environement
+    m_pStateMachineCollection->Serialize(ar);
 
-	// If some other information to serialize do it below
+    // If some other information to serialize do it below
 /*
-	if (ar.IsStoring())
-	{
-		// TODO: add storing code here
-	}
-	else
-	{
-		// TODO: add loading code here
-	}
+    if (ar.IsStoring())
+    {
+        // TODO: add storing code here
+    }
+    else
+    {
+        // TODO: add loading code here
+    }
 */
 }
 

@@ -16,46 +16,46 @@ class AFX_EXT_CLASS ZIWelcomeWriter : public ZIWelcomeDialog
 {
 // Construction
 public:
-	ZIWelcomeWriter(ZAApplicationOption* pApplicationOptions, BOOL EnableMoveToGeneral = FALSE, CWnd* pParent = NULL);   // standard constructor
+    ZIWelcomeWriter(ZAApplicationOption* pApplicationOptions, BOOL EnableMoveToGeneral = FALSE, CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
 #ifndef _WIN32
-	enum { IDD = IDD_WELCOME_PROCESS };
-	CButton	m_FileOpenProcess;
-	CButton	m_StartProcess;
-	CButton	m_StartForm;
-	CButton	m_FileOpen;
+    enum { IDD = IDD_WELCOME_PROCESS };
+    CButton    m_FileOpenProcess;
+    CButton    m_StartProcess;
+    CButton    m_StartForm;
+    CButton    m_FileOpen;
 #endif
 #ifdef _WIN32
 // Dialog Data
-	//{{AFX_DATA(ZIWelcomeWriter)
-	enum { IDD = IDD_WELCOME_WRITER };
-	ZUHoverButton	m_FileOpenProcess;
-	ZUHoverButton	m_StartProcess;
-	ZUHoverButton	m_StartForm;
-	ZUHoverButton	m_FileOpen;
-	//}}AFX_DATA
-#endif	
+    //{{AFX_DATA(ZIWelcomeWriter)
+    enum { IDD = IDD_WELCOME_WRITER };
+    ZUHoverButton    m_FileOpenProcess;
+    ZUHoverButton    m_StartProcess;
+    ZUHoverButton    m_StartForm;
+    ZUHoverButton    m_FileOpen;
+    //}}AFX_DATA
+#endif    
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIWelcomeWriter)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIWelcomeWriter)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZIWelcomeWriter)
-	afx_msg void OnWelcomeFileOpen();
-	afx_msg void OnWelcomeSartFormulaire();
-	afx_msg void OnWelcomeStartProcess();
-	afx_msg void OnWelcomeProcessFileOpen();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZIWelcomeWriter)
+    afx_msg void OnWelcomeFileOpen();
+    afx_msg void OnWelcomeSartFormulaire();
+    afx_msg void OnWelcomeStartProcess();
+    afx_msg void OnWelcomeProcessFileOpen();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

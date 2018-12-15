@@ -43,19 +43,19 @@ IMPLEMENT_SERIAL(ZBBPTaskListProperties, CODIntProperty, def_Version)
 //@parmopt int | nId | OD_PROP_FILL | The identifier of the property.
 //@parm ZBBPTaskListProperties& | propProcess | The fill property to copy.
 ZBBPTaskListProperties::ZBBPTaskListProperties(int nId) 
-	: CODIntProperty(nId)
+    : CODIntProperty(nId)
 {
-	m_TaskList      = _T("");
+    m_TaskList      = _T("");
 
-	RegisterProperties();
+    RegisterProperties();
 }
 
 ZBBPTaskListProperties::ZBBPTaskListProperties(const ZBBPTaskListProperties& propProcess) 
-	: CODIntProperty(propProcess.GetId())
+    : CODIntProperty(propProcess.GetId())
 {
-	m_TaskList      = propProcess.GetTaskList();
+    m_TaskList      = propProcess.GetTaskList();
 
-	RegisterProperties();
+    RegisterProperties();
 }
 
 //@mfunc Destructor.
@@ -73,15 +73,15 @@ ZBBPTaskListProperties::~ZBBPTaskListProperties()
 //@parm The new task list.
 void ZBBPTaskListProperties::SetTaskList(LPCTSTR lpszValue)
 {
-	if (lpszValue != NULL)
-	{
-		m_TaskList = lpszValue;
-	}
-	else
-	{
-		TRACE0("Z -> Invalid Task List pointer!\n");
-		ASSERT(FALSE);
-	}
+    if (lpszValue != NULL)
+    {
+        m_TaskList = lpszValue;
+    }
+    else
+    {
+        TRACE0("Z -> Invalid Task List pointer!\n");
+        ASSERT(FALSE);
+    }
 }
 
 //@mfunc Sets the task list.
@@ -89,7 +89,7 @@ void ZBBPTaskListProperties::SetTaskList(LPCTSTR lpszValue)
 //@parm The new task list.
 void ZBBPTaskListProperties::SetTaskListEx(const CString value)
 {
-	SetTaskList(value);
+    SetTaskList(value);
 }
 
 
@@ -101,9 +101,9 @@ void ZBBPTaskListProperties::SetTaskListEx(const CString value)
 //@parm Property identifier to compare to.
 BOOL ZBBPTaskListProperties::CompareId(const int nId) const
 {
-	int nIdMin = m_nId;
-	int nIdMax = m_nId + Z_TASK_LIST;
-	return (nId >= nIdMin && nId <= nIdMax);
+    int nIdMin = m_nId;
+    int nIdMax = m_nId + Z_TASK_LIST;
+    return (nId >= nIdMin && nId <= nIdMax);
 }
 
 //@mfunc Sets this property object equal to the one passed in.
@@ -111,10 +111,10 @@ BOOL ZBBPTaskListProperties::CompareId(const int nId) const
 //@parm The property to copy.
 ZBBPTaskListProperties& ZBBPTaskListProperties::operator=(const ZBBPTaskListProperties& propProcess)
 {
-	SetId(propProcess.GetId());
-	SetTaskList(propProcess.GetTaskList());
+    SetId(propProcess.GetId());
+    SetTaskList(propProcess.GetTaskList());
 
-	return *this;
+    return *this;
 }
 
 //@mfunc Tests if this property is equal to the one passed in.
@@ -122,7 +122,7 @@ ZBBPTaskListProperties& ZBBPTaskListProperties::operator=(const ZBBPTaskListProp
 //@parm The property to test against.
 BOOL ZBBPTaskListProperties::operator==(const ZBBPTaskListProperties propProcess) const
 {
-	return (GetTaskList() == propProcess.GetTaskList());
+    return (GetTaskList() == propProcess.GetTaskList());
 }
 
 
@@ -134,13 +134,13 @@ BOOL ZBBPTaskListProperties::operator==(const ZBBPTaskListProperties propProcess
 // to merge into this property object.
 void ZBBPTaskListProperties::Merge(CODProperty* pProperty, DWORD dwChangeFlags)
 {
-	ZBBPTaskListProperties* pProcessProps = (ZBBPTaskListProperties*)pProperty;
+    ZBBPTaskListProperties* pProcessProps = (ZBBPTaskListProperties*)pProperty;
 
-	if (pProcessProps)
-	{
-		if (dwChangeFlags & Z_CHANGE_TASK_LIST)
-			m_TaskList = pProcessProps->GetTaskList();
-	}
+    if (pProcessProps)
+    {
+        if (dwChangeFlags & Z_CHANGE_TASK_LIST)
+            m_TaskList = pProcessProps->GetTaskList();
+    }
 }
 
 //@mfunc Tests if this property is equal to the one passed in. This method
@@ -149,15 +149,15 @@ void ZBBPTaskListProperties::Merge(CODProperty* pProperty, DWORD dwChangeFlags)
 //@parm A pointer to the property to test against.
 BOOL ZBBPTaskListProperties::IsEqual(CODProperty* pProp)
 {
-	if (GetId() == pProp->GetId())
-	{
-		ZBBPTaskListProperties* pProcessProp = (ZBBPTaskListProperties*)pProp;
+    if (GetId() == pProp->GetId())
+    {
+        ZBBPTaskListProperties* pProcessProp = (ZBBPTaskListProperties*)pProp;
 
-		if (pProcessProp)
-			return (*this == *pProcessProp);
-	}
+        if (pProcessProp)
+            return (*this == *pProcessProp);
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -187,81 +187,81 @@ BOOL ZBBPTaskListProperties::IsEqual(CODProperty* pProp)
 
 BOOL ZBBPTaskListProperties::GetValue(const int nPropId, CString& strValue) const
 {
-	switch (nPropId)
-	{
-	case Z_TASK_LIST:
-		strValue = m_TaskList;
-		break;
+    switch (nPropId)
+    {
+    case Z_TASK_LIST:
+        strValue = m_TaskList;
+        break;
 /*
-	case OD_FONT_HEIGHT:
-		throw new CODPropertyConversionException();
-		break;
+    case OD_FONT_HEIGHT:
+        throw new CODPropertyConversionException();
+        break;
 */
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPTaskListProperties::GetValue(const int nPropId, int& nValue) const
 {
-	switch (nPropId)
-	{
-	case Z_TASK_LIST:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_TASK_LIST:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPTaskListProperties::GetValue(const int nPropId, UINT& nValue) const
 {
-	switch (nPropId)
-	{
-	case Z_TASK_LIST:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_TASK_LIST:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPTaskListProperties::GetValue(const int nPropId, DWORD& dwValue) const
 {
-	switch (nPropId)
-	{
-	case Z_TASK_LIST:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_TASK_LIST:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPTaskListProperties::GetValue(const int nPropId, float& fValue) const
 {
-	switch (nPropId)
-	{
-	case Z_TASK_LIST:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_TASK_LIST:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 //@mfunc | ZBBPTaskListProperties | SetValue | Sets the value of the given property.
@@ -288,77 +288,77 @@ BOOL ZBBPTaskListProperties::GetValue(const int nPropId, float& fValue) const
 
 BOOL ZBBPTaskListProperties::SetValue(const int nPropId, LPCTSTR lpszValue)
 {
-	switch (nPropId)
-	{
-	case Z_TASK_LIST:
-		m_TaskList = lpszValue;
-		break;
+    switch (nPropId)
+    {
+    case Z_TASK_LIST:
+        m_TaskList = lpszValue;
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPTaskListProperties::SetValue(const int nPropId, const int nValue)
 {
-	switch (nPropId)
-	{
-	case Z_TASK_LIST:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_TASK_LIST:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPTaskListProperties::SetValue(const int nPropId, const UINT nValue)
 {
-	switch (nPropId)
-	{
-	case Z_TASK_LIST:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_TASK_LIST:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPTaskListProperties::SetValue(const int nPropId, const DWORD dwValue)
 {
-	switch (nPropId)
-	{
-	case Z_TASK_LIST:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_TASK_LIST:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPTaskListProperties::SetValue(const int nPropId, const float fValue)
 {
-	switch (nPropId)
-	{
-	case Z_TASK_LIST:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_TASK_LIST:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -369,27 +369,27 @@ BOOL ZBBPTaskListProperties::SetValue(const int nPropId, const float fValue)
 //@parm The archive to use for serialization.
 void ZBBPTaskListProperties::Serialize(CArchive& ar)
 {
-	CODIntProperty::Serialize(ar);
+    CODIntProperty::Serialize(ar);
 
-	if (ar.IsStoring())
-	{
-		TRACE( "ZBBPTaskListProperties::Serialize : Start Save\n" );
+    if (ar.IsStoring())
+    {
+        TRACE( "ZBBPTaskListProperties::Serialize : Start Save\n" );
 
-		PUT_SCHEMA(ar, ZBBPTaskListProperties);
-		ar << m_TaskList;
+        PUT_SCHEMA(ar, ZBBPTaskListProperties);
+        ar << m_TaskList;
 
-		TRACE( "ZBBPTaskListProperties::Serialize : End Save\n" );
-	}
-	else
-	{
-		TRACE( "ZBBPTaskListProperties::Serialize : Start Read\n" );
+        TRACE( "ZBBPTaskListProperties::Serialize : End Save\n" );
+    }
+    else
+    {
+        TRACE( "ZBBPTaskListProperties::Serialize : Start Read\n" );
 
-		UINT nSchema;
-		GET_SCHEMA(ar, nSchema);
-		ar >> m_TaskList;
+        UINT nSchema;
+        GET_SCHEMA(ar, nSchema);
+        ar >> m_TaskList;
 
-		TRACE( "ZBBPTaskListProperties::Serialize : End Read\n" );
-	}
+        TRACE( "ZBBPTaskListProperties::Serialize : End Read\n" );
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -397,33 +397,33 @@ void ZBBPTaskListProperties::Serialize(CArchive& ar)
 
 bool ZBBPTaskListProperties::RegisterProperties()
 {
-	static bool propsRegistered = false;
+    static bool propsRegistered = false;
 
-	if (!propsRegistered)
-	{	
-		bool success = true;
+    if (!propsRegistered)
+    {    
+        bool success = true;
 
-		if (success)
-		{
-			success = RegisterProperty(Z_TASK_LIST,
-						IDS_Z_TASK_LIST_NAME, 
-						IDS_Z_TASK_LIST_DESC,
-						_PropertyAccessor(&ZBBPTaskListProperties::GetTaskList,
-						&ZBBPTaskListProperties::SetTaskListEx),
-						VT_BSTR,
-						PROP_DIRECT
-						);
-		}
+        if (success)
+        {
+            success = RegisterProperty(Z_TASK_LIST,
+                        IDS_Z_TASK_LIST_NAME, 
+                        IDS_Z_TASK_LIST_DESC,
+                        _PropertyAccessor(&ZBBPTaskListProperties::GetTaskList,
+                        &ZBBPTaskListProperties::SetTaskListEx),
+                        VT_BSTR,
+                        PROP_DIRECT
+                        );
+        }
 
-		if (!success)
-		{
-			ZBBPTaskListProperties::GetPropertyMap().DeleteAll();
-		}
+        if (!success)
+        {
+            ZBBPTaskListProperties::GetPropertyMap().DeleteAll();
+        }
 
-		propsRegistered = success;
-	}
+        propsRegistered = success;
+    }
 
-	return propsRegistered;
+    return propsRegistered;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -432,16 +432,16 @@ bool ZBBPTaskListProperties::RegisterProperties()
 #ifdef _DEBUG
 void ZBBPTaskListProperties::AssertValid() const
 {
-	CODIntProperty::AssertValid();
+    CODIntProperty::AssertValid();
 
-//	ASSERT(m_ManagementCase.GetLength() > 0);
+//    ASSERT(m_ManagementCase.GetLength() > 0);
 }
 
 void ZBBPTaskListProperties::Dump(CDumpContext& dc) const
 {
-	CODIntProperty::Dump(dc);
+    CODIntProperty::Dump(dc);
 
-	dc << "Task list = " << m_TaskList << "\n";
+    dc << "Task list = " << m_TaskList << "\n";
 }
 #endif //_DEBUG
 

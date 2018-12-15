@@ -24,24 +24,24 @@
 
 
 ZIEvalWarning::ZIEvalWarning(CWnd* pParent /*=NULL*/)
-	: CDialog(IDD_EVALUATIONWARNING, pParent)
+    : CDialog(IDD_EVALUATIONWARNING, pParent)
 {
-	//{{AFX_DATA_INIT(ZIEvalWarning)
-		// NOTE: the ClassWizard will add member initialization here
-	//}}AFX_DATA_INIT
+    //{{AFX_DATA_INIT(ZIEvalWarning)
+        // NOTE: the ClassWizard will add member initialization here
+    //}}AFX_DATA_INIT
 }
 
 void ZIEvalWarning::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(ZIEvalWarning)
-		// NOTE: the ClassWizard will add DDX and DDV calls here
-	//}}AFX_DATA_MAP
+    CDialog::DoDataExchange(pDX);
+    //{{AFX_DATA_MAP(ZIEvalWarning)
+        // NOTE: the ClassWizard will add DDX and DDV calls here
+    //}}AFX_DATA_MAP
 }
 
 BEGIN_MESSAGE_MAP(ZIEvalWarning, CDialog)
-	//{{AFX_MSG_MAP(ZIEvalWarning)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZIEvalWarning)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 
@@ -50,17 +50,17 @@ END_MESSAGE_MAP()
 
 BOOL ZIEvalWarning::OnInitDialog()
 {
-	CDialog::OnInitDialog();
-	
-	// Put the window in the right of the screen	
-	CRect	rect;
-	GetClientRect( &rect );
-	CRect	ClientRect;
-	UINT	uiX, uiY;
-	uiX = GetSystemMetrics( SM_CXFULLSCREEN );
-	uiY = GetSystemMetrics( SM_CYFULLSCREEN );
-	SetWindowPos( NULL, (uiX - rect.right) / 2, (uiY - rect.bottom) / 2, 0, 0, SWP_NOZORDER | SWP_NOSIZE );
-	
-	
-	return TRUE;  // return TRUE  unless you set the focus to a control
+    CDialog::OnInitDialog();
+    
+    // Put the window in the right of the screen    
+    CRect    rect;
+    GetClientRect( &rect );
+    CRect    ClientRect;
+    UINT    uiX, uiY;
+    uiX = GetSystemMetrics( SM_CXFULLSCREEN );
+    uiY = GetSystemMetrics( SM_CYFULLSCREEN );
+    SetWindowPos( NULL, (uiX - rect.right) / 2, (uiY - rect.bottom) / 2, 0, 0, SWP_NOZORDER | SWP_NOSIZE );
+    
+    
+    return TRUE;  // return TRUE  unless you set the focus to a control
 }

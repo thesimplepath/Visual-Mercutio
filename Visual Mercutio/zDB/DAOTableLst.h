@@ -1,6 +1,6 @@
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
-//	Source file: DAOTableLst.h
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
+//    Source file: DAOTableLst.h
 
 #ifndef DAOTableLst_h
 #define DAOTableLst_h 1
@@ -36,29 +36,29 @@ class AFX_EXT_CLASS ZCDAOTableList : public CListBox
   public:
       ZCDAOTableList (CDaoDatabase* pDB = NULL);
       ~ZCDAOTableList();
-	  CString	GetSelectedTable();
-	  int		GetSelectedTables( CStringArray& Array );
+      CString    GetSelectedTable();
+      int        GetSelectedTables( CStringArray& Array );
 
 
-      int	Initialize (CDaoDatabase* pDB);
-      int	Refresh ();
+      int    Initialize (CDaoDatabase* pDB);
+      int    Refresh ();
 
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCDAOTableList)
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCDAOTableList)
+    //}}AFX_VIRTUAL
   protected:
-	//{{AFX_MSG(ZCDAOTableList)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZCDAOTableList)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
   private:
     ZCDAOTableList(const ZCDAOTableList &right);
-    const	ZCDAOTableList & operator=(const ZCDAOTableList &right);
+    const    ZCDAOTableList & operator=(const ZCDAOTableList &right);
 
   private: //## implementation
-	CDaoDatabase*	m_pDB;
+    CDaoDatabase*    m_pDB;
 };
 
 //#undef  AFX_DATA
 //#define AFX_DATA
 
-#endif	// DAOTableLst_h
+#endif    // DAOTableLst_h

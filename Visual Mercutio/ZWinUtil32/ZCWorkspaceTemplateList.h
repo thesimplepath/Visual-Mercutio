@@ -40,31 +40,31 @@ class AFX_EXT_CLASS ZCWorkspaceTemplateList : public ZIListCtrl
       virtual ~ZCWorkspaceTemplateList();
       void Initialize (ZBWorkspaceWizardTemplateMg* pWorkspaceTemplateManager);
       void Refresh ();
-	  ZBWorkspaceWizardTemplateItem*	GetSelectedItem() const;
+      ZBWorkspaceWizardTemplateItem*    GetSelectedItem() const;
 
 #ifdef _WIN32
-	AFX_EXT_API	friend	ZBWorkspaceWizardTemplateItem&	operator>>( ZBWorkspaceWizardTemplateItem& left, ZCWorkspaceTemplateList& listCtrl );
+    AFX_EXT_API    friend    ZBWorkspaceWizardTemplateItem&    operator>>( ZBWorkspaceWizardTemplateItem& left, ZCWorkspaceTemplateList& listCtrl );
 #endif
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCWorkspaceTemplateList)
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCWorkspaceTemplateList)
+    //}}AFX_VIRTUAL
   protected:
-	//{{AFX_MSG(ZCWorkspaceTemplateList)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZCWorkspaceTemplateList)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
   private:
       ZCWorkspaceTemplateList(const ZCWorkspaceTemplateList &right);
       const ZCWorkspaceTemplateList & operator=(const ZCWorkspaceTemplateList &right);
 
   private:
-	BOOL	ColumnsHasBeenBuilt() const { return m_ColumnsHasBeenBuilt; };
-	BOOL	BuildColumns();
+    BOOL    ColumnsHasBeenBuilt() const { return m_ColumnsHasBeenBuilt; };
+    BOOL    BuildColumns();
 
   private: //## implementation
-	ZBWorkspaceWizardTemplateMg*	m_pWorkspaceTemplateManager;
-	BOOL							m_ColumnsHasBeenBuilt;
+    ZBWorkspaceWizardTemplateMg*    m_pWorkspaceTemplateManager;
+    BOOL                            m_ColumnsHasBeenBuilt;
 
 };
 

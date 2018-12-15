@@ -1,9 +1,9 @@
 // **************************************************************************************************************
-// *								  Classe ZUBuildGenericSymbolNewName										*
+// *                                  Classe ZUBuildGenericSymbolNewName                                        *
 // **************************************************************************************************************
-// * JMR-MODIF - Le 4 avril 2006 - Création de la classe ZUBuildGenericSymbolNewName.							*
+// * JMR-MODIF - Le 4 avril 2006 - Création de la classe ZUBuildGenericSymbolNewName.                            *
 // **************************************************************************************************************
-// * Cette classe permet la création d'un nom valide et unique pour les symboles génériques.					*
+// * Cette classe permet la création d'un nom valide et unique pour les symboles génériques.                    *
 // **************************************************************************************************************
 
 #if !defined(AFX_ZUBuildGenericSymbolNewName_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
@@ -37,27 +37,27 @@ class AFX_EXT_CLASS ZUBuildGenericSymbolNewName : public ZIBasicSymbolVisitor
 {
 public:
 
-	ZUBuildGenericSymbolNewName( const CString BaseName = _T( "" ) );
-	virtual ~ZUBuildGenericSymbolNewName();
+    ZUBuildGenericSymbolNewName( const CString BaseName = _T( "" ) );
+    virtual ~ZUBuildGenericSymbolNewName();
 
-	CString GetNextAvailableSymbolName( CODModel& Model );
+    CString GetNextAvailableSymbolName( CODModel& Model );
 
-	/* Each concrete derived ZIBasicSymbolVisitor class
-	   must implement Visit to implement the appropriate 
-	   algorithm 
-	   In this concrete class the Visit will check the
-	   BasicSymbol passes as an argument */
-	virtual bool Visit( CODComponent& Symbol );
-
-private:
-
-	void _GetNextAvailableSymbolName( CODModel& Model );
+    /* Each concrete derived ZIBasicSymbolVisitor class
+       must implement Visit to implement the appropriate 
+       algorithm 
+       In this concrete class the Visit will check the
+       BasicSymbol passes as an argument */
+    virtual bool Visit( CODComponent& Symbol );
 
 private:
 
-	bool	m_Found;
-	CString	m_GenericSymbolName;
-	CString	m_BaseName;
+    void _GetNextAvailableSymbolName( CODModel& Model );
+
+private:
+
+    bool    m_Found;
+    CString    m_GenericSymbolName;
+    CString    m_BaseName;
 };
 
 #endif // !defined(AFX_ZUBuildSymbolNewName_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)

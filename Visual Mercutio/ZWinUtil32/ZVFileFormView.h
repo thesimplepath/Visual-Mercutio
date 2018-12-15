@@ -18,7 +18,7 @@
 
 
 #ifdef _WIN32
-	#include "ZWinUtil32.h"
+    #include "ZWinUtil32.h"
 #endif
 
 #include "zFormsRes\zFormsRes.h"
@@ -55,44 +55,44 @@ class _ZVFileFormViewButtonToolBar : public CStatic
 public:
 // Construction
 public:
-	_ZVFileFormViewButtonToolBar(CWnd* pParent = NULL); // Default constructor
-	void	SetParent(CWnd* pParent);
+    _ZVFileFormViewButtonToolBar(CWnd* pParent = NULL); // Default constructor
+    void    SetParent(CWnd* pParent);
 // Operations
 public:
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(_ZVFileFormViewButtonToolBar)
-	public:
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	protected:
-	virtual void PreSubclassWindow();
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(_ZVFileFormViewButtonToolBar)
+    public:
+    virtual BOOL PreTranslateMessage(MSG* pMsg);
+    protected:
+    virtual void PreSubclassWindow();
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
-	virtual ~_ZVFileFormViewButtonToolBar();
+    virtual ~_ZVFileFormViewButtonToolBar();
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(_ZVFileFormViewButtonToolBar)
-	afx_msg void OnStopFileButton();
-	afx_msg void OnRefreshFileButton();
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	//}}AFX_MSG
+    //{{AFX_MSG(_ZVFileFormViewButtonToolBar)
+    afx_msg void OnStopFileButton();
+    afx_msg void OnRefreshFileButton();
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    //}}AFX_MSG
 
 
 // Attributes
 private:
-	CWnd*			m_pParent;
-	CCJFlatButton	m_StopWebButton;
-	CCJFlatButton	m_RefreshWebButton;
+    CWnd*            m_pParent;
+    CCJFlatButton    m_StopWebButton;
+    CCJFlatButton    m_RefreshWebButton;
 
-	CImageList		m_ImageList;
-	CToolTipCtrl	m_tooltip;
+    CImageList        m_ImageList;
+    CToolTipCtrl    m_tooltip;
 
 
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -106,51 +106,51 @@ private:
 class AFX_EXT_CLASS ZVFileFormView : public CFormView
 {
 public:
-	DECLARE_DYNCREATE(ZVFileFormView)
-	ZVFileFormView();           
-	virtual ~ZVFileFormView();
+    DECLARE_DYNCREATE(ZVFileFormView)
+    ZVFileFormView();           
+    virtual ~ZVFileFormView();
 
 // Form Data
 private:
-	//{{AFX_DATA(ZVFileFormView)
-	enum { IDD = IDD_FILEWINDOW };
-	ZCSearchEdit					m_Filename;
-	ZIDirTreeCtrl					m_DirTreeCtrl;
-	_ZVFileFormViewButtonToolBar	m_FlatToolBar;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZVFileFormView)
+    enum { IDD = IDD_FILEWINDOW };
+    ZCSearchEdit                    m_Filename;
+    ZIDirTreeCtrl                    m_DirTreeCtrl;
+    _ZVFileFormViewButtonToolBar    m_FlatToolBar;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVFileFormView)
-	protected:
-	virtual void OnInitialUpdate( );
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVFileFormView)
+    protected:
+    virtual void OnInitialUpdate( );
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
 private:
-	void SizeControl();
-	void ReflectChangedDirectory();
+    void SizeControl();
+    void ReflectChangedDirectory();
 
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVFileFormView)
-	afx_msg void OnSelchangedDirectory(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnDblclkDirectory(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnClickDirectory(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg LRESULT OnStopFileButton( WPARAM wParam, LPARAM lParam );
-	afx_msg LRESULT OnRefreshWebButton( WPARAM wParam, LPARAM lParam );
+    // Generated message map functions
+    //{{AFX_MSG(ZVFileFormView)
+    afx_msg void OnSelchangedDirectory(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnDblclkDirectory(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnClickDirectory(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg LRESULT OnStopFileButton( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnRefreshWebButton( WPARAM wParam, LPARAM lParam );
 
-	afx_msg void OnSize(UINT nType, int cx, int cy);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    afx_msg void OnSize(UINT nType, int cx, int cy);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

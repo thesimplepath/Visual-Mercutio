@@ -19,19 +19,19 @@ class ZCProcessModelDocument : public ZCProcessModelTree, public ZIObserver
 {
 public:
 
-	DECLARE_DYNCREATE( ZCProcessModelDocument )
+    DECLARE_DYNCREATE( ZCProcessModelDocument )
 
-	ZCProcessModelDocument();
-	virtual ~ZCProcessModelDocument();
+    ZCProcessModelDocument();
+    virtual ~ZCProcessModelDocument();
 
-	virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
 
 // Generated message map functions
 protected:
 
-	//{{AFX_MSG(ZCProcessModelDocument)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZCProcessModelDocument)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

@@ -48,89 +48,89 @@ class AFX_EXT_CLASS ZTMvcScrollView : public ZIDropScrollView, public MvcWrapper
 {
 public:
 
-	////////////////////////////////////////////////////////
-	// Construction/Destruction
+    ////////////////////////////////////////////////////////
+    // Construction/Destruction
 
-	/* Constructor */
-	ZTMvcScrollView();
+    /* Constructor */
+    ZTMvcScrollView();
 
-	/* Destructeur */
-	virtual ~ZTMvcScrollView();
+    /* Destructeur */
+    virtual ~ZTMvcScrollView();
 
-	virtual BOOL Create( LPCTSTR			lpszClassName,
-						 LPCTSTR			lpszWindowName,
-						 DWORD				dwStyle,
-						 const RECT&		rect,
-						 CWnd*				pParentWnd,
-						 UINT				nID,
-						 CCreateContext*	pContext = NULL );
+    virtual BOOL Create( LPCTSTR            lpszClassName,
+                         LPCTSTR            lpszWindowName,
+                         DWORD                dwStyle,
+                         const RECT&        rect,
+                         CWnd*                pParentWnd,
+                         UINT                nID,
+                         CCreateContext*    pContext = NULL );
 
-	////////////////////////////////////////////////////////
-	// Operations
+    ////////////////////////////////////////////////////////
+    // Operations
 
-	//@cmember
-	/* Casts this object to the base viewport class*/
-	base_t* GetViewport();
+    //@cmember
+    /* Casts this object to the base viewport class*/
+    base_t* GetViewport();
 
-	//@cmember
-	/* Sets up default viewport initialization */
-	virtual void OnInitialUpdate();
+    //@cmember
+    /* Sets up default viewport initialization */
+    virtual void OnInitialUpdate();
 
-	//@cmember
-	/* Forwards commands to the embedded viewport*/
-	virtual BOOL OnCmdMsg( UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo );
+    //@cmember
+    /* Forwards commands to the embedded viewport*/
+    virtual BOOL OnCmdMsg( UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo );
 
-	//@cmember
-	/* Forwards messages to the embedded viewport*/
-	virtual BOOL OnWndMsg( UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult );
+    //@cmember
+    /* Forwards messages to the embedded viewport*/
+    virtual BOOL OnWndMsg( UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult );
 
-	//@cmember
-	/* Prepares the device context for drawing*/
-	virtual void OnPrepareDC( CDC* pDC, CPrintInfo* pInfo = NULL );
+    //@cmember
+    /* Prepares the device context for drawing*/
+    virtual void OnPrepareDC( CDC* pDC, CPrintInfo* pInfo = NULL );
 
-	//@cmember
-	/* Called by MFC framework to scroll the view. */
-	virtual BOOL OnScrollBy( CSize sizeScroll, BOOL bDoScroll = TRUE );
+    //@cmember
+    /* Called by MFC framework to scroll the view. */
+    virtual BOOL OnScrollBy( CSize sizeScroll, BOOL bDoScroll = TRUE );
 
-	////////////////////////////////////////////////////////
-	// Overrides which may change scroll bar size and position
-	virtual CPoint SetOrigin		( int x, int y );
-	virtual CPoint SetLogOrigin		( int x, int y );
-	virtual CSize SetExtents		( int cx, int cy );
-	virtual CSize SetLogExtents		( int cx, int cy );
-	virtual CSize SetSize			( int cx, int cy );
-	virtual CSize SetLogSize		( int cx, int cy );
-	virtual CSize SetLogScaling		( float fScaleWidth, float fScaleHeight );
-	virtual void SetVirtualSize		( int cx,int cy );
-	virtual void SetVirtualOrigin	( int x,int y );
+    ////////////////////////////////////////////////////////
+    // Overrides which may change scroll bar size and position
+    virtual CPoint SetOrigin        ( int x, int y );
+    virtual CPoint SetLogOrigin        ( int x, int y );
+    virtual CSize SetExtents        ( int cx, int cy );
+    virtual CSize SetLogExtents        ( int cx, int cy );
+    virtual CSize SetSize            ( int cx, int cy );
+    virtual CSize SetLogSize        ( int cx, int cy );
+    virtual CSize SetLogScaling        ( float fScaleWidth, float fScaleHeight );
+    virtual void SetVirtualSize        ( int cx,int cy );
+    virtual void SetVirtualOrigin    ( int x,int y );
 
 protected:
 
-	//@cmember
-	/* Draws the viewport*/
-	virtual void OnDraw( CDC* pDC );
+    //@cmember
+    /* Draws the viewport*/
+    virtual void OnDraw( CDC* pDC );
 
-	////////////////////////////////////////////////////////
-	// Implementation
+    ////////////////////////////////////////////////////////
+    // Implementation
 
-	//@cmember
-	/* Scrolls the embedded viewport in response to WM_xSCROLL or WM_SIZE messages*/
-	virtual void DoScrollViewport( CPoint ptScrollPos );
-	virtual void UpdateScrollBarPos();
-	virtual void UpdateScrollBarSize();
+    //@cmember
+    /* Scrolls the embedded viewport in response to WM_xSCROLL or WM_SIZE messages*/
+    virtual void DoScrollViewport( CPoint ptScrollPos );
+    virtual void UpdateScrollBarPos();
+    virtual void UpdateScrollBarSize();
 
 // Attributes
 protected:
 
-	CSize	m_szLineScroll;
-	BOOL	m_bUpdateScrollBars;
+    CSize    m_szLineScroll;
+    BOOL    m_bUpdateScrollBars;
 };
 
 template<class base_t>
 ZTMvcScrollView<base_t>::ZTMvcScrollView()
 {
-	m_szLineScroll		= CSize( 10, 10 );
-	m_bUpdateScrollBars = FALSE;
+    m_szLineScroll        = CSize( 10, 10 );
+    m_bUpdateScrollBars = FALSE;
 }
 
 // JMR-MODIF - Le 20 septembre 2005 - Nettoyage des memory leaks, ajout du destructeur de ZTMvcScrollView.
@@ -140,38 +140,38 @@ ZTMvcScrollView<base_t>::~ZTMvcScrollView()
 }
 
 template<class base_t>
-BOOL ZTMvcScrollView<base_t>::Create( LPCTSTR			lpszClassName,
-									  LPCTSTR			lpszWindowName,
-									  DWORD				dwStyle,
-									  const RECT&		rect,
-									  CWnd*				pParentWnd,
-									  UINT				nID,
-									  CCreateContext*	pContext )
+BOOL ZTMvcScrollView<base_t>::Create( LPCTSTR            lpszClassName,
+                                      LPCTSTR            lpszWindowName,
+                                      DWORD                dwStyle,
+                                      const RECT&        rect,
+                                      CWnd*                pParentWnd,
+                                      UINT                nID,
+                                      CCreateContext*    pContext )
 {
-	SetContainer( NULL );
+    SetContainer( NULL );
 
-	BOOL bSuccess = ZIDropScrollView::Create( lpszClassName,
-											  lpszWindowName,
-											  dwStyle,
-											  rect,
-											  pParentWnd,
-											  nID,
-											  pContext );
+    BOOL bSuccess = ZIDropScrollView::Create( lpszClassName,
+                                              lpszWindowName,
+                                              dwStyle,
+                                              rect,
+                                              pParentWnd,
+                                              nID,
+                                              pContext );
 
-	if ( bSuccess )
-	{
-		bSuccess = base_t::Create( this, NULL );
+    if ( bSuccess )
+    {
+        bSuccess = base_t::Create( this, NULL );
 
-		if ( bSuccess && m_pCtlr != NULL )
-		{
-			// Make sure model is set on controller, because model
-			// may have been assigned to this viewport before
-			// the controller was created.
-			m_pCtlr->SetModel( m_pModel );
-		}
-	}
+        if ( bSuccess && m_pCtlr != NULL )
+        {
+            // Make sure model is set on controller, because model
+            // may have been assigned to this viewport before
+            // the controller was created.
+            m_pCtlr->SetModel( m_pModel );
+        }
+    }
 
-	return bSuccess;
+    return bSuccess;
 }
 
 //@doc ZTMvcScrollView
@@ -180,7 +180,7 @@ BOOL ZTMvcScrollView<base_t>::Create( LPCTSTR			lpszClassName,
 template<class base_t>
 base_t* ZTMvcScrollView<base_t>::GetViewport()
 {
-	return (base_t*) this;
+    return (base_t*) this;
 }
 
 //@doc ZTMvcScrollView
@@ -189,18 +189,18 @@ base_t* ZTMvcScrollView<base_t>::GetViewport()
 template<class base_t>
 void ZTMvcScrollView<base_t>::OnInitialUpdate()
 {
-	// construct the viewport in your derived class constructor
-	// and delete it in the destructor
-	ZIDropScrollView::OnInitialUpdate();
+    // construct the viewport in your derived class constructor
+    // and delete it in the destructor
+    ZIDropScrollView::OnInitialUpdate();
 
-	// viewport initialization
-	CRect r;
-	GetClientRect( &r );
-	MvcWrapper_T<base_t>::SetSize( r.Size() );
-	MvcWrapper_T<base_t>::OnInitialUpdate();
+    // viewport initialization
+    CRect r;
+    GetClientRect( &r );
+    MvcWrapper_T<base_t>::SetSize( r.Size() );
+    MvcWrapper_T<base_t>::OnInitialUpdate();
 
-	UpdateScrollBarPos();
-	UpdateScrollBarSize();
+    UpdateScrollBarPos();
+    UpdateScrollBarSize();
 }
 
 //@doc ZTMvcScrollView
@@ -213,14 +213,14 @@ void ZTMvcScrollView<base_t>::OnInitialUpdate()
 template<class base_t>
 BOOL ZTMvcScrollView<base_t>::OnCmdMsg( UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo )
 {
-	BOOL bHandled = base_t::OnCmdMsg( nID, nCode, pExtra, pHandlerInfo );
+    BOOL bHandled = base_t::OnCmdMsg( nID, nCode, pExtra, pHandlerInfo );
 
-	if( !bHandled )
-	{
-		bHandled = ZIDropScrollView::OnCmdMsg( nID, nCode, pExtra, pHandlerInfo );
-	}
+    if( !bHandled )
+    {
+        bHandled = ZIDropScrollView::OnCmdMsg( nID, nCode, pExtra, pHandlerInfo );
+    }
 
-	return bHandled;
+    return bHandled;
 }
 
 //@doc ZTMvcScrollView
@@ -236,79 +236,79 @@ BOOL ZTMvcScrollView<base_t>::OnCmdMsg( UINT nID, int nCode, void* pExtra, AFX_C
 template<class base_t>
 BOOL ZTMvcScrollView<base_t>::OnWndMsg( UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult )
 {
-	BOOL bHandled = base_t::OnWndMsg( message, wParam, lParam, pResult );
+    BOOL bHandled = base_t::OnWndMsg( message, wParam, lParam, pResult );
 
-	if ( !bHandled )
-	{
-		bHandled = ZIDropScrollView::OnWndMsg( message, wParam, lParam, pResult );
-	}
+    if ( !bHandled )
+    {
+        bHandled = ZIDropScrollView::OnWndMsg( message, wParam, lParam, pResult );
+    }
 
-	// handle messages here that could cause scrolling
-	switch( message )
-	{
-		case WM_SIZE:
-		{
-			// Resize the logical rect of the viewport
-			int nWidth  = LOWORD( lParam );	// Width of client area
-			int nHeight = HIWORD( lParam );	// Height of client area
-			MvcWrapper_T<base_t>::SetSize( nWidth, nHeight );
+    // handle messages here that could cause scrolling
+    switch( message )
+    {
+        case WM_SIZE:
+        {
+            // Resize the logical rect of the viewport
+            int nWidth  = LOWORD( lParam );    // Width of client area
+            int nHeight = HIWORD( lParam );    // Height of client area
+            MvcWrapper_T<base_t>::SetSize( nWidth, nHeight );
 
-			// Viewport scrolling
-			int		nMapMode;
-			SIZE	sizeTotal;
-			SIZE	sizePage;
-			SIZE	sizeLine;
+            // Viewport scrolling
+            int        nMapMode;
+            SIZE    sizeTotal;
+            SIZE    sizePage;
+            SIZE    sizeLine;
 
-			GetDeviceScrollSizes( nMapMode, sizeTotal, sizePage, sizeLine );
+            GetDeviceScrollSizes( nMapMode, sizeTotal, sizePage, sizeLine );
 
-			// You need to call SetScrollSizes in your OnInitialUpdate override
-			if( nMapMode > 0 )
-			{
-				DoScrollViewport( GetScrollPosition() );
-			}
+            // You need to call SetScrollSizes in your OnInitialUpdate override
+            if( nMapMode > 0 )
+            {
+                DoScrollViewport( GetScrollPosition() );
+            }
 
-			break;
-		}
+            break;
+        }
 
-		case WM_HSCROLL:
-		case WM_VSCROLL:
-		{
-			int nScrollCode = (int) LOWORD( wParam );
+        case WM_HSCROLL:
+        case WM_VSCROLL:
+        {
+            int nScrollCode = (int) LOWORD( wParam );
 
-			if ( nScrollCode != SB_ENDSCROLL )
-			{
-				CPoint		ptScroll;
-				SCROLLINFO	siH;
-				SCROLLINFO	siV;
+            if ( nScrollCode != SB_ENDSCROLL )
+            {
+                CPoint        ptScroll;
+                SCROLLINFO    siH;
+                SCROLLINFO    siV;
 
-				GetScrollInfo( SB_HORZ, &siH );
-				GetScrollInfo( SB_VERT, &siV );
+                GetScrollInfo( SB_HORZ, &siH );
+                GetScrollInfo( SB_VERT, &siV );
 
-				if( nScrollCode == SB_THUMBTRACK )
-				{
-					ptScroll.x = siH.nTrackPos;
-					ptScroll.y = siV.nTrackPos;
-				}
-				else
-				{
-					ptScroll.x = siH.nPos;
-					ptScroll.y = siV.nPos;
-				}
+                if( nScrollCode == SB_THUMBTRACK )
+                {
+                    ptScroll.x = siH.nTrackPos;
+                    ptScroll.y = siV.nTrackPos;
+                }
+                else
+                {
+                    ptScroll.x = siH.nPos;
+                    ptScroll.y = siV.nPos;
+                }
 
-				DoScrollViewport( ptScroll );
-				bHandled = TRUE;
-			}
+                DoScrollViewport( ptScroll );
+                bHandled = TRUE;
+            }
 
-			break;
-		}
+            break;
+        }
 
-		case WM_MOUSEWHEEL:
-		{
-			DoScrollViewport( GetScrollPosition() );
-		}
-	}
+        case WM_MOUSEWHEEL:
+        {
+            DoScrollViewport( GetScrollPosition() );
+        }
+    }
 
-	return bHandled;
+    return bHandled;
 }
 
 //@doc ZTMvcScrollView
@@ -322,11 +322,11 @@ BOOL ZTMvcScrollView<base_t>::OnWndMsg( UINT message, WPARAM wParam, LPARAM lPar
 template<class base_t>
 void ZTMvcScrollView<base_t>::OnPrepareDC( CDC* pDC, CPrintInfo* pInfo )
 {
-	ASSERT( ZIDropScrollView::m_nMapMode == MM_TEXT );
-	MvcWrapper_T<base_t>::OnPrepareDC( pDC );
+    ASSERT( ZIDropScrollView::m_nMapMode == MM_TEXT );
+    MvcWrapper_T<base_t>::OnPrepareDC( pDC );
 
-	// For default Printing behavior
-	CView::OnPrepareDC( pDC, pInfo );
+    // For default Printing behavior
+    CView::OnPrepareDC( pDC, pInfo );
 }
 
 //@doc ZTMvcScrollView
@@ -340,77 +340,77 @@ void ZTMvcScrollView<base_t>::OnPrepareDC( CDC* pDC, CPrintInfo* pInfo )
 template<class base_t>
 BOOL ZTMvcScrollView<base_t>::OnScrollBy( CSize sizeScroll, BOOL bDoScroll )
 {
-	int xOrig, x;
-	int yOrig, y;
+    int xOrig, x;
+    int yOrig, y;
 
-	// Don't scroll if there is no valid scroll range (ie. no scroll bar)
-	CScrollBar* pBar;
-	DWORD dwStyle = GetStyle();
-	pBar = GetScrollBarCtrl( SB_VERT );
+    // Don't scroll if there is no valid scroll range (ie. no scroll bar)
+    CScrollBar* pBar;
+    DWORD dwStyle = GetStyle();
+    pBar = GetScrollBarCtrl( SB_VERT );
 
-	if ( ( pBar != NULL && !pBar->IsWindowEnabled() ) || ( pBar == NULL && !( dwStyle & WS_VSCROLL ) ) )
-	{
-		// vertical scroll bar not enabled
-		sizeScroll.cy = 0;
-	}
+    if ( ( pBar != NULL && !pBar->IsWindowEnabled() ) || ( pBar == NULL && !( dwStyle & WS_VSCROLL ) ) )
+    {
+        // vertical scroll bar not enabled
+        sizeScroll.cy = 0;
+    }
 
-	pBar = GetScrollBarCtrl( SB_HORZ );
+    pBar = GetScrollBarCtrl( SB_HORZ );
 
-	if ( ( pBar != NULL && !pBar->IsWindowEnabled() ) || ( pBar == NULL && !( dwStyle & WS_HSCROLL ) ) )
-	{
-		// horizontal scroll bar not enabled
-		sizeScroll.cx = 0;
-	}
+    if ( ( pBar != NULL && !pBar->IsWindowEnabled() ) || ( pBar == NULL && !( dwStyle & WS_HSCROLL ) ) )
+    {
+        // horizontal scroll bar not enabled
+        sizeScroll.cx = 0;
+    }
 
-	// adjust current x position
-	xOrig = x = GetScrollPos  ( SB_HORZ );
-	int xMax =  GetScrollLimit( SB_HORZ );
-	x += sizeScroll.cx;
+    // adjust current x position
+    xOrig = x = GetScrollPos  ( SB_HORZ );
+    int xMax =  GetScrollLimit( SB_HORZ );
+    x += sizeScroll.cx;
 
-	if ( x < 0 )
-	{
-		x = 0;
-	}
-	else if ( x > xMax )
-	{
-		x = xMax;
-	}
+    if ( x < 0 )
+    {
+        x = 0;
+    }
+    else if ( x > xMax )
+    {
+        x = xMax;
+    }
 
-	// adjust current y position
-	yOrig = y = GetScrollPos  ( SB_VERT );
-	int yMax  = GetScrollLimit( SB_VERT );
-	y += sizeScroll.cy;
+    // adjust current y position
+    yOrig = y = GetScrollPos  ( SB_VERT );
+    int yMax  = GetScrollLimit( SB_VERT );
+    y += sizeScroll.cy;
 
-	if ( y < 0 )
-	{
-		y = 0;
-	}
-	else if ( y > yMax )
-	{
-		y = yMax;
-	}
+    if ( y < 0 )
+    {
+        y = 0;
+    }
+    else if ( y > yMax )
+    {
+        y = yMax;
+    }
 
-	// Did anything change?
-	if ( x == xOrig && y == yOrig )
-	{
-		return FALSE;
-	}
+    // Did anything change?
+    if ( x == xOrig && y == yOrig )
+    {
+        return FALSE;
+    }
 
-	if ( bDoScroll )
-	{
-		// do scroll and update scroll positions
-		if ( x != xOrig )
-		{
-			SetScrollPos( SB_HORZ, x );
-		}
+    if ( bDoScroll )
+    {
+        // do scroll and update scroll positions
+        if ( x != xOrig )
+        {
+            SetScrollPos( SB_HORZ, x );
+        }
 
-		if ( y != yOrig )
-		{
-			SetScrollPos( SB_VERT, y );
-		}
-	}
+        if ( y != yOrig )
+        {
+            SetScrollPos( SB_VERT, y );
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 //@doc ZTMvcScrollView
@@ -420,15 +420,15 @@ BOOL ZTMvcScrollView<base_t>::OnScrollBy( CSize sizeScroll, BOOL bDoScroll )
 template<class base_t>
 void ZTMvcScrollView<base_t>::OnDraw( CDC* pDC )
 {
-	if ( m_bUpdateScrollBars )
-	{
-		UpdateScrollBarPos();
-		UpdateScrollBarSize();
+    if ( m_bUpdateScrollBars )
+    {
+        UpdateScrollBarPos();
+        UpdateScrollBarSize();
 
-		m_bUpdateScrollBars = FALSE;
-	}
+        m_bUpdateScrollBars = FALSE;
+    }
 
-	base_t::Draw( pDC );
+    base_t::Draw( pDC );
 }
 
 //@doc ZTMvcScrollView
@@ -441,133 +441,133 @@ void ZTMvcScrollView<base_t>::OnDraw( CDC* pDC )
 template<class base_t>
 void ZTMvcScrollView<base_t>::DoScrollViewport( CPoint ptScrollPos )
 {
-	CSize szLog( ptScrollPos.x, ptScrollPos.y );
-	base_t::DPtoLP( &szLog );
+    CSize szLog( ptScrollPos.x, ptScrollPos.y );
+    base_t::DPtoLP( &szLog );
 
-	ptScrollPos.x = szLog.cx;
-	ptScrollPos.y = szLog.cy;
+    ptScrollPos.x = szLog.cx;
+    ptScrollPos.y = szLog.cy;
 
-	// same as Pan, except using absolute coordinates, not offsets
-	base_t::SetLogOrigin( ptScrollPos );
-	base_t::InvalidateVisual( this, FALSE, TRUE );
+    // same as Pan, except using absolute coordinates, not offsets
+    base_t::SetLogOrigin( ptScrollPos );
+    base_t::InvalidateVisual( this, FALSE, TRUE );
 }
 
 template<class base_t>
 void ZTMvcScrollView<base_t>::UpdateScrollBarPos()
 {
-	CPoint ptLogOrigin=base_t::GetLogOrigin();
+    CPoint ptLogOrigin=base_t::GetLogOrigin();
 
-	// Convert logical origin of viewport into device coordinates
-	// that can be used to adjust the scrollbars.
-	CSize szDev( ptLogOrigin.x, ptLogOrigin.y );
-	base_t::LPtoDP( &szDev );
-	CPoint ptScrollPos( szDev.cx, szDev.cy );
+    // Convert logical origin of viewport into device coordinates
+    // that can be used to adjust the scrollbars.
+    CSize szDev( ptLogOrigin.x, ptLogOrigin.y );
+    base_t::LPtoDP( &szDev );
+    CPoint ptScrollPos( szDev.cx, szDev.cy );
 
-	SetScrollPos( SB_HORZ, ptScrollPos.x, TRUE );
-	SetScrollPos( SB_VERT, ptScrollPos.y, TRUE );
+    SetScrollPos( SB_HORZ, ptScrollPos.x, TRUE );
+    SetScrollPos( SB_VERT, ptScrollPos.y, TRUE );
 }
 
 template<class base_t>
 void ZTMvcScrollView<base_t>::UpdateScrollBarSize()
 {
-	// The scroll view mapping mode is always set to MM_TEXT, so device
-	// coordinates in the viewport are the same as logical coordinates used
-	// by the scrollbars. Logical coordinates in the viewport must be
-	// converted to device units before being used to set the scrollbar
-	// positions or sizes.
+    // The scroll view mapping mode is always set to MM_TEXT, so device
+    // coordinates in the viewport are the same as logical coordinates used
+    // by the scrollbars. Logical coordinates in the viewport must be
+    // converted to device units before being used to set the scrollbar
+    // positions or sizes.
 
-	CSize szTotal = base_t::GetVirtualSize();
-	base_t::LPtoDP( &szTotal );
+    CSize szTotal = base_t::GetVirtualSize();
+    base_t::LPtoDP( &szTotal );
 
-	CSize szPage( GetBounds().Size() );
+    CSize szPage( GetBounds().Size() );
 
-	CRect rcInnerMargins;
-	base_t::GetMargins( rcInnerMargins );
+    CRect rcInnerMargins;
+    base_t::GetMargins( rcInnerMargins );
 
-	CSize szInnerMargins( rcInnerMargins.left + rcInnerMargins.right,
-						  rcInnerMargins.top  + rcInnerMargins.bottom );
+    CSize szInnerMargins( rcInnerMargins.left + rcInnerMargins.right,
+                          rcInnerMargins.top  + rcInnerMargins.bottom );
 
-	szTotal = szTotal + szInnerMargins;
+    szTotal = szTotal + szInnerMargins;
 
-	SetScrollSizes( MM_TEXT, szTotal, szPage, m_szLineScroll );
+    SetScrollSizes( MM_TEXT, szTotal, szPage, m_szLineScroll );
 }
 
 // If visual part changes position, reset scrollbar rects
 template<class base_t>
 CPoint ZTMvcScrollView<base_t>::SetOrigin( int x, int y )
 {
-	CPoint pt = MvcWrapper_T<base_t>::SetOrigin( x, y );
-	UpdateScrollBarPos();
-	return pt;
+    CPoint pt = MvcWrapper_T<base_t>::SetOrigin( x, y );
+    UpdateScrollBarPos();
+    return pt;
 }
 
 template<class base_t>
 CPoint ZTMvcScrollView<base_t>::SetLogOrigin( int x, int y )
 {
-	CPoint ptPrev = MvcWrapper_T<base_t>::SetLogOrigin( x, y );
-	UpdateScrollBarPos();
-	return ptPrev;
+    CPoint ptPrev = MvcWrapper_T<base_t>::SetLogOrigin( x, y );
+    UpdateScrollBarPos();
+    return ptPrev;
 }
 
 template<class base_t>
 void ZTMvcScrollView<base_t>::SetVirtualSize( int cx,int cy )
 {
-	MvcWrapper_T<base_t>::SetVirtualSize( cx, cy );
-	UpdateScrollBarPos();
-	UpdateScrollBarSize();
+    MvcWrapper_T<base_t>::SetVirtualSize( cx, cy );
+    UpdateScrollBarPos();
+    UpdateScrollBarSize();
 }
 
 template<class base_t>
 void ZTMvcScrollView<base_t>::SetVirtualOrigin( int x,int y )
 {
-	MvcWrapper_T<base_t>::SetVirtualOrigin( x, y );
-	UpdateScrollBarPos();
+    MvcWrapper_T<base_t>::SetVirtualOrigin( x, y );
+    UpdateScrollBarPos();
 }
 
 template<class base_t>
 CSize ZTMvcScrollView<base_t>::SetExtents( int cx, int cy )
 {
-	CSize size			= MvcWrapper_T<base_t>::SetExtents( cx, cy );
-	m_bUpdateScrollBars = TRUE;
-	return size;
+    CSize size            = MvcWrapper_T<base_t>::SetExtents( cx, cy );
+    m_bUpdateScrollBars = TRUE;
+    return size;
 }
 
 template<class base_t>
 CSize ZTMvcScrollView<base_t>::SetSize( int cx, int cy )
 {
-	CSize size = MvcWrapper_T<base_t>::SetSize( cx, cy );
-	UpdateScrollBarPos();
-	UpdateScrollBarSize();
-	return size;
+    CSize size = MvcWrapper_T<base_t>::SetSize( cx, cy );
+    UpdateScrollBarPos();
+    UpdateScrollBarSize();
+    return size;
 }
 
 template<class base_t>
 CSize ZTMvcScrollView<base_t>::SetLogSize( int cx, int cy )
 {
-	CSize size = MvcWrapper_T<base_t>::SetLogSize( cx, cy );
-	UpdateScrollBarPos();
-	UpdateScrollBarSize();
-	return size;
+    CSize size = MvcWrapper_T<base_t>::SetLogSize( cx, cy );
+    UpdateScrollBarPos();
+    UpdateScrollBarSize();
+    return size;
 }
 
 // Logical extents have changed. Adjust scrollbars to compensate
 template<class base_t>
 CSize ZTMvcScrollView<base_t>::SetLogExtents( int cx, int cy )
 {
-	CSize sizeExtents	= MvcWrapper_T<base_t>::SetLogExtents( cx, cy );
-	m_bUpdateScrollBars = TRUE;
-	return sizeExtents;
+    CSize sizeExtents    = MvcWrapper_T<base_t>::SetLogExtents( cx, cy );
+    m_bUpdateScrollBars = TRUE;
+    return sizeExtents;
 }
 
 // Logical extents have changed. Adjust scrollbars to compensate
 template<class base_t>
 CSize ZTMvcScrollView<base_t>::SetLogScaling( float fScaleWidth,
-											  float fScaleHeight )
+                                              float fScaleHeight )
 {
-	CSize sizeExtents = MvcWrapper_T<base_t>::SetLogScaling( fScaleWidth, fScaleHeight );
-	UpdateScrollBarPos();
-	UpdateScrollBarSize();
-	return sizeExtents;
+    CSize sizeExtents = MvcWrapper_T<base_t>::SetLogScaling( fScaleWidth, fScaleHeight );
+    UpdateScrollBarPos();
+    UpdateScrollBarSize();
+    return sizeExtents;
 }
 
 // MVC Extension DLL

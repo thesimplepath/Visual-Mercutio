@@ -34,70 +34,70 @@ class AFX_EXT_CLASS ZBTokenizer
 {
 public:
 
-	ZBTokenizer					( const char SeparatorChar = ';' );
-	ZBTokenizer					( const CString Line, const char SeparatorChar = ';' );
-	virtual ~ZBTokenizer		();
+    ZBTokenizer                    ( const char SeparatorChar = ';' );
+    ZBTokenizer                    ( const CString Line, const char SeparatorChar = ';' );
+    virtual ~ZBTokenizer        ();
 
-	void		SetSeparator	( const char SeparatorChar );
-	void		InitializeString( const CString Line );
+    void        SetSeparator    ( const char SeparatorChar );
+    void        InitializeString( const CString Line );
 
-	CString		GetFirstToken	( const CString Line) ;
-	CString		GetNextToken	();
-	BOOL		ClearAllTokens	();
-	CString		GetString		();
+    CString        GetFirstToken    ( const CString Line) ;
+    CString        GetNextToken    ();
+    BOOL        ClearAllTokens    ();
+    CString        GetString        ();
 
-	// Add token of different types
-	BOOL		AddToken		( const CString Token );
-	BOOL		AddToken		( int iValue );
-	BOOL		AddToken		( float fValue );
-	BOOL		AddToken		( double dValue );
+    // Add token of different types
+    BOOL        AddToken        ( const CString Token );
+    BOOL        AddToken        ( int iValue );
+    BOOL        AddToken        ( float fValue );
+    BOOL        AddToken        ( double dValue );
 
-	// Management methods
-	size_t		GetTokenCount	();
-	BOOL		GetTokenAt		( size_t Index, CString& Value );
+    // Management methods
+    size_t        GetTokenCount    ();
+    BOOL        GetTokenAt        ( size_t Index, CString& Value );
 
-	BOOL		TokenExist		( const CString Token );
-	BOOL		TokenExist		( int iValue );
-	BOOL		TokenExist		( float fValue );
-	BOOL		TokenExist		( double dValue );
+    BOOL        TokenExist        ( const CString Token );
+    BOOL        TokenExist        ( int iValue );
+    BOOL        TokenExist        ( float fValue );
+    BOOL        TokenExist        ( double dValue );
 
-	BOOL		AddUniqueToken	( const CString Token );
-	BOOL		AddUniqueToken	( int iValue );
-	BOOL		AddUniqueToken	( float fValue );
-	BOOL		AddUniqueToken	( double dValue );
+    BOOL        AddUniqueToken    ( const CString Token );
+    BOOL        AddUniqueToken    ( int iValue );
+    BOOL        AddUniqueToken    ( float fValue );
+    BOOL        AddUniqueToken    ( double dValue );
 
-	BOOL		RemoveToken		( const CString Token );
-	BOOL		RemoveToken		( int iValue );
-	BOOL		RemoveToken		( float fValue );
-	BOOL		RemoveToken		( double dValue );
+    BOOL        RemoveToken        ( const CString Token );
+    BOOL        RemoveToken        ( int iValue );
+    BOOL        RemoveToken        ( float fValue );
+    BOOL        RemoveToken        ( double dValue );
 
-	void		FillArray( CStringArray& Array );
-
-private:
-
-	CString		_GetFirstToken();
+    void        FillArray( CStringArray& Array );
 
 private:
 
-	char	m_SeparatorChar;
+    CString        _GetFirstToken();
 
-	char*	m_pCurrent;
-	char*	m_pNext;  	
+private:
 
-	CString	m_Line;
+    char    m_SeparatorChar;
+
+    char*    m_pCurrent;
+    char*    m_pNext;      
+
+    CString    m_Line;
 };
 
-inline	void ZBTokenizer::SetSeparator( const char SeparatorChar )
+inline    void ZBTokenizer::SetSeparator( const char SeparatorChar )
 {
-	m_SeparatorChar = SeparatorChar;
+    m_SeparatorChar = SeparatorChar;
 }
 
 inline CString ZBTokenizer::_GetFirstToken()
 {
-	m_pNext = NULL;
-	m_pCurrent = m_Line.GetBuffer( m_Line.GetLength() + 2 );
+    m_pNext = NULL;
+    m_pCurrent = m_Line.GetBuffer( m_Line.GetLength() + 2 );
 
-	return GetNextToken();
+    return GetNextToken();
 }
 
 #endif // !defined(AFX_ZBTOKENIZER_H__0DD19906_2D2B_11D3_95CD_0000B45D7C6F__INCLUDED_)

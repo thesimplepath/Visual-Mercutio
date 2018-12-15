@@ -17,21 +17,21 @@ static char THIS_FILE[] = __FILE__;
 ZHelpContextBar::ZHelpContextBar()
 : m_pBrowser(NULL)
 {
-	// TODO: add construction code here.
+    // TODO: add construction code here.
 }
 
 ZHelpContextBar::~ZHelpContextBar()
 {
-	if (m_pBrowser)
-		delete m_pBrowser;
-	m_pBrowser = NULL;
+    if (m_pBrowser)
+        delete m_pBrowser;
+    m_pBrowser = NULL;
 }
 
 BEGIN_MESSAGE_MAP(ZHelpContextBar, SECControlBar)
-	//{{AFX_MSG_MAP(ZHelpContextBar)
-	ON_WM_CREATE()
-	ON_WM_SIZE()
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZHelpContextBar)
+    ON_WM_CREATE()
+    ON_WM_SIZE()
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -39,39 +39,39 @@ END_MESSAGE_MAP()
 
 int ZHelpContextBar::OnCreate(LPCREATESTRUCT lpCreateStruct) 
 {
-	if (SECControlBar::OnCreate(lpCreateStruct) == -1)
-		return -1;
+    if (SECControlBar::OnCreate(lpCreateStruct) == -1)
+        return -1;
 
-	CRect rect;
-	GetClientRect (&rect);
+    CRect rect;
+    GetClientRect (&rect);
 
-	// Create the control.
-	m_pBrowser = new ZWebBrowser;
-	ASSERT (m_pBrowser);
-	if (!m_pBrowser->Create(NULL,NULL,WS_VISIBLE,rect,this,NULL))
-	{
-		TRACE("failed to create ZHelpContextBar\n");
-		delete m_pBrowser;
-		m_pBrowser = NULL;
-		return -1;
-	}
+    // Create the control.
+    m_pBrowser = new ZWebBrowser;
+    ASSERT (m_pBrowser);
+    if (!m_pBrowser->Create(NULL,NULL,WS_VISIBLE,rect,this,NULL))
+    {
+        TRACE("failed to create ZHelpContextBar\n");
+        delete m_pBrowser;
+        m_pBrowser = NULL;
+        return -1;
+    }
 
 
-//	SetChild(m_pBrowser);
+//    SetChild(m_pBrowser);
 
-	return 0;
+    return 0;
 }
 
 
 void ZHelpContextBar::OnSize(UINT nType, int cx, int cy) 
 {
-	if (m_pBrowser && ::IsWindow(m_pBrowser->GetSafeHwnd()))
-	{
-		CRect rectInside;
-		GetInsideRect(rectInside);
-		::SetWindowPos(m_pBrowser->GetSafeHwnd(), NULL, rectInside.left, rectInside.top,
-			rectInside.Width(), rectInside.Height(),
-			SWP_NOZORDER|SWP_NOACTIVATE);
-	}
-	SECControlBar::OnSize(nType, cx, cy);
+    if (m_pBrowser && ::IsWindow(m_pBrowser->GetSafeHwnd()))
+    {
+        CRect rectInside;
+        GetInsideRect(rectInside);
+        ::SetWindowPos(m_pBrowser->GetSafeHwnd(), NULL, rectInside.left, rectInside.top,
+            rectInside.Width(), rectInside.Height(),
+            SWP_NOZORDER|SWP_NOACTIVATE);
+    }
+    SECControlBar::OnSize(nType, cx, cy);
 }

@@ -36,57 +36,57 @@
 
 class AFX_EXT_CLASS ZDDocTemplateEx : public CMultiDocTemplate
 {
-	DECLARE_DYNAMIC( ZDDocTemplateEx )
+    DECLARE_DYNAMIC( ZDDocTemplateEx )
 
 // Constructors / Destructor
 public:
 
-	ZDDocTemplateEx( UINT			nIDResource,
-					 CRuntimeClass*	pDocClass,
-					 CRuntimeClass*	pFrameClass,
-					 CRuntimeClass*	pViewClass,
-					 UINT			nMenuId		= 0,
-					 UINT			nMaxMRU		= _AFX_MRU_COUNT );
+    ZDDocTemplateEx( UINT            nIDResource,
+                     CRuntimeClass*    pDocClass,
+                     CRuntimeClass*    pFrameClass,
+                     CRuntimeClass*    pViewClass,
+                     UINT            nMenuId        = 0,
+                     UINT            nMaxMRU        = _AFX_MRU_COUNT );
 
-	virtual ~ZDDocTemplateEx();
+    virtual ~ZDDocTemplateEx();
 
 // Attributes
 public:
 
-	UINT GetMenuID() const
-	{
-		return m_nMenuId;
-	}
+    UINT GetMenuID() const
+    {
+        return m_nMenuId;
+    }
 
 public:
 
-	virtual void AddToRecentFileList( LPCTSTR lpszPathName );
+    virtual void AddToRecentFileList( LPCTSTR lpszPathName );
 
 // Implementation
 public:
 
 #ifdef _DEBUG
-	virtual void Dump( CDumpContext& ) const;
-	virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& ) const;
+    virtual void AssertValid() const;
 #endif //_DEBUG
 
 protected:
 
-	void LoadStdProfileSettings( UINT nMaxMRU );
-	void SaveStdProfileSettings();
-	void OnUpdateRecentFileMenu( CCmdUI* pCmdUI );
-	BOOL OnOpenRecentFile( UINT nID );
+    void LoadStdProfileSettings( UINT nMaxMRU );
+    void SaveStdProfileSettings();
+    void OnUpdateRecentFileMenu( CCmdUI* pCmdUI );
+    BOOL OnOpenRecentFile( UINT nID );
 
 // Overridables
 protected:
 
-	// Route and dispatch standard command message types
-	virtual BOOL OnCmdMsg( UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo );
+    // Route and dispatch standard command message types
+    virtual BOOL OnCmdMsg( UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo );
 
 protected:
 
-	CRecentFileList*	m_pRecentFileList;
-	UINT				m_nMenuId;
+    CRecentFileList*    m_pRecentFileList;
+    UINT                m_nMenuId;
 };
 
 /////////////////////////////////////////////////////////////////////////////

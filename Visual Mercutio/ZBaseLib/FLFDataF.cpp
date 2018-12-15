@@ -1,10 +1,10 @@
 //## begin module%382BBDE80137.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%382BBDE80137.cm
 
 //## begin module%382BBDE80137.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%382BBDE80137.cp
 
 //## Module: FLFDataF%382BBDE80137; Package body
@@ -60,75 +60,75 @@ ZUFLFDataFeed::~ZUFLFDataFeed()
 BOOL ZUFLFDataFeed::ProcessLine (CString Line)
 {
   //## begin ZUFLFDataFeed::ProcessLine%942391394.body preserve=yes
-  	// The line we received is exactly the same we exported
-	CString	Key;
-	CString	Value;
+      // The line we received is exactly the same we exported
+    CString    Key;
+    CString    Value;
 
 
-	ZBTokenizer	Tokenizer;
+    ZBTokenizer    Tokenizer;
 
-	switch (GetSeparatorType())
-	{
-		case CommaSeparator :
-		{
-			Tokenizer.SetSeparator( ',' );
-			break;
-		}
-		case SemiColumnSeparator :
-		{
-			Tokenizer.SetSeparator( ';' );
-			break;
-		}
-		case AutomaticSeparator : 	
-		case TabSeparator :	
-		default:
-		{
-			Tokenizer.SetSeparator( '\t' );
-			break;
-		}
-	}
+    switch (GetSeparatorType())
+    {
+        case CommaSeparator :
+        {
+            Tokenizer.SetSeparator( ',' );
+            break;
+        }
+        case SemiColumnSeparator :
+        {
+            Tokenizer.SetSeparator( ';' );
+            break;
+        }
+        case AutomaticSeparator :     
+        case TabSeparator :    
+        default:
+        {
+            Tokenizer.SetSeparator( '\t' );
+            break;
+        }
+    }
 
-  	// Extract the key
-	Key = Tokenizer.GetFirstToken( Line );
-	// If no Key, end
-	if (Key.IsEmpty())
-		return FALSE;
-  	// Extract the value
-	Value = Tokenizer.GetNextToken();
+      // Extract the key
+    Key = Tokenizer.GetFirstToken( Line );
+    // If no Key, end
+    if (Key.IsEmpty())
+        return FALSE;
+      // Extract the value
+    Value = Tokenizer.GetNextToken();
 
-	if (Key.CompareNoCase( szExportProcessNameKey ) == 0)
-		m_ProcessName = Value;
-	else
-	if (Key.CompareNoCase( szExportTemplateNameKey ) == 0)
-		m_FormName = Value;
-	else
-	if (Key.CompareNoCase( szExportFolderNameKey ) == 0)
-		m_FolderName = Value;
-	else
-	if (Key.CompareNoCase( szExportFileNameKey ) == 0)
-		m_FileName = Value;
-	else
-	if (Key.CompareNoCase( szExportProcessExchangeFileNameKey ) == 0)
-		m_ProcessExchangeFileName = Value;
-	else
-	if (Key.CompareNoCase( szExportKeepOnlyFLFKey ) == 0)
-		m_KeepOnlyFLF = atoi( Value );
+    if (Key.CompareNoCase( szExportProcessNameKey ) == 0)
+        m_ProcessName = Value;
+    else
+    if (Key.CompareNoCase( szExportTemplateNameKey ) == 0)
+        m_FormName = Value;
+    else
+    if (Key.CompareNoCase( szExportFolderNameKey ) == 0)
+        m_FolderName = Value;
+    else
+    if (Key.CompareNoCase( szExportFileNameKey ) == 0)
+        m_FileName = Value;
+    else
+    if (Key.CompareNoCase( szExportProcessExchangeFileNameKey ) == 0)
+        m_ProcessExchangeFileName = Value;
+    else
+    if (Key.CompareNoCase( szExportKeepOnlyFLFKey ) == 0)
+        m_KeepOnlyFLF = atoi( Value );
 
-	return TRUE;  	
+    return TRUE;      
   //## end ZUFLFDataFeed::ProcessLine%942391394.body
 }
 
 BOOL ZUFLFDataFeed::ImportAdditionalInfo ()
 {
   //## begin ZUFLFDataFeed::ImportAdditionalInfo%942391397.body preserve=yes
-	return TRUE;
+    return TRUE;
   //## end ZUFLFDataFeed::ImportAdditionalInfo%942391397.body
 }
 
 BOOL ZUFLFDataFeed::PreImport ()
 {
   //## begin ZUFLFDataFeed::PreImport%942391398.body preserve=yes
-	return TRUE;
+    return TRUE;
   //## end ZUFLFDataFeed::PreImport%942391398.body
 }
 

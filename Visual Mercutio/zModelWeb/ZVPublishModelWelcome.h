@@ -20,29 +20,29 @@ class ZVPublishModelWelcome : public ZIWizardDialog
 // Construction
 public:
 
-	// Standard constructor
-	ZVPublishModelWelcome( CWnd* pParent = NULL );
+    // Standard constructor
+    ZVPublishModelWelcome( CWnd* pParent = NULL );
 
-	// Dialog Data
-	//{{AFX_DATA(ZVPublishModelWelcome)
-	enum { IDD = IDD_WZPUBMODEL_WELCOME };
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZVPublishModelWelcome)
+    enum { IDD = IDD_WZPUBMODEL_WELCOME };
+    //}}AFX_DATA
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVPublishModelWelcome)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVPublishModelWelcome)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVPublishModelWelcome)
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVPublishModelWelcome)
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

@@ -15,27 +15,27 @@ static char THIS_FILE[] = __FILE__;
 
 
 ZVInputURLDialog::ZVInputURLDialog(const CString URL /*= ""*/, CWnd* pParent /*=NULL*/)
-	: CDialog(ZVInputURLDialog::IDD, pParent)
+    : CDialog(ZVInputURLDialog::IDD, pParent)
 {
-	//{{AFX_DATA_INIT(ZVInputURLDialog)
-	m_URL = URL;
-	//}}AFX_DATA_INIT
+    //{{AFX_DATA_INIT(ZVInputURLDialog)
+    m_URL = URL;
+    //}}AFX_DATA_INIT
 }
 
 
 void ZVInputURLDialog::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(ZVInputURLDialog)
-	DDX_Text(pDX, IDC_URL, m_URL);
-	//}}AFX_DATA_MAP
+    CDialog::DoDataExchange(pDX);
+    //{{AFX_DATA_MAP(ZVInputURLDialog)
+    DDX_Text(pDX, IDC_URL, m_URL);
+    //}}AFX_DATA_MAP
 }
 
 
 BEGIN_MESSAGE_MAP(ZVInputURLDialog, CDialog)
-	//{{AFX_MSG_MAP(ZVInputURLDialog)
-		// NOTE: the ClassWizard will add message map macros here
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZVInputURLDialog)
+        // NOTE: the ClassWizard will add message map macros here
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////

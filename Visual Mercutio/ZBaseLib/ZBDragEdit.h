@@ -24,7 +24,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // ZBDragEdit window
 #ifndef __AFXOLE_H__
-	#include <afxole.h>
+    #include <afxole.h>
 #endif
 
 
@@ -70,14 +70,14 @@ class AFX_EXT_CLASS ZBEditDataSource : public COleDataSource
 
 
 
-#define	ZBDragEditBase	CEdit
+#define    ZBDragEditBase    CEdit
 
 class AFX_EXT_CLASS ZBDragEdit : public ZBDragEditBase
 {
 // Construction
 public:
-	ZBDragEdit();
-	virtual ~ZBDragEdit();
+    ZBDragEdit();
+    virtual ~ZBDragEdit();
 
 // Attributes
 public:
@@ -100,16 +100,16 @@ public:
     BOOL    SetCaretByCursor();
     BOOL    SetCaret(int nLine, int nPos);
 
-	// Deselects all text in the control
-	void SetSelNone()		
-	{ 
-		SetSel(-1, 0); 
-	};
-	// Selects all text in the control
-	void SetSelAll()		
-	{ 
-		SetSel(0, -1); 
-	};
+    // Deselects all text in the control
+    void SetSelNone()        
+    { 
+        SetSel(-1, 0); 
+    };
+    // Selects all text in the control
+    void SetSelAll()        
+    { 
+        SetSel(0, -1); 
+    };
 
     BOOL    DrawCaretByCursor();
 
@@ -126,17 +126,17 @@ public:
                 {return (m_nEnableFlags & DE_ENABLE_DROP) ? TRUE : FALSE;}
     
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZBDragEdit)
-	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
-	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
-	//}}AFX_MSG
+    //{{AFX_MSG(ZBDragEdit)
+    afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+    afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
+    //}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 
-	void DoDelete();
-	void NotifyParent(UINT uiCode);
+    void DoDelete();
+    void NotifyParent(UINT uiCode);
 
 private:
     BOOL    _GetSelText(CString& str);
@@ -147,13 +147,13 @@ private:
                 *pnPos=nChar-LineIndex(*pnLine);
                 }
     int     _LinePosToChar(int nLine, int nPos) {return LineIndex(nLine)+nPos;}
-	void	_ReplaceSelString(LPCTSTR pcszNew, int iStart, int iStop, CString& str) const;
+    void    _ReplaceSelString(LPCTSTR pcszNew, int iStart, int iStop, CString& str) const;
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZBDragEdit)
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZBDragEdit)
 public:
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	//}}AFX_VIRTUAL
+    virtual BOOL PreTranslateMessage(MSG* pMsg);
+    //}}AFX_VIRTUAL
 
 private:
     static  BOOL    m_bOleInit;
@@ -168,8 +168,8 @@ private:
     int             m_nDropPtLine;
     int             m_nDropPtPos;
 
-	ZBEditDropTarget	m_dropTarget;
-	ZBEditDataSource	m_dropSource;
+    ZBEditDropTarget    m_dropTarget;
+    ZBEditDataSource    m_dropSource;
 
 };
 

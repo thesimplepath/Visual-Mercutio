@@ -31,82 +31,82 @@
 
 class AFX_EXT_CLASS ZCGridGroup : public CObject
 {
-	DECLARE_SERIAL( ZCGridGroup )
+    DECLARE_SERIAL( ZCGridGroup )
 
 public:
 
-	ZCGridGroup( CGXGridCore* pGrid = NULL );
+    ZCGridGroup( CGXGridCore* pGrid = NULL );
 
-	ZCGridGroup( CGXGridCore*	pGrid,
-				 ROWCOL			Row,
-				 ROWCOL			Col,
-				 int			CoveringCells,
-				 bool			Horizontal,
-				 bool			Collapsed,
-				 const CString	Label			= _T( "" ),
-				 const CString	ToolTipText		= _T( "" ) );
+    ZCGridGroup( CGXGridCore*    pGrid,
+                 ROWCOL            Row,
+                 ROWCOL            Col,
+                 int            CoveringCells,
+                 bool            Horizontal,
+                 bool            Collapsed,
+                 const CString    Label            = _T( "" ),
+                 const CString    ToolTipText        = _T( "" ) );
 
-	virtual ~ZCGridGroup();
+    virtual ~ZCGridGroup();
 
-	ROWCOL GetRow() const
-	{
-		return m_Row;
-	};
+    ROWCOL GetRow() const
+    {
+        return m_Row;
+    };
 
-	ROWCOL GetCol() const
-	{
-		return m_Col;
-	};
+    ROWCOL GetCol() const
+    {
+        return m_Col;
+    };
 
-	bool GetCollapsed() const;
-	void SetCollapsed( bool value );
+    bool GetCollapsed() const;
+    void SetCollapsed( bool value );
 
-	CGXGridCore* GetGridCore() const
-	{
-		return m_pGrid;
-	};
+    CGXGridCore* GetGridCore() const
+    {
+        return m_pGrid;
+    };
 
-	void SetGridCore( CGXGridCore* pGrid )
-	{
-		m_pGrid = pGrid;
-	};
+    void SetGridCore( CGXGridCore* pGrid )
+    {
+        m_pGrid = pGrid;
+    };
 
-	void CreateControl();
-	void CreateControl( ROWCOL			Row,
-						ROWCOL			Col,
-						int				CoveringCells,
-						bool			Horizontal,
-						bool			Collapsed,
-						const CString	Label			= _T( "" ),
-						const CString	ToolTipText		= _T( "" ) );
+    void CreateControl();
+    void CreateControl( ROWCOL            Row,
+                        ROWCOL            Col,
+                        int                CoveringCells,
+                        bool            Horizontal,
+                        bool            Collapsed,
+                        const CString    Label            = _T( "" ),
+                        const CString    ToolTipText        = _T( "" ) );
 
-	virtual void Serialize( CArchive& ar );
+    virtual void Serialize( CArchive& ar );
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 protected:
 
-	void ApplyState();
+    void ApplyState();
 
 private:
 
-	int				m_CoveringCells;
-	ROWCOL			m_Row;
-	ROWCOL			m_Col;
-	bool			m_Horizontal;
-	bool			m_Collapsed;
-	CString			m_Label;
-	CString			m_ToolTipText;
+    int                m_CoveringCells;
+    ROWCOL            m_Row;
+    ROWCOL            m_Col;
+    bool            m_Horizontal;
+    bool            m_Collapsed;
+    CString            m_Label;
+    CString            m_ToolTipText;
 
-	CGXGridCore*	m_pGrid;
+    CGXGridCore*    m_pGrid;
 };
 
 inline bool ZCGridGroup::GetCollapsed() const
 {
-	return m_Collapsed;
+    return m_Collapsed;
 }
 
 #endif // !defined(AFX_ZCGRIDGROUP_H__83BBC2E6_D2F9_44B9_9EF0_9811A3D294A5__INCLUDED_)

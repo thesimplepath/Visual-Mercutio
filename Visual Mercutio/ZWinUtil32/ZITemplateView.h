@@ -23,10 +23,10 @@
 
 
 #ifndef _WIN32
-	#include "ZWinUtil.h"
+    #include "ZWinUtil.h"
 #endif
 #ifdef _WIN32
-	#include "ZWinUtil32.h"
+    #include "ZWinUtil32.h"
 #endif
 
 
@@ -50,67 +50,67 @@
 class AFX_EXT_CLASS ZITemplateView : public ZITreeView
 {
 protected:
-	ZITemplateView();           // protected constructor used by dynamic creation
-	DECLARE_DYNCREATE(ZITemplateView)
+    ZITemplateView();           // protected constructor used by dynamic creation
+    DECLARE_DYNCREATE(ZITemplateView)
 
 
 // Operations
 public:
-	void				Initialize (ZDTemplateManager* pTemplateManager, BOOL IncludeFiles);
-	void				ReInitialize (ZDTemplateManager* pTemplateManager, BOOL IncludeFiles);
-	void				Refresh();
-	CString				GetNameSelectedItem();
-	ZDTemplateDir*		GetSelectedFolderItem();
-	ZDTemplateFile*		GetSelectedFileItem();
-	BOOL				SelectItemName (const CString Name);
+    void                Initialize (ZDTemplateManager* pTemplateManager, BOOL IncludeFiles);
+    void                ReInitialize (ZDTemplateManager* pTemplateManager, BOOL IncludeFiles);
+    void                Refresh();
+    CString                GetNameSelectedItem();
+    ZDTemplateDir*        GetSelectedFolderItem();
+    ZDTemplateFile*        GetSelectedFileItem();
+    BOOL                SelectItemName (const CString Name);
 
-	virtual	void		OnSelChangedEvent() {};
-	virtual	void		OnClickEvent() {};
-	virtual	void		OnDblClickEvent() {};
-	virtual	void		OnRightClickEvent() {};
-	virtual	void		OnRightDblClickEvent() {};
+    virtual    void        OnSelChangedEvent() {};
+    virtual    void        OnClickEvent() {};
+    virtual    void        OnDblClickEvent() {};
+    virtual    void        OnRightClickEvent() {};
+    virtual    void        OnRightDblClickEvent() {};
 
 protected:
-	virtual int			GetIndexOfNoDropImage() const;
+    virtual int            GetIndexOfNoDropImage() const;
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZITemplateView)
-	protected:
-	virtual void OnDraw(CDC* pDC);      // overridden to draw this view
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZITemplateView)
+    protected:
+    virtual void OnDraw(CDC* pDC);      // overridden to draw this view
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
-	virtual ~ZITemplateView();
+    virtual ~ZITemplateView();
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZITemplateView)
-	afx_msg LRESULT OnReloadTemplateManager( WPARAM wParam, LPARAM lParam );
-	afx_msg LRESULT OnInitializeTemplateManager( WPARAM wParam, LPARAM lParam );
-	afx_msg void OnClick(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnDblClick(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnRightClick(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnRightDblClick(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnSelchanged(NMHDR* pNMHDR, LRESULT* pResult);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZITemplateView)
+    afx_msg LRESULT OnReloadTemplateManager( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnInitializeTemplateManager( WPARAM wParam, LPARAM lParam );
+    afx_msg void OnClick(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnDblClick(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnRightClick(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnRightDblClick(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnSelchanged(NMHDR* pNMHDR, LRESULT* pResult);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 protected:
-      ZITemplateTree		m_TemplateTree;
-      ZDTemplateManager*	m_pTemplateManager;
-      BOOL					m_IncludeFiles;
+      ZITemplateTree        m_TemplateTree;
+      ZDTemplateManager*    m_pTemplateManager;
+      BOOL                    m_IncludeFiles;
 };
 
 
 
 inline int ZITemplateView::GetIndexOfNoDropImage() const
 {
-	return 2;
+    return 2;
 }
 
 

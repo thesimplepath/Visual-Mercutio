@@ -15,27 +15,27 @@ static char THIS_FILE[] = __FILE__;
 // ZVPublishModelWelcome dialog
 
 BEGIN_MESSAGE_MAP( ZVPublishModelWelcome, ZIWizardDialog )
-	//{{AFX_MSG_MAP(ZVPublishModelWelcome)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZVPublishModelWelcome)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 ZVPublishModelWelcome::ZVPublishModelWelcome( CWnd* pParent /*= NULL*/ )
-	: ZIWizardDialog( ZVPublishModelWelcome::IDD,	// Dialog template
-					  IDB_WZBMP1,					// Bitmap to display
-					  0,							// Icon do display
-					  0,							// Window Title
-					  IDS_PUBLISHMODELWELCOME_S,	// Wizard title
-					  IDS_PUBLISHMODELWELCOME_T )	// Wizard text
+    : ZIWizardDialog( ZVPublishModelWelcome::IDD,    // Dialog template
+                      IDB_WZBMP1,                    // Bitmap to display
+                      0,                            // Icon do display
+                      0,                            // Window Title
+                      IDS_PUBLISHMODELWELCOME_S,    // Wizard title
+                      IDS_PUBLISHMODELWELCOME_T )    // Wizard text
 {
-	//{{AFX_DATA_INIT(ZVPublishModelWelcome)
-	//}}AFX_DATA_INIT
+    //{{AFX_DATA_INIT(ZVPublishModelWelcome)
+    //}}AFX_DATA_INIT
 }
 
 void ZVPublishModelWelcome::DoDataExchange( CDataExchange* pDX )
 {
-	ZIWizardDialog::DoDataExchange( pDX );
-	//{{AFX_DATA_MAP(ZVPublishModelWelcome)
-	//}}AFX_DATA_MAP
+    ZIWizardDialog::DoDataExchange( pDX );
+    //{{AFX_DATA_MAP(ZVPublishModelWelcome)
+    //}}AFX_DATA_MAP
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -43,8 +43,8 @@ void ZVPublishModelWelcome::DoDataExchange( CDataExchange* pDX )
 
 BOOL ZVPublishModelWelcome::OnInitDialog()
 {
-	ZIWizardDialog::OnInitDialog();
+    ZIWizardDialog::OnInitDialog();
 
-	return TRUE;	// return TRUE unless you set the focus to a control
-					// EXCEPTION: OCX Property Pages should return FALSE
+    return TRUE;    // return TRUE unless you set the focus to a control
+                    // EXCEPTION: OCX Property Pages should return FALSE
 }

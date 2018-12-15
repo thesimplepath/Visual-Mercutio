@@ -17,14 +17,14 @@ ZSplRes.dsp
 
 ZSplRes.cpp
     This is the main DLL source file that contains the definition of
-	DllMain().
+    DllMain().
 
 
 ZSplRes.rc
     This is a listing of all of the Microsoft Windows resources that the
     program uses.  It includes the icons, bitmaps, and cursors that are stored
     in the RES subdirectory.  This file can be directly edited in Microsoft
-	Visual C++.
+    Visual C++.
 
 ZSplRes.clw
     This file contains information used by ClassWizard to edit existing
@@ -34,14 +34,14 @@ ZSplRes.clw
 
 res\ZSplRes.rc2
     This file contains resources that are not edited by Microsoft 
-	Visual C++.  You should place all resources not editable by
-	the resource editor in this file.
+    Visual C++.  You should place all resources not editable by
+    the resource editor in this file.
 
 ZSplRes.def
     This file contains information about the DLL that must be
     provided to run with Microsoft Windows.  It defines parameters
     such as the name and description of the DLL.  It also exports
-	functions from the DLL.
+    functions from the DLL.
 
 /////////////////////////////////////////////////////////////////////////////
 Other standard files:

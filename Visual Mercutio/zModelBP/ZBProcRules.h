@@ -1,9 +1,9 @@
 // **************************************************************************************************************
-// *										Classe ZBProcRules													*
+// *                                        Classe ZBProcRules                                                    *
 // **************************************************************************************************************
-// * JMR-MODIF - Le 21 novembre 2006 - Ajout de la classe ZBProcRules.											*
+// * JMR-MODIF - Le 21 novembre 2006 - Ajout de la classe ZBProcRules.                                            *
 // **************************************************************************************************************
-// * Cette classe est un gestionnaire pour l'ensemble des propriétés de type règles.							*
+// * Cette classe est un gestionnaire pour l'ensemble des propriétés de type règles.                            *
 // **************************************************************************************************************
 
 #if !defined(AFX_ZBProcRules_H__562EAAA5_9EC1_4359_9853_36C96DC6DD6A__INCLUDED_)
@@ -40,73 +40,73 @@ typedef Iterator_T<ZBBPRulesProperties*> ZBBPRulesPropertiesIterator;
 
 class AFX_EXT_CLASS ZBProcRules : public CObject
 {
-	DECLARE_SERIAL( ZBProcRules )
+    DECLARE_SERIAL( ZBProcRules )
 
 public:
 
-	ZBProcRules( CODSymbolComponent* pParent = NULL );
-	virtual ~ZBProcRules();
+    ZBProcRules( CODSymbolComponent* pParent = NULL );
+    virtual ~ZBProcRules();
 
-	ZBProcRules( const ZBProcRules& src );
+    ZBProcRules( const ZBProcRules& src );
 
-	ZBProcRules& operator=( const ZBProcRules& src );
+    ZBProcRules& operator=( const ZBProcRules& src );
 
-	virtual ZBProcRules* Dup() const;
+    virtual ZBProcRules* Dup() const;
 
-	void SetParent( CODSymbolComponent* pParent );
+    void SetParent( CODSymbolComponent* pParent );
 
-	int AddNewRule();
-	int AddRule( ZBBPRulesProperties* pProperty );
+    int AddNewRule();
+    int AddRule( ZBBPRulesProperties* pProperty );
 
-	bool DeleteRule( size_t Index );
-	bool DeleteRule( ZBBPRulesProperties* pProperty );
-	bool RuleNameExist( const CString Name ) const;
+    bool DeleteRule( size_t Index );
+    bool DeleteRule( ZBBPRulesProperties* pProperty );
+    bool RuleNameExist( const CString Name ) const;
 
-	CString GetNextRuleValidName() const;
+    CString GetNextRuleValidName() const;
 
-	ZBBPRulesProperties* LocateRuleByDescription( const CString Description ) const;
-	int LocateRuleIndexByDescription( const CString Description ) const;
+    ZBBPRulesProperties* LocateRuleByDescription( const CString Description ) const;
+    int LocateRuleIndexByDescription( const CString Description ) const;
 
-	// Obtient le pointeur du groupe des propriétés.
-	ZBBPRulesPropertiesSet& GetRuleSet()
-	{
-		return m_Set;
-	}
+    // Obtient le pointeur du groupe des propriétés.
+    ZBBPRulesPropertiesSet& GetRuleSet()
+    {
+        return m_Set;
+    }
 
-	// Obtient le nombre de propriétés contenues dans l'ensemble.
-	size_t GetRulesCount() const
-	{
-		return m_Set.GetSize();
-	}
+    // Obtient le nombre de propriétés contenues dans l'ensemble.
+    size_t GetRulesCount() const
+    {
+        return m_Set.GetSize();
+    }
 
-	// Obtient la propriété contenue à l'index spécifié.
-	ZBBPRulesProperties* GetProperty( size_t Index ) const
-	{
-		if ( Index < GetRulesCount() )
-		{
-			return m_Set.GetAt( Index );
-		}
+    // Obtient la propriété contenue à l'index spécifié.
+    ZBBPRulesProperties* GetProperty( size_t Index ) const
+    {
+        if ( Index < GetRulesCount() )
+        {
+            return m_Set.GetAt( Index );
+        }
 
-		return NULL;
-	}
+        return NULL;
+    }
 
-	void RemoveAllRules();
+    void RemoveAllRules();
 
-	CString GetRuleName( size_t Index ) const;
-	void SetRuleName( size_t Index, CString Value );
+    CString GetRuleName( size_t Index ) const;
+    void SetRuleName( size_t Index, CString Value );
 
-	CString GetRuleDescription( size_t Index ) const;
-	void SetRuleDescription( size_t Index, CString Value );
+    CString GetRuleDescription( size_t Index ) const;
+    void SetRuleDescription( size_t Index, CString Value );
 
-	CString GetRuleGUID( size_t Index ) const;
-	void SetRuleGUID( size_t Index, CString Value );
+    CString GetRuleGUID( size_t Index ) const;
+    void SetRuleGUID( size_t Index, CString Value );
 
-	virtual void Serialize( CArchive& ar );
+    virtual void Serialize( CArchive& ar );
 
 private:
 
-	CODSymbolComponent*		m_pParent;
-	ZBBPRulesPropertiesSet	m_Set;
+    CODSymbolComponent*        m_pParent;
+    ZBBPRulesPropertiesSet    m_Set;
 };
 
 #endif // !defined(AFX_ZBProcRules_H__562EAAA5_9EC1_4359_9853_36C96DC6DD6A__INCLUDED_)

@@ -55,16 +55,16 @@ ZMaskEdit::~ZMaskEdit()
 
 
 BEGIN_MESSAGE_MAP(ZMaskEdit, CEdit)
-	//{{AFX_MSG_MAP(ZMaskEdit)
-	ON_WM_CHAR()
-	ON_WM_KEYDOWN()
-	ON_WM_CREATE()
-	ON_WM_DESTROY()
-	ON_WM_SETFOCUS()
-	ON_WM_LBUTTONUP()
-	ON_WM_KEYUP()
-	ON_WM_LBUTTONDBLCLK()
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZMaskEdit)
+    ON_WM_CHAR()
+    ON_WM_KEYDOWN()
+    ON_WM_CREATE()
+    ON_WM_DESTROY()
+    ON_WM_SETFOCUS()
+    ON_WM_LBUTTONUP()
+    ON_WM_KEYUP()
+    ON_WM_LBUTTONDBLCLK()
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -72,15 +72,15 @@ END_MESSAGE_MAP()
 
 int ZMaskEdit::OnCreate(LPCREATESTRUCT lpCreateStruct) 
 {
-	if (CEdit::OnCreate(lpCreateStruct) == -1)
-		return -1;
-	
+    if (CEdit::OnCreate(lpCreateStruct) == -1)
+        return -1;
+    
     return 0;
 }
 
 void ZMaskEdit::OnDestroy() 
 {
-	CEdit::OnDestroy();
+    CEdit::OnDestroy();
 
 
 }
@@ -90,7 +90,7 @@ BOOL ZMaskEdit::PreCreateWindow(CREATESTRUCT& cs)
     cs.style |= WS_TABSTOP | WS_VISIBLE | WS_DISABLED | ES_AUTOHSCROLL;
     cs.dwExStyle |= WS_EX_OVERLAPPEDWINDOW;
     
-	return CEdit::PreCreateWindow(cs);
+    return CEdit::PreCreateWindow(cs);
 }
 
 CString ZMaskEdit::GetFormatedBuffer(CString strMask, CString strInitialData)
@@ -136,7 +136,7 @@ CString ZMaskEdit::FormatedBuffer(const CString& data)
             strWindowText += strData[0];
         }
     }
-	return strWindowText;
+    return strWindowText;
 }
 
 void ZMaskEdit::SetData(const CString& data)
@@ -249,7 +249,7 @@ void ZMaskEdit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
                 break;
     }
     
-	CEdit::OnKeyUp(nChar, nRepCnt, nFlags);
+    CEdit::OnKeyUp(nChar, nRepCnt, nFlags);
 }
 
 void ZMaskEdit::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) 
@@ -536,8 +536,8 @@ bool ZMaskEdit::SetValidChars(const CString& strMask, bool OnWindow)
     }
 
     m_iNumChars = iNextChar;
-	if (OnWindow == true)
-		SetLimitText(m_iNumChars);
+    if (OnWindow == true)
+        SetLimitText(m_iNumChars);
     
     return true;
 }
@@ -605,15 +605,15 @@ bool ZMaskEdit::SetPromptChar(CString strPromptChar)
 
 void ZMaskEdit::OnSetFocus(CWnd* pOldWnd) 
 {
-	CEdit::OnSetFocus(pOldWnd);
-	
+    CEdit::OnSetFocus(pOldWnd);
+    
     //SetSel(m_iCurrentChar, m_iCurrentChar);
     SetSel(0, -1);
 }
 
 void ZMaskEdit::OnLButtonUp(UINT nFlags, CPoint point) 
 {
-	int x, y;
+    int x, y;
     GetSel(x, y);
 
     if (x == y)
@@ -621,8 +621,8 @@ void ZMaskEdit::OnLButtonUp(UINT nFlags, CPoint point)
         m_iCurrentChar = x;
         SetSel(m_iCurrentChar, m_iCurrentChar);
     }
-	
-	CEdit::OnLButtonUp(nFlags, point);
+    
+    CEdit::OnLButtonUp(nFlags, point);
 }
 
 void ZMaskEdit::OnLButtonDblClk(UINT nFlags, CPoint point)

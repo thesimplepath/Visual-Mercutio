@@ -36,70 +36,70 @@ class ZILog;
 class ZBMainAutomationRunnerThread : public CThinThread
 {
 protected:
-	ZBMainAutomationRunnerThread();    // protected constructor used by dynamic creation     
+    ZBMainAutomationRunnerThread();    // protected constructor used by dynamic creation     
 
 public:
-	ZBMainAutomationRunnerThread(ZBAutomationMachine* pAutomationMachine, int ElapseTime = -1, ZILog* pLog = NULL);
-	virtual ~ZBMainAutomationRunnerThread();
+    ZBMainAutomationRunnerThread(ZBAutomationMachine* pAutomationMachine, int ElapseTime = -1, ZILog* pLog = NULL);
+    virtual ~ZBMainAutomationRunnerThread();
 
-	BOOL StartThread();
-	void SetLog( ZILog* pLog )
-	{
-		m_pLog = pLog;
-	};
+    BOOL StartThread();
+    void SetLog( ZILog* pLog )
+    {
+        m_pLog = pLog;
+    };
 
-	// Counter functions
-	int GetLoopCounter() const
-	{
-		return m_LoopCounter;
-	};
-	void ResetLoopCounter()
-	{
-		m_LoopCounter = 0;
-	};
+    // Counter functions
+    int GetLoopCounter() const
+    {
+        return m_LoopCounter;
+    };
+    void ResetLoopCounter()
+    {
+        m_LoopCounter = 0;
+    };
 
-	int GetWaitingCounter() const
-	{
-		return m_WaitingCounter;
-	};
-	void ResetWaitingCounter()
-	{
-		m_WaitingCounter = 0;
-	};
+    int GetWaitingCounter() const
+    {
+        return m_WaitingCounter;
+    };
+    void ResetWaitingCounter()
+    {
+        m_WaitingCounter = 0;
+    };
 
-	int GetIsPausedCounter() const
-	{
-		return m_IsPausedCounter;
-	};
-	void ResetIsPausedCounter()
-	{
-		m_IsPausedCounter = 0;
-	};
+    int GetIsPausedCounter() const
+    {
+        return m_IsPausedCounter;
+    };
+    void ResetIsPausedCounter()
+    {
+        m_IsPausedCounter = 0;
+    };
 
 protected: 
 
-	/////////////////////////////////////////////////////////////////////////////
-	// CThinThread operations
+    /////////////////////////////////////////////////////////////////////////////
+    // CThinThread operations
 
-	// override to do startup
-	virtual void StartWork();
-	// override to do work
-	virtual void DoWork();  
-	// override to do shutdown
-	virtual void EndWork(); 
+    // override to do startup
+    virtual void StartWork();
+    // override to do work
+    virtual void DoWork();  
+    // override to do shutdown
+    virtual void EndWork(); 
 
 private:
-	ZBAutomationMachine*		m_pAutomationMachine;
+    ZBAutomationMachine*        m_pAutomationMachine;
 
-	int							m_ElapseTime;
-	ZBStateMachineHandleSet		m_MachineHandleSet;
+    int                            m_ElapseTime;
+    ZBStateMachineHandleSet        m_MachineHandleSet;
 
-	// Logging variables
-	ZILog* m_pLog;
-	// Loop counter
-	int m_LoopCounter;
-	int m_WaitingCounter;
-	int m_IsPausedCounter;
+    // Logging variables
+    ZILog* m_pLog;
+    // Loop counter
+    int m_LoopCounter;
+    int m_WaitingCounter;
+    int m_IsPausedCounter;
 
 
 };

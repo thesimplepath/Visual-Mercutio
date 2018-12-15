@@ -19,34 +19,34 @@ static char THIS_FILE[] = __FILE__;
 
 
 ZVWorkspaceGroupNameDlg::ZVWorkspaceGroupNameDlg(ZBWorkspaceGroupEntity* pRootGroup /*= NULL*/, 
-												 const CString GroupName /*= ""*/, 
-												 const CString ExtensionList /*= ""*/, 
-												 CWnd* pParent /*=NULL*/)
-	: CDialog(ZVWorkspaceGroupNameDlg::IDD, pParent),
-	  m_pRootGroup(pRootGroup)
+                                                 const CString GroupName /*= ""*/, 
+                                                 const CString ExtensionList /*= ""*/, 
+                                                 CWnd* pParent /*=NULL*/)
+    : CDialog(ZVWorkspaceGroupNameDlg::IDD, pParent),
+      m_pRootGroup(pRootGroup)
 {
-	//{{AFX_DATA_INIT(ZVWorkspaceGroupNameDlg)
-	m_Extensions = ExtensionList;
-	m_GroupName = GroupName;
-	//}}AFX_DATA_INIT
+    //{{AFX_DATA_INIT(ZVWorkspaceGroupNameDlg)
+    m_Extensions = ExtensionList;
+    m_GroupName = GroupName;
+    //}}AFX_DATA_INIT
 
-	m_Modify = (m_GroupName.IsEmpty()) ? false : true;
+    m_Modify = (m_GroupName.IsEmpty()) ? false : true;
 }
 
 
 void ZVWorkspaceGroupNameDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(ZVWorkspaceGroupNameDlg)
-	DDX_Text(pDX, IDC_WKS_EXTENSIONS, m_Extensions);
-	DDX_Text(pDX, IDC_WKS_GROUPNAME, m_GroupName);
-	//}}AFX_DATA_MAP
+    CDialog::DoDataExchange(pDX);
+    //{{AFX_DATA_MAP(ZVWorkspaceGroupNameDlg)
+    DDX_Text(pDX, IDC_WKS_EXTENSIONS, m_Extensions);
+    DDX_Text(pDX, IDC_WKS_GROUPNAME, m_GroupName);
+    //}}AFX_DATA_MAP
 }
 
 
 BEGIN_MESSAGE_MAP(ZVWorkspaceGroupNameDlg, CDialog)
-	//{{AFX_MSG_MAP(ZVWorkspaceGroupNameDlg)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZVWorkspaceGroupNameDlg)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -54,42 +54,42 @@ END_MESSAGE_MAP()
 
 void ZVWorkspaceGroupNameDlg::OnOK() 
 {
-	UpdateData( TRUE );
-	if (!m_Modify && 
-		m_pRootGroup && 
-		m_pRootGroup->GroupExist( m_GroupName ))
-	{
-		// Already exists
-		MsgBox		mbox;
-		mbox.DisplayMsgBox( IDS_WKS_GROUP_ALREADYEXIST, MB_OK );
-		return;
-	}
-	
-	if (m_Extensions.FindOneOf(",.-/") != -1)
-	{
-		// Illegal char in extension set
-		MsgBox		mbox;
-		mbox.DisplayMsgBox( IDS_WKS_ILLEGAL_EXTENSION_LIST, MB_OK );
-		return;
-	}
+    UpdateData( TRUE );
+    if (!m_Modify && 
+        m_pRootGroup && 
+        m_pRootGroup->GroupExist( m_GroupName ))
+    {
+        // Already exists
+        MsgBox        mbox;
+        mbox.DisplayMsgBox( IDS_WKS_GROUP_ALREADYEXIST, MB_OK );
+        return;
+    }
+    
+    if (m_Extensions.FindOneOf(",.-/") != -1)
+    {
+        // Illegal char in extension set
+        MsgBox        mbox;
+        mbox.DisplayMsgBox( IDS_WKS_ILLEGAL_EXTENSION_LIST, MB_OK );
+        return;
+    }
 
-	CDialog::OnOK();
+    CDialog::OnOK();
 }
 
 BOOL ZVWorkspaceGroupNameDlg::OnInitDialog() 
 {
-	CDialog::OnInitDialog();
-	
-	if (m_Modify)
-	{
-		if (GetDlgItem(IDC_WKS_GROUPNAME))
-			GetDlgItem(IDC_WKS_GROUPNAME)->EnableWindow( FALSE );
-		// Change the title for properties
-		CString s;
-		s.LoadString( IDS_WKS_PROPGROUP_T );
-		SetWindowText( s );
-	}
+    CDialog::OnInitDialog();
+    
+    if (m_Modify)
+    {
+        if (GetDlgItem(IDC_WKS_GROUPNAME))
+            GetDlgItem(IDC_WKS_GROUPNAME)->EnableWindow( FALSE );
+        // Change the title for properties
+        CString s;
+        s.LoadString( IDS_WKS_PROPGROUP_T );
+        SetWindowText( s );
+    }
 
-	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX Property Pages should return FALSE
+    return TRUE;  // return TRUE unless you set the focus to a control
+                  // EXCEPTION: OCX Property Pages should return FALSE
 }

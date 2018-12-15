@@ -37,51 +37,51 @@
 
 class AFX_EXT_CLASS ZDWorkspaceWizardTemplateDocument : public CDocument
 {
-	DECLARE_DYNCREATE(ZDWorkspaceWizardTemplateDocument)
+    DECLARE_DYNCREATE(ZDWorkspaceWizardTemplateDocument)
 public:
-	ZDWorkspaceWizardTemplateDocument();           // protected constructor used by dynamic creation
-	virtual ~ZDWorkspaceWizardTemplateDocument();
+    ZDWorkspaceWizardTemplateDocument();           // protected constructor used by dynamic creation
+    virtual ~ZDWorkspaceWizardTemplateDocument();
 
 // Operations
 public:
-	bool ReadFromFile( const CString Filename );
-	bool SaveToFile( const CString Filename );
+    bool ReadFromFile( const CString Filename );
+    bool SaveToFile( const CString Filename );
 
-	ZBWorkspaceWizardTemplateMg& GetWorkspaceTemplates()
-	{
-		return m_WorkspaceTemplates;
-	};
-	bool IsLoaded() const
-	{
-		return m_IsLoaded;
-	};
+    ZBWorkspaceWizardTemplateMg& GetWorkspaceTemplates()
+    {
+        return m_WorkspaceTemplates;
+    };
+    bool IsLoaded() const
+    {
+        return m_IsLoaded;
+    };
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZDWorkspaceWizardTemplateDocument)
-	public:
-	virtual void Serialize(CArchive& ar);   // overridden for document i/o
-	protected:
-	virtual BOOL OnNewDocument();
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZDWorkspaceWizardTemplateDocument)
+    public:
+    virtual void Serialize(CArchive& ar);   // overridden for document i/o
+    protected:
+    virtual BOOL OnNewDocument();
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZDWorkspaceWizardTemplateDocument)
-		// NOTE - the ClassWizard will add and remove member functions here.
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZDWorkspaceWizardTemplateDocument)
+        // NOTE - the ClassWizard will add and remove member functions here.
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	ZBWorkspaceWizardTemplateMg	m_WorkspaceTemplates;
-	bool						m_IsLoaded;
+    ZBWorkspaceWizardTemplateMg    m_WorkspaceTemplates;
+    bool                        m_IsLoaded;
 };
 
 //{{AFX_INSERT_LOCATION}}

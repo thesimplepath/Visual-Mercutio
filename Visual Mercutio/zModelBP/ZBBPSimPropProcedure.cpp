@@ -12,7 +12,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// Created:		 05/2001
+// Created:         05/2001
 // Description:  ZBBPSimPropertiesProcedure simulation properties for procedure
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -44,17 +44,17 @@ using namespace sfl;
 //@parm ZBBPSimPropertiesProcedure& | propBasic | The orientation property to copy.
 ZBBPSimPropertiesProcedure::ZBBPSimPropertiesProcedure()
 {
-	m_ProcedureActivation			= (double)1;
-	m_ProcedureCost					= (double)0;
-	m_ProcedureWorkloadForecast		= (double)1;
-	m_ProcedureCostForecast			= (double)0;
-	m_ProcedureWorkloadPerActivity	= 0;
-	m_ProcedureCostPerActivity		= 0;
+    m_ProcedureActivation            = (double)1;
+    m_ProcedureCost                    = (double)0;
+    m_ProcedureWorkloadForecast        = (double)1;
+    m_ProcedureCostForecast            = (double)0;
+    m_ProcedureWorkloadPerActivity    = 0;
+    m_ProcedureCostPerActivity        = 0;
 }
 
 ZBBPSimPropertiesProcedure::ZBBPSimPropertiesProcedure( const ZBBPSimPropertiesProcedure& propBasic )
 {
-	*this = propBasic;
+    *this = propBasic;
 }
 
 //@mfunc Destructor.
@@ -70,14 +70,14 @@ ZBBPSimPropertiesProcedure::~ZBBPSimPropertiesProcedure()
 //@parm The property to copy.
 ZBBPSimPropertiesProcedure& ZBBPSimPropertiesProcedure::operator=( const ZBBPSimPropertiesProcedure& propBasic )
 {
-	SetProcedureActivation			( (double)const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureActivation() );
-	SetProcedureCost				( (double)const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureCost() );
-	SetProcedureWorkloadForecast	( (double)const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureWorkloadForecast() );
-	SetProcedureCostForecast		( (double)const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureCostForecast() );
-	SetProcedureWorkloadPerActivity	( (double)const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureWorkloadPerActivity() );
-	SetProcedureCostPerActivity		( (double)const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureCostPerActivity() );
+    SetProcedureActivation            ( (double)const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureActivation() );
+    SetProcedureCost                ( (double)const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureCost() );
+    SetProcedureWorkloadForecast    ( (double)const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureWorkloadForecast() );
+    SetProcedureCostForecast        ( (double)const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureCostForecast() );
+    SetProcedureWorkloadPerActivity    ( (double)const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureWorkloadPerActivity() );
+    SetProcedureCostPerActivity        ( (double)const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureCostPerActivity() );
 
-	return *this;
+    return *this;
 }
 
 //@mfunc Tests if this property is equal to the one passed in.
@@ -85,12 +85,12 @@ ZBBPSimPropertiesProcedure& ZBBPSimPropertiesProcedure::operator=( const ZBBPSim
 //@parm The property to test against.
 BOOL ZBBPSimPropertiesProcedure::operator==( const ZBBPSimPropertiesProcedure propBasic ) const
 {
-	return ( const_cast<ZBBPSimPropertiesProcedure*>( this )->GetProcedureActivation()			== const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureActivation()			&&
-			 const_cast<ZBBPSimPropertiesProcedure*>( this )->GetProcedureCost()				== const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureCost()					&&
-			 const_cast<ZBBPSimPropertiesProcedure*>( this )->GetProcedureWorkloadForecast()	== const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureWorkloadForecast()		&&
-			 const_cast<ZBBPSimPropertiesProcedure*>( this )->GetProcedureCostForecast()		== const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureCostForecast()			&&
-			 const_cast<ZBBPSimPropertiesProcedure*>( this )->GetProcedureWorkloadPerActivity()	== const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureWorkloadPerActivity()	&&
-			 const_cast<ZBBPSimPropertiesProcedure*>( this )->GetProcedureCostPerActivity()		== const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureCostPerActivity() );
+    return ( const_cast<ZBBPSimPropertiesProcedure*>( this )->GetProcedureActivation()            == const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureActivation()            &&
+             const_cast<ZBBPSimPropertiesProcedure*>( this )->GetProcedureCost()                == const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureCost()                    &&
+             const_cast<ZBBPSimPropertiesProcedure*>( this )->GetProcedureWorkloadForecast()    == const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureWorkloadForecast()        &&
+             const_cast<ZBBPSimPropertiesProcedure*>( this )->GetProcedureCostForecast()        == const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureCostForecast()            &&
+             const_cast<ZBBPSimPropertiesProcedure*>( this )->GetProcedureWorkloadPerActivity()    == const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureWorkloadPerActivity()    &&
+             const_cast<ZBBPSimPropertiesProcedure*>( this )->GetProcedureCostPerActivity()        == const_cast<ZBBPSimPropertiesProcedure&>( propBasic ).GetProcedureCostPerActivity() );
 }
 
 //@mfunc Merges the values of the property passed in with the values in this
@@ -101,35 +101,35 @@ BOOL ZBBPSimPropertiesProcedure::operator==( const ZBBPSimPropertiesProcedure pr
 // to merge into this property object.
 void ZBBPSimPropertiesProcedure::Merge( ZBBPSimPropertiesProcedure* pProperty, DWORD dwChangeFlags )
 {
-	if ( dwChangeFlags & Z_CHANGE_SIM_PROCEDURE_ACTIVATION )
-	{
-		m_ProcedureActivation = pProperty->GetProcedureActivation();
-	}
+    if ( dwChangeFlags & Z_CHANGE_SIM_PROCEDURE_ACTIVATION )
+    {
+        m_ProcedureActivation = pProperty->GetProcedureActivation();
+    }
 
-	if ( dwChangeFlags & Z_CHANGE_SIM_PROCEDURE_COST )
-	{
-		m_ProcedureCost = pProperty->GetProcedureCost();
-	}
+    if ( dwChangeFlags & Z_CHANGE_SIM_PROCEDURE_COST )
+    {
+        m_ProcedureCost = pProperty->GetProcedureCost();
+    }
 
-	if ( dwChangeFlags & Z_CHANGE_SIM_PROCEDURE_WORKLOAD_FORECAST )
-	{
-		m_ProcedureWorkloadForecast = pProperty->GetProcedureWorkloadForecast();
-	}
+    if ( dwChangeFlags & Z_CHANGE_SIM_PROCEDURE_WORKLOAD_FORECAST )
+    {
+        m_ProcedureWorkloadForecast = pProperty->GetProcedureWorkloadForecast();
+    }
 
-	if ( dwChangeFlags & Z_CHANGE_SIM_PROCEDURE_COST_FORECAST )
-	{
-		m_ProcedureCostForecast = pProperty->GetProcedureCostForecast();
-	}
+    if ( dwChangeFlags & Z_CHANGE_SIM_PROCEDURE_COST_FORECAST )
+    {
+        m_ProcedureCostForecast = pProperty->GetProcedureCostForecast();
+    }
 
-	if ( dwChangeFlags & Z_CHANGE_SIM_PROCEDURE_WORKLOAD_P_ACTIV_FORECAST )
-	{
-		m_ProcedureWorkloadPerActivity = pProperty->GetProcedureWorkloadPerActivity();
-	}
+    if ( dwChangeFlags & Z_CHANGE_SIM_PROCEDURE_WORKLOAD_P_ACTIV_FORECAST )
+    {
+        m_ProcedureWorkloadPerActivity = pProperty->GetProcedureWorkloadPerActivity();
+    }
 
-	if ( dwChangeFlags & Z_CHANGE_SIM_PROCEDURE_COST_P_ACTIV_FORECAST )
-	{
-		m_ProcedureCostPerActivity = pProperty->GetProcedureCostPerActivity();
-	}
+    if ( dwChangeFlags & Z_CHANGE_SIM_PROCEDURE_COST_P_ACTIV_FORECAST )
+    {
+        m_ProcedureCostPerActivity = pProperty->GetProcedureCostPerActivity();
+    }
 }
 
 //@mfunc Tests if this property is equal to the one passed in. This method
@@ -138,12 +138,12 @@ void ZBBPSimPropertiesProcedure::Merge( ZBBPSimPropertiesProcedure* pProperty, D
 //@parm A pointer to the property to test against.
 BOOL ZBBPSimPropertiesProcedure::IsEqual( ZBBPSimPropertiesProcedure* pProp )
 {
-	if ( pProp )
-	{
-		return ( *this == *pProp );
-	}
+    if ( pProp )
+    {
+        return ( *this == *pProp );
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -174,186 +174,186 @@ BOOL ZBBPSimPropertiesProcedure::IsEqual( ZBBPSimPropertiesProcedure* pProp )
 
 BOOL ZBBPSimPropertiesProcedure::GetValue( const int nPropId, CString& strValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_SIM_PROCEDURE_ACTIVATION:
-		{
-			strValue.Format( _T( "%.0f" ), (double)m_ProcedureActivation );
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_SIM_PROCEDURE_ACTIVATION:
+        {
+            strValue.Format( _T( "%.0f" ), (double)m_ProcedureActivation );
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_COST:
-		{
-			strValue.Format( _T( "%.0f" ), (double)m_ProcedureCost );
-			break;
-		}
+        case Z_SIM_PROCEDURE_COST:
+        {
+            strValue.Format( _T( "%.0f" ), (double)m_ProcedureCost );
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_WORKLOAD_FORECAST:
-		{
-			strValue.Format( _T( "%.0f" ), (double)m_ProcedureWorkloadForecast );
-			break;
-		}
+        case Z_SIM_PROCEDURE_WORKLOAD_FORECAST:
+        {
+            strValue.Format( _T( "%.0f" ), (double)m_ProcedureWorkloadForecast );
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_COST_FORECAST:
-		{
-			strValue.Format( _T( "%.0f" ), (double)m_ProcedureCostForecast );
-			break;
-		}
+        case Z_SIM_PROCEDURE_COST_FORECAST:
+        {
+            strValue.Format( _T( "%.0f" ), (double)m_ProcedureCostForecast );
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV:
-		{
-			strValue.Format( _T( "%.0f" ), (double)m_ProcedureWorkloadPerActivity );
-			break;
-		}
+        case Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV:
+        {
+            strValue.Format( _T( "%.0f" ), (double)m_ProcedureWorkloadPerActivity );
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_COST_P_ACTIV:
-		{
-			strValue.Format( _T( "%.0f" ), (double)m_ProcedureCostPerActivity );
-			break;
-		}
+        case Z_SIM_PROCEDURE_COST_P_ACTIV:
+        {
+            strValue.Format( _T( "%.0f" ), (double)m_ProcedureCostPerActivity );
+            break;
+        }
 
-		default:
-		{
-			throw new CODPropertyConversionException();
-			return FALSE;
-		}
-	}
+        default:
+        {
+            throw new CODPropertyConversionException();
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPSimPropertiesProcedure::GetValue( const int nPropId, int& nValue ) const
 {
-	nValue; // unused
+    nValue; // unused
 
-	if ( nPropId >= Z_SIM_PROCEDURE_ACTIVATION && nPropId <= Z_SIM_PROCEDURE_COST_P_ACTIV )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_SIM_PROCEDURE_ACTIVATION && nPropId <= Z_SIM_PROCEDURE_COST_P_ACTIV )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPSimPropertiesProcedure::GetValue( const int nPropId, UINT& nValue ) const
 {
-	nValue; // unused
+    nValue; // unused
 
-	if ( nPropId >= Z_SIM_PROCEDURE_ACTIVATION && nPropId <= Z_SIM_PROCEDURE_COST_P_ACTIV )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_SIM_PROCEDURE_ACTIVATION && nPropId <= Z_SIM_PROCEDURE_COST_P_ACTIV )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPSimPropertiesProcedure::GetValue( const int nPropId, DWORD& dwValue ) const
 {
-	dwValue; // unused
+    dwValue; // unused
 
-	if ( nPropId >= Z_SIM_PROCEDURE_ACTIVATION && nPropId <= Z_SIM_PROCEDURE_COST_P_ACTIV )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_SIM_PROCEDURE_ACTIVATION && nPropId <= Z_SIM_PROCEDURE_COST_P_ACTIV )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPSimPropertiesProcedure::GetValue( const int nPropId, float& fValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_SIM_PROCEDURE_ACTIVATION:
-		{
-			fValue = static_cast<float>( (double)m_ProcedureActivation );
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_SIM_PROCEDURE_ACTIVATION:
+        {
+            fValue = static_cast<float>( (double)m_ProcedureActivation );
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_COST:
-		{
-			fValue = static_cast<float>( (double)m_ProcedureCost );
-			break;
-		}
+        case Z_SIM_PROCEDURE_COST:
+        {
+            fValue = static_cast<float>( (double)m_ProcedureCost );
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_WORKLOAD_FORECAST:
-		{
-			fValue = static_cast<float>( (double)m_ProcedureWorkloadForecast );
-			break;
-		}
+        case Z_SIM_PROCEDURE_WORKLOAD_FORECAST:
+        {
+            fValue = static_cast<float>( (double)m_ProcedureWorkloadForecast );
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_COST_FORECAST:
-		{
-			fValue = static_cast<float>( (double)m_ProcedureCostForecast );
-			break;
-		}
+        case Z_SIM_PROCEDURE_COST_FORECAST:
+        {
+            fValue = static_cast<float>( (double)m_ProcedureCostForecast );
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_COST_P_ACTIV:
-		{
-			fValue = static_cast<float>( (double)m_ProcedureCostPerActivity );
-			break;
-		}
+        case Z_SIM_PROCEDURE_COST_P_ACTIV:
+        {
+            fValue = static_cast<float>( (double)m_ProcedureCostPerActivity );
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV:
-		{
-			fValue = static_cast<float>( (double)m_ProcedureWorkloadPerActivity );
-			break;
-		}
+        case Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV:
+        {
+            fValue = static_cast<float>( (double)m_ProcedureWorkloadPerActivity );
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPSimPropertiesProcedure::GetValue( const int nPropId, double& dValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_SIM_PROCEDURE_ACTIVATION:
-		{
-			dValue = (double)m_ProcedureActivation;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_SIM_PROCEDURE_ACTIVATION:
+        {
+            dValue = (double)m_ProcedureActivation;
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_COST:
-		{
-			dValue = (double)m_ProcedureCost;
-			break;
-		}
+        case Z_SIM_PROCEDURE_COST:
+        {
+            dValue = (double)m_ProcedureCost;
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_WORKLOAD_FORECAST:
-		{
-			dValue = (double)m_ProcedureWorkloadForecast;
-			break;
-		}
+        case Z_SIM_PROCEDURE_WORKLOAD_FORECAST:
+        {
+            dValue = (double)m_ProcedureWorkloadForecast;
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_COST_FORECAST:
-		{
-			dValue = (double)m_ProcedureCostForecast;
-			break;
-		}
+        case Z_SIM_PROCEDURE_COST_FORECAST:
+        {
+            dValue = (double)m_ProcedureCostForecast;
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_COST_P_ACTIV:
-		{
-			dValue = (double)m_ProcedureCostPerActivity;
-			break;
-		}
+        case Z_SIM_PROCEDURE_COST_P_ACTIV:
+        {
+            dValue = (double)m_ProcedureCostPerActivity;
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV:
-		{
-			dValue = (double)m_ProcedureWorkloadPerActivity;
-			break;
-		}
+        case Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV:
+        {
+            dValue = (double)m_ProcedureWorkloadPerActivity;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 //@mfunc | ZBBPSimPropertiesProcedure | SetValue | Sets the value of the given property.
@@ -381,185 +381,185 @@ BOOL ZBBPSimPropertiesProcedure::GetValue( const int nPropId, double& dValue ) c
 
 BOOL ZBBPSimPropertiesProcedure::SetValue( const int nPropId, LPCTSTR lpszValue )
 {
-	switch ( nPropId )
-	{
-		case Z_SIM_PROCEDURE_ACTIVATION:
-		{
-			m_ProcedureActivation = atof( lpszValue );
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_SIM_PROCEDURE_ACTIVATION:
+        {
+            m_ProcedureActivation = atof( lpszValue );
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_COST:
-		{
-			m_ProcedureCost = atof( lpszValue );
-			break;
-		}
+        case Z_SIM_PROCEDURE_COST:
+        {
+            m_ProcedureCost = atof( lpszValue );
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_WORKLOAD_FORECAST:
-		{
-			m_ProcedureWorkloadForecast = atof( lpszValue );
-			break;
-		}
+        case Z_SIM_PROCEDURE_WORKLOAD_FORECAST:
+        {
+            m_ProcedureWorkloadForecast = atof( lpszValue );
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_COST_FORECAST:
-		{
-			m_ProcedureCostForecast = atof( lpszValue );
-			break;
-		}
+        case Z_SIM_PROCEDURE_COST_FORECAST:
+        {
+            m_ProcedureCostForecast = atof( lpszValue );
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV:
-		{
-			m_ProcedureWorkloadPerActivity = atof( lpszValue );
-			break;
-		}
+        case Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV:
+        {
+            m_ProcedureWorkloadPerActivity = atof( lpszValue );
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_COST_P_ACTIV:
-		{
-			m_ProcedureCostPerActivity = atof( lpszValue );
-			break;
-		}
+        case Z_SIM_PROCEDURE_COST_P_ACTIV:
+        {
+            m_ProcedureCostPerActivity = atof( lpszValue );
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPSimPropertiesProcedure::SetValue( const int nPropId, const int nValue )
 {
-	nValue; // unused
+    nValue; // unused
 
-	if ( nPropId >= Z_SIM_PROCEDURE_ACTIVATION && nPropId <= Z_SIM_PROCEDURE_COST_P_ACTIV )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_SIM_PROCEDURE_ACTIVATION && nPropId <= Z_SIM_PROCEDURE_COST_P_ACTIV )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPSimPropertiesProcedure::SetValue( const int nPropId, const UINT nValue )
 {
-	nValue; // unused
+    nValue; // unused
 
-	if ( nPropId >= Z_SIM_PROCEDURE_ACTIVATION && nPropId <= Z_SIM_PROCEDURE_COST_P_ACTIV )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_SIM_PROCEDURE_ACTIVATION && nPropId <= Z_SIM_PROCEDURE_COST_P_ACTIV )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPSimPropertiesProcedure::SetValue( const int nPropId, const DWORD dwValue )
 {
-	dwValue; // unused
+    dwValue; // unused
 
-	if ( nPropId >= Z_SIM_PROCEDURE_ACTIVATION && nPropId <= Z_SIM_PROCEDURE_COST_P_ACTIV )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_SIM_PROCEDURE_ACTIVATION && nPropId <= Z_SIM_PROCEDURE_COST_P_ACTIV )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPSimPropertiesProcedure::SetValue( const int nPropId, const float fValue )
 {
-	switch ( nPropId )
-	{
-		case Z_SIM_PROCEDURE_ACTIVATION:
-		{
-			m_ProcedureActivation = (double)fValue;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_SIM_PROCEDURE_ACTIVATION:
+        {
+            m_ProcedureActivation = (double)fValue;
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_COST:
-		{
-			m_ProcedureCost = (double)fValue;
-			break;
-		}
+        case Z_SIM_PROCEDURE_COST:
+        {
+            m_ProcedureCost = (double)fValue;
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_WORKLOAD_FORECAST:
-		{
-			m_ProcedureWorkloadForecast = (double)fValue;
-			break;
-		}
+        case Z_SIM_PROCEDURE_WORKLOAD_FORECAST:
+        {
+            m_ProcedureWorkloadForecast = (double)fValue;
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_COST_FORECAST:
-		{
-			m_ProcedureCostForecast = (double)fValue;
-			break;
-		}
+        case Z_SIM_PROCEDURE_COST_FORECAST:
+        {
+            m_ProcedureCostForecast = (double)fValue;
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_COST_P_ACTIV:
-		{
-			m_ProcedureCostPerActivity = (double)fValue;
-			break;
-		}
+        case Z_SIM_PROCEDURE_COST_P_ACTIV:
+        {
+            m_ProcedureCostPerActivity = (double)fValue;
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV:
-		{
-			m_ProcedureWorkloadPerActivity = (double)fValue;
-			break;
-		}
+        case Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV:
+        {
+            m_ProcedureWorkloadPerActivity = (double)fValue;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPSimPropertiesProcedure::SetValue( const int nPropId, const double dValue )
 {
-	switch ( nPropId )
-	{
-		case Z_SIM_PROCEDURE_ACTIVATION:
-		{
-			m_ProcedureActivation = dValue;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_SIM_PROCEDURE_ACTIVATION:
+        {
+            m_ProcedureActivation = dValue;
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_COST:
-		{
-			m_ProcedureCost = dValue;
-			break;
-		}
+        case Z_SIM_PROCEDURE_COST:
+        {
+            m_ProcedureCost = dValue;
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_WORKLOAD_FORECAST:
-		{
-			m_ProcedureWorkloadForecast = dValue;
-			break;
-		}
+        case Z_SIM_PROCEDURE_WORKLOAD_FORECAST:
+        {
+            m_ProcedureWorkloadForecast = dValue;
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_COST_FORECAST:
-		{
-			m_ProcedureCostForecast = dValue;
-			break;
-		}
+        case Z_SIM_PROCEDURE_COST_FORECAST:
+        {
+            m_ProcedureCostForecast = dValue;
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_COST_P_ACTIV:
-		{
-			m_ProcedureCostPerActivity = dValue;
-			break;
-		}
+        case Z_SIM_PROCEDURE_COST_P_ACTIV:
+        {
+            m_ProcedureCostPerActivity = dValue;
+            break;
+        }
 
-		case Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV:
-		{
-			m_ProcedureWorkloadPerActivity = dValue;
-			break;
-		}
+        case Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV:
+        {
+            m_ProcedureWorkloadPerActivity = dValue;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -568,12 +568,12 @@ BOOL ZBBPSimPropertiesProcedure::SetValue( const int nPropId, const double dValu
 #ifdef _DEBUG
 void ZBBPSimPropertiesProcedure::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void ZBBPSimPropertiesProcedure::Dump( CDumpContext& dc ) const
 {
-	CObject::Dump( dc );
+    CObject::Dump( dc );
 }
 #endif //_DEBUG
 
@@ -585,32 +585,32 @@ void ZBBPSimPropertiesProcedure::Dump( CDumpContext& dc ) const
 //@parm The archive to use for serialization.
 void ZBBPSimPropertiesProcedure::Serialize( CArchive& ar )
 {
-	m_ProcedureActivation.Serialize( ar );
-	m_ProcedureCost.Serialize( ar );
-	m_ProcedureWorkloadForecast.Serialize( ar );
-	m_ProcedureCostForecast.Serialize( ar );
+    m_ProcedureActivation.Serialize( ar );
+    m_ProcedureCost.Serialize( ar );
+    m_ProcedureWorkloadForecast.Serialize( ar );
+    m_ProcedureCostForecast.Serialize( ar );
 
-	if ( ar.IsStoring() )
-	{
-		TRACE( _T( "ZBBPSimPropertiesProcedure::Serialize : Start Save\n" ) );
+    if ( ar.IsStoring() )
+    {
+        TRACE( _T( "ZBBPSimPropertiesProcedure::Serialize : Start Save\n" ) );
 
-		PUT_SCHEMA( ar, ZBBPSimPropertiesProcedure );
+        PUT_SCHEMA( ar, ZBBPSimPropertiesProcedure );
 
-		ar << m_ProcedureWorkloadPerActivity;
-		ar << m_ProcedureCostPerActivity;
+        ar << m_ProcedureWorkloadPerActivity;
+        ar << m_ProcedureCostPerActivity;
 
-		TRACE( _T( "ZBBPSimPropertiesProcedure::Serialize : End Save\n" ) );
-	}
-	else
-	{
-		TRACE( _T( "ZBBPSimPropertiesProcedure::Serialize : Start Read\n" ) );
+        TRACE( _T( "ZBBPSimPropertiesProcedure::Serialize : End Save\n" ) );
+    }
+    else
+    {
+        TRACE( _T( "ZBBPSimPropertiesProcedure::Serialize : Start Read\n" ) );
 
-		UINT nSchema;
-		GET_SCHEMA( ar, nSchema );
+        UINT nSchema;
+        GET_SCHEMA( ar, nSchema );
 
-		ar >> m_ProcedureWorkloadPerActivity;
-		ar >> m_ProcedureCostPerActivity;
+        ar >> m_ProcedureWorkloadPerActivity;
+        ar >> m_ProcedureCostPerActivity;
 
-		TRACE( _T( "ZBBPSimPropertiesProcedure::Serialize : End Read\n" ) );
-	}
+        TRACE( _T( "ZBBPSimPropertiesProcedure::Serialize : End Read\n" ) );
+    }
 }

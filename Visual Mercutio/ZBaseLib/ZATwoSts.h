@@ -1,5 +1,5 @@
 //## begin module%3513889300DC.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%3513889300DC.cm
 
 //## begin module%3513889300DC.cp preserve=no
@@ -48,7 +48,7 @@
 
 
 //## Class: PLFNTwoStates%35138727014A
-//	Implements the two states for radio and check button
+//    Implements the two states for radio and check button
 //## Category: PlanFin::Objects%334FC461017C
 //## Subsystem: PlanFin%334FC46302B2
 //## Persistence: Transient
@@ -57,11 +57,11 @@
 class AFX_EXT_CLASS PLFNTwoStates : public PLFNGraphic  //## Inherits: <unnamed>%35138751023A
 {
   //## begin PLFNTwoStates%35138727014A.initialDeclarations preserve=yes
-	public:
-	// Inherited feature
-		typedef PLFNGraphic inherited;
-      	virtual UINT GetRightSubMenu() const { return TwoStateRightSubMenu; };
-		virtual const BOOL GetIsStatic () const { return FALSE; };
+    public:
+    // Inherited feature
+        typedef PLFNGraphic inherited;
+          virtual UINT GetRightSubMenu() const { return TwoStateRightSubMenu; };
+        virtual const BOOL GetIsStatic () const { return FALSE; };
   //## end PLFNTwoStates%35138727014A.initialDeclarations
 
   public:
@@ -79,31 +79,31 @@ class AFX_EXT_CLASS PLFNTwoStates : public PLFNGraphic  //## Inherits: <unnamed>
 
     //## Other Operations (specified)
       //## Operation: operator =%890472640
-      //	A copy constructor with a pointer.
+      //    A copy constructor with a pointer.
       const PLFNTwoStates& operator = (const PLFNTwoStates* right);
 
       //## Operation: Serialize%890472641
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: Clone%890472642
-      //	Make a clone of the object.
+      //    Make a clone of the object.
       virtual PlanFinObject* Clone ();
 
       //## Operation: CopyObject%890472643
       virtual void CopyObject (PlanFinObject* pSrc);
 
       //## Operation: GetUnformatedObject%917858762
-      //	Return an unformated string of the object image.
+      //    Return an unformated string of the object image.
       virtual CString GetUnformatedObject ();
 
       //## Operation: ConvertFormatedObject%917889603
-      //	Convert a formatted object to numeric, date, string, etc.
-      //	Returns true if the value has changed.
+      //    Convert a formatted object to numeric, date, string, etc.
+      //    Returns true if the value has changed.
       //## Semantics:
-      //	This function convert the string
-      //	and set the object with the right value
-      //	For the base class nothing to d
+      //    This function convert the string
+      //    and set the object with the right value
+      //    For the base class nothing to d
       virtual BOOL ConvertFormatedObject (const CString& sValue, BOOL bLocateFormat = TRUE, BOOL EmptyWhenZero = FALSE);
 
     //## Get and Set Operations for Class Attributes (generated)
@@ -121,42 +121,42 @@ class AFX_EXT_CLASS PLFNTwoStates : public PLFNGraphic  //## Inherits: <unnamed>
       void SetuSize (unsigned short value);
 
       //## Attribute: sText%35138B540348
-      //	Contains the text of the two states control.
+      //    Contains the text of the two states control.
       const CString GetsText () const;
       void SetsText (CString value);
 
       //## Attribute: bShowText%35138BD003CA
-      //	Flag for showing text.
+      //    Flag for showing text.
       const BOOL GetbShowText () const;
       void SetbShowText (BOOL value);
 
       //## Attribute: bTextIsCtrl%35138C6E0154
-      //	Flag to specify if the text acts as the control. In this
-      //	case, the control is not displayed.
+      //    Flag to specify if the text acts as the control. In this
+      //    case, the control is not displayed.
       const BOOL GetbTextIsCtrl () const;
       void SetbTextIsCtrl (BOOL value);
 
       //## Attribute: OffsetText%351396A70366
-      //	Specifies the text offset.
+      //    Specifies the text offset.
       const WORD GetOffsetText () const;
       void SetOffsetText (WORD value);
 
       //## Attribute: bLeftText%351F6EAB023A
-      //	Flag to display text on the left of the control.
+      //    Flag to display text on the left of the control.
       const BOOL GetbLeftText () const;
       void SetbLeftText (BOOL value);
 
     // Additional Public Declarations
       //## begin PLFNTwoStates%35138727014A.public preserve=yes
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
       //## end PLFNTwoStates%35138727014A.public
   protected:
     // Additional Protected Declarations
       //## begin PLFNTwoStates%35138727014A.protected preserve=yes
-	DECLARE_SERIAL(PLFNTwoStates)
+    DECLARE_SERIAL(PLFNTwoStates)
       //## end PLFNTwoStates%35138727014A.protected
   private:
     // Data Members for Class Attributes

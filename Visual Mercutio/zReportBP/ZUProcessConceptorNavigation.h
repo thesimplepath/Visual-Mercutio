@@ -13,9 +13,9 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 07/2001
+// <nl>Created:         07/2001
 // <nl>Description:  ZUProcessConceptorNavigation navigates through the process and
-//					 write process information to the grid
+//                     write process information to the grid
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -38,57 +38,57 @@ class ZUProcessConceptorNavigation : public ZUProcessNavigation
 {
 public:
 
-	ZUProcessConceptorNavigation( ZDProcessGraphModelMdl*	pModel					= NULL,
-								  void*						pClass					= NULL,
-								  ZDProcessGraphModelMdl*	pRootModel				= NULL,
-								  const CString				domainName				= _T( "" ),
-								  const CString				unitName				= _T( "" ),
-								  BOOL						bIncludeSynthesis		= TRUE,
-								  BOOL						bIncludeDetail			= TRUE,
-								  BOOL						bIncludeDeliverables	= TRUE );
+    ZUProcessConceptorNavigation( ZDProcessGraphModelMdl*    pModel                    = NULL,
+                                  void*                        pClass                    = NULL,
+                                  ZDProcessGraphModelMdl*    pRootModel                = NULL,
+                                  const CString                domainName                = _T( "" ),
+                                  const CString                unitName                = _T( "" ),
+                                  BOOL                        bIncludeSynthesis        = TRUE,
+                                  BOOL                        bIncludeDetail            = TRUE,
+                                  BOOL                        bIncludeDeliverables    = TRUE );
 
-	virtual ~ZUProcessConceptorNavigation();
+    virtual ~ZUProcessConceptorNavigation();
 
-	// Call-back methods
-	virtual bool OnStart			();
-	virtual bool OnFinish			();
-	virtual bool OnProcedureSymbol	( ZBBPProcedureSymbol*	pProcedure );
-	virtual bool OnProcessSymbol	( ZBBPProcessSymbol*	pSymbol );
-	virtual bool OnSymbol			( ZBSymbol*				pSymbol );
-	virtual bool OnLink				( ZBLinkSymbol*			pLink );
-
-private:
-
-	bool DisplayProcess();
-	bool StartSection( CODNodeArray& Nodes );
+    // Call-back methods
+    virtual bool OnStart            ();
+    virtual bool OnFinish            ();
+    virtual bool OnProcedureSymbol    ( ZBBPProcedureSymbol*    pProcedure );
+    virtual bool OnProcessSymbol    ( ZBBPProcessSymbol*    pSymbol );
+    virtual bool OnSymbol            ( ZBSymbol*                pSymbol );
+    virtual bool OnLink                ( ZBLinkSymbol*            pLink );
 
 private:
 
-	ZBOStreamGrid*			m_postream;
+    bool DisplayProcess();
+    bool StartSection( CODNodeArray& Nodes );
 
-	ZBBPProcessSymbol*		m_pPreviousProcess;
-	ZDProcessGraphModelMdl*	m_pRootModel;
+private:
 
-	CGXStyle				m_BlueStyle;
-	CGXStyle				m_OrangeStyle;
-	CGXStyle				m_GrayStyle;
+    ZBOStreamGrid*            m_postream;
 
-	CGXStyle				m_BlackBorderStyle;
-	CGXStyle				m_LeftOnlyBlackBorderStyle;
-	CGXStyle				m_RightOnlyBlackBorderStyle;
-	CGXStyle				m_TopOnlyBlackBorderStyle;
-	CGXStyle				m_BottomOnlyBlackBorderStyle;
+    ZBBPProcessSymbol*        m_pPreviousProcess;
+    ZDProcessGraphModelMdl*    m_pRootModel;
 
-	CString					m_DomainName;
-	CString					m_UnitName;
+    CGXStyle                m_BlueStyle;
+    CGXStyle                m_OrangeStyle;
+    CGXStyle                m_GrayStyle;
 
-	BOOL					m_IncludeSynthesis;
-	BOOL					m_IncludeDetail;
-	BOOL					m_IncludeDeliverables;
+    CGXStyle                m_BlackBorderStyle;
+    CGXStyle                m_LeftOnlyBlackBorderStyle;
+    CGXStyle                m_RightOnlyBlackBorderStyle;
+    CGXStyle                m_TopOnlyBlackBorderStyle;
+    CGXStyle                m_BottomOnlyBlackBorderStyle;
 
-	CString					m_CurrentProcessName;
+    CString                    m_DomainName;
+    CString                    m_UnitName;
 
-	bool					m_First;
+    BOOL                    m_IncludeSynthesis;
+    BOOL                    m_IncludeDetail;
+    BOOL                    m_IncludeDeliverables;
+
+    CString                    m_CurrentProcessName;
+
+    bool                    m_First;
 };
 
 #endif // !defined(AFX_ZUProcessConceptorNavigation_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)

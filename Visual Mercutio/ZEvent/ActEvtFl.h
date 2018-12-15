@@ -38,16 +38,16 @@
 class AFX_EXT_CLASS ZBEventActivityFile : public ZBEventFile
 {
 public:
-	ZBEventActivityFile();
+    ZBEventActivityFile();
 
 private:
     ZBEventActivityFile(const ZBEventActivityFile &right);
     const ZBEventActivityFile & operator=(const ZBEventActivityFile &right);
 
 protected:
-	virtual void	BuildLine(const CString Path, const CString Filename);
-	virtual BOOL	ParseLine();
-	virtual ZBEvent*	AllocateEventPtr();
+    virtual void    BuildLine(const CString Path, const CString Filename);
+    virtual BOOL    ParseLine();
+    virtual ZBEvent*    AllocateEventPtr();
 };
 
 
@@ -55,10 +55,10 @@ protected:
 //#define AFX_DATA
 
 
-inline ZBEvent*	ZBEventActivityFile::AllocateEventPtr()
+inline ZBEvent*    ZBEventActivityFile::AllocateEventPtr()
 {
-	ZBEventActivity*	pEvent = new ZBEventActivity;
-	return pEvent;
+    ZBEventActivity*    pEvent = new ZBEventActivity;
+    return pEvent;
 }
 
 

@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 05/2002
+// <nl>Created:         05/2002
 // <nl>Description:  ZUStringConversion utility class for string conversion
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -50,10 +50,10 @@ class AFX_EXT_CLASS ZUStringConversion
 {
 public:
 
-	ZUStringConversion();
-	virtual ~ZUStringConversion();
+    ZUStringConversion();
+    virtual ~ZUStringConversion();
 
-	static CString ConvertSpecialChar( CString s );
+    static CString ConvertSpecialChar( CString s );
 };
 
 #endif // !defined(AFX_ZUSTRINGCONVERSION_H__5D6CD631_750B_4BCB_B41A_B3FF45CA06F3__INCLUDED_)

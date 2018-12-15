@@ -34,55 +34,55 @@ class ZBUserEntity;
 
 // JMR-MODIF - Le 10 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-const int UM_INITUSERGROUP			= 100;
-const int UM_REFRESHUSERGROUP		= 101;
-const int UM_CLEARUSERGROUP			= 102;
-const int UM_CLOSEUSERGROUP			= 103;
+const int UM_INITUSERGROUP            = 100;
+const int UM_REFRESHUSERGROUP        = 101;
+const int UM_CLEARUSERGROUP            = 102;
+const int UM_CLOSEUSERGROUP            = 103;
 
 class AFX_EXT_CLASS ZBUserGroupObserverMsg : public ZIObserverMsg  
 {
-	DECLARE_DYNAMIC( ZBUserGroupObserverMsg )
+    DECLARE_DYNAMIC( ZBUserGroupObserverMsg )
 
 public:
 
-	ZBUserGroupObserverMsg( UINT MessageID = 0, ZBUserEntity* pEntity = NULL, const CString RootName = _T( "" ) );
-	virtual ~ZBUserGroupObserverMsg();
+    ZBUserGroupObserverMsg( UINT MessageID = 0, ZBUserEntity* pEntity = NULL, const CString RootName = _T( "" ) );
+    virtual ~ZBUserGroupObserverMsg();
 
-	UINT GetMessageID() const
-	{
-		return m_MessageID;
-	};
+    UINT GetMessageID() const
+    {
+        return m_MessageID;
+    };
 
-	void SetMessageID( UINT value )
-	{
-		m_MessageID = value;
-	};
+    void SetMessageID( UINT value )
+    {
+        m_MessageID = value;
+    };
 
-	ZBUserEntity* GetpEntity() const
-	{
-		return m_pEntity;
-	};
+    ZBUserEntity* GetpEntity() const
+    {
+        return m_pEntity;
+    };
 
-	void SetpEntity( ZBUserEntity* value )
-	{
-		m_pEntity = value;
-	};
+    void SetpEntity( ZBUserEntity* value )
+    {
+        m_pEntity = value;
+    };
 
-	CString GetRootName() const
-	{
-		return m_RootName;
-	};
+    CString GetRootName() const
+    {
+        return m_RootName;
+    };
 
-	void SetRootName( const CString value )
-	{
-		m_RootName = value;
-	};
+    void SetRootName( const CString value )
+    {
+        m_RootName = value;
+    };
 
 private:
 
-	UINT			m_MessageID;
-	ZBUserEntity*	m_pEntity;
-	CString			m_RootName;
+    UINT            m_MessageID;
+    ZBUserEntity*    m_pEntity;
+    CString            m_RootName;
 };
 
 #endif // !defined(AFX_ZBUserGroupObserverMsg_H__31A212D8_7CA2_4BEB_9709_8C785F4909B3__INCLUDED_)

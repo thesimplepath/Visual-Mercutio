@@ -38,116 +38,116 @@ class ZDGridDocument;
 
 class AFX_EXT_CLASS ZBGenericGridReportGenerator : public CObject, public ZIGridReportGenerator
 {
-	DECLARE_SERIAL( ZBGenericGridReportGenerator )
+    DECLARE_SERIAL( ZBGenericGridReportGenerator )
 
 public:
 
-	ZBGenericGridReportGenerator( ZDGridDocument* pDoc = NULL );
-	virtual ~ZBGenericGridReportGenerator();
+    ZBGenericGridReportGenerator( ZDGridDocument* pDoc = NULL );
+    virtual ~ZBGenericGridReportGenerator();
 
-	// Return the document and the associated document template pointer
-	virtual ZDGridDocument* GetDocument() const
-	{
-		return m_pDoc;
-	};
+    // Return the document and the associated document template pointer
+    virtual ZDGridDocument* GetDocument() const
+    {
+        return m_pDoc;
+    };
 
-	virtual void SetDocument( ZDGridDocument* pDoc )
-	{
-		m_pDoc = pDoc;
-	};
+    virtual void SetDocument( ZDGridDocument* pDoc )
+    {
+        m_pDoc = pDoc;
+    };
 
-	virtual CDocTemplate* GetDocTemplate() const;
+    virtual CDocTemplate* GetDocTemplate() const;
 
-	/////////////////////////////////////////////////////////////////////////////
-	// ZIGridReportGenerator methods
-	
-	// Initialization method
-	virtual bool Initialize()
-	{
-		return true;
-	};
+    /////////////////////////////////////////////////////////////////////////////
+    // ZIGridReportGenerator methods
+    
+    // Initialization method
+    virtual bool Initialize()
+    {
+        return true;
+    };
 
-	// Returns the number of tabs
-	virtual size_t GetGeneratorTabCount() const
-	{
-		return 1;
-	};
+    // Returns the number of tabs
+    virtual size_t GetGeneratorTabCount() const
+    {
+        return 1;
+    };
 
-	// Returns the tab name corresponding to the index
-	virtual const CString GetGeneratorTabName( size_t Index )
-	{
-		return _T( "Tab 1" );
-	};
+    // Returns the tab name corresponding to the index
+    virtual const CString GetGeneratorTabName( size_t Index )
+    {
+        return _T( "Tab 1" );
+    };
 
-	// Called by the framework to request a grid param to be filled
-	// The implementation uses the delegation
-	virtual bool FillGrid( CGXGridCore& GridCore, size_t Index )
-	{
-		return true;
-	};
+    // Called by the framework to request a grid param to be filled
+    // The implementation uses the delegation
+    virtual bool FillGrid( CGXGridCore& GridCore, size_t Index )
+    {
+        return true;
+    };
 
-	virtual void SetReportTypeID( int TypeID )
-	{
-		m_TypeID = TypeID;
-	};
+    virtual void SetReportTypeID( int TypeID )
+    {
+        m_TypeID = TypeID;
+    };
 
-	virtual int GetReportTypeID() const
-	{
-		return m_TypeID;
-	};
+    virtual int GetReportTypeID() const
+    {
+        return m_TypeID;
+    };
 
-	virtual const CString GetReportTitle() const
-	{
-		return _T( "" );
-	};
+    virtual const CString GetReportTitle() const
+    {
+        return _T( "" );
+    };
 
-	virtual bool IsReportDataExternal() const
-	{
-		return true;
-	};
+    virtual bool IsReportDataExternal() const
+    {
+        return true;
+    };
 
-	virtual bool ReportDataMustBeReloaded() const
-	{
-		return ( ZBDate::GetToday() > m_LastUpdateDateTime ) ? true : false;
-	};
+    virtual bool ReportDataMustBeReloaded() const
+    {
+        return ( ZBDate::GetToday() > m_LastUpdateDateTime ) ? true : false;
+    };
 
-	virtual bool UseAutomaticReload() const
-	{
-		return true;
-	};
+    virtual bool UseAutomaticReload() const
+    {
+        return true;
+    };
 
-	// Call-back methods
-	virtual void OnPreDataFilled( size_t Index )
-	{
-	};
+    // Call-back methods
+    virtual void OnPreDataFilled( size_t Index )
+    {
+    };
 
-	virtual void OnPostDataFilled( size_t Index );
+    virtual void OnPostDataFilled( size_t Index );
 
-	// Serialization call-back
-	virtual void OnPostRead( CArchive& ar )
-	{
-	};
+    // Serialization call-back
+    virtual void OnPostRead( CArchive& ar )
+    {
+    };
 
-	virtual void OnPostWrite( CArchive& ar )
-	{
-	};
+    virtual void OnPostWrite( CArchive& ar )
+    {
+    };
 
-	// Serialization
-	virtual void Serialize( CArchive& ar );
+    // Serialization
+    virtual void Serialize( CArchive& ar );
 
 // Implementation
 public:
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 protected:
 
-	ZDGridDocument*	m_pDoc;
-	CString			m_Filename;
-	int				m_TypeID;
-	ZBDate			m_LastUpdateDateTime;
+    ZDGridDocument*    m_pDoc;
+    CString            m_Filename;
+    int                m_TypeID;
+    ZBDate            m_LastUpdateDateTime;
 };
 
 #endif // !defined(AFX_ZBGENERICGRIDREPORTGENERATOR_H__9F9F4F11_EC1C_46C8_9324_965098AC7702__INCLUDED_)

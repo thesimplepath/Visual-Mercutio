@@ -1,9 +1,9 @@
 // **********************************************************************************************************
-// *										 Classe ZBBPTextZone											*
+// *                                         Classe ZBBPTextZone                                            *
 // **********************************************************************************************************
-// * JMR-MODIF - Le 4 avril 2006 - Ajout de la classe ZBBPTextZone.											*
+// * JMR-MODIF - Le 4 avril 2006 - Ajout de la classe ZBBPTextZone.                                            *
 // **********************************************************************************************************
-// * Cette classe permet la gestion et l'affichage d'une zone de texte personnalisée.						*
+// * Cette classe permet la gestion et l'affichage d'une zone de texte personnalisée.                        *
 // **********************************************************************************************************
 
 #if !defined(AFX_ZBBPTextZone_H__F5100AAD_5FFF_4817_BE12_0A6B0BA8A8D4__INCLUDED_)
@@ -35,18 +35,18 @@
 
 class AFX_EXT_CLASS ZBBPTextZone : public ZBTextZone
 {
-	DECLARE_SERIAL( ZBBPTextZone )
+    DECLARE_SERIAL( ZBBPTextZone )
 
 public:
 
-	ZBBPTextZone();
-	~ZBBPTextZone();
+    ZBBPTextZone();
+    ~ZBBPTextZone();
 
-	void Create( CPoint ptLog, CClientDC* dc );
+    void Create( CPoint ptLog, CClientDC* dc );
 
-	virtual BOOL InitializeStyle();
+    virtual BOOL InitializeStyle();
 
-	virtual void Serialize( CArchive& ar );
+    virtual void Serialize( CArchive& ar );
 };
 
 #endif // AFX_ZBBPTextZone_H__F5100AAD_5FFF_4817_BE12_0A6B0BA8A8D4__INCLUDED_

@@ -28,103 +28,103 @@ IMPLEMENT_SERIAL( ZBModelBPReportGenerator, ZBGenericGridReportGenerator, def_Ve
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBModelBPReportGenerator::ZBModelBPReportGenerator( ZDGridDocument*				pDoc		/*= NULL*/,
-													ZDProcessGraphModelMdlBP*	pModel		/*= NULL*/,
-													ZDProcessGraphModelDoc*		pSourceDoc	/*= NULL*/ )
-	: ZBGenericGridReportGenerator	( pDoc ),
-	  m_pModel						( pModel ),
-	  m_pSourceDoc					( pSourceDoc ),
-	  m_InChargeOfClosingFile		( false )
+ZBModelBPReportGenerator::ZBModelBPReportGenerator( ZDGridDocument*                pDoc        /*= NULL*/,
+                                                    ZDProcessGraphModelMdlBP*    pModel        /*= NULL*/,
+                                                    ZDProcessGraphModelDoc*        pSourceDoc    /*= NULL*/ )
+    : ZBGenericGridReportGenerator    ( pDoc ),
+      m_pModel                        ( pModel ),
+      m_pSourceDoc                    ( pSourceDoc ),
+      m_InChargeOfClosingFile        ( false )
 {
-	// If a source document, assigns its path name
-	if ( m_pSourceDoc )
-	{
-		m_Filename = m_pSourceDoc->GetPathName();
-	}
+    // If a source document, assigns its path name
+    if ( m_pSourceDoc )
+    {
+        m_Filename = m_pSourceDoc->GetPathName();
+    }
 
-	// Fill the tab name array
-	FillTabArray();
+    // Fill the tab name array
+    FillTabArray();
 }
 
 ZBModelBPReportGenerator::~ZBModelBPReportGenerator()
 {
-	if ( m_InChargeOfClosingFile && m_pSourceDoc )
-	{
-		delete m_pSourceDoc;
-	}
+    if ( m_InChargeOfClosingFile && m_pSourceDoc )
+    {
+        delete m_pSourceDoc;
+    }
 
-	m_pSourceDoc	= NULL;
-	m_pModel		= NULL;
+    m_pSourceDoc    = NULL;
+    m_pModel        = NULL;
 }
 
-void ZBModelBPReportGenerator::Initialize( ZDGridDocument*				pDoc,
-										   ZDProcessGraphModelMdlBP*	pModel,
-										   ZDProcessGraphModelDoc*		pSourceDoc )
+void ZBModelBPReportGenerator::Initialize( ZDGridDocument*                pDoc,
+                                           ZDProcessGraphModelMdlBP*    pModel,
+                                           ZDProcessGraphModelDoc*        pSourceDoc )
 {
-	m_pDoc			= pDoc;
-	m_pModel		= pModel;
-	m_pSourceDoc	= pSourceDoc;
+    m_pDoc            = pDoc;
+    m_pModel        = pModel;
+    m_pSourceDoc    = pSourceDoc;
 
-	// If a source document, assigns its path name
-	if ( m_pSourceDoc )
-	{
-		m_Filename = m_pSourceDoc->GetPathName();
-	}
+    // If a source document, assigns its path name
+    if ( m_pSourceDoc )
+    {
+        m_Filename = m_pSourceDoc->GetPathName();
+    }
 
-	// Fill the tab name array
-	FillTabArray();
+    // Fill the tab name array
+    FillTabArray();
 }
 
 bool ZBModelBPReportGenerator::ReportDataMustBeReloaded() const
 {
-	if ( !m_Filename.IsEmpty() )
-	{
-		SYSTEMTIME tm;
+    if ( !m_Filename.IsEmpty() )
+    {
+        SYSTEMTIME tm;
 
-		if ( ZFile::GetLastWriteTime( m_Filename, tm ) )
-		{
-			return ( ZBDate( tm ) > m_LastUpdateDateTime ) ? true : false;
-		}
-	}
+        if ( ZFile::GetLastWriteTime( m_Filename, tm ) )
+        {
+            return ( ZBDate( tm ) > m_LastUpdateDateTime ) ? true : false;
+        }
+    }
 
-	return ZBGenericGridReportGenerator::ReportDataMustBeReloaded();
+    return ZBGenericGridReportGenerator::ReportDataMustBeReloaded();
 }
 
 void ZBModelBPReportGenerator::OnPostRead( CArchive& ar )
 {
-	if ( m_pSourceDoc == NULL && !m_Filename.IsEmpty() )
-	{
-		m_pSourceDoc = new ZDProcessGraphModelDoc();
+    if ( m_pSourceDoc == NULL && !m_Filename.IsEmpty() )
+    {
+        m_pSourceDoc = new ZDProcessGraphModelDoc();
 
-		// If the document is valid, assign the right model pointer
-		if ( m_pSourceDoc &&
-			 m_pSourceDoc->ReadFromFile( m_Filename ) &&
-			 m_pSourceDoc->GetModel() &&
-			 ISA( m_pSourceDoc->GetModel(), ZDProcessGraphModelMdlBP ) )
-		{
-			m_pModel = dynamic_cast<ZDProcessGraphModelMdlBP*>( m_pSourceDoc->GetModel() );
-			m_InChargeOfClosingFile = true;
-		}
-	}
+        // If the document is valid, assign the right model pointer
+        if ( m_pSourceDoc &&
+             m_pSourceDoc->ReadFromFile( m_Filename ) &&
+             m_pSourceDoc->GetModel() &&
+             ISA( m_pSourceDoc->GetModel(), ZDProcessGraphModelMdlBP ) )
+        {
+            m_pModel = dynamic_cast<ZDProcessGraphModelMdlBP*>( m_pSourceDoc->GetModel() );
+            m_InChargeOfClosingFile = true;
+        }
+    }
 }
 
 void ZBModelBPReportGenerator::OnPostDataFilled( size_t Index )
 {
-	if ( !m_Filename.IsEmpty() )
-	{
-		// Saves the last update date/time, this is set to the 
-		// filename last write date/time
-		SYSTEMTIME tm;
+    if ( !m_Filename.IsEmpty() )
+    {
+        // Saves the last update date/time, this is set to the 
+        // filename last write date/time
+        SYSTEMTIME tm;
 
-		if ( ZFile::GetLastWriteTime( m_Filename, tm ) )
-		{
-			m_LastUpdateDateTime = ZBDate( tm );
-		}
-	}
-	else
-	{
-		ZBGenericGridReportGenerator::OnPostDataFilled( Index );
-	}
+        if ( ZFile::GetLastWriteTime( m_Filename, tm ) )
+        {
+            m_LastUpdateDateTime = ZBDate( tm );
+        }
+    }
+    else
+    {
+        ZBGenericGridReportGenerator::OnPostDataFilled( Index );
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -133,12 +133,12 @@ void ZBModelBPReportGenerator::OnPostDataFilled( size_t Index )
 #ifdef _DEBUG
 void ZBModelBPReportGenerator::AssertValid() const
 {
-	ZBGenericGridReportGenerator::AssertValid();
+    ZBGenericGridReportGenerator::AssertValid();
 }
 
 void ZBModelBPReportGenerator::Dump( CDumpContext& dc ) const
 {
-	ZBGenericGridReportGenerator::Dump( dc );
+    ZBGenericGridReportGenerator::Dump( dc );
 }
 #endif //_DEBUG
 
@@ -147,15 +147,15 @@ void ZBModelBPReportGenerator::Dump( CDumpContext& dc ) const
 
 void ZBModelBPReportGenerator::Serialize( CArchive& ar )
 {
-	ZBGenericGridReportGenerator::Serialize( ar );
+    ZBGenericGridReportGenerator::Serialize( ar );
 
-	// Serialize the tab name array
-	m_TabNameArray.Serialize( ar );
+    // Serialize the tab name array
+    m_TabNameArray.Serialize( ar );
 
-	if ( ar.IsStoring() )
-	{
-	}
-	else
-	{
-	}
+    if ( ar.IsStoring() )
+    {
+    }
+    else
+    {
+    }
 }

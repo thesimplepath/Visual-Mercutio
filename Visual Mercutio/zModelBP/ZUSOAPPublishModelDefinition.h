@@ -13,9 +13,9 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 07/2001
+// <nl>Created:         07/2001
 // <nl>Description:  ZUSOAPPublishModelDefinition navigates through the process and
-//					 publish the symbol attributes to the SOAP Server
+//                     publish the symbol attributes to the SOAP Server
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -66,46 +66,46 @@ class AFX_EXT_CLASS ZUSOAPPublishModelDefinition : public ZUProcessNavigation
 {
 public:
 
-	// JMR-MODIF - Le 21 juin 2006 - Ajout de la variable pInfo dans le constructeur.
-	ZUSOAPPublishModelDefinition( ZBPublishMessengerModelInformation*	pInfo,
-								  ZDProcessGraphModelMdl*				pModel	= NULL,
-								  void*									pClass	= NULL );
+    // JMR-MODIF - Le 21 juin 2006 - Ajout de la variable pInfo dans le constructeur.
+    ZUSOAPPublishModelDefinition( ZBPublishMessengerModelInformation*    pInfo,
+                                  ZDProcessGraphModelMdl*                pModel    = NULL,
+                                  void*                                    pClass    = NULL );
 
-	virtual ~ZUSOAPPublishModelDefinition();
+    virtual ~ZUSOAPPublishModelDefinition();
 
-	// Call-back methods
-	virtual bool OnStart					();
-	virtual bool OnFinish					();
-	virtual bool OnDoorSymbol				( ZBBPDoorSymbol*			pSymbol );
-	virtual bool OnPageSymbol				( ZBBPPageSymbol*			pSymbol );
-	virtual bool OnProcedureSymbol			( ZBBPProcedureSymbol*		pSymbol );
-	virtual bool OnProcessSymbol			( ZBBPProcessSymbol*		pSymbol );
-	virtual bool OnStartSymbol				( ZBBPStartSymbol*			pSymbol );
-	virtual bool OnStopSymbol				( ZBBPStopSymbol*			pSymbol );
-	virtual bool OnDeliverableLinkSymbol	( ZBDeliverableLinkSymbol*	pSymbol );
-
-private:
-
-	// JMR-MODIF - Le 29 mai 2006 - Ajout de la fonction GetParentSymbolReference.
-	int GetParentSymbolReference			( ZBSymbol*					pSymbol,
-											  int						ParentID		= 0,
-											  ZDProcessGraphModelMdl*	pParentModel	= NULL );
-
-	void PublishAttribDef					( int Ref, ZBPropertySet& PropSet );
-	void PublishAttribDef					( int Ref, ZBProperty* pProp );
+    // Call-back methods
+    virtual bool OnStart                    ();
+    virtual bool OnFinish                    ();
+    virtual bool OnDoorSymbol                ( ZBBPDoorSymbol*            pSymbol );
+    virtual bool OnPageSymbol                ( ZBBPPageSymbol*            pSymbol );
+    virtual bool OnProcedureSymbol            ( ZBBPProcedureSymbol*        pSymbol );
+    virtual bool OnProcessSymbol            ( ZBBPProcessSymbol*        pSymbol );
+    virtual bool OnStartSymbol                ( ZBBPStartSymbol*            pSymbol );
+    virtual bool OnStopSymbol                ( ZBBPStopSymbol*            pSymbol );
+    virtual bool OnDeliverableLinkSymbol    ( ZBDeliverableLinkSymbol*    pSymbol );
 
 private:
 
-	// JMR-MODIF - Le 21 juin 2006 - Ajout de la variable m_pInfo.
-	ZBPublishMessengerModelInformation*	m_pInfo;
+    // JMR-MODIF - Le 29 mai 2006 - Ajout de la fonction GetParentSymbolReference.
+    int GetParentSymbolReference            ( ZBSymbol*                    pSymbol,
+                                              int                        ParentID        = 0,
+                                              ZDProcessGraphModelMdl*    pParentModel    = NULL );
 
-	pPublishModel						m_pm;
+    void PublishAttribDef                    ( int Ref, ZBPropertySet& PropSet );
+    void PublishAttribDef                    ( int Ref, ZBProperty* pProp );
 
-	ZDProcessGraphModelDoc*				m_pDoc;
+private:
 
-	CString								m_MessengerAddress;
+    // JMR-MODIF - Le 21 juin 2006 - Ajout de la variable m_pInfo.
+    ZBPublishMessengerModelInformation*    m_pInfo;
 
-	int									m_CounterRow;
+    pPublishModel                        m_pm;
+
+    ZDProcessGraphModelDoc*                m_pDoc;
+
+    CString                                m_MessengerAddress;
+
+    int                                    m_CounterRow;
 };
 
 #endif // !defined(AFX_ZUSOAPPublishModelDefinition_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)

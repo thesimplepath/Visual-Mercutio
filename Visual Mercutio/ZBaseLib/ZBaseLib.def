@@ -12,7 +12,7 @@ EXPORTS
     ;DisplayBitmapFile @4
     ;GetSizeOfBitmapFile @5
     ;Draw3DLine @6
-	;DrawEmbossRect @30 NONAME
-	;DrawEngraveRect @31 NONAME
-	;ZGTrace @32 NONAME
-	;ZGTraceT @33 NONAME
+    ;DrawEmbossRect @30 NONAME
+    ;DrawEngraveRect @31 NONAME
+    ;ZGTrace @32 NONAME
+    ;ZGTraceT @33 NONAME

@@ -41,28 +41,28 @@ class AFX_EXT_CLASS ZIUserTree
       void Initialize(ZITreeCtrl* pTreeCtrl, ZUUserManager* pUserManager);
       void ReInitialize(ZUUserManager* pUserManager);
       void Refresh();
-	  ZUser*			GetSelectedUser();
-	  CString			GetSelectedDepartement();
+      ZUser*            GetSelectedUser();
+      CString            GetSelectedDepartement();
 
-	  void	OnUserListChanged();
+      void    OnUserListChanged();
 
   private:
       ZIUserTree(const ZIUserTree &right);
       const ZIUserTree & operator=(const ZIUserTree &right);
-	  void	CreateTree();
-	  void	InitializeTree();
+      void    CreateTree();
+      void    InitializeTree();
 
   private:
-	HTREEITEM	AddDepartementItem (const CString Departement, int IconIndex);
-	HTREEITEM	AddUserItem (ZUser* pData, HTREEITEM hParentTreeItem, int IconIndex);
-	BOOL		DepartementExist( const CString Departement );
-	void		BuildDepartementArray();
+    HTREEITEM    AddDepartementItem (const CString Departement, int IconIndex);
+    HTREEITEM    AddUserItem (ZUser* pData, HTREEITEM hParentTreeItem, int IconIndex);
+    BOOL        DepartementExist( const CString Departement );
+    void        BuildDepartementArray();
 
   private: //## implementation
-	ZITreeCtrl*		m_pTreeCtrl;
-    ZUUserManager*	m_pUserManager;
-	CStringArray	m_DepartementArray;
-	bool			m_Invalid;
+    ZITreeCtrl*        m_pTreeCtrl;
+    ZUUserManager*    m_pUserManager;
+    CStringArray    m_DepartementArray;
+    bool            m_Invalid;
 };
 
 //#undef  AFX_DATA

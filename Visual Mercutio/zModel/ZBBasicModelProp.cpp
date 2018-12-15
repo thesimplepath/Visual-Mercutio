@@ -1,14 +1,14 @@
 // **************************************************************************************************************
-// * @doc ZBBasicModelProperties																				*
-// * @module ZBBasicModelProp.cpp | Implementation of the <c ZBBPProcessProperties> class.						*
-// *																											*
-// * zForms<tm>																									*
-// * <nl>Copyright <cp> 2001 Advanced Dedicated Software, Inc. All rights reserved.								*
-// *																											*
-// *																											*
-// * Author: Dominique Aigroz																					*
-// * <nl>Created: 03/2001																						*
-// *																											*
+// * @doc ZBBasicModelProperties                                                                                *
+// * @module ZBBasicModelProp.cpp | Implementation of the <c ZBBPProcessProperties> class.                        *
+// *                                                                                                            *
+// * zForms<tm>                                                                                                    *
+// * <nl>Copyright <cp> 2001 Advanced Dedicated Software, Inc. All rights reserved.                                *
+// *                                                                                                            *
+// *                                                                                                            *
+// * Author: Dominique Aigroz                                                                                    *
+// * <nl>Created: 03/2001                                                                                        *
+// *                                                                                                            *
 // **************************************************************************************************************
 
 #include "stdafx.h"
@@ -30,7 +30,7 @@ using namespace sfl;
 IMPLEMENT_SERIAL( ZBBasicModelProperties, CODIntProperty, def_Version )
 
 // **************************************************************************************************************
-// *								ZBBasicModelProperties construction/destruction								*
+// *                                ZBBasicModelProperties construction/destruction                                *
 // **************************************************************************************************************
 
 //@mfunc | ZBBasicModelProperties | ZBBasicModelProperties | Constructor.
@@ -41,20 +41,20 @@ IMPLEMENT_SERIAL( ZBBasicModelProperties, CODIntProperty, def_Version )
 //@parmopt int | nId | OD_PROP_ORIENTATION | The identifier of the property.
 //@parm ZBBasicModelProperties& | propBasic | The orientation property to copy.
 ZBBasicModelProperties::ZBBasicModelProperties( int nId )
-	: CODIntProperty( nId )
+    : CODIntProperty( nId )
 {
-	m_ModelName			= _T( "" );
-	m_ModelDescription	= _T( "" );
+    m_ModelName            = _T( "" );
+    m_ModelDescription    = _T( "" );
 
-	VERIFY( RegisterProperties() );
+    VERIFY( RegisterProperties() );
 }
 
 ZBBasicModelProperties::ZBBasicModelProperties( const ZBBasicModelProperties& propBasic )
-	: CODIntProperty( propBasic.GetId() )
+    : CODIntProperty( propBasic.GetId() )
 {
-	*this = propBasic;
+    *this = propBasic;
 
-	VERIFY( RegisterProperties() );
+    VERIFY( RegisterProperties() );
 }
 
 //@mfunc Destructor.
@@ -63,7 +63,7 @@ ZBBasicModelProperties::~ZBBasicModelProperties()
 }
 
 // **************************************************************************************************************
-// *									  ZBBasicModelProperties operations										*
+// *                                      ZBBasicModelProperties operations                                        *
 // **************************************************************************************************************
 
 //@mfunc Compare the property identifier with another identifier.
@@ -71,10 +71,10 @@ ZBBasicModelProperties::~ZBBasicModelProperties()
 //@parm Property identifier to compare to.
 BOOL ZBBasicModelProperties::CompareId( const int nId ) const
 {
-	int nIdMin = m_nId;
-	int nIdMax = m_nId + Z_MODEL_DESCRIPTION;
+    int nIdMin = m_nId;
+    int nIdMax = m_nId + Z_MODEL_DESCRIPTION;
 
-	return ( nId >= nIdMin && nId <= nIdMax );
+    return ( nId >= nIdMin && nId <= nIdMax );
 }
 
 //@mfunc Sets this property object equal to the one passed in.
@@ -82,10 +82,10 @@ BOOL ZBBasicModelProperties::CompareId( const int nId ) const
 //@parm The property to copy.
 ZBBasicModelProperties& ZBBasicModelProperties::operator=( const ZBBasicModelProperties& propBasic )
 {
-	SetModelName( propBasic.GetModelName() );
-	SetModelDescription( propBasic.GetModelDescription() );
+    SetModelName( propBasic.GetModelName() );
+    SetModelDescription( propBasic.GetModelDescription() );
 
-	return *this;
+    return *this;
 }
 
 //@mfunc Tests if this property is equal to the one passed in.
@@ -93,8 +93,8 @@ ZBBasicModelProperties& ZBBasicModelProperties::operator=( const ZBBasicModelPro
 //@parm The property to test against.
 BOOL ZBBasicModelProperties::operator==( const ZBBasicModelProperties propBasic ) const
 {
-	return ( GetModelName()			== propBasic.GetModelName() &&
-			 GetModelDescription()	== propBasic.GetModelDescription() );
+    return ( GetModelName()            == propBasic.GetModelName() &&
+             GetModelDescription()    == propBasic.GetModelDescription() );
 }
 
 //@mfunc Merges the values of the property passed in with the values in this
@@ -105,20 +105,20 @@ BOOL ZBBasicModelProperties::operator==( const ZBBasicModelProperties propBasic 
 // to merge into this property object.
 void ZBBasicModelProperties::Merge( CODProperty* pProperty, DWORD dwChangeFlags )
 {
-	ZBBasicModelProperties* pOrientationProp = (ZBBasicModelProperties*)pProperty;
+    ZBBasicModelProperties* pOrientationProp = (ZBBasicModelProperties*)pProperty;
 
-	if ( pOrientationProp )
-	{
-		if ( dwChangeFlags & Z_CHANGE_MODEL_NAME )
-		{
-			m_ModelName = pOrientationProp->GetModelName();
-		}
+    if ( pOrientationProp )
+    {
+        if ( dwChangeFlags & Z_CHANGE_MODEL_NAME )
+        {
+            m_ModelName = pOrientationProp->GetModelName();
+        }
 
-		if ( dwChangeFlags & Z_CHANGE_MODEL_DESCRIPTION )
-		{
-			m_ModelDescription = pOrientationProp->GetModelDescription();
-		}
-	}
+        if ( dwChangeFlags & Z_CHANGE_MODEL_DESCRIPTION )
+        {
+            m_ModelDescription = pOrientationProp->GetModelDescription();
+        }
+    }
 }
 
 //@mfunc Tests if this property is equal to the one passed in. This method
@@ -127,21 +127,21 @@ void ZBBasicModelProperties::Merge( CODProperty* pProperty, DWORD dwChangeFlags 
 //@parm A pointer to the property to test against.
 BOOL ZBBasicModelProperties::IsEqual( CODProperty* pProp )
 {
-	if ( GetId() == pProp->GetId() )
-	{
-		ZBBasicModelProperties* pOrientationProp = (ZBBasicModelProperties*)pProp;
+    if ( GetId() == pProp->GetId() )
+    {
+        ZBBasicModelProperties* pOrientationProp = (ZBBasicModelProperties*)pProp;
 
-		if ( pOrientationProp )
-		{
-			return ( *this == *pOrientationProp );
-		}
-	}
+        if ( pOrientationProp )
+        {
+            return ( *this == *pOrientationProp );
+        }
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 // **************************************************************************************************************
-// *									   IODPropertyContainer interface										*
+// *                                       IODPropertyContainer interface                                        *
 // **************************************************************************************************************
 
 //@mfunc | ZBBasicModelProperties | GetValue | Gets the value of the given property.
@@ -168,83 +168,83 @@ BOOL ZBBasicModelProperties::IsEqual( CODProperty* pProp )
 
 BOOL ZBBasicModelProperties::GetValue( const int nPropId, CString& strValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_MODEL_NAME:
-		{
-			strValue = m_ModelName;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_MODEL_NAME:
+        {
+            strValue = m_ModelName;
+            break;
+        }
 
-		case Z_MODEL_DESCRIPTION:
-		{
-			strValue = m_ModelDescription;
-			break;
-		}
+        case Z_MODEL_DESCRIPTION:
+        {
+            strValue = m_ModelDescription;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBasicModelProperties::GetValue( const int nPropId, int& nValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_MODEL_NAME:
-		case Z_MODEL_DESCRIPTION:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_MODEL_NAME:
+        case Z_MODEL_DESCRIPTION:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBasicModelProperties::GetValue( const int nPropId, UINT& nValue ) const
 {
-	nValue; // unused
+    nValue; // unused
 
-	if ( nPropId >= Z_MODEL_NAME && nPropId <= Z_MODEL_DESCRIPTION )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_MODEL_NAME && nPropId <= Z_MODEL_DESCRIPTION )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBasicModelProperties::GetValue( const int nPropId, DWORD& dwValue ) const
 {
-	dwValue; // unused
+    dwValue; // unused
 
-	if ( nPropId >= Z_MODEL_NAME && nPropId <= Z_MODEL_DESCRIPTION )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_MODEL_NAME && nPropId <= Z_MODEL_DESCRIPTION )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBasicModelProperties::GetValue( const int nPropId, float& fValue ) const
 {
-	fValue; // unused
+    fValue; // unused
 
-	if ( nPropId >= Z_MODEL_NAME && nPropId <= Z_MODEL_DESCRIPTION )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_MODEL_NAME && nPropId <= Z_MODEL_DESCRIPTION )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 //@mfunc | ZBBasicModelProperties | SetValue | Sets the value of the given property.
@@ -271,148 +271,148 @@ BOOL ZBBasicModelProperties::GetValue( const int nPropId, float& fValue ) const
 
 BOOL ZBBasicModelProperties::SetValue( const int nPropId, LPCTSTR lpszValue )
 {
-	switch ( nPropId )
-	{
-		case Z_MODEL_NAME:
-		{
-			m_ModelName = lpszValue;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_MODEL_NAME:
+        {
+            m_ModelName = lpszValue;
+            break;
+        }
 
-		case Z_MODEL_DESCRIPTION:
-		{
-			m_ModelDescription = lpszValue;
-			break;
-		}
+        case Z_MODEL_DESCRIPTION:
+        {
+            m_ModelDescription = lpszValue;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBasicModelProperties::SetValue( const int nPropId, const int nValue )
 {
-	switch ( nPropId )
-	{
-		case Z_MODEL_NAME:
-		case Z_MODEL_DESCRIPTION:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_MODEL_NAME:
+        case Z_MODEL_DESCRIPTION:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBasicModelProperties::SetValue( const int nPropId, const UINT nValue )
 {
-	nValue; // unused
+    nValue; // unused
 
-	if ( nPropId >= Z_MODEL_NAME && nPropId <= Z_MODEL_DESCRIPTION )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_MODEL_NAME && nPropId <= Z_MODEL_DESCRIPTION )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBasicModelProperties::SetValue( const int nPropId, const DWORD dwValue )
 {
-	dwValue; // unused
+    dwValue; // unused
 
-	if ( nPropId >= Z_MODEL_NAME && nPropId <= Z_MODEL_DESCRIPTION )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_MODEL_NAME && nPropId <= Z_MODEL_DESCRIPTION )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBasicModelProperties::SetValue( const int nPropId, const float fValue )
 {
-	fValue; // unused
+    fValue; // unused
 
-	if ( nPropId >= Z_MODEL_NAME && nPropId <= Z_MODEL_DESCRIPTION )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_MODEL_NAME && nPropId <= Z_MODEL_DESCRIPTION )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 // **************************************************************************************************************
-// *									ZBBasicModelProperties Property meta-data								*
+// *                                    ZBBasicModelProperties Property meta-data                                *
 // **************************************************************************************************************
 
 bool ZBBasicModelProperties::RegisterProperties()
 {
-	static bool propsRegistered = false;
-	
-	if ( !propsRegistered )
-	{
-		bool success = true;
+    static bool propsRegistered = false;
+    
+    if ( !propsRegistered )
+    {
+        bool success = true;
 
-		if ( success )
-		{
-			success = RegisterProperty( Z_MODEL_NAME,
-									    IDS_Z_MODEL_NAME_NAME,
-									    IDS_Z_MODEL_NAME_DESC,
-									    _PropertyAccessor( &ZBBasicModelProperties::GetModelName,
-														   &ZBBasicModelProperties::SetModelName ),
-									    VT_BSTR,
-									    PROP_DIRECT );
-		}
+        if ( success )
+        {
+            success = RegisterProperty( Z_MODEL_NAME,
+                                        IDS_Z_MODEL_NAME_NAME,
+                                        IDS_Z_MODEL_NAME_DESC,
+                                        _PropertyAccessor( &ZBBasicModelProperties::GetModelName,
+                                                           &ZBBasicModelProperties::SetModelName ),
+                                        VT_BSTR,
+                                        PROP_DIRECT );
+        }
 
-		if ( success )
-		{
-			success = RegisterProperty( Z_MODEL_DESCRIPTION,
-									    IDS_Z_MODEL_DESCRIPTION_NAME,
-									    IDS_Z_MODEL_DESCRIPTION_DESC,
-									    _PropertyAccessor( &ZBBasicModelProperties::GetModelDescription,
-														   &ZBBasicModelProperties::SetModelDescription ),
-									    VT_BSTR,
-									    PROP_DIRECT );
-		}
+        if ( success )
+        {
+            success = RegisterProperty( Z_MODEL_DESCRIPTION,
+                                        IDS_Z_MODEL_DESCRIPTION_NAME,
+                                        IDS_Z_MODEL_DESCRIPTION_DESC,
+                                        _PropertyAccessor( &ZBBasicModelProperties::GetModelDescription,
+                                                           &ZBBasicModelProperties::SetModelDescription ),
+                                        VT_BSTR,
+                                        PROP_DIRECT );
+        }
 
-		if (!success)
-		{
-			ZBBasicModelProperties::GetPropertyMap().DeleteAll();
-		}
+        if (!success)
+        {
+            ZBBasicModelProperties::GetPropertyMap().DeleteAll();
+        }
 
-		propsRegistered = success;
-	}
+        propsRegistered = success;
+    }
 
-	return propsRegistered;
+    return propsRegistered;
 }
 
 // **************************************************************************************************************
-// *										ZBBasicModelProperties diagnostics									*
+// *                                        ZBBasicModelProperties diagnostics                                    *
 // **************************************************************************************************************
 
 #ifdef _DEBUG
 void ZBBasicModelProperties::AssertValid() const
 {
-	CODIntProperty::AssertValid();
+    CODIntProperty::AssertValid();
 }
 
 void ZBBasicModelProperties::Dump( CDumpContext& dc ) const
 {
-	CODIntProperty::Dump( dc );
+    CODIntProperty::Dump( dc );
 }
 #endif //_DEBUG
 
 // **************************************************************************************************************
-// *									ZBBasicModelProperties serialization									*
+// *                                    ZBBasicModelProperties serialization                                    *
 // **************************************************************************************************************
 
 //@mfunc Serializes the orientation properties.
@@ -420,19 +420,19 @@ void ZBBasicModelProperties::Dump( CDumpContext& dc ) const
 //@parm The archive to use for serialization.
 void ZBBasicModelProperties::Serialize( CArchive& ar )
 {
-	CODIntProperty::Serialize( ar );
+    CODIntProperty::Serialize( ar );
 
-	if ( ar.IsStoring() )
-	{
-		PUT_SCHEMA( ar, ZBBasicModelProperties );
-		ar << m_ModelName;
-		ar << m_ModelDescription;
-	}
-	else
-	{
-		UINT nSchema;
-		GET_SCHEMA( ar, nSchema );
-		ar >> m_ModelName;
-		ar >> m_ModelDescription;
-	}
+    if ( ar.IsStoring() )
+    {
+        PUT_SCHEMA( ar, ZBBasicModelProperties );
+        ar << m_ModelName;
+        ar << m_ModelDescription;
+    }
+    else
+    {
+        UINT nSchema;
+        GET_SCHEMA( ar, nSchema );
+        ar >> m_ModelName;
+        ar >> m_ModelDescription;
+    }
 }

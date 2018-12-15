@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Gaya
-// <nl>Created:		 03/2002
+// <nl>Created:         03/2002
 // <nl>Description:  XXXClass frame window support
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -46,24 +46,24 @@ class AFX_EXT_CLASS pinput
 {
 public:
 
-	pinput()
-	{
-	}
+    pinput()
+    {
+    }
 
-	pinput( int pdattribid, int attribdefid, String16 mdefval, int mflag, int constraintid )
-	{
-		this->pdattribid	= pdattribid;
-		this->attribdefid	= attribdefid;
-		this->mdefval		= convertTo( mdefval );
-		this->mflag			= mflag;		
-		this->constraintid	= constraintid;
-	}
+    pinput( int pdattribid, int attribdefid, String16 mdefval, int mflag, int constraintid )
+    {
+        this->pdattribid    = pdattribid;
+        this->attribdefid    = attribdefid;
+        this->mdefval        = convertTo( mdefval );
+        this->mflag            = mflag;        
+        this->constraintid    = constraintid;
+    }
  
-	int		pdattribid;
-	int		attribdefid;
-	string	mdefval;
-	int		mflag;
-	int		constraintid;
+    int        pdattribid;
+    int        attribdefid;
+    string    mdefval;
+    int        mflag;
+    int        constraintid;
 };
 
 #endif

@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Gaya
-// <nl>Created:		 03/2002
+// <nl>Created:         03/2002
 // <nl>Description:  XXXClass frame window support
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -53,38 +53,38 @@ class SOAPTypeTraits<pfile>
 {
 public:
 
-	static void GetType( SOAPQName& qname )
-	{
-		qname.Set( _T( "pfile" ), _T( "urn:xml-soap-pssfile" ) );
-	}
+    static void GetType( SOAPQName& qname )
+    {
+        qname.Set( _T( "pfile" ), _T( "urn:xml-soap-pssfile" ) );
+    }
 
-	static SOAPParameter& Serialize( SOAPParameter& param, const pfile& val )
-	{		
-		param.AddParameter( _T( "len" ) )		<< (int)val.len;
-		param.AddParameter( _T( "folder" ) )	<< (int)val.folder;		
-		param.AddParameter( _T( "crc" ) )		<< (int)val.crc;
-		param.AddParameter( _T( "doc" ) )		<< val.doc.c_str();
-		param.AddParameter( _T( "fname" ) )		<< val.fname.c_str();
+    static SOAPParameter& Serialize( SOAPParameter& param, const pfile& val )
+    {        
+        param.AddParameter( _T( "len" ) )        << (int)val.len;
+        param.AddParameter( _T( "folder" ) )    << (int)val.folder;        
+        param.AddParameter( _T( "crc" ) )        << (int)val.crc;
+        param.AddParameter( _T( "doc" ) )        << val.doc.c_str();
+        param.AddParameter( _T( "fname" ) )        << val.fname.c_str();
 
-		return param;
-	}
-	
-	static const SOAPParameter& Deserialize( const SOAPParameter& param, pfile& val )
-	{
-		SOAPString tmp;
-		int v;
+        return param;
+    }
+    
+    static const SOAPParameter& Deserialize( const SOAPParameter& param, pfile& val )
+    {
+        SOAPString tmp;
+        int v;
 
-		param.GetParameter( _T( "len" ) )		>> v;
-		val.len = v;
-		param.GetParameter( _T( "folder" ) )	>> val.folder;
-		param.GetParameter( _T( "crc" ) )		>> v;
-		val.crc = v;
-		param.GetParameter( _T( "doc" ) )		>> tmp;
-		val.doc = tmp.Str();
-		param.GetParameter( _T( "fname" ) )		>> tmp;
-		val.fname = tmp.Str();		
-		return param;
-	}
+        param.GetParameter( _T( "len" ) )        >> v;
+        val.len = v;
+        param.GetParameter( _T( "folder" ) )    >> val.folder;
+        param.GetParameter( _T( "crc" ) )        >> v;
+        val.crc = v;
+        param.GetParameter( _T( "doc" ) )        >> tmp;
+        val.doc = tmp.Str();
+        param.GetParameter( _T( "fname" ) )        >> tmp;
+        val.fname = tmp.Str();        
+        return param;
+    }
 };
 
 template<>
@@ -96,12 +96,12 @@ class AFX_EXT_CLASS pPublishFile
 {
 public:
 
-	pPublishFile();
-	~pPublishFile();
+    pPublishFile();
+    ~pPublishFile();
 
-	bool pubFile( pfile mfile );
-	int pubHasChanged( int mfolder, string mfilename, int mday, int mmonth, int myear, int mhour, int mmin, int msec );
-	pfile pubGetFile( int mfolder, string mfilename );
+    bool pubFile( pfile mfile );
+    int pubHasChanged( int mfolder, string mfilename, int mday, int mmonth, int myear, int mhour, int mmin, int msec );
+    pfile pubGetFile( int mfolder, string mfilename );
 };
 
 END_EASYSOAP_NAMESPACE

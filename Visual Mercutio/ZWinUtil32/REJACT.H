@@ -15,16 +15,16 @@
 #include "zBaseLib\ZIDialog.h"
 
 #ifndef _WIN32
-	#include "ZWinUtil.h"
+    #include "ZWinUtil.h"
 #endif
 #ifdef _WIN32
-	#include "ZWinUtil32.h"
-	#include <afxwin.h>         // MFC core and standard components
-	#include <afxext.h>         // for access to CToolBar
-	#include <afxcmn.h>
-	#include <afxdtctl.h>		// MFC support for Internet Explorer 4 Common Controls
-	#include <afxcmn.h>			// MFC support for Windows Common Controls
-	#include <CJ60Lib.h>		// CJ60 Library components
+    #include "ZWinUtil32.h"
+    #include <afxwin.h>         // MFC core and standard components
+    #include <afxext.h>         // for access to CToolBar
+    #include <afxcmn.h>
+    #include <afxdtctl.h>        // MFC support for Internet Explorer 4 Common Controls
+    #include <afxcmn.h>            // MFC support for Windows Common Controls
+    #include <CJ60Lib.h>        // CJ60 Library components
 #endif
 
 
@@ -49,39 +49,39 @@ class AFX_EXT_CLASS ZIRejectActivityInput : public ZIDialog
 {
 // Construction
 public:
-	ZIRejectActivityInput(CStringArray* pArray = NULL, CWnd* pParent = NULL);	// standard constructor
-	CString	GetRejectText() { return m_RejectText; }
-	
+    ZIRejectActivityInput(CStringArray* pArray = NULL, CWnd* pParent = NULL);    // standard constructor
+    CString    GetRejectText() { return m_RejectText; }
+    
 private:
 
 // Dialog Data
-	//{{AFX_DATA(ZIRejectActivityInput)
-	enum { IDD = IDD_REJECTACTIVITYINFO };
+    //{{AFX_DATA(ZIRejectActivityInput)
+    enum { IDD = IDD_REJECTACTIVITYINFO };
 #ifdef _WIN32 // In 32bit
-	CCJFlatComboBox	m_RejectCategory;
+    CCJFlatComboBox    m_RejectCategory;
 #endif
 #ifndef _WIN32 // In 16bit
-	CComboBox	m_RejectCategory;
+    CComboBox    m_RejectCategory;
 #endif
-	CString	m_RejectText;
-	//}}AFX_DATA
+    CString    m_RejectText;
+    //}}AFX_DATA
 
-	CStringArray*	m_pArray;
-	CString			m_OwnerText;
+    CStringArray*    m_pArray;
+    CString            m_OwnerText;
 private:
-	void CheckControlStates();
+    void CheckControlStates();
 
 // Implementation
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	// Generated message map functions
-	//{{AFX_MSG(ZIRejectActivityInput)
-	afx_msg void OnSelChangeRejectCategory();
-	virtual BOOL OnInitDialog();
-	virtual void OnOK();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZIRejectActivityInput)
+    afx_msg void OnSelChangeRejectCategory();
+    virtual BOOL OnInitDialog();
+    virtual void OnOK();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 //#undef  AFX_DATA

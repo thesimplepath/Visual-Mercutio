@@ -31,25 +31,25 @@ ZBUserRoleEntity::~ZBUserRoleEntity()
 
 ZBUserRoleEntity::ZBUserRoleEntity(const ZBUserRoleEntity& src)
 {
-	*this = src;
+    *this = src;
 }
 
 ZBUserRoleEntity& ZBUserRoleEntity::operator=(const ZBUserRoleEntity& src)
 {
-	// Call the base class assignement operator
-	ZBUserEntity::operator=( (const ZBUserEntity&)src);
+    // Call the base class assignement operator
+    ZBUserEntity::operator=( (const ZBUserEntity&)src);
 
-	return *this;
+    return *this;
 }
 
 ZBUserEntity* ZBUserRoleEntity::Clone() const
 {
-	return (new ZBUserRoleEntity(*this));
+    return (new ZBUserRoleEntity(*this));
 }
 
 bool ZBUserRoleEntity::DisplayProperties()
 {
-	return true;
+    return true;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -57,13 +57,13 @@ bool ZBUserRoleEntity::DisplayProperties()
 
 void ZBUserRoleEntity::Serialize (CArchive& ar)
 {
-	ZBUserEntity::Serialize(ar);
-	if (ar.IsStoring())
-	{	// Write the elements
-	}
-	else
-	{	// Read the elements
-	}
+    ZBUserEntity::Serialize(ar);
+    if (ar.IsStoring())
+    {    // Write the elements
+    }
+    else
+    {    // Read the elements
+    }
 }
 
 
@@ -73,11 +73,11 @@ void ZBUserRoleEntity::Serialize (CArchive& ar)
 #ifdef _DEBUG
 void ZBUserRoleEntity::AssertValid() const
 {
-	ZBUserEntity::AssertValid();
+    ZBUserEntity::AssertValid();
 }
 
 void ZBUserRoleEntity::Dump(CDumpContext& dc) const
 {
-	ZBUserEntity::Dump(dc);
+    ZBUserEntity::Dump(dc);
 }
 #endif //_DEBUG

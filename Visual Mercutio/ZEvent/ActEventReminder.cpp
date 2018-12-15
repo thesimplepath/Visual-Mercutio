@@ -24,25 +24,25 @@ ZBEventActivityReminder::ZBEventActivityReminder()
 }
 
 ZBEventActivityReminder::ZBEventActivityReminder(COleDateTime Time,
-												 CString Priority,
-												 CString FolderName,
-												 CString ProcessName,
-												 CString ActivityName,
-												 int	 RemainingDays,
-												 COleDateTime ActivityDueDate,
-												 CString ProcessFilename,
-												 CString ActivityStatus,
-												 CString Message)
-:	ZBEvent(Time, EVT_REMINDER), 
-	m_Priority(Priority),
-	m_FolderName(FolderName),
-	m_ProcessName(ProcessName),
-	m_ActivityName(ActivityName),
-	m_RemainingDays(RemainingDays),
-	m_ActivityDueDate(ActivityDueDate),
-	m_ProcessFilename(ProcessFilename),
-	m_ActivityStatus(ActivityStatus),
-	m_Message(Message)
+                                                 CString Priority,
+                                                 CString FolderName,
+                                                 CString ProcessName,
+                                                 CString ActivityName,
+                                                 int     RemainingDays,
+                                                 COleDateTime ActivityDueDate,
+                                                 CString ProcessFilename,
+                                                 CString ActivityStatus,
+                                                 CString Message)
+:    ZBEvent(Time, EVT_REMINDER), 
+    m_Priority(Priority),
+    m_FolderName(FolderName),
+    m_ProcessName(ProcessName),
+    m_ActivityName(ActivityName),
+    m_RemainingDays(RemainingDays),
+    m_ActivityDueDate(ActivityDueDate),
+    m_ProcessFilename(ProcessFilename),
+    m_ActivityStatus(ActivityStatus),
+    m_Message(Message)
 {
 }
 
@@ -55,28 +55,28 @@ ZBEventActivityReminder::~ZBEventActivityReminder()
 
 ZBEventActivityReminder::ZBEventActivityReminder(const ZBEventActivityReminder &right)
 {
-	*this = right;
+    *this = right;
 }
 
 const ZBEventActivityReminder & ZBEventActivityReminder::operator=(const ZBEventActivityReminder &right)
 {
-	ZBEvent::operator=( right );
-	m_Priority = right.m_Priority;
-	m_FolderName = right.m_FolderName;
-	m_ProcessName = right.m_ProcessName;
-	m_ActivityName = right.m_ActivityName;
-	m_RemainingDays = right.m_RemainingDays;
-	m_ActivityDueDate = right.m_ActivityDueDate;
-	m_ProcessFilename = right.m_ProcessFilename;
-	m_ActivityStatus = right.m_ActivityStatus;
-	m_Message = right.m_Message;	
-	return *this;
+    ZBEvent::operator=( right );
+    m_Priority = right.m_Priority;
+    m_FolderName = right.m_FolderName;
+    m_ProcessName = right.m_ProcessName;
+    m_ActivityName = right.m_ActivityName;
+    m_RemainingDays = right.m_RemainingDays;
+    m_ActivityDueDate = right.m_ActivityDueDate;
+    m_ProcessFilename = right.m_ProcessFilename;
+    m_ActivityStatus = right.m_ActivityStatus;
+    m_Message = right.m_Message;    
+    return *this;
 }
 
 
-CString	 ZBEventActivityReminder::GetRemainingDaysString() const
+CString     ZBEventActivityReminder::GetRemainingDaysString() const
 {
-	char	Buffer[10];
-	sprintf( Buffer, "%d", m_RemainingDays );
-	return Buffer;
+    char    Buffer[10];
+    sprintf( Buffer, "%d", m_RemainingDays );
+    return Buffer;
 }

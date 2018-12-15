@@ -30,21 +30,21 @@ ZUSymbolLoaderFILE::~ZUSymbolLoaderFILE()
 
 int ZUSymbolLoaderFILE::LoadSymbol( const CString Location, ZBSymbolEntitySet& CompSet )
 {
-	// Check the existence of file
-	if (!ZFile::Exist(Location))
-		return 0;
+    // Check the existence of file
+    if (!ZFile::Exist(Location))
+        return 0;
 
-	ZBSymbolEntity	Entity;
-	if (!Entity.ReadFromFile( Location ))
-		return 0;
-	CompSet.Add( Entity.Clone() );
-	return CompSet.GetSize();
+    ZBSymbolEntity    Entity;
+    if (!Entity.ReadFromFile( Location ))
+        return 0;
+    CompSet.Add( Entity.Clone() );
+    return CompSet.GetSize();
 }
 
 
 int ZUSymbolLoaderFILE::LoadSymbols( const CString Location, ZBSymbolEntitySet& CompSet, bool LoadSubFolders /*= false*/ )
 {
-	return 0;
+    return 0;
 }
 
 

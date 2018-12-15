@@ -29,9 +29,9 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUProcedureCalculateTotals::ZUProcedureCalculateTotals( ZDProcessGraphModelMdl*	pModel	/*= NULL*/,
-														void*					pClass	/*= NULL*/ )
-	: ZUProcessNavigation( pModel, pClass )
+ZUProcedureCalculateTotals::ZUProcedureCalculateTotals( ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
+                                                        void*                    pClass    /*= NULL*/ )
+    : ZUProcessNavigation( pModel, pClass )
 {
 }
 
@@ -41,108 +41,108 @@ ZUProcedureCalculateTotals::~ZUProcedureCalculateTotals()
 
 bool ZUProcedureCalculateTotals::OnStart()
 {
-	// Start by casting the unit name string
-	ZBProcedureCalculateTotalsInformation* pInfo = static_cast<ZBProcedureCalculateTotalsInformation*>( m_pClass );
+    // Start by casting the unit name string
+    ZBProcedureCalculateTotalsInformation* pInfo = static_cast<ZBProcedureCalculateTotalsInformation*>( m_pClass );
 
-	if ( pInfo )
-	{
-		m_UnitName		= pInfo->m_UnitName;
-		m_Consolidated	= pInfo->m_Consolidated;
-		m_pGroup		= pInfo->m_pGroup;
-	}
-	else
-	{
-		m_UnitName.Empty();
-		m_Consolidated	= false;
-		m_pGroup		= NULL;
-	}
+    if ( pInfo )
+    {
+        m_UnitName        = pInfo->m_UnitName;
+        m_Consolidated    = pInfo->m_Consolidated;
+        m_pGroup        = pInfo->m_pGroup;
+    }
+    else
+    {
+        m_UnitName.Empty();
+        m_Consolidated    = false;
+        m_pGroup        = NULL;
+    }
 
-	m_ProcedureCost					= 0;
-	m_ProcedureWorkloadForecast		= 0;
-	m_ProcedureCostForecast			= 0;
-	m_ProcedureWorkloadPerActivity	= 0;
-	m_ProcedureCostPerActivity		= 0;
+    m_ProcedureCost                    = 0;
+    m_ProcedureWorkloadForecast        = 0;
+    m_ProcedureCostForecast            = 0;
+    m_ProcedureWorkloadPerActivity    = 0;
+    m_ProcedureCostPerActivity        = 0;
 
-	// Reset all members
-	return true;
+    // Reset all members
+    return true;
 }
 
 bool ZUProcedureCalculateTotals::OnFinish()
 {
-	return true;
+    return true;
 }
 
 bool ZUProcedureCalculateTotals::OnDoorSymbol( ZBBPDoorSymbol* pSymbol )
 {
-	return true;
+    return true;
 }
 
 bool ZUProcedureCalculateTotals::OnPageSymbol( ZBBPPageSymbol* pSymbol )
 {
-	return true;
+    return true;
 }
 
 bool ZUProcedureCalculateTotals::OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
 {
-	// Calculate totals only for local symbols
-	if ( !pSymbol->IsLocal() )
-	{
-		return true;
-	}
+    // Calculate totals only for local symbols
+    if ( !pSymbol->IsLocal() )
+    {
+        return true;
+    }
 
-	// If no unit specified or the same unit
-	// then calculates all totals
-	// Check also if consolidated is set and check if the symbol's unitname 
-	// is part of the group
-	if ( m_UnitName.IsEmpty() ||
-		 m_UnitName == pSymbol->GetUnitName() ||
-		 ( m_Consolidated && m_pGroup && m_pGroup->GroupExist( pSymbol->GetUnitName(), true ) ) )
-	{
-		if ( (double)pSymbol->GetProcedureCost() > 0 )
-		{
-			m_ProcedureCost += pSymbol->GetProcedureCost();
-		}
+    // If no unit specified or the same unit
+    // then calculates all totals
+    // Check also if consolidated is set and check if the symbol's unitname 
+    // is part of the group
+    if ( m_UnitName.IsEmpty() ||
+         m_UnitName == pSymbol->GetUnitName() ||
+         ( m_Consolidated && m_pGroup && m_pGroup->GroupExist( pSymbol->GetUnitName(), true ) ) )
+    {
+        if ( (double)pSymbol->GetProcedureCost() > 0 )
+        {
+            m_ProcedureCost += pSymbol->GetProcedureCost();
+        }
 
-		if ( (double)pSymbol->GetProcedureWorkloadForecast() > 0 )
-		{
-			m_ProcedureWorkloadForecast += pSymbol->GetProcedureWorkloadForecast();
-		}
+        if ( (double)pSymbol->GetProcedureWorkloadForecast() > 0 )
+        {
+            m_ProcedureWorkloadForecast += pSymbol->GetProcedureWorkloadForecast();
+        }
 
-		if ( (double)pSymbol->GetProcedureCostForecast() > 0 )
-		{
-			m_ProcedureCostForecast += pSymbol->GetProcedureCostForecast();
-		}
+        if ( (double)pSymbol->GetProcedureCostForecast() > 0 )
+        {
+            m_ProcedureCostForecast += pSymbol->GetProcedureCostForecast();
+        }
 
-		if ( (double)pSymbol->GetProcedureWorkloadPerActivity() > 0 )
-		{
-			m_ProcedureWorkloadPerActivity += pSymbol->GetProcedureWorkloadPerActivity();
-		}
+        if ( (double)pSymbol->GetProcedureWorkloadPerActivity() > 0 )
+        {
+            m_ProcedureWorkloadPerActivity += pSymbol->GetProcedureWorkloadPerActivity();
+        }
 
-		if ( (double)pSymbol->GetProcedureCostPerActivity() > 0 )
-		{
-			m_ProcedureCostPerActivity += pSymbol->GetProcedureCostPerActivity();
-		}
-	}
+        if ( (double)pSymbol->GetProcedureCostPerActivity() > 0 )
+        {
+            m_ProcedureCostPerActivity += pSymbol->GetProcedureCostPerActivity();
+        }
+    }
 
-	return true;
+    return true;
 }
 
 bool ZUProcedureCalculateTotals::OnProcessSymbol( ZBBPProcessSymbol* pSymbol )
 {
-	return true;
+    return true;
 }
 
 bool ZUProcedureCalculateTotals::OnStartSymbol( ZBBPStartSymbol* pSymbol )
 {
-	return true;
+    return true;
 }
 
 bool ZUProcedureCalculateTotals::OnStopSymbol( ZBBPStopSymbol* pSymbol )
 {
-	return true;
+    return true;
 }
 
 bool ZUProcedureCalculateTotals::OnDeliverableLinkSymbol( ZBDeliverableLinkSymbol* pSymbol )
 {
-	return true;
+    return true;
 }

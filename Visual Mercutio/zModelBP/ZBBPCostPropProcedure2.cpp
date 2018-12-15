@@ -12,7 +12,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// Created:		 05/2001
+// Created:         05/2001
 // Modified:     10/2001 for beta 2 version. Stop using CODProperties.
 // Description:  ZBBPCostPropertiesProcedure2 cost properties for procedure
 //
@@ -49,16 +49,16 @@ using namespace sfl;
 //@parm ZBBPCostPropertiesProcedure2& | propBasic | The orientation property to copy.
 ZBBPCostPropertiesProcedure2::ZBBPCostPropertiesProcedure2()
 {
-	m_Multiplier			= 1;
-	m_ProcessingTime		= 0;
-	m_UnitaryCost			= 0;
-	m_ProcessingDuration	= 0;
-	m_ProcessingDurationMax	= 0;
+    m_Multiplier            = 1;
+    m_ProcessingTime        = 0;
+    m_UnitaryCost            = 0;
+    m_ProcessingDuration    = 0;
+    m_ProcessingDurationMax    = 0;
 }
 
 ZBBPCostPropertiesProcedure2::ZBBPCostPropertiesProcedure2( const ZBBPCostPropertiesProcedure2& propBasic )
 {
-	*this = propBasic;
+    *this = propBasic;
 }
 
 //@mfunc Destructor.
@@ -74,13 +74,13 @@ ZBBPCostPropertiesProcedure2::~ZBBPCostPropertiesProcedure2()
 //@parm The property to copy.
 ZBBPCostPropertiesProcedure2& ZBBPCostPropertiesProcedure2::operator=( const ZBBPCostPropertiesProcedure2& propBasic )
 {
-	SetMultiplier				( propBasic.GetMultiplier() );
-	SetProcessingTime			( propBasic.GetProcessingTime() );
-	SetUnitaryCost				( propBasic.GetUnitaryCost() );
-	SetProcessingDuration		( propBasic.GetProcessingDuration() );
-	SetProcessingDurationMax	( propBasic.GetProcessingDurationMax() );
+    SetMultiplier                ( propBasic.GetMultiplier() );
+    SetProcessingTime            ( propBasic.GetProcessingTime() );
+    SetUnitaryCost                ( propBasic.GetUnitaryCost() );
+    SetProcessingDuration        ( propBasic.GetProcessingDuration() );
+    SetProcessingDurationMax    ( propBasic.GetProcessingDurationMax() );
 
-	return *this;
+    return *this;
 }
 
 //@mfunc Tests if this property is equal to the one passed in.
@@ -88,11 +88,11 @@ ZBBPCostPropertiesProcedure2& ZBBPCostPropertiesProcedure2::operator=( const ZBB
 //@parm The property to test against.
 BOOL ZBBPCostPropertiesProcedure2::operator==( const ZBBPCostPropertiesProcedure2 propBasic ) const
 {
-	return ( GetMultiplier()			== propBasic.GetMultiplier()			&&
-			 GetProcessingTime()		== propBasic.GetProcessingTime()		&&
-			 GetUnitaryCost()			== propBasic.GetUnitaryCost()			&&
-			 GetProcessingDuration()	== propBasic.GetProcessingDuration()	&&
-			 GetProcessingDurationMax()	== propBasic.GetProcessingDurationMax() );
+    return ( GetMultiplier()            == propBasic.GetMultiplier()            &&
+             GetProcessingTime()        == propBasic.GetProcessingTime()        &&
+             GetUnitaryCost()            == propBasic.GetUnitaryCost()            &&
+             GetProcessingDuration()    == propBasic.GetProcessingDuration()    &&
+             GetProcessingDurationMax()    == propBasic.GetProcessingDurationMax() );
 }
 
 //@mfunc Merges the values of the property passed in with the values in this
@@ -103,33 +103,33 @@ BOOL ZBBPCostPropertiesProcedure2::operator==( const ZBBPCostPropertiesProcedure
 // to merge into this property object.
 void ZBBPCostPropertiesProcedure2::Merge( ZBBPCostPropertiesProcedure2* pProperty, DWORD dwChangeFlags )
 {
-	if ( pProperty )
-	{
-		if ( dwChangeFlags & Z_CHANGE_COST_MULTIPLIER )
-		{
-			m_Multiplier = pProperty->GetMultiplier();
-		}
+    if ( pProperty )
+    {
+        if ( dwChangeFlags & Z_CHANGE_COST_MULTIPLIER )
+        {
+            m_Multiplier = pProperty->GetMultiplier();
+        }
 
-		if ( dwChangeFlags & Z_CHANGE_COST_PROCESSING_TIME )
-		{
-			m_ProcessingTime = pProperty->GetProcessingTime();
-		}
+        if ( dwChangeFlags & Z_CHANGE_COST_PROCESSING_TIME )
+        {
+            m_ProcessingTime = pProperty->GetProcessingTime();
+        }
 
-		if ( dwChangeFlags & Z_CHANGE_COST_UNITARY_COST )
-		{
-			m_UnitaryCost = pProperty->GetUnitaryCost();
-		}
+        if ( dwChangeFlags & Z_CHANGE_COST_UNITARY_COST )
+        {
+            m_UnitaryCost = pProperty->GetUnitaryCost();
+        }
 
-		if ( dwChangeFlags & Z_CHANGE_COST_PROCESSING_DURATION )
-		{
-			m_ProcessingDuration = pProperty->GetProcessingDuration();
-		}
+        if ( dwChangeFlags & Z_CHANGE_COST_PROCESSING_DURATION )
+        {
+            m_ProcessingDuration = pProperty->GetProcessingDuration();
+        }
 
-		if ( dwChangeFlags & Z_CHANGE_COST_PROCESSING_DURATIONMAX )
-		{
-			m_ProcessingDurationMax = pProperty->GetProcessingDurationMax();
-		}
-	}
+        if ( dwChangeFlags & Z_CHANGE_COST_PROCESSING_DURATIONMAX )
+        {
+            m_ProcessingDurationMax = pProperty->GetProcessingDurationMax();
+        }
+    }
 }
 
 //@mfunc Tests if this property is equal to the one passed in. This method
@@ -138,12 +138,12 @@ void ZBBPCostPropertiesProcedure2::Merge( ZBBPCostPropertiesProcedure2* pPropert
 //@parm A pointer to the property to test against.
 BOOL ZBBPCostPropertiesProcedure2::IsEqual( ZBBPCostPropertiesProcedure2* pProp )
 {
-	if ( pProp )
-	{
-		return ( *this == *pProp );
-	}
+    if ( pProp )
+    {
+        return ( *this == *pProp );
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -174,135 +174,135 @@ BOOL ZBBPCostPropertiesProcedure2::IsEqual( ZBBPCostPropertiesProcedure2* pProp 
 
 BOOL ZBBPCostPropertiesProcedure2::GetValue( const int nPropId, CString& strValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_COST_MULTIPLIER:
-		{
-			strValue.Format( _T( "%.0f" ) , m_Multiplier );
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_COST_MULTIPLIER:
+        {
+            strValue.Format( _T( "%.0f" ) , m_Multiplier );
+            break;
+        }
 
-		case Z_COST_PROCESSING_TIME:
-		{
-			strValue.Format( _T( "%.0f" ), m_ProcessingTime );
-			break;
-		}
+        case Z_COST_PROCESSING_TIME:
+        {
+            strValue.Format( _T( "%.0f" ), m_ProcessingTime );
+            break;
+        }
 
-		case Z_COST_UNITARY_COST:
-		{
-			strValue.Format( _T( "%.0f" ), m_UnitaryCost );
-			break;
-		}
+        case Z_COST_UNITARY_COST:
+        {
+            strValue.Format( _T( "%.0f" ), m_UnitaryCost );
+            break;
+        }
 
-		case Z_COST_PROCESSING_DURATION:
-		{
-			strValue.Format( _T( "%.0f" ), m_ProcessingDuration );
-			break;
-		}
+        case Z_COST_PROCESSING_DURATION:
+        {
+            strValue.Format( _T( "%.0f" ), m_ProcessingDuration );
+            break;
+        }
 
-		case Z_COST_PROCESSING_DURATIONMAX:
-		{
-			strValue.Format( _T( "%.0f" ), m_ProcessingDurationMax );
-			break;
-		}
+        case Z_COST_PROCESSING_DURATIONMAX:
+        {
+            strValue.Format( _T( "%.0f" ), m_ProcessingDurationMax );
+            break;
+        }
 
-		default:
-		{
-			throw new CODPropertyConversionException();
-			return FALSE;
-		}
-	}
+        default:
+        {
+            throw new CODPropertyConversionException();
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPCostPropertiesProcedure2::GetValue( const int nPropId, int& nValue ) const
 {
-	// Unused
-	nValue;
+    // Unused
+    nValue;
 
-	if ( nPropId >= Z_COST_MULTIPLIER && nPropId <= Z_COST_PROCESSING_DURATIONMAX )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_COST_MULTIPLIER && nPropId <= Z_COST_PROCESSING_DURATIONMAX )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPCostPropertiesProcedure2::GetValue( const int nPropId, UINT& nValue ) const
 {
-	// Unused
-	nValue;
+    // Unused
+    nValue;
 
-	if ( nPropId >= Z_COST_MULTIPLIER && nPropId <= Z_COST_PROCESSING_DURATIONMAX )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_COST_MULTIPLIER && nPropId <= Z_COST_PROCESSING_DURATIONMAX )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPCostPropertiesProcedure2::GetValue( const int nPropId, DWORD& dwValue ) const
 {
-	// Unused
-	dwValue;
+    // Unused
+    dwValue;
 
-	if ( nPropId >= Z_COST_MULTIPLIER && nPropId <= Z_COST_PROCESSING_DURATIONMAX )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_COST_MULTIPLIER && nPropId <= Z_COST_PROCESSING_DURATIONMAX )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPCostPropertiesProcedure2::GetValue( const int nPropId, float& fValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_COST_MULTIPLIER:
-		{
-			fValue = m_Multiplier;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_COST_MULTIPLIER:
+        {
+            fValue = m_Multiplier;
+            break;
+        }
 
-		case Z_COST_UNITARY_COST:
-		{
-			fValue = m_UnitaryCost;
-			break;
-		}
+        case Z_COST_UNITARY_COST:
+        {
+            fValue = m_UnitaryCost;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPCostPropertiesProcedure2::GetValue( const int nPropId, double& dValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_COST_PROCESSING_TIME:
-		{
-			dValue = m_ProcessingTime;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_COST_PROCESSING_TIME:
+        {
+            dValue = m_ProcessingTime;
+            break;
+        }
 
-		case Z_COST_PROCESSING_DURATION:
-		{
-			dValue = m_ProcessingDuration;
-			break;
-		}
+        case Z_COST_PROCESSING_DURATION:
+        {
+            dValue = m_ProcessingDuration;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 //@mfunc | ZBBPCostPropertiesProcedure2 | SetValue | Sets the value of the given property.
@@ -330,140 +330,140 @@ BOOL ZBBPCostPropertiesProcedure2::GetValue( const int nPropId, double& dValue )
 
 BOOL ZBBPCostPropertiesProcedure2::SetValue( const int nPropId, LPCTSTR lpszValue )
 {
-	switch ( nPropId )
-	{
-		case Z_COST_MULTIPLIER:
-		{
-			m_Multiplier = static_cast<float>( atof( lpszValue ) );
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_COST_MULTIPLIER:
+        {
+            m_Multiplier = static_cast<float>( atof( lpszValue ) );
+            break;
+        }
 
-		case Z_COST_PROCESSING_TIME:
-		{
-			m_ProcessingTime = atof( lpszValue );
-			break;
-		}
+        case Z_COST_PROCESSING_TIME:
+        {
+            m_ProcessingTime = atof( lpszValue );
+            break;
+        }
 
-		case Z_COST_UNITARY_COST:
-		{
-			m_UnitaryCost = static_cast<float>( atof( lpszValue ) );
-			break;
-		}
+        case Z_COST_UNITARY_COST:
+        {
+            m_UnitaryCost = static_cast<float>( atof( lpszValue ) );
+            break;
+        }
 
-		case Z_COST_PROCESSING_DURATION:
-		{
-			m_ProcessingDuration = atof( lpszValue );
-			break;
-		}
+        case Z_COST_PROCESSING_DURATION:
+        {
+            m_ProcessingDuration = atof( lpszValue );
+            break;
+        }
 
-		case Z_COST_PROCESSING_DURATIONMAX:
-		{
-			m_ProcessingDurationMax = atof( lpszValue );
-			break;
-		}
+        case Z_COST_PROCESSING_DURATIONMAX:
+        {
+            m_ProcessingDurationMax = atof( lpszValue );
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPCostPropertiesProcedure2::SetValue( const int nPropId, const int nValue )
 {
-	// Unused
-	nValue;
+    // Unused
+    nValue;
 
-	if ( nPropId >= Z_COST_MULTIPLIER && nPropId <= Z_COST_PROCESSING_DURATIONMAX )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_COST_MULTIPLIER && nPropId <= Z_COST_PROCESSING_DURATIONMAX )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPCostPropertiesProcedure2::SetValue( const int nPropId, const UINT nValue )
 {
-	// Unused
-	nValue;
+    // Unused
+    nValue;
 
-	if ( nPropId >= Z_COST_MULTIPLIER && nPropId <= Z_COST_PROCESSING_DURATIONMAX )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_COST_MULTIPLIER && nPropId <= Z_COST_PROCESSING_DURATIONMAX )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPCostPropertiesProcedure2::SetValue( const int nPropId, const DWORD dwValue )
 {
-	// Unused
-	dwValue;
+    // Unused
+    dwValue;
 
-	if ( nPropId >= Z_COST_MULTIPLIER && nPropId <= Z_COST_PROCESSING_DURATIONMAX )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_COST_MULTIPLIER && nPropId <= Z_COST_PROCESSING_DURATIONMAX )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPCostPropertiesProcedure2::SetValue( const int nPropId, const float fValue )
 {
-	switch ( nPropId )
-	{
-		case Z_COST_MULTIPLIER:
-		{
-			m_Multiplier = fValue;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_COST_MULTIPLIER:
+        {
+            m_Multiplier = fValue;
+            break;
+        }
 
-		case Z_COST_UNITARY_COST:
-		{
-			m_UnitaryCost = fValue;
-			break;
-		}
+        case Z_COST_UNITARY_COST:
+        {
+            m_UnitaryCost = fValue;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPCostPropertiesProcedure2::SetValue( const int nPropId, const double dValue )
 {
-	switch ( nPropId )
-	{
-		case Z_COST_PROCESSING_TIME:
-		{
-			m_ProcessingTime = dValue;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_COST_PROCESSING_TIME:
+        {
+            m_ProcessingTime = dValue;
+            break;
+        }
 
-		case Z_COST_PROCESSING_DURATION:
-		{
-			m_ProcessingDuration = dValue;
-			break;
-		}
+        case Z_COST_PROCESSING_DURATION:
+        {
+            m_ProcessingDuration = dValue;
+            break;
+        }
 
-		case Z_COST_PROCESSING_DURATIONMAX:
-		{
-			m_ProcessingDurationMax = dValue;
-			break;
-		}
+        case Z_COST_PROCESSING_DURATIONMAX:
+        {
+            m_ProcessingDurationMax = dValue;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -472,12 +472,12 @@ BOOL ZBBPCostPropertiesProcedure2::SetValue( const int nPropId, const double dVa
 #ifdef _DEBUG
 void ZBBPCostPropertiesProcedure2::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void ZBBPCostPropertiesProcedure2::Dump( CDumpContext& dc ) const
 {
-	CObject::Dump( dc );
+    CObject::Dump( dc );
 }
 #endif //_DEBUG
 
@@ -489,43 +489,43 @@ void ZBBPCostPropertiesProcedure2::Dump( CDumpContext& dc ) const
 //@parm The archive to use for serialization.
 void ZBBPCostPropertiesProcedure2::Serialize( CArchive& ar )
 {
-	CObject::Serialize( ar );
+    CObject::Serialize( ar );
 
-	if ( ar.IsStoring() )
-	{
-		TRACE( _T( "ZBBPCostPropertiesProcedure2::Serialize : Start Save\n" ) );
+    if ( ar.IsStoring() )
+    {
+        TRACE( _T( "ZBBPCostPropertiesProcedure2::Serialize : Start Save\n" ) );
 
-		PUT_SCHEMA( ar, ZBBPCostPropertiesProcedure2 );
-		ar << m_Multiplier;
-		ar << m_ProcessingTime;
-		ar << m_UnitaryCost;
-		ar << m_ProcessingDuration;
-		ar << m_ProcessingDurationMax;
+        PUT_SCHEMA( ar, ZBBPCostPropertiesProcedure2 );
+        ar << m_Multiplier;
+        ar << m_ProcessingTime;
+        ar << m_UnitaryCost;
+        ar << m_ProcessingDuration;
+        ar << m_ProcessingDurationMax;
 
-		TRACE( _T( "ZBBPCostPropertiesProcedure2::Serialize : End Save\n" ) );
-	}
-	else
-	{
-		TRACE( _T( "ZBBPCostPropertiesProcedure2::Serialize : Start Read\n" ) );
+        TRACE( _T( "ZBBPCostPropertiesProcedure2::Serialize : End Save\n" ) );
+    }
+    else
+    {
+        TRACE( _T( "ZBBPCostPropertiesProcedure2::Serialize : Start Read\n" ) );
 
-		UINT nSchema;
-		GET_SCHEMA( ar, nSchema );
-		ar >> m_Multiplier;
-		ar >> m_ProcessingTime;
-		ar >> m_UnitaryCost;
+        UINT nSchema;
+        GET_SCHEMA( ar, nSchema );
+        ar >> m_Multiplier;
+        ar >> m_ProcessingTime;
+        ar >> m_UnitaryCost;
 
-		if ( ar.m_pDocument &&
-			 ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 20 )
-		{
-			ar >> m_ProcessingDuration;
-		}
+        if ( ar.m_pDocument &&
+             ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 20 )
+        {
+            ar >> m_ProcessingDuration;
+        }
 
-		if ( ar.m_pDocument &&
-			 ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 21 )
-		{
-			ar >> m_ProcessingDurationMax;
-		}
+        if ( ar.m_pDocument &&
+             ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 21 )
+        {
+            ar >> m_ProcessingDurationMax;
+        }
 
-		TRACE( _T( "ZBBPCostPropertiesProcedure2::Serialize : End Read\n" ) );
-	}
+        TRACE( _T( "ZBBPCostPropertiesProcedure2::Serialize : End Read\n" ) );
+    }
 }

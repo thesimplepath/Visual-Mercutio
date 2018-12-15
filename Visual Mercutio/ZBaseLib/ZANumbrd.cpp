@@ -1,10 +1,10 @@
 //## begin module%33798B7D02A8.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%33798B7D02A8.cm
 
 //## begin module%33798B7D02A8.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%33798B7D02A8.cp
 
 //## Module: ZANumbrd%33798B7D02A8; Package body
@@ -75,8 +75,8 @@ PLFNAutoNumbered::PLFNAutoNumbered(const PLFNAutoNumbered &right)
 PLFNAutoNumbered::~PLFNAutoNumbered()
 {
   //## begin PLFNAutoNumbered::~PLFNAutoNumbered%.body preserve=yes
-  	if (m_pObject)
-  		delete m_pObject;
+      if (m_pObject)
+          delete m_pObject;
   //## end PLFNAutoNumbered::~PLFNAutoNumbered%.body
 }
 
@@ -84,14 +84,14 @@ PLFNAutoNumbered::~PLFNAutoNumbered()
 const PLFNAutoNumbered & PLFNAutoNumbered::operator=(const PLFNAutoNumbered &right)
 {
   //## begin PLFNAutoNumbered::operator=%.body preserve=yes
-	this->PlanFinObject::operator=( (inherited&)right );
-	m_TextLevel = right.m_TextLevel;
-	m_pObject = right.m_pObject->Clone();
-	m_iTextOffset = right.m_iTextOffset;
-	m_bAutoCalculate = right.m_bAutoCalculate;
-	m_iSectionNumber = right.m_iSectionNumber;
-	m_iLevel = right.m_iLevel;
-	return *this;
+    this->PlanFinObject::operator=( (inherited&)right );
+    m_TextLevel = right.m_TextLevel;
+    m_pObject = right.m_pObject->Clone();
+    m_iTextOffset = right.m_iTextOffset;
+    m_bAutoCalculate = right.m_bAutoCalculate;
+    m_iSectionNumber = right.m_iSectionNumber;
+    m_iLevel = right.m_iLevel;
+    return *this;
   //## end PLFNAutoNumbered::operator=%.body
 }
 
@@ -101,127 +101,127 @@ const PLFNAutoNumbered & PLFNAutoNumbered::operator=(const PLFNAutoNumbered &rig
 const PLFNAutoNumbered& PLFNAutoNumbered::operator = (const PLFNAutoNumbered* right)
 {
   //## begin PLFNAutoNumbered::operator =%863604533.body preserve=yes
-	this->PlanFinObject::operator=( (inherited*)right );
-	m_TextLevel = right->m_TextLevel;
-	m_pObject = right->m_pObject->Clone();
-	m_iTextOffset = right->m_iTextOffset;
-	m_bAutoCalculate = right->m_bAutoCalculate;
-	m_iSectionNumber = right->m_iSectionNumber;
-	m_iLevel = right->m_iLevel;
-	return *this;
+    this->PlanFinObject::operator=( (inherited*)right );
+    m_TextLevel = right->m_TextLevel;
+    m_pObject = right->m_pObject->Clone();
+    m_iTextOffset = right->m_iTextOffset;
+    m_bAutoCalculate = right->m_bAutoCalculate;
+    m_iSectionNumber = right->m_iSectionNumber;
+    m_iLevel = right->m_iLevel;
+    return *this;
   //## end PLFNAutoNumbered::operator =%863604533.body
 }
 
 CString PLFNAutoNumbered::GetFormatedObject ()
 {
   //## begin PLFNAutoNumbered::GetFormatedObject%863604535.body preserve=yes
-  	if (m_pObject)
-	  	return m_pObject->GetFormatedObject();
-	return "";
+      if (m_pObject)
+          return m_pObject->GetFormatedObject();
+    return "";
   //## end PLFNAutoNumbered::GetFormatedObject%863604535.body
 }
 
 BOOL PLFNAutoNumbered::ConvertFormatedObject (const CString& sValue, BOOL bLocateFormat, BOOL EmptyWhenZero)
 {
   //## begin PLFNAutoNumbered::ConvertFormatedObject%863604536.body preserve=yes
-  	if (m_pObject)
-	  	return m_pObject->ConvertFormatedObject( sValue, bLocateFormat, EmptyWhenZero );
-	// Hasn't changed
-	return FALSE;
+      if (m_pObject)
+          return m_pObject->ConvertFormatedObject( sValue, bLocateFormat, EmptyWhenZero );
+    // Hasn't changed
+    return FALSE;
   //## end PLFNAutoNumbered::ConvertFormatedObject%863604536.body
 }
 
 void PLFNAutoNumbered::Serialize (CArchive& ar)
 {
   //## begin PLFNAutoNumbered::Serialize%863604538.body preserve=yes
-	PlanFinObject::Serialize(ar);
-	if (ar.IsStoring())
-	{	// Write the elements
-		ar << (WORD)m_iTextOffset;
-		ar << (WORD)m_bAutoCalculate;
-		ar << (WORD)m_iSectionNumber;
-		ar << (WORD)m_iLevel;
-		// Serialize the oject defined
-		ar << m_pObject;
-	}
-	else
-	{	// Read the elements
-		WORD	wTemp;
-		ar >> wTemp;
-		m_iTextOffset = wTemp;
-		ar >> wTemp;
-		m_bAutoCalculate = wTemp;
-		ar >> wTemp;
-		m_iSectionNumber = wTemp;
-		ar >> wTemp;
-		m_iLevel = wTemp;
-		// Serialize the oject defined
-		ar >> m_pObject;
-	}
-	// Must serialize the Static member
-	// Serialize the Text Level
-	m_TextLevel.Serialize( ar );
+    PlanFinObject::Serialize(ar);
+    if (ar.IsStoring())
+    {    // Write the elements
+        ar << (WORD)m_iTextOffset;
+        ar << (WORD)m_bAutoCalculate;
+        ar << (WORD)m_iSectionNumber;
+        ar << (WORD)m_iLevel;
+        // Serialize the oject defined
+        ar << m_pObject;
+    }
+    else
+    {    // Read the elements
+        WORD    wTemp;
+        ar >> wTemp;
+        m_iTextOffset = wTemp;
+        ar >> wTemp;
+        m_bAutoCalculate = wTemp;
+        ar >> wTemp;
+        m_iSectionNumber = wTemp;
+        ar >> wTemp;
+        m_iLevel = wTemp;
+        // Serialize the oject defined
+        ar >> m_pObject;
+    }
+    // Must serialize the Static member
+    // Serialize the Text Level
+    m_TextLevel.Serialize( ar );
   //## end PLFNAutoNumbered::Serialize%863604538.body
 }
 
 PlanFinObject* PLFNAutoNumbered::Clone ()
 {
   //## begin PLFNAutoNumbered::Clone%863604539.body preserve=yes
-	PLFNAutoNumbered*	pObject = new PLFNAutoNumbered( *this );
-	return pObject;
+    PLFNAutoNumbered*    pObject = new PLFNAutoNumbered( *this );
+    return pObject;
   //## end PLFNAutoNumbered::Clone%863604539.body
 }
 
 void PLFNAutoNumbered::CopyObject (PlanFinObject* pSrc)
 {
   //## begin PLFNAutoNumbered::CopyObject%863615080.body preserve=yes
-	((PLFNAutoNumbered*)this)->PLFNAutoNumbered::operator=( (PLFNAutoNumbered*)pSrc );
+    ((PLFNAutoNumbered*)this)->PLFNAutoNumbered::operator=( (PLFNAutoNumbered*)pSrc );
   //## end PLFNAutoNumbered::CopyObject%863615080.body
 }
 
 void PLFNAutoNumbered::DrawObject (CDC* pDC, ZIView* pView)
 {
   //## begin PLFNAutoNumbered::DrawObject%863615085.body preserve=yes
-	DrawFillObject( pDC, pView );
-	m_TextLevel.DrawObject( pDC, pView );
-	// Must draw the object
-  	if (m_pObject)
-		m_pObject->DrawObject( pDC, pView );
-	PlanFinObject::DrawObject( pDC, pView );
+    DrawFillObject( pDC, pView );
+    m_TextLevel.DrawObject( pDC, pView );
+    // Must draw the object
+      if (m_pObject)
+        m_pObject->DrawObject( pDC, pView );
+    PlanFinObject::DrawObject( pDC, pView );
   //## end PLFNAutoNumbered::DrawObject%863615085.body
 }
 
 void PLFNAutoNumbered::SizePositionHasChanged ()
 {
   //## begin PLFNAutoNumbered::SizePositionHasChanged%863883949.body preserve=yes
-	if (!m_pObject)
-		return;
-  	// Call the basic fonction
-	PlanFinObject::SizePositionHasChanged();
-  	// Recalculate all element positions.
-  	GetTextLevel().SetClientRect( m_rctObject );
-  	m_pObject->SetClientRect( m_rctObject );
-  	m_pObject->GetClientRect().left += GetiTextOffset();
-  	// If automatic recalculation of section
-  	if (GetbAutoCalculate())
-		AfxGetMainWnd( )->SendMessageToDescendants( UM_REBUILDAUTOMATICNUMBER );
+    if (!m_pObject)
+        return;
+      // Call the basic fonction
+    PlanFinObject::SizePositionHasChanged();
+      // Recalculate all element positions.
+      GetTextLevel().SetClientRect( m_rctObject );
+      m_pObject->SetClientRect( m_rctObject );
+      m_pObject->GetClientRect().left += GetiTextOffset();
+      // If automatic recalculation of section
+      if (GetbAutoCalculate())
+        AfxGetMainWnd( )->SendMessageToDescendants( UM_REBUILDAUTOMATICNUMBER );
   //## end PLFNAutoNumbered::SizePositionHasChanged%863883949.body
 }
 
 CString PLFNAutoNumbered::GetUnformatedObject ()
 {
   //## begin PLFNAutoNumbered::GetUnformatedObject%901298462.body preserve=yes
-  	if (m_pObject)
-	  	return m_pObject->GetUnformatedObject();
-	return "";
+      if (m_pObject)
+          return m_pObject->GetUnformatedObject();
+    return "";
   //## end PLFNAutoNumbered::GetUnformatedObject%901298462.body
 }
 
 void PLFNAutoNumbered::SethStyle (HandleStyle value)
 {
   //## begin PLFNAutoNumbered::SethStyle%907428568.body preserve=yes
-  	if (m_pObject)
-	  	m_pObject->SethStyle( value );
+      if (m_pObject)
+          m_pObject->SethStyle( value );
   //## end PLFNAutoNumbered::SethStyle%907428568.body
 }
 
@@ -233,12 +233,12 @@ void PLFNAutoNumbered::SethStyle (HandleStyle value)
 #ifdef _DEBUG
 void PLFNAutoNumbered::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void PLFNAutoNumbered::Dump(CDumpContext& dc) const
 {
-	CObject::Dump(dc);
+    CObject::Dump(dc);
 }
 #endif //_DEBUG
 
@@ -246,15 +246,15 @@ void PLFNAutoNumbered::Dump(CDumpContext& dc) const
 
 const COLORREF PLFNAutoNumbered::GetFillColor () const
 {
-  	if (m_pObject)
-	  	return m_pObject->GetFillColor();
-	return 0;
+      if (m_pObject)
+          return m_pObject->GetFillColor();
+    return 0;
 }
 
 void PLFNAutoNumbered::SetFillColor (COLORREF value)
 {
-  	if (m_pObject)
-	  	m_pObject->SetFillColor( value );
+      if (m_pObject)
+          m_pObject->SetFillColor( value );
 }
 
 
@@ -268,8 +268,8 @@ void PLFNAutoNumbered::SetFillColor (COLORREF value)
 // WARNING: this code will be lost if code is regenerated.
 #if 0
 //## begin PLFNAutoNumbered::EditObject%863615086.body preserve=no
-  	if (m_pObject)
-		m_pObject->EditObject( pParentWnd, pDC, pDoc);
+      if (m_pObject)
+        m_pObject->EditObject( pParentWnd, pDC, pDoc);
 //## end PLFNAutoNumbered::EditObject%863615086.body
 
 #endif

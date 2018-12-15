@@ -45,28 +45,28 @@ class AFX_EXT_CLASS ZAModelGlobal
 {
 public:
 
-	ZAModelGlobal();
-	virtual ~ZAModelGlobal();
+    ZAModelGlobal();
+    virtual ~ZAModelGlobal();
 
-	static bool LoadStateGlobalPropertyAttributes( const CString Filename )
-	{
-		// Only save the filename.
-		m_Filename = Filename;
-		return true;
-	};
+    static bool LoadStateGlobalPropertyAttributes( const CString Filename )
+    {
+        // Only save the filename.
+        m_Filename = Filename;
+        return true;
+    };
 
-	static bool SaveStateGlobalPropertyAttributes( const CString Filename );
+    static bool SaveStateGlobalPropertyAttributes( const CString Filename );
 
-	static ZBPropertyAttributes& GetGlobalPropertyAttributes( int ObjectID );
+    static ZBPropertyAttributes& GetGlobalPropertyAttributes( int ObjectID );
 
-	// JMR-MODIF - Le 31 août 2005 - Ajout de la fonction Release.
-	static void Release();
+    // JMR-MODIF - Le 31 août 2005 - Ajout de la fonction Release.
+    static void Release();
 
 private:
 
-	static ZBPropertyAttributesSet	m_Set;
+    static ZBPropertyAttributesSet    m_Set;
 
-	static CString					m_Filename;
+    static CString                    m_Filename;
 };
 
 #endif // !defined(AFX_ZAMODELGLOBAL_H__EE1AEA1E_DC05_4884_BD63_36A1EC1EEC87__INCLUDED_)

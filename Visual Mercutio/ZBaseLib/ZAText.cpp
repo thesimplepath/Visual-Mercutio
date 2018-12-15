@@ -1,10 +1,10 @@
 //## begin module%334FC46302ED.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%334FC46302ED.cm
 
 //## begin module%334FC46302ED.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%334FC46302ED.cp
 
 //## Module: ZAText%334FC46302ED; Package body
@@ -73,10 +73,10 @@ PLFNText::~PLFNText()
 const PLFNText & PLFNText::operator=(const PLFNText &right)
 {
   //## begin PLFNText::operator=%.body preserve=yes
-	this->PLFNAscii::operator=( (inherited&)right );
-	m_Str = right.m_Str;
-  	m_IsStatic = right.m_IsStatic;
-	return *this;
+    this->PLFNAscii::operator=( (inherited&)right );
+    m_Str = right.m_Str;
+      m_IsStatic = right.m_IsStatic;
+    return *this;
   //## end PLFNText::operator=%.body
 }
 
@@ -86,106 +86,106 @@ const PLFNText & PLFNText::operator=(const PLFNText &right)
 const PLFNText& PLFNText::operator = (const PLFNText* right)
 {
   //## begin PLFNText::operator =%829516133.body preserve=yes
-	this->PLFNAscii::operator=( (inherited*)right );
-	m_Str = right->m_Str;
-  	m_IsStatic = right->m_IsStatic;
-	return *this;
+    this->PLFNAscii::operator=( (inherited*)right );
+    m_Str = right->m_Str;
+      m_IsStatic = right->m_IsStatic;
+    return *this;
   //## end PLFNText::operator =%829516133.body
 }
 
 CString PLFNText::GetFormatedObject ()
 {
   //## begin PLFNText::GetFormatedObject%829516158.body preserve=yes
-	return m_Str;
+    return m_Str;
   //## end PLFNText::GetFormatedObject%829516158.body
 }
 
 BOOL PLFNText::ConvertFormatedObject (const CString& sValue, BOOL bLocateFormat, BOOL EmptyWhenZero)
 {
   //## begin PLFNText::ConvertFormatedObject%829516157.body preserve=yes
-	// Has changed ???
-  	BOOL	RetValue = (m_Str != sValue) ? TRUE : FALSE;
-	// Assign the new string
-  	m_Str = sValue;
-	(m_Str.IsEmpty() == TRUE) ?	EmptyObject() : ClearEmptyObjectFlag();
-	return RetValue;
+    // Has changed ???
+      BOOL    RetValue = (m_Str != sValue) ? TRUE : FALSE;
+    // Assign the new string
+      m_Str = sValue;
+    (m_Str.IsEmpty() == TRUE) ?    EmptyObject() : ClearEmptyObjectFlag();
+    return RetValue;
   //## end PLFNText::ConvertFormatedObject%829516157.body
 }
 
 void PLFNText::Serialize (CArchive& ar)
 {
   //## begin PLFNText::Serialize%829516183.body preserve=yes
-	PLFNAscii::Serialize(ar);
-	if (ar.IsStoring())
-	{	// Write the elements
-		// Check if template file but not static element.
-		// If static, serialize it.
-		if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetFileType() == TemplateType && !GetIsStatic()  && !GetDefaultValue())
-		{
-			CString str(m_Str);
-			m_Str = "";
-			ar << m_Str;
-			m_Str = str;
-		}
-		else
-			ar << m_Str;
-			
-		ar << (WORD)m_IsStatic;
-	}
-	else
-	{	// Read the elements
-		ar >> m_Str;
-      	
-		if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
-		{
-			WORD	wTemp;
-	      	ar >> wTemp;
-			m_IsStatic = (BOOL)wTemp;
-		}
-		// Before version 12
-		if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 12)
-		{
-			m_IsEmpty = m_Str.IsEmpty();
-		}
-	}
+    PLFNAscii::Serialize(ar);
+    if (ar.IsStoring())
+    {    // Write the elements
+        // Check if template file but not static element.
+        // If static, serialize it.
+        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetFileType() == TemplateType && !GetIsStatic()  && !GetDefaultValue())
+        {
+            CString str(m_Str);
+            m_Str = "";
+            ar << m_Str;
+            m_Str = str;
+        }
+        else
+            ar << m_Str;
+            
+        ar << (WORD)m_IsStatic;
+    }
+    else
+    {    // Read the elements
+        ar >> m_Str;
+          
+        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
+        {
+            WORD    wTemp;
+              ar >> wTemp;
+            m_IsStatic = (BOOL)wTemp;
+        }
+        // Before version 12
+        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 12)
+        {
+            m_IsEmpty = m_Str.IsEmpty();
+        }
+    }
   //## end PLFNText::Serialize%829516183.body
 }
 
 void PLFNText::GetContains (CString& strLine)
 {
   //## begin PLFNText::GetContains%831692953.body preserve=yes
-	int			iIndex;
-	
-	// Extract object Name	
-	if( (iIndex=strLine.ReverseFind(',')) == -1 )
-		return;
+    int            iIndex;
+    
+    // Extract object Name    
+    if( (iIndex=strLine.ReverseFind(',')) == -1 )
+        return;
 
-	// Extract the iX
-	int		iPos = strLine.GetLength()-iIndex-2;
-	if( iPos > 0 )
-		m_Str = strLine.Right( iPos );
+    // Extract the iX
+    int        iPos = strLine.GetLength()-iIndex-2;
+    if( iPos > 0 )
+        m_Str = strLine.Right( iPos );
   //## end PLFNText::GetContains%831692953.body
 }
 
 PlanFinObject* PLFNText::Clone ()
 {
   //## begin PLFNText::Clone%849755977.body preserve=yes
-	PLFNText*	pObject = new PLFNText( *this );
-	return pObject;
+    PLFNText*    pObject = new PLFNText( *this );
+    return pObject;
   //## end PLFNText::Clone%849755977.body
 }
 
 void PLFNText::CopyObject (PlanFinObject* pSrc)
 {
   //## begin PLFNText::CopyObject%863615082.body preserve=yes
-	((PLFNText*)this)->PLFNText::operator=( (PLFNText*)pSrc );
+    ((PLFNText*)this)->PLFNText::operator=( (PLFNText*)pSrc );
   //## end PLFNText::CopyObject%863615082.body
 }
 
 CString PLFNText::GetUnformatedObject ()
 {
   //## begin PLFNText::GetUnformatedObject%901298463.body preserve=yes
-	return m_Str;
+    return m_Str;
   //## end PLFNText::GetUnformatedObject%901298463.body
 }
 
@@ -197,12 +197,12 @@ CString PLFNText::GetUnformatedObject ()
 #ifdef _DEBUG
 void PLFNText::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void PLFNText::Dump(CDumpContext& dc) const
 {
-	CObject::Dump(dc);
+    CObject::Dump(dc);
 }
 #endif //_DEBUG
 
@@ -215,11 +215,11 @@ void PLFNText::Dump(CDumpContext& dc) const
 // WARNING: this code will be lost if code is regenerated.
 #if 0
 //## begin PLFNText::PLFNText%829516132.initialization preserve=no
-	, PLFNAscii( cpIniString )
+    , PLFNAscii( cpIniString )
 //## end PLFNText::PLFNText%829516132.initialization
 
 //## begin PLFNText::PLFNText%829516132.body preserve=no
-	GetContains( cpIniString );
+    GetContains( cpIniString );
 //## end PLFNText::PLFNText%829516132.body
 
 #endif

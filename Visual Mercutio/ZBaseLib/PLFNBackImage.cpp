@@ -31,31 +31,31 @@ PLFNBackImage::~PLFNBackImage()
 
 PLFNBackImage::PLFNBackImage(const PLFNBackImage &right)
 {
-	*this = right;
+    *this = right;
 }
 
 
 const PLFNBackImage & PLFNBackImage::operator=(const PLFNBackImage &right)
 {
-	this->PLFNBitmap::operator=( (inherited&)right );
-	return *this;
+    this->PLFNBitmap::operator=( (inherited&)right );
+    return *this;
 }
 
 
 
 const PLFNBackImage& PLFNBackImage::operator = (const PLFNBackImage* right)
 {
-	this->PLFNBitmap::operator=( (inherited*)right );
-	return *this;
+    this->PLFNBitmap::operator=( (inherited*)right );
+    return *this;
 }
 
 PlanFinObject* PLFNBackImage::Clone ()
 {
-	PLFNBackImage*	pObject = new PLFNBackImage( *this );
-	return pObject;
+    PLFNBackImage*    pObject = new PLFNBackImage( *this );
+    return pObject;
 }
 
 void PLFNBackImage::CopyObject (PlanFinObject* pSrc)
 {
-	((PLFNBackImage*)this)->PLFNBackImage::operator=( (PLFNBackImage*)pSrc );
+    ((PLFNBackImage*)this)->PLFNBackImage::operator=( (PLFNBackImage*)pSrc );
 }

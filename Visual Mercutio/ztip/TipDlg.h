@@ -42,39 +42,39 @@ class AFX_EXT_CLASS ZTipOfDayDlg : public CDialog
 {
 // Construction
 public:
-	ZTipOfDayDlg(CWnd* pParent = NULL);   // standard constructor
-	ZTipOfDayDlg(UINT nResID, CWnd* pParent = NULL);
-	ZTipOfDayDlg(LPCTSTR lpszURL, BOOL bRes, CWnd* pParent = NULL);   
-	~ZTipOfDayDlg();
+    ZTipOfDayDlg(CWnd* pParent = NULL);   // standard constructor
+    ZTipOfDayDlg(UINT nResID, CWnd* pParent = NULL);
+    ZTipOfDayDlg(LPCTSTR lpszURL, BOOL bRes, CWnd* pParent = NULL);   
+    ~ZTipOfDayDlg();
 
-	BOOL	DoNotShowOnStartup() const { return m_DontShowOnStartup; };
+    BOOL    DoNotShowOnStartup() const { return m_DontShowOnStartup; };
 
 // Dialog Data
-	//{{AFX_DATA(ZTipOfDayDlg)
-	enum { IDD = IDD_TIP };
-	BOOL	m_DontShowOnStartup;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZTipOfDayDlg)
+    enum { IDD = IDD_TIP };
+    BOOL    m_DontShowOnStartup;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZTipOfDayDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZTipOfDayDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZTipOfDayDlg)
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZTipOfDayDlg)
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	ZWebBrowser*	m_pBrowser;
-	CString			m_strURL;
+    ZWebBrowser*    m_pBrowser;
+    CString            m_strURL;
 
 };
 

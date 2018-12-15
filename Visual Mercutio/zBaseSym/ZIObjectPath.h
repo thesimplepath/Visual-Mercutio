@@ -33,53 +33,53 @@ class AFX_EXT_CLASS ZIObjectPath
 {
 public:
 
-	ZIObjectPath();
-	virtual ~ZIObjectPath();
+    ZIObjectPath();
+    virtual ~ZIObjectPath();
 
-	virtual CString GetAbsolutePath() const;
+    virtual CString GetAbsolutePath() const;
 
-	virtual bool	IsEqual( const ZIObjectPath& Path );
+    virtual bool    IsEqual( const ZIObjectPath& Path );
 
-	virtual void	SetAbsolutePath( const CString Path );
-	virtual void	ClearPath();
-	virtual void	ReCalculateAbsolutePath();
+    virtual void    SetAbsolutePath( const CString Path );
+    virtual void    ClearPath();
+    virtual void    ReCalculateAbsolutePath();
 
-	virtual void	CalculateAbsolutePath()
-	{
-	};
+    virtual void    CalculateAbsolutePath()
+    {
+    };
 
-	virtual void	AddMemberToPath( const CString Member );
-	virtual CString	GetRootMember();
+    virtual void    AddMemberToPath( const CString Member );
+    virtual CString    GetRootMember();
 
 protected:
 
-	CString m_ObjectPath;
+    CString m_ObjectPath;
 };
 
 inline CString ZIObjectPath::GetAbsolutePath() const
 {
-	return m_ObjectPath;
+    return m_ObjectPath;
 }
 
 inline void ZIObjectPath::SetAbsolutePath( const CString Path )
 {
-	m_ObjectPath = Path;
+    m_ObjectPath = Path;
 }
 
 inline void ZIObjectPath::ClearPath()
 {
-	m_ObjectPath.Empty();
+    m_ObjectPath.Empty();
 }
 
 inline void ZIObjectPath::ReCalculateAbsolutePath()
 {
-	ClearPath();
-	CalculateAbsolutePath();
+    ClearPath();
+    CalculateAbsolutePath();
 }
 
 inline bool ZIObjectPath::IsEqual( const ZIObjectPath& Path )
 {
-	return ( m_ObjectPath.Compare( (const char*)Path.GetAbsolutePath() ) == 0 ) ? true : false;
+    return ( m_ObjectPath.Compare( (const char*)Path.GetAbsolutePath() ) == 0 ) ? true : false;
 }
 
 #endif // !defined(AFX_ZIOBJECTPATH_H__B5847982_B00A_419D_9BDE_669222D2913F__INCLUDED_)

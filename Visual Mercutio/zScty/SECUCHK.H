@@ -13,7 +13,7 @@
 // See these sources for detailed information regarding
 // zADS libraries.
 //
-// <nl>Created:		 03/2000
+// <nl>Created:         03/2000
 // <nl>Description:  ZASecurityCheck manages the security file for product key
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -63,7 +63,7 @@ class AFX_EXT_CLASS ZASecurityCheck : public ZASecurity  //## Inherits: <unnamed
     //## Constructors (specified)
       //## Operation: ZASecurityCheck%812506910
       ZASecurityCheck(const CString&  sFilename, int iDaysMax, int iCounterMax, int iCounterMin,
-					  const CString ApplicationRegistryKey = "", const CString ApplicationPID = "");
+                      const CString ApplicationRegistryKey = "", const CString ApplicationPID = "");
 
     //## Destructor (generated)
       ~ZASecurityCheck();
@@ -71,12 +71,12 @@ class AFX_EXT_CLASS ZASecurityCheck : public ZASecurity  //## Inherits: <unnamed
 
     //## Other Operations (specified)
       //## Operation: Check%812506911
-      //	Check if the user can use the program or a
-      //	functionnality.
+      //    Check if the user can use the program or a
+      //    functionnality.
       BOOL Check();
 
       //## Operation: FindOldVersion%812562131
-      //	Find an old filename on the disks.
+      //    Find an old filename on the disks.
       const CString FindOldVersion(const CString&  sExeFilename);
 
       //## Operation: CreateSecurityFile%812564855
@@ -84,7 +84,7 @@ class AFX_EXT_CLASS ZASecurityCheck : public ZASecurity  //## Inherits: <unnamed
 
       //## Operation: Create%812682977
       BOOL Create(const CString&  sFilename, int iDaysMax, int iCounterMax, int iCounterMin,
-					  const CString ApplicationRegistryKey = "", const CString ApplicationPID = "");
+                      const CString ApplicationRegistryKey = "", const CString ApplicationPID = "");
 
       //## Operation: CheckRegistery%854929700
       BOOL CheckRegistery();
@@ -120,9 +120,9 @@ class AFX_EXT_CLASS ZASecurityCheck : public ZASecurity  //## Inherits: <unnamed
 
     //## Other Operations (specified)
       //## Operation: FindFile%812564853
-      //	Find a specific file into a specific drive.
+      //    Find a specific file into a specific drive.
       //
-      //	The return is the file otherwise an empty string.
+      //    The return is the file otherwise an empty string.
       const CString&  FindFile(const CString&  sFilename, int iDrive);
 
       //## Operation: FindFileInCurrentDir%812564854
@@ -131,19 +131,19 @@ class AFX_EXT_CLASS ZASecurityCheck : public ZASecurity  //## Inherits: <unnamed
     // Data Members for Has Relationships
 
       //## Documentation ZASecurityCheck::iDaysMax.has
-      //	The maximum days to reach.
+      //    The maximum days to reach.
       //## begin ZASecurityCheck::iDaysMax.has preserve=no  public: int {1 -> 1VO}
       int m_iDaysMax;
       //## end ZASecurityCheck::iDaysMax.has
 
       //## Documentation ZASecurityCheck::iCounterMax.has
-      //	The maximum counter to reach.
+      //    The maximum counter to reach.
       //## begin ZASecurityCheck::iCounterMax.has preserve=no  public: int {1 -> 1VO}
       int m_iCounterMax;
       //## end ZASecurityCheck::iCounterMax.has
 
       //## Documentation ZASecurityCheck::iCounterMin.has
-      //	The minimum counter where the days can be checked.
+      //    The minimum counter where the days can be checked.
       //## begin ZASecurityCheck::iCounterMin.has preserve=no  public: int {1 -> 1VO}
       int m_iCounterMin;
       //## end ZASecurityCheck::iCounterMin.has
@@ -200,6 +200,6 @@ inline void ZASecurityCheck::SetsFoundedFilename(const CString value)
 
 
 
-#endif	// _SecuChk_h__
+#endif    // _SecuChk_h__
 
 

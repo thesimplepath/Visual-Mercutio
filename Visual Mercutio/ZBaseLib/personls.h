@@ -1,10 +1,10 @@
 //## begin module%36722E89031A.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%36722E89031A.cm
 
 //## begin module%36722E89031A.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%36722E89031A.cp
 
 //## Module: PersonLs%36722E89031A; Package specification
@@ -89,27 +89,27 @@ class AFX_EXT_CLASS ZUMailUserList : public CObject  //## Inherits: <unnamed>%37
 
     //## Other Operations (specified)
       //## Operation: Serialize%928062192
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: GetMapiRecipDescPtr%913452745
-      //	Build the mapi recipicient description pointer.
+      //    Build the mapi recipicient description pointer.
       MapiRecipDesc* GetMapiRecipDescPtr ();
 
       //## Operation: AddPerson%913452746
-      //	Add a new person.
+      //    Add a new person.
       BOOL AddPerson (CString PersonName, ULONG RecipClass = MAPI_TO);
 
       //## Operation: AddPerson%913452747
-      //	Add a new person.
+      //    Add a new person.
       BOOL AddPerson (ZBMailUser& Person, ULONG RecipClass = MAPI_TO);
 
       //## Operation: AddPerson%913659113
-      //	Add a new person.
+      //    Add a new person.
       BOOL AddPerson (ZUser& Person, ULONG RecipClass = MAPI_TO);
 
       //## Operation: AddPerson%921575861
-      //	Add a new person.
+      //    Add a new person.
       BOOL AddPerson (MapiRecipDesc* pMapiDesc);
 
       //## Operation: GetCount%913452748
@@ -119,8 +119,8 @@ class AFX_EXT_CLASS ZUMailUserList : public CObject  //## Inherits: <unnamed>%37
       void RemoveAllPersons ();
 
       //## Operation: GetAt%913452750
-      //	Get the person at the position i.
-      //	Returns null if not found.
+      //    Get the person at the position i.
+      //    Returns null if not found.
       ZBMailUser* GetAt (int Index);
 
       //## Operation: Fill%913659114
@@ -139,7 +139,7 @@ class AFX_EXT_CLASS ZUMailUserList : public CObject  //## Inherits: <unnamed>%37
   protected:
     // Additional Protected Declarations
       //## begin ZUMailUserList%36722C490253.protected preserve=yes
-	DECLARE_SERIAL(ZUMailUserList)
+    DECLARE_SERIAL(ZUMailUserList)
       //## end ZUMailUserList%36722C490253.protected
   private:
     //## Constructors (generated)
@@ -151,13 +151,13 @@ class AFX_EXT_CLASS ZUMailUserList : public CObject  //## Inherits: <unnamed>%37
     // Data Members for Class Attributes
 
       //## Attribute: MapiRecipDescPtr%36722C940002
-      //	Used to export to MAPI structure.
+      //    Used to export to MAPI structure.
       //## begin ZUMailUserList::MapiRecipDescPtr%36722C940002.attr preserve=no  public: MapiRecipDesc* {U} NULL
       MapiRecipDesc* m_MapiRecipDescPtr;
       //## end ZUMailUserList::MapiRecipDescPtr%36722C940002.attr
 
       //## Attribute: PersonList%367230B100BB
-      //	Contains the person list.
+      //    Contains the person list.
       //## begin ZUMailUserList::PersonList%367230B100BB.attr preserve=no  public: CObArray {U} 
       CObArray m_PersonList;
       //## end ZUMailUserList::PersonList%367230B100BB.attr
@@ -183,56 +183,56 @@ class AFX_EXT_CLASS ZUMailUserList : public CObject  //## Inherits: <unnamed>%37
 inline BOOL ZUMailUserList::AddPerson (CString PersonName, ULONG RecipClass)
 {
   //## begin ZUMailUserList::AddPerson%913452746.body preserve=yes
-  	ZBMailUser*	pNewPerson = new ZBMailUser( PersonName, RecipClass );
-  	return m_PersonList.Add( (CObject*)pNewPerson ) >= 0;
+      ZBMailUser*    pNewPerson = new ZBMailUser( PersonName, RecipClass );
+      return m_PersonList.Add( (CObject*)pNewPerson ) >= 0;
   //## end ZUMailUserList::AddPerson%913452746.body
 }
 
 inline BOOL ZUMailUserList::AddPerson (ZBMailUser& Person, ULONG RecipClass)
 {
   //## begin ZUMailUserList::AddPerson%913452747.body preserve=yes
-  	return m_PersonList.Add( (CObject*)&Person ) >= 0;
+      return m_PersonList.Add( (CObject*)&Person ) >= 0;
   //## end ZUMailUserList::AddPerson%913452747.body
 }
 
 inline BOOL ZUMailUserList::AddPerson (ZUser& Person, ULONG RecipClass)
 {
   //## begin ZUMailUserList::AddPerson%913659113.body preserve=yes
-  	ZBMailUser*	pNewPerson = new ZBMailUser( Person.GetMailAddress(), RecipClass );
-  	return m_PersonList.Add( (CObject*)pNewPerson ) >= 0;
+      ZBMailUser*    pNewPerson = new ZBMailUser( Person.GetMailAddress(), RecipClass );
+      return m_PersonList.Add( (CObject*)pNewPerson ) >= 0;
   //## end ZUMailUserList::AddPerson%913659113.body
 }
 
 inline BOOL ZUMailUserList::AddPerson (MapiRecipDesc* pMapiDesc)
 {
   //## begin ZUMailUserList::AddPerson%921575861.body preserve=yes
-  	ZBMailUser*	pNewPerson = new ZBMailUser( pMapiDesc->lpszName, pMapiDesc->ulRecipClass );
-  	return m_PersonList.Add( (CObject*)pNewPerson ) >= 0;
+      ZBMailUser*    pNewPerson = new ZBMailUser( pMapiDesc->lpszName, pMapiDesc->ulRecipClass );
+      return m_PersonList.Add( (CObject*)pNewPerson ) >= 0;
   //## end ZUMailUserList::AddPerson%921575861.body
 }
 
 inline int ZUMailUserList::GetCount () const
 {
   //## begin ZUMailUserList::GetCount%913452748.body preserve=yes
-  	return m_PersonList.GetSize();
+      return m_PersonList.GetSize();
   //## end ZUMailUserList::GetCount%913452748.body
 }
 
 inline void ZUMailUserList::RemoveAllPersons ()
 {
   //## begin ZUMailUserList::RemoveAllPersons%913452749.body preserve=yes
-  	for (int i = 0; i < GetCount(); ++i)
-  		delete GetAt( i );
-  	m_PersonList.RemoveAll();
+      for (int i = 0; i < GetCount(); ++i)
+          delete GetAt( i );
+      m_PersonList.RemoveAll();
   //## end ZUMailUserList::RemoveAllPersons%913452749.body
 }
 
 inline ZBMailUser* ZUMailUserList::GetAt (int Index)
 {
   //## begin ZUMailUserList::GetAt%913452750.body preserve=yes
-  	if (Index < GetCount())
-  		return (ZBMailUser*) m_PersonList.GetAt( Index );
-  	return NULL;
+      if (Index < GetCount())
+          return (ZBMailUser*) m_PersonList.GetAt( Index );
+      return NULL;
   //## end ZUMailUserList::GetAt%913452750.body
 }
 

@@ -1,74 +1,79 @@
-// stdafx.h : include file for standard system include files,
-//  or project specific include files that are used frequently, but
-//      are changed infrequently
+/****************************************************************************
+ * ==> StdAfx --------------------------------------------------------------*
+ ****************************************************************************
+ * Description : Include file for standard system include files, or project *
+ *               specific include files that are used frequently, but are   *
+ *               changed infrequently                                       *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_STDAFX_H__0E120CF9_3875_11D3_95E6_0000B45D7C6F__INCLUDED_)
+#ifndef AFX_STDAFX_H__0E120CF9_3875_11D3_95E6_0000B45D7C6F__INCLUDED_
 #define AFX_STDAFX_H__0E120CF9_3875_11D3_95E6_0000B45D7C6F__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+    #pragma once
 #endif // _MSC_VER > 1000
 
-#define VC_EXTRALEAN			// Exclude rarely-used stuff from Windows headers
+ // exclude rarely-used stuff from Windows headers
+#define VC_EXTRALEAN
 
-// Disable non-critical warnings
-#pragma warning(disable : 4786)	// identifier was truncated to '255' characters in the debug information
+// disable non-critical warnings
+#pragma warning(disable : 4786)    // identifier was truncated to '255' characters in the debug information
 #pragma warning(disable : 4996)
 
-//#ifdef _WINNT_40
-//// For compatibility reason with platform sdk used
-//// with Visual C++ 6.0
-//// Dominique Aigroz october 2002
-//#define  WINVER  0x0400
-//#else
-//#define WINVER 0x0501
-//#endif // _WINNT_40
+/*
+#ifdef _WINNT_40
+    // for compatibility reason with platform sdk used with Visual C++ 6.0
+        #define  WINVER  0x0400
+    #else
+        #define WINVER 0x0501
+#endif
+*/
 
-// Version de Winver définie pour Windows NT4 et supérieures.
+// NT4 and higher Window version
 #ifndef WINVER
-#define WINVER 0x0400
+    #define WINVER 0x0400
 #endif
 
-// Plateforme cible définie à Windows NT4 et supérieures pour les versions NT de Windows.
+// set target platform to Window NT4 and higher
 #ifndef _WIN32_WINNT
-#define _WIN32_WINNT 0x0400
+    #define _WIN32_WINNT 0x0400
 #endif
 
-// Plateforme cible définie à Windows98 et supérieures pour les versions standards de Windows.
+// set Windows version to Windows 98 and higher
 #ifndef _WIN32_WINDOWS
-#define _WIN32_WINDOWS 0x0410
+    #define _WIN32_WINDOWS 0x0410
 #endif
 
-// Internet Explorer définie à la version NT4.
+// set Windows Explorer version to 4.x and higher
 #ifndef _WIN32_IE
-#define _WIN32_IE 0x0400
+    #define _WIN32_IE 0x0400
 #endif
 
-#include <afxwin.h>         // MFC core and standard components
-#include <afxext.h>         // MFC extensions
+// mfc
+#include <afxwin.h>
+#include <afxext.h>
 
 #ifndef _AFX_NO_OLE_SUPPORT
-#include <afxole.h>         // MFC OLE classes
-#include <afxodlgs.h>       // MFC OLE dialog classes
-#include <afxdisp.h>        // MFC Automation classes
-#endif // _AFX_NO_OLE_SUPPORT
+    #include <afxole.h>
+    #include <afxodlgs.h>
+    #include <afxdisp.h>
+#endif
 
 #ifndef _AFX_NO_DB_SUPPORT
-#include <afxdb.h>			// MFC ODBC database classes
-#endif // _AFX_NO_DB_SUPPORT
+    #include <afxdb.h>
+#endif
 
 #ifndef _AFX_NO_DAO_SUPPORT
-#include <afxdao.h>			// MFC DAO database classes
-#endif // _AFX_NO_DAO_SUPPORT
-
-#include <afxdtctl.h>		// MFC support for Internet Explorer 4 Common Controls
-#ifndef _AFX_NO_AFXCMN_SUPPORT
-#include <afxcmn.h>			// MFC support for Windows Common Controls
-#endif // _AFX_NO_AFXCMN_SUPPORT
-
-#ifdef _ENABLETRACE			// If enable trace is defined
-#include "zBaseLib\ZGTrace.h"
+    #include <afxdao.h>
 #endif
+
+#include <afxdtctl.h>
+#ifndef _AFX_NO_AFXCMN_SUPPORT
+    #include <afxcmn.h>
+#endif
+
+#include <afxmt.h>
 
 //change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -78,7 +83,8 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include <CJ60Lib.h>		// CJ60 Library components
+// CJ60 Library components
+#include <CJ60Lib.h>
 
 //put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
@@ -88,50 +94,38 @@
 #define AFX_EXT_API AFX_API_EXPORT
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 
-#include <afxmt.h>
-
-#include "ZAConst.h"
+// visual mercutio
+#include "Zaconst.h"
 #include "Define.h"
 #include "Message.h"
 #include "Planfin.hdf"
-
 #include "ZSrvMess.h"
 
-// Use Objective Toolkit as a DLL
+#ifdef _ENABLETRACE
+    #include "zBaseLib\ZGTrace.h"
+#endif
+
+// use Objective Toolkit as a DLL
 #define _SECDLL
 
-// Stingray Objective Toolkit
-#include "toolkit/secall.h"
-// Objective Toolkit Resources
+// Stingray Studio
+#include "toolkit\secall.h"
 #include "toolkit\secres.h"
 
 // Use Objective Views as a DLL
 #define _OVDLL
 
-// Objective Views Header Files
 #include "views\OdAll.h"
 
-// ***********************************************************
-// *
-// *  zForms Resources
-// *
-// ***********************************************************
-
+// resources
 #include "zFormsRes\zFormsRes.h"
 #include "zRes32\zRes.h"
-
-// ***********************************************************
-// *
-// *  zBaseLib Resources
-// *
-// ***********************************************************
-
 #include "zBaseLibRes.h"
 
-// Undefine the SubclassWindow macro
+// undefine the SubclassWindow macro
 #undef SubclassWindow
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_STDAFX_H__0E120CF9_3875_11D3_95E6_0000B45D7C6F__INCLUDED_)
+#endif

@@ -34,105 +34,105 @@ pPublishMessengerInfo::~pPublishMessengerInfo()
 // returns server version
 int pPublishMessengerInfo::GetVersion()
 {
-	SOAPDebugger::SetFile( _T( "c:\\psssoap_messengerversion.log" ) );
+    SOAPDebugger::SetFile( _T( "c:\\psssoap_messengerversion.log" ) );
 
-	try
-	{
-		// defs
-		string wdsl_urn = pPublishSettings::serverservice;
+    try
+    {
+        // defs
+        string wdsl_urn = pPublishSettings::serverservice;
 
-		// initialize objects
-		string url = pPublishSettings::url;
-		SOAPProxy proxy( url.c_str() );
+        // initialize objects
+        string url = pPublishSettings::url;
+        SOAPProxy proxy( url.c_str() );
 
-		// pubInit
-		SOAPMethod pubGetVersion( _T( "pubGetVersion" ), wdsl_urn.c_str(), _T( "http://" ) );
+        // pubInit
+        SOAPMethod pubGetVersion( _T( "pubGetVersion" ), wdsl_urn.c_str(), _T( "http://" ) );
 
-		int ret = proxy.Execute( pubGetVersion ).GetReturnValue();
+        int ret = proxy.Execute( pubGetVersion ).GetReturnValue();
 
-		SOAPDebugger::Close();
-		return ret;
-	}
-	catch ( SOAPException& ex )
-	{
-		TRACE( _T( "Caught SOAP exception:%s\n" ), ex.What().Str() );
-	}
+        SOAPDebugger::Close();
+        return ret;
+    }
+    catch ( SOAPException& ex )
+    {
+        TRACE( _T( "Caught SOAP exception:%s\n" ), ex.What().Str() );
+    }
 
-	SOAPDebugger::Close();
-	return -1;
+    SOAPDebugger::Close();
+    return -1;
 }
 
 ////////////////////////////////////////////////////////////
 // returns ISO code for installed server version 
 string pPublishMessengerInfo::GetLanguage()
 {
-	SOAPDebugger::SetFile( _T( "c:\\psssoap_getlanguage.log" ) );
+    SOAPDebugger::SetFile( _T( "c:\\psssoap_getlanguage.log" ) );
 
-	try
-	{
-		// defs
-		string wdsl_urn = pPublishSettings::serverservice;		
+    try
+    {
+        // defs
+        string wdsl_urn = pPublishSettings::serverservice;        
 
-		// initialize objects
-		string url = pPublishSettings::url;
-		SOAPProxy proxy( url.c_str() );
+        // initialize objects
+        string url = pPublishSettings::url;
+        SOAPProxy proxy( url.c_str() );
 
-		// pubInit
-		SOAPMethod pubGetLanguage( _T( "pubGetLanguage" ), wdsl_urn.c_str(), _T( "http://" ) );	
-		SOAPString ret;
+        // pubInit
+        SOAPMethod pubGetLanguage( _T( "pubGetLanguage" ), wdsl_urn.c_str(), _T( "http://" ) );    
+        SOAPString ret;
 
-		proxy.Execute( pubGetLanguage ).GetReturnValue() >> ret;
+        proxy.Execute( pubGetLanguage ).GetReturnValue() >> ret;
 
-		SOAPDebugger::Close();
-		return ret.Str();
-	}
-	catch ( SOAPException& ex )
-	{
-		TRACE( _T( "Caught SOAP exception:%s\n" ), ex.What().Str() );
-	}
+        SOAPDebugger::Close();
+        return ret.Str();
+    }
+    catch ( SOAPException& ex )
+    {
+        TRACE( _T( "Caught SOAP exception:%s\n" ), ex.What().Str() );
+    }
 
-	SOAPDebugger::Close();
-	return _T( "??" );
+    SOAPDebugger::Close();
+    return _T( "??" );
 }
 
 ////////////////////////////////////////////////////////////
 // authenticate on server (administrator only)
 int pPublishMessengerInfo::Authenticate( string login, string passwd )
 {
-	SOAPDebugger::SetFile( _T( "c:\\psssoap_authenticate.log" ) );
+    SOAPDebugger::SetFile( _T( "c:\\psssoap_authenticate.log" ) );
 
-	try
-	{
-		// defs
-		string wdsl_urn = pPublishSettings::serverservice;
+    try
+    {
+        // defs
+        string wdsl_urn = pPublishSettings::serverservice;
 
-		// initialize objects
-		string url = pPublishSettings::url;
-		SOAPProxy proxy( url.c_str() );
+        // initialize objects
+        string url = pPublishSettings::url;
+        SOAPProxy proxy( url.c_str() );
 
-		// pubAuth
+        // pubAuth
 
-		// RS-MODIF 04.08.2005: erreur de publication sous XP
-		// authenticate.SetSoapAction( _T( "http://soapinterop.org/" ) );
+        // RS-MODIF 04.08.2005: erreur de publication sous XP
+        // authenticate.SetSoapAction( _T( "http://soapinterop.org/" ) );
 
-		// SOAPMethod authenticate( _T( "Authenticate" ), wdsl_urn.c_str() );
-		SOAPMethod authenticate( _T( "Authenticate" ), wdsl_urn.c_str(), _T( "http://" ) );
+        // SOAPMethod authenticate( _T( "Authenticate" ), wdsl_urn.c_str() );
+        SOAPMethod authenticate( _T( "Authenticate" ), wdsl_urn.c_str(), _T( "http://" ) );
 
-		authenticate.AddParameter( _T( "login" ) ).SetValue( login.c_str() );
-		authenticate.AddParameter( _T( "passwd" ) ).SetValue( md5encode( passwd, 32 ).c_str() );
+        authenticate.AddParameter( _T( "login" ) ).SetValue( login.c_str() );
+        authenticate.AddParameter( _T( "passwd" ) ).SetValue( md5encode( passwd, 32 ).c_str() );
 
-		int ret;
+        int ret;
 
-		proxy.Execute( authenticate ).GetReturnValue() >> ret;
+        proxy.Execute( authenticate ).GetReturnValue() >> ret;
 
-		SOAPDebugger::Close();
-		return ret;
-	}
-	catch ( SOAPException& ex )
-	{
-		TRACE( _T( "Caught SOAP exception:%s\n" ), ex.What().Str() );
-	}
+        SOAPDebugger::Close();
+        return ret;
+    }
+    catch ( SOAPException& ex )
+    {
+        TRACE( _T( "Caught SOAP exception:%s\n" ), ex.What().Str() );
+    }
 
-	SOAPDebugger::Close();
-	return -1;
+    SOAPDebugger::Close();
+    return -1;
 }

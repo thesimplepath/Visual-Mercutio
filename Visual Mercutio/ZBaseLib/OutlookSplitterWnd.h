@@ -39,37 +39,37 @@
 
 class AFX_EXT_CLASS ZIOutlookSplitterWnd : public CSplitterWnd
 {
-	DECLARE_DYNAMIC(ZIOutlookSplitterWnd)
+    DECLARE_DYNAMIC(ZIOutlookSplitterWnd)
 
 // Construction
 public:
-	ZIOutlookSplitterWnd();
+    ZIOutlookSplitterWnd();
 
 // Attributes
 public:
-	COLORREF m_clrBtnHLit;
-	COLORREF m_clrBtnShad;
-	COLORREF m_clrBtnFace;
+    COLORREF m_clrBtnHLit;
+    COLORREF m_clrBtnShad;
+    COLORREF m_clrBtnFace;
 
 // Operations
 public:
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIOutlookSplitterWnd)
-	virtual void OnDrawSplitter(CDC* pDC, ESplitType nType, const CRect& rect);
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIOutlookSplitterWnd)
+    virtual void OnDrawSplitter(CDC* pDC, ESplitType nType, const CRect& rect);
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
-	virtual ~ZIOutlookSplitterWnd();
+    virtual ~ZIOutlookSplitterWnd();
 
 // Generated message map functions
 protected:
-	//{{AFX_MSG(ZIOutlookSplitterWnd)
-	afx_msg void OnPaint();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZIOutlookSplitterWnd)
+    afx_msg void OnPaint();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

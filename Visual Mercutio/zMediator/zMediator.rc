@@ -36,11 +36,11 @@ BEGIN
     "#define _AFX_NO_TRACKER_RESOURCES\r\n"
     "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
     "\r\n"
-	"#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRS)\r\n"
-	"LANGUAGE 12, 4\r\n"
-	"#pragma code_page(1252)\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRS)\r\n"
+    "LANGUAGE 12, 4\r\n"
+    "#pragma code_page(1252)\r\n"
     "#include ""res\\zMediator.rc2""  // ressources non modifiées par Microsoft Visual C++\r\n"
-    "#include ""afxres.rc""  	// Composants standard\r\n"
+    "#include ""afxres.rc""      // Composants standard\r\n"
     "#endif\r\n"
     "\0"
 END
@@ -71,23 +71,23 @@ VS_VERSION_INFO     VERSIONINFO
  FILETYPE 0x2L
  FILESUBTYPE 0x0L
 BEGIN
-	BLOCK "StringFileInfo"
-	BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
         BLOCK "100c04e4"
-		BEGIN 
+        BEGIN 
             VALUE "CompanyName", "TODO : <Nom de la société>"
             VALUE "FileDescription", "TODO : <Description de fichier>"
-			VALUE "FileVersion",     "1.0.0.1"
-			VALUE "InternalName",    "zMediator.dll"
+            VALUE "FileVersion",     "1.0.0.1"
+            VALUE "InternalName",    "zMediator.dll"
             VALUE "LegalCopyright", "TODO : (c) <Nom de la société>. Tous droits réservés."
-			VALUE "OriginalFilename","zMediator.dll"
+            VALUE "OriginalFilename","zMediator.dll"
             VALUE "ProductName", "TODO : <Nom du produit>"
-			VALUE "ProductVersion",  "1.0.0.1"
-		END
-	END
-	BLOCK "VarFileInfo" 
-	BEGIN 
-		VALUE "Translation", 0x100c, 1252
+            VALUE "ProductVersion",  "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo" 
+    BEGIN 
+        VALUE "Translation", 0x100c, 1252
     END
 END
 
@@ -107,7 +107,7 @@ END
 LANGUAGE 12, 4
 #pragma code_page(1252)
 #include "res\\zMediator.rc2"  // Ressources non modifiées par Microsoft Visual C++
-#include "afxres.rc"  	// Composants standard
+#include "afxres.rc"      // Composants standard
 #endif
 
 /////////////////////////////////////////////////////////////////////////////

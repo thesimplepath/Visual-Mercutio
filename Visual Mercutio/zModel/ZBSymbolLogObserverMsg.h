@@ -33,31 +33,31 @@
 
 class AFX_EXT_CLASS ZBSymbolLogObserverMsg : public ZIObserverMsg
 {
-	DECLARE_DYNAMIC( ZBSymbolLogObserverMsg )
+    DECLARE_DYNAMIC( ZBSymbolLogObserverMsg )
 
 public:
 
-	ZBSymbolLogObserverMsg();
-	ZBSymbolLogObserverMsg( ZBGenericSymbolErrorLine ErrorLine );
+    ZBSymbolLogObserverMsg();
+    ZBSymbolLogObserverMsg( ZBGenericSymbolErrorLine ErrorLine );
 
-	virtual ~ZBSymbolLogObserverMsg();
+    virtual ~ZBSymbolLogObserverMsg();
 
-	ZBGenericSymbolErrorLine& GetErrorLine();
-	void SetErrorLine( ZBGenericSymbolErrorLine value );
+    ZBGenericSymbolErrorLine& GetErrorLine();
+    void SetErrorLine( ZBGenericSymbolErrorLine value );
 
 private:
 
-	ZBGenericSymbolErrorLine m_ErrorLine;
+    ZBGenericSymbolErrorLine m_ErrorLine;
 };
 
 inline ZBGenericSymbolErrorLine& ZBSymbolLogObserverMsg::GetErrorLine()
 {
-	return m_ErrorLine;
+    return m_ErrorLine;
 }
 
 inline void ZBSymbolLogObserverMsg::SetErrorLine( ZBGenericSymbolErrorLine value )
 {
-	m_ErrorLine = value;
+    m_ErrorLine = value;
 }
 
 #endif // !defined(AFX_ZBSymbolLogObserverMsg_H__31A212D8_7CA2_4BEB_9709_8C785F4909B3__INCLUDED_)

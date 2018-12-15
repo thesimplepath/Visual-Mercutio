@@ -1,9 +1,9 @@
 // **********************************************************************************************************
-// *									   Classe ZBDeliverableLinkSymbol									*
+// *                                       Classe ZBDeliverableLinkSymbol                                    *
 // **********************************************************************************************************
-// * Cette classe représente un livrable. Elle hélrite de la classe ZBLinkSymbol, qui contient tous les		*
-// * outils nécessaires à la jonction entre deux symboles, et ajoute à cette classe l'interface complète	*
-// * pour la gestion des livrables.																			*
+// * Cette classe représente un livrable. Elle hélrite de la classe ZBLinkSymbol, qui contient tous les        *
+// * outils nécessaires à la jonction entre deux symboles, et ajoute à cette classe l'interface complète    *
+// * pour la gestion des livrables.                                                                            *
 // **********************************************************************************************************
 
 #include "stdafx.h"
@@ -63,7 +63,7 @@ static char THIS_FILE[]=__FILE__;
 IMPLEMENT_SERIAL( ZBDeliverableLinkSymbol, ZBLinkSymbol, def_Version )
 
 // **********************************************************************************************************
-// *										   Static variables												*
+// *                                           Static variables                                                *
 // **********************************************************************************************************
 
 // JMR-MODIF - Le 28 novembre 2006 - Ajout de la nouvelle variable statique gRulesMenu.
@@ -71,23 +71,23 @@ static CMenu gRulesMenu;
 // JMR-MODIF - Le 10 juin 2007 - Ajout de la nouvelle variable statique gRiskMenu
 static CMenu gRiskMenu;
 
-const size_t _MaxRuleListSize		= 20;
-const size_t _MaxTextItemListSize	= 20;
+const size_t _MaxRuleListSize        = 20;
+const size_t _MaxTextItemListSize    = 20;
 // JMR-MODIF - Le 22 novembre 2006 - Ajout de la constante _MaxRulesSize.
-const size_t _MaxRulesSize			= 20;
+const size_t _MaxRulesSize            = 20;
 // JMR-MODIF - Le 3 juin 2007 - Ajout de la constante _MaxRisksSize.
-const size_t _MaxRisksSize			= 20;
+const size_t _MaxRisksSize            = 20;
 
 // **********************************************************************************************************
-// *			  Construction, destruction, opérateurs et fonctions de manipulation de l'objet				*
+// *              Construction, destruction, opérateurs et fonctions de manipulation de l'objet                *
 // **********************************************************************************************************
 
 // Constructeur par défaut de l'objet.
 ZBDeliverableLinkSymbol::ZBDeliverableLinkSymbol()
 {
-	// Don't use dynamic area
-	SetUseDynamicArea( false );
-	CreateSymbolProperties();
+    // Don't use dynamic area
+    SetUseDynamicArea( false );
+    CreateSymbolProperties();
 }
 
 // Destructeur par défaut de l'objet.
@@ -98,1264 +98,1264 @@ ZBDeliverableLinkSymbol::~ZBDeliverableLinkSymbol()
 // Constructeur par copie de l'objet.
 ZBDeliverableLinkSymbol::ZBDeliverableLinkSymbol( const ZBDeliverableLinkSymbol& src )
 {
-	*this = src;
+    *this = src;
 }
 
 // Fonction de surcharge de l'opérateur =
 ZBDeliverableLinkSymbol& ZBDeliverableLinkSymbol::operator=( const ZBDeliverableLinkSymbol& src )
 {
-	// Call the base class assignement operator
-	ZBLinkSymbol::operator=( (const ZBLinkSymbol&)src );
+    // Call the base class assignement operator
+    ZBLinkSymbol::operator=( (const ZBLinkSymbol&)src );
 
-	m_Quantity					= src.m_Quantity;
-	m_SimProperties				= src.m_SimProperties;
-	m_CostDeliverableProperties	= src.m_CostDeliverableProperties;
-	m_UnitProp					= src.m_UnitProp;
+    m_Quantity                    = src.m_Quantity;
+    m_SimProperties                = src.m_SimProperties;
+    m_CostDeliverableProperties    = src.m_CostDeliverableProperties;
+    m_UnitProp                    = src.m_UnitProp;
 
-	// JMR-MODIF - Le 26 novembre 2006 - Ajout de la copie des règles.
-	m_Rules						= src.m_Rules;
+    // JMR-MODIF - Le 26 novembre 2006 - Ajout de la copie des règles.
+    m_Rules                        = src.m_Rules;
 
-	// JMR-MODIF - Le 29 juillet 2007 - Ajout du code de copie pour les risques
-	m_Risks		= src.m_Risks;
+    // JMR-MODIF - Le 29 juillet 2007 - Ajout du code de copie pour les risques
+    m_Risks        = src.m_Risks;
 
-	for ( int i = 0; i < src.m_UnitDoubleValidationTypeArray.GetSize(); ++i )
-	{
-		m_UnitDoubleValidationTypeArray.Add( src.m_UnitDoubleValidationTypeArray.GetAt( i ) );
-	}
+    for ( int i = 0; i < src.m_UnitDoubleValidationTypeArray.GetSize(); ++i )
+    {
+        m_UnitDoubleValidationTypeArray.Add( src.m_UnitDoubleValidationTypeArray.GetAt( i ) );
+    }
 
-	return *this;
+    return *this;
 }
 
 // Cette fonction permet d'obtenir une copie de l'objet.
 CODComponent* ZBDeliverableLinkSymbol::Dup() const
 {
-	return ( new ZBDeliverableLinkSymbol( *this ) );
+    return ( new ZBDeliverableLinkSymbol( *this ) );
 }
 
 // **********************************************************************************************************
-// *								   Fonctions de création du symbole										*
+// *                                   Fonctions de création du symbole                                        *
 // **********************************************************************************************************
 
 BOOL ZBDeliverableLinkSymbol::Create( int nStyle, int nPointSize, COLORREF crColor, int bTransparent )
 {
-	m_IsInCreationProcess = true;
+    m_IsInCreationProcess = true;
 
-	BOOL bResult = ZBLinkSymbol::Create( nStyle, nPointSize, crColor, bTransparent );
+    BOOL bResult = ZBLinkSymbol::Create( nStyle, nPointSize, crColor, bTransparent );
 
-	if ( bResult )
-	{
-		SetTargetEndpoint( new CODArrowEndpoint() );
-	}
+    if ( bResult )
+    {
+        SetTargetEndpoint( new CODArrowEndpoint() );
+    }
 
-	if ( !CreateSymbolProperties() )
-	{
-		bResult = FALSE;
-	}
+    if ( !CreateSymbolProperties() )
+    {
+        bResult = FALSE;
+    }
 
-	if ( !CreateSymbolName() )
-	{
-		bResult = FALSE;
-	}
+    if ( !CreateSymbolName() )
+    {
+        bResult = FALSE;
+    }
 
-	// Sets the default line color for the label
-	SetInitialLabelLineColor( defCOLOR_LTLTGRAY );
+    // Sets the default line color for the label
+    SetInitialLabelLineColor( defCOLOR_LTLTGRAY );
 
-	// Adjust the element position for symbols
-	AdjustElementPosition();
+    // Adjust the element position for symbols
+    AdjustElementPosition();
 
-	m_IsInCreationProcess = false;
+    m_IsInCreationProcess = false;
 
-	return bResult;
+    return bResult;
 }
 
 // Cette fonction crée le squelette du symbole. Elle crée les propriétés graphiques du symbole.
 BOOL ZBDeliverableLinkSymbol::CreateOrthogonal( int nStyle, int nPointSize, COLORREF crColor, int bTransparent )
 {
-	m_IsInCreationProcess = true;
+    m_IsInCreationProcess = true;
 
-	BOOL bResult = ZBLinkSymbol::CreateOrthogonal( nStyle, nPointSize, crColor, bTransparent );
+    BOOL bResult = ZBLinkSymbol::CreateOrthogonal( nStyle, nPointSize, crColor, bTransparent );
 
-	if ( bResult )
-	{
-		SetTargetEndpoint( new CODArrowEndpoint() );
-	}
+    if ( bResult )
+    {
+        SetTargetEndpoint( new CODArrowEndpoint() );
+    }
 
-	if ( !CreateSymbolProperties() )
-	{
-		bResult = FALSE;
-	}
+    if ( !CreateSymbolProperties() )
+    {
+        bResult = FALSE;
+    }
 
-	if ( !CreateSymbolName() )
-	{
-		bResult = FALSE;
-	}
+    if ( !CreateSymbolName() )
+    {
+        bResult = FALSE;
+    }
 
-	// JMR-MODIF - Le 14 juin 2005 - Mets à jour les informations visuelles en fonction du pourcentage.
-	SetVisualInfo( 100 );
+    // JMR-MODIF - Le 14 juin 2005 - Mets à jour les informations visuelles en fonction du pourcentage.
+    SetVisualInfo( 100 );
 
-	// Sets the default line color for the label
-	SetInitialLabelLineColor( defCOLOR_LTLTGRAY );
+    // Sets the default line color for the label
+    SetInitialLabelLineColor( defCOLOR_LTLTGRAY );
 
-	// Adjust the element position for symbols
-	AdjustElementPosition();
+    // Adjust the element position for symbols
+    AdjustElementPosition();
 
-	m_IsInCreationProcess = false;
+    m_IsInCreationProcess = false;
 
-	return bResult;
+    return bResult;
 }
 
-CODLabelComponent* ZBDeliverableLinkSymbol::CreateLabel( const LPCTSTR			lpszText,
-														 const OD_CONTROL_POINT	ctlPoint,
-														 CDC*					pDC)
+CODLabelComponent* ZBDeliverableLinkSymbol::CreateLabel( const LPCTSTR            lpszText,
+                                                         const OD_CONTROL_POINT    ctlPoint,
+                                                         CDC*                    pDC)
 {
-	if ( UseDynamicArea() )
-	{
-		CODLabelComponent* pLabelComp = new ZBSymbolLabel( ctlPoint, true );
-		pLabelComp->SetText( lpszText );
+    if ( UseDynamicArea() )
+    {
+        CODLabelComponent* pLabelComp = new ZBSymbolLabel( ctlPoint, true );
+        pLabelComp->SetText( lpszText );
 
-		if ( pLabelComp->Create( pDC ) )
-		{
-			AddLabel( pLabelComp );
+        if ( pLabelComp->Create( pDC ) )
+        {
+            AddLabel( pLabelComp );
 
-			pLabelComp->SetOrientationFlag( TRUE );
-			pLabelComp->SetOrientation( ctlPoint );
-		}
-		else
-		{
-			delete pLabelComp;
-			pLabelComp = NULL;
-		}
+            pLabelComp->SetOrientationFlag( TRUE );
+            pLabelComp->SetOrientation( ctlPoint );
+        }
+        else
+        {
+            delete pLabelComp;
+            pLabelComp = NULL;
+        }
 
-		if ( pLabelComp != NULL )
-		{
-			CODLineOrientation propLineOrientation;
-			pLabelComp->AddProperty( propLineOrientation );
-		}
+        if ( pLabelComp != NULL )
+        {
+            CODLineOrientation propLineOrientation;
+            pLabelComp->AddProperty( propLineOrientation );
+        }
 
-		return pLabelComp;
-	}
+        return pLabelComp;
+    }
 
-	return ZBLinkSymbol::CreateLabel( lpszText, ctlPoint, pDC );
+    return ZBLinkSymbol::CreateLabel( lpszText, ctlPoint, pDC );
 }
 
 bool ZBDeliverableLinkSymbol::CreateSymbolName()
 {
-	// Create the area box as a label.
-	CODLabelComponent* pLabelComp = CODLinkComponent::CreateLabel( _T( "" ) );
+    // Create the area box as a label.
+    CODLabelComponent* pLabelComp = CODLinkComponent::CreateLabel( _T( "" ) );
 
-	if ( !pLabelComp )
-	{
-		return false;
-	}
+    if ( !pLabelComp )
+    {
+        return false;
+    }
 
-	// If we would like to use dynamic area
-	if ( UseDynamicArea() )
-	{
-		pLabelComp->SetName( EditAreaComponentControlLabel );
+    // If we would like to use dynamic area
+    if ( UseDynamicArea() )
+    {
+        pLabelComp->SetName( EditAreaComponentControlLabel );
 
-		pLabelComp->SetValue( OD_PROP_AUTOSIZE, TRUE );
-		pLabelComp->SetValue( OD_PROP_WORDBREAK, TRUE );
-		pLabelComp->SetValue( OD_PROP_MULTILINE, TRUE );
-		pLabelComp->SetValue( OD_PROP_TRANSPARENT, TRUE );
+        pLabelComp->SetValue( OD_PROP_AUTOSIZE, TRUE );
+        pLabelComp->SetValue( OD_PROP_WORDBREAK, TRUE );
+        pLabelComp->SetValue( OD_PROP_MULTILINE, TRUE );
+        pLabelComp->SetValue( OD_PROP_TRANSPARENT, TRUE );
 
-		pLabelComp->SetTextBox( CRect(0,0, 100, 40) );
+        pLabelComp->SetTextBox( CRect(0,0, 100, 40) );
 
-		CODFontProperties* pFontProp = (CODFontProperties*)pLabelComp->GetProperty( OD_PROP_FONT );
-		CODFontProperties FontProp( *pFontProp );
-		FontProp.SetFaceName( _T( "Arial" ) );
-		FontProp.SetWeight( FW_BOLD );
-		FontProp.SetPointSize( 8 );
-		pLabelComp->SetProperty( &FontProp );
+        CODFontProperties* pFontProp = (CODFontProperties*)pLabelComp->GetProperty( OD_PROP_FONT );
+        CODFontProperties FontProp( *pFontProp );
+        FontProp.SetFaceName( _T( "Arial" ) );
+        FontProp.SetWeight( FW_BOLD );
+        FontProp.SetPointSize( 8 );
+        pLabelComp->SetProperty( &FontProp );
 
-		CODFillProperties* pFillProps = dynamic_cast<CODFillProperties*>( pLabelComp->GetProperty( OD_PROP_FILL ) );
-		CODFillProperties FillProps( *pFillProps );
-		FillProps.SetTransparent( TRUE );
-		pLabelComp->SetProperty( &FillProps );
+        CODFillProperties* pFillProps = dynamic_cast<CODFillProperties*>( pLabelComp->GetProperty( OD_PROP_FILL ) );
+        CODFillProperties FillProps( *pFillProps );
+        FillProps.SetTransparent( TRUE );
+        pLabelComp->SetProperty( &FillProps );
 
-		// Create the symbol name text component
-		CODTextComponent* pTextComp = new CODTextComponent;
+        // Create the symbol name text component
+        CODTextComponent* pTextComp = new CODTextComponent;
 
-		// Set its size
-		pTextComp->Create( pLabelComp->GetBounds(), NULL );
+        // Set its size
+        pTextComp->Create( pLabelComp->GetBounds(), NULL );
 
-		pTextComp->SetName( SymbolNameComponentControlLabel );
-		CODLineProperties lineProp;
-		lineProp.SetTransparent( TRUE );
-		pTextComp->SetProperty( &lineProp );
+        pTextComp->SetName( SymbolNameComponentControlLabel );
+        CODLineProperties lineProp;
+        lineProp.SetTransparent( TRUE );
+        pTextComp->SetProperty( &lineProp );
 
-		// Can't be selected
-		CODEditProperties* pEdit = (CODEditProperties*) pTextComp->GetProperty( OD_PROP_EDIT );
-		CODEditProperties editChange( *pEdit );
-		editChange.SetCanSelect( FALSE );
-		pTextComp->SetProperty( &editChange );
+        // Can't be selected
+        CODEditProperties* pEdit = (CODEditProperties*) pTextComp->GetProperty( OD_PROP_EDIT );
+        CODEditProperties editChange( *pEdit );
+        editChange.SetCanSelect( FALSE );
+        pTextComp->SetProperty( &editChange );
 
-		// Change the fill color
-		pFillProps = dynamic_cast<CODFillProperties*>( pTextComp->GetProperty( OD_PROP_FILL ) );
-		CODFillProperties FillProps1( *pFillProps );
-		FillProps1.SetColor( RGB( 192, 220, 192 ) );
-		pTextComp->SetProperty( &FillProps1 );
+        // Change the fill color
+        pFillProps = dynamic_cast<CODFillProperties*>( pTextComp->GetProperty( OD_PROP_FILL ) );
+        CODFillProperties FillProps1( *pFillProps );
+        FillProps1.SetColor( RGB( 192, 220, 192 ) );
+        pTextComp->SetProperty( &FillProps1 );
 
-		AppendChild( pTextComp );
+        AppendChild( pTextComp );
 
-		pTextComp->SetValue( OD_PROP_AUTOSIZE, TRUE );
-		pTextComp->SetValue( OD_PROP_WORDBREAK, TRUE );
-		pTextComp->SetValue( OD_PROP_MULTILINE, TRUE );
-		pTextComp->SetValue( OD_PROP_TRANSPARENT, TRUE );
-		pTextComp->SetTextBox( CRect( 0, 0, 100, 40 ) );
+        pTextComp->SetValue( OD_PROP_AUTOSIZE, TRUE );
+        pTextComp->SetValue( OD_PROP_WORDBREAK, TRUE );
+        pTextComp->SetValue( OD_PROP_MULTILINE, TRUE );
+        pTextComp->SetValue( OD_PROP_TRANSPARENT, TRUE );
+        pTextComp->SetTextBox( CRect( 0, 0, 100, 40 ) );
 
-		pFontProp = (CODFontProperties*)pTextComp->GetProperty( OD_PROP_FONT );
+        pFontProp = (CODFontProperties*)pTextComp->GetProperty( OD_PROP_FONT );
 
-		if ( pFontProp != NULL )
-		{
-			pFontProp->SetFaceName( _T( "Arial" ) );
-			pFontProp->SetWeight( FW_BOLD );
-			pFontProp->SetPointSize( 8 );
-			pTextComp->SetProperty( pFontProp );
-		}
-			
-		// Create the symbol comment text component
-		pTextComp = new CODTextComponent;
+        if ( pFontProp != NULL )
+        {
+            pFontProp->SetFaceName( _T( "Arial" ) );
+            pFontProp->SetWeight( FW_BOLD );
+            pFontProp->SetPointSize( 8 );
+            pTextComp->SetProperty( pFontProp );
+        }
+            
+        // Create the symbol comment text component
+        pTextComp = new CODTextComponent;
 
-		// Set its size
-		pTextComp->Create( pLabelComp->GetBounds(), NULL );
+        // Set its size
+        pTextComp->Create( pLabelComp->GetBounds(), NULL );
 
-		pTextComp->SetName( CommentComponentControlLabel );
-		CODLineProperties lineProp2;
-		lineProp2.SetTransparent( TRUE );
-		pTextComp->SetProperty( &lineProp2 );
+        pTextComp->SetName( CommentComponentControlLabel );
+        CODLineProperties lineProp2;
+        lineProp2.SetTransparent( TRUE );
+        pTextComp->SetProperty( &lineProp2 );
 
-		// Can't be selected
-		pEdit = (CODEditProperties*) pTextComp->GetProperty( OD_PROP_EDIT );
-		CODEditProperties editChange2( *pEdit );
-		editChange2.SetCanSelect( FALSE );
-		pTextComp->SetProperty( &editChange2 );
+        // Can't be selected
+        pEdit = (CODEditProperties*) pTextComp->GetProperty( OD_PROP_EDIT );
+        CODEditProperties editChange2( *pEdit );
+        editChange2.SetCanSelect( FALSE );
+        pTextComp->SetProperty( &editChange2 );
 
-		// Change the fill color
-		pFillProps = dynamic_cast<CODFillProperties*>( pTextComp->GetProperty( OD_PROP_FILL ) );
-		CODFillProperties FillProps2( *pFillProps );
-		FillProps2.SetColor( RGB( 192, 220, 192 ) );
-		pTextComp->SetProperty( &FillProps2 );
+        // Change the fill color
+        pFillProps = dynamic_cast<CODFillProperties*>( pTextComp->GetProperty( OD_PROP_FILL ) );
+        CODFillProperties FillProps2( *pFillProps );
+        FillProps2.SetColor( RGB( 192, 220, 192 ) );
+        pTextComp->SetProperty( &FillProps2 );
 
-		AppendChild( pTextComp );
+        AppendChild( pTextComp );
 
-		pTextComp->SetValue( OD_PROP_AUTOSIZE, TRUE );
-		pTextComp->SetValue( OD_PROP_WORDBREAK, TRUE );
-		pTextComp->SetValue( OD_PROP_MULTILINE, TRUE );
-		pTextComp->SetValue( OD_PROP_TRANSPARENT, TRUE );
-		pTextComp->SetTextBox( CRect( 0, 0, 100, 40 ) );
+        pTextComp->SetValue( OD_PROP_AUTOSIZE, TRUE );
+        pTextComp->SetValue( OD_PROP_WORDBREAK, TRUE );
+        pTextComp->SetValue( OD_PROP_MULTILINE, TRUE );
+        pTextComp->SetValue( OD_PROP_TRANSPARENT, TRUE );
+        pTextComp->SetTextBox( CRect( 0, 0, 100, 40 ) );
 
-		pFontProp = (CODFontProperties*)pTextComp->GetProperty( OD_PROP_FONT );
+        pFontProp = (CODFontProperties*)pTextComp->GetProperty( OD_PROP_FONT );
 
-		if ( pFontProp != NULL )
-		{
-			pFontProp->SetFaceName( _T( "Arial" ) );
-			pFontProp->SetWeight( FW_BOLD );
-			pFontProp->SetPointSize( 8 );
-			pTextComp->SetProperty( pFontProp );
-		}
+        if ( pFontProp != NULL )
+        {
+            pFontProp->SetFaceName( _T( "Arial" ) );
+            pFontProp->SetWeight( FW_BOLD );
+            pFontProp->SetPointSize( 8 );
+            pTextComp->SetProperty( pFontProp );
+        }
 
-		// Create the symbol attribute text component
-		pTextComp = new CODTextComponent;
+        // Create the symbol attribute text component
+        pTextComp = new CODTextComponent;
 
-		// Set its size
-		pTextComp->Create( pLabelComp->GetBounds(), NULL );
+        // Set its size
+        pTextComp->Create( pLabelComp->GetBounds(), NULL );
 
-		pTextComp->SetName( AttributeAreaComponentLabel );
-		CODLineProperties lineProp3;
-		lineProp3.SetTransparent( TRUE );
-		pTextComp->SetProperty( &lineProp3 );
+        pTextComp->SetName( AttributeAreaComponentLabel );
+        CODLineProperties lineProp3;
+        lineProp3.SetTransparent( TRUE );
+        pTextComp->SetProperty( &lineProp3 );
 
-		// Can't be selected
-		pEdit = (CODEditProperties*) pTextComp->GetProperty( OD_PROP_EDIT );
-		CODEditProperties editChange3( *pEdit );
-		editChange3.SetCanSelect( FALSE );
-		pTextComp->SetProperty( &editChange3 );
+        // Can't be selected
+        pEdit = (CODEditProperties*) pTextComp->GetProperty( OD_PROP_EDIT );
+        CODEditProperties editChange3( *pEdit );
+        editChange3.SetCanSelect( FALSE );
+        pTextComp->SetProperty( &editChange3 );
 
-		// Change the fill color
-		pFillProps = dynamic_cast<CODFillProperties*>( pTextComp->GetProperty( OD_PROP_FILL ) );
-		CODFillProperties FillProps3( *pFillProps );
-		FillProps3.SetColor( RGB( 192, 220, 192 ) );
-		pTextComp->SetProperty( &FillProps3 );
+        // Change the fill color
+        pFillProps = dynamic_cast<CODFillProperties*>( pTextComp->GetProperty( OD_PROP_FILL ) );
+        CODFillProperties FillProps3( *pFillProps );
+        FillProps3.SetColor( RGB( 192, 220, 192 ) );
+        pTextComp->SetProperty( &FillProps3 );
 
-		AppendChild( pTextComp );
+        AppendChild( pTextComp );
 
-		pTextComp->SetValue( OD_PROP_AUTOSIZE, TRUE );
-		pTextComp->SetValue( OD_PROP_WORDBREAK, TRUE );
-		pTextComp->SetValue( OD_PROP_MULTILINE, TRUE );
-		pTextComp->SetValue( OD_PROP_TRANSPARENT, TRUE );
-		pTextComp->SetValue( OD_PROP_HORZ_ALIGNMENT, DT_LEFT );
-		pTextComp->SetValue( OD_PROP_VERT_ALIGNMENT, DT_TOP );
-		pTextComp->SetTextBox( CRect( 0, 0, 100, 40 ) );
+        pTextComp->SetValue( OD_PROP_AUTOSIZE, TRUE );
+        pTextComp->SetValue( OD_PROP_WORDBREAK, TRUE );
+        pTextComp->SetValue( OD_PROP_MULTILINE, TRUE );
+        pTextComp->SetValue( OD_PROP_TRANSPARENT, TRUE );
+        pTextComp->SetValue( OD_PROP_HORZ_ALIGNMENT, DT_LEFT );
+        pTextComp->SetValue( OD_PROP_VERT_ALIGNMENT, DT_TOP );
+        pTextComp->SetTextBox( CRect( 0, 0, 100, 40 ) );
 
-		pFontProp = (CODFontProperties*)pTextComp->GetProperty( OD_PROP_FONT );
+        pFontProp = (CODFontProperties*)pTextComp->GetProperty( OD_PROP_FONT );
 
-		if ( pFontProp != NULL )
-		{
-			pFontProp->SetFaceName( _T( "Arial" ) );
-			pFontProp->SetWeight( FW_BOLD );
-			pFontProp->SetPointSize( 8 );
-			pTextComp->SetProperty( pFontProp );
-		}
-	}
-	else
-	{
-		// No dynamic attributes
-		pLabelComp->SetName( SymbolNameComponentControlLabel );
-		pLabelComp->SetTextBox( CRect( 0, 0, 100, 40 ) );
+        if ( pFontProp != NULL )
+        {
+            pFontProp->SetFaceName( _T( "Arial" ) );
+            pFontProp->SetWeight( FW_BOLD );
+            pFontProp->SetPointSize( 8 );
+            pTextComp->SetProperty( pFontProp );
+        }
+    }
+    else
+    {
+        // No dynamic attributes
+        pLabelComp->SetName( SymbolNameComponentControlLabel );
+        pLabelComp->SetTextBox( CRect( 0, 0, 100, 40 ) );
 
-		CODFontProperties* pFontProp = (CODFontProperties*)pLabelComp->GetProperty( OD_PROP_FONT );
-		CODFontProperties FontProp( *pFontProp );
-		FontProp.SetFaceName( _T( "Arial" ) );
-		FontProp.SetWeight( FW_BOLD );
-		FontProp.SetPointSize( 8 );
-		pLabelComp->SetProperty( &FontProp );
+        CODFontProperties* pFontProp = (CODFontProperties*)pLabelComp->GetProperty( OD_PROP_FONT );
+        CODFontProperties FontProp( *pFontProp );
+        FontProp.SetFaceName( _T( "Arial" ) );
+        FontProp.SetWeight( FW_BOLD );
+        FontProp.SetPointSize( 8 );
+        pLabelComp->SetProperty( &FontProp );
 
-		pLabelComp->SetValue( OD_PROP_AUTOSIZE, TRUE );
-		pLabelComp->SetValue( OD_PROP_WORDBREAK, TRUE );
-		pLabelComp->SetValue( OD_PROP_MULTILINE, TRUE );
-		pLabelComp->SetValue( OD_PROP_HORZ_ALIGNMENT, DT_CENTER );
-		pLabelComp->SetValue( OD_PROP_VERT_ALIGNMENT, DT_TOP );
+        pLabelComp->SetValue( OD_PROP_AUTOSIZE, TRUE );
+        pLabelComp->SetValue( OD_PROP_WORDBREAK, TRUE );
+        pLabelComp->SetValue( OD_PROP_MULTILINE, TRUE );
+        pLabelComp->SetValue( OD_PROP_HORZ_ALIGNMENT, DT_CENTER );
+        pLabelComp->SetValue( OD_PROP_VERT_ALIGNMENT, DT_TOP );
 
-		// Change the fill color
-		// JMR-MODIF - Le 31 mai 2005 - Conversion explicite remplace le cast. La conversion explicite
-		// donne un résultat identique sur l'objet casté en classe de base, tandis que l'ancienne
-		// implémentation (dynamic_cast) provoque une exception dans le compilateur VC.NET
-		CODFillProperties* pFillProps = (CODFillProperties*)pLabelComp->GetProperty( OD_PROP_FILL );
-//		CODFillProperties* pFillProps = dynamic_cast<CODFillProperties*>(pLabelComp->GetProperty(OD_PROP_FILL));
-		CODFillProperties FillProps1( *pFillProps );
-		FillProps1.SetColor( RGB( 192, 220, 192 ) );
-		pLabelComp->SetProperty( &FillProps1 );
-	}
+        // Change the fill color
+        // JMR-MODIF - Le 31 mai 2005 - Conversion explicite remplace le cast. La conversion explicite
+        // donne un résultat identique sur l'objet casté en classe de base, tandis que l'ancienne
+        // implémentation (dynamic_cast) provoque une exception dans le compilateur VC.NET
+        CODFillProperties* pFillProps = (CODFillProperties*)pLabelComp->GetProperty( OD_PROP_FILL );
+//        CODFillProperties* pFillProps = dynamic_cast<CODFillProperties*>(pLabelComp->GetProperty(OD_PROP_FILL));
+        CODFillProperties FillProps1( *pFillProps );
+        FillProps1.SetColor( RGB( 192, 220, 192 ) );
+        pLabelComp->SetProperty( &FillProps1 );
+    }
 
-	return true;
+    return true;
 }
 
 void ZBDeliverableLinkSymbol::CopySymbolDefinitionFrom( CODSymbolComponent& src )
 {
-	// Class the base class method
-	ZBLinkSymbol::CopySymbolDefinitionFrom( src );
+    // Class the base class method
+    ZBLinkSymbol::CopySymbolDefinitionFrom( src );
 
-	if ( ISA( ( &src ), ZBDeliverableLinkSymbol ) )
-	{
-		m_Quantity					= ( (ZBDeliverableLinkSymbol&)src ).m_Quantity;
-		m_SimProperties				= ( (ZBDeliverableLinkSymbol&)src ).m_SimProperties;
-		m_CostDeliverableProperties	= ( (ZBDeliverableLinkSymbol&)src ).m_CostDeliverableProperties;
-		m_UnitProp					= ( (ZBDeliverableLinkSymbol&)src ).m_UnitProp;
+    if ( ISA( ( &src ), ZBDeliverableLinkSymbol ) )
+    {
+        m_Quantity                    = ( (ZBDeliverableLinkSymbol&)src ).m_Quantity;
+        m_SimProperties                = ( (ZBDeliverableLinkSymbol&)src ).m_SimProperties;
+        m_CostDeliverableProperties    = ( (ZBDeliverableLinkSymbol&)src ).m_CostDeliverableProperties;
+        m_UnitProp                    = ( (ZBDeliverableLinkSymbol&)src ).m_UnitProp;
 
-		// JMR-MODIF - Le 26 novembre 2006 - Ajout de la copie de la variable m_Rules.
-		m_Rules						= ( (ZBDeliverableLinkSymbol&)src ).m_Rules;
+        // JMR-MODIF - Le 26 novembre 2006 - Ajout de la copie de la variable m_Rules.
+        m_Rules                        = ( (ZBDeliverableLinkSymbol&)src ).m_Rules;
 
-		// JMR-MODIF - Le 29 juillet 2007 - Ajout du code de copie pour les risques
-		m_Risks						= ( (ZBDeliverableLinkSymbol&)src ).m_Risks;
+        // JMR-MODIF - Le 29 juillet 2007 - Ajout du code de copie pour les risques
+        m_Risks                        = ( (ZBDeliverableLinkSymbol&)src ).m_Risks;
 
-		for ( int i = 0; i < ( (ZBDeliverableLinkSymbol&)src ).m_UnitDoubleValidationTypeArray.GetSize(); ++i )
-		{
-			m_UnitDoubleValidationTypeArray.Add( ( (ZBDeliverableLinkSymbol&)src ).m_UnitDoubleValidationTypeArray.GetAt( i ) );
-		}
-	}
+        for ( int i = 0; i < ( (ZBDeliverableLinkSymbol&)src ).m_UnitDoubleValidationTypeArray.GetSize(); ++i )
+        {
+            m_UnitDoubleValidationTypeArray.Add( ( (ZBDeliverableLinkSymbol&)src ).m_UnitDoubleValidationTypeArray.GetAt( i ) );
+        }
+    }
 }
 
 // **********************************************************************************************************
-// *							  Fonctions de réponse aux événements de l'objet							*
+// *                              Fonctions de réponse aux événements de l'objet                            *
 // **********************************************************************************************************
 
 // JMR-MODIF - Le 19 novembre 2006 - Détermine la validité d'un objet obtenu par glisser-coller.
 bool ZBDeliverableLinkSymbol::AcceptDropItem( CObject* pObj, CPoint pt )
 {
-	// JMR-MODIF - Le 19 décembre 2006 - Si le symbole n'est pas local, interdit l'opération de glisser-coller.
-	if ( !IsLocal() )
-	{
-		return false;
-	}
+    // JMR-MODIF - Le 19 décembre 2006 - Si le symbole n'est pas local, interdit l'opération de glisser-coller.
+    if ( !IsLocal() )
+    {
+        return false;
+    }
 
-	if ( pObj && ISA( pObj, ZBLogicalRulesEntity ) )
-	{
-		return true;
-	}
+    if ( pObj && ISA( pObj, ZBLogicalRulesEntity ) )
+    {
+        return true;
+    }
 
-	return ZBLinkSymbol::AcceptDropItem( pObj, pt );
+    return ZBLinkSymbol::AcceptDropItem( pObj, pt );
 }
 
 // JMR-MODIF - Le 19 novembre 2006 - Fonction de réponse à l'ordre de glisser-coller.
 bool ZBDeliverableLinkSymbol::DropItem( CObject* pObj, CPoint pt )
 {
-	// *********************************************************************************************
-	// JMR-MODIF - Le 20 novembre 2006 - Ajout du code pour le traitement des objets de type règles.
-	if ( pObj && ISA( pObj, ZBLogicalRulesEntity ) )
-	{
-		// First, check if the rule is valid
-		CODModel* pModel = GetRootModel();
+    // *********************************************************************************************
+    // JMR-MODIF - Le 20 novembre 2006 - Ajout du code pour le traitement des objets de type règles.
+    if ( pObj && ISA( pObj, ZBLogicalRulesEntity ) )
+    {
+        // First, check if the rule is valid
+        CODModel* pModel = GetRootModel();
 
-		if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-			 !dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->MainLogicalRulesIsValid() )
-		{
-			// Cannot delete all rules
-			MsgBox mbox;
-			mbox.DisplayMsgBox( IDS_CANNOTDROP_RULENOTINLINE, MB_OK );
-			return false;
-		}
+        if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
+             !dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->MainLogicalRulesIsValid() )
+        {
+            // Cannot delete all rules
+            MsgBox mbox;
+            mbox.DisplayMsgBox( IDS_CANNOTDROP_RULENOTINLINE, MB_OK );
+            return false;
+        }
 
-		ZBLogicalRulesEntity* pRule = dynamic_cast<ZBLogicalRulesEntity*>( pObj );
+        ZBLogicalRulesEntity* pRule = dynamic_cast<ZBLogicalRulesEntity*>( pObj );
 
-		ZBBPRulesProperties* m_NewRule = new ZBBPRulesProperties();
+        ZBBPRulesProperties* m_NewRule = new ZBBPRulesProperties();
 
-		m_NewRule->SetRuleName( pRule->GetEntityName() );
-		m_NewRule->SetRuleDescription( pRule->GetEntityDescription() );
-		m_NewRule->SetRuleGUID( pRule->GetGUID() );
+        m_NewRule->SetRuleName( pRule->GetEntityName() );
+        m_NewRule->SetRuleDescription( pRule->GetEntityDescription() );
+        m_NewRule->SetRuleGUID( pRule->GetGUID() );
 
-		m_Rules.AddRule( m_NewRule );
+        m_Rules.AddRule( m_NewRule );
 
-		// Set flag for modification
-		SetModifiedFlag( TRUE );
+        // Set flag for modification
+        SetModifiedFlag( TRUE );
 
-		// Redraw the symbol
-		RedrawSymbol();
-		return true;
-	}
-	// *********************************************************************************************
+        // Redraw the symbol
+        RedrawSymbol();
+        return true;
+    }
+    // *********************************************************************************************
 
-	return ZBLinkSymbol::DropItem( pObj, pt );
+    return ZBLinkSymbol::DropItem( pObj, pt );
 }
 
 // JMR-MODIF - Le 27 mars 2006 - Ajout de la fonction virtuelle OnSymbolNameChange.
 void ZBDeliverableLinkSymbol::OnSymbolNameChange( CString OldName, CString NewName )
 {
-	NotifyNameChange( OldName, NewName );
+    NotifyNameChange( OldName, NewName );
 }
 
 bool ZBDeliverableLinkSymbol::OnPostCreation( CODModel* pModel /*= NULL*/, CODController* pCtrl /*= NULL*/ )
 {
-	if ( !ZBLinkSymbol::OnPostCreation( pModel, pCtrl ) )
-	{
-		return false;
-	}
+    if ( !ZBLinkSymbol::OnPostCreation( pModel, pCtrl ) )
+    {
+        return false;
+    }
 
-	// Check the symbols attached to the deliverable
-	CODSymbolComponent*	pDst = GetFollowingSymbol();
-	CODSymbolComponent*	pSrc = GetEnteringSymbol();
+    // Check the symbols attached to the deliverable
+    CODSymbolComponent*    pDst = GetFollowingSymbol();
+    CODSymbolComponent*    pSrc = GetEnteringSymbol();
 
-	if ( pSrc && pDst )
-	{
-		// Check for door procedure and procedure door
-		if ( ISA( pSrc, ZBBPDoorSymbol ) && ISA( pDst, ZBBPProcedureSymbol ) )
-		{
-			DoDoorProcedureConnection( dynamic_cast<ZBBPDoorSymbol*>( pSrc ),
-									   dynamic_cast<ZBBPProcedureSymbol*>( pDst ),
-									   pModel );
-		}
-		else if ( ISA( pSrc, ZBBPProcedureSymbol ) && ISA( pDst, ZBBPDoorSymbol ) )
-		{
-			DoProcedureDoorConnection( dynamic_cast<ZBBPProcedureSymbol*>( pSrc ),
-									   dynamic_cast<ZBBPDoorSymbol*>( pDst ),
-									   pModel );
-		}
-		// Check for page procedure and procedure page
-		else if ( ISA( pSrc, ZBBPPageSymbol ) && ISA( pDst, ZBBPProcedureSymbol ) )
-		{
-			DoPageProcedureConnection( dynamic_cast<ZBBPPageSymbol*>( pSrc ),
-									   dynamic_cast<ZBBPProcedureSymbol*>( pDst ),
-									   pModel );
-		}
-		else if ( ISA( pSrc, ZBBPProcedureSymbol ) && ISA( pDst, ZBBPPageSymbol ) )
-		{
-			DoProcedurePageConnection( dynamic_cast<ZBBPProcedureSymbol*>( pSrc ),
-									   dynamic_cast<ZBBPPageSymbol*>( pDst ),
-									   pModel );
-		}
-		// And finally, for process to process
-		else if ( ISA( pSrc, ZBBPProcessSymbol ) && ISA( pDst, ZBBPProcessSymbol ) )
-		{
-			DoProcessProcessConnection( dynamic_cast<ZBBPProcessSymbol*>( pSrc ),
-										dynamic_cast<ZBBPProcessSymbol*>( pDst ),
-										pModel );
-		}
-	}
+    if ( pSrc && pDst )
+    {
+        // Check for door procedure and procedure door
+        if ( ISA( pSrc, ZBBPDoorSymbol ) && ISA( pDst, ZBBPProcedureSymbol ) )
+        {
+            DoDoorProcedureConnection( dynamic_cast<ZBBPDoorSymbol*>( pSrc ),
+                                       dynamic_cast<ZBBPProcedureSymbol*>( pDst ),
+                                       pModel );
+        }
+        else if ( ISA( pSrc, ZBBPProcedureSymbol ) && ISA( pDst, ZBBPDoorSymbol ) )
+        {
+            DoProcedureDoorConnection( dynamic_cast<ZBBPProcedureSymbol*>( pSrc ),
+                                       dynamic_cast<ZBBPDoorSymbol*>( pDst ),
+                                       pModel );
+        }
+        // Check for page procedure and procedure page
+        else if ( ISA( pSrc, ZBBPPageSymbol ) && ISA( pDst, ZBBPProcedureSymbol ) )
+        {
+            DoPageProcedureConnection( dynamic_cast<ZBBPPageSymbol*>( pSrc ),
+                                       dynamic_cast<ZBBPProcedureSymbol*>( pDst ),
+                                       pModel );
+        }
+        else if ( ISA( pSrc, ZBBPProcedureSymbol ) && ISA( pDst, ZBBPPageSymbol ) )
+        {
+            DoProcedurePageConnection( dynamic_cast<ZBBPProcedureSymbol*>( pSrc ),
+                                       dynamic_cast<ZBBPPageSymbol*>( pDst ),
+                                       pModel );
+        }
+        // And finally, for process to process
+        else if ( ISA( pSrc, ZBBPProcessSymbol ) && ISA( pDst, ZBBPProcessSymbol ) )
+        {
+            DoProcessProcessConnection( dynamic_cast<ZBBPProcessSymbol*>( pSrc ),
+                                        dynamic_cast<ZBBPProcessSymbol*>( pDst ),
+                                        pModel );
+        }
+    }
 
-	// Check the status in order to set the right color
-	CheckDeliverableStatus();
+    // Check the status in order to set the right color
+    CheckDeliverableStatus();
 
-	return true;
+    return true;
 }
 
 bool ZBDeliverableLinkSymbol::OnPreDelete( CODModel* pModel /*= NULL*/, CODController* pCtrl /*= NULL*/ )
 {
-	// Before disconnecting the link from the symbol
-	CODSymbolComponent* pDst = GetFollowingSymbol();
+    // Before disconnecting the link from the symbol
+    CODSymbolComponent* pDst = GetFollowingSymbol();
 
-	if ( pDst && ISA( pDst, ZBSymbol ) )
-	{
-		dynamic_cast<ZBSymbol*>( pDst )->OnLinkDisconnect( this );
-	}
+    if ( pDst && ISA( pDst, ZBSymbol ) )
+    {
+        dynamic_cast<ZBSymbol*>( pDst )->OnLinkDisconnect( this );
+    }
 
-	CODSymbolComponent* pSrc = GetEnteringSymbol();
+    CODSymbolComponent* pSrc = GetEnteringSymbol();
 
-	if ( pSrc && ISA( pSrc, ZBSymbol ) )
-	{
-		dynamic_cast<ZBSymbol*>( pSrc )->OnLinkDisconnect( this );
-	}
+    if ( pSrc && ISA( pSrc, ZBSymbol ) )
+    {
+        dynamic_cast<ZBSymbol*>( pSrc )->OnLinkDisconnect( this );
+    }
 
-	return true;
+    return true;
 }
 
 // JMR-MODIF - Le 7 juin 2006 - Cette fonction corrige un bug d'affichage propre aux symboles procédures.
 void ZBDeliverableLinkSymbol::AdjustPoints()
 {
-	if ( m_pILinkShape != NULL )
-	{
-		CODPortComponent* pSourcePort = GetSourcePort();
-		CODPortComponent* pTargetPort = GetTargetPort();
+    if ( m_pILinkShape != NULL )
+    {
+        CODPortComponent* pSourcePort = GetSourcePort();
+        CODPortComponent* pTargetPort = GetTargetPort();
 
-		CODOrthogonalLinkShape* m_LinkShape = static_cast<CODOrthogonalLinkShape*>( m_pILinkShape );
+        CODOrthogonalLinkShape* m_LinkShape = static_cast<CODOrthogonalLinkShape*>( m_pILinkShape );
 
-		if ( m_LinkShape == NULL )
-		{
-			m_pILinkShape->Dock( pSourcePort, pTargetPort );
-			return;
-		}
+        if ( m_LinkShape == NULL )
+        {
+            m_pILinkShape->Dock( pSourcePort, pTargetPort );
+            return;
+        }
 
-		int nPointCount = m_LinkShape->GetPointCount();
+        int nPointCount = m_LinkShape->GetPointCount();
 
-		if ( nPointCount < 2 )
-		{
-			return;
-		}
+        if ( nPointCount < 2 )
+        {
+            return;
+        }
 
-		CODIntProperty propSpacing;
+        CODIntProperty propSpacing;
 
-		int nSpacing = ( m_LinkShape->GetParent()->GetProperty( OD_PROP_LINK_SPACING, propSpacing ) ?
-						propSpacing.GetValue() : odg_nDefaultLinkSpacing );
+        int nSpacing = ( m_LinkShape->GetParent()->GetProperty( OD_PROP_LINK_SPACING, propSpacing ) ?
+                        propSpacing.GetValue() : odg_nDefaultLinkSpacing );
 
-		CPoint ptTail = m_LinkShape->GetVertex( 0 );
-		CPoint ptHead = m_LinkShape->GetVertex( nPointCount - 1 );
+        CPoint ptTail = m_LinkShape->GetVertex( 0 );
+        CPoint ptHead = m_LinkShape->GetVertex( nPointCount - 1 );
 
-		CODComponent* pTailComp = NULL;
-		CODComponent* pHeadComp = NULL;
+        CODComponent* pTailComp = NULL;
+        CODComponent* pHeadComp = NULL;
 
-		if ( pSourcePort != NULL )
-		{
-			ptTail = pSourcePort->GetLocation();
-			pTailComp = pSourcePort->GetOwner();
-		}
+        if ( pSourcePort != NULL )
+        {
+            ptTail = pSourcePort->GetLocation();
+            pTailComp = pSourcePort->GetOwner();
+        }
 
-		if (pTargetPort != NULL)
-		{
-			ptHead = pTargetPort->GetLocation();
-			pHeadComp = pTargetPort->GetOwner();
-		}
+        if (pTargetPort != NULL)
+        {
+            ptHead = pTargetPort->GetLocation();
+            pHeadComp = pTargetPort->GetOwner();
+        }
 
-		m_LinkShape->SetVertex( 0, ptTail );
-		m_LinkShape->SetVertex( nPointCount - 1, ptHead );
+        m_LinkShape->SetVertex( 0, ptTail );
+        m_LinkShape->SetVertex( nPointCount - 1, ptHead );
 
-		CRect rcLinePadding( odg_rcOrthogonalLinePadding );
+        CRect rcLinePadding( odg_rcOrthogonalLinePadding );
 
-		// Calculate points to be orthogonal (all 90 degree angles).
-		// We must determine the direction for each endpoint.
-		CSize szDirPt1( 0, 0 );
-		CSize szDirPt2( 0, 0 );
+        // Calculate points to be orthogonal (all 90 degree angles).
+        // We must determine the direction for each endpoint.
+        CSize szDirPt1( 0, 0 );
+        CSize szDirPt2( 0, 0 );
 
-		// The default calculation assumes that the line stops at the perimeter
-		// of each symbol. In this case, we have more control over the direction
-		// of the line because it won't cross the symbol. This calculation makes
-		// both endpoints face towards each other to minimize the number of
-		// bends in the line.
-		m_LinkShape->CalcEndpointDirections( szDirPt1, szDirPt2 );
+        // The default calculation assumes that the line stops at the perimeter
+        // of each symbol. In this case, we have more control over the direction
+        // of the line because it won't cross the symbol. This calculation makes
+        // both endpoints face towards each other to minimize the number of
+        // bends in the line.
+        m_LinkShape->CalcEndpointDirections( szDirPt1, szDirPt2 );
 
-		if ( pTailComp != NULL && pHeadComp != NULL )
-		{
-			CRect rcTail = pTailComp->GetBounds();
-			CRect rcHead = pHeadComp->GetBounds();
+        if ( pTailComp != NULL && pHeadComp != NULL )
+        {
+            CRect rcTail = pTailComp->GetBounds();
+            CRect rcHead = pHeadComp->GetBounds();
 
-			int nLeftInflate	= rcLinePadding.left	/ 2;
-			int nTopInflate		= rcLinePadding.top		/ 2;
-			int nRightInflate	= rcLinePadding.right	/ 2;
-			int nBottomInflate	= rcLinePadding.bottom	/ 2;
+            int nLeftInflate    = rcLinePadding.left    / 2;
+            int nTopInflate        = rcLinePadding.top        / 2;
+            int nRightInflate    = rcLinePadding.right    / 2;
+            int nBottomInflate    = rcLinePadding.bottom    / 2;
 
-			rcTail.InflateRect( nLeftInflate, nTopInflate, nRightInflate, nBottomInflate );
-			rcHead.InflateRect( nLeftInflate, nTopInflate, nRightInflate, nBottomInflate );
+            rcTail.InflateRect( nLeftInflate, nTopInflate, nRightInflate, nBottomInflate );
+            rcHead.InflateRect( nLeftInflate, nTopInflate, nRightInflate, nBottomInflate );
 
-			CRect rcIntersect;
-			BOOL bIntersect = rcIntersect.IntersectRect( &rcTail, &rcHead );
+            CRect rcIntersect;
+            BOOL bIntersect = rcIntersect.IntersectRect( &rcTail, &rcHead );
 
-			if ( rcTail == rcHead )
-			{
-				CSize szTmp = szDirPt1;
-				int nTurnDirection = 1;
+            if ( rcTail == rcHead )
+            {
+                CSize szTmp = szDirPt1;
+                int nTurnDirection = 1;
 
-				szDirPt1.cx = ( szTmp.cy * nTurnDirection );
-				szDirPt1.cy = ( szTmp.cx * nTurnDirection );
-			}
-			else if ( bIntersect )
-			{
-				CSize szTmp = szDirPt1;
-				int nTurnDirection = 1;
+                szDirPt1.cx = ( szTmp.cy * nTurnDirection );
+                szDirPt1.cy = ( szTmp.cx * nTurnDirection );
+            }
+            else if ( bIntersect )
+            {
+                CSize szTmp = szDirPt1;
+                int nTurnDirection = 1;
 
-				szDirPt1.cx = ( szTmp.cy * nTurnDirection );
-				szDirPt1.cy = ( szTmp.cx * nTurnDirection );
+                szDirPt1.cx = ( szTmp.cy * nTurnDirection );
+                szDirPt1.cy = ( szTmp.cx * nTurnDirection );
 
-				szTmp = szDirPt2;
-				nTurnDirection = -1;
+                szTmp = szDirPt2;
+                nTurnDirection = -1;
 
-				szDirPt2.cx = ( szTmp.cy * nTurnDirection );
-				szDirPt2.cy = ( szTmp.cx * nTurnDirection );
-			}
-		}
+                szDirPt2.cx = ( szTmp.cy * nTurnDirection );
+                szDirPt2.cy = ( szTmp.cx * nTurnDirection );
+            }
+        }
 
-		// If a port doesn't allow attaching the line at the perimeter of the symbol,
-		// then it is possible (even likely) that the line will cross the symbol.
-		// Calculate the direction for the endpoint to minimize the intersection of
-		// the line and symbol.
-		if ( pSourcePort != NULL && pSourcePort->MustAttachAtPerimeter() )
-		{
-			ASSERT_VALID( pTailComp );
+        // If a port doesn't allow attaching the line at the perimeter of the symbol,
+        // then it is possible (even likely) that the line will cross the symbol.
+        // Calculate the direction for the endpoint to minimize the intersection of
+        // the line and symbol.
+        if ( pSourcePort != NULL && pSourcePort->MustAttachAtPerimeter() )
+        {
+            ASSERT_VALID( pTailComp );
 
-			CRect rcTail = pTailComp->GetBounds();
-			CPoint ptNext = ptTail;
+            CRect rcTail = pTailComp->GetBounds();
+            CPoint ptNext = ptTail;
 
-			if ( szDirPt1.cx < 0 )
-			{
-				ptNext.x = rcTail.left - 1;
-			}
+            if ( szDirPt1.cx < 0 )
+            {
+                ptNext.x = rcTail.left - 1;
+            }
 
-			if ( szDirPt1.cx > 0 )
-			{
-				ptNext.x = rcTail.right + 1;
-			}
+            if ( szDirPt1.cx > 0 )
+            {
+                ptNext.x = rcTail.right + 1;
+            }
 
-			if ( szDirPt1.cy < 0 )
-			{
-				ptNext.y = rcTail.top - 1;
-			}
+            if ( szDirPt1.cy < 0 )
+            {
+                ptNext.y = rcTail.top - 1;
+            }
 
-			if ( szDirPt1.cy > 0 )
-			{
-				ptNext.y = rcTail.bottom + 1;
-			}
+            if ( szDirPt1.cy > 0 )
+            {
+                ptNext.y = rcTail.bottom + 1;
+            }
 
-			CPoint ptAdjustedTail = pTailComp->GetBaseRgn().GetBoundaryPoint( &ptTail, &ptNext, nSpacing );
-			m_LinkShape->SetVertex( 0, ptAdjustedTail );
-		}
-		else if ( pTailComp != NULL )
-		{
-			szDirPt1 = CODGlobal::CalcOrthogonalDirection( ptTail, pTailComp->GetBounds() );
+            CPoint ptAdjustedTail = pTailComp->GetBaseRgn().GetBoundaryPoint( &ptTail, &ptNext, nSpacing );
+            m_LinkShape->SetVertex( 0, ptAdjustedTail );
+        }
+        else if ( pTailComp != NULL )
+        {
+            szDirPt1 = CODGlobal::CalcOrthogonalDirection( ptTail, pTailComp->GetBounds() );
 
-			CString SrcPortName = pSourcePort->GetName();
+            CString SrcPortName = pSourcePort->GetName();
 
-			if ( SrcPortName == PortUPComponentLabel )
-			{
-				szDirPt1.cx = 0;
-				szDirPt1.cy = -1;
-			}
-			else if ( SrcPortName == PortDOWNComponentLabel )
-			{
-				szDirPt1.cx = 0;
-				szDirPt1.cy = 1;
-			}
-			else if ( SrcPortName == PortLEFTComponentLabel )
-			{
-				szDirPt1.cx = -1;
-				szDirPt1.cy = 0;
-			}
-			else if ( SrcPortName == PortRIGHTComponentLabel )
-			{
-				szDirPt1.cx = 1;
-				szDirPt1.cy = 0;
-			}
-			else
-			{
-				szDirPt1 = CODGlobal::CalcOrthogonalDirection( ptTail, pTailComp->GetBounds() );
-			}
-		}
+            if ( SrcPortName == PortUPComponentLabel )
+            {
+                szDirPt1.cx = 0;
+                szDirPt1.cy = -1;
+            }
+            else if ( SrcPortName == PortDOWNComponentLabel )
+            {
+                szDirPt1.cx = 0;
+                szDirPt1.cy = 1;
+            }
+            else if ( SrcPortName == PortLEFTComponentLabel )
+            {
+                szDirPt1.cx = -1;
+                szDirPt1.cy = 0;
+            }
+            else if ( SrcPortName == PortRIGHTComponentLabel )
+            {
+                szDirPt1.cx = 1;
+                szDirPt1.cy = 0;
+            }
+            else
+            {
+                szDirPt1 = CODGlobal::CalcOrthogonalDirection( ptTail, pTailComp->GetBounds() );
+            }
+        }
 
-		if ( pTargetPort != NULL && pTargetPort->MustAttachAtPerimeter() )
-		{
-			ASSERT_VALID( pHeadComp );
+        if ( pTargetPort != NULL && pTargetPort->MustAttachAtPerimeter() )
+        {
+            ASSERT_VALID( pHeadComp );
 
-			CRect rcHead = pHeadComp->GetBounds();
-			CPoint ptPrev = ptHead;
+            CRect rcHead = pHeadComp->GetBounds();
+            CPoint ptPrev = ptHead;
 
-			if ( szDirPt2.cx < 0 )
-			{
-				ptPrev.x = rcHead.left - 1;
-			}
+            if ( szDirPt2.cx < 0 )
+            {
+                ptPrev.x = rcHead.left - 1;
+            }
 
-			if ( szDirPt2.cx > 0 )
-			{
-				ptPrev.x = rcHead.right + 1;
-			}
+            if ( szDirPt2.cx > 0 )
+            {
+                ptPrev.x = rcHead.right + 1;
+            }
 
-			if ( szDirPt2.cy < 0 )
-			{
-				ptPrev.y = rcHead.top - 1;
-			}
+            if ( szDirPt2.cy < 0 )
+            {
+                ptPrev.y = rcHead.top - 1;
+            }
 
-			if ( szDirPt2.cy > 0 )
-			{
-				ptPrev.y = rcHead.bottom + 1;
-			}
+            if ( szDirPt2.cy > 0 )
+            {
+                ptPrev.y = rcHead.bottom + 1;
+            }
 
-			CPoint ptAdjustedHead = pHeadComp->GetBaseRgn().GetBoundaryPoint( &ptHead, &ptPrev, nSpacing );
-			m_LinkShape->SetVertex( nPointCount - 1, ptAdjustedHead );
-		}
-		else if ( pHeadComp != NULL )
-		{
-			szDirPt2 = CODGlobal::CalcOrthogonalDirection( ptHead, pHeadComp->GetBounds() );
+            CPoint ptAdjustedHead = pHeadComp->GetBaseRgn().GetBoundaryPoint( &ptHead, &ptPrev, nSpacing );
+            m_LinkShape->SetVertex( nPointCount - 1, ptAdjustedHead );
+        }
+        else if ( pHeadComp != NULL )
+        {
+            szDirPt2 = CODGlobal::CalcOrthogonalDirection( ptHead, pHeadComp->GetBounds() );
 
-			CString TrgPortName = pTargetPort->GetName();
+            CString TrgPortName = pTargetPort->GetName();
 
-			if ( TrgPortName == PortUPComponentLabel )
-			{
-				szDirPt2.cx = 0;
-				szDirPt2.cy = -1;
-			}
-			else if ( TrgPortName == PortDOWNComponentLabel )
-			{
-				szDirPt2.cx = 0;
-				szDirPt2.cy = 1;
-			}
-			else if ( TrgPortName == PortLEFTComponentLabel )
-			{
-				szDirPt2.cx = -1;
-				szDirPt2.cy = 0;
-			}
-			else if ( TrgPortName == PortRIGHTComponentLabel )
-			{
-				szDirPt2.cx = 1;
-				szDirPt2.cy = 0;
-			}
-			else
-			{
-				szDirPt2 = CODGlobal::CalcOrthogonalDirection( ptHead, pHeadComp->GetBounds() );
-			}
-		}
+            if ( TrgPortName == PortUPComponentLabel )
+            {
+                szDirPt2.cx = 0;
+                szDirPt2.cy = -1;
+            }
+            else if ( TrgPortName == PortDOWNComponentLabel )
+            {
+                szDirPt2.cx = 0;
+                szDirPt2.cy = 1;
+            }
+            else if ( TrgPortName == PortLEFTComponentLabel )
+            {
+                szDirPt2.cx = -1;
+                szDirPt2.cy = 0;
+            }
+            else if ( TrgPortName == PortRIGHTComponentLabel )
+            {
+                szDirPt2.cx = 1;
+                szDirPt2.cy = 0;
+            }
+            else
+            {
+                szDirPt2 = CODGlobal::CalcOrthogonalDirection( ptHead, pHeadComp->GetBounds() );
+            }
+        }
 
-		BOOL bPaddingOk = TRUE;
+        BOOL bPaddingOk = TRUE;
 
-		if ( nPointCount > 2 )
-		{
-			CSize szTailSeg = m_LinkShape->GetVertex( 1 ) - m_LinkShape->GetVertex( 0 );
-			CSize szHeadSeg = m_LinkShape->GetVertex( nPointCount - 2 ) - m_LinkShape->GetVertex( nPointCount - 1 );
+        if ( nPointCount > 2 )
+        {
+            CSize szTailSeg = m_LinkShape->GetVertex( 1 ) - m_LinkShape->GetVertex( 0 );
+            CSize szHeadSeg = m_LinkShape->GetVertex( nPointCount - 2 ) - m_LinkShape->GetVertex( nPointCount - 1 );
 
-			szTailSeg.cx = szTailSeg.cx * szDirPt1.cx;
-			szTailSeg.cy = szTailSeg.cy * szDirPt1.cy;
+            szTailSeg.cx = szTailSeg.cx * szDirPt1.cx;
+            szTailSeg.cy = szTailSeg.cy * szDirPt1.cy;
 
-			szHeadSeg.cx = szHeadSeg.cx * szDirPt2.cx;
-			szHeadSeg.cy = szHeadSeg.cy * szDirPt2.cy;
+            szHeadSeg.cx = szHeadSeg.cx * szDirPt2.cx;
+            szHeadSeg.cy = szHeadSeg.cy * szDirPt2.cy;
 
-			CSize szTailPad( 0, 0 );
+            CSize szTailPad( 0, 0 );
 
-			if ( szDirPt1.cx > 0 )
-			{
-				szTailPad.cx = rcLinePadding.right;
-			}
-			else if ( szDirPt1.cy < 0 )
-			{
-				szTailPad.cx = rcLinePadding.left;
-			}
+            if ( szDirPt1.cx > 0 )
+            {
+                szTailPad.cx = rcLinePadding.right;
+            }
+            else if ( szDirPt1.cy < 0 )
+            {
+                szTailPad.cx = rcLinePadding.left;
+            }
 
-			if ( szDirPt1.cy > 0 )
-			{
-				szTailPad.cy = rcLinePadding.bottom;
-			}
-			else if ( szDirPt1.cy < 0 )
-			{
-				szTailPad.cy = rcLinePadding.top;
-			}
+            if ( szDirPt1.cy > 0 )
+            {
+                szTailPad.cy = rcLinePadding.bottom;
+            }
+            else if ( szDirPt1.cy < 0 )
+            {
+                szTailPad.cy = rcLinePadding.top;
+            }
 
-			CSize szHeadPad( 0, 0 );
+            CSize szHeadPad( 0, 0 );
 
-			if ( szDirPt2.cx > 0 )
-			{
-				szHeadPad.cx = rcLinePadding.right;
-			}
-			else if ( szDirPt2.cy < 0 )
-			{
-				szHeadPad.cx = rcLinePadding.left;
-			}
+            if ( szDirPt2.cx > 0 )
+            {
+                szHeadPad.cx = rcLinePadding.right;
+            }
+            else if ( szDirPt2.cy < 0 )
+            {
+                szHeadPad.cx = rcLinePadding.left;
+            }
 
-			if ( szDirPt2.cy > 0 )
-			{
-				szHeadPad.cy = rcLinePadding.bottom;
-			}
-			else if ( szDirPt2.cy < 0 )
-			{
-				szHeadPad.cy = rcLinePadding.top;
-			}
+            if ( szDirPt2.cy > 0 )
+            {
+                szHeadPad.cy = rcLinePadding.bottom;
+            }
+            else if ( szDirPt2.cy < 0 )
+            {
+                szHeadPad.cy = rcLinePadding.top;
+            }
 
-			if ( szTailSeg.cx < szTailPad.cx )
-			{
-				bPaddingOk = FALSE;
-			}
-			else if ( szTailSeg.cy < szTailPad.cy )
-			{
-				bPaddingOk = FALSE;
-			}
+            if ( szTailSeg.cx < szTailPad.cx )
+            {
+                bPaddingOk = FALSE;
+            }
+            else if ( szTailSeg.cy < szTailPad.cy )
+            {
+                bPaddingOk = FALSE;
+            }
 
-			if ( szHeadSeg.cx < szHeadPad.cx )
-			{
-				bPaddingOk = FALSE;
-			}
-			else if ( szHeadSeg.cy < szHeadPad.cy )
-			{
-				bPaddingOk = FALSE;
-			}
-		}
+            if ( szHeadSeg.cx < szHeadPad.cx )
+            {
+                bPaddingOk = FALSE;
+            }
+            else if ( szHeadSeg.cy < szHeadPad.cy )
+            {
+                bPaddingOk = FALSE;
+            }
+        }
 
-		// Calculate the points needed to connect the two endpoints with
-		// a set of orthogonal line segments.
-		m_LinkShape->MakeOrthogonal( szDirPt1, szDirPt2 );
-	}
-	else
-	{
-		CODLinkComponent::AdjustPoints();
-	}
+        // Calculate the points needed to connect the two endpoints with
+        // a set of orthogonal line segments.
+        m_LinkShape->MakeOrthogonal( szDirPt1, szDirPt2 );
+    }
+    else
+    {
+        CODLinkComponent::AdjustPoints();
+    }
 }
 
 // Cette fonction est appelée lorsque la connection du livrable sur ses symboles d'ancrage doit être crée.
 void ZBDeliverableLinkSymbol::OnConnect( CODConnection* pConnection )
 {
-	ZBLinkSymbol::OnConnect( pConnection );
+    ZBLinkSymbol::OnConnect( pConnection );
 
-	// After connecting the link to the symbol
-	CODSymbolComponent* pDst = GetFollowingSymbol();
+    // After connecting the link to the symbol
+    CODSymbolComponent* pDst = GetFollowingSymbol();
 
-	if ( pDst && ISA( pDst, ZBSymbol ) && pDst->GetDependentPortOnConnection( pConnection ) )
-	{
-		dynamic_cast<ZBSymbol*>( pDst )->OnLinkConnect( this );
-	}
-	else
-	{
-		CODSymbolComponent* pSrc = GetEnteringSymbol();
+    if ( pDst && ISA( pDst, ZBSymbol ) && pDst->GetDependentPortOnConnection( pConnection ) )
+    {
+        dynamic_cast<ZBSymbol*>( pDst )->OnLinkConnect( this );
+    }
+    else
+    {
+        CODSymbolComponent* pSrc = GetEnteringSymbol();
 
-		if ( pSrc && ISA( pSrc, ZBSymbol ) && pSrc->GetDependentPortOnConnection( pConnection ) )
-		{
-			dynamic_cast<ZBSymbol*>( pSrc )->OnLinkConnect( this );
-		}
-	}
+        if ( pSrc && ISA( pSrc, ZBSymbol ) && pSrc->GetDependentPortOnConnection( pConnection ) )
+        {
+            dynamic_cast<ZBSymbol*>( pSrc )->OnLinkConnect( this );
+        }
+    }
 
-	// Check the status in order to set the right color
-	CheckDeliverableStatus();
+    // Check the status in order to set the right color
+    CheckDeliverableStatus();
 }
 
 // Cette fonction est appelée lorsque la connection du livrable sur ses symboles d'ancrage doit être supprimée.
 void ZBDeliverableLinkSymbol::OnDisconnect( CODConnection* pConnection )
 {
-	// Before disconnecting the link from the symbol
-	CODSymbolComponent* pDst = GetFollowingSymbol();
+    // Before disconnecting the link from the symbol
+    CODSymbolComponent* pDst = GetFollowingSymbol();
 
-	if ( pDst && ISA( pDst, ZBSymbol ) && pDst->GetDependentPortOnConnection( pConnection ) )
-	{
-		dynamic_cast<ZBSymbol*>( pDst )->OnLinkDisconnect( this );
-	}
-	else
-	{
-		CODSymbolComponent* pSrc = GetEnteringSymbol();
+    if ( pDst && ISA( pDst, ZBSymbol ) && pDst->GetDependentPortOnConnection( pConnection ) )
+    {
+        dynamic_cast<ZBSymbol*>( pDst )->OnLinkDisconnect( this );
+    }
+    else
+    {
+        CODSymbolComponent* pSrc = GetEnteringSymbol();
 
-		if ( pSrc && ISA( pSrc, ZBSymbol ) && pSrc->GetDependentPortOnConnection( pConnection ) )
-		{
-			dynamic_cast<ZBSymbol*>( pSrc )->OnLinkDisconnect( this );
-		}
-	}
+        if ( pSrc && ISA( pSrc, ZBSymbol ) && pSrc->GetDependentPortOnConnection( pConnection ) )
+        {
+            dynamic_cast<ZBSymbol*>( pSrc )->OnLinkDisconnect( this );
+        }
+    }
 
-	ZBLinkSymbol::OnDisconnect( pConnection );
+    ZBLinkSymbol::OnDisconnect( pConnection );
 
-	// Check the status in order to set the right color
-	CheckDeliverableStatus();
+    // Check the status in order to set the right color
+    CheckDeliverableStatus();
 }
 
 // Cette fonction est appelée lorsque les points d'ancrage du symbole bougent.
 BOOL ZBDeliverableLinkSymbol::OnConnectionMove( CODConnection* pConnection )
 {
-	BOOL RetValue = ZBLinkSymbol::OnConnectionMove( pConnection );
+    BOOL RetValue = ZBLinkSymbol::OnConnectionMove( pConnection );
 
-	// Check the status in order to set the right color
-	CheckDeliverableStatus();
+    // Check the status in order to set the right color
+    CheckDeliverableStatus();
 
-	return RetValue;
+    return RetValue;
 }
 
 BOOL ZBDeliverableLinkSymbol::OnRemoveDependent( CODConnection* pConnection )
 {
-	BOOL RetValue = ZBLinkSymbol::OnRemoveDependent( pConnection );
+    BOOL RetValue = ZBLinkSymbol::OnRemoveDependent( pConnection );
 
-	// Check the status in order to set the right color
-	CheckDeliverableStatus();
+    // Check the status in order to set the right color
+    CheckDeliverableStatus();
 
-	return RetValue;
+    return RetValue;
 }
 
-bool ZBDeliverableLinkSymbol::OnPrePropertyChanged( CString			NewValue,
-													ZBProperty&		Property,
-													ZBPropertySet&	Properties )
+bool ZBDeliverableLinkSymbol::OnPrePropertyChanged( CString            NewValue,
+                                                    ZBProperty&        Property,
+                                                    ZBPropertySet&    Properties )
 {
-	// Only local symbol have access to properties
-	if ( !IsLocal() )
-	{
-		return true;
-	}
+    // Only local symbol have access to properties
+    if ( !IsLocal() )
+    {
+        return true;
+    }
 
-	return ZBLinkSymbol::OnPrePropertyChanged( NewValue, Property, Properties );
+    return ZBLinkSymbol::OnPrePropertyChanged( NewValue, Property, Properties );
 }
 
-bool ZBDeliverableLinkSymbol::OnPostPropertyChanged( ZBProperty&	Property,
-													 ZBPropertySet&	Properties,
-													 bool&			Refresh )
+bool ZBDeliverableLinkSymbol::OnPostPropertyChanged( ZBProperty&    Property,
+                                                     ZBPropertySet&    Properties,
+                                                     bool&            Refresh )
 {
-	// Only local symbol have access to properties
-	if ( !IsLocal() )
-	{
-		return true;
-	}
+    // Only local symbol have access to properties
+    if ( !IsLocal() )
+    {
+        return true;
+    }
 
-	bool RetValue = false;
+    bool RetValue = false;
 
-	if ( Property.GetCategoryID() == ZS_BP_PROP_TEXTITEMLIST )
-	{
-		// Change the return value to reload the properties
-		// We need to reload since the tasklist has an empty task.
-		// If the user fill it, we need to enable a new empty one.
-		// And if the user remove one task, we need also to disable one from
-		// the property list
+    if ( Property.GetCategoryID() == ZS_BP_PROP_TEXTITEMLIST )
+    {
+        // Change the return value to reload the properties
+        // We need to reload since the tasklist has an empty task.
+        // If the user fill it, we need to enable a new empty one.
+        // And if the user remove one task, we need also to disable one from
+        // the property list
 
-		// Run trough the set of properties and changed the enable flag
-		// To change the enable flag, we need to check if it is a new
-		// property that need to be enabled or not
-		// Then we need to insure that only one empty property is enable
-		ZBPropertyIterator i( &Properties );
-		ZBProperty* pProp;
-		size_t		CounterEnableEmpty = 0;
+        // Run trough the set of properties and changed the enable flag
+        // To change the enable flag, we need to check if it is a new
+        // property that need to be enabled or not
+        // Then we need to insure that only one empty property is enable
+        ZBPropertyIterator i( &Properties );
+        ZBProperty* pProp;
+        size_t        CounterEnableEmpty = 0;
 
-		for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
-		{
-			if ( pProp->GetCategoryID() == ZS_BP_PROP_TEXTITEMLIST )
-			{
-				// If the string is not empty, first, sets the enable flag to true
-				if ( !pProp->GetValueString().IsEmpty() )
-				{
-					pProp->SetEnable( true );
-				}
+        for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+        {
+            if ( pProp->GetCategoryID() == ZS_BP_PROP_TEXTITEMLIST )
+            {
+                // If the string is not empty, first, sets the enable flag to true
+                if ( !pProp->GetValueString().IsEmpty() )
+                {
+                    pProp->SetEnable( true );
+                }
 
-				// If the string is empty
-				// Check if he has the enable flag and add it to the counter
-				// If the counter is not equal to 1, then enable or disable it
-				if ( pProp->GetValueString().IsEmpty() )
-				{
-					if ( pProp->GetEnable() == true )
-					{
-						++CounterEnableEmpty;
-					}
-					else
-					{
-						// If not at least one empty element
-						if ( CounterEnableEmpty < 1 )
-						{
-							pProp->SetEnable( true );
-							++CounterEnableEmpty;
-						}
-					}
+                // If the string is empty
+                // Check if he has the enable flag and add it to the counter
+                // If the counter is not equal to 1, then enable or disable it
+                if ( pProp->GetValueString().IsEmpty() )
+                {
+                    if ( pProp->GetEnable() == true )
+                    {
+                        ++CounterEnableEmpty;
+                    }
+                    else
+                    {
+                        // If not at least one empty element
+                        if ( CounterEnableEmpty < 1 )
+                        {
+                            pProp->SetEnable( true );
+                            ++CounterEnableEmpty;
+                        }
+                    }
 
-					// Now if the counter is greather than 1, then you need to disable the empty element
-					if ( CounterEnableEmpty > 1 )
-					{
-						--CounterEnableEmpty;
-						pProp->SetEnable( false );
-					}
-				}
-			}
-		}
+                    // Now if the counter is greather than 1, then you need to disable the empty element
+                    if ( CounterEnableEmpty > 1 )
+                    {
+                        --CounterEnableEmpty;
+                        pProp->SetEnable( false );
+                    }
+                }
+            }
+        }
 
-		RetValue = true;
-	}
-	else if ( Property.GetCategoryID() == ZS_BP_PROP_RULELIST )
-	{
-		// Change the return value to reload the properties
-		// We need to reload since the rulelist has an empty task.
-		// If the user fill it, we need to enable a new empty one.
-		// And if the user remove one task, we need also to disable one from
-		// the property list
+        RetValue = true;
+    }
+    else if ( Property.GetCategoryID() == ZS_BP_PROP_RULELIST )
+    {
+        // Change the return value to reload the properties
+        // We need to reload since the rulelist has an empty task.
+        // If the user fill it, we need to enable a new empty one.
+        // And if the user remove one task, we need also to disable one from
+        // the property list
 
-		// Run trough the set of properties and changed the enable flag
-		// To change the enable flag, we need to check if it is a new
-		// property that need to be enabled or not
-		// Then we need to insure that only one empty property is enable
-		ZBPropertyIterator i( &Properties );
-		ZBProperty* pProp;
-		size_t		CounterEnableEmpty = 0;
+        // Run trough the set of properties and changed the enable flag
+        // To change the enable flag, we need to check if it is a new
+        // property that need to be enabled or not
+        // Then we need to insure that only one empty property is enable
+        ZBPropertyIterator i( &Properties );
+        ZBProperty* pProp;
+        size_t        CounterEnableEmpty = 0;
 
-		for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
-		{
-			if ( pProp->GetCategoryID() == ZS_BP_PROP_RULELIST )
-			{
-				// If the string is not empty, first, sets the enable flag to true
-				if ( !pProp->GetValueString().IsEmpty() )
-				{
-					pProp->SetEnable( true );
-				}
+        for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+        {
+            if ( pProp->GetCategoryID() == ZS_BP_PROP_RULELIST )
+            {
+                // If the string is not empty, first, sets the enable flag to true
+                if ( !pProp->GetValueString().IsEmpty() )
+                {
+                    pProp->SetEnable( true );
+                }
 
-				// If the string is empty
-				// Check if he has the enable flag and add it to the counter
-				// If the counter is not equal to 1, then enable or disable it
-				if ( pProp->GetValueString().IsEmpty() )
-				{
-					if ( pProp->GetEnable() == true )
-					{
-						++CounterEnableEmpty;
-					}
-					else
-					{
-						// If not at least one empty element
-						if ( CounterEnableEmpty < 1 )
-						{
-							pProp->SetEnable( true );
-							++CounterEnableEmpty;
-						}
-					}
+                // If the string is empty
+                // Check if he has the enable flag and add it to the counter
+                // If the counter is not equal to 1, then enable or disable it
+                if ( pProp->GetValueString().IsEmpty() )
+                {
+                    if ( pProp->GetEnable() == true )
+                    {
+                        ++CounterEnableEmpty;
+                    }
+                    else
+                    {
+                        // If not at least one empty element
+                        if ( CounterEnableEmpty < 1 )
+                        {
+                            pProp->SetEnable( true );
+                            ++CounterEnableEmpty;
+                        }
+                    }
 
-					// Now if the counter is greather than 1, then you need to disable the empty element
-					if ( CounterEnableEmpty > 1 )
-					{
-						--CounterEnableEmpty;
-						pProp->SetEnable( false );
-					}
-				}
-			}
-		}
+                    // Now if the counter is greather than 1, then you need to disable the empty element
+                    if ( CounterEnableEmpty > 1 )
+                    {
+                        --CounterEnableEmpty;
+                        pProp->SetEnable( false );
+                    }
+                }
+            }
+        }
 
-		RetValue = true;
-	}
-	else if ( Property.GetCategoryID() == ZS_BP_PROP_QUANTITY && Property.GetItemID() == Z_NUMBER_YEAR )
-	{
-		// Sets the new value and equalize the information
-		m_Quantity.SetAndCalculateQuantitiesBasedOnYear( Property.GetValueDouble() );
+        RetValue = true;
+    }
+    else if ( Property.GetCategoryID() == ZS_BP_PROP_QUANTITY && Property.GetItemID() == Z_NUMBER_YEAR )
+    {
+        // Sets the new value and equalize the information
+        m_Quantity.SetAndCalculateQuantitiesBasedOnYear( Property.GetValueDouble() );
 
-		// Now saves the equalizer value to the properties to avoid
-		// working with wrong figures in the equalizer
-		SaveEqualizerToProperties( Properties );
-		RetValue = true;
-	}
-	else if ( Property.GetCategoryID() == ZS_BP_PROP_UNIT && Property.GetItemID() == Z_UNIT_NAME )
-	{
-		// Run trough the set of properties and changed the unit cost
-		// to the value of the property
-		ZBPropertyIterator i( &Properties );
-		ZBProperty* pProp;
-		CString GUID;
+        // Now saves the equalizer value to the properties to avoid
+        // working with wrong figures in the equalizer
+        SaveEqualizerToProperties( Properties );
+        RetValue = true;
+    }
+    else if ( Property.GetCategoryID() == ZS_BP_PROP_UNIT && Property.GetItemID() == Z_UNIT_NAME )
+    {
+        // Run trough the set of properties and changed the unit cost
+        // to the value of the property
+        ZBPropertyIterator i( &Properties );
+        ZBProperty* pProp;
+        CString GUID;
 
-		for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
-		{
-			if ( pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_GUID )
-			{
-				GUID = pProp->GetValueString();
-				break;
-			}
-		}
+        for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+        {
+            if ( pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_GUID )
+            {
+                GUID = pProp->GetValueString();
+                break;
+            }
+        }
 
-		if ( !GUID.IsEmpty() )
-		{
-			for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
-			{
-				if ( pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_COST )
-				{
-					bool Error;
-					float UnitCost = RetreiveUnitCost( GUID, Error );
+        if ( !GUID.IsEmpty() )
+        {
+            for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+            {
+                if ( pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_COST )
+                {
+                    bool Error;
+                    float UnitCost = RetreiveUnitCost( GUID, Error );
 
-					if ( Error == false )
-					{
-						// If the previous value is different
-						pProp->SetValueFloat( UnitCost );
+                    if ( Error == false )
+                    {
+                        // If the previous value is different
+                        pProp->SetValueFloat( UnitCost );
 
-						// Change the return value
-						RetValue = true;
-					}
+                        // Change the return value
+                        RetValue = true;
+                    }
 
-					break;
-				}
-			}
-		}
-	}
-	// JMR-MODIF - Le 14 juin 2005 - Mets à jour les informations visuelles en fonction du pourcentage.
-	else if ( Property.GetCategoryID() == ZS_BP_PROP_DELIVERABLE_COST &&
-			  Property.GetItemID() == Z_COST_OUT_WORKLOAD_PERCENT )
-	{
-		SetVisualInfo( (int)( Property.GetValueFloat() * 100 ) );
-		RedrawSymbol();
-	}
+                    break;
+                }
+            }
+        }
+    }
+    // JMR-MODIF - Le 14 juin 2005 - Mets à jour les informations visuelles en fonction du pourcentage.
+    else if ( Property.GetCategoryID() == ZS_BP_PROP_DELIVERABLE_COST &&
+              Property.GetItemID() == Z_COST_OUT_WORKLOAD_PERCENT )
+    {
+        SetVisualInfo( (int)( Property.GetValueFloat() * 100 ) );
+        RedrawSymbol();
+    }
 
-	if ( RetValue == false )
-	{
-		return ZBLinkSymbol::OnPostPropertyChanged( Property, Properties, Refresh );
-	}
+    if ( RetValue == false )
+    {
+        return ZBLinkSymbol::OnPostPropertyChanged( Property, Properties, Refresh );
+    }
 
-	return RetValue;
+    return RetValue;
 }
 
-bool ZBDeliverableLinkSymbol::OnDropInternalPropertyItem( ZBProperty&		SrcProperty,
-														  ZBProperty&		DstProperty,
-														  bool				Top2Down,
-														  ZBPropertySet&	Properties )
+bool ZBDeliverableLinkSymbol::OnDropInternalPropertyItem( ZBProperty&        SrcProperty,
+                                                          ZBProperty&        DstProperty,
+                                                          bool                Top2Down,
+                                                          ZBPropertySet&    Properties )
 {
-	// Call the utility function for swaping two property items
-	bool RetValue = ::SwapInternalPropertyItem( SrcProperty,
-												DstProperty,
-												Top2Down,
-												Properties,
-												ZS_BP_PROP_RULELIST );
+    // Call the utility function for swaping two property items
+    bool RetValue = ::SwapInternalPropertyItem( SrcProperty,
+                                                DstProperty,
+                                                Top2Down,
+                                                Properties,
+                                                ZS_BP_PROP_RULELIST );
 
-	// If done, return
-	if ( RetValue )
-	{
-		return true;
-	}
+    // If done, return
+    if ( RetValue )
+    {
+        return true;
+    }
 
-	// ********************************************************************************************
-	// JMR-MODIF - Le 10 décembre 2006 - Ajout du code pour permettre le glisser-coller des règles.
+    // ********************************************************************************************
+    // JMR-MODIF - Le 10 décembre 2006 - Ajout du code pour permettre le glisser-coller des règles.
 
-	RetValue = ::SwapInternalPropertyItem( SrcProperty,
-										   DstProperty,
-										   Top2Down,
-										   Properties,
-										   ZS_BP_PROP_RULES );
+    RetValue = ::SwapInternalPropertyItem( SrcProperty,
+                                           DstProperty,
+                                           Top2Down,
+                                           Properties,
+                                           ZS_BP_PROP_RULES );
 
-	// If done, return
-	if ( RetValue )
-	{
-		int SrcIndex = ( SrcProperty.GetItemID() - Z_RULE_NAME ) / _MaxRulesSize;
-		int DstIndex = ( DstProperty.GetItemID() - Z_RULE_NAME ) / _MaxRulesSize;
+    // If done, return
+    if ( RetValue )
+    {
+        int SrcIndex = ( SrcProperty.GetItemID() - Z_RULE_NAME ) / _MaxRulesSize;
+        int DstIndex = ( DstProperty.GetItemID() - Z_RULE_NAME ) / _MaxRulesSize;
 
-		CString SrcRuleName = m_Rules.GetRuleName( SrcIndex );
-		CString SrcRuleDesc = m_Rules.GetRuleDescription( SrcIndex );
-		CString SrcRuleGUID = m_Rules.GetRuleGUID( SrcIndex );
+        CString SrcRuleName = m_Rules.GetRuleName( SrcIndex );
+        CString SrcRuleDesc = m_Rules.GetRuleDescription( SrcIndex );
+        CString SrcRuleGUID = m_Rules.GetRuleGUID( SrcIndex );
 
-		CString DstRuleName = m_Rules.GetRuleName( DstIndex );
-		CString DstRuleDesc = m_Rules.GetRuleDescription( DstIndex );
-		CString DstRuleGUID = m_Rules.GetRuleGUID( DstIndex );
+        CString DstRuleName = m_Rules.GetRuleName( DstIndex );
+        CString DstRuleDesc = m_Rules.GetRuleDescription( DstIndex );
+        CString DstRuleGUID = m_Rules.GetRuleGUID( DstIndex );
 
-		m_Rules.SetRuleName( SrcIndex, DstRuleName );
-		m_Rules.SetRuleDescription( SrcIndex, DstRuleDesc );
-		m_Rules.SetRuleGUID( SrcIndex, DstRuleGUID );
+        m_Rules.SetRuleName( SrcIndex, DstRuleName );
+        m_Rules.SetRuleDescription( SrcIndex, DstRuleDesc );
+        m_Rules.SetRuleGUID( SrcIndex, DstRuleGUID );
 
-		m_Rules.SetRuleName( DstIndex, SrcRuleName );
-		m_Rules.SetRuleDescription( DstIndex, SrcRuleDesc );
-		m_Rules.SetRuleGUID( DstIndex, SrcRuleGUID );
+        m_Rules.SetRuleName( DstIndex, SrcRuleName );
+        m_Rules.SetRuleDescription( DstIndex, SrcRuleDesc );
+        m_Rules.SetRuleGUID( DstIndex, SrcRuleGUID );
 
-		return true;
-	}
-	// ********************************************************************************************
+        return true;
+    }
+    // ********************************************************************************************
 
-	// Call the utility function for swaping two property items
-	return ::SwapInternalPropertyItem( SrcProperty, DstProperty, Top2Down, Properties, ZS_BP_PROP_TEXTITEMLIST );
+    // Call the utility function for swaping two property items
+    return ::SwapInternalPropertyItem( SrcProperty, DstProperty, Top2Down, Properties, ZS_BP_PROP_TEXTITEMLIST );
 }
 
-bool ZBDeliverableLinkSymbol::OnToolTip( CString&		ToolTipText,
-										 CPoint			point,
-										 ToolTipMode	ToolTip		/*= NormalToolTip*/ )
+bool ZBDeliverableLinkSymbol::OnToolTip( CString&        ToolTipText,
+                                         CPoint            point,
+                                         ToolTipMode    ToolTip        /*= NormalToolTip*/ )
 {
-	ToolTipText.Format( IDS_FS_BPDELIVERABLE_TOOLTIP,
-						(const char*)GetSymbolName(),
-						(const char*)GetSymbolComment(),
-						(const char*)GetSymbolReferenceNumberStr() );
+    ToolTipText.Format( IDS_FS_BPDELIVERABLE_TOOLTIP,
+                        (const char*)GetSymbolName(),
+                        (const char*)GetSymbolComment(),
+                        (const char*)GetSymbolReferenceNumberStr() );
 
-	if ( ToolTip == ZIToolTip::DesignToolTip )
-	{
-		bool bNotConnectedFollowing = ( GetFollowingSymbol() == NULL );
-		bool bNotConnectedEntering  = ( GetEnteringSymbol() == NULL );
+    if ( ToolTip == ZIToolTip::DesignToolTip )
+    {
+        bool bNotConnectedFollowing = ( GetFollowingSymbol() == NULL );
+        bool bNotConnectedEntering  = ( GetEnteringSymbol() == NULL );
 
-		if ( bNotConnectedFollowing || bNotConnectedEntering )
-		{
-			ToolTipText += _T( "\n" );
+        if ( bNotConnectedFollowing || bNotConnectedEntering )
+        {
+            ToolTipText += _T( "\n" );
 
-			if ( bNotConnectedEntering )
-			{
-				CString s;
-				s.LoadString( IDS_FS_BPDELIVERABLE_MISSING_INCONX_TOOLTIP );
-				ToolTipText += ( s + _T( "\n" ) );
-			}
+            if ( bNotConnectedEntering )
+            {
+                CString s;
+                s.LoadString( IDS_FS_BPDELIVERABLE_MISSING_INCONX_TOOLTIP );
+                ToolTipText += ( s + _T( "\n" ) );
+            }
 
-			if ( bNotConnectedFollowing )
-			{
-				CString s;
-				s.LoadString( IDS_FS_BPDELIVERABLE_MISSING_OUTCONX_TOOLTIP );
-				ToolTipText += s;
-			}
-		}
-	}
+            if ( bNotConnectedFollowing )
+            {
+                CString s;
+                s.LoadString( IDS_FS_BPDELIVERABLE_MISSING_OUTCONX_TOOLTIP );
+                ToolTipText += s;
+            }
+        }
+    }
 
-	return true;
+    return true;
 }
 
 // **********************************************************************************************************
-// *							  Fonctions de la classe ZBDeliverableLinkSymbol							*
+// *                              Fonctions de la classe ZBDeliverableLinkSymbol                            *
 // **********************************************************************************************************
 
 // *********************************************** Notifications ********************************************
 
 // JMR-MODIF - Le 27 mars 2006 - Fonction de notification pour les processus.
-void ZBDeliverableLinkSymbol::NotifyNameChange( const CString				OldName,
-												const CString				NewName,
-												ZDProcessGraphModelMdlBP*	m_RootModel	/* = NULL */ )
+void ZBDeliverableLinkSymbol::NotifyNameChange( const CString                OldName,
+                                                const CString                NewName,
+                                                ZDProcessGraphModelMdlBP*    m_RootModel    /* = NULL */ )
 {
-	// Si les noms sont vides, ne fait rien.
-	if ( OldName.IsEmpty() || NewName.IsEmpty() )
-	{
-		return;
-	}
+    // Si les noms sont vides, ne fait rien.
+    if ( OldName.IsEmpty() || NewName.IsEmpty() )
+    {
+        return;
+    }
 
-	// Si le modèle d'entrée est vide, cela veut dire que l'on veut une recherche sur tout le document.
-	if ( m_RootModel == NULL )
-	{
-		// Obtient le contrôleur de modèles du document.
-		m_RootModel = dynamic_cast<ZDProcessGraphModelMdlBP*>( GetRootModel() );
-	}
+    // Si le modèle d'entrée est vide, cela veut dire que l'on veut une recherche sur tout le document.
+    if ( m_RootModel == NULL )
+    {
+        // Obtient le contrôleur de modèles du document.
+        m_RootModel = dynamic_cast<ZDProcessGraphModelMdlBP*>( GetRootModel() );
+    }
 
-	if ( m_RootModel != NULL )
-	{
-		// Obtient l'ensemble des pages contenues dans le contrôleur de modèles.
-		ZBProcessGraphPageSet* pSet = m_RootModel->GetPageSet();
+    if ( m_RootModel != NULL )
+    {
+        // Obtient l'ensemble des pages contenues dans le contrôleur de modèles.
+        ZBProcessGraphPageSet* pSet = m_RootModel->GetPageSet();
 
-		if ( pSet != NULL )
-		{
-			ZBProcessGraphPageIterator i( pSet );
+        if ( pSet != NULL )
+        {
+            ZBProcessGraphPageIterator i( pSet );
 
-			// On passe en revue toutes les pages enfants contenues dans le contrôleur de modèles.
-			for ( ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext() )
-			{
-				// Obtient le contrôleur de modèle de la page courante.
-				ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>( pPage->GetpModel() );
+            // On passe en revue toutes les pages enfants contenues dans le contrôleur de modèles.
+            for ( ZDProcessGraphPage* pPage = i.GetFirst(); pPage != NULL; pPage = i.GetNext() )
+            {
+                // Obtient le contrôleur de modèle de la page courante.
+                ZDProcessGraphModelMdlBP* m_CurModel = dynamic_cast<ZDProcessGraphModelMdlBP*>( pPage->GetpModel() );
 
-				if ( m_CurModel != NULL )
-				{
-					// Obtient l'ensemble des symboles contenus dans le contrôleur de modèles.
-					CODComponentSet* pCompSet = m_CurModel->GetComponents();
+                if ( m_CurModel != NULL )
+                {
+                    // Obtient l'ensemble des symboles contenus dans le contrôleur de modèles.
+                    CODComponentSet* pCompSet = m_CurModel->GetComponents();
 
-					if ( pCompSet != NULL )
-					{
-						// On passe en revue toutes les symboles contenus dans le contrôleur de modèles.
-						for ( int j = 0; j < pCompSet->GetSize(); ++j )
-						{
-							CODComponent* pComponent = pCompSet->GetAt( j );
+                    if ( pCompSet != NULL )
+                    {
+                        // On passe en revue toutes les symboles contenus dans le contrôleur de modèles.
+                        for ( int j = 0; j < pCompSet->GetSize(); ++j )
+                        {
+                            CODComponent* pComponent = pCompSet->GetAt( j );
 
-							// Contrôle que le composant soit valide, et identifie s'il s'agit d'un processus.
-							if ( pComponent && ISA( pComponent, ZBBPProcessSymbol ) )
-							{
-								// Convertit le symbole.
-								ZBBPProcessSymbol* m_Process = dynamic_cast<ZBBPProcessSymbol*>( pComponent );
+                            // Contrôle que le composant soit valide, et identifie s'il s'agit d'un processus.
+                            if ( pComponent && ISA( pComponent, ZBBPProcessSymbol ) )
+                            {
+                                // Convertit le symbole.
+                                ZBBPProcessSymbol* m_Process = dynamic_cast<ZBBPProcessSymbol*>( pComponent );
 
-								// Obtient le contrôleur de modèle du processus.
-								ZDProcessGraphModelMdlBP* m_ChildModel =
-									dynamic_cast<ZDProcessGraphModelMdlBP*>( m_Process->GetpModel() );
+                                // Obtient le contrôleur de modèle du processus.
+                                ZDProcessGraphModelMdlBP* m_ChildModel =
+                                    dynamic_cast<ZDProcessGraphModelMdlBP*>( m_Process->GetpModel() );
 
-								// Appel récursif à NotifyNameChange, jusqu'à ce que toutes les pages des
-								// processus enfants aient été visitées.
-								NotifyNameChange( OldName, NewName, m_ChildModel );
+                                // Appel récursif à NotifyNameChange, jusqu'à ce que toutes les pages des
+                                // processus enfants aient été visitées.
+                                NotifyNameChange( OldName, NewName, m_ChildModel );
 
-								// Indique au processus que le nom du livrable a changé.
-								m_Process->OnDeliverableNameChange( OldName, NewName );
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+                                // Indique au processus que le nom du livrable a changé.
+                                m_Process->OnDeliverableNameChange( OldName, NewName );
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 // ******************************************* Fonctions de contrôle ****************************************
@@ -1363,46 +1363,46 @@ void ZBDeliverableLinkSymbol::NotifyNameChange( const CString				OldName,
 // Contrôle si le livrable est correctement initialisé et lié. Si ce n'est pas le cas, fixe la couleur à rouge.
 void ZBDeliverableLinkSymbol::CheckDeliverableStatus()
 {
-	// Advise the owner model of symbol changes
-	ZDProcessGraphModelMdl* pRootModel = dynamic_cast<ZDProcessGraphModelMdl*>( GetRootModel() );
+    // Advise the owner model of symbol changes
+    ZDProcessGraphModelMdl* pRootModel = dynamic_cast<ZDProcessGraphModelMdl*>( GetRootModel() );
 
-	if ( pRootModel && pRootModel->IsInCutOperation() )
-	{
-		return;
-	}
+    if ( pRootModel && pRootModel->IsInCutOperation() )
+    {
+        return;
+    }
 
-	// Check the symbols attached to the deliverable
-	CODSymbolComponent* pDst = GetFollowingSymbol();
-	CODSymbolComponent* pSrc = GetEnteringSymbol();
+    // Check the symbols attached to the deliverable
+    CODSymbolComponent* pDst = GetFollowingSymbol();
+    CODSymbolComponent* pSrc = GetEnteringSymbol();
 
-	// Set the right symbol color only if the symbol is correctly connected
-	ShowInError( ( pSrc && pDst ) ? false : true );
+    // Set the right symbol color only if the symbol is correctly connected
+    ShowInError( ( pSrc && pDst ) ? false : true );
 }
 
-bool ZBDeliverableLinkSymbol::CheckPropertyValue( ZBProperty&		Property,
-												  CString&			value,
-												  ZBPropertySet&	Properties )
+bool ZBDeliverableLinkSymbol::CheckPropertyValue( ZBProperty&        Property,
+                                                  CString&            value,
+                                                  ZBPropertySet&    Properties )
 {
-	if ( Property.GetCategoryID() == ZS_BP_PROP_QUANTITY && Property.GetItemID() == Z_NUMBER_YEAR )
-	{
-		// Check if the value entered is less than the sum of locked item
-		double NewTotal = atol( value );
+    if ( Property.GetCategoryID() == ZS_BP_PROP_QUANTITY && Property.GetItemID() == Z_NUMBER_YEAR )
+    {
+        // Check if the value entered is less than the sum of locked item
+        double NewTotal = atol( value );
 
-		if ( NewTotal < m_Quantity.GetSumOfLockedNumbers() )
-		{
-			// Warm the user and put back the old value
-			MsgBox mbox;
-			mbox.DisplayMsgBox( IDS_LOCKEDTOTAL_GREATERINPUT, MB_OK );
+        if ( NewTotal < m_Quantity.GetSumOfLockedNumbers() )
+        {
+            // Warm the user and put back the old value
+            MsgBox mbox;
+            mbox.DisplayMsgBox( IDS_LOCKEDTOTAL_GREATERINPUT, MB_OK );
 
-			// Assign the oldvalue
-			value.Format( _T( "%f" ), Property.GetValueDouble() );
-			return false;
-		}
+            // Assign the oldvalue
+            value.Format( _T( "%f" ), Property.GetValueDouble() );
+            return false;
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	return ZBLinkSymbol::CheckPropertyValue( Property, value, Properties );
+    return ZBLinkSymbol::CheckPropertyValue( Property, value, Properties );
 }
 
 // **************************** Fonctions concernant la connexion à un symbole ******************************
@@ -1410,2898 +1410,2898 @@ bool ZBDeliverableLinkSymbol::CheckPropertyValue( ZBProperty&		Property,
 // Cette fonction est appelée lorsque l'un des points d'attache du livrable est déplacé.
 BOOL ZBDeliverableLinkSymbol::MovePort( CODPortComponent* pPort, const int nOffsetX, const int nOffsetY )
 {
-	BOOL RetValue = ZBLinkSymbol::MovePort( pPort, nOffsetX, nOffsetY );
+    BOOL RetValue = ZBLinkSymbol::MovePort( pPort, nOffsetX, nOffsetY );
 
-	// Check the status in order to set the right color
-	CheckDeliverableStatus();
+    // Check the status in order to set the right color
+    CheckDeliverableStatus();
 
-	return RetValue;
+    return RetValue;
 }
 
-bool ZBDeliverableLinkSymbol::DoDoorProcedureConnection( ZBBPDoorSymbol*		pSrc,
-														 ZBBPProcedureSymbol*	pDst,
-														 CODModel*				pModel )
+bool ZBDeliverableLinkSymbol::DoDoorProcedureConnection( ZBBPDoorSymbol*        pSrc,
+                                                         ZBBPProcedureSymbol*    pDst,
+                                                         CODModel*                pModel )
 {
-	// If the door is pointing to a model
-	if ( pModel && pSrc->GetChildModel()						&&
-		 ISA( pSrc->GetChildModel(), ZDProcessGraphModelMdlBP )	&&
-		 ISA( pModel, ZDProcessGraphModelMdlBP ) )
-	{
-		CODNodeArray Nodes;
-		size_t ElementCount =
-			dynamic_cast<ZDProcessGraphModelMdlBP*>( pSrc->GetChildModel() )->GetBPDoorSymbols( Nodes );
+    // If the door is pointing to a model
+    if ( pModel && pSrc->GetChildModel()                        &&
+         ISA( pSrc->GetChildModel(), ZDProcessGraphModelMdlBP )    &&
+         ISA( pModel, ZDProcessGraphModelMdlBP ) )
+    {
+        CODNodeArray Nodes;
+        size_t ElementCount =
+            dynamic_cast<ZDProcessGraphModelMdlBP*>( pSrc->GetChildModel() )->GetBPDoorSymbols( Nodes );
 
-		for ( size_t nNodeIdx = 0; nNodeIdx < ElementCount; ++nNodeIdx )
-		{
-			IODNode* pINode = Nodes.GetAt( nNodeIdx );
-			ZBBPDoorSymbol* pComp = static_cast<ZBBPDoorSymbol*>( pINode );
+        for ( size_t nNodeIdx = 0; nNodeIdx < ElementCount; ++nNodeIdx )
+        {
+            IODNode* pINode = Nodes.GetAt( nNodeIdx );
+            ZBBPDoorSymbol* pComp = static_cast<ZBBPDoorSymbol*>( pINode );
 
-			if ( !pComp || !pComp->GetChildModel() )
-			{
-				continue;
-			}
+            if ( !pComp || !pComp->GetChildModel() )
+            {
+                continue;
+            }
 
-			// If the door symbol contains a door with a model pointing to our model, we found it
-			if ( pComp->GetTwinDoorReferenceNumber() == pSrc->GetSymbolReferenceNumber() )
-			{
-				CODEdgeArray EnteringEdges;
-				size_t EnteringLinkCount = pComp->GetEdgesEntering_Up( EnteringEdges );
+            // If the door symbol contains a door with a model pointing to our model, we found it
+            if ( pComp->GetTwinDoorReferenceNumber() == pSrc->GetSymbolReferenceNumber() )
+            {
+                CODEdgeArray EnteringEdges;
+                size_t EnteringLinkCount = pComp->GetEdgesEntering_Up( EnteringEdges );
 
-				if ( EnteringLinkCount > 0 )
-				{
-					// Get the link
-					IODEdge* pIEdge = EnteringEdges.GetAt( 0 );
-					CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>( pIEdge );
+                if ( EnteringLinkCount > 0 )
+                {
+                    // Get the link
+                    IODEdge* pIEdge = EnteringEdges.GetAt( 0 );
+                    CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>( pIEdge );
 
-					if ( !pLinkIndexed || !ISA( pLinkIndexed, ZBDeliverableLinkSymbol ) )
-					{
-						return false;
-					}
+                    if ( !pLinkIndexed || !ISA( pLinkIndexed, ZBDeliverableLinkSymbol ) )
+                    {
+                        return false;
+                    }
 
-					// Define as a reference
-					AssignReferenceSymbol( pLinkIndexed );
-				}
+                    // Define as a reference
+                    AssignReferenceSymbol( pLinkIndexed );
+                }
 
-				// Even if we found a link or not, return without error
-				return true;
-			}
-		}
-	}
+                // Even if we found a link or not, return without error
+                return true;
+            }
+        }
+    }
 
-	return true;
+    return true;
 }
 
-bool ZBDeliverableLinkSymbol::DoProcedureDoorConnection( ZBBPProcedureSymbol*	pSrc,
-														 ZBBPDoorSymbol*		pDst,
-														 CODModel*				pModel )
+bool ZBDeliverableLinkSymbol::DoProcedureDoorConnection( ZBBPProcedureSymbol*    pSrc,
+                                                         ZBBPDoorSymbol*        pDst,
+                                                         CODModel*                pModel )
 {
-	// If the door is pointing to a model
-	if ( pModel && pDst->GetChildModel()						&&
-		 ISA( pDst->GetChildModel(), ZDProcessGraphModelMdlBP )	&&
-		 ISA( pModel, ZDProcessGraphModelMdlBP ) )
-	{
-		CODNodeArray Nodes;
+    // If the door is pointing to a model
+    if ( pModel && pDst->GetChildModel()                        &&
+         ISA( pDst->GetChildModel(), ZDProcessGraphModelMdlBP )    &&
+         ISA( pModel, ZDProcessGraphModelMdlBP ) )
+    {
+        CODNodeArray Nodes;
 
-		size_t ElementCount =
-			dynamic_cast<ZDProcessGraphModelMdlBP*>( pDst->GetChildModel() )->GetBPDoorSymbols( Nodes );
+        size_t ElementCount =
+            dynamic_cast<ZDProcessGraphModelMdlBP*>( pDst->GetChildModel() )->GetBPDoorSymbols( Nodes );
 
-		for ( size_t nNodeIdx = 0; nNodeIdx < ElementCount; ++nNodeIdx )
-		{
-			IODNode* pINode = Nodes.GetAt( nNodeIdx );
-			ZBBPDoorSymbol* pComp = static_cast<ZBBPDoorSymbol*>( pINode );
+        for ( size_t nNodeIdx = 0; nNodeIdx < ElementCount; ++nNodeIdx )
+        {
+            IODNode* pINode = Nodes.GetAt( nNodeIdx );
+            ZBBPDoorSymbol* pComp = static_cast<ZBBPDoorSymbol*>( pINode );
 
-			if ( !pComp || !pComp->GetChildModel() )
-			{
-				continue;
-			}
+            if ( !pComp || !pComp->GetChildModel() )
+            {
+                continue;
+            }
 
-			// If the door symbol contains a door with a model
-			// pointing to our model, we found it
-			if ( pComp->GetTwinDoorReferenceNumber() == pDst->GetSymbolReferenceNumber() )
-			{
-				CODEdgeArray LeavingEdges;
-				size_t LeavingLinkCount = pComp->GetEdgesLeaving_Down( LeavingEdges );
+            // If the door symbol contains a door with a model
+            // pointing to our model, we found it
+            if ( pComp->GetTwinDoorReferenceNumber() == pDst->GetSymbolReferenceNumber() )
+            {
+                CODEdgeArray LeavingEdges;
+                size_t LeavingLinkCount = pComp->GetEdgesLeaving_Down( LeavingEdges );
 
-				if ( LeavingLinkCount > 0 )
-				{
-					// Get the link 
-					IODEdge* pIEdge = LeavingEdges.GetAt( 0 );
-					CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>( pIEdge );
+                if ( LeavingLinkCount > 0 )
+                {
+                    // Get the link 
+                    IODEdge* pIEdge = LeavingEdges.GetAt( 0 );
+                    CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>( pIEdge );
 
-					if ( !pLinkIndexed || !ISA( pLinkIndexed, ZBDeliverableLinkSymbol ) )
-					{
-						return false;
-					}
+                    if ( !pLinkIndexed || !ISA( pLinkIndexed, ZBDeliverableLinkSymbol ) )
+                    {
+                        return false;
+                    }
 
-					// Define as a reference
-					AssignReferenceSymbol( pLinkIndexed );
-				}
+                    // Define as a reference
+                    AssignReferenceSymbol( pLinkIndexed );
+                }
 
-				// Even if we found a link or not, return without error
-				return true;
-			}
-		}
-	}
+                // Even if we found a link or not, return without error
+                return true;
+            }
+        }
+    }
 
-	return true;
+    return true;
 }
 
-bool ZBDeliverableLinkSymbol::DoPageProcedureConnection( ZBBPPageSymbol*		pSrc,
-														 ZBBPProcedureSymbol*	pDst,
-														 CODModel*				pModel )
+bool ZBDeliverableLinkSymbol::DoPageProcedureConnection( ZBBPPageSymbol*        pSrc,
+                                                         ZBBPProcedureSymbol*    pDst,
+                                                         CODModel*                pModel )
 {
-	// If the page is pointing to a model
-	if ( pModel && pSrc->GetModelPage()							&&
-		 ISA( pSrc->GetModelPage(), ZDProcessGraphModelMdlBP )	&&
-		 ISA( pModel, ZDProcessGraphModelMdlBP ) )
-	{
-		CODNodeArray Nodes;
+    // If the page is pointing to a model
+    if ( pModel && pSrc->GetModelPage()                            &&
+         ISA( pSrc->GetModelPage(), ZDProcessGraphModelMdlBP )    &&
+         ISA( pModel, ZDProcessGraphModelMdlBP ) )
+    {
+        CODNodeArray Nodes;
 
-		size_t ElementCount =
-			dynamic_cast<ZDProcessGraphModelMdlBP*>( pSrc->GetModelPage() )->GetBPPageSymbols( Nodes );
+        size_t ElementCount =
+            dynamic_cast<ZDProcessGraphModelMdlBP*>( pSrc->GetModelPage() )->GetBPPageSymbols( Nodes );
 
-		for ( size_t nNodeIdx = 0; nNodeIdx < ElementCount; ++nNodeIdx )
-		{
-			IODNode* pINode = Nodes.GetAt( nNodeIdx );
-			ZBBPPageSymbol* pComp = static_cast<ZBBPPageSymbol*>( pINode );
+        for ( size_t nNodeIdx = 0; nNodeIdx < ElementCount; ++nNodeIdx )
+        {
+            IODNode* pINode = Nodes.GetAt( nNodeIdx );
+            ZBBPPageSymbol* pComp = static_cast<ZBBPPageSymbol*>( pINode );
 
-			if ( !pComp || !pComp->GetModelPage() )
-			{
-				continue;
-			}
+            if ( !pComp || !pComp->GetModelPage() )
+            {
+                continue;
+            }
 
-			// If the page symbol contains a page with a reference number
-			// pointing to our, we found it
-			if ( pComp->GetTwinPageReferenceNumber() == pSrc->GetSymbolReferenceNumber() )
-			{
-				CODEdgeArray EnteringEdges;
-				size_t EnteringLinkCount = pComp->GetEdgesEntering_Up( EnteringEdges );
+            // If the page symbol contains a page with a reference number
+            // pointing to our, we found it
+            if ( pComp->GetTwinPageReferenceNumber() == pSrc->GetSymbolReferenceNumber() )
+            {
+                CODEdgeArray EnteringEdges;
+                size_t EnteringLinkCount = pComp->GetEdgesEntering_Up( EnteringEdges );
 
-				if ( EnteringLinkCount > 0 )
-				{
-					// Get the link
-					IODEdge* pIEdge = EnteringEdges.GetAt( 0 );
-					CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>( pIEdge );
+                if ( EnteringLinkCount > 0 )
+                {
+                    // Get the link
+                    IODEdge* pIEdge = EnteringEdges.GetAt( 0 );
+                    CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>( pIEdge );
 
-					if ( !pLinkIndexed || !ISA( pLinkIndexed, ZBDeliverableLinkSymbol ) )
-					{
-						return false;
-					}
+                    if ( !pLinkIndexed || !ISA( pLinkIndexed, ZBDeliverableLinkSymbol ) )
+                    {
+                        return false;
+                    }
 
-					// Define as a reference
-					AssignReferenceSymbol( pLinkIndexed );
-				}
+                    // Define as a reference
+                    AssignReferenceSymbol( pLinkIndexed );
+                }
 
-				// Even if we found a link or not, return without error
-				return true;
-			}
-		}
-	}
+                // Even if we found a link or not, return without error
+                return true;
+            }
+        }
+    }
 
-	return true;
+    return true;
 }
 
-bool ZBDeliverableLinkSymbol::DoProcedurePageConnection( ZBBPProcedureSymbol*	pSrc,
-														 ZBBPPageSymbol*		pDst,
-														 CODModel*				pModel )
+bool ZBDeliverableLinkSymbol::DoProcedurePageConnection( ZBBPProcedureSymbol*    pSrc,
+                                                         ZBBPPageSymbol*        pDst,
+                                                         CODModel*                pModel )
 {
-	// If the page is pointing to a model
-	if ( pModel && pDst->GetModelPage()							&&
-		 ISA( pDst->GetModelPage(), ZDProcessGraphModelMdlBP )	&&
-		 ISA( pModel, ZDProcessGraphModelMdlBP ) )
-	{
-		CODNodeArray Nodes;
+    // If the page is pointing to a model
+    if ( pModel && pDst->GetModelPage()                            &&
+         ISA( pDst->GetModelPage(), ZDProcessGraphModelMdlBP )    &&
+         ISA( pModel, ZDProcessGraphModelMdlBP ) )
+    {
+        CODNodeArray Nodes;
 
-		size_t ElementCount =
-			dynamic_cast<ZDProcessGraphModelMdlBP*>( pDst->GetModelPage() )->GetBPPageSymbols( Nodes );
+        size_t ElementCount =
+            dynamic_cast<ZDProcessGraphModelMdlBP*>( pDst->GetModelPage() )->GetBPPageSymbols( Nodes );
 
-		for ( size_t nNodeIdx = 0; nNodeIdx < ElementCount; ++nNodeIdx )
-		{
-			IODNode* pINode = Nodes.GetAt( nNodeIdx );
-			ZBBPPageSymbol* pComp = static_cast<ZBBPPageSymbol*>( pINode );
+        for ( size_t nNodeIdx = 0; nNodeIdx < ElementCount; ++nNodeIdx )
+        {
+            IODNode* pINode = Nodes.GetAt( nNodeIdx );
+            ZBBPPageSymbol* pComp = static_cast<ZBBPPageSymbol*>( pINode );
 
-			if ( !pComp || !pComp->GetModelPage() )
-			{
-				continue;
-			}
+            if ( !pComp || !pComp->GetModelPage() )
+            {
+                continue;
+            }
 
-			// If the page symbol contains a page with a reference number
-			// pointing to our, we found it
-			if ( pComp->GetTwinPageReferenceNumber() == pDst->GetSymbolReferenceNumber() )
-			{
-				CODEdgeArray LeavingEdges;
-				size_t LeavingLinkCount = pComp->GetEdgesLeaving_Down( LeavingEdges );
+            // If the page symbol contains a page with a reference number
+            // pointing to our, we found it
+            if ( pComp->GetTwinPageReferenceNumber() == pDst->GetSymbolReferenceNumber() )
+            {
+                CODEdgeArray LeavingEdges;
+                size_t LeavingLinkCount = pComp->GetEdgesLeaving_Down( LeavingEdges );
 
-				if ( LeavingLinkCount > 0 )
-				{
-					// Get the link 
-					IODEdge* pIEdge = LeavingEdges.GetAt( 0 );
-					CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>( pIEdge );
+                if ( LeavingLinkCount > 0 )
+                {
+                    // Get the link 
+                    IODEdge* pIEdge = LeavingEdges.GetAt( 0 );
+                    CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>( pIEdge );
 
-					if ( !pLinkIndexed || !ISA( pLinkIndexed, ZBDeliverableLinkSymbol ) )
-					{
-						return false;
-					}
+                    if ( !pLinkIndexed || !ISA( pLinkIndexed, ZBDeliverableLinkSymbol ) )
+                    {
+                        return false;
+                    }
 
-					// Define as a reference
-					AssignReferenceSymbol( pLinkIndexed );
-				}
+                    // Define as a reference
+                    AssignReferenceSymbol( pLinkIndexed );
+                }
 
-				// Even if we found a link or not, return without error
-				return true;
-			}
-		}
-	}
+                // Even if we found a link or not, return without error
+                return true;
+            }
+        }
+    }
 
-	return true;
+    return true;
 }
 
-bool ZBDeliverableLinkSymbol::DoProcessProcessConnection( ZBBPProcessSymbol*	pSrc,
-														  ZBBPProcessSymbol*	pDst,
-														  CODModel*				pModel )
+bool ZBDeliverableLinkSymbol::DoProcessProcessConnection( ZBBPProcessSymbol*    pSrc,
+                                                          ZBBPProcessSymbol*    pDst,
+                                                          CODModel*                pModel )
 {
-	// Check if source and destination have child model
-	// If the page is pointing to a model
-	if ( pModel && pSrc->GetChildModel() && pDst->GetChildModel()	&&
-		 ISA( pSrc->GetChildModel(), ZDProcessGraphModelMdlBP )		&&
-		 ISA( pDst->GetChildModel(), ZDProcessGraphModelMdlBP )		&&
-		 ISA( pModel, ZDProcessGraphModelMdlBP ) )
-	{
-		// In the destination process, retreive all door symbols.
-		// Go deeper.
-		CODNodeArray Nodes;
+    // Check if source and destination have child model
+    // If the page is pointing to a model
+    if ( pModel && pSrc->GetChildModel() && pDst->GetChildModel()    &&
+         ISA( pSrc->GetChildModel(), ZDProcessGraphModelMdlBP )        &&
+         ISA( pDst->GetChildModel(), ZDProcessGraphModelMdlBP )        &&
+         ISA( pModel, ZDProcessGraphModelMdlBP ) )
+    {
+        // In the destination process, retreive all door symbols.
+        // Go deeper.
+        CODNodeArray Nodes;
 
-		size_t ElementCount =
-			dynamic_cast<ZDProcessGraphModelMdlBP*>( pDst->GetChildModel() )->GetBPDoorSymbols( Nodes, true );
+        size_t ElementCount =
+            dynamic_cast<ZDProcessGraphModelMdlBP*>( pDst->GetChildModel() )->GetBPDoorSymbols( Nodes, true );
 
-		for ( size_t nNodeIdx = 0; nNodeIdx < ElementCount; ++nNodeIdx )
-		{
-			// For each door symbol, keep only entering up deliverable
-			IODNode* pINode = Nodes.GetAt( nNodeIdx );
-			ZBBPDoorSymbol* pComp = static_cast<ZBBPDoorSymbol*>( pINode );
+        for ( size_t nNodeIdx = 0; nNodeIdx < ElementCount; ++nNodeIdx )
+        {
+            // For each door symbol, keep only entering up deliverable
+            IODNode* pINode = Nodes.GetAt( nNodeIdx );
+            ZBBPDoorSymbol* pComp = static_cast<ZBBPDoorSymbol*>( pINode );
 
-			if ( !pComp || !pComp->GetChildModel() )
-			{
-				continue;
-			}
+            if ( !pComp || !pComp->GetChildModel() )
+            {
+                continue;
+            }
 
-			CODLinkComponent* pLinkIndexed = NULL;
-			CODEdgeArray LeavingEdges;
-			size_t LeavingLinkCount = pComp->GetEdgesLeaving_Down( LeavingEdges );
+            CODLinkComponent* pLinkIndexed = NULL;
+            CODEdgeArray LeavingEdges;
+            size_t LeavingLinkCount = pComp->GetEdgesLeaving_Down( LeavingEdges );
 
-			// If entering link, check if it is a deliverable
-			if ( LeavingLinkCount > 0 )
-			{
-				// Get the link 
-				IODEdge* pIEdge = LeavingEdges.GetAt( 0 );
-				pLinkIndexed = static_cast<CODLinkComponent*>( pIEdge );
-			}
+            // If entering link, check if it is a deliverable
+            if ( LeavingLinkCount > 0 )
+            {
+                // Get the link 
+                IODEdge* pIEdge = LeavingEdges.GetAt( 0 );
+                pLinkIndexed = static_cast<CODLinkComponent*>( pIEdge );
+            }
 
-			// If no link or if not a deliverable, remove it from the array
-			if ( !pLinkIndexed || !ISA( pLinkIndexed, ZBDeliverableLinkSymbol ) )
-			{
-				// Remove it and decrement the index and the element count
-				Nodes.RemoveAt( nNodeIdx-- );
-				--ElementCount;
-			}
-		}
+            // If no link or if not a deliverable, remove it from the array
+            if ( !pLinkIndexed || !ISA( pLinkIndexed, ZBDeliverableLinkSymbol ) )
+            {
+                // Remove it and decrement the index and the element count
+                Nodes.RemoveAt( nNodeIdx-- );
+                --ElementCount;
+            }
+        }
 
-		// If still door symbols available
-		if ( Nodes.GetSize() > 0 )
-		{
-			ZBBPDoorSymbol* pDoorSelected	= NULL;
-			CODLinkComponent* pLinkSelected	= NULL;
+        // If still door symbols available
+        if ( Nodes.GetSize() > 0 )
+        {
+            ZBBPDoorSymbol* pDoorSelected    = NULL;
+            CODLinkComponent* pLinkSelected    = NULL;
 
-			// If we have more than one symbol,
-			// asks the user to choose which one he would like to assign
-			if ( Nodes.GetSize() > 1 )
-			{
-				// filter object classes
-				ZBRuntimeClassSet rtClasses;
-				rtClasses.Add( RUNTIME_CLASS( ZBBPPageSymbol ) );
-				rtClasses.Add( RUNTIME_CLASS( ZBBPProcessSymbol ) );
-				rtClasses.Add( RUNTIME_CLASS( ZBDeliverableLinkSymbol ) );
+            // If we have more than one symbol,
+            // asks the user to choose which one he would like to assign
+            if ( Nodes.GetSize() > 1 )
+            {
+                // filter object classes
+                ZBRuntimeClassSet rtClasses;
+                rtClasses.Add( RUNTIME_CLASS( ZBBPPageSymbol ) );
+                rtClasses.Add( RUNTIME_CLASS( ZBBPProcessSymbol ) );
+                rtClasses.Add( RUNTIME_CLASS( ZBDeliverableLinkSymbol ) );
 
-				ZVSelectModelSymbolDlg Dlg( dynamic_cast<ZDProcessGraphModelMdlBP*>( pDst->GetChildModel() ),
-											IDS_SYMBOL_SELECTDELIVERABLE,
-											RUNTIME_CLASS( ZBDeliverableLinkSymbol ),
-											&rtClasses );
+                ZVSelectModelSymbolDlg Dlg( dynamic_cast<ZDProcessGraphModelMdlBP*>( pDst->GetChildModel() ),
+                                            IDS_SYMBOL_SELECTDELIVERABLE,
+                                            RUNTIME_CLASS( ZBDeliverableLinkSymbol ),
+                                            &rtClasses );
 
-				if ( Dlg.DoModal() == IDOK )
-				{
-					if ( Dlg.GetSelectedSymbol() && ISA( Dlg.GetSelectedSymbol(), ZBDeliverableLinkSymbol ) )
-					{
-						pLinkSelected = dynamic_cast<ZBDeliverableLinkSymbol*>( Dlg.GetSelectedSymbol() );
-					}
-				}
-			}
-			else
-			{
-				// Otherwise, select the first door symbol
-				IODNode* pINode	= Nodes.GetAt( 0 );
-				pDoorSelected	= static_cast<ZBBPDoorSymbol*>( pINode );
-			}
+                if ( Dlg.DoModal() == IDOK )
+                {
+                    if ( Dlg.GetSelectedSymbol() && ISA( Dlg.GetSelectedSymbol(), ZBDeliverableLinkSymbol ) )
+                    {
+                        pLinkSelected = dynamic_cast<ZBDeliverableLinkSymbol*>( Dlg.GetSelectedSymbol() );
+                    }
+                }
+            }
+            else
+            {
+                // Otherwise, select the first door symbol
+                IODNode* pINode    = Nodes.GetAt( 0 );
+                pDoorSelected    = static_cast<ZBBPDoorSymbol*>( pINode );
+            }
 
-			// If no door selected and no link selected, display warning message
-			// and select the first door
-			if ( !pDoorSelected && !pLinkSelected )
-			{
-				MsgBox mbox;
-				mbox.DisplayMsgBox( IDS_P2P_FIRSTDELIVERABLE_SELECTED, MB_OK );
-				IODNode* pINode = Nodes.GetAt( 0 );
-				pDoorSelected = static_cast<ZBBPDoorSymbol*>( pINode );
-			}
+            // If no door selected and no link selected, display warning message
+            // and select the first door
+            if ( !pDoorSelected && !pLinkSelected )
+            {
+                MsgBox mbox;
+                mbox.DisplayMsgBox( IDS_P2P_FIRSTDELIVERABLE_SELECTED, MB_OK );
+                IODNode* pINode = Nodes.GetAt( 0 );
+                pDoorSelected = static_cast<ZBBPDoorSymbol*>( pINode );
+            }
 
-			// If no link selected
-			if ( !pLinkSelected )
-			{
-				if ( !pDoorSelected || !pDoorSelected->GetChildModel() )
-				{
-					return false;
-				}
+            // If no link selected
+            if ( !pLinkSelected )
+            {
+                if ( !pDoorSelected || !pDoorSelected->GetChildModel() )
+                {
+                    return false;
+                }
 
-				CODEdgeArray LeavingEdges;
-				size_t LinkCount = pDoorSelected->GetEdgesLeaving_Down( LeavingEdges );
+                CODEdgeArray LeavingEdges;
+                size_t LinkCount = pDoorSelected->GetEdgesLeaving_Down( LeavingEdges );
 
-				if ( LinkCount > 0 )
-				{
-					// Get the link
-					IODEdge* pIEdge = LeavingEdges.GetAt( 0 );
-					pLinkSelected = static_cast<CODLinkComponent*>( pIEdge );
-				}
-			}
+                if ( LinkCount > 0 )
+                {
+                    // Get the link
+                    IODEdge* pIEdge = LeavingEdges.GetAt( 0 );
+                    pLinkSelected = static_cast<CODLinkComponent*>( pIEdge );
+                }
+            }
 
-			if ( !pLinkSelected || !ISA( pLinkSelected, ZBDeliverableLinkSymbol ) )
-			{
-				return true;
-			}
+            if ( !pLinkSelected || !ISA( pLinkSelected, ZBDeliverableLinkSymbol ) )
+            {
+                return true;
+            }
 
-			// Define as a reference
-			AssignReferenceSymbol( pLinkSelected );
-		}
-	}
+            // Define as a reference
+            AssignReferenceSymbol( pLinkSelected );
+        }
+    }
 
-	return true;
+    return true;
 }
 
 bool ZBDeliverableLinkSymbol::AcceptExtApp() const
 {
-	CODModel * pModel = const_cast<ZBDeliverableLinkSymbol*>( this )->GetRootModel();
+    CODModel * pModel = const_cast<ZBDeliverableLinkSymbol*>( this )->GetRootModel();
 
-	if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-		 dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetUseWorkflow() )
-	{
-		return true;
-	}
+    if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
+         dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetUseWorkflow() )
+    {
+        return true;
+    }
 
-	// RS-MODIF 11.12.04 Ext App should appear in conceptor
-	return true;
+    // RS-MODIF 11.12.04 Ext App should appear in conceptor
+    return true;
 }
 
 bool ZBDeliverableLinkSymbol::AcceptExtFile() const
 {
-	CODModel * pModel = const_cast<ZBDeliverableLinkSymbol*>( this )->GetRootModel();
+    CODModel * pModel = const_cast<ZBDeliverableLinkSymbol*>( this )->GetRootModel();
 
-	if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-		 dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetUseWorkflow() )
-	{
-		return true;
-	}
+    if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
+         dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetUseWorkflow() )
+    {
+        return true;
+    }
 
-	// RS-MODIF 11.12.04 Ext File should appear in conceptor
-	return true;
+    // RS-MODIF 11.12.04 Ext File should appear in conceptor
+    return true;
 }
 
-bool ZBDeliverableLinkSymbol::ProcessExtendedInput( ZBProperty&		Property,
-													CString&		value,
-													ZBPropertySet&	Properties,
-													bool&			Refresh )
+bool ZBDeliverableLinkSymbol::ProcessExtendedInput( ZBProperty&        Property,
+                                                    CString&        value,
+                                                    ZBPropertySet&    Properties,
+                                                    bool&            Refresh )
 {
-	// ****************************************************************************************************
-	// JMR-MODIF - Le 13 juin 2007 - Ajout de la prise en charge des risques.
+    // ****************************************************************************************************
+    // JMR-MODIF - Le 13 juin 2007 - Ajout de la prise en charge des risques.
 
-	if ( Property.GetCategoryID() >= ZS_BP_PROP_RISK &&
-		 Property.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount() )
-	{
-		int			i				= Property.GetCategoryID() - ZS_BP_PROP_RISK;
-		CODModel*	pModel			= GetRootModel();
-		CString		CurrencySymbol	= ZAGlobal::GetLocaleCurrency();
+    if ( Property.GetCategoryID() >= ZS_BP_PROP_RISK &&
+         Property.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount() )
+    {
+        int            i                = Property.GetCategoryID() - ZS_BP_PROP_RISK;
+        CODModel*    pModel            = GetRootModel();
+        CString        CurrencySymbol    = ZAGlobal::GetLocaleCurrency();
 
-		if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) )
-		{
-			CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetDocument();
+        if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) )
+        {
+            CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetDocument();
 
-			if ( pDoc && ISA( pDoc, ZDProcessGraphModelDoc ) )
-			{
-				// Retreive the model's currency symbol
-				CurrencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetCurrencySymbol();
-			}
-		}
+            if ( pDoc && ISA( pDoc, ZDProcessGraphModelDoc ) )
+            {
+                // Retreive the model's currency symbol
+                CurrencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetCurrencySymbol();
+            }
+        }
 
-		CString s_NoRiskType = _T( "" );
-		s_NoRiskType.LoadString( IDS_NO_RISK_TYPE );
+        CString s_NoRiskType = _T( "" );
+        s_NoRiskType.LoadString( IDS_NO_RISK_TYPE );
 
-		ZVRiskOptionsDlg m_RiskOptions( GetRiskName( i ),
-										GetRiskDesc( i ),
-										( GetRiskType( i ).IsEmpty() ) ? s_NoRiskType : GetRiskType( i ),
-										GetRiskImpact( i ),
-										GetRiskProbability( i ),
-										GetRiskUE( i ),
-										GetRiskPOA( i ),
-										GetRiskAction( i ),
-										CurrencySymbol );
+        ZVRiskOptionsDlg m_RiskOptions( GetRiskName( i ),
+                                        GetRiskDesc( i ),
+                                        ( GetRiskType( i ).IsEmpty() ) ? s_NoRiskType : GetRiskType( i ),
+                                        GetRiskImpact( i ),
+                                        GetRiskProbability( i ),
+                                        GetRiskUE( i ),
+                                        GetRiskPOA( i ),
+                                        GetRiskAction( i ),
+                                        CurrencySymbol );
 
-		if ( m_RiskOptions.DoModal() == IDOK )
-		{
-			SetRiskName( i, m_RiskOptions.GetRiskTitle() );
-			SetRiskDesc( i, m_RiskOptions.GetRiskDescription() );
-			SetRiskType( i, m_RiskOptions.GetRiskType() );
-			SetRiskImpact( i, m_RiskOptions.GetRiskImpact() );
-			SetRiskProbability( i, m_RiskOptions.GetRiskProbability() );
-			SetRiskSeverity( i, m_RiskOptions.GetRiskSeverity() );
-			SetRiskUE( i, m_RiskOptions.GetRiskUE() );
-			SetRiskPOA( i, m_RiskOptions.GetRiskPOA() );
-			SetRiskAction( i, m_RiskOptions.GetRiskAction() );
+        if ( m_RiskOptions.DoModal() == IDOK )
+        {
+            SetRiskName( i, m_RiskOptions.GetRiskTitle() );
+            SetRiskDesc( i, m_RiskOptions.GetRiskDescription() );
+            SetRiskType( i, m_RiskOptions.GetRiskType() );
+            SetRiskImpact( i, m_RiskOptions.GetRiskImpact() );
+            SetRiskProbability( i, m_RiskOptions.GetRiskProbability() );
+            SetRiskSeverity( i, m_RiskOptions.GetRiskSeverity() );
+            SetRiskUE( i, m_RiskOptions.GetRiskUE() );
+            SetRiskPOA( i, m_RiskOptions.GetRiskPOA() );
+            SetRiskAction( i, m_RiskOptions.GetRiskAction() );
 
-			SetModifiedFlag( TRUE );
+            SetModifiedFlag( TRUE );
 
-			Refresh = true;
+            Refresh = true;
 
-			return true;
-		}
-	}
-	// ****************************************************************************************************
+            return true;
+        }
+    }
+    // ****************************************************************************************************
 
-	CODModel * pModel = GetOwnerModel();
+    CODModel * pModel = GetOwnerModel();
 
-	if ( Property.GetCategoryID() == ZS_BP_PROP_UNIT && Property.GetItemID() == Z_UNIT_NAME )
-	{
-		if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) )
-		{
-			ZVSelectUserGroupDlg dlg( IDS_SELECTAGROUP_T,
-									  dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetMainUserGroup(),
-									  true,		// Allow group selection
-									  false );	// Doesn't allow role selection
+    if ( Property.GetCategoryID() == ZS_BP_PROP_UNIT && Property.GetItemID() == Z_UNIT_NAME )
+    {
+        if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) )
+        {
+            ZVSelectUserGroupDlg dlg( IDS_SELECTAGROUP_T,
+                                      dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetMainUserGroup(),
+                                      true,        // Allow group selection
+                                      false );    // Doesn't allow role selection
 
-			if ( dlg.DoModal() == IDOK )
-			{
-				ZBUserEntity* pUserEntity = dlg.GetSelectedUserEntity();
+            if ( dlg.DoModal() == IDOK )
+            {
+                ZBUserEntity* pUserEntity = dlg.GetSelectedUserEntity();
 
-				if ( pUserEntity )
-				{
-					value = pUserEntity->GetEntityName();
+                if ( pUserEntity )
+                {
+                    value = pUserEntity->GetEntityName();
 
-					// And change the unit GUID of the disable property
-					ZBPropertyIterator i( &Properties );
-					ZBProperty* pProp;
+                    // And change the unit GUID of the disable property
+                    ZBPropertyIterator i( &Properties );
+                    ZBProperty* pProp;
 
-					for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
-					{
-						if ( pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_GUID )
-						{
-							pProp->SetValueString( pUserEntity->GetGUID() );
-							break;
-						}
-					}
+                    for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+                    {
+                        if ( pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_GUID )
+                        {
+                            pProp->SetValueString( pUserEntity->GetGUID() );
+                            break;
+                        }
+                    }
 
-					return true;
-				}
-			}
-		}
-	}
-	else if ( Property.GetCategoryID()	== ZS_BP_PROP_QUANTITY &&
-			  Property.GetItemID()		== Z_NUMBER_YEAR )
-	{
-		// Sets the new value and equalize the information
-		m_Quantity.SetAndCalculateQuantitiesBasedOnYear( Property.GetValueDouble() );
+                    return true;
+                }
+            }
+        }
+    }
+    else if ( Property.GetCategoryID()    == ZS_BP_PROP_QUANTITY &&
+              Property.GetItemID()        == Z_NUMBER_YEAR )
+    {
+        // Sets the new value and equalize the information
+        m_Quantity.SetAndCalculateQuantitiesBasedOnYear( Property.GetValueDouble() );
 
-		// Now saves the equalizer value to the properties to avoid
-		// working with wrong figures in the equalizer
-		SaveEqualizerToProperties( Properties );
-		ZVEqualizeQuantityDlg Equalize( &Properties );
+        // Now saves the equalizer value to the properties to avoid
+        // working with wrong figures in the equalizer
+        SaveEqualizerToProperties( Properties );
+        ZVEqualizeQuantityDlg Equalize( &Properties );
 
-		if ( Equalize.DoModal() == IDOK )
-		{
-			value.Format( _T( "%.0f" ), Equalize.GetfQuantityYear() );
+        if ( Equalize.DoModal() == IDOK )
+        {
+            value.Format( _T( "%.0f" ), Equalize.GetfQuantityYear() );
 
-			SavePropertiesToQuantity( Properties );
-			return true;
-		}
-	}
+            SavePropertiesToQuantity( Properties );
+            return true;
+        }
+    }
 
-	return ZBLinkSymbol::ProcessExtendedInput( Property, value, Properties, Refresh );
+    return ZBLinkSymbol::ProcessExtendedInput( Property, value, Properties, Refresh );
 }
 
 // JMR-MODIF - Le 28 novembre 2006 - Ajout de la fonction ProcessMenuCommand.
-bool ZBDeliverableLinkSymbol::ProcessMenuCommand( int				MenuCommand,
-												  ZBProperty&		Property,
-												  CString&			value,
-												  ZBPropertySet&	Properties,
-												  bool&				Refresh )
+bool ZBDeliverableLinkSymbol::ProcessMenuCommand( int                MenuCommand,
+                                                  ZBProperty&        Property,
+                                                  CString&            value,
+                                                  ZBPropertySet&    Properties,
+                                                  bool&                Refresh )
 {
-	// ************************************************************************************************************
-	// JMR-MODIF - Le 10 juin - Ajout du code pour traitement du menu des risques.
+    // ************************************************************************************************************
+    // JMR-MODIF - Le 10 juin - Ajout du code pour traitement du menu des risques.
 
-	if ( Property.GetCategoryID() >= ZS_BP_PROP_RISK &&
-		 Property.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount() )
-	{
-		switch( MenuCommand )
-		{
-			case ID_ADD_NEWRISK:
-			{
-				OnAddNewRisk( Property, value, Properties, Refresh );
-				break;
-			}
+    if ( Property.GetCategoryID() >= ZS_BP_PROP_RISK &&
+         Property.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount() )
+    {
+        switch( MenuCommand )
+        {
+            case ID_ADD_NEWRISK:
+            {
+                OnAddNewRisk( Property, value, Properties, Refresh );
+                break;
+            }
 
-			case ID_DEL_CURRENTRISK:
-			{
-				OnDelCurrentRisk( Property, value, Properties, Refresh );
-				break;
-			}
+            case ID_DEL_CURRENTRISK:
+            {
+                OnDelCurrentRisk( Property, value, Properties, Refresh );
+                break;
+            }
 
-			default:
-			{
-				break;
-			}
-		}
+            default:
+            {
+                break;
+            }
+        }
 
-		return true;
-	}
-	// ************************************************************************************************************
+        return true;
+    }
+    // ************************************************************************************************************
 
-	if ( Property.GetCategoryID() == ZS_BP_PROP_RULES )
-	{
-		switch( MenuCommand )
-		{
-			case ID_DEL_CURRENTRULE:
-			{
-				int Index = ( Property.GetItemID() - Z_RULE_NAME ) / _MaxRulesSize;
+    if ( Property.GetCategoryID() == ZS_BP_PROP_RULES )
+    {
+        switch( MenuCommand )
+        {
+            case ID_DEL_CURRENTRULE:
+            {
+                int Index = ( Property.GetItemID() - Z_RULE_NAME ) / _MaxRulesSize;
 
-				m_Rules.DeleteRule( Index );
+                m_Rules.DeleteRule( Index );
 
-				// JMR-MODIF - Le 8 mai 2007 - Demande le rafraîchissement après exécution de l'opération.
-				Refresh = true;
+                // JMR-MODIF - Le 8 mai 2007 - Demande le rafraîchissement après exécution de l'opération.
+                Refresh = true;
 
-				break;
-			}
+                break;
+            }
 
-			default:
-			{
-				break;
-			}
-		}
-	}
+            default:
+            {
+                break;
+            }
+        }
+    }
 
-	return ZBLinkSymbol::ProcessMenuCommand( MenuCommand, Property, value, Properties, Refresh );
+    return ZBLinkSymbol::ProcessMenuCommand( MenuCommand, Property, value, Properties, Refresh );
 }
 
 // JMR-MODIF - Le 10 juin 2007 - Ajout de la fonction OnAddNewRisk.
-void ZBDeliverableLinkSymbol::OnAddNewRisk( ZBProperty&		Property,
-											CString&		value,
-											ZBPropertySet&	Properties,
-											bool&			Refresh )
+void ZBDeliverableLinkSymbol::OnAddNewRisk( ZBProperty&        Property,
+                                            CString&        value,
+                                            ZBPropertySet&    Properties,
+                                            bool&            Refresh )
 {
-	// Add a new risk
-	if ( AddNewRisk() >= 0 )
-	{
-		// Sets the refresh flag to true
-		Refresh = true;
-		SetModifiedFlag( TRUE );
-	}
+    // Add a new risk
+    if ( AddNewRisk() >= 0 )
+    {
+        // Sets the refresh flag to true
+        Refresh = true;
+        SetModifiedFlag( TRUE );
+    }
 }
 
 // JMR-MODIF - Le 10 juin 2007 - Ajout de la fonction OnDelCurrentRisk.
-void ZBDeliverableLinkSymbol::OnDelCurrentRisk( ZBProperty&		Property,
-												CString&		value,
-												ZBPropertySet&	Properties,
-												bool&			Refresh )
+void ZBDeliverableLinkSymbol::OnDelCurrentRisk( ZBProperty&        Property,
+                                                CString&        value,
+                                                ZBPropertySet&    Properties,
+                                                bool&            Refresh )
 {
-	int Count = GetRiskCount();
+    int Count = GetRiskCount();
 
-	if ( Count <= 1 )
-	{
-		// Cannot delete all risks
-		MsgBox mbox;
-		mbox.DisplayMsgBox( IDS_CANNOTDELETE_ALLRISKS, MB_OK );
-		return;
-	}
+    if ( Count <= 1 )
+    {
+        // Cannot delete all risks
+        MsgBox mbox;
+        mbox.DisplayMsgBox( IDS_CANNOTDELETE_ALLRISKS, MB_OK );
+        return;
+    }
 
-	// Otherwise, delete the current selected risk
-	int Index = Property.GetCategoryID() - ZS_BP_PROP_RISK;
+    // Otherwise, delete the current selected risk
+    int Index = Property.GetCategoryID() - ZS_BP_PROP_RISK;
 
-	if ( DeleteRisk( Index ) )
-	{
-		// Sets the refresh flag to true
-		Refresh = true;
-		SetModifiedFlag( TRUE );
-	}
+    if ( DeleteRisk( Index ) )
+    {
+        // Sets the refresh flag to true
+        Refresh = true;
+        SetModifiedFlag( TRUE );
+    }
 }
 
 // ************************************ Fonctions concernant les Règles *************************************
 
 bool ZBDeliverableLinkSymbol::RuleExist( const CString Value )
 {
-	ZBTokenizer token( GetRuleList() );	// Initialize the token with the task list
-										// and with the default ; as separator
+    ZBTokenizer token( GetRuleList() );    // Initialize the token with the task list
+                                        // and with the default ; as separator
 
-	return ( token.TokenExist( Value ) == TRUE ) ? true : false;
+    return ( token.TokenExist( Value ) == TRUE ) ? true : false;
 }
 
 void ZBDeliverableLinkSymbol::AddRule( const CString Value )
 {
-	ZBTokenizer token( GetRuleList() );	// Initialize the token with the task list
-										// and with the default ; as separator
+    ZBTokenizer token( GetRuleList() );    // Initialize the token with the task list
+                                        // and with the default ; as separator
 
-	// If the new task has been added correctly,
-	// then set the new task list
-	if ( token.AddUniqueToken( Value ) )
-	{
-		// Add the value to the history
-		CString Key;
-		Key.LoadString( IDS_ZS_BP_PROP_RULELST_TITLE );
-		ZAGlobal::GetHistoricValueManager().AddHistoryValue( Key, Value );
+    // If the new task has been added correctly,
+    // then set the new task list
+    if ( token.AddUniqueToken( Value ) )
+    {
+        // Add the value to the history
+        CString Key;
+        Key.LoadString( IDS_ZS_BP_PROP_RULELST_TITLE );
+        ZAGlobal::GetHistoricValueManager().AddHistoryValue( Key, Value );
 
-		// Set the new task string
-		SetRuleList( token.GetString() );
-	}
+        // Set the new task string
+        SetRuleList( token.GetString() );
+    }
 }
 
 void ZBDeliverableLinkSymbol::RemoveRule( const CString Value )
 {
-	ZBTokenizer token( GetRuleList() );	// Initialize the token with the task list
-										// and with the default ; as separator
+    ZBTokenizer token( GetRuleList() );    // Initialize the token with the task list
+                                        // and with the default ; as separator
 
-	// If the new task has been removed correctly,
-	// then set the new task list
-	if ( token.RemoveToken( Value ) )
-	{
-		SetRuleList( token.GetString() );
-	}
+    // If the new task has been removed correctly,
+    // then set the new task list
+    if ( token.RemoveToken( Value ) )
+    {
+        SetRuleList( token.GetString() );
+    }
 }
 
 // ************************************ Fonctions concernant les Items **************************************
 
 bool ZBDeliverableLinkSymbol::TextItemExist( const CString Value )
 {
-	ZBTokenizer token( GetTextItemList() );	// Initialize the token with the list
-											// and with the default ; as separator
+    ZBTokenizer token( GetTextItemList() );    // Initialize the token with the list
+                                            // and with the default ; as separator
 
-	return ( token.TokenExist( Value ) == TRUE ) ? true : false;
+    return ( token.TokenExist( Value ) == TRUE ) ? true : false;
 }
 
 void ZBDeliverableLinkSymbol::AddTextItem( const CString Value )
 {
-	ZBTokenizer token( GetTextItemList() );	// Initialize the token with the list
-											// and with the default ; as separator
+    ZBTokenizer token( GetTextItemList() );    // Initialize the token with the list
+                                            // and with the default ; as separator
 
-	// If the new task has been added correctly,
-	// then set the new list
-	if ( token.AddUniqueToken( Value ) )
-	{
-		// Add the value to the history
-		CString Key;
-		Key.LoadString( IDS_ZS_BP_PROP_PROCEDURE_ITMTXTLST_TITLE );
-		ZAGlobal::GetHistoricValueManager().AddHistoryValue( Key, Value );
+    // If the new task has been added correctly,
+    // then set the new list
+    if ( token.AddUniqueToken( Value ) )
+    {
+        // Add the value to the history
+        CString Key;
+        Key.LoadString( IDS_ZS_BP_PROP_PROCEDURE_ITMTXTLST_TITLE );
+        ZAGlobal::GetHistoricValueManager().AddHistoryValue( Key, Value );
 
-		// Set the new list string
-		SetTextItemList( token.GetString() );
-	}
+        // Set the new list string
+        SetTextItemList( token.GetString() );
+    }
 }
 
 void ZBDeliverableLinkSymbol::RemoveTextItem( const CString Value )
 {
-	ZBTokenizer token( GetTextItemList() );	// Initialize the token with the list
-											// and with the default ; as separator
+    ZBTokenizer token( GetTextItemList() );    // Initialize the token with the list
+                                            // and with the default ; as separator
 
-	// If the new task has been removed correctly,
-	// then set the new list
-	if ( token.RemoveToken( Value ) )
-	{
-		SetTextItemList( token.GetString() );
-	}
+    // If the new task has been removed correctly,
+    // then set the new list
+    if ( token.RemoveToken( Value ) )
+    {
+        SetTextItemList( token.GetString() );
+    }
 }
 
 // **************************** Fonctions concernant les propriétés du symbole ******************************
 
 bool ZBDeliverableLinkSymbol::CreateSymbolProperties()
 {
-	if ( !ZBLinkSymbol::CreateSymbolProperties() )
-	{
-		return false;
-	}
+    if ( !ZBLinkSymbol::CreateSymbolProperties() )
+    {
+        return false;
+    }
 
-	ZBBPRuleListProperties propRules;
-	AddProperty( propRules );
+    ZBBPRuleListProperties propRules;
+    AddProperty( propRules );
 
-	ZBBPTextItemListProperties textItemList;
-	AddProperty( textItemList );
+    ZBBPTextItemListProperties textItemList;
+    AddProperty( textItemList );
 
-	ZBBPCostPropertiesDeliverable propCost;
-	AddProperty( propCost );
+    ZBBPCostPropertiesDeliverable propCost;
+    AddProperty( propCost );
 
-	// Fill the array of unit double validation type
-	m_UnitDoubleValidationTypeArray.RemoveAll();
-	GetUnitDoubleValidationTypeStringArray( m_UnitDoubleValidationTypeArray );
+    // Fill the array of unit double validation type
+    m_UnitDoubleValidationTypeArray.RemoveAll();
+    GetUnitDoubleValidationTypeStringArray( m_UnitDoubleValidationTypeArray );
 
-	// JMR-MODIF - Le 3 juin 2007 - Ajoute au moins un catalogue de propriétés dans les risques.
-	m_Risks.CreateInitialProperties();
+    // JMR-MODIF - Le 3 juin 2007 - Ajoute au moins un catalogue de propriétés dans les risques.
+    m_Risks.CreateInitialProperties();
 
-	return true;
+    return true;
 }
 
 // JMR-MODIF - Le 26 avril 2007 - Cette fonction permet de déterminer si une règle donnée a été attribuée à cet objet.
 BOOL ZBDeliverableLinkSymbol::ContainsRule( CString RuleName )
 {
-	for ( int i = 0; i < m_Rules.GetRulesCount(); i++ )
-	{
-		if ( m_Rules.GetRuleName( i ) == RuleName )
-		{
-			return TRUE;
-		}
-	}
+    for ( int i = 0; i < m_Rules.GetRulesCount(); i++ )
+    {
+        if ( m_Rules.GetRuleName( i ) == RuleName )
+        {
+            return TRUE;
+        }
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 // JMR-MODIF - Le 9 octobre 2007 - Cette fonction retourne les règles qui ne sont plus synchronisées avec le référentiel.
 void ZBDeliverableLinkSymbol::CheckRulesSync( CStringArray& RulesList )
 {
-	CODModel * pModel = GetRootModel();
+    CODModel * pModel = GetRootModel();
 
-	if ( pModel == NULL )
-	{
-		return;
-	}
+    if ( pModel == NULL )
+    {
+        return;
+    }
 
-	if ( m_Rules.GetRulesCount() > 0 )
-	{
-		ZBLogicalRulesEntity* p_MainRule = NULL;
+    if ( m_Rules.GetRulesCount() > 0 )
+    {
+        ZBLogicalRulesEntity* p_MainRule = NULL;
 
-		if ( GetOwnerModel() != NULL && ISA( GetOwnerModel(), ZDProcessGraphModelMdlBP ) )
-		{
-			ZDProcessGraphModelMdlBP* p_Model = reinterpret_cast<ZDProcessGraphModelMdlBP*>( GetOwnerModel() );
+        if ( GetOwnerModel() != NULL && ISA( GetOwnerModel(), ZDProcessGraphModelMdlBP ) )
+        {
+            ZDProcessGraphModelMdlBP* p_Model = reinterpret_cast<ZDProcessGraphModelMdlBP*>( GetOwnerModel() );
 
-			p_MainRule = p_Model->GetMainLogicalRules();
-		}
-		else
-		{
-			return;
-		}
+            p_MainRule = p_Model->GetMainLogicalRules();
+        }
+        else
+        {
+            return;
+        }
 
-		for ( int i = 0; i < m_Rules.GetRulesCount(); i++ )
-		{
-			CString m_SafeName = GetRuleNameByGUID( p_MainRule, m_Rules.GetRuleGUID( i ) );
+        for ( int i = 0; i < m_Rules.GetRulesCount(); i++ )
+        {
+            CString m_SafeName = GetRuleNameByGUID( p_MainRule, m_Rules.GetRuleGUID( i ) );
 
-			if ( m_SafeName.IsEmpty() )
-			{
-				RulesList.Add( m_Rules.GetRuleName( i ) );
-			}
-		}
-	}
+            if ( m_SafeName.IsEmpty() )
+            {
+                RulesList.Add( m_Rules.GetRuleName( i ) );
+            }
+        }
+    }
 }
 
-bool ZBDeliverableLinkSymbol::FillProperties( ZBPropertySet&	PropSet,
-											  bool				NumericValue	/*= false*/,
-											  bool				GroupValue		/*= false*/ )
+bool ZBDeliverableLinkSymbol::FillProperties( ZBPropertySet&    PropSet,
+                                              bool                NumericValue    /*= false*/,
+                                              bool                GroupValue        /*= false*/ )
 {
-	CODModel * pModel = GetRootModel();
-
-	// RS-MODIF 11.12.04 ext link should also appear in deliverable
-	/*if ( pModel && ISA( pModel,ZDProcessGraphModelMdl ) &&
-		dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetUseWorkflow() )*/
-	{
-		// If no file, add one new
-		if ( GetExtFileCount() == 0 )
-		{
-			AddNewExtFile();
-		}
-	}
-
-	// Les propriétés "Nom", "Description" et "Référence" du groupe "General" sont affichées par la classe de base.
-	// La classe de base affiche également les propriétés des groupes "Liens externes" et "Fichiers externes",
-	// ainsi que les propriétés dynamiques.
-	if ( !ZBLinkSymbol::FillProperties( PropSet, NumericValue, GroupValue ) )
-	{
-		return false;
-	}
-
-	// Seuls les symboles locaux ont accès aux propriétés.
-	if ( !IsLocal() )
-	{
-		return true;
-	}
-
-	// Initialize the Currency symbol with the user local currency symbol
-	// defined in the Control Panel
-	CString CurrencySymbol = ZAGlobal::GetLocaleCurrency();
-
-	// JMR-MODIF - Le 30 juillet 2007 - Mets à jour le symbole monétaire en fonction de la sélection utilisateur.
-	if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) )
-	{
-		CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetDocument();
-
-		if ( pDoc && ISA( pDoc, ZDProcessGraphModelDoc ) )
-		{
-			// Retreive the model's currency symbol
-			CurrencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetCurrencySymbol();
-		}
-	}
-
-	CString sValue;
-
-	int		Count;
-	CString FinalPropName;
-	CString PropTitle;
-	CString PropName;
-	CString PropDesc;
-
-	bool GroupEnabled = true;
-
-	if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-		 !dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->MainUserGroupIsValid() )
-	{
-		GroupEnabled = false;
-	}
-
-	// ************************************************************************************************************
-	// JMR-MODIF - Le 22 novembre 2006 - Nouvelle architecture des règles.
-
-	// If the menu is not loaded, load it
-	if ( gRulesMenu.GetSafeHmenu() == NULL )
-	{
-		gRulesMenu.LoadMenu( IDR_RULES_MENU );
-	}
-
-	if ( m_Rules.GetRulesCount() > 0 )
-	{
-		CString RuleSectionTitle	= _T( "" );
-		CString RuleName			= _T( "" );
-		CString RuleDesc			= _T( "" );
-
-		RuleSectionTitle.LoadString( IDS_Z_RULES_TITLE );
-		RuleDesc.LoadString( IDS_Z_RULES_DESC );
-
-		ZBLogicalRulesEntity* p_MainRule = NULL;
-
-		if ( GetOwnerModel() != NULL && ISA( GetOwnerModel(), ZDProcessGraphModelMdlBP ) )
-		{
-			ZDProcessGraphModelMdlBP* p_Model = reinterpret_cast<ZDProcessGraphModelMdlBP*>( GetOwnerModel() );
-
-			if ( p_Model != NULL					&&
-				 p_Model->GetController() != NULL	&&
-				 ISA( p_Model->GetController(), ZDProcessGraphModelControllerBP ) )
-			{
-				ZDProcessGraphModelControllerBP* p_Controller =
-					reinterpret_cast<ZDProcessGraphModelControllerBP*>( p_Model->GetController() );
-
-				if ( p_Controller != NULL && ISA( p_Controller->GetDocument(), ZDProcessGraphModelDoc ) )
-				{
-					ZDProcessGraphModelDoc* p_Document =
-						reinterpret_cast<ZDProcessGraphModelDoc*>( p_Controller->GetDocument() );
-
-					if ( p_Document != NULL && p_Document->GetMainLogicalRules() != NULL )
-					{
-						p_MainRule = p_Document->GetMainLogicalRules();
-					}
-				}
-			}
-		}
-
-		for ( int i = 0; i < m_Rules.GetRulesCount(); i++ )
-		{
-			// Le contrôle des règles ne peut être appliqué que si le modèle est en phase avec le système des règles.
-			if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-				dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->MainLogicalRulesIsValid() )
-			{
-				CString m_SafeName = GetRuleNameByGUID( p_MainRule, m_Rules.GetRuleGUID( i ) );
-
-				// ********************************************************************************************
-				// JMR-MODIF - Le 8 octobre 2007 - Rééctriture de la routine suite à un bug de perte de règles.
-				// Avant, le test supprimait une règle qui n'était plus synchronisée au référentiel, maintenant
-				// seul le nom de la règle est contrôlé et renommé, à condition qu'il soit synchronisé avec le
-				// référentiel.
-				/*
-				if ( m_SafeName.IsEmpty() )
-				{
-					m_Rules.DeleteRule( i );
-				}
-				else if ( m_SafeName != m_Rules.GetRuleName( i ) )
-				{
-					m_Rules.SetRuleName( i, m_SafeName );
-				}
-				*/
-
-				if ( !m_SafeName.IsEmpty() && m_SafeName != m_Rules.GetRuleName( i ) )
-				{
-					m_Rules.SetRuleName( i, m_SafeName );
-				}
-				// ********************************************************************************************
-			}
-
-			RuleName.Format( IDS_Z_RULES_NAME, i + 1 );
-
-			// Propriété "Règle x" du groupe "Règles"
-			ZBProperty* pRule = new ZBProperty( RuleSectionTitle,
-												ZS_BP_PROP_RULES,
-												RuleName,
-												Z_RULE_NAME + ( i * _MaxRulesSize ),
-												RuleDesc,
-												m_Rules.GetRuleName( i ),
-												ZBProperty::PT_EDIT_MENU,
-												true,
-												ZBStringFormat( ZBStringFormat::General ),
-												NULL,
-												&gRulesMenu );
-
-			pRule->EnableDragNDrop();
-			PropSet.Add( pRule );
-		}
-	}
-	// ************************************************************************************************************
-
-	// ************************************************************************************************************
-	// JMR-MODIF - Le 22 novembre 2006 - ATTENTION : L'ancienne architecture de règles ci-dessous a maintenant
-	// changé, et est désignée sous le terme de contrôle, car celle-ci était devenue obsolète après la nouvelle
-	// implémentation du système de règles datant de novembre 2006. Mais les deux architectures étant trop
-	// différentes l'une de l'autre, il a fallu faire cohabiter les deux pour des raisons de compatibilité avec les
-	// anciens fichiers. Cependant, les textes concernant l'ancienne architecture ont été corrigés, et les termes
-	// "règles" ont été remplacés par les termes "Contrôles" dans les ressources de textes. Toutefois, les autres
-	// corrections étaient trop importantes pour être appliquées au code, ce qui provoque une ambiguité dans le nom
-	// des classes et des ressources. Si une nouvelle modification doit être approtée à l'architecture des contrôles
-	// il faut donc le faire avec la plus grande prudence.
-
-	// Add rules
-	ZBBPRuleListProperties* pRulesProps;;
-
-	// Obtention des données pour l'affichage des règles.
-	if ( ( pRulesProps = (ZBBPRuleListProperties*)GetProperty( ZS_BP_PROP_RULELIST ) ) == NULL )
-	{
-		// try to add it
-		ZBBPRuleListProperties propRules;
-		AddProperty( propRules );
-
-		// Retreive it
-		pRulesProps = (ZBBPRuleListProperties*)GetProperty( ZS_BP_PROP_RULELIST );
-
-		if ( !pRulesProps )
-		{
-			return false;
-		}
-	}
-
-	// Run through all tasks properties
-	// Add one to the counter to have always one empty task
-	Count = GetRuleCount() + 1;
-	PropTitle.LoadString( IDS_ZS_BP_PROP_RULELST_TITLE );
-	CStringArray* pArrayOfValues = ZAGlobal::GetHistoricValueManager().GetFieldHistory( PropTitle );
-
-	PropName.LoadString( IDS_Z_RULE_LIST_NAME );
-	PropDesc.LoadString( IDS_Z_RULE_LIST_DESC );
-
-	for ( int i = 0; i < Count; ++i )
-	{
-		FinalPropName.Format( _T( "%s %d" ), PropName, i + 1 );
-
-		// Propriété "Règle x" du groupe "Règles"
-		ZBProperty* pRuleList = new ZBProperty( PropTitle,
-												ZS_BP_PROP_RULELIST,
-												FinalPropName,
-												Z_RULE_LIST + ( i * _MaxRuleListSize ),
-												PropDesc,
-												GetRuleAt( i ),
-												ZBProperty::PT_EDIT_INTELI,
-												true, // Enable
-												ZBStringFormat( ZBStringFormat::General ),
-												pArrayOfValues );
-
-		pRuleList->EnableDragNDrop();
-		PropSet.Add( pRuleList );
-	}
-
-	// Now continue to add empty tasks till the maximum size
-	for ( ; i < _MaxRuleListSize; ++i )
-	{
-		FinalPropName.Format( _T( "%s %d" ), PropName, i+1 );
-
-		// Propriété "Règle x" du groupe "Règles"
-		ZBProperty* pRuleList = new ZBProperty( PropTitle,
-												ZS_BP_PROP_RULELIST,
-												FinalPropName,
-												Z_RULE_LIST + ( i * _MaxRuleListSize ),
-												PropDesc,
-												_T( "" ),
-												ZBProperty::PT_EDIT_INTELI,
-												false, // Disable
-												ZBStringFormat( ZBStringFormat::General ),
-												pArrayOfValues );
-
-		pRuleList->EnableDragNDrop();
-		PropSet.Add( pRuleList );
-	}
-	// ************************************************************************************************************
-
-	// ***********************************************************************************************************
-	// JMR-MODIF - Le 3 juin 2007 - Ajout des propriétés liées aux risques.
-
-	// Obtient le menu des risques si celui-ci n'est pas encore présent.
-	if ( gRiskMenu.GetSafeHmenu() == NULL )
-	{
-		gRiskMenu.LoadMenu( IDR_RISK_MENU );
-	}
-
-	CString FinalRiskName	= _T( "" );
-	CString FinalRiskTitle	= _T( "" );
-	CString RiskTitle		= _T( "" );
-	CString RiskName		= _T( "" );
-	CString RiskDesc		= _T( "" );
-
-	RiskTitle.LoadString( IDS_ZS_BP_PROP_RISK_TITLE );
-
-	for ( i = 0; i < GetRiskCount(); ++i )
-	{
-		FinalRiskTitle.Format( _T( "%s (%d)" ), RiskTitle, i + 1 );
-
-		RiskName.LoadString( IDS_Z_RISK_NAME_NAME );
-		RiskDesc.LoadString( IDS_Z_RISK_NAME_DESC );
-
-		// Propriété "Titre Risque" du groupe "Risque (x)"
-		ZBProperty* pRisk = new ZBProperty( FinalRiskTitle,
-											( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-											RiskName,
-											( GroupValue == true ) ? Z_RISK_NAME : ( Z_RISK_NAME + ( i * _MaxRisksSize ) ),
-											RiskDesc,
-											GetRiskName( i ),
-											ZBProperty::PT_EDIT_MENU,
-											true,
-											ZBStringFormat( ZBStringFormat::General ),
-											NULL,
-											&gRiskMenu );
-
-		PropSet.Add( pRisk );
-
-		RiskName.LoadString( IDS_Z_RISK_DESC_NAME );
-		RiskDesc.LoadString( IDS_Z_RISK_DESC_DESC );
-
-		// Propriété "Description" du groupe "Risque (x)"
-		pRisk = new ZBProperty( FinalRiskTitle,
-								( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-								RiskName,
-								( GroupValue == true ) ? Z_RISK_DESC : ( Z_RISK_DESC + ( i * _MaxRisksSize ) ),
-								RiskDesc,
-								GetRiskDesc( i ),
-								ZBProperty::PT_EDIT_EXTENDED );
-
-		PropSet.Add( pRisk );
-
-		RiskName.LoadString( IDS_Z_RISK_TYPE_NAME );
-		RiskDesc.LoadString( IDS_Z_RISK_TYPE_DESC );
-
-		CString s_NoRiskType = _T( "" );
-		s_NoRiskType.LoadString( IDS_NO_RISK_TYPE );
-
-		pRisk = new ZBProperty( FinalRiskTitle,
-								( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-								RiskName,
-								( GroupValue == true ) ? Z_RISK_TYPE : ( Z_RISK_TYPE + ( i * _MaxRisksSize ) ),
-								RiskDesc,
-								GetRiskType( i ).IsEmpty() ? s_NoRiskType : GetRiskType( i ),
-								ZBProperty::PT_EDIT_EXTENDED_READONLY );
-
-		PropSet.Add( pRisk );
-
-		RiskName.LoadString( IDS_Z_RISK_IMPACT_NAME );
-		RiskDesc.LoadString( IDS_Z_RISK_IMPACT_DESC );
-
-		// Propriété "Impact" du groupe "Risque (x)"
-		pRisk = new ZBProperty( FinalRiskTitle,
-								( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-								RiskName,
-								( GroupValue == true ) ? Z_RISK_IMPACT : ( Z_RISK_IMPACT + ( i * _MaxRisksSize ) ),
-								RiskDesc,
-								ZBMediator::Instance()->GetMainApp()->GetRiskImpactContainer()->GetElementAt( GetRiskImpact( i ) ),
-								ZBProperty::PT_EDIT_EXTENDED_READONLY );
-
-		PropSet.Add( pRisk );
-
-		RiskName.LoadString( IDS_Z_RISK_PROBABILITY_NAME );
-		RiskDesc.LoadString( IDS_Z_RISK_PROBABILITY_DESC );
-
-		// Propriété "Probabilité" du groupe "Risque (x)"
-		pRisk = new ZBProperty( FinalRiskTitle,
-								( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-								RiskName,
-								( GroupValue == true ) ? Z_RISK_PROBABILITY : ( Z_RISK_PROBABILITY + ( i * _MaxRisksSize ) ),
-								RiskDesc,
-								ZBMediator::Instance()->GetMainApp()->GetRiskProbabilityContainer()->GetElementAt( GetRiskProbability( i ) ),
-								ZBProperty::PT_EDIT_EXTENDED_READONLY );
-
-		PropSet.Add( pRisk );
-
-		RiskName.LoadString( IDS_Z_RISK_SEVERITY_NAME );
-		RiskDesc.LoadString( IDS_Z_RISK_SEVERITY_DESC );
-
-		// Propriété "Sévérité" du groupe "Risque (x)"
-		pRisk = new ZBProperty( FinalRiskTitle,
-								( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-								RiskName,
-								( GroupValue == true ) ? Z_RISK_SEVERITY : ( Z_RISK_SEVERITY + ( i * _MaxRisksSize ) ),
-								RiskDesc,
-								(double)GetRiskSeverity( i ),
-								ZBProperty::PT_EDIT_NUMBER_READONLY );
-
-		PropSet.Add( pRisk );
-
-		RiskName.LoadString( IDS_Z_RISK_UE_NAME );
-		RiskDesc.LoadString( IDS_Z_RISK_UE_DESC );
-
-		// Propriété "Est. unit." du groupe "Risque (x)"
-		pRisk = new ZBProperty( FinalRiskTitle,
-								( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-								RiskName,
-								( GroupValue == true ) ? Z_RISK_UE : ( Z_RISK_UE + ( i * _MaxRisksSize ) ),
-								RiskDesc,
-								GetRiskUE( i ),
-								ZBProperty::PT_EDIT_NUMBER,
-								true,
-								ZBStringFormat( ZBStringFormat::Currency, true, 2, CurrencySymbol ) );
-
-		PropSet.Add( pRisk );
-
-		RiskName.LoadString( IDS_Z_RISK_POA_NAME );
-		RiskDesc.LoadString( IDS_Z_RISK_POA_DESC );
-
-		// Propriété "POA" du groupe "Risque (x)"
-		pRisk = new ZBProperty( FinalRiskTitle,
-								( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-								RiskName,
-								( GroupValue == true ) ? Z_RISK_POA : ( Z_RISK_POA + ( i * _MaxRisksSize ) ),
-								RiskDesc,
-								GetRiskPOA( i ),
-								ZBProperty::PT_EDIT_NUMBER,
-								true,
-								ZBStringFormat( ZBStringFormat::Currency, true, 2, CurrencySymbol ) );
-
-		PropSet.Add( pRisk );
-
-		RiskName.LoadString( IDS_Z_RISK_ACTION_NAME );
-		RiskDesc.LoadString( IDS_Z_RISK_ACTION_DESC );
-
-		// Propriété "Action" du groupe "Risque (x)"
-		pRisk = new ZBProperty( FinalRiskTitle,
-								( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-								RiskName,
-								( GroupValue == true ) ? Z_RISK_ACTION : ( Z_RISK_ACTION + ( i * _MaxRisksSize ) ),
-								RiskDesc,
-								( GetRiskAction( i ) == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo(),
-								ZBProperty::PT_COMBO_STRING_READONLY,
-								TRUE,
-								ZBStringFormat( ZBStringFormat::General ),
-								ZAGlobal::GetArrayYesNo() );
-
-		PropSet.Add( pRisk );
-	}
-	// ***********************************************************************************************************
-
-	// Text item list
-	ZBBPTextItemListProperties* pTextItemProps = (ZBBPTextItemListProperties*)GetProperty( ZS_BP_PROP_TEXTITEMLIST );
-
-	if ( !pTextItemProps )
-	{
-		return false;
-	}
-
-	// Run through all text items property
-	// Add one to the counter to have always one empty item
-	Count = GetTextItemCount() + 1;
-	PropTitle.LoadString( IDS_ZS_BP_PROP_PROCEDURE_ITMTXTLST_TITLE );
-	pArrayOfValues = ZAGlobal::GetHistoricValueManager().GetFieldHistory( PropTitle );
-
-	PropName.LoadString( IDS_Z_TEXTITEM_LIST_NAME );
-	PropDesc.LoadString( IDS_Z_TEXTITEM_LIST_DESC );
-
-	for ( i = 0; i < Count; ++i )
-	{
-		FinalPropName.Format( _T( "%s %d" ), PropName, i+1 );
-
-		// Propriété "Information x" du groupe "Liste des informations"
-		ZBProperty* pTextList = new ZBProperty( PropTitle,
-												ZS_BP_PROP_TEXTITEMLIST,
-												FinalPropName,
-												Z_TEXTITEM_LIST + ( i * _MaxTextItemListSize ),
-												PropDesc,
-												GetTextItemAt( i ),
-												ZBProperty::PT_EDIT_INTELI,
-												true, // Enable
-												ZBStringFormat( ZBStringFormat::General ),
-												pArrayOfValues );
-
-		pTextList->EnableDragNDrop();
-		PropSet.Add( pTextList );
-	}
-
-	// Now continue to add empty tasks till the maximum size
-	for ( ; i < _MaxTextItemListSize; ++i )
-	{
-		FinalPropName.Format( _T( "%s %d" ), PropName, i+1 );
-
-		// Propriété "Information x" du groupe "Liste des informations"
-		ZBProperty* pTextList = new ZBProperty( PropTitle,
-												ZS_BP_PROP_TEXTITEMLIST,
-												FinalPropName,
-												Z_TEXTITEM_LIST + ( i * _MaxTextItemListSize),
-												PropDesc,
-												_T( "" ),
-												ZBProperty::PT_EDIT_INTELI,
-												false, // Disable
-												ZBStringFormat( ZBStringFormat::General ),
-												pArrayOfValues );
-
-		pTextList->EnableDragNDrop();
-		PropSet.Add( pTextList );
-	}
-
-	int HourPerDay	= -1;
-	int DayPerWeek	= -1;
-	int DayPerMonth	= -1;
-	int DayPerYear	= -1;
-
-	if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) )
-	{
-		CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetDocument();
-
-		if ( pDoc && ISA( pDoc, ZDProcessGraphModelDoc ) )
-		{
-			// JMR-MODIF - Le 30 juillet 2007 - Cette opération est effectuée une fois pour toutes au début de la fonction.
-			// Retreive the model's currency symbol
-			//CurrencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetCurrencySymbol();
-
-			// Retreive the standard time definition
-			HourPerDay	= dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetHourPerDay();
-			DayPerWeek	= dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetDayPerWeek();
-			DayPerMonth	= dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetDayPerMonth();
-			DayPerYear	= dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetDayPerYear();
-		}
-	}
-
-	if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-		 dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetIntegrateCostSimulation() )
-	{
-		ZBProperty* pTime;
-
-		if ( NumericValue )
-		{
-			// Propriété "Temps standard" du groupe "Livrable"
-			pTime = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-									ZS_BP_PROP_DELIVERABLE_COST,
-									IDS_Z_COST_PROCESSING_TIME_NAME,
-									Z_COST_PROCESSING_TIME,
-									IDS_Z_COST_PROCESSING_TIME_DESC,
-									GetProcessingTime(),
-									ZBProperty::PT_EDIT_NUMBER );
-		}
-		else
-		{
-			// Propriété "Temps standard" du groupe "Livrable"
-			pTime = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-									ZS_BP_PROP_DELIVERABLE_COST,
-									IDS_Z_COST_PROCESSING_TIME_NAME,
-									Z_COST_PROCESSING_TIME,
-									IDS_Z_COST_PROCESSING_TIME_DESC,
-									ZBDuration( GetProcessingTime(),
-												HourPerDay,
-												DayPerWeek,
-												DayPerMonth,
-												DayPerYear ),
-									ZBProperty::PT_EDIT_DURATION,
-									true,
-									ZBStringFormat( ZBStringFormat::Duration7 ) );
-		}
-
-		PropSet.Add( pTime );
-	}
-
-	// JMR-MODIF - Le 14 mars 2006 - La propriété "% en sortie" n'est plus dépendante de Sesterces.
-	// Propriété "% en sortie" du groupe "Livrable"
-	ZBProperty* pOutPercent = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-											  ZS_BP_PROP_DELIVERABLE_COST,
-											  IDS_Z_COST_OUT_WORKLOAD_PERCENT_NAME,
-											  Z_COST_OUT_WORKLOAD_PERCENT,
-											  IDS_Z_COST_OUT_WORKLOAD_PERCENT_DESC,
-											  GetOutWorkloadPercent(),
-											  ZBProperty::PT_EDIT_NUMBER,
-											  true, // Enable
-											  ZBStringFormat( ZBStringFormat::Percentage ) );
-
-	PropSet.Add( pOutPercent );
-
-	if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-		 dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetIntegrateCostSimulation() )
-	{
-		// Propriété "Coût unitaire" du groupe "Livrable"
-		ZBProperty* pPrice = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-											 ZS_BP_PROP_DELIVERABLE_COST,
-											 IDS_Z_COST_UNITARY_COST_NAME,
-											 Z_COST_UNITARY_COST,
-											 IDS_Z_COST_UNITARY_COST_DESC,
-											 GetUnitaryCost(),
-											 ZBProperty::PT_EDIT_NUMBER,
-											 true,
-											 ZBStringFormat( ZBStringFormat::Currency, true, 2, CurrencySymbol ) );
-
-		PropSet.Add( pPrice );
-
-		ZBProperty* pCaseDuration;
-
-		if ( NumericValue )
-		{
-			// Propriété "Age du cas (pondéré)" du groupe "Livrable"
-			pCaseDuration = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-											ZS_BP_PROP_DELIVERABLE_COST,
-											IDS_Z_COST_CASE_DURATION_NAME,
-											Z_COST_CASE_DURATION,
-											IDS_Z_COST_CASE_DURATION_DESC,
-											GetCaseDuration(),
-											ZBProperty::PT_EDIT_NUMBER );
-		}
-		else
-		{
-			// Propriété "Age du cas (pondéré)" du groupe "Livrable"
-			pCaseDuration = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-											ZS_BP_PROP_DELIVERABLE_COST,
-											IDS_Z_COST_CASE_DURATION_NAME,
-											Z_COST_CASE_DURATION,
-											IDS_Z_COST_CASE_DURATION_DESC,
-											ZBDuration( GetCaseDuration(),
-														HourPerDay,
-														DayPerWeek,
-														DayPerMonth,
-														DayPerYear ),
-											ZBProperty::PT_EDIT_DURATION_READONLY,
-											true,
-											ZBStringFormat( ZBStringFormat::Duration7 ) );
-		}
-
-		PropSet.Add( pCaseDuration );
-
-		ZBProperty* pCaseDurationMax;
-
-		if ( NumericValue )
-		{
-			// Propriété "Age du cas (maximum)" du groupe "Livrable"
-			pCaseDurationMax = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-											   ZS_BP_PROP_DELIVERABLE_COST,
-											   IDS_Z_COST_CASE_DURATIONMAX_NAME,
-											   Z_COST_CASE_DURATIONMAX,
-											   IDS_Z_COST_CASE_DURATIONMAX_DESC,
-											   GetCaseDurationMax(),
-											   ZBProperty::PT_EDIT_NUMBER );
-		}
-		else
-		{
-			// Propriété "Age du cas (maximum)" du groupe "Livrable"
-			pCaseDurationMax = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-											   ZS_BP_PROP_DELIVERABLE_COST,
-											   IDS_Z_COST_CASE_DURATIONMAX_NAME,
-											   Z_COST_CASE_DURATIONMAX,
-											   IDS_Z_COST_CASE_DURATIONMAX_DESC,
-											   ZBDuration( GetCaseDurationMax(),
-														   HourPerDay,
-														   DayPerWeek,
-														   DayPerMonth,
-														   DayPerYear ),
-											   ZBProperty::PT_EDIT_DURATION_READONLY,
-											   true,
-											   ZBStringFormat( ZBStringFormat::Duration7 ) );
-		}
-
-		PropSet.Add( pCaseDurationMax );
-
-		ZBProperty* pTargetDuration;
-
-		if ( NumericValue )
-		{
-			// Propriété "durée cible" du groupe "Livrable"
-			pTargetDuration = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-											  ZS_BP_PROP_DELIVERABLE_COST,
-											  IDS_Z_COST_TARGET_DURATION_NAME,
-											  Z_COST_TARGET_DURATION,
-											  IDS_Z_COST_TARGET_DURATION_DESC,
-											  GetTargetDuration(),
-											  ZBProperty::PT_EDIT_NUMBER );
-		}
-		else
-		{
-			// Propriété "durée cible" du groupe "Livrable"
-			pTargetDuration = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-											  ZS_BP_PROP_DELIVERABLE_COST,
-											  IDS_Z_COST_TARGET_DURATION_NAME,
-											  Z_COST_TARGET_DURATION,
-											  IDS_Z_COST_TARGET_DURATION_DESC,
-											  ZBDuration( GetTargetDuration(),
-														  HourPerDay,
-														  DayPerWeek,
-														  DayPerMonth,
-														  DayPerYear ),
-											  ZBProperty::PT_EDIT_DURATION,
-											  true,
-											  ZBStringFormat( ZBStringFormat::Duration7 ) );
-		}
-
-		PropSet.Add( pTargetDuration );
-
-		ZBProperty* pGreenLineDuration;
-
-		if ( NumericValue )
-		{
-			// Propriété "ligne verte" du groupe "Livrable"
-			pGreenLineDuration = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-												 ZS_BP_PROP_DELIVERABLE_COST,
-												 IDS_Z_COST_GREENLINE_DURATION_NAME,
-												 Z_COST_GREENLINE_DURATION,
-												 IDS_Z_COST_GREENLINE_DURATION_DESC,
-												 GetGreenLineDuration(),
-												 ZBProperty::PT_EDIT_NUMBER );
-		}
-		else
-		{
-			// Propriété "ligne verte" du groupe "Livrable"
-			pGreenLineDuration = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
-												 ZS_BP_PROP_DELIVERABLE_COST,
-												 IDS_Z_COST_GREENLINE_DURATION_NAME,
-												 Z_COST_GREENLINE_DURATION,
-												 IDS_Z_COST_GREENLINE_DURATION_DESC,
-												 ZBDuration( GetGreenLineDuration(),
-															 HourPerDay,
-															 DayPerWeek,
-															 DayPerMonth,
-															 DayPerYear ),
-												ZBProperty::PT_EDIT_DURATION,
-												true,
-												ZBStringFormat( ZBStringFormat::Duration7 ) );
-		}
-
-		PropSet.Add( pGreenLineDuration );
-	}
-
-	// Propriété "Quantité" du groupe "Quantités"
-	ZBProperty* pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-										   ZS_BP_PROP_QUANTITY,
-										   IDS_Z_NUMBER_YEAR_NAME,
-										   Z_NUMBER_YEAR,
-										   IDS_Z_NUMBER_YEAR_DESC,
-										   GetQuantityYear(),
-										   ZBProperty::PT_EDIT_EXTENDED,
-										   true,
-										   ZBStringFormat( ZBStringFormat::Accounting, true, 0 ) );	// Depends on display detail
-
-	PropSet.Add( pPropQty );
-
-	sValue = ( GetLockQuantityYear() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
-
-	if ( NumericValue )
-	{
-		// Propriété "Bloquer" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_YEAR_NAME,
-								   Z_LOCKED_YEAR,
-								   IDS_Z_LOCKED_YEAR_DESC,
-								   ( GetLockQuantityYear() ) ? (double)1 : (double)0 );
-	}
-	else
-	{
-		// Propriété "Bloquer" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_YEAR_NAME,
-								   Z_LOCKED_YEAR,
-								   IDS_Z_LOCKED_YEAR_DESC,
-								   sValue,
-								   ZBProperty::PT_COMBO_STRING_READONLY,
-								   true, // Enable
-								   ZBStringFormat( ZBStringFormat::General ),
-								   ZAGlobal::GetArrayYesNo() );
-	}
-
-	PropSet.Add( pPropQty );
-
-	sValue = ( GetForceEqualizer() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
-
-	if ( NumericValue )
-	{
-		// Propriété "Forcer" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_FORCE_EQUALIZER_NAME,
-								   Z_FORCE_EQUALIZER,
-								   IDS_Z_FORCE_EQUALIZER_DESC,
-								   ( GetForceEqualizer() ) ? (double)1 : (double)0 );
-	}
-	else
-	{
-		// Propriété "Forcer" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_FORCE_EQUALIZER_NAME,
-								   Z_FORCE_EQUALIZER,
-								   IDS_Z_FORCE_EQUALIZER_DESC,
-								   sValue,
-								   ZBProperty::PT_COMBO_STRING_READONLY,
-								   true, // Enable
-								   ZBStringFormat( ZBStringFormat::General ),
-								   ZAGlobal::GetArrayYesNo() );
-	}
-
-	PropSet.Add( pPropQty );
-
-	// Propriété "Quantité janvier" du groupe "Quantités"
-	pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-							   ZS_BP_PROP_QUANTITY,
-							   IDS_Z_NUMBER_JANUARY_NAME,
-							   Z_NUMBER_JANUARY,
-							   IDS_Z_NUMBER_JANUARY_DESC,
-							   GetQuantityJanuary(),
-							   ZBProperty::PT_EDIT_NUMBER,
-							   false ); // don't display detail
-
-	PropSet.Add( pPropQty );
-
-	sValue = ( GetLockQuantityJanuary() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
-
-	if ( NumericValue )
-	{
-		// Propriété "Bloquer janvier" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_JANUARY_NAME,
-								   Z_LOCKED_JANUARY,
-								   IDS_Z_LOCKED_JANUARY_DESC,
-								   ( GetLockQuantityJanuary() ) ? (double)1 : (double)0 );
-	}
-	else
-	{
-		// Propriété "Bloquer janvier" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_JANUARY_NAME,
-								   Z_LOCKED_JANUARY,
-								   IDS_Z_LOCKED_JANUARY_DESC,
-								   sValue,
-								   ZBProperty::PT_COMBO_STRING_READONLY,
-								   false, // don't display detail
-								   ZBStringFormat( ZBStringFormat::General ),
-								   ZAGlobal::GetArrayYesNo() );
-	}
-
-	PropSet.Add( pPropQty );
-
-	// Propriété "Quantité février" du groupe "Quantités"
-	pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-							   ZS_BP_PROP_QUANTITY,
-							   IDS_Z_NUMBER_FEBRUARY_NAME,
-							   Z_NUMBER_FEBRUARY,
-							   IDS_Z_NUMBER_FEBRUARY_DESC,
-							   GetQuantityFebruary(),
-							   ZBProperty::PT_EDIT_NUMBER,
-							   false ); // don't display detail
-
-	PropSet.Add( pPropQty );
-
-	sValue = ( GetLockQuantityFebruary() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
-
-	if ( NumericValue )
-	{
-		// Propriété "Bloquer février" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_FEBRUARY_NAME,
-								   Z_LOCKED_FEBRUARY,
-								   IDS_Z_LOCKED_FEBRUARY_DESC,
-								   ( GetLockQuantityFebruary() ) ? (double)1 : (double)0 );
-	}
-	else
-	{
-		// Propriété "Bloquer février" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_FEBRUARY_NAME,
-								   Z_LOCKED_FEBRUARY,
-								   IDS_Z_LOCKED_FEBRUARY_DESC,
-								   sValue,
-								   ZBProperty::PT_COMBO_STRING_READONLY,
-								   false, // don't display detail
-								   ZBStringFormat( ZBStringFormat::General ),
-								   ZAGlobal::GetArrayYesNo() );
-	}
-
-	PropSet.Add( pPropQty );
-
-	// Propriété "Quantité mars" du groupe "Quantités"
-	pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-							   ZS_BP_PROP_QUANTITY,
-							   IDS_Z_NUMBER_MARCH_NAME,
-							   Z_NUMBER_MARCH,
-							   IDS_Z_NUMBER_MARCH_DESC,
-							   GetQuantityMarch(),
-							   ZBProperty::PT_EDIT_NUMBER,
-							   false ); // don't display detail
-
-	PropSet.Add( pPropQty );
-
-	sValue = ( GetLockQuantityMarch() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
-
-	if ( NumericValue )
-	{
-		// Propriété "Bloquer mars" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_MARCH_NAME,
-								   Z_LOCKED_MARCH,
-								   IDS_Z_LOCKED_MARCH_DESC,
-								   ( GetLockQuantityMarch() ) ? (double)1 : (double)0 );
-	}
-	else
-	{
-		// Propriété "Bloquer mars" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_MARCH_NAME,
-								   Z_LOCKED_MARCH,
-								   IDS_Z_LOCKED_MARCH_DESC,
-								   sValue,
-								   ZBProperty::PT_COMBO_STRING_READONLY,
-								   false, // don't display detail
-								   ZBStringFormat( ZBStringFormat::General ),
-								   ZAGlobal::GetArrayYesNo() );
-	}
-
-	PropSet.Add( pPropQty );
-
-	// Propriété "Quantité avril" du groupe "Quantités"
-	pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-							   ZS_BP_PROP_QUANTITY,
-							   IDS_Z_NUMBER_APRIL_NAME,
-							   Z_NUMBER_APRIL,
-							   IDS_Z_NUMBER_APRIL_DESC,
-							   GetQuantityApril(),
-							   ZBProperty::PT_EDIT_NUMBER,
-							   false); // don't display detail
-
-	PropSet.Add( pPropQty );
-
-	sValue = ( GetLockQuantityApril() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
-
-	if ( NumericValue )
-	{
-		// Propriété "Bloquer avril" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_APRIL_NAME,
-								   Z_LOCKED_APRIL,
-								   IDS_Z_LOCKED_APRIL_DESC,
-								   ( GetLockQuantityApril() ) ? (double)1 : (double)0 );
-	}
-	else
-	{
-	// Propriété "Bloquer avril" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_APRIL_NAME,
-								   Z_LOCKED_APRIL,
-								   IDS_Z_LOCKED_APRIL_DESC,
-								   sValue,
-								   ZBProperty::PT_COMBO_STRING_READONLY,
-								   false, // don't display detail
-								   ZBStringFormat( ZBStringFormat::General ),
-								   ZAGlobal::GetArrayYesNo() );
-	}
-
-	PropSet.Add( pPropQty );
-
-	// Propriété "Quantité mai" du groupe "Quantités"
-	pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-							   ZS_BP_PROP_QUANTITY,
-							   IDS_Z_NUMBER_MAY_NAME,
-							   Z_NUMBER_MAY,
-							   IDS_Z_NUMBER_MAY_DESC,
-							   GetQuantityMay(),
-							   ZBProperty::PT_EDIT_NUMBER,
-							   false ); // don't display detail
-
-	PropSet.Add( pPropQty );
-
-	sValue = ( GetLockQuantityMay() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
-
-	if ( NumericValue )
-	{
-		// Propriété "Bloquer mai" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_MAY_NAME,
-								   Z_LOCKED_MAY,
-								   IDS_Z_LOCKED_MAY_DESC,
-								   ( GetLockQuantityMay() ) ? (double)1 : (double)0 );
-	}
-	else
-	{
-		// Propriété "Bloquer mai" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_MAY_NAME,
-								   Z_LOCKED_MAY,
-								   IDS_Z_LOCKED_MAY_DESC,
-								   sValue,
-								   ZBProperty::PT_COMBO_STRING_READONLY,
-								   false, // don't display detail
-								   ZBStringFormat( ZBStringFormat::General ),
-								   ZAGlobal::GetArrayYesNo() );
-	}
-
-	PropSet.Add( pPropQty );
-
-	// Propriété "Quantité juin" du groupe "Quantités"
-	pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-							   ZS_BP_PROP_QUANTITY,
-							   IDS_Z_NUMBER_JUNE_NAME,
-							   Z_NUMBER_JUNE,
-							   IDS_Z_NUMBER_JUNE_DESC,
-							   GetQuantityJune(),
-							   ZBProperty::PT_EDIT_NUMBER,
-							   false ); // don't display detail
-
-	PropSet.Add( pPropQty );
-
-	sValue = ( GetLockQuantityJune() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
-
-	if ( NumericValue )
-	{
-		// Propriété "Bloquer juin" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_JUNE_NAME,
-								   Z_LOCKED_JUNE,
-								   IDS_Z_LOCKED_JUNE_DESC,
-								   ( GetLockQuantityJune() ) ? (double)1 : (double)0 );
-	}
-	else
-	{
-		// Propriété "Bloquer juin" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_JUNE_NAME,
-								   Z_LOCKED_JUNE,
-								   IDS_Z_LOCKED_JUNE_DESC,
-								   sValue,
-								   ZBProperty::PT_COMBO_STRING_READONLY,
-								   false, // don't display detail
-								   ZBStringFormat( ZBStringFormat::General ),
-								   ZAGlobal::GetArrayYesNo() );
-	}
-
-	PropSet.Add( pPropQty );
-
-	// Propriété "Quantité juillet" du groupe "Quantités"
-	pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-							   ZS_BP_PROP_QUANTITY,
-							   IDS_Z_NUMBER_JULY_NAME,
-							   Z_NUMBER_JULY,
-							   IDS_Z_NUMBER_JULY_DESC,
-							   GetQuantityJuly(),
-							   ZBProperty::PT_EDIT_NUMBER,
-							   false ); // don't display detail
-
-	PropSet.Add( pPropQty );
-
-	sValue = ( GetLockQuantityJuly() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
-
-	if ( NumericValue )
-	{
-		// Propriété "Bloquer juillet" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_JULY_NAME,
-								   Z_LOCKED_JULY,
-								   IDS_Z_LOCKED_JULY_DESC,
-								   ( GetLockQuantityJuly() ) ? (double)1 : (double)0 );
-	}
-	else
-	{
-		// Propriété "Bloquer juillet" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_JULY_NAME,
-								   Z_LOCKED_JULY,
-								   IDS_Z_LOCKED_JULY_DESC,
-								   sValue,
-								   ZBProperty::PT_COMBO_STRING_READONLY,
-								   false, // don't display detail
-								   ZBStringFormat( ZBStringFormat::General ),
-								   ZAGlobal::GetArrayYesNo() );
-	}
-
-	PropSet.Add( pPropQty );
-
-	// Propriété "Quantité août" du groupe "Quantités"
-	pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-							   ZS_BP_PROP_QUANTITY,
-							   IDS_Z_NUMBER_AUGUST_NAME,
-							   Z_NUMBER_AUGUST,
-							   IDS_Z_NUMBER_AUGUST_DESC,
-							   GetQuantityAugust(),
-							   ZBProperty::PT_EDIT_NUMBER,
-							   false ); // don't display detail
-
-	PropSet.Add( pPropQty );
-
-	sValue = ( GetLockQuantityAugust() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
-
-	if ( NumericValue )
-	{
-		// Propriété "Bloquer août" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_AUGUST_NAME,
-								   Z_LOCKED_AUGUST,
-								   IDS_Z_LOCKED_AUGUST_DESC,
-								   ( GetLockQuantityAugust() ) ? (double)1 : (double)0 );
-	}
-	else
-	{
-		// Propriété "Bloquer août" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_AUGUST_NAME,
-								   Z_LOCKED_AUGUST,
-								   IDS_Z_LOCKED_AUGUST_DESC,
-								   sValue,
-								   ZBProperty::PT_COMBO_STRING_READONLY,
-								   false, // don't display detail
-								   ZBStringFormat( ZBStringFormat::General ),
-								   ZAGlobal::GetArrayYesNo() );
-	}
-
-	PropSet.Add( pPropQty );
-
-	// Propriété "Quantité septembre" du groupe "Quantités"
-	pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-							   ZS_BP_PROP_QUANTITY,
-							   IDS_Z_NUMBER_SEPTEMBER_NAME,
-							   Z_NUMBER_SEPTEMBER,
-							   IDS_Z_NUMBER_SEPTEMBER_DESC,
-							   GetQuantitySeptember(),
-							   ZBProperty::PT_EDIT_NUMBER,
-							   false ); // don't display detail
-
-	PropSet.Add( pPropQty );
-
-	sValue = ( GetLockQuantitySeptember() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
-
-	if ( NumericValue )
-	{
-		// Propriété "Bloquer septembre" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_SEPTEMBER_NAME,
-								   Z_LOCKED_SEPTEMBER,
-								   IDS_Z_LOCKED_SEPTEMBER_DESC,
-								   ( GetLockQuantitySeptember() ) ? (double)1 : (double)0 );
-	}
-	else
-	{
-	// Propriété "Bloquer septembre" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_SEPTEMBER_NAME,
-								   Z_LOCKED_SEPTEMBER,
-								   IDS_Z_LOCKED_SEPTEMBER_DESC,
-								   sValue,
-								   ZBProperty::PT_COMBO_STRING_READONLY,
-								   false, // don't display detail
-								   ZBStringFormat( ZBStringFormat::General ),
-								   ZAGlobal::GetArrayYesNo() );
-	}
-
-	PropSet.Add( pPropQty );
-
-	// Propriété "Quantité octobre" du groupe "Quantités"
-	pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-							   ZS_BP_PROP_QUANTITY,
-							   IDS_Z_NUMBER_OCTOBER_NAME,
-							   Z_NUMBER_OCTOBER,
-							   IDS_Z_NUMBER_OCTOBER_DESC,
-							   GetQuantityOctober(),
-							   ZBProperty::PT_EDIT_NUMBER,
-							   false ); // don't display detail
-
-	PropSet.Add( pPropQty );
-
-	sValue = ( GetLockQuantityOctober() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
-
-	if ( NumericValue )
-	{
-		// Propriété "Bloquer octobre" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_OCTOBER_NAME,
-								   Z_LOCKED_OCTOBER,
-								   IDS_Z_LOCKED_OCTOBER_DESC,
-								   ( GetLockQuantityOctober() ) ? (double)1 : (double)0 );
-	}
-	else
-	{
-		// Propriété "Bloquer octobre" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_OCTOBER_NAME,
-								   Z_LOCKED_OCTOBER,
-								   IDS_Z_LOCKED_OCTOBER_DESC,
-								   sValue,
-								   ZBProperty::PT_COMBO_STRING_READONLY,
-								   false, // don't display detail
-								   ZBStringFormat( ZBStringFormat::General ),
-								   ZAGlobal::GetArrayYesNo() );
-	}
-
-	PropSet.Add( pPropQty );
-
-	// Propriété "Quantité novembre" du groupe "Quantités"
-	pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-							   ZS_BP_PROP_QUANTITY,
-							   IDS_Z_NUMBER_NOVEMBER_NAME,
-							   Z_NUMBER_NOVEMBER,
-							   IDS_Z_NUMBER_NOVEMBER_DESC,
-							   GetQuantityNovember(),
-							   ZBProperty::PT_EDIT_NUMBER,
-							   false ); // don't display detail
-
-	PropSet.Add( pPropQty );
-
-	sValue = ( GetLockQuantityNovember() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
-
-	if ( NumericValue )
-	{
-		// Propriété "Bloquer novembre" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_NOVEMBER_NAME,
-								   Z_LOCKED_NOVEMBER,
-								   IDS_Z_LOCKED_NOVEMBER_DESC,
-								   ( GetLockQuantityNovember() ) ? (double)1 : (double)0 );
-	}
-	else
-	{
-		// Propriété "Bloquer novembre" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_NOVEMBER_NAME,
-								   Z_LOCKED_NOVEMBER,
-								   IDS_Z_LOCKED_NOVEMBER_DESC,
-								   sValue,
-								   ZBProperty::PT_COMBO_STRING_READONLY,
-								   false, // don't display detail
-								   ZBStringFormat( ZBStringFormat::General ),
-								   ZAGlobal::GetArrayYesNo() );
-	}
-
-	PropSet.Add( pPropQty );
-
-	// Propriété "Quantité décembre" du groupe "Quantités"
-	pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-							   ZS_BP_PROP_QUANTITY,
-							   IDS_Z_NUMBER_DECEMBER_NAME,
-							   Z_NUMBER_DECEMBER,
-							   IDS_Z_NUMBER_DECEMBER_DESC,
-							   GetQuantityDecember(),
-							   ZBProperty::PT_EDIT_NUMBER,
-							   false ); // don't display detail
-
-	PropSet.Add( pPropQty );
-
-	sValue = ( GetLockQuantityDecember() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
-
-	if ( NumericValue )
-	{
-		// Propriété "Bloquer décembre" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_DECEMBER_NAME,
-								   Z_LOCKED_DECEMBER,
-								   IDS_Z_LOCKED_DECEMBER_DESC,
-								   ( GetLockQuantityDecember() ) ? (double)1 : (double)0 );
-	}
-	else
-	{
-		// Propriété "Bloquer décembre" du groupe "Quantités"
-		pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
-								   ZS_BP_PROP_QUANTITY,
-								   IDS_Z_LOCKED_DECEMBER_NAME,
-								   Z_LOCKED_DECEMBER,
-								   IDS_Z_LOCKED_DECEMBER_DESC,
-								   sValue,
-								   ZBProperty::PT_COMBO_STRING_READONLY,
-								   false, // don't display detail
-								   ZBStringFormat( ZBStringFormat::General ),
-								   ZAGlobal::GetArrayYesNo() );
-	}
-
-	PropSet.Add( pPropQty );
-
-	if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-		dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetIntegrateCostSimulation() )
-	{
-		// Add simulation properties
-		ZBProperty* pSimProp = NULL;
-
-		// Propriété "Coût" du groupe "Calculs et prévisions"
-		pSimProp = new ZBProperty( IDS_ZS_BP_PROP_SIM_DELIVERABLE,
-								   ZS_BP_PROP_SIM_DELIVERABLE,
-								   IDS_Z_SIM_DELIV_COST_NAME,
-								   Z_SIM_DELIV_COST,
-								   IDS_Z_SIM_DELIV_COST_DESC,
-								   (double)GetCost(),
-								   ZBProperty::PT_EDIT_NUMBER_READONLY,
-								   true,
-								   ZBStringFormat( ZBStringFormat::Currency, true, 2, CurrencySymbol ) );
-
-		PropSet.Add( pSimProp );
-
-		// Propriété "Charge de travail" du groupe "Calculs et prévisions"
-		pSimProp = new ZBProperty( IDS_ZS_BP_PROP_SIM_DELIVERABLE,
-								   ZS_BP_PROP_SIM_DELIVERABLE,
-								   IDS_Z_SIM_DELIV_WORKLOAD_FORECAST_NAME,
-								   Z_SIM_DELIV_WORKLOAD_FORECAST,
-								   IDS_Z_SIM_DELIV_WORKLOAD_FORECAST_DESC,
-								   ZBDuration( (double)GetWorkloadForecast(),
-												HourPerDay,
-												DayPerWeek,
-												DayPerMonth,
-												DayPerYear ),
-								   ZBProperty::PT_EDIT_DURATION_READONLY,
-								   true,
-								   ZBStringFormat( ZBStringFormat::Duration7 ) );
-
-		PropSet.Add( pSimProp );
-
-		// Propriété "Guid" du groupe "Unité de traitement" (Non visible)
-		ZBProperty* pUnitGUID = new ZBProperty( IDS_ZS_BP_PROP_UNIT_TITLE,
-												ZS_BP_PROP_UNIT,
-												IDS_Z_UNIT_GUID_NAME,
-												Z_UNIT_GUID,
-												IDS_Z_UNIT_GUID_DESC,
-												GetUnitGUID(),
-												ZBProperty::PT_EDIT_EXTENDED_READONLY,
-												false ); // Not enable, used for saving the unit GUID
-
-		PropSet.Add( pUnitGUID );
-
-		bool Error;
-		CString UnitName = RetreiveUnitName( GetUnitGUID(), Error );
-
-		// Propriété "Unité" du groupe "Unité de traitement" (Non visible)
-		ZBProperty* pUnitName = new ZBProperty( IDS_ZS_BP_PROP_UNIT_TITLE,
-												ZS_BP_PROP_UNIT,
-												IDS_Z_UNIT_NAME_NAME,
-												Z_UNIT_NAME,
-												IDS_Z_UNIT_NAME_DESC,
-												UnitName,
-												( GroupEnabled ) ? ZBProperty::PT_EDIT_EXTENDED_READONLY : ZBProperty::PT_EDIT_STRING_READONLY,
-												false);
-		PropSet.Add( pUnitName );
-
-		float UnitCost = RetreiveUnitCost( GetUnitGUID(), Error );
-
-		// Propriété "Coût" du groupe "Unité de traitement" (Non visible)
-		ZBProperty* pUnitCost = new ZBProperty( IDS_ZS_BP_PROP_UNIT_TITLE,
-												ZS_BP_PROP_UNIT,
-												IDS_Z_UNIT_COST_NAME,
-												Z_UNIT_COST,
-												IDS_Z_UNIT_COST_DESC,
-												UnitCost,
-												ZBProperty::PT_EDIT_NUMBER_READONLY,
-												false,
-												ZBStringFormat(ZBStringFormat::Currency, true, 2, CurrencySymbol),
-												false);
-		PropSet.Add( pUnitCost );
-	}
-
-	// RS-MODIF 17.11.04 Double validation should appear in Conceptor
-	ZBProperty* pUnitDoubleValid;
-
-	if ( NumericValue )
-	{
-		// Propriété "Double validation" du groupe "Unité de traitement"
-		pUnitDoubleValid = new ZBProperty( IDS_ZS_BP_PROP_UNIT_TITLE,
-										   ZS_BP_PROP_UNIT,
-										   IDS_Z_UNIT_DOUBLE_VALIDATION_NAME,
-										   Z_UNIT_DOUBLE_VALIDATION,
-										   IDS_Z_UNIT_DOUBLE_VALIDATION_DESC,
-										   (double)GetUnitDoubleValidationType() );
-	}
-	else
-	{
-		// Propriété "Double validation" du groupe "Unité de traitement"
-		pUnitDoubleValid = new ZBProperty( IDS_ZS_BP_PROP_UNIT_TITLE,
-										   ZS_BP_PROP_UNIT,
-										   IDS_Z_UNIT_DOUBLE_VALIDATION_NAME,
-										   Z_UNIT_DOUBLE_VALIDATION,
-										   IDS_Z_UNIT_DOUBLE_VALIDATION_DESC,
-										   GetUnitDoubleValidationTypeString( GetUnitDoubleValidationType() ),
-										   ZBProperty::PT_COMBO_STRING_READONLY,
-										   true, // Enable
-										   ZBStringFormat( ZBStringFormat::General ),
-										   &m_UnitDoubleValidationTypeArray );
-	}
-
-	PropSet.Add( pUnitDoubleValid );
-	
-	return true;
+    CODModel * pModel = GetRootModel();
+
+    // RS-MODIF 11.12.04 ext link should also appear in deliverable
+    /*if ( pModel && ISA( pModel,ZDProcessGraphModelMdl ) &&
+        dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetUseWorkflow() )*/
+    {
+        // If no file, add one new
+        if ( GetExtFileCount() == 0 )
+        {
+            AddNewExtFile();
+        }
+    }
+
+    // Les propriétés "Nom", "Description" et "Référence" du groupe "General" sont affichées par la classe de base.
+    // La classe de base affiche également les propriétés des groupes "Liens externes" et "Fichiers externes",
+    // ainsi que les propriétés dynamiques.
+    if ( !ZBLinkSymbol::FillProperties( PropSet, NumericValue, GroupValue ) )
+    {
+        return false;
+    }
+
+    // Seuls les symboles locaux ont accès aux propriétés.
+    if ( !IsLocal() )
+    {
+        return true;
+    }
+
+    // Initialize the Currency symbol with the user local currency symbol
+    // defined in the Control Panel
+    CString CurrencySymbol = ZAGlobal::GetLocaleCurrency();
+
+    // JMR-MODIF - Le 30 juillet 2007 - Mets à jour le symbole monétaire en fonction de la sélection utilisateur.
+    if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) )
+    {
+        CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetDocument();
+
+        if ( pDoc && ISA( pDoc, ZDProcessGraphModelDoc ) )
+        {
+            // Retreive the model's currency symbol
+            CurrencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetCurrencySymbol();
+        }
+    }
+
+    CString sValue;
+
+    int        Count;
+    CString FinalPropName;
+    CString PropTitle;
+    CString PropName;
+    CString PropDesc;
+
+    bool GroupEnabled = true;
+
+    if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
+         !dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->MainUserGroupIsValid() )
+    {
+        GroupEnabled = false;
+    }
+
+    // ************************************************************************************************************
+    // JMR-MODIF - Le 22 novembre 2006 - Nouvelle architecture des règles.
+
+    // If the menu is not loaded, load it
+    if ( gRulesMenu.GetSafeHmenu() == NULL )
+    {
+        gRulesMenu.LoadMenu( IDR_RULES_MENU );
+    }
+
+    if ( m_Rules.GetRulesCount() > 0 )
+    {
+        CString RuleSectionTitle    = _T( "" );
+        CString RuleName            = _T( "" );
+        CString RuleDesc            = _T( "" );
+
+        RuleSectionTitle.LoadString( IDS_Z_RULES_TITLE );
+        RuleDesc.LoadString( IDS_Z_RULES_DESC );
+
+        ZBLogicalRulesEntity* p_MainRule = NULL;
+
+        if ( GetOwnerModel() != NULL && ISA( GetOwnerModel(), ZDProcessGraphModelMdlBP ) )
+        {
+            ZDProcessGraphModelMdlBP* p_Model = reinterpret_cast<ZDProcessGraphModelMdlBP*>( GetOwnerModel() );
+
+            if ( p_Model != NULL                    &&
+                 p_Model->GetController() != NULL    &&
+                 ISA( p_Model->GetController(), ZDProcessGraphModelControllerBP ) )
+            {
+                ZDProcessGraphModelControllerBP* p_Controller =
+                    reinterpret_cast<ZDProcessGraphModelControllerBP*>( p_Model->GetController() );
+
+                if ( p_Controller != NULL && ISA( p_Controller->GetDocument(), ZDProcessGraphModelDoc ) )
+                {
+                    ZDProcessGraphModelDoc* p_Document =
+                        reinterpret_cast<ZDProcessGraphModelDoc*>( p_Controller->GetDocument() );
+
+                    if ( p_Document != NULL && p_Document->GetMainLogicalRules() != NULL )
+                    {
+                        p_MainRule = p_Document->GetMainLogicalRules();
+                    }
+                }
+            }
+        }
+
+        for ( int i = 0; i < m_Rules.GetRulesCount(); i++ )
+        {
+            // Le contrôle des règles ne peut être appliqué que si le modèle est en phase avec le système des règles.
+            if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
+                dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->MainLogicalRulesIsValid() )
+            {
+                CString m_SafeName = GetRuleNameByGUID( p_MainRule, m_Rules.GetRuleGUID( i ) );
+
+                // ********************************************************************************************
+                // JMR-MODIF - Le 8 octobre 2007 - Rééctriture de la routine suite à un bug de perte de règles.
+                // Avant, le test supprimait une règle qui n'était plus synchronisée au référentiel, maintenant
+                // seul le nom de la règle est contrôlé et renommé, à condition qu'il soit synchronisé avec le
+                // référentiel.
+                /*
+                if ( m_SafeName.IsEmpty() )
+                {
+                    m_Rules.DeleteRule( i );
+                }
+                else if ( m_SafeName != m_Rules.GetRuleName( i ) )
+                {
+                    m_Rules.SetRuleName( i, m_SafeName );
+                }
+                */
+
+                if ( !m_SafeName.IsEmpty() && m_SafeName != m_Rules.GetRuleName( i ) )
+                {
+                    m_Rules.SetRuleName( i, m_SafeName );
+                }
+                // ********************************************************************************************
+            }
+
+            RuleName.Format( IDS_Z_RULES_NAME, i + 1 );
+
+            // Propriété "Règle x" du groupe "Règles"
+            ZBProperty* pRule = new ZBProperty( RuleSectionTitle,
+                                                ZS_BP_PROP_RULES,
+                                                RuleName,
+                                                Z_RULE_NAME + ( i * _MaxRulesSize ),
+                                                RuleDesc,
+                                                m_Rules.GetRuleName( i ),
+                                                ZBProperty::PT_EDIT_MENU,
+                                                true,
+                                                ZBStringFormat( ZBStringFormat::General ),
+                                                NULL,
+                                                &gRulesMenu );
+
+            pRule->EnableDragNDrop();
+            PropSet.Add( pRule );
+        }
+    }
+    // ************************************************************************************************************
+
+    // ************************************************************************************************************
+    // JMR-MODIF - Le 22 novembre 2006 - ATTENTION : L'ancienne architecture de règles ci-dessous a maintenant
+    // changé, et est désignée sous le terme de contrôle, car celle-ci était devenue obsolète après la nouvelle
+    // implémentation du système de règles datant de novembre 2006. Mais les deux architectures étant trop
+    // différentes l'une de l'autre, il a fallu faire cohabiter les deux pour des raisons de compatibilité avec les
+    // anciens fichiers. Cependant, les textes concernant l'ancienne architecture ont été corrigés, et les termes
+    // "règles" ont été remplacés par les termes "Contrôles" dans les ressources de textes. Toutefois, les autres
+    // corrections étaient trop importantes pour être appliquées au code, ce qui provoque une ambiguité dans le nom
+    // des classes et des ressources. Si une nouvelle modification doit être approtée à l'architecture des contrôles
+    // il faut donc le faire avec la plus grande prudence.
+
+    // Add rules
+    ZBBPRuleListProperties* pRulesProps;;
+
+    // Obtention des données pour l'affichage des règles.
+    if ( ( pRulesProps = (ZBBPRuleListProperties*)GetProperty( ZS_BP_PROP_RULELIST ) ) == NULL )
+    {
+        // try to add it
+        ZBBPRuleListProperties propRules;
+        AddProperty( propRules );
+
+        // Retreive it
+        pRulesProps = (ZBBPRuleListProperties*)GetProperty( ZS_BP_PROP_RULELIST );
+
+        if ( !pRulesProps )
+        {
+            return false;
+        }
+    }
+
+    // Run through all tasks properties
+    // Add one to the counter to have always one empty task
+    Count = GetRuleCount() + 1;
+    PropTitle.LoadString( IDS_ZS_BP_PROP_RULELST_TITLE );
+    CStringArray* pArrayOfValues = ZAGlobal::GetHistoricValueManager().GetFieldHistory( PropTitle );
+
+    PropName.LoadString( IDS_Z_RULE_LIST_NAME );
+    PropDesc.LoadString( IDS_Z_RULE_LIST_DESC );
+
+    for ( int i = 0; i < Count; ++i )
+    {
+        FinalPropName.Format( _T( "%s %d" ), PropName, i + 1 );
+
+        // Propriété "Règle x" du groupe "Règles"
+        ZBProperty* pRuleList = new ZBProperty( PropTitle,
+                                                ZS_BP_PROP_RULELIST,
+                                                FinalPropName,
+                                                Z_RULE_LIST + ( i * _MaxRuleListSize ),
+                                                PropDesc,
+                                                GetRuleAt( i ),
+                                                ZBProperty::PT_EDIT_INTELI,
+                                                true, // Enable
+                                                ZBStringFormat( ZBStringFormat::General ),
+                                                pArrayOfValues );
+
+        pRuleList->EnableDragNDrop();
+        PropSet.Add( pRuleList );
+    }
+
+    // Now continue to add empty tasks till the maximum size
+    for ( ; i < _MaxRuleListSize; ++i )
+    {
+        FinalPropName.Format( _T( "%s %d" ), PropName, i+1 );
+
+        // Propriété "Règle x" du groupe "Règles"
+        ZBProperty* pRuleList = new ZBProperty( PropTitle,
+                                                ZS_BP_PROP_RULELIST,
+                                                FinalPropName,
+                                                Z_RULE_LIST + ( i * _MaxRuleListSize ),
+                                                PropDesc,
+                                                _T( "" ),
+                                                ZBProperty::PT_EDIT_INTELI,
+                                                false, // Disable
+                                                ZBStringFormat( ZBStringFormat::General ),
+                                                pArrayOfValues );
+
+        pRuleList->EnableDragNDrop();
+        PropSet.Add( pRuleList );
+    }
+    // ************************************************************************************************************
+
+    // ***********************************************************************************************************
+    // JMR-MODIF - Le 3 juin 2007 - Ajout des propriétés liées aux risques.
+
+    // Obtient le menu des risques si celui-ci n'est pas encore présent.
+    if ( gRiskMenu.GetSafeHmenu() == NULL )
+    {
+        gRiskMenu.LoadMenu( IDR_RISK_MENU );
+    }
+
+    CString FinalRiskName    = _T( "" );
+    CString FinalRiskTitle    = _T( "" );
+    CString RiskTitle        = _T( "" );
+    CString RiskName        = _T( "" );
+    CString RiskDesc        = _T( "" );
+
+    RiskTitle.LoadString( IDS_ZS_BP_PROP_RISK_TITLE );
+
+    for ( i = 0; i < GetRiskCount(); ++i )
+    {
+        FinalRiskTitle.Format( _T( "%s (%d)" ), RiskTitle, i + 1 );
+
+        RiskName.LoadString( IDS_Z_RISK_NAME_NAME );
+        RiskDesc.LoadString( IDS_Z_RISK_NAME_DESC );
+
+        // Propriété "Titre Risque" du groupe "Risque (x)"
+        ZBProperty* pRisk = new ZBProperty( FinalRiskTitle,
+                                            ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
+                                            RiskName,
+                                            ( GroupValue == true ) ? Z_RISK_NAME : ( Z_RISK_NAME + ( i * _MaxRisksSize ) ),
+                                            RiskDesc,
+                                            GetRiskName( i ),
+                                            ZBProperty::PT_EDIT_MENU,
+                                            true,
+                                            ZBStringFormat( ZBStringFormat::General ),
+                                            NULL,
+                                            &gRiskMenu );
+
+        PropSet.Add( pRisk );
+
+        RiskName.LoadString( IDS_Z_RISK_DESC_NAME );
+        RiskDesc.LoadString( IDS_Z_RISK_DESC_DESC );
+
+        // Propriété "Description" du groupe "Risque (x)"
+        pRisk = new ZBProperty( FinalRiskTitle,
+                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
+                                RiskName,
+                                ( GroupValue == true ) ? Z_RISK_DESC : ( Z_RISK_DESC + ( i * _MaxRisksSize ) ),
+                                RiskDesc,
+                                GetRiskDesc( i ),
+                                ZBProperty::PT_EDIT_EXTENDED );
+
+        PropSet.Add( pRisk );
+
+        RiskName.LoadString( IDS_Z_RISK_TYPE_NAME );
+        RiskDesc.LoadString( IDS_Z_RISK_TYPE_DESC );
+
+        CString s_NoRiskType = _T( "" );
+        s_NoRiskType.LoadString( IDS_NO_RISK_TYPE );
+
+        pRisk = new ZBProperty( FinalRiskTitle,
+                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
+                                RiskName,
+                                ( GroupValue == true ) ? Z_RISK_TYPE : ( Z_RISK_TYPE + ( i * _MaxRisksSize ) ),
+                                RiskDesc,
+                                GetRiskType( i ).IsEmpty() ? s_NoRiskType : GetRiskType( i ),
+                                ZBProperty::PT_EDIT_EXTENDED_READONLY );
+
+        PropSet.Add( pRisk );
+
+        RiskName.LoadString( IDS_Z_RISK_IMPACT_NAME );
+        RiskDesc.LoadString( IDS_Z_RISK_IMPACT_DESC );
+
+        // Propriété "Impact" du groupe "Risque (x)"
+        pRisk = new ZBProperty( FinalRiskTitle,
+                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
+                                RiskName,
+                                ( GroupValue == true ) ? Z_RISK_IMPACT : ( Z_RISK_IMPACT + ( i * _MaxRisksSize ) ),
+                                RiskDesc,
+                                ZBMediator::Instance()->GetMainApp()->GetRiskImpactContainer()->GetElementAt( GetRiskImpact( i ) ),
+                                ZBProperty::PT_EDIT_EXTENDED_READONLY );
+
+        PropSet.Add( pRisk );
+
+        RiskName.LoadString( IDS_Z_RISK_PROBABILITY_NAME );
+        RiskDesc.LoadString( IDS_Z_RISK_PROBABILITY_DESC );
+
+        // Propriété "Probabilité" du groupe "Risque (x)"
+        pRisk = new ZBProperty( FinalRiskTitle,
+                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
+                                RiskName,
+                                ( GroupValue == true ) ? Z_RISK_PROBABILITY : ( Z_RISK_PROBABILITY + ( i * _MaxRisksSize ) ),
+                                RiskDesc,
+                                ZBMediator::Instance()->GetMainApp()->GetRiskProbabilityContainer()->GetElementAt( GetRiskProbability( i ) ),
+                                ZBProperty::PT_EDIT_EXTENDED_READONLY );
+
+        PropSet.Add( pRisk );
+
+        RiskName.LoadString( IDS_Z_RISK_SEVERITY_NAME );
+        RiskDesc.LoadString( IDS_Z_RISK_SEVERITY_DESC );
+
+        // Propriété "Sévérité" du groupe "Risque (x)"
+        pRisk = new ZBProperty( FinalRiskTitle,
+                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
+                                RiskName,
+                                ( GroupValue == true ) ? Z_RISK_SEVERITY : ( Z_RISK_SEVERITY + ( i * _MaxRisksSize ) ),
+                                RiskDesc,
+                                (double)GetRiskSeverity( i ),
+                                ZBProperty::PT_EDIT_NUMBER_READONLY );
+
+        PropSet.Add( pRisk );
+
+        RiskName.LoadString( IDS_Z_RISK_UE_NAME );
+        RiskDesc.LoadString( IDS_Z_RISK_UE_DESC );
+
+        // Propriété "Est. unit." du groupe "Risque (x)"
+        pRisk = new ZBProperty( FinalRiskTitle,
+                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
+                                RiskName,
+                                ( GroupValue == true ) ? Z_RISK_UE : ( Z_RISK_UE + ( i * _MaxRisksSize ) ),
+                                RiskDesc,
+                                GetRiskUE( i ),
+                                ZBProperty::PT_EDIT_NUMBER,
+                                true,
+                                ZBStringFormat( ZBStringFormat::Currency, true, 2, CurrencySymbol ) );
+
+        PropSet.Add( pRisk );
+
+        RiskName.LoadString( IDS_Z_RISK_POA_NAME );
+        RiskDesc.LoadString( IDS_Z_RISK_POA_DESC );
+
+        // Propriété "POA" du groupe "Risque (x)"
+        pRisk = new ZBProperty( FinalRiskTitle,
+                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
+                                RiskName,
+                                ( GroupValue == true ) ? Z_RISK_POA : ( Z_RISK_POA + ( i * _MaxRisksSize ) ),
+                                RiskDesc,
+                                GetRiskPOA( i ),
+                                ZBProperty::PT_EDIT_NUMBER,
+                                true,
+                                ZBStringFormat( ZBStringFormat::Currency, true, 2, CurrencySymbol ) );
+
+        PropSet.Add( pRisk );
+
+        RiskName.LoadString( IDS_Z_RISK_ACTION_NAME );
+        RiskDesc.LoadString( IDS_Z_RISK_ACTION_DESC );
+
+        // Propriété "Action" du groupe "Risque (x)"
+        pRisk = new ZBProperty( FinalRiskTitle,
+                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
+                                RiskName,
+                                ( GroupValue == true ) ? Z_RISK_ACTION : ( Z_RISK_ACTION + ( i * _MaxRisksSize ) ),
+                                RiskDesc,
+                                ( GetRiskAction( i ) == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo(),
+                                ZBProperty::PT_COMBO_STRING_READONLY,
+                                TRUE,
+                                ZBStringFormat( ZBStringFormat::General ),
+                                ZAGlobal::GetArrayYesNo() );
+
+        PropSet.Add( pRisk );
+    }
+    // ***********************************************************************************************************
+
+    // Text item list
+    ZBBPTextItemListProperties* pTextItemProps = (ZBBPTextItemListProperties*)GetProperty( ZS_BP_PROP_TEXTITEMLIST );
+
+    if ( !pTextItemProps )
+    {
+        return false;
+    }
+
+    // Run through all text items property
+    // Add one to the counter to have always one empty item
+    Count = GetTextItemCount() + 1;
+    PropTitle.LoadString( IDS_ZS_BP_PROP_PROCEDURE_ITMTXTLST_TITLE );
+    pArrayOfValues = ZAGlobal::GetHistoricValueManager().GetFieldHistory( PropTitle );
+
+    PropName.LoadString( IDS_Z_TEXTITEM_LIST_NAME );
+    PropDesc.LoadString( IDS_Z_TEXTITEM_LIST_DESC );
+
+    for ( i = 0; i < Count; ++i )
+    {
+        FinalPropName.Format( _T( "%s %d" ), PropName, i+1 );
+
+        // Propriété "Information x" du groupe "Liste des informations"
+        ZBProperty* pTextList = new ZBProperty( PropTitle,
+                                                ZS_BP_PROP_TEXTITEMLIST,
+                                                FinalPropName,
+                                                Z_TEXTITEM_LIST + ( i * _MaxTextItemListSize ),
+                                                PropDesc,
+                                                GetTextItemAt( i ),
+                                                ZBProperty::PT_EDIT_INTELI,
+                                                true, // Enable
+                                                ZBStringFormat( ZBStringFormat::General ),
+                                                pArrayOfValues );
+
+        pTextList->EnableDragNDrop();
+        PropSet.Add( pTextList );
+    }
+
+    // Now continue to add empty tasks till the maximum size
+    for ( ; i < _MaxTextItemListSize; ++i )
+    {
+        FinalPropName.Format( _T( "%s %d" ), PropName, i+1 );
+
+        // Propriété "Information x" du groupe "Liste des informations"
+        ZBProperty* pTextList = new ZBProperty( PropTitle,
+                                                ZS_BP_PROP_TEXTITEMLIST,
+                                                FinalPropName,
+                                                Z_TEXTITEM_LIST + ( i * _MaxTextItemListSize),
+                                                PropDesc,
+                                                _T( "" ),
+                                                ZBProperty::PT_EDIT_INTELI,
+                                                false, // Disable
+                                                ZBStringFormat( ZBStringFormat::General ),
+                                                pArrayOfValues );
+
+        pTextList->EnableDragNDrop();
+        PropSet.Add( pTextList );
+    }
+
+    int HourPerDay    = -1;
+    int DayPerWeek    = -1;
+    int DayPerMonth    = -1;
+    int DayPerYear    = -1;
+
+    if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) )
+    {
+        CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetDocument();
+
+        if ( pDoc && ISA( pDoc, ZDProcessGraphModelDoc ) )
+        {
+            // JMR-MODIF - Le 30 juillet 2007 - Cette opération est effectuée une fois pour toutes au début de la fonction.
+            // Retreive the model's currency symbol
+            //CurrencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetCurrencySymbol();
+
+            // Retreive the standard time definition
+            HourPerDay    = dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetHourPerDay();
+            DayPerWeek    = dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetDayPerWeek();
+            DayPerMonth    = dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetDayPerMonth();
+            DayPerYear    = dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetDayPerYear();
+        }
+    }
+
+    if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
+         dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetIntegrateCostSimulation() )
+    {
+        ZBProperty* pTime;
+
+        if ( NumericValue )
+        {
+            // Propriété "Temps standard" du groupe "Livrable"
+            pTime = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                    ZS_BP_PROP_DELIVERABLE_COST,
+                                    IDS_Z_COST_PROCESSING_TIME_NAME,
+                                    Z_COST_PROCESSING_TIME,
+                                    IDS_Z_COST_PROCESSING_TIME_DESC,
+                                    GetProcessingTime(),
+                                    ZBProperty::PT_EDIT_NUMBER );
+        }
+        else
+        {
+            // Propriété "Temps standard" du groupe "Livrable"
+            pTime = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                    ZS_BP_PROP_DELIVERABLE_COST,
+                                    IDS_Z_COST_PROCESSING_TIME_NAME,
+                                    Z_COST_PROCESSING_TIME,
+                                    IDS_Z_COST_PROCESSING_TIME_DESC,
+                                    ZBDuration( GetProcessingTime(),
+                                                HourPerDay,
+                                                DayPerWeek,
+                                                DayPerMonth,
+                                                DayPerYear ),
+                                    ZBProperty::PT_EDIT_DURATION,
+                                    true,
+                                    ZBStringFormat( ZBStringFormat::Duration7 ) );
+        }
+
+        PropSet.Add( pTime );
+    }
+
+    // JMR-MODIF - Le 14 mars 2006 - La propriété "% en sortie" n'est plus dépendante de Sesterces.
+    // Propriété "% en sortie" du groupe "Livrable"
+    ZBProperty* pOutPercent = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                              ZS_BP_PROP_DELIVERABLE_COST,
+                                              IDS_Z_COST_OUT_WORKLOAD_PERCENT_NAME,
+                                              Z_COST_OUT_WORKLOAD_PERCENT,
+                                              IDS_Z_COST_OUT_WORKLOAD_PERCENT_DESC,
+                                              GetOutWorkloadPercent(),
+                                              ZBProperty::PT_EDIT_NUMBER,
+                                              true, // Enable
+                                              ZBStringFormat( ZBStringFormat::Percentage ) );
+
+    PropSet.Add( pOutPercent );
+
+    if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
+         dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetIntegrateCostSimulation() )
+    {
+        // Propriété "Coût unitaire" du groupe "Livrable"
+        ZBProperty* pPrice = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                             ZS_BP_PROP_DELIVERABLE_COST,
+                                             IDS_Z_COST_UNITARY_COST_NAME,
+                                             Z_COST_UNITARY_COST,
+                                             IDS_Z_COST_UNITARY_COST_DESC,
+                                             GetUnitaryCost(),
+                                             ZBProperty::PT_EDIT_NUMBER,
+                                             true,
+                                             ZBStringFormat( ZBStringFormat::Currency, true, 2, CurrencySymbol ) );
+
+        PropSet.Add( pPrice );
+
+        ZBProperty* pCaseDuration;
+
+        if ( NumericValue )
+        {
+            // Propriété "Age du cas (pondéré)" du groupe "Livrable"
+            pCaseDuration = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                            ZS_BP_PROP_DELIVERABLE_COST,
+                                            IDS_Z_COST_CASE_DURATION_NAME,
+                                            Z_COST_CASE_DURATION,
+                                            IDS_Z_COST_CASE_DURATION_DESC,
+                                            GetCaseDuration(),
+                                            ZBProperty::PT_EDIT_NUMBER );
+        }
+        else
+        {
+            // Propriété "Age du cas (pondéré)" du groupe "Livrable"
+            pCaseDuration = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                            ZS_BP_PROP_DELIVERABLE_COST,
+                                            IDS_Z_COST_CASE_DURATION_NAME,
+                                            Z_COST_CASE_DURATION,
+                                            IDS_Z_COST_CASE_DURATION_DESC,
+                                            ZBDuration( GetCaseDuration(),
+                                                        HourPerDay,
+                                                        DayPerWeek,
+                                                        DayPerMonth,
+                                                        DayPerYear ),
+                                            ZBProperty::PT_EDIT_DURATION_READONLY,
+                                            true,
+                                            ZBStringFormat( ZBStringFormat::Duration7 ) );
+        }
+
+        PropSet.Add( pCaseDuration );
+
+        ZBProperty* pCaseDurationMax;
+
+        if ( NumericValue )
+        {
+            // Propriété "Age du cas (maximum)" du groupe "Livrable"
+            pCaseDurationMax = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                               ZS_BP_PROP_DELIVERABLE_COST,
+                                               IDS_Z_COST_CASE_DURATIONMAX_NAME,
+                                               Z_COST_CASE_DURATIONMAX,
+                                               IDS_Z_COST_CASE_DURATIONMAX_DESC,
+                                               GetCaseDurationMax(),
+                                               ZBProperty::PT_EDIT_NUMBER );
+        }
+        else
+        {
+            // Propriété "Age du cas (maximum)" du groupe "Livrable"
+            pCaseDurationMax = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                               ZS_BP_PROP_DELIVERABLE_COST,
+                                               IDS_Z_COST_CASE_DURATIONMAX_NAME,
+                                               Z_COST_CASE_DURATIONMAX,
+                                               IDS_Z_COST_CASE_DURATIONMAX_DESC,
+                                               ZBDuration( GetCaseDurationMax(),
+                                                           HourPerDay,
+                                                           DayPerWeek,
+                                                           DayPerMonth,
+                                                           DayPerYear ),
+                                               ZBProperty::PT_EDIT_DURATION_READONLY,
+                                               true,
+                                               ZBStringFormat( ZBStringFormat::Duration7 ) );
+        }
+
+        PropSet.Add( pCaseDurationMax );
+
+        ZBProperty* pTargetDuration;
+
+        if ( NumericValue )
+        {
+            // Propriété "durée cible" du groupe "Livrable"
+            pTargetDuration = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                              ZS_BP_PROP_DELIVERABLE_COST,
+                                              IDS_Z_COST_TARGET_DURATION_NAME,
+                                              Z_COST_TARGET_DURATION,
+                                              IDS_Z_COST_TARGET_DURATION_DESC,
+                                              GetTargetDuration(),
+                                              ZBProperty::PT_EDIT_NUMBER );
+        }
+        else
+        {
+            // Propriété "durée cible" du groupe "Livrable"
+            pTargetDuration = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                              ZS_BP_PROP_DELIVERABLE_COST,
+                                              IDS_Z_COST_TARGET_DURATION_NAME,
+                                              Z_COST_TARGET_DURATION,
+                                              IDS_Z_COST_TARGET_DURATION_DESC,
+                                              ZBDuration( GetTargetDuration(),
+                                                          HourPerDay,
+                                                          DayPerWeek,
+                                                          DayPerMonth,
+                                                          DayPerYear ),
+                                              ZBProperty::PT_EDIT_DURATION,
+                                              true,
+                                              ZBStringFormat( ZBStringFormat::Duration7 ) );
+        }
+
+        PropSet.Add( pTargetDuration );
+
+        ZBProperty* pGreenLineDuration;
+
+        if ( NumericValue )
+        {
+            // Propriété "ligne verte" du groupe "Livrable"
+            pGreenLineDuration = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                                 ZS_BP_PROP_DELIVERABLE_COST,
+                                                 IDS_Z_COST_GREENLINE_DURATION_NAME,
+                                                 Z_COST_GREENLINE_DURATION,
+                                                 IDS_Z_COST_GREENLINE_DURATION_DESC,
+                                                 GetGreenLineDuration(),
+                                                 ZBProperty::PT_EDIT_NUMBER );
+        }
+        else
+        {
+            // Propriété "ligne verte" du groupe "Livrable"
+            pGreenLineDuration = new ZBProperty( IDS_ZS_BP_PROP_COST_DELIV_TITLE,
+                                                 ZS_BP_PROP_DELIVERABLE_COST,
+                                                 IDS_Z_COST_GREENLINE_DURATION_NAME,
+                                                 Z_COST_GREENLINE_DURATION,
+                                                 IDS_Z_COST_GREENLINE_DURATION_DESC,
+                                                 ZBDuration( GetGreenLineDuration(),
+                                                             HourPerDay,
+                                                             DayPerWeek,
+                                                             DayPerMonth,
+                                                             DayPerYear ),
+                                                ZBProperty::PT_EDIT_DURATION,
+                                                true,
+                                                ZBStringFormat( ZBStringFormat::Duration7 ) );
+        }
+
+        PropSet.Add( pGreenLineDuration );
+    }
+
+    // Propriété "Quantité" du groupe "Quantités"
+    ZBProperty* pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                           ZS_BP_PROP_QUANTITY,
+                                           IDS_Z_NUMBER_YEAR_NAME,
+                                           Z_NUMBER_YEAR,
+                                           IDS_Z_NUMBER_YEAR_DESC,
+                                           GetQuantityYear(),
+                                           ZBProperty::PT_EDIT_EXTENDED,
+                                           true,
+                                           ZBStringFormat( ZBStringFormat::Accounting, true, 0 ) );    // Depends on display detail
+
+    PropSet.Add( pPropQty );
+
+    sValue = ( GetLockQuantityYear() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+
+    if ( NumericValue )
+    {
+        // Propriété "Bloquer" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_YEAR_NAME,
+                                   Z_LOCKED_YEAR,
+                                   IDS_Z_LOCKED_YEAR_DESC,
+                                   ( GetLockQuantityYear() ) ? (double)1 : (double)0 );
+    }
+    else
+    {
+        // Propriété "Bloquer" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_YEAR_NAME,
+                                   Z_LOCKED_YEAR,
+                                   IDS_Z_LOCKED_YEAR_DESC,
+                                   sValue,
+                                   ZBProperty::PT_COMBO_STRING_READONLY,
+                                   true, // Enable
+                                   ZBStringFormat( ZBStringFormat::General ),
+                                   ZAGlobal::GetArrayYesNo() );
+    }
+
+    PropSet.Add( pPropQty );
+
+    sValue = ( GetForceEqualizer() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+
+    if ( NumericValue )
+    {
+        // Propriété "Forcer" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_FORCE_EQUALIZER_NAME,
+                                   Z_FORCE_EQUALIZER,
+                                   IDS_Z_FORCE_EQUALIZER_DESC,
+                                   ( GetForceEqualizer() ) ? (double)1 : (double)0 );
+    }
+    else
+    {
+        // Propriété "Forcer" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_FORCE_EQUALIZER_NAME,
+                                   Z_FORCE_EQUALIZER,
+                                   IDS_Z_FORCE_EQUALIZER_DESC,
+                                   sValue,
+                                   ZBProperty::PT_COMBO_STRING_READONLY,
+                                   true, // Enable
+                                   ZBStringFormat( ZBStringFormat::General ),
+                                   ZAGlobal::GetArrayYesNo() );
+    }
+
+    PropSet.Add( pPropQty );
+
+    // Propriété "Quantité janvier" du groupe "Quantités"
+    pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                               ZS_BP_PROP_QUANTITY,
+                               IDS_Z_NUMBER_JANUARY_NAME,
+                               Z_NUMBER_JANUARY,
+                               IDS_Z_NUMBER_JANUARY_DESC,
+                               GetQuantityJanuary(),
+                               ZBProperty::PT_EDIT_NUMBER,
+                               false ); // don't display detail
+
+    PropSet.Add( pPropQty );
+
+    sValue = ( GetLockQuantityJanuary() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+
+    if ( NumericValue )
+    {
+        // Propriété "Bloquer janvier" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_JANUARY_NAME,
+                                   Z_LOCKED_JANUARY,
+                                   IDS_Z_LOCKED_JANUARY_DESC,
+                                   ( GetLockQuantityJanuary() ) ? (double)1 : (double)0 );
+    }
+    else
+    {
+        // Propriété "Bloquer janvier" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_JANUARY_NAME,
+                                   Z_LOCKED_JANUARY,
+                                   IDS_Z_LOCKED_JANUARY_DESC,
+                                   sValue,
+                                   ZBProperty::PT_COMBO_STRING_READONLY,
+                                   false, // don't display detail
+                                   ZBStringFormat( ZBStringFormat::General ),
+                                   ZAGlobal::GetArrayYesNo() );
+    }
+
+    PropSet.Add( pPropQty );
+
+    // Propriété "Quantité février" du groupe "Quantités"
+    pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                               ZS_BP_PROP_QUANTITY,
+                               IDS_Z_NUMBER_FEBRUARY_NAME,
+                               Z_NUMBER_FEBRUARY,
+                               IDS_Z_NUMBER_FEBRUARY_DESC,
+                               GetQuantityFebruary(),
+                               ZBProperty::PT_EDIT_NUMBER,
+                               false ); // don't display detail
+
+    PropSet.Add( pPropQty );
+
+    sValue = ( GetLockQuantityFebruary() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+
+    if ( NumericValue )
+    {
+        // Propriété "Bloquer février" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_FEBRUARY_NAME,
+                                   Z_LOCKED_FEBRUARY,
+                                   IDS_Z_LOCKED_FEBRUARY_DESC,
+                                   ( GetLockQuantityFebruary() ) ? (double)1 : (double)0 );
+    }
+    else
+    {
+        // Propriété "Bloquer février" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_FEBRUARY_NAME,
+                                   Z_LOCKED_FEBRUARY,
+                                   IDS_Z_LOCKED_FEBRUARY_DESC,
+                                   sValue,
+                                   ZBProperty::PT_COMBO_STRING_READONLY,
+                                   false, // don't display detail
+                                   ZBStringFormat( ZBStringFormat::General ),
+                                   ZAGlobal::GetArrayYesNo() );
+    }
+
+    PropSet.Add( pPropQty );
+
+    // Propriété "Quantité mars" du groupe "Quantités"
+    pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                               ZS_BP_PROP_QUANTITY,
+                               IDS_Z_NUMBER_MARCH_NAME,
+                               Z_NUMBER_MARCH,
+                               IDS_Z_NUMBER_MARCH_DESC,
+                               GetQuantityMarch(),
+                               ZBProperty::PT_EDIT_NUMBER,
+                               false ); // don't display detail
+
+    PropSet.Add( pPropQty );
+
+    sValue = ( GetLockQuantityMarch() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+
+    if ( NumericValue )
+    {
+        // Propriété "Bloquer mars" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_MARCH_NAME,
+                                   Z_LOCKED_MARCH,
+                                   IDS_Z_LOCKED_MARCH_DESC,
+                                   ( GetLockQuantityMarch() ) ? (double)1 : (double)0 );
+    }
+    else
+    {
+        // Propriété "Bloquer mars" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_MARCH_NAME,
+                                   Z_LOCKED_MARCH,
+                                   IDS_Z_LOCKED_MARCH_DESC,
+                                   sValue,
+                                   ZBProperty::PT_COMBO_STRING_READONLY,
+                                   false, // don't display detail
+                                   ZBStringFormat( ZBStringFormat::General ),
+                                   ZAGlobal::GetArrayYesNo() );
+    }
+
+    PropSet.Add( pPropQty );
+
+    // Propriété "Quantité avril" du groupe "Quantités"
+    pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                               ZS_BP_PROP_QUANTITY,
+                               IDS_Z_NUMBER_APRIL_NAME,
+                               Z_NUMBER_APRIL,
+                               IDS_Z_NUMBER_APRIL_DESC,
+                               GetQuantityApril(),
+                               ZBProperty::PT_EDIT_NUMBER,
+                               false); // don't display detail
+
+    PropSet.Add( pPropQty );
+
+    sValue = ( GetLockQuantityApril() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+
+    if ( NumericValue )
+    {
+        // Propriété "Bloquer avril" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_APRIL_NAME,
+                                   Z_LOCKED_APRIL,
+                                   IDS_Z_LOCKED_APRIL_DESC,
+                                   ( GetLockQuantityApril() ) ? (double)1 : (double)0 );
+    }
+    else
+    {
+    // Propriété "Bloquer avril" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_APRIL_NAME,
+                                   Z_LOCKED_APRIL,
+                                   IDS_Z_LOCKED_APRIL_DESC,
+                                   sValue,
+                                   ZBProperty::PT_COMBO_STRING_READONLY,
+                                   false, // don't display detail
+                                   ZBStringFormat( ZBStringFormat::General ),
+                                   ZAGlobal::GetArrayYesNo() );
+    }
+
+    PropSet.Add( pPropQty );
+
+    // Propriété "Quantité mai" du groupe "Quantités"
+    pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                               ZS_BP_PROP_QUANTITY,
+                               IDS_Z_NUMBER_MAY_NAME,
+                               Z_NUMBER_MAY,
+                               IDS_Z_NUMBER_MAY_DESC,
+                               GetQuantityMay(),
+                               ZBProperty::PT_EDIT_NUMBER,
+                               false ); // don't display detail
+
+    PropSet.Add( pPropQty );
+
+    sValue = ( GetLockQuantityMay() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+
+    if ( NumericValue )
+    {
+        // Propriété "Bloquer mai" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_MAY_NAME,
+                                   Z_LOCKED_MAY,
+                                   IDS_Z_LOCKED_MAY_DESC,
+                                   ( GetLockQuantityMay() ) ? (double)1 : (double)0 );
+    }
+    else
+    {
+        // Propriété "Bloquer mai" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_MAY_NAME,
+                                   Z_LOCKED_MAY,
+                                   IDS_Z_LOCKED_MAY_DESC,
+                                   sValue,
+                                   ZBProperty::PT_COMBO_STRING_READONLY,
+                                   false, // don't display detail
+                                   ZBStringFormat( ZBStringFormat::General ),
+                                   ZAGlobal::GetArrayYesNo() );
+    }
+
+    PropSet.Add( pPropQty );
+
+    // Propriété "Quantité juin" du groupe "Quantités"
+    pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                               ZS_BP_PROP_QUANTITY,
+                               IDS_Z_NUMBER_JUNE_NAME,
+                               Z_NUMBER_JUNE,
+                               IDS_Z_NUMBER_JUNE_DESC,
+                               GetQuantityJune(),
+                               ZBProperty::PT_EDIT_NUMBER,
+                               false ); // don't display detail
+
+    PropSet.Add( pPropQty );
+
+    sValue = ( GetLockQuantityJune() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+
+    if ( NumericValue )
+    {
+        // Propriété "Bloquer juin" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_JUNE_NAME,
+                                   Z_LOCKED_JUNE,
+                                   IDS_Z_LOCKED_JUNE_DESC,
+                                   ( GetLockQuantityJune() ) ? (double)1 : (double)0 );
+    }
+    else
+    {
+        // Propriété "Bloquer juin" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_JUNE_NAME,
+                                   Z_LOCKED_JUNE,
+                                   IDS_Z_LOCKED_JUNE_DESC,
+                                   sValue,
+                                   ZBProperty::PT_COMBO_STRING_READONLY,
+                                   false, // don't display detail
+                                   ZBStringFormat( ZBStringFormat::General ),
+                                   ZAGlobal::GetArrayYesNo() );
+    }
+
+    PropSet.Add( pPropQty );
+
+    // Propriété "Quantité juillet" du groupe "Quantités"
+    pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                               ZS_BP_PROP_QUANTITY,
+                               IDS_Z_NUMBER_JULY_NAME,
+                               Z_NUMBER_JULY,
+                               IDS_Z_NUMBER_JULY_DESC,
+                               GetQuantityJuly(),
+                               ZBProperty::PT_EDIT_NUMBER,
+                               false ); // don't display detail
+
+    PropSet.Add( pPropQty );
+
+    sValue = ( GetLockQuantityJuly() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+
+    if ( NumericValue )
+    {
+        // Propriété "Bloquer juillet" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_JULY_NAME,
+                                   Z_LOCKED_JULY,
+                                   IDS_Z_LOCKED_JULY_DESC,
+                                   ( GetLockQuantityJuly() ) ? (double)1 : (double)0 );
+    }
+    else
+    {
+        // Propriété "Bloquer juillet" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_JULY_NAME,
+                                   Z_LOCKED_JULY,
+                                   IDS_Z_LOCKED_JULY_DESC,
+                                   sValue,
+                                   ZBProperty::PT_COMBO_STRING_READONLY,
+                                   false, // don't display detail
+                                   ZBStringFormat( ZBStringFormat::General ),
+                                   ZAGlobal::GetArrayYesNo() );
+    }
+
+    PropSet.Add( pPropQty );
+
+    // Propriété "Quantité août" du groupe "Quantités"
+    pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                               ZS_BP_PROP_QUANTITY,
+                               IDS_Z_NUMBER_AUGUST_NAME,
+                               Z_NUMBER_AUGUST,
+                               IDS_Z_NUMBER_AUGUST_DESC,
+                               GetQuantityAugust(),
+                               ZBProperty::PT_EDIT_NUMBER,
+                               false ); // don't display detail
+
+    PropSet.Add( pPropQty );
+
+    sValue = ( GetLockQuantityAugust() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+
+    if ( NumericValue )
+    {
+        // Propriété "Bloquer août" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_AUGUST_NAME,
+                                   Z_LOCKED_AUGUST,
+                                   IDS_Z_LOCKED_AUGUST_DESC,
+                                   ( GetLockQuantityAugust() ) ? (double)1 : (double)0 );
+    }
+    else
+    {
+        // Propriété "Bloquer août" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_AUGUST_NAME,
+                                   Z_LOCKED_AUGUST,
+                                   IDS_Z_LOCKED_AUGUST_DESC,
+                                   sValue,
+                                   ZBProperty::PT_COMBO_STRING_READONLY,
+                                   false, // don't display detail
+                                   ZBStringFormat( ZBStringFormat::General ),
+                                   ZAGlobal::GetArrayYesNo() );
+    }
+
+    PropSet.Add( pPropQty );
+
+    // Propriété "Quantité septembre" du groupe "Quantités"
+    pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                               ZS_BP_PROP_QUANTITY,
+                               IDS_Z_NUMBER_SEPTEMBER_NAME,
+                               Z_NUMBER_SEPTEMBER,
+                               IDS_Z_NUMBER_SEPTEMBER_DESC,
+                               GetQuantitySeptember(),
+                               ZBProperty::PT_EDIT_NUMBER,
+                               false ); // don't display detail
+
+    PropSet.Add( pPropQty );
+
+    sValue = ( GetLockQuantitySeptember() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+
+    if ( NumericValue )
+    {
+        // Propriété "Bloquer septembre" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_SEPTEMBER_NAME,
+                                   Z_LOCKED_SEPTEMBER,
+                                   IDS_Z_LOCKED_SEPTEMBER_DESC,
+                                   ( GetLockQuantitySeptember() ) ? (double)1 : (double)0 );
+    }
+    else
+    {
+    // Propriété "Bloquer septembre" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_SEPTEMBER_NAME,
+                                   Z_LOCKED_SEPTEMBER,
+                                   IDS_Z_LOCKED_SEPTEMBER_DESC,
+                                   sValue,
+                                   ZBProperty::PT_COMBO_STRING_READONLY,
+                                   false, // don't display detail
+                                   ZBStringFormat( ZBStringFormat::General ),
+                                   ZAGlobal::GetArrayYesNo() );
+    }
+
+    PropSet.Add( pPropQty );
+
+    // Propriété "Quantité octobre" du groupe "Quantités"
+    pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                               ZS_BP_PROP_QUANTITY,
+                               IDS_Z_NUMBER_OCTOBER_NAME,
+                               Z_NUMBER_OCTOBER,
+                               IDS_Z_NUMBER_OCTOBER_DESC,
+                               GetQuantityOctober(),
+                               ZBProperty::PT_EDIT_NUMBER,
+                               false ); // don't display detail
+
+    PropSet.Add( pPropQty );
+
+    sValue = ( GetLockQuantityOctober() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+
+    if ( NumericValue )
+    {
+        // Propriété "Bloquer octobre" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_OCTOBER_NAME,
+                                   Z_LOCKED_OCTOBER,
+                                   IDS_Z_LOCKED_OCTOBER_DESC,
+                                   ( GetLockQuantityOctober() ) ? (double)1 : (double)0 );
+    }
+    else
+    {
+        // Propriété "Bloquer octobre" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_OCTOBER_NAME,
+                                   Z_LOCKED_OCTOBER,
+                                   IDS_Z_LOCKED_OCTOBER_DESC,
+                                   sValue,
+                                   ZBProperty::PT_COMBO_STRING_READONLY,
+                                   false, // don't display detail
+                                   ZBStringFormat( ZBStringFormat::General ),
+                                   ZAGlobal::GetArrayYesNo() );
+    }
+
+    PropSet.Add( pPropQty );
+
+    // Propriété "Quantité novembre" du groupe "Quantités"
+    pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                               ZS_BP_PROP_QUANTITY,
+                               IDS_Z_NUMBER_NOVEMBER_NAME,
+                               Z_NUMBER_NOVEMBER,
+                               IDS_Z_NUMBER_NOVEMBER_DESC,
+                               GetQuantityNovember(),
+                               ZBProperty::PT_EDIT_NUMBER,
+                               false ); // don't display detail
+
+    PropSet.Add( pPropQty );
+
+    sValue = ( GetLockQuantityNovember() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+
+    if ( NumericValue )
+    {
+        // Propriété "Bloquer novembre" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_NOVEMBER_NAME,
+                                   Z_LOCKED_NOVEMBER,
+                                   IDS_Z_LOCKED_NOVEMBER_DESC,
+                                   ( GetLockQuantityNovember() ) ? (double)1 : (double)0 );
+    }
+    else
+    {
+        // Propriété "Bloquer novembre" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_NOVEMBER_NAME,
+                                   Z_LOCKED_NOVEMBER,
+                                   IDS_Z_LOCKED_NOVEMBER_DESC,
+                                   sValue,
+                                   ZBProperty::PT_COMBO_STRING_READONLY,
+                                   false, // don't display detail
+                                   ZBStringFormat( ZBStringFormat::General ),
+                                   ZAGlobal::GetArrayYesNo() );
+    }
+
+    PropSet.Add( pPropQty );
+
+    // Propriété "Quantité décembre" du groupe "Quantités"
+    pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                               ZS_BP_PROP_QUANTITY,
+                               IDS_Z_NUMBER_DECEMBER_NAME,
+                               Z_NUMBER_DECEMBER,
+                               IDS_Z_NUMBER_DECEMBER_DESC,
+                               GetQuantityDecember(),
+                               ZBProperty::PT_EDIT_NUMBER,
+                               false ); // don't display detail
+
+    PropSet.Add( pPropQty );
+
+    sValue = ( GetLockQuantityDecember() ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+
+    if ( NumericValue )
+    {
+        // Propriété "Bloquer décembre" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_DECEMBER_NAME,
+                                   Z_LOCKED_DECEMBER,
+                                   IDS_Z_LOCKED_DECEMBER_DESC,
+                                   ( GetLockQuantityDecember() ) ? (double)1 : (double)0 );
+    }
+    else
+    {
+        // Propriété "Bloquer décembre" du groupe "Quantités"
+        pPropQty = new ZBProperty( IDS_ZS_BP_PROP_NUMBER_TITLE,
+                                   ZS_BP_PROP_QUANTITY,
+                                   IDS_Z_LOCKED_DECEMBER_NAME,
+                                   Z_LOCKED_DECEMBER,
+                                   IDS_Z_LOCKED_DECEMBER_DESC,
+                                   sValue,
+                                   ZBProperty::PT_COMBO_STRING_READONLY,
+                                   false, // don't display detail
+                                   ZBStringFormat( ZBStringFormat::General ),
+                                   ZAGlobal::GetArrayYesNo() );
+    }
+
+    PropSet.Add( pPropQty );
+
+    if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
+        dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetIntegrateCostSimulation() )
+    {
+        // Add simulation properties
+        ZBProperty* pSimProp = NULL;
+
+        // Propriété "Coût" du groupe "Calculs et prévisions"
+        pSimProp = new ZBProperty( IDS_ZS_BP_PROP_SIM_DELIVERABLE,
+                                   ZS_BP_PROP_SIM_DELIVERABLE,
+                                   IDS_Z_SIM_DELIV_COST_NAME,
+                                   Z_SIM_DELIV_COST,
+                                   IDS_Z_SIM_DELIV_COST_DESC,
+                                   (double)GetCost(),
+                                   ZBProperty::PT_EDIT_NUMBER_READONLY,
+                                   true,
+                                   ZBStringFormat( ZBStringFormat::Currency, true, 2, CurrencySymbol ) );
+
+        PropSet.Add( pSimProp );
+
+        // Propriété "Charge de travail" du groupe "Calculs et prévisions"
+        pSimProp = new ZBProperty( IDS_ZS_BP_PROP_SIM_DELIVERABLE,
+                                   ZS_BP_PROP_SIM_DELIVERABLE,
+                                   IDS_Z_SIM_DELIV_WORKLOAD_FORECAST_NAME,
+                                   Z_SIM_DELIV_WORKLOAD_FORECAST,
+                                   IDS_Z_SIM_DELIV_WORKLOAD_FORECAST_DESC,
+                                   ZBDuration( (double)GetWorkloadForecast(),
+                                                HourPerDay,
+                                                DayPerWeek,
+                                                DayPerMonth,
+                                                DayPerYear ),
+                                   ZBProperty::PT_EDIT_DURATION_READONLY,
+                                   true,
+                                   ZBStringFormat( ZBStringFormat::Duration7 ) );
+
+        PropSet.Add( pSimProp );
+
+        // Propriété "Guid" du groupe "Unité de traitement" (Non visible)
+        ZBProperty* pUnitGUID = new ZBProperty( IDS_ZS_BP_PROP_UNIT_TITLE,
+                                                ZS_BP_PROP_UNIT,
+                                                IDS_Z_UNIT_GUID_NAME,
+                                                Z_UNIT_GUID,
+                                                IDS_Z_UNIT_GUID_DESC,
+                                                GetUnitGUID(),
+                                                ZBProperty::PT_EDIT_EXTENDED_READONLY,
+                                                false ); // Not enable, used for saving the unit GUID
+
+        PropSet.Add( pUnitGUID );
+
+        bool Error;
+        CString UnitName = RetreiveUnitName( GetUnitGUID(), Error );
+
+        // Propriété "Unité" du groupe "Unité de traitement" (Non visible)
+        ZBProperty* pUnitName = new ZBProperty( IDS_ZS_BP_PROP_UNIT_TITLE,
+                                                ZS_BP_PROP_UNIT,
+                                                IDS_Z_UNIT_NAME_NAME,
+                                                Z_UNIT_NAME,
+                                                IDS_Z_UNIT_NAME_DESC,
+                                                UnitName,
+                                                ( GroupEnabled ) ? ZBProperty::PT_EDIT_EXTENDED_READONLY : ZBProperty::PT_EDIT_STRING_READONLY,
+                                                false);
+        PropSet.Add( pUnitName );
+
+        float UnitCost = RetreiveUnitCost( GetUnitGUID(), Error );
+
+        // Propriété "Coût" du groupe "Unité de traitement" (Non visible)
+        ZBProperty* pUnitCost = new ZBProperty( IDS_ZS_BP_PROP_UNIT_TITLE,
+                                                ZS_BP_PROP_UNIT,
+                                                IDS_Z_UNIT_COST_NAME,
+                                                Z_UNIT_COST,
+                                                IDS_Z_UNIT_COST_DESC,
+                                                UnitCost,
+                                                ZBProperty::PT_EDIT_NUMBER_READONLY,
+                                                false,
+                                                ZBStringFormat(ZBStringFormat::Currency, true, 2, CurrencySymbol),
+                                                false);
+        PropSet.Add( pUnitCost );
+    }
+
+    // RS-MODIF 17.11.04 Double validation should appear in Conceptor
+    ZBProperty* pUnitDoubleValid;
+
+    if ( NumericValue )
+    {
+        // Propriété "Double validation" du groupe "Unité de traitement"
+        pUnitDoubleValid = new ZBProperty( IDS_ZS_BP_PROP_UNIT_TITLE,
+                                           ZS_BP_PROP_UNIT,
+                                           IDS_Z_UNIT_DOUBLE_VALIDATION_NAME,
+                                           Z_UNIT_DOUBLE_VALIDATION,
+                                           IDS_Z_UNIT_DOUBLE_VALIDATION_DESC,
+                                           (double)GetUnitDoubleValidationType() );
+    }
+    else
+    {
+        // Propriété "Double validation" du groupe "Unité de traitement"
+        pUnitDoubleValid = new ZBProperty( IDS_ZS_BP_PROP_UNIT_TITLE,
+                                           ZS_BP_PROP_UNIT,
+                                           IDS_Z_UNIT_DOUBLE_VALIDATION_NAME,
+                                           Z_UNIT_DOUBLE_VALIDATION,
+                                           IDS_Z_UNIT_DOUBLE_VALIDATION_DESC,
+                                           GetUnitDoubleValidationTypeString( GetUnitDoubleValidationType() ),
+                                           ZBProperty::PT_COMBO_STRING_READONLY,
+                                           true, // Enable
+                                           ZBStringFormat( ZBStringFormat::General ),
+                                           &m_UnitDoubleValidationTypeArray );
+    }
+
+    PropSet.Add( pUnitDoubleValid );
+    
+    return true;
 }
 
 bool ZBDeliverableLinkSymbol::SaveProperties( ZBPropertySet& PropSet )
 {
-	if ( !ZBLinkSymbol::SaveProperties( PropSet ) )
-	{
-		return false;
-	}
+    if ( !ZBLinkSymbol::SaveProperties( PropSet ) )
+    {
+        return false;
+    }
 
-	// Only local symbol have access to properties
-	if ( !IsLocal() )
-	{
-		return true;
-	}
+    // Only local symbol have access to properties
+    if ( !IsLocal() )
+    {
+        return true;
+    }
 
-	// Save the rules
-	ZBBPRuleListProperties* pRulesProps = (ZBBPRuleListProperties*)GetProperty( ZS_BP_PROP_RULELIST );
+    // Save the rules
+    ZBBPRuleListProperties* pRulesProps = (ZBBPRuleListProperties*)GetProperty( ZS_BP_PROP_RULELIST );
 
-	if ( !pRulesProps )
-	{
-		return false;
-	}
+    if ( !pRulesProps )
+    {
+        return false;
+    }
 
-	// Now run through the list of data and fill the property set
-	ZBProperty* pProp;
-	ZBPropertyIterator f( &PropSet );
+    // Now run through the list of data and fill the property set
+    ZBProperty* pProp;
+    ZBPropertyIterator f( &PropSet );
 
-	// Empty the task list
-	SetRuleList( _T( "" ) );
+    // Empty the task list
+    SetRuleList( _T( "" ) );
 
-	for ( pProp = f.GetFirst(); pProp; pProp = f.GetNext() )
-	{
-		if ( pProp->GetCategoryID() == ZS_BP_PROP_RULELIST )
-		{
-			switch ( pProp->GetPTValueType() )
-			{
-				case ZBProperty::PT_STRING:
-				{
-					// If not empty, add this new task
-					if ( !pProp->GetValueString().IsEmpty() )
-					{
-						AddRule( pProp->GetValueString() );
-					}
+    for ( pProp = f.GetFirst(); pProp; pProp = f.GetNext() )
+    {
+        if ( pProp->GetCategoryID() == ZS_BP_PROP_RULELIST )
+        {
+            switch ( pProp->GetPTValueType() )
+            {
+                case ZBProperty::PT_STRING:
+                {
+                    // If not empty, add this new task
+                    if ( !pProp->GetValueString().IsEmpty() )
+                    {
+                        AddRule( pProp->GetValueString() );
+                    }
 
-					break;
-				}
-			}
-		}
-	}
+                    break;
+                }
+            }
+        }
+    }
 
-	// Now run through the list of data and fill the property set
-	ZBPropertyIterator i( &PropSet );
+    // Now run through the list of data and fill the property set
+    ZBPropertyIterator i( &PropSet );
 
-	for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
-	{
-		if ( pProp->GetCategoryID() == ZS_BP_PROP_DELIVERABLE_COST )
-		{
-			switch ( pProp->GetPTValueType() )
-			{
-				case ZBProperty::PT_STRING:
-				{
-					m_CostDeliverableProperties.SetValue( pProp->GetItemID(), pProp->GetValueString() );
-					break;
-				}
+    for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    {
+        if ( pProp->GetCategoryID() == ZS_BP_PROP_DELIVERABLE_COST )
+        {
+            switch ( pProp->GetPTValueType() )
+            {
+                case ZBProperty::PT_STRING:
+                {
+                    m_CostDeliverableProperties.SetValue( pProp->GetItemID(), pProp->GetValueString() );
+                    break;
+                }
 
-				case ZBProperty::PT_DOUBLE:
-				{
-					m_CostDeliverableProperties.SetValue( pProp->GetItemID(),
-														  static_cast<float>( pProp->GetValueDouble() ) );
-					break;
-				}
+                case ZBProperty::PT_DOUBLE:
+                {
+                    m_CostDeliverableProperties.SetValue( pProp->GetItemID(),
+                                                          static_cast<float>( pProp->GetValueDouble() ) );
+                    break;
+                }
 
-				case ZBProperty::PT_FLOAT:
-				{
-					m_CostDeliverableProperties.SetValue( pProp->GetItemID(), pProp->GetValueFloat() );
-					break;
-				}
+                case ZBProperty::PT_FLOAT:
+                {
+                    m_CostDeliverableProperties.SetValue( pProp->GetItemID(), pProp->GetValueFloat() );
+                    break;
+                }
 
-				case ZBProperty::PT_DATE:
-				{
-					m_CostDeliverableProperties.SetValue( pProp->GetItemID(),
-														  static_cast<float>( (DATE)pProp->GetValueDate() ) );
-					break;
-				}
+                case ZBProperty::PT_DATE:
+                {
+                    m_CostDeliverableProperties.SetValue( pProp->GetItemID(),
+                                                          static_cast<float>( (DATE)pProp->GetValueDate() ) );
+                    break;
+                }
 
-				case ZBProperty::PT_TIMESPAN:
-				{
-					m_CostDeliverableProperties.SetValue( pProp->GetItemID(), (double)pProp->GetValueTimeSpan() );
-					break;
-				}
+                case ZBProperty::PT_TIMESPAN:
+                {
+                    m_CostDeliverableProperties.SetValue( pProp->GetItemID(), (double)pProp->GetValueTimeSpan() );
+                    break;
+                }
 
-				case ZBProperty::PT_DURATION:
-				{
-					m_CostDeliverableProperties.SetValue( pProp->GetItemID(), (double)pProp->GetValueDuration() );
-					break;
-				}
-			}
-		}
-	}
+                case ZBProperty::PT_DURATION:
+                {
+                    m_CostDeliverableProperties.SetValue( pProp->GetItemID(), (double)pProp->GetValueDuration() );
+                    break;
+                }
+            }
+        }
+    }
 
-	SavePropertiesToQuantity( PropSet );
+    SavePropertiesToQuantity( PropSet );
 
-	// *************************************************************************************************************
-	// JMR-MODIF - Le 11 juillet 2007 - Ajout du code pour la mise à jour des valeurs des risques.
+    // *************************************************************************************************************
+    // JMR-MODIF - Le 11 juillet 2007 - Ajout du code pour la mise à jour des valeurs des risques.
 
-	ZBPropertyIterator j( &PropSet );
+    ZBPropertyIterator j( &PropSet );
 
-	for ( pProp = j.GetFirst(); pProp; pProp = j.GetNext() )
-	{
-		if ( pProp->GetCategoryID() >= ZS_BP_PROP_RISK &&
-			 pProp->GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount() )
-		{
-			int i = pProp->GetCategoryID() - ZS_BP_PROP_RISK;
+    for ( pProp = j.GetFirst(); pProp; pProp = j.GetNext() )
+    {
+        if ( pProp->GetCategoryID() >= ZS_BP_PROP_RISK &&
+             pProp->GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount() )
+        {
+            int i = pProp->GetCategoryID() - ZS_BP_PROP_RISK;
 
-			if ( pProp->GetItemID() == Z_RISK_NAME + ( i * _MaxRisksSize ) )
-			{
-				SetRiskName( i, pProp->GetValueString() );
-			}
+            if ( pProp->GetItemID() == Z_RISK_NAME + ( i * _MaxRisksSize ) )
+            {
+                SetRiskName( i, pProp->GetValueString() );
+            }
 
-			if ( pProp->GetItemID() == Z_RISK_DESC + ( i * _MaxRisksSize ) )
-			{
-				SetRiskDesc( i, pProp->GetValueString() );
-			}
+            if ( pProp->GetItemID() == Z_RISK_DESC + ( i * _MaxRisksSize ) )
+            {
+                SetRiskDesc( i, pProp->GetValueString() );
+            }
 
-			if ( pProp->GetItemID() == Z_RISK_UE + ( i * _MaxRisksSize ) )
-			{
-				SetRiskUE( i, pProp->GetValueFloat() );
-			}
+            if ( pProp->GetItemID() == Z_RISK_UE + ( i * _MaxRisksSize ) )
+            {
+                SetRiskUE( i, pProp->GetValueFloat() );
+            }
 
-			if ( pProp->GetItemID() == Z_RISK_POA + ( i * _MaxRisksSize ) )
-			{
-				SetRiskPOA( i, pProp->GetValueFloat() );
-			}
+            if ( pProp->GetItemID() == Z_RISK_POA + ( i * _MaxRisksSize ) )
+            {
+                SetRiskPOA( i, pProp->GetValueFloat() );
+            }
 
-			if ( pProp->GetItemID() == Z_RISK_ACTION + ( i * _MaxRisksSize ) )
-			{
-				SetRiskAction( i, ( pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo() ? 1 : 0 ) );
-			}
-		}
-	}
-	// *************************************************************************************************************
+            if ( pProp->GetItemID() == Z_RISK_ACTION + ( i * _MaxRisksSize ) )
+            {
+                SetRiskAction( i, ( pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo() ? 1 : 0 ) );
+            }
+        }
+    }
+    // *************************************************************************************************************
 
-	// Now run through the list of data and fill the property set
-	ZBPropertyIterator k( &PropSet );
+    // Now run through the list of data and fill the property set
+    ZBPropertyIterator k( &PropSet );
 
-	for ( pProp = k.GetFirst(); pProp; pProp = k.GetNext() )
-	{
-		if ( pProp->GetCategoryID() == ZS_BP_PROP_SIM_DELIVERABLE )
-		{
-			switch ( pProp->GetPTValueType() )
-			{
-				case ZBProperty::PT_STRING:
-				{
-					m_SimProperties.SetValue( pProp->GetItemID(), pProp->GetValueString() );
-					break;
-				}
+    for ( pProp = k.GetFirst(); pProp; pProp = k.GetNext() )
+    {
+        if ( pProp->GetCategoryID() == ZS_BP_PROP_SIM_DELIVERABLE )
+        {
+            switch ( pProp->GetPTValueType() )
+            {
+                case ZBProperty::PT_STRING:
+                {
+                    m_SimProperties.SetValue( pProp->GetItemID(), pProp->GetValueString() );
+                    break;
+                }
 
-				case ZBProperty::PT_DOUBLE:
-				{
-					m_SimProperties.SetValue( pProp->GetItemID(), pProp->GetValueDouble() );
-					break;
-				}
+                case ZBProperty::PT_DOUBLE:
+                {
+                    m_SimProperties.SetValue( pProp->GetItemID(), pProp->GetValueDouble() );
+                    break;
+                }
 
-				case ZBProperty::PT_FLOAT:
-				{
-					m_SimProperties.SetValue( pProp->GetItemID(), pProp->GetValueFloat() );
-					break;
-				}
+                case ZBProperty::PT_FLOAT:
+                {
+                    m_SimProperties.SetValue( pProp->GetItemID(), pProp->GetValueFloat() );
+                    break;
+                }
 
-				case ZBProperty::PT_DATE:
-				{
-					m_SimProperties.SetValue( pProp->GetItemID(),
-											  static_cast<float>( (DATE)pProp->GetValueDate() ) );
-					break;
-				}
+                case ZBProperty::PT_DATE:
+                {
+                    m_SimProperties.SetValue( pProp->GetItemID(),
+                                              static_cast<float>( (DATE)pProp->GetValueDate() ) );
+                    break;
+                }
 
-				case ZBProperty::PT_TIMESPAN:
-				{
-					m_SimProperties.SetValue( pProp->GetItemID(),
-											  (double)pProp->GetValueTimeSpan() );
-					break;
-				}
+                case ZBProperty::PT_TIMESPAN:
+                {
+                    m_SimProperties.SetValue( pProp->GetItemID(),
+                                              (double)pProp->GetValueTimeSpan() );
+                    break;
+                }
 
-				case ZBProperty::PT_DURATION:
-				{
-					m_SimProperties.SetValue( pProp->GetItemID(), (double)pProp->GetValueDuration() );
-					break;
-				}
-			}
-		}
-	}
+                case ZBProperty::PT_DURATION:
+                {
+                    m_SimProperties.SetValue( pProp->GetItemID(), (double)pProp->GetValueDuration() );
+                    break;
+                }
+            }
+        }
+    }
 
-	ZBBPTextItemListProperties* pTextItemProps = (ZBBPTextItemListProperties*)GetProperty( ZS_BP_PROP_TEXTITEMLIST );
+    ZBBPTextItemListProperties* pTextItemProps = (ZBBPTextItemListProperties*)GetProperty( ZS_BP_PROP_TEXTITEMLIST );
 
-	if ( !pTextItemProps )
-	{
-		return false;
-	}
+    if ( !pTextItemProps )
+    {
+        return false;
+    }
 
-	// Now run through the list of data and fill the property set
-	ZBPropertyIterator l( &PropSet );
+    // Now run through the list of data and fill the property set
+    ZBPropertyIterator l( &PropSet );
 
-	// Empty the text item list
-	SetTextItemList( _T( "" ) );
+    // Empty the text item list
+    SetTextItemList( _T( "" ) );
 
-	for ( pProp = l.GetFirst(); pProp; pProp = l.GetNext() )
-	{
-		if ( pProp->GetCategoryID() == ZS_BP_PROP_TEXTITEMLIST )
-		{
-			switch ( pProp->GetPTValueType() )
-			{
-				case ZBProperty::PT_STRING:
-				{
-					// If not empty, add this new text item
-					if ( !pProp->GetValueString().IsEmpty() )
-					{
-						AddTextItem( pProp->GetValueString() );
-					}
+    for ( pProp = l.GetFirst(); pProp; pProp = l.GetNext() )
+    {
+        if ( pProp->GetCategoryID() == ZS_BP_PROP_TEXTITEMLIST )
+        {
+            switch ( pProp->GetPTValueType() )
+            {
+                case ZBProperty::PT_STRING:
+                {
+                    // If not empty, add this new text item
+                    if ( !pProp->GetValueString().IsEmpty() )
+                    {
+                        AddTextItem( pProp->GetValueString() );
+                    }
 
-					break;
-				}
-			}
-		}
-	}
-	// Because using the AddTask function, not necessary to SetProperty
+                    break;
+                }
+            }
+        }
+    }
+    // Because using the AddTask function, not necessary to SetProperty
 
-	// Now run through the list of data and fill the property set
-	ZBPropertyIterator m( &PropSet );
+    // Now run through the list of data and fill the property set
+    ZBPropertyIterator m( &PropSet );
 
-	for ( pProp = m.GetFirst(); pProp; pProp = m.GetNext() )
-	{
-		if ( pProp->GetCategoryID() == ZS_BP_PROP_UNIT )
-		{
-			// Check if a flag
-			if ( pProp->GetItemID() == Z_UNIT_DOUBLE_VALIDATION )
-			{
-				m_UnitProp.SetValue( pProp->GetItemID(),
-									 ConvertUnitDoubleValidationString2Type( pProp->GetValueString() ) );
-			}
-			else
-			{
-				switch ( pProp->GetPTValueType() )
-				{
-					case ZBProperty::PT_DOUBLE:
-					{
-						m_UnitProp.SetValue( pProp->GetItemID(), static_cast<float>( pProp->GetValueDouble() ) );
-						break;
-					}
+    for ( pProp = m.GetFirst(); pProp; pProp = m.GetNext() )
+    {
+        if ( pProp->GetCategoryID() == ZS_BP_PROP_UNIT )
+        {
+            // Check if a flag
+            if ( pProp->GetItemID() == Z_UNIT_DOUBLE_VALIDATION )
+            {
+                m_UnitProp.SetValue( pProp->GetItemID(),
+                                     ConvertUnitDoubleValidationString2Type( pProp->GetValueString() ) );
+            }
+            else
+            {
+                switch ( pProp->GetPTValueType() )
+                {
+                    case ZBProperty::PT_DOUBLE:
+                    {
+                        m_UnitProp.SetValue( pProp->GetItemID(), static_cast<float>( pProp->GetValueDouble() ) );
+                        break;
+                    }
 
-					case ZBProperty::PT_FLOAT:
-					{
-						m_UnitProp.SetValue( pProp->GetItemID(), pProp->GetValueFloat() );
-						break;
-					}
+                    case ZBProperty::PT_FLOAT:
+                    {
+                        m_UnitProp.SetValue( pProp->GetItemID(), pProp->GetValueFloat() );
+                        break;
+                    }
 
-					case ZBProperty::PT_STRING:
-					{
-						m_UnitProp.SetValue( pProp->GetItemID(), pProp->GetValueString() );
-						break;
-					}
-				}
-			}
-		}
-	}
+                    case ZBProperty::PT_STRING:
+                    {
+                        m_UnitProp.SetValue( pProp->GetItemID(), pProp->GetValueString() );
+                        break;
+                    }
+                }
+            }
+        }
+    }
 
-	RefreshAttributeAreaText( true );
+    RefreshAttributeAreaText( true );
 
-	return true;
+    return true;
 }
 
 bool ZBDeliverableLinkSymbol::SaveProperty( ZBProperty& Property )
 {
-	if ( !ZBLinkSymbol::SaveProperty( Property ) )
-	{
-		return false;
-	}
+    if ( !ZBLinkSymbol::SaveProperty( Property ) )
+    {
+        return false;
+    }
 
-	// Only local symbol have access to properties
-	if ( !IsLocal() )
-	{
-		return true;
-	}
+    // Only local symbol have access to properties
+    if ( !IsLocal() )
+    {
+        return true;
+    }
 
-	// ************************************************************************************************
-	// JMR-MODIF - Le 17 juillet 2007 - Mise à jour des valeurs des propriétés des risques.
+    // ************************************************************************************************
+    // JMR-MODIF - Le 17 juillet 2007 - Mise à jour des valeurs des propriétés des risques.
 
-	if ( Property.GetCategoryID() >= ZS_BP_PROP_RISK &&
-		 Property.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount() )
-	{
-		int i = Property.GetCategoryID() - ZS_BP_PROP_RISK;
+    if ( Property.GetCategoryID() >= ZS_BP_PROP_RISK &&
+         Property.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount() )
+    {
+        int i = Property.GetCategoryID() - ZS_BP_PROP_RISK;
 
-		if ( Property.GetItemID() == Z_RISK_NAME + ( i * _MaxRisksSize ) )
-		{
-			SetRiskName( i, Property.GetValueString() );
-		}
+        if ( Property.GetItemID() == Z_RISK_NAME + ( i * _MaxRisksSize ) )
+        {
+            SetRiskName( i, Property.GetValueString() );
+        }
 
-		if ( Property.GetItemID() == Z_RISK_DESC + ( i * _MaxRisksSize ) )
-		{
-			SetRiskDesc( i, Property.GetValueString() );
-		}
+        if ( Property.GetItemID() == Z_RISK_DESC + ( i * _MaxRisksSize ) )
+        {
+            SetRiskDesc( i, Property.GetValueString() );
+        }
 
-		if ( Property.GetItemID() == Z_RISK_UE + ( i * _MaxRisksSize ) )
-		{
-			SetRiskUE( i, Property.GetValueFloat() );
-		}
+        if ( Property.GetItemID() == Z_RISK_UE + ( i * _MaxRisksSize ) )
+        {
+            SetRiskUE( i, Property.GetValueFloat() );
+        }
 
-		if ( Property.GetItemID() == Z_RISK_POA + ( i * _MaxRisksSize ) )
-		{
-			SetRiskPOA( i, Property.GetValueFloat() );
-		}
+        if ( Property.GetItemID() == Z_RISK_POA + ( i * _MaxRisksSize ) )
+        {
+            SetRiskPOA( i, Property.GetValueFloat() );
+        }
 
-		if ( Property.GetItemID() == Z_RISK_ACTION + ( i * _MaxRisksSize ) )
-		{
-			SetRiskAction( i, ( Property.GetValueString() == ZAGlobal::GetYesFromArrayYesNo() ? 1 : 0 ) );
-		}
-	}
-	// ************************************************************************************************
+        if ( Property.GetItemID() == Z_RISK_ACTION + ( i * _MaxRisksSize ) )
+        {
+            SetRiskAction( i, ( Property.GetValueString() == ZAGlobal::GetYesFromArrayYesNo() ? 1 : 0 ) );
+        }
+    }
+    // ************************************************************************************************
 
-	// JMR-MODIF - Le 9 mai 2007 - Contrôle si l'utilisateur a tenté de renommer une règle.
-	// Si c'est le cas, réetablit le nom d'origine.
-	if ( Property.GetCategoryID() == ZS_BP_PROP_RULES )
-	{
-		int Index = ( Property.GetItemID() - Z_RULE_NAME ) / _MaxRulesSize;
+    // JMR-MODIF - Le 9 mai 2007 - Contrôle si l'utilisateur a tenté de renommer une règle.
+    // Si c'est le cas, réetablit le nom d'origine.
+    if ( Property.GetCategoryID() == ZS_BP_PROP_RULES )
+    {
+        int Index = ( Property.GetItemID() - Z_RULE_NAME ) / _MaxRulesSize;
 
-		if ( m_Rules.GetRuleName( Index ) != Property.GetValueString() )
-		{
-			Property.SetValueString( m_Rules.GetRuleName( Index ) );
-		}
-	}
+        if ( m_Rules.GetRuleName( Index ) != Property.GetValueString() )
+        {
+            Property.SetValueString( m_Rules.GetRuleName( Index ) );
+        }
+    }
 
-	if ( Property.GetCategoryID() == ZS_BP_PROP_RULELIST )
-	{
-		// If not empty, add this new rule
-		if ( !Property.GetValueString().IsEmpty() )
-		{
-			AddRule( Property.GetValueString() );
-		}
-	}
+    if ( Property.GetCategoryID() == ZS_BP_PROP_RULELIST )
+    {
+        // If not empty, add this new rule
+        if ( !Property.GetValueString().IsEmpty() )
+        {
+            AddRule( Property.GetValueString() );
+        }
+    }
 
-	if ( Property.GetCategoryID() == ZS_BP_PROP_TEXTITEMLIST )
-	{
-		// If not empty, add this new text item
-		if ( !Property.GetValueString().IsEmpty() )
-		{
-			AddTextItem( Property.GetValueString() );
-		}
-	}
+    if ( Property.GetCategoryID() == ZS_BP_PROP_TEXTITEMLIST )
+    {
+        // If not empty, add this new text item
+        if ( !Property.GetValueString().IsEmpty() )
+        {
+            AddTextItem( Property.GetValueString() );
+        }
+    }
 
-	// Set the modified flag to true,
-	// Do nothing more, the values will be saved by the save properties method
-	SetModifiedFlag();
-	return true;
+    // Set the modified flag to true,
+    // Do nothing more, the values will be saved by the save properties method
+    SetModifiedFlag();
+    return true;
 }
 
 void ZBDeliverableLinkSymbol::SavePropertiesToQuantity( ZBPropertySet& Properties )
 {
-	// Now run through the list of data and fill the property set
-	ZBPropertyIterator j( &Properties );
+    // Now run through the list of data and fill the property set
+    ZBPropertyIterator j( &Properties );
 
-	for ( ZBProperty* pProp = j.GetFirst(); pProp; pProp = j.GetNext() )
-	{
-		if ( pProp->GetCategoryID() == ZS_BP_PROP_QUANTITY )
-		{
-			// Check if a flag
-			if ( pProp->GetItemID() == Z_LOCKED_YEAR		||
-				 pProp->GetItemID() == Z_LOCKED_JANUARY		||
-				 pProp->GetItemID() == Z_LOCKED_FEBRUARY	||
-				 pProp->GetItemID() == Z_LOCKED_MARCH		||
-				 pProp->GetItemID() == Z_LOCKED_APRIL		||
-				 pProp->GetItemID() == Z_LOCKED_MAY			||
-				 pProp->GetItemID() == Z_LOCKED_JUNE		||
-				 pProp->GetItemID() == Z_LOCKED_JULY		||
-				 pProp->GetItemID() == Z_LOCKED_AUGUST		||
-				 pProp->GetItemID() == Z_LOCKED_SEPTEMBER	||
-				 pProp->GetItemID() == Z_LOCKED_OCTOBER		||
-				 pProp->GetItemID() == Z_LOCKED_NOVEMBER	||
-				 pProp->GetItemID() == Z_LOCKED_DECEMBER	||
-				 pProp->GetItemID() == Z_FORCE_EQUALIZER )
-			{
-				m_Quantity.SetValue( pProp->GetItemID(),
-									 ( pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo() ) ? 1 : 0 );
-			}
-			else
-			{
-				switch ( pProp->GetPTValueType() )
-				{
-					case ZBProperty::PT_STRING:
-					{
-						m_Quantity.SetValue( pProp->GetItemID(), pProp->GetValueString() );
-						break;
-					}
+    for ( ZBProperty* pProp = j.GetFirst(); pProp; pProp = j.GetNext() )
+    {
+        if ( pProp->GetCategoryID() == ZS_BP_PROP_QUANTITY )
+        {
+            // Check if a flag
+            if ( pProp->GetItemID() == Z_LOCKED_YEAR        ||
+                 pProp->GetItemID() == Z_LOCKED_JANUARY        ||
+                 pProp->GetItemID() == Z_LOCKED_FEBRUARY    ||
+                 pProp->GetItemID() == Z_LOCKED_MARCH        ||
+                 pProp->GetItemID() == Z_LOCKED_APRIL        ||
+                 pProp->GetItemID() == Z_LOCKED_MAY            ||
+                 pProp->GetItemID() == Z_LOCKED_JUNE        ||
+                 pProp->GetItemID() == Z_LOCKED_JULY        ||
+                 pProp->GetItemID() == Z_LOCKED_AUGUST        ||
+                 pProp->GetItemID() == Z_LOCKED_SEPTEMBER    ||
+                 pProp->GetItemID() == Z_LOCKED_OCTOBER        ||
+                 pProp->GetItemID() == Z_LOCKED_NOVEMBER    ||
+                 pProp->GetItemID() == Z_LOCKED_DECEMBER    ||
+                 pProp->GetItemID() == Z_FORCE_EQUALIZER )
+            {
+                m_Quantity.SetValue( pProp->GetItemID(),
+                                     ( pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo() ) ? 1 : 0 );
+            }
+            else
+            {
+                switch ( pProp->GetPTValueType() )
+                {
+                    case ZBProperty::PT_STRING:
+                    {
+                        m_Quantity.SetValue( pProp->GetItemID(), pProp->GetValueString() );
+                        break;
+                    }
 
-					case ZBProperty::PT_DOUBLE:
-					{
-						m_Quantity.SetValue( pProp->GetItemID(), static_cast<float>( pProp->GetValueDouble() ) );
-						break;
-					}
+                    case ZBProperty::PT_DOUBLE:
+                    {
+                        m_Quantity.SetValue( pProp->GetItemID(), static_cast<float>( pProp->GetValueDouble() ) );
+                        break;
+                    }
 
-					case ZBProperty::PT_FLOAT:
-					{
-						m_Quantity.SetValue( pProp->GetItemID(), pProp->GetValueFloat() );
-						break;
-					}
+                    case ZBProperty::PT_FLOAT:
+                    {
+                        m_Quantity.SetValue( pProp->GetItemID(), pProp->GetValueFloat() );
+                        break;
+                    }
 
-					case ZBProperty::PT_DATE:
-					{
-						m_Quantity.SetValue( pProp->GetItemID(), static_cast<float>( (DATE)pProp->GetValueDate() ) );
-						break;
-					}
+                    case ZBProperty::PT_DATE:
+                    {
+                        m_Quantity.SetValue( pProp->GetItemID(), static_cast<float>( (DATE)pProp->GetValueDate() ) );
+                        break;
+                    }
 
-					case ZBProperty::PT_TIMESPAN:
-					{
-						ASSERT( FALSE );
-						break;
-					}
+                    case ZBProperty::PT_TIMESPAN:
+                    {
+                        ASSERT( FALSE );
+                        break;
+                    }
 
-					case ZBProperty::PT_DURATION:
-					{
-						ASSERT( FALSE );
-						break;
-					}
-				}
-			}
-		}
-	}
+                    case ZBProperty::PT_DURATION:
+                    {
+                        ASSERT( FALSE );
+                        break;
+                    }
+                }
+            }
+        }
+    }
 
-	// Now calculates all percents, its is necessary to equalize
-	m_Quantity.CalculatePercents();
+    // Now calculates all percents, its is necessary to equalize
+    m_Quantity.CalculatePercents();
 }
 
 void ZBDeliverableLinkSymbol::SaveEqualizerToProperties( ZBPropertySet& Properties )
 {
-	ZBPropertyIterator i( &Properties );
-	ZBProperty* pProp;
+    ZBPropertyIterator i( &Properties );
+    ZBProperty* pProp;
 
-	for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
-	{
-		if ( !pProp || pProp->GetCategoryID() != ZS_BP_PROP_QUANTITY )
-		{
-			continue;
-		}
+    for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    {
+        if ( !pProp || pProp->GetCategoryID() != ZS_BP_PROP_QUANTITY )
+        {
+            continue;
+        }
 
-		switch ( pProp->GetItemID() )
-		{
-			case Z_NUMBER_YEAR:
-			{
-				pProp->SetValueDouble( m_Quantity.GetNumberYear() );
-				break;
-			}
+        switch ( pProp->GetItemID() )
+        {
+            case Z_NUMBER_YEAR:
+            {
+                pProp->SetValueDouble( m_Quantity.GetNumberYear() );
+                break;
+            }
 
-			case Z_NUMBER_JANUARY:
-			{
-				pProp->SetValueDouble( m_Quantity.GetNumberJanuary() );
-				break;
-			}
+            case Z_NUMBER_JANUARY:
+            {
+                pProp->SetValueDouble( m_Quantity.GetNumberJanuary() );
+                break;
+            }
 
-			case Z_NUMBER_FEBRUARY:
-			{
-				pProp->SetValueDouble( m_Quantity.GetNumberFebruary() );
-				break;
-			}
+            case Z_NUMBER_FEBRUARY:
+            {
+                pProp->SetValueDouble( m_Quantity.GetNumberFebruary() );
+                break;
+            }
 
-			case Z_NUMBER_MARCH:
-			{
-				pProp->SetValueDouble( m_Quantity.GetNumberMarch() );
-				break;
-			}
+            case Z_NUMBER_MARCH:
+            {
+                pProp->SetValueDouble( m_Quantity.GetNumberMarch() );
+                break;
+            }
 
-			case Z_NUMBER_APRIL:
-			{
-				pProp->SetValueDouble( m_Quantity.GetNumberApril() );
-				break;
-			}
+            case Z_NUMBER_APRIL:
+            {
+                pProp->SetValueDouble( m_Quantity.GetNumberApril() );
+                break;
+            }
 
-			case Z_NUMBER_MAY:
-			{
-				pProp->SetValueDouble( m_Quantity.GetNumberMay() );
-				break;
-			}
+            case Z_NUMBER_MAY:
+            {
+                pProp->SetValueDouble( m_Quantity.GetNumberMay() );
+                break;
+            }
 
-			case Z_NUMBER_JUNE:
-			{
-				pProp->SetValueDouble( m_Quantity.GetNumberJune() );
-				break;
-			}
+            case Z_NUMBER_JUNE:
+            {
+                pProp->SetValueDouble( m_Quantity.GetNumberJune() );
+                break;
+            }
 
-			case Z_NUMBER_JULY:
-			{
-				pProp->SetValueDouble( m_Quantity.GetNumberJuly() );
-				break;
-			}
+            case Z_NUMBER_JULY:
+            {
+                pProp->SetValueDouble( m_Quantity.GetNumberJuly() );
+                break;
+            }
 
-			case Z_NUMBER_AUGUST:
-			{
-				pProp->SetValueDouble( m_Quantity.GetNumberAugust() );
-				break;
-			}
+            case Z_NUMBER_AUGUST:
+            {
+                pProp->SetValueDouble( m_Quantity.GetNumberAugust() );
+                break;
+            }
 
-			case Z_NUMBER_SEPTEMBER:
-			{
-				pProp->SetValueDouble( m_Quantity.GetNumberSeptember() );
-				break;
-			}
+            case Z_NUMBER_SEPTEMBER:
+            {
+                pProp->SetValueDouble( m_Quantity.GetNumberSeptember() );
+                break;
+            }
 
-			case Z_NUMBER_OCTOBER:
-			{
-				pProp->SetValueDouble( m_Quantity.GetNumberOctober() );
-				break;
+            case Z_NUMBER_OCTOBER:
+            {
+                pProp->SetValueDouble( m_Quantity.GetNumberOctober() );
+                break;
 
-			}
-			case Z_NUMBER_NOVEMBER:
-			{
-				pProp->SetValueDouble( m_Quantity.GetNumberNovember() );
-				break;
-			}
+            }
+            case Z_NUMBER_NOVEMBER:
+            {
+                pProp->SetValueDouble( m_Quantity.GetNumberNovember() );
+                break;
+            }
 
-			case Z_NUMBER_DECEMBER:
-			{
-				pProp->SetValueDouble( m_Quantity.GetNumberDecember() );
-				break;
-			}
+            case Z_NUMBER_DECEMBER:
+            {
+                pProp->SetValueDouble( m_Quantity.GetNumberDecember() );
+                break;
+            }
 
-			case Z_LOCKED_YEAR:
-			{
-				break;
-			}
+            case Z_LOCKED_YEAR:
+            {
+                break;
+            }
 
-			case Z_LOCKED_JANUARY:
-			{
-				pProp->SetValueString( ( m_Quantity.GetLockNumberJanuary() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
-				break;
-			}
+            case Z_LOCKED_JANUARY:
+            {
+                pProp->SetValueString( ( m_Quantity.GetLockNumberJanuary() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                break;
+            }
 
-			case Z_LOCKED_FEBRUARY:
-			{
-				pProp->SetValueString( ( m_Quantity.GetLockNumberFebruary() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
-				break;
-			}
+            case Z_LOCKED_FEBRUARY:
+            {
+                pProp->SetValueString( ( m_Quantity.GetLockNumberFebruary() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                break;
+            }
 
-			case Z_LOCKED_MARCH:
-			{
-				pProp->SetValueString( ( m_Quantity.GetLockNumberMarch() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
-				break;
-			}
+            case Z_LOCKED_MARCH:
+            {
+                pProp->SetValueString( ( m_Quantity.GetLockNumberMarch() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                break;
+            }
 
-			case Z_LOCKED_APRIL:
-			{
-				pProp->SetValueString( ( m_Quantity.GetLockNumberApril() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
-				break;
-			}
+            case Z_LOCKED_APRIL:
+            {
+                pProp->SetValueString( ( m_Quantity.GetLockNumberApril() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                break;
+            }
 
-			case Z_LOCKED_MAY:
-			{
-				pProp->SetValueString( ( m_Quantity.GetLockNumberMay() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
-				break;
-			}
+            case Z_LOCKED_MAY:
+            {
+                pProp->SetValueString( ( m_Quantity.GetLockNumberMay() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                break;
+            }
 
-			case Z_LOCKED_JUNE:
-			{
-				pProp->SetValueString( ( m_Quantity.GetLockNumberJune() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
-				break;
-			}
+            case Z_LOCKED_JUNE:
+            {
+                pProp->SetValueString( ( m_Quantity.GetLockNumberJune() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                break;
+            }
 
-			case Z_LOCKED_JULY:
-			{
-				pProp->SetValueString( ( m_Quantity.GetLockNumberJuly() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
-				break;
-			}
+            case Z_LOCKED_JULY:
+            {
+                pProp->SetValueString( ( m_Quantity.GetLockNumberJuly() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                break;
+            }
 
-			case Z_LOCKED_AUGUST:
-			{
-				pProp->SetValueString( ( m_Quantity.GetLockNumberAugust() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
-				break;
-			}
+            case Z_LOCKED_AUGUST:
+            {
+                pProp->SetValueString( ( m_Quantity.GetLockNumberAugust() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                break;
+            }
 
-			case Z_LOCKED_SEPTEMBER:
-			{
-				pProp->SetValueString( ( m_Quantity.GetLockNumberSeptember() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
-				break;
-			}
+            case Z_LOCKED_SEPTEMBER:
+            {
+                pProp->SetValueString( ( m_Quantity.GetLockNumberSeptember() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                break;
+            }
 
-			case Z_LOCKED_OCTOBER:
-			{
-				pProp->SetValueString( ( m_Quantity.GetLockNumberOctober() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
-				break;
-			}
+            case Z_LOCKED_OCTOBER:
+            {
+                pProp->SetValueString( ( m_Quantity.GetLockNumberOctober() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                break;
+            }
 
-			case Z_LOCKED_NOVEMBER:
-			{
-				pProp->SetValueString( ( m_Quantity.GetLockNumberNovember() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
-				break;
-			}
+            case Z_LOCKED_NOVEMBER:
+            {
+                pProp->SetValueString( ( m_Quantity.GetLockNumberNovember() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                break;
+            }
 
-			case Z_LOCKED_DECEMBER:
-			{
-				pProp->SetValueString( ( m_Quantity.GetLockNumberDecember() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
-				break;
-			}
+            case Z_LOCKED_DECEMBER:
+            {
+                pProp->SetValueString( ( m_Quantity.GetLockNumberDecember() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                break;
+            }
 
-			case Z_FORCE_EQUALIZER:
-			{
-				pProp->SetValueString( ( m_Quantity.GetForceEqualizer() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
-				break;
-			}
-		}
-	}
+            case Z_FORCE_EQUALIZER:
+            {
+                pProp->SetValueString( ( m_Quantity.GetForceEqualizer() == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                break;
+            }
+        }
+    }
 }
 
 // ********************************************* Fonctions Set **********************************************
 
 void ZBDeliverableLinkSymbol::SetNewNumberAndEqualize( ZBProperty& Property, ZBPropertySet& Properties )
 {
-	ZBPropertyIterator i( &Properties );
-	ZBProperty* pProp;
+    ZBPropertyIterator i( &Properties );
+    ZBProperty* pProp;
 
-	for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
-	{
-		// Continue till we've found the right property to change
-		if ( !pProp || pProp->GetCategoryID() != ZS_BP_PROP_QUANTITY || pProp->GetItemID() != Property.GetItemID() )
-		{
-			continue;
-		}
+    for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    {
+        // Continue till we've found the right property to change
+        if ( !pProp || pProp->GetCategoryID() != ZS_BP_PROP_QUANTITY || pProp->GetItemID() != Property.GetItemID() )
+        {
+            continue;
+        }
 
-		switch ( pProp->GetItemID() )
-		{
-			case Z_NUMBER_YEAR:
-			{
-				m_Quantity.SetAndCalculateQuantitiesBasedOnYear( Property.GetValueDouble() );
-				return;
-			}
+        switch ( pProp->GetItemID() )
+        {
+            case Z_NUMBER_YEAR:
+            {
+                m_Quantity.SetAndCalculateQuantitiesBasedOnYear( Property.GetValueDouble() );
+                return;
+            }
 
-			case Z_NUMBER_JANUARY:
-			{
-				m_Quantity.SetAndCalculateQuantitiesBasedOnJanuary( Property.GetValueDouble() );
-				return;
-			}
+            case Z_NUMBER_JANUARY:
+            {
+                m_Quantity.SetAndCalculateQuantitiesBasedOnJanuary( Property.GetValueDouble() );
+                return;
+            }
 
-			case Z_NUMBER_FEBRUARY:
-			{
-				m_Quantity.SetAndCalculateQuantitiesBasedOnFebruary( Property.GetValueDouble() );
-				return;
-			}
+            case Z_NUMBER_FEBRUARY:
+            {
+                m_Quantity.SetAndCalculateQuantitiesBasedOnFebruary( Property.GetValueDouble() );
+                return;
+            }
 
-			case Z_NUMBER_MARCH:
-			{
-				m_Quantity.SetAndCalculateQuantitiesBasedOnMarch( Property.GetValueDouble() );
-				return;
-			}
+            case Z_NUMBER_MARCH:
+            {
+                m_Quantity.SetAndCalculateQuantitiesBasedOnMarch( Property.GetValueDouble() );
+                return;
+            }
 
-			case Z_NUMBER_APRIL:
-			{
-				m_Quantity.SetAndCalculateQuantitiesBasedOnApril( Property.GetValueDouble() );
-				return;
-			}
+            case Z_NUMBER_APRIL:
+            {
+                m_Quantity.SetAndCalculateQuantitiesBasedOnApril( Property.GetValueDouble() );
+                return;
+            }
 
-			case Z_NUMBER_MAY:
-			{
-				m_Quantity.SetAndCalculateQuantitiesBasedOnMay( Property.GetValueDouble() );
-				return;
-			}
+            case Z_NUMBER_MAY:
+            {
+                m_Quantity.SetAndCalculateQuantitiesBasedOnMay( Property.GetValueDouble() );
+                return;
+            }
 
-			case Z_NUMBER_JUNE:
-			{
-				m_Quantity.SetAndCalculateQuantitiesBasedOnJune( Property.GetValueDouble() );
-				return;
-			}
+            case Z_NUMBER_JUNE:
+            {
+                m_Quantity.SetAndCalculateQuantitiesBasedOnJune( Property.GetValueDouble() );
+                return;
+            }
 
-			case Z_NUMBER_JULY:
-			{
-				m_Quantity.SetAndCalculateQuantitiesBasedOnJuly( Property.GetValueDouble() );
-				return;
-			}
+            case Z_NUMBER_JULY:
+            {
+                m_Quantity.SetAndCalculateQuantitiesBasedOnJuly( Property.GetValueDouble() );
+                return;
+            }
 
-			case Z_NUMBER_AUGUST:
-			{
-				m_Quantity.SetAndCalculateQuantitiesBasedOnAugust( Property.GetValueDouble() );
-				return;
-			}
+            case Z_NUMBER_AUGUST:
+            {
+                m_Quantity.SetAndCalculateQuantitiesBasedOnAugust( Property.GetValueDouble() );
+                return;
+            }
 
-			case Z_NUMBER_SEPTEMBER:
-			{
-				m_Quantity.SetAndCalculateQuantitiesBasedOnSeptember( Property.GetValueDouble() );
-				return;
-			}
+            case Z_NUMBER_SEPTEMBER:
+            {
+                m_Quantity.SetAndCalculateQuantitiesBasedOnSeptember( Property.GetValueDouble() );
+                return;
+            }
 
-			case Z_NUMBER_OCTOBER:
-			{
-				m_Quantity.SetAndCalculateQuantitiesBasedOnOctober( Property.GetValueDouble() );
-				return;
-			}
+            case Z_NUMBER_OCTOBER:
+            {
+                m_Quantity.SetAndCalculateQuantitiesBasedOnOctober( Property.GetValueDouble() );
+                return;
+            }
 
-			case Z_NUMBER_NOVEMBER:
-			{
-				m_Quantity.SetAndCalculateQuantitiesBasedOnNovember( Property.GetValueDouble() );
-				return;
-			}
+            case Z_NUMBER_NOVEMBER:
+            {
+                m_Quantity.SetAndCalculateQuantitiesBasedOnNovember( Property.GetValueDouble() );
+                return;
+            }
 
-			case Z_NUMBER_DECEMBER:
-			{
-				m_Quantity.SetAndCalculateQuantitiesBasedOnDecember( Property.GetValueDouble() );
-				return;
-			}
+            case Z_NUMBER_DECEMBER:
+            {
+                m_Quantity.SetAndCalculateQuantitiesBasedOnDecember( Property.GetValueDouble() );
+                return;
+            }
 
-			// Nothing to do
-			default:
-			{
-				return;
-			}
-		}
-	}
+            // Nothing to do
+            default:
+            {
+                return;
+            }
+        }
+    }
 }
 
 void ZBDeliverableLinkSymbol::SetTextItemList( const CString Value )
 {
-	ZBBPTextItemListProperties* pProps = (ZBBPTextItemListProperties*)GetProperty( ZS_BP_PROP_TEXTITEMLIST );
+    ZBBPTextItemListProperties* pProps = (ZBBPTextItemListProperties*)GetProperty( ZS_BP_PROP_TEXTITEMLIST );
 
-	if ( pProps )
-	{
-		ZBBPTextItemListProperties Props( *pProps );
-		Props.SetTextItemList( Value );
-		SetProperty(&Props);
-	}
+    if ( pProps )
+    {
+        ZBBPTextItemListProperties Props( *pProps );
+        Props.SetTextItemList( Value );
+        SetProperty(&Props);
+    }
 }
 
 void ZBDeliverableLinkSymbol::SetRuleList( const CString Value )
 {
-	ZBBPRuleListProperties* pProps = (ZBBPRuleListProperties*)GetProperty( ZS_BP_PROP_RULELIST );
+    ZBBPRuleListProperties* pProps = (ZBBPRuleListProperties*)GetProperty( ZS_BP_PROP_RULELIST );
 
-	if ( pProps )
-	{
-		ZBBPRuleListProperties Props( *pProps );
-		Props.SetRuleList( Value );
-		SetProperty( &Props );
-	}
+    if ( pProps )
+    {
+        ZBBPRuleListProperties Props( *pProps );
+        Props.SetRuleList( Value );
+        SetProperty( &Props );
+    }
 }
 
 // JMR-MODIF - Le 14 juin 2005 - Ajout de la fonction SetVisualInfo
 // Change les attributs du trait afin de permettre une information visuelle du pourcentage.
 void ZBDeliverableLinkSymbol::SetVisualInfo( int iPercent )
 {
-	// Contrôle que la valeur du pourcentage ne dépasse pas les 100%, et convertit en valeur pour le choix du style.
-	int Style = iPercent <= 100 ? ( ( 2 * iPercent ) / 100 ) : 2;
+    // Contrôle que la valeur du pourcentage ne dépasse pas les 100%, et convertit en valeur pour le choix du style.
+    int Style = iPercent <= 100 ? ( ( 2 * iPercent ) / 100 ) : 2;
 
-	// A 100%, le trait est plein. Sinon, il est soit pointillé (0 à 49%), soit traitillé (50-99%).
-	if ( Style == 2 )
-	{
-		ZBLinkSymbol::SetCurrentLineStyle( PS_SOLID );
-	}
-	else
-	{
-		switch ( Style )
-		{
-			// 0%-49% -> Le trait est pointillé. (........)
-			case 0:
-			{
-				ZBLinkSymbol::SetCurrentLineStyle( PS_DOT );
-				break;
-			}
+    // A 100%, le trait est plein. Sinon, il est soit pointillé (0 à 49%), soit traitillé (50-99%).
+    if ( Style == 2 )
+    {
+        ZBLinkSymbol::SetCurrentLineStyle( PS_SOLID );
+    }
+    else
+    {
+        switch ( Style )
+        {
+            // 0%-49% -> Le trait est pointillé. (........)
+            case 0:
+            {
+                ZBLinkSymbol::SetCurrentLineStyle( PS_DOT );
+                break;
+            }
 
-			// 50%-99% -> le trait est traitillé. (--------)
-			case 1:
-			{
-				ZBLinkSymbol::SetCurrentLineStyle( PS_DASH );
-				break;
-			}
-		}
-	}
+            // 50%-99% -> le trait est traitillé. (--------)
+            case 1:
+            {
+                ZBLinkSymbol::SetCurrentLineStyle( PS_DASH );
+                break;
+            }
+        }
+    }
 }
 
 // ********************************************* Fonctions Get **********************************************
@@ -4309,575 +4309,575 @@ void ZBDeliverableLinkSymbol::SetVisualInfo( int iPercent )
 // JMR-MODIF - Le 25 décembre 2006 - Permet de rechercher le nom original d'une règle en fonction de son GUID.
 CString ZBDeliverableLinkSymbol::GetRuleNameByGUID( ZBLogicalRulesEntity* p_Rule, CString RuleGUID )
 {
-	if ( p_Rule == NULL )
-	{
-		return _T( "" );
-	}
+    if ( p_Rule == NULL )
+    {
+        return _T( "" );
+    }
 
-	if ( p_Rule->GetGUID() == RuleGUID )
-	{
-		return p_Rule->GetEntityName();
-	}
+    if ( p_Rule->GetGUID() == RuleGUID )
+    {
+        return p_Rule->GetEntityName();
+    }
 
-	if ( p_Rule->ContainEntity() )
-	{
-		int Count = p_Rule->GetEntityCount();
+    if ( p_Rule->ContainEntity() )
+    {
+        int Count = p_Rule->GetEntityCount();
 
-		for ( int i = 0; i < Count; ++i )
-		{
-			ZBRulesEntity* pEntity = p_Rule->GetEntityAt( i );
+        for ( int i = 0; i < Count; ++i )
+        {
+            ZBRulesEntity* pEntity = p_Rule->GetEntityAt( i );
 
-			if ( !pEntity )
-			{
-				continue;
-			}
+            if ( !pEntity )
+            {
+                continue;
+            }
 
-			if ( ISA( pEntity, ZBLogicalRulesEntity ) )
-			{
-				CString m_Name = GetRuleNameByGUID( dynamic_cast<ZBLogicalRulesEntity*>( pEntity ), RuleGUID );
+            if ( ISA( pEntity, ZBLogicalRulesEntity ) )
+            {
+                CString m_Name = GetRuleNameByGUID( dynamic_cast<ZBLogicalRulesEntity*>( pEntity ), RuleGUID );
 
-				if ( !m_Name.IsEmpty() )
-				{
-					return m_Name;
-				}
-			}
-		}
-	}
+                if ( !m_Name.IsEmpty() )
+                {
+                    return m_Name;
+                }
+            }
+        }
+    }
 
-	return _T( "" );
+    return _T( "" );
 }
 
 CString ZBDeliverableLinkSymbol::GetTextItemList() const
 {
-	ZBBPTextItemListProperties* pProps = (ZBBPTextItemListProperties*)GetProperty( ZS_BP_PROP_TEXTITEMLIST );
+    ZBBPTextItemListProperties* pProps = (ZBBPTextItemListProperties*)GetProperty( ZS_BP_PROP_TEXTITEMLIST );
 
-	if ( !pProps )
-	{
-		return _T( "" );
-	}
+    if ( !pProps )
+    {
+        return _T( "" );
+    }
 
-	return pProps->GetTextItemList();
+    return pProps->GetTextItemList();
 }
 
 CString ZBDeliverableLinkSymbol::GetTextItemAt( size_t Index )
 {
-	ZBTokenizer token( GetTextItemList() );	// Initialize the token with the list
-											// and with the default ; as separator
+    ZBTokenizer token( GetTextItemList() );    // Initialize the token with the list
+                                            // and with the default ; as separator
 
-	CString Value;
+    CString Value;
 
-	// Retreive the specific indexed token
-	if ( token.GetTokenAt( Index, Value ) )
-	{
-		return Value;
-	}
+    // Retreive the specific indexed token
+    if ( token.GetTokenAt( Index, Value ) )
+    {
+        return Value;
+    }
 
-	return _T( "" );
+    return _T( "" );
 }
 
 size_t ZBDeliverableLinkSymbol::GetTextItemCount() const
 {
-	ZBTokenizer token( GetTextItemList() );	// Initialize the token with the list
-											// and with the default ; as separator
+    ZBTokenizer token( GetTextItemList() );    // Initialize the token with the list
+                                            // and with the default ; as separator
 
-	return token.GetTokenCount();
+    return token.GetTokenCount();
 }
 
 CString ZBDeliverableLinkSymbol::GetCombinationName() const
 {
-	// Retreive the destination procedure
-	ZBBPProcedureSymbol* pProcedure = GetTargetProcedure();
+    // Retreive the destination procedure
+    ZBBPProcedureSymbol* pProcedure = GetTargetProcedure();
 
-	if ( !pProcedure )
-	{
-		return _T( "" );
-	}
+    if ( !pProcedure )
+    {
+        return _T( "" );
+    }
 
-	// From this procedure, check what combination owns us
-	size_t Count = pProcedure->GetCombinationCount();
+    // From this procedure, check what combination owns us
+    size_t Count = pProcedure->GetCombinationCount();
 
-	for ( size_t i = 0; i < Count; ++i )
-	{
-		if ( pProcedure->IsDeliverableInString( pProcedure->GetCombinationDeliverables( i ),
-												const_cast<ZBDeliverableLinkSymbol*>( this )->GetSymbolName() ) )
-		{
-			return pProcedure->GetCombinationName( i );
-		}
-	}
+    for ( size_t i = 0; i < Count; ++i )
+    {
+        if ( pProcedure->IsDeliverableInString( pProcedure->GetCombinationDeliverables( i ),
+                                                const_cast<ZBDeliverableLinkSymbol*>( this )->GetSymbolName() ) )
+        {
+            return pProcedure->GetCombinationName( i );
+        }
+    }
 
-	// Otherwise, not found
-	return _T( "" );
+    // Otherwise, not found
+    return _T( "" );
 }
 
 CString ZBDeliverableLinkSymbol::GetRuleList() const
 {
-	ZBBPRuleListProperties* pProps = (ZBBPRuleListProperties*)GetProperty( ZS_BP_PROP_RULELIST );
+    ZBBPRuleListProperties* pProps = (ZBBPRuleListProperties*)GetProperty( ZS_BP_PROP_RULELIST );
 
-	if ( !pProps )
-	{
-		return _T( "" );
-	}
+    if ( !pProps )
+    {
+        return _T( "" );
+    }
 
-	return pProps->GetRuleList();
+    return pProps->GetRuleList();
 }
 
 CString ZBDeliverableLinkSymbol::GetRuleAt( size_t Index )
 {
-	ZBTokenizer token( GetRuleList() );	// Initialize the token with the task list
-										// and with the default ; as separator
-	CString Value;
+    ZBTokenizer token( GetRuleList() );    // Initialize the token with the task list
+                                        // and with the default ; as separator
+    CString Value;
 
-	// Retreive the specific indexed token
-	if ( token.GetTokenAt( Index, Value ) )
-	{
-		return Value;
-	}
+    // Retreive the specific indexed token
+    if ( token.GetTokenAt( Index, Value ) )
+    {
+        return Value;
+    }
 
-	return _T( "" );
+    return _T( "" );
 }
 
 size_t ZBDeliverableLinkSymbol::GetRuleCount() const
 {
-	ZBTokenizer token( GetRuleList() );	// Initialize the token with the task list
-										// and with the default ; as separator
-	return token.GetTokenCount();
+    ZBTokenizer token( GetRuleList() );    // Initialize the token with the task list
+                                        // and with the default ; as separator
+    return token.GetTokenCount();
 }
 
 float ZBDeliverableLinkSymbol::GetCombinationMaxPercentage() const
 {
-	// Retreive the destination procedure
-	ZBBPProcedureSymbol* pProcedure = GetTargetProcedure();
+    // Retreive the destination procedure
+    ZBBPProcedureSymbol* pProcedure = GetTargetProcedure();
 
-	// Test if it is a local symbol
-	if ( pProcedure && !pProcedure->IsLocal() )
-	{
-		// Locate the local symbol
-		CODComponent* pLocal = pProcedure->GetLocalSymbol();
+    // Test if it is a local symbol
+    if ( pProcedure && !pProcedure->IsLocal() )
+    {
+        // Locate the local symbol
+        CODComponent* pLocal = pProcedure->GetLocalSymbol();
 
-		if ( pLocal && ISA( pLocal, ZBBPProcedureSymbol ) )
-		{
-			pProcedure = dynamic_cast<ZBBPProcedureSymbol*>( pLocal );
-		}
-		else
-		{
-			pProcedure = NULL;
-		}
-	}
+        if ( pLocal && ISA( pLocal, ZBBPProcedureSymbol ) )
+        {
+            pProcedure = dynamic_cast<ZBBPProcedureSymbol*>( pLocal );
+        }
+        else
+        {
+            pProcedure = NULL;
+        }
+    }
 
-	if ( !pProcedure )
-	{
-		return (float)INT_MAX;
-	}
+    if ( !pProcedure )
+    {
+        return (float)INT_MAX;
+    }
 
-	// From this procedure, check what combination owns us
-	size_t Count = pProcedure->GetCombinationCount();
+    // From this procedure, check what combination owns us
+    size_t Count = pProcedure->GetCombinationCount();
 
-	for ( size_t i = 0; i < Count; ++i )
-	{
-		if ( pProcedure->IsDeliverableInString( pProcedure->GetCombinationDeliverables( i ),
-												const_cast<ZBDeliverableLinkSymbol*>( this )->GetSymbolName() ) )
-		{
-			return pProcedure->GetCombinationActivationPerc( i );
-		}
-	}
+    for ( size_t i = 0; i < Count; ++i )
+    {
+        if ( pProcedure->IsDeliverableInString( pProcedure->GetCombinationDeliverables( i ),
+                                                const_cast<ZBDeliverableLinkSymbol*>( this )->GetSymbolName() ) )
+        {
+            return pProcedure->GetCombinationActivationPerc( i );
+        }
+    }
 
-	// Otherwise, not found
-	return (float)INT_MAX;
+    // Otherwise, not found
+    return (float)INT_MAX;
 }
 
 ZBBPProcedureSymbol* ZBDeliverableLinkSymbol::GetSourceProcedure() const
 {
-	// Retreive the input procedure name
-	CODComponent* pComp = GetSourceComponent();
+    // Retreive the input procedure name
+    CODComponent* pComp = GetSourceComponent();
 
-	if ( pComp && ISA( pComp, ZBBPProcedureSymbol ) )
-	{
-		return dynamic_cast<ZBBPProcedureSymbol*>( pComp );
-	}
-	else if ( pComp && ISA( pComp, ZBBPDoorSymbol ) )
-	{
-		// Locate the previous connection
-		// of the twin symbol
-		if ( !( pComp = dynamic_cast<ZBBPDoorSymbol*>( pComp )->GetTwinDoorSymbol() ) )
-		{
-			return NULL;
-		}
+    if ( pComp && ISA( pComp, ZBBPProcedureSymbol ) )
+    {
+        return dynamic_cast<ZBBPProcedureSymbol*>( pComp );
+    }
+    else if ( pComp && ISA( pComp, ZBBPDoorSymbol ) )
+    {
+        // Locate the previous connection
+        // of the twin symbol
+        if ( !( pComp = dynamic_cast<ZBBPDoorSymbol*>( pComp )->GetTwinDoorSymbol() ) )
+        {
+            return NULL;
+        }
 
-		CODEdgeArray EnteringEdges;
-		size_t EnteringLinkCount = dynamic_cast<ZBBPDoorSymbol*>( pComp )->GetEdgesEntering_Up( EnteringEdges );
+        CODEdgeArray EnteringEdges;
+        size_t EnteringLinkCount = dynamic_cast<ZBBPDoorSymbol*>( pComp )->GetEdgesEntering_Up( EnteringEdges );
 
-		if ( EnteringLinkCount > 0 )
-		{
-			// Get the link 
-			IODEdge* pIEdge = EnteringEdges.GetAt( 0 );
-			CODLinkComponent* pLink = static_cast<CODLinkComponent*>( pIEdge );
+        if ( EnteringLinkCount > 0 )
+        {
+            // Get the link 
+            IODEdge* pIEdge = EnteringEdges.GetAt( 0 );
+            CODLinkComponent* pLink = static_cast<CODLinkComponent*>( pIEdge );
 
-			if ( !pLink || !ISA( pLink, ZBDeliverableLinkSymbol ) )
-			{
-				return NULL;
-			}
+            if ( !pLink || !ISA( pLink, ZBDeliverableLinkSymbol ) )
+            {
+                return NULL;
+            }
 
-			// Call the same function from the twin deliverable
-			return dynamic_cast<ZBDeliverableLinkSymbol*>( pLink )->GetSourceProcedure();
-		}
+            // Call the same function from the twin deliverable
+            return dynamic_cast<ZBDeliverableLinkSymbol*>( pLink )->GetSourceProcedure();
+        }
 
-		// Otherwise, problem, then return NULL at the end of the function
-	}
-	else if ( pComp && ISA( pComp, ZBBPPageSymbol ) )
-	{
-		// Locate the previous connection
-		// of the twin symbol
-		if ( !( pComp = dynamic_cast<ZBBPPageSymbol*>( pComp )->GetTwinPageSymbol() ) )
-		{
-			return NULL;
-		}
+        // Otherwise, problem, then return NULL at the end of the function
+    }
+    else if ( pComp && ISA( pComp, ZBBPPageSymbol ) )
+    {
+        // Locate the previous connection
+        // of the twin symbol
+        if ( !( pComp = dynamic_cast<ZBBPPageSymbol*>( pComp )->GetTwinPageSymbol() ) )
+        {
+            return NULL;
+        }
 
-		CODEdgeArray EnteringEdges;
-		size_t EnteringLinkCount = dynamic_cast<ZBBPPageSymbol*>( pComp )->GetEdgesEntering_Up( EnteringEdges );
+        CODEdgeArray EnteringEdges;
+        size_t EnteringLinkCount = dynamic_cast<ZBBPPageSymbol*>( pComp )->GetEdgesEntering_Up( EnteringEdges );
 
-		if ( EnteringLinkCount > 0 )
-		{
-			// Get the link 
-			IODEdge* pIEdge = EnteringEdges.GetAt( 0 );
-			CODLinkComponent* pLink = static_cast<CODLinkComponent*>( pIEdge );
+        if ( EnteringLinkCount > 0 )
+        {
+            // Get the link 
+            IODEdge* pIEdge = EnteringEdges.GetAt( 0 );
+            CODLinkComponent* pLink = static_cast<CODLinkComponent*>( pIEdge );
 
-			if ( !pLink || !ISA( pLink, ZBDeliverableLinkSymbol ) )
-			{
-				return NULL;
-			}
+            if ( !pLink || !ISA( pLink, ZBDeliverableLinkSymbol ) )
+            {
+                return NULL;
+            }
 
-			// Call the same function from the twin deliverable
-			return dynamic_cast<ZBDeliverableLinkSymbol*>( pLink )->GetSourceProcedure();
-		}
+            // Call the same function from the twin deliverable
+            return dynamic_cast<ZBDeliverableLinkSymbol*>( pLink )->GetSourceProcedure();
+        }
 
-		// Otherwise, problem, then return NULL at the end of the function
-	}
+        // Otherwise, problem, then return NULL at the end of the function
+    }
 
-	// Not a procedure connected to
-	return NULL;
+    // Not a procedure connected to
+    return NULL;
 }
 
 ZBBPProcedureSymbol* ZBDeliverableLinkSymbol::GetTargetProcedure() const
 {
-	// Retreive the target connected symbol
-	CODComponent* pComp = GetTargetComponent();
+    // Retreive the target connected symbol
+    CODComponent* pComp = GetTargetComponent();
 
-	if ( pComp && ISA( pComp, ZBBPProcedureSymbol ) )
-	{
-		return dynamic_cast<ZBBPProcedureSymbol*>( pComp );
-	}
-	else if ( pComp && ISA( pComp, ZBBPDoorSymbol ) )
-	{
-		// Locate the previous connection
-		// of the twin symbol
-		if ( !( pComp = dynamic_cast<ZBBPDoorSymbol*>( pComp )->GetTwinDoorSymbol() ) )
-		{
-			return NULL;
-		}
+    if ( pComp && ISA( pComp, ZBBPProcedureSymbol ) )
+    {
+        return dynamic_cast<ZBBPProcedureSymbol*>( pComp );
+    }
+    else if ( pComp && ISA( pComp, ZBBPDoorSymbol ) )
+    {
+        // Locate the previous connection
+        // of the twin symbol
+        if ( !( pComp = dynamic_cast<ZBBPDoorSymbol*>( pComp )->GetTwinDoorSymbol() ) )
+        {
+            return NULL;
+        }
 
-		CODEdgeArray LeavingEdges;
-		size_t LeavingLinkCount = dynamic_cast<ZBBPDoorSymbol*>( pComp )->GetEdgesLeaving_Down( LeavingEdges );
+        CODEdgeArray LeavingEdges;
+        size_t LeavingLinkCount = dynamic_cast<ZBBPDoorSymbol*>( pComp )->GetEdgesLeaving_Down( LeavingEdges );
 
-		if ( LeavingLinkCount > 0 )
-		{
-			// Get the link 
-			IODEdge*			pIEdge	= LeavingEdges.GetAt( 0 );
-			CODLinkComponent*	pLink	= static_cast<CODLinkComponent*>( pIEdge );
+        if ( LeavingLinkCount > 0 )
+        {
+            // Get the link 
+            IODEdge*            pIEdge    = LeavingEdges.GetAt( 0 );
+            CODLinkComponent*    pLink    = static_cast<CODLinkComponent*>( pIEdge );
 
-			if ( !pLink || !ISA( pLink, ZBDeliverableLinkSymbol ) )
-			{
-				return NULL;
-			}
+            if ( !pLink || !ISA( pLink, ZBDeliverableLinkSymbol ) )
+            {
+                return NULL;
+            }
 
-			// Call the same function from the twin deliverable
-			return dynamic_cast<ZBDeliverableLinkSymbol*>( pLink )->GetTargetProcedure();
-		}
-		// Otherwise, problem, then return NULL at the end of the function
-	}
-	else if ( pComp && ISA( pComp, ZBBPPageSymbol ) )
-	{
-		// Locate the previous connection
-		// of the twin symbol
-		if ( !( pComp = dynamic_cast<ZBBPPageSymbol*>( pComp )->GetTwinPageSymbol() ) )
-		{
-			return NULL;
-		}
+            // Call the same function from the twin deliverable
+            return dynamic_cast<ZBDeliverableLinkSymbol*>( pLink )->GetTargetProcedure();
+        }
+        // Otherwise, problem, then return NULL at the end of the function
+    }
+    else if ( pComp && ISA( pComp, ZBBPPageSymbol ) )
+    {
+        // Locate the previous connection
+        // of the twin symbol
+        if ( !( pComp = dynamic_cast<ZBBPPageSymbol*>( pComp )->GetTwinPageSymbol() ) )
+        {
+            return NULL;
+        }
 
-		CODEdgeArray LeavingEdges;
-		size_t LeavingLinkCount = dynamic_cast<ZBBPPageSymbol*>( pComp )->GetEdgesLeaving_Down( LeavingEdges );
+        CODEdgeArray LeavingEdges;
+        size_t LeavingLinkCount = dynamic_cast<ZBBPPageSymbol*>( pComp )->GetEdgesLeaving_Down( LeavingEdges );
 
-		if ( LeavingLinkCount > 0 )
-		{
-			// Get the link 
-			IODEdge*			pIEdge	= LeavingEdges.GetAt( 0 );
-			CODLinkComponent*	pLink	= static_cast<CODLinkComponent*>( pIEdge );
+        if ( LeavingLinkCount > 0 )
+        {
+            // Get the link 
+            IODEdge*            pIEdge    = LeavingEdges.GetAt( 0 );
+            CODLinkComponent*    pLink    = static_cast<CODLinkComponent*>( pIEdge );
 
-			if ( !pLink || !ISA( pLink, ZBDeliverableLinkSymbol ) )
-			{
-				return NULL;
-			}
+            if ( !pLink || !ISA( pLink, ZBDeliverableLinkSymbol ) )
+            {
+                return NULL;
+            }
 
-			// Call the same function from the twin deliverable
-			return dynamic_cast<ZBDeliverableLinkSymbol*>( pLink )->GetTargetProcedure();
-		}
+            // Call the same function from the twin deliverable
+            return dynamic_cast<ZBDeliverableLinkSymbol*>( pLink )->GetTargetProcedure();
+        }
 
-		// Otherwise, problem, then return NULL at the end of the function
-	}
+        // Otherwise, problem, then return NULL at the end of the function
+    }
 
-	// Not a procedure connected to
-	return NULL;
+    // Not a procedure connected to
+    return NULL;
 }
 
 ZDProcessGraphModelMdl* ZBDeliverableLinkSymbol::GetComingFromModel() const
 {
-	// Retreive the input procedure name
-	CODComponent* pComp = GetSourceComponent();
+    // Retreive the input procedure name
+    CODComponent* pComp = GetSourceComponent();
 
-	if ( pComp && ISA( pComp, ZBBPDoorSymbol ) )
-	{
-		// Locate the previous connection
-		// of the twin symbol
-		ZBBPDoorSymbol* pSrcDoor = dynamic_cast<ZBBPDoorSymbol*>( pComp )->GetTwinDoorSymbol();
+    if ( pComp && ISA( pComp, ZBBPDoorSymbol ) )
+    {
+        // Locate the previous connection
+        // of the twin symbol
+        ZBBPDoorSymbol* pSrcDoor = dynamic_cast<ZBBPDoorSymbol*>( pComp )->GetTwinDoorSymbol();
 
-		if ( pSrcDoor )
-		{
-			return pSrcDoor->GetModelDoor();
-		}
+        if ( pSrcDoor )
+        {
+            return pSrcDoor->GetModelDoor();
+        }
 
-		// Otherwise, return NULL at the end of the function
-	}
+        // Otherwise, return NULL at the end of the function
+    }
 
-	return NULL;
+    return NULL;
 }
 
 ZBBPProcessSymbol* ZBDeliverableLinkSymbol::GetComingFromProcess() const
 {
-	// Retreive the coming from model
-	ZDProcessGraphModelMdl* pModel = GetComingFromModel();
+    // Retreive the coming from model
+    ZDProcessGraphModelMdl* pModel = GetComingFromModel();
 
-	if ( pModel )
-	{
-		CODModel* pRootModel = const_cast<ZBDeliverableLinkSymbol*>( this )->GetRootModel();
+    if ( pModel )
+    {
+        CODModel* pRootModel = const_cast<ZBDeliverableLinkSymbol*>( this )->GetRootModel();
 
-		if ( pRootModel && ISA( pRootModel, ZDProcessGraphModelMdl ) )
-		{
-			// Find the symbol pointed by the door model
-			CODComponentSet* pSet = dynamic_cast<ZDProcessGraphModelMdl*>( pRootModel )->FindSymbol( pModel );
+        if ( pRootModel && ISA( pRootModel, ZDProcessGraphModelMdl ) )
+        {
+            // Find the symbol pointed by the door model
+            CODComponentSet* pSet = dynamic_cast<ZDProcessGraphModelMdl*>( pRootModel )->FindSymbol( pModel );
 
-			if ( pSet )
-			{
-				int Count = pSet->GetSize();
+            if ( pSet )
+            {
+                int Count = pSet->GetSize();
 
-				for ( int i = 0; i < Count; ++i )
-				{
-					if ( pSet->GetAt( i ) && ISA( pSet->GetAt( i ), ZBBPProcessSymbol ) )
-					{
-						return dynamic_cast<ZBBPProcessSymbol*>( pSet->GetAt( i ) );
-					}
-				}
-			}
-		}
+                for ( int i = 0; i < Count; ++i )
+                {
+                    if ( pSet->GetAt( i ) && ISA( pSet->GetAt( i ), ZBBPProcessSymbol ) )
+                    {
+                        return dynamic_cast<ZBBPProcessSymbol*>( pSet->GetAt( i ) );
+                    }
+                }
+            }
+        }
 
-		// Otherwise, return NULL at the end of the function
-	}
+        // Otherwise, return NULL at the end of the function
+    }
 
-	return NULL;
+    return NULL;
 }
 
 ZDProcessGraphModelMdl* ZBDeliverableLinkSymbol::GetGoingToModel() const
 {
-	// Retreive the target connected symbol
-	CODComponent* pComp = GetTargetComponent();
+    // Retreive the target connected symbol
+    CODComponent* pComp = GetTargetComponent();
 
-	if ( pComp && ISA( pComp, ZBBPDoorSymbol ) )
-	{
-		// Locate the previous connection
-		// of the twin symbol
-		ZBBPDoorSymbol* pSrcDoor = dynamic_cast<ZBBPDoorSymbol*>( pComp )->GetTwinDoorSymbol();
+    if ( pComp && ISA( pComp, ZBBPDoorSymbol ) )
+    {
+        // Locate the previous connection
+        // of the twin symbol
+        ZBBPDoorSymbol* pSrcDoor = dynamic_cast<ZBBPDoorSymbol*>( pComp )->GetTwinDoorSymbol();
 
-		if ( pSrcDoor )
-		{
-			return pSrcDoor->GetModelDoor();
-		}
+        if ( pSrcDoor )
+        {
+            return pSrcDoor->GetModelDoor();
+        }
 
-		// Otherwise, return NULL at the end of the function
-	}
+        // Otherwise, return NULL at the end of the function
+    }
 
-	return NULL;
+    return NULL;
 }
 
 ZBBPProcessSymbol* ZBDeliverableLinkSymbol::GetGoingToProcess() const
 {
-	// Retreive the going to model
-	ZDProcessGraphModelMdl* pModel = GetGoingToModel();
+    // Retreive the going to model
+    ZDProcessGraphModelMdl* pModel = GetGoingToModel();
 
-	if ( pModel )
-	{
-		CODModel* pRootModel = const_cast<ZBDeliverableLinkSymbol*>( this )->GetRootModel();
+    if ( pModel )
+    {
+        CODModel* pRootModel = const_cast<ZBDeliverableLinkSymbol*>( this )->GetRootModel();
 
-		if ( pRootModel && ISA( pRootModel, ZDProcessGraphModelMdl ) )
-		{
-			// Find the symbol pointed by the door model
-			CODComponentSet* pSet = dynamic_cast<ZDProcessGraphModelMdl*>( pRootModel )->FindSymbol( pModel );
+        if ( pRootModel && ISA( pRootModel, ZDProcessGraphModelMdl ) )
+        {
+            // Find the symbol pointed by the door model
+            CODComponentSet* pSet = dynamic_cast<ZDProcessGraphModelMdl*>( pRootModel )->FindSymbol( pModel );
 
-			if ( pSet )
-			{
-				int Count = pSet->GetSize();
+            if ( pSet )
+            {
+                int Count = pSet->GetSize();
 
-				for ( int i = 0; i < Count; ++i )
-				{
-					if ( pSet->GetAt( i ) && ISA( pSet->GetAt( i ), ZBBPProcessSymbol ) )
-					{
-						return dynamic_cast<ZBBPProcessSymbol*>( pSet->GetAt( i ) );
-					}
-				}
-			}
-		}
+                for ( int i = 0; i < Count; ++i )
+                {
+                    if ( pSet->GetAt( i ) && ISA( pSet->GetAt( i ), ZBBPProcessSymbol ) )
+                    {
+                        return dynamic_cast<ZBBPProcessSymbol*>( pSet->GetAt( i ) );
+                    }
+                }
+            }
+        }
 
-		// Otherwise, return NULL at the end of the function
-	}
+        // Otherwise, return NULL at the end of the function
+    }
 
-	return NULL;
+    return NULL;
 }
 
 // ********************************************* Fonctions Is ***********************************************
 
 bool ZBDeliverableLinkSymbol::IsMasterOfCombination() const
 {
-	// Retreive the destination procedure
-	ZBBPProcedureSymbol* pProcedure = GetTargetProcedure();
+    // Retreive the destination procedure
+    ZBBPProcedureSymbol* pProcedure = GetTargetProcedure();
 
-	// Test if it is a local symbol
-	if ( pProcedure && !pProcedure->IsLocal() )
-	{
-		// Locate the local symbol
-		CODComponent* pLocal = pProcedure->GetLocalSymbol();
+    // Test if it is a local symbol
+    if ( pProcedure && !pProcedure->IsLocal() )
+    {
+        // Locate the local symbol
+        CODComponent* pLocal = pProcedure->GetLocalSymbol();
 
-		if ( pLocal && ISA( pLocal, ZBBPProcedureSymbol ) )
-		{
-			pProcedure = dynamic_cast<ZBBPProcedureSymbol*>( pLocal );
-		}
-		else
-		{
-			pProcedure = NULL;
-		}
-	}
+        if ( pLocal && ISA( pLocal, ZBBPProcedureSymbol ) )
+        {
+            pProcedure = dynamic_cast<ZBBPProcedureSymbol*>( pLocal );
+        }
+        else
+        {
+            pProcedure = NULL;
+        }
+    }
 
-	if ( !pProcedure )
-	{
-		return false;
-	}
+    if ( !pProcedure )
+    {
+        return false;
+    }
 
-	// From this procedure, check what combination has a master defined as us
-	size_t Count = pProcedure->GetCombinationCount();
+    // From this procedure, check what combination has a master defined as us
+    size_t Count = pProcedure->GetCombinationCount();
 
-	for ( size_t i = 0; i < Count; ++i )
-	{
-		if ( pProcedure->GetCombinationMaster( i ) == const_cast<ZBDeliverableLinkSymbol*>( this )->GetSymbolName() )
-		{
-			return true;
-		}
-	}
+    for ( size_t i = 0; i < Count; ++i )
+    {
+        if ( pProcedure->GetCombinationMaster( i ) == const_cast<ZBDeliverableLinkSymbol*>( this )->GetSymbolName() )
+        {
+            return true;
+        }
+    }
 
-	// Otherwise, not a master
-	return false;
+    // Otherwise, not a master
+    return false;
 }
 
 bool ZBDeliverableLinkSymbol::IsInitial() const
 {
-	// Retreive the source connected symbol
-	CODComponent* pComp = GetSourceComponent();
-	return ( pComp && ISA( pComp, ZBBPStartSymbol ) ) ? true : false;
+    // Retreive the source connected symbol
+    CODComponent* pComp = GetSourceComponent();
+    return ( pComp && ISA( pComp, ZBBPStartSymbol ) ) ? true : false;
 }
 
 bool ZBDeliverableLinkSymbol::IsFinal() const
 {
-	// Retreive the target connected symbol
-	CODComponent* pComp = GetTargetComponent();
-	return ( pComp && ISA( pComp, ZBBPStopSymbol ) ) ? true : false;
+    // Retreive the target connected symbol
+    CODComponent* pComp = GetTargetComponent();
+    return ( pComp && ISA( pComp, ZBBPStopSymbol ) ) ? true : false;
 }
 
 bool ZBDeliverableLinkSymbol::IsInterProcess() const
 {
-	// Retreive the source connected symbol
-	CODComponent* pSourceComp = GetSourceComponent();
+    // Retreive the source connected symbol
+    CODComponent* pSourceComp = GetSourceComponent();
 
-	// Retreive the target connected symbol
-	CODComponent* pTargetComp = GetTargetComponent();
+    // Retreive the target connected symbol
+    CODComponent* pTargetComp = GetTargetComponent();
 
-	return ( ( pSourceComp && ISA( pSourceComp, ZBBPDoorSymbol ) ) ||
-			 ( pTargetComp && ISA( pTargetComp, ZBBPDoorSymbol ) ) ) ? true : false;
+    return ( ( pSourceComp && ISA( pSourceComp, ZBBPDoorSymbol ) ) ||
+             ( pTargetComp && ISA( pTargetComp, ZBBPDoorSymbol ) ) ) ? true : false;
 }
 
 // **********************************************************************************************************
-// *											   Sérialisation											*
+// *                                               Sérialisation                                            *
 // **********************************************************************************************************
 
 void ZBDeliverableLinkSymbol::Serialize( CArchive& ar )
 {
-	// Serialize the link symbol
-	ZBLinkSymbol::Serialize( ar );
+    // Serialize the link symbol
+    ZBLinkSymbol::Serialize( ar );
 
-	// Only if the object is serialize from and to a document
-	if ( ar.m_pDocument )
-	{
-		m_Quantity.Serialize( ar );
-		m_SimProperties.Serialize( ar );
+    // Only if the object is serialize from and to a document
+    if ( ar.m_pDocument )
+    {
+        m_Quantity.Serialize( ar );
+        m_SimProperties.Serialize( ar );
 
-		// JMR-MODIF - Le 10 juin 2007 - Ajout du code pour la sérialisation des risques.
-		if ( dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 27 )
-		{
-			m_Risks.Serialize( ar );
-		}
+        // JMR-MODIF - Le 10 juin 2007 - Ajout du code pour la sérialisation des risques.
+        if ( dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 27 )
+        {
+            m_Risks.Serialize( ar );
+        }
 
-		if ( ar.IsStoring() ||
-			 dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 19 )
-		{
-			m_CostDeliverableProperties.Serialize( ar );
+        if ( ar.IsStoring() ||
+             dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 19 )
+        {
+            m_CostDeliverableProperties.Serialize( ar );
 
-			// JMR-MODIF - Le 7 septembre 2005 - Suppression de l'ajout du 4 août : Problème de corruption sur les
-			// anciens fichiers !...
-			// JMR-MODIF - Le 4 août 2005 - Ajout du code pour la mise à jour des anciens modèles.
-			//if ( dynamic_cast<ZDBaseDocument*>(ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 22 )
-			//{
-			//	SetVisualInfo((int)(m_CostDeliverableProperties.GetOutWorkloadPercent()*100));
-			//	RedrawSymbol();
-			//}
-		}
-		else
-		{
-			// Transfert the properties to new format
-			ZBBPCostPropertiesDeliverable* pCostProps =
-				(ZBBPCostPropertiesDeliverable*)GetProperty( ZS_BP_PROP_DELIVERABLE_COST );
+            // JMR-MODIF - Le 7 septembre 2005 - Suppression de l'ajout du 4 août : Problème de corruption sur les
+            // anciens fichiers !...
+            // JMR-MODIF - Le 4 août 2005 - Ajout du code pour la mise à jour des anciens modèles.
+            //if ( dynamic_cast<ZDBaseDocument*>(ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 22 )
+            //{
+            //    SetVisualInfo((int)(m_CostDeliverableProperties.GetOutWorkloadPercent()*100));
+            //    RedrawSymbol();
+            //}
+        }
+        else
+        {
+            // Transfert the properties to new format
+            ZBBPCostPropertiesDeliverable* pCostProps =
+                (ZBBPCostPropertiesDeliverable*)GetProperty( ZS_BP_PROP_DELIVERABLE_COST );
 
-			if ( pCostProps )
-			{
-				SetProcessingTime		( pCostProps->GetProcessingTime() );
-				SetInWorkloadPercent	( pCostProps->GetInWorkloadPercent() );
-				SetOutWorkloadPercent	( pCostProps->GetOutWorkloadPercent() );
-				SetUnitaryCost			( pCostProps->GetUnitaryCost() );
-			}
-		}
+            if ( pCostProps )
+            {
+                SetProcessingTime        ( pCostProps->GetProcessingTime() );
+                SetInWorkloadPercent    ( pCostProps->GetInWorkloadPercent() );
+                SetOutWorkloadPercent    ( pCostProps->GetOutWorkloadPercent() );
+                SetUnitaryCost            ( pCostProps->GetUnitaryCost() );
+            }
+        }
 
-		if ( ar.IsStoring() )
-		{
-			m_UnitProp.Serialize( ar );
+        if ( ar.IsStoring() )
+        {
+            m_UnitProp.Serialize( ar );
 
-			// JMR-MODIF - Le 26 novembre 2006 - Ajout de la sérialisation des règles.
-			m_Rules.Serialize( ar );
-		}
-		else
-		{
-			if ( ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 20 )
-			{
-				m_UnitProp.Serialize( ar );
-			}
+            // JMR-MODIF - Le 26 novembre 2006 - Ajout de la sérialisation des règles.
+            m_Rules.Serialize( ar );
+        }
+        else
+        {
+            if ( ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 20 )
+            {
+                m_UnitProp.Serialize( ar );
+            }
 
-			// JMR-MODIF - Le 26 novembre 2006 - Ajout de la sérialisation des règles.
-			if ( ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 26 )
-			{
-				m_Rules.Serialize( ar );
-			}
-		}
-	}
+            // JMR-MODIF - Le 26 novembre 2006 - Ajout de la sérialisation des règles.
+            if ( ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 26 )
+            {
+                m_Rules.Serialize( ar );
+            }
+        }
+    }
 }

@@ -15,46 +15,46 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 // ZIWelcomeDialog dialog
 
 BEGIN_MESSAGE_MAP( ZIWelcomeDialog, CDialog )
-	//{{AFX_MSG_MAP(ZIWelcomeDialog)
-	ON_BN_CLICKED(ID_WELCOME_LASTFILE, OnWelcomeLastFile)
-	ON_WM_PAINT()
-	ON_WM_CTLCOLOR()
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZIWelcomeDialog)
+    ON_BN_CLICKED(ID_WELCOME_LASTFILE, OnWelcomeLastFile)
+    ON_WM_PAINT()
+    ON_WM_CTLCOLOR()
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZIWelcomeDialog::ZIWelcomeDialog( UINT					nID,
-								  UINT					nIDBitmap,
-								  ZAApplicationOption*	pApplicationOptions,
-								  BOOL					EnableMoveToGeneral,
-								  CWnd*					pParent /*=NULL*/ )
-	: ZIDialog				( nID, TRUE, pParent ),
-	  m_nIDBitmap			( nIDBitmap ),
-	  m_pApplicationOptions	( pApplicationOptions ), 
-	  m_EnableMoveToGeneral	( EnableMoveToGeneral )
+ZIWelcomeDialog::ZIWelcomeDialog( UINT                    nID,
+                                  UINT                    nIDBitmap,
+                                  ZAApplicationOption*    pApplicationOptions,
+                                  BOOL                    EnableMoveToGeneral,
+                                  CWnd*                    pParent /*=NULL*/ )
+    : ZIDialog                ( nID, TRUE, pParent ),
+      m_nIDBitmap            ( nIDBitmap ),
+      m_pApplicationOptions    ( pApplicationOptions ), 
+      m_EnableMoveToGeneral    ( EnableMoveToGeneral )
 {
-	//{{AFX_DATA_INIT(ZIWelcomeDialog)
-	//}}AFX_DATA_INIT
+    //{{AFX_DATA_INIT(ZIWelcomeDialog)
+    //}}AFX_DATA_INIT
 
-	m_DoNotStart = !m_pApplicationOptions->GetShowWelcomeScreen();
+    m_DoNotStart = !m_pApplicationOptions->GetShowWelcomeScreen();
 }
 
 void ZIWelcomeDialog::DoDataExchange( CDataExchange* pDX )
 {
-	CDialog::DoDataExchange( pDX );
-	//{{AFX_DATA_MAP(ZIWelcomeDialog)
-	DDX_Control(pDX, ID_WELCOME_LASTFILE, m_LastFile);
-	DDX_Control(pDX, IDCANCEL, m_Cancel);
-	DDX_Control(pDX, IDC_HYPERLINK_HTTP, m_HyperLink);
-	DDX_Check(pDX, IDC_DONOTSTART, m_DoNotStart);
-	//}}AFX_DATA_MAP
+    CDialog::DoDataExchange( pDX );
+    //{{AFX_DATA_MAP(ZIWelcomeDialog)
+    DDX_Control(pDX, ID_WELCOME_LASTFILE, m_LastFile);
+    DDX_Control(pDX, IDCANCEL, m_Cancel);
+    DDX_Control(pDX, IDC_HYPERLINK_HTTP, m_HyperLink);
+    DDX_Check(pDX, IDC_DONOTSTART, m_DoNotStart);
+    //}}AFX_DATA_MAP
 }
 
 void ZIWelcomeDialog::SaveState()
 {
-	UpdateData();
+    UpdateData();
 
-	// Save the flag
-	m_pApplicationOptions->SetShowWelcomeScreen( !m_DoNotStart );
+    // Save the flag
+    m_pApplicationOptions->SetShowWelcomeScreen( !m_DoNotStart );
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -62,42 +62,42 @@ void ZIWelcomeDialog::SaveState()
 
 void ZIWelcomeDialog::OnCancel()
 {
-	SaveState();
-	CDialog::OnCancel();
+    SaveState();
+    CDialog::OnCancel();
 }
 
 void ZIWelcomeDialog::OnWelcomeLastFile()
 {
-	SaveState();
-	EndDialog( ID_WELCOME_LASTFILE );
+    SaveState();
+    EndDialog( ID_WELCOME_LASTFILE );
 }
 
 void ZIWelcomeDialog::OnPaint()
 {
-	CPaintDC dc( this ); // device context for painting
+    CPaintDC dc( this ); // device context for painting
 
-	HINSTANCE hInst = AfxFindResourceHandle( MAKEINTRESOURCE( m_nIDBitmap ), RT_BITMAP );
+    HINSTANCE hInst = AfxFindResourceHandle( MAKEINTRESOURCE( m_nIDBitmap ), RT_BITMAP );
 
-	DisplayBitmapFile ( MAKEINTRESOURCE( m_nIDBitmap ),
-						dc.m_hDC,
-						hInst,
-						3,
-						3 );
+    DisplayBitmapFile ( MAKEINTRESOURCE( m_nIDBitmap ),
+                        dc.m_hDC,
+                        hInst,
+                        3,
+                        3 );
 }
 
 BOOL ZIWelcomeDialog::OnInitDialog()
 {
-	ZIDialog::OnInitDialog();
+    ZIDialog::OnInitDialog();
 
-	m_HyperLink.SetURL( _T( "http://www.processsoft.com" ) );
-	
-	return FALSE;  // return TRUE  unless you set the focus to a control
+    m_HyperLink.SetURL( _T( "http://www.processsoft.com" ) );
+    
+    return FALSE;  // return TRUE  unless you set the focus to a control
 }
 
 // JMR-MODIF - Le 20 octobre 2005 - Ajout de la fonction OnCtlColor.
 HBRUSH ZIWelcomeDialog::OnCtlColor( CDC* pDC, CWnd* pWnd, UINT nCtlColor )
 {
-	HBRUSH hbr = ZIDialog::OnCtlColor( pDC, pWnd, nCtlColor );
+    HBRUSH hbr = ZIDialog::OnCtlColor( pDC, pWnd, nCtlColor );
 
-	return hbr;
+    return hbr;
 }

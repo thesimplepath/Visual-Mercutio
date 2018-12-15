@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Gaya
-// <nl>Created:		 03/2002
+// <nl>Created:         03/2002
 // <nl>Description:  XXXClass frame window support
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -46,22 +46,22 @@ class AFX_EXT_CLASS pdistribmap
 {
 public:
 
-	pdistribmap()
-	{
-	}
+    pdistribmap()
+    {
+    }
 
-	pdistribmap( int pdattribid, int attribdefid, String16 mdata, int mlop )
-	{
-		this->pdattribid	= pdattribid;
-		this->attribdefid	= attribdefid;
-		this->mdata			= convertTo( mdata );
-		this->mlop			= mlop;
-	}
+    pdistribmap( int pdattribid, int attribdefid, String16 mdata, int mlop )
+    {
+        this->pdattribid    = pdattribid;
+        this->attribdefid    = attribdefid;
+        this->mdata            = convertTo( mdata );
+        this->mlop            = mlop;
+    }
 
-	int		pdattribid;
-	int		attribdefid;	
-	string	mdata;	
-	int		mlop;
+    int        pdattribid;
+    int        attribdefid;    
+    string    mdata;    
+    int        mlop;
 };
 
 #endif

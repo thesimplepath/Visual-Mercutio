@@ -1,5 +1,5 @@
 //## begin module%363481D50050.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%363481D50050.cm
 
 //## begin module%363481D50050.cp preserve=no
@@ -48,7 +48,7 @@
 //## end module%363481D50050.additionalDeclarations
 
 //## Class: ZAHistoryFieldManager%36347DBE0290
-//	Manage the field history for the document.
+//    Manage the field history for the document.
 //## Category: PlanFin::History Field manager%36347B0E0308
 //## Subsystem: ZFile modules%3620C63F0009
 //## Persistence: Transient
@@ -60,95 +60,95 @@ class AFX_EXT_CLASS ZAHistoryFieldManager : public CObject  //## Inherits: <unna
 {
 protected:
 
-	// Additional Protected Declarations
-	//## begin ZAHistoryFieldManager%36347DBE0290.protected preserve=yes
-	DECLARE_SERIAL( ZAHistoryFieldManager )
-	//## end ZAHistoryFieldManager%36347DBE0290.protected
+    // Additional Protected Declarations
+    //## begin ZAHistoryFieldManager%36347DBE0290.protected preserve=yes
+    DECLARE_SERIAL( ZAHistoryFieldManager )
+    //## end ZAHistoryFieldManager%36347DBE0290.protected
 
 //## begin ZAHistoryFieldManager%36347DBE0290.initialDeclarations preserve=yes
 public:
 
-	// Inherited feature
-	typedef CObject inherited;
-	//## end ZAHistoryFieldManager%36347DBE0290.initialDeclarations
+    // Inherited feature
+    typedef CObject inherited;
+    //## end ZAHistoryFieldManager%36347DBE0290.initialDeclarations
 
 public:
-	
-	//## Constructors (generated)
-	ZAHistoryFieldManager();
+    
+    //## Constructors (generated)
+    ZAHistoryFieldManager();
 
-	//## Destructor (generated)
-	~ZAHistoryFieldManager();
+    //## Destructor (generated)
+    ~ZAHistoryFieldManager();
 
-	//## Other Operations (specified)
-	//## Operation: AddFieldHistoryValue%909410998
-	// Add a new historic value into the FieldHistoryArray.
-	void AddFieldHistoryValue ( const CString& FieldName, const CString& Value );
+    //## Other Operations (specified)
+    //## Operation: AddFieldHistoryValue%909410998
+    // Add a new historic value into the FieldHistoryArray.
+    void AddFieldHistoryValue ( const CString& FieldName, const CString& Value );
 
-	//## Operation: RemoveFieldHistory%909410999
-	// Remove a specific historic value from the manager.
-	BOOL RemoveFieldHistory ( const CString& FieldName );
+    //## Operation: RemoveFieldHistory%909410999
+    // Remove a specific historic value from the manager.
+    BOOL RemoveFieldHistory ( const CString& FieldName );
 
-	//## Operation: RemoveFieldHistoryValue%909411000
-	// Remove a specific historic value from the manager.
-	BOOL RemoveFieldHistoryValue ( const CString& FieldName, const CString& Value );
+    //## Operation: RemoveFieldHistoryValue%909411000
+    // Remove a specific historic value from the manager.
+    BOOL RemoveFieldHistoryValue ( const CString& FieldName, const CString& Value );
 
-	//## Operation: FindField%909411001
-	// Search if a specific fields exists.
-	ZAHistoryField* FindField ( const CString& FieldName );
+    //## Operation: FindField%909411001
+    // Search if a specific fields exists.
+    ZAHistoryField* FindField ( const CString& FieldName );
 
-	//## Operation: GetFieldHistory%909411002
-	// Get the pointer of the field history.
-	CStringArray* GetFieldHistory ( const CString& FieldName );
+    //## Operation: GetFieldHistory%909411002
+    // Get the pointer of the field history.
+    CStringArray* GetFieldHistory ( const CString& FieldName );
 
-	//## Operation: Serialize%909411003
-	// Serialization function required for MFC mecanism.
-	virtual void Serialize ( CArchive& ar );
+    //## Operation: Serialize%909411003
+    // Serialization function required for MFC mecanism.
+    virtual void Serialize ( CArchive& ar );
 
-	//## Operation: GetCount%909411004
-	// Return the number of elements of the History manager.
-	size_t GetCount ();
+    //## Operation: GetCount%909411004
+    // Return the number of elements of the History manager.
+    size_t GetCount ();
 
-	//## Operation: FreeList%909411005
-	// remove the history.
-	void FreeList ();
+    //## Operation: FreeList%909411005
+    // remove the history.
+    void FreeList ();
 
-	// Additional Public Declarations
+    // Additional Public Declarations
 
 //## begin ZAHistoryFieldManager%36347DBE0290.public preserve=yes
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 //## end ZAHistoryFieldManager%36347DBE0290.public
 
 private:
-	
-	//## Constructors (generated)
-	ZAHistoryFieldManager( const ZAHistoryFieldManager &right );
+    
+    //## Constructors (generated)
+    ZAHistoryFieldManager( const ZAHistoryFieldManager &right );
 
-	//## Assignment Operation (generated)
-	const ZAHistoryFieldManager & operator=( const ZAHistoryFieldManager &right );
+    //## Assignment Operation (generated)
+    const ZAHistoryFieldManager & operator=( const ZAHistoryFieldManager &right );
 
 private:
 
-	// Data Members for Class Attributes
+    // Data Members for Class Attributes
 
-	//## Attribute: FieldHistoryArray%36347F620013
-	// Contains all fields history.
-	//## begin ZAHistoryFieldManager::FieldHistoryArray%36347F620013.attr preserve=no  public: CObArray {U} 
-	CObArray m_FieldHistoryArray;
-	//## end ZAHistoryFieldManager::FieldHistoryArray%36347F620013.attr
+    //## Attribute: FieldHistoryArray%36347F620013
+    // Contains all fields history.
+    //## begin ZAHistoryFieldManager::FieldHistoryArray%36347F620013.attr preserve=no  public: CObArray {U} 
+    CObArray m_FieldHistoryArray;
+    //## end ZAHistoryFieldManager::FieldHistoryArray%36347F620013.attr
 
-	// Additional Private Declarations
-	//## begin ZAHistoryFieldManager%36347DBE0290.private preserve=yes
-	//## end ZAHistoryFieldManager%36347DBE0290.private
+    // Additional Private Declarations
+    //## begin ZAHistoryFieldManager%36347DBE0290.private preserve=yes
+    //## end ZAHistoryFieldManager%36347DBE0290.private
 
 private:  //## implementation
-	
-	// Additional Implementation Declarations
-	//## begin ZAHistoryFieldManager%36347DBE0290.implementation preserve=yes
-	//## end ZAHistoryFieldManager%36347DBE0290.implementation
+    
+    // Additional Implementation Declarations
+    //## begin ZAHistoryFieldManager%36347DBE0290.implementation preserve=yes
+    //## end ZAHistoryFieldManager%36347DBE0290.implementation
 };
 
 //## begin ZAHistoryFieldManager%36347DBE0290.postscript preserve=yes
@@ -159,9 +159,9 @@ private:  //## implementation
 //## Other Operations (inline)
 inline size_t ZAHistoryFieldManager::GetCount ()
 {
-	//## begin ZAHistoryFieldManager::GetCount%909411004.body preserve=yes
-	return m_FieldHistoryArray.GetSize();
-	//## end ZAHistoryFieldManager::GetCount%909411004.body
+    //## begin ZAHistoryFieldManager::GetCount%909411004.body preserve=yes
+    return m_FieldHistoryArray.GetSize();
+    //## end ZAHistoryFieldManager::GetCount%909411004.body
 }
 
 //## begin module%363481D50050.epilog preserve=yes

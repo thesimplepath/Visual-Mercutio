@@ -1,13 +1,22 @@
-#ifndef __ZLANGUAGEDEF_H__
-#define __ZLANGUAGEDEF_H__
+/****************************************************************************
+ * ==> zLanguageDef --------------------------------------------------------*
+ ****************************************************************************
+ * Description : Defines the language types                                 *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-// Define the language enumaration
+#ifndef zLanguageDefH
+#define zLanguageDefH
+
+/**
+* Language enumaration
+*/
 enum Language
 {
-	FrenchLang,
-	EnglishLang,
-	GermanLang,
-	UnknownLang = -1
+    UnknownLang = -1,
+    EnglishLang =  0,
+    FrenchLang  =  1,
+    GermanLang  =  2
 };
 
-#endif // __ZLANGUAGEDEF_H__
+#endif

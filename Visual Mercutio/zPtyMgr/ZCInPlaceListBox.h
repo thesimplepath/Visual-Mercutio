@@ -43,35 +43,35 @@ class ZCInPlaceListBox;
 class _ZCInPlaceEdit : public CEdit
 {
 public:
-	_ZCInPlaceEdit();
-	virtual ~_ZCInPlaceEdit();
+    _ZCInPlaceEdit();
+    virtual ~_ZCInPlaceEdit();
 
-	void SetOwnerListBox( ZCInPlaceListBox* pOwnerList )
-	{
-		m_pOwnerList = pOwnerList;
-	};
+    void SetOwnerListBox( ZCInPlaceListBox* pOwnerList )
+    {
+        m_pOwnerList = pOwnerList;
+    };
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(_ZCInPlaceEdit)
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(_ZCInPlaceEdit)
 public:
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	//}}AFX_VIRTUAL
+    virtual BOOL PreTranslateMessage(MSG* pMsg);
+    //}}AFX_VIRTUAL
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(_ZCInPlaceEdit)
-	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
-	//}}AFX_MSG
+    //{{AFX_MSG(_ZCInPlaceEdit)
+    afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+    //}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
-
-private:
-	_ZCInPlaceEdit(const _ZCInPlaceEdit& d);
-	_ZCInPlaceEdit& operator=(const _ZCInPlaceEdit& d);
+    DECLARE_MESSAGE_MAP()
 
 private:
-	ZCInPlaceListBox* m_pOwnerList;
+    _ZCInPlaceEdit(const _ZCInPlaceEdit& d);
+    _ZCInPlaceEdit& operator=(const _ZCInPlaceEdit& d);
+
+private:
+    ZCInPlaceListBox* m_pOwnerList;
 };
 
 
@@ -81,40 +81,40 @@ private:
 class _ZCInPlaceListBox : public CListBox
 {
 public:
-	_ZCInPlaceListBox();
-	virtual ~_ZCInPlaceListBox();
+    _ZCInPlaceListBox();
+    virtual ~_ZCInPlaceListBox();
 
-	void SetOwnerListBox( ZCInPlaceListBox* pOwnerList )
-	{
-		m_pOwnerList = pOwnerList;
-	};
+    void SetOwnerListBox( ZCInPlaceListBox* pOwnerList )
+    {
+        m_pOwnerList = pOwnerList;
+    };
 
-	// Operations
+    // Operations
 protected:
-	void ProcessSelected(bool bProcess = true);
+    void ProcessSelected(bool bProcess = true);
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(_ZCInPlaceListBox)
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(_ZCInPlaceListBox)
 public:
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	//}}AFX_VIRTUAL
+    virtual BOOL PreTranslateMessage(MSG* pMsg);
+    //}}AFX_VIRTUAL
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(_ZCInPlaceListBox)
-	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
-	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
-	//}}AFX_MSG
+    //{{AFX_MSG(_ZCInPlaceListBox)
+    afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+    afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+    //}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
-
-private:
-	_ZCInPlaceListBox(const _ZCInPlaceListBox& d);
-	_ZCInPlaceListBox& operator=(const _ZCInPlaceListBox& d);
+    DECLARE_MESSAGE_MAP()
 
 private:
-	ZCInPlaceListBox* m_pOwnerList;
+    _ZCInPlaceListBox(const _ZCInPlaceListBox& d);
+    _ZCInPlaceListBox& operator=(const _ZCInPlaceListBox& d);
+
+private:
+    ZCInPlaceListBox* m_pOwnerList;
 };
 
 
@@ -124,88 +124,88 @@ private:
 class AFX_EXT_CLASS ZCInPlaceListBox : public CWnd, public ZIInPlaceEdit
 {
 protected:
-	DECLARE_DYNAMIC(ZCInPlaceListBox)
+    DECLARE_DYNAMIC(ZCInPlaceListBox)
 
 public:
-	ZCInPlaceListBox( bool IsReadOnly = false );
-	virtual ~ZCInPlaceListBox();
+    ZCInPlaceListBox( bool IsReadOnly = false );
+    virtual ~ZCInPlaceListBox();
 
-	// Attributes
+    // Attributes
 public:
-	int GetCurrentSelection() const;
-	DWORD GetDWordData() const;
-	CString GetTextData() const;
+    int GetCurrentSelection() const;
+    DWORD GetDWordData() const;
+    CString GetTextData() const;
 
-	// Operations
+    // Operations
 public:
-	// Initialize the edit control
-	virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0);
-	// Initialize the edit text value
-	virtual void SetEditText(const CString& strText);
-	// Retreive the text entered
-	virtual CString GetEditText() const;
+    // Initialize the edit control
+    virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0);
+    // Initialize the edit text value
+    virtual void SetEditText(const CString& strText);
+    // Retreive the text entered
+    virtual CString GetEditText() const;
 
-	// ZIObserver OnUpdate call-back function
-	virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    // ZIObserver OnUpdate call-back function
+    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
 
-	int SetCurSel(int nSelect, bool bSendSetData = true);
-	int SetCurSel(const CString Value, bool bSendSetData = true);
+    int SetCurSel(int nSelect, bool bSendSetData = true);
+    int SetCurSel(const CString Value, bool bSendSetData = true);
 
-	int AddString(LPCTSTR pStrText, DWORD nData = 0);
+    int AddString(LPCTSTR pStrText, DWORD nData = 0);
 
-	bool IsEditCtrlHit( CPoint point ) const;
-	bool IsEditButtonCtrlHit( CPoint point ) const;
+    bool IsEditCtrlHit( CPoint point ) const;
+    bool IsEditButtonCtrlHit( CPoint point ) const;
 
-	void ResetContent();
-	void ResetListBoxHeight();
+    void ResetContent();
+    void ResetListBoxHeight();
 
-	// Called by the edit child control when a key is pressed
-	void NotifyEditKeyPressed( UINT nChar );
-	// Called by the listbox child control when something has to be done
-	void NotifiyListBoxAction( UINT nAction );
+    // Called by the edit child control when a key is pressed
+    void NotifyEditKeyPressed( UINT nChar );
+    // Called by the listbox child control when something has to be done
+    void NotifiyListBoxAction( UINT nAction );
 
-	// Virtual function to cancel and save the edition
-	virtual void CancelEdit();
-	virtual void SaveValue();
+    // Virtual function to cancel and save the edition
+    virtual void CancelEdit();
+    virtual void SaveValue();
 
 private:
-	ZCInPlaceListBox(const ZCInPlaceListBox& d);
-	ZCInPlaceListBox operator=(const ZCInPlaceListBox& d);
+    ZCInPlaceListBox(const ZCInPlaceListBox& d);
+    ZCInPlaceListBox operator=(const ZCInPlaceListBox& d);
 
-	void SetCurSelToEdit(int nSelect);
-	void ApplyListBoxValueToEdit();
+    void SetCurSelToEdit(int nSelect);
+    void ApplyListBoxValueToEdit();
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCInPlaceListBox)
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCInPlaceListBox)
+    //}}AFX_VIRTUAL
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZCInPlaceListBox)
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg void OnPaint();
-	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
-	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
-	afx_msg void OnSetFocus(CWnd* pOldWnd);
-	afx_msg void OnSize(UINT nType, int cx, int cy);
-	//}}AFX_MSG
+    //{{AFX_MSG(ZCInPlaceListBox)
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    afx_msg void OnPaint();
+    afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+    afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+    afx_msg void OnSetFocus(CWnd* pOldWnd);
+    afx_msg void OnSize(UINT nType, int cx, int cy);
+    //}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 
-	void HideListBox();
-	void SetFocusToEdit();
-	void MoveSelection( UINT Key );
-	
-	// Data
+    void HideListBox();
+    void SetFocusToEdit();
+    void MoveSelection( UINT Key );
+    
+    // Data
 private:
-	static int	m_nButtonDx;
+    static int    m_nButtonDx;
 
-	int			m_nCurrentSelection;
-	CString		m_strInitialValueText;
+    int            m_nCurrentSelection;
+    CString        m_strInitialValueText;
 
-	_ZCInPlaceEdit m_wndEdit;
-	_ZCInPlaceListBox m_wndList;
+    _ZCInPlaceEdit m_wndEdit;
+    _ZCInPlaceListBox m_wndList;
 };
 
 inline ZCInPlaceListBox::~ZCInPlaceListBox()
@@ -214,12 +214,12 @@ inline ZCInPlaceListBox::~ZCInPlaceListBox()
 
 inline int ZCInPlaceListBox::GetCurrentSelection() const
 {
-	return m_nCurrentSelection;
+    return m_nCurrentSelection;
 }
 
 inline DWORD ZCInPlaceListBox::GetDWordData() const
 {
-	return m_nCurrentSelection != -1 ? m_wndList.GetItemData(m_nCurrentSelection) : 0;
+    return m_nCurrentSelection != -1 ? m_wndList.GetItemData(m_nCurrentSelection) : 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////

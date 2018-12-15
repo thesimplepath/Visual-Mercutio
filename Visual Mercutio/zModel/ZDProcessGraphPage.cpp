@@ -17,10 +17,10 @@ IMPLEMENT_SERIAL( ZDProcessGraphPage, CObject, def_Version )
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZDProcessGraphPage::ZDProcessGraphPage( const CString			PageName	/*= ""*/,
-										ZDProcessGraphModelMdl*	pModel		/*= NULL*/ )
-	: m_PageName( PageName ),
-	  m_pModel	( pModel )
+ZDProcessGraphPage::ZDProcessGraphPage( const CString            PageName    /*= ""*/,
+                                        ZDProcessGraphModelMdl*    pModel        /*= NULL*/ )
+    : m_PageName( PageName ),
+      m_pModel    ( pModel )
 {
 }
 
@@ -34,12 +34,12 @@ ZDProcessGraphPage::~ZDProcessGraphPage()
 #ifdef _DEBUG
 void ZDProcessGraphPage::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void ZDProcessGraphPage::Dump( CDumpContext& dc ) const
 {
-	CObject::Dump( dc );
+    CObject::Dump( dc );
 }
 #endif //_DEBUG
 
@@ -50,23 +50,23 @@ void ZDProcessGraphPage::Dump( CDumpContext& dc ) const
 
 void ZDProcessGraphPage::Serialize( CArchive& ar )
 {
-	CObject::Serialize( ar );
+    CObject::Serialize( ar );
 
-	if ( ar.IsStoring() )
-	{
-		m_ModelName.Empty();
+    if ( ar.IsStoring() )
+    {
+        m_ModelName.Empty();
 
-		if ( m_pModel )
-		{
-			m_ModelName = m_pModel->GetAbsolutePath();
-		}
+        if ( m_pModel )
+        {
+            m_ModelName = m_pModel->GetAbsolutePath();
+        }
 
-		ar << m_PageName;
-		ar << m_ModelName;
-	}
-	else
-	{
-		ar >> m_PageName;
-		ar >> m_ModelName;
-	}
+        ar << m_PageName;
+        ar << m_ModelName;
+    }
+    else
+    {
+        ar >> m_PageName;
+        ar >> m_ModelName;
+    }
 }

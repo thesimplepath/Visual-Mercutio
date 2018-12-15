@@ -35,21 +35,21 @@
 
 
 class AFX_EXT_CLASS ZBGenericErrorLine : public ZIErrorLine
-								  
+                                  
 {
 public:
-	ZBGenericErrorLine( const CString message = "", 
-						int line = -1, 
-						int error = -1, 
-						int type = -1 );
-	virtual ~ZBGenericErrorLine();
+    ZBGenericErrorLine( const CString message = "", 
+                        int line = -1, 
+                        int error = -1, 
+                        int type = -1 );
+    virtual ~ZBGenericErrorLine();
 
-	ZBGenericErrorLine(const ZBGenericErrorLine& src);
-	ZBGenericErrorLine& operator=(const ZBGenericErrorLine& src);
+    ZBGenericErrorLine(const ZBGenericErrorLine& src);
+    ZBGenericErrorLine& operator=(const ZBGenericErrorLine& src);
 
 protected:
-	virtual void BuildString();
-	virtual void Parse();
+    virtual void BuildString();
+    virtual void Parse();
 
 };
 

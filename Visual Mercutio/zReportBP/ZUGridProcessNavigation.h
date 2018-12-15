@@ -13,9 +13,9 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 07/2001
+// <nl>Created:         07/2001
 // <nl>Description:  ZUGridProcessNavigation navigates through the process and
-//					 write process information to the grid
+//                     write process information to the grid
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -38,25 +38,25 @@ class ZUGridProcessNavigation : public ZUProcessNavigation
 {
 public:
 
-	ZUGridProcessNavigation( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
-	virtual ~ZUGridProcessNavigation();
+    ZUGridProcessNavigation( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
+    virtual ~ZUGridProcessNavigation();
 
-	// Call-back methods
-	virtual bool OnStart					();
-	virtual bool OnFinish					();
-	virtual bool OnDoorSymbol				( ZBBPDoorSymbol*			pSymbol );
-	virtual bool OnPageSymbol				( ZBBPPageSymbol*			pSymbol );
-	virtual bool OnProcedureSymbol			( ZBBPProcedureSymbol*		pSymbol );
-	virtual bool OnProcessSymbol			( ZBBPProcessSymbol*		pSymbol );
-	virtual bool OnStartSymbol				( ZBBPStartSymbol*			pSymbol );
-	virtual bool OnStopSymbol				( ZBBPStopSymbol*			pSymbol );
-	virtual bool OnDeliverableLinkSymbol	( ZBDeliverableLinkSymbol*	pSymbol );
-	virtual bool OnSymbol					( ZBSymbol*					pSymbol );
-	virtual bool OnLink						( ZBLinkSymbol*				pLink );
+    // Call-back methods
+    virtual bool OnStart                    ();
+    virtual bool OnFinish                    ();
+    virtual bool OnDoorSymbol                ( ZBBPDoorSymbol*            pSymbol );
+    virtual bool OnPageSymbol                ( ZBBPPageSymbol*            pSymbol );
+    virtual bool OnProcedureSymbol            ( ZBBPProcedureSymbol*        pSymbol );
+    virtual bool OnProcessSymbol            ( ZBBPProcessSymbol*        pSymbol );
+    virtual bool OnStartSymbol                ( ZBBPStartSymbol*            pSymbol );
+    virtual bool OnStopSymbol                ( ZBBPStopSymbol*            pSymbol );
+    virtual bool OnDeliverableLinkSymbol    ( ZBDeliverableLinkSymbol*    pSymbol );
+    virtual bool OnSymbol                    ( ZBSymbol*                    pSymbol );
+    virtual bool OnLink                        ( ZBLinkSymbol*                pLink );
 
 private:
 
-	ZBOStreamGrid* m_postream;
+    ZBOStreamGrid* m_postream;
 };
 
 #endif // !defined(AFX_ZUGridProcessNavigation_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)

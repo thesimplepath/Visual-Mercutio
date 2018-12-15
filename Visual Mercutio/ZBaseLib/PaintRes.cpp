@@ -1,10 +1,10 @@
 //## begin module%37EA73A90260.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%37EA73A90260.cm
 
 //## begin module%37EA73A90260.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%37EA73A90260.cp
 
 //## Module: PaintRes%37EA73A90260; Package body
@@ -112,8 +112,8 @@ ZBPaintResources::~ZBPaintResources()
 void ZBPaintResources::Initialize ()
 {
   //## begin ZBPaintResources::Initialize%938112080.body preserve=yes
-	// Creation of pens	
-  	m_BlackPen.CreatePen( PS_SOLID, 1, defCOLOR_BLACK );
+    // Creation of pens    
+      m_BlackPen.CreatePen( PS_SOLID, 1, defCOLOR_BLACK );
     m_WhitePen.CreatePen( PS_SOLID, 1, defCOLOR_WHITE );
     m_BluePen.CreatePen( PS_SOLID, 1, defCOLOR_BLUE );
     m_GrayPen.CreatePen( PS_SOLID, 1, defCOLOR_GRAY );
@@ -121,7 +121,7 @@ void ZBPaintResources::Initialize ()
     m_YellowPen.CreatePen( PS_SOLID, 1, defCOLOR_YELLOW );
     m_GreenPen.CreatePen( PS_SOLID, 1, defCOLOR_GREEN );
 
-	// Creation of brushes
+    // Creation of brushes
     m_WhiteBrush.CreateSolidBrush( defCOLOR_WHITE );
     m_LtBlueBrush.CreateSolidBrush( defCOLOR_LTBLUE );
     m_RedBrush.CreateSolidBrush( defCOLOR_RED );
@@ -129,9 +129,9 @@ void ZBPaintResources::Initialize ()
     m_GrayBrush.CreateSolidBrush( defCOLOR_GRAY );
     m_BlueBrush.CreateSolidBrush( defCOLOR_BLUE );
 
-	// Creation of fonts
-	m_SystemFont.CreateFont( 14, 10, 0, 0, FW_NORMAL, 0, 0, 0, ANSI_CHARSET, OUT_TT_PRECIS, CLIP_DEFAULT_PRECIS, PROOF_QUALITY, 0, "Arial" );
-	m_SmallSystemFont.CreateFont( 10, 6, 0, 0, FW_NORMAL, 0, 0, 0, ANSI_CHARSET, OUT_TT_PRECIS, CLIP_DEFAULT_PRECIS, PROOF_QUALITY, 0, "Arial" );
+    // Creation of fonts
+    m_SystemFont.CreateFont( 14, 10, 0, 0, FW_NORMAL, 0, 0, 0, ANSI_CHARSET, OUT_TT_PRECIS, CLIP_DEFAULT_PRECIS, PROOF_QUALITY, 0, "Arial" );
+    m_SmallSystemFont.CreateFont( 10, 6, 0, 0, FW_NORMAL, 0, 0, 0, ANSI_CHARSET, OUT_TT_PRECIS, CLIP_DEFAULT_PRECIS, PROOF_QUALITY, 0, "Arial" );
 
   //## end ZBPaintResources::Initialize%938112080.body
 }

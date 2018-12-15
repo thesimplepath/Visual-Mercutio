@@ -43,27 +43,27 @@ class AFX_EXT_CLASS ZIActivityAttributionInput
 {
 // Construction
 public:
-	ZIActivityAttributionInput(	ZUUserManager& UserManager, ZUMail& Mail, ZActivity* pActivity, 
-								BOOL LastActivity, 
-								BOOL UserAttribution = TRUE, 
-								BOOL BackupUserAttribution = TRUE, 
-								BOOL TimeAttribution = TRUE, 
-								BOOL VisibilityAttribution = TRUE, CWnd* pParent = NULL);	// standard constructor
-	ZActivity* 		GetActivity() { return m_pActivity; };
-	int				DoModal();
+    ZIActivityAttributionInput(    ZUUserManager& UserManager, ZUMail& Mail, ZActivity* pActivity, 
+                                BOOL LastActivity, 
+                                BOOL UserAttribution = TRUE, 
+                                BOOL BackupUserAttribution = TRUE, 
+                                BOOL TimeAttribution = TRUE, 
+                                BOOL VisibilityAttribution = TRUE, CWnd* pParent = NULL);    // standard constructor
+    ZActivity*         GetActivity() { return m_pActivity; };
+    int                DoModal();
 
 private:
-	ZUUserManager&	m_UserManager;
-	ZUMail& 		m_Mail;
-	ZActivity* 		m_pActivity;
-	BOOL 			m_LastActivity;
-	BOOL 			m_UserAttribution;
-	BOOL			m_BackupUserAttribution;
-	BOOL 			m_TimeAttribution; 	
-	BOOL 			m_VisibilityAttribution;
+    ZUUserManager&    m_UserManager;
+    ZUMail&         m_Mail;
+    ZActivity*         m_pActivity;
+    BOOL             m_LastActivity;
+    BOOL             m_UserAttribution;
+    BOOL            m_BackupUserAttribution;
+    BOOL             m_TimeAttribution;     
+    BOOL             m_VisibilityAttribution;
 private:
-	BOOL	ProcessBackupUser();
-	BOOL	ProcessBaseValue();
+    BOOL    ProcessBackupUser();
+    BOOL    ProcessBaseValue();
 };
 
 

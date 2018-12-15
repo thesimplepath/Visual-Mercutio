@@ -1,6 +1,6 @@
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
-//	Source file: ActCmb.h
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
+//    Source file: ActCmb.h
 
 #ifndef ActivityCmb_h
 #define ActivityCmb_h 1
@@ -40,35 +40,35 @@ class AFX_EXT_CLASS ZCActivityCombo : public CCJFlatComboBox
 class AFX_EXT_CLASS ZCActivityCombo : public CComboBox  
 {
 #endif
-//	DECLARE_DYNAMIC(ZCActivityCombo)
+//    DECLARE_DYNAMIC(ZCActivityCombo)
 
   public:
       ZCActivityCombo (ZProcess* pProcess = NULL, int ActivityType = 0, CString ExcludedActivity = "", BOOL StopWhenFound = TRUE, BOOL AttributedActivityOnly = FALSE);
       ~ZCActivityCombo();
-	  CString	GetSelectedActivity();
-	  void		SelectActivity( const CString ActivityName );
+      CString    GetSelectedActivity();
+      void        SelectActivity( const CString ActivityName );
 
 
-      int	Initialize (ZProcess* pProcess, int ActivityType = 0, CString ExcludedActivity = "", BOOL StopWhenFound = TRUE, BOOL AttributedActivityOnly = FALSE);
-      int	Refresh();
+      int    Initialize (ZProcess* pProcess, int ActivityType = 0, CString ExcludedActivity = "", BOOL StopWhenFound = TRUE, BOOL AttributedActivityOnly = FALSE);
+      int    Refresh();
 
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCActivityCombo)
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCActivityCombo)
+    //}}AFX_VIRTUAL
   protected:
-	//{{AFX_MSG(ZCActivityCombo)
-	//}}AFX_MSG
-//	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZCActivityCombo)
+    //}}AFX_MSG
+//    DECLARE_MESSAGE_MAP()
   private:
       ZCActivityCombo(const ZCActivityCombo &right);
       const ZCActivityCombo & operator=(const ZCActivityCombo &right);
 
   private: //## implementation
-		ZProcess*		m_pProcess;
-		int				m_ActivityType;
-		CString			m_ExcludedActivity;
-		BOOL			m_StopWhenFound;
-		BOOL			m_AttributedActivityOnly;
+        ZProcess*        m_pProcess;
+        int                m_ActivityType;
+        CString            m_ExcludedActivity;
+        BOOL            m_StopWhenFound;
+        BOOL            m_AttributedActivityOnly;
 };
 
 //#undef  AFX_DATA

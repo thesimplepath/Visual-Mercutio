@@ -21,129 +21,129 @@ IMPLEMENT_SERIAL( ZBUnit, CObject, def_Version )
 //////////////////////////////////////////////////////////////////////
 
 ZBUnit::ZBUnit( const CString Name /*= ""*/, const CString Filename /*= ""*/ )
-	: m_Name		( Name ),
-	  m_Filename	( Filename ),
-	  m_pUnitDoc	( NULL )
+    : m_Name        ( Name ),
+      m_Filename    ( Filename ),
+      m_pUnitDoc    ( NULL )
 {
 }
 
 ZBUnit::~ZBUnit()
 {
-	// Do not delete the document pointer,
-	// Unload will do it.
+    // Do not delete the document pointer,
+    // Unload will do it.
 }
 
 bool ZBUnit::Create( const CString Name )
 {
-	m_Name = Name;
-	m_Key = CreateUniqueKey();
+    m_Name = Name;
+    m_Key = CreateUniqueKey();
 
-	if ( m_Key.IsEmpty() )
-	{
-		return false;
-	}
+    if ( m_Key.IsEmpty() )
+    {
+        return false;
+    }
 
-	return true;
+    return true;
 }
 
 bool ZBUnit::Create( const CString Name, const CString Filename )
 {
-	m_Name		= Name;
-	m_Filename	= Filename;
-	m_Key		= CreateUniqueKey();
+    m_Name        = Name;
+    m_Filename    = Filename;
+    m_Key        = CreateUniqueKey();
 
-	if ( m_Key.IsEmpty() )
-	{
-		return false;
-	}
+    if ( m_Key.IsEmpty() )
+    {
+        return false;
+    }
 
-	return true;
+    return true;
 }
 
-CString	ZBUnit::CreateUniqueKey()
+CString    ZBUnit::CreateUniqueKey()
 {
-	GUID guid;
+    GUID guid;
 
-	HRESULT Result = CoCreateGuid( &guid );
+    HRESULT Result = CoCreateGuid( &guid );
 
-	if ( Result == S_OK )
-	{
-		CString Key;
-		Key.Format( _T( "%d-%d" ), guid.Data1, guid.Data2 );
+    if ( Result == S_OK )
+    {
+        CString Key;
+        Key.Format( _T( "%d-%d" ), guid.Data1, guid.Data2 );
 
-		return Key;
-	}
+        return Key;
+    }
 
-	// Problem in the creation
-	return _T( "" );
+    // Problem in the creation
+    return _T( "" );
 }
 
 bool ZBUnit::LoadUnit( ZDProcessModelDocTmpl* pDocTmpl )
 {
-	// Check if the file exists
-	ZFile File( m_Filename );
+    // Check if the file exists
+    ZFile File( m_Filename );
 
-	if ( !File.Exist() )
-	{
-		return false;
-	}
+    if ( !File.Exist() )
+    {
+        return false;
+    }
 
-	if ( m_pUnitDoc )
-	{
-		if ( !UnloadUnit() )
-		{
-			return false;
-		}
-	}
+    if ( m_pUnitDoc )
+    {
+        if ( !UnloadUnit() )
+        {
+            return false;
+        }
+    }
 
-	CDocument* pDoc = pDocTmpl->OpenDocumentFile( m_Filename, FALSE );
+    CDocument* pDoc = pDocTmpl->OpenDocumentFile( m_Filename, FALSE );
 
-	if ( pDoc && ISA( pDoc, ZDProcessGraphModelDoc ) )
-	{
-		m_pUnitDoc = (ZDProcessGraphModelDoc*)pDoc;
+    if ( pDoc && ISA( pDoc, ZDProcessGraphModelDoc ) )
+    {
+        m_pUnitDoc = (ZDProcessGraphModelDoc*)pDoc;
 
-		// Assign the name.
-		m_Name = ( (ZDProcessGraphModelDoc*)pDoc )->GetModel()->GetModelName();
-	}
-	else
-	{
-		if ( pDoc )
-		{
-			pDoc->OnCloseDocument();
-			delete pDoc;
-		}
-	}
+        // Assign the name.
+        m_Name = ( (ZDProcessGraphModelDoc*)pDoc )->GetModel()->GetModelName();
+    }
+    else
+    {
+        if ( pDoc )
+        {
+            pDoc->OnCloseDocument();
+            delete pDoc;
+        }
+    }
 
-	return m_pUnitDoc != NULL;
+    return m_pUnitDoc != NULL;
 }
 
 bool ZBUnit::UnloadUnit()
 {
-	if ( m_pUnitDoc )
-	{
-		m_pUnitDoc->OnCloseDocument();
-		delete m_pUnitDoc;
-		m_pUnitDoc = NULL;
+    if ( m_pUnitDoc )
+    {
+        m_pUnitDoc->OnCloseDocument();
+        delete m_pUnitDoc;
+        m_pUnitDoc = NULL;
 
-		return true;
-	}
+        return true;
+    }
 
-	return false;
+    return false;
 }
 
 // Serializes the unit
 void ZBUnit::Serialize( CArchive& ar )
 {
-	if ( ar.IsStoring() )
-	{
-		ar << m_Key;
-		ar << m_Name;
-		ar << m_Filename;
-	}
-	else
-	{
-		ar >> m_Key;
-		ar >> m_Name;
-		ar >> m_Filename;
-	}
+    if ( ar.IsStoring() )
+    {
+        ar << m_Key;
+        ar << m_Name;
+        ar << m_Filename;
+    }
+    else
+    {
+        ar >> m_Key;
+        ar >> m_Name;
+        ar >> m_Filename;
+    }
 }

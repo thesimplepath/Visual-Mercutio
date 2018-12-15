@@ -1,10 +1,10 @@
 // **************************************************************************************************************
-// *										Classe ZVSelectPrestationDlg										*
+// *                                        Classe ZVSelectPrestationDlg                                        *
 // **************************************************************************************************************
-// * JMR-MODIF - Le 27 février 2006 - Ajout de la classe ZVSelectPrestationDlg.									*
+// * JMR-MODIF - Le 27 février 2006 - Ajout de la classe ZVSelectPrestationDlg.                                    *
 // **************************************************************************************************************
-// * Cette classe représente l'interface de sélection d'une prestation, ou d'un groupe de prestations, dans la	*
-// * liste.																										*
+// * Cette classe représente l'interface de sélection d'une prestation, ou d'un groupe de prestations, dans la    *
+// * liste.                                                                                                        *
 // **************************************************************************************************************
 
 #include "stdafx.h"
@@ -22,55 +22,55 @@ static char THIS_FILE[] = __FILE__;
 // ZVSelectPrestationDlg dialog
 
 BEGIN_MESSAGE_MAP( ZVSelectPrestationDlg, CDialog )
-	//{{AFX_MSG_MAP(ZVSelectPrestationDlg)
-	ON_NOTIFY(TVN_SELCHANGED, IDC_PRESTATIONS_TREE, OnSelchangedPrestationsTree)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZVSelectPrestationDlg)
+    ON_NOTIFY(TVN_SELCHANGED, IDC_PRESTATIONS_TREE, OnSelchangedPrestationsTree)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZVSelectPrestationDlg::ZVSelectPrestationDlg( const CString					Title						/*= ""*/,
-											  ZBLogicalPrestationsEntity*	pMainPrestation				/*= NULL*/,
-											  bool							AllowPrestationSelection	/*= true*/,
-											  CWnd*							pParent						/*=NULL*/ )
-	: CDialog						( ZVSelectPrestationDlg::IDD, pParent ),
-	  m_pPrestationEntity			( NULL ),
-	  m_Title						( Title ),
-	  m_pMainPrestation				( pMainPrestation ),
-	  m_AllowPrestationSelection	( AllowPrestationSelection )
+ZVSelectPrestationDlg::ZVSelectPrestationDlg( const CString                    Title                        /*= ""*/,
+                                              ZBLogicalPrestationsEntity*    pMainPrestation                /*= NULL*/,
+                                              bool                            AllowPrestationSelection    /*= true*/,
+                                              CWnd*                            pParent                        /*=NULL*/ )
+    : CDialog                        ( ZVSelectPrestationDlg::IDD, pParent ),
+      m_pPrestationEntity            ( NULL ),
+      m_Title                        ( Title ),
+      m_pMainPrestation                ( pMainPrestation ),
+      m_AllowPrestationSelection    ( AllowPrestationSelection )
 {
-	//{{AFX_DATA_INIT(ZVSelectPrestationDlg)
-		// NOTE: the ClassWizard will add member initialization here
-	//}}AFX_DATA_INIT
+    //{{AFX_DATA_INIT(ZVSelectPrestationDlg)
+        // NOTE: the ClassWizard will add member initialization here
+    //}}AFX_DATA_INIT
 }
 
-ZVSelectPrestationDlg::ZVSelectPrestationDlg( UINT							nTitle,
-											  ZBLogicalPrestationsEntity*	pMainPrestation,
-											  bool							AllowPrestationSelection	/*= true*/,
-											  CWnd*							pParent						/*=NULL*/ )
-	: CDialog						( ZVSelectPrestationDlg::IDD, pParent ),
-	  m_pPrestationEntity			( NULL ),
-	  m_pMainPrestation				( pMainPrestation ),
-	  m_AllowPrestationSelection	( AllowPrestationSelection )
+ZVSelectPrestationDlg::ZVSelectPrestationDlg( UINT                            nTitle,
+                                              ZBLogicalPrestationsEntity*    pMainPrestation,
+                                              bool                            AllowPrestationSelection    /*= true*/,
+                                              CWnd*                            pParent                        /*=NULL*/ )
+    : CDialog                        ( ZVSelectPrestationDlg::IDD, pParent ),
+      m_pPrestationEntity            ( NULL ),
+      m_pMainPrestation                ( pMainPrestation ),
+      m_AllowPrestationSelection    ( AllowPrestationSelection )
 {
-	m_Title.LoadString( nTitle );
+    m_Title.LoadString( nTitle );
 }
 
 ZVSelectPrestationDlg::~ZVSelectPrestationDlg()
 {
-	Release();
+    Release();
 }
 
 void ZVSelectPrestationDlg::Release()
 {
-	m_Title.Empty();
-	m_Ctrl.Release();
+    m_Title.Empty();
+    m_Ctrl.Release();
 }
 
 void ZVSelectPrestationDlg::DoDataExchange( CDataExchange* pDX )
 {
-	CDialog::DoDataExchange( pDX );
-	//{{AFX_DATA_MAP(ZVSelectPrestationDlg)
-	DDX_Control(pDX, IDC_PRESTATIONS_TREE, m_Ctrl);
-	//}}AFX_DATA_MAP
+    CDialog::DoDataExchange( pDX );
+    //{{AFX_DATA_MAP(ZVSelectPrestationDlg)
+    DDX_Control(pDX, IDC_PRESTATIONS_TREE, m_Ctrl);
+    //}}AFX_DATA_MAP
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -78,53 +78,53 @@ void ZVSelectPrestationDlg::DoDataExchange( CDataExchange* pDX )
 
 BOOL ZVSelectPrestationDlg::OnInitDialog()
 {
-	CDialog::OnInitDialog();
+    CDialog::OnInitDialog();
 
-	CString m_Text;
-	m_Text.LoadString ( IDS_PRESTATION_ROOT_T );
-	m_Ctrl.Initialize( m_Text, m_pMainPrestation );
+    CString m_Text;
+    m_Text.LoadString ( IDS_PRESTATION_ROOT_T );
+    m_Ctrl.Initialize( m_Text, m_pMainPrestation );
 
-	if ( !m_Title.IsEmpty() )
-	{
-		SetWindowText( m_Title );
-	}
+    if ( !m_Title.IsEmpty() )
+    {
+        SetWindowText( m_Title );
+    }
 
-	if ( GetDlgItem( IDOK ) )
-	{
-		GetDlgItem( IDOK )->EnableWindow( FALSE );
-	}
+    if ( GetDlgItem( IDOK ) )
+    {
+        GetDlgItem( IDOK )->EnableWindow( FALSE );
+    }
 
-	return TRUE;	// return TRUE unless you set the focus to a control
-					// EXCEPTION: OCX Property Pages should return FALSE
+    return TRUE;    // return TRUE unless you set the focus to a control
+                    // EXCEPTION: OCX Property Pages should return FALSE
 }
 
 void ZVSelectPrestationDlg::OnOK()
 {
-	// Save the selected item
-	m_pPrestationEntity = m_Ctrl.GetSelectedPrestationEntity();
+    // Save the selected item
+    m_pPrestationEntity = m_Ctrl.GetSelectedPrestationEntity();
 
-	CDialog::OnOK();
+    CDialog::OnOK();
 }
 
 void ZVSelectPrestationDlg::OnSelchangedPrestationsTree( NMHDR* pNMHDR, LRESULT* pResult )
 {
-	NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
+    NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
 
-	BOOL Enable = FALSE;
-	ZBPrestationsEntity* pEntity = m_Ctrl.GetSelectedPrestationEntity();
+    BOOL Enable = FALSE;
+    ZBPrestationsEntity* pEntity = m_Ctrl.GetSelectedPrestationEntity();
 
-	if ( pEntity )
-	{
-		if ( m_AllowPrestationSelection && ISA( pEntity, ZBLogicalPrestationsEntity ) )
-		{
-			Enable = TRUE;
-		}
-	}
+    if ( pEntity )
+    {
+        if ( m_AllowPrestationSelection && ISA( pEntity, ZBLogicalPrestationsEntity ) )
+        {
+            Enable = TRUE;
+        }
+    }
 
-	if ( GetDlgItem( IDOK ) )
-	{
-		GetDlgItem( IDOK )->EnableWindow( Enable );
-	}
+    if ( GetDlgItem( IDOK ) )
+    {
+        GetDlgItem( IDOK )->EnableWindow( Enable );
+    }
 
-	*pResult = 0;
+    *pResult = 0;
 }

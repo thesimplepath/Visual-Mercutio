@@ -39,36 +39,36 @@
 class AFX_EXT_CLASS ZBCriptedFileApplicationTypeInfo : public ZBCriptedFileInfo  
 {
 public:
-	enum ApplicationInfoType { Unknown, HomeEdition, NetworkEdition, EntrepriseEdition };
+    enum ApplicationInfoType { Unknown, HomeEdition, NetworkEdition, EntrepriseEdition };
 
 public:
-	ZBCriptedFileApplicationTypeInfo(const CString Filename = "");
-	virtual ~ZBCriptedFileApplicationTypeInfo();
+    ZBCriptedFileApplicationTypeInfo(const CString Filename = "");
+    virtual ~ZBCriptedFileApplicationTypeInfo();
 
-	BOOL	Initialize( const CString Filename );
-	BOOL	CreateEmpty( const CString Filename );
+    BOOL    Initialize( const CString Filename );
+    BOOL    CreateEmpty( const CString Filename );
 
-	BOOL	CheckProductKey( CString ProductKey );
+    BOOL    CheckProductKey( CString ProductKey );
 
-	ApplicationInfoType	LoadApplicationType();
-	BOOL			WriteApplicationType( ApplicationInfoType value );
+    ApplicationInfoType    LoadApplicationType();
+    BOOL            WriteApplicationType( ApplicationInfoType value );
 
-	CString	LoadProductKey();
-	BOOL	WriteProductKey( CString value );
-
-private:
-	BOOL	ReadFileInfo();
-	BOOL	WriteFileInfo();
-
-	ApplicationInfoType	GetApplicationType() const { return m_ApplicationType; };
-	void	SetApplicationType( ApplicationInfoType	value ) { m_ApplicationType = value; };
-
-	CString	GetProductKey() const { return m_ProductKey; };
-	void	SetProductKey( CString	value ) { m_ProductKey = value; };
+    CString    LoadProductKey();
+    BOOL    WriteProductKey( CString value );
 
 private:
-	ApplicationInfoType	m_ApplicationType;
-	CString	m_ProductKey;
+    BOOL    ReadFileInfo();
+    BOOL    WriteFileInfo();
+
+    ApplicationInfoType    GetApplicationType() const { return m_ApplicationType; };
+    void    SetApplicationType( ApplicationInfoType    value ) { m_ApplicationType = value; };
+
+    CString    GetProductKey() const { return m_ProductKey; };
+    void    SetProductKey( CString    value ) { m_ProductKey = value; };
+
+private:
+    ApplicationInfoType    m_ApplicationType;
+    CString    m_ProductKey;
 };
 
 #endif // !defined(AFX_ZBCRIPTEDFILEAPPLICATIONTYPEINFO_H__6EAC9B86_3386_11D4_973F_0000B45D7C6F__INCLUDED_)

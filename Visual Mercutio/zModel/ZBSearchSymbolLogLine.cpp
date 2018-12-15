@@ -21,16 +21,16 @@ ZBSearchSymbolLogLine::ZBSearchSymbolLogLine()
 }
 
 ZBSearchSymbolLogLine::ZBSearchSymbolLogLine( const CString symbolname,
-											  const CString symbolpath,
-											  const CString message		/*= ""*/ )
-	: ZBGenericSymbolErrorLine( message, symbolname, symbolpath, -1, 2 )
+                                              const CString symbolpath,
+                                              const CString message        /*= ""*/ )
+    : ZBGenericSymbolErrorLine( message, symbolname, symbolpath, -1, 2 )
 {
 }
 
-ZBSearchSymbolLogLine::ZBSearchSymbolLogLine( const CString	symbolname,
-											  const CString	symbolpath,
-											  UINT			nIDSmessage )
-	: ZBGenericSymbolErrorLine( nIDSmessage, symbolname, symbolpath, -1, 2 )
+ZBSearchSymbolLogLine::ZBSearchSymbolLogLine( const CString    symbolname,
+                                              const CString    symbolpath,
+                                              UINT            nIDSmessage )
+    : ZBGenericSymbolErrorLine( nIDSmessage, symbolname, symbolpath, -1, 2 )
 {
 }
 

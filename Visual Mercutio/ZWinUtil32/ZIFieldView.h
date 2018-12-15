@@ -22,10 +22,10 @@
 #include "fieldtreei.h"
 
 #ifndef _WIN32
-	#include "ZWinUtil.h"
+    #include "ZWinUtil.h"
 #endif
 #ifdef _WIN32
-	#include "ZWinUtil32.h"
+    #include "ZWinUtil32.h"
 #endif
 
 
@@ -49,60 +49,60 @@
 class AFX_EXT_CLASS ZIFieldView : public ZITreeView
 {
 protected:
-	DECLARE_DYNCREATE(ZIFieldView)
+    DECLARE_DYNCREATE(ZIFieldView)
 
 public:
-	ZIFieldView();           // protected constructor used by dynamic creation
-	virtual ~ZIFieldView();
+    ZIFieldView();           // protected constructor used by dynamic creation
+    virtual ~ZIFieldView();
 
 // Operations
 public:
-	void Initialize( ZDDocument* pDoc, ZBFieldRepository* pFieldRepository = NULL );
+    void Initialize( ZDDocument* pDoc, ZBFieldRepository* pFieldRepository = NULL );
 
 protected:
-	virtual int			GetIndexOfNoDropImage() const;
+    virtual int            GetIndexOfNoDropImage() const;
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIFieldView)
-	protected:
-	virtual void OnDraw(CDC* pDC);      // overridden to draw this view
-	virtual void PostNcDestroy();
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIFieldView)
+    protected:
+    virtual void OnDraw(CDC* pDC);      // overridden to draw this view
+    virtual void PostNcDestroy();
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZIFieldView)
-	afx_msg LRESULT OnInitializeFieldRepository( WPARAM wParam, LPARAM lParam );
-	afx_msg LRESULT OnDocumentHasBeenSelected( WPARAM wParam, LPARAM lParam );
-	afx_msg LRESULT OnReloadFieldList( WPARAM wParam, LPARAM lParam );
-	afx_msg LRESULT OnFieldAdded( WPARAM wParam, LPARAM lParam );
-	afx_msg LRESULT OnFieldRemoved( WPARAM wParam, LPARAM lParam );
-	afx_msg LRESULT OnFieldRenamed( WPARAM wParam, LPARAM lParam );
-	afx_msg void OnDblClick(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnSelchanged(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZIFieldView)
+    afx_msg LRESULT OnInitializeFieldRepository( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnDocumentHasBeenSelected( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnReloadFieldList( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnFieldAdded( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnFieldRemoved( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnFieldRenamed( WPARAM wParam, LPARAM lParam );
+    afx_msg void OnDblClick(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnSelchanged(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-    ZDDocument*			m_pDoc;
-    ZBFieldRepository*	m_pFieldRepository;
-	ZIFieldTree			m_FieldTree;
+    ZDDocument*            m_pDoc;
+    ZBFieldRepository*    m_pFieldRepository;
+    ZIFieldTree            m_FieldTree;
 
 };
 
 
 inline int ZIFieldView::GetIndexOfNoDropImage() const
 {
-	return 20;
+    return 20;
 }
 
 

@@ -48,7 +48,7 @@ class AFX_EXT_CLASS ZCFlatButton : public CButton
 // Construction
 public:
     ZCFlatButton();
-	~ZCFlatButton();
+    ~ZCFlatButton();
     enum {ST_ALIGN_HORIZ, ST_ALIGN_VERT, ST_ALIGN_HORIZ_RIGHT};
 
 // Attributes
@@ -58,103 +58,103 @@ public:
 public:
 
 // Overrides
-	// ClassWizard generated virtual function overrides
+    // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZCFlatButton)
-	public:
-	virtual void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	protected:
-	virtual void PreSubclassWindow();
-	virtual LRESULT DefWindowProc(UINT message, WPARAM wParam, LPARAM lParam);
-	//}}AFX_VIRTUAL
+    public:
+    virtual void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
+    virtual BOOL PreTranslateMessage(MSG* pMsg);
+    protected:
+    virtual void PreSubclassWindow();
+    virtual LRESULT DefWindowProc(UINT message, WPARAM wParam, LPARAM lParam);
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
-	void DrawTransparent(BOOL bRepaint = FALSE);
+    void DrawTransparent(BOOL bRepaint = FALSE);
 
-	BOOL GetDefault();
+    BOOL GetDefault();
 
-	void SetTooltipText(int nId, BOOL bActivate = TRUE);
-	void SetTooltipText(CString* spText, BOOL bActivate = TRUE);
-	void ActivateTooltip(BOOL bEnable = TRUE);
+    void SetTooltipText(int nId, BOOL bActivate = TRUE);
+    void SetTooltipText(CString* spText, BOOL bActivate = TRUE);
+    void ActivateTooltip(BOOL bEnable = TRUE);
 
-	BOOL SetBtnCursor(int nCursorId = -1);
+    BOOL SetBtnCursor(int nCursorId = -1);
 
-	void SetFlatFocus(BOOL bDrawFlatFocus, BOOL bRepaint = FALSE);
-	BOOL GetFlatFocus();
+    void SetFlatFocus(BOOL bDrawFlatFocus, BOOL bRepaint = FALSE);
+    BOOL GetFlatFocus();
 
-	void SetDefaultActiveFgColor(BOOL bRepaint = FALSE);
-	void SetActiveFgColor(COLORREF crNew, BOOL bRepaint = FALSE);
-	const COLORREF GetActiveFgColor();
-	
-	void SetDefaultActiveBgColor(BOOL bRepaint = FALSE);
-	void SetActiveBgColor(COLORREF crNew, BOOL bRepaint = FALSE);
-	const COLORREF GetActiveBgColor();
-	
-	void SetDefaultInactiveFgColor(BOOL bRepaint = FALSE);
-	void SetInactiveFgColor(COLORREF crNew, BOOL bRepaint = FALSE);
-	const COLORREF GetInactiveFgColor();
+    void SetDefaultActiveFgColor(BOOL bRepaint = FALSE);
+    void SetActiveFgColor(COLORREF crNew, BOOL bRepaint = FALSE);
+    const COLORREF GetActiveFgColor();
+    
+    void SetDefaultActiveBgColor(BOOL bRepaint = FALSE);
+    void SetActiveBgColor(COLORREF crNew, BOOL bRepaint = FALSE);
+    const COLORREF GetActiveBgColor();
+    
+    void SetDefaultInactiveFgColor(BOOL bRepaint = FALSE);
+    void SetInactiveFgColor(COLORREF crNew, BOOL bRepaint = FALSE);
+    const COLORREF GetInactiveFgColor();
 
-	void SetDefaultInactiveBgColor(BOOL bRepaint = FALSE);
-	void SetInactiveBgColor(COLORREF crNew, BOOL bRepaint = FALSE);
-	const COLORREF GetInactiveBgColor();
+    void SetDefaultInactiveBgColor(BOOL bRepaint = FALSE);
+    void SetInactiveBgColor(COLORREF crNew, BOOL bRepaint = FALSE);
+    const COLORREF GetInactiveBgColor();
 
-	void SetShowText(BOOL bShow = TRUE);
-	BOOL GetShowText();
+    void SetShowText(BOOL bShow = TRUE);
+    BOOL GetShowText();
 
-	void SetAlign(int nAlign);
-	int GetAlign();
+    void SetAlign(int nAlign);
+    int GetAlign();
 
-	void SetFlat(BOOL bState = TRUE);
-	BOOL GetFlat();
+    void SetFlat(BOOL bState = TRUE);
+    BOOL GetFlat();
 
-	void DrawBorder(BOOL bEnable = TRUE);
-	void SetIcon(int nIconInId, int nIconOutId = NULL);
-	void SetIcon(HICON hIconIn, HICON hIconOut = NULL);
+    void DrawBorder(BOOL bEnable = TRUE);
+    void SetIcon(int nIconInId, int nIconOutId = NULL);
+    void SetIcon(HICON hIconIn, HICON hIconOut = NULL);
 
-	static const short GetVersionI();
-	static const char* GetVersionC();
+    static const short GetVersionI();
+    static const char* GetVersionC();
 
 protected:
     //{{AFX_MSG(ZCFlatButton)
-	afx_msg void OnCaptureChanged(CWnd *pWnd);
-	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
-	afx_msg void OnKillFocus(CWnd* pNewWnd);
-	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
-	afx_msg void OnSysColorChange();
-	//}}AFX_MSG
+    afx_msg void OnCaptureChanged(CWnd *pWnd);
+    afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
+    afx_msg void OnKillFocus(CWnd* pNewWnd);
+    afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+    afx_msg void OnSysColorChange();
+    //}}AFX_MSG
 
-	afx_msg HBRUSH CtlColor(CDC* pDC, UINT nCtlColor);
+    afx_msg HBRUSH CtlColor(CDC* pDC, UINT nCtlColor);
 
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 private:
-	void DrawTheIcon(CDC* pDC, CString* title, RECT* rcItem, CRect* captionRect, BOOL IsPressed, BOOL IsDisabled);
-	void InitToolTip();
-	void PaintBk(CDC* pDC);
+    void DrawTheIcon(CDC* pDC, CString* title, RECT* rcItem, CRect* captionRect, BOOL IsPressed, BOOL IsDisabled);
+    void InitToolTip();
+    void PaintBk(CDC* pDC);
 
-	int m_nAlign;
-	BOOL m_bShowText;
-	BOOL m_bDrawBorder;
-	BOOL m_bIsFlat;
-	BOOL m_MouseOnButton;
-	BOOL m_bDrawFlatFocus;
+    int m_nAlign;
+    BOOL m_bShowText;
+    BOOL m_bDrawBorder;
+    BOOL m_bIsFlat;
+    BOOL m_MouseOnButton;
+    BOOL m_bDrawFlatFocus;
 
-	HCURSOR m_hCursor;
-	CToolTipCtrl m_ToolTip;
+    HCURSOR m_hCursor;
+    CToolTipCtrl m_ToolTip;
 
-	HICON m_hIconIn;
-	HICON m_hIconOut;
-	BYTE m_cyIcon;
-	BYTE m_cxIcon;
+    HICON m_hIconIn;
+    HICON m_hIconOut;
+    BYTE m_cyIcon;
+    BYTE m_cxIcon;
 
-	CDC m_dcBk;
-	CBitmap m_bmpBk;
-	CBitmap* m_pbmpOldBk;
-	BOOL m_bDrawTransparent;
+    CDC m_dcBk;
+    CBitmap m_bmpBk;
+    CBitmap* m_pbmpOldBk;
+    BOOL m_bDrawTransparent;
 
-	BOOL m_bIsDefault;
+    BOOL m_bIsDefault;
 
-	COLORREF  m_crInactiveBg;
+    COLORREF  m_crInactiveBg;
     COLORREF  m_crInactiveFg;
     COLORREF  m_crActiveBg;
     COLORREF  m_crActiveFg;
@@ -247,4 +247,4 @@ private:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
-#endif	// _FLATBTN_H
+#endif    // _FLATBTN_H

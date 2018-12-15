@@ -49,23 +49,23 @@ ZCFontComboBox::~ZCFontComboBox()
 
 BOOL ZCFontComboBox::SetCurrentFont( LPLOGFONT lplf )
 {
-	if (lplf)
-		return SetCurrentFont( lplf->lfFaceName );
-	return FALSE;
+    if (lplf)
+        return SetCurrentFont( lplf->lfFaceName );
+    return FALSE;
 }
 
 BOOL ZCFontComboBox::SetCurrentFont( LPCTSTR lpszFontName )
 {
-	int nCount = GetCount();
-	for (int i = 0; i < nCount; i++)
-	{
-	   if (strcmp(((LOGFONT*)GetItemData(i))->lfFaceName, lpszFontName) == 0)
-	   {
-		   SetCurSel( i );
-		   return TRUE;
-	   }
-	}
-	return FALSE;
+    int nCount = GetCount();
+    for (int i = 0; i < nCount; i++)
+    {
+       if (strcmp(((LOGFONT*)GetItemData(i))->lfFaceName, lpszFontName) == 0)
+       {
+           SetCurSel( i );
+           return TRUE;
+       }
+    }
+    return FALSE;
 }
 
 BEGIN_MESSAGE_MAP(ZCFontComboBox, CComboBox)

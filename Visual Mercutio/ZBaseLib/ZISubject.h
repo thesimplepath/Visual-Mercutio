@@ -36,20 +36,20 @@ class AFX_EXT_CLASS ZISubject
 {
 public:
 
-	virtual			~ZISubject			();
+    virtual            ~ZISubject            ();
 
-	virtual void	AttachObserver		( ZIObserver* pObserver );
-	virtual void	DetachObserver		( ZIObserver* pObserver );
-	virtual void	DetachAllObservers	();
-	virtual void	NotifyAllObservers	( ZIObserverMsg* pMsg );
+    virtual void    AttachObserver        ( ZIObserver* pObserver );
+    virtual void    DetachObserver        ( ZIObserver* pObserver );
+    virtual void    DetachAllObservers    ();
+    virtual void    NotifyAllObservers    ( ZIObserverMsg* pMsg );
 
 protected:
 
-	ZISubject();
+    ZISubject();
 
 private:
 
-	CObArray m_ObserverSet;
+    CObArray m_ObserverSet;
 };
 
 #endif // !defined(AFX_ZISubject_H__BFF3F9F3_A1DD_4EFA_AF2F_23434EEF5C24__INCLUDED_)

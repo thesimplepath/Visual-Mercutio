@@ -15,26 +15,26 @@ static char THIS_FILE[] = __FILE__;
 
 
 ZIProcessNameDialog::ZIProcessNameDialog(CWnd* pParent /*=NULL*/)
-	: CDialog(ZIProcessNameDialog::IDD, pParent)
+    : CDialog(ZIProcessNameDialog::IDD, pParent)
 {
-	//{{AFX_DATA_INIT(ZIProcessNameDialog)
-	m_ProcessName = _T("");
-	//}}AFX_DATA_INIT
+    //{{AFX_DATA_INIT(ZIProcessNameDialog)
+    m_ProcessName = _T("");
+    //}}AFX_DATA_INIT
 }
 
 
 void ZIProcessNameDialog::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(ZIProcessNameDialog)
-	DDX_Text(pDX, IDC_PROCESSNAME_MODEL, m_ProcessName);
-	//}}AFX_DATA_MAP
+    CDialog::DoDataExchange(pDX);
+    //{{AFX_DATA_MAP(ZIProcessNameDialog)
+    DDX_Text(pDX, IDC_PROCESSNAME_MODEL, m_ProcessName);
+    //}}AFX_DATA_MAP
 }
 
 
 BEGIN_MESSAGE_MAP(ZIProcessNameDialog, CDialog)
-	//{{AFX_MSG_MAP(ZIProcessNameDialog)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZIProcessNameDialog)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -42,6 +42,6 @@ END_MESSAGE_MAP()
 
 void ZIProcessNameDialog::OnOK() 
 {
-	
-	CDialog::OnOK();
+    
+    CDialog::OnOK();
 }

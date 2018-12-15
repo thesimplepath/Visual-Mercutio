@@ -18,12 +18,12 @@ IMPLEMENT_DYNAMIC( ZDProcessModelDocTmpl, ZDDocTemplateEx )
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZDProcessModelDocTmpl::ZDProcessModelDocTmpl( UINT				nIDResource,
-											  CRuntimeClass*	pDocClass,
-											  CRuntimeClass*	pFrameClass,
-											  CRuntimeClass*	pViewClass,
-											  WORD				nMenuId			/*= 0*/,
-											  UINT				nMaxMRU			/*= _AFX_MRU_COUNT*/ )
+ZDProcessModelDocTmpl::ZDProcessModelDocTmpl( UINT                nIDResource,
+                                              CRuntimeClass*    pDocClass,
+                                              CRuntimeClass*    pFrameClass,
+                                              CRuntimeClass*    pViewClass,
+                                              WORD                nMenuId            /*= 0*/,
+                                              UINT                nMaxMRU            /*= _AFX_MRU_COUNT*/ )
  : ZDDocTemplateEx( nIDResource, pDocClass, pFrameClass, pViewClass, nMenuId, nMaxMRU )
 {
 }

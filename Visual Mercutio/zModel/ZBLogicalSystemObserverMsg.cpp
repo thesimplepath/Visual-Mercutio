@@ -20,12 +20,12 @@ IMPLEMENT_DYNAMIC( ZBLogicalSystemObserverMsg, ZIObserverMsg )
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBLogicalSystemObserverMsg::ZBLogicalSystemObserverMsg( UINT			MessageID	/*= 0*/,
-													    ZBSystemEntity*	pEntity		/*= NULL*/,
-														const CString	RootName	/*= _T( "" )*/  )
-	: m_MessageID	( MessageID ),
-	  m_pEntity		( pEntity ),
-	  m_RootName	( RootName )
+ZBLogicalSystemObserverMsg::ZBLogicalSystemObserverMsg( UINT            MessageID    /*= 0*/,
+                                                        ZBSystemEntity*    pEntity        /*= NULL*/,
+                                                        const CString    RootName    /*= _T( "" )*/  )
+    : m_MessageID    ( MessageID ),
+      m_pEntity        ( pEntity ),
+      m_RootName    ( RootName )
 {
 }
 

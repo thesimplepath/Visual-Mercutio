@@ -25,9 +25,9 @@ ZIDropView::~ZIDropView()
 
 
 BEGIN_MESSAGE_MAP(ZIDropView, ZVBasicView)
-	//{{AFX_MSG_MAP(ZIDropView)
-		// NOTE - the ClassWizard will add and remove mapping macros here.
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZIDropView)
+        // NOTE - the ClassWizard will add and remove mapping macros here.
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 
@@ -36,7 +36,7 @@ END_MESSAGE_MAP()
 
 void ZIDropView::OnDraw(CDC* pDC)
 {
-	CDocument* pDoc = GetDocument();
+    CDocument* pDoc = GetDocument();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -45,12 +45,12 @@ void ZIDropView::OnDraw(CDC* pDC)
 #ifdef _DEBUG
 void ZIDropView::AssertValid() const
 {
-	ZVBasicView::AssertValid();
+    ZVBasicView::AssertValid();
 }
 
 void ZIDropView::Dump(CDumpContext& dc) const
 {
-	ZVBasicView::Dump(dc);
+    ZVBasicView::Dump(dc);
 }
 #endif //_DEBUG
 

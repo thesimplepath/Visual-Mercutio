@@ -19,28 +19,28 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBInfoModelGraphicGeneration::ZBInfoModelGraphicGeneration( ZDProcessGraphModelMdl* pModel			/*= NULL*/,
-															ZDProcessGraphModelController* pCtlr	/*= NULL*/,
-															const CString URLName					/*= ""*/,
-															bool AbsolutePath						/*= true*/,
-															bool IncludeConceptor					/*= true*/,
-															bool IncludeProcessReport				/*= true*/,
-															bool IncludeRuleBook					/*= true*/,
-															const CString ImageFilename				/*= ""*/,
-															const CString HyperLink					/*= ""*/,
-															CDC* pDC								/*= NULL*/,
-															ZBServer* pServer						/*= NULL*/)
-	: m_pModel				( pModel ),
-	  m_pCtlr				( pCtlr ),
-	  m_URLName				( URLName ),
-	  m_AbsolutePath		( AbsolutePath ),
-	  m_IncludeConceptor	( IncludeConceptor ),
-	  m_IncludeProcessReport( IncludeProcessReport ),
-	  m_IncludeRuleBook		( IncludeRuleBook ),
-	  m_ImageFilename		( ImageFilename ),
-	  m_HyperLink			( HyperLink ),
-	  m_pDC					( pDC ),
-	  m_pServer				( pServer )
+ZBInfoModelGraphicGeneration::ZBInfoModelGraphicGeneration( ZDProcessGraphModelMdl* pModel            /*= NULL*/,
+                                                            ZDProcessGraphModelController* pCtlr    /*= NULL*/,
+                                                            const CString URLName                    /*= ""*/,
+                                                            bool AbsolutePath                        /*= true*/,
+                                                            bool IncludeConceptor                    /*= true*/,
+                                                            bool IncludeProcessReport                /*= true*/,
+                                                            bool IncludeRuleBook                    /*= true*/,
+                                                            const CString ImageFilename                /*= ""*/,
+                                                            const CString HyperLink                    /*= ""*/,
+                                                            CDC* pDC                                /*= NULL*/,
+                                                            ZBServer* pServer                        /*= NULL*/)
+    : m_pModel                ( pModel ),
+      m_pCtlr                ( pCtlr ),
+      m_URLName                ( URLName ),
+      m_AbsolutePath        ( AbsolutePath ),
+      m_IncludeConceptor    ( IncludeConceptor ),
+      m_IncludeProcessReport( IncludeProcessReport ),
+      m_IncludeRuleBook        ( IncludeRuleBook ),
+      m_ImageFilename        ( ImageFilename ),
+      m_HyperLink            ( HyperLink ),
+      m_pDC                    ( pDC ),
+      m_pServer                ( pServer )
 {
 }
 

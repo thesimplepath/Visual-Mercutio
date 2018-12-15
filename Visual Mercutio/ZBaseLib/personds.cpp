@@ -1,10 +1,10 @@
 //## begin module%36722E6A030B.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%36722E6A030B.cm
 
 //## begin module%36722E6A030B.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%36722E6A030B.cp
 
 //## Module: PersonDs%36722E6A030B; Package body
@@ -43,7 +43,7 @@ ZBMailUser::ZBMailUser(const ZBMailUser &right)
   //## end ZBMailUser::ZBMailUser%copy.initialization
 {
   //## begin ZBMailUser::ZBMailUser%copy.body preserve=yes
-  	*this = right;
+      *this = right;
   //## end ZBMailUser::ZBMailUser%copy.body
 }
 
@@ -80,9 +80,9 @@ ZBMailUser::~ZBMailUser()
 const ZBMailUser & ZBMailUser::operator=(const ZBMailUser &right)
 {
   //## begin ZBMailUser::operator=%.body preserve=yes
-  	m_PersonName = right.m_PersonName;
-  	m_RecipClass = right.m_RecipClass;
-  	return *this;
+      m_PersonName = right.m_PersonName;
+      m_RecipClass = right.m_RecipClass;
+      return *this;
   //## end ZBMailUser::operator=%.body
 }
 
@@ -92,40 +92,40 @@ const ZBMailUser & ZBMailUser::operator=(const ZBMailUser &right)
 ZBMailUser* ZBMailUser::Clone ()
 {
   //## begin ZBMailUser::Clone%913452743.body preserve=yes
-  	ZBMailUser*	pNewPerson = new ZBMailUser(*this);
-  	return pNewPerson;
+      ZBMailUser*    pNewPerson = new ZBMailUser(*this);
+      return pNewPerson;
   //## end ZBMailUser::Clone%913452743.body
 }
 
 CArchive& operator >> (CArchive& ar, ZBMailUser& User)
 {
   //## begin ZBMailUser::operator >>%928176921.body preserve=yes
-	ar >> User.m_PersonName;
-  	ar >> User.m_RecipClass;
-	return ar;
+    ar >> User.m_PersonName;
+      ar >> User.m_RecipClass;
+    return ar;
   //## end ZBMailUser::operator >>%928176921.body
 }
 
 CArchive& operator << (CArchive& ar, ZBMailUser& User)
 {
   //## begin ZBMailUser::operator <<%928176922.body preserve=yes
-	ar << User.m_PersonName;
-  	ar << User.m_RecipClass;
-	return ar;
+    ar << User.m_PersonName;
+      ar << User.m_RecipClass;
+    return ar;
   //## end ZBMailUser::operator <<%928176922.body
 }
 
 void ZBMailUser::Serialize (CArchive& ar)
 {
   //## begin ZBMailUser::Serialize%928263998.body preserve=yes
-	if (ar.IsStoring())
-	{	// Write the elements
-		ar << *this;
-	}
-	else
-	{
-		ar >> *this;
-	}
+    if (ar.IsStoring())
+    {    // Write the elements
+        ar << *this;
+    }
+    else
+    {
+        ar >> *this;
+    }
   //## end ZBMailUser::Serialize%928263998.body
 }
 

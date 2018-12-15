@@ -35,158 +35,158 @@ class AFX_EXT_CLASS ZBIOSGrid
 {
 public:
 
-	ZBIOSGrid( CGXGridCore* pGridCore = NULL );
-	virtual ~ZBIOSGrid();
+    ZBIOSGrid( CGXGridCore* pGridCore = NULL );
+    virtual ~ZBIOSGrid();
 
-	CGXGridCore* GetGridCore() const
-	{
-		return m_pGridCore;
-	};
+    CGXGridCore* GetGridCore() const
+    {
+        return m_pGridCore;
+    };
 
-	bool SelectionCoverMultipleCells() const
-	{
-		return m_GridContext.SelectionCoverMultipleCells();
-	};
+    bool SelectionCoverMultipleCells() const
+    {
+        return m_GridContext.SelectionCoverMultipleCells();
+    };
 
-	CGXRange ConvertToCGXRange()
-	{
-		return m_GridContext.ConvertToCGXRange();
-	};
+    CGXRange ConvertToCGXRange()
+    {
+        return m_GridContext.ConvertToCGXRange();
+    };
 
-	void ConvertToCGXRange( CGXRange& range )
-	{
-		m_GridContext.ConvertToCGXRange( range );
-	};
+    void ConvertToCGXRange( CGXRange& range )
+    {
+        m_GridContext.ConvertToCGXRange( range );
+    };
 
-	//////////////////////////////////////////////////////////////////////
-	// Get current selection methods
-	void GetCurSel( CPoint& pt )
-	{
-		m_GridContext.GetCurSel( pt );
-	};
+    //////////////////////////////////////////////////////////////////////
+    // Get current selection methods
+    void GetCurSel( CPoint& pt )
+    {
+        m_GridContext.GetCurSel( pt );
+    };
 
-	void GetCurSel( int& x, int& y )
-	{
-		m_GridContext.GetCurSel( x, y );
-	};
+    void GetCurSel( int& x, int& y )
+    {
+        m_GridContext.GetCurSel( x, y );
+    };
 
-	void GetCurSel( CRect& rc )
-	{
-		m_GridContext.GetCurSel( rc );
-	};
+    void GetCurSel( CRect& rc )
+    {
+        m_GridContext.GetCurSel( rc );
+    };
 
-	void GetCurSel( int& left, int& top, int& right, int& bottom )
-	{
-		m_GridContext.GetCurSel( left, top, right, bottom );
-	};
+    void GetCurSel( int& left, int& top, int& right, int& bottom )
+    {
+        m_GridContext.GetCurSel( left, top, right, bottom );
+    };
 
-	//////////////////////////////////////////////////////////////////////
-	// Set current selection methods
-	void SetCurSel( CPoint& pt )
-	{
-		m_GridContext.SetCurSel( pt );
-	};
+    //////////////////////////////////////////////////////////////////////
+    // Set current selection methods
+    void SetCurSel( CPoint& pt )
+    {
+        m_GridContext.SetCurSel( pt );
+    };
 
-	void SetCurSel( int x, int y )
-	{
-		m_GridContext.SetCurSel( x, y );
-	};
+    void SetCurSel( int x, int y )
+    {
+        m_GridContext.SetCurSel( x, y );
+    };
 
-	void SetCurSel( CRect& rc )
-	{
-		m_GridContext.SetCurSel( rc );
-	};
+    void SetCurSel( CRect& rc )
+    {
+        m_GridContext.SetCurSel( rc );
+    };
 
-	void SetCurSel( int left, int top, int right, int bottom )
-	{
-		m_GridContext.SetCurSel( left, top, right, bottom );
-	};
+    void SetCurSel( int left, int top, int right, int bottom )
+    {
+        m_GridContext.SetCurSel( left, top, right, bottom );
+    };
 
-	//////////////////////////////////////////////////////////////////////
-	// Get current selection size methods
-	void GetCurSelSize( CSize& sz )
-	{
-		m_GridContext.GetCurSelSize( sz );
-	};
+    //////////////////////////////////////////////////////////////////////
+    // Get current selection size methods
+    void GetCurSelSize( CSize& sz )
+    {
+        m_GridContext.GetCurSelSize( sz );
+    };
 
-	void GetCurSelSize( int& width, int& height )
-	{
-		m_GridContext.GetCurSelSize( width, height );
-	};
+    void GetCurSelSize( int& width, int& height )
+    {
+        m_GridContext.GetCurSelSize( width, height );
+    };
 
-	//////////////////////////////////////////////////////////////////////
-	// Set current selection size methods
-	void SetCurSelSize( CSize& sz )
-	{
-		m_GridContext.SetCurSelSize( sz );
-	};
+    //////////////////////////////////////////////////////////////////////
+    // Set current selection size methods
+    void SetCurSelSize( CSize& sz )
+    {
+        m_GridContext.SetCurSelSize( sz );
+    };
 
-	void SetCurSelSize( int width, int height )
-	{
-		m_GridContext.SetCurSelSize( width, height );
-	};
+    void SetCurSelSize( int width, int height )
+    {
+        m_GridContext.SetCurSelSize( width, height );
+    };
 
-	//////////////////////////////////////////////////////////////////////
-	// Move selection methods
-	void Offset( CPoint& pt )
-	{
-		m_GridContext.Offset( pt );
-	};
+    //////////////////////////////////////////////////////////////////////
+    // Move selection methods
+    void Offset( CPoint& pt )
+    {
+        m_GridContext.Offset( pt );
+    };
 
-	void Offset( int x, int y )
-	{
-		m_GridContext.Offset( x, y );
-	};
+    void Offset( int x, int y )
+    {
+        m_GridContext.Offset( x, y );
+    };
 
-	void Right( size_t Inc = 1 )
-	{
-		m_GridContext.Right( Inc );
-	};
+    void Right( size_t Inc = 1 )
+    {
+        m_GridContext.Right( Inc );
+    };
 
-	void Left( size_t Inc = 1 )
-	{
-		m_GridContext.Left( Inc );
-	};
+    void Left( size_t Inc = 1 )
+    {
+        m_GridContext.Left( Inc );
+    };
 
-	void Down( size_t Inc = 1 )
-	{
-		m_GridContext.Down( Inc );
-	};
+    void Down( size_t Inc = 1 )
+    {
+        m_GridContext.Down( Inc );
+    };
 
-	void Up( size_t Inc = 1 )
-	{
-		m_GridContext.Up( Inc );
-	};
+    void Up( size_t Inc = 1 )
+    {
+        m_GridContext.Up( Inc );
+    };
 
-	void TopLeft() 
-	{
-		m_GridContext.TopLeft();
-	};
+    void TopLeft() 
+    {
+        m_GridContext.TopLeft();
+    };
 
-	void TopLeft( CSize& sz )
-	{
-		m_GridContext.TopLeft( sz );
-	};
+    void TopLeft( CSize& sz )
+    {
+        m_GridContext.TopLeft( sz );
+    };
 
-	void TopLeft( int width, int height )
-	{
-		m_GridContext.TopLeft( width, height );
-	};
+    void TopLeft( int width, int height )
+    {
+        m_GridContext.TopLeft( width, height );
+    };
 
-	void HomeLeft()
-	{
-		m_GridContext.HomeLeft();
-	};
+    void HomeLeft()
+    {
+        m_GridContext.HomeLeft();
+    };
 
-	void HomeTop()
-	{
-		m_GridContext.HomeTop();
-	};
+    void HomeTop()
+    {
+        m_GridContext.HomeTop();
+    };
 
 protected:
 
-	ZBGridContext	m_GridContext;
-	CGXGridCore*	m_pGridCore;
+    ZBGridContext    m_GridContext;
+    CGXGridCore*    m_pGridCore;
 };
 
 #endif // !defined(AFX_ZBIOSGRID_H__26B4C7B9_EEFF_4CD5_B050_64634845020F__INCLUDED_)

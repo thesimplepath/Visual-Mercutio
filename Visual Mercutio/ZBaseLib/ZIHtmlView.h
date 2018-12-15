@@ -40,50 +40,50 @@
 class AFX_EXT_CLASS ZIHtmlView : public CHtmlView
 {
 public:
-	ZIHtmlView();           // protected constructor used by dynamic creation
-	DECLARE_DYNCREATE(ZIHtmlView)
+    ZIHtmlView();           // protected constructor used by dynamic creation
+    DECLARE_DYNCREATE(ZIHtmlView)
 
 // html Data
 public:
-	//{{AFX_DATA(ZIHtmlView)
-		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+    //{{AFX_DATA(ZIHtmlView)
+        // NOTE: the ClassWizard will add data members here
+    //}}AFX_DATA
 
 // Attributes
 public:
 
 // Operations
 public:
-	void Navigate(UINT nResID, DWORD dwFlags = 0, LPCTSTR lpszTargetFrameName = NULL);
-	void Navigate(LPCTSTR lpszURL, BOOL bRes, DWORD dwFlags = 0, LPCTSTR lpszTargetFrameName = NULL);
-	const CString GetCurrentURL() const { return m_strURL; };
+    void Navigate(UINT nResID, DWORD dwFlags = 0, LPCTSTR lpszTargetFrameName = NULL);
+    void Navigate(LPCTSTR lpszURL, BOOL bRes, DWORD dwFlags = 0, LPCTSTR lpszTargetFrameName = NULL);
+    const CString GetCurrentURL() const { return m_strURL; };
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIHtmlView)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIHtmlView)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
-	virtual ~ZIHtmlView();
+    virtual ~ZIHtmlView();
 
-	void	ResourceToURL(LPCTSTR lpszURL);
+    void    ResourceToURL(LPCTSTR lpszURL);
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
-	// Generated message map functions
-	//{{AFX_MSG(ZIHtmlView)
-		// NOTE - the ClassWizard will add and remove member functions here.
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZIHtmlView)
+        // NOTE - the ClassWizard will add and remove member functions here.
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	CString m_strURL;
+    CString m_strURL;
 
 };
 

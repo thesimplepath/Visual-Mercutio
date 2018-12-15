@@ -33,50 +33,50 @@
 
 class AFX_EXT_CLASS ZBDocumentObserverMsg : public ZIObserverMsg  
 {
-	DECLARE_DYNAMIC( ZBDocumentObserverMsg )
+    DECLARE_DYNAMIC( ZBDocumentObserverMsg )
 
 public:
 
-	ZBDocumentObserverMsg( UINT MessageID = 0, CDocument* pDoc = NULL );
-	ZBDocumentObserverMsg( UINT MessageID, CView* pView );
-	ZBDocumentObserverMsg( UINT MessageID, CDocument* pDoc, CView* pView );
-	virtual ~ZBDocumentObserverMsg();
+    ZBDocumentObserverMsg( UINT MessageID = 0, CDocument* pDoc = NULL );
+    ZBDocumentObserverMsg( UINT MessageID, CView* pView );
+    ZBDocumentObserverMsg( UINT MessageID, CDocument* pDoc, CView* pView );
+    virtual ~ZBDocumentObserverMsg();
 
-	UINT GetMessageID() const
-	{
-		return m_MessageID;
-	};
+    UINT GetMessageID() const
+    {
+        return m_MessageID;
+    };
 
-	void SetMessageID( UINT value )
-	{
-		m_MessageID = value;
-	};
+    void SetMessageID( UINT value )
+    {
+        m_MessageID = value;
+    };
 
-	CDocument* GetpDocument() const
-	{
-		return m_pDoc;
-	};
+    CDocument* GetpDocument() const
+    {
+        return m_pDoc;
+    };
 
-	void SetpDocument( CDocument* value )
-	{
-		m_pDoc = value;
-	};
+    void SetpDocument( CDocument* value )
+    {
+        m_pDoc = value;
+    };
 
-	CView* GetpView() const
-	{
-		return m_pView;
-	};
+    CView* GetpView() const
+    {
+        return m_pView;
+    };
 
-	void SetpView( CView* value )
-	{
-		m_pView = value;
-	};
+    void SetpView( CView* value )
+    {
+        m_pView = value;
+    };
 
 private:
 
-	UINT		m_MessageID;
-	CDocument*	m_pDoc;
-	CView*		m_pView;
+    UINT        m_MessageID;
+    CDocument*    m_pDoc;
+    CView*        m_pView;
 };
 
 #endif // !defined(AFX_ZBDocumentObserverMsg_H__31A212D8_7CA2_4BEB_9709_8C785F4909B3__INCLUDED_)

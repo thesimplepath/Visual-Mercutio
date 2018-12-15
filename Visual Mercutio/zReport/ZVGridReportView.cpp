@@ -19,8 +19,8 @@ static char THIS_FILE[] = __FILE__;
 GXIMPLEMENT_DYNCREATE( ZVGridReportView, ZVGridView )
 
 BEGIN_MESSAGE_MAP( ZVGridReportView, ZVGridView )
-	//{{AFX_MSG_MAP(ZVGridReportView)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZVGridReportView)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -39,94 +39,94 @@ ZVGridReportView::~ZVGridReportView()
 
 void ZVGridReportView::OnDraw( CDC* pDC )
 {
-	ZDGridDocument* pDoc = GetDocument();
-	ASSERT_VALID( pDoc );
-	ZVGridView::OnDraw( pDC );
-	// TODO: add draw code for native data here
+    ZDGridDocument* pDoc = GetDocument();
+    ASSERT_VALID( pDoc );
+    ZVGridView::OnDraw( pDC );
+    // TODO: add draw code for native data here
 }
 
 void ZVGridReportView::OnInitialUpdate()
 {
-	ZVGridView::OnInitialUpdate();
+    ZVGridView::OnInitialUpdate();
 
-	EnableHints( FALSE );
+    EnableHints( FALSE );
 
-	// Lock any drawing
-	BOOL bOld = LockUpdate();
+    // Lock any drawing
+    BOOL bOld = LockUpdate();
 
-	// disable undo mechanism for the following commands
-	GetParam()->EnableUndo( FALSE );
+    // disable undo mechanism for the following commands
+    GetParam()->EnableUndo( FALSE );
 
-	// Retreive the right view index
-	int Index = -1;
+    // Retreive the right view index
+    int Index = -1;
 
-	// RS-MODIF 15.12.04 doc bug
-	CGXTabWnd* pTabWnd = GetTabWnd();
+    // RS-MODIF 15.12.04 doc bug
+    CGXTabWnd* pTabWnd = GetTabWnd();
 
-	if ( pTabWnd )
-	{
-		Index = pTabWnd->GetBeam().FindTab( this );
-	}
+    if ( pTabWnd )
+    {
+        Index = pTabWnd->GetBeam().FindTab( this );
+    }
 
-	if ( Index != -1 )
-	{
-		// Sets the correct tab name
-		// RS-MODIF 15.12.04 test
-		pTabWnd->SetTabName( Index,
-							 dynamic_cast<ZDGridReportDocument*>( GetMasterDocument() )->GetGeneratorTabName( Index ) );
-	}
+    if ( Index != -1 )
+    {
+        // Sets the correct tab name
+        // RS-MODIF 15.12.04 test
+        pTabWnd->SetTabName( Index,
+                             dynamic_cast<ZDGridReportDocument*>( GetMasterDocument() )->GetGeneratorTabName( Index ) );
+    }
 
-	// Cast the document pointer to the rigth class type
-	// This is required, because the ZDGridReportDocument implements 
-	// the ZIGridReportGenerator interface
-	ASSERT( ISA( GetMasterDocument(), ZDGridReportDocument ) );
+    // Cast the document pointer to the rigth class type
+    // This is required, because the ZDGridReportDocument implements 
+    // the ZIGridReportGenerator interface
+    ASSERT( ISA( GetMasterDocument(), ZDGridReportDocument ) );
 
-	// Now asks the master document to fill the grid
-	if ( Index != -1 && dynamic_cast<ZDGridReportDocument*>( GetMasterDocument() )->ViewRequireDataRefresh() )
-	{
-		// Cast the document pointer to the rigth class type
-		// This is required, because the ZDGridReportDocument implements 
-		// the ZIGridReportGenerator interface
-		ASSERT( ISA( GetMasterDocument(), ZDGridReportDocument ) );
+    // Now asks the master document to fill the grid
+    if ( Index != -1 && dynamic_cast<ZDGridReportDocument*>( GetMasterDocument() )->ViewRequireDataRefresh() )
+    {
+        // Cast the document pointer to the rigth class type
+        // This is required, because the ZDGridReportDocument implements 
+        // the ZIGridReportGenerator interface
+        ASSERT( ISA( GetMasterDocument(), ZDGridReportDocument ) );
 
-		// Call the predata filled call-back
-		dynamic_cast<ZDGridReportDocument*>( GetMasterDocument() )->OnPreDataFilled( Index );
+        // Call the predata filled call-back
+        dynamic_cast<ZDGridReportDocument*>( GetMasterDocument() )->OnPreDataFilled( Index );
 
-		// Now asks the master document to fill the grid
-		if ( !dynamic_cast<ZDGridReportDocument*>( GetMasterDocument() )->FillGrid( *this, Index ) )
-		{
-			// Log error
-		}
+        // Now asks the master document to fill the grid
+        if ( !dynamic_cast<ZDGridReportDocument*>( GetMasterDocument() )->FillGrid( *this, Index ) )
+        {
+            // Log error
+        }
 
-		// Call the postdata filled call-back
-		dynamic_cast<ZDGridReportDocument*>( GetMasterDocument() )->OnPostDataFilled( Index );
-	}
+        // Call the postdata filled call-back
+        dynamic_cast<ZDGridReportDocument*>( GetMasterDocument() )->OnPostDataFilled( Index );
+    }
 
-	// Create group control if necessary
-	ZDGridDocument* pDoc = GetDocument();
-	ASSERT_VALID( pDoc );
-	pDoc->InitializeGroupControls( this );
+    // Create group control if necessary
+    ZDGridDocument* pDoc = GetDocument();
+    ASSERT_VALID( pDoc );
+    pDoc->InitializeGroupControls( this );
 
-	// Reenable undo mechanism
-	GetParam()->EnableUndo( TRUE );
+    // Reenable undo mechanism
+    GetParam()->EnableUndo( TRUE );
 
-	// Unlock drawing
-	LockUpdate( bOld );
+    // Unlock drawing
+    LockUpdate( bOld );
 
-	// Just to be sure that everything is redrawn
-	Invalidate();
+    // Just to be sure that everything is redrawn
+    Invalidate();
 
-	// Enable Objective Grid internal update-hint mechanism
-	// You should put this line as last command into OnInitialUpdate,
-	// becaus as long as EnableHints is not called, the modified flag
-	// of the document will not be changed.
-	EnableHints();
+    // Enable Objective Grid internal update-hint mechanism
+    // You should put this line as last command into OnInitialUpdate,
+    // becaus as long as EnableHints is not called, the modified flag
+    // of the document will not be changed.
+    EnableHints();
 }
 
 void ZVGridReportView::SetupUserAttributes()
 {
-	// Call the basic implementation
-	ZVGridView::SetupUserAttributes();
+    // Call the basic implementation
+    ZVGridView::SetupUserAttributes();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -135,11 +135,11 @@ void ZVGridReportView::SetupUserAttributes()
 #ifdef _DEBUG
 void ZVGridReportView::AssertValid() const
 {
-	ZVGridView::AssertValid();
+    ZVGridView::AssertValid();
 }
 
 void ZVGridReportView::Dump( CDumpContext& dc ) const
 {
-	ZVGridView::Dump( dc );
+    ZVGridView::Dump( dc );
 }
 #endif //_DEBUG

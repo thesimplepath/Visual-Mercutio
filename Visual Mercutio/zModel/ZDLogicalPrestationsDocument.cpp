@@ -1,9 +1,9 @@
 // ******************************************************************************************************************
-// *										Classe ZDLogicalPrestationsDocument										*
+// *                                        Classe ZDLogicalPrestationsDocument                                        *
 // ******************************************************************************************************************
-// * JMR-MODIF - Le 7 octobre 2005 - Ajout de la classe ZDLogicalPrestationsDocument.								*
+// * JMR-MODIF - Le 7 octobre 2005 - Ajout de la classe ZDLogicalPrestationsDocument.                                *
 // ******************************************************************************************************************
-// * Cette classe représente le document utilisé pour gérer le groupe des prestations.								*
+// * Cette classe représente le document utilisé pour gérer le groupe des prestations.                                *
 // ******************************************************************************************************************
 
 #include "stdafx.h"
@@ -20,14 +20,14 @@ static char THIS_FILE[] = __FILE__;
 IMPLEMENT_DYNCREATE( ZDLogicalPrestationsDocument, ZDBaseDocument )
 
 BEGIN_MESSAGE_MAP( ZDLogicalPrestationsDocument, ZDBaseDocument )
-	//{{AFX_MSG_MAP(ZDPrestationsDocument)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZDPrestationsDocument)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 ZDLogicalPrestationsDocument::ZDLogicalPrestationsDocument()
-	: m_IsLoaded( false )
+    : m_IsLoaded( false )
 {
-	m_GUID = ZUGUID::CreateNewGUID();
+    m_GUID = ZUGUID::CreateNewGUID();
 }
 
 ZDLogicalPrestationsDocument::~ZDLogicalPrestationsDocument()
@@ -36,86 +36,86 @@ ZDLogicalPrestationsDocument::~ZDLogicalPrestationsDocument()
 
 BOOL ZDLogicalPrestationsDocument::OnNewDocument()
 {
-	ASSERT( FALSE );
-	return FALSE;
+    ASSERT( FALSE );
+    return FALSE;
 }
 
 bool ZDLogicalPrestationsDocument::ReadFromFile( const CString Filename )
 {
-	bool			RetValue = false;
-	CFile			file;
-	CFileException	fe;
+    bool            RetValue = false;
+    CFile            file;
+    CFileException    fe;
 
-	if ( !file.Open( Filename, CFile::modeRead | CFile::shareDenyWrite, &fe ) )
-	{
-		return FALSE;
-	}
+    if ( !file.Open( Filename, CFile::modeRead | CFile::shareDenyWrite, &fe ) )
+    {
+        return FALSE;
+    }
 
-	CArchive loadArchive( &file, CArchive::load | CArchive::bNoFlushOnDelete );
+    CArchive loadArchive( &file, CArchive::load | CArchive::bNoFlushOnDelete );
 
-	loadArchive.m_pDocument		= this;
-	loadArchive.m_bForceFlat	= FALSE;
+    loadArchive.m_pDocument        = this;
+    loadArchive.m_bForceFlat    = FALSE;
 
-	TRY
-	{
-		Serialize( loadArchive );
-		RetValue = TRUE;
-	}
-	CATCH( CArchiveException, e )
-	{
-		RetValue = FALSE;
-	}
-	END_CATCH
+    TRY
+    {
+        Serialize( loadArchive );
+        RetValue = TRUE;
+    }
+    CATCH( CArchiveException, e )
+    {
+        RetValue = FALSE;
+    }
+    END_CATCH
 
-	loadArchive.Close();
-	file.Close();
+    loadArchive.Close();
+    file.Close();
 
-	// If everything is ok, set the pathname.
-	if ( RetValue )
-	{
-		SetPathName( Filename, FALSE );
-	}
+    // If everything is ok, set the pathname.
+    if ( RetValue )
+    {
+        SetPathName( Filename, FALSE );
+    }
 
-	// Set IsLoaded member
-	m_IsLoaded = ( RetValue ) ? true : false;
+    // Set IsLoaded member
+    m_IsLoaded = ( RetValue ) ? true : false;
 
-	return RetValue;
+    return RetValue;
 }
 
 bool ZDLogicalPrestationsDocument::SaveToFile( const CString Filename )
 {
-	bool			RetValue = false;
-	CFile			file;
-	CFileException	fe;
+    bool            RetValue = false;
+    CFile            file;
+    CFileException    fe;
 
-	if ( !file.Open( Filename, CFile::modeCreate | CFile::modeWrite | CFile::shareDenyWrite, &fe ) )
-	{
-		return FALSE;
-	}
+    if ( !file.Open( Filename, CFile::modeCreate | CFile::modeWrite | CFile::shareDenyWrite, &fe ) )
+    {
+        return FALSE;
+    }
 
-	CArchive saveArchive( &file, CArchive::store | CArchive::bNoFlushOnDelete );
+    CArchive saveArchive( &file, CArchive::store | CArchive::bNoFlushOnDelete );
 
-	saveArchive.m_pDocument		= this;
-	saveArchive.m_bForceFlat	= FALSE;
+    saveArchive.m_pDocument        = this;
+    saveArchive.m_bForceFlat    = FALSE;
 
-	TRY
-	{
-		Serialize( saveArchive );
-		RetValue = TRUE;
-	}
-	CATCH( CArchiveException, e )
-	{
-		RetValue = FALSE;
-	}
-	END_CATCH
+    TRY
+    {
+        Serialize( saveArchive );
+        RetValue = TRUE;
+    }
+    CATCH( CArchiveException, e )
+    {
+        RetValue = FALSE;
+    }
+    END_CATCH
 
-	saveArchive.Close();
-	file.Close();
+    saveArchive.Close();
+    file.Close();
 
-	// After a save, clear the modified flag
-	SetModifiedFlag( FALSE );
+    // After a save, clear the modified flag
+    SetModifiedFlag( FALSE );
 
-	return RetValue;
+    return RetValue;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -124,12 +124,12 @@ bool ZDLogicalPrestationsDocument::SaveToFile( const CString Filename )
 #ifdef _DEBUG
 void ZDLogicalPrestationsDocument::AssertValid() const
 {
-	ZDBaseDocument::AssertValid();
+    ZDBaseDocument::AssertValid();
 }
 
 void ZDLogicalPrestationsDocument::Dump( CDumpContext& dc ) const
 {
-	ZDBaseDocument::Dump( dc );
+    ZDBaseDocument::Dump( dc );
 }
 #endif //_DEBUG
 
@@ -138,19 +138,19 @@ void ZDLogicalPrestationsDocument::Dump( CDumpContext& dc ) const
 
 void ZDLogicalPrestationsDocument::Serialize( CArchive& ar )
 {
-	// Serialize stamp and base information.
-	ZDBaseDocument::Serialize( ar );
+    // Serialize stamp and base information.
+    ZDBaseDocument::Serialize( ar );
 
-	// Serialize the environement
-	m_PrestationsEnvironment.Serialize( ar );
+    // Serialize the environement
+    m_PrestationsEnvironment.Serialize( ar );
 
-	// If some other information to serialize do it below
-	if ( ar.IsStoring() )
-	{
-		ar << m_GUID;
-	}
-	else
-	{
-		ar >> m_GUID;
-	}
+    // If some other information to serialize do it below
+    if ( ar.IsStoring() )
+    {
+        ar << m_GUID;
+    }
+    else
+    {
+        ar >> m_GUID;
+    }
 }

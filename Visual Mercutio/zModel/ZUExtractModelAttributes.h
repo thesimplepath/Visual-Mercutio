@@ -13,9 +13,9 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 07/2001
+// <nl>Created:         07/2001
 // <nl>Description:  ZUExtractModelAttributes navigates through the model and
-//					 extract unique symbol attributes
+//                     extract unique symbol attributes
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -63,24 +63,24 @@
 class AFX_EXT_CLASS ZUExtractModelAttributes : public ZUModelNavigation  
 {
 public:
-	ZUExtractModelAttributes(ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
-	virtual ~ZUExtractModelAttributes();
+    ZUExtractModelAttributes(ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
+    virtual ~ZUExtractModelAttributes();
 
 
-	// Call-back methods
-	virtual bool OnStart();
-	virtual bool OnFinish();
+    // Call-back methods
+    virtual bool OnStart();
+    virtual bool OnFinish();
 
-	virtual bool OnSymbol( ZBSymbol* pSymbol );
-	virtual bool OnLink( ZBLinkSymbol* pLink );
-
-private:
-	void ProcessAttrib( ZBPropertySet& PropSet );
-	bool KeyExist( int key );
+    virtual bool OnSymbol( ZBSymbol* pSymbol );
+    virtual bool OnLink( ZBLinkSymbol* pLink );
 
 private:
-	int	m_IDArray[500];
-	ZBPropertySet* m_pPropertySet;
+    void ProcessAttrib( ZBPropertySet& PropSet );
+    bool KeyExist( int key );
+
+private:
+    int    m_IDArray[500];
+    ZBPropertySet* m_pPropertySet;
 
 };
 

@@ -12,10 +12,10 @@
 
 #include "zBaseLib\ZIDialog.h"
 #ifndef _WIN32
-	#include "ZWinUtil.h"
+    #include "ZWinUtil.h"
 #endif
 #ifdef _WIN32
-	#include "ZWinUtil32.h"
+    #include "ZWinUtil32.h"
 #endif
 
 #include "zBaseLib\UserMng.h"
@@ -41,42 +41,42 @@ class AFX_EXT_CLASS ZIListUserDlg : public ZIDialog
 {
 // Construction
 public:
-	ZIListUserDlg(ZUUserManager& UserManager, CWnd* pParent = NULL);	// standard constructor
+    ZIListUserDlg(ZUUserManager& UserManager, CWnd* pParent = NULL);    // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(ZIListUserDlg)
-	enum { IDD = IDD_LIST_OF_USERS };
-	CButton	m_InsertButton;
-	CListBox	m_ListOfUsers;
-	CString	m_sDescription;
-	CString	m_Responsible;
-	CString	m_EMail;
-	CString	m_Departement;
-	BOOL	m_IsAdministrator;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZIListUserDlg)
+    enum { IDD = IDD_LIST_OF_USERS };
+    CButton    m_InsertButton;
+    CListBox    m_ListOfUsers;
+    CString    m_sDescription;
+    CString    m_Responsible;
+    CString    m_EMail;
+    CString    m_Departement;
+    BOOL    m_IsAdministrator;
+    //}}AFX_DATA
 
-	ZUser*	GetUserPtr() { return m_pUser; };
+    ZUser*    GetUserPtr() { return m_pUser; };
 
 private:
-	ZUUserManager&		m_UserManager;
-	ZUser*				m_pUser;
-	
+    ZUUserManager&        m_UserManager;
+    ZUser*                m_pUser;
+    
 private:
-	void LoadSource();
-	void CheckControlState();
-	
+    void LoadSource();
+    void CheckControlState();
+    
 // Implementation
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	// Generated message map functions
-	//{{AFX_MSG(ZIListUserDlg)
-	virtual BOOL OnInitDialog();
-	afx_msg void OnSelChangeListOfUsers();
-	afx_msg void OnSource();
-	afx_msg void OnDblclkListOfUsers();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZIListUserDlg)
+    virtual BOOL OnInitDialog();
+    afx_msg void OnSelChangeListOfUsers();
+    afx_msg void OnSource();
+    afx_msg void OnDblclkListOfUsers();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 //#undef  AFX_DATA

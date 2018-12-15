@@ -46,7 +46,7 @@
 
 //@topic Basic Properties Change Flags 
 //@flag Z_CHANGE_LANGUAGE | Change the language.
-#define Z_CHANGE_LANGUAGE	0x0001
+#define Z_CHANGE_LANGUAGE    0x0001
 
 /////////////////////////////////////////////////////////////////////////////
 // Orientation property IDs
@@ -54,7 +54,7 @@
 //@topic Basic Property Identifiers | Identify the properties
 // contained by <c ZBLanguageProp> objects. 
 //@flag Z_LANGUAGE | Identifier for the language property.
-#define Z_LANGUAGE			1
+#define Z_LANGUAGE            1
 
 /////////////////////////////////////////////////////////////////////////////
 // ZBLanguageProp
@@ -69,151 +69,151 @@
 //@base public | CPropertyContainer<lt>IODPropertyContainer, sfl::CODIntPropertyAccessor<lt>ZBLanguageProp<gt> <gt>
 
 class AFX_EXT_CLASS ZBLanguageProp : public CODIntProperty,
-									 public sfl::CPropertyContainer<IODPropertyContainer, CODPropertyAccessor<ZBLanguageProp> >
+                                     public sfl::CPropertyContainer<IODPropertyContainer, CODPropertyAccessor<ZBLanguageProp> >
 {
-	DECLARE_SERIAL( ZBLanguageProp )
+    DECLARE_SERIAL( ZBLanguageProp )
 
 // Construction/Destruction
 public:
 
-	//@cmember
-	/* Constructor. */
-	ZBLanguageProp( int nId = ZS_BP_PROP_LANGUAGE );
+    //@cmember
+    /* Constructor. */
+    ZBLanguageProp( int nId = ZS_BP_PROP_LANGUAGE );
 
-	//@cmember
-	/* Copy constructor. */
-	ZBLanguageProp( const ZBLanguageProp& propBasic );
+    //@cmember
+    /* Copy constructor. */
+    ZBLanguageProp( const ZBLanguageProp& propBasic );
 
-	//@cmember
-	/* Destructor. */
-	virtual ~ZBLanguageProp();
+    //@cmember
+    /* Destructor. */
+    virtual ~ZBLanguageProp();
 
 // Operations
 public:
 
-	//@cmember
-	/* Compare the property identifier with another identifier. */
-	virtual BOOL CompareId( const int nId ) const;
+    //@cmember
+    /* Compare the property identifier with another identifier. */
+    virtual BOOL CompareId( const int nId ) const;
 
-	//@cmember
-	/* Assigns another property to this property. */
-	ZBLanguageProp& operator=( const ZBLanguageProp& propBasic );
+    //@cmember
+    /* Assigns another property to this property. */
+    ZBLanguageProp& operator=( const ZBLanguageProp& propBasic );
 
-	//@cmember
-	/* Compares two orientation properties. */
-	BOOL operator==( const ZBLanguageProp propBasic ) const;
+    //@cmember
+    /* Compares two orientation properties. */
+    BOOL operator==( const ZBLanguageProp propBasic ) const;
 
-	//@cmember
-	/* Makes a copy of this properties object. */
-	virtual CODProperty* Dup();
+    //@cmember
+    /* Makes a copy of this properties object. */
+    virtual CODProperty* Dup();
 
-	//@cmember
-	/* Merges another set of properties with this one. */
-	virtual void Merge( CODProperty* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL );
+    //@cmember
+    /* Merges another set of properties with this one. */
+    virtual void Merge( CODProperty* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL );
 
-	//@cmember
-	/* Determines if another set of properties is equal to this one. */
-	virtual BOOL IsEqual( CODProperty* pProp );
-
-public:
-
-	//@cmember
-	/* Gets the language value. */
-	Language GetLanguage() const;
-	int GetLanguageInt() const;
-
-	//@cmember
-	/* Sets the language value. */
-	void SetLanguage( const Language value );
-	void SetLanguageInt( const int value );
+    //@cmember
+    /* Determines if another set of properties is equal to this one. */
+    virtual BOOL IsEqual( CODProperty* pProp );
 
 public:
 
-	/////////////////////////////////////////////////////////////////////////
-	// IODPropertyContainer interface
+    //@cmember
+    /* Gets the language value. */
+    Language GetLanguage() const;
+    int GetLanguageInt() const;
 
-	//@cmember
-	/* Gets the value of the given string property. */
-	virtual BOOL GetValue( const int nPropId, CString& strValue ) const;
-
-	//@cmember
-	/* Gets the value of the given integer property. */
-	virtual BOOL GetValue( const int nPropId, int& nValue ) const;
-
-	//@cmember
-	/* Gets the value of the given unsigned integer property. */
-	virtual BOOL GetValue( const int nPropId, UINT& nValue ) const;
-
-	//@cmember
-	/* Gets the value of the given DWORD property. */
-	virtual BOOL GetValue( const int nPropId, DWORD& dwValue ) const;
-
-	//@cmember
-	/* Gets the value of the given float property. */
-	virtual BOOL GetValue( const int nPropId, float& fValue ) const;
-
-	//@cmember
-	/* Sets the value of the given string property. */
-	virtual BOOL SetValue( const int nPropId, LPCTSTR lpszValue );
-
-	//@cmember
-	/* Sets the value of the given integer property. */
-	virtual BOOL SetValue( const int nPropId, const int nValue );
-
-	//@cmember
-	/* Sets the value of the given unsigned integer property. */
-	virtual BOOL SetValue( const int nPropId, const UINT nValue );
-
-	//@cmember
-	/* Sets the value of the given unsigned DWORD property. */
-	virtual BOOL SetValue( const int nPropId, const DWORD dwValue );
-
-	//@cmember
-	/* Sets the value of the given float property. */
-	virtual BOOL SetValue( const int nPropId, const float fValue );
-
-	//@cmember
-	/* Serializes the orientation properties. */
-	virtual void Serialize( CArchive& ar );
+    //@cmember
+    /* Sets the language value. */
+    void SetLanguage( const Language value );
+    void SetLanguageInt( const int value );
 
 public:
 
-	/////////////////////////////////////////////////////////////////////////
-	// IODObject interface
+    /////////////////////////////////////////////////////////////////////////
+    // IODPropertyContainer interface
 
-	BEGIN_GUID_MAP(ZBLanguageProp)
-		GUID_ENTRY(IODPropertyContainer)
-		GUID_ENTRY(sfl::IPropertyContainer)
-		GUID_CHAIN_ENTRY(CODIntProperty)
-	END_GUID_MAP
+    //@cmember
+    /* Gets the value of the given string property. */
+    virtual BOOL GetValue( const int nPropId, CString& strValue ) const;
 
-	//@cmember
-	/* Add a reference to this object. */
-	ULONG STDMETHODCALLTYPE AddRef();
+    //@cmember
+    /* Gets the value of the given integer property. */
+    virtual BOOL GetValue( const int nPropId, int& nValue ) const;
 
-	//@cmember
-	/* Release a reference to this object. */
-	ULONG STDMETHODCALLTYPE Release();
+    //@cmember
+    /* Gets the value of the given unsigned integer property. */
+    virtual BOOL GetValue( const int nPropId, UINT& nValue ) const;
+
+    //@cmember
+    /* Gets the value of the given DWORD property. */
+    virtual BOOL GetValue( const int nPropId, DWORD& dwValue ) const;
+
+    //@cmember
+    /* Gets the value of the given float property. */
+    virtual BOOL GetValue( const int nPropId, float& fValue ) const;
+
+    //@cmember
+    /* Sets the value of the given string property. */
+    virtual BOOL SetValue( const int nPropId, LPCTSTR lpszValue );
+
+    //@cmember
+    /* Sets the value of the given integer property. */
+    virtual BOOL SetValue( const int nPropId, const int nValue );
+
+    //@cmember
+    /* Sets the value of the given unsigned integer property. */
+    virtual BOOL SetValue( const int nPropId, const UINT nValue );
+
+    //@cmember
+    /* Sets the value of the given unsigned DWORD property. */
+    virtual BOOL SetValue( const int nPropId, const DWORD dwValue );
+
+    //@cmember
+    /* Sets the value of the given float property. */
+    virtual BOOL SetValue( const int nPropId, const float fValue );
+
+    //@cmember
+    /* Serializes the orientation properties. */
+    virtual void Serialize( CArchive& ar );
+
+public:
+
+    /////////////////////////////////////////////////////////////////////////
+    // IODObject interface
+
+    BEGIN_GUID_MAP(ZBLanguageProp)
+        GUID_ENTRY(IODPropertyContainer)
+        GUID_ENTRY(sfl::IPropertyContainer)
+        GUID_CHAIN_ENTRY(CODIntProperty)
+    END_GUID_MAP
+
+    //@cmember
+    /* Add a reference to this object. */
+    ULONG STDMETHODCALLTYPE AddRef();
+
+    //@cmember
+    /* Release a reference to this object. */
+    ULONG STDMETHODCALLTYPE Release();
 
 // Implementation
 public:
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 private:
 
-	/* Registers the basic property meta-data. */
-	bool RegisterProperties();
+    /* Registers the basic property meta-data. */
+    bool RegisterProperties();
 
 // Attributes
 protected:
 
-	//@cmember
-	/* The language. */
-	Language m_Language;
+    //@cmember
+    /* The language. */
+    Language m_Language;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -223,34 +223,34 @@ protected:
 //@rdesc New reference count value.
 inline ULONG ZBLanguageProp::AddRef()
 {
-	return CODIntProperty::AddRef();
+    return CODIntProperty::AddRef();
 }
 
 //@mfunc Release a reference to this object.
 //@rdesc New reference count value.
 inline ULONG ZBLanguageProp::Release()
 {
-	return CODIntProperty::Release();
+    return CODIntProperty::Release();
 }
 
 inline Language ZBLanguageProp::GetLanguage() const
 {
-	return m_Language;
+    return m_Language;
 }
 
 inline int ZBLanguageProp::GetLanguageInt() const
 {
-	return static_cast<int>( m_Language );
+    return static_cast<int>( m_Language );
 }
 
 inline void ZBLanguageProp::SetLanguage( const Language value )
 {
-	m_Language = value;
+    m_Language = value;
 }
 
 inline void ZBLanguageProp::SetLanguageInt( const int value )
 {
-	m_Language = static_cast<Language>( value );
+    m_Language = static_cast<Language>( value );
 }
 
 //@mfunc Creates a copy of this property.
@@ -258,7 +258,7 @@ inline void ZBLanguageProp::SetLanguageInt( const int value )
 // for cleaning up this object.
 inline CODProperty* ZBLanguageProp::Dup()
 {
-	return new ZBLanguageProp( *this );
+    return new ZBLanguageProp( *this );
 }
 
 #endif // !defined(AFX_ZBLanguageProp_H__D6010BE6_7C2A_47FF_857B_0C64A020F48F__INCLUDED_)

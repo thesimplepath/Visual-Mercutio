@@ -1,10 +1,10 @@
 //## begin module%336D05320172.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%336D05320172.cm
 
 //## begin module%336D05320172.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%336D05320172.cp
 
 //## Module: ZASquare%336D05320172; Package specification
@@ -49,8 +49,8 @@
 
 
 //## Class: PLFNSquare%336D04BA0208
-//	Manage squares for formulars. One square can have only
-//	one character.
+//    Manage squares for formulars. One square can have only
+//    one character.
 //## Category: ZBaseLib::Base objects%37E9429A0111
 //## Subsystem: ZBaseLib%37A08E0C019D
 //## Persistence: Transient
@@ -59,9 +59,9 @@
 class AFX_EXT_CLASS PLFNSquare : public PlanFinObject  //## Inherits: <unnamed>%336D04EA0050
 {
   //## begin PLFNSquare%336D04BA0208.initialDeclarations preserve=yes
-	public:
-	// Inherited feature
-		typedef PlanFinObject inherited;
+    public:
+    // Inherited feature
+        typedef PlanFinObject inherited;
   //## end PLFNSquare%336D04BA0208.initialDeclarations
 
   public:
@@ -83,76 +83,76 @@ class AFX_EXT_CLASS PLFNSquare : public PlanFinObject  //## Inherits: <unnamed>%
 
     //## Other Operations (specified)
       //## Operation: operator =%862783356
-      //	A copy constructor with a pointer.
+      //    A copy constructor with a pointer.
       const PLFNSquare& operator = (const PLFNSquare* right);
 
       //## Operation: Clone%862783358
-      //	Make a clone of the object.
+      //    Make a clone of the object.
       virtual PlanFinObject* Clone ();
 
       //## Operation: Serialize%862783359
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: DrawObject%862783360
-      //	Draw the object with the current DC.
+      //    Draw the object with the current DC.
       virtual void DrawObject (CDC* pDC, ZIView* pView);
 
       //## Operation: CopyObject%863615081
       virtual void CopyObject (PlanFinObject* pSrc);
 
       //## Operation: GetPropertyTabs%885128492
-      //	Return the list of tabs that should be displayed when
-      //	the user asks for object properties.
+      //    Return the list of tabs that should be displayed when
+      //    the user asks for object properties.
       virtual UINT GetPropertyTabs () const;
 
       //## Operation: IsEmpty%909073220
-      //	Is it an empty field.
+      //    Is it an empty field.
       virtual BOOL IsEmpty () const;
 
       //## Operation: GetFormatedObject%909073221
-      //	Format the object with the current object's attributes.
+      //    Format the object with the current object's attributes.
       //## Semantics:
-      //	This function return the string
-      //	represented the object formated
-      //	with the current format type
-      //	this function is virtual
-      //	The base function returns an empty string
+      //    This function return the string
+      //    represented the object formated
+      //    with the current format type
+      //    this function is virtual
+      //    The base function returns an empty string
       virtual CString GetFormatedObject ();
 
       //## Operation: ConvertFormatedObject%909073222
-      //	Convert a formatted object to numeric, date, string, etc.
-      //	Returns true if the value has changed.
+      //    Convert a formatted object to numeric, date, string, etc.
+      //    Returns true if the value has changed.
       //## Semantics:
-      //	This function convert the string
-      //	and set the object with the right value
-      //	For the base class nothing to do
+      //    This function convert the string
+      //    and set the object with the right value
+      //    For the base class nothing to do
       virtual BOOL ConvertFormatedObject (const CString& sValue, BOOL bLocateFormat = TRUE, BOOL EmptyWhenZero = FALSE);
 
       //## Operation: IsSelected%909073223
-      //	Is this object selected.
+      //    Is this object selected.
       virtual BOOL IsSelected (const CPoint& point) const;
 
       //## Operation: GetRightSubMenu%909073224
-      //	Return the number of the submenu when the user click the
-      //	right mouse button.
+      //    Return the number of the submenu when the user click the
+      //    right mouse button.
       virtual UINT GetRightSubMenu () const;
 
       //## Operation: GetUnformatedObject%909073225
-      //	Return an unformated string of the object image.
+      //    Return an unformated string of the object image.
       virtual CString GetUnformatedObject ();
 
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: SizeSquare%3371DB18029E
-      //	Define the size of each square
+      //    Define the size of each square
       const CSize GetSizeSquare () const;
       void SetSizeSquare (CSize value);
 
       //## Attribute: SquareMaxLength%3371DB3F03B6
-      //	Define the maximum length of the text included within
-      //	the squares. Put -1 if you do not want to limit the
-      //	input.
+      //    Define the maximum length of the text included within
+      //    the squares. Put -1 if you do not want to limit the
+      //    input.
       const int GetSquareMaxLength () const;
       void SetSquareMaxLength (int value);
 
@@ -169,32 +169,32 @@ class AFX_EXT_CLASS PLFNSquare : public PlanFinObject  //## Inherits: <unnamed>%
       void SetpObject (PlanFinObject* value);
 
       //## Attribute: TypeOfSquare%36305ABB03C1
-      //	Defines the way the square should be represented.
+      //    Defines the way the square should be represented.
       const SquareType GetTypeOfSquare () const;
       void SetTypeOfSquare (SquareType value);
 
       //## Attribute: ParsingMode%36305B92030C
-      //	Defines the way the parsing should be done.
+      //    Defines the way the parsing should be done.
       const ParsingModeType GetParsingMode () const;
       void SetParsingMode (ParsingModeType value);
 
     // Additional Public Declarations
       //## begin PLFNSquare%336D04BA0208.public preserve=yes
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
       //## end PLFNSquare%336D04BA0208.public
   protected:
     // Additional Protected Declarations
       //## begin PLFNSquare%336D04BA0208.protected preserve=yes
-	DECLARE_SERIAL(PLFNSquare)
+    DECLARE_SERIAL(PLFNSquare)
       //## end PLFNSquare%336D04BA0208.protected
   private:
 
     //## Other Operations (specified)
       //## Operation: DrawSquares%863099801
-      //	Draw all squares.
+      //    Draw all squares.
       void DrawSquares (CDC* pDC);
 
     // Data Members for Class Attributes
@@ -250,34 +250,34 @@ class AFX_EXT_CLASS PLFNSquare : public PlanFinObject  //## Inherits: <unnamed>%
 inline UINT PLFNSquare::GetPropertyTabs () const
 {
   //## begin PLFNSquare::GetPropertyTabs%885128492.body preserve=yes
-  	return PropertyGeneralPage | PropertySizePage | PropertySquarePage;
+      return PropertyGeneralPage | PropertySizePage | PropertySquarePage;
   //## end PLFNSquare::GetPropertyTabs%885128492.body
 }
 
 inline BOOL PLFNSquare::IsEmpty () const
 {
   //## begin PLFNSquare::IsEmpty%909073220.body preserve=yes
-  	if (m_pObject)
-	  	return m_pObject->IsEmpty();
-	return TRUE;
+      if (m_pObject)
+          return m_pObject->IsEmpty();
+    return TRUE;
   //## end PLFNSquare::IsEmpty%909073220.body
 }
 
 inline BOOL PLFNSquare::IsSelected (const CPoint& point) const
 {
   //## begin PLFNSquare::IsSelected%909073223.body preserve=yes
-  	if (m_pObject)
-	  	return m_pObject->IsSelected( point );
-	return FALSE;
+      if (m_pObject)
+          return m_pObject->IsSelected( point );
+    return FALSE;
   //## end PLFNSquare::IsSelected%909073223.body
 }
 
 inline UINT PLFNSquare::GetRightSubMenu () const
 {
   //## begin PLFNSquare::GetRightSubMenu%909073224.body preserve=yes
-  	if (m_pObject)
-	  	return m_pObject->GetRightSubMenu();
-	return ObjectRightSubMenu;
+      if (m_pObject)
+          return m_pObject->GetRightSubMenu();
+    return ObjectRightSubMenu;
   //## end PLFNSquare::GetRightSubMenu%909073224.body
 }
 

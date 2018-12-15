@@ -44,9 +44,9 @@ class AFX_EXT_CLASS ZUActivityLogFile
       BOOL Close ();
 
   private:
-      CString	m_LogFileName;
-      CFile		m_File;
-	  BOOL		m_IsOpen;
+      CString    m_LogFileName;
+      CFile        m_File;
+      BOOL        m_IsOpen;
 
   private:
       ZUActivityLogFile(const ZUActivityLogFile &right);

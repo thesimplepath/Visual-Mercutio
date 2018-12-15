@@ -35,7 +35,7 @@ class _ZCFriendPropertyListCtrl : public CListCtrl
 {
 // Construction
 public:
-	_ZCFriendPropertyListCtrl();
+    _ZCFriendPropertyListCtrl();
 
 // Attributes
 public:
@@ -44,21 +44,21 @@ public:
 public:
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(_ZCFriendPropertyListCtrl)
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(_ZCFriendPropertyListCtrl)
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
-	virtual ~_ZCFriendPropertyListCtrl();
+    virtual ~_ZCFriendPropertyListCtrl();
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(_ZCFriendPropertyListCtrl)
-		// NOTE - the ClassWizard will add and remove member functions here.
-	//}}AFX_MSG
+    //{{AFX_MSG(_ZCFriendPropertyListCtrl)
+        // NOTE - the ClassWizard will add and remove member functions here.
+    //}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

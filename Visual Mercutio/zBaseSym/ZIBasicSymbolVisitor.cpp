@@ -1,8 +1,8 @@
 // ******************************************************************************************************
-// *										  Classe ZIBasicSymbolVisitor								*
+// *                                          Classe ZIBasicSymbolVisitor                                *
 // ******************************************************************************************************
-// * Cette classe est une classe abstraite permettant la construction de classes prenant en charge la	*
-// * navigation dans les documents.																		*
+// * Cette classe est une classe abstraite permettant la construction de classes prenant en charge la    *
+// * navigation dans les documents.                                                                        *
 // ******************************************************************************************************
 
 #include "stdafx.h"
@@ -17,7 +17,7 @@ static char THIS_FILE[]=__FILE__;
 // JMR-MODIF - Le 7 mars 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
 // ******************************************************************************************************
-// *										  Construction/Destruction									*
+// *                                          Construction/Destruction                                    *
 // ******************************************************************************************************
 
 // Constructeur par défaut de la classe ZIBasicSymbolVisitor.

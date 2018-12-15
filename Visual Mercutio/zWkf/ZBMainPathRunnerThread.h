@@ -36,42 +36,42 @@ class ZILog;
 class ZBMainPathRunnerThread : public CThinThread
 {
 protected:
-	ZBMainPathRunnerThread();    // protected constructor used by dynamic creation     
+    ZBMainPathRunnerThread();    // protected constructor used by dynamic creation     
 
 public:
-	ZBMainPathRunnerThread(ZBPathMachine* pAutomationMachine, int ElapseTime = -1, ZILog* pLog = NULL);
-	virtual ~ZBMainPathRunnerThread();
+    ZBMainPathRunnerThread(ZBPathMachine* pAutomationMachine, int ElapseTime = -1, ZILog* pLog = NULL);
+    virtual ~ZBMainPathRunnerThread();
 
-	BOOL StartThread();
-	void SetLog( ZILog* pLog )
-	{
-		m_pLog = pLog;
-	};
+    BOOL StartThread();
+    void SetLog( ZILog* pLog )
+    {
+        m_pLog = pLog;
+    };
 
 protected: 
 
-	/////////////////////////////////////////////////////////////////////////////
-	// CThinThread operations
+    /////////////////////////////////////////////////////////////////////////////
+    // CThinThread operations
 
-	// override to do startup
-	virtual void StartWork();
-	// override to do work
-	virtual void DoWork();  
-	// override to do shutdown
-	virtual void EndWork(); 
+    // override to do startup
+    virtual void StartWork();
+    // override to do work
+    virtual void DoWork();  
+    // override to do shutdown
+    virtual void EndWork(); 
 
 private:
-	ZBPathMachine*				m_pPathMachine;
+    ZBPathMachine*                m_pPathMachine;
 
-	int							m_ElapseTime;
-	ZBStateMachineHandleSet		m_MachineHandleSet;
+    int                            m_ElapseTime;
+    ZBStateMachineHandleSet        m_MachineHandleSet;
 
-	// Logging variables
-	ZILog* m_pLog;
-	// Loop counter
-	int m_LoopCounter;
-	int m_WaitingCounter;
-	int m_IsPausedCounter;
+    // Logging variables
+    ZILog* m_pLog;
+    // Loop counter
+    int m_LoopCounter;
+    int m_WaitingCounter;
+    int m_IsPausedCounter;
 
 
 };

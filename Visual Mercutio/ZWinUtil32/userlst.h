@@ -1,6 +1,6 @@
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
-//	Source file: UserLst.h
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
+//    Source file: UserLst.h
 
 #ifndef UserLst_h
 #define UserLst_h 1
@@ -44,37 +44,37 @@ class AFX_EXT_CLASS ZCUserList : public ZIListCtrl
 class AFX_EXT_CLASS ZCUserList : public CListBox  
 {
 #endif
-//	DECLARE_DYNAMIC(ZCUserList)
+//    DECLARE_DYNAMIC(ZCUserList)
 
   public:
       ZCUserList (ZUUserManager* pUserManager = NULL, CString Departement = "");
       ~ZCUserList();
-	  CString	GetSelectedUsername();
-	  int		GetSelectedUsernames( CStringArray Array );
+      CString    GetSelectedUsername();
+      int        GetSelectedUsernames( CStringArray Array );
 
 
-      int	Initialize (ZUUserManager* pUserManager, CString Departement = "");
-      void	SetDepartement (CString Departement) { m_Departement = Departement; };
-      int	Refresh ();
+      int    Initialize (ZUUserManager* pUserManager, CString Departement = "");
+      void    SetDepartement (CString Departement) { m_Departement = Departement; };
+      int    Refresh ();
 
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCUserList)
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCUserList)
+    //}}AFX_VIRTUAL
   protected:
-	//{{AFX_MSG(ZCUserList)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZCUserList)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
   private:
     ZCUserList(const ZCUserList &right);
-    const	ZCUserList & operator=(const ZCUserList &right);
-	void	BuildColumns();
+    const    ZCUserList & operator=(const ZCUserList &right);
+    void    BuildColumns();
 
   private: //## implementation
-	    ZUUserManager*	m_pUserManager;
-		CString			m_Departement;
-		BOOL			m_OnlyAdministrator;
-		BOOL			m_OnlyNonAdministrator;
-		BOOL			m_ColumnsBuilt;
+        ZUUserManager*    m_pUserManager;
+        CString            m_Departement;
+        BOOL            m_OnlyAdministrator;
+        BOOL            m_OnlyNonAdministrator;
+        BOOL            m_ColumnsBuilt;
 };
 
 //#undef  AFX_DATA

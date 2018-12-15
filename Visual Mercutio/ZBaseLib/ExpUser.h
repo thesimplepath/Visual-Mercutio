@@ -1,5 +1,5 @@
 //## begin module%36F7BD3602A4.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%36F7BD3602A4.cm
 
 //## begin module%36F7BD3602A4.cp preserve=no
@@ -52,7 +52,7 @@
 //## end ZUUserExport%36F7BC4003CD.preface
 
 //## Class: ZUUserExport%36F7BC4003CD
-//	Exports the user table.
+//    Exports the user table.
 //## Category: ZUtil library::Export classes%36F7CCFF024A
 //## Subsystem: ZUtil%366D71940075
 //## Persistence: Transient
@@ -68,8 +68,8 @@ class AFX_EXT_CLASS ZUUserExport : public ZUExport  //## Inherits: <unnamed>%36F
   public:
     //## Constructors (specified)
       //## Operation: ZUUserExport%922203348
-      //	Constructs an export class with the filename and the
-      //	user manager pointer
+      //    Constructs an export class with the filename and the
+      //    user manager pointer
       ZUUserExport (CString Filename = "", ZUUserManager* pUserManager = NULL, BOOL GenerateHeader = FALSE, SynchronizationSeparatorType SeparatorType = AutomaticSeparator, CString Schema = szOriginalSchema, int PropagationMode = LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
 
     //## Destructor (generated)
@@ -78,39 +78,39 @@ class AFX_EXT_CLASS ZUUserExport : public ZUExport  //## Inherits: <unnamed>%36F
 
     //## Other Operations (specified)
       //## Operation: GetExportedLine%922203349
-      //	Build the export line and return it.
+      //    Build the export line and return it.
       virtual CString GetExportedLine (CObject* pObj);
 
       //## Operation: ProcessLine%922203351
-      //	Process the line and updates the document.
+      //    Process the line and updates the document.
       virtual BOOL ProcessLine (CString Line);
 
       //## Operation: GetHeaderLine%922203352
-      //	This function builds the header line.
+      //    This function builds the header line.
       virtual CString GetHeaderLine ();
 
       //## Operation: Import%922203353
-      //	This function imports the file to the document.
+      //    This function imports the file to the document.
       virtual BOOL Import ();
 
       //## Operation: Export%922203354
-      //	This function exports the records to a file.
+      //    This function exports the records to a file.
       virtual BOOL Export ();
 
       //## Operation: Create%922203355
-      //	Create the export class.
+      //    Create the export class.
       virtual void Create (CString Filename, ZUUserManager* pUserManager = NULL, BOOL GenerateHeader = FALSE, SynchronizationSeparatorType SeparatorType = AutomaticSeparator, CString Schema = szOriginalSchema, int PropagationMode = LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
 
       //## Operation: ForecastedTotalObject%922203369
-      //	This function should return the forecasted total object.
+      //    This function should return the forecasted total object.
       virtual double ForecastedTotalObject ();
 
       //## Operation: DoExportLoop%922203370
-      //	This function do the loop for export.
+      //    This function do the loop for export.
       virtual BOOL DoExportLoop ();
 
       //## Operation: PreImport%922203371
-      //	This function imports the file to the document.
+      //    This function imports the file to the document.
       virtual BOOL PreImport ();
 
     // Additional Public Declarations
@@ -157,8 +157,8 @@ class AFX_EXT_CLASS ZUUserExport : public ZUExport  //## Inherits: <unnamed>%36F
 inline void ZUUserExport::Create (CString Filename, ZUUserManager* pUserManager, BOOL GenerateHeader, SynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
 {
   //## begin ZUUserExport::Create%922203355.body preserve=yes
-  	m_pUserManager = pUserManager;
-	ZUExport::Create (Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar);
+      m_pUserManager = pUserManager;
+    ZUExport::Create (Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar);
   //## end ZUUserExport::Create%922203355.body
 }
 

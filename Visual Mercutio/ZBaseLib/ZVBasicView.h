@@ -35,41 +35,41 @@
 class AFX_EXT_CLASS ZVBasicView : public CView
 {
 protected:
-	ZVBasicView();           // protected constructor used by dynamic creation
-	DECLARE_DYNCREATE(ZVBasicView)
+    ZVBasicView();           // protected constructor used by dynamic creation
+    DECLARE_DYNCREATE(ZVBasicView)
 
 
 // Operations
 public:
 
-	  // Return the printer page size
-	  BOOL GetPrinterPageSize(CSize &PaperSize, short& StandardSize, short& Orientation);
+      // Return the printer page size
+      BOOL GetPrinterPageSize(CSize &PaperSize, short& StandardSize, short& Orientation);
 
-      //	Set the printer orientation. It is function of the
-      //	printer definition.
+      //    Set the printer orientation. It is function of the
+      //    printer definition.
       void SetPrinterOrientation (short Orientation = DMORIENT_PORTRAIT);
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVBasicView)
-	protected:
-	virtual void OnDraw(CDC* pDC);      // overridden to draw this view
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVBasicView)
+    protected:
+    virtual void OnDraw(CDC* pDC);      // overridden to draw this view
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
-	virtual ~ZVBasicView();
+    virtual ~ZVBasicView();
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZVBasicView)
-		// NOTE - the ClassWizard will add and remove member functions here.
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZVBasicView)
+        // NOTE - the ClassWizard will add and remove member functions here.
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

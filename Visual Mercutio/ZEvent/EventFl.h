@@ -37,40 +37,40 @@
 class AFX_EXT_CLASS ZBEventFile
 {
 public:
-	ZBEventFile();
-	BOOL				ExportActivityToFile( const CString Filename, ZBEvent* pActivity );
-	ZBEvent*			ImportActivityFromFile( const CString Filename );
-	
-	virtual ~ZBEventFile();
+    ZBEventFile();
+    BOOL                ExportActivityToFile( const CString Filename, ZBEvent* pActivity );
+    ZBEvent*            ImportActivityFromFile( const CString Filename );
+    
+    virtual ~ZBEventFile();
 
 private:
     ZBEventFile(const ZBEventFile &right);
     const ZBEventFile & operator=(const ZBEventFile &right);
 
 protected:
-	virtual void		BuildLine(const CString Path, const CString Filename) = 0;
-	virtual BOOL		ParseLine() = 0;
-	virtual ZBEvent*	AllocateEventPtr() = 0;
+    virtual void        BuildLine(const CString Path, const CString Filename) = 0;
+    virtual BOOL        ParseLine() = 0;
+    virtual ZBEvent*    AllocateEventPtr() = 0;
 
 private:
-	BOOL	OpenFileCreate();
-	BOOL	OpenFileRead();
-	BOOL	CloseFile();
-	int		ReadFileBuffer();
-	void	WriteLine();
-	BOOL	ImportLine();
-	void	ExportLine();
+    BOOL    OpenFileCreate();
+    BOOL    OpenFileRead();
+    BOOL    CloseFile();
+    int        ReadFileBuffer();
+    void    WriteLine();
+    BOOL    ImportLine();
+    void    ExportLine();
 
 protected:
-	ZBEvent*			m_pEvent;
-    char*				m_pCurrent;
-    char*				m_pNext;
-    CString				m_FileBuffer;
-	int					m_BufferSize;
+    ZBEvent*            m_pEvent;
+    char*                m_pCurrent;
+    char*                m_pNext;
+    CString                m_FileBuffer;
+    int                    m_BufferSize;
 
 private:
-	CString				m_Filename;
-    CFile				m_File;
+    CString                m_Filename;
+    CFile                m_File;
 };
 
 
@@ -80,7 +80,7 @@ private:
 
 inline void ZBEventFile::WriteLine ()
 {
-	m_File.Write( m_FileBuffer, m_FileBuffer.GetLength() );
+    m_File.Write( m_FileBuffer, m_FileBuffer.GetLength() );
 }
 
 #endif // !defined(AFX_ZBEventFile_H__0F4A8AF0_0EAC_11D3_9810_00C04FB4D0D7__INCLUDED_)

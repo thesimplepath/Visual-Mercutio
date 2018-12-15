@@ -37,19 +37,19 @@ ZISelectProcessWizard::~ZISelectProcessWizard()
 BOOL ZISelectProcessWizard::PlayWizard()
 {
 
-	ZISelectProcessWizardStart	SelectProcessWizardStart( m_Process.GetName() );
+    ZISelectProcessWizardStart    SelectProcessWizardStart( m_Process.GetName() );
 
-	if (SelectProcessWizardStart.DoModal() == IDCANCEL)
-		return FALSE;
+    if (SelectProcessWizardStart.DoModal() == IDCANCEL)
+        return FALSE;
 
-	ZISelectProcessWizardChoose	SelectProcessWizardChoose( m_Process );
+    ZISelectProcessWizardChoose    SelectProcessWizardChoose( m_Process );
 
-	if (SelectProcessWizardChoose.DoModal() == IDCANCEL)
-		return FALSE;
-	// Assign the activity name selected
-	m_BaseActivityName = SelectProcessWizardChoose.GetBaseActivityName();
+    if (SelectProcessWizardChoose.DoModal() == IDCANCEL)
+        return FALSE;
+    // Assign the activity name selected
+    m_BaseActivityName = SelectProcessWizardChoose.GetBaseActivityName();
 
-	return TRUE;
+    return TRUE;
 }
 
 

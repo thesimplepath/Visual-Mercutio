@@ -23,10 +23,10 @@
 
 
 #ifndef _WIN32
-	#include "ZWinUtil.h"
+    #include "ZWinUtil.h"
 #endif
 #ifdef _WIN32
-	#include "ZWinUtil32.h"
+    #include "ZWinUtil32.h"
 #endif
 
 
@@ -50,63 +50,63 @@
 class AFX_EXT_CLASS ZIUserView : public ZITreeView
 {
 public:
-	DECLARE_DYNCREATE(ZIUserView)
-	ZIUserView();           
-	virtual ~ZIUserView();
+    DECLARE_DYNCREATE(ZIUserView)
+    ZIUserView();           
+    virtual ~ZIUserView();
 
 
 // Operations
 public:
-	void				Initialize (ZUUserManager* pUserManager);
-	void				ReInitialize (ZUUserManager* pUserManager);
-	void				Refresh();
-    ZUser*				GetSelectedUser();
-	CString				GetSelectedDepartement();
+    void                Initialize (ZUUserManager* pUserManager);
+    void                ReInitialize (ZUUserManager* pUserManager);
+    void                Refresh();
+    ZUser*                GetSelectedUser();
+    CString                GetSelectedDepartement();
 
-	virtual	void		OnSelChangedEvent() {};
-	virtual	void		OnClickEvent() {};
-	virtual	void		OnDblClickEvent() {};
-	virtual	void		OnRightClickEvent() {};
-	virtual	void		OnRightDblClickEvent() {};
+    virtual    void        OnSelChangedEvent() {};
+    virtual    void        OnClickEvent() {};
+    virtual    void        OnDblClickEvent() {};
+    virtual    void        OnRightClickEvent() {};
+    virtual    void        OnRightDblClickEvent() {};
 
 protected:
-	virtual int			GetIndexOfNoDropImage() const;
+    virtual int            GetIndexOfNoDropImage() const;
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIUserView)
-	protected:
-	virtual void OnDraw(CDC* pDC);      // overridden to draw this view
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIUserView)
+    protected:
+    virtual void OnDraw(CDC* pDC);      // overridden to draw this view
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZIUserView)
-	afx_msg LRESULT OnInitializeUserManager( WPARAM wParam, LPARAM lParam );
-	afx_msg LRESULT OnReloadUserManager( WPARAM wParam, LPARAM lParam );
-	afx_msg LRESULT OnRefreshUserManager( WPARAM wParam, LPARAM lParam );
-	afx_msg void OnClick(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnDblClick(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnRightClick(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnRightDblClick(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnSelchanged(NMHDR* pNMHDR, LRESULT* pResult);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZIUserView)
+    afx_msg LRESULT OnInitializeUserManager( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnReloadUserManager( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnRefreshUserManager( WPARAM wParam, LPARAM lParam );
+    afx_msg void OnClick(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnDblClick(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnRightClick(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnRightDblClick(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnSelchanged(NMHDR* pNMHDR, LRESULT* pResult);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 protected:
-      ZIUserTree			m_UserTree;
-	  ZUUserManager*		m_pUserManager;
+      ZIUserTree            m_UserTree;
+      ZUUserManager*        m_pUserManager;
 };
 
 inline int ZIUserView::GetIndexOfNoDropImage() const
 {
-	return 4;
+    return 4;
 }
 
 /////////////////////////////////////////////////////////////////////////////

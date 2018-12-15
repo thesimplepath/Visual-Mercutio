@@ -1,5 +1,5 @@
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //  Source file: ViewRead.h
 
 #ifndef ViewRead_h
@@ -34,16 +34,16 @@
 
 class AFX_EXT_CLASS ZIViewRead : public ZIView
 {
-	DECLARE_DYNCREATE(ZIViewRead)
-	public:
-	// Inherited feature
-		typedef CScrollView inherited;
+    DECLARE_DYNCREATE(ZIViewRead)
+    public:
+    // Inherited feature
+        typedef CScrollView inherited;
 
   public:
     //## Constructors (generated)
       ZIViewRead();
 
-      //	Return a cast document pointer.
+      //    Return a cast document pointer.
       ZDDocument* GetDocument ();
 
   protected:
@@ -69,22 +69,22 @@ class AFX_EXT_CLASS ZIViewRead : public ZIView
       virtual void OnEndPrinting (CDC* pDC, CPrintInfo* pInfo);
 
       //## Operation: PreTranslateMessage%938177645
-      //	Pre translates key message.
+      //    Pre translates key message.
       virtual BOOL PreTranslateMessage (MSG* pMsg);
 
-	  virtual UINT GetRightPopupMenuID();
+      virtual UINT GetRightPopupMenuID();
 
     // Additional Protected Declarations
       //## begin ZIViewRead%3620D7FF0234.protected preserve=yes
-		// Generated message map functions
-		//{{AFX_MSG(ZIViewRead)
-		afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
-		afx_msg void OnViewZoomin();
-		afx_msg void OnViewZoomout();
-		afx_msg void OnUpdateViewZoomin(CCmdUI* pCmdUI);
-		afx_msg void OnUpdateViewZoomout(CCmdUI* pCmdUI);
-	//}}AFX_MSG
-		DECLARE_MESSAGE_MAP()
+        // Generated message map functions
+        //{{AFX_MSG(ZIViewRead)
+        afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
+        afx_msg void OnViewZoomin();
+        afx_msg void OnViewZoomout();
+        afx_msg void OnUpdateViewZoomin(CCmdUI* pCmdUI);
+        afx_msg void OnUpdateViewZoomout(CCmdUI* pCmdUI);
+    //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
       //## end ZIViewRead%3620D7FF0234.protected
   private:
     //## Constructors (generated)
@@ -96,9 +96,9 @@ class AFX_EXT_CLASS ZIViewRead : public ZIView
     // Data Members for Class Attributes
 
       //## Attribute: iSavePageForPrinting%3620D7FF027F
-      //	Used for multiple page printing.
-      //	To save the current page.
-      //	Used when the user wants select more than one object
+      //    Used for multiple page printing.
+      //    To save the current page.
+      //    Used when the user wants select more than one object
       //## begin ZIViewRead::iSavePageForPrinting%3620D7FF027F.attr preserve=no  public: int {U} 
       int m_iSavePageForPrinting;
       //## end ZIViewRead::iSavePageForPrinting%3620D7FF027F.attr
@@ -124,14 +124,14 @@ class AFX_EXT_CLASS ZIViewRead : public ZIView
 inline ZDDocument* ZIViewRead::GetDocument ()
 {
   //## begin ZIViewRead::GetDocument%908122302.body preserve=yes
-  	return (ZDDocument*)CView::GetDocument();
+      return (ZDDocument*)CView::GetDocument();
   //## end ZIViewRead::GetDocument%908122302.body
 }
 
 
 inline UINT ZIViewRead::GetRightPopupMenuID()
 {
-	return IDR_POPUPMENU_READERVIEW;
+    return IDR_POPUPMENU_READERVIEW;
 }
 
 //## begin module%3620D88A00CB.epilog preserve=yes

@@ -41,8 +41,8 @@ class AFX_EXT_CLASS zIso8859
 {
 public:
 
-	static std::string ANSItoISO8859( std::string& inStr );
-	static std::string ISO8859toANSI( std::string& inStr );
+    static std::string ANSItoISO8859( std::string& inStr );
+    static std::string ISO8859toANSI( std::string& inStr );
 };
 
 #endif

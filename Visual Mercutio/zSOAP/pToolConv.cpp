@@ -31,63 +31,63 @@ string base64encode( const unsigned char *pcBuffIn, long nLenIn );
 // to xml (ansi7) string converter
 string convertTo( String16 inStr )
 {
-	if ( inStr.length() ==0 )
-	{
-		return _T( "" );
-	}
+    if ( inStr.length() ==0 )
+    {
+        return _T( "" );
+    }
 
-	string outStr = _T( "" );
+    string outStr = _T( "" );
 
-	if ( doCharacterConversionMethod == 0 )
-	{
-		// Do not convert
-		throw _T( "convertTo (0):not implemented" );
-	}
-	else if ( doCharacterConversionMethod == 1 )
-	{
-		// Convert utf8
-		const wchar_t *ptr = inStr;
+    if ( doCharacterConversionMethod == 0 )
+    {
+        // Do not convert
+        throw _T( "convertTo (0):not implemented" );
+    }
+    else if ( doCharacterConversionMethod == 1 )
+    {
+        // Convert utf8
+        const wchar_t *ptr = inStr;
 
-		// End of Temporary fix
-		string tmp = zUtf::UTF16toUTF8( inStr );
+        // End of Temporary fix
+        string tmp = zUtf::UTF16toUTF8( inStr );
 
-		char xxx[111];
-		sprintf( xxx, _T( "L=%d" ), tmp.length() );
-		OutputDebugString( xxx );
-		OutputDebugString( _T( "<\n" ) );
+        char xxx[111];
+        sprintf( xxx, _T( "L=%d" ), tmp.length() );
+        OutputDebugString( xxx );
+        OutputDebugString( _T( "<\n" ) );
 
-		outStr = base64encode( (unsigned char*)tmp.c_str(), tmp.length() );
-	}
-	else if ( doCharacterConversionMethod == 2 )
-	{
-		// Convert iso 8859
-		throw _T( "convertTo(2):not implemented" );
-	}
+        outStr = base64encode( (unsigned char*)tmp.c_str(), tmp.length() );
+    }
+    else if ( doCharacterConversionMethod == 2 )
+    {
+        // Convert iso 8859
+        throw _T( "convertTo(2):not implemented" );
+    }
 
-	return outStr;
+    return outStr;
 }
 
 ////////////////////////////////////////////////////////////
 // from xml (ansi7) string converter
 String16 convertFrom( string inStr )
 {
-	if ( inStr.length() == 0 ) return String16( _T( "" ) );
+    if ( inStr.length() == 0 ) return String16( _T( "" ) );
 
-	if ( doCharacterConversionMethod == 0 )
-	{
-		// Do not convert
-		throw _T( "convertFrom (0):not implemented" );
-	}
-	else if ( doCharacterConversionMethod == 1 )
-	{
-		// Convert utf8
-		return zUtf::UTF8toUTF16( inStr );
-	}
-	else if ( doCharacterConversionMethod == 2 )
-	{
-		// Convert iso 8859
-		throw _T( "convertFrom (2):not implemented" );
-	}
+    if ( doCharacterConversionMethod == 0 )
+    {
+        // Do not convert
+        throw _T( "convertFrom (0):not implemented" );
+    }
+    else if ( doCharacterConversionMethod == 1 )
+    {
+        // Convert utf8
+        return zUtf::UTF8toUTF16( inStr );
+    }
+    else if ( doCharacterConversionMethod == 2 )
+    {
+        // Convert iso 8859
+        throw _T( "convertFrom (2):not implemented" );
+    }
 
-	return String16( _T( "" ) );
+    return String16( _T( "" ) );
 }

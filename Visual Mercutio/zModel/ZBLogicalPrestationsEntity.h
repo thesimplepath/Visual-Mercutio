@@ -1,10 +1,10 @@
 // ******************************************************************************************************************
-// *										Classe ZDLogicalPrestationsEntity										*
+// *                                        Classe ZDLogicalPrestationsEntity                                        *
 // ******************************************************************************************************************
-// * JMR-MODIF - Le 7 octobre 2005 - Ajout de la classe ZDLogicalPrestationsEntity.									*
+// * JMR-MODIF - Le 7 octobre 2005 - Ajout de la classe ZDLogicalPrestationsEntity.                                    *
 // ******************************************************************************************************************
-// * Cette classe représente une entité de type prestation.	Une entité peut être considérée comme un élément du		*
-// * document.																										*
+// * Cette classe représente une entité de type prestation.    Une entité peut être considérée comme un élément du        *
+// * document.                                                                                                        *
 // ******************************************************************************************************************
 
 #if !defined(AFX_ZBLogicalPrestationsEntity_H__2AC8D235_7673_47BE_86B3_CCD14A70DE78__INCLUDED_)
@@ -55,117 +55,117 @@ typedef Iterator_T<ZBPrestationsEntity*> ZBPrestationsEntityIterator;
 
 class AFX_EXT_CLASS ZBLogicalPrestationsEntity : public ZBPrestationsEntity
 {
-	DECLARE_SERIAL( ZBLogicalPrestationsEntity )
+    DECLARE_SERIAL( ZBLogicalPrestationsEntity )
 
 public:
 
-	ZBLogicalPrestationsEntity( const CString			Name		= _T( "" ),
-								const CString			Description	= _T( "" ),
-								ZBPrestationsEntity*	pParent		= NULL );
+    ZBLogicalPrestationsEntity( const CString            Name        = _T( "" ),
+                                const CString            Description    = _T( "" ),
+                                ZBPrestationsEntity*    pParent        = NULL );
 
-	~ZBLogicalPrestationsEntity();
+    ~ZBLogicalPrestationsEntity();
 
-	void RemoveAllPrestationsEntities();
+    void RemoveAllPrestationsEntities();
 
-	virtual bool ContainEntity() const
-	{
-		return true;
-	};
+    virtual bool ContainEntity() const
+    {
+        return true;
+    };
 
-	virtual size_t GetEntityCount() const
-	{
-		return m_EntitySet.GetSize();
-	};
+    virtual size_t GetEntityCount() const
+    {
+        return m_EntitySet.GetSize();
+    };
 
-	virtual ZBPrestationsEntity* GetEntityAt( size_t Index )
-	{
-		return ( Index < GetEntityCount() ) ? m_EntitySet.GetAt( Index ) : NULL;
-	};
+    virtual ZBPrestationsEntity* GetEntityAt( size_t Index )
+    {
+        return ( Index < GetEntityCount() ) ? m_EntitySet.GetAt( Index ) : NULL;
+    };
 
-	virtual ZBPrestationsEntitySet* GetEntitySet()
-	{
-		return &m_EntitySet;
-	};
+    virtual ZBPrestationsEntitySet* GetEntitySet()
+    {
+        return &m_EntitySet;
+    };
 
-	// Modified flag functions
-	virtual BOOL IsModified()
-	{
-		return m_bModified;
-	};
+    // Modified flag functions
+    virtual BOOL IsModified()
+    {
+        return m_bModified;
+    };
 
-	virtual void SetModifiedFlag( BOOL bModified = TRUE )
-	{
-		m_bModified = bModified;
-	};
+    virtual void SetModifiedFlag( BOOL bModified = TRUE )
+    {
+        m_bModified = bModified;
+    };
 
-	////////////////////////////////////////////////////////////////
-	// Group management functions
-	ZBLogicalPrestationsEntity* AddPrestation( const CString Name, const CString Description );
+    ////////////////////////////////////////////////////////////////
+    // Group management functions
+    ZBLogicalPrestationsEntity* AddPrestation( const CString Name, const CString Description );
 
-	ZBLogicalPrestationsEntity* AddPrestation( const CString Name,
-											   const CString Description,
-											   const CString InPrestationName );
+    ZBLogicalPrestationsEntity* AddPrestation( const CString Name,
+                                               const CString Description,
+                                               const CString InPrestationName );
 
-	ZBLogicalPrestationsEntity* AddPrestation( const CString				Name,
-											   const CString				Description,
-											   ZBLogicalPrestationsEntity*	pInPrestation );
+    ZBLogicalPrestationsEntity* AddPrestation( const CString                Name,
+                                               const CString                Description,
+                                               ZBLogicalPrestationsEntity*    pInPrestation );
 
-	bool RemovePrestation( const CString Name, bool Deeper = false );
-	bool RemovePrestation( const CString Name, const CString InPrestationName );
-	bool RemovePrestation( const CString Name, ZBLogicalPrestationsEntity* pInPrestation );
-	bool RemovePrestation( ZBLogicalPrestationsEntity* pPrestation );
+    bool RemovePrestation( const CString Name, bool Deeper = false );
+    bool RemovePrestation( const CString Name, const CString InPrestationName );
+    bool RemovePrestation( const CString Name, ZBLogicalPrestationsEntity* pInPrestation );
+    bool RemovePrestation( ZBLogicalPrestationsEntity* pPrestation );
 
-	ZBPrestationsEntity* FindPrestationByGUID( const CString GUID, bool Deeper = false );
+    ZBPrestationsEntity* FindPrestationByGUID( const CString GUID, bool Deeper = false );
 
-	ZBPrestationsEntitySet* FindPrestation( const CString Name, bool Deeper = false );
-	ZBPrestationsEntitySet* FindPrestation( const CString Name, const CString InPrestationName );
-	ZBPrestationsEntitySet* FindPrestation( const CString Name, ZBLogicalPrestationsEntity* pInPrestation );
+    ZBPrestationsEntitySet* FindPrestation( const CString Name, bool Deeper = false );
+    ZBPrestationsEntitySet* FindPrestation( const CString Name, const CString InPrestationName );
+    ZBPrestationsEntitySet* FindPrestation( const CString Name, ZBLogicalPrestationsEntity* pInPrestation );
 
-	bool PrestationExist( const CString Name, bool Deeper = false );
-	bool PrestationExist( const CString Name, const CString InPrestationName );
-	bool PrestationExist( const CString Name, ZBLogicalPrestationsEntity* pInPrestation );
+    bool PrestationExist( const CString Name, bool Deeper = false );
+    bool PrestationExist( const CString Name, const CString InPrestationName );
+    bool PrestationExist( const CString Name, ZBLogicalPrestationsEntity* pInPrestation );
 
-	bool MovePrestation( ZBPrestationsEntity* pPrestation );
+    bool MovePrestation( ZBPrestationsEntity* pPrestation );
 
-	// Serialization mechanism
-	virtual void Serialize( CArchive& ar );	// Overridden for document i/o
+    // Serialization mechanism
+    virtual void Serialize( CArchive& ar );    // Overridden for document i/o
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 protected:
 
-	bool AddPrestation( ZBPrestationsEntity* pPrestation )
-	{
-		m_EntitySet.Add( pPrestation );
-		return true;
-	};
+    bool AddPrestation( ZBPrestationsEntity* pPrestation )
+    {
+        m_EntitySet.Add( pPrestation );
+        return true;
+    };
 
-	bool RemovePrestationFromSet( ZBPrestationsEntity* pPrestation );
+    bool RemovePrestationFromSet( ZBPrestationsEntity* pPrestation );
 
-	////////////////////////////////////////////////////////////////
-	// Group management functions
-	ZBPrestationsEntity* _FindPrestationByGUID( const CString GUID, bool Deeper = false );
+    ////////////////////////////////////////////////////////////////
+    // Group management functions
+    ZBPrestationsEntity* _FindPrestationByGUID( const CString GUID, bool Deeper = false );
 
-	void _FindPrestation( const CString Name, ZBLogicalPrestationsEntity* pInPrestation );
-	void _FindPrestation( const CString Name, bool Deeper = false );
+    void _FindPrestation( const CString Name, ZBLogicalPrestationsEntity* pInPrestation );
+    void _FindPrestation( const CString Name, bool Deeper = false );
 
-	ZBLogicalPrestationsEntity* _FindFirstPrestation( const CString Name, ZBLogicalPrestationsEntity* pInPrestation );
-	ZBLogicalPrestationsEntity* _FindFirstPrestation( const CString Name, bool Deeper = false );
+    ZBLogicalPrestationsEntity* _FindFirstPrestation( const CString Name, ZBLogicalPrestationsEntity* pInPrestation );
+    ZBLogicalPrestationsEntity* _FindFirstPrestation( const CString Name, bool Deeper = false );
 
-	bool _RemovePrestations( ZBPrestationsEntitySet& Set );
+    bool _RemovePrestations( ZBPrestationsEntitySet& Set );
 
-	void RecalculateParent();
+    void RecalculateParent();
 
 // Members are protected, since they need to be access directly by sub-class
 protected:
 
-	ZBPrestationsEntitySet			m_EntitySet;
+    ZBPrestationsEntitySet            m_EntitySet;
 
-	static ZBPrestationsEntitySet	m_FindSet;
-	static BOOL						m_bModified;
+    static ZBPrestationsEntitySet    m_FindSet;
+    static BOOL                        m_bModified;
 };
 
 #endif // !defined(AFX_ZBLogicalPrestationsEntity_H__2AC8D235_7673_47BE_86B3_CCD14A70DE78__INCLUDED_)

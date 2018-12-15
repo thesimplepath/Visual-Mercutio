@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName />
+    <SccAuxPath />
+    <SccLocalPath />
+    <SccProvider />
+    <Keyword>MFCProj</Keyword>
+    <ProjectGuid>{8BE451D8-979F-4024-B25A-BB48B4C96953}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>15.0.28127.55</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_AFXEXT;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Debug/ZRes32.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>..\exe\ZRes32d.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ModuleDefinitionFile>.\ZRes32d.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/ZRes32d.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>..\Lib\ZRes32d.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/ZRes32.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040c</Culture>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_AFXEXT;NOMINMAX;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Release/ZRes32.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <Link>
+      <OutputFile>..\exeR\ZRes32.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ModuleDefinitionFile>.\ZRes32.def</ModuleDefinitionFile>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>..\Lib\ZRes32.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/ZRes32.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040c</Culture>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="StdAfx.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="ZRes32.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Res\calendar.cur" />
+    <None Include="Res\clicktoc.cur" />
+    <None Include="Res\cur00001.cur" />
+    <None Include="Res\CUR00002.CUR" />
+    <None Include="Res\CUR00003.CUR" />
+    <None Include="Res\CUR00004.CUR" />
+    <None Include="Res\CURSOR1.CUR" />
+    <None Include="Res\design.cur" />
+    <None Include="Res\Download.avi" />
+    <None Include="Res\EMPTY.CUR" />
+    <None Include="Res\Filemove.avi" />
+    <None Include="Res\move.cur" />
+    <None Include="Res\NEWOBJEC.CUR" />
+    <None Include="Res\NUMBER.CUR" />
+    <None Include="Res\OdConnect.cur" />
+    <None Include="Res\OdDeleteVertex.cur" />
+    <None Include="Res\OdInsertImage.cur" />
+    <None Include="Res\OdInsertPort.cur" />
+    <None Include="Res\OdInsertSymbol.cur" />
+    <None Include="Res\OdInsertText.cur" />
+    <None Include="Res\OdInsertVertex.cur" />
+    <None Include="Res\OdMove.cur" />
+    <None Include="Res\OdMoveCopy.cur" />
+    <None Include="Res\OdMoveReady.cur" />
+    <None Include="Res\OdMoveVertex.cur" />
+    <None Include="Res\OdPan.cur" />
+    <None Include="Res\OdPanReady.cur" />
+    <None Include="Res\OdRotate.cur" />
+    <None Include="Res\OdRotateCopy.cur" />
+    <None Include="Res\OdRotateReady.cur" />
+    <None Include="Res\OdSmallCross.cur" />
+    <None Include="Res\OdZoom.cur" />
+    <None Include="Res\OdZoomRect.cur" />
+    <None Include="Res\panmove.cur" />
+    <None Include="Res\POINTER.CUR" />
+    <None Include="Res\PROPERTY.CUR" />
+    <None Include="Res\SCENARIO.CUR" />
+    <None Include="Res\SELECTOR.CUR" />
+    <None Include="Res\taborder.cur" />
+    <None Include="res\ZRes32.rc2" />
+    <None Include="Uml\ZRes32.vcp" />
+    <CustomBuild Include="ZRes32.def">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <CustomBuild Include="ZRes32d.def">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ZRes32.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="ZRes.h" />
+    <ClInclude Include="zRes32Lib.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Res\admin.bmp" />
+    <Image Include="Res\ALIGNBOT.BMP" />
+    <Image Include="Res\ALIGNCEN.BMP" />
+    <Image Include="Res\ALIGNLEF.BMP" />
+    <Image Include="Res\ALIGNRIG.BMP" />
+    <Image Include="Res\ALIGNTOP.BMP" />
+    <Image Include="Res\ALIGNVCE.BMP" />
+    <Image Include="Res\AMOUNT_B.BMP" />
+    <Image Include="Res\attrsymb.bmp" />
+    <Image Include="Res\attruser.bmp" />
+    <Image Include="Res\BACKASSC.BMP" />
+    <Image Include="Res\backupus.bmp" />
+    <Image Include="Res\bitmap1.bmp" />
+    <Image Include="Res\BMP00001.BMP" />
+    <Image Include="Res\BMP00002.BMP" />
+    <Image Include="Res\BMP00003.BMP" />
+    <Image Include="Res\BMP00011.BMP" />
+    <Image Include="Res\CALCBACK.BMP" />
+    <Image Include="Res\CALCSHOW.BMP" />
+    <Image Include="Res\CALCULAT.BMP" />
+    <Image Include="Res\CALCULAT.ICO" />
+    <Image Include="Res\calcwith.bmp" />
+    <Image Include="Res\CALC_BIT.BMP" />
+    <Image Include="Res\choiceac.bmp" />
+    <Image Include="Res\DATE_BIT.BMP" />
+    <Image Include="Res\document.bmp" />
+    <Image Include="Res\fielddoc.bmp" />
+    <Image Include="Res\fieldtypes.bmp" />
+    <Image Include="Res\filetypes.bmp" />
+    <Image Include="Res\formsymb.bmp" />
+    <Image Include="Res\HIDDEN.BMP" />
+    <Image Include="Res\il_attri.bmp" />
+    <Image Include="Res\il_formi.bmp" />
+    <Image Include="Res\il_stand.bmp" />
+    <Image Include="Res\IMAGE_BI.BMP" />
+    <Image Include="Res\INSERT.ICO" />
+    <Image Include="Res\insertfi.ico" />
+    <Image Include="Res\LINE_BIT.BMP" />
+    <Image Include="Res\linktomo.bmp" />
+    <Image Include="Res\LOCKED.BMP" />
+    <Image Include="Res\MULTILIN.BMP" />
+    <Image Include="Res\notes.bmp" />
+    <Image Include="Res\POINTERW.BMP" />
+    <Image Include="Res\pos_imag.ico" />
+    <Image Include="Res\PRINTER.BMP" />
+    <Image Include="Res\RECTANGL.BMP" />
+    <Image Include="Res\rectangl.ico" />
+    <Image Include="Res\respuser.bmp" />
+    <Image Include="Res\SECTION_.BMP" />
+    <Image Include="Res\SHHELP.BMP" />
+    <Image Include="Res\shhelp_d.bmp" />
+    <Image Include="Res\SHHELP_N.BMP" />
+    <Image Include="Res\SHHELP_T.BMP" />
+    <Image Include="Res\SHNUMB.BMP" />
+    <Image Include="Res\shortcut.bmp" />
+    <Image Include="Res\singleus.bmp" />
+    <Image Include="Res\sizeobje.ico" />
+    <Image Include="Res\SMULTILI.BMP" />
+    <Image Include="Res\SQUARE_B.BMP" />
+    <Image Include="Res\STEXT_BI.BMP" />
+    <Image Include="Res\TEXT_BIT.BMP" />
+    <Image Include="Res\useradmi.bmp" />
+    <Image Include="Res\userdept.bmp" />
+    <Image Include="Res\userofac.bmp" />
+    <Image Include="Res\USERS.ICO" />
+    <Image Include="Res\usersymb.bmp" />
+    <Image Include="Res\WELCOME.BMP" />
+    <Image Include="Res\Wzasscbi.bmp" />
+    <Image Include="Res\Wzattach.bmp" />
+    <Image Include="Res\WZCALCBI.BMP" />
+    <Image Include="Res\Wzchgtyp.bmp" />
+    <Image Include="Res\Wzcreate.bmp" />
+    <Image Include="Res\Wzcrtcal.bmp" />
+    <Image Include="Res\WZFORMAT.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\zMediator\zMediator.vcxproj">
+      <Project>{1c630aa1-d3e9-4bfa-975c-3d8a8a75f8f0}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

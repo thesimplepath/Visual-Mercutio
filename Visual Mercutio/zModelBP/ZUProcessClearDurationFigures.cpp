@@ -40,48 +40,48 @@ ZUProcessClearDurationFigures::~ZUProcessClearDurationFigures()
 
 bool ZUProcessClearDurationFigures::OnStart()
 {
-	return true;
+    return true;
 }
 
 bool ZUProcessClearDurationFigures::OnFinish()
 {
-	return true;
+    return true;
 }
 
 
 bool ZUProcessClearDurationFigures::OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
 {
-	if (pSymbol)
-	{
-		pSymbol->SetProcessingDuration( -1 );
-		pSymbol->SetProcessingDurationMax( -1 );
-		// If log and debug mode is required
-		if (m_pLog && m_pLog->IsInDebugMode())
-		{
-			CString message;
-			message.Format( IDS_DB_PROCEDURE_INC_1, pSymbol->GetSymbolName() );
-			ZBGenericSymbolErrorLine e( message );
-			m_pLog->AddLine( e );
-		}
-	}
-	return true;
+    if (pSymbol)
+    {
+        pSymbol->SetProcessingDuration( -1 );
+        pSymbol->SetProcessingDurationMax( -1 );
+        // If log and debug mode is required
+        if (m_pLog && m_pLog->IsInDebugMode())
+        {
+            CString message;
+            message.Format( IDS_DB_PROCEDURE_INC_1, pSymbol->GetSymbolName() );
+            ZBGenericSymbolErrorLine e( message );
+            m_pLog->AddLine( e );
+        }
+    }
+    return true;
 }
 
 bool ZUProcessClearDurationFigures::OnDeliverableLinkSymbol( ZBDeliverableLinkSymbol* pSymbol )
 {
-	if (pSymbol)
-	{
-		pSymbol->SetCaseDuration( -1 );
-		pSymbol->SetCaseDurationMax( -1 );
-		// If log and debug mode is required
-		if (m_pLog && m_pLog->IsInDebugMode())
-		{
-			CString message;
-			message.Format( IDS_DB_DELIVERABLE_INC_1, pSymbol->GetSymbolName() );
-			ZBGenericSymbolErrorLine e( message );
-			m_pLog->AddLine( e );
-		}
-	}
-	return true;
+    if (pSymbol)
+    {
+        pSymbol->SetCaseDuration( -1 );
+        pSymbol->SetCaseDurationMax( -1 );
+        // If log and debug mode is required
+        if (m_pLog && m_pLog->IsInDebugMode())
+        {
+            CString message;
+            message.Format( IDS_DB_DELIVERABLE_INC_1, pSymbol->GetSymbolName() );
+            ZBGenericSymbolErrorLine e( message );
+            m_pLog->AddLine( e );
+        }
+    }
+    return true;
 }
 

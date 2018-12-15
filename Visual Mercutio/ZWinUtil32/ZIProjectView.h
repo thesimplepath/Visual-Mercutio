@@ -21,10 +21,10 @@
 #include "ProjectI.h"
 
 #ifndef _WIN32
-	#include "ZWinUtil.h"
+    #include "ZWinUtil.h"
 #endif
 #ifdef _WIN32
-	#include "ZWinUtil32.h"
+    #include "ZWinUtil32.h"
 #endif
 
 
@@ -48,41 +48,41 @@
 class AFX_EXT_CLASS ZIProjectView : public CTreeView
 {
 protected:
-	ZIProjectView();           // protected constructor used by dynamic creation
-	DECLARE_DYNCREATE(ZIProjectView)
+    ZIProjectView();           // protected constructor used by dynamic creation
+    DECLARE_DYNCREATE(ZIProjectView)
 
 // Operations
 public:
-	void Initialize( BOOL OnlyVisible );
+    void Initialize( BOOL OnlyVisible );
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIProjectView)
-	protected:
-	virtual void OnDraw(CDC* pDC);      // overridden to draw this view
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIProjectView)
+    protected:
+    virtual void OnDraw(CDC* pDC);      // overridden to draw this view
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
-	virtual ~ZIProjectView();
+    virtual ~ZIProjectView();
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZIProjectView)
-	afx_msg LRESULT OnDocumentHasBeenSelected( WPARAM wParam, LPARAM lParam );
-	afx_msg void OnDblClick(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnSelchanged(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZIProjectView)
+    afx_msg LRESULT OnDocumentHasBeenSelected( WPARAM wParam, LPARAM lParam );
+    afx_msg void OnDblClick(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnSelchanged(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	BOOL					m_OnlyVisible;
-	ZIProjectTree	m_ProjectTree;
+    BOOL                    m_OnlyVisible;
+    ZIProjectTree    m_ProjectTree;
 
 };
 

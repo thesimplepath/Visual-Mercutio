@@ -40,47 +40,47 @@ class ZDProcessGraphModelDoc;
 
 class AFX_EXT_CLASS ZBUnit : public CObject  
 {
-	DECLARE_SERIAL(ZBUnit)
+    DECLARE_SERIAL(ZBUnit)
 
 public:
-	ZBUnit( const CString Name = "", const CString Filename = "" );
-	virtual ~ZBUnit();
+    ZBUnit( const CString Name = "", const CString Filename = "" );
+    virtual ~ZBUnit();
 
-	bool	Create( const CString Name );
-	bool	Create( const CString Name, const CString Filename );
-	CString	CreateUniqueKey();
-	bool	LoadUnit(ZDProcessModelDocTmpl* pDocTmpl);
-	bool	UnloadUnit();
+    bool    Create( const CString Name );
+    bool    Create( const CString Name, const CString Filename );
+    CString    CreateUniqueKey();
+    bool    LoadUnit(ZDProcessModelDocTmpl* pDocTmpl);
+    bool    UnloadUnit();
 
-	bool	IsLoaded() const { return m_pUnitDoc != NULL; };
+    bool    IsLoaded() const { return m_pUnitDoc != NULL; };
 
-	ZDProcessGraphModelDoc* GetUnitDocumentPtr() { return m_pUnitDoc; };
+    ZDProcessGraphModelDoc* GetUnitDocumentPtr() { return m_pUnitDoc; };
 
-	CString GetName() const { return m_Name; };
-	void SetName( CString value ) { m_Name = value; };
+    CString GetName() const { return m_Name; };
+    void SetName( CString value ) { m_Name = value; };
 
-	CString GetKey() const { return m_Key; };
-	void SetKey( CString value ) { m_Key = value; };
+    CString GetKey() const { return m_Key; };
+    void SetKey( CString value ) { m_Key = value; };
 
-	CString GetFilename() const { return m_Filename; };
-	void SetFilename( CString value ) { m_Filename = value; };
+    CString GetFilename() const { return m_Filename; };
+    void SetFilename( CString value ) { m_Filename = value; };
 
-//	ZBUnit*	Clone();
+//    ZBUnit*    Clone();
 
-	// Serializes the unit
-	virtual void Serialize(CArchive& ar);
+    // Serializes the unit
+    virtual void Serialize(CArchive& ar);
 
 private:
-	// Copy constructor
-	ZBUnit(const ZBUnit& right);
-	// Assignment operator
-	ZBUnit& operator=(const ZBUnit& right);
+    // Copy constructor
+    ZBUnit(const ZBUnit& right);
+    // Assignment operator
+    ZBUnit& operator=(const ZBUnit& right);
 
 protected:
-	ZDProcessGraphModelDoc* m_pUnitDoc;
-	CString m_Name;
-	CString m_Key;
-	CString m_Filename;
+    ZDProcessGraphModelDoc* m_pUnitDoc;
+    CString m_Name;
+    CString m_Key;
+    CString m_Filename;
 };
 
 #endif // !defined(AFX_ZBUNIT_H__C267AE1B_E6C2_4678_A8D8_CD5CA2644DC7__INCLUDED_)

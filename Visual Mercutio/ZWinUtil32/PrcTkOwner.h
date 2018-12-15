@@ -20,10 +20,10 @@
 #include "HoverButton.h"
 
 #ifndef _WIN32
-	#include "ZWinUtil.h"
+    #include "ZWinUtil.h"
 #endif
 #ifdef _WIN32
-	#include "ZWinUtil32.h"
+    #include "ZWinUtil32.h"
 #endif
 
 
@@ -48,39 +48,39 @@ class AFX_EXT_CLASS ZVTakeOwnerShipActions : public ZIDialog
 {
 // Construction
 public:
-	ZVTakeOwnerShipActions(const CString Filename, const CString ActivityName, CWnd* pParent = NULL);   // standard constructor
+    ZVTakeOwnerShipActions(const CString Filename, const CString ActivityName, CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(ZVTakeOwnerShipActions)
-	enum { IDD = IDD_PROCESS_TAKEOWNERSHIP };
-	ZUHoverButton	m_ViewCommandBtn;
-	ZUHoverButton	m_CancelCommandBtn;
-	ZUHoverButton	m_AcceptCommandBtn;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZVTakeOwnerShipActions)
+    enum { IDD = IDD_PROCESS_TAKEOWNERSHIP };
+    ZUHoverButton    m_ViewCommandBtn;
+    ZUHoverButton    m_CancelCommandBtn;
+    ZUHoverButton    m_AcceptCommandBtn;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVTakeOwnerShipActions)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVTakeOwnerShipActions)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVTakeOwnerShipActions)
-	afx_msg void OnViewCommand();
-	afx_msg void OnAcceptCommand();
-	afx_msg void OnCancelCommand();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVTakeOwnerShipActions)
+    afx_msg void OnViewCommand();
+    afx_msg void OnAcceptCommand();
+    afx_msg void OnCancelCommand();
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	CString m_Filename;
-	CString m_ActivityName;
+    CString m_Filename;
+    CString m_ActivityName;
 };
 
 //#undef  AFX_DATA

@@ -1,7 +1,7 @@
 /********************************************************************************************************
- *										   Classe ZUPublishModelToHTML									*
+ *                                           Classe ZUPublishModelToHTML                                    *
  ********************************************************************************************************
- * Cette classe permet la gestion de l'exportation d'un projet au format HTML.							*
+ * Cette classe permet la gestion de l'exportation d'un projet au format HTML.                            *
  ********************************************************************************************************/
 
 #if !defined(AFX_ZUPUBLISHMODELTOHTML_H__2911BA6F_30D8_459C_9B9A_A644F79B704F__INCLUDED_)
@@ -39,22 +39,22 @@ class ZDGridReportDocument;
 // JMR-MODIF - Le 3 juillet 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
 // ******************************************************************************************************
-// *										 Classe ZUPublishModelToHTML								*
+// *                                         Classe ZUPublishModelToHTML                                *
 // ******************************************************************************************************
 
 class AFX_EXT_CLASS ZUPublishModelToHTML
 {
 public:
 
-	ZUPublishModelToHTML();
-	virtual ~ZUPublishModelToHTML();
+    ZUPublishModelToHTML();
+    virtual ~ZUPublishModelToHTML();
 
-	static bool ExportModelToHTMLFile	( ZDProcessGraphModelDoc*		pDoc,
-										  ZIProcessGraphModelView*		pView,
-										  ZUPublishReportInfo*			m_pReportInfo,
-										  const CString					IniFilename = _T( "" ) );
+    static bool ExportModelToHTMLFile    ( ZDProcessGraphModelDoc*        pDoc,
+                                          ZIProcessGraphModelView*        pView,
+                                          ZUPublishReportInfo*            m_pReportInfo,
+                                          const CString                    IniFilename = _T( "" ) );
 
-	static void LaunchBrowser			( CString Index );
+    static void LaunchBrowser            ( CString Index );
 };
 
 #endif // !defined(AFX_ZUPUBLISHMODELTOHTML_H__2911BA6F_30D8_459C_9B9A_A644F79B704F__INCLUDED_)

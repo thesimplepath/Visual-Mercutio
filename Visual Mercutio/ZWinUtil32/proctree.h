@@ -1,5 +1,5 @@
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //  Source file: z:\adsoft~1\ZWinUtil\ProcTree.h
 
 #ifndef ProcTree_h
@@ -38,31 +38,31 @@ class AFX_EXT_CLASS ZCProcessTreeCtrl : public ZITreeCtrl
 
       void Initialize (ZProcess* pProcess);
 
-      ZProcess*		GetProcess() { return m_pProcess; };
-      ZProcess*		GetSelectedProcessItem ();
-	  ZProcess*		GetRootProcessItem();
-      ZActivity*	GetSelectedActivityItem ();
-	  void			Refresh();
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCProcessTreeCtrl)
-	//}}AFX_VIRTUAL
+      ZProcess*        GetProcess() { return m_pProcess; };
+      ZProcess*        GetSelectedProcessItem ();
+      ZProcess*        GetRootProcessItem();
+      ZActivity*    GetSelectedActivityItem ();
+      void            Refresh();
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCProcessTreeCtrl)
+    //}}AFX_VIRTUAL
   protected:
-	//{{AFX_MSG(ZCProcessTreeCtrl)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZCProcessTreeCtrl)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
   private:
       ZCProcessTreeCtrl(const ZCProcessTreeCtrl &right);
       const ZCProcessTreeCtrl & operator=(const ZCProcessTreeCtrl &right);
 
-      ZProcess*		m_pProcess;
+      ZProcess*        m_pProcess;
 
   protected:
-      void			FillControl ();
+      void            FillControl ();
 
-	  void			AddProcess (ZBaseActivity* pBaseActivity, HTREEITEM hParentTreeItem, int IconIndex);
-      void			AddActivityItems (ZBaseActivity* pBaseActivity, HTREEITEM hParentTreeItem, int IconIndex = 0);
-      HTREEITEM		AddProcessItem (ZBaseActivity* pData, HTREEITEM hParentTreeItem, int IconIndex = 0);
-      HTREEITEM		AddSubItem (ZActivity* pData, HTREEITEM hParentTreeItem, int IconIndex = 0);
+      void            AddProcess (ZBaseActivity* pBaseActivity, HTREEITEM hParentTreeItem, int IconIndex);
+      void            AddActivityItems (ZBaseActivity* pBaseActivity, HTREEITEM hParentTreeItem, int IconIndex = 0);
+      HTREEITEM        AddProcessItem (ZBaseActivity* pData, HTREEITEM hParentTreeItem, int IconIndex = 0);
+      HTREEITEM        AddSubItem (ZActivity* pData, HTREEITEM hParentTreeItem, int IconIndex = 0);
 
 };
 

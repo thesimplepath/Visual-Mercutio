@@ -44,72 +44,72 @@ class AFX_EXT_CLASS ZVChoosePropertyDlg : public CDialog
 {
 // Construction
 public:
-	ZVChoosePropertyDlg(ZIProperties* pProperties, int ShowType = 0, bool Selection = true, 
-					    bool AllowItemSelection = true, bool AllowCategorySelection = false, 
-						ZBDynamicPropertiesManager* pPropManager = NULL, 
-						ZDProcessGraphModelMdl* pModel = NULL, 
-						CWnd* pParent = NULL);   // standard constructor
+    ZVChoosePropertyDlg(ZIProperties* pProperties, int ShowType = 0, bool Selection = true, 
+                        bool AllowItemSelection = true, bool AllowCategorySelection = false, 
+                        ZBDynamicPropertiesManager* pPropManager = NULL, 
+                        ZDProcessGraphModelMdl* pModel = NULL, 
+                        CWnd* pParent = NULL);   // standard constructor
 
-	ZVChoosePropertyDlg(ZBPropertySet* pPropSet, int ShowType = 0, bool Selection = true,  
-					    bool AllowItemSelection = true, bool AllowCategorySelection = false, 
-						ZBDynamicPropertiesManager* pPropManager = NULL, 
-						ZDProcessGraphModelMdl* pModel = NULL, 
-						CWnd* pParent = NULL);   // standard constructor
-	
+    ZVChoosePropertyDlg(ZBPropertySet* pPropSet, int ShowType = 0, bool Selection = true,  
+                        bool AllowItemSelection = true, bool AllowCategorySelection = false, 
+                        ZBDynamicPropertiesManager* pPropManager = NULL, 
+                        ZDProcessGraphModelMdl* pModel = NULL, 
+                        CWnd* pParent = NULL);   // standard constructor
+    
 
-	ZBProperty*	GetSelectedProperty()
-	{
-		if (m_pSelectedProperty)
-			return m_PropertyList.GetCorrespondingProperty( m_pSelectedProperty );
-		return NULL;
-	};
+    ZBProperty*    GetSelectedProperty()
+    {
+        if (m_pSelectedProperty)
+            return m_PropertyList.GetCorrespondingProperty( m_pSelectedProperty );
+        return NULL;
+    };
 
-	ZBPropertyItem* GetSelectedPropertyItem() const
-	{
-		return m_pSelectedProperty;
-	};
+    ZBPropertyItem* GetSelectedPropertyItem() const
+    {
+        return m_pSelectedProperty;
+    };
 
 private:
 // Dialog Data
-	//{{AFX_DATA(ZVChoosePropertyDlg)
-	enum { IDD = IDD_ALL_PROPERTIES };
-	ZCPropertyListCtrl	m_PropertyList;
-	int		m_PropType;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZVChoosePropertyDlg)
+    enum { IDD = IDD_ALL_PROPERTIES };
+    ZCPropertyListCtrl    m_PropertyList;
+    int        m_PropType;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVChoosePropertyDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVChoosePropertyDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVChoosePropertyDlg)
-	virtual void OnOK();
-	virtual BOOL OnInitDialog();
-	afx_msg void OnProptype();
-	afx_msg void OnDeleteAttribute();
-	afx_msg void OnRenameAttribute();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVChoosePropertyDlg)
+    virtual void OnOK();
+    virtual BOOL OnInitDialog();
+    afx_msg void OnProptype();
+    afx_msg void OnDeleteAttribute();
+    afx_msg void OnRenameAttribute();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	void CheckControlStates();
+    void CheckControlStates();
 
 private:
-	ZIProperties* m_pProperties;
-	ZBPropertySet* m_pPropSet;
-	ZBPropertyItem* m_pSelectedProperty;
-	bool m_AllowItemSelection;
-	bool m_AllowCategorySelection;
-	bool m_Selection;
-	ZBDynamicPropertiesManager* m_pPropManager;
-	ZDProcessGraphModelMdl* m_pModel;
+    ZIProperties* m_pProperties;
+    ZBPropertySet* m_pPropSet;
+    ZBPropertyItem* m_pSelectedProperty;
+    bool m_AllowItemSelection;
+    bool m_AllowCategorySelection;
+    bool m_Selection;
+    ZBDynamicPropertiesManager* m_pPropManager;
+    ZDProcessGraphModelMdl* m_pModel;
 };
 
 //{{AFX_INSERT_LOCATION}}

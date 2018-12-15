@@ -40,35 +40,35 @@ class AFX_EXT_CLASS ZIProjectBar : public CCJControlBar
 {
 // Construction
 public:
-	ZIProjectBar(BOOL OnlyVisible = TRUE);
+    ZIProjectBar(BOOL OnlyVisible = TRUE);
 
 
 // Operations
 public:
-	void Initialize( BOOL OnlyVisible );
+    void Initialize( BOOL OnlyVisible );
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIProjectBar)
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIProjectBar)
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
-	virtual ~ZIProjectBar();
+    virtual ~ZIProjectBar();
 
 // Generated message map functions
 protected:
-	//{{AFX_MSG(ZIProjectBar)
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg LRESULT OnDocumentHasBeenSelected( WPARAM wParam, LPARAM lParam );
-	afx_msg void OnSelchanged(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnDblClick(NMHDR* pNMHDR, LRESULT* pResult);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZIProjectBar)
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    afx_msg LRESULT OnDocumentHasBeenSelected( WPARAM wParam, LPARAM lParam );
+    afx_msg void OnSelchanged(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnDblClick(NMHDR* pNMHDR, LRESULT* pResult);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	ZCProjectWindowTree		m_ProjectWindowCtrl;
-	BOOL					m_OnlyVisible;
+    ZCProjectWindowTree        m_ProjectWindowCtrl;
+    BOOL                    m_OnlyVisible;
 };
 
 /////////////////////////////////////////////////////////////////////////////

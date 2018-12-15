@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 02/2002
+// <nl>Created:         02/2002
 // <nl>Description:  include file used to include all Property Manager classes
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -23,7 +23,7 @@
 
 
 
-#include <zPtyMgr\zPtyMgrLib.h>		// The Property Manager library
+#include <zPtyMgr\zPtyMgrLib.h>        // The Property Manager library
 
 
 // resources

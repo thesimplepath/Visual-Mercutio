@@ -27,40 +27,40 @@ class ZVPublishModelAttributes : public ZIWizardDialog
 // Construction
 public:
 
-	// Standard constructor
-	ZVPublishModelAttributes( ZBPropertyAttributes*	pPropAttributes	= NULL,
-							  ZBPropertySet*		pPropSet		= NULL,
-							  CWnd*					pParent			= NULL );
+    // Standard constructor
+    ZVPublishModelAttributes( ZBPropertyAttributes*    pPropAttributes    = NULL,
+                              ZBPropertySet*        pPropSet        = NULL,
+                              CWnd*                    pParent            = NULL );
 
 private:
 
-	// Dialog Data
-	//{{AFX_DATA(ZVPublishModelAttributes)
-	enum { IDD = IDD_WZPUBMODEL_ATTRIBUTE };
-	ZCSymbolAttributesTreeCtrl	m_Attributes;
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZVPublishModelAttributes)
+    enum { IDD = IDD_WZPUBMODEL_ATTRIBUTE };
+    ZCSymbolAttributesTreeCtrl    m_Attributes;
+    //}}AFX_DATA
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVPublishModelAttributes)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVPublishModelAttributes)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVPublishModelAttributes)
-	virtual BOOL OnInitDialog();
-	virtual void OnOK();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVPublishModelAttributes)
+    virtual BOOL OnInitDialog();
+    virtual void OnOK();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	ZBPropertyAttributes*	m_pPropAttributes;
-	ZBPropertySet*			m_pPropSet;
+    ZBPropertyAttributes*    m_pPropAttributes;
+    ZBPropertySet*            m_pPropSet;
 };
 
 //{{AFX_INSERT_LOCATION}}

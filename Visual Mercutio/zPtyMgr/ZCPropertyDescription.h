@@ -44,45 +44,45 @@ class AFX_EXT_CLASS ZCPropertyDescription : public CStatic, public ZIObserver
 {
 // Construction
 public:
-	ZCPropertyDescription();
+    ZCPropertyDescription();
 
 // Operations
 public:
-	// Observer call back
-	virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    // Observer call back
+    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCPropertyDescription)
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCPropertyDescription)
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
-	virtual ~ZCPropertyDescription();
+    virtual ~ZCPropertyDescription();
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZCPropertyDescription)
-	afx_msg void OnPaint();
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	//}}AFX_MSG
+    //{{AFX_MSG(ZCPropertyDescription)
+    afx_msg void OnPaint();
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    //}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
-
-
-private:
-	void EmptyControlData();
-	void UpdateControlData(ZBProperty* pProp);
+    DECLARE_MESSAGE_MAP()
 
 
 private:
-	CString m_Title;
-	CString m_Description;
+    void EmptyControlData();
+    void UpdateControlData(ZBProperty* pProp);
 
-	COLORREF m_crBackground;
-	COLORREF m_crText;
-	CFont m_Font;
-	CFont m_FontBold;
+
+private:
+    CString m_Title;
+    CString m_Description;
+
+    COLORREF m_crBackground;
+    COLORREF m_crText;
+    CFont m_Font;
+    CFont m_FontBold;
 
 };
 

@@ -12,7 +12,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// Created:		 05/2001
+// Created:         05/2001
 // Description:  ZBBPSimPropertiesDeliverable simulation properties for deliverables
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -46,13 +46,13 @@ using namespace sfl;
 //@parm ZBBPSimPropertiesDeliverable& | propBasic | The orientation property to copy.
 ZBBPSimPropertiesDeliverable::ZBBPSimPropertiesDeliverable()
 {
-	m_Cost				= (double)0;
-	m_WorkloadForecast	= (double)0;
+    m_Cost                = (double)0;
+    m_WorkloadForecast    = (double)0;
 }
 
 ZBBPSimPropertiesDeliverable::ZBBPSimPropertiesDeliverable( const ZBBPSimPropertiesDeliverable& propBasic )
 {
-	*this = propBasic;
+    *this = propBasic;
 }
 
 //@mfunc Destructor.
@@ -68,10 +68,10 @@ ZBBPSimPropertiesDeliverable::~ZBBPSimPropertiesDeliverable()
 //@parm The property to copy.
 ZBBPSimPropertiesDeliverable& ZBBPSimPropertiesDeliverable::operator=( const ZBBPSimPropertiesDeliverable& propBasic )
 {
-	SetCost				( const_cast<ZBBPSimPropertiesDeliverable&>( propBasic ).GetCost() );
-	SetWorkloadForecast	( const_cast<ZBBPSimPropertiesDeliverable&>( propBasic ).GetWorkloadForecast() );
+    SetCost                ( const_cast<ZBBPSimPropertiesDeliverable&>( propBasic ).GetCost() );
+    SetWorkloadForecast    ( const_cast<ZBBPSimPropertiesDeliverable&>( propBasic ).GetWorkloadForecast() );
 
-	return *this;
+    return *this;
 }
 
 //@mfunc Tests if this property is equal to the one passed in.
@@ -79,8 +79,8 @@ ZBBPSimPropertiesDeliverable& ZBBPSimPropertiesDeliverable::operator=( const ZBB
 //@parm The property to test against.
 BOOL ZBBPSimPropertiesDeliverable::operator==( const ZBBPSimPropertiesDeliverable propBasic ) const
 {
-	return ( const_cast<ZBBPSimPropertiesDeliverable*>( this )->GetCost()				== const_cast<ZBBPSimPropertiesDeliverable&>( propBasic ).GetCost() &&
-			 const_cast<ZBBPSimPropertiesDeliverable*>( this )->GetWorkloadForecast()	== const_cast<ZBBPSimPropertiesDeliverable&>( propBasic ).GetWorkloadForecast() );
+    return ( const_cast<ZBBPSimPropertiesDeliverable*>( this )->GetCost()                == const_cast<ZBBPSimPropertiesDeliverable&>( propBasic ).GetCost() &&
+             const_cast<ZBBPSimPropertiesDeliverable*>( this )->GetWorkloadForecast()    == const_cast<ZBBPSimPropertiesDeliverable&>( propBasic ).GetWorkloadForecast() );
 }
 
 //@mfunc Merges the values of the property passed in with the values in this
@@ -91,15 +91,15 @@ BOOL ZBBPSimPropertiesDeliverable::operator==( const ZBBPSimPropertiesDeliverabl
 // to merge into this property object.
 void ZBBPSimPropertiesDeliverable::Merge( ZBBPSimPropertiesDeliverable* pProperty, DWORD dwChangeFlags )
 {
-	if ( dwChangeFlags & Z_CHANGE_SIM_DELIV_COST )
-	{
-		m_Cost = pProperty->GetCost();
-	}
+    if ( dwChangeFlags & Z_CHANGE_SIM_DELIV_COST )
+    {
+        m_Cost = pProperty->GetCost();
+    }
 
-	if ( dwChangeFlags & Z_CHANGE_SIM_DELIV_WORKLOAD_FORECAST )
-	{
-		m_WorkloadForecast = pProperty->GetWorkloadForecast();
-	}
+    if ( dwChangeFlags & Z_CHANGE_SIM_DELIV_WORKLOAD_FORECAST )
+    {
+        m_WorkloadForecast = pProperty->GetWorkloadForecast();
+    }
 }
 
 //@mfunc Tests if this property is equal to the one passed in. This method
@@ -108,12 +108,12 @@ void ZBBPSimPropertiesDeliverable::Merge( ZBBPSimPropertiesDeliverable* pPropert
 //@parm A pointer to the property to test against.
 BOOL ZBBPSimPropertiesDeliverable::IsEqual( ZBBPSimPropertiesDeliverable* pProp )
 {
-	if ( pProp )
-	{
-		return ( *this == *pProp );
-	}
+    if ( pProp )
+    {
+        return ( *this == *pProp );
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -144,116 +144,116 @@ BOOL ZBBPSimPropertiesDeliverable::IsEqual( ZBBPSimPropertiesDeliverable* pProp 
 
 BOOL ZBBPSimPropertiesDeliverable::GetValue( const int nPropId, CString& strValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_SIM_DELIV_COST:
-		{
-			strValue.Format( _T( "%.0f" ), (double)m_Cost * (float)100 );
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_SIM_DELIV_COST:
+        {
+            strValue.Format( _T( "%.0f" ), (double)m_Cost * (float)100 );
+            break;
+        }
 
-		case Z_SIM_DELIV_WORKLOAD_FORECAST:
-		{
-			strValue.Format( _T( "%.0f" ), (double)m_WorkloadForecast * (float)100 );
-			break;
-		}
+        case Z_SIM_DELIV_WORKLOAD_FORECAST:
+        {
+            strValue.Format( _T( "%.0f" ), (double)m_WorkloadForecast * (float)100 );
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPSimPropertiesDeliverable::GetValue( const int nPropId, int& nValue ) const
 {
-	// Unused
-	nValue;
+    // Unused
+    nValue;
 
-	if ( nPropId >= Z_SIM_DELIV_COST && nPropId <= Z_SIM_DELIV_WORKLOAD_FORECAST )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_SIM_DELIV_COST && nPropId <= Z_SIM_DELIV_WORKLOAD_FORECAST )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPSimPropertiesDeliverable::GetValue( const int nPropId, UINT& nValue ) const
 {
-	// Unused
-	nValue;
+    // Unused
+    nValue;
 
-	if ( nPropId >= Z_SIM_DELIV_COST && nPropId <= Z_SIM_DELIV_WORKLOAD_FORECAST )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_SIM_DELIV_COST && nPropId <= Z_SIM_DELIV_WORKLOAD_FORECAST )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPSimPropertiesDeliverable::GetValue( const int nPropId, DWORD& dwValue ) const
 {
-	// Unused
-	dwValue;
+    // Unused
+    dwValue;
 
-	if ( nPropId >= Z_SIM_DELIV_COST && nPropId <= Z_SIM_DELIV_WORKLOAD_FORECAST )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_SIM_DELIV_COST && nPropId <= Z_SIM_DELIV_WORKLOAD_FORECAST )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPSimPropertiesDeliverable::GetValue( const int nPropId, float& fValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_SIM_DELIV_COST:
-		{
-			fValue = static_cast<float>( (double)m_Cost );
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_SIM_DELIV_COST:
+        {
+            fValue = static_cast<float>( (double)m_Cost );
+            break;
+        }
 
-		case Z_SIM_DELIV_WORKLOAD_FORECAST:
-		{
-			fValue = static_cast<float>( (double)m_WorkloadForecast );
-			break;
-		}
+        case Z_SIM_DELIV_WORKLOAD_FORECAST:
+        {
+            fValue = static_cast<float>( (double)m_WorkloadForecast );
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPSimPropertiesDeliverable::GetValue( const int nPropId, double& dValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_SIM_DELIV_COST:
-		{
-			dValue = (double)m_Cost;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_SIM_DELIV_COST:
+        {
+            dValue = (double)m_Cost;
+            break;
+        }
 
-		case Z_SIM_DELIV_WORKLOAD_FORECAST:
-		{
-			dValue = (double)m_WorkloadForecast;
-			break;
-		}
+        case Z_SIM_DELIV_WORKLOAD_FORECAST:
+        {
+            dValue = (double)m_WorkloadForecast;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 //@mfunc | ZBBPSimPropertiesDeliverable | SetValue | Sets the value of the given property.
@@ -281,116 +281,116 @@ BOOL ZBBPSimPropertiesDeliverable::GetValue( const int nPropId, double& dValue )
 
 BOOL ZBBPSimPropertiesDeliverable::SetValue( const int nPropId, LPCTSTR lpszValue )
 {
-	switch ( nPropId )
-	{
-		case Z_SIM_DELIV_COST:
-		{
-			m_Cost = atof( lpszValue ) / (double)100;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_SIM_DELIV_COST:
+        {
+            m_Cost = atof( lpszValue ) / (double)100;
+            break;
+        }
 
-		case Z_SIM_DELIV_WORKLOAD_FORECAST:
-		{
-			m_WorkloadForecast = atof( lpszValue ) / (double)100;
-			break;
-		}
+        case Z_SIM_DELIV_WORKLOAD_FORECAST:
+        {
+            m_WorkloadForecast = atof( lpszValue ) / (double)100;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPSimPropertiesDeliverable::SetValue( const int nPropId, const int nValue )
 {
-	// Unused
-	nValue;
+    // Unused
+    nValue;
 
-	if ( nPropId >= Z_SIM_DELIV_COST && nPropId <= Z_SIM_DELIV_WORKLOAD_FORECAST )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_SIM_DELIV_COST && nPropId <= Z_SIM_DELIV_WORKLOAD_FORECAST )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPSimPropertiesDeliverable::SetValue( const int nPropId, const UINT nValue )
 {
-	// Unused
-	nValue;
+    // Unused
+    nValue;
 
-	if ( nPropId >= Z_SIM_DELIV_COST && nPropId <= Z_SIM_DELIV_WORKLOAD_FORECAST )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_SIM_DELIV_COST && nPropId <= Z_SIM_DELIV_WORKLOAD_FORECAST )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPSimPropertiesDeliverable::SetValue( const int nPropId, const DWORD dwValue )
 {
-	// Unused
-	dwValue;
+    // Unused
+    dwValue;
 
-	if ( nPropId >= Z_SIM_DELIV_COST && nPropId <= Z_SIM_DELIV_WORKLOAD_FORECAST )
-	{
-		throw new CODPropertyConversionException();
-	}
+    if ( nPropId >= Z_SIM_DELIV_COST && nPropId <= Z_SIM_DELIV_WORKLOAD_FORECAST )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPSimPropertiesDeliverable::SetValue( const int nPropId, const float fValue )
 {
-	switch ( nPropId )
-	{
-		case Z_SIM_DELIV_COST:
-		{
-			m_Cost = (double)fValue;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_SIM_DELIV_COST:
+        {
+            m_Cost = (double)fValue;
+            break;
+        }
 
-		case Z_SIM_DELIV_WORKLOAD_FORECAST:
-		{
-			m_WorkloadForecast = (double)fValue;
-			break;
-		}
+        case Z_SIM_DELIV_WORKLOAD_FORECAST:
+        {
+            m_WorkloadForecast = (double)fValue;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPSimPropertiesDeliverable::SetValue( const int nPropId, const double dValue )
 {
-	switch ( nPropId )
-	{
-		case Z_SIM_DELIV_COST:
-		{
-			m_Cost = dValue;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_SIM_DELIV_COST:
+        {
+            m_Cost = dValue;
+            break;
+        }
 
-		case Z_SIM_DELIV_WORKLOAD_FORECAST:
-		{
-			m_WorkloadForecast = dValue;
-			break;
-		}
+        case Z_SIM_DELIV_WORKLOAD_FORECAST:
+        {
+            m_WorkloadForecast = dValue;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -399,12 +399,12 @@ BOOL ZBBPSimPropertiesDeliverable::SetValue( const int nPropId, const double dVa
 #ifdef _DEBUG
 void ZBBPSimPropertiesDeliverable::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void ZBBPSimPropertiesDeliverable::Dump( CDumpContext& dc ) const
 {
-	CObject::Dump( dc );
+    CObject::Dump( dc );
 }
 #endif //_DEBUG
 
@@ -416,24 +416,24 @@ void ZBBPSimPropertiesDeliverable::Dump( CDumpContext& dc ) const
 //@parm The archive to use for serialization.
 void ZBBPSimPropertiesDeliverable::Serialize( CArchive& ar )
 {
-	m_Cost.Serialize( ar );
-	m_WorkloadForecast.Serialize( ar );
+    m_Cost.Serialize( ar );
+    m_WorkloadForecast.Serialize( ar );
 
-	if ( ar.IsStoring() )
-	{
-		TRACE( _T( "ZBBPSimPropertiesDeliverable::Serialize : Start Save\n" ) );
+    if ( ar.IsStoring() )
+    {
+        TRACE( _T( "ZBBPSimPropertiesDeliverable::Serialize : Start Save\n" ) );
 
-		PUT_SCHEMA( ar, ZBBPSimPropertiesDeliverable );
+        PUT_SCHEMA( ar, ZBBPSimPropertiesDeliverable );
 
-		TRACE( _T( "ZBBPSimPropertiesDeliverable::Serialize : End Save\n" ) );
-	}
-	else
-	{
-		TRACE( _T( "ZBBPSimPropertiesDeliverable::Serialize : Start Read\n" ) );
+        TRACE( _T( "ZBBPSimPropertiesDeliverable::Serialize : End Save\n" ) );
+    }
+    else
+    {
+        TRACE( _T( "ZBBPSimPropertiesDeliverable::Serialize : Start Read\n" ) );
 
-		UINT nSchema;
-		GET_SCHEMA( ar, nSchema );
+        UINT nSchema;
+        GET_SCHEMA( ar, nSchema );
 
-		TRACE( _T( "ZBBPSimPropertiesDeliverable::Serialize : End Read\n" ) );
-	}
+        TRACE( _T( "ZBBPSimPropertiesDeliverable::Serialize : End Read\n" ) );
+    }
 }

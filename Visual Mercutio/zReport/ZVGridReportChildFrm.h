@@ -33,11 +33,11 @@
 
 class AFX_EXT_CLASS ZVGridReportChildFrame : public ZVGridChildFrame
 {
-	DECLARE_DYNCREATE( ZVGridReportChildFrame )
+    DECLARE_DYNCREATE( ZVGridReportChildFrame )
 
 public:
 
-	ZVGridReportChildFrame();
+    ZVGridReportChildFrame();
 
 // Attributes
 public:
@@ -45,31 +45,31 @@ public:
 // Operations
 public:
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVGridReportChildFrame)
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVGridReportChildFrame)
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
 
-	virtual ~ZVGridReportChildFrame();
+    virtual ~ZVGridReportChildFrame();
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 // Generated message map functions
 protected:
 
-	//{{AFX_MSG(ZVGridReportChildFrame)
-	afx_msg LRESULT OnInitNew( WPARAM, LPARAM );
-	afx_msg LRESULT OnInitFromFile( WPARAM, LPARAM );
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZVGridReportChildFrame)
+    afx_msg LRESULT OnInitNew( WPARAM, LPARAM );
+    afx_msg LRESULT OnInitFromFile( WPARAM, LPARAM );
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
-	virtual void OnUpdateFrameTitle( BOOL bAddToTitle );
+    virtual void OnUpdateFrameTitle( BOOL bAddToTitle );
 };
 
 /////////////////////////////////////////////////////////////////////////////

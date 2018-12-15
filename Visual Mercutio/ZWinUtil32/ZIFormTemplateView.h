@@ -41,31 +41,31 @@
 class AFX_EXT_CLASS ZIFormTemplateView : public ZITemplateView
 {
 public:
-	DECLARE_DYNCREATE(ZIFormTemplateView)
+    DECLARE_DYNCREATE(ZIFormTemplateView)
 
-	ZIFormTemplateView();           
-	virtual ~ZIFormTemplateView();
+    ZIFormTemplateView();           
+    virtual ~ZIFormTemplateView();
 
 
 // Operations
 public:
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIFormTemplateView)
-	protected:
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIFormTemplateView)
+    protected:
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
 // Generated message map functions
 protected:
-	//{{AFX_MSG(ZIFormTemplateView)
-	afx_msg LRESULT OnReloadTemplateManager( WPARAM wParam, LPARAM lParam );
-	afx_msg LRESULT OnInitializeTemplateManager( WPARAM wParam, LPARAM lParam );
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZIFormTemplateView)
+    afx_msg LRESULT OnReloadTemplateManager( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnInitializeTemplateManager( WPARAM wParam, LPARAM lParam );
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

@@ -1,10 +1,10 @@
 //## begin module%351657DC033E.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%351657DC033E.cm
 
 //## begin module%351657DC033E.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%351657DC033E.cp
 
 //## Module: DocOpt%351657DC033E; Package specification
@@ -64,11 +64,11 @@ class AFX_EXT_CLASS ZDDocumentOptions
 
     //## Other Operations (specified)
       //## Operation: operator >>%890656168
-      //	Store from the archive to the object Document Option.
+      //    Store from the archive to the object Document Option.
       AFX_EXT_API friend CArchive& operator >> (CArchive& ar, ZDDocumentOptions& DocOptions);
 
       //## Operation: operator <<%890656169
-      //	Store the object Document Option to the archive.
+      //    Store the object Document Option to the archive.
       AFX_EXT_API friend CArchive& operator << (CArchive& ar, const ZDDocumentOptions& DocOptions);
 
       //## Operation: BuildSynchronizationFileName%931459606
@@ -77,55 +77,55 @@ class AFX_EXT_CLASS ZDDocumentOptions
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: EmptyStyle%351657670046
-      //	Defines the empty style when the controls are empty.
+      //    Defines the empty style when the controls are empty.
       const LineType GetEmptyStyle () const;
       void SetEmptyStyle (LineType value);
 
       //## Attribute: IsSynchronizeExchangeFeedFile%36501278034D
-      //	Specifiy if it is necessary to synchronize the feed data
-      //	file.
+      //    Specifiy if it is necessary to synchronize the feed data
+      //    file.
       const BOOL GetIsSynchronizeExchangeFeedFile () const;
       void SetIsSynchronizeExchangeFeedFile (BOOL value);
 
       //## Attribute: SynchronizeTimeSequence%365012BB03A4
-      //	Defines if the synchronization time (in seconds).
+      //    Defines if the synchronization time (in seconds).
       const int GetSynchronizeTimeSequence () const;
       void SetSynchronizeTimeSequence (int value);
 
       //## Attribute: ShowHiddenField%3650151D02C4
-      //	Specifiy if hidden fields must be shown.
+      //    Specifiy if hidden fields must be shown.
       const OptionType GetShowHiddenField () const;
       void SetShowHiddenField (OptionType value);
 
       //## Attribute: ShowEmptyLine%3650154403C5
-      //	Specify if empty lines must be shown if there are emty.
+      //    Specify if empty lines must be shown if there are emty.
       const OptionType GetShowEmptyLine () const;
       void SetShowEmptyLine (OptionType value);
 
       //## Attribute: AutomaticSynchronizeFilename%366A4F5A03BF
-      //	Is the filename automatically created.
+      //    Is the filename automatically created.
       const SynchronizationFileType GetAutomaticSynchronizeFilename () const;
       void SetAutomaticSynchronizeFilename (SynchronizationFileType value);
 
       //## Attribute: SynchronizeFilename%366A4F7802C8
-      //	The synchronization filename if not automatic.
+      //    The synchronization filename if not automatic.
       const CString GetSynchronizeFilename () const;
       void SetSynchronizeFilename (CString value);
 
       //## Attribute: SynchronizationHeader%366A55DB01C5
-      //	Ceates or not a synchronization header
+      //    Ceates or not a synchronization header
       const BOOL GetSynchronizationHeader () const;
       void SetSynchronizationHeader (BOOL value);
 
       //## Attribute: SynchronizationSeparator%366A5603008C
-      //	Defines the seperator type.
+      //    Defines the seperator type.
       const SynchronizationSeparatorType GetSynchronizationSeparator () const;
       void SetSynchronizationSeparator (SynchronizationSeparatorType value);
 
     // Additional Public Declarations
       //## begin ZDDocumentOptions%351656F90334.public preserve=yes
-	  BOOL GetPrintEmptyStyleWhenEmpty() const { return m_PrintEmptyStyleWhenEmpty; };
-	  void	SetPrintEmptyStyleWhenEmpty( BOOL value ) { m_PrintEmptyStyleWhenEmpty = value; };
+      BOOL GetPrintEmptyStyleWhenEmpty() const { return m_PrintEmptyStyleWhenEmpty; };
+      void    SetPrintEmptyStyleWhenEmpty( BOOL value ) { m_PrintEmptyStyleWhenEmpty = value; };
       //## end ZDDocumentOptions%351656F90334.public
 
   protected:
@@ -174,7 +174,7 @@ class AFX_EXT_CLASS ZDDocumentOptions
 
     // Additional Private Declarations
       //## begin ZDDocumentOptions%351656F90334.private preserve=yes
-	  BOOL	m_PrintEmptyStyleWhenEmpty;
+      BOOL    m_PrintEmptyStyleWhenEmpty;
       //## end ZDDocumentOptions%351656F90334.private
 
   private:  //## implementation

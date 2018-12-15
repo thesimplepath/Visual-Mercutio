@@ -18,26 +18,26 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 
 ZIImportProcess::ZIImportProcess(CString File, BOOL Import, CWnd* pParent /*=NULL*/)
-	: ZIDialog(ZIImportProcess::IDD, TRUE, pParent), 
-	  m_Import(Import), m_InitialFile(File)
+    : ZIDialog(ZIImportProcess::IDD, TRUE, pParent), 
+      m_Import(Import), m_InitialFile(File)
 {
-	//{{AFX_DATA_INIT(ZIImportProcess)
-	m_File = m_InitialFile;
-	//}}AFX_DATA_INIT
+    //{{AFX_DATA_INIT(ZIImportProcess)
+    m_File = m_InitialFile;
+    //}}AFX_DATA_INIT
 }
 
 void ZIImportProcess::DoDataExchange(CDataExchange* pDX)
 {
-	ZIDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(ZIImportProcess)
-	DDX_Text(pDX, IDC_FILETOIMPORT, m_File);
-	//}}AFX_DATA_MAP
+    ZIDialog::DoDataExchange(pDX);
+    //{{AFX_DATA_MAP(ZIImportProcess)
+    DDX_Text(pDX, IDC_FILETOIMPORT, m_File);
+    //}}AFX_DATA_MAP
 }
 
 BEGIN_MESSAGE_MAP(ZIImportProcess, CDialog)
-	//{{AFX_MSG_MAP(ZIImportProcess)
-	ON_BN_CLICKED(IDC_SELECT, OnSelect)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZIImportProcess)
+    ON_BN_CLICKED(IDC_SELECT, OnSelect)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 
@@ -46,58 +46,58 @@ END_MESSAGE_MAP()
 
 void ZIImportProcess::OnSelect()
 {
-	CString title;
-	if (m_Import)
-		title.LoadString(IDS_IMPORTFILE_CHOOSETITLE);
-	else
-		title.LoadString(IDS_EXPORTPROCESSFILE_CHOOSETITLE);
-	// set the "*.txt" files filter
-	CString strFilter;
-	VERIFY(strFilter.LoadString(AFX_IDS_ALLFILTER));
-	strFilter += (char)'\0';        // next string please
-	strFilter += "*.*";
-	strFilter += (char)'\0';        // last string
+    CString title;
+    if (m_Import)
+        title.LoadString(IDS_IMPORTFILE_CHOOSETITLE);
+    else
+        title.LoadString(IDS_EXPORTPROCESSFILE_CHOOSETITLE);
+    // set the "*.txt" files filter
+    CString strFilter;
+    VERIFY(strFilter.LoadString(AFX_IDS_ALLFILTER));
+    strFilter += (char)'\0';        // next string please
+    strFilter += "*.*";
+    strFilter += (char)'\0';        // last string
 
-	ZIFileDialog	FileDialog( title, strFilter, 1 );
-	if (FileDialog.DoModal() == IDOK)
-	{
-		m_File = FileDialog.GetFilename();
-		UpdateData( FALSE );
-	}
-	
+    ZIFileDialog    FileDialog( title, strFilter, 1 );
+    if (FileDialog.DoModal() == IDOK)
+    {
+        m_File = FileDialog.GetFilename();
+        UpdateData( FALSE );
+    }
+    
 }
 
 void ZIImportProcess::OnOK()
 {
-	UpdateData();
-	if (m_File.IsEmpty())
-	{
-		MsgBox		mbox;
-		mbox.DisplayMsgBox( IDS_FILENAMEMISSING, MB_OK );
-		return;
-	}
-	ZIDialog::OnOK();
+    UpdateData();
+    if (m_File.IsEmpty())
+    {
+        MsgBox        mbox;
+        mbox.DisplayMsgBox( IDS_FILENAMEMISSING, MB_OK );
+        return;
+    }
+    ZIDialog::OnOK();
 }
 
 BOOL ZIImportProcess::OnInitDialog() 
 {
-	ZIDialog::OnInitDialog();
-	
-	if (m_Import == FALSE)
-	{
-		CString	Title;
-		Title.LoadString( IDS_EXPORTPROCESS_TITLE );
-		SetWindowText( Title );
+    ZIDialog::OnInitDialog();
+    
+    if (m_Import == FALSE)
+    {
+        CString    Title;
+        Title.LoadString( IDS_EXPORTPROCESS_TITLE );
+        SetWindowText( Title );
 
-		if (GetDlgItem(IDOK))
-		{
-			Title.LoadString( IDS_EXPORTPROCESS_BUTTON );
-			GetDlgItem(IDOK)->SetWindowText( Title );
-		}
-	}
+        if (GetDlgItem(IDOK))
+        {
+            Title.LoadString( IDS_EXPORTPROCESS_BUTTON );
+            GetDlgItem(IDOK)->SetWindowText( Title );
+        }
+    }
 
 
 
-	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX Property Pages should return FALSE
+    return TRUE;  // return TRUE unless you set the focus to a control
+                  // EXCEPTION: OCX Property Pages should return FALSE
 }

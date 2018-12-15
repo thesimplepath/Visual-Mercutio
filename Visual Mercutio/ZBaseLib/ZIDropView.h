@@ -40,8 +40,8 @@
 class AFX_EXT_CLASS ZIDropView : public ZVBasicView, public ZIDrop
 {
 protected:
-	ZIDropView();           // protected constructor used by dynamic creation
-	DECLARE_DYNCREATE(ZIDropView)
+    ZIDropView();           // protected constructor used by dynamic creation
+    DECLARE_DYNCREATE(ZIDropView)
 
 // Attributes
 public:
@@ -49,33 +49,33 @@ public:
 // Operations
 public:
 
-	virtual bool AcceptDrop() const { return false; };
+    virtual bool AcceptDrop() const { return false; };
 
-	virtual bool DropItem( CObject* pObj, CPoint pt ) { return false; };
+    virtual bool DropItem( CObject* pObj, CPoint pt ) { return false; };
 
-	virtual bool AcceptDropItem( CObject* pObj, CPoint pt ) { return false; };
+    virtual bool AcceptDropItem( CObject* pObj, CPoint pt ) { return false; };
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIDropView)
-	protected:
-	virtual void OnDraw(CDC* pDC);      // overridden to draw this view
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIDropView)
+    protected:
+    virtual void OnDraw(CDC* pDC);      // overridden to draw this view
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
-	virtual ~ZIDropView();
+    virtual ~ZIDropView();
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZIDropView)
-		// NOTE - the ClassWizard will add and remove member functions here.
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZIDropView)
+        // NOTE - the ClassWizard will add and remove member functions here.
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

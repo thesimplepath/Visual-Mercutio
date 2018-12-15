@@ -31,7 +31,7 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 ZUCheckValidUnit::ZUCheckValidUnit( ZDProcessGraphModelMdl* pModel /*= NULL*/, void* pClass /*= NULL*/ )
-	: ZUProcessNavigation( pModel, pClass )
+    : ZUProcessNavigation( pModel, pClass )
 {
 }
 
@@ -41,121 +41,121 @@ ZUCheckValidUnit::~ZUCheckValidUnit()
 
 bool ZUCheckValidUnit::OnStart()
 {
-	return true;
+    return true;
 }
 
 bool ZUCheckValidUnit::OnFinish()
 {
-	return true;
+    return true;
 }
 
 bool ZUCheckValidUnit::OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
 {
-	// Test if it is a local symbol
-	if ( !pSymbol || !pSymbol->IsLocal() )
-	{
-		return true;
-	}
+    // Test if it is a local symbol
+    if ( !pSymbol || !pSymbol->IsLocal() )
+    {
+        return true;
+    }
 
-	// Check if unit defined for procedure
-	if ( !pSymbol->GetUnitGUID().IsEmpty() )
-	{
-		bool Error;
+    // Check if unit defined for procedure
+    if ( !pSymbol->GetUnitGUID().IsEmpty() )
+    {
+        bool Error;
 
-		// Retreive the price defined and copy it to the symbol
-		CString UnitName = pSymbol->RetreiveUnitName( pSymbol->GetUnitGUID(), Error );
+        // Retreive the price defined and copy it to the symbol
+        CString UnitName = pSymbol->RetreiveUnitName( pSymbol->GetUnitGUID(), Error );
 
-		if ( UnitName.IsEmpty() )
-		{
-			if ( m_pLog )
-			{
-				ZBGenericSymbolErrorLine e( IDS_AL_PROCEDURE_INC_16,
-											pSymbol->GetSymbolName(),
-											pSymbol->GetAbsolutePath(),
-											-1,
-											1 );
+        if ( UnitName.IsEmpty() )
+        {
+            if ( m_pLog )
+            {
+                ZBGenericSymbolErrorLine e( IDS_AL_PROCEDURE_INC_16,
+                                            pSymbol->GetSymbolName(),
+                                            pSymbol->GetAbsolutePath(),
+                                            -1,
+                                            1 );
 
-				m_pLog->AddLine( e );
-			}
+                m_pLog->AddLine( e );
+            }
 
-			// Increment error counter
-			++m_ErrorCounter;
-		}
-	}
+            // Increment error counter
+            ++m_ErrorCounter;
+        }
+    }
 
-	return true;
+    return true;
 }
 
 bool ZUCheckValidUnit::OnStartSymbol( ZBBPStartSymbol* pSymbol )
 {
-	// Test if it is a local symbol
-	if ( !pSymbol || !pSymbol->IsLocal() )
-	{
-		return true;
-	}
+    // Test if it is a local symbol
+    if ( !pSymbol || !pSymbol->IsLocal() )
+    {
+        return true;
+    }
 
-	// Check if unit defined for procedure
-	if ( !pSymbol->GetUnitGUID().IsEmpty() )
-	{
-		bool Error;
+    // Check if unit defined for procedure
+    if ( !pSymbol->GetUnitGUID().IsEmpty() )
+    {
+        bool Error;
 
-		// Retreive the price defined and copy it to the symbol
-		CString UnitName = pSymbol->RetreiveUnitName( pSymbol->GetUnitGUID(), Error );
+        // Retreive the price defined and copy it to the symbol
+        CString UnitName = pSymbol->RetreiveUnitName( pSymbol->GetUnitGUID(), Error );
 
-		if ( UnitName.IsEmpty() )
-		{
-			if ( m_pLog )
-			{
-				ZBGenericSymbolErrorLine e( IDS_AL_START_INC_13,
-											pSymbol->GetSymbolName(),
-											pSymbol->GetAbsolutePath(),
-											-1,
-											1 );
+        if ( UnitName.IsEmpty() )
+        {
+            if ( m_pLog )
+            {
+                ZBGenericSymbolErrorLine e( IDS_AL_START_INC_13,
+                                            pSymbol->GetSymbolName(),
+                                            pSymbol->GetAbsolutePath(),
+                                            -1,
+                                            1 );
 
-				m_pLog->AddLine( e );
-			}
+                m_pLog->AddLine( e );
+            }
 
-			// Increment error counter
-			++m_ErrorCounter;
-		}
-	}
+            // Increment error counter
+            ++m_ErrorCounter;
+        }
+    }
 
-	return true;
+    return true;
 }
 
 bool ZUCheckValidUnit::OnStopSymbol( ZBBPStopSymbol* pSymbol )
 {
-	// Test if it is a local symbol
-	if ( !pSymbol || !pSymbol->IsLocal() )
-	{
-		return true;
-	}
+    // Test if it is a local symbol
+    if ( !pSymbol || !pSymbol->IsLocal() )
+    {
+        return true;
+    }
 
-	// Check if unit defined for procedure
-	if ( !pSymbol->GetUnitGUID().IsEmpty() )
-	{
-		bool Error;
+    // Check if unit defined for procedure
+    if ( !pSymbol->GetUnitGUID().IsEmpty() )
+    {
+        bool Error;
 
-		// Retreive the price defined and copy it to the symbol
-		CString UnitName = pSymbol->RetreiveUnitName( pSymbol->GetUnitGUID(), Error );
+        // Retreive the price defined and copy it to the symbol
+        CString UnitName = pSymbol->RetreiveUnitName( pSymbol->GetUnitGUID(), Error );
 
-		if ( UnitName.IsEmpty() )
-		{
-			if ( m_pLog )
-			{
-				ZBGenericSymbolErrorLine e( IDS_AL_STOP_INC_6,
-											pSymbol->GetSymbolName(),
-											pSymbol->GetAbsolutePath(),
-											-1,
-											1 );
+        if ( UnitName.IsEmpty() )
+        {
+            if ( m_pLog )
+            {
+                ZBGenericSymbolErrorLine e( IDS_AL_STOP_INC_6,
+                                            pSymbol->GetSymbolName(),
+                                            pSymbol->GetAbsolutePath(),
+                                            -1,
+                                            1 );
 
-				m_pLog->AddLine( e );
-			}
+                m_pLog->AddLine( e );
+            }
 
-			// Increment error counter
-			++m_ErrorCounter;
-		}
-	}
+            // Increment error counter
+            ++m_ErrorCounter;
+        }
+    }
 
-	return true;
+    return true;
 }

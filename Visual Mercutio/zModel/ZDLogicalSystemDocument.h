@@ -35,81 +35,81 @@
 
 class AFX_EXT_CLASS ZDLogicalSystemDocument : public ZDBaseDocument
 {
-	DECLARE_DYNCREATE( ZDLogicalSystemDocument )
+    DECLARE_DYNCREATE( ZDLogicalSystemDocument )
 
 public:
 
-	// Inherited feature
-	typedef ZDBaseDocument inherited;
+    // Inherited feature
+    typedef ZDBaseDocument inherited;
 
-	// Public constructor since not used by dynamic creation
-	ZDLogicalSystemDocument();
-	virtual ~ZDLogicalSystemDocument();
+    // Public constructor since not used by dynamic creation
+    ZDLogicalSystemDocument();
+    virtual ~ZDLogicalSystemDocument();
 
 // Operations
 public:
 
-	bool ReadFromFile( const CString Filename );
-	bool SaveToFile( const CString Filename );
+    bool ReadFromFile( const CString Filename );
+    bool SaveToFile( const CString Filename );
 
-	ZBLogicalSystemEntity& GetLogicalSystemEnvironment()
-	{
-		return m_LogicalSystemEnvironment;
-	};
+    ZBLogicalSystemEntity& GetLogicalSystemEnvironment()
+    {
+        return m_LogicalSystemEnvironment;
+    };
 
-	bool IsLoaded() const
-	{
-		return m_IsLoaded;
-	};
+    bool IsLoaded() const
+    {
+        return m_IsLoaded;
+    };
 
-	void SetLoaded( bool value = true )
-	{
-		m_IsLoaded = value;
-	};
+    void SetLoaded( bool value = true )
+    {
+        m_IsLoaded = value;
+    };
 
-	virtual BOOL IsModified()
-	{
-		return CDocument::IsModified() || m_LogicalSystemEnvironment.IsModified();
-	};
+    virtual BOOL IsModified()
+    {
+        return CDocument::IsModified() || m_LogicalSystemEnvironment.IsModified();
+    };
 
-	virtual void SetModifiedFlag( BOOL bModified = TRUE )
-	{
-		CDocument::SetModifiedFlag( bModified );
-		m_LogicalSystemEnvironment.SetModifiedFlag( bModified );
-	};
+    virtual void SetModifiedFlag( BOOL bModified = TRUE )
+    {
+        CDocument::SetModifiedFlag( bModified );
+        m_LogicalSystemEnvironment.SetModifiedFlag( bModified );
+    };
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZDLogicalSystemDocument)
-	public:
-	virtual void Serialize(CArchive& ar);   // overridden for document i/o
-	protected:
-	virtual BOOL OnNewDocument();
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZDLogicalSystemDocument)
+    public:
+    virtual void Serialize(CArchive& ar);   // overridden for document i/o
+    protected:
+    virtual BOOL OnNewDocument();
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 // Generated message map functions
 protected:
 
-	//{{AFX_MSG(ZDLogicalSystemDocument)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZDLogicalSystemDocument)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	// Unique GUID for this file.
-	// Other file using this file can save this GUID
-	// to be sure they are using the right file.
-	CString					m_GUID;
+    // Unique GUID for this file.
+    // Other file using this file can save this GUID
+    // to be sure they are using the right file.
+    CString                    m_GUID;
 
-	ZBLogicalSystemEntity	m_LogicalSystemEnvironment;
-	bool					m_IsLoaded;
+    ZBLogicalSystemEntity    m_LogicalSystemEnvironment;
+    bool                    m_IsLoaded;
 };
 
 //{{AFX_INSERT_LOCATION}}

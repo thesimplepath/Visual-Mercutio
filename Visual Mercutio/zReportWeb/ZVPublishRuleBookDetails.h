@@ -1,9 +1,9 @@
 // ******************************************************************************************************
-// *								  Classe ZVPublishRuleBookDetails									*
+// *                                  Classe ZVPublishRuleBookDetails                                    *
 // ******************************************************************************************************
-// * JMR-MODIF - Le 24 avril 2007 - Création de la nouvelle classe ZVPublishRuleBookDetails.			*
+// * JMR-MODIF - Le 24 avril 2007 - Création de la nouvelle classe ZVPublishRuleBookDetails.            *
 // ******************************************************************************************************
-// * Cette classe effectue la publication des détails du livre des règles en tant que pages Internet.	*
+// * Cette classe effectue la publication des détails du livre des règles en tant que pages Internet.    *
 // ******************************************************************************************************
 
 #if !defined(AFX_ZVPUBLISHRULEBOOKDETAILS_H__2911BA6F_30D8_459C_9B9A_A644F79B704F__INCLUDED_)
@@ -50,46 +50,46 @@ class AFX_EXT_CLASS ZVPublishRuleBookDetails
 {
 public:
 
-	ZVPublishRuleBookDetails			( ZDProcessGraphModelMdlBP* pModel = NULL );
-	virtual ~ZVPublishRuleBookDetails	();
+    ZVPublishRuleBookDetails            ( ZDProcessGraphModelMdlBP* pModel = NULL );
+    virtual ~ZVPublishRuleBookDetails    ();
 
-	bool Publish						( CString Directory );
-
-private:
-
-	bool CreateFileSystem				( ZBLogicalRulesEntity* pRules, CString Directory );
-
-	CString GenerateFilename			( CString Directory );
-
-	void CreateReport					( ZBLogicalRulesEntity* pRules );
-	void GenerateHTMLPageHead			( CString Title );
-	void GenerateHTMLPageFoot			();
-	void GenerateHTMLDocumentHeader		();
-	void WriteLine						( CString Text );
-	void WriteLine						( int nID );
-
-	void GenerateSection				( CString RuleNumber,
-										  CString RuleName,
-										  CString ObjType,
-										  CString ObjName,
-										  CString UnitName );
-
-	void ExploreProcessHierarchy		( CString					RuleNumber,
-										  CString					RuleName,
-										  ZDProcessGraphModelMdlBP*	m_StartRootModel = NULL );
+    bool Publish                        ( CString Directory );
 
 private:
 
-	ZDProcessGraphModelMdl*				m_pRootModel;
+    bool CreateFileSystem                ( ZBLogicalRulesEntity* pRules, CString Directory );
 
-	ZDHtmlFile							HtmlFile;
+    CString GenerateFilename            ( CString Directory );
 
-	ZVPublishModelGenerate				m_FileGenerateWindow;
+    void CreateReport                    ( ZBLogicalRulesEntity* pRules );
+    void GenerateHTMLPageHead            ( CString Title );
+    void GenerateHTMLPageFoot            ();
+    void GenerateHTMLDocumentHeader        ();
+    void WriteLine                        ( CString Text );
+    void WriteLine                        ( int nID );
 
-	int									Level;
-	int									Lvl1Counter;
-	int									Lvl2Counter;
-	int									Lvl3Counter;
+    void GenerateSection                ( CString RuleNumber,
+                                          CString RuleName,
+                                          CString ObjType,
+                                          CString ObjName,
+                                          CString UnitName );
+
+    void ExploreProcessHierarchy        ( CString                    RuleNumber,
+                                          CString                    RuleName,
+                                          ZDProcessGraphModelMdlBP*    m_StartRootModel = NULL );
+
+private:
+
+    ZDProcessGraphModelMdl*                m_pRootModel;
+
+    ZDHtmlFile                            HtmlFile;
+
+    ZVPublishModelGenerate                m_FileGenerateWindow;
+
+    int                                    Level;
+    int                                    Lvl1Counter;
+    int                                    Lvl2Counter;
+    int                                    Lvl3Counter;
 };
 
 #endif // !defined(AFX_ZVPUBLISHRULEBOOKDETAILS_H__2911BA6F_30D8_459C_9B9A_A644F79B704F__INCLUDED_)

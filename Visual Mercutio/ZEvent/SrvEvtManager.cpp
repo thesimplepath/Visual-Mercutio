@@ -22,12 +22,12 @@ ZBServerEventManager::~ZBServerEventManager()
 
 ZBEventServer* ZBServerEventManager::AddEvent( COleDateTime Time, CString Filename, EventResult EventResultValue )
 {
-	ZBEventServer*	pEvent = new ZBEventServer( Time, Filename, EventResultValue );
-	if (!ZBEventManager::AddEvent( pEvent ))
-	{
-		delete pEvent;
-		pEvent = NULL;
-	}
-	return pEvent;
+    ZBEventServer*    pEvent = new ZBEventServer( Time, Filename, EventResultValue );
+    if (!ZBEventManager::AddEvent( pEvent ))
+    {
+        delete pEvent;
+        pEvent = NULL;
+    }
+    return pEvent;
 }
 

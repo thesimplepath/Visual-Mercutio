@@ -23,9 +23,9 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 ZUAssignDynamicAttributesToModel::ZUAssignDynamicAttributesToModel(ZDProcessGraphModelMdl* pModel /*= NULL*/, 
-																   ZBProperty* pProperty /*= NULL*/, 
-																   CRuntimeClass* pRTClass /*= NULL*/,
-																   void* pClass /*= NULL*/)
+                                                                   ZBProperty* pProperty /*= NULL*/, 
+                                                                   CRuntimeClass* pRTClass /*= NULL*/,
+                                                                   void* pClass /*= NULL*/)
 : ZUModelNavigation(pModel,pClass),
   m_pProperty(pProperty),
   m_pRTClass(pRTClass)
@@ -39,40 +39,40 @@ ZUAssignDynamicAttributesToModel::~ZUAssignDynamicAttributesToModel()
 
 bool ZUAssignDynamicAttributesToModel::OnStart()
 {
-	if (!m_pProperty)
-		return false;
+    if (!m_pProperty)
+        return false;
 
-	// Nothing more to do
-	return true;
+    // Nothing more to do
+    return true;
 }
 
 bool ZUAssignDynamicAttributesToModel::OnFinish()
 {
-	// Send it to the soap server
-	return true;
+    // Send it to the soap server
+    return true;
 }
 
 bool ZUAssignDynamicAttributesToModel::OnSymbol( ZBSymbol* pSymbol )
 {
-	// If for the whole model
-	// or for a specific class name
-	if (!m_pRTClass ||
-		(m_pRTClass && 
-		 m_pRTClass->m_lpszClassName == pSymbol->GetRuntimeClass()->m_lpszClassName))
-		pSymbol->GetDynamicPropertiesManager()->AddDynamicProperty( m_pProperty->Dup() );
+    // If for the whole model
+    // or for a specific class name
+    if (!m_pRTClass ||
+        (m_pRTClass && 
+         m_pRTClass->m_lpszClassName == pSymbol->GetRuntimeClass()->m_lpszClassName))
+        pSymbol->GetDynamicPropertiesManager()->AddDynamicProperty( m_pProperty->Dup() );
 
-	return true;
+    return true;
 }
 bool ZUAssignDynamicAttributesToModel::OnLink( ZBLinkSymbol* pLink )
 {
-	// If for the whole model
-	// or for a specific class name
-	if (!m_pRTClass ||
-		(m_pRTClass && 
-		 m_pRTClass->m_lpszClassName == pLink->GetRuntimeClass()->m_lpszClassName))
-		pLink->GetDynamicPropertiesManager()->AddDynamicProperty( m_pProperty->Dup() );
+    // If for the whole model
+    // or for a specific class name
+    if (!m_pRTClass ||
+        (m_pRTClass && 
+         m_pRTClass->m_lpszClassName == pLink->GetRuntimeClass()->m_lpszClassName))
+        pLink->GetDynamicPropertiesManager()->AddDynamicProperty( m_pProperty->Dup() );
 
-	return true;
+    return true;
 }
 
 

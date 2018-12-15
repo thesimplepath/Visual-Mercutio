@@ -25,76 +25,76 @@
 
 extern AFX_EXTENSION_MODULE ZBaseLibDLL;
 
-#define ID_TIMERABOUT				15
-#define NUMBER_OF_ICON				7
-#define ANIMATION2_NUMBER_OF_ICON	9
+#define ID_TIMERABOUT                15
+#define NUMBER_OF_ICON                7
+#define ANIMATION2_NUMBER_OF_ICON    9
 
 /////////////////////////////////////////////////////////////////////////////
 // MsgBox dialog
 class AFX_EXT_CLASS MsgBox : public CDialog
 {
-	DECLARE_DYNCREATE( MsgBox )
+    DECLARE_DYNCREATE( MsgBox )
 
 // Construction
 public:
 
-	// Standard constructor
-	MsgBox( CWnd* pParent = NULL );
+    // Standard constructor
+    MsgBox( CWnd* pParent = NULL );
 
-	// Standard destructor
-	~MsgBox();
+    // Standard destructor
+    ~MsgBox();
 
-	// Dialog Data
-	//{{AFX_DATA(MsgBox)
-	enum { IDD = IDD_DIALOG_FORSAVE };
-	CStatic m_icnApp;
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(MsgBox)
+    enum { IDD = IDD_DIALOG_FORSAVE };
+    CStatic m_icnApp;
+    //}}AFX_DATA
 
-	int DisplayMsgBox( LPCSTR prompt, UINT fuStyle = MB_YESNOCANCEL );
-	int DisplayMsgBox( UINT uIDRes, UINT fuStyle = MB_YESNOCANCEL, HINSTANCE hInst = NULL );
+    int DisplayMsgBox( LPCSTR prompt, UINT fuStyle = MB_YESNOCANCEL );
+    int DisplayMsgBox( UINT uIDRes, UINT fuStyle = MB_YESNOCANCEL, HINSTANCE hInst = NULL );
 
-	// JMR-MODIF - Le 7 novembre 2006 - Ajout de la fonction DoChangeCancelToUnlock.
-	void DoChangeCancelBtnToUnlockBtn( BOOL Value = TRUE );
+    // JMR-MODIF - Le 7 novembre 2006 - Ajout de la fonction DoChangeCancelToUnlock.
+    void DoChangeCancelBtnToUnlockBtn( BOOL Value = TRUE );
 
 // Implementation
 protected:
 
-	// DDX/DDV support
-	virtual void DoDataExchange( CDataExchange* pDX );
+    // DDX/DDV support
+    virtual void DoDataExchange( CDataExchange* pDX );
 
-	// Generated message map functions
-	//{{AFX_MSG(MsgBox)
-	afx_msg void OnTimer(UINT nIDEvent);
-	afx_msg int  OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg void OnPaint();
-	afx_msg void OnYes();
-	afx_msg void OnNo();
-	afx_msg void OnCancelBtn();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
-
-private:
-
-	// JMR-MODIF - Le 6 novembre 2006 - Ajout de la fonction ReleaseDialog.
-	void ReleaseDialog();
-	void AdjustSize();
+    // Generated message map functions
+    //{{AFX_MSG(MsgBox)
+    afx_msg void OnTimer(UINT nIDEvent);
+    afx_msg int  OnCreate(LPCREATESTRUCT lpCreateStruct);
+    afx_msg void OnPaint();
+    afx_msg void OnYes();
+    afx_msg void OnNo();
+    afx_msg void OnCancelBtn();
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	int		m_iIcon;
+    // JMR-MODIF - Le 6 novembre 2006 - Ajout de la fonction ReleaseDialog.
+    void ReleaseDialog();
+    void AdjustSize();
 
-	UINT	m_uTimerID;
+private:
 
-	HICON	m_pIcon[NUMBER_OF_ICON];
-	HICON	m_pIconAnimation2[ANIMATION2_NUMBER_OF_ICON];
+    int        m_iIcon;
 
-	CString m_strText;
+    UINT    m_uTimerID;
 
-	UINT	m_fuStyle;
+    HICON    m_pIcon[NUMBER_OF_ICON];
+    HICON    m_pIconAnimation2[ANIMATION2_NUMBER_OF_ICON];
 
-	// JMR-MODIF - Le 7 novembre 2006 - Ajout de la variable bDoShowUnlockButton.
-	BOOL	bDoShowUnlockButton;
+    CString m_strText;
+
+    UINT    m_fuStyle;
+
+    // JMR-MODIF - Le 7 novembre 2006 - Ajout de la variable bDoShowUnlockButton.
+    BOOL    bDoShowUnlockButton;
 };
 
-#endif	// MsgBox_h
+#endif    // MsgBox_h

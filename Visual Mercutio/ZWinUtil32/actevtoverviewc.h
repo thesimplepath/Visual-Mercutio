@@ -36,61 +36,61 @@ class AFX_EXT_CLASS ZCEventActivityOverview : public ZITreeCtrl
       ZCEventActivityOverview (ZBEventManager* pEventManager = NULL);
       virtual ~ZCEventActivityOverview();
       void Initialize(ZBEventManager* pEventManager);
-	  void Initialize();
+      void Initialize();
       void Refresh();
-	  ZBEventActivity*	GetSelectedActivityItem();
-	  CString			GetSelectedUser();
-	  CString			GetSelectedProcess();
+      ZBEventActivity*    GetSelectedActivityItem();
+      CString            GetSelectedUser();
+      CString            GetSelectedProcess();
 
-	  CObArray&			GetUserActivities(const CString User);
-	  CObArray&			GetProcessActivities(const CString Process, const CString User);
+      CObArray&            GetUserActivities(const CString User);
+      CObArray&            GetProcessActivities(const CString Process, const CString User);
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCEventActivityOverview)
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCEventActivityOverview)
+    //}}AFX_VIRTUAL
   public:
-	//{{AFX_MSG(ZCEventActivityOverview)
-	afx_msg void OnDestroy();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZCEventActivityOverview)
+    afx_msg void OnDestroy();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
   private:
       ZCEventActivityOverview(const ZCEventActivityOverview &right);
       const ZCEventActivityOverview & operator=(const ZCEventActivityOverview &right);
 
 
-	class ElementType
-	{
-		public:
-			enum	ActivityType { User, Process, Activity };
-		public:
-			ElementType( ZBEventActivity* pData = NULL, ActivityType Type = Activity );
-			ElementType( const CString Name, ActivityType Type );
-			~ElementType();
-			ZBEventActivity*	m_pData;
-			CString				m_Name;
-			ActivityType		m_Type;
-	};
+    class ElementType
+    {
+        public:
+            enum    ActivityType { User, Process, Activity };
+        public:
+            ElementType( ZBEventActivity* pData = NULL, ActivityType Type = Activity );
+            ElementType( const CString Name, ActivityType Type );
+            ~ElementType();
+            ZBEventActivity*    m_pData;
+            CString                m_Name;
+            ActivityType        m_Type;
+    };
 
   private:
-	HTREEITEM	AddUserItem (ElementType* pElement, int IconIndex);
-	HTREEITEM	AddProcessItem (ElementType* pElement, HTREEITEM hParentTreeItem, int IconIndex);
-	HTREEITEM	AddSubItem (ElementType* pElement, HTREEITEM hParentTreeItem, int IconIndex);
-	CString		FormatActivityText (ZBEventActivity* pData);
-	BOOL		UserExist( const CString User );
-	BOOL		ProcessExist( const CString Process );
-	BOOL		EventPtrExist( ZBEventActivity* pActEvent );
-	void		BuildUserArray();
-	void		BuildProcessArray();
-	void		DeleteAllElements();
-	void		DeleteAllSubElements( HTREEITEM hTreeItem );
+    HTREEITEM    AddUserItem (ElementType* pElement, int IconIndex);
+    HTREEITEM    AddProcessItem (ElementType* pElement, HTREEITEM hParentTreeItem, int IconIndex);
+    HTREEITEM    AddSubItem (ElementType* pElement, HTREEITEM hParentTreeItem, int IconIndex);
+    CString        FormatActivityText (ZBEventActivity* pData);
+    BOOL        UserExist( const CString User );
+    BOOL        ProcessExist( const CString Process );
+    BOOL        EventPtrExist( ZBEventActivity* pActEvent );
+    void        BuildUserArray();
+    void        BuildProcessArray();
+    void        DeleteAllElements();
+    void        DeleteAllSubElements( HTREEITEM hTreeItem );
 
   private: //## implementation
-	ZBEventManager* m_pEventManager;
-	CStringArray	m_UserArray;
-	CStringArray	m_ProcessArray;
-	CObArray		m_ActPtrArray;
+    ZBEventManager* m_pEventManager;
+    CStringArray    m_UserArray;
+    CStringArray    m_ProcessArray;
+    CObArray        m_ActPtrArray;
 
 };
 

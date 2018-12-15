@@ -32,26 +32,26 @@ class AFX_EXT_CLASS ZILog
 {
 public:
 
-	ZILog();
-	virtual ~ZILog();
+    ZILog();
+    virtual ~ZILog();
 
-	virtual bool	InitializeLog() = 0;
-	virtual void	ClearLog() = 0;
-	virtual void	AddLine( const CString Line ) = 0;
-	virtual size_t	GetCount() const = 0;
-	virtual CString	GetLineAt( size_t Index ) const = 0;
-	virtual int		GetCurrentSelection() const = 0;
-	virtual void	SetCurrentSelection( size_t Index ) = 0;
-	virtual void	ClearCurrentSelection() = 0;
-	virtual int		GetCurrentItem( CString& s ) const = 0;
+    virtual bool    InitializeLog() = 0;
+    virtual void    ClearLog() = 0;
+    virtual void    AddLine( const CString Line ) = 0;
+    virtual size_t    GetCount() const = 0;
+    virtual CString    GetLineAt( size_t Index ) const = 0;
+    virtual int        GetCurrentSelection() const = 0;
+    virtual void    SetCurrentSelection( size_t Index ) = 0;
+    virtual void    ClearCurrentSelection() = 0;
+    virtual int        GetCurrentItem( CString& s ) const = 0;
 
-	// Debug mode flag
-	virtual bool	IsInDebugMode() const = 0;
-	virtual void	SetDebugMode( bool value = true ) = 0;
+    // Debug mode flag
+    virtual bool    IsInDebugMode() const = 0;
+    virtual void    SetDebugMode( bool value = true ) = 0;
 
-	// Selection mode
-	virtual bool	SelectLast() const = 0;
-	virtual void	SetSelectLast( bool value = true ) = 0;
+    // Selection mode
+    virtual bool    SelectLast() const = 0;
+    virtual void    SetSelectLast( bool value = true ) = 0;
 };
 
 #endif // !defined(AFX_ZILOG_H__A1D53B29_9009_421B_A8BF_3F7FFFE642DD__INCLUDED_)

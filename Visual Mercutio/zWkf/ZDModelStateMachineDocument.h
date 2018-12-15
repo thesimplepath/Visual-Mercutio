@@ -37,55 +37,55 @@
 
 class AFX_EXT_CLASS ZDModelStateMachineDocument : public CDocument
 {
-	DECLARE_DYNCREATE(ZDModelStateMachineDocument)
+    DECLARE_DYNCREATE(ZDModelStateMachineDocument)
 public:
-	ZDModelStateMachineDocument(ZBStateMachineCollection* pModelStateMachine = NULL);           // Public constructor since not used by dynamic creation
-	virtual ~ZDModelStateMachineDocument();
+    ZDModelStateMachineDocument(ZBStateMachineCollection* pModelStateMachine = NULL);           // Public constructor since not used by dynamic creation
+    virtual ~ZDModelStateMachineDocument();
 
 // Operations
 public:
-	bool ReadFromFile( const CString Filename, ZBStateMachineCollection* pModelStateMachine = NULL );
-	bool SaveToFile( const CString Filename, ZBStateMachineCollection* pModelStateMachine = NULL );
+    bool ReadFromFile( const CString Filename, ZBStateMachineCollection* pModelStateMachine = NULL );
+    bool SaveToFile( const CString Filename, ZBStateMachineCollection* pModelStateMachine = NULL );
 
-	bool IsLoaded() const
-	{
-		return m_IsLoaded;
-	};
-	void SetLoaded( bool value = true )
-	{
-		m_IsLoaded = value;
-	};
+    bool IsLoaded() const
+    {
+        return m_IsLoaded;
+    };
+    void SetLoaded( bool value = true )
+    {
+        m_IsLoaded = value;
+    };
 /*
-	virtual BOOL IsModified()
-	{
-		return CDocument::IsModified() || m_UserGroupEnvironment.IsModified();
-	};
+    virtual BOOL IsModified()
+    {
+        return CDocument::IsModified() || m_UserGroupEnvironment.IsModified();
+    };
 */
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZDModelStateMachineDocument)
-	public:
-	virtual void Serialize(CArchive& ar);   // overridden for document i/o
-	protected:
-	virtual BOOL OnNewDocument();
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZDModelStateMachineDocument)
+    public:
+    virtual void Serialize(CArchive& ar);   // overridden for document i/o
+    protected:
+    virtual BOOL OnNewDocument();
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZDModelStateMachineDocument)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZDModelStateMachineDocument)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	ZBStateMachineCollection*	m_pStateMachineCollection;
-	bool					m_IsLoaded;
+    ZBStateMachineCollection*    m_pStateMachineCollection;
+    bool                    m_IsLoaded;
 };
 
 //{{AFX_INSERT_LOCATION}}

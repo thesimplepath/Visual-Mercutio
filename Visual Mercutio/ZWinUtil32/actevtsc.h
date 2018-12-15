@@ -37,32 +37,32 @@ class AFX_EXT_CLASS ZCEventActivity : public ZIListCtrl
       virtual ~ZCEventActivity();
       void Initialize (ZBEventManager* pEventManager);
       void Refresh ();
-	  ZBEventActivity*	GetSelectedItem() const;
+      ZBEventActivity*    GetSelectedItem() const;
 
 #ifdef _WIN32
-	AFX_EXT_API	friend	ZBEventActivity&	operator>>( ZBEventActivity& left, ZCEventActivity& listCtrl );
+    AFX_EXT_API    friend    ZBEventActivity&    operator>>( ZBEventActivity& left, ZCEventActivity& listCtrl );
 #endif
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCEventActivity)
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCEventActivity)
+    //}}AFX_VIRTUAL
   protected:
-	//{{AFX_MSG(ZCEventActivity)
-	afx_msg LRESULT OnNewActivityEvent( WPARAM wParam, LPARAM lParam );
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZCEventActivity)
+    afx_msg LRESULT OnNewActivityEvent( WPARAM wParam, LPARAM lParam );
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
   private:
       ZCEventActivity(const ZCEventActivity &right);
       const ZCEventActivity & operator=(const ZCEventActivity &right);
 
   private:
-	BOOL	ColumnsHasBeenBuilt() const { return m_ColumnsHasBeenBuilt; };
-	BOOL	BuildColumns();
+    BOOL    ColumnsHasBeenBuilt() const { return m_ColumnsHasBeenBuilt; };
+    BOOL    BuildColumns();
 
   private: //## implementation
-	ZBEventManager* m_pEventManager;
-	BOOL			m_ColumnsHasBeenBuilt;
+    ZBEventManager* m_pEventManager;
+    BOOL            m_ColumnsHasBeenBuilt;
 
 };
 

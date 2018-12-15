@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 05/2002
+// <nl>Created:         05/2002
 // <nl>Description:  ZCInputAttributesList list control for input attributes
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -59,60 +59,60 @@ class ZDProcessGraphModelDoc;
 class AFX_EXT_CLASS ZCInputAttributesList : public ZIListCtrl, public ZISubject, public ZIObserver  
 {
 
-	DECLARE_DYNAMIC(ZCInputAttributesList)
+    DECLARE_DYNAMIC(ZCInputAttributesList)
 
 public:
-	ZCInputAttributesList ();
-	virtual ~ZCInputAttributesList();
+    ZCInputAttributesList ();
+    virtual ~ZCInputAttributesList();
 
-	ZBInputAttribute* GetSelectedInputAttribute();
-
-
-	int	Initialize (ZBInputAttributeManager* pInputManager, ZBDynamicPropertiesManager* pPropManager, bool ShowAll = false, int SymbolRef = -1);
-	void  ShowAll( bool value = true, bool bRefresh = true )
-	{
-	  m_ShowAll = value;
-	  if (bRefresh)
-		  Refresh();
-	};
-	void  SetSymbolRef( int value, bool bRefresh = true )
-	{
-	  m_SymbolRef = value;
-	  if (bRefresh)
-		  Refresh();
-	};
-	int	Refresh ();
-	void	Empty();
+    ZBInputAttribute* GetSelectedInputAttribute();
 
 
-	// Observer call back
-	virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    int    Initialize (ZBInputAttributeManager* pInputManager, ZBDynamicPropertiesManager* pPropManager, bool ShowAll = false, int SymbolRef = -1);
+    void  ShowAll( bool value = true, bool bRefresh = true )
+    {
+      m_ShowAll = value;
+      if (bRefresh)
+          Refresh();
+    };
+    void  SetSymbolRef( int value, bool bRefresh = true )
+    {
+      m_SymbolRef = value;
+      if (bRefresh)
+          Refresh();
+    };
+    int    Refresh ();
+    void    Empty();
 
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCInputAttributesList)
-	//}}AFX_VIRTUAL
+
+    // Observer call back
+    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCInputAttributesList)
+    //}}AFX_VIRTUAL
 protected:
-	//{{AFX_MSG(ZCInputAttributesList)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZCInputAttributesList)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 private:
     ZCInputAttributesList(const ZCInputAttributesList &right);
-    const	ZCInputAttributesList & operator=(const ZCInputAttributesList &right);
+    const    ZCInputAttributesList & operator=(const ZCInputAttributesList &right);
 
-	void	BuildColumns();
-	void	DocumentActivated( ZDProcessGraphModelDoc* pDoc );
+    void    BuildColumns();
+    void    DocumentActivated( ZDProcessGraphModelDoc* pDoc );
 
 private: //## implementation
-	ZBInputAttributeManager*	m_pInputManager;
-	ZBDynamicPropertiesManager* m_pPropManager;
-	bool					m_ShowAll;
-	int						m_SymbolRef;
-	CODComponent*			m_pComp;
-	BOOL					m_ColumnsBuilt;
-	ZDProcessGraphModelDoc*	m_pDoc;
+    ZBInputAttributeManager*    m_pInputManager;
+    ZBDynamicPropertiesManager* m_pPropManager;
+    bool                    m_ShowAll;
+    int                        m_SymbolRef;
+    CODComponent*            m_pComp;
+    BOOL                    m_ColumnsBuilt;
+    ZDProcessGraphModelDoc*    m_pDoc;
 };
 
 //#undef  AFX_DATA
 //#define AFX_DATA
 
-#endif	  // ZCInputAttributesList_h
+#endif      // ZCInputAttributesList_h

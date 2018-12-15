@@ -1,10 +1,10 @@
 // ******************************************************************************************************************
-// *											 Classe ZBPrestationsEntity											*
+// *                                             Classe ZBPrestationsEntity                                            *
 // ******************************************************************************************************************
-// * JMR-MODIF - Le 7 octobre 2005 - Ajout de la classe ZBPrestationsEntity.										*
+// * JMR-MODIF - Le 7 octobre 2005 - Ajout de la classe ZBPrestationsEntity.                                        *
 // ******************************************************************************************************************
-// * Cette classe représente une entité de type prestation. Une entité peut être considérée comme un élément du		*
-// * document.																										*
+// * Cette classe représente une entité de type prestation. Une entité peut être considérée comme un élément du        *
+// * document.                                                                                                        *
 // ******************************************************************************************************************
 
 #if !defined(AFX_ZBPrestationsEntity_H__2AC8D235_7673_47BE_86B3_CCD14A70DE78__INCLUDED_)
@@ -34,104 +34,104 @@
 
 class AFX_EXT_CLASS ZBPrestationsEntity : public CObject
 {
-	DECLARE_SERIAL( ZBPrestationsEntity )
+    DECLARE_SERIAL( ZBPrestationsEntity )
 
 public:
 
-	ZBPrestationsEntity( const CString			Name		= _T( "" ),
-						 const CString			Description	= _T( "" ),
-						 ZBPrestationsEntity*	pParent		= NULL );
+    ZBPrestationsEntity( const CString            Name        = _T( "" ),
+                         const CString            Description    = _T( "" ),
+                         ZBPrestationsEntity*    pParent        = NULL );
 
-	~ZBPrestationsEntity();
+    ~ZBPrestationsEntity();
 
-	ZBPrestationsEntity* GetParent()
-	{
-		return m_pParent;
-	}
+    ZBPrestationsEntity* GetParent()
+    {
+        return m_pParent;
+    }
 
-	virtual ZBPrestationsEntity* GetRoot()
-	{
-		if ( m_pParent )
-		{
-			return m_pParent->GetRoot();
-		}
+    virtual ZBPrestationsEntity* GetRoot()
+    {
+        if ( m_pParent )
+        {
+            return m_pParent->GetRoot();
+        }
 
-		return this;
-	}
+        return this;
+    }
 
-	virtual bool ContainEntity() const
-	{
-		return false;
-	}
+    virtual bool ContainEntity() const
+    {
+        return false;
+    }
 
-	virtual size_t GetEntityCount() const
-	{
-		return 0;
-	}
+    virtual size_t GetEntityCount() const
+    {
+        return 0;
+    }
 
-	virtual ZBPrestationsEntity* GetEntityAt( size_t Index )
-	{
-		return NULL;
-	}
+    virtual ZBPrestationsEntity* GetEntityAt( size_t Index )
+    {
+        return NULL;
+    }
 
-	CString GetGUID() const
-	{
-		return m_GUID;
-	}
+    CString GetGUID() const
+    {
+        return m_GUID;
+    }
 
-	void SetGUID( CString value )
-	{
-		m_GUID = value;
-	}
+    void SetGUID( CString value )
+    {
+        m_GUID = value;
+    }
 
-	virtual CString GetEntityName() const
-	{
-		return m_EntityName;
-	}
+    virtual CString GetEntityName() const
+    {
+        return m_EntityName;
+    }
 
-	virtual void SetEntityName( const CString value )
-	{
-		m_EntityName = value;
-	}
+    virtual void SetEntityName( const CString value )
+    {
+        m_EntityName = value;
+    }
 
-	virtual CString GetEntityDescription() const
-	{
-		return m_EntityDescription;
-	}
+    virtual CString GetEntityDescription() const
+    {
+        return m_EntityDescription;
+    }
 
-	virtual void SetEntityDescription( const CString value )
-	{
-		m_EntityDescription = value;
-	}
+    virtual void SetEntityDescription( const CString value )
+    {
+        m_EntityDescription = value;
+    }
 
-	virtual bool DisplayProperties()
-	{
-		return false;
-	}
+    virtual bool DisplayProperties()
+    {
+        return false;
+    }
 
-	void SetParent( ZBPrestationsEntity* pParent )
-	{
-		m_pParent = pParent;
-	}
+    void SetParent( ZBPrestationsEntity* pParent )
+    {
+        m_pParent = pParent;
+    }
 
-	// Serialization mechanism
-	virtual void Serialize( CArchive& ar );	// overridden for document i/o
+    // Serialization mechanism
+    virtual void Serialize( CArchive& ar );    // overridden for document i/o
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 protected:
 
-	void CreateGUID();
+    void CreateGUID();
 
 private:
 
-	CString					m_GUID;
-	CString					m_EntityName;
-	CString					m_EntityDescription;
-	ZBPrestationsEntity*	m_pParent;
+    CString                    m_GUID;
+    CString                    m_EntityName;
+    CString                    m_EntityDescription;
+    ZBPrestationsEntity*    m_pParent;
 };
 
 #endif // !defined(AFX_ZBPrestationsEntity_H__2AC8D235_7673_47BE_86B3_CCD14A70DE78__INCLUDED_)

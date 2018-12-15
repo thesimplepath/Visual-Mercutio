@@ -19,19 +19,19 @@ IMPLEMENT_SERIAL( ZBSymbolLabel, CODLabelComponent, def_Version )
 //////////////////////////////////////////////////////////////////////
 
 ZBSymbolLabel::ZBSymbolLabel( bool NotifyParent /*= false*/ )
-	: m_NotifyParent( NotifyParent )
+    : m_NotifyParent( NotifyParent )
 {
 }
 
 ZBSymbolLabel::ZBSymbolLabel( CODSymbolComponent* pOwner, bool NotifyParent /*= false*/ )
-	: CODLabelComponent	( pOwner ),
-	  m_NotifyParent	( NotifyParent )
+    : CODLabelComponent    ( pOwner ),
+      m_NotifyParent    ( NotifyParent )
 {
 }
 
 ZBSymbolLabel::ZBSymbolLabel( const OD_CONTROL_POINT ctlPoint, bool NotifyParent /*= false*/ )
-	: CODLabelComponent	( ctlPoint ),
-	  m_NotifyParent	( NotifyParent )
+    : CODLabelComponent    ( ctlPoint ),
+      m_NotifyParent    ( NotifyParent )
 {
 }
 
@@ -41,40 +41,40 @@ ZBSymbolLabel::~ZBSymbolLabel()
 
 ZBSymbolLabel::ZBSymbolLabel( const ZBSymbolLabel& src )
 {
-	*this = src;
+    *this = src;
 }
 
 ZBSymbolLabel& ZBSymbolLabel::operator=( const ZBSymbolLabel& src )
 {
-	// Call the base class assignement operator
-	CODLabelComponent::operator=( (const CODLabelComponent&)src );
-	m_NotifyParent = src.m_NotifyParent;
+    // Call the base class assignement operator
+    CODLabelComponent::operator=( (const CODLabelComponent&)src );
+    m_NotifyParent = src.m_NotifyParent;
 
-	return *this;
+    return *this;
 }
 
 CODComponent* ZBSymbolLabel::Dup() const
 {
-	return ( new ZBSymbolLabel( *this ) );
+    return ( new ZBSymbolLabel( *this ) );
 }
 
 void ZBSymbolLabel::Serialize( CArchive& ar )
 {
-	// Serialize the label symbol
-	CODLabelComponent::Serialize( ar );
+    // Serialize the label symbol
+    CODLabelComponent::Serialize( ar );
 
-	// Only if the object is serialize from and to a document
-	if ( ar.m_pDocument )
-	{
-		if ( ar.IsStoring() )
-		{
-			ar << (WORD)m_NotifyParent;
-		}
-		else
-		{
-			WORD wValue;
-			ar >> wValue;
-			m_NotifyParent = ( ( wValue == 1 ) ? ( true ) : ( false ) );
-		}
-	}
+    // Only if the object is serialize from and to a document
+    if ( ar.m_pDocument )
+    {
+        if ( ar.IsStoring() )
+        {
+            ar << (WORD)m_NotifyParent;
+        }
+        else
+        {
+            WORD wValue;
+            ar >> wValue;
+            m_NotifyParent = ( ( wValue == 1 ) ? ( true ) : ( false ) );
+        }
+    }
 }

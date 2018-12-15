@@ -1,5 +1,5 @@
 //## begin module%336510A302B2.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%336510A302B2.cm
 
 //## begin module%336510A302B2.cp preserve=no
@@ -55,10 +55,10 @@
 class AFX_EXT_CLASS ZIViewCode : public ZIView  //## Inherits: <unnamed>%3365104501F5
 {
   //## begin ZIViewCode%3365104501F4.initialDeclarations preserve=yes
-	DECLARE_DYNCREATE(ZIViewCode)
-	public:
-	// Inherited feature
-		typedef ZIView inherited;
+    DECLARE_DYNCREATE(ZIViewCode)
+    public:
+    // Inherited feature
+        typedef ZIView inherited;
   //## end ZIViewCode%3365104501F4.initialDeclarations
 
   public:
@@ -103,26 +103,26 @@ class AFX_EXT_CLASS ZIViewCode : public ZIView  //## Inherits: <unnamed>%3365104
 
     // Additional Protected Declarations
       //## begin ZIViewCode%3365104501F4.protected preserve=yes
-		// Generated message map functions
-		//{{AFX_MSG(ZIViewCode)
-	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
-	afx_msg void OnOnlyNumericFields();
-	afx_msg void OnUpdateOnlyNumericFields(CCmdUI* pCmdUI);
-	afx_msg LONG OnDisplayFieldType(UINT message, LONG lParam);
-	afx_msg LONG OnSynchronizeVScroll(UINT message, LONG lParam);
-	afx_msg LONG OnSynchronizeHScroll(UINT message, LONG lParam);
-	afx_msg void OnDisplayCalculatedCode();
-	afx_msg void OnUpdateDisplayCalculatedCode(CCmdUI* pCmdUI);
-	afx_msg void OnDisplayallCode();
-	afx_msg void OnUpdateDisplayallCode(CCmdUI* pCmdUI);
-	afx_msg void OnDisplayStaticCode();
-	afx_msg void OnUpdateDisplayStaticCode(CCmdUI* pCmdUI);
-	afx_msg void OnDisplayTextCode();
-	afx_msg void OnUpdateDisplayTextCode(CCmdUI* pCmdUI);
-	afx_msg void OnDisplayGraphicCode();
-	afx_msg void OnUpdateDisplayGraphicCode(CCmdUI* pCmdUI);
-	//}}AFX_MSG
-		DECLARE_MESSAGE_MAP()
+        // Generated message map functions
+        //{{AFX_MSG(ZIViewCode)
+    afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
+    afx_msg void OnOnlyNumericFields();
+    afx_msg void OnUpdateOnlyNumericFields(CCmdUI* pCmdUI);
+    afx_msg LONG OnDisplayFieldType(UINT message, LONG lParam);
+    afx_msg LONG OnSynchronizeVScroll(UINT message, LONG lParam);
+    afx_msg LONG OnSynchronizeHScroll(UINT message, LONG lParam);
+    afx_msg void OnDisplayCalculatedCode();
+    afx_msg void OnUpdateDisplayCalculatedCode(CCmdUI* pCmdUI);
+    afx_msg void OnDisplayallCode();
+    afx_msg void OnUpdateDisplayallCode(CCmdUI* pCmdUI);
+    afx_msg void OnDisplayStaticCode();
+    afx_msg void OnUpdateDisplayStaticCode(CCmdUI* pCmdUI);
+    afx_msg void OnDisplayTextCode();
+    afx_msg void OnUpdateDisplayTextCode(CCmdUI* pCmdUI);
+    afx_msg void OnDisplayGraphicCode();
+    afx_msg void OnUpdateDisplayGraphicCode(CCmdUI* pCmdUI);
+    //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
       //## end ZIViewCode%3365104501F4.protected
   private:
     //## Constructors (generated)

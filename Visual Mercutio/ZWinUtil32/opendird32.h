@@ -2,11 +2,11 @@
 //
 
 #ifndef _WIN32
-	extern "C" extern void WINAPI InitZWinUtilDLL();
-	extern AFX_EXTENSION_MODULE NEAR extensionZWinUtilDLL;
-	#define	AFX_EXT_CLASS
+    extern "C" extern void WINAPI InitZWinUtilDLL();
+    extern AFX_EXTENSION_MODULE NEAR extensionZWinUtilDLL;
+    #define    AFX_EXT_CLASS
 #else // Only in 16bit
-	extern AFX_EXTENSION_MODULE extensionZWinUtil32DLL;
+    extern AFX_EXTENSION_MODULE extensionZWinUtil32DLL;
 #endif // Only in 32bit
 
 
@@ -14,10 +14,10 @@
 #include "DirTreeCtrl.h"
 
 #ifndef _WIN32
-	#include "ZWinUtil.h"
+    #include "ZWinUtil.h"
 #endif
 #ifdef _WIN32
-	#include "ZWinUtil32.h"
+    #include "ZWinUtil32.h"
 #endif
 /////////////////////////////////////////////////////////////////////////////
 // ZIOpenDirDlg dialog
@@ -31,16 +31,16 @@ class AFX_EXT_CLASS ZIOpenDirDlg
 {
 // Construction
 public:
-	ZIOpenDirDlg(CString Title = "", CWnd* pParentWnd = NULL);
-	ZIOpenDirDlg(UINT nID, CWnd* pParentWnd = NULL);
+    ZIOpenDirDlg(CString Title = "", CWnd* pParentWnd = NULL);
+    ZIOpenDirDlg(UINT nID, CWnd* pParentWnd = NULL);
     CString     GetDirectory();
-	CString		ProcessDirectory();
+    CString        ProcessDirectory();
 
 // Data
 protected:
-	CWnd*		m_pParentWnd;
-	CString		m_strDirectory;
-	CString		m_Title;
+    CWnd*        m_pParentWnd;
+    CString        m_strDirectory;
+    CString        m_Title;
 
 };
 
@@ -49,7 +49,7 @@ protected:
 
 inline    CString     ZIOpenDirDlg::GetDirectory( )
 { 
-	return m_strDirectory; 
+    return m_strDirectory; 
 }
 
 #undef AFX_DATA

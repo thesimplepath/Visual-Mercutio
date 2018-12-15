@@ -37,37 +37,37 @@ class AFX_EXT_CLASS ZDProcessDocumentOptions
       const ZDProcessDocumentOptions & operator=(const ZDProcessDocumentOptions &right);
 
 
-	  CString BuildSynchronizationFileName (CString DocumentFilename);
+      CString BuildSynchronizationFileName (CString DocumentFilename);
 
-      //	Store from the archive to the object Document Option.
+      //    Store from the archive to the object Document Option.
       AFX_EXT_API friend CArchive& operator >> (CArchive& ar, ZDProcessDocumentOptions& DocOptions);
 
-      //	Store the object Document Option to the archive.
+      //    Store the object Document Option to the archive.
       AFX_EXT_API friend CArchive& operator << (CArchive& ar, const ZDProcessDocumentOptions& DocOptions);
 
-      //	Specifiy if it is necessary to synchronize the feed data
-      //	file.
+      //    Specifiy if it is necessary to synchronize the feed data
+      //    file.
       const BOOL GetIsSynchronizeExchangeFeedFile () const;
       void SetIsSynchronizeExchangeFeedFile (BOOL value);
 
-      //	Defines if the synchronization time (in seconds).
+      //    Defines if the synchronization time (in seconds).
       const int GetSynchronizeTimeSequence () const;
       void SetSynchronizeTimeSequence (int value);
 
       //## Attribute: AutomaticSynchronizeFilename%366A4F5A03BF
-      //	Is the filename automatically created.
+      //    Is the filename automatically created.
       const SynchronizationFileType GetAutomaticSynchronizeFilename () const;
       void SetAutomaticSynchronizeFilename (SynchronizationFileType value);
 
-      //	The synchronization filename if not automatic.
+      //    The synchronization filename if not automatic.
       const CString GetSynchronizeFilename () const;
       void SetSynchronizeFilename (CString value);
 
-      //	Ceates or not a synchronization header
+      //    Ceates or not a synchronization header
       const BOOL GetSynchronizationHeader () const;
       void SetSynchronizationHeader (BOOL value);
 
-      //	Defines the seperator type.
+      //    Defines the seperator type.
       const SynchronizationSeparatorType GetSynchronizationSeparator () const;
       void SetSynchronizationSeparator (SynchronizationSeparatorType value);
 

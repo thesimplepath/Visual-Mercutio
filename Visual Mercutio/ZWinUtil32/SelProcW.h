@@ -20,10 +20,10 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 #ifndef _WIN32
-	#include "ZWinUtil.h"
+    #include "ZWinUtil.h"
 #endif
 #ifdef _WIN32
-	#include "ZWinUtil32.h"
+    #include "ZWinUtil32.h"
 #endif
 
 #include "zEvent\ZProcess.h"
@@ -46,18 +46,18 @@
 class AFX_EXT_CLASS ZISelectProcessWizard  
 {
 public:
-	ZISelectProcessWizard( ZProcess& Process );
-	
-	// Start the wizard
-	BOOL	PlayWizard();
-	CString	GetBaseActivityName() const { return m_BaseActivityName; };
-	
-	virtual ~ZISelectProcessWizard();
+    ZISelectProcessWizard( ZProcess& Process );
+    
+    // Start the wizard
+    BOOL    PlayWizard();
+    CString    GetBaseActivityName() const { return m_BaseActivityName; };
+    
+    virtual ~ZISelectProcessWizard();
 
 
 private:
-	ZProcess& 		m_Process;
-	CString			m_BaseActivityName;
+    ZProcess&         m_Process;
+    CString            m_BaseActivityName;
 
 private:
 

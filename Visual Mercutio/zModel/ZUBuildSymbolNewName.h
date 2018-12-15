@@ -1,7 +1,7 @@
 // **************************************************************************************************************
-// *									  Classe ZUBuildSymbolNewName											*
+// *                                      Classe ZUBuildSymbolNewName                                            *
 // **************************************************************************************************************
-// * Cette classe permet la création d'un nom valide et unique pour les symboles.								*
+// * Cette classe permet la création d'un nom valide et unique pour les symboles.                                *
 // **************************************************************************************************************
 
 #if !defined(AFX_ZUBuildSymbolNewName_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
@@ -37,28 +37,28 @@ class AFX_EXT_CLASS ZUBuildSymbolNewName : public ZIBasicSymbolVisitor
 {
 public:
 
-	ZUBuildSymbolNewName( const CString BaseName = _T( "" ) );
-	virtual ~ZUBuildSymbolNewName();
+    ZUBuildSymbolNewName( const CString BaseName = _T( "" ) );
+    virtual ~ZUBuildSymbolNewName();
 
-	CString GetNextAvailableSymbolName( CODModel& Model, int RefNumber );
+    CString GetNextAvailableSymbolName( CODModel& Model, int RefNumber );
 
-	/* Each concrete derived ZIBasicSymbolVisitor class
-	   must implement Visit to implement the appropriate 
-	   algorithm 
-	   In this concrete class the Visit will check the
-	   BasicSymbol passes as an argument */
-	virtual bool Visit( CODComponent& Symbol );
-
-private:
-
-	// JMR-MODIF - Le 23 mai 2006 - Ajout du paramètre RefNumber.
-	void _GetNextAvailableSymbolName( CODModel& Model );
+    /* Each concrete derived ZIBasicSymbolVisitor class
+       must implement Visit to implement the appropriate 
+       algorithm 
+       In this concrete class the Visit will check the
+       BasicSymbol passes as an argument */
+    virtual bool Visit( CODComponent& Symbol );
 
 private:
 
-	bool	m_Found;
-	CString	m_SymbolName;
-	CString	m_BaseName;
+    // JMR-MODIF - Le 23 mai 2006 - Ajout du paramètre RefNumber.
+    void _GetNextAvailableSymbolName( CODModel& Model );
+
+private:
+
+    bool    m_Found;
+    CString    m_SymbolName;
+    CString    m_BaseName;
 };
 
 #endif // !defined(AFX_ZUBuildSymbolNewName_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)

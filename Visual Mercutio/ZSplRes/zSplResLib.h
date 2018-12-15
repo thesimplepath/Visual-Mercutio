@@ -1,12 +1,12 @@
 // zSplResLib.h : header file
 //
 // Copyright © 1993-2000 Aigroz Dominique - Advanced Dedicated Software
-//		mailto:dominique.aigroz@adsoft-form.com
-//		http://www.adsoft-form.com
+//        mailto:dominique.aigroz@adsoft-form.com
+//        http://www.adsoft-form.com
 //
 //
 // ==========================================================================  
-// HISTORY:	
+// HISTORY:    
 // ==========================================================================
 //
 //////////////////////////////////////////////////////////////////////

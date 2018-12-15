@@ -1,10 +1,10 @@
 //## begin module%3881855902BB.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%3881855902BB.cm
 
 //## begin module%3881855902BB.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%3881855902BB.cp
 
 //## Module: ZAMultiC%3881855902BB; Package body
@@ -47,8 +47,8 @@ PLFNMultiColumn::PLFNMultiColumn()
   //## end PLFNMultiColumn::PLFNMultiColumn%.initialization
 {
   //## begin PLFNMultiColumn::PLFNMultiColumn%.body preserve=yes
-	// By default, the multi-column field is not visible
-	SetbIsVisible( FALSE );
+    // By default, the multi-column field is not visible
+    SetbIsVisible( FALSE );
   //## end PLFNMultiColumn::PLFNMultiColumn%.body
 }
 
@@ -74,10 +74,10 @@ PLFNMultiColumn::~PLFNMultiColumn()
 const PLFNMultiColumn & PLFNMultiColumn::operator=(const PLFNMultiColumn &right)
 {
   //## begin PLFNMultiColumn::operator=%.body preserve=yes
-	this->PlanFinObject::operator=( (inherited&)right );
-	m_MultiColumnManager = right.m_MultiColumnManager;
-	m_ShowHeader = right.m_ShowHeader;
-	return *this;
+    this->PlanFinObject::operator=( (inherited&)right );
+    m_MultiColumnManager = right.m_MultiColumnManager;
+    m_ShowHeader = right.m_ShowHeader;
+    return *this;
   //## end PLFNMultiColumn::operator=%.body
 }
 
@@ -87,63 +87,63 @@ const PLFNMultiColumn & PLFNMultiColumn::operator=(const PLFNMultiColumn &right)
 const PLFNMultiColumn& PLFNMultiColumn::operator = (const PLFNMultiColumn* right)
 {
   //## begin PLFNMultiColumn::operator =%948017479.body preserve=yes
-	*this = *right;
-	return *this;
+    *this = *right;
+    return *this;
   //## end PLFNMultiColumn::operator =%948017479.body
 }
 
 void PLFNMultiColumn::Serialize (CArchive& ar)
 {
   //## begin PLFNMultiColumn::Serialize%948017480.body preserve=yes
-	PlanFinObject::Serialize(ar);
-	m_MultiColumnManager.Serialize( ar );
-	if (ar.IsStoring())
-	{	// Write the elements
-		ar << (WORD)m_ShowHeader;
-	}
-	else
-	{	// Read the elements
-		WORD	wValue;
-		ar >> wValue;
-		m_ShowHeader = (BOOL)m_ShowHeader;
-	}
+    PlanFinObject::Serialize(ar);
+    m_MultiColumnManager.Serialize( ar );
+    if (ar.IsStoring())
+    {    // Write the elements
+        ar << (WORD)m_ShowHeader;
+    }
+    else
+    {    // Read the elements
+        WORD    wValue;
+        ar >> wValue;
+        m_ShowHeader = (BOOL)m_ShowHeader;
+    }
   //## end PLFNMultiColumn::Serialize%948017480.body
 }
 
 PlanFinObject* PLFNMultiColumn::Clone ()
 {
   //## begin PLFNMultiColumn::Clone%948017481.body preserve=yes
-	PLFNMultiColumn*	pObject = new PLFNMultiColumn( *this );
-	return pObject;
+    PLFNMultiColumn*    pObject = new PLFNMultiColumn( *this );
+    return pObject;
   //## end PLFNMultiColumn::Clone%948017481.body
 }
 
 void PLFNMultiColumn::CopyObject (PlanFinObject* pSrc)
 {
   //## begin PLFNMultiColumn::CopyObject%948017482.body preserve=yes
-	((PLFNMultiColumn*)this)->PLFNMultiColumn::operator=( (PLFNMultiColumn*)pSrc );
+    ((PLFNMultiColumn*)this)->PLFNMultiColumn::operator=( (PLFNMultiColumn*)pSrc );
   //## end PLFNMultiColumn::CopyObject%948017482.body
 }
 
 void PLFNMultiColumn::DrawObject (CDC* pDC, ZIView* pView)
 {
   //## begin PLFNMultiColumn::DrawObject%948017512.body preserve=yes
-	DrawFillObject( pDC, pView );
-	
-	CFont	*OldFont;
-	
-	OldFont = pDC->SelectObject( GetFont(pView) );
-	pDC->SetBkMode(TRANSPARENT);
-	pDC->SetTextColor( GetColor(pView) );  // text color
-	// Before displaying the object
-	// format it but for string now in this
-	// version it is not necessary
-	pDC->SetTextAlign( 0 );
-//		pDC->DrawText( GetFormatedObject(), -1, &m_rctObject, GetJustify(pView->GetDocument()) );
-	pDC->SelectObject( OldFont );
-	// Base class drawobject
-	PlanFinObject::DrawObject( pDC, pView );
-	PlanFinObject::DrawObjectRectangle( pDC );
+    DrawFillObject( pDC, pView );
+    
+    CFont    *OldFont;
+    
+    OldFont = pDC->SelectObject( GetFont(pView) );
+    pDC->SetBkMode(TRANSPARENT);
+    pDC->SetTextColor( GetColor(pView) );  // text color
+    // Before displaying the object
+    // format it but for string now in this
+    // version it is not necessary
+    pDC->SetTextAlign( 0 );
+//        pDC->DrawText( GetFormatedObject(), -1, &m_rctObject, GetJustify(pView->GetDocument()) );
+    pDC->SelectObject( OldFont );
+    // Base class drawobject
+    PlanFinObject::DrawObject( pDC, pView );
+    PlanFinObject::DrawObjectRectangle( pDC );
   //## end PLFNMultiColumn::DrawObject%948017512.body
 }
 
@@ -158,12 +158,12 @@ void PLFNMultiColumn::DrawObject (CDC* pDC, ZIView* pView)
 #ifdef _DEBUG
 void PLFNMultiColumn::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void PLFNMultiColumn::Dump(CDumpContext& dc) const
 {
-	CObject::Dump(dc);
+    CObject::Dump(dc);
 }
 #endif //_DEBUG
 

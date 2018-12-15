@@ -1,10 +1,10 @@
 //## begin module%36725FCA0248.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%36725FCA0248.cm
 
 //## begin module%36725FCA0248.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%36725FCA0248.cp
 
 //## Module: UserMng%36725FCA0248; Package specification
@@ -71,37 +71,37 @@ class AFX_EXT_CLASS ZUUserManager
 
     //## Other Operations (specified)
       //## Operation: AddUser%913459633
-      //	Add a new user.
+      //    Add a new user.
       void AddUser (CString UserName, CString MailAddress = "", CString Description = "", CString Responsible = "", CString Departement = "", BOOL IsAdministrator = FALSE, CString DisplayName = "");
 
       //## Operation: AddUser%913459634
-      //	Add a new user.
+      //    Add a new user.
       void AddUser (ZUser& User);
 
       //## Operation: Serialize%913459635
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: GetCount%913459639
-      //	Return the number of elements of the History manager.
+      //    Return the number of elements of the History manager.
       size_t GetCount ();
 
       //## Operation: RemoveAllUsers%913459636
-      //	Remove all users.
+      //    Remove all users.
       void RemoveAllUsers ();
 
       //## Operation: FindUser%913459637
-      //	Search if a specific user exists.
-      //	.
+      //    Search if a specific user exists.
+      //    .
       ZUser* FindUser (const CString& UserName, BOOL ByDisplayName = FALSE);
 
       //## Operation: RemoveUser%913459638
-      //	Remove a specific user.
+      //    Remove a specific user.
       BOOL RemoveUser (const CString& UserName, BOOL ByDisplayName = FALSE);
 
       //## Operation: GetAt%913459640
-      //	Returns the user at the index position.
-      //	.
+      //    Returns the user at the index position.
+      //    .
       ZUser* GetAt (int Index);
 
     // Additional Public Declarations
@@ -123,7 +123,7 @@ class AFX_EXT_CLASS ZUUserManager
     // Data Members for Class Attributes
 
       //## Attribute: UserArray%36725EA700D7
-      //	Contains all users.
+      //    Contains all users.
       //## begin ZUUserManager::UserArray%36725EA700D7.attr preserve=no  public: CObArray {U} 
       CObArray m_UserArray;
       //## end ZUUserManager::UserArray%36725EA700D7.attr
@@ -149,16 +149,16 @@ class AFX_EXT_CLASS ZUUserManager
 inline size_t ZUUserManager::GetCount ()
 {
   //## begin ZUUserManager::GetCount%913459639.body preserve=yes
-  	return m_UserArray.GetSize();
+      return m_UserArray.GetSize();
   //## end ZUUserManager::GetCount%913459639.body
 }
 
 inline ZUser* ZUUserManager::GetAt (int Index)
 {
   //## begin ZUUserManager::GetAt%913459640.body preserve=yes
-  	if (Index < (int)GetCount())
-  		return (ZUser*) m_UserArray.GetAt( Index );
-  	return NULL;
+      if (Index < (int)GetCount())
+          return (ZUser*) m_UserArray.GetAt( Index );
+      return NULL;
   //## end ZUUserManager::GetAt%913459640.body
 }
 

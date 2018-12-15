@@ -18,10 +18,10 @@
 #include "zBaseLib\ZWizard.h"
 
 #ifndef _WIN32
-	#include "ZWinUtil.h"
+    #include "ZWinUtil.h"
 #endif
 #ifdef _WIN32
-	#include "ZWinUtil32.h"
+    #include "ZWinUtil32.h"
 #endif
 
 
@@ -49,30 +49,30 @@ class AFX_EXT_CLASS ZIPreConditionFormProcWelcome : public ZIWizardDialog
 {
 // Construction
 public:
-	ZIPreConditionFormProcWelcome(CString ActivityName = "", CWnd* pParent = NULL);   // standard constructor
+    ZIPreConditionFormProcWelcome(CString ActivityName = "", CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(ZIPreConditionFormProcWelcome)
-	enum { IDD = IDD_WZPREACTST_FORMPROC };
-	CString	m_ActivityName;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZIPreConditionFormProcWelcome)
+    enum { IDD = IDD_WZPREACTST_FORMPROC };
+    CString    m_ActivityName;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIPreConditionFormProcWelcome)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIPreConditionFormProcWelcome)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZIPreConditionFormProcWelcome)
-	afx_msg void OnNext();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZIPreConditionFormProcWelcome)
+    afx_msg void OnNext();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

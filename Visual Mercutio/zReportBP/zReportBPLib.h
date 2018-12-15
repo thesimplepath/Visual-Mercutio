@@ -12,7 +12,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 06/2001
+// <nl>Created:         06/2001
 // <nl>Description:  ReportBPLib include file for automatic library linking
 //
 /////////////////////////////////////////////////////////////////////////////

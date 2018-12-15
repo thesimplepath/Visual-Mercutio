@@ -29,23 +29,23 @@ ZUSerializeODMeasure::~ZUSerializeODMeasure()
 
 void ZUSerializeODMeasure::SerializeWriteODMeasure(CArchive& ar, CODMeasure& Measure)
 {
-	if (ar.IsStoring())
-	{
-		ar << (DWORD)Measure.GetUnits();
-		ar << (float)Measure;
-	}
+    if (ar.IsStoring())
+    {
+        ar << (DWORD)Measure.GetUnits();
+        ar << (float)Measure;
+    }
 }
 
 void ZUSerializeODMeasure::SerializeReadODMeasure(CArchive& ar, CODMeasure& Measure)
 {
-	if (!ar.IsStoring())
-	{
-		DWORD	wValue;
-		ar >> wValue;
-		Measure.SetUnits( (OD_UNIT_OF_MEASURE)wValue );
+    if (!ar.IsStoring())
+    {
+        DWORD    wValue;
+        ar >> wValue;
+        Measure.SetUnits( (OD_UNIT_OF_MEASURE)wValue );
 
-		float	fValue;
-		ar >> fValue;
-		Measure = fValue;
-	}
+        float    fValue;
+        ar >> fValue;
+        Measure = fValue;
+    }
 }

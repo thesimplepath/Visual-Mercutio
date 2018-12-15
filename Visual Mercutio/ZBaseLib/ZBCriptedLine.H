@@ -70,7 +70,7 @@ class AFX_EXT_CLASS ZBCriptedLine : public CObject
     //## Get and Set Operations for Has Relationships (generated)
 
       //## Documentation ZBCriptedLine::sEntity.has
-      //	The entity
+      //    The entity
       const CString GetsEntity() const;
       void SetsEntity(const CString value);
 
@@ -78,10 +78,10 @@ class AFX_EXT_CLASS ZBCriptedLine : public CObject
 
   private:  
 
-      //	Take the key and cript it.
+      //    Take the key and cript it.
       void CriptEntity(CString& Line);
 
-	  CString GenerateRandomLine(int size);
+      CString GenerateRandomLine(int size);
 
   private:
 

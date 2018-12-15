@@ -29,18 +29,18 @@ ZIObjectPath::~ZIObjectPath()
 
 void ZIObjectPath::AddMemberToPath( const CString Member )
 {
-	if (m_ObjectPath.IsEmpty())
-		m_ObjectPath = Member;
-	else
-	{
-		m_ObjectPath += ObjectSeparatorChar;
-		m_ObjectPath += Member;
-	}
+    if (m_ObjectPath.IsEmpty())
+        m_ObjectPath = Member;
+    else
+    {
+        m_ObjectPath += ObjectSeparatorChar;
+        m_ObjectPath += Member;
+    }
 }
 
 
 CString ZIObjectPath::GetRootMember()
 {
-	ZBTokenizer	Tokenizer( ObjectSeparatorChar );
-	return Tokenizer.GetFirstToken(m_ObjectPath);
+    ZBTokenizer    Tokenizer( ObjectSeparatorChar );
+    return Tokenizer.GetFirstToken(m_ObjectPath);
 }

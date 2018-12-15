@@ -1,10 +1,10 @@
 //## begin module%374DA431001C.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%374DA431001C.cm
 
 //## begin module%374DA431001C.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%374DA431001C.cp
 
 //## Module: MailMsg%374DA431001C; Package body
@@ -53,9 +53,9 @@ ZBMailMessage::ZBMailMessage (ZUMailUserList* UserList, const CString Subject, c
 ZBMailMessage::~ZBMailMessage()
 {
   //## begin ZBMailMessage::~ZBMailMessage%.body preserve=yes
-	if (m_pMailUserList)
-		delete m_pMailUserList;
-	m_pMailUserList = NULL;
+    if (m_pMailUserList)
+        delete m_pMailUserList;
+    m_pMailUserList = NULL;
   //## end ZBMailMessage::~ZBMailMessage%.body
 }
 
@@ -65,54 +65,54 @@ ZBMailMessage::~ZBMailMessage()
 void ZBMailMessage::Serialize (CArchive& ar)
 {
   //## begin ZBMailMessage::Serialize%928062191.body preserve=yes
-	if (ar.IsStoring())
-	{	// Write the elements
-		ar << m_Subject;
-		ar << m_Text;
-		ar << m_pMailUserList;
-	}
-	else
-	{
-		ar >> m_Subject;
-		ar >> m_Text;
-		ar >> m_pMailUserList;
-	}
+    if (ar.IsStoring())
+    {    // Write the elements
+        ar << m_Subject;
+        ar << m_Text;
+        ar << m_pMailUserList;
+    }
+    else
+    {
+        ar >> m_Subject;
+        ar >> m_Text;
+        ar >> m_pMailUserList;
+    }
   //## end ZBMailMessage::Serialize%928062191.body
 }
 
 void ZBMailMessage::FillPerson (CStringArray& PersonList, ULONG RecipClass)
 {
   //## begin ZBMailMessage::FillPerson%927831780.body preserve=yes
-	if (!m_pMailUserList)
-		m_pMailUserList = new ZUMailUserList;
-	m_pMailUserList->Fill( PersonList, RecipClass );
+    if (!m_pMailUserList)
+        m_pMailUserList = new ZUMailUserList;
+    m_pMailUserList->Fill( PersonList, RecipClass );
   //## end ZBMailMessage::FillPerson%927831780.body
 }
 
 void ZBMailMessage::FillPerson (ZUUserManager& PersonList, ULONG RecipClass)
 {
   //## begin ZBMailMessage::FillPerson%927831781.body preserve=yes
-	if (!m_pMailUserList)
-		m_pMailUserList = new ZUMailUserList;
-	m_pMailUserList->Fill( PersonList, RecipClass );
+    if (!m_pMailUserList)
+        m_pMailUserList = new ZUMailUserList;
+    m_pMailUserList->Fill( PersonList, RecipClass );
   //## end ZBMailMessage::FillPerson%927831781.body
 }
 
 void ZBMailMessage::FillPerson (lpMapiRecipDesc* pMapiDesc, ULONG Count)
 {
   //## begin ZBMailMessage::FillPerson%927831782.body preserve=yes
-	if (!m_pMailUserList)
-		m_pMailUserList = new ZUMailUserList;
-	m_pMailUserList->Fill( pMapiDesc, Count );
+    if (!m_pMailUserList)
+        m_pMailUserList = new ZUMailUserList;
+    m_pMailUserList->Fill( pMapiDesc, Count );
   //## end ZBMailMessage::FillPerson%927831782.body
 }
 
 MapiRecipDesc* ZBMailMessage::GetMapiRecipDescPtr ()
 {
   //## begin ZBMailMessage::GetMapiRecipDescPtr%927831785.body preserve=yes
-	if (m_pMailUserList)
-		return m_pMailUserList->GetMapiRecipDescPtr();
-	return NULL;
+    if (m_pMailUserList)
+        return m_pMailUserList->GetMapiRecipDescPtr();
+    return NULL;
   //## end ZBMailMessage::GetMapiRecipDescPtr%927831785.body
 }
 

@@ -19,42 +19,42 @@ class ZIntelliListBox : public CListBox
 {
 // Construction
 public:
-	ZIntelliListBox(ZCIntelliEdit* pEditCtrl = NULL);
+    ZIntelliListBox(ZCIntelliEdit* pEditCtrl = NULL);
 
 
 // Operations
 public:
-	void	SetEditControl( ZCIntelliEdit* pEditCtrl );
+    void    SetEditControl( ZCIntelliEdit* pEditCtrl );
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIntelliListBox)
-	public:
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIntelliListBox)
+    public:
+    virtual BOOL PreTranslateMessage(MSG* pMsg);
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
-	virtual ~ZIntelliListBox();
+    virtual ~ZIntelliListBox();
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZIntelliListBox)
-	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
-	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
-	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
-	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
-	afx_msg void OnSize(UINT nType, int cx, int cy);
-	//}}AFX_MSG
+    //{{AFX_MSG(ZIntelliListBox)
+    afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+    afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+    afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+    afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
+    afx_msg void OnSize(UINT nType, int cx, int cy);
+    //}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
-
-private:
-	void	TranslateSelectionToEditControl();
+    DECLARE_MESSAGE_MAP()
 
 private:
-	ZCIntelliEdit*	m_pEditCtrl;
-	int				m_CurrentSelectionOnDown;
+    void    TranslateSelectionToEditControl();
+
+private:
+    ZCIntelliEdit*    m_pEditCtrl;
+    int                m_CurrentSelectionOnDown;
 };
 
 /////////////////////////////////////////////////////////////////////////////

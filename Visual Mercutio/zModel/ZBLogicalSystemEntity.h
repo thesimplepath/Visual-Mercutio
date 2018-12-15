@@ -52,112 +52,112 @@ typedef Iterator_T<ZBSystemEntity*> ZBSystemEntityIterator;
 
 class AFX_EXT_CLASS ZBLogicalSystemEntity : public ZBSystemEntity
 {
-	DECLARE_SERIAL( ZBLogicalSystemEntity )
+    DECLARE_SERIAL( ZBLogicalSystemEntity )
 
 public:
 
-	ZBLogicalSystemEntity(	const CString	Name		= _T( "" ),
-							const CString	Description	= _T( "" ),
-							ZBSystemEntity*	pParent		= NULL );
+    ZBLogicalSystemEntity(    const CString    Name        = _T( "" ),
+                            const CString    Description    = _T( "" ),
+                            ZBSystemEntity*    pParent        = NULL );
 
-	virtual ~ZBLogicalSystemEntity();
+    virtual ~ZBLogicalSystemEntity();
 
-	void RemoveAllSystemEntities();
+    void RemoveAllSystemEntities();
 
-	virtual bool ContainEntity() const
-	{
-		return true;
-	};
+    virtual bool ContainEntity() const
+    {
+        return true;
+    };
 
-	virtual size_t GetEntityCount() const
-	{
-		return m_EntitySet.GetSize();
-	};
+    virtual size_t GetEntityCount() const
+    {
+        return m_EntitySet.GetSize();
+    };
 
-	virtual ZBSystemEntity* GetEntityAt( size_t Index )
-	{
-		return ( Index < GetEntityCount() ) ? m_EntitySet.GetAt( Index ) : NULL;
-	};
+    virtual ZBSystemEntity* GetEntityAt( size_t Index )
+    {
+        return ( Index < GetEntityCount() ) ? m_EntitySet.GetAt( Index ) : NULL;
+    };
 
-	virtual ZBSystemEntitySet* GetEntitySet()
-	{
-		return &m_EntitySet;
-	};
+    virtual ZBSystemEntitySet* GetEntitySet()
+    {
+        return &m_EntitySet;
+    };
 
-	// Modified flag functions
-	virtual BOOL IsModified()
-	{
-		return m_bModified;
-	};
+    // Modified flag functions
+    virtual BOOL IsModified()
+    {
+        return m_bModified;
+    };
 
-	virtual void SetModifiedFlag( BOOL bModified = TRUE )
-	{
-		m_bModified = bModified;
-	};
+    virtual void SetModifiedFlag( BOOL bModified = TRUE )
+    {
+        m_bModified = bModified;
+    };
 
-	////////////////////////////////////////////////////////////////
-	// Group management functions
-	ZBLogicalSystemEntity* AddSystem( const CString Name, const CString Description );
-	ZBLogicalSystemEntity* AddSystem( const CString Name, const CString Description, const CString InSystemName );
-	ZBLogicalSystemEntity* AddSystem( const CString				Name,
-									  const CString				Description,
-									  ZBLogicalSystemEntity*	pInSystem );
+    ////////////////////////////////////////////////////////////////
+    // Group management functions
+    ZBLogicalSystemEntity* AddSystem( const CString Name, const CString Description );
+    ZBLogicalSystemEntity* AddSystem( const CString Name, const CString Description, const CString InSystemName );
+    ZBLogicalSystemEntity* AddSystem( const CString                Name,
+                                      const CString                Description,
+                                      ZBLogicalSystemEntity*    pInSystem );
 
-	bool RemoveSystem( const CString Name, bool Deeper = false );
-	bool RemoveSystem( const CString Name, const CString InSystemName );
-	bool RemoveSystem( const CString Name, ZBLogicalSystemEntity* pInSystem );
-	bool RemoveSystem( ZBLogicalSystemEntity* pGroup );
+    bool RemoveSystem( const CString Name, bool Deeper = false );
+    bool RemoveSystem( const CString Name, const CString InSystemName );
+    bool RemoveSystem( const CString Name, ZBLogicalSystemEntity* pInSystem );
+    bool RemoveSystem( ZBLogicalSystemEntity* pGroup );
 
-	ZBSystemEntity* FindSystemByGUID( const CString GUID, bool Deeper = false );
+    ZBSystemEntity* FindSystemByGUID( const CString GUID, bool Deeper = false );
 
-	ZBSystemEntitySet* FindSystem( const CString Name, bool Deeper = false );
-	ZBSystemEntitySet* FindSystem( const CString Name, const CString InSystemName );
-	ZBSystemEntitySet* FindSystem( const CString Name, ZBLogicalSystemEntity* pInSystem );
-	bool SystemExist( const CString Name, bool Deeper = false );
-	bool SystemExist( const CString Name, const CString InSystemName );
-	bool SystemExist( const CString Name, ZBLogicalSystemEntity* pInSystem );
+    ZBSystemEntitySet* FindSystem( const CString Name, bool Deeper = false );
+    ZBSystemEntitySet* FindSystem( const CString Name, const CString InSystemName );
+    ZBSystemEntitySet* FindSystem( const CString Name, ZBLogicalSystemEntity* pInSystem );
+    bool SystemExist( const CString Name, bool Deeper = false );
+    bool SystemExist( const CString Name, const CString InSystemName );
+    bool SystemExist( const CString Name, ZBLogicalSystemEntity* pInSystem );
 
-	// JMR-MODIF - Le 27 février 2006 - Ajout de la fonction MoveSystem.
-	bool MoveSystem( ZBSystemEntity* pSystem );
+    // JMR-MODIF - Le 27 février 2006 - Ajout de la fonction MoveSystem.
+    bool MoveSystem( ZBSystemEntity* pSystem );
 
-	// Serialization mechanism
-	virtual void Serialize( CArchive& ar );   // overridden for document i/o
+    // Serialization mechanism
+    virtual void Serialize( CArchive& ar );   // overridden for document i/o
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 protected:
 
-	// JMR-MODIF - Le 27 février 2006 - Ajout de la fonction AddSystem.
-	bool AddSystem( ZBSystemEntity* pSystem )
-	{
-		m_EntitySet.Add( pSystem );
-		return true;
-	};
+    // JMR-MODIF - Le 27 février 2006 - Ajout de la fonction AddSystem.
+    bool AddSystem( ZBSystemEntity* pSystem )
+    {
+        m_EntitySet.Add( pSystem );
+        return true;
+    };
 
-	// JMR-MODIF - Le 27 février 2006 - Ajout de la fonction RemoveSystemFromSet.
-	bool RemoveSystemFromSet( ZBSystemEntity* pSystem );
+    // JMR-MODIF - Le 27 février 2006 - Ajout de la fonction RemoveSystemFromSet.
+    bool RemoveSystemFromSet( ZBSystemEntity* pSystem );
 
-	////////////////////////////////////////////////////////////////
-	// Group management functions
-	ZBSystemEntity* _FindSystemByGUID( const CString GUID, bool Deeper = false );
-	void _FindSystem( const CString Name, ZBLogicalSystemEntity* pInSystem );
-	void _FindSystem( const CString Name, bool Deeper = false );
-	ZBLogicalSystemEntity* _FindFirstSystem( const CString Name, ZBLogicalSystemEntity* pInSystem );
-	ZBLogicalSystemEntity* _FindFirstSystem( const CString Name, bool Deeper = false );
-	bool _RemoveSystems( ZBSystemEntitySet& Set );
+    ////////////////////////////////////////////////////////////////
+    // Group management functions
+    ZBSystemEntity* _FindSystemByGUID( const CString GUID, bool Deeper = false );
+    void _FindSystem( const CString Name, ZBLogicalSystemEntity* pInSystem );
+    void _FindSystem( const CString Name, bool Deeper = false );
+    ZBLogicalSystemEntity* _FindFirstSystem( const CString Name, ZBLogicalSystemEntity* pInSystem );
+    ZBLogicalSystemEntity* _FindFirstSystem( const CString Name, bool Deeper = false );
+    bool _RemoveSystems( ZBSystemEntitySet& Set );
 
-	void RecalculateParent();
+    void RecalculateParent();
 
 // Members are protected, since they need to be access directly by sub-class
 protected:
 
-	ZBSystemEntitySet			m_EntitySet;
+    ZBSystemEntitySet            m_EntitySet;
 
-	static ZBSystemEntitySet	m_FindSet;
-	static BOOL					m_bModified;
+    static ZBSystemEntitySet    m_FindSet;
+    static BOOL                    m_bModified;
 };
 
 #endif // !defined(AFX_ZBLogicalSystemEntity_H__2AC8D235_7673_47BE_86B3_CCD14A70DE78__INCLUDED_)

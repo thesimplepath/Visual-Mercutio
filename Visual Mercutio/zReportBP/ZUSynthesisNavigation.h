@@ -13,9 +13,9 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 07/2001
+// <nl>Created:         07/2001
 // <nl>Description:  ZUSynthesisNavigation navigates through the process and
-//					 write process information to the grid
+//                     write process information to the grid
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -38,32 +38,32 @@ class ZUSynthesisNavigation : public ZUProcessNavigation
 {
 public:
 
-	ZUSynthesisNavigation( ZDProcessGraphModelMdl*	pModel		= NULL,
-						   void*					pClass		= NULL,
-						   ZDProcessGraphModelMdl*	pRootModel	= NULL,
-						   const CString			domainName	= _T( "" ),
-						   const CString			unitName	= _T( "" ) );
+    ZUSynthesisNavigation( ZDProcessGraphModelMdl*    pModel        = NULL,
+                           void*                    pClass        = NULL,
+                           ZDProcessGraphModelMdl*    pRootModel    = NULL,
+                           const CString            domainName    = _T( "" ),
+                           const CString            unitName    = _T( "" ) );
 
-	virtual ~ZUSynthesisNavigation();
+    virtual ~ZUSynthesisNavigation();
 
-	// Call-back methods
-	virtual bool OnStart			();
-	virtual bool OnFinish			();
-	virtual bool OnProcedureSymbol	( ZBBPProcedureSymbol*	pSymbol );
-	virtual bool OnProcessSymbol	( ZBBPProcessSymbol*	pSymbol );
-	virtual bool OnSymbol			( ZBSymbol*				pSymbol );
-	virtual bool OnLink				( ZBLinkSymbol*			pLink );
+    // Call-back methods
+    virtual bool OnStart            ();
+    virtual bool OnFinish            ();
+    virtual bool OnProcedureSymbol    ( ZBBPProcedureSymbol*    pSymbol );
+    virtual bool OnProcessSymbol    ( ZBBPProcessSymbol*    pSymbol );
+    virtual bool OnSymbol            ( ZBSymbol*                pSymbol );
+    virtual bool OnLink                ( ZBLinkSymbol*            pLink );
 
 private:
 
-	ZBOStreamGrid*			m_postream;
-	CGXStyle				m_BlueStyle;
+    ZBOStreamGrid*            m_postream;
+    CGXStyle                m_BlueStyle;
 
-	ZDProcessGraphModelMdl*	m_pRootModel;
+    ZDProcessGraphModelMdl*    m_pRootModel;
 
-	CString					m_DomainName;
-	CString					m_UnitName;
-	CString					m_CurrentProcessName;
+    CString                    m_DomainName;
+    CString                    m_UnitName;
+    CString                    m_CurrentProcessName;
 };
 
 #endif // !defined(AFX_ZUSynthesisNavigation_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)

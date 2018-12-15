@@ -1,5 +1,5 @@
 //## begin module%368CD37302DA.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%368CD37302DA.cm
 
 //## begin module%368CD37302DA.cp preserve=no
@@ -68,7 +68,7 @@ class AFX_EXT_CLASS ZDUserLoader
   public:
     //## Constructors (specified)
       //## Operation: ZDUserLoader%915200903
-      //	The default constructor.
+      //    The default constructor.
       ZDUserLoader (ZUUserManager* pUserManager = NULL, CString FileName = "");
 
     //## Destructor (generated)
@@ -77,15 +77,15 @@ class AFX_EXT_CLASS ZDUserLoader
 
     //## Other Operations (specified)
       //## Operation: LoadAllUsers%915200904
-      //	From the database or the file, loads all users in memory.
+      //    From the database or the file, loads all users in memory.
       BOOL LoadAllUsers ();
 
       //## Operation: SaveAllUsers%915200905
-      //	Saves all users to the database or the file.
+      //    Saves all users to the database or the file.
       BOOL SaveAllUsers ();
 
       //## Operation: AssignUserManager%915200906
-      //	Assigns the user manager to work with.
+      //    Assigns the user manager to work with.
       void AssignUserManager (ZUUserManager* pUserManager);
 
       //## Operation: AssignFileName%922203372
@@ -113,13 +113,13 @@ class AFX_EXT_CLASS ZDUserLoader
     // Data Members for Class Attributes
 
       //## Attribute: pUserManager%368CD5000190
-      //	The pointer to the user manager to load or save.
+      //    The pointer to the user manager to load or save.
       //## begin ZDUserLoader::pUserManager%368CD5000190.attr preserve=no  public: ZUUserManager* {U} 
       ZUUserManager* m_pUserManager;
       //## end ZDUserLoader::pUserManager%368CD5000190.attr
 
       //## Attribute: UserImport%368CDFFD02E4
-      //	The classes used to import users.
+      //    The classes used to import users.
       //## begin ZDUserLoader::UserImport%368CDFFD02E4.attr preserve=no  public: ZUUserExport {U} 
       ZUUserExport m_UserImport;
       //## end ZDUserLoader::UserImport%368CDFFD02E4.attr
@@ -162,8 +162,8 @@ inline ZDUserLoader::ZDUserLoader (ZUUserManager* pUserManager, CString FileName
 inline void ZDUserLoader::Create (ZUUserManager* pUserManager, CString FileName)
 {
   //## begin ZDUserLoader::Create%922203373.body preserve=yes
-	m_pUserManager = pUserManager;
-	m_FileName = FileName;
+    m_pUserManager = pUserManager;
+    m_FileName = FileName;
   //## end ZDUserLoader::Create%922203373.body
 }
 

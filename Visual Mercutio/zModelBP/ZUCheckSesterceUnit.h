@@ -13,9 +13,9 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 07/2001
+// <nl>Created:         07/2001
 // <nl>Description:  ZUCheckSesterceUnit navigates through the process and
-//					 write process information to the grid
+//                     write process information to the grid
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -67,15 +67,15 @@ class ZBUserGroupEntity;
 class AFX_EXT_CLASS ZUCheckSesterceUnit : public ZUProcessNavigation  
 {
 public:
-	ZUCheckSesterceUnit(ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
-	virtual ~ZUCheckSesterceUnit();
+    ZUCheckSesterceUnit(ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
+    virtual ~ZUCheckSesterceUnit();
 
-	// Call-back methods
-	virtual bool OnStart();
-	virtual bool OnFinish();
-	virtual bool OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol );
-	virtual bool OnStartSymbol( ZBBPStartSymbol* pSymbol );
-	virtual bool OnStopSymbol( ZBBPStopSymbol* pSymbol );
+    // Call-back methods
+    virtual bool OnStart();
+    virtual bool OnFinish();
+    virtual bool OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol );
+    virtual bool OnStartSymbol( ZBBPStartSymbol* pSymbol );
+    virtual bool OnStopSymbol( ZBBPStopSymbol* pSymbol );
 
 
 };

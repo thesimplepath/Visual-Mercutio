@@ -1,7 +1,7 @@
 /****************************************************************************************************************
- *												   Classe ZBDuration											*
+ *                                                   Classe ZBDuration                                            *
  ****************************************************************************************************************
- * Cette classe permet de traiter les données des propriétés de durée. Elle s'occupe également des conversions.	*
+ * Cette classe permet de traiter les données des propriétés de durée. Elle s'occupe également des conversions.    *
  ****************************************************************************************************************/
 
 #if !defined(AFX_ZBDuration_H__68FF3F60_E39C_4145_BDF2_811425B343D8__INCLUDED_)
@@ -31,171 +31,171 @@
 
 // JMR-MODIF - Le 15 février 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-#define MAX_DAYS_IN_SPANDURATION	3615897L
+#define MAX_DAYS_IN_SPANDURATION    3615897L
 
 class AFX_EXT_CLASS ZBDuration
 {
 public:
 
-	enum DurationStatus
-	{
-		valid	= 0,
-		invalid	= 1,	// Invalid date (out of range, etc.)
-		null	= 2,	// Literally has no value
-	};
+    enum DurationStatus
+    {
+        valid    = 0,
+        invalid    = 1,    // Invalid date (out of range, etc.)
+        null    = 2,    // Literally has no value
+    };
 
-	double			m_span;
+    double            m_span;
 
-	DurationStatus	m_status;
+    DurationStatus    m_status;
 
-	// Base time constant for calculation
-	int				m_HourPerDay;
-	int				m_DayPerWeek;
-	int				m_DayPerMonth;
-	int				m_DayPerYear;
-
-public:
-
-	// Constructors
-	ZBDuration( int HourPerDay	= 8,
-				int DayPerWeek	= 5,
-				int DayPerMonth	= 22,
-				int DayPerYear	= 220);
-
-	ZBDuration( double value,
-				int HourPerDay	= 8,
-				int DayPerWeek	= 5,
-				int DayPerMonth	= 22,
-				int DayPerYear	= 220);
-
-	ZBDuration( long lDays,
-				int nHours,
-				int nMins,
-				int nSecs		= 0,
-				int HourPerDay	= 8,
-				int DayPerWeek	= 5,
-				int DayPerMonth	= 22,
-				int DayPerYear	= 220 );
-
-	// Copy constructors
-	ZBDuration::ZBDuration( const ZBDuration& right );
-
-	// Destructors
-	virtual ~ZBDuration();
+    // Base time constant for calculation
+    int                m_HourPerDay;
+    int                m_DayPerWeek;
+    int                m_DayPerMonth;
+    int                m_DayPerYear;
 
 public:
 
-	void SetStatus( DurationStatus status )
-	{
-		m_status = status;
-	};
+    // Constructors
+    ZBDuration( int HourPerDay    = 8,
+                int DayPerWeek    = 5,
+                int DayPerMonth    = 22,
+                int DayPerYear    = 220);
 
-	DurationStatus GetStatus() const
-	{
-		return m_status;
-	};
+    ZBDuration( double value,
+                int HourPerDay    = 8,
+                int DayPerWeek    = 5,
+                int DayPerMonth    = 22,
+                int DayPerYear    = 220);
 
-	double GetTotalDays		() const;		// span in days (about -3.65e6 to 3.65e6)
-	double GetTotalHours	() const;		// span in hours (about -8.77e7 to 8.77e6)
-	double GetTotalMinutes	() const;		// span in minutes (about -5.26e9 to 5.26e9)
-	double GetTotalSeconds	() const;		// span in seconds (about -3.16e11 to 3.16e11)
+    ZBDuration( long lDays,
+                int nHours,
+                int nMins,
+                int nSecs        = 0,
+                int HourPerDay    = 8,
+                int DayPerWeek    = 5,
+                int DayPerMonth    = 22,
+                int DayPerYear    = 220 );
 
-	long GetDays			() const;		// component days in span
-	long GetHours			() const;		// component hours in span (-23 to 23)
-	long GetMinutes			() const;		// component minutes in span (-59 to 59)
-	long GetSeconds			() const;		// component seconds in span (-59 to 59)
+    // Copy constructors
+    ZBDuration::ZBDuration( const ZBDuration& right );
 
-	double ConvertWeekToDays ( int value );	// Converts the number of week in number of days
-	double ConvertMonthToDays( int value );	// Converts the number of month in number of days
+    // Destructors
+    virtual ~ZBDuration();
 
-	void AddWeek ( int value );				// add a number of weeks
-	void AddMonth( int value );				// add a number of months
-	void SubWeek ( int value );				// substract a number of weeks
-	void SubMonth( int value );				// substract a number of months
+public:
 
-	// Assignment operators
-	const ZBDuration& operator=( double value );
-	const ZBDuration& operator=( const ZBDuration& right );
+    void SetStatus( DurationStatus status )
+    {
+        m_status = status;
+    };
 
-	// Comparison operators
-	BOOL operator==( const ZBDuration& right ) const;
-	BOOL operator!=( const ZBDuration& right ) const;
-	BOOL operator< ( const ZBDuration& right ) const;
-	BOOL operator> ( const ZBDuration& right ) const;
-	BOOL operator<=( const ZBDuration& right ) const;
-	BOOL operator>=( const ZBDuration& right ) const;
+    DurationStatus GetStatus() const
+    {
+        return m_status;
+    };
 
-	// Math operators
-	ZBDuration operator+( const ZBDuration& right ) const;
-	ZBDuration operator-( const ZBDuration& right ) const;
-	const ZBDuration& operator+=( const ZBDuration right );
-	const ZBDuration& operator-=( const ZBDuration right );
-	ZBDuration operator-() const;
+    double GetTotalDays        () const;        // span in days (about -3.65e6 to 3.65e6)
+    double GetTotalHours    () const;        // span in hours (about -8.77e7 to 8.77e6)
+    double GetTotalMinutes    () const;        // span in minutes (about -5.26e9 to 5.26e9)
+    double GetTotalSeconds    () const;        // span in seconds (about -3.16e11 to 3.16e11)
 
-	operator double() const;
+    long GetDays            () const;        // component days in span
+    long GetHours            () const;        // component hours in span (-23 to 23)
+    long GetMinutes            () const;        // component minutes in span (-59 to 59)
+    long GetSeconds            () const;        // component seconds in span (-59 to 59)
 
-	void SetDuration( long lDays, int nHours, int nMins, int nSecs = 0 );
+    double ConvertWeekToDays ( int value );    // Converts the number of week in number of days
+    double ConvertMonthToDays( int value );    // Converts the number of month in number of days
 
-	// Formatting
-	CString Format( LPCTSTR pFormat ) const;
-	CString Format( UINT nID ) const;
+    void AddWeek ( int value );                // add a number of weeks
+    void AddMonth( int value );                // add a number of months
+    void SubWeek ( int value );                // substract a number of weeks
+    void SubMonth( int value );                // substract a number of months
+
+    // Assignment operators
+    const ZBDuration& operator=( double value );
+    const ZBDuration& operator=( const ZBDuration& right );
+
+    // Comparison operators
+    BOOL operator==( const ZBDuration& right ) const;
+    BOOL operator!=( const ZBDuration& right ) const;
+    BOOL operator< ( const ZBDuration& right ) const;
+    BOOL operator> ( const ZBDuration& right ) const;
+    BOOL operator<=( const ZBDuration& right ) const;
+    BOOL operator>=( const ZBDuration& right ) const;
+
+    // Math operators
+    ZBDuration operator+( const ZBDuration& right ) const;
+    ZBDuration operator-( const ZBDuration& right ) const;
+    const ZBDuration& operator+=( const ZBDuration right );
+    const ZBDuration& operator-=( const ZBDuration right );
+    ZBDuration operator-() const;
+
+    operator double() const;
+
+    void SetDuration( long lDays, int nHours, int nMins, int nSecs = 0 );
+
+    // Formatting
+    CString Format( LPCTSTR pFormat ) const;
+    CString Format( UINT nID ) const;
 
 private:
 
-	double GetHalfSecond() const
-	{
-		return ( 1.0 / ( 2.0 * ( 60.0 * 60.0 * (double)m_HourPerDay ) ) );
-	};
+    double GetHalfSecond() const
+    {
+        return ( 1.0 / ( 2.0 * ( 60.0 * 60.0 * (double)m_HourPerDay ) ) );
+    };
 
-	void CheckRange();
+    void CheckRange();
 };
 
-inline ZBDuration::ZBDuration( int HourPerDay	/*= 8*/,
-							   int DayPerWeek	/*= 5*/,
-							   int DayPerMonth	/*= 22*/,
-							   int DayPerYear	/*= 220*/)
-	: m_HourPerDay	( HourPerDay ),
-	  m_DayPerWeek	( DayPerWeek ),
-	  m_DayPerMonth	( DayPerMonth ),
-	  m_DayPerYear	( DayPerYear ),
-	  m_span		( 0.0 )
+inline ZBDuration::ZBDuration( int HourPerDay    /*= 8*/,
+                               int DayPerWeek    /*= 5*/,
+                               int DayPerMonth    /*= 22*/,
+                               int DayPerYear    /*= 220*/)
+    : m_HourPerDay    ( HourPerDay ),
+      m_DayPerWeek    ( DayPerWeek ),
+      m_DayPerMonth    ( DayPerMonth ),
+      m_DayPerYear    ( DayPerYear ),
+      m_span        ( 0.0 )
 {
-	SetStatus( valid );
+    SetStatus( valid );
 }
 
-inline ZBDuration::ZBDuration( double	value,
-							   int		HourPerDay	/*= 8*/,
-							   int		DayPerWeek	/*= 5*/,
-							   int		DayPerMonth	/*= 22*/,
-							   int		DayPerYear	/*= 220*/)
-	: m_HourPerDay	( HourPerDay ),
-	  m_DayPerWeek	( DayPerWeek ),
-	  m_DayPerMonth	( DayPerMonth ),
-	  m_DayPerYear	( DayPerYear ),
-	  m_span		( value )
+inline ZBDuration::ZBDuration( double    value,
+                               int        HourPerDay    /*= 8*/,
+                               int        DayPerWeek    /*= 5*/,
+                               int        DayPerMonth    /*= 22*/,
+                               int        DayPerYear    /*= 220*/)
+    : m_HourPerDay    ( HourPerDay ),
+      m_DayPerWeek    ( DayPerWeek ),
+      m_DayPerMonth    ( DayPerMonth ),
+      m_DayPerYear    ( DayPerYear ),
+      m_span        ( value )
 {
-	SetStatus( valid );
+    SetStatus( valid );
 }
 
-inline ZBDuration::ZBDuration( long	lDays,
-							   int	nHours,
-							   int	nMins,
-							   int	nSecs		/*= 0*/,
-							   int	HourPerDay	/*= 8*/,
-							   int	DayPerWeek	/*= 5*/,
-							   int	DayPerMonth	/*= 22*/,
-							   int	DayPerYear	/*= 220*/)
-	: m_HourPerDay	( HourPerDay ),
-	  m_DayPerWeek	( DayPerWeek ),
-	  m_DayPerMonth	( DayPerMonth ),
-	  m_DayPerYear	( DayPerYear )
+inline ZBDuration::ZBDuration( long    lDays,
+                               int    nHours,
+                               int    nMins,
+                               int    nSecs        /*= 0*/,
+                               int    HourPerDay    /*= 8*/,
+                               int    DayPerWeek    /*= 5*/,
+                               int    DayPerMonth    /*= 22*/,
+                               int    DayPerYear    /*= 220*/)
+    : m_HourPerDay    ( HourPerDay ),
+      m_DayPerWeek    ( DayPerWeek ),
+      m_DayPerMonth    ( DayPerMonth ),
+      m_DayPerYear    ( DayPerYear )
 {
-	SetDuration( lDays, nHours, nMins, nSecs );
+    SetDuration( lDays, nHours, nMins, nSecs );
 }
 
 inline ZBDuration::ZBDuration( const ZBDuration& right )
 { 
-	*this = right; 
+    *this = right; 
 }
 
 inline ZBDuration::~ZBDuration()
@@ -204,144 +204,144 @@ inline ZBDuration::~ZBDuration()
 
 inline void ZBDuration::SetDuration( long lDays, int nHours, int nMins, int nSecs /*= 0*/ )
 {
-	// Set date span by breaking into fractional days (all input ranges valid)
-	m_span = lDays +
-			 ( (double)nHours ) /   (double)m_HourPerDay +
-			 ( (double)nMins  ) / ( (double)m_HourPerDay * 60 ) +
-			 ( (double)nSecs  ) / ( (double)m_HourPerDay * 60 * 60 );
+    // Set date span by breaking into fractional days (all input ranges valid)
+    m_span = lDays +
+             ( (double)nHours ) /   (double)m_HourPerDay +
+             ( (double)nMins  ) / ( (double)m_HourPerDay * 60 ) +
+             ( (double)nSecs  ) / ( (double)m_HourPerDay * 60 * 60 );
 
-	SetStatus( valid );
+    SetStatus( valid );
 }
 
 inline double ZBDuration::GetTotalDays() const
 {
-	ASSERT( GetStatus() == valid );
-	return m_span; 
+    ASSERT( GetStatus() == valid );
+    return m_span; 
 }
 
 inline double ZBDuration::GetTotalHours() const
 {
-	ASSERT( GetStatus() == valid );
-	long lReturns = (long)( m_span * (double)m_HourPerDay + GetHalfSecond() );
-	return lReturns;
+    ASSERT( GetStatus() == valid );
+    long lReturns = (long)( m_span * (double)m_HourPerDay + GetHalfSecond() );
+    return lReturns;
 }
 
 inline double ZBDuration::GetTotalMinutes() const
 {
-	ASSERT( GetStatus() == valid );
-	long lReturns = (long)( m_span * (double)m_HourPerDay * 60 + GetHalfSecond() );
-	return lReturns;
+    ASSERT( GetStatus() == valid );
+    long lReturns = (long)( m_span * (double)m_HourPerDay * 60 + GetHalfSecond() );
+    return lReturns;
 }
 
 inline double ZBDuration::GetTotalSeconds() const
 {
-	ASSERT( GetStatus() == valid );
-	long lReturns = (long)( m_span * (double)m_HourPerDay * 60 * 60 + GetHalfSecond() );
-	return lReturns;
+    ASSERT( GetStatus() == valid );
+    long lReturns = (long)( m_span * (double)m_HourPerDay * 60 * 60 + GetHalfSecond() );
+    return lReturns;
 }
 
 inline long ZBDuration::GetDays() const
 {
-	ASSERT( GetStatus() == valid );
-	return (long)m_span; 
+    ASSERT( GetStatus() == valid );
+    return (long)m_span; 
 }
 
 inline BOOL ZBDuration::operator==( const ZBDuration& right ) const
 {
-	return ( m_status == right.m_status && m_span == right.m_span );
+    return ( m_status == right.m_status && m_span == right.m_span );
 }
 
 inline BOOL ZBDuration::operator!=( const ZBDuration& right ) const
 {
-	return ( m_status != right.m_status || m_span != right.m_span ); 
+    return ( m_status != right.m_status || m_span != right.m_span ); 
 }
 
 inline BOOL ZBDuration::operator<( const ZBDuration& right ) const
 {
-	ASSERT( GetStatus() == valid );
-	ASSERT( right.GetStatus() == valid );
-	return m_span < right.m_span;
+    ASSERT( GetStatus() == valid );
+    ASSERT( right.GetStatus() == valid );
+    return m_span < right.m_span;
 }
 
 inline BOOL ZBDuration::operator>( const ZBDuration& right ) const
 {
-	ASSERT( GetStatus() == valid );
-	ASSERT( right.GetStatus() == valid );
-	return m_span > right.m_span;
+    ASSERT( GetStatus() == valid );
+    ASSERT( right.GetStatus() == valid );
+    return m_span > right.m_span;
 }
 
 inline BOOL ZBDuration::operator<=( const ZBDuration& right ) const
 {
-	ASSERT( GetStatus() == valid );
-	ASSERT( right.GetStatus() == valid );
-	return m_span <= right.m_span;
+    ASSERT( GetStatus() == valid );
+    ASSERT( right.GetStatus() == valid );
+    return m_span <= right.m_span;
 }
 
 inline BOOL ZBDuration::operator>=( const ZBDuration& right ) const
 {
-	ASSERT( GetStatus() == valid );
-	ASSERT( right.GetStatus() == valid );
-	return m_span >= right.m_span;
+    ASSERT( GetStatus() == valid );
+    ASSERT( right.GetStatus() == valid );
+    return m_span >= right.m_span;
 }
 
 inline const ZBDuration& ZBDuration::operator+=( const ZBDuration right )
 {
-	*this = *this + right;
-	return *this;
+    *this = *this + right;
+    return *this;
 }
 
 inline const ZBDuration& ZBDuration::operator-=( const ZBDuration right )
 {
-	*this = *this - right;
-	return *this;
+    *this = *this - right;
+    return *this;
 }
 
 inline ZBDuration ZBDuration::operator-() const
 {
-	return -this->m_span;
+    return -this->m_span;
 }
 
 inline ZBDuration::operator double() const
 {
-	return m_span;
+    return m_span;
 }
 
 inline double ZBDuration::ConvertWeekToDays( int value )
 {
-	return ( (double)m_DayPerWeek * (double)value );
+    return ( (double)m_DayPerWeek * (double)value );
 }
 
 inline double ZBDuration::ConvertMonthToDays( int value )
 {
-	return (( double)m_DayPerMonth * (double)value );
+    return (( double)m_DayPerMonth * (double)value );
 }
 
 inline void ZBDuration::AddWeek( int value )
 {
-	*this += ConvertWeekToDays( value );
+    *this += ConvertWeekToDays( value );
 }
 
 inline void ZBDuration::AddMonth( int value )
 {
-	*this += ConvertMonthToDays( value );
+    *this += ConvertMonthToDays( value );
 }
 
 inline void ZBDuration::SubWeek( int value )
 {
-	*this -= ConvertWeekToDays( value );
+    *this -= ConvertWeekToDays( value );
 }
 
 inline void ZBDuration::SubMonth( int value )
 {
-	*this -= ConvertMonthToDays( value );
+    *this -= ConvertMonthToDays( value );
 }
 
 inline void ZBDuration::CheckRange()
 {
-	if( m_span < -MAX_DAYS_IN_SPANDURATION || m_span > MAX_DAYS_IN_SPANDURATION )
-	{
-		SetStatus( invalid );
-	}
+    if( m_span < -MAX_DAYS_IN_SPANDURATION || m_span > MAX_DAYS_IN_SPANDURATION )
+    {
+        SetStatus( invalid );
+    }
 }
 
 #ifdef _DEBUG

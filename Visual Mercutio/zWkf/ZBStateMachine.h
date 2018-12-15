@@ -44,102 +44,102 @@ class ZDProcessGraphModelMdl;
 
 class AFX_EXT_CLASS ZBStateMachine : public CObject  
 {
-	DECLARE_SERIAL(ZBStateMachine)
+    DECLARE_SERIAL(ZBStateMachine)
 
 public:
-	ZBStateMachine(ZDProcessGraphModelMdl* pModel = NULL);
-	virtual ~ZBStateMachine();
-	/* Copy constructor. */
-	ZBStateMachine(const ZBStateMachine& src);
-	/* Assignment operator. */
-	ZBStateMachine& operator=(const ZBStateMachine& src);
-	/* Create a duplicate copy of this object. */
-	virtual ZBStateMachine* Clone() const;
+    ZBStateMachine(ZDProcessGraphModelMdl* pModel = NULL);
+    virtual ~ZBStateMachine();
+    /* Copy constructor. */
+    ZBStateMachine(const ZBStateMachine& src);
+    /* Assignment operator. */
+    ZBStateMachine& operator=(const ZBStateMachine& src);
+    /* Create a duplicate copy of this object. */
+    virtual ZBStateMachine* Clone() const;
 
-	void AssignModel( ZDProcessGraphModelMdl* pModel );
-	// Get the current symbol
-	ZBSymbol* GetCurrentSymbol() const
-	{
-		return (GetCurrentStateObject()) ? GetCurrentStateObject()->GetpSymbol(): NULL;
-	};
-	// Get the current state object
-	ZBStateObject* GetCurrentStateObject() const
-	{
-		return (GetStateObjectCount() > 0) ? m_Set.GetAt( GetStateObjectCount()-1 ) : NULL;
-	};
-	// Return true if the last element is equal 
-	bool IsLastObjectEqual( ZBStateMachine* pStateMachine ) const
-	{
-		return (GetCurrentStateObject() && 
-			    pStateMachine &&
-				pStateMachine->GetCurrentStateObject()) ?
-					GetCurrentStateObject()->IsEqual( pStateMachine->GetCurrentStateObject() ) :
-					false;
-	}
-	// Return true if the object is equal
-	bool IsEqual( ZBStateMachine* pRight );
+    void AssignModel( ZDProcessGraphModelMdl* pModel );
+    // Get the current symbol
+    ZBSymbol* GetCurrentSymbol() const
+    {
+        return (GetCurrentStateObject()) ? GetCurrentStateObject()->GetpSymbol(): NULL;
+    };
+    // Get the current state object
+    ZBStateObject* GetCurrentStateObject() const
+    {
+        return (GetStateObjectCount() > 0) ? m_Set.GetAt( GetStateObjectCount()-1 ) : NULL;
+    };
+    // Return true if the last element is equal 
+    bool IsLastObjectEqual( ZBStateMachine* pStateMachine ) const
+    {
+        return (GetCurrentStateObject() && 
+                pStateMachine &&
+                pStateMachine->GetCurrentStateObject()) ?
+                    GetCurrentStateObject()->IsEqual( pStateMachine->GetCurrentStateObject() ) :
+                    false;
+    }
+    // Return true if the object is equal
+    bool IsEqual( ZBStateMachine* pRight );
 
-	///////////////////////////////////////////////////////////////////////////
-	// Stack functions
-	void PushSymbol( ZBSymbol* pSymbol, ZBLinkSymbol* pLinkSymbol, ZBStateLink::LinkDirection Direction );
-	void PushSymbol( ZBSymbol* pSymbol, ZBStateLink* pStateLink );
-	void PushStateObject( ZBStateObject* pStateObj );
-	ZBStateObject* PopStateObject( size_t Level = 0 )
-	{
-		return _PopStateObject( true, Level );
-	};
-	ZBStateObject* PopStateObjectNoRemove( size_t Level = 0 )
-	{
-		return _PopStateObject( false, Level );
-	};
+    ///////////////////////////////////////////////////////////////////////////
+    // Stack functions
+    void PushSymbol( ZBSymbol* pSymbol, ZBLinkSymbol* pLinkSymbol, ZBStateLink::LinkDirection Direction );
+    void PushSymbol( ZBSymbol* pSymbol, ZBStateLink* pStateLink );
+    void PushStateObject( ZBStateObject* pStateObj );
+    ZBStateObject* PopStateObject( size_t Level = 0 )
+    {
+        return _PopStateObject( true, Level );
+    };
+    ZBStateObject* PopStateObjectNoRemove( size_t Level = 0 )
+    {
+        return _PopStateObject( false, Level );
+    };
 
-	ZBStateObjectSet& GetStateObjectSet()
-	{
-		return m_Set;
-	};
-	const ZBStateObjectSet& GetStateObjectSetConst() const
-	{
-		return m_Set;
-	};
+    ZBStateObjectSet& GetStateObjectSet()
+    {
+        return m_Set;
+    };
+    const ZBStateObjectSet& GetStateObjectSetConst() const
+    {
+        return m_Set;
+    };
 
-	/////////////////////////////////////////////////////////////////////////////
-	// Merge functions
-	bool MergeAllStates();
-	bool Merge( ZBStateMachine* pRight );
-	bool Merge( ZBStateMachineSet& SetRight );
+    /////////////////////////////////////////////////////////////////////////////
+    // Merge functions
+    bool MergeAllStates();
+    bool Merge( ZBStateMachine* pRight );
+    bool Merge( ZBStateMachineSet& SetRight );
 
-	/////////////////////////////////////////////////////////////////////////////
-	// Serialization mechanism
-	virtual void Serialize(CArchive& ar);   // overridden for document i/o
+    /////////////////////////////////////////////////////////////////////////////
+    // Serialization mechanism
+    virtual void Serialize(CArchive& ar);   // overridden for document i/o
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
 private:
-	void AssignModelToStateObjects();
-	void RemoveAllObjects();
-	int AddStateObject( ZBStateObject* pStateObj );
-	// Return the counter of state objects
-	size_t	GetStateObjectCount() const 
-	{
-		return m_Set.GetSize();
-	};
-	ZBStateObject* _PopStateObject( bool RemoveFromStack, size_t Level );
-	// Return the state object at a specific index
-	ZBStateObject* GetStateObjectAt( size_t Index )
-	{
-		return (Index < GetStateObjectCount()) ? m_Set.GetAt(Index) : NULL;
-	};
-	void RemoveStateObjectAt( size_t Index, bool DeleteObject = true);
+    void AssignModelToStateObjects();
+    void RemoveAllObjects();
+    int AddStateObject( ZBStateObject* pStateObj );
+    // Return the counter of state objects
+    size_t    GetStateObjectCount() const 
+    {
+        return m_Set.GetSize();
+    };
+    ZBStateObject* _PopStateObject( bool RemoveFromStack, size_t Level );
+    // Return the state object at a specific index
+    ZBStateObject* GetStateObjectAt( size_t Index )
+    {
+        return (Index < GetStateObjectCount()) ? m_Set.GetAt(Index) : NULL;
+    };
+    void RemoveStateObjectAt( size_t Index, bool DeleteObject = true);
 
-	int FindSimilar( ZBStateObject* pStateObjectToFind );
-	bool MergeStates( int iLeft, int iRight, bool DeleteRight = true );
+    int FindSimilar( ZBStateObject* pStateObjectToFind );
+    bool MergeStates( int iLeft, int iRight, bool DeleteRight = true );
 
 private:
-	ZBStateObjectSet m_Set;
-	ZDProcessGraphModelMdl* m_pModel;
+    ZBStateObjectSet m_Set;
+    ZDProcessGraphModelMdl* m_pModel;
 
 };
 

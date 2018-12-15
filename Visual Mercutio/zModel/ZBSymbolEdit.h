@@ -33,46 +33,46 @@
 
 class AFX_EXT_CLASS ZBSymbolEdit : public CODTextComponent  
 {
-	DECLARE_SERIAL(ZBSymbolEdit)
+    DECLARE_SERIAL(ZBSymbolEdit)
 
 public:
-	ZBSymbolEdit();
-	virtual ~ZBSymbolEdit();
+    ZBSymbolEdit();
+    virtual ~ZBSymbolEdit();
 
-	//@cmember
-	/* Gets the value of the given string property. */
-	virtual BOOL GetValue(const int nPropId, CString& strValue) const;
-	/* Gets the value of the given integer property. */
-	virtual BOOL GetValue(const int nPropId, int& nValue) const;
-	//@cmember
-	/* Gets the value of the given unsigned integer property. */
-	virtual BOOL GetValue(const int nPropId, UINT& nValue) const;
-	//@cmember
-	/* Gets the value of the given DWORD property. */
-	virtual BOOL GetValue(const int nPropId, DWORD& dwValue) const;
-	//@cmember
-	/* Gets the value of the given float property. */
-	virtual BOOL GetValue(const int nPropId, float& fValue) const;
+    //@cmember
+    /* Gets the value of the given string property. */
+    virtual BOOL GetValue(const int nPropId, CString& strValue) const;
+    /* Gets the value of the given integer property. */
+    virtual BOOL GetValue(const int nPropId, int& nValue) const;
+    //@cmember
+    /* Gets the value of the given unsigned integer property. */
+    virtual BOOL GetValue(const int nPropId, UINT& nValue) const;
+    //@cmember
+    /* Gets the value of the given DWORD property. */
+    virtual BOOL GetValue(const int nPropId, DWORD& dwValue) const;
+    //@cmember
+    /* Gets the value of the given float property. */
+    virtual BOOL GetValue(const int nPropId, float& fValue) const;
 
-	//@cmember
-	/* Sets the value of the given string property. */
-	virtual BOOL SetValue(const int nPropId, LPCTSTR lpszValue);
-	//@cmember
-	/* Sets the value of the given integer property. */
-	virtual BOOL SetValue(const int nPropId, const int nValue);
-	//@cmember
-	/* Sets the value of the given unsigned integer property. */
-	virtual BOOL SetValue(const int nPropId, const UINT nValue);
-	//@cmember
-	/* Sets the value of the given unsigned DWORD property. */
-	virtual BOOL SetValue(const int nPropId, const DWORD dwValue);
-	//@cmember
-	/* Sets the value of the given float property. */
-	virtual BOOL SetValue(const int nPropId, const float fValue);
+    //@cmember
+    /* Sets the value of the given string property. */
+    virtual BOOL SetValue(const int nPropId, LPCTSTR lpszValue);
+    //@cmember
+    /* Sets the value of the given integer property. */
+    virtual BOOL SetValue(const int nPropId, const int nValue);
+    //@cmember
+    /* Sets the value of the given unsigned integer property. */
+    virtual BOOL SetValue(const int nPropId, const UINT nValue);
+    //@cmember
+    /* Sets the value of the given unsigned DWORD property. */
+    virtual BOOL SetValue(const int nPropId, const DWORD dwValue);
+    //@cmember
+    /* Sets the value of the given float property. */
+    virtual BOOL SetValue(const int nPropId, const float fValue);
 
 
 private:
-	BOOL	m_AutoSizeProp;
+    BOOL    m_AutoSizeProp;
 
 };
 

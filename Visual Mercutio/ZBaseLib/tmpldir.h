@@ -1,10 +1,10 @@
 //## begin module%345A3B31024E.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%345A3B31024E.cm
 
 //## begin module%345A3B31024E.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%345A3B31024E.cp
 
 //## Module: TmplDir%345A3B31024E; Package specification
@@ -51,8 +51,8 @@
 //## end ZDTemplateDir%345A3B3E037A.preface
 
 //## Class: ZDTemplateDir%345A3B3E037A
-//	This class manage the template files contained in the
-//	template directory.
+//    This class manage the template files contained in the
+//    template directory.
 //## Category: ZUtil library::Templates%3747CDAD02D3
 //## Subsystem: ZUtil%366D71940075
 //## Persistence: Transient
@@ -63,7 +63,7 @@
 class AFX_EXT_CLASS ZDTemplateDir : public CObject  //## Inherits: <unnamed>%345B0BB10280
 {
   //## begin ZDTemplateDir%345A3B3E037A.initialDeclarations preserve=yes
-	DECLARE_DYNCREATE(ZDTemplateDir)
+    DECLARE_DYNCREATE(ZDTemplateDir)
   //## end ZDTemplateDir%345A3B3E037A.initialDeclarations
 
   public:
@@ -72,9 +72,9 @@ class AFX_EXT_CLASS ZDTemplateDir : public CObject  //## Inherits: <unnamed>%345
 
     //## Constructors (specified)
       //## Operation: ZDTemplateDir%878377698
-      //	Create the object ZDTemplateDir. You must specify the
-      //	directory and the object automatically scans it and
-      //	initialize correctly the object.
+      //    Create the object ZDTemplateDir. You must specify the
+      //    directory and the object automatically scans it and
+      //    initialize correctly the object.
       ZDTemplateDir (CString Directory, CString Title, CString FileExtension);
 
     //## Destructor (generated)
@@ -83,37 +83,37 @@ class AFX_EXT_CLASS ZDTemplateDir : public CObject  //## Inherits: <unnamed>%345
 
     //## Other Operations (specified)
       //## Operation: FindFile%878329362
-      //	This method search a template file. To use this function
-      //	you must specify the filename.
+      //    This method search a template file. To use this function
+      //    you must specify the filename.
       ZDTemplateFile* FindFile (CString Filename);
 
       //## Operation: FindTitle%878329363
-      //	This method search a template file. To use this function
-      //	you must specify the title.
+      //    This method search a template file. To use this function
+      //    you must specify the title.
       ZDTemplateFile* FindTitle (CString Title);
 
       //## Operation: Create%878329366
-      //	Create the object ZDTemplateDir. You must specify the
-      //	directory and the object automatically scans it and
-      //	initialize correctly the object.
+      //    Create the object ZDTemplateDir. You must specify the
+      //    directory and the object automatically scans it and
+      //    initialize correctly the object.
       BOOL Create (CString Directory, CString Title);
 
       //## Operation: GetTemplateFileAt%878492725
-      //	Returns the template file object at the specified index.
+      //    Returns the template file object at the specified index.
       ZDTemplateFile* GetTemplateFileAt (size_t Index);
 
       //## Operation: GetSize%878492727
-      //	Return the number of template file.
+      //    Return the number of template file.
       size_t GetSize () const;
 
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: Directory%345A3B800168
-      //	Contains the template directory.
+      //    Contains the template directory.
       const CString GetDirectory () const;
 
       //## Attribute: Title%345B19D100DC
-      //	Defines the directory title.
+      //    Defines the directory title.
       CString GetTitle ();
 
       //## Attribute: FileExtension%368FB1EC0212
@@ -122,7 +122,7 @@ class AFX_EXT_CLASS ZDTemplateDir : public CObject  //## Inherits: <unnamed>%345
 
     // Additional Public Declarations
       //## begin ZDTemplateDir%345A3B3E037A.public preserve=yes
-      const CStringArray&	GetTemplateFileList() const { return m_TemplateFileList; };
+      const CStringArray&    GetTemplateFileList() const { return m_TemplateFileList; };
       //## end ZDTemplateDir%345A3B3E037A.public
   protected:
     // Additional Protected Declarations
@@ -139,7 +139,7 @@ class AFX_EXT_CLASS ZDTemplateDir : public CObject  //## Inherits: <unnamed>%345
 
     //## Other Operations (specified)
       //## Operation: FreeList%878377699
-      //	Free the list of object.
+      //    Free the list of object.
       void FreeList ();
 
     // Data Members for Class Attributes
@@ -149,7 +149,7 @@ class AFX_EXT_CLASS ZDTemplateDir : public CObject  //## Inherits: <unnamed>%345
       //## end ZDTemplateDir::Directory%345A3B800168.attr
 
       //## Attribute: DirectoryList%345A3BA803B6
-      //	Contains the list of ZDTemplateFile.
+      //    Contains the list of ZDTemplateFile.
       //## begin ZDTemplateDir::DirectoryList%345A3BA803B6.attr preserve=no  public: CObArray {U} 
       CObArray m_DirectoryList;
       //## end ZDTemplateDir::DirectoryList%345A3BA803B6.attr
@@ -169,7 +169,7 @@ class AFX_EXT_CLASS ZDTemplateDir : public CObject  //## Inherits: <unnamed>%345
   private: //## implementation
     // Additional Implementation Declarations
       //## begin ZDTemplateDir%345A3B3E037A.implementation preserve=yes
-      CStringArray	m_TemplateFileList;
+      CStringArray    m_TemplateFileList;
       //## end ZDTemplateDir%345A3B3E037A.implementation
 };
 
@@ -183,14 +183,14 @@ class AFX_EXT_CLASS ZDTemplateDir : public CObject  //## Inherits: <unnamed>%345
 inline ZDTemplateFile* ZDTemplateDir::GetTemplateFileAt (size_t Index)
 {
   //## begin ZDTemplateDir::GetTemplateFileAt%878492725.body preserve=yes
-	return (Index <= (size_t)m_DirectoryList.GetSize()) ? ((ZDTemplateFile*)(m_DirectoryList[Index])): NULL;
+    return (Index <= (size_t)m_DirectoryList.GetSize()) ? ((ZDTemplateFile*)(m_DirectoryList[Index])): NULL;
   //## end ZDTemplateDir::GetTemplateFileAt%878492725.body
 }
 
 inline size_t ZDTemplateDir::GetSize () const
 {
   //## begin ZDTemplateDir::GetSize%878492727.body preserve=yes
-	return (size_t)m_DirectoryList.GetSize();
+    return (size_t)m_DirectoryList.GetSize();
   //## end ZDTemplateDir::GetSize%878492727.body
 }
 

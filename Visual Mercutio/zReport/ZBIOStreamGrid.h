@@ -33,12 +33,12 @@
 // JMR-MODIF - Le 10 avril 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
 class AFX_EXT_CLASS ZBIOStreamGrid : public ZBIStreamGrid,
-									 public ZBOStreamGrid
+                                     public ZBOStreamGrid
 {
 public:
 
-	ZBIOStreamGrid( CGXGridCore* pGridCore = NULL );
-	virtual ~ZBIOStreamGrid();
+    ZBIOStreamGrid( CGXGridCore* pGridCore = NULL );
+    virtual ~ZBIOStreamGrid();
 };
 
 #endif // !defined(AFX_ZBIOSTREAMGRID_H__800F9AB8_B3A2_4EF9_A34C_477321362153__INCLUDED_)

@@ -33,12 +33,12 @@ class AFX_EXT_CLASS ZInternetStatus
 {
 public:
 
-	ZInternetStatus();
-	virtual ~ZInternetStatus();
+    ZInternetStatus();
+    virtual ~ZInternetStatus();
 
-	// JMR-MODIF - Le 26 janvier 2006 - TEMPORAIRE : Erreur inexpliquée avec afxsock, lié à une fonction apparamment
-	// inutilisée, temporairement désactivée le temps de trouver une réponse.
-	//bool IsConnected();
+    // JMR-MODIF - Le 26 janvier 2006 - TEMPORAIRE : Erreur inexpliquée avec afxsock, lié à une fonction apparamment
+    // inutilisée, temporairement désactivée le temps de trouver une réponse.
+    //bool IsConnected();
 };
 
 #endif // !defined(AFX_ZINTERNETSTATUS_H__53C888A5_D428_4008_BFD6_8482C0747E69__INCLUDED_)

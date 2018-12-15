@@ -1,10 +1,10 @@
 // **************************************************************************************************************
-// *									  ZVRenameModelPageInTreeDlg											*
+// *                                      ZVRenameModelPageInTreeDlg                                            *
 // **************************************************************************************************************
-// * JMR-MODIF - Le 3 avril 2006 - Ajout de la classe ZVRenameModelPageInTreeDlg.								*
+// * JMR-MODIF - Le 3 avril 2006 - Ajout de la classe ZVRenameModelPageInTreeDlg.                                *
 // **************************************************************************************************************
-// * Cette classe permet à l'utilisateur de renommer une page sélectionnée dans l'arbre à l'aide du menu		*
-// * contextuel.																								*
+// * Cette classe permet à l'utilisateur de renommer une page sélectionnée dans l'arbre à l'aide du menu        *
+// * contextuel.                                                                                                *
 // **************************************************************************************************************
 
 #include "stdafx.h"
@@ -23,28 +23,28 @@ static char THIS_FILE[] = __FILE__;
 // ZVRenameModelPageInTreeDlg dialog
 
 BEGIN_MESSAGE_MAP( ZVRenameModelPageInTreeDlg, ZIDialog )
-	//{{AFX_MSG_MAP(ZVRenameModelPageInTreeDlg)
-	//}}AFX_MSG_MAP
-	ON_EN_CHANGE(IDC_PAGENAME, OnEnChangePagename)
+    //{{AFX_MSG_MAP(ZVRenameModelPageInTreeDlg)
+    //}}AFX_MSG_MAP
+    ON_EN_CHANGE(IDC_PAGENAME, OnEnChangePagename)
 END_MESSAGE_MAP()
 
-ZVRenameModelPageInTreeDlg::ZVRenameModelPageInTreeDlg( CString					ProposedName	/*= _T( "" )*/,
-														CStringArray*			pArrayPageName	/*= NULL*/,
-														CWnd*					pParent			/*= NULL*/ )
-	: ZIDialog			( ZVRenameModelPageInTreeDlg::IDD, TRUE, pParent ),
-	  m_pArrayPageName	( pArrayPageName ),
-	  m_PageName		( ProposedName )
+ZVRenameModelPageInTreeDlg::ZVRenameModelPageInTreeDlg( CString                    ProposedName    /*= _T( "" )*/,
+                                                        CStringArray*            pArrayPageName    /*= NULL*/,
+                                                        CWnd*                    pParent            /*= NULL*/ )
+    : ZIDialog            ( ZVRenameModelPageInTreeDlg::IDD, TRUE, pParent ),
+      m_pArrayPageName    ( pArrayPageName ),
+      m_PageName        ( ProposedName )
 {
-	//{{AFX_DATA_INIT(ZVRenameModelPageInTreeDlg)
-	//}}AFX_DATA_INIT
+    //{{AFX_DATA_INIT(ZVRenameModelPageInTreeDlg)
+    //}}AFX_DATA_INIT
 }
 
 void ZVRenameModelPageInTreeDlg::DoDataExchange( CDataExchange* pDX )
 {
-	ZIDialog::DoDataExchange( pDX );
+    ZIDialog::DoDataExchange( pDX );
 
-	//{{AFX_DATA_MAP(ZVRenameModelPageInTreeDlg)
-	//}}AFX_DATA_MAP
+    //{{AFX_DATA_MAP(ZVRenameModelPageInTreeDlg)
+    //}}AFX_DATA_MAP
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -52,49 +52,49 @@ void ZVRenameModelPageInTreeDlg::DoDataExchange( CDataExchange* pDX )
 
 BOOL ZVRenameModelPageInTreeDlg::OnInitDialog()
 {
-	ZIDialog::OnInitDialog();
+    ZIDialog::OnInitDialog();
 
-		if ( GetDlgItem( IDC_PAGENAME ) )
-	{
-		GetDlgItem( IDC_PAGENAME )->SetWindowText( m_PageName );
-	}
+        if ( GetDlgItem( IDC_PAGENAME ) )
+    {
+        GetDlgItem( IDC_PAGENAME )->SetWindowText( m_PageName );
+    }
 
-	return TRUE;	// return TRUE unless you set the focus to a control
-					// EXCEPTION: OCX Property Pages should return FALSE
+    return TRUE;    // return TRUE unless you set the focus to a control
+                    // EXCEPTION: OCX Property Pages should return FALSE
 }
 
 void ZVRenameModelPageInTreeDlg::OnOK()
 {
-	// Contrôle que le nom de la page ne soit pas vide.
-	if ( m_PageName.IsEmpty() )
-	{
-		MsgBox mbox;
-		mbox.DisplayMsgBox( IDS_NEWMODELPAGE_EMPTY, MB_OK );
-		return;
-	}
+    // Contrôle que le nom de la page ne soit pas vide.
+    if ( m_PageName.IsEmpty() )
+    {
+        MsgBox mbox;
+        mbox.DisplayMsgBox( IDS_NEWMODELPAGE_EMPTY, MB_OK );
+        return;
+    }
 
-	// Contrôle si la page n'est pas déjà attribuée.
-	if ( m_pArrayPageName )
-	{
-		for ( int i = 0; i < m_pArrayPageName->GetSize(); ++i )
-		{
-			if ( m_PageName == m_pArrayPageName->GetAt( i ) )
-			{
-				// Display error message
-				MsgBox mbox;
-				mbox.DisplayMsgBox( IDS_NEWMODELPAGE_ALREADYEXIST, MB_OK );
-				return;
-			}
-		}
-	}
+    // Contrôle si la page n'est pas déjà attribuée.
+    if ( m_pArrayPageName )
+    {
+        for ( int i = 0; i < m_pArrayPageName->GetSize(); ++i )
+        {
+            if ( m_PageName == m_pArrayPageName->GetAt( i ) )
+            {
+                // Display error message
+                MsgBox mbox;
+                mbox.DisplayMsgBox( IDS_NEWMODELPAGE_ALREADYEXIST, MB_OK );
+                return;
+            }
+        }
+    }
 
-	ZIDialog::OnOK();
+    ZIDialog::OnOK();
 }
 
 void ZVRenameModelPageInTreeDlg::OnEnChangePagename()
 {
-	if ( GetDlgItem( IDC_PAGENAME ) )
-	{
-		GetDlgItem( IDC_PAGENAME )->GetWindowText( m_PageName );
-	}
+    if ( GetDlgItem( IDC_PAGENAME ) )
+    {
+        GetDlgItem( IDC_PAGENAME )->GetWindowText( m_PageName );
+    }
 }

@@ -30,10 +30,10 @@ IMPLEMENT_SERIAL( ZBWorkspaceFileEntity, ZBWorkspaceEntity, def_Version )
 //////////////////////////////////////////////////////////////////////
 
 ZBWorkspaceFileEntity::ZBWorkspaceFileEntity( const CString Name /*= ""*/, ZBWorkspaceEntity* pParent /*= NULL*/ )
-	: ZBWorkspaceEntity( Name, pParent )
+    : ZBWorkspaceEntity( Name, pParent )
 {
-	m_File.SetCompleteFileName( Name );
-	SetEntityName( m_File.GetFileTitle() + m_File.GetFileExt() );
+    m_File.SetCompleteFileName( Name );
+    SetEntityName( m_File.GetFileTitle() + m_File.GetFileExt() );
 }
 
 ZBWorkspaceFileEntity::~ZBWorkspaceFileEntity()
@@ -42,74 +42,74 @@ ZBWorkspaceFileEntity::~ZBWorkspaceFileEntity()
 
 HICON ZBWorkspaceFileEntity::GetFilenameIcon() const
 {
-	int IconIndex = const_cast<ZFile&>( m_File ).GetIconIndex();
+    int IconIndex = const_cast<ZFile&>( m_File ).GetIconIndex();
 
-	if ( IconIndex < 0 )
-	{
-		return NULL;
-	}
+    if ( IconIndex < 0 )
+    {
+        return NULL;
+    }
 
-	return ::ExtractIcon( ::AfxGetInstanceHandle(), GetFilename(), IconIndex );
+    return ::ExtractIcon( ::AfxGetInstanceHandle(), GetFilename(), IconIndex );
 }
 
 // Cette fonction est appelée lorsqu'un fichier associé au projet doit être ouvert.
 bool ZBWorkspaceFileEntity::OpenFile()
 {
-	if ( !m_File.Exist() )
-	{
-		MsgBox mbox;
+    if ( !m_File.Exist() )
+    {
+        MsgBox mbox;
 
-		if ( mbox.DisplayMsgBox( IDS_WKS_FILENAME_DEXIST, MB_YESNO ) == IDYES )
-		{
-			CString title;
-			VERIFY( title.LoadString( IDS_WORKSPACE_FILESELECT_T ) );
+        if ( mbox.DisplayMsgBox( IDS_WKS_FILENAME_DEXIST, MB_YESNO ) == IDYES )
+        {
+            CString title;
+            VERIFY( title.LoadString( IDS_WORKSPACE_FILESELECT_T ) );
 
-			// Set the "*.*" files filter
-			CString strFilter;
-			VERIFY( strFilter.LoadString( AFX_IDS_ALLFILTER ) );
+            // Set the "*.*" files filter
+            CString strFilter;
+            VERIFY( strFilter.LoadString( AFX_IDS_ALLFILTER ) );
 
-			strFilter += (char)'\0';			// Next string please
-			strFilter += _T( "*.*" );
-			strFilter += (char)'\0';			// Last string
+            strFilter += (char)'\0';            // Next string please
+            strFilter += _T( "*.*" );
+            strFilter += (char)'\0';            // Last string
 
-			ZIFileDialog FileDialog( title, strFilter, 1 );
+            ZIFileDialog FileDialog( title, strFilter, 1 );
 
-			if ( FileDialog.DoModal() == IDOK )
-			{
-				// Assigns the new filename
-				m_File.SetCompleteFileName( FileDialog.GetFilename() );
-			}
-			else
-			{
-				return false;
-			}
-		}
-		else
-		{
-			return false;
-		}
-	}
+            if ( FileDialog.DoModal() == IDOK )
+            {
+                // Assigns the new filename
+                m_File.SetCompleteFileName( FileDialog.GetFilename() );
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
 
-	// Launch the file
-	ZUFileLauncher fl;
+    // Launch the file
+    ZUFileLauncher fl;
 
-	return ( fl.Launch( m_File.GetCompleteFileName() ) == TRUE ) ? true : false;
+    return ( fl.Launch( m_File.GetCompleteFileName() ) == TRUE ) ? true : false;
 }
 
 bool ZBWorkspaceFileEntity::DisplayProperties()
 {
-	ZVWorkspaceFileProperties dlg( ( GetParent() && ISA( GetParent(), ZBWorkspaceGroupEntity ) ) ? dynamic_cast<ZBWorkspaceGroupEntity*>( GetParent() ) : NULL,
-								   GetEntityName(),
-								   GetFilename() );
+    ZVWorkspaceFileProperties dlg( ( GetParent() && ISA( GetParent(), ZBWorkspaceGroupEntity ) ) ? dynamic_cast<ZBWorkspaceGroupEntity*>( GetParent() ) : NULL,
+                                   GetEntityName(),
+                                   GetFilename() );
 
-	if ( dlg.DoModal() == IDOK )
-	{
-		SetEntityName( dlg.GetFileTitle() );
-		SetFilename( dlg.GetFilename() );
-		return true;
-	}
+    if ( dlg.DoModal() == IDOK )
+    {
+        SetEntityName( dlg.GetFileTitle() );
+        SetFilename( dlg.GetFilename() );
+        return true;
+    }
 
-	return false;
+    return false;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -118,12 +118,12 @@ bool ZBWorkspaceFileEntity::DisplayProperties()
 #ifdef _DEBUG
 void ZBWorkspaceFileEntity::AssertValid() const
 {
-	ZBWorkspaceEntity::AssertValid();
+    ZBWorkspaceEntity::AssertValid();
 }
 
 void ZBWorkspaceFileEntity::Dump( CDumpContext& dc ) const
 {
-	ZBWorkspaceEntity::Dump( dc );
+    ZBWorkspaceEntity::Dump( dc );
 }
 #endif //_DEBUG
 
@@ -132,16 +132,16 @@ void ZBWorkspaceFileEntity::Dump( CDumpContext& dc ) const
 
 void ZBWorkspaceFileEntity::Serialize ( CArchive& ar )
 {
-	ZBWorkspaceEntity::Serialize( ar );
+    ZBWorkspaceEntity::Serialize( ar );
 
-	if ( ar.IsStoring() )
-	{
-		// Write the elements
-		ar << m_File;
-	}
-	else
-	{
-		// Read the elements
-		ar >> m_File;
-	}
+    if ( ar.IsStoring() )
+    {
+        // Write the elements
+        ar << m_File;
+    }
+    else
+    {
+        // Read the elements
+        ar >> m_File;
+    }
 }

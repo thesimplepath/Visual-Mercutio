@@ -21,12 +21,12 @@ IMPLEMENT_DYNAMIC( ZBUserGroupObserverMsg, ZIObserverMsg )
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBUserGroupObserverMsg::ZBUserGroupObserverMsg( UINT			MessageID	/*= 0*/,
-											    ZBUserEntity*	pEntity		/*= NULL*/,
-												const CString	RootName	/*= _T( "" )*/  )
-	: m_MessageID	( MessageID ), 
-	  m_pEntity		( pEntity ),
-	  m_RootName	( RootName )
+ZBUserGroupObserverMsg::ZBUserGroupObserverMsg( UINT            MessageID    /*= 0*/,
+                                                ZBUserEntity*    pEntity        /*= NULL*/,
+                                                const CString    RootName    /*= _T( "" )*/  )
+    : m_MessageID    ( MessageID ), 
+      m_pEntity        ( pEntity ),
+      m_RootName    ( RootName )
 {
 }
 

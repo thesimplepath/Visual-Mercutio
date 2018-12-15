@@ -1,10 +1,10 @@
 // **************************************************************************************************************
-// *									  Classe ZVRiskProbabilityContainer										*
+// *                                      Classe ZVRiskProbabilityContainer                                        *
 // **************************************************************************************************************
-// * JMR-MODIF - Le 11 juillet 2007 - Ajout de la classe ZVRiskProbabilityContainer.							*
+// * JMR-MODIF - Le 11 juillet 2007 - Ajout de la classe ZVRiskProbabilityContainer.                            *
 // **************************************************************************************************************
-// * Cette classe contient en mémoire les probabilités pour les risques, en synchronisation avec le fichier des	*
-// * probabilités.																								*
+// * Cette classe contient en mémoire les probabilités pour les risques, en synchronisation avec le fichier des    *
+// * probabilités.                                                                                                *
 // **************************************************************************************************************
 
 #if !defined(AFX_ZVRISKPROBABILITYCONTAINER_H__F8225CF5_FC88_4006_829D_3079998B03A7__INCLUDED_)
@@ -36,30 +36,30 @@ class AFX_EXT_CLASS ZVRiskProbabilityContainer : public CObject
 {
 public:
 
-	ZVRiskProbabilityContainer();
-	~ZVRiskProbabilityContainer();
+    ZVRiskProbabilityContainer();
+    ~ZVRiskProbabilityContainer();
 
 public:
 
-	BOOL LoadFile( CString Filename );
+    BOOL LoadFile( CString Filename );
 
-	CStringArray* GetElementsArray();
+    CStringArray* GetElementsArray();
 
-	CString GetElementAt( size_t Index ) const;
-	CString GetFilename();
+    CString GetElementAt( size_t Index ) const;
+    CString GetFilename();
 
-	void RemoveAllElements();
+    void RemoveAllElements();
 
-	// Obtient le nombre de propriétés contenues dans l'ensemble.
-	size_t GetElementCount() const
-	{
-		return m_Set.GetSize();
-	};
+    // Obtient le nombre de propriétés contenues dans l'ensemble.
+    size_t GetElementCount() const
+    {
+        return m_Set.GetSize();
+    };
 
 private:
 
-	CString			m_Filename;
-	CStringArray	m_Set;
+    CString            m_Filename;
+    CStringArray    m_Set;
 };
 
 #endif // !defined(AFX_ZVRISKPROBABILITYCONTAINER_H__F8225CF5_FC88_4006_829D_3079998B03A7__INCLUDED_)

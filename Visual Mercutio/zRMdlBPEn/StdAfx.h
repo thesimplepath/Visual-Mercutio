@@ -20,7 +20,7 @@
 // Plateforme cible définie à Windows NT4 et supérieures pour les versions NT de Windows.
 #ifndef _WIN32_WINNT
 #define _WIN32_WINNT 0x0400
-#endif						
+#endif                        
 
 // Plateforme cible définie à Windows98 et supérieures pour les versions standards de Windows.
 #ifndef _WIN32_WINDOWS
@@ -32,7 +32,7 @@
 #define _WIN32_IE 0x0400
 #endif
 
-#define VC_EXTRALEAN		// Exclude rarely-used stuff from Windows headers
+#define VC_EXTRALEAN        // Exclude rarely-used stuff from Windows headers
 
 #include <afxwin.h>         // MFC core and standard components
 #include <afxext.h>         // MFC extensions
@@ -45,16 +45,16 @@
 
 
 #ifndef _AFX_NO_DB_SUPPORT
-#include <afxdb.h>			// MFC ODBC database classes
+#include <afxdb.h>            // MFC ODBC database classes
 #endif // _AFX_NO_DB_SUPPORT
 
 #ifndef _AFX_NO_DAO_SUPPORT
-#include <afxdao.h>			// MFC DAO database classes
+#include <afxdao.h>            // MFC DAO database classes
 #endif // _AFX_NO_DAO_SUPPORT
 
-#include <afxdtctl.h>		// MFC support for Internet Explorer 4 Common Controls
+#include <afxdtctl.h>        // MFC support for Internet Explorer 4 Common Controls
 #ifndef _AFX_NO_AFXCMN_SUPPORT
-#include <afxcmn.h>			// MFC support for Windows Common Controls
+#include <afxcmn.h>            // MFC support for Windows Common Controls
 #endif // _AFX_NO_AFXCMN_SUPPORT
 
 

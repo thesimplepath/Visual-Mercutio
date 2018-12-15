@@ -33,26 +33,26 @@
 
 class AFX_EXT_CLASS ZBCommandObserverMsg : public ZIObserverMsg  
 {
-	DECLARE_DYNAMIC( ZBCommandObserverMsg )
+    DECLARE_DYNAMIC( ZBCommandObserverMsg )
 
 public:
 
-	ZBCommandObserverMsg( int CommandID = 0 );
-	virtual ~ZBCommandObserverMsg();
+    ZBCommandObserverMsg( int CommandID = 0 );
+    virtual ~ZBCommandObserverMsg();
 
-	int GetCommandID() const
-	{
-		return m_CommandID;
-	};
+    int GetCommandID() const
+    {
+        return m_CommandID;
+    };
 
-	void SetCommandID( int value )
-	{
-		m_CommandID = value;
-	};
+    void SetCommandID( int value )
+    {
+        m_CommandID = value;
+    };
 
 private:
 
-	int m_CommandID;
+    int m_CommandID;
 };
 
 #endif // !defined(__ZBCommandObserverMsg_H__)

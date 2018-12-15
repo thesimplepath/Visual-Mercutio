@@ -39,29 +39,29 @@ class AFX_EXT_CLASS ZCEventLog : public ZIListCtrl
       void Refresh ();
 
 #ifdef _WIN32
-	AFX_EXT_API	friend	ZBEventServer&	operator>>( ZBEventServer& left, ZCEventLog& listCtrl );
+    AFX_EXT_API    friend    ZBEventServer&    operator>>( ZBEventServer& left, ZCEventLog& listCtrl );
 #endif
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCEventLog)
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCEventLog)
+    //}}AFX_VIRTUAL
   protected:
-	//{{AFX_MSG(ZCEventLog)
-	afx_msg LRESULT OnNewEvent( WPARAM wParam, LPARAM lParam );
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZCEventLog)
+    afx_msg LRESULT OnNewEvent( WPARAM wParam, LPARAM lParam );
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
   private:
       ZCEventLog(const ZCEventLog &right);
       const ZCEventLog & operator=(const ZCEventLog &right);
 
   private:
-	BOOL	ColumnsHasBeenBuilt() const { return m_ColumnsHasBeenBuilt; };
-	BOOL	BuildColumns();
+    BOOL    ColumnsHasBeenBuilt() const { return m_ColumnsHasBeenBuilt; };
+    BOOL    BuildColumns();
 
   private: //## implementation
-	ZBEventManager* m_pEventManager;
-	BOOL			m_ColumnsHasBeenBuilt;
+    ZBEventManager* m_pEventManager;
+    BOOL            m_ColumnsHasBeenBuilt;
 
 };
 

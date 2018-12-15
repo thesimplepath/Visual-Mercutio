@@ -8,7 +8,7 @@
 #endif // _MSC_VER >= 1000
 
 #ifndef __AFXWIN_H__
-	#error incluez 'stdafx.h' avant d'inclure ce fichier pour PCH
+    #error incluez 'stdafx.h' avant d'inclure ce fichier pour PCH
 #endif
 
 #ifdef _AFXDLL

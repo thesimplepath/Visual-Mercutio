@@ -1,10 +1,10 @@
 //## begin module%345A3A4401AE.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%345A3A4401AE.cm
 
 //## begin module%345A3A4401AE.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%345A3A4401AE.cp
 
 //## Module: TmplFile%345A3A4401AE; Package body
@@ -45,7 +45,7 @@ ZDTemplateFile::ZDTemplateFile(const ZDTemplateFile &right)
   //## end ZDTemplateFile::ZDTemplateFile%copy.initialization
 {
   //## begin ZDTemplateFile::ZDTemplateFile%copy.body preserve=yes
-	*this = right;
+    *this = right;
   //## end ZDTemplateFile::ZDTemplateFile%copy.body
 }
 
@@ -57,8 +57,8 @@ ZDTemplateFile::ZDTemplateFile (CString Filename)
   //## end ZDTemplateFile::ZDTemplateFile%878377696.initialization
 {
   //## begin ZDTemplateFile::ZDTemplateFile%878377696.body preserve=yes
-  	// Create the object
-  	Create( Filename );
+      // Create the object
+      Create( Filename );
   //## end ZDTemplateFile::ZDTemplateFile%878377696.body
 }
 
@@ -73,10 +73,10 @@ ZDTemplateFile::~ZDTemplateFile()
 const ZDTemplateFile & ZDTemplateFile::operator=(const ZDTemplateFile &right)
 {
   //## begin ZDTemplateFile::operator=%.body preserve=yes
-	m_Filename = right.m_Filename;
-	m_Stamp = right.m_Stamp;
-	m_Persistent = right.m_Persistent;
-	return *this;
+    m_Filename = right.m_Filename;
+    m_Stamp = right.m_Stamp;
+    m_Persistent = right.m_Persistent;
+    return *this;
   //## end ZDTemplateFile::operator=%.body
 }
 
@@ -86,52 +86,52 @@ const ZDTemplateFile & ZDTemplateFile::operator=(const ZDTemplateFile &right)
 BOOL ZDTemplateFile::Create (CString Filename)
 {
   //## begin ZDTemplateFile::Create%878377697.body preserve=yes
-  	// Save the filename
-  	m_Filename = Filename;
-  	
-	if (!m_Stamp.ReadFromFile( m_Filename ))
-		return FALSE;
-	return m_Persistent = ( m_Stamp.GetInternalVersion() != -1 && m_Stamp.GetFileType() == TemplateType ) ? TRUE : FALSE;
+      // Save the filename
+      m_Filename = Filename;
+      
+    if (!m_Stamp.ReadFromFile( m_Filename ))
+        return FALSE;
+    return m_Persistent = ( m_Stamp.GetInternalVersion() != -1 && m_Stamp.GetFileType() == TemplateType ) ? TRUE : FALSE;
   //## end ZDTemplateFile::Create%878377697.body
 }
 
 CArchive& operator >> (CArchive& ar, ZDTemplateFile& TemplateFile)
 {
   //## begin ZDTemplateFile::operator >>%927987842.body preserve=yes
-	ar >> TemplateFile.m_Filename;
+    ar >> TemplateFile.m_Filename;
     ar >> TemplateFile.m_Stamp;
-	return ar;
+    return ar;
   //## end ZDTemplateFile::operator >>%927987842.body
 }
 
 CArchive& operator << (CArchive& ar, ZDTemplateFile& TemplateFile)
 {
   //## begin ZDTemplateFile::operator <<%927987843.body preserve=yes
-	ar << TemplateFile.m_Filename;
+    ar << TemplateFile.m_Filename;
     ar << TemplateFile.m_Stamp;
-	return ar;
+    return ar;
   //## end ZDTemplateFile::operator <<%927987843.body
 }
 
 ZDTemplateFile* ZDTemplateFile::Clone ()
 {
   //## begin ZDTemplateFile::Clone%927987844.body preserve=yes
-	ZDTemplateFile*	pTemplateFile = new ZDTemplateFile( *this );
-	return pTemplateFile;
+    ZDTemplateFile*    pTemplateFile = new ZDTemplateFile( *this );
+    return pTemplateFile;
   //## end ZDTemplateFile::Clone%927987844.body
 }
 
 void ZDTemplateFile::Serialize (CArchive& ar)
 {
   //## begin ZDTemplateFile::Serialize%927987848.body preserve=yes
-	if (ar.IsStoring())
-	{	// Write the elements
-		ar << *this;
-	}
-	else
-	{
-		ar >> *this;
-	}
+    if (ar.IsStoring())
+    {    // Write the elements
+        ar << *this;
+    }
+    else
+    {
+        ar >> *this;
+    }
   //## end ZDTemplateFile::Serialize%927987848.body
 }
 

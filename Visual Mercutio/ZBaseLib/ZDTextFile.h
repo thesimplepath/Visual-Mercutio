@@ -1,9 +1,9 @@
 // ******************************************************************************************************
-// *										   Classe ZDTextFile										*
+// *                                           Classe ZDTextFile                                        *
 // ******************************************************************************************************
-// * JMR-MODIF - Le 27 juin 2007 - Ajout de la classe ZDTextFile.										*
+// * JMR-MODIF - Le 27 juin 2007 - Ajout de la classe ZDTextFile.                                        *
 // ******************************************************************************************************
-// * Cette classe effectue les opération de base pour la manipulation de fichiers textes.				*
+// * Cette classe effectue les opération de base pour la manipulation de fichiers textes.                *
 // ******************************************************************************************************
 
 #if !defined(AFX_ZDTEXTFILE_H__FD01758E_A71B_4991_A12C_0A6DE2D381EF__INCLUDED_)
@@ -35,74 +35,74 @@ class AFX_EXT_CLASS ZDTextFile
 {
 public:
 
-	ZDTextFile( CString Filename = _T( "" ) );
-	virtual ~ZDTextFile();
+    ZDTextFile( CString Filename = _T( "" ) );
+    virtual ~ZDTextFile();
 
-	// Open the text file class in write mode.
-	virtual BOOL OpenWrite( CString Filename );
+    // Open the text file class in write mode.
+    virtual BOOL OpenWrite( CString Filename );
 
-	// Open the text file class in read mode.
-	virtual BOOL OpenRead( CString Filename );
+    // Open the text file class in read mode.
+    virtual BOOL OpenRead( CString Filename );
 
-	// Returns one line of the file buffer.
-	// Once the return value is zero, the file has been
-	// completely processed.
-	// If the return code is -1, an error occured.
-	int ReadLine( CString& Line, bool RemoveNewLineChar = false );
+    // Returns one line of the file buffer.
+    // Once the return value is zero, the file has been
+    // completely processed.
+    // If the return code is -1, an error occured.
+    int ReadLine( CString& Line, bool RemoveNewLineChar = false );
 
-	// Writes one line of the file buffer.
-	BOOL WriteLine( CString& Line, bool AddNewLineChar = false );
+    // Writes one line of the file buffer.
+    BOOL WriteLine( CString& Line, bool AddNewLineChar = false );
 
-	// Open the file in write mode with creation.
-	BOOL OpenFileWrite();
+    // Open the file in write mode with creation.
+    BOOL OpenFileWrite();
 
-	// Open the file in read mode.
-	BOOL OpenFileRead();
+    // Open the file in read mode.
+    BOOL OpenFileRead();
 
-	// Close the file.
-	BOOL CloseFile();
+    // Close the file.
+    BOOL CloseFile();
 
-	//////////////////////////////////////////////////////////////////////
-	// Writing information operators
-	ZDTextFile& operator<<( const char* cpChar );
-	ZDTextFile& operator<<( float value );
-	ZDTextFile& operator<<( double value );
-	ZDTextFile& operator<<( DWORD value );
-	ZDTextFile& operator<<( UINT value );
-	ZDTextFile& operator<<( WORD value );
-	ZDTextFile& operator<<( short value );
-	ZDTextFile& operator<<( LONG value );
+    //////////////////////////////////////////////////////////////////////
+    // Writing information operators
+    ZDTextFile& operator<<( const char* cpChar );
+    ZDTextFile& operator<<( float value );
+    ZDTextFile& operator<<( double value );
+    ZDTextFile& operator<<( DWORD value );
+    ZDTextFile& operator<<( UINT value );
+    ZDTextFile& operator<<( WORD value );
+    ZDTextFile& operator<<( short value );
+    ZDTextFile& operator<<( LONG value );
 
-	ZDTextFile& operator>>( CString& value );
-
-private:
-
-	ZDTextFile( const ZDTextFile &right );
-
-	const ZDTextFile & operator=( const ZDTextFile &right );
-
-	// Read a char buffer from the file.
-	// Once the return value is zero, the file has been
-	// completely processed.
-	// If the return code is -1, an error occured.
-	int ReadFileBuffer();
+    ZDTextFile& operator>>( CString& value );
 
 private:
 
-	// Defines the filename used to import/export the information
-	CString	m_Filename;
+    ZDTextFile( const ZDTextFile &right );
 
-	// CFile object
-	CFile	m_File;
+    const ZDTextFile & operator=( const ZDTextFile &right );
 
-	// This pointer is used when extracting the line from the file.
-	char*	m_pCurrent;
+    // Read a char buffer from the file.
+    // Once the return value is zero, the file has been
+    // completely processed.
+    // If the return code is -1, an error occured.
+    int ReadFileBuffer();
 
-	// Pointer to the next valid return line.
-	char*	m_pNext;
+private:
 
-	// Used to read information from file.
-	char	m_FileBuffer[300];
+    // Defines the filename used to import/export the information
+    CString    m_Filename;
+
+    // CFile object
+    CFile    m_File;
+
+    // This pointer is used when extracting the line from the file.
+    char*    m_pCurrent;
+
+    // Pointer to the next valid return line.
+    char*    m_pNext;
+
+    // Used to read information from file.
+    char    m_FileBuffer[300];
 };
 
 #endif // !defined(AFX_ZDTEXTFILE_H__FD01758E_A71B_4991_A12C_0A6DE2D381EF__INCLUDED_)

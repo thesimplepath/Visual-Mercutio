@@ -1,10 +1,10 @@
 //## begin module%37E7FB9C0275.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%37E7FB9C0275.cm
 
 //## begin module%37E7FB9C0275.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%37E7FB9C0275.cp
 
 //## Module: GFDataF%37E7FB9C0275; Package body
@@ -29,14 +29,14 @@
 #include "BObjUtil.h"
 
 
-const	char	FieldNameKey[] = "$$FieldName$$";
-const	char	FieldDescriptionKey[] = "$$FieldDescription$$";
-const	char	FieldUserHelpKey[] = "$$FieldUserHelp$$";
-const	char	FieldReadOnlyKey[] = "$$FieldReadOnly$$";
-const	char	FieldListSortedKey[] = "$$FieldListSorted$$";
-const	char	FieldClassNameKey[] = "$$FieldClassName$$";
-const	char	FieldMultiColumnKey[] = "$$FieldIsMultiColumn$$";
-const	char	FieldHeaderNameKey[] = "$$FieldHeaderName$$";
+const    char    FieldNameKey[] = "$$FieldName$$";
+const    char    FieldDescriptionKey[] = "$$FieldDescription$$";
+const    char    FieldUserHelpKey[] = "$$FieldUserHelp$$";
+const    char    FieldReadOnlyKey[] = "$$FieldReadOnly$$";
+const    char    FieldListSortedKey[] = "$$FieldListSorted$$";
+const    char    FieldClassNameKey[] = "$$FieldClassName$$";
+const    char    FieldMultiColumnKey[] = "$$FieldIsMultiColumn$$";
+const    char    FieldHeaderNameKey[] = "$$FieldHeaderName$$";
 //## end module%37E7FB9C0275.additionalDeclarations
 
 
@@ -74,7 +74,7 @@ ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed (CString Filename, ZBFieldR
 ZUFieldDefinitionDataFeed::~ZUFieldDefinitionDataFeed()
 {
   //## begin ZUFieldDefinitionDataFeed::~ZUFieldDefinitionDataFeed%.body preserve=yes
-	DeleteLineArray();
+    DeleteLineArray();
   //## end ZUFieldDefinitionDataFeed::~ZUFieldDefinitionDataFeed%.body
 }
 
@@ -84,304 +84,304 @@ ZUFieldDefinitionDataFeed::~ZUFieldDefinitionDataFeed()
 CString ZUFieldDefinitionDataFeed::GetExportedLine (CObject* pObj)
 {
   //## begin ZUFieldDefinitionDataFeed::GetExportedLine%937950158.body preserve=yes
-	ZAObjectDefinition*		pObjectDefinition = (ZAObjectDefinition*)pObj;
-	if (!pObjectDefinition)
-		return "";
+    ZAObjectDefinition*        pObjectDefinition = (ZAObjectDefinition*)pObj;
+    if (!pObjectDefinition)
+        return "";
 
-	ZAHistoryField*			pObjectHistory;
-	if (m_pSourceFieldRepository)
-	{
-		pObjectHistory = m_pSourceFieldRepository->FindFieldHistory( pObjectDefinition->GetFieldName() );
-	}
-	ZBTokenizer	Tokenizer;
-	CString		Line;
+    ZAHistoryField*            pObjectHistory;
+    if (m_pSourceFieldRepository)
+    {
+        pObjectHistory = m_pSourceFieldRepository->FindFieldHistory( pObjectDefinition->GetFieldName() );
+    }
+    ZBTokenizer    Tokenizer;
+    CString        Line;
 
-	switch (GetSeparatorType())
-	{
-		case CommaSeparator :
-		{
-			Tokenizer.SetSeparator( ',' );
-			break;
-		}
-		case SemiColumnSeparator :
-		{
-			Tokenizer.SetSeparator( ';' );
-			break;
-		}
-		case AutomaticSeparator : 	
-		case TabSeparator :	
-		default:
-		{
-			Tokenizer.SetSeparator( '\t' );
-			break;
-		}
-	}
-	// Add the field name
-	Tokenizer.AddToken( FieldNameKey );
-	Tokenizer.AddToken( pObjectDefinition->GetFieldName() );
-	Line = Tokenizer.GetString();
-	Line += "\r\n";
-	Tokenizer.ClearAllTokens();
+    switch (GetSeparatorType())
+    {
+        case CommaSeparator :
+        {
+            Tokenizer.SetSeparator( ',' );
+            break;
+        }
+        case SemiColumnSeparator :
+        {
+            Tokenizer.SetSeparator( ';' );
+            break;
+        }
+        case AutomaticSeparator :     
+        case TabSeparator :    
+        default:
+        {
+            Tokenizer.SetSeparator( '\t' );
+            break;
+        }
+    }
+    // Add the field name
+    Tokenizer.AddToken( FieldNameKey );
+    Tokenizer.AddToken( pObjectDefinition->GetFieldName() );
+    Line = Tokenizer.GetString();
+    Line += "\r\n";
+    Tokenizer.ClearAllTokens();
 
-	// Add the field description
-	Tokenizer.AddToken( FieldDescriptionKey );
-	Tokenizer.AddToken( pObjectDefinition->GetDescription() );
-	Line += Tokenizer.GetString();
-	Line += "\r\n";
-	Tokenizer.ClearAllTokens();
+    // Add the field description
+    Tokenizer.AddToken( FieldDescriptionKey );
+    Tokenizer.AddToken( pObjectDefinition->GetDescription() );
+    Line += Tokenizer.GetString();
+    Line += "\r\n";
+    Tokenizer.ClearAllTokens();
 
-	// Add the field user description
-	Tokenizer.AddToken( FieldUserHelpKey );
-	Tokenizer.AddToken( pObjectDefinition->GetHelpUserDescription() );
-	Line += Tokenizer.GetString();
-	Line += "\r\n";
-	Tokenizer.ClearAllTokens();
+    // Add the field user description
+    Tokenizer.AddToken( FieldUserHelpKey );
+    Tokenizer.AddToken( pObjectDefinition->GetHelpUserDescription() );
+    Line += Tokenizer.GetString();
+    Line += "\r\n";
+    Tokenizer.ClearAllTokens();
 
-	// Add the read only flag
-	Tokenizer.AddToken( FieldReadOnlyKey );
-	Tokenizer.AddToken( (pObjectHistory && pObjectHistory->IsReadOnly()) ? "1" : "0" );
-	Line += Tokenizer.GetString();
-	Line += "\r\n";
-	Tokenizer.ClearAllTokens();
+    // Add the read only flag
+    Tokenizer.AddToken( FieldReadOnlyKey );
+    Tokenizer.AddToken( (pObjectHistory && pObjectHistory->IsReadOnly()) ? "1" : "0" );
+    Line += Tokenizer.GetString();
+    Line += "\r\n";
+    Tokenizer.ClearAllTokens();
 
-	// Add the read only flag
-	Tokenizer.AddToken( FieldListSortedKey );
-	Tokenizer.AddToken( (pObjectHistory && pObjectDefinition->IsSorted()) ? "1" : "0" );
-	Line += Tokenizer.GetString();
-	Line += "\r\n";
-	Tokenizer.ClearAllTokens();
+    // Add the read only flag
+    Tokenizer.AddToken( FieldListSortedKey );
+    Tokenizer.AddToken( (pObjectHistory && pObjectDefinition->IsSorted()) ? "1" : "0" );
+    Line += Tokenizer.GetString();
+    Line += "\r\n";
+    Tokenizer.ClearAllTokens();
 
-	// Add the class name 
-	Tokenizer.AddToken( FieldClassNameKey );
-	Tokenizer.AddToken( pObjectDefinition->GetClassName() );
-	Line += Tokenizer.GetString();
-	Line += "\r\n";
-	Tokenizer.ClearAllTokens();
+    // Add the class name 
+    Tokenizer.AddToken( FieldClassNameKey );
+    Tokenizer.AddToken( pObjectDefinition->GetClassName() );
+    Line += Tokenizer.GetString();
+    Line += "\r\n";
+    Tokenizer.ClearAllTokens();
 
-	
+    
 
-	// Export the field history
-	for (size_t i = 0; pObjectHistory && i < pObjectHistory->GetCount(); ++i)
-	{
-		// Add the field history value
-		Tokenizer.AddToken( pObjectHistory->GetValueArray().GetAt(i) );
-		Line += Tokenizer.GetString();
-		Line += "\r\n";
-		Tokenizer.ClearAllTokens();
-	}
-	return Line;
+    // Export the field history
+    for (size_t i = 0; pObjectHistory && i < pObjectHistory->GetCount(); ++i)
+    {
+        // Add the field history value
+        Tokenizer.AddToken( pObjectHistory->GetValueArray().GetAt(i) );
+        Line += Tokenizer.GetString();
+        Line += "\r\n";
+        Tokenizer.ClearAllTokens();
+    }
+    return Line;
   //## end ZUFieldDefinitionDataFeed::GetExportedLine%937950158.body
 }
 
 BOOL ZUFieldDefinitionDataFeed::ProcessLine (CString Line)
 {
   //## begin ZUFieldDefinitionDataFeed::ProcessLine%937950159.body preserve=yes
-  	// The line we received is exactly the same we exported
-	CString	Key;
-	CString	Value;
+      // The line we received is exactly the same we exported
+    CString    Key;
+    CString    Value;
 
 
-	ZBTokenizer	Tokenizer;
+    ZBTokenizer    Tokenizer;
 
-	switch (GetSeparatorType())
-	{
-		case CommaSeparator :
-		{
-			Tokenizer.SetSeparator( ',' );
-			break;
-		}
-		case SemiColumnSeparator :
-		{
-			Tokenizer.SetSeparator( ';' );
-			break;
-		}
-		case AutomaticSeparator : 	
-		case TabSeparator :	
-		default:
-		{
-			Tokenizer.SetSeparator( '\t' );
-			break;
-		}
-	}
+    switch (GetSeparatorType())
+    {
+        case CommaSeparator :
+        {
+            Tokenizer.SetSeparator( ',' );
+            break;
+        }
+        case SemiColumnSeparator :
+        {
+            Tokenizer.SetSeparator( ';' );
+            break;
+        }
+        case AutomaticSeparator :     
+        case TabSeparator :    
+        default:
+        {
+            Tokenizer.SetSeparator( '\t' );
+            break;
+        }
+    }
 
-  	// Extract the key
-	Key = Tokenizer.GetFirstToken( Line );
-	// If no Key, end
-	if (Key.IsEmpty())
-		return FALSE;
-  	// Extract the value
-	Value = Tokenizer.GetNextToken();
+      // Extract the key
+    Key = Tokenizer.GetFirstToken( Line );
+    // If no Key, end
+    if (Key.IsEmpty())
+        return FALSE;
+      // Extract the value
+    Value = Tokenizer.GetNextToken();
 
-	FieldExport*	pFieldExport = new FieldExport( Key, Value );
-	m_LineArray.Add( (CObject*)pFieldExport );
-	return TRUE;  	
+    FieldExport*    pFieldExport = new FieldExport( Key, Value );
+    m_LineArray.Add( (CObject*)pFieldExport );
+    return TRUE;      
   //## end ZUFieldDefinitionDataFeed::ProcessLine%937950159.body
 }
 
 CString ZUFieldDefinitionDataFeed::GetHeaderLine ()
 {
   //## begin ZUFieldDefinitionDataFeed::GetHeaderLine%937950160.body preserve=yes
-	return "";
+    return "";
   //## end ZUFieldDefinitionDataFeed::GetHeaderLine%937950160.body
 }
 
 double ZUFieldDefinitionDataFeed::ForecastedTotalObject ()
 {
   //## begin ZUFieldDefinitionDataFeed::ForecastedTotalObject%937950164.body preserve=yes
-	return 0;
+    return 0;
   //## end ZUFieldDefinitionDataFeed::ForecastedTotalObject%937950164.body
 }
 
 BOOL ZUFieldDefinitionDataFeed::DoExportLoop ()
 {
   //## begin ZUFieldDefinitionDataFeed::DoExportLoop%937950165.body preserve=yes
-	// If not object to export, do nothing
-	if (!m_pObjectDefinition)
-		return FALSE;
-	// Only one object to export
-	CString Line;
-	Line = GetExportedLine( (CObject*)m_pObjectDefinition );
-	WriteLine ( Line );
-  	return TRUE;
+    // If not object to export, do nothing
+    if (!m_pObjectDefinition)
+        return FALSE;
+    // Only one object to export
+    CString Line;
+    Line = GetExportedLine( (CObject*)m_pObjectDefinition );
+    WriteLine ( Line );
+      return TRUE;
   //## end ZUFieldDefinitionDataFeed::DoExportLoop%937950165.body
 }
 
 BOOL ZUFieldDefinitionDataFeed::PreImport ()
 {
   //## begin ZUFieldDefinitionDataFeed::PreImport%937950166.body preserve=yes
-	DeleteLineArray();
-	return TRUE;
+    DeleteLineArray();
+    return TRUE;
   //## end ZUFieldDefinitionDataFeed::PreImport%937950166.body
 }
 
 BOOL ZUFieldDefinitionDataFeed::PostImport ()
 {
   //## begin ZUFieldDefinitionDataFeed::PostImport%938372467.body preserve=yes
-	CString	FieldName;
-	CString	Description;
-	CString	HelpUser;
-	CString	ClassName;
-	CString	HeaderNames;
-	BOOL	ReadOnly = FALSE;
-	BOOL	Sorted = TRUE;
-	BOOL	IsMultiColumn = FALSE;
-	int		i = 0;
-	BOOL	HasBeenAssigned = TRUE;
-	// Run through line objects and find the fields
-	for (; i < m_LineArray.GetSize() && m_LineArray.GetAt(i) && HasBeenAssigned ; ++i)
-	{
-		HasBeenAssigned = FALSE;
-		if (((FieldExport*)m_LineArray.GetAt(i))->m_Key == FieldNameKey)
-		{
-			HasBeenAssigned = TRUE;
-			FieldName = ((FieldExport*)m_LineArray.GetAt(i))->m_Value;
-		}
-		else
-		if (((FieldExport*)m_LineArray.GetAt(i))->m_Key == FieldDescriptionKey)
-		{
-			HasBeenAssigned = TRUE;
-			Description = ((FieldExport*)m_LineArray.GetAt(i))->m_Value;
-		}
-		else
-		if (((FieldExport*)m_LineArray.GetAt(i))->m_Key == FieldUserHelpKey)
-		{
-			HasBeenAssigned = TRUE;
-			HelpUser = ((FieldExport*)m_LineArray.GetAt(i))->m_Value;
-		}
-		else
-		if (((FieldExport*)m_LineArray.GetAt(i))->m_Key == FieldReadOnlyKey)
-		{
-			HasBeenAssigned = TRUE;
-			ReadOnly = (((FieldExport*)m_LineArray.GetAt(i))->m_Value == "1") ? 1 : 0;
-		}
-		else
-		if (((FieldExport*)m_LineArray.GetAt(i))->m_Key == FieldListSortedKey)
-		{
-			HasBeenAssigned = TRUE;
-			Sorted = (((FieldExport*)m_LineArray.GetAt(i))->m_Value == "1") ? 1 : 0;
-		}
-		else
-		if (((FieldExport*)m_LineArray.GetAt(i))->m_Key == FieldClassNameKey)
-		{
-			HasBeenAssigned = TRUE;
-			ClassName = ((FieldExport*)m_LineArray.GetAt(i))->m_Value;
-		}
-		else
-		if (((FieldExport*)m_LineArray.GetAt(i))->m_Key == FieldMultiColumnKey)
-		{
-			HasBeenAssigned = TRUE;
-			IsMultiColumn = (((FieldExport*)m_LineArray.GetAt(i))->m_Value == "1") ? 1 : 0;
-		}
-		else
-		if (((FieldExport*)m_LineArray.GetAt(i))->m_Key == FieldHeaderNameKey)
-		{
-			HasBeenAssigned = TRUE;
-			HeaderNames = ((FieldExport*)m_LineArray.GetAt(i))->m_Value;
-		}
+    CString    FieldName;
+    CString    Description;
+    CString    HelpUser;
+    CString    ClassName;
+    CString    HeaderNames;
+    BOOL    ReadOnly = FALSE;
+    BOOL    Sorted = TRUE;
+    BOOL    IsMultiColumn = FALSE;
+    int        i = 0;
+    BOOL    HasBeenAssigned = TRUE;
+    // Run through line objects and find the fields
+    for (; i < m_LineArray.GetSize() && m_LineArray.GetAt(i) && HasBeenAssigned ; ++i)
+    {
+        HasBeenAssigned = FALSE;
+        if (((FieldExport*)m_LineArray.GetAt(i))->m_Key == FieldNameKey)
+        {
+            HasBeenAssigned = TRUE;
+            FieldName = ((FieldExport*)m_LineArray.GetAt(i))->m_Value;
+        }
+        else
+        if (((FieldExport*)m_LineArray.GetAt(i))->m_Key == FieldDescriptionKey)
+        {
+            HasBeenAssigned = TRUE;
+            Description = ((FieldExport*)m_LineArray.GetAt(i))->m_Value;
+        }
+        else
+        if (((FieldExport*)m_LineArray.GetAt(i))->m_Key == FieldUserHelpKey)
+        {
+            HasBeenAssigned = TRUE;
+            HelpUser = ((FieldExport*)m_LineArray.GetAt(i))->m_Value;
+        }
+        else
+        if (((FieldExport*)m_LineArray.GetAt(i))->m_Key == FieldReadOnlyKey)
+        {
+            HasBeenAssigned = TRUE;
+            ReadOnly = (((FieldExport*)m_LineArray.GetAt(i))->m_Value == "1") ? 1 : 0;
+        }
+        else
+        if (((FieldExport*)m_LineArray.GetAt(i))->m_Key == FieldListSortedKey)
+        {
+            HasBeenAssigned = TRUE;
+            Sorted = (((FieldExport*)m_LineArray.GetAt(i))->m_Value == "1") ? 1 : 0;
+        }
+        else
+        if (((FieldExport*)m_LineArray.GetAt(i))->m_Key == FieldClassNameKey)
+        {
+            HasBeenAssigned = TRUE;
+            ClassName = ((FieldExport*)m_LineArray.GetAt(i))->m_Value;
+        }
+        else
+        if (((FieldExport*)m_LineArray.GetAt(i))->m_Key == FieldMultiColumnKey)
+        {
+            HasBeenAssigned = TRUE;
+            IsMultiColumn = (((FieldExport*)m_LineArray.GetAt(i))->m_Value == "1") ? 1 : 0;
+        }
+        else
+        if (((FieldExport*)m_LineArray.GetAt(i))->m_Key == FieldHeaderNameKey)
+        {
+            HasBeenAssigned = TRUE;
+            HeaderNames = ((FieldExport*)m_LineArray.GetAt(i))->m_Value;
+        }
 
-	}
-	// No fieldname found, error
-	if (FieldName.IsEmpty())
-		return FALSE;
+    }
+    // No fieldname found, error
+    if (FieldName.IsEmpty())
+        return FALSE;
     ZAObjectDefinition* pObjectDefinition = m_pSourceFieldRepository->FindField( FieldName );
-	if (!pObjectDefinition)
-	{
-		// Otherwise, create the class and add it to the repository
-		pObjectDefinition = new ZAObjectDefinition;
-		if (!pObjectDefinition)
-			return FALSE;
-		pObjectDefinition->SetFieldName( FieldName );
-		if (ClassName.IsEmpty())
-			pObjectDefinition->SetpObject( NULL );
-		else
-		{
-			// Set the class name
-			pObjectDefinition->SetClassName( ClassName );
-			// Create a new object with the class name
-			PlanFinObject* pObj = ZBObjectUtility::ConstructObject( ClassName );
-			// Set the fieldname
-			pObj->SetObjectName( FieldName );
-			// Assign it
-			pObjectDefinition->SetpObject( pObj );
-		}
-		// Add the field to the repository
-		m_pSourceFieldRepository->AddField( pObjectDefinition );
-	}
+    if (!pObjectDefinition)
+    {
+        // Otherwise, create the class and add it to the repository
+        pObjectDefinition = new ZAObjectDefinition;
+        if (!pObjectDefinition)
+            return FALSE;
+        pObjectDefinition->SetFieldName( FieldName );
+        if (ClassName.IsEmpty())
+            pObjectDefinition->SetpObject( NULL );
+        else
+        {
+            // Set the class name
+            pObjectDefinition->SetClassName( ClassName );
+            // Create a new object with the class name
+            PlanFinObject* pObj = ZBObjectUtility::ConstructObject( ClassName );
+            // Set the fieldname
+            pObj->SetObjectName( FieldName );
+            // Assign it
+            pObjectDefinition->SetpObject( pObj );
+        }
+        // Add the field to the repository
+        m_pSourceFieldRepository->AddField( pObjectDefinition );
+    }
 
-	// Assign values to object definition
-	pObjectDefinition->SetDescription( Description ); 
-	pObjectDefinition->SetHelpUserDescription( HelpUser );
-	pObjectDefinition->SetSorted( Sorted );
+    // Assign values to object definition
+    pObjectDefinition->SetDescription( Description ); 
+    pObjectDefinition->SetHelpUserDescription( HelpUser );
+    pObjectDefinition->SetSorted( Sorted );
 
-	// If we have values to add to history
-	--i;	// Go back to the previous element
-	if (m_LineArray.GetSize() >= i)
-	{
-		// and after, run through the rest and add it to the history
-		for (; i < m_LineArray.GetSize(); ++i)
-		{
-			if (m_LineArray.GetAt(i))
-				m_pSourceFieldRepository->AddFieldHistoryValue( FieldName, ((FieldExport*)m_LineArray.GetAt(i))->m_Key );
-		}
+    // If we have values to add to history
+    --i;    // Go back to the previous element
+    if (m_LineArray.GetSize() >= i)
+    {
+        // and after, run through the rest and add it to the history
+        for (; i < m_LineArray.GetSize(); ++i)
+        {
+            if (m_LineArray.GetAt(i))
+                m_pSourceFieldRepository->AddFieldHistoryValue( FieldName, ((FieldExport*)m_LineArray.GetAt(i))->m_Key );
+        }
 
-		ZAHistoryField*			pObjectHistory;
-		pObjectHistory = m_pSourceFieldRepository->FindFieldHistory( FieldName );
-		if (pObjectHistory)
-			pObjectHistory->SetReadOnly( ReadOnly );
-	}
-	return TRUE;
+        ZAHistoryField*            pObjectHistory;
+        pObjectHistory = m_pSourceFieldRepository->FindFieldHistory( FieldName );
+        if (pObjectHistory)
+            pObjectHistory->SetReadOnly( ReadOnly );
+    }
+    return TRUE;
   //## end ZUFieldDefinitionDataFeed::PostImport%938372467.body
 }
 
 void ZUFieldDefinitionDataFeed::DeleteLineArray ()
 {
   //## begin ZUFieldDefinitionDataFeed::DeleteLineArray%938372466.body preserve=yes
-	for (int i = 0; i < m_LineArray.GetSize(); ++i)
-	{
-		if (m_LineArray.GetAt(i))
-			delete (FieldExport*)m_LineArray.GetAt(i);
-	}
-	m_LineArray.RemoveAll();
+    for (int i = 0; i < m_LineArray.GetSize(); ++i)
+    {
+        if (m_LineArray.GetAt(i))
+            delete (FieldExport*)m_LineArray.GetAt(i);
+    }
+    m_LineArray.RemoveAll();
   //## end ZUFieldDefinitionDataFeed::DeleteLineArray%938372466.body
 }
 

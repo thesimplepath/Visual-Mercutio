@@ -1,10 +1,10 @@
 //## begin module%35B620AF0085.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%35B620AF0085.cm
 
 //## begin module%35B620AF0085.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%35B620AF0085.cp
 
 //## Module: NavPage%35B620AF0085; Package specification
@@ -19,10 +19,10 @@
 
 //## begin module%35B620AF0085.includes preserve=yes
 #ifndef _WIN32
-	#include "ZWinUtil.h"
+    #include "ZWinUtil.h"
 #endif
 #ifdef _WIN32
-	#include "ZWinUtil32.h"
+    #include "ZWinUtil32.h"
 #endif
 //## end module%35B620AF0085.includes
 
@@ -41,7 +41,7 @@
 //## end ZINavigationPage%35B61F1D02AD.preface
 
 //## Class: ZINavigationPage%35B61F1D02AD
-//	This page contains calculation options for the system.
+//    This page contains calculation options for the system.
 //## Category: ZWinUtil library::Options classes::Property page for options%3705BE0901B4
 //## Subsystem: ZWinUtil%36DEE1730346
 //## Persistence: Transient
@@ -52,12 +52,12 @@
 class ZINavigationPage : public ZIGenericPropPage  //## Inherits: <unnamed>%370530B903BF
 {
   //## begin ZINavigationPage%35B61F1D02AD.initialDeclarations preserve=yes
-	public:
-	// Dialog Data
-		//{{AFX_DATA(ZINavigationPage)
-	enum { IDD = IDD_NAVIGATIONPAGE };
-	BOOL	m_GoNextEdit;
-	//}}AFX_DATA
+    public:
+    // Dialog Data
+        //{{AFX_DATA(ZINavigationPage)
+    enum { IDD = IDD_NAVIGATIONPAGE };
+    BOOL    m_GoNextEdit;
+    //}}AFX_DATA
   //## end ZINavigationPage%35B61F1D02AD.initialDeclarations
 
   public:
@@ -81,19 +81,19 @@ class ZINavigationPage : public ZIGenericPropPage  //## Inherits: <unnamed>%3705
 
     //## Other Operations (specified)
       //## Operation: DoDataExchange%901127513
-      //	Do data exchange mecanism of MFC dialog
+      //    Do data exchange mecanism of MFC dialog
       virtual void DoDataExchange (CDataExchange* pDX);
 
     // Additional Protected Declarations
       //## begin ZINavigationPage%35B61F1D02AD.protected preserve=yes
       
-	// Generated message map functions
-	//{{AFX_MSG(ZINavigationPage)
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
-	virtual void OnOK();	
-	
+    // Generated message map functions
+    //{{AFX_MSG(ZINavigationPage)
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
+    virtual void OnOK();    
+    
       //## end ZINavigationPage%35B61F1D02AD.protected
   private:
     //## Constructors (generated)

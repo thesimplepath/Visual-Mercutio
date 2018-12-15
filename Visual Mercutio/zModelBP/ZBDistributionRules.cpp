@@ -40,75 +40,75 @@ ZBDistributionRule::~ZBDistributionRule()
 
 ZBDistributionRule::ZBDistributionRule(const ZBDistributionRule& src)
 {
-	*this = src;
+    *this = src;
 }
 
 ZBDistributionRule& ZBDistributionRule::operator=(const ZBDistributionRule& src)
 {
-	m_Operator = src.m_Operator;
-	m_LogicalOperator = src.m_LogicalOperator;
-	m_Value = src.m_Value;
+    m_Operator = src.m_Operator;
+    m_LogicalOperator = src.m_LogicalOperator;
+    m_Value = src.m_Value;
 
-	return *this;
+    return *this;
 }
 
 
 ZBDistributionRule* ZBDistributionRule::Dup() const
 {
-	return (new ZBDistributionRule(*this));
+    return (new ZBDistributionRule(*this));
 }
 
 
 CString ZBDistributionRule::GetOperatorString() const
 {
-	switch (m_Operator)
-	{
-		case 1: return _T("==");
-		case 2: return _T("<");
-		case 3: return _T("<=");
-		case 4: return _T(">=");
-		case 5: return _T(">");
-		case 6: return _T("!=");
-		default: break;
-	}
-	return _T("");
+    switch (m_Operator)
+    {
+        case 1: return _T("==");
+        case 2: return _T("<");
+        case 3: return _T("<=");
+        case 4: return _T(">=");
+        case 5: return _T(">");
+        case 6: return _T("!=");
+        default: break;
+    }
+    return _T("");
 }
 
 CString ZBDistributionRule::GetLogicalOperatorString() const
 {
-	switch (m_LogicalOperator)
-	{
-		case 0: return _T("&");
-		case 1: return _T("|");
-		default: break;
+    switch (m_LogicalOperator)
+    {
+        case 0: return _T("&");
+        case 1: return _T("|");
+        default: break;
 
-	}
-	return _T("");
+    }
+    return _T("");
 }
 
 
 void ZBDistributionRule::Serialize(CArchive& ar)
 {
-	if (ar.IsStoring())
-	{
-		TRACE( "ZBDistributionRule::Serialize : Start Save\n" );
+    if (ar.IsStoring())
+    {
+        TRACE( "ZBDistributionRule::Serialize : Start Save\n" );
 
-		ar << m_Operator;
-		ar << m_LogicalOperator;
-		ar << m_Value;
+        ar << m_Operator;
+        ar << m_LogicalOperator;
+        ar << m_Value;
 
-		TRACE( "ZBDistributionRule::Serialize : End Save\n" );
-	}
-	else
-	{
-		TRACE( "ZBDistributionRule::Serialize : Start Read\n" );
+        TRACE( "ZBDistributionRule::Serialize : End Save\n" );
+    }
+    else
+    {
+        TRACE( "ZBDistributionRule::Serialize : Start Read\n" );
 
-		ar >> m_Operator;
-		ar >> m_LogicalOperator;
-		ar >> m_Value;
+        ar >> m_Operator;
+        ar >> m_LogicalOperator;
+        ar >> m_Value;
 
-		TRACE( "ZBDistributionRule::Serialize : End Read\n" );
-	}
+        TRACE( "ZBDistributionRule::Serialize : End Read\n" );
+    }
 
 }
 
@@ -130,119 +130,119 @@ ZBDistributionRuleManager::ZBDistributionRuleManager()
 
 ZBDistributionRuleManager::~ZBDistributionRuleManager()
 {
-	DeleteAllDistributionRule();
+    DeleteAllDistributionRule();
 }
 
 
 
 ZBDistributionRuleManager::ZBDistributionRuleManager(const ZBDistributionRuleManager& src)
 {
-	*this = src;
+    *this = src;
 }
 
 ZBDistributionRuleManager& ZBDistributionRuleManager::operator=(const ZBDistributionRuleManager& src)
 {
-	ZBDistributionRuleIterator i(&src.m_Set);
-	for (ZBDistributionRule* pDistribRule = i.GetFirst(); pDistribRule; pDistribRule = i.GetNext())
-	{
-		AddDistributionRule( pDistribRule->Dup() );
-	}
-	return *this;
+    ZBDistributionRuleIterator i(&src.m_Set);
+    for (ZBDistributionRule* pDistribRule = i.GetFirst(); pDistribRule; pDistribRule = i.GetNext())
+    {
+        AddDistributionRule( pDistribRule->Dup() );
+    }
+    return *this;
 }
 
 
 ZBDistributionRuleManager* ZBDistributionRuleManager::Dup() const
 {
-	return (new ZBDistributionRuleManager(*this));
+    return (new ZBDistributionRuleManager(*this));
 }
 
 
 void ZBDistributionRuleManager::DeleteAllDistributionRule()
 {
-	ZBDistributionRuleIterator i(&m_Set);
-	for (ZBDistributionRule* pDistribRule = i.GetFirst(); pDistribRule; pDistribRule = i.GetNext())
-		delete pDistribRule;
+    ZBDistributionRuleIterator i(&m_Set);
+    for (ZBDistributionRule* pDistribRule = i.GetFirst(); pDistribRule; pDistribRule = i.GetNext())
+        delete pDistribRule;
 
-	m_Set.RemoveAll();
+    m_Set.RemoveAll();
 }
 
 void ZBDistributionRuleManager::AddDistributionRule( int Operator, CString Value, int LogicalOperator /*= -1*/ )
 {
-	ZBDistributionRule* pDistributionRule = new ZBDistributionRule( Operator, Value, LogicalOperator );
-	ASSERT( pDistributionRule );
-	AddDistributionRule( pDistributionRule );
+    ZBDistributionRule* pDistributionRule = new ZBDistributionRule( Operator, Value, LogicalOperator );
+    ASSERT( pDistributionRule );
+    AddDistributionRule( pDistributionRule );
 }
 
 void ZBDistributionRuleManager::AddDistributionRule( ZBDistributionRule* pDistributionRule )
 {
-	if (!pDistributionRule)
-		return;
-	m_Set.Add( pDistributionRule );
+    if (!pDistributionRule)
+        return;
+    m_Set.Add( pDistributionRule );
 }
 
 bool ZBDistributionRuleManager::DeleteDistributionRule( ZBDistributionRule* pDistributionRule )
 {
-	ZBDistributionRuleIterator i(&m_Set);
-	for (ZBDistributionRule* pDistribRule = i.GetFirst(); pDistribRule; pDistribRule = i.GetNext())
-	{
-		if (pDistribRule == pDistributionRule)
-		{
-			delete pDistribRule;
-			i.Remove();
-			return true;
-		}
-	}
-	return false;
+    ZBDistributionRuleIterator i(&m_Set);
+    for (ZBDistributionRule* pDistribRule = i.GetFirst(); pDistribRule; pDistribRule = i.GetNext())
+    {
+        if (pDistribRule == pDistributionRule)
+        {
+            delete pDistribRule;
+            i.Remove();
+            return true;
+        }
+    }
+    return false;
 }
 
 
 bool ZBDistributionRuleManager::Exist( ZBDistributionRule* pDistributionRule )
 {
-	if (!pDistributionRule)
-		return NULL;
-	ZBDistributionRuleIterator i(&m_Set);
-	for (ZBDistributionRule* pDistribRule = i.GetFirst(); pDistribRule; pDistribRule = i.GetNext())
-	{
-		if (pDistribRule == pDistributionRule)
-			return true;
-	}
-	return false;
+    if (!pDistributionRule)
+        return NULL;
+    ZBDistributionRuleIterator i(&m_Set);
+    for (ZBDistributionRule* pDistribRule = i.GetFirst(); pDistribRule; pDistribRule = i.GetNext())
+    {
+        if (pDistribRule == pDistributionRule)
+            return true;
+    }
+    return false;
 }
 
 
 void ZBDistributionRuleManager::Serialize(CArchive& ar)
 {
-	if (ar.IsStoring())
-	{
-		TRACE( "ZBDistributionRuleManager::Serialize : Start Save\n" );
+    if (ar.IsStoring())
+    {
+        TRACE( "ZBDistributionRuleManager::Serialize : Start Save\n" );
 
-		// Serialize the size
-		ar << m_Set.GetSize();
+        // Serialize the size
+        ar << m_Set.GetSize();
 
-		ZBDistributionRuleIterator i(&m_Set);
-		for (ZBDistributionRule* pDistribRule = i.GetFirst(); pDistribRule; pDistribRule = i.GetNext())
-		{		
-			ar << pDistribRule;
-		}
+        ZBDistributionRuleIterator i(&m_Set);
+        for (ZBDistributionRule* pDistribRule = i.GetFirst(); pDistribRule; pDistribRule = i.GetNext())
+        {        
+            ar << pDistribRule;
+        }
 
-		TRACE( "ZBDistributionRuleManager::Serialize : End Save\n" );
-	}
-	else
-	{
-		TRACE( "ZBDistributionRuleManager::Serialize : Start Read\n" );
+        TRACE( "ZBDistributionRuleManager::Serialize : End Save\n" );
+    }
+    else
+    {
+        TRACE( "ZBDistributionRuleManager::Serialize : Start Read\n" );
 
-		int Size;
-		ar >> Size;
+        int Size;
+        ar >> Size;
 
-		ZBDistributionRule* pDistribRule;
-		for (int i = 0; i < Size; ++i)
-		{
-			ar >> pDistribRule;
-			AddDistributionRule( pDistribRule );
-		}
-	
-		TRACE( "ZBDistributionRuleManager::Serialize : End Read\n" );
-	}
+        ZBDistributionRule* pDistribRule;
+        for (int i = 0; i < Size; ++i)
+        {
+            ar >> pDistribRule;
+            AddDistributionRule( pDistribRule );
+        }
+    
+        TRACE( "ZBDistributionRuleManager::Serialize : End Read\n" );
+    }
 
 }
 

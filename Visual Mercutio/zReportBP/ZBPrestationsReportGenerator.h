@@ -1,9 +1,9 @@
 // **************************************************************************************************************
-// *									Classe ZBPrestationsReportGenerator										*
+// *                                    Classe ZBPrestationsReportGenerator                                        *
 // **************************************************************************************************************
-// * JMR-MODIF - Le 8 mars 2006 - Ajout de la classe ZBPrestationsReportGenerator.								*
+// * JMR-MODIF - Le 8 mars 2006 - Ajout de la classe ZBPrestationsReportGenerator.                                *
 // **************************************************************************************************************
-// * Cette classe permet la génération d'un rapport de type Prestations dans un nouveau document.				*
+// * Cette classe permet la génération d'un rapport de type Prestations dans un nouveau document.                *
 // **************************************************************************************************************
 
 #if !defined(AFX_ZBPrestationsReportGenerator_H__92F0037B_1EAF_4F26_BE0A_CFBCC6D7C6FD__INCLUDED_)
@@ -64,7 +64,7 @@ class ZBLogicalPrestationsEntity;
 #endif
 
 // ******************************************************************************************************
-// *										   Classes internes											*
+// *                                           Classes internes                                            *
 // ******************************************************************************************************
 
 // Classe conteneur de données relatives aux processus contenant une prestation.
@@ -72,36 +72,36 @@ class AFX_EXT_CLASS _ZBProcessDatas : public CObject
 {
 public:
 
-	_ZBProcessDatas( CString					ProcessName		= _T( "" ),
-					 ZBBPAnnualNumberProperties	Workload		= 0,
-					 ZBBPAnnualNumberProperties	Cost			= 0,
-					 ZBBPAnnualNumberProperties	CostHMO			= 0,
-					 float						Percentage		= 0.0f );
+    _ZBProcessDatas( CString                    ProcessName        = _T( "" ),
+                     ZBBPAnnualNumberProperties    Workload        = 0,
+                     ZBBPAnnualNumberProperties    Cost            = 0,
+                     ZBBPAnnualNumberProperties    CostHMO            = 0,
+                     float                        Percentage        = 0.0f );
 
-	~_ZBProcessDatas();
+    ~_ZBProcessDatas();
 
-	void SetName( CString Name );
-	CString GetName();
+    void SetName( CString Name );
+    CString GetName();
 
-	void SetWorkload( ZBBPAnnualNumberProperties Workload );
-	ZBBPAnnualNumberProperties GetWorkload();
+    void SetWorkload( ZBBPAnnualNumberProperties Workload );
+    ZBBPAnnualNumberProperties GetWorkload();
 
-	void SetCost( ZBBPAnnualNumberProperties Cost );
-	ZBBPAnnualNumberProperties GetCost();
+    void SetCost( ZBBPAnnualNumberProperties Cost );
+    ZBBPAnnualNumberProperties GetCost();
 
-	void SetCostHMO( ZBBPAnnualNumberProperties CostHMO );
-	ZBBPAnnualNumberProperties GetCostHMO();
+    void SetCostHMO( ZBBPAnnualNumberProperties CostHMO );
+    ZBBPAnnualNumberProperties GetCostHMO();
 
-	void SetPercentage( double Percentage );
-	double GetPercentage();
+    void SetPercentage( double Percentage );
+    double GetPercentage();
 
 private:
 
-	CString						m_ProcessName;
-	ZBBPAnnualNumberProperties	m_Workload;
-	ZBBPAnnualNumberProperties	m_Cost;
-	ZBBPAnnualNumberProperties	m_CostHMO;
-	double						m_ProprietaryPrestPercentage;
+    CString                        m_ProcessName;
+    ZBBPAnnualNumberProperties    m_Workload;
+    ZBBPAnnualNumberProperties    m_Cost;
+    ZBBPAnnualNumberProperties    m_CostHMO;
+    double                        m_ProprietaryPrestPercentage;
 };
 
 // Classe conteneur de données relatives aux prestations.
@@ -109,105 +109,105 @@ class AFX_EXT_CLASS _ZBPrestationsDatas : public CObject
 {
 public:
 
-	_ZBPrestationsDatas( CString PrestationName = _T( "" ) );
-	~_ZBPrestationsDatas();
+    _ZBPrestationsDatas( CString PrestationName = _T( "" ) );
+    ~_ZBPrestationsDatas();
 
-	void SetName( CString Name );
-	CString GetName();
+    void SetName( CString Name );
+    CString GetName();
 
-	void GenerateHierarchy( ZBLogicalPrestationsEntity* pPrestations, int Level = 0 );
-	void Associate( ZBBPProcessSymbol* Process );
-	void UpdateTotals();
+    void GenerateHierarchy( ZBLogicalPrestationsEntity* pPrestations, int Level = 0 );
+    void Associate( ZBBPProcessSymbol* Process );
+    void UpdateTotals();
 
-	void DisplayDatas( ZBOStreamGrid	&ostream,
-					   CStringArray&	ProcessNameArray,
-					   CGXStyle			DisplayStyle,
-					   CGXStyle			AmountStyle,
-					   CGXStyle			NumericStyle,
-					   int				Index,
-					   bool				IncludeMonthDetails );
+    void DisplayDatas( ZBOStreamGrid    &ostream,
+                       CStringArray&    ProcessNameArray,
+                       CGXStyle            DisplayStyle,
+                       CGXStyle            AmountStyle,
+                       CGXStyle            NumericStyle,
+                       int                Index,
+                       bool                IncludeMonthDetails );
 
-	ZBBPAnnualNumberProperties GetTotalWorkload();
-	ZBBPAnnualNumberProperties GetTotalCost();
-	ZBBPAnnualNumberProperties GetTotalCostHMO();
+    ZBBPAnnualNumberProperties GetTotalWorkload();
+    ZBBPAnnualNumberProperties GetTotalCost();
+    ZBBPAnnualNumberProperties GetTotalCostHMO();
 
-	CObList* GetProcessList();
-
-private:
-
-	void InternalUpdateTotals();
+    CObList* GetProcessList();
 
 private:
 
-	CString						m_PrestationName;
-	CString						m_Space;
+    void InternalUpdateTotals();
 
-	ZBBPAnnualNumberProperties	m_TotalWorkload;
-	ZBBPAnnualNumberProperties	m_TotalCost;
-	ZBBPAnnualNumberProperties	m_TotalCostHMO;
+private:
 
-	CObList						m_ProcessList;
-	CObList						m_ChildPrestationsList;
+    CString                        m_PrestationName;
+    CString                        m_Space;
+
+    ZBBPAnnualNumberProperties    m_TotalWorkload;
+    ZBBPAnnualNumberProperties    m_TotalCost;
+    ZBBPAnnualNumberProperties    m_TotalCostHMO;
+
+    CObList                        m_ProcessList;
+    CObList                        m_ChildPrestationsList;
 };
 
 // ******************************************************************************************************
-// *								Classe ZBPrestationsReportGenerator									*
+// *                                Classe ZBPrestationsReportGenerator                                    *
 // ******************************************************************************************************
 
 class AFX_EXT_CLASS ZBPrestationsReportGenerator : public ZBModelBPReportGenerator
 {
-	DECLARE_SERIAL( ZBPrestationsReportGenerator )
+    DECLARE_SERIAL( ZBPrestationsReportGenerator )
 
 public:
 
-	ZBPrestationsReportGenerator( ZDGridDocument*			pDoc				= NULL,
-								  ZDProcessGraphModelMdlBP*	pModel				= NULL,
-								  ZDProcessGraphModelDoc*	pSourceDoc			= NULL,
-								  bool						IncludeMonthDetails	= true );
+    ZBPrestationsReportGenerator( ZDGridDocument*            pDoc                = NULL,
+                                  ZDProcessGraphModelMdlBP*    pModel                = NULL,
+                                  ZDProcessGraphModelDoc*    pSourceDoc            = NULL,
+                                  bool                        IncludeMonthDetails    = true );
 
-	virtual ~ZBPrestationsReportGenerator();
+    virtual ~ZBPrestationsReportGenerator();
 
-	/////////////////////////////////////////////////////////////////////////////
-	// ZIGridReportGenerator methods
-	
-	// Called by the framework to request a grid to be filled
-	// The implementation uses the delegation
-	virtual bool FillGrid( CGXGridCore& GridCore, size_t Index );
+    /////////////////////////////////////////////////////////////////////////////
+    // ZIGridReportGenerator methods
+    
+    // Called by the framework to request a grid to be filled
+    // The implementation uses the delegation
+    virtual bool FillGrid( CGXGridCore& GridCore, size_t Index );
 
-	virtual const CString GetReportTitle() const;
+    virtual const CString GetReportTitle() const;
 
 protected:
 
-	virtual void FillTabArray();
+    virtual void FillTabArray();
 
 private:
 
-	bool FillGridPrestationsReport( CGXGridCore& GridCore, int Index );
-	void FillGridPrestationsHeaders( ZBOStreamGrid &ostream, ZVGridView* pView, int Index );
-	void FillPrestationsDatas();
-	void Associate( ZDProcessGraphModelMdlBP* m_RootModel );
-	void UpdateTotals();
-	void RemoveObsoleteDatas();
+    bool FillGridPrestationsReport( CGXGridCore& GridCore, int Index );
+    void FillGridPrestationsHeaders( ZBOStreamGrid &ostream, ZVGridView* pView, int Index );
+    void FillPrestationsDatas();
+    void Associate( ZDProcessGraphModelMdlBP* m_RootModel );
+    void UpdateTotals();
+    void RemoveObsoleteDatas();
 
-	CPoint CheckColumn( ZBOStreamGrid &ostream, int Quantity );
+    CPoint CheckColumn( ZBOStreamGrid &ostream, int Quantity );
 
 private:
 
-	CStringArray	m_ProcessNameArray;
+    CStringArray    m_ProcessNameArray;
 
-	CObList			m_PrestationsArray;
+    CObList            m_PrestationsArray;
 
-	CGXStyle		m_HeaderStyle;
-	CGXStyle		m_NormalStyle;
-	CGXStyle		m_BlackBorderStyle;
-	CGXStyle		m_AmountFormatStyle;
-	CGXStyle		m_NumericCellStyle;
+    CGXStyle        m_HeaderStyle;
+    CGXStyle        m_NormalStyle;
+    CGXStyle        m_BlackBorderStyle;
+    CGXStyle        m_AmountFormatStyle;
+    CGXStyle        m_NumericCellStyle;
 
-	CSize			m_HeaderPrestationsTitle;
-	CSize			m_HeaderStandardTitle;
-	CSize			m_HeadersDetailsTitle;
+    CSize            m_HeaderPrestationsTitle;
+    CSize            m_HeaderStandardTitle;
+    CSize            m_HeadersDetailsTitle;
 
-	bool			m_IncludeMonthDetail;
+    bool            m_IncludeMonthDetail;
 };
 
 #endif // !defined(AFX_ZBPrestationsReportGenerator_H__92F0037B_1EAF_4F26_BE0A_CFBCC6D7C6FD__INCLUDED_)

@@ -37,32 +37,32 @@
 class AFX_EXT_CLASS ZPreviewDIB : public ZAbstractPreview
 {
 public:
-	virtual void SetPreviewFile(const CString& csFileName);
-	virtual void DrawPreview(CDC *pDC,int x,int y,int width,int height);
+    virtual void SetPreviewFile(const CString& csFileName);
+    virtual void DrawPreview(CDC *pDC,int x,int y,int width,int height);
 
 private:
-	ZDIB m_Dib;
+    ZDIB m_Dib;
 };
 
 
 
 class ZIImagePreviewFileDialog : public ZIPreviewFileDialog
 {
-	DECLARE_DYNAMIC(ZIImagePreviewFileDialog)
+    DECLARE_DYNAMIC(ZIImagePreviewFileDialog)
 
 public:
-	ZIImagePreviewFileDialog(BOOL bOpenFileDialog, // TRUE for FileOpen, FALSE for FileSaveAs
-				    		 CString Title = "", CString InitialDir = "", 
-							 CWnd* pParentWnd = NULL);
+    ZIImagePreviewFileDialog(BOOL bOpenFileDialog, // TRUE for FileOpen, FALSE for FileSaveAs
+                             CString Title = "", CString InitialDir = "", 
+                             CWnd* pParentWnd = NULL);
 
 protected:
-	//{{AFX_MSG(ZIImagePreviewFileDialog)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZIImagePreviewFileDialog)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	ZPreviewDIB m_Preview;
+    ZPreviewDIB m_Preview;
 
 };
 
-#endif	// __ZIMAGEPREVIEWFILEDIALOG__
+#endif    // __ZIMAGEPREVIEWFILEDIALOG__

@@ -28,341 +28,341 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 14 août 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-const int MIN_EDIT_WIDTH	= 150;
-const int MIN_EDIT_HEIGHT	= 20;
+const int MIN_EDIT_WIDTH    = 150;
+const int MIN_EDIT_HEIGHT    = 20;
 
 /////////////////////////////////////////////////////////////////////////////
 // Edit
 
 Edit::Edit()
-	: m_pParentWnd	( NULL ),
-	  m_pEditedObj	( NULL ),
-	  m_ReadOnly	( FALSE ),
-	  m_pSpecialHelp( NULL ),
-	  m_IsSorted	( FALSE )
+    : m_pParentWnd    ( NULL ),
+      m_pEditedObj    ( NULL ),
+      m_ReadOnly    ( FALSE ),
+      m_pSpecialHelp( NULL ),
+      m_IsSorted    ( FALSE )
 {
 }
 
 Edit::~Edit()
 {
-	if ( m_pSpecialHelp )
-	{
-		delete m_pSpecialHelp;
-		m_pSpecialHelp = NULL;
-	}
+    if ( m_pSpecialHelp )
+    {
+        delete m_pSpecialHelp;
+        m_pSpecialHelp = NULL;
+    }
 }
 
-void Edit::PreCreateEdit( BOOL					DesignerMode,
-						  CWnd					*pParentWnd,
-						  CDC					*pDC,
-						  ZDDocument*			pDoc,
-						  PlanFinObject*		pEditedObj,
-						  ZBFieldRepository*	pFieldRepository,
-						  BOOL					AutoCalculateOption,
-						  BOOL					GoNextEditOption )
+void Edit::PreCreateEdit( BOOL                    DesignerMode,
+                          CWnd                    *pParentWnd,
+                          CDC                    *pDC,
+                          ZDDocument*            pDoc,
+                          PlanFinObject*        pEditedObj,
+                          ZBFieldRepository*    pFieldRepository,
+                          BOOL                    AutoCalculateOption,
+                          BOOL                    GoNextEditOption )
 {
-	m_pParentWnd			= pParentWnd;
-	m_pEditedObj			= pEditedObj;
-	m_pFieldRepository		= pFieldRepository;
-	m_AutoCalculateOption	= AutoCalculateOption;
-	m_GoNextEditOption		= GoNextEditOption;
-	m_pDoc					= pDoc;
-	
-	ZAHistoryField* pField	= NULL;
+    m_pParentWnd            = pParentWnd;
+    m_pEditedObj            = pEditedObj;
+    m_pFieldRepository        = pFieldRepository;
+    m_AutoCalculateOption    = AutoCalculateOption;
+    m_GoNextEditOption        = GoNextEditOption;
+    m_pDoc                    = pDoc;
+    
+    ZAHistoryField* pField    = NULL;
 
-	if ( m_pFieldRepository && ( pField = m_pFieldRepository->FindFieldHistory( m_pEditedObj->GetObjectName() ) ) )
-	{
-		m_ReadOnly = pField->IsReadOnly();
-	}
+    if ( m_pFieldRepository && ( pField = m_pFieldRepository->FindFieldHistory( m_pEditedObj->GetObjectName() ) ) )
+    {
+        m_ReadOnly = pField->IsReadOnly();
+    }
 
-	ZAObjectDefinition* pObjectDefinition = NULL;
+    ZAObjectDefinition* pObjectDefinition = NULL;
 
-	if ( m_pFieldRepository &&
-		 ( pObjectDefinition = m_pFieldRepository->FindField( m_pEditedObj->GetObjectName() ) ) )
-	{
-		m_IsSorted = pObjectDefinition->IsSorted();
-	}
+    if ( m_pFieldRepository &&
+         ( pObjectDefinition = m_pFieldRepository->FindField( m_pEditedObj->GetObjectName() ) ) )
+    {
+        m_IsSorted = pObjectDefinition->IsSorted();
+    }
 
-	AfxGetMainWnd()->SendMessageToDescendants( UM_NOTIFY_OBJECTSELECTED,
-											   UM_NOTIFY_OBJECTSELECTED,
-											   (LPARAM)m_pEditedObj );
+    AfxGetMainWnd()->SendMessageToDescendants( UM_NOTIFY_OBJECTSELECTED,
+                                               UM_NOTIFY_OBJECTSELECTED,
+                                               (LPARAM)m_pEditedObj );
 
-	m_Rect = CheckBounds( pDC, pParentWnd, m_pEditedObj->GetClientRect() );
+    m_Rect = CheckBounds( pDC, pParentWnd, m_pEditedObj->GetClientRect() );
 
-	if ( !m_ReadOnly )
-	{
-		CreateSpecialHelp( DesignerMode );
-	}
+    if ( !m_ReadOnly )
+    {
+        CreateSpecialHelp( DesignerMode );
+    }
 }
 
 CRect Edit::CheckBounds( CDC* pDC, CWnd *pParentWnd, CRect& rct )
 {
-	m_GoNext = FALSE;
-	SetModify( TRUE );
+    m_GoNext = FALSE;
+    SetModify( TRUE );
 
-	// Translate the rectangle in device coordinates
-	CRect Rect( rct );
+    // Translate the rectangle in device coordinates
+    CRect Rect( rct );
 
-	// Check if the rectangle is not too small
-	// If necessary change it before creating
-	// the edit box.
-	if( Rect.Width() < MIN_EDIT_WIDTH )
-	{
-		Rect.right = Rect.left + MIN_EDIT_WIDTH;
-	}
+    // Check if the rectangle is not too small
+    // If necessary change it before creating
+    // the edit box.
+    if( Rect.Width() < MIN_EDIT_WIDTH )
+    {
+        Rect.right = Rect.left + MIN_EDIT_WIDTH;
+    }
 
-	if( Rect.Height() < MIN_EDIT_HEIGHT )
-	{
-		Rect.top = Rect.bottom - MIN_EDIT_HEIGHT;
-	}
+    if( Rect.Height() < MIN_EDIT_HEIGHT )
+    {
+        Rect.top = Rect.bottom - MIN_EDIT_HEIGHT;
+    }
 
-	pDC->LPtoDP( &Rect );
+    pDC->LPtoDP( &Rect );
 
-	return Rect;
+    return Rect;
 }
 
 void Edit::CreateSpecialHelp( BOOL Designer )
 {
-	if ( m_pEditedObj->IsKindOf( RUNTIME_CLASS( PLFNTime ) ) )
-	{
-		if ( Designer )
-		{
-			m_pSpecialHelp = new SpecialHelpDateDesigner;
-		}
-		else
-		{
-			m_pSpecialHelp = new SpecialHelpDate;
-		}
-	}
-	else if ( m_pEditedObj->IsKindOf( RUNTIME_CLASS( PLFNLong ) ) )
-	{
-		if ( ( (PLFNLong*)m_pEditedObj )->GetAssociations().GetCount() )
-		{
-			if ( Designer )
-			{
-				m_pSpecialHelp = new SpecialHelpNumberScenarioDesigner;
-			}
-			else
-			{
-				m_pSpecialHelp = new SpecialHelpNumberScenario;
-			}
-		}
-		else
-		{
-			if ( Designer )
-			{
-				m_pSpecialHelp = new SpecialHelpNumberDesigner;
-			}
-			else
-			{
-				m_pSpecialHelp = new SpecialHelpNumber;
-			}
-		}
-	}
-	else
-	{
-		if ( Designer )
-		{
-			m_pSpecialHelp = new SpecialHelpDefaultDesigner;
-		}
-		else
-		{
-			m_pSpecialHelp = new SpecialHelpDefault;
-		}
-	}
+    if ( m_pEditedObj->IsKindOf( RUNTIME_CLASS( PLFNTime ) ) )
+    {
+        if ( Designer )
+        {
+            m_pSpecialHelp = new SpecialHelpDateDesigner;
+        }
+        else
+        {
+            m_pSpecialHelp = new SpecialHelpDate;
+        }
+    }
+    else if ( m_pEditedObj->IsKindOf( RUNTIME_CLASS( PLFNLong ) ) )
+    {
+        if ( ( (PLFNLong*)m_pEditedObj )->GetAssociations().GetCount() )
+        {
+            if ( Designer )
+            {
+                m_pSpecialHelp = new SpecialHelpNumberScenarioDesigner;
+            }
+            else
+            {
+                m_pSpecialHelp = new SpecialHelpNumberScenario;
+            }
+        }
+        else
+        {
+            if ( Designer )
+            {
+                m_pSpecialHelp = new SpecialHelpNumberDesigner;
+            }
+            else
+            {
+                m_pSpecialHelp = new SpecialHelpNumber;
+            }
+        }
+    }
+    else
+    {
+        if ( Designer )
+        {
+            m_pSpecialHelp = new SpecialHelpDefaultDesigner;
+        }
+        else
+        {
+            m_pSpecialHelp = new SpecialHelpDefault;
+        }
+    }
 
-	// Create the special helper
-	m_pSpecialHelp->Create( m_pParentWnd, &m_Rect, m_pEditedObj, m_AutoCalculateOption );
+    // Create the special helper
+    m_pSpecialHelp->Create( m_pParentWnd, &m_Rect, m_pEditedObj, m_AutoCalculateOption );
 }
 
 void Edit::AddToHistoric( CString str )
 {
-	// If global historic field value manager is defined, try to add the field value there.
-	if ( m_pFieldRepository && m_pFieldRepository->FindFieldHistory( m_pEditedObj->GetObjectName() ) )
-	{
-		// Field exists in the global histo value and is not read only
-		if ( m_ReadOnly == FALSE )
-		{
-			m_pFieldRepository->AddFieldHistoryValue( m_pEditedObj->GetObjectName(), str );
-		}
+    // If global historic field value manager is defined, try to add the field value there.
+    if ( m_pFieldRepository && m_pFieldRepository->FindFieldHistory( m_pEditedObj->GetObjectName() ) )
+    {
+        // Field exists in the global histo value and is not read only
+        if ( m_ReadOnly == FALSE )
+        {
+            m_pFieldRepository->AddFieldHistoryValue( m_pEditedObj->GetObjectName(), str );
+        }
 
-		return;
-	}
-	
-	// If not found nor does not exists, add it to the local file.
-	m_pDoc->GetHistoryValueManager().AddFieldHistoryValue( m_pEditedObj->GetObjectName(), str );
+        return;
+    }
+    
+    // If not found nor does not exists, add it to the local file.
+    m_pDoc->GetHistoryValueManager().AddFieldHistoryValue( m_pEditedObj->GetObjectName(), str );
 }
 
 CStringArray* Edit::GetArrayOfValues()
 {
-	// If global historic field value manager is defined, try to add the field value there.
-	if ( m_pFieldRepository && m_pFieldRepository->FindFieldHistory( m_pEditedObj->GetObjectName() ) )
-	{
-		return m_pFieldRepository->GetFieldHistory( m_pEditedObj->GetObjectName() );
-	}
-	else
-	{
-		if ( m_pEditedObj->IsMemberOfMultiColumn() )
-		{
-			// Force the read only for member of multi-column field
-			m_ReadOnly = TRUE;
+    // If global historic field value manager is defined, try to add the field value there.
+    if ( m_pFieldRepository && m_pFieldRepository->FindFieldHistory( m_pEditedObj->GetObjectName() ) )
+    {
+        return m_pFieldRepository->GetFieldHistory( m_pEditedObj->GetObjectName() );
+    }
+    else
+    {
+        if ( m_pEditedObj->IsMemberOfMultiColumn() )
+        {
+            // Force the read only for member of multi-column field
+            m_ReadOnly = TRUE;
 
-			return (CStringArray*)&( m_pEditedObj->GetpColumn()->GetValueArray() );
-		}
-		else
-		{
-			// If not found nor does not exists
-			return m_pDoc->GetHistoryValueManager().GetFieldHistory( m_pEditedObj->GetObjectName() );
-		}
-	}
+            return (CStringArray*)&( m_pEditedObj->GetpColumn()->GetValueArray() );
+        }
+        else
+        {
+            // If not found nor does not exists
+            return m_pDoc->GetHistoryValueManager().GetFieldHistory( m_pEditedObj->GetObjectName() );
+        }
+    }
 
-	return NULL;
+    return NULL;
 }
 
 void Edit::LoadFromHistoric( CComboBox& Combo )
 {
-	CStringArray* pValueArray = Edit::GetArrayOfValues();
+    CStringArray* pValueArray = Edit::GetArrayOfValues();
 
-	// No values found neither in Global historic manager nor in local historic manager
-	if ( !pValueArray )
-	{
-		return;
-	}
+    // No values found neither in Global historic manager nor in local historic manager
+    if ( !pValueArray )
+    {
+        return;
+    }
 
-	for ( register i = 0; i < pValueArray->GetSize() ; i++ )
-	{
-		if ( !pValueArray->GetAt( i ).IsEmpty() )
-		{
-			Combo.AddString( pValueArray->GetAt( i ) );
-		}
-	}
+    for ( register i = 0; i < pValueArray->GetSize() ; i++ )
+    {
+        if ( !pValueArray->GetAt( i ).IsEmpty() )
+        {
+            Combo.AddString( pValueArray->GetAt( i ) );
+        }
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // StrEdit
 
 BEGIN_MESSAGE_MAP( StrEdit, ZBDragEdit )
-	//{{AFX_MSG_MAP(StrEdit)
-	ON_WM_CHAR()
-	ON_WM_KILLFOCUS()
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(StrEdit)
+    ON_WM_CHAR()
+    ON_WM_KILLFOCUS()
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 StrEdit::StrEdit( BOOL bMultiLine, int iMaxChar )
-	: Edit			(),
-	  ZBDragEdit	(),
-	  m_bMultiLine	( bMultiLine ),
-	  m_iMaxChar	( iMaxChar )
+    : Edit            (),
+      ZBDragEdit    (),
+      m_bMultiLine    ( bMultiLine ),
+      m_iMaxChar    ( iMaxChar )
 {
 }
 
 StrEdit::~StrEdit()
 {
-	if ( IsWindow( GetSafeHwnd() ) )
-	{
-		HideCaret();
-	}
+    if ( IsWindow( GetSafeHwnd() ) )
+    {
+        HideCaret();
+    }
 
-	Edit::~Edit();
+    Edit::~Edit();
 }
 
 // Create ----------------------------------------------------
 //
-// Author		:	Aigroz Dominique
-// Date			:	14/12/1994
-// Description	:	This function create an edit box on the
-//					PlanFin on the object place.
+// Author        :    Aigroz Dominique
+// Date            :    14/12/1994
+// Description    :    This function create an edit box on the
+//                    PlanFin on the object place.
 //
-// Parameters	:	strName		the name to search in the list.
-// Return		:	the object value.
+// Parameters    :    strName        the name to search in the list.
+// Return        :    the object value.
 //
-// Remarks		:	
-// Modifications:	04/04/1995	Aigroz Dominique
-//						Set a minimum size for the edit box.
+// Remarks        :    
+// Modifications:    04/04/1995    Aigroz Dominique
+//                        Set a minimum size for the edit box.
 //
 //----------------------------------------------------------------------------
-void StrEdit::Create( BOOL					DesignerMode,
-					  CWnd					*pParentWnd,
-					  CDC					*pDC,
-					  ZDDocument*			pDoc,
-					  PlanFinObject*		pEditedObj,
-					  ZBFieldRepository*	pFieldRepository,
-					  BOOL					AutoCalculateOption,
-					  BOOL					GoNextEditOption )
+void StrEdit::Create( BOOL                    DesignerMode,
+                      CWnd                    *pParentWnd,
+                      CDC                    *pDC,
+                      ZDDocument*            pDoc,
+                      PlanFinObject*        pEditedObj,
+                      ZBFieldRepository*    pFieldRepository,
+                      BOOL                    AutoCalculateOption,
+                      BOOL                    GoNextEditOption )
 {
-	PreCreateEdit( DesignerMode,
-				   pParentWnd,
-				   pDC,
-				   pDoc,
-				   pEditedObj,
-				   pFieldRepository,
-				   AutoCalculateOption,
-				   GoNextEditOption );
+    PreCreateEdit( DesignerMode,
+                   pParentWnd,
+                   pDC,
+                   pDoc,
+                   pEditedObj,
+                   pFieldRepository,
+                   AutoCalculateOption,
+                   GoNextEditOption );
 
-	DWORD dwStyle;
+    DWORD dwStyle;
 
-	if ( m_bMultiLine )
-	{
-		dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOVSCROLL | ES_MULTILINE;
-	}
-	else
-	{
-		dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOVSCROLL | ES_AUTOHSCROLL;
-	}
+    if ( m_bMultiLine )
+    {
+        dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOVSCROLL | ES_MULTILINE;
+    }
+    else
+    {
+        dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOVSCROLL | ES_AUTOHSCROLL;
+    }
 
-	if ( m_ReadOnly )
-	{
-		dwStyle |= ES_READONLY;
-	}
+    if ( m_ReadOnly )
+    {
+        dwStyle |= ES_READONLY;
+    }
 
-	if ( ZBDragEdit::Create( dwStyle, m_Rect, pParentWnd, 0 ) == FALSE )
-	{
-		return;
-	}
+    if ( ZBDragEdit::Create( dwStyle, m_Rect, pParentWnd, 0 ) == FALSE )
+    {
+        return;
+    }
 
-	// Initialize drag & drop facilities
-	ZBDragEdit::Init();
+    // Initialize drag & drop facilities
+    ZBDragEdit::Init();
 
-	SetWindowText( m_pEditedObj->GetFormatedObject() );
-	SetSel( 0, -1 );
-	ShowWindow( SW_SHOW );
-	SetFocus();
-	ShowCaret();
+    SetWindowText( m_pEditedObj->GetFormatedObject() );
+    SetSel( 0, -1 );
+    ShowWindow( SW_SHOW );
+    SetFocus();
+    ShowCaret();
 }
 
 void StrEdit::DestroyEdit()
 {
-	// Save Only if required
-	if( m_Save )
-	{
-		CString strTemp;
+    // Save Only if required
+    if( m_Save )
+    {
+        CString strTemp;
 
-		GetWindowText( strTemp );
-		m_pEditedObj->ConvertFormatedObject( strTemp, FALSE );
+        GetWindowText( strTemp );
+        m_pEditedObj->ConvertFormatedObject( strTemp, FALSE );
 
-		// To notify the view that on field change
-		// Pass the adress of the object
-		// then the routine that proceed the message
-		// can know wich object has changed
-		AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_CHANGE, 0, (LPARAM)m_pEditedObj );
+        // To notify the view that on field change
+        // Pass the adress of the object
+        // then the routine that proceed the message
+        // can know wich object has changed
+        AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_CHANGE, 0, (LPARAM)m_pEditedObj );
 
-		// Save Only one time
-		m_Save = FALSE;
+        // Save Only one time
+        m_Save = FALSE;
 
-		if ( m_GoNext )
-		{
-			AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_EDITNEXT, 0, (LPARAM)m_pEditedObj );
-		}
-	}
+        if ( m_GoNext )
+        {
+            AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_EDITNEXT, 0, (LPARAM)m_pEditedObj );
+        }
+    }
 
-	// Hide the window and the DestroyWindow function
-	// is used in the destructor
-	ShowWindow( SW_HIDE );
+    // Hide the window and the DestroyWindow function
+    // is used in the destructor
+    ShowWindow( SW_HIDE );
 
-	if ( m_pSpecialHelp )
-	{
-		m_pSpecialHelp->ShowWindow( SW_HIDE );
-	}
+    if ( m_pSpecialHelp )
+    {
+        m_pSpecialHelp->ShowWindow( SW_HIDE );
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -370,188 +370,188 @@ void StrEdit::DestroyEdit()
 
 void StrEdit::OnKillFocus( CWnd* pNewWnd )
 {
-	ZBDragEdit::OnKillFocus( pNewWnd );
-	DestroyEdit();
+    ZBDragEdit::OnKillFocus( pNewWnd );
+    DestroyEdit();
 }
 
 void StrEdit::OnChar( UINT nChar, UINT nRepCnt, UINT nFlags )
 {
-	if( nChar == 0x0D )
-	{
-		Edit::SetModify( TRUE );
+    if( nChar == 0x0D )
+    {
+        Edit::SetModify( TRUE );
 
-		if ( m_GoNextEditOption )
-		{
-			m_GoNext = TRUE;
-		}
+        if ( m_GoNextEditOption )
+        {
+            m_GoNext = TRUE;
+        }
 
-		DestroyEdit();
-		return;
-	}
+        DestroyEdit();
+        return;
+    }
 
-	// If Tab go to next
-	if( nChar == 0x09 )
-	{
-		Edit::SetModify( TRUE );
-		m_GoNext = TRUE;
-		DestroyEdit();
-		return;
-	}
+    // If Tab go to next
+    if( nChar == 0x09 )
+    {
+        Edit::SetModify( TRUE );
+        m_GoNext = TRUE;
+        DestroyEdit();
+        return;
+    }
 
-	if( nChar == 0x1B )
-	{
-		Edit::SetModify( FALSE );
-		DestroyEdit();
-		return;
-	}
+    if( nChar == 0x1B )
+    {
+        Edit::SetModify( FALSE );
+        DestroyEdit();
+        return;
+    }
 
-	// Test if it is necessary to check the length
-	// do not check if backspace
-	if ( m_iMaxChar > 0 && nChar != 0x08 )
-	{
-		CString strTemp;
-		GetWindowText( strTemp );
+    // Test if it is necessary to check the length
+    // do not check if backspace
+    if ( m_iMaxChar > 0 && nChar != 0x08 )
+    {
+        CString strTemp;
+        GetWindowText( strTemp );
 
-		// If outside of the maximum char,
-		// play a sound and ignore the char typed.
-		if ( strTemp.GetLength() + 1 > m_iMaxChar )
-		{
-			MessageBeep( MB_ICONEXCLAMATION );
-			return;
-		}
-	}
+        // If outside of the maximum char,
+        // play a sound and ignore the char typed.
+        if ( strTemp.GetLength() + 1 > m_iMaxChar )
+        {
+            MessageBeep( MB_ICONEXCLAMATION );
+            return;
+        }
+    }
 
-	ZBDragEdit::OnChar( nChar, nRepCnt, nFlags );
+    ZBDragEdit::OnChar( nChar, nRepCnt, nFlags );
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // NumEdit
 
 BEGIN_MESSAGE_MAP( NumEdit, ZBDragEdit )
-	//{{AFX_MSG_MAP(NumEdit)
-	ON_WM_CHAR()
-	ON_WM_KILLFOCUS()
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(NumEdit)
+    ON_WM_CHAR()
+    ON_WM_KILLFOCUS()
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 NumEdit::NumEdit()
-	: Edit(),
-	  ZBDragEdit()
+    : Edit(),
+      ZBDragEdit()
 {
 }
 
 // Create ----------------------------------------------------
 //
-// Author		:	Aigroz Dominique
-// Date			:	14/12/1994
-// Description	:	This function create an edit box on the
-//					PlanFin on the object place.
+// Author        :    Aigroz Dominique
+// Date            :    14/12/1994
+// Description    :    This function create an edit box on the
+//                    PlanFin on the object place.
 //
-// Parameters	:	strName		the name to search in the list.
-// Return		:	the object value.
+// Parameters    :    strName        the name to search in the list.
+// Return        :    the object value.
 //
-// Remarks		:	
-// Modifications:	04/04/1995	Aigroz Dominique
-//						Set a minimum size for the edit box.
+// Remarks        :    
+// Modifications:    04/04/1995    Aigroz Dominique
+//                        Set a minimum size for the edit box.
 //
 //----------------------------------------------------------------------------
-void NumEdit::Create( BOOL					DesignerMode,
-					  CWnd*					pParentWnd,
-					  CDC*					pDC,
-					  ZDDocument*			pDoc,
-					  PlanFinObject*		pEditedObj,
-					  ZBFieldRepository*	pFieldRepository,
-					  BOOL					AutoCalculateOption,
-					  BOOL					GoNextEditOption )
+void NumEdit::Create( BOOL                    DesignerMode,
+                      CWnd*                    pParentWnd,
+                      CDC*                    pDC,
+                      ZDDocument*            pDoc,
+                      PlanFinObject*        pEditedObj,
+                      ZBFieldRepository*    pFieldRepository,
+                      BOOL                    AutoCalculateOption,
+                      BOOL                    GoNextEditOption )
 {
-	PreCreateEdit( DesignerMode,
-				   pParentWnd,
-				   pDC,
-				   pDoc,
-				   pEditedObj,
-				   pFieldRepository,
-				   AutoCalculateOption,
-				   GoNextEditOption );
+    PreCreateEdit( DesignerMode,
+                   pParentWnd,
+                   pDC,
+                   pDoc,
+                   pEditedObj,
+                   pFieldRepository,
+                   AutoCalculateOption,
+                   GoNextEditOption );
 
-	DWORD dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOVSCROLL | ES_AUTOHSCROLL;
+    DWORD dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOVSCROLL | ES_AUTOHSCROLL;
 
-	if ( m_ReadOnly )
-	{
-		dwStyle |= ES_READONLY;
-	}
+    if ( m_ReadOnly )
+    {
+        dwStyle |= ES_READONLY;
+    }
 
-	if ( ZBDragEdit::Create( dwStyle, m_Rect, pParentWnd, 0 ) == FALSE )
-	{
-		return;
-	}
+    if ( ZBDragEdit::Create( dwStyle, m_Rect, pParentWnd, 0 ) == FALSE )
+    {
+        return;
+    }
 
-	SetWindowText( m_pEditedObj->GetFormatedObject() );
+    SetWindowText( m_pEditedObj->GetFormatedObject() );
 
-	// Initialize drag & drop facilities
-	ZBDragEdit::Init();
+    // Initialize drag & drop facilities
+    ZBDragEdit::Init();
 
-	SetSel( 0, -1 );
-	ShowWindow( SW_SHOW );
-	SetFocus();
-	ShowCaret();
+    SetSel( 0, -1 );
+    ShowWindow( SW_SHOW );
+    SetFocus();
+    ShowCaret();
 }
 
 NumEdit::~NumEdit()
 {
-	if ( IsWindow( GetSafeHwnd() ) )
-	{
-		HideCaret();
-	}
+    if ( IsWindow( GetSafeHwnd() ) )
+    {
+        HideCaret();
+    }
 
-	Edit::~Edit();
+    Edit::~Edit();
 }
 
 void NumEdit::DestroyEdit()
 {
-	// Save Only if required
-	if( m_Save )
-	{
-		CString strTemp;
+    // Save Only if required
+    if( m_Save )
+    {
+        CString strTemp;
 
-		GetWindowText( strTemp );
+        GetWindowText( strTemp );
 
-		if ( strTemp.IsEmpty() )
-		{
-			m_pEditedObj->EmptyObject();
-		}
-		else
-		{
-			m_pEditedObj->ConvertFormatedObject( strTemp, FALSE );
-		}
+        if ( strTemp.IsEmpty() )
+        {
+            m_pEditedObj->EmptyObject();
+        }
+        else
+        {
+            m_pEditedObj->ConvertFormatedObject( strTemp, FALSE );
+        }
 
-		if ( m_AutoCalculateOption )
-		{
-			AfxGetMainWnd()->SendMessageToDescendants( ID_CALCULATE_MESSAGE, 0, 0 );
-		}
+        if ( m_AutoCalculateOption )
+        {
+            AfxGetMainWnd()->SendMessageToDescendants( ID_CALCULATE_MESSAGE, 0, 0 );
+        }
 
-		// To notify the view that on field change
-		// Pass the adress of the object
-		// then the routine that proceed the message
-		// can know wich object has changed
-		AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_CHANGE, 0, (LPARAM)m_pEditedObj );
+        // To notify the view that on field change
+        // Pass the adress of the object
+        // then the routine that proceed the message
+        // can know wich object has changed
+        AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_CHANGE, 0, (LPARAM)m_pEditedObj );
 
-		// Save Only one time
-		m_Save = FALSE;
+        // Save Only one time
+        m_Save = FALSE;
 
-		if ( m_GoNext )
-		{
-			AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_EDITNEXT, 0, (LPARAM)m_pEditedObj );
-		}
-	}
+        if ( m_GoNext )
+        {
+            AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_EDITNEXT, 0, (LPARAM)m_pEditedObj );
+        }
+    }
 
-	// Hide the window and the DestroyWindow function
-	// is used in the destructor
-	ShowWindow( SW_HIDE );
+    // Hide the window and the DestroyWindow function
+    // is used in the destructor
+    ShowWindow( SW_HIDE );
 
-	if ( m_pSpecialHelp )
-	{
-		m_pSpecialHelp->ShowWindow( SW_HIDE );
-	}
+    if ( m_pSpecialHelp )
+    {
+        m_pSpecialHelp->ShowWindow( SW_HIDE );
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -559,149 +559,149 @@ void NumEdit::DestroyEdit()
 
 void NumEdit::OnKillFocus( CWnd* pNewWnd )
 {
-	ZBDragEdit::OnKillFocus( pNewWnd );
-	DestroyEdit();
+    ZBDragEdit::OnKillFocus( pNewWnd );
+    DestroyEdit();
 }
 
 // OnChar ----------------------------------------------------
 //
-// Modifications:	04/04/1995	Aigroz Dominique
-//						Add the char 0x08 for Backspace in the test.
+// Modifications:    04/04/1995    Aigroz Dominique
+//                        Add the char 0x08 for Backspace in the test.
 //
 //----------------------------------------------------------------------------
 void NumEdit::OnChar( UINT nChar, UINT nRepCnt, UINT nFlags )
 {
-	if( nChar == 0x0D )
-	{
-		Edit::SetModify( TRUE );
+    if( nChar == 0x0D )
+    {
+        Edit::SetModify( TRUE );
 
-		if ( m_GoNextEditOption )
-		{
-			m_GoNext = TRUE;
-		}
+        if ( m_GoNextEditOption )
+        {
+            m_GoNext = TRUE;
+        }
 
-		DestroyEdit();
-		return;
-	}
+        DestroyEdit();
+        return;
+    }
 
-	// If Tab go to next
-	if( nChar == 0x09 )
-	{
-		Edit::SetModify( TRUE );
-		m_GoNext = TRUE;
-		DestroyEdit();
-		return;
-	}
+    // If Tab go to next
+    if( nChar == 0x09 )
+    {
+        Edit::SetModify( TRUE );
+        m_GoNext = TRUE;
+        DestroyEdit();
+        return;
+    }
 
-	if( nChar == 0x1B )
-	{
-		Edit::SetModify( FALSE );
-		DestroyEdit();
-		return;
-	}
+    if( nChar == 0x1B )
+    {
+        Edit::SetModify( FALSE );
+        DestroyEdit();
+        return;
+    }
 
-	// Check the validity of the char
-	if( !isdigit( nChar )	&&
-		nChar != '.'		&&
-		nChar != '-'		&&
-		nChar != '+'		&&
-		nChar != '\''		&&
-		nChar != ','		&&
-		nChar != '%'		&&
-		nChar != 0x08 )
-	{
-		return;
-	}
+    // Check the validity of the char
+    if( !isdigit( nChar )    &&
+        nChar != '.'        &&
+        nChar != '-'        &&
+        nChar != '+'        &&
+        nChar != '\''        &&
+        nChar != ','        &&
+        nChar != '%'        &&
+        nChar != 0x08 )
+    {
+        return;
+    }
 
-	ZBDragEdit::OnChar( nChar, nRepCnt, nFlags );
+    ZBDragEdit::OnChar( nChar, nRepCnt, nFlags );
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // CalcEdit
 
 BEGIN_MESSAGE_MAP( CalcEdit, ZBDragEdit )
-	//{{AFX_MSG_MAP(CalcEdit)
-	ON_WM_KILLFOCUS()
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(CalcEdit)
+    ON_WM_KILLFOCUS()
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 CalcEdit::CalcEdit()
-	: Edit(),
-	  ZBDragEdit()
+    : Edit(),
+      ZBDragEdit()
 {
 }
 
 CalcEdit::~CalcEdit()
 {
-	if ( IsWindow( GetSafeHwnd() ) )
-	{
-		HideCaret();
-	}
+    if ( IsWindow( GetSafeHwnd() ) )
+    {
+        HideCaret();
+    }
 
-	Edit::~Edit();
+    Edit::~Edit();
 }
 
 // Create ----------------------------------------------------
 //
-// Author		:	Aigroz Dominique
-// Date			:	14/12/1994
-// Description	:	This function create an edit box on the
-//					PlanFin on the object place.
+// Author        :    Aigroz Dominique
+// Date            :    14/12/1994
+// Description    :    This function create an edit box on the
+//                    PlanFin on the object place.
 //
-// Parameters	:	strName		the name to search in the list.
-// Return		:	the object value.
+// Parameters    :    strName        the name to search in the list.
+// Return        :    the object value.
 //
-// Remarks		:	
-// Modifications:	04/04/1995	Aigroz Dominique
-//						Set a minimum size for the edit box.
+// Remarks        :    
+// Modifications:    04/04/1995    Aigroz Dominique
+//                        Set a minimum size for the edit box.
 //
 //----------------------------------------------------------------------------
-void CalcEdit::Create( BOOL					DesignerMode,
-					   CWnd*				pParentWnd,
-					   CDC*					pDC,
-					   ZDDocument*			pDoc,
-					   PlanFinObject*		pEditedObj,
-					   ZBFieldRepository*	pFieldRepository,
-					   BOOL					AutoCalculateOption,
-					   BOOL					GoNextEditOption )
+void CalcEdit::Create( BOOL                    DesignerMode,
+                       CWnd*                pParentWnd,
+                       CDC*                    pDC,
+                       ZDDocument*            pDoc,
+                       PlanFinObject*        pEditedObj,
+                       ZBFieldRepository*    pFieldRepository,
+                       BOOL                    AutoCalculateOption,
+                       BOOL                    GoNextEditOption )
 {
-	PreCreateEdit( DesignerMode,
-				   pParentWnd,
-				   pDC,
-				   pDoc,
-				   pEditedObj,
-				   pFieldRepository,
-				   AutoCalculateOption,
-				   GoNextEditOption );
+    PreCreateEdit( DesignerMode,
+                   pParentWnd,
+                   pDC,
+                   pDoc,
+                   pEditedObj,
+                   pFieldRepository,
+                   AutoCalculateOption,
+                   GoNextEditOption );
 
-	DWORD dwStyle = WS_CHILD;
+    DWORD dwStyle = WS_CHILD;
 
-	if ( m_ReadOnly )
-	{
-		dwStyle |= ES_READONLY;
-	}
+    if ( m_ReadOnly )
+    {
+        dwStyle |= ES_READONLY;
+    }
 
-	if ( ZBDragEdit::Create( dwStyle, m_Rect, pParentWnd, 0 ) == FALSE )
-	{
-		return;
-	}
+    if ( ZBDragEdit::Create( dwStyle, m_Rect, pParentWnd, 0 ) == FALSE )
+    {
+        return;
+    }
 
-	// Initialize drag & drop facilities
-	ZBDragEdit::Init();
+    // Initialize drag & drop facilities
+    ZBDragEdit::Init();
 
-	SetFocus();
+    SetFocus();
 }
 
 void CalcEdit::DestroyEdit()
 {
-	// Hide the window and the DestroyWindow function
-	// is used in the destructor
-	ShowWindow( SW_HIDE );
+    // Hide the window and the DestroyWindow function
+    // is used in the destructor
+    ShowWindow( SW_HIDE );
 
-	if ( m_pSpecialHelp )
-	{
-		m_pSpecialHelp->ShowWindow( SW_HIDE );
-	}
+    if ( m_pSpecialHelp )
+    {
+        m_pSpecialHelp->ShowWindow( SW_HIDE );
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -709,147 +709,147 @@ void CalcEdit::DestroyEdit()
 
 void CalcEdit::OnKillFocus( CWnd* pNewWnd )
 {
-	ZBDragEdit::OnKillFocus( pNewWnd );
-	DestroyEdit();
+    ZBDragEdit::OnKillFocus( pNewWnd );
+    DestroyEdit();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // TimeEdit
 
 BEGIN_MESSAGE_MAP( TimeEdit, ZBDragEdit )
-	//{{AFX_MSG_MAP(TimeEdit)
-	ON_WM_CHAR()
-	ON_WM_KILLFOCUS()
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(TimeEdit)
+    ON_WM_CHAR()
+    ON_WM_KILLFOCUS()
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 TimeEdit::TimeEdit()
-	: Edit(),
-	  ZBDragEdit()
+    : Edit(),
+      ZBDragEdit()
 {
 }
 
 TimeEdit::~TimeEdit()
 {
-	if ( IsWindow( GetSafeHwnd() ) )
-	{
-		HideCaret();
-	}
+    if ( IsWindow( GetSafeHwnd() ) )
+    {
+        HideCaret();
+    }
 
-	Edit::~Edit();
+    Edit::~Edit();
 }
 
 // Create ----------------------------------------------------
 //
-// Author		:	Aigroz Dominique
-// Date			:	14/12/1994
-// Description	:	This function create an edit box on the
-//					PlanFin on the object place for time editing.
+// Author        :    Aigroz Dominique
+// Date            :    14/12/1994
+// Description    :    This function create an edit box on the
+//                    PlanFin on the object place for time editing.
 //
-// Parameters	:	strName		the name to search in the list.
-// Return		:	the object value.
+// Parameters    :    strName        the name to search in the list.
+// Return        :    the object value.
 //
-// Remarks		:	
-// Modifications:	04/04/1995	Aigroz Dominique
-//						Set a minimum size for the edit box.
+// Remarks        :    
+// Modifications:    04/04/1995    Aigroz Dominique
+//                        Set a minimum size for the edit box.
 //
 //----------------------------------------------------------------------------
-void TimeEdit::Create( BOOL					DesignerMode,
-					   CWnd*				pParentWnd,
-					   CDC*					pDC,
-					   ZDDocument*			pDoc,
-					   PlanFinObject*		pEditedObj,
-					   ZBFieldRepository*	pFieldRepository,
-					   BOOL					AutoCalculateOption,
-					   BOOL					GoNextEditOption )
+void TimeEdit::Create( BOOL                    DesignerMode,
+                       CWnd*                pParentWnd,
+                       CDC*                    pDC,
+                       ZDDocument*            pDoc,
+                       PlanFinObject*        pEditedObj,
+                       ZBFieldRepository*    pFieldRepository,
+                       BOOL                    AutoCalculateOption,
+                       BOOL                    GoNextEditOption )
 {
-	PreCreateEdit( DesignerMode,
-				   pParentWnd,
-				   pDC,
-				   pDoc,
-				   pEditedObj,
-				   pFieldRepository,
-				   AutoCalculateOption,
-				   GoNextEditOption );
+    PreCreateEdit( DesignerMode,
+                   pParentWnd,
+                   pDC,
+                   pDoc,
+                   pEditedObj,
+                   pFieldRepository,
+                   AutoCalculateOption,
+                   GoNextEditOption );
 
-	DWORD dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOVSCROLL | ES_AUTOHSCROLL;
+    DWORD dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOVSCROLL | ES_AUTOHSCROLL;
 
-	if ( m_ReadOnly )
-	{
-		dwStyle |= ES_READONLY;
-	}
+    if ( m_ReadOnly )
+    {
+        dwStyle |= ES_READONLY;
+    }
 
-	if ( ZBDragEdit::Create( dwStyle, m_Rect, pParentWnd, 0 ) == FALSE )
-	{
-		return;
-	}
+    if ( ZBDragEdit::Create( dwStyle, m_Rect, pParentWnd, 0 ) == FALSE )
+    {
+        return;
+    }
 
-	CString strFormat( _T( " " ) );
+    CString strFormat( _T( " " ) );
 
-	if( m_pEditedObj->IsKindOf( RUNTIME_CLASS( PLFNTime ) ) && ( (PLFNTime*)m_pEditedObj )->IsEmpty() == FALSE )
-	{
-		sprintf( strFormat.GetBuffer( 100 ),
-				 _T( "%d.%d.%04d" ),
-				 ( (PLFNTime*)m_pEditedObj )->m_Time.GetDay(),
-				 ( (PLFNTime*)m_pEditedObj )->m_Time.GetMonth(),
-				 ( (PLFNTime*)m_pEditedObj )->m_Time.GetYear() );
+    if( m_pEditedObj->IsKindOf( RUNTIME_CLASS( PLFNTime ) ) && ( (PLFNTime*)m_pEditedObj )->IsEmpty() == FALSE )
+    {
+        sprintf( strFormat.GetBuffer( 100 ),
+                 _T( "%d.%d.%04d" ),
+                 ( (PLFNTime*)m_pEditedObj )->m_Time.GetDay(),
+                 ( (PLFNTime*)m_pEditedObj )->m_Time.GetMonth(),
+                 ( (PLFNTime*)m_pEditedObj )->m_Time.GetYear() );
 
-		strFormat.ReleaseBuffer();
-	}
+        strFormat.ReleaseBuffer();
+    }
 
-	SetWindowText( (const char*)strFormat );
+    SetWindowText( (const char*)strFormat );
 
-	// Initialize drag & drop facilities
-	ZBDragEdit::Init();
+    // Initialize drag & drop facilities
+    ZBDragEdit::Init();
 
-	SetSel( 0, -1 );
-	ShowWindow( SW_SHOW );
-	SetFocus();
-	ShowCaret();
+    SetSel( 0, -1 );
+    ShowWindow( SW_SHOW );
+    SetFocus();
+    ShowCaret();
 }
 
 void TimeEdit::DestroyEdit()
 {
-	// Save Only if required
-	while ( m_Save )
-	{
-		CString strTemp;
-		GetWindowText( strTemp );
+    // Save Only if required
+    while ( m_Save )
+    {
+        CString strTemp;
+        GetWindowText( strTemp );
 
-		if ( strTemp.IsEmpty() )
-		{
-			m_pEditedObj->EmptyObject();
-		}
-		else
-		{
-			m_pEditedObj->ConvertFormatedObject( strTemp, FALSE );
-		}
+        if ( strTemp.IsEmpty() )
+        {
+            m_pEditedObj->EmptyObject();
+        }
+        else
+        {
+            m_pEditedObj->ConvertFormatedObject( strTemp, FALSE );
+        }
 
-		// To notify the view that on field change
-		// Pass the adress of the object
-		// then the routine that proceed the message
-		// can know wich object has changed
-		AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_CHANGE, 0, (LPARAM)m_pEditedObj );
+        // To notify the view that on field change
+        // Pass the adress of the object
+        // then the routine that proceed the message
+        // can know wich object has changed
+        AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_CHANGE, 0, (LPARAM)m_pEditedObj );
 
-		// Save Only one time
-		m_Save = FALSE;
+        // Save Only one time
+        m_Save = FALSE;
 
-		if ( m_GoNext )
-		{
-			AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_EDITNEXT, 0, (LPARAM)m_pEditedObj );
-		}
+        if ( m_GoNext )
+        {
+            AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_EDITNEXT, 0, (LPARAM)m_pEditedObj );
+        }
 
-		break;
-	}
+        break;
+    }
 
-	// Hide the window and the DestroyWindow function
-	// is used in the destructor
-	ShowWindow( SW_HIDE );
+    // Hide the window and the DestroyWindow function
+    // is used in the destructor
+    ShowWindow( SW_HIDE );
 
-	if ( m_pSpecialHelp )
-	{
-		m_pSpecialHelp->ShowWindow( SW_HIDE );
-	}
+    if ( m_pSpecialHelp )
+    {
+        m_pSpecialHelp->ShowWindow( SW_HIDE );
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -857,168 +857,168 @@ void TimeEdit::DestroyEdit()
 
 void TimeEdit::OnKillFocus( CWnd* pNewWnd )
 {
-	ZBDragEdit::OnKillFocus( pNewWnd );
-	DestroyEdit();
+    ZBDragEdit::OnKillFocus( pNewWnd );
+    DestroyEdit();
 }
 
 // OnChar ----------------------------------------------------
 //
-// Modifications:	04/04/1995	Aigroz Dominique
-//						Add the char 0x08 for Backspace in the test.
+// Modifications:    04/04/1995    Aigroz Dominique
+//                        Add the char 0x08 for Backspace in the test.
 //
 //----------------------------------------------------------------------------
 void TimeEdit::OnChar( UINT nChar, UINT nRepCnt, UINT nFlags )
 {
-	if( nChar == 0x0D )
-	{
-		Edit::SetModify( TRUE );
+    if( nChar == 0x0D )
+    {
+        Edit::SetModify( TRUE );
 
-		if ( m_GoNextEditOption )
-		{
-			m_GoNext = TRUE;
-		}
+        if ( m_GoNextEditOption )
+        {
+            m_GoNext = TRUE;
+        }
 
-		DestroyEdit();
-		return;
-	}
+        DestroyEdit();
+        return;
+    }
 
-	// If Tab go to next
-	if( nChar == 0x09 )
-	{
-		Edit::SetModify( TRUE );
-		m_GoNext = TRUE;
-		DestroyEdit();
-		return;
-	}
+    // If Tab go to next
+    if( nChar == 0x09 )
+    {
+        Edit::SetModify( TRUE );
+        m_GoNext = TRUE;
+        DestroyEdit();
+        return;
+    }
 
-	if( nChar == 0x1B )
-	{
-		Edit::SetModify( FALSE );
-		DestroyEdit();
-		return;
-	}
+    if( nChar == 0x1B )
+    {
+        Edit::SetModify( FALSE );
+        DestroyEdit();
+        return;
+    }
 
-	// Check the validity of the char
-	if( !isdigit( nChar ) && nChar != '.' && nChar != '/' && nChar != 0x08 )
-	{
-		return;
-	}
+    // Check the validity of the char
+    if( !isdigit( nChar ) && nChar != '.' && nChar != '/' && nChar != 0x08 )
+    {
+        return;
+    }
 
-	ZBDragEdit::OnChar( nChar, nRepCnt, nFlags );
+    ZBDragEdit::OnChar( nChar, nRepCnt, nFlags );
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // StrEditHistoric
 
 BEGIN_MESSAGE_MAP( StrEditHistoric, ZCIntelliEdit )
-	//{{AFX_MSG_MAP(StrEditHistoric)
-	ON_WM_CHAR()
-	ON_WM_KILLFOCUS()
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(StrEditHistoric)
+    ON_WM_CHAR()
+    ON_WM_KILLFOCUS()
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 StrEditHistoric::StrEditHistoric( int iMaxChar )
-	: Edit(),
-	  ZCIntelliEdit(),
-	  m_iMaxChar( iMaxChar )
+    : Edit(),
+      ZCIntelliEdit(),
+      m_iMaxChar( iMaxChar )
 {
 }
 
 StrEditHistoric::~StrEditHistoric()
 {
-	if ( IsWindow( GetSafeHwnd() ) )
-	{
-		HideCaret();
-	}
+    if ( IsWindow( GetSafeHwnd() ) )
+    {
+        HideCaret();
+    }
 
-	Edit::~Edit();
+    Edit::~Edit();
 }
 
 // Create ----------------------------------------------------
 //
-// Author		:	Aigroz Dominique
-// Date			:	14/12/1994
-// Description	:	This function create an edit box on the
-//					PlanFin on the object place.
+// Author        :    Aigroz Dominique
+// Date            :    14/12/1994
+// Description    :    This function create an edit box on the
+//                    PlanFin on the object place.
 //
-// Parameters	:	strName		the name to search in the list.
-// Return		:	the object value.
+// Parameters    :    strName        the name to search in the list.
+// Return        :    the object value.
 //
-// Remarks		:	
-// Modifications:	04/04/1995	Aigroz Dominique
-//						Set a minimum size for the edit box.
+// Remarks        :    
+// Modifications:    04/04/1995    Aigroz Dominique
+//                        Set a minimum size for the edit box.
 //
 //----------------------------------------------------------------------------
-void StrEditHistoric::Create( BOOL					DesignerMode,
-							  CWnd*					pParentWnd,
-							  CDC*					pDC,
-							  ZDDocument*			pDoc,
-							  PlanFinObject*		pEditedObj,
-							  ZBFieldRepository*	pFieldRepository,
-							  BOOL					AutoCalculateOption,
-							  BOOL					GoNextEditOption )
+void StrEditHistoric::Create( BOOL                    DesignerMode,
+                              CWnd*                    pParentWnd,
+                              CDC*                    pDC,
+                              ZDDocument*            pDoc,
+                              PlanFinObject*        pEditedObj,
+                              ZBFieldRepository*    pFieldRepository,
+                              BOOL                    AutoCalculateOption,
+                              BOOL                    GoNextEditOption )
 {
-	PreCreateEdit( DesignerMode,
-				   pParentWnd,
-				   pDC,
-				   pDoc,
-				   pEditedObj,
-				   pFieldRepository,
-				   AutoCalculateOption,
-				   GoNextEditOption );
+    PreCreateEdit( DesignerMode,
+                   pParentWnd,
+                   pDC,
+                   pDoc,
+                   pEditedObj,
+                   pFieldRepository,
+                   AutoCalculateOption,
+                   GoNextEditOption );
 
-	DWORD dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOVSCROLL | ES_AUTOHSCROLL;
+    DWORD dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOVSCROLL | ES_AUTOHSCROLL;
 
-	if ( ZCIntelliEdit::Create( dwStyle, m_Rect, pParentWnd, 0 ) == FALSE )
-	{
-		return;
-	}
+    if ( ZCIntelliEdit::Create( dwStyle, m_Rect, pParentWnd, 0 ) == FALSE )
+    {
+        return;
+    }
 
-	ZCIntelliEdit::Initialize( GetArrayOfValues() );
+    ZCIntelliEdit::Initialize( GetArrayOfValues() );
 
-	CString sStr = m_pEditedObj->GetFormatedObject();
-	SetWindowText( sStr );
+    CString sStr = m_pEditedObj->GetFormatedObject();
+    SetWindowText( sStr );
 
-	SetFocus();
-	ShowCaret();
+    SetFocus();
+    ShowCaret();
 }
 
 void StrEditHistoric::DestroyEdit()
 {
-	// Only if required
-	if( m_Save )
-	{
-		CString strTemp;
+    // Only if required
+    if( m_Save )
+    {
+        CString strTemp;
 
-		GetWindowText( strTemp );
-		m_pEditedObj->ConvertFormatedObject( strTemp, FALSE );
+        GetWindowText( strTemp );
+        m_pEditedObj->ConvertFormatedObject( strTemp, FALSE );
 
-		// Keep the historical changes
-		AddToHistoric( strTemp );
+        // Keep the historical changes
+        AddToHistoric( strTemp );
 
-		// To notify the view that on field change
-		// Pass the adress of the object
-		// then the routine that proceed the message
-		// can know wich object has changed
-		AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_CHANGE, 0, (LPARAM)m_pEditedObj );
+        // To notify the view that on field change
+        // Pass the adress of the object
+        // then the routine that proceed the message
+        // can know wich object has changed
+        AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_CHANGE, 0, (LPARAM)m_pEditedObj );
 
-		// Save Only one time
-		m_Save = FALSE;
+        // Save Only one time
+        m_Save = FALSE;
 
-		if ( m_GoNext )
-		{
-			AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_EDITNEXT, 0, (LPARAM)m_pEditedObj );
-		}
-	}
+        if ( m_GoNext )
+        {
+            AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_EDITNEXT, 0, (LPARAM)m_pEditedObj );
+        }
+    }
 
-	// Hide the window and the DestroyWindow function
-	// is used in the destructor
-	ShowWindow( SW_HIDE );
+    // Hide the window and the DestroyWindow function
+    // is used in the destructor
+    ShowWindow( SW_HIDE );
 
-	if ( m_pSpecialHelp )
-	{
-		m_pSpecialHelp->ShowWindow( SW_HIDE );
-	}
+    if ( m_pSpecialHelp )
+    {
+        m_pSpecialHelp->ShowWindow( SW_HIDE );
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1026,190 +1026,190 @@ void StrEditHistoric::DestroyEdit()
 
 void StrEditHistoric::OnChar( UINT nChar, UINT nRepCnt, UINT nFlags )
 {
-	// Go in only if we are in read only
-	// On Return
-	if( nChar == 0x0D )
-	{
-		Edit::SetModify( TRUE );
-		SetGoNext( TRUE );
-		DestroyEdit();
-		return;
-	}
+    // Go in only if we are in read only
+    // On Return
+    if( nChar == 0x0D )
+    {
+        Edit::SetModify( TRUE );
+        SetGoNext( TRUE );
+        DestroyEdit();
+        return;
+    }
 
-	// If Tab go to next
-	if( nChar == 0x09 )
-	{
-		Edit::SetModify( TRUE );
-		SetGoNext( TRUE );
-		DestroyEdit();
-		return;
-	}
+    // If Tab go to next
+    if( nChar == 0x09 )
+    {
+        Edit::SetModify( TRUE );
+        SetGoNext( TRUE );
+        DestroyEdit();
+        return;
+    }
 
-	// On Esc
-	if( nChar == 0x1B )
-	{
-		Edit::SetModify( FALSE );
-		DestroyEdit();
-		return;
-	}
+    // On Esc
+    if( nChar == 0x1B )
+    {
+        Edit::SetModify( FALSE );
+        DestroyEdit();
+        return;
+    }
 
-	// Test if it is necessary to check the length
-	// do not check if backspace
-	if ( GetMaxChar() > 0 && nChar != 0x08 )
-	{
-		CString strTemp;
-		GetWindowText( strTemp );
+    // Test if it is necessary to check the length
+    // do not check if backspace
+    if ( GetMaxChar() > 0 && nChar != 0x08 )
+    {
+        CString strTemp;
+        GetWindowText( strTemp );
 
-		// If outside of the maximum char,
-		// play a sound and ignore the char typed.
-		if ( strTemp.GetLength() + 1 > GetMaxChar() )
-		{
-			MessageBeep( MB_ICONEXCLAMATION );
-			return;
-		}
-	}
+        // If outside of the maximum char,
+        // play a sound and ignore the char typed.
+        if ( strTemp.GetLength() + 1 > GetMaxChar() )
+        {
+            MessageBeep( MB_ICONEXCLAMATION );
+            return;
+        }
+    }
 
-	ZCIntelliEdit::OnChar( nChar, nRepCnt, nFlags );
+    ZCIntelliEdit::OnChar( nChar, nRepCnt, nFlags );
 }
 
 void StrEditHistoric::OnKillFocus( CWnd* pNewWnd )
 {
-	ZCIntelliEdit::OnKillFocus( pNewWnd );
+    ZCIntelliEdit::OnKillFocus( pNewWnd );
 
-	if ( !HasFocus() )
-	{
-		DestroyEdit();
-	}
+    if ( !HasFocus() )
+    {
+        DestroyEdit();
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // NumEditHistoric
 
 BEGIN_MESSAGE_MAP( NumEditHistoric, ZCIntelliEdit )
-	//{{AFX_MSG_MAP(NumEditHistoric)
-	ON_WM_CHAR()
-	ON_WM_KILLFOCUS()
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(NumEditHistoric)
+    ON_WM_CHAR()
+    ON_WM_KILLFOCUS()
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 NumEditHistoric::NumEditHistoric()
-	: Edit(),
-	  ZCIntelliEdit()
+    : Edit(),
+      ZCIntelliEdit()
 {
 }
 
 NumEditHistoric::~NumEditHistoric()
 {
-	if ( IsWindow( GetSafeHwnd() ) )
-	{
-		HideCaret();
-	}
+    if ( IsWindow( GetSafeHwnd() ) )
+    {
+        HideCaret();
+    }
 
-	Edit::~Edit();
+    Edit::~Edit();
 }
 
 // Create ----------------------------------------------------
 //
-// Author		:	Aigroz Dominique
-// Date			:	14/12/1994
-// Description	:	This function create an edit box on the
-//					PlanFin on the object place.
+// Author        :    Aigroz Dominique
+// Date            :    14/12/1994
+// Description    :    This function create an edit box on the
+//                    PlanFin on the object place.
 //
-// Parameters	:	strName		the name to search in the list.
-// Return		:	the object value.
+// Parameters    :    strName        the name to search in the list.
+// Return        :    the object value.
 //
-// Remarks		:	
-// Modifications:	04/04/1995	Aigroz Dominique
-//						Set a minimum size for the edit box.
+// Remarks        :    
+// Modifications:    04/04/1995    Aigroz Dominique
+//                        Set a minimum size for the edit box.
 //
 //----------------------------------------------------------------------------
-void NumEditHistoric::Create( BOOL					DesignerMode,
-							  CWnd*					pParentWnd,
-							  CDC*					pDC,
-							  ZDDocument*			pDoc,
-							  PlanFinObject*		pEditedObj,
-							  ZBFieldRepository*	pFieldRepository,
-							  BOOL					AutoCalculateOption,
-							  BOOL					GoNextEditOption )
+void NumEditHistoric::Create( BOOL                    DesignerMode,
+                              CWnd*                    pParentWnd,
+                              CDC*                    pDC,
+                              ZDDocument*            pDoc,
+                              PlanFinObject*        pEditedObj,
+                              ZBFieldRepository*    pFieldRepository,
+                              BOOL                    AutoCalculateOption,
+                              BOOL                    GoNextEditOption )
 {
-	PreCreateEdit( DesignerMode,
-				   pParentWnd,
-				   pDC,
-				   pDoc,
-				   pEditedObj,
-				   pFieldRepository,
-				   AutoCalculateOption,
-				   GoNextEditOption );
+    PreCreateEdit( DesignerMode,
+                   pParentWnd,
+                   pDC,
+                   pDoc,
+                   pEditedObj,
+                   pFieldRepository,
+                   AutoCalculateOption,
+                   GoNextEditOption );
 
-	DWORD dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOVSCROLL | ES_AUTOHSCROLL;
+    DWORD dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOVSCROLL | ES_AUTOHSCROLL;
 
-	if ( ZCIntelliEdit::Create( dwStyle, m_Rect, pParentWnd, 0 ) == FALSE )
-	{
-		return;
-	}
+    if ( ZCIntelliEdit::Create( dwStyle, m_Rect, pParentWnd, 0 ) == FALSE )
+    {
+        return;
+    }
 
-	ZCIntelliEdit::Initialize( GetArrayOfValues() );
+    ZCIntelliEdit::Initialize( GetArrayOfValues() );
 
-	CString sStr = m_pEditedObj->GetFormatedObject();
-	SetWindowText( sStr );
+    CString sStr = m_pEditedObj->GetFormatedObject();
+    SetWindowText( sStr );
 
-	SetFocus();
-	ShowCaret();
+    SetFocus();
+    ShowCaret();
 }
 
-// Modifications:	06/04/1995	Aigroz Dominique
-//						Add the notification when the field change.
-//						I did that on the NumEdit standard but not
-//						in the NumEditHistoric.
+// Modifications:    06/04/1995    Aigroz Dominique
+//                        Add the notification when the field change.
+//                        I did that on the NumEdit standard but not
+//                        in the NumEditHistoric.
 //
 void NumEditHistoric::DestroyEdit()
 {
-	// Only if required
-	if( m_Save )
-	{
-		CString strTemp;
-		GetWindowText( strTemp );
+    // Only if required
+    if( m_Save )
+    {
+        CString strTemp;
+        GetWindowText( strTemp );
 
-		if ( strTemp.IsEmpty() )
-		{
-			m_pEditedObj->EmptyObject();
-		}
-		else
-		{
-			// Keep the historical changes
-			AddToHistoric( strTemp );
-			m_pEditedObj->ConvertFormatedObject( strTemp, FALSE );
-		}
+        if ( strTemp.IsEmpty() )
+        {
+            m_pEditedObj->EmptyObject();
+        }
+        else
+        {
+            // Keep the historical changes
+            AddToHistoric( strTemp );
+            m_pEditedObj->ConvertFormatedObject( strTemp, FALSE );
+        }
 
-		// To notify the application that a number changed.
-		if ( m_AutoCalculateOption )
-		{
-			AfxGetMainWnd()->SendMessageToDescendants( ID_CALCULATE_MESSAGE, 0, 0 );
-		}
+        // To notify the application that a number changed.
+        if ( m_AutoCalculateOption )
+        {
+            AfxGetMainWnd()->SendMessageToDescendants( ID_CALCULATE_MESSAGE, 0, 0 );
+        }
 
-		// To notify the view that on field change
-		// Pass the adress of the object
-		// then the routine that proceed the message
-		// can know wich object has changed
-		AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_CHANGE, 0, (LPARAM)m_pEditedObj );
+        // To notify the view that on field change
+        // Pass the adress of the object
+        // then the routine that proceed the message
+        // can know wich object has changed
+        AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_CHANGE, 0, (LPARAM)m_pEditedObj );
 
-		// Save Only one time
-		m_Save = FALSE;
+        // Save Only one time
+        m_Save = FALSE;
 
-		if ( m_GoNext )
-		{
-			AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_EDITNEXT, 0, (LPARAM)m_pEditedObj );
-		}
-	}
+        if ( m_GoNext )
+        {
+            AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_EDITNEXT, 0, (LPARAM)m_pEditedObj );
+        }
+    }
 
-	// Hide the window and the DestroyWindow function
-	// is used in the destructor
-	ShowWindow( SW_HIDE );
+    // Hide the window and the DestroyWindow function
+    // is used in the destructor
+    ShowWindow( SW_HIDE );
 
-	if ( m_pSpecialHelp )
-	{
-		m_pSpecialHelp->ShowWindow( SW_HIDE );
-	}
+    if ( m_pSpecialHelp )
+    {
+        m_pSpecialHelp->ShowWindow( SW_HIDE );
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1217,154 +1217,154 @@ void NumEditHistoric::DestroyEdit()
 
 void NumEditHistoric::OnChar( UINT nChar, UINT nRepCnt, UINT nFlags )
 {
-	// Go in only if we are in read only
-	// On Return
-	if( nChar == 0x0D )
-	{
-		Edit::SetModify( TRUE );
-		SetGoNext( TRUE );
-		DestroyEdit();
-		return;
-	}
+    // Go in only if we are in read only
+    // On Return
+    if( nChar == 0x0D )
+    {
+        Edit::SetModify( TRUE );
+        SetGoNext( TRUE );
+        DestroyEdit();
+        return;
+    }
 
-	// If Tab go to next
-	if( nChar == 0x09 )
-	{
-		Edit::SetModify( TRUE );
-		SetGoNext( TRUE );
-		DestroyEdit();
-		return;
-	}
+    // If Tab go to next
+    if( nChar == 0x09 )
+    {
+        Edit::SetModify( TRUE );
+        SetGoNext( TRUE );
+        DestroyEdit();
+        return;
+    }
 
-	// On Esc
-	if( nChar == 0x1B )
-	{
-		Edit::SetModify( FALSE );
-		DestroyEdit();
-		return;
-	}
+    // On Esc
+    if( nChar == 0x1B )
+    {
+        Edit::SetModify( FALSE );
+        DestroyEdit();
+        return;
+    }
 
-	// Check the validity of the char
-	if( !isdigit( nChar ) && nChar != '.' && nChar != ',' && nChar != '\'' && nChar != '%' && nChar != 0x08 )
-	{
-		return;
-	}
+    // Check the validity of the char
+    if( !isdigit( nChar ) && nChar != '.' && nChar != ',' && nChar != '\'' && nChar != '%' && nChar != 0x08 )
+    {
+        return;
+    }
 
-	ZCIntelliEdit::OnChar( nChar, nRepCnt, nFlags );
+    ZCIntelliEdit::OnChar( nChar, nRepCnt, nFlags );
 }
 
 void NumEditHistoric::OnKillFocus( CWnd* pNewWnd )
 {
-	ZCIntelliEdit::OnKillFocus( pNewWnd );
+    ZCIntelliEdit::OnKillFocus( pNewWnd );
 
-	if ( !HasFocus() )
-	{
-		DestroyEdit();
-	}
+    if ( !HasFocus() )
+    {
+        DestroyEdit();
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // FieldNameEdit
 
 BEGIN_MESSAGE_MAP( FieldNameEdit, ZCIntelliEdit )
-	//{{AFX_MSG_MAP(FieldNameEdit)
-	ON_WM_CHAR()
-	ON_WM_KILLFOCUS()
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(FieldNameEdit)
+    ON_WM_CHAR()
+    ON_WM_KILLFOCUS()
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 FieldNameEdit::FieldNameEdit( int iMaxChar )
-	: Edit(),
-	  ZCIntelliEdit(),
-	  m_iMaxChar( iMaxChar )
+    : Edit(),
+      ZCIntelliEdit(),
+      m_iMaxChar( iMaxChar )
 {
 }
 
 FieldNameEdit::~FieldNameEdit()
 {
-	if ( IsWindow( GetSafeHwnd() ) )
-	{
-		HideCaret();
-	}
+    if ( IsWindow( GetSafeHwnd() ) )
+    {
+        HideCaret();
+    }
 
-	Edit::~Edit();
+    Edit::~Edit();
 }
 
 // Create ----------------------------------------------------
 //
-// Author		:	Aigroz Dominique
-// Date			:	14/12/1994
-// Description	:	This function create an edit box on the
-//					PlanFin on the object place.
+// Author        :    Aigroz Dominique
+// Date            :    14/12/1994
+// Description    :    This function create an edit box on the
+//                    PlanFin on the object place.
 //
-// Parameters	:	strName		the name to search in the list.
-// Return		:	the object value.
+// Parameters    :    strName        the name to search in the list.
+// Return        :    the object value.
 //
-// Remarks		:	
-// Modifications:	04/04/1995	Aigroz Dominique
-//						Set a minimum size for the edit box.
+// Remarks        :    
+// Modifications:    04/04/1995    Aigroz Dominique
+//                        Set a minimum size for the edit box.
 //
 //----------------------------------------------------------------------------
-void FieldNameEdit::Create( BOOL				DesignerMode,
-							CWnd*				pParentWnd,
-							CDC*				pDC,
-							ZDDocument*			pDoc,
-							PlanFinObject*		pEditedObj,
-							ZBFieldRepository*	pFieldRepository,
-							BOOL				AutoCalculateOption,
-							BOOL				GoNextEditOption )
+void FieldNameEdit::Create( BOOL                DesignerMode,
+                            CWnd*                pParentWnd,
+                            CDC*                pDC,
+                            ZDDocument*            pDoc,
+                            PlanFinObject*        pEditedObj,
+                            ZBFieldRepository*    pFieldRepository,
+                            BOOL                AutoCalculateOption,
+                            BOOL                GoNextEditOption )
 {
-	PreCreateEdit( DesignerMode,
-				   pParentWnd,
-				   pDC,
-				   pDoc,
-				   pEditedObj,
-				   pFieldRepository,
-				   AutoCalculateOption,
-				   GoNextEditOption );
+    PreCreateEdit( DesignerMode,
+                   pParentWnd,
+                   pDC,
+                   pDoc,
+                   pEditedObj,
+                   pFieldRepository,
+                   AutoCalculateOption,
+                   GoNextEditOption );
 
-	DWORD dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOVSCROLL | ES_AUTOHSCROLL;
+    DWORD dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOVSCROLL | ES_AUTOHSCROLL;
 
-	if ( ZCIntelliEdit::Create( dwStyle, m_Rect, pParentWnd, 0 ) == FALSE )
-	{
-		return;
-	}
+    if ( ZCIntelliEdit::Create( dwStyle, m_Rect, pParentWnd, 0 ) == FALSE )
+    {
+        return;
+    }
 
-	ZCIntelliEdit::Initialize( pDoc->GetObjectFieldNameArray() );
+    ZCIntelliEdit::Initialize( pDoc->GetObjectFieldNameArray() );
 
-	SetWindowText( m_pEditedObj->GetObjectName() );
-	SetSel( 0, -1 );
-	ShowWindow( SW_SHOW );
-	SetFocus();
-	ShowCaret();
+    SetWindowText( m_pEditedObj->GetObjectName() );
+    SetSel( 0, -1 );
+    ShowWindow( SW_SHOW );
+    SetFocus();
+    ShowCaret();
 }
 
 void FieldNameEdit::DestroyEdit()
 {
-	// Save Only if required
-	if( m_Save )
-	{
-		CString strTemp;
+    // Save Only if required
+    if( m_Save )
+    {
+        CString strTemp;
 
-		GetWindowText( strTemp );
-		m_pEditedObj->SetObjectName( strTemp );
+        GetWindowText( strTemp );
+        m_pEditedObj->SetObjectName( strTemp );
 
-		// Check field name
-		m_pDoc->CheckMultiColumnMemberField( m_pEditedObj );
-		m_pDoc->AddFieldNameInObectArray( strTemp );
+        // Check field name
+        m_pDoc->CheckMultiColumnMemberField( m_pEditedObj );
+        m_pDoc->AddFieldNameInObectArray( strTemp );
 
-		// Save Only one time
-		m_Save = FALSE;
-	}
+        // Save Only one time
+        m_Save = FALSE;
+    }
 
-	// Hide the window and the DestroyWindow function
-	// is used in the destructor
-	ShowWindow( SW_HIDE );
+    // Hide the window and the DestroyWindow function
+    // is used in the destructor
+    ShowWindow( SW_HIDE );
 
-	if ( m_pSpecialHelp )
-	{
-		m_pSpecialHelp->ShowWindow( SW_HIDE );
-	}
+    if ( m_pSpecialHelp )
+    {
+        m_pSpecialHelp->ShowWindow( SW_HIDE );
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1372,164 +1372,164 @@ void FieldNameEdit::DestroyEdit()
 
 void FieldNameEdit::OnKillFocus( CWnd* pNewWnd )
 {
-	ZCIntelliEdit::OnKillFocus( pNewWnd );
+    ZCIntelliEdit::OnKillFocus( pNewWnd );
 
-	// Test if the control still have the focus,
-	// if not, destroy the edit
-	if ( HasFocus() == false )
-	{
-		DestroyEdit();
-	}
+    // Test if the control still have the focus,
+    // if not, destroy the edit
+    if ( HasFocus() == false )
+    {
+        DestroyEdit();
+    }
 }
 
 void FieldNameEdit::OnChar( UINT nChar, UINT nRepCnt, UINT nFlags )
 {
-	if( nChar == 0x0D )
-	{
-		Edit::SetModify( TRUE );
+    if( nChar == 0x0D )
+    {
+        Edit::SetModify( TRUE );
 
-		if ( m_GoNextEditOption )
-		{
-			m_GoNext = TRUE;
-		}
+        if ( m_GoNextEditOption )
+        {
+            m_GoNext = TRUE;
+        }
 
-		DestroyEdit();
-		return;
-	}
+        DestroyEdit();
+        return;
+    }
 
-	// If Tab go to next
-	if( nChar == 0x09 )
-	{
-		Edit::SetModify( TRUE );
-		m_GoNext = TRUE;
-		DestroyEdit();
-		return;
-	}
+    // If Tab go to next
+    if( nChar == 0x09 )
+    {
+        Edit::SetModify( TRUE );
+        m_GoNext = TRUE;
+        DestroyEdit();
+        return;
+    }
 
-	if( nChar == 0x1B )
-	{
-		Edit::SetModify( FALSE );
-		DestroyEdit();
-		return;
-	}
+    if( nChar == 0x1B )
+    {
+        Edit::SetModify( FALSE );
+        DestroyEdit();
+        return;
+    }
 
-	ZCIntelliEdit::OnChar( nChar, nRepCnt, nFlags );
+    ZCIntelliEdit::OnChar( nChar, nRepCnt, nFlags );
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // MaskEdit
 
 BEGIN_MESSAGE_MAP( MaskEdit, ZMaskEdit )
-	//{{AFX_MSG_MAP(MaskEdit)
-	ON_WM_KILLFOCUS()
-	ON_WM_CHAR()
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(MaskEdit)
+    ON_WM_KILLFOCUS()
+    ON_WM_CHAR()
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 MaskEdit::MaskEdit()
-	: Edit(),
-	  ZMaskEdit()
+    : Edit(),
+      ZMaskEdit()
 {
 }
 
 MaskEdit::~MaskEdit()
 {
-	if ( IsWindow( GetSafeHwnd() ) )
-	{
-		HideCaret();
-	}
+    if ( IsWindow( GetSafeHwnd() ) )
+    {
+        HideCaret();
+    }
 
-	Edit::~Edit();
+    Edit::~Edit();
 }
 
 // Create ----------------------------------------------------
 //
-// Author		:	Aigroz Dominique
-// Date			:	14/12/1994
-// Description	:	This function create an edit box on the
-//					PlanFin on the object place.
+// Author        :    Aigroz Dominique
+// Date            :    14/12/1994
+// Description    :    This function create an edit box on the
+//                    PlanFin on the object place.
 //
-// Parameters	:	strName		the name to search in the list.
-// Return		:	the object value.
+// Parameters    :    strName        the name to search in the list.
+// Return        :    the object value.
 //
-// Remarks		:	
-// Modifications:	04/04/1995	Aigroz Dominique
-//						Set a minimum size for the edit box.
+// Remarks        :    
+// Modifications:    04/04/1995    Aigroz Dominique
+//                        Set a minimum size for the edit box.
 //
 //----------------------------------------------------------------------------
-void MaskEdit::Create( BOOL					DesignerMode,
-					   CWnd*				pParentWnd,
-					   CDC*					pDC,
-					   ZDDocument*			pDoc,
-					   PlanFinObject*		pEditedObj,
-					   ZBFieldRepository*	pFieldRepository,
-					   BOOL					AutoCalculateOption,
-					   BOOL					GoNextEditOption )
+void MaskEdit::Create( BOOL                    DesignerMode,
+                       CWnd*                pParentWnd,
+                       CDC*                    pDC,
+                       ZDDocument*            pDoc,
+                       PlanFinObject*        pEditedObj,
+                       ZBFieldRepository*    pFieldRepository,
+                       BOOL                    AutoCalculateOption,
+                       BOOL                    GoNextEditOption )
 {
-	if ( !pEditedObj->IsKindOf( RUNTIME_CLASS( PLFNMaskString ) ) )
-	{
-		return;
-	}
+    if ( !pEditedObj->IsKindOf( RUNTIME_CLASS( PLFNMaskString ) ) )
+    {
+        return;
+    }
 
-	PreCreateEdit( DesignerMode,
-				   pParentWnd,
-				   pDC,
-				   pDoc,
-				   pEditedObj,
-				   pFieldRepository,
-				   AutoCalculateOption,
-				   GoNextEditOption );
+    PreCreateEdit( DesignerMode,
+                   pParentWnd,
+                   pDC,
+                   pDoc,
+                   pEditedObj,
+                   pFieldRepository,
+                   AutoCalculateOption,
+                   GoNextEditOption );
 
-	DWORD dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOVSCROLL | ES_AUTOHSCROLL;
+    DWORD dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOVSCROLL | ES_AUTOHSCROLL;
 
-	if ( m_ReadOnly )
-	{
-		dwStyle |= ES_READONLY;
-	}
+    if ( m_ReadOnly )
+    {
+        dwStyle |= ES_READONLY;
+    }
 
-	if ( ZMaskEdit::Create( dwStyle, m_Rect, pParentWnd, 0 ) == FALSE )
-	{
-		return;
-	}
+    if ( ZMaskEdit::Create( dwStyle, m_Rect, pParentWnd, 0 ) == FALSE )
+    {
+        return;
+    }
 
-	ZMaskEdit::Init( ( (PLFNMaskString*)m_pEditedObj )->GetMask(), m_pEditedObj->GetUnformatedObject() );
-	SetSel( 0, -1 );
-	ShowWindow( SW_SHOW );
-	SetFocus();
-	ShowCaret();
+    ZMaskEdit::Init( ( (PLFNMaskString*)m_pEditedObj )->GetMask(), m_pEditedObj->GetUnformatedObject() );
+    SetSel( 0, -1 );
+    ShowWindow( SW_SHOW );
+    SetFocus();
+    ShowCaret();
 }
 
 void MaskEdit::DestroyEdit()
 {
-	// Save Only if required
-	if( m_Save )
-	{
-		CString strTemp = GetData();
-		m_pEditedObj->ConvertFormatedObject( strTemp, FALSE );
+    // Save Only if required
+    if( m_Save )
+    {
+        CString strTemp = GetData();
+        m_pEditedObj->ConvertFormatedObject( strTemp, FALSE );
 
-		// To notify the view that on field change
-		// Pass the adress of the object
-		// then the routine that proceed the message
-		// can know wich object has changed
-		AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_CHANGE, 0, (LPARAM)m_pEditedObj );
+        // To notify the view that on field change
+        // Pass the adress of the object
+        // then the routine that proceed the message
+        // can know wich object has changed
+        AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_CHANGE, 0, (LPARAM)m_pEditedObj );
 
-		// Save Only one time
-		m_Save = FALSE;
+        // Save Only one time
+        m_Save = FALSE;
 
-		if ( m_GoNext )
-		{
-			AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_EDITNEXT, 0, (LPARAM)m_pEditedObj );
-		}
-	}
+        if ( m_GoNext )
+        {
+            AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_EDITNEXT, 0, (LPARAM)m_pEditedObj );
+        }
+    }
 
-	// Hide the window and the DestroyWindow function
-	// is used in the destructor
-	ShowWindow( SW_HIDE );
+    // Hide the window and the DestroyWindow function
+    // is used in the destructor
+    ShowWindow( SW_HIDE );
 
-	if ( m_pSpecialHelp )
-	{
-		m_pSpecialHelp->ShowWindow( SW_HIDE );
-	}
+    if ( m_pSpecialHelp )
+    {
+        m_pSpecialHelp->ShowWindow( SW_HIDE );
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1537,271 +1537,271 @@ void MaskEdit::DestroyEdit()
 
 void MaskEdit::OnKillFocus( CWnd* pNewWnd )
 {
-	ZMaskEdit::OnKillFocus( pNewWnd );
-	DestroyEdit();
+    ZMaskEdit::OnKillFocus( pNewWnd );
+    DestroyEdit();
 }
 
 void MaskEdit::OnChar( UINT nChar, UINT nRepCnt, UINT nFlags )
 {
-	if( nChar == 0x0D )
-	{
-		Edit::SetModify( TRUE );
+    if( nChar == 0x0D )
+    {
+        Edit::SetModify( TRUE );
 
-		if ( m_GoNextEditOption )
-		{
-			m_GoNext = TRUE;
-		}
+        if ( m_GoNextEditOption )
+        {
+            m_GoNext = TRUE;
+        }
 
-		DestroyEdit();
-		return;
-	}
+        DestroyEdit();
+        return;
+    }
 
-	// If Tab go to next
-	if( nChar == 0x09 )
-	{
-		Edit::SetModify( TRUE );
-		m_GoNext = TRUE;
-		DestroyEdit();
-		return;
-	}
+    // If Tab go to next
+    if( nChar == 0x09 )
+    {
+        Edit::SetModify( TRUE );
+        m_GoNext = TRUE;
+        DestroyEdit();
+        return;
+    }
 
-	if( nChar == 0x1B )
-	{
-		Edit::SetModify( FALSE );
-		DestroyEdit();
-		return;
-	}
+    if( nChar == 0x1B )
+    {
+        Edit::SetModify( FALSE );
+        DestroyEdit();
+        return;
+    }
 
-	ZMaskEdit::OnChar( nChar, nRepCnt, nFlags );
+    ZMaskEdit::OnChar( nChar, nRepCnt, nFlags );
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // MultiColumnEdit
 
 BEGIN_MESSAGE_MAP( MultiColumnEdit, ZCGridCtrl )
-	//{{AFX_MSG_MAP(MultiColumnEdit)
-	ON_WM_KILLFOCUS()
-	ON_WM_CHAR()
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(MultiColumnEdit)
+    ON_WM_KILLFOCUS()
+    ON_WM_CHAR()
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 MultiColumnEdit::MultiColumnEdit()
-	: Edit(),
-	  ZCGridCtrl()
+    : Edit(),
+      ZCGridCtrl()
 {
-	m_cx			= 0;
-	m_nEdit			= -1;
-	m_ColumnsBuilt	= FALSE;
+    m_cx            = 0;
+    m_nEdit            = -1;
+    m_ColumnsBuilt    = FALSE;
 }
 
 MultiColumnEdit::~MultiColumnEdit()
 {
-	if ( IsWindow( GetSafeHwnd() ) )
-	{
-		HideCaret();
-	}
+    if ( IsWindow( GetSafeHwnd() ) )
+    {
+        HideCaret();
+    }
 
-	Edit::~Edit();
+    Edit::~Edit();
 }
 
 // Create ----------------------------------------------------
 //
-// Author		:	Aigroz Dominique
-// Date			:	14/12/1994
-// Description	:	This function create an edit box on the
-//					PlanFin on the object place.
+// Author        :    Aigroz Dominique
+// Date            :    14/12/1994
+// Description    :    This function create an edit box on the
+//                    PlanFin on the object place.
 //
-// Parameters	:	strName		the name to search in the list.
-// Return		:	the object value.
+// Parameters    :    strName        the name to search in the list.
+// Return        :    the object value.
 //
-// Remarks		:	
-// Modifications:	04/04/1995	Aigroz Dominique
-//						Set a minimum size for the edit box.
+// Remarks        :    
+// Modifications:    04/04/1995    Aigroz Dominique
+//                        Set a minimum size for the edit box.
 //
 //----------------------------------------------------------------------------
-void MultiColumnEdit::Create( BOOL					DesignerMode,
-							  CWnd*					pParentWnd,
-							  CDC*					pDC,
-							  ZDDocument*			pDoc,
-							  PlanFinObject*		pEditedObj,
-							  ZBFieldRepository*	pFieldRepository,
-							  BOOL					AutoCalculateOption,
-							  BOOL					GoNextEditOption )
+void MultiColumnEdit::Create( BOOL                    DesignerMode,
+                              CWnd*                    pParentWnd,
+                              CDC*                    pDC,
+                              ZDDocument*            pDoc,
+                              PlanFinObject*        pEditedObj,
+                              ZBFieldRepository*    pFieldRepository,
+                              BOOL                    AutoCalculateOption,
+                              BOOL                    GoNextEditOption )
 {
-	if ( !pEditedObj->IsKindOf( RUNTIME_CLASS( PLFNMultiColumn ) ) )
-	{
-		return;
-	}
+    if ( !pEditedObj->IsKindOf( RUNTIME_CLASS( PLFNMultiColumn ) ) )
+    {
+        return;
+    }
 
-	PreCreateEdit( DesignerMode,
-				   pParentWnd,
-				   pDC,
-				   pDoc,
-				   pEditedObj,
-				   pFieldRepository,
-				   AutoCalculateOption,
-				   GoNextEditOption );
+    PreCreateEdit( DesignerMode,
+                   pParentWnd,
+                   pDC,
+                   pDoc,
+                   pEditedObj,
+                   pFieldRepository,
+                   AutoCalculateOption,
+                   GoNextEditOption );
 
-	DWORD dwStyle = WS_CHILD | WS_VISIBLE | LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS;
+    DWORD dwStyle = WS_CHILD | WS_VISIBLE | LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS;
 
-	// If not readonly, allow edit labels
-	if ( m_ReadOnly == FALSE )
-	{
-		dwStyle |= LVS_EDITLABELS;
-	}
+    // If not readonly, allow edit labels
+    if ( m_ReadOnly == FALSE )
+    {
+        dwStyle |= LVS_EDITLABELS;
+    }
 
-	if ( ZCGridCtrl::Create( dwStyle, m_Rect, pParentWnd, 0 ) == FALSE )
-	{
-		return;
-	}
+    if ( ZCGridCtrl::Create( dwStyle, m_Rect, pParentWnd, 0 ) == FALSE )
+    {
+        return;
+    }
 
-	// Set the extended styles
-	SetExtendedStyle( LVS_EX_GRIDLINES );
+    // Set the extended styles
+    SetExtendedStyle( LVS_EX_GRIDLINES );
 
-	MultiColumnEdit::BuildColumns();
-	MultiColumnEdit::FillControl();
+    MultiColumnEdit::BuildColumns();
+    MultiColumnEdit::FillControl();
 
-	ShowWindow( SW_SHOW );
-	SetFocus();
-	ShowCaret();
+    ShowWindow( SW_SHOW );
+    SetFocus();
+    ShowCaret();
 
-	// Initialize the cell edition flag
-	m_StartEditCell = false;
+    // Initialize the cell edition flag
+    m_StartEditCell = false;
 }
 
 void MultiColumnEdit::BuildColumns()
 {
-	if ( m_ColumnsBuilt )
-	{
-		return;
-	}
+    if ( m_ColumnsBuilt )
+    {
+        return;
+    }
 
-	if ( ( (PLFNMultiColumn*)m_pEditedObj )->GetColumnCount() > 0 )
-	{
-		LV_COLUMN lvColumn;
-		lvColumn.mask	= LVCF_FMT | LVCF_WIDTH | LVCF_TEXT | LVCF_SUBITEM;
-		lvColumn.fmt	= LVCFMT_LEFT;
+    if ( ( (PLFNMultiColumn*)m_pEditedObj )->GetColumnCount() > 0 )
+    {
+        LV_COLUMN lvColumn;
+        lvColumn.mask    = LVCF_FMT | LVCF_WIDTH | LVCF_TEXT | LVCF_SUBITEM;
+        lvColumn.fmt    = LVCFMT_LEFT;
 
-		// Set up columns
-		for( size_t i = 0; i < ( (PLFNMultiColumn*)m_pEditedObj )->GetColumnCount(); i++ )
-		{
-			ZBFieldColumn* pColumn = ( (PLFNMultiColumn*)m_pEditedObj )->GetColumnAt( i );
+        // Set up columns
+        for( size_t i = 0; i < ( (PLFNMultiColumn*)m_pEditedObj )->GetColumnCount(); i++ )
+        {
+            ZBFieldColumn* pColumn = ( (PLFNMultiColumn*)m_pEditedObj )->GetColumnAt( i );
 
-			if ( pColumn )
-			{
-				// Retreive the width
-				lvColumn.cx = pColumn->GetWidth();
+            if ( pColumn )
+            {
+                // Retreive the width
+                lvColumn.cx = pColumn->GetWidth();
 
-				// Retreive the column name
-				int		len			= pColumn->GetHeaderName().GetLength();
-				CString	temp		= pColumn->GetHeaderName();
-				TCHAR*	szBuffer	= new TCHAR[len + 1];
+                // Retreive the column name
+                int        len            = pColumn->GetHeaderName().GetLength();
+                CString    temp        = pColumn->GetHeaderName();
+                TCHAR*    szBuffer    = new TCHAR[len + 1];
 
-				strcpy( szBuffer, temp.GetBuffer( len ) );
-				temp.ReleaseBuffer();
+                strcpy( szBuffer, temp.GetBuffer( len ) );
+                temp.ReleaseBuffer();
 
-				lvColumn.pszText = szBuffer;
+                lvColumn.pszText = szBuffer;
 
-				// Insert column
-				InsertColumn( i, &lvColumn );
+                // Insert column
+                InsertColumn( i, &lvColumn );
 
-				delete szBuffer;
-			}
-		}
-	}
+                delete szBuffer;
+            }
+        }
+    }
 
-	m_ColumnsBuilt = TRUE;
+    m_ColumnsBuilt = TRUE;
 }
 
 void MultiColumnEdit::FillControl()
 {
-	if ( !( ( (PLFNMultiColumn*)m_pEditedObj )->GetColumnCount() > 0 ) )
-	{
-		return;
-	}
+    if ( !( ( (PLFNMultiColumn*)m_pEditedObj )->GetColumnCount() > 0 ) )
+    {
+        return;
+    }
 
-	size_t RowCount = ( (PLFNMultiColumn*)m_pEditedObj )->GetColumnAt( 0 )->GetValueCount();
+    size_t RowCount = ( (PLFNMultiColumn*)m_pEditedObj )->GetColumnAt( 0 )->GetValueCount();
 
-	// Fill all columns with all values
-	// Set up columns
-	for( size_t i = 0; i < RowCount; i++ )
-	{
-		CStringArray Values;
-		( (PLFNMultiColumn*)m_pEditedObj )->GetRowValues( Values, i );
+    // Fill all columns with all values
+    // Set up columns
+    for( size_t i = 0; i < RowCount; i++ )
+    {
+        CStringArray Values;
+        ( (PLFNMultiColumn*)m_pEditedObj )->GetRowValues( Values, i );
 
-		size_t		Item		= 0;
-		CItemInfo*	lpItemInfo	= new CItemInfo();
+        size_t        Item        = 0;
+        CItemInfo*    lpItemInfo    = new CItemInfo();
 
-		// Add items text
-		lpItemInfo->SetItemText( Values.GetAt( Item ) );
+        // Add items text
+        lpItemInfo->SetItemText( Values.GetAt( Item ) );
 
-		for ( ++Item; Item < (size_t)Values.GetSize(); ++Item )
-		{
-			lpItemInfo->SetSubItemText( Item - 1, Values.GetAt( Item ), -1 );
-		}
+        for ( ++Item; Item < (size_t)Values.GetSize(); ++Item )
+        {
+            lpItemInfo->SetSubItemText( Item - 1, Values.GetAt( Item ), -1 );
+        }
 
-		InsertRootItem( lpItemInfo );
-	}
+        InsertRootItem( lpItemInfo );
+    }
 }
 
 void MultiColumnEdit::DestroyEdit()
 {
-	// Save Only if required
-	if( m_Save )
-	{
-		// Get the size of each header
-		CHeaderCtrl* pHeader = GetHeaderCtrl();
+    // Save Only if required
+    if( m_Save )
+    {
+        // Get the size of each header
+        CHeaderCtrl* pHeader = GetHeaderCtrl();
 
-		int nColCount = pHeader->GetItemCount();
+        int nColCount = pHeader->GetItemCount();
 
-		// Saves the column width
-		for ( int i = 0; i < nColCount; i++ )
-		{
-			ZBFieldColumn* pColumn = ( (PLFNMultiColumn*)m_pEditedObj )->GetColumnAt( i );
+        // Saves the column width
+        for ( int i = 0; i < nColCount; i++ )
+        {
+            ZBFieldColumn* pColumn = ( (PLFNMultiColumn*)m_pEditedObj )->GetColumnAt( i );
 
-			if ( pColumn )
-			{
-				pColumn->SetWidth( GetColumnWidth( i ) );
-			}
-		}
+            if ( pColumn )
+            {
+                pColumn->SetWidth( GetColumnWidth( i ) );
+            }
+        }
 
-		// To notify the view that on field change
-		// Pass the adress of the object
-		// then the routine that proceed the message
-		// can know wich object has changed
-		AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_CHANGE, 0, (LPARAM)m_pEditedObj );
+        // To notify the view that on field change
+        // Pass the adress of the object
+        // then the routine that proceed the message
+        // can know wich object has changed
+        AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_CHANGE, 0, (LPARAM)m_pEditedObj );
 
-		// Save Only one time
-		m_Save = FALSE;
+        // Save Only one time
+        m_Save = FALSE;
 
-		if ( m_GoNext )
-		{
-			AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_EDITNEXT, 0, (LPARAM)m_pEditedObj );
-		}
-	}
+        if ( m_GoNext )
+        {
+            AfxGetMainWnd()->SendMessageToDescendants( ID_FIELD_EDITNEXT, 0, (LPARAM)m_pEditedObj );
+        }
+    }
 
-	// Hide the window and the DestroyWindow function
-	// is used in the destructor
-	ShowWindow( SW_HIDE );
+    // Hide the window and the DestroyWindow function
+    // is used in the destructor
+    ShowWindow( SW_HIDE );
 
-	if ( m_pSpecialHelp )
-	{
-		m_pSpecialHelp->ShowWindow( SW_HIDE );
-	}
+    if ( m_pSpecialHelp )
+    {
+        m_pSpecialHelp->ShowWindow( SW_HIDE );
+    }
 }
 
 // Called before editing the cell
 void MultiColumnEdit::OnBeginLabelEdit( int iItem, int iSubItem )
 {
-	m_StartEditCell = true;
+    m_StartEditCell = true;
 }
 
 // called after having updated the cell
 void MultiColumnEdit::OnEndLabelEdit( LPCSTR pszText, int iItem, int iSubItem )
 {
-	// Set the value to the object
-	( (PLFNMultiColumn*)m_pEditedObj )->SetColumnRowValue( iSubItem, iItem, pszText );
-	m_StartEditCell = false;
+    // Set the value to the object
+    ( (PLFNMultiColumn*)m_pEditedObj )->SetColumnRowValue( iSubItem, iItem, pszText );
+    m_StartEditCell = false;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1809,45 +1809,45 @@ void MultiColumnEdit::OnEndLabelEdit( LPCSTR pszText, int iItem, int iSubItem )
 
 void MultiColumnEdit::OnKillFocus( CWnd* pNewWnd )
 {
-	ZCGridCtrl::OnKillFocus( pNewWnd );
+    ZCGridCtrl::OnKillFocus( pNewWnd );
 
-	// Only if we are not in cell edition
-	if ( m_StartEditCell == false )
-	{
-		DestroyEdit();
-	}
+    // Only if we are not in cell edition
+    if ( m_StartEditCell == false )
+    {
+        DestroyEdit();
+    }
 }
 
 void MultiColumnEdit::OnChar( UINT nChar, UINT nRepCnt, UINT nFlags )
 {
-	if( nChar == 0x0D )
-	{
-		Edit::SetModify( TRUE );
+    if( nChar == 0x0D )
+    {
+        Edit::SetModify( TRUE );
 
-		if ( m_GoNextEditOption )
-		{
-			m_GoNext = TRUE;
-		}
+        if ( m_GoNextEditOption )
+        {
+            m_GoNext = TRUE;
+        }
 
-		DestroyEdit();
-		return;
-	}
+        DestroyEdit();
+        return;
+    }
 
-	// If Tab go to next
-	if( nChar == 0x09 )
-	{
-		Edit::SetModify( TRUE );
-		m_GoNext = TRUE;
-		DestroyEdit();
-		return;
-	}
+    // If Tab go to next
+    if( nChar == 0x09 )
+    {
+        Edit::SetModify( TRUE );
+        m_GoNext = TRUE;
+        DestroyEdit();
+        return;
+    }
 
-	if( nChar == 0x1B )
-	{
-		Edit::SetModify( FALSE );
-		DestroyEdit();
-		return;
-	}
+    if( nChar == 0x1B )
+    {
+        Edit::SetModify( FALSE );
+        DestroyEdit();
+        return;
+    }
 
-	ZCGridCtrl::OnChar( nChar, nRepCnt, nFlags );
+    ZCGridCtrl::OnChar( nChar, nRepCnt, nFlags );
 }

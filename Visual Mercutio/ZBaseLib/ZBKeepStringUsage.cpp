@@ -32,6 +32,6 @@ ZBKeepStringUsage::ZBKeepStringUsage()
 
 ZBKeepStringUsage::~ZBKeepStringUsage()
 {
-	// Reset the array of strings
-	ResetStringsArray();
+    // Reset the array of strings
+    ResetStringsArray();
 }

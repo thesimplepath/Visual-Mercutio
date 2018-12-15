@@ -36,23 +36,23 @@ class AFX_EXT_CLASS ZVOutputAnalyzerLogView : public ZVOutputView
 {
 public:
 
-	DECLARE_DYNAMIC( ZVOutputAnalyzerLogView )
+    DECLARE_DYNAMIC( ZVOutputAnalyzerLogView )
 
-	// Protected constructor used by dynamic creation
-	ZVOutputAnalyzerLogView();
-	virtual ~ZVOutputAnalyzerLogView();
+    // Protected constructor used by dynamic creation
+    ZVOutputAnalyzerLogView();
+    virtual ~ZVOutputAnalyzerLogView();
 
 // Generated message map functions
 protected:
 
-	//{{AFX_MSG(ZVOutputAnalyzerLogView)
-		// NOTE - the ClassWizard will add and remove member functions here.
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZVOutputAnalyzerLogView)
+        // NOTE - the ClassWizard will add and remove member functions here.
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
-	// Call back function base on list events
-	virtual void OnSelChanged();
-	virtual void OnDoubleClick();
+    // Call back function base on list events
+    virtual void OnSelChanged();
+    virtual void OnDoubleClick();
 };
 
 /////////////////////////////////////////////////////////////////////////////

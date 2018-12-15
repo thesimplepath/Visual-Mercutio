@@ -37,58 +37,58 @@
 
 class AFX_EXT_CLASS ZDWorkspaceEnvDocument : public CDocument
 {
-	DECLARE_DYNCREATE(ZDWorkspaceEnvDocument)
+    DECLARE_DYNCREATE(ZDWorkspaceEnvDocument)
 public:
-	ZDWorkspaceEnvDocument();           // Public constructor since not used by dynamic creation
-	virtual ~ZDWorkspaceEnvDocument();
+    ZDWorkspaceEnvDocument();           // Public constructor since not used by dynamic creation
+    virtual ~ZDWorkspaceEnvDocument();
 
 // Operations
 public:
-	bool ReadFromFile( const CString Filename );
-	bool SaveToFile( const CString Filename );
+    bool ReadFromFile( const CString Filename );
+    bool SaveToFile( const CString Filename );
 
-	ZBWorkspaceEnv& GetWorkspaceEnvironment()
-	{
-		return m_WorkspaceEnvironment;
-	};
-	bool IsLoaded() const
-	{
-		return m_IsLoaded;
-	};
-	void SetLoaded( bool value = true )
-	{
-		m_IsLoaded = value;
-	};
-	virtual BOOL IsModified()
-	{
-		return CDocument::IsModified() || m_WorkspaceEnvironment.IsModified();
-	};
+    ZBWorkspaceEnv& GetWorkspaceEnvironment()
+    {
+        return m_WorkspaceEnvironment;
+    };
+    bool IsLoaded() const
+    {
+        return m_IsLoaded;
+    };
+    void SetLoaded( bool value = true )
+    {
+        m_IsLoaded = value;
+    };
+    virtual BOOL IsModified()
+    {
+        return CDocument::IsModified() || m_WorkspaceEnvironment.IsModified();
+    };
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZDWorkspaceEnvDocument)
-	public:
-	virtual void Serialize(CArchive& ar);   // overridden for document i/o
-	protected:
-	virtual BOOL OnNewDocument();
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZDWorkspaceEnvDocument)
+    public:
+    virtual void Serialize(CArchive& ar);   // overridden for document i/o
+    protected:
+    virtual BOOL OnNewDocument();
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZDWorkspaceEnvDocument)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZDWorkspaceEnvDocument)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	ZBWorkspaceEnv	m_WorkspaceEnvironment;
-	bool			m_IsLoaded;
+    ZBWorkspaceEnv    m_WorkspaceEnvironment;
+    bool            m_IsLoaded;
 };
 
 //{{AFX_INSERT_LOCATION}}

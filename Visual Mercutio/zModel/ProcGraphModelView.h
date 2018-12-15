@@ -42,62 +42,62 @@ class AFX_EXT_CLASS ZIProcessGraphModelView : public ZTMvcScrollView<ZIProcessGr
 {
 protected: // create from serialization only
 
-	DECLARE_DYNCREATE( ZIProcessGraphModelView )
+    DECLARE_DYNCREATE( ZIProcessGraphModelView )
 
-	ZIProcessGraphModelView();
+    ZIProcessGraphModelView();
 
 // Attributes
 public:
 
-	virtual ZDProcessGraphModelController* GetModelController();
+    virtual ZDProcessGraphModelController* GetModelController();
 
-	void	SetModel( ZDProcessGraphModelMdl* pModel, bool SizeViewport = true );
-	virtual ZDProcessGraphModelMdl* GetModel();
+    void    SetModel( ZDProcessGraphModelMdl* pModel, bool SizeViewport = true );
+    virtual ZDProcessGraphModelMdl* GetModel();
 
-	// Size the viewport to model
-	void	SizeVpToModel();
+    // Size the viewport to model
+    void    SizeVpToModel();
 
-	// Implement the drop of a symbol
-	virtual bool AcceptDrop() const { return true; };
-	virtual bool DropItem( CObject* pObj, CPoint pt );
-	virtual bool AcceptDropItem( CObject* pObj, CPoint pt );
+    // Implement the drop of a symbol
+    virtual bool AcceptDrop() const { return true; };
+    virtual bool DropItem( CObject* pObj, CPoint pt );
+    virtual bool AcceptDropItem( CObject* pObj, CPoint pt );
 
-	virtual const CString GetViewName();
+    virtual const CString GetViewName();
 
-	// Image utility methods
-	bool ChooseExportModelToImageFile();
+    // Image utility methods
+    bool ChooseExportModelToImageFile();
 
-	//	The tooltip class member. Used to display tooltip for
-	//	fields.
-	CToolTipCtrl& GetToolTip();
+    //    The tooltip class member. Used to display tooltip for
+    //    fields.
+    CToolTipCtrl& GetToolTip();
 
 // Operations
 public:
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIProcessGraphModelView)
-	public:
-	virtual void OnDrawPan(CDC* pDC);	// overridden to draw this view in the pan window
-	virtual void OnInitialUpdate();		// called first time after construct
-	virtual void OnDraw(CDC* pDC);		// overridden to draw this view
-	virtual void OnPrepareDC(CDC* pDC, CPrintInfo* pInfo = NULL);
-	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-	protected:
-	virtual BOOL OnPreparePrinting(CPrintInfo* pInfo);
-	virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
-	virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
-	virtual void OnPrint(CDC* pDC, CPrintInfo* pInfo);
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIProcessGraphModelView)
+    public:
+    virtual void OnDrawPan(CDC* pDC);    // overridden to draw this view in the pan window
+    virtual void OnInitialUpdate();        // called first time after construct
+    virtual void OnDraw(CDC* pDC);        // overridden to draw this view
+    virtual void OnPrepareDC(CDC* pDC, CPrintInfo* pInfo = NULL);
+    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+    protected:
+    virtual BOOL OnPreparePrinting(CPrintInfo* pInfo);
+    virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
+    virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
+    virtual void OnPrint(CDC* pDC, CPrintInfo* pInfo);
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
 
-	virtual ~ZIProcessGraphModelView();
+    virtual ~ZIProcessGraphModelView();
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 protected:
@@ -105,57 +105,57 @@ protected:
 // Generated message map functions
 protected:
 
-	//{{AFX_MSG(ZIProcessGraphModelView)
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg void OnSize(UINT nType, int cx, int cy);
-	afx_msg BOOL OnEraseBkgnd(CDC *pDC);
-	afx_msg void OnExportModelToImageFile();
-	afx_msg LRESULT OnRefreshSymbol( WPARAM wParam, LPARAM lParam );
-	afx_msg LRESULT OnRefreshSymbolSet( WPARAM wParam, LPARAM lParam );
-	afx_msg LRESULT OnBrowseSymbol( WPARAM wParam, LPARAM lParam );
-	afx_msg LRESULT OnOpenModelPage( WPARAM wParam, LPARAM lParam );
-	afx_msg LRESULT OnEnsureVisibleSymbol( WPARAM wParam, LPARAM lParam );
-	afx_msg LRESULT OnModelDocumentHasChanged( WPARAM wParam, LPARAM lParam );
-	afx_msg LRESULT OnAdviseStartPropertyEdition( WPARAM wParam, LPARAM lParam );
-	afx_msg BOOL OnToolTipNeedText(UINT id, NMHDR * pNMHDR, LRESULT * pResult);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZIProcessGraphModelView)
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    afx_msg void OnSize(UINT nType, int cx, int cy);
+    afx_msg BOOL OnEraseBkgnd(CDC *pDC);
+    afx_msg void OnExportModelToImageFile();
+    afx_msg LRESULT OnRefreshSymbol( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnRefreshSymbolSet( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnBrowseSymbol( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnOpenModelPage( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnEnsureVisibleSymbol( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnModelDocumentHasChanged( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnAdviseStartPropertyEdition( WPARAM wParam, LPARAM lParam );
+    afx_msg BOOL OnToolTipNeedText(UINT id, NMHDR * pNMHDR, LRESULT * pResult);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
-	// Pre translates key message.
-	virtual BOOL PreTranslateMessage ( MSG* pMsg );
+    // Pre translates key message.
+    virtual BOOL PreTranslateMessage ( MSG* pMsg );
 
-	// ZVSpanView virtual functions
-	virtual void UpdateOverviewRect();
-	virtual void PreOverview();
-	virtual void PostOverview();
+    // ZVSpanView virtual functions
+    virtual void UpdateOverviewRect();
+    virtual void PreOverview();
+    virtual void PostOverview();
 
-	void InitializePanViewport();
-	void SetRatio();
+    void InitializePanViewport();
+    void SetRatio();
 
 // Attributes
 protected:
 
-	CString											m_StrToolTip;
-	CToolTipCtrl									m_ToolTip;
+    CString                                            m_StrToolTip;
+    CToolTipCtrl                                    m_ToolTip;
 
-	// Used in conjonction with the pan window
-	CPoint											m_orig_ptVirtualOrigin;
-	CSize											m_orig_szVirtualSize;
-	CSize											m_orig_szMag;
-	double											m_CurrentRatio;
+    // Used in conjonction with the pan window
+    CPoint                                            m_orig_ptVirtualOrigin;
+    CSize                                            m_orig_szVirtualSize;
+    CSize                                            m_orig_szMag;
+    double                                            m_CurrentRatio;
 
-	bool											m_PanInitialized;
+    bool                                            m_PanInitialized;
 
-	MvcScrollWrapper_T<ZIProcessGraphModelViewport>	m_vpPan;
+    MvcScrollWrapper_T<ZIProcessGraphModelViewport>    m_vpPan;
 
 private:
 
-	ZDProcessGraphModelMdl*							m_pModelOfView;
+    ZDProcessGraphModelMdl*                            m_pModelOfView;
 };
 
 inline CToolTipCtrl& ZIProcessGraphModelView::GetToolTip()
 {
-	return m_ToolTip;
+    return m_ToolTip;
 }
 
 /////////////////////////////////////////////////////////////////////////////

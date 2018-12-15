@@ -1,14 +1,14 @@
 /****************************************************************************************************************
- *													 Classe ZBDate												*
+ *                                                     Classe ZBDate                                                *
  ****************************************************************************************************************
- * Cette classe permet de traiter les données des propriétés de date. Elle s'occupe également des conversions.	*
- *																												*
- * Author    : Dominique Aigroz																					*
- * HeaderFile: ZBDate.h																							*
- * Created   : 14.12.1994																						*
- * Modify    :																									*
- *																												*
- * Call      :																									*
+ * Cette classe permet de traiter les données des propriétés de date. Elle s'occupe également des conversions.    *
+ *                                                                                                                *
+ * Author    : Dominique Aigroz                                                                                    *
+ * HeaderFile: ZBDate.h                                                                                            *
+ * Created   : 14.12.1994                                                                                        *
+ * Modify    :                                                                                                    *
+ *                                                                                                                *
+ * Call      :                                                                                                    *
  ****************************************************************************************************************/
 
 #if !defined(__ZBDATE_H)
@@ -39,8 +39,8 @@ class AFX_EXT_CLASS ZBDate : public COleDateTime
 {
 public:
 
-	// Inherited feature
-	typedef COleDateTime inherited;
+    // Inherited feature
+    typedef COleDateTime inherited;
 #else
 #include <afx.h>
 
@@ -48,136 +48,136 @@ class AFX_EXT_CLASS ZBDate : public CTime
 {
 public:
 
-	// Inherited feature
-	typedef CTime inherited;
+    // Inherited feature
+    typedef CTime inherited;
 #endif
 
 public:
 
-	ZBDate			();
-	virtual ~ZBDate	();
+    ZBDate            ();
+    virtual ~ZBDate    ();
 
-	ZBDate( const ZBDate &right );
-	ZBDate( time_t time );
-	ZBDate( int nYear, int nMonth, int nDay, int nHour, int nMin, int nSec, int nDST = -1 );
-	ZBDate( WORD wDosDate, WORD wDosTime, int nDST = -1 );
-	ZBDate( const SYSTEMTIME& sysTime, int nDST = -1 );
-	ZBDate( const FILETIME& fileTime, int nDST = -1 );
-	ZBDate( LPCTSTR lpszDate, DWORD dwFlags = 0, LCID lcid = LANG_USER_DEFAULT );
+    ZBDate( const ZBDate &right );
+    ZBDate( time_t time );
+    ZBDate( int nYear, int nMonth, int nDay, int nHour, int nMin, int nSec, int nDST = -1 );
+    ZBDate( WORD wDosDate, WORD wDosTime, int nDST = -1 );
+    ZBDate( const SYSTEMTIME& sysTime, int nDST = -1 );
+    ZBDate( const FILETIME& fileTime, int nDST = -1 );
+    ZBDate( LPCTSTR lpszDate, DWORD dwFlags = 0, LCID lcid = LANG_USER_DEFAULT );
 
-	BOOL	IsEmpty();
-	void	Clear();
+    BOOL    IsEmpty();
+    void    Clear();
 
 #ifdef _WIN32
-	ZBDate( DATE dt );
-	ZBDate( const CTime &right );
-	ZBDate( const COleDateTime &right );
+    ZBDate( DATE dt );
+    ZBDate( const CTime &right );
+    ZBDate( const COleDateTime &right );
 
-	const ZBDate & operator=( const COleDateTime &right );
-	const ZBDate & operator=( const CTime &right );
+    const ZBDate & operator=( const COleDateTime &right );
+    const ZBDate & operator=( const CTime &right );
 #else
-	const ZBDate & operator=( const CTime &right );
+    const ZBDate & operator=( const CTime &right );
 #endif
 
-	// Make a clone of the object.
-	virtual ZBDate* Clone();
+    // Make a clone of the object.
+    virtual ZBDate* Clone();
 
 #ifdef _WIN32
-	void			SetToday() { *this = COleDateTime::GetCurrentTime(); };
-	static ZBDate	GetToday() { return  COleDateTime::GetCurrentTime(); };
+    void            SetToday() { *this = COleDateTime::GetCurrentTime(); };
+    static ZBDate    GetToday() { return  COleDateTime::GetCurrentTime(); };
 #else
-	void			SetToday() { *this = CTime::GetCurrentTime(); };
-	static ZBDate	GetToday() { return  CTime::GetCurrentTime(); };
+    void            SetToday() { *this = CTime::GetCurrentTime(); };
+    static ZBDate    GetToday() { return  CTime::GetCurrentTime(); };
 #endif
 
-	CString	GetStandardFormatedDate();
-	CString	GetStandardFormatedDateTime();
-	CString	GetFormatedDate( CString Format );
-	CString	GetFormatedDate( UINT nFormatID );
-	void	ClearTime();
+    CString    GetStandardFormatedDate();
+    CString    GetStandardFormatedDateTime();
+    CString    GetFormatedDate( CString Format );
+    CString    GetFormatedDate( UINT nFormatID );
+    void    ClearTime();
 
 #ifdef _WIN32
-	friend CArchive& AFXAPI operator<<( CArchive& ar, COleDateTime time );
-	friend CArchive& AFXAPI operator>>( CArchive& ar, COleDateTime& rtime );
+    friend CArchive& AFXAPI operator<<( CArchive& ar, COleDateTime time );
+    friend CArchive& AFXAPI operator>>( CArchive& ar, COleDateTime& rtime );
 #else
-	friend CArchive& AFXAPI operator<<( CArchive& ar, CTime time );
-	friend CArchive& AFXAPI operator>>( CArchive& ar, CTime& rtime );
+    friend CArchive& AFXAPI operator<<( CArchive& ar, CTime time );
+    friend CArchive& AFXAPI operator>>( CArchive& ar, CTime& rtime );
 #endif
 };
 
-#ifndef _WIN32	// In 16bit
+#ifndef _WIN32    // In 16bit
 inline ZBDate::ZBDate( const ZBDate &right )
-	: CTime( right )
+    : CTime( right )
 {
 }
 
 inline ZBDate::ZBDate( time_t time )
-	: CTime( time )
+    : CTime( time )
 {
 }
 
 inline ZBDate::ZBDate( int nYear, int nMonth, int nDay, int nHour, int nMin, int nSec, int nDST )
-	: CTime( nYear, nMonth, nDay, nHour, nMin, nSec, nDST )
+    : CTime( nYear, nMonth, nDay, nHour, nMin, nSec, nDST )
 {
 }
 
 inline ZBDate::ZBDate( WORD wDosDate, WORD wDosTime, int nDST )
-	: CTime( wDosDate, wDosTime, nDST )
+    : CTime( wDosDate, wDosTime, nDST )
 {
 }
 
 inline ZBDate::ZBDate( const SYSTEMTIME& sysTime, int nDST )
-	: CTime( sysTime, nDST )
+    : CTime( sysTime, nDST )
 {
 }
 
 inline ZBDate::ZBDate( const FILETIME& fileTime, int nDST )
-	: CTime( fileTime, nDST )
+    : CTime( fileTime, nDST )
 {
 }
-#else			// In 32bit
+#else            // In 32bit
 inline ZBDate::ZBDate( const ZBDate &right )
-	: COleDateTime( right )
+    : COleDateTime( right )
 {
 }
 
 inline ZBDate::ZBDate( const CTime &right )
-	: COleDateTime( right.GetYear	(),
-					right.GetMonth	(),
-					right.GetDay	(),
-					right.GetHour	(),
-					right.GetMinute	(),
-					right.GetSecond	() )
+    : COleDateTime( right.GetYear    (),
+                    right.GetMonth    (),
+                    right.GetDay    (),
+                    right.GetHour    (),
+                    right.GetMinute    (),
+                    right.GetSecond    () )
 {
 }
 
 inline ZBDate::ZBDate( const COleDateTime &right )
-	: COleDateTime( right )
+    : COleDateTime( right )
 {
 }
 
 inline ZBDate::ZBDate( time_t time )
-	: COleDateTime( time )
+    : COleDateTime( time )
 {
 }
 
 inline ZBDate::ZBDate( int nYear, int nMonth, int nDay, int nHour, int nMin, int nSec, int nDST )
-	: COleDateTime( nYear, nMonth, nDay, nHour, nMin, nSec )
+    : COleDateTime( nYear, nMonth, nDay, nHour, nMin, nSec )
 {
 }
 
 inline ZBDate::ZBDate( WORD wDosDate, WORD wDosTime, int nDST )
-	: COleDateTime( wDosDate, wDosTime )
+    : COleDateTime( wDosDate, wDosTime )
 {
 }
 
 inline ZBDate::ZBDate( const SYSTEMTIME& sysTime, int nDST )
-	: COleDateTime( sysTime )
+    : COleDateTime( sysTime )
 {
 }
 
 inline ZBDate::ZBDate( const FILETIME& fileTime, int nDST )
-	: COleDateTime( fileTime )
+    : COleDateTime( fileTime )
 {
 }
 
@@ -185,10 +185,10 @@ inline ZBDate::ZBDate( const FILETIME& fileTime, int nDST )
 
 inline BOOL ZBDate::IsEmpty()
 {
-#ifdef _WIN32	// In 32bit
-	return ( m_dt <= 0 ) ? TRUE : FALSE;
-#else			// In 16bit
-	return ( GetTime() <= 0 ) ? TRUE : FALSE;
+#ifdef _WIN32    // In 32bit
+    return ( m_dt <= 0 ) ? TRUE : FALSE;
+#else            // In 16bit
+    return ( GetTime() <= 0 ) ? TRUE : FALSE;
 #endif
 }
 

@@ -30,29 +30,29 @@
 class AFX_EXT_CLASS ZDActivityLogRecordSet : public CRecordset
 {
 public:
-	ZDActivityLogRecordSet(CDatabase* pDatabase = NULL);
+    ZDActivityLogRecordSet(CDatabase* pDatabase = NULL);
 
 // Field/Param Data
-	//{{AFX_FIELD(ZDActivityLogRecordSet, CRecordset)
-	CTime	m_Date;
-	CString	m_FolderName;
-	CString	m_File;
-	CString	m_DataFile;
-	CString	m_Process;
-	CString	m_Activity;
-	CTime	m_DueDate;
-	CString	m_Status;
-	CString	m_Sender;
-	CString	m_Receiver;
-	CString	m_Comments;
-	//}}AFX_FIELD
+    //{{AFX_FIELD(ZDActivityLogRecordSet, CRecordset)
+    CTime    m_Date;
+    CString    m_FolderName;
+    CString    m_File;
+    CString    m_DataFile;
+    CString    m_Process;
+    CString    m_Activity;
+    CTime    m_DueDate;
+    CString    m_Status;
+    CString    m_Sender;
+    CString    m_Receiver;
+    CString    m_Comments;
+    //}}AFX_FIELD
 
 
 // Implementation
 protected:
-	virtual CString GetDefaultConnect();	// Default connection string
-	virtual CString GetDefaultSQL(); 	// Default SQL for Recordset
-	virtual void DoFieldExchange(CFieldExchange* pFX);	// RFX support
-	DECLARE_DYNAMIC(ZDActivityLogRecordSet)
+    virtual CString GetDefaultConnect();    // Default connection string
+    virtual CString GetDefaultSQL();     // Default SQL for Recordset
+    virtual void DoFieldExchange(CFieldExchange* pFX);    // RFX support
+    DECLARE_DYNAMIC(ZDActivityLogRecordSet)
 };
 

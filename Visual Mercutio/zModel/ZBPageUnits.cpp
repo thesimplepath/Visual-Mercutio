@@ -21,7 +21,7 @@ IMPLEMENT_SERIAL( ZBPageUnits, CObject, def_Version )
 //////////////////////////////////////////////////////////////////////
 
 ZBPageUnits::ZBPageUnits()
-	: m_units( 0 )
+    : m_units( 0 )
 {
 }
 
@@ -31,32 +31,32 @@ ZBPageUnits::~ZBPageUnits()
 
 ZBPageUnits::ZBPageUnits( const ZBPageUnits &right )
 {
-	*this = right;
+    *this = right;
 }
 
 ZBPageUnits::ZBPageUnits( const CODRuler &right )
 {
-	*this = right;
+    *this = right;
 }
 
 const ZBPageUnits& ZBPageUnits::operator=( const ZBPageUnits &right )
 {
-	m_units = right.GetUnitOfMeasure();
+    m_units = right.GetUnitOfMeasure();
 
-	const_cast<ZBPageUnits&>( right ).GetLogicalUnitMeasure( m_logXUnit, m_logYUnit );
-	const_cast<ZBPageUnits&>( right ).GetMeasurementScale( m_ScaleFrom, m_ScaleTo );
+    const_cast<ZBPageUnits&>( right ).GetLogicalUnitMeasure( m_logXUnit, m_logYUnit );
+    const_cast<ZBPageUnits&>( right ).GetMeasurementScale( m_ScaleFrom, m_ScaleTo );
 
-	return *this;
+    return *this;
 }
 
 const ZBPageUnits& ZBPageUnits::operator=( const CODRuler &right )
 {
-	m_units = right.GetUnitOfMeasure();
+    m_units = right.GetUnitOfMeasure();
 
-	const_cast<CODRuler&>( right ).GetLogicalUnitMeasure( m_logXUnit, m_logYUnit );
-	const_cast<CODRuler&>( right ).GetMeasurementScale( m_ScaleFrom, m_ScaleTo );
+    const_cast<CODRuler&>( right ).GetLogicalUnitMeasure( m_logXUnit, m_logYUnit );
+    const_cast<CODRuler&>( right ).GetMeasurementScale( m_ScaleFrom, m_ScaleTo );
 
-	return *this;
+    return *this;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -64,24 +64,24 @@ const ZBPageUnits& ZBPageUnits::operator=( const CODRuler &right )
 
 void ZBPageUnits::Serialize( CArchive& ar )
 {
-	if ( ar.IsStoring() )
-	{
-		ar << (DWORD)m_units;
+    if ( ar.IsStoring() )
+    {
+        ar << (DWORD)m_units;
 
-		ZUSerializeODMeasure::SerializeWriteODMeasure( ar, m_ScaleFrom );
-		ZUSerializeODMeasure::SerializeWriteODMeasure( ar, m_ScaleTo );
-		ZUSerializeODMeasure::SerializeWriteODMeasure( ar, m_logXUnit );
-		ZUSerializeODMeasure::SerializeWriteODMeasure( ar, m_logYUnit );
-	}
-	else
-	{
-		DWORD wValue;
-		ar >> wValue;
-		m_units = (OD_UNIT_OF_MEASURE)wValue;
+        ZUSerializeODMeasure::SerializeWriteODMeasure( ar, m_ScaleFrom );
+        ZUSerializeODMeasure::SerializeWriteODMeasure( ar, m_ScaleTo );
+        ZUSerializeODMeasure::SerializeWriteODMeasure( ar, m_logXUnit );
+        ZUSerializeODMeasure::SerializeWriteODMeasure( ar, m_logYUnit );
+    }
+    else
+    {
+        DWORD wValue;
+        ar >> wValue;
+        m_units = (OD_UNIT_OF_MEASURE)wValue;
 
-		ZUSerializeODMeasure::SerializeReadODMeasure( ar, m_ScaleFrom );
-		ZUSerializeODMeasure::SerializeReadODMeasure( ar, m_ScaleTo );
-		ZUSerializeODMeasure::SerializeReadODMeasure( ar, m_logXUnit );
-		ZUSerializeODMeasure::SerializeReadODMeasure( ar, m_logYUnit );
-	}
+        ZUSerializeODMeasure::SerializeReadODMeasure( ar, m_ScaleFrom );
+        ZUSerializeODMeasure::SerializeReadODMeasure( ar, m_ScaleTo );
+        ZUSerializeODMeasure::SerializeReadODMeasure( ar, m_logXUnit );
+        ZUSerializeODMeasure::SerializeReadODMeasure( ar, m_logYUnit );
+    }
 }

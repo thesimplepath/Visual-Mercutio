@@ -18,8 +18,8 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 ZBGridContext::ZBGridContext()
-	: m_CurSelStart	( 1, 1 ),
-	  m_CurSelEnd	( 1, 1 )
+    : m_CurSelStart    ( 1, 1 ),
+      m_CurSelEnd    ( 1, 1 )
 {
 }
 

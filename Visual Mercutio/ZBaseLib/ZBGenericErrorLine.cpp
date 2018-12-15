@@ -18,9 +18,9 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 ZBGenericErrorLine::ZBGenericErrorLine(const CString message /*= ""*/, 
-									   int line /*= -1*/, 
-									   int error /*= -1*/, 
-									   int type /*= -1*/)
+                                       int line /*= -1*/, 
+                                       int error /*= -1*/, 
+                                       int type /*= -1*/)
 : ZIErrorLine( message, line, error, type )
 {
 }
@@ -32,51 +32,51 @@ ZBGenericErrorLine::~ZBGenericErrorLine()
 
 ZBGenericErrorLine::ZBGenericErrorLine(const ZBGenericErrorLine& src)
 {
-	*this = src;
+    *this = src;
 }
 
 ZBGenericErrorLine& ZBGenericErrorLine::operator=(const ZBGenericErrorLine& src)
 {
-	// Call the base class assignement operator
-	ZIErrorLine::operator=( (const ZIErrorLine&)src);
-	return *this;
+    // Call the base class assignement operator
+    ZIErrorLine::operator=( (const ZIErrorLine&)src);
+    return *this;
 }
 
 void ZBGenericErrorLine::BuildString()
 {
-	ZBTokenizer	Tokenizer(';');
-	// Add the error type
-	Tokenizer.AddToken(	(GetErrorType() == 0) ? "warning" : "error" );
-	// Add the line number
-	Tokenizer.AddToken(	GetLineNumber() );
-	// Add the error number
-	Tokenizer.AddToken(	GetErrorNumber() );
-	// Add the error message
-	Tokenizer.AddToken(	GetErrorMessage() );
-	// Assign the string
-	AssignString( Tokenizer.GetString() );
+    ZBTokenizer    Tokenizer(';');
+    // Add the error type
+    Tokenizer.AddToken(    (GetErrorType() == 0) ? "warning" : "error" );
+    // Add the line number
+    Tokenizer.AddToken(    GetLineNumber() );
+    // Add the error number
+    Tokenizer.AddToken(    GetErrorNumber() );
+    // Add the error message
+    Tokenizer.AddToken(    GetErrorMessage() );
+    // Assign the string
+    AssignString( Tokenizer.GetString() );
 }
 
 void ZBGenericErrorLine::Parse()
 {
-	ZBTokenizer	Tokenizer(';');
+    ZBTokenizer    Tokenizer(';');
 
-  	// Extract the type
-	CString TypeStr = Tokenizer.GetFirstToken( (const char*)this );
-	if (TypeStr == "warning")
-		SetErrorType( 0 );
-	else
-		SetErrorType( 1 );
+      // Extract the type
+    CString TypeStr = Tokenizer.GetFirstToken( (const char*)this );
+    if (TypeStr == "warning")
+        SetErrorType( 0 );
+    else
+        SetErrorType( 1 );
 
-  	// Extract the line number
-	CString LineNumberStr = Tokenizer.GetNextToken();
-	SetLineNumber( atoi(LineNumberStr) );
+      // Extract the line number
+    CString LineNumberStr = Tokenizer.GetNextToken();
+    SetLineNumber( atoi(LineNumberStr) );
 
-  	// Extract the error number
-	CString ErrorNumberStr = Tokenizer.GetNextToken();
-	SetErrorNumber( atoi(ErrorNumberStr) );
+      // Extract the error number
+    CString ErrorNumberStr = Tokenizer.GetNextToken();
+    SetErrorNumber( atoi(ErrorNumberStr) );
 
-	// Extract and set the error message
-	SetErrorMessage( Tokenizer.GetNextToken() );
+    // Extract and set the error message
+    SetErrorMessage( Tokenizer.GetNextToken() );
 
 }

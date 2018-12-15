@@ -1,10 +1,10 @@
 // **************************************************************************************************************
-// *										Classe ZVSelectPrestationDlg										*
+// *                                        Classe ZVSelectPrestationDlg                                        *
 // **************************************************************************************************************
-// * JMR-MODIF - Le 27 février 2006 - Ajout de la classe ZVSelectPrestationDlg.									*
+// * JMR-MODIF - Le 27 février 2006 - Ajout de la classe ZVSelectPrestationDlg.                                    *
 // **************************************************************************************************************
-// * Cette classe représente l'interface de sélection d'une prestation, ou d'un groupe de prestations, dans la	*
-// * liste.																										*
+// * Cette classe représente l'interface de sélection d'une prestation, ou d'un groupe de prestations, dans la    *
+// * liste.                                                                                                        *
 // **************************************************************************************************************
 
 #if !defined(AFX_ZVSELECTPRESTATIONDLG_H__16B257AC_C5CD_4411_8750_F4510E61718B__INCLUDED_)
@@ -47,59 +47,59 @@ class AFX_EXT_CLASS ZVSelectPrestationDlg : public CDialog
 // Construction
 public:
 
-	// Standard constructor
-	ZVSelectPrestationDlg( const CString				Title						= _T( "" ),
-						   ZBLogicalPrestationsEntity*	pMainPrestation				= NULL,
-						   bool							AllowPrestationSelection	= true,
-						   CWnd*						pParent						= NULL );
+    // Standard constructor
+    ZVSelectPrestationDlg( const CString                Title                        = _T( "" ),
+                           ZBLogicalPrestationsEntity*    pMainPrestation                = NULL,
+                           bool                            AllowPrestationSelection    = true,
+                           CWnd*                        pParent                        = NULL );
 
-	// Standard constructor
-	ZVSelectPrestationDlg( UINT							nTitle,
-						   ZBLogicalPrestationsEntity*	pMainPrestation,
-						   bool							AllowPrestationSelection	= true,
-						   CWnd*						pParent						= NULL );
+    // Standard constructor
+    ZVSelectPrestationDlg( UINT                            nTitle,
+                           ZBLogicalPrestationsEntity*    pMainPrestation,
+                           bool                            AllowPrestationSelection    = true,
+                           CWnd*                        pParent                        = NULL );
 
-	~ZVSelectPrestationDlg();
+    ~ZVSelectPrestationDlg();
 
-	void Release();
+    void Release();
 
-	ZBPrestationsEntity* GetSelectedPrestationEntity() const
-	{
-		return m_pPrestationEntity;
-	};
+    ZBPrestationsEntity* GetSelectedPrestationEntity() const
+    {
+        return m_pPrestationEntity;
+    };
 
 private:
 
-	// Dialog Data
-	//{{AFX_DATA(ZVSelectPrestationDlg)
-	enum { IDD = IDD_PRESTATION_SELECTION };
-	ZCPrestationsTreeCtrl	m_Ctrl;
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZVSelectPrestationDlg)
+    enum { IDD = IDD_PRESTATION_SELECTION };
+    ZCPrestationsTreeCtrl    m_Ctrl;
+    //}}AFX_DATA
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVSelectPrestationDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVSelectPrestationDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVSelectPrestationDlg)
-	virtual BOOL OnInitDialog();
-	afx_msg void OnSelchangedPrestationsTree(NMHDR* pNMHDR, LRESULT* pResult);
-	virtual void OnOK();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVSelectPrestationDlg)
+    virtual BOOL OnInitDialog();
+    afx_msg void OnSelchangedPrestationsTree(NMHDR* pNMHDR, LRESULT* pResult);
+    virtual void OnOK();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	CString						m_Title;
-	ZBPrestationsEntity*		m_pPrestationEntity;
-	ZBLogicalPrestationsEntity*	m_pMainPrestation;
-	bool						m_AllowPrestationSelection;
+    CString                        m_Title;
+    ZBPrestationsEntity*        m_pPrestationEntity;
+    ZBLogicalPrestationsEntity*    m_pMainPrestation;
+    bool                        m_AllowPrestationSelection;
 };
 
 //{{AFX_INSERT_LOCATION}}

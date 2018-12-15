@@ -38,43 +38,43 @@ class AFX_EXT_CLASS ZVFilePreviewDlg : public CDialog
 // Construction
 public:
 
-	ZVFilePreviewDlg( UINT nResID, CWnd* pParent = NULL );
-	ZVFilePreviewDlg( LPCTSTR lpszURL, BOOL bRes, CWnd* pParent = NULL );
+    ZVFilePreviewDlg( UINT nResID, CWnd* pParent = NULL );
+    ZVFilePreviewDlg( LPCTSTR lpszURL, BOOL bRes, CWnd* pParent = NULL );
 
-	virtual ~ZVFilePreviewDlg();
+    virtual ~ZVFilePreviewDlg();
 
 private:
 
-	// Dialog Data
-	//{{AFX_DATA(ZVFilePreviewDlg)
-	enum { IDD = IDD_BROWSER_FILEPREVIEW };
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZVFilePreviewDlg)
+    enum { IDD = IDD_BROWSER_FILEPREVIEW };
+    //}}AFX_DATA
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVFilePreviewDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVFilePreviewDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVFilePreviewDlg)
-	virtual BOOL OnInitDialog();
-	afx_msg void OnSize(UINT nType, int cx, int cy);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVFilePreviewDlg)
+    virtual BOOL OnInitDialog();
+    afx_msg void OnSize(UINT nType, int cx, int cy);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	void SizeControl();
+    void SizeControl();
 
 private:
 
-	ZWebBrowser*	m_pBrowser;
-	CString			m_strURL;
+    ZWebBrowser*    m_pBrowser;
+    CString            m_strURL;
 };
 
 //{{AFX_INSERT_LOCATION}}

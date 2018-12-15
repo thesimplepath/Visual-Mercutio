@@ -33,41 +33,41 @@ ZUSymbolLoader::~ZUSymbolLoader()
 
 int ZUSymbolLoader::LoadSymbol( const CString Location, ZBSymbolEntitySet& CompSet, ConnectionType Conx /*= FileConnection*/ )
 {
-	switch (Conx)
-	{
-		case FileConnection:
-		{
-			return ZUSymbolLoaderFILE::LoadSymbol( Location, CompSet );
-		}
-		case FTPConnection:
-		{
-			return ZUSymbolLoaderFTP::LoadSymbol( Location, CompSet );
-		}
-		case HTTPConnection:
-		{
-			return ZUSymbolLoaderHTTP::LoadSymbol( Location, CompSet );
-		}
-	}
-	return 0;
+    switch (Conx)
+    {
+        case FileConnection:
+        {
+            return ZUSymbolLoaderFILE::LoadSymbol( Location, CompSet );
+        }
+        case FTPConnection:
+        {
+            return ZUSymbolLoaderFTP::LoadSymbol( Location, CompSet );
+        }
+        case HTTPConnection:
+        {
+            return ZUSymbolLoaderHTTP::LoadSymbol( Location, CompSet );
+        }
+    }
+    return 0;
 }
 
 
 int ZUSymbolLoader::LoadSymbols( const CString Location, ZBSymbolEntitySet& CompSet, bool LoadSubFolders /*= false*/, ConnectionType Conx /*= FileConnection*/ )
 {
-	switch (Conx)
-	{
-		case FileConnection:
-		{
-			return ZUSymbolLoaderFILE::LoadSymbols( Location, CompSet, LoadSubFolders );
-		}
-		case FTPConnection:
-		{
-			return ZUSymbolLoaderFTP::LoadSymbols( Location, CompSet, LoadSubFolders );
-		}
-		case HTTPConnection:
-		{
-			return ZUSymbolLoaderHTTP::LoadSymbols( Location, CompSet, LoadSubFolders );
-		}
-	}
-	return 0;
+    switch (Conx)
+    {
+        case FileConnection:
+        {
+            return ZUSymbolLoaderFILE::LoadSymbols( Location, CompSet, LoadSubFolders );
+        }
+        case FTPConnection:
+        {
+            return ZUSymbolLoaderFTP::LoadSymbols( Location, CompSet, LoadSubFolders );
+        }
+        case HTTPConnection:
+        {
+            return ZUSymbolLoaderHTTP::LoadSymbols( Location, CompSet, LoadSubFolders );
+        }
+    }
+    return 0;
 }

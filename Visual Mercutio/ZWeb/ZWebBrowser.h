@@ -35,38 +35,38 @@ class AFX_EXT_CLASS ZWebBrowser : public CWebBrowser
 {
 public:
 
-	ZWebBrowser();
-	virtual ~ZWebBrowser();
+    ZWebBrowser();
+    virtual ~ZWebBrowser();
 
-	void SetOptions( LPCTSTR lpszOptions );
+    void SetOptions( LPCTSTR lpszOptions );
 
-	void SetParam( LPCTSTR lpszArgs );
-	void SetParam( VARIANT* pvarArgs );
+    void SetParam( LPCTSTR lpszArgs );
+    void SetParam( VARIANT* pvarArgs );
 
-	void SetURL( UINT nResID, HINSTANCE hInstance = NULL );
-	void SetURL( LPCTSTR lpszURL, BOOL bRes, HINSTANCE hInstance = NULL );
-	void SetURL( UINT nResID, LPCTSTR lpszParam, HINSTANCE hInstance = NULL );
-	void SetURL( LPCTSTR lpszURL, BOOL bRes, LPCTSTR lpszParam, HINSTANCE hInstance = NULL );
+    void SetURL( UINT nResID, HINSTANCE hInstance = NULL );
+    void SetURL( LPCTSTR lpszURL, BOOL bRes, HINSTANCE hInstance = NULL );
+    void SetURL( UINT nResID, LPCTSTR lpszParam, HINSTANCE hInstance = NULL );
+    void SetURL( LPCTSTR lpszURL, BOOL bRes, LPCTSTR lpszParam, HINSTANCE hInstance = NULL );
 
-	void Navigate();
-	void Navigate( const CString strURL );
-	void Navigate( UINT nResID, HINSTANCE hInstance = NULL );
-	void Navigate( LPCTSTR lpszURL, BOOL bRes, HINSTANCE hInstance = NULL );
-	void Navigate( UINT nResID, LPCTSTR lpszParam, HINSTANCE hInstance = NULL );
-	void Navigate( LPCTSTR lpszURL, BOOL bRes, LPCTSTR lpszParam, HINSTANCE hInstance = NULL );
+    void Navigate();
+    void Navigate( const CString strURL );
+    void Navigate( UINT nResID, HINSTANCE hInstance = NULL );
+    void Navigate( LPCTSTR lpszURL, BOOL bRes, HINSTANCE hInstance = NULL );
+    void Navigate( UINT nResID, LPCTSTR lpszParam, HINSTANCE hInstance = NULL );
+    void Navigate( LPCTSTR lpszURL, BOOL bRes, LPCTSTR lpszParam, HINSTANCE hInstance = NULL );
 
-	// Helper function
-	static CString BuildResourceToURL(LPCTSTR lpszURL, HINSTANCE hInstance = NULL );
-
-private:
-
-	void ResourceToURL( LPCTSTR lpszURL, HINSTANCE hInstance = NULL );
+    // Helper function
+    static CString BuildResourceToURL(LPCTSTR lpszURL, HINSTANCE hInstance = NULL );
 
 private:
-	CString			m_strURL;
-	CString			m_strOptions;
-	COleVariant		m_varArgs;
-	COleVariant		m_varReturn;
+
+    void ResourceToURL( LPCTSTR lpszURL, HINSTANCE hInstance = NULL );
+
+private:
+    CString            m_strURL;
+    CString            m_strOptions;
+    COleVariant        m_varArgs;
+    COleVariant        m_varReturn;
 };
 
 #endif // !defined(AFX_ZWEBBROWSER_H__A90C7280_27E7_428A_BA4C_ED1969E92153__INCLUDED_)

@@ -1,10 +1,10 @@
 //## begin module%334FC4630323.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%334FC4630323.cm
 
 //## begin module%334FC4630323.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%334FC4630323.cp
 
 //## Module: ZAAscii%334FC4630323; Package specification
@@ -29,7 +29,7 @@
 
 
 // Define different type of strikes
-enum	StrikeStyles{ NormalStrike, UpDownStrike, CrossStrike, WaveStrike };
+enum    StrikeStyles{ NormalStrike, UpDownStrike, CrossStrike, WaveStrike };
 //## end module%334FC4630323.includes
 
 // ZAObject
@@ -54,7 +54,7 @@ enum	StrikeStyles{ NormalStrike, UpDownStrike, CrossStrike, WaveStrike };
 
 
 //## Class: PLFNAscii%334FC4610319
-//	Non graphic objects functionnalities.
+//    Non graphic objects functionnalities.
 //## Category: ZBaseLib::Base objects%37E9429A0111
 //## Subsystem: ZBaseLib%37A08E0C019D
 //## Persistence: Transient
@@ -63,9 +63,9 @@ enum	StrikeStyles{ NormalStrike, UpDownStrike, CrossStrike, WaveStrike };
 class AFX_EXT_CLASS PLFNAscii : public PlanFinObject  //## Inherits: <unnamed>%334FC461031A
 {
   //## begin PLFNAscii%334FC4610319.initialDeclarations preserve=yes
-	public:
-	// Inherited feature
-		typedef PlanFinObject inherited;
+    public:
+    // Inherited feature
+        typedef PlanFinObject inherited;
   //## end PLFNAscii%334FC4610319.initialDeclarations
 
   public:
@@ -83,11 +83,11 @@ class AFX_EXT_CLASS PLFNAscii : public PlanFinObject  //## Inherits: <unnamed>%3
 
     //## Other Operations (specified)
       //## Operation: operator =%829516133
-      //	A copy constructor with a pointer.
+      //    A copy constructor with a pointer.
       const PLFNAscii& operator = (const PLFNAscii* right);
 
       //## Operation: Serialize%829516183
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: GetJustify%833261594
@@ -97,49 +97,49 @@ class AFX_EXT_CLASS PLFNAscii : public PlanFinObject  //## Inherits: <unnamed>%3
       virtual void SetJustify (UINT nValue);
 
       //## Operation: Clone%849755977
-      //	Make a clone of the object.
+      //    Make a clone of the object.
       PlanFinObject* Clone ();
 
       //## Operation: GetPropertyTabs%885128491
-      //	Return the list of tabs that should be displayed when
-      //	the user asks for object properties.
+      //    Return the list of tabs that should be displayed when
+      //    the user asks for object properties.
       virtual UINT GetPropertyTabs () const;
 
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: IsStriked%34AFE22C01EA
-      //	Defines if the object is striked.
+      //    Defines if the object is striked.
       const BOOL GetIsStriked () const;
       void SetIsStriked (BOOL value);
 
       //## Attribute: StrikeStyle%34AFE28D02F8
-      //	Defines the style of the strike.
+      //    Defines the style of the strike.
       const StrikeStyles GetStrikeStyle () const;
       void SetStrikeStyle (StrikeStyles value);
 
       //## Attribute: KeepHistory%3618FD610182
-      //	Flag that defines if the field must keep an history of
-      //	values entered.
+      //    Flag that defines if the field must keep an history of
+      //    values entered.
       const BOOL GetKeepHistory () const;
       void SetKeepHistory (BOOL value);
 
     // Additional Public Declarations
       //## begin PLFNAscii%334FC4610319.public preserve=yes
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
       //## end PLFNAscii%334FC4610319.public
   protected:
     // Additional Protected Declarations
       //## begin PLFNAscii%334FC4610319.protected preserve=yes
-	DECLARE_SERIAL(PLFNAscii)
+    DECLARE_SERIAL(PLFNAscii)
       //## end PLFNAscii%334FC4610319.protected
   private:
     // Data Members for Class Attributes
 
       //## Attribute: iJustify%334FC461033D
-      //	Define how to justify the text.
+      //    Define how to justify the text.
       //## begin PLFNAscii::iJustify%334FC461033D.attr preserve=no  public: UINT {U} NoAlignement
       UINT m_iJustify;
       //## end PLFNAscii::iJustify%334FC461033D.attr
@@ -177,14 +177,14 @@ class AFX_EXT_CLASS PLFNAscii : public PlanFinObject  //## Inherits: <unnamed>%3
 inline void PLFNAscii::SetJustify (UINT nValue)
 {
   //## begin PLFNAscii::SetJustify%833261595.body preserve=yes
-  	m_iJustify = nValue;
+      m_iJustify = nValue;
   //## end PLFNAscii::SetJustify%833261595.body
 }
 
 inline UINT PLFNAscii::GetPropertyTabs () const
 {
   //## begin PLFNAscii::GetPropertyTabs%885128491.body preserve=yes
-  	return PropertyGeneralTextPage | PropertySizePage;
+      return PropertyGeneralTextPage | PropertySizePage;
   //## end PLFNAscii::GetPropertyTabs%885128491.body
 }
 

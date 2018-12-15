@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Gaya
-// <nl>Created:		 03/2002
+// <nl>Created:         03/2002
 // <nl>Description:  XXXClass frame window support
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -58,46 +58,46 @@ class SOAPTypeTraits<psystem>
 {
 public:
 
-	static void GetType( SOAPQName& qname )
-	{
-		qname.Set( _T( "psystem" ), _T( "urn:xml-soap-emessenger" ) );
-	}
+    static void GetType( SOAPQName& qname )
+    {
+        qname.Set( _T( "psystem" ), _T( "urn:xml-soap-emessenger" ) );
+    }
 
-	static SOAPParameter& Serialize( SOAPParameter& param, const psystem& val )
-	{
-		param.AddParameter( _T( "systemid" ) )		<< val.systemid.c_str();
-		param.AddParameter( _T( "systemparent" ) )	<< val.systemparent.c_str();
-		param.AddParameter( _T( "systemtitle" ) )	<< val.systemtitle.c_str();
-		param.AddParameter( _T( "command" ) )		<< val.command.c_str();
-		param.AddParameter( _T( "parameters" ) )	<< val.parameters.c_str();
-		param.AddParameter( _T( "directory" ) )		<< val.directory.c_str();
-		param.AddParameter( _T( "priority" ) )		<< val.priority;
-		param.AddParameter( _T( "windowst" ) )		<< val.windowst;
+    static SOAPParameter& Serialize( SOAPParameter& param, const psystem& val )
+    {
+        param.AddParameter( _T( "systemid" ) )        << val.systemid.c_str();
+        param.AddParameter( _T( "systemparent" ) )    << val.systemparent.c_str();
+        param.AddParameter( _T( "systemtitle" ) )    << val.systemtitle.c_str();
+        param.AddParameter( _T( "command" ) )        << val.command.c_str();
+        param.AddParameter( _T( "parameters" ) )    << val.parameters.c_str();
+        param.AddParameter( _T( "directory" ) )        << val.directory.c_str();
+        param.AddParameter( _T( "priority" ) )        << val.priority;
+        param.AddParameter( _T( "windowst" ) )        << val.windowst;
 
-		return param;
-	}
+        return param;
+    }
 
-	static const SOAPParameter& Deserialize( const SOAPParameter& param, psystem& val )
-	{
-		SOAPString tmp;
+    static const SOAPParameter& Deserialize( const SOAPParameter& param, psystem& val )
+    {
+        SOAPString tmp;
 
-		param.GetParameter( _T( "systemid" ) )		>> tmp;
-		val.systemid		= tmp.Str();
-		param.GetParameter( _T( "systemparent" ) )	>> tmp;
-		val.systemparent	= tmp.Str();
-		param.GetParameter( _T( "systemtitle" ) )	>> tmp;
-		val.systemtitle		= tmp.Str();
-		param.GetParameter( _T( "command" ) )		>> tmp;
-		val.command			= tmp.Str();
-		param.GetParameter( _T( "parameters" ) )	>> tmp;
-		val.parameters		= tmp.Str();
-		param.GetParameter( _T( "directory" ) )		>> tmp;
-		val.directory		= tmp.Str();
-		param.GetParameter( _T( "priority" ) )		>> val.priority;
-		param.GetParameter( _T( "windowst" ) )		>> val.windowst;
+        param.GetParameter( _T( "systemid" ) )        >> tmp;
+        val.systemid        = tmp.Str();
+        param.GetParameter( _T( "systemparent" ) )    >> tmp;
+        val.systemparent    = tmp.Str();
+        param.GetParameter( _T( "systemtitle" ) )    >> tmp;
+        val.systemtitle        = tmp.Str();
+        param.GetParameter( _T( "command" ) )        >> tmp;
+        val.command            = tmp.Str();
+        param.GetParameter( _T( "parameters" ) )    >> tmp;
+        val.parameters        = tmp.Str();
+        param.GetParameter( _T( "directory" ) )        >> tmp;
+        val.directory        = tmp.Str();
+        param.GetParameter( _T( "priority" ) )        >> val.priority;
+        param.GetParameter( _T( "windowst" ) )        >> val.windowst;
 
-		return param;
-	}
+        return param;
+    }
 };
 
 template<>
@@ -109,23 +109,23 @@ class AFX_EXT_CLASS pPublishSystem
 {
 public:
 
-	pPublishSystem();
-	~pPublishSystem();
+    pPublishSystem();
+    ~pPublishSystem();
 
-	void reset();
-	void addSystem( psystem syst );
+    void reset();
+    void addSystem( psystem syst );
 
-	// JMR-MODIF - Le 21 juin 2006 - Ajout de la fonction addAlias.
-	void addAlias( CString Alias );
+    // JMR-MODIF - Le 21 juin 2006 - Ajout de la fonction addAlias.
+    void addAlias( CString Alias );
 
-	bool send();
+    bool send();
 
 private:
 
-	// JMR-MODIF - Le 21 juin 2006 - Ajout de la variable m_Alias.
-	CString			m_Alias;
+    // JMR-MODIF - Le 21 juin 2006 - Ajout de la variable m_Alias.
+    CString            m_Alias;
 
-	list<psystem>	m_systems;
+    list<psystem>    m_systems;
 };
 
 END_EASYSOAP_NAMESPACE

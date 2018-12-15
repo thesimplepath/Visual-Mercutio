@@ -1,9 +1,9 @@
 // **************************************************************************************************************
-// *									   Classe pCheckUniverse												*
+// *                                       Classe pCheckUniverse                                                *
 // **************************************************************************************************************
-// * JMR-MODIF - Le 21 juin 2006 - Création de la classe pCheckUniverse.										*
+// * JMR-MODIF - Le 21 juin 2006 - Création de la classe pCheckUniverse.                                        *
 // **************************************************************************************************************
-// * Cette classe prend en charge la publication des univers vers Messenger.									*
+// * Cette classe prend en charge la publication des univers vers Messenger.                                    *
 // **************************************************************************************************************
 
 #ifndef __PCHECKUNIVERSE_HDR_
@@ -44,35 +44,35 @@ class SOAPTypeTraits<puniverse>
 {
 public:
 
-	static void GetType( SOAPQName& qname )
-	{
-		qname.Set( _T( "puniverse" ), _T( "urn:xml-soap-emessenger" ) );
-	}
+    static void GetType( SOAPQName& qname )
+    {
+        qname.Set( _T( "puniverse" ), _T( "urn:xml-soap-emessenger" ) );
+    }
 
-	static SOAPParameter& Serialize( SOAPParameter& param, const puniverse& val )
-	{
-		param.AddParameter( _T( "guidSystem" ) )		<< val.guidSystem.c_str();
-		param.AddParameter( _T( "guidPrestation" ) )	<< val.guidPrestation.c_str();
-		param.AddParameter( _T( "guidWorkgroup" ) )		<< val.guidWorkgroup.c_str();
+    static SOAPParameter& Serialize( SOAPParameter& param, const puniverse& val )
+    {
+        param.AddParameter( _T( "guidSystem" ) )        << val.guidSystem.c_str();
+        param.AddParameter( _T( "guidPrestation" ) )    << val.guidPrestation.c_str();
+        param.AddParameter( _T( "guidWorkgroup" ) )        << val.guidWorkgroup.c_str();
 
-		return param;
-	}
+        return param;
+    }
 
-	static const SOAPParameter& Deserialize( const SOAPParameter& param, puniverse& val )
-	{
-		SOAPString tmp;
+    static const SOAPParameter& Deserialize( const SOAPParameter& param, puniverse& val )
+    {
+        SOAPString tmp;
 
-		param.GetParameter( _T( "guidSystem" ) )		>> tmp;
-		val.guidSystem		= tmp.Str();
+        param.GetParameter( _T( "guidSystem" ) )        >> tmp;
+        val.guidSystem        = tmp.Str();
 
-		param.GetParameter( _T( "guidPrestation" ) )	>> tmp;
-		val.guidPrestation	= tmp.Str();
+        param.GetParameter( _T( "guidPrestation" ) )    >> tmp;
+        val.guidPrestation    = tmp.Str();
 
-		param.GetParameter( _T( "guidWorkgroup" ) )		>> tmp;
-		val.guidWorkgroup	= tmp.Str();
+        param.GetParameter( _T( "guidWorkgroup" ) )        >> tmp;
+        val.guidWorkgroup    = tmp.Str();
 
-		return param;
-	}
+        return param;
+    }
 };
 
 template<>
@@ -84,20 +84,20 @@ class AFX_EXT_CLASS pCheckUniverse
 {
 public:
 
-	pCheckUniverse();
-	~pCheckUniverse();
+    pCheckUniverse();
+    ~pCheckUniverse();
 
-	void reset();
-	void addUniverse( puniverse universe );
-	void addAlias( CString Alias );
+    void reset();
+    void addUniverse( puniverse universe );
+    void addAlias( CString Alias );
 
-	bool check();
+    bool check();
 
 private:
 
-	CString				m_Alias;
+    CString                m_Alias;
 
-	list<puniverse>		m_universe;
+    list<puniverse>        m_universe;
 };
 
 END_EASYSOAP_NAMESPACE

@@ -3,9 +3,9 @@
 <head>
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
 <style ID="AsstStyle">
-	BODY{font: messagebox;}
+    BODY{font: messagebox;}
         TD{font: messagebox;}
-	.clickable {color:darkblue; cursor:hand}
+    .clickable {color:darkblue; cursor:hand}
 </style>
 <title></title>
 </head>
@@ -263,18 +263,18 @@ var nTips=75;
 
 function Load() {
 
-	var d = new Date();
-	i =  ((d.getMonth() * 31) + d.getDate()) %nTips;
-	if (i==null) i=0;
-		eval("document.all.Tip"+i+".style.display=''");
+    var d = new Date();
+    i =  ((d.getMonth() * 31) + d.getDate()) %nTips;
+    if (i==null) i=0;
+        eval("document.all.Tip"+i+".style.display=''");
 }
 
 
 function goNext()
 {
-	eval("document.all.Tip"+i+".style.display='none'");
-	i=(((i%nTips)+1)%nTips);
-	eval("document.all.Tip"+i+".style.display=''");
+    eval("document.all.Tip"+i+".style.display='none'");
+    i=(((i%nTips)+1)%nTips);
+    eval("document.all.Tip"+i+".style.display=''");
 }
 </script> </p>
 </body>

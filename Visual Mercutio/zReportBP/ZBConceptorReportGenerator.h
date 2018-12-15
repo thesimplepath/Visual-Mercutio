@@ -38,76 +38,76 @@ class ZBUserRoleEntity;
 
 class AFX_EXT_CLASS ZBConceptorReportGenerator : public ZBModelBPReportGenerator
 {
-	DECLARE_SERIAL( ZBConceptorReportGenerator )
+    DECLARE_SERIAL( ZBConceptorReportGenerator )
 
 public:
 
-	ZBConceptorReportGenerator( ZDGridDocument*				pDoc					= NULL,
-								ZDProcessGraphModelMdlBP*	pModel					= NULL,
-								ZDProcessGraphModelDoc*		pSourceDoc				= NULL,
-								BOOL						bIncludeSynthesis		= TRUE,
-								BOOL						bIncludeDetail			= TRUE,
-								BOOL						bIncludeDeliverables	= TRUE );
+    ZBConceptorReportGenerator( ZDGridDocument*                pDoc                    = NULL,
+                                ZDProcessGraphModelMdlBP*    pModel                    = NULL,
+                                ZDProcessGraphModelDoc*        pSourceDoc                = NULL,
+                                BOOL                        bIncludeSynthesis        = TRUE,
+                                BOOL                        bIncludeDetail            = TRUE,
+                                BOOL                        bIncludeDeliverables    = TRUE );
 
-	virtual ~ZBConceptorReportGenerator();
+    virtual ~ZBConceptorReportGenerator();
 
-	/////////////////////////////////////////////////////////////////////////////
-	// ZIGridReportGenerator methods
-	
-	virtual void Initialize( ZDGridDocument*			pDoc,
-							 ZDProcessGraphModelMdlBP*	pModel,
-							 ZDProcessGraphModelDoc*	pSourceDoc,
-							 BOOL						bIncludeSynthesis		= TRUE,
-							 BOOL						bIncludeDetail			= TRUE,
-							 BOOL						bIncludeDeliverables	= TRUE );
+    /////////////////////////////////////////////////////////////////////////////
+    // ZIGridReportGenerator methods
+    
+    virtual void Initialize( ZDGridDocument*            pDoc,
+                             ZDProcessGraphModelMdlBP*    pModel,
+                             ZDProcessGraphModelDoc*    pSourceDoc,
+                             BOOL                        bIncludeSynthesis        = TRUE,
+                             BOOL                        bIncludeDetail            = TRUE,
+                             BOOL                        bIncludeDeliverables    = TRUE );
 
-	// Called by the framework to request a grid to be filled
-	// The implementation uses the delegation
-	virtual bool FillGrid( CGXGridCore& GridCore, size_t Index );
+    // Called by the framework to request a grid to be filled
+    // The implementation uses the delegation
+    virtual bool FillGrid( CGXGridCore& GridCore, size_t Index );
 
-	virtual const CString GetReportTitle() const;
+    virtual const CString GetReportTitle() const;
 
-	// Serialization call-back
-	virtual void OnPostRead( CArchive& ar );
+    // Serialization call-back
+    virtual void OnPostRead( CArchive& ar );
 
 // Implementation
 public:
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 protected:
 
-	void FillTabArray();
+    void FillTabArray();
 
 private:
 
-	void RemoveAllData();
-	void FillTabUnitGroup( ZBUserGroupEntity* pGroup );
-	bool FillSynthesis( ZBOStreamGrid& ostream, size_t Index );
-	bool FillGridAllProcess( ZBOStreamGrid& ostream, size_t Index );
+    void RemoveAllData();
+    void FillTabUnitGroup( ZBUserGroupEntity* pGroup );
+    bool FillSynthesis( ZBOStreamGrid& ostream, size_t Index );
+    bool FillGridAllProcess( ZBOStreamGrid& ostream, size_t Index );
 
 private:
 
-	CStringArray	m_ProcessNameArray;
-	CStringArray	m_UnitCommentArray;
-	CObArray		m_ModelArray;
+    CStringArray    m_ProcessNameArray;
+    CStringArray    m_UnitCommentArray;
+    CObArray        m_ModelArray;
 
-	BOOL			m_IncludeSynthesis;
-	BOOL			m_IncludeDetail;
-	BOOL			m_IncludeDeliverables;
+    BOOL            m_IncludeSynthesis;
+    BOOL            m_IncludeDetail;
+    BOOL            m_IncludeDeliverables;
 
-	CGXStyle		m_BlueStyle;
-	CGXStyle		m_OrangeStyle;
-	CGXStyle		m_GrayStyle;
+    CGXStyle        m_BlueStyle;
+    CGXStyle        m_OrangeStyle;
+    CGXStyle        m_GrayStyle;
 
-	CGXStyle		m_BlackBorderStyle;
-	CGXStyle		m_LeftOnlyBlackBorderStyle;
-	CGXStyle		m_RightOnlyBlackBorderStyle;
-	CGXStyle		m_TopOnlyBlackBorderStyle;
-	CGXStyle		m_BottomOnlyBlackBorderStyle;
+    CGXStyle        m_BlackBorderStyle;
+    CGXStyle        m_LeftOnlyBlackBorderStyle;
+    CGXStyle        m_RightOnlyBlackBorderStyle;
+    CGXStyle        m_TopOnlyBlackBorderStyle;
+    CGXStyle        m_BottomOnlyBlackBorderStyle;
 };
 
 #endif // !defined(AFX_ZBConceptorReportGenerator_H__92F0037B_1EAF_4F26_BE0A_CFBCC6D7C6FD__INCLUDED_)

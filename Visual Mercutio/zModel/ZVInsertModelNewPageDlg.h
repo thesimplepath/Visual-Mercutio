@@ -41,71 +41,71 @@ class AFX_EXT_CLASS ZVInsertModelNewPageDlg : public ZIDialog
 // Construction
 public:
 
-	// Standard constructor
-	ZVInsertModelNewPageDlg( ZDProcessGraphModelMdl*	pModel,
-							 const CString				NewPageName		= _T( "" ),
-							 CStringArray*				pArrayPageName	= NULL,
-							 ZBRuntimeClassSet*			pSet			= NULL,
-							 CWnd*						pParent			= NULL);
+    // Standard constructor
+    ZVInsertModelNewPageDlg( ZDProcessGraphModelMdl*    pModel,
+                             const CString                NewPageName        = _T( "" ),
+                             CStringArray*                pArrayPageName    = NULL,
+                             ZBRuntimeClassSet*            pSet            = NULL,
+                             CWnd*                        pParent            = NULL);
 
-	CString GetPageName() const;
-	ZDProcessGraphModelMdl* GetParentModel() const;
+    CString GetPageName() const;
+    ZDProcessGraphModelMdl* GetParentModel() const;
 
-	CString GetParentModelFullName() const
-	{
-		return m_ParentModelFullName;
-	};
+    CString GetParentModelFullName() const
+    {
+        return m_ParentModelFullName;
+    };
 
 private:
 
-	// Dialog Data
-	//{{AFX_DATA(ZVInsertModelNewPageDlg)
-	enum { IDD = IDD_INSERT_MODELPAGE };
-	ZCProcessModelTree m_SymbolTree;
-	CString m_PageName;
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZVInsertModelNewPageDlg)
+    enum { IDD = IDD_INSERT_MODELPAGE };
+    ZCProcessModelTree m_SymbolTree;
+    CString m_PageName;
+    //}}AFX_DATA
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVInsertModelNewPageDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVInsertModelNewPageDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVInsertModelNewPageDlg)
-	virtual void OnOK();
-	afx_msg void OnSelchangedSymboltree(NMHDR* pNMHDR, LRESULT* pResult);
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVInsertModelNewPageDlg)
+    virtual void OnOK();
+    afx_msg void OnSelchangedSymboltree(NMHDR* pNMHDR, LRESULT* pResult);
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	void CheckControls();
+    void CheckControls();
 
 private:
 
-	CStringArray*			m_pArrayPageName;
-	CString					m_ParentModelFullName;
-	ZDProcessGraphModelMdl*	m_pModel;
-	ZDProcessGraphModelMdl*	m_pParentModel;
+    CStringArray*            m_pArrayPageName;
+    CString                    m_ParentModelFullName;
+    ZDProcessGraphModelMdl*    m_pModel;
+    ZDProcessGraphModelMdl*    m_pParentModel;
 
-	// Set of elements that can be displayed in the tree
-	ZBRuntimeClassSet*		m_pSet;
+    // Set of elements that can be displayed in the tree
+    ZBRuntimeClassSet*        m_pSet;
 };
 
 inline CString ZVInsertModelNewPageDlg::GetPageName() const
 {
-	return m_PageName;
+    return m_PageName;
 }
 
 inline ZDProcessGraphModelMdl* ZVInsertModelNewPageDlg::GetParentModel() const
 {
-	return m_pParentModel;
+    return m_pParentModel;
 }
 
 //{{AFX_INSERT_LOCATION}}

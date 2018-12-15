@@ -42,201 +42,201 @@ class _ZBPropertyState
 {
 public:
 
-	_ZBPropertyState();
-	_ZBPropertyState( ZBProperty& Property, double ObjectReference = 0 );
-	_ZBPropertyState( ZBPropertyItemCategory& PropItemCat, double ObjectReference = 0 );
+    _ZBPropertyState();
+    _ZBPropertyState( ZBProperty& Property, double ObjectReference = 0 );
+    _ZBPropertyState( ZBPropertyItemCategory& PropItemCat, double ObjectReference = 0 );
 
-	// Allow copy constructor and assignement operator
-	_ZBPropertyState( const _ZBPropertyState& src );
-	_ZBPropertyState& operator=( const _ZBPropertyState& src );
+    // Allow copy constructor and assignement operator
+    _ZBPropertyState( const _ZBPropertyState& src );
+    _ZBPropertyState& operator=( const _ZBPropertyState& src );
 
-	double GetObjectReference() const;
-	void SetObjectReference( double value );
+    double GetObjectReference() const;
+    void SetObjectReference( double value );
 
-	int GetCategoryID() const;
-	void SetCategoryID( int value );
+    int GetCategoryID() const;
+    void SetCategoryID( int value );
 
-	int GetItemID() const;
-	void SetItemID( int value );
+    int GetItemID() const;
+    void SetItemID( int value );
 
-	bool GetCollapsed() const;
-	void SetCollapsed( bool value );
+    bool GetCollapsed() const;
+    void SetCollapsed( bool value );
 
-	CSize GetSize() const;
-	void SetSize( CSize value );
+    CSize GetSize() const;
+    void SetSize( CSize value );
 
-	CSize GetExtendedSize() const;
-	void SetExtendedSize( CSize value );
+    CSize GetExtendedSize() const;
+    void SetExtendedSize( CSize value );
 
-	int GetItemOrder() const;
-	void SetItemOrder( int value );
-	
-	int GetCategoryOrder() const;
-	void SetCategoryOrder( int value );
+    int GetItemOrder() const;
+    void SetItemOrder( int value );
+    
+    int GetCategoryOrder() const;
+    void SetCategoryOrder( int value );
 
 private:
 
-	// The object reference is used to associate a property to a specific object
-	double	m_ObjectReference;
+    // The object reference is used to associate a property to a specific object
+    double    m_ObjectReference;
 
-	// The categoryID and the ItemID is used to recognize the right property
-	int		m_CategoryID;
-	int		m_ItemID;
+    // The categoryID and the ItemID is used to recognize the right property
+    int        m_CategoryID;
+    int        m_ItemID;
 
-	bool	m_Collapsed;
-	CSize	m_Size;
-	CSize	m_ExtendedSize;
+    bool    m_Collapsed;
+    CSize    m_Size;
+    CSize    m_ExtendedSize;
 
-	int		m_ItemOrder;
-	int		m_CategoryOrder;
+    int        m_ItemOrder;
+    int        m_CategoryOrder;
 };
 
 inline _ZBPropertyState::_ZBPropertyState()
-	: m_Size		( 0, 0 ),
-	  m_ExtendedSize( 0, 0 )
+    : m_Size        ( 0, 0 ),
+      m_ExtendedSize( 0, 0 )
 {
-	m_CategoryID		= -1;
-	m_ItemID			= -1;
-	m_ObjectReference	= 0;
-	m_Collapsed			= false;
-	m_ItemOrder			= -1;
-	m_CategoryOrder		= -1;;
+    m_CategoryID        = -1;
+    m_ItemID            = -1;
+    m_ObjectReference    = 0;
+    m_Collapsed            = false;
+    m_ItemOrder            = -1;
+    m_CategoryOrder        = -1;;
 }
 
 inline _ZBPropertyState::_ZBPropertyState( ZBProperty& Property, double ObjectReference /*= 0*/ )
-	: m_Size		( 0, 0 ),
-	  m_ExtendedSize( 0, 0 )
+    : m_Size        ( 0, 0 ),
+      m_ExtendedSize( 0, 0 )
 {
-	m_CategoryID = Property.GetCategoryID();
+    m_CategoryID = Property.GetCategoryID();
 
-	if ( Property.GetSaveStatePerProperty() )
-	{
-		m_ItemID = Property.GetItemID();
-	}
-	else
-	{
-		m_ItemID = -1;
-	}
+    if ( Property.GetSaveStatePerProperty() )
+    {
+        m_ItemID = Property.GetItemID();
+    }
+    else
+    {
+        m_ItemID = -1;
+    }
 
-	m_ObjectReference	= ObjectReference;
-	m_Collapsed			= false;
-	m_ItemOrder			= Property.GetItemOrder();
-	m_CategoryOrder		= Property.GetCategoryOrder();
+    m_ObjectReference    = ObjectReference;
+    m_Collapsed            = false;
+    m_ItemOrder            = Property.GetItemOrder();
+    m_CategoryOrder        = Property.GetCategoryOrder();
 }
 
 inline _ZBPropertyState::_ZBPropertyState( ZBPropertyItemCategory& PropItemCat, double ObjectReference /*= 0*/ )
-	: m_Size		( 0, 0 ),
-	  m_ExtendedSize( 0, 0 )
+    : m_Size        ( 0, 0 ),
+      m_ExtendedSize( 0, 0 )
 {
-	m_CategoryID = PropItemCat.GetPropertyID();
+    m_CategoryID = PropItemCat.GetPropertyID();
 
-	// Sub item equal to zero for categories
-	m_ItemID			= 0;
-	m_ObjectReference	= ObjectReference;
-	m_Collapsed			= !PropItemCat.GetChildrenVisible();
-	m_ItemOrder			= -1;
-	m_CategoryOrder		= PropItemCat.GetCategoryOrder();
+    // Sub item equal to zero for categories
+    m_ItemID            = 0;
+    m_ObjectReference    = ObjectReference;
+    m_Collapsed            = !PropItemCat.GetChildrenVisible();
+    m_ItemOrder            = -1;
+    m_CategoryOrder        = PropItemCat.GetCategoryOrder();
 }
 
 inline _ZBPropertyState::_ZBPropertyState( const _ZBPropertyState& src )
 {
-	*this = src;
+    *this = src;
 }
 
 inline _ZBPropertyState& _ZBPropertyState::operator=( const _ZBPropertyState& src )
 {
-	m_CategoryID		= src.GetCategoryID();
-	m_ItemID			= src.GetItemID();
-	m_ObjectReference	= src.GetObjectReference();
+    m_CategoryID        = src.GetCategoryID();
+    m_ItemID            = src.GetItemID();
+    m_ObjectReference    = src.GetObjectReference();
 
-	m_Collapsed			= src.GetCollapsed();
-	m_Size				= src.GetSize();
-	m_ExtendedSize		= src.GetExtendedSize();
+    m_Collapsed            = src.GetCollapsed();
+    m_Size                = src.GetSize();
+    m_ExtendedSize        = src.GetExtendedSize();
 
-	m_ItemOrder			= src.m_ItemOrder;
-	m_CategoryOrder		= src.m_CategoryOrder;
+    m_ItemOrder            = src.m_ItemOrder;
+    m_CategoryOrder        = src.m_CategoryOrder;
 
-	return *this;
+    return *this;
 }
 
 inline double _ZBPropertyState::GetObjectReference() const
 {
-	return m_ObjectReference;
+    return m_ObjectReference;
 }
 
 inline void _ZBPropertyState::SetObjectReference( double value )
 {
-	m_ObjectReference = value;
+    m_ObjectReference = value;
 }
 
 inline int _ZBPropertyState::GetCategoryID() const
 {
-	return m_CategoryID;
+    return m_CategoryID;
 }
 
 inline void _ZBPropertyState::SetCategoryID( int value )
 {
-	m_CategoryID = value;
+    m_CategoryID = value;
 }
 
 inline int _ZBPropertyState::GetItemID() const
 {
-	return m_ItemID;
+    return m_ItemID;
 }
 
 inline void _ZBPropertyState::SetItemID( int value )
 {
-	m_ItemID = value;
+    m_ItemID = value;
 }
 
 inline bool _ZBPropertyState::GetCollapsed() const
 {
-	return m_Collapsed;
+    return m_Collapsed;
 }
 
 inline void _ZBPropertyState::SetCollapsed( bool value )
 {
-	m_Collapsed = value;
+    m_Collapsed = value;
 }
 
 inline CSize _ZBPropertyState::GetSize() const
 {
-	return m_Size;
+    return m_Size;
 }
 
 inline void _ZBPropertyState::SetSize( CSize value )
 {
-	m_Size = value;
+    m_Size = value;
 }
 
 inline CSize _ZBPropertyState::GetExtendedSize() const
 {
-	return m_ExtendedSize;
+    return m_ExtendedSize;
 }
 
 inline void _ZBPropertyState::SetExtendedSize( CSize value )
 {
-	m_ExtendedSize = value;
+    m_ExtendedSize = value;
 }
 
 inline int _ZBPropertyState::GetItemOrder() const
 {
-	return m_ItemOrder;
+    return m_ItemOrder;
 }
 
 inline void _ZBPropertyState::SetItemOrder( int value )
 {
-	m_ItemOrder = value;
+    m_ItemOrder = value;
 }
 
 inline int _ZBPropertyState::GetCategoryOrder() const
 {
-	return m_CategoryOrder;
+    return m_CategoryOrder;
 }
 
 inline void _ZBPropertyState::SetCategoryOrder( int value )
 {
-	m_CategoryOrder = value;
+    m_CategoryOrder = value;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -247,9 +247,9 @@ class ZCPropertyListCtrl;
 // constant declaration
 enum PropertyDisplayType
 {
-	AllProperties,
-	StaticProperties,
-	DynamicProperties
+    AllProperties,
+    StaticProperties,
+    DynamicProperties
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -282,231 +282,231 @@ class AFX_EXT_CLASS ZBPropertyItemManager
 {
 public:
 
-	ZBPropertyItemManager();
-	~ZBPropertyItemManager();
+    ZBPropertyItemManager();
+    ~ZBPropertyItemManager();
 
-	void Empty();
-	void SetPropertyListCtrl( ZCPropertyListCtrl* pCtrl );
+    void Empty();
+    void SetPropertyListCtrl( ZCPropertyListCtrl* pCtrl );
 
-	void SetDisplayType( PropertyDisplayType tp )
-	{
-		m_DisplayType = tp;
-	};
+    void SetDisplayType( PropertyDisplayType tp )
+    {
+        m_DisplayType = tp;
+    };
 
-	// Attributes
-	ZBItemCategorySet& GetItemCategorySet()
-	{
-		return m_PropertyItemTabSet;
-	};
+    // Attributes
+    ZBItemCategorySet& GetItemCategorySet()
+    {
+        return m_PropertyItemTabSet;
+    };
 
-	const ZBItemCategorySet& GetItemCategorySetConst() const
-	{
-		return m_PropertyItemTabSet;
-	};
-	
-	size_t GetCategoryCount() const
-	{
-		return m_PropertyItemTabSet.GetSize();
-	};
+    const ZBItemCategorySet& GetItemCategorySetConst() const
+    {
+        return m_PropertyItemTabSet;
+    };
+    
+    size_t GetCategoryCount() const
+    {
+        return m_PropertyItemTabSet.GetSize();
+    };
 
-	ZBPropertyItemCategory* GetCategoryTab( int nIndex ) const
-	{
-		return ( nIndex < (int)GetCategoryCount() ) ? m_PropertyItemTabSet.GetAt( nIndex ) : NULL;
-	};
+    ZBPropertyItemCategory* GetCategoryTab( int nIndex ) const
+    {
+        return ( nIndex < (int)GetCategoryCount() ) ? m_PropertyItemTabSet.GetAt( nIndex ) : NULL;
+    };
 
-	ZBPropertyItemCategory* GetTab( ZBPropertyItem* pPropertyItem );
-	ZBProperty*				GetCorrespondingProperty( ZBPropertyItem* pPropertyItem );
+    ZBPropertyItemCategory* GetTab( ZBPropertyItem* pPropertyItem );
+    ZBProperty*                GetCorrespondingProperty( ZBPropertyItem* pPropertyItem );
 
-	// Operations
-	ZBPropertyItemCategory* AddNewTab( LPCTSTR pStrTabName );
-	void CheckState( int nFromControlIndex, BYTE nFromPropertyItemID );
+    // Operations
+    ZBPropertyItemCategory* AddNewTab( LPCTSTR pStrTabName );
+    void CheckState( int nFromControlIndex, BYTE nFromPropertyItemID );
 
-	virtual void OnDataChanged( ZBPropertyItem*		pPropertyItem,
-								ZCPropertyListCtrl*	pWndPropertyListCtrl,
-								int					nIndex,
-								bool&				Refresh);
+    virtual void OnDataChanged( ZBPropertyItem*        pPropertyItem,
+                                ZCPropertyListCtrl*    pWndPropertyListCtrl,
+                                int                    nIndex,
+                                bool&                Refresh);
 
-	virtual bool UpdateControlData( const ZIProperties* pData );
-	virtual bool UpdateControlData( ZBPropertySet& PropSet );
-	virtual bool UpdatePropertyData( ZBPropertyItem* pPropertyItem = NULL );
-	virtual bool CheckCurrentPropertyData( ZBPropertyItem* pPropertyItem, CString& ProposedValue );
+    virtual bool UpdateControlData( const ZIProperties* pData );
+    virtual bool UpdateControlData( ZBPropertySet& PropSet );
+    virtual bool UpdatePropertyData( ZBPropertyItem* pPropertyItem = NULL );
+    virtual bool CheckCurrentPropertyData( ZBPropertyItem* pPropertyItem, CString& ProposedValue );
 
-	virtual bool ProcessExtendedCurrentPropertyData( ZBPropertyItem*	pPropertyItem,
-													 CString&			ProposedValue,
-													 bool&				Refresh );
+    virtual bool ProcessExtendedCurrentPropertyData( ZBPropertyItem*    pPropertyItem,
+                                                     CString&            ProposedValue,
+                                                     bool&                Refresh );
 
-	virtual bool ProcessMenuCommandCurrentPropertyData( int				MenuCommand,
-														ZBPropertyItem*	pPropertyItem,
-														CString&		ProposedValue,
-														bool&			Refresh);
+    virtual bool ProcessMenuCommandCurrentPropertyData( int                MenuCommand,
+                                                        ZBPropertyItem*    pPropertyItem,
+                                                        CString&        ProposedValue,
+                                                        bool&            Refresh);
 
-	/////////////////////////////////////////////////////////////////////////////
-	// Property state management methods
-	bool SavePropertyState( ZBPropertyItem* pPropertyItem );
-	bool SetPropertyStateToProperty( ZBPropertyItem* pPropertyItem );
-	bool SavePropertyState( ZBPropertyItemCategory* pPropertyCategoryItem );
-	bool SetPropertyStateToProperty( ZBPropertyItemCategory* pPropertyCategoryItem );
-	_ZBPropertyState* GetPropertyState( ZBPropertyItem* pPropertyItem );
-	_ZBPropertyState* GetPropertyCategoryState( ZBPropertyItemCategory* pPropertyCategoryItem );
+    /////////////////////////////////////////////////////////////////////////////
+    // Property state management methods
+    bool SavePropertyState( ZBPropertyItem* pPropertyItem );
+    bool SetPropertyStateToProperty( ZBPropertyItem* pPropertyItem );
+    bool SavePropertyState( ZBPropertyItemCategory* pPropertyCategoryItem );
+    bool SetPropertyStateToProperty( ZBPropertyItemCategory* pPropertyCategoryItem );
+    _ZBPropertyState* GetPropertyState( ZBPropertyItem* pPropertyItem );
+    _ZBPropertyState* GetPropertyCategoryState( ZBPropertyItemCategory* pPropertyCategoryItem );
 
-	bool LoadStateFromIniFile( const CString IniFile );
-	bool SaveStateToIniFile( const CString IniFile );
+    bool LoadStateFromIniFile( const CString IniFile );
+    bool SaveStateToIniFile( const CString IniFile );
 
-	bool OnDropInternalPropertyItem( ZBPropertyItem*	pSrcPropertyItem,
-									 ZBPropertyItem*	pDstPropertyItem,
-									 bool				Top2Down );
+    bool OnDropInternalPropertyItem( ZBPropertyItem*    pSrcPropertyItem,
+                                     ZBPropertyItem*    pDstPropertyItem,
+                                     bool                Top2Down );
 
 protected:
 
-	// If the tab exists, return it, otherwise return NULL
-	ZBPropertyItemCategory* TabExist( LPCTSTR pStrTabName );
-	bool ApplyPropertyChanges();
+    // If the tab exists, return it, otherwise return NULL
+    ZBPropertyItemCategory* TabExist( LPCTSTR pStrTabName );
+    bool ApplyPropertyChanges();
 
 private:
 
-	// Does not allow copy constructor and assignement operator
-	ZBPropertyItemManager( const ZBPropertyItemManager& d );
-	ZBPropertyItemManager& operator=( const ZBPropertyItemManager& d );
+    // Does not allow copy constructor and assignement operator
+    ZBPropertyItemManager( const ZBPropertyItemManager& d );
+    ZBPropertyItemManager& operator=( const ZBPropertyItemManager& d );
 
-	bool UpdateControlData();
-	ZBPropertyItem* CreatePropertyItem( ZBProperty& Prop );
-	void SetDataToPropertyItem( ZBPropertyItem* pPropertyItem, ZBProperty& Prop );
-	void SetItemDataToProperty( ZBPropertyItem* pPropertyItem, ZBProperty& Prop );
-	void FreePropertySet();
-	void DeleteUnusedTab();
-	void DeleteAllTabs();
-	bool ExistInPropSet( LPCTSTR pStrTabName );
+    bool UpdateControlData();
+    ZBPropertyItem* CreatePropertyItem( ZBProperty& Prop );
+    void SetDataToPropertyItem( ZBPropertyItem* pPropertyItem, ZBProperty& Prop );
+    void SetItemDataToProperty( ZBPropertyItem* pPropertyItem, ZBProperty& Prop );
+    void FreePropertySet();
+    void DeleteUnusedTab();
+    void DeleteAllTabs();
+    bool ExistInPropSet( LPCTSTR pStrTabName );
 
-	/////////////////////////////////////////////////////////////////////////////
-	// Property state management methods
-	void DeletePropertyState();
+    /////////////////////////////////////////////////////////////////////////////
+    // Property state management methods
+    void DeletePropertyState();
 
-	bool OnDropCategory( ZBPropertyItemCategory*	pSrcCategoryItem,
-						 ZBPropertyItem*			pDstPropertyItem,
-						 bool						Top2Down );
+    bool OnDropCategory( ZBPropertyItemCategory*    pSrcCategoryItem,
+                         ZBPropertyItem*            pDstPropertyItem,
+                         bool                        Top2Down );
 
-	void SetInitialCategoryOrder();
-	void ReOrderCategory();
-	void SaveAllCategoryOrders();
+    void SetInitialCategoryOrder();
+    void ReOrderCategory();
+    void SaveAllCategoryOrders();
 
 // Datas
 protected:
 
-	ZBItemCategorySet	m_PropertyItemTabSet;
+    ZBItemCategorySet    m_PropertyItemTabSet;
 
-	ZBPropertySet		m_PropSet;
+    ZBPropertySet        m_PropSet;
 
-	ZIProperties*		m_pCurrentData;
+    ZIProperties*        m_pCurrentData;
 
-	ZCPropertyListCtrl*	m_pWndPropertyListCtrl;
+    ZCPropertyListCtrl*    m_pWndPropertyListCtrl;
 
-	_ZBPropertyStateSet	m_PropertyState;
+    _ZBPropertyStateSet    m_PropertyState;
 
 private:
 
-	PropertyDisplayType	m_DisplayType;
+    PropertyDisplayType    m_DisplayType;
 };
 
 inline ZBPropertyItemManager::ZBPropertyItemManager()
-	: m_pWndPropertyListCtrl	( NULL ),
-	  m_pCurrentData			( NULL ),
-	  m_DisplayType				( AllProperties )
+    : m_pWndPropertyListCtrl    ( NULL ),
+      m_pCurrentData            ( NULL ),
+      m_DisplayType                ( AllProperties )
 {
-	DeleteAllTabs();
+    DeleteAllTabs();
 }
 
 inline ZBPropertyItemManager::~ZBPropertyItemManager()
 {
-	DeleteAllTabs();
-	FreePropertySet();
-	DeletePropertyState();
+    DeleteAllTabs();
+    FreePropertySet();
+    DeletePropertyState();
 }
 
-inline void ZBPropertyItemManager::OnDataChanged( ZBPropertyItem*		pPropertyItem,
-												  ZCPropertyListCtrl*	pWndPropertyListCtrl,
-												  int					nIndex,
-												  bool&					Refresh)
+inline void ZBPropertyItemManager::OnDataChanged( ZBPropertyItem*        pPropertyItem,
+                                                  ZCPropertyListCtrl*    pWndPropertyListCtrl,
+                                                  int                    nIndex,
+                                                  bool&                    Refresh)
 {
-	ZBProperty* pProp = GetCorrespondingProperty( pPropertyItem );
+    ZBProperty* pProp = GetCorrespondingProperty( pPropertyItem );
 
-	// Before updating the property,
-	// call the pre property change function
-	if ( pProp )
-	{
-		// If a problem, stop the update process
-		if ( !m_pCurrentData->OnPrePropertyChanged( pPropertyItem->GetData(), *pProp, m_PropSet ) )
-		{
-			return;
-		}
-	}
+    // Before updating the property,
+    // call the pre property change function
+    if ( pProp )
+    {
+        // If a problem, stop the update process
+        if ( !m_pCurrentData->OnPrePropertyChanged( pPropertyItem->GetData(), *pProp, m_PropSet ) )
+        {
+            return;
+        }
+    }
 
-	// Now apply the change to the property
-	UpdatePropertyData( pPropertyItem );
+    // Now apply the change to the property
+    UpdatePropertyData( pPropertyItem );
 
-	// Call the post property change function
-	if ( pProp && m_pCurrentData->OnPostPropertyChanged( *pProp, m_PropSet, Refresh ) )
-	{
-		ApplyPropertyChanges();
-	}
+    // Call the post property change function
+    if ( pProp && m_pCurrentData->OnPostPropertyChanged( *pProp, m_PropSet, Refresh ) )
+    {
+        ApplyPropertyChanges();
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 #define BEGIN_PROPERTY_TAB_IDNAME(idTabName, enabled) \
 { \
-	ZBPropertyItemCategory* pNewTab = AddNewTab(LoadString(idTabName)); \
-	pNewTab->SetEnabled(enabled); \
-	ZBPropertyItem* pPropertyItem;
+    ZBPropertyItemCategory* pNewTab = AddNewTab(LoadString(idTabName)); \
+    pNewTab->SetEnabled(enabled); \
+    ZBPropertyItem* pPropertyItem;
 #define PROPERTY_ITEM_IDNAME(id, class_name, idItemName, enabled) \
-	pPropertyItem = new class_name(LoadString(idItemName)); \
-	pPropertyItem->SetEnabled(enabled); \
-	pPropertyItem->SetPropertyID(id);\
-	pNewTab->AddPropertyItem(pPropertyItem);
+    pPropertyItem = new class_name(LoadString(idItemName)); \
+    pPropertyItem->SetEnabled(enabled); \
+    pPropertyItem->SetPropertyID(id);\
+    pNewTab->AddPropertyItem(pPropertyItem);
 
 #define BEGIN_PROPERTY_TAB(tabName, enabled) \
 { \
-	ZBPropertyItemCategory* pNewTab = AddNewTab(tabName); \
-	pNewTab->SetEnabled(enabled); \
-	ZBPropertyItem* pPropertyItem;
+    ZBPropertyItemCategory* pNewTab = AddNewTab(tabName); \
+    pNewTab->SetEnabled(enabled); \
+    ZBPropertyItem* pPropertyItem;
 #define PROPERTY_ITEM(id, class_name, itemName, enabled) \
-	pPropertyItem = new class_name(itemName); \
-	pPropertyItem->SetEnabled(enabled); \
-	pPropertyItem->SetPropertyID(id);\
-	pNewTab->AddPropertyItem(pPropertyItem);
+    pPropertyItem = new class_name(itemName); \
+    pPropertyItem->SetEnabled(enabled); \
+    pPropertyItem->SetPropertyID(id);\
+    pNewTab->AddPropertyItem(pPropertyItem);
 #define END_PROPERTY_TAB() \
 }
 
 #define BEGIN_ITERATE_PROPERTY_ITEMS() \
-	POSITION pos = m_PropertyItemTabSet.GetHeadPosition(); \
-	while(pos != NULL) \
-	{ \
-		ZBPropertyItemCategory* pPropertyItemTab = m_PropertyItemTabSet.GetNext(pos); \
-		POSITION posItem = pPropertyItemTab->GetHeadPosition(); \
-		while(posItem != NULL) \
-		{ \
-			ZBPropertyItem* pPropertyItem = pPropertyItemTab->GetNext(posItem); \
-			switch(pPropertyItem->GetPropertyID()) \
-			{
+    POSITION pos = m_PropertyItemTabSet.GetHeadPosition(); \
+    while(pos != NULL) \
+    { \
+        ZBPropertyItemCategory* pPropertyItemTab = m_PropertyItemTabSet.GetNext(pos); \
+        POSITION posItem = pPropertyItemTab->GetHeadPosition(); \
+        while(posItem != NULL) \
+        { \
+            ZBPropertyItem* pPropertyItem = pPropertyItemTab->GetNext(posItem); \
+            switch(pPropertyItem->GetPropertyID()) \
+            {
 #define SET_ITEM_STRING(id, string) \
-				case id: \
-					static_cast<ZBPropertyItemString*>(pPropertyItem)->SetData(string); \
-					break;
+                case id: \
+                    static_cast<ZBPropertyItemString*>(pPropertyItem)->SetData(string); \
+                    break;
 #define GET_ITEM_STRING(id, string) \
-				case id: \
-					string = static_cast<ZBPropertyItemString*>(pPropertyItem)->GetData(); \
-					break;
+                case id: \
+                    string = static_cast<ZBPropertyItemString*>(pPropertyItem)->GetData(); \
+                    break;
 #define SET_ITEM_LIST(id, item) \
-				case id: \
-				static_cast<ZBPropertyItemList*>(pPropertyItem)->SetData(item); \
-					break;
+                case id: \
+                static_cast<ZBPropertyItemList*>(pPropertyItem)->SetData(item); \
+                    break;
 #define GET_ITEM_LIST(id, item) \
-				case id: \
-					static_cast<ZBPropertyItemList*>(pPropertyItem)->GetData(item); \
-					break;
+                case id: \
+                    static_cast<ZBPropertyItemList*>(pPropertyItem)->GetData(item); \
+                    break;
 #define END_ITERATE_PROPERTY_ITEMS() \
-				default: ; \
-			} \
-		} \
-	}
+                default: ; \
+            } \
+        } \
+    }
 
 /////////////////////////////////////////////////////////////////////////////
 

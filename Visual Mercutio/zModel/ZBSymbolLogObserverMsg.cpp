@@ -23,7 +23,7 @@ ZBSymbolLogObserverMsg::ZBSymbolLogObserverMsg()
 }
 
 ZBSymbolLogObserverMsg::ZBSymbolLogObserverMsg( ZBGenericSymbolErrorLine ErrorLine )
-	: m_ErrorLine( ErrorLine )
+    : m_ErrorLine( ErrorLine )
 {
 }
 

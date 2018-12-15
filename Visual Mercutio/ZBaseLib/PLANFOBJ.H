@@ -58,63 +58,63 @@ class AFX_EXT_CLASS PLFNRect : public PLFNGraphic
 {
 public:
 // Inherited feature
-	typedef PLFNGraphic inherited;
+    typedef PLFNGraphic inherited;
 public:
     PLFNRect(const PLFNRect &right);
     const PLFNRect & operator=(const PLFNRect *right);
     const PLFNRect & operator=(const PLFNRect &right);
-	PLFNRect( BOOL bRound = FALSE );
-	WORD	GetArcOffset() const { return m_ArcOffset; };
-	void	SetArcOffset( const WORD value ) { m_ArcOffset = value; };
-	BOOL	IsRounded() const { return m_bRound; };
-	void	SetRounded( BOOL bValue ) { m_bRound = bValue; };
-	
-	//	Make a clone of the object.
-	virtual PlanFinObject* Clone();
+    PLFNRect( BOOL bRound = FALSE );
+    WORD    GetArcOffset() const { return m_ArcOffset; };
+    void    SetArcOffset( const WORD value ) { m_ArcOffset = value; };
+    BOOL    IsRounded() const { return m_bRound; };
+    void    SetRounded( BOOL bValue ) { m_bRound = bValue; };
+    
+    //    Make a clone of the object.
+    virtual PlanFinObject* Clone();
     virtual void CopyObject(PlanFinObject* pSrc);
 
     virtual BOOL IsHint(CPoint& point) const;
 
-	//	Return the list of tabs that should be displayed when
-	//	the user asks for object properties.
-	virtual UINT GetPropertyTabs() const;
+    //    Return the list of tabs that should be displayed when
+    //    the user asks for object properties.
+    virtual UINT GetPropertyTabs() const;
 
 private:
-	BOOL	m_bRound;
-	WORD	m_ArcOffset;
+    BOOL    m_bRound;
+    WORD    m_ArcOffset;
 // Implementation
 protected:
-	DECLARE_SERIAL(PLFNRect)
-	virtual ~PLFNRect();
-	virtual	void DrawObject(CDC* pDC, ZIView* pView);		// overridden to draw this object
-	
+    DECLARE_SERIAL(PLFNRect)
+    virtual ~PLFNRect();
+    virtual    void DrawObject(CDC* pDC, ZIView* pView);        // overridden to draw this object
+    
 // Implementation
 public:
-	virtual void 	Serialize(CArchive& ar);  	// overridden for document i/o
+    virtual void     Serialize(CArchive& ar);      // overridden for document i/o
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 };
 
 inline BOOL PLFNRect::IsHint(CPoint& point) const
 {
-  	// Copy the object rectangle and inflate it by -3, -3
-  	// This operation to test if the cursor is on the rectangle
-  	// but not inside
-  	CRect	MinRect = m_rctObject;
-  	CRect	MaxRect = m_rctObject;
-  	MinRect.InflateRect( -3, -3 );
-  	MaxRect.InflateRect( 3, 3 );
-  	if (MaxRect.PtInRect( point ) && !MinRect.PtInRect( point ))
-  		return TRUE;
-	return FALSE;
+      // Copy the object rectangle and inflate it by -3, -3
+      // This operation to test if the cursor is on the rectangle
+      // but not inside
+      CRect    MinRect = m_rctObject;
+      CRect    MaxRect = m_rctObject;
+      MinRect.InflateRect( -3, -3 );
+      MaxRect.InflateRect( 3, 3 );
+      if (MaxRect.PtInRect( point ) && !MinRect.PtInRect( point ))
+          return TRUE;
+    return FALSE;
 }
  
 
 inline UINT PLFNRect::GetPropertyTabs() const
 {
-  	return PropertyGeneralBasicPage | PropertySizePage | PropertyGraphicPage | PropertyRectPage;
+      return PropertyGeneralBasicPage | PropertySizePage | PropertyGraphicPage | PropertyRectPage;
 }
 
 
@@ -123,84 +123,84 @@ class AFX_EXT_CLASS PLFNLine : public PLFNGraphic
 {
 public:
 // Inherited feature
-	typedef PLFNGraphic inherited;
+    typedef PLFNGraphic inherited;
 public:
-	PLFNLine();
+    PLFNLine();
     PLFNLine(const PLFNLine &right);
     const PLFNLine & operator=(const PLFNLine *right);
     const PLFNLine & operator=(const PLFNLine &right);
-	//	Make a clone of the object.
-	virtual PlanFinObject* Clone();
+    //    Make a clone of the object.
+    virtual PlanFinObject* Clone();
     virtual void CopyObject(PlanFinObject* pSrc);
-	
-	const	CPoint&	GetStartPoint() const;
-	const	CPoint&	GetEndPoint() const;
-	void	SetStartPoint( const CPoint& value );
-	void	SetEndPoint( const CPoint& value );
+    
+    const    CPoint&    GetStartPoint() const;
+    const    CPoint&    GetEndPoint() const;
+    void    SetStartPoint( const CPoint& value );
+    void    SetEndPoint( const CPoint& value );
 
-	//	Notify when the object size and/or position has changed.
-	virtual void SizePositionHasChanged();
+    //    Notify when the object size and/or position has changed.
+    virtual void SizePositionHasChanged();
 
-	//	Return the list of tabs that should be displayed when
-	//	the user asks for object properties.
-	virtual UINT GetPropertyTabs() const;
-	
+    //    Return the list of tabs that should be displayed when
+    //    the user asks for object properties.
+    virtual UINT GetPropertyTabs() const;
+    
     virtual BOOL IsHint(CPoint& point) const;
 // Implementation
 protected:
-	DECLARE_SERIAL(PLFNLine)
-	virtual ~PLFNLine();
-	virtual	void DrawObject(CDC* pDC, ZIView* pView);		// overridden to draw this object
-	  
+    DECLARE_SERIAL(PLFNLine)
+    virtual ~PLFNLine();
+    virtual    void DrawObject(CDC* pDC, ZIView* pView);        // overridden to draw this object
+      
 private:
-	ZBPoint	m_StartPoint;
-	ZBPoint	m_EndPoint;	  
+    ZBPoint    m_StartPoint;
+    ZBPoint    m_EndPoint;      
 // Implementation
 public:
-	virtual void 	Serialize(CArchive& ar);  	// overridden for document i/o
+    virtual void     Serialize(CArchive& ar);      // overridden for document i/o
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 };
 
 
-inline const	CPoint&	PLFNLine::GetStartPoint() const 
+inline const    CPoint&    PLFNLine::GetStartPoint() const 
 { 
-	return m_StartPoint; 
+    return m_StartPoint; 
 }
 
-inline const	CPoint&	PLFNLine::GetEndPoint() const 
+inline const    CPoint&    PLFNLine::GetEndPoint() const 
 { 
-	return m_EndPoint; 
+    return m_EndPoint; 
 }
 
-inline void				PLFNLine::SetStartPoint( const CPoint& value ) 
+inline void                PLFNLine::SetStartPoint( const CPoint& value ) 
 { 
-	m_StartPoint = value; 
+    m_StartPoint = value; 
 }
 
-inline void				PLFNLine::SetEndPoint( const CPoint& value ) 
+inline void                PLFNLine::SetEndPoint( const CPoint& value ) 
 { 
-	m_EndPoint = value; 
+    m_EndPoint = value; 
 }
  
 inline BOOL PLFNLine::IsHint(CPoint& point) const
 {
-  	// Copy the object rectangle and inflate it by 3, 3
-  	// This operation to test if the cursor is on the line
-  	// because line are very small
-  	CRect	rect = m_rctObject;
-  	rect.InflateRect( 3, 3 );
-  	if (rect.PtInRect( point ))
-  		return TRUE;
-	return FALSE;
+      // Copy the object rectangle and inflate it by 3, 3
+      // This operation to test if the cursor is on the line
+      // because line are very small
+      CRect    rect = m_rctObject;
+      rect.InflateRect( 3, 3 );
+      if (rect.PtInRect( point ))
+          return TRUE;
+    return FALSE;
 }
 
 
 inline UINT PLFNLine::GetPropertyTabs() const
 {
-  	return PropertyGeneralBasicPage | PropertySizePage | PropertyGraphicPage;
+      return PropertyGeneralBasicPage | PropertySizePage | PropertyGraphicPage;
 }
 
                                         
@@ -208,27 +208,27 @@ class AFX_EXT_CLASS PLFNStatic : public PLFNText
 {
 public:
 // Inherited feature
-	typedef PLFNText inherited;
+    typedef PLFNText inherited;
 public:
-	PLFNStatic();
+    PLFNStatic();
     PLFNStatic(const PLFNStatic &right);
     const PLFNStatic & operator=(const PLFNStatic *right);
     const PLFNStatic & operator=(const PLFNStatic &right);
-	//	Make a clone of the object.
-	virtual PlanFinObject* Clone();
+    //    Make a clone of the object.
+    virtual PlanFinObject* Clone();
     virtual void CopyObject(PlanFinObject* pSrc);
 
-	//	Return the list of tabs that should be displayed when
-	//	the user asks for object properties.
-	virtual UINT GetPropertyTabs () const;
+    //    Return the list of tabs that should be displayed when
+    //    the user asks for object properties.
+    virtual UINT GetPropertyTabs () const;
 
 // Implementation
 protected:
-	DECLARE_SERIAL(PLFNStatic)
-	virtual ~PLFNStatic();
-	virtual	void DrawObject(CDC* pDC, ZIView* pView);		// overridden to draw this object
-	//	When the angle has changed, this function is called.
-	virtual void OnAngleChanged(ZDDocument* pDoc);
+    DECLARE_SERIAL(PLFNStatic)
+    virtual ~PLFNStatic();
+    virtual    void DrawObject(CDC* pDC, ZIView* pView);        // overridden to draw this object
+    //    When the angle has changed, this function is called.
+    virtual void OnAngleChanged(ZDDocument* pDoc);
 };
 
 
@@ -236,7 +236,7 @@ protected:
  
 inline UINT PLFNStatic::GetPropertyTabs () const
 {
-  	return PropertyGeneralStaticPage | PropertySizePage;
+      return PropertyGeneralStaticPage | PropertySizePage;
 }
 
 
@@ -245,80 +245,80 @@ class AFX_EXT_CLASS PLFNTime : public PLFNAscii
 {
 public:
 // Inherited feature
-	typedef PLFNAscii inherited;
+    typedef PLFNAscii inherited;
 public:
-	PLFNTime();
+    PLFNTime();
     PLFNTime(const PLFNTime &right);
     const PLFNTime & operator=(const PLFNTime *right);
     const PLFNTime & operator=(const PLFNTime &right);
-	//	Make a clone of the object.
-	virtual PlanFinObject* Clone();
+    //    Make a clone of the object.
+    virtual PlanFinObject* Clone();
     virtual void CopyObject(PlanFinObject* pSrc);
     virtual const BOOL GetIsStatic () const { return FALSE; };
 
-    //	This function empties the object.
-	virtual BOOL 	IsSelected( const CPoint& point ) const;
+    //    This function empties the object.
+    virtual BOOL     IsSelected( const CPoint& point ) const;
 
 #ifdef _WIN32
-	void					SetToday(){ m_Time = ZBDate::GetToday(); };
-	virtual void			SetTimeValue( ZBDate tm );
-	virtual ZBDate 			GetTimeValue(){return(m_Time);};
+    void                    SetToday(){ m_Time = ZBDate::GetToday(); };
+    virtual void            SetTimeValue( ZBDate tm );
+    virtual ZBDate             GetTimeValue(){return(m_Time);};
 #endif
 
-	virtual void   *GetObjectAdress() const {return((void*)&m_Time);};
+    virtual void   *GetObjectAdress() const {return((void*)&m_Time);};
 
-	virtual	CString	GetFormatedObject( );
-	//	Return an unformated string of the object image.
-	virtual CString GetUnformatedObject();
-	
-	virtual	BOOL	ConvertFormatedObject( const CString& sValue, BOOL bLocateFormat = TRUE, BOOL EmptyWhenZero = FALSE );
+    virtual    CString    GetFormatedObject( );
+    //    Return an unformated string of the object image.
+    virtual CString GetUnformatedObject();
+    
+    virtual    BOOL    ConvertFormatedObject( const CString& sValue, BOOL bLocateFormat = TRUE, BOOL EmptyWhenZero = FALSE );
 
-//	virtual CStringArray&	GetInitialChoice();
-	virtual CStringArray&	GetFormatChoice();
-	virtual void			SetFormatWithChoice( const CString& sValue );
+//    virtual CStringArray&    GetInitialChoice();
+    virtual CStringArray&    GetFormatChoice();
+    virtual void            SetFormatWithChoice( const CString& sValue );
 
-    //	Return the number of the submenu when the user click the
-    //	right mouse button.
+    //    Return the number of the submenu when the user click the
+    //    right mouse button.
     virtual UINT GetRightSubMenu() const { return DateRightSubMenu; };
-	
-	//	Return the list of tabs that should be displayed when
-	//	the user asks for object properties.
-	virtual UINT GetPropertyTabs () const;
+    
+    //    Return the list of tabs that should be displayed when
+    //    the user asks for object properties.
+    virtual UINT GetPropertyTabs () const;
 
 // Member Data
 public:
-	ZBDate	m_Time;
+    ZBDate    m_Time;
 
-	// Implementation
+    // Implementation
 protected:
-	DECLARE_SERIAL(PLFNTime)
-	virtual ~PLFNTime();
-	virtual	void DrawObject(CDC* pDC, ZIView* pView);		// overridden to draw this object
-	
+    DECLARE_SERIAL(PLFNTime)
+    virtual ~PLFNTime();
+    virtual    void DrawObject(CDC* pDC, ZIView* pView);        // overridden to draw this object
+    
 // Implementation
 public:
-	virtual void 	Serialize(CArchive& ar);  	// overridden for document i/o
+    virtual void     Serialize(CArchive& ar);      // overridden for document i/o
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 };
 
-inline void	PLFNTime::SetTimeValue(ZBDate tm)
+inline void    PLFNTime::SetTimeValue(ZBDate tm)
 {
-	m_Time = tm;
-	ClearEmptyObjectFlag();  	
+    m_Time = tm;
+    ClearEmptyObjectFlag();      
 }
 
 inline UINT PLFNTime::GetPropertyTabs () const
 {
-  	return PropertyGeneralDatePage | PropertySizePage;
+      return PropertyGeneralDatePage | PropertySizePage;
 }
 
 enum IconDisplayType
 {
-	NoIcon,
-	AssociationIcon,
+    NoIcon,
+    AssociationIcon,
 };
 
 
@@ -326,104 +326,104 @@ class AFX_EXT_CLASS PLFNLong : public PLFNAscii
 {
 public:
 // Inherited feature
-	typedef PLFNAscii inherited;
+    typedef PLFNAscii inherited;
 public:
-	PLFNLong();
+    PLFNLong();
     PLFNLong(const PLFNLong &right);
     const PLFNLong & operator=(const PLFNLong *right);
     const PLFNLong & operator=(const PLFNLong &right);
-	//	Make a clone of the object.
-	virtual PlanFinObject* Clone();
+    //    Make a clone of the object.
+    virtual PlanFinObject* Clone();
     virtual void CopyObject(PlanFinObject* pSrc);
 
     virtual const BOOL GetIsStatic () const { return FALSE; };
 
     virtual UINT GetRightSubMenu() const;
 
-	//	Return the list of tabs that should be displayed when
-	//	the user asks for object properties.
-	virtual UINT GetPropertyTabs() const;
+    //    Return the list of tabs that should be displayed when
+    //    the user asks for object properties.
+    virtual UINT GetPropertyTabs() const;
 
-	void	GetContains( CString& strLine );
-	virtual BOOL 	IsSelected( const CPoint& point ) const;
+    void    GetContains( CString& strLine );
+    virtual BOOL     IsSelected( const CPoint& point ) const;
 
-	virtual void   *GetObjectAdress() const {return ((void*)&m_Long);};
+    virtual void   *GetObjectAdress() const {return ((void*)&m_Long);};
 
-	virtual double 	GetValue() const;
-	virtual double 	GetRealValue() const{ return m_Long; };
-	virtual void	SetValue( double dValue );
+    virtual double     GetValue() const;
+    virtual double     GetRealValue() const{ return m_Long; };
+    virtual void    SetValue( double dValue );
 
-	virtual	CString	GetFormatedObject( );
-	//	Return an unformated string of the object image.
-	virtual CString GetUnformatedObject();
-	
-	virtual	BOOL	ConvertFormatedObject( const CString& sValue, BOOL bLocateFormat = TRUE, BOOL EmptyWhenZero = FALSE );
-	virtual void	SetFormatWithChoice( const CString& sValue );
+    virtual    CString    GetFormatedObject( );
+    //    Return an unformated string of the object image.
+    virtual CString GetUnformatedObject();
+    
+    virtual    BOOL    ConvertFormatedObject( const CString& sValue, BOOL bLocateFormat = TRUE, BOOL EmptyWhenZero = FALSE );
+    virtual void    SetFormatWithChoice( const CString& sValue );
 
-	virtual CStringArray&	GetFormatChoice();
-	
-	virtual void 	Recalculate(ZDDocument*	pDoc);
-	
-	BOOL			IsRounded() const { return m_IsRounded; };
-	void			SetRounded( BOOL value = TRUE ) { m_IsRounded = value; }
-	
-	double			GetRoundedValue() const { return m_dRounded; };
-	void			SetRoundedValue( double value ) { m_dRounded = value; };
+    virtual CStringArray&    GetFormatChoice();
+    
+    virtual void     Recalculate(ZDDocument*    pDoc);
+    
+    BOOL            IsRounded() const { return m_IsRounded; };
+    void            SetRounded( BOOL value = TRUE ) { m_IsRounded = value; }
+    
+    double            GetRoundedValue() const { return m_dRounded; };
+    void            SetRoundedValue( double value ) { m_dRounded = value; };
 
-	BOOL			IsCalculatedField() const { return m_bIsCalculatedField; };
-	void			SetCalculatedField( BOOL bValue = TRUE ){ m_bIsCalculatedField = bValue; };
-	BOOL			KeepTheValue() const { return m_bKeepTheValue; };
-	void			SetKeepTheValue( BOOL bValue = TRUE ){ m_bKeepTheValue = bValue; };
-	
-	// Icon display type
-	void			SetIconDisplayType( IconDisplayType Type = NoIcon ) { m_IconDisplayType = Type; };
-	
-	// Associations
-	ZAFormulaAssociationManager&	GetAssociations() { return m_Associations; };
-	ZAFormulaAssociation*	GetCurrentAssociation() { return m_Associations.GetCurrentAssociation(); };
-	void					ClearCurrentAssociation() { m_Associations.ClearCurrentAssociation(); };
-	void					SetCurrentAssociation( ZAFormulaAssociation* pAssociation ) { m_Associations.SetCurrentAssociation(pAssociation); };
-	void					SetCurrentAssociation( const CString Name ) { m_Associations.SetCurrentAssociation(Name); };
+    BOOL            IsCalculatedField() const { return m_bIsCalculatedField; };
+    void            SetCalculatedField( BOOL bValue = TRUE ){ m_bIsCalculatedField = bValue; };
+    BOOL            KeepTheValue() const { return m_bKeepTheValue; };
+    void            SetKeepTheValue( BOOL bValue = TRUE ){ m_bKeepTheValue = bValue; };
+    
+    // Icon display type
+    void            SetIconDisplayType( IconDisplayType Type = NoIcon ) { m_IconDisplayType = Type; };
+    
+    // Associations
+    ZAFormulaAssociationManager&    GetAssociations() { return m_Associations; };
+    ZAFormulaAssociation*    GetCurrentAssociation() { return m_Associations.GetCurrentAssociation(); };
+    void                    ClearCurrentAssociation() { m_Associations.ClearCurrentAssociation(); };
+    void                    SetCurrentAssociation( ZAFormulaAssociation* pAssociation ) { m_Associations.SetCurrentAssociation(pAssociation); };
+    void                    SetCurrentAssociation( const CString Name ) { m_Associations.SetCurrentAssociation(Name); };
 
     // Draw the calculated symbol for the object.
     virtual void DrawCalculatedSymbol (CDC* pDC);
 
 // Member Data
 public:
-	double			m_Long;				// The long object
+    double            m_Long;                // The long object
 private:
-	BOOL			m_bIsCalculatedField;
-	BOOL			m_bKeepTheValue;
-	BOOL			m_IsRounded;		// Defines if the field is rounded.
-	double			m_dRounded;			// The rounded value
-	
-	IconDisplayType	m_IconDisplayType;	// Defines the icon display type
-	
-	// Since file version 5
-	ZAFormulaAssociationManager	m_Associations;	// The Associations
-	
+    BOOL            m_bIsCalculatedField;
+    BOOL            m_bKeepTheValue;
+    BOOL            m_IsRounded;        // Defines if the field is rounded.
+    double            m_dRounded;            // The rounded value
+    
+    IconDisplayType    m_IconDisplayType;    // Defines the icon display type
+    
+    // Since file version 5
+    ZAFormulaAssociationManager    m_Associations;    // The Associations
+    
 // Implementation
 protected:
-	DECLARE_SERIAL(PLFNLong)
-	virtual ~PLFNLong();
-	virtual	void DrawObject(CDC* pDC, ZIView* pView);		// overridden to draw this object
-	
+    DECLARE_SERIAL(PLFNLong)
+    virtual ~PLFNLong();
+    virtual    void DrawObject(CDC* pDC, ZIView* pView);        // overridden to draw this object
+    
 // Implementation
 public:
-	virtual void 	Serialize(CArchive& ar);  	// overridden for document i/o
+    virtual void     Serialize(CArchive& ar);      // overridden for document i/o
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 };
 
 
-inline 	void	PLFNLong::SetValue( double dValue )
+inline     void    PLFNLong::SetValue( double dValue )
 { 
-	m_Long = dValue; 
-	if (IsCalculatedField())
-		SetHasBeenChanged( TRUE ); 
-	ClearEmptyObjectFlag();  	
+    m_Long = dValue; 
+    if (IsCalculatedField())
+        SetHasBeenChanged( TRUE ); 
+    ClearEmptyObjectFlag();      
 }
 
 
@@ -431,24 +431,24 @@ inline 	void	PLFNLong::SetValue( double dValue )
 // Return the object value
 inline double PLFNLong::GetValue( ) const
 {
-	return m_Long;
+    return m_Long;
 }
 
 inline UINT PLFNLong::GetRightSubMenu() const
 {
-	if (IsCalculatedField())
-		return CalculatedRightSubMenu;
-  	return NumberRightSubMenu;
+    if (IsCalculatedField())
+        return CalculatedRightSubMenu;
+      return NumberRightSubMenu;
 }
 
 inline UINT PLFNLong::GetPropertyTabs() const
 {
-  	return (IsCalculatedField()) ? PropertyGeneralBasicPage | PropertySizePage | PropertyLongPage : PropertyGeneralTextPage | PropertySizePage;
+      return (IsCalculatedField()) ? PropertyGeneralBasicPage | PropertySizePage | PropertyLongPage : PropertyGeneralTextPage | PropertySizePage;
 }
 
-inline 	BOOL 	PLFNLong::IsSelected( const CPoint& point ) const
+inline     BOOL     PLFNLong::IsSelected( const CPoint& point ) const
 {
-	return( m_rctObject.PtInRect( point ) );
+    return( m_rctObject.PtInRect( point ) );
 }
                 
 

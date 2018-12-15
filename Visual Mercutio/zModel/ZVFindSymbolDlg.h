@@ -49,49 +49,49 @@ class AFX_EXT_CLASS ZVFindSymbolDlg : public ZIDialog
 {
 // Construction
 public:
-	ZVFindSymbolDlg(ZDProcessGraphModelMdl& Mdl, UINT nIDRes, CWnd* pParent = NULL);   // standard constructor
+    ZVFindSymbolDlg(ZDProcessGraphModelMdl& Mdl, UINT nIDRes, CWnd* pParent = NULL);   // standard constructor
 
-	CODSymbolComponent* GetSelectedSymbol() const { return m_pSymbol; };
+    CODSymbolComponent* GetSelectedSymbol() const { return m_pSymbol; };
 
 private:
 // Dialog Data
-	//{{AFX_DATA(ZVFindSymbolDlg)
-	enum { IDD = IDD_FIND_SYMBOL };
-	ZCSymbolList	m_ResultList;
-	CString	m_SymbolName;
-	BOOL	m_InAllModels;
-	BOOL	m_CaseSensitive;
-	BOOL	m_PartialSearch;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZVFindSymbolDlg)
+    enum { IDD = IDD_FIND_SYMBOL };
+    ZCSymbolList    m_ResultList;
+    CString    m_SymbolName;
+    BOOL    m_InAllModels;
+    BOOL    m_CaseSensitive;
+    BOOL    m_PartialSearch;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVFindSymbolDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVFindSymbolDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVFindSymbolDlg)
-	afx_msg void OnFind();
-	afx_msg void OnBrowse();
-	virtual BOOL OnInitDialog();
-	afx_msg void OnChangeSymbolName();
-	afx_msg void OnClickFindResultList(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnDblclkFindResultList(NMHDR* pNMHDR, LRESULT* pResult);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVFindSymbolDlg)
+    afx_msg void OnFind();
+    afx_msg void OnBrowse();
+    virtual BOOL OnInitDialog();
+    afx_msg void OnChangeSymbolName();
+    afx_msg void OnClickFindResultList(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnDblclkFindResultList(NMHDR* pNMHDR, LRESULT* pResult);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
-	void	CheckControlState();
+    void    CheckControlState();
 
 private:
-	ZDProcessGraphModelMdl&		m_Model;
-	CODSymbolComponent*			m_pSymbol;
-	UINT m_nIDRes;
+    ZDProcessGraphModelMdl&        m_Model;
+    CODSymbolComponent*            m_pSymbol;
+    UINT m_nIDRes;
 };
 
 //{{AFX_INSERT_LOCATION}}

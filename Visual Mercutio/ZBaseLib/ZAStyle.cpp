@@ -1,10 +1,10 @@
 //## begin module%33D8F92B00C8.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%33D8F92B00C8.cm
 
 //## begin module%33D8F92B00C8.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%33D8F92B00C8.cp
 
 //## Module: ZAStyle%33D8F92B00C8; Package body
@@ -68,8 +68,8 @@ ZAStyle::ZAStyle(const ZAStyle &right)
 ZAStyle::~ZAStyle()
 {
   //## begin ZAStyle::~ZAStyle%.body preserve=yes
-	if (m_pBorder)
-		delete m_pBorder;
+    if (m_pBorder)
+        delete m_pBorder;
   //## end ZAStyle::~ZAStyle%.body
 }
 
@@ -77,14 +77,14 @@ ZAStyle::~ZAStyle()
 const ZAStyle & ZAStyle::operator=(const ZAStyle &right)
 {
   //## begin ZAStyle::operator=%.body preserve=yes
-	m_hFont = right.m_hFont;
-	m_BackColor = right.m_BackColor;
-	m_hStyleNumber = right.m_hStyleNumber;
-	m_StyleName = right.m_StyleName;
-	m_Justify = right.m_Justify;
-	if (right.m_pBorder)
-		m_pBorder = right.m_pBorder->Clone();
-	return *this;
+    m_hFont = right.m_hFont;
+    m_BackColor = right.m_BackColor;
+    m_hStyleNumber = right.m_hStyleNumber;
+    m_StyleName = right.m_StyleName;
+    m_Justify = right.m_Justify;
+    if (right.m_pBorder)
+        m_pBorder = right.m_pBorder->Clone();
+    return *this;
   //## end ZAStyle::operator=%.body
 }
 
@@ -94,36 +94,36 @@ const ZAStyle & ZAStyle::operator=(const ZAStyle &right)
 void ZAStyle::Serialize (CArchive& ar)
 {
   //## begin ZAStyle::Serialize%869857712.body preserve=yes
-	if (ar.IsStoring())
-	{	// Write the elements
-		ar << m_hFont;
-		ar << m_BackColor;
-		ar << m_pBorder;
-		ar << (LONG)m_hStyleNumber;
-		ar << m_StyleName;
-		ar << (DWORD)m_Justify;
-	}
-	else
-	{
-		ar >> m_hFont;
-		ar >> m_BackColor;
-		ar >> m_pBorder;
-		LONG	lValue;
-		ar >> lValue;
-		m_hStyleNumber = (HandleStyle)lValue;
-		ar >> m_StyleName;
-		DWORD	dwValue;
-		ar >> dwValue;
-		m_Justify = (UINT)dwValue;
-	}
+    if (ar.IsStoring())
+    {    // Write the elements
+        ar << m_hFont;
+        ar << m_BackColor;
+        ar << m_pBorder;
+        ar << (LONG)m_hStyleNumber;
+        ar << m_StyleName;
+        ar << (DWORD)m_Justify;
+    }
+    else
+    {
+        ar >> m_hFont;
+        ar >> m_BackColor;
+        ar >> m_pBorder;
+        LONG    lValue;
+        ar >> lValue;
+        m_hStyleNumber = (HandleStyle)lValue;
+        ar >> m_StyleName;
+        DWORD    dwValue;
+        ar >> dwValue;
+        m_Justify = (UINT)dwValue;
+    }
   //## end ZAStyle::Serialize%869857712.body
 }
 
 ZAStyle* ZAStyle::Clone ()
 {
   //## begin ZAStyle::Clone%869857713.body preserve=yes
-	ZAStyle*	pObject = new ZAStyle( *this );
-	return pObject;
+    ZAStyle*    pObject = new ZAStyle( *this );
+    return pObject;
   //## end ZAStyle::Clone%869857713.body
 }
 
@@ -135,12 +135,12 @@ ZAStyle* ZAStyle::Clone ()
 #ifdef _DEBUG
 void ZAStyle::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void ZAStyle::Dump(CDumpContext& dc) const
 {
-	CObject::Dump(dc);
+    CObject::Dump(dc);
 }
 #endif //_DEBUG
 

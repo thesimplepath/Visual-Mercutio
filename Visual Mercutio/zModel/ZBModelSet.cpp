@@ -28,118 +28,118 @@ ZBModelSet::~ZBModelSet()
 
 ZBModelSet* ZBModelSet::Clone()
 {
-	ZBModelSet* pNewSet = new ZBModelSet;
+    ZBModelSet* pNewSet = new ZBModelSet;
 
-	for ( size_t i = 0; i < GetModelCount(); ++i )
-	{
-		ZDProcessGraphModelMdl* pMdl = GetModelAt( i );
+    for ( size_t i = 0; i < GetModelCount(); ++i )
+    {
+        ZDProcessGraphModelMdl* pMdl = GetModelAt( i );
 
-		if ( pMdl )
-		{
-			pNewSet->AddModel( pMdl );
-		}
-	}
+        if ( pMdl )
+        {
+            pNewSet->AddModel( pMdl );
+        }
+    }
 
-	return pNewSet;
+    return pNewSet;
 }
 
 ZDProcessGraphModelMdl* ZBModelSet::GetModelAt( size_t Index )
 {
-	if ( Index < GetModelCount() )
-	{
-		return (ZDProcessGraphModelMdl*)m_Set.GetAt( Index );
-	}
+    if ( Index < GetModelCount() )
+    {
+        return (ZDProcessGraphModelMdl*)m_Set.GetAt( Index );
+    }
 
-	return NULL;
+    return NULL;
 }
 
 bool ZBModelSet::AddModel( ZDProcessGraphModelMdl* pModel )
 {
-	size_t PreviousCount = GetModelCount();
-	m_Set.Add( pModel );
+    size_t PreviousCount = GetModelCount();
+    m_Set.Add( pModel );
 
-	return GetModelCount() > PreviousCount;
+    return GetModelCount() > PreviousCount;
 }
 
 void ZBModelSet::RemoveAllModel()
 {
-	m_Set.RemoveAll();
+    m_Set.RemoveAll();
 }
 
 void ZBModelSet::DeleteAllModel()
 {
-	for ( size_t i = 0; i < GetModelCount(); ++i )
-	{
-		ZDProcessGraphModelMdl* pMdl = GetModelAt( i );
+    for ( size_t i = 0; i < GetModelCount(); ++i )
+    {
+        ZDProcessGraphModelMdl* pMdl = GetModelAt( i );
 
-		if ( pMdl )
-		{
-			delete pMdl;
-		}
-	}
+        if ( pMdl )
+        {
+            delete pMdl;
+        }
+    }
 
-	m_Set.RemoveAll();
+    m_Set.RemoveAll();
 }
 
 bool ZBModelSet::RemoveModelAt( size_t Index )
 {
-	if ( Index < GetModelCount() )
-	{
-		m_Set.RemoveAt( Index );
-		return true;
-	}
+    if ( Index < GetModelCount() )
+    {
+        m_Set.RemoveAt( Index );
+        return true;
+    }
 
-	return false;
+    return false;
 }
 
 bool ZBModelSet::RemoveModel( ZDProcessGraphModelMdl* pModel )
 {
-	for ( size_t i = 0; i < GetModelCount(); ++i )
-	{
-		ZDProcessGraphModelMdl* pMdl = GetModelAt( i );
+    for ( size_t i = 0; i < GetModelCount(); ++i )
+    {
+        ZDProcessGraphModelMdl* pMdl = GetModelAt( i );
 
-		if ( pMdl == pModel )
-		{
-			RemoveModelAt( i );
-			return true;
-		}
-	}
+        if ( pMdl == pModel )
+        {
+            RemoveModelAt( i );
+            return true;
+        }
+    }
 
-	return false;
+    return false;
 }
 
 ZDProcessGraphModelMdl* ZBModelSet::FindModel( const CString Name )
 {
-	for ( size_t i = 0; i < GetModelCount(); ++i )
-	{
-		ZDProcessGraphModelMdl* pMdl = GetModelAt( i );
+    for ( size_t i = 0; i < GetModelCount(); ++i )
+    {
+        ZDProcessGraphModelMdl* pMdl = GetModelAt( i );
 
-		if ( pMdl->GetModelName() == Name )
-		{
-			return pMdl;
-		}
-	}
+        if ( pMdl->GetModelName() == Name )
+        {
+            return pMdl;
+        }
+    }
 
-	return NULL;
+    return NULL;
 }
 
 int ZBModelSet::FindModelIndex( ZDProcessGraphModelMdl* pModel )
 {
-	for ( size_t i = 0; i < GetModelCount(); ++i )
-	{
-		ZDProcessGraphModelMdl*	pMdl = GetModelAt( i );
+    for ( size_t i = 0; i < GetModelCount(); ++i )
+    {
+        ZDProcessGraphModelMdl*    pMdl = GetModelAt( i );
 
-		if ( pMdl == pModel )
-		{
-			return i;
-		}
-	}
+        if ( pMdl == pModel )
+        {
+            return i;
+        }
+    }
 
-	return -1;
+    return -1;
 }
 
 // Serializes the set
 void ZBModelSet::Serialize( CArchive& ar )
 {
-	m_Set.Serialize( ar );
+    m_Set.Serialize( ar );
 }

@@ -1,10 +1,10 @@
 //## begin module%334FC46302F5.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%334FC46302F5.cm
 
 //## begin module%334FC46302F5.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%334FC46302F5.cp
 
 //## Module: ZAString%334FC46302F5; Package specification
@@ -49,7 +49,7 @@
 
 
 //## Class: PLFNString%334FC46102D5
-//	Visual objects functionnalities.
+//    Visual objects functionnalities.
 //## Category: ZBaseLib::Base objects%37E9429A0111
 //## Subsystem: ZBaseLib%37A08E0C019D
 //## Persistence: Transient
@@ -58,9 +58,9 @@
 class AFX_EXT_CLASS PLFNString : public PLFNText  //## Inherits: <unnamed>%334FC46102D6
 {
   //## begin PLFNString%334FC46102D5.initialDeclarations preserve=yes
-	public:
-	// Inherited feature
-		typedef PLFNText inherited;
+    public:
+    // Inherited feature
+        typedef PLFNText inherited;
   //## end PLFNString%334FC46102D5.initialDeclarations
 
   public:
@@ -78,7 +78,7 @@ class AFX_EXT_CLASS PLFNString : public PLFNText  //## Inherits: <unnamed>%334FC
 
     //## Other Operations (specified)
       //## Operation: operator =%829516133
-      //	A copy constructor with a pointer.
+      //    A copy constructor with a pointer.
       const PLFNString& operator = (const PLFNString* right);
 
       //## Operation: SetStringValue%831699786
@@ -88,19 +88,19 @@ class AFX_EXT_CLASS PLFNString : public PLFNText  //## Inherits: <unnamed>%334FC
       virtual CString GetStringValue ();
 
       //## Operation: GetObjectAdress%831699788
-      //	return the adress of the member.
+      //    return the adress of the member.
       virtual void * GetObjectAdress () const;
 
       //## Operation: DrawObject%829516173
-      //	Draw the object with the current DC.
+      //    Draw the object with the current DC.
       virtual void DrawObject (CDC* pDC, ZIView* pView);
 
       //## Operation: Serialize%829516183
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: Clone%849755977
-      //	Make a clone of the object.
+      //    Make a clone of the object.
       virtual PlanFinObject* Clone ();
 
       //## Operation: CopyObject%863615083
@@ -109,14 +109,14 @@ class AFX_EXT_CLASS PLFNString : public PLFNText  //## Inherits: <unnamed>%334FC
     // Additional Public Declarations
       //## begin PLFNString%334FC46102D5.public preserve=yes
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
       //## end PLFNString%334FC46102D5.public
   protected:
     // Additional Protected Declarations
       //## begin PLFNString%334FC46102D5.protected preserve=yes
-		DECLARE_SERIAL(PLFNString)
+        DECLARE_SERIAL(PLFNString)
       //## end PLFNString%334FC46102D5.protected
   private:
     // Additional Private Declarations
@@ -140,22 +140,22 @@ class AFX_EXT_CLASS PLFNString : public PLFNText  //## Inherits: <unnamed>%334FC
 inline void PLFNString::SetStringValue (const CString& str)
 {
   //## begin PLFNString::SetStringValue%831699786.body preserve=yes
-  	m_Str = str;
-	ClearEmptyObjectFlag();  	
+      m_Str = str;
+    ClearEmptyObjectFlag();      
   //## end PLFNString::SetStringValue%831699786.body
 }
 
 inline CString PLFNString::GetStringValue ()
 {
   //## begin PLFNString::GetStringValue%831699787.body preserve=yes
-  	return(m_Str);
+      return(m_Str);
   //## end PLFNString::GetStringValue%831699787.body
 }
 
 inline void * PLFNString::GetObjectAdress () const
 {
   //## begin PLFNString::GetObjectAdress%831699788.body preserve=yes
-  	return((void*)&m_Str);
+      return((void*)&m_Str);
   //## end PLFNString::GetObjectAdress%831699788.body
 }
 

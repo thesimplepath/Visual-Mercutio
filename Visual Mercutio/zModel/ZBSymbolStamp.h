@@ -38,48 +38,48 @@
 
 class AFX_EXT_CLASS ZBSymbolStamp : public CObject  
 {
-	DECLARE_SERIAL(ZBSymbolStamp)
+    DECLARE_SERIAL(ZBSymbolStamp)
 public:
-	// Contruction operations --------------------------------
-	ZBSymbolStamp();
-	// Copy constructor
+    // Contruction operations --------------------------------
+    ZBSymbolStamp();
+    // Copy constructor
     ZBSymbolStamp(const ZBSymbolStamp &right);
-	// Assignment operator
+    // Assignment operator
     const ZBSymbolStamp & operator=(const ZBSymbolStamp &right);
 
     ZBSymbolStamp* Clone ();
 
-	virtual ~ZBSymbolStamp();
+    virtual ~ZBSymbolStamp();
 
-	// Get Set operations ------------------------------------
-	DWORD	GetInternalFileVersion() const;
-	void SetInternalFileVersion( DWORD value );
+    // Get Set operations ------------------------------------
+    DWORD    GetInternalFileVersion() const;
+    void SetInternalFileVersion( DWORD value );
 
-	CString	GetName() const;
-	void SetName( CString value );
+    CString    GetName() const;
+    void SetName( CString value );
 
-	CString GetDescription() const;
-	void SetDescription( CString value );
+    CString GetDescription() const;
+    void SetDescription( CString value );
 
-	CString GetClassName() const;
-	void SetClassName( CString value );
+    CString GetClassName() const;
+    void SetClassName( CString value );
 
-	CString GetCategory() const;
-	void SetCategory( CString value );
+    CString GetCategory() const;
+    void SetCategory( CString value );
 
-	DWORD	GetSymbolVersion() const;
-	void SetSymbolVersion( DWORD value );
+    DWORD    GetSymbolVersion() const;
+    void SetSymbolVersion( DWORD value );
 
-	CString GetAuthor() const;
-	void SetAuthor( CString value );
+    CString GetAuthor() const;
+    void SetAuthor( CString value );
 
-	ZBDate	GetCreationDate() const;
-	void SetCreationDate( ZBDate value );
+    ZBDate    GetCreationDate() const;
+    void SetCreationDate( ZBDate value );
 
-	ZBDate	GetModificationDate() const;
-	void SetModificationDate( ZBDate value );
+    ZBDate    GetModificationDate() const;
+    void SetModificationDate( ZBDate value );
 
-	// Archiving operations ----------------------------------
+    // Archiving operations ----------------------------------
 
     virtual void Serialize(CArchive& ar);
 
@@ -96,105 +96,105 @@ public:
     virtual BOOL WriteToFile (CString Filename);
 
 
-	// Versioning operations ---------------------------------
+    // Versioning operations ---------------------------------
 
-	DWORD IncrementPublishVersionOfFile (const CString Filename);
-	DWORD DecrementPublishVersionOfFile (const CString Filename);
-	BOOL  SetPublishVersionOfFile (const CString Filename, DWORD Version);
-	DWORD GetPublishVersionOfFile (const CString Filename);
+    DWORD IncrementPublishVersionOfFile (const CString Filename);
+    DWORD DecrementPublishVersionOfFile (const CString Filename);
+    BOOL  SetPublishVersionOfFile (const CString Filename, DWORD Version);
+    DWORD GetPublishVersionOfFile (const CString Filename);
 
 
 private:
-	DWORD	m_InternalFileVersion;
-	CString	m_Name;
-	CString m_Description;
-	CString m_ClassName;
-	CString m_Category;
-	DWORD	m_SymbolVersion;
-	CString m_Author;
-	ZBDate	m_CreationDate;
-	ZBDate	m_ModificationDate;
+    DWORD    m_InternalFileVersion;
+    CString    m_Name;
+    CString m_Description;
+    CString m_ClassName;
+    CString m_Category;
+    DWORD    m_SymbolVersion;
+    CString m_Author;
+    ZBDate    m_CreationDate;
+    ZBDate    m_ModificationDate;
 };
 
-inline DWORD	ZBSymbolStamp::GetInternalFileVersion() const
+inline DWORD    ZBSymbolStamp::GetInternalFileVersion() const
 {
-	return m_InternalFileVersion;
+    return m_InternalFileVersion;
 }
 inline void ZBSymbolStamp::SetInternalFileVersion( DWORD value )
 {
-	m_InternalFileVersion = value;
+    m_InternalFileVersion = value;
 }
 
-inline CString	ZBSymbolStamp::GetName() const
+inline CString    ZBSymbolStamp::GetName() const
 {
-	return m_Name;
+    return m_Name;
 }
 inline void ZBSymbolStamp::SetName( CString value )
 {
-	m_Name = value;
+    m_Name = value;
 }
 
 inline CString ZBSymbolStamp::GetDescription() const
 {
-	return m_Description;
+    return m_Description;
 }
 inline void ZBSymbolStamp::SetDescription( CString value )
 {
-	m_Description = value;
+    m_Description = value;
 }
 
 inline CString ZBSymbolStamp::GetClassName() const
 {
-	return m_ClassName;
+    return m_ClassName;
 }
 inline void ZBSymbolStamp::SetClassName( CString value )
 {
-	m_ClassName = value;
+    m_ClassName = value;
 }
 
 inline CString ZBSymbolStamp::GetCategory() const
 {
-	return m_Category;
+    return m_Category;
 }
 inline void ZBSymbolStamp::SetCategory( CString value )
 {
-	m_Category = value;
+    m_Category = value;
 }
 
-inline DWORD	ZBSymbolStamp::GetSymbolVersion() const
+inline DWORD    ZBSymbolStamp::GetSymbolVersion() const
 {
-	return m_SymbolVersion;
+    return m_SymbolVersion;
 }
 inline void ZBSymbolStamp::SetSymbolVersion( DWORD value )
 {
-	m_SymbolVersion = value;
+    m_SymbolVersion = value;
 }
 
 inline CString ZBSymbolStamp::GetAuthor() const
 {
-	return m_Author;
+    return m_Author;
 }
 inline void ZBSymbolStamp::SetAuthor( CString value )
 {
-	m_Author = value;
+    m_Author = value;
 }
 
-inline ZBDate	ZBSymbolStamp::GetCreationDate() const
+inline ZBDate    ZBSymbolStamp::GetCreationDate() const
 {
-	return m_CreationDate;
+    return m_CreationDate;
 }
 inline void ZBSymbolStamp::SetCreationDate( ZBDate value )
 {
-	m_CreationDate = value;
+    m_CreationDate = value;
 }
 
-inline ZBDate	ZBSymbolStamp::GetModificationDate() const
+inline ZBDate    ZBSymbolStamp::GetModificationDate() const
 {
-	return m_ModificationDate;
+    return m_ModificationDate;
 }
 inline void ZBSymbolStamp::SetModificationDate( ZBDate value )
 {
-	m_ModificationDate = value;
+    m_ModificationDate = value;
 }
 
 #endif // !defined(AFX_ZBSymbolStamp_H__94F5F0FA_6E0F_4610_A385_D361D5B1F2B8__INCLUDED_)

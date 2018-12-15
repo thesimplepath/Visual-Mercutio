@@ -30,9 +30,9 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUProcessCalculateTotals::ZUProcessCalculateTotals( ZDProcessGraphModelMdl*	pModel	/*= NULL*/,
-													void*					pClass	/*= NULL*/ )
-	: ZUProcessNavigation( pModel, pClass )
+ZUProcessCalculateTotals::ZUProcessCalculateTotals( ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
+                                                    void*                    pClass    /*= NULL*/ )
+    : ZUProcessNavigation( pModel, pClass )
 {
 }
 
@@ -42,66 +42,66 @@ ZUProcessCalculateTotals::~ZUProcessCalculateTotals()
 
 bool ZUProcessCalculateTotals::OnStart()
 {
-	m_ProcedureCost				= 0;
-	m_ProcedureWorkloadForecast	= 0;
-	m_ProcedureCostForecast		= 0;
+    m_ProcedureCost                = 0;
+    m_ProcedureWorkloadForecast    = 0;
+    m_ProcedureCostForecast        = 0;
 
-	// Reset all members
-	return true;
+    // Reset all members
+    return true;
 }
 
 bool ZUProcessCalculateTotals::OnFinish()
 {
-	return true;
+    return true;
 }
 
 bool ZUProcessCalculateTotals::OnDoorSymbol( ZBBPDoorSymbol* pSymbol )
 {
-	return true;
+    return true;
 }
 
 bool ZUProcessCalculateTotals::OnPageSymbol( ZBBPPageSymbol* pSymbol )
 {
-	return true;
+    return true;
 }
 
 bool ZUProcessCalculateTotals::OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
 {
-	return true;
+    return true;
 }
 
 bool ZUProcessCalculateTotals::OnProcessSymbol( ZBBPProcessSymbol* pSymbol )
 {
-	// Now initiate the procedure totals for the process
-	ZUProcedureCalculateTotals ProcedureTotals( dynamic_cast<ZDProcessGraphModelMdl*>( pSymbol->GetChildModel() ),
-												NULL );
+    // Now initiate the procedure totals for the process
+    ZUProcedureCalculateTotals ProcedureTotals( dynamic_cast<ZDProcessGraphModelMdl*>( pSymbol->GetChildModel() ),
+                                                NULL );
 
-	if ( ProcedureTotals.Navigate() )
-	{
-		// The total procedure workload forecast
-		pSymbol->SetProcessWorkloadForecast( ProcedureTotals.GetProcedureWorkloadForecast() );
+    if ( ProcedureTotals.Navigate() )
+    {
+        // The total procedure workload forecast
+        pSymbol->SetProcessWorkloadForecast( ProcedureTotals.GetProcedureWorkloadForecast() );
 
-		// The procedure cost forecast
-		pSymbol->SetProcessCostForecast( ProcedureTotals.GetProcedureCostForecast() );
+        // The procedure cost forecast
+        pSymbol->SetProcessCostForecast( ProcedureTotals.GetProcedureCostForecast() );
 
-		// JMR-MODIF - Le 14 mars 2006 - Ajout de la prise en charge du coût HMO pour les processus.
-		pSymbol->SetProcessCost( ProcedureTotals.GetProcedureCost() );
-	}
+        // JMR-MODIF - Le 14 mars 2006 - Ajout de la prise en charge du coût HMO pour les processus.
+        pSymbol->SetProcessCost( ProcedureTotals.GetProcedureCost() );
+    }
 
-	return true;
+    return true;
 }
 
 bool ZUProcessCalculateTotals::OnStartSymbol( ZBBPStartSymbol* pSymbol )
 {
-	return true;
+    return true;
 }
 
 bool ZUProcessCalculateTotals::OnStopSymbol( ZBBPStopSymbol* pSymbol )
 {
-	return true;
+    return true;
 }
 
 bool ZUProcessCalculateTotals::OnDeliverableLinkSymbol( ZBDeliverableLinkSymbol* pSymbol )
 {
-	return true;
+    return true;
 }

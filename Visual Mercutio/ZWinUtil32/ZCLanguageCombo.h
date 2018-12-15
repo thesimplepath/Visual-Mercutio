@@ -30,45 +30,45 @@
 
 class AFX_EXT_CLASS ZCLanguageCombo : public CCJFlatComboBox  
 {
-//	DECLARE_DYNAMIC(ZCLanguageCombo)
+//    DECLARE_DYNAMIC(ZCLanguageCombo)
 public:
-	ZCLanguageCombo( Language InitialLanguage = UnknownLang );
-	virtual ~ZCLanguageCombo();
+    ZCLanguageCombo( Language InitialLanguage = UnknownLang );
+    virtual ~ZCLanguageCombo();
 
-	int Initialize();
-	int Initialize( Language InitialLanguage )
-	{
-		m_Language = InitialLanguage;
-		return Initialize();
-	};
+    int Initialize();
+    int Initialize( Language InitialLanguage )
+    {
+        m_Language = InitialLanguage;
+        return Initialize();
+    };
 
-	Language	GetLanguage() const
-	{
-		return static_cast<Language>(GetCurSel());
-	};
-	void	SelectLanguage( Language NewLanguage )
-	{
-		SetCurSel( NewLanguage );
-	}
+    Language    GetLanguage() const
+    {
+        return static_cast<Language>(GetCurSel());
+    };
+    void    SelectLanguage( Language NewLanguage )
+    {
+        SetCurSel( NewLanguage );
+    }
 
 
 
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCLanguageCombo)
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCLanguageCombo)
+    //}}AFX_VIRTUAL
   protected:
-	//{{AFX_MSG(ZCLanguageCombo)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZCLanguageCombo)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
   private:
       ZCLanguageCombo(const ZCLanguageCombo &right);
       const ZCLanguageCombo & operator=(const ZCLanguageCombo &right);
 
 private: 
-	Language m_Language;
+    Language m_Language;
 };
 
 //#undef  AFX_DATA
 //#define AFX_DATA
 
-#endif	  // __ZCLanguageCombo_h__
+#endif      // __ZCLanguageCombo_h__

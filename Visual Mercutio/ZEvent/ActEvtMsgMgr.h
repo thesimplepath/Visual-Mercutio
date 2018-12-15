@@ -29,13 +29,13 @@
 //#define AFX_DATA AFX_EXT_CLASS
 
 
-class AFX_EXT_CLASS ZBActivityEventMessageManager : public	ZBActivityEventManager
+class AFX_EXT_CLASS ZBActivityEventMessageManager : public    ZBActivityEventManager
 {
   public:
       ZBActivityEventMessageManager ();
       ~ZBActivityEventMessageManager();
 
-	  virtual ZBEvent*	LoadEventFromFile( const CString Filename );
+      virtual ZBEvent*    LoadEventFromFile( const CString Filename );
 
   protected:
 

@@ -7,4 +7,4 @@ LIBRARY      "ZSplResD"
 
 EXPORTS
     ; Explicit exports can go here
-	InitZSplResDLL	@1
+    InitZSplResDLL    @1

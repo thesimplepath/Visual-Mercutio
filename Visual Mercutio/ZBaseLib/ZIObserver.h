@@ -36,13 +36,13 @@ class AFX_EXT_CLASS ZIObserver
 {
 public:
 
-	virtual ~ZIObserver();
+    virtual ~ZIObserver();
 
-	virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg ) = 0;
+    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg ) = 0;
 
 protected:
 
-	ZIObserver();
+    ZIObserver();
 };
 
 #endif // !defined(AFX_ZIObserver_H__57735636_FF28_462A_A977_77CCC74D9EA2__INCLUDED_)

@@ -24,16 +24,16 @@ ZBWorkspaceWizardTemplateMg::ZBWorkspaceWizardTemplateMg()
 
 ZBWorkspaceWizardTemplateMg::~ZBWorkspaceWizardTemplateMg()
 {
-	// JMR-MODIF - Le 23 août 2005 - Désalloue les objets contenus dans m_Set.
-	for ( INT_PTR i = 0; i < m_Set.GetCount(); i++ )
-	{
-		if ( m_Set.GetAt( i ) != NULL )
-		{
-			delete m_Set.GetAt( i );
-		}
-	}
+    // JMR-MODIF - Le 23 août 2005 - Désalloue les objets contenus dans m_Set.
+    for ( INT_PTR i = 0; i < m_Set.GetCount(); i++ )
+    {
+        if ( m_Set.GetAt( i ) != NULL )
+        {
+            delete m_Set.GetAt( i );
+        }
+    }
 
-	m_Set.RemoveAll();
+    m_Set.RemoveAll();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -42,12 +42,12 @@ ZBWorkspaceWizardTemplateMg::~ZBWorkspaceWizardTemplateMg()
 #ifdef _DEBUG
 void ZBWorkspaceWizardTemplateMg::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void ZBWorkspaceWizardTemplateMg::Dump( CDumpContext& dc ) const
 {
-	CObject::Dump( dc );
+    CObject::Dump( dc );
 }
 #endif //_DEBUG
 
@@ -56,12 +56,12 @@ void ZBWorkspaceWizardTemplateMg::Dump( CDumpContext& dc ) const
 
 void ZBWorkspaceWizardTemplateMg::Serialize ( CArchive& ar )
 {
-	m_Set.Serialize( ar );
+    m_Set.Serialize( ar );
 
-	if ( ar.IsStoring() )
-	{	// Write the elements
-	}
-	else
-	{	// Read the elements
-	}
+    if ( ar.IsStoring() )
+    {    // Write the elements
+    }
+    else
+    {    // Read the elements
+    }
 }

@@ -1,5 +1,5 @@
 //## begin module%33EC6F24029E.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%33EC6F24029E.cm
 
 //## begin module%33EC6F24029E.cp preserve=no
@@ -58,9 +58,9 @@
 class AFX_EXT_CLASS ZABorder : public CObject  //## Inherits: <unnamed>%33EC678C0136
 {
   //## begin ZABorder%33EC676303DE.initialDeclarations preserve=yes
-	public:
-	// Inherited feature
-		typedef CObject inherited;
+    public:
+    // Inherited feature
+        typedef CObject inherited;
   //## end ZABorder%33EC676303DE.initialDeclarations
 
   public:
@@ -78,121 +78,121 @@ class AFX_EXT_CLASS ZABorder : public CObject  //## Inherits: <unnamed>%33EC678C
 
     //## Other Operations (specified)
       //## Operation: Serialize%871131125
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: Clone%871131126
-      //	Make a clone of the object.
+      //    Make a clone of the object.
       virtual ZABorder* Clone ();
 
       //## Operation: DrawBorderRect%908878453
-      //	Draw the border rectangle.
+      //    Draw the border rectangle.
       void DrawBorderRect (CDC* pDC, const CRect& rect);
 
       //## Operation: DrawBorderTopLine%908878454
-      //	Draw the top border rectangle.
+      //    Draw the top border rectangle.
       void DrawBorderTopLine (CDC* pDC, const CPoint& StartPoint, const CPoint& EndPoint);
 
       //## Operation: DrawBorderBottomLine%908878455
-      //	Draw the bottom border rectangle.
+      //    Draw the bottom border rectangle.
       void DrawBorderBottomLine (CDC* pDC, const CPoint& StartPoint, const CPoint& EndPoint);
 
       //## Operation: DrawBorderLeftLine%908878456
-      //	Draw the left border rectangle.
+      //    Draw the left border rectangle.
       void DrawBorderLeftLine (CDC* pDC, const CPoint& StartPoint, const CPoint& EndPoint);
 
       //## Operation: DrawBorderRightLine%908878457
-      //	Draw the right border rectangle.
+      //    Draw the right border rectangle.
       void DrawBorderRightLine (CDC* pDC, const CPoint& StartPoint, const CPoint& EndPoint);
 
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: wLeftWidth%33EC695C00D2
-      //	Define the width of the left border.
+      //    Define the width of the left border.
       const WORD GetwLeftWidth () const;
       void SetwLeftWidth (WORD value);
 
       //## Attribute: wTopWidth%33EC6A1E0140
-      //	Define the width of the top border.
+      //    Define the width of the top border.
       const WORD GetwTopWidth () const;
       void SetwTopWidth (WORD value);
 
       //## Attribute: wRightWidth%33EC6A2F026C
-      //	Define the width of the right border.
+      //    Define the width of the right border.
       const WORD GetwRightWidth () const;
       void SetwRightWidth (WORD value);
 
       //## Attribute: wBottomWidth%33EC6A3F0032
-      //	Define the width of the bottom border.
+      //    Define the width of the bottom border.
       const WORD GetwBottomWidth () const;
       void SetwBottomWidth (WORD value);
 
       //## Attribute: LeftType%33EC6A5E0352
-      //	Define the line type for the left border.
+      //    Define the line type for the left border.
       const LineType GetLeftType () const;
       void SetLeftType (LineType value);
 
       //## Attribute: RightType%33EC6AAF0064
-      //	Define the line type for the right border.
+      //    Define the line type for the right border.
       const LineType GetRightType () const;
       void SetRightType (LineType value);
 
       //## Attribute: TopType%33EC6AC90352
-      //	Define the line type for the top border.
+      //    Define the line type for the top border.
       const LineType GetTopType () const;
       void SetTopType (LineType value);
 
       //## Attribute: BottomType%33EC6AD7001E
-      //	Define the line type for the bottom border.
+      //    Define the line type for the bottom border.
       const LineType GetBottomType () const;
       void SetBottomType (LineType value);
 
       //## Attribute: bShadow%33EC6AE801B8
-      //	Define the shadow state.
+      //    Define the shadow state.
       const BOOL GetbShadow () const;
       void SetbShadow (BOOL value);
 
       //## Attribute: TopColor%33EDEDF1035C
-      //	Defines the color of the top border.
+      //    Defines the color of the top border.
       const COLORREF GetTopColor () const;
       void SetTopColor (COLORREF value);
 
       //## Attribute: BottomColor%33EDEE15030C
-      //	Defines the color of the bottom border.
+      //    Defines the color of the bottom border.
       const COLORREF GetBottomColor () const;
       void SetBottomColor (COLORREF value);
 
       //## Attribute: LeftColor%33EDEE2901F4
-      //	Defines the color of the left border.
+      //    Defines the color of the left border.
       const COLORREF GetLeftColor () const;
       void SetLeftColor (COLORREF value);
 
       //## Attribute: RightColor%33EDEE380226
-      //	Defines the color of the right border.
+      //    Defines the color of the right border.
       const COLORREF GetRightColor () const;
       void SetRightColor (COLORREF value);
 
     // Additional Public Declarations
       //## begin ZABorder%33EC676303DE.public preserve=yes
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
       //## end ZABorder%33EC676303DE.public
   protected:
     // Additional Protected Declarations
       //## begin ZABorder%33EC676303DE.protected preserve=yes
-	DECLARE_SERIAL(ZABorder)
+    DECLARE_SERIAL(ZABorder)
       //## end ZABorder%33EC676303DE.protected
   private:
 
     //## Other Operations (specified)
       //## Operation: DrawBorderHorizontalLine%908904114
-      //	Draw a horizontal line of a border rectangle.
+      //    Draw a horizontal line of a border rectangle.
       void DrawBorderHorizontalLine (CDC* pDC, const CPoint& StartPoint, const CPoint& EndPoint, LineType Type);
 
       //## Operation: DrawBorderVerticalLine%908904115
-      //	Draw a vertical line of a border rectangle.
+      //    Draw a vertical line of a border rectangle.
       void DrawBorderVerticalLine (CDC* pDC, const CPoint& StartPoint, const CPoint& EndPoint, LineType Type);
 
     // Additional Private Declarations

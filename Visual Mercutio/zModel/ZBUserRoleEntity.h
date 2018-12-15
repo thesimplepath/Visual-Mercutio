@@ -40,27 +40,27 @@
 
 class AFX_EXT_CLASS ZBUserRoleEntity : public ZBUserEntity  
 {
-	DECLARE_SERIAL(ZBUserRoleEntity)
+    DECLARE_SERIAL(ZBUserRoleEntity)
 public:
-	ZBUserRoleEntity(const CString Name = "", const CString Description = "", ZBUserEntity* pParent = NULL);
-	virtual ~ZBUserRoleEntity();
+    ZBUserRoleEntity(const CString Name = "", const CString Description = "", ZBUserEntity* pParent = NULL);
+    virtual ~ZBUserRoleEntity();
 
-	/* Copy constructor. */
-	ZBUserRoleEntity(const ZBUserRoleEntity& src);
-	/* Assignment operator. */
-	ZBUserRoleEntity& operator=(const ZBUserRoleEntity& src);
-	/* Create a duplicate copy of this object. */
-	virtual ZBUserEntity* Clone() const;
+    /* Copy constructor. */
+    ZBUserRoleEntity(const ZBUserRoleEntity& src);
+    /* Assignment operator. */
+    ZBUserRoleEntity& operator=(const ZBUserRoleEntity& src);
+    /* Create a duplicate copy of this object. */
+    virtual ZBUserEntity* Clone() const;
 
-	virtual bool DisplayProperties();
+    virtual bool DisplayProperties();
 
 
-	// Serialization mechanism
-	virtual void Serialize(CArchive& ar);   // overridden for document i/o
+    // Serialization mechanism
+    virtual void Serialize(CArchive& ar);   // overridden for document i/o
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
 private:

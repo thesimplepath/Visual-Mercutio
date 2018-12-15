@@ -33,31 +33,31 @@ class AFX_EXT_CLASS ZUActivityLogDatabase
 {
 
   public:
-		ZUActivityLogDatabase (CString LogFileName = "");
+        ZUActivityLogDatabase (CString LogFileName = "");
 
-		~ZUActivityLogDatabase();
+        ~ZUActivityLogDatabase();
 
-		void Create (CString LogFileName);
+        void Create (CString LogFileName);
 
-		BOOL AppendToLog (ZBEventActivity& EventActivity);
-		BOOL ClearLog ();
-		BOOL Close ();
+        BOOL AppendToLog (ZBEventActivity& EventActivity);
+        BOOL ClearLog ();
+        BOOL Close ();
 
-		CString GetLogFileName () const;
-		
+        CString GetLogFileName () const;
+        
   private:
 
-		CDaoDatabase			m_LogDatabase;
-		ZDActivityLogRecordset*	m_pLogRecordset;
-        CString					m_LogFileName;
+        CDaoDatabase            m_LogDatabase;
+        ZDActivityLogRecordset*    m_pLogRecordset;
+        CString                    m_LogFileName;
 
   private:
-		ZUActivityLogDatabase(const ZUActivityLogDatabase &right);
+        ZUActivityLogDatabase(const ZUActivityLogDatabase &right);
 
-		const ZUActivityLogDatabase & operator=(const ZUActivityLogDatabase &right);
+        const ZUActivityLogDatabase & operator=(const ZUActivityLogDatabase &right);
 
-		BOOL OpenRead ();
-		BOOL OpenWrite ();
+        BOOL OpenRead ();
+        BOOL OpenWrite ();
 
 };
 

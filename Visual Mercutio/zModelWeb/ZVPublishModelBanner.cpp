@@ -18,35 +18,35 @@ static char THIS_FILE[] = __FILE__;
 // ZVPublishModelBanner dialog
 
 BEGIN_MESSAGE_MAP( ZVPublishModelBanner, ZIWizardDialog )
-	//{{AFX_MSG_MAP(ZVPublishModelBanner)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZVPublishModelBanner)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZVPublishModelBanner::ZVPublishModelBanner( CString	HyperLink		/*= _T( "" )*/,
-											CString	ImageFilename	/*= _T( "" )*/,
-											CWnd*	pParent			/*= NULL*/ )
-	: ZIWizardDialog( ZVPublishModelBanner::IDD,	// Dialog template
-					  IDB_WZBMP1,					// Bitmap to display
-					  0,							// Icon do display
-					  0,							// Window Title
-					  IDS_PUBLISHMODELBANNER_S,		// Wizard title
-					  IDS_PUBLISHMODELBANNER_T ),	// Wizard text
-	m_HyperLink		( HyperLink ),
-	m_ImageFilename	( ImageFilename )
+ZVPublishModelBanner::ZVPublishModelBanner( CString    HyperLink        /*= _T( "" )*/,
+                                            CString    ImageFilename    /*= _T( "" )*/,
+                                            CWnd*    pParent            /*= NULL*/ )
+    : ZIWizardDialog( ZVPublishModelBanner::IDD,    // Dialog template
+                      IDB_WZBMP1,                    // Bitmap to display
+                      0,                            // Icon do display
+                      0,                            // Window Title
+                      IDS_PUBLISHMODELBANNER_S,        // Wizard title
+                      IDS_PUBLISHMODELBANNER_T ),    // Wizard text
+    m_HyperLink        ( HyperLink ),
+    m_ImageFilename    ( ImageFilename )
 {
-	//{{AFX_DATA_INIT(ZVPublishModelBanner)
-	//}}AFX_DATA_INIT
+    //{{AFX_DATA_INIT(ZVPublishModelBanner)
+    //}}AFX_DATA_INIT
 
-	m_Image.SetSearchType( ZSEARCHEDIT_FILE );
+    m_Image.SetSearchType( ZSEARCHEDIT_FILE );
 }
 
 void ZVPublishModelBanner::DoDataExchange( CDataExchange* pDX )
 {
-	ZIWizardDialog::DoDataExchange( pDX );
-	//{{AFX_DATA_MAP(ZVPublishModelBanner)
-	DDX_Control(pDX, IDC_BANNERIMAGE, m_Image);
-	DDX_Text(pDX, IDC_BANNERHYPERLINK, m_HyperLink);
-	//}}AFX_DATA_MAP
+    ZIWizardDialog::DoDataExchange( pDX );
+    //{{AFX_DATA_MAP(ZVPublishModelBanner)
+    DDX_Control(pDX, IDC_BANNERIMAGE, m_Image);
+    DDX_Text(pDX, IDC_BANNERHYPERLINK, m_HyperLink);
+    //}}AFX_DATA_MAP
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -54,28 +54,28 @@ void ZVPublishModelBanner::DoDataExchange( CDataExchange* pDX )
 
 BOOL ZVPublishModelBanner::OnInitDialog()
 {
-	ZIWizardDialog::OnInitDialog();
+    ZIWizardDialog::OnInitDialog();
 
-	// Initialize the logo filename
-	m_Image.SetWindowText( m_ImageFilename );
+    // Initialize the logo filename
+    m_Image.SetWindowText( m_ImageFilename );
 
-	return TRUE;	// return TRUE unless you set the focus to a control
-					// EXCEPTION: OCX Property Pages should return FALSE
+    return TRUE;    // return TRUE unless you set the focus to a control
+                    // EXCEPTION: OCX Property Pages should return FALSE
 }
 
 void ZVPublishModelBanner::OnOK()
 {
-	UpdateData();
+    UpdateData();
 
-	// Check the image ref
-	m_Image.GetWindowText( m_ImageFilename );
+    // Check the image ref
+    m_Image.GetWindowText( m_ImageFilename );
 
-	if ( !m_ImageFilename.IsEmpty() && !ZFile::Exist( m_ImageFilename ) )
-	{
-		MsgBox mbox;
-		mbox.DisplayMsgBox( IDS_IMAGEFILENAME_NOTFOUND, MB_OK );
-		return;
-	}
+    if ( !m_ImageFilename.IsEmpty() && !ZFile::Exist( m_ImageFilename ) )
+    {
+        MsgBox mbox;
+        mbox.DisplayMsgBox( IDS_IMAGEFILENAME_NOTFOUND, MB_OK );
+        return;
+    }
 
-	ZIWizardDialog::OnOK();
+    ZIWizardDialog::OnOK();
 }

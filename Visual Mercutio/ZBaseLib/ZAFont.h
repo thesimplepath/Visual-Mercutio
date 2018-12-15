@@ -1,5 +1,5 @@
 //## begin module%33CA55BC01C2.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%33CA55BC01C2.cm
 
 //## begin module%33CA55BC01C2.cp preserve=no
@@ -32,8 +32,8 @@
 
 //## begin module%33CA55BC01C2.additionalDeclarations preserve=yes
 
-typedef 	LONG	HandleFont;
-const		LONG	NoFontDefined = -1;
+typedef     LONG    HandleFont;
+const        LONG    NoFontDefined = -1;
 //## end module%33CA55BC01C2.additionalDeclarations
 
 
@@ -61,9 +61,9 @@ const		LONG	NoFontDefined = -1;
 class AFX_EXT_CLASS ZAFont : public CFont  //## Inherits: <unnamed>%33CA55530258
 {
   //## begin ZAFont%33CA554D0078.initialDeclarations preserve=yes
-	public:
-	// Inherited feature
-		typedef CFont inherited;
+    public:
+    // Inherited feature
+        typedef CFont inherited;
   //## end ZAFont%33CA554D0078.initialDeclarations
 
   public:
@@ -81,23 +81,23 @@ class AFX_EXT_CLASS ZAFont : public CFont  //## Inherits: <unnamed>%33CA55530258
 
     //## Other Operations (specified)
       //## Operation: Clone%868898986
-      //	Make a clone of the object.
+      //    Make a clone of the object.
       virtual ZAFont* Clone ();
 
       //## Operation: Serialize%868898987
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: GetFontColor%869402479
-      //	Return the color of the font.
+      //    Return the color of the font.
       COLORREF GetFontColor () const;
 
       //## Operation: SetFontColor%869402480
-      //	Assign a new color to the font.
+      //    Assign a new color to the font.
       void SetFontColor (COLORREF col);
 
       //## Operation: Create%870115417
-      //	Create a font with a LOGFONT and a color
+      //    Create a font with a LOGFONT and a color
       BOOL Create (LOGFONT* pLogFont, COLORREF col = RGB(0,0,0));
 
     //## Get and Set Operations for Class Attributes (generated)
@@ -109,14 +109,14 @@ class AFX_EXT_CLASS ZAFont : public CFont  //## Inherits: <unnamed>%33CA55530258
     // Additional Public Declarations
       //## begin ZAFont%33CA554D0078.public preserve=yes
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
       //## end ZAFont%33CA554D0078.public
   protected:
     // Additional Protected Declarations
       //## begin ZAFont%33CA554D0078.protected preserve=yes
-	DECLARE_SERIAL(ZAFont)
+    DECLARE_SERIAL(ZAFont)
       //## end ZAFont%33CA554D0078.protected
   private:
     // Data Members for Class Attributes
@@ -126,7 +126,7 @@ class AFX_EXT_CLASS ZAFont : public CFont  //## Inherits: <unnamed>%33CA55530258
       //## end ZAFont::hFontNumber%33CA568802D0.attr
 
       //## Attribute: colFont%33D204340186
-      //	The color of the font.
+      //    The color of the font.
       //## begin ZAFont::colFont%33D204340186.attr preserve=no  public: COLORREF {U} 
       COLORREF m_colFont;
       //## end ZAFont::colFont%33D204340186.attr
@@ -152,14 +152,14 @@ class AFX_EXT_CLASS ZAFont : public CFont  //## Inherits: <unnamed>%33CA55530258
 inline COLORREF ZAFont::GetFontColor () const
 {
   //## begin ZAFont::GetFontColor%869402479.body preserve=yes
-  	return m_colFont;
+      return m_colFont;
   //## end ZAFont::GetFontColor%869402479.body
 }
 
 inline void ZAFont::SetFontColor (COLORREF col)
 {
   //## begin ZAFont::SetFontColor%869402480.body preserve=yes
-  	m_colFont = col;
+      m_colFont = col;
   //## end ZAFont::SetFontColor%869402480.body
 }
 

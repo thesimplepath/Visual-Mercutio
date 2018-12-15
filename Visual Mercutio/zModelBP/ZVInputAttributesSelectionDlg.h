@@ -38,46 +38,46 @@ class AFX_EXT_CLASS ZVInputAttributesSelectionDlg : public CDialog
 {
 // Construction
 public:
-	ZVInputAttributesSelectionDlg(ZBInputAttributeManager* pInputManager, ZBDynamicPropertiesManager* pPropManager, CWnd* pParent = NULL);   // standard constructor
+    ZVInputAttributesSelectionDlg(ZBInputAttributeManager* pInputManager, ZBDynamicPropertiesManager* pPropManager, CWnd* pParent = NULL);   // standard constructor
 
-	ZBInputAttribute* GetSelectedInputAttribute()
-	{
-		return m_List.GetSelectedInputAttribute();
-	};
+    ZBInputAttribute* GetSelectedInputAttribute()
+    {
+        return m_List.GetSelectedInputAttribute();
+    };
 
 private:
 // Dialog Data
-	//{{AFX_DATA(ZVInputAttributesSelectionDlg)
-	enum { IDD = IDD_INPUTATTRIBUTES };
-	ZCInputAttributesList	m_List;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZVInputAttributesSelectionDlg)
+    enum { IDD = IDD_INPUTATTRIBUTES };
+    ZCInputAttributesList    m_List;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVInputAttributesSelectionDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVInputAttributesSelectionDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVInputAttributesSelectionDlg)
-	afx_msg void OnClickInputattributeList(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnDblclkInputattributeList(NMHDR* pNMHDR, LRESULT* pResult);
-	virtual void OnOK();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVInputAttributesSelectionDlg)
+    afx_msg void OnClickInputattributeList(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnDblclkInputattributeList(NMHDR* pNMHDR, LRESULT* pResult);
+    virtual void OnOK();
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	void CheckControlState();
+    void CheckControlState();
 
 private:
-	ZBInputAttributeManager* m_pInputManager;
-	ZBDynamicPropertiesManager* m_pPropManager;
+    ZBInputAttributeManager* m_pInputManager;
+    ZBDynamicPropertiesManager* m_pPropManager;
 };
 
 //{{AFX_INSERT_LOCATION}}

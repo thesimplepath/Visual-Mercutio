@@ -36,33 +36,33 @@ class AFX_EXT_CLASS ZCEventActivityUserOverview : public ZITreeCtrl
       ZCEventActivityUserOverview (ZBEventManager* pEventManager = NULL);
       virtual ~ZCEventActivityUserOverview();
       void Initialize(ZBEventManager* pEventManager);
-	  void Initialize();
+      void Initialize();
       void Refresh();
-	  ZBEventActivity*	GetSelectedActivityItem();
-	  CString			GetSelectedProcess();
+      ZBEventActivity*    GetSelectedActivityItem();
+      CString            GetSelectedProcess();
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCEventActivityUserOverview)
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCEventActivityUserOverview)
+    //}}AFX_VIRTUAL
   public:
-	//{{AFX_MSG(ZCEventActivityUserOverview)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZCEventActivityUserOverview)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
   private:
       ZCEventActivityUserOverview(const ZCEventActivityUserOverview &right);
       const ZCEventActivityUserOverview & operator=(const ZCEventActivityUserOverview &right);
 
   private:
-	HTREEITEM	AddProcessItem (const CString ProcessName, int IconIndex);
-	HTREEITEM	AddSubItem (ZBEventActivity* pData, HTREEITEM hParentTreeItem, int IconIndex);
-	CString		FormatActivityText (ZBEventActivity* pData);
-	BOOL		ProcessExist( const CString Process );
-	void		BuildProcessArray();
+    HTREEITEM    AddProcessItem (const CString ProcessName, int IconIndex);
+    HTREEITEM    AddSubItem (ZBEventActivity* pData, HTREEITEM hParentTreeItem, int IconIndex);
+    CString        FormatActivityText (ZBEventActivity* pData);
+    BOOL        ProcessExist( const CString Process );
+    void        BuildProcessArray();
 
   private: //## implementation
-	ZBEventManager* m_pEventManager;
-	CStringArray	m_ProcessArray;
+    ZBEventManager* m_pEventManager;
+    CStringArray    m_ProcessArray;
 };
 
 //#undef  AFX_DATA

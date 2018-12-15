@@ -32,10 +32,10 @@
 class AFX_EXT_CLASS ZBEventQueueManager
 {
   public:
-		ZBEventQueueManager ();
-		~ZBEventQueueManager();
-		BOOL	Create( const CString Directory );
-		BOOL	DispatchToEventQueue( ZBEventActivity& EventActivity );
+        ZBEventQueueManager ();
+        ~ZBEventQueueManager();
+        BOOL    Create( const CString Directory );
+        BOOL    DispatchToEventQueue( ZBEventActivity& EventActivity );
 
   protected:
 
@@ -43,11 +43,11 @@ class AFX_EXT_CLASS ZBEventQueueManager
       ZBEventQueueManager(const ZBEventQueueManager &right);
       const ZBEventQueueManager & operator=(const ZBEventQueueManager &right);
 
-	  CString	BuildActivityEventFilename( ZBEventActivity& EventActivity );
+      CString    BuildActivityEventFilename( ZBEventActivity& EventActivity );
 
   private: //## implementation
-	CString					m_Directory;
-	ZBEventActivityFile		m_EventActivityFile;
+    CString                    m_Directory;
+    ZBEventActivityFile        m_EventActivityFile;
 };
 
 

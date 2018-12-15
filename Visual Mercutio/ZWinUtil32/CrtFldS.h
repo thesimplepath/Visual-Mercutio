@@ -44,46 +44,46 @@ class ZICreateFolderWizardStart : public ZIWizardDialog
 {
 // Construction
 public:
-	ZICreateFolderWizardStart(BOOL UseFolderNameAsFilename = FALSE, CString FolderDirectory = "", CString FolderName = "", CString FolderDescription = "", CString InitialFilename = "", CString FileExtension = "", CWnd* pParent = NULL);   // standard constructor
+    ZICreateFolderWizardStart(BOOL UseFolderNameAsFilename = FALSE, CString FolderDirectory = "", CString FolderName = "", CString FolderDescription = "", CString InitialFilename = "", CString FileExtension = "", CWnd* pParent = NULL);   // standard constructor
 
-	// Get information, if successful
-	CString	GetFolderName()  const { return m_FolderName; };
-	CString	GetFolderDescription() const { return m_FolderComment; };
-	CString	GetFilename()  const { return m_Filename; };
+    // Get information, if successful
+    CString    GetFolderName()  const { return m_FolderName; };
+    CString    GetFolderDescription() const { return m_FolderComment; };
+    CString    GetFilename()  const { return m_Filename; };
 
 
 private:
 // Dialog Data
-	//{{AFX_DATA(ZICreateFolderWizardStart)
-	enum { IDD = IDD_WZCREATEFOLDERFILE_ST };
-	ZCSearchEdit	m_CompleteFilename;
-	CString	m_FolderComment;
-	CString	m_FolderName;
-	//}}AFX_DATA
-	BOOL	m_UseFolderNameAsFilename;
-	CString	m_FolderDirectory;
-	CString	m_Filename;
-	CString	m_InitialFilename;
-	CString m_FileExtension;
-    char	m_szDir[_MAX_DIR];
+    //{{AFX_DATA(ZICreateFolderWizardStart)
+    enum { IDD = IDD_WZCREATEFOLDERFILE_ST };
+    ZCSearchEdit    m_CompleteFilename;
+    CString    m_FolderComment;
+    CString    m_FolderName;
+    //}}AFX_DATA
+    BOOL    m_UseFolderNameAsFilename;
+    CString    m_FolderDirectory;
+    CString    m_Filename;
+    CString    m_InitialFilename;
+    CString m_FileExtension;
+    char    m_szDir[_MAX_DIR];
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZICreateFolderWizardStart)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZICreateFolderWizardStart)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZICreateFolderWizardStart)
-	virtual void OnOK();
-	virtual BOOL OnInitDialog();
-	afx_msg void OnChangeFolderName();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZICreateFolderWizardStart)
+    virtual void OnOK();
+    virtual BOOL OnInitDialog();
+    afx_msg void OnChangeFolderName();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 };
 

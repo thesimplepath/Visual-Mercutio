@@ -1,9 +1,9 @@
 // **************************************************************************************************************
-// *										   Classe puniverse													*
+// *                                           Classe puniverse                                                    *
 // **************************************************************************************************************
-// * JMR-MODIF - Le 21 juin 2006 - Création de la classe puniverse.												*
+// * JMR-MODIF - Le 21 juin 2006 - Création de la classe puniverse.                                                *
 // **************************************************************************************************************
-// * Cette classe contient les attributs de publication des univers pour le test de validité des référentiels.	*
+// * Cette classe contient les attributs de publication des univers pour le test de validité des référentiels.    *
 // **************************************************************************************************************
 
 #ifndef __PUNIVERSE_HDR_
@@ -35,22 +35,22 @@ class AFX_EXT_CLASS puniverse
 {
 public:
 
-	puniverse()
-	{
-	};
+    puniverse()
+    {
+    };
 
-	puniverse( String16	guidSystem,
-			   String16	guidPrestation,
-			   String16	guidWorkgroup )
-	{
-		this->guidSystem		= convertTo( guidSystem );
-		this->guidPrestation	= convertTo( guidPrestation );
-		this->guidWorkgroup		= convertTo( guidWorkgroup );
-	}
+    puniverse( String16    guidSystem,
+               String16    guidPrestation,
+               String16    guidWorkgroup )
+    {
+        this->guidSystem        = convertTo( guidSystem );
+        this->guidPrestation    = convertTo( guidPrestation );
+        this->guidWorkgroup        = convertTo( guidWorkgroup );
+    }
 
-	string	guidSystem;
-	string	guidPrestation;
-	string	guidWorkgroup;
+    string    guidSystem;
+    string    guidPrestation;
+    string    guidWorkgroup;
 };
 
 #endif // __PUNIVERSE_HDR_

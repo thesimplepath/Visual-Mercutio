@@ -23,8 +23,8 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 ZUDeleteDynamicAttributesToModel::ZUDeleteDynamicAttributesToModel(ZDProcessGraphModelMdl* pModel /*= NULL*/, 
-																   ZBProperty* pProperty /*= NULL*/,
-																   void* pClass /*= NULL*/)
+                                                                   ZBProperty* pProperty /*= NULL*/,
+                                                                   void* pClass /*= NULL*/)
 : ZUModelNavigation(pModel,pClass),
   m_pProperty(pProperty)
 {
@@ -37,34 +37,34 @@ ZUDeleteDynamicAttributesToModel::~ZUDeleteDynamicAttributesToModel()
 
 bool ZUDeleteDynamicAttributesToModel::OnStart()
 {
-	if (!m_pProperty)
-		return false;
+    if (!m_pProperty)
+        return false;
 
-	// Nothing more to do
-	return true;
+    // Nothing more to do
+    return true;
 }
 
 bool ZUDeleteDynamicAttributesToModel::OnFinish()
 {
-	// Send it to the soap server
-	return true;
+    // Send it to the soap server
+    return true;
 }
 
 bool ZUDeleteDynamicAttributesToModel::OnSymbol( ZBSymbol* pSymbol )
 {
-	// If for the symbol has the same property
-	// delete the property and assign the new one
-	pSymbol->GetDynamicPropertiesManager()->DeleteProperty( m_pProperty );
+    // If for the symbol has the same property
+    // delete the property and assign the new one
+    pSymbol->GetDynamicPropertiesManager()->DeleteProperty( m_pProperty );
 
-	return true;
+    return true;
 }
 bool ZUDeleteDynamicAttributesToModel::OnLink( ZBLinkSymbol* pLink )
 {
-	// If for the symbol has the same property
-	// delete the property and assign the new one
-	pLink->GetDynamicPropertiesManager()->DeleteProperty( m_pProperty );
+    // If for the symbol has the same property
+    // delete the property and assign the new one
+    pLink->GetDynamicPropertiesManager()->DeleteProperty( m_pProperty );
 
-	return true;
+    return true;
 }
 
 

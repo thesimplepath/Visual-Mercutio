@@ -39,96 +39,96 @@
 class AFX_EXT_CLASS ZUWatchDirectory : public CObject
 {
 public:
-	enum	WatchingStatus {Stopped, 
-							Started, 
-							Paused
-							};
-	enum	WatchingMode   {FileNameChange		= 0x0001, 
-							DirectoryNameChange = 0x0002, 
-							AttributesChange	= 0x0004,
-							SizesChange			= 0x0008,
-							LastWritesChange	= 0x0010,
-							SecurityChange		= 0x0020
-							};
-	HANDLE	m_EventKill;
+    enum    WatchingStatus {Stopped, 
+                            Started, 
+                            Paused
+                            };
+    enum    WatchingMode   {FileNameChange        = 0x0001, 
+                            DirectoryNameChange = 0x0002, 
+                            AttributesChange    = 0x0004,
+                            SizesChange            = 0x0008,
+                            LastWritesChange    = 0x0010,
+                            SecurityChange        = 0x0020
+                            };
+    HANDLE    m_EventKill;
 
 public:
-	ZUWatchDirectory();
-	~ZUWatchDirectory();
-	ZUWatchDirectory( const CString Directory, 
-					  UINT Mode  = ZUWatchDirectory::FileNameChange | ZUWatchDirectory::LastWritesChange | ZUWatchDirectory::SizesChange,
-					  BOOL SubTree = FALSE );
-	BOOL Create( const CString Directory, 
-				 UINT Mode  = ZUWatchDirectory::FileNameChange | ZUWatchDirectory::LastWritesChange | ZUWatchDirectory::SizesChange,
-				 BOOL SubTree = FALSE );
-	// NotifyClient is called every time the directory changed
-	virtual	void	NotifyClient(){};
-	// NotifyClient is called every time a file has been added 
-	virtual	void	NotifyClientOnAdd(){};
-	// NotifyClient is called every time a file has been removed 
-	virtual	void	NotifyClientOnRemove(){};
+    ZUWatchDirectory();
+    ~ZUWatchDirectory();
+    ZUWatchDirectory( const CString Directory, 
+                      UINT Mode  = ZUWatchDirectory::FileNameChange | ZUWatchDirectory::LastWritesChange | ZUWatchDirectory::SizesChange,
+                      BOOL SubTree = FALSE );
+    BOOL Create( const CString Directory, 
+                 UINT Mode  = ZUWatchDirectory::FileNameChange | ZUWatchDirectory::LastWritesChange | ZUWatchDirectory::SizesChange,
+                 BOOL SubTree = FALSE );
+    // NotifyClient is called every time the directory changed
+    virtual    void    NotifyClient(){};
+    // NotifyClient is called every time a file has been added 
+    virtual    void    NotifyClientOnAdd(){};
+    // NotifyClient is called every time a file has been removed 
+    virtual    void    NotifyClientOnRemove(){};
 
-	BOOL	SetDirectory( const CString Directory );
+    BOOL    SetDirectory( const CString Directory );
 
-	BOOL	StartWatching( BOOL MustNotifyClient = TRUE );
-	BOOL	PauseWatching();
-	BOOL	ResumeWatching();
-	BOOL	StopWatching();
+    BOOL    StartWatching( BOOL MustNotifyClient = TRUE );
+    BOOL    PauseWatching();
+    BOOL    ResumeWatching();
+    BOOL    StopWatching();
 
-	CString			GetDirectory() const { return m_Directory; };
-	WatchingStatus	GetWatchingStatus() const { return m_WatchingStatus; };
-	void			SetWatchingStatus(const WatchingStatus value ) { m_WatchingStatus = value; };
-	UINT			GetWatchingMode() const { return m_WatchingMode; }
-	BOOL			MustWatchSubTree() const { return m_WatchSubTree; };
-	DWORD			GetNotifyFilter() const { return m_NotifyFilter; };
-	int				RefreshFileList();
+    CString            GetDirectory() const { return m_Directory; };
+    WatchingStatus    GetWatchingStatus() const { return m_WatchingStatus; };
+    void            SetWatchingStatus(const WatchingStatus value ) { m_WatchingStatus = value; };
+    UINT            GetWatchingMode() const { return m_WatchingMode; }
+    BOOL            MustWatchSubTree() const { return m_WatchSubTree; };
+    DWORD            GetNotifyFilter() const { return m_NotifyFilter; };
+    int                RefreshFileList();
 
-	BOOL			FileHaveBeenAdded() const { return m_FileHaveBeenAdded; };
-	BOOL			FileHaveBeenRemoved() const { return m_FileHaveBeenRemoved; };
-	// File Array functions
-	BOOL			AddFile( const CString Filename );
-	BOOL			RemoveFile( const CString Filename );
-	BOOL			RemoveAllFiles();
-	int				FileExists( const CString Filename );
-	CString			GetFileAt( int Index  );
-	int				GetSize();
+    BOOL            FileHaveBeenAdded() const { return m_FileHaveBeenAdded; };
+    BOOL            FileHaveBeenRemoved() const { return m_FileHaveBeenRemoved; };
+    // File Array functions
+    BOOL            AddFile( const CString Filename );
+    BOOL            RemoveFile( const CString Filename );
+    BOOL            RemoveAllFiles();
+    int                FileExists( const CString Filename );
+    CString            GetFileAt( int Index  );
+    int                GetSize();
 
-	CMutex&			GetMutex() { return m_Mutex; };
+    CMutex&            GetMutex() { return m_Mutex; };
 
-	DECLARE_DYNAMIC( ZUWatchDirectory )
+    DECLARE_DYNAMIC( ZUWatchDirectory )
 
-
-private:
-	void	SetNotifyFilter();
-	BOOL	CopyFilesArrayToTemporaryBuffer();
 
 private:
-	CString			m_Directory;
-	WatchingStatus	m_WatchingStatus;
-	UINT			m_WatchingMode;
-	BOOL			m_WatchSubTree;
-	HANDLE			m_ChangeHandle[1];
-	DWORD			m_NotifyFilter;
-	CWinThread*		m_pThread;
-	CMutex			m_Mutex;
-	CStringArray	m_FileArray;
-	CStringArray	m_TemporaryFileArray;
+    void    SetNotifyFilter();
+    BOOL    CopyFilesArrayToTemporaryBuffer();
 
-	BOOL			m_FileHaveBeenAdded;
-	BOOL			m_FileHaveBeenRemoved;
+private:
+    CString            m_Directory;
+    WatchingStatus    m_WatchingStatus;
+    UINT            m_WatchingMode;
+    BOOL            m_WatchSubTree;
+    HANDLE            m_ChangeHandle[1];
+    DWORD            m_NotifyFilter;
+    CWinThread*        m_pThread;
+    CMutex            m_Mutex;
+    CStringArray    m_FileArray;
+    CStringArray    m_TemporaryFileArray;
+
+    BOOL            m_FileHaveBeenAdded;
+    BOOL            m_FileHaveBeenRemoved;
 
 };
 
-inline 	CString		ZUWatchDirectory::GetFileAt( int Index  )
+inline     CString        ZUWatchDirectory::GetFileAt( int Index  )
 {
-	if (Index < m_FileArray.GetSize())
-		return m_FileArray.GetAt(Index);
-	return "";
+    if (Index < m_FileArray.GetSize())
+        return m_FileArray.GetAt(Index);
+    return "";
 }
 
-inline 	int			ZUWatchDirectory::GetSize()
+inline     int            ZUWatchDirectory::GetSize()
 {
-	return m_FileArray.GetSize();
+    return m_FileArray.GetSize();
 }
 
 

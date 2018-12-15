@@ -26,10 +26,10 @@ ZIProcessTemplateView::~ZIProcessTemplateView()
 
 
 BEGIN_MESSAGE_MAP(ZIProcessTemplateView, ZITemplateView)
-	//{{AFX_MSG_MAP(ZIProcessTemplateView)
-	ON_MESSAGE(UM_INITIALIZE_PROCESSTEMPLATEMANAGER, OnInitializeTemplateManager)
-	ON_MESSAGE(UM_RELOAD_PROCESSTEMPLATEMANAGER, OnReloadTemplateManager)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZIProcessTemplateView)
+    ON_MESSAGE(UM_INITIALIZE_PROCESSTEMPLATEMANAGER, OnInitializeTemplateManager)
+    ON_MESSAGE(UM_RELOAD_PROCESSTEMPLATEMANAGER, OnReloadTemplateManager)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 
@@ -40,40 +40,40 @@ END_MESSAGE_MAP()
 
 afx_msg LRESULT ZIProcessTemplateView::OnInitializeTemplateManager( WPARAM wParam, LPARAM lParam )
 {
-	if (!::IsWindow(GetSafeHwnd()))
-		return 1;
+    if (!::IsWindow(GetSafeHwnd()))
+        return 1;
 
     m_pTemplateManager = (ZDTemplateManager*)lParam;
-	m_IncludeFiles = (BOOL)wParam;
+    m_IncludeFiles = (BOOL)wParam;
 
-	if (m_pTemplateManager)
-	{
-		ZIProcessTemplateView::Initialize( m_pTemplateManager, m_IncludeFiles );
-	}
-	else
-	{
-//		m_TemplateTree.Empty();
-	}
-	return 1;
+    if (m_pTemplateManager)
+    {
+        ZIProcessTemplateView::Initialize( m_pTemplateManager, m_IncludeFiles );
+    }
+    else
+    {
+//        m_TemplateTree.Empty();
+    }
+    return 1;
 }
 
 
 afx_msg LRESULT ZIProcessTemplateView::OnReloadTemplateManager( WPARAM wParam, LPARAM lParam )
 {
-	if (!::IsWindow(GetSafeHwnd()))
-		return 1;
+    if (!::IsWindow(GetSafeHwnd()))
+        return 1;
 
     m_pTemplateManager = (ZDTemplateManager*)lParam;
 
-	if (m_pTemplateManager)
-	{
-		ZIProcessTemplateView::ReInitialize( m_pTemplateManager, m_IncludeFiles );
-	}
-	else
-	{
-//		m_TemplateTree.Empty();
-	}
-	return 1;
+    if (m_pTemplateManager)
+    {
+        ZIProcessTemplateView::ReInitialize( m_pTemplateManager, m_IncludeFiles );
+    }
+    else
+    {
+//        m_TemplateTree.Empty();
+    }
+    return 1;
 }
 
 

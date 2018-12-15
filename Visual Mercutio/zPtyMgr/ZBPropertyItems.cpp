@@ -29,17 +29,17 @@ static char THIS_FILE[] = __FILE__;
 
 IMPLEMENT_DYNAMIC( ZBPropertyItemString, ZBPropertyItem )
 
-void ZBPropertyItemString::CreateInPlaceControl( CWnd*				pWndParent,
-												 CRect&				rect,
-												 ZIInPlaceEdit*&	pWndInPlaceControl,
-												 CSize				ExtendedSize		/*= CSize(0,0)*/ )
+void ZBPropertyItemString::CreateInPlaceControl( CWnd*                pWndParent,
+                                                 CRect&                rect,
+                                                 ZIInPlaceEdit*&    pWndInPlaceControl,
+                                                 CSize                ExtendedSize        /*= CSize(0,0)*/ )
 {
-	CWnd* pWnd = dynamic_cast<CWnd*>( pWndInPlaceControl );
+    CWnd* pWnd = dynamic_cast<CWnd*>( pWndInPlaceControl );
 
-	DestroyInPlaceControl( pWndInPlaceControl );
+    DestroyInPlaceControl( pWndInPlaceControl );
 
-	pWndInPlaceControl = new ZCInPlaceEditPropItemString();
-	pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_strText, pWndParent, rect );
+    pWndInPlaceControl = new ZCInPlaceEditPropItemString();
+    pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_strText, pWndParent, rect );
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -47,35 +47,35 @@ void ZBPropertyItemString::CreateInPlaceControl( CWnd*				pWndParent,
 
 IMPLEMENT_DYNAMIC( ZBPropertyItemList, ZBPropertyItem )
 
-void ZBPropertyItemList::CreateInPlaceControl( CWnd*			pWndParent,
-											   CRect&			rect,
-											   ZIInPlaceEdit*&	pWndInPlaceControl,
-											   CSize			ExtendedSize		/*= CSize(0,0)*/ )
+void ZBPropertyItemList::CreateInPlaceControl( CWnd*            pWndParent,
+                                               CRect&            rect,
+                                               ZIInPlaceEdit*&    pWndInPlaceControl,
+                                               CSize            ExtendedSize        /*= CSize(0,0)*/ )
 {
-	CWnd* pWnd = dynamic_cast<CWnd*>( pWndInPlaceControl );
-	DestroyInPlaceControl( pWndInPlaceControl );
-	
-	pWndInPlaceControl = new ZCInPlaceListBox( IsReadOnly() );
-	pWndInPlaceControl->InitializeInPlaceEditCtrl( this, GetData(), pWndParent, rect );
+    CWnd* pWnd = dynamic_cast<CWnd*>( pWndInPlaceControl );
+    DestroyInPlaceControl( pWndInPlaceControl );
+    
+    pWndInPlaceControl = new ZCInPlaceListBox( IsReadOnly() );
+    pWndInPlaceControl->InitializeInPlaceEditCtrl( this, GetData(), pWndParent, rect );
 
-	SetItemListData( (ZCInPlaceListBox*)pWndInPlaceControl );
-	( (ZCInPlaceListBox*)pWndInPlaceControl )->SetCurSel( GetData(), false );
-	( (ZCInPlaceListBox*)pWndInPlaceControl )->ResetListBoxHeight();
+    SetItemListData( (ZCInPlaceListBox*)pWndInPlaceControl );
+    ( (ZCInPlaceListBox*)pWndInPlaceControl )->SetCurSel( GetData(), false );
+    ( (ZCInPlaceListBox*)pWndInPlaceControl )->ResetListBoxHeight();
 }
 
 void ZBPropertyItemList::SetData( const CString sText )
 {
-	m_strText = sText;
+    m_strText = sText;
 }
 
 void ZBPropertyItemList::SetItemListData( ZCInPlaceListBox* pWndInPlaceControl )
 {
-	LPCTSTR pStrText;
+    LPCTSTR pStrText;
 
-	for( int i = 0; ( pStrText = GetItemData( i ) ) != NULL; i++ )
-	{
-		pWndInPlaceControl->AddString( pStrText );
-	}
+    for( int i = 0; ( pStrText = GetItemData( i ) ) != NULL; i++ )
+    {
+        pWndInPlaceControl->AddString( pStrText );
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -83,39 +83,39 @@ void ZBPropertyItemList::SetItemListData( ZCInPlaceListBox* pWndInPlaceControl )
 
 IMPLEMENT_DYNAMIC( ZBPropertyItemExtended, ZBPropertyItem )
 
-void ZBPropertyItemExtended::CreateInPlaceControl( CWnd*			pWndParent,
-												   CRect&			rect,
-												   ZIInPlaceEdit*&	pWndInPlaceControl,
-												   CSize			ExtendedSize		/*= CSize(0,0)*/ )
+void ZBPropertyItemExtended::CreateInPlaceControl( CWnd*            pWndParent,
+                                                   CRect&            rect,
+                                                   ZIInPlaceEdit*&    pWndInPlaceControl,
+                                                   CSize            ExtendedSize        /*= CSize(0,0)*/ )
 {
-	CWnd* pWnd = dynamic_cast<CWnd*>( pWndInPlaceControl );
-	DestroyInPlaceControl( pWndInPlaceControl );
+    CWnd* pWnd = dynamic_cast<CWnd*>( pWndInPlaceControl );
+    DestroyInPlaceControl( pWndInPlaceControl );
 
-	pWndInPlaceControl = new ZCInPlaceExtendedEdit( IsReadOnly() );
+    pWndInPlaceControl = new ZCInPlaceExtendedEdit( IsReadOnly() );
 
-	// For processing extended command
-	( (ZCInPlaceExtendedEdit*)pWndInPlaceControl )->SetSearchType( ZSEARCHEDIT_EXTENDED );
+    // For processing extended command
+    ( (ZCInPlaceExtendedEdit*)pWndInPlaceControl )->SetSearchType( ZSEARCHEDIT_EXTENDED );
 
-	switch( m_Type )
-	{
-		case PI_STRING:
-		{
-			pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_strText, pWndParent, rect );
-			break;
-		}
+    switch( m_Type )
+    {
+        case PI_STRING:
+        {
+            pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_strText, pWndParent, rect );
+            break;
+        }
 
-		case PI_DOUBLE:
-		{
-			pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_dValue, pWndParent, rect );
-			break;
-		}
+        case PI_DOUBLE:
+        {
+            pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_dValue, pWndParent, rect );
+            break;
+        }
 
-		case PI_FLOAT:
-		{
-			pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_fValue, pWndParent, rect );
-			break;
-		}
-	}
+        case PI_FLOAT:
+        {
+            pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_fValue, pWndParent, rect );
+            break;
+        }
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -123,45 +123,45 @@ void ZBPropertyItemExtended::CreateInPlaceControl( CWnd*			pWndParent,
 
 IMPLEMENT_DYNAMIC( ZBPropertyItemIntelliEdit, ZBPropertyItem )
 
-void ZBPropertyItemIntelliEdit::CreateInPlaceControl( CWnd*				pWndParent,
-													  CRect&			rect,
-													  ZIInPlaceEdit*&	pWndInPlaceControl,
-													  CSize				ExtendedSize		/*= CSize(0,0)*/ )
+void ZBPropertyItemIntelliEdit::CreateInPlaceControl( CWnd*                pWndParent,
+                                                      CRect&            rect,
+                                                      ZIInPlaceEdit*&    pWndInPlaceControl,
+                                                      CSize                ExtendedSize        /*= CSize(0,0)*/ )
 {
-	CWnd* pWnd = dynamic_cast<CWnd*>( pWndInPlaceControl );
-	DestroyInPlaceControl( pWndInPlaceControl );
+    CWnd* pWnd = dynamic_cast<CWnd*>( pWndInPlaceControl );
+    DestroyInPlaceControl( pWndInPlaceControl );
 
-	pWndInPlaceControl = new ZCInPlaceIntelliEdit( IsReadOnly() );
+    pWndInPlaceControl = new ZCInPlaceIntelliEdit( IsReadOnly() );
 
-	switch( m_Type )
-	{
-		case PI_STRING:
-		{
-			pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_strText, pWndParent, rect );
-			break;
-		}
+    switch( m_Type )
+    {
+        case PI_STRING:
+        {
+            pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_strText, pWndParent, rect );
+            break;
+        }
 
-		case PI_DOUBLE:
-		{
-			pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_dValue, pWndParent, rect );
-			break;
-		}
+        case PI_DOUBLE:
+        {
+            pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_dValue, pWndParent, rect );
+            break;
+        }
 
-		case PI_FLOAT:
-		{
-			pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_fValue, pWndParent, rect );
-			break;
-		}
-	}
+        case PI_FLOAT:
+        {
+            pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_fValue, pWndParent, rect );
+            break;
+        }
+    }
 
-	// Initialize the control array of values
-	((ZCInPlaceIntelliEdit*)pWndInPlaceControl)->Initialize( m_data,
-															( ExtendedSize.cx != 0 && ExtendedSize.cy != 0 ) ? &ExtendedSize : NULL );
+    // Initialize the control array of values
+    ((ZCInPlaceIntelliEdit*)pWndInPlaceControl)->Initialize( m_data,
+                                                            ( ExtendedSize.cx != 0 && ExtendedSize.cy != 0 ) ? &ExtendedSize : NULL );
 }
 
 void ZBPropertyItemIntelliEdit::SetData( const CString sText )
 {
-	m_strText = sText;
+    m_strText = sText;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -169,52 +169,52 @@ void ZBPropertyItemIntelliEdit::SetData( const CString sText )
 
 IMPLEMENT_DYNAMIC( ZBPropertyItemMultiLineEdit, ZBPropertyItem )
 
-void ZBPropertyItemMultiLineEdit::CreateInPlaceControl( CWnd*			pWndParent,
-														CRect&			rect,
-														ZIInPlaceEdit*&	pWndInPlaceControl,
-														CSize			ExtendedSize		/*= CSize(0,0)*/ )
+void ZBPropertyItemMultiLineEdit::CreateInPlaceControl( CWnd*            pWndParent,
+                                                        CRect&            rect,
+                                                        ZIInPlaceEdit*&    pWndInPlaceControl,
+                                                        CSize            ExtendedSize        /*= CSize(0,0)*/ )
 {
-	CWnd* pWnd = dynamic_cast<CWnd*>( pWndInPlaceControl );
+    CWnd* pWnd = dynamic_cast<CWnd*>( pWndInPlaceControl );
 
-	DestroyInPlaceControl( pWndInPlaceControl );
+    DestroyInPlaceControl( pWndInPlaceControl );
 
-	pWndInPlaceControl = new ZCInPlaceMultiLineEdit( IsReadOnly() );
+    pWndInPlaceControl = new ZCInPlaceMultiLineEdit( IsReadOnly() );
 
-	switch( m_Type )
-	{
-		case PI_STRING:
-		{
-			pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_strText, pWndParent, rect );
-			break;
-		}
+    switch( m_Type )
+    {
+        case PI_STRING:
+        {
+            pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_strText, pWndParent, rect );
+            break;
+        }
 
-		case PI_DOUBLE:
-		{
-			pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_dValue, pWndParent, rect );
-			break;
-		}
+        case PI_DOUBLE:
+        {
+            pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_dValue, pWndParent, rect );
+            break;
+        }
 
-		case PI_FLOAT:
-		{
-			pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_fValue, pWndParent, rect );
-			break;
-		}
-	}
+        case PI_FLOAT:
+        {
+            pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_fValue, pWndParent, rect );
+            break;
+        }
+    }
 
-	// Initialize the control
-	if ( ExtendedSize.cx != 0 && ExtendedSize.cy != 0 )
-	{
-		( (ZCInPlaceMultiLineEdit*)pWndInPlaceControl )->Initialize( ExtendedSize );
-	}
-	else
-	{
-		( (ZCInPlaceMultiLineEdit*)pWndInPlaceControl )->Initialize();
-	}
+    // Initialize the control
+    if ( ExtendedSize.cx != 0 && ExtendedSize.cy != 0 )
+    {
+        ( (ZCInPlaceMultiLineEdit*)pWndInPlaceControl )->Initialize( ExtendedSize );
+    }
+    else
+    {
+        ( (ZCInPlaceMultiLineEdit*)pWndInPlaceControl )->Initialize();
+    }
 }
 
 void ZBPropertyItemMultiLineEdit::SetData( const CString sText )
 {
-	m_strText = sText;
+    m_strText = sText;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -222,33 +222,33 @@ void ZBPropertyItemMultiLineEdit::SetData( const CString sText )
 
 IMPLEMENT_DYNAMIC( ZBPropertyItemDuration, ZBPropertyItem )
 
-void ZBPropertyItemDuration::CreateInPlaceControl( CWnd*			pWndParent,
-												   CRect&			rect,
-												   ZIInPlaceEdit*&	pWndInPlaceControl,
-												   CSize			ExtendedSize		/*= CSize(0,0)*/ )
+void ZBPropertyItemDuration::CreateInPlaceControl( CWnd*            pWndParent,
+                                                   CRect&            rect,
+                                                   ZIInPlaceEdit*&    pWndInPlaceControl,
+                                                   CSize            ExtendedSize        /*= CSize(0,0)*/ )
 {
-	CWnd* pWnd = dynamic_cast<CWnd*>( pWndInPlaceControl );
-	DestroyInPlaceControl( pWndInPlaceControl );
+    CWnd* pWnd = dynamic_cast<CWnd*>( pWndInPlaceControl );
+    DestroyInPlaceControl( pWndInPlaceControl );
 
-	pWndInPlaceControl = new ZCInPlaceDurationEdit( IsReadOnly() );
+    pWndInPlaceControl = new ZCInPlaceDurationEdit( IsReadOnly() );
 
-	// For processing extended command
-	( (ZCInPlaceExtendedEdit*)pWndInPlaceControl )->SetSearchType( ZSEARCHEDIT_EXTENDED );
+    // For processing extended command
+    ( (ZCInPlaceExtendedEdit*)pWndInPlaceControl )->SetSearchType( ZSEARCHEDIT_EXTENDED );
 
-	switch( m_Type )
-	{
-		case PI_STRING:
-		{
-			pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_strText, pWndParent, rect );
-			break;
-		}
+    switch( m_Type )
+    {
+        case PI_STRING:
+        {
+            pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_strText, pWndParent, rect );
+            break;
+        }
 
-		case PI_DURATION:
-		{
-			pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_durationValue, pWndParent, rect );
-			break;
-		}
-	}
+        case PI_DURATION:
+        {
+            pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_durationValue, pWndParent, rect );
+            break;
+        }
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -256,33 +256,33 @@ void ZBPropertyItemDuration::CreateInPlaceControl( CWnd*			pWndParent,
 
 IMPLEMENT_DYNAMIC( ZBPropertyItemDate, ZBPropertyItem )
 
-void ZBPropertyItemDate::CreateInPlaceControl( CWnd*			pWndParent,
-											   CRect&			rect,
-											   ZIInPlaceEdit*&	pWndInPlaceControl,
-											   CSize			ExtendedSize		/*= CSize(0,0)*/ )
+void ZBPropertyItemDate::CreateInPlaceControl( CWnd*            pWndParent,
+                                               CRect&            rect,
+                                               ZIInPlaceEdit*&    pWndInPlaceControl,
+                                               CSize            ExtendedSize        /*= CSize(0,0)*/ )
 {
-	CWnd* pWnd = dynamic_cast<CWnd*>( pWndInPlaceControl );
-	DestroyInPlaceControl( pWndInPlaceControl );
-	
-	pWndInPlaceControl = new ZCInPlaceDateEdit( IsReadOnly() );
+    CWnd* pWnd = dynamic_cast<CWnd*>( pWndInPlaceControl );
+    DestroyInPlaceControl( pWndInPlaceControl );
+    
+    pWndInPlaceControl = new ZCInPlaceDateEdit( IsReadOnly() );
 
-	// For processing extended command
-	( (ZCInPlaceExtendedEdit*)pWndInPlaceControl )->SetSearchType( ZSEARCHEDIT_EXTENDED );
+    // For processing extended command
+    ( (ZCInPlaceExtendedEdit*)pWndInPlaceControl )->SetSearchType( ZSEARCHEDIT_EXTENDED );
 
-	switch( m_Type )
-	{
-		case PI_STRING:
-		{
-			pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_strText, pWndParent, rect );
-			break;
-		}
+    switch( m_Type )
+    {
+        case PI_STRING:
+        {
+            pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_strText, pWndParent, rect );
+            break;
+        }
 
-		case PI_DATE:
-		{
-			pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_dateValue, pWndParent, rect );
-			break;
-		}
-	}
+        case PI_DATE:
+        {
+            pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_dateValue, pWndParent, rect );
+            break;
+        }
+    }
 }
 
 // RS-MODIF 08.08.2005: ajout de la propriété d'attribut "time"
@@ -291,33 +291,33 @@ void ZBPropertyItemDate::CreateInPlaceControl( CWnd*			pWndParent,
 
 IMPLEMENT_DYNAMIC( ZBPropertyItemTime, ZBPropertyItem )
 
-void ZBPropertyItemTime::CreateInPlaceControl( CWnd*			pWndParent,
-											   CRect&			rect,
-											   ZIInPlaceEdit*&	pWndInPlaceControl,
-											   CSize			ExtendedSize		/*= CSize(0,0)*/ )
+void ZBPropertyItemTime::CreateInPlaceControl( CWnd*            pWndParent,
+                                               CRect&            rect,
+                                               ZIInPlaceEdit*&    pWndInPlaceControl,
+                                               CSize            ExtendedSize        /*= CSize(0,0)*/ )
 {
-	CWnd* pWnd = dynamic_cast<CWnd*>( pWndInPlaceControl );
-	DestroyInPlaceControl( pWndInPlaceControl );
+    CWnd* pWnd = dynamic_cast<CWnd*>( pWndInPlaceControl );
+    DestroyInPlaceControl( pWndInPlaceControl );
 
-	pWndInPlaceControl = new ZCInPlaceTimeEdit( IsReadOnly() );
+    pWndInPlaceControl = new ZCInPlaceTimeEdit( IsReadOnly() );
 
-	// For processing extended command
-	( (ZCInPlaceExtendedEdit*)pWndInPlaceControl )->SetSearchType( ZSEARCHEDIT_EXTENDED );
+    // For processing extended command
+    ( (ZCInPlaceExtendedEdit*)pWndInPlaceControl )->SetSearchType( ZSEARCHEDIT_EXTENDED );
 
-	switch( m_Type )
-	{
-		case PI_STRING:
-		{
-			pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_strText, pWndParent, rect );
-			break;
-		}
+    switch( m_Type )
+    {
+        case PI_STRING:
+        {
+            pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_strText, pWndParent, rect );
+            break;
+        }
 
-		case PI_TIME:
-		{
-			pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_timeValue, pWndParent, rect );
-			break;
-		}
-	}
+        case PI_TIME:
+        {
+            pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_timeValue, pWndParent, rect );
+            break;
+        }
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -325,62 +325,62 @@ void ZBPropertyItemTime::CreateInPlaceControl( CWnd*			pWndParent,
 
 IMPLEMENT_DYNAMIC( ZBPropertyItemMenuFileDir, ZBPropertyItem )
 
-void ZBPropertyItemMenuFileDir::CreateInPlaceControl( CWnd*				pWndParent,
-													  CRect&			rect,
-													  ZIInPlaceEdit*&	pWndInPlaceControl,
-													  CSize				ExtendedSize		/*= CSize(0,0)*/ )
+void ZBPropertyItemMenuFileDir::CreateInPlaceControl( CWnd*                pWndParent,
+                                                      CRect&            rect,
+                                                      ZIInPlaceEdit*&    pWndInPlaceControl,
+                                                      CSize                ExtendedSize        /*= CSize(0,0)*/ )
 {
-	CWnd* pWnd = dynamic_cast<CWnd*>( pWndInPlaceControl );
-	DestroyInPlaceControl( pWndInPlaceControl );
+    CWnd* pWnd = dynamic_cast<CWnd*>( pWndInPlaceControl );
+    DestroyInPlaceControl( pWndInPlaceControl );
 
-	pWndInPlaceControl = new ZCInPlaceSearchEdit( IsReadOnly() );
+    pWndInPlaceControl = new ZCInPlaceSearchEdit( IsReadOnly() );
 
-	switch( m_ControlType )
-	{
-		case MFD_MENU:
-		{
-			// Enable all menu items and no notification
-			( (ZCInPlaceSearchEdit*)pWndInPlaceControl )->SetSearchType( ZSEARCHEDIT_POPUP,
-																		 m_pMenu,
-																		 true,
-																		 true );
+    switch( m_ControlType )
+    {
+        case MFD_MENU:
+        {
+            // Enable all menu items and no notification
+            ( (ZCInPlaceSearchEdit*)pWndInPlaceControl )->SetSearchType( ZSEARCHEDIT_POPUP,
+                                                                         m_pMenu,
+                                                                         true,
+                                                                         true );
 
-			break;
-		}
+            break;
+        }
 
-		case MFD_FILE:
-		{
-			( (ZCInPlaceSearchEdit*)pWndInPlaceControl )->SetSearchType( ZSEARCHEDIT_FILE );
-			break;
-		}
+        case MFD_FILE:
+        {
+            ( (ZCInPlaceSearchEdit*)pWndInPlaceControl )->SetSearchType( ZSEARCHEDIT_FILE );
+            break;
+        }
 
-		case MFD_DIRECTORY:
-		{
-			( (ZCInPlaceSearchEdit*)pWndInPlaceControl )->SetSearchType( ZSEARCHEDIT_DIRECTORY );
-			break;
-		}
-	}
+        case MFD_DIRECTORY:
+        {
+            ( (ZCInPlaceSearchEdit*)pWndInPlaceControl )->SetSearchType( ZSEARCHEDIT_DIRECTORY );
+            break;
+        }
+    }
 
-	switch( m_Type )
-	{
-		case PI_STRING:
-		{
-			pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_strText, pWndParent, rect );
-			break;
-		}
+    switch( m_Type )
+    {
+        case PI_STRING:
+        {
+            pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_strText, pWndParent, rect );
+            break;
+        }
 
-		case PI_DOUBLE:
-		{
-			pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_dValue, pWndParent, rect );
-			break;
-		}
+        case PI_DOUBLE:
+        {
+            pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_dValue, pWndParent, rect );
+            break;
+        }
 
-		case PI_FLOAT:
-		{
-			pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_fValue, pWndParent, rect );
-			break;
-		}
-	}
+        case PI_FLOAT:
+        {
+            pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_fValue, pWndParent, rect );
+            break;
+        }
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -388,28 +388,28 @@ void ZBPropertyItemMenuFileDir::CreateInPlaceControl( CWnd*				pWndParent,
 
 IMPLEMENT_DYNAMIC( ZBPropertyItemNumber, ZBPropertyItem )
 
-void ZBPropertyItemNumber::CreateInPlaceControl( CWnd*				pWndParent,
-												 CRect&				rect,
-												 ZIInPlaceEdit*&	pWndInPlaceControl,
-												 CSize				ExtendedSize		/*= CSize(0,0)*/ )
+void ZBPropertyItemNumber::CreateInPlaceControl( CWnd*                pWndParent,
+                                                 CRect&                rect,
+                                                 ZIInPlaceEdit*&    pWndInPlaceControl,
+                                                 CSize                ExtendedSize        /*= CSize(0,0)*/ )
 {
-	CWnd* pWnd = dynamic_cast<CWnd*>( pWndInPlaceControl );
-	DestroyInPlaceControl( pWndInPlaceControl );
-	
-	switch( m_Type )
-	{
-		case PI_DOUBLE:
-		{
-			pWndInPlaceControl = new ZCInPlaceEditPropItemNumber( m_dValue, IsReadOnly() );
-			pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_dValue, pWndParent, rect );
-			break;
-		}
+    CWnd* pWnd = dynamic_cast<CWnd*>( pWndInPlaceControl );
+    DestroyInPlaceControl( pWndInPlaceControl );
+    
+    switch( m_Type )
+    {
+        case PI_DOUBLE:
+        {
+            pWndInPlaceControl = new ZCInPlaceEditPropItemNumber( m_dValue, IsReadOnly() );
+            pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_dValue, pWndParent, rect );
+            break;
+        }
 
-		case PI_FLOAT:
-		{
-			pWndInPlaceControl = new ZCInPlaceEditPropItemNumber( m_fValue, IsReadOnly() );
-			pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_fValue, pWndParent, rect );
-			break;
-		}
-	}
+        case PI_FLOAT:
+        {
+            pWndInPlaceControl = new ZCInPlaceEditPropItemNumber( m_fValue, IsReadOnly() );
+            pWndInPlaceControl->InitializeInPlaceEditCtrl( this, m_fValue, pWndParent, rect );
+            break;
+        }
+    }
 }

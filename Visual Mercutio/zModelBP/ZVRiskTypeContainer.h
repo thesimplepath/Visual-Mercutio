@@ -1,9 +1,9 @@
 // **************************************************************************************************************
-// *											Classe ZVRiskTypeContainer										*
+// *                                            Classe ZVRiskTypeContainer                                        *
 // **************************************************************************************************************
-// * JMR-MODIF - Le 8 juillet 2007 - Ajout de la classe ZVRiskTypeContainer.									*
+// * JMR-MODIF - Le 8 juillet 2007 - Ajout de la classe ZVRiskTypeContainer.                                    *
 // **************************************************************************************************************
-// * Cette classe contient en mémoire les types pour les risques, en synchronisation avec le fichier des types.	*
+// * Cette classe contient en mémoire les types pour les risques, en synchronisation avec le fichier des types.    *
 // **************************************************************************************************************
 
 #if !defined(AFX_ZVRISKTYPECONTAINER_H__F8225CF5_FC88_4006_829D_3079998B03A7__INCLUDED_)
@@ -35,30 +35,30 @@ class AFX_EXT_CLASS ZVRiskTypeContainer : public CObject
 {
 public:
 
-	ZVRiskTypeContainer();
-	~ZVRiskTypeContainer();
+    ZVRiskTypeContainer();
+    ~ZVRiskTypeContainer();
 
 public:
 
-	BOOL LoadFile( CString Filename );
+    BOOL LoadFile( CString Filename );
 
-	CStringArray* GetElementsArray();
+    CStringArray* GetElementsArray();
 
-	CString GetElementAt( size_t Index ) const;
-	CString GetFilename();
+    CString GetElementAt( size_t Index ) const;
+    CString GetFilename();
 
-	void RemoveAllElements();
+    void RemoveAllElements();
 
-	// Obtient le nombre de propriétés contenues dans l'ensemble.
-	size_t GetElementCount() const
-	{
-		return m_Set.GetSize();
-	};
+    // Obtient le nombre de propriétés contenues dans l'ensemble.
+    size_t GetElementCount() const
+    {
+        return m_Set.GetSize();
+    };
 
 private:
 
-	CString			m_Filename;
-	CStringArray	m_Set;
+    CString            m_Filename;
+    CStringArray    m_Set;
 };
 
 #endif // !defined(AFX_ZVRISKTYPECONTAINER_H__F8225CF5_FC88_4006_829D_3079998B03A7__INCLUDED_)

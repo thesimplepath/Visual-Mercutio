@@ -1,10 +1,10 @@
 //## begin module%3786DB7B0055.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%3786DB7B0055.cm
 
 //## begin module%3786DB7B0055.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%3786DB7B0055.cp
 
 //## Module: BActvt%3786DB7B0055; Package specification
@@ -45,51 +45,51 @@ class ZProcess;
 #include "Zresourc.h"
 
 
-enum	ActivityRunMode { SequenceRun, ChooseMode, ParallelMode };
+enum    ActivityRunMode { SequenceRun, ChooseMode, ParallelMode };
 
 
-enum 	ActivityVisibilityType { Visible, Invisible, AttributionOfVisibility };
-enum 	ActivityTimeOutType { TimeDays, AttributionOfTimeOut };
+enum     ActivityVisibilityType { Visible, Invisible, AttributionOfVisibility };
+enum     ActivityTimeOutType { TimeDays, AttributionOfTimeOut };
 // Flags defining the activity type
-enum 	ActivityType {	ActivityTypeInputInformation = 0x0001, 
-						ActivityTypeAcceptation = 0x0002, 
-						ActivityTypeAttribution = 0x0004,
-						ActivityTypeSendMail = 0x0008,
-						ActivityTypeStartProcess = 0x0010,
-						ActivityTypeCommandLine = 0x0020,
-						ActivityTypeScanning = 0x0040,
-						ActivityTypeArchiving = 0x0080 };
+enum     ActivityType {    ActivityTypeInputInformation = 0x0001, 
+                        ActivityTypeAcceptation = 0x0002, 
+                        ActivityTypeAttribution = 0x0004,
+                        ActivityTypeSendMail = 0x0008,
+                        ActivityTypeStartProcess = 0x0010,
+                        ActivityTypeCommandLine = 0x0020,
+                        ActivityTypeScanning = 0x0040,
+                        ActivityTypeArchiving = 0x0080 };
 
-enum 	ActivityStatus { ActivityStarted, ActivitySent, ActivitySentForAcceptation, ActivityCompleted, ActivityRejected, ActivitySuspended, ActivityAborted, ActivityNotStarted };
+enum     ActivityStatus { ActivityStarted, ActivitySent, ActivitySentForAcceptation, ActivityCompleted, ActivityRejected, ActivitySuspended, ActivityAborted, ActivityNotStarted };
 
 
 // Activity Type flag
-const	char	ActivityTypeInputInformationKey[] = "ActInp";
-const	char	ActivityTypeAcceptationKey[] = "ActAcpt";
-const	char	ActivityTypeAttributionKey[] = "ActAttr";
-const	char	ActivityTypeSendMailKey[] = "ActSndM";
-const	char	ActivityTypeStartProcessKey[] = "ActStProc";
-const	char	ActivityTypeCommandLineKey[] = "ActCmd";
-const	char	ActivityTypeScanningKey[] = "ActScan";
-const	char	ActivityTypeArchivingKey[] = "ActArch";
+const    char    ActivityTypeInputInformationKey[] = "ActInp";
+const    char    ActivityTypeAcceptationKey[] = "ActAcpt";
+const    char    ActivityTypeAttributionKey[] = "ActAttr";
+const    char    ActivityTypeSendMailKey[] = "ActSndM";
+const    char    ActivityTypeStartProcessKey[] = "ActStProc";
+const    char    ActivityTypeCommandLineKey[] = "ActCmd";
+const    char    ActivityTypeScanningKey[] = "ActScan";
+const    char    ActivityTypeArchivingKey[] = "ActArch";
 
 
 // Activity Status flag
-const	char	ActivityStatusProcessStarted[] = "PrcSt";
-const	char	ActivityStatusProcessNotStarted[] = "PrcNotSt";
-const	char	ActivityStatusProcessInProcess[] = "PrcInProc";
-const	char	ActivityStatusProcessPaused[] = "PrcPause";
-const	char	ActivityStatusProcessAborted[] = "PrcAbort";
-const	char	ActivityStatusProcessCompleted[] = "PrcCmpl";
-const	char	ActivityStatusRequestAcceptation[] = "ActRqAcpt";
-const	char	ActivityStatusSent[] = "ActSent";
-const	char	ActivityStatusAccepted[] = "ActAcpt";
-const	char	ActivityStatusRejected[] = "ActRejt";
-const	char	ActivityStatusAttribution[] = "ActAttr";
-const	char	ActivityStatusCompleted[] = "ActCmpl";
-const	char	ActivityStatusNotStarted[] = "ActNotSt";
-const	char	ActivityStatusStarted[] = "ActSt";
-const	char	ActivityStatusTakeOwnerShip[] = "ActTkOwn";
+const    char    ActivityStatusProcessStarted[] = "PrcSt";
+const    char    ActivityStatusProcessNotStarted[] = "PrcNotSt";
+const    char    ActivityStatusProcessInProcess[] = "PrcInProc";
+const    char    ActivityStatusProcessPaused[] = "PrcPause";
+const    char    ActivityStatusProcessAborted[] = "PrcAbort";
+const    char    ActivityStatusProcessCompleted[] = "PrcCmpl";
+const    char    ActivityStatusRequestAcceptation[] = "ActRqAcpt";
+const    char    ActivityStatusSent[] = "ActSent";
+const    char    ActivityStatusAccepted[] = "ActAcpt";
+const    char    ActivityStatusRejected[] = "ActRejt";
+const    char    ActivityStatusAttribution[] = "ActAttr";
+const    char    ActivityStatusCompleted[] = "ActCmpl";
+const    char    ActivityStatusNotStarted[] = "ActNotSt";
+const    char    ActivityStatusStarted[] = "ActSt";
+const    char    ActivityStatusTakeOwnerShip[] = "ActTkOwn";
 
 
 #ifdef _ZEVENTEXPORT
@@ -110,8 +110,8 @@ const	char	ActivityStatusTakeOwnerShip[] = "ActTkOwn";
 
 
 //## Class: ZBaseActivity%3786D911011F
-//	This class exposes the interface for activities in
-//	general. A process is an activity.
+//    This class exposes the interface for activities in
+//    general. A process is an activity.
 //## Category: ZEvent::Process Classes - Event%378A5FD903A4
 //## Subsystem: ZEvent%378A5F7E02DB
 //## Persistence: Transient
@@ -124,8 +124,8 @@ class AFX_EXT_CLASS ZBaseActivity : public CObject  //## Inherits: <unnamed>%378
   //## begin ZBaseActivity%3786D911011F.initialDeclarations preserve=yes
 public:
 // Inherited feature
-	typedef CObject inherited;
-	DECLARE_SERIAL(ZBaseActivity)
+    typedef CObject inherited;
+    DECLARE_SERIAL(ZBaseActivity)
   //## end ZBaseActivity%3786D911011F.initialDeclarations
 
   public:
@@ -140,107 +140,107 @@ public:
 
     //## Other Operations (specified)
       //## Operation: GetParent%932278208
-      //	Returns the process that owns the activity.
+      //    Returns the process that owns the activity.
       ZBaseActivity* GetParent () const;
 
-	  ZProcess*		 GetParentProcess () const;
+      ZProcess*         GetParentProcess () const;
 
-	  bool			 HasActivities() const;
+      bool             HasActivities() const;
 
       //## Operation: GetFirstBaseActivity%932314507
-      //	Return the first base activity pointer.
+      //    Return the first base activity pointer.
       virtual ZBaseActivity* GetFirstBaseActivity () const;
 
       //## Operation: GetFirstValidActivity%932278209
-      //	Return the first activity pointer.
+      //    Return the first activity pointer.
       virtual ZBaseActivity* GetFirstValidActivity () const;
 
       //## Operation: GetFirstValidBaseActivity%937152021
-      //	Return the first activity pointer.
+      //    Return the first activity pointer.
       virtual ZBaseActivity* GetFirstValidBaseActivity () const;
 
       //## Operation: GetNextBaseActivity%932278202
-      //	Return the next activity pointer. If no, return NULL.
+      //    Return the next activity pointer. If no, return NULL.
       ZBaseActivity* GetNextBaseActivity () const;
 
       //## Operation: GetPreviousBaseActivity%932278203
-      //	Return the previous activity pointer. If no, return NULL.
+      //    Return the previous activity pointer. If no, return NULL.
       ZBaseActivity* GetPreviousBaseActivity () const;
 
       //## Operation: GetNextValidActivity%932278204
-      //	Return the next activity pointer. If no, return NULL.
+      //    Return the next activity pointer. If no, return NULL.
       ZBaseActivity* GetNextValidActivity () const;
 
       //## Operation: GetNextValidBaseActivity%937152022
-      //	Return the next activity pointer. If no, return NULL.
+      //    Return the next activity pointer. If no, return NULL.
       ZBaseActivity* GetNextValidBaseActivity () const;
 
       //## Operation: GetPreviousValidActivity%932278205
-      //	Return the previous activity pointer. If no, return NULL.
+      //    Return the previous activity pointer. If no, return NULL.
       ZBaseActivity* GetPreviousValidActivity () const;
 
       //## Operation: GetPreviousValidBaseActivity%937152023
-      //	Return the previous activity pointer. If no, return NULL.
+      //    Return the previous activity pointer. If no, return NULL.
       ZBaseActivity* GetPreviousValidBaseActivity () const;
 
       //## Operation: GetNextProcess%932278206
-      //	Return the next process pointer. If no, return NULL.
+      //    Return the next process pointer. If no, return NULL.
       ZProcess* GetNextProcess () const;
 
       //## Operation: GetPreviousProcess%932278207
-      //	Return the previous process pointer. If no, return NULL.
+      //    Return the previous process pointer. If no, return NULL.
       ZProcess* GetPreviousProcess () const;
 
       //## Operation: Serialize%931584985
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: ActivityCreatePersonDelimStr%931584998
-      //	Take the activity and build a delimited string
-      //	containing the person list.
+      //    Take the activity and build a delimited string
+      //    containing the person list.
       virtual CString ActivityCreatePersonDelimStr (ZUUserManager& UserManager, CString ConnectedUser, CString Delimiter = ";");
 
       //## Operation: ActivityCreatePersonList%931585003
-      //	Take the activity and build the person list for the
-      //	email.
+      //    Take the activity and build the person list for the
+      //    email.
       virtual ZUMailUserList* ActivityCreatePersonList (ZUUserManager& UserManager, CString ConnectedUser);
 
       //## Operation: CreatePersonList%931584999
-      //	Take the activity and build the person list for the
-      //	email.
+      //    Take the activity and build the person list for the
+      //    email.
       virtual ZUMailUserList* CreatePersonList (ZBaseActivity& Activity, ZUUserManager& UserManager);
 
       //## Operation: CreatePersonList%931585000
-      //	Take the activity and build the person list for the
-      //	email.
+      //    Take the activity and build the person list for the
+      //    email.
       virtual ZUMailUserList* CreatePersonList (int Index, ZUUserManager& UserManager);
 
       //## Operation: CreatePersonDelimStr%931585001
-      //	Take the activity and build a delimited string
-      //	containing the person list.
+      //    Take the activity and build a delimited string
+      //    containing the person list.
       virtual CString CreatePersonDelimStr (ZBaseActivity& Activity, ZUUserManager& UserManager, CString Delimiter = ";");
 
       //## Operation: CreatePersonDelimStr%931585002
-      //	Take the activity and build a delimited string
-      //	containing the person list.
+      //    Take the activity and build a delimited string
+      //    containing the person list.
       virtual CString CreatePersonDelimStr (int Index, ZUUserManager& UserManager, CString Delimiter = ";");
 
       //## Operation: FillPersonArray%931585012
-      //	Take the activity and fill a person array.
+      //    Take the activity and fill a person array.
       virtual BOOL FillPersonArray (ZBaseActivity& Activity, ZUUserManager& UserManager, CStringArray& UserArray);
 
       //## Operation: FillPersonArray%931585013
-      //	Take the activity and fill a person array.
+      //    Take the activity and fill a person array.
       virtual BOOL FillPersonArray (int Index, ZUUserManager& UserManager, CStringArray& UserArray);
 
-      //	Take the activity and fill a person array.
+      //    Take the activity and fill a person array.
       virtual BOOL ActivityFillPersonArray (ZUUserManager& UserManager, CStringArray& UserArray, CString ConnectedUser);
 
-	  virtual BOOL ActivityAddUsers (CString DelimiterString);
+      virtual BOOL ActivityAddUsers (CString DelimiterString);
 
-	  virtual BOOL PrincipalResourceActivityAddUsers (CString DelimiterString);
+      virtual BOOL PrincipalResourceActivityAddUsers (CString DelimiterString);
 
-	  virtual BOOL BackupResourceActivityAddUsers (CString DelimiterString);
+      virtual BOOL BackupResourceActivityAddUsers (CString DelimiterString);
 
 
       virtual BOOL PrincipalResourceActivityFillPersonArray (ZUUserManager& UserManager, CStringArray& UserArray, CString ConnectedUser);
@@ -253,13 +253,13 @@ public:
 
 
       //## Operation: CalculateForecastedEndDate%931585004
-      //	This function calculates the forecasted end date by
-      //	taking all activities.
+      //    This function calculates the forecasted end date by
+      //    taking all activities.
       virtual void CalculateForecastedEndDate ();
 
       //## Operation: CalculateForecastedStartDate%931585005
-      //	This function calculates the forecasted start date by
-      //	taking all activities.
+      //    This function calculates the forecasted start date by
+      //    taking all activities.
       virtual void CalculateForecastedStartDate ();
 
       //## Operation: GetDurationDays%931585008
@@ -269,62 +269,62 @@ public:
       virtual void SetDurationDays (WORD value);
 
       //## Operation: GetStatusKeyString%931585015
-      //	Return the Activity Status string.
+      //    Return the Activity Status string.
       virtual CString GetStatusKeyString (ZBaseActivity* pActivity = NULL);
 
       //## Operation: SetStatusFromKeyString%943181050
-      //	Set the Activity Status based on a keystring.
+      //    Set the Activity Status based on a keystring.
       virtual void SetStatusFromKeyString (const CString KeyString);
 
       //## Operation: GetStatusString%931585018
       static CString GetStatusString (const CString KeyString);
 
       //## Operation: AddUser%931585020
-      //	Add a new user.
+      //    Add a new user.
       virtual void AddUser (const CString UserName);
 
       //## Operation: RemoveUser%931585021
-      //	Remove a specific user.
+      //    Remove a specific user.
       virtual BOOL RemoveUser (const CString& UserName);
 
       //## Operation: UserExist%931585022
-      //	Search if a specific user exists.
+      //    Search if a specific user exists.
       virtual BOOL UserExist (const CString& UserName);
 
       //## Operation: GetUserCount%931585023
-      //	Return the number of users.
+      //    Return the number of users.
       virtual size_t GetUserCount ();
 
       //## Operation: RemoveAllUsers%931585024
-      //	Remove all users.
+      //    Remove all users.
       virtual void RemoveAllUsers ();
 
       //## Operation: GetUserAt%931585025
-      //	Returns the user at the index position.
+      //    Returns the user at the index position.
       virtual CString GetUserAt (int Index);
 
       //## Operation: AddBackupUser%931585026
-      //	Add a new user.
+      //    Add a new user.
       virtual void AddBackupUser (const CString UserName);
 
       //## Operation: RemoveBackupUser%931585027
-      //	Remove a specific user.
+      //    Remove a specific user.
       virtual BOOL RemoveBackupUser (const CString& UserName);
 
       //## Operation: BackupUserExist%931585028
-      //	Search if a specific user exists.
+      //    Search if a specific user exists.
       virtual BOOL BackupUserExist (const CString& UserName);
 
       //## Operation: GetBackupUserCount%931585029
-      //	Return the number of users.
+      //    Return the number of users.
       virtual size_t GetBackupUserCount ();
 
       //## Operation: RemoveAllBackupUsers%931585030
-      //	Remove all users.
+      //    Remove all users.
       virtual void RemoveAllBackupUsers ();
 
       //## Operation: GetBackupUserAt%931585031
-      //	Returns the user at the index position.
+      //    Returns the user at the index position.
       virtual CString GetBackupUserAt (int Index);
 
       //## Operation: GetAttributedByActivity%931585032
@@ -334,98 +334,98 @@ public:
       virtual void SetAttributedByActivity (const CString value = "");
 
       //## Operation: FillActivityInformationWhenStart%931613230
-      //	When the task starts, fill necessary information.
+      //    When the task starts, fill necessary information.
       void FillActivityInformationWhenStart ();
 
       //## Operation: FillActivityInformationWhenEnd%931613231
-      //	When the task ends, fill necessary information.
+      //    When the task ends, fill necessary information.
       void FillActivityInformationWhenEnd ();
 
       //## Operation: FillActivityInformationWhenRefused%931613232
-      //	When the task is refused, fill necessary information.
+      //    When the task is refused, fill necessary information.
       void FillActivityInformationWhenRefused ();
 
       //## Operation: FillActivityInformationWhenSentForAccept%931613233
-      //	When the task is sent for acceptation, fill necessary
-      //	information.
+      //    When the task is sent for acceptation, fill necessary
+      //    information.
       void FillActivityInformationWhenSentForAccept ();
 
       //## Operation: FillActivityInformationWhenSent%931613244
       void FillActivityInformationWhenSent ();
 
       //## Operation: ActivityIsShared%931613245
-      //	Return TRUE if the activity is shared by several users.
+      //    Return TRUE if the activity is shared by several users.
       virtual BOOL ActivityIsShared ();
 
       //## Operation: MustSwitchToBackupResourceActivity%931613249
-      //	If it is time to switch to backup resource and if backup
-      //	resources have been defined, return TRUE.
+      //    If it is time to switch to backup resource and if backup
+      //    resources have been defined, return TRUE.
       virtual BOOL MustSwitchToBackupResourceActivity ();
 
       //## Operation: MustRemindEndActivity%931613250
-      //	If it is time to remind for end activity, return TRUE.
+      //    If it is time to remind for end activity, return TRUE.
       virtual BOOL MustRemindEndActivity ();
 
       //## Operation: ActivityIsAttribution%931613263
-      //	Returns TRUE if it is an attribution activity.
+      //    Returns TRUE if it is an attribution activity.
       virtual BOOL ActivityIsAttribution ();
 
       //## Operation: ActivityIsAcceptation%931613264
-      //	Returns TRUE if it is an acceptation activity.
+      //    Returns TRUE if it is an acceptation activity.
       virtual BOOL ActivityIsAcceptation ();
 
       //## Operation: ActivityIsInput%931613265
-      //	Returns TRUE if it is an input information activity.
+      //    Returns TRUE if it is an input information activity.
       virtual BOOL ActivityIsInput ();
 
       //## Operation: ActivityIsSendMail%931613266
-      //	Returns TRUE if it is a send mail activity.
+      //    Returns TRUE if it is a send mail activity.
       virtual BOOL ActivityIsSendMail ();
 
       //## Operation: ActivityIsStartProcess%931613267
-      //	Returns TRUE if it is a start process activity.
+      //    Returns TRUE if it is a start process activity.
       virtual BOOL ActivityIsStartProcess ();
 
       //## Operation: ActivityIsCommandLine%931613268
-      //	Returns TRUE if it is a command line activity.
+      //    Returns TRUE if it is a command line activity.
       virtual BOOL ActivityIsCommandLine ();
 
       //## Operation: ActivityIsScanning%940156895
-      //	Returns TRUE if it is a scanning process activity.
+      //    Returns TRUE if it is a scanning process activity.
       virtual BOOL ActivityIsScanning ();
 
       //## Operation: ActivityIsArchiving%940156896
-      //	Returns TRUE if it is an archiving process activity.
+      //    Returns TRUE if it is an archiving process activity.
       virtual BOOL ActivityIsArchiving ();
 
       //## Operation: GetActivityStatusString%931711481
       virtual CString GetActivityStatusString ();
 
       //## Operation: AssignNextActivityPtr%932406382
-      //	Assigns the next base activity pointer.
+      //    Assigns the next base activity pointer.
       void AssignNextActivityPtr (ZBaseActivity* Ptr);
 
       //## Operation: AssignPreviousActivityPtr%932406383
-      //	Assigns the previous base activity pointer.
+      //    Assigns the previous base activity pointer.
       void AssignPreviousActivityPtr (ZBaseActivity* Ptr);
 
       //## Operation: IsUserAttributionDone%934825328
-      //	Returns TRUE if the user attribution has been done for
-      //	this activity.
+      //    Returns TRUE if the user attribution has been done for
+      //    this activity.
       BOOL IsUserAttributionDone ();
 
       //## Operation: IsTimeAttributionDone%934825329
-      //	Returns TRUE if the time attribution has been done for
-      //	this activity.
+      //    Returns TRUE if the time attribution has been done for
+      //    this activity.
       BOOL IsTimeAttributionDone ();
 
       //## Operation: IsVisibilityAttributionDone%935005730
-      //	Returns TRUE if the visibility attribution has been done
-      //	for this activity.
+      //    Returns TRUE if the visibility attribution has been done
+      //    for this activity.
       BOOL IsVisibilityAttributionDone ();
 
       //## Operation: IsAttributedActivity%934825330
-      //	Returns true if the activity is an attributed activity.
+      //    Returns true if the activity is an attributed activity.
       virtual BOOL IsAttributedActivity () const;
 
       //## Operation: IsInBackupProcess%934825331
@@ -447,73 +447,73 @@ public:
       void SetBackupUserType (ActivityUserType value);
 
       //## Operation: GetCurrentResources%934825337
-      //	Returns the current resources. It depends if the
-      //	activity has been entered in backup process.
+      //    Returns the current resources. It depends if the
+      //    activity has been entered in backup process.
       ZBResources& GetCurrentResources ();
 
       //## Operation: IsConsiderAsVisible%935005731
-      //	Return TRUE if the activity is considered as visible.
-      //	Attributed activity are considered as visible until they
-      //	has been selected as invisible.
+      //    Return TRUE if the activity is considered as visible.
+      //    Attributed activity are considered as visible until they
+      //    has been selected as invisible.
       ThreeState IsConsiderAsVisible () const;
 
       //## Operation: SetVisibility%935776835
-      //	Set the visibility of an activity or process.
+      //    Set the visibility of an activity or process.
       virtual void SetVisibility (const ThreeState value);
 
       //## Operation: SetParent%936211873
       void SetParent (ZBaseActivity* pParent);
 
       //## Operation: GetMainProcess%945000546
-      //	Return the main process.
+      //    Return the main process.
       virtual ZProcess* GetMainProcess ();
 
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: IsVisible%37B5237800C0
-      //	The real visibility type.
+      //    The real visibility type.
       const ThreeState& GetIsVisible () const;
 
       //## Attribute: StartDate%3786D98F02C5
-      //	Contains the start date.
+      //    Contains the start date.
       const ZBDate GetStartDate () const;
       void SetStartDate (ZBDate value);
 
       //## Attribute: EndDate%3786D99402C2
-      //	Contains the end date.
+      //    Contains the end date.
       const ZBDate GetEndDate () const;
       void SetEndDate (ZBDate value);
 
       //## Attribute: ForecastedEndDate%3786D99903AF
-      //	Contains the end calculated forecasted date. This date
-      //	is initialized once the process starts.
+      //    Contains the end calculated forecasted date. This date
+      //    is initialized once the process starts.
       const ZBDate GetForecastedEndDate () const;
       void SetForecastedEndDate (ZBDate value);
 
       //## Attribute: ForecastedStartDate%3786ECE40361
-      //	Contains the start calculated forecasted date. This date
-      //	is initialized once the process starts.
+      //    Contains the start calculated forecasted date. This date
+      //    is initialized once the process starts.
       const ZBDate GetForecastedStartDate () const;
       void SetForecastedStartDate (ZBDate value);
 
       //## Attribute: LastUpdateDate%3786D9A000AC
-      //	Contains the last update date.
+      //    Contains the last update date.
       const ZBDate GetLastUpdateDate () const;
       void SetLastUpdateDate (ZBDate value);
 
       //## Attribute: Name%3786D9C7031F
-      //	The process name.
+      //    The process name.
       const CString& GetName () const;
       void SetName (const CString& value);
 
       //## Attribute: Description%3786D9CB03CF
-      //	The process description.
+      //    The process description.
       const CString& GetDescription () const;
       void SetDescription (const CString& value);
 
       //## Attribute: Comment%37DBD25B0368
-      //	The activity comment. Used when reject, stopped or pause
-      //	an activity.
+      //    The activity comment. Used when reject, stopped or pause
+      //    an activity.
       const CString& GetComment () const;
       void SetComment (const CString& value);
 
@@ -522,211 +522,211 @@ public:
       void SetInitiator (const CString& value);
 
       //## Attribute: ActivityStatus%3786DA0902CA
-      //	The activity status.
+      //    The activity status.
       const ActivityStatus GetActivityStatus () const;
       void SetActivityStatus (ActivityStatus value);
 
       //## Attribute: VisibilityType%3786DA2F0026
-      //	Gives the possibility to disable an activity at runtime.
+      //    Gives the possibility to disable an activity at runtime.
       const ActivityVisibilityType GetVisibilityType () const;
       void SetVisibilityType (ActivityVisibilityType value);
 
       //## Attribute: ConnectedUser%37874A290258
-      //	Contains the connected user.
+      //    Contains the connected user.
       const CString GetConnectedUser () const;
       void SetConnectedUser (CString value);
 
       //## Attribute: DaysForBackupResources%37B850C9019F
-      //	Defines the number of day for which the activity is
-      //	assigned to backup resources.
+      //    Defines the number of day for which the activity is
+      //    assigned to backup resources.
       const size_t GetDaysForBackupResources () const;
       void SetDaysForBackupResources (size_t value);
 
       //## Attribute: UseBackupResources%37B850F403A9
-      //	Defines if the system should use backup resources.
+      //    Defines if the system should use backup resources.
       const BOOL GetUseBackupResources () const;
       void SetUseBackupResources (BOOL value);
 
       //## Attribute: RemindDays%37B851120013
-      //	Defines the number of days for reminding the user.
+      //    Defines the number of days for reminding the user.
       const size_t GetRemindDays () const;
       void SetRemindDays (size_t value);
 
       //## Attribute: IntranetActivity%37B8512703D5
-      //	Defines if this activity is executed in the Intranet. If
-      //	no, the activity is subject to go outside and therefore,
-      //	this activity is not sent over the Intranet through the
-      //	message queuing.
+      //    Defines if this activity is executed in the Intranet. If
+      //    no, the activity is subject to go outside and therefore,
+      //    this activity is not sent over the Intranet through the
+      //    message queuing.
       const BOOL GetIntranetActivity () const;
       void SetIntranetActivity (BOOL value);
 
       //## Attribute: TimeType%37B8521D02F2
-      //	Defines the time type.
+      //    Defines the time type.
       const ActivityTimeOutType GetTimeType () const;
       void SetTimeType (ActivityTimeOutType value);
 
     // Additional Public Declarations
       //## begin ZBaseActivity%3786D911011F.public preserve=yes
-	  virtual void	SetDefaultProperty();
+      virtual void    SetDefaultProperty();
 
-      //	Contains the choosen activities. It is used when the
-      //	process in not choose activity mode.
+      //    Contains the choosen activities. It is used when the
+      //    process in not choose activity mode.
       CStringArray& GetChoiceActivityArray ();
 
-      //	return true if one or more activities have been choose.
-      //	Only available when the RunMode is equal to ChoiceRun.
+      //    return true if one or more activities have been choose.
+      //    Only available when the RunMode is equal to ChoiceRun.
       BOOL IsChoiceActivityDone () const;
 
       //## Operation: ChoiceActivityRemoveAll%934700761
-      //	Remove all activities from the choice activity array.
+      //    Remove all activities from the choice activity array.
       BOOL ChoiceActivityRemoveAll ();
 
       //## Operation: ChoiceActivityAdd%934700762
-      //	Add an activity to the choice activity array.
+      //    Add an activity to the choice activity array.
       BOOL ChoiceActivityAdd (const CString ActivityName);
 
 
-      //	Set the visibility of all childs of a process.
+      //    Set the visibility of all childs of a process.
       void SetChildVisibility (const ThreeState value);
 
       //## Operation: MoveActivityDown%935832843
-      //	return true if the activity has been correctly moved.
+      //    return true if the activity has been correctly moved.
       BOOL MoveActivityDown (const CString ActivityName);
 
       //## Operation: MoveActivityUp%935832844
-      //	return true if the activity has been correctly moved.
+      //    return true if the activity has been correctly moved.
       BOOL MoveActivityUp (const CString ActivityName);
 
       //## Operation: CanActivityMoveDown%935832845
-      //	return true if the activity can be moved down.
+      //    return true if the activity can be moved down.
       BOOL CanActivityMoveDown (const CString ActivityName);
 
       //## Operation: CanActivityMoveUp%935832846
-      //	return true if the activity can be moved up.
+      //    return true if the activity can be moved up.
       BOOL CanActivityMoveUp (const CString ActivityName);
 
-      //	Set the current activity to a valid activity.
+      //    Set the current activity to a valid activity.
       void SetCurrentActivity (const CString ActivityName);
 
       //## Operation: SetCurrentActivity%931815525
-      //	Set the current activity to a valid activity.
+      //    Set the current activity to a valid activity.
       void SetCurrentActivity (ZBaseActivity* pActivity);
 
       //## Operation: SetCurrentActivityToNext%931677640
-      //	Increment the current activity to the next valid
-      //	activity.
+      //    Increment the current activity to the next valid
+      //    activity.
       ZBaseActivity* SetCurrentActivityToNext ();
 
       //## Operation: SetCurrentActivityToPrevious%931677641
-      //	Decrement the current activity to the previous valid
-      //	activity.
+      //    Decrement the current activity to the previous valid
+      //    activity.
       ZBaseActivity* SetCurrentActivityToPrevious ();
 
       //## Operation: GetCurrentActivity%929033126
       ZBaseActivity* GetCurrentActivity () const;
 
       //## Operation: GetNextValidActivityFromCurrent%932278231
-      //	Retreive from the current activity, the next valid
-      //	activity.
+      //    Retreive from the current activity, the next valid
+      //    activity.
       ZBaseActivity* GetNextValidActivityFromCurrent ();
 
       //## Operation: GetPreviousValidActivityFromCurrent%932278232
-      //	Get from the current activity, the previous valid
-      //	activity.
+      //    Get from the current activity, the previous valid
+      //    activity.
       ZBaseActivity* GetPreviousValidActivityFromCurrent ();
 
       //## Operation: GetNextBaseActivityFromCurrent%932278233
-      //	Retreive from the current activity, the next base
-      //	activity.
+      //    Retreive from the current activity, the next base
+      //    activity.
       ZBaseActivity* GetNextBaseActivityFromCurrent ();
 
       //## Operation: GetPreviousBaseActivityFromCurrent%932278234
-      //	Get from the current activity, the previous base
-      //	activity.
+      //    Get from the current activity, the previous base
+      //    activity.
       ZBaseActivity* GetPreviousBaseActivityFromCurrent ();
 
       //## Operation: RemoveActivityAt%935832848
-      //	Remove an activity from the array
+      //    Remove an activity from the array
       BOOL RemoveActivityAt (size_t Index);
 
       //## Operation: InsertActivityAt%935832849
-      //	Add a new activity at a specific position.
+      //    Add a new activity at a specific position.
       BOOL InsertActivityAt (ZBaseActivity* pActivity, size_t Index);
 
       //## Operation: AddActivity%913664906
-      //	Add a new activity. At the end.
+      //    Add a new activity. At the end.
       BOOL AddActivity (ZBaseActivity* Activity);
 
       //## Operation: AddActivityAfter%913664907
-      //	Add a new activity after a specific activity  name.
+      //    Add a new activity after a specific activity  name.
       BOOL AddActivityAfter (ZBaseActivity* Activity, const CString& ActivityName);
 
       //## Operation: DeleteActivity%913664908
-      //	Delete an activity.
+      //    Delete an activity.
       BOOL DeleteActivity (ZBaseActivity* Activity);
 
       //## Operation: DeleteActivity%913885071
-      //	Delete an activity.
+      //    Delete an activity.
       BOOL DeleteActivity (const CString& ActivityName);
 
       //## Operation: FindBaseActivity%934700763
-      //	Finds a base activity. Returns the pointer to the
-      //	activity.
+      //    Finds a base activity. Returns the pointer to the
+      //    activity.
       ZBaseActivity* FindBaseActivity (const CString& ActivityName);
 
       //## Operation: FindActivity%913664909
-      //	Finds an activity. Returns the pointer to the activity.
+      //    Finds an activity. Returns the pointer to the activity.
       ZActivity* FindActivity (const CString& ActivityName);
 
       //## Operation: AddProcess%932406384
-      //	Add a new process. At the end.
+      //    Add a new process. At the end.
       BOOL AddProcess (ZProcess* Process);
 
       //## Operation: AddProcessAfter%932406385
-      //	Add a new process after a specific activity  name.
+      //    Add a new process after a specific activity  name.
       BOOL AddProcessAfter (ZProcess* Process, const CString& ActivityName);
 
       //## Operation: DeleteProcess%932406386
-      //	Delete a process.
+      //    Delete a process.
       BOOL DeleteProcess (ZProcess* Process);
 
       //## Operation: DeleteProcess%932406387
-      //	Delete a process.
+      //    Delete a process.
       BOOL DeleteProcess (const CString& ProcessName);
 
       //## Operation: FindProcess%932406388
-      //	Finds a process. Returns the pointer to the process.
+      //    Finds a process. Returns the pointer to the process.
       ZProcess* FindProcess (const CString& ProcessName);
 
       //## Operation: RemoveAllActivities%913664910
       void RemoveAllActivities (bool bDeleteActivityPtr = true);
 
       //## Operation: GetActivityCount%913885069
-      //	Return the number of activities.
+      //    Return the number of activities.
       size_t GetActivityCount () const;
 
       //## Operation: GetActivityAt%913885070
-      //	Returns the activity at the index position.
+      //    Returns the activity at the index position.
       ZBaseActivity* GetActivityAt (int Index) const;
 
       //## Operation: GetActivityIndex%916175122
-      //	Finds an activity. Returns the index of the activity.
-      //	Returns -1 if not found.
+      //    Finds an activity. Returns the index of the activity.
+      //    Returns -1 if not found.
       int GetActivityIndex (const CString& ActivityName) const;
 
       //## Operation: SetActivityAt%916175123
-      //	Set the activity at the index position.
+      //    Set the activity at the index position.
       BOOL SetActivityAt (int Index, ZBaseActivity* pActivity);
 
       //## Operation: IsLastActivity%929033123
-      //	Return True if it is the last activity.
+      //    Return True if it is the last activity.
       BOOL IsLastActivity ();
 
       //## Operation: RecalculateAllLinks%932406379
-      //	Recalculates all links for the process
+      //    Recalculates all links for the process
       BOOL RecalculateAllLinks ();
 
-      //	Defines the way activities are executed.
+      //    Defines the way activities are executed.
       const ActivityRunMode GetRunMode () const;
       void SetRunMode (ActivityRunMode value);
 
@@ -735,15 +735,15 @@ public:
 
   protected:
     // Data Members for Class Attributes
-      //	Recalculates all links for the process.
+      //    Recalculates all links for the process.
       ZBaseActivity* RecalculateProcessAllLinks (ZBaseActivity* pParent = NULL, ZBaseActivity* pNextOfParent = NULL);
 
 
-	  // Contains activities
+      // Contains activities
       CObArray m_ActivityArray;
-	  // The run mode of the base activity
-	  // When an activity has a link to several activities,
-	  // the run mode is set to parallel
+      // The run mode of the base activity
+      // When an activity has a link to several activities,
+      // the run mode is set to parallel
       ActivityRunMode m_RunMode;
 
       // Contains the current activity pointer.
@@ -774,8 +774,8 @@ public:
       //## end ZBaseActivity::LastUpdateDate%3786D9A000AC.attr
 
       //## Attribute: DurationDays%3786D9B500DF
-      //	Defines the number of days within the process should be
-      //	done.
+      //    Defines the number of days within the process should be
+      //    done.
       //## begin ZBaseActivity::DurationDays%3786D9B500DF.attr preserve=no  public: WORD {U} 2
       WORD m_DurationDays;
       //## end ZBaseActivity::DurationDays%3786D9B500DF.attr
@@ -809,33 +809,33 @@ public:
       //## end ZBaseActivity::ConnectedUser%37874A290258.attr
 
       //## Attribute: pNextActivity%37916B5B008B
-      //	The pointer to the next activity. If no next activity,
-      //	NULL.
+      //    The pointer to the next activity. If no next activity,
+      //    NULL.
       //## begin ZBaseActivity::pNextActivity%37916B5B008B.attr preserve=no  protected: ZBaseActivity* {U} NULL
       ZBaseActivity* m_pNextActivity;
       //## end ZBaseActivity::pNextActivity%37916B5B008B.attr
 
       //## Attribute: pPreviousActivity%37916BAF01C3
-      //	The pointer to the previous activity. If no previous
-      //	activity, NULL.
+      //    The pointer to the previous activity. If no previous
+      //    activity, NULL.
       //## begin ZBaseActivity::pPreviousActivity%37916BAF01C3.attr preserve=no  protected: ZBaseActivity* {U} NULL
       ZBaseActivity* m_pPreviousActivity;
       //## end ZBaseActivity::pPreviousActivity%37916BAF01C3.attr
 
       //## Attribute: PrincipalResources%37B850D6000D
-      //	Contains the principal resource object.
+      //    Contains the principal resource object.
       //## begin ZBaseActivity::PrincipalResources%37B850D6000D.attr preserve=no  public: ZBResources {U} 
       ZBResources m_PrincipalResources;
       //## end ZBaseActivity::PrincipalResources%37B850D6000D.attr
 
       //## Attribute: BackupResources%37B850DF01F1
-      //	Contains the backup resource object.
+      //    Contains the backup resource object.
       //## begin ZBaseActivity::BackupResources%37B850DF01F1.attr preserve=no  public: ZBResources {U} 
       ZBResources m_BackupResources;
       //## end ZBaseActivity::BackupResources%37B850DF01F1.attr
 
       //## Attribute: pParent%37CD751202C9
-      //	Points to the parent process
+      //    Points to the parent process
       //## begin ZBaseActivity::pParent%37CD751202C9.attr preserve=no  protected: ZProcess* {U} 
       ZBaseActivity* m_pParent;
       //## end ZBaseActivity::pParent%37CD751202C9.attr
@@ -860,7 +860,7 @@ public:
       //## end ZBaseActivity::UseBackupResources%37B850F403A9.attr
 
       //## Attribute: IsInBackupProcess%37B850FC03E7
-      //	Defines if the process is currently in backup process.
+      //    Defines if the process is currently in backup process.
       //## begin ZBaseActivity::IsInBackupProcess%37B850FC03E7.attr preserve=no  public: BOOL {U} 
       BOOL m_IsInBackupProcess;
       //## end ZBaseActivity::IsInBackupProcess%37B850FC03E7.attr
@@ -882,10 +882,10 @@ public:
       //## end ZBaseActivity%3786D911011F.private
 
   private:  //## implementation
-	  // Copy constructor.
-	  ZBaseActivity(const ZBaseActivity& src);
-	  // Assignment operator.
-	  ZBaseActivity& operator=(const ZBaseActivity& src);
+      // Copy constructor.
+      ZBaseActivity(const ZBaseActivity& src);
+      // Assignment operator.
+      ZBaseActivity& operator=(const ZBaseActivity& src);
 
 };
 
@@ -907,47 +907,47 @@ inline const WORD ZBaseActivity::GetActivityType () const
 inline size_t ZBaseActivity::GetActivityCount () const
 {
   //## begin ZProcess::GetActivityCount%913885069.body preserve=yes
-  	return m_ActivityArray.GetSize();
+      return m_ActivityArray.GetSize();
   //## end ZProcess::GetActivityCount%913885069.body
 }
 
 inline ZBaseActivity* ZBaseActivity::GetActivityAt (int Index) const
 {
   //## begin ZProcess::GetActivityAt%913885070.body preserve=yes
-	if (Index < (int)GetActivityCount())
-  		return (ZBaseActivity*)m_ActivityArray.GetAt(Index);
-	return NULL;
+    if (Index < (int)GetActivityCount())
+          return (ZBaseActivity*)m_ActivityArray.GetAt(Index);
+    return NULL;
   //## end ZProcess::GetActivityAt%913885070.body
 }
 
 inline ZBaseActivity* ZBaseActivity::GetCurrentActivity () const
 {
   //## begin ZProcess::GetCurrentActivity%929033126.body preserve=yes
-	return m_pCurrentActivity;
+    return m_pCurrentActivity;
   //## end ZProcess::GetCurrentActivity%929033126.body
 }
 
 inline BOOL ZBaseActivity::IsLastActivity ()
 {
   //## begin ZProcess::IsLastActivity%929033123.body preserve=yes
-	return (m_pCurrentActivity && m_pCurrentActivity->GetNextValidBaseActivity()) ? FALSE : TRUE;
+    return (m_pCurrentActivity && m_pCurrentActivity->GetNextValidBaseActivity()) ? FALSE : TRUE;
   //## end ZProcess::IsLastActivity%929033123.body
 }
 
 inline BOOL ZBaseActivity::IsChoiceActivityDone () const
 {
   //## begin ZProcess::IsChoiceActivityDone%934700760.body preserve=yes
-	if (m_RunMode == SequenceRun)
-		return FALSE;
-	return m_ChoiceActivityArray.GetSize() > 0;
+    if (m_RunMode == SequenceRun)
+        return FALSE;
+    return m_ChoiceActivityArray.GetSize() > 0;
   //## end ZProcess::IsChoiceActivityDone%934700760.body
 }
 
 inline BOOL ZBaseActivity::ChoiceActivityRemoveAll ()
 {
   //## begin ZProcess::ChoiceActivityRemoveAll%934700761.body preserve=yes
-	m_ChoiceActivityArray.RemoveAll();
-	return m_ChoiceActivityArray.GetSize() == 0;
+    m_ChoiceActivityArray.RemoveAll();
+    return m_ChoiceActivityArray.GetSize() == 0;
   //## end ZProcess::ChoiceActivityRemoveAll%934700761.body
 }
 
@@ -963,109 +963,109 @@ inline CStringArray& ZBaseActivity::GetChoiceActivityArray ()
 inline ZBaseActivity* ZBaseActivity::GetNextBaseActivity () const
 {
   //## begin ZBaseActivity::GetNextBaseActivity%932278202.body preserve=yes
-	return m_pNextActivity;
+    return m_pNextActivity;
   //## end ZBaseActivity::GetNextBaseActivity%932278202.body
 }
 
 inline ZBaseActivity* ZBaseActivity::GetPreviousBaseActivity () const
 {
   //## begin ZBaseActivity::GetPreviousBaseActivity%932278203.body preserve=yes
-	return m_pPreviousActivity;
+    return m_pPreviousActivity;
   //## end ZBaseActivity::GetPreviousBaseActivity%932278203.body
 }
 
 inline void ZBaseActivity::AddUser (const CString UserName)
 {
   //## begin ZBaseActivity::AddUser%931585020.body preserve=yes
-	m_PrincipalResources.AddUser( UserName );
+    m_PrincipalResources.AddUser( UserName );
   //## end ZBaseActivity::AddUser%931585020.body
 }
 
 inline BOOL ZBaseActivity::RemoveUser (const CString& UserName)
 {
   //## begin ZBaseActivity::RemoveUser%931585021.body preserve=yes
-	return m_PrincipalResources.RemoveUser( UserName );
+    return m_PrincipalResources.RemoveUser( UserName );
   //## end ZBaseActivity::RemoveUser%931585021.body
 }
 
 inline BOOL ZBaseActivity::UserExist (const CString& UserName)
 {
   //## begin ZBaseActivity::UserExist%931585022.body preserve=yes
-	return m_PrincipalResources.UserExist( UserName );
+    return m_PrincipalResources.UserExist( UserName );
   //## end ZBaseActivity::UserExist%931585022.body
 }
 
 inline size_t ZBaseActivity::GetUserCount ()
 {
   //## begin ZBaseActivity::GetUserCount%931585023.body preserve=yes
-	return m_PrincipalResources.GetUserCount();
+    return m_PrincipalResources.GetUserCount();
   //## end ZBaseActivity::GetUserCount%931585023.body
 }
 
 inline void ZBaseActivity::RemoveAllUsers ()
 {
   //## begin ZBaseActivity::RemoveAllUsers%931585024.body preserve=yes
-	m_PrincipalResources.RemoveAllUsers();
+    m_PrincipalResources.RemoveAllUsers();
   //## end ZBaseActivity::RemoveAllUsers%931585024.body
 }
 
 inline CString ZBaseActivity::GetUserAt (int Index)
 {
   //## begin ZBaseActivity::GetUserAt%931585025.body preserve=yes
-	if (Index < (int)GetUserCount())
-		return m_PrincipalResources.GetUserAt( Index );
-	return "";
+    if (Index < (int)GetUserCount())
+        return m_PrincipalResources.GetUserAt( Index );
+    return "";
   //## end ZBaseActivity::GetUserAt%931585025.body
 }
 
 inline void ZBaseActivity::AddBackupUser (const CString UserName)
 {
   //## begin ZBaseActivity::AddBackupUser%931585026.body preserve=yes
-	m_BackupResources.AddUser( UserName );
+    m_BackupResources.AddUser( UserName );
   //## end ZBaseActivity::AddBackupUser%931585026.body
 }
 
 inline BOOL ZBaseActivity::RemoveBackupUser (const CString& UserName)
 {
   //## begin ZBaseActivity::RemoveBackupUser%931585027.body preserve=yes
-	return m_BackupResources.RemoveUser( UserName );
+    return m_BackupResources.RemoveUser( UserName );
   //## end ZBaseActivity::RemoveBackupUser%931585027.body
 }
 
 inline BOOL ZBaseActivity::BackupUserExist (const CString& UserName)
 {
   //## begin ZBaseActivity::BackupUserExist%931585028.body preserve=yes
-	return m_BackupResources.UserExist( UserName );
+    return m_BackupResources.UserExist( UserName );
   //## end ZBaseActivity::BackupUserExist%931585028.body
 }
 
 inline size_t ZBaseActivity::GetBackupUserCount ()
 {
   //## begin ZBaseActivity::GetBackupUserCount%931585029.body preserve=yes
-	return m_BackupResources.GetUserCount();
+    return m_BackupResources.GetUserCount();
   //## end ZBaseActivity::GetBackupUserCount%931585029.body
 }
 
 inline void ZBaseActivity::RemoveAllBackupUsers ()
 {
   //## begin ZBaseActivity::RemoveAllBackupUsers%931585030.body preserve=yes
-	m_BackupResources.RemoveAllUsers();
+    m_BackupResources.RemoveAllUsers();
   //## end ZBaseActivity::RemoveAllBackupUsers%931585030.body
 }
 
 inline CString ZBaseActivity::GetBackupUserAt (int Index)
 {
   //## begin ZBaseActivity::GetBackupUserAt%931585031.body preserve=yes
-	if (Index < (int)GetBackupUserCount())
-		return m_BackupResources.GetUserAt( Index );
-	return "";
+    if (Index < (int)GetBackupUserCount())
+        return m_BackupResources.GetUserAt( Index );
+    return "";
   //## end ZBaseActivity::GetBackupUserAt%931585031.body
 }
 
 inline CString ZBaseActivity::GetAttributedByActivity () const
 {
   //## begin ZBaseActivity::GetAttributedByActivity%931585032.body preserve=yes
-	return "";
+    return "";
   //## end ZBaseActivity::GetAttributedByActivity%931585032.body
 }
 
@@ -1078,208 +1078,208 @@ inline void ZBaseActivity::SetAttributedByActivity (const CString value)
 inline BOOL ZBaseActivity::ActivityIsAttribution ()
 {
   //## begin ZBaseActivity::ActivityIsAttribution%931613263.body preserve=yes
-	// If no activites or If it is parallel mode
-	if (!HasActivities() || (HasActivities() && GetRunMode() == ChooseMode))
-		return ((m_ActivityType & ActivityTypeAttribution) > 0) ? TRUE : FALSE;
-	// Else, check the current activity
-	if (!GetCurrentActivity())
-		return FALSE;
-	return GetCurrentActivity()->ActivityIsAttribution();
+    // If no activites or If it is parallel mode
+    if (!HasActivities() || (HasActivities() && GetRunMode() == ChooseMode))
+        return ((m_ActivityType & ActivityTypeAttribution) > 0) ? TRUE : FALSE;
+    // Else, check the current activity
+    if (!GetCurrentActivity())
+        return FALSE;
+    return GetCurrentActivity()->ActivityIsAttribution();
   //## end ZBaseActivity::ActivityIsAttribution%931613263.body
 }
 
 inline BOOL ZBaseActivity::ActivityIsAcceptation ()
 {
   //## begin ZBaseActivity::ActivityIsAcceptation%931613264.body preserve=yes
-	// If no activites or If it is parallel mode
-	if (!HasActivities() || (HasActivities() && GetRunMode() == ChooseMode))
-		return ((m_ActivityType & ActivityTypeAcceptation) > 0) ? TRUE : FALSE;
-	if (!GetCurrentActivity())
-		return FALSE;
-	return GetCurrentActivity()->ActivityIsAcceptation();
+    // If no activites or If it is parallel mode
+    if (!HasActivities() || (HasActivities() && GetRunMode() == ChooseMode))
+        return ((m_ActivityType & ActivityTypeAcceptation) > 0) ? TRUE : FALSE;
+    if (!GetCurrentActivity())
+        return FALSE;
+    return GetCurrentActivity()->ActivityIsAcceptation();
   //## end ZBaseActivity::ActivityIsAcceptation%931613264.body
 }
 
 inline BOOL ZBaseActivity::ActivityIsInput ()
 {
   //## begin ZBaseActivity::ActivityIsInput%931613265.body preserve=yes
-	// If no activites or If it is parallel mode
-	if (!HasActivities() || (HasActivities() && GetRunMode() == ChooseMode))
-		return ((m_ActivityType & ActivityTypeInputInformation) > 0) ? TRUE : FALSE;
-	if (!GetCurrentActivity())
-		return FALSE;
-	return GetCurrentActivity()->ActivityIsInput();
+    // If no activites or If it is parallel mode
+    if (!HasActivities() || (HasActivities() && GetRunMode() == ChooseMode))
+        return ((m_ActivityType & ActivityTypeInputInformation) > 0) ? TRUE : FALSE;
+    if (!GetCurrentActivity())
+        return FALSE;
+    return GetCurrentActivity()->ActivityIsInput();
   //## end ZBaseActivity::ActivityIsInput%931613265.body
 }
 
 inline BOOL ZBaseActivity::ActivityIsSendMail ()
 {
   //## begin ZBaseActivity::ActivityIsSendMail%931613266.body preserve=yes
-	// If no activites or If it is parallel mode
-	if (!HasActivities() || (HasActivities() && GetRunMode() == ChooseMode))
-		return ((m_ActivityType & ActivityTypeSendMail) > 0) ? TRUE : FALSE;
-	if (!GetCurrentActivity())
-		return FALSE;
-	return GetCurrentActivity()->ActivityIsSendMail();
+    // If no activites or If it is parallel mode
+    if (!HasActivities() || (HasActivities() && GetRunMode() == ChooseMode))
+        return ((m_ActivityType & ActivityTypeSendMail) > 0) ? TRUE : FALSE;
+    if (!GetCurrentActivity())
+        return FALSE;
+    return GetCurrentActivity()->ActivityIsSendMail();
   //## end ZBaseActivity::ActivityIsSendMail%931613266.body
 }
 
 inline BOOL ZBaseActivity::ActivityIsStartProcess ()
 {
   //## begin ZBaseActivity::ActivityIsStartProcess%931613267.body preserve=yes
-	// If no activites or If it is parallel mode
-	if (!HasActivities() || (HasActivities() && GetRunMode() == ChooseMode))
-		return ((m_ActivityType & ActivityTypeStartProcess) > 0) ? TRUE : FALSE;
-	if (!GetCurrentActivity())
-		return FALSE;
-	return GetCurrentActivity()->ActivityIsStartProcess();
+    // If no activites or If it is parallel mode
+    if (!HasActivities() || (HasActivities() && GetRunMode() == ChooseMode))
+        return ((m_ActivityType & ActivityTypeStartProcess) > 0) ? TRUE : FALSE;
+    if (!GetCurrentActivity())
+        return FALSE;
+    return GetCurrentActivity()->ActivityIsStartProcess();
   //## end ZBaseActivity::ActivityIsStartProcess%931613267.body
 }
 
 inline BOOL ZBaseActivity::ActivityIsCommandLine ()
 {
   //## begin ZBaseActivity::ActivityIsCommandLine%931613268.body preserve=yes
-	// If no activites or If it is parallel mode
-	if (!HasActivities() || (HasActivities() && GetRunMode() == ChooseMode))
-		return ((m_ActivityType & ActivityTypeCommandLine) > 0) ? TRUE : FALSE;
-	if (!GetCurrentActivity())
-		return FALSE;
-	return GetCurrentActivity()->ActivityIsCommandLine();
+    // If no activites or If it is parallel mode
+    if (!HasActivities() || (HasActivities() && GetRunMode() == ChooseMode))
+        return ((m_ActivityType & ActivityTypeCommandLine) > 0) ? TRUE : FALSE;
+    if (!GetCurrentActivity())
+        return FALSE;
+    return GetCurrentActivity()->ActivityIsCommandLine();
   //## end ZBaseActivity::ActivityIsCommandLine%931613268.body
 }
 
 inline BOOL ZBaseActivity::ActivityIsScanning ()
 {
   //## begin ZBaseActivity::ActivityIsScanning%940156895.body preserve=yes
-	// If no activites or If it is parallel mode
-	if (!HasActivities() || (HasActivities() && GetRunMode() == ChooseMode))
-		return ((m_ActivityType & ActivityTypeScanning) > 0) ? TRUE : FALSE;
-	if (!GetCurrentActivity())
-		return FALSE;
-	return GetCurrentActivity()->ActivityIsScanning();
+    // If no activites or If it is parallel mode
+    if (!HasActivities() || (HasActivities() && GetRunMode() == ChooseMode))
+        return ((m_ActivityType & ActivityTypeScanning) > 0) ? TRUE : FALSE;
+    if (!GetCurrentActivity())
+        return FALSE;
+    return GetCurrentActivity()->ActivityIsScanning();
   //## end ZBaseActivity::ActivityIsScanning%940156895.body
 }
 
 inline BOOL ZBaseActivity::ActivityIsArchiving ()
 {
   //## begin ZBaseActivity::ActivityIsArchiving%940156896.body preserve=yes
-	// If no activites or If it is parallel mode
-	if (!HasActivities() || (HasActivities() && GetRunMode() == ChooseMode))
-		return ((m_ActivityType & ActivityTypeArchiving) > 0) ? TRUE : FALSE;
-	if (!GetCurrentActivity())
-		return FALSE;
-	return GetCurrentActivity()->ActivityIsArchiving();
+    // If no activites or If it is parallel mode
+    if (!HasActivities() || (HasActivities() && GetRunMode() == ChooseMode))
+        return ((m_ActivityType & ActivityTypeArchiving) > 0) ? TRUE : FALSE;
+    if (!GetCurrentActivity())
+        return FALSE;
+    return GetCurrentActivity()->ActivityIsArchiving();
   //## end ZBaseActivity::ActivityIsArchiving%940156896.body
 }
 
 inline void ZBaseActivity::AssignNextActivityPtr (ZBaseActivity* Ptr)
 {
   //## begin ZBaseActivity::AssignNextActivityPtr%932406382.body preserve=yes
-	m_pNextActivity = Ptr;
+    m_pNextActivity = Ptr;
   //## end ZBaseActivity::AssignNextActivityPtr%932406382.body
 }
 
 inline void ZBaseActivity::AssignPreviousActivityPtr (ZBaseActivity* Ptr)
 {
   //## begin ZBaseActivity::AssignPreviousActivityPtr%932406383.body preserve=yes
-	m_pPreviousActivity = Ptr;
+    m_pPreviousActivity = Ptr;
   //## end ZBaseActivity::AssignPreviousActivityPtr%932406383.body
 }
 
 inline BOOL ZBaseActivity::IsUserAttributionDone ()
 {
   //## begin ZBaseActivity::IsUserAttributionDone%934825328.body preserve=yes
-  	return GetUserCount() > 0;
+      return GetUserCount() > 0;
   //## end ZBaseActivity::IsUserAttributionDone%934825328.body
 }
 
 inline BOOL ZBaseActivity::IsTimeAttributionDone ()
 {
   //## begin ZBaseActivity::IsTimeAttributionDone%934825329.body preserve=yes
-  	return GetDurationDays() > 0;
+      return GetDurationDays() > 0;
   //## end ZBaseActivity::IsTimeAttributionDone%934825329.body
 }
 
 inline BOOL ZBaseActivity::IsVisibilityAttributionDone ()
 {
   //## begin ZBaseActivity::IsVisibilityAttributionDone%935005730.body preserve=yes
-  	return GetIsVisible() != UndefinedState;
+      return GetIsVisible() != UndefinedState;
   //## end ZBaseActivity::IsVisibilityAttributionDone%935005730.body
 }
 
 inline BOOL ZBaseActivity::IsAttributedActivity () const
 {
   //## begin ZBaseActivity::IsAttributedActivity%934825330.body preserve=yes
-	return	m_PrincipalResources.GetUserType() == AttributionOfUsers ||
-			m_BackupResources.GetUserType() == AttributionOfUsers ||
-			GetTimeType() == AttributionOfTimeOut || 
-			GetVisibilityType() == AttributionOfVisibility;
+    return    m_PrincipalResources.GetUserType() == AttributionOfUsers ||
+            m_BackupResources.GetUserType() == AttributionOfUsers ||
+            GetTimeType() == AttributionOfTimeOut || 
+            GetVisibilityType() == AttributionOfVisibility;
   //## end ZBaseActivity::IsAttributedActivity%934825330.body
 }
 
 inline BOOL ZBaseActivity::IsInBackupProcess () const
 {
   //## begin ZBaseActivity::IsInBackupProcess%934825331.body preserve=yes
-	return m_IsInBackupProcess;
+    return m_IsInBackupProcess;
   //## end ZBaseActivity::IsInBackupProcess%934825331.body
 }
 
 inline void ZBaseActivity::SetIsInBackupProcess (BOOL value)
 {
   //## begin ZBaseActivity::SetIsInBackupProcess%934825332.body preserve=yes
-	m_IsInBackupProcess = value;
+    m_IsInBackupProcess = value;
   //## end ZBaseActivity::SetIsInBackupProcess%934825332.body
 }
 
 inline ActivityUserType ZBaseActivity::GetUserType () const
 {
   //## begin ZBaseActivity::GetUserType%934825333.body preserve=yes
-	return m_PrincipalResources.GetUserType();
+    return m_PrincipalResources.GetUserType();
   //## end ZBaseActivity::GetUserType%934825333.body
 }
 
 inline void ZBaseActivity::SetUserType (ActivityUserType value)
 {
   //## begin ZBaseActivity::SetUserType%934825334.body preserve=yes
-	m_PrincipalResources.SetUserType( value );
+    m_PrincipalResources.SetUserType( value );
   //## end ZBaseActivity::SetUserType%934825334.body
 }
 
 inline ActivityUserType ZBaseActivity::GetBackupUserType () const
 {
   //## begin ZBaseActivity::GetBackupUserType%934825335.body preserve=yes
-	return m_BackupResources.GetUserType();
+    return m_BackupResources.GetUserType();
   //## end ZBaseActivity::GetBackupUserType%934825335.body
 }
 
 inline void ZBaseActivity::SetBackupUserType (ActivityUserType value)
 {
   //## begin ZBaseActivity::SetBackupUserType%934825336.body preserve=yes
-	m_BackupResources.SetUserType( value );
+    m_BackupResources.SetUserType( value );
   //## end ZBaseActivity::SetBackupUserType%934825336.body
 }
 
 inline ZBResources& ZBaseActivity::GetCurrentResources ()
 {
   //## begin ZBaseActivity::GetCurrentResources%934825337.body preserve=yes
-	return (IsInBackupProcess()) ? m_BackupResources : m_PrincipalResources;
+    return (IsInBackupProcess()) ? m_BackupResources : m_PrincipalResources;
   //## end ZBaseActivity::GetCurrentResources%934825337.body
 }
 
 inline ThreeState ZBaseActivity::IsConsiderAsVisible () const
 {
   //## begin ZBaseActivity::IsConsiderAsVisible%935005731.body preserve=yes
-	if (GetIsVisible() == UndefinedState)
-		return UndefinedState;
-	else
-		if ((GetVisibilityType() == AttributionOfVisibility && GetIsVisible() == TrueState) ||
-			 GetVisibilityType() == Visible)
-			 return TrueState;
-		else
-			if ((GetVisibilityType() == AttributionOfVisibility && GetIsVisible() == FalseState) ||
-				GetVisibilityType() == Invisible)
-				return FalseState;
-	return UndefinedState;
+    if (GetIsVisible() == UndefinedState)
+        return UndefinedState;
+    else
+        if ((GetVisibilityType() == AttributionOfVisibility && GetIsVisible() == TrueState) ||
+             GetVisibilityType() == Visible)
+             return TrueState;
+        else
+            if ((GetVisibilityType() == AttributionOfVisibility && GetIsVisible() == FalseState) ||
+                GetVisibilityType() == Invisible)
+                return FalseState;
+    return UndefinedState;
   //## end ZBaseActivity::IsConsiderAsVisible%935005731.body
 }
 
@@ -1551,9 +1551,9 @@ inline void ZBaseActivity::SetRunMode (ActivityRunMode value)
   //## end ZProcess::SetRunMode%37A2AA430062.set
 }
 
-inline bool	ZBaseActivity::HasActivities() const
+inline bool    ZBaseActivity::HasActivities() const
 {
-	return ((GetActivityCount () > 0) ? true : false);
+    return ((GetActivityCount () > 0) ? true : false);
 }
 
 

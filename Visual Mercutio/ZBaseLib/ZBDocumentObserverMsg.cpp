@@ -18,23 +18,23 @@ IMPLEMENT_DYNAMIC( ZBDocumentObserverMsg, ZIObserverMsg )
 //////////////////////////////////////////////////////////////////////
 
 ZBDocumentObserverMsg::ZBDocumentObserverMsg( UINT MessageID /*= 0*/, CDocument* pDoc /*= NULL*/ )
-	: m_MessageID	( MessageID ), 
-	  m_pDoc		( pDoc ),
-	  m_pView		( NULL )
+    : m_MessageID    ( MessageID ), 
+      m_pDoc        ( pDoc ),
+      m_pView        ( NULL )
 {
 }
 
 ZBDocumentObserverMsg::ZBDocumentObserverMsg( UINT MessageID, CView* pView )
-	: m_MessageID	( MessageID ),
-	  m_pView		( pView ),
-	  m_pDoc		( NULL )
+    : m_MessageID    ( MessageID ),
+      m_pView        ( pView ),
+      m_pDoc        ( NULL )
 {
 }
 
 ZBDocumentObserverMsg::ZBDocumentObserverMsg( UINT MessageID, CDocument* pDoc, CView* pView )
-	: m_MessageID	( MessageID ), 
-	  m_pDoc		( pDoc ),
-	  m_pView		( pView )
+    : m_MessageID    ( MessageID ), 
+      m_pDoc        ( pDoc ),
+      m_pView        ( pView )
 {
 }
 

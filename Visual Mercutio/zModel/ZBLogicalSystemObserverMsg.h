@@ -34,55 +34,55 @@ class ZBSystemEntity;
 
 // JMR-MODIF - Le 10 octobre 2005 - Ajout des décorations unicode _T( ), netttoyage du code inutile. (En commentaires)
 
-const int UM_INITLOGICALSYSTEM		= 200;
-const int UM_REFRESHLOGICALSYSTEM	= 201;
-const int UM_CLEARLOGICALSYSTEM		= 202;
-const int UM_CLOSELOGICALSYSTEM		= 203;
+const int UM_INITLOGICALSYSTEM        = 200;
+const int UM_REFRESHLOGICALSYSTEM    = 201;
+const int UM_CLEARLOGICALSYSTEM        = 202;
+const int UM_CLOSELOGICALSYSTEM        = 203;
 
 class AFX_EXT_CLASS ZBLogicalSystemObserverMsg : public ZIObserverMsg  
 {
-	DECLARE_DYNAMIC( ZBLogicalSystemObserverMsg )
+    DECLARE_DYNAMIC( ZBLogicalSystemObserverMsg )
 
 public:
 
-	ZBLogicalSystemObserverMsg( UINT MessageID = 0, ZBSystemEntity* pEntity = NULL, const CString RootName = _T( "" ) );
-	virtual ~ZBLogicalSystemObserverMsg();
+    ZBLogicalSystemObserverMsg( UINT MessageID = 0, ZBSystemEntity* pEntity = NULL, const CString RootName = _T( "" ) );
+    virtual ~ZBLogicalSystemObserverMsg();
 
-	UINT GetMessageID() const
-	{
-		return m_MessageID;
-	};
+    UINT GetMessageID() const
+    {
+        return m_MessageID;
+    };
 
-	void SetMessageID( UINT value )
-	{
-		m_MessageID = value;
-	};
+    void SetMessageID( UINT value )
+    {
+        m_MessageID = value;
+    };
 
-	ZBSystemEntity* GetpEntity() const
-	{
-		return m_pEntity;
-	};
+    ZBSystemEntity* GetpEntity() const
+    {
+        return m_pEntity;
+    };
 
-	void SetpEntity( ZBSystemEntity* value )
-	{
-		m_pEntity = value;
-	};
+    void SetpEntity( ZBSystemEntity* value )
+    {
+        m_pEntity = value;
+    };
 
-	CString GetRootName() const
-	{
-		return m_RootName;
-	};
+    CString GetRootName() const
+    {
+        return m_RootName;
+    };
 
-	void SetRootName( const CString value )
-	{
-		m_RootName = value;
-	};
+    void SetRootName( const CString value )
+    {
+        m_RootName = value;
+    };
 
 private:
 
-	UINT			m_MessageID;
-	ZBSystemEntity*	m_pEntity;
-	CString			m_RootName;
+    UINT            m_MessageID;
+    ZBSystemEntity*    m_pEntity;
+    CString            m_RootName;
 };
 
 #endif // !defined(AFX_ZBLogicalSystemObserverMsg_H__31A212D8_7CA2_4BEB_9709_8C785F4909B3__INCLUDED_)

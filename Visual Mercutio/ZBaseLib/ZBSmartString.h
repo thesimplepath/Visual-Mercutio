@@ -36,39 +36,39 @@
 
 class AFX_EXT_CLASS ZBSmartString
 {
-	// Constuctors and d-tor
+    // Constuctors and d-tor
 public:
-	ZBSmartString(LPCTSTR pText = NULL);
-	ZBSmartString(UINT nIdText);
-	ZBSmartString(const ZBSmartString& d);
+    ZBSmartString(LPCTSTR pText = NULL);
+    ZBSmartString(UINT nIdText);
+    ZBSmartString(const ZBSmartString& d);
 
-	~ZBSmartString();
+    ~ZBSmartString();
 
-	// Operators
-	ZBSmartString& operator=(const ZBSmartString& data);
-	ZBSmartString& operator=(LPCTSTR pData);
+    // Operators
+    ZBSmartString& operator=(const ZBSmartString& data);
+    ZBSmartString& operator=(LPCTSTR pData);
 
-	operator LPCTSTR() const;
+    operator LPCTSTR() const;
 
-	// Operations
+    // Operations
 protected:
-	void SetCString(const CString& strText);
-	void SetLPCTSTR(LPCTSTR pText);
-	void Clear();
-	
-	// Data
+    void SetCString(const CString& strText);
+    void SetLPCTSTR(LPCTSTR pText);
+    void Clear();
+    
+    // Data
 private:
-	union 
-	{
-		CString* m_pStrText;
-		LPCTSTR m_pText;
-	};
-	bool m_bCString;
+    union 
+    {
+        CString* m_pStrText;
+        LPCTSTR m_pText;
+    };
+    bool m_bCString;
 };
 
 inline ZBSmartString::ZBSmartString(LPCTSTR pText)
-{	
-	SetLPCTSTR(pText);
+{    
+    SetLPCTSTR(pText);
 }
 
 #endif // !defined(_ZBSMARTSTRING_H)

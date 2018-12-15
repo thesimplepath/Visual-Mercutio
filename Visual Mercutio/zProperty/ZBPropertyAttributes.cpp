@@ -21,553 +21,553 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 /////////////////////////////////////////////////////////////////////////////
 // constant definition
-const CString _PropertyAttributeStateSectionName	= _T( "_PropertyDefaultAttributeSaveState" );
-const CString _PropertyAttributeStateEntityName		= _T( "_PropertyDefaultAttributeState" );
+const CString _PropertyAttributeStateSectionName    = _T( "_PropertyDefaultAttributeSaveState" );
+const CString _PropertyAttributeStateEntityName        = _T( "_PropertyDefaultAttributeState" );
 
 _ZBPropertyAttribute::_ZBPropertyAttribute( int CategoryID /*= -1*/, int ItemID /*= -1*/ )
 {
-	m_CategoryID	= CategoryID;
-	m_ItemID		= ItemID;
+    m_CategoryID    = CategoryID;
+    m_ItemID        = ItemID;
 }
 
 _ZBPropertyAttribute::_ZBPropertyAttribute( _ZBPropertyAttribute& src )
 {
-	*this = src;
+    *this = src;
 }
 
 const _ZBPropertyAttribute & _ZBPropertyAttribute::operator= ( const _ZBPropertyAttribute &right )
 {
-	m_CategoryID	= right.m_CategoryID;
-	m_ItemID		= right.m_ItemID;
+    m_CategoryID    = right.m_CategoryID;
+    m_ItemID        = right.m_ItemID;
 
-	return *this;
+    return *this;
 }
 
 _ZBPropertyAttribute* _ZBPropertyAttribute::Clone()
 {
-	return new _ZBPropertyAttribute( *this );
+    return new _ZBPropertyAttribute( *this );
 }
 
 CArchive& operator >> ( CArchive& ar, _ZBPropertyAttribute& src )
 {
-	ar >> src.m_CategoryID;
-	ar >> src.m_ItemID;
+    ar >> src.m_CategoryID;
+    ar >> src.m_ItemID;
 
-	return ar;
+    return ar;
 }
 
 CArchive& operator << ( CArchive& ar, _ZBPropertyAttribute& src )
 {
-	ar << src.m_CategoryID;
-	ar << src.m_ItemID;
+    ar << src.m_CategoryID;
+    ar << src.m_ItemID;
 
-	return ar;
+    return ar;
 }
 
 // Class ZBPropertyAttributes 
 
 ZBPropertyAttributes::ZBPropertyAttributes()
-	: m_DisplayTitleText( true )
+    : m_DisplayTitleText( true )
 {
 }
 
 ZBPropertyAttributes::~ZBPropertyAttributes()
 {
-	RemoveAllAttributes();
+    RemoveAllAttributes();
 }
 
 ZBPropertyAttributes::ZBPropertyAttributes( ZBPropertyAttributes& src )
 {
-	*this = src;
+    *this = src;
 }
 
 const ZBPropertyAttributes & ZBPropertyAttributes::operator= ( const ZBPropertyAttributes &right )
 {
-	m_DisplayTitleText = right.m_DisplayTitleText;
+    m_DisplayTitleText = right.m_DisplayTitleText;
 
-	// Remove all existing attributes first.
-	RemoveAllAttributes();
+    // Remove all existing attributes first.
+    RemoveAllAttributes();
 
-	// Copy all attribute elements
-	_ZBPropertyAttributeIterator i( &right.GetAttributeSetConst() );
+    // Copy all attribute elements
+    _ZBPropertyAttributeIterator i( &right.GetAttributeSetConst() );
 
-	for ( _ZBPropertyAttribute* pAtt = i.GetFirst(); pAtt != NULL; pAtt = i.GetNext() )
-	{
-		AddAttribute( pAtt->Clone() );
-	}
+    for ( _ZBPropertyAttribute* pAtt = i.GetFirst(); pAtt != NULL; pAtt = i.GetNext() )
+    {
+        AddAttribute( pAtt->Clone() );
+    }
 
-	return *this;
+    return *this;
 }
 
 ZBPropertyAttributes* ZBPropertyAttributes::Clone()
 {
-	return new ZBPropertyAttributes( *this );
+    return new ZBPropertyAttributes( *this );
 }
 
 void ZBPropertyAttributes::RemoveAllAttributes()
 {
-	_ZBPropertyAttributeIterator i( &m_AttributeSet );
+    _ZBPropertyAttributeIterator i( &m_AttributeSet );
 
-	for ( _ZBPropertyAttribute* pAtt = i.GetFirst(); pAtt != NULL; pAtt = i.GetNext() )
-	{
-		delete pAtt;
-	}
+    for ( _ZBPropertyAttribute* pAtt = i.GetFirst(); pAtt != NULL; pAtt = i.GetNext() )
+    {
+        delete pAtt;
+    }
 
-	m_AttributeSet.RemoveAll();
+    m_AttributeSet.RemoveAll();
 }
 
 _ZBPropertyAttribute* ZBPropertyAttributes::FindAttribute( int CategoryID, int ItemID )
 {
-	_ZBPropertyAttributeIterator i( &m_AttributeSet );
+    _ZBPropertyAttributeIterator i( &m_AttributeSet );
 
-	for ( _ZBPropertyAttribute* pAtt = i.GetFirst(); pAtt != NULL; pAtt = i.GetNext() )
-	{
-		if ( pAtt->GetCategoryID() == CategoryID && pAtt->GetItemID() == ItemID )
-		{
-			return pAtt;
-		}
-	}
+    for ( _ZBPropertyAttribute* pAtt = i.GetFirst(); pAtt != NULL; pAtt = i.GetNext() )
+    {
+        if ( pAtt->GetCategoryID() == CategoryID && pAtt->GetItemID() == ItemID )
+        {
+            return pAtt;
+        }
+    }
 
-	return NULL;
+    return NULL;
 }
 
 void ZBPropertyAttributes::AddAttribute( _ZBPropertyAttribute* pAttribute )
 {
-	if ( pAttribute )
-	{
-		if ( !FindAttribute( pAttribute->GetCategoryID(), pAttribute->GetItemID() ) )
-		{
-			m_AttributeSet.Add( pAttribute );
-		}
-		else
-		{
-			// Otherwise, delete the attribute
-			delete pAttribute;
-		}
-	}
+    if ( pAttribute )
+    {
+        if ( !FindAttribute( pAttribute->GetCategoryID(), pAttribute->GetItemID() ) )
+        {
+            m_AttributeSet.Add( pAttribute );
+        }
+        else
+        {
+            // Otherwise, delete the attribute
+            delete pAttribute;
+        }
+    }
 }
 
 void ZBPropertyAttributes::AddAttributeAt( size_t Index, _ZBPropertyAttribute* pAttribute )
 {
-	if ( pAttribute && Index < GetAttributeCount() )
-	{
-		if ( !FindAttribute( pAttribute->GetCategoryID(), pAttribute->GetItemID() ) )
-		{
-			m_AttributeSet.InsertAt( Index, pAttribute );
-		}
-		else
-		{
-			delete pAttribute;
-		}
-	}
-	else
-	{
-		AddAttribute( pAttribute );
-	}
+    if ( pAttribute && Index < GetAttributeCount() )
+    {
+        if ( !FindAttribute( pAttribute->GetCategoryID(), pAttribute->GetItemID() ) )
+        {
+            m_AttributeSet.InsertAt( Index, pAttribute );
+        }
+        else
+        {
+            delete pAttribute;
+        }
+    }
+    else
+    {
+        AddAttribute( pAttribute );
+    }
 }
 
 bool ZBPropertyAttributes::DeleteAttributeAt( size_t Index )
 {
-	_ZBPropertyAttribute* pAtt = GetAttributeAt( Index );
+    _ZBPropertyAttribute* pAtt = GetAttributeAt( Index );
 
-	if ( pAtt )
-	{
-		delete pAtt;
-		m_AttributeSet.RemoveAt( Index );
-		return true;
-	}
+    if ( pAtt )
+    {
+        delete pAtt;
+        m_AttributeSet.RemoveAt( Index );
+        return true;
+    }
 
-	return false;
+    return false;
 }
 
 bool ZBPropertyAttributes::DeleteAttribute( int CategoryID, int ItemID )
 {
-	_ZBPropertyAttributeIterator i( &m_AttributeSet );
+    _ZBPropertyAttributeIterator i( &m_AttributeSet );
 
-	for ( _ZBPropertyAttribute* pAtt = i.GetFirst(); pAtt != NULL; pAtt = i.GetNext() )
-	{
-		if ( pAtt->GetCategoryID() == CategoryID && pAtt->GetItemID() == ItemID )
-		{
-			delete pAtt;
-			i.Remove();
-			return true;
-		}
-	}
+    for ( _ZBPropertyAttribute* pAtt = i.GetFirst(); pAtt != NULL; pAtt = i.GetNext() )
+    {
+        if ( pAtt->GetCategoryID() == CategoryID && pAtt->GetItemID() == ItemID )
+        {
+            delete pAtt;
+            i.Remove();
+            return true;
+        }
+    }
 
-	return false;
+    return false;
 }
 
 void ZBPropertyAttributes::DeleteCategoryAttribute( int CategoryID )
 {
-	size_t nCount = GetAttributeCount();
+    size_t nCount = GetAttributeCount();
 
-	for ( size_t i = 0; i < nCount; ++i )
-	{
-		_ZBPropertyAttribute* pAtt = GetAttributeAt( i );
+    for ( size_t i = 0; i < nCount; ++i )
+    {
+        _ZBPropertyAttribute* pAtt = GetAttributeAt( i );
 
-		if ( pAtt && pAtt->GetCategoryID() == CategoryID )
-		{
-			delete pAtt;
-			m_AttributeSet.RemoveAt(i);
-			--i;;
-		}
-	}
+        if ( pAtt && pAtt->GetCategoryID() == CategoryID )
+        {
+            delete pAtt;
+            m_AttributeSet.RemoveAt(i);
+            --i;;
+        }
+    }
 }
 
-bool ZBPropertyAttributes::Match( ZBPropertySet&	PropSet,
-								  const CString		What,
-								  bool				CaseSensitive /*= false*/,
-								  bool				PartialSearch /*= false*/ )
+bool ZBPropertyAttributes::Match( ZBPropertySet&    PropSet,
+                                  const CString        What,
+                                  bool                CaseSensitive /*= false*/,
+                                  bool                PartialSearch /*= false*/ )
 {
-	ZBPropertyIterator i( &PropSet );
-	ZBProperty* pProp;
+    ZBPropertyIterator i( &PropSet );
+    ZBProperty* pProp;
 
-	for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
-	{
-		if ( !FindAttribute( pProp->GetCategoryID(), pProp->GetItemID() ) )
-		{
-			continue;
-		}
+    for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    {
+        if ( !FindAttribute( pProp->GetCategoryID(), pProp->GetItemID() ) )
+        {
+            continue;
+        }
 
-		CString Value;
+        CString Value;
 
-		// Retreive the formatted value
-		switch ( pProp->GetPTValueType() )
-		{
-			case ZBProperty::PT_DOUBLE:
-			{
-				Value = ZUStringFormatter::GetFormattedBuffer( pProp->GetValueDouble(), pProp->GetStringFormat() );
-				break;
-			}
+        // Retreive the formatted value
+        switch ( pProp->GetPTValueType() )
+        {
+            case ZBProperty::PT_DOUBLE:
+            {
+                Value = ZUStringFormatter::GetFormattedBuffer( pProp->GetValueDouble(), pProp->GetStringFormat() );
+                break;
+            }
 
-			case ZBProperty::PT_FLOAT:
-			{
-				Value = ZUStringFormatter::GetFormattedBuffer( pProp->GetValueFloat(), pProp->GetStringFormat() );
-				break;
-			}
+            case ZBProperty::PT_FLOAT:
+            {
+                Value = ZUStringFormatter::GetFormattedBuffer( pProp->GetValueFloat(), pProp->GetStringFormat() );
+                break;
+            }
 
-			case ZBProperty::PT_DATE:
-			{
-				// RS-MODIF 15.08.05 cast implicite pour obtenir le bon lien objet
-				//Value = ZUStringFormatter::GetFormattedBuffer( pProp->GetValueDate(), pProp->GetStringFormat() );
-				Value = ZUStringFormatter::GetFormattedBuffer( (ZBDate&)pProp->GetValueDate(),
-															   pProp->GetStringFormat() );
-				break;
-			}
+            case ZBProperty::PT_DATE:
+            {
+                // RS-MODIF 15.08.05 cast implicite pour obtenir le bon lien objet
+                //Value = ZUStringFormatter::GetFormattedBuffer( pProp->GetValueDate(), pProp->GetStringFormat() );
+                Value = ZUStringFormatter::GetFormattedBuffer( (ZBDate&)pProp->GetValueDate(),
+                                                               pProp->GetStringFormat() );
+                break;
+            }
 
-			case ZBProperty::PT_TIMESPAN:
-			{
-				// RS-MODIF 15.08.05 cast implicite pour obtenir le bon lien objet
-				//Value = ZUStringFormatter::GetFormattedBuffer( pProp->GetValueTimeSpan(), pProp->GetStringFormat() );
-				Value = ZUStringFormatter::GetFormattedBuffer( (ZBTimeSpan&)pProp->GetValueTimeSpan(),
-															   pProp->GetStringFormat() );
-				break;
-			}
+            case ZBProperty::PT_TIMESPAN:
+            {
+                // RS-MODIF 15.08.05 cast implicite pour obtenir le bon lien objet
+                //Value = ZUStringFormatter::GetFormattedBuffer( pProp->GetValueTimeSpan(), pProp->GetStringFormat() );
+                Value = ZUStringFormatter::GetFormattedBuffer( (ZBTimeSpan&)pProp->GetValueTimeSpan(),
+                                                               pProp->GetStringFormat() );
+                break;
+            }
 
-			case ZBProperty::PT_DURATION:
-			{
-				// RS-MODIF 15.08.05 cast implicite pour obtenir le bon lien objet
-				//Value = ZUStringFormatter::GetFormattedBuffer( pProp->GetValueDuration(), pProp->GetStringFormat() );
-				Value = ZUStringFormatter::GetFormattedBuffer( (ZBDuration&)pProp->GetValueDuration(),
-															   pProp->GetStringFormat() );
-				break;
-			}
+            case ZBProperty::PT_DURATION:
+            {
+                // RS-MODIF 15.08.05 cast implicite pour obtenir le bon lien objet
+                //Value = ZUStringFormatter::GetFormattedBuffer( pProp->GetValueDuration(), pProp->GetStringFormat() );
+                Value = ZUStringFormatter::GetFormattedBuffer( (ZBDuration&)pProp->GetValueDuration(),
+                                                               pProp->GetStringFormat() );
+                break;
+            }
 
-			case ZBProperty::PT_STRING:
-			{
-				Value = pProp->GetValueString();
-				break;
-			}
+            case ZBProperty::PT_STRING:
+            {
+                Value = pProp->GetValueString();
+                break;
+            }
 
-			default:
-				break;
-		}
+            default:
+                break;
+        }
 
-		if ( Value.IsEmpty() )
-		{
-			continue;
-		}
+        if ( Value.IsEmpty() )
+        {
+            continue;
+        }
 
-		// Now check if the value string match with the what string
-		if ( PartialSearch )
-		{
-			// For non case sensitive search, transform the string to lowercase
-			CString LowerWhat = What;
-			LowerWhat.MakeLower();
+        // Now check if the value string match with the what string
+        if ( PartialSearch )
+        {
+            // For non case sensitive search, transform the string to lowercase
+            CString LowerWhat = What;
+            LowerWhat.MakeLower();
 
-			CString LowerValue = Value;
-			LowerValue.MakeLower();
+            CString LowerValue = Value;
+            LowerValue.MakeLower();
 
-			// In case sensitive, use Find function
-			if ( (  CaseSensitive && Value.Find( What ) != -1 ) ||
-				 ( !CaseSensitive && LowerValue.Find( LowerWhat ) != -1 ) )
-			{
-				return true;
-			}
-		}
-		else
-		{
-			if ( (  CaseSensitive && What == Value ) ||
-				 ( !CaseSensitive && Value.CompareNoCase( What ) == 0 ) )
-			{
-				return true;
-			}
-		}
-	}
+            // In case sensitive, use Find function
+            if ( (  CaseSensitive && Value.Find( What ) != -1 ) ||
+                 ( !CaseSensitive && LowerValue.Find( LowerWhat ) != -1 ) )
+            {
+                return true;
+            }
+        }
+        else
+        {
+            if ( (  CaseSensitive && What == Value ) ||
+                 ( !CaseSensitive && Value.CompareNoCase( What ) == 0 ) )
+            {
+                return true;
+            }
+        }
+    }
 
-	// Does not match
-	return false;
+    // Does not match
+    return false;
 }
 
 CString ZBPropertyAttributes::GetString( ZBPropertySet* pPropSet, bool KeepOnlyNotEmpty /*= true*/ )
 {
-	if ( !pPropSet )
-	{
-		return _T( "" );
-	}
+    if ( !pPropSet )
+    {
+        return _T( "" );
+    }
 
-	ZBTokenizer token( '\n' );
+    ZBTokenizer token( '\n' );
 
-	ZBPropertyIterator i(pPropSet);
-	ZBProperty* pProp;
+    ZBPropertyIterator i(pPropSet);
+    ZBProperty* pProp;
 
-	for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
-	{
-		if ( !FindAttribute( pProp->GetCategoryID(), pProp->GetItemID() ) )
-		{
-			continue;
-		}
+    for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    {
+        if ( !FindAttribute( pProp->GetCategoryID(), pProp->GetItemID() ) )
+        {
+            continue;
+        }
 
-		CString Value;
-		CString Format;
+        CString Value;
+        CString Format;
 
-		if ( GetDisplayTitleText() )
-		{
-			Format = pProp->GetLabel();
-			Format += _T( ": " );
-		}
+        if ( GetDisplayTitleText() )
+        {
+            Format = pProp->GetLabel();
+            Format += _T( ": " );
+        }
 
-		// Retreive the formatted value
-		switch ( pProp->GetPTValueType() )
-		{
-			case ZBProperty::PT_DOUBLE:
-			{
-				Value += ZUStringFormatter::GetFormattedBuffer( pProp->GetValueDouble(), pProp->GetStringFormat() );
-				break;
-			}
+        // Retreive the formatted value
+        switch ( pProp->GetPTValueType() )
+        {
+            case ZBProperty::PT_DOUBLE:
+            {
+                Value += ZUStringFormatter::GetFormattedBuffer( pProp->GetValueDouble(), pProp->GetStringFormat() );
+                break;
+            }
 
-			case ZBProperty::PT_FLOAT:
-			{
-				Value += ZUStringFormatter::GetFormattedBuffer( pProp->GetValueFloat(), pProp->GetStringFormat() );
-				break;
-			}
+            case ZBProperty::PT_FLOAT:
+            {
+                Value += ZUStringFormatter::GetFormattedBuffer( pProp->GetValueFloat(), pProp->GetStringFormat() );
+                break;
+            }
 
-			case ZBProperty::PT_DATE:
-			{
-				// RS-MODIF 15.08.05 cast implicite pour obtenir le bon lien objet
-				//Value += ZUStringFormatter::GetFormattedBuffer( pProp->GetValueDate(), pProp->GetStringFormat() );
-				Value += ZUStringFormatter::GetFormattedBuffer( (ZBDate&)pProp->GetValueDate(),
-																pProp->GetStringFormat() );
-				break;
-			}
+            case ZBProperty::PT_DATE:
+            {
+                // RS-MODIF 15.08.05 cast implicite pour obtenir le bon lien objet
+                //Value += ZUStringFormatter::GetFormattedBuffer( pProp->GetValueDate(), pProp->GetStringFormat() );
+                Value += ZUStringFormatter::GetFormattedBuffer( (ZBDate&)pProp->GetValueDate(),
+                                                                pProp->GetStringFormat() );
+                break;
+            }
 
-			case ZBProperty::PT_TIMESPAN:
-			{
-				// RS-MODIF 15.08.05 cast implicite pour obtenir le bon lien objet
-				//Value += ZUStringFormatter::GetFormattedBuffer( pProp->GetValueTimeSpan(), pProp->GetStringFormat() );
-				Value += ZUStringFormatter::GetFormattedBuffer( (ZBTimeSpan&)pProp->GetValueTimeSpan(),
-																pProp->GetStringFormat() );
-				break;
-			}
+            case ZBProperty::PT_TIMESPAN:
+            {
+                // RS-MODIF 15.08.05 cast implicite pour obtenir le bon lien objet
+                //Value += ZUStringFormatter::GetFormattedBuffer( pProp->GetValueTimeSpan(), pProp->GetStringFormat() );
+                Value += ZUStringFormatter::GetFormattedBuffer( (ZBTimeSpan&)pProp->GetValueTimeSpan(),
+                                                                pProp->GetStringFormat() );
+                break;
+            }
 
-			case ZBProperty::PT_DURATION:
-			{
-				// RS-MODIF 15.08.05 cast implicite pour obtenir le bon lien objet
-				//Value += ZUStringFormatter::GetFormattedBuffer( pProp->GetValueDuration(), pProp->GetStringFormat() );
-				Value += ZUStringFormatter::GetFormattedBuffer( (ZBDuration&)pProp->GetValueDuration(),
-																pProp->GetStringFormat() );
-				break;
-			}
+            case ZBProperty::PT_DURATION:
+            {
+                // RS-MODIF 15.08.05 cast implicite pour obtenir le bon lien objet
+                //Value += ZUStringFormatter::GetFormattedBuffer( pProp->GetValueDuration(), pProp->GetStringFormat() );
+                Value += ZUStringFormatter::GetFormattedBuffer( (ZBDuration&)pProp->GetValueDuration(),
+                                                                pProp->GetStringFormat() );
+                break;
+            }
 
-			case ZBProperty::PT_STRING:
-			{
-				Value += pProp->GetValueString();
-				break;
-			}
+            case ZBProperty::PT_STRING:
+            {
+                Value += pProp->GetValueString();
+                break;
+            }
 
-			default:
-				break;
-		}
+            default:
+                break;
+        }
 
-		if ( Value.IsEmpty() && KeepOnlyNotEmpty )
-		{
-			continue;
-		}
+        if ( Value.IsEmpty() && KeepOnlyNotEmpty )
+        {
+            continue;
+        }
 
-		token.AddToken( Format + Value );
-	}
+        token.AddToken( Format + Value );
+    }
 
-	return token.GetString();
+    return token.GetString();
 }
 
 CArchive& operator >> ( CArchive& ar, ZBPropertyAttributes& src )
 {
-	WORD wValue;
-	ar >> wValue;
-	src.SetDisplayTitleText( ( wValue == 1 ) ? true : false );
-	int nCount;
-	_ZBPropertyAttribute Attribute;
+    WORD wValue;
+    ar >> wValue;
+    src.SetDisplayTitleText( ( wValue == 1 ) ? true : false );
+    int nCount;
+    _ZBPropertyAttribute Attribute;
 
-	ar >> nCount;
+    ar >> nCount;
 
-	for ( int i=0; i < nCount; i++ )
-	{
-		ar >> Attribute;
-		src.AddAttribute( Attribute.Clone() );
-	}
+    for ( int i=0; i < nCount; i++ )
+    {
+        ar >> Attribute;
+        src.AddAttribute( Attribute.Clone() );
+    }
 
-	return ar;
+    return ar;
 }
 
 CArchive& operator << ( CArchive& ar, ZBPropertyAttributes& src )
 {
-	ar << (WORD)src.GetDisplayTitleText();
-	ar << (int)src.GetAttributeCount();
+    ar << (WORD)src.GetDisplayTitleText();
+    ar << (int)src.GetAttributeCount();
 
-	_ZBPropertyAttributeIterator i( &src.GetAttributeSetConst() );
+    _ZBPropertyAttributeIterator i( &src.GetAttributeSetConst() );
 
-	for ( _ZBPropertyAttribute* pAtt = i.GetFirst(); pAtt != NULL; pAtt = i.GetNext() )
-	{
-		ar << *pAtt;
-	}
+    for ( _ZBPropertyAttribute* pAtt = i.GetFirst(); pAtt != NULL; pAtt = i.GetNext() )
+    {
+        ar << *pAtt;
+    }
 
-	return ar;
+    return ar;
 }
 
 bool ZBPropertyAttributes::LoadStateFromIniFile( const CString IniFile, int ObjectID )
 {
-	// First, delete all attributes
-	RemoveAllAttributes();
+    // First, delete all attributes
+    RemoveAllAttributes();
 
-	CString EntityName;
-	EntityName.Format( _T( "%s%d" ), (const char*)_PropertyAttributeStateSectionName, ObjectID );
+    CString EntityName;
+    EntityName.Format( _T( "%s%d" ), (const char*)_PropertyAttributeStateSectionName, ObjectID );
 
-	ZUSystemOption SystemOption( IniFile, EntityName );
+    ZUSystemOption SystemOption( IniFile, EntityName );
 
-	CString KeyName;
-	CString Line;
-	size_t Idx = 0;
+    CString KeyName;
+    CString Line;
+    size_t Idx = 0;
 
-	do
-	{
-		// Format the key
-		KeyName.Format( _T( "%s%d" ), (const char*)_PropertyAttributeStateEntityName, Idx );
-		Line = SystemOption.ReadOption( KeyName, _T( "" ) );
+    do
+    {
+        // Format the key
+        KeyName.Format( _T( "%s%d" ), (const char*)_PropertyAttributeStateEntityName, Idx );
+        Line = SystemOption.ReadOption( KeyName, _T( "" ) );
 
-		if ( Line.IsEmpty() )
-		{
-			break;
-		}
+        if ( Line.IsEmpty() )
+        {
+            break;
+        }
 
-		++Idx;
+        ++Idx;
 
-		CString str;
-		ZBTokenizer token;
+        CString str;
+        ZBTokenizer token;
 
-		// Extract the category ID
-		str = token.GetFirstToken( Line );
+        // Extract the category ID
+        str = token.GetFirstToken( Line );
 
-		if ( str.IsEmpty() )
-		{
-			continue;
-		}
+        if ( str.IsEmpty() )
+        {
+            continue;
+        }
 
-		int CategoryID = atoi( (const char*)str );
+        int CategoryID = atoi( (const char*)str );
 
-		// Extract the item ID
-		str = token.GetNextToken();
+        // Extract the item ID
+        str = token.GetNextToken();
 
-		if ( str.IsEmpty() )
-		{
-			continue;
-		}
+        if ( str.IsEmpty() )
+        {
+            continue;
+        }
 
-		int ItemID = atoi( (const char*)str );
+        int ItemID = atoi( (const char*)str );
 
-		// If we are here, all objects have been extracted
-		// Create the object state
-		_ZBPropertyAttribute* pAtt = new _ZBPropertyAttribute( CategoryID, ItemID );
+        // If we are here, all objects have been extracted
+        // Create the object state
+        _ZBPropertyAttribute* pAtt = new _ZBPropertyAttribute( CategoryID, ItemID );
 
-		// Add it to the array of value
-		AddAttribute( pAtt );
-	}
-	while (Idx < 1000000);	// Sets the maximum loop at 1 million objects
-							// which is big already
+        // Add it to the array of value
+        AddAttribute( pAtt );
+    }
+    while (Idx < 1000000);    // Sets the maximum loop at 1 million objects
+                            // which is big already
 
-	return true;
+    return true;
 }
 
 bool ZBPropertyAttributes::SaveStateToIniFile( const CString IniFile, int ObjectID )
 {
-	CString EntityName;
-	EntityName.Format( _T( "%s%d" ), (const char*)_PropertyAttributeStateSectionName, ObjectID );
+    CString EntityName;
+    EntityName.Format( _T( "%s%d" ), (const char*)_PropertyAttributeStateSectionName, ObjectID );
 
-	ZUSystemOption SystemOption( IniFile, EntityName );
+    ZUSystemOption SystemOption( IniFile, EntityName );
 
-	// RS-MODIF 12.12.04 we need to delete all records before saving
-	DeleteAttributesFromIniFile( IniFile, ObjectID );
+    // RS-MODIF 12.12.04 we need to delete all records before saving
+    DeleteAttributesFromIniFile( IniFile, ObjectID );
 
-	size_t Idx = 0;
-	CString KeyName;
+    size_t Idx = 0;
+    CString KeyName;
 
-	_ZBPropertyAttributeIterator i( &GetAttributeSetConst() );
+    _ZBPropertyAttributeIterator i( &GetAttributeSetConst() );
 
-	for ( _ZBPropertyAttribute* pAtt = i.GetFirst(); pAtt != NULL; pAtt = i.GetNext(), ++Idx )
-	{
-		// Format the key
-		KeyName.Format( _T( "%s%d" ), (const char*)_PropertyAttributeStateEntityName, Idx );
-		ZBTokenizer token;
+    for ( _ZBPropertyAttribute* pAtt = i.GetFirst(); pAtt != NULL; pAtt = i.GetNext(), ++Idx )
+    {
+        // Format the key
+        KeyName.Format( _T( "%s%d" ), (const char*)_PropertyAttributeStateEntityName, Idx );
+        ZBTokenizer token;
 
-		// Build the string
-		token.AddToken( pAtt->GetCategoryID() );
-		token.AddToken( pAtt->GetItemID() );
+        // Build the string
+        token.AddToken( pAtt->GetCategoryID() );
+        token.AddToken( pAtt->GetItemID() );
 
-		// Write the string to the ini file
-		SystemOption.WriteOption( KeyName, token.GetString() );
-	}
+        // Write the string to the ini file
+        SystemOption.WriteOption( KeyName, token.GetString() );
+    }
 
-	return true;
+    return true;
 }
 
 // RS-MODIF 12.12.04 delete attributes
 bool ZBPropertyAttributes::DeleteAttributesFromIniFile( const CString IniFile, int ObjectID )
 {
-	CString EntityName;
-	EntityName.Format( _T( "%s%d" ), (const char*)_PropertyAttributeStateSectionName, ObjectID );
+    CString EntityName;
+    EntityName.Format( _T( "%s%d" ), (const char*)_PropertyAttributeStateSectionName, ObjectID );
 
-	ZUSystemOption	SystemOption( IniFile, EntityName );
+    ZUSystemOption    SystemOption( IniFile, EntityName );
 
-	CString KeyName;
-	CString Line;
-	size_t Idx = 0;
+    CString KeyName;
+    CString Line;
+    size_t Idx = 0;
 
-	do
-	{
-		// Format the key
-		KeyName.Format( _T( "%s%d" ), (const char*)_PropertyAttributeStateEntityName, Idx );
-		Line = SystemOption.ReadOption( KeyName, _T( "" ) );
+    do
+    {
+        // Format the key
+        KeyName.Format( _T( "%s%d" ), (const char*)_PropertyAttributeStateEntityName, Idx );
+        Line = SystemOption.ReadOption( KeyName, _T( "" ) );
 
-		if ( Line.IsEmpty() )
-		{
-			break;
-		}
+        if ( Line.IsEmpty() )
+        {
+            break;
+        }
 
-		++Idx;
+        ++Idx;
 
-		SystemOption.WriteOption( KeyName, _T( "0;0" ) );
-	}
-	while (Idx < 1000000);	// Sets the maximum loop at 1 million objects
-							// which is big already
+        SystemOption.WriteOption( KeyName, _T( "0;0" ) );
+    }
+    while (Idx < 1000000);    // Sets the maximum loop at 1 million objects
+                            // which is big already
 
-	return true;
+    return true;
 }

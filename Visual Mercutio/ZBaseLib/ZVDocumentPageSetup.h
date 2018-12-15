@@ -1,9 +1,9 @@
 // **********************************************************************************************************
-// *										  Classe ZVDocumentPageSetup									*
+// *                                          Classe ZVDocumentPageSetup                                    *
 // **********************************************************************************************************
-// * Cette classe permet la gestion du format de page du document. Elle permet de paramétrer une page,		*
-// * et elle prend également en charge le contrôle de la validité de cette page par rapport au device		*
-// * d'impression.																							*
+// * Cette classe permet la gestion du format de page du document. Elle permet de paramétrer une page,        *
+// * et elle prend également en charge le contrôle de la validité de cette page par rapport au device        *
+// * d'impression.                                                                                            *
 // **********************************************************************************************************
 
 #if !defined(AFX_ZVDOCUMENTPAGESETUP_H__12BA3983_74D2_4165_9560_7CAC5F01222B__INCLUDED_)
@@ -40,47 +40,47 @@ class AFX_EXT_CLASS ZVDocumentPageSetup
 {
 private:
 
-	CString								sBkGndName;
+    CString                                sBkGndName;
 
-	BOOL								bIsFormatDefined;
-	BOOL								bIsCancelled;
-	BOOL								bCanPrint;
-	BOOL								bIsChecked;
+    BOOL                                bIsFormatDefined;
+    BOOL                                bIsCancelled;
+    BOOL                                bCanPrint;
+    BOOL                                bIsChecked;
 
-	CSize								m_PaperSize;
+    CSize                                m_PaperSize;
 
-	short								m_StandardSize;
-	short								m_Orientation;
+    short                                m_StandardSize;
+    short                                m_Orientation;
 
-	ZVDocumentPageSetupDlg				m_PageSetupDlg;
+    ZVDocumentPageSetupDlg                m_PageSetupDlg;
 
-	BOOL		GetPrinterSettings		( CSize& PaperSize, short& StandardSize, short& Orientation );
+    BOOL        GetPrinterSettings        ( CSize& PaperSize, short& StandardSize, short& Orientation );
 
-	void		ChangePrinterSettings	( short StandardSize, short Orientation );
+    void        ChangePrinterSettings    ( short StandardSize, short Orientation );
 
 public:
 
-	ZVDocumentPageSetup();
-	~ZVDocumentPageSetup();
+    ZVDocumentPageSetup();
+    ~ZVDocumentPageSetup();
 
-	CString		GetBackGroundFilename	();
+    CString        GetBackGroundFilename    ();
 
-	CSize		GetDefaultPageDim		( CRect Margins );
-	CSize		GetPaperSize			();
+    CSize        GetDefaultPageDim        ( CRect Margins );
+    CSize        GetPaperSize            ();
 
-	short		GetStandardSize			();
-	short		GetOrientation			();
+    short        GetStandardSize            ();
+    short        GetOrientation            ();
 
-	void		SetPaperSize			( CSize PaperSize );
-	void		SetStandardSize			( short StandardSize );
-	void		SetOrientation			( short Orientation );
-	void		OnUserDefinePageFormat	();
-	void		OnUpdatePrinterSettings	();
+    void        SetPaperSize            ( CSize PaperSize );
+    void        SetStandardSize            ( short StandardSize );
+    void        SetOrientation            ( short Orientation );
+    void        OnUserDefinePageFormat    ();
+    void        OnUpdatePrinterSettings    ();
 
-	BOOL		IsSupported				( short StandardSize );
-	BOOL		IsFormatDefined			();
-	BOOL		IsCancelled				();
-	BOOL		CanPrint				();
+    BOOL        IsSupported                ( short StandardSize );
+    BOOL        IsFormatDefined            ();
+    BOOL        IsCancelled                ();
+    BOOL        CanPrint                ();
 };
 
 #endif // !defined(AFX_ZVDOCUMENTPAGESETUP_H__12BA3983_74D2_4165_9560_7CAC5F01222B__INCLUDED_)

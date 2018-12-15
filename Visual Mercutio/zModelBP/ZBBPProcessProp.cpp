@@ -41,19 +41,19 @@ IMPLEMENT_SERIAL( ZBBPProcessProperties, CODIntProperty, def_Version )
 //@parmopt int | nId | OD_PROP_FILL | The identifier of the property.
 //@parm ZBBPProcessProperties& | propProcess | The fill property to copy.
 ZBBPProcessProperties::ZBBPProcessProperties( int nId )
-	: CODIntProperty( nId )
+    : CODIntProperty( nId )
 {
-	m_ManagementCase = _T( "" );
+    m_ManagementCase = _T( "" );
 
-	RegisterProperties();
+    RegisterProperties();
 }
 
 ZBBPProcessProperties::ZBBPProcessProperties( const ZBBPProcessProperties& propProcess )
-	: CODIntProperty( propProcess.GetId() )
+    : CODIntProperty( propProcess.GetId() )
 {
-	m_ManagementCase = propProcess.GetManagementCase();
+    m_ManagementCase = propProcess.GetManagementCase();
 
-	RegisterProperties();
+    RegisterProperties();
 }
 
 //@mfunc Destructor.
@@ -69,15 +69,15 @@ ZBBPProcessProperties::~ZBBPProcessProperties()
 //@parm The new management case name.
 void ZBBPProcessProperties::SetManagementCase( LPCTSTR lpszName )
 {
-	if ( lpszName != NULL )
-	{
-		m_ManagementCase = lpszName;
-	}
-	else
-	{
-		TRACE0( _T( "Z -> Invalid Management Case name pointer!\n" ) );
-		ASSERT( FALSE );
-	}
+    if ( lpszName != NULL )
+    {
+        m_ManagementCase = lpszName;
+    }
+    else
+    {
+        TRACE0( _T( "Z -> Invalid Management Case name pointer!\n" ) );
+        ASSERT( FALSE );
+    }
 }
 
 //@mfunc Sets the management case name.
@@ -85,7 +85,7 @@ void ZBBPProcessProperties::SetManagementCase( LPCTSTR lpszName )
 //@parm The new management name.
 void ZBBPProcessProperties::SetManagementCaseEx( const CString name )
 {
-	SetManagementCase( name );
+    SetManagementCase( name );
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -96,10 +96,10 @@ void ZBBPProcessProperties::SetManagementCaseEx( const CString name )
 //@parm Property identifier to compare to.
 BOOL ZBBPProcessProperties::CompareId( const int nId ) const
 {
-	int nIdMin = m_nId;
-	int nIdMax = m_nId + Z_MANAGEMENT_CASE;
+    int nIdMin = m_nId;
+    int nIdMax = m_nId + Z_MANAGEMENT_CASE;
 
-	return ( nId >= nIdMin && nId <= nIdMax );
+    return ( nId >= nIdMin && nId <= nIdMax );
 }
 
 //@mfunc Sets this property object equal to the one passed in.
@@ -107,10 +107,10 @@ BOOL ZBBPProcessProperties::CompareId( const int nId ) const
 //@parm The property to copy.
 ZBBPProcessProperties& ZBBPProcessProperties::operator=( const ZBBPProcessProperties& propProcess )
 {
-	SetId( propProcess.GetId() );
-	SetManagementCase( propProcess.GetManagementCase() );
+    SetId( propProcess.GetId() );
+    SetManagementCase( propProcess.GetManagementCase() );
 
-	return *this;
+    return *this;
 }
 
 //@mfunc Tests if this property is equal to the one passed in.
@@ -118,7 +118,7 @@ ZBBPProcessProperties& ZBBPProcessProperties::operator=( const ZBBPProcessProper
 //@parm The property to test against.
 BOOL ZBBPProcessProperties::operator==( const ZBBPProcessProperties propProcess ) const
 {
-	return ( GetManagementCase() == propProcess.GetManagementCase() );
+    return ( GetManagementCase() == propProcess.GetManagementCase() );
 }
 
 //@mfunc Merges the values of the property passed in with the values in this
@@ -129,15 +129,15 @@ BOOL ZBBPProcessProperties::operator==( const ZBBPProcessProperties propProcess 
 // to merge into this property object.
 void ZBBPProcessProperties::Merge( CODProperty* pProperty, DWORD dwChangeFlags )
 {
-	ZBBPProcessProperties* pProcessProps = (ZBBPProcessProperties*)pProperty;
+    ZBBPProcessProperties* pProcessProps = (ZBBPProcessProperties*)pProperty;
 
-	if ( pProcessProps )
-	{
-		if ( dwChangeFlags & Z_CHANGE_MANAGEMENT_CASE )
-		{
-			m_ManagementCase = pProcessProps->GetManagementCase();
-		}
-	}
+    if ( pProcessProps )
+    {
+        if ( dwChangeFlags & Z_CHANGE_MANAGEMENT_CASE )
+        {
+            m_ManagementCase = pProcessProps->GetManagementCase();
+        }
+    }
 }
 
 //@mfunc Tests if this property is equal to the one passed in. This method
@@ -146,17 +146,17 @@ void ZBBPProcessProperties::Merge( CODProperty* pProperty, DWORD dwChangeFlags )
 //@parm A pointer to the property to test against.
 BOOL ZBBPProcessProperties::IsEqual( CODProperty* pProp )
 {
-	if ( GetId() == pProp->GetId() )
-	{
-		ZBBPProcessProperties* pProcessProp = (ZBBPProcessProperties*)pProp;
+    if ( GetId() == pProp->GetId() )
+    {
+        ZBBPProcessProperties* pProcessProp = (ZBBPProcessProperties*)pProp;
 
-		if ( pProcessProp )
-		{
-			return ( *this == *pProcessProp );
-		}
-	}
+        if ( pProcessProp )
+        {
+            return ( *this == *pProcessProp );
+        }
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -186,97 +186,97 @@ BOOL ZBBPProcessProperties::IsEqual( CODProperty* pProp )
 
 BOOL ZBBPProcessProperties::GetValue( const int nPropId, CString& strValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_MANAGEMENT_CASE:
-		{
-			strValue = m_ManagementCase;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_MANAGEMENT_CASE:
+        {
+            strValue = m_ManagementCase;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPProcessProperties::GetValue( const int nPropId, int& nValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_MANAGEMENT_CASE:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_MANAGEMENT_CASE:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPProcessProperties::GetValue( const int nPropId, UINT& nValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_MANAGEMENT_CASE:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_MANAGEMENT_CASE:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPProcessProperties::GetValue( const int nPropId, DWORD& dwValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_MANAGEMENT_CASE:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_MANAGEMENT_CASE:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPProcessProperties::GetValue( const int nPropId, float& fValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_MANAGEMENT_CASE:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_MANAGEMENT_CASE:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 //@mfunc | ZBBPProcessProperties | SetValue | Sets the value of the given property.
@@ -303,97 +303,97 @@ BOOL ZBBPProcessProperties::GetValue( const int nPropId, float& fValue ) const
 
 BOOL ZBBPProcessProperties::SetValue( const int nPropId, LPCTSTR lpszValue )
 {
-	switch ( nPropId )
-	{
-		case Z_MANAGEMENT_CASE:
-		{
-			m_ManagementCase = lpszValue;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_MANAGEMENT_CASE:
+        {
+            m_ManagementCase = lpszValue;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPProcessProperties::SetValue( const int nPropId, const int nValue )
 {
-	switch ( nPropId )
-	{
-		case Z_MANAGEMENT_CASE:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_MANAGEMENT_CASE:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPProcessProperties::SetValue( const int nPropId, const UINT nValue )
 {
-	switch ( nPropId )
-	{
-		case Z_MANAGEMENT_CASE:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_MANAGEMENT_CASE:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPProcessProperties::SetValue( const int nPropId, const DWORD dwValue )
 {
-	switch ( nPropId )
-	{
-		case Z_MANAGEMENT_CASE:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_MANAGEMENT_CASE:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPProcessProperties::SetValue( const int nPropId, const float fValue )
 {
-	switch ( nPropId )
-	{
-		case Z_MANAGEMENT_CASE:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_MANAGEMENT_CASE:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -401,27 +401,27 @@ BOOL ZBBPProcessProperties::SetValue( const int nPropId, const float fValue )
 
 bool ZBBPProcessProperties::RegisterProperties()
 {
-	static bool propsRegistered = false;
+    static bool propsRegistered = false;
 
-	if ( !propsRegistered )
-	{
-		bool success = RegisterProperty( Z_MANAGEMENT_CASE,
-										 IDS_Z_MANAGEMENT_CASE_NAME,
-										 IDS_Z_MANAGEMENT_CASE_DESC,
-										 _PropertyAccessor( &ZBBPProcessProperties::GetManagementCase,
-															&ZBBPProcessProperties::SetManagementCaseEx ),
-										 VT_BSTR,
-										 PROP_DIRECT );
+    if ( !propsRegistered )
+    {
+        bool success = RegisterProperty( Z_MANAGEMENT_CASE,
+                                         IDS_Z_MANAGEMENT_CASE_NAME,
+                                         IDS_Z_MANAGEMENT_CASE_DESC,
+                                         _PropertyAccessor( &ZBBPProcessProperties::GetManagementCase,
+                                                            &ZBBPProcessProperties::SetManagementCaseEx ),
+                                         VT_BSTR,
+                                         PROP_DIRECT );
 
-		if ( !success )
-		{
-			ZBBPProcessProperties::GetPropertyMap().DeleteAll();
-		}
+        if ( !success )
+        {
+            ZBBPProcessProperties::GetPropertyMap().DeleteAll();
+        }
 
-		propsRegistered = success;
-	}
+        propsRegistered = success;
+    }
 
-	return propsRegistered;
+    return propsRegistered;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -430,14 +430,14 @@ bool ZBBPProcessProperties::RegisterProperties()
 #ifdef _DEBUG
 void ZBBPProcessProperties::AssertValid() const
 {
-	CODIntProperty::AssertValid();
+    CODIntProperty::AssertValid();
 }
 
 void ZBBPProcessProperties::Dump( CDumpContext& dc ) const
 {
-	CODIntProperty::Dump( dc );
+    CODIntProperty::Dump( dc );
 
-	dc << _T( "Management case name = " ) << m_ManagementCase << _T( "\n" );
+    dc << _T( "Management case name = " ) << m_ManagementCase << _T( "\n" );
 }
 #endif //_DEBUG
 
@@ -449,25 +449,25 @@ void ZBBPProcessProperties::Dump( CDumpContext& dc ) const
 //@parm The archive to use for serialization.
 void ZBBPProcessProperties::Serialize( CArchive& ar )
 {
-	CODIntProperty::Serialize( ar );
+    CODIntProperty::Serialize( ar );
 
-	if ( ar.IsStoring() )
-	{
-		TRACE( _T( "ZBBPProcessProperties::Serialize : Start Save\n" ) );
+    if ( ar.IsStoring() )
+    {
+        TRACE( _T( "ZBBPProcessProperties::Serialize : Start Save\n" ) );
 
-		PUT_SCHEMA( ar, ZBBPProcessProperties );
-		ar << m_ManagementCase;
+        PUT_SCHEMA( ar, ZBBPProcessProperties );
+        ar << m_ManagementCase;
 
-		TRACE( _T( "ZBBPProcessProperties::Serialize : End Save\n" ) );
-	}
-	else
-	{
-		TRACE( _T( "ZBBPProcessProperties::Serialize : Start Read\n" ) );
+        TRACE( _T( "ZBBPProcessProperties::Serialize : End Save\n" ) );
+    }
+    else
+    {
+        TRACE( _T( "ZBBPProcessProperties::Serialize : Start Read\n" ) );
 
-		UINT nSchema;
-		GET_SCHEMA( ar, nSchema );
-		ar >> m_ManagementCase;
+        UINT nSchema;
+        GET_SCHEMA( ar, nSchema );
+        ar >> m_ManagementCase;
 
-		TRACE( _T( "ZBBPProcessProperties::Serialize : End Read\n" ) );
-	}
+        TRACE( _T( "ZBBPProcessProperties::Serialize : End Read\n" ) );
+    }
 }

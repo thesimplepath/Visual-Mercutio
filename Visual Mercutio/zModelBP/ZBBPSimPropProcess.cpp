@@ -12,7 +12,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// Created:		 05/2001
+// Created:         05/2001
 // Description:  ZBBPSimPropertiesProcess simulation properties for process
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -49,16 +49,16 @@ using namespace sfl;
 //@parm ZBBPSimPropertiesProcess& | propBasic | The orientation property to copy.
 ZBBPSimPropertiesProcess::ZBBPSimPropertiesProcess()
 {
-	m_ProcessWorkloadForecast	= (double)1;
-	m_ProcessCostForecast		= (double)0;
+    m_ProcessWorkloadForecast    = (double)1;
+    m_ProcessCostForecast        = (double)0;
 
-	// JMR-MODIF - Le 14 mars 2006 - Ajout de l'initialisation de la variable pour le coût HMO.
-	m_ProcessCost				= (double)0;
+    // JMR-MODIF - Le 14 mars 2006 - Ajout de l'initialisation de la variable pour le coût HMO.
+    m_ProcessCost                = (double)0;
 }
 
 ZBBPSimPropertiesProcess::ZBBPSimPropertiesProcess( const ZBBPSimPropertiesProcess& propBasic )
 {
-	*this = propBasic;
+    *this = propBasic;
 }
 
 //@mfunc Destructor.
@@ -74,12 +74,12 @@ ZBBPSimPropertiesProcess::~ZBBPSimPropertiesProcess()
 //@parm The property to copy.
 ZBBPSimPropertiesProcess& ZBBPSimPropertiesProcess::operator=( const ZBBPSimPropertiesProcess& propBasic )
 {
-	SetProcessWorkloadForecast	( const_cast<ZBBPSimPropertiesProcess&>( propBasic ).GetProcessWorkloadForecast() );
-	SetProcessCostForecast		( const_cast<ZBBPSimPropertiesProcess&>( propBasic ).GetProcessCostForecast() );
-	// JMR-MODIF - Le 14 mars 2006 - Ajout de la copie de la variable du coût HMO.
-	SetProcessCost				( const_cast<ZBBPSimPropertiesProcess&>( propBasic ).GetProcessCost() );
+    SetProcessWorkloadForecast    ( const_cast<ZBBPSimPropertiesProcess&>( propBasic ).GetProcessWorkloadForecast() );
+    SetProcessCostForecast        ( const_cast<ZBBPSimPropertiesProcess&>( propBasic ).GetProcessCostForecast() );
+    // JMR-MODIF - Le 14 mars 2006 - Ajout de la copie de la variable du coût HMO.
+    SetProcessCost                ( const_cast<ZBBPSimPropertiesProcess&>( propBasic ).GetProcessCost() );
 
-	return *this;
+    return *this;
 }
 
 //@mfunc Tests if this property is equal to the one passed in.
@@ -87,10 +87,10 @@ ZBBPSimPropertiesProcess& ZBBPSimPropertiesProcess::operator=( const ZBBPSimProp
 //@parm The property to test against.
 BOOL ZBBPSimPropertiesProcess::operator==( const ZBBPSimPropertiesProcess propBasic ) const
 {
-	// JMR-MODIF - Le 14 mars 2006 - Ajout de la comparaison pour la variable du coût HMO.
-	return ( const_cast<ZBBPSimPropertiesProcess*>( this )->GetProcessWorkloadForecast() == const_cast<ZBBPSimPropertiesProcess&>( propBasic ).GetProcessWorkloadForecast()	&&
-			 const_cast<ZBBPSimPropertiesProcess*>( this )->GetProcessCostForecast()	 == const_cast<ZBBPSimPropertiesProcess&>( propBasic ).GetProcessCostForecast()		&&
-			 const_cast<ZBBPSimPropertiesProcess*>( this )->GetProcessCost()			 == const_cast<ZBBPSimPropertiesProcess&>( propBasic ).GetProcessCost() );
+    // JMR-MODIF - Le 14 mars 2006 - Ajout de la comparaison pour la variable du coût HMO.
+    return ( const_cast<ZBBPSimPropertiesProcess*>( this )->GetProcessWorkloadForecast() == const_cast<ZBBPSimPropertiesProcess&>( propBasic ).GetProcessWorkloadForecast()    &&
+             const_cast<ZBBPSimPropertiesProcess*>( this )->GetProcessCostForecast()     == const_cast<ZBBPSimPropertiesProcess&>( propBasic ).GetProcessCostForecast()        &&
+             const_cast<ZBBPSimPropertiesProcess*>( this )->GetProcessCost()             == const_cast<ZBBPSimPropertiesProcess&>( propBasic ).GetProcessCost() );
 }
 
 //@mfunc Merges the values of the property passed in with the values in this
@@ -101,21 +101,21 @@ BOOL ZBBPSimPropertiesProcess::operator==( const ZBBPSimPropertiesProcess propBa
 // to merge into this property object.
 void ZBBPSimPropertiesProcess::Merge( ZBBPSimPropertiesProcess* pProperty, DWORD dwChangeFlags )
 {
-	if ( dwChangeFlags & Z_CHANGE_SIM_PROCESS_WORKLOAD_FORECAST )
-	{
-		m_ProcessWorkloadForecast = pProperty->GetProcessWorkloadForecast();
-	}
+    if ( dwChangeFlags & Z_CHANGE_SIM_PROCESS_WORKLOAD_FORECAST )
+    {
+        m_ProcessWorkloadForecast = pProperty->GetProcessWorkloadForecast();
+    }
 
-	if ( dwChangeFlags & Z_CHANGE_SIM_PROCESS_COST_FORECAST )
-	{
-		m_ProcessCostForecast = pProperty->GetProcessCostForecast();
-	}
+    if ( dwChangeFlags & Z_CHANGE_SIM_PROCESS_COST_FORECAST )
+    {
+        m_ProcessCostForecast = pProperty->GetProcessCostForecast();
+    }
 
-	// JMR-MODIF - Le 14 mars 2006 - Ajout de la propriété de partage pour la variable du coût HMO.
-	if ( dwChangeFlags & Z_CHANGE_SIM_PROCESS_COST_HMO )
-	{
-		m_ProcessCost = pProperty->GetProcessCost();
-	}
+    // JMR-MODIF - Le 14 mars 2006 - Ajout de la propriété de partage pour la variable du coût HMO.
+    if ( dwChangeFlags & Z_CHANGE_SIM_PROCESS_COST_HMO )
+    {
+        m_ProcessCost = pProperty->GetProcessCost();
+    }
 }
 
 //@mfunc Tests if this property is equal to the one passed in. This method
@@ -124,12 +124,12 @@ void ZBBPSimPropertiesProcess::Merge( ZBBPSimPropertiesProcess* pProperty, DWORD
 //@parm A pointer to the property to test against.
 BOOL ZBBPSimPropertiesProcess::IsEqual( ZBBPSimPropertiesProcess* pProp )
 {
-	if ( pProp )
-	{
-		return ( *this == *pProp );
-	}
+    if ( pProp )
+    {
+        return ( *this == *pProp );
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -160,138 +160,138 @@ BOOL ZBBPSimPropertiesProcess::IsEqual( ZBBPSimPropertiesProcess* pProp )
 
 BOOL ZBBPSimPropertiesProcess::GetValue( const int nPropId, CString& strValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_SIM_PROCESS_WORKLOAD_FORECAST:
-		{
-			strValue.Format( _T( "%.0f" ), (double)m_ProcessWorkloadForecast );
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_SIM_PROCESS_WORKLOAD_FORECAST:
+        {
+            strValue.Format( _T( "%.0f" ), (double)m_ProcessWorkloadForecast );
+            break;
+        }
 
-		case Z_SIM_PROCESS_COST_FORECAST:
-		{
-			strValue.Format( _T( "%.0f" ), (double)m_ProcessCostForecast );
-			break;
-		}
+        case Z_SIM_PROCESS_COST_FORECAST:
+        {
+            strValue.Format( _T( "%.0f" ), (double)m_ProcessCostForecast );
+            break;
+        }
 
-		// JMR-MODIF - Le 14 mars 2006 - Ajout de la prise en charge de la variable HMO.
-		case Z_SIM_PROCESS_COST_HMO:
-		{
-			strValue.Format( _T( "%.0f" ), (double)m_ProcessCost );
-			break;
-		}
+        // JMR-MODIF - Le 14 mars 2006 - Ajout de la prise en charge de la variable HMO.
+        case Z_SIM_PROCESS_COST_HMO:
+        {
+            strValue.Format( _T( "%.0f" ), (double)m_ProcessCost );
+            break;
+        }
 
-		default:
-		{
-			throw new CODPropertyConversionException();
-			return FALSE;
-		}
-	}
+        default:
+        {
+            throw new CODPropertyConversionException();
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPSimPropertiesProcess::GetValue( const int nPropId, int& nValue ) const
 {
-	nValue; // unused
+    nValue; // unused
 
-	// JMR-MODIF - Le 14 mars 2006 - Remplacé la déclaration Z_SIM_PROCESS_COST_FORECAST par Z_SIM_PROCESS_COST_HMO.
-	if ( nPropId >= Z_SIM_PROCESS_WORKLOAD_FORECAST && nPropId <= Z_SIM_PROCESS_COST_HMO )
-	{
-		throw new CODPropertyConversionException();
-	}
+    // JMR-MODIF - Le 14 mars 2006 - Remplacé la déclaration Z_SIM_PROCESS_COST_FORECAST par Z_SIM_PROCESS_COST_HMO.
+    if ( nPropId >= Z_SIM_PROCESS_WORKLOAD_FORECAST && nPropId <= Z_SIM_PROCESS_COST_HMO )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPSimPropertiesProcess::GetValue( const int nPropId, UINT& nValue ) const
 {
-	nValue; // unused
+    nValue; // unused
 
-	// JMR-MODIF - Le 14 mars 2006 - Remplacé la déclaration Z_SIM_PROCESS_COST_FORECAST par Z_SIM_PROCESS_COST_HMO.
-	if ( nPropId >= Z_SIM_PROCESS_WORKLOAD_FORECAST && nPropId <= Z_SIM_PROCESS_COST_HMO )
-	{
-		throw new CODPropertyConversionException();
-	}
+    // JMR-MODIF - Le 14 mars 2006 - Remplacé la déclaration Z_SIM_PROCESS_COST_FORECAST par Z_SIM_PROCESS_COST_HMO.
+    if ( nPropId >= Z_SIM_PROCESS_WORKLOAD_FORECAST && nPropId <= Z_SIM_PROCESS_COST_HMO )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPSimPropertiesProcess::GetValue( const int nPropId, DWORD& dwValue ) const
 {
-	dwValue; // unused
+    dwValue; // unused
 
-	// JMR-MODIF - Le 14 mars 2006 - Remplacé la déclaration Z_SIM_PROCESS_COST_FORECAST par Z_SIM_PROCESS_COST_HMO.
-	if ( nPropId >= Z_SIM_PROCESS_WORKLOAD_FORECAST && nPropId <= Z_SIM_PROCESS_COST_HMO )
-	{
-		throw new CODPropertyConversionException();
-	}
+    // JMR-MODIF - Le 14 mars 2006 - Remplacé la déclaration Z_SIM_PROCESS_COST_FORECAST par Z_SIM_PROCESS_COST_HMO.
+    if ( nPropId >= Z_SIM_PROCESS_WORKLOAD_FORECAST && nPropId <= Z_SIM_PROCESS_COST_HMO )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPSimPropertiesProcess::GetValue( const int nPropId, float& fValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_SIM_PROCESS_WORKLOAD_FORECAST:
-		{
-			fValue = static_cast<float>( (double)m_ProcessWorkloadForecast );
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_SIM_PROCESS_WORKLOAD_FORECAST:
+        {
+            fValue = static_cast<float>( (double)m_ProcessWorkloadForecast );
+            break;
+        }
 
-		case Z_SIM_PROCESS_COST_FORECAST:
-		{
-			fValue = static_cast<float>( (double)m_ProcessCostForecast );
-			break;
-		}
+        case Z_SIM_PROCESS_COST_FORECAST:
+        {
+            fValue = static_cast<float>( (double)m_ProcessCostForecast );
+            break;
+        }
 
-		// JMR-MODIF - Le 14 mars 2006 - Ajout de la prise en charge de la variable HMO.
-		case Z_SIM_PROCESS_COST_HMO:
-		{
-			fValue = static_cast<float>( (double)m_ProcessCost );
-			break;
-		}
+        // JMR-MODIF - Le 14 mars 2006 - Ajout de la prise en charge de la variable HMO.
+        case Z_SIM_PROCESS_COST_HMO:
+        {
+            fValue = static_cast<float>( (double)m_ProcessCost );
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPSimPropertiesProcess::GetValue( const int nPropId, double& dValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_SIM_PROCESS_WORKLOAD_FORECAST:
-		{
-			dValue = (double)m_ProcessWorkloadForecast;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_SIM_PROCESS_WORKLOAD_FORECAST:
+        {
+            dValue = (double)m_ProcessWorkloadForecast;
+            break;
+        }
 
-		case Z_SIM_PROCESS_COST_FORECAST:
-		{
-			dValue = (double)m_ProcessCostForecast;
-			break;
-		}
+        case Z_SIM_PROCESS_COST_FORECAST:
+        {
+            dValue = (double)m_ProcessCostForecast;
+            break;
+        }
 
-		// JMR-MODIF - Le 14 mars 2006 - Ajout de la prise en charge de la variable HMO.
-		case Z_SIM_PROCESS_COST_HMO:
-		{
-			dValue = (double)m_ProcessCost;
-			break;
-		}
+        // JMR-MODIF - Le 14 mars 2006 - Ajout de la prise en charge de la variable HMO.
+        case Z_SIM_PROCESS_COST_HMO:
+        {
+            dValue = (double)m_ProcessCost;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 //@mfunc | ZBBPSimPropertiesProcess | SetValue | Sets the value of the given property.
@@ -319,137 +319,137 @@ BOOL ZBBPSimPropertiesProcess::GetValue( const int nPropId, double& dValue ) con
 
 BOOL ZBBPSimPropertiesProcess::SetValue( const int nPropId, LPCTSTR lpszValue )
 {
-	switch ( nPropId )
-	{
-		case Z_SIM_PROCESS_WORKLOAD_FORECAST:
-		{
-			m_ProcessWorkloadForecast = atof( lpszValue );
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_SIM_PROCESS_WORKLOAD_FORECAST:
+        {
+            m_ProcessWorkloadForecast = atof( lpszValue );
+            break;
+        }
 
-		case Z_SIM_PROCESS_COST_FORECAST:
-		{
-			m_ProcessCostForecast = atof( lpszValue );
-			break;
-		}
+        case Z_SIM_PROCESS_COST_FORECAST:
+        {
+            m_ProcessCostForecast = atof( lpszValue );
+            break;
+        }
 
-		// JMR-MODIF - Le 14 mars 2006 - Ajout de la prise en charge de la variable HMO.
-		case Z_SIM_PROCESS_COST_HMO:
-		{
-			m_ProcessCost = atof( lpszValue );
-			break;
-		}
+        // JMR-MODIF - Le 14 mars 2006 - Ajout de la prise en charge de la variable HMO.
+        case Z_SIM_PROCESS_COST_HMO:
+        {
+            m_ProcessCost = atof( lpszValue );
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPSimPropertiesProcess::SetValue( const int nPropId, const int nValue )
 {
-	nValue; // unused
+    nValue; // unused
 
-	// JMR-MODIF - Le 14 mars 2006 - Remplacé la déclaration Z_SIM_PROCESS_COST_FORECAST par Z_SIM_PROCESS_COST_HMO.
-	if ( nPropId >= Z_SIM_PROCESS_WORKLOAD_FORECAST && nPropId <= Z_SIM_PROCESS_COST_HMO )
-	{
-		throw new CODPropertyConversionException();
-	}
+    // JMR-MODIF - Le 14 mars 2006 - Remplacé la déclaration Z_SIM_PROCESS_COST_FORECAST par Z_SIM_PROCESS_COST_HMO.
+    if ( nPropId >= Z_SIM_PROCESS_WORKLOAD_FORECAST && nPropId <= Z_SIM_PROCESS_COST_HMO )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPSimPropertiesProcess::SetValue( const int nPropId, const UINT nValue )
 {
-	nValue; // unused
+    nValue; // unused
 
-	// JMR-MODIF - Le 14 mars 2006 - Remplacé la déclaration Z_SIM_PROCESS_COST_FORECAST par Z_SIM_PROCESS_COST_HMO.
-	if ( nPropId >= Z_SIM_PROCESS_WORKLOAD_FORECAST && nPropId <= Z_SIM_PROCESS_COST_HMO )
-	{
-		throw new CODPropertyConversionException();
-	}
+    // JMR-MODIF - Le 14 mars 2006 - Remplacé la déclaration Z_SIM_PROCESS_COST_FORECAST par Z_SIM_PROCESS_COST_HMO.
+    if ( nPropId >= Z_SIM_PROCESS_WORKLOAD_FORECAST && nPropId <= Z_SIM_PROCESS_COST_HMO )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPSimPropertiesProcess::SetValue( const int nPropId, const DWORD dwValue )
 {
-	dwValue; // unused
+    dwValue; // unused
 
-	// JMR-MODIF - Le 14 mars 2006 - Remplacé la déclaration Z_SIM_PROCESS_COST_FORECAST par Z_SIM_PROCESS_COST_HMO.
-	if ( nPropId >= Z_SIM_PROCESS_WORKLOAD_FORECAST && nPropId <= Z_SIM_PROCESS_COST_HMO )
-	{
-		throw new CODPropertyConversionException();
-	}
+    // JMR-MODIF - Le 14 mars 2006 - Remplacé la déclaration Z_SIM_PROCESS_COST_FORECAST par Z_SIM_PROCESS_COST_HMO.
+    if ( nPropId >= Z_SIM_PROCESS_WORKLOAD_FORECAST && nPropId <= Z_SIM_PROCESS_COST_HMO )
+    {
+        throw new CODPropertyConversionException();
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBBPSimPropertiesProcess::SetValue( const int nPropId, const float fValue )
 {
-	switch ( nPropId )
-	{
-		case Z_SIM_PROCESS_WORKLOAD_FORECAST:
-		{
-			m_ProcessWorkloadForecast = (double)fValue;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_SIM_PROCESS_WORKLOAD_FORECAST:
+        {
+            m_ProcessWorkloadForecast = (double)fValue;
+            break;
+        }
 
-		case Z_SIM_PROCESS_COST_FORECAST:
-		{
-			m_ProcessCostForecast = (double)fValue;
-			break;
-		}
+        case Z_SIM_PROCESS_COST_FORECAST:
+        {
+            m_ProcessCostForecast = (double)fValue;
+            break;
+        }
 
-		// JMR-MODIF - Le 14 mars 2006 - Ajout de la prise en charge de la variable HMO.
-		case Z_SIM_PROCESS_COST_HMO:
-		{
-			m_ProcessCost = (double)fValue;
-			break;
-		}
+        // JMR-MODIF - Le 14 mars 2006 - Ajout de la prise en charge de la variable HMO.
+        case Z_SIM_PROCESS_COST_HMO:
+        {
+            m_ProcessCost = (double)fValue;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPSimPropertiesProcess::SetValue( const int nPropId, const double dValue )
 {
-	switch ( nPropId )
-	{
-		case Z_SIM_PROCESS_WORKLOAD_FORECAST:
-		{
-			m_ProcessWorkloadForecast = dValue;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_SIM_PROCESS_WORKLOAD_FORECAST:
+        {
+            m_ProcessWorkloadForecast = dValue;
+            break;
+        }
 
-		case Z_SIM_PROCESS_COST_FORECAST:
-		{
-			m_ProcessCostForecast = dValue;
-			break;
-		}
+        case Z_SIM_PROCESS_COST_FORECAST:
+        {
+            m_ProcessCostForecast = dValue;
+            break;
+        }
 
-		// JMR-MODIF - Le 14 mars 2006 - Ajout de la prise en charge de la variable HMO.
-		case Z_SIM_PROCESS_COST_HMO:
-		{
-			m_ProcessCost = dValue;
-			break;
-		}
+        // JMR-MODIF - Le 14 mars 2006 - Ajout de la prise en charge de la variable HMO.
+        case Z_SIM_PROCESS_COST_HMO:
+        {
+            m_ProcessCost = dValue;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -458,12 +458,12 @@ BOOL ZBBPSimPropertiesProcess::SetValue( const int nPropId, const double dValue 
 #ifdef _DEBUG
 void ZBBPSimPropertiesProcess::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void ZBBPSimPropertiesProcess::Dump( CDumpContext& dc ) const
 {
-	CObject::Dump( dc );
+    CObject::Dump( dc );
 }
 #endif //_DEBUG
 
@@ -475,38 +475,38 @@ void ZBBPSimPropertiesProcess::Dump( CDumpContext& dc ) const
 //@parm The archive to use for serialization.
 void ZBBPSimPropertiesProcess::Serialize( CArchive& ar )
 {
-	m_ProcessWorkloadForecast.Serialize( ar );
-	m_ProcessCostForecast.Serialize( ar );
+    m_ProcessWorkloadForecast.Serialize( ar );
+    m_ProcessCostForecast.Serialize( ar );
 
-	// JMR-MODIF - Le 14 mars 2006 - Ajout du code de sérialisation pour le coût HMO.
-	if ( ar.IsStoring() )
-	{
-		m_ProcessCost.Serialize( ar );
-	}
-	else
-	{
-		if ( ar.m_pDocument &&
-			 dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 24 )
-		{
-			m_ProcessCost.Serialize( ar );
-		}
-	}
+    // JMR-MODIF - Le 14 mars 2006 - Ajout du code de sérialisation pour le coût HMO.
+    if ( ar.IsStoring() )
+    {
+        m_ProcessCost.Serialize( ar );
+    }
+    else
+    {
+        if ( ar.m_pDocument &&
+             dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 24 )
+        {
+            m_ProcessCost.Serialize( ar );
+        }
+    }
 
-	if ( ar.IsStoring() )
-	{
-		TRACE( _T( "ZBBPSimPropertiesProcess::Serialize : Start Save\n" ) );
+    if ( ar.IsStoring() )
+    {
+        TRACE( _T( "ZBBPSimPropertiesProcess::Serialize : Start Save\n" ) );
 
-		PUT_SCHEMA( ar, ZBBPSimPropertiesProcess );
+        PUT_SCHEMA( ar, ZBBPSimPropertiesProcess );
 
-		TRACE( _T( "ZBBPSimPropertiesProcess::Serialize : End Save\n" ) );
-	}
-	else
-	{
-		TRACE( _T( "ZBBPSimPropertiesProcess::Serialize : Start Read\n" ) );
+        TRACE( _T( "ZBBPSimPropertiesProcess::Serialize : End Save\n" ) );
+    }
+    else
+    {
+        TRACE( _T( "ZBBPSimPropertiesProcess::Serialize : Start Read\n" ) );
 
-		UINT nSchema;
-		GET_SCHEMA( ar, nSchema );
+        UINT nSchema;
+        GET_SCHEMA( ar, nSchema );
 
-		TRACE( _T( "ZBBPSimPropertiesProcess::Serialize : End Read\n" ) );
-	}
+        TRACE( _T( "ZBBPSimPropertiesProcess::Serialize : End Read\n" ) );
+    }
 }

@@ -1,5 +1,5 @@
 //## begin module%334FC46302EF.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%334FC46302EF.cm
 
 //## begin module%334FC46302EF.cp preserve=no
@@ -50,7 +50,7 @@
 //## end PLFNText%334FC46102A4.preface
 
 //## Class: PLFNText%334FC46102A4
-//	Visual objects functionnalities.
+//    Visual objects functionnalities.
 //## Category: PlanFin::Objects%334FC461017C
 //## Subsystem: PlanFin%334FC46302B2
 //## Persistence: Transient
@@ -59,9 +59,9 @@
 class AFX_EXT_CLASS PLFNText : public PLFNAscii  //## Inherits: <unnamed>%334FC46102A5
 {
   //## begin PLFNText%334FC46102A4.initialDeclarations preserve=yes
-	public:
-	// Inherited feature
-		typedef PLFNAscii inherited;
+    public:
+    // Inherited feature
+        typedef PLFNAscii inherited;
   //## end PLFNText%334FC46102A4.initialDeclarations
 
   public:
@@ -79,70 +79,70 @@ class AFX_EXT_CLASS PLFNText : public PLFNAscii  //## Inherits: <unnamed>%334FC4
 
     //## Other Operations (specified)
       //## Operation: operator =%829516133
-      //	A copy constructor with a pointer.
+      //    A copy constructor with a pointer.
       const PLFNText& operator = (const PLFNText* right);
 
       //## Operation: GetFormatedObject%829516158
-      //	Format the object with the current object's attributes.
+      //    Format the object with the current object's attributes.
       //## Semantics:
-      //	This function return the string
-      //	represented the object formated
-      //	with the current format type
-      //	this function is virtual
-      //	The base function returns an empty string
+      //    This function return the string
+      //    represented the object formated
+      //    with the current format type
+      //    this function is virtual
+      //    The base function returns an empty string
       virtual CString GetFormatedObject ();
 
       //## Operation: ConvertFormatedObject%829516157
-      //	Convert a formatted object to numeric, date, string, etc.
-      //	Returns true if the value has changed.
+      //    Convert a formatted object to numeric, date, string, etc.
+      //    Returns true if the value has changed.
       //## Semantics:
-      //	This function convert the string
-      //	and set the object with the right value
-      //	For the base class nothing to do
+      //    This function convert the string
+      //    and set the object with the right value
+      //    For the base class nothing to do
       virtual BOOL ConvertFormatedObject (const CString& sValue, BOOL bLocateFormat = TRUE, BOOL EmptyWhenZero = FALSE);
 
       //## Operation: IsSelected%829516175
-      //	Is this object selected.
+      //    Is this object selected.
       virtual BOOL IsSelected (const CPoint& point) const;
 
       //## Operation: Serialize%829516183
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: GetContains%831692953
-      //	Return the contains of the text. The parameter strLine
-      //	contains the definition of the object and the function
-      //	retreive the contains from this line.
+      //    Return the contains of the text. The parameter strLine
+      //    contains the definition of the object and the function
+      //    retreive the contains from this line.
       void GetContains (CString& strLine);
 
       //## Operation: Clone%849755977
-      //	Make a clone of the object.
+      //    Make a clone of the object.
       virtual PlanFinObject* Clone ();
 
       //## Operation: CopyObject%863615082
       virtual void CopyObject (PlanFinObject* pSrc);
 
       //## Operation: GetUnformatedObject%901298463
-      //	Return an unformated string of the object image.
+      //    Return an unformated string of the object image.
       virtual CString GetUnformatedObject ();
 
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: Str%334FC46102D4
-      //	The text object.
+      //    The text object.
       const CString& GetStr () const;
       void SetStr (const CString& value);
 
       //## Attribute: IsStatic%351647DA037A
-      //	Defines if the field is static or not.
+      //    Defines if the field is static or not.
       virtual const BOOL GetIsStatic () const;
       virtual void SetIsStatic (BOOL value);
 
     // Additional Public Declarations
       //## begin PLFNText%334FC46102A4.public preserve=yes
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
       //## end PLFNText%334FC46102A4.public
   protected:
@@ -154,7 +154,7 @@ class AFX_EXT_CLASS PLFNText : public PLFNAscii  //## Inherits: <unnamed>%334FC4
 
     // Additional Protected Declarations
       //## begin PLFNText%334FC46102A4.protected preserve=yes
-		DECLARE_SERIAL(PLFNText)
+        DECLARE_SERIAL(PLFNText)
       //## end PLFNText%334FC46102A4.protected
   private:
     // Data Members for Class Attributes
@@ -184,7 +184,7 @@ class AFX_EXT_CLASS PLFNText : public PLFNAscii  //## Inherits: <unnamed>%334FC4
 inline BOOL PLFNText::IsSelected (const CPoint& point) const
 {
   //## begin PLFNText::IsSelected%829516175.body preserve=yes
-	return( m_rctObject.PtInRect( point ) );
+    return( m_rctObject.PtInRect( point ) );
   //## end PLFNText::IsSelected%829516175.body
 }
 

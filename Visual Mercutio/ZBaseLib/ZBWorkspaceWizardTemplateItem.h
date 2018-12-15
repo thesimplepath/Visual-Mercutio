@@ -47,78 +47,78 @@
 
 class AFX_EXT_CLASS ZBWorkspaceWizardTemplateItem : public CObject  
 {
-	DECLARE_SERIAL(ZBWorkspaceWizardTemplateItem)
+    DECLARE_SERIAL(ZBWorkspaceWizardTemplateItem)
 public:
-	ZBWorkspaceWizardTemplateItem( CString TemplateName = "",
-								   CString TemplateDescription = "",
-								   CString IconFile = "",
-								   int IconIndex = -1 );
+    ZBWorkspaceWizardTemplateItem( CString TemplateName = "",
+                                   CString TemplateDescription = "",
+                                   CString IconFile = "",
+                                   int IconIndex = -1 );
 
-	virtual ~ZBWorkspaceWizardTemplateItem();
+    virtual ~ZBWorkspaceWizardTemplateItem();
 
 
-	CString	GetTemplateName() const
-	{
-		return m_TemplateName;
-	};
-	void SetTemplateName( CString value )
-	{
-		m_TemplateName = value;
-	};
+    CString    GetTemplateName() const
+    {
+        return m_TemplateName;
+    };
+    void SetTemplateName( CString value )
+    {
+        m_TemplateName = value;
+    };
 
-	CString GetTemplateDescription() const
-	{
-		return m_TemplateDescription;
-	};
-	void SetTemplateDescription( CString value )
-	{
-		m_TemplateDescription = value;
-	};
+    CString GetTemplateDescription() const
+    {
+        return m_TemplateDescription;
+    };
+    void SetTemplateDescription( CString value )
+    {
+        m_TemplateDescription = value;
+    };
 
-	CString GetIconFile() const
-	{
-		return m_IconFile;
-	};
-	void SetIconFile( CString value )
-	{
-		m_IconFile = value;
-	};
+    CString GetIconFile() const
+    {
+        return m_IconFile;
+    };
+    void SetIconFile( CString value )
+    {
+        m_IconFile = value;
+    };
 
-	int		GetIconIndex() const
-	{
-		return m_IconIndex;
-	};
-	void SetIconIndex( int	 value )
-	{
-		m_IconIndex = value;
-	};
+    int        GetIconIndex() const
+    {
+        return m_IconIndex;
+    };
+    void SetIconIndex( int     value )
+    {
+        m_IconIndex = value;
+    };
 
-	HICON	GetIcon() const
-	{
-		return m_Icon;
-	};
-	void SetIcon( HICON value )
-	{
-		m_Icon = value;
-	};
+    HICON    GetIcon() const
+    {
+        return m_Icon;
+    };
+    void SetIcon( HICON value )
+    {
+        m_Icon = value;
+    };
 
-	// Serialization mechanism
-	virtual void Serialize(CArchive& ar);   // overridden for document i/o
+    // Serialization mechanism
+    virtual void Serialize(CArchive& ar);   // overridden for document i/o
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
 private:
-	void LoadIconFile();
+    void LoadIconFile();
 
 private:
-	CString	m_TemplateName;
-	CString m_TemplateDescription;
-	CString m_IconFile;
-	int		m_IconIndex;
-	HICON	m_Icon;
+    CString    m_TemplateName;
+    CString m_TemplateDescription;
+    CString m_IconFile;
+    int        m_IconIndex;
+    HICON    m_Icon;
 };
 
 #endif // !defined(AFX_ZBWORKSPACEWIZARDTEMPLATEITEM_H__81C3034D_3B0C_4B42_A41B_7C69A55E84C0__INCLUDED_)

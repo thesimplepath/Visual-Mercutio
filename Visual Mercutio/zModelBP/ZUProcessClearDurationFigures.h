@@ -13,9 +13,9 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 07/2001
+// <nl>Created:         07/2001
 // <nl>Description:  ZUProcessClearDurationFigures navigates through the process and
-//					 clear all number used for the duration calculation
+//                     clear all number used for the duration calculation
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -64,14 +64,14 @@
 class AFX_EXT_CLASS ZUProcessClearDurationFigures : public ZUProcessNavigation  
 {
 public:
-	ZUProcessClearDurationFigures(ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
-	virtual ~ZUProcessClearDurationFigures();
+    ZUProcessClearDurationFigures(ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL);
+    virtual ~ZUProcessClearDurationFigures();
 
-	// Call-back methods
-	virtual bool OnStart();
-	virtual bool OnFinish();
-	virtual bool OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol );
-	virtual bool OnDeliverableLinkSymbol( ZBDeliverableLinkSymbol* pSymbol );
+    // Call-back methods
+    virtual bool OnStart();
+    virtual bool OnFinish();
+    virtual bool OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol );
+    virtual bool OnDeliverableLinkSymbol( ZBDeliverableLinkSymbol* pSymbol );
 
 private:
 

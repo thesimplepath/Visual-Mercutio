@@ -35,28 +35,28 @@
 class AFX_EXT_CLASS ZBUserDirectoryManager  
 {
 public:
-	ZBUserDirectoryManager( const CString Directory = "");
-	BOOL	SetDirectory( const CString value );
-	CString	GetDirectory() const { return m_Directory; };
+    ZBUserDirectoryManager( const CString Directory = "");
+    BOOL    SetDirectory( const CString value );
+    CString    GetDirectory() const { return m_Directory; };
 
-	BOOL	UserExist( const CString Username );
-	BOOL	CreateUser( const CString Username );
-	CString	BuildUserDirectory( const CString Username );
+    BOOL    UserExist( const CString Username );
+    BOOL    CreateUser( const CString Username );
+    CString    BuildUserDirectory( const CString Username );
 
-	virtual ~ZBUserDirectoryManager();
+    virtual ~ZBUserDirectoryManager();
 
 private:
     ZBUserDirectoryManager(const ZBUserDirectoryManager &right);
     const ZBUserDirectoryManager & operator=(const ZBUserDirectoryManager &right);
 
-	void	SaveCurrentDirectory();
-	void	SetLastCurrentDirectory();
+    void    SaveCurrentDirectory();
+    void    SetLastCurrentDirectory();
 
 private:
-	CString		m_Directory;
-	// Keep the old directory
-	char		m_CurrentDir[MAX_PATH];
-	DWORD		m_nBufferLength;
+    CString        m_Directory;
+    // Keep the old directory
+    char        m_CurrentDir[MAX_PATH];
+    DWORD        m_nBufferLength;
 };
 
 
@@ -64,21 +64,21 @@ private:
 //#define AFX_DATA
 
 
-inline void	ZBUserDirectoryManager::SaveCurrentDirectory()
+inline void    ZBUserDirectoryManager::SaveCurrentDirectory()
 {
-	// Keep the old directory
-	GetCurrentDirectory( m_nBufferLength, m_CurrentDir );
+    // Keep the old directory
+    GetCurrentDirectory( m_nBufferLength, m_CurrentDir );
 }
-inline void	ZBUserDirectoryManager::SetLastCurrentDirectory()
+inline void    ZBUserDirectoryManager::SetLastCurrentDirectory()
 {
-	// Sets back the directory
-	SetCurrentDirectory( m_CurrentDir );
+    // Sets back the directory
+    SetCurrentDirectory( m_CurrentDir );
 }
 
 
-inline CString	ZBUserDirectoryManager::BuildUserDirectory( const CString Username )
+inline CString    ZBUserDirectoryManager::BuildUserDirectory( const CString Username )
 {
-	return m_Directory + "\\" + Username;
+    return m_Directory + "\\" + Username;
 }
 
 #endif // !defined(AFX_USERDMNG_H__E056C8E0_1AA1_11D3_981B_00C04FB4D0D7__INCLUDED_)

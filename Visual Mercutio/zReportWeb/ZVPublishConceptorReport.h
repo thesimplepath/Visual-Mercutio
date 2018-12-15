@@ -1,8 +1,8 @@
 // ******************************************************************************************************
-// *								  Classe ZVPublishConceptorReport									*
+// *                                  Classe ZVPublishConceptorReport                                    *
 // ******************************************************************************************************
-// * JMR-MODIF - Le 29 juin 2005 - Création de la nouvelle classe ZVPublishConceptorReport.				*
-// * Cette classe effectue la publication des rapports en tant que pages Internet.						*
+// * JMR-MODIF - Le 29 juin 2005 - Création de la nouvelle classe ZVPublishConceptorReport.                *
+// * Cette classe effectue la publication des rapports en tant que pages Internet.                        *
 // ******************************************************************************************************
 
 #if !defined(AFX_ZVPUBLISHCONCEPTORREPORT_H__2911BA6F_30D8_459C_9B9A_A644F79B704F__INCLUDED_)
@@ -54,76 +54,76 @@
 #endif
 
 // ******************************************************************************************************
-// *												 Enumérateurs										*
+// *                                                 Enumérateurs                                        *
 // ******************************************************************************************************
 
 // Enumérateur représentant l'opération d'exportation en cours.
 enum AFX_EXT_CLASS ZVPublishConceptorProc
 {
-	PUBLISH_CONCEPTOR_HEADERS,
-	PUBLISH_CONCEPTOR_DETAILS,
+    PUBLISH_CONCEPTOR_HEADERS,
+    PUBLISH_CONCEPTOR_DETAILS,
 };
 
 // ******************************************************************************************************
-// *									   Classe ZVPublishConceptorReport								*
+// *                                       Classe ZVPublishConceptorReport                                *
 // ******************************************************************************************************
 class AFX_EXT_CLASS ZVPublishConceptorReport : public ZIBasicSymbolVisitor
 {
 public:
 
-	ZVPublishConceptorReport			( ZDProcessGraphModelMdlBP* pModel	= NULL,
-										  BOOL bShowDetails					= TRUE,
-										  BOOL bShowDeliverables			= TRUE );
+    ZVPublishConceptorReport            ( ZDProcessGraphModelMdlBP* pModel    = NULL,
+                                          BOOL bShowDetails                    = TRUE,
+                                          BOOL bShowDeliverables            = TRUE );
 
-	virtual ~ZVPublishConceptorReport	();
+    virtual ~ZVPublishConceptorReport    ();
 
-	bool Publish						( CString Directory );
-
-private:
-
-	void GeneratePageFile				(CString Name, CString Description);
-
-	bool CreateFileSystem				( ZBUserGroupEntity* pGroup, CString Directory );
-	bool CreateProcess					();
-	bool StartSection					( CODNodeArray& Nodes );
-	bool OnDoorSymbol					( ZBBPDoorSymbol* pSymbol );
-	bool OnPageSymbol					( ZBBPPageSymbol* pSymbol );
-	bool OnProcedureSymbol				( ZBBPProcedureSymbol* pSymbol );
-	bool OnProcessSymbol				( ZBBPProcessSymbol* pSymbol );
-	bool OnStartSymbol					( ZBBPStartSymbol* pSymbol );
-	bool OnStopSymbol					( ZBBPStopSymbol* pSymbol );
-	bool OnDeliverableLinkSymbol		( ZBDeliverableLinkSymbol* pSymbol );
-	bool OnSymbol						( ZBSymbol* pSymbol );
-	bool OnLink							( ZBLinkSymbol* pLink );
-
-	virtual bool Visit					( CODComponent& Symbol );
-
-	CString GenerateFilename			( CString Directory, CString EntityName );
-
-	void WriteLine						( CString Text );
-	void WriteLine						( int nID );
+    bool Publish                        ( CString Directory );
 
 private:
 
-	ZDProcessGraphModelMdl*				m_pRootModel;
-	ZDProcessGraphModelMdlBP*			m_pModel;
-	ZDProcessGraphModelDoc*				m_pSourceDoc;
-	ZBBPProcessSymbol*					m_pPreviousProcess;
+    void GeneratePageFile                (CString Name, CString Description);
 
-	ZDHtmlFile							HtmlFile;
+    bool CreateFileSystem                ( ZBUserGroupEntity* pGroup, CString Directory );
+    bool CreateProcess                    ();
+    bool StartSection                    ( CODNodeArray& Nodes );
+    bool OnDoorSymbol                    ( ZBBPDoorSymbol* pSymbol );
+    bool OnPageSymbol                    ( ZBBPPageSymbol* pSymbol );
+    bool OnProcedureSymbol                ( ZBBPProcedureSymbol* pSymbol );
+    bool OnProcessSymbol                ( ZBBPProcessSymbol* pSymbol );
+    bool OnStartSymbol                    ( ZBBPStartSymbol* pSymbol );
+    bool OnStopSymbol                    ( ZBBPStopSymbol* pSymbol );
+    bool OnDeliverableLinkSymbol        ( ZBDeliverableLinkSymbol* pSymbol );
+    bool OnSymbol                        ( ZBSymbol* pSymbol );
+    bool OnLink                            ( ZBLinkSymbol* pLink );
 
-	ZVPublishModelGenerate				m_FileGenerateWindow;
+    virtual bool Visit                    ( CODComponent& Symbol );
 
-	CString								m_DomainName;
-	CString								m_UnitName;
-	CString								m_CurrentProcessName;
+    CString GenerateFilename            ( CString Directory, CString EntityName );
 
-	BOOL								m_ShowDetails;
-	BOOL								m_IncludeDeliverables;
+    void WriteLine                        ( CString Text );
+    void WriteLine                        ( int nID );
 
-	bool								m_First;
+private:
 
-	ZVPublishConceptorProc				PublishProc;
+    ZDProcessGraphModelMdl*                m_pRootModel;
+    ZDProcessGraphModelMdlBP*            m_pModel;
+    ZDProcessGraphModelDoc*                m_pSourceDoc;
+    ZBBPProcessSymbol*                    m_pPreviousProcess;
+
+    ZDHtmlFile                            HtmlFile;
+
+    ZVPublishModelGenerate                m_FileGenerateWindow;
+
+    CString                                m_DomainName;
+    CString                                m_UnitName;
+    CString                                m_CurrentProcessName;
+
+    BOOL                                m_ShowDetails;
+    BOOL                                m_IncludeDeliverables;
+
+    bool                                m_First;
+
+    ZVPublishConceptorProc                PublishProc;
 };
 
 #endif // !defined(AFX_ZVPUBLISHCONCEPTORREPORT_H__2911BA6F_30D8_459C_9B9A_A644F79B704F__INCLUDED_)

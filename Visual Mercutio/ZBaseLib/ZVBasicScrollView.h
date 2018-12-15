@@ -37,55 +37,55 @@ class AFX_EXT_CLASS ZVBasicScrollView : public ZVSpanView
 {
 protected:
 
-	DECLARE_DYNCREATE( ZVBasicScrollView )
+    DECLARE_DYNCREATE( ZVBasicScrollView )
 
-	// Protected constructor used by dynamic creation
-	ZVBasicScrollView();
+    // Protected constructor used by dynamic creation
+    ZVBasicScrollView();
 
 // Operations
 public:
 
-	// Return the printer page size
-//	BOOL GetPrinterPageSize( CSize &PaperSize, short& StandardSize, short& Orientation );
-	ZVDocumentPageSetup*	GetPrinterPageSize();
-	void					SetPrinterPageSize( CSize PaperSize, short StandardSize, short Orientation );
+    // Return the printer page size
+//    BOOL GetPrinterPageSize( CSize &PaperSize, short& StandardSize, short& Orientation );
+    ZVDocumentPageSetup*    GetPrinterPageSize();
+    void                    SetPrinterPageSize( CSize PaperSize, short StandardSize, short Orientation );
 
-	//	Set the printer orientation. It is function of the
-	//	printer definition.
-//	void SetPrinterOrientation ( short Orientation = DMORIENT_PORTRAIT );
+    //    Set the printer orientation. It is function of the
+    //    printer definition.
+//    void SetPrinterOrientation ( short Orientation = DMORIENT_PORTRAIT );
 
-	// Call back for Zoom In&Out
-	virtual void ViewZoomIn();
-	virtual void ViewZoomOut();
+    // Call back for Zoom In&Out
+    virtual void ViewZoomIn();
+    virtual void ViewZoomOut();
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVBasicScrollView)
-	protected:
-	virtual void OnDraw(CDC* pDC);	// overridden to draw this view
-	virtual void OnInitialUpdate();	// first time after construct
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVBasicScrollView)
+    protected:
+    virtual void OnDraw(CDC* pDC);    // overridden to draw this view
+    virtual void OnInitialUpdate();    // first time after construct
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVBasicScrollView)
-	afx_msg void OnViewZoomIn();
-	afx_msg void OnViewZoomOut();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVBasicScrollView)
+    afx_msg void OnViewZoomIn();
+    afx_msg void OnViewZoomOut();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
-	virtual ~ZVBasicScrollView();
+    virtual ~ZVBasicScrollView();
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 private:
 
-	ZVDocumentPageSetup		m_PageSetup;
+    ZVDocumentPageSetup        m_PageSetup;
 };
 
 /////////////////////////////////////////////////////////////////////////////

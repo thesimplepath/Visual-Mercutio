@@ -12,8 +12,8 @@
 class ZBInputScenarioSet : public CObject  
 {
 public:
-	ZBInputScenarioSet();
-	virtual ~ZBInputScenarioSet();
+    ZBInputScenarioSet();
+    virtual ~ZBInputScenarioSet();
 
 };
 

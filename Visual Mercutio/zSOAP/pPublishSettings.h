@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Gaya
-// <nl>Created:		 03/2002
+// <nl>Created:         03/2002
 // <nl>Description:  XXXClass frame window support
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -44,16 +44,16 @@ class AFX_EXT_CLASS pPublishSettings
 {
 private:
 
-	pPublishSettings()
-	{
-	};
+    pPublishSettings()
+    {
+    };
 
 public:
 
-	static string url;
-	static string modelservice;
-	static string serverservice;
-	static string fileservice;
+    static string url;
+    static string modelservice;
+    static string serverservice;
+    static string fileservice;
 };
 
 #endif

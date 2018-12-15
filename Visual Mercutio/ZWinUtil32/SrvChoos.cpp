@@ -1,10 +1,10 @@
 //## begin module%36FFBCCB01C3.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%36FFBCCB01C3.cm
 
 //## begin module%36FFBCCB01C3.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%36FFBCCB01C3.cp
 
 //## Module: SrvChoos%36FFBCCB01C3; Package body
@@ -51,102 +51,102 @@ BOOL ZAChooseServer::m_Local;
 //## end ZAChooseServer::Local%37BE6CD400EA.attr
 
 ZAChooseServer::ZAChooseServer()
-	//## begin ZAChooseServer::ZAChooseServer%.hasinit preserve=no
-	//## end ZAChooseServer::ZAChooseServer%.hasinit
-	//## begin ZAChooseServer::ZAChooseServer%.initialization preserve=yes
-	//## end ZAChooseServer::ZAChooseServer%.initialization
+    //## begin ZAChooseServer::ZAChooseServer%.hasinit preserve=no
+    //## end ZAChooseServer::ZAChooseServer%.hasinit
+    //## begin ZAChooseServer::ZAChooseServer%.initialization preserve=yes
+    //## end ZAChooseServer::ZAChooseServer%.initialization
 {
-	//## begin ZAChooseServer::ZAChooseServer%.body preserve=yes
-	m_Local = FALSE;
-	//## end ZAChooseServer::ZAChooseServer%.body
+    //## begin ZAChooseServer::ZAChooseServer%.body preserve=yes
+    m_Local = FALSE;
+    //## end ZAChooseServer::ZAChooseServer%.body
 }
 
 ZAChooseServer::ZAChooseServer( const CString File, BOOL Local )
-	//## begin ZAChooseServer::ZAChooseServer%922729730.hasinit preserve=no
-	//## end ZAChooseServer::ZAChooseServer%922729730.hasinit
-	//## begin ZAChooseServer::ZAChooseServer%922729730.initialization preserve=yes
-	//## end ZAChooseServer::ZAChooseServer%922729730.initialization
+    //## begin ZAChooseServer::ZAChooseServer%922729730.hasinit preserve=no
+    //## end ZAChooseServer::ZAChooseServer%922729730.hasinit
+    //## begin ZAChooseServer::ZAChooseServer%922729730.initialization preserve=yes
+    //## end ZAChooseServer::ZAChooseServer%922729730.initialization
 {
-	//## begin ZAChooseServer::ZAChooseServer%922729730.body preserve=yes
-	m_File = File;
-	m_Local = Local;
-	//## end ZAChooseServer::ZAChooseServer%922729730.body
+    //## begin ZAChooseServer::ZAChooseServer%922729730.body preserve=yes
+    m_File = File;
+    m_Local = Local;
+    //## end ZAChooseServer::ZAChooseServer%922729730.body
 }
 
 ZAChooseServer::~ZAChooseServer()
 {
-	//## begin ZAChooseServer::~ZAChooseServer%.body preserve=yes
-	//## end ZAChooseServer::~ZAChooseServer%.body
+    //## begin ZAChooseServer::~ZAChooseServer%.body preserve=yes
+    //## end ZAChooseServer::~ZAChooseServer%.body
 }
 
 //## Other Operations (implementation)
 BOOL ZAChooseServer::ChooseServer()
 {
-	//## begin ZAChooseServer::ChooseServer%922729731.body preserve=yes
-	return ProcessChoose();
-	//## end ZAChooseServer::ChooseServer%922729731.body
+    //## begin ZAChooseServer::ChooseServer%922729731.body preserve=yes
+    return ProcessChoose();
+    //## end ZAChooseServer::ChooseServer%922729731.body
 }
 
 CString ZAChooseServer::ChooseServer( const CString File, BOOL Local )
 {
-	//## begin ZAChooseServer::ChooseServer%922729732.body preserve=yes
-	m_File = File;
-	m_Local = Local;
+    //## begin ZAChooseServer::ChooseServer%922729732.body preserve=yes
+    m_File = File;
+    m_Local = Local;
 
-	if ( ProcessChoose() )
-	{
-		return m_CompleteFile;
-	}
+    if ( ProcessChoose() )
+    {
+        return m_CompleteFile;
+    }
 
-	return _T( "" );
-	//## end ZAChooseServer::ChooseServer%922729732.body
+    return _T( "" );
+    //## end ZAChooseServer::ChooseServer%922729732.body
 }
 
 BOOL ZAChooseServer::ProcessChoose()
 {
-	//## begin ZAChooseServer::ProcessChoose%922729734.body preserve=yes
-	if ( m_File.IsEmpty() )
-	{
-		return FALSE;
-	}
+    //## begin ZAChooseServer::ProcessChoose%922729734.body preserve=yes
+    if ( m_File.IsEmpty() )
+    {
+        return FALSE;
+    }
 
-	ZIChooseServerWelcome ChooseServerWelcome( m_Local );
+    ZIChooseServerWelcome ChooseServerWelcome( m_Local );
 
-	if ( ChooseServerWelcome.DoModal() == IDCANCEL )
-	{
-		return FALSE;
-	}
+    if ( ChooseServerWelcome.DoModal() == IDCANCEL )
+    {
+        return FALSE;
+    }
 
-	ZIChooseServerSelect ChooseServerSelect( m_Local );
+    ZIChooseServerSelect ChooseServerSelect( m_Local );
 
-	if ( ChooseServerSelect.DoModal() == IDCANCEL )
-	{
-		return FALSE;
-	}
+    if ( ChooseServerSelect.DoModal() == IDCANCEL )
+    {
+        return FALSE;
+    }
 
-	// No directory selected
-	if ( ChooseServerSelect.GetDirectory().IsEmpty() )
-	{
-		return FALSE;
-	}
+    // No directory selected
+    if ( ChooseServerSelect.GetDirectory().IsEmpty() )
+    {
+        return FALSE;
+    }
 
-	CString CompleteFile = ChooseServerSelect.GetDirectory() + _T( "\\" ) + m_File;
+    CString CompleteFile = ChooseServerSelect.GetDirectory() + _T( "\\" ) + m_File;
 
-	CFileStatus status;
+    CFileStatus status;
 
-	if ( !CFile::GetStatus( CompleteFile, status ) )
-	{
-		ZIMessage Message;
-		Message.DisplayMessage( IDS_NF_SELECTSERVER, IDS_NF_SELECTSERVER_TITLE );
+    if ( !CFile::GetStatus( CompleteFile, status ) )
+    {
+        ZIMessage Message;
+        Message.DisplayMessage( IDS_NF_SELECTSERVER, IDS_NF_SELECTSERVER_TITLE );
 
-		return FALSE;
-	}
+        return FALSE;
+    }
 
-	m_CompleteFile		= CompleteFile;
-	m_ServerDirectory	= ChooseServerSelect.GetDirectory();
+    m_CompleteFile        = CompleteFile;
+    m_ServerDirectory    = ChooseServerSelect.GetDirectory();
 
-	return TRUE;
-	//## end ZAChooseServer::ProcessChoose%922729734.body
+    return TRUE;
+    //## end ZAChooseServer::ProcessChoose%922729734.body
 }
 
 //## begin module%36FFBCCB01C3.epilog preserve=yes

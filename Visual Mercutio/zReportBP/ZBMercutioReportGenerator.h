@@ -38,55 +38,55 @@ class ZBUserRoleEntity;
 
 class AFX_EXT_CLASS ZBMercutioReportGenerator : public ZBModelBPReportGenerator
 {
-	DECLARE_SERIAL( ZBMercutioReportGenerator )
+    DECLARE_SERIAL( ZBMercutioReportGenerator )
 
 public:
 
-	ZBMercutioReportGenerator( ZDGridDocument*				pDoc		= NULL,
-							   ZDProcessGraphModelMdlBP*	pModel		= NULL,
-							   ZDProcessGraphModelDoc*		pSourceDoc	= NULL );
+    ZBMercutioReportGenerator( ZDGridDocument*                pDoc        = NULL,
+                               ZDProcessGraphModelMdlBP*    pModel        = NULL,
+                               ZDProcessGraphModelDoc*        pSourceDoc    = NULL );
 
-	virtual ~ZBMercutioReportGenerator();
+    virtual ~ZBMercutioReportGenerator();
 
-	/////////////////////////////////////////////////////////////////////////////
-	// ZIGridReportGenerator methods
-	
-	virtual void Initialize( ZDGridDocument*			pDoc,
-							 ZDProcessGraphModelMdlBP*	pModel,
-							 ZDProcessGraphModelDoc*	pSourceDoc );
+    /////////////////////////////////////////////////////////////////////////////
+    // ZIGridReportGenerator methods
+    
+    virtual void Initialize( ZDGridDocument*            pDoc,
+                             ZDProcessGraphModelMdlBP*    pModel,
+                             ZDProcessGraphModelDoc*    pSourceDoc );
 
-	// Called by the framework to request a grid to be filled
-	// The implementation uses the delegation
-	virtual bool FillGrid( CGXGridCore& GridCore, size_t Index );
+    // Called by the framework to request a grid to be filled
+    // The implementation uses the delegation
+    virtual bool FillGrid( CGXGridCore& GridCore, size_t Index );
 
-	virtual const CString GetReportTitle() const;
+    virtual const CString GetReportTitle() const;
 
-	// Serialization call-back
-	virtual void OnPostRead( CArchive& ar );
+    // Serialization call-back
+    virtual void OnPostRead( CArchive& ar );
 
-	// Serialization
-	virtual void Serialize(CArchive& ar);
-	
+    // Serialization
+    virtual void Serialize(CArchive& ar);
+    
 // Implementation
 public:
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 protected:
 
-	void FillTabArray();
+    void FillTabArray();
 
 private:
 
-	bool FillGridProcedures		( CGXGridCore& GridCore, size_t Index );
-	bool FillGridDeliverables	( CGXGridCore& GridCore, size_t Index );
+    bool FillGridProcedures        ( CGXGridCore& GridCore, size_t Index );
+    bool FillGridDeliverables    ( CGXGridCore& GridCore, size_t Index );
 
 private:
 
-	CString m_SubModelName;
+    CString m_SubModelName;
 };
 
 #endif // !defined(AFX_ZBMERCUTIOREPORTGENERATOR_H__92F0037B_1EAF_4F26_BE0A_CFBCC6D7C6FD__INCLUDED_)

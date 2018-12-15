@@ -1,10 +1,10 @@
 //## begin module%374DA4370260.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%374DA4370260.cm
 
 //## begin module%374DA4370260.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%374DA4370260.cp
 
 //## Module: MailMsg%374DA4370260; Package specification
@@ -56,7 +56,7 @@
 
 
 //## Class: ZBMailMessage%374D9FC902EB
-//	Contains the mail message.
+//    Contains the mail message.
 //## Category: ZBaseLib::Mail classes%37B3EF830338
 //## Subsystem: ZBaseLib%37A08E0C019D
 //## Persistence: Transient
@@ -73,7 +73,7 @@ class AFX_EXT_CLASS ZBMailMessage : public CObject  //## Inherits: <unnamed>%375
   public:
     //## Constructors (specified)
       //## Operation: ZBMailMessage%927831775
-      //	Default constructor.
+      //    Default constructor.
       ZBMailMessage (ZUMailUserList* UserList = NULL, const CString Subject = "", const CString Text = "");
 
     //## Destructor (generated)
@@ -82,23 +82,23 @@ class AFX_EXT_CLASS ZBMailMessage : public CObject  //## Inherits: <unnamed>%375
 
     //## Other Operations (specified)
       //## Operation: Serialize%928062191
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: AddPerson%927831776
-      //	Add a new person.
+      //    Add a new person.
       BOOL AddPerson (CString PersonName, ULONG RecipClass = MAPI_TO);
 
       //## Operation: AddPerson%927831777
-      //	Add a new person.
+      //    Add a new person.
       BOOL AddPerson (ZBMailUser& Person, ULONG RecipClass = MAPI_TO);
 
       //## Operation: AddPerson%927831778
-      //	Add a new person.
+      //    Add a new person.
       BOOL AddPerson (ZUser& Person, ULONG RecipClass = MAPI_TO);
 
       //## Operation: AddPerson%927831779
-      //	Add a new person.
+      //    Add a new person.
       BOOL AddPerson (MapiRecipDesc* pMapiDesc);
 
       //## Operation: FillPerson%927831780
@@ -114,12 +114,12 @@ class AFX_EXT_CLASS ZBMailMessage : public CObject  //## Inherits: <unnamed>%375
       int GetMailUserCount () const;
 
       //## Operation: GetMapiRecipDescPtr%927831785
-      //	Build the mapi recipicient description pointer.
+      //    Build the mapi recipicient description pointer.
       MapiRecipDesc* GetMapiRecipDescPtr ();
 
       //## Operation: GetMailUserAt%928062189
-      //	Get the person at the position i.
-      //	Returns null if not found.
+      //    Get the person at the position i.
+      //    Returns null if not found.
       ZBMailUser* GetMailUserAt (int Index);
 
       //## Operation: RemoveAllMailUser%928062190
@@ -132,25 +132,25 @@ class AFX_EXT_CLASS ZBMailMessage : public CObject  //## Inherits: <unnamed>%375
       void FillFile (ZFileManager& FileList, AttachementType AttachType = InsertedFile);
 
       //## Operation: AddFile%947849680
-      //	Returns true of done.
+      //    Returns true of done.
       BOOL AddFile (CString& File, AttachementType AttachType = InsertedFile);
 
       //## Operation: AddFile%947849681
-      //	Returns true of done.
+      //    Returns true of done.
       BOOL AddFile (ZFile& File, AttachementType AttachType = InsertedFile);
 
       //## Operation: GetFileCount%947849682
       int GetFileCount () const;
 
       //## Operation: GetMapiFileDescPtr%947849683
-      //	Returns the pointer to a fill structure.
+      //    Returns the pointer to a fill structure.
       MapiFileDesc* GetMapiFileDescPtr ();
 
       //## Operation: RemoveAllFiles%947849684
       void RemoveAllFiles ();
 
       //## Operation: GetHyperLinkText%947849685
-      //	Build the hyper link text of files.
+      //    Build the hyper link text of files.
       const CString GetHyperLinkText ();
 
       //## Operation: GetAttachementType%947849686
@@ -159,17 +159,17 @@ class AFX_EXT_CLASS ZBMailMessage : public CObject  //## Inherits: <unnamed>%375
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: Subject%374DA46C0158
-      //	Contains the subject
+      //    Contains the subject
       const CString GetSubject () const;
       void SetSubject (CString value);
 
       //## Attribute: Text%374DA4F6003E
-      //	Contains the message text
+      //    Contains the message text
       const CString GetText () const;
       void SetText (CString value);
 
       //## Attribute: pMailFileList%387F08C602BB
-      //	The pointer to the file list.
+      //    The pointer to the file list.
       const ZUMailFileDescription* GetpMailFileList () const;
 
     // Additional Public Declarations
@@ -179,7 +179,7 @@ class AFX_EXT_CLASS ZBMailMessage : public CObject  //## Inherits: <unnamed>%375
   protected:
     // Additional Protected Declarations
       //## begin ZBMailMessage%374D9FC902EB.protected preserve=yes
-	DECLARE_SERIAL(ZBMailMessage)
+    DECLARE_SERIAL(ZBMailMessage)
       //## end ZBMailMessage%374D9FC902EB.protected
   private:
     //## Constructors (generated)
@@ -195,7 +195,7 @@ class AFX_EXT_CLASS ZBMailMessage : public CObject  //## Inherits: <unnamed>%375
       //## end ZBMailMessage::Subject%374DA46C0158.attr
 
       //## Attribute: pMailUserList%374DA48F0343
-      //	Pointer to a mail user list
+      //    Pointer to a mail user list
       //## begin ZBMailMessage::pMailUserList%374DA48F0343.attr preserve=no  public: ZUMailUserList* {U} 
       ZUMailUserList* m_pMailUserList;
       //## end ZBMailMessage::pMailUserList%374DA48F0343.attr
@@ -229,148 +229,148 @@ class AFX_EXT_CLASS ZBMailMessage : public CObject  //## Inherits: <unnamed>%375
 inline BOOL ZBMailMessage::AddPerson (CString PersonName, ULONG RecipClass)
 {
   //## begin ZBMailMessage::AddPerson%927831776.body preserve=yes
-	if (!m_pMailUserList)
-		m_pMailUserList = new ZUMailUserList;
-	return m_pMailUserList->AddPerson( PersonName, RecipClass );
+    if (!m_pMailUserList)
+        m_pMailUserList = new ZUMailUserList;
+    return m_pMailUserList->AddPerson( PersonName, RecipClass );
   //## end ZBMailMessage::AddPerson%927831776.body
 }
 
 inline BOOL ZBMailMessage::AddPerson (ZBMailUser& Person, ULONG RecipClass)
 {
   //## begin ZBMailMessage::AddPerson%927831777.body preserve=yes
-	if (!m_pMailUserList)
-		m_pMailUserList = new ZUMailUserList;
-	return m_pMailUserList->AddPerson( Person, RecipClass );
+    if (!m_pMailUserList)
+        m_pMailUserList = new ZUMailUserList;
+    return m_pMailUserList->AddPerson( Person, RecipClass );
   //## end ZBMailMessage::AddPerson%927831777.body
 }
 
 inline BOOL ZBMailMessage::AddPerson (ZUser& Person, ULONG RecipClass)
 {
   //## begin ZBMailMessage::AddPerson%927831778.body preserve=yes
-	if (!m_pMailUserList)
-		m_pMailUserList = new ZUMailUserList;
-	return m_pMailUserList->AddPerson( Person, RecipClass );
+    if (!m_pMailUserList)
+        m_pMailUserList = new ZUMailUserList;
+    return m_pMailUserList->AddPerson( Person, RecipClass );
   //## end ZBMailMessage::AddPerson%927831778.body
 }
 
 inline BOOL ZBMailMessage::AddPerson (MapiRecipDesc* pMapiDesc)
 {
   //## begin ZBMailMessage::AddPerson%927831779.body preserve=yes
-	if (!m_pMailUserList)
-		m_pMailUserList = new ZUMailUserList;
-	return m_pMailUserList->AddPerson( pMapiDesc );
+    if (!m_pMailUserList)
+        m_pMailUserList = new ZUMailUserList;
+    return m_pMailUserList->AddPerson( pMapiDesc );
   //## end ZBMailMessage::AddPerson%927831779.body
 }
 
 inline int ZBMailMessage::GetMailUserCount () const
 {
   //## begin ZBMailMessage::GetMailUserCount%927831784.body preserve=yes
-	if (m_pMailUserList)
-		return m_pMailUserList->GetCount();
-	return 0;
+    if (m_pMailUserList)
+        return m_pMailUserList->GetCount();
+    return 0;
   //## end ZBMailMessage::GetMailUserCount%927831784.body
 }
 
 inline ZBMailUser* ZBMailMessage::GetMailUserAt (int Index)
 {
   //## begin ZBMailMessage::GetMailUserAt%928062189.body preserve=yes
-	if (m_pMailUserList)
-		return m_pMailUserList->GetAt( Index );
-	return NULL;
+    if (m_pMailUserList)
+        return m_pMailUserList->GetAt( Index );
+    return NULL;
   //## end ZBMailMessage::GetMailUserAt%928062189.body
 }
 
 inline void ZBMailMessage::RemoveAllMailUser ()
 {
   //## begin ZBMailMessage::RemoveAllMailUser%928062190.body preserve=yes
-	if (m_pMailUserList)
-		m_pMailUserList->RemoveAllPersons();
+    if (m_pMailUserList)
+        m_pMailUserList->RemoveAllPersons();
   //## end ZBMailMessage::RemoveAllMailUser%928062190.body
 }
 
 inline void ZBMailMessage::FillFile (CStringArray& FileList, AttachementType AttachType)
 {
   //## begin ZBMailMessage::FillFile%947849678.body preserve=yes
-	if (!m_pMailFileList)
-		m_pMailFileList = new ZUMailFileDescription;
-	if (m_pMailFileList)
-		m_pMailFileList->Fill(FileList, AttachType);
+    if (!m_pMailFileList)
+        m_pMailFileList = new ZUMailFileDescription;
+    if (m_pMailFileList)
+        m_pMailFileList->Fill(FileList, AttachType);
   //## end ZBMailMessage::FillFile%947849678.body
 }
 
 inline void ZBMailMessage::FillFile (ZFileManager& FileList, AttachementType AttachType)
 {
   //## begin ZBMailMessage::FillFile%947849679.body preserve=yes
-	if (!m_pMailFileList)
-		m_pMailFileList = new ZUMailFileDescription;
-	if (m_pMailFileList)
-		m_pMailFileList->Fill(FileList, AttachType);
+    if (!m_pMailFileList)
+        m_pMailFileList = new ZUMailFileDescription;
+    if (m_pMailFileList)
+        m_pMailFileList->Fill(FileList, AttachType);
   //## end ZBMailMessage::FillFile%947849679.body
 }
 
 inline BOOL ZBMailMessage::AddFile (CString& File, AttachementType AttachType)
 {
   //## begin ZBMailMessage::AddFile%947849680.body preserve=yes
-	if (!m_pMailFileList)
-		m_pMailFileList = new ZUMailFileDescription;
-	if (m_pMailFileList)
-		return m_pMailFileList->AddFile(File, AttachType);
-	return FALSE;
+    if (!m_pMailFileList)
+        m_pMailFileList = new ZUMailFileDescription;
+    if (m_pMailFileList)
+        return m_pMailFileList->AddFile(File, AttachType);
+    return FALSE;
   //## end ZBMailMessage::AddFile%947849680.body
 }
 
 inline BOOL ZBMailMessage::AddFile (ZFile& File, AttachementType AttachType)
 {
   //## begin ZBMailMessage::AddFile%947849681.body preserve=yes
-	if (!m_pMailFileList)
-		m_pMailFileList = new ZUMailFileDescription;
-	if (m_pMailFileList)
-		return m_pMailFileList->AddFile(File, AttachType);
-	return FALSE;
+    if (!m_pMailFileList)
+        m_pMailFileList = new ZUMailFileDescription;
+    if (m_pMailFileList)
+        return m_pMailFileList->AddFile(File, AttachType);
+    return FALSE;
   //## end ZBMailMessage::AddFile%947849681.body
 }
 
 inline int ZBMailMessage::GetFileCount () const
 {
   //## begin ZBMailMessage::GetFileCount%947849682.body preserve=yes
-	if (m_pMailFileList)
-		return m_pMailFileList->GetCount();
-	return 0;
+    if (m_pMailFileList)
+        return m_pMailFileList->GetCount();
+    return 0;
   //## end ZBMailMessage::GetFileCount%947849682.body
 }
 
 inline MapiFileDesc* ZBMailMessage::GetMapiFileDescPtr ()
 {
   //## begin ZBMailMessage::GetMapiFileDescPtr%947849683.body preserve=yes
-	if (m_pMailFileList)
-		return m_pMailFileList->GetMapiFileDescPtr();
-	return NULL;
+    if (m_pMailFileList)
+        return m_pMailFileList->GetMapiFileDescPtr();
+    return NULL;
   //## end ZBMailMessage::GetMapiFileDescPtr%947849683.body
 }
 
 inline void ZBMailMessage::RemoveAllFiles ()
 {
   //## begin ZBMailMessage::RemoveAllFiles%947849684.body preserve=yes
-	if (m_pMailFileList)
-		m_pMailFileList->RemoveAllFiles();
+    if (m_pMailFileList)
+        m_pMailFileList->RemoveAllFiles();
   //## end ZBMailMessage::RemoveAllFiles%947849684.body
 }
 
 inline const CString ZBMailMessage::GetHyperLinkText ()
 {
   //## begin ZBMailMessage::GetHyperLinkText%947849685.body preserve=yes
-	if (m_pMailFileList)
-		return m_pMailFileList->GetHyperLinkText();
-	return "";
+    if (m_pMailFileList)
+        return m_pMailFileList->GetHyperLinkText();
+    return "";
   //## end ZBMailMessage::GetHyperLinkText%947849685.body
 }
 
 inline AttachementType ZBMailMessage::GetAttachementType () const
 {
   //## begin ZBMailMessage::GetAttachementType%947849686.body preserve=yes
-	if (m_pMailFileList)
-		return m_pMailFileList->GetAttachementType();
-	return AttachementUndefined;
+    if (m_pMailFileList)
+        return m_pMailFileList->GetAttachementType();
+    return AttachementUndefined;
   //## end ZBMailMessage::GetAttachementType%947849686.body
 }
 

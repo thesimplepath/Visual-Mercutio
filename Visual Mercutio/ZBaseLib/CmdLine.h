@@ -1,10 +1,10 @@
 //## begin module%375181F103E6.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%375181F103E6.cm
 
 //## begin module%375181F103E6.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%375181F103E6.cp
 
 //## Module: CmdLine%375181F103E6; Package specification
@@ -49,7 +49,7 @@
 
 
 //## Class: ZUCommandLine%375171A7021D
-//	Encapsulate a command line.
+//    Encapsulate a command line.
 //## Category: ZBaseLib::Command Line%3751719B0374
 //## Subsystem: ZBaseLib%37A08E0C019D
 //## Persistence: Transient
@@ -66,7 +66,7 @@ class AFX_EXT_CLASS ZUCommandLine : public CObject  //## Inherits: <unnamed>%375
 
     //## Constructors (specified)
       //## Operation: ZUCommandLine%928085167
-      //	The standard constructor.
+      //    The standard constructor.
       ZUCommandLine (const CString CommandLine = "", const CString StartupDirectory = "", const CString Arguments = "", DWORD Priority = NORMAL_PRIORITY_CLASS);
 
     //## Destructor (generated)
@@ -78,36 +78,36 @@ class AFX_EXT_CLASS ZUCommandLine : public CObject  //## Inherits: <unnamed>%375
 
     //## Other Operations (specified)
       //## Operation: Initialize%934529056
-      //	Initialize the command line object.
+      //    Initialize the command line object.
       void Initialize (const CString CommandLine, const CString StartupDirectory = "", const CString Arguments = "", DWORD Priority = NORMAL_PRIORITY_CLASS);
 
       //## Operation: Launch%928085168
-      //	Launch the command line.
+      //    Launch the command line.
       BOOL Launch ();
 
       //## Operation: Serialize%928085169
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: GetProcessInformation%928085170
-      //	Returns the process information of the launch command
-      //	line.
+      //    Returns the process information of the launch command
+      //    line.
       PROCESS_INFORMATION* GetProcessInformation () const;
 
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: CommandLine%37517E030227
-      //	The command line
+      //    The command line
       const CString GetCommandLine () const;
       void SetCommandLine (CString value);
 
       //## Attribute: Arguments%37B3DDD40324
-      //	Contains the arguments.
+      //    Contains the arguments.
       const CString GetArguments () const;
       void SetArguments (CString value);
 
       //## Attribute: StartupDirectory%37517E090117
-      //	The startup directory.
+      //    The startup directory.
       const CString GetStartupDirectory () const;
       void SetStartupDirectory (CString value);
 
@@ -122,7 +122,7 @@ class AFX_EXT_CLASS ZUCommandLine : public CObject  //## Inherits: <unnamed>%375
   protected:
     // Additional Protected Declarations
       //## begin ZUCommandLine%375171A7021D.protected preserve=yes
-	DECLARE_SERIAL(ZUCommandLine)
+    DECLARE_SERIAL(ZUCommandLine)
       //## end ZUCommandLine%375171A7021D.protected
   private:
     // Data Members for Class Attributes
@@ -144,8 +144,8 @@ class AFX_EXT_CLASS ZUCommandLine : public CObject  //## Inherits: <unnamed>%375
       //## end ZUCommandLine::Priority%3751A0BB0141.attr
 
       //## Attribute: pProcessInformation%3751A151018D
-      //	The process information used to receive information
-      //	about the process newly created.
+      //    The process information used to receive information
+      //    about the process newly created.
       //## begin ZUCommandLine::pProcessInformation%3751A151018D.attr preserve=no  public: PROCESS_INFORMATION* {U} 
       PROCESS_INFORMATION* m_pProcessInformation;
       //## end ZUCommandLine::pProcessInformation%3751A151018D.attr
@@ -176,7 +176,7 @@ class AFX_EXT_CLASS ZUCommandLine : public CObject  //## Inherits: <unnamed>%375
 inline PROCESS_INFORMATION* ZUCommandLine::GetProcessInformation () const
 {
   //## begin ZUCommandLine::GetProcessInformation%928085170.body preserve=yes
-	return m_pProcessInformation;
+    return m_pProcessInformation;
   //## end ZUCommandLine::GetProcessInformation%928085170.body
 }
 

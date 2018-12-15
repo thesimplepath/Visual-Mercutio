@@ -1,20 +1,20 @@
 // **********************************************************************************************************************
-// * ZBBPCostPropDeliverable.cpp : Implementation of ZBBPCostPropertiesDeliverable										*
-// *																													*
-// * ProcessSoft Classes																								*
-// * <nl>Copyright <cp> 2001 - ProcessSoft SA,																			*
-// * All rights reserved.																								*
-// *																													*
-// * This source code is only intended as a supplement to																*
-// * the ProcessSoft Class Reference and related																		*
-// * electronic documentation provided with the library.																*
-// * See these sources for detailed information regarding																*
-// * ProcessSoft products.																								*
-// *																													*
-// * Author:		Dom																									*
-// * Created:		05/2001																								*
-// * Description:	ZBBPCostPropertiesDeliverable cost properties for deliverables										*
-// *																													*
+// * ZBBPCostPropDeliverable.cpp : Implementation of ZBBPCostPropertiesDeliverable                                        *
+// *                                                                                                                    *
+// * ProcessSoft Classes                                                                                                *
+// * <nl>Copyright <cp> 2001 - ProcessSoft SA,                                                                            *
+// * All rights reserved.                                                                                                *
+// *                                                                                                                    *
+// * This source code is only intended as a supplement to                                                                *
+// * the ProcessSoft Class Reference and related                                                                        *
+// * electronic documentation provided with the library.                                                                *
+// * See these sources for detailed information regarding                                                                *
+// * ProcessSoft products.                                                                                                *
+// *                                                                                                                    *
+// * Author:        Dom                                                                                                    *
+// * Created:        05/2001                                                                                                *
+// * Description:    ZBBPCostPropertiesDeliverable cost properties for deliverables                                        *
+// *                                                                                                                    *
 // **********************************************************************************************************************
 
 #include "stdafx.h"
@@ -29,7 +29,7 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 // **********************************************************************************************************************
-// *								ZBBPCostPropertiesDeliverable construction/destruction								*
+// *                                ZBBPCostPropertiesDeliverable construction/destruction                                *
 // **********************************************************************************************************************
 
 IMPLEMENT_SERIAL(ZBBPCostPropertiesDeliverable, CODIntProperty, def_Version)
@@ -44,22 +44,22 @@ using namespace sfl;
 //@parmopt int | nId | OD_PROP_ORIENTATION | The identifier of the property.
 //@parm ZBBPCostPropertiesDeliverable& | propBasic | The orientation property to copy.
 ZBBPCostPropertiesDeliverable::ZBBPCostPropertiesDeliverable(int nId)
-	: CODIntProperty(nId)
+    : CODIntProperty(nId)
 {
-	m_ProcessingTime = 0;
-	m_InWorkloadPercent = 1;
-	m_OutWorkloadPercent = 1;
-	m_UnitaryCost = 0;
+    m_ProcessingTime = 0;
+    m_InWorkloadPercent = 1;
+    m_OutWorkloadPercent = 1;
+    m_UnitaryCost = 0;
 
-	VERIFY(RegisterProperties());
+    VERIFY(RegisterProperties());
 }
 
 ZBBPCostPropertiesDeliverable::ZBBPCostPropertiesDeliverable(const ZBBPCostPropertiesDeliverable& propBasic) 
-	: CODIntProperty(propBasic.GetId())
+    : CODIntProperty(propBasic.GetId())
 {
-	*this = propBasic;
+    *this = propBasic;
 
-	VERIFY(RegisterProperties());
+    VERIFY(RegisterProperties());
 }
 
 //@mfunc Destructor.
@@ -68,7 +68,7 @@ ZBBPCostPropertiesDeliverable::~ZBBPCostPropertiesDeliverable()
 }
 
 // **********************************************************************************************************************
-// *									ZBBPCostPropertiesDeliverable operations										*
+// *                                    ZBBPCostPropertiesDeliverable operations                                        *
 // **********************************************************************************************************************
 
 //@mfunc Compare the property identifier with another identifier.
@@ -76,9 +76,9 @@ ZBBPCostPropertiesDeliverable::~ZBBPCostPropertiesDeliverable()
 //@parm Property identifier to compare to.
 BOOL ZBBPCostPropertiesDeliverable::CompareId(const int nId) const
 {
-	int nIdMin = m_nId;
-	int nIdMax = m_nId + Z_COST_UNITARY_COST;
-	return (nId >= nIdMin && nId <= nIdMax);
+    int nIdMin = m_nId;
+    int nIdMax = m_nId + Z_COST_UNITARY_COST;
+    return (nId >= nIdMin && nId <= nIdMax);
 }
 
 //@mfunc Sets this property object equal to the one passed in.
@@ -86,11 +86,11 @@ BOOL ZBBPCostPropertiesDeliverable::CompareId(const int nId) const
 //@parm The property to copy.
 ZBBPCostPropertiesDeliverable& ZBBPCostPropertiesDeliverable::operator=(const ZBBPCostPropertiesDeliverable& propBasic)
 {
-	SetProcessingTime(propBasic.GetProcessingTime());
-	SetInWorkloadPercent(propBasic.GetInWorkloadPercent());
-	SetOutWorkloadPercent(propBasic.GetOutWorkloadPercent());
-	SetUnitaryCost(propBasic.GetUnitaryCost());
-	return *this;
+    SetProcessingTime(propBasic.GetProcessingTime());
+    SetInWorkloadPercent(propBasic.GetInWorkloadPercent());
+    SetOutWorkloadPercent(propBasic.GetOutWorkloadPercent());
+    SetUnitaryCost(propBasic.GetUnitaryCost());
+    return *this;
 }
 
 //@mfunc Tests if this property is equal to the one passed in.
@@ -98,10 +98,10 @@ ZBBPCostPropertiesDeliverable& ZBBPCostPropertiesDeliverable::operator=(const ZB
 //@parm The property to test against.
 BOOL ZBBPCostPropertiesDeliverable::operator==(const ZBBPCostPropertiesDeliverable propBasic) const
 {
-	return (GetProcessingTime() == propBasic.GetProcessingTime() &&
-			GetInWorkloadPercent() == propBasic.GetInWorkloadPercent() &&
-			GetOutWorkloadPercent() == propBasic.GetOutWorkloadPercent() &&
-			GetUnitaryCost() == propBasic.GetUnitaryCost());
+    return (GetProcessingTime() == propBasic.GetProcessingTime() &&
+            GetInWorkloadPercent() == propBasic.GetInWorkloadPercent() &&
+            GetOutWorkloadPercent() == propBasic.GetOutWorkloadPercent() &&
+            GetUnitaryCost() == propBasic.GetUnitaryCost());
 }
 
 //@mfunc Merges the values of the property passed in with the values in this
@@ -112,25 +112,25 @@ BOOL ZBBPCostPropertiesDeliverable::operator==(const ZBBPCostPropertiesDeliverab
 // to merge into this property object.
 void ZBBPCostPropertiesDeliverable::Merge(CODProperty* pProperty, DWORD dwChangeFlags)
 {
-	ZBBPCostPropertiesDeliverable* pOrientationProp = (ZBBPCostPropertiesDeliverable*)pProperty;
+    ZBBPCostPropertiesDeliverable* pOrientationProp = (ZBBPCostPropertiesDeliverable*)pProperty;
 
-	if (pOrientationProp)
-	{
-		if (dwChangeFlags & Z_CHANGE_COST_PROCESSING_TIME)
-			m_ProcessingTime = pOrientationProp->GetProcessingTime();
+    if (pOrientationProp)
+    {
+        if (dwChangeFlags & Z_CHANGE_COST_PROCESSING_TIME)
+            m_ProcessingTime = pOrientationProp->GetProcessingTime();
 
-		if (dwChangeFlags & Z_CHANGE_COST_IN_WORKLOAD_PERCENT)
-			m_InWorkloadPercent = pOrientationProp->GetInWorkloadPercent();
+        if (dwChangeFlags & Z_CHANGE_COST_IN_WORKLOAD_PERCENT)
+            m_InWorkloadPercent = pOrientationProp->GetInWorkloadPercent();
 
-		if (dwChangeFlags & Z_CHANGE_COST_OUT_WORKLOAD_PERCENT)
-			m_OutWorkloadPercent = pOrientationProp->GetOutWorkloadPercent();
+        if (dwChangeFlags & Z_CHANGE_COST_OUT_WORKLOAD_PERCENT)
+            m_OutWorkloadPercent = pOrientationProp->GetOutWorkloadPercent();
 
-		if (dwChangeFlags & Z_CHANGE_COST_UNITARY_COST)
-			m_UnitaryCost = pOrientationProp->GetUnitaryCost();
+        if (dwChangeFlags & Z_CHANGE_COST_UNITARY_COST)
+            m_UnitaryCost = pOrientationProp->GetUnitaryCost();
 
 
 
-	}
+    }
 }
 
 //@mfunc Tests if this property is equal to the one passed in. This method
@@ -139,19 +139,19 @@ void ZBBPCostPropertiesDeliverable::Merge(CODProperty* pProperty, DWORD dwChange
 //@parm A pointer to the property to test against.
 BOOL ZBBPCostPropertiesDeliverable::IsEqual(CODProperty* pProp)
 {
-	if (GetId() == pProp->GetId())
-	{
-		ZBBPCostPropertiesDeliverable* pOrientationProp = (ZBBPCostPropertiesDeliverable*)pProp;
+    if (GetId() == pProp->GetId())
+    {
+        ZBBPCostPropertiesDeliverable* pOrientationProp = (ZBBPCostPropertiesDeliverable*)pProp;
 
-		if (pOrientationProp)
-			return (*this == *pOrientationProp);
-	}
+        if (pOrientationProp)
+            return (*this == *pOrientationProp);
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 // **********************************************************************************************************************
-// *											IODPropertyContainer interface											*
+// *                                            IODPropertyContainer interface                                            *
 // **********************************************************************************************************************
 
 //@mfunc | ZBBPCostPropertiesDeliverable | GetValue | Gets the value of the given property.
@@ -179,92 +179,92 @@ BOOL ZBBPCostPropertiesDeliverable::IsEqual(CODProperty* pProp)
 
 BOOL ZBBPCostPropertiesDeliverable::GetValue(const int nPropId, CString& strValue) const
 {
-	switch (nPropId)
-	{
-	case Z_COST_PROCESSING_TIME:
-		strValue.Format("%.0f", m_ProcessingTime);
-		break;
-	case Z_COST_IN_WORKLOAD_PERCENT:
-		strValue.Format("%.0f", m_InWorkloadPercent * (float)100);
-		break;
-	case Z_COST_OUT_WORKLOAD_PERCENT:
-		strValue.Format("%.0f", m_OutWorkloadPercent * (float)100);
-		break;
-	case Z_COST_UNITARY_COST:
-		strValue.Format("%.0f", m_UnitaryCost);
-		break;
-//		throw new CODPropertyConversionException();
+    switch (nPropId)
+    {
+    case Z_COST_PROCESSING_TIME:
+        strValue.Format("%.0f", m_ProcessingTime);
+        break;
+    case Z_COST_IN_WORKLOAD_PERCENT:
+        strValue.Format("%.0f", m_InWorkloadPercent * (float)100);
+        break;
+    case Z_COST_OUT_WORKLOAD_PERCENT:
+        strValue.Format("%.0f", m_OutWorkloadPercent * (float)100);
+        break;
+    case Z_COST_UNITARY_COST:
+        strValue.Format("%.0f", m_UnitaryCost);
+        break;
+//        throw new CODPropertyConversionException();
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPCostPropertiesDeliverable::GetValue(const int nPropId, int& nValue) const
 {
-	nValue; // unused
-	if (nPropId >= Z_COST_PROCESSING_TIME && nPropId <= Z_COST_UNITARY_COST)
-	{
-		throw new CODPropertyConversionException();
-	}
-	return FALSE;
+    nValue; // unused
+    if (nPropId >= Z_COST_PROCESSING_TIME && nPropId <= Z_COST_UNITARY_COST)
+    {
+        throw new CODPropertyConversionException();
+    }
+    return FALSE;
 }
 
 BOOL ZBBPCostPropertiesDeliverable::GetValue(const int nPropId, UINT& nValue) const
 {
-	nValue; // unused
-	if (nPropId >= Z_COST_PROCESSING_TIME && nPropId <= Z_COST_UNITARY_COST)
-	{
-		throw new CODPropertyConversionException();
-	}
-	return FALSE;
+    nValue; // unused
+    if (nPropId >= Z_COST_PROCESSING_TIME && nPropId <= Z_COST_UNITARY_COST)
+    {
+        throw new CODPropertyConversionException();
+    }
+    return FALSE;
 }
 
 BOOL ZBBPCostPropertiesDeliverable::GetValue(const int nPropId, DWORD& dwValue) const
 {
-	dwValue; // unused
-	if (nPropId >= Z_COST_PROCESSING_TIME && nPropId <= Z_COST_UNITARY_COST)
-	{
-		throw new CODPropertyConversionException();
-	}
-	return FALSE;
+    dwValue; // unused
+    if (nPropId >= Z_COST_PROCESSING_TIME && nPropId <= Z_COST_UNITARY_COST)
+    {
+        throw new CODPropertyConversionException();
+    }
+    return FALSE;
 }
 
 BOOL ZBBPCostPropertiesDeliverable::GetValue(const int nPropId, float& fValue) const
 {
-	switch (nPropId)
-	{
-	case Z_COST_IN_WORKLOAD_PERCENT:
-		fValue = m_InWorkloadPercent;
-		break;
-	case Z_COST_OUT_WORKLOAD_PERCENT:
-		fValue = m_OutWorkloadPercent;
-		break;
-	case Z_COST_UNITARY_COST:
-		fValue = m_UnitaryCost;
-		break;
+    switch (nPropId)
+    {
+    case Z_COST_IN_WORKLOAD_PERCENT:
+        fValue = m_InWorkloadPercent;
+        break;
+    case Z_COST_OUT_WORKLOAD_PERCENT:
+        fValue = m_OutWorkloadPercent;
+        break;
+    case Z_COST_UNITARY_COST:
+        fValue = m_UnitaryCost;
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPCostPropertiesDeliverable::GetValue(const int nPropId, double& dValue) const
 {
-	switch (nPropId)
-	{
-	case Z_COST_PROCESSING_TIME:
-		dValue = m_ProcessingTime;
-		break;
-	default:
-		return FALSE;
-	}
+    switch (nPropId)
+    {
+    case Z_COST_PROCESSING_TIME:
+        dValue = m_ProcessingTime;
+        break;
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 //@mfunc | ZBBPCostPropertiesDeliverable | SetValue | Sets the value of the given property.
@@ -292,95 +292,95 @@ BOOL ZBBPCostPropertiesDeliverable::GetValue(const int nPropId, double& dValue) 
 
 BOOL ZBBPCostPropertiesDeliverable::SetValue(const int nPropId, LPCTSTR lpszValue)
 {
-	switch (nPropId)
-	{
-	case Z_COST_PROCESSING_TIME:
-		m_ProcessingTime = atof(lpszValue);
-		break;
-	case Z_COST_IN_WORKLOAD_PERCENT:
-		m_InWorkloadPercent = static_cast<float>(atof(lpszValue) / (float)100);
-		break;
-	case Z_COST_OUT_WORKLOAD_PERCENT:
-		m_OutWorkloadPercent = static_cast<float>(atof(lpszValue) / (float)100);
-		break;
-	case Z_COST_UNITARY_COST:
-		m_UnitaryCost = static_cast<float>(atof(lpszValue));
-		break;
+    switch (nPropId)
+    {
+    case Z_COST_PROCESSING_TIME:
+        m_ProcessingTime = atof(lpszValue);
+        break;
+    case Z_COST_IN_WORKLOAD_PERCENT:
+        m_InWorkloadPercent = static_cast<float>(atof(lpszValue) / (float)100);
+        break;
+    case Z_COST_OUT_WORKLOAD_PERCENT:
+        m_OutWorkloadPercent = static_cast<float>(atof(lpszValue) / (float)100);
+        break;
+    case Z_COST_UNITARY_COST:
+        m_UnitaryCost = static_cast<float>(atof(lpszValue));
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPCostPropertiesDeliverable::SetValue(const int nPropId, const int nValue)
 {
-	nValue; // unused
-	if (nPropId >= Z_COST_PROCESSING_TIME && nPropId <= Z_COST_UNITARY_COST)
-	{
-		throw new CODPropertyConversionException();
-	}
-	return FALSE;
+    nValue; // unused
+    if (nPropId >= Z_COST_PROCESSING_TIME && nPropId <= Z_COST_UNITARY_COST)
+    {
+        throw new CODPropertyConversionException();
+    }
+    return FALSE;
 }
 
 BOOL ZBBPCostPropertiesDeliverable::SetValue(const int nPropId, const UINT nValue)
 {
-	nValue; // unused
-	if (nPropId >= Z_COST_PROCESSING_TIME && nPropId <= Z_COST_UNITARY_COST)
-	{
-		throw new CODPropertyConversionException();
-	}
-	return FALSE;
+    nValue; // unused
+    if (nPropId >= Z_COST_PROCESSING_TIME && nPropId <= Z_COST_UNITARY_COST)
+    {
+        throw new CODPropertyConversionException();
+    }
+    return FALSE;
 }
 
 BOOL ZBBPCostPropertiesDeliverable::SetValue(const int nPropId, const DWORD dwValue)
 {
-	dwValue; // unused
-	if (nPropId >= Z_COST_PROCESSING_TIME && nPropId <= Z_COST_UNITARY_COST)
-	{
-		throw new CODPropertyConversionException();
-	}
-	return FALSE;
+    dwValue; // unused
+    if (nPropId >= Z_COST_PROCESSING_TIME && nPropId <= Z_COST_UNITARY_COST)
+    {
+        throw new CODPropertyConversionException();
+    }
+    return FALSE;
 }
 
 BOOL ZBBPCostPropertiesDeliverable::SetValue(const int nPropId, const float fValue)
 {
-	switch (nPropId)
-	{
-	case Z_COST_IN_WORKLOAD_PERCENT:
-		m_InWorkloadPercent = fValue;
-		break;
-	case Z_COST_OUT_WORKLOAD_PERCENT:
-		m_OutWorkloadPercent = fValue;
-		break;
-	case Z_COST_UNITARY_COST:
-		m_UnitaryCost = fValue;
-		break;
+    switch (nPropId)
+    {
+    case Z_COST_IN_WORKLOAD_PERCENT:
+        m_InWorkloadPercent = fValue;
+        break;
+    case Z_COST_OUT_WORKLOAD_PERCENT:
+        m_OutWorkloadPercent = fValue;
+        break;
+    case Z_COST_UNITARY_COST:
+        m_UnitaryCost = fValue;
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPCostPropertiesDeliverable::SetValue(const int nPropId, const double dValue)
 {
-	switch (nPropId)
-	{
-	case Z_COST_PROCESSING_TIME:
-		m_ProcessingTime = dValue;
-		break;
-	default:
-		return FALSE;
-	}
+    switch (nPropId)
+    {
+    case Z_COST_PROCESSING_TIME:
+        m_ProcessingTime = dValue;
+        break;
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 // **********************************************************************************************************************
-// *									ZBBPCostPropertiesDeliverable serialization										*
+// *                                    ZBBPCostPropertiesDeliverable serialization                                        *
 // **********************************************************************************************************************
 
 //@mfunc Serializes the orientation properties.
@@ -388,120 +388,120 @@ BOOL ZBBPCostPropertiesDeliverable::SetValue(const int nPropId, const double dVa
 //@parm The archive to use for serialization.
 void ZBBPCostPropertiesDeliverable::Serialize(CArchive& ar)
 {
-	CODIntProperty::Serialize(ar);
+    CODIntProperty::Serialize(ar);
 
-	if (ar.IsStoring())
-	{
-		TRACE( "ZBBPCostPropertiesDeliverable::Serialize : Start Save\n" );
+    if (ar.IsStoring())
+    {
+        TRACE( "ZBBPCostPropertiesDeliverable::Serialize : Start Save\n" );
 
-		PUT_SCHEMA(ar, ZBBPCostPropertiesDeliverable);
-		ar << m_ProcessingTime;
-		ar << m_InWorkloadPercent;
-		ar << m_OutWorkloadPercent;
-		ar << m_UnitaryCost;
+        PUT_SCHEMA(ar, ZBBPCostPropertiesDeliverable);
+        ar << m_ProcessingTime;
+        ar << m_InWorkloadPercent;
+        ar << m_OutWorkloadPercent;
+        ar << m_UnitaryCost;
 
-		TRACE( "ZBBPCostPropertiesDeliverable::Serialize : End Save\n" );
-	}
-	else
-	{
-		TRACE( "ZBBPCostPropertiesDeliverable::Serialize : Start Read\n" );
+        TRACE( "ZBBPCostPropertiesDeliverable::Serialize : End Save\n" );
+    }
+    else
+    {
+        TRACE( "ZBBPCostPropertiesDeliverable::Serialize : Start Read\n" );
 
-		UINT nSchema;
-		GET_SCHEMA(ar, nSchema);
-		ar >> m_ProcessingTime;
-		ar >> m_InWorkloadPercent;
-		ar >> m_OutWorkloadPercent;
-		ar >> m_UnitaryCost;
+        UINT nSchema;
+        GET_SCHEMA(ar, nSchema);
+        ar >> m_ProcessingTime;
+        ar >> m_InWorkloadPercent;
+        ar >> m_OutWorkloadPercent;
+        ar >> m_UnitaryCost;
 
-		TRACE( "ZBBPCostPropertiesDeliverable::Serialize : End Read\n" );
-	}
+        TRACE( "ZBBPCostPropertiesDeliverable::Serialize : End Read\n" );
+    }
 }
 
 // **********************************************************************************************************************
-// *								ZBBPCostPropertiesDeliverable Property meta-data									*
+// *                                ZBBPCostPropertiesDeliverable Property meta-data                                    *
 // **********************************************************************************************************************
 
 bool ZBBPCostPropertiesDeliverable::RegisterProperties()
 {
-	static bool propsRegistered = false;
-	
-	if (!propsRegistered)
-	{
-		bool success = true;
+    static bool propsRegistered = false;
+    
+    if (!propsRegistered)
+    {
+        bool success = true;
 
-		if (success)
-		{
-			success = RegisterProperty(Z_COST_PROCESSING_TIME,
-									   IDS_Z_COST_PROCESSING_TIME_NAME, 
-									   IDS_Z_COST_PROCESSING_TIME_DESC,
-									   _PropertyAccessor(&ZBBPCostPropertiesDeliverable::GetProcessingTime,
-									   &ZBBPCostPropertiesDeliverable::SetProcessingTime),
-									   VT_R4,
-									   PROP_DIRECT
-									   );
-		}
+        if (success)
+        {
+            success = RegisterProperty(Z_COST_PROCESSING_TIME,
+                                       IDS_Z_COST_PROCESSING_TIME_NAME, 
+                                       IDS_Z_COST_PROCESSING_TIME_DESC,
+                                       _PropertyAccessor(&ZBBPCostPropertiesDeliverable::GetProcessingTime,
+                                       &ZBBPCostPropertiesDeliverable::SetProcessingTime),
+                                       VT_R4,
+                                       PROP_DIRECT
+                                       );
+        }
 
-		if (success)
-		{
-			success = RegisterProperty(Z_COST_IN_WORKLOAD_PERCENT,
-									   IDS_Z_COST_IN_WORKLOAD_PERCENT_NAME, 
-									   IDS_Z_COST_IN_WORKLOAD_PERCENT_DESC,
-									   _PropertyAccessor(&ZBBPCostPropertiesDeliverable::GetInWorkloadPercent,
-									   &ZBBPCostPropertiesDeliverable::SetInWorkloadPercent),
-									   VT_R4,
-									   PROP_DIRECT
-									   );
-		}
+        if (success)
+        {
+            success = RegisterProperty(Z_COST_IN_WORKLOAD_PERCENT,
+                                       IDS_Z_COST_IN_WORKLOAD_PERCENT_NAME, 
+                                       IDS_Z_COST_IN_WORKLOAD_PERCENT_DESC,
+                                       _PropertyAccessor(&ZBBPCostPropertiesDeliverable::GetInWorkloadPercent,
+                                       &ZBBPCostPropertiesDeliverable::SetInWorkloadPercent),
+                                       VT_R4,
+                                       PROP_DIRECT
+                                       );
+        }
 
-		if (success)
-		{
-			success = RegisterProperty(Z_COST_OUT_WORKLOAD_PERCENT,
-									   IDS_Z_COST_OUT_WORKLOAD_PERCENT_NAME, 
-									   IDS_Z_COST_OUT_WORKLOAD_PERCENT_DESC,
-									   _PropertyAccessor(&ZBBPCostPropertiesDeliverable::GetOutWorkloadPercent,
-									   &ZBBPCostPropertiesDeliverable::SetOutWorkloadPercent),
-									   VT_R4,
-									   PROP_DIRECT
-									   );
-		}
+        if (success)
+        {
+            success = RegisterProperty(Z_COST_OUT_WORKLOAD_PERCENT,
+                                       IDS_Z_COST_OUT_WORKLOAD_PERCENT_NAME, 
+                                       IDS_Z_COST_OUT_WORKLOAD_PERCENT_DESC,
+                                       _PropertyAccessor(&ZBBPCostPropertiesDeliverable::GetOutWorkloadPercent,
+                                       &ZBBPCostPropertiesDeliverable::SetOutWorkloadPercent),
+                                       VT_R4,
+                                       PROP_DIRECT
+                                       );
+        }
 
-		if (success)
-		{
-			success = RegisterProperty(Z_COST_UNITARY_COST,
-									   IDS_Z_COST_UNITARY_COST_NAME, 
-									   IDS_Z_COST_UNITARY_COST_DESC,
-									   _PropertyAccessor(&ZBBPCostPropertiesDeliverable::GetUnitaryCost,
-									   &ZBBPCostPropertiesDeliverable::SetUnitaryCost),
-									   VT_R4,
-									   PROP_DIRECT
-									   );
-		}
+        if (success)
+        {
+            success = RegisterProperty(Z_COST_UNITARY_COST,
+                                       IDS_Z_COST_UNITARY_COST_NAME, 
+                                       IDS_Z_COST_UNITARY_COST_DESC,
+                                       _PropertyAccessor(&ZBBPCostPropertiesDeliverable::GetUnitaryCost,
+                                       &ZBBPCostPropertiesDeliverable::SetUnitaryCost),
+                                       VT_R4,
+                                       PROP_DIRECT
+                                       );
+        }
 
-		if (!success)
-		{
-			ZBBPCostPropertiesDeliverable::GetPropertyMap().DeleteAll();
-		}
+        if (!success)
+        {
+            ZBBPCostPropertiesDeliverable::GetPropertyMap().DeleteAll();
+        }
 
-		propsRegistered = success;
-	}
+        propsRegistered = success;
+    }
 
-	return propsRegistered;
+    return propsRegistered;
 }
 
 // **********************************************************************************************************************
-// *									  ZBBPCostPropertiesDeliverable diagnostics										*
+// *                                      ZBBPCostPropertiesDeliverable diagnostics                                        *
 // **********************************************************************************************************************
 
 #ifdef _DEBUG
 
 void ZBBPCostPropertiesDeliverable::AssertValid() const
 {
-	CODIntProperty::AssertValid();
+    CODIntProperty::AssertValid();
 }
 
 void ZBBPCostPropertiesDeliverable::Dump(CDumpContext& dc) const
 {
-	CODIntProperty::Dump(dc);
+    CODIntProperty::Dump(dc);
 }
 
 #endif //_DEBUG

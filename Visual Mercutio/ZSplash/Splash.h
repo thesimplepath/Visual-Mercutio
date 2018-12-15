@@ -42,26 +42,26 @@ class AFX_EXT_CLASS ZSplash
 {
 // Construction
 public:
-	ZSplash();
+    ZSplash();
 
 // Operations
 public:
-	bool Display( LPCTSTR szFilename, size_t MaxTime = 20, bool IncludeProgress = true, CWnd* pParentWnd = NULL );
-	bool Display( UINT nResID, size_t MaxTime = 20, bool IncludeProgress = true, CWnd* pParentWnd = NULL );
-	bool EndDisplay();
-	void SetProgress(size_t value);
-	void SetText(const CString value);
-	void SetText(UINT nResID);
-	void AssignParentWindow(CWnd* pParentWnd);
+    bool Display( LPCTSTR szFilename, size_t MaxTime = 20, bool IncludeProgress = true, CWnd* pParentWnd = NULL );
+    bool Display( UINT nResID, size_t MaxTime = 20, bool IncludeProgress = true, CWnd* pParentWnd = NULL );
+    bool EndDisplay();
+    void SetProgress(size_t value);
+    void SetText(const CString value);
+    void SetText(UINT nResID);
+    void AssignParentWindow(CWnd* pParentWnd);
 
 // Implementation
 public:
-	virtual ~ZSplash();
+    virtual ~ZSplash();
 
 
 
 private:
-	ZSplashWinThread*	m_pThread;
+    ZSplashWinThread*    m_pThread;
 };
 
 /////////////////////////////////////////////////////////////////////////////

@@ -36,10 +36,10 @@
 class AFX_EXT_CLASS ZVOutputSearchView : public ZVOutputView
 {
 public:
-	DECLARE_DYNAMIC( ZVOutputSearchView )
+    DECLARE_DYNAMIC( ZVOutputSearchView )
 
-	ZVOutputSearchView();           // protected constructor used by dynamic creation
-	virtual ~ZVOutputSearchView();
+    ZVOutputSearchView();           // protected constructor used by dynamic creation
+    virtual ~ZVOutputSearchView();
 
 // Operations
 public:
@@ -47,14 +47,14 @@ public:
 // Generated message map functions
 protected:
 
-	//{{AFX_MSG(ZVOutputSearchView)
-		// NOTE - the ClassWizard will add and remove member functions here.
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZVOutputSearchView)
+        // NOTE - the ClassWizard will add and remove member functions here.
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
-	// Call back function base on list events
-	virtual void OnSelChanged();
-	virtual void OnDoubleClick();
+    // Call back function base on list events
+    virtual void OnSelChanged();
+    virtual void OnDoubleClick();
 };
 
 /////////////////////////////////////////////////////////////////////////////

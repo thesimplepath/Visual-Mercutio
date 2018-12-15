@@ -1,7 +1,7 @@
 // **********************************************************************************************************
-// *										Classe ZVDocumentPageSetupDlg									*
+// *                                        Classe ZVDocumentPageSetupDlg                                    *
 // **********************************************************************************************************
-// * Cette classe mets à disposition la boîte de dialogue pour la sélection du format de page.				*
+// * Cette classe mets à disposition la boîte de dialogue pour la sélection du format de page.                *
 // **********************************************************************************************************
 
 #if !defined(AFX_ZVDOCUMENTPAGESETUPDLG_H__12BA3983_74D2_4165_9560_7CAC5F01222B__INCLUDED_)
@@ -35,51 +35,51 @@
 
 class AFX_EXT_CLASS ZVDocumentPageSetupDlg : public ZIWizardDialog
 {
-	DECLARE_DYNAMIC( ZVDocumentPageSetupDlg )
+    DECLARE_DYNAMIC( ZVDocumentPageSetupDlg )
 
 private:
 
-	CSize								m_PaperSize;
+    CSize                                m_PaperSize;
 
-	short								m_StandardSize;
-	short								m_Orientation;
+    short                                m_StandardSize;
+    short                                m_Orientation;
 
-	CString								sBkGndName;
+    CString                                sBkGndName;
 
-	void		UpdateDatas				();
+    void        UpdateDatas                ();
 
 public:
 
-	ZVDocumentPageSetupDlg( CWnd* pParent = NULL );
-	~ZVDocumentPageSetupDlg();
+    ZVDocumentPageSetupDlg( CWnd* pParent = NULL );
+    ~ZVDocumentPageSetupDlg();
 
-	CString		GetBackGroundFilename	();
+    CString        GetBackGroundFilename    ();
 
-	CSize		GetPaperSize			();
+    CSize        GetPaperSize            ();
 
-	short		GetStandardSize			();
-	short		GetOrientation			();
+    short        GetStandardSize            ();
+    short        GetOrientation            ();
 
-	void		SetPaperSize			( CSize PaperSize );
-	void		SetStandardSize			( short StandardSize );
-	void		SetOrientation			( short Orientation );
+    void        SetPaperSize            ( CSize PaperSize );
+    void        SetStandardSize            ( short StandardSize );
+    void        SetOrientation            ( short Orientation );
 
-	// Données de boîte de dialogue
-	enum { IDD = IDD_WZ_DOCUMENT_PAGESETUP };
+    // Données de boîte de dialogue
+    enum { IDD = IDD_WZ_DOCUMENT_PAGESETUP };
 
 protected:
 
-	virtual void DoDataExchange( CDataExchange* pDX );    // Prise en charge DDX/DDV
+    virtual void DoDataExchange( CDataExchange* pDX );    // Prise en charge DDX/DDV
 
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 
 public:
 
-	afx_msg void OnBnClickedPortrait();
-	afx_msg void OnBnClickedLandscape();
-	virtual BOOL OnInitDialog();
-	afx_msg void OnBnClickedBtOpenfile();
-	afx_msg void OnEnChangeEditFilename();
+    afx_msg void OnBnClickedPortrait();
+    afx_msg void OnBnClickedLandscape();
+    virtual BOOL OnInitDialog();
+    afx_msg void OnBnClickedBtOpenfile();
+    afx_msg void OnEnChangeEditFilename();
 };
 
 #endif // !defined(AFX_ZVDOCUMENTPAGESETUPDLG_H__12BA3983_74D2_4165_9560_7CAC5F01222B__INCLUDED_)

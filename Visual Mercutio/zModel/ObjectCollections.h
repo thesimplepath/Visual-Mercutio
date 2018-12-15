@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 02/2002
+// <nl>Created:         02/2002
 // <nl>Description:  Collection and Iterator definition
 //
 /////////////////////////////////////////////////////////////////////////////

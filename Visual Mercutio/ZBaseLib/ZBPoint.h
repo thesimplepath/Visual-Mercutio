@@ -1,10 +1,10 @@
 //## begin module%3719856A01B4.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%3719856A01B4.cm
 
 //## begin module%3719856A01B4.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%3719856A01B4.cp
 
 //## Module: ZBPoint%3719856A01B4; Package specification
@@ -49,8 +49,8 @@
 
 
 //## Class: ZBPoint%371984F6035C
-//	This class is used to provide a compatibility between
-//	16bit and 32bit generated serialized files.
+//    This class is used to provide a compatibility between
+//    16bit and 32bit generated serialized files.
 //## Category: ZBaseLib::Point and Rect classes%37E9424800C3
 //## Subsystem: ZBaseLib%37A08E0C019D
 //## Persistence: Transient
@@ -59,9 +59,9 @@
 class AFX_EXT_CLASS ZBPoint : public CPoint  //## Inherits: <unnamed>%3719851B0192
 {
   //## begin ZBPoint%371984F6035C.initialDeclarations preserve=yes
-	public:
-	// Inherited feature
-		typedef CPoint inherited;
+    public:
+    // Inherited feature
+        typedef CPoint inherited;
   //## end ZBPoint%371984F6035C.initialDeclarations
 
   public:
@@ -84,16 +84,16 @@ class AFX_EXT_CLASS ZBPoint : public CPoint  //## Inherits: <unnamed>%3719851B01
 
     //## Other Operations (specified)
       //## Operation: Serialize%924419478
-      //	Serialization function required for MFC mecanism. This
-      //	is due to 16-32bit compatibility.
+      //    Serialization function required for MFC mecanism. This
+      //    is due to 16-32bit compatibility.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: operator >>%924419479
-      //	Store from the archive to the object Stamp.
+      //    Store from the archive to the object Stamp.
       AFX_EXT_API friend CArchive& operator >> (CArchive& ar, ZBPoint& Point);
 
       //## Operation: operator <<%924419480
-      //	Store the object Stamp to the archive.
+      //    Store the object Stamp to the archive.
       AFX_EXT_API friend CArchive& operator << (CArchive& ar, ZBPoint& Point);
 
       //## Operation: operator=%924419483
@@ -167,16 +167,16 @@ inline ZBPoint::ZBPoint (ZBPoint& Point)
 inline const ZBPoint & ZBPoint::operator = (const CPoint &right)
 {
   //## begin ZBPoint::operator=%924419483.body preserve=yes
-	this->CPoint::operator=( (CPoint&)right );
-	return (const ZBPoint&)*this;
+    this->CPoint::operator=( (CPoint&)right );
+    return (const ZBPoint&)*this;
   //## end ZBPoint::operator=%924419483.body
 }
 
 inline const ZBPoint & ZBPoint::operator = (const ZBPoint &right)
 {
   //## begin ZBPoint::operator=%941742748.body preserve=yes
-	this->CPoint::operator=( (CPoint&)right );
-	return (const ZBPoint&)*this;
+    this->CPoint::operator=( (CPoint&)right );
+    return (const ZBPoint&)*this;
   //## end ZBPoint::operator=%941742748.body
 }
 

@@ -29,19 +29,19 @@ IMPLEMENT_DYNAMIC(ZIFormPreviewFileDialog, ZIPreviewFileDialog)
 
 ZIFormPreviewFileDialog::ZIFormPreviewFileDialog(BOOL bOpenFileDialog, CString Title, CString InitialDir, CWnd* pParentWnd) 
 : ZIPreviewFileDialog(&m_Preview, bOpenFileDialog, 
-					  Title, InitialDir,
-					  "flf","*.flf",
-					  OFN_HIDEREADONLY | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR |OFN_PATHMUSTEXIST,
-					  "Fichier Formulaire (*.flf)|*.flf|"
-					  "Tous fichiers (*.*)|*.*||", 
-					  pParentWnd)
+                      Title, InitialDir,
+                      "flf","*.flf",
+                      OFN_HIDEREADONLY | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR |OFN_PATHMUSTEXIST,
+                      "Fichier Formulaire (*.flf)|*.flf|"
+                      "Tous fichiers (*.*)|*.*||", 
+                      pParentWnd)
 {
 }
 
 
 BEGIN_MESSAGE_MAP(ZIFormPreviewFileDialog, ZIPreviewFileDialog)
-	//{{AFX_MSG_MAP(ZIFormPreviewFileDialog)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZIFormPreviewFileDialog)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 

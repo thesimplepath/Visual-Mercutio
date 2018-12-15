@@ -20,14 +20,14 @@ IMPLEMENT_DYNAMIC( ZBDocObserverMsg, ZIObserverMsg )
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBDocObserverMsg::ZBDocObserverMsg( MessageActionType		ActionType	/*= NoAction*/,
-									ZDProcessGraphModelDoc*	pDoc		/*= NULL*/,
-									ZDProcessGraphModelMdl*	pModel		/*= NULL*/,
-									CODSymbolComponent*		pElement	/*= NULL*/)
-	: m_ActionType	( ActionType ),
-	  m_pDoc		( pDoc ),
-	  m_pModel		( pModel ),
-	  m_pElement	( pElement )
+ZBDocObserverMsg::ZBDocObserverMsg( MessageActionType        ActionType    /*= NoAction*/,
+                                    ZDProcessGraphModelDoc*    pDoc        /*= NULL*/,
+                                    ZDProcessGraphModelMdl*    pModel        /*= NULL*/,
+                                    CODSymbolComponent*        pElement    /*= NULL*/)
+    : m_ActionType    ( ActionType ),
+      m_pDoc        ( pDoc ),
+      m_pModel        ( pModel ),
+      m_pElement    ( pElement )
 {
 }
 

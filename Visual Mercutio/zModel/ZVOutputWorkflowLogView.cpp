@@ -18,14 +18,14 @@ static char THIS_FILE[] = __FILE__;
 IMPLEMENT_DYNAMIC( ZVOutputWorkflowLogView, ZVOutputView )
 
 BEGIN_MESSAGE_MAP( ZVOutputWorkflowLogView, ZVOutputView )
-	//{{AFX_MSG_MAP(ZVOutputWorkflowLogView)
-		// NOTE - the ClassWizard will add and remove mapping macros here.
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZVOutputWorkflowLogView)
+        // NOTE - the ClassWizard will add and remove mapping macros here.
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 ZVOutputWorkflowLogView::ZVOutputWorkflowLogView()
 {
-	SetSelectLast( true );
+    SetSelectLast( true );
 }
 
 ZVOutputWorkflowLogView::~ZVOutputWorkflowLogView()
@@ -38,18 +38,18 @@ ZVOutputWorkflowLogView::~ZVOutputWorkflowLogView()
 // Call back function base on list events
 void ZVOutputWorkflowLogView::OnSelChanged()
 {
-	// Do nothing
+    // Do nothing
 }
 void ZVOutputWorkflowLogView::OnDoubleClick()
 {
-	CString s;
+    CString s;
 
-	if ( GetCurrentItem( s ) != -1 )
-	{
-		ZBGenericSymbolErrorLine ErrorLine;
-		(ZIErrorLine&)ErrorLine = s;
-		ZBSymbolLogObserverMsg msg( ErrorLine );	
+    if ( GetCurrentItem( s ) != -1 )
+    {
+        ZBGenericSymbolErrorLine ErrorLine;
+        (ZIErrorLine&)ErrorLine = s;
+        ZBSymbolLogObserverMsg msg( ErrorLine );    
 
-		NotifyAllObservers( &msg );
-	}
+        NotifyAllObservers( &msg );
+    }
 }

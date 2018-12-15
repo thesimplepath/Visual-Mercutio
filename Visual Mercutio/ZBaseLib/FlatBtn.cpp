@@ -15,159 +15,159 @@ static char THIS_FILE[] = __FILE__;
 
 ZCFlatButton::ZCFlatButton()
 {
-	m_MouseOnButton = FALSE;
+    m_MouseOnButton = FALSE;
 
-	m_hIconIn = NULL;
-	m_hIconOut = NULL;
-	m_cxIcon = 0;
-	m_cyIcon = 0;
-	m_hCursor = NULL;
+    m_hIconIn = NULL;
+    m_hIconOut = NULL;
+    m_cxIcon = 0;
+    m_cyIcon = 0;
+    m_hCursor = NULL;
   
-	// Default type is "flat" button
-	m_bIsFlat = TRUE; 
+    // Default type is "flat" button
+    m_bIsFlat = TRUE; 
   
-	// By default draw border in "flat" button 
-	m_bDrawBorder = TRUE; 
+    // By default draw border in "flat" button 
+    m_bDrawBorder = TRUE; 
   
-	// By default icon is aligned horizontally
-	m_nAlign = ST_ALIGN_HORIZ; 
+    // By default icon is aligned horizontally
+    m_nAlign = ST_ALIGN_HORIZ; 
   
-	// By default show the text button
-	m_bShowText = TRUE; 
+    // By default show the text button
+    m_bShowText = TRUE; 
   
-	// By default, for "flat" button, don't draw the focus rect
-	m_bDrawFlatFocus = FALSE;
+    // By default, for "flat" button, don't draw the focus rect
+    m_bDrawFlatFocus = FALSE;
 
-	// By default the button is not the default button
-	m_bIsDefault = FALSE;
+    // By default the button is not the default button
+    m_bIsDefault = FALSE;
 
-	SetDefaultInactiveBgColor();
-	SetDefaultInactiveFgColor();
-	SetDefaultActiveBgColor();
-	SetDefaultActiveFgColor();
+    SetDefaultInactiveBgColor();
+    SetDefaultInactiveFgColor();
+    SetDefaultActiveBgColor();
+    SetDefaultActiveFgColor();
 
-	// No tooltip created
-	m_ToolTip.m_hWnd = NULL;
+    // No tooltip created
+    m_ToolTip.m_hWnd = NULL;
 
-	// Do not draw as a transparent button
-	m_bDrawTransparent = FALSE;
-	m_pbmpOldBk = NULL;
+    // Do not draw as a transparent button
+    m_bDrawTransparent = FALSE;
+    m_pbmpOldBk = NULL;
 } // End of ZCFlatButton
 
 
 ZCFlatButton::~ZCFlatButton()
 {
-	// Restore old bitmap (if any)
-	if (m_dcBk.m_hDC != NULL && m_pbmpOldBk != NULL)
-	{
-		m_dcBk.SelectObject(m_pbmpOldBk);
-	}
+    // Restore old bitmap (if any)
+    if (m_dcBk.m_hDC != NULL && m_pbmpOldBk != NULL)
+    {
+        m_dcBk.SelectObject(m_pbmpOldBk);
+    }
 
-	// Destroy the icons (if any)
-	// Note: the following two lines MUST be here! even if
-	// BoundChecker says they are unnecessary!
-	if (m_hIconIn != NULL) ::DestroyIcon(m_hIconIn);
-	if (m_hIconOut != NULL) ::DestroyIcon(m_hIconOut);
-	// Destroy the cursor (if any)
-	if (m_hCursor != NULL) ::DestroyCursor(m_hCursor);
+    // Destroy the icons (if any)
+    // Note: the following two lines MUST be here! even if
+    // BoundChecker says they are unnecessary!
+    if (m_hIconIn != NULL) ::DestroyIcon(m_hIconIn);
+    if (m_hIconOut != NULL) ::DestroyIcon(m_hIconOut);
+    // Destroy the cursor (if any)
+    if (m_hCursor != NULL) ::DestroyCursor(m_hCursor);
 } // End of ~ZCFlatButton
 
 
 BEGIN_MESSAGE_MAP(ZCFlatButton, CButton)
     //{{AFX_MSG_MAP(ZCFlatButton)
-	ON_WM_CAPTURECHANGED()
-	ON_WM_SETCURSOR()
-	ON_WM_KILLFOCUS()
-	ON_WM_MOUSEMOVE()
-	ON_WM_CTLCOLOR_REFLECT()
-	ON_WM_SYSCOLORCHANGE()
-	//}}AFX_MSG_MAP
+    ON_WM_CAPTURECHANGED()
+    ON_WM_SETCURSOR()
+    ON_WM_KILLFOCUS()
+    ON_WM_MOUSEMOVE()
+    ON_WM_CTLCOLOR_REFLECT()
+    ON_WM_SYSCOLORCHANGE()
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 
 void ZCFlatButton::SetIcon(int nIconInId, int nIconOutId)
 {
-	HICON hIconIn;
-	HICON hIconOut;
-	HINSTANCE hInstResource = AfxFindResourceHandle(MAKEINTRESOURCE(nIconInId), RT_GROUP_ICON);
+    HICON hIconIn;
+    HICON hIconOut;
+    HINSTANCE hInstResource = AfxFindResourceHandle(MAKEINTRESOURCE(nIconInId), RT_GROUP_ICON);
 
-	// Set icon when the mouse is IN the button
-	hIconIn = (HICON)::LoadImage(hInstResource/*AfxGetApp()->m_hInstance*/, MAKEINTRESOURCE(nIconInId), IMAGE_ICON, 0, 0, 0);
-  	// Set icon when the mouse is OUT the button
-	hIconOut = (nIconOutId == NULL) ? NULL : (HICON)::LoadImage(hInstResource/*AfxGetApp()->m_hInstance*/, MAKEINTRESOURCE(nIconOutId), IMAGE_ICON, 0, 0, 0);
+    // Set icon when the mouse is IN the button
+    hIconIn = (HICON)::LoadImage(hInstResource/*AfxGetApp()->m_hInstance*/, MAKEINTRESOURCE(nIconInId), IMAGE_ICON, 0, 0, 0);
+      // Set icon when the mouse is OUT the button
+    hIconOut = (nIconOutId == NULL) ? NULL : (HICON)::LoadImage(hInstResource/*AfxGetApp()->m_hInstance*/, MAKEINTRESOURCE(nIconOutId), IMAGE_ICON, 0, 0, 0);
 
-	SetIcon(hIconIn, hIconOut);
+    SetIcon(hIconIn, hIconOut);
 /*
-	// Note: the following two lines MUST be here! even if
-	// BoundChecker says they are unnecessary!
-	if (m_hIconIn != NULL) ::DestroyIcon(m_hIconIn);
-	if (m_hIconOut != NULL) ::DestroyIcon(m_hIconOut);
+    // Note: the following two lines MUST be here! even if
+    // BoundChecker says they are unnecessary!
+    if (m_hIconIn != NULL) ::DestroyIcon(m_hIconIn);
+    if (m_hIconOut != NULL) ::DestroyIcon(m_hIconOut);
 
-	// Set icon when the mouse is IN the button
-	m_hIconIn = (HICON)::LoadImage(hInstResource, MAKEINTRESOURCE(nIconInId), IMAGE_ICON, 0, 0, 0);
-  	// Set icon when the mouse is OUT the button
-	m_hIconOut = (nIconOutId == NULL) ? m_hIconIn : (HICON)::LoadImage(hInstResource, MAKEINTRESOURCE(nIconOutId), IMAGE_ICON, 0, 0, 0);
+    // Set icon when the mouse is IN the button
+    m_hIconIn = (HICON)::LoadImage(hInstResource, MAKEINTRESOURCE(nIconInId), IMAGE_ICON, 0, 0, 0);
+      // Set icon when the mouse is OUT the button
+    m_hIconOut = (nIconOutId == NULL) ? m_hIconIn : (HICON)::LoadImage(hInstResource, MAKEINTRESOURCE(nIconOutId), IMAGE_ICON, 0, 0, 0);
   
-	ICONINFO ii;
+    ICONINFO ii;
 
-	// Get icon dimension
-	ZeroMemory(&ii, sizeof(ICONINFO));
-	::GetIconInfo(m_hIconIn, &ii);
+    // Get icon dimension
+    ZeroMemory(&ii, sizeof(ICONINFO));
+    ::GetIconInfo(m_hIconIn, &ii);
 
-	m_cxIcon = (BYTE)(ii.xHotspot * 2);
-	m_cyIcon = (BYTE)(ii.yHotspot * 2);
+    m_cxIcon = (BYTE)(ii.xHotspot * 2);
+    m_cyIcon = (BYTE)(ii.yHotspot * 2);
     ::DeleteObject(ii.hbmMask);
-	::DeleteObject(ii.hbmColor);
+    ::DeleteObject(ii.hbmColor);
 
-	RedrawWindow();
+    RedrawWindow();
 */
 } // End of SetIcon
 
 void ZCFlatButton::SetIcon(HICON hIconIn, HICON hIconOut)
 {
-	// Note: the following two lines MUST be here! even if
-	// BoundChecker says they are unnecessary!
-	if (m_hIconIn != NULL) ::DestroyIcon(m_hIconIn);
-	if (m_hIconOut != NULL) ::DestroyIcon(m_hIconOut);
+    // Note: the following two lines MUST be here! even if
+    // BoundChecker says they are unnecessary!
+    if (m_hIconIn != NULL) ::DestroyIcon(m_hIconIn);
+    if (m_hIconOut != NULL) ::DestroyIcon(m_hIconOut);
 
-	// Set icon when the mouse is IN the button
-	m_hIconIn = hIconIn;
-	// Set icon when the mouse is OUT the button
-	m_hIconOut = (hIconOut == NULL) ? m_hIconIn : hIconOut;
+    // Set icon when the mouse is IN the button
+    m_hIconIn = hIconIn;
+    // Set icon when the mouse is OUT the button
+    m_hIconOut = (hIconOut == NULL) ? m_hIconIn : hIconOut;
   
-	ICONINFO ii;
+    ICONINFO ii;
 
-	// Get icon dimension
-	ZeroMemory(&ii, sizeof(ICONINFO));
-	::GetIconInfo(m_hIconIn, &ii);
+    // Get icon dimension
+    ZeroMemory(&ii, sizeof(ICONINFO));
+    ::GetIconInfo(m_hIconIn, &ii);
 
-	m_cxIcon = (BYTE)(ii.xHotspot * 2);
-	m_cyIcon = (BYTE)(ii.yHotspot * 2);
+    m_cxIcon = (BYTE)(ii.xHotspot * 2);
+    m_cyIcon = (BYTE)(ii.yHotspot * 2);
     ::DeleteObject(ii.hbmMask);
-	::DeleteObject(ii.hbmColor);
+    ::DeleteObject(ii.hbmColor);
 
-	RedrawWindow();
+    RedrawWindow();
 } // End of SetIcon
 
 BOOL ZCFlatButton::SetBtnCursor(int nCursorId)
 {
-	HINSTANCE hInstResource;
-	// Destroy any previous cursor
-	if (m_hCursor != NULL) ::DestroyCursor(m_hCursor);
-	m_hCursor = NULL;
+    HINSTANCE hInstResource;
+    // Destroy any previous cursor
+    if (m_hCursor != NULL) ::DestroyCursor(m_hCursor);
+    m_hCursor = NULL;
 
-	// If we want a cursor
-	if (nCursorId != -1)
-	{
-		hInstResource = AfxFindResourceHandle(MAKEINTRESOURCE(nCursorId),
-											RT_GROUP_CURSOR);
-		// Load icon resource
-		m_hCursor = (HCURSOR)::LoadImage(hInstResource/*AfxGetApp()->m_hInstance*/, MAKEINTRESOURCE(nCursorId), IMAGE_CURSOR, 0, 0, 0);
-		// If something wrong then return FALSE
-		if (m_hCursor == NULL) return FALSE;
-	}
+    // If we want a cursor
+    if (nCursorId != -1)
+    {
+        hInstResource = AfxFindResourceHandle(MAKEINTRESOURCE(nCursorId),
+                                            RT_GROUP_CURSOR);
+        // Load icon resource
+        m_hCursor = (HCURSOR)::LoadImage(hInstResource/*AfxGetApp()->m_hInstance*/, MAKEINTRESOURCE(nCursorId), IMAGE_CURSOR, 0, 0, 0);
+        // If something wrong then return FALSE
+        if (m_hCursor == NULL) return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 } // End of SetBtnCursor
 
 
@@ -241,58 +241,58 @@ BOOL ZCFlatButton::GetShowText()
 
 void ZCFlatButton::OnMouseMove(UINT nFlags, CPoint point)
 {
-	CWnd* pWnd;  // Finestra attiva
-	CWnd* pParent; // Finestra che contiene il bottone
+    CWnd* pWnd;  // Finestra attiva
+    CWnd* pParent; // Finestra che contiene il bottone
 
-	CButton::OnMouseMove(nFlags, point);
+    CButton::OnMouseMove(nFlags, point);
 
-	// If the mouse enter the button with the left button pressed
-	// then do nothing
-	if (nFlags & MK_LBUTTON && m_MouseOnButton == FALSE) return;
+    // If the mouse enter the button with the left button pressed
+    // then do nothing
+    if (nFlags & MK_LBUTTON && m_MouseOnButton == FALSE) return;
 
-	// If our button is not flat then do nothing
-	if (m_bIsFlat == FALSE) return;
+    // If our button is not flat then do nothing
+    if (m_bIsFlat == FALSE) return;
 
-	pWnd = GetActiveWindow();
-	pParent = GetOwner();
+    pWnd = GetActiveWindow();
+    pParent = GetOwner();
 
-	if ((GetCapture() != this) && 
-		(
+    if ((GetCapture() != this) && 
+        (
 #ifndef ST_LIKEIE
-		pWnd != NULL && 
+        pWnd != NULL && 
 #endif
-		pParent != NULL)) 
-	{
-		m_MouseOnButton = TRUE;
-		//SetFocus();	// Thanks Ralph!
-		SetCapture();
-		Invalidate();
-	}
-	else
-	{
-		/*
-		CRect rc;
-		GetClientRect(&rc);
-		if (!rc.PtInRect(point))
-		{
-		*/
+        pParent != NULL)) 
+    {
+        m_MouseOnButton = TRUE;
+        //SetFocus();    // Thanks Ralph!
+        SetCapture();
+        Invalidate();
+    }
+    else
+    {
+        /*
+        CRect rc;
+        GetClientRect(&rc);
+        if (!rc.PtInRect(point))
+        {
+        */
 
-		POINT p2 = point;
-		ClientToScreen(&p2);
-		CWnd* wndUnderMouse = WindowFromPoint(p2);
-//		if (wndUnderMouse != this)
-		if (wndUnderMouse && wndUnderMouse->m_hWnd != this->m_hWnd)
-		{
-			// Redraw only if mouse goes out
-			if (m_MouseOnButton == TRUE)
-			{
-				m_MouseOnButton = FALSE;
-				Invalidate();
-			}
-			// If user is NOT pressing left button then release capture!
-			if (!(nFlags & MK_LBUTTON)) ReleaseCapture();
-		}
-	}
+        POINT p2 = point;
+        ClientToScreen(&p2);
+        CWnd* wndUnderMouse = WindowFromPoint(p2);
+//        if (wndUnderMouse != this)
+        if (wndUnderMouse && wndUnderMouse->m_hWnd != this->m_hWnd)
+        {
+            // Redraw only if mouse goes out
+            if (m_MouseOnButton == TRUE)
+            {
+                m_MouseOnButton = FALSE;
+                Invalidate();
+            }
+            // If user is NOT pressing left button then release capture!
+            if (!(nFlags & MK_LBUTTON)) ReleaseCapture();
+        }
+    }
 } // End of OnMouseMove
 
 
@@ -313,14 +313,14 @@ void ZCFlatButton::OnKillFocus(CWnd * pNewWnd)
 
 void ZCFlatButton::OnCaptureChanged(CWnd *pWnd) 
 {
-	if (m_MouseOnButton == TRUE)
-	{
-		ReleaseCapture();
-		Invalidate();
-	}
+    if (m_MouseOnButton == TRUE)
+    {
+        ReleaseCapture();
+        Invalidate();
+    }
 
-	// Call base message handler
-	CButton::OnCaptureChanged(pWnd);
+    // Call base message handler
+    CButton::OnCaptureChanged(pWnd);
 } // End of OnCaptureChanged
 
 
@@ -330,7 +330,7 @@ void ZCFlatButton::DrawItem(LPDRAWITEMSTRUCT lpDIS)
   CDC  *pdrawDC = CDC::FromHandle(lpDIS->hDC);
   ZMemoryDC memDC(pdrawDC);
   CDC  *pDC = &memDC;
-#else	
+#else    
   CDC* pDC = CDC::FromHandle(lpDIS->hDC);
 #endif
 
@@ -360,18 +360,18 @@ void ZCFlatButton::DrawItem(LPDRAWITEMSTRUCT lpDIS)
   else
     bgColor = GetInactiveBgColor();
 
-	CBrush br(bgColor);
-	// Draw transparent?
-	if (m_bDrawTransparent == TRUE)
-	{
-		PaintBk(pDC);
-	}
-	else
-	{
-		pDC->FillRect(&itemRect, &br);
-	}
+    CBrush br(bgColor);
+    // Draw transparent?
+    if (m_bDrawTransparent == TRUE)
+    {
+        PaintBk(pDC);
+    }
+    else
+    {
+        pDC->FillRect(&itemRect, &br);
+    }
 
-	// Disegno lo sfondo del bottone
+    // Disegno lo sfondo del bottone
 //CBrush br(GetSysColor(COLOR_BTNFACE));  
 //pDC->FillRect(&itemRect, &br);
 
@@ -382,9 +382,9 @@ void ZCFlatButton::DrawItem(LPDRAWITEMSTRUCT lpDIS)
     {
       if (m_bDrawBorder == TRUE)
       {
-		  pDC->Draw3dRect(itemRect, ::GetSysColor(COLOR_BTNSHADOW), ::GetSysColor(COLOR_BTNHILIGHT));
+          pDC->Draw3dRect(itemRect, ::GetSysColor(COLOR_BTNSHADOW), ::GetSysColor(COLOR_BTNHILIGHT));
 /*
-	    CPen penBtnHiLight(PS_SOLID, 0, GetSysColor(COLOR_BTNHILIGHT)); // Bianco
+        CPen penBtnHiLight(PS_SOLID, 0, GetSysColor(COLOR_BTNHILIGHT)); // Bianco
         CPen penBtnShadow(PS_SOLID, 0, GetSysColor(COLOR_BTNSHADOW));   // Grigio scuro
 
         // Disegno i bordi a sinistra e in alto
@@ -421,9 +421,9 @@ void ZCFlatButton::DrawItem(LPDRAWITEMSTRUCT lpDIS)
     {
       if (m_MouseOnButton == TRUE && m_bDrawBorder == TRUE)
       {
-		  pDC->Draw3dRect(itemRect, ::GetSysColor(COLOR_BTNHILIGHT), ::GetSysColor(COLOR_BTNSHADOW));
+          pDC->Draw3dRect(itemRect, ::GetSysColor(COLOR_BTNHILIGHT), ::GetSysColor(COLOR_BTNSHADOW));
 /*
-  	    // Disegno i bordi a sinistra e in alto
+          // Disegno i bordi a sinistra e in alto
         // White line
         pOldPen = pDC->SelectObject(&penBtnHiLight);
         pDC->MoveTo(itemRect.left, itemRect.bottom-1);
@@ -498,17 +498,17 @@ void ZCFlatButton::DrawItem(LPDRAWITEMSTRUCT lpDIS)
     //pDC->FrameRect(&captionRect, &brBtnShadow);
 
 #ifdef ST_USE_MEMDC
-	// Get dialog's font
+    // Get dialog's font
     CFont *pCurrentFont = GetFont(); 
     CFont *pOldFont = pDC->SelectObject(pCurrentFont);
 #endif
     if ((m_MouseOnButton == TRUE) || (bIsPressed)) 
-	{
+    {
       pDC->SetTextColor(GetActiveFgColor());
       pDC->SetBkColor(GetActiveBgColor());
     } 
-	else 
-	{
+    else 
+    {
       pDC->SetTextColor(GetInactiveFgColor());
       pDC->SetBkColor(GetInactiveBgColor());
     }
@@ -516,12 +516,12 @@ void ZCFlatButton::DrawItem(LPDRAWITEMSTRUCT lpDIS)
     CRect centerRect = captionRect;
     pDC->DrawText(sTitle, -1, captionRect, DT_SINGLELINE|DT_CALCRECT);
     captionRect.OffsetRect((centerRect.Width() - captionRect.Width())/2, (centerRect.Height() - captionRect.Height())/2);
-	/* RFU
+    /* RFU
     captionRect.OffsetRect(0, (centerRect.Height() - captionRect.Height())/2);
     captionRect.OffsetRect((centerRect.Width() - captionRect.Width())-4, (centerRect.Height() - captionRect.Height())/2);
-	*/
+    */
 
-	pDC->SetBkMode(TRANSPARENT);
+    pDC->SetBkMode(TRANSPARENT);
     pDC->DrawState(captionRect.TopLeft(), captionRect.Size(), (LPCTSTR)sTitle, (bIsDisabled ? DSS_DISABLED : DSS_NORMAL), 
                    TRUE, 0, (CBrush*)NULL);
 #ifdef ST_USE_MEMDC
@@ -544,8 +544,8 @@ void ZCFlatButton::DrawItem(LPDRAWITEMSTRUCT lpDIS)
 
 void ZCFlatButton::DrawTheIcon(CDC* pDC, CString* title, RECT* rcItem, CRect* captionRect, BOOL IsPressed, BOOL IsDisabled)
 {
-	CRect iconRect = rcItem;
-	CRect btnRect;
+    CRect iconRect = rcItem;
+    CRect btnRect;
 
   switch (m_nAlign)
   {
@@ -564,23 +564,23 @@ void ZCFlatButton::DrawTheIcon(CDC* pDC, CString* title, RECT* rcItem, CRect* ca
          // Center the icon vertically
          iconRect.top += ((iconRect.Height() - m_cyIcon)/2);
          break;
-	case ST_ALIGN_HORIZ_RIGHT:
-			GetClientRect(&btnRect);
-			if (title->IsEmpty())
-			{
-				// Center the icon horizontally
-				iconRect.left += ((iconRect.Width() - m_cxIcon)/2);
-			}
-			else
-			{
-				// L'icona deve vedersi subito dentro il focus rect
-				captionRect->right = captionRect->Width() - m_cxIcon - 3;
-				captionRect->left = 3;
-				iconRect.left = btnRect.right - m_cxIcon - 3;
-				// Center the icon vertically
-				iconRect.top += ((iconRect.Height() - m_cyIcon)/2);
-			}
-	break;
+    case ST_ALIGN_HORIZ_RIGHT:
+            GetClientRect(&btnRect);
+            if (title->IsEmpty())
+            {
+                // Center the icon horizontally
+                iconRect.left += ((iconRect.Width() - m_cxIcon)/2);
+            }
+            else
+            {
+                // L'icona deve vedersi subito dentro il focus rect
+                captionRect->right = captionRect->Width() - m_cxIcon - 3;
+                captionRect->left = 3;
+                iconRect.left = btnRect.right - m_cxIcon - 3;
+                // Center the icon vertically
+                iconRect.top += ((iconRect.Height() - m_cyIcon)/2);
+            }
+    break;
     case ST_ALIGN_VERT:
          // Center the icon horizontally
          iconRect.left += ((iconRect.Width() - m_cxIcon)/2);
@@ -599,271 +599,271 @@ void ZCFlatButton::DrawTheIcon(CDC* pDC, CString* title, RECT* rcItem, CRect* ca
   // If button is pressed then press the icon also
   if (IsPressed) iconRect.OffsetRect(1, 1);
   // Ole'!
-  pDC->DrawState(	iconRect.TopLeft(),
-					iconRect.Size(), 
-					(m_MouseOnButton == TRUE || IsPressed) ? m_hIconIn : m_hIconOut, 
-					(IsDisabled ? DSS_DISABLED : DSS_NORMAL), 
-					(CBrush*)NULL);
+  pDC->DrawState(    iconRect.TopLeft(),
+                    iconRect.Size(), 
+                    (m_MouseOnButton == TRUE || IsPressed) ? m_hIconIn : m_hIconOut, 
+                    (IsDisabled ? DSS_DISABLED : DSS_NORMAL), 
+                    (CBrush*)NULL);
 } // End of DrawTheIcon
 
 
 void ZCFlatButton::PreSubclassWindow() 
 {
-	UINT nBS;
+    UINT nBS;
 
-	nBS = GetButtonStyle();
+    nBS = GetButtonStyle();
 
-	// Check if this is the default button
-	if (nBS & BS_DEFPUSHBUTTON) m_bIsDefault = TRUE;
+    // Check if this is the default button
+    if (nBS & BS_DEFPUSHBUTTON) m_bIsDefault = TRUE;
 
-	// Add BS_OWNERDRAW style
-	SetButtonStyle(nBS | BS_OWNERDRAW);
+    // Add BS_OWNERDRAW style
+    SetButtonStyle(nBS | BS_OWNERDRAW);
 
-	CButton::PreSubclassWindow();
+    CButton::PreSubclassWindow();
 } // End of PreSubclassWindow
 
 
 BOOL ZCFlatButton::PreTranslateMessage(MSG* pMsg) 
 {
-	InitToolTip();
-	m_ToolTip.RelayEvent(pMsg);
-	
-	return CButton::PreTranslateMessage(pMsg);
+    InitToolTip();
+    m_ToolTip.RelayEvent(pMsg);
+    
+    return CButton::PreTranslateMessage(pMsg);
 } // End of PreTranslateMessage
 
 
 LRESULT ZCFlatButton::DefWindowProc(UINT message, WPARAM wParam, LPARAM lParam) 
 {
-	if (message == WM_LBUTTONDBLCLK)
-	{
-		message = WM_LBUTTONDOWN;
-	}
-	return CButton::DefWindowProc(message, wParam, lParam);
+    if (message == WM_LBUTTONDBLCLK)
+    {
+        message = WM_LBUTTONDOWN;
+    }
+    return CButton::DefWindowProc(message, wParam, lParam);
 } // End of DefWindowProc
 
 
 void ZCFlatButton::SetDefaultInactiveBgColor(BOOL bRepaint)
 {
-	m_crInactiveBg = ::GetSysColor(COLOR_BTNFACE); 
-	if (bRepaint == TRUE) Invalidate();
+    m_crInactiveBg = ::GetSysColor(COLOR_BTNFACE); 
+    if (bRepaint == TRUE) Invalidate();
 } // End of SetDefaultInactiveBgColor
 
 
 void ZCFlatButton::SetInactiveBgColor(COLORREF crNew, BOOL bRepaint)
 {
-	m_crInactiveBg = crNew; 
-	if (bRepaint == TRUE) Invalidate();
+    m_crInactiveBg = crNew; 
+    if (bRepaint == TRUE) Invalidate();
 } // End of SetInactiveBgColor
 
 
 const COLORREF ZCFlatButton::GetInactiveBgColor()
 {
-	return m_crInactiveBg;
+    return m_crInactiveBg;
 } // End of GetInactiveBgColor
 
 
 void ZCFlatButton::SetDefaultInactiveFgColor(BOOL bRepaint)
 {
-	m_crInactiveFg = ::GetSysColor(COLOR_BTNTEXT); 
-	if (bRepaint == TRUE) Invalidate();
+    m_crInactiveFg = ::GetSysColor(COLOR_BTNTEXT); 
+    if (bRepaint == TRUE) Invalidate();
 } // End of SetDefaultInactiveFgColor
 
 
 void ZCFlatButton::SetInactiveFgColor(COLORREF crNew, BOOL bRepaint)
 {
-	m_crInactiveFg = crNew; 
-	if (bRepaint == TRUE) Invalidate();
+    m_crInactiveFg = crNew; 
+    if (bRepaint == TRUE) Invalidate();
 } // End of SetInactiveFgColor
 
 
 const COLORREF ZCFlatButton::GetInactiveFgColor()
 {
-	return m_crInactiveFg;
+    return m_crInactiveFg;
 } // End of GetInactiveFgColor
 
 
 void ZCFlatButton::SetDefaultActiveBgColor(BOOL bRepaint)
 {
-	m_crActiveBg = ::GetSysColor(COLOR_BTNFACE); 
-	if (bRepaint == TRUE) Invalidate();
+    m_crActiveBg = ::GetSysColor(COLOR_BTNFACE); 
+    if (bRepaint == TRUE) Invalidate();
 } // End of SetDefaultActiveBgColor
 
 
 void ZCFlatButton::SetActiveBgColor(COLORREF crNew, BOOL bRepaint)
 {
-	m_crActiveBg = crNew; 
-	if (bRepaint == TRUE) Invalidate();
+    m_crActiveBg = crNew; 
+    if (bRepaint == TRUE) Invalidate();
 } // End of SetActiveBgColor
 
 
 const COLORREF ZCFlatButton::GetActiveBgColor()
 {
-	return m_crActiveBg;
+    return m_crActiveBg;
 } // End of GetActiveBgColor
 
 
 void ZCFlatButton::SetDefaultActiveFgColor(BOOL bRepaint)
 {
-	m_crActiveFg = ::GetSysColor(COLOR_BTNTEXT); 
-	if (bRepaint == TRUE) Invalidate();
+    m_crActiveFg = ::GetSysColor(COLOR_BTNTEXT); 
+    if (bRepaint == TRUE) Invalidate();
 } // End of SetDefaultActiveFgColor
 
 
 void ZCFlatButton::SetActiveFgColor(COLORREF crNew, BOOL bRepaint)
 {
-	m_crActiveFg = crNew; 
-	if (bRepaint == TRUE) Invalidate();
+    m_crActiveFg = crNew; 
+    if (bRepaint == TRUE) Invalidate();
 } // End of SetActiveFgColor
 
 
 const COLORREF ZCFlatButton::GetActiveFgColor()
 {
-	return m_crActiveFg;
+    return m_crActiveFg;
 } // End of GetActiveFgColor
 
 
 void ZCFlatButton::SetFlatFocus(BOOL bDrawFlatFocus, BOOL bRepaint)
 {
-	m_bDrawFlatFocus = bDrawFlatFocus;
-	
-	// Repaint the button
-	if (bRepaint == TRUE) Invalidate();
+    m_bDrawFlatFocus = bDrawFlatFocus;
+    
+    // Repaint the button
+    if (bRepaint == TRUE) Invalidate();
 } // End of SetFlatFocus
 
 
 BOOL ZCFlatButton::GetFlatFocus()
 {
-	return m_bDrawFlatFocus;
+    return m_bDrawFlatFocus;
 } // End of GetFlatFocus
 
 
 BOOL ZCFlatButton::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message) 
 {
-	// If a cursor was specified then use it!
-	if (m_hCursor != NULL)
-	{
-		::SetCursor(m_hCursor);
-		return TRUE;
-	}
+    // If a cursor was specified then use it!
+    if (m_hCursor != NULL)
+    {
+        ::SetCursor(m_hCursor);
+        return TRUE;
+    }
 
-	return CButton::OnSetCursor(pWnd, nHitTest, message);
+    return CButton::OnSetCursor(pWnd, nHitTest, message);
 } // End of OnSetCursor
 
 
 void ZCFlatButton::SetTooltipText(CString* spText, BOOL bActivate)
 {
-	// We cannot accept NULL pointer
-	if (spText == NULL) return;
+    // We cannot accept NULL pointer
+    if (spText == NULL) return;
 
-	// Initialize ToolTip
-	InitToolTip();
+    // Initialize ToolTip
+    InitToolTip();
 
-	// If there is no tooltip defined then add it
-	if (m_ToolTip.GetToolCount() == 0)
-	{
-		CRect rectBtn; 
-		GetClientRect(rectBtn);
-		m_ToolTip.AddTool(this, (LPCTSTR)*spText, rectBtn, 1);
-	}
+    // If there is no tooltip defined then add it
+    if (m_ToolTip.GetToolCount() == 0)
+    {
+        CRect rectBtn; 
+        GetClientRect(rectBtn);
+        m_ToolTip.AddTool(this, (LPCTSTR)*spText, rectBtn, 1);
+    }
 
-	// Set text for tooltip
-	m_ToolTip.UpdateTipText((LPCTSTR)*spText, this, 1);
-	m_ToolTip.Activate(bActivate);
+    // Set text for tooltip
+    m_ToolTip.UpdateTipText((LPCTSTR)*spText, this, 1);
+    m_ToolTip.Activate(bActivate);
 } // End of SetTooltipText
 
 
 void ZCFlatButton::SetTooltipText(int nId, BOOL bActivate)
 {
-	CString sText;
+    CString sText;
 
-	// load string resource
-	sText.LoadString(nId);
-	// If string resource is not empty
-	if (sText.IsEmpty() == FALSE) SetTooltipText(&sText, bActivate);
+    // load string resource
+    sText.LoadString(nId);
+    // If string resource is not empty
+    if (sText.IsEmpty() == FALSE) SetTooltipText(&sText, bActivate);
 } // End of SetTooltipText
 
 
 void ZCFlatButton::ActivateTooltip(BOOL bActivate)
 {
-	// If there is no tooltip then do nothing
-	if (m_ToolTip.GetToolCount() == 0) return;
+    // If there is no tooltip then do nothing
+    if (m_ToolTip.GetToolCount() == 0) return;
 
-	// Activate tooltip
-	m_ToolTip.Activate(bActivate);
+    // Activate tooltip
+    m_ToolTip.Activate(bActivate);
 } // End of EnableTooltip
 
 
 BOOL ZCFlatButton::GetDefault()
 {
-	return m_bIsDefault;
+    return m_bIsDefault;
 } // End of GetDefault
 
 
 void ZCFlatButton::DrawTransparent(BOOL bRepaint)
 {
-	m_bDrawTransparent = TRUE;
+    m_bDrawTransparent = TRUE;
 
-	// Restore old bitmap (if any)
-	if (m_dcBk.m_hDC != NULL && m_pbmpOldBk != NULL)
-	{
-		m_dcBk.SelectObject(m_pbmpOldBk);
-	}
+    // Restore old bitmap (if any)
+    if (m_dcBk.m_hDC != NULL && m_pbmpOldBk != NULL)
+    {
+        m_dcBk.SelectObject(m_pbmpOldBk);
+    }
 
-	m_bmpBk.Detach();
-	m_dcBk.Detach();
+    m_bmpBk.Detach();
+    m_dcBk.Detach();
 
-	// Repaint the button
-	if (bRepaint == TRUE) Invalidate();
+    // Repaint the button
+    if (bRepaint == TRUE) Invalidate();
 } // End of DrawTransparent
 
 
 void ZCFlatButton::InitToolTip()
 {
-	if (m_ToolTip.m_hWnd == NULL)
-	{
-		// Create ToolTip control
-		m_ToolTip.Create(this);
-		// Create inactive
-		m_ToolTip.Activate(FALSE);
-	}
+    if (m_ToolTip.m_hWnd == NULL)
+    {
+        // Create ToolTip control
+        m_ToolTip.Create(this);
+        // Create inactive
+        m_ToolTip.Activate(FALSE);
+    }
 } // End of InitToolTip
 
 
 void ZCFlatButton::PaintBk(CDC * pDC)
 {
-	CClientDC clDC(GetParent());
-	CRect rect;
-	CRect rect1;
+    CClientDC clDC(GetParent());
+    CRect rect;
+    CRect rect1;
 
-	GetClientRect(rect);
+    GetClientRect(rect);
 
-	GetWindowRect(rect1);
-	GetParent()->ScreenToClient(rect1);
+    GetWindowRect(rect1);
+    GetParent()->ScreenToClient(rect1);
 
-	if (m_dcBk.m_hDC == NULL)
-	{
-		m_dcBk.CreateCompatibleDC(&clDC);
-		m_bmpBk.CreateCompatibleBitmap(&clDC, rect.Width(), rect.Height());
-		m_pbmpOldBk = m_dcBk.SelectObject(&m_bmpBk);
-		m_dcBk.BitBlt(0, 0, rect.Width(), rect.Height(), &clDC, rect1.left, rect1.top, SRCCOPY);
-	}
+    if (m_dcBk.m_hDC == NULL)
+    {
+        m_dcBk.CreateCompatibleDC(&clDC);
+        m_bmpBk.CreateCompatibleBitmap(&clDC, rect.Width(), rect.Height());
+        m_pbmpOldBk = m_dcBk.SelectObject(&m_bmpBk);
+        m_dcBk.BitBlt(0, 0, rect.Width(), rect.Height(), &clDC, rect1.left, rect1.top, SRCCOPY);
+    }
 
-	pDC->BitBlt(0, 0, rect.Width(), rect.Height(), &m_dcBk, 0, 0, SRCCOPY);
+    pDC->BitBlt(0, 0, rect.Width(), rect.Height(), &m_dcBk, 0, 0, SRCCOPY);
 } // End of PaintBk
 
 
 HBRUSH ZCFlatButton::CtlColor(CDC* pDC, UINT nCtlColor) 
 {
-	return (HBRUSH)::GetStockObject(NULL_BRUSH); 
+    return (HBRUSH)::GetStockObject(NULL_BRUSH); 
 } // End of CtlColor
 
 
 void ZCFlatButton::OnSysColorChange() 
 {
-	CButton::OnSysColorChange();
+    CButton::OnSysColorChange();
 
-	m_dcBk.DeleteDC();
-	m_bmpBk.DeleteObject();	
+    m_dcBk.DeleteDC();
+    m_bmpBk.DeleteObject();    
 } // End of OnSysColorChange
 
 

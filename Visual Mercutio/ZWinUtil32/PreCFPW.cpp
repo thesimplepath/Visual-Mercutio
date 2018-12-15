@@ -15,33 +15,33 @@ static char THIS_FILE[] = __FILE__;
 
 
 ZIPreConditionFormProcWelcome::ZIPreConditionFormProcWelcome(CString ActivityName, CWnd* pParent /*=NULL*/)
-	: ZIWizardDialog(ZIPreConditionFormProcWelcome::IDD, // Dialog template
-					 IDB_WZBMP1,	// Bitmap to display
-					 0,				// Icon do display
-					 0,					// Window Title
-					 IDS_WZPREACTIVITYTITLE_WZ, // Wizard title
-					 IDS_WZPREACTIVITYTITLE_T	// Wizard text
-					 )
+    : ZIWizardDialog(ZIPreConditionFormProcWelcome::IDD, // Dialog template
+                     IDB_WZBMP1,    // Bitmap to display
+                     0,                // Icon do display
+                     0,                    // Window Title
+                     IDS_WZPREACTIVITYTITLE_WZ, // Wizard title
+                     IDS_WZPREACTIVITYTITLE_T    // Wizard text
+                     )
 {
-	//{{AFX_DATA_INIT(ZIPreConditionFormProcWelcome)
-	m_ActivityName = _T(ActivityName);
-	//}}AFX_DATA_INIT
+    //{{AFX_DATA_INIT(ZIPreConditionFormProcWelcome)
+    m_ActivityName = _T(ActivityName);
+    //}}AFX_DATA_INIT
 }
 
 
 void ZIPreConditionFormProcWelcome::DoDataExchange(CDataExchange* pDX)
 {
-	ZIWizardDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(ZIPreConditionFormProcWelcome)
-	DDX_Text(pDX, IDC_ACTIVITYNAME, m_ActivityName);
-	//}}AFX_DATA_MAP
+    ZIWizardDialog::DoDataExchange(pDX);
+    //{{AFX_DATA_MAP(ZIPreConditionFormProcWelcome)
+    DDX_Text(pDX, IDC_ACTIVITYNAME, m_ActivityName);
+    //}}AFX_DATA_MAP
 }
 
 
 BEGIN_MESSAGE_MAP(ZIPreConditionFormProcWelcome, ZIWizardDialog)
-	//{{AFX_MSG_MAP(ZIPreConditionFormProcWelcome)
-	ON_BN_CLICKED(IDNEXT, OnNext)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZIPreConditionFormProcWelcome)
+    ON_BN_CLICKED(IDNEXT, OnNext)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -49,5 +49,5 @@ END_MESSAGE_MAP()
 
 void ZIPreConditionFormProcWelcome::OnNext() 
 {
-	EndDialog( IDNEXT );	
+    EndDialog( IDNEXT );    
 }

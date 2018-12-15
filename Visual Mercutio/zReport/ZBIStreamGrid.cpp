@@ -18,7 +18,7 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 ZBIStreamGrid::ZBIStreamGrid( CGXGridCore* pGridCore /*= NULL*/ )
-	: ZBIOSGrid( pGridCore )
+    : ZBIOSGrid( pGridCore )
 {
 }
 

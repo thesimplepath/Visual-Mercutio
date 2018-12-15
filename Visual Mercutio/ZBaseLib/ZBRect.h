@@ -1,10 +1,10 @@
 //## begin module%371399280091.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%371399280091.cm
 
 //## begin module%371399280091.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%371399280091.cp
 
 //## Module: ZBRect%371399280091; Package specification
@@ -49,8 +49,8 @@
 
 
 //## Class: ZBRect%3713985D0356
-//	This class is used to provide a compatibility between
-//	16bit and 32bit generated serialized files.
+//    This class is used to provide a compatibility between
+//    16bit and 32bit generated serialized files.
 //## Category: ZBaseLib::Point and Rect classes%37E9424800C3
 //## Subsystem: ZBaseLib%37A08E0C019D
 //## Persistence: Transient
@@ -59,9 +59,9 @@
 class AFX_EXT_CLASS ZBRect : public CRect  //## Inherits: <unnamed>%3713988A026A
 {
   //## begin ZBRect%3713985D0356.initialDeclarations preserve=yes
-	public:
-	// Inherited feature
-		typedef CRect inherited;
+    public:
+    // Inherited feature
+        typedef CRect inherited;
   //## end ZBRect%3713985D0356.initialDeclarations
 
   public:
@@ -84,16 +84,16 @@ class AFX_EXT_CLASS ZBRect : public CRect  //## Inherits: <unnamed>%3713988A026A
 
     //## Other Operations (specified)
       //## Operation: Serialize%924031309
-      //	Serialization function required for MFC mecanism. This
-      //	is due to 16-32bit compatibility.
+      //    Serialization function required for MFC mecanism. This
+      //    is due to 16-32bit compatibility.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: operator >>%924031311
-      //	Store from the archive to the object Stamp.
+      //    Store from the archive to the object Stamp.
       AFX_EXT_API friend CArchive& operator >> (CArchive& ar, ZBRect& Rect);
 
       //## Operation: operator <<%924031312
-      //	Store the object Stamp to the archive.
+      //    Store the object Stamp to the archive.
       AFX_EXT_API friend CArchive& operator << (CArchive& ar, ZBRect& Rect);
 
       //## Operation: operator=%924419484
@@ -167,16 +167,16 @@ inline ZBRect::ZBRect (ZBRect& Rect)
 inline const ZBRect & ZBRect::operator = (const CRect &right)
 {
   //## begin ZBRect::operator=%924419484.body preserve=yes
-	this->CRect::operator=( (CRect&)right );
-	return (const ZBRect&)*this;
+    this->CRect::operator=( (CRect&)right );
+    return (const ZBRect&)*this;
   //## end ZBRect::operator=%924419484.body
 }
 
 inline const ZBRect & ZBRect::operator = (const ZBRect &right)
 {
   //## begin ZBRect::operator=%941742746.body preserve=yes
-	this->CRect::operator=( (CRect&)right );
-	return (const ZBRect&)*this;
+    this->CRect::operator=( (CRect&)right );
+    return (const ZBRect&)*this;
   //## end ZBRect::operator=%941742746.body
 }
 

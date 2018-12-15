@@ -33,26 +33,26 @@
 
 class AFX_EXT_CLASS ZBMenuObserverMsg : public ZIObserverMsg  
 {
-	DECLARE_DYNAMIC( ZBMenuObserverMsg )
+    DECLARE_DYNAMIC( ZBMenuObserverMsg )
 
 public:
 
-	ZBMenuObserverMsg( int CommandID = 0 );
-	virtual ~ZBMenuObserverMsg();
+    ZBMenuObserverMsg( int CommandID = 0 );
+    virtual ~ZBMenuObserverMsg();
 
-	int GetMessageID() const
-	{
-		return m_CommandID;
-	};
+    int GetMessageID() const
+    {
+        return m_CommandID;
+    };
 
-	void SetMessageID( int value )
-	{
-		m_CommandID = value;
-	};
+    void SetMessageID( int value )
+    {
+        m_CommandID = value;
+    };
 
 private:
 
-	int m_CommandID;
+    int m_CommandID;
 };
 
 #endif // !defined(AFX_ZBMenuObserverMsg_H__31A212D8_7CA2_4BEB_9709_8C785F4909B3__INCLUDED_)

@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Gaya
-// <nl>Created:		 03/2002
+// <nl>Created:         03/2002
 // <nl>Description:  XXXClass frame window support
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -56,33 +56,33 @@ class SOAPTypeTraits<pattribdef>
 {
 public:
 
-	static void GetType( SOAPQName& qname )
-	{
-		qname.Set( _T( "pattribdef" ), _T( "urn:xml-soap-emessenger" ) );
-	}
+    static void GetType( SOAPQName& qname )
+    {
+        qname.Set( _T( "pattribdef" ), _T( "urn:xml-soap-emessenger" ) );
+    }
 
-	static SOAPParameter& Serialize( SOAPParameter& param, const pattribdef& val )
-	{
-		param.AddParameter( _T( "attribdefid" ) )	<< val.attribdefid;
-		param.AddParameter( _T( "attribgrpid" ) )	<< val.attribgrpid;
-		param.AddParameter( _T( "attribdefname" ) )	<< val.attribdefname.c_str();
-		param.AddParameter( _T( "attribdeftype" ) )	<< val.attribdeftype;
-		param.AddParameter( _T( "attribdefreq" ) )	<< val.attribdefreq;
-		return param;
-	}
-	
-	static const SOAPParameter& Deserialize( const SOAPParameter& param, pattribdef& val )
-	{
-		SOAPString tmp;
+    static SOAPParameter& Serialize( SOAPParameter& param, const pattribdef& val )
+    {
+        param.AddParameter( _T( "attribdefid" ) )    << val.attribdefid;
+        param.AddParameter( _T( "attribgrpid" ) )    << val.attribgrpid;
+        param.AddParameter( _T( "attribdefname" ) )    << val.attribdefname.c_str();
+        param.AddParameter( _T( "attribdeftype" ) )    << val.attribdeftype;
+        param.AddParameter( _T( "attribdefreq" ) )    << val.attribdefreq;
+        return param;
+    }
+    
+    static const SOAPParameter& Deserialize( const SOAPParameter& param, pattribdef& val )
+    {
+        SOAPString tmp;
 
-		param.GetParameter( _T( "attribdefid" ) )	>> val.attribdefid;
-		param.GetParameter( _T( "attribgrpid" ) )	>> val.attribgrpid;
-		param.GetParameter( _T( "attribdefname" ) )	>> tmp;val.attribdefname=tmp.Str();
-		param.GetParameter( _T( "attribdeftype" ) )	>> val.attribdeftype;
-		param.GetParameter( _T( "attribdefreq" ) )	>> val.attribdefreq;
+        param.GetParameter( _T( "attribdefid" ) )    >> val.attribdefid;
+        param.GetParameter( _T( "attribgrpid" ) )    >> val.attribgrpid;
+        param.GetParameter( _T( "attribdefname" ) )    >> tmp;val.attribdefname=tmp.Str();
+        param.GetParameter( _T( "attribdeftype" ) )    >> val.attribdeftype;
+        param.GetParameter( _T( "attribdefreq" ) )    >> val.attribdefreq;
 
-		return param;
-	}
+        return param;
+    }
 };
 
 template<>
@@ -94,23 +94,23 @@ class AFX_EXT_CLASS pPublishAttribDef
 {
 public:
 
-	pPublishAttribDef();
-	~pPublishAttribDef();
+    pPublishAttribDef();
+    ~pPublishAttribDef();
 
-	void reset();
-	void addAttribDef( pattribdef attribdef );
+    void reset();
+    void addAttribDef( pattribdef attribdef );
 
-	// JMR-MODIF - Le 21 juin 2006 - Ajout de la fonction addAlias.
-	void addAlias( CString Alias );
+    // JMR-MODIF - Le 21 juin 2006 - Ajout de la fonction addAlias.
+    void addAlias( CString Alias );
 
-	bool send();
+    bool send();
 
 private:
 
-	// JMR-MODIF - Le 21 juin 2006 - Ajout de la variable m_Alias.
-	CString				m_Alias;
+    // JMR-MODIF - Le 21 juin 2006 - Ajout de la variable m_Alias.
+    CString                m_Alias;
 
-	list<pattribdef>	m_attribdefs;
+    list<pattribdef>    m_attribdefs;
 };
 
 END_EASYSOAP_NAMESPACE

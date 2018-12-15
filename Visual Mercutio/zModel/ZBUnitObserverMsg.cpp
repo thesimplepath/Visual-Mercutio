@@ -20,9 +20,9 @@ IMPLEMENT_DYNAMIC(ZBUnitObserverMsg, ZIObserverMsg)
 //////////////////////////////////////////////////////////////////////
 
 ZBUnitObserverMsg::ZBUnitObserverMsg(MessageActionType ActionType /*= NoAction*/, 
-									 ZBUnitManager* pUnitManager /*= NULL*/, 
-									 ZBUnit* pUnit /*= NULL*/, 
-									 ZBSymbol* pElement /*= NULL*/)
+                                     ZBUnitManager* pUnitManager /*= NULL*/, 
+                                     ZBUnit* pUnit /*= NULL*/, 
+                                     ZBSymbol* pElement /*= NULL*/)
 : m_ActionType(ActionType), m_pUnitManager(pUnitManager), m_pUnit(pUnit), m_pElement(pElement)
 {
 

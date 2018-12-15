@@ -1,6 +1,6 @@
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
-//	Source file: ActLstAt.h
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
+//    Source file: ActLstAt.h
 
 #ifndef ActivityLstAttribution_h
 #define ActivityLstAttribution_h 1
@@ -40,35 +40,35 @@ class AFX_EXT_CLASS ZCActivityListAttribution : public ZIListCtrl
 class AFX_EXT_CLASS ZCActivityListAttribution : public CListBox  
 {
 #endif
-//	DECLARE_DYNAMIC(ZCActivityListAttribution)
+//    DECLARE_DYNAMIC(ZCActivityListAttribution)
 
   public:
       ZCActivityListAttribution (ZProcess* pProcess = NULL, int ActivityType = 0, CString ExcludedActivity = "", BOOL StopWhenFound = TRUE, BOOL AttributedActivityOnly = FALSE);
       ~ZCActivityListAttribution();
-	  CString	GetSelectedActivity();
-	  int		GetSelectedActivities( CStringArray Array );
+      CString    GetSelectedActivity();
+      int        GetSelectedActivities( CStringArray Array );
 
 
-      int	Initialize (ZProcess* pProcess, int ActivityType = 0, CString ExcludedActivity = "", BOOL StopWhenFound = TRUE, BOOL AttributedActivityOnly = FALSE);
-      int	Refresh ();
+      int    Initialize (ZProcess* pProcess, int ActivityType = 0, CString ExcludedActivity = "", BOOL StopWhenFound = TRUE, BOOL AttributedActivityOnly = FALSE);
+      int    Refresh ();
 
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCActivityListAttribution)
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCActivityListAttribution)
+    //}}AFX_VIRTUAL
   protected:
-	//{{AFX_MSG(ZCActivityListAttribution)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZCActivityListAttribution)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
   private:
       ZCActivityListAttribution(const ZCActivityListAttribution &right);
       const ZCActivityListAttribution & operator=(const ZCActivityListAttribution &right);
 
   private: //## implementation
-		ZProcess*		m_pProcess;
-		int				m_ActivityType;
-		CString			m_ExcludedActivity;
-		BOOL			m_StopWhenFound;
-		BOOL			m_AttributedActivityOnly;
+        ZProcess*        m_pProcess;
+        int                m_ActivityType;
+        CString            m_ExcludedActivity;
+        BOOL            m_StopWhenFound;
+        BOOL            m_AttributedActivityOnly;
 };
 
 //#undef  AFX_DATA

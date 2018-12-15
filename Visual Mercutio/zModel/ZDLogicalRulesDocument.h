@@ -1,9 +1,9 @@
 // ******************************************************************************************************************
-// *								   Classe ZDLogicalRulesDocument												*
+// *                                   Classe ZDLogicalRulesDocument                                                *
 // ******************************************************************************************************************
-// * JMR-MODIF - Le 15 novembre 2006 - Ajout de la classe ZDLogicalRulesDocument.									*
+// * JMR-MODIF - Le 15 novembre 2006 - Ajout de la classe ZDLogicalRulesDocument.                                    *
 // ******************************************************************************************************************
-// * Cette classe représente le document utilisé pour gérer le groupe des règles.									*
+// * Cette classe représente le document utilisé pour gérer le groupe des règles.                                    *
 // ******************************************************************************************************************
 
 #if !defined(AFX_ZDLogicalRulesDocument_H__6325FCF2_2A96_4A88_81CB_EEF32C4B5FE9__INCLUDED_)
@@ -38,80 +38,80 @@
 
 class AFX_EXT_CLASS ZDLogicalRulesDocument : public ZDBaseDocument
 {
-	DECLARE_DYNCREATE( ZDLogicalRulesDocument )
+    DECLARE_DYNCREATE( ZDLogicalRulesDocument )
 
 public:
 
-	// Inherited feature
-	typedef ZDBaseDocument inherited;
+    // Inherited feature
+    typedef ZDBaseDocument inherited;
 
-	ZDLogicalRulesDocument();
-	~ZDLogicalRulesDocument();
+    ZDLogicalRulesDocument();
+    ~ZDLogicalRulesDocument();
 
 // Operations
 public:
 
-	bool ReadFromFile	( const CString Filename );
-	bool SaveToFile		( const CString Filename );
+    bool ReadFromFile    ( const CString Filename );
+    bool SaveToFile        ( const CString Filename );
 
-	ZBLogicalRulesEntity& GetRulesEnvironment()
-	{
-		return m_RulesEnvironment;
-	}
+    ZBLogicalRulesEntity& GetRulesEnvironment()
+    {
+        return m_RulesEnvironment;
+    }
 
-	bool IsLoaded() const
-	{
-		return m_IsLoaded;
-	}
+    bool IsLoaded() const
+    {
+        return m_IsLoaded;
+    }
 
-	void SetLoaded( bool value = true )
-	{
-		m_IsLoaded = value;
-	}
+    void SetLoaded( bool value = true )
+    {
+        m_IsLoaded = value;
+    }
 
-	virtual BOOL IsModified()
-	{
-		return CDocument::IsModified() || m_RulesEnvironment.IsModified();
-	}
+    virtual BOOL IsModified()
+    {
+        return CDocument::IsModified() || m_RulesEnvironment.IsModified();
+    }
 
-	virtual void SetModifiedFlag( BOOL bModified = TRUE )
-	{
-		CDocument::SetModifiedFlag( bModified );
-		m_RulesEnvironment.SetModifiedFlag( bModified );
-	}
+    virtual void SetModifiedFlag( BOOL bModified = TRUE )
+    {
+        CDocument::SetModifiedFlag( bModified );
+        m_RulesEnvironment.SetModifiedFlag( bModified );
+    }
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZDRulesDocument)
-	public:
-	virtual void Serialize(CArchive& ar);   // overridden for document i/o
-	protected:
-	virtual BOOL OnNewDocument();
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZDRulesDocument)
+    public:
+    virtual void Serialize(CArchive& ar);   // overridden for document i/o
+    protected:
+    virtual BOOL OnNewDocument();
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 // Generated message map functions
 protected:
 
-	//{{AFX_MSG(ZDRulesDocument)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZDRulesDocument)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	// Unique GUID for this file.
-	// Other file using this file can save this GUID
-	// to be sure they are using the right file.
-	CString					m_GUID;
+    // Unique GUID for this file.
+    // Other file using this file can save this GUID
+    // to be sure they are using the right file.
+    CString                    m_GUID;
 
-	ZBLogicalRulesEntity	m_RulesEnvironment;
-	bool					m_IsLoaded;
+    ZBLogicalRulesEntity    m_RulesEnvironment;
+    bool                    m_IsLoaded;
 };
 
 //{{AFX_INSERT_LOCATION}}

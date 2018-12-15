@@ -39,50 +39,50 @@ class AFX_EXT_CLASS ZUHoverButton : public CBitmapButton
 {
 // Construction
 public:
-	// Constructor: default is to use buttons defined in our resources
-	ZUHoverButton();
+    // Constructor: default is to use buttons defined in our resources
+    ZUHoverButton();
 // Attributes
 public:
-	// The only way of accessing data from outside this class is to call these 2 functions
-	BUTTON_STATE GetButtonState(void) {	return(m_ButtonState);};
-	BUTTON_STATE SetButtonState(BUTTON_STATE nState);
+    // The only way of accessing data from outside this class is to call these 2 functions
+    BUTTON_STATE GetButtonState(void) {    return(m_ButtonState);};
+    BUTTON_STATE SetButtonState(BUTTON_STATE nState);
 
 private:
-	BOOL			m_bMouseTracking;
-	BUTTON_STATE	m_ButtonState;
-	CBitmap			m_bmpButtonDown;
-	CBitmap			m_bmpButtonFocussed;
-	CBitmap			m_bmpButtonUp;
-	CBitmap			m_bmpButtonDisabled;
-	HWND			m_hWndOld;
+    BOOL            m_bMouseTracking;
+    BUTTON_STATE    m_ButtonState;
+    CBitmap            m_bmpButtonDown;
+    CBitmap            m_bmpButtonFocussed;
+    CBitmap            m_bmpButtonUp;
+    CBitmap            m_bmpButtonDisabled;
+    HWND            m_hWndOld;
 
 // Operations
 public:
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZUHoverButton)
-	public:
-	virtual void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZUHoverButton)
+    public:
+    virtual void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
+    //}}AFX_VIRTUAL
 private:
-	// Called by OnMouseMove() when entering/leaving the button
-	void OnMouseLeave(void);
-	void OnMouseEnter(void);
+    // Called by OnMouseMove() when entering/leaving the button
+    void OnMouseLeave(void);
+    void OnMouseEnter(void);
 
 // Implementation
 public:
-	virtual ~ZUHoverButton();
-	BOOL LoadBitmaps(UINT nBitmapUp, UINT nBitmapDown, UINT nBitmapFocus, UINT nBitmapDisabled);
-	BOOL LoadBitmaps(LPCSTR lpszBitmapUp, LPCSTR lpszBitmapDown, LPCSTR lpszBitmapFocus, LPCSTR lpszBitmapDisabled);
+    virtual ~ZUHoverButton();
+    BOOL LoadBitmaps(UINT nBitmapUp, UINT nBitmapDown, UINT nBitmapFocus, UINT nBitmapDisabled);
+    BOOL LoadBitmaps(LPCSTR lpszBitmapUp, LPCSTR lpszBitmapDown, LPCSTR lpszBitmapFocus, LPCSTR lpszBitmapDisabled);
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZUHoverButton)
-	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
-	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZUHoverButton)
+    afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+    afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 //#undef  AFX_DATA

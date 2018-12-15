@@ -1,10 +1,10 @@
 //## begin module%363481C90252.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%363481C90252.cm
 
 //## begin module%363481C90252.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%363481C90252.cp
 
 //## Module: HistFMng%363481C90252; Package body
@@ -47,119 +47,119 @@ ZAHistoryFieldManager::ZAHistoryFieldManager()
 ZAHistoryFieldManager::~ZAHistoryFieldManager()
 {
   //## begin ZAHistoryFieldManager::~ZAHistoryFieldManager%.body preserve=yes
-  	FreeList();
+      FreeList();
   //## end ZAHistoryFieldManager::~ZAHistoryFieldManager%.body
 }
 
 //## Other Operations (implementation)
 void ZAHistoryFieldManager::AddFieldHistoryValue ( const CString& FieldName, const CString& Value )
 {
-	//## begin ZAHistoryFieldManager::AddFieldHistoryValue%909410998.body preserve=yes
-	BOOL Done = FALSE;
+    //## begin ZAHistoryFieldManager::AddFieldHistoryValue%909410998.body preserve=yes
+    BOOL Done = FALSE;
 
-	for ( int i = 0; i < m_FieldHistoryArray.GetSize(); ++i )
-	{
-		if ( ( (ZAHistoryField*)( m_FieldHistoryArray[i] ) )->GetFieldName() == FieldName )
-		{
-			( (ZAHistoryField*)( m_FieldHistoryArray[i] ) )->AddFieldValue( Value );
-			Done = TRUE;
-		}
-	}
+    for ( int i = 0; i < m_FieldHistoryArray.GetSize(); ++i )
+    {
+        if ( ( (ZAHistoryField*)( m_FieldHistoryArray[i] ) )->GetFieldName() == FieldName )
+        {
+            ( (ZAHistoryField*)( m_FieldHistoryArray[i] ) )->AddFieldValue( Value );
+            Done = TRUE;
+        }
+    }
 
-	// If not done, this field does not exists, thus create it.
-	if ( Done == FALSE )
-	{
-		ZAHistoryField* pNewField = new ZAHistoryField;
-		
-		pNewField->SetFieldName( FieldName );
-		pNewField->AddFieldValue( Value );
-		m_FieldHistoryArray.Add( pNewField );
-	}
-	//## end ZAHistoryFieldManager::AddFieldHistoryValue%909410998.body
+    // If not done, this field does not exists, thus create it.
+    if ( Done == FALSE )
+    {
+        ZAHistoryField* pNewField = new ZAHistoryField;
+        
+        pNewField->SetFieldName( FieldName );
+        pNewField->AddFieldValue( Value );
+        m_FieldHistoryArray.Add( pNewField );
+    }
+    //## end ZAHistoryFieldManager::AddFieldHistoryValue%909410998.body
 }
 
 BOOL ZAHistoryFieldManager::RemoveFieldHistory ( const CString& FieldName )
 {
-	//## begin ZAHistoryFieldManager::RemoveFieldHistory%909410999.body preserve=yes
-	for ( int i = 0; i < m_FieldHistoryArray.GetSize(); ++i )
-	{
-		if ( ( (ZAHistoryField*)( m_FieldHistoryArray[i] ) )->GetFieldName() == FieldName )
-		{
-			// First free memory pointed at location
-			delete ( (ZAHistoryField*)( m_FieldHistoryArray[i] ) );
+    //## begin ZAHistoryFieldManager::RemoveFieldHistory%909410999.body preserve=yes
+    for ( int i = 0; i < m_FieldHistoryArray.GetSize(); ++i )
+    {
+        if ( ( (ZAHistoryField*)( m_FieldHistoryArray[i] ) )->GetFieldName() == FieldName )
+        {
+            // First free memory pointed at location
+            delete ( (ZAHistoryField*)( m_FieldHistoryArray[i] ) );
 
-			// Second remove the element from the array
-			m_FieldHistoryArray.RemoveAt( i );	
+            // Second remove the element from the array
+            m_FieldHistoryArray.RemoveAt( i );    
 
-			return TRUE;
-  		}
-	}
+            return TRUE;
+          }
+    }
 
-	return FALSE;
-	//## end ZAHistoryFieldManager::RemoveFieldHistory%909410999.body
+    return FALSE;
+    //## end ZAHistoryFieldManager::RemoveFieldHistory%909410999.body
 }
 
 BOOL ZAHistoryFieldManager::RemoveFieldHistoryValue ( const CString& FieldName, const CString& Value )
 {
-	//## begin ZAHistoryFieldManager::RemoveFieldHistoryValue%909411000.body preserve=yes
-	for ( int i = 0; i < m_FieldHistoryArray.GetSize(); ++i )
-	{
-		if ( ( (ZAHistoryField*)( m_FieldHistoryArray[i] ) )->GetFieldName() == FieldName )
-		{
-			return ( (ZAHistoryField*)( m_FieldHistoryArray[i] ) )->RemoveFieldValue( Value );
-		}
-	}
+    //## begin ZAHistoryFieldManager::RemoveFieldHistoryValue%909411000.body preserve=yes
+    for ( int i = 0; i < m_FieldHistoryArray.GetSize(); ++i )
+    {
+        if ( ( (ZAHistoryField*)( m_FieldHistoryArray[i] ) )->GetFieldName() == FieldName )
+        {
+            return ( (ZAHistoryField*)( m_FieldHistoryArray[i] ) )->RemoveFieldValue( Value );
+        }
+    }
 
-	return FALSE;
-	//## end ZAHistoryFieldManager::RemoveFieldHistoryValue%909411000.body
+    return FALSE;
+    //## end ZAHistoryFieldManager::RemoveFieldHistoryValue%909411000.body
 }
 
 ZAHistoryField* ZAHistoryFieldManager::FindField ( const CString& FieldName )
 {
-	//## begin ZAHistoryFieldManager::FindField%909411001.body preserve=yes
-	for ( int i = 0; i < m_FieldHistoryArray.GetSize(); ++i )
-	{
-		if ( ( (ZAHistoryField*)( m_FieldHistoryArray[i] ) )->GetFieldName() == FieldName )
-		{
-			return ( (ZAHistoryField*)( m_FieldHistoryArray[i] ) );
-		}
-	}
+    //## begin ZAHistoryFieldManager::FindField%909411001.body preserve=yes
+    for ( int i = 0; i < m_FieldHistoryArray.GetSize(); ++i )
+    {
+        if ( ( (ZAHistoryField*)( m_FieldHistoryArray[i] ) )->GetFieldName() == FieldName )
+        {
+            return ( (ZAHistoryField*)( m_FieldHistoryArray[i] ) );
+        }
+    }
 
-	return NULL;
-	//## end ZAHistoryFieldManager::FindField%909411001.body
+    return NULL;
+    //## end ZAHistoryFieldManager::FindField%909411001.body
 }
 
 CStringArray* ZAHistoryFieldManager::GetFieldHistory ( const CString& FieldName )
 {
-	//## begin ZAHistoryFieldManager::GetFieldHistory%909411002.body preserve=yes
-	for ( int i = 0; i < m_FieldHistoryArray.GetSize(); ++i )
-	{
-		if ( ( (ZAHistoryField*)( m_FieldHistoryArray[i] ) )->GetFieldName() == FieldName )
-		{
-			return &(CStringArray&)( (ZAHistoryField*)( m_FieldHistoryArray[i] ) )->GetValueArray();
-		}
-	}
+    //## begin ZAHistoryFieldManager::GetFieldHistory%909411002.body preserve=yes
+    for ( int i = 0; i < m_FieldHistoryArray.GetSize(); ++i )
+    {
+        if ( ( (ZAHistoryField*)( m_FieldHistoryArray[i] ) )->GetFieldName() == FieldName )
+        {
+            return &(CStringArray&)( (ZAHistoryField*)( m_FieldHistoryArray[i] ) )->GetValueArray();
+        }
+    }
 
-	return NULL;
-	//## end ZAHistoryFieldManager::GetFieldHistory%909411002.body
+    return NULL;
+    //## end ZAHistoryFieldManager::GetFieldHistory%909411002.body
 }
 
 void ZAHistoryFieldManager::Serialize ( CArchive& ar )
 {
-	//## begin ZAHistoryFieldManager::Serialize%909411003.body preserve=yes
-	m_FieldHistoryArray.Serialize( ar );
-	//## end ZAHistoryFieldManager::Serialize%909411003.body
+    //## begin ZAHistoryFieldManager::Serialize%909411003.body preserve=yes
+    m_FieldHistoryArray.Serialize( ar );
+    //## end ZAHistoryFieldManager::Serialize%909411003.body
 }
 
 void ZAHistoryFieldManager::FreeList ()
 {
-	//## begin ZAHistoryFieldManager::FreeList%909411005.body preserve=yes
-	// Free all file objects allocated 
-	for ( int i = 0; i < m_FieldHistoryArray.GetSize(); ++i )
-		delete ( (ZAHistoryField*)( m_FieldHistoryArray[i] ) );
-	
-	m_FieldHistoryArray.RemoveAll();
-	//## end ZAHistoryFieldManager::FreeList%909411005.body
+    //## begin ZAHistoryFieldManager::FreeList%909411005.body preserve=yes
+    // Free all file objects allocated 
+    for ( int i = 0; i < m_FieldHistoryArray.GetSize(); ++i )
+        delete ( (ZAHistoryField*)( m_FieldHistoryArray[i] ) );
+    
+    m_FieldHistoryArray.RemoveAll();
+    //## end ZAHistoryFieldManager::FreeList%909411005.body
 }
 
 // Additional Declarations
@@ -170,12 +170,12 @@ void ZAHistoryFieldManager::FreeList ()
 #ifdef _DEBUG
 void ZAHistoryFieldManager::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void ZAHistoryFieldManager::Dump( CDumpContext& dc ) const
 {
-	CObject::Dump( dc );
+    CObject::Dump( dc );
 }
 #endif //_DEBUG
 

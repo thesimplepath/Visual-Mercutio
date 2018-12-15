@@ -1,10 +1,10 @@
 //## begin module%38B979EA003E.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%38B979EA003E.cm
 
 //## begin module%38B979EA003E.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%38B979EA003E.cp
 
 //## Module: ZITmplTr%38B979EA003E; Package specification
@@ -53,8 +53,8 @@
 
 
 //## Class: ZITemplateTree%38B976C601E6
-//	This control is automatically filled with a Template
-//	manager object.
+//    This control is automatically filled with a Template
+//    manager object.
 //## Category: ZWinUtil library::Controls%3747C0280312
 //## Subsystem: ZWinUtil%36DEE1730346
 //## Persistence: Transient
@@ -82,46 +82,46 @@ class AFX_EXT_CLASS ZITemplateTree
       void Initialize (ZITreeCtrl* pTreeCtrl, ZDTemplateManager* pTemplateManager, BOOL IncludeFiles = FALSE);
 
       //## Operation: ReInitialize%951679596
-      //	Re initialize the tree. It does not work if the tree has
-      //	never been initialized.
+      //    Re initialize the tree. It does not work if the tree has
+      //    never been initialized.
       void ReInitialize (ZDTemplateManager* pTemplateManager, BOOL IncludeFiles = FALSE);
 
       //## Operation: Refresh%951679597
-      //	Refresh the current tree.
+      //    Refresh the current tree.
       void Refresh ();
 
       //## Operation: AddRootItem%951679598
-      //	Add the root item and returns its Handle.
+      //    Add the root item and returns its Handle.
       HTREEITEM AddRootItem (ZDTemplateDir* pData, int IconIndex = 0);
 
       //## Operation: AddSubItem%951679599
-      //	Add a sub item and returns its handle.
+      //    Add a sub item and returns its handle.
       HTREEITEM AddSubItem (ZDTemplateDir* pData, HTREEITEM hParentTreeItem, int IconIndex = 0);
 
       //## Operation: AddSubItem%951679600
-      //	Add a sub item and returns its handle.
+      //    Add a sub item and returns its handle.
       HTREEITEM AddSubItem (ZDTemplateFile* pData, HTREEITEM hParentTreeItem, int IconIndex = 0);
 
       //## Operation: AddFileItems%951679601
       void AddFileItems (ZDTemplateDir* pTemplateDir, HTREEITEM hParentTreeItem, int IconIndex = 0);
 
       //## Operation: GetNameSelectedItem%951679602
-      //	Returns the selected item name.
+      //    Returns the selected item name.
       CString GetNameSelectedItem ();
 
       //## Operation: GetSelectedFolderItem%951679603
-      //	Returns a pointer to the selected template directory. If
-      //	no template directory selected, returns NULL.
+      //    Returns a pointer to the selected template directory. If
+      //    no template directory selected, returns NULL.
       ZDTemplateDir* GetSelectedFolderItem ();
 
       //## Operation: GetSelectedFileItem%951679604
-      //	Returns a pointer to the selected template file. If no
-      //	template file selected, returns NULL.
+      //    Returns a pointer to the selected template file. If no
+      //    template file selected, returns NULL.
       ZDTemplateFile* GetSelectedFileItem ();
 
       //## Operation: SelectItemName%951679605
-      //	Select an item. If selected and found, returns true.
-      //	Otherwise, returns false.
+      //    Select an item. If selected and found, returns true.
+      //    Otherwise, returns false.
       BOOL SelectItemName (const CString Name);
 
     // Additional Public Declarations
@@ -143,7 +143,7 @@ class AFX_EXT_CLASS ZITemplateTree
 
     //## Other Operations (specified)
       //## Operation: InitializeTree%951679606
-      //	Initialize the tree.
+      //    Initialize the tree.
       void InitializeTree ();
 
     // Data Members for Class Attributes

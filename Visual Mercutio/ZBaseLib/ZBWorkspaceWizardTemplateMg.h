@@ -50,43 +50,43 @@ typedef Iterator_T<ZBWorkspaceWizardTemplateItem*> ZBWorkspaceWizardTemplateItem
 
 class AFX_EXT_CLASS ZBWorkspaceWizardTemplateMg : public CObject  
 {
-	DECLARE_SERIAL( ZBWorkspaceWizardTemplateMg )
+    DECLARE_SERIAL( ZBWorkspaceWizardTemplateMg )
 
 public:
-	ZBWorkspaceWizardTemplateMg();
-	virtual ~ZBWorkspaceWizardTemplateMg();
+    ZBWorkspaceWizardTemplateMg();
+    virtual ~ZBWorkspaceWizardTemplateMg();
 
-	bool AddTemplateItem( ZBWorkspaceWizardTemplateItem* Item )
-	{
-		m_Set.Add( Item );
-		return true;
-	};
+    bool AddTemplateItem( ZBWorkspaceWizardTemplateItem* Item )
+    {
+        m_Set.Add( Item );
+        return true;
+    };
 
-	ZBWorkspaceWizardTemplateItem* GetTemplateItemAt( size_t Index )
-	{
-		return ( (int)Index < m_Set.GetSize() ) ? m_Set.GetAt( Index ) : NULL;
-	};
+    ZBWorkspaceWizardTemplateItem* GetTemplateItemAt( size_t Index )
+    {
+        return ( (int)Index < m_Set.GetSize() ) ? m_Set.GetAt( Index ) : NULL;
+    };
 
-	size_t GetItemCount() const
-	{
-		return m_Set.GetSize();
-	};
+    size_t GetItemCount() const
+    {
+        return m_Set.GetSize();
+    };
 
-	ZBWorkspaceWizardTemplateItemSet* GetTemplateItemSet()
-	{
-		return &m_Set;
-	};
+    ZBWorkspaceWizardTemplateItemSet* GetTemplateItemSet()
+    {
+        return &m_Set;
+    };
 
-	// Serialization mechanism
-	virtual void Serialize( CArchive& ar );		// overridden for document i/o
+    // Serialization mechanism
+    virtual void Serialize( CArchive& ar );        // overridden for document i/o
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 private:
-	ZBWorkspaceWizardTemplateItemSet m_Set;
+    ZBWorkspaceWizardTemplateItemSet m_Set;
 };
 
 #endif // !defined(AFX_ZBWORKSPACEWIZARDTEMPLATEMG_H__105D2B6D_42D1_473E_B4F3_E0CE45610DE8__INCLUDED_)

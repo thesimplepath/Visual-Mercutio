@@ -7,4 +7,4 @@ LIBRARY      "ZRes32d"
 
 EXPORTS
     ; Explicit exports can go here
-	InitZRes32DLL	@1
+    InitZRes32DLL    @1

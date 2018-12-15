@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Gaya
-// <nl>Created:		 03/2002
+// <nl>Created:         03/2002
 // <nl>Description:  XXXClass frame window support
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -53,46 +53,46 @@ class SOAPTypeTraits<pworkgroup>
 {
 public:
 
-	static void GetType( SOAPQName& qname )
-	{
-		qname.Set( _T( "pworkgroup" ), _T( "urn:xml-soap-emessenger" ) );
-	}
+    static void GetType( SOAPQName& qname )
+    {
+        qname.Set( _T( "pworkgroup" ), _T( "urn:xml-soap-emessenger" ) );
+    }
 
-	static SOAPParameter& Serialize( SOAPParameter& param, const pworkgroup& val )
-	{
-		param.AddParameter( _T( "wkgid" ) )		<< val.wkgid.c_str();
-		param.AddParameter( _T( "wkgparent" ) )	<< val.wkgparent.c_str();
-		param.AddParameter( _T( "wkgname" ) )	<< val.wkgname.c_str();
+    static SOAPParameter& Serialize( SOAPParameter& param, const pworkgroup& val )
+    {
+        param.AddParameter( _T( "wkgid" ) )        << val.wkgid.c_str();
+        param.AddParameter( _T( "wkgparent" ) )    << val.wkgparent.c_str();
+        param.AddParameter( _T( "wkgname" ) )    << val.wkgname.c_str();
 
-		// JMR-MODIF - Le 29 mai 2006 - Ajout du paramètre "mission".
-		param.AddParameter( _T( "mission" ) )	<< val.mission.c_str();
+        // JMR-MODIF - Le 29 mai 2006 - Ajout du paramètre "mission".
+        param.AddParameter( _T( "mission" ) )    << val.mission.c_str();
 
-		// JMR-MODIF - Le 6 décembre 2006 - Ajout du paramètre "daycost".
-		param.AddParameter( _T( "daycost" ) )	<< val.daycost.c_str();
-		return param;
-	}
+        // JMR-MODIF - Le 6 décembre 2006 - Ajout du paramètre "daycost".
+        param.AddParameter( _T( "daycost" ) )    << val.daycost.c_str();
+        return param;
+    }
 
-	static const SOAPParameter& Deserialize( const SOAPParameter& param, pworkgroup& val )
-	{
-		SOAPString tmp;
+    static const SOAPParameter& Deserialize( const SOAPParameter& param, pworkgroup& val )
+    {
+        SOAPString tmp;
 
-		param.GetParameter( _T( "wkgid" ) )		>> tmp;
-		val.wkgid		= tmp.Str();
-		param.GetParameter( _T( "wkgparent" ) )	>> tmp;
-		val.wkgparent	= tmp.Str();
-		param.GetParameter( _T( "wkgname" ) )	>> tmp;
-		val.wkgname		= tmp.Str();
+        param.GetParameter( _T( "wkgid" ) )        >> tmp;
+        val.wkgid        = tmp.Str();
+        param.GetParameter( _T( "wkgparent" ) )    >> tmp;
+        val.wkgparent    = tmp.Str();
+        param.GetParameter( _T( "wkgname" ) )    >> tmp;
+        val.wkgname        = tmp.Str();
 
-		// JMR-MODIF - Le 29 mai 2006 - Ajout du paramètre "mission".
-		param.GetParameter( _T( "mission" ) )	>> tmp;
-		val.mission		= tmp.Str();
+        // JMR-MODIF - Le 29 mai 2006 - Ajout du paramètre "mission".
+        param.GetParameter( _T( "mission" ) )    >> tmp;
+        val.mission        = tmp.Str();
 
-		// JMR-MODIF - Le 6 décembre 2006 - Ajout du paramètre "daycost".
-		param.GetParameter( _T( "daycost" ) )	>> tmp;
-		val.daycost		= tmp.Str();
+        // JMR-MODIF - Le 6 décembre 2006 - Ajout du paramètre "daycost".
+        param.GetParameter( _T( "daycost" ) )    >> tmp;
+        val.daycost        = tmp.Str();
 
-		return param;
-	}
+        return param;
+    }
 };
 
 template<>
@@ -104,23 +104,23 @@ class AFX_EXT_CLASS pPublishWorkgroup
 {
 public:
 
-	pPublishWorkgroup();
-	~pPublishWorkgroup();
+    pPublishWorkgroup();
+    ~pPublishWorkgroup();
 
-	void reset();
-	void addWorkgroup( pworkgroup wkg );
+    void reset();
+    void addWorkgroup( pworkgroup wkg );
 
-	// JMR-MODIF - Le 21 juin 2006 - Ajout de la fonction addAlias.
-	void addAlias( CString Alias );
+    // JMR-MODIF - Le 21 juin 2006 - Ajout de la fonction addAlias.
+    void addAlias( CString Alias );
 
-	bool send();
+    bool send();
 
 private:
 
-	// JMR-MODIF - Le 21 juin 2006 - Ajout de la variable m_Alias.
-	CString				m_Alias;
+    // JMR-MODIF - Le 21 juin 2006 - Ajout de la variable m_Alias.
+    CString                m_Alias;
 
-	list<pworkgroup>	m_workgroups;
+    list<pworkgroup>    m_workgroups;
 };
 
 END_EASYSOAP_NAMESPACE

@@ -36,36 +36,36 @@
 class AFX_EXT_CLASS ZINavigableSymbol  
 {
 public:
-	ZINavigableSymbol();
-	virtual ~ZINavigableSymbol();
+    ZINavigableSymbol();
+    virtual ~ZINavigableSymbol();
 
-	// All methods to obtain following symbols
-	virtual size_t GetFollowingSymbols( CODNodeArray& Nodes ) = 0;
-	virtual size_t GetFollowingSymbols_Right( CODNodeArray& Nodes ) = 0;
-	virtual size_t GetFollowingSymbols_Left( CODNodeArray& Nodes ) = 0;
-	virtual size_t GetFollowingSymbols_Up( CODNodeArray& Nodes ) = 0;
-	virtual size_t GetFollowingSymbols_Down( CODNodeArray& Nodes ) = 0;
+    // All methods to obtain following symbols
+    virtual size_t GetFollowingSymbols( CODNodeArray& Nodes ) = 0;
+    virtual size_t GetFollowingSymbols_Right( CODNodeArray& Nodes ) = 0;
+    virtual size_t GetFollowingSymbols_Left( CODNodeArray& Nodes ) = 0;
+    virtual size_t GetFollowingSymbols_Up( CODNodeArray& Nodes ) = 0;
+    virtual size_t GetFollowingSymbols_Down( CODNodeArray& Nodes ) = 0;
 
-	// All methods to obtain following symbols
-	virtual size_t GetEnteringSymbols( CODNodeArray& Nodes ) = 0;
-	virtual size_t GetEnteringSymbols_Right( CODNodeArray& Nodes ) = 0;
-	virtual size_t GetEnteringSymbols_Left( CODNodeArray& Nodes ) = 0;
-	virtual size_t GetEnteringSymbols_Up( CODNodeArray& Nodes ) = 0;
-	virtual size_t GetEnteringSymbols_Down( CODNodeArray& Nodes ) = 0;
+    // All methods to obtain following symbols
+    virtual size_t GetEnteringSymbols( CODNodeArray& Nodes ) = 0;
+    virtual size_t GetEnteringSymbols_Right( CODNodeArray& Nodes ) = 0;
+    virtual size_t GetEnteringSymbols_Left( CODNodeArray& Nodes ) = 0;
+    virtual size_t GetEnteringSymbols_Up( CODNodeArray& Nodes ) = 0;
+    virtual size_t GetEnteringSymbols_Down( CODNodeArray& Nodes ) = 0;
 
-	// All methods to obtain leaving links
-	virtual size_t GetEdgesLeaving( CODEdgeArray& Edges ) = 0;
-	virtual size_t GetEdgesLeaving_Right( CODEdgeArray& Edges ) = 0;
-	virtual size_t GetEdgesLeaving_Left( CODEdgeArray& Edges ) = 0;
-	virtual size_t GetEdgesLeaving_Up( CODEdgeArray& Edges ) = 0;
-	virtual size_t GetEdgesLeaving_Down( CODEdgeArray& Edges ) = 0;
+    // All methods to obtain leaving links
+    virtual size_t GetEdgesLeaving( CODEdgeArray& Edges ) = 0;
+    virtual size_t GetEdgesLeaving_Right( CODEdgeArray& Edges ) = 0;
+    virtual size_t GetEdgesLeaving_Left( CODEdgeArray& Edges ) = 0;
+    virtual size_t GetEdgesLeaving_Up( CODEdgeArray& Edges ) = 0;
+    virtual size_t GetEdgesLeaving_Down( CODEdgeArray& Edges ) = 0;
 
-	// All methods to obtain entering links
-	virtual size_t GetEdgesEntering( CODEdgeArray& Edges ) = 0;
-	virtual size_t GetEdgesEntering_Right( CODEdgeArray& Edges ) = 0;
-	virtual size_t GetEdgesEntering_Left( CODEdgeArray& Edges ) = 0;
-	virtual size_t GetEdgesEntering_Up( CODEdgeArray& Edges ) = 0;
-	virtual size_t GetEdgesEntering_Down( CODEdgeArray& Edges ) = 0;
+    // All methods to obtain entering links
+    virtual size_t GetEdgesEntering( CODEdgeArray& Edges ) = 0;
+    virtual size_t GetEdgesEntering_Right( CODEdgeArray& Edges ) = 0;
+    virtual size_t GetEdgesEntering_Left( CODEdgeArray& Edges ) = 0;
+    virtual size_t GetEdgesEntering_Up( CODEdgeArray& Edges ) = 0;
+    virtual size_t GetEdgesEntering_Down( CODEdgeArray& Edges ) = 0;
 
 };
 

@@ -23,61 +23,61 @@ ZVSpanWnd::ZVSpanWnd(ZVSpanView *pPanView /*= NULL*/)
     m_bCaptured = FALSE;
     m_hOverviewCursor = AfxGetApp()->LoadCursor(IDC_OD_PAN);
     m_hOverviewOnMoveCursor = AfxGetApp()->LoadCursor(IDC_OD_PAN_READY);
-	m_hCurrentOverviewCursor = NULL;
-	m_rectLogPan = CRect(0,0,0,0);
-	m_bClipVerified = FALSE;
+    m_hCurrentOverviewCursor = NULL;
+    m_rectLogPan = CRect(0,0,0,0);
+    m_bClipVerified = FALSE;
 }
 
 ZVSpanWnd::~ZVSpanWnd()
 {
 //    if (m_pPanView)
-//		m_pPanView->OverviewDestroyed();
+//        m_pPanView->OverviewDestroyed();
     
     if (m_hOverviewCursor)
-		DestroyCursor(m_hOverviewCursor);
+        DestroyCursor(m_hOverviewCursor);
     if (m_hOverviewOnMoveCursor)
-		DestroyCursor(m_hOverviewOnMoveCursor);
+        DestroyCursor(m_hOverviewOnMoveCursor);
 }
 
 BEGIN_MESSAGE_MAP(ZVSpanWnd, CWnd)
-	//{{AFX_MSG_MAP(ZVSpanWnd)
+    //{{AFX_MSG_MAP(ZVSpanWnd)
     ON_WM_LBUTTONUP()
     ON_WM_LBUTTONDOWN()
     ON_WM_MOUSEMOVE()
     ON_WM_SETCURSOR()
     ON_WM_PAINT()
     ON_WM_CLOSE()
-	//}}AFX_MSG_MAP
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 BOOL ZVSpanWnd::Create(CRect rectCreate, CWnd* pParent, UINT nID, LPCTSTR lpszTitle /*= NULL*/)
 {
     CString strDum;
-	strDum.LoadString(IDS_SEC_PWND_TITL);
-	BOOL bRetVal =
-	CWnd::CreateEx(WS_EX_WINDOWEDGE/*WS_EX_TOPMOST*/,
-		       AfxRegisterWndClass(CS_CLASSDC,
-					   NULL,
-					   (HBRUSH)(COLOR_WINDOW + 1),
-					   NULL),
-					   NULL, // No window title
-		       WS_CHILD /*WS_POPUP*/ | WS_VISIBLE| WS_CLIPSIBLINGS|WS_BORDER,
-		       rectCreate, pParent, nID, NULL);
+    strDum.LoadString(IDS_SEC_PWND_TITL);
+    BOOL bRetVal =
+    CWnd::CreateEx(WS_EX_WINDOWEDGE/*WS_EX_TOPMOST*/,
+               AfxRegisterWndClass(CS_CLASSDC,
+                       NULL,
+                       (HBRUSH)(COLOR_WINDOW + 1),
+                       NULL),
+                       NULL, // No window title
+               WS_CHILD /*WS_POPUP*/ | WS_VISIBLE| WS_CLIPSIBLINGS|WS_BORDER,
+               rectCreate, pParent, nID, NULL);
     return bRetVal;
 }
 
 void ZVSpanWnd::AssignPanView(ZVSpanView *pView)
 {
-	m_pPanView = pView;
-	if (pView)
-		dynamic_cast<ZVSpanView*>(m_pPanView)->AssignSpanWnd( this );
+    m_pPanView = pView;
+    if (pView)
+        dynamic_cast<ZVSpanView*>(m_pPanView)->AssignSpanWnd( this );
 }
 
-//	
-//	PreCreateWindow
-//	
-//	Make sure that the framework thinks we're a view
-//	
+//    
+//    PreCreateWindow
+//    
+//    Make sure that the framework thinks we're a view
+//    
 //@doc ZVSpanWnd
 //@mfunc Implements the overview window’s style settings at creation.
 //@rdesc Default: Returns TRUE.
@@ -88,20 +88,20 @@ void ZVSpanWnd::AssignPanView(ZVSpanView *pView)
 BOOL ZVSpanWnd::PreCreateWindow(CREATESTRUCT& cs)
 {
     if (cs.lpszClass == NULL)
-	{
-		cs.lpszClass = _T("SECPanWnd");
+    {
+        cs.lpszClass = _T("SECPanWnd");
     }
     
     return TRUE;
 }
 
 //
-//	SetPanRect
+//    SetPanRect
 // 
-//	The viewport for the view has changed
-//	so store the new overview panning rectangle
-//	coords in m_rectLogPan and draw the new
-//	rectangle, erasing the old one first.
+//    The viewport for the view has changed
+//    so store the new overview panning rectangle
+//    coords in m_rectLogPan and draw the new
+//    rectangle, erasing the old one first.
 //
 //      rectNewPan is in logical coordinates
 //
@@ -119,9 +119,9 @@ void ZVSpanWnd::SetPanRect(CRect rectNewLogPan)
     m_pPanView->PreOverview();
     m_pPanView->OnPrepareDC(&dc);
 
-	// erase old pan rect
+    // erase old pan rect
     if(m_rectLogPan.Width() > 0) 
-		DrawPanRect(&dc);
+        DrawPanRect(&dc);
 
     
 //
@@ -134,13 +134,13 @@ void ZVSpanWnd::SetPanRect(CRect rectNewLogPan)
 
     CPoint tmpPoint;
     CRect rectDevPan = rectNewLogPan;
-	
+    
     tmpPoint.x = rectDevPan.left;
     tmpPoint.y = rectDevPan.top;
     dc.LPtoDP(&tmpPoint);
     rectDevPan.left = tmpPoint.x;
     rectDevPan.top = tmpPoint.y;
-	
+    
     tmpPoint.x = rectDevPan.right;
     tmpPoint.y = rectDevPan.bottom;
     dc.LPtoDP(&tmpPoint);
@@ -149,13 +149,13 @@ void ZVSpanWnd::SetPanRect(CRect rectNewLogPan)
 
     if (rectDevPan.Width() > rectDevClient.Width())
     {
-	rectNewLogPan.right -= rectNewLogPan.left;
-	rectNewLogPan.left = 0;
+    rectNewLogPan.right -= rectNewLogPan.left;
+    rectNewLogPan.left = 0;
     }
     if (rectDevPan.Height() > rectDevClient.Height())
     {
-	rectNewLogPan.bottom -= rectNewLogPan.top;
-	rectNewLogPan.top = 0;
+    rectNewLogPan.bottom -= rectNewLogPan.top;
+    rectNewLogPan.top = 0;
     }
 //  draw new pan rect
     m_rectLogPan = rectNewLogPan;
@@ -164,11 +164,11 @@ void ZVSpanWnd::SetPanRect(CRect rectNewLogPan)
 }
 
 
-//	
-//	DrawPanRect
-//	
+//    
+//    DrawPanRect
+//    
 //      Draws a dotted rectangle around the currently
-//	visible viewing area for panning.
+//    visible viewing area for panning.
 // 
 //      Assumes that m_rectLogPan is in log coords
 //
@@ -197,14 +197,14 @@ void ZVSpanWnd::DrawPanRect(CDC * pDC)
 }
 
 
-//	
-//	ClipOverviewCursor
-//	
-//	Uses the size of the panning rectangle and
-//	the point where the user clicked in the rectangle
-//	plust the client window rect to calculate a rectangle
-//	to clip the cursor too so that the user can't drag
-//	the pan rectangle out of the visible part of the view.
+//    
+//    ClipOverviewCursor
+//    
+//    Uses the size of the panning rectangle and
+//    the point where the user clicked in the rectangle
+//    plust the client window rect to calculate a rectangle
+//    to clip the cursor too so that the user can't drag
+//    the pan rectangle out of the visible part of the view.
 //
 void ZVSpanWnd::ClipOverviewCursor()
 {
@@ -217,26 +217,26 @@ void ZVSpanWnd::ClipOverviewCursor()
     // Convert m_szLogDrag and m_rectLogPan
     // to device coords for clipping rectangle calculations.
     {
-	CClientDC dc(this);
-	m_pPanView->PreOverview();
-	m_pPanView->OnPrepareDC(&dc);
-	dc.LPtoDP(&szDevDrag);
-	
-	CPoint tmpPoint;
-	
-	tmpPoint.x = rectDevPan.left;
-	tmpPoint.y = rectDevPan.top;
-	dc.LPtoDP(&tmpPoint);
-	rectDevPan.left = tmpPoint.x;
-	rectDevPan.top = tmpPoint.y;
-	
-	tmpPoint.x = rectDevPan.right;
-	tmpPoint.y = rectDevPan.bottom;
-	dc.LPtoDP(&tmpPoint);
-	rectDevPan.right = tmpPoint.x;
-	rectDevPan.bottom = tmpPoint.y;
-	
-	m_pPanView->PostOverview();
+    CClientDC dc(this);
+    m_pPanView->PreOverview();
+    m_pPanView->OnPrepareDC(&dc);
+    dc.LPtoDP(&szDevDrag);
+    
+    CPoint tmpPoint;
+    
+    tmpPoint.x = rectDevPan.left;
+    tmpPoint.y = rectDevPan.top;
+    dc.LPtoDP(&tmpPoint);
+    rectDevPan.left = tmpPoint.x;
+    rectDevPan.top = tmpPoint.y;
+    
+    tmpPoint.x = rectDevPan.right;
+    tmpPoint.y = rectDevPan.bottom;
+    dc.LPtoDP(&tmpPoint);
+    rectDevPan.right = tmpPoint.x;
+    rectDevPan.bottom = tmpPoint.y;
+    
+    m_pPanView->PostOverview();
     } //BLOCK DC off
     
     //Device coords
@@ -247,9 +247,9 @@ void ZVSpanWnd::ClipOverviewCursor()
     rectDevClip.left  = rectDevClient.left + szDevDrag.cx;
     rectDevClip.top   = rectDevClient.top + szDevDrag.cy;
     rectDevClip.right = rectDevClient.right -
-	(rectDevPan.Width() - szDevDrag.cx);
+    (rectDevPan.Width() - szDevDrag.cx);
     rectDevClip.bottom = rectDevClient.bottom -
-	(rectDevPan.Height() - szDevDrag.cy);
+    (rectDevPan.Height() - szDevDrag.cy);
 
 //
 //  Code to fix clip rectangle problem:
@@ -258,23 +258,23 @@ void ZVSpanWnd::ClipOverviewCursor()
 //  Adjust the clip rectangle accordingly.
 //
     if (rectDevClip.right < rectDevClip.left)
-		rectDevClip.right = rectDevClip.left + rectDevPan.left;
+        rectDevClip.right = rectDevClip.left + rectDevPan.left;
     if (rectDevClip.bottom < rectDevClip.top)
-		rectDevClip.bottom = rectDevClip.top + rectDevPan.top;
+        rectDevClip.bottom = rectDevClip.top + rectDevPan.top;
         
     //Clip the cursor in device coords.
     ::ClipCursor(&rectDevClip);
-	
-	m_bClipVerified = FALSE; // clipping set but not verified -- see OnMouseMove()
+    
+    m_bClipVerified = FALSE; // clipping set but not verified -- see OnMouseMove()
 }
 
-//	
-//	OverviewDPtoLP
-//	
-//	Takes a point in device coords and does
-//	the overview window magic to convert it to
-//	logical coordinates.
-//	
+//    
+//    OverviewDPtoLP
+//    
+//    Takes a point in device coords and does
+//    the overview window magic to convert it to
+//    logical coordinates.
+//    
 void ZVSpanWnd::OverviewDPtoLP(CPoint * pointConvert)
 {    
     ASSERT_VALID(this);
@@ -282,9 +282,9 @@ void ZVSpanWnd::OverviewDPtoLP(CPoint * pointConvert)
     
     m_pPanView->PreOverview();    
     {
-		CClientDC dc(this);
-		m_pPanView->OnPrepareDC(&dc);
-		dc.DPtoLP(pointConvert);
+        CClientDC dc(this);
+        m_pPanView->OnPrepareDC(&dc);
+        dc.DPtoLP(pointConvert);
     }//block of DC
     
     m_pPanView->PostOverview();
@@ -295,210 +295,210 @@ void ZVSpanWnd::OverviewDPtoLP(CPoint * pointConvert)
 /////////////////////////////////////////////////////////////////////////////
 // ZVSpanWnd message handlers
 
-//	
-//	OnPaint
-//	
-//	Put the view into overview window mode
-//	and then call OnDraw so that the view
-//	does all the drawing for us.
-//	
+//    
+//    OnPaint
+//    
+//    Put the view into overview window mode
+//    and then call OnDraw so that the view
+//    does all the drawing for us.
+//    
 void ZVSpanWnd::OnPaint()
 {
-	if (m_pPanView)
-	{
-		ASSERT_VALID(this);
-		CPaintDC dc(this);
-		BOOL bDirty = FALSE;
-		CRect rectClip;
-		CRect rectTest = m_rectLogPan;
-		dc.GetClipBox(&rectClip);
-		rectClip.InflateRect(2,2);
-		if (rectTest.IntersectRect(&rectTest,&rectClip))
-		{
-			bDirty = TRUE;
-		}
+    if (m_pPanView)
+    {
+        ASSERT_VALID(this);
+        CPaintDC dc(this);
+        BOOL bDirty = FALSE;
+        CRect rectClip;
+        CRect rectTest = m_rectLogPan;
+        dc.GetClipBox(&rectClip);
+        rectClip.InflateRect(2,2);
+        if (rectTest.IntersectRect(&rectTest,&rectClip))
+        {
+            bDirty = TRUE;
+        }
     
-		m_pPanView->PreOverview();
-		m_pPanView->OnPrepareDC(&dc);
-		m_pPanView->OnDrawPan(&dc);
-		m_pPanView->PostOverview();
+        m_pPanView->PreOverview();
+        m_pPanView->OnPrepareDC(&dc);
+        m_pPanView->OnDrawPan(&dc);
+        m_pPanView->PostOverview();
 
     
-		if (bDirty)
-			DrawPanRect(&dc);
-	}
+        if (bDirty)
+            DrawPanRect(&dc);
+    }
 }
 
 
-//	
-//	OnLButtonDown
-//	
-//	If we get a button down inside the pan rect,
-//	grab the cursor, clip it and start dragging
-//	the pan rectangle
-//	
+//    
+//    OnLButtonDown
+//    
+//    If we get a button down inside the pan rect,
+//    grab the cursor, clip it and start dragging
+//    the pan rectangle
+//    
 void ZVSpanWnd::OnLButtonDown(UINT nFlags, CPoint pointDev) 
 {
     if (!m_pPanView)
-	{
-		CWnd::OnLButtonDown(nFlags, pointDev);
-		return;
-	}
+    {
+        CWnd::OnLButtonDown(nFlags, pointDev);
+        return;
+    }
 
     nFlags;     //UNUSED
     CPoint pointLog = pointDev;
     
     //Did the user press in the panner rectangle in the overview wnd?
     if (m_rectLogPan.PtInRect(pointDev))
-	{
-//	    OverviewDPtoLP(&pointLog);
-		m_bCaptured = TRUE;
-		SetCapture();
-		::SetCursor( m_hCurrentOverviewCursor = m_hOverviewCursor);
-		OnSetCursor(NULL,HTCLIENT,0); //Force update of cursor
-		
-		//Record where they are from the upper left corner of the rect.
-		m_szLogDrag.cx = pointLog.x - m_rectLogPan.left;
-		m_szLogDrag.cy = pointLog.y - m_rectLogPan.top;
-		ClipOverviewCursor();
+    {
+//        OverviewDPtoLP(&pointLog);
+        m_bCaptured = TRUE;
+        SetCapture();
+        ::SetCursor( m_hCurrentOverviewCursor = m_hOverviewCursor);
+        OnSetCursor(NULL,HTCLIENT,0); //Force update of cursor
+        
+        //Record where they are from the upper left corner of the rect.
+        m_szLogDrag.cx = pointLog.x - m_rectLogPan.left;
+        m_szLogDrag.cy = pointLog.y - m_rectLogPan.top;
+        ClipOverviewCursor();
 
-		//Tell the view where we started
-		m_pPanView->m_ptLogStartDrag = pointLog;
-	
+        //Tell the view where we started
+        m_pPanView->m_ptLogStartDrag = pointLog;
+    
     } // end if - it's not in the panner rect, ignore.    
 }
 
-//	
-//	OnMouseMove
-//	
-//	If the user is dragging the panner rectangle,
-//	calculate the new location, erase the old rect,
-//	draw the new one and update everything.
-//	
+//    
+//    OnMouseMove
+//    
+//    If the user is dragging the panner rectangle,
+//    calculate the new location, erase the old rect,
+//    draw the new one and update everything.
+//    
 void ZVSpanWnd::OnMouseMove(UINT nFlags, CPoint pointDev) 
 {
     nFlags; //UNUSED
     CPoint pointLog = pointDev;
 
-	// Only interested if dragging mouse
+    // Only interested if dragging mouse
     if (m_bCaptured)
-	{
-		// Verify that ClipOverviewCursor() worked when called from OnLButtonDown()
-		if(!m_bClipVerified)
-		{
-			// make sure cursor is restricted to overview window
-			CRect rectDevClient, rectDevClip;
-			GetClientRect(&rectDevClient);
-			if ((!::GetClipCursor(rectDevClip)) ||
-				rectDevClip.Width() > rectDevClient.Width() ||
-				rectDevClip.Height() > rectDevClient.Height() )
-			{ // ClipOverviewCursor() did not work -- try again
-				::ClipCursor(NULL);
-				ClipOverviewCursor();
-			}
-			else 
-			{  // It worked! -- don't check again
-				m_bClipVerified = TRUE;
-			}
-		}
-	
-		// Calculate new pan rect
-//		OverviewDPtoLP(&pointLog);	
-		CRect rectNewLogPan;
-		rectNewLogPan.left   = pointLog.x - m_szLogDrag.cx;
-		rectNewLogPan.top    = pointLog.y - m_szLogDrag.cy;
-		rectNewLogPan.right  = rectNewLogPan.left + m_rectLogPan.Width();
-		rectNewLogPan.bottom = rectNewLogPan.top  + m_rectLogPan.Height();
-
-			// Erase old pan rect and draw new one
-		SetPanRect(rectNewLogPan);
-		
-			// Update the view, if desired
-		if (m_pPanView->m_panMode == ZVP_PANINSTANT)
-		{
-			m_pPanView->UpdatePanViewport(&pointLog);
-			m_pPanView->m_ptLogStartDrag = pointLog;
-		}
-    }
-	else
-	{
-//		OverviewDPtoLP(&pointLog);
+    {
+        // Verify that ClipOverviewCursor() worked when called from OnLButtonDown()
+        if(!m_bClipVerified)
+        {
+            // make sure cursor is restricted to overview window
+            CRect rectDevClient, rectDevClip;
+            GetClientRect(&rectDevClient);
+            if ((!::GetClipCursor(rectDevClip)) ||
+                rectDevClip.Width() > rectDevClient.Width() ||
+                rectDevClip.Height() > rectDevClient.Height() )
+            { // ClipOverviewCursor() did not work -- try again
+                ::ClipCursor(NULL);
+                ClipOverviewCursor();
+            }
+            else 
+            {  // It worked! -- don't check again
+                m_bClipVerified = TRUE;
+            }
+        }
     
-		//Did the user move the cursor ove the panner rectangle in the overview wnd?
-		if (m_rectLogPan.PtInRect(pointLog))
-		{
-			SetCapture();
-			::SetCursor( m_hCurrentOverviewCursor = m_hOverviewOnMoveCursor );
-			OnSetCursor(NULL,HTCLIENT,0); //Force update of cursor
-		}		
-		else
-		{
-			ReleaseCapture();
-			m_hCurrentOverviewCursor = NULL;
-			OnSetCursor(NULL,HTCLIENT,0); //Force update of cursor
-		}
-	}
+        // Calculate new pan rect
+//        OverviewDPtoLP(&pointLog);    
+        CRect rectNewLogPan;
+        rectNewLogPan.left   = pointLog.x - m_szLogDrag.cx;
+        rectNewLogPan.top    = pointLog.y - m_szLogDrag.cy;
+        rectNewLogPan.right  = rectNewLogPan.left + m_rectLogPan.Width();
+        rectNewLogPan.bottom = rectNewLogPan.top  + m_rectLogPan.Height();
+
+            // Erase old pan rect and draw new one
+        SetPanRect(rectNewLogPan);
+        
+            // Update the view, if desired
+        if (m_pPanView->m_panMode == ZVP_PANINSTANT)
+        {
+            m_pPanView->UpdatePanViewport(&pointLog);
+            m_pPanView->m_ptLogStartDrag = pointLog;
+        }
+    }
+    else
+    {
+//        OverviewDPtoLP(&pointLog);
+    
+        //Did the user move the cursor ove the panner rectangle in the overview wnd?
+        if (m_rectLogPan.PtInRect(pointLog))
+        {
+            SetCapture();
+            ::SetCursor( m_hCurrentOverviewCursor = m_hOverviewOnMoveCursor );
+            OnSetCursor(NULL,HTCLIENT,0); //Force update of cursor
+        }        
+        else
+        {
+            ReleaseCapture();
+            m_hCurrentOverviewCursor = NULL;
+            OnSetCursor(NULL,HTCLIENT,0); //Force update of cursor
+        }
+    }
 }
 
-//	
-//	OnLButtonUp
-//	
-//	User is done dragging the panning rectangle
-//	undo the capture and the clipped cursor, then
-//	update everything and change the cursor back too.
-//	
+//    
+//    OnLButtonUp
+//    
+//    User is done dragging the panning rectangle
+//    undo the capture and the clipped cursor, then
+//    update everything and change the cursor back too.
+//    
 void ZVSpanWnd::OnLButtonUp(UINT nFlags, CPoint pointDev) 
 {
     nFlags; //UNUSED
     if (m_bCaptured)
-	{
-		CPoint pointLog = pointDev;
-		OverviewDPtoLP(&pointLog);
-		
-		ReleaseCapture();
-		m_bCaptured = FALSE;
-		m_hCurrentOverviewCursor = NULL;
-		::ClipCursor(NULL); //Release the cursor
-		
-		CRect rectNewLogPan;
-		rectNewLogPan.left   = pointLog.x - m_szLogDrag.cx;
-		rectNewLogPan.top    = pointLog.y - m_szLogDrag.cy;
-		rectNewLogPan.right  = rectNewLogPan.left + m_rectLogPan.Width();
-		rectNewLogPan.bottom = rectNewLogPan.top  + m_rectLogPan.Height();
-		SetPanRect(rectNewLogPan);
-		
-		m_pPanView->UpdatePanViewport(&pointLog);
+    {
+        CPoint pointLog = pointDev;
+        OverviewDPtoLP(&pointLog);
+        
+        ReleaseCapture();
+        m_bCaptured = FALSE;
+        m_hCurrentOverviewCursor = NULL;
+        ::ClipCursor(NULL); //Release the cursor
+        
+        CRect rectNewLogPan;
+        rectNewLogPan.left   = pointLog.x - m_szLogDrag.cx;
+        rectNewLogPan.top    = pointLog.y - m_szLogDrag.cy;
+        rectNewLogPan.right  = rectNewLogPan.left + m_rectLogPan.Width();
+        rectNewLogPan.bottom = rectNewLogPan.top  + m_rectLogPan.Height();
+        SetPanRect(rectNewLogPan);
+        
+        m_pPanView->UpdatePanViewport(&pointLog);
     }    
     //Nothing going on, ignore onlbuttonup
 }
 
-//	
-//	OnSetCursor
-//	
-//	Set the cursor to the cool hand with dotted rect
-//	if the user is dragging the pan rectangle.
-//	
+//    
+//    OnSetCursor
+//    
+//    Set the cursor to the cool hand with dotted rect
+//    if the user is dragging the pan rectangle.
+//    
 BOOL ZVSpanWnd::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message) 
 {
    // ASSERT(pWnd != NULL);
     ASSERT_VALID(this);
     if (nHitTest != HTCLIENT)
-		return CWnd::OnSetCursor(pWnd,nHitTest,message);
+        return CWnd::OnSetCursor(pWnd,nHitTest,message);
     
     if (m_hCurrentOverviewCursor != NULL)
-		::SetCursor(m_hCurrentOverviewCursor);
+        ::SetCursor(m_hCurrentOverviewCursor);
     else
-		::SetCursor(::LoadCursor(NULL,IDC_ARROW));
+        ::SetCursor(::LoadCursor(NULL,IDC_ARROW));
     
     return TRUE;
 }
 
-//	
-//	OnUpdate
-//	
-//	Called to invalidate the correct regions
-//	of the overview wnd when needed.
-//	
+//    
+//    OnUpdate
+//    
+//    Called to invalidate the correct regions
+//    of the overview wnd when needed.
+//    
 //@doc ZVSpanWnd
 //@mfunc Updates the overview window when the user scrolls or updates the panning view.  Invalidates the overview
 // window’s client area to force a repaint.
@@ -522,7 +522,7 @@ void ZVSpanWnd::OnUpdate(CView * pSender, LPARAM lHint, CObject * pHint)
 void ZVSpanWnd::OnClose() 
 {
     if (m_pPanView)
-		m_pPanView->OverviewDestroyed();
+        m_pPanView->OverviewDestroyed();
     CWnd::OnClose();
 }
 

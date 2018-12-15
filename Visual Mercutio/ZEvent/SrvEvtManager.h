@@ -31,12 +31,12 @@
 //#define AFX_DATA AFX_EXT_CLASS
 
 
-class AFX_EXT_CLASS ZBServerEventManager : public	ZBEventManager
+class AFX_EXT_CLASS ZBServerEventManager : public    ZBEventManager
 {
   public:
       ZBServerEventManager ();
       ~ZBServerEventManager();
-	  ZBEventServer*	AddEvent( COleDateTime Time, CString Filename, EventResult EventResultValue );
+      ZBEventServer*    AddEvent( COleDateTime Time, CString Filename, EventResult EventResultValue );
 
   protected:
 

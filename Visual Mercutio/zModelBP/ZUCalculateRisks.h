@@ -1,9 +1,9 @@
 // **************************************************************************************************************
-// *											 Classe ZUCalculateRisks										*
+// *                                             Classe ZUCalculateRisks                                        *
 // **************************************************************************************************************
-// * JMR-MODIF - Le 21 juillet 2007 - Ajout de la classe ZUCalculateRisks.										*
+// * JMR-MODIF - Le 21 juillet 2007 - Ajout de la classe ZUCalculateRisks.                                        *
 // **************************************************************************************************************
-// * Cette classe permet de calculer le niveau des risques dans le modèle.										*
+// * Cette classe permet de calculer le niveau des risques dans le modèle.                                        *
 // **************************************************************************************************************
 
 #if !defined(AFX_ZUCALCULATERISKS_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
@@ -35,71 +35,71 @@ class ZUCalculateRisks : public ZIBasicSymbolVisitor
 {
 public:
 
-	ZUCalculateRisks( int						OrangeSeverity,
-					  int						RedSeverity,
-					  float						OrangeUE,
-					  float						RedUE,
-					  float						OrangePOA,
-					  float						RedPOA,
-					  BOOL						OrangeAction,
-					  BOOL						OrangeNoAction,
-					  BOOL						RedAction,
-					  BOOL						RedNoAction,
-					  BOOL						DefaultColors,
-					  ZDProcessGraphModelMdl*	pModel			= NULL,
-					  ZILog*					pLog			= NULL );
+    ZUCalculateRisks( int                        OrangeSeverity,
+                      int                        RedSeverity,
+                      float                        OrangeUE,
+                      float                        RedUE,
+                      float                        OrangePOA,
+                      float                        RedPOA,
+                      BOOL                        OrangeAction,
+                      BOOL                        OrangeNoAction,
+                      BOOL                        RedAction,
+                      BOOL                        RedNoAction,
+                      BOOL                        DefaultColors,
+                      ZDProcessGraphModelMdl*    pModel            = NULL,
+                      ZILog*                    pLog            = NULL );
 
-	virtual ~ZUCalculateRisks();
+    virtual ~ZUCalculateRisks();
 
-	bool Calculate( CODComponent& Symbol );
+    bool Calculate( CODComponent& Symbol );
 
-	// Returns the ZILog pointer on the log used for checking the symbol
-	ZILog* GetLog()
-	{
-		return m_pLog;
-	};
+    // Returns the ZILog pointer on the log used for checking the symbol
+    ZILog* GetLog()
+    {
+        return m_pLog;
+    };
 
-	/* Each concrete derived ZIBasicSymbolVisitor class
-	   must implement Visit to implement the appropriate 
-	   algorithm 
-	   In this concrete class the Visit will check the
-	   BasicSymbol passes as an argument */
-	virtual bool Visit( CODComponent& Symbol );
-
-private:
-
-	bool CheckDoorSymbol				( ZBBPDoorSymbol* pSymbol );
-	bool CheckPageSymbol				( ZBBPPageSymbol* pSymbol );
-	bool CheckProcedureSymbol			( ZBBPProcedureSymbol* pSymbol );
-	bool CheckProcessSymbol				( ZBBPProcessSymbol* pSymbol );
-	bool CheckStartSymbol				( ZBBPStartSymbol* pSymbol );
-	bool CheckStopSymbol				( ZBBPStopSymbol* pSymbol );
-	bool CheckDeliverableLinkSymbol		( ZBDeliverableLinkSymbol* pSymbol );
-	bool CheckSymbol					( ZBSymbol* pSymbol );
-	bool CheckLink						( ZBLinkSymbol* pLink );
+    /* Each concrete derived ZIBasicSymbolVisitor class
+       must implement Visit to implement the appropriate 
+       algorithm 
+       In this concrete class the Visit will check the
+       BasicSymbol passes as an argument */
+    virtual bool Visit( CODComponent& Symbol );
 
 private:
 
-	int						m_OrangeSeverity;
-	int						m_RedSeverity;
+    bool CheckDoorSymbol                ( ZBBPDoorSymbol* pSymbol );
+    bool CheckPageSymbol                ( ZBBPPageSymbol* pSymbol );
+    bool CheckProcedureSymbol            ( ZBBPProcedureSymbol* pSymbol );
+    bool CheckProcessSymbol                ( ZBBPProcessSymbol* pSymbol );
+    bool CheckStartSymbol                ( ZBBPStartSymbol* pSymbol );
+    bool CheckStopSymbol                ( ZBBPStopSymbol* pSymbol );
+    bool CheckDeliverableLinkSymbol        ( ZBDeliverableLinkSymbol* pSymbol );
+    bool CheckSymbol                    ( ZBSymbol* pSymbol );
+    bool CheckLink                        ( ZBLinkSymbol* pLink );
 
-	float					m_OrangeUE;
-	float					m_RedUE;
-	float					m_OrangePOA;
-	float					m_RedPOA;
+private:
 
-	BOOL					m_OrangeAction;
-	BOOL					m_OrangeNoAction;
-	BOOL					m_RedAction;
-	BOOL					m_RedNoAction;
-	BOOL					m_DefaultColors;
+    int                        m_OrangeSeverity;
+    int                        m_RedSeverity;
 
-	ZILog*					m_pLog;
+    float                    m_OrangeUE;
+    float                    m_RedUE;
+    float                    m_OrangePOA;
+    float                    m_RedPOA;
 
-	ZDProcessGraphModelMdl*	m_pModel;
+    BOOL                    m_OrangeAction;
+    BOOL                    m_OrangeNoAction;
+    BOOL                    m_RedAction;
+    BOOL                    m_RedNoAction;
+    BOOL                    m_DefaultColors;
 
-	size_t					m_OrangeCounter;
-	size_t					m_RedCounter;
+    ZILog*                    m_pLog;
+
+    ZDProcessGraphModelMdl*    m_pModel;
+
+    size_t                    m_OrangeCounter;
+    size_t                    m_RedCounter;
 };
 
 #endif // !defined(AFX_ZUCALCULATERISKS_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)

@@ -1,5 +1,5 @@
 //## begin module%3705B86B0148.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%3705B86B0148.cm
 
 //## begin module%3705B86B0148.cp preserve=no
@@ -82,16 +82,16 @@ class AFX_EXT_CLASS ZIGenericPropPage : public CPropertyPage  //## Inherits: <un
 
     // Additional Public Declarations
       //## begin ZIGenericPropPage%37053093022A.public preserve=yes
-      virtual BOOL IsOK() { return TRUE; };	// By default return true
+      virtual BOOL IsOK() { return TRUE; };    // By default return true
       //## end ZIGenericPropPage%37053093022A.public
 
   protected:
     // Additional Protected Declarations
       //## begin ZIGenericPropPage%37053093022A.protected preserve=yes
-	// Generated message map functions
-	//{{AFX_MSG(ZIGenericPropPage)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZIGenericPropPage)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
       //## end ZIGenericPropPage%37053093022A.protected
   private:
     //## Constructors (generated)
@@ -133,21 +133,21 @@ class AFX_EXT_CLASS ZIGenericPropPage : public CPropertyPage  //## Inherits: <un
 inline CObject& ZIGenericPropPage::GetObject ()
 {
   //## begin ZIGenericPropPage::GetObject%923121222.body preserve=yes
-  	return *m_pObj;
+      return *m_pObj;
   //## end ZIGenericPropPage::GetObject%923121222.body
 }
 
 inline BOOL ZIGenericPropPage::HasBeenInitialized () const
 {
   //## begin ZIGenericPropPage::HasBeenInitialized%923121223.body preserve=yes
-  	return m_bHasBeenInitialized;
+      return m_bHasBeenInitialized;
   //## end ZIGenericPropPage::HasBeenInitialized%923121223.body
 }
 
 inline void ZIGenericPropPage::SetInitialized ()
 {
   //## begin ZIGenericPropPage::SetInitialized%923121224.body preserve=yes
-  	m_bHasBeenInitialized = TRUE;
+      m_bHasBeenInitialized = TRUE;
   //## end ZIGenericPropPage::SetInitialized%923121224.body
 }
 

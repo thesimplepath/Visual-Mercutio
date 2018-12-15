@@ -35,179 +35,179 @@ class ZDProcessGraphModelMdl;
 
 class AFX_EXT_CLASS ZBBPDoorSymbol : public ZBSymbol
 {
-	DECLARE_SERIAL( ZBBPDoorSymbol )
+    DECLARE_SERIAL( ZBBPDoorSymbol )
 
 public:
 
-	ZBBPDoorSymbol( const CString Name = _T( "" ) );
-	virtual ~ZBBPDoorSymbol();
+    ZBBPDoorSymbol( const CString Name = _T( "" ) );
+    virtual ~ZBBPDoorSymbol();
 
-	/* Copy constructor. */
-	ZBBPDoorSymbol( const ZBBPDoorSymbol& src );
+    /* Copy constructor. */
+    ZBBPDoorSymbol( const ZBBPDoorSymbol& src );
 
-	/* Assignment operator. */
-	ZBBPDoorSymbol& operator=( const ZBBPDoorSymbol& src );
+    /* Assignment operator. */
+    ZBBPDoorSymbol& operator=( const ZBBPDoorSymbol& src );
 
-	/* Create a duplicate copy of this object. */
-	virtual CODComponent* Dup() const;
+    /* Create a duplicate copy of this object. */
+    virtual CODComponent* Dup() const;
 
-	// Copy the definition only
-	virtual void CopySymbolDefinitionFrom( CODSymbolComponent& src );
+    // Copy the definition only
+    virtual void CopySymbolDefinitionFrom( CODSymbolComponent& src );
 
-	// Return the model door
-	ZDProcessGraphModelMdl* GetModelDoor();
+    // Return the model door
+    ZDProcessGraphModelMdl* GetModelDoor();
 
-	// Set a new model to the door
-	bool SetDoorModel( ZDProcessGraphModelMdl* pModel );
+    // Set a new model to the door
+    bool SetDoorModel( ZDProcessGraphModelMdl* pModel );
 
-	// Recalculate the door reference for a given twin door name
-	void RecalculateTwinDoorReference( ZDProcessGraphModelMdl* pRootModel );
+    // Recalculate the door reference for a given twin door name
+    void RecalculateTwinDoorReference( ZDProcessGraphModelMdl* pRootModel );
 
-	int GetTwinDoorReferenceNumber() const
-	{
-		return m_TwinDoorRefNumber;
-	}
+    int GetTwinDoorReferenceNumber() const
+    {
+        return m_TwinDoorRefNumber;
+    }
 
-	void SetTwinDoorReferenceNumber( int RefNumber );
-	void RemoveTwinDoorSymbol( bool RemoveTwin = true );
-	void AssignTwinDoorSymbol( ZBBPDoorSymbol* pDoor );
+    void SetTwinDoorReferenceNumber( int RefNumber );
+    void RemoveTwinDoorSymbol( bool RemoveTwin = true );
+    void AssignTwinDoorSymbol( ZBBPDoorSymbol* pDoor );
 
-	ZBBPDoorSymbol* GetTwinDoorSymbol() const
-	{
-		return m_pTwinDoorSymbol;
-	}
+    ZBBPDoorSymbol* GetTwinDoorSymbol() const
+    {
+        return m_pTwinDoorSymbol;
+    }
 
-	void SetTwinDoorSymbol( ZBBPDoorSymbol* pDoor )
-	{
-		m_pTwinDoorSymbol = pDoor;
-	}
+    void SetTwinDoorSymbol( ZBBPDoorSymbol* pDoor )
+    {
+        m_pTwinDoorSymbol = pDoor;
+    }
 
-	// JMR-MODIF - Le 3 septembre 2006 - Ajout de la fonction DuplicateStyleOnTwinSymbol.
-	BOOL DuplicateStyleOnTwinSymbol();
+    // JMR-MODIF - Le 3 septembre 2006 - Ajout de la fonction DuplicateStyleOnTwinSymbol.
+    BOOL DuplicateStyleOnTwinSymbol();
 
-	//////////////////////////////////////////////////////////////////////
-	// Call-back on symbols
-	virtual void OnSymbolNameChanged( CODComponent& Comp, const CString OldName );
+    //////////////////////////////////////////////////////////////////////
+    // Call-back on symbols
+    virtual void OnSymbolNameChanged( CODComponent& Comp, const CString OldName );
 
-	// Update mecanism for symbol change
-	virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    // Update mecanism for symbol change
+    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
 
-	///////////////////////////////////////////////////////
-	// Basic Symbol methods
+    ///////////////////////////////////////////////////////
+    // Basic Symbol methods
 
-	// Return true if the symbol can contain a child model
-	virtual bool CanContainChildModel() const
-	{
-		return true;
-	}
+    // Return true if the symbol can contain a child model
+    virtual bool CanContainChildModel() const
+    {
+        return true;
+    }
 
-	// The child model is a reference
-	virtual bool IsChildModelRef() const
-	{
-		return true;
-	}
+    // The child model is a reference
+    virtual bool IsChildModelRef() const
+    {
+        return true;
+    }
 
-	// The comment can be edited
-	virtual bool CommentTextEditReadOnly() const
-	{
-		// Cannot be edited
-		return false;
-	}
+    // The comment can be edited
+    virtual bool CommentTextEditReadOnly() const
+    {
+        // Cannot be edited
+        return false;
+    }
 
-	// The symbol name can be edited
-	virtual bool SymbolNameTextEditReadOnly() const
-	{
-		// Cannot be edited
-		return true;
-	}
+    // The symbol name can be edited
+    virtual bool SymbolNameTextEditReadOnly() const
+    {
+        // Cannot be edited
+        return true;
+    }
 
-	//////////////////////////////////////////////////////////////////////
-	// Attributes management methods
-	virtual bool AcceptDynamicAttributes() const
-	{
-		// No dynamic attributes
-		return false;
-	}
+    //////////////////////////////////////////////////////////////////////
+    // Attributes management methods
+    virtual bool AcceptDynamicAttributes() const
+    {
+        // No dynamic attributes
+        return false;
+    }
 
-	// Call by the controller when a tooltip is required
-	virtual bool OnToolTip( CString& ToolTipText, CPoint point, ToolTipMode ToolTip = NormalToolTip );
+    // Call by the controller when a tooltip is required
+    virtual bool OnToolTip( CString& ToolTipText, CPoint point, ToolTipMode ToolTip = NormalToolTip );
 
-	// Drag and drop methods
-	virtual bool AcceptDropItem( CObject* pObj, CPoint pt );
-	virtual bool DropItem( CObject* pObj, CPoint pt );
+    // Drag and drop methods
+    virtual bool AcceptDropItem( CObject* pObj, CPoint pt );
+    virtual bool DropItem( CObject* pObj, CPoint pt );
 
-	/* Creates the symbol component. */
-	BOOL Create( const CString Name = _T( "" ) );
+    /* Creates the symbol component. */
+    BOOL Create( const CString Name = _T( "" ) );
 
-	/* Called after the object is created and on the desk 
-	   return true if the object can be created or false if the
-	   object must be destroyed immediatly */
-	virtual bool OnPostCreation( CODModel* pModel = NULL, CODController* pCtrl = NULL );
+    /* Called after the object is created and on the desk 
+       return true if the object can be created or false if the
+       object must be destroyed immediatly */
+    virtual bool OnPostCreation( CODModel* pModel = NULL, CODController* pCtrl = NULL );
 
-	/* Called before the object is deleted
-	   return true if the object can be deleted */
-	virtual bool OnPreDelete( CODModel* pModel = NULL, CODController* pCtrl = NULL );
+    /* Called before the object is deleted
+       return true if the object can be deleted */
+    virtual bool OnPreDelete( CODModel* pModel = NULL, CODController* pCtrl = NULL );
 
-	/* Called after the double click occured on the object */
-	virtual void OnPostDoubleClick( CODModel* pModel = NULL, CODController* pCtrl = NULL );
+    /* Called after the double click occured on the object */
+    virtual void OnPostDoubleClick( CODModel* pModel = NULL, CODController* pCtrl = NULL );
 
-	bool GetDisplayPreview() const { return m_DisplayPreview; };
-	void SetDisplayPreview( bool value )
-	{
-		m_DisplayPreview = value;
-	}
+    bool GetDisplayPreview() const { return m_DisplayPreview; };
+    void SetDisplayPreview( bool value )
+    {
+        m_DisplayPreview = value;
+    }
 
-	virtual void OnDraw( CDC* pDC );
+    virtual void OnDraw( CDC* pDC );
 
-	ULONG STDMETHODCALLTYPE AddRef()
-	{
-		return CODSymbolComponent::AddRef();
-	}
+    ULONG STDMETHODCALLTYPE AddRef()
+    {
+        return CODSymbolComponent::AddRef();
+    }
 
-	ULONG STDMETHODCALLTYPE Release()
-	{
-		return CODSymbolComponent::Release();
-	}
+    ULONG STDMETHODCALLTYPE Release()
+    {
+        return CODSymbolComponent::Release();
+    }
 
-	// JMR-MODIF - Le 3 mai 2006 - Fonction permettant de définir si le symbole est une porte.
-	virtual BOOL IsDoor()
-	{
-		return TRUE;
-	}
+    // JMR-MODIF - Le 3 mai 2006 - Fonction permettant de définir si le symbole est une porte.
+    virtual BOOL IsDoor()
+    {
+        return TRUE;
+    }
 
-	/* Serializes the symbol. */
-	virtual void Serialize( CArchive& ar );
+    /* Serializes the symbol. */
+    virtual void Serialize( CArchive& ar );
 
-	virtual int GetRightSubMenu() const;
-	virtual int GetIconIndex() const;
+    virtual int GetRightSubMenu() const;
+    virtual int GetIconIndex() const;
 
-	virtual BOOL OnDoubleClick();
+    virtual BOOL OnDoubleClick();
 
 protected:
 
-	virtual void AdjustElementPosition();
-	CString BuildSymbolName();
+    virtual void AdjustElementPosition();
+    CString BuildSymbolName();
 
 private:
 
-	// The model for the canvas. The model holds all information about 
-	// the canvas, while the viewport actually displays it.
-	CRect					m_CommentRect;
-	bool					m_DisplayPreview;
-	CString					m_SubModelPathName;
-	// The twin door name saves the name of the other door
-	int						m_TwinDoorRefNumber;
-	ZBBPDoorSymbol*			m_pTwinDoorSymbol;
+    // The model for the canvas. The model holds all information about 
+    // the canvas, while the viewport actually displays it.
+    CRect                    m_CommentRect;
+    bool                    m_DisplayPreview;
+    CString                    m_SubModelPathName;
+    // The twin door name saves the name of the other door
+    int                        m_TwinDoorRefNumber;
+    ZBBPDoorSymbol*            m_pTwinDoorSymbol;
 };
 
 inline int ZBBPDoorSymbol::GetRightSubMenu() const
 {
-	return 6;
+    return 6;
 }
 
 inline int ZBBPDoorSymbol::GetIconIndex() const
 {
-	return ( IsLocal() ) ? 8 : 16;
+    return ( IsLocal() ) ? 8 : 16;
 }
 
 #endif // !defined(AFX_ZBBPDoorSymbol_H__D6010BE6_7C2A_47FF_857B_0C64A020F48F__INCLUDED_)

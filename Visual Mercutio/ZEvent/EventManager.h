@@ -34,20 +34,20 @@ class AFX_EXT_CLASS ZBEventManager
   public:
       ZBEventManager ();
       ~ZBEventManager();
-	  BOOL				Initialize( const CString Directory );
+      BOOL                Initialize( const CString Directory );
 
-	  CString			GetRootDirectory() const { return m_RootDirectory; };
+      CString            GetRootDirectory() const { return m_RootDirectory; };
 
-	  BOOL				AddEvent( ZBEvent* pEvent );
-	  BOOL				RemoveEvent( ZBEvent* pEvent );
-	  BOOL				RemoveEventAt( int Index );
-	  BOOL				RemoveAllEvents();
-	  ZBEvent*			GetEventAt( int Index );
-	  int				GetEventCount();
-	  BOOL				LoadFromDirectory( BOOL ClearAllFirst, BOOL IncludeSubDirectory );
-	  BOOL				LoadFromDirectory( const CString Directory, BOOL ClearAllFirst, BOOL IncludeSubDirectory );
+      BOOL                AddEvent( ZBEvent* pEvent );
+      BOOL                RemoveEvent( ZBEvent* pEvent );
+      BOOL                RemoveEventAt( int Index );
+      BOOL                RemoveAllEvents();
+      ZBEvent*            GetEventAt( int Index );
+      int                GetEventCount();
+      BOOL                LoadFromDirectory( BOOL ClearAllFirst, BOOL IncludeSubDirectory );
+      BOOL                LoadFromDirectory( const CString Directory, BOOL ClearAllFirst, BOOL IncludeSubDirectory );
 
-	  virtual ZBEvent*	LoadEventFromFile( const CString Filename );
+      virtual ZBEvent*    LoadEventFromFile( const CString Filename );
 
   protected:
 
@@ -55,12 +55,12 @@ class AFX_EXT_CLASS ZBEventManager
       ZBEventManager(const ZBEventManager &right);
       const ZBEventManager & operator=(const ZBEventManager &right);
 
-	  void				LoadFromSubDirectory( const CString Directory );
+      void                LoadFromSubDirectory( const CString Directory );
 
   private: //## implementation
-	CObArray		m_Events;
-	BOOL			m_IncludeSubDirectory;
-	CString			m_RootDirectory;
+    CObArray        m_Events;
+    BOOL            m_IncludeSubDirectory;
+    CString            m_RootDirectory;
 };
 
 
@@ -70,21 +70,21 @@ class AFX_EXT_CLASS ZBEventManager
 
 
 
-inline ZBEvent*	ZBEventManager::GetEventAt( int Index )
+inline ZBEvent*    ZBEventManager::GetEventAt( int Index )
 {
-	if (Index < m_Events.GetSize())
-		return (ZBEvent*)m_Events[Index];
-	return NULL;
+    if (Index < m_Events.GetSize())
+        return (ZBEvent*)m_Events[Index];
+    return NULL;
 }
-inline int	ZBEventManager::GetEventCount()
+inline int    ZBEventManager::GetEventCount()
 {
-	return m_Events.GetSize();
+    return m_Events.GetSize();
 }
 
 
-inline ZBEvent*	ZBEventManager::LoadEventFromFile( const CString Filename )
+inline ZBEvent*    ZBEventManager::LoadEventFromFile( const CString Filename )
 {
-	return NULL;
+    return NULL;
 }
 
 #endif

@@ -33,40 +33,40 @@
 
 class AFX_EXT_CLASS ZBModelSet : public CObject
 {
-	DECLARE_SERIAL( ZBModelSet )
+    DECLARE_SERIAL( ZBModelSet )
 
 public:
 
-	ZBModelSet();
-	virtual ~ZBModelSet();
+    ZBModelSet();
+    virtual ~ZBModelSet();
 
-	size_t					GetModelCount	() const;
+    size_t                    GetModelCount    () const;
 
-	ZDProcessGraphModelMdl*	GetModelAt		( size_t Index );
-	ZDProcessGraphModelMdl*	FindModel		( const CString Name );
+    ZDProcessGraphModelMdl*    GetModelAt        ( size_t Index );
+    ZDProcessGraphModelMdl*    FindModel        ( const CString Name );
 
-	int						FindModelIndex	( ZDProcessGraphModelMdl* pModel );
+    int                        FindModelIndex    ( ZDProcessGraphModelMdl* pModel );
 
-	bool					AddModel		( ZDProcessGraphModelMdl* pModel );
-	bool					RemoveModel		( ZDProcessGraphModelMdl* pModel );
-	bool					RemoveModelAt	( size_t Index );
+    bool                    AddModel        ( ZDProcessGraphModelMdl* pModel );
+    bool                    RemoveModel        ( ZDProcessGraphModelMdl* pModel );
+    bool                    RemoveModelAt    ( size_t Index );
 
-	void					RemoveAllModel	();
-	void					DeleteAllModel	();
+    void                    RemoveAllModel    ();
+    void                    DeleteAllModel    ();
 
-	ZBModelSet*				Clone			();
+    ZBModelSet*                Clone            ();
 
-	// Serializes the unit manager
-	virtual void Serialize( CArchive& ar );
+    // Serializes the unit manager
+    virtual void Serialize( CArchive& ar );
 
 private:
 
-	CObArray m_Set;
+    CObArray m_Set;
 };
 
 inline size_t ZBModelSet::GetModelCount() const
 {
-	return (size_t)m_Set.GetSize();
+    return (size_t)m_Set.GetSize();
 }
 
 #endif // !defined(AFX_ZBMODELSET_H__24F292B5_AB9D_467B_95F4_D08B6C192958__INCLUDED_)

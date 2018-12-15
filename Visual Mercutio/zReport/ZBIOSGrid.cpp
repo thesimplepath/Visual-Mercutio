@@ -18,7 +18,7 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 ZBIOSGrid::ZBIOSGrid( CGXGridCore* pGridCore /*= NULL*/ )
-	: m_pGridCore( pGridCore )
+    : m_pGridCore( pGridCore )
 {
 }
 

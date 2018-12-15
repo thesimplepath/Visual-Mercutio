@@ -59,21 +59,21 @@ public:
 class AFX_EXT_CLASS ZMaskEdit : public CEdit
 {
 public:
-	ZMaskEdit();
-	virtual ~ZMaskEdit();
+    ZMaskEdit();
+    virtual ~ZMaskEdit();
 
     bool    Init(CString strMask, CString strInitialData = "");
-	CString GetFormatedBuffer(CString strMask, CString strInitialData = "");
+    CString GetFormatedBuffer(CString strMask, CString strInitialData = "");
 
     bool    SetPromptChar(CString strPromptChar);
 
     void    SetData(const CString& data);
     CString GetData();
 
-	//{{AFX_VIRTUAL(ZMaskEdit)
-	protected:
-	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-	//}}AFX_VIRTUAL
+    //{{AFX_VIRTUAL(ZMaskEdit)
+    protected:
+    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+    //}}AFX_VIRTUAL
 
 protected:
     bool            m_bInit;
@@ -86,23 +86,23 @@ protected:
     bool    Parse(const CString& strMask);
     bool    SetValidChars(const CString& strMask, bool OnWindow = true);
     CString GetRange(CString szLow, CString szHigh);
-	CString FormatedBuffer(const CString& data);
+    CString FormatedBuffer(const CString& data);
     //CString GetText(bool bDataOnly = false);
     //CString GetData() { return GetText(true); }
     int     FindNextChar(int iStartPos, bool bStatic, bool bForward);
 
     //{{AFX_MSG(ZMaskEdit)
-	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
-	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg void OnDestroy();
-	afx_msg void OnSetFocus(CWnd* pOldWnd);
-	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
-	afx_msg void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
-	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
-	//}}AFX_MSG
+    afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
+    afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    afx_msg void OnDestroy();
+    afx_msg void OnSetFocus(CWnd* pOldWnd);
+    afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+    afx_msg void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
+    afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
+    //}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
     DECLARE_DYNCREATE(ZMaskEdit)
 };
 

@@ -1,12 +1,12 @@
 // zModelWebLib.h : header file
 //
 // Copyright © 1993-2000 Aigroz Dominique - ProcessSoft
-//		mailto:dominique.aigroz@processsoft.com
-//		http://www.processsoft.com
+//        mailto:dominique.aigroz@processsoft.com
+//        http://www.processsoft.com
 //
 //
 // ==========================================================================  
-// HISTORY:	
+// HISTORY:    
 // ==========================================================================
 //
 //////////////////////////////////////////////////////////////////////

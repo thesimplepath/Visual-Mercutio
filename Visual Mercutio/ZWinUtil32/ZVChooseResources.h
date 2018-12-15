@@ -18,10 +18,10 @@
 
 #include "zBaseLib\ZIDialog.h"
 #ifndef _WIN32
-	#include "ZWinUtil.h"
+    #include "ZWinUtil.h"
 #endif
 #ifdef _WIN32
-	#include "ZWinUtil32.h"
+    #include "ZWinUtil32.h"
 #endif
 
 // UserTreeC
@@ -49,44 +49,44 @@ class AFX_EXT_CLASS ZVChooseResources : public ZIDialog
 {
 // Construction
 public:
-	ZVChooseResources(ZUUserManager& UserManager, CWnd* pParent = NULL);   // standard constructor
+    ZVChooseResources(ZUUserManager& UserManager, CWnd* pParent = NULL);   // standard constructor
 
-	CString	GetUserListString() const { return m_UserListString; };
+    CString    GetUserListString() const { return m_UserListString; };
 
 // Dialog Data
-	//{{AFX_DATA(ZVChooseResources)
-	enum { IDD = IDD_CHOOSE_RESOURCE };
-	ZCUserTree	m_ResourceTree;
-	CListBox	m_ResourceList;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZVChooseResources)
+    enum { IDD = IDD_CHOOSE_RESOURCE };
+    ZCUserTree    m_ResourceTree;
+    CListBox    m_ResourceList;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVChooseResources)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVChooseResources)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVChooseResources)
-	afx_msg void OnAddResource();
-	afx_msg void OnRemoveResource();
-	virtual void OnOK();
-	virtual BOOL OnInitDialog();
-	afx_msg void OnSelchangedResourceTree(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnSelchangeResourceList();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVChooseResources)
+    afx_msg void OnAddResource();
+    afx_msg void OnRemoveResource();
+    virtual void OnOK();
+    virtual BOOL OnInitDialog();
+    afx_msg void OnSelchangedResourceTree(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnSelchangeResourceList();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	ZUUserManager&		m_UserManager;
-	CString				m_UserListString;
+    ZUUserManager&        m_UserManager;
+    CString                m_UserListString;
 private:
-	void CheckControlState();
+    void CheckControlState();
 
 };
 

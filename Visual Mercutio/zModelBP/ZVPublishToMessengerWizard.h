@@ -45,19 +45,19 @@ class AFX_EXT_CLASS ZVPublishToMessengerWizard
 {
 public:
 
-	ZVPublishToMessengerWizard( ZDProcessGraphModelDoc* pModelDoc,
-								ZILog*					pLog		= NULL,
-								const CString			IniFile		= _T( "" ) );
+    ZVPublishToMessengerWizard( ZDProcessGraphModelDoc* pModelDoc,
+                                ZILog*                    pLog        = NULL,
+                                const CString            IniFile        = _T( "" ) );
 
-	virtual ~ZVPublishToMessengerWizard();
+    virtual ~ZVPublishToMessengerWizard();
 
-	int DoModal();
+    int DoModal();
 
 private:
 
-	ZDProcessGraphModelDoc* m_pModelDoc;
-	ZILog*					m_pLog;
-	CString					m_IniFile;
+    ZDProcessGraphModelDoc* m_pModelDoc;
+    ZILog*                    m_pLog;
+    CString                    m_IniFile;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -69,84 +69,84 @@ class ZVPublishToMessengerStart : public ZIWizardDialog
 {
 public:
 
-	// Standard constructor
-	ZVPublishToMessengerStart( const CString IniFile = _T( "" ), CWnd* pParent = NULL );
+    // Standard constructor
+    ZVPublishToMessengerStart( const CString IniFile = _T( "" ), CWnd* pParent = NULL );
 
-	BOOL GetIncludeModel() const
-	{
-		return m_IncludeModel;
-	};
+    BOOL GetIncludeModel() const
+    {
+        return m_IncludeModel;
+    };
 
-	BOOL GetIncludeGroups() const
-	{
-		return m_IncludeGroups;
-	};
+    BOOL GetIncludeGroups() const
+    {
+        return m_IncludeGroups;
+    };
 
-	BOOL GetIncludeSystems() const
-	{
-		return m_IncludeSystems;
-	};
+    BOOL GetIncludeSystems() const
+    {
+        return m_IncludeSystems;
+    };
 
-	// JMR-MODIF - Le 30 mai 2006 - Ajout de la fonction GetIncludePrestations.
-	BOOL GetIncludePrestations() const
-	{
-		return m_IncludePrestations;
-	}
+    // JMR-MODIF - Le 30 mai 2006 - Ajout de la fonction GetIncludePrestations.
+    BOOL GetIncludePrestations() const
+    {
+        return m_IncludePrestations;
+    }
 
-	CString GetMessengerAddress() const
-	{
-		return m_MessengerAddress;
-	};
+    CString GetMessengerAddress() const
+    {
+        return m_MessengerAddress;
+    };
 
-	// JMR-MODIF - Le 21 juin 2006 - Ajout de la fonction GetMessengerAlias.
-	CString GetMessengerAlias() const
-	{
-		return m_MessengerAlias;
-	};
+    // JMR-MODIF - Le 21 juin 2006 - Ajout de la fonction GetMessengerAlias.
+    CString GetMessengerAlias() const
+    {
+        return m_MessengerAlias;
+    };
 
 private:
 
-	// Dialog Data
-	//{{AFX_DATA(ZVPublishToMessengerStart)
-	enum { IDD = IDD_WZ_PUBLISHTOMESSENGER_START };
-	ZCIntelliEdit	m_MessengerAddressEdit;
-	ZCIntelliEdit	m_MessengerAliasEdit;
-	BOOL			m_IncludeModel;
-	BOOL			m_IncludeGroups;
-	BOOL			m_IncludeSystems;
-	BOOL			m_IncludePrestations;
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZVPublishToMessengerStart)
+    enum { IDD = IDD_WZ_PUBLISHTOMESSENGER_START };
+    ZCIntelliEdit    m_MessengerAddressEdit;
+    ZCIntelliEdit    m_MessengerAliasEdit;
+    BOOL            m_IncludeModel;
+    BOOL            m_IncludeGroups;
+    BOOL            m_IncludeSystems;
+    BOOL            m_IncludePrestations;
+    //}}AFX_DATA
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVPublishToMessengerStart)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVPublishToMessengerStart)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVPublishToMessengerStart)
-	virtual BOOL OnInitDialog();
-	afx_msg void OnNext();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVPublishToMessengerStart)
+    virtual BOOL OnInitDialog();
+    afx_msg void OnNext();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	bool LoadStateFromIniFile();
-	bool SaveStateToIniFile();
+    bool LoadStateFromIniFile();
+    bool SaveStateToIniFile();
 
 private:
 
-	// JMR-MODIF - Le 21 juin 2006 - Ajout de la variable m_MessengerAlias.
-	CString			m_MessengerAlias;
+    // JMR-MODIF - Le 21 juin 2006 - Ajout de la variable m_MessengerAlias.
+    CString            m_MessengerAlias;
 
-	CString			m_MessengerAddress;
-	CString			m_IniFile;
-	CStringArray	m_ArrayOfAddress;
+    CString            m_MessengerAddress;
+    CString            m_IniFile;
+    CStringArray    m_ArrayOfAddress;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -155,54 +155,54 @@ class ZVPublishToMessengerLogon : public ZIWizardDialog
 {
 public:
 
-	// Standard constructor
-	ZVPublishToMessengerLogon( ZBPublishMessengerModelInformation* pInfo, CWnd* pParent = NULL );
+    // Standard constructor
+    ZVPublishToMessengerLogon( ZBPublishMessengerModelInformation* pInfo, CWnd* pParent = NULL );
 
-	// JMR-MODIF - Le 19 juin 2006 - Ajout de la fonction GetBeginDate.
-	CString GetBeginDate()
-	{
-		return m_Date_Begin;
-	}
+    // JMR-MODIF - Le 19 juin 2006 - Ajout de la fonction GetBeginDate.
+    CString GetBeginDate()
+    {
+        return m_Date_Begin;
+    }
 
-	// JMR-MODIF - Le 21 juin 2006 - Ajout de la fonction GetEndDate.
-	CString GetEndDate()
-	{
-		return m_Date_End;
-	}
+    // JMR-MODIF - Le 21 juin 2006 - Ajout de la fonction GetEndDate.
+    CString GetEndDate()
+    {
+        return m_Date_End;
+    }
 
 private:
 
-	// Dialog Data
-	//{{AFX_DATA(ZVPublishToMessengerLogon)
-	enum { IDD = IDD_WZ_PUBLISHTOMESSENGER_AUTH };
-	CString	m_Password;
-	CString	m_Username;
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZVPublishToMessengerLogon)
+    enum { IDD = IDD_WZ_PUBLISHTOMESSENGER_AUTH };
+    CString    m_Password;
+    CString    m_Username;
+    //}}AFX_DATA
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVPublishToMessengerLogon)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVPublishToMessengerLogon)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVPublishToMessengerLogon)
-	virtual BOOL OnInitDialog();
-	afx_msg void OnOK();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVPublishToMessengerLogon)
+    virtual BOOL OnInitDialog();
+    afx_msg void OnOK();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	// JMR-MODIF - Le 19 juin 2006 - Ajout des variables m_Date_Begin et m_Date_End.
-	CString								m_Date_Begin;
-	CString								m_Date_End;
+    // JMR-MODIF - Le 19 juin 2006 - Ajout des variables m_Date_Begin et m_Date_End.
+    CString                                m_Date_Begin;
+    CString                                m_Date_End;
 
-	ZBPublishMessengerModelInformation*	m_pInfo;
+    ZBPublishMessengerModelInformation*    m_pInfo;
 };
 
 #endif // !defined(AFX_ZVPublishToMessengerWizard_H__5DA4C599_18FB_4411_B32C_FA6E5C4462DB__INCLUDED_)

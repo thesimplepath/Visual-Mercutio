@@ -14,11 +14,11 @@
 
 // For global APIs
 #ifndef AFX_API_EXPORT
-	#define AFX_API_EXPORT __declspec(dllexport)
+    #define AFX_API_EXPORT __declspec(dllexport)
 #endif
 
 #ifndef AFX_API_IMPORT
-	#define AFX_API_IMPORT __declspec(dllimport)
+    #define AFX_API_IMPORT __declspec(dllimport)
 #endif
 
 // Change the definition of AFX_EXT... to make it import

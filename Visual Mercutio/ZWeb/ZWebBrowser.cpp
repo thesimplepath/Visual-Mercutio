@@ -27,151 +27,151 @@ ZWebBrowser::~ZWebBrowser()
 
 void ZWebBrowser::SetOptions( LPCTSTR lpszOptions )
 {
-	m_strOptions = lpszOptions;
+    m_strOptions = lpszOptions;
 }
 
 void ZWebBrowser::SetParam( VARIANT *pvarArgs )
 {
-	m_varArgs = pvarArgs;
+    m_varArgs = pvarArgs;
 }
 
 void ZWebBrowser::SetParam( LPCTSTR lpszArgs )
 {
-	m_varArgs = lpszArgs;
+    m_varArgs = lpszArgs;
 }
 
 void ZWebBrowser::Navigate()
 {
-	TCHAR* pchOptions = m_strOptions.IsEmpty() ? NULL : m_strOptions.GetBuffer( 0 );
+    TCHAR* pchOptions = m_strOptions.IsEmpty() ? NULL : m_strOptions.GetBuffer( 0 );
 
-	COleVariant noArg;
-	CWebBrowser::Navigate( m_strURL, &noArg, &noArg, &noArg, &noArg );
+    COleVariant noArg;
+    CWebBrowser::Navigate( m_strURL, &noArg, &noArg, &noArg, &noArg );
 }
 
 void ZWebBrowser::Navigate( const CString strURL )
 {
-	TCHAR* pchOptions = m_strOptions.IsEmpty() ? NULL : m_strOptions.GetBuffer( 0 );
+    TCHAR* pchOptions = m_strOptions.IsEmpty() ? NULL : m_strOptions.GetBuffer( 0 );
 
-	COleVariant noArg;
-	CWebBrowser::Navigate( strURL, &noArg, &noArg, &noArg, &noArg );
+    COleVariant noArg;
+    CWebBrowser::Navigate( strURL, &noArg, &noArg, &noArg, &noArg );
 }
 
 void ZWebBrowser::Navigate( UINT nResID, HINSTANCE hInstance /*= NULL*/ )
 {
-	SetURL( nResID, hInstance );
+    SetURL( nResID, hInstance );
 }
 
 void ZWebBrowser::Navigate( LPCTSTR lpszURL, BOOL bRes, HINSTANCE hInstance /*= NULL*/ )
 {
-	SetURL( lpszURL, bRes, hInstance );
+    SetURL( lpszURL, bRes, hInstance );
 }
 
 void ZWebBrowser::Navigate( UINT nResID, LPCTSTR lpszParam, HINSTANCE hInstance /*= NULL*/ )
 {
-	SetURL( nResID, lpszParam, hInstance );
+    SetURL( nResID, lpszParam, hInstance );
 }
 
 void ZWebBrowser::Navigate( LPCTSTR lpszURL, BOOL bRes, LPCTSTR lpszParam, HINSTANCE hInstance /*= NULL*/ )
 {
-	SetURL( lpszURL, bRes, lpszParam, hInstance );
+    SetURL( lpszURL, bRes, lpszParam, hInstance );
 }
 
 void ZWebBrowser::SetURL( UINT nResID, HINSTANCE hInstance /*= NULL*/ )
 {
-	CString strTemp;
-	strTemp.Format( _T( "%d" ), nResID );
-	
-	ResourceToURL( strTemp, hInstance );
-	COleVariant noArg;
-	CWebBrowser::Navigate( m_strURL, &noArg, &noArg, &noArg, &noArg );
+    CString strTemp;
+    strTemp.Format( _T( "%d" ), nResID );
+    
+    ResourceToURL( strTemp, hInstance );
+    COleVariant noArg;
+    CWebBrowser::Navigate( m_strURL, &noArg, &noArg, &noArg, &noArg );
 }
 
 void ZWebBrowser::SetURL( LPCTSTR lpszURL, BOOL bRes, HINSTANCE hInstance /*= NULL*/ )
 {
-	if ( bRes )
-	{
-		ResourceToURL( lpszURL, hInstance );
-	}
-	else
-	{
-		m_strURL = lpszURL;
-	}
+    if ( bRes )
+    {
+        ResourceToURL( lpszURL, hInstance );
+    }
+    else
+    {
+        m_strURL = lpszURL;
+    }
 
-	COleVariant noArg;
-	CWebBrowser::Navigate( m_strURL, &noArg, &noArg, &noArg, &noArg );
+    COleVariant noArg;
+    CWebBrowser::Navigate( m_strURL, &noArg, &noArg, &noArg, &noArg );
 }
 
 void ZWebBrowser::SetURL( UINT nResID, LPCTSTR lpszParam, HINSTANCE hInstance /*= NULL*/ )
 {
-	CString strTemp;
-	strTemp.Format( _T( "%d" ), nResID );
+    CString strTemp;
+    strTemp.Format( _T( "%d" ), nResID );
 
-	ResourceToURL( strTemp, hInstance );
+    ResourceToURL( strTemp, hInstance );
 
-	// Add parameters
-	m_strURL += _T( "?" );
-	m_strURL += lpszParam;
+    // Add parameters
+    m_strURL += _T( "?" );
+    m_strURL += lpszParam;
 
-	COleVariant noArg;
-	CWebBrowser::Navigate( m_strURL, &noArg, &noArg, &noArg, &noArg );
+    COleVariant noArg;
+    CWebBrowser::Navigate( m_strURL, &noArg, &noArg, &noArg, &noArg );
 }
 
 void ZWebBrowser::SetURL( LPCTSTR lpszURL, BOOL bRes, LPCTSTR lpszParam, HINSTANCE hInstance /*= NULL*/ )
 {
-	if ( bRes )
-	{
-		ResourceToURL( lpszURL, hInstance );
-	}
-	else
-	{
-		m_strURL = lpszURL;
-	}
+    if ( bRes )
+    {
+        ResourceToURL( lpszURL, hInstance );
+    }
+    else
+    {
+        m_strURL = lpszURL;
+    }
 
-	// Add parameters
-	m_strURL += _T( "?" );
-	m_strURL += lpszParam;
+    // Add parameters
+    m_strURL += _T( "?" );
+    m_strURL += lpszParam;
 
-	COleVariant noArg;
-	CWebBrowser::Navigate( m_strURL, &noArg, &noArg, &noArg, &noArg );
+    COleVariant noArg;
+    CWebBrowser::Navigate( m_strURL, &noArg, &noArg, &noArg, &noArg );
 }
 
 void ZWebBrowser::ResourceToURL( LPCTSTR lpszURL, HINSTANCE hInstance /*= NULL*/ )
 {
-	if ( hInstance == NULL )
-	{
-		hInstance = AfxGetResourceHandle();
-	}
+    if ( hInstance == NULL )
+    {
+        hInstance = AfxGetResourceHandle();
+    }
 
-	ASSERT( hInstance != NULL );
+    ASSERT( hInstance != NULL );
 
-	LPTSTR lpszModule = new TCHAR[_MAX_PATH];
+    LPTSTR lpszModule = new TCHAR[_MAX_PATH];
 
-	if ( GetModuleFileName( hInstance, lpszModule, _MAX_PATH ) )
-	{
-		m_strURL.Format( _T( "res://%s/%s" ), lpszModule, lpszURL );
-	}
+    if ( GetModuleFileName( hInstance, lpszModule, _MAX_PATH ) )
+    {
+        m_strURL.Format( _T( "res://%s/%s" ), lpszModule, lpszURL );
+    }
 
-	delete []lpszModule;
+    delete []lpszModule;
 }
 
 CString ZWebBrowser::BuildResourceToURL( LPCTSTR lpszURL, HINSTANCE hInstance /*= NULL*/ )
 {
-	CString strURL;
+    CString strURL;
 
-	if ( hInstance == NULL )
-	{
-		hInstance = AfxGetResourceHandle();
-	}
+    if ( hInstance == NULL )
+    {
+        hInstance = AfxGetResourceHandle();
+    }
 
-	ASSERT( hInstance != NULL );
+    ASSERT( hInstance != NULL );
 
-	LPTSTR lpszModule = new TCHAR[_MAX_PATH];
+    LPTSTR lpszModule = new TCHAR[_MAX_PATH];
 
-	if ( GetModuleFileName( hInstance, lpszModule, _MAX_PATH ) )
-	{
-		strURL.Format( _T( "res://%s/%s" ), lpszModule, lpszURL );
-	}
+    if ( GetModuleFileName( hInstance, lpszModule, _MAX_PATH ) )
+    {
+        strURL.Format( _T( "res://%s/%s" ), lpszModule, lpszURL );
+    }
 
-	delete []lpszModule;
-	return strURL;
+    delete []lpszModule;
+    return strURL;
 }

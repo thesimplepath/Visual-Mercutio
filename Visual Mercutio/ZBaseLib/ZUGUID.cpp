@@ -30,24 +30,24 @@ ZUGUID::~ZUGUID()
 
 CString ZUGUID::CreateNewGUID()
 {
-	GUID	guid;
-	CString	sGUID;
+    GUID    guid;
+    CString    sGUID;
 
-	HRESULT Result = CoCreateGuid( &guid );
+    HRESULT Result = CoCreateGuid( &guid );
 
-	if ( Result == S_OK )
-	{
-		sGUID.Format( _T( "%s%d-%d" ), gGUIDcheck, guid.Data1, guid.Data2 );
-	}
-	else
-	{
-		sGUID.Empty();
-	}
+    if ( Result == S_OK )
+    {
+        sGUID.Format( _T( "%s%d-%d" ), gGUIDcheck, guid.Data1, guid.Data2 );
+    }
+    else
+    {
+        sGUID.Empty();
+    }
 
-	return sGUID;
+    return sGUID;
 }
 
 bool ZUGUID::GUIDIsValid( const CString s )
 {
-	return ( s.Left( strlen( gGUIDcheck ) ) == gGUIDcheck ) ? true : false;
+    return ( s.Left( strlen( gGUIDcheck ) ) == gGUIDcheck ) ? true : false;
 }

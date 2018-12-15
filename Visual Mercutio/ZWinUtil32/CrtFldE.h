@@ -45,55 +45,55 @@ class ZICreateFolderWizardExist : public ZIWizardDialog
 {
 // Construction
 public:
-	enum	FldExistInitialChoice { FolderNameChoice, DirectoryChoice, FilenameChoice, KeepChoice };
+    enum    FldExistInitialChoice { FolderNameChoice, DirectoryChoice, FilenameChoice, KeepChoice };
 
-	ZICreateFolderWizardExist(CString FolderName, CString FileDirectory, CString InitialFilename, FldExistInitialChoice InitialChoice = FolderNameChoice, CWnd* pParent = NULL);   // standard constructor
+    ZICreateFolderWizardExist(CString FolderName, CString FileDirectory, CString InitialFilename, FldExistInitialChoice InitialChoice = FolderNameChoice, CWnd* pParent = NULL);   // standard constructor
 
-	// Get information, if successful
-	CString	GetFilename() const { return m_CompleteFilename; };
-	CString	GetFileDirectory() const { return m_FileDirectory; };
-	CString	GetFolderName() const { return m_Folder; };
-	BOOL	IsFolderNameChoosed() const { return m_Choice == 0; };
-	BOOL	IsDirectoryChoosed() const { return m_Choice == 1; };
-	BOOL	IsFilenameChoosed() const { return m_Choice == 2; };
-	BOOL	IsReWriteChoosed() const { return m_Choice == 3; };
+    // Get information, if successful
+    CString    GetFilename() const { return m_CompleteFilename; };
+    CString    GetFileDirectory() const { return m_FileDirectory; };
+    CString    GetFolderName() const { return m_Folder; };
+    BOOL    IsFolderNameChoosed() const { return m_Choice == 0; };
+    BOOL    IsDirectoryChoosed() const { return m_Choice == 1; };
+    BOOL    IsFilenameChoosed() const { return m_Choice == 2; };
+    BOOL    IsReWriteChoosed() const { return m_Choice == 3; };
 
 
 private:
 // Dialog Data
-	//{{AFX_DATA(ZICreateFolderWizardExist)
-	enum { IDD = IDD_WZCREATEFOLDERFILE_EXIST };
-	ZCSearchEdit	m_Filename;
-	ZCSearchEdit	m_Directory;
-	int		m_Choice;
-	CString	m_Folder;
-	//}}AFX_DATA
-	CString m_FileDirectory;
-	CString m_CompleteFilename;
-	CString m_InitialFilename;
+    //{{AFX_DATA(ZICreateFolderWizardExist)
+    enum { IDD = IDD_WZCREATEFOLDERFILE_EXIST };
+    ZCSearchEdit    m_Filename;
+    ZCSearchEdit    m_Directory;
+    int        m_Choice;
+    CString    m_Folder;
+    //}}AFX_DATA
+    CString m_FileDirectory;
+    CString m_CompleteFilename;
+    CString m_InitialFilename;
 
-	FldExistInitialChoice m_InitialChoice;
+    FldExistInitialChoice m_InitialChoice;
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZICreateFolderWizardExist)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZICreateFolderWizardExist)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 private:
-	void CheckControlStates();
+    void CheckControlStates();
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZICreateFolderWizardExist)
-	virtual void OnOK();
-	afx_msg void OnFolderChoice();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZICreateFolderWizardExist)
+    virtual void OnOK();
+    afx_msg void OnFolderChoice();
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

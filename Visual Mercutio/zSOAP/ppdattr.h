@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Gaya
-// <nl>Created:		 03/2002
+// <nl>Created:         03/2002
 // <nl>Description:  XXXClass frame window support
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -46,24 +46,24 @@ class AFX_EXT_CLASS ppdattr
 {
 public:
 
-	ppdattr()
-	{
-	}
+    ppdattr()
+    {
+    }
 
-	ppdattr( int pdattribid, int prow, int attribdefid, String16 mvalue, int staticyn )
-	{
-		this->pdattribid	= pdattribid;
-		this->prow			= prow;
-		this->attribdefid	= attribdefid;
-		this->mvalue		= convertTo( mvalue );
-		this->staticyn		= staticyn;
-	}
+    ppdattr( int pdattribid, int prow, int attribdefid, String16 mvalue, int staticyn )
+    {
+        this->pdattribid    = pdattribid;
+        this->prow            = prow;
+        this->attribdefid    = attribdefid;
+        this->mvalue        = convertTo( mvalue );
+        this->staticyn        = staticyn;
+    }
 
-	int		pdattribid;
-	int		prow;
-	int		attribdefid;
-	string	mvalue;
-	int		staticyn;
+    int        pdattribid;
+    int        prow;
+    int        attribdefid;
+    string    mvalue;
+    int        staticyn;
 };
 
 #endif

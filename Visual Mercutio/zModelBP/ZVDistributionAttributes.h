@@ -43,45 +43,45 @@ class _ZVFlatToolBarDistributionAttribs : public CStatic, public ZISubject
 {
 // Construction
 public:
-	_ZVFlatToolBarDistributionAttribs();
+    _ZVFlatToolBarDistributionAttribs();
 
 // Attributes
 private:
-	CCJFlatButton	m_RefreshButton;
-	CCJFlatButton	m_AddDistributionAttribButton;
-	CCJFlatButton	m_DeleteDistributionAttribButton;
-	CCJFlatButton	m_ModifyDistributionAttribButton;
+    CCJFlatButton    m_RefreshButton;
+    CCJFlatButton    m_AddDistributionAttribButton;
+    CCJFlatButton    m_DeleteDistributionAttribButton;
+    CCJFlatButton    m_ModifyDistributionAttribButton;
 
-	CImageList		m_ImageList;
-	CToolTipCtrl	m_tooltip;
+    CImageList        m_ImageList;
+    CToolTipCtrl    m_tooltip;
 
 // Operations
 public:
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(_ZVFlatToolBarDistributionAttribs)
-	public:
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	protected:
-	virtual void PreSubclassWindow();
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(_ZVFlatToolBarDistributionAttribs)
+    public:
+    virtual BOOL PreTranslateMessage(MSG* pMsg);
+    protected:
+    virtual void PreSubclassWindow();
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
-	virtual ~_ZVFlatToolBarDistributionAttribs();
+    virtual ~_ZVFlatToolBarDistributionAttribs();
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(_ZVFlatToolBarDistributionAttribs)
-	afx_msg void OnRefreshButton();
-	afx_msg void OnAddDistributionAttribButton();
-	afx_msg void OnDeleteDistributionAttribButton();
-	afx_msg void OnModifyDistributionAttribButton();
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	//}}AFX_MSG
+    //{{AFX_MSG(_ZVFlatToolBarDistributionAttribs)
+    afx_msg void OnRefreshButton();
+    afx_msg void OnAddDistributionAttribButton();
+    afx_msg void OnDeleteDistributionAttribButton();
+    afx_msg void OnModifyDistributionAttribButton();
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    //}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -94,72 +94,72 @@ class AFX_EXT_CLASS ZVDistributionAttributes : public CWnd, public ZISubject, pu
 {
 
 public:
-	DECLARE_DYNCREATE(ZVDistributionAttributes)
-	ZVDistributionAttributes();           // protected constructor used by dynamic creation
-	virtual ~ZVDistributionAttributes();
+    DECLARE_DYNCREATE(ZVDistributionAttributes)
+    ZVDistributionAttributes();           // protected constructor used by dynamic creation
+    virtual ~ZVDistributionAttributes();
 
-	// Observer call back
-	virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    // Observer call back
+    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
 
-	// Operations
-	void Initialize(ZBDistributionAttributeManager* pDistributionManager, 
-					ZBDynamicPropertiesManager* pPropManager, 
-					ZBUserGroupEntity* pMainUserGroup,
-					ZBDistributionAttribute* pDistributionAttribute = NULL,
-					bool ShowAll = false, int SymbolRef = -1)
-	{
-		m_listctrl.Initialize(pDistributionManager, pPropManager, 
-							  pMainUserGroup, pDistributionAttribute,
-							  ShowAll, SymbolRef);
-	};
-	void ShowAll( bool value = true, bool bRefresh = true )
-	{
-		m_listctrl.ShowAll( value, bRefresh );
-	};
-	void SetSymbolRef( int value, bool bRefresh = true )
-	{
-		m_listctrl.SetSymbolRef( value, bRefresh );
-	};
+    // Operations
+    void Initialize(ZBDistributionAttributeManager* pDistributionManager, 
+                    ZBDynamicPropertiesManager* pPropManager, 
+                    ZBUserGroupEntity* pMainUserGroup,
+                    ZBDistributionAttribute* pDistributionAttribute = NULL,
+                    bool ShowAll = false, int SymbolRef = -1)
+    {
+        m_listctrl.Initialize(pDistributionManager, pPropManager, 
+                              pMainUserGroup, pDistributionAttribute,
+                              ShowAll, SymbolRef);
+    };
+    void ShowAll( bool value = true, bool bRefresh = true )
+    {
+        m_listctrl.ShowAll( value, bRefresh );
+    };
+    void SetSymbolRef( int value, bool bRefresh = true )
+    {
+        m_listctrl.SetSymbolRef( value, bRefresh );
+    };
 
-	void Refresh();
-	void Empty();
+    void Refresh();
+    void Empty();
 
-	ZBDistributionAttribute* GetSelectedDistributionAttribute()
-	{
-		return m_listctrl.GetSelectedDistributionAttribute();
-	};
-	ZBDistributionRulesForRole*	GetSelectedDistributionRuleForRole()
-	{
-		return m_listctrl.GetSelectedDistributionRuleForRole();
-	};
-	ZBDistributionRule*	GetSelectedDistributionRule()
-	{
-		return m_listctrl.GetSelectedDistributionRule();
-	};
+    ZBDistributionAttribute* GetSelectedDistributionAttribute()
+    {
+        return m_listctrl.GetSelectedDistributionAttribute();
+    };
+    ZBDistributionRulesForRole*    GetSelectedDistributionRuleForRole()
+    {
+        return m_listctrl.GetSelectedDistributionRuleForRole();
+    };
+    ZBDistributionRule*    GetSelectedDistributionRule()
+    {
+        return m_listctrl.GetSelectedDistributionRule();
+    };
 
 
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZVDistributionAttributes)
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg void OnSize(UINT nType, int cx, int cy);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZVDistributionAttributes)
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    afx_msg void OnSize(UINT nType, int cx, int cy);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
-	void OnAddDistributionAttrib();
-	void OnDeleteDistributionAttrib();
-	void OnModifyDistributionAttrib();
-	void OnRefresh();
+    void OnAddDistributionAttrib();
+    void OnDeleteDistributionAttrib();
+    void OnModifyDistributionAttrib();
+    void OnRefresh();
 
-	CString GetAndCheckUnitGUID() const;
+    CString GetAndCheckUnitGUID() const;
 
 
 private:
-	_ZVFlatToolBarDistributionAttribs	m_FlatToolBar;
-	ZCDistributionAttributesList		m_listctrl;
-	ZDProcessGraphModelDoc*				m_pCurrentDoc;
-	CODComponent*						m_pSymbol;
+    _ZVFlatToolBarDistributionAttribs    m_FlatToolBar;
+    ZCDistributionAttributesList        m_listctrl;
+    ZDProcessGraphModelDoc*                m_pCurrentDoc;
+    CODComponent*                        m_pSymbol;
 
 };
 

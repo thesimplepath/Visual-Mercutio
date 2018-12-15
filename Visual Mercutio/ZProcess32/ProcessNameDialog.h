@@ -16,33 +16,33 @@ class ZIProcessNameDialog : public CDialog
 {
 // Construction
 public:
-	ZIProcessNameDialog(CWnd* pParent = NULL);   // standard constructor
+    ZIProcessNameDialog(CWnd* pParent = NULL);   // standard constructor
 
-	const CString	ProcessName() const { return m_ProcessName; };
+    const CString    ProcessName() const { return m_ProcessName; };
 
 private:
 // Dialog Data
-	//{{AFX_DATA(ZIProcessNameDialog)
-	enum { IDD = IDD_PROCESSNAME };
-	CString	m_ProcessName;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZIProcessNameDialog)
+    enum { IDD = IDD_PROCESSNAME };
+    CString    m_ProcessName;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIProcessNameDialog)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIProcessNameDialog)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZIProcessNameDialog)
-	virtual void OnOK();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZIProcessNameDialog)
+    virtual void OnOK();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

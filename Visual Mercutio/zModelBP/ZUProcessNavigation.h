@@ -13,9 +13,9 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 06/2001
+// <nl>Created:         06/2001
 // <nl>Description:  ZUProcessNavigation offers the possibility to navigate
-//					 through process symbols
+//                     through process symbols
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -66,99 +66,99 @@ class AFX_EXT_CLASS ZUProcessNavigation : public ZIBasicSymbolVisitor
 {
 public:
 
-	ZUProcessNavigation( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
-	virtual ~ZUProcessNavigation();
+    ZUProcessNavigation( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
+    virtual ~ZUProcessNavigation();
 
-	bool Navigate( ZDProcessGraphModelMdl* pModel, void* pClass );
-	bool Navigate( ZDProcessGraphModelMdl* pModel );
-	bool Navigate();
+    bool Navigate( ZDProcessGraphModelMdl* pModel, void* pClass );
+    bool Navigate( ZDProcessGraphModelMdl* pModel );
+    bool Navigate();
 
-	// Call-back methods
-	virtual bool OnStart()
-	{
-		return true;
-	};
+    // Call-back methods
+    virtual bool OnStart()
+    {
+        return true;
+    };
 
-	virtual bool OnFinish()
-	{
-		return true;
-	};
+    virtual bool OnFinish()
+    {
+        return true;
+    };
 
-	virtual bool OnDoorSymbol( ZBBPDoorSymbol* pSymbol )
-	{
-		return true;
-	};
+    virtual bool OnDoorSymbol( ZBBPDoorSymbol* pSymbol )
+    {
+        return true;
+    };
 
-	virtual bool OnPageSymbol( ZBBPPageSymbol* pSymbol )
-	{
-		return true;
-	};
+    virtual bool OnPageSymbol( ZBBPPageSymbol* pSymbol )
+    {
+        return true;
+    };
 
-	virtual bool OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
-	{
-		return true;
-	};
+    virtual bool OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
+    {
+        return true;
+    };
 
-	virtual bool OnProcessSymbol( ZBBPProcessSymbol* pSymbol )
-	{
-		return true;
-	};
+    virtual bool OnProcessSymbol( ZBBPProcessSymbol* pSymbol )
+    {
+        return true;
+    };
 
-	virtual bool OnStartSymbol( ZBBPStartSymbol* pSymbol )
-	{
-		return true;
-	};
+    virtual bool OnStartSymbol( ZBBPStartSymbol* pSymbol )
+    {
+        return true;
+    };
 
-	virtual bool OnStopSymbol( ZBBPStopSymbol* pSymbol )
-	{
-		return true;
-	};
+    virtual bool OnStopSymbol( ZBBPStopSymbol* pSymbol )
+    {
+        return true;
+    };
 
-	virtual bool OnDeliverableLinkSymbol( ZBDeliverableLinkSymbol* pSymbol )
-	{
-		return true;
-	};
+    virtual bool OnDeliverableLinkSymbol( ZBDeliverableLinkSymbol* pSymbol )
+    {
+        return true;
+    };
 
-	virtual bool OnSymbol( ZBSymbol* pSymbol )
-	{
-		return true;
-	};
+    virtual bool OnSymbol( ZBSymbol* pSymbol )
+    {
+        return true;
+    };
 
-	virtual bool OnLink( ZBLinkSymbol* pLink )
-	{
-		return true;
-	};
+    virtual bool OnLink( ZBLinkSymbol* pLink )
+    {
+        return true;
+    };
 
-	void SetLog( ZILog* pLog )
-	{
-		m_pLog = pLog;
-	};
+    void SetLog( ZILog* pLog )
+    {
+        m_pLog = pLog;
+    };
 
-	/* Each concrete derived ZIBasicSymbolVisitor class
-	   must implement Visit to implement the appropriate 
-	   algorithm 
-	   In this concrete class the Visit will On the
-	   BasicSymbol passes as an argument */
-	virtual bool Visit( CODComponent& Symbol );
+    /* Each concrete derived ZIBasicSymbolVisitor class
+       must implement Visit to implement the appropriate 
+       algorithm 
+       In this concrete class the Visit will On the
+       BasicSymbol passes as an argument */
+    virtual bool Visit( CODComponent& Symbol );
 
-	size_t GetErrorCounter() const
-	{
-		return m_ErrorCounter;
-	};
+    size_t GetErrorCounter() const
+    {
+        return m_ErrorCounter;
+    };
 
-	size_t GetWarningCounter() const
-	{
-		return m_WarningCounter;
-	};
+    size_t GetWarningCounter() const
+    {
+        return m_WarningCounter;
+    };
 
 protected:
 
-	ZDProcessGraphModelMdl*	m_pModel;
-	void*					m_pClass;
-	ZILog*					m_pLog;
+    ZDProcessGraphModelMdl*    m_pModel;
+    void*                    m_pClass;
+    ZILog*                    m_pLog;
 
-	size_t					m_ErrorCounter;
-	size_t					m_WarningCounter;
+    size_t                    m_ErrorCounter;
+    size_t                    m_WarningCounter;
 };
 
 #endif // !defined(AFX_ZUProcessNavigation_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)

@@ -1,10 +1,10 @@
 //## begin module%36725CAD008A.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%36725CAD008A.cm
 
 //## begin module%36725CAD008A.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%36725CAD008A.cp
 
 //## Module: ZUser%36725CAD008A; Package specification
@@ -47,7 +47,7 @@
 
 
 //## Class: ZUser%36725BAA0204
-//	Defines a user.
+//    Defines a user.
 //## Category: ZUtil library::Network classes%366D71CA007D
 //## Subsystem: ZUtil%366D71940075
 //## Persistence: Transient
@@ -56,7 +56,7 @@
 class AFX_EXT_CLASS ZUser : public CObject
 {
   //## begin ZUser%36725BAA0204.initialDeclarations preserve=yes
-	DECLARE_DYNCREATE(ZUser)
+    DECLARE_DYNCREATE(ZUser)
   //## end ZUser%36725BAA0204.initialDeclarations
 
   public:
@@ -65,7 +65,7 @@ class AFX_EXT_CLASS ZUser : public CObject
 
     //## Constructors (specified)
       //## Operation: ZUser%913459631
-      //	Build a user
+      //    Build a user
       ZUser (CString UserName = "", CString MailAddress = "", CString Description = "", CString Responsible = "", CString Departement = "", BOOL IsAdministrator = FALSE, CString DisplayName = "");
 
     //## Destructor (generated)
@@ -77,66 +77,66 @@ class AFX_EXT_CLASS ZUser : public CObject
 
     //## Other Operations (specified)
       //## Operation: operator==%936516041
-      //	compare to a CString
+      //    compare to a CString
       BOOL operator == (const ZUser& User);
 
       //## Operation: operator==%936516039
-      //	compare to a CString
+      //    compare to a CString
       BOOL operator == (const CString str);
 
       //## Operation: operator==%936516040
-      //	compare to a const char*
+      //    compare to a const char*
       BOOL operator == (LPCTSTR lpsz);
 
       //## Operation: Clone%913459632
-      //	Clone a user.
+      //    Clone a user.
       ZUser* Clone ();
 
       //## Operation: operator >>%913659096
-      //	Store from the archive to the object Stamp.
+      //    Store from the archive to the object Stamp.
       AFX_EXT_API friend CArchive& operator >> (CArchive& ar, ZUser& User);
 
       //## Operation: operator <<%913659097
-      //	Store the object Stamp to the archive.
+      //    Store the object Stamp to the archive.
       AFX_EXT_API friend CArchive& operator << (CArchive& ar, ZUser& User);
 
       //## Operation: IsAdministrator%933697289
-      //	Return TRUE if the user has administrator rights.
+      //    Return TRUE if the user has administrator rights.
       BOOL IsAdministrator () const;
 
       //## Operation: SetAdministrator%933697290
-      //	Set administrator. Default value is true.
+      //    Set administrator. Default value is true.
       void SetAdministrator (BOOL value = TRUE);
 
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: UserName%36725BCB00CB
-      //	The username.
+      //    The username.
       const CString GetUserName () const;
       void SetUserName (CString value);
 
       //## Attribute: MailAddress%36725BED01BA
-      //	Defines the Mail Address
+      //    Defines the Mail Address
       const CString GetMailAddress () const;
       void SetMailAddress (CString value);
 
       //## Attribute: Description%3675550500FF
-      //	The user description.
+      //    The user description.
       const CString GetDescription () const;
       void SetDescription (CString value);
 
       //## Attribute: Responsible%368CD1DE01AE
-      //	Contains the reponsible person name.
+      //    Contains the reponsible person name.
       const CString& GetResponsible () const;
       void SetResponsible (const CString& value);
 
       //## Attribute: Departement%37A7168902AE
-      //	Contains the departement name.
+      //    Contains the departement name.
       const CString GetDepartement () const;
       void SetDepartement (CString value);
 
       //## Attribute: DisplayName%382A8D31015B
-      //	The display name.
+      //    The display name.
       const CString GetDisplayName () const;
       void SetDisplayName (CString value);
 
@@ -169,7 +169,7 @@ class AFX_EXT_CLASS ZUser : public CObject
       //## end ZUser::Departement%37A7168902AE.attr
 
       //## Attribute: IsAdministrator%37A7169E01FA
-      //	Defines if the user has administrator rights.
+      //    Defines if the user has administrator rights.
       //## begin ZUser::IsAdministrator%37A7169E01FA.attr preserve=no  public: BOOL {U} 
       BOOL m_IsAdministrator;
       //## end ZUser::IsAdministrator%37A7169E01FA.attr
@@ -205,14 +205,14 @@ class AFX_EXT_CLASS ZUser : public CObject
 inline BOOL ZUser::IsAdministrator () const
 {
   //## begin ZUser::IsAdministrator%933697289.body preserve=yes
-	return m_IsAdministrator;
+    return m_IsAdministrator;
   //## end ZUser::IsAdministrator%933697289.body
 }
 
 inline void ZUser::SetAdministrator (BOOL value)
 {
   //## begin ZUser::SetAdministrator%933697290.body preserve=yes
-	m_IsAdministrator = value;
+    m_IsAdministrator = value;
   //## end ZUser::SetAdministrator%933697290.body
 }
 

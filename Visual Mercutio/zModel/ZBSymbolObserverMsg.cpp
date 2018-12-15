@@ -18,18 +18,18 @@ IMPLEMENT_DYNAMIC( ZBSymbolObserverMsg, ZIObserverMsg )
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBSymbolObserverMsg::ZBSymbolObserverMsg( MessageActionType	ActionType	/*= NoAction*/,
-										  CODComponent*		pElement	/*= NULL*/)
-	: m_pElement	( pElement ),
-	  m_ActionType	( ActionType ),
-	  m_SymbolRef	( -1 )
+ZBSymbolObserverMsg::ZBSymbolObserverMsg( MessageActionType    ActionType    /*= NoAction*/,
+                                          CODComponent*        pElement    /*= NULL*/)
+    : m_pElement    ( pElement ),
+      m_ActionType    ( ActionType ),
+      m_SymbolRef    ( -1 )
 {
 }
 
 ZBSymbolObserverMsg::ZBSymbolObserverMsg( int SymbolRef, MessageActionType ActionType /*= NoAction*/ )
-	: m_pElement	( NULL ),
-	  m_ActionType	( ActionType ),
-	  m_SymbolRef	( SymbolRef )
+    : m_pElement    ( NULL ),
+      m_ActionType    ( ActionType ),
+      m_SymbolRef    ( SymbolRef )
 {
 }
 

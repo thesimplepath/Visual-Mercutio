@@ -22,14 +22,14 @@ IMPLEMENT_SERIAL( ZBSystemEntity, CObject, def_Version )
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBSystemEntity::ZBSystemEntity( const CString	Name		/*= _T( "" )*/, 
-								const CString	Description	/*= _T( "" )*/, 
-								ZBSystemEntity*	pParent		/*= NULL*/ )
-	: m_EntityName			( Name ),
-	  m_EntityDescription	( Description ),
-	  m_pParent				( pParent )
+ZBSystemEntity::ZBSystemEntity( const CString    Name        /*= _T( "" )*/, 
+                                const CString    Description    /*= _T( "" )*/, 
+                                ZBSystemEntity*    pParent        /*= NULL*/ )
+    : m_EntityName            ( Name ),
+      m_EntityDescription    ( Description ),
+      m_pParent                ( pParent )
 {
-	CreateGUID();
+    CreateGUID();
 }
 
 ZBSystemEntity::~ZBSystemEntity()
@@ -38,7 +38,7 @@ ZBSystemEntity::~ZBSystemEntity()
 
 void ZBSystemEntity::CreateGUID()
 {
-	m_GUID = ZUGUID::CreateNewGUID();
+    m_GUID = ZUGUID::CreateNewGUID();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -46,12 +46,12 @@ void ZBSystemEntity::CreateGUID()
 #ifdef _DEBUG
 void ZBSystemEntity::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void ZBSystemEntity::Dump( CDumpContext& dc ) const
 {
-	CObject::Dump( dc );
+    CObject::Dump( dc );
 }
 #endif //_DEBUG
 
@@ -60,20 +60,20 @@ void ZBSystemEntity::Dump( CDumpContext& dc ) const
 
 void ZBSystemEntity::Serialize ( CArchive& ar )
 {
-	if ( ar.IsStoring() )
-	{
-		// Write the elements
-		ar << m_GUID;
-		ar << m_EntityName;
-		ar << m_EntityDescription;
-	}
-	else
-	{
-		// Read the elements
-		// JMR-MODIF - Le 2 septembre 2005 - La variable locale s ne semble pas être utilisée.
-//		CString s;
-		ar >> m_GUID;
-		ar >> m_EntityName;
-		ar >> m_EntityDescription;
-	}
+    if ( ar.IsStoring() )
+    {
+        // Write the elements
+        ar << m_GUID;
+        ar << m_EntityName;
+        ar << m_EntityDescription;
+    }
+    else
+    {
+        // Read the elements
+        // JMR-MODIF - Le 2 septembre 2005 - La variable locale s ne semble pas être utilisée.
+//        CString s;
+        ar >> m_GUID;
+        ar >> m_EntityName;
+        ar >> m_EntityDescription;
+    }
 }

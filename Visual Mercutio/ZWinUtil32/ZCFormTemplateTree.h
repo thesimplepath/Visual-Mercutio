@@ -37,19 +37,19 @@ class AFX_EXT_CLASS ZCFormTemplateTree : public ZCTemplateTreeCtrl
 {
 public:
 
-	DECLARE_DYNCREATE( ZCFormTemplateTree )
+    DECLARE_DYNCREATE( ZCFormTemplateTree )
 
-	ZCFormTemplateTree();
-	virtual ~ZCFormTemplateTree();
+    ZCFormTemplateTree();
+    virtual ~ZCFormTemplateTree();
 
 // Operations
 public:
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCFormTemplateTree)
-	protected:
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCFormTemplateTree)
+    protected:
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
@@ -57,11 +57,11 @@ protected:
 // Generated message map functions
 protected:
 
-	//{{AFX_MSG(ZCFormTemplateTree)
-	afx_msg LRESULT OnReloadTemplateManager( WPARAM wParam, LPARAM lParam );
-	afx_msg LRESULT OnInitializeTemplateManager( WPARAM wParam, LPARAM lParam );
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZCFormTemplateTree)
+    afx_msg LRESULT OnReloadTemplateManager( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnInitializeTemplateManager( WPARAM wParam, LPARAM lParam );
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

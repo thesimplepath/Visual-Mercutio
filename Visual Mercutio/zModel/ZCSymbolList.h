@@ -1,6 +1,6 @@
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
-//	Source file: ZCSymbolList.h
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
+//    Source file: ZCSymbolList.h
 
 #ifndef ZCSymbolList_h
 #define ZCSymbolList_h 1
@@ -35,38 +35,38 @@
 class AFX_EXT_CLASS ZCSymbolList : public ZIListCtrl  
 {
 
-	DECLARE_DYNAMIC(ZCSymbolList)
+    DECLARE_DYNAMIC(ZCSymbolList)
 
   public:
       ZCSymbolList ();
       virtual ~ZCSymbolList();
 
-	  CODSymbolComponent*	GetSelectedSymbol();
+      CODSymbolComponent*    GetSelectedSymbol();
 
 
-      int	Initialize (CODComponentSet* pSet, UINT nIDRes);
-      int	Refresh ();
+      int    Initialize (CODComponentSet* pSet, UINT nIDRes);
+      int    Refresh ();
 
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCSymbolList)
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCSymbolList)
+    //}}AFX_VIRTUAL
   protected:
-	//{{AFX_MSG(ZCSymbolList)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZCSymbolList)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
   private:
     ZCSymbolList(const ZCSymbolList &right);
-    const	ZCSymbolList & operator=(const ZCSymbolList &right);
+    const    ZCSymbolList & operator=(const ZCSymbolList &right);
 
-	void	BuildColumns(UINT nIDRes);
-	int		GetItemIndex( CODSymbolComponent* pSymbol );
+    void    BuildColumns(UINT nIDRes);
+    int        GetItemIndex( CODSymbolComponent* pSymbol );
 
   private: //## implementation
-		CODComponentSet*	m_pSet;
-		BOOL				m_ColumnsBuilt;
+        CODComponentSet*    m_pSet;
+        BOOL                m_ColumnsBuilt;
 };
 
 //#undef  AFX_DATA
 //#define AFX_DATA
 
-#endif	  // ZCSymbolList_h
+#endif      // ZCSymbolList_h

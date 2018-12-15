@@ -20,8 +20,8 @@ IMPLEMENT_SERIAL( ZBWorkspaceEntity, CObject, def_Version )
 //////////////////////////////////////////////////////////////////////
 
 ZBWorkspaceEntity::ZBWorkspaceEntity( const CString Name /*= ""*/, ZBWorkspaceEntity* pParent /*= NULL*/ )
-	: m_EntityName	( Name ),
-	  m_pParent		( pParent )
+    : m_EntityName    ( Name ),
+      m_pParent        ( pParent )
 {
 }
 
@@ -34,12 +34,12 @@ ZBWorkspaceEntity::~ZBWorkspaceEntity()
 #ifdef _DEBUG
 void ZBWorkspaceEntity::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void ZBWorkspaceEntity::Dump( CDumpContext& dc ) const
 {
-	CObject::Dump( dc );
+    CObject::Dump( dc );
 }
 #endif //_DEBUG
 
@@ -48,16 +48,16 @@ void ZBWorkspaceEntity::Dump( CDumpContext& dc ) const
 
 void ZBWorkspaceEntity::Serialize ( CArchive& ar )
 {
-	if ( ar.IsStoring() )
-	{
-		// Write the elements
-		ar << m_EntityName;
-		ar << m_EntityDescription;
-	}
-	else
-	{
-		// Read the elements
-		ar >> m_EntityName;
-		ar >> m_EntityDescription;
-	}
+    if ( ar.IsStoring() )
+    {
+        // Write the elements
+        ar << m_EntityName;
+        ar << m_EntityDescription;
+    }
+    else
+    {
+        // Read the elements
+        ar >> m_EntityName;
+        ar >> m_EntityDescription;
+    }
 }

@@ -38,46 +38,46 @@ class AFX_EXT_CLASS ZIWelcomeDialog : public ZIDialog
 // Construction
 public:
 
-	// standard constructor
-	ZIWelcomeDialog( UINT					nID,
-					 UINT					nIDBitmap,
-					 ZAApplicationOption*	pApplicationOptions,
-					 BOOL					EnableMoveToGeneral	= FALSE,
-					 CWnd*					pParent				= NULL );
+    // standard constructor
+    ZIWelcomeDialog( UINT                    nID,
+                     UINT                    nIDBitmap,
+                     ZAApplicationOption*    pApplicationOptions,
+                     BOOL                    EnableMoveToGeneral    = FALSE,
+                     CWnd*                    pParent                = NULL );
 
-	// Dialog Data
-	//{{AFX_DATA(ZIWelcomeDialog)
-	enum { IDD = IDD_WELCOME };
-	CHyperLink		m_HyperLink;
-	ZUHoverButton	m_LastFile;
-	ZUHoverButton	m_Cancel;
-	BOOL	m_DoNotStart;
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZIWelcomeDialog)
+    enum { IDD = IDD_WELCOME };
+    CHyperLink        m_HyperLink;
+    ZUHoverButton    m_LastFile;
+    ZUHoverButton    m_Cancel;
+    BOOL    m_DoNotStart;
+    //}}AFX_DATA
 
 // Implementation
 protected:
 
-	virtual void DoDataExchange( CDataExchange* pDX );	// DDX/DDV support
-	virtual void OnCancel();
+    virtual void DoDataExchange( CDataExchange* pDX );    // DDX/DDV support
+    virtual void OnCancel();
 
-	// Generated message map functions
-	//{{AFX_MSG(ZIWelcomeDialog)
-	afx_msg void OnWelcomeLastFile();
-	afx_msg void OnPaint();
-	virtual BOOL OnInitDialog();
-	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZIWelcomeDialog)
+    afx_msg void OnWelcomeLastFile();
+    afx_msg void OnPaint();
+    virtual BOOL OnInitDialog();
+    afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	BOOL					m_EnableMoveToGeneral;
-	ZAApplicationOption* 	m_pApplicationOptions;
-	UINT m_nIDBitmap;
+    BOOL                    m_EnableMoveToGeneral;
+    ZAApplicationOption*     m_pApplicationOptions;
+    UINT m_nIDBitmap;
 
 protected:
 
-	void	SaveState();
+    void    SaveState();
 };
 
 #endif

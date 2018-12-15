@@ -1,10 +1,10 @@
 //## begin module%366D7F640200.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%366D7F640200.cm
 
 //## begin module%366D7F640200.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%366D7F640200.cp
 
 //## Module: ZUMail%366D7F640200; Package specification
@@ -28,12 +28,12 @@
 
 
 #ifndef _WIN32
-	#ifndef Mapi_h
-		#define Mapi_h 1
-		#include <mapi.h>
-	#endif
+    #ifndef Mapi_h
+        #define Mapi_h 1
+        #include <mapi.h>
+    #endif
 #else
-	#include <mapi.h>
+    #include <mapi.h>
 #endif
 
 
@@ -72,17 +72,17 @@ typedef ULONG (FAR PASCAL *LPMAPIDELETEMAIL)(LHANDLE lhSession, ULONG ulUIParam,
 typedef ULONG (FAR PASCAL *LPMAPIFREEBUFFER)(LPVOID pv);
 
 typedef ULONG (FAR PASCAL *LPMAPIADDRESS)(LHANDLE lhSession, ULONG ulUIParam,
-					LPSTR plszCaption, ULONG nEditFields,
-					LPSTR lpszLabels, ULONG nRecips,
-					lpMapiRecipDesc lpRecips, FLAGS flFlags, ULONG ulReserved, 
-					LPULONG lpnNewRecips, lpMapiRecipDesc FAR *lppNewRecips);
+                    LPSTR plszCaption, ULONG nEditFields,
+                    LPSTR lpszLabels, ULONG nRecips,
+                    lpMapiRecipDesc lpRecips, FLAGS flFlags, ULONG ulReserved, 
+                    LPULONG lpnNewRecips, lpMapiRecipDesc FAR *lppNewRecips);
 
 typedef ULONG (FAR PASCAL *LPMAPIDETAILS)(LHANDLE lhSession, ULONG ulUIParam,
-					lpMapiRecipDesc lpRecip, FLAGS flFlags, ULONG ulReserved);
+                    lpMapiRecipDesc lpRecip, FLAGS flFlags, ULONG ulReserved);
 
 typedef ULONG (FAR PASCAL *LPMAPIRESOLVENAME)(LHANDLE lhSession, ULONG ulUIParam,
-						LPSTR lpszName, FLAGS flFlags,
-						ULONG ulReserved, lpMapiRecipDesc FAR *lppRecip);
+                        LPSTR lpszName, FLAGS flFlags,
+                        ULONG ulReserved, lpMapiRecipDesc FAR *lppRecip);
 
 /*
 extern LPMAPILOGON lpfnMAPILogon; 
@@ -155,7 +155,7 @@ extern LPMAPIRESOLVENAME lpfnMAPIResolveName;
 //## end ZUMail%366D7F74031C.preface
 
 //## Class: ZUMail%366D7F74031C
-//	This utility class allows the user  to send an email.
+//    This utility class allows the user  to send an email.
 //## Category: PlanFin::Email classes%36722AB50003
 //## Subsystem: ZUtil%366D71940075
 //## Persistence: Transient
@@ -186,15 +186,15 @@ class AFX_EXT_CLASS ZUMail
       BOOL SendMail (ZBMailMessage& MailMessage);
 
       //## Operation: SendDocument%913223369
-      //	Sends a CDocument.
+      //    Sends a CDocument.
       BOOL SendDocument (CDocument& Doc, CString Subject = "", CString MessageHeader = "", CString MessageFooter = "", ZUMailUserList* PersonList = NULL);
 
       //## Operation: SendDocuments%913223376
-      //	Sends documents.
+      //    Sends documents.
       BOOL SendDocuments (ZUMailFileDescription& FileList, CString Subject = "", CString MessageHeader = "", CString MessageFooter = "", ZUMailUserList* PersonList = NULL);
 
       //## Operation: SendDocuments%913223377
-      //	Sends documents.
+      //    Sends documents.
       BOOL SendDocuments (CStringArray& FileList, CString Subject = "", CString MessageHeader = "", CString MessageFooter = "", ZUMailUserList* PersonList = NULL);
 
       //## Operation: ResolveName%921575858
@@ -222,7 +222,7 @@ class AFX_EXT_CLASS ZUMail
     // Data Members for Class Attributes
 
       //## Attribute: InstMail%366EAE9F0013
-      //	The mail library instance.
+      //    The mail library instance.
       //## begin ZUMail::InstMail%366EAE9F0013.attr preserve=no  public: static HINSTANCE {V} NULL
       static HINSTANCE m_InstMail;
       //## end ZUMail::InstMail%366EAE9F0013.attr

@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Gaya
-// <nl>Created:		 03/2002
+// <nl>Created:         03/2002
 // <nl>Description:  XXXClass frame window support
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -46,43 +46,43 @@ class AFX_EXT_CLASS pproc
 {
 public:
 
-	pproc()
-	{
-	}
+    pproc()
+    {
+    }
 
-	// JMR-MODIF - Le 23 mai 2006 - Ajout du paramètre procidprocessus.
-	pproc( int procid, String16 wkgid, int proctype, int doublesign, int procidprocessus )
-	{
-		this->procid			= procid;
-		this->wkgid				= convertTo( wkgid );
-		this->proctype			= proctype;
-		this->doublesign		= doublesign;
-		this->procidprocessus	= procidprocessus;
-	}
+    // JMR-MODIF - Le 23 mai 2006 - Ajout du paramètre procidprocessus.
+    pproc( int procid, String16 wkgid, int proctype, int doublesign, int procidprocessus )
+    {
+        this->procid            = procid;
+        this->wkgid                = convertTo( wkgid );
+        this->proctype            = proctype;
+        this->doublesign        = doublesign;
+        this->procidprocessus    = procidprocessus;
+    }
 
-	int		procid;
-	string	wkgid;
-	
-	/*
-	 * 0=start
-	 * 1=stop
-	 * 2=normal
-	*/
-	int proctype;
+    int        procid;
+    string    wkgid;
+    
+    /*
+     * 0=start
+     * 1=stop
+     * 2=normal
+    */
+    int proctype;
 
-	/*
-	 * 0=no
-	 * 1=yes, by any employee of this group
-	 * 2=yes, by chief of this group
-	*/
-	int doublesign;
+    /*
+     * 0=no
+     * 1=yes, by any employee of this group
+     * 2=yes, by chief of this group
+    */
+    int doublesign;
 
-	// JMR-MODIF - Le 23 mai 2006 - Ajout de la variable procidprocessus.
-	/*
-	 * 0 = processus
-	 * x = all others parent processus
-	*/
-	int procidprocessus;
+    // JMR-MODIF - Le 23 mai 2006 - Ajout de la variable procidprocessus.
+    /*
+     * 0 = processus
+     * x = all others parent processus
+    */
+    int procidprocessus;
 };
 
 #endif

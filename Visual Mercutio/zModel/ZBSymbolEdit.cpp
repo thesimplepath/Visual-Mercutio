@@ -19,7 +19,7 @@ IMPLEMENT_SERIAL( ZBSymbolEdit, CODTextComponent, def_Version )
 //////////////////////////////////////////////////////////////////////
 
 ZBSymbolEdit::ZBSymbolEdit()
-	: m_AutoSizeProp( TRUE )
+    : m_AutoSizeProp( TRUE )
 {
 }
 
@@ -29,128 +29,128 @@ ZBSymbolEdit::~ZBSymbolEdit()
 
 BOOL ZBSymbolEdit::GetValue( const int nPropId, CString& strValue ) const
 {
-	return CODTextComponent::GetValue( nPropId, strValue );
+    return CODTextComponent::GetValue( nPropId, strValue );
 }
 
 BOOL ZBSymbolEdit::GetValue( const int nPropId, int& nValue ) const
 {
-	switch ( nPropId )
-	{
-		case OD_PROP_AUTOSIZE:
-		{
-			nValue = m_AutoSizeProp;
-		}
+    switch ( nPropId )
+    {
+        case OD_PROP_AUTOSIZE:
+        {
+            nValue = m_AutoSizeProp;
+        }
 
-		default:
-		{
-			return CODTextComponent::GetValue( nPropId, nValue );
-		}
-	}
+        default:
+        {
+            return CODTextComponent::GetValue( nPropId, nValue );
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBSymbolEdit::GetValue( const int nPropId, UINT& nValue ) const
 {
-	switch ( nPropId )
-	{
-		case OD_PROP_AUTOSIZE:
-		{
-			nValue = m_AutoSizeProp;
-		}
+    switch ( nPropId )
+    {
+        case OD_PROP_AUTOSIZE:
+        {
+            nValue = m_AutoSizeProp;
+        }
 
-		default:
-		{
-			return CODTextComponent::GetValue( nPropId, nValue );
-		}
-	}
+        default:
+        {
+            return CODTextComponent::GetValue( nPropId, nValue );
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBSymbolEdit::GetValue( const int nPropId, DWORD& dwValue ) const
 {
-	switch ( nPropId )
-	{
-		case OD_PROP_AUTOSIZE:
-		{
-			dwValue = m_AutoSizeProp;
-		}
+    switch ( nPropId )
+    {
+        case OD_PROP_AUTOSIZE:
+        {
+            dwValue = m_AutoSizeProp;
+        }
 
-		default:
-		{
-			return CODTextComponent::GetValue( nPropId, dwValue );
-		}
-	}
+        default:
+        {
+            return CODTextComponent::GetValue( nPropId, dwValue );
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBSymbolEdit::GetValue( const int nPropId, float& fValue ) const
 {
-	return CODTextComponent::GetValue( nPropId, fValue );
+    return CODTextComponent::GetValue( nPropId, fValue );
 }
 
 BOOL ZBSymbolEdit::SetValue( const int nPropId, LPCTSTR lpszValue )
 {
-	return CODTextComponent::SetValue( nPropId, lpszValue );
+    return CODTextComponent::SetValue( nPropId, lpszValue );
 }
 
 BOOL ZBSymbolEdit::SetValue( const int nPropId, const int nValue )
 {
-	switch ( nPropId )
-	{
-		case OD_PROP_AUTOSIZE:
-		{
-			m_AutoSizeProp = nValue;
-		}
+    switch ( nPropId )
+    {
+        case OD_PROP_AUTOSIZE:
+        {
+            m_AutoSizeProp = nValue;
+        }
 
-		default:
-		{
-			return CODTextComponent::SetValue( nPropId, nValue );
-		}
-	}
+        default:
+        {
+            return CODTextComponent::SetValue( nPropId, nValue );
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBSymbolEdit::SetValue( const int nPropId, const UINT nValue )
 {
-	switch ( nPropId )
-	{
-		case OD_PROP_AUTOSIZE:
-		{
-			m_AutoSizeProp = nValue;
-		}
+    switch ( nPropId )
+    {
+        case OD_PROP_AUTOSIZE:
+        {
+            m_AutoSizeProp = nValue;
+        }
 
-		default:
-		{
-			return CODTextComponent::SetValue( nPropId, nValue );
-		}
-	}
+        default:
+        {
+            return CODTextComponent::SetValue( nPropId, nValue );
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBSymbolEdit::SetValue( const int nPropId, const DWORD dwValue )
 {
-	switch ( nPropId )
-	{
-		case OD_PROP_AUTOSIZE:
-		{
-			m_AutoSizeProp = dwValue;
-		}
+    switch ( nPropId )
+    {
+        case OD_PROP_AUTOSIZE:
+        {
+            m_AutoSizeProp = dwValue;
+        }
 
-		default:
-		{
-			return CODTextComponent::SetValue( nPropId, dwValue );
-		}
-	}
+        default:
+        {
+            return CODTextComponent::SetValue( nPropId, dwValue );
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBSymbolEdit::SetValue( const int nPropId, const float fValue )
 {
-	return CODTextComponent::SetValue( nPropId, fValue );
+    return CODTextComponent::SetValue( nPropId, fValue );
 }

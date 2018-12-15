@@ -1,5 +1,5 @@
 //## begin module%36DEE3DE0256.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%36DEE3DE0256.cm
 
 //## begin module%36DEE3DE0256.cp preserve=no
@@ -28,8 +28,8 @@
 
 extern AFX_EXTENSION_MODULE ZBaseLibDLL;
 
-#define	ID_TIMERMESSAGE 16
-#define	NUMBER_OF_MESSAGE_ICON 16
+#define    ID_TIMERMESSAGE 16
+#define    NUMBER_OF_MESSAGE_ICON 16
 
 
 //## end module%36DEE3DE0256.includes
@@ -74,7 +74,7 @@ class AFX_EXT_CLASS ZIMessage : public ZIDialog  //## Inherits: <unnamed>%36DEE3
   public:
     //## Constructors (specified)
       //## Operation: ZIMessage%920577013
-      //	Constructs a Message Window.
+      //    Constructs a Message Window.
       ZIMessage (CWnd* pWnd = NULL);
 
     //## Destructor (generated)
@@ -83,11 +83,11 @@ class AFX_EXT_CLASS ZIMessage : public ZIDialog  //## Inherits: <unnamed>%36DEE3
 
     //## Other Operations (specified)
       //## Operation: DisplayMessage%920577014
-      //	Display the message
+      //    Display the message
       void DisplayMessage (const CString Text, CString Title = "", UINT IDBitmap = 0);
 
       //## Operation: DisplayMessage%920577015
-      //	Display the message
+      //    Display the message
       void DisplayMessage (UINT IDText, UINT IDTitle = 0, UINT IDBitmap = 0);
 
     // Additional Public Declarations
@@ -97,20 +97,20 @@ class AFX_EXT_CLASS ZIMessage : public ZIDialog  //## Inherits: <unnamed>%36DEE3
   protected:
     // Additional Protected Declarations
       //## begin ZIMessage%36DEE2420330.protected preserve=yes
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	// Generated message map functions
-	//{{AFX_MSG(ZIMessage)
-	virtual BOOL OnInitDialog();
-	afx_msg void OnTimer(UINT nIDEvent);
-	afx_msg void OnPaint();
-	afx_msg void OnCloseWindow();
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
-	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
-	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZIMessage)
+    virtual BOOL OnInitDialog();
+    afx_msg void OnTimer(UINT nIDEvent);
+    afx_msg void OnPaint();
+    afx_msg void OnCloseWindow();
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+    afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
+    afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
       //## end ZIMessage%36DEE2420330.protected
   private:
@@ -160,19 +160,19 @@ class AFX_EXT_CLASS ZIMessage : public ZIDialog  //## Inherits: <unnamed>%36DEE3
     // Additional Implementation Declarations
       //## begin ZIMessage%36DEE2420330.implementation preserve=yes
 
-	void CloseWindow();
-	  
-	// Dialog Data
-	//{{AFX_DATA(ZIMessage)
-	enum { IDD = IDD_MESSAGEDLG };
-	ZCFlatButton	m_CloseButton;
-	CStatic	m_icnApp;
-	//}}AFX_DATA
+    void CloseWindow();
+      
+    // Dialog Data
+    //{{AFX_DATA(ZIMessage)
+    enum { IDD = IDD_MESSAGEDLG };
+    ZCFlatButton    m_CloseButton;
+    CStatic    m_icnApp;
+    //}}AFX_DATA
 
-	HCURSOR			m_Cursor;
-	int		m_iIcon;
-	UINT	m_uTimerID;
-	HICON	m_pIcon[NUMBER_OF_MESSAGE_ICON];
+    HCURSOR            m_Cursor;
+    int        m_iIcon;
+    UINT    m_uTimerID;
+    HICON    m_pIcon[NUMBER_OF_MESSAGE_ICON];
 
       //## end ZIMessage%36DEE2420330.implementation
 };

@@ -47,18 +47,18 @@ class _ZBPropertyAttribute;
 class _ZInternalPropertyTreeData : public CObject
 {
 public:
-	enum UserGroupTreeDataType { patp_Category, 
-								 patp_Item, 
-								 patp_Unknown };
+    enum UserGroupTreeDataType { patp_Category, 
+                                 patp_Item, 
+                                 patp_Unknown };
 
-	_ZInternalPropertyTreeData();
-	_ZInternalPropertyTreeData(_ZBPropertyAttribute* pPropAttribute);
-	_ZInternalPropertyTreeData(int Category, int Item = -1);
-	~_ZInternalPropertyTreeData();
+    _ZInternalPropertyTreeData();
+    _ZInternalPropertyTreeData(_ZBPropertyAttribute* pPropAttribute);
+    _ZInternalPropertyTreeData(int Category, int Item = -1);
+    ~_ZInternalPropertyTreeData();
 
-	// Data member
-	UserGroupTreeDataType m_dtp;
-	_ZBPropertyAttribute* m_pPropAttribute;
+    // Data member
+    UserGroupTreeDataType m_dtp;
+    _ZBPropertyAttribute* m_pPropAttribute;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -68,92 +68,92 @@ class AFX_EXT_CLASS ZCSymbolAttributesTreeCtrl : public ZITreeCtrl, public ZISub
 {
 // Construction
 public:
-	ZCSymbolAttributesTreeCtrl(ZBPropertyAttributes* pPropAttributes = NULL, 
-							   ZBPropertySet* pPropSet = NULL);
+    ZCSymbolAttributesTreeCtrl(ZBPropertyAttributes* pPropAttributes = NULL, 
+                               ZBPropertySet* pPropSet = NULL);
 
-	virtual ~ZCSymbolAttributesTreeCtrl();
+    virtual ~ZCSymbolAttributesTreeCtrl();
 
 // Operations
 public:
-	void Initialize();
-	void Initialize(ZBPropertyAttributes* pPropAttributes, ZBPropertySet* pPropSet);
-	void Refresh();
+    void Initialize();
+    void Initialize(ZBPropertyAttributes* pPropAttributes, ZBPropertySet* pPropSet);
+    void Refresh();
 
-	bool FillCorrespondingCheckedItems();
+    bool FillCorrespondingCheckedItems();
 
-	////////////////////////////////////////////////////////////////////
-	// ZIObserver call back
-	virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    ////////////////////////////////////////////////////////////////////
+    // ZIObserver call back
+    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
 
 protected:
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCSymbolAttributesTreeCtrl)
-	virtual BOOL DestroyWindow();
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCSymbolAttributesTreeCtrl)
+    virtual BOOL DestroyWindow();
+    //}}AFX_VIRTUAL
 
 
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZCSymbolAttributesTreeCtrl)
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg void OnItemExpanded(LPNMHDR pnmhdr, LRESULT *pLResult);
-	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
-	//}}AFX_MSG
+    //{{AFX_MSG(ZCSymbolAttributesTreeCtrl)
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    afx_msg void OnItemExpanded(LPNMHDR pnmhdr, LRESULT *pLResult);
+    afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+    //}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 
 protected:
-	virtual int GetIndexOfNoDropImage() const;
-	virtual CObject* GetDragObject( HTREEITEM DragItem );
+    virtual int GetIndexOfNoDropImage() const;
+    virtual CObject* GetDragObject( HTREEITEM DragItem );
 
 private:
-	bool 				m_HasBeenInitialized;
+    bool                 m_HasBeenInitialized;
 
 private:
-	void CreateTree();
-	void LoadTree();
-	void DestroyTree();
+    void CreateTree();
+    void LoadTree();
+    void DestroyTree();
 
 
   private:
 
-	bool ProcessProperty( ZBProperty* pProp );
-	HTREEITEM GetParentProperty( ZBProperty* pProp );
-	void CheckAttribute( _ZBPropertyAttribute* pAttribute );
+    bool ProcessProperty( ZBProperty* pProp );
+    HTREEITEM GetParentProperty( ZBProperty* pProp );
+    void CheckAttribute( _ZBPropertyAttribute* pAttribute );
 
-	HTREEITEM AddPropertyItem (const CString Label, int Category, int Item = -1, HTREEITEM hParentTreeItem = NULL);
+    HTREEITEM AddPropertyItem (const CString Label, int Category, int Item = -1, HTREEITEM hParentTreeItem = NULL);
 
 
-	void EmptyDataSet();
-	_ZInternalPropertyTreeData* FindElementFromDataSet(int Category, int Item = -1);
-	_ZInternalPropertyTreeData* FindElementFromDataSet(_ZBPropertyAttribute* pPropAttribute);
+    void EmptyDataSet();
+    _ZInternalPropertyTreeData* FindElementFromDataSet(int Category, int Item = -1);
+    _ZInternalPropertyTreeData* FindElementFromDataSet(_ZBPropertyAttribute* pPropAttribute);
 
-	_ZInternalPropertyTreeData* AddDataToSet(int Category, int Item = -1);
-	_ZInternalPropertyTreeData* AddDataToSet(_ZBPropertyAttribute* pPropAttribute);
+    _ZInternalPropertyTreeData* AddDataToSet(int Category, int Item = -1);
+    _ZInternalPropertyTreeData* AddDataToSet(_ZBPropertyAttribute* pPropAttribute);
 
   private:
-	//@type ZBProcessGraphPageSet | An array of _ZInternalPropertyTreeData pointers.
-	//@iex typedef CCArray_T<_ZInternalPropertyTreeData*,_ZInternalPropertyTreeData*> _ZInternalPropertyTreeDataSet;
-	typedef sfl::CCArray_T<_ZInternalPropertyTreeData*,_ZInternalPropertyTreeData*> _ZInternalPropertyTreeDataSet;
+    //@type ZBProcessGraphPageSet | An array of _ZInternalPropertyTreeData pointers.
+    //@iex typedef CCArray_T<_ZInternalPropertyTreeData*,_ZInternalPropertyTreeData*> _ZInternalPropertyTreeDataSet;
+    typedef sfl::CCArray_T<_ZInternalPropertyTreeData*,_ZInternalPropertyTreeData*> _ZInternalPropertyTreeDataSet;
 
-	//@type _ZInternalPropertyTreeDataIterator | An iterator for _ZInternalPropertyTreeDataSet collections.
-	//@iex typedef Iterator_T<_ZInternalPropertyTreeData*> _ZInternalPropertyTreeDataIterator;
-	typedef sfl::Iterator_T<_ZInternalPropertyTreeData*> _ZInternalPropertyTreeDataIterator;
+    //@type _ZInternalPropertyTreeDataIterator | An iterator for _ZInternalPropertyTreeDataSet collections.
+    //@iex typedef Iterator_T<_ZInternalPropertyTreeData*> _ZInternalPropertyTreeDataIterator;
+    typedef sfl::Iterator_T<_ZInternalPropertyTreeData*> _ZInternalPropertyTreeDataIterator;
 
-	_ZInternalPropertyTreeDataSet	m_DataSet;
+    _ZInternalPropertyTreeDataSet    m_DataSet;
 
 
-	ZBPropertyAttributes* m_pPropAttributes;
-	ZBPropertySet* m_pPropSet;
+    ZBPropertyAttributes* m_pPropAttributes;
+    ZBPropertySet* m_pPropSet;
 
 };
 
 
 inline int ZCSymbolAttributesTreeCtrl::GetIndexOfNoDropImage() const
 {
-	return 4;
+    return 4;
 }
 
 /////////////////////////////////////////////////////////////////////////////

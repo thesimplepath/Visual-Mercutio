@@ -37,14 +37,14 @@
 class AFX_EXT_CLASS ZIToolTip  
 {
 public:
-	enum ToolTipMode { NormalToolTip, DesignToolTip };
+    enum ToolTipMode { NormalToolTip, DesignToolTip };
 
 public:
-	ZIToolTip();
-	virtual ~ZIToolTip();
+    ZIToolTip();
+    virtual ~ZIToolTip();
 
-	// Call by the controller when a tooltip is required
-	virtual bool OnToolTip( CString& ToolTipText, CPoint point, ToolTipMode ToolTip = NormalToolTip ) = 0;
+    // Call by the controller when a tooltip is required
+    virtual bool OnToolTip( CString& ToolTipText, CPoint point, ToolTipMode ToolTip = NormalToolTip ) = 0;
 
 };
 

@@ -21,263 +21,263 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUUserGroupCalculateTotals::ZUUserGroupCalculateTotals( ZDProcessGraphModelMdl*	pModel	/*= NULL*/,
-														void*					pClass	/*= NULL*/ )
-	: ZUProcessNavigation( pModel, pClass )
+ZUUserGroupCalculateTotals::ZUUserGroupCalculateTotals( ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
+                                                        void*                    pClass    /*= NULL*/ )
+    : ZUProcessNavigation( pModel, pClass )
 {
 }
 
 ZUUserGroupCalculateTotals::~ZUUserGroupCalculateTotals()
 {
-	EmptySet();
+    EmptySet();
 }
 
 bool ZUUserGroupCalculateTotals::OnStart()
 {
-	// Start by casting the unit name string
-	ZBUserGroupCalculateTotalsInformation* pInfo = static_cast<ZBUserGroupCalculateTotalsInformation*>( m_pClass );
+    // Start by casting the unit name string
+    ZBUserGroupCalculateTotalsInformation* pInfo = static_cast<ZBUserGroupCalculateTotalsInformation*>( m_pClass );
 
-	if ( !pInfo )
-	{
-		return false;
-	}
+    if ( !pInfo )
+    {
+        return false;
+    }
 
-	// Assigns the attributes
-	m_Consolidated	= pInfo->m_Consolidated;
-	m_pGroup		= pInfo->m_pGroup;
+    // Assigns the attributes
+    m_Consolidated    = pInfo->m_Consolidated;
+    m_pGroup        = pInfo->m_pGroup;
 
-	if ( !m_pGroup )
-	{
-		return false;
-	}
+    if ( !m_pGroup )
+    {
+        return false;
+    }
 
-	// Initialize the set with group unit
-	CreateInitialGroupSet();
+    // Initialize the set with group unit
+    CreateInitialGroupSet();
 
-	return true;
+    return true;
 }
 
 bool ZUUserGroupCalculateTotals::OnFinish()
 {
-	return true;
+    return true;
 }
 
 bool ZUUserGroupCalculateTotals::OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
 {
-	// Calculate totals only for local symbols
-	if ( !pSymbol->IsLocal() )
-	{
-		return true;
-	}
+    // Calculate totals only for local symbols
+    if ( !pSymbol->IsLocal() )
+    {
+        return true;
+    }
 
-	// If the symbol's unit name is not empty
-	// then find the right elements corresponding to the same unit
-	if ( !pSymbol->GetUnitName().IsEmpty() )
-	{
-		_ZBUserGroupTotal* pTotal = FindTotal( pSymbol->GetUnitName() );
+    // If the symbol's unit name is not empty
+    // then find the right elements corresponding to the same unit
+    if ( !pSymbol->GetUnitName().IsEmpty() )
+    {
+        _ZBUserGroupTotal* pTotal = FindTotal( pSymbol->GetUnitName() );
 
-		if ( pTotal )
-		{
-			AddProcedureToTotal( pSymbol, *pTotal );
+        if ( pTotal )
+        {
+            AddProcedureToTotal( pSymbol, *pTotal );
 
-			// If consolidation is required,
-			// then totalize all childs together
-			if ( m_Consolidated )
-			{
-				// Add to the root unit group
-				_ZBUserGroupTotal* pRootTotal = FindTotal( m_pGroup->GetEntityName() );
-				AddProcedureToTotal( pSymbol, *pRootTotal );
+            // If consolidation is required,
+            // then totalize all childs together
+            if ( m_Consolidated )
+            {
+                // Add to the root unit group
+                _ZBUserGroupTotal* pRootTotal = FindTotal( m_pGroup->GetEntityName() );
+                AddProcedureToTotal( pSymbol, *pRootTotal );
 
-				// Sets the iterator
-				ZBUserGroupTotalIterator i( &m_TotalSet );
+                // Sets the iterator
+                ZBUserGroupTotalIterator i( &m_TotalSet );
 
-				for ( _ZBUserGroupTotal* pElement = i.GetFirst(); pElement != NULL; pElement = i.GetNext() )
-				{
-					// Do not consolidate for the same group
-					if ( pElement != pTotal )
-					{
-						// Locate the group pointed by the element's unit
-						ZBUserGroupEntity* pSymbolGroup = m_pGroup->FindFirstGroup( pElement->m_GroupName, true );
+                for ( _ZBUserGroupTotal* pElement = i.GetFirst(); pElement != NULL; pElement = i.GetNext() )
+                {
+                    // Do not consolidate for the same group
+                    if ( pElement != pTotal )
+                    {
+                        // Locate the group pointed by the element's unit
+                        ZBUserGroupEntity* pSymbolGroup = m_pGroup->FindFirstGroup( pElement->m_GroupName, true );
 
-						// If found and if the unit name pointed by the symbol is 
-						// part of the group, then add the procedure total also
-						if ( pSymbolGroup && pSymbolGroup->GroupExist( pSymbol->GetUnitName(), true ) )
-						{
-							AddProcedureToTotal( pSymbol, *pElement );
-						}
-					}
-				}
-			}
-		}
-	}
+                        // If found and if the unit name pointed by the symbol is 
+                        // part of the group, then add the procedure total also
+                        if ( pSymbolGroup && pSymbolGroup->GroupExist( pSymbol->GetUnitName(), true ) )
+                        {
+                            AddProcedureToTotal( pSymbol, *pElement );
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-	return true;
+    return true;
 }
 
 void ZUUserGroupCalculateTotals::AddProcedureToTotal( ZBBPProcedureSymbol* pSymbol, _ZBUserGroupTotal& Total )
 {
-	ASSERT( pSymbol );
+    ASSERT( pSymbol );
 
-	if ( (double)pSymbol->GetProcedureCost() > 0 )
-	{
-		Total.m_ProcedureCost += pSymbol->GetProcedureCost();
-	}
+    if ( (double)pSymbol->GetProcedureCost() > 0 )
+    {
+        Total.m_ProcedureCost += pSymbol->GetProcedureCost();
+    }
 
-	if ( (double)pSymbol->GetProcedureWorkloadForecast() > 0 )
-	{
-		Total.m_ProcedureWorkloadForecast += pSymbol->GetProcedureWorkloadForecast();
-	}
+    if ( (double)pSymbol->GetProcedureWorkloadForecast() > 0 )
+    {
+        Total.m_ProcedureWorkloadForecast += pSymbol->GetProcedureWorkloadForecast();
+    }
 
-	if ( (double)pSymbol->GetProcedureCostForecast() > 0 )
-	{
-		Total.m_ProcedureCostForecast += pSymbol->GetProcedureCostForecast();
-	}
+    if ( (double)pSymbol->GetProcedureCostForecast() > 0 )
+    {
+        Total.m_ProcedureCostForecast += pSymbol->GetProcedureCostForecast();
+    }
 
-	if ( (double)pSymbol->GetProcedureWorkloadPerActivity() > 0 )
-	{
-		Total.m_ProcedureWorkloadPerActivity += pSymbol->GetProcedureWorkloadPerActivity();
-	}
+    if ( (double)pSymbol->GetProcedureWorkloadPerActivity() > 0 )
+    {
+        Total.m_ProcedureWorkloadPerActivity += pSymbol->GetProcedureWorkloadPerActivity();
+    }
 
-	if ( (double)pSymbol->GetProcedureCostPerActivity() > 0 )
-	{
-		Total.m_ProcedureCostPerActivity += pSymbol->GetProcedureCostPerActivity();
-	}
+    if ( (double)pSymbol->GetProcedureCostPerActivity() > 0 )
+    {
+        Total.m_ProcedureCostPerActivity += pSymbol->GetProcedureCostPerActivity();
+    }
 }
 
 void ZUUserGroupCalculateTotals::CreateInitialGroupSet()
 {
-	EmptySet();
+    EmptySet();
 
-	CStringArray GroupNameArray;
+    CStringArray GroupNameArray;
 
-	// Add the root name to the array
-	GroupNameArray.Add( m_pGroup->GetEntityName() );
+    // Add the root name to the array
+    GroupNameArray.Add( m_pGroup->GetEntityName() );
 
-	size_t Count = m_pGroup->FillGroupNameArray( GroupNameArray );
+    size_t Count = m_pGroup->FillGroupNameArray( GroupNameArray );
 
-	for ( size_t i = 0; i < Count; ++i )
-	{
-		// add a new element to the table
-		_ZBUserGroupTotal* pElement = new _ZBUserGroupTotal( GroupNameArray.GetAt( i ) );
-		m_TotalSet.Add( pElement );
-	}
+    for ( size_t i = 0; i < Count; ++i )
+    {
+        // add a new element to the table
+        _ZBUserGroupTotal* pElement = new _ZBUserGroupTotal( GroupNameArray.GetAt( i ) );
+        m_TotalSet.Add( pElement );
+    }
 }
 
 void ZUUserGroupCalculateTotals::EmptySet()
 {
-	// Sets the iterator
-	ZBUserGroupTotalIterator i( &m_TotalSet );
+    // Sets the iterator
+    ZBUserGroupTotalIterator i( &m_TotalSet );
 
-	for ( _ZBUserGroupTotal* pTotal = i.GetFirst(); pTotal != NULL; pTotal = i.GetNext() )
-	{
-		delete pTotal;
-	}
+    for ( _ZBUserGroupTotal* pTotal = i.GetFirst(); pTotal != NULL; pTotal = i.GetNext() )
+    {
+        delete pTotal;
+    }
 
-	m_TotalSet.RemoveAll();
+    m_TotalSet.RemoveAll();
 }
 
 _ZBUserGroupTotal* ZUUserGroupCalculateTotals::FindTotal( const CString GroupName )
 {
-	// Sets the iterator
-	ZBUserGroupTotalIterator i( &m_TotalSet );
+    // Sets the iterator
+    ZBUserGroupTotalIterator i( &m_TotalSet );
 
-	for ( _ZBUserGroupTotal* pTotal = i.GetFirst(); pTotal != NULL; pTotal = i.GetNext() )
-	{
-		// If the same group, return the cost
-		if ( pTotal->m_GroupName == GroupName )
-		{
-			return pTotal;
-		}
-	}
+    for ( _ZBUserGroupTotal* pTotal = i.GetFirst(); pTotal != NULL; pTotal = i.GetNext() )
+    {
+        // If the same group, return the cost
+        if ( pTotal->m_GroupName == GroupName )
+        {
+            return pTotal;
+        }
+    }
 
-	// If not found, add a new element to the table
-	_ZBUserGroupTotal* pElement = new _ZBUserGroupTotal( GroupName );
-	m_TotalSet.Add( pElement );
+    // If not found, add a new element to the table
+    _ZBUserGroupTotal* pElement = new _ZBUserGroupTotal( GroupName );
+    m_TotalSet.Add( pElement );
 
-	return pElement;
+    return pElement;
 }
 
 ZBBPAnnualNumberProperties* ZUUserGroupCalculateTotals::GetProcedureCost( const CString GroupName )
 {
-	// Sets the iterator
-	ZBUserGroupTotalIterator i( &m_TotalSet );
+    // Sets the iterator
+    ZBUserGroupTotalIterator i( &m_TotalSet );
 
-	for ( _ZBUserGroupTotal* pTotal = i.GetFirst(); pTotal != NULL; pTotal = i.GetNext() )
-	{
-		// If the same group, return the cost
-		if ( pTotal->m_GroupName == GroupName )
-		{
-			return &( pTotal->m_ProcedureCost );
-		}
-	}
+    for ( _ZBUserGroupTotal* pTotal = i.GetFirst(); pTotal != NULL; pTotal = i.GetNext() )
+    {
+        // If the same group, return the cost
+        if ( pTotal->m_GroupName == GroupName )
+        {
+            return &( pTotal->m_ProcedureCost );
+        }
+    }
 
-	return NULL;
+    return NULL;
 }
 
 ZBBPAnnualNumberProperties* ZUUserGroupCalculateTotals::GetProcedureWorkloadForecast( const CString GroupName )
 {
-	// Sets the iterator
-	ZBUserGroupTotalIterator i( &m_TotalSet );
+    // Sets the iterator
+    ZBUserGroupTotalIterator i( &m_TotalSet );
 
-	for ( _ZBUserGroupTotal* pTotal = i.GetFirst(); pTotal != NULL; pTotal = i.GetNext() )
-	{
-		// If the same group, return the cost
-		if ( pTotal->m_GroupName == GroupName )
-		{
-			return &( pTotal->m_ProcedureWorkloadForecast );
-		}
-	}
+    for ( _ZBUserGroupTotal* pTotal = i.GetFirst(); pTotal != NULL; pTotal = i.GetNext() )
+    {
+        // If the same group, return the cost
+        if ( pTotal->m_GroupName == GroupName )
+        {
+            return &( pTotal->m_ProcedureWorkloadForecast );
+        }
+    }
 
-	return NULL;
+    return NULL;
 }
 
 ZBBPAnnualNumberProperties* ZUUserGroupCalculateTotals::GetProcedureCostForecast( const CString GroupName )
 {
-	// Sets the iterator
-	ZBUserGroupTotalIterator i( &m_TotalSet );
+    // Sets the iterator
+    ZBUserGroupTotalIterator i( &m_TotalSet );
 
-	for ( _ZBUserGroupTotal* pTotal = i.GetFirst(); pTotal != NULL; pTotal = i.GetNext() )
-	{
-		// If the same group, return the cost
-		if ( pTotal->m_GroupName == GroupName )
-		{
-			return &( pTotal->m_ProcedureCostForecast );
-		}
-	}
+    for ( _ZBUserGroupTotal* pTotal = i.GetFirst(); pTotal != NULL; pTotal = i.GetNext() )
+    {
+        // If the same group, return the cost
+        if ( pTotal->m_GroupName == GroupName )
+        {
+            return &( pTotal->m_ProcedureCostForecast );
+        }
+    }
 
-	return NULL;
+    return NULL;
 }
 
 double ZUUserGroupCalculateTotals::GetProcedureWorkloadPerActivity( const CString GroupName ) const
 {
-	// Sets the iterator
-	ZBUserGroupTotalIterator i( &m_TotalSet );
+    // Sets the iterator
+    ZBUserGroupTotalIterator i( &m_TotalSet );
 
-	for ( _ZBUserGroupTotal* pTotal = i.GetFirst(); pTotal != NULL; pTotal = i.GetNext() )
-	{
-		// If the same group, return the cost
-		if ( pTotal->m_GroupName == GroupName )
-		{
-			return pTotal->m_ProcedureWorkloadPerActivity;
-		}
-	}
+    for ( _ZBUserGroupTotal* pTotal = i.GetFirst(); pTotal != NULL; pTotal = i.GetNext() )
+    {
+        // If the same group, return the cost
+        if ( pTotal->m_GroupName == GroupName )
+        {
+            return pTotal->m_ProcedureWorkloadPerActivity;
+        }
+    }
 
-	return 0;
+    return 0;
 }
 
 double ZUUserGroupCalculateTotals::GetProcedureCostPerActivity( const CString GroupName ) const
 {
-	// Sets the iterator
-	ZBUserGroupTotalIterator i( &m_TotalSet );
+    // Sets the iterator
+    ZBUserGroupTotalIterator i( &m_TotalSet );
 
-	for ( _ZBUserGroupTotal* pTotal = i.GetFirst(); pTotal != NULL; pTotal = i.GetNext() )
-	{
-		// If the same group, return the cost
-		if ( pTotal->m_GroupName == GroupName )
-		{
-			return pTotal->m_ProcedureCostPerActivity;
-		}
-	}
+    for ( _ZBUserGroupTotal* pTotal = i.GetFirst(); pTotal != NULL; pTotal = i.GetNext() )
+    {
+        // If the same group, return the cost
+        if ( pTotal->m_GroupName == GroupName )
+        {
+            return pTotal->m_ProcedureCostPerActivity;
+        }
+    }
 
-	return 0;
+    return 0;
 }

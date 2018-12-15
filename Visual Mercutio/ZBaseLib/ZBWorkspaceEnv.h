@@ -40,37 +40,37 @@
 
 class AFX_EXT_CLASS ZBWorkspaceEnv : public ZBWorkspaceGroupEntity  
 {
-	DECLARE_SERIAL(ZBWorkspaceEnv)
+    DECLARE_SERIAL(ZBWorkspaceEnv)
 public:
-	// Can have a parent in case of multiple workspace environements
-	ZBWorkspaceEnv(const CString Name = "", ZBWorkspaceEntity* pParent = NULL);
-	virtual ~ZBWorkspaceEnv();
+    // Can have a parent in case of multiple workspace environements
+    ZBWorkspaceEnv(const CString Name = "", ZBWorkspaceEntity* pParent = NULL);
+    virtual ~ZBWorkspaceEnv();
 
 // Operations
 public:
-	virtual BOOL IsModified()
-	{
-		return m_bModified;
-	};
-	virtual void SetModifiedFlag(BOOL bModified = TRUE)
-	{
-		m_bModified = bModified;
-	};
-	void SetOpenedFiles( CStringArray& OpenedFiles );
+    virtual BOOL IsModified()
+    {
+        return m_bModified;
+    };
+    virtual void SetModifiedFlag(BOOL bModified = TRUE)
+    {
+        m_bModified = bModified;
+    };
+    void SetOpenedFiles( CStringArray& OpenedFiles );
 
-	// Serialization mechanism
-	virtual void Serialize(CArchive& ar);   // overridden for document i/o
+    // Serialization mechanism
+    virtual void Serialize(CArchive& ar);   // overridden for document i/o
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
 private:
-	void OpenLastFiles();
+    void OpenLastFiles();
 
 private:
-	CStringArray	m_OpenedFileArray;
-	BOOL			m_bModified;
+    CStringArray    m_OpenedFileArray;
+    BOOL            m_bModified;
 
 };
 

@@ -1,10 +1,10 @@
 //## begin module%3378993C0104.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%3378993C0104.cm
 
 //## begin module%3378993C0104.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%3378993C0104.cp
 
 //## Module: ZABitmap%3378993C0104; Package specification
@@ -30,7 +30,7 @@
 #include "ZBitmap.h"
 
 // Define different type of strikes
-enum	DisplayStyles{ InitialSize, FitToRect, FitToRectProp };
+enum    DisplayStyles{ InitialSize, FitToRect, FitToRectProp };
 //## end module%3378993C0104.includes
 
 // ZAObject
@@ -58,7 +58,7 @@ enum	DisplayStyles{ InitialSize, FitToRect, FitToRectProp };
 //## end PLFNBitmap%337898F5019A.preface
 
 //## Class: PLFNBitmap%337898F5019A
-//	Bitmap object functionnalities.
+//    Bitmap object functionnalities.
 //## Category: PlanFin::Objects%334FC461017C
 //## Subsystem: PlanFin%334FC46302B2
 //## Persistence: Transient
@@ -67,10 +67,10 @@ enum	DisplayStyles{ InitialSize, FitToRect, FitToRectProp };
 class AFX_EXT_CLASS PLFNBitmap : public PlanFinObject  //## Inherits: <unnamed>%337898F5019D
 {
   //## begin PLFNBitmap%337898F5019A.initialDeclarations preserve=yes
-	public:
-	// Inherited feature
-		typedef PlanFinObject inherited;
-      	virtual UINT GetRightSubMenu() const { return BitmapRightSubMenu; };
+    public:
+    // Inherited feature
+        typedef PlanFinObject inherited;
+          virtual UINT GetRightSubMenu() const { return BitmapRightSubMenu; };
   //## end PLFNBitmap%337898F5019A.initialDeclarations
 
   public:
@@ -88,70 +88,70 @@ class AFX_EXT_CLASS PLFNBitmap : public PlanFinObject  //## Inherits: <unnamed>%
 
     //## Other Operations (specified)
       //## Operation: operator =%863541707
-      //	A copy constructor with a pointer.
+      //    A copy constructor with a pointer.
       const PLFNBitmap& operator = (const PLFNBitmap* right);
 
       //## Operation: Serialize%863541708
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: Clone%863541709
-      //	Make a clone of the object.
+      //    Make a clone of the object.
       virtual PlanFinObject* Clone ();
 
       //## Operation: DrawObject%863541710
-      //	Draw the object with the current DC.
+      //    Draw the object with the current DC.
       virtual void DrawObject (CDC* pDC, ZIView* pView);
 
       //## Operation: CopyObject%863615076
       virtual void CopyObject (PlanFinObject* pSrc);
 
       //## Operation: SelectBitmapFile%866485623
-      //	Select the bitmpa file from the disk.
+      //    Select the bitmpa file from the disk.
       BOOL SelectBitmapFile (CDC* pDC);
 
       //## Operation: AssignBitmapFile%901981234
-      //	Sets the bitmap file and load the image contained in the
-      //	file.
+      //    Sets the bitmap file and load the image contained in the
+      //    file.
       BOOL AssignBitmapFile (CString& File, CDC* pDC);
 
       //## Operation: SelectBitmapFileDialog%901981235
-      //	Displays and process the bitmap file dialog.
+      //    Displays and process the bitmap file dialog.
       CString SelectBitmapFileDialog ();
 
       //## Operation: GetPropertyTabs%925634620
-      //	Return the list of tabs that should be displayed when
-      //	the user asks for object properties.
+      //    Return the list of tabs that should be displayed when
+      //    the user asks for object properties.
       virtual UINT GetPropertyTabs () const;
 
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: DisplayStyle%34AFE4F2029E
-      //	Defines the different display styles for the bitmap.
+      //    Defines the different display styles for the bitmap.
       const DisplayStyles GetDisplayStyle () const;
       void SetDisplayStyle (DisplayStyles value);
 
     // Additional Public Declarations
       //## begin PLFNBitmap%337898F5019A.public preserve=yes
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
       //## end PLFNBitmap%337898F5019A.public
   protected:
     // Additional Protected Declarations
       //## begin PLFNBitmap%337898F5019A.protected preserve=yes
-	DECLARE_SERIAL(PLFNBitmap)
+    DECLARE_SERIAL(PLFNBitmap)
       //## end PLFNBitmap%337898F5019A.protected
   private:
 
     //## Other Operations (specified)
       //## Operation: OpenBitmapFileDialog%866485624
-      //	Ask the user for a bitmap file.
+      //    Ask the user for a bitmap file.
       CString OpenBitmapFileDialog ();
 
       //## Operation: GetBitmapFile%866485625
-      //	Read the bitmap file and transfer it to memory.
+      //    Read the bitmap file and transfer it to memory.
       BOOL GetBitmapFile (CString sFilename, CDC* pDC);
 
     //## Get and Set Operations for Class Attributes (generated)
@@ -161,12 +161,12 @@ class AFX_EXT_CLASS PLFNBitmap : public PlanFinObject  //## Inherits: <unnamed>%
       void SethBitmap (HBITMAP value);
 
       //## Attribute: nBytes%33A589BD0190
-      //	Save the length of the pBits buffer.
+      //    Save the length of the pBits buffer.
       const unsigned long GetnBytes () const;
       void SetnBytes (unsigned long value);
 
       //## Attribute: nHeaderSize%33A856CD0366
-      //	Save the length of the pBits buffer.
+      //    Save the length of the pBits buffer.
       const size_t GetnHeaderSize () const;
       void SetnHeaderSize (size_t value);
 
@@ -212,7 +212,7 @@ class AFX_EXT_CLASS PLFNBitmap : public PlanFinObject  //## Inherits: <unnamed>%
 
     // Additional Implementation Declarations
       //## begin PLFNBitmap%337898F5019A.implementation preserve=yes
-	  ZBitmap	m_Bitmap;
+      ZBitmap    m_Bitmap;
       //## end PLFNBitmap%337898F5019A.implementation
 
 };
@@ -227,14 +227,14 @@ class AFX_EXT_CLASS PLFNBitmap : public PlanFinObject  //## Inherits: <unnamed>%
 inline CString PLFNBitmap::SelectBitmapFileDialog ()
 {
   //## begin PLFNBitmap::SelectBitmapFileDialog%901981235.body preserve=yes
-  	return OpenBitmapFileDialog();
+      return OpenBitmapFileDialog();
   //## end PLFNBitmap::SelectBitmapFileDialog%901981235.body
 }
 
 inline UINT PLFNBitmap::GetPropertyTabs () const
 {
   //## begin PLFNBitmap::GetPropertyTabs%925634620.body preserve=yes
-  	return PropertyGeneralBasicPage | PropertySizePage;
+      return PropertyGeneralBasicPage | PropertySizePage;
   //## end PLFNBitmap::GetPropertyTabs%925634620.body
 }
 

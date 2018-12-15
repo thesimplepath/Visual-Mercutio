@@ -22,50 +22,50 @@ class ZVPublishModelBanner : public ZIWizardDialog
 // Construction
 public:
 
-	// Standard constructor
-	ZVPublishModelBanner( CString	HyperLink		= _T( "" ),
-						  CString	ImageFilename	= _T( "" ),
-						  CWnd*		pParent			= NULL );
+    // Standard constructor
+    ZVPublishModelBanner( CString    HyperLink        = _T( "" ),
+                          CString    ImageFilename    = _T( "" ),
+                          CWnd*        pParent            = NULL );
 
-	CString GetHyperLink() const
-	{
-		return m_HyperLink;
-	}
+    CString GetHyperLink() const
+    {
+        return m_HyperLink;
+    }
 
-	CString GetImageFilename() const
-	{
-		return m_ImageFilename;
-	}
+    CString GetImageFilename() const
+    {
+        return m_ImageFilename;
+    }
 
 private:
 
-	// Dialog Data
-	//{{AFX_DATA(ZVPublishModelBanner)
-	enum { IDD = IDD_WZPUBMODEL_BANNER };
-	ZCSearchEdit	m_Image;
-	CString			m_HyperLink;
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZVPublishModelBanner)
+    enum { IDD = IDD_WZPUBMODEL_BANNER };
+    ZCSearchEdit    m_Image;
+    CString            m_HyperLink;
+    //}}AFX_DATA
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVPublishModelBanner)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVPublishModelBanner)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVPublishModelBanner)
-	virtual BOOL OnInitDialog();
-	virtual void OnOK();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVPublishModelBanner)
+    virtual BOOL OnInitDialog();
+    virtual void OnOK();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	CString m_ImageFilename;
+    CString m_ImageFilename;
 };
 
 //{{AFX_INSERT_LOCATION}}

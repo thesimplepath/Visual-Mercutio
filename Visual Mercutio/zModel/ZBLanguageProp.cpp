@@ -1,14 +1,14 @@
 // **************************************************************************************************************
-// * @doc ZBLanguageProp																						*
-// * @module ZBLanguageProp.cpp | Implementation of the <c ZBLanguageProp> class.								*
-// *																											*
-// * zForms<tm>																									*
-// * <nl>Copyright <cp> 2001 Advanced Dedicated Software, Inc. All rights reserved.								*
-// *																											*
-// *																											*
-// * Author: Dominique Aigroz																					*
-// * <nl>Created: 03/2001																						*
-// *																											*
+// * @doc ZBLanguageProp                                                                                        *
+// * @module ZBLanguageProp.cpp | Implementation of the <c ZBLanguageProp> class.                                *
+// *                                                                                                            *
+// * zForms<tm>                                                                                                    *
+// * <nl>Copyright <cp> 2001 Advanced Dedicated Software, Inc. All rights reserved.                                *
+// *                                                                                                            *
+// *                                                                                                            *
+// * Author: Dominique Aigroz                                                                                    *
+// * <nl>Created: 03/2001                                                                                        *
+// *                                                                                                            *
 // **************************************************************************************************************
 
 #include "stdafx.h"
@@ -26,7 +26,7 @@ static char THIS_FILE[] = __FILE__;
 // JMR-MODIF - Le 31 mars 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
 // **************************************************************************************************************
-// *									ZBLanguageProp construction/destruction									*
+// *                                    ZBLanguageProp construction/destruction                                    *
 // **************************************************************************************************************
 
 IMPLEMENT_SERIAL( ZBLanguageProp, CODIntProperty, def_Version )
@@ -41,19 +41,19 @@ using namespace sfl;
 //@parmopt int | nId | ZS_BP_PROP_LANGUAGE | The identifier of the property.
 //@parm ZBLanguageProp& | propBasic | The language property to copy.
 ZBLanguageProp::ZBLanguageProp( int nId )
-	: CODIntProperty( nId )
+    : CODIntProperty( nId )
 {
-	m_Language = FrenchLang;
+    m_Language = FrenchLang;
 
-	VERIFY( RegisterProperties() );
+    VERIFY( RegisterProperties() );
 }
 
 ZBLanguageProp::ZBLanguageProp( const ZBLanguageProp& propBasic )
-	: CODIntProperty( propBasic.GetId() )
+    : CODIntProperty( propBasic.GetId() )
 {
-	*this = propBasic;
+    *this = propBasic;
 
-	VERIFY( RegisterProperties() );
+    VERIFY( RegisterProperties() );
 }
 
 //@mfunc Destructor.
@@ -62,7 +62,7 @@ ZBLanguageProp::~ZBLanguageProp()
 }
 
 // **************************************************************************************************************
-// *										  ZBLanguageProp operations											*
+// *                                          ZBLanguageProp operations                                            *
 // **************************************************************************************************************
 
 //@mfunc Compare the property identifier with another identifier.
@@ -70,10 +70,10 @@ ZBLanguageProp::~ZBLanguageProp()
 //@parm Property identifier to compare to.
 BOOL ZBLanguageProp::CompareId( const int nId ) const
 {
-	int nIdMin = m_nId;
-	int nIdMax = m_nId + Z_LANGUAGE;
+    int nIdMin = m_nId;
+    int nIdMax = m_nId + Z_LANGUAGE;
 
-	return ( nId >= nIdMin && nId <= nIdMax );
+    return ( nId >= nIdMin && nId <= nIdMax );
 }
 
 //@mfunc Sets this property object equal to the one passed in.
@@ -81,8 +81,8 @@ BOOL ZBLanguageProp::CompareId( const int nId ) const
 //@parm The property to copy.
 ZBLanguageProp& ZBLanguageProp::operator=( const ZBLanguageProp& propBasic )
 {
-	SetLanguage( propBasic.GetLanguage() );
-	return *this;
+    SetLanguage( propBasic.GetLanguage() );
+    return *this;
 }
 
 //@mfunc Tests if this property is equal to the one passed in.
@@ -90,7 +90,7 @@ ZBLanguageProp& ZBLanguageProp::operator=( const ZBLanguageProp& propBasic )
 //@parm The property to test against.
 BOOL ZBLanguageProp::operator==( const ZBLanguageProp propBasic ) const
 {
-	return ( GetLanguage() == propBasic.GetLanguage() );
+    return ( GetLanguage() == propBasic.GetLanguage() );
 }
 
 //@mfunc Merges the values of the property passed in with the values in this
@@ -101,15 +101,15 @@ BOOL ZBLanguageProp::operator==( const ZBLanguageProp propBasic ) const
 // to merge into this property object.
 void ZBLanguageProp::Merge( CODProperty* pProperty, DWORD dwChangeFlags )
 {
-	ZBLanguageProp* pLanguageProp = (ZBLanguageProp*)pProperty;
+    ZBLanguageProp* pLanguageProp = (ZBLanguageProp*)pProperty;
 
-	if ( pLanguageProp )
-	{
-		if ( dwChangeFlags & Z_CHANGE_LANGUAGE )
-		{
-			m_Language = pLanguageProp->GetLanguage();
-		}
-	}
+    if ( pLanguageProp )
+    {
+        if ( dwChangeFlags & Z_CHANGE_LANGUAGE )
+        {
+            m_Language = pLanguageProp->GetLanguage();
+        }
+    }
 }
 
 //@mfunc Tests if this property is equal to the one passed in. This method
@@ -118,21 +118,21 @@ void ZBLanguageProp::Merge( CODProperty* pProperty, DWORD dwChangeFlags )
 //@parm A pointer to the property to test against.
 BOOL ZBLanguageProp::IsEqual( CODProperty* pProp )
 {
-	if ( GetId() == pProp->GetId() )
-	{
-		ZBLanguageProp* pLanguageProp = (ZBLanguageProp*)pProp;
+    if ( GetId() == pProp->GetId() )
+    {
+        ZBLanguageProp* pLanguageProp = (ZBLanguageProp*)pProp;
 
-		if ( pLanguageProp )
-		{
-			return ( *this == *pLanguageProp );
-		}
-	}
+        if ( pLanguageProp )
+        {
+            return ( *this == *pLanguageProp );
+        }
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 // **************************************************************************************************************
-// *										IODPropertyContainer interface										*
+// *                                        IODPropertyContainer interface                                        *
 // **************************************************************************************************************
 
 //@mfunc | ZBLanguageProp | GetValue | Gets the value of the given property.
@@ -159,69 +159,69 @@ BOOL ZBLanguageProp::IsEqual( CODProperty* pProp )
 
 BOOL ZBLanguageProp::GetValue( const int nPropId, CString& strValue ) const
 {
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBLanguageProp::GetValue( const int nPropId, int& nValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_LANGUAGE:
-		{
-			nValue = m_Language;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_LANGUAGE:
+        {
+            nValue = m_Language;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBLanguageProp::GetValue( const int nPropId, UINT& nValue ) const
 {
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBLanguageProp::GetValue( const int nPropId, DWORD& dwValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_LANGUAGE:
-		{
-			dwValue = static_cast<DWORD>( m_Language );
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_LANGUAGE:
+        {
+            dwValue = static_cast<DWORD>( m_Language );
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBLanguageProp::GetValue( const int nPropId, float& fValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_LANGUAGE:
-		{
-			fValue = static_cast<float>( m_Language );
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_LANGUAGE:
+        {
+            fValue = static_cast<float>( m_Language );
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 //@mfunc | ZBLanguageProp | SetValue | Sets the value of the given property.
@@ -248,125 +248,125 @@ BOOL ZBLanguageProp::GetValue( const int nPropId, float& fValue ) const
 
 BOOL ZBLanguageProp::SetValue( const int nPropId, LPCTSTR lpszValue )
 {
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBLanguageProp::SetValue( const int nPropId, const int nValue )
 {
-	switch ( nPropId )
-	{
-		case Z_LANGUAGE:
-		{
-			m_Language = static_cast<Language>( nValue );
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_LANGUAGE:
+        {
+            m_Language = static_cast<Language>( nValue );
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBLanguageProp::SetValue( const int nPropId, const UINT nValue )
 {
-	return FALSE;
+    return FALSE;
 }
 
 BOOL ZBLanguageProp::SetValue( const int nPropId, const DWORD dwValue )
 {
-	switch ( nPropId )
-	{
-		case Z_LANGUAGE:
-		{
-			m_Language = static_cast<Language>( static_cast<int>( dwValue ) );
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_LANGUAGE:
+        {
+            m_Language = static_cast<Language>( static_cast<int>( dwValue ) );
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBLanguageProp::SetValue( const int nPropId, const float fValue )
 {
-	switch ( nPropId )
-	{
-		case Z_LANGUAGE:
-		{
-			m_Language = static_cast<Language>( static_cast<int>( fValue ) );
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_LANGUAGE:
+        {
+            m_Language = static_cast<Language>( static_cast<int>( fValue ) );
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 // **************************************************************************************************************
-// *									  ZBLanguageProp Property meta-data										*
+// *                                      ZBLanguageProp Property meta-data                                        *
 // **************************************************************************************************************
 
 bool ZBLanguageProp::RegisterProperties()
 {
-	static bool propsRegistered = false;
+    static bool propsRegistered = false;
 
-	if ( !propsRegistered )
-	{
-		bool success = true;
+    if ( !propsRegistered )
+    {
+        bool success = true;
 
-		if ( success )
-		{
-			success = RegisterProperty( Z_LANGUAGE,
-									    IDS_Z_LANGUAGE_NAME,
-									    IDS_Z_LANGUAGE_DESC,
-									    _PropertyAccessor( &ZBLanguageProp::GetLanguageInt,
-														   &ZBLanguageProp::SetLanguageInt ),
-									    VT_INT,
-									    PROP_DIRECT );
-		}
+        if ( success )
+        {
+            success = RegisterProperty( Z_LANGUAGE,
+                                        IDS_Z_LANGUAGE_NAME,
+                                        IDS_Z_LANGUAGE_DESC,
+                                        _PropertyAccessor( &ZBLanguageProp::GetLanguageInt,
+                                                           &ZBLanguageProp::SetLanguageInt ),
+                                        VT_INT,
+                                        PROP_DIRECT );
+        }
 
-		if ( !success )
-		{
-			ZBLanguageProp::GetPropertyMap().DeleteAll();
-		}
+        if ( !success )
+        {
+            ZBLanguageProp::GetPropertyMap().DeleteAll();
+        }
 
-		propsRegistered = success;
-	}
+        propsRegistered = success;
+    }
 
-	return propsRegistered;
+    return propsRegistered;
 }
 
 // **************************************************************************************************************
-// *											ZBLanguageProp diagnostics										*
+// *                                            ZBLanguageProp diagnostics                                        *
 // **************************************************************************************************************
 
 #ifdef _DEBUG
 
 void ZBLanguageProp::AssertValid() const
 {
-	CODIntProperty::AssertValid();
+    CODIntProperty::AssertValid();
 }
 
 void ZBLanguageProp::Dump( CDumpContext& dc ) const
 {
-	CODIntProperty::Dump( dc );
+    CODIntProperty::Dump( dc );
 }
 
 #endif //_DEBUG
 
 // **************************************************************************************************************
-// *										ZBLanguageProp serialization										*
+// *                                        ZBLanguageProp serialization                                        *
 // **************************************************************************************************************
 
 //@mfunc Serializes the orientation properties.
@@ -374,20 +374,20 @@ void ZBLanguageProp::Dump( CDumpContext& dc ) const
 //@parm The archive to use for serialization.
 void ZBLanguageProp::Serialize( CArchive& ar )
 {
-	CODIntProperty::Serialize( ar );
+    CODIntProperty::Serialize( ar );
 
-	if ( ar.IsStoring() )
-	{
-		PUT_SCHEMA( ar, ZBLanguageProp );
-		ar << (int)m_Language;
-	}
-	else
-	{
-		UINT nSchema;
-		GET_SCHEMA( ar, nSchema );
+    if ( ar.IsStoring() )
+    {
+        PUT_SCHEMA( ar, ZBLanguageProp );
+        ar << (int)m_Language;
+    }
+    else
+    {
+        UINT nSchema;
+        GET_SCHEMA( ar, nSchema );
 
-		int value;
-		ar >> value;
-		m_Language = static_cast<Language>( value );
-	}
+        int value;
+        ar >> value;
+        m_Language = static_cast<Language>( value );
+    }
 }

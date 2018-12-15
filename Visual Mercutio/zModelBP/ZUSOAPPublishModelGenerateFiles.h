@@ -13,9 +13,9 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 07/2001
+// <nl>Created:         07/2001
 // <nl>Description:  ZUSOAPPublishModelGenerateFiles navigates through the process and
-//					 write process information to the grid
+//                     write process information to the grid
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -64,41 +64,41 @@ class AFX_EXT_CLASS ZUSOAPPublishModelGenerateFiles : public ZUModelNavigation, 
 {
 public:
 
-	ZUSOAPPublishModelGenerateFiles( ZDProcessGraphModelMdl*				pModel	= NULL,
-									 void*									pClass	= NULL,
-									 ZBPublishMessengerModelInformation*	pInfo	= NULL );
+    ZUSOAPPublishModelGenerateFiles( ZDProcessGraphModelMdl*                pModel    = NULL,
+                                     void*                                    pClass    = NULL,
+                                     ZBPublishMessengerModelInformation*    pInfo    = NULL );
 
-	virtual ~ZUSOAPPublishModelGenerateFiles();
+    virtual ~ZUSOAPPublishModelGenerateFiles();
 
 public:
 
-	// Call-back methods
-	virtual bool OnStart();
-	virtual bool OnFinish();
-	virtual bool OnSymbol( ZBSymbol* pSymbol );
-	virtual bool OnLink( ZBLinkSymbol* pLink );
+    // Call-back methods
+    virtual bool OnStart();
+    virtual bool OnFinish();
+    virtual bool OnSymbol( ZBSymbol* pSymbol );
+    virtual bool OnLink( ZBLinkSymbol* pLink );
 
 private:
 
-	bool	GenerateModel( ZDProcessGraphModelMdl* pModel );
-	bool	CreateHtmlPage( ZDProcessGraphModelMdl* pModel, const CString ImageFilename );
+    bool    GenerateModel( ZDProcessGraphModelMdl* pModel );
+    bool    CreateHtmlPage( ZDProcessGraphModelMdl* pModel, const CString ImageFilename );
 
-	CString BuildModelImageFilename( ZDProcessGraphModelMdl* pModel );
-	CString BuildModelHTMLFilename( ZDProcessGraphModelMdl* pModel );
-	CString ParseModelName( CString ModelName );
+    CString BuildModelImageFilename( ZDProcessGraphModelMdl* pModel );
+    CString BuildModelHTMLFilename( ZDProcessGraphModelMdl* pModel );
+    CString ParseModelName( CString ModelName );
 
 private:
 
-	ZVPublishModelGenerate				m_FileGenerateWindow;
+    ZVPublishModelGenerate                m_FileGenerateWindow;
 
-	CString								m_RootHtmlFilename;
-	CString								m_RootName;
-	CString								m_TargetDirectory;
+    CString                                m_RootHtmlFilename;
+    CString                                m_RootName;
+    CString                                m_TargetDirectory;
 
-	ZBPublishMessengerModelInformation*	m_pModelInfo;
-	ZBInfoModelGraphicGeneration*		m_pInfo;
+    ZBPublishMessengerModelInformation*    m_pModelInfo;
+    ZBInfoModelGraphicGeneration*        m_pInfo;
 
-	pPublishFile						m_pf;
+    pPublishFile                        m_pf;
 };
 
 #endif // !defined(AFX_ZUSOAPPublishModelGenerateFiles_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)

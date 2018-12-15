@@ -45,21 +45,21 @@ IMPLEMENT_SERIAL(ZBBPUnitProperties, CODIntProperty, def_Version)
 //@parmopt int | nId | OD_PROP_FILL | The identifier of the property.
 //@parm ZBBPUnitProperties& | propProcess | The fill property to copy.
 ZBBPUnitProperties::ZBBPUnitProperties(int nId) 
-	: CODIntProperty(nId)
+    : CODIntProperty(nId)
 {
-	m_UnitName      = _T("");
-	m_UnitCost  = 0;
+    m_UnitName      = _T("");
+    m_UnitCost  = 0;
 
-	RegisterProperties();
+    RegisterProperties();
 }
 
 ZBBPUnitProperties::ZBBPUnitProperties(const ZBBPUnitProperties& propProcess) 
-	: CODIntProperty(propProcess.GetId())
+    : CODIntProperty(propProcess.GetId())
 {
-	m_UnitName      = propProcess.GetUnitName();
-	m_UnitCost  = propProcess.GetUnitCost();
+    m_UnitName      = propProcess.GetUnitName();
+    m_UnitCost  = propProcess.GetUnitCost();
 
-	RegisterProperties();
+    RegisterProperties();
 }
 
 //@mfunc Destructor.
@@ -77,15 +77,15 @@ ZBBPUnitProperties::~ZBBPUnitProperties()
 //@parm The new task list.
 void ZBBPUnitProperties::SetUnitName(LPCTSTR lpszValue)
 {
-	if (lpszValue != NULL)
-	{
-		m_UnitName = lpszValue;
-	}
-	else
-	{
-		TRACE0("Z -> Invalid Task List pointer!\n");
-		ASSERT(FALSE);
-	}
+    if (lpszValue != NULL)
+    {
+        m_UnitName = lpszValue;
+    }
+    else
+    {
+        TRACE0("Z -> Invalid Task List pointer!\n");
+        ASSERT(FALSE);
+    }
 }
 
 //@mfunc Sets the task list.
@@ -93,7 +93,7 @@ void ZBBPUnitProperties::SetUnitName(LPCTSTR lpszValue)
 //@parm The new task list.
 void ZBBPUnitProperties::SetUnitNameEx(const CString value)
 {
-	SetUnitName(value);
+    SetUnitName(value);
 }
 
 
@@ -106,9 +106,9 @@ void ZBBPUnitProperties::SetUnitNameEx(const CString value)
 //@parm Property identifier to compare to.
 BOOL ZBBPUnitProperties::CompareId(const int nId) const
 {
-	int nIdMin = m_nId;
-	int nIdMax = m_nId + Z_UNIT_COST;
-	return (nId >= nIdMin && nId <= nIdMax);
+    int nIdMin = m_nId;
+    int nIdMax = m_nId + Z_UNIT_COST;
+    return (nId >= nIdMin && nId <= nIdMax);
 }
 
 //@mfunc Sets this property object equal to the one passed in.
@@ -116,11 +116,11 @@ BOOL ZBBPUnitProperties::CompareId(const int nId) const
 //@parm The property to copy.
 ZBBPUnitProperties& ZBBPUnitProperties::operator=(const ZBBPUnitProperties& propProcess)
 {
-	SetId(propProcess.GetId());
-	SetUnitName(propProcess.GetUnitName());
-	SetUnitCost(propProcess.GetUnitCost());
+    SetId(propProcess.GetId());
+    SetUnitName(propProcess.GetUnitName());
+    SetUnitCost(propProcess.GetUnitCost());
 
-	return *this;
+    return *this;
 }
 
 //@mfunc Tests if this property is equal to the one passed in.
@@ -128,8 +128,8 @@ ZBBPUnitProperties& ZBBPUnitProperties::operator=(const ZBBPUnitProperties& prop
 //@parm The property to test against.
 BOOL ZBBPUnitProperties::operator==(const ZBBPUnitProperties propProcess) const
 {
-	return (GetUnitName() == propProcess.GetUnitName() &&
-			GetUnitCost() == propProcess.GetUnitCost());
+    return (GetUnitName() == propProcess.GetUnitName() &&
+            GetUnitCost() == propProcess.GetUnitCost());
 }
 
 
@@ -141,15 +141,15 @@ BOOL ZBBPUnitProperties::operator==(const ZBBPUnitProperties propProcess) const
 // to merge into this property object.
 void ZBBPUnitProperties::Merge(CODProperty* pProperty, DWORD dwChangeFlags)
 {
-	ZBBPUnitProperties* pProcessProps = (ZBBPUnitProperties*)pProperty;
+    ZBBPUnitProperties* pProcessProps = (ZBBPUnitProperties*)pProperty;
 
-	if (pProcessProps)
-	{
-		if (dwChangeFlags & Z_CHANGE_UNIT_NAME)
-			m_UnitName = pProcessProps->GetUnitName();
-		if (dwChangeFlags & Z_CHANGE_UNIT_COST)
-			m_UnitCost = pProcessProps->GetUnitCost();
-	}
+    if (pProcessProps)
+    {
+        if (dwChangeFlags & Z_CHANGE_UNIT_NAME)
+            m_UnitName = pProcessProps->GetUnitName();
+        if (dwChangeFlags & Z_CHANGE_UNIT_COST)
+            m_UnitCost = pProcessProps->GetUnitCost();
+    }
 }
 
 //@mfunc Tests if this property is equal to the one passed in. This method
@@ -158,15 +158,15 @@ void ZBBPUnitProperties::Merge(CODProperty* pProperty, DWORD dwChangeFlags)
 //@parm A pointer to the property to test against.
 BOOL ZBBPUnitProperties::IsEqual(CODProperty* pProp)
 {
-	if (GetId() == pProp->GetId())
-	{
-		ZBBPUnitProperties* pProcessProp = (ZBBPUnitProperties*)pProp;
+    if (GetId() == pProp->GetId())
+    {
+        ZBBPUnitProperties* pProcessProp = (ZBBPUnitProperties*)pProp;
 
-		if (pProcessProp)
-			return (*this == *pProcessProp);
-	}
+        if (pProcessProp)
+            return (*this == *pProcessProp);
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -196,87 +196,87 @@ BOOL ZBBPUnitProperties::IsEqual(CODProperty* pProp)
 
 BOOL ZBBPUnitProperties::GetValue(const int nPropId, CString& strValue) const
 {
-	switch (nPropId)
-	{
-	case Z_UNIT_NAME:
-		strValue = m_UnitName;
-		break;
-	default:
-		throw new CODPropertyConversionException();
-		return FALSE;
-	}
+    switch (nPropId)
+    {
+    case Z_UNIT_NAME:
+        strValue = m_UnitName;
+        break;
+    default:
+        throw new CODPropertyConversionException();
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPUnitProperties::GetValue(const int nPropId, int& nValue) const
 {
-	switch (nPropId)
-	{
-	case Z_UNIT_NAME:
-	case Z_UNIT_COST:
-	case Z_UNIT_GUID:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_UNIT_NAME:
+    case Z_UNIT_COST:
+    case Z_UNIT_GUID:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPUnitProperties::GetValue(const int nPropId, UINT& nValue) const
 {
-	switch (nPropId)
-	{
-	case Z_UNIT_NAME:
-	case Z_UNIT_COST:
-	case Z_UNIT_GUID:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_UNIT_NAME:
+    case Z_UNIT_COST:
+    case Z_UNIT_GUID:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPUnitProperties::GetValue(const int nPropId, DWORD& dwValue) const
 {
-	switch (nPropId)
-	{
-	case Z_UNIT_NAME:
-	case Z_UNIT_COST:
-	case Z_UNIT_GUID:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_UNIT_NAME:
+    case Z_UNIT_COST:
+    case Z_UNIT_GUID:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPUnitProperties::GetValue(const int nPropId, float& fValue) const
 {
-	switch (nPropId)
-	{
-	case Z_UNIT_COST:
-		fValue = m_UnitCost;
-		break;
-	case Z_UNIT_NAME:
-	case Z_UNIT_GUID:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_UNIT_COST:
+        fValue = m_UnitCost;
+        break;
+    case Z_UNIT_NAME:
+    case Z_UNIT_GUID:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 //@mfunc | ZBBPUnitProperties | SetValue | Sets the value of the given property.
@@ -303,88 +303,88 @@ BOOL ZBBPUnitProperties::GetValue(const int nPropId, float& fValue) const
 
 BOOL ZBBPUnitProperties::SetValue(const int nPropId, LPCTSTR lpszValue)
 {
-	switch (nPropId)
-	{
-	case Z_UNIT_NAME:
-		m_UnitName = lpszValue;
-		break;
+    switch (nPropId)
+    {
+    case Z_UNIT_NAME:
+        m_UnitName = lpszValue;
+        break;
 
-	default:
-		throw new CODPropertyConversionException();
-		return FALSE;
-	}
+    default:
+        throw new CODPropertyConversionException();
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPUnitProperties::SetValue(const int nPropId, const int nValue)
 {
-	switch (nPropId)
-	{
-	case Z_UNIT_NAME:
-	case Z_UNIT_COST:
-	case Z_UNIT_GUID:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_UNIT_NAME:
+    case Z_UNIT_COST:
+    case Z_UNIT_GUID:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPUnitProperties::SetValue(const int nPropId, const UINT nValue)
 {
-	switch (nPropId)
-	{
-	case Z_UNIT_NAME:
-	case Z_UNIT_COST:
-	case Z_UNIT_GUID:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_UNIT_NAME:
+    case Z_UNIT_COST:
+    case Z_UNIT_GUID:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPUnitProperties::SetValue(const int nPropId, const DWORD dwValue)
 {
-	switch (nPropId)
-	{
-	case Z_UNIT_NAME:
-	case Z_UNIT_COST:
-	case Z_UNIT_GUID:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_UNIT_NAME:
+    case Z_UNIT_COST:
+    case Z_UNIT_GUID:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPUnitProperties::SetValue(const int nPropId, const float fValue)
 {
-	switch (nPropId)
-	{
-	case Z_UNIT_COST:
-		m_UnitCost = fValue;
-		break;
-	case Z_UNIT_NAME:
-	case Z_UNIT_GUID:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_UNIT_COST:
+        m_UnitCost = fValue;
+        break;
+    case Z_UNIT_NAME:
+    case Z_UNIT_GUID:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -395,29 +395,29 @@ BOOL ZBBPUnitProperties::SetValue(const int nPropId, const float fValue)
 //@parm The archive to use for serialization.
 void ZBBPUnitProperties::Serialize(CArchive& ar)
 {
-	CODIntProperty::Serialize(ar);
+    CODIntProperty::Serialize(ar);
 
-	if (ar.IsStoring())
-	{
-		TRACE( "ZBBPUnitProperties::Serialize : Start Save\n" );
+    if (ar.IsStoring())
+    {
+        TRACE( "ZBBPUnitProperties::Serialize : Start Save\n" );
 
-		PUT_SCHEMA(ar, ZBBPUnitProperties);
-		ar << m_UnitName;
-		ar << m_UnitCost;
+        PUT_SCHEMA(ar, ZBBPUnitProperties);
+        ar << m_UnitName;
+        ar << m_UnitCost;
 
-		TRACE( "ZBBPUnitProperties::Serialize : End Save\n" );
-	}
-	else
-	{
-		TRACE( "ZBBPUnitProperties::Serialize : Start Read\n" );
+        TRACE( "ZBBPUnitProperties::Serialize : End Save\n" );
+    }
+    else
+    {
+        TRACE( "ZBBPUnitProperties::Serialize : Start Read\n" );
 
-		UINT nSchema;
-		GET_SCHEMA(ar, nSchema);
-		ar >> m_UnitName;
-		ar >> m_UnitCost;
+        UINT nSchema;
+        GET_SCHEMA(ar, nSchema);
+        ar >> m_UnitName;
+        ar >> m_UnitCost;
 
-		TRACE( "ZBBPUnitProperties::Serialize : End Read\n" );
-	}
+        TRACE( "ZBBPUnitProperties::Serialize : End Read\n" );
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -425,45 +425,45 @@ void ZBBPUnitProperties::Serialize(CArchive& ar)
 
 bool ZBBPUnitProperties::RegisterProperties()
 {
-	static bool propsRegistered = false;
+    static bool propsRegistered = false;
 
-	if (!propsRegistered)
-	{	
-		bool success = true;
+    if (!propsRegistered)
+    {    
+        bool success = true;
 
-		if (success)
-		{
-			success = RegisterProperty(Z_UNIT_NAME,
-						IDS_Z_UNIT_NAME_NAME, 
-						IDS_Z_UNIT_NAME_DESC,
-						_PropertyAccessor(&ZBBPUnitProperties::GetUnitName,
-						&ZBBPUnitProperties::SetUnitNameEx),
-						VT_BSTR,
-						PROP_DIRECT
-						);
-		}
+        if (success)
+        {
+            success = RegisterProperty(Z_UNIT_NAME,
+                        IDS_Z_UNIT_NAME_NAME, 
+                        IDS_Z_UNIT_NAME_DESC,
+                        _PropertyAccessor(&ZBBPUnitProperties::GetUnitName,
+                        &ZBBPUnitProperties::SetUnitNameEx),
+                        VT_BSTR,
+                        PROP_DIRECT
+                        );
+        }
 
-		if (success)
-		{
-			success = RegisterProperty(Z_UNIT_COST,
-						IDS_Z_UNIT_COST_NAME, 
-						IDS_Z_UNIT_COST_DESC,
-						_PropertyAccessor(&ZBBPUnitProperties::GetUnitCost,
-						&ZBBPUnitProperties::SetUnitCost),
-						VT_R4,
-						PROP_DIRECT
-						);
-		}
+        if (success)
+        {
+            success = RegisterProperty(Z_UNIT_COST,
+                        IDS_Z_UNIT_COST_NAME, 
+                        IDS_Z_UNIT_COST_DESC,
+                        _PropertyAccessor(&ZBBPUnitProperties::GetUnitCost,
+                        &ZBBPUnitProperties::SetUnitCost),
+                        VT_R4,
+                        PROP_DIRECT
+                        );
+        }
 
-		if (!success)
-		{
-			ZBBPUnitProperties::GetPropertyMap().DeleteAll();
-		}
+        if (!success)
+        {
+            ZBBPUnitProperties::GetPropertyMap().DeleteAll();
+        }
 
-		propsRegistered = success;
-	}
+        propsRegistered = success;
+    }
 
-	return propsRegistered;
+    return propsRegistered;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -472,16 +472,16 @@ bool ZBBPUnitProperties::RegisterProperties()
 #ifdef _DEBUG
 void ZBBPUnitProperties::AssertValid() const
 {
-	CODIntProperty::AssertValid();
+    CODIntProperty::AssertValid();
 
 }
 
 void ZBBPUnitProperties::Dump(CDumpContext& dc) const
 {
-	CODIntProperty::Dump(dc);
+    CODIntProperty::Dump(dc);
 
-	dc << "Unit name = " << m_UnitName << "\n";
-	dc << "Unit Cost = " << m_UnitCost << "\n";
+    dc << "Unit name = " << m_UnitName << "\n";
+    dc << "Unit Cost = " << m_UnitCost << "\n";
 }
 #endif //_DEBUG
 

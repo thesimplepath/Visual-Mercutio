@@ -30,57 +30,57 @@
 // Define different type of dialog
 enum DialogFormType
 {
-	StartForm,
-	AttachForm,
-	OpenForm,
-	SelectForm
+    StartForm,
+    AttachForm,
+    OpenForm,
+    SelectForm
 };
 
 enum DialogFormExtensionType
 {
-	FormType,
-	ProcessFormType,
-	ModelFormType
+    FormType,
+    ProcessFormType,
+    ModelFormType
 };
 
 /////////////////////////////////////////////////////////////////////////////
 // ZINewFormPropertySheet property sheet
 
-class AFX_EXT_CLASS ZINewFormPropertySheet : public ZIBasePropSheet	//## Inherits: <unnamed>
+class AFX_EXT_CLASS ZINewFormPropertySheet : public ZIBasePropSheet    //## Inherits: <unnamed>
 {
-	DECLARE_DYNAMIC( ZINewFormPropertySheet )
+    DECLARE_DYNAMIC( ZINewFormPropertySheet )
 
 public:
 
-	ZINewFormPropertySheet( ZDTemplateManager* pTemplateManager );
-	~ZINewFormPropertySheet();
+    ZINewFormPropertySheet( ZDTemplateManager* pTemplateManager );
+    ~ZINewFormPropertySheet();
 
-	const CString GetRootCaption() const
-	{
-		return m_RootCaption;
-	}
+    const CString GetRootCaption() const
+    {
+        return m_RootCaption;
+    }
 
-	void Initialize();
-	void ClearContents();
+    void Initialize();
+    void ClearContents();
 
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZINewFormPropertySheet)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZINewFormPropertySheet)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	ZINewFormPropertySheet( const ZINewFormPropertySheet &right );
+    ZINewFormPropertySheet( const ZINewFormPropertySheet &right );
 
-	const ZINewFormPropertySheet & operator=( const ZINewFormPropertySheet &right );
+    const ZINewFormPropertySheet & operator=( const ZINewFormPropertySheet &right );
 
 private:
 
-	CString				m_RootCaption;
-	BOOL				m_FirstInitialization;
-	ZDTemplateManager*	m_pTemplateManager;
+    CString                m_RootCaption;
+    BOOL                m_FirstInitialization;
+    ZDTemplateManager*    m_pTemplateManager;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -91,77 +91,77 @@ class AFX_EXT_CLASS ZINewForm : public ZIWizardDialog
 // Construction / Destruction
 public:
 
-	// Standard constructor
-	ZINewForm( ZDTemplateManager*		pTemplateManager,
-			   DialogFormType			Type,
-			   DialogFormExtensionType	ExtensionType );
+    // Standard constructor
+    ZINewForm( ZDTemplateManager*        pTemplateManager,
+               DialogFormType            Type,
+               DialogFormExtensionType    ExtensionType );
 
-	~ZINewForm();
+    ~ZINewForm();
 
 public:
 
-	CString GetFileName();
-	CString GetFormName();
+    CString GetFileName();
+    CString GetFormName();
 
-	ZDTemplateFile* GetTemplateFilePtr();
+    ZDTemplateFile* GetTemplateFilePtr();
 
-	BOOL MustCopyFormat() const
-	{
-		return m_bCopyFormat;
-	}
+    BOOL MustCopyFormat() const
+    {
+        return m_bCopyFormat;
+    }
 
-	// Dialog Data
-	//{{AFX_DATA(ZINewForm)
-	enum { IDD = IDD_NEWFORM };
-	CStatic			m_Text;
-	CButton			m_CopyFormatWnd;
-	CButton			m_Button;
-	CString			m_sComment;
-	BOOL			m_bCopyFormat;
-	CBitmapButton	m_MoveToGeneralTabBtn;
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZINewForm)
+    enum { IDD = IDD_NEWFORM };
+    CStatic            m_Text;
+    CButton            m_CopyFormatWnd;
+    CButton            m_Button;
+    CString            m_sComment;
+    BOOL            m_bCopyFormat;
+    CBitmapButton    m_MoveToGeneralTabBtn;
+    //}}AFX_DATA
 
 // Implementation
 protected:
 
-	// DDX/DDV support
-	virtual void DoDataExchange( CDataExchange* pDX );
+    // DDX/DDV support
+    virtual void DoDataExchange( CDataExchange* pDX );
 
-	// Generated message map functions
-	//{{AFX_MSG(ZINewForm)
-	virtual BOOL OnInitDialog();
-	afx_msg void OnMoveToGeneralTab();
-	virtual void OnOK();
-	afx_msg LONG OnCommentChange(UINT message, LONG lParam);
-	afx_msg LONG OnFormsSelected(UINT message, LONG lParam);
-	afx_msg LONG OnFormActivate(UINT message, LONG lParam);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZINewForm)
+    virtual BOOL OnInitDialog();
+    afx_msg void OnMoveToGeneralTab();
+    virtual void OnOK();
+    afx_msg LONG OnCommentChange(UINT message, LONG lParam);
+    afx_msg LONG OnFormsSelected(UINT message, LONG lParam);
+    afx_msg LONG OnFormActivate(UINT message, LONG lParam);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 // Implementation
 private:
 
-	DialogFormType 				m_Type;
-	DialogFormExtensionType		m_ExtensionType;
-	CString						m_SelectedFilename;
-	CString						m_SelectedFormName;
-	ZDTemplateFile*				m_pCurrentTemplateFile;
-	ZDTemplateDir*				m_pCurrentTemplateDir;
-	ZDTemplateManager*			m_pTemplateManager;
-	ZINewFormPropertySheet* 	m_pSystemPropertySheet;
+    DialogFormType                 m_Type;
+    DialogFormExtensionType        m_ExtensionType;
+    CString                        m_SelectedFilename;
+    CString                        m_SelectedFormName;
+    ZDTemplateFile*                m_pCurrentTemplateFile;
+    ZDTemplateDir*                m_pCurrentTemplateDir;
+    ZDTemplateManager*            m_pTemplateManager;
+    ZINewFormPropertySheet*     m_pSystemPropertySheet;
 };
 
 inline CString ZINewForm::GetFileName()
 {
-	return m_SelectedFilename;
+    return m_SelectedFilename;
 }
 
 inline CString ZINewForm::GetFormName()
 {
-	return m_SelectedFormName;
+    return m_SelectedFormName;
 }
 
 inline ZDTemplateFile* ZINewForm::GetTemplateFilePtr()
 {
-	return m_pCurrentTemplateFile;
+    return m_pCurrentTemplateFile;
 }

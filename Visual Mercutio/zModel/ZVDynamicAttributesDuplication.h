@@ -1,9 +1,9 @@
 /****************************************************************************************************************
- *											classe ZVDynamicAttributesDuplication								*
+ *                                            classe ZVDynamicAttributesDuplication                                *
  ****************************************************************************************************************
- * JMR-MODIF - Le 18 août 2005 - Ajout de la classe ZVDynamicAttributesDuplication.								*
- * Cette classe représente la boîte de dialogue permettant de paramétrer la copie d'attributs dynamiques. Elle	*
- * s'occupe de la validité des données, et mets ces dernières à disposition pour l'opération de copie.			*
+ * JMR-MODIF - Le 18 août 2005 - Ajout de la classe ZVDynamicAttributesDuplication.                                *
+ * Cette classe représente la boîte de dialogue permettant de paramétrer la copie d'attributs dynamiques. Elle    *
+ * s'occupe de la validité des données, et mets ces dernières à disposition pour l'opération de copie.            *
  ****************************************************************************************************************/
 
 #if !defined(AFX_ZVDYNAMICATTRIBUTESDUPLICATION_H__7CD0522A_A41A_456A_A5A9_52FB2F9B6BA1__INCLUDED_)
@@ -45,56 +45,56 @@
 #endif
 
 // **************************************************************************************************************
-// *									  Classe ZVDynamicAttributesDuplication									*
+// *                                      Classe ZVDynamicAttributesDuplication                                    *
 // **************************************************************************************************************
 class ZVDynamicAttributesDuplication : public ZIWizardDialog
 {
-	DECLARE_DYNAMIC( ZVDynamicAttributesDuplication )
+    DECLARE_DYNAMIC( ZVDynamicAttributesDuplication )
 
 public:
 
-	ZVDynamicAttributesDuplication( ZDProcessGraphModelDoc* pModelDoc, bool SymbolSelected );
-	virtual ~ZVDynamicAttributesDuplication();
+    ZVDynamicAttributesDuplication( ZDProcessGraphModelDoc* pModelDoc, bool SymbolSelected );
+    virtual ~ZVDynamicAttributesDuplication();
 
-	// Données de boîte de dialogue
-	enum { IDD = IDD_WZ_DYNAMICATTR_S3 };
+    // Données de boîte de dialogue
+    enum { IDD = IDD_WZ_DYNAMICATTR_S3 };
 
 protected:
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVDynamicAttributesCreationS1)
-	virtual void DoDataExchange( CDataExchange* pDX );    // Prise en charge DDX/DDV
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVDynamicAttributesCreationS1)
+    virtual void DoDataExchange( CDataExchange* pDX );    // Prise en charge DDX/DDV
+    //}}AFX_VIRTUAL
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVDynamicAttributesCreationS1)
-	virtual BOOL OnInitDialog();
-	afx_msg void OnLbnSelchangeAttribCategoryList();
-	afx_msg void OnBnClickedOk();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVDynamicAttributesCreationS1)
+    virtual BOOL OnInitDialog();
+    afx_msg void OnLbnSelchangeAttribCategoryList();
+    afx_msg void OnBnClickedOk();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 public:
 
-	CString					m_Name;
-	CString					m_Category;
+    CString                    m_Name;
+    CString                    m_Category;
 
-	BOOL					m_bDupValuesIsChecked;
+    BOOL                    m_bDupValuesIsChecked;
 
 private:
 
-	ZDProcessGraphModelDoc*	m_pModelDoc;
+    ZDProcessGraphModelDoc*    m_pModelDoc;
 
-	CStringArray			m_StaticAttribArray;
-	CStringArray			m_DynamicAttribArray;
+    CStringArray            m_StaticAttribArray;
+    CStringArray            m_DynamicAttribArray;
 
-	CListBox				m_CategoryList;
+    CListBox                m_CategoryList;
 
-	bool					m_InternalNameChange;
+    bool                    m_InternalNameChange;
 
-	CEdit					m_AttribNameTxtBox;
-	CButton					m_cbDuplicateValues;
+    CEdit                    m_AttribNameTxtBox;
+    CButton                    m_cbDuplicateValues;
 };
 
 #endif // !defined(AFX_ZVDYNAMICATTRIBUTESDUPLICATION_H__7CD0522A_A41A_456A_A5A9_52FB2F9B6BA1__INCLUDED_)

@@ -37,66 +37,66 @@
 class AFX_EXT_CLASS ZCPropertyListView : public CView, public ZIObserver
 {
 protected:
-	ZCPropertyListView();           // protected constructor used by dynamic creation
-	DECLARE_DYNCREATE(ZCPropertyListView)
+    ZCPropertyListView();           // protected constructor used by dynamic creation
+    DECLARE_DYNCREATE(ZCPropertyListView)
 
 // Operations
 public:
 
-	// Observer call back
-	virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    // Observer call back
+    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
 
-	// Attributes
-	void SetPropertyItemManager(ZBPropertyItemManager* pPropertyItemManager)
-	{
-		m_listctrl.SetPropertyItemManager(pPropertyItemManager);
-	};
-	ZBPropertyItem* GetPropertyItem(int nIndex)
-	{
-		return m_listctrl.GetPropertyItem(nIndex);
-	};
-	// Operations
-	void InsertPropertyItem(ZBPropertyItem* pPropertyItem, int nIndex = 0)
-	{
-		m_listctrl.InsertPropertyItem(pPropertyItem, nIndex);
-	};
-	void ResetContent()
-	{
-		m_listctrl.ResetContent();
-	};
-	void ShowInPlaceControl(bool bShow = true)
-	{
-		m_listctrl.ShowInPlaceControl(bShow);
-	};
-	void Refresh()
-	{
-		m_listctrl.Refresh();
-	};
+    // Attributes
+    void SetPropertyItemManager(ZBPropertyItemManager* pPropertyItemManager)
+    {
+        m_listctrl.SetPropertyItemManager(pPropertyItemManager);
+    };
+    ZBPropertyItem* GetPropertyItem(int nIndex)
+    {
+        return m_listctrl.GetPropertyItem(nIndex);
+    };
+    // Operations
+    void InsertPropertyItem(ZBPropertyItem* pPropertyItem, int nIndex = 0)
+    {
+        m_listctrl.InsertPropertyItem(pPropertyItem, nIndex);
+    };
+    void ResetContent()
+    {
+        m_listctrl.ResetContent();
+    };
+    void ShowInPlaceControl(bool bShow = true)
+    {
+        m_listctrl.ShowInPlaceControl(bShow);
+    };
+    void Refresh()
+    {
+        m_listctrl.Refresh();
+    };
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCPropertyListView)
-	protected:
-	virtual void OnDraw(CDC* pDC);      // overridden to draw this view
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCPropertyListView)
+    protected:
+    virtual void OnDraw(CDC* pDC);      // overridden to draw this view
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
-	virtual ~ZCPropertyListView();
+    virtual ~ZCPropertyListView();
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZCPropertyListView)
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg void OnSize(UINT nType, int cx, int cy);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZCPropertyListView)
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    afx_msg void OnSize(UINT nType, int cx, int cy);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 protected:
-	ZCPropertyListCtrl m_listctrl;
+    ZCPropertyListCtrl m_listctrl;
 
 };
 

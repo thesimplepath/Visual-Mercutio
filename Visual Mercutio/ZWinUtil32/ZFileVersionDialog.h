@@ -42,34 +42,34 @@ class AFX_EXT_CLASS ZFileVersionDialog : public ZIDialog
 {
 // Construction
 public:
-	ZFileVersionDialog(long FileVersion = 0, CWnd* pParent = NULL);   // standard constructor
-	long	GetFileVersion() const { return m_FileVersion; };
+    ZFileVersionDialog(long FileVersion = 0, CWnd* pParent = NULL);   // standard constructor
+    long    GetFileVersion() const { return m_FileVersion; };
 
 // Dialog Data
-	//{{AFX_DATA(ZFileVersionDialog)
-	enum { IDD = IDD_FILEVERSION };
-	CSpinButtonCtrl	m_FileVersionSpin;
-	long	m_FileVersion;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZFileVersionDialog)
+    enum { IDD = IDD_FILEVERSION };
+    CSpinButtonCtrl    m_FileVersionSpin;
+    long    m_FileVersion;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZFileVersionDialog)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZFileVersionDialog)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZFileVersionDialog)
-	virtual BOOL OnInitDialog();
-	afx_msg void OnDeltaposFileversionSpin(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnChangeFileVersion();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZFileVersionDialog)
+    virtual BOOL OnInitDialog();
+    afx_msg void OnDeltaposFileversionSpin(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnChangeFileVersion();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

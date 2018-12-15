@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Gaya
-// <nl>Created:		 03/2002
+// <nl>Created:         03/2002
 // <nl>Description:  XXXClass frame window support
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -46,24 +46,24 @@ class AFX_EXT_CLASS pattribdef
 {
 public:
 
-	pattribdef()
-	{
-	}
+    pattribdef()
+    {
+    }
 
-	pattribdef( int attribdefid, int attribgrpid, String16 attribdefname, int attribdeftype, int attribdefreq )
-	{
-		this->attribdefid	= attribdefid;
-		this->attribgrpid	= attribgrpid;
-		this->attribdefname	= convertTo( attribdefname );
-		this->attribdeftype	= attribdeftype;
-		this->attribdefreq	= attribdefreq;
-	}
+    pattribdef( int attribdefid, int attribgrpid, String16 attribdefname, int attribdeftype, int attribdefreq )
+    {
+        this->attribdefid    = attribdefid;
+        this->attribgrpid    = attribgrpid;
+        this->attribdefname    = convertTo( attribdefname );
+        this->attribdeftype    = attribdeftype;
+        this->attribdefreq    = attribdefreq;
+    }
 
-	int		attribdefid;
-	int		attribgrpid;
-	string	attribdefname;
-	int		attribdeftype;
-	int		attribdefreq;
+    int        attribdefid;
+    int        attribgrpid;
+    string    attribdefname;
+    int        attribdeftype;
+    int        attribdefreq;
 };
 
 #endif

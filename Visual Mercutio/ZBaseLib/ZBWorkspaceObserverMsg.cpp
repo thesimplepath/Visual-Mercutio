@@ -21,23 +21,23 @@ IMPLEMENT_DYNAMIC( ZBWorkspaceObserverMsg, ZIObserverMsg )
 //////////////////////////////////////////////////////////////////////
 
 ZBWorkspaceObserverMsg::ZBWorkspaceObserverMsg( UINT MessageID /*= 0*/, ZBWorkspaceEnv* pEnv /*= NULL*/ )
-	: m_MessageID	( MessageID ),
-	  m_pEnv		( pEnv ),
-	  m_pEntity		( NULL )
+    : m_MessageID    ( MessageID ),
+      m_pEnv        ( pEnv ),
+      m_pEntity        ( NULL )
 {
 }
 
 ZBWorkspaceObserverMsg::ZBWorkspaceObserverMsg( UINT MessageID, ZBWorkspaceEnv* pEnv, ZBWorkspaceEntity* pEntity )
-	: m_MessageID	( MessageID ), 
-	  m_pEnv		( pEnv ),
-	  m_pEntity		( pEntity )
+    : m_MessageID    ( MessageID ), 
+      m_pEnv        ( pEnv ),
+      m_pEntity        ( pEntity )
 {
 }
 
 ZBWorkspaceObserverMsg::ZBWorkspaceObserverMsg( UINT MessageID, ZBWorkspaceEntity* pEntity )
-	: m_MessageID	( MessageID ),
-	  m_pEnv		( NULL ),
-	  m_pEntity		( pEntity )
+    : m_MessageID    ( MessageID ),
+      m_pEnv        ( NULL ),
+      m_pEntity        ( pEntity )
 {
 }
 

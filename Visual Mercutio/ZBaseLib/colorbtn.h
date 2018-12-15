@@ -50,45 +50,45 @@ class _ZVColorBtnDlg : public CDialog
 // Construction
 public:
 
-	// standard constructor
-	_ZVColorBtnDlg( CWnd* pParent = NULL );
+    // standard constructor
+    _ZVColorBtnDlg( CWnd* pParent = NULL );
 
-	// Dialog Data
-	//{{AFX_DATA(ZVColorBtnDlg)
-	enum { IDD = IDD_COLORBTN };
-		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZVColorBtnDlg)
+    enum { IDD = IDD_COLORBTN };
+        // NOTE: the ClassWizard will add data members here
+    //}}AFX_DATA
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVColorBtnDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVColorBtnDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVColorBtnDlg)
-	virtual BOOL OnInitDialog();
-	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
-	afx_msg void OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct);
-	afx_msg void OnOther();
-	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVColorBtnDlg)
+    virtual BOOL OnInitDialog();
+    afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+    afx_msg void OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct);
+    afx_msg void OnOther();
+    afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
-	void OnColor( UINT id );
-	void EndDialog( int nResult );
+    void OnColor( UINT id );
+    void EndDialog( int nResult );
 
 public:
 
-	static COLORREF colors[20];
-	static BYTE		used[20];
+    static COLORREF colors[20];
+    static BYTE        used[20];
 
-	CButton*		parent;
-	int				colorindex;
+    CButton*        parent;
+    int                colorindex;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -98,69 +98,69 @@ class AFX_EXT_CLASS ZCColorBtn : public CButton
 {
 public:
 
-	// Construction / Destruction
-	ZCColorBtn();
-	virtual ~ZCColorBtn();
+    // Construction / Destruction
+    ZCColorBtn();
+    virtual ~ZCColorBtn();
 
-	// The selected color,set this variable to initialize the
-	// button's color and read to see the results
-	COLORREF GetColor()
-	{
-		return currentcolor;
-	}
+    // The selected color,set this variable to initialize the
+    // button's color and read to see the results
+    COLORREF GetColor()
+    {
+        return currentcolor;
+    }
 
-	void SetColor( COLORREF color )
-	{
-		currentcolor = color;
-	}
+    void SetColor( COLORREF color )
+    {
+        currentcolor = color;
+    }
 
-	// If using Serialize, call Reset to reinitialize the color table at OnNewDocument()
-	static void Reset();
+    // If using Serialize, call Reset to reinitialize the color table at OnNewDocument()
+    static void Reset();
 
-	// Use Load and Store to save/restore the color table to/from the registry
-	static BOOL Load();
+    // Use Load and Store to save/restore the color table to/from the registry
+    static BOOL Load();
     static BOOL Store();
 
-	// JMR-MODIF - Le 21 octobre 2005 - Supprimé la déclaration static pour la fonction Serialize.
+    // JMR-MODIF - Le 21 octobre 2005 - Supprimé la déclaration static pour la fonction Serialize.
     // Use Serialize to store the color table in a file. Call at the document's Serialize()
-	void Serialize( CArchive& ar );
+    void Serialize( CArchive& ar );
 
 // Implementation
 public:
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCColorBtn)
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCColorBtn)
+    //}}AFX_VIRTUAL
 
 // Generated message map functions
 protected:
 
-	//{{AFX_MSG(ZCColorBtn)
-	afx_msg void OnClicked();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZCColorBtn)
+    afx_msg void OnClicked();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
     void DrawItem( LPDRAWITEMSTRUCT );
 
 private:
 
-	// A number of pens and brushes needed to paint the button
-    CBrush			backbrush;
-    CBrush			nullbrush;
+    // A number of pens and brushes needed to paint the button
+    CBrush            backbrush;
+    CBrush            nullbrush;
 
-	CBrush*			oldbrush;
+    CBrush*            oldbrush;
 
-	CPen			blackpen;
-    CPen			dkgray;
-    CPen			whitepen;
-    CPen			nullpen;
+    CPen            blackpen;
+    CPen            dkgray;
+    CPen            whitepen;
+    CPen            nullpen;
 
-	CPen*			oldpen;
+    CPen*            oldpen;
 
-	COLORREF		currentcolor;
+    COLORREF        currentcolor;
 
-	_ZVColorBtnDlg	dlg;
+    _ZVColorBtnDlg    dlg;
 };
 
 #endif

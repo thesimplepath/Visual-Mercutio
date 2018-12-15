@@ -12,8 +12,8 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 BEGIN_MESSAGE_MAP(ZCLanguageCombo, CCJFlatComboBox)
-	//{{AFX_MSG_MAP(ZCLanguageCombo)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZCLanguageCombo)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 
@@ -21,7 +21,7 @@ END_MESSAGE_MAP()
 
 
 ZCLanguageCombo::ZCLanguageCombo( Language InitialLanguage /*= UnknownLang*/ )
-:	m_Language(InitialLanguage)
+:    m_Language(InitialLanguage)
 {
 }
 
@@ -34,24 +34,24 @@ ZCLanguageCombo::~ZCLanguageCombo()
 
 int ZCLanguageCombo::Initialize ()
 {
-	CString s;
-	s.LoadString( IDS_LANGUAGE_LIST );
+    CString s;
+    s.LoadString( IDS_LANGUAGE_LIST );
 
-	ZBTokenizer token;	// Initialize the token with ; as separator
+    ZBTokenizer token;    // Initialize the token with ; as separator
 
-	CString str = token.GetFirstToken( s );
-	
-	// Run through all tokens
-	while (!str.IsEmpty())
-	{
-		// Add the string to the list
-		AddString(str);
-		// Get the next token
-		str = token.GetNextToken();
-	}
+    CString str = token.GetFirstToken( s );
+    
+    // Run through all tokens
+    while (!str.IsEmpty())
+    {
+        // Add the string to the list
+        AddString(str);
+        // Get the next token
+        str = token.GetNextToken();
+    }
 
-	SelectLanguage( m_Language );
-	return 1;
+    SelectLanguage( m_Language );
+    return 1;
 }
 
 

@@ -41,29 +41,29 @@ class AFX_EXT_CLASS PLFNBackImage : public PLFNBitmap
 {
 public:
 // Inherited feature
-	typedef PLFNBitmap inherited;
+    typedef PLFNBitmap inherited;
     virtual UINT GetRightSubMenu() const { return ObjectRightSubMenu; };
 
 public:
-	PLFNBackImage();
-	virtual ~PLFNBackImage();
+    PLFNBackImage();
+    virtual ~PLFNBackImage();
 
     PLFNBackImage(const PLFNBackImage &right);
 
-	const PLFNBackImage & operator=(const PLFNBackImage &right);
-	//	A copy constructor with a pointer.
-	const PLFNBackImage& operator = (const PLFNBackImage* right);
+    const PLFNBackImage & operator=(const PLFNBackImage &right);
+    //    A copy constructor with a pointer.
+    const PLFNBackImage& operator = (const PLFNBackImage* right);
 
-	//	Make a clone of the object.
-	virtual PlanFinObject* Clone ();
+    //    Make a clone of the object.
+    virtual PlanFinObject* Clone ();
 
-	virtual void CopyObject (PlanFinObject* pSrc);
+    virtual void CopyObject (PlanFinObject* pSrc);
 
     virtual BOOL IsHint(CPoint& point) const;
 
 // Implementation
 protected:
-	DECLARE_SERIAL(PLFNBackImage)
+    DECLARE_SERIAL(PLFNBackImage)
 
 };
 
@@ -71,7 +71,7 @@ protected:
 // Can't be selected
 inline BOOL PLFNBackImage::IsHint(CPoint& point) const
 {
-	return FALSE;
+    return FALSE;
 }
 
 #endif // !defined(AFX_PLFNBACKIMAGE_H__9E7EF5E5_0BDA_4534_8016_BDC9AD35F5C0__INCLUDED_)

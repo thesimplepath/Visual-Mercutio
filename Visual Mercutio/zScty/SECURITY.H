@@ -13,7 +13,7 @@
 // See these sources for detailed information regarding
 // zADS libraries.
 //
-// <nl>Created:		 03/2000
+// <nl>Created:         03/2000
 // <nl>Description:  XXXClass frame window support
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -35,9 +35,9 @@
 
 
 #ifdef _WIN32
-	#include <winver.h>
+    #include <winver.h>
 #else
-	#include <ver.h>
+    #include <ver.h>
 #endif // _WIN32
 
 #include <SHELLAPI.H>
@@ -49,17 +49,17 @@ using namespace std;
 /////////////////////////////////////////////////////////////////////////////
 // Constant definition
 
-const	int		iCurrentVersion = 1;
+const    int        iCurrentVersion = 1;
 
-const	int		iPosDateStart = 2;
-const	int		iPosDateLast  = 8;
-const	int		iPosCounterStart = 11;
-const	int		iPosCounterLast = 17;
-const	int		iPosVersion = 18;
-const	CString	sLastDate = "LastDate";
-const	CString	sLastCounter = "LastCounter";
-const	CString	sInitialValue = "@@Initial$$Value";
-const	CString	sCheckString = "VERS";
+const    int        iPosDateStart = 2;
+const    int        iPosDateLast  = 8;
+const    int        iPosCounterStart = 11;
+const    int        iPosCounterLast = 17;
+const    int        iPosVersion = 18;
+const    CString    sLastDate = "LastDate";
+const    CString    sLastCounter = "LastCounter";
+const    CString    sInitialValue = "@@Initial$$Value";
+const    CString    sCheckString = "VERS";
 
 
 #ifdef _ZSCTYEXPORT
@@ -90,7 +90,7 @@ class AFX_EXT_CLASS ZASecurityEntity
 
     //## Other Operations (specified)
       //## Operation: GenerateRandomEntity%811984121
-      //	This function generates a random key.
+      //    This function generates a random key.
       CString GenerateRandomEntity();
 
       //## Operation: GenerateDate%812250686
@@ -100,25 +100,25 @@ class AFX_EXT_CLASS ZASecurityEntity
       CString GenerateCounter(int iCounter);
 
       //## Operation: GetCounter%812250688
-      //	Decript the counter and return it.
+      //    Decript the counter and return it.
       int GetCounter();
 
       //## Operation: GetDate%812250689
-      //	Decript the date and return it.
+      //    Decript the date and return it.
       CTime GetDate();
 
       //## Operation: GetVersion%855298592
-      //	Extract the version from the entity.
+      //    Extract the version from the entity.
       int GetVersion();
 
       //## Operation: GenerateVersion%855298593
       CString GenerateVersion(int iVersion);
 
-      //	Take the key and cript it.
+      //    Take the key and cript it.
       void CriptEntity();
 
       //## Documentation ZASecurityEntity::sEntity.has
-      //	The entity
+      //    The entity
       const CString GetsEntity() const;
       void SetsEntity(const CString value);
 
@@ -151,8 +151,8 @@ class AFX_EXT_CLASS ZASecurityEntity
 
 
 //## Class: ZASecurity
-//	This classes is responsible to provide methods for
-//	security checking.
+//    This classes is responsible to provide methods for
+//    security checking.
 //## Category: Security classes
 //## Subsystem: Security Modules
 //## Persistence: Transient
@@ -163,7 +163,7 @@ class AFX_EXT_CLASS ZASecurity
 {
   //## begin ZASecurity.initialDeclarations preserve=yes
   public:
-  		int	GetCurrentVersion();
+          int    GetCurrentVersion();
   //## end ZASecurity.initialDeclarations
 
   public:
@@ -186,30 +186,30 @@ class AFX_EXT_CLASS ZASecurity
       BOOL SetLastUseCounter(int iCounter);
 
       //## Operation: GetCounterSpan%812506908
-      //	Return the difference between the initial counter and
-      //	the last counter.
+      //    Return the difference between the initial counter and
+      //    the last counter.
       int GetCounterSpan();
 
       //## Operation: GetTimeSpan%812506909
       CTimeSpan GetTimeSpan();
 
       //## Operation: IncrementCounter%812682976
-      //	Increment the counter.
+      //    Increment the counter.
       BOOL IncrementCounter();
 
       //## Operation: GetVersion%854929698
-      //	Return the version of the license file.
+      //    Return the version of the license file.
       int GetVersion();
 
       //## Operation: DisplayWarning%854929699
-      //	Display a warning box.
+      //    Display a warning box.
       void DisplayWarning();
 
       //## Operation: DisplayStopWnd%855119248
       void DisplayStopWnd();
 
       //## Operation: SetVersion%855298594
-      //	Change the version number
+      //    Change the version number
       BOOL SetVersion(int iVersion);
 
     //## Get and Set Operations for Has Relationships (generated)
@@ -230,14 +230,14 @@ class AFX_EXT_CLASS ZASecurity
 
     //## Other Operations (specified)
       //## Operation: Create%811976842
-      //	Create the security filename with the creation date and
-      //	counters.
+      //    Create the security filename with the creation date and
+      //    counters.
       BOOL Create();
 
     //## Get and Set Operations for Has Relationships (generated)
 
       //## Documentation ZASecurity::bError.has
-      //	Error flag
+      //    Error flag
       const BOOL GetbError() const;
       void SetbError(const BOOL value);
 
@@ -260,19 +260,19 @@ class AFX_EXT_CLASS ZASecurity
 
       // Write the entity table to disk.
       BOOL WriteEntityTable();
-	  // Load the security entities from the file to the table.
+      // Load the security entities from the file to the table.
       BOOL LoadSecurityTable();
 
 protected:
-	CString	m_sKey;
-	CString	m_sPID;
+    CString    m_sKey;
+    CString    m_sPID;
 
 private:
-	CStdioFile m_SecurityFile;
+    CStdioFile m_SecurityFile;
 
-	ZASecurityEntity  m_SecurityEntityTable[20];
+    ZASecurityEntity  m_SecurityEntityTable[20];
 
-	BOOL m_bError;
+    BOOL m_bError;
 
 
 };

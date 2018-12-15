@@ -17,13 +17,13 @@ static char THIS_FILE[] = __FILE__;
 IMPLEMENT_DYNAMIC( ZVOutputSymbolLogView, ZVOutputView )
 
 BEGIN_MESSAGE_MAP( ZVOutputSymbolLogView, ZVOutputView )
-	//{{AFX_MSG_MAP(ZVOutputSymbolLogView)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZVOutputSymbolLogView)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 ZVOutputSymbolLogView::ZVOutputSymbolLogView()
 {
-	SetSelectLast( true );
+    SetSelectLast( true );
 }
 
 ZVOutputSymbolLogView::~ZVOutputSymbolLogView()
@@ -36,19 +36,19 @@ ZVOutputSymbolLogView::~ZVOutputSymbolLogView()
 // Call back function base on list events
 void ZVOutputSymbolLogView::OnSelChanged()
 {
-	// Do nothing
+    // Do nothing
 }
 
 void ZVOutputSymbolLogView::OnDoubleClick()
 {
-	CString s;
+    CString s;
 
-	if ( GetCurrentItem( s ) != -1 )
-	{
-		ZBGenericSymbolErrorLine ErrorLine;
-		(ZIErrorLine&)ErrorLine = s;
-		ZBSymbolLogObserverMsg msg( ErrorLine );
+    if ( GetCurrentItem( s ) != -1 )
+    {
+        ZBGenericSymbolErrorLine ErrorLine;
+        (ZIErrorLine&)ErrorLine = s;
+        ZBSymbolLogObserverMsg msg( ErrorLine );
 
-		NotifyAllObservers( &msg );
-	}
+        NotifyAllObservers( &msg );
+    }
 }

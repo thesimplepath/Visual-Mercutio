@@ -24,7 +24,7 @@ IMPLEMENT_SERIAL( ZBDistributionRulesForRole, CObject, def_Version )
 //////////////////////////////////////////////////////////////////////
 
 ZBDistributionRulesForRole::ZBDistributionRulesForRole( CString RoleGUID /*= ""*/ )
-	: m_RoleGUID( RoleGUID )
+    : m_RoleGUID( RoleGUID )
 {
 }
 
@@ -34,42 +34,42 @@ ZBDistributionRulesForRole::~ZBDistributionRulesForRole()
 
 ZBDistributionRulesForRole::ZBDistributionRulesForRole( const ZBDistributionRulesForRole& src )
 {
-	*this = src;
+    *this = src;
 }
 
 ZBDistributionRulesForRole& ZBDistributionRulesForRole::operator=( const ZBDistributionRulesForRole& src )
 {
-	m_RoleGUID		= src.m_RoleGUID;
-	m_RulesManager	= src.m_RulesManager;
+    m_RoleGUID        = src.m_RoleGUID;
+    m_RulesManager    = src.m_RulesManager;
 
-	return *this;
+    return *this;
 }
 
 ZBDistributionRulesForRole* ZBDistributionRulesForRole::Dup() const
 {
-	return ( new ZBDistributionRulesForRole( *this ) );
+    return ( new ZBDistributionRulesForRole( *this ) );
 }
 
 void ZBDistributionRulesForRole::Serialize( CArchive& ar )
 {
-	if ( ar.IsStoring() )
-	{
-		TRACE( "ZBDistributionRulesForRole::Serialize : Start Save\n" );
+    if ( ar.IsStoring() )
+    {
+        TRACE( "ZBDistributionRulesForRole::Serialize : Start Save\n" );
 
-		ar << m_RoleGUID;
+        ar << m_RoleGUID;
 
-		TRACE( "ZBDistributionRulesForRole::Serialize : End Save\n" );
-	}
-	else
-	{
-		TRACE( "ZBDistributionRulesForRole::Serialize : Start Read\n" );
+        TRACE( "ZBDistributionRulesForRole::Serialize : End Save\n" );
+    }
+    else
+    {
+        TRACE( "ZBDistributionRulesForRole::Serialize : Start Read\n" );
 
-		ar >> m_RoleGUID;
+        ar >> m_RoleGUID;
 
-		TRACE( "ZBDistributionRulesForRole::Serialize : End Read\n" );
-	}
+        TRACE( "ZBDistributionRulesForRole::Serialize : End Read\n" );
+    }
 
-	m_RulesManager.Serialize( ar );
+    m_RulesManager.Serialize( ar );
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -91,232 +91,232 @@ ZBDistributionAttribute::~ZBDistributionAttribute()
 
 ZBDistributionAttribute::ZBDistributionAttribute( const ZBDistributionAttribute& src )
 {
-	*this = src;
+    *this = src;
 }
 
 ZBDistributionAttribute& ZBDistributionAttribute::operator=( const ZBDistributionAttribute& src )
 {
-	m_CategoryID	= src.m_CategoryID;
-	m_ItemID		= src.m_ItemID;
-	m_SymbolRef		= src.m_SymbolRef;
-	m_UserGroupGUID	= src.m_UserGroupGUID;
+    m_CategoryID    = src.m_CategoryID;
+    m_ItemID        = src.m_ItemID;
+    m_SymbolRef        = src.m_SymbolRef;
+    m_UserGroupGUID    = src.m_UserGroupGUID;
 
-	ZBDistributionRulesForRoleIterator i( &src.m_Set );
+    ZBDistributionRulesForRoleIterator i( &src.m_Set );
 
-	for ( ZBDistributionRulesForRole* pRulesForRole = i.GetFirst(); pRulesForRole; pRulesForRole = i.GetNext() )
-	{
-		AddDistributionRulesForRole( pRulesForRole->Dup() );
-	}
+    for ( ZBDistributionRulesForRole* pRulesForRole = i.GetFirst(); pRulesForRole; pRulesForRole = i.GetNext() )
+    {
+        AddDistributionRulesForRole( pRulesForRole->Dup() );
+    }
 
-	return *this;
+    return *this;
 }
 
 ZBDistributionAttribute* ZBDistributionAttribute::Dup() const
 {
-	return ( new ZBDistributionAttribute( *this ) );
+    return ( new ZBDistributionAttribute( *this ) );
 }
 
 void ZBDistributionAttribute::DeleteAllDistributionRulesForAllRoles()
 {
-	ZBDistributionRulesForRoleIterator i( &m_Set );
+    ZBDistributionRulesForRoleIterator i( &m_Set );
 
-	for ( ZBDistributionRulesForRole* pRulesForRole = i.GetFirst(); pRulesForRole; pRulesForRole = i.GetNext() )
-		delete pRulesForRole;
+    for ( ZBDistributionRulesForRole* pRulesForRole = i.GetFirst(); pRulesForRole; pRulesForRole = i.GetNext() )
+        delete pRulesForRole;
 
-	m_Set.RemoveAll();
+    m_Set.RemoveAll();
 }
 
 void ZBDistributionAttribute::DeleteAllDistributionRulesForRole( const CString RoleGUID )
 {
-	ZBDistributionRulesForRoleIterator i( &m_Set );
+    ZBDistributionRulesForRoleIterator i( &m_Set );
 
-	for ( ZBDistributionRulesForRole* pRulesForRole = i.GetFirst(); pRulesForRole; pRulesForRole = i.GetNext() )
-	{
-		if ( pRulesForRole->GetRoleGUID() == RoleGUID )
-		{
-			delete pRulesForRole;
-			i.Remove();
+    for ( ZBDistributionRulesForRole* pRulesForRole = i.GetFirst(); pRulesForRole; pRulesForRole = i.GetNext() )
+    {
+        if ( pRulesForRole->GetRoleGUID() == RoleGUID )
+        {
+            delete pRulesForRole;
+            i.Remove();
 
-			// Go back to one, to avoid skipping elements
-			i.GetPrev();
-		}
-	}
+            // Go back to one, to avoid skipping elements
+            i.GetPrev();
+        }
+    }
 }
 
 void ZBDistributionAttribute::AddDistributionRulesForRole( const CString RoleGUID )
 {
-	ZBDistributionRulesForRole* pRole = FindDistributionRulesForRole( RoleGUID );
+    ZBDistributionRulesForRole* pRole = FindDistributionRulesForRole( RoleGUID );
 
-	if ( !pRole )
-	{
-		pRole = new ZBDistributionRulesForRole( RoleGUID );
-		AddDistributionRulesForRole( pRole );
-	}
+    if ( !pRole )
+    {
+        pRole = new ZBDistributionRulesForRole( RoleGUID );
+        AddDistributionRulesForRole( pRole );
+    }
 }
 
-void ZBDistributionAttribute::AddDistributionRulesForRole( const CString	RoleGUID,
-														   int				Operator,
-														   CString			Value,
-														   int				LogicalOperator /*= -1*/ )
+void ZBDistributionAttribute::AddDistributionRulesForRole( const CString    RoleGUID,
+                                                           int                Operator,
+                                                           CString            Value,
+                                                           int                LogicalOperator /*= -1*/ )
 {
-	ZBDistributionRulesForRole* pRole = FindDistributionRulesForRole( RoleGUID );
+    ZBDistributionRulesForRole* pRole = FindDistributionRulesForRole( RoleGUID );
 
-	if ( !pRole )
-	{
-		pRole = new ZBDistributionRulesForRole( RoleGUID );
-		AddDistributionRulesForRole( pRole );
-	}
+    if ( !pRole )
+    {
+        pRole = new ZBDistributionRulesForRole( RoleGUID );
+        AddDistributionRulesForRole( pRole );
+    }
 
-	ASSERT( pRole );
-	pRole->AddDistributionRule( Operator, Value, LogicalOperator );
+    ASSERT( pRole );
+    pRole->AddDistributionRule( Operator, Value, LogicalOperator );
 }
 
 void ZBDistributionAttribute::AddDistributionRulesForRole( ZBDistributionRulesForRole* pDistributionRulesForRole )
 {
-	if ( !pDistributionRulesForRole )
-		return;
+    if ( !pDistributionRulesForRole )
+        return;
 
-	m_Set.Add( pDistributionRulesForRole );
+    m_Set.Add( pDistributionRulesForRole );
 }
 
-ZBDistributionRulesForRole* ZBDistributionAttribute::FindDistributionRulesForRole( const CString RoleGUID )	const
+ZBDistributionRulesForRole* ZBDistributionAttribute::FindDistributionRulesForRole( const CString RoleGUID )    const
 {
-	ZBDistributionRulesForRoleIterator i( &m_Set );
+    ZBDistributionRulesForRoleIterator i( &m_Set );
 
-	for ( ZBDistributionRulesForRole* pRulesForRole = i.GetFirst(); pRulesForRole; pRulesForRole = i.GetNext() )
-	{
-		if ( pRulesForRole->GetRoleGUID() == RoleGUID )
-			return pRulesForRole;
-	}
+    for ( ZBDistributionRulesForRole* pRulesForRole = i.GetFirst(); pRulesForRole; pRulesForRole = i.GetNext() )
+    {
+        if ( pRulesForRole->GetRoleGUID() == RoleGUID )
+            return pRulesForRole;
+    }
 
-	return NULL;
+    return NULL;
 }
 
 bool ZBDistributionAttribute::DeleteDistributionRulesForRole( ZBDistributionRulesForRole* pDistributionRulesForRole )
 {
-	ZBDistributionRulesForRoleIterator i( &m_Set );
+    ZBDistributionRulesForRoleIterator i( &m_Set );
 
-	for ( ZBDistributionRulesForRole* pRulesForRole = i.GetFirst(); pRulesForRole; pRulesForRole = i.GetNext() )
-	{
-		if ( pRulesForRole == pDistributionRulesForRole )
-		{
-			delete pRulesForRole;
-			i.Remove();
-			return true;
-		}
-	}
+    for ( ZBDistributionRulesForRole* pRulesForRole = i.GetFirst(); pRulesForRole; pRulesForRole = i.GetNext() )
+    {
+        if ( pRulesForRole == pDistributionRulesForRole )
+        {
+            delete pRulesForRole;
+            i.Remove();
+            return true;
+        }
+    }
 
-	return false;
+    return false;
 }
 
 bool ZBDistributionAttribute::Exist( ZBDistributionRulesForRole* pDistributionRulesForRole ) const
 {
-	if ( !pDistributionRulesForRole )
-		return NULL;
+    if ( !pDistributionRulesForRole )
+        return NULL;
 
-	ZBDistributionRulesForRoleIterator i( &m_Set );
+    ZBDistributionRulesForRoleIterator i( &m_Set );
 
-	for ( ZBDistributionRulesForRole* pRulesForRole = i.GetFirst(); pRulesForRole; pRulesForRole = i.GetNext() )
-	{
-		if ( pRulesForRole == pDistributionRulesForRole )
-			return true;
-	}
+    for ( ZBDistributionRulesForRole* pRulesForRole = i.GetFirst(); pRulesForRole; pRulesForRole = i.GetNext() )
+    {
+        if ( pRulesForRole == pDistributionRulesForRole )
+            return true;
+    }
 
-	return false;
+    return false;
 }
 
 bool ZBDistributionAttribute::ExistDistributionRule( ZBDistributionRule* pRule )
 {
-	ZBDistributionRulesForRoleIterator i( &m_Set );
+    ZBDistributionRulesForRoleIterator i( &m_Set );
 
-	for ( ZBDistributionRulesForRole* pRulesForRole = i.GetFirst(); pRulesForRole; pRulesForRole = i.GetNext() )
-	{
-		if ( pRulesForRole->Exist( pRule ) )
-			return true;
-	}
+    for ( ZBDistributionRulesForRole* pRulesForRole = i.GetFirst(); pRulesForRole; pRulesForRole = i.GetNext() )
+    {
+        if ( pRulesForRole->Exist( pRule ) )
+            return true;
+    }
 
-	return false;
+    return false;
 }
 
 bool ZBDistributionAttribute::DeleteDistributionRule( ZBDistributionRule* pRule )
 {
-	if ( !pRule )
-		return false;
+    if ( !pRule )
+        return false;
 
-	ZBDistributionRulesForRoleIterator i( &m_Set );
+    ZBDistributionRulesForRoleIterator i( &m_Set );
 
-	for ( ZBDistributionRulesForRole* pRulesForRole = i.GetFirst(); pRulesForRole; pRulesForRole = i.GetNext() )
-	{
-		if ( pRulesForRole->Exist( pRule ) )
-			return pRulesForRole->DeleteDistributionRule( pRule );
-	}
+    for ( ZBDistributionRulesForRole* pRulesForRole = i.GetFirst(); pRulesForRole; pRulesForRole = i.GetNext() )
+    {
+        if ( pRulesForRole->Exist( pRule ) )
+            return pRulesForRole->DeleteDistributionRule( pRule );
+    }
 
-	return false;
+    return false;
 }
 
 ZBDistributionRuleSet* ZBDistributionAttribute::GetDistributionRuleSet( const CString RoleGUID )
 {
-	ZBDistributionRulesForRole* pRole = FindDistributionRulesForRole( RoleGUID );
-	return ( pRole ) ? &pRole->GetDistributionRuleSet() : NULL;
+    ZBDistributionRulesForRole* pRole = FindDistributionRulesForRole( RoleGUID );
+    return ( pRole ) ? &pRole->GetDistributionRuleSet() : NULL;
 }
 
 ZBDistributionRule* ZBDistributionAttribute::GetDistributionRuleAt(  const CString RoleGUID, size_t Index )
 {
-	ZBDistributionRulesForRole* pRole = FindDistributionRulesForRole( RoleGUID );
-	return ( pRole ) ? pRole->GetDistributionRuleAt( Index ) : NULL;
+    ZBDistributionRulesForRole* pRole = FindDistributionRulesForRole( RoleGUID );
+    return ( pRole ) ? pRole->GetDistributionRuleAt( Index ) : NULL;
 }
 
 size_t ZBDistributionAttribute::GetDistributionRuleCount( const CString RoleGUID ) const
 {
-	ZBDistributionRulesForRole* pRole = FindDistributionRulesForRole( RoleGUID );
-	return ( pRole ) ? pRole->GetDistributionRuleCount() : 0;
+    ZBDistributionRulesForRole* pRole = FindDistributionRulesForRole( RoleGUID );
+    return ( pRole ) ? pRole->GetDistributionRuleCount() : 0;
 }
 
 void ZBDistributionAttribute::Serialize( CArchive& ar )
 {
-	if ( ar.IsStoring() )
-	{
-		TRACE( "ZBDistributionAttribute::Serialize : Start Save\n" );
+    if ( ar.IsStoring() )
+    {
+        TRACE( "ZBDistributionAttribute::Serialize : Start Save\n" );
 
-		ar << m_CategoryID;
-		ar << m_ItemID;
-		ar << m_SymbolRef;
-		ar << m_UserGroupGUID;
+        ar << m_CategoryID;
+        ar << m_ItemID;
+        ar << m_SymbolRef;
+        ar << m_UserGroupGUID;
 
-		// Serialize the size
-		ar << m_Set.GetSize();
+        // Serialize the size
+        ar << m_Set.GetSize();
 
-		ZBDistributionRulesForRoleIterator i( &m_Set );
+        ZBDistributionRulesForRoleIterator i( &m_Set );
 
-		for ( ZBDistributionRulesForRole* pRulesForRole = i.GetFirst(); pRulesForRole; pRulesForRole = i.GetNext() )
-		{		
-			ar << pRulesForRole;
-		}
+        for ( ZBDistributionRulesForRole* pRulesForRole = i.GetFirst(); pRulesForRole; pRulesForRole = i.GetNext() )
+        {        
+            ar << pRulesForRole;
+        }
 
-		TRACE( "ZBDistributionAttribute::Serialize : End Save\n" );
-	}
-	else
-	{
-		TRACE( "ZBDistributionAttribute::Serialize : Start Read\n" );
+        TRACE( "ZBDistributionAttribute::Serialize : End Save\n" );
+    }
+    else
+    {
+        TRACE( "ZBDistributionAttribute::Serialize : Start Read\n" );
 
-		ar >> m_CategoryID;
-		ar >> m_ItemID;
-		ar >> m_SymbolRef;
-		ar >> m_UserGroupGUID;
+        ar >> m_CategoryID;
+        ar >> m_ItemID;
+        ar >> m_SymbolRef;
+        ar >> m_UserGroupGUID;
 
-		int Size;
-		ar >> Size;
+        int Size;
+        ar >> Size;
 
-		ZBDistributionRulesForRole* pRulesForRole;
+        ZBDistributionRulesForRole* pRulesForRole;
 
-		for ( int i = 0; i < Size; ++i )
-		{
-			ar >> pRulesForRole;
-			AddDistributionRulesForRole( pRulesForRole );
-		}
+        for ( int i = 0; i < Size; ++i )
+        {
+            ar >> pRulesForRole;
+            AddDistributionRulesForRole( pRulesForRole );
+        }
 
-		TRACE( "ZBDistributionAttribute::Serialize : End Read\n" );
-	}
+        TRACE( "ZBDistributionAttribute::Serialize : End Read\n" );
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -334,229 +334,229 @@ ZBDistributionAttributeManager::ZBDistributionAttributeManager()
 
 ZBDistributionAttributeManager::~ZBDistributionAttributeManager()
 {
-	FreePropertiesSet();
+    FreePropertiesSet();
 }
 
 ZBDistributionAttributeManager::ZBDistributionAttributeManager( const ZBDistributionAttributeManager& src )
 {
-	*this = src;
+    *this = src;
 }
 
 ZBDistributionAttributeManager& ZBDistributionAttributeManager::operator=( const ZBDistributionAttributeManager& src )
 {
-	ZBDistributionAttributeIterator i(&src.m_Set);
+    ZBDistributionAttributeIterator i(&src.m_Set);
 
-	for ( ZBDistributionAttribute* pDistribAttrib = i.GetFirst(); pDistribAttrib; pDistribAttrib = i.GetNext() )
-	{
-		AddDistributionAttribute( pDistribAttrib->Dup() );
-	}
+    for ( ZBDistributionAttribute* pDistribAttrib = i.GetFirst(); pDistribAttrib; pDistribAttrib = i.GetNext() )
+    {
+        AddDistributionAttribute( pDistribAttrib->Dup() );
+    }
 
-	return *this;
+    return *this;
 }
 
 ZBDistributionAttributeManager* ZBDistributionAttributeManager::Dup() const
 {
-	return ( new ZBDistributionAttributeManager( *this ) );
+    return ( new ZBDistributionAttributeManager( *this ) );
 }
 
 void ZBDistributionAttributeManager::FreePropertiesSet()
 {
-	ZBDistributionAttributeIterator i( &m_Set );
+    ZBDistributionAttributeIterator i( &m_Set );
 
-	for ( ZBDistributionAttribute* pDistribAttrib = i.GetFirst(); pDistribAttrib; pDistribAttrib = i.GetNext() )
-		delete pDistribAttrib;
+    for ( ZBDistributionAttribute* pDistribAttrib = i.GetFirst(); pDistribAttrib; pDistribAttrib = i.GetNext() )
+        delete pDistribAttrib;
 
-	m_Set.RemoveAll();
+    m_Set.RemoveAll();
 }
 
-void ZBDistributionAttributeManager::AddDistributionAttribute( ZBDistributionAttribute*	pDistributionAttribute,
-															   bool						ReplaceExisting /*= true*/ )
+void ZBDistributionAttributeManager::AddDistributionAttribute( ZBDistributionAttribute*    pDistributionAttribute,
+                                                               bool                        ReplaceExisting /*= true*/ )
 {
-	if ( !pDistributionAttribute )
-		return;
+    if ( !pDistributionAttribute )
+        return;
 
-	if ( !Exist( pDistributionAttribute ) )
-		m_Set.Add( pDistributionAttribute );
-	else
-	if ( ReplaceExisting )
-	{
-		ReplaceDistributionAttribute( pDistributionAttribute );
+    if ( !Exist( pDistributionAttribute ) )
+        m_Set.Add( pDistributionAttribute );
+    else
+    if ( ReplaceExisting )
+    {
+        ReplaceDistributionAttribute( pDistributionAttribute );
 
-		ZBDistributionAttribute* pOldAttribute = pDistributionAttribute;
+        ZBDistributionAttribute* pOldAttribute = pDistributionAttribute;
 
-		// and don't forget to delete the object,
-		// since he is not assigned to our set
-		// and set the pointer to the existing object
-		pDistributionAttribute = FindDistributionAttribute( pDistributionAttribute->GetCategoryID(), 
-															pDistributionAttribute->GetItemID(),
-															pDistributionAttribute->GetUserGroupGUID() );
+        // and don't forget to delete the object,
+        // since he is not assigned to our set
+        // and set the pointer to the existing object
+        pDistributionAttribute = FindDistributionAttribute( pDistributionAttribute->GetCategoryID(), 
+                                                            pDistributionAttribute->GetItemID(),
+                                                            pDistributionAttribute->GetUserGroupGUID() );
 
-		delete pOldAttribute;
-	}
+        delete pOldAttribute;
+    }
 }
 
 bool ZBDistributionAttributeManager::DeleteDistributionAttribute( ZBDistributionAttribute* pDistributionAttribute )
 {
-	ZBDistributionAttributeIterator i( &m_Set );
+    ZBDistributionAttributeIterator i( &m_Set );
 
-	for ( ZBDistributionAttribute* pDistribAttrib = i.GetFirst(); pDistribAttrib; pDistribAttrib = i.GetNext() )
-	{
-		if ( pDistribAttrib == pDistributionAttribute )
-		{
-			delete pDistribAttrib;
-			i.Remove();
-			return true;
-		}
-	}
+    for ( ZBDistributionAttribute* pDistribAttrib = i.GetFirst(); pDistribAttrib; pDistribAttrib = i.GetNext() )
+    {
+        if ( pDistribAttrib == pDistributionAttribute )
+        {
+            delete pDistribAttrib;
+            i.Remove();
+            return true;
+        }
+    }
 
-	return false;
+    return false;
 }
 
-ZBDistributionAttribute* ZBDistributionAttributeManager::FindDistributionAttribute( int		CategoryID,
-																				    int		ItemID,
-																					CString	UserGroupGUID )
+ZBDistributionAttribute* ZBDistributionAttributeManager::FindDistributionAttribute( int        CategoryID,
+                                                                                    int        ItemID,
+                                                                                    CString    UserGroupGUID )
 {
-	ZBDistributionAttributeIterator i( &m_Set );
+    ZBDistributionAttributeIterator i( &m_Set );
 
-	for ( ZBDistributionAttribute* pDistribAttrib = i.GetFirst(); pDistribAttrib; pDistribAttrib = i.GetNext() )
-	{
-		if ( pDistribAttrib->GetCategoryID() == CategoryID &&
-			 pDistribAttrib->GetItemID() == ItemID &&
-			 pDistribAttrib->GetUserGroupGUID() == UserGroupGUID )
-			return pDistribAttrib;
-	}
+    for ( ZBDistributionAttribute* pDistribAttrib = i.GetFirst(); pDistribAttrib; pDistribAttrib = i.GetNext() )
+    {
+        if ( pDistribAttrib->GetCategoryID() == CategoryID &&
+             pDistribAttrib->GetItemID() == ItemID &&
+             pDistribAttrib->GetUserGroupGUID() == UserGroupGUID )
+            return pDistribAttrib;
+    }
 
-	return NULL;
+    return NULL;
 }
 
 bool ZBDistributionAttributeManager::Exist( ZBDistributionAttribute* pDistributionAttribute )
 {
-	if ( !pDistributionAttribute )
-		return false;
+    if ( !pDistributionAttribute )
+        return false;
 
-	return ( FindDistributionAttribute( pDistributionAttribute->GetCategoryID(), 
-										pDistributionAttribute->GetItemID(), 
-										pDistributionAttribute->GetUserGroupGUID()) != NULL ) ? true : false;
+    return ( FindDistributionAttribute( pDistributionAttribute->GetCategoryID(), 
+                                        pDistributionAttribute->GetItemID(), 
+                                        pDistributionAttribute->GetUserGroupGUID()) != NULL ) ? true : false;
 }
 
 void ZBDistributionAttributeManager::ReplaceDistributionAttribute( ZBDistributionAttribute* pDistributionAttribute )
 {
-	ZBDistributionAttribute* pAttr = FindDistributionAttribute( pDistributionAttribute->GetCategoryID(), 
-																pDistributionAttribute->GetItemID(), 
-																pDistributionAttribute->GetUserGroupGUID() );
+    ZBDistributionAttribute* pAttr = FindDistributionAttribute( pDistributionAttribute->GetCategoryID(), 
+                                                                pDistributionAttribute->GetItemID(), 
+                                                                pDistributionAttribute->GetUserGroupGUID() );
 
-	if ( pAttr )
-	{
-		// Use assignment operator
-		*pAttr = *pDistributionAttribute;
-	}
+    if ( pAttr )
+    {
+        // Use assignment operator
+        *pAttr = *pDistributionAttribute;
+    }
 }
 
 bool ZBDistributionAttributeManager::DeleteDistributionRule( ZBDistributionRule* pRule )
 {
-	ZBDistributionAttributeIterator i( &m_Set );
+    ZBDistributionAttributeIterator i( &m_Set );
 
-	for ( ZBDistributionAttribute* pDistribAttrib = i.GetFirst(); pDistribAttrib; pDistribAttrib = i.GetNext() )
-	{
-		if ( pDistribAttrib->ExistDistributionRule( pRule ) )
-			return pDistribAttrib->DeleteDistributionRule( pRule );
-	}
+    for ( ZBDistributionAttribute* pDistribAttrib = i.GetFirst(); pDistribAttrib; pDistribAttrib = i.GetNext() )
+    {
+        if ( pDistribAttrib->ExistDistributionRule( pRule ) )
+            return pDistribAttrib->DeleteDistributionRule( pRule );
+    }
 
-	return false;
+    return false;
 }
 
-bool ZBDistributionAttributeManager::CheckDistributionRole( ZBDistributionAttribute*	pDistributionAttribute,
-														    ZBUserGroupEntity*			pMainUserGroup )
+bool ZBDistributionAttributeManager::CheckDistributionRole( ZBDistributionAttribute*    pDistributionAttribute,
+                                                            ZBUserGroupEntity*            pMainUserGroup )
 {
-	// Check if the distribution attribute exists
-	// and a main usergroup defined
-	if ( !pDistributionAttribute || !pMainUserGroup ) // || !Exist( pDistributionAttribute ) )
-		return false;
+    // Check if the distribution attribute exists
+    // and a main usergroup defined
+    if ( !pDistributionAttribute || !pMainUserGroup ) // || !Exist( pDistributionAttribute ) )
+        return false;
 
-	ZBUserEntity* pEntity = pMainUserGroup->FindGroupByGUID( pDistributionAttribute->GetUserGroupGUID(), true );
+    ZBUserEntity* pEntity = pMainUserGroup->FindGroupByGUID( pDistributionAttribute->GetUserGroupGUID(), true );
 
-	if ( !pEntity || !ISA(pEntity,ZBUserGroupEntity) )
-		return false;
+    if ( !pEntity || !ISA(pEntity,ZBUserGroupEntity) )
+        return false;
 
-	// Check role against rule only if the distribution attribute
-	// is already defined in the manager
-	if ( Exist( pDistributionAttribute ) )
-	{
-		// Check if the distribution rules defined match the role defined in the group
-		size_t Size = pDistributionAttribute->GetDistributionRulesForRoleCount();
+    // Check role against rule only if the distribution attribute
+    // is already defined in the manager
+    if ( Exist( pDistributionAttribute ) )
+    {
+        // Check if the distribution rules defined match the role defined in the group
+        size_t Size = pDistributionAttribute->GetDistributionRulesForRoleCount();
 
-		for ( int i = 0; i < Size; ++i )
-		{
-			ZBDistributionRulesForRole* pRole = pDistributionAttribute->GetDistributionRulesForRoleAt( i );
+        for ( int i = 0; i < Size; ++i )
+        {
+            ZBDistributionRulesForRole* pRole = pDistributionAttribute->GetDistributionRulesForRoleAt( i );
 
-			if ( !pRole )
-				continue;
+            if ( !pRole )
+                continue;
 
-			// If the role is not found in the group hierarchy,
-			// then delete it.
-			if ( !dynamic_cast<ZBUserGroupEntity*>(pEntity)->FindRoleByGUID( pRole->GetRoleGUID(), false ) )
-			{
-				pDistributionAttribute->DeleteDistributionRulesForRoleAt( i );
-				--i;
-			}
-		}
-	}
+            // If the role is not found in the group hierarchy,
+            // then delete it.
+            if ( !dynamic_cast<ZBUserGroupEntity*>(pEntity)->FindRoleByGUID( pRole->GetRoleGUID(), false ) )
+            {
+                pDistributionAttribute->DeleteDistributionRulesForRoleAt( i );
+                --i;
+            }
+        }
+    }
 
-	// Now run through roles and check if exists for this distribution attribute
-	size_t Size = dynamic_cast<ZBUserGroupEntity*>( pEntity )->GetEntityCount();
+    // Now run through roles and check if exists for this distribution attribute
+    size_t Size = dynamic_cast<ZBUserGroupEntity*>( pEntity )->GetEntityCount();
 
-	for ( int i = 0; i < Size; ++i )
-	{
-		ZBUserEntity* pRole = dynamic_cast<ZBUserGroupEntity*>( pEntity )->GetEntityAt( i );
+    for ( int i = 0; i < Size; ++i )
+    {
+        ZBUserEntity* pRole = dynamic_cast<ZBUserGroupEntity*>( pEntity )->GetEntityAt( i );
 
-		if ( pRole && ISA( pRole, ZBUserRoleEntity ) )
-		{
-			// If no distribution rule exist for
-			// this role, then create an empty one
-			if ( !pDistributionAttribute->Exist( pRole->GetGUID() ) )
-			{
-				pDistributionAttribute->AddDistributionRulesForRole( pRole->GetGUID() );
-			}
-		}
-	}
+        if ( pRole && ISA( pRole, ZBUserRoleEntity ) )
+        {
+            // If no distribution rule exist for
+            // this role, then create an empty one
+            if ( !pDistributionAttribute->Exist( pRole->GetGUID() ) )
+            {
+                pDistributionAttribute->AddDistributionRulesForRole( pRole->GetGUID() );
+            }
+        }
+    }
 
-	return true;
+    return true;
 }
 
 void ZBDistributionAttributeManager::Serialize( CArchive& ar )
 {
-	if ( ar.IsStoring() )
-	{
-		TRACE( "ZBDistributionAttributeManager::Serialize : Start Save\n" );
+    if ( ar.IsStoring() )
+    {
+        TRACE( "ZBDistributionAttributeManager::Serialize : Start Save\n" );
 
-		// JMR-MODIF - Le 7 septembre 2005 - Ajout de la conversion explicite de SEC_INT en int.
-		// Serialize the size
-		ar << (int)m_Set.GetSize();
+        // JMR-MODIF - Le 7 septembre 2005 - Ajout de la conversion explicite de SEC_INT en int.
+        // Serialize the size
+        ar << (int)m_Set.GetSize();
 
-		ZBDistributionAttributeIterator i( &m_Set );
+        ZBDistributionAttributeIterator i( &m_Set );
 
-		for ( ZBDistributionAttribute* pDistribAttrib = i.GetFirst(); pDistribAttrib; pDistribAttrib = i.GetNext() )
-		{		
-			ar << pDistribAttrib;
-		}
+        for ( ZBDistributionAttribute* pDistribAttrib = i.GetFirst(); pDistribAttrib; pDistribAttrib = i.GetNext() )
+        {        
+            ar << pDistribAttrib;
+        }
 
-		TRACE( "ZBDistributionAttributeManager::Serialize : End Save\n" );
-	}
-	else
-	{
-		TRACE( "ZBDistributionAttributeManager::Serialize : Start Read\n" );
+        TRACE( "ZBDistributionAttributeManager::Serialize : End Save\n" );
+    }
+    else
+    {
+        TRACE( "ZBDistributionAttributeManager::Serialize : Start Read\n" );
 
-		int Size;
-		ar >> Size;
+        int Size;
+        ar >> Size;
 
-		ZBDistributionAttribute* pDistribAttrib;
+        ZBDistributionAttribute* pDistribAttrib;
 
-		for ( int i = 0; i < (int)Size; ++i )
-		{
-			ar >> pDistribAttrib;
-			AddDistributionAttribute( pDistribAttrib );
-		}
+        for ( int i = 0; i < (int)Size; ++i )
+        {
+            ar >> pDistribAttrib;
+            AddDistributionAttribute( pDistribAttrib );
+        }
 
-		TRACE( "ZBDistributionAttributeManager::Serialize : End Read\n" );
-	}
+        TRACE( "ZBDistributionAttributeManager::Serialize : End Read\n" );
+    }
 }

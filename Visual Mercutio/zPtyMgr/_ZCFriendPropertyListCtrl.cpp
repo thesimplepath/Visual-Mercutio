@@ -23,9 +23,9 @@ _ZCFriendPropertyListCtrl::~_ZCFriendPropertyListCtrl()
 
 
 BEGIN_MESSAGE_MAP(_ZCFriendPropertyListCtrl, CListCtrl)
-	//{{AFX_MSG_MAP(_ZCFriendPropertyListCtrl)
-		// NOTE - the ClassWizard will add and remove mapping macros here.
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(_ZCFriendPropertyListCtrl)
+        // NOTE - the ClassWizard will add and remove mapping macros here.
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////

@@ -1,5 +1,5 @@
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //  Source file: ZBServerDiskDisk.h
 
 #ifndef ZBServerDisk_h
@@ -34,34 +34,34 @@ class AFX_EXT_CLASS ZBServerDisk
 {
   public:
       ZBServerDisk ( ZBServer* pServer = NULL, const CString EmptyImageServerIniFile = "" );
-	  void	Initialize( ZBServer* pServer, const CString EmptyImageServerIniFile = "" );
-	  bool	DeleteServer(bool CheckStructure = true);
-	  bool	CreateServer();
-	  bool	CopyServer( ZBServer& SourceServer );
-	  CString	GetLog() { return m_Log; };
+      void    Initialize( ZBServer* pServer, const CString EmptyImageServerIniFile = "" );
+      bool    DeleteServer(bool CheckStructure = true);
+      bool    CreateServer();
+      bool    CopyServer( ZBServer& SourceServer );
+      CString    GetLog() { return m_Log; };
 
       ~ZBServerDisk();
 
   private:
-	  bool CopyServerDirectory( ZBServer& SourceServer );
-	  bool CreateServerDirectoryStructure();
+      bool CopyServerDirectory( ZBServer& SourceServer );
+      bool CreateServerDirectoryStructure();
 
   private:
       ZBServerDisk(const ZBServerDisk &right);
       const ZBServerDisk & operator=(const ZBServerDisk &right);
 
-	  ZBServer			m_EmptyImageServer;
-	  ZBServer*			m_pServer;
-	  CString			m_EmptyImageServerIniFile;
-	  CString			m_Log;
+      ZBServer            m_EmptyImageServer;
+      ZBServer*            m_pServer;
+      CString            m_EmptyImageServerIniFile;
+      CString            m_Log;
 
-	  // Predefined messages
-	  CString			m_ServerCreationSuccess;
-	  CString			m_ServerCreationStart;
-	  CString			m_FailedToCreateServer;
-	  CString			m_FailedToCreateDir;
-	  CString			m_FailedToCopyFile;
-	  CString			m_FailedToInitializeParameters;
+      // Predefined messages
+      CString            m_ServerCreationSuccess;
+      CString            m_ServerCreationStart;
+      CString            m_FailedToCreateServer;
+      CString            m_FailedToCreateDir;
+      CString            m_FailedToCopyFile;
+      CString            m_FailedToInitializeParameters;
 
 };
 
@@ -70,4 +70,4 @@ class AFX_EXT_CLASS ZBServerDisk
 
 
 
-#endif	// ZBServerDisk_h
+#endif    // ZBServerDisk_h

@@ -35,7 +35,7 @@ class AFX_EXT_CLASS ZISplitter : public ZIOutlookSplitterWnd
 {
 // Construction
 public:
-	ZISplitter();
+    ZISplitter();
 
 // Attributes
 public:
@@ -45,13 +45,13 @@ public:
 
 // Implementation
 public:
-	virtual ~ZISplitter();
+    virtual ~ZISplitter();
 
 protected:
-	// Generated message map functions
-	//{{AFX_MSG(ZISplitter)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZISplitter)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

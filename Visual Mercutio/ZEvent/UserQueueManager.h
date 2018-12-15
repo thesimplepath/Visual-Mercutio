@@ -34,32 +34,32 @@
 class AFX_EXT_CLASS ZBUserQueueManager
 {
   public:
-		ZBUserQueueManager ();
-		~ZBUserQueueManager();
-		BOOL				Create( const CString Directory );
-		ZBEventActivity*	DispatchToUserQueue( const CString Filename );
-	    BOOL	RemoveEventFromUserQueue( ZBEventActivity& EventActivity, CString User );
-	    BOOL	RemoveEventFromReceiverQueue( ZBEventActivity& EventActivity );
-	    BOOL	RemoveEventFromSenderQueue( ZBEventActivity& EventActivity );
+        ZBUserQueueManager ();
+        ~ZBUserQueueManager();
+        BOOL                Create( const CString Directory );
+        ZBEventActivity*    DispatchToUserQueue( const CString Filename );
+        BOOL    RemoveEventFromUserQueue( ZBEventActivity& EventActivity, CString User );
+        BOOL    RemoveEventFromReceiverQueue( ZBEventActivity& EventActivity );
+        BOOL    RemoveEventFromSenderQueue( ZBEventActivity& EventActivity );
 
   protected:
-		BOOL	ForwardToUserQueue( ZBEventActivity& EventActivity );
-	    BOOL	RemoveFromUserQueue( ZBEventActivity& EventActivity, CString User );
-	    BOOL	RemoveAssociatedEventFromUserQueue( ZBEventActivity& EventActivity );
-		BOOL	CheckDirectory( ZBEventActivity& EventActivity );
-		BOOL	ProceedDeleteMessage( ZBEventActivity& EventActivity );
+        BOOL    ForwardToUserQueue( ZBEventActivity& EventActivity );
+        BOOL    RemoveFromUserQueue( ZBEventActivity& EventActivity, CString User );
+        BOOL    RemoveAssociatedEventFromUserQueue( ZBEventActivity& EventActivity );
+        BOOL    CheckDirectory( ZBEventActivity& EventActivity );
+        BOOL    ProceedDeleteMessage( ZBEventActivity& EventActivity );
 
   private:
       ZBUserQueueManager(const ZBUserQueueManager &right);
       const ZBUserQueueManager & operator=(const ZBUserQueueManager &right);
 
-	  CString	BuildUserActivityEventFilename( CString Filename, const CString User );
-	  BOOL		RemoveEventFilename( const CString Filename );
+      CString    BuildUserActivityEventFilename( CString Filename, const CString User );
+      BOOL        RemoveEventFilename( const CString Filename );
 
   private: //## implementation
-	CString					m_Directory;
-	ZBUserDirectoryManager	m_UserDirectoryManager;
-	ZBEventActivityFile		m_EventActivityFile;
+    CString                    m_Directory;
+    ZBUserDirectoryManager    m_UserDirectoryManager;
+    ZBEventActivityFile        m_EventActivityFile;
 };
 
 

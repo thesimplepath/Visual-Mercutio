@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName />
+    <SccAuxPath />
+    <SccLocalPath />
+    <SccProvider />
+    <Keyword>MFCProj</Keyword>
+    <ProjectGuid>{0A582565-8385-454B-8A6E-CE6062F7726D}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>15.0.28127.55</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/Zm300  %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_ZNOSPLASH;WIN32;_WINDOWS;NOMINMAX;_ZPROCESS;_CONVERTBETA2;_EVALUATION_VERSIONxxxxx;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Debug/ZProcess32.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>Ddao35.lib;version.lib;Htmlhelp.lib;mpr.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>..\Exe\ZProcess32.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/ZProcess32.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/ZProcess32.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040c</Culture>
+      <AdditionalIncludeDirectories>E:\Processoft\travail\vc6\PSS Dev\dll;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/Zm800  %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>NOMINMAX;_ZPROCESS;_CONVERTBETA2;_EVALUATION_VERSIONxxxxx;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Release/ZProcess32.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>Ddao35.lib;version.lib;Htmlhelp.lib;mpr.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>..\ExeR\ZProcess32.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/ZProcess32.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040c</Culture>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="DocWrite.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
+    </ClCompile>
+    <ClCompile Include="IMPPRC.CPP">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
+    </ClCompile>
+    <ClCompile Include="MAINFRM.CPP">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
+    </ClCompile>
+    <ClCompile Include="MdlTMPLSAV.CPP">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
+    </ClCompile>
+    <ClCompile Include="MdlWkfOpt.CPP">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
+    </ClCompile>
+    <ClCompile Include="MdlWkfParam.CPP">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
+    </ClCompile>
+    <ClCompile Include="POINTDLG.CPP">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
+    </ClCompile>
+    <ClCompile Include="ProcessNameDialog.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
+    </ClCompile>
+    <ClCompile Include="STDAFX.CPP">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
+    </ClCompile>
+    <ClCompile Include="ViewMod.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
+    </ClCompile>
+    <ClCompile Include="WelcomP.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
+    </ClCompile>
+    <ClCompile Include="ZAApp.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
+    </ClCompile>
+    <ClCompile Include="ZAMApp.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
+    </ClCompile>
+    <ClCompile Include="ZCProcessModelDocument.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
+    </ClCompile>
+    <ClCompile Include="ZIUnitInfo.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
+    </ClCompile>
+    <ClCompile Include="ZVConceptorReportOptions.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
+    </ClCompile>
+    <ClCompile Include="ZVLogicalSystem.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
+    </ClCompile>
+    <ClCompile Include="ZVOutputWorkspace.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
+    </ClCompile>
+    <ClCompile Include="ZVPrestations.cpp" />
+    <ClCompile Include="ZVProcessWorkspace.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
+    </ClCompile>
+    <ClCompile Include="ZVPropertiesWorkspace.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
+    </ClCompile>
+    <ClCompile Include="ZVRules.cpp" />
+    <ClCompile Include="ZVUserGroup.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
+    </ClCompile>
+    <ClCompile Include="ZVWorkspaceCreationWizard.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\zFormsRes\zFormsRes.h" />
+    <ClInclude Include="DocWrite.h" />
+    <ClInclude Include="IMPPRC.H" />
+    <ClInclude Include="MAINFRM.H" />
+    <ClInclude Include="MdlTMPLSAV.H" />
+    <ClInclude Include="MdlWkfOpt.H" />
+    <ClInclude Include="MdlWkfParam.H" />
+    <ClInclude Include="POINTDLG.H" />
+    <ClInclude Include="ProcessNameDialog.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="STDAFX.H" />
+    <ClInclude Include="ViewMod.h" />
+    <ClInclude Include="WelcomP.h" />
+    <ClInclude Include="ZAApp.h" />
+    <ClInclude Include="ZAMApp.h" />
+    <ClInclude Include="ZCProcessModelDocument.h" />
+    <ClInclude Include="ZHelpContext.h" />
+    <ClInclude Include="ZIUnitInfo.h" />
+    <ClInclude Include="ZTTemplateDocument.h" />
+    <ClInclude Include="ZVConceptorReportOptions.h" />
+    <ClInclude Include="ZVLogicalSystem.h" />
+    <ClInclude Include="ZVOutputWorkspace.h" />
+    <ClInclude Include="ZVPrestations.h" />
+    <ClInclude Include="ZVProcessWorkspace.h" />
+    <ClInclude Include="ZVPropertiesWorkspace.h" />
+    <ClInclude Include="ZVRules.h" />
+    <ClInclude Include="ZVUserGroup.h" />
+    <ClInclude Include="ZVWorkspaceCreationWizard.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\3dADSoft.bmp" />
+    <Image Include="res\abc_main.bmp" />
+    <Image Include="res\ABOUTLOG.BMP" />
+    <Image Include="res\actdltd.bmp" />
+    <Image Include="res\actdltf.bmp" />
+    <Image Include="res\actdltu.bmp" />
+    <Image Include="res\actdltx.bmp" />
+    <Image Include="res\actmodd.bmp" />
+    <Image Include="res\actmodf.bmp" />
+    <Image Include="res\actmodu.bmp" />
+    <Image Include="res\actmodx.bmp" />
+    <Image Include="res\actprcd.bmp" />
+    <Image Include="res\actprcf.bmp" />
+    <Image Include="res\actprcu.bmp" />
+    <Image Include="res\actprcx.bmp" />
+    <Image Include="res\actrend.bmp" />
+    <Image Include="res\actrenf.bmp" />
+    <Image Include="res\actrenu.bmp" />
+    <Image Include="res\actrenx.bmp" />
+    <Image Include="res\attruser.bmp" />
+    <Image Include="res\Backassc.bmp" />
+    <Image Include="res\backupus.bmp" />
+    <Image Include="res\bitmap1.bmp" />
+    <Image Include="res\bmp00001.bmp" />
+    <Image Include="res\bmp00002.bmp" />
+    <Image Include="res\BMP00004.BMP" />
+    <Image Include="res\BMP00005.BMP" />
+    <Image Include="res\BMP00006.BMP" />
+    <Image Include="res\BMP00007.BMP" />
+    <Image Include="res\BMP00008.BMP" />
+    <Image Include="res\BMP00009.BMP" />
+    <Image Include="res\BMP00010.BMP" />
+    <Image Include="res\BMP00011.BMP" />
+    <Image Include="res\Calcback.bmp" />
+    <Image Include="res\Calcshow.bmp" />
+    <Image Include="res\CALCULAT.BMP" />
+    <Image Include="res\CALCULAT.ICO" />
+    <Image Include="res\choiceac.bmp" />
+    <Image Include="res\CLIP01.ICO" />
+    <Image Include="res\CLIP02.ICO" />
+    <Image Include="res\CLOCK01.ICO" />
+    <Image Include="res\COL_SELD.BMP" />
+    <Image Include="res\COL_SELF.BMP" />
+    <Image Include="res\COL_SELU.BMP" />
+    <Image Include="res\conceptor.jpg" />
+    <Image Include="res\CREATION.ICO" />
+    <Image Include="res\crtprcd.bmp" />
+    <Image Include="res\crtprcf.bmp" />
+    <Image Include="res\crtprcu.bmp" />
+    <Image Include="res\crtprcx.bmp" />
+    <Image Include="res\DARROW.BMP" />
+    <Image Include="res\decision.ico" />
+    <Image Include="res\DELOCK.ICO" />
+    <Image Include="res\DSCVY.ICO" />
+    <Image Include="res\EYE.ICO" />
+    <Image Include="res\formsymb.bmp" />
+    <Image Include="res\Fullscre.bmp" />
+    <Image Include="res\fulltool.bmp" />
+    <Image Include="res\GEND.BMP" />
+    <Image Include="res\GENF.BMP" />
+    <Image Include="res\genf1.bmp" />
+    <Image Include="res\GENU.BMP" />
+    <Image Include="res\genu1.bmp" />
+    <Image Include="res\GENX.BMP" />
+    <Image Include="res\HELPD.BMP" />
+    <Image Include="res\HELPF.BMP" />
+    <Image Include="res\HELPU.BMP" />
+    <Image Include="res\HIDDEN.BMP" />
+    <Image Include="res\ICO00001.ICO" />
+    <Image Include="res\ico00002.ico" />
+    <Image Include="res\ico00003.ico" />
+    <Image Include="res\ico00004.ico" />
+    <Image Include="res\ico00005.ico" />
+    <Image Include="res\ico00006.ico" />
+    <Image Include="res\ico00007.ico" />
+    <Image Include="res\ico00008.ico" />
+    <Image Include="res\ico00009.ico" />
+    <Image Include="res\ico00010.ico" />
+    <Image Include="res\ico00011.ico" />
+    <Image Include="res\ico00012.ico" />
+    <Image Include="res\ico00013.ico" />
+    <Image Include="res\ico00014.ico" />
+    <Image Include="res\ico00015.ico" />
+    <Image Include="res\ico00016.ico" />
+    <Image Include="res\ico00017.ico" />
+    <Image Include="res\ico00018.ico" />
+    <Image Include="res\ico27362.ico" />
+    <Image Include="res\ICO3DICO.ICO" />
+    <Image Include="res\icon1.ico" />
+    <Image Include="res\icon2.ico" />
+    <Image Include="res\ICONAPP1.ICO" />
+    <Image Include="res\ICONAPP2.ICO" />
+    <Image Include="res\ICONAPP3.ICO" />
+    <Image Include="res\ICONAPP4.ICO" />
+    <Image Include="res\ICONAPP5.ICO" />
+    <Image Include="res\ICONAPP6.ICO" />
+    <Image Include="res\ICONAPP7.ICO" />
+    <Image Include="res\icon_ama.ico" />
+    <Image Include="res\ICON_EDI.ICO" />
+    <Image Include="res\ICON_PEN.ICO" />
+    <Image Include="res\ICON_REN.ICO" />
+    <Image Include="res\IDR_DEFI.ICO" />
+    <Image Include="res\IDR_FEED.ICO" />
+    <Image Include="res\IDR_HIST.ICO" />
+    <Image Include="res\idr_main.ico" />
+    <Image Include="res\idr_merc.ico" />
+    <Image Include="res\idr_mode.ico" />
+    <Image Include="res\Idr_proc.bmp" />
+    <Image Include="res\IDR_PROC.ICO" />
+    <Image Include="res\ID_APPLY.BMP" />
+    <Image Include="res\ID_CANCE.BMP" />
+    <Image Include="res\ID_OK_PR.BMP" />
+    <Image Include="res\il_filev.ico" />
+    <Image Include="res\il_input.ico" />
+    <Image Include="res\il_logic.ico" />
+    <Image Include="res\il_model.ico" />
+    <Image Include="res\il_outpu.bmp" />
+    <Image Include="res\il_outpu.ico" />
+    <Image Include="res\il_panvi.ico" />
+    <Image Include="res\il_prope.bmp" />
+    <Image Include="res\il_prope.ico" />
+    <Image Include="res\il_stand.bmp" />
+    <Image Include="res\il_symbo.bmp" />
+    <Image Include="res\il_userv.ico" />
+    <Image Include="res\il_works.bmp" />
+    <Image Include="res\key_flag.bmp" />
+    <Image Include="res\linktomo.bmp" />
+    <Image Include="res\LOCKED.BMP" />
+    <Image Include="res\LOCKED.ICO" />
+    <Image Include="res\mainfram.bmp" />
+    <Image Include="res\MAPIF1L.ICO" />
+    <Image Include="res\MAPIF5L.ICO" />
+    <Image Include="res\model1.bmp" />
+    <Image Include="res\modelisa.bmp" />
+    <Image Include="res\MOVEDWND.BMP" />
+    <Image Include="res\MOVEDWNF.BMP" />
+    <Image Include="res\MOVEDWNU.BMP" />
+    <Image Include="res\Movedwnx.bmp" />
+    <Image Include="res\MOVEUPD.BMP" />
+    <Image Include="res\MOVEUPF.BMP" />
+    <Image Include="res\MOVEUPU.BMP" />
+    <Image Include="res\Moveupx.bmp" />
+    <Image Include="res\MSDTX.ICO" />
+    <Image Include="res\NOTCALCU.ICO" />
+    <Image Include="res\OBJECT.ICO" />
+    <Image Include="res\ObjectivDoc.ico" />
+    <Image Include="res\OdAlign.bmp" />
+    <Image Include="res\OdCanvas.bmp" />
+    <Image Include="res\OdCompLbClosedCurve.bmp" />
+    <Image Include="res\OdCompLbCurve.bmp" />
+    <Image Include="res\OdCompLbEllipse.bmp" />
+    <Image Include="res\OdCompLbImage.bmp" />
+    <Image Include="res\OdCompLbLine.bmp" />
+    <Image Include="res\OdCompLbLink.bmp" />
+    <Image Include="res\OdCompLbPolygon.bmp" />
+    <Image Include="res\OdCompLbPort.bmp" />
+    <Image Include="res\OdCompLbRect.bmp" />
+    <Image Include="res\OdCompLbSymbol.bmp" />
+    <Image Include="res\OdCompLbText.bmp" />
+    <Image Include="res\OdDownArrow.bmp" />
+    <Image Include="res\OdDrawing.bmp" />
+    <Image Include="res\OdLabelOffset.bmp" />
+    <Image Include="res\OdLayout.bmp" />
+    <Image Include="res\OdLink.bmp" />
+    <Image Include="res\OdNudge.bmp" />
+    <Image Include="res\OdRightArrow.bmp" />
+    <Image Include="res\OdRotate.bmp" />
+    <Image Include="res\OdStructure.bmp" />
+    <Image Include="res\OdTrueType.bmp" />
+    <Image Include="res\OdZoomPan.bmp" />
+    <Image Include="res\od_canva.bmp" />
+    <Image Include="res\PAGE.ICO" />
+    <Image Include="res\PLANFDOC.ICO" />
+    <Image Include="res\PLANFIN.ICO" />
+    <Image Include="res\POINTER.ICO" />
+    <Image Include="res\POINTERW.ICO" />
+    <Image Include="res\POOL.ICO" />
+    <Image Include="res\POSTL.ICO" />
+    <Image Include="res\POS_IMAG.ICO" />
+    <Image Include="res\prcbldd.bmp" />
+    <Image Include="res\prcbldf.bmp" />
+    <Image Include="res\prcbldu.bmp" />
+    <Image Include="res\prcbldx.bmp" />
+    <Image Include="res\PrestationsFlatToolbar.bmp" />
+    <Image Include="res\PRINTER.BMP" />
+    <Image Include="res\process.bmp" />
+    <Image Include="res\PROCESS.ICO" />
+    <Image Include="res\process2.bmp" />
+    <Image Include="res\processsoft.jpg" />
+    <Image Include="res\prop_fla.bmp" />
+    <Image Include="res\QuestionMark.gif" />
+    <Image Include="res\RARROW.BMP" />
+    <Image Include="res\RECTANGL.ICO" />
+    <Image Include="res\rejectac.ico" />
+    <Image Include="res\respuser.bmp" />
+    <Image Include="res\RulesFlatToolbar.bmp" />
+    <Image Include="res\SCDCNCLL.ICO" />
+    <Image Include="res\SCDREQL.ICO" />
+    <Image Include="res\SCDRESPL.ICO" />
+    <Image Include="res\SCDRESTL.ICO" />
+    <Image Include="res\shortcut.bmp" />
+    <Image Include="res\SIZEOBJE.ICO" />
+    <Image Include="res\suspenda.ico" />
+    <Image Include="res\symbol1.bmp" />
+    <Image Include="res\template.bmp" />
+    <Image Include="res\tips.gif" />
+    <Image Include="res\TIPS.ICO" />
+    <Image Include="res\Toolbar.bmp" />
+    <Image Include="res\toolbar1.bmp" />
+    <Image Include="res\toupille.ico" />
+    <Image Include="res\TRASH01.ICO" />
+    <Image Include="res\ugp_flat.bmp" />
+    <Image Include="res\unit.ico" />
+    <Image Include="res\unit_gla.ico" />
+    <Image Include="res\userofac.bmp" />
+    <Image Include="res\welcome.bmp" />
+    <Image Include="res\wizard.ico" />
+    <Image Include="res\workspac.ico" />
+    <Image Include="res\wz1.bmp" />
+    <Image Include="res\WZBITMAP.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\3DGNO.CUR" />
+    <None Include="res\3DSMOVE.CUR" />
+    <None Include="res\about_conceptor_02.htm" />
+    <None Include="res\CUR00001.CUR" />
+    <None Include="res\CUR00002.CUR" />
+    <None Include="res\CUR00003.CUR" />
+    <None Include="res\CUR00004.CUR" />
+    <None Include="res\CURSOR1.CUR" />
+    <None Include="res\DANGER~3.CUR" />
+    <None Include="res\DANGE~10.CUR" />
+    <None Include="res\DESIGN.CUR" />
+    <None Include="res\EMPTY.CUR" />
+    <None Include="res\HCROSS.CUR" />
+    <None Include="res\helpcont.htm" />
+    <None Include="res\NEWOBJEC.CUR" />
+    <None Include="res\NUMBER.CUR" />
+    <None Include="res\OdConnect.cur" />
+    <None Include="res\OdDeleteVertex.cur" />
+    <None Include="res\OdInsertImage.cur" />
+    <None Include="res\OdInsertPort.cur" />
+    <None Include="res\OdInsertSymbol.cur" />
+    <None Include="res\OdInsertText.cur" />
+    <None Include="res\OdInsertVertex.cur" />
+    <None Include="res\OdMove.cur" />
+    <None Include="res\OdMoveCopy.cur" />
+    <None Include="res\OdMoveReady.cur" />
+    <None Include="res\OdMoveVertex.cur" />
+    <None Include="res\OdPan.cur" />
+    <None Include="res\OdPanReady.cur" />
+    <None Include="res\OdRotate.cur" />
+    <None Include="res\OdRotateCopy.cur" />
+    <None Include="res\OdRotateReady.cur" />
+    <None Include="res\OdSmallCross.cur" />
+    <None Include="res\OdZoom.cur" />
+    <None Include="res\OdZoomRect.cur" />
+    <None Include="res\od_inser.cur" />
+    <None Include="res\Package.sym" />
+    <None Include="res\PROPERTY.CUR" />
+    <None Include="res\SCENARIO.CUR" />
+    <None Include="res\SELECTOR.CUR" />
+    <None Include="res\support_conceptor_02.htm" />
+    <None Include="res\tips.htm" />
+    <None Include="res\Wizard.cur" />
+    <None Include="Uml\ZProcess32.vcp" />
+    <None Include="Uml\ZProcess32.vcw" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ZProcess32.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ZBaseLib\ZBaseLib.vcxproj">
+      <Project>{55112ad1-6307-4711-b20c-8fb984d1c596}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\zBaseSym\zBaseSym.vcxproj">
+      <Project>{8371c80d-5034-455d-8f7c-27bd429bf29d}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\zConversion\zConversion.vcxproj">
+      <Project>{21cd5c57-e05e-4005-942b-033b1c8b3743}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\zDB\zDB.vcxproj">
+      <Project>{7a158463-e053-455d-9072-275f0a6cd739}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\ZEvent\ZEvent.vcxproj">
+      <Project>{6a0743ec-ec51-45b0-9648-78b8a18aa3c8}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\zMediator\zMediator.vcxproj">
+      <Project>{1c630aa1-d3e9-4bfa-975c-3d8a8a75f8f0}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\zModelBP\zModelBP.vcxproj">
+      <Project>{1eb2589e-79e8-4df6-b965-da292e065a45}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\zModelWeb\zModelWeb.vcxproj">
+      <Project>{5f39569c-9e59-4128-98d6-5fd0ed1fa78e}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\zModel\zModel.vcxproj">
+      <Project>{97e953fa-234a-4e00-8073-dd4cb749556c}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\zProperty\zProperty.vcxproj">
+      <Project>{fbc69424-a723-42e0-9d5a-54e369bd8ada}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\zPtyMgr\zPtyMgr.vcxproj">
+      <Project>{88b2d1ad-deca-4c68-9088-56123c45926e}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\zRBPropEn\zRBPropEn.vcxproj">
+      <Project>{ae43589c-60b8-4b40-b998-0a9f1f9194b2}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\zRBPropFr\zRBPropFr.vcxproj">
+      <Project>{3e771791-5fa4-457d-ad1f-1a99dda9b26f}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\zRBPropGr\zRBPropGr.vcxproj">
+      <Project>{bfc8f44b-cdef-4c1f-8577-9fdb08029d47}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\zReportBP\zReportBP.vcxproj">
+      <Project>{fe2f81c5-d520-44fe-8adf-64316c3b9ff0}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\zReportWeb\zReportWeb.vcxproj">
+      <Project>{86a0bc0c-8fc3-451a-bea7-a9cc25486b47}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\zReport\zReport.vcxproj">
+      <Project>{546ac0c4-e6cb-4b49-a604-cf6e2aa41031}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\ZRes32\ZRes32.vcxproj">
+      <Project>{8be451d8-979f-4024-b25a-bb48b4c96953}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\zResMgr\zResMgr.vcxproj">
+      <Project>{dcc4fc4f-3100-4780-8a5f-099169d5fdac}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\zRMdlBPEn\zRMdlBPEn.vcxproj">
+      <Project>{bf8f1923-5c94-4385-9ba1-49067ede8811}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\zRMdlBPFr\zRMdlBPFr.vcxproj">
+      <Project>{c8f8295a-4c76-4dac-bf98-054b023a47ec}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\zRMdlBPGr\zRMdlBPGr.vcxproj">
+      <Project>{983375de-7985-49bf-a23d-62a658a33c11}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\zScty\zScty.vcxproj">
+      <Project>{0bf8b240-3cca-45c1-91f4-1025e60a2fb3}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\zSOAP\zSOAP.vcxproj">
+      <Project>{b6990205-cf36-49c7-85ce-6f5aed455305}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\ZSplash\ZSplash.vcxproj">
+      <Project>{a24a764a-48ee-493d-8590-698769f8baa8}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\ZSplRes\ZSplRes.vcxproj">
+      <Project>{329bc652-cc7c-4a8e-8c1f-2cdc98564a03}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\ztip\ztip.vcxproj">
+      <Project>{895c61ca-88cd-4bf7-8d73-132abb03d7db}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\ZWeb\ZWeb.vcxproj">
+      <Project>{b84cbcb4-91bf-4e9b-9818-014caaf2371e}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\ZWinUtil32\ZWinUtil32.vcxproj">
+      <Project>{cec2c95d-f221-48fc-868f-4e38ecbbb4d3}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\zWkf\zWkf.vcxproj">
+      <Project>{4e050203-8cbe-42ef-b185-b776f6c6c492}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\zXML\zXML.vcxproj">
+      <Project>{beebe02f-476f-4fd4-8333-cda231b8aa1e}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="ZProcess32.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

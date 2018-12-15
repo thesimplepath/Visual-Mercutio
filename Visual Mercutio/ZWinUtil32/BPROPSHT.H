@@ -1,10 +1,10 @@
 //## begin module%3705B62C032C.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%3705B62C032C.cm
 
 //## begin module%3705B62C032C.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%3705B62C032C.cp
 
 //## Module: BPropSht%3705B62C032C; Package specification
@@ -64,7 +64,7 @@
 class AFX_EXT_CLASS ZIBasePropSheet : public CPropertySheet  //## Inherits: <unnamed>%3705B58701E4
 {
   //## begin ZIBasePropSheet%3705B57B035A.initialDeclarations preserve=yes
-	DECLARE_DYNAMIC(ZIBasePropSheet)
+    DECLARE_DYNAMIC(ZIBasePropSheet)
   //## end ZIBasePropSheet%3705B57B035A.initialDeclarations
 
   public:
@@ -93,10 +93,10 @@ class AFX_EXT_CLASS ZIBasePropSheet : public CPropertySheet  //## Inherits: <unn
 
     // Additional Public Declarations
       //## begin ZIBasePropSheet%3705B57B035A.public preserve=yes
-		int  FindPropertyPage( CPropertyPage* pPage );
-		bool DeletePropertyPage( CPropertyPage* pPage );
-		bool DeletePropertyPageAt( size_t Index );
-		void DeleteAllPropertyPages();
+        int  FindPropertyPage( CPropertyPage* pPage );
+        bool DeletePropertyPage( CPropertyPage* pPage );
+        bool DeletePropertyPageAt( size_t Index );
+        void DeleteAllPropertyPages();
       //## end ZIBasePropSheet%3705B57B035A.public
 
   protected:
@@ -108,10 +108,10 @@ class AFX_EXT_CLASS ZIBasePropSheet : public CPropertySheet  //## Inherits: <unn
 
     // Additional Protected Declarations
       //## begin ZIBasePropSheet%3705B57B035A.protected preserve=yes
-	// Generated message map functions
-	//{{AFX_MSG(ZIBasePropSheet)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZIBasePropSheet)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
       //## end ZIBasePropSheet%3705B57B035A.protected
   private:
     //## Constructors (generated)

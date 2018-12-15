@@ -44,15 +44,15 @@ IMPLEMENT_SERIAL( ZBBPUnitProperties2, CObject, def_Version )
 //@parm ZBBPUnitProperties2& | propProcess | The fill property to copy.
 ZBBPUnitProperties2::ZBBPUnitProperties2() 
 {
-	m_UnitName				= _T( "" );
-	m_UnitCost				= 0;
-	m_UnitGUID				= _T( "" );
-	m_DoubleValidationType	= 0;
+    m_UnitName                = _T( "" );
+    m_UnitCost                = 0;
+    m_UnitGUID                = _T( "" );
+    m_DoubleValidationType    = 0;
 }
 
 ZBBPUnitProperties2::ZBBPUnitProperties2( const ZBBPUnitProperties2& propProcess )
 {
-	*this = propProcess;
+    *this = propProcess;
 }
 
 //@mfunc Destructor.
@@ -68,15 +68,15 @@ ZBBPUnitProperties2::~ZBBPUnitProperties2()
 //@parm The new task list.
 void ZBBPUnitProperties2::SetUnitName( LPCTSTR lpszValue )
 {
-	if ( lpszValue != NULL )
-	{
-		m_UnitName = lpszValue;
-	}
-	else
-	{
-		TRACE0( _T( "Z -> Invalid Task List pointer!\n" ) );
-		ASSERT( FALSE );
-	}
+    if ( lpszValue != NULL )
+    {
+        m_UnitName = lpszValue;
+    }
+    else
+    {
+        TRACE0( _T( "Z -> Invalid Task List pointer!\n" ) );
+        ASSERT( FALSE );
+    }
 }
 
 //@mfunc Sets the task list.
@@ -84,7 +84,7 @@ void ZBBPUnitProperties2::SetUnitName( LPCTSTR lpszValue )
 //@parm The new task list.
 void ZBBPUnitProperties2::SetUnitNameEx( const CString value )
 {
-	SetUnitName( value );
+    SetUnitName( value );
 }
 
 //@mfunc Sets the unit guid.
@@ -92,15 +92,15 @@ void ZBBPUnitProperties2::SetUnitNameEx( const CString value )
 //@parm The new unit guid.
 void ZBBPUnitProperties2::SetUnitGUID( LPCTSTR lpszValue )
 {
-	if ( lpszValue != NULL )
-	{
-		m_UnitGUID = lpszValue;
-	}
-	else
-	{
-		TRACE0( _T( "Z -> Invalid unit GUID pointer!\n" ) );
-		ASSERT( FALSE );
-	}
+    if ( lpszValue != NULL )
+    {
+        m_UnitGUID = lpszValue;
+    }
+    else
+    {
+        TRACE0( _T( "Z -> Invalid unit GUID pointer!\n" ) );
+        ASSERT( FALSE );
+    }
 }
 
 //@mfunc Sets the unit guid.
@@ -108,74 +108,74 @@ void ZBBPUnitProperties2::SetUnitGUID( LPCTSTR lpszValue )
 //@parm The new unit guid.
 void ZBBPUnitProperties2::SetUnitGUIDEx( const CString value )
 {
-	SetUnitGUID( value );
+    SetUnitGUID( value );
 }
 
 void ZBBPUnitProperties2::GetUnitDoubleValidationTypeStringArray( CStringArray& sar ) const
 {
-	CString s;
-	s.LoadString( IDS_DOUBLEVALID_NONE );
-	sar.Add( s );
-	s.LoadString( IDS_DOUBLEVALID_EMPLOYEE );
-	sar.Add( s );
-	s.LoadString( IDS_DOUBLEVALID_MANAGER );
-	sar.Add( s );
+    CString s;
+    s.LoadString( IDS_DOUBLEVALID_NONE );
+    sar.Add( s );
+    s.LoadString( IDS_DOUBLEVALID_EMPLOYEE );
+    sar.Add( s );
+    s.LoadString( IDS_DOUBLEVALID_MANAGER );
+    sar.Add( s );
 }
 
 int ZBBPUnitProperties2::ConvertUnitDoubleValidationString2Type( const CString Type ) const
 {
-	CString s;
-	s.LoadString( IDS_DOUBLEVALID_NONE );
+    CString s;
+    s.LoadString( IDS_DOUBLEVALID_NONE );
 
-	if ( s == Type )
-	{
-		return 0;
-	}
+    if ( s == Type )
+    {
+        return 0;
+    }
 
-	s.LoadString( IDS_DOUBLEVALID_EMPLOYEE );
+    s.LoadString( IDS_DOUBLEVALID_EMPLOYEE );
 
-	if ( s == Type )
-	{
-		return 1;
-	}
+    if ( s == Type )
+    {
+        return 1;
+    }
 
-	s.LoadString( IDS_DOUBLEVALID_MANAGER );
+    s.LoadString( IDS_DOUBLEVALID_MANAGER );
 
-	if ( s == Type )
-	{
-		return 2;
-	}
+    if ( s == Type )
+    {
+        return 2;
+    }
 
-	// Error
-	return -1;
+    // Error
+    return -1;
 }
 
 CString ZBBPUnitProperties2::GetUnitDoubleValidationTypeString( const int Value ) const
 {
-	CString s;
+    CString s;
 
-	switch ( Value )
-	{
-		case 0:
-		{
-			s.LoadString( IDS_DOUBLEVALID_NONE );
-			break;
-		}
+    switch ( Value )
+    {
+        case 0:
+        {
+            s.LoadString( IDS_DOUBLEVALID_NONE );
+            break;
+        }
 
-		case 1:
-		{
-			s.LoadString( IDS_DOUBLEVALID_EMPLOYEE );
-			break;
-		}
+        case 1:
+        {
+            s.LoadString( IDS_DOUBLEVALID_EMPLOYEE );
+            break;
+        }
 
-		case 2:
-		{
-			s.LoadString( IDS_DOUBLEVALID_MANAGER );
-			break;
-		}
-	}
+        case 2:
+        {
+            s.LoadString( IDS_DOUBLEVALID_MANAGER );
+            break;
+        }
+    }
 
-	return s;
+    return s;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -186,12 +186,12 @@ CString ZBBPUnitProperties2::GetUnitDoubleValidationTypeString( const int Value 
 //@parm The property to copy.
 ZBBPUnitProperties2& ZBBPUnitProperties2::operator=( const ZBBPUnitProperties2& propProcess )
 {
-	SetUnitName( propProcess.GetUnitName() );
-	SetUnitCost( propProcess.GetUnitCost() );
-	SetUnitGUID( propProcess.GetUnitGUID() );
-	SetUnitDoubleValidationType( propProcess.GetUnitDoubleValidationType() );
+    SetUnitName( propProcess.GetUnitName() );
+    SetUnitCost( propProcess.GetUnitCost() );
+    SetUnitGUID( propProcess.GetUnitGUID() );
+    SetUnitDoubleValidationType( propProcess.GetUnitDoubleValidationType() );
 
-	return *this;
+    return *this;
 }
 
 //@mfunc Tests if this property is equal to the one passed in.
@@ -199,10 +199,10 @@ ZBBPUnitProperties2& ZBBPUnitProperties2::operator=( const ZBBPUnitProperties2& 
 //@parm The property to test against.
 BOOL ZBBPUnitProperties2::operator==( const ZBBPUnitProperties2 propProcess ) const
 {
-	return ( GetUnitName()					== propProcess.GetUnitName()					&&
-			 GetUnitCost()					== propProcess.GetUnitCost()					&&
-			 GetUnitDoubleValidationType()	== propProcess.GetUnitDoubleValidationType()	&&
-			 GetUnitGUID()					== propProcess.GetUnitGUID() );
+    return ( GetUnitName()                    == propProcess.GetUnitName()                    &&
+             GetUnitCost()                    == propProcess.GetUnitCost()                    &&
+             GetUnitDoubleValidationType()    == propProcess.GetUnitDoubleValidationType()    &&
+             GetUnitGUID()                    == propProcess.GetUnitGUID() );
 }
 
 //@mfunc Merges the values of the property passed in with the values in this
@@ -213,28 +213,28 @@ BOOL ZBBPUnitProperties2::operator==( const ZBBPUnitProperties2 propProcess ) co
 // to merge into this property object.
 void ZBBPUnitProperties2::Merge( ZBBPUnitProperties2* pProperty, DWORD dwChangeFlags )
 {
-	if ( pProperty )
-	{
-		if ( dwChangeFlags & Z_CHANGE_UNIT_NAME )
-		{
-			m_UnitName = pProperty->GetUnitName();
-		}
+    if ( pProperty )
+    {
+        if ( dwChangeFlags & Z_CHANGE_UNIT_NAME )
+        {
+            m_UnitName = pProperty->GetUnitName();
+        }
 
-		if ( dwChangeFlags & Z_CHANGE_UNIT_COST )
-		{
-			m_UnitCost = pProperty->GetUnitCost();
-		}
+        if ( dwChangeFlags & Z_CHANGE_UNIT_COST )
+        {
+            m_UnitCost = pProperty->GetUnitCost();
+        }
 
-		if ( dwChangeFlags & Z_CHANGE_UNIT_GUID )
-		{
-			m_UnitGUID = pProperty->GetUnitGUID();
-		}
+        if ( dwChangeFlags & Z_CHANGE_UNIT_GUID )
+        {
+            m_UnitGUID = pProperty->GetUnitGUID();
+        }
 
-		if ( dwChangeFlags & Z_CHANGE_UNIT_DOUBLE_VALIDATION )
-		{
-			m_DoubleValidationType = pProperty->GetUnitDoubleValidationType();
-		}
-	}
+        if ( dwChangeFlags & Z_CHANGE_UNIT_DOUBLE_VALIDATION )
+        {
+            m_DoubleValidationType = pProperty->GetUnitDoubleValidationType();
+        }
+    }
 }
 
 //@mfunc Tests if this property is equal to the one passed in. This method
@@ -243,12 +243,12 @@ void ZBBPUnitProperties2::Merge( ZBBPUnitProperties2* pProperty, DWORD dwChangeF
 //@parm A pointer to the property to test against.
 BOOL ZBBPUnitProperties2::IsEqual( ZBBPUnitProperties2* pProp )
 {
-	if ( pProp )
-	{
-		return ( *this == *pProp );
-	}
+    if ( pProp )
+    {
+        return ( *this == *pProp );
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -278,131 +278,131 @@ BOOL ZBBPUnitProperties2::IsEqual( ZBBPUnitProperties2* pProp )
 
 BOOL ZBBPUnitProperties2::GetValue( const int nPropId, CString& strValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_UNIT_NAME:
-		{
-			strValue = m_UnitName;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_UNIT_NAME:
+        {
+            strValue = m_UnitName;
+            break;
+        }
 
-		case Z_UNIT_GUID:
-		{
-			strValue = m_UnitGUID;
-			break;
-		}
+        case Z_UNIT_GUID:
+        {
+            strValue = m_UnitGUID;
+            break;
+        }
 
-		default:
-		{
-			throw new CODPropertyConversionException();
-			return FALSE;
-		}
-	}
+        default:
+        {
+            throw new CODPropertyConversionException();
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPUnitProperties2::GetValue( const int nPropId, int& nValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_UNIT_DOUBLE_VALIDATION:
-		{
-			nValue = m_DoubleValidationType;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_UNIT_DOUBLE_VALIDATION:
+        {
+            nValue = m_DoubleValidationType;
+            break;
+        }
 
-		case Z_UNIT_NAME:
-		case Z_UNIT_COST:
-		case Z_UNIT_GUID:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+        case Z_UNIT_NAME:
+        case Z_UNIT_COST:
+        case Z_UNIT_GUID:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPUnitProperties2::GetValue( const int nPropId, UINT& nValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_UNIT_DOUBLE_VALIDATION:
-		{
-			nValue = m_DoubleValidationType;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_UNIT_DOUBLE_VALIDATION:
+        {
+            nValue = m_DoubleValidationType;
+            break;
+        }
 
-		case Z_UNIT_NAME:
-		case Z_UNIT_COST:
-		case Z_UNIT_GUID:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+        case Z_UNIT_NAME:
+        case Z_UNIT_COST:
+        case Z_UNIT_GUID:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPUnitProperties2::GetValue( const int nPropId, DWORD& dwValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_UNIT_DOUBLE_VALIDATION:
-		case Z_UNIT_NAME:
-		case Z_UNIT_COST:
-		case Z_UNIT_GUID:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_UNIT_DOUBLE_VALIDATION:
+        case Z_UNIT_NAME:
+        case Z_UNIT_COST:
+        case Z_UNIT_GUID:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPUnitProperties2::GetValue( const int nPropId, float& fValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_UNIT_COST:
-		{
-			fValue = m_UnitCost;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_UNIT_COST:
+        {
+            fValue = m_UnitCost;
+            break;
+        }
 
-		case Z_UNIT_DOUBLE_VALIDATION:
-		case Z_UNIT_NAME:
-		case Z_UNIT_GUID:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+        case Z_UNIT_DOUBLE_VALIDATION:
+        case Z_UNIT_NAME:
+        case Z_UNIT_GUID:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 //@mfunc | ZBBPUnitProperties2 | SetValue | Sets the value of the given property.
@@ -429,131 +429,131 @@ BOOL ZBBPUnitProperties2::GetValue( const int nPropId, float& fValue ) const
 
 BOOL ZBBPUnitProperties2::SetValue( const int nPropId, LPCTSTR lpszValue )
 {
-	switch ( nPropId )
-	{
-		case Z_UNIT_NAME:
-		{
-			m_UnitName = lpszValue;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_UNIT_NAME:
+        {
+            m_UnitName = lpszValue;
+            break;
+        }
 
-		case Z_UNIT_GUID:
-		{
-			m_UnitGUID = lpszValue;
-			break;
-		}
+        case Z_UNIT_GUID:
+        {
+            m_UnitGUID = lpszValue;
+            break;
+        }
 
-		default:
-		{
-			throw new CODPropertyConversionException();
-			return FALSE;
-		}
-	}
+        default:
+        {
+            throw new CODPropertyConversionException();
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPUnitProperties2::SetValue( const int nPropId, const int nValue )
 {
-	switch ( nPropId )
-	{
-		case Z_UNIT_DOUBLE_VALIDATION:
-		{
-			m_DoubleValidationType = nValue;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_UNIT_DOUBLE_VALIDATION:
+        {
+            m_DoubleValidationType = nValue;
+            break;
+        }
 
-		case Z_UNIT_NAME:
-		case Z_UNIT_COST:
-		case Z_UNIT_GUID:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+        case Z_UNIT_NAME:
+        case Z_UNIT_COST:
+        case Z_UNIT_GUID:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPUnitProperties2::SetValue( const int nPropId, const UINT nValue )
 {
-	switch ( nPropId )
-	{
-		case Z_UNIT_DOUBLE_VALIDATION:
-		{
-			m_DoubleValidationType = nValue;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_UNIT_DOUBLE_VALIDATION:
+        {
+            m_DoubleValidationType = nValue;
+            break;
+        }
 
-		case Z_UNIT_NAME:
-		case Z_UNIT_COST:
-		case Z_UNIT_GUID:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+        case Z_UNIT_NAME:
+        case Z_UNIT_COST:
+        case Z_UNIT_GUID:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPUnitProperties2::SetValue( const int nPropId, const DWORD dwValue )
 {
-	switch ( nPropId )
-	{
-		case Z_UNIT_DOUBLE_VALIDATION:
-		case Z_UNIT_NAME:
-		case Z_UNIT_COST:
-		case Z_UNIT_GUID:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_UNIT_DOUBLE_VALIDATION:
+        case Z_UNIT_NAME:
+        case Z_UNIT_COST:
+        case Z_UNIT_GUID:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPUnitProperties2::SetValue( const int nPropId, const float fValue )
 {
-	switch ( nPropId )
-	{
-		case Z_UNIT_COST:
-		{
-			m_UnitCost = fValue;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_UNIT_COST:
+        {
+            m_UnitCost = fValue;
+            break;
+        }
 
-		case Z_UNIT_DOUBLE_VALIDATION:
-		case Z_UNIT_NAME:
-		case Z_UNIT_GUID:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+        case Z_UNIT_DOUBLE_VALIDATION:
+        case Z_UNIT_NAME:
+        case Z_UNIT_GUID:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -562,16 +562,16 @@ BOOL ZBBPUnitProperties2::SetValue( const int nPropId, const float fValue )
 #ifdef _DEBUG
 void ZBBPUnitProperties2::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void ZBBPUnitProperties2::Dump( CDumpContext& dc ) const
 {
-	CObject::Dump( dc );
+    CObject::Dump( dc );
 
-	dc << _T( "Unit name = " ) << m_UnitName << _T( "\n" );
-	dc << _T( "Unit Cost = " ) << m_UnitCost << _T( "\n" );
-	dc << _T( "Unit GUID = " ) << m_UnitGUID << _T( "\n" );
+    dc << _T( "Unit name = " ) << m_UnitName << _T( "\n" );
+    dc << _T( "Unit Cost = " ) << m_UnitCost << _T( "\n" );
+    dc << _T( "Unit GUID = " ) << m_UnitGUID << _T( "\n" );
 }
 #endif //_DEBUG
 /////////////////////////////////////////////////////////////////////////////
@@ -584,47 +584,47 @@ void ZBBPUnitProperties2::Dump( CDumpContext& dc ) const
 //@parm The archive to use for serialization.
 void ZBBPUnitProperties2::Serialize( CArchive& ar )
 {
-	CObject::Serialize( ar );
+    CObject::Serialize( ar );
 
-	if ( ar.IsStoring() )
-	{
-		TRACE( _T( "ZBBPUnitProperties2::Serialize : Start Save\n" ) );
+    if ( ar.IsStoring() )
+    {
+        TRACE( _T( "ZBBPUnitProperties2::Serialize : Start Save\n" ) );
 
-		PUT_SCHEMA( ar, ZBBPUnitProperties2 );
-		ar << m_UnitName;
-		ar << m_UnitCost;
-		ar << m_UnitGUID;
-		ar << m_DoubleValidationType;
+        PUT_SCHEMA( ar, ZBBPUnitProperties2 );
+        ar << m_UnitName;
+        ar << m_UnitCost;
+        ar << m_UnitGUID;
+        ar << m_DoubleValidationType;
 
-		TRACE( _T( "ZBBPUnitProperties2::Serialize : End Save\n" ) );
-	}
-	else
-	{
-		TRACE( _T( "ZBBPUnitProperties2::Serialize : Start Read\n" ) );
+        TRACE( _T( "ZBBPUnitProperties2::Serialize : End Save\n" ) );
+    }
+    else
+    {
+        TRACE( _T( "ZBBPUnitProperties2::Serialize : Start Read\n" ) );
 
-		UINT nSchema;
-		GET_SCHEMA( ar, nSchema );
+        UINT nSchema;
+        GET_SCHEMA( ar, nSchema );
 
-		if ( !ar.m_pDocument ||
-			 dynamic_cast<ZDBaseDocument*>(ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 19 )
-		{
-			ar >> m_UnitName;
-			ar >> m_UnitCost;
-			ar >> m_UnitGUID;
-		}
-		else
-		{
-			ar >> m_UnitName;
-			ar >> m_UnitCost;
-			m_UnitGUID.Empty();
-		}
+        if ( !ar.m_pDocument ||
+             dynamic_cast<ZDBaseDocument*>(ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 19 )
+        {
+            ar >> m_UnitName;
+            ar >> m_UnitCost;
+            ar >> m_UnitGUID;
+        }
+        else
+        {
+            ar >> m_UnitName;
+            ar >> m_UnitCost;
+            m_UnitGUID.Empty();
+        }
 
-		if ( !ar.m_pDocument ||
-			 ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 20 )
-		{
-			ar >> m_DoubleValidationType;
-		}
+        if ( !ar.m_pDocument ||
+             ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 20 )
+        {
+            ar >> m_DoubleValidationType;
+        }
 
-		TRACE( _T( "ZBBPUnitProperties2::Serialize : End Read\n" ) );
-	}
+        TRACE( _T( "ZBBPUnitProperties2::Serialize : End Read\n" ) );
+    }
 }

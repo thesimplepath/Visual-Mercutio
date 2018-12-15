@@ -39,28 +39,28 @@ class AFX_EXT_CLASS ZSplashImage
 {
 // Construction
 public:
-	ZSplashImage( UINT nResID = 0, const CString Info = "", CWnd* pParentWnd = NULL );
-	ZSplashImage( LPCTSTR szFilename, const CString Info = "", CWnd* pParentWnd = NULL );
+    ZSplashImage( UINT nResID = 0, const CString Info = "", CWnd* pParentWnd = NULL );
+    ZSplashImage( LPCTSTR szFilename, const CString Info = "", CWnd* pParentWnd = NULL );
 
 // Operations
 public:
-	bool Display(LPCTSTR szFilename, const CString Info = "", CWnd* pParentWnd = NULL);
-	bool Display(UINT nResID, const CString Info = "", CWnd* pParentWnd = NULL);
-	bool Display(const CString Info = "");
+    bool Display(LPCTSTR szFilename, const CString Info = "", CWnd* pParentWnd = NULL);
+    bool Display(UINT nResID, const CString Info = "", CWnd* pParentWnd = NULL);
+    bool Display(const CString Info = "");
 
 
 // Implementation
 public:
-	virtual ~ZSplashImage();
+    virtual ~ZSplashImage();
 
 private:
-	bool ProcessDisplay();
+    bool ProcessDisplay();
 
 private:
-	CString			m_BitmapFilename;
-	UINT			m_BitmapResID;
-	CString			m_Info;
-	CWnd*			m_pParentWnd;
+    CString            m_BitmapFilename;
+    UINT            m_BitmapResID;
+    CString            m_Info;
+    CWnd*            m_pParentWnd;
 
 };
 

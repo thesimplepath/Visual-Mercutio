@@ -21,32 +21,32 @@ static char THIS_FILE[] = __FILE__;
 // ZVConceptorReportOptions dialog
 
 BEGIN_MESSAGE_MAP( ZVConceptorReportOptions, ZIWizardDialog )
-	//{{AFX_MSG_MAP(ZVConceptorReportOptions)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZVConceptorReportOptions)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 ZVConceptorReportOptions::ZVConceptorReportOptions( CWnd* pParent /*=NULL*/ )
-	: ZIWizardDialog				( ZVConceptorReportOptions::IDD,
-									  IDB_WIZ_REPORT,
-									  0,
-									  0,
-									  IDS_WZ_REPORTGENERATION_ST_S,
-									  IDS_WZ_REPORTGENERATION_ST_T )
-//	: CDialog( ZVConceptorReportOptions::IDD, pParent )
+    : ZIWizardDialog                ( ZVConceptorReportOptions::IDD,
+                                      IDB_WIZ_REPORT,
+                                      0,
+                                      0,
+                                      IDS_WZ_REPORTGENERATION_ST_S,
+                                      IDS_WZ_REPORTGENERATION_ST_T )
+//    : CDialog( ZVConceptorReportOptions::IDD, pParent )
 {
-	//{{AFX_DATA_INIT(ZVConceptorReportOptions)
-	m_Deliverables = TRUE;
-	m_Detail = TRUE;
-	//}}AFX_DATA_INIT
+    //{{AFX_DATA_INIT(ZVConceptorReportOptions)
+    m_Deliverables = TRUE;
+    m_Detail = TRUE;
+    //}}AFX_DATA_INIT
 }
 
 void ZVConceptorReportOptions::DoDataExchange( CDataExchange* pDX )
 {
-	ZIWizardDialog::DoDataExchange( pDX );
-	//{{AFX_DATA_MAP(ZVConceptorReportOptions)
-	DDX_Check(pDX, IDC_DELIVERABLE, m_Deliverables);
-	DDX_Check(pDX, IDC_DETAIL, m_Detail);
-	//}}AFX_DATA_MAP
+    ZIWizardDialog::DoDataExchange( pDX );
+    //{{AFX_DATA_MAP(ZVConceptorReportOptions)
+    DDX_Check(pDX, IDC_DELIVERABLE, m_Deliverables);
+    DDX_Check(pDX, IDC_DETAIL, m_Detail);
+    //}}AFX_DATA_MAP
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -54,15 +54,15 @@ void ZVConceptorReportOptions::DoDataExchange( CDataExchange* pDX )
 
 void ZVConceptorReportOptions::OnOK()
 {
-	UpdateData();
+    UpdateData();
 
-	if ( m_Deliverables == FALSE && m_Detail == FALSE )
-	{
-		// Warm the user
-		MsgBox mbox;
-		mbox.DisplayMsgBox( IDS_ONEOPTIONREQUIRED, MB_OK );
-		return;
-	}
+    if ( m_Deliverables == FALSE && m_Detail == FALSE )
+    {
+        // Warm the user
+        MsgBox mbox;
+        mbox.DisplayMsgBox( IDS_ONEOPTIONREQUIRED, MB_OK );
+        return;
+    }
 
-	ZIWizardDialog::OnOK();
+    ZIWizardDialog::OnOK();
 }

@@ -38,76 +38,76 @@ class ZDProcessGraphModelMdl;
 
 class AFX_EXT_CLASS ZBDocObserverMsg : public ZIObserverMsg
 {
-	DECLARE_DYNAMIC( ZBDocObserverMsg )
+    DECLARE_DYNAMIC( ZBDocObserverMsg )
 
 public:
 
-	enum MessageActionType
-	{
-		NoAction,
-		OpenDocument,
-		CloseDocument,
-		ActivateDocument,
-		AddElement,
-		RemoveElement,
-		ChangedElement
-	};
+    enum MessageActionType
+    {
+        NoAction,
+        OpenDocument,
+        CloseDocument,
+        ActivateDocument,
+        AddElement,
+        RemoveElement,
+        ChangedElement
+    };
 
 public:
 
-	ZBDocObserverMsg( MessageActionType			ActionType	= NoAction,
-					  ZDProcessGraphModelDoc*	pDoc		= NULL,
-					  ZDProcessGraphModelMdl*	pModel		= NULL,
-					  CODSymbolComponent*		pElement	= NULL );
+    ZBDocObserverMsg( MessageActionType            ActionType    = NoAction,
+                      ZDProcessGraphModelDoc*    pDoc        = NULL,
+                      ZDProcessGraphModelMdl*    pModel        = NULL,
+                      CODSymbolComponent*        pElement    = NULL );
 
-	virtual ~ZBDocObserverMsg();
+    virtual ~ZBDocObserverMsg();
 
-	MessageActionType GetActionType() const
-	{
-		return m_ActionType;
-	};
+    MessageActionType GetActionType() const
+    {
+        return m_ActionType;
+    };
 
-	void SetActionType( MessageActionType value )
-	{
-		m_ActionType = value;
-	};
+    void SetActionType( MessageActionType value )
+    {
+        m_ActionType = value;
+    };
 
-	ZDProcessGraphModelDoc* GetpDoc() const
-	{
-		return m_pDoc;
-	};
+    ZDProcessGraphModelDoc* GetpDoc() const
+    {
+        return m_pDoc;
+    };
 
-	void SetpDoc( ZDProcessGraphModelDoc* value )
-	{
-		m_pDoc = value;
-	};
+    void SetpDoc( ZDProcessGraphModelDoc* value )
+    {
+        m_pDoc = value;
+    };
 
-	ZDProcessGraphModelMdl* GetpModel() const
-	{
-		return m_pModel;
-	};
+    ZDProcessGraphModelMdl* GetpModel() const
+    {
+        return m_pModel;
+    };
 
-	void SetpModel( ZDProcessGraphModelMdl* value )
-	{
-		m_pModel = value;
-	};
+    void SetpModel( ZDProcessGraphModelMdl* value )
+    {
+        m_pModel = value;
+    };
 
-	CODSymbolComponent* GetpElement() const
-	{
-		return m_pElement;
-	};
+    CODSymbolComponent* GetpElement() const
+    {
+        return m_pElement;
+    };
 
-	void SetpElement( CODSymbolComponent* value )
-	{
-		m_pElement = value;
-	};
+    void SetpElement( CODSymbolComponent* value )
+    {
+        m_pElement = value;
+    };
 
 private:
 
-	MessageActionType			m_ActionType;
-	ZDProcessGraphModelDoc*		m_pDoc;
-	ZDProcessGraphModelMdl*		m_pModel;
-	CODSymbolComponent*			m_pElement;
+    MessageActionType            m_ActionType;
+    ZDProcessGraphModelDoc*        m_pDoc;
+    ZDProcessGraphModelMdl*        m_pModel;
+    CODSymbolComponent*            m_pElement;
 };
 
 #endif // !defined(AFX_ZBDOCOBSERVERMSG_H__31A212D8_7CA2_4BEB_9709_8C785F4909B3__INCLUDED_)

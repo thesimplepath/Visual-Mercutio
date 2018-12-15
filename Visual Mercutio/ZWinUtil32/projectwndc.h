@@ -46,19 +46,19 @@ class AFX_EXT_CLASS ZCProjectWindowTree : public ZITreeCtrl
       void Initialize();
       void Empty();
       void Refresh();
-	  ZDDocumentData*	GetSelectedDocument();
-	  CString			GetSelectedDocumentTitle();
+      ZDDocumentData*    GetSelectedDocument();
+      CString            GetSelectedDocumentTitle();
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCProjectWindowTree)
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCProjectWindowTree)
+    //}}AFX_VIRTUAL
   public:
-	//{{AFX_MSG(ZCProjectWindowTree)
-	afx_msg LONG OnFileListChanged(WPARAM wParam, LPARAM lParam);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZCProjectWindowTree)
+    afx_msg LONG OnFileListChanged(WPARAM wParam, LPARAM lParam);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
   private:
       ZCProjectWindowTree(const ZCProjectWindowTree &right);
       const ZCProjectWindowTree & operator=(const ZCProjectWindowTree &right);
@@ -66,9 +66,9 @@ class AFX_EXT_CLASS ZCProjectWindowTree : public ZITreeCtrl
   private:
 
   private: //## implementation
-    ZDDocument*		m_pDoc;
-	BOOL			m_OnlyVisible;
-	ZIProjectTree	m_ProjectTree;
+    ZDDocument*        m_pDoc;
+    BOOL            m_OnlyVisible;
+    ZIProjectTree    m_ProjectTree;
 
 };
 

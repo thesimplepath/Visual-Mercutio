@@ -22,39 +22,39 @@ class ZVWorkspaceCreationWizard
 {
 public:
 
-	ZVWorkspaceCreationWizard( ZBWorkspaceWizardTemplateMg*	pWorkspaceTemplateManager	= NULL,
-							   const CString				InitialDirectory			= _T( "" ),
-							   const CString				WorkspaceExtension			= _T( "" ),
-							   bool							Modify						= false );
+    ZVWorkspaceCreationWizard( ZBWorkspaceWizardTemplateMg*    pWorkspaceTemplateManager    = NULL,
+                               const CString                InitialDirectory            = _T( "" ),
+                               const CString                WorkspaceExtension            = _T( "" ),
+                               bool                            Modify                        = false );
 
-	virtual ~ZVWorkspaceCreationWizard();
+    virtual ~ZVWorkspaceCreationWizard();
 
-	CString GetWorkspaceName() const
-	{
-		return m_WorkspaceName;
-	};
+    CString GetWorkspaceName() const
+    {
+        return m_WorkspaceName;
+    };
 
-	CString GetDirectory() const
-	{
-		return m_Directory;
-	};
+    CString GetDirectory() const
+    {
+        return m_Directory;
+    };
 
-	CString GetWorkspaceFilename() const
-	{
-		return m_WorkspaceFilename;
-	};
+    CString GetWorkspaceFilename() const
+    {
+        return m_WorkspaceFilename;
+    };
 
-	int DoModal();
+    int DoModal();
 
 private:
 
-	CString							m_InitialDirectory;
-	bool							m_Modify;
-	CString							m_WorkspaceName;
-	CString							m_Directory;
-	CString							m_WorkspaceFilename;
-	CString							m_WorkspaceExtension;
-	ZBWorkspaceWizardTemplateMg*	m_pWorkspaceTemplateManager;
+    CString                            m_InitialDirectory;
+    bool                            m_Modify;
+    CString                            m_WorkspaceName;
+    CString                            m_Directory;
+    CString                            m_WorkspaceFilename;
+    CString                            m_WorkspaceExtension;
+    ZBWorkspaceWizardTemplateMg*    m_pWorkspaceTemplateManager;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -65,68 +65,68 @@ class ZVWorkspaceStart : public ZIWizardDialog
 // Construction
 public:
 
-	// Standard constructor
-	ZVWorkspaceStart( const CString	InitialDirectory	= _T( "" ),
-					  const CString	WorkspaceExtension	= _T( "" ),
-					  bool			Modify				= false,
-					  CWnd*			pParent				= NULL);
+    // Standard constructor
+    ZVWorkspaceStart( const CString    InitialDirectory    = _T( "" ),
+                      const CString    WorkspaceExtension    = _T( "" ),
+                      bool            Modify                = false,
+                      CWnd*            pParent                = NULL);
 
-	CString GetWorkspaceName() const
-	{
-		return m_WorkspaceName;
-	};
+    CString GetWorkspaceName() const
+    {
+        return m_WorkspaceName;
+    };
 
-	CString GetDirectory() const
-	{
-		return m_DirectoryStr;
-	};
-	
-	CString GetWorkspaceFilename() const
-	{
-		return m_WorkspaceFilename;
-	};
+    CString GetDirectory() const
+    {
+        return m_DirectoryStr;
+    };
+    
+    CString GetWorkspaceFilename() const
+    {
+        return m_WorkspaceFilename;
+    };
 
 private:
 
-	// Dialog Data
-	//{{AFX_DATA(ZVWorkspaceStart)
-	enum { IDD = IDD_WZ_WORKSPACE_START };
-	ZCSearchEdit	m_Directory;
-	CString	m_WorkspaceName;
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZVWorkspaceStart)
+    enum { IDD = IDD_WZ_WORKSPACE_START };
+    ZCSearchEdit    m_Directory;
+    CString    m_WorkspaceName;
+    //}}AFX_DATA
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVWorkspaceStart)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVWorkspaceStart)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVWorkspaceStart)
-	virtual BOOL OnInitDialog();
-	virtual void OnOK();
-	afx_msg void OnNext();
-	afx_msg void OnChangeWorkspaceName();
-	afx_msg void OnChangeWorkspaceFolder();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVWorkspaceStart)
+    virtual BOOL OnInitDialog();
+    virtual void OnOK();
+    afx_msg void OnNext();
+    afx_msg void OnChangeWorkspaceName();
+    afx_msg void OnChangeWorkspaceFolder();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	bool Validate();
+    bool Validate();
 
 private:
 
-	CString	m_InitialDirectory;
-	CString	m_DirectoryStr;
-	bool	m_Modify;
-	bool	m_HasChanged;
-	CString	m_WorkspaceExtension;
-	CString	m_WorkspaceFilename;
+    CString    m_InitialDirectory;
+    CString    m_DirectoryStr;
+    bool    m_Modify;
+    bool    m_HasChanged;
+    CString    m_WorkspaceExtension;
+    CString    m_WorkspaceFilename;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -137,46 +137,46 @@ class ZVWorkspaceTemplate : public ZIWizardDialog
 // Construction
 public:
 
-	// Standard constructor
-	ZVWorkspaceTemplate( ZBWorkspaceWizardTemplateMg*	pWorkspaceTemplateManager	= NULL,
-						 CWnd*							pParent						= NULL);
+    // Standard constructor
+    ZVWorkspaceTemplate( ZBWorkspaceWizardTemplateMg*    pWorkspaceTemplateManager    = NULL,
+                         CWnd*                            pParent                        = NULL);
 
-	// Dialog Data
-	//{{AFX_DATA(ZVWorkspaceTemplate)
-	enum { IDD = IDD_WZ_WORKSPACE_TEMPLATE };
-	ZCWorkspaceTemplateList	m_TemplateList;
-	CString	m_Comment;
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZVWorkspaceTemplate)
+    enum { IDD = IDD_WZ_WORKSPACE_TEMPLATE };
+    ZCWorkspaceTemplateList    m_TemplateList;
+    CString    m_Comment;
+    //}}AFX_DATA
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVWorkspaceTemplate)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVWorkspaceTemplate)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVWorkspaceTemplate)
-	virtual void OnOK();
-	virtual BOOL OnInitDialog();
-	afx_msg void OnClickWksTemplatelist(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnDblclkWksTemplatelist(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnRclickWksTemplatelist(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnRdblclkWksTemplatelist(NMHDR* pNMHDR, LRESULT* pResult);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVWorkspaceTemplate)
+    virtual void OnOK();
+    virtual BOOL OnInitDialog();
+    afx_msg void OnClickWksTemplatelist(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnDblclkWksTemplatelist(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnRclickWksTemplatelist(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnRdblclkWksTemplatelist(NMHDR* pNMHDR, LRESULT* pResult);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	void SelChanged();
+    void SelChanged();
 
 private:
 
-	CString							m_WorkspaceExtension;
-	ZBWorkspaceWizardTemplateMg*	m_pWorkspaceTemplateManager;
+    CString                            m_WorkspaceExtension;
+    ZBWorkspaceWizardTemplateMg*    m_pWorkspaceTemplateManager;
 };
 
 #endif // !defined(AFX_ZVWORKSPACECREATIONWIZARD_H__5DA4C599_18FB_4411_B32C_FA6E5C4462DB__INCLUDED_)

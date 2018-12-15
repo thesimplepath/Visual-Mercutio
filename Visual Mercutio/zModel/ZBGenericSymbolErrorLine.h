@@ -34,58 +34,58 @@ class AFX_EXT_CLASS ZBGenericSymbolErrorLine : public ZIErrorLine
 {
 public:
 
-	ZBGenericSymbolErrorLine( const CString message = _T( "" ) );
+    ZBGenericSymbolErrorLine( const CString message = _T( "" ) );
 
-	// Warning by default
-	ZBGenericSymbolErrorLine( const CString	message,
-							  const CString	symbolname,
-							  const CString	symbolpath,
-							  int			error		= -1,
-							  int			type		= 0 );
+    // Warning by default
+    ZBGenericSymbolErrorLine( const CString    message,
+                              const CString    symbolname,
+                              const CString    symbolpath,
+                              int            error        = -1,
+                              int            type        = 0 );
 
-	// Warning by default
-	ZBGenericSymbolErrorLine( UINT			nIDSmessage,
-							  const CString	symbolname,
-							  const CString	symbolpath,
-							  int			error		= -1,
-							  int			type		= 0 );
+    // Warning by default
+    ZBGenericSymbolErrorLine( UINT            nIDSmessage,
+                              const CString    symbolname,
+                              const CString    symbolpath,
+                              int            error        = -1,
+                              int            type        = 0 );
 
-	virtual ~ZBGenericSymbolErrorLine();
+    virtual ~ZBGenericSymbolErrorLine();
 
-	ZBGenericSymbolErrorLine( const ZBGenericSymbolErrorLine& src );
-	ZBGenericSymbolErrorLine& operator=( const ZBGenericSymbolErrorLine& src );
+    ZBGenericSymbolErrorLine( const ZBGenericSymbolErrorLine& src );
+    ZBGenericSymbolErrorLine& operator=( const ZBGenericSymbolErrorLine& src );
 
-	virtual CString GetSymbolName() const
-	{
-		return m_SymbolName;
-	}
+    virtual CString GetSymbolName() const
+    {
+        return m_SymbolName;
+    }
 
-	virtual void SetSymbolName( const CString& name )
-	{
-		m_SymbolName = name;
-		BuildString();
-	}
+    virtual void SetSymbolName( const CString& name )
+    {
+        m_SymbolName = name;
+        BuildString();
+    }
 
-	virtual CString GetSymbolPath() const
-	{
-		return m_SymbolPath;
-	}
+    virtual CString GetSymbolPath() const
+    {
+        return m_SymbolPath;
+    }
 
-	virtual void SetSymbolPath( const CString& path )
-	{
-		m_SymbolPath = path;
-		BuildString();
-	}
+    virtual void SetSymbolPath( const CString& path )
+    {
+        m_SymbolPath = path;
+        BuildString();
+    }
 
 protected:
 
-	virtual void BuildString();
-	virtual void Parse();
+    virtual void BuildString();
+    virtual void Parse();
 
 private:
 
-	CString m_SymbolName;
-	CString m_SymbolPath;
+    CString m_SymbolName;
+    CString m_SymbolPath;
 };
 
 #endif // !defined(AFX_ZBGenericSymbolErrorLine_H__74469948_01E4_477F_AE8E_F83A38064EE6__INCLUDED_)

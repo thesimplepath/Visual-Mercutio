@@ -41,35 +41,35 @@ class AFX_EXT_CLASS ZIFieldTree
       void Initialize(ZITreeCtrl* pTreeCtrl, ZDDocument* pDoc, ZBFieldRepository* pFieldRepository = NULL);
       void Empty();
       void Refresh();
-	  ZAObjectDefinition* GetSelectedRepositoryField ();
-	  PlanFinObject* GetSelectedDocumentField ();
+      ZAObjectDefinition* GetSelectedRepositoryField ();
+      PlanFinObject* GetSelectedDocumentField ();
 
 
   public:
-	void	OnFieldListChanged();
+    void    OnFieldListChanged();
 
   private:
       ZIFieldTree(const ZIFieldTree &right);
       const ZIFieldTree & operator=(const ZIFieldTree &right);
-	  void	CreateTree();
-	  void	InitializeTree();
+      void    CreateTree();
+      void    InitializeTree();
 
   protected:
-	HTREEITEM	AddTypeItem (const CString FieldType, int IconIndex, HTREEITEM hParentTreeItem = NULL);
-	HTREEITEM	AddDocumentItem (ZDDocumentData* pData, HTREEITEM hParentTreeItem, int IconIndex);
-	void		AddRepositoryFieldItem (ZAObjectDefinition* pField, HTREEITEM hParentTreeItem);
-	HTREEITEM	AddDocumentFieldItem( PlanFinObject* pObj, HTREEITEM hParentTreeItem );
-	int			GetItemIndex( PlanFinObject* pObj );
+    HTREEITEM    AddTypeItem (const CString FieldType, int IconIndex, HTREEITEM hParentTreeItem = NULL);
+    HTREEITEM    AddDocumentItem (ZDDocumentData* pData, HTREEITEM hParentTreeItem, int IconIndex);
+    void        AddRepositoryFieldItem (ZAObjectDefinition* pField, HTREEITEM hParentTreeItem);
+    HTREEITEM    AddDocumentFieldItem( PlanFinObject* pObj, HTREEITEM hParentTreeItem );
+    int            GetItemIndex( PlanFinObject* pObj );
 
   protected: 
-    ZDDocument*			m_pDoc;
-    ZBFieldRepository*	m_pFieldRepository;
-	BOOL				m_HasBeenInitialized;
-	CString				m_DocumentType;
-	CString				m_RepositoryType;
-	CString				m_NoDocument;
-	CString				m_NoRepository;
-	ZITreeCtrl*			m_pTreeCtrl;
+    ZDDocument*            m_pDoc;
+    ZBFieldRepository*    m_pFieldRepository;
+    BOOL                m_HasBeenInitialized;
+    CString                m_DocumentType;
+    CString                m_RepositoryType;
+    CString                m_NoDocument;
+    CString                m_NoRepository;
+    ZITreeCtrl*            m_pTreeCtrl;
 
 };
 

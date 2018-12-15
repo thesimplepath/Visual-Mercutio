@@ -13,9 +13,9 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 07/2001
+// <nl>Created:         07/2001
 // <nl>Description:  ZUSOAPPublishModelAttributes navigates through the process and
-//					 publish the symbol attributes to the SOAP Server
+//                     publish the symbol attributes to the SOAP Server
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -66,34 +66,34 @@ class AFX_EXT_CLASS ZUSOAPPublishModelAttributes : public ZUModelNavigation
 {
 public:
 
-	// JMR-MODIF - Le 21 juin 2006 - Ajout de la variable m_pInfo dans le constructeur.
-	ZUSOAPPublishModelAttributes( ZBPublishMessengerModelInformation*	m_pInfo,
-								  ZDProcessGraphModelMdl*				pModel		= NULL,
-								  void*									pClass		= NULL );
+    // JMR-MODIF - Le 21 juin 2006 - Ajout de la variable m_pInfo dans le constructeur.
+    ZUSOAPPublishModelAttributes( ZBPublishMessengerModelInformation*    m_pInfo,
+                                  ZDProcessGraphModelMdl*                pModel        = NULL,
+                                  void*                                    pClass        = NULL );
 
-	virtual ~ZUSOAPPublishModelAttributes();
+    virtual ~ZUSOAPPublishModelAttributes();
 
-	// Call-back methods
-	virtual bool OnStart	();
-	virtual bool OnFinish	();
-	virtual bool OnSymbol	( ZBSymbol* pSymbol );
-	virtual bool OnLink		( ZBLinkSymbol* pLink );
-
-private:
-
-	void PublishAttribDef	( ZBPropertySet& PropSet );
-	bool KeyExist			( int key );
+    // Call-back methods
+    virtual bool OnStart    ();
+    virtual bool OnFinish    ();
+    virtual bool OnSymbol    ( ZBSymbol* pSymbol );
+    virtual bool OnLink        ( ZBLinkSymbol* pLink );
 
 private:
 
-	// JMR-MODIF - Le 21 juin 2006 - Ajout de la variable m_pInfo.
-	ZBPublishMessengerModelInformation*	m_pInfo;
+    void PublishAttribDef    ( ZBPropertySet& PropSet );
+    bool KeyExist            ( int key );
 
-	pPublishAttribDef					m_pa;
+private:
 
-	int									m_IDArray[500];
+    // JMR-MODIF - Le 21 juin 2006 - Ajout de la variable m_pInfo.
+    ZBPublishMessengerModelInformation*    m_pInfo;
 
-	CString								m_MessengerAddress;
+    pPublishAttribDef                    m_pa;
+
+    int                                    m_IDArray[500];
+
+    CString                                m_MessengerAddress;
 };
 
 #endif // !defined(AFX_ZUSOAPPublishModelAttributes_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)

@@ -21,26 +21,26 @@ class ZVModelWorkflowParameters
 {
 // Construction
 public:
-	ZVModelWorkflowParameters(BOOL Modify, ZDProcessGraphModelDoc* pDoc, ZDTemplateManager* pTemplateManager, CString FileExtension, CWnd* pParent = NULL);	// standard constructor
+    ZVModelWorkflowParameters(BOOL Modify, ZDProcessGraphModelDoc* pDoc, ZDTemplateManager* pTemplateManager, CString FileExtension, CWnd* pParent = NULL);    // standard constructor
 
-	// Get methods
-	ZDFolderStamp&	GetFolderStamp() { return m_FolderStamp; };
-	bool			GetCheckConsistency() const { return m_CheckConsistency; };
-	bool			GetSaveModelInWorkflow() const { return m_SaveModelInWkfFile; };
-	bool			FileChooseExists() const { return m_FileExist; };
+    // Get methods
+    ZDFolderStamp&    GetFolderStamp() { return m_FolderStamp; };
+    bool            GetCheckConsistency() const { return m_CheckConsistency; };
+    bool            GetSaveModelInWorkflow() const { return m_SaveModelInWkfFile; };
+    bool            FileChooseExists() const { return m_FileExist; };
 
-	int		DoModal();
+    int        DoModal();
 
 private:
-	ZDProcessGraphModelDoc* m_pDoc;
-	BOOL					m_Modify;
-	ZDTemplateManager*		m_pTemplateManager;
-	CString					m_FileExtension;
+    ZDProcessGraphModelDoc* m_pDoc;
+    BOOL                    m_Modify;
+    ZDTemplateManager*        m_pTemplateManager;
+    CString                    m_FileExtension;
 // the folder stamp used to save information
-	ZDFolderStamp			m_FolderStamp;
-	bool					m_CheckConsistency;
-	bool					m_SaveModelInWkfFile;
-	bool					m_FileExist;
+    ZDFolderStamp            m_FolderStamp;
+    bool                    m_CheckConsistency;
+    bool                    m_SaveModelInWkfFile;
+    bool                    m_FileExist;
 };
 
 
@@ -54,25 +54,25 @@ class ZVModelWorkflowParametersWelcome : public ZIWizardDialog
 {
 // Construction
 public:
-	ZVModelWorkflowParametersWelcome(CWnd* pParent = NULL);	// standard constructor
-	virtual ~ZVModelWorkflowParametersWelcome(); // standard destructor
+    ZVModelWorkflowParametersWelcome(CWnd* pParent = NULL);    // standard constructor
+    virtual ~ZVModelWorkflowParametersWelcome(); // standard destructor
 
 // Dialog Data
-	//{{AFX_DATA(ZVModelWorkflowParametersWelcome)
-	enum { IDD = IDD_WZ_MODELWKF_START };
-	//}}AFX_DATA
+    //{{AFX_DATA(ZVModelWorkflowParametersWelcome)
+    enum { IDD = IDD_WZ_MODELWKF_START };
+    //}}AFX_DATA
 
 // Implementation
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVModelWorkflowParametersWelcome)
-	virtual void OnOK();
-	afx_msg void OnNext();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVModelWorkflowParametersWelcome)
+    virtual void OnOK();
+    afx_msg void OnNext();
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 };
@@ -88,35 +88,35 @@ class ZVModelWorkflowParametersOptions : public ZIWizardDialog
 {
 // Construction
 public:
-	ZVModelWorkflowParametersOptions(BOOL Modify, ZDProcessGraphModelDoc& Doc, CWnd* pParent = NULL);	// standard constructor
-	virtual ~ZVModelWorkflowParametersOptions(); // standard destructor
+    ZVModelWorkflowParametersOptions(BOOL Modify, ZDProcessGraphModelDoc& Doc, CWnd* pParent = NULL);    // standard constructor
+    virtual ~ZVModelWorkflowParametersOptions(); // standard destructor
 
-	BOOL	GetCheckConsistency() const { return m_CheckConsistency; };
-	BOOL	GetSaveModelInWorkflow() const { return m_SaveModelInWkfFile; };
+    BOOL    GetCheckConsistency() const { return m_CheckConsistency; };
+    BOOL    GetSaveModelInWorkflow() const { return m_SaveModelInWkfFile; };
 
 private:
 // Dialog Data
-	//{{AFX_DATA(ZVModelWorkflowParametersOptions)
-	enum { IDD = IDD_WZ_MODELWKF_OPTIONS };
-	BOOL	m_CheckConsistency;
-	BOOL	m_SaveModelInWkfFile;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZVModelWorkflowParametersOptions)
+    enum { IDD = IDD_WZ_MODELWKF_OPTIONS };
+    BOOL    m_CheckConsistency;
+    BOOL    m_SaveModelInWkfFile;
+    //}}AFX_DATA
 
 // Implementation
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVModelWorkflowParametersOptions)
-	virtual void OnOK();
-	afx_msg void OnNext();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVModelWorkflowParametersOptions)
+    virtual void OnOK();
+    afx_msg void OnNext();
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	ZDProcessGraphModelDoc& m_Doc;
-	BOOL m_Modify;
+    ZDProcessGraphModelDoc& m_Doc;
+    BOOL m_Modify;
 };
 
 

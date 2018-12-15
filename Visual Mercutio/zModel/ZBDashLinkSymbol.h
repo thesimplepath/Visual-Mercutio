@@ -38,8 +38,8 @@
 class AFX_EXT_CLASS ZBDashLinkSymbol : public ZBLinkSymbol  
 {
 public:
-	ZBDashLinkSymbol();
-	virtual ~ZBDashLinkSymbol();
+    ZBDashLinkSymbol();
+    virtual ~ZBDashLinkSymbol();
 
 };
 

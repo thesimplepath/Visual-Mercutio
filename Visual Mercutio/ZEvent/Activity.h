@@ -1,10 +1,10 @@
 //## begin module%36754981018C.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%36754981018C.cm
 
 //## begin module%36754981018C.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%36754981018C.cp
 
 //## Module: Activity%36754981018C; Package specification
@@ -41,7 +41,7 @@
 //## begin module%36754981018C.additionalDeclarations preserve=yes
 #include "zBaseLib\FileMg.h"
 
-const	char	RejectActivityToPrevious[] = "/P";
+const    char    RejectActivityToPrevious[] = "/P";
 
 #ifdef _ZEVENTEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -60,7 +60,7 @@ const	char	RejectActivityToPrevious[] = "/P";
 
 
 //## Class: ZActivity%36725B6400FF
-//	Implements an activity.
+//    Implements an activity.
 //## Category: ZEvent::Process Classes - Event%378A5FD903A4
 //## Subsystem: ZEvent%378A5F7E02DB
 //## Persistence: Transient
@@ -75,14 +75,14 @@ class AFX_EXT_CLASS ZActivity : public ZBaseActivity  //## Inherits: <unnamed>%3
   //## begin ZActivity%36725B6400FF.initialDeclarations preserve=yes
 public:
 // Inherited feature
-	typedef ZBaseActivity inherited;
-	DECLARE_SERIAL(ZActivity)
+    typedef ZBaseActivity inherited;
+    DECLARE_SERIAL(ZActivity)
   //## end ZActivity%36725B6400FF.initialDeclarations
 
   public:
     //## Constructors (specified)
       //## Operation: ZActivity%915355672
-      //	The default constructor.
+      //    The default constructor.
       ZActivity (const CString ActivityName = "", const CString ActivityDescription = "", int ActivityType = ActivityTypeInputInformation, ActivityStatus ActivityStatus = ActivityNotStarted);
 
     //## Destructor (generated)
@@ -91,112 +91,112 @@ public:
 
     //## Other Operations (specified)
       //## Operation: Serialize%913664904
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: AddTemplate%913885063
-      //	Add a new template name.
+      //    Add a new template name.
       void AddTemplate (const CString& TemplateName);
 
       //## Operation: RemoveTemplate%913885064
-      //	Remove an existing template name.
+      //    Remove an existing template name.
       BOOL RemoveTemplate (const CString& TemplateName);
 
       //## Operation: RemoveAllTemplates%913885065
-      //	Remove all existing templates.
+      //    Remove all existing templates.
       void RemoveAllTemplates ();
 
       //## Operation: GetTemplateCount%913885066
-      //	Return the number of templates.
+      //    Return the number of templates.
       size_t GetTemplateCount ();
 
       //## Operation: GetTemplateAt%913885067
-      //	Returns the template name at the index position.
+      //    Returns the template name at the index position.
       CString GetTemplateAt (int Index);
 
       //## Operation: TemplateExist%913885068
-      //	Search if a specific template name exists.
+      //    Search if a specific template name exists.
       BOOL TemplateExist (const CString& TemplateName);
 
-	  CString BuildTemplateListString (const char SeparatorChar = ';');
+      CString BuildTemplateListString (const char SeparatorChar = ';');
 
       //## Operation: GetDefaultString%915355671
-      //	Return the activity on string shape.
+      //    Return the activity on string shape.
       CString GetDefaultString ();
 
       //## Operation: SetActivityAsAttribution%927367541
-      //	Sets the activity type for attribution. Default value is
-      //	true
+      //    Sets the activity type for attribution. Default value is
+      //    true
       void SetActivityAsAttribution (BOOL value = TRUE);
 
       //## Operation: SetActivityAsAcceptation%927367542
-      //	Sets the activity type for acceptation. Default value is
-      //	true
+      //    Sets the activity type for acceptation. Default value is
+      //    true
       void SetActivityAsAcceptation (BOOL value = TRUE);
 
       //## Operation: SetActivityAsInput%927367543
-      //	Sets the activity type for input. Default value is true
+      //    Sets the activity type for input. Default value is true
       void SetActivityAsInput (BOOL value = TRUE);
 
       //## Operation: SetActivityAsSendMail%927742744
-      //	Sets the activity type for send mail. Default value is
-      //	true
+      //    Sets the activity type for send mail. Default value is
+      //    true
       void SetActivityAsSendMail (BOOL value = TRUE);
 
       //## Operation: SetActivityAsStartProcess%927742745
-      //	Sets the activity type for start process. Default value
-      //	is true
+      //    Sets the activity type for start process. Default value
+      //    is true
       void SetActivityAsStartProcess (BOOL value = TRUE);
 
       //## Operation: SetActivityAsCommandLine%927742746
-      //	Sets the activity type for command line. Default value
-      //	is true
+      //    Sets the activity type for command line. Default value
+      //    is true
       void SetActivityAsCommandLine (BOOL value = TRUE);
 
       //## Operation: SetActivityAsScanning%940156899
-      //	Sets the activity type for scanning. Default value is
-      //	true
+      //    Sets the activity type for scanning. Default value is
+      //    true
       void SetActivityAsScanning (BOOL value = TRUE);
 
       //## Operation: SetActivityAsArchiving%940156900
-      //	Sets the activity type for archaving. Default value is
-      //	true
+      //    Sets the activity type for archaving. Default value is
+      //    true
       void SetActivityAsArchiving (BOOL value = TRUE);
 
       //## Operation: ActivityFillPersonArray%927439013
-      //	Take the activity and fill a person array.
+      //    Take the activity and fill a person array.
       virtual BOOL ActivityFillPersonArray (ZUUserManager& UserManager, CStringArray& UserArray, CString ConnectedUser);
 
       //## Operation: ActivityCreatePersonList%927439012
-      //	Take the activity and build the person list for the
-      //	email.
+      //    Take the activity and build the person list for the
+      //    email.
       virtual ZUMailUserList* ActivityCreatePersonList (ZUUserManager& UserManager, CString ConnectedUser);
 
       //## Operation: ActivityCreatePersonDelimStr%927439014
-      //	Take the activity and build a delimited string
-      //	containing the person list.
+      //    Take the activity and build a delimited string
+      //    containing the person list.
       virtual CString ActivityCreatePersonDelimStr (ZUUserManager& UserManager, CString ConnectedUser, CString Delimiter = ";");
 
       //## Operation: IsAttributedActivity%927535109
-      //	Returns true if the activity is an attributed activity.
+      //    Returns true if the activity is an attributed activity.
       virtual BOOL IsAttributedActivity () const;
 
       //## Operation: DeleteEMailToSend%928085166
-      //	Delete the pointer used to send email.
+      //    Delete the pointer used to send email.
       void DeleteEMailToSend ();
 
       //## Operation: DeleteCommandLine%928085171
-      //	Delete the command line object pointer.
+      //    Delete the command line object pointer.
       void DeleteCommandLine ();
 
       //## Operation: CalculateForecastedEndDate%929033121
-      //	This function calculates the forecasted end date by
-      //	taking all activities.
+      //    This function calculates the forecasted end date by
+      //    taking all activities.
       virtual void CalculateForecastedEndDate ();
 
       //## Operation: CalculateForecastedStartDate%931585007
-      //	This function calculates the forecasted start date by
-      //	taking all activities.
+      //    This function calculates the forecasted start date by
+      //    taking all activities.
       virtual void CalculateForecastedStartDate ();
 
       //## Operation: GetAttributedByActivity%931585034
@@ -206,130 +206,130 @@ public:
       virtual void SetAttributedByActivity (const CString value = "");
 
       //## Operation: AddFormFile%933697291
-      //	Add a filename
+      //    Add a filename
       BOOL AddFormFile (CString FileName, AttachementType Attachement = InsertedFile);
 
       //## Operation: AddFormFiles%933697292
-      //	Add several filenames
+      //    Add several filenames
       BOOL AddFormFiles (CStringArray& FileNameArray, AttachementType Attachement = InsertedFile);
 
       //## Operation: RemoveAllFormFiles%933697293
-      //	Remove all filenames
+      //    Remove all filenames
       BOOL RemoveAllFormFiles ();
 
       //## Operation: AddProcFile%933697294
-      //	Add a filename
+      //    Add a filename
       BOOL AddProcFile (CString FileName, AttachementType Attachement = InsertedFile);
 
       //## Operation: AddProcFiles%933697295
-      //	Add several filenames
+      //    Add several filenames
       BOOL AddProcFiles (CStringArray& FileNameArray, AttachementType Attachement = InsertedFile);
 
       //## Operation: RemoveAllProcFiles%933697296
-      //	Remove all filenames
+      //    Remove all filenames
       BOOL RemoveAllProcFiles ();
 
       //## Operation: GetFormFileCount%933795322
-      //	return the number of form files.
+      //    return the number of form files.
       size_t GetFormFileCount () const;
 
       //## Operation: GetProcFileCount%933795323
-      //	return the number of process file.
+      //    return the number of process file.
       size_t GetProcFileCount () const;
 
       //## Operation: GetFormFileAt%933795324
-      //	Return the ZFile pointer at the specified position.
+      //    Return the ZFile pointer at the specified position.
       ZFile* GetFormFileAt (size_t Index);
 
       //## Operation: GetProcFileAt%933795325
-      //	Return the ZFile pointer at the specified position.
+      //    Return the ZFile pointer at the specified position.
       ZFile* GetProcFileAt (size_t Index);
 
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: RejectedToActivity%369A28FD01B8
-      //	It gives the possibility to reject an activity to
-      //	another activity. By default RejectActivityToPrevious,
-      //	it is rejected to the sender.
+      //    It gives the possibility to reject an activity to
+      //    another activity. By default RejectActivityToPrevious,
+      //    it is rejected to the sender.
       const CString GetRejectedToActivity () const;
       void SetRejectedToActivity (CString value);
 
       //## Attribute: pMailMessage%37500DB1008C
-      //	Contains the pointer to mail message.
+      //    Contains the pointer to mail message.
       ZBMailMessage* GetpMailMessage ();
       void SetpMailMessage (ZBMailMessage* value);
 
       //## Attribute: pCommandLine%3751A33D032F
-      //	A pointer to the command line.
+      //    A pointer to the command line.
       ZUCommandLine* GetpCommandLine ();
       void SetpCommandLine (ZUCommandLine* value);
 
       //## Attribute: ProcessToStartArray%378B91690060
-      //	Contains the array of process to start
+      //    Contains the array of process to start
       CStringArray& GetProcessToStartArray ();
 
       //## Attribute: RequireFormFile%37A09D4C03E5
-      //	Defines if when the process starts, a form file is
-      //	necessary before starting the activity.
+      //    Defines if when the process starts, a form file is
+      //    necessary before starting the activity.
       const ThreeState GetRequireFormFile () const;
       void SetRequireFormFile (ThreeState value);
 
       //## Attribute: RequireProcFile%37A09D4D0057
-      //	Defines if when the process starts, a process file is
-      //	necessary before starting the activity.
+      //    Defines if when the process starts, a process file is
+      //    necessary before starting the activity.
       const ThreeState GetRequireProcFile () const;
       void SetRequireProcFile (ThreeState value);
 
       //## Attribute: BaseFormNames%37A2A42C031D
-      //	Contains the optional form name.
+      //    Contains the optional form name.
       CStringArray& GetBaseFormNames ();
 
       //## Attribute: BaseProcNames%37A2A4770325
-      //	Contains the optional process name.
+      //    Contains the optional process name.
       CStringArray& GetBaseProcNames ();
 
       //## Attribute: FormAttachementType%37A3F0550153
-      //	Defines the form attachement type.
+      //    Defines the form attachement type.
       const AttachementType GetFormAttachementType () const;
       void SetFormAttachementType (AttachementType value);
 
       //## Attribute: ProcessAttachementType%37A3F0780262
-      //	Defines the process attachement type.
+      //    Defines the process attachement type.
       const AttachementType GetProcessAttachementType () const;
       void SetProcessAttachementType (AttachementType value);
 
       //## Attribute: PreConditionsDone%37A400820139
-      //	Flag for preconditions. TRUE if already completed.
+      //    Flag for preconditions. TRUE if already completed.
       const BOOL GetPreConditionsDone () const;
       void SetPreConditionsDone (BOOL value);
 
       //## Attribute: PostConditionsDone%37A400AB0373
-      //	Flag for postconditions. TRUE if already completed.
+      //    Flag for postconditions. TRUE if already completed.
       const BOOL GetPostConditionsDone () const;
       void SetPostConditionsDone (BOOL value);
 
       //## Attribute: PreFormReadOnly%37D0EC23021E
-      //	Defines if for pre-conditions, the form import must be
-      //	set as read-only.
+      //    Defines if for pre-conditions, the form import must be
+      //    set as read-only.
       const BOOL GetPreFormReadOnly () const;
       void SetPreFormReadOnly (BOOL value);
 
       //## Attribute: PreProcReadOnly%37D0EC5D01EF
-      //	Defines if for pre-conditions, the process import must
-      //	be set as read-only.
+      //    Defines if for pre-conditions, the process import must
+      //    be set as read-only.
       const BOOL GetPreProcReadOnly () const;
       void SetPreProcReadOnly (BOOL value);
 
     // Additional Public Declarations
       //## begin ZActivity%36725B6400FF.public preserve=yes
-	  virtual void	SetDefaultProperty();
+      virtual void    SetDefaultProperty();
       CString GetActivityTypeKeyString();
-	  void	  SetActivityTypeFromKeyString( const CString KeyString );
-      //	Delete process to start
+      void      SetActivityTypeFromKeyString( const CString KeyString );
+      //    Delete process to start
       void DeleteProcessToStart();
-      //	Delete based on form file
+      //    Delete based on form file
       void DeleteBaseOnFormFile();
-      //	Delete based on process file
+      //    Delete based on process file
       void DeleteBaseOnProcFile();
 
       //## end ZActivity%36725B6400FF.public
@@ -366,7 +366,7 @@ public:
       //## end ZActivity::RejectedToActivity%369A28FD01B8.attr
 
       //## Attribute: TemplateArray%3678C5C300A9
-      //	The list of templates.
+      //    The list of templates.
       //## begin ZActivity::TemplateArray%3678C5C300A9.attr preserve=no  public: CStringArray {V} 
       CStringArray m_TemplateArray;
       //## end ZActivity::TemplateArray%3678C5C300A9.attr
@@ -385,13 +385,13 @@ public:
       //## end ZActivity::pCommandLine%3751A33D032F.attr
 
       //## Attribute: pBaseOnFormFile%37A09D4C031D
-      //	The pointer to the file manager of form files.
+      //    The pointer to the file manager of form files.
       //## begin ZActivity::pBaseOnFormFile%37A09D4C031D.attr preserve=no  public: ZFileManager* {U} NULL
       ZFileManager* m_pBaseOnFormFile;
       //## end ZActivity::pBaseOnFormFile%37A09D4C031D.attr
 
       //## Attribute: pBaseOnProcFile%37A09D4C0381
-      //	The pointer to the file manager of processus files.
+      //    The pointer to the file manager of processus files.
       //## begin ZActivity::pBaseOnProcFile%37A09D4C0381.attr preserve=no  public: ZFileManager* {U} NULL
       ZFileManager* m_pBaseOnProcFile;
       //## end ZActivity::pBaseOnProcFile%37A09D4C0381.attr
@@ -451,125 +451,125 @@ public:
 inline void ZActivity::RemoveAllTemplates ()
 {
   //## begin ZActivity::RemoveAllTemplates%913885065.body preserve=yes
-  	m_TemplateArray.RemoveAll();
+      m_TemplateArray.RemoveAll();
   //## end ZActivity::RemoveAllTemplates%913885065.body
 }
 
 inline size_t ZActivity::GetTemplateCount ()
 {
   //## begin ZActivity::GetTemplateCount%913885066.body preserve=yes
-  	return m_TemplateArray.GetSize();
+      return m_TemplateArray.GetSize();
   //## end ZActivity::GetTemplateCount%913885066.body
 }
 
 inline CString ZActivity::GetTemplateAt (int Index)
 {
   //## begin ZActivity::GetTemplateAt%913885067.body preserve=yes
-  	return m_TemplateArray.GetAt( Index );
+      return m_TemplateArray.GetAt( Index );
   //## end ZActivity::GetTemplateAt%913885067.body
 }
 
 inline void ZActivity::SetActivityAsAttribution (BOOL value)
 {
   //## begin ZActivity::SetActivityAsAttribution%927367541.body preserve=yes
-	if (value)
-		m_ActivityType |= ActivityTypeAttribution;
-	else
-		m_ActivityType &= ~ActivityTypeAttribution;
+    if (value)
+        m_ActivityType |= ActivityTypeAttribution;
+    else
+        m_ActivityType &= ~ActivityTypeAttribution;
   //## end ZActivity::SetActivityAsAttribution%927367541.body
 }
 
 inline void ZActivity::SetActivityAsAcceptation (BOOL value)
 {
   //## begin ZActivity::SetActivityAsAcceptation%927367542.body preserve=yes
-	if (value)
-		m_ActivityType |= ActivityTypeAcceptation;
-	else
-		m_ActivityType &= ~ActivityTypeAcceptation;
+    if (value)
+        m_ActivityType |= ActivityTypeAcceptation;
+    else
+        m_ActivityType &= ~ActivityTypeAcceptation;
   //## end ZActivity::SetActivityAsAcceptation%927367542.body
 }
 
 inline void ZActivity::SetActivityAsInput (BOOL value)
 {
   //## begin ZActivity::SetActivityAsInput%927367543.body preserve=yes
-	if (value)
-		m_ActivityType |= ActivityTypeInputInformation;
-	else
-		m_ActivityType &= ~ActivityTypeInputInformation;
+    if (value)
+        m_ActivityType |= ActivityTypeInputInformation;
+    else
+        m_ActivityType &= ~ActivityTypeInputInformation;
   //## end ZActivity::SetActivityAsInput%927367543.body
 }
 
 inline void ZActivity::SetActivityAsSendMail (BOOL value)
 {
   //## begin ZActivity::SetActivityAsSendMail%927742744.body preserve=yes
-	if (value)
-		m_ActivityType |= ActivityTypeSendMail;
-	else
-		m_ActivityType &= ~ActivityTypeSendMail;
+    if (value)
+        m_ActivityType |= ActivityTypeSendMail;
+    else
+        m_ActivityType &= ~ActivityTypeSendMail;
   //## end ZActivity::SetActivityAsSendMail%927742744.body
 }
 
 inline void ZActivity::SetActivityAsStartProcess (BOOL value)
 {
   //## begin ZActivity::SetActivityAsStartProcess%927742745.body preserve=yes
-	if (value)
-		m_ActivityType |= ActivityTypeStartProcess;
-	else
-		m_ActivityType &= ~ActivityTypeStartProcess;
+    if (value)
+        m_ActivityType |= ActivityTypeStartProcess;
+    else
+        m_ActivityType &= ~ActivityTypeStartProcess;
   //## end ZActivity::SetActivityAsStartProcess%927742745.body
 }
 
 inline void ZActivity::SetActivityAsCommandLine (BOOL value)
 {
   //## begin ZActivity::SetActivityAsCommandLine%927742746.body preserve=yes
-	if (value)
-		m_ActivityType |= ActivityTypeCommandLine;
-	else
-		m_ActivityType &= ~ActivityTypeCommandLine;
+    if (value)
+        m_ActivityType |= ActivityTypeCommandLine;
+    else
+        m_ActivityType &= ~ActivityTypeCommandLine;
   //## end ZActivity::SetActivityAsCommandLine%927742746.body
 }
 
 inline void ZActivity::SetActivityAsScanning (BOOL value)
 {
   //## begin ZActivity::SetActivityAsScanning%940156899.body preserve=yes
-	if (value)
-		m_ActivityType |= ActivityTypeScanning;
-	else
-		m_ActivityType &= ~ActivityTypeScanning;
+    if (value)
+        m_ActivityType |= ActivityTypeScanning;
+    else
+        m_ActivityType &= ~ActivityTypeScanning;
   //## end ZActivity::SetActivityAsScanning%940156899.body
 }
 
 inline void ZActivity::SetActivityAsArchiving (BOOL value)
 {
   //## begin ZActivity::SetActivityAsArchiving%940156900.body preserve=yes
-	if (value)
-		m_ActivityType |= ActivityTypeArchiving;
-	else
-		m_ActivityType &= ~ActivityTypeArchiving;
+    if (value)
+        m_ActivityType |= ActivityTypeArchiving;
+    else
+        m_ActivityType &= ~ActivityTypeArchiving;
   //## end ZActivity::SetActivityAsArchiving%940156900.body
 }
 
 inline BOOL ZActivity::IsAttributedActivity () const
 {
   //## begin ZActivity::IsAttributedActivity%927535109.body preserve=yes
-	return	GetVisibilityType() == AttributionOfVisibility ||
-			m_PrincipalResources.GetUserType() == AttributionOfUsers ||
-			m_BackupResources.GetUserType() == AttributionOfUsers ||
-			GetTimeType() == AttributionOfTimeOut;
+    return    GetVisibilityType() == AttributionOfVisibility ||
+            m_PrincipalResources.GetUserType() == AttributionOfUsers ||
+            m_BackupResources.GetUserType() == AttributionOfUsers ||
+            GetTimeType() == AttributionOfTimeOut;
   //## end ZActivity::IsAttributedActivity%927535109.body
 }
 
 inline CString ZActivity::GetAttributedByActivity () const
 {
   //## begin ZActivity::GetAttributedByActivity%931585034.body preserve=yes
-	return m_AttributedByActivity;
+    return m_AttributedByActivity;
   //## end ZActivity::GetAttributedByActivity%931585034.body
 }
 
 inline void ZActivity::SetAttributedByActivity (const CString value)
 {
   //## begin ZActivity::SetAttributedByActivity%931585035.body preserve=yes
-	m_AttributedByActivity = value;
+    m_AttributedByActivity = value;
   //## end ZActivity::SetAttributedByActivity%931585035.body
 }
 

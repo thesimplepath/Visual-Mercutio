@@ -1,10 +1,10 @@
 //## begin module%387B026701F3.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%387B026701F3.cm
 
 //## begin module%387B026701F3.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%387B026701F3.cp
 
 //## Module: SysVar%387B026701F3; Package specification
@@ -35,16 +35,16 @@
 //## end module%387B026701F3.declarations
 
 //## begin module%387B026701F3.additionalDeclarations preserve=yes
-const	char szToday[] = "$$Today$$";
-const	char szFilename[] = "$$Filename$$";
-const	char szExchFilename[] = "$$ExchFilename$$";
-const	char szProcExchFilename[] = "$$ProcExchFilename$$";
-const	char szAuthor[] = "$$Author$$";
-const	char szModifier[] = "$$Modifier$$";
-const	char szCreationDate[] = "$$CreationDate$$";
-const	char szModificationDate[] = "$$ModificationDate$$";
-const	char szPublishDate[] = "$$PublishDate$$";
-const	char szFileVer[] = "$$FileVer$$";
+const    char szToday[] = "$$Today$$";
+const    char szFilename[] = "$$Filename$$";
+const    char szExchFilename[] = "$$ExchFilename$$";
+const    char szProcExchFilename[] = "$$ProcExchFilename$$";
+const    char szAuthor[] = "$$Author$$";
+const    char szModifier[] = "$$Modifier$$";
+const    char szCreationDate[] = "$$CreationDate$$";
+const    char szModificationDate[] = "$$ModificationDate$$";
+const    char szPublishDate[] = "$$PublishDate$$";
+const    char szFileVer[] = "$$FileVer$$";
 
 
 
@@ -65,8 +65,8 @@ const	char szFileVer[] = "$$FileVer$$";
 
 
 //## Class: ZSystemVar%387AFE9F0147
-//	This utility class converts system variables to its
-//	content.
+//    This utility class converts system variables to its
+//    content.
 //## Category: ZWinUtil library::System variables%387AFE900145
 //## Subsystem: ZWinUtil%36DEE1730346
 //## Persistence: Transient
@@ -83,7 +83,7 @@ class AFX_EXT_CLASS ZSystemVar
   public:
     //## Constructors (specified)
       //## Operation: ZSystemVar%947585841
-      //	Default constructor.
+      //    Default constructor.
       ZSystemVar (ZDDocument* pDoc = NULL, ZProcess* pProcess = NULL);
 
     //## Destructor (generated)
@@ -92,11 +92,11 @@ class AFX_EXT_CLASS ZSystemVar
 
     //## Other Operations (specified)
       //## Operation: Initialize%947585842
-      //	Initialize the class.
+      //    Initialize the class.
       void Initialize (ZDDocument* pDoc = NULL, ZProcess* pProcess = NULL);
 
       //## Operation: Parse%947585843
-      //	Parse the string and replace keywords with its value.
+      //    Parse the string and replace keywords with its value.
       CString Parse (CString Line);
 
     // Additional Public Declarations
@@ -118,12 +118,12 @@ class AFX_EXT_CLASS ZSystemVar
 
     //## Other Operations (specified)
       //## Operation: GetVariableContent%947585844
-      //	Return the variable content.
+      //    Return the variable content.
       CString GetVariableContent (const CString Variable);
 
       //## Operation: FindKeyword%947609381
-      //	Find a keyword. If found, return the keyword and the
-      //	start and end position.
+      //    Find a keyword. If found, return the keyword and the
+      //    start and end position.
       CString FindKeyword (const CString& Line, int* StartPos, int* EndPos);
 
     // Data Members for Class Attributes

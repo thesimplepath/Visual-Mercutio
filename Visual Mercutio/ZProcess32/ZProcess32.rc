@@ -4960,8 +4960,8 @@ IDB_PRESTATIONS_FLATTOOLBAR BITMAP                  "res\\PrestationsFlatToolbar
 //
 // Generated from the TEXTINCLUDE 3 resource.
 //
-#include "afxres.rc"  	// Standard components
-#include "afxprint.rc"	// printing/print preview resources
+#include "afxres.rc"      // Standard components
+#include "afxprint.rc"    // printing/print preview resources
 #include "..\zformsres\zFormsRes.rc"
 
 /////////////////////////////////////////////////////////////////////////////

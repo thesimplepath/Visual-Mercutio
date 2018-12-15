@@ -45,30 +45,30 @@ class AFX_EXT_CLASS ZIProjectTree
       void Initialize(ZITreeCtrl* pTreeCtrl, ZDDocument* pDoc, BOOL OnlyVisible = TRUE);
       void Empty();
       void Refresh();
-	  ZDDocumentData*	GetSelectedDocument();
-	  CString			GetSelectedDocumentTitle();
+      ZDDocumentData*    GetSelectedDocument();
+      CString            GetSelectedDocumentTitle();
 
 
   public:
-	void	OnFileListChanged();
+    void    OnFileListChanged();
 
   private:
       ZIProjectTree(const ZIProjectTree &right);
       const ZIProjectTree & operator=(const ZIProjectTree &right);
-	  void	CreateTree();
-	  void	InitializeTree();
+      void    CreateTree();
+      void    InitializeTree();
 
   protected:
-	HTREEITEM	AddDocumentTypeItem (const CString DocumentType, int IconIndex, HTREEITEM hParent = NULL);
-	HTREEITEM	AddDocumentItem (ZDDocumentData* pData, HTREEITEM hParentTreeItem, int IconIndex);
+    HTREEITEM    AddDocumentTypeItem (const CString DocumentType, int IconIndex, HTREEITEM hParent = NULL);
+    HTREEITEM    AddDocumentItem (ZDDocumentData* pData, HTREEITEM hParentTreeItem, int IconIndex);
 
   protected: 
-    ZDDocument*		m_pDoc;
-	BOOL			m_OnlyVisible;
-	BOOL			m_HasBeenInitialized;
-	CString			m_InternalDocumentType;
-	CString			m_ExternalDocumentType;
-	ZITreeCtrl*		m_pTreeCtrl;
+    ZDDocument*        m_pDoc;
+    BOOL            m_OnlyVisible;
+    BOOL            m_HasBeenInitialized;
+    CString            m_InternalDocumentType;
+    CString            m_ExternalDocumentType;
+    ZITreeCtrl*        m_pTreeCtrl;
 
 };
 

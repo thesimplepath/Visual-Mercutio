@@ -13,9 +13,9 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 07/2001
+// <nl>Created:         07/2001
 // <nl>Description:  ZUGridMercutioRepDeliverableNavigation navigates through the process and
-//					 write process information to the grid
+//                     write process information to the grid
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -38,39 +38,39 @@ class ZUGridMercutioRepDeliverableNavigation : public ZUProcessNavigation
 {
 public:
 
-	ZUGridMercutioRepDeliverableNavigation( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
-	virtual ~ZUGridMercutioRepDeliverableNavigation();
+    ZUGridMercutioRepDeliverableNavigation( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
+    virtual ~ZUGridMercutioRepDeliverableNavigation();
 
-	// Call-back methods
-	virtual bool OnStart();
-	virtual bool OnFinish();
-	virtual bool OnDeliverableLinkSymbol( ZBDeliverableLinkSymbol* pSymbol );
+    // Call-back methods
+    virtual bool OnStart();
+    virtual bool OnFinish();
+    virtual bool OnDeliverableLinkSymbol( ZBDeliverableLinkSymbol* pSymbol );
 
 private:
 
-	ZBOStreamGrid* m_postream;
+    ZBOStreamGrid* m_postream;
 
-	// Styles
-	CGXStyle	m_NormalStyle;
-	CGXStyle	m_BoldStyle;
-	CGXStyle	m_BlueStyle;
-	CGXStyle	m_BoldBlueStyle;
-	CGXStyle	m_GrayStyle;
-	CGXStyle	m_LightGrayStyle;
-	CGXStyle	m_BlackBorderStyle;
-	CGXStyle	m_LeftOnlyBlackBorderStyle;
+    // Styles
+    CGXStyle    m_NormalStyle;
+    CGXStyle    m_BoldStyle;
+    CGXStyle    m_BlueStyle;
+    CGXStyle    m_BoldBlueStyle;
+    CGXStyle    m_GrayStyle;
+    CGXStyle    m_LightGrayStyle;
+    CGXStyle    m_BlackBorderStyle;
+    CGXStyle    m_LeftOnlyBlackBorderStyle;
 
-	// String resources
-	CString		m_DescriptionLabel;
-	CString		m_RuleListLabel;
-	CString		m_KeyInfoLabel;
-	CString		m_FormListLabel;
-	CString		m_InputProcedureLabel;
-	CString		m_OutputProcedureLabel;
-	CString		m_ComingFromProcedureLabel;
-	CString		m_GoingToProcedureLabel;
-	CString		m_InitialProcedureLabel;
-	CString		m_FinalProcedureLabel;
+    // String resources
+    CString        m_DescriptionLabel;
+    CString        m_RuleListLabel;
+    CString        m_KeyInfoLabel;
+    CString        m_FormListLabel;
+    CString        m_InputProcedureLabel;
+    CString        m_OutputProcedureLabel;
+    CString        m_ComingFromProcedureLabel;
+    CString        m_GoingToProcedureLabel;
+    CString        m_InitialProcedureLabel;
+    CString        m_FinalProcedureLabel;
 };
 
 #endif // !defined(AFX_ZUGridMercutioRepDeliverableNavigation_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)

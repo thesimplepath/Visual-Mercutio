@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Gaya
-// <nl>Created:		 03/2002
+// <nl>Created:         03/2002
 // <nl>Description:  XXXClass frame window support
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -46,26 +46,26 @@ class AFX_EXT_CLASS pworkgroup
 {
 public:
 
-	pworkgroup()
-	{
-	}
+    pworkgroup()
+    {
+    }
 
-	// JMR-MODIF - Le 24 mai 2006 - Ajout du paramètre mission.
-	// JMR-MODIF - Le 6 décembre 2006 - Ajout du paramètre daycost.
-	pworkgroup( String16 wkgid, String16 wkgparent, String16 wkgname, String16 mission, String16 daycost )
-	{
-		this->wkgid		= convertTo( wkgid );
-		this->wkgparent	= convertTo( wkgparent );
-		this->wkgname	= convertTo( wkgname );
-		this->mission	= convertTo( mission );
-		this->daycost	= convertTo( daycost );
-	}
+    // JMR-MODIF - Le 24 mai 2006 - Ajout du paramètre mission.
+    // JMR-MODIF - Le 6 décembre 2006 - Ajout du paramètre daycost.
+    pworkgroup( String16 wkgid, String16 wkgparent, String16 wkgname, String16 mission, String16 daycost )
+    {
+        this->wkgid        = convertTo( wkgid );
+        this->wkgparent    = convertTo( wkgparent );
+        this->wkgname    = convertTo( wkgname );
+        this->mission    = convertTo( mission );
+        this->daycost    = convertTo( daycost );
+    }
 
-	string	wkgid;
-	string	wkgparent;
-	string	wkgname;
-	string	mission;	// JMR-MODIF - Le 24 mai 2006 - Ajout de la variable mission.
-	string	daycost;	// JMR-MODIF - Le 6 décembre 2006 - Ajout de la variable daycost.
+    string    wkgid;
+    string    wkgparent;
+    string    wkgname;
+    string    mission;    // JMR-MODIF - Le 24 mai 2006 - Ajout de la variable mission.
+    string    daycost;    // JMR-MODIF - Le 6 décembre 2006 - Ajout de la variable daycost.
 };
 
 #endif

@@ -38,26 +38,26 @@
 class AFX_EXT_CLASS ZNetResourceManager : public CObject  
 {
 public:
-	ZNetResourceManager();
-	virtual ~ZNetResourceManager();
+    ZNetResourceManager();
+    virtual ~ZNetResourceManager();
 
-	bool			AddNetResource( LPNETRESOURCE pNetResource );
-	bool			AddNetResource( ZNetResource* pNetResource );
-	bool			RemoveNetResource( ZNetResource* pNetResource );
-	bool			RemoveNetResourceAt( size_t Index );
-	ZNetResource*	GetNetResourceAt( size_t Index );
-	bool			RemoveAllNetResources( bool DeleteFromMemory = true );
-	size_t			GetNetResourceCount();
+    bool            AddNetResource( LPNETRESOURCE pNetResource );
+    bool            AddNetResource( ZNetResource* pNetResource );
+    bool            RemoveNetResource( ZNetResource* pNetResource );
+    bool            RemoveNetResourceAt( size_t Index );
+    ZNetResource*    GetNetResourceAt( size_t Index );
+    bool            RemoveAllNetResources( bool DeleteFromMemory = true );
+    size_t            GetNetResourceCount();
 
 private:
-	CObArray	m_NetResourceArray;
+    CObArray    m_NetResourceArray;
 
 };
 
 
-inline	size_t	ZNetResourceManager::GetNetResourceCount()
+inline    size_t    ZNetResourceManager::GetNetResourceCount()
 {
-	return m_NetResourceArray.GetSize();
+    return m_NetResourceArray.GetSize();
 }
 
 #endif // !defined(AFX_ZNETRESOURCEMANAGER_H__F7642919_778A_41A3_9F2E_32C21F48C85E__INCLUDED_)

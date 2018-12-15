@@ -1,10 +1,10 @@
 //## begin module%37EA73B300A2.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%37EA73B300A2.cm
 
 //## begin module%37EA73B300A2.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%37EA73B300A2.cp
 
 //## Module: PaintRes%37EA73B300A2; Package specification
@@ -47,7 +47,7 @@
 
 
 //## Class: ZBPaintResources%37EA70C2030C
-//	Contains static method used for painting purpose.
+//    Contains static method used for painting purpose.
 //## Category: ZBaseLib::Painting classes%37EA70B902D7
 //## Subsystem: ZBaseLib%37A08E0C019D
 //## Persistence: Transient
@@ -68,7 +68,7 @@ class AFX_EXT_CLASS ZBPaintResources
 
     //## Other Operations (specified)
       //## Operation: Initialize%938112080
-      //	Initialize all paint resources.
+      //    Initialize all paint resources.
       static void Initialize ();
 
     //## Get and Set Operations for Class Attributes (generated)

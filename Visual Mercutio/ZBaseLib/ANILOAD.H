@@ -29,49 +29,49 @@ extern AFX_EXTENSION_MODULE ZBaseLibDLL;
 
 class AFX_EXT_CLASS ZIStatusBar : public SECStatusBar
 {
-	DECLARE_DYNCREATE( ZIStatusBar )
+    DECLARE_DYNCREATE( ZIStatusBar )
 
 public:
 
-	// Protected constructor used by dynamic creation
-	ZIStatusBar();
+    // Protected constructor used by dynamic creation
+    ZIStatusBar();
 
-	virtual ~ZIStatusBar();
+    virtual ~ZIStatusBar();
 
 // Operations
 public:
 
-	void	SetCurrentPercentage( int iPerc );
-	void	BeginAniPercentage();
-	void	EndAniPercentage();
-	virtual BOOL PreCreateWindow( CREATESTRUCT& cs );
+    void    SetCurrentPercentage( int iPerc );
+    void    BeginAniPercentage();
+    void    EndAniPercentage();
+    virtual BOOL PreCreateWindow( CREATESTRUCT& cs );
 
 // Generated message map functions
 protected:
 
-	//{{AFX_MSG(ZIStatusBar)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZIStatusBar)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 // Implementation
 private:
 
-	CFont	m_Font;
-	BOOL	m_bIsStarted;
-	int		m_iPerc;
-	int		m_iImage;
-	CRect	m_ItemRect;
-	int		m_iBackWidth;
-	int		m_iLeftStart;
-	int		m_iStep;
-	DWORD	m_dwTickCount;
-	BOOL	m_SwapLight;
-	static	HBITMAP	m_hBtmBack;
-	static	HBITMAP	m_hBtmGreenLight;
-	static	HBITMAP	m_hBtmRedLight;
-	CBrush	m_LtBlueBrush;
-	CPen	m_BlackPen;
-	CPen	m_WhitePen;
+    CFont    m_Font;
+    BOOL    m_bIsStarted;
+    int        m_iPerc;
+    int        m_iImage;
+    CRect    m_ItemRect;
+    int        m_iBackWidth;
+    int        m_iLeftStart;
+    int        m_iStep;
+    DWORD    m_dwTickCount;
+    BOOL    m_SwapLight;
+    static    HBITMAP    m_hBtmBack;
+    static    HBITMAP    m_hBtmGreenLight;
+    static    HBITMAP    m_hBtmRedLight;
+    CBrush    m_LtBlueBrush;
+    CPen    m_BlackPen;
+    CPen    m_WhitePen;
 };
 
 #endif  // __ANILOAD_H

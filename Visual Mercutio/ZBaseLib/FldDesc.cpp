@@ -1,10 +1,10 @@
 //## begin module%363DC9BE02EA.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%363DC9BE02EA.cm
 
 //## begin module%363DC9BE02EA.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%363DC9BE02EA.cp
 
 //## Module: FldDesc%363DC9BE02EA; Package body
@@ -60,7 +60,7 @@ ZAObjectDefinition::ZAObjectDefinition(const ZAObjectDefinition &right)
   //## end ZAObjectDefinition::ZAObjectDefinition%copy.initialization
 {
   //## begin ZAObjectDefinition::ZAObjectDefinition%copy.body preserve=yes
-	*this = right;
+    *this = right;
   //## end ZAObjectDefinition::ZAObjectDefinition%copy.body
 }
 
@@ -68,8 +68,8 @@ ZAObjectDefinition::ZAObjectDefinition(const ZAObjectDefinition &right)
 ZAObjectDefinition::~ZAObjectDefinition()
 {
   //## begin ZAObjectDefinition::~ZAObjectDefinition%.body preserve=yes
-  	if (m_pObject)
-  		delete m_pObject;
+      if (m_pObject)
+          delete m_pObject;
   //## end ZAObjectDefinition::~ZAObjectDefinition%.body
 }
 
@@ -77,16 +77,16 @@ ZAObjectDefinition::~ZAObjectDefinition()
 const ZAObjectDefinition & ZAObjectDefinition::operator=(const ZAObjectDefinition &right)
 {
   //## begin ZAObjectDefinition::operator=%.body preserve=yes
-	m_FieldName = right.m_FieldName;
-	m_Description = right.m_Description;
-	m_ClassName = right.m_ClassName;
-	m_HelpUserDescription = right.m_HelpUserDescription;
-	m_Sorted = right.m_Sorted;
-	if (right.m_pObject)
-		m_pObject = right.m_pObject->Clone();
-	else
-		m_pObject = NULL;
-	return *this;
+    m_FieldName = right.m_FieldName;
+    m_Description = right.m_Description;
+    m_ClassName = right.m_ClassName;
+    m_HelpUserDescription = right.m_HelpUserDescription;
+    m_Sorted = right.m_Sorted;
+    if (right.m_pObject)
+        m_pObject = right.m_pObject->Clone();
+    else
+        m_pObject = NULL;
+    return *this;
   //## end ZAObjectDefinition::operator=%.body
 }
 
@@ -96,34 +96,34 @@ const ZAObjectDefinition & ZAObjectDefinition::operator=(const ZAObjectDefinitio
 void ZAObjectDefinition::Serialize (CArchive& ar)
 {
   //## begin ZAObjectDefinition::Serialize%910019970.body preserve=yes
-	if (ar.IsStoring())
-	{	// Write the elements
-		ar << m_FieldName;
-      	ar << m_Description;
-      	ar << m_ClassName;
-      	ar << m_HelpUserDescription;
-		ar << (WORD)m_Sorted;
-      	ar << m_pObject;
-	}
-	else
-	{	// Read the elements
-		ar >> m_FieldName;
-		ar >> m_Description;
-      	ar >> m_ClassName;
-      	ar >> m_HelpUserDescription;
-		WORD	wValue;
-		ar >> wValue;
-		m_Sorted = (BOOL)wValue;
-      	ar >> (CObject*&)m_pObject;
-	}
+    if (ar.IsStoring())
+    {    // Write the elements
+        ar << m_FieldName;
+          ar << m_Description;
+          ar << m_ClassName;
+          ar << m_HelpUserDescription;
+        ar << (WORD)m_Sorted;
+          ar << m_pObject;
+    }
+    else
+    {    // Read the elements
+        ar >> m_FieldName;
+        ar >> m_Description;
+          ar >> m_ClassName;
+          ar >> m_HelpUserDescription;
+        WORD    wValue;
+        ar >> wValue;
+        m_Sorted = (BOOL)wValue;
+          ar >> (CObject*&)m_pObject;
+    }
   //## end ZAObjectDefinition::Serialize%910019970.body
 }
 
 ZAObjectDefinition* ZAObjectDefinition::Clone ()
 {
   //## begin ZAObjectDefinition::Clone%939069933.body preserve=yes
-	ZAObjectDefinition*	pObject = new ZAObjectDefinition( *this );
-	return pObject;
+    ZAObjectDefinition*    pObject = new ZAObjectDefinition( *this );
+    return pObject;
   //## end ZAObjectDefinition::Clone%939069933.body
 }
 
@@ -135,12 +135,12 @@ ZAObjectDefinition* ZAObjectDefinition::Clone ()
 #ifdef _DEBUG
 void ZAObjectDefinition::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void ZAObjectDefinition::Dump(CDumpContext& dc) const
 {
-	CObject::Dump(dc);
+    CObject::Dump(dc);
 }
 #endif //_DEBUG
 

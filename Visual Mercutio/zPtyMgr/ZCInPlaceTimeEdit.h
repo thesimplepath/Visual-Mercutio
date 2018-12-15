@@ -40,61 +40,61 @@
 
 class AFX_EXT_CLASS ZCInPlaceTimeEdit : public ZCSearchEdit, public ZIInPlaceEdit
 {
-	ZCInPlaceTimeEdit(const ZCInPlaceTimeEdit& d);
-	ZCInPlaceTimeEdit operator=(const ZCInPlaceTimeEdit& d);
+    ZCInPlaceTimeEdit(const ZCInPlaceTimeEdit& d);
+    ZCInPlaceTimeEdit operator=(const ZCInPlaceTimeEdit& d);
 
 protected:
-	DECLARE_DYNAMIC(ZCInPlaceTimeEdit)
+    DECLARE_DYNAMIC(ZCInPlaceTimeEdit)
 
 public:
-	ZCInPlaceTimeEdit( bool IsReadOnly = false );
-	ZCInPlaceTimeEdit( ZBTimeSpan& TimeInitValue, bool IsReadOnly = false );
-	virtual ~ZCInPlaceTimeEdit();
+    ZCInPlaceTimeEdit( bool IsReadOnly = false );
+    ZCInPlaceTimeEdit( ZBTimeSpan& TimeInitValue, bool IsReadOnly = false );
+    virtual ~ZCInPlaceTimeEdit();
 
-	// Operations
+    // Operations
 public:
-	// Initialize the edit control
-	virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0);
-	virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, ZBTimeSpan& TimeInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0);
-	// Initialize the edit text value
-	virtual void SetEditText(const CString& strText);
-	virtual void SetEditText(ZBTimeSpan& TimeValue);
-	// Retreive the text entered
-	virtual CString GetEditText() const;
+    // Initialize the edit control
+    virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0);
+    virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, ZBTimeSpan& TimeInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0);
+    // Initialize the edit text value
+    virtual void SetEditText(const CString& strText);
+    virtual void SetEditText(ZBTimeSpan& TimeValue);
+    // Retreive the text entered
+    virtual CString GetEditText() const;
 
-	// ZIObserver OnUpdate call-back function
-	virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    // ZIObserver OnUpdate call-back function
+    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
 
-	// Call when requires to process the extended command
-	virtual void OnExtendedCommand();
+    // Call when requires to process the extended command
+    virtual void OnExtendedCommand();
 
-	bool IsEditCtrlHit( CPoint point ) const;
-	bool IsEditButtonCtrlHit( CPoint point ) const;
+    bool IsEditCtrlHit( CPoint point ) const;
+    bool IsEditButtonCtrlHit( CPoint point ) const;
 
-	// Virtual function to cancel and save the edition
-	virtual void CancelEdit();
-	virtual void SaveValue();
+    // Virtual function to cancel and save the edition
+    virtual void CancelEdit();
+    virtual void SaveValue();
 
 private:
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCInPlaceDateEdit)
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCInPlaceDateEdit)
 public:
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	//}}AFX_VIRTUAL
+    virtual BOOL PreTranslateMessage(MSG* pMsg);
+    //}}AFX_VIRTUAL
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZCInPlaceDateEdit)
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
-	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
-	afx_msg void OnSetFocus(CWnd* pOldWnd);
-	//}}AFX_MSG
+    //{{AFX_MSG(ZCInPlaceDateEdit)
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+    afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
+    afx_msg void OnSetFocus(CWnd* pOldWnd);
+    //}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 
-	// Data
+    // Data
 private:
 };
 

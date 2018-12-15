@@ -37,47 +37,47 @@ ZUStringConversion::~ZUStringConversion()
 // Cette fonction permet de convertir tous les caractères spéciaux d'une chaîne de caractères.
 CString ZUStringConversion::ConvertSpecialChar( CString s )
 {
-	// Replace all dot and : by underscore
-	char* p = s.GetBuffer( s.GetLength() + 1 );
+    // Replace all dot and : by underscore
+    char* p = s.GetBuffer( s.GetLength() + 1 );
 
-	// Copy char after the decimal point, till the end
-	while ( *p )
-	{
-		if ( *p == ' ' || *p == '.' || *p == ':'  || *p == '¨'  || *p == '?'  || *p == '<'  || *p == '>' ||
-			 *p == '=' || *p == '!' || *p == '\'' || *p == '\n' || *p == '\r' || *p == '\t' || *p == '~' )
-		{
-			*p = '_';
-		}
-		else if ( *p == 'é' || *p == 'è' || *p == 'ê' )
-		{
-			*p = 'e';
-		}
-		else if ( *p == 'à' || *p == 'ä' || *p == 'â' )
-		{
-			*p = 'a';
-		}
-		else if ( *p == 'ï' || *p == 'î' )
-		{
-			*p = 'i';
-		}
-		else if ( *p == 'ô' )
-		{
-			*p = 'o';
-		}
-		else if ( *p == 'ç' )
-		{
-			*p = 'c';
-		}
-		else if ( *p == 'û' || *p == 'ü' || *p == 'ù' )
-		{
-			*p = 'u';
-		}
+    // Copy char after the decimal point, till the end
+    while ( *p )
+    {
+        if ( *p == ' ' || *p == '.' || *p == ':'  || *p == '¨'  || *p == '?'  || *p == '<'  || *p == '>' ||
+             *p == '=' || *p == '!' || *p == '\'' || *p == '\n' || *p == '\r' || *p == '\t' || *p == '~' )
+        {
+            *p = '_';
+        }
+        else if ( *p == 'é' || *p == 'è' || *p == 'ê' )
+        {
+            *p = 'e';
+        }
+        else if ( *p == 'à' || *p == 'ä' || *p == 'â' )
+        {
+            *p = 'a';
+        }
+        else if ( *p == 'ï' || *p == 'î' )
+        {
+            *p = 'i';
+        }
+        else if ( *p == 'ô' )
+        {
+            *p = 'o';
+        }
+        else if ( *p == 'ç' )
+        {
+            *p = 'c';
+        }
+        else if ( *p == 'û' || *p == 'ü' || *p == 'ù' )
+        {
+            *p = 'u';
+        }
 
-		++p;
-	}
+        ++p;
+    }
 
-	// Don't forget to release the buffer
-	s.ReleaseBuffer( -1 );
+    // Don't forget to release the buffer
+    s.ReleaseBuffer( -1 );
 
-	return s;
+    return s;
 }

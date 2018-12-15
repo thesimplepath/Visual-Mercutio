@@ -20,40 +20,40 @@ class ZVWorkspaceRenameGroupNameDlg : public CDialog
 {
 // Construction
 public:
-	ZVWorkspaceRenameGroupNameDlg(const CString GroupName, ZBWorkspaceGroupEntity* pParentGroup = NULL, CWnd* pParent = NULL);   // standard constructor
+    ZVWorkspaceRenameGroupNameDlg(const CString GroupName, ZBWorkspaceGroupEntity* pParentGroup = NULL, CWnd* pParent = NULL);   // standard constructor
 
-	CString	GetGroupName() const
-	{
-		return m_GroupName;
-	};
+    CString    GetGroupName() const
+    {
+        return m_GroupName;
+    };
 
 private:
 // Dialog Data
-	//{{AFX_DATA(ZVWorkspaceRenameGroupNameDlg)
-	enum { IDD = IDD_WKS_RENAMEGROUP };
-	CString	m_GroupName;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZVWorkspaceRenameGroupNameDlg)
+    enum { IDD = IDD_WKS_RENAMEGROUP };
+    CString    m_GroupName;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVWorkspaceRenameGroupNameDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVWorkspaceRenameGroupNameDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVWorkspaceRenameGroupNameDlg)
-	virtual void OnOK();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVWorkspaceRenameGroupNameDlg)
+    virtual void OnOK();
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	ZBWorkspaceGroupEntity* m_pParentGroup;
+    ZBWorkspaceGroupEntity* m_pParentGroup;
 };
 
 //{{AFX_INSERT_LOCATION}}

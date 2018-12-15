@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 10/2002
+// <nl>Created:         10/2002
 // <nl>Description:  ZBResourceManager resource support
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -57,61 +57,61 @@ class _ZBResourceInfo
 {
 public:
 
-	_ZBResourceInfo( const CString Filename = _T( "" ), Language Lang = UnknownLang )
-	{
-		m_Filename	= Filename;
-		m_Language	= Lang;
-		m_Module	= NULL;
-	};
+    _ZBResourceInfo( const CString Filename = _T( "" ), Language Lang = UnknownLang )
+    {
+        m_Filename    = Filename;
+        m_Language    = Lang;
+        m_Module    = NULL;
+    };
 
-	virtual ~_ZBResourceInfo()
-	{
-	};
+    virtual ~_ZBResourceInfo()
+    {
+    };
 
-	CString GetFilename() const;
-	void	SetFilename( CString value );
+    CString GetFilename() const;
+    void    SetFilename( CString value );
 
-	Language GetLanguage() const;
-	void	 SetLanguage( Language value );
+    Language GetLanguage() const;
+    void     SetLanguage( Language value );
 
-	HMODULE	GetModule() const;
-	void	SetModule( HMODULE	value );
+    HMODULE    GetModule() const;
+    void    SetModule( HMODULE    value );
 
 private:
 
-	CString		m_Filename;
-	Language	m_Language;
-	HMODULE		m_Module;
+    CString        m_Filename;
+    Language    m_Language;
+    HMODULE        m_Module;
 };
 
 inline CString _ZBResourceInfo::GetFilename() const 
 {
-	return m_Filename;
+    return m_Filename;
 }
 
 inline void _ZBResourceInfo::SetFilename( CString value )
 {
-	m_Filename = value;
+    m_Filename = value;
 }
 
 inline Language _ZBResourceInfo::GetLanguage() const 
 {
-	return m_Language;
+    return m_Language;
 }
 
 inline void _ZBResourceInfo::SetLanguage( Language value )
 {
-	m_Language = value;
+    m_Language = value;
 }
 
 inline HMODULE _ZBResourceInfo::GetModule() const 
 {
-	return m_Module;
+    return m_Module;
 }
 
 inline void _ZBResourceInfo::SetModule( HMODULE value )
 {
-	m_Module = value;
+    m_Module = value;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -136,24 +136,24 @@ class AFX_EXT_CLASS ZBResourceManager
 {
 public:
 
-	ZBResourceManager();
-	virtual ~ZBResourceManager();
+    ZBResourceManager();
+    virtual ~ZBResourceManager();
 
-	// JMR-MODIF - Le 30 août 2005 - Ajout de la fonction Release.
-	static void Release();
+    // JMR-MODIF - Le 30 août 2005 - Ajout de la fonction Release.
+    static void Release();
 
-	static bool LoadFromDirectory( const CString Dir );
-	static bool ChangeLanguage( Language Lang );
-
-private:
-
-	static void Unload();
+    static bool LoadFromDirectory( const CString Dir );
+    static bool ChangeLanguage( Language Lang );
 
 private:
 
-	static ZBResourceInfoSet	m_TableResources;
-	static ZBResourceInfoSet	m_TableResourcesLoaded;
-	static Language				m_CurrentLanguage;
+    static void Unload();
+
+private:
+
+    static ZBResourceInfoSet    m_TableResources;
+    static ZBResourceInfoSet    m_TableResourcesLoaded;
+    static Language                m_CurrentLanguage;
 };
 
 #endif // !defined(AFX_ZBRESOURCEMANAGER_H__CC419699_D4EE_4511_A8B2_DBF927A86F36__INCLUDED_)

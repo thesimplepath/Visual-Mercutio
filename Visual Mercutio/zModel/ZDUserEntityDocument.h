@@ -35,90 +35,90 @@
 
 class AFX_EXT_CLASS ZDUserEntityDocument : public ZDBaseDocument
 {
-	DECLARE_DYNCREATE( ZDUserEntityDocument )
+    DECLARE_DYNCREATE( ZDUserEntityDocument )
 
 public:
 
-	// Inherited feature
-	typedef ZDBaseDocument inherited;
+    // Inherited feature
+    typedef ZDBaseDocument inherited;
 
-	ZDUserEntityDocument();           // Public constructor since not used by dynamic creation
-	virtual ~ZDUserEntityDocument();
+    ZDUserEntityDocument();           // Public constructor since not used by dynamic creation
+    virtual ~ZDUserEntityDocument();
 
 // Operations
 public:
 
-	bool ReadFromFile	( const CString Filename );
-	bool SaveToFile		( const CString Filename );
+    bool ReadFromFile    ( const CString Filename );
+    bool SaveToFile        ( const CString Filename );
 
-	ZBUserGroupEntity& GetUserGroupEnvironment()
-	{
-		return m_UserGroupEnvironment;
-	};
+    ZBUserGroupEntity& GetUserGroupEnvironment()
+    {
+        return m_UserGroupEnvironment;
+    };
 
-	bool IsLoaded() const
-	{
-		return m_IsLoaded;
-	};
+    bool IsLoaded() const
+    {
+        return m_IsLoaded;
+    };
 
-	void SetLoaded( bool value = true )
-	{
-		m_IsLoaded = value;
-	};
+    void SetLoaded( bool value = true )
+    {
+        m_IsLoaded = value;
+    };
 
-	virtual BOOL IsModified()
-	{
-		return CDocument::IsModified() || m_UserGroupEnvironment.IsModified();
-	};
+    virtual BOOL IsModified()
+    {
+        return CDocument::IsModified() || m_UserGroupEnvironment.IsModified();
+    };
 
-	virtual void SetModifiedFlag( BOOL bModified = TRUE )
-	{
-		CDocument::SetModifiedFlag( bModified );
-		m_UserGroupEnvironment.SetModifiedFlag( bModified );
-	};
+    virtual void SetModifiedFlag( BOOL bModified = TRUE )
+    {
+        CDocument::SetModifiedFlag( bModified );
+        m_UserGroupEnvironment.SetModifiedFlag( bModified );
+    };
 
-	bool IsBeta1Format() const
-	{
-		return m_Beta1Format;
-	};
+    bool IsBeta1Format() const
+    {
+        return m_Beta1Format;
+    };
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZDUserEntityDocument)
-	public:
-	virtual void Serialize(CArchive& ar);   // overridden for document i/o
-	protected:
-	virtual BOOL OnNewDocument();
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZDUserEntityDocument)
+    public:
+    virtual void Serialize(CArchive& ar);   // overridden for document i/o
+    protected:
+    virtual BOOL OnNewDocument();
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 // Generated message map functions
 protected:
 
-	//{{AFX_MSG(ZDUserEntityDocument)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZDUserEntityDocument)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	ZBUserGroupEntity	m_UserGroupEnvironment;
-	bool				m_IsLoaded;
+    ZBUserGroupEntity    m_UserGroupEnvironment;
+    bool                m_IsLoaded;
 
-	// Unique GUID for this file.
-	// Other file using this file can save this GUID
-	// to be sure they are using the right file.
-	CString				m_GUID;
+    // Unique GUID for this file.
+    // Other file using this file can save this GUID
+    // to be sure they are using the right file.
+    CString                m_GUID;
 
-	// Used only in for migrating Beta1 format to Beta 2
-	// We derive this class from ZDBaseDocument which implement
-	// the stamp.
-	bool				m_Beta1Format;
+    // Used only in for migrating Beta1 format to Beta 2
+    // We derive this class from ZDBaseDocument which implement
+    // the stamp.
+    bool                m_Beta1Format;
 };
 
 //{{AFX_INSERT_LOCATION}}

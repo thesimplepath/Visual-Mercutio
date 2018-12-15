@@ -1,10 +1,10 @@
 //## begin module%37E4CD2D023D.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%37E4CD2D023D.cm
 
 //## begin module%37E4CD2D023D.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%37E4CD2D023D.cp
 
 //## Module: ZBNotes%37E4CD2D023D; Package specification
@@ -51,7 +51,7 @@
 
 
 //## Class: ZBNotes%37E4CC9F024D
-//	Defines a notes
+//    Defines a notes
 //## Category: ZBaseLib::Note classes%37E4CC89007E
 //## Subsystem: ZBaseLib%37A08E0C019D
 //## Persistence: Transient
@@ -84,42 +84,42 @@ class AFX_EXT_CLASS ZBNotes : public CObject  //## Inherits: <unnamed>%37E4CC9F0
       ZBNotes* Clone ();
 
       //## Operation: ClearNotes%937741722
-      //	Clear the notes
+      //    Clear the notes
       void ClearNotes ();
 
       //## Operation: ClearComment%937741723
-      //	Clear the note's comment
+      //    Clear the note's comment
       void ClearComment ();
 
       //## Operation: ClearUsername%937741724
-      //	Clear the note's username.
+      //    Clear the note's username.
       void ClearUsername ();
 
       //## Operation: GetFormatedNotes%937741725
-      //	Return the notes with \r\n char.
+      //    Return the notes with \r\n char.
       CString GetFormatedNotes (CRect* pRect = NULL);
 
       //## Operation: operator >>%937741719
-      //	Store from the archive to the object Notes.
+      //    Store from the archive to the object Notes.
       AFX_EXT_API friend CArchive& operator >> (CArchive& ar, ZBNotes& Notes);
 
       //## Operation: operator <<%937741720
-      //	Store the object Notes to the archive.
+      //    Store the object Notes to the archive.
       AFX_EXT_API friend CArchive& operator << (CArchive& ar, ZBNotes& Notes);
 
       //## Operation: Serialize%937741721
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: Comment%37E4CC9F025F
-      //	Contains the comment
+      //    Contains the comment
       const CString& GetComment () const;
       void SetComment (const CString& value);
 
       //## Attribute: Username%37E4CC9F0260
-      //	Contains the username of the note.
+      //    Contains the username of the note.
       const CString GetUsername () const;
       void SetUsername (CString value);
 
@@ -130,7 +130,7 @@ class AFX_EXT_CLASS ZBNotes : public CObject  //## Inherits: <unnamed>%37E4CC9F0
   protected:
     // Additional Protected Declarations
       //## begin ZBNotes%37E4CC9F024D.protected preserve=yes
-	DECLARE_SERIAL(ZBNotes)
+    DECLARE_SERIAL(ZBNotes)
       //## end ZBNotes%37E4CC9F024D.protected
 
   private:

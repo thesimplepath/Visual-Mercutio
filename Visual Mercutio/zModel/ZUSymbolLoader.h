@@ -40,14 +40,14 @@
 class AFX_EXT_CLASS ZUSymbolLoader  
 {
 public:
-	enum ConnectionType { FileConnection, FTPConnection, HTTPConnection };
-	ZUSymbolLoader();
-	virtual ~ZUSymbolLoader();
+    enum ConnectionType { FileConnection, FTPConnection, HTTPConnection };
+    ZUSymbolLoader();
+    virtual ~ZUSymbolLoader();
 
-	// Return the number of element loaded
-	// 0 if no element loaded
-	static int LoadSymbol( const CString Location, ZBSymbolEntitySet& CompSet, ConnectionType Conx = FileConnection );
-	static int LoadSymbols( const CString Location, ZBSymbolEntitySet& CompSet, bool LoadSubFolders = false, ConnectionType Conx = FileConnection );
+    // Return the number of element loaded
+    // 0 if no element loaded
+    static int LoadSymbol( const CString Location, ZBSymbolEntitySet& CompSet, ConnectionType Conx = FileConnection );
+    static int LoadSymbols( const CString Location, ZBSymbolEntitySet& CompSet, bool LoadSubFolders = false, ConnectionType Conx = FileConnection );
 
 private:
 

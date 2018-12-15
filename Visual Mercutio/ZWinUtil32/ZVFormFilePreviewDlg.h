@@ -47,55 +47,55 @@ class ZIButtonToolBarFormFilePreview : public CStatic
 public:
 // Construction
 public:
-	ZIButtonToolBarFormFilePreview();
-	void SetParent(CWnd* pParent);
+    ZIButtonToolBarFormFilePreview();
+    void SetParent(CWnd* pParent);
 
 // Attributes
 private:
-	CCJFlatButton	m_NextPageButton;
-	CCJFlatButton	m_PreviousPageButton;
-	CCJFlatButton	m_RefreshButton;
-	CCJFlatButton	m_ZoomOutButton;
-	CCJFlatButton	m_ZoomInButton;
-	CCJFlatButton	m_NextFileButton;
-	CCJFlatButton	m_PreviousFileButton;
-	CCJFlatButton	m_CloseFileButton;
+    CCJFlatButton    m_NextPageButton;
+    CCJFlatButton    m_PreviousPageButton;
+    CCJFlatButton    m_RefreshButton;
+    CCJFlatButton    m_ZoomOutButton;
+    CCJFlatButton    m_ZoomInButton;
+    CCJFlatButton    m_NextFileButton;
+    CCJFlatButton    m_PreviousFileButton;
+    CCJFlatButton    m_CloseFileButton;
 
-	CImageList		m_ImageList;
-	CToolTipCtrl	m_tooltip;
-	CWnd*			m_pParent;
+    CImageList        m_ImageList;
+    CToolTipCtrl    m_tooltip;
+    CWnd*            m_pParent;
 
 // Operations
 public:
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIButtonToolBarFormFilePreview)
-	public:
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	protected:
-	virtual void PreSubclassWindow();
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIButtonToolBarFormFilePreview)
+    public:
+    virtual BOOL PreTranslateMessage(MSG* pMsg);
+    protected:
+    virtual void PreSubclassWindow();
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
-	virtual ~ZIButtonToolBarFormFilePreview();
+    virtual ~ZIButtonToolBarFormFilePreview();
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZIButtonToolBarFormFilePreview)
-	afx_msg void OnNextPageButton();
-	afx_msg void OnPreviousPageButton();
-	afx_msg void OnRefreshButton();
-	afx_msg void OnZoomOutButton();
-	afx_msg void OnZoomInButton();
-	afx_msg void OnNextFileButton();
-	afx_msg void OnPrevFileButton();
-	afx_msg void OnCloseButton();
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	//}}AFX_MSG
+    //{{AFX_MSG(ZIButtonToolBarFormFilePreview)
+    afx_msg void OnNextPageButton();
+    afx_msg void OnPreviousPageButton();
+    afx_msg void OnRefreshButton();
+    afx_msg void OnZoomOutButton();
+    afx_msg void OnZoomInButton();
+    afx_msg void OnNextFileButton();
+    afx_msg void OnPrevFileButton();
+    afx_msg void OnCloseButton();
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    //}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 };
 
 
@@ -107,51 +107,51 @@ class AFX_EXT_CLASS ZVFormFilePreviewDlg : public CDialog
 {
 // Construction
 public:
-	ZVFormFilePreviewDlg(const CString Filename, ZDDocTemplateEx* pDocTemplate, CWnd* pParent = NULL);   // standard constructor
-	virtual ~ZVFormFilePreviewDlg();
+    ZVFormFilePreviewDlg(const CString Filename, ZDDocTemplateEx* pDocTemplate, CWnd* pParent = NULL);   // standard constructor
+    virtual ~ZVFormFilePreviewDlg();
 
 // Dialog Data
-	//{{AFX_DATA(ZVFormFilePreviewDlg)
-	enum { IDD = IDD_FORM_FILEPREVIEW };
-	ZIButtonToolBarFormFilePreview		m_FlatToolBar;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZVFormFilePreviewDlg)
+    enum { IDD = IDD_FORM_FILEPREVIEW };
+    ZIButtonToolBarFormFilePreview        m_FlatToolBar;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVFormFilePreviewDlg)
-	public:
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	virtual BOOL OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo);
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	virtual void PostNcDestroy();
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVFormFilePreviewDlg)
+    public:
+    virtual BOOL PreTranslateMessage(MSG* pMsg);
+    virtual BOOL OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo);
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    virtual void PostNcDestroy();
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVFormFilePreviewDlg)
-	virtual BOOL OnInitDialog();
-	afx_msg void OnSize(UINT nType, int cx, int cy);
-	virtual void OnOK();
-	afx_msg void OnClose();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVFormFilePreviewDlg)
+    virtual BOOL OnInitDialog();
+    afx_msg void OnSize(UINT nType, int cx, int cy);
+    virtual void OnOK();
+    afx_msg void OnClose();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 
 private:
-	void SizeControl();
-	void CloseDocument();
+    void SizeControl();
+    void CloseDocument();
 
 private:
-	CCreateContext		m_Context; 
-	CString				m_Filename;
-	ZIViewRead*			m_pView;
-	CFrameWnd*			m_pFrameWindow;
-	ZDDocument*			m_pDocument;
-	ZDDocTemplateEx*	m_pDocTemplate;
+    CCreateContext        m_Context; 
+    CString                m_Filename;
+    ZIViewRead*            m_pView;
+    CFrameWnd*            m_pFrameWindow;
+    ZDDocument*            m_pDocument;
+    ZDDocTemplateEx*    m_pDocTemplate;
 
 };
 

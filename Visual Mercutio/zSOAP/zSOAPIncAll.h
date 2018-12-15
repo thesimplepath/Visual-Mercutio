@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 03/2002
+// <nl>Created:         03/2002
 // <nl>Description:  used to include the necessary easysop files
 //
 /////////////////////////////////////////////////////////////////////////////

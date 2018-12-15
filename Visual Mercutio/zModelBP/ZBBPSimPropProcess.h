@@ -12,7 +12,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// Created:		 05/2001
+// Created:         05/2001
 // Description:  ZBBPSimPropertiesProcess simulation properties for process
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -52,11 +52,11 @@
 
 //@topic Basic Properties Change Flags 
 //@flag Z_CHANGE_SIM_PROCESS_WORKLOAD_FORECAST | Change the process workload forecast.
-#define Z_CHANGE_SIM_PROCESS_WORKLOAD_FORECAST			0x0001
+#define Z_CHANGE_SIM_PROCESS_WORKLOAD_FORECAST            0x0001
 //@flag Z_CHANGE_SIM_PROCESS_COST_FORECAST | Change the process cost forecast.
-#define Z_CHANGE_SIM_PROCESS_COST_FORECAST				0x0002
+#define Z_CHANGE_SIM_PROCESS_COST_FORECAST                0x0002
 // JMR-MODIF - Le 14 mars 2006 - Ajout de la déclaration pour la gestion du coût HMO.
-#define Z_CHANGE_SIM_PROCESS_COST_HMO					0x0004
+#define Z_CHANGE_SIM_PROCESS_COST_HMO                    0x0004
 
 /////////////////////////////////////////////////////////////////////////////
 // Orientation property IDs
@@ -67,17 +67,17 @@
 // identifiers are used in conjunction with the <c IODPropertyContainer>
 // interface implemented by the orientation property container.
 //@flag Z_SIM_PROCESS_WORKLOAD_FORECAST | Identifier for the process workload forecast.
-#define Z_SIM_PROCESS_WORKLOAD_FORECAST					1
+#define Z_SIM_PROCESS_WORKLOAD_FORECAST                    1
 //@flag Z_SIM_PROCESS_COST_FORECAST | Identifier for the process cost forecast.
-#define Z_SIM_PROCESS_COST_FORECAST						2
+#define Z_SIM_PROCESS_COST_FORECAST                        2
 // JMR-MODIF - Le 14 mars 2006 - Ajout de la définition pour le coût HMO.
-#define Z_SIM_PROCESS_COST_HMO							3
+#define Z_SIM_PROCESS_COST_HMO                            3
 //@flag Z_SIM_PROCESS_SUM_DELIVERIES | Identifier for the sum of the deliveries.
-#define Z_SIM_PROCESS_SUM_DELIVERIES					4
+#define Z_SIM_PROCESS_SUM_DELIVERIES                    4
 //@flag Z_SIM_PROCESS_WORKLOAD_BY_DELIVERIES | Identifier for the workload by deliveries.
-#define Z_SIM_PROCESS_WORKLOAD_BY_DELIVERIES			5
+#define Z_SIM_PROCESS_WORKLOAD_BY_DELIVERIES            5
 //@flag Z_SIM_PROCESS_COST_BY_DELIVERIES | Identifier for the cost by deliveries.
-#define Z_SIM_PROCESS_COST_BY_DELIVERIES				6
+#define Z_SIM_PROCESS_COST_BY_DELIVERIES                6
 
 /////////////////////////////////////////////////////////////////////////////
 // ZBBPSimPropertiesProcess
@@ -99,141 +99,141 @@
 //
 class AFX_EXT_CLASS ZBBPSimPropertiesProcess : public CObject
 {
-	DECLARE_SERIAL( ZBBPSimPropertiesProcess )
+    DECLARE_SERIAL( ZBBPSimPropertiesProcess )
 
 // Construction/Destruction
 public:
 
-	//@cmember
-	/* Constructor. */
-	ZBBPSimPropertiesProcess();
+    //@cmember
+    /* Constructor. */
+    ZBBPSimPropertiesProcess();
 
-	//@cmember
-	/* Copy constructor. */
-	ZBBPSimPropertiesProcess( const ZBBPSimPropertiesProcess& propBasic );
+    //@cmember
+    /* Copy constructor. */
+    ZBBPSimPropertiesProcess( const ZBBPSimPropertiesProcess& propBasic );
 
-	//@cmember
-	/* Destructor. */
-	virtual ~ZBBPSimPropertiesProcess();
+    //@cmember
+    /* Destructor. */
+    virtual ~ZBBPSimPropertiesProcess();
 
-	/////////////////////////////////////////////////////////////////////////
-	// Operations
+    /////////////////////////////////////////////////////////////////////////
+    // Operations
 
-	//@cmember
-	/* Assigns another property to this property. */
-	ZBBPSimPropertiesProcess& operator=( const ZBBPSimPropertiesProcess& propBasic );
+    //@cmember
+    /* Assigns another property to this property. */
+    ZBBPSimPropertiesProcess& operator=( const ZBBPSimPropertiesProcess& propBasic );
 
-	//@cmember
-	/* Compares two orientation properties. */
-	BOOL operator==( const ZBBPSimPropertiesProcess propBasic ) const;
+    //@cmember
+    /* Compares two orientation properties. */
+    BOOL operator==( const ZBBPSimPropertiesProcess propBasic ) const;
 
-	//@cmember
-	/* Makes a copy of this properties object. */
-	virtual ZBBPSimPropertiesProcess* Dup();
-	//@cmember
-	/* Merges another set of properties with this one. */
-	virtual void Merge( ZBBPSimPropertiesProcess* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL );
-	//@cmember
-	/* Determines if another set of properties is equal to this one. */
-	virtual BOOL IsEqual( ZBBPSimPropertiesProcess* pProp );
+    //@cmember
+    /* Makes a copy of this properties object. */
+    virtual ZBBPSimPropertiesProcess* Dup();
+    //@cmember
+    /* Merges another set of properties with this one. */
+    virtual void Merge( ZBBPSimPropertiesProcess* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL );
+    //@cmember
+    /* Determines if another set of properties is equal to this one. */
+    virtual BOOL IsEqual( ZBBPSimPropertiesProcess* pProp );
 
-	//@cmember
-	/* Gets the process workload forecast. */
-	ZBBPAnnualNumberProperties& GetProcessWorkloadForecast();
+    //@cmember
+    /* Gets the process workload forecast. */
+    ZBBPAnnualNumberProperties& GetProcessWorkloadForecast();
 
-	//@cmember
-	/* Sets the process workload forecast. */
-	void SetProcessWorkloadForecast( const double value );
+    //@cmember
+    /* Sets the process workload forecast. */
+    void SetProcessWorkloadForecast( const double value );
 
-	//@cmember
-	/* Gets the process cost forecast. */
-	ZBBPAnnualNumberProperties& GetProcessCostForecast();
+    //@cmember
+    /* Gets the process cost forecast. */
+    ZBBPAnnualNumberProperties& GetProcessCostForecast();
 
-	//@cmember
-	/* Sets the process cost forecast. */
-	void SetProcessCostForecast( const double value );
+    //@cmember
+    /* Sets the process cost forecast. */
+    void SetProcessCostForecast( const double value );
 
-	// JMR-MODIF - Le 14 mars 2006 - Ajout de la fonction pour l'obtention du coût HMO.
-	ZBBPAnnualNumberProperties& GetProcessCost();
+    // JMR-MODIF - Le 14 mars 2006 - Ajout de la fonction pour l'obtention du coût HMO.
+    ZBBPAnnualNumberProperties& GetProcessCost();
 
-	// JMR-MODIF - Le 14 mars 2006 - Ajout de la fonction pour la déclaration du coût HMO.
-	void SetProcessCost( const double value );
+    // JMR-MODIF - Le 14 mars 2006 - Ajout de la fonction pour la déclaration du coût HMO.
+    void SetProcessCost( const double value );
 
-	/////////////////////////////////////////////////////////////////////////
-	// IODPropertyContainer interface
+    /////////////////////////////////////////////////////////////////////////
+    // IODPropertyContainer interface
 
-	//@cmember
-	/* Gets the value of the given string property. */
-	virtual BOOL GetValue( const int nPropId, CString& strValue ) const;
+    //@cmember
+    /* Gets the value of the given string property. */
+    virtual BOOL GetValue( const int nPropId, CString& strValue ) const;
 
-	//@cmember
-	/* Gets the value of the given integer property. */
-	virtual BOOL GetValue( const int nPropId, int& nValue ) const;
+    //@cmember
+    /* Gets the value of the given integer property. */
+    virtual BOOL GetValue( const int nPropId, int& nValue ) const;
 
-	//@cmember
-	/* Gets the value of the given unsigned integer property. */
-	virtual BOOL GetValue( const int nPropId, UINT& nValue ) const;
+    //@cmember
+    /* Gets the value of the given unsigned integer property. */
+    virtual BOOL GetValue( const int nPropId, UINT& nValue ) const;
 
-	//@cmember
-	/* Gets the value of the given DWORD property. */
-	virtual BOOL GetValue( const int nPropId, DWORD& dwValue ) const;
+    //@cmember
+    /* Gets the value of the given DWORD property. */
+    virtual BOOL GetValue( const int nPropId, DWORD& dwValue ) const;
 
-	//@cmember
-	/* Gets the value of the given float property. */
-	virtual BOOL GetValue( const int nPropId, float& fValue ) const;
+    //@cmember
+    /* Gets the value of the given float property. */
+    virtual BOOL GetValue( const int nPropId, float& fValue ) const;
 
-	//@cmember
-	/* Gets the value of the given double property. */
-	virtual BOOL GetValue( const int nPropId, double& dValue ) const;
+    //@cmember
+    /* Gets the value of the given double property. */
+    virtual BOOL GetValue( const int nPropId, double& dValue ) const;
 
-	//@cmember
-	/* Sets the value of the given string property. */
-	virtual BOOL SetValue( const int nPropId, LPCTSTR lpszValue );
+    //@cmember
+    /* Sets the value of the given string property. */
+    virtual BOOL SetValue( const int nPropId, LPCTSTR lpszValue );
 
-	//@cmember
-	/* Sets the value of the given integer property. */
-	virtual BOOL SetValue( const int nPropId, const int nValue );
+    //@cmember
+    /* Sets the value of the given integer property. */
+    virtual BOOL SetValue( const int nPropId, const int nValue );
 
-	//@cmember
-	/* Sets the value of the given unsigned integer property. */
-	virtual BOOL SetValue( const int nPropId, const UINT nValue );
+    //@cmember
+    /* Sets the value of the given unsigned integer property. */
+    virtual BOOL SetValue( const int nPropId, const UINT nValue );
 
-	//@cmember
-	/* Sets the value of the given unsigned DWORD property. */
-	virtual BOOL SetValue( const int nPropId, const DWORD dwValue );
+    //@cmember
+    /* Sets the value of the given unsigned DWORD property. */
+    virtual BOOL SetValue( const int nPropId, const DWORD dwValue );
 
-	//@cmember
-	/* Sets the value of the given float property. */
-	virtual BOOL SetValue( const int nPropId, const float fValue );
+    //@cmember
+    /* Sets the value of the given float property. */
+    virtual BOOL SetValue( const int nPropId, const float fValue );
 
-	//@cmember
-	/* Sets the value of the given double property. */
-	virtual BOOL SetValue( const int nPropId, const double dValue );
+    //@cmember
+    /* Sets the value of the given double property. */
+    virtual BOOL SetValue( const int nPropId, const double dValue );
 
-	//@cmember
-	/* Serializes the orientation properties. */
-	virtual void Serialize( CArchive& ar );
+    //@cmember
+    /* Serializes the orientation properties. */
+    virtual void Serialize( CArchive& ar );
 
 // Implementation
 public:
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 // Attributes
 protected:
 
-	//@cmember
-	/* the process workload forecast. */
-	ZBBPAnnualNumberProperties	m_ProcessWorkloadForecast;
+    //@cmember
+    /* the process workload forecast. */
+    ZBBPAnnualNumberProperties    m_ProcessWorkloadForecast;
 
-	//@cmember
-	/* the process cost forecast. */
-	ZBBPAnnualNumberProperties	m_ProcessCostForecast;
+    //@cmember
+    /* the process cost forecast. */
+    ZBBPAnnualNumberProperties    m_ProcessCostForecast;
 
-	// JMR-MODIF - Le 14 mars 2006 - Ajout de la variable m_ProcessCost, pour la gestion du coût HMO.
-	ZBBPAnnualNumberProperties	m_ProcessCost;
+    // JMR-MODIF - Le 14 mars 2006 - Ajout de la variable m_ProcessCost, pour la gestion du coût HMO.
+    ZBBPAnnualNumberProperties    m_ProcessCost;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -242,7 +242,7 @@ protected:
 //@rdesc Spacing value.
 inline ZBBPAnnualNumberProperties& ZBBPSimPropertiesProcess::GetProcessWorkloadForecast()
 {
-	return m_ProcessWorkloadForecast;
+    return m_ProcessWorkloadForecast;
 }
 
 //@mfunc Sets the vertical spacing between container control point and component.
@@ -250,14 +250,14 @@ inline ZBBPAnnualNumberProperties& ZBBPSimPropertiesProcess::GetProcessWorkloadF
 //@parm Spacing value.
 inline void ZBBPSimPropertiesProcess::SetProcessWorkloadForecast( const double value )
 {
-	m_ProcessWorkloadForecast = value;
+    m_ProcessWorkloadForecast = value;
 }
 
 //@mfunc Gets the process cost forecast.
 //@rdesc process cost forecast.
 inline ZBBPAnnualNumberProperties& ZBBPSimPropertiesProcess::GetProcessCostForecast()
 {
-	return m_ProcessCostForecast;
+    return m_ProcessCostForecast;
 }
 
 //@mfunc Sets the process cost forecast.
@@ -265,19 +265,19 @@ inline ZBBPAnnualNumberProperties& ZBBPSimPropertiesProcess::GetProcessCostForec
 //@parm process cost forecast.
 inline void ZBBPSimPropertiesProcess::SetProcessCostForecast( const double value )
 {
-	m_ProcessCostForecast = value;
+    m_ProcessCostForecast = value;
 }
 
 // JMR-MODIF - Le 14 mars 2006 - Ajout de la fonction pour l'obtention du coût HMO.
 inline ZBBPAnnualNumberProperties& ZBBPSimPropertiesProcess::GetProcessCost()
 {
-	return m_ProcessCost;
+    return m_ProcessCost;
 }
 
 // JMR-MODIF - Le 14 mars 2006 - Ajout de la fonction pour la déclaration du coût HMO.
 inline void ZBBPSimPropertiesProcess::SetProcessCost( const double value )
 {
-	m_ProcessCost = value;
+    m_ProcessCost = value;
 }
 
 //@mfunc Creates a copy of this property.
@@ -285,7 +285,7 @@ inline void ZBBPSimPropertiesProcess::SetProcessCost( const double value )
 // for cleaning up this object.
 inline ZBBPSimPropertiesProcess* ZBBPSimPropertiesProcess::Dup()
 {
-	return new ZBBPSimPropertiesProcess( *this );
+    return new ZBBPSimPropertiesProcess( *this );
 }
 
 #endif // !defined(AFX_ZBBPZBBPSimPropProcess_H__D6010BE6_7C2A_47FF_857B_0C64A020F48F__INCLUDED_)

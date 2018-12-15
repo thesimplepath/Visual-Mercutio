@@ -13,75 +13,75 @@
 
 class ZBInputScenario : public CObject  
 {
-	DECLARE_SERIAL(ZBInputScenario)
+    DECLARE_SERIAL(ZBInputScenario)
 public:
-	// Inherited feature
-	typedef CObject inherited;
+    // Inherited feature
+    typedef CObject inherited;
 
 public:
-	ZBInputScenario( const CString Name = "" );
-	virtual ~ZBInputScenario();
+    ZBInputScenario( const CString Name = "" );
+    virtual ~ZBInputScenario();
 
-	void Initialize( const CString Name );
+    void Initialize( const CString Name );
 
-	// Get and Set methods
-	CString	GetName() const { return m_Name; };
-	void	SetName( CString		value ) { m_Name = value; };
+    // Get and Set methods
+    CString    GetName() const { return m_Name; };
+    void    SetName( CString        value ) { m_Name = value; };
 
 
-	ZBInputScenario(const ZBInputScenario &right);
-	const ZBInputScenario& operator=(const ZBInputScenario &right);
+    ZBInputScenario(const ZBInputScenario &right);
+    const ZBInputScenario& operator=(const ZBInputScenario &right);
 
-	void	RemoveAllField();
-	size_t	GetFieldCount() const { return m_InputFieldSet.GetSize(); };
-	ZBFieldInputScenario*	GetFieldAt( size_t Index ) const;
-	ZBFieldInputScenario*	FindFieldname( const CString Fieldname ) const;
-	int		FindFieldnameIndex( const CString Fieldname ) const;
-	bool	AddField( ZBFieldInputScenario* pField );
-	bool	AddField( const CString Fieldname, const CString Username = "", int Order = -1 );
-	bool	DeleteFieldname( const CString Fieldname );
-	bool	DeleteFieldnameAt( size_t Index );
-	bool	RemoveFieldnameAt( size_t Index );
+    void    RemoveAllField();
+    size_t    GetFieldCount() const { return m_InputFieldSet.GetSize(); };
+    ZBFieldInputScenario*    GetFieldAt( size_t Index ) const;
+    ZBFieldInputScenario*    FindFieldname( const CString Fieldname ) const;
+    int        FindFieldnameIndex( const CString Fieldname ) const;
+    bool    AddField( ZBFieldInputScenario* pField );
+    bool    AddField( const CString Fieldname, const CString Username = "", int Order = -1 );
+    bool    DeleteFieldname( const CString Fieldname );
+    bool    DeleteFieldnameAt( size_t Index );
+    bool    RemoveFieldnameAt( size_t Index );
 
-	size_t	GetScenarioForUser( const CString Username, ZBInputScenario& Scenario );
+    size_t    GetScenarioForUser( const CString Username, ZBInputScenario& Scenario );
 
-	ZBInputScenario* Clone();
+    ZBInputScenario* Clone();
 
-	//	Serialization function required for MFC mecanism.
-	virtual void Serialize (CArchive& ar);
+    //    Serialization function required for MFC mecanism.
+    virtual void Serialize (CArchive& ar);
 
 private:
-	CObArray	m_InputFieldSet;
-	CString		m_Name;
+    CObArray    m_InputFieldSet;
+    CString        m_Name;
 
 };
 
 
-inline ZBFieldInputScenario*	ZBInputScenario::GetFieldAt( size_t Index )	const
+inline ZBFieldInputScenario*    ZBInputScenario::GetFieldAt( size_t Index )    const
 {
-	if (Index < GetFieldCount())
-		return static_cast<ZBFieldInputScenario*>(m_InputFieldSet.GetAt(Index));
-	return NULL;
+    if (Index < GetFieldCount())
+        return static_cast<ZBFieldInputScenario*>(m_InputFieldSet.GetAt(Index));
+    return NULL;
 }
 
 inline bool ZBInputScenario::AddField( ZBFieldInputScenario* pField )
 {
-	try
-	{
-		m_InputFieldSet.Add( pField );
-	}
-	catch( CMemoryException e() )
-	{
-		return false;
-	}
-	return true;
+    try
+    {
+        m_InputFieldSet.Add( pField );
+    }
+    catch( CMemoryException e() )
+    {
+        return false;
+    }
+    return true;
 }
 
 inline bool ZBInputScenario::RemoveFieldnameAt( size_t Index )
 {
-	if (Index < GetFieldCount())
-		m_InputFieldSet.RemoveAt( Index );
-	return false;
+    if (Index < GetFieldCount())
+        m_InputFieldSet.RemoveAt( Index );
+    return false;
 }
 
 #endif // !defined(AFX_ZBINPUTSCENARIO_H__19EC6EE3_FC91_11D3_96EC_0000B45D7C6F__INCLUDED_)

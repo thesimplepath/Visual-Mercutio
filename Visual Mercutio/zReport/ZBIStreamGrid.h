@@ -35,8 +35,8 @@ class AFX_EXT_CLASS ZBIStreamGrid : virtual public ZBIOSGrid
 {
 public:
 
-	ZBIStreamGrid( CGXGridCore* pGridCore = NULL );
-	virtual ~ZBIStreamGrid();
+    ZBIStreamGrid( CGXGridCore* pGridCore = NULL );
+    virtual ~ZBIStreamGrid();
 };
 
 #endif // !defined(AFX_ZBISTREAMGRID_H__BF3A0819_013A_4A0A_A7BF_902B83C96AFB__INCLUDED_)

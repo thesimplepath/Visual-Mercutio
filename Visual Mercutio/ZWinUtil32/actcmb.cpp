@@ -1,6 +1,6 @@
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
-//	Source file: z:\adsoft~1\ZProcess\ActivityCmb.cpp
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
+//    Source file: z:\adsoft~1\ZProcess\ActivityCmb.cpp
 
 #include <StdAfx.h>
 
@@ -13,8 +13,8 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 //BEGIN_MESSAGE_MAP(ZCActivityCombo, CCJListCtrl)
-	//{{AFX_MSG_MAP(ZCActivityCombo)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZCActivityCombo)
+    //}}AFX_MSG_MAP
 //END_MESSAGE_MAP()
 
 
@@ -22,9 +22,9 @@ static char THIS_FILE[] = __FILE__;
 
 
 ZCActivityCombo::ZCActivityCombo (ZProcess* pProcess, int ActivityType, CString ExcludedActivity, BOOL StopWhenFound, BOOL AttributedActivityOnly)
-:	m_pProcess(pProcess), m_ActivityType(ActivityType), 
-	m_ExcludedActivity(ExcludedActivity), m_StopWhenFound(StopWhenFound),
-	m_AttributedActivityOnly(AttributedActivityOnly)
+:    m_pProcess(pProcess), m_ActivityType(ActivityType), 
+    m_ExcludedActivity(ExcludedActivity), m_StopWhenFound(StopWhenFound),
+    m_AttributedActivityOnly(AttributedActivityOnly)
 {
 }
 
@@ -37,41 +37,41 @@ ZCActivityCombo::~ZCActivityCombo()
 
 int ZCActivityCombo::Initialize (ZProcess* pProcess, int ActivityType, CString ExcludedActivity, BOOL StopWhenFound, BOOL AttributedActivityOnly)
 {
-	m_pProcess = pProcess;
-	m_ActivityType = ActivityType;
-	m_ExcludedActivity = ExcludedActivity;
-	m_StopWhenFound = StopWhenFound;
-	m_AttributedActivityOnly = AttributedActivityOnly;
-	return ZCActivityCombo::Refresh();
+    m_pProcess = pProcess;
+    m_ActivityType = ActivityType;
+    m_ExcludedActivity = ExcludedActivity;
+    m_StopWhenFound = StopWhenFound;
+    m_AttributedActivityOnly = AttributedActivityOnly;
+    return ZCActivityCombo::Refresh();
 }
 
 int ZCActivityCombo::Refresh()
 {
-    CStringArray	ActivityArray;
+    CStringArray    ActivityArray;
 
-	ResetContent();
-	int	Count = m_pProcess->GetActivityNameArray( ActivityArray, m_ActivityType, m_ExcludedActivity, m_StopWhenFound, m_AttributedActivityOnly );
+    ResetContent();
+    int    Count = m_pProcess->GetActivityNameArray( ActivityArray, m_ActivityType, m_ExcludedActivity, m_StopWhenFound, m_AttributedActivityOnly );
     for (register size_t Index = 0; Index < (size_t)Count; ++Index)
         AddString( ActivityArray[Index] );
-	return Count;
+    return Count;
 }
 
-CString	ZCActivityCombo::GetSelectedActivity()
+CString    ZCActivityCombo::GetSelectedActivity()
 {
-	int	Index = GetCurSel();
-	if (Index != CB_ERR)
-	{
-		CString	Text;
-		GetLBText( Index, Text );
-		return Text;
-	}
-	return "";
+    int    Index = GetCurSel();
+    if (Index != CB_ERR)
+    {
+        CString    Text;
+        GetLBText( Index, Text );
+        return Text;
+    }
+    return "";
 }
 
 
-void	ZCActivityCombo::SelectActivity( const CString ActivityName )
+void    ZCActivityCombo::SelectActivity( const CString ActivityName )
 {
-	int	Index = FindString( -1, ActivityName );
-	if (Index != CB_ERR)
-		SetCurSel( Index );
+    int    Index = FindString( -1, ActivityName );
+    if (Index != CB_ERR)
+        SetCurSel( Index );
 }

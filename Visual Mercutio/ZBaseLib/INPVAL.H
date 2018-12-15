@@ -38,29 +38,29 @@ class AFX_EXT_CLASS ZIInputValue : public ZIDialog
 {
 // Construction
 public:
-	ZIInputValue(CString Title="", CString Value="", CWnd* pParent = NULL);	// standard constructor
-	ZIInputValue(UINT nTitleID, CString Value="", CWnd* pParent = NULL);
+    ZIInputValue(CString Title="", CString Value="", CWnd* pParent = NULL);    // standard constructor
+    ZIInputValue(UINT nTitleID, CString Value="", CWnd* pParent = NULL);
 
-	CString		GetValue() { return m_sValue; };
-	
+    CString        GetValue() { return m_sValue; };
+    
 private:
 // Dialog Data
-	//{{AFX_DATA(ZIInputValue)
-	enum { IDD = IDD_INPUT_VALUE };
-	CString	m_sValue;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZIInputValue)
+    enum { IDD = IDD_INPUT_VALUE };
+    CString    m_sValue;
+    //}}AFX_DATA
 
 private:
-	CString	m_Title;
+    CString    m_Title;
 // Implementation
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	// Generated message map functions
-	//{{AFX_MSG(ZIInputValue)
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZIInputValue)
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 

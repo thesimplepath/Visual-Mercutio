@@ -42,45 +42,45 @@ class AFX_EXT_CLASS ZITemplateCopyDlg : public ZIDialog
 {
 // Construction
 public:
-	ZITemplateCopyDlg(ZDTemplateManager* pTemplateManager, CString FileExtension, ZDFolderStamp* pFolderStamp = NULL, BOOL AllowReplace = FALSE, CWnd* pParent = NULL);	// standard constructor
-	CString		GetDescription(){ return m_sDescription; };
-	CString		GetFilename(){ return m_sFilename; };
-	CString		GetTitle(){ return m_sTitle; };
-	bool		FileChooseExists() const { return m_FileExist; };
+    ZITemplateCopyDlg(ZDTemplateManager* pTemplateManager, CString FileExtension, ZDFolderStamp* pFolderStamp = NULL, BOOL AllowReplace = FALSE, CWnd* pParent = NULL);    // standard constructor
+    CString        GetDescription(){ return m_sDescription; };
+    CString        GetFilename(){ return m_sFilename; };
+    CString        GetTitle(){ return m_sTitle; };
+    bool        FileChooseExists() const { return m_FileExist; };
 
 private:
 // Dialog Data
-	//{{AFX_DATA(ZITemplateCopyDlg)
-	enum { IDD = IDD_TEMPLATESAVE };
-	CString	m_sDescription;
-	CString	m_sFilename;
-	CString	m_sTitle;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZITemplateCopyDlg)
+    enum { IDD = IDD_TEMPLATESAVE };
+    CString    m_sDescription;
+    CString    m_sFilename;
+    CString    m_sTitle;
+    //}}AFX_DATA
 #ifdef _WIN32
-	ZCTemplateTreeCtrl	m_TemplateDirList;
+    ZCTemplateTreeCtrl    m_TemplateDirList;
 #endif
 #ifndef _WIN32
-	CListBox			m_TemplateDirList;
+    CListBox            m_TemplateDirList;
 #endif
 
 // Implementation
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	// Generated message map functions
-	//{{AFX_MSG(ZITemplateCopyDlg)
-	virtual void OnOK();
-	virtual BOOL OnInitDialog();
-	afx_msg void OnChangeTitle();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
-	
+    // Generated message map functions
+    //{{AFX_MSG(ZITemplateCopyDlg)
+    virtual void OnOK();
+    virtual BOOL OnInitDialog();
+    afx_msg void OnChangeTitle();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
+    
 private:
-	ZDTemplateManager* 	m_pTemplateManager;
-	ZDFolderStamp*		m_pFolderStamp;
-	CString				m_FileExtension;
-	BOOL				m_AllowReplace;
-	bool				m_FileExist;
+    ZDTemplateManager*     m_pTemplateManager;
+    ZDFolderStamp*        m_pFolderStamp;
+    CString                m_FileExtension;
+    BOOL                m_AllowReplace;
+    bool                m_FileExist;
 };
 
 

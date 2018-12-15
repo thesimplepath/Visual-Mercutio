@@ -29,10 +29,10 @@ CDocument* ZIProcessGraphChildFrame::m_pLastDocumentActivated = NULL;
 IMPLEMENT_DYNCREATE( ZIProcessGraphChildFrame, SECMDIChildWnd )
 
 BEGIN_MESSAGE_MAP( ZIProcessGraphChildFrame, SECMDIChildWnd )
-	//{{AFX_MSG_MAP(ZIProcessGraphChildFrame)
-	ON_WM_MDIACTIVATE()
-	ON_WM_MOUSEACTIVATE()
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZIProcessGraphChildFrame)
+    ON_WM_MDIACTIVATE()
+    ON_WM_MOUSEACTIVATE()
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -48,15 +48,15 @@ ZIProcessGraphChildFrame::~ZIProcessGraphChildFrame()
 
 BOOL ZIProcessGraphChildFrame::PreCreateWindow( CREATESTRUCT& cs )
 {
-	// TODO: Modify the Window class or styles here by modifying
-	//  the CREATESTRUCT cs
+    // TODO: Modify the Window class or styles here by modifying
+    //  the CREATESTRUCT cs
 
-	if( !SECMDIChildWnd::PreCreateWindow( cs ) )
-	{
-		return FALSE;
-	}
+    if( !SECMDIChildWnd::PreCreateWindow( cs ) )
+    {
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 //////////////////
@@ -64,39 +64,39 @@ BOOL ZIProcessGraphChildFrame::PreCreateWindow( CREATESTRUCT& cs )
 //
 void ZIProcessGraphChildFrame::OnUpdateFrameTitle( BOOL bAddToTitle )
 {
-	SECMDIChildWnd::OnUpdateFrameTitle( bAddToTitle );
-	CDocument* pDoc = GetActiveDocument();
+    SECMDIChildWnd::OnUpdateFrameTitle( bAddToTitle );
+    CDocument* pDoc = GetActiveDocument();
 
-	if ( pDoc && ISA( pDoc, ZDProcessGraphModelDoc ) )
-	{
-		CView* pView = GetActiveView();
+    if ( pDoc && ISA( pDoc, ZDProcessGraphModelDoc ) )
+    {
+        CView* pView = GetActiveView();
 
-		if ( pView && ISA( pView, ZIProcessGraphModelView ) )
-		{
-			// JMR-MODIF - Le 29 septembre 2005 - Si le document est en cours de fermeture, abandonne l'opération.
-			if ( dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->IsClosing() == FALSE )
-			{
-				if ( !( (ZIProcessGraphModelView*)pView )->GetModel()->GetAbsolutePath().IsEmpty() )
-				{
-					CString WndText = ( (ZIProcessGraphModelView*)pView )->GetModel()->GetAbsolutePath();
+        if ( pView && ISA( pView, ZIProcessGraphModelView ) )
+        {
+            // JMR-MODIF - Le 29 septembre 2005 - Si le document est en cours de fermeture, abandonne l'opération.
+            if ( dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->IsClosing() == FALSE )
+            {
+                if ( !( (ZIProcessGraphModelView*)pView )->GetModel()->GetAbsolutePath().IsEmpty() )
+                {
+                    CString WndText = ( (ZIProcessGraphModelView*)pView )->GetModel()->GetAbsolutePath();
 
-					// If has a page set, add the page name
-					if ( ( (ZIProcessGraphModelView*)pView )->GetModel()->HasPageSet() )
-					{
-						ZDProcessGraphPage* pPage =
-							( (ZIProcessGraphModelView*)pView )->GetModel()->FindModelPage( ( (ZIProcessGraphModelView*)pView )->GetModel() );
+                    // If has a page set, add the page name
+                    if ( ( (ZIProcessGraphModelView*)pView )->GetModel()->HasPageSet() )
+                    {
+                        ZDProcessGraphPage* pPage =
+                            ( (ZIProcessGraphModelView*)pView )->GetModel()->FindModelPage( ( (ZIProcessGraphModelView*)pView )->GetModel() );
 
-						if ( pPage )
-						{
-							WndText += _T( "[" ) + pPage->GetPageName() + _T( "]" );
-						}
-					}
+                        if ( pPage )
+                        {
+                            WndText += _T( "[" ) + pPage->GetPageName() + _T( "]" );
+                        }
+                    }
 
-					SetWindowText( WndText );
-				}
-			}
-		}
-	}
+                    SetWindowText( WndText );
+                }
+            }
+        }
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -105,12 +105,12 @@ void ZIProcessGraphChildFrame::OnUpdateFrameTitle( BOOL bAddToTitle )
 #ifdef _DEBUG
 void ZIProcessGraphChildFrame::AssertValid() const
 {
-	SECMDIChildWnd::AssertValid();
+    SECMDIChildWnd::AssertValid();
 }
 
 void ZIProcessGraphChildFrame::Dump( CDumpContext& dc ) const
 {
-	SECMDIChildWnd::Dump( dc );
+    SECMDIChildWnd::Dump( dc );
 }
 #endif //_DEBUG
 
@@ -119,51 +119,51 @@ void ZIProcessGraphChildFrame::Dump( CDumpContext& dc ) const
 
 void ZIProcessGraphChildFrame::OnMDIActivate( BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd )
 {
-	SECMDIChildWnd::OnMDIActivate( bActivate, pActivateWnd, pDeactivateWnd );
-	
-	if ( m_pLastDocumentActivated && m_pLastDocumentActivated != GetActiveDocument() )
-	{
-		AfxGetMainWnd()->SendMessageToDescendants( UM_DOCUMENTHASBEENSELECTED, 0, (LPARAM)GetActiveDocument() );
-	}
+    SECMDIChildWnd::OnMDIActivate( bActivate, pActivateWnd, pDeactivateWnd );
+    
+    if ( m_pLastDocumentActivated && m_pLastDocumentActivated != GetActiveDocument() )
+    {
+        AfxGetMainWnd()->SendMessageToDescendants( UM_DOCUMENTHASBEENSELECTED, 0, (LPARAM)GetActiveDocument() );
+    }
 
-	m_pLastDocumentActivated = GetActiveDocument();
+    m_pLastDocumentActivated = GetActiveDocument();
 
-	if ( m_pLastDocumentActivated && ISA( m_pLastDocumentActivated, ZDProcessGraphModelDoc ) )
-	{
-		// Switch the context
-		ZUFloatingToolbar::SwitchContext( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetModel()->GetNotation() );
+    if ( m_pLastDocumentActivated && ISA( m_pLastDocumentActivated, ZDProcessGraphModelDoc ) )
+    {
+        // Switch the context
+        ZUFloatingToolbar::SwitchContext( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetModel()->GetNotation() );
 
-		// Request the change of the resource language
-		ZBResourceManager::ChangeLanguage( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetLanguage() );
+        // Request the change of the resource language
+        ZBResourceManager::ChangeLanguage( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetLanguage() );
 
-		// Notify all document's observers about the frame activation
-		ZBDocumentObserverMsg Msg( UM_FRAMEHASBEENACTIVATED,
-								   m_pLastDocumentActivated,
-								   GetActiveView() );
+        // Notify all document's observers about the frame activation
+        ZBDocumentObserverMsg Msg( UM_FRAMEHASBEENACTIVATED,
+                                   m_pLastDocumentActivated,
+                                   GetActiveView() );
 
-		dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->NotifyAllObservers( &Msg );
-	}
+        dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->NotifyAllObservers( &Msg );
+    }
 }
 
 int ZIProcessGraphChildFrame::OnMouseActivate( CWnd* pDesktopWnd, UINT nHitTest, UINT message )
 {
-	int nResult = SECMDIChildWnd::OnMouseActivate( pDesktopWnd, nHitTest, message );
+    int nResult = SECMDIChildWnd::OnMouseActivate( pDesktopWnd, nHitTest, message );
 
-	if ( m_pLastDocumentActivated && ISA( m_pLastDocumentActivated, ZDProcessGraphModelDoc ) )
-	{
-		// Switch the context
-		ZUFloatingToolbar::SwitchContext( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetModel()->GetNotation() );
+    if ( m_pLastDocumentActivated && ISA( m_pLastDocumentActivated, ZDProcessGraphModelDoc ) )
+    {
+        // Switch the context
+        ZUFloatingToolbar::SwitchContext( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetModel()->GetNotation() );
 
-		// Request the change of the resource language
-		ZBResourceManager::ChangeLanguage( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetLanguage() );
+        // Request the change of the resource language
+        ZBResourceManager::ChangeLanguage( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetLanguage() );
 
-		// Notify all document's observers about the frame activation
-		ZBDocumentObserverMsg Msg( UM_FRAMEHASBEENACTIVATED,
-								   m_pLastDocumentActivated,
-								   GetActiveView() );
+        // Notify all document's observers about the frame activation
+        ZBDocumentObserverMsg Msg( UM_FRAMEHASBEENACTIVATED,
+                                   m_pLastDocumentActivated,
+                                   GetActiveView() );
 
-		dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->NotifyAllObservers( &Msg );
-	}
+        dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->NotifyAllObservers( &Msg );
+    }
 
-	return nResult;
+    return nResult;
 }

@@ -32,9 +32,9 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUCheckMessengerValidUnit::ZUCheckMessengerValidUnit( ZDProcessGraphModelMdl*	pModel /*= NULL*/,
-													  void*						pClass /*= NULL*/ )
-	: ZUProcessNavigation( pModel, pClass )
+ZUCheckMessengerValidUnit::ZUCheckMessengerValidUnit( ZDProcessGraphModelMdl*    pModel /*= NULL*/,
+                                                      void*                        pClass /*= NULL*/ )
+    : ZUProcessNavigation( pModel, pClass )
 {
 }
 
@@ -44,147 +44,147 @@ ZUCheckMessengerValidUnit::~ZUCheckMessengerValidUnit()
 
 bool ZUCheckMessengerValidUnit::OnStart()
 {
-	if ( !m_pModel )
-	{
-		return false;
-	}
+    if ( !m_pModel )
+    {
+        return false;
+    }
 
-	// Main user group is not valid
-	if ( !m_pModel->MainUserGroupIsValid() )
-	{
-		if ( m_pLog )
-		{
-			CString message;
-			message.LoadString( IDS_ERR_USERGROUP_DIFFMODEL );
-			ZBGenericSymbolErrorLine e( message );
-			m_pLog->AddLine( e );
-		}
+    // Main user group is not valid
+    if ( !m_pModel->MainUserGroupIsValid() )
+    {
+        if ( m_pLog )
+        {
+            CString message;
+            message.LoadString( IDS_ERR_USERGROUP_DIFFMODEL );
+            ZBGenericSymbolErrorLine e( message );
+            m_pLog->AddLine( e );
+        }
 
-		// Increment error counter
-		++m_ErrorCounter;
-	}
+        // Increment error counter
+        ++m_ErrorCounter;
+    }
 
-	// Main logical system is not valid
-	if ( !m_pModel->MainLogicalSystemIsValid() )
-	{
-		if ( m_pLog )
-		{
-			CString message;
-			message.LoadString( IDS_ERR_SYSTEMDEFXML_DIFFMODEL );
-			ZBGenericSymbolErrorLine e( message );
-			m_pLog->AddLine( e );
-		}
+    // Main logical system is not valid
+    if ( !m_pModel->MainLogicalSystemIsValid() )
+    {
+        if ( m_pLog )
+        {
+            CString message;
+            message.LoadString( IDS_ERR_SYSTEMDEFXML_DIFFMODEL );
+            ZBGenericSymbolErrorLine e( message );
+            m_pLog->AddLine( e );
+        }
 
-		// Increment error counter
-		++m_ErrorCounter;
-	}
+        // Increment error counter
+        ++m_ErrorCounter;
+    }
 
-	// JMR-MODIF - Le 20 avril 2006 - Ajout du code de test pour le fichier des prestations.
-	if ( !m_pModel->MainLogicalPrestationsIsValid() )
-	{
-		if ( m_pLog )
-		{
-			CString message;
-			message.LoadString( IDS_ERR_PRESTATIONSDEFXML_DIFFMODEL );
-			ZBGenericSymbolErrorLine e( message );
-			m_pLog->AddLine( e );
-		}
+    // JMR-MODIF - Le 20 avril 2006 - Ajout du code de test pour le fichier des prestations.
+    if ( !m_pModel->MainLogicalPrestationsIsValid() )
+    {
+        if ( m_pLog )
+        {
+            CString message;
+            message.LoadString( IDS_ERR_PRESTATIONSDEFXML_DIFFMODEL );
+            ZBGenericSymbolErrorLine e( message );
+            m_pLog->AddLine( e );
+        }
 
-		// Increment error counter
-		++m_ErrorCounter;
-	}
+        // Increment error counter
+        ++m_ErrorCounter;
+    }
 
-	return true;
+    return true;
 }
 
 bool ZUCheckMessengerValidUnit::OnFinish()
 {
-	return true;
+    return true;
 }
 
 bool ZUCheckMessengerValidUnit::OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
 {
-	// Test if it is a local symbol
-	if ( !pSymbol || !pSymbol->IsLocal() )
-	{
-		return true;
-	}
+    // Test if it is a local symbol
+    if ( !pSymbol || !pSymbol->IsLocal() )
+    {
+        return true;
+    }
 
-	// Check if unit defined for procedure
-	if ( pSymbol->GetUnitGUID().IsEmpty() )
-	{
-		if ( m_pLog )
-		{
-			ZBGenericSymbolErrorLine e( IDS_AL_PROCEDURE_INC_17,
-										pSymbol->GetSymbolName(),
-										pSymbol->GetAbsolutePath(),
-										-1,
-										1 );
+    // Check if unit defined for procedure
+    if ( pSymbol->GetUnitGUID().IsEmpty() )
+    {
+        if ( m_pLog )
+        {
+            ZBGenericSymbolErrorLine e( IDS_AL_PROCEDURE_INC_17,
+                                        pSymbol->GetSymbolName(),
+                                        pSymbol->GetAbsolutePath(),
+                                        -1,
+                                        1 );
 
-			m_pLog->AddLine( e );
-		}
+            m_pLog->AddLine( e );
+        }
 
-		// Increment error counter
-		++m_ErrorCounter;
-	}
+        // Increment error counter
+        ++m_ErrorCounter;
+    }
 
-	return true;
+    return true;
 }
 
 bool ZUCheckMessengerValidUnit::OnStartSymbol( ZBBPStartSymbol* pSymbol )
 {
-	// Test if it is a local symbol
-	if ( !pSymbol || !pSymbol->IsLocal() )
-	{
-		return true;
-	}
+    // Test if it is a local symbol
+    if ( !pSymbol || !pSymbol->IsLocal() )
+    {
+        return true;
+    }
 
-	// Check if unit defined for procedure
-	if ( pSymbol->GetUnitGUID().IsEmpty() )
-	{
-		if ( m_pLog )
-		{
-			ZBGenericSymbolErrorLine e( IDS_AL_START_INC_14,
-										pSymbol->GetSymbolName(),
-										pSymbol->GetAbsolutePath(),
-										-1,
-										1 );
+    // Check if unit defined for procedure
+    if ( pSymbol->GetUnitGUID().IsEmpty() )
+    {
+        if ( m_pLog )
+        {
+            ZBGenericSymbolErrorLine e( IDS_AL_START_INC_14,
+                                        pSymbol->GetSymbolName(),
+                                        pSymbol->GetAbsolutePath(),
+                                        -1,
+                                        1 );
 
-			m_pLog->AddLine( e );
-		}
+            m_pLog->AddLine( e );
+        }
 
-		// Increment error counter
-		++m_ErrorCounter;
-	}
+        // Increment error counter
+        ++m_ErrorCounter;
+    }
 
-	return true;
+    return true;
 }
 
 bool ZUCheckMessengerValidUnit::OnStopSymbol( ZBBPStopSymbol* pSymbol )
 {
-	// Test if it is a local symbol
-	if ( !pSymbol || !pSymbol->IsLocal() )
-	{
-		return true;
-	}
+    // Test if it is a local symbol
+    if ( !pSymbol || !pSymbol->IsLocal() )
+    {
+        return true;
+    }
 
-	// Check if unit defined for procedure
-	if ( pSymbol->GetUnitGUID().IsEmpty() )
-	{
-		if ( m_pLog )
-		{
-			ZBGenericSymbolErrorLine e( IDS_AL_STOP_INC_7,
-										pSymbol->GetSymbolName(),
-										pSymbol->GetAbsolutePath(),
-										-1,
-										1 );
+    // Check if unit defined for procedure
+    if ( pSymbol->GetUnitGUID().IsEmpty() )
+    {
+        if ( m_pLog )
+        {
+            ZBGenericSymbolErrorLine e( IDS_AL_STOP_INC_7,
+                                        pSymbol->GetSymbolName(),
+                                        pSymbol->GetAbsolutePath(),
+                                        -1,
+                                        1 );
 
-			m_pLog->AddLine( e );
-		}
+            m_pLog->AddLine( e );
+        }
 
-		// Increment error counter
-		++m_ErrorCounter;
-	}
+        // Increment error counter
+        ++m_ErrorCounter;
+    }
 
-	return true;
+    return true;
 }

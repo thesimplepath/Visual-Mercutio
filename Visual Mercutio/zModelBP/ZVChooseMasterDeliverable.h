@@ -19,49 +19,49 @@ class ZVChooseMasterDeliverable : public CDialog
 // Construction
 public:
 
-	// Standard constructor
-	ZVChooseMasterDeliverable( const CString Deliverables, const CString Master = _T( "" ), CWnd* pParent = NULL );
+    // Standard constructor
+    ZVChooseMasterDeliverable( const CString Deliverables, const CString Master = _T( "" ), CWnd* pParent = NULL );
 
-	CString GetMaster() const
-	{
-		return m_Master;
-	};
+    CString GetMaster() const
+    {
+        return m_Master;
+    };
 
 private:
 
-	// Dialog Data
-	//{{AFX_DATA(ZVChooseMasterDeliverable)
-	enum { IDD = IDD_CHOOSE_MASTERDELIV };
-	CListBox	m_ListOfDeliverables;
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZVChooseMasterDeliverable)
+    enum { IDD = IDD_CHOOSE_MASTERDELIV };
+    CListBox    m_ListOfDeliverables;
+    //}}AFX_DATA
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVChooseMasterDeliverable)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVChooseMasterDeliverable)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVChooseMasterDeliverable)
-	virtual BOOL OnInitDialog();
-	virtual void OnOK();
-	afx_msg void OnSelchangeListOfDeliverable();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVChooseMasterDeliverable)
+    virtual BOOL OnInitDialog();
+    virtual void OnOK();
+    afx_msg void OnSelchangeListOfDeliverable();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	void StringToListBox( const CString Deliv, CListBox& LB );
-	void CheckState();
+    void StringToListBox( const CString Deliv, CListBox& LB );
+    void CheckState();
 
 private:
 
-	CString m_Deliverables;
-	CString m_Master;
+    CString m_Deliverables;
+    CString m_Master;
 };
 
 //{{AFX_INSERT_LOCATION}}

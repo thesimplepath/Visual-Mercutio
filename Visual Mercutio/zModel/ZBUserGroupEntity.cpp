@@ -19,7 +19,7 @@ static char THIS_FILE[]=__FILE__;
 
 ZBUserEntitySet ZBUserGroupEntity::m_FindSet;
 
-BOOL			ZBUserGroupEntity::m_bModified = FALSE;
+BOOL            ZBUserGroupEntity::m_bModified = FALSE;
 
 IMPLEMENT_SERIAL( ZBUserGroupEntity, ZBUserEntity, def_Version )
 
@@ -27,687 +27,687 @@ IMPLEMENT_SERIAL( ZBUserGroupEntity, ZBUserEntity, def_Version )
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBUserGroupEntity::ZBUserGroupEntity( const CString	Name		/*= _T( "" )*/, 
-									  const CString	Description	/*= _T( "" )*/, 
-									  const float	Cost		/*= 0*/,
-									  ZBUserEntity*	pParent		/*= NULL*/ )
-	: ZBUserEntity( Name, Description, Cost, pParent )
+ZBUserGroupEntity::ZBUserGroupEntity( const CString    Name        /*= _T( "" )*/, 
+                                      const CString    Description    /*= _T( "" )*/, 
+                                      const float    Cost        /*= 0*/,
+                                      ZBUserEntity*    pParent        /*= NULL*/ )
+    : ZBUserEntity( Name, Description, Cost, pParent )
 {
 }
 
 ZBUserGroupEntity::~ZBUserGroupEntity()
 {
-	RemoveAllUserEntities();
+    RemoveAllUserEntities();
 }
 
 ZBUserGroupEntity::ZBUserGroupEntity( const ZBUserGroupEntity& src )
 {
-	*this = src;
+    *this = src;
 }
 
 ZBUserGroupEntity& ZBUserGroupEntity::operator=( const ZBUserGroupEntity& src )
 {
-	// Call the base class assignement operator
-	ZBUserEntity::operator=( (const ZBUserEntity&)src );
+    // Call the base class assignement operator
+    ZBUserEntity::operator=( (const ZBUserEntity&)src );
 
-	// Sets the iterator to the right entity set
-	ZBUserEntityIterator i( src.GetEntitySetConst() );
+    // Sets the iterator to the right entity set
+    ZBUserEntityIterator i( src.GetEntitySetConst() );
 
-	for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
-	{
-		// Clone the object
-		ZBUserEntity* pEntity = pEnv->Clone();
+    for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
+    {
+        // Clone the object
+        ZBUserEntity* pEntity = pEnv->Clone();
 
-		// Set the parent pointer
-		pEntity->SetParent( this );
+        // Set the parent pointer
+        pEntity->SetParent( this );
 
-		// Add it to the array
-		m_EntitySet.Add( pEntity );
-	}
+        // Add it to the array
+        m_EntitySet.Add( pEntity );
+    }
 
-	return *this;
+    return *this;
 }
 
 ZBUserEntity* ZBUserGroupEntity::Clone() const
 {
-	return ( new ZBUserGroupEntity( *this ) );
+    return ( new ZBUserGroupEntity( *this ) );
 }
 
 void ZBUserGroupEntity::RemoveAllUserEntities()
 {
-	// Sets the iterator to the right entity set
-	ZBUserEntityIterator i( &m_EntitySet );
+    // Sets the iterator to the right entity set
+    ZBUserEntityIterator i( &m_EntitySet );
 
-	for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
-	{
-		delete pEnv;
-	}
+    for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
+    {
+        delete pEnv;
+    }
 
-	m_EntitySet.RemoveAll();
+    m_EntitySet.RemoveAll();
 }
 
 bool ZBUserGroupEntity::ContainThisRole( const CString Role )
 {
-	// Need to be implemented
+    // Need to be implemented
 
-	// Not found
-	return false;
+    // Not found
+    return false;
 }
 
 size_t ZBUserGroupEntity::FillGroupNameArray( CStringArray& NameArray )
 {
-	// Sets the iterator to the right entity set
-	ZBUserEntityIterator i( &m_EntitySet );
+    // Sets the iterator to the right entity set
+    ZBUserEntityIterator i( &m_EntitySet );
 
-	for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
-	{
-		// Add the name to the array
-		NameArray.Add( pEnv->GetEntityName() );
+    for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
+    {
+        // Add the name to the array
+        NameArray.Add( pEnv->GetEntityName() );
 
-		// If we have a group entity,
-		// and the group has entity
-		// call the FillGroupNameArray group function 
-		if ( ISA( pEnv, ZBUserGroupEntity ) && dynamic_cast<ZBUserGroupEntity*>( pEnv )->ContainEntity() )
-		{
-			dynamic_cast<ZBUserGroupEntity*>( pEnv )->FillGroupNameArray( NameArray );
-		}
-	}
+        // If we have a group entity,
+        // and the group has entity
+        // call the FillGroupNameArray group function 
+        if ( ISA( pEnv, ZBUserGroupEntity ) && dynamic_cast<ZBUserGroupEntity*>( pEnv )->ContainEntity() )
+        {
+            dynamic_cast<ZBUserGroupEntity*>( pEnv )->FillGroupNameArray( NameArray );
+        }
+    }
 
-	return NameArray.GetSize();
+    return NameArray.GetSize();
 }
 
 ////////////////////////////////////////////////////////////////
 // Group management functions
 
-ZBUserGroupEntity* ZBUserGroupEntity::AddGroup( const CString	Name,
-												const CString	Description,
-												const float		Cost,
-												const CString	InGroupName )
+ZBUserGroupEntity* ZBUserGroupEntity::AddGroup( const CString    Name,
+                                                const CString    Description,
+                                                const float        Cost,
+                                                const CString    InGroupName )
 {
-	ZBUserGroupEntity* pGroup = NULL;
+    ZBUserGroupEntity* pGroup = NULL;
 
-	// If in group name defined,
-	// Try to locate the group name
-	if ( !InGroupName.IsEmpty() )
-	{
-		pGroup = _FindFirstGroup( InGroupName );
-	}
+    // If in group name defined,
+    // Try to locate the group name
+    if ( !InGroupName.IsEmpty() )
+    {
+        pGroup = _FindFirstGroup( InGroupName );
+    }
 
-	// Call the AddGroup function with the pGroup pointer passed has parameter
-	return AddGroup( Name, Description, Cost, pGroup );
+    // Call the AddGroup function with the pGroup pointer passed has parameter
+    return AddGroup( Name, Description, Cost, pGroup );
 }
 
-ZBUserGroupEntity* ZBUserGroupEntity::AddGroup( const CString		Name,
-												const CString		Description,
-												const float			Cost,
-												ZBUserGroupEntity*	pInGroup )
+ZBUserGroupEntity* ZBUserGroupEntity::AddGroup( const CString        Name,
+                                                const CString        Description,
+                                                const float            Cost,
+                                                ZBUserGroupEntity*    pInGroup )
 {
-	// If no group defined
-	if ( !pInGroup )
-	{
-		pInGroup = this;
-	}
+    // If no group defined
+    if ( !pInGroup )
+    {
+        pInGroup = this;
+    }
 
-	return pInGroup->AddGroup( Name, Description, Cost );
+    return pInGroup->AddGroup( Name, Description, Cost );
 }
 
 ZBUserGroupEntity* ZBUserGroupEntity::AddGroup( const CString Name, const CString Description, const float Cost )
 {
-	ZBUserGroupEntity* pNewGroup = new ZBUserGroupEntity( Name, Description, Cost, this );
-	m_EntitySet.Add( pNewGroup );
-	return pNewGroup;
+    ZBUserGroupEntity* pNewGroup = new ZBUserGroupEntity( Name, Description, Cost, this );
+    m_EntitySet.Add( pNewGroup );
+    return pNewGroup;
 }
 
 bool ZBUserGroupEntity::MoveEntity( ZBUserEntity* pEntity )
 {
-	// First, remove the entity from the old group
-	ZBUserEntity* pParent = pEntity->GetParent();
+    // First, remove the entity from the old group
+    ZBUserEntity* pParent = pEntity->GetParent();
 
-	if ( pParent && ISA( pParent, ZBUserGroupEntity ) )
-	{
-		if ( !dynamic_cast<ZBUserGroupEntity*>(pParent)->RemoveEntityFromSet( pEntity ) )
-		{
-			return false;
-		}
-	}
+    if ( pParent && ISA( pParent, ZBUserGroupEntity ) )
+    {
+        if ( !dynamic_cast<ZBUserGroupEntity*>(pParent)->RemoveEntityFromSet( pEntity ) )
+        {
+            return false;
+        }
+    }
 
-	// Then, add the entity to the new group
-	AddEntity( pEntity );
+    // Then, add the entity to the new group
+    AddEntity( pEntity );
 
-	// Sets the new parent
-	pEntity->SetParent( this );
+    // Sets the new parent
+    pEntity->SetParent( this );
 
-	return true;
+    return true;
 }
 
 bool ZBUserGroupEntity::RemoveEntityFromSet( ZBUserEntity* pEntity )
 {
-	// Sets the iterator to the right entity set
-	ZBUserEntityIterator i( &m_EntitySet );
+    // Sets the iterator to the right entity set
+    ZBUserEntityIterator i( &m_EntitySet );
 
-	for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
-	{
-		if ( pEnv == pEntity )
-		{
-			// Remove the current element
-			i.Remove();
-			return true;
-		}
-	}
+    for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
+    {
+        if ( pEnv == pEntity )
+        {
+            // Remove the current element
+            i.Remove();
+            return true;
+        }
+    }
 
-	return false;
+    return false;
 }
 
 bool ZBUserGroupEntity::RemoveGroup( const CString Name, bool Deeper /*= false*/ )
 {
-	ZBUserEntitySet* pSet = FindGroup( Name, Deeper );
+    ZBUserEntitySet* pSet = FindGroup( Name, Deeper );
 
-	if ( pSet && pSet->GetSize() > 0 )
-	{
-		return _RemoveGroups( *pSet );
-	}
+    if ( pSet && pSet->GetSize() > 0 )
+    {
+        return _RemoveGroups( *pSet );
+    }
 
-	return false;
+    return false;
 }
 
 bool ZBUserGroupEntity::RemoveGroup( const CString Name, const CString InGroupName )
 {
-	ZBUserEntitySet* pSet = FindGroup( Name, InGroupName );
+    ZBUserEntitySet* pSet = FindGroup( Name, InGroupName );
 
-	if ( pSet && pSet->GetSize() > 0 )
-	{
-		return _RemoveGroups( *pSet );
-	}
+    if ( pSet && pSet->GetSize() > 0 )
+    {
+        return _RemoveGroups( *pSet );
+    }
 
-	return false;
+    return false;
 }
 bool ZBUserGroupEntity::RemoveGroup( const CString Name, ZBUserGroupEntity* pInGroup )
 {
-	ZBUserEntitySet* pSet = FindGroup( Name, pInGroup );
+    ZBUserEntitySet* pSet = FindGroup( Name, pInGroup );
 
-	if ( pSet && pSet->GetSize() > 0 )
-	{
-		return _RemoveGroups( *pSet );
-	}
+    if ( pSet && pSet->GetSize() > 0 )
+    {
+        return _RemoveGroups( *pSet );
+    }
 
-	return false;
+    return false;
 }
 
 bool ZBUserGroupEntity::RemoveGroup( ZBUserGroupEntity* pGroup )
 {
-	// Sets the iterator to the right entity set
-	ZBUserEntityIterator i( &m_EntitySet );
+    // Sets the iterator to the right entity set
+    ZBUserEntityIterator i( &m_EntitySet );
 
-	for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
-	{
-		if ( pEnv == pGroup && ISA( pEnv, ZBUserGroupEntity ) )
-		{
-			// Free the memory
-			delete pGroup;
+    for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
+    {
+        if ( pEnv == pGroup && ISA( pEnv, ZBUserGroupEntity ) )
+        {
+            // Free the memory
+            delete pGroup;
 
-			// Remove the current element
-			i.Remove();
-			return true;
-		}
+            // Remove the current element
+            i.Remove();
+            return true;
+        }
 
-		// If we have a group entity,
-		// and the group has entity
-		// call the recalculate group function 
-		if ( ISA( pEnv, ZBUserGroupEntity ) && dynamic_cast<ZBUserGroupEntity*>( pEnv )->ContainEntity() )
-		{
-			if ( dynamic_cast<ZBUserGroupEntity*>( pEnv )->RemoveGroup( pGroup ) )
-			{
-				return true;
-			}
-		}
-	}
+        // If we have a group entity,
+        // and the group has entity
+        // call the recalculate group function 
+        if ( ISA( pEnv, ZBUserGroupEntity ) && dynamic_cast<ZBUserGroupEntity*>( pEnv )->ContainEntity() )
+        {
+            if ( dynamic_cast<ZBUserGroupEntity*>( pEnv )->RemoveGroup( pGroup ) )
+            {
+                return true;
+            }
+        }
+    }
 
-	return false;
+    return false;
 }
 
 bool ZBUserGroupEntity::_RemoveGroups( ZBUserEntitySet& Set )
 {
-	// Initialize to false
-	bool RetValue = false;
+    // Initialize to false
+    bool RetValue = false;
 
-	if ( Set.GetSize() > 0 )
-	{
-		// If elements, set to true
-		RetValue = true;
+    if ( Set.GetSize() > 0 )
+    {
+        // If elements, set to true
+        RetValue = true;
 
-		// For each elements,
-		// check if a group and if he has a parent
-		// then call the parent to remove the group
-		int Count = Set.GetSize();
+        // For each elements,
+        // check if a group and if he has a parent
+        // then call the parent to remove the group
+        int Count = Set.GetSize();
 
-		for ( int i = 0; i < Count; ++i )
-		{
-			if ( Set.GetAt(i) &&
-				 ISA( Set.GetAt( i ),ZBUserGroupEntity ) &&
-				 dynamic_cast<ZBUserGroupEntity*>( Set.GetAt( i ) )->GetParent() != NULL )
-			{
-				ZBUserGroupEntity* pGroup = dynamic_cast<ZBUserGroupEntity*>( Set.GetAt( i ) );
+        for ( int i = 0; i < Count; ++i )
+        {
+            if ( Set.GetAt(i) &&
+                 ISA( Set.GetAt( i ),ZBUserGroupEntity ) &&
+                 dynamic_cast<ZBUserGroupEntity*>( Set.GetAt( i ) )->GetParent() != NULL )
+            {
+                ZBUserGroupEntity* pGroup = dynamic_cast<ZBUserGroupEntity*>( Set.GetAt( i ) );
 
-				// If problem sets to false at least one time
-				if ( !dynamic_cast<ZBUserGroupEntity*>( pGroup->GetParent() )->RemoveGroup( pGroup ) )
-				{
-					RetValue = false;
-				}
-			}
-		}
-	}
+                // If problem sets to false at least one time
+                if ( !dynamic_cast<ZBUserGroupEntity*>( pGroup->GetParent() )->RemoveGroup( pGroup ) )
+                {
+                    RetValue = false;
+                }
+            }
+        }
+    }
 
-	return RetValue;
+    return RetValue;
 }
 
 ZBUserEntity* ZBUserGroupEntity::FindGroupByGUID( const CString GUID, bool Deeper /*= false*/ )
 {
-	// First, check if the main group correspond to the requested GUID
-	// add it to the find set
-	if ( GetGUID() == GUID )
-	{
-		return this;
-	}
+    // First, check if the main group correspond to the requested GUID
+    // add it to the find set
+    if ( GetGUID() == GUID )
+    {
+        return this;
+    }
 
-	// Then search in the group itself
-	return _FindGroupByGUID( GUID, Deeper );
+    // Then search in the group itself
+    return _FindGroupByGUID( GUID, Deeper );
 }
 
 ZBUserEntitySet* ZBUserGroupEntity::FindGroup( const CString Name, bool Deeper /*= false*/ )
 {
-	m_FindSet.RemoveAll();
+    m_FindSet.RemoveAll();
 
-	// First, check if the main group correspond to the requested name
-	// add it to the find set
-	if ( GetEntityName() == Name )
-	{
-		m_FindSet.Add( this );
-	}
+    // First, check if the main group correspond to the requested name
+    // add it to the find set
+    if ( GetEntityName() == Name )
+    {
+        m_FindSet.Add( this );
+    }
 
-	// Then search in the group itself
-	_FindGroup( Name, Deeper );
+    // Then search in the group itself
+    _FindGroup( Name, Deeper );
 
-	return &m_FindSet;
+    return &m_FindSet;
 }
 
 ZBUserEntitySet* ZBUserGroupEntity::FindGroup( const CString Name, const CString InGroupName )
 {
-	ZBUserGroupEntity* pGroup = NULL;
+    ZBUserGroupEntity* pGroup = NULL;
 
-	// If in group name defined,
-	// Try to locate the group name
-	if ( !InGroupName.IsEmpty() )
-	{
-		pGroup = _FindFirstGroup( InGroupName );
-	}
+    // If in group name defined,
+    // Try to locate the group name
+    if ( !InGroupName.IsEmpty() )
+    {
+        pGroup = _FindFirstGroup( InGroupName );
+    }
 
-	// Call the FindGroup function with the pGroup pointer passed has parameter
-	return FindGroup( Name, pGroup );
+    // Call the FindGroup function with the pGroup pointer passed has parameter
+    return FindGroup( Name, pGroup );
 }
 
 ZBUserEntitySet* ZBUserGroupEntity::FindGroup( const CString Name, ZBUserGroupEntity* pInGroup )
 {
-	m_FindSet.RemoveAll();
+    m_FindSet.RemoveAll();
 
-	// First, check if the main group correspond to the requested name
-	// add it to the find set
-	if ( GetEntityName() == Name )
-	{
-		m_FindSet.Add( this );
-	}
+    // First, check if the main group correspond to the requested name
+    // add it to the find set
+    if ( GetEntityName() == Name )
+    {
+        m_FindSet.Add( this );
+    }
 
-	// Then search in the group itself
-	_FindGroup( Name, pInGroup );
-	return &m_FindSet;
+    // Then search in the group itself
+    _FindGroup( Name, pInGroup );
+    return &m_FindSet;
 }
 
 void ZBUserGroupEntity::_FindGroup( const CString Name, ZBUserGroupEntity* pInGroup )
 {
-	if ( !pInGroup )
-	{
-		pInGroup = this;
-	}
+    if ( !pInGroup )
+    {
+        pInGroup = this;
+    }
 
-	pInGroup->_FindGroup( Name, false );
+    pInGroup->_FindGroup( Name, false );
 }
 
 // The _FindGroupByGUID function will search all groups corresponding to the GUID passed as parameter
 ZBUserEntity* ZBUserGroupEntity::_FindGroupByGUID( const CString GUID, bool Deeper /*= false*/ )
 {
-	// Sets the iterator to the right entity set
-	ZBUserEntityIterator i( &m_EntitySet );
+    // Sets the iterator to the right entity set
+    ZBUserEntityIterator i( &m_EntitySet );
 
-	for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
-	{
-		if ( ISA( pEnv, ZBUserGroupEntity ) )
-		{
-			// If correspond to the requested name
-			// add it to the find set
-			if ( dynamic_cast<ZBUserGroupEntity*>( pEnv )->GetGUID() == GUID )
-			{
-				return pEnv;
-			}
+    for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
+    {
+        if ( ISA( pEnv, ZBUserGroupEntity ) )
+        {
+            // If correspond to the requested name
+            // add it to the find set
+            if ( dynamic_cast<ZBUserGroupEntity*>( pEnv )->GetGUID() == GUID )
+            {
+                return pEnv;
+            }
 
-			// If the group has entity
-			// call the group's function 
-			if ( Deeper && dynamic_cast<ZBUserGroupEntity*>( pEnv )->ContainEntity() )
-			{
-				ZBUserEntity* pFoundEnv =
-					dynamic_cast<ZBUserGroupEntity*>( pEnv )->_FindGroupByGUID( GUID, Deeper );
+            // If the group has entity
+            // call the group's function 
+            if ( Deeper && dynamic_cast<ZBUserGroupEntity*>( pEnv )->ContainEntity() )
+            {
+                ZBUserEntity* pFoundEnv =
+                    dynamic_cast<ZBUserGroupEntity*>( pEnv )->_FindGroupByGUID( GUID, Deeper );
 
-				if ( pFoundEnv )
-				{
-					return pFoundEnv;
-				}
-			}
-		}
-	}
+                if ( pFoundEnv )
+                {
+                    return pFoundEnv;
+                }
+            }
+        }
+    }
 
-	return NULL;
+    return NULL;
 }
 
 // The _FindGroup function will search all groups corresponding to the name passed as parameter
 // The function will fill the m_FindSet static variable with elements found
 void ZBUserGroupEntity::_FindGroup( const CString Name, bool Deeper /*= false*/ )
 {
-	// Sets the iterator to the right entity set
-	ZBUserEntityIterator i( &m_EntitySet );
+    // Sets the iterator to the right entity set
+    ZBUserEntityIterator i( &m_EntitySet );
 
-	for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
-	{
-		if ( ISA( pEnv, ZBUserGroupEntity ) )
-		{
-			// If correspond to the requested name
-			// add it to the find set
-			if ( dynamic_cast<ZBUserGroupEntity*>(pEnv)->GetEntityName() == Name )
-			{
-				m_FindSet.Add( pEnv );
-			}
+    for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
+    {
+        if ( ISA( pEnv, ZBUserGroupEntity ) )
+        {
+            // If correspond to the requested name
+            // add it to the find set
+            if ( dynamic_cast<ZBUserGroupEntity*>(pEnv)->GetEntityName() == Name )
+            {
+                m_FindSet.Add( pEnv );
+            }
 
-			// If the group has entity
-			// call the group's function 
-			if ( Deeper && dynamic_cast<ZBUserGroupEntity*>( pEnv )->ContainEntity() )
-			{
-				dynamic_cast<ZBUserGroupEntity*>( pEnv )->_FindGroup( Name, Deeper );
-			}
-		}
-	}
+            // If the group has entity
+            // call the group's function 
+            if ( Deeper && dynamic_cast<ZBUserGroupEntity*>( pEnv )->ContainEntity() )
+            {
+                dynamic_cast<ZBUserGroupEntity*>( pEnv )->_FindGroup( Name, Deeper );
+            }
+        }
+    }
 }
 
 ZBUserGroupEntity* ZBUserGroupEntity::_FindFirstGroup( const CString Name, ZBUserGroupEntity* pInGroup )
 {
-	if ( !pInGroup )
-	{
-		pInGroup = this;
-	}
+    if ( !pInGroup )
+    {
+        pInGroup = this;
+    }
 
-	return pInGroup->_FindFirstGroup( Name, false );
+    return pInGroup->_FindFirstGroup( Name, false );
 }
 
 ZBUserGroupEntity* ZBUserGroupEntity::_FindFirstGroup( const CString Name, bool Deeper /*= false*/ )
 {
-	ZBUserEntityIterator i( &m_EntitySet );
+    ZBUserEntityIterator i( &m_EntitySet );
 
-	for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
-	{
-		if ( ISA( pEnv, ZBUserGroupEntity ) )
-		{
-			// If correspond to the requested group name
-			// return it
-			if ( dynamic_cast<ZBUserGroupEntity*>( pEnv )->GetEntityName() == Name )
-			{
-				return dynamic_cast<ZBUserGroupEntity*>( pEnv );
-			}
+    for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
+    {
+        if ( ISA( pEnv, ZBUserGroupEntity ) )
+        {
+            // If correspond to the requested group name
+            // return it
+            if ( dynamic_cast<ZBUserGroupEntity*>( pEnv )->GetEntityName() == Name )
+            {
+                return dynamic_cast<ZBUserGroupEntity*>( pEnv );
+            }
 
-			// If the group has entity
-			if ( Deeper && dynamic_cast<ZBUserGroupEntity*>( pEnv )->ContainEntity() )
-			{
-				ZBUserGroupEntity* pGroup =
-					dynamic_cast<ZBUserGroupEntity*>( pEnv )->_FindFirstGroup( Name, Deeper );
+            // If the group has entity
+            if ( Deeper && dynamic_cast<ZBUserGroupEntity*>( pEnv )->ContainEntity() )
+            {
+                ZBUserGroupEntity* pGroup =
+                    dynamic_cast<ZBUserGroupEntity*>( pEnv )->_FindFirstGroup( Name, Deeper );
 
-				if ( pGroup )
-				{
-					return pGroup;
-				}
-			}
-		}
-	}
+                if ( pGroup )
+                {
+                    return pGroup;
+                }
+            }
+        }
+    }
 
-	return NULL;
+    return NULL;
 }
 
 bool ZBUserGroupEntity::GroupExist( const CString Name, bool Deeper /*= false*/ )
 {
-	// Sets the iterator to the right entity set
-	ZBUserEntityIterator i( &m_EntitySet );
+    // Sets the iterator to the right entity set
+    ZBUserEntityIterator i( &m_EntitySet );
 
-	for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
-	{
-		if ( ISA( pEnv, ZBUserGroupEntity ) )
-		{
-			// If correspond to the requested name
-			if ( dynamic_cast<ZBUserGroupEntity*>( pEnv )->GetEntityName() == Name )
-			{
-				return true;
-			}
+    for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
+    {
+        if ( ISA( pEnv, ZBUserGroupEntity ) )
+        {
+            // If correspond to the requested name
+            if ( dynamic_cast<ZBUserGroupEntity*>( pEnv )->GetEntityName() == Name )
+            {
+                return true;
+            }
 
-			// If the group has entity
-			if ( Deeper && dynamic_cast<ZBUserGroupEntity*>( pEnv )->ContainEntity() )
-			{
-				if ( dynamic_cast<ZBUserGroupEntity*>(pEnv)->GroupExist( Name, Deeper ) )
-				{
-					return true;
-				}
-			}
-		}
-	}
+            // If the group has entity
+            if ( Deeper && dynamic_cast<ZBUserGroupEntity*>( pEnv )->ContainEntity() )
+            {
+                if ( dynamic_cast<ZBUserGroupEntity*>(pEnv)->GroupExist( Name, Deeper ) )
+                {
+                    return true;
+                }
+            }
+        }
+    }
 
-	return false;
+    return false;
 }
 
 bool ZBUserGroupEntity::GroupExist( const CString Name, const CString InGroupName )
 {
-	ZBUserGroupEntity* pGroup = NULL;
+    ZBUserGroupEntity* pGroup = NULL;
 
-	// If in group name defined,
-	// Try to locate the group name
-	if ( !InGroupName.IsEmpty() )
-	{
-		pGroup = _FindFirstGroup( InGroupName );
-	}
+    // If in group name defined,
+    // Try to locate the group name
+    if ( !InGroupName.IsEmpty() )
+    {
+        pGroup = _FindFirstGroup( InGroupName );
+    }
 
-	// Call the function with the group pointer
-	return GroupExist( Name, pGroup );
+    // Call the function with the group pointer
+    return GroupExist( Name, pGroup );
 }
 
 bool ZBUserGroupEntity::GroupExist( const CString Name, ZBUserGroupEntity* pInGroup )
 {
-	if ( !pInGroup )
-	{
-		pInGroup = this;
-	}
+    if ( !pInGroup )
+    {
+        pInGroup = this;
+    }
 
-	return pInGroup->GroupExist( Name, false );
+    return pInGroup->GroupExist( Name, false );
 }
 
 ////////////////////////////////////////////////////////////////
 // File management functions
 ZBUserRoleEntity* ZBUserGroupEntity::AddRole( const CString Rolename, const CString Description )
 {
-	ZBUserRoleEntity* pNewFile = new ZBUserRoleEntity( Rolename, Description, this );
-	m_EntitySet.Add( pNewFile );
-	return pNewFile;
+    ZBUserRoleEntity* pNewFile = new ZBUserRoleEntity( Rolename, Description, this );
+    m_EntitySet.Add( pNewFile );
+    return pNewFile;
 }
 
 ZBUserRoleEntity* ZBUserGroupEntity::AddRole( const CString Rolename,
-											  const CString Description,
-											  const CString InGroupName )
+                                              const CString Description,
+                                              const CString InGroupName )
 {
-	ZBUserGroupEntity* pGroup = NULL;
+    ZBUserGroupEntity* pGroup = NULL;
 
-	// If in group name defined,
-	// Try to locate the group name
-	if ( !InGroupName.IsEmpty() )
-	{
-		pGroup = _FindFirstGroup( InGroupName );
-	}
+    // If in group name defined,
+    // Try to locate the group name
+    if ( !InGroupName.IsEmpty() )
+    {
+        pGroup = _FindFirstGroup( InGroupName );
+    }
 
-	// Call the AddRole function with the pGroup pointer passed has parameter
-	return AddRole( Rolename, Description, pGroup );
+    // Call the AddRole function with the pGroup pointer passed has parameter
+    return AddRole( Rolename, Description, pGroup );
 }
 
-ZBUserRoleEntity* ZBUserGroupEntity::AddRole( const CString			Rolename,
-											  const CString			Description,
-											  ZBUserGroupEntity*	pInGroup )
+ZBUserRoleEntity* ZBUserGroupEntity::AddRole( const CString            Rolename,
+                                              const CString            Description,
+                                              ZBUserGroupEntity*    pInGroup )
 {
-	if ( !pInGroup )
-	{
-		pInGroup = this;
-	}
+    if ( !pInGroup )
+    {
+        pInGroup = this;
+    }
 
-	return pInGroup->AddRole( Rolename, Description );
+    return pInGroup->AddRole( Rolename, Description );
 }
 
 bool ZBUserGroupEntity::RemoveRole( ZBUserRoleEntity* pRole )
 {
-	// Sets the iterator to the right entity set
-	ZBUserEntityIterator i( &m_EntitySet );
+    // Sets the iterator to the right entity set
+    ZBUserEntityIterator i( &m_EntitySet );
 
-	for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
-	{
-		if ( ISA( pEnv, ZBUserRoleEntity ) && dynamic_cast<ZBUserRoleEntity*>( pEnv ) == pRole )
-		{
-			// Free the memory
-			delete pEnv;
+    for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
+    {
+        if ( ISA( pEnv, ZBUserRoleEntity ) && dynamic_cast<ZBUserRoleEntity*>( pEnv ) == pRole )
+        {
+            // Free the memory
+            delete pEnv;
 
-			// Remove the current element
-			i.Remove();
+            // Remove the current element
+            i.Remove();
 
-			return true;
-		}
+            return true;
+        }
 
-		// If we have a group entity,
-		// and the group has entity
-		// call the recalculate group function 
-		if ( ISA( pEnv, ZBUserGroupEntity ) && dynamic_cast<ZBUserGroupEntity*>( pEnv )->ContainEntity() )
-		{
-			if ( dynamic_cast<ZBUserGroupEntity*>( pEnv )->RemoveRole( pRole ) )
-			{
-				return true;
-			}
-		}
-	}
+        // If we have a group entity,
+        // and the group has entity
+        // call the recalculate group function 
+        if ( ISA( pEnv, ZBUserGroupEntity ) && dynamic_cast<ZBUserGroupEntity*>( pEnv )->ContainEntity() )
+        {
+            if ( dynamic_cast<ZBUserGroupEntity*>( pEnv )->RemoveRole( pRole ) )
+            {
+                return true;
+            }
+        }
+    }
 
-	return false;
+    return false;
 }
 
 bool ZBUserGroupEntity::RemoveRole( const CString Rolename )
 {
-	// Sets the iterator to the right entity set
-	ZBUserEntityIterator i( &m_EntitySet );
+    // Sets the iterator to the right entity set
+    ZBUserEntityIterator i( &m_EntitySet );
 
-	for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
-	{
-		if ( ISA( pEnv, ZBUserRoleEntity ) && dynamic_cast<ZBUserRoleEntity*>( pEnv )->GetEntityName() == Rolename )
-		{
-			// Free the memory
-			delete pEnv;
+    for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
+    {
+        if ( ISA( pEnv, ZBUserRoleEntity ) && dynamic_cast<ZBUserRoleEntity*>( pEnv )->GetEntityName() == Rolename )
+        {
+            // Free the memory
+            delete pEnv;
 
-			// Remove the current element
-			i.Remove();
+            // Remove the current element
+            i.Remove();
 
-			return true;
-		}
-	}
+            return true;
+        }
+    }
 
-	return false;
+    return false;
 }
 
 bool ZBUserGroupEntity::RemoveRole( const CString Rolename, const CString InGroupName )
 {
-	ZBUserGroupEntity* pGroup = NULL;
+    ZBUserGroupEntity* pGroup = NULL;
 
-	// If in group name defined,
-	// Try to locate the group name
-	if ( !InGroupName.IsEmpty() )
-	{
-		pGroup = _FindFirstGroup( InGroupName );
-	}
+    // If in group name defined,
+    // Try to locate the group name
+    if ( !InGroupName.IsEmpty() )
+    {
+        pGroup = _FindFirstGroup( InGroupName );
+    }
 
-	// Call the RemoveRole function with the pGroup pointer passed has parameter
-	return RemoveRole( Rolename, pGroup );
+    // Call the RemoveRole function with the pGroup pointer passed has parameter
+    return RemoveRole( Rolename, pGroup );
 }
 
 bool ZBUserGroupEntity::RemoveRole( const CString Rolename, ZBUserGroupEntity* pInGroup )
 {
-	if ( !pInGroup )
-	{
-		pInGroup = this;
-	}
+    if ( !pInGroup )
+    {
+        pInGroup = this;
+    }
 
-	return pInGroup->RemoveRole( Rolename );
+    return pInGroup->RemoveRole( Rolename );
 }
 
 ZBUserEntity* ZBUserGroupEntity::FindRoleByGUID( const CString GUID, bool Deeper /*= false*/ )
 {
-	// Then search in the group itself
-	return _FindRoleByGUID( GUID, Deeper );
+    // Then search in the group itself
+    return _FindRoleByGUID( GUID, Deeper );
 }
 
 // The _FindRoleByGUID function will search all roles corresponding to the GUID passed as parameter
 ZBUserEntity* ZBUserGroupEntity::_FindRoleByGUID( const CString GUID, bool Deeper /*= false*/ )
 {
-	// Sets the iterator to the right entity set
-	ZBUserEntityIterator i( &m_EntitySet );
+    // Sets the iterator to the right entity set
+    ZBUserEntityIterator i( &m_EntitySet );
 
-	for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
-	{
-		if ( ISA( pEnv, ZBUserRoleEntity ) )
-		{
-			// If correspond to the requested name
-			// add it to the find set
-			if ( dynamic_cast<ZBUserRoleEntity*>( pEnv )->GetGUID() == GUID )
-			{
-				return pEnv;
-			}
-		}
-		else if ( ISA( pEnv, ZBUserGroupEntity ) )
-		{
-			// If the group has entity
-			// call the group's function 
-			if ( Deeper && dynamic_cast<ZBUserGroupEntity*>( pEnv )->ContainEntity() )
-			{
-				ZBUserEntity* pFoundEnv = dynamic_cast<ZBUserGroupEntity*>( pEnv )->_FindRoleByGUID( GUID, Deeper );
+    for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
+    {
+        if ( ISA( pEnv, ZBUserRoleEntity ) )
+        {
+            // If correspond to the requested name
+            // add it to the find set
+            if ( dynamic_cast<ZBUserRoleEntity*>( pEnv )->GetGUID() == GUID )
+            {
+                return pEnv;
+            }
+        }
+        else if ( ISA( pEnv, ZBUserGroupEntity ) )
+        {
+            // If the group has entity
+            // call the group's function 
+            if ( Deeper && dynamic_cast<ZBUserGroupEntity*>( pEnv )->ContainEntity() )
+            {
+                ZBUserEntity* pFoundEnv = dynamic_cast<ZBUserGroupEntity*>( pEnv )->_FindRoleByGUID( GUID, Deeper );
 
-				if ( pFoundEnv )
-				{
-					return pFoundEnv;
-				}
-			}
-		}
-	}
+                if ( pFoundEnv )
+                {
+                    return pFoundEnv;
+                }
+            }
+        }
+    }
 
-	return NULL;
+    return NULL;
 }
 
 void ZBUserGroupEntity::RecalculateParent()
 {
-	// Sets the iterator to the right entity set
-	ZBUserEntityIterator i( &m_EntitySet );
+    // Sets the iterator to the right entity set
+    ZBUserEntityIterator i( &m_EntitySet );
 
-	for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
-	{
-		// Set the parent pointer
-		pEnv->SetParent( this );
+    for ( ZBUserEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext() )
+    {
+        // Set the parent pointer
+        pEnv->SetParent( this );
 
-		// If we have a group entity,
-		// and the group has entity
-		// call the recalculate group function 
-		if ( ISA( pEnv, ZBUserGroupEntity ) && dynamic_cast<ZBUserGroupEntity*>( pEnv )->ContainEntity() )
-		{
-			dynamic_cast<ZBUserGroupEntity*>( pEnv )->RecalculateParent();
-		}
-	}
+        // If we have a group entity,
+        // and the group has entity
+        // call the recalculate group function 
+        if ( ISA( pEnv, ZBUserGroupEntity ) && dynamic_cast<ZBUserGroupEntity*>( pEnv )->ContainEntity() )
+        {
+            dynamic_cast<ZBUserGroupEntity*>( pEnv )->RecalculateParent();
+        }
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -716,12 +716,12 @@ void ZBUserGroupEntity::RecalculateParent()
 #ifdef _DEBUG
 void ZBUserGroupEntity::AssertValid() const
 {
-	ZBUserEntity::AssertValid();
+    ZBUserEntity::AssertValid();
 }
 
 void ZBUserGroupEntity::Dump( CDumpContext& dc ) const
 {
-	ZBUserEntity::Dump( dc );
+    ZBUserEntity::Dump( dc );
 }
 #endif //_DEBUG
 
@@ -730,37 +730,37 @@ void ZBUserGroupEntity::Dump( CDumpContext& dc ) const
 
 void ZBUserGroupEntity::Serialize ( CArchive& ar )
 {
-	ZBUserEntity::Serialize( ar );
-	
-	// If something else to serialize, do it below
-	if ( ar.IsStoring() )
-	{
-		// Write the elements
-		ar << static_cast<int>( GetEntityCount() );
+    ZBUserEntity::Serialize( ar );
+    
+    // If something else to serialize, do it below
+    if ( ar.IsStoring() )
+    {
+        // Write the elements
+        ar << static_cast<int>( GetEntityCount() );
 
-		for ( int nIdx = 0; nIdx < (int)GetEntityCount(); nIdx++ )
-		{
-			ZBUserEntity* pEntity = GetEntityAt( nIdx );
-			ar << pEntity;
-		}
-	}
-	else
-	{
-		// Read the elements
+        for ( int nIdx = 0; nIdx < (int)GetEntityCount(); nIdx++ )
+        {
+            ZBUserEntity* pEntity = GetEntityAt( nIdx );
+            ar << pEntity;
+        }
+    }
+    else
+    {
+        // Read the elements
 
-		// Before reading elements, remove all
-		RemoveAllUserEntities();
-		
-		int nCount;
-		ZBUserEntity* pEntity;
+        // Before reading elements, remove all
+        RemoveAllUserEntities();
+        
+        int nCount;
+        ZBUserEntity* pEntity;
 
-		ar >> nCount;
+        ar >> nCount;
 
-		for ( int i=0; i<nCount; i++ )
-		{
-			ar >> pEntity;
-			m_EntitySet.Add( pEntity );
-			pEntity->SetParent( this );
-		}
-	}
+        for ( int i=0; i<nCount; i++ )
+        {
+            ar >> pEntity;
+            m_EntitySet.Add( pEntity );
+            pEntity->SetParent( this );
+        }
+    }
 }

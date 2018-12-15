@@ -1,10 +1,10 @@
 //## begin module%368CD3690384.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%368CD3690384.cm
 
 //## begin module%368CD3690384.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%368CD3690384.cp
 
 //## Module: UserLd%368CD3690384; Package body
@@ -44,33 +44,33 @@ ZDUserLoader::~ZDUserLoader()
 BOOL ZDUserLoader::LoadAllUsers ()
 {
   //## begin ZDUserLoader::LoadAllUsers%915200904.body preserve=yes
-  	ASSERT( m_pUserManager );
-	m_UserImport.Create( m_FileName, m_pUserManager, FALSE, TabSeparator );
-	return m_UserImport.Import();
+      ASSERT( m_pUserManager );
+    m_UserImport.Create( m_FileName, m_pUserManager, FALSE, TabSeparator );
+    return m_UserImport.Import();
   //## end ZDUserLoader::LoadAllUsers%915200904.body
 }
 
 BOOL ZDUserLoader::SaveAllUsers ()
 {
   //## begin ZDUserLoader::SaveAllUsers%915200905.body preserve=yes
-  	ASSERT( m_pUserManager );
-  	return TRUE;
+      ASSERT( m_pUserManager );
+      return TRUE;
   //## end ZDUserLoader::SaveAllUsers%915200905.body
 }
 
 void ZDUserLoader::AssignUserManager (ZUUserManager* pUserManager)
 {
   //## begin ZDUserLoader::AssignUserManager%915200906.body preserve=yes
-  	ASSERT( pUserManager );
-  	m_pUserManager = pUserManager;
+      ASSERT( pUserManager );
+      m_pUserManager = pUserManager;
   //## end ZDUserLoader::AssignUserManager%915200906.body
 }
 
 void ZDUserLoader::AssignFileName (CString FileName)
 {
   //## begin ZDUserLoader::AssignFileName%922203372.body preserve=yes
-  	ASSERT( !FileName.IsEmpty() );
-	m_FileName = FileName;
+      ASSERT( !FileName.IsEmpty() );
+    m_FileName = FileName;
   //## end ZDUserLoader::AssignFileName%922203372.body
 }
 

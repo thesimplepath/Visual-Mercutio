@@ -1,10 +1,10 @@
 //## begin module%33747B820334.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%33747B820334.cm
 
 //## begin module%33747B820334.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%33747B820334.cp
 
 //## Module: ZAGraphc%33747B820334; Package body
@@ -75,12 +75,12 @@ PLFNGraphic::~PLFNGraphic()
 const PLFNGraphic & PLFNGraphic::operator=(const PLFNGraphic &right)
 {
   //## begin PLFNGraphic::operator=%.body preserve=yes
-	this->PlanFinObject::operator=( (inherited&)right );
-	m_GraphicColor = right.m_GraphicColor;
-	m_GraphicWidth = right.m_GraphicWidth;
-	m_bShadow = right.m_bShadow;
-	m_GraphicStyle = right.m_GraphicStyle;
-	return *this;
+    this->PlanFinObject::operator=( (inherited&)right );
+    m_GraphicColor = right.m_GraphicColor;
+    m_GraphicWidth = right.m_GraphicWidth;
+    m_bShadow = right.m_bShadow;
+    m_GraphicStyle = right.m_GraphicStyle;
+    return *this;
   //## end PLFNGraphic::operator=%.body
 }
 
@@ -90,54 +90,54 @@ const PLFNGraphic & PLFNGraphic::operator=(const PLFNGraphic &right)
 const PLFNGraphic& PLFNGraphic::operator = (const PLFNGraphic* right)
 {
   //## begin PLFNGraphic::operator =%863265788.body preserve=yes
-	this->PlanFinObject::operator=( (inherited*)right );
-	m_GraphicColor = right->m_GraphicColor;
-	m_GraphicWidth = right->m_GraphicWidth;
-	m_bShadow = right->m_bShadow;
-	m_GraphicStyle = right->m_GraphicStyle;
-	return *this;
+    this->PlanFinObject::operator=( (inherited*)right );
+    m_GraphicColor = right->m_GraphicColor;
+    m_GraphicWidth = right->m_GraphicWidth;
+    m_bShadow = right->m_bShadow;
+    m_GraphicStyle = right->m_GraphicStyle;
+    return *this;
   //## end PLFNGraphic::operator =%863265788.body
 }
 
 void PLFNGraphic::Serialize (CArchive& ar)
 {
   //## begin PLFNGraphic::Serialize%863265789.body preserve=yes
-	PlanFinObject::Serialize(ar);
-	if (ar.IsStoring())
-	{	// Write the elements
-	    ar << m_GraphicColor;
-	    ar << (WORD)m_GraphicWidth;
-		ar << (WORD)m_bShadow;
-		ar << (WORD)m_GraphicStyle;
-	}
-	else
-	{	// Read the elements
-	    ar >> m_GraphicColor;
-		WORD	wValue;
-		ar >> wValue;
-	    m_GraphicWidth = wValue;
-		ar >> wValue;
-		m_bShadow = wValue;
-		ar >> wValue;
-		m_GraphicStyle = wValue;
-		// Rebuild graphic tools
-	}
+    PlanFinObject::Serialize(ar);
+    if (ar.IsStoring())
+    {    // Write the elements
+        ar << m_GraphicColor;
+        ar << (WORD)m_GraphicWidth;
+        ar << (WORD)m_bShadow;
+        ar << (WORD)m_GraphicStyle;
+    }
+    else
+    {    // Read the elements
+        ar >> m_GraphicColor;
+        WORD    wValue;
+        ar >> wValue;
+        m_GraphicWidth = wValue;
+        ar >> wValue;
+        m_bShadow = wValue;
+        ar >> wValue;
+        m_GraphicStyle = wValue;
+        // Rebuild graphic tools
+    }
   //## end PLFNGraphic::Serialize%863265789.body
 }
 
 PlanFinObject* PLFNGraphic::Clone ()
 {
   //## begin PLFNGraphic::Clone%863265790.body preserve=yes
-	PLFNGraphic*	pObject = new PLFNGraphic( *this );
-	return pObject;
+    PLFNGraphic*    pObject = new PLFNGraphic( *this );
+    return pObject;
   //## end PLFNGraphic::Clone%863265790.body
 }
 
 CPen& PLFNGraphic::GetGraphicPen (CPen& pen)
 {
   //## begin PLFNGraphic::GetGraphicPen%863265791.body preserve=yes
-  	if (pen.GetSafeHandle() != NULL)
-		pen.Detach();  	
+      if (pen.GetSafeHandle() != NULL)
+        pen.Detach();      
     pen.CreatePen( m_GraphicStyle, m_GraphicWidth, m_GraphicColor );
     return pen;
   //## end PLFNGraphic::GetGraphicPen%863265791.body
@@ -146,8 +146,8 @@ CPen& PLFNGraphic::GetGraphicPen (CPen& pen)
 CBrush& PLFNGraphic::GetGraphicBrush (CBrush& brush)
 {
   //## begin PLFNGraphic::GetGraphicBrush%863265792.body preserve=yes
-  	if (brush.GetSafeHandle() != NULL)
-		brush.Detach();  	
+      if (brush.GetSafeHandle() != NULL)
+        brush.Detach();      
     brush.CreateSolidBrush( m_GraphicColor );
     return brush;
   //## end PLFNGraphic::GetGraphicBrush%863265792.body
@@ -156,7 +156,7 @@ CBrush& PLFNGraphic::GetGraphicBrush (CBrush& brush)
 void PLFNGraphic::CopyObject (PlanFinObject* pSrc)
 {
   //## begin PLFNGraphic::CopyObject%863615077.body preserve=yes
-	((PLFNGraphic*)this)->PLFNGraphic::operator=( (PLFNGraphic*)pSrc );
+    ((PLFNGraphic*)this)->PLFNGraphic::operator=( (PLFNGraphic*)pSrc );
   //## end PLFNGraphic::CopyObject%863615077.body
 }
 
@@ -168,12 +168,12 @@ void PLFNGraphic::CopyObject (PlanFinObject* pSrc)
 #ifdef _DEBUG
 void PLFNGraphic::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void PLFNGraphic::Dump(CDumpContext& dc) const
 {
-	CObject::Dump(dc);
+    CObject::Dump(dc);
 }
 #endif //_DEBUG
 

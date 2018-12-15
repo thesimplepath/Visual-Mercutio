@@ -1,10 +1,10 @@
 //## begin module%367B898F009F.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%367B898F009F.cm
 
 //## begin module%367B898F009F.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%367B898F009F.cp
 
 //## Module: FldStamp%367B898F009F; Package specification
@@ -57,9 +57,9 @@
 class AFX_EXT_CLASS ZDFolderStamp : public ZDStamp  //## Inherits: <unnamed>%367B893903B2
 {
   //## begin ZDFolderStamp%367B892D02BB.initialDeclarations preserve=yes
-	public:
-	// Inherited feature
-		typedef ZDStamp inherited;
+    public:
+    // Inherited feature
+        typedef ZDStamp inherited;
   //## end ZDFolderStamp%367B892D02BB.initialDeclarations
 
   public:
@@ -77,27 +77,27 @@ class AFX_EXT_CLASS ZDFolderStamp : public ZDStamp  //## Inherits: <unnamed>%367
 
     //## Other Operations (specified)
       //## Operation: operator >>%914061095
-      //	Store from the archive to the object Stamp.
+      //    Store from the archive to the object Stamp.
       AFX_EXT_API friend CArchive& operator >> (CArchive& ar, ZDFolderStamp& Stamp);
 
       //## Operation: operator <<%914061096
-      //	Store the object Stamp to the archive.
+      //    Store the object Stamp to the archive.
       AFX_EXT_API friend CArchive& operator << (CArchive& ar, const ZDFolderStamp& Stamp);
 
       //## Operation: ReadFromFile%927439023
-      //	Read the stamp from a given filename.
+      //    Read the stamp from a given filename.
       virtual BOOL ReadFromFile (CString Filename);
 
       //## Operation: ClearPassword%936298261
-      //	Clear the existing password.
+      //    Clear the existing password.
       BOOL ClearPassword ();
 
       //## Operation: SetPassword%936298262
-      //	Set a new password.
+      //    Set a new password.
       BOOL SetPassword (const CString Password);
 
       //## Operation: HasPassword%936298263
-      //	Return true if the document is password protected.
+      //    Return true if the document is password protected.
       BOOL HasPassword () const;
 
       //## Operation: Clone%939754021
@@ -106,37 +106,37 @@ class AFX_EXT_CLASS ZDFolderStamp : public ZDStamp  //## Inherits: <unnamed>%367
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: FolderName%367B89DC02B2
-      //	The folder name.
+      //    The folder name.
       const CString GetFolderName () const;
       void SetFolderName (CString value);
 
       //## Attribute: FolderDescription%367B89FB03CF
-      //	The Folder description.
+      //    The Folder description.
       const CString GetFolderDescription () const;
       void SetFolderDescription (CString value);
 
       //## Attribute: CreationUserName%367B8A420074
-      //	The username for the creation.
+      //    The username for the creation.
       const CString GetCreationUserName () const;
       void SetCreationUserName (CString value);
 
       //## Attribute: CreationDate%36F38C500239
-      //	The date of the creation.
+      //    The date of the creation.
       const ZBDate GetCreationDate () const;
       void SetCreationDate (ZBDate value);
 
       //## Attribute: ModificationUserName%367B8A6D01DF
-      //	The username for the last modification.
+      //    The username for the last modification.
       const CString GetModificationUserName () const;
       void SetModificationUserName (CString value);
 
       //## Attribute: ModificationDate%36F38C2700C8
-      //	The date of the last modification.
+      //    The date of the last modification.
       const ZBDate GetModificationDate () const;
       void SetModificationDate (ZBDate value);
 
       //## Attribute: Key1%3818BF1E01CF
-      //	Define a private key.
+      //    Define a private key.
       const CString GetKey1 () const;
       void SetKey1 (CString value);
 
@@ -177,7 +177,7 @@ class AFX_EXT_CLASS ZDFolderStamp : public ZDStamp  //## Inherits: <unnamed>%367
       //## end ZDFolderStamp::ModificationDate%36F38C2700C8.attr
 
       //## Attribute: Password%37CEDEFC01BE
-      //	Contains the password
+      //    Contains the password
       //## begin ZDFolderStamp::Password%37CEDEFC01BE.attr preserve=no  private: CString {U} 
       CString m_Password;
       //## end ZDFolderStamp::Password%37CEDEFC01BE.attr
@@ -209,7 +209,7 @@ class AFX_EXT_CLASS ZDFolderStamp : public ZDStamp  //## Inherits: <unnamed>%367
 inline BOOL ZDFolderStamp::HasPassword () const
 {
   //## begin ZDFolderStamp::HasPassword%936298263.body preserve=yes
-	return m_Password.IsEmpty() == FALSE;
+    return m_Password.IsEmpty() == FALSE;
   //## end ZDFolderStamp::HasPassword%936298263.body
 }
 

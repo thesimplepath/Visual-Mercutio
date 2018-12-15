@@ -36,68 +36,68 @@ void ZBDragEdit::DoDelete()
 
     int nLine1, nPos1, nLine2, nPos2;
     GetCurRange(nLine1,nPos1,nLine2,nPos2);
-	//no selection mark
+    //no selection mark
     BOOL bHasSel = (nLine1==nLine2 && nPos1==nPos2) ? FALSE : TRUE;
 
-	if (nPos2 >= GetWindowTextLength() && !bHasSel)
-		return;
-	
-	CString s;
-	GetWindowText(s);
-	int iLength = s.GetLength();
-	if ((iLength > 0 && nPos1 < iLength))
-	{
-		CString strNew;
-		// If no selection, selects the char on the right
-		if (!bHasSel)
-			nPos2 = nPos1+1;
+    if (nPos2 >= GetWindowTextLength() && !bHasSel)
+        return;
+    
+    CString s;
+    GetWindowText(s);
+    int iLength = s.GetLength();
+    if ((iLength > 0 && nPos1 < iLength))
+    {
+        CString strNew;
+        // If no selection, selects the char on the right
+        if (!bHasSel)
+            nPos2 = nPos1+1;
 
-		_ReplaceSelString(NULL, nPos1, nPos2, strNew);
+        _ReplaceSelString(NULL, nPos1, nPos2, strNew);
 
-		SetWindowText(strNew);
-		SetSel( nPos1, nPos1 );
-		NotifyParent(EN_UPDATE);
-		NotifyParent(EN_CHANGE);
-	}
+        SetWindowText(strNew);
+        SetSel( nPos1, nPos1 );
+        NotifyParent(EN_UPDATE);
+        NotifyParent(EN_CHANGE);
+    }
 }
 
 void ZBDragEdit::_ReplaceSelString(LPCTSTR pcszNew, int iStart, int iStop, CString& str) const
 {
-	// If all is selected, return the new string.
-	if (iStart == 0 && iStop == -1)
-		str = (pcszNew != NULL) ? pcszNew : _T("");
-	else
-	{
-		CString s;
-		GetWindowText(s);
-		int iLength = s.GetLength();
+    // If all is selected, return the new string.
+    if (iStart == 0 && iStop == -1)
+        str = (pcszNew != NULL) ? pcszNew : _T("");
+    else
+    {
+        CString s;
+        GetWindowText(s);
+        int iLength = s.GetLength();
 
-		str.Empty();
-		if (iStart > 0)
-			str += s.Left(iStart);
-		if (pcszNew != NULL)
-			str += pcszNew;
-		if (iStop < iLength)
-			str += s.Right(iLength - iStop);
-	}
+        str.Empty();
+        if (iStart > 0)
+            str += s.Left(iStart);
+        if (pcszNew != NULL)
+            str += pcszNew;
+        if (iStop < iLength)
+            str += s.Right(iLength - iStop);
+    }
 }
 
 void ZBDragEdit::NotifyParent(UINT uiCode)
 {
-	CWnd* pwndParent = GetParent();
-	if (pwndParent != NULL)
-	{
-		WPARAM w = MAKELONG(GetDlgCtrlID(), uiCode);
-		LPARAM l = reinterpret_cast<LPARAM>(GetSafeHwnd());
-		pwndParent->SendMessage(WM_COMMAND, w, l);
-	}
+    CWnd* pwndParent = GetParent();
+    if (pwndParent != NULL)
+    {
+        WPARAM w = MAKELONG(GetDlgCtrlID(), uiCode);
+        LPARAM l = reinterpret_cast<LPARAM>(GetSafeHwnd());
+        pwndParent->SendMessage(WM_COMMAND, w, l);
+    }
 }
 
 BEGIN_MESSAGE_MAP(ZBDragEdit, ZBDragEditBase)
-	//{{AFX_MSG_MAP(ZBDragEdit)
-	ON_WM_LBUTTONDOWN()
-	ON_WM_SETCURSOR()
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZBDragEdit)
+    ON_WM_LBUTTONDOWN()
+    ON_WM_SETCURSOR()
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -108,23 +108,23 @@ BOOL ZBDragEdit::m_bOleInit=FALSE;
 
 BOOL ZBDragEdit::PreTranslateMessage(MSG* pMsg) 
 {
-	if(pMsg->message == WM_KEYDOWN)
-	{
-		WPARAM nChar = pMsg->wParam;
+    if(pMsg->message == WM_KEYDOWN)
+    {
+        WPARAM nChar = pMsg->wParam;
 
-		switch(nChar)
-		{
-			case VK_DELETE:
-			{
-				DoDelete();
-				return TRUE;
-			}
-			default:
-				break;
-		}
-	}
-	
-	return ZBDragEditBase::PreTranslateMessage(pMsg);
+        switch(nChar)
+        {
+            case VK_DELETE:
+            {
+                DoDelete();
+                return TRUE;
+            }
+            default:
+                break;
+        }
+    }
+    
+    return ZBDragEditBase::PreTranslateMessage(pMsg);
 }
 
 
@@ -144,14 +144,14 @@ BOOL ZBDragEdit::Init(int nFlags)
 
     if (!GetSafeHwnd()) {
         TRACE("You should create ZBDragEdit first, before this function is called\n");
-		return FALSE;
+        return FALSE;
     }
-	if (!m_dropTarget.Register(this)) {
-		TRACE("Fail in registing drop target\n");
-		return FALSE;
-	}
+    if (!m_dropTarget.Register(this)) {
+        TRACE("Fail in registing drop target\n");
+        return FALSE;
+    }
     m_bDragInit=TRUE;
-	return TRUE;
+    return TRUE;
 }
 
 //we reimpelmented this function for fixing SDK's bug that
@@ -401,10 +401,10 @@ void ZBDragEdit::OnLButtonDown(UINT nFlags, CPoint point)
         }
         m_bDropEqualDrag=FALSE;
         //If user does not want to drag string, we reset the caret pos.
-	    SetCaretByCursor();
+        SetCaretByCursor();
         return;
     }
-	ZBDragEditBase::OnLButtonDown(nFlags, point);
+    ZBDragEditBase::OnLButtonDown(nFlags, point);
 }
 
 BOOL ZBDragEdit::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message) 
@@ -416,10 +416,10 @@ BOOL ZBDragEdit::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
             //It means user can drag it.
             ::SetCursor(AfxGetApp()->LoadStandardCursor(IDC_ARROW));
             return FALSE;
-        }        	
+        }            
     }
     //Otherwise, we keep the cursor shape as its original type
-	return ZBDragEditBase::OnSetCursor(pWnd, nHitTest, message);
+    return ZBDragEditBase::OnSetCursor(pWnd, nHitTest, message);
 }
 
 /*************************************************************
@@ -436,42 +436,42 @@ DROPEFFECT ZBEditDropTarget::OnDragScroll(CWnd* pWnd, DWORD dwKeyState, CPoint p
     ASSERT(m_pEditCtl);
 
     //if pWnd is kind of CView, we let COleDropTarget to handle it
-	if (pWnd->IsKindOf(RUNTIME_CLASS(CView)))
-		return COleDropTarget::OnDragScroll(pWnd,dwKeyState,point);
+    if (pWnd->IsKindOf(RUNTIME_CLASS(CView)))
+        return COleDropTarget::OnDragScroll(pWnd,dwKeyState,point);
 
     if (!m_bBeginDrop)
         return DROPEFFECT_NONE;
 
     CRect rectClient;
-	m_pEditCtl->GetClientRect(&rectClient);
-	CRect rect = rectClient;
+    m_pEditCtl->GetClientRect(&rectClient);
+    CRect rect = rectClient;
     //nScrollInset is a COleDropTarget's static member variable
     rect.InflateRect(-nScrollInset, -nScrollInset);
-	// hit-test against inset region
-	if (rectClient.PtInRect(point) && !rect.PtInRect(point)) {
+    // hit-test against inset region
+    if (rectClient.PtInRect(point) && !rect.PtInRect(point)) {
         UINT        uMsg;
         int         nCode;
         CScrollBar* pScrollBar=NULL;        
-		// determine which way to scroll along both X & Y axis
+        // determine which way to scroll along both X & Y axis
         if (point.x<rect.left) {
             pScrollBar=m_pEditCtl->GetScrollBarCtrl(SB_HORZ);
             uMsg=WM_HSCROLL;
-			nCode=SB_LINELEFT;
+            nCode=SB_LINELEFT;
         }
         else if (point.x>=rect.right) {
             pScrollBar=m_pEditCtl->GetScrollBarCtrl(SB_HORZ);
             uMsg=WM_HSCROLL;
-			nCode=SB_LINERIGHT;
+            nCode=SB_LINERIGHT;
         }
         if (point.y<rect.top) {
             pScrollBar=m_pEditCtl->GetScrollBarCtrl(SB_VERT);
             uMsg=WM_VSCROLL;
-			nCode=SB_LINEUP;
+            nCode=SB_LINEUP;
         }
         else if (point.y>=rect.bottom) {
-			pScrollBar=m_pEditCtl->GetScrollBarCtrl(SB_VERT);
+            pScrollBar=m_pEditCtl->GetScrollBarCtrl(SB_VERT);
             uMsg=WM_VSCROLL;
-			nCode=SB_LINEDOWN;
+            nCode=SB_LINEDOWN;
         }
 
         LRESULT l=m_pEditCtl->SendMessage(uMsg,MAKEWPARAM(nCode,0),

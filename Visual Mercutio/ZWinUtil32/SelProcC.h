@@ -20,10 +20,10 @@
 #include "ZSearchEdit.h"
 
 #ifndef _WIN32
-	#include "ZWinUtil.h"
+    #include "ZWinUtil.h"
 #endif
 #ifdef _WIN32
-	#include "ZWinUtil32.h"
+    #include "ZWinUtil32.h"
 #endif
 
 #include "zEvent\ZProcess.h"
@@ -52,41 +52,41 @@ class ZISelectProcessWizardChoose : public ZIWizardDialog
 {
 // Construction
 public:
-	ZISelectProcessWizardChoose(ZProcess& Process, CWnd* pParent = NULL);   // standard constructor
-	CString	GetBaseActivityName() const { return m_BaseActivityName; };
+    ZISelectProcessWizardChoose(ZProcess& Process, CWnd* pParent = NULL);   // standard constructor
+    CString    GetBaseActivityName() const { return m_BaseActivityName; };
 
 private:
 // Dialog Data
-	//{{AFX_DATA(ZISelectProcessWizardChoose)
-	enum { IDD = IDD_WZCHOOSEPROC_SEL };
-	ZCActivityList	m_ActivityProcList;
-	CString			m_ProcessName;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZISelectProcessWizardChoose)
+    enum { IDD = IDD_WZCHOOSEPROC_SEL };
+    ZCActivityList    m_ActivityProcList;
+    CString            m_ProcessName;
+    //}}AFX_DATA
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZISelectProcessWizardChoose)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZISelectProcessWizardChoose)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZISelectProcessWizardChoose)
-	virtual void OnOK();
-	virtual BOOL OnInitDialog();
-	afx_msg void OnClickActivityProcList(NMHDR* pNMHDR, LRESULT* pResult);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZISelectProcessWizardChoose)
+    virtual void OnOK();
+    virtual BOOL OnInitDialog();
+    afx_msg void OnClickActivityProcList(NMHDR* pNMHDR, LRESULT* pResult);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	ZProcess& 		m_Process;
-	CString			m_BaseActivityName;
+    ZProcess&         m_Process;
+    CString            m_BaseActivityName;
 
 private:
-	void CheckControlStates();
+    void CheckControlStates();
 
 };
 

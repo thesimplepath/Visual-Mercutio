@@ -1,7 +1,7 @@
 // **************************************************************************************************************
-// *										  ZVRenameModelPageDlg												*
+// *                                          ZVRenameModelPageDlg                                                *
 // **************************************************************************************************************
-// * Cette classe permet à l'utilisateur de sélectionner une page, puis de la renommer.							*
+// * Cette classe permet à l'utilisateur de sélectionner une page, puis de la renommer.                            *
 // **************************************************************************************************************
 
 #if !defined(AFX_ZVRenameModelPageDlg_H__5CD7AD82_AB75_4CDC_9B1B_0F0808494530__INCLUDED_)
@@ -48,61 +48,61 @@ class AFX_EXT_CLASS ZVRenameModelPageDlg : public ZIDialog
 // Construction
 public:
 
-	// Standard constructor
-	ZVRenameModelPageDlg( ZDProcessGraphModelMdl*	pModel,
-						  CStringArray*				pArrayPageName	= NULL,
-						  ZDProcessGraphPage*		pPageToRename	= NULL,
-						  ZBRuntimeClassSet*		pSet			= NULL,
-						  CWnd*						pParent			= NULL );
+    // Standard constructor
+    ZVRenameModelPageDlg( ZDProcessGraphModelMdl*    pModel,
+                          CStringArray*                pArrayPageName    = NULL,
+                          ZDProcessGraphPage*        pPageToRename    = NULL,
+                          ZBRuntimeClassSet*        pSet            = NULL,
+                          CWnd*                        pParent            = NULL );
 
-	CString GetPageName() const;
+    CString GetPageName() const;
 
-	ZDProcessGraphPage* GetSelectedPage()
-	{
-		return m_pSelectedPage;
-	};
+    ZDProcessGraphPage* GetSelectedPage()
+    {
+        return m_pSelectedPage;
+    };
 
-	// Dialog Data
-	//{{AFX_DATA(ZVRenameModelPageDlg)
-	enum { IDD = IDD_RENAME_MODELPAGE };
-	ZCProcessModelTree m_SymbolTree;
-	CString m_PageName;
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZVRenameModelPageDlg)
+    enum { IDD = IDD_RENAME_MODELPAGE };
+    ZCProcessModelTree m_SymbolTree;
+    CString m_PageName;
+    //}}AFX_DATA
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVRenameModelPageDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVRenameModelPageDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVRenameModelPageDlg)
-	virtual void OnOK();
-	afx_msg void OnSelchangedSymboltree(NMHDR* pNMHDR, LRESULT* pResult);
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVRenameModelPageDlg)
+    virtual void OnOK();
+    afx_msg void OnSelchangedSymboltree(NMHDR* pNMHDR, LRESULT* pResult);
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 // Implementation
 private:
 
-	ZDProcessGraphModelMdl*	m_pModel;
-	CStringArray*			m_pArrayPageName;
+    ZDProcessGraphModelMdl*    m_pModel;
+    CStringArray*            m_pArrayPageName;
 
-	ZDProcessGraphPage*		m_pSelectedPage;
-	ZDProcessGraphPage*		m_pPageToRename;
+    ZDProcessGraphPage*        m_pSelectedPage;
+    ZDProcessGraphPage*        m_pPageToRename;
 
-	// Set of elements that can be displayed in the tree
-	ZBRuntimeClassSet*		m_pSet;
+    // Set of elements that can be displayed in the tree
+    ZBRuntimeClassSet*        m_pSet;
 };
 
 inline CString ZVRenameModelPageDlg::GetPageName() const
 {
-	return m_PageName;
+    return m_PageName;
 }
 
 //{{AFX_INSERT_LOCATION}}

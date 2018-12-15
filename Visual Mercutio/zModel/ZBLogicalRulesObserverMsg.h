@@ -1,9 +1,9 @@
 // ******************************************************************************************************************
-// *									  Classe ZBLogicalRulesObserverMsg											*
+// *                                      Classe ZBLogicalRulesObserverMsg                                            *
 // ******************************************************************************************************************
-// * JMR-MODIF - Le 14 novembre 2006 - Ajout de la classe ZBLogicalRulesObserverMsg.								*
+// * JMR-MODIF - Le 14 novembre 2006 - Ajout de la classe ZBLogicalRulesObserverMsg.                                *
 // ******************************************************************************************************************
-// * Cette classe est un observateur d'événements pour les classes de gestion des règles.							*
+// * Cette classe est un observateur d'événements pour les classes de gestion des règles.                            *
 // ******************************************************************************************************************
 
 #if !defined(AFX_ZBLogicalRulesObserverMsg_H__31A212D8_7CA2_4BEB_9709_8C785F4909B3__INCLUDED_)
@@ -36,58 +36,58 @@ class ZBRulesEntity;
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-const int UM_INITRULES		= 450;
-const int UM_REFRESHRULES	= 451;
-const int UM_CLEARRULES		= 452;
-const int UM_CLOSERULES		= 453;
+const int UM_INITRULES        = 450;
+const int UM_REFRESHRULES    = 451;
+const int UM_CLEARRULES        = 452;
+const int UM_CLOSERULES        = 453;
 
 class AFX_EXT_CLASS ZBLogicalRulesObserverMsg : public ZIObserverMsg
 {
-	DECLARE_DYNAMIC( ZBLogicalRulesObserverMsg )
+    DECLARE_DYNAMIC( ZBLogicalRulesObserverMsg )
 
 public:
 
-	ZBLogicalRulesObserverMsg( UINT				MessageID	= 0,
-							   ZBRulesEntity*	pEntity		= NULL,
-							   const CString	RootName	= _T( "" ) );
+    ZBLogicalRulesObserverMsg( UINT                MessageID    = 0,
+                               ZBRulesEntity*    pEntity        = NULL,
+                               const CString    RootName    = _T( "" ) );
 
-	virtual ~ZBLogicalRulesObserverMsg();
+    virtual ~ZBLogicalRulesObserverMsg();
 
-	UINT GetMessageID() const
-	{
-		return m_MessageID;
-	};
+    UINT GetMessageID() const
+    {
+        return m_MessageID;
+    };
 
-	void SetMessageID( UINT value )
-	{
-		m_MessageID = value;
-	};
+    void SetMessageID( UINT value )
+    {
+        m_MessageID = value;
+    };
 
-	ZBRulesEntity* GetpEntity() const
-	{
-		return m_pEntity;
-	};
+    ZBRulesEntity* GetpEntity() const
+    {
+        return m_pEntity;
+    };
 
-	void SetpEntity( ZBRulesEntity* value )
-	{
-		m_pEntity = value;
-	};
+    void SetpEntity( ZBRulesEntity* value )
+    {
+        m_pEntity = value;
+    };
 
-	CString GetRootName() const
-	{
-		return m_RootName;
-	};
+    CString GetRootName() const
+    {
+        return m_RootName;
+    };
 
-	void SetRootName( const CString value )
-	{
-		m_RootName = value;
-	};
+    void SetRootName( const CString value )
+    {
+        m_RootName = value;
+    };
 
 private:
 
-	UINT			m_MessageID;
-	ZBRulesEntity*	m_pEntity;
-	CString			m_RootName;
+    UINT            m_MessageID;
+    ZBRulesEntity*    m_pEntity;
+    CString            m_RootName;
 };
 
 #endif // !defined(AFX_ZBLogicalRulesObserverMsg_H__31A212D8_7CA2_4BEB_9709_8C785F4909B3__INCLUDED_)

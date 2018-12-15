@@ -43,36 +43,36 @@ class AFX_EXT_CLASS ZIFolderInformation : public ZIDialog
 {
 // Construction
 public:
-	ZIFolderInformation(ZDFolderStamp* pFolderStamp = NULL, BOOL ReadOnly = FALSE, CWnd* pParent = NULL);	// standard constructor
-	CString	GetFolderDescription() { return m_FolderDescription; };
-	CString	GetFolderName() { return m_FolderName; };
-	
+    ZIFolderInformation(ZDFolderStamp* pFolderStamp = NULL, BOOL ReadOnly = FALSE, CWnd* pParent = NULL);    // standard constructor
+    CString    GetFolderDescription() { return m_FolderDescription; };
+    CString    GetFolderName() { return m_FolderName; };
+    
 
 // Dialog Data
-	//{{AFX_DATA(ZIFolderInformation)
-	enum { IDD = IDD_FOLDER_INFORMATION };
-	CString	m_FolderDescription;
-	CString	m_FolderName;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZIFolderInformation)
+    enum { IDD = IDD_FOLDER_INFORMATION };
+    CString    m_FolderDescription;
+    CString    m_FolderName;
+    //}}AFX_DATA
 #ifdef _WIN32
-	ZCFolderInformation	m_ListInformation;
+    ZCFolderInformation    m_ListInformation;
 #endif
 
 // Implementation
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	// Generated message map functions
-	//{{AFX_MSG(ZIFolderInformation)
-	virtual void OnOK();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
-	
+    // Generated message map functions
+    //{{AFX_MSG(ZIFolderInformation)
+    virtual void OnOK();
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
+    
 private:
-	ZDFolderStamp* 	m_pFolderStamp;
-	BOOL			m_ReadOnly;
+    ZDFolderStamp*     m_pFolderStamp;
+    BOOL            m_ReadOnly;
 };
 
 
-#endif	// FoldInfo_h
+#endif    // FoldInfo_h

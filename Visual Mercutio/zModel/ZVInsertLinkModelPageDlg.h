@@ -48,73 +48,73 @@ class AFX_EXT_CLASS ZVInsertLinkModelPageDlg : public ZIDialog
 {
 // Construction
 public:
-	ZVInsertLinkModelPageDlg(ZDProcessGraphModelMdl* pModel, const CString NewPageName = "", CStringArray* pArrayPageName = NULL, ZBRuntimeClassSet* pSet = NULL, CWnd* pParent = NULL);   // standard constructor
+    ZVInsertLinkModelPageDlg(ZDProcessGraphModelMdl* pModel, const CString NewPageName = "", CStringArray* pArrayPageName = NULL, ZBRuntimeClassSet* pSet = NULL, CWnd* pParent = NULL);   // standard constructor
 
-	CString	GetPageName() const
-	{
-		return m_PageName;
-	};
+    CString    GetPageName() const
+    {
+        return m_PageName;
+    };
 
-	bool ChooseInsertNewPage() const
-	{
-		return (m_InsertOrLink == 0) ? true : false;
-	};
+    bool ChooseInsertNewPage() const
+    {
+        return (m_InsertOrLink == 0) ? true : false;
+    };
 
-	ZDProcessGraphModelMdl*	GetParentModel() const;
-	CString GetParentModelFullName() const
-	{
-		return m_ParentModelFullName;
-	};
+    ZDProcessGraphModelMdl*    GetParentModel() const;
+    CString GetParentModelFullName() const
+    {
+        return m_ParentModelFullName;
+    };
 
 private:
 // Dialog Data
-	//{{AFX_DATA(ZVInsertLinkModelPageDlg)
-	enum { IDD = IDD_INSERTORLINK_MODELPAGE };
-	ZCProcessModelTree	m_ExistingPages;
-	ZCProcessModelTree	m_SymbolTree;
-	CString			m_NewPageName;
-	int				m_InsertOrLink;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZVInsertLinkModelPageDlg)
+    enum { IDD = IDD_INSERTORLINK_MODELPAGE };
+    ZCProcessModelTree    m_ExistingPages;
+    ZCProcessModelTree    m_SymbolTree;
+    CString            m_NewPageName;
+    int                m_InsertOrLink;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVInsertLinkModelPageDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVInsertLinkModelPageDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVInsertLinkModelPageDlg)
-	virtual void OnOK();
-	afx_msg void OnSelchangedSymboltree(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnSelchangedExistingPagetree(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnInsLink();
-	afx_msg void OnInsLink2();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVInsertLinkModelPageDlg)
+    virtual void OnOK();
+    afx_msg void OnSelchangedSymboltree(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnSelchangedExistingPagetree(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnInsLink();
+    afx_msg void OnInsLink2();
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	void CheckControlState();
+    void CheckControlState();
 
 private:
-	CStringArray* m_pArrayPageName;
-	CString m_ParentModelFullName;
-	CString m_PageName;
-	ZDProcessGraphModelMdl* m_pModel;
-	ZDProcessGraphModelMdl* m_pParentModel;
+    CStringArray* m_pArrayPageName;
+    CString m_ParentModelFullName;
+    CString m_PageName;
+    ZDProcessGraphModelMdl* m_pModel;
+    ZDProcessGraphModelMdl* m_pParentModel;
 
-	// Set of elements that can be displayed in the tree
-	ZBRuntimeClassSet* m_pSet;
+    // Set of elements that can be displayed in the tree
+    ZBRuntimeClassSet* m_pSet;
 };
 
-inline ZDProcessGraphModelMdl*	ZVInsertLinkModelPageDlg::GetParentModel() const
+inline ZDProcessGraphModelMdl*    ZVInsertLinkModelPageDlg::GetParentModel() const
 {
-	return m_pParentModel;
+    return m_pParentModel;
 }
 
 //{{AFX_INSERT_LOCATION}}

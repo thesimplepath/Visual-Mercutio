@@ -19,21 +19,21 @@ static char THIS_FILE[]=__FILE__;
 
 // JMR-MODIF - Le 13 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-#define IDC_OUTPUTSYMBOLVIEW				101
-#define IDC_OUTPUTANALYZERVIEW				102
-#define IDC_OUTPUTWORKFLOWVIEW				103
-#define IDC_OUTPUTSEARCHVIEW				104
+#define IDC_OUTPUTSYMBOLVIEW                101
+#define IDC_OUTPUTANALYZERVIEW                102
+#define IDC_OUTPUTWORKFLOWVIEW                103
+#define IDC_OUTPUTSEARCHVIEW                104
 
 IMPLEMENT_DYNAMIC( ZVOutputWorkspace, SECControlBar )
 
 BEGIN_MESSAGE_MAP( ZVOutputWorkspace, SECControlBar )
-	//{{AFX_MSG_MAP(ZVOutputWorkspace)
-	ON_WM_CREATE()
-	ON_WM_SIZE()
-	ON_NOTIFY(LVN_GETDISPINFO, IDC_OUTPUTSYMBOLVIEW, OnListGetDispInfo)
-	ON_COMMAND(ID_CLEAR_WINDOW, OnClearWindow)
-	ON_COMMAND(ID_SETDEBUGMODE_WINDOW, OnSetDebugMode)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZVOutputWorkspace)
+    ON_WM_CREATE()
+    ON_WM_SIZE()
+    ON_NOTIFY(LVN_GETDISPINFO, IDC_OUTPUTSYMBOLVIEW, OnListGetDispInfo)
+    ON_COMMAND(ID_CLEAR_WINDOW, OnClearWindow)
+    ON_COMMAND(ID_SETDEBUGMODE_WINDOW, OnSetDebugMode)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 //////////////////////////////////////////////////////////////////////
@@ -41,7 +41,7 @@ END_MESSAGE_MAP()
 //////////////////////////////////////////////////////////////////////
 
 ZVOutputWorkspace::ZVOutputWorkspace()
-	: SECControlBar()
+    : SECControlBar()
 {
 }
 
@@ -52,233 +52,233 @@ ZVOutputWorkspace::~ZVOutputWorkspace()
 // JMR-MODIF - Le 30 août 2005 - Ajout de la fonction Release pour permettre un nettoyage de la mémoire.
 void ZVOutputWorkspace::Release()
 {
-	m_OutputView.Release();
-	m_OutputSearchView.Release();
-	m_OutputAnalyzerView.Release();
-	m_OutputWkfView.Release();
+    m_OutputView.Release();
+    m_OutputSearchView.Release();
+    m_OutputAnalyzerView.Release();
+    m_OutputWkfView.Release();
 }
 
 void ZVOutputWorkspace::LogClearOutput()
 {
-	ZVOutputSymbolLogView* pView = GetLogView();
+    ZVOutputSymbolLogView* pView = GetLogView();
 
-	if ( pView )
-	{
-		pView->ClearLog();
-	}
+    if ( pView )
+    {
+        pView->ClearLog();
+    }
 }
 
 void ZVOutputWorkspace::LogAddLine( const CString Line )
 {
-	ZVOutputSymbolLogView* pView = GetLogView();
+    ZVOutputSymbolLogView* pView = GetLogView();
 
-	if ( pView )
-	{
-		pView->AddLine( Line );
-	}
+    if ( pView )
+    {
+        pView->AddLine( Line );
+    }
 }
 
 // Create the view and associate it to the right tab.
 int ZVOutputWorkspace::OnCreate( LPCREATESTRUCT lpCreateStruct )
 {
-	if ( SECControlBar::OnCreate( lpCreateStruct ) == -1 )
-	{
-		return -1;
-	}
+    if ( SECControlBar::OnCreate( lpCreateStruct ) == -1 )
+    {
+        return -1;
+    }
 
-	BOOL rtn_val;
-	rtn_val = m_wndTab.Create( this );
+    BOOL rtn_val;
+    rtn_val = m_wndTab.Create( this );
 
-	// The general log window
-	m_OutputView.Create( NULL,
-						 NULL,
-						 WS_CHILD | WS_VISIBLE,
-						 CRect( 0, 0, 0, 0 ),
-						 &m_wndTab,
-						 IDC_OUTPUTSYMBOLVIEW );
+    // The general log window
+    m_OutputView.Create( NULL,
+                         NULL,
+                         WS_CHILD | WS_VISIBLE,
+                         CRect( 0, 0, 0, 0 ),
+                         &m_wndTab,
+                         IDC_OUTPUTSYMBOLVIEW );
 
-	CString s;
-	s.LoadString( IDS_OUTPUTWKS_MODEL );
-	m_wndTab.AddTab( &m_OutputView, s );
+    CString s;
+    s.LoadString( IDS_OUTPUTWKS_MODEL );
+    m_wndTab.AddTab( &m_OutputView, s );
 
-	// The search log window
-	m_OutputSearchView.Create( NULL,
-							   NULL,
-							   WS_CHILD | WS_VISIBLE,
-							   CRect( 0, 0, 0, 0 ),
-							   &m_wndTab,
-							   IDC_OUTPUTSEARCHVIEW );
+    // The search log window
+    m_OutputSearchView.Create( NULL,
+                               NULL,
+                               WS_CHILD | WS_VISIBLE,
+                               CRect( 0, 0, 0, 0 ),
+                               &m_wndTab,
+                               IDC_OUTPUTSEARCHVIEW );
 
-	s.LoadString( IDS_OUTPUTWKS_SEARCH );
-	m_wndTab.AddTab( &m_OutputSearchView, s );
+    s.LoadString( IDS_OUTPUTWKS_SEARCH );
+    m_wndTab.AddTab( &m_OutputSearchView, s );
 
-	// The analyzer log window
-	m_OutputAnalyzerView.Create( NULL,
-								 NULL,
-								 WS_CHILD | WS_VISIBLE,
-								 CRect( 0, 0, 0, 0 ),
-								 &m_wndTab,
-								 IDC_OUTPUTANALYZERVIEW );
+    // The analyzer log window
+    m_OutputAnalyzerView.Create( NULL,
+                                 NULL,
+                                 WS_CHILD | WS_VISIBLE,
+                                 CRect( 0, 0, 0, 0 ),
+                                 &m_wndTab,
+                                 IDC_OUTPUTANALYZERVIEW );
 
-	s.LoadString( IDS_OUTPUTWKS_ANALYZER );
-	m_wndTab.AddTab( &m_OutputAnalyzerView, s );
+    s.LoadString( IDS_OUTPUTWKS_ANALYZER );
+    m_wndTab.AddTab( &m_OutputAnalyzerView, s );
 
-	// The workflow log window
-	m_OutputWkfView.Create( NULL,
-							NULL,
-							WS_CHILD | WS_VISIBLE,
-							CRect( 0, 0, 0, 0 ),
-							&m_wndTab,
-							IDC_OUTPUTWORKFLOWVIEW );
+    // The workflow log window
+    m_OutputWkfView.Create( NULL,
+                            NULL,
+                            WS_CHILD | WS_VISIBLE,
+                            CRect( 0, 0, 0, 0 ),
+                            &m_wndTab,
+                            IDC_OUTPUTWORKFLOWVIEW );
 
-	s.LoadString( IDS_OUTPUTWKS_WORKFLOW );
-	m_wndTab.AddTab( &m_OutputWkfView, s );
+    s.LoadString( IDS_OUTPUTWKS_WORKFLOW );
+    m_wndTab.AddTab( &m_OutputWkfView, s );
 
-	return 0;
+    return 0;
 }
 
 void ZVOutputWorkspace::Initialize()
 {
-	// Set the first active view
-	m_wndTab.ActivateTab( def_SymbolLogTabIndex );
-	m_wndTab.ScrollToTab( def_SymbolLogTabIndex );
+    // Set the first active view
+    m_wndTab.ActivateTab( def_SymbolLogTabIndex );
+    m_wndTab.ScrollToTab( def_SymbolLogTabIndex );
 
-	// Set observers
-	if ( GetLogView() )
-	{
-		GetLogView()->AttachObserver( this );
+    // Set observers
+    if ( GetLogView() )
+    {
+        GetLogView()->AttachObserver( this );
 
-		// Initialize the flag for debug mode
-		GetLogView()->SetDebugMode( false );
-	}
+        // Initialize the flag for debug mode
+        GetLogView()->SetDebugMode( false );
+    }
 
-	if ( GetLogAnalyzerView() )
-	{
-		GetLogAnalyzerView()->AttachObserver( this );
+    if ( GetLogAnalyzerView() )
+    {
+        GetLogAnalyzerView()->AttachObserver( this );
 
-		// Initialize the flag for debug mode
-		GetLogAnalyzerView()->SetDebugMode( false );
-	}
+        // Initialize the flag for debug mode
+        GetLogAnalyzerView()->SetDebugMode( false );
+    }
 
-	if ( GetLogWorkflowView() )
-	{
-		GetLogWorkflowView()->AttachObserver( this );
+    if ( GetLogWorkflowView() )
+    {
+        GetLogWorkflowView()->AttachObserver( this );
 
-		// Initialize the flag for debug mode
-		GetLogWorkflowView()->SetDebugMode( false );
-	}
+        // Initialize the flag for debug mode
+        GetLogWorkflowView()->SetDebugMode( false );
+    }
 
-	if ( GetLogSearchView() )
-	{
-		GetLogSearchView()->AttachObserver( this );
+    if ( GetLogSearchView() )
+    {
+        GetLogSearchView()->AttachObserver( this );
 
-		// Initialize the flag for debug mode
-		GetLogSearchView()->SetDebugMode( false );
-	}
+        // Initialize the flag for debug mode
+        GetLogSearchView()->SetDebugMode( false );
+    }
 }
 
 void ZVOutputWorkspace::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
 {
-	// Check about document close
-	// Detach observer
-	if ( pMsg && ISA( pMsg, ZBDocumentObserverMsg ) &&
-		 ISA( dynamic_cast<ZBDocumentObserverMsg*>( pMsg )->GetpDocument(), ZDProcessGraphModelDoc ) )
-	{
-		switch ( dynamic_cast<ZBDocumentObserverMsg*>( pMsg )->GetMessageID() )
-		{
-			case UM_REFRESHDOCUMENT:
-			case UM_OPENDOCUMENT:
-			{
-				break;
-			}
+    // Check about document close
+    // Detach observer
+    if ( pMsg && ISA( pMsg, ZBDocumentObserverMsg ) &&
+         ISA( dynamic_cast<ZBDocumentObserverMsg*>( pMsg )->GetpDocument(), ZDProcessGraphModelDoc ) )
+    {
+        switch ( dynamic_cast<ZBDocumentObserverMsg*>( pMsg )->GetMessageID() )
+        {
+            case UM_REFRESHDOCUMENT:
+            case UM_OPENDOCUMENT:
+            {
+                break;
+            }
 
-			case UM_CLOSEDOCUMENT:
-			{
-				ZDProcessGraphModelDoc* pDoc =
-					dynamic_cast<ZDProcessGraphModelDoc*>( dynamic_cast<ZBDocumentObserverMsg*>( pMsg )->GetpDocument() );
+            case UM_CLOSEDOCUMENT:
+            {
+                ZDProcessGraphModelDoc* pDoc =
+                    dynamic_cast<ZDProcessGraphModelDoc*>( dynamic_cast<ZBDocumentObserverMsg*>( pMsg )->GetpDocument() );
 
-				DetachObserver( pDoc );
-				break;
-			}
-		}
-	}
-	else if ( pMsg && ISA( pMsg, ZBToolbarObserverMsg ) )
-	{
-		switch( dynamic_cast<ZBToolbarObserverMsg*>( pMsg )->GetMessageID() )
-		{
-			case UM_ACTIVATE_LOGSYMBOL_TAB:
-			{
-				ActivateSymbolLogTab();
-				break;
-			}
+                DetachObserver( pDoc );
+                break;
+            }
+        }
+    }
+    else if ( pMsg && ISA( pMsg, ZBToolbarObserverMsg ) )
+    {
+        switch( dynamic_cast<ZBToolbarObserverMsg*>( pMsg )->GetMessageID() )
+        {
+            case UM_ACTIVATE_LOGSYMBOL_TAB:
+            {
+                ActivateSymbolLogTab();
+                break;
+            }
 
-			case UM_ACTIVATE_LOGANALYZER_TAB:
-			{
-				ActivateAnalyzerLogTab();
-				break;
-			}
+            case UM_ACTIVATE_LOGANALYZER_TAB:
+            {
+                ActivateAnalyzerLogTab();
+                break;
+            }
 
-			case UM_ACTIVATE_LOGWORKFLOW_TAB:
-			{
-				ActivateAnalyzerLogTab();
-				break;
-			}
+            case UM_ACTIVATE_LOGWORKFLOW_TAB:
+            {
+                ActivateAnalyzerLogTab();
+                break;
+            }
 
-			case UM_ACTIVATE_LOGSEARCH_TAB:
-			{
-				ActivateSearchLogTab();
-				break;
-			}
+            case UM_ACTIVATE_LOGSEARCH_TAB:
+            {
+                ActivateSearchLogTab();
+                break;
+            }
 
-			default:
-			{
-				break;
-			}
-		}
-	}
+            default:
+            {
+                break;
+            }
+        }
+    }
 
-	// RS-MODIF 21.12.04 should only appear if messenger
-	bool IsMessenger = false;
-	bool IsSesterces = false;
+    // RS-MODIF 21.12.04 should only appear if messenger
+    bool IsMessenger = false;
+    bool IsSesterces = false;
 
-	ZDProcessGraphModelDoc* test =
-		(ZDProcessGraphModelDoc*)( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame()->GetActiveDocument();
+    ZDProcessGraphModelDoc* test =
+        (ZDProcessGraphModelDoc*)( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame()->GetActiveDocument();
 
-	if ( test != NULL )
-	{
-		if ( test->GetUseWorkflow() )
-		{
-			IsMessenger = true;
-		}
+    if ( test != NULL )
+    {
+        if ( test->GetUseWorkflow() )
+        {
+            IsMessenger = true;
+        }
 
-		if ( test->GetIntegrateCostSimulation() )
-		{
-			IsSesterces = true;
-		}
-	}
+        if ( test->GetIntegrateCostSimulation() )
+        {
+            IsSesterces = true;
+        }
+    }
 
-	if ( IsMessenger )
-	{
-		m_wndTab.EnableTab( 3, TRUE );
-	}
-	else
-	{
-		m_wndTab.ActivateTab( 0 );
-		m_wndTab.EnableTab( 3, FALSE );
-	}
+    if ( IsMessenger )
+    {
+        m_wndTab.EnableTab( 3, TRUE );
+    }
+    else
+    {
+        m_wndTab.ActivateTab( 0 );
+        m_wndTab.EnableTab( 3, FALSE );
+    }
 
-	if ( IsSesterces )
-	{
-		m_wndTab.EnableTab( 2, TRUE );
-	}
-	else
-	{
-		m_wndTab.ActivateTab( 0 );
-		m_wndTab.EnableTab( 2, FALSE );
-	}
+    if ( IsSesterces )
+    {
+        m_wndTab.EnableTab( 2, TRUE );
+    }
+    else
+    {
+        m_wndTab.ActivateTab( 0 );
+        m_wndTab.EnableTab( 2, FALSE );
+    }
 
-	// Forward message
-	NotifyAllObservers( pMsg );
+    // Forward message
+    NotifyAllObservers( pMsg );
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -286,69 +286,69 @@ void ZVOutputWorkspace::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
 
 void ZVOutputWorkspace::OnSize( UINT nType, int cx, int cy )
 {
-	CRect rectInside;
-	GetInsideRect( rectInside );
+    CRect rectInside;
+    GetInsideRect( rectInside );
 
-	::SetWindowPos( m_wndTab.m_hWnd,
-					NULL,
-					rectInside.left,
-					rectInside.top,
-					rectInside.Width(),
-					rectInside.Height(),
-					SWP_NOZORDER|SWP_NOACTIVATE );
+    ::SetWindowPos( m_wndTab.m_hWnd,
+                    NULL,
+                    rectInside.left,
+                    rectInside.top,
+                    rectInside.Width(),
+                    rectInside.Height(),
+                    SWP_NOZORDER|SWP_NOACTIVATE );
 
-	SECControlBar::OnSize( nType, cx, cy );
+    SECControlBar::OnSize( nType, cx, cy );
 }
 
 void ZVOutputWorkspace::OnExtendContextMenu( CMenu* pMenu )
 {
-	CString strMenu;
-	pMenu->AppendMenu( MF_SEPARATOR );
-	VERIFY( strMenu.LoadString( ID_CLEAR_WINDOW ) );
+    CString strMenu;
+    pMenu->AppendMenu( MF_SEPARATOR );
+    VERIFY( strMenu.LoadString( ID_CLEAR_WINDOW ) );
 
-	pMenu->AppendMenu( MF_STRING, ID_CLEAR_WINDOW, strMenu );
-	VERIFY( strMenu.LoadString(ID_SETDEBUGMODE_WINDOW ) );
+    pMenu->AppendMenu( MF_STRING, ID_CLEAR_WINDOW, strMenu );
+    VERIFY( strMenu.LoadString(ID_SETDEBUGMODE_WINDOW ) );
 
-	// Sets the check or unchecked flag for debug mode
-	UINT nFlags = MF_STRING;
+    // Sets the check or unchecked flag for debug mode
+    UINT nFlags = MF_STRING;
 
-	CWnd* pWnd;
+    CWnd* pWnd;
 
-	if ( m_wndTab.GetActiveTab( pWnd ) )
-	{
-		if ( pWnd == GetLogView() )
-		{
-			nFlags |= ( ( GetLogView()->IsInDebugMode() ) ? MF_CHECKED : MF_UNCHECKED );
-		}
-		else if ( pWnd == GetLogAnalyzerView() )
-		{
-			nFlags |= ( ( GetLogAnalyzerView()->IsInDebugMode() ) ? MF_CHECKED : MF_UNCHECKED );
-		}
-		else if ( pWnd == GetLogWorkflowView() )
-		{
-			nFlags |= ( ( GetLogWorkflowView()->IsInDebugMode() ) ? MF_CHECKED : MF_UNCHECKED );
-		}
-		else if ( pWnd == GetLogSearchView() )
-		{
-			nFlags |= ( ( GetLogSearchView()->IsInDebugMode() ) ? MF_CHECKED : MF_UNCHECKED );
-		}
-	}
-	else
-	{
-		nFlags |= MF_DISABLED;
-	}
+    if ( m_wndTab.GetActiveTab( pWnd ) )
+    {
+        if ( pWnd == GetLogView() )
+        {
+            nFlags |= ( ( GetLogView()->IsInDebugMode() ) ? MF_CHECKED : MF_UNCHECKED );
+        }
+        else if ( pWnd == GetLogAnalyzerView() )
+        {
+            nFlags |= ( ( GetLogAnalyzerView()->IsInDebugMode() ) ? MF_CHECKED : MF_UNCHECKED );
+        }
+        else if ( pWnd == GetLogWorkflowView() )
+        {
+            nFlags |= ( ( GetLogWorkflowView()->IsInDebugMode() ) ? MF_CHECKED : MF_UNCHECKED );
+        }
+        else if ( pWnd == GetLogSearchView() )
+        {
+            nFlags |= ( ( GetLogSearchView()->IsInDebugMode() ) ? MF_CHECKED : MF_UNCHECKED );
+        }
+    }
+    else
+    {
+        nFlags |= MF_DISABLED;
+    }
 
-	pMenu->AppendMenu( nFlags, ID_SETDEBUGMODE_WINDOW, strMenu );
+    pMenu->AppendMenu( nFlags, ID_SETDEBUGMODE_WINDOW, strMenu );
 }
 
 // List control is querying for subitem text...
 void ZVOutputWorkspace::OnListGetDispInfo( NMHDR* pNMHDR, LRESULT* pResult )
 {
-	LV_DISPINFO* lvdi;
+    LV_DISPINFO* lvdi;
 
-	lvdi = (LV_DISPINFO*)pNMHDR;
+    lvdi = (LV_DISPINFO*)pNMHDR;
 
-	*pResult = 0;
+    *pResult = 0;
 }
 
 void ZVOutputWorkspace::OnUpdateCmdUI( CFrameWnd* pTarget, BOOL bDisableIfNoHndler )
@@ -357,50 +357,50 @@ void ZVOutputWorkspace::OnUpdateCmdUI( CFrameWnd* pTarget, BOOL bDisableIfNoHndl
 
 void ZVOutputWorkspace::OnClearWindow()
 {
-	CWnd* pWnd;
+    CWnd* pWnd;
 
-	if ( m_wndTab.GetActiveTab( pWnd ) )
-	{
-		if ( pWnd == GetLogView() )
-		{
-			GetLogView()->ClearLog();
-		}
-		else if ( pWnd == GetLogAnalyzerView() )
-		{
-			GetLogAnalyzerView()->ClearLog();
-		}
-		else if ( pWnd == GetLogWorkflowView() )
-		{
-			GetLogWorkflowView()->ClearLog();
-		}
-		else if ( pWnd == GetLogSearchView() )
-		{
-			GetLogSearchView()->ClearLog();
-		}
-	}
+    if ( m_wndTab.GetActiveTab( pWnd ) )
+    {
+        if ( pWnd == GetLogView() )
+        {
+            GetLogView()->ClearLog();
+        }
+        else if ( pWnd == GetLogAnalyzerView() )
+        {
+            GetLogAnalyzerView()->ClearLog();
+        }
+        else if ( pWnd == GetLogWorkflowView() )
+        {
+            GetLogWorkflowView()->ClearLog();
+        }
+        else if ( pWnd == GetLogSearchView() )
+        {
+            GetLogSearchView()->ClearLog();
+        }
+    }
 }
 
 void ZVOutputWorkspace::OnSetDebugMode()
 {
-	CWnd* pWnd;
+    CWnd* pWnd;
 
-	if ( m_wndTab.GetActiveTab( pWnd ) )
-	{
-		if ( pWnd == GetLogView() )
-		{
-			GetLogView()->SetDebugMode( !GetLogView()->IsInDebugMode() );
-		}
-		else if ( pWnd == GetLogAnalyzerView() )
-		{
-			GetLogAnalyzerView()->SetDebugMode( !GetLogAnalyzerView()->IsInDebugMode() );
-		}
-		else if ( pWnd == GetLogWorkflowView() )
-		{
-			GetLogWorkflowView()->SetDebugMode( !GetLogWorkflowView()->IsInDebugMode() );
-		}
-		else if ( pWnd == GetLogSearchView() )
-		{
-			GetLogSearchView()->SetDebugMode( !GetLogSearchView()->IsInDebugMode() );
-		}
-	}
+    if ( m_wndTab.GetActiveTab( pWnd ) )
+    {
+        if ( pWnd == GetLogView() )
+        {
+            GetLogView()->SetDebugMode( !GetLogView()->IsInDebugMode() );
+        }
+        else if ( pWnd == GetLogAnalyzerView() )
+        {
+            GetLogAnalyzerView()->SetDebugMode( !GetLogAnalyzerView()->IsInDebugMode() );
+        }
+        else if ( pWnd == GetLogWorkflowView() )
+        {
+            GetLogWorkflowView()->SetDebugMode( !GetLogWorkflowView()->IsInDebugMode() );
+        }
+        else if ( pWnd == GetLogSearchView() )
+        {
+            GetLogSearchView()->SetDebugMode( !GetLogSearchView()->IsInDebugMode() );
+        }
+    }
 }

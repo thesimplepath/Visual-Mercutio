@@ -1,10 +1,10 @@
 //## begin module%345A3A5503B6.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%345A3A5503B6.cm
 
 //## begin module%345A3A5503B6.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%345A3A5503B6.cp
 
 //## Module: TmplFile%345A3A5503B6; Package specification
@@ -51,7 +51,7 @@
 //## end ZDTemplateFile%345A3A01035C.preface
 
 //## Class: ZDTemplateFile%345A3A01035C
-//	This classe encapsulate information of a template file.
+//    This classe encapsulate information of a template file.
 //## Category: ZUtil library::Templates%3747CDAD02D3
 //## Subsystem: ZUtil%366D71940075
 //## Persistence: Transient
@@ -70,7 +70,7 @@ class AFX_EXT_CLASS ZDTemplateFile : public CObject  //## Inherits: <unnamed>%34
 
     //## Constructors (specified)
       //## Operation: ZDTemplateFile%878377696
-      //	Create the object. You must specify the filename.
+      //    Create the object. You must specify the filename.
       ZDTemplateFile (CString Filename = "");
 
     //## Destructor (generated)
@@ -82,46 +82,46 @@ class AFX_EXT_CLASS ZDTemplateFile : public CObject  //## Inherits: <unnamed>%34
 
     //## Other Operations (specified)
       //## Operation: GetDescription%878377695
-      //	Returns the description contained in ZDStamp member.
+      //    Returns the description contained in ZDStamp member.
       CString GetDescription () const;
 
       //## Operation: Create%878377697
-      //	Create the object. You must specify the filename.
+      //    Create the object. You must specify the filename.
       BOOL Create (CString Filename);
 
       //## Operation: IsPersistent%878377700
-      //	Return the Persistent class member.
+      //    Return the Persistent class member.
       BOOL IsPersistent () const;
 
       //## Operation: GetTitle%878492726
-      //	Returns the title contained in ZDStamp member.
+      //    Returns the title contained in ZDStamp member.
       CString GetTitle () const;
 
       //## Operation: operator >>%927987842
-      //	Store from the archive to the object Stamp.
+      //    Store from the archive to the object Stamp.
       AFX_EXT_API friend CArchive& operator >> (CArchive& ar, ZDTemplateFile& TemplateFile);
 
       //## Operation: operator <<%927987843
-      //	Store the object Stamp to the archive.
+      //    Store the object Stamp to the archive.
       AFX_EXT_API friend CArchive& operator << (CArchive& ar, ZDTemplateFile& TemplateFile);
 
       //## Operation: Clone%927987844
-      //	Clone this object
+      //    Clone this object
       ZDTemplateFile* Clone ();
 
       //## Operation: Serialize%927987848
-      //	Serialize document information.
+      //    Serialize document information.
       virtual void Serialize (CArchive& ar);
 
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: Filename%345A3A8403C0
-      //	Defines the template filename.
+      //    Defines the template filename.
       const CString GetFilename () const;
 
       //## Attribute: Stamp%345A3AB10122
-      //	Defines the template stamp contained in the template
-      //	filename.
+      //    Defines the template stamp contained in the template
+      //    filename.
       const ZDFolderStamp GetStamp () const;
 
     // Additional Public Declarations
@@ -131,7 +131,7 @@ class AFX_EXT_CLASS ZDTemplateFile : public CObject  //## Inherits: <unnamed>%34
   protected:
     // Additional Protected Declarations
       //## begin ZDTemplateFile%345A3A01035C.protected preserve=yes
-	DECLARE_SERIAL(ZDTemplateFile)
+    DECLARE_SERIAL(ZDTemplateFile)
       //## end ZDTemplateFile%345A3A01035C.protected
 
   private:
@@ -146,7 +146,7 @@ class AFX_EXT_CLASS ZDTemplateFile : public CObject  //## Inherits: <unnamed>%34
       //## end ZDTemplateFile::Stamp%345A3AB10122.attr
 
       //## Attribute: Persistent%345B01600294
-      //	Determine if the object is correctly constructed.
+      //    Determine if the object is correctly constructed.
       //## begin ZDTemplateFile::Persistent%345B01600294.attr preserve=no  public: BOOL {U} FALSE
       BOOL m_Persistent;
       //## end ZDTemplateFile::Persistent%345B01600294.attr
@@ -172,21 +172,21 @@ class AFX_EXT_CLASS ZDTemplateFile : public CObject  //## Inherits: <unnamed>%34
 inline CString ZDTemplateFile::GetDescription () const
 {
   //## begin ZDTemplateFile::GetDescription%878377695.body preserve=yes
-  	return m_Stamp.GetExplanation();
+      return m_Stamp.GetExplanation();
   //## end ZDTemplateFile::GetDescription%878377695.body
 }
 
 inline BOOL ZDTemplateFile::IsPersistent () const
 {
   //## begin ZDTemplateFile::IsPersistent%878377700.body preserve=yes
-  	return m_Persistent;
+      return m_Persistent;
   //## end ZDTemplateFile::IsPersistent%878377700.body
 }
 
 inline CString ZDTemplateFile::GetTitle () const
 {
   //## begin ZDTemplateFile::GetTitle%878492726.body preserve=yes
-  	return m_Stamp.GetTitle();
+      return m_Stamp.GetTitle();
   //## end ZDTemplateFile::GetTitle%878492726.body
 }
 

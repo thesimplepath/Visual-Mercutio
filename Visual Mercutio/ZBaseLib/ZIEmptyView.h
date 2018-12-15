@@ -39,15 +39,15 @@
 class AFX_EXT_CLASS ZIEmptyView : public CFormView
 {
 protected:
-	ZIEmptyView();           // protected constructor used by dynamic creation
-	DECLARE_DYNCREATE(ZIEmptyView)
+    ZIEmptyView();           // protected constructor used by dynamic creation
+    DECLARE_DYNCREATE(ZIEmptyView)
 
 // Form Data
 public:
-	//{{AFX_DATA(ZIEmptyView)
-	enum { IDD = IDD_EMPTYVIEW };
-		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+    //{{AFX_DATA(ZIEmptyView)
+    enum { IDD = IDD_EMPTYVIEW };
+        // NOTE: the ClassWizard will add data members here
+    //}}AFX_DATA
 
 // Attributes
 public:
@@ -56,25 +56,25 @@ public:
 public:
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIEmptyView)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIEmptyView)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
-	virtual ~ZIEmptyView();
+    virtual ~ZIEmptyView();
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
-	// Generated message map functions
-	//{{AFX_MSG(ZIEmptyView)
-		// NOTE - the ClassWizard will add and remove member functions here.
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZIEmptyView)
+        // NOTE - the ClassWizard will add and remove member functions here.
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

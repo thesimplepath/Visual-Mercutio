@@ -1,10 +1,10 @@
 // **************************************************************************************************************
-// *								   Classe ZUSOAPPubCheckUniverse											*
+// *                                   Classe ZUSOAPPubCheckUniverse                                            *
 // **************************************************************************************************************
-// * JMR-MODIF - Le 21 juin 2006 - Création de la classe ZUSOAPPubCheckUniverse.								*
+// * JMR-MODIF - Le 21 juin 2006 - Création de la classe ZUSOAPPubCheckUniverse.                                *
 // **************************************************************************************************************
-// * Cette classe prend en charge le test des référentiels, et permet de déterminer si la publication est		*
-// * valide.																									*
+// * Cette classe prend en charge le test des référentiels, et permet de déterminer si la publication est        *
+// * valide.                                                                                                    *
 // **************************************************************************************************************
 
 #if !defined(AFX_ZUSOAPPUBCHECKUNIVERSE_H__D709CBA3_F30E_4D59_80D9_F6AADB7A8749__INCLUDED_)
@@ -43,16 +43,16 @@ class AFX_EXT_CLASS ZUSOAPPubCheckUniverse
 {
 public:
 
-	ZUSOAPPubCheckUniverse( ZBPublishMessengerModelInformation* pInfo, ZILog* pLog = NULL );
-	virtual ~ZUSOAPPubCheckUniverse();
+    ZUSOAPPubCheckUniverse( ZBPublishMessengerModelInformation* pInfo, ZILog* pLog = NULL );
+    virtual ~ZUSOAPPubCheckUniverse();
 
-	bool IsValid();
+    bool IsValid();
 
 private:
 
-	ZBPublishMessengerModelInformation*	m_pInfo;
-	pCheckUniverse						m_cu;
-	ZILog*								m_pLog;
+    ZBPublishMessengerModelInformation*    m_pInfo;
+    pCheckUniverse                        m_cu;
+    ZILog*                                m_pLog;
 };
 
 #endif // !defined(AFX_ZUSOAPPUBCHECKUNIVERSE_H__D709CBA3_F30E_4D59_80D9_F6AADB7A8749__INCLUDED_)

@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Gaya
-// <nl>Created:		 03/2002
+// <nl>Created:         03/2002
 // <nl>Description:  XXXClass frame window support
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -49,38 +49,38 @@ class AFX_EXT_CLASS psystem
 {
 public:
 
-	psystem()
-	{
-	}
+    psystem()
+    {
+    }
 
-	psystem( String16	systemid,
-			 String16	systemparent,
-			 String16	systemtitle,
-			 String16	command,
-			 String16	parameters,
-			 String16	directory,
-			 int		priority,
-			 int		windowst )
-	{
-		this->systemid		= convertTo( systemid );
-		this->systemparent	= convertTo( systemparent );
-		this->systemtitle	= convertTo( systemtitle );
-		this->command		= convertTo( command );
-		this->parameters	= convertTo( parameters );
-		this->directory		= convertTo( directory );
-		this->priority		= priority;
-		this->windowst		= windowst;
-	}
+    psystem( String16    systemid,
+             String16    systemparent,
+             String16    systemtitle,
+             String16    command,
+             String16    parameters,
+             String16    directory,
+             int        priority,
+             int        windowst )
+    {
+        this->systemid        = convertTo( systemid );
+        this->systemparent    = convertTo( systemparent );
+        this->systemtitle    = convertTo( systemtitle );
+        this->command        = convertTo( command );
+        this->parameters    = convertTo( parameters );
+        this->directory        = convertTo( directory );
+        this->priority        = priority;
+        this->windowst        = windowst;
+    }
 
-	string	systemid;
-	string	systemparent;
-	string	systemtitle;
-	string	command;
-	string	parameters;
-	string	directory;
+    string    systemid;
+    string    systemparent;
+    string    systemtitle;
+    string    command;
+    string    parameters;
+    string    directory;
 
-	int		priority;
-	int		windowst;
+    int        priority;
+    int        windowst;
 };
 
 #endif

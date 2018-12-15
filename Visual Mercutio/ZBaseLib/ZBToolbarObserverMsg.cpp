@@ -18,7 +18,7 @@ IMPLEMENT_DYNAMIC( ZBToolbarObserverMsg, ZIObserverMsg )
 //////////////////////////////////////////////////////////////////////
 
 ZBToolbarObserverMsg::ZBToolbarObserverMsg( UINT MessageID /*= 0*/ )
-	: m_MessageID( MessageID )
+    : m_MessageID( MessageID )
 {
 }
 

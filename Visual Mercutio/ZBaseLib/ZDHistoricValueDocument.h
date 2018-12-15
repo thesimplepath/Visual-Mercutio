@@ -16,58 +16,58 @@
 
 class ZDHistoricValueDocument : public CDocument
 {
-	DECLARE_DYNCREATE(ZDHistoricValueDocument)
+    DECLARE_DYNCREATE(ZDHistoricValueDocument)
 public:
-	ZDHistoricValueDocument();           // Public constructor since not used by dynamic creation
-	virtual ~ZDHistoricValueDocument();
+    ZDHistoricValueDocument();           // Public constructor since not used by dynamic creation
+    virtual ~ZDHistoricValueDocument();
 
 // Operations
 public:
-	bool ReadFromFile( const CString Filename );
-	bool SaveToFile( const CString Filename );
+    bool ReadFromFile( const CString Filename );
+    bool SaveToFile( const CString Filename );
 
-	ZBHistoricValueManager& GetHistoricValueManager()
-	{
-		return m_HistoricValueManager;
-	};
-	bool IsLoaded() const
-	{
-		return m_IsLoaded;
-	};
-	void SetLoaded( bool value = true )
-	{
-		m_IsLoaded = value;
-	};
-	virtual BOOL IsModified()
-	{
-		return CDocument::IsModified();
-	};
+    ZBHistoricValueManager& GetHistoricValueManager()
+    {
+        return m_HistoricValueManager;
+    };
+    bool IsLoaded() const
+    {
+        return m_IsLoaded;
+    };
+    void SetLoaded( bool value = true )
+    {
+        m_IsLoaded = value;
+    };
+    virtual BOOL IsModified()
+    {
+        return CDocument::IsModified();
+    };
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZDHistoricValueDocument)
-	public:
-	virtual void Serialize(CArchive& ar);   // overridden for document i/o
-	protected:
-	virtual BOOL OnNewDocument();
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZDHistoricValueDocument)
+    public:
+    virtual void Serialize(CArchive& ar);   // overridden for document i/o
+    protected:
+    virtual BOOL OnNewDocument();
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(ZDHistoricValueDocument)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZDHistoricValueDocument)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	ZBHistoricValueManager	m_HistoricValueManager;
-	bool					m_IsLoaded;
+    ZBHistoricValueManager    m_HistoricValueManager;
+    bool                    m_IsLoaded;
 };
 
 //{{AFX_INSERT_LOCATION}}

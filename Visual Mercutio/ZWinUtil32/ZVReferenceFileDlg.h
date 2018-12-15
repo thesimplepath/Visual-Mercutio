@@ -39,68 +39,68 @@ class AFX_EXT_CLASS ZVReferenceFileDlg : public CDialog
 // Construction / Destruction
 public:
 
-	// Standard constructor
-	ZVReferenceFileDlg( const CString	Reference		= _T( "" ),
-						int				InsertionType	= 0,
-						int				ActivationType	= 0,
-						CWnd*			pParent			= NULL );
+    // Standard constructor
+    ZVReferenceFileDlg( const CString    Reference        = _T( "" ),
+                        int                InsertionType    = 0,
+                        int                ActivationType    = 0,
+                        CWnd*            pParent            = NULL );
 
 public:
 
-	CString GetReference() const
-	{
-		return m_Reference;
-	}
+    CString GetReference() const
+    {
+        return m_Reference;
+    }
 
-	int GetInsertionType() const
-	{
-		return m_InsertionType;
-	}
+    int GetInsertionType() const
+    {
+        return m_InsertionType;
+    }
 
-	int GetActivationType() const
-	{
-		return m_ActivationType;
-	}
+    int GetActivationType() const
+    {
+        return m_ActivationType;
+    }
 
 private:
 
-	// Dialog Data
-	//{{AFX_DATA(ZVReferenceFileDlg)
-	enum { IDD = IDD_REFERENCE_FILE };
-	CComboBox	m_ActivationTypeCtrl;
-	CComboBox	m_InsertionTypeCtrl;
-	CString		m_Reference;
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZVReferenceFileDlg)
+    enum { IDD = IDD_REFERENCE_FILE };
+    CComboBox    m_ActivationTypeCtrl;
+    CComboBox    m_InsertionTypeCtrl;
+    CString        m_Reference;
+    //}}AFX_DATA
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVReferenceFileDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVReferenceFileDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVReferenceFileDlg)
-	afx_msg void OnAddfile();
-	afx_msg void OnAddurl();
-	afx_msg void OnScriptor();
-	virtual void OnOK();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVReferenceFileDlg)
+    afx_msg void OnAddfile();
+    afx_msg void OnAddurl();
+    afx_msg void OnScriptor();
+    virtual void OnOK();
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	void SaveValuesToObject();
-	void CheckControlState();
+    void SaveValuesToObject();
+    void CheckControlState();
 
 private:
 
-	int m_InsertionType;
-	int m_ActivationType;
+    int m_InsertionType;
+    int m_ActivationType;
 };
 
 //{{AFX_INSERT_LOCATION}}

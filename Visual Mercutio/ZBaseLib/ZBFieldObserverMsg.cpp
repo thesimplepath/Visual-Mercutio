@@ -18,8 +18,8 @@ IMPLEMENT_DYNAMIC( ZBFieldObserverMsg, ZIObserverMsg )
 //////////////////////////////////////////////////////////////////////
 
 ZBFieldObserverMsg::ZBFieldObserverMsg( UINT MessageID /*= 0*/, PlanFinObject* pObject /*= NULL*/ )
-	: m_MessageID	( MessageID ), 
-	  m_pObject		( pObject )
+    : m_MessageID    ( MessageID ), 
+      m_pObject        ( pObject )
 {
 }
 

@@ -12,7 +12,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 10/2002
+// <nl>Created:         10/2002
 // <nl>Description:  ReportLib include file for automatic library linking
 //
 /////////////////////////////////////////////////////////////////////////////

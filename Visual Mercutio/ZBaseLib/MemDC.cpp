@@ -57,7 +57,7 @@ ZUMemoryDC::~ZUMemoryDC()
         //Swap back the original bitmap.
         SelectObject(m_pOldBitmap);
 
-		m_bitmap.DeleteObject();
+        m_bitmap.DeleteObject();
     } else {
         // All we need to do is replace the DC with an illegal value,
         // this keeps us from accidently deleting the handles associated with

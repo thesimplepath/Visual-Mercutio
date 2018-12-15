@@ -1,10 +1,10 @@
 //## begin module%36500BE50072.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%36500BE50072.cm
 
 //## begin module%36500BE50072.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%36500BE50072.cp
 
 //## Module: ExpRT%36500BE50072; Package specification
@@ -51,7 +51,7 @@ class ZDDocument;
 
 
 //## Class: ZUDocumentExport%36500BAE01A9
-//	Export and Import ZDDocument information.
+//    Export and Import ZDDocument information.
 //## Category: ZBaseLib::Data Feed export/import classes%37EB8FB00040
 //## Subsystem: ZBaseLib%37A08E0C019D
 //## Persistence: Transient
@@ -65,8 +65,8 @@ class AFX_EXT_CLASS ZUDocumentExport : public ZUExport  //## Inherits: <unnamed>
   public:
     //## Constructors (specified)
       //## Operation: ZUDocumentExport%911215686
-      //	Constructs an export class with the filename and the
-      //	document pointer
+      //    Constructs an export class with the filename and the
+      //    document pointer
       ZUDocumentExport (CString Filename = "", ZDDocument* pDoc = NULL, BOOL GenerateHeader = FALSE, SynchronizationSeparatorType SeparatorType = AutomaticSeparator, CString Schema = szOriginalSchema, int PropagationMode = LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
 
     //## Destructor (generated)
@@ -75,31 +75,31 @@ class AFX_EXT_CLASS ZUDocumentExport : public ZUExport  //## Inherits: <unnamed>
 
     //## Other Operations (specified)
       //## Operation: GetExportedLine%911215687
-      //	Build the export line and return it.
+      //    Build the export line and return it.
       virtual CString GetExportedLine (CObject* pObj);
 
       //## Operation: IsExportedField%911215688
-      //	Tests if the field is to be exported.
+      //    Tests if the field is to be exported.
       virtual BOOL IsExportedField (CObject* pObj) const;
 
       //## Operation: ProcessLine%911215689
-      //	Process the line and updates the document.
+      //    Process the line and updates the document.
       virtual BOOL ProcessLine (CString Line);
 
       //## Operation: GetHeaderLine%911215690
-      //	This function builds the header line.
+      //    This function builds the header line.
       virtual CString GetHeaderLine ();
 
       //## Operation: Create%922203343
-      //	Create the export class.
+      //    Create the export class.
       virtual void Create (CString Filename, ZDDocument* pDoc, BOOL GenerateHeader = FALSE, SynchronizationSeparatorType SeparatorType = AutomaticSeparator, CString Schema = szOriginalSchema, int PropagationMode = LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
 
       //## Operation: Import%922203344
-      //	This function imports the file to the document.
+      //    This function imports the file to the document.
       virtual BOOL Import ();
 
       //## Operation: Export%922203345
-      //	This function exports the records to a file.
+      //    This function exports the records to a file.
       virtual BOOL Export ();
 
       //## Operation: ExportAdditionalInfo%922203346
@@ -109,19 +109,19 @@ class AFX_EXT_CLASS ZUDocumentExport : public ZUExport  //## Inherits: <unnamed>
       virtual BOOL ImportAdditionalInfo ();
 
       //## Operation: PreImport%922203360
-      //	This function imports the file to the document.
+      //    This function imports the file to the document.
       virtual BOOL PreImport ();
 
       //## Operation: PostImport%922203361
-      //	This function imports the file to the document.
+      //    This function imports the file to the document.
       virtual BOOL PostImport ();
 
       //## Operation: ForecastedTotalObject%922203366
-      //	This function should return the forecasted total object.
+      //    This function should return the forecasted total object.
       virtual double ForecastedTotalObject ();
 
       //## Operation: DoExportLoop%922203368
-      //	This function do the loop for export.
+      //    This function do the loop for export.
       virtual BOOL DoExportLoop ();
 
     // Additional Public Declarations
@@ -132,14 +132,14 @@ class AFX_EXT_CLASS ZUDocumentExport : public ZUExport  //## Inherits: <unnamed>
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: ObjectCounter%36F7B9160291
-      //	This object counter is automatically incremented by the
-      //	export function for each object.
+      //    This object counter is automatically incremented by the
+      //    export function for each object.
       const int GetObjectCounter () const;
 
     // Data Members for Class Attributes
 
       //## Attribute: pDoc%36F7B5B203B6
-      //	The pointer to the document.
+      //    The pointer to the document.
       //## begin ZUDocumentExport::pDoc%36F7B5B203B6.attr preserve=no  protected: ZDDocument* {U} 
       ZDDocument* m_pDoc;
       //## end ZUDocumentExport::pDoc%36F7B5B203B6.attr
@@ -187,8 +187,8 @@ class AFX_EXT_CLASS ZUDocumentExport : public ZUExport  //## Inherits: <unnamed>
 inline void ZUDocumentExport::Create (CString Filename, ZDDocument* pDoc, BOOL GenerateHeader, SynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
 {
   //## begin ZUDocumentExport::Create%922203343.body preserve=yes
-  	m_pDoc = pDoc;
-	ZUExport::Create (Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar);
+      m_pDoc = pDoc;
+    ZUExport::Create (Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar);
   //## end ZUDocumentExport::Create%922203343.body
 }
 

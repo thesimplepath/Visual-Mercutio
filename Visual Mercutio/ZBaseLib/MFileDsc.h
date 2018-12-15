@@ -1,5 +1,5 @@
 //## begin module%366EBC24022D.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%366EBC24022D.cm
 
 //## begin module%366EBC24022D.cp preserve=no
@@ -33,7 +33,7 @@
 //## begin module%366EBC24022D.additionalDeclarations preserve=yes
 #ifndef Mapi_h
 #define Mapi_h 1
-	#include <mapi.h>
+    #include <mapi.h>
 #endif
 
 #ifdef _ZBASELIBEXPORT
@@ -87,25 +87,25 @@ class AFX_EXT_CLASS ZUMailFileDescription
       void Fill (ZFileManager& FileList, AttachementType AttachType = InsertedFile);
 
       //## Operation: AddFile%913223372
-      //	Returns true of done.
+      //    Returns true of done.
       BOOL AddFile (CString& File, AttachementType AttachType = InsertedFile);
 
       //## Operation: AddFile%913659109
-      //	Returns true of done.
+      //    Returns true of done.
       BOOL AddFile (ZFile& File, AttachementType AttachType = InsertedFile);
 
       //## Operation: GetCount%913223373
       int GetCount () const;
 
       //## Operation: GetMapiFileDescPtr%913223374
-      //	Returns the pointer to a fill structure.
+      //    Returns the pointer to a fill structure.
       MapiFileDesc* GetMapiFileDescPtr ();
 
       //## Operation: RemoveAllFiles%913223375
       void RemoveAllFiles ();
 
       //## Operation: GetHyperLinkText%913459630
-      //	Build the hyper link text of files.
+      //    Build the hyper link text of files.
       const CString& GetHyperLinkText ();
 
     //## Get and Set Operations for Class Attributes (generated)
@@ -172,22 +172,22 @@ class AFX_EXT_CLASS ZUMailFileDescription
 inline BOOL ZUMailFileDescription::AddFile (CString& File, AttachementType AttachType)
 {
   //## begin ZUMailFileDescription::AddFile%913223372.body preserve=yes
-  	m_AttachementType = AttachType;
-  	return (m_FileArray.Add( File ) >= 0 );
+      m_AttachementType = AttachType;
+      return (m_FileArray.Add( File ) >= 0 );
   //## end ZUMailFileDescription::AddFile%913223372.body
 }
 
 inline int ZUMailFileDescription::GetCount () const
 {
   //## begin ZUMailFileDescription::GetCount%913223373.body preserve=yes
-  	return m_FileArray.GetSize();
+      return m_FileArray.GetSize();
   //## end ZUMailFileDescription::GetCount%913223373.body
 }
 
 inline void ZUMailFileDescription::RemoveAllFiles ()
 {
   //## begin ZUMailFileDescription::RemoveAllFiles%913223375.body preserve=yes
-  	m_FileArray.RemoveAll();
+      m_FileArray.RemoveAll();
   //## end ZUMailFileDescription::RemoveAllFiles%913223375.body
 }
 

@@ -41,25 +41,25 @@ class AFX_EXT_CLASS ZCUserTree : public ZITreeCtrl
       void Initialize(ZUUserManager* pUserManager);
       void ReInitialize(ZUUserManager* pUserManager);
       void Refresh();
-	  ZUser*			GetSelectedUser();
-	  CString			GetSelectedDepartement();
+      ZUser*            GetSelectedUser();
+      CString            GetSelectedDepartement();
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCUserTree)
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCUserTree)
+    //}}AFX_VIRTUAL
   public:
-	//{{AFX_MSG(ZCUserTree)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZCUserTree)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
   private:
       ZCUserTree(const ZCUserTree &right);
       const ZCUserTree & operator=(const ZCUserTree &right);
 
   private: //## implementation
-    ZUUserManager*	m_pUserManager;
-	bool			m_Invalid;
-	ZIUserTree		m_UserTree;
+    ZUUserManager*    m_pUserManager;
+    bool            m_Invalid;
+    ZIUserTree        m_UserTree;
 };
 
 //#undef  AFX_DATA

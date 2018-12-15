@@ -12,7 +12,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// Created:		 05/2001
+// Created:         05/2001
 // Description:  ZBBPCostPropertiesProcedure2 cost properties for procedure
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -52,27 +52,27 @@
 //@topic Basic Properties Change Flags 
 //@flag Z_CHANGE_COST_MULTIPLIER | Change the cost multiplier factor.
 #ifndef Z_CHANGE_COST_MULTIPLIER
-#define Z_CHANGE_COST_MULTIPLIER					0x0001
+#define Z_CHANGE_COST_MULTIPLIER                    0x0001
 #endif
 
 //@flag Z_CHANGE_COST_PROCESSING_TIME | Change the processing time.
 #ifndef Z_CHANGE_COST_PROCESSING_TIME
-#define Z_CHANGE_COST_PROCESSING_TIME				0x0002
+#define Z_CHANGE_COST_PROCESSING_TIME                0x0002
 #endif
 
 //@flag Z_CHANGE_COST_UNITARY_COST | Change the unitary cost.
 #ifndef Z_CHANGE_COST_UNITARY_COST
-#define Z_CHANGE_COST_UNITARY_COST					0x0004
+#define Z_CHANGE_COST_UNITARY_COST                    0x0004
 #endif
 
 //@flag Z_CHANGE_COST_PROCESSING_DURATION | Change the processing duration.
 #ifndef Z_CHANGE_COST_PROCESSING_DURATION
-#define Z_CHANGE_COST_PROCESSING_DURATION			0x0008
+#define Z_CHANGE_COST_PROCESSING_DURATION            0x0008
 #endif
 
 //@flag Z_CHANGE_COST_PROCESSING_DURATIONMAX | Change the processing duration maximum.
 #ifndef Z_CHANGE_COST_PROCESSING_DURATIONMAX
-#define Z_CHANGE_COST_PROCESSING_DURATIONMAX		0x0010
+#define Z_CHANGE_COST_PROCESSING_DURATIONMAX        0x0010
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
@@ -85,27 +85,27 @@
 // interface implemented by the orientation property container.
 //@flag Z_COST_MULTIPLIER | Identifier for the cost multiplier factor.
 #ifndef Z_COST_MULTIPLIER
-#define Z_COST_MULTIPLIER					1
+#define Z_COST_MULTIPLIER                    1
 #endif
 
 //@flag Z_COST_PROCESSING_TIME | Identifier for the processing time.
 #ifndef Z_COST_PROCESSING_TIME
-#define Z_COST_PROCESSING_TIME				2
+#define Z_COST_PROCESSING_TIME                2
 #endif
 
 //@flag Z_COST_UNITARY_COST | Identifier for the unitary cost.
 #ifndef Z_COST_UNITARY_COST
-#define Z_COST_UNITARY_COST					3
+#define Z_COST_UNITARY_COST                    3
 #endif
 
 //@flag Z_COST_PROCESSING_DURATION | Identifier for the processing duration.
 #ifndef Z_COST_PROCESSING_DURATION
-#define Z_COST_PROCESSING_DURATION			4
+#define Z_COST_PROCESSING_DURATION            4
 #endif
 
 //@flag Z_COST_PROCESSING_DURATIONMAX | Identifier for the processing duration.maximum
 #ifndef Z_COST_PROCESSING_DURATIONMAX
-#define Z_COST_PROCESSING_DURATIONMAX		5
+#define Z_COST_PROCESSING_DURATIONMAX        5
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
@@ -128,173 +128,173 @@
 
 class AFX_EXT_CLASS ZBBPCostPropertiesProcedure2 : public CObject
 {
-	DECLARE_SERIAL( ZBBPCostPropertiesProcedure2 )
+    DECLARE_SERIAL( ZBBPCostPropertiesProcedure2 )
 
 // Construction/Destruction
 public:
 
-	//@cmember
-	/* Constructor. */
-	ZBBPCostPropertiesProcedure2();
+    //@cmember
+    /* Constructor. */
+    ZBBPCostPropertiesProcedure2();
 
-	//@cmember
-	/* Copy constructor. */
-	ZBBPCostPropertiesProcedure2( const ZBBPCostPropertiesProcedure2& propBasic );
+    //@cmember
+    /* Copy constructor. */
+    ZBBPCostPropertiesProcedure2( const ZBBPCostPropertiesProcedure2& propBasic );
 
-	//@cmember
-	/* Destructor. */
-	virtual ~ZBBPCostPropertiesProcedure2();
+    //@cmember
+    /* Destructor. */
+    virtual ~ZBBPCostPropertiesProcedure2();
 
 // Operations
 public:
 
-	//@cmember
-	/* Assigns another property to this property. */
-	ZBBPCostPropertiesProcedure2& operator=( const ZBBPCostPropertiesProcedure2& propBasic );
+    //@cmember
+    /* Assigns another property to this property. */
+    ZBBPCostPropertiesProcedure2& operator=( const ZBBPCostPropertiesProcedure2& propBasic );
 
-	//@cmember
-	/* Compares two orientation properties. */
-	BOOL operator==( const ZBBPCostPropertiesProcedure2 propBasic ) const;
+    //@cmember
+    /* Compares two orientation properties. */
+    BOOL operator==( const ZBBPCostPropertiesProcedure2 propBasic ) const;
 
-	//@cmember
-	/* Makes a copy of this properties object. */
-	virtual ZBBPCostPropertiesProcedure2* Dup();
+    //@cmember
+    /* Makes a copy of this properties object. */
+    virtual ZBBPCostPropertiesProcedure2* Dup();
 
-	//@cmember
-	/* Merges another set of properties with this one. */
-	virtual void Merge( ZBBPCostPropertiesProcedure2* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL );
+    //@cmember
+    /* Merges another set of properties with this one. */
+    virtual void Merge( ZBBPCostPropertiesProcedure2* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL );
 
-	//@cmember
-	/* Determines if another set of properties is equal to this one. */
-	virtual BOOL IsEqual( ZBBPCostPropertiesProcedure2* pProp );
+    //@cmember
+    /* Determines if another set of properties is equal to this one. */
+    virtual BOOL IsEqual( ZBBPCostPropertiesProcedure2* pProp );
 
 public:
 
-	//@cmember
-	/* Gets the cost multiplier factor. */
-	float GetMultiplier() const;
+    //@cmember
+    /* Gets the cost multiplier factor. */
+    float GetMultiplier() const;
 
-	//@cmember
-	/* Sets the cost multiplier factor. */
-	void SetMultiplier( const float value );
+    //@cmember
+    /* Sets the cost multiplier factor. */
+    void SetMultiplier( const float value );
 
-	//@cmember
-	/* Gets the processing time. */
-	double GetProcessingTime() const;
+    //@cmember
+    /* Gets the processing time. */
+    double GetProcessingTime() const;
 
-	//@cmember
-	/* Sets the processing time. */
-	void SetProcessingTime( const double value );
+    //@cmember
+    /* Sets the processing time. */
+    void SetProcessingTime( const double value );
 
-	//@cmember
-	/* Gets the unitary cost. */
-	float GetUnitaryCost() const;
+    //@cmember
+    /* Gets the unitary cost. */
+    float GetUnitaryCost() const;
 
-	//@cmember
-	/* Sets the unitary cost. */
-	void SetUnitaryCost( const float value );
+    //@cmember
+    /* Sets the unitary cost. */
+    void SetUnitaryCost( const float value );
 
-	//@cmember
-	/* Gets the processing time. */
-	double GetProcessingDuration() const;
+    //@cmember
+    /* Gets the processing time. */
+    double GetProcessingDuration() const;
 
-	//@cmember
-	/* Sets the processing time. */
-	void SetProcessingDuration( const double value );
+    //@cmember
+    /* Sets the processing time. */
+    void SetProcessingDuration( const double value );
 
-	//@cmember
-	/* Gets the processing time maximum. */
-	double GetProcessingDurationMax() const;
+    //@cmember
+    /* Gets the processing time maximum. */
+    double GetProcessingDurationMax() const;
 
-	//@cmember
-	/* Sets the processing time maximum. */
-	void SetProcessingDurationMax( const double value );
+    //@cmember
+    /* Sets the processing time maximum. */
+    void SetProcessingDurationMax( const double value );
 
-	/////////////////////////////////////////////////////////////////////////
-	// IODPropertyContainer interface
+    /////////////////////////////////////////////////////////////////////////
+    // IODPropertyContainer interface
 
-	//@cmember
-	/* Gets the value of the given string property. */
-	virtual BOOL GetValue( const int nPropId, CString& strValue ) const;
+    //@cmember
+    /* Gets the value of the given string property. */
+    virtual BOOL GetValue( const int nPropId, CString& strValue ) const;
 
-	//@cmember
-	/* Gets the value of the given integer property. */
-	virtual BOOL GetValue( const int nPropId, int& nValue ) const;
+    //@cmember
+    /* Gets the value of the given integer property. */
+    virtual BOOL GetValue( const int nPropId, int& nValue ) const;
 
-	//@cmember
-	/* Gets the value of the given unsigned integer property. */
-	virtual BOOL GetValue( const int nPropId, UINT& nValue ) const;
+    //@cmember
+    /* Gets the value of the given unsigned integer property. */
+    virtual BOOL GetValue( const int nPropId, UINT& nValue ) const;
 
-	//@cmember
-	/* Gets the value of the given DWORD property. */
-	virtual BOOL GetValue( const int nPropId, DWORD& dwValue ) const;
+    //@cmember
+    /* Gets the value of the given DWORD property. */
+    virtual BOOL GetValue( const int nPropId, DWORD& dwValue ) const;
 
-	//@cmember
-	/* Gets the value of the given float property. */
-	virtual BOOL GetValue( const int nPropId, float& fValue ) const;
+    //@cmember
+    /* Gets the value of the given float property. */
+    virtual BOOL GetValue( const int nPropId, float& fValue ) const;
 
-	//@cmember
-	/* Gets the value of the given double property. */
-	virtual BOOL GetValue( const int nPropId, double& dValue ) const;
+    //@cmember
+    /* Gets the value of the given double property. */
+    virtual BOOL GetValue( const int nPropId, double& dValue ) const;
 
-	//@cmember
-	/* Sets the value of the given string property. */
-	virtual BOOL SetValue( const int nPropId, LPCTSTR lpszValue );
+    //@cmember
+    /* Sets the value of the given string property. */
+    virtual BOOL SetValue( const int nPropId, LPCTSTR lpszValue );
 
-	//@cmember
-	/* Sets the value of the given integer property. */
-	virtual BOOL SetValue( const int nPropId, const int nValue );
+    //@cmember
+    /* Sets the value of the given integer property. */
+    virtual BOOL SetValue( const int nPropId, const int nValue );
 
-	//@cmember
-	/* Sets the value of the given unsigned integer property. */
-	virtual BOOL SetValue( const int nPropId, const UINT nValue );
+    //@cmember
+    /* Sets the value of the given unsigned integer property. */
+    virtual BOOL SetValue( const int nPropId, const UINT nValue );
 
-	//@cmember
-	/* Sets the value of the given unsigned DWORD property. */
-	virtual BOOL SetValue( const int nPropId, const DWORD dwValue );
+    //@cmember
+    /* Sets the value of the given unsigned DWORD property. */
+    virtual BOOL SetValue( const int nPropId, const DWORD dwValue );
 
-	//@cmember
-	/* Sets the value of the given float property. */
-	virtual BOOL SetValue( const int nPropId, const float fValue );
+    //@cmember
+    /* Sets the value of the given float property. */
+    virtual BOOL SetValue( const int nPropId, const float fValue );
 
-	//@cmember
-	/* Sets the value of the given double property. */
-	virtual BOOL SetValue( const int nPropId, const double dValue );
+    //@cmember
+    /* Sets the value of the given double property. */
+    virtual BOOL SetValue( const int nPropId, const double dValue );
 
-	//@cmember
-	/* Serializes the orientation properties. */
-	virtual void Serialize( CArchive& ar );
+    //@cmember
+    /* Serializes the orientation properties. */
+    virtual void Serialize( CArchive& ar );
 
 // Implementation
 public:
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 // Attributes
 protected:
 
-	//@cmember
-	/* the cost multiplier factor. */
-	float m_Multiplier;
+    //@cmember
+    /* the cost multiplier factor. */
+    float m_Multiplier;
 
-	//@cmember
-	/* the processing time. */
-	double m_ProcessingTime;
+    //@cmember
+    /* the processing time. */
+    double m_ProcessingTime;
 
-	//@cmember
-	/* the unitary cost. */
-	float m_UnitaryCost;
+    //@cmember
+    /* the unitary cost. */
+    float m_UnitaryCost;
 
-	//@cmember
-	/* the processing duration. */
-	double m_ProcessingDuration;
+    //@cmember
+    /* the processing duration. */
+    double m_ProcessingDuration;
 
-	//@cmember
-	/* the processing duration maximum. */
-	double m_ProcessingDurationMax;
+    //@cmember
+    /* the processing duration maximum. */
+    double m_ProcessingDurationMax;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -304,7 +304,7 @@ protected:
 //@rdesc multiplier value.
 inline float ZBBPCostPropertiesProcedure2::GetMultiplier() const
 {
-	return m_Multiplier;
+    return m_Multiplier;
 }
 
 //@mfunc Sets the multiplier.
@@ -312,14 +312,14 @@ inline float ZBBPCostPropertiesProcedure2::GetMultiplier() const
 //@parm multiplier value.
 inline void ZBBPCostPropertiesProcedure2::SetMultiplier( const float value )
 {
-	m_Multiplier = value;
+    m_Multiplier = value;
 }
 
 //@mfunc Gets the processing time.
 //@rdesc processing time value.
 inline double ZBBPCostPropertiesProcedure2::GetProcessingTime() const
 {
-	return m_ProcessingTime;
+    return m_ProcessingTime;
 }
 
 //@mfunc Sets the processing time.
@@ -327,14 +327,14 @@ inline double ZBBPCostPropertiesProcedure2::GetProcessingTime() const
 //@parm processing time value.
 inline void ZBBPCostPropertiesProcedure2::SetProcessingTime( const double value )
 {
-	m_ProcessingTime = value;
+    m_ProcessingTime = value;
 }
 
 //@mfunc Gets unitary cost.
 //@rdesc unitary cost value.
 inline float ZBBPCostPropertiesProcedure2::GetUnitaryCost() const
 {
-	return m_UnitaryCost;
+    return m_UnitaryCost;
 }
 
 //@mfunc Sets the unitary cost.
@@ -342,14 +342,14 @@ inline float ZBBPCostPropertiesProcedure2::GetUnitaryCost() const
 //@parm unitary cost value.
 inline void ZBBPCostPropertiesProcedure2::SetUnitaryCost( const float value )
 {
-	m_UnitaryCost = value;
+    m_UnitaryCost = value;
 }
 
 //@mfunc Gets the processing duration.
 //@rdesc processing duration value.
 inline double ZBBPCostPropertiesProcedure2::GetProcessingDuration() const
 {
-	return m_ProcessingDuration;
+    return m_ProcessingDuration;
 }
 
 //@mfunc Sets the processing duration.
@@ -357,14 +357,14 @@ inline double ZBBPCostPropertiesProcedure2::GetProcessingDuration() const
 //@parm processing duration value.
 inline void ZBBPCostPropertiesProcedure2::SetProcessingDuration( const double value )
 {
-	m_ProcessingDuration = value;
+    m_ProcessingDuration = value;
 }
 
 //@mfunc Gets the processing duration maximum.
 //@rdesc processing duration maximum value.
 inline double ZBBPCostPropertiesProcedure2::GetProcessingDurationMax() const
 {
-	return m_ProcessingDurationMax;
+    return m_ProcessingDurationMax;
 }
 
 //@mfunc Sets the processing duration maximum.
@@ -372,7 +372,7 @@ inline double ZBBPCostPropertiesProcedure2::GetProcessingDurationMax() const
 //@parm processing duration maximum value.
 inline void ZBBPCostPropertiesProcedure2::SetProcessingDurationMax( const double value )
 {
-	m_ProcessingDurationMax = value;
+    m_ProcessingDurationMax = value;
 }
 
 //@mfunc Creates a copy of this property.
@@ -380,7 +380,7 @@ inline void ZBBPCostPropertiesProcedure2::SetProcessingDurationMax( const double
 // for cleaning up this object.
 inline ZBBPCostPropertiesProcedure2* ZBBPCostPropertiesProcedure2::Dup()
 {
-	return new ZBBPCostPropertiesProcedure2( *this );
+    return new ZBBPCostPropertiesProcedure2( *this );
 }
 
 #endif // !defined(AFX_ZBBPZBBPCostPropProcedure2_H__D6010BE6_7C2A_47FF_857B_0C64A020F48F__INCLUDED_)

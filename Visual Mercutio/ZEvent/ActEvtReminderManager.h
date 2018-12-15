@@ -30,37 +30,37 @@
 //#define AFX_DATA AFX_EXT_CLASS
 
 
-class AFX_EXT_CLASS ZBActivityEventReminderManager : public	ZBEventManager
+class AFX_EXT_CLASS ZBActivityEventReminderManager : public    ZBEventManager
 {
   public:
       ZBActivityEventReminderManager (ZBActivityEventManager* pEventManager = NULL, int RemindDays = 1);
-	  void	Create( ZBActivityEventManager* pEventManager, int RemindDays = 1 );
-	  int	Refresh();
+      void    Create( ZBActivityEventManager* pEventManager, int RemindDays = 1 );
+      int    Refresh();
 
       ~ZBActivityEventReminderManager();
-	  ZBEventActivityReminder*	AddEvent(COleDateTime Time,
-										 CString Priority,
-										 CString FolderName,
-										 CString ProcessName,
-										 CString ActivityName,
-										 int	 RemainingDays,
-										 COleDateTime ActivityDueDate,
-										 CString ProcessFilename,
-										 CString ActivityStatus,
-										 CString Message);
+      ZBEventActivityReminder*    AddEvent(COleDateTime Time,
+                                         CString Priority,
+                                         CString FolderName,
+                                         CString ProcessName,
+                                         CString ActivityName,
+                                         int     RemainingDays,
+                                         COleDateTime ActivityDueDate,
+                                         CString ProcessFilename,
+                                         CString ActivityStatus,
+                                         CString Message);
 
-	  ZBEventActivityReminder*	AddEvent(COleDateTime Time,
-										 CString Priority,
-										 int	 RemainingDays,
-										 CString Message,
-										 ZBEventActivity* pEvent);
+      ZBEventActivityReminder*    AddEvent(COleDateTime Time,
+                                         CString Priority,
+                                         int     RemainingDays,
+                                         CString Message,
+                                         ZBEventActivity* pEvent);
 
-	  ZBEventActivityReminder*	AddEvent(COleDateTime Time,
-										 CString Priority,
-										 int	 RemainingDays,
-										 ZBEventActivity* pEvent);
+      ZBEventActivityReminder*    AddEvent(COleDateTime Time,
+                                         CString Priority,
+                                         int     RemainingDays,
+                                         ZBEventActivity* pEvent);
 
-	  BOOL	EventShouldBeReminded( ZBEventActivity* pEvent, int* EffectiveRemainingDays );
+      BOOL    EventShouldBeReminded( ZBEventActivity* pEvent, int* EffectiveRemainingDays );
 
   protected:
 
@@ -68,10 +68,10 @@ class AFX_EXT_CLASS ZBActivityEventReminderManager : public	ZBEventManager
       ZBActivityEventReminderManager(const ZBActivityEventReminderManager &right);
       const ZBActivityEventReminderManager & operator=(const ZBActivityEventReminderManager &right);
 
-	  CString	BuildReminderMessage( int RemainingDays );
+      CString    BuildReminderMessage( int RemainingDays );
   private:
-	  ZBActivityEventManager*	m_pEventManager;
-	  int						m_RemindDays;
+      ZBActivityEventManager*    m_pEventManager;
+      int                        m_RemindDays;
 };
 
 

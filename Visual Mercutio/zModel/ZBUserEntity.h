@@ -30,130 +30,130 @@
 
 class AFX_EXT_CLASS ZBUserEntity : public CObject  
 {
-	DECLARE_SERIAL( ZBUserEntity )
+    DECLARE_SERIAL( ZBUserEntity )
 
 public:
 
-	ZBUserEntity( const CString	Name		= _T( "" ),
-				  const CString	Description	= _T( "" ),
-				  const float	Cost		= 0,
-				  ZBUserEntity*	pParent		= NULL );
+    ZBUserEntity( const CString    Name        = _T( "" ),
+                  const CString    Description    = _T( "" ),
+                  const float    Cost        = 0,
+                  ZBUserEntity*    pParent        = NULL );
 
-	virtual ~ZBUserEntity();
+    virtual ~ZBUserEntity();
 
-	/* Copy constructor. */
-	ZBUserEntity( const ZBUserEntity& src );
+    /* Copy constructor. */
+    ZBUserEntity( const ZBUserEntity& src );
 
-	/* Assignment operator. */
-	ZBUserEntity& operator=( const ZBUserEntity& src );
+    /* Assignment operator. */
+    ZBUserEntity& operator=( const ZBUserEntity& src );
 
-	/* Create a duplicate copy of this object. */
-	virtual ZBUserEntity* Clone() const;
+    /* Create a duplicate copy of this object. */
+    virtual ZBUserEntity* Clone() const;
 
-	ZBUserEntity* GetParent()
-	{
-		return m_pParent;
-	}
+    ZBUserEntity* GetParent()
+    {
+        return m_pParent;
+    }
 
-	virtual ZBUserEntity* GetRoot()
-	{
-		if ( m_pParent )
-		{
-			return m_pParent->GetRoot();
-		}
+    virtual ZBUserEntity* GetRoot()
+    {
+        if ( m_pParent )
+        {
+            return m_pParent->GetRoot();
+        }
 
-		return this;
-	}
+        return this;
+    }
 
-	virtual bool ContainEntity() const
-	{
-		return false;
-	}
+    virtual bool ContainEntity() const
+    {
+        return false;
+    }
 
-	virtual size_t GetEntityCount() const
-	{
-		return 0;
-	}
+    virtual size_t GetEntityCount() const
+    {
+        return 0;
+    }
 
-	virtual ZBUserEntity* GetEntityAt( size_t Index )
-	{
-		return NULL;
-	}
+    virtual ZBUserEntity* GetEntityAt( size_t Index )
+    {
+        return NULL;
+    }
 
-	CString GetGUID() const
-	{
-		return m_GUID;
-	}
+    CString GetGUID() const
+    {
+        return m_GUID;
+    }
 
-	void SetGUID( CString value )
-	{
-		m_GUID = value;
-	}
+    void SetGUID( CString value )
+    {
+        m_GUID = value;
+    }
 
-	virtual CString GetEntityName() const
-	{
-		return m_EntityName;
-	}
+    virtual CString GetEntityName() const
+    {
+        return m_EntityName;
+    }
 
-	virtual void SetEntityName( const CString value )
-	{
-		m_EntityName = value;
-	}
+    virtual void SetEntityName( const CString value )
+    {
+        m_EntityName = value;
+    }
 
-	virtual CString GetEntityDescription() const
-	{
-		return m_EntityDescription;
-	}
+    virtual CString GetEntityDescription() const
+    {
+        return m_EntityDescription;
+    }
 
-	virtual void SetEntityDescription( const CString value )
-	{
-		m_EntityDescription = value;
-	}
+    virtual void SetEntityDescription( const CString value )
+    {
+        m_EntityDescription = value;
+    }
 
-	virtual float GetEntityCost() const
-	{
-		return m_EntityCost;
-	}
+    virtual float GetEntityCost() const
+    {
+        return m_EntityCost;
+    }
 
-	virtual void SetEntityCost( const float value )
-	{
-		m_EntityCost = value;
-	}
+    virtual void SetEntityCost( const float value )
+    {
+        m_EntityCost = value;
+    }
 
-	virtual bool ContainThisRole( const CString Role )
-	{
-		return false;
-	}
+    virtual bool ContainThisRole( const CString Role )
+    {
+        return false;
+    }
 
-	virtual bool DisplayProperties()
-	{
-		return false;
-	}
+    virtual bool DisplayProperties()
+    {
+        return false;
+    }
 
-	void SetParent( ZBUserEntity* pParent )
-	{
-		m_pParent = pParent;
-	}
+    void SetParent( ZBUserEntity* pParent )
+    {
+        m_pParent = pParent;
+    }
 
-	// Serialization mechanism
-	virtual void Serialize( CArchive& ar );	// overridden for document i/o
+    // Serialization mechanism
+    virtual void Serialize( CArchive& ar );    // overridden for document i/o
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 protected:
 
-	void CreateGUID();
+    void CreateGUID();
 
 private:
 
-	CString			m_GUID;
-	CString			m_EntityName;
-	CString			m_EntityDescription;
-	float			m_EntityCost;
-	ZBUserEntity*	m_pParent;
+    CString            m_GUID;
+    CString            m_EntityName;
+    CString            m_EntityDescription;
+    float            m_EntityCost;
+    ZBUserEntity*    m_pParent;
 };
 
 #endif // !defined(AFX_ZBUserEntity_H__DBE9270D_4DE8_4EF3_91EA_E18EDEF6DE04__INCLUDED_)

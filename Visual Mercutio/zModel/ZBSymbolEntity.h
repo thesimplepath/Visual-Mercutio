@@ -58,52 +58,52 @@ typedef Iterator_T<ZBSymbolEntity*> ZBSymbolEntityIterator;
 
 class AFX_EXT_CLASS ZBSymbolEntity : public CObject  
 {
-	DECLARE_SERIAL(ZBSymbolEntity)
+    DECLARE_SERIAL(ZBSymbolEntity)
 
 public:
-	// Contruction operations --------------------------------
-	ZBSymbolEntity();
+    // Contruction operations --------------------------------
+    ZBSymbolEntity();
 
-	// Copy constructor
+    // Copy constructor
     ZBSymbolEntity(const ZBSymbolEntity &right);
-	// Assignment operator
+    // Assignment operator
     const ZBSymbolEntity & operator=(const ZBSymbolEntity &right);
 
     ZBSymbolEntity* Clone ();
 
-	virtual ~ZBSymbolEntity();
+    virtual ~ZBSymbolEntity();
 
 
-	// Get Set operations ------------------------------------
-	DWORD	GetInternalFileVersion() const;
+    // Get Set operations ------------------------------------
+    DWORD    GetInternalFileVersion() const;
 
-	CString	GetName() const;
-	void SetName( CString value );
+    CString    GetName() const;
+    void SetName( CString value );
 
-	CString GetDescription() const;
-	void SetDescription( CString value );
+    CString GetDescription() const;
+    void SetDescription( CString value );
 
-	DWORD	GetSymbolVersion() const;
-	void SetSymbolVersion( DWORD value );
+    DWORD    GetSymbolVersion() const;
+    void SetSymbolVersion( DWORD value );
 
-	CString GetCategory() const;
-	void SetCategory( CString value );
+    CString GetCategory() const;
+    void SetCategory( CString value );
 
-	CString GetAuthor() const;
-	void SetAuthor( CString value );
+    CString GetAuthor() const;
+    void SetAuthor( CString value );
 
-	ZBDate	GetCreationDate() const;
-	void SetCreationDate( ZBDate value );
+    ZBDate    GetCreationDate() const;
+    void SetCreationDate( ZBDate value );
 
-	ZBDate	GetModificationDate() const;
-	void SetModificationDate( ZBDate value );
+    ZBDate    GetModificationDate() const;
+    void SetModificationDate( ZBDate value );
 
-	ZBSymbolStamp&	GetSymbolStamp();
-	const ZBSymbolStamp&	GetSymbolStampConst() const;
-	ZBSymbol*		GetSymbolPtr();
-	const ZBSymbol*		GetSymbolPtrConst() const;
+    ZBSymbolStamp&    GetSymbolStamp();
+    const ZBSymbolStamp&    GetSymbolStampConst() const;
+    ZBSymbol*        GetSymbolPtr();
+    const ZBSymbol*        GetSymbolPtrConst() const;
 
-	// Archiving operations ----------------------------------
+    // Archiving operations ----------------------------------
 
     virtual void Serialize(CArchive& ar);
 
@@ -113,126 +113,126 @@ public:
     // Write the stamp to a given filename.
     virtual BOOL WriteToFile (CString Filename);
 
-	// Versioning operations ---------------------------------
+    // Versioning operations ---------------------------------
 
-	DWORD IncrementPublishVersionOfFile (const CString Filename);
-	DWORD DecrementPublishVersionOfFile (const CString Filename);
-	BOOL  SetPublishVersionOfFile (const CString Filename, DWORD Version);
-	DWORD GetPublishVersionOfFile (const CString Filename);
+    DWORD IncrementPublishVersionOfFile (const CString Filename);
+    DWORD DecrementPublishVersionOfFile (const CString Filename);
+    BOOL  SetPublishVersionOfFile (const CString Filename, DWORD Version);
+    DWORD GetPublishVersionOfFile (const CString Filename);
 
 protected:
-	ZBSymbolStamp	m_SymbolStamp;
-	ZBSymbol*		m_pSymbol;
+    ZBSymbolStamp    m_SymbolStamp;
+    ZBSymbol*        m_pSymbol;
 private:
-	SECJpeg m_Image;
+    SECJpeg m_Image;
 };
 
 
-inline DWORD	ZBSymbolEntity::GetInternalFileVersion() const
+inline DWORD    ZBSymbolEntity::GetInternalFileVersion() const
 {
-	return m_SymbolStamp.GetInternalFileVersion();
+    return m_SymbolStamp.GetInternalFileVersion();
 }
 
-inline CString	ZBSymbolEntity::GetName() const
+inline CString    ZBSymbolEntity::GetName() const
 {
-	return m_SymbolStamp.GetName();
+    return m_SymbolStamp.GetName();
 }
 inline void ZBSymbolEntity::SetName( CString value )
 {
-	m_SymbolStamp.SetName( value );
+    m_SymbolStamp.SetName( value );
 }
 
 inline CString ZBSymbolEntity::GetDescription() const
 {
-	return m_SymbolStamp.GetDescription();
+    return m_SymbolStamp.GetDescription();
 }
 inline void ZBSymbolEntity::SetDescription( CString value )
 {
-	m_SymbolStamp.SetDescription( value );
+    m_SymbolStamp.SetDescription( value );
 }
 
 inline DWORD ZBSymbolEntity::GetSymbolVersion() const
 {
-	return m_SymbolStamp.GetSymbolVersion();
+    return m_SymbolStamp.GetSymbolVersion();
 }
 inline void ZBSymbolEntity::SetSymbolVersion( DWORD value )
 {
-	m_SymbolStamp.SetSymbolVersion( value );
+    m_SymbolStamp.SetSymbolVersion( value );
 }
 
 inline CString ZBSymbolEntity::GetCategory() const
 {
-	return m_SymbolStamp.GetCategory();
+    return m_SymbolStamp.GetCategory();
 }
 inline void ZBSymbolEntity::SetCategory( CString value )
 {
-	m_SymbolStamp.SetCategory( value );
+    m_SymbolStamp.SetCategory( value );
 }
 
 inline CString ZBSymbolEntity::GetAuthor() const
 {
-	return m_SymbolStamp.GetAuthor();
+    return m_SymbolStamp.GetAuthor();
 }
 inline void ZBSymbolEntity::SetAuthor( CString value )
 {
-	m_SymbolStamp.SetAuthor( value );
+    m_SymbolStamp.SetAuthor( value );
 }
 
-inline ZBDate	ZBSymbolEntity::GetCreationDate() const
+inline ZBDate    ZBSymbolEntity::GetCreationDate() const
 {
-	return m_SymbolStamp.GetCreationDate();
+    return m_SymbolStamp.GetCreationDate();
 }
 inline void ZBSymbolEntity::SetCreationDate( ZBDate value )
 {
-	m_SymbolStamp.SetCreationDate( value );
+    m_SymbolStamp.SetCreationDate( value );
 }
 
-inline ZBDate	ZBSymbolEntity::GetModificationDate() const
+inline ZBDate    ZBSymbolEntity::GetModificationDate() const
 {
-	return m_SymbolStamp.GetModificationDate();
+    return m_SymbolStamp.GetModificationDate();
 }
 inline void ZBSymbolEntity::SetModificationDate( ZBDate value )
 {
-	m_SymbolStamp.SetModificationDate( value );
+    m_SymbolStamp.SetModificationDate( value );
 }
 
 
 inline DWORD ZBSymbolEntity::IncrementPublishVersionOfFile (const CString Filename)
 {
-	return m_SymbolStamp.IncrementPublishVersionOfFile(Filename);
+    return m_SymbolStamp.IncrementPublishVersionOfFile(Filename);
 }
 inline DWORD ZBSymbolEntity::DecrementPublishVersionOfFile (const CString Filename)
 {
-	return m_SymbolStamp.DecrementPublishVersionOfFile(Filename);
+    return m_SymbolStamp.DecrementPublishVersionOfFile(Filename);
 }
 inline BOOL  ZBSymbolEntity::SetPublishVersionOfFile (const CString Filename, DWORD Version)
 {
-	return m_SymbolStamp.SetPublishVersionOfFile(Filename,Version);
+    return m_SymbolStamp.SetPublishVersionOfFile(Filename,Version);
 }
 inline DWORD ZBSymbolEntity::GetPublishVersionOfFile (const CString Filename)
 {
-	return m_SymbolStamp.GetPublishVersionOfFile(Filename);
+    return m_SymbolStamp.GetPublishVersionOfFile(Filename);
 }
 
 
 inline ZBSymbolStamp& ZBSymbolEntity::GetSymbolStamp()
 {
-	return m_SymbolStamp;
+    return m_SymbolStamp;
 }
 inline const ZBSymbolStamp& ZBSymbolEntity::GetSymbolStampConst() const
 {
-	return m_SymbolStamp;
+    return m_SymbolStamp;
 }
 
 
 inline ZBSymbol* ZBSymbolEntity::GetSymbolPtr()
 {
-	return m_pSymbol;
+    return m_pSymbol;
 }
 
 inline const ZBSymbol* ZBSymbolEntity::GetSymbolPtrConst() const
 {
-	return m_pSymbol;
+    return m_pSymbol;
 }
 
 #endif // !defined(AFX_ZBSYMBOLENTITY_H__CCE095E4_6B7D_426B_928B_9F990EBB2B95__INCLUDED_)

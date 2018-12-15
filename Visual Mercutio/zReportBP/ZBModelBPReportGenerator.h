@@ -40,97 +40,97 @@ class ZDProcessGraphModelDoc;
 
 class AFX_EXT_CLASS ZBModelBPReportGenerator : public ZBGenericGridReportGenerator
 {
-	DECLARE_SERIAL( ZBModelBPReportGenerator )
+    DECLARE_SERIAL( ZBModelBPReportGenerator )
 
 public:
 
-	ZBModelBPReportGenerator( ZDGridDocument*			pDoc		= NULL,
-							  ZDProcessGraphModelMdlBP*	pModel		= NULL,
-							  ZDProcessGraphModelDoc*	pSourceDoc	= NULL );
+    ZBModelBPReportGenerator( ZDGridDocument*            pDoc        = NULL,
+                              ZDProcessGraphModelMdlBP*    pModel        = NULL,
+                              ZDProcessGraphModelDoc*    pSourceDoc    = NULL );
 
-	virtual ~ZBModelBPReportGenerator();
+    virtual ~ZBModelBPReportGenerator();
 
-	virtual void Initialize( ZDGridDocument*			pDoc,
-							 ZDProcessGraphModelMdlBP*	pModel,
-							 ZDProcessGraphModelDoc*	pSourceDoc );
+    virtual void Initialize( ZDGridDocument*            pDoc,
+                             ZDProcessGraphModelMdlBP*    pModel,
+                             ZDProcessGraphModelDoc*    pSourceDoc );
 
-	/////////////////////////////////////////////////////////////////////////////
-	// ZIGridReportGenerator methods
-	
-	// Initialization method
-	virtual bool Initialize()
-	{
-		FillTabArray();
-		return true;
-	};
+    /////////////////////////////////////////////////////////////////////////////
+    // ZIGridReportGenerator methods
+    
+    // Initialization method
+    virtual bool Initialize()
+    {
+        FillTabArray();
+        return true;
+    };
 
-	// Returns the number of tabs
-	virtual size_t GetGeneratorTabCount() const
-	{
-		return m_TabNameArray.GetSize();
-	};
+    // Returns the number of tabs
+    virtual size_t GetGeneratorTabCount() const
+    {
+        return m_TabNameArray.GetSize();
+    };
 
-	// Returns the tab name corresponding to the index
-	virtual const CString GetGeneratorTabName( size_t Index )
-	{
-		return ( Index < GetGeneratorTabCount() ) ? m_TabNameArray.GetAt( Index ) : _T( "" );
-	};
+    // Returns the tab name corresponding to the index
+    virtual const CString GetGeneratorTabName( size_t Index )
+    {
+        return ( Index < GetGeneratorTabCount() ) ? m_TabNameArray.GetAt( Index ) : _T( "" );
+    };
 
-	// Returns 0. No special ID for this report
-	virtual int GetReportTypeID() const
-	{
-		return 0;
-	};
+    // Returns 0. No special ID for this report
+    virtual int GetReportTypeID() const
+    {
+        return 0;
+    };
 
-	// Yes, the data depends on the model
-	virtual bool IsReportDataExternal() const
-	{
-		return true;
-	};
+    // Yes, the data depends on the model
+    virtual bool IsReportDataExternal() const
+    {
+        return true;
+    };
 
-	virtual bool ReportDataMustBeReloaded() const;
+    virtual bool ReportDataMustBeReloaded() const;
 
-	// Request the system to ask before reloading information
-	// thus return false
-	virtual bool UseAutomaticReload() const
-	{
-		return false;
-	};
+    // Request the system to ask before reloading information
+    // thus return false
+    virtual bool UseAutomaticReload() const
+    {
+        return false;
+    };
 
-	// Serialization call-back
-	virtual void OnPostRead( CArchive& ar );
-	virtual void OnPostWrite( CArchive& ar )
-	{
-	};
+    // Serialization call-back
+    virtual void OnPostRead( CArchive& ar );
+    virtual void OnPostWrite( CArchive& ar )
+    {
+    };
 
-	// Call-back methods
-	virtual void OnPostDataFilled( size_t Index );
+    // Call-back methods
+    virtual void OnPostDataFilled( size_t Index );
 
-	// Serialization
-	virtual void Serialize( CArchive& ar );
-	
+    // Serialization
+    virtual void Serialize( CArchive& ar );
+    
 // Implementation
 public:
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 protected:
 
-	// The derived class must implement this method
-	// to fill the tabs.
-	virtual void FillTabArray()
-	{
-	};
+    // The derived class must implement this method
+    // to fill the tabs.
+    virtual void FillTabArray()
+    {
+    };
 
 protected:
 
-	ZDProcessGraphModelDoc*		m_pSourceDoc;
-	ZDProcessGraphModelMdlBP*	m_pModel;
-	CStringArray				m_TabNameArray;
-	bool						m_InChargeOfClosingFile;
+    ZDProcessGraphModelDoc*        m_pSourceDoc;
+    ZDProcessGraphModelMdlBP*    m_pModel;
+    CStringArray                m_TabNameArray;
+    bool                        m_InChargeOfClosingFile;
 };
 
 #endif // !defined(AFX_ZBModelBPReportGenerator_H__92F0037B_1EAF_4F26_BE0A_CFBCC6D7C6FD__INCLUDED_)

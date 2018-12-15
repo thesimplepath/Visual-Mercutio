@@ -47,42 +47,42 @@ class AFX_EXT_CLASS ZIUserInformationDialog : public ZIDialog
 {
 // Construction
 public:
-	ZIUserInformationDialog(ZUser& User, bool CreationMode = false, CWnd* pParent = NULL);   // standard constructor
+    ZIUserInformationDialog(ZUser& User, bool CreationMode = false, CWnd* pParent = NULL);   // standard constructor
 
 
 private:
 // Dialog Data
-	//{{AFX_DATA(ZIUserInformationDialog)
-	enum { IDD = IDD_USERINFO };
-	BOOL	m_Admin;
-	CString	m_Departement;
-	CString	m_Description;
-	CString	m_DisplayName;
-	CString	m_Responsible;
-	CString	m_Username;
-	CString	m_EMail;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZIUserInformationDialog)
+    enum { IDD = IDD_USERINFO };
+    BOOL    m_Admin;
+    CString    m_Departement;
+    CString    m_Description;
+    CString    m_DisplayName;
+    CString    m_Responsible;
+    CString    m_Username;
+    CString    m_EMail;
+    //}}AFX_DATA
 
 private:
-	ZUser&	m_User;
-	bool	m_CreationMode;
+    ZUser&    m_User;
+    bool    m_CreationMode;
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIUserInformationDialog)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIUserInformationDialog)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZIUserInformationDialog)
-	virtual void OnOK();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZIUserInformationDialog)
+    virtual void OnOK();
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

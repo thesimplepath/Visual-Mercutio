@@ -1,7 +1,7 @@
 // **************************************************************************************************************
-// *									  Classe ZUBuildSymbolNewName											*
+// *                                      Classe ZUBuildSymbolNewName                                            *
 // **************************************************************************************************************
-// * Cette classe permet la création d'un nom valide et unique pour les symboles.								*
+// * Cette classe permet la création d'un nom valide et unique pour les symboles.                                *
 // **************************************************************************************************************
 
 #include "stdafx.h"
@@ -25,7 +25,7 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 ZUBuildSymbolNewName::ZUBuildSymbolNewName( const CString BaseName /*= ""*/ )
-	: m_BaseName( BaseName )
+    : m_BaseName( BaseName )
 {
 }
 
@@ -36,88 +36,88 @@ ZUBuildSymbolNewName::~ZUBuildSymbolNewName()
 // JMR-MODIF - Le 23 mai 2006 - Ajout du paramètre RefNumber.
 CString ZUBuildSymbolNewName::GetNextAvailableSymbolName( CODModel& Model, int RefNumber )
 {
-	// **********************************************************************************************************
-	// JMR-MODIF - Le 23 mai 2006 - Suppression de l'ancien code de la fonction GetNextAvailableSymbolName.
+    // **********************************************************************************************************
+    // JMR-MODIF - Le 23 mai 2006 - Suppression de l'ancien code de la fonction GetNextAvailableSymbolName.
 
-/*	for ( int p = 1; p < 10000000; ++p )
-	{
-		if ( m_BaseName.IsEmpty() )
-		{
-			m_SymbolName.Format( _T( "sym%d" ), p );
-		}
-		else
-		{
-			m_SymbolName.Format( _T( "%s%d" ), (const char*)m_BaseName, p );
-		}
+/*    for ( int p = 1; p < 10000000; ++p )
+    {
+        if ( m_BaseName.IsEmpty() )
+        {
+            m_SymbolName.Format( _T( "sym%d" ), p );
+        }
+        else
+        {
+            m_SymbolName.Format( _T( "%s%d" ), (const char*)m_BaseName, p );
+        }
 
-		m_Found = false;
+        m_Found = false;
 
-		// Try the name
-		_GetNextAvailableSymbolName( Model );
+        // Try the name
+        _GetNextAvailableSymbolName( Model );
 
-		// If did found the same symbol name, return it
-		if ( m_Found == false )
-		{
-			return m_SymbolName;
-		}
-	}
+        // If did found the same symbol name, return it
+        if ( m_Found == false )
+        {
+            return m_SymbolName;
+        }
+    }
 
-	// If no page available, return empty string
-	return _T( "" );
+    // If no page available, return empty string
+    return _T( "" );
 */
-	// **********************************************************************************************************
+    // **********************************************************************************************************
 
-	// **********************************************************************************************************
-	// JMR-MODIF - Le 23 mai 2006 - Nouveau code pour la fonction GetNextAvailableSymbolName.
+    // **********************************************************************************************************
+    // JMR-MODIF - Le 23 mai 2006 - Nouveau code pour la fonction GetNextAvailableSymbolName.
 
-	if ( m_BaseName.IsEmpty() )
-	{
-		m_SymbolName.Format( _T( "sym%d" ), RefNumber );
-	}
-	else
-	{
-		m_SymbolName.Format( _T( "%s%d" ), (const char*)m_BaseName, RefNumber );
-	}
+    if ( m_BaseName.IsEmpty() )
+    {
+        m_SymbolName.Format( _T( "sym%d" ), RefNumber );
+    }
+    else
+    {
+        m_SymbolName.Format( _T( "%s%d" ), (const char*)m_BaseName, RefNumber );
+    }
 
-	m_Found = false;
+    m_Found = false;
 
-	// Try the name
-	_GetNextAvailableSymbolName( Model );
+    // Try the name
+    _GetNextAvailableSymbolName( Model );
 
-	// If did found the same symbol name, return it
-	if ( m_Found == false )
-	{
-		return m_SymbolName;
-	}
+    // If did found the same symbol name, return it
+    if ( m_Found == false )
+    {
+        return m_SymbolName;
+    }
 
-	// If no page available, return empty string
-	return _T( "" );
-	// **********************************************************************************************************
+    // If no page available, return empty string
+    return _T( "" );
+    // **********************************************************************************************************
 }
 
 void ZUBuildSymbolNewName::_GetNextAvailableSymbolName( CODModel& Model )
 {
-	CODModel* pModel = &Model;
+    CODModel* pModel = &Model;
 
-	if ( ISA( pModel, ZDProcessGraphModelMdl ) )
-	{
-		dynamic_cast<ZDProcessGraphModelMdl&>( Model ).AcceptVisitor( *this );
-	}
+    if ( ISA( pModel, ZDProcessGraphModelMdl ) )
+    {
+        dynamic_cast<ZDProcessGraphModelMdl&>( Model ).AcceptVisitor( *this );
+    }
 }
 
 bool ZUBuildSymbolNewName::Visit( CODComponent& Symbol )
 {
-	CODComponent* pSymbol = &Symbol;
+    CODComponent* pSymbol = &Symbol;
 
-	if ( ISA( pSymbol, ZBSymbol ) && dynamic_cast<ZBSymbol*>( &Symbol )->GetSymbolName() == m_SymbolName )
-	{
-		m_Found = true;
-	}
-	else if ( ISA( pSymbol, ZBLinkSymbol ) &&
-			  dynamic_cast<ZBLinkSymbol*>( &Symbol )->GetSymbolName() == m_SymbolName )
-	{
-		m_Found = true;
-	}
+    if ( ISA( pSymbol, ZBSymbol ) && dynamic_cast<ZBSymbol*>( &Symbol )->GetSymbolName() == m_SymbolName )
+    {
+        m_Found = true;
+    }
+    else if ( ISA( pSymbol, ZBLinkSymbol ) &&
+              dynamic_cast<ZBLinkSymbol*>( &Symbol )->GetSymbolName() == m_SymbolName )
+    {
+        m_Found = true;
+    }
 
-	return false;
+    return false;
 }

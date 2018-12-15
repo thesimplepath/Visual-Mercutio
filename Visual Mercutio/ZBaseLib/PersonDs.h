@@ -1,10 +1,10 @@
 //## begin module%36722E760178.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%36722E760178.cm
 
 //## begin module%36722E760178.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%36722E760178.cp
 
 //## Module: PersonDs%36722E760178; Package specification
@@ -36,12 +36,12 @@
 
 //## begin module%36722E760178.additionalDeclarations preserve=yes
 #ifndef _WIN32
-	#ifndef Mapi_h
-	#define Mapi_h 1
-		#include <mapi.h>
-	#endif
+    #ifndef Mapi_h
+    #define Mapi_h 1
+        #include <mapi.h>
+    #endif
 #else
-	#include <mapi.h>
+    #include <mapi.h>
 #endif
 
 #ifdef _ZBASELIBEXPORT
@@ -95,15 +95,15 @@ class AFX_EXT_CLASS ZBMailUser : public CObject  //## Inherits: <unnamed>%37542F
       ZBMailUser* Clone ();
 
       //## Operation: operator >>%928176921
-      //	Store from the archive to the object Stamp.
+      //    Store from the archive to the object Stamp.
       friend CArchive& operator >> (CArchive& ar, ZBMailUser& User);
 
       //## Operation: operator <<%928176922
-      //	Store the object Stamp to the archive.
+      //    Store the object Stamp to the archive.
       friend CArchive& operator << (CArchive& ar, ZBMailUser& User);
 
       //## Operation: Serialize%928263998
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
     //## Get and Set Operations for Class Attributes (generated)
@@ -113,7 +113,7 @@ class AFX_EXT_CLASS ZBMailUser : public CObject  //## Inherits: <unnamed>%37542F
       void SetPersonName (const CString& value);
 
       //## Attribute: RecipClass%36722D45033C
-      //	Define the recipicient class.
+      //    Define the recipicient class.
       const ULONG GetRecipClass () const;
       void SetRecipClass (ULONG value);
 
@@ -124,7 +124,7 @@ class AFX_EXT_CLASS ZBMailUser : public CObject  //## Inherits: <unnamed>%37542F
   protected:
     // Additional Protected Declarations
       //## begin ZBMailUser%36722CE80067.protected preserve=yes
-	DECLARE_SERIAL(ZBMailUser)
+    DECLARE_SERIAL(ZBMailUser)
       //## end ZBMailUser%36722CE80067.protected
   private:
     // Data Members for Class Attributes

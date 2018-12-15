@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 07/2001
+// <nl>Created:         07/2001
 // <nl>Description:  ColorRefDefinition defines different color constants
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -30,13 +30,13 @@
 /////////////////////////////////////////////////////////////////////////////
 // Constant definition
 
-#define defCOLOR_BLUEMERCUTIO					RGB( 156, 207, 255 )
-#define defCOLOR_ROSESESTERCE					RGB( 253, 218, 211 )
-#define defCOLOR_YELLOWAMALIA					RGB( 255, 243, 226 )
+#define defCOLOR_BLUEMERCUTIO                    RGB( 156, 207, 255 )
+#define defCOLOR_ROSESESTERCE                    RGB( 253, 218, 211 )
+#define defCOLOR_YELLOWAMALIA                    RGB( 255, 243, 226 )
 // JMR-MODIF - Le 8 mars 2006 - Ajout d'une couleur pour les rapports processus.
-#define defCOLOR_GREYPROCESS					RGB( 192, 192, 192 )
+#define defCOLOR_GREYPROCESS                    RGB( 192, 192, 192 )
 
-#define defCOLOR_STARTGREEN						RGB( 142, 203, 135 )
-#define defCOLOR_ENDRED							RGB( 239, 71, 74 )
+#define defCOLOR_STARTGREEN                        RGB( 142, 203, 135 )
+#define defCOLOR_ENDRED                            RGB( 239, 71, 74 )
 
 #endif // !defined(AFX_ColorRefDefinition_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)

@@ -20,55 +20,55 @@ class ZVLogicalSystemInfoDlg : public CDialog
 // Construction
 public:
 
-	// Standard constructor
-	ZVLogicalSystemInfoDlg( UINT					nTitleID		= -1,
-							ZBLogicalSystemEntity*	pLogicalSystem	= NULL,
-							const CString			Name			= _T( "" ),
-							const CString			Description		= _T( "" ),
-							bool					ModifyMode		= false,
-							CWnd*					pParent			= NULL );
+    // Standard constructor
+    ZVLogicalSystemInfoDlg( UINT                    nTitleID        = -1,
+                            ZBLogicalSystemEntity*    pLogicalSystem    = NULL,
+                            const CString            Name            = _T( "" ),
+                            const CString            Description        = _T( "" ),
+                            bool                    ModifyMode        = false,
+                            CWnd*                    pParent            = NULL );
 
-	CString GetDescription() const
-	{
-		return m_Description;
-	};
+    CString GetDescription() const
+    {
+        return m_Description;
+    };
 
-	CString GetName() const
-	{
-		return m_Name;
-	};
+    CString GetName() const
+    {
+        return m_Name;
+    };
 
 // Dialog Data
 private:
 
-	//{{AFX_DATA(ZVLogicalSystemInfoDlg)
-	enum { IDD = IDD_LOGICALSYSTEM_INFO };
-	CString m_Description;
-	CString m_Name;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZVLogicalSystemInfoDlg)
+    enum { IDD = IDD_LOGICALSYSTEM_INFO };
+    CString m_Description;
+    CString m_Name;
+    //}}AFX_DATA
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVLogicalSystemInfoDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVLogicalSystemInfoDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVLogicalSystemInfoDlg)
-	virtual void OnOK();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVLogicalSystemInfoDlg)
+    virtual void OnOK();
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	ZBLogicalSystemEntity*	m_pLogicalSystem;
-	CString					m_Title;
-	bool					m_ModifyMode;
+    ZBLogicalSystemEntity*    m_pLogicalSystem;
+    CString                    m_Title;
+    bool                    m_ModifyMode;
 };
 
 //{{AFX_INSERT_LOCATION}}

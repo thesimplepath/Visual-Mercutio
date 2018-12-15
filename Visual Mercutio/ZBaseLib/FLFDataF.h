@@ -1,10 +1,10 @@
 //## begin module%382BBDF40333.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%382BBDF40333.cm
 
 //## begin module%382BBDF40333.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%382BBDF40333.cp
 
 //## Module: FLFDataF%382BBDF40333; Package specification
@@ -49,8 +49,8 @@
 
 
 //## Class: ZUFLFDataFeed%382BBC9E03AA
-//	Used to Import additional information coming from FLF
-//	file.
+//    Used to Import additional information coming from FLF
+//    file.
 //## Category: ZBaseLib::Data Feed export/import classes%37EB8FB00040
 //## Subsystem: ZBaseLib%37A08E0C019D
 //## Persistence: Transient
@@ -71,40 +71,40 @@ class AFX_EXT_CLASS ZUFLFDataFeed : public ZUExport  //## Inherits: <unnamed>%38
 
     //## Other Operations (specified)
       //## Operation: ProcessLine%942391394
-      //	Process the line and updates the document.
+      //    Process the line and updates the document.
       virtual BOOL ProcessLine (CString Line);
 
       //## Operation: ImportAdditionalInfo%942391397
       virtual BOOL ImportAdditionalInfo ();
 
       //## Operation: PreImport%942391398
-      //	This function imports the file to the document.
+      //    This function imports the file to the document.
       virtual BOOL PreImport ();
 
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: ProcessName%382BBD9602A2
-      //	Contains the process name.
+      //    Contains the process name.
       const CString& GetProcessName () const;
 
       //## Attribute: FormName%382BBDBA007D
-      //	Contains the form name.
+      //    Contains the form name.
       const CString& GetFormName () const;
 
       //## Attribute: FolderName%382BC01E02AE
-      //	Contains the folder name.
+      //    Contains the folder name.
       const CString& GetFolderName () const;
 
       //## Attribute: FileName%382BC0200134
-      //	Contains the file name.
+      //    Contains the file name.
       const CString& GetFileName () const;
 
       //## Attribute: ProcessExchangeFileName%38365A1C002C
-      //	Contains the process exchange file name.
+      //    Contains the process exchange file name.
       const CString& GetProcessExchangeFileName () const;
 
       //## Attribute: KeepOnlyFLF%382BC03A013B
-      //	Contains the flag for keeping or not the source file.
+      //    Contains the flag for keeping or not the source file.
       const BOOL& GetKeepOnlyFLF () const;
 
     // Additional Public Declarations

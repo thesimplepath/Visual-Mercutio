@@ -42,46 +42,46 @@ class AFX_EXT_CLASS ZADocOptionDLG : public CDialog
 {
 // Construction
 public:
-	ZADocOptionDLG(ZDDocumentOptions *pDocOptions, CWnd* pParent = NULL);	// standard constructor
+    ZADocOptionDLG(ZDDocumentOptions *pDocOptions, CWnd* pParent = NULL);    // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(ZADocOptionDLG)
-	enum { IDD = IDD_DOCUMENT_OPTIONS };
-	CStatic	m_SmallLineCtrl;
-	CStatic	m_DashedLineCtrl;
-	CStatic	m_DottedCtrl;
-	CStatic	m_LinedCtrl;
-	int		m_EmtyStyle;
-	int		m_SynchronisationYesNo;
-	int		m_ShowHiddenFieldYesNoDoc;
-	int		m_ShowEmptyLineYesNoDoc;
-	int		m_SynchronizationTime;
-	CString	m_FLF_Filename;
-	int		m_GenerateHeader;
-	int		m_SeparatorType;
-	int		m_AutomaticFilenameGeneration;
-	BOOL	m_PrintEmptyStyleWhenEmpty;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZADocOptionDLG)
+    enum { IDD = IDD_DOCUMENT_OPTIONS };
+    CStatic    m_SmallLineCtrl;
+    CStatic    m_DashedLineCtrl;
+    CStatic    m_DottedCtrl;
+    CStatic    m_LinedCtrl;
+    int        m_EmtyStyle;
+    int        m_SynchronisationYesNo;
+    int        m_ShowHiddenFieldYesNoDoc;
+    int        m_ShowEmptyLineYesNoDoc;
+    int        m_SynchronizationTime;
+    CString    m_FLF_Filename;
+    int        m_GenerateHeader;
+    int        m_SeparatorType;
+    int        m_AutomaticFilenameGeneration;
+    BOOL    m_PrintEmptyStyleWhenEmpty;
+    //}}AFX_DATA
 
 private:
-	ZDDocumentOptions*	m_pDocOptions;
+    ZDDocumentOptions*    m_pDocOptions;
 
 private:
-	void CheckControlState();
+    void CheckControlState();
 
 // Implementation
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	// Generated message map functions
-	//{{AFX_MSG(ZADocOptionDLG)
-	virtual BOOL OnInitDialog();
-	virtual void OnOK();
-	afx_msg void OnPaint();
-	afx_msg void OnClicked();
-	afx_msg void OnSelectFLF();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZADocOptionDLG)
+    virtual BOOL OnInitDialog();
+    virtual void OnOK();
+    afx_msg void OnPaint();
+    afx_msg void OnClicked();
+    afx_msg void OnSelectFLF();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 

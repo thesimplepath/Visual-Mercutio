@@ -13,9 +13,9 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 05/2002
+// <nl>Created:         05/2002
 // <nl>Description:  ZUExtractCategoryAttributes navigates through the model and
-//					 extract unique attributes' categories
+//                     extract unique attributes' categories
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -68,26 +68,26 @@
 class AFX_EXT_CLASS ZUExtractCategoryAttributes : public ZUModelNavigation, public ZBKeepStringUsage  
 {
 public:
-	ZUExtractCategoryAttributes(ZDProcessGraphModelMdl* pModel = NULL, 
-							    CStringArray* pStaticArray = NULL, 
-								CStringArray* pDynamicArray = NULL, 
-								void* pClass = NULL);
-	virtual ~ZUExtractCategoryAttributes();
+    ZUExtractCategoryAttributes(ZDProcessGraphModelMdl* pModel = NULL, 
+                                CStringArray* pStaticArray = NULL, 
+                                CStringArray* pDynamicArray = NULL, 
+                                void* pClass = NULL);
+    virtual ~ZUExtractCategoryAttributes();
 
 
-	// Call-back methods
-	virtual bool OnStart();
-	virtual bool OnFinish();
+    // Call-back methods
+    virtual bool OnStart();
+    virtual bool OnFinish();
 
-	virtual bool OnSymbol( ZBSymbol* pSymbol );
-	virtual bool OnLink( ZBLinkSymbol* pLink );
-
-private:
-	void FillAttribCategory( ZBPropertySet& PropSet );
+    virtual bool OnSymbol( ZBSymbol* pSymbol );
+    virtual bool OnLink( ZBLinkSymbol* pLink );
 
 private:
-	CStringArray* m_pDynamicArray;
-	CStringArray* m_pStaticArray;
+    void FillAttribCategory( ZBPropertySet& PropSet );
+
+private:
+    CStringArray* m_pDynamicArray;
+    CStringArray* m_pStaticArray;
 
 };
 

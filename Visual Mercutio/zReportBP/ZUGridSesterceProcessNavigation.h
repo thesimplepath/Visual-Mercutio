@@ -13,9 +13,9 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 07/2001
+// <nl>Created:         07/2001
 // <nl>Description:  ZUGridSesterceProcessNavigation navigates through the process and
-//					 write process information to the grid
+//                     write process information to the grid
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -38,37 +38,37 @@ class ZUGridSesterceProcessNavigation : public ZUProcessNavigation
 {
 public:
 
-	ZUGridSesterceProcessNavigation( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
-	virtual ~ZUGridSesterceProcessNavigation();
+    ZUGridSesterceProcessNavigation( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
+    virtual ~ZUGridSesterceProcessNavigation();
 
-	// Call-back methods
-	virtual bool OnStart					();
-	virtual bool OnFinish					();
-	virtual bool OnProcedureSymbol			( ZBBPProcedureSymbol*		pSymbol );
-	virtual bool OnDeliverableLinkSymbol	( ZBDeliverableLinkSymbol*	pSymbol );
+    // Call-back methods
+    virtual bool OnStart                    ();
+    virtual bool OnFinish                    ();
+    virtual bool OnProcedureSymbol            ( ZBBPProcedureSymbol*        pSymbol );
+    virtual bool OnDeliverableLinkSymbol    ( ZBDeliverableLinkSymbol*    pSymbol );
 
 private:
 
-	ZBOStreamGrid*	m_postream;
+    ZBOStreamGrid*    m_postream;
 
-	// Styles
-	CGXStyle		m_NormalStyle;
-	CGXStyle		m_BoldStyle;
-	CGXStyle		m_RoseStyle;
-	CGXStyle		m_BoldRoseStyle;
-	CGXStyle		m_BlueStyle;
-	CGXStyle		m_GreenStyle;
-	CGXStyle		m_RedStyle;
-	CGXStyle		m_GrayStyle;
-	CGXStyle		m_LightGrayStyle;
+    // Styles
+    CGXStyle        m_NormalStyle;
+    CGXStyle        m_BoldStyle;
+    CGXStyle        m_RoseStyle;
+    CGXStyle        m_BoldRoseStyle;
+    CGXStyle        m_BlueStyle;
+    CGXStyle        m_GreenStyle;
+    CGXStyle        m_RedStyle;
+    CGXStyle        m_GrayStyle;
+    CGXStyle        m_LightGrayStyle;
 
-	CGXStyle		m_BlackBorderStyle;
-	CGXStyle		m_LeftOnlyBlackBorderStyle;
+    CGXStyle        m_BlackBorderStyle;
+    CGXStyle        m_LeftOnlyBlackBorderStyle;
 
-	CGXStyle		m_PercentFormatStyle;
-	CGXStyle		m_AmountFormatStyle;
-	CGXStyle		m_NumberTwoDecFormatStyle;
-	CGXStyle		m_NumericCellStyle;
+    CGXStyle        m_PercentFormatStyle;
+    CGXStyle        m_AmountFormatStyle;
+    CGXStyle        m_NumberTwoDecFormatStyle;
+    CGXStyle        m_NumericCellStyle;
 };
 
 #endif // !defined(AFX_ZUGridSesterceProcessNavigation_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)

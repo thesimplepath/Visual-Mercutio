@@ -43,19 +43,19 @@ IMPLEMENT_SERIAL(ZBBPTextItemListProperties, CODIntProperty, def_Version)
 //@parmopt int | nId | OD_PROP_FILL | The identifier of the property.
 //@parm ZBBPTextItemListProperties& | propProcess | The fill property to copy.
 ZBBPTextItemListProperties::ZBBPTextItemListProperties(int nId) 
-	: CODIntProperty(nId)
+    : CODIntProperty(nId)
 {
-	m_TextItemList  = _T("");
+    m_TextItemList  = _T("");
 
-	RegisterProperties();
+    RegisterProperties();
 }
 
 ZBBPTextItemListProperties::ZBBPTextItemListProperties(const ZBBPTextItemListProperties& propProcess) 
-	: CODIntProperty(propProcess.GetId())
+    : CODIntProperty(propProcess.GetId())
 {
-	m_TextItemList  = propProcess.GetTextItemList();
+    m_TextItemList  = propProcess.GetTextItemList();
 
-	RegisterProperties();
+    RegisterProperties();
 }
 
 //@mfunc Destructor.
@@ -75,15 +75,15 @@ ZBBPTextItemListProperties::~ZBBPTextItemListProperties()
 //@parm The new decision list.
 void ZBBPTextItemListProperties::SetTextItemList(LPCTSTR lpszValue)
 {
-	if (lpszValue != NULL)
-	{
-		m_TextItemList = lpszValue;
-	}
-	else
-	{
-		TRACE0("Z -> Invalid Decision List pointer!\n");
-		ASSERT(FALSE);
-	}
+    if (lpszValue != NULL)
+    {
+        m_TextItemList = lpszValue;
+    }
+    else
+    {
+        TRACE0("Z -> Invalid Decision List pointer!\n");
+        ASSERT(FALSE);
+    }
 }
 
 //@mfunc Sets the decision list.
@@ -91,7 +91,7 @@ void ZBBPTextItemListProperties::SetTextItemList(LPCTSTR lpszValue)
 //@parm The new decision list.
 void ZBBPTextItemListProperties::SetTextItemListEx(const CString value)
 {
-	SetTextItemList(value);
+    SetTextItemList(value);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -102,9 +102,9 @@ void ZBBPTextItemListProperties::SetTextItemListEx(const CString value)
 //@parm Property identifier to compare to.
 BOOL ZBBPTextItemListProperties::CompareId(const int nId) const
 {
-	int nIdMin = m_nId;
-	int nIdMax = m_nId + Z_TEXTITEM_LIST;
-	return (nId >= nIdMin && nId <= nIdMax);
+    int nIdMin = m_nId;
+    int nIdMax = m_nId + Z_TEXTITEM_LIST;
+    return (nId >= nIdMin && nId <= nIdMax);
 }
 
 //@mfunc Sets this property object equal to the one passed in.
@@ -112,10 +112,10 @@ BOOL ZBBPTextItemListProperties::CompareId(const int nId) const
 //@parm The property to copy.
 ZBBPTextItemListProperties& ZBBPTextItemListProperties::operator=(const ZBBPTextItemListProperties& propProcess)
 {
-	SetId(propProcess.GetId());
-	SetTextItemList(propProcess.GetTextItemList());
+    SetId(propProcess.GetId());
+    SetTextItemList(propProcess.GetTextItemList());
 
-	return *this;
+    return *this;
 }
 
 //@mfunc Tests if this property is equal to the one passed in.
@@ -123,7 +123,7 @@ ZBBPTextItemListProperties& ZBBPTextItemListProperties::operator=(const ZBBPText
 //@parm The property to test against.
 BOOL ZBBPTextItemListProperties::operator==(const ZBBPTextItemListProperties propProcess) const
 {
-	return (GetTextItemList() == propProcess.GetTextItemList());
+    return (GetTextItemList() == propProcess.GetTextItemList());
 }
 
 
@@ -135,13 +135,13 @@ BOOL ZBBPTextItemListProperties::operator==(const ZBBPTextItemListProperties pro
 // to merge into this property object.
 void ZBBPTextItemListProperties::Merge(CODProperty* pProperty, DWORD dwChangeFlags)
 {
-	ZBBPTextItemListProperties* pProcessProps = (ZBBPTextItemListProperties*)pProperty;
+    ZBBPTextItemListProperties* pProcessProps = (ZBBPTextItemListProperties*)pProperty;
 
-	if (pProcessProps)
-	{
-		if (dwChangeFlags & Z_CHANGE_TEXTITEM_LIST)
-			m_TextItemList = pProcessProps->GetTextItemList();
-	}
+    if (pProcessProps)
+    {
+        if (dwChangeFlags & Z_CHANGE_TEXTITEM_LIST)
+            m_TextItemList = pProcessProps->GetTextItemList();
+    }
 }
 
 //@mfunc Tests if this property is equal to the one passed in. This method
@@ -150,15 +150,15 @@ void ZBBPTextItemListProperties::Merge(CODProperty* pProperty, DWORD dwChangeFla
 //@parm A pointer to the property to test against.
 BOOL ZBBPTextItemListProperties::IsEqual(CODProperty* pProp)
 {
-	if (GetId() == pProp->GetId())
-	{
-		ZBBPTextItemListProperties* pProcessProp = (ZBBPTextItemListProperties*)pProp;
+    if (GetId() == pProp->GetId())
+    {
+        ZBBPTextItemListProperties* pProcessProp = (ZBBPTextItemListProperties*)pProp;
 
-		if (pProcessProp)
-			return (*this == *pProcessProp);
-	}
+        if (pProcessProp)
+            return (*this == *pProcessProp);
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -188,76 +188,76 @@ BOOL ZBBPTextItemListProperties::IsEqual(CODProperty* pProp)
 
 BOOL ZBBPTextItemListProperties::GetValue(const int nPropId, CString& strValue) const
 {
-	switch (nPropId)
-	{
-	case Z_TEXTITEM_LIST:
-		strValue = m_TextItemList;
-		break;
-	default:
-		return FALSE;
-	}
+    switch (nPropId)
+    {
+    case Z_TEXTITEM_LIST:
+        strValue = m_TextItemList;
+        break;
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPTextItemListProperties::GetValue(const int nPropId, int& nValue) const
 {
-	switch (nPropId)
-	{
-	case Z_TEXTITEM_LIST:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_TEXTITEM_LIST:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPTextItemListProperties::GetValue(const int nPropId, UINT& nValue) const
 {
-	switch (nPropId)
-	{
-	case Z_TEXTITEM_LIST:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_TEXTITEM_LIST:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPTextItemListProperties::GetValue(const int nPropId, DWORD& dwValue) const
 {
-	switch (nPropId)
-	{
-	case Z_TEXTITEM_LIST:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_TEXTITEM_LIST:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPTextItemListProperties::GetValue(const int nPropId, float& fValue) const
 {
-	switch (nPropId)
-	{
-	case Z_TEXTITEM_LIST:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_TEXTITEM_LIST:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 //@mfunc | ZBBPTextItemListProperties | SetValue | Sets the value of the given property.
@@ -284,77 +284,77 @@ BOOL ZBBPTextItemListProperties::GetValue(const int nPropId, float& fValue) cons
 
 BOOL ZBBPTextItemListProperties::SetValue(const int nPropId, LPCTSTR lpszValue)
 {
-	switch (nPropId)
-	{
-	case Z_TEXTITEM_LIST:
-		m_TextItemList = lpszValue;
-		break;
+    switch (nPropId)
+    {
+    case Z_TEXTITEM_LIST:
+        m_TextItemList = lpszValue;
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPTextItemListProperties::SetValue(const int nPropId, const int nValue)
 {
-	switch (nPropId)
-	{
-	case Z_TEXTITEM_LIST:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_TEXTITEM_LIST:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPTextItemListProperties::SetValue(const int nPropId, const UINT nValue)
 {
-	switch (nPropId)
-	{
-	case Z_TEXTITEM_LIST:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_TEXTITEM_LIST:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPTextItemListProperties::SetValue(const int nPropId, const DWORD dwValue)
 {
-	switch (nPropId)
-	{
-	case Z_TEXTITEM_LIST:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_TEXTITEM_LIST:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPTextItemListProperties::SetValue(const int nPropId, const float fValue)
 {
-	switch (nPropId)
-	{
-	case Z_TEXTITEM_LIST:
-		throw new CODPropertyConversionException();
-		break;
+    switch (nPropId)
+    {
+    case Z_TEXTITEM_LIST:
+        throw new CODPropertyConversionException();
+        break;
 
-	default:
-		return FALSE;
-	}
+    default:
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -365,27 +365,27 @@ BOOL ZBBPTextItemListProperties::SetValue(const int nPropId, const float fValue)
 //@parm The archive to use for serialization.
 void ZBBPTextItemListProperties::Serialize(CArchive& ar)
 {
-	CODIntProperty::Serialize(ar);
+    CODIntProperty::Serialize(ar);
 
-	if (ar.IsStoring())
-	{
-		TRACE( "ZBBPTextItemListProperties::Serialize : Start Save\n" );
+    if (ar.IsStoring())
+    {
+        TRACE( "ZBBPTextItemListProperties::Serialize : Start Save\n" );
 
-		PUT_SCHEMA(ar, ZBBPTextItemListProperties);
-		ar << m_TextItemList;
+        PUT_SCHEMA(ar, ZBBPTextItemListProperties);
+        ar << m_TextItemList;
 
-		TRACE( "ZBBPTextItemListProperties::Serialize : End Save\n" );
-	}
-	else
-	{
-		TRACE( "ZBBPTextItemListProperties::Serialize : Start Read\n" );
+        TRACE( "ZBBPTextItemListProperties::Serialize : End Save\n" );
+    }
+    else
+    {
+        TRACE( "ZBBPTextItemListProperties::Serialize : Start Read\n" );
 
-		UINT nSchema;
-		GET_SCHEMA(ar, nSchema);
-		ar >> m_TextItemList;
+        UINT nSchema;
+        GET_SCHEMA(ar, nSchema);
+        ar >> m_TextItemList;
 
-		TRACE( "ZBBPTextItemListProperties::Serialize : End Read\n" );
-	}
+        TRACE( "ZBBPTextItemListProperties::Serialize : End Read\n" );
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -393,32 +393,32 @@ void ZBBPTextItemListProperties::Serialize(CArchive& ar)
 
 bool ZBBPTextItemListProperties::RegisterProperties()
 {
-	static bool propsRegistered = false;
+    static bool propsRegistered = false;
 
-	if (!propsRegistered)
-	{	
-		bool success = true;
+    if (!propsRegistered)
+    {    
+        bool success = true;
 
-		if (success)
-		{
-			success = RegisterProperty(Z_TEXTITEM_LIST,
-						IDS_Z_TEXTITEM_LIST_NAME, 
-						IDS_Z_TEXTITEM_LIST_DESC,
-						_PropertyAccessor(&ZBBPTextItemListProperties::GetTextItemList,
-						&ZBBPTextItemListProperties::SetTextItemListEx),
-						VT_BSTR,
-						PROP_DIRECT
-						);
-		}
-		if (!success)
-		{
-			ZBBPTextItemListProperties::GetPropertyMap().DeleteAll();
-		}
+        if (success)
+        {
+            success = RegisterProperty(Z_TEXTITEM_LIST,
+                        IDS_Z_TEXTITEM_LIST_NAME, 
+                        IDS_Z_TEXTITEM_LIST_DESC,
+                        _PropertyAccessor(&ZBBPTextItemListProperties::GetTextItemList,
+                        &ZBBPTextItemListProperties::SetTextItemListEx),
+                        VT_BSTR,
+                        PROP_DIRECT
+                        );
+        }
+        if (!success)
+        {
+            ZBBPTextItemListProperties::GetPropertyMap().DeleteAll();
+        }
 
-		propsRegistered = success;
-	}
+        propsRegistered = success;
+    }
 
-	return propsRegistered;
+    return propsRegistered;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -427,15 +427,15 @@ bool ZBBPTextItemListProperties::RegisterProperties()
 #ifdef _DEBUG
 void ZBBPTextItemListProperties::AssertValid() const
 {
-	CODIntProperty::AssertValid();
+    CODIntProperty::AssertValid();
 
 }
 
 void ZBBPTextItemListProperties::Dump(CDumpContext& dc) const
 {
-	CODIntProperty::Dump(dc);
+    CODIntProperty::Dump(dc);
 
-	dc << "Text Item list = " << m_TextItemList << "\n";
+    dc << "Text Item list = " << m_TextItemList << "\n";
 }
 #endif //_DEBUG
 

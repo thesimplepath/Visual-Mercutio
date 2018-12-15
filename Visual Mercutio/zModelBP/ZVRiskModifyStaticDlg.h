@@ -1,10 +1,10 @@
 // **************************************************************************************************************
-// *										  Classe ZVRiskModifyStaticDlg										*
+// *                                          Classe ZVRiskModifyStaticDlg                                        *
 // **************************************************************************************************************
-// * JMR-MODIF - Le 16 juillet 2007 - Ajout de la classe ZVRiskModifyStaticDlg.									*
+// * JMR-MODIF - Le 16 juillet 2007 - Ajout de la classe ZVRiskModifyStaticDlg.                                    *
 // **************************************************************************************************************
-// * Cette classe permet à l'utilisateur de modifier un élément dans les listes déroulantes utilisées par les	*
-// * risques.																									*
+// * Cette classe permet à l'utilisateur de modifier un élément dans les listes déroulantes utilisées par les    *
+// * risques.                                                                                                    *
 // **************************************************************************************************************
 
 #if !defined(AFX_ZVRISKMODIFYSTATICDLG_H__F8225CF5_FC88_4006_829D_3079998B03A7__INCLUDED_)
@@ -42,59 +42,59 @@ class AFX_EXT_CLASS ZVRiskModifyStaticDlg : public CDialog
 {
 private:
 
-	ZVRiskModifyStaticDlg();
+    ZVRiskModifyStaticDlg();
 
 // Construction / Destruction
 public:
 
-	// Standard constructor
-	ZVRiskModifyStaticDlg( CString	Filename,
-						   CString	Extension,
-						   int		NbElements,
-						   CWnd*	pParent		= NULL );
+    // Standard constructor
+    ZVRiskModifyStaticDlg( CString    Filename,
+                           CString    Extension,
+                           int        NbElements,
+                           CWnd*    pParent        = NULL );
 
 public:
 
-	CString GetFilename();
+    CString GetFilename();
 
 private:
 
-	// Dialog Data
-	//{{AFX_DATA(ZVRiskModifyStaticDlg)
-	enum { IDD = IDD_MODIFY_RISK_STATIC };
-	CString		m_Element;
-	CEdit		m_ElementCtrl;
-	CListBox	m_ElementsListCtrl;
-	CButton		m_OK;
-	CStatic		m_ElementNbrCtrl;
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZVRiskModifyStaticDlg)
+    enum { IDD = IDD_MODIFY_RISK_STATIC };
+    CString        m_Element;
+    CEdit        m_ElementCtrl;
+    CListBox    m_ElementsListCtrl;
+    CButton        m_OK;
+    CStatic        m_ElementNbrCtrl;
+    //}}AFX_DATA
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVRiskModifyStaticDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVRiskModifyStaticDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVRiskModifyStaticDlg)
-	virtual BOOL OnInitDialog();
-	afx_msg void OnEnChangeStaticModifyElement();
-	afx_msg void OnLbnSelchangeStaticElementsList();
-	afx_msg void OnBnClickedOk();
-	afx_msg void OnBnClickedStaticNewFile();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVRiskModifyStaticDlg)
+    virtual BOOL OnInitDialog();
+    afx_msg void OnEnChangeStaticModifyElement();
+    afx_msg void OnLbnSelchangeStaticElementsList();
+    afx_msg void OnBnClickedOk();
+    afx_msg void OnBnClickedStaticNewFile();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	int		i_NbElements;
+    int        i_NbElements;
 
-	CString	m_Filename;
-	CString	m_Extension;
+    CString    m_Filename;
+    CString    m_Extension;
 };
 
 //{{AFX_INSERT_LOCATION}}

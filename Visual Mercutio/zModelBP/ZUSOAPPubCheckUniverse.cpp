@@ -1,10 +1,10 @@
 // **************************************************************************************************************
-// *								   Classe ZUSOAPPubCheckUniverse											*
+// *                                   Classe ZUSOAPPubCheckUniverse                                            *
 // **************************************************************************************************************
-// * JMR-MODIF - Le 21 juin 2006 - Création de la classe ZUSOAPPubCheckUniverse.								*
+// * JMR-MODIF - Le 21 juin 2006 - Création de la classe ZUSOAPPubCheckUniverse.                                *
 // **************************************************************************************************************
-// * Cette classe prend en charge le test des référentiels, et permet de déterminer si la publication est		*
-// * valide.																									*
+// * Cette classe prend en charge le test des référentiels, et permet de déterminer si la publication est        *
+// * valide.                                                                                                    *
 // **************************************************************************************************************
 
 #include "stdafx.h"
@@ -33,10 +33,10 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUSOAPPubCheckUniverse::ZUSOAPPubCheckUniverse( ZBPublishMessengerModelInformation*	pInfo,
-												ZILog*								pLog	/*= NULL*/ )
-	: m_pInfo	( pInfo ),
-	  m_pLog	( pLog )
+ZUSOAPPubCheckUniverse::ZUSOAPPubCheckUniverse( ZBPublishMessengerModelInformation*    pInfo,
+                                                ZILog*                                pLog    /*= NULL*/ )
+    : m_pInfo    ( pInfo ),
+      m_pLog    ( pLog )
 {
 }
 
@@ -47,33 +47,33 @@ ZUSOAPPubCheckUniverse::~ZUSOAPPubCheckUniverse()
 // Cette fonction permet de publier les GUID des réferentiels, et de tester la validité de ceux-ci.
 bool ZUSOAPPubCheckUniverse::IsValid()
 {
-	if ( m_pInfo && m_pInfo->m_pDoc && m_pInfo->m_pDoc->GetMainLogicalSystem() )
-	{
-		// Sets the correct address
-		pPublishSettings::url = (const char*)m_pInfo->m_MessengerAddress;
+    if ( m_pInfo && m_pInfo->m_pDoc && m_pInfo->m_pDoc->GetMainLogicalSystem() )
+    {
+        // Sets the correct address
+        pPublishSettings::url = (const char*)m_pInfo->m_MessengerAddress;
 
-		m_cu.reset();
+        m_cu.reset();
 
-		m_cu.addUniverse( puniverse( String16( m_pInfo->m_pDoc->GetSystemDefGUID() ),
-									 String16( m_pInfo->m_pDoc->GetPrestationsDefGUID() ),
-									 String16( m_pInfo->m_pDoc->GetUserDefGUID() ) ) );
+        m_cu.addUniverse( puniverse( String16( m_pInfo->m_pDoc->GetSystemDefGUID() ),
+                                     String16( m_pInfo->m_pDoc->GetPrestationsDefGUID() ),
+                                     String16( m_pInfo->m_pDoc->GetUserDefGUID() ) ) );
 
-		m_cu.addAlias( m_pInfo->m_MessengerAlias );
+        m_cu.addAlias( m_pInfo->m_MessengerAlias );
 
 #ifdef _DEBUG
-		CString s;
-		s.Format( _T( " System def GUID = %s\n" ), (const char*)m_pInfo->m_pDoc->GetSystemDefGUID() );
-		TRACE( s );
+        CString s;
+        s.Format( _T( " System def GUID = %s\n" ), (const char*)m_pInfo->m_pDoc->GetSystemDefGUID() );
+        TRACE( s );
 
-		s.Format( _T( " Prestations def GUID = %s\n" ), (const char*)m_pInfo->m_pDoc->GetPrestationsDefGUID() );
-		TRACE( s );
+        s.Format( _T( " Prestations def GUID = %s\n" ), (const char*)m_pInfo->m_pDoc->GetPrestationsDefGUID() );
+        TRACE( s );
 
-		s.Format( _T( " Workgroup def GUID = %s\n" ), (const char*)m_pInfo->m_pDoc->GetUserDefGUID() );
-		TRACE( s );
+        s.Format( _T( " Workgroup def GUID = %s\n" ), (const char*)m_pInfo->m_pDoc->GetUserDefGUID() );
+        TRACE( s );
 #endif
 
-		return m_cu.check();
-	}
+        return m_cu.check();
+    }
 
-	return false;
+    return false;
 }

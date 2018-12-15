@@ -30,7 +30,7 @@ BOOL ZVBasicView::GetPrinterPageSize(CSize &PaperSize, short& StandardSize, shor
 
     PRINTDLG FAR * pPrintDlg = new PRINTDLG;
 
-	// Get the current printer's settings.
+    // Get the current printer's settings.
 
     if (AfxGetApp()->GetPrinterDeviceDefaults(pPrintDlg))
     {
@@ -52,50 +52,50 @@ BOOL ZVBasicView::GetPrinterPageSize(CSize &PaperSize, short& StandardSize, shor
         CString szOutput((LPTSTR)lpDevNames +
                              lpDevNames->wOutputOffset);
 
-		// Create a CDC object according to the current settings.
+        // Create a CDC object according to the current settings.
 
         CDC pDC;
         pDC.CreateDC(szDriver, szDevice, szOutput, lpDevMode);
 
-		// Query this CDC object for the width and height of the current
-		// page.
+        // Query this CDC object for the width and height of the current
+        // page.
 
         PaperSize.cx = pDC.GetDeviceCaps(HORZSIZE);
         PaperSize.cy = pDC.GetDeviceCaps(VERTSIZE);
 
-		// Return the orientation
-		Orientation = lpDevMode->dmOrientation;
+        // Return the orientation
+        Orientation = lpDevMode->dmOrientation;
 
-		// Return the standard size
-		StandardSize = lpDevMode->dmPaperSize;
+        // Return the standard size
+        StandardSize = lpDevMode->dmPaperSize;
 
-		// Get rid of the CDC object.
+        // Get rid of the CDC object.
 
         pDC.DeleteDC();
 
-		// Unlock the pointers to the setting structures.
+        // Unlock the pointers to the setting structures.
 
         ::GlobalUnlock(pPrintDlg->hDevNames);
         ::GlobalUnlock(pPrintDlg->hDevMode);
 
       bRet = TRUE;
-	}
-	delete pPrintDlg;
+    }
+    delete pPrintDlg;
 
-	return bRet;
+    return bRet;
 }
 
 
 void ZVBasicView::SetPrinterOrientation (short Orientation /*= DMORIENT_PORTRAIT*/)
 {
-//	ZAApp:ZAGetApp()->SetPrinterOrientation( GetPageOrientation() == portrait );
+//    ZAApp:ZAGetApp()->SetPrinterOrientation( GetPageOrientation() == portrait );
 }
 
 
 BEGIN_MESSAGE_MAP(ZVBasicView, CView)
-	//{{AFX_MSG_MAP(ZVBasicView)
-		// NOTE - the ClassWizard will add and remove mapping macros here.
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZVBasicView)
+        // NOTE - the ClassWizard will add and remove mapping macros here.
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -103,8 +103,8 @@ END_MESSAGE_MAP()
 
 void ZVBasicView::OnDraw(CDC* pDC)
 {
-	CDocument* pDoc = GetDocument();
-	// TODO: add draw code here
+    CDocument* pDoc = GetDocument();
+    // TODO: add draw code here
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -113,12 +113,12 @@ void ZVBasicView::OnDraw(CDC* pDC)
 #ifdef _DEBUG
 void ZVBasicView::AssertValid() const
 {
-	CView::AssertValid();
+    CView::AssertValid();
 }
 
 void ZVBasicView::Dump(CDumpContext& dc) const
 {
-	CView::Dump(dc);
+    CView::Dump(dc);
 }
 #endif //_DEBUG
 

@@ -28,13 +28,13 @@ ZUSymbolLoaderHTTP::~ZUSymbolLoaderHTTP()
 
 int ZUSymbolLoaderHTTP::LoadSymbol( const CString Location, ZBSymbolEntitySet& CompSet )
 {
-	return 0;
+    return 0;
 }
 
 
 int ZUSymbolLoaderHTTP::LoadSymbols( const CString Location, ZBSymbolEntitySet& CompSet, bool LoadSubFolders /*= false*/ )
 {
-	return 0;
+    return 0;
 }
 
 

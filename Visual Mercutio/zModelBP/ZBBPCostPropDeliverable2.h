@@ -12,7 +12,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// Created:		 05/2001
+// Created:         05/2001
 // Description:  ZBBPCostPropertiesDeliverable2 cost properties for deliverables
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -39,36 +39,36 @@
 
 //@topic Basic Properties Change Flags 
 //@flag Z_CHANGE_COST_PROCESSING_TIME | Change the processing time.
-#ifndef Z_CHANGE_COST_PROCESSING_TIME			
-#define Z_CHANGE_COST_PROCESSING_TIME				0x0001
+#ifndef Z_CHANGE_COST_PROCESSING_TIME            
+#define Z_CHANGE_COST_PROCESSING_TIME                0x0001
 #endif 
 //@flag Z_CHANGE_COST_IN_WORKLOAD_PERCENT | Change the input workload percent.
-#ifndef Z_CHANGE_COST_IN_WORKLOAD_PERCENT		
-#define Z_CHANGE_COST_IN_WORKLOAD_PERCENT			0x0002
+#ifndef Z_CHANGE_COST_IN_WORKLOAD_PERCENT        
+#define Z_CHANGE_COST_IN_WORKLOAD_PERCENT            0x0002
 #endif 
 //@flag Z_CHANGE_COST_OUT_WORKLOAD_PERCENT | Change the output workload percent.
-#ifndef Z_CHANGE_COST_OUT_WORKLOAD_PERCENT		
-#define Z_CHANGE_COST_OUT_WORKLOAD_PERCENT			0x0004
+#ifndef Z_CHANGE_COST_OUT_WORKLOAD_PERCENT        
+#define Z_CHANGE_COST_OUT_WORKLOAD_PERCENT            0x0004
 #endif 
 //@flag Z_CHANGE_COST_UNITARY_COST | Change the unitary cost.
-#ifndef Z_CHANGE_COST_UNITARY_COST					
-#define Z_CHANGE_COST_UNITARY_COST					0x0008
+#ifndef Z_CHANGE_COST_UNITARY_COST                    
+#define Z_CHANGE_COST_UNITARY_COST                    0x0008
 #endif 
 //@flag Z_CHANGE_COST_CASE_DURATION | Change the stock duration.
-#ifndef Z_CHANGE_COST_CASE_DURATION					
-#define Z_CHANGE_COST_CASE_DURATION				0x0010
+#ifndef Z_CHANGE_COST_CASE_DURATION                    
+#define Z_CHANGE_COST_CASE_DURATION                0x0010
 #endif
 //@flag Z_CHANGE_COST_TARGET_DURATION | Change the target duration.
-#ifndef Z_CHANGE_COST_TARGET_DURATION					
-#define Z_CHANGE_COST_TARGET_DURATION				0x0020
+#ifndef Z_CHANGE_COST_TARGET_DURATION                    
+#define Z_CHANGE_COST_TARGET_DURATION                0x0020
 #endif
 //@flag Z_CHANGE_COST_GREENLINE_DURATION | Change the greenline duration.
-#ifndef Z_CHANGE_COST_GREENLINE_DURATION					
-#define Z_CHANGE_COST_GREENLINE_DURATION			0x0040
+#ifndef Z_CHANGE_COST_GREENLINE_DURATION                    
+#define Z_CHANGE_COST_GREENLINE_DURATION            0x0040
 #endif
 //@flag Z_CHANGE_COST_CASE_DURATIONMAX | Change the stock duration duration.
-#ifndef Z_CHANGE_COST_CASE_DURATIONMAX					
-#define Z_CHANGE_COST_CASE_DURATIONMAX				0x0080
+#ifndef Z_CHANGE_COST_CASE_DURATIONMAX                    
+#define Z_CHANGE_COST_CASE_DURATIONMAX                0x0080
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
@@ -80,36 +80,36 @@
 // identifiers are used in conjunction with the <c IODPropertyContainer>
 // interface implemented by the orientation property container.
 //@flag Z_COST_PROCESSING_TIME | Identifier for the processing time.
-#ifndef Z_COST_PROCESSING_TIME			
-#define Z_COST_PROCESSING_TIME				1
+#ifndef Z_COST_PROCESSING_TIME            
+#define Z_COST_PROCESSING_TIME                1
 #endif 
 //@flag Z_COST_IN_WORKLOAD_PERCENT | Identifier for the input workload percent.
-#ifndef Z_COST_IN_WORKLOAD_PERCENT		
-#define Z_COST_IN_WORKLOAD_PERCENT			2
+#ifndef Z_COST_IN_WORKLOAD_PERCENT        
+#define Z_COST_IN_WORKLOAD_PERCENT            2
 #endif 
 //@flag Z_COST_OUT_WORKLOAD_PERCENT | Identifier for the output workload percent.
-#ifndef Z_COST_OUT_WORKLOAD_PERCENT		
-#define Z_COST_OUT_WORKLOAD_PERCENT			3
+#ifndef Z_COST_OUT_WORKLOAD_PERCENT        
+#define Z_COST_OUT_WORKLOAD_PERCENT            3
 #endif 
 //@flag Z_COST_UNITARY_COST | Identifier for the unitary cost.
-#ifndef Z_COST_UNITARY_COST				
-#define Z_COST_UNITARY_COST					4
+#ifndef Z_COST_UNITARY_COST                
+#define Z_COST_UNITARY_COST                    4
 #endif 
 //@flag Z_COST_CASE_DURATION | Identifier for the stock duration.
-#ifndef Z_COST_CASE_DURATION					
-#define Z_COST_CASE_DURATION				5
+#ifndef Z_COST_CASE_DURATION                    
+#define Z_COST_CASE_DURATION                5
 #endif
 //@flag Z_COST_TARGET_DURATION | Identifier for the target duration.
-#ifndef Z_COST_TARGET_DURATION					
-#define Z_COST_TARGET_DURATION				6
+#ifndef Z_COST_TARGET_DURATION                    
+#define Z_COST_TARGET_DURATION                6
 #endif
 //@flag Z_COST_GREENLINE_DURATION | Identifier for the greenline duration.
-#ifndef Z_COST_GREENLINE_DURATION					
-#define Z_COST_GREENLINE_DURATION			7
+#ifndef Z_COST_GREENLINE_DURATION                    
+#define Z_COST_GREENLINE_DURATION            7
 #endif
 //@flag Z_COST_CASE_DURATIONMAX | Identifier for the stock duration maximum.
-#ifndef Z_COST_CASE_DURATIONMAX					
-#define Z_COST_CASE_DURATIONMAX				8
+#ifndef Z_COST_CASE_DURATIONMAX                    
+#define Z_COST_CASE_DURATIONMAX                8
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
@@ -150,191 +150,191 @@
 
 class AFX_EXT_CLASS ZBBPCostPropertiesDeliverable2 : public CObject
 {
-	DECLARE_SERIAL(ZBBPCostPropertiesDeliverable2)
+    DECLARE_SERIAL(ZBBPCostPropertiesDeliverable2)
 
 // Construction/Destruction
 public:
-	//@cmember
-	/* Constructor. */
-	ZBBPCostPropertiesDeliverable2();
-	//@cmember
-	/* Copy constructor. */
-	ZBBPCostPropertiesDeliverable2(const ZBBPCostPropertiesDeliverable2& propBasic);
-	//@cmember
-	/* Destructor. */
-	virtual ~ZBBPCostPropertiesDeliverable2();
+    //@cmember
+    /* Constructor. */
+    ZBBPCostPropertiesDeliverable2();
+    //@cmember
+    /* Copy constructor. */
+    ZBBPCostPropertiesDeliverable2(const ZBBPCostPropertiesDeliverable2& propBasic);
+    //@cmember
+    /* Destructor. */
+    virtual ~ZBBPCostPropertiesDeliverable2();
 
 // Attributes
 protected:
 
-	//@cmember
-	/* the processing time. */
-	double m_ProcessingTime;
+    //@cmember
+    /* the processing time. */
+    double m_ProcessingTime;
 
-	//@cmember
-	/* the input workload percent. */
-	float m_InWorkloadPercent;
+    //@cmember
+    /* the input workload percent. */
+    float m_InWorkloadPercent;
 
-	//@cmember
-	/* the output workload percent. */
-	float m_OutWorkloadPercent;
+    //@cmember
+    /* the output workload percent. */
+    float m_OutWorkloadPercent;
 
-	//@cmember
-	/* the unitary cost. */
-	float m_UnitaryCost;
+    //@cmember
+    /* the unitary cost. */
+    float m_UnitaryCost;
 
-	//@cmember
-	/* the stock duration. */
-	double m_CaseDuration;
+    //@cmember
+    /* the stock duration. */
+    double m_CaseDuration;
 
-	//@cmember
-	/* the stock duration maximum. */
-	double m_CaseDurationMax;
+    //@cmember
+    /* the stock duration maximum. */
+    double m_CaseDurationMax;
 
-	//@cmember
-	/* the target duration. */
-	double m_TargetDuration;
+    //@cmember
+    /* the target duration. */
+    double m_TargetDuration;
 
-	//@cmember
-	/* the greenline duration. */
-	double m_GreenLineDuration;
+    //@cmember
+    /* the greenline duration. */
+    double m_GreenLineDuration;
 
 public:
-	//@cmember
-	/* Gets the processing time. */
-	double GetProcessingTime() const;
+    //@cmember
+    /* Gets the processing time. */
+    double GetProcessingTime() const;
 
-	//@cmember
-	/* Sets the processing time. */
-	void SetProcessingTime(const double value);
+    //@cmember
+    /* Sets the processing time. */
+    void SetProcessingTime(const double value);
 
-	//@cmember
-	// Gets the input workload percent.
-	float GetInWorkloadPercent() const;
+    //@cmember
+    // Gets the input workload percent.
+    float GetInWorkloadPercent() const;
 
-	//@cmember
-	// Sets the input workload percent.
-	void SetInWorkloadPercent(const float value);
+    //@cmember
+    // Sets the input workload percent.
+    void SetInWorkloadPercent(const float value);
 
-	//@cmember
-	/* Gets the output workload percent. */
-	float GetOutWorkloadPercent() const;
+    //@cmember
+    /* Gets the output workload percent. */
+    float GetOutWorkloadPercent() const;
 
-	//@cmember
-	/* Sets the output workload percent. */
-	void SetOutWorkloadPercent(const float value);
+    //@cmember
+    /* Sets the output workload percent. */
+    void SetOutWorkloadPercent(const float value);
 
-	//@cmember
-	/* Gets the unitary cost. */
-	float GetUnitaryCost() const;
+    //@cmember
+    /* Gets the unitary cost. */
+    float GetUnitaryCost() const;
 
-	//@cmember
-	/* Sets the unitary cost. */
-	void SetUnitaryCost(const float value);
+    //@cmember
+    /* Sets the unitary cost. */
+    void SetUnitaryCost(const float value);
 
-	//@cmember
-	/* Gets the stock duration. */
-	double GetCaseDuration() const;
+    //@cmember
+    /* Gets the stock duration. */
+    double GetCaseDuration() const;
 
-	//@cmember
-	/* Sets the stock duration. */
-	void SetCaseDuration(const double value);
+    //@cmember
+    /* Sets the stock duration. */
+    void SetCaseDuration(const double value);
 
-	//@cmember
-	/* Gets the stock duration maximum. */
-	double GetCaseDurationMax() const;
+    //@cmember
+    /* Gets the stock duration maximum. */
+    double GetCaseDurationMax() const;
 
-	//@cmember
-	/* Sets the stock duration maximum. */
-	void SetCaseDurationMax(const double value);
+    //@cmember
+    /* Sets the stock duration maximum. */
+    void SetCaseDurationMax(const double value);
 
-	//@cmember
-	/* Gets the target duration. */
-	double GetTargetDuration() const;
+    //@cmember
+    /* Gets the target duration. */
+    double GetTargetDuration() const;
 
-	//@cmember
-	/* Sets the target duration. */
-	void SetTargetDuration(const double value);
+    //@cmember
+    /* Sets the target duration. */
+    void SetTargetDuration(const double value);
 
-	//@cmember
-	/* Gets the greenline duration. */
-	double GetGreenLineDuration() const;
+    //@cmember
+    /* Gets the greenline duration. */
+    double GetGreenLineDuration() const;
 
-	//@cmember
-	/* Sets the greenline duration. */
-	void SetGreenLineDuration(const double value);
+    //@cmember
+    /* Sets the greenline duration. */
+    void SetGreenLineDuration(const double value);
 
 // Operations
 public:
-	//@cmember
-	/* Assigns another property to this property. */
-	ZBBPCostPropertiesDeliverable2& operator=(const ZBBPCostPropertiesDeliverable2& propBasic);
+    //@cmember
+    /* Assigns another property to this property. */
+    ZBBPCostPropertiesDeliverable2& operator=(const ZBBPCostPropertiesDeliverable2& propBasic);
 
-	//@cmember
-	/* Compares two orientation properties. */
-	BOOL operator==(const ZBBPCostPropertiesDeliverable2 propBasic) const;
+    //@cmember
+    /* Compares two orientation properties. */
+    BOOL operator==(const ZBBPCostPropertiesDeliverable2 propBasic) const;
 
-	//@cmember
-	/* Makes a copy of this properties object. */
-	virtual ZBBPCostPropertiesDeliverable2* Dup();
-	//@cmember
-	/* Merges another set of properties with this one. */
-	virtual void Merge(ZBBPCostPropertiesDeliverable2* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL);
-	//@cmember
-	/* Determines if another set of properties is equal to this one. */
-	virtual BOOL IsEqual(ZBBPCostPropertiesDeliverable2* pProp);
+    //@cmember
+    /* Makes a copy of this properties object. */
+    virtual ZBBPCostPropertiesDeliverable2* Dup();
+    //@cmember
+    /* Merges another set of properties with this one. */
+    virtual void Merge(ZBBPCostPropertiesDeliverable2* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL);
+    //@cmember
+    /* Determines if another set of properties is equal to this one. */
+    virtual BOOL IsEqual(ZBBPCostPropertiesDeliverable2* pProp);
 
-	/////////////////////////////////////////////////////////////////////////
-	// IODPropertyContainer interface
+    /////////////////////////////////////////////////////////////////////////
+    // IODPropertyContainer interface
 
-	//@cmember
-	/* Gets the value of the given string property. */
-	virtual BOOL GetValue(const int nPropId, CString& strValue) const;
-	//@cmember
-	/* Gets the value of the given integer property. */
-	virtual BOOL GetValue(const int nPropId, int& nValue) const;
-	//@cmember
-	/* Gets the value of the given unsigned integer property. */
-	virtual BOOL GetValue(const int nPropId, UINT& nValue) const;
-	//@cmember
-	/* Gets the value of the given DWORD property. */
-	virtual BOOL GetValue(const int nPropId, DWORD& dwValue) const;
-	//@cmember
-	/* Gets the value of the given float property. */
-	virtual BOOL GetValue(const int nPropId, float& fValue) const;
-	//@cmember
-	/* Gets the value of the given double property. */
-	virtual BOOL GetValue(const int nPropId, double& dValue) const;
+    //@cmember
+    /* Gets the value of the given string property. */
+    virtual BOOL GetValue(const int nPropId, CString& strValue) const;
+    //@cmember
+    /* Gets the value of the given integer property. */
+    virtual BOOL GetValue(const int nPropId, int& nValue) const;
+    //@cmember
+    /* Gets the value of the given unsigned integer property. */
+    virtual BOOL GetValue(const int nPropId, UINT& nValue) const;
+    //@cmember
+    /* Gets the value of the given DWORD property. */
+    virtual BOOL GetValue(const int nPropId, DWORD& dwValue) const;
+    //@cmember
+    /* Gets the value of the given float property. */
+    virtual BOOL GetValue(const int nPropId, float& fValue) const;
+    //@cmember
+    /* Gets the value of the given double property. */
+    virtual BOOL GetValue(const int nPropId, double& dValue) const;
 
-	//@cmember
-	/* Sets the value of the given string property. */
-	virtual BOOL SetValue(const int nPropId, LPCTSTR lpszValue);
-	//@cmember
-	/* Sets the value of the given integer property. */
-	virtual BOOL SetValue(const int nPropId, const int nValue);
-	//@cmember
-	/* Sets the value of the given unsigned integer property. */
-	virtual BOOL SetValue(const int nPropId, const UINT nValue);
-	//@cmember
-	/* Sets the value of the given unsigned DWORD property. */
-	virtual BOOL SetValue(const int nPropId, const DWORD dwValue);
-	//@cmember
-	/* Sets the value of the given float property. */
-	virtual BOOL SetValue(const int nPropId, const float fValue);
-	//@cmember
-	/* Sets the value of the given double property. */
-	virtual BOOL SetValue(const int nPropId, const double dValue);
+    //@cmember
+    /* Sets the value of the given string property. */
+    virtual BOOL SetValue(const int nPropId, LPCTSTR lpszValue);
+    //@cmember
+    /* Sets the value of the given integer property. */
+    virtual BOOL SetValue(const int nPropId, const int nValue);
+    //@cmember
+    /* Sets the value of the given unsigned integer property. */
+    virtual BOOL SetValue(const int nPropId, const UINT nValue);
+    //@cmember
+    /* Sets the value of the given unsigned DWORD property. */
+    virtual BOOL SetValue(const int nPropId, const DWORD dwValue);
+    //@cmember
+    /* Sets the value of the given float property. */
+    virtual BOOL SetValue(const int nPropId, const float fValue);
+    //@cmember
+    /* Sets the value of the given double property. */
+    virtual BOOL SetValue(const int nPropId, const double dValue);
 
-	//@cmember
-	/* Serializes the orientation properties. */
-	virtual void Serialize(CArchive& ar);
+    //@cmember
+    /* Serializes the orientation properties. */
+    virtual void Serialize(CArchive& ar);
 
 
 // Implementation
 public:
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 };
 
@@ -345,7 +345,7 @@ public:
 //@rdesc Spacing value.
 inline double ZBBPCostPropertiesDeliverable2::GetProcessingTime() const
 {
-	return m_ProcessingTime;
+    return m_ProcessingTime;
 }
 
 //@mfunc Sets the vertical spacing between container control point and component.
@@ -353,14 +353,14 @@ inline double ZBBPCostPropertiesDeliverable2::GetProcessingTime() const
 //@parm Spacing value.
 inline void ZBBPCostPropertiesDeliverable2::SetProcessingTime(const double value)
 {
-	m_ProcessingTime = value;
+    m_ProcessingTime = value;
 }
 
 //@mfunc Gets the vertical spacing between container control point and component.
 //@rdesc Spacing value.
 inline float ZBBPCostPropertiesDeliverable2::GetInWorkloadPercent() const
 {
-	return m_InWorkloadPercent;
+    return m_InWorkloadPercent;
 }
 
 //@mfunc Sets the vertical spacing between container control point and component.
@@ -368,14 +368,14 @@ inline float ZBBPCostPropertiesDeliverable2::GetInWorkloadPercent() const
 //@parm Spacing value.
 inline void ZBBPCostPropertiesDeliverable2::SetInWorkloadPercent(const float value)
 {
-	m_InWorkloadPercent = value;
+    m_InWorkloadPercent = value;
 }
 
 //@mfunc Gets the vertical spacing between container control point and component.
 //@rdesc Spacing value.
 inline float ZBBPCostPropertiesDeliverable2::GetOutWorkloadPercent() const
 {
-	return m_OutWorkloadPercent;
+    return m_OutWorkloadPercent;
 }
 
 //@mfunc Sets the vertical spacing between container control point and component.
@@ -383,14 +383,14 @@ inline float ZBBPCostPropertiesDeliverable2::GetOutWorkloadPercent() const
 //@parm Spacing value.
 inline void ZBBPCostPropertiesDeliverable2::SetOutWorkloadPercent(const float value)
 {
-	m_OutWorkloadPercent = value;
+    m_OutWorkloadPercent = value;
 }
 
 //@mfunc Gets the vertical spacing between container control point and component.
 //@rdesc Spacing value.
 inline float ZBBPCostPropertiesDeliverable2::GetUnitaryCost() const
 {
-	return m_UnitaryCost;
+    return m_UnitaryCost;
 }
 
 //@mfunc Sets the vertical spacing between container control point and component.
@@ -398,14 +398,14 @@ inline float ZBBPCostPropertiesDeliverable2::GetUnitaryCost() const
 //@parm Spacing value.
 inline void ZBBPCostPropertiesDeliverable2::SetUnitaryCost(const float value)
 {
-	m_UnitaryCost = value;
+    m_UnitaryCost = value;
 }
 
 //@mfunc Gets the stock duration.
 //@rdesc stock duration value.
 inline double ZBBPCostPropertiesDeliverable2::GetCaseDuration() const
 {
-	return m_CaseDuration;
+    return m_CaseDuration;
 }
 
 //@mfunc Sets the stock duration.
@@ -413,7 +413,7 @@ inline double ZBBPCostPropertiesDeliverable2::GetCaseDuration() const
 //@parm stock duration value.
 inline void ZBBPCostPropertiesDeliverable2::SetCaseDuration(const double value)
 {
-	m_CaseDuration = value;
+    m_CaseDuration = value;
 }
 
 
@@ -421,7 +421,7 @@ inline void ZBBPCostPropertiesDeliverable2::SetCaseDuration(const double value)
 //@rdesc stock duration maximum value.
 inline double ZBBPCostPropertiesDeliverable2::GetCaseDurationMax() const
 {
-	return m_CaseDurationMax;
+    return m_CaseDurationMax;
 }
 
 //@mfunc Sets the stock duration maximum.
@@ -429,7 +429,7 @@ inline double ZBBPCostPropertiesDeliverable2::GetCaseDurationMax() const
 //@parm stock duration maximum value.
 inline void ZBBPCostPropertiesDeliverable2::SetCaseDurationMax(const double value)
 {
-	m_CaseDurationMax = value;
+    m_CaseDurationMax = value;
 }
 
 
@@ -438,7 +438,7 @@ inline void ZBBPCostPropertiesDeliverable2::SetCaseDurationMax(const double valu
 //@rdesc target duration value.
 inline double ZBBPCostPropertiesDeliverable2::GetTargetDuration() const
 {
-	return m_TargetDuration;
+    return m_TargetDuration;
 }
 
 //@mfunc Sets the target duration.
@@ -446,14 +446,14 @@ inline double ZBBPCostPropertiesDeliverable2::GetTargetDuration() const
 //@parm target duration value.
 inline void ZBBPCostPropertiesDeliverable2::SetTargetDuration(const double value)
 {
-	m_TargetDuration = value;
+    m_TargetDuration = value;
 }
 
 //@mfunc Gets the greenline duration.
 //@rdesc greenline duration value.
 inline double ZBBPCostPropertiesDeliverable2::GetGreenLineDuration() const
 {
-	return m_GreenLineDuration;
+    return m_GreenLineDuration;
 }
 
 //@mfunc Sets the greenline duration.
@@ -461,7 +461,7 @@ inline double ZBBPCostPropertiesDeliverable2::GetGreenLineDuration() const
 //@parm greenline duration value.
 inline void ZBBPCostPropertiesDeliverable2::SetGreenLineDuration(const double value)
 {
-	m_GreenLineDuration = value;
+    m_GreenLineDuration = value;
 }
 
 
@@ -471,7 +471,7 @@ inline void ZBBPCostPropertiesDeliverable2::SetGreenLineDuration(const double va
 // for cleaning up this object.
 inline ZBBPCostPropertiesDeliverable2* ZBBPCostPropertiesDeliverable2::Dup()
 {
-	return new ZBBPCostPropertiesDeliverable2(*this);
+    return new ZBBPCostPropertiesDeliverable2(*this);
 }
 
 /////////////////////////////////////////////////////////////////////////////

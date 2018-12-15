@@ -32,23 +32,23 @@
 class AFX_EXT_CLASS ZDUserRecordSet : public CRecordset
 {
 public:
-	ZDUserRecordSet(CDatabase* pDatabase = NULL);
-	CString GetUserDBTableName();
+    ZDUserRecordSet(CDatabase* pDatabase = NULL);
+    CString GetUserDBTableName();
 
 // Field/Param Data
-	//{{AFX_FIELD(ZDUserRecordSet, CRecordset)
-	CString	m_UserName;
-	CString	m_Email;
-	CString	m_Responsible;
-	CString	m_Description;
-	//}}AFX_FIELD
+    //{{AFX_FIELD(ZDUserRecordSet, CRecordset)
+    CString    m_UserName;
+    CString    m_Email;
+    CString    m_Responsible;
+    CString    m_Description;
+    //}}AFX_FIELD
 
 
 // Implementation
 protected:
-	virtual CString GetDefaultConnect();	// Default connection string
-	virtual CString GetDefaultSQL(); 	// Default SQL for Recordset
-	virtual void DoFieldExchange(CFieldExchange* pFX);	// RFX support
-	DECLARE_DYNAMIC(ZDUserRecordSet)
+    virtual CString GetDefaultConnect();    // Default connection string
+    virtual CString GetDefaultSQL();     // Default SQL for Recordset
+    virtual void DoFieldExchange(CFieldExchange* pFX);    // RFX support
+    DECLARE_DYNAMIC(ZDUserRecordSet)
 };
 

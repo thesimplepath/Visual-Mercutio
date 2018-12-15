@@ -18,9 +18,9 @@
 #include "zBaseLib\ZWizard.h"
 
 #ifndef _WIN32
-	#include "ZWinUtil.h"
+    #include "ZWinUtil.h"
 #else
-	#include "ZWinUtil32.h"
+    #include "ZWinUtil32.h"
 #endif
 
 #include "ZSearchEdit.h"
@@ -45,57 +45,57 @@ class AFX_EXT_CLASS ZIPreConditionFormProc : public ZIWizardDialog
 // Construction
 public:
 
-	// Standard constructor
-	ZIPreConditionFormProc( CString			ActivityName,
-							CStringArray&	FormNameArray,
-							BOOL			FileRequired,
-							BOOL			IsLast,
-							BOOL			IsProcess,
-							CStringArray&	FileArray,
-							CWnd*			pParent			= NULL);
+    // Standard constructor
+    ZIPreConditionFormProc( CString            ActivityName,
+                            CStringArray&    FormNameArray,
+                            BOOL            FileRequired,
+                            BOOL            IsLast,
+                            BOOL            IsProcess,
+                            CStringArray&    FileArray,
+                            CWnd*            pParent            = NULL);
 
-	// Dialog Data
-	//{{AFX_DATA(ZIPreConditionFormProc)
-	enum { IDD = IDD_WZPREACT_FORMPROC };
-	ZCSearchEdit	m_Filename;
-	CString	m_ActivityName;
-	CString	m_FormName;
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZIPreConditionFormProc)
+    enum { IDD = IDD_WZPREACT_FORMPROC };
+    ZCSearchEdit    m_Filename;
+    CString    m_ActivityName;
+    CString    m_FormName;
+    //}}AFX_DATA
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIPreConditionFormProc)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIPreConditionFormProc)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZIPreConditionFormProc)
-	virtual BOOL OnInitDialog();
-	virtual void OnOK();
-	afx_msg void OnNext();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZIPreConditionFormProc)
+    virtual BOOL OnInitDialog();
+    virtual void OnOK();
+    afx_msg void OnNext();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	void BuildText( int FormIndex );
-	void CheckStates();
-	BOOL CheckFiles();
+    void BuildText( int FormIndex );
+    void CheckStates();
+    BOOL CheckFiles();
 
 private:
 
-	CStringArray&	m_FormNameArray;
-	CStringArray&	m_FileArray;
+    CStringArray&    m_FormNameArray;
+    CStringArray&    m_FileArray;
 
-	BOOL			m_FileRequired;
-	BOOL			m_IsLast;
-	BOOL			m_IsProcess;
+    BOOL            m_FileRequired;
+    BOOL            m_IsLast;
+    BOOL            m_IsProcess;
 
-	int				m_CurrentFormIndex;
+    int                m_CurrentFormIndex;
 };
 
 //{{AFX_INSERT_LOCATION}}

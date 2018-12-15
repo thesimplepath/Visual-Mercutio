@@ -44,41 +44,41 @@ class AFX_EXT_CLASS ZVSpanWnd : public CWnd
     friend class ZVSpanView;
 // Construction
 public:
-	/* Constructs an ZVSpanWnd overview window object.*/
-	ZVSpanWnd(ZVSpanView *pPanView = NULL);
-	virtual ~ZVSpanWnd();
+    /* Constructs an ZVSpanWnd overview window object.*/
+    ZVSpanWnd(ZVSpanView *pPanView = NULL);
+    virtual ~ZVSpanWnd();
 
 // Operations
 public:
-	/* Creates the overview window and specifies its initial position and size.*/
+    /* Creates the overview window and specifies its initial position and size.*/
     virtual BOOL Create(CRect rectCreate, CWnd* pParent, UINT nID, LPCTSTR lpszTitle = NULL);
 
-	void AssignPanView(ZVSpanView *pView);
+    void AssignPanView(ZVSpanView *pView);
 
-	//@cmember
-	/* Implements the overview window’s style settings at creation.*/
+    //@cmember
+    /* Implements the overview window’s style settings at creation.*/
     virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 
-	//@Access Operations
-	//@cmember
-	/* Sets the rectangle representing the overview window.*/
+    //@Access Operations
+    //@cmember
+    /* Sets the rectangle representing the overview window.*/
     void SetPanRect(CRect rectNewPan);
 
-	//@cmember
-	/* Draws the rectangle representing the overview window.*/
+    //@cmember
+    /* Draws the rectangle representing the overview window.*/
     void DrawPanRect(CDC * pDC);
 
-	void InvalidateOverviewWnd(CRect * rectUpdate  = NULL );
+    void InvalidateOverviewWnd(CRect * rectUpdate  = NULL );
 
-	//@cmember
-	/* Updates the overview window when the user scrolls or updates the panning view.*/
+    //@cmember
+    /* Updates the overview window when the user scrolls or updates the panning view.*/
     void OnUpdate(CView * pSender, LPARAM lHint, CObject * pHint);
 
 // Implementation
 public:
 #ifdef _DEBUG
-	void Dump(CDumpContext  &dc);
-	void AssertValid();
+    void Dump(CDumpContext  &dc);
+    void AssertValid();
 #endif //_DEBUG
     ZVSpanView*  m_pPanView;        //Back pointer to view
     CRect        m_rectLogPan;      //The current viewport
@@ -86,9 +86,9 @@ public:
     BOOL         m_bCaptured;       //Is the mosue captured
     HCURSOR      m_hCurrentOverviewCursor; //Keeps the current overview cursor
     HCURSOR      m_hOverviewCursor; //Cursor for dragging the overview rect
-	HCURSOR      m_hOverviewOnMoveCursor; //Cursor when on the overview rect
-	BOOL		 m_bClipVerified;	//Has the success of ClipOverviewCursor() been verified
-	
+    HCURSOR      m_hOverviewOnMoveCursor; //Cursor when on the overview rect
+    BOOL         m_bClipVerified;    //Has the success of ClipOverviewCursor() been verified
+    
     //Impementation specific helper functions for overview wnd.
     void ClipOverviewCursor();
     void OverviewDPtoLP(CPoint *);
@@ -100,17 +100,17 @@ protected:
     afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
     afx_msg void OnMouseMove(UINT nFlags, CPoint point);
     afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
-	afx_msg void OnClose();
-	//}}AFX_MSG
+    afx_msg void OnClose();
+    //}}AFX_MSG
     afx_msg void OnPaint();
     
     DECLARE_MESSAGE_MAP();
     
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVSpanWnd)
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVSpanWnd)
+    //}}AFX_VIRTUAL
 
 };
 

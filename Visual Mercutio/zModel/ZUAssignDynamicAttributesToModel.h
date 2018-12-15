@@ -13,9 +13,9 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 05/2002
+// <nl>Created:         05/2002
 // <nl>Description:  ZUAssignDynamicAttributesToModel navigates through the model and
-//					 assigns the property object to symbols.
+//                     assigns the property object to symbols.
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -69,24 +69,24 @@ class ZIBasicSymbol;
 class AFX_EXT_CLASS ZUAssignDynamicAttributesToModel : public ZUModelNavigation
 {
 public:
-	ZUAssignDynamicAttributesToModel(ZDProcessGraphModelMdl* pModel = NULL, 
-									 ZBProperty* pProperty = NULL, 
-									 CRuntimeClass* pRTClass = NULL, 
-									 void* pClass = NULL);
-	virtual ~ZUAssignDynamicAttributesToModel();
+    ZUAssignDynamicAttributesToModel(ZDProcessGraphModelMdl* pModel = NULL, 
+                                     ZBProperty* pProperty = NULL, 
+                                     CRuntimeClass* pRTClass = NULL, 
+                                     void* pClass = NULL);
+    virtual ~ZUAssignDynamicAttributesToModel();
 
 
-	// Call-back methods
-	virtual bool OnStart();
-	virtual bool OnFinish();
+    // Call-back methods
+    virtual bool OnStart();
+    virtual bool OnFinish();
 
-	virtual bool OnSymbol( ZBSymbol* pSymbol );
-	virtual bool OnLink( ZBLinkSymbol* pLink );
+    virtual bool OnSymbol( ZBSymbol* pSymbol );
+    virtual bool OnLink( ZBLinkSymbol* pLink );
 
 
 private:
-	ZBProperty* m_pProperty;
-	CRuntimeClass* m_pRTClass;
+    ZBProperty* m_pProperty;
+    CRuntimeClass* m_pRTClass;
 
 };
 

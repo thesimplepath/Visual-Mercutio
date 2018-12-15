@@ -37,14 +37,14 @@
 class AFX_EXT_CLASS ZIDrop  
 {
 public:
-	ZIDrop();
-	virtual ~ZIDrop();
+    ZIDrop();
+    virtual ~ZIDrop();
 
-	virtual bool AcceptDrop() const = 0;
+    virtual bool AcceptDrop() const = 0;
 
-	virtual bool DropItem( CObject* pObj, CPoint pt ) = 0;
+    virtual bool DropItem( CObject* pObj, CPoint pt ) = 0;
 
-	virtual bool AcceptDropItem( CObject* pObj, CPoint pt ) = 0;
+    virtual bool AcceptDropItem( CObject* pObj, CPoint pt ) = 0;
 
 };
 

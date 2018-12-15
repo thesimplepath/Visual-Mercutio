@@ -34,61 +34,61 @@ ZVSpanView::ZVSpanView()
     m_hOrigCursor = 0;
     m_hDragCursor = 0;
     m_pOverview   = NULL;
-	m_InVirtualDraw = FALSE;
+    m_InVirtualDraw = FALSE;
 }
 
 ZVSpanView::~ZVSpanView()
 {
     if (m_hDragCursor)
-		DestroyCursor(m_hDragCursor);
+        DestroyCursor(m_hDragCursor);
     
     if (m_pOverview)
-	{
-		m_pOverview->DestroyWindow();
-		m_pOverview = NULL;
+    {
+        m_pOverview->DestroyWindow();
+        m_pOverview = NULL;
     }
 
 /*
-	// clean up any overview allocations
-	CWnd* pWnd;
-	POSITION pos=m_listAllocOverview.GetHeadPosition();
-	while(pos) 
-	{
-		pWnd=(CWnd *)m_listAllocOverview.GetNext(pos);
-		delete pWnd;
-	}
+    // clean up any overview allocations
+    CWnd* pWnd;
+    POSITION pos=m_listAllocOverview.GetHeadPosition();
+    while(pos) 
+    {
+        pWnd=(CWnd *)m_listAllocOverview.GetNext(pos);
+        delete pWnd;
+    }
 */
 }
 
 
 void ZVSpanView::AssignSpanWnd( ZVSpanWnd *pWnd )
 {
-	if (pWnd == m_pOverview)
-		return;
+    if (pWnd == m_pOverview)
+        return;
     m_pOverview = pWnd;
 
     if (pWnd) 
-	{
-	
+    {
+    
         ASSERT(m_pOverview != NULL);
-	
-//		m_listAllocOverview.AddTail(m_pOverview);
+    
+//        m_listAllocOverview.AddTail(m_pOverview);
     }
-	if (m_pOverview)
-	{
-		m_pOverview->OnUpdate(this,0L,NULL);
-	    m_pOverview->UpdateWindow();
-	    UpdateOverviewRect();
+    if (m_pOverview)
+    {
+        m_pOverview->OnUpdate(this,0L,NULL);
+        m_pOverview->UpdateWindow();
+        UpdateOverviewRect();
     }
 }
 
 //Operations
 
-//	
-//	SetPanMode
-//	
-//	Just change the mode
-//	
+//    
+//    SetPanMode
+//    
+//    Just change the mode
+//    
 
 //@doc ZVSpanView
 //@mfunc Changes the pan mode to either ZVP_PANINSTANT or ZVP_PANDELAY.
@@ -99,19 +99,19 @@ void ZVSpanView::AssignSpanWnd( ZVSpanWnd *pWnd )
 void ZVSpanView::SetPanMode(ZVPanMode newPanMode)
 {
     ASSERT(newPanMode != ZVP_PANDELAY ||
-	   newPanMode != ZVP_PANINSTANT);
+       newPanMode != ZVP_PANINSTANT);
     
     m_panMode = newPanMode;
 }
 
-//	
-//	StartPan
+//    
+//    StartPan
 //
 //      Start the panning process.  Store the starting
 //      point so that when we're done, we know what to do.
 //
-//	ptPan is in logical points, up to caller to
-//	translate from device to logical coords.
+//    ptPan is in logical points, up to caller to
+//    translate from device to logical coords.
 //
 //@doc ZVSpanView
 //@mfunc Call StartPan to signal ZVSpanView that the user has started panning the view.  ZVSpanView displays the pan 
@@ -124,7 +124,7 @@ void ZVSpanView::SetPanMode(ZVPanMode newPanMode)
 //@xref<c ZVSpanView>
 //@end
 void ZVSpanView::StartPan(CPoint * ptPan,
-			  UINT nCursorID /* = 0 */)
+              UINT nCursorID /* = 0 */)
 {
     ASSERT(ptPan != NULL);
     ASSERT_VALID(this);
@@ -135,12 +135,12 @@ void ZVSpanView::StartPan(CPoint * ptPan,
     m_nCursorID   = nCursorID;    
     m_hDragCursor = AfxGetApp()->LoadCursor(m_nCursorID);
     
-	// SEC User's::>
-	// If you ASSERT here, there's a problem			 
-	// with your resource setup in your DLL/LIB.
-	// Be sure to follow what the SEC Samples										 
-	// are doing..
-	
+    // SEC User's::>
+    // If you ASSERT here, there's a problem             
+    // with your resource setup in your DLL/LIB.
+    // Be sure to follow what the SEC Samples                                         
+    // are doing..
+    
     ASSERT (m_hDragCursor != 0);
 
 
@@ -151,15 +151,15 @@ void ZVSpanView::StartPan(CPoint * ptPan,
     SetCapture();
 }
 
-//	
-//	ContinuePan
-//	
-//	Continue panning, if we're in delay mode
-//	just update pan rectangle.  If we're in instant
-//	mode, actually perform a pan.
+//    
+//    ContinuePan
+//    
+//    Continue panning, if we're in delay mode
+//    just update pan rectangle.  If we're in instant
+//    mode, actually perform a pan.
 //
-//	ptPan should be logical coordinates.
-//	
+//    ptPan should be logical coordinates.
+//    
 //@doc ZVSpanView
 //@mfunc As the user pans the view, you must call ContinuePan so that ZVSpanView will know what the user is doing with the
 // view.  In ZVP_PANINSTANT mode, ContinuePan automatically updates the view to reflect the panning.  This member function
@@ -176,15 +176,15 @@ void ZVSpanView::ContinuePan(CPoint * ptPan)
     // Move the pan rectangle to reflect the new panning.    
     
     if (m_panMode == ZVP_PANINSTANT)
-	{
-		PerformPan(ptPan);
-		UpdateOverviewRect();
+    {
+        PerformPan(ptPan);
+        UpdateOverviewRect();
     }
 }
 
-//	EndPan
-//	
-//	Turn out the lights, the panning's over!
+//    EndPan
+//    
+//    Turn out the lights, the panning's over!
 //    
 //      Release the capture, return the
 //      cursor to the original value, 
@@ -213,12 +213,12 @@ void ZVSpanView::EndPan(CPoint * ptPan)
     UpdateOverviewRect();
 }
 
-//	
-//	PerformPan
-//	
-//	Does the actual scrolling of the window and
-//	also the updating of scrollbars.
-//	
+//    
+//    PerformPan
+//    
+//    Does the actual scrolling of the window and
+//    also the updating of scrollbars.
+//    
 //      ptEndPan must be in logical coords.
 //      bReversePan indicates that it's not a drag, but
 //      a reverse pan, like the overview does.
@@ -233,14 +233,14 @@ void ZVSpanView::PerformPan(CPoint * ptEndPan, BOOL bReversePan /* FALSE */)
     OnPrepareDC(&dc);
     CSize sizeScroll;
     if (bReversePan)
-	{
-		sizeScroll.cx = ptEndPan->x - m_ptLogStartDrag.x;
-		sizeScroll.cy = ptEndPan->y - m_ptLogStartDrag.y;
+    {
+        sizeScroll.cx = ptEndPan->x - m_ptLogStartDrag.x;
+        sizeScroll.cy = ptEndPan->y - m_ptLogStartDrag.y;
     }
     else
-	{
-		sizeScroll.cx = m_ptLogStartDrag.x - ptEndPan->x;
-		sizeScroll.cy = m_ptLogStartDrag.y - ptEndPan->y;
+    {
+        sizeScroll.cx = m_ptLogStartDrag.x - ptEndPan->x;
+        sizeScroll.cy = m_ptLogStartDrag.y - ptEndPan->y;
     }
     dc.LPtoDP(&sizeScroll);
     DoScroll(sizeScroll,TRUE);    
@@ -252,14 +252,14 @@ void ZVSpanView::PerformPan(CPoint * ptEndPan, BOOL bReversePan /* FALSE */)
 //
 
 
-//	
-//	PreOverview
-//	
-//	We're about to call preparedc/ondraw
-//	with the values necessary to draw the
-//	overview window, so save the current state
-//	so that our view doesn't get messed up by having
-//	a new zoom level.
+//    
+//    PreOverview
+//    
+//    We're about to call preparedc/ondraw
+//    with the values necessary to draw the
+//    overview window, so save the current state
+//    so that our view doesn't get messed up by having
+//    a new zoom level.
 //
 void ZVSpanView::PreOverview()
 {
@@ -272,7 +272,7 @@ void ZVSpanView::PreOverview()
     m_orig_szTotalDev = m_totalDev;
     m_orig_bCenter    = m_bCenter;
 //    m_orig_zoomMode   = m_zoomMode;
-	m_InVirtualDraw   = TRUE;
+    m_InVirtualDraw   = TRUE;
     
     //Setup a special zoom mode for the pan overview window
     //So that the view's OnDraw will be tricked into drawing
@@ -294,12 +294,12 @@ void ZVSpanView::PreOverview()
     PersistRatio(m_totalLog,m_totalDev,pt);
 }
 
-//	
-//	PostOverview
-//	
-//	The overview has been painted, so now revert
-//	back to our original state as preserved in 
-//	PreOverview() so that when the view draws, it
+//    
+//    PostOverview
+//    
+//    The overview has been painted, so now revert
+//    back to our original state as preserved in 
+//    PreOverview() so that when the view draws, it
 //      doesn't get messed up by drawing using the
 //      stuff we setup for the overview window
 //
@@ -309,11 +309,11 @@ void ZVSpanView::PostOverview()
     m_totalDev   = m_orig_szTotalDev;
     m_bCenter    = m_orig_bCenter;
 //    m_zoomMode   = m_orig_zoomMode;
-	m_InVirtualDraw = FALSE;
+    m_InVirtualDraw = FALSE;
 }
 
-//	
-//	UpdateOverviewRect
+//    
+//    UpdateOverviewRect
 //
 //      The viewport has changed, so we need to
 //      let the overview window know.
@@ -327,41 +327,41 @@ void ZVSpanView::UpdateOverviewRect()
 
     //Ok for m_pOverview to be NULL.
     if (m_pOverview == NULL) //protect here, so callers don't have to
-		return;
+        return;
     
     CRect rectClient;
     GetClientRect(&rectClient);
     {
-		CClientDC dc(this);
-		OnPrepareDC(&dc);
-		dc.DPtoLP(&rectClient);
+        CClientDC dc(this);
+        OnPrepareDC(&dc);
+        dc.DPtoLP(&rectClient);
     } //BLOCK for DC
 
     m_pOverview->SetPanRect(rectClient);
 }
 
-//	
-//	OverviewDestroyed
-//	
-//	Called from the overview wnd to notify
-//	the view that it has been destroyed.
-//	
+//    
+//    OverviewDestroyed
+//    
+//    Called from the overview wnd to notify
+//    the view that it has been destroyed.
+//    
 void ZVSpanView::OverviewDestroyed()
 {
     ASSERT_VALID(this);
     if (m_pOverview)
-	{
-		m_pOverview = NULL;
+    {
+        m_pOverview = NULL;
     }
 }
 
-//	
-//	UpdatePanViewport
-//	
-//	The user has changed our viewport
-//	using the overview window dragging rect.
-//	Update our viewport to reflect the changes
-//	
+//    
+//    UpdatePanViewport
+//    
+//    The user has changed our viewport
+//    using the overview window dragging rect.
+//    Update our viewport to reflect the changes
+//    
 //      rectNewLog is the new rectangle in log coords.
 //      Similar to onscrollby.
 //
@@ -370,17 +370,17 @@ void ZVSpanView::UpdatePanViewport(CPoint * lpPtNewLog)
 {
     ASSERT_VALID(this);
     ASSERT(lpPtNewLog != NULL);
-	
+    
     PerformPan(lpPtNewLog,TRUE);
 }
 
-//	
-//	UpdateOverviewWnd
-//	
-//	Similar behavior of CDoc::UpdateAllViews
-//	
-//	PanView user must call this after
-//	UpdateAllViews with same args
+//    
+//    UpdateOverviewWnd
+//    
+//    Similar behavior of CDoc::UpdateAllViews
+//    
+//    PanView user must call this after
+//    UpdateAllViews with same args
 //      to get overview window behavior
 //
 
@@ -396,20 +396,20 @@ void ZVSpanView::UpdatePanViewport(CPoint * lpPtNewLog)
 //@xref<c ZVSpanView>
 //@end
 void ZVSpanView::UpdateOverviewWnd(CView * pSender,
-				   LPARAM lHint /* = 0L */,
-				   CObject * pHint /* = NULL */)
+                   LPARAM lHint /* = 0L */,
+                   CObject * pHint /* = NULL */)
 {
     if (m_pOverview)
-		m_pOverview->OnUpdate(pSender,lHint,pHint);
+        m_pOverview->OnUpdate(pSender,lHint,pHint);
 }
 
-//	
-//	OnUpdateOverview
-//	
-//	ZVSpanView user should override this
-//	and treat it just like CView::OnUpdate
-//	but be sure to use the CDC * provided
-//	and the CWnd * for any invalidates.
+//    
+//    OnUpdateOverview
+//    
+//    ZVSpanView user should override this
+//    and treat it just like CView::OnUpdate
+//    but be sure to use the CDC * provided
+//    and the CWnd * for any invalidates.
 //
 //      Default implementation invalidates everything,
 //      but this will cause flashing unless
@@ -432,8 +432,8 @@ void ZVSpanView::UpdateOverviewWnd(CView * pSender,
 //@xref<mf ZVSpanView::UpdateOverviewWnd>
 //@xref<c ZVSpanView>
 void ZVSpanView::OnUpdateOverview(CView * pSender,
-			      LPARAM lHint,CObject * pHint,
-			      CDC * pOverviewDC, CWnd * pWndOverview)
+                  LPARAM lHint,CObject * pHint,
+                  CDC * pOverviewDC, CWnd * pWndOverview)
 {
 //UNUSED
  pOverviewDC;
@@ -448,96 +448,96 @@ void ZVSpanView::OnUpdateOverview(CView * pSender,
 //
 
 
-//	
-//	OnSetCursor
-//	
-//	If we're in pan mode set the cursor to a hand, else
-//	default to the original cursor.
-//	
+//    
+//    OnSetCursor
+//    
+//    If we're in pan mode set the cursor to a hand, else
+//    default to the original cursor.
+//    
 BOOL ZVSpanView::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message) 
 {
     if (nHitTest != HTCLIENT)
-		return CScrollView::OnSetCursor(pWnd,nHitTest,message);
+        return CScrollView::OnSetCursor(pWnd,nHitTest,message);
 
     if (m_bPanning)
-	{
-		if (!m_hOrigCursor)
-			m_hOrigCursor = ::SetCursor(m_hDragCursor);
-		else
-			::SetCursor(m_hDragCursor);
-		return TRUE;
+    {
+        if (!m_hOrigCursor)
+            m_hOrigCursor = ::SetCursor(m_hDragCursor);
+        else
+            ::SetCursor(m_hDragCursor);
+        return TRUE;
     }
 
     //If we make it here, we're not panning, so set back.
     if (m_hOrigCursor)
-	{
-		::SetCursor(m_hOrigCursor);
-		m_hOrigCursor = 0;
-		return TRUE;
+    {
+        ::SetCursor(m_hOrigCursor);
+        m_hOrigCursor = 0;
+        return TRUE;
     }
     return CScrollView::OnSetCursor(pWnd,nHitTest,message);
     
 }
 
-//	
-//	OnHScroll
-//	
-//	User has changed the viewport, update the
-//	overview window
-//	
+//    
+//    OnHScroll
+//    
+//    User has changed the viewport, update the
+//    overview window
+//    
 void ZVSpanView::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
     CScrollView::OnHScroll(nSBCode,nPos,pScrollBar);
-	if (m_InVirtualDraw == FALSE)
-		UpdateOverviewRect();
+    if (m_InVirtualDraw == FALSE)
+        UpdateOverviewRect();
 }
-	
-//	OnVScroll
-//	
-//	User has changed the viewport, update the
-//	overview window.
-//	
+    
+//    OnVScroll
+//    
+//    User has changed the viewport, update the
+//    overview window.
+//    
 void ZVSpanView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
     CScrollView::OnVScroll(nSBCode,nPos,pScrollBar);
-	if (m_InVirtualDraw == FALSE)
-		UpdateOverviewRect();
+    if (m_InVirtualDraw == FALSE)
+        UpdateOverviewRect();
 }
 
-//	
-//	OnSize handler
-//	
+//    
+//    OnSize handler
+//    
 //      Let the overview window know the viewport's changed.
-//	
+//    
 void ZVSpanView::OnSize(UINT nType, int cx, int cy) 
 {
     CScrollView::OnSize(nType, cx, cy);
     
-	if (m_InVirtualDraw == FALSE)
-		UpdateOverviewRect();
+    if (m_InVirtualDraw == FALSE)
+        UpdateOverviewRect();
 } 
 
-//	
-//	ZoomLevelChanged
-//	
-//	The user has changed the zoom level
-//	update the overview window rectangle
-//	because this affects the viewport.
-//	
+//    
+//    ZoomLevelChanged
+//    
+//    The user has changed the zoom level
+//    update the overview window rectangle
+//    because this affects the viewport.
+//    
 void ZVSpanView::ZoomLevelChanged(void)
 { 
-	if (m_InVirtualDraw == FALSE)
-		UpdateOverviewRect();
+    if (m_InVirtualDraw == FALSE)
+        UpdateOverviewRect();
 }
 
-//	
-//	ZVSpanView::DoScroll()
-//	
-//	Broke this out of PerformPan to isolate 
-//	device/logical coordinate issues.
-//	
-//	sizeScroll - the amount to scroll in DEVICE coordinates
-//	
+//    
+//    ZVSpanView::DoScroll()
+//    
+//    Broke this out of PerformPan to isolate 
+//    device/logical coordinate issues.
+//    
+//    sizeScroll - the amount to scroll in DEVICE coordinates
+//    
 BOOL ZVSpanView::DoScroll(CSize sizeScroll, BOOL bDoScroll)
 {
     int xOrig, x, xMax;
@@ -552,17 +552,17 @@ BOOL ZVSpanView::DoScroll(CSize sizeScroll, BOOL bDoScroll)
     
     pBar = GetScrollBarCtrl(SB_VERT);
     if ((pBar != NULL && !pBar->IsWindowEnabled()) ||
-		(pBar == NULL && !(dwStyle & WS_VSCROLL)))
-	{
-		sizeScroll.cy = 0;
-	}
+        (pBar == NULL && !(dwStyle & WS_VSCROLL)))
+    {
+        sizeScroll.cy = 0;
+    }
 
     pBar = GetScrollBarCtrl(SB_HORZ);
     if ((pBar != NULL && !pBar->IsWindowEnabled()) ||
-		(pBar == NULL && !(dwStyle & WS_HSCROLL)))
-	{
-		sizeScroll.cx = 0;
-	}
+        (pBar == NULL && !(dwStyle & WS_HSCROLL)))
+    {
+        sizeScroll.cx = 0;
+    }
     // Adjust current x position based on scroll bar constraints.
     xOrig = x = GetScrollPos(SB_HORZ);
     
@@ -570,10 +570,10 @@ BOOL ZVSpanView::DoScroll(CSize sizeScroll, BOOL bDoScroll)
     x += sizeScroll.cx;
 
     if (x < 0)
-		x = 0;
+        x = 0;
     else 
-	if (x > xMax)
-		x = xMax;
+    if (x > xMax)
+        x = xMax;
 
     
     // Adjust current y position based on scroll bar constraints.
@@ -582,43 +582,43 @@ BOOL ZVSpanView::DoScroll(CSize sizeScroll, BOOL bDoScroll)
     
     y += sizeScroll.cy;
     if (y < 0)
-		y = 0;
+        y = 0;
     else 
-		if (y > yMax)
-		y = yMax;
+        if (y > yMax)
+        y = yMax;
     
     // If nothing changed, just return, no work to do.
     if (x == xOrig && y == yOrig)
-		return FALSE;
+        return FALSE;
     
     if (bDoScroll)
     {
-		// This order and combination of calls generates the smoothest
-		// scrolling.
-		// UpdateWindow slows down things, but without it items are
-		// 'stretched' around the scrollbar zomes because of multiple
-		// ScrollWindow calls - this is especially noticable in realtime
-		// panning.
-		
-		if (x != xOrig)
-			SetScrollPos(SB_HORZ, x);
-		if (y != yOrig)
-			SetScrollPos(SB_VERT, y);
-		ScrollWindow(-(x-xOrig), -(y-yOrig));
-		
-		UpdateWindow();
+        // This order and combination of calls generates the smoothest
+        // scrolling.
+        // UpdateWindow slows down things, but without it items are
+        // 'stretched' around the scrollbar zomes because of multiple
+        // ScrollWindow calls - this is especially noticable in realtime
+        // panning.
+        
+        if (x != xOrig)
+            SetScrollPos(SB_HORZ, x);
+        if (y != yOrig)
+            SetScrollPos(SB_VERT, y);
+        ScrollWindow(-(x-xOrig), -(y-yOrig));
+        
+        UpdateWindow();
     }
     return TRUE;
 }
 
 
 
-//	
-//	CenterOnLogicalPoint
-//	
-//	Same as CScrollView::CenterOnPoint, but for log point.
-//	
-//	
+//    
+//    CenterOnLogicalPoint
+//    
+//    Same as CScrollView::CenterOnPoint, but for log point.
+//    
+//    
 void ZVSpanView::CenterOnLogicalPoint(CPoint pt)
 {
     // Convert the point to device coordinates
@@ -629,9 +629,9 @@ void ZVSpanView::CenterOnLogicalPoint(CPoint pt)
     CScrollView::CenterOnPoint(pt);
 } 
 
-//	
-//	GetLogicalCenterPoint
-//	
+//    
+//    GetLogicalCenterPoint
+//    
 CPoint ZVSpanView::GetLogicalCenterPoint (void)  
 {
     CPoint pt;
@@ -646,10 +646,10 @@ CPoint ZVSpanView::GetLogicalCenterPoint (void)
     return pt;
 } 
 
-//	
-//	ViewDPtoLP
-//	
-//	Same as DPtoLP, but uses Client DC.
+//    
+//    ViewDPtoLP
+//    
+//    Same as DPtoLP, but uses Client DC.
 void ZVSpanView::ViewDPtoLP (
     LPPOINT lpPoints,
     int     nCount)
@@ -662,9 +662,9 @@ void ZVSpanView::ViewDPtoLP (
     dc.DPtoLP(lpPoints, nCount);
 } 
 
-//	
-//	Same as LPtoDP, but uses Client DC
-//	
+//    
+//    Same as LPtoDP, but uses Client DC
+//    
 void ZVSpanView::ViewLPtoDP (
     LPPOINT lpPoints,
     int     nCount)
@@ -686,12 +686,12 @@ void ZVSpanView::ClientToDevice (
     point.y += scrollPt.y;
 } 
 
-//	
-//	PersistRatio
-//	
-//	Since we're not ISOTROPIC, make sure we maintain
-//	the same x/y ratios.
-//	
+//    
+//    PersistRatio
+//    
+//    Since we're not ISOTROPIC, make sure we maintain
+//    the same x/y ratios.
+//    
 void ZVSpanView::PersistRatio (
     const CSize &orig,
     CSize       &dest,
@@ -703,17 +703,17 @@ void ZVSpanView::PersistRatio (
     
     // Do nothing if they are the same
     if (ratio1 > ratio2) {
-	// Shrink hieght
-	newSize = (int)(dest.cx / ratio1);
-	remainder.x = 0;
-	remainder.y = dest.cy - newSize;
-	dest.cy = newSize;
+    // Shrink hieght
+    newSize = (int)(dest.cx / ratio1);
+    remainder.x = 0;
+    remainder.y = dest.cy - newSize;
+    dest.cy = newSize;
     } else if (ratio2 > ratio1) {
-	// Shrink width
-	newSize = (int)(dest.cy * ratio1);
-	remainder.x = dest.cx - newSize;
-	remainder.y = 0;
-	dest.cx = newSize;
+    // Shrink width
+    newSize = (int)(dest.cy * ratio1);
+    remainder.x = dest.cx - newSize;
+    remainder.y = 0;
+    dest.cx = newSize;
     }
 } 
 
@@ -724,12 +724,12 @@ void ZVSpanView::PersistRatio (
 #ifdef _DEBUG
 void ZVSpanView::AssertValid() const
 {
-	CScrollView::AssertValid();
+    CScrollView::AssertValid();
 }
 
 void ZVSpanView::Dump(CDumpContext& dc) const
 {
-	CScrollView::Dump(dc);
+    CScrollView::Dump(dc);
 }
 #endif //_DEBUG
 

@@ -1,10 +1,10 @@
 // -------------------------------------------------------
-// Project	 : 	Math Functions
-// Author    : 	Dominique Aigroz            
-// Filename  : 	zamath.h
-// Created   : 	23.09.1994
-// Comments	 : 	This header contains the Parser Class
-//				and the C function for parsering.
+// Project     :     Math Functions
+// Author    :     Dominique Aigroz            
+// Filename  :     zamath.h
+// Created   :     23.09.1994
+// Comments     :     This header contains the Parser Class
+//                and the C function for parsering.
 // Modify    :           
 //---------------------------------------------------------------------------
 
@@ -53,37 +53,37 @@
 // JMR-MODIF - Le 14 juin 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
 // The size of the stack for the parser
-#define PARSERSTACKSIZE	20
+#define PARSERSTACKSIZE    20
 
 // Definition of constants
-#define PLUS			0
-#define MINUS			1
-#define TIMES			2
-#define DIVIDE			3
-#define EXP				4
-#define OPAREN			5
-#define CPAREN			6
-#define NUM				7
-#define FUNC			8
-#define GT				9
-#define LT				10
-#define EQ				11
-#define GTE				12
-#define LTE				13
-#define NEQ				14
-#define OR				15
-#define AND				16
-#define NOT				17
+#define PLUS            0
+#define MINUS            1
+#define TIMES            2
+#define DIVIDE            3
+#define EXP                4
+#define OPAREN            5
+#define CPAREN            6
+#define NUM                7
+#define FUNC            8
+#define GT                9
+#define LT                10
+#define EQ                11
+#define GTE                12
+#define LTE                13
+#define NEQ                14
+#define OR                15
+#define AND                16
+#define NOT                17
 
-#define FIELD			21
-#define EOI				22	// End if input
-#define BAD				23
-#define MAXFUNCNAMELEN	5
+#define FIELD            21
+#define EOI                22    // End if input
+#define BAD                23
+#define MAXFUNCNAMELEN    5
 
-struct TOKENREC				// To store the tokens
+struct TOKENREC                // To store the tokens
 {
-	double value;
-	char funcname[MAXFUNCNAMELEN + 1];
+    double value;
+    char funcname[MAXFUNCNAMELEN + 1];
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -93,47 +93,47 @@ class AFX_EXT_CLASS ObjectParser : public CObject
 {
 public:
 
-	// Inherited feature
-	typedef CObject inherited;
+    // Inherited feature
+    typedef CObject inherited;
 
 // Construction
 public:
 
-	ObjectParser();
-	ObjectParser( const ObjectParser &right );
-	virtual ~ObjectParser();
+    ObjectParser();
+    ObjectParser( const ObjectParser &right );
+    virtual ~ObjectParser();
 
-	const ObjectParser & operator=( const ObjectParser *right )
-	{
-		m_strObjName = right->m_strObjName; return *this;
-	};
+    const ObjectParser & operator=( const ObjectParser *right )
+    {
+        m_strObjName = right->m_strObjName; return *this;
+    };
 
-	const ObjectParser & operator=( const ObjectParser &right )
-	{
-		m_strObjName = right.m_strObjName; return *this;
-	};
+    const ObjectParser & operator=( const ObjectParser &right )
+    {
+        m_strObjName = right.m_strObjName; return *this;
+    };
 
-	ObjectParser* CloneObject();
+    ObjectParser* CloneObject();
 
-	virtual double GetValue() const
-	{
-		return 0;
-	};
+    virtual double GetValue() const
+    {
+        return 0;
+    };
 
-	const CString& GetObjectName()
-	{
-		return( m_strObjName );
-	};
+    const CString& GetObjectName()
+    {
+        return( m_strObjName );
+    };
 
-	void SetObjectName( const CString sName )
-	{
-		m_strObjName = sName;
-	};
+    void SetObjectName( const CString sName )
+    {
+        m_strObjName = sName;
+    };
 
 // Data
 public:
 
-	CString m_strObjName;
+    CString m_strObjName;
 };
 
 class AFX_EXT_CLASS Parser
@@ -141,49 +141,49 @@ class AFX_EXT_CLASS Parser
 // Construction
 public:
 
-	Parser();
-	virtual ~Parser();
+    Parser();
+    virtual ~Parser();
 
 // Operations
 public:
 
 #if (_MFC_VER >= 0x0250)
-	double StringParser( const char *s, CObList* pObjParser );
+    double StringParser( const char *s, CObList* pObjParser );
 #endif
 
 // Implementation
 private:
 
-	void			vFactor();
-	void			vTerm();
-	void			vExpression();
-	void			vPush(struct TOKENREC *);
-	void			advance();
+    void            vFactor();
+    void            vTerm();
+    void            vExpression();
+    void            vPush(struct TOKENREC *);
+    void            advance();
 
-	int				match(int token);
-	int				nexttoken();
-	int				miLegalLookAhead(int first_arg, ...);
+    int                match(int token);
+    int                nexttoken();
+    int                miLegalLookAhead(int first_arg, ...);
 
-	struct TOKENREC	vPop();
+    struct TOKENREC    vPop();
 
-	virtual double	GetValue( const char *cpName );
-	int				isfunc( char *s );
+    virtual double    GetValue( const char *cpName );
+    int                isfunc( char *s );
 
 // Data
 private:
 
-	int 			miStackTop;
-	int 			miLookAhead;	// Lookahead token
+    int             miStackTop;
+    int             miLookAhead;    // Lookahead token
 
-	long			memleft;
+    long            memleft;
 
-	const char*		mcpInput;
+    const char*        mcpInput;
 
-	char			mcError;
+    char            mcError;
 
-	struct TOKENREC	stack[PARSERSTACKSIZE], curtoken;
+    struct TOKENREC    stack[PARSERSTACKSIZE], curtoken;
 
-	CObList*		m_pObjParser;
+    CObList*        m_pObjParser;
 };
 
 #endif // __ZAMATH_H

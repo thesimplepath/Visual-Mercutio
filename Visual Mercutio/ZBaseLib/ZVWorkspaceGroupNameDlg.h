@@ -20,49 +20,49 @@ class ZVWorkspaceGroupNameDlg : public CDialog
 {
 // Construction
 public:
-	ZVWorkspaceGroupNameDlg(ZBWorkspaceGroupEntity* pRootGroup = NULL, 
-							const CString GroupName = "", 
-							const CString ExtensionList = "", 
-							CWnd* pParent = NULL);   // standard constructor
+    ZVWorkspaceGroupNameDlg(ZBWorkspaceGroupEntity* pRootGroup = NULL, 
+                            const CString GroupName = "", 
+                            const CString ExtensionList = "", 
+                            CWnd* pParent = NULL);   // standard constructor
 
-	CString	GetExtensions() const
-	{
-		return m_Extensions;
-	};
-	CString	GetGroupName() const
-	{
-		return m_GroupName;
-	};
+    CString    GetExtensions() const
+    {
+        return m_Extensions;
+    };
+    CString    GetGroupName() const
+    {
+        return m_GroupName;
+    };
 
 private:
 // Dialog Data
-	//{{AFX_DATA(ZVWorkspaceGroupNameDlg)
-	enum { IDD = IDD_WKS_NEWGROUP };
-	CString	m_Extensions;
-	CString	m_GroupName;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZVWorkspaceGroupNameDlg)
+    enum { IDD = IDD_WKS_NEWGROUP };
+    CString    m_Extensions;
+    CString    m_GroupName;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVWorkspaceGroupNameDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVWorkspaceGroupNameDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVWorkspaceGroupNameDlg)
-	virtual void OnOK();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVWorkspaceGroupNameDlg)
+    virtual void OnOK();
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	ZBWorkspaceGroupEntity* m_pRootGroup;
-	bool m_Modify;
+    ZBWorkspaceGroupEntity* m_pRootGroup;
+    bool m_Modify;
 };
 
 //{{AFX_INSERT_LOCATION}}

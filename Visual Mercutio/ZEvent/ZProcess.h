@@ -1,10 +1,10 @@
 //## begin module%367549960100.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%367549960100.cm
 
 //## begin module%367549960100.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%367549960100.cp
 
 //## Module: ZProcess%367549960100; Package specification
@@ -39,7 +39,7 @@
 //## end module%367549960100.declarations
 
 //## begin module%367549960100.additionalDeclarations preserve=yes
-enum 	ProcessStatus { ProcessStarted, ProcessInProcess, ProcessCompleted, ProcessAborted, ProcessNotStarted, ProcessSuspend };
+enum     ProcessStatus { ProcessStarted, ProcessInProcess, ProcessCompleted, ProcessAborted, ProcessNotStarted, ProcessSuspend };
 
 #ifdef _ZEVENTEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -59,7 +59,7 @@ enum 	ProcessStatus { ProcessStarted, ProcessInProcess, ProcessCompleted, Proces
 
 
 //## Class: ZProcess%36725B570291
-//	This function defines a complete process.
+//    This function defines a complete process.
 //## Category: ZEvent::Process Classes - Event%378A5FD903A4
 //## Subsystem: ZEvent%378A5F7E02DB
 //## Persistence: Transient
@@ -73,8 +73,8 @@ class AFX_EXT_CLASS ZProcess : public ZBaseActivity  //## Inherits: <unnamed>%37
   //## begin ZProcess%36725B570291.initialDeclarations preserve=yes
 public:
 // Inherited feature
-	typedef ZBaseActivity inherited;
-	DECLARE_SERIAL(ZProcess)
+    typedef ZBaseActivity inherited;
+    DECLARE_SERIAL(ZProcess)
   //## end ZProcess%36725B570291.initialDeclarations
 
   public:
@@ -89,101 +89,101 @@ public:
     //## Other Operations (specified)
 
       //## Operation: Serialize%913664905
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: RemoveAllAuthUsers%915926630
       void RemoveAllAuthUsers ();
 
       //## Operation: AddAuthUser%915926631
-      //	Add a new authorized user.
+      //    Add a new authorized user.
       BOOL AddAuthUser (const CString UserName);
 
       //## Operation: GetAuthUserCount%915926632
-      //	Return the number of authorized users.
+      //    Return the number of authorized users.
       size_t GetAuthUserCount ();
 
       //## Operation: GetAuthUserAt%915926633
-      //	Returns the authorized username at the index position.
+      //    Returns the authorized username at the index position.
       CString GetAuthUserAt (int Index);
 
       //## Operation: FillAuthUser%915992439
-      //	Fill the authorization user list with the activity.
+      //    Fill the authorization user list with the activity.
       void FillAuthUser (ZBaseActivity& Activity, ZUUserManager& UserManager);
 
       //## Operation: FillAuthUser%940840074
-      //	Fill the authorization user list with a ZBResource
-      //	object.
+      //    Fill the authorization user list with a ZBResource
+      //    object.
       void FillAuthUser (ZBResources& Resources);
 
-      //	Fill the authorization user list directly with a user delimiter string
-	  void FillAuthUser (CString UserDelimiter);
+      //    Fill the authorization user list directly with a user delimiter string
+      void FillAuthUser (CString UserDelimiter);
 
       //## Operation: GetActivityNameArray%916072770
-      //	Fill the string array with activity name. Return the
-      //	number of activities.
+      //    Fill the string array with activity name. Return the
+      //    number of activities.
       size_t GetActivityNameArray (CStringArray& ActivityArray, WORD ActivityType = 0, CString ExcludedActivity = "", BOOL StopWhenFound = TRUE, BOOL AttributedActivityOnly = FALSE);
 
       //## Operation: TemplateExist%916261170
-      //	Search if a specific template name exists.
+      //    Search if a specific template name exists.
       BOOL TemplateExist (const CString& TemplateName);
 
       //## Operation: CreatePersonList%927439016
-      //	Take the activity and build the person list for the
-      //	email.
+      //    Take the activity and build the person list for the
+      //    email.
       virtual ZUMailUserList* CreatePersonList (ZBaseActivity& Activity, ZUUserManager& UserManager);
 
       //## Operation: CreatePersonList%927439017
-      //	Take the activity and build the person list for the
-      //	email.
+      //    Take the activity and build the person list for the
+      //    email.
       virtual ZUMailUserList* CreatePersonList (int Index, ZUUserManager& UserManager);
 
       //## Operation: FillPersonArray%927439018
-      //	Take the activity and fill a person array.
+      //    Take the activity and fill a person array.
       virtual BOOL FillPersonArray (ZBaseActivity& Activity, ZUUserManager& UserManager, CStringArray& UserArray);
 
       //## Operation: FillPersonArray%927439019
-      //	Take the activity and fill a person array.
+      //    Take the activity and fill a person array.
       virtual BOOL FillPersonArray (int Index, ZUUserManager& UserManager, CStringArray& UserArray);
 
       //## Operation: CreatePersonDelimStr%927439020
-      //	Take the activity and build a delimited string
-      //	containing the person list.
+      //    Take the activity and build a delimited string
+      //    containing the person list.
       virtual CString CreatePersonDelimStr (ZBaseActivity& Activity, ZUUserManager& UserManager, CString Delimiter = ";");
 
       //## Operation: CreatePersonDelimStr%927439021
-      //	Take the activity and build a delimited string
-      //	containing the person list.
+      //    Take the activity and build a delimited string
+      //    containing the person list.
       virtual CString CreatePersonDelimStr (int Index, ZUUserManager& UserManager, CString Delimiter = ";");
 
       //## Operation: GetAttributedActivities%927535108
-      //	For a specific activity, find its attributed activities.
+      //    For a specific activity, find its attributed activities.
       CObArray* GetAttributedActivities (const CString Name);
 
       //## Operation: CalculateForecastedStartDate%931585006
-      //	This function calculates the forecasted start date by
-      //	taking all activities.
+      //    This function calculates the forecasted start date by
+      //    taking all activities.
       virtual void CalculateForecastedStartDate ();
 
       //## Operation: CalculateForecastedEndDate%929033120
-      //	This function calculates the forecasted end date by
-      //	taking all activities.
+      //    This function calculates the forecasted end date by
+      //    taking all activities.
       virtual void CalculateForecastedEndDate ();
 
       //## Operation: GetDurationDays%931585010
       virtual WORD GetDurationDays ();
 
       //## Operation: GetStatusKeyString%931585016
-      //	Return the Activity Status string.
+      //    Return the Activity Status string.
       virtual CString GetStatusKeyString (ZBaseActivity* pActivity = NULL);
 
       //## Operation: SetStatusFromKeyString%943181049
-      //	Set the Activity Status based on a keystring.
+      //    Set the Activity Status based on a keystring.
       virtual void SetStatusFromKeyString (const CString KeyString);
 
       //## Operation: IsChoiceActivityDone%934700760
       //## Operation: SetVisibility%935776836
-      //	Set the visibility of an activity or process.
+      //    Set the visibility of an activity or process.
       virtual void SetVisibility (const ThreeState value);
 
 
@@ -191,43 +191,43 @@ public:
       virtual CString GetActivityStatusString ();
 
       //## Operation: GetMainProcess%945000549
-      //	Return the main process.
+      //    Return the main process.
       virtual ZProcess* GetMainProcess ();
 
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: ProcessStatus%3697133A00B4
-      //	The process status.
+      //    The process status.
       const ProcessStatus GetProcessStatus () const;
       void SetProcessStatus (ProcessStatus value);
 
       //## Attribute: AuthorizedUser%3697EE070096
-      //	Contains the list of users authorized to modify the
-      //	process. It is function of the activity.
+      //    Contains the list of users authorized to modify the
+      //    process. It is function of the activity.
       CStringArray& GetAuthorizedUser ();
 
       //## Attribute: UseMail%3763A53B03BD
-      //	Use also the mail as workflow support.
+      //    Use also the mail as workflow support.
       const BOOL GetUseMail () const;
       void SetUseMail (BOOL value);
 
       //## Attribute: AutoStart%37B42F980310
-      //	Defines if the process can be automatically started
-      //	without human intervention.
+      //    Defines if the process can be automatically started
+      //    without human intervention.
       const BOOL GetAutoStart () const;
       void SetAutoStart (BOOL value);
 
       //## Attribute: ChoiceActivityArray%37B51FAB03B0
 
       //## Attribute: DoNotUseInternalMessage%3809A028029C
-      //	Set to TRUE if the process do not must use the internal
-      //	messagerie.
+      //    Set to TRUE if the process do not must use the internal
+      //    messagerie.
       const BOOL GetDoNotUseInternalMessage () const;
       void SetDoNotUseInternalMessage (BOOL value);
 
     // Additional Public Declarations
       //## begin ZProcess%36725B570291.public preserve=yes
-	  virtual void	SetDefaultProperty();
+      virtual void    SetDefaultProperty();
 
       //## end ZProcess%36725B570291.public
 
@@ -253,7 +253,7 @@ public:
     // Data Members for Class Attributes
 
       //## Attribute: ActivityArray%36754AAB01C7
-      //	Contains the array of activities.
+      //    Contains the array of activities.
       //## begin ZProcess::ActivityArray%36754AAB01C7.attr preserve=no  public: CObArray {U} 
       //## end ZProcess::ActivityArray%36754AAB01C7.attr
 
@@ -266,7 +266,7 @@ public:
       //## end ZProcess::AuthorizedUser%3697EE070096.attr
 
       //## Attribute: pAttributedActivitiesArray%37490F450357
-      //	Contains the attributed activities array.
+      //    Contains the attributed activities array.
       //## begin ZProcess::pAttributedActivitiesArray%37490F450357.attr preserve=no  public: CObArray* {V} 
       CObArray* m_pAttributedActivitiesArray;
       //## end ZProcess::pAttributedActivitiesArray%37490F450357.attr
@@ -312,28 +312,28 @@ public:
 inline void ZProcess::RemoveAllAuthUsers ()
 {
   //## begin ZProcess::RemoveAllAuthUsers%915926630.body preserve=yes
-  	m_AuthorizedUser.RemoveAll();
+      m_AuthorizedUser.RemoveAll();
   //## end ZProcess::RemoveAllAuthUsers%915926630.body
 }
 
 inline BOOL ZProcess::AddAuthUser (const CString UserName)
 {
   //## begin ZProcess::AddAuthUser%915926631.body preserve=yes
-  	return m_AuthorizedUser.Add( UserName ) >= 0;
+      return m_AuthorizedUser.Add( UserName ) >= 0;
   //## end ZProcess::AddAuthUser%915926631.body
 }
 
 inline size_t ZProcess::GetAuthUserCount ()
 {
   //## begin ZProcess::GetAuthUserCount%915926632.body preserve=yes
-  	return (size_t)m_AuthorizedUser.GetSize();
+      return (size_t)m_AuthorizedUser.GetSize();
   //## end ZProcess::GetAuthUserCount%915926632.body
 }
 
 inline CString ZProcess::GetAuthUserAt (int Index)
 {
   //## begin ZProcess::GetAuthUserAt%915926633.body preserve=yes
-  	return (CString)m_AuthorizedUser.GetAt( Index );
+      return (CString)m_AuthorizedUser.GetAt( Index );
   //## end ZProcess::GetAuthUserAt%915926633.body
 }
 

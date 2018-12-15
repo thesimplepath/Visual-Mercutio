@@ -16,13 +16,13 @@
 class ZUSymbolLoaderHTTP  
 {
 public:
-	ZUSymbolLoaderHTTP();
-	virtual ~ZUSymbolLoaderHTTP();
+    ZUSymbolLoaderHTTP();
+    virtual ~ZUSymbolLoaderHTTP();
 
-	// Return the number of element loaded
-	// 0 if no element loaded
-	static int LoadSymbol( const CString Location, ZBSymbolEntitySet& CompSet );
-	static int LoadSymbols( const CString Location, ZBSymbolEntitySet& CompSet, bool LoadSubFolders = false );
+    // Return the number of element loaded
+    // 0 if no element loaded
+    static int LoadSymbol( const CString Location, ZBSymbolEntitySet& CompSet );
+    static int LoadSymbols( const CString Location, ZBSymbolEntitySet& CompSet, bool LoadSubFolders = false );
 };
 
 #endif // !defined(AFX_ZUSYMBOLLOADERHTTP_H__D573D671_6ACC_4671_ABF3_BF9B68193741__INCLUDED_)

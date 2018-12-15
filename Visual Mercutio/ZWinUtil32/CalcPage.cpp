@@ -1,10 +1,10 @@
 //## begin module%334FC463032A.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%334FC463032A.cm
 
 //## begin module%334FC463032A.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%334FC463032A.cp
 
 //## Module: CalcPage%334FC463032A; Package body
@@ -30,9 +30,9 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
 BEGIN_MESSAGE_MAP(ZICalculationPage, ZIGenericPropPage)
-	//{{AFX_MSG_MAP(ZICalculationPage)
-	ON_BN_CLICKED(IDC_AUTOCALCULATION, OnAutocalculation)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZICalculationPage)
+    ON_BN_CLICKED(IDC_AUTOCALCULATION, OnAutocalculation)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //## end module%334FC463032A.additionalDeclarations
 
@@ -43,7 +43,7 @@ ZICalculationPage::ZICalculationPage (ZAApplicationOption* pApplicationOptions)
   //## begin ZICalculationPage::ZICalculationPage%923121237.hasinit preserve=no
   //## end ZICalculationPage::ZICalculationPage%923121237.hasinit
   //## begin ZICalculationPage::ZICalculationPage%923121237.initialization preserve=yes
-	: ZIGenericPropPage(ZICalculationPage::IDD, pApplicationOptions)
+    : ZIGenericPropPage(ZICalculationPage::IDD, pApplicationOptions)
   //## end ZICalculationPage::ZICalculationPage%923121237.initialization
 {
   //## begin ZICalculationPage::ZICalculationPage%923121237.body preserve=yes
@@ -63,20 +63,20 @@ ZICalculationPage::~ZICalculationPage()
 void ZICalculationPage::DoDataExchange (CDataExchange* pDX)
 {
   //## begin ZICalculationPage::DoDataExchange%827992043.body preserve=yes
-	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(ZICalculationPage)
-	DDX_Check(pDX, IDC_AUTOCALCULATION, m_bAutoCalculate);
-	//}}AFX_DATA_MAP
+    CDialog::DoDataExchange(pDX);
+    //{{AFX_DATA_MAP(ZICalculationPage)
+    DDX_Check(pDX, IDC_AUTOCALCULATION, m_bAutoCalculate);
+    //}}AFX_DATA_MAP
   //## end ZICalculationPage::DoDataExchange%827992043.body
 }
 
 void ZICalculationPage::SaveValuesToObject ()
 {
   //## begin ZICalculationPage::SaveValuesToObject%923121238.body preserve=yes
-	if (::IsWindow(GetSafeHwnd()))
-		UpdateData( TRUE );
+    if (::IsWindow(GetSafeHwnd()))
+        UpdateData( TRUE );
 
-	((ZAApplicationOption&)GetObject()).SetbAutoCalculate( GetAutoCalculate() );
+    ((ZAApplicationOption&)GetObject()).SetbAutoCalculate( GetAutoCalculate() );
   //## end ZICalculationPage::SaveValuesToObject%923121238.body
 }
 
@@ -85,14 +85,14 @@ void ZICalculationPage::SaveValuesToObject ()
 
 BOOL ZICalculationPage::OnInitDialog()
 {
-	// Set initialisation flag
-  	SetInitialized();
-  	
-	m_bAutoCalculate = ((ZAApplicationOption&)GetObject()).GetbAutoCalculate();
+    // Set initialisation flag
+      SetInitialized();
+      
+    m_bAutoCalculate = ((ZAApplicationOption&)GetObject()).GetbAutoCalculate();
 
-	CDialog::OnInitDialog();
+    CDialog::OnInitDialog();
 
-	return TRUE;  // return TRUE  unless you set the focus to a control
+    return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
 
@@ -100,13 +100,13 @@ BOOL ZICalculationPage::OnInitDialog()
 
 void ZICalculationPage::OnAutocalculation()
 {
-	UpdateData();
+    UpdateData();
 }
 
 void ZICalculationPage::OnOK()
 {
-	if (HasBeenInitialized())
-		SaveValuesToObject();
+    if (HasBeenInitialized())
+        SaveValuesToObject();
 }
 
   //## end ZICalculationPage%334FC4610046.declarations

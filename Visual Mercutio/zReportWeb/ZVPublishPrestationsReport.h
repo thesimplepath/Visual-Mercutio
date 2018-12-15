@@ -1,9 +1,9 @@
 // ******************************************************************************************************
-// *								  Classe ZVPublishPrestationsReport									*
+// *                                  Classe ZVPublishPrestationsReport                                    *
 // ******************************************************************************************************
-// * JMR-MODIF - Le 9 mars 2006 - Création de la nouvelle classe ZVPublishPrestationsReport.			*
+// * JMR-MODIF - Le 9 mars 2006 - Création de la nouvelle classe ZVPublishPrestationsReport.            *
 // ******************************************************************************************************
-// * Cette classe effectue la publication du rapport prestations en tant que pages Internet.			*
+// * Cette classe effectue la publication du rapport prestations en tant que pages Internet.            *
 // ******************************************************************************************************
 
 #if !defined(AFX_ZVPUBLISHPRESTATIONSREPORT_H__2911BA6F_30D8_459C_9B9A_A644F79B704F__INCLUDED_)
@@ -60,52 +60,52 @@
 #endif
 
 // ******************************************************************************************************
-// *								  Classe ZVPublishPrestationsReport									*
+// *                                  Classe ZVPublishPrestationsReport                                    *
 // ******************************************************************************************************
 class AFX_EXT_CLASS ZVPublishPrestationsReport
 {
 public:
 
-	ZVPublishPrestationsReport			( ZDProcessGraphModelMdlBP* pModel = NULL );
-	virtual ~ZVPublishPrestationsReport	();
+    ZVPublishPrestationsReport            ( ZDProcessGraphModelMdlBP* pModel = NULL );
+    virtual ~ZVPublishPrestationsReport    ();
 
-	bool Publish						( CString Directory );
-
-private:
-
-	bool CreateFileSystem				( ZBLogicalPrestationsEntity* pPrestations, CString Directory );
-
-	CString GenerateFilename			( CString Directory, CString PrestationName );
-
-	void CreateReport					( CString PrestationName );
-	void GenerateHTMLPageHead			( CString Title );
-	void GenerateHTMLPageFoot			();
-	void GenerateHTMLTableHead			();
-	void GenerateHTMLTableFoot			();
-	void GenerateHTMLReportTitle		( CString PrestationName, CString Description );
-	void GenerateHTMLSectionTitle		();
-	void GenerateHTMLSectionLine		( CString Group, CString Processus, CString Procedure );
-	void WriteLine						( CString Text );
-	void WriteLine						( int nID );
-	void FindProcedures					( CString ProcessName, ZDProcessGraphModelMdlBP* m_StartModel );
-
-	void FindUnitGroupChilds			( ZBUserGroupEntity*		pGroup,
-										  CString					PropertyName,
-										  CString					ProcessName,
-										  CString					ProcedureName,
-										  BOOL						ChildMode		= FALSE,
-										  int						ChildLevel		= 0 );
-
-	void ExploreProcessHierarchy		( CString					PrestationName,
-										  ZDProcessGraphModelMdlBP*	m_StartRootModel = NULL );
+    bool Publish                        ( CString Directory );
 
 private:
 
-	ZDProcessGraphModelMdl*				m_pRootModel;
+    bool CreateFileSystem                ( ZBLogicalPrestationsEntity* pPrestations, CString Directory );
 
-	ZDHtmlFile							HtmlFile;
+    CString GenerateFilename            ( CString Directory, CString PrestationName );
 
-	ZVPublishModelGenerate				m_FileGenerateWindow;
+    void CreateReport                    ( CString PrestationName );
+    void GenerateHTMLPageHead            ( CString Title );
+    void GenerateHTMLPageFoot            ();
+    void GenerateHTMLTableHead            ();
+    void GenerateHTMLTableFoot            ();
+    void GenerateHTMLReportTitle        ( CString PrestationName, CString Description );
+    void GenerateHTMLSectionTitle        ();
+    void GenerateHTMLSectionLine        ( CString Group, CString Processus, CString Procedure );
+    void WriteLine                        ( CString Text );
+    void WriteLine                        ( int nID );
+    void FindProcedures                    ( CString ProcessName, ZDProcessGraphModelMdlBP* m_StartModel );
+
+    void FindUnitGroupChilds            ( ZBUserGroupEntity*        pGroup,
+                                          CString                    PropertyName,
+                                          CString                    ProcessName,
+                                          CString                    ProcedureName,
+                                          BOOL                        ChildMode        = FALSE,
+                                          int                        ChildLevel        = 0 );
+
+    void ExploreProcessHierarchy        ( CString                    PrestationName,
+                                          ZDProcessGraphModelMdlBP*    m_StartRootModel = NULL );
+
+private:
+
+    ZDProcessGraphModelMdl*                m_pRootModel;
+
+    ZDHtmlFile                            HtmlFile;
+
+    ZVPublishModelGenerate                m_FileGenerateWindow;
 };
 
 #endif // !defined(AFX_ZVPUBLISHPRESTATIONSREPORT_H__2911BA6F_30D8_459C_9B9A_A644F79B704F__INCLUDED_)

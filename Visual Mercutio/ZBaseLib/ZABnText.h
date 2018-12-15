@@ -1,10 +1,10 @@
 //## begin module%334FC46302F2.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%334FC46302F2.cm
 
 //## begin module%334FC46302F2.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%334FC46302F2.cp
 
 //## Module: ZABnText%334FC46302F2; Package specification
@@ -49,8 +49,8 @@
 
 
 //## Class: PLFNBoundText%334FC461030D
-//	Bound Text is class that is like String but let the text
-//	be wrapped into a bound.
+//    Bound Text is class that is like String but let the text
+//    be wrapped into a bound.
 //## Category: ZBaseLib::Base objects%37E9429A0111
 //## Subsystem: ZBaseLib%37A08E0C019D
 //## Persistence: Transient
@@ -59,10 +59,10 @@
 class AFX_EXT_CLASS PLFNBoundText : public PLFNString  //## Inherits: <unnamed>%334FC461030E
 {
   //## begin PLFNBoundText%334FC461030D.initialDeclarations preserve=yes
-	public:
-	// Inherited feature
-		typedef PLFNString inherited;
-      	virtual UINT GetRightSubMenu() const { return BoundTextRightSubMenu; };
+    public:
+    // Inherited feature
+        typedef PLFNString inherited;
+          virtual UINT GetRightSubMenu() const { return BoundTextRightSubMenu; };
   //## end PLFNBoundText%334FC461030D.initialDeclarations
 
   public:
@@ -71,7 +71,7 @@ class AFX_EXT_CLASS PLFNBoundText : public PLFNString  //## Inherits: <unnamed>%
 
     //## Constructors (specified)
       //## Operation: PLFNBoundText%829516132
-      //	A constructor with as default parameter, Static = False.
+      //    A constructor with as default parameter, Static = False.
       PLFNBoundText (BOOL bStatic = FALSE);
 
     //## Destructor (generated)
@@ -83,47 +83,47 @@ class AFX_EXT_CLASS PLFNBoundText : public PLFNString  //## Inherits: <unnamed>%
 
     //## Other Operations (specified)
       //## Operation: operator =%829516133
-      //	A copy constructor with a pointer.
+      //    A copy constructor with a pointer.
       const PLFNBoundText& operator = (const PLFNBoundText* right);
 
       //## Operation: Clone%849755977
-      //	Make a clone of the object.
+      //    Make a clone of the object.
       virtual PlanFinObject* Clone ();
 
       //## Operation: CopyObject%863615084
       virtual void CopyObject (PlanFinObject* pSrc);
 
       //## Operation: DrawObject%882107400
-      //	Draw the object with the current DC.
+      //    Draw the object with the current DC.
       virtual void DrawObject (CDC* pDC, ZIView* pView);
 
       //## Operation: DrawEmpty%882107401
-      //	Draw an empty object with the current DC.
+      //    Draw an empty object with the current DC.
       virtual void DrawEmpty (CDC* pDC, ZIView* pView);
 
       //## Operation: Serialize%882107402
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: GetPropertyTabs%885128493
-      //	Return the list of tabs that should be displayed when
-      //	the user asks for object properties.
+      //    Return the list of tabs that should be displayed when
+      //    the user asks for object properties.
       virtual UINT GetPropertyTabs () const;
 
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: Hanging%34AFD8000276
-      //	Defines the hanging in centimeters.
+      //    Defines the hanging in centimeters.
       const double GetHanging () const;
       void SetHanging (double value);
 
       //## Attribute: HangingLines%34AFDD6D00D2
-      //	Defines the number of lines that must follow the hanging.
+      //    Defines the number of lines that must follow the hanging.
       const UINT GetHangingLines () const;
       void SetHangingLines (UINT value);
 
       //## Attribute: InterLine%34AFDDF703B6
-      //	Defines the interline value. Expressed in centimeters.
+      //    Defines the interline value. Expressed in centimeters.
       const double GetInterLine () const;
       void SetInterLine (double value);
 
@@ -134,7 +134,7 @@ class AFX_EXT_CLASS PLFNBoundText : public PLFNString  //## Inherits: <unnamed>%
   protected:
     // Additional Protected Declarations
       //## begin PLFNBoundText%334FC461030D.protected preserve=yes
-	DECLARE_SERIAL(PLFNBoundText)
+    DECLARE_SERIAL(PLFNBoundText)
       //## end PLFNBoundText%334FC461030D.protected
   private:
     // Data Members for Class Attributes
@@ -172,7 +172,7 @@ class AFX_EXT_CLASS PLFNBoundText : public PLFNString  //## Inherits: <unnamed>%
 inline UINT PLFNBoundText::GetPropertyTabs () const
 {
   //## begin PLFNBoundText::GetPropertyTabs%885128493.body preserve=yes
-  	return PropertyGeneralBoundTextPage | PropertySizePage | PropertyBoundTextPage;
+      return PropertyGeneralBoundTextPage | PropertySizePage | PropertyBoundTextPage;
   //## end PLFNBoundText::GetPropertyTabs%885128493.body
 }
 

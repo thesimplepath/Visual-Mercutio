@@ -29,10 +29,10 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUSOAPPublishLogicalSystem::ZUSOAPPublishLogicalSystem( ZBPublishMessengerModelInformation*	pInfo,
-														ZILog*								pLog	/*= NULL*/ )
-	: m_pInfo	( pInfo ),
-	  m_pLog	( pLog )
+ZUSOAPPublishLogicalSystem::ZUSOAPPublishLogicalSystem( ZBPublishMessengerModelInformation*    pInfo,
+                                                        ZILog*                                pLog    /*= NULL*/ )
+    : m_pInfo    ( pInfo ),
+      m_pLog    ( pLog )
 {
 }
 
@@ -42,70 +42,70 @@ ZUSOAPPublishLogicalSystem::~ZUSOAPPublishLogicalSystem()
 
 bool ZUSOAPPublishLogicalSystem::Publish()
 {
-	if ( m_pInfo && m_pInfo->m_pDoc && m_pInfo->m_pDoc->GetMainLogicalSystem() )
-	{
-		// Sets the correct address
-		pPublishSettings::url = (const char*)m_pInfo->m_MessengerAddress;
+    if ( m_pInfo && m_pInfo->m_pDoc && m_pInfo->m_pDoc->GetMainLogicalSystem() )
+    {
+        // Sets the correct address
+        pPublishSettings::url = (const char*)m_pInfo->m_MessengerAddress;
 
-		// Process all logical systems
-		_PublishLogicalSystem( m_pInfo->m_pDoc->GetMainLogicalSystem() );
+        // Process all logical systems
+        _PublishLogicalSystem( m_pInfo->m_pDoc->GetMainLogicalSystem() );
 
-		return m_ps.send();
-	}
+        return m_ps.send();
+    }
 
-	return false;
+    return false;
 }
 
 void ZUSOAPPublishLogicalSystem::_PublishLogicalSystem( ZBLogicalSystemEntity* pSystem )
 {
-	if ( !pSystem )
-	{
-		return;
-	}
+    if ( !pSystem )
+    {
+        return;
+    }
 
-	if ( m_pLog && m_pLog->IsInDebugMode() )
-	{
-		CString message;
-		message.Format( IDS_AL_PUBLISHLOGICALSYSTEM, (const char*)pSystem->GetEntityName() );
-		ZBGenericSymbolErrorLine e( message );
-		m_pLog->AddLine( e );
-	}
+    if ( m_pLog && m_pLog->IsInDebugMode() )
+    {
+        CString message;
+        message.Format( IDS_AL_PUBLISHLOGICALSYSTEM, (const char*)pSystem->GetEntityName() );
+        ZBGenericSymbolErrorLine e( message );
+        m_pLog->AddLine( e );
+    }
 
-	m_ps.addSystem( psystem( String16( pSystem->GetGUID() ),
-							 String16( ( pSystem->GetParent() != NULL ) ? pSystem->GetParent()->GetGUID() : _T( "" ) ),
-							 String16( pSystem->GetEntityName() ),
-							 String16( _T( "" ) ),			// Command in fact does not exist yet
-							 String16( _T( "" ) ),			// Parameters in fact does not exist yet
-							 String16( _T( "" ) ),			// Directory in fact does not exist yet
-							 0,								// Priority doesn't exist yet
-							 0 ) );							// Windows mode doesn't exist yet
+    m_ps.addSystem( psystem( String16( pSystem->GetGUID() ),
+                             String16( ( pSystem->GetParent() != NULL ) ? pSystem->GetParent()->GetGUID() : _T( "" ) ),
+                             String16( pSystem->GetEntityName() ),
+                             String16( _T( "" ) ),            // Command in fact does not exist yet
+                             String16( _T( "" ) ),            // Parameters in fact does not exist yet
+                             String16( _T( "" ) ),            // Directory in fact does not exist yet
+                             0,                                // Priority doesn't exist yet
+                             0 ) );                            // Windows mode doesn't exist yet
 
-	// JMR-MODIF - Publication de l'alias
-	m_ps.addAlias( m_pInfo->m_MessengerAlias );
+    // JMR-MODIF - Publication de l'alias
+    m_ps.addAlias( m_pInfo->m_MessengerAlias );
 
 #ifdef _DEBUG
-	CString s;
-	s.Format( _T( " System = %s\n" ), (const char*)pSystem->GetEntityName() );
-	TRACE( s );
+    CString s;
+    s.Format( _T( " System = %s\n" ), (const char*)pSystem->GetEntityName() );
+    TRACE( s );
 #endif
 
-	if ( pSystem->ContainEntity() )
-	{
-		int Count = pSystem->GetEntityCount();
+    if ( pSystem->ContainEntity() )
+    {
+        int Count = pSystem->GetEntityCount();
 
-		for ( int i = 0; i < Count; ++i )
-		{
-			ZBSystemEntity* pEntity = pSystem->GetEntityAt( i );
+        for ( int i = 0; i < Count; ++i )
+        {
+            ZBSystemEntity* pEntity = pSystem->GetEntityAt( i );
 
-			if ( !pEntity )
-			{
-				continue;
-			}
+            if ( !pEntity )
+            {
+                continue;
+            }
 
-			if ( ISA( pEntity, ZBLogicalSystemEntity ) )
-			{
-				_PublishLogicalSystem( dynamic_cast<ZBLogicalSystemEntity*>( pEntity ) );
-			}
-		}
-	}
+            if ( ISA( pEntity, ZBLogicalSystemEntity ) )
+            {
+                _PublishLogicalSystem( dynamic_cast<ZBLogicalSystemEntity*>( pEntity ) );
+            }
+        }
+    }
 }

@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 07/2001
+// <nl>Created:         07/2001
 // <nl>Description:  ZBExtApps external application manager
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -71,134 +71,134 @@ typedef Iterator_T<ZBExtAppProperties*> ZBExtAppPropertiesIterator;
 
 class AFX_EXT_CLASS ZBExtApps : public CObject
 {
-	DECLARE_SERIAL( ZBExtApps )
+    DECLARE_SERIAL( ZBExtApps )
 
 public:
 
-	ZBExtApps( CODSymbolComponent* pParent = NULL );
-	virtual ~ZBExtApps();
+    ZBExtApps( CODSymbolComponent* pParent = NULL );
+    virtual ~ZBExtApps();
 
-	/* Copy constructor. */
-	ZBExtApps( const ZBExtApps& src );
+    /* Copy constructor. */
+    ZBExtApps( const ZBExtApps& src );
 
-	/* Assignment operator. */
-	ZBExtApps& operator=( const ZBExtApps& src );
+    /* Assignment operator. */
+    ZBExtApps& operator=( const ZBExtApps& src );
 
-	/* Create a duplicate copy of this object. */
-	virtual ZBExtApps* Dup() const;
+    /* Create a duplicate copy of this object. */
+    virtual ZBExtApps* Dup() const;
 
-	// Sets the parent symbol object
-	void SetParent( CODSymbolComponent* pParent );
+    // Sets the parent symbol object
+    void SetParent( CODSymbolComponent* pParent );
 
-	// Create the initial properties
-	bool CreateInitialProperties();
+    // Create the initial properties
+    bool CreateInitialProperties();
 
-	// Add a new ExtApp,
-	// and return the index of the new added ExtApp
-	// Return -1 if the function fails
-	int AddNewExtApp();
+    // Add a new ExtApp,
+    // and return the index of the new added ExtApp
+    // Return -1 if the function fails
+    int AddNewExtApp();
 
-	// Add a new ExtApp,
-	// and return the index of the new added ExtApp
-	// Return -1 if the function fails
-	int AddExtApp( ZBExtAppProperties* pProperty );
+    // Add a new ExtApp,
+    // and return the index of the new added ExtApp
+    // Return -1 if the function fails
+    int AddExtApp( ZBExtAppProperties* pProperty );
 
-	// Delete an ExtApp
-	bool DeleteExtApp( size_t Index );
-	bool DeleteExtApp( const CString CommandTitle );
-	bool DeleteExtApp( ZBExtAppProperties* pProperty );
+    // Delete an ExtApp
+    bool DeleteExtApp( size_t Index );
+    bool DeleteExtApp( const CString CommandTitle );
+    bool DeleteExtApp( ZBExtAppProperties* pProperty );
 
-	// Return true if the ExtApp already exists
-	bool ExtAppExist( const CString CommandTitle ) const;
+    // Return true if the ExtApp already exists
+    bool ExtAppExist( const CString CommandTitle ) const;
 
-	// Retreive the right ExtApp properties base on the ExtApp filename
-	ZBExtAppProperties* LocateExtApp( const CString CommandTitle ) const;
+    // Retreive the right ExtApp properties base on the ExtApp filename
+    ZBExtAppProperties* LocateExtApp( const CString CommandTitle ) const;
 
-	ZBExtAppPropertiesSet& GetExtAppSet()
-	{
-		return m_Set;
-	}
+    ZBExtAppPropertiesSet& GetExtAppSet()
+    {
+        return m_Set;
+    }
 
-	// Return the counter of ExtApps
-	size_t GetExtAppCount() const
-	{
-		return m_Set.GetSize();
-	}
+    // Return the counter of ExtApps
+    size_t GetExtAppCount() const
+    {
+        return m_Set.GetSize();
+    }
 
-	ZBExtAppProperties* GetProperty( size_t Index ) const
-	{
-		if ( Index < GetExtAppCount() )
-		{
-			return m_Set.GetAt( Index );
-		}
+    ZBExtAppProperties* GetProperty( size_t Index ) const
+    {
+        if ( Index < GetExtAppCount() )
+        {
+            return m_Set.GetAt( Index );
+        }
 
-		return NULL;
-	}
+        return NULL;
+    }
 
-	// Returns the index of the first empty element if there is,
-	// otherwise, return -1
-	int LocateFirstEmptyExtApp() const;
+    // Returns the index of the first empty element if there is,
+    // otherwise, return -1
+    int LocateFirstEmptyExtApp() const;
 
-	// Remove only empty elements
-	void RemoveAllEmptyExtApps();
+    // Remove only empty elements
+    void RemoveAllEmptyExtApps();
 
-	// Remove all elements
-	void RemoveAllExtApps();
+    // Remove all elements
+    void RemoveAllExtApps();
 
-	/* Gets the file title at the specific Index. */
-	CString GetCommandTitle( size_t Index ) const;
+    /* Gets the file title at the specific Index. */
+    CString GetCommandTitle( size_t Index ) const;
 
-	//@cmember
-	/* Sets the file title at the specific Index. */
-	void SetCommandTitle( size_t Index, CString Value );
+    //@cmember
+    /* Sets the file title at the specific Index. */
+    void SetCommandTitle( size_t Index, CString Value );
 
-	//@cmember
-	/* Gets the filename at the specific Index. */
-	CString GetCommandLine( size_t Index ) const;
+    //@cmember
+    /* Gets the filename at the specific Index. */
+    CString GetCommandLine( size_t Index ) const;
 
-	//@cmember
-	/* Sets the filename at the specific Index. */
-	void SetCommandLine( size_t Index, CString Value );
+    //@cmember
+    /* Sets the filename at the specific Index. */
+    void SetCommandLine( size_t Index, CString Value );
 
-	//@cmember
-	/* Gets the filename at the specific Index. */
-	CString GetCommandParameters( size_t Index ) const;
+    //@cmember
+    /* Gets the filename at the specific Index. */
+    CString GetCommandParameters( size_t Index ) const;
 
-	//@cmember
-	/* Sets the filename at the specific Index. */
-	void SetCommandParameters( size_t Index, CString Value );
+    //@cmember
+    /* Sets the filename at the specific Index. */
+    void SetCommandParameters( size_t Index, CString Value );
 
-	//@cmember
-	/* Gets the filename at the specific Index. */
-	CString GetCommandStartupDirectory( size_t Index ) const;
+    //@cmember
+    /* Gets the filename at the specific Index. */
+    CString GetCommandStartupDirectory( size_t Index ) const;
 
-	//@cmember
-	/* Sets the filename at the specific Index. */
-	void SetCommandStartupDirectory( size_t Index, CString Value );
+    //@cmember
+    /* Sets the filename at the specific Index. */
+    void SetCommandStartupDirectory( size_t Index, CString Value );
 
-	//@cmember
-	/* Gets the insertion type at the specific Index. */
-	int GetPriorityLevel( size_t Index ) const;
+    //@cmember
+    /* Gets the insertion type at the specific Index. */
+    int GetPriorityLevel( size_t Index ) const;
 
-	//@cmember
-	/* Sets the insertion type at the specific Index. */
-	void SetPriorityLevel( size_t Index, const int value );
+    //@cmember
+    /* Sets the insertion type at the specific Index. */
+    void SetPriorityLevel( size_t Index, const int value );
 
-	//@cmember
-	/* Gets the activation type at the specific Index. */
-	int GetWindowStartMode( size_t Index ) const;
+    //@cmember
+    /* Gets the activation type at the specific Index. */
+    int GetWindowStartMode( size_t Index ) const;
 
-	//@cmember
-	/* Sets the activation type at the specific Index. */
-	void SetWindowStartMode( size_t Index, const int value );
+    //@cmember
+    /* Sets the activation type at the specific Index. */
+    void SetWindowStartMode( size_t Index, const int value );
 
-	/* Serializes the combinations. */
-	virtual void Serialize( CArchive& ar );
+    /* Serializes the combinations. */
+    virtual void Serialize( CArchive& ar );
 
 private:
 
-	CODSymbolComponent*		m_pParent;
-	ZBExtAppPropertiesSet	m_Set;
+    CODSymbolComponent*        m_pParent;
+    ZBExtAppPropertiesSet    m_Set;
 };
 
 #endif // !defined(AFX_ZBExtApps_H__562EAAA5_9EC1_4359_9853_36C96DC6DD6A__INCLUDED_)

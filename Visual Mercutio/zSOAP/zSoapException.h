@@ -12,8 +12,8 @@
 // See these sources for detailed information regarding
 // ProcessSoft products.
 //
-// Author:			 Gaya
-// <nl>Created:		 05/2002
+// Author:             Gaya
+// <nl>Created:         05/2002
 // <nl>Description:  exception class container
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -44,29 +44,29 @@ class AFX_EXT_CLASS ZBSoapException
 {
 public:
 
-	ZBSoapException( int			mExceptionCode,
-					 const char*	mExceptionInfo			= NULL,
-					 const char*	mExceptionRaisedInFile	= NULL,
-					 int			mExceptionRaisedAtLine	= -1 );
+    ZBSoapException( int            mExceptionCode,
+                     const char*    mExceptionInfo            = NULL,
+                     const char*    mExceptionRaisedInFile    = NULL,
+                     int            mExceptionRaisedAtLine    = -1 );
 
-	int getCode() const;
-	int getFileLine() const;
+    int getCode() const;
+    int getFileLine() const;
 
-	const CString getMessage() const;
-	const CString getInfo() const;
-	const CString getFileName() const;
+    const CString getMessage() const;
+    const CString getInfo() const;
+    const CString getFileName() const;
 
 private:
 
-	void dump();	
-	CString getMessageByCode( int mcode );
+    void dump();    
+    CString getMessageByCode( int mcode );
 
-	int		m_code;
-	int		m_fileline;
+    int        m_code;
+    int        m_fileline;
 
-	CString	m_message;
-	CString	m_info;
-	CString	m_filename;
+    CString    m_message;
+    CString    m_info;
+    CString    m_filename;
 };
 
 #endif

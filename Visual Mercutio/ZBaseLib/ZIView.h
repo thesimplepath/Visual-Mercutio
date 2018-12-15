@@ -1,10 +1,10 @@
 //## begin module%334FC4630320.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%334FC4630320.cm
 
 //## begin module%334FC4630320.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%334FC4630320.cp
 
 //## Module: ZIView%334FC4630320; Package specification
@@ -49,14 +49,14 @@ class ZDDocument;
 #endif
 
 
-enum	ViewType { UnknownView,
-				   FormReadView, 
-				   FormModifyView, 
-				   FormFieldCodeView, 
-				   FormDesignView, 
-				   ProcessReadView, 
-				   ProcessModifyView, 
-				   ProcessDesignView };
+enum    ViewType { UnknownView,
+                   FormReadView, 
+                   FormModifyView, 
+                   FormFieldCodeView, 
+                   FormDesignView, 
+                   ProcessReadView, 
+                   ProcessModifyView, 
+                   ProcessDesignView };
 
 //#undef  AFX_DATA
 //#define AFX_DATA AFX_EXT_CLASS
@@ -72,39 +72,39 @@ enum	ViewType { UnknownView,
 class AFX_EXT_CLASS ZIView : public ZIDropScrollView  //## Inherits: <unnamed>%334FC46002A7
 {
   //## begin ZIView%334FC46002A6.initialDeclarations preserve=yes
-	DECLARE_DYNCREATE(ZIView)
-	public:
-	// Inherited feature
-		typedef ZIDropScrollView inherited;
-	//## end ZIView%334FC46002A6.initialDeclarations
+    DECLARE_DYNCREATE(ZIView)
+    public:
+    // Inherited feature
+        typedef ZIDropScrollView inherited;
+    //## end ZIView%334FC46002A6.initialDeclarations
 
   public:
 
     //## Other Operations (specified)
-	  // Initialize the view
-	  void Initialize();
+      // Initialize the view
+      void Initialize();
       //## Operation: CalculateTheDocumentSize%832201962
-      //	Calculate the document size.
+      //    Calculate the document size.
       void CalculateTheDocumentSize ();
 
       //## Operation: SetLogicalCoordinates%832201963
       void SetLogicalCoordinates (CDC* pDC);
 
       //## Operation: GetDocument%832201964
-      //	Return a cast document pointer.
+      //    Return a cast document pointer.
       ZDDocument* GetDocument ();
 
       //## Operation: OnPrepareDC%832201965
       virtual void OnPrepareDC (CDC* pDC, CPrintInfo* pInfo = NULL);
 
       //## Operation: ActiveSelectedObject%832201974
-      //	bAutoReset permits to turn on or off
-      //	the selection
-      //	If the object was already selected, then
-      //	he is turn non selected
+      //    bAutoReset permits to turn on or off
+      //    the selection
+      //    If the object was already selected, then
+      //    he is turn non selected
       //
-      //	This return the object selected by the righ-click. Null
-      //	if no object selected.
+      //    This return the object selected by the righ-click. Null
+      //    if no object selected.
       PlanFinObject* ActiveSelectedObject (CPoint& point, BOOL bAutoReset = FALSE);
 
       //## Operation: SelectObjectInRect%832201975
@@ -117,68 +117,68 @@ class AFX_EXT_CLASS ZIView : public ZIDropScrollView  //## Inherits: <unnamed>%3
       void DeselectAllObject (CWnd* pWnd, CDC* pDC, ZDDocument* pDoc);
 
       //## Operation: ClientToDoc%832637469
-      //	Converts the client screen coordinates to document
-      //	coordinates.
+      //    Converts the client screen coordinates to document
+      //    coordinates.
       void ClientToDoc (CPoint& point);
 
       //## Operation: ClientToDoc%832637470
-      //	Converts the client screen coordinates to document
-      //	coordinates.
+      //    Converts the client screen coordinates to document
+      //    coordinates.
       void ClientToDoc (CRect& rect);
 
       //## Operation: DocToClient%832637471
-      //	Converts the document coordinates to client screen
-      //	coordinates.
+      //    Converts the document coordinates to client screen
+      //    coordinates.
       void DocToClient (CPoint& point);
 
       //## Operation: DocToClient%832637472
-      //	Converts the document coordinates to client screen
-      //	coordinates.
+      //    Converts the document coordinates to client screen
+      //    coordinates.
       void DocToClient (CRect& rect);
 
       //## Operation: FindHitObject%837834739
-      //	Return the selected object pointed by the point
-      //	argument. If nothing return FALSE.
+      //    Return the selected object pointed by the point
+      //    argument. If nothing return FALSE.
       PlanFinObject* FindHitObject (CPoint& point);
 
       //## Operation: ChooseObject%850768721
       PlanFinObject* ChooseObject ();
 
       //## Operation: GetArrayOfSelectedObject%863883947
-      //	Return a reference of the array of selected object
+      //    Return a reference of the array of selected object
       CObArray& GetArrayOfSelectedObject ();
 
       //## Operation: KeepObjectInPage%901975365
-      //	This function tests if the object stills in the page
-      //	report. If not, the object is moved.
+      //    This function tests if the object stills in the page
+      //    report. If not, the object is moved.
       void KeepObjectInPage (PlanFinObject* pObj, CSize& ReportSize);
 
       //## Operation: GetZoomPercentage%938112085
-      //	Returns the current zoom percentage.
+      //    Returns the current zoom percentage.
       int GetZoomPercentage ();
 
       //## Operation: SetZoomPercentage%938112086
-      //	Sets a new zoom percentage.
+      //    Sets a new zoom percentage.
       void SetZoomPercentage (int iZoom);
 
       //## Operation: EditObject%938177648
-      //	Process the edition of the object.
+      //    Process the edition of the object.
       virtual void EditObject (PlanFinObject* pObj = NULL);
 
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: ToolTip%37EDDD520385
-      //	The tooltip class member. Used to display tooltip for
-      //	fields.
+      //    The tooltip class member. Used to display tooltip for
+      //    fields.
       CToolTipCtrl& GetToolTip ();
 
       //## Attribute: ViewType%381BFE8502FD
-      //	Defines which views we have constructed.
+      //    Defines which views we have constructed.
       const ViewType GetViewType () const;
 
     // Additional Public Declarations
       //## begin ZIView%334FC46002A6.public preserve=yes
-		void SetScrollSizes();
+        void SetScrollSizes();
       //## end ZIView%334FC46002A6.public
 
   protected:
@@ -193,15 +193,15 @@ class AFX_EXT_CLASS ZIView : public ZIDropScrollView  //## Inherits: <unnamed>%3
       virtual void OnInitialUpdate ();
 
       //## Operation: GetReportPageSize%908446783
-      //	Returns the report page size.
+      //    Returns the report page size.
       CSize GetReportPageSize ();
 
       //## Operation: GetReportPageSizeInPixels%908446784
-      //	Returns the report page size in pixels.
+      //    Returns the report page size in pixels.
       CSize GetReportPageSizeInPixels ();
 
       //## Operation: DrawPageRect%908446785
-      //	Draw the page rect.
+      //    Draw the page rect.
       void DrawPageRect (CDC* pDC);
 
       //## Operation: OnDraw%908620922
@@ -210,31 +210,31 @@ class AFX_EXT_CLASS ZIView : public ZIDropScrollView  //## Inherits: <unnamed>%3
     // Data Members for Class Attributes
 
       //## Attribute: TotalSize%334FC4600354
-      //	The total size of the document.
+      //    The total size of the document.
       //## begin ZIView::TotalSize%334FC4600354.attr preserve=no  public: CSize {V} 
       CSize m_TotalSize;
       //## end ZIView::TotalSize%334FC4600354.attr
 
       //## Attribute: PageSize%334FC4600355
-      //	The size of the page.
+      //    The size of the page.
       //## begin ZIView::PageSize%334FC4600355.attr preserve=no  public: CSize {V} 
       CSize m_PageSize;
       //## end ZIView::PageSize%334FC4600355.attr
 
       //## Attribute: pOldPointerSelectedObj%334FC460037D
-      //	To keep the old selected object when using pointer.
+      //    To keep the old selected object when using pointer.
       //## begin ZIView::pOldPointerSelectedObj%334FC460037D.attr preserve=no  protected: static PlanFinObject* {V} NULL
       static PlanFinObject* m_pOldPointerSelectedObj;
       //## end ZIView::pOldPointerSelectedObj%334FC460037D.attr
 
       //## Attribute: LineSize%334FC460037E
-      //	The size of a line.
+      //    The size of a line.
       //## begin ZIView::LineSize%334FC460037E.attr preserve=no  public: CSize {V} 
       CSize m_LineSize;
       //## end ZIView::LineSize%334FC460037E.attr
 
       //## Attribute: hSelectorCursor%334FC4600381
-      //	The cursor for object selection.
+      //    The cursor for object selection.
       //## begin ZIView::hSelectorCursor%334FC4600381.attr preserve=no  public: HCURSOR {V} 
       HCURSOR m_hSelectorCursor;
       //## end ZIView::hSelectorCursor%334FC4600381.attr
@@ -245,14 +245,14 @@ class AFX_EXT_CLASS ZIView : public ZIDropScrollView  //## Inherits: <unnamed>%3
       //## end ZIView::ArrayOfSelectedObject%337DD272032A.attr
 
       //## Attribute: PageRect%3625CCE601FE
-      //	Keep the page rect.
+      //    Keep the page rect.
       //## begin ZIView::PageRect%3625CCE601FE.attr preserve=no  public: CRect {U} 
       CRect m_PageRect;
       //## end ZIView::PageRect%3625CCE601FE.attr
 
       //## Attribute: bChooseObjectMode%3627761B02A7
-      //	To known if the user must choose an object for the mouse
-      //	left click down.
+      //    To known if the user must choose an object for the mouse
+      //    left click down.
       //## begin ZIView::bChooseObjectMode%3627761B02A7.attr preserve=no  public: BOOL {U} FALSE
       BOOL m_bChooseObjectMode;
       //## end ZIView::bChooseObjectMode%3627761B02A7.attr
@@ -267,18 +267,18 @@ class AFX_EXT_CLASS ZIView : public ZIDropScrollView  //## Inherits: <unnamed>%3
 
     // Additional Protected Declarations
       //## begin ZIView%334FC46002A6.protected preserve=yes
-		// Generated message map functions
-		//{{AFX_MSG(ZIView)
-	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
-	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
-	afx_msg void OnKillFocus(CWnd* pNewWnd);
-	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
-	afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
-	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
-	//}}AFX_MSG
-		DECLARE_MESSAGE_MAP()
+        // Generated message map functions
+        //{{AFX_MSG(ZIView)
+    afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+    afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+    afx_msg void OnKillFocus(CWnd* pNewWnd);
+    afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
+    afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+    afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+    //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
 
-		CString		m_StrToolTip;
+        CString        m_StrToolTip;
       //## end ZIView%334FC46002A6.protected
   private:
     //## Constructors (generated)
@@ -290,25 +290,25 @@ class AFX_EXT_CLASS ZIView : public ZIDropScrollView  //## Inherits: <unnamed>%3
     // Data Members for Class Attributes
 
       //## Attribute: iLogUnitX%334FC4600352
-      //	The logical unit for the X axis
+      //    The logical unit for the X axis
       //## begin ZIView::iLogUnitX%334FC4600352.attr preserve=no  public: int {V} 
       int m_iLogUnitX;
       //## end ZIView::iLogUnitX%334FC4600352.attr
 
       //## Attribute: iLogUnitY%334FC4600353
-      //	The logical coordonates for Y axis.
+      //    The logical coordonates for Y axis.
       //## begin ZIView::iLogUnitY%334FC4600353.attr preserve=no  public: int {V} 
       int m_iLogUnitY;
       //## end ZIView::iLogUnitY%334FC4600353.attr
 
       //## Attribute: ChoosedObject%334FC4600380
-      //	The return object choosed.
+      //    The return object choosed.
       //## begin ZIView::ChoosedObject%334FC4600380.attr preserve=no  public: PlanFinObject* {V} NULL
       PlanFinObject* m_ChoosedObject;
       //## end ZIView::ChoosedObject%334FC4600380.attr
 
       //## Attribute: iZoom%37EA8EB600C4
-      //	Defines the zoom percentage.
+      //    Defines the zoom percentage.
       //## begin ZIView::iZoom%37EA8EB600C4.attr preserve=no  public: int {U} 
       int m_iZoom;
       //## end ZIView::iZoom%37EA8EB600C4.attr
@@ -334,14 +334,14 @@ class AFX_EXT_CLASS ZIView : public ZIDropScrollView  //## Inherits: <unnamed>%3
 inline ZDDocument* ZIView::GetDocument ()
 {
   //## begin ZIView::GetDocument%832201964.body preserve=yes
-  	return (ZDDocument*)CView::GetDocument();
+      return (ZDDocument*)CView::GetDocument();
   //## end ZIView::GetDocument%832201964.body
 }
 
 inline int ZIView::GetZoomPercentage ()
 {
   //## begin ZIView::GetZoomPercentage%938112085.body preserve=yes
-  	return m_iZoom;
+      return m_iZoom;
   //## end ZIView::GetZoomPercentage%938112085.body
 }
 

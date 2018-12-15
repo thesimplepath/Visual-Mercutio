@@ -1,7 +1,7 @@
 // ******************************************************************************************************************
-// *										Classe ZBRulesEntity													*
+// *                                        Classe ZBRulesEntity                                                    *
 // ******************************************************************************************************************
-// * JMR-MODIF - Le 14 novembre 2006 - Ajout de la classe ZBRulesEntity.											*
+// * JMR-MODIF - Le 14 novembre 2006 - Ajout de la classe ZBRulesEntity.                                            *
 // ******************************************************************************************************************
 // * Cette classe représente une entité de type règle. Une entité peut être considérée comme un élément du document.*
 // ******************************************************************************************************************
@@ -33,104 +33,104 @@
 
 class AFX_EXT_CLASS ZBRulesEntity : public CObject
 {
-	DECLARE_SERIAL( ZBRulesEntity )
+    DECLARE_SERIAL( ZBRulesEntity )
 
 public:
 
-	ZBRulesEntity( const CString	Name		= _T( "" ),
-				   const CString	Description	= _T( "" ),
-				   ZBRulesEntity*	pParent		= NULL );
+    ZBRulesEntity( const CString    Name        = _T( "" ),
+                   const CString    Description    = _T( "" ),
+                   ZBRulesEntity*    pParent        = NULL );
 
-	~ZBRulesEntity();
+    ~ZBRulesEntity();
 
-	ZBRulesEntity* GetParent()
-	{
-		return m_pParent;
-	}
+    ZBRulesEntity* GetParent()
+    {
+        return m_pParent;
+    }
 
-	virtual ZBRulesEntity* GetRoot()
-	{
-		if ( m_pParent )
-		{
-			return m_pParent->GetRoot();
-		}
+    virtual ZBRulesEntity* GetRoot()
+    {
+        if ( m_pParent )
+        {
+            return m_pParent->GetRoot();
+        }
 
-		return this;
-	}
+        return this;
+    }
 
-	virtual bool ContainEntity() const
-	{
-		return false;
-	}
+    virtual bool ContainEntity() const
+    {
+        return false;
+    }
 
-	virtual size_t GetEntityCount() const
-	{
-		return 0;
-	}
+    virtual size_t GetEntityCount() const
+    {
+        return 0;
+    }
 
-	virtual ZBRulesEntity* GetEntityAt( size_t Index )
-	{
-		return NULL;
-	}
+    virtual ZBRulesEntity* GetEntityAt( size_t Index )
+    {
+        return NULL;
+    }
 
-	CString GetGUID() const
-	{
-		return m_GUID;
-	}
+    CString GetGUID() const
+    {
+        return m_GUID;
+    }
 
-	void SetGUID( CString value )
-	{
-		m_GUID = value;
-	}
+    void SetGUID( CString value )
+    {
+        m_GUID = value;
+    }
 
-	virtual CString GetEntityName() const
-	{
-		return m_EntityName;
-	}
+    virtual CString GetEntityName() const
+    {
+        return m_EntityName;
+    }
 
-	virtual void SetEntityName( const CString value )
-	{
-		m_EntityName = value;
-	}
+    virtual void SetEntityName( const CString value )
+    {
+        m_EntityName = value;
+    }
 
-	virtual CString GetEntityDescription() const
-	{
-		return m_EntityDescription;
-	}
+    virtual CString GetEntityDescription() const
+    {
+        return m_EntityDescription;
+    }
 
-	virtual void SetEntityDescription( const CString value )
-	{
-		m_EntityDescription = value;
-	}
+    virtual void SetEntityDescription( const CString value )
+    {
+        m_EntityDescription = value;
+    }
 
-	virtual bool DisplayProperties()
-	{
-		return false;
-	}
+    virtual bool DisplayProperties()
+    {
+        return false;
+    }
 
-	void SetParent( ZBRulesEntity* pParent )
-	{
-		m_pParent = pParent;
-	}
+    void SetParent( ZBRulesEntity* pParent )
+    {
+        m_pParent = pParent;
+    }
 
-	// Serialization mechanism
-	virtual void Serialize( CArchive& ar );	// overridden for document i/o
+    // Serialization mechanism
+    virtual void Serialize( CArchive& ar );    // overridden for document i/o
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 protected:
 
-	void CreateGUID();
+    void CreateGUID();
 
 private:
 
-	CString			m_GUID;
-	CString			m_EntityName;
-	CString			m_EntityDescription;
-	ZBRulesEntity*	m_pParent;
+    CString            m_GUID;
+    CString            m_EntityName;
+    CString            m_EntityDescription;
+    ZBRulesEntity*    m_pParent;
 };
 
 #endif // !defined(AFX_ZBRulesEntity_H__2AC8D235_7673_47BE_86B3_CCD14A70DE78__INCLUDED_)

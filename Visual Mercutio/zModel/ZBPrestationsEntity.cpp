@@ -1,10 +1,10 @@
 // ******************************************************************************************************************
-// *											 Classe ZBPrestationsEntity											*
+// *                                             Classe ZBPrestationsEntity                                            *
 // ******************************************************************************************************************
-// * JMR-MODIF - Le 7 octobre 2005 - Ajout de la classe ZBPrestationsEntity.										*
+// * JMR-MODIF - Le 7 octobre 2005 - Ajout de la classe ZBPrestationsEntity.                                        *
 // ******************************************************************************************************************
-// * Cette classe représente une entité de type prestation. Une entité peut être considérée comme un élément du		*
-// * document.																										*
+// * Cette classe représente une entité de type prestation. Une entité peut être considérée comme un élément du        *
+// * document.                                                                                                        *
 // ******************************************************************************************************************
 
 #include "stdafx.h"
@@ -26,14 +26,14 @@ IMPLEMENT_SERIAL( ZBPrestationsEntity, CObject, def_Version )
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBPrestationsEntity::ZBPrestationsEntity( const CString			Name		/*= _T( "" )*/, 
-										  const CString			Description	/*= _T( "" )*/, 
-										  ZBPrestationsEntity*	pParent		/*= NULL*/ )
-	: m_EntityName			( Name ),
-	  m_EntityDescription	( Description ),
-	  m_pParent				( pParent )
+ZBPrestationsEntity::ZBPrestationsEntity( const CString            Name        /*= _T( "" )*/, 
+                                          const CString            Description    /*= _T( "" )*/, 
+                                          ZBPrestationsEntity*    pParent        /*= NULL*/ )
+    : m_EntityName            ( Name ),
+      m_EntityDescription    ( Description ),
+      m_pParent                ( pParent )
 {
-	CreateGUID();
+    CreateGUID();
 }
 
 ZBPrestationsEntity::~ZBPrestationsEntity()
@@ -42,7 +42,7 @@ ZBPrestationsEntity::~ZBPrestationsEntity()
 
 void ZBPrestationsEntity::CreateGUID()
 {
-	m_GUID = ZUGUID::CreateNewGUID();
+    m_GUID = ZUGUID::CreateNewGUID();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -50,12 +50,12 @@ void ZBPrestationsEntity::CreateGUID()
 #ifdef _DEBUG
 void ZBPrestationsEntity::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void ZBPrestationsEntity::Dump( CDumpContext& dc ) const
 {
-	CObject::Dump( dc );
+    CObject::Dump( dc );
 }
 #endif //_DEBUG
 
@@ -64,18 +64,18 @@ void ZBPrestationsEntity::Dump( CDumpContext& dc ) const
 
 void ZBPrestationsEntity::Serialize( CArchive& ar )
 {
-	if ( ar.IsStoring() )
-	{
-		// Write the elements
-		ar << m_GUID;
-		ar << m_EntityName;
-		ar << m_EntityDescription;
-	}
-	else
-	{
-		// Read the elements
-		ar >> m_GUID;
-		ar >> m_EntityName;
-		ar >> m_EntityDescription;
-	}
+    if ( ar.IsStoring() )
+    {
+        // Write the elements
+        ar << m_GUID;
+        ar << m_EntityName;
+        ar << m_EntityDescription;
+    }
+    else
+    {
+        // Read the elements
+        ar >> m_GUID;
+        ar >> m_EntityName;
+        ar >> m_EntityDescription;
+    }
 }

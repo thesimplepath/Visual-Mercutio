@@ -9,7 +9,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#define VC_EXTRALEAN		// Exclude rarely-used stuff from Windows headers
+#define VC_EXTRALEAN        // Exclude rarely-used stuff from Windows headers
 
 // Disable non-critical warnings
 #pragma warning(disable:4786) // identifier was truncated to '255' characters in the debug information
@@ -31,7 +31,7 @@
 // Plateforme cible définie à Windows NT4 et supérieures pour les versions NT de Windows.
 #ifndef _WIN32_WINNT
 #define _WIN32_WINNT 0x0400
-#endif						
+#endif                        
 
 // Plateforme cible définie à Windows98 et supérieures pour les versions standards de Windows.
 #ifndef _WIN32_WINDOWS
@@ -43,29 +43,29 @@
 #define _WIN32_IE 0x0400
 #endif
 
-#include <afxwin.h>			// MFC core and standard components
-#include <afxext.h>			// MFC extensions
+#include <afxwin.h>            // MFC core and standard components
+#include <afxext.h>            // MFC extensions
 
 #ifndef _AFX_NO_OLE_SUPPORT
-#include <afxole.h>			// MFC OLE classes
-#include <afxodlgs.h>		// MFC OLE dialog classes
-#include <afxdisp.h>		// MFC Automation classes
+#include <afxole.h>            // MFC OLE classes
+#include <afxodlgs.h>        // MFC OLE dialog classes
+#include <afxdisp.h>        // MFC Automation classes
 #endif // _AFX_NO_OLE_SUPPORT
 
 #ifndef _AFX_NO_DB_SUPPORT
-#include <afxdb.h>			// MFC ODBC database classes
+#include <afxdb.h>            // MFC ODBC database classes
 #endif // _AFX_NO_DB_SUPPORT
 
 #ifndef _AFX_NO_DAO_SUPPORT
-#include <afxdao.h>			// MFC DAO database classes
+#include <afxdao.h>            // MFC DAO database classes
 #endif // _AFX_NO_DAO_SUPPORT
 
-#include <afxdtctl.h>		// MFC support for Internet Explorer 4 Common Controls
+#include <afxdtctl.h>        // MFC support for Internet Explorer 4 Common Controls
 #ifndef _AFX_NO_AFXCMN_SUPPORT
-#include <afxcmn.h>			// MFC support for Windows Common Controls
+#include <afxcmn.h>            // MFC support for Windows Common Controls
 #endif // _AFX_NO_AFXCMN_SUPPORT
 
-#ifdef _ENABLETRACE			// If enable trace is defined
+#ifdef _ENABLETRACE            // If enable trace is defined
 #include "zBaseLib\ZGTrace.h"
 #endif
 
@@ -74,14 +74,14 @@
 #include "Message.h"
 #include "PlanFin.hdf"
 
-#include <zBaseLib\zBaseLib.h>		// The base library
-#include <zBaseSym\zBaseSymLib.h>	// The base symbol library
-#include <zProperty\zPropertyLib.h>	// The property library
-#include <zModel\zModelLib.h>		// The base model library
-#include <zReport\zReportLib.h>		// The report library
-#include <zModelBP\zModelBPLib.h>	// The base Mercutio library
-#include <zDB\zDBLib.h>				// The Database library
-#include <zRes32\zRes32Lib.h>		// Resource library
+#include <zBaseLib\zBaseLib.h>        // The base library
+#include <zBaseSym\zBaseSymLib.h>    // The base symbol library
+#include <zProperty\zPropertyLib.h>    // The property library
+#include <zModel\zModelLib.h>        // The base model library
+#include <zReport\zReportLib.h>        // The report library
+#include <zModelBP\zModelBPLib.h>    // The base Mercutio library
+#include <zDB\zDBLib.h>                // The Database library
+#include <zRes32\zRes32Lib.h>        // Resource library
 
 //this was added by Stingray Appwizard. If you wish to define _GXDLL
 //as a preprocessor symbol you may remove this and add this definition to 

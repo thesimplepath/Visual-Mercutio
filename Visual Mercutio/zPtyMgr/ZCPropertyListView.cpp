@@ -28,10 +28,10 @@ ZCPropertyListView::~ZCPropertyListView()
 
 
 BEGIN_MESSAGE_MAP(ZCPropertyListView, CView)
-	//{{AFX_MSG_MAP(ZCPropertyListView)
-	ON_WM_CREATE()
-	ON_WM_SIZE()
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZCPropertyListView)
+    ON_WM_CREATE()
+    ON_WM_SIZE()
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -39,8 +39,8 @@ END_MESSAGE_MAP()
 
 void ZCPropertyListView::OnDraw(CDC* pDC)
 {
-	CDocument* pDoc = GetDocument();
-	// TODO: add draw code here
+    CDocument* pDoc = GetDocument();
+    // TODO: add draw code here
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -49,12 +49,12 @@ void ZCPropertyListView::OnDraw(CDC* pDC)
 #ifdef _DEBUG
 void ZCPropertyListView::AssertValid() const
 {
-	CView::AssertValid();
+    CView::AssertValid();
 }
 
 void ZCPropertyListView::Dump(CDumpContext& dc) const
 {
-	CView::Dump(dc);
+    CView::Dump(dc);
 }
 #endif //_DEBUG
 
@@ -62,7 +62,7 @@ void ZCPropertyListView::Dump(CDumpContext& dc) const
 
 void ZCPropertyListView::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
 {
-	m_listctrl.OnUpdate( pSubject, pMsg );
+    m_listctrl.OnUpdate( pSubject, pMsg );
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -70,17 +70,17 @@ void ZCPropertyListView::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
 
 int ZCPropertyListView::OnCreate(LPCREATESTRUCT lpCreateStruct) 
 {
-	if (CView::OnCreate(lpCreateStruct) == -1)
-		return -1;
-	
-	m_listctrl.Create(WS_CHILD|WS_VISIBLE|WS_VSCROLL|WS_HSCROLL|LBS_NOINTEGRALHEIGHT, CRect(0,0,0,0), this, 1); 
-	
-	return 0;
+    if (CView::OnCreate(lpCreateStruct) == -1)
+        return -1;
+    
+    m_listctrl.Create(WS_CHILD|WS_VISIBLE|WS_VSCROLL|WS_HSCROLL|LBS_NOINTEGRALHEIGHT, CRect(0,0,0,0), this, 1); 
+    
+    return 0;
 }
 
 void ZCPropertyListView::OnSize(UINT nType, int cx, int cy) 
 {
-	CView::OnSize(nType, cx, cy);
-	
-	m_listctrl.MoveWindow(0, 0, cx, cy); 	
+    CView::OnSize(nType, cx, cy);
+    
+    m_listctrl.MoveWindow(0, 0, cx, cy);     
 }

@@ -33,37 +33,37 @@
 
 class AFX_EXT_CLASS ZBKeyboardObserverMsg : public ZIObserverMsg  
 {
-	DECLARE_DYNAMIC( ZBKeyboardObserverMsg )
+    DECLARE_DYNAMIC( ZBKeyboardObserverMsg )
 
 public:
 
-	ZBKeyboardObserverMsg( UINT MessageID = 0, UINT Key = 0 );
-	virtual ~ZBKeyboardObserverMsg();
+    ZBKeyboardObserverMsg( UINT MessageID = 0, UINT Key = 0 );
+    virtual ~ZBKeyboardObserverMsg();
 
-	UINT GetMessageID() const
-	{
-		return m_MessageID;
-	};
+    UINT GetMessageID() const
+    {
+        return m_MessageID;
+    };
 
-	void SetMessageID( UINT value )
-	{
-		m_MessageID = value;
-	};
+    void SetMessageID( UINT value )
+    {
+        m_MessageID = value;
+    };
 
-	UINT GetKey() const
-	{
-		return m_Key;
-	};
+    UINT GetKey() const
+    {
+        return m_Key;
+    };
 
-	void SetKey( UINT value )
-	{
-		m_Key = value;
-	};
+    void SetKey( UINT value )
+    {
+        m_Key = value;
+    };
 
 private:
 
-	UINT m_MessageID;
-	UINT m_Key;
+    UINT m_MessageID;
+    UINT m_Key;
 };
 
 #endif // !defined(AFX_ZBKeyboardObserverMsg_H__31A212D8_7CA2_4BEB_9709_8C785F4909B3__INCLUDED_)

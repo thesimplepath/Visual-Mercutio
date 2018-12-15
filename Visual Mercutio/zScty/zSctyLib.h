@@ -12,7 +12,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 02/2002
+// <nl>Created:         02/2002
 // <nl>Description:  zSctyLib include file for automatic library linking
 //
 /////////////////////////////////////////////////////////////////////////////

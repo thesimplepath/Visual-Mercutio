@@ -40,30 +40,30 @@ class AFX_EXT_CLASS ZBPublishMessengerModelInformation
 {
 public:
 
-	// JMR-MODIF - Le 21 juin 2006 - Ajout de l'alias et des dates dans les paramètres de construction de la classe.
-	ZBPublishMessengerModelInformation( ZDProcessGraphModelDoc*	pDoc,
-										CString					MessengerAddress,
-										CString					MessengerAlias )
-	{
-		m_pDoc				= pDoc;
-		m_MessengerAddress	= MessengerAddress;
-		m_MessengerAlias	= MessengerAlias;
-		m_BeginDate			= _T( "" );
-		m_EndDate			= _T( "" );
-	};
+    // JMR-MODIF - Le 21 juin 2006 - Ajout de l'alias et des dates dans les paramètres de construction de la classe.
+    ZBPublishMessengerModelInformation( ZDProcessGraphModelDoc*    pDoc,
+                                        CString                    MessengerAddress,
+                                        CString                    MessengerAlias )
+    {
+        m_pDoc                = pDoc;
+        m_MessengerAddress    = MessengerAddress;
+        m_MessengerAlias    = MessengerAlias;
+        m_BeginDate            = _T( "" );
+        m_EndDate            = _T( "" );
+    };
 
-	virtual ~ZBPublishMessengerModelInformation()
-	{
-	};
+    virtual ~ZBPublishMessengerModelInformation()
+    {
+    };
 
-	CString					m_MessengerAddress;
+    CString                    m_MessengerAddress;
 
-	// JMR-MODIF - Le 21 juin 2006 - Ajout des variables m_MessengerAlias, m_BeginDate et m_EndDate.
-	CString					m_MessengerAlias;
-	CString					m_BeginDate;
-	CString					m_EndDate;
+    // JMR-MODIF - Le 21 juin 2006 - Ajout des variables m_MessengerAlias, m_BeginDate et m_EndDate.
+    CString                    m_MessengerAlias;
+    CString                    m_BeginDate;
+    CString                    m_EndDate;
 
-	ZDProcessGraphModelDoc*	m_pDoc;
+    ZDProcessGraphModelDoc*    m_pDoc;
 };
 
 #endif // !defined(_ZBPublishMessengerModelInformation_H__)

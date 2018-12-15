@@ -22,28 +22,28 @@ ZVDistributionRuleDef::ZVDistributionRuleDef(ZBDistributionRule* pRule /*= NULL*
 : CDialog(ZVDistributionRuleDef::IDD, pParent),
   m_pRule(pRule)
 {
-	//{{AFX_DATA_INIT(ZVDistributionRuleDef)
-	m_Operator = 0;
-	m_Value = _T("");
-	m_LogicalOperator = 0;
-	//}}AFX_DATA_INIT
+    //{{AFX_DATA_INIT(ZVDistributionRuleDef)
+    m_Operator = 0;
+    m_Value = _T("");
+    m_LogicalOperator = 0;
+    //}}AFX_DATA_INIT
 }
 
 
 void ZVDistributionRuleDef::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(ZVDistributionRuleDef)
-	DDX_CBIndex(pDX, IDC_OPERATOR_RULE, m_Operator);
-	DDX_Text(pDX, IDC_VALUE_RULE, m_Value);
-	DDX_CBIndex(pDX, IDC_LOGICALOPERATOR_RULE, m_LogicalOperator);
-	//}}AFX_DATA_MAP
+    CDialog::DoDataExchange(pDX);
+    //{{AFX_DATA_MAP(ZVDistributionRuleDef)
+    DDX_CBIndex(pDX, IDC_OPERATOR_RULE, m_Operator);
+    DDX_Text(pDX, IDC_VALUE_RULE, m_Value);
+    DDX_CBIndex(pDX, IDC_LOGICALOPERATOR_RULE, m_LogicalOperator);
+    //}}AFX_DATA_MAP
 }
 
 
 BEGIN_MESSAGE_MAP(ZVDistributionRuleDef, CDialog)
-	//{{AFX_MSG_MAP(ZVDistributionRuleDef)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZVDistributionRuleDef)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -51,38 +51,38 @@ END_MESSAGE_MAP()
 
 void ZVDistributionRuleDef::OnOK() 
 {
-	UpdateData(TRUE);
+    UpdateData(TRUE);
 
-	if (m_Operator <= 0)
-	{
-		MsgBox		mbox;
-		mbox.DisplayMsgBox( IDS_OPERATORRULE_MISSING, MB_OK );
-		return;
-	}
+    if (m_Operator <= 0)
+    {
+        MsgBox        mbox;
+        mbox.DisplayMsgBox( IDS_OPERATORRULE_MISSING, MB_OK );
+        return;
+    }
 
-	if (m_Value.IsEmpty())
-	{
-		MsgBox		mbox;
-		mbox.DisplayMsgBox( IDS_OPERATORVALUE_MISSING, MB_OK );
-		return;
-	}
-	
-	CDialog::OnOK();
+    if (m_Value.IsEmpty())
+    {
+        MsgBox        mbox;
+        mbox.DisplayMsgBox( IDS_OPERATORVALUE_MISSING, MB_OK );
+        return;
+    }
+    
+    CDialog::OnOK();
 }
 
 BOOL ZVDistributionRuleDef::OnInitDialog() 
 {
-	if (m_pRule)
-	{
-		m_Operator = m_pRule->GetOperator();
-		m_Value = m_pRule->GetValue();
-		m_LogicalOperator = m_pRule->GetLogicalOperator() + 1;
+    if (m_pRule)
+    {
+        m_Operator = m_pRule->GetOperator();
+        m_Value = m_pRule->GetValue();
+        m_LogicalOperator = m_pRule->GetLogicalOperator() + 1;
 
-	}
+    }
 
-	CDialog::OnInitDialog();
-	
-	
-	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX Property Pages should return FALSE
+    CDialog::OnInitDialog();
+    
+    
+    return TRUE;  // return TRUE unless you set the focus to a control
+                  // EXCEPTION: OCX Property Pages should return FALSE
 }

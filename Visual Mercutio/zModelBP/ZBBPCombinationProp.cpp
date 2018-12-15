@@ -45,18 +45,18 @@ IMPLEMENT_SERIAL( ZBBPCombinationProperties, CObject, def_Version )
 //@parm ZBBPCombinationProperties& | propProcess | The fill property to copy.
 ZBBPCombinationProperties::ZBBPCombinationProperties()
 {
-	m_CombinationName			= _T( "" );
-	m_CombinationDeliverables	= _T( "" );
-	m_CombinationActivationPerc = 0;
-	m_CombinationMaster			= _T( "" );
+    m_CombinationName            = _T( "" );
+    m_CombinationDeliverables    = _T( "" );
+    m_CombinationActivationPerc = 0;
+    m_CombinationMaster            = _T( "" );
 }
 
 ZBBPCombinationProperties::ZBBPCombinationProperties( const ZBBPCombinationProperties& propProcess )
 {
-	m_CombinationName			= propProcess.GetCombinationName();
-	m_CombinationDeliverables	= propProcess.GetCombinationDeliverables();
-	m_CombinationActivationPerc	= propProcess.GetCombinationActivationPerc();
-	m_CombinationMaster			= propProcess.GetCombinationMaster();
+    m_CombinationName            = propProcess.GetCombinationName();
+    m_CombinationDeliverables    = propProcess.GetCombinationDeliverables();
+    m_CombinationActivationPerc    = propProcess.GetCombinationActivationPerc();
+    m_CombinationMaster            = propProcess.GetCombinationMaster();
 }
 
 //@mfunc Destructor.
@@ -72,12 +72,12 @@ ZBBPCombinationProperties::~ZBBPCombinationProperties()
 //@parm The property to copy.
 ZBBPCombinationProperties& ZBBPCombinationProperties::operator=( const ZBBPCombinationProperties& propProcess )
 {
-	SetCombinationName			( propProcess.GetCombinationName() );
-	SetCombinationDeliverables	( propProcess.GetCombinationDeliverables() );
-	SetCombinationActivationPerc( propProcess.GetCombinationActivationPerc() );
-	SetCombinationMaster		( propProcess.GetCombinationMaster() );
+    SetCombinationName            ( propProcess.GetCombinationName() );
+    SetCombinationDeliverables    ( propProcess.GetCombinationDeliverables() );
+    SetCombinationActivationPerc( propProcess.GetCombinationActivationPerc() );
+    SetCombinationMaster        ( propProcess.GetCombinationMaster() );
 
-	return *this;
+    return *this;
 }
 
 //@mfunc Tests if this property is equal to the one passed in.
@@ -85,10 +85,10 @@ ZBBPCombinationProperties& ZBBPCombinationProperties::operator=( const ZBBPCombi
 //@parm The property to test against.
 BOOL ZBBPCombinationProperties::operator==( const ZBBPCombinationProperties propProcess ) const
 {
-	return ( GetCombinationName()			== propProcess.GetCombinationName()				&&
-			 GetCombinationDeliverables()	== propProcess.GetCombinationDeliverables()		&&
-			 GetCombinationActivationPerc()	== propProcess.GetCombinationActivationPerc()	&&
-			 GetCombinationMaster()			== propProcess.GetCombinationMaster() );
+    return ( GetCombinationName()            == propProcess.GetCombinationName()                &&
+             GetCombinationDeliverables()    == propProcess.GetCombinationDeliverables()        &&
+             GetCombinationActivationPerc()    == propProcess.GetCombinationActivationPerc()    &&
+             GetCombinationMaster()            == propProcess.GetCombinationMaster() );
 }
 
 //@mfunc Merges the values of the property passed in with the values in this
@@ -99,28 +99,28 @@ BOOL ZBBPCombinationProperties::operator==( const ZBBPCombinationProperties prop
 // to merge into this property object.
 void ZBBPCombinationProperties::Merge( ZBBPCombinationProperties* pProperty, DWORD dwChangeFlags )
 {
-	if ( pProperty )
-	{
-		if ( dwChangeFlags & Z_CHANGE_COMBINATION_NAME )
-		{
-			m_CombinationName = pProperty->GetCombinationName();
-		}
+    if ( pProperty )
+    {
+        if ( dwChangeFlags & Z_CHANGE_COMBINATION_NAME )
+        {
+            m_CombinationName = pProperty->GetCombinationName();
+        }
 
-		if ( dwChangeFlags & Z_CHANGE_COMBINATION_DELIVERABLES )
-		{
-			m_CombinationDeliverables = pProperty->GetCombinationDeliverables();
-		}
+        if ( dwChangeFlags & Z_CHANGE_COMBINATION_DELIVERABLES )
+        {
+            m_CombinationDeliverables = pProperty->GetCombinationDeliverables();
+        }
 
-		if ( dwChangeFlags & Z_CHANGE_COMBINATION_ACTIVATION_PERC )
-		{
-			m_CombinationActivationPerc = pProperty->GetCombinationActivationPerc();
-		}
+        if ( dwChangeFlags & Z_CHANGE_COMBINATION_ACTIVATION_PERC )
+        {
+            m_CombinationActivationPerc = pProperty->GetCombinationActivationPerc();
+        }
 
-		if ( dwChangeFlags & Z_CHANGE_COMBINATION_MASTER )
-		{
-			m_CombinationMaster = pProperty->GetCombinationMaster();
-		}
-	}
+        if ( dwChangeFlags & Z_CHANGE_COMBINATION_MASTER )
+        {
+            m_CombinationMaster = pProperty->GetCombinationMaster();
+        }
+    }
 }
 
 //@mfunc Tests if this property is equal to the one passed in. This method
@@ -129,35 +129,35 @@ void ZBBPCombinationProperties::Merge( ZBBPCombinationProperties* pProperty, DWO
 //@parm A pointer to the property to test against.
 BOOL ZBBPCombinationProperties::IsEqual( ZBBPCombinationProperties* pProp )
 {
-	if ( pProp != NULL )
-	{
-		return ( *this == *pProp );
-	}
+    if ( pProp != NULL )
+    {
+        return ( *this == *pProp );
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 bool ZBBPCombinationProperties::IsDeliverableInCombination( LPCTSTR lpszValue )
 {
-	ZBTokenizer token;	// Initialize the token with ; as separator
+    ZBTokenizer token;    // Initialize the token with ; as separator
 
-	CString str = token.GetFirstToken( lpszValue );
-	
-	// Run through all tokens
-	while ( !str.IsEmpty() )
-	{
-		// If we found the same deliverable,
-		// then sets the Found flag to true
-		if ( str == lpszValue )
-		{
-			return true;
-		}
+    CString str = token.GetFirstToken( lpszValue );
+    
+    // Run through all tokens
+    while ( !str.IsEmpty() )
+    {
+        // If we found the same deliverable,
+        // then sets the Found flag to true
+        if ( str == lpszValue )
+        {
+            return true;
+        }
 
-		// Get the next token
-		str = token.GetNextToken();
-	}
+        // Get the next token
+        str = token.GetNextToken();
+    }
 
-	return false;
+    return false;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -165,56 +165,56 @@ bool ZBBPCombinationProperties::IsDeliverableInCombination( LPCTSTR lpszValue )
 
 void ZBBPCombinationProperties::SetCombinationName( LPCTSTR lpszValue )
 {
-	if ( lpszValue != NULL )
-	{
-		m_CombinationName = lpszValue;
-	}
-	else
-	{
-		TRACE0( _T( "Z -> Invalid Combination name pointer!\n" ) );
-		ASSERT( FALSE );
-	}
+    if ( lpszValue != NULL )
+    {
+        m_CombinationName = lpszValue;
+    }
+    else
+    {
+        TRACE0( _T( "Z -> Invalid Combination name pointer!\n" ) );
+        ASSERT( FALSE );
+    }
 }
 
 void ZBBPCombinationProperties::SetCombinationNameEx( const CString value )
 {
-	SetCombinationName( value );
+    SetCombinationName( value );
 }
 
 void ZBBPCombinationProperties::SetCombinationDeliverables( LPCTSTR lpszValue )
 {
-	if ( lpszValue != NULL )
-	{
-		m_CombinationDeliverables = lpszValue;
-	}
-	else
-	{
-		TRACE0( _T( "Z -> Invalid Combination Deliverables list pointer!\n" ) );
-		ASSERT( FALSE );
-	}
+    if ( lpszValue != NULL )
+    {
+        m_CombinationDeliverables = lpszValue;
+    }
+    else
+    {
+        TRACE0( _T( "Z -> Invalid Combination Deliverables list pointer!\n" ) );
+        ASSERT( FALSE );
+    }
 }
 
 void ZBBPCombinationProperties::SetCombinationDeliverablesEx( const CString value )
 {
-	SetCombinationDeliverables( value );
+    SetCombinationDeliverables( value );
 }
 
 void ZBBPCombinationProperties::SetCombinationMaster( LPCTSTR lpszValue )
 {
-	if ( lpszValue != NULL )
-	{
-		m_CombinationMaster = lpszValue;
-	}
-	else
-	{
-		TRACE0( _T( "Z -> Invalid Combination master name pointer!\n" ) );
-		ASSERT( FALSE );
-	}
+    if ( lpszValue != NULL )
+    {
+        m_CombinationMaster = lpszValue;
+    }
+    else
+    {
+        TRACE0( _T( "Z -> Invalid Combination master name pointer!\n" ) );
+        ASSERT( FALSE );
+    }
 }
 
 void ZBBPCombinationProperties::SetCombinationMasterEx( const CString value )
 {
-	SetCombinationMaster( value );
+    SetCombinationMaster( value );
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -244,127 +244,127 @@ void ZBBPCombinationProperties::SetCombinationMasterEx( const CString value )
 
 BOOL ZBBPCombinationProperties::GetValue( const int nPropId, CString& strValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_COMBINATION_NAME:
-		{
-			strValue = m_CombinationName;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_COMBINATION_NAME:
+        {
+            strValue = m_CombinationName;
+            break;
+        }
 
-		case Z_COMBINATION_DELIVERABLES:
-		{
-			strValue = m_CombinationDeliverables;
-			break;
-		}
+        case Z_COMBINATION_DELIVERABLES:
+        {
+            strValue = m_CombinationDeliverables;
+            break;
+        }
 
-		case Z_COMBINATION_MASTER:
-		{
-			strValue = m_CombinationMaster;
-			break;
-		}
+        case Z_COMBINATION_MASTER:
+        {
+            strValue = m_CombinationMaster;
+            break;
+        }
 
-		default:
-		{
-			ASSERT( FALSE );
-			return FALSE;
-		}
-	}
+        default:
+        {
+            ASSERT( FALSE );
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPCombinationProperties::GetValue( const int nPropId, int& nValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_COMBINATION_NAME:
-		case Z_COMBINATION_DELIVERABLES:
-		case Z_COMBINATION_ACTIVATION_PERC:
-		case Z_COMBINATION_MASTER:
-		{
-			ASSERT( FALSE );
-			return FALSE;
-		}
+    switch ( nPropId )
+    {
+        case Z_COMBINATION_NAME:
+        case Z_COMBINATION_DELIVERABLES:
+        case Z_COMBINATION_ACTIVATION_PERC:
+        case Z_COMBINATION_MASTER:
+        {
+            ASSERT( FALSE );
+            return FALSE;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPCombinationProperties::GetValue( const int nPropId, UINT& nValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_COMBINATION_NAME:
-		case Z_COMBINATION_DELIVERABLES:
-		case Z_COMBINATION_ACTIVATION_PERC:
-		case Z_COMBINATION_MASTER:
-		{
-			ASSERT( FALSE );
-			return FALSE;
-		}
+    switch ( nPropId )
+    {
+        case Z_COMBINATION_NAME:
+        case Z_COMBINATION_DELIVERABLES:
+        case Z_COMBINATION_ACTIVATION_PERC:
+        case Z_COMBINATION_MASTER:
+        {
+            ASSERT( FALSE );
+            return FALSE;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPCombinationProperties::GetValue( const int nPropId, DWORD& dwValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_COMBINATION_NAME:
-		case Z_COMBINATION_DELIVERABLES:
-		case Z_COMBINATION_ACTIVATION_PERC:
-		case Z_COMBINATION_MASTER:
-		{
-			ASSERT( FALSE );
-			return FALSE;
-		}
+    switch ( nPropId )
+    {
+        case Z_COMBINATION_NAME:
+        case Z_COMBINATION_DELIVERABLES:
+        case Z_COMBINATION_ACTIVATION_PERC:
+        case Z_COMBINATION_MASTER:
+        {
+            ASSERT( FALSE );
+            return FALSE;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPCombinationProperties::GetValue( const int nPropId, float& fValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_COMBINATION_NAME:
-		case Z_COMBINATION_DELIVERABLES:
-		case Z_COMBINATION_MASTER:
-		{
-			ASSERT( FALSE );
-			return FALSE;
-		}
+    switch ( nPropId )
+    {
+        case Z_COMBINATION_NAME:
+        case Z_COMBINATION_DELIVERABLES:
+        case Z_COMBINATION_MASTER:
+        {
+            ASSERT( FALSE );
+            return FALSE;
+        }
 
-		case Z_COMBINATION_ACTIVATION_PERC:
-		{
-			fValue = m_CombinationActivationPerc;
-			break;
-		}
+        case Z_COMBINATION_ACTIVATION_PERC:
+        {
+            fValue = m_CombinationActivationPerc;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 //@mfunc | ZBBPCombinationProperties | SetValue | Sets the value of the given property.
@@ -391,128 +391,128 @@ BOOL ZBBPCombinationProperties::GetValue( const int nPropId, float& fValue ) con
 
 BOOL ZBBPCombinationProperties::SetValue( const int nPropId, LPCTSTR lpszValue )
 {
-	switch ( nPropId )
-	{
-		case Z_COMBINATION_NAME:
-		{
-			m_CombinationName = lpszValue;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_COMBINATION_NAME:
+        {
+            m_CombinationName = lpszValue;
+            break;
+        }
 
-		case Z_COMBINATION_DELIVERABLES:
-		{
-			m_CombinationDeliverables = lpszValue;
-			break;
-		}
+        case Z_COMBINATION_DELIVERABLES:
+        {
+            m_CombinationDeliverables = lpszValue;
+            break;
+        }
 
-		case Z_COMBINATION_MASTER:
-		{
-			m_CombinationMaster = lpszValue;
-			break;
-		}
+        case Z_COMBINATION_MASTER:
+        {
+            m_CombinationMaster = lpszValue;
+            break;
+        }
 
-		default:
-		{
-			ASSERT( FALSE );
-			return FALSE;
-		}
-	}
+        default:
+        {
+            ASSERT( FALSE );
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPCombinationProperties::SetValue( const int nPropId, const int nValue )
 {
-	switch ( nPropId )
-	{
-		case Z_COMBINATION_NAME:
-		case Z_COMBINATION_DELIVERABLES:
-		case Z_COMBINATION_ACTIVATION_PERC:
-		case Z_COMBINATION_MASTER:
-		{
-			ASSERT( FALSE );
-			return FALSE;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_COMBINATION_NAME:
+        case Z_COMBINATION_DELIVERABLES:
+        case Z_COMBINATION_ACTIVATION_PERC:
+        case Z_COMBINATION_MASTER:
+        {
+            ASSERT( FALSE );
+            return FALSE;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPCombinationProperties::SetValue( const int nPropId, const UINT nValue )
 {
-	switch ( nPropId )
-	{
-		case Z_COMBINATION_NAME:
-		case Z_COMBINATION_DELIVERABLES:
-		case Z_COMBINATION_ACTIVATION_PERC:
-		case Z_COMBINATION_MASTER:
-		{
-			ASSERT( FALSE );
-			return FALSE;
-		}
+    switch ( nPropId )
+    {
+        case Z_COMBINATION_NAME:
+        case Z_COMBINATION_DELIVERABLES:
+        case Z_COMBINATION_ACTIVATION_PERC:
+        case Z_COMBINATION_MASTER:
+        {
+            ASSERT( FALSE );
+            return FALSE;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPCombinationProperties::SetValue( const int nPropId, const DWORD dwValue )
 {
-	switch ( nPropId )
-	{
-		case Z_COMBINATION_NAME:
-		case Z_COMBINATION_DELIVERABLES:
-		case Z_COMBINATION_ACTIVATION_PERC:
-		case Z_COMBINATION_MASTER:
-		{
-			ASSERT( FALSE );
-			return FALSE;
-		}
+    switch ( nPropId )
+    {
+        case Z_COMBINATION_NAME:
+        case Z_COMBINATION_DELIVERABLES:
+        case Z_COMBINATION_ACTIVATION_PERC:
+        case Z_COMBINATION_MASTER:
+        {
+            ASSERT( FALSE );
+            return FALSE;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPCombinationProperties::SetValue( const int nPropId, const float fValue )
 {
-	switch ( nPropId )
-	{
-		case Z_COMBINATION_NAME:
-		case Z_COMBINATION_DELIVERABLES:
-		case Z_COMBINATION_MASTER:
-		{
-			ASSERT( FALSE );
-			return FALSE;
-		}
+    switch ( nPropId )
+    {
+        case Z_COMBINATION_NAME:
+        case Z_COMBINATION_DELIVERABLES:
+        case Z_COMBINATION_MASTER:
+        {
+            ASSERT( FALSE );
+            return FALSE;
+        }
 
-		case Z_COMBINATION_ACTIVATION_PERC:
-		{
-			m_CombinationActivationPerc = fValue;
-			break;
-		}
+        case Z_COMBINATION_ACTIVATION_PERC:
+        {
+            m_CombinationActivationPerc = fValue;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -524,16 +524,16 @@ BOOL ZBBPCombinationProperties::SetValue( const int nPropId, const float fValue 
 #ifdef _DEBUG
 void ZBBPCombinationProperties::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void ZBBPCombinationProperties::Dump( CDumpContext& dc ) const
 {
-	CObject::Dump( dc );
+    CObject::Dump( dc );
 
-	dc << _T( "Name = " )			<< m_CombinationName			<< _T( "\n" );
-	dc << _T( "Deliverables = " )	<< m_CombinationDeliverables	<< _T( "\n" );
-	dc << _T( "Master = " )			<< m_CombinationMaster			<< _T( "\n" );
+    dc << _T( "Name = " )            << m_CombinationName            << _T( "\n" );
+    dc << _T( "Deliverables = " )    << m_CombinationDeliverables    << _T( "\n" );
+    dc << _T( "Master = " )            << m_CombinationMaster            << _T( "\n" );
 }
 #endif //_DEBUG
 
@@ -547,36 +547,36 @@ void ZBBPCombinationProperties::Dump( CDumpContext& dc ) const
 //@parm The archive to use for serialization.
 void ZBBPCombinationProperties::Serialize( CArchive& ar )
 {
-	if ( ar.IsStoring() )
-	{
-		TRACE( _T( "ZBBPCombinationProperties::Serialize : Start Save\n" ) );
+    if ( ar.IsStoring() )
+    {
+        TRACE( _T( "ZBBPCombinationProperties::Serialize : Start Save\n" ) );
 
-		ar << m_CombinationName;
-		ar << m_CombinationDeliverables;
-		ar << m_CombinationActivationPerc;
-		ar << m_CombinationMaster;
+        ar << m_CombinationName;
+        ar << m_CombinationDeliverables;
+        ar << m_CombinationActivationPerc;
+        ar << m_CombinationMaster;
 
-		TRACE( _T( "ZBBPCombinationProperties::Serialize : End Save\n" ) );
-	}
-	else
-	{
-		TRACE( _T( "ZBBPCombinationProperties::Serialize : Start Read\n" ) );
+        TRACE( _T( "ZBBPCombinationProperties::Serialize : End Save\n" ) );
+    }
+    else
+    {
+        TRACE( _T( "ZBBPCombinationProperties::Serialize : Start Read\n" ) );
 
-		ar >> m_CombinationName;
-		ar >> m_CombinationDeliverables;
-		ar >> m_CombinationActivationPerc;
+        ar >> m_CombinationName;
+        ar >> m_CombinationDeliverables;
+        ar >> m_CombinationActivationPerc;
 
-		// Check the version for new file format.
-		if ( ar.m_pDocument &&
-			 dynamic_cast<ZDBaseDocument*>(ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 19 )
-		{
-			ar >> m_CombinationMaster;
-		}
-		else
-		{
-			m_CombinationMaster.Empty();
-		}
+        // Check the version for new file format.
+        if ( ar.m_pDocument &&
+             dynamic_cast<ZDBaseDocument*>(ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 19 )
+        {
+            ar >> m_CombinationMaster;
+        }
+        else
+        {
+            m_CombinationMaster.Empty();
+        }
 
-		TRACE( _T( "ZBBPCombinationProperties::Serialize : End Read\n" ) );
-	}
+        TRACE( _T( "ZBBPCombinationProperties::Serialize : End Read\n" ) );
+    }
 }

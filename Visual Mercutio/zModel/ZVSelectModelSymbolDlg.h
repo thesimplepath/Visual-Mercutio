@@ -45,95 +45,95 @@ class AFX_EXT_CLASS ZVSelectModelSymbolDlg : public ZIDialog
 // Construction
 public:
 
-	// Standard constructor
-	ZVSelectModelSymbolDlg( ZDProcessGraphModelMdl*		pModel,
-							const CString				Title				= _T( "" ),
-							int							SelectableItem		= Selectable_All,
-							ZBRuntimeClassSet*			pSet				= NULL,
-							CWnd*						pParent				= NULL);
+    // Standard constructor
+    ZVSelectModelSymbolDlg( ZDProcessGraphModelMdl*        pModel,
+                            const CString                Title                = _T( "" ),
+                            int                            SelectableItem        = Selectable_All,
+                            ZBRuntimeClassSet*            pSet                = NULL,
+                            CWnd*                        pParent                = NULL);
 
-	ZVSelectModelSymbolDlg( ZDProcessGraphModelMdl*		pModel,
-							const CString				Title,
-							CRuntimeClass*				pSelectableClass,
-							ZBRuntimeClassSet*			pSet				= NULL,
-							CWnd*						pParent				= NULL );
+    ZVSelectModelSymbolDlg( ZDProcessGraphModelMdl*        pModel,
+                            const CString                Title,
+                            CRuntimeClass*                pSelectableClass,
+                            ZBRuntimeClassSet*            pSet                = NULL,
+                            CWnd*                        pParent                = NULL );
 
-	ZVSelectModelSymbolDlg( ZDProcessGraphModelMdl*		pModel,
-							UINT						nIDResTitle,
-							int							SelectableItem		= Selectable_All,
-							ZBRuntimeClassSet*			pSet				= NULL,
-							CWnd*						pParent				= NULL );
+    ZVSelectModelSymbolDlg( ZDProcessGraphModelMdl*        pModel,
+                            UINT                        nIDResTitle,
+                            int                            SelectableItem        = Selectable_All,
+                            ZBRuntimeClassSet*            pSet                = NULL,
+                            CWnd*                        pParent                = NULL );
 
-	ZVSelectModelSymbolDlg( ZDProcessGraphModelMdl*		pModel,
-							UINT						nIDResTitle,
-							CRuntimeClass*				pSelectableClass,
-							ZBRuntimeClassSet*			pSet				= NULL,
-							CWnd*						pParent				= NULL );
+    ZVSelectModelSymbolDlg( ZDProcessGraphModelMdl*        pModel,
+                            UINT                        nIDResTitle,
+                            CRuntimeClass*                pSelectableClass,
+                            ZBRuntimeClassSet*            pSet                = NULL,
+                            CWnd*                        pParent                = NULL );
 
-	CODModel* GetSelectedModel()
-	{
-		return m_pSelectedModel;
-	};
+    CODModel* GetSelectedModel()
+    {
+        return m_pSelectedModel;
+    };
 
-	CODSymbolComponent* GetSelectedSymbol()
-	{
-		return m_pSelectedSymbol;
-	};
+    CODSymbolComponent* GetSelectedSymbol()
+    {
+        return m_pSelectedSymbol;
+    };
 
-	ZDProcessGraphPage* GetSelectedPage()
-	{
-		return m_pSelectedPage;
-	};
+    ZDProcessGraphPage* GetSelectedPage()
+    {
+        return m_pSelectedPage;
+    };
 
-	CString GetSymbolPath() const
-	{
-		return m_SymbolPath;
-	};
+    CString GetSymbolPath() const
+    {
+        return m_SymbolPath;
+    };
 
-	CString GetSymbolName() const
-	{
-		return m_SymbolName;
-	};
+    CString GetSymbolName() const
+    {
+        return m_SymbolName;
+    };
 
-	// Dialog Data
-	//{{AFX_DATA(ZVSelectModelSymbolDlg)
-	enum { IDD = IDD_SELECTSYMBOL };
-	ZCProcessModelTree	m_SymbolTree;
-	CString	m_SymbolPath;
-	CString	m_SymbolName;
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZVSelectModelSymbolDlg)
+    enum { IDD = IDD_SELECTSYMBOL };
+    ZCProcessModelTree    m_SymbolTree;
+    CString    m_SymbolPath;
+    CString    m_SymbolName;
+    //}}AFX_DATA
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVSelectModelSymbolDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVSelectModelSymbolDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 protected:
 
-	// Implementation
-	// Generated message map functions
-	//{{AFX_MSG(ZVSelectModelSymbolDlg)
-	virtual void OnOK();
-	afx_msg void OnSelchangedSymboltree(NMHDR* pNMHDR, LRESULT* pResult);
-	virtual BOOL OnInitDialog();
-	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Implementation
+    // Generated message map functions
+    //{{AFX_MSG(ZVSelectModelSymbolDlg)
+    virtual void OnOK();
+    afx_msg void OnSelchangedSymboltree(NMHDR* pNMHDR, LRESULT* pResult);
+    virtual BOOL OnInitDialog();
+    afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	ZDProcessGraphModelMdl*	m_pModel;
-	CRuntimeClass*			m_pSelectableClass;
-	CODModel*				m_pSelectedModel;
-	CODSymbolComponent*		m_pSelectedSymbol;
-	ZDProcessGraphPage*		m_pSelectedPage;
-	CString					m_Title;
-	int						m_SelectableItem;
+    ZDProcessGraphModelMdl*    m_pModel;
+    CRuntimeClass*            m_pSelectableClass;
+    CODModel*                m_pSelectedModel;
+    CODSymbolComponent*        m_pSelectedSymbol;
+    ZDProcessGraphPage*        m_pSelectedPage;
+    CString                    m_Title;
+    int                        m_SelectableItem;
 
-	// Set of elements that can be displayed in the tree
-	ZBRuntimeClassSet*		m_pSet;
+    // Set of elements that can be displayed in the tree
+    ZBRuntimeClassSet*        m_pSet;
 };
 
 //{{AFX_INSERT_LOCATION}}

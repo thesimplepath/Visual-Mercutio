@@ -1,10 +1,10 @@
 //## begin module%373A831303C3.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%373A831303C3.cm
 
 //## begin module%373A831303C3.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%373A831303C3.cp
 
 //## Module: FldInfoC%373A831303C3; Package specification
@@ -71,7 +71,7 @@ class AFX_EXT_CLASS ZCFolderInformation : public ZIListCtrl  //## Inherits: <unn
   public:
     //## Constructors (specified)
       //## Operation: ZCFolderInformation%926579193
-      //	Default constructor with FolderStamp pointer.
+      //    Default constructor with FolderStamp pointer.
       ZCFolderInformation (ZDFolderStamp* pFolderStamp = NULL, BOOL CanModify = FALSE);
 
     //## Destructor (generated)
@@ -80,24 +80,24 @@ class AFX_EXT_CLASS ZCFolderInformation : public ZIListCtrl  //## Inherits: <unn
 
     //## Other Operations (specified)
       //## Operation: Initialize%926579194
-      //	Initialize the control with Folder Information.
+      //    Initialize the control with Folder Information.
       void Initialize (ZDFolderStamp* pFolderStamp, BOOL RemoveAll = TRUE, BOOL CanModify = FALSE);
 
       //## Operation: Refresh%926579197
-      //	Initialize the control with Folder Information.
+      //    Initialize the control with Folder Information.
       void Refresh ();
 
     // Additional Public Declarations
       //## begin ZCFolderInformation%373A81F402E4.public preserve=yes
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCFolderInformation)
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCFolderInformation)
+    //}}AFX_VIRTUAL
 
-	//{{AFX_MSG(ZCFolderInformation)
-	afx_msg BOOL OnDoubleClick(NMHDR* pNMHDR, LRESULT* pResult);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZCFolderInformation)
+    afx_msg BOOL OnDoubleClick(NMHDR* pNMHDR, LRESULT* pResult);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
       //## end ZCFolderInformation%373A81F402E4.public
   protected:
     // Additional Protected Declarations
@@ -124,55 +124,55 @@ class AFX_EXT_CLASS ZCFolderInformation : public ZIListCtrl  //## Inherits: <unn
       //## end ZCFolderInformation::IsColumnBuilt%37850B16020F.attr
 
       //## Attribute: CanModify%382682640152
-      //	Determine if the control can be modified.
+      //    Determine if the control can be modified.
       //## begin ZCFolderInformation::CanModify%382682640152.attr preserve=no  private: BOOL {U} 
       BOOL m_CanModify;
       //## end ZCFolderInformation::CanModify%382682640152.attr
 
       //## Attribute: FolderNameTitle%38268169013D
-      //	String used for titles.
+      //    String used for titles.
       //## begin ZCFolderInformation::FolderNameTitle%38268169013D.attr preserve=no  private: CString {U} 
       CString m_FolderNameTitle;
       //## end ZCFolderInformation::FolderNameTitle%38268169013D.attr
 
       //## Attribute: FolderDescriptionTitle%382681900233
-      //	String used for titles.
+      //    String used for titles.
       //## begin ZCFolderInformation::FolderDescriptionTitle%382681900233.attr preserve=no  private: CString {U} 
       CString m_FolderDescriptionTitle;
       //## end ZCFolderInformation::FolderDescriptionTitle%382681900233.attr
 
       //## Attribute: CreationUserTitle%382681A00345
-      //	String used for titles.
+      //    String used for titles.
       //## begin ZCFolderInformation::CreationUserTitle%382681A00345.attr preserve=no  private: CString {U} 
       CString m_CreationUserTitle;
       //## end ZCFolderInformation::CreationUserTitle%382681A00345.attr
 
       //## Attribute: CreationDateTitle%382681B50092
-      //	String used for titles.
+      //    String used for titles.
       //## begin ZCFolderInformation::CreationDateTitle%382681B50092.attr preserve=no  private: CString {U} 
       CString m_CreationDateTitle;
       //## end ZCFolderInformation::CreationDateTitle%382681B50092.attr
 
       //## Attribute: PublishVersionTitle%382681C30074
-      //	String used for titles.
+      //    String used for titles.
       //## begin ZCFolderInformation::PublishVersionTitle%382681C30074.attr preserve=no  private: CString {U} 
       CString m_PublishVersionTitle;
       //## end ZCFolderInformation::PublishVersionTitle%382681C30074.attr
 
       //## Attribute: TypeTitle%382681D002AE
-      //	String used for titles.
+      //    String used for titles.
       //## begin ZCFolderInformation::TypeTitle%382681D002AE.attr preserve=no  private: CString {U} 
       CString m_TypeTitle;
       //## end ZCFolderInformation::TypeTitle%382681D002AE.attr
 
       //## Attribute: TemplateNameTitle%382681EE00DA
-      //	String used for titles.
+      //    String used for titles.
       //## begin ZCFolderInformation::TemplateNameTitle%382681EE00DA.attr preserve=no  private: CString {U} 
       CString m_TemplateNameTitle;
       //## end ZCFolderInformation::TemplateNameTitle%382681EE00DA.attr
 
       //## Attribute: TemplateFilenameTitle%382681FA020E
-      //	String used for titles.
+      //    String used for titles.
       //## begin ZCFolderInformation::TemplateFilenameTitle%382681FA020E.attr preserve=no  private: CString {U} 
       CString m_TemplateFilenameTitle;
       //## end ZCFolderInformation::TemplateFilenameTitle%382681FA020E.attr

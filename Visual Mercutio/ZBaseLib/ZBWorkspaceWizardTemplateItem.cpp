@@ -18,33 +18,33 @@ IMPLEMENT_SERIAL(ZBWorkspaceWizardTemplateItem, CObject, def_Version)
 //////////////////////////////////////////////////////////////////////
 
 ZBWorkspaceWizardTemplateItem::ZBWorkspaceWizardTemplateItem(CString TemplateName /*= ""*/,
-															 CString TemplateDescription /*= ""*/,
-															 CString IconFile /*= ""*/,
-															 int IconIndex /*= -1*/)
-: 	m_TemplateName(TemplateName),
-	m_TemplateDescription(TemplateDescription),
-	m_IconFile(IconFile),
-	m_IconIndex(IconIndex),
-	m_Icon(NULL)
+                                                             CString TemplateDescription /*= ""*/,
+                                                             CString IconFile /*= ""*/,
+                                                             int IconIndex /*= -1*/)
+:     m_TemplateName(TemplateName),
+    m_TemplateDescription(TemplateDescription),
+    m_IconFile(IconFile),
+    m_IconIndex(IconIndex),
+    m_Icon(NULL)
 {
-	LoadIconFile();
+    LoadIconFile();
 }
 
 ZBWorkspaceWizardTemplateItem::~ZBWorkspaceWizardTemplateItem()
 {
-	if (m_Icon)
-		::DestroyIcon( m_Icon );
-	m_Icon = NULL;
+    if (m_Icon)
+        ::DestroyIcon( m_Icon );
+    m_Icon = NULL;
 }
 
 
 void ZBWorkspaceWizardTemplateItem::LoadIconFile()
 {
-	// Load the icon if a file and an icon index is defined
-	if (!m_IconFile.IsEmpty() && m_IconIndex != -1)
-	{
-		m_Icon = ::ExtractIcon( ::AfxGetInstanceHandle(), m_IconFile, m_IconIndex );
-	}
+    // Load the icon if a file and an icon index is defined
+    if (!m_IconFile.IsEmpty() && m_IconIndex != -1)
+    {
+        m_Icon = ::ExtractIcon( ::AfxGetInstanceHandle(), m_IconFile, m_IconIndex );
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -52,22 +52,22 @@ void ZBWorkspaceWizardTemplateItem::LoadIconFile()
 
 void ZBWorkspaceWizardTemplateItem::Serialize (CArchive& ar)
 {
-	if (ar.IsStoring())
-	{	// Write the elements
-		ar << m_TemplateName;
-		ar << m_TemplateDescription;
-		ar << m_IconFile;
-		ar << m_IconIndex;
-	}
-	else
-	{	// Read the elements
-		ar >> m_TemplateName;
-		ar >> m_TemplateDescription;
-		ar >> m_IconFile;
-		ar >> m_IconIndex;
-		// Load Icon after reading item
-		LoadIconFile();
-	}
+    if (ar.IsStoring())
+    {    // Write the elements
+        ar << m_TemplateName;
+        ar << m_TemplateDescription;
+        ar << m_IconFile;
+        ar << m_IconIndex;
+    }
+    else
+    {    // Read the elements
+        ar >> m_TemplateName;
+        ar >> m_TemplateDescription;
+        ar >> m_IconFile;
+        ar >> m_IconIndex;
+        // Load Icon after reading item
+        LoadIconFile();
+    }
 }
 
 
@@ -77,11 +77,11 @@ void ZBWorkspaceWizardTemplateItem::Serialize (CArchive& ar)
 #ifdef _DEBUG
 void ZBWorkspaceWizardTemplateItem::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void ZBWorkspaceWizardTemplateItem::Dump(CDumpContext& dc) const
 {
-	CObject::Dump(dc);
+    CObject::Dump(dc);
 }
 #endif //_DEBUG

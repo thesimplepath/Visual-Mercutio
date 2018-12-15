@@ -1,5 +1,5 @@
-//	Advanced Dedicated Software
-//	Dominique AIGROZ
+//    Advanced Dedicated Software
+//    Dominique AIGROZ
 //  Source file: ScanDoc.h
 
 #ifndef SrvChoos_h
@@ -31,28 +31,28 @@
 class AFX_EXT_CLASS ZIScanDocuments 
 {
   public:  
-	class Document
-	{
-		public:
-			Document( const CString Filename = "", const CString Name = "", const CString Description = "" );
-			~Document();
+    class Document
+    {
+        public:
+            Document( const CString Filename = "", const CString Name = "", const CString Description = "" );
+            ~Document();
 
-			CString m_Filename;
-			CString m_Name;
-			CString m_Description;
-	};
+            CString m_Filename;
+            CString m_Name;
+            CString m_Description;
+    };
 
   public:
     ZIScanDocuments();
     ~ZIScanDocuments();
 
 
-	BOOL ChooseDocuments ();
-	size_t	GetDocumentCount() { return m_Doc.GetSize(); };
-	ZIScanDocuments::Document*	GetDocumentAt( size_t Index );
+    BOOL ChooseDocuments ();
+    size_t    GetDocumentCount() { return m_Doc.GetSize(); };
+    ZIScanDocuments::Document*    GetDocumentAt( size_t Index );
 
 
-	
+    
   protected:
 
   private:
@@ -61,11 +61,11 @@ class AFX_EXT_CLASS ZIScanDocuments
 
 
     BOOL ProcessChoose ();
-	void AddDocument( const CString Filename, const CString Name, const CString Description = "" );
+    void AddDocument( const CString Filename, const CString Name, const CString Description = "" );
 
 
   private:
-	CObArray	m_Doc;
+    CObArray    m_Doc;
 
 };
 

@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Gaya
-// <nl>Created:		 03/2002
+// <nl>Created:         03/2002
 // <nl>Description:  XXXClass frame window support
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -42,13 +42,13 @@ class AFX_EXT_CLASS pPublishMessengerInfo
 {
 public:
 
-	pPublishMessengerInfo();
-	~pPublishMessengerInfo();
+    pPublishMessengerInfo();
+    ~pPublishMessengerInfo();
 
-	int GetVersion();
-	string GetLanguage();
+    int GetVersion();
+    string GetLanguage();
 
-	int Authenticate( string login, string passwd );
+    int Authenticate( string login, string passwd );
 };
 
 #endif

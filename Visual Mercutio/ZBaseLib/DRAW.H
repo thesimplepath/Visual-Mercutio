@@ -1,11 +1,11 @@
 //---------------------------------------------------------------------------
-// Author			: Dominique Aigroz
-// HeaderFile		: draw.h
-// Created			: 24/1/1995
+// Author            : Dominique Aigroz
+// HeaderFile        : draw.h
+// Created            : 24/1/1995
 //
-// Description		: Drawing functions.
+// Description        : Drawing functions.
 //
-// Modifications	:
+// Modifications    :
 //
 // -------------------------------------------------------------------------
 
@@ -14,11 +14,11 @@
 
 // For global APIs
 #ifndef AFX_API_EXPORT
-	#define AFX_API_EXPORT __declspec(dllexport)
+    #define AFX_API_EXPORT __declspec(dllexport)
 #endif
 
 #ifndef AFX_API_IMPORT
-	#define AFX_API_IMPORT __declspec(dllimport)
+    #define AFX_API_IMPORT __declspec(dllimport)
 #endif
 
 // Change the definition of AFX_EXT... to make it import
@@ -40,20 +40,20 @@
 extern "C" {
 #endif
 
-AFX_EXT_API void DisplayBitmap			( HBITMAP hBtm, HDC hDC, HINSTANCE hInst, INT iLeft, INT iTop );
-AFX_EXT_API void DisplayBitmapFile		( const CHAR *cFile, HDC hDC, HINSTANCE hInst, INT iLeft, INT iTop );
+AFX_EXT_API void DisplayBitmap            ( HBITMAP hBtm, HDC hDC, HINSTANCE hInst, INT iLeft, INT iTop );
+AFX_EXT_API void DisplayBitmapFile        ( const CHAR *cFile, HDC hDC, HINSTANCE hInst, INT iLeft, INT iTop );
 
-AFX_EXT_API void DisplayBitmapFileExtent( const CHAR	*cFile,
-										  HDC			hDC,
-										  HINSTANCE		hInst,
-										  INT			iLeft,
-										  INT			iTop,
-										  DWORD			dwType );
+AFX_EXT_API void DisplayBitmapFileExtent( const CHAR    *cFile,
+                                          HDC            hDC,
+                                          HINSTANCE        hInst,
+                                          INT            iLeft,
+                                          INT            iTop,
+                                          DWORD            dwType );
 
-AFX_EXT_API void GetSizeOfBitmapFile	( const CHAR *cFile, HINSTANCE hInst, POINT *pt );
-AFX_EXT_API void Draw3DLine				( HDC hDC, int iType, int x1, int y1, int x2, int y2 );
-AFX_EXT_API void DrawEmbossRect			( HDC hDC, RECT* pRect, COLORREF BackColor );
-AFX_EXT_API void DrawEngraveRect		( HDC hDC, RECT* pRect, COLORREF BackColor );
+AFX_EXT_API void GetSizeOfBitmapFile    ( const CHAR *cFile, HINSTANCE hInst, POINT *pt );
+AFX_EXT_API void Draw3DLine                ( HDC hDC, int iType, int x1, int y1, int x2, int y2 );
+AFX_EXT_API void DrawEmbossRect            ( HDC hDC, RECT* pRect, COLORREF BackColor );
+AFX_EXT_API void DrawEngraveRect        ( HDC hDC, RECT* pRect, COLORREF BackColor );
 
 #ifdef __cplusplus
 }

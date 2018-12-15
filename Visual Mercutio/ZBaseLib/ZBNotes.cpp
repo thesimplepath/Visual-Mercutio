@@ -1,10 +1,10 @@
 //## begin module%37E4CD2600F2.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%37E4CD2600F2.cm
 
 //## begin module%37E4CD2600F2.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%37E4CD2600F2.cp
 
 //## Module: ZBNotes%37E4CD2600F2; Package body
@@ -46,7 +46,7 @@ ZBNotes::ZBNotes(const ZBNotes &right)
   //## end ZBNotes::ZBNotes%copy.initialization
 {
   //## begin ZBNotes::ZBNotes%copy.body preserve=yes
-  	*this = right;
+      *this = right;
   //## end ZBNotes::ZBNotes%copy.body
 }
 
@@ -72,9 +72,9 @@ ZBNotes::~ZBNotes()
 const ZBNotes & ZBNotes::operator=(const ZBNotes &right)
 {
   //## begin ZBNotes::operator=%.body preserve=yes
-  	m_Comment = right.m_Comment;
-  	m_Username = right.m_Username;
-  	return *this;
+      m_Comment = right.m_Comment;
+      m_Username = right.m_Username;
+      return *this;
   //## end ZBNotes::operator=%.body
 }
 
@@ -84,69 +84,69 @@ const ZBNotes & ZBNotes::operator=(const ZBNotes &right)
 ZBNotes* ZBNotes::Clone ()
 {
   //## begin ZBNotes::Clone%937741718.body preserve=yes
-  	ZBNotes*	pNotes = new ZBNotes(*this);
-  	return pNotes;
+      ZBNotes*    pNotes = new ZBNotes(*this);
+      return pNotes;
   //## end ZBNotes::Clone%937741718.body
 }
 
 void ZBNotes::ClearNotes ()
 {
   //## begin ZBNotes::ClearNotes%937741722.body preserve=yes
-	ClearComment();
-	ClearUsername();
+    ClearComment();
+    ClearUsername();
   //## end ZBNotes::ClearNotes%937741722.body
 }
 
 void ZBNotes::ClearComment ()
 {
   //## begin ZBNotes::ClearComment%937741723.body preserve=yes
-	m_Comment.Empty();
+    m_Comment.Empty();
   //## end ZBNotes::ClearComment%937741723.body
 }
 
 void ZBNotes::ClearUsername ()
 {
   //## begin ZBNotes::ClearUsername%937741724.body preserve=yes
-	m_Username.Empty();
+    m_Username.Empty();
   //## end ZBNotes::ClearUsername%937741724.body
 }
 
 CString ZBNotes::GetFormatedNotes (CRect* pRect)
 {
   //## begin ZBNotes::GetFormatedNotes%937741725.body preserve=yes
-	return m_Username + "\r\n" + m_Comment;
+    return m_Username + "\r\n" + m_Comment;
   //## end ZBNotes::GetFormatedNotes%937741725.body
 }
 
 CArchive& operator >> (CArchive& ar, ZBNotes& Notes)
 {
   //## begin ZBNotes::operator >>%937741719.body preserve=yes
-	ar >> Notes.m_Username;
-  	ar >> Notes.m_Comment;
-	return ar;
+    ar >> Notes.m_Username;
+      ar >> Notes.m_Comment;
+    return ar;
   //## end ZBNotes::operator >>%937741719.body
 }
 
 CArchive& operator << (CArchive& ar, ZBNotes& Notes)
 {
   //## begin ZBNotes::operator <<%937741720.body preserve=yes
-	ar << Notes.m_Username;
-  	ar << Notes.m_Comment;
-	return ar;
+    ar << Notes.m_Username;
+      ar << Notes.m_Comment;
+    return ar;
   //## end ZBNotes::operator <<%937741720.body
 }
 
 void ZBNotes::Serialize (CArchive& ar)
 {
   //## begin ZBNotes::Serialize%937741721.body preserve=yes
-	if (ar.IsStoring())
-	{	// Write the elements
-		ar << *this;
-	}
-	else
-	{
-		ar >> *this;
-	}
+    if (ar.IsStoring())
+    {    // Write the elements
+        ar << *this;
+    }
+    else
+    {
+        ar >> *this;
+    }
   //## end ZBNotes::Serialize%937741721.body
 }
 

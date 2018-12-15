@@ -12,7 +12,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// Created:		 05/2001
+// Created:         05/2001
 // Description:  ZBBPSimPropertiesDeliverable simulation properties for deliverables
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -40,9 +40,9 @@
 
 //@topic Basic Properties Change Flags 
 //@flag Z_CHANGE_SIM_DELIV_COST | Change the deliverable cost.
-#define Z_CHANGE_SIM_DELIV_COST					0x0001
+#define Z_CHANGE_SIM_DELIV_COST                    0x0001
 //@flag Z_CHANGE_SIM_DELIV_WORKLOAD_FORECAST | Change the deliverable workload forecast.
-#define Z_CHANGE_SIM_DELIV_WORKLOAD_FORECAST	0x0002
+#define Z_CHANGE_SIM_DELIV_WORKLOAD_FORECAST    0x0002
 
 /////////////////////////////////////////////////////////////////////////////
 // Orientation property IDs
@@ -53,9 +53,9 @@
 // identifiers are used in conjunction with the <c IODPropertyContainer>
 // interface implemented by the orientation property container.
 //@flag Z_SIM_DELIV_COST | Identifier for the deliverable cost.
-#define Z_SIM_DELIV_COST					1
+#define Z_SIM_DELIV_COST                    1
 //@flag Z_SIM_DELIV_WORKLOAD_FORECAST | Identifier for the deliverable workload forecast.
-#define Z_SIM_DELIV_WORKLOAD_FORECAST		2
+#define Z_SIM_DELIV_WORKLOAD_FORECAST        2
 
 /////////////////////////////////////////////////////////////////////////////
 // Orientation defaults
@@ -94,120 +94,120 @@
 
 class AFX_EXT_CLASS ZBBPSimPropertiesDeliverable : public CObject
 {
-	DECLARE_SERIAL(ZBBPSimPropertiesDeliverable)
+    DECLARE_SERIAL(ZBBPSimPropertiesDeliverable)
 
 // Construction/Destruction
 public:
-	//@cmember
-	/* Constructor. */
-	ZBBPSimPropertiesDeliverable();
-	//@cmember
-	/* Copy constructor. */
-	ZBBPSimPropertiesDeliverable(const ZBBPSimPropertiesDeliverable& propBasic);
-	//@cmember
-	/* Destructor. */
-	virtual ~ZBBPSimPropertiesDeliverable();
+    //@cmember
+    /* Constructor. */
+    ZBBPSimPropertiesDeliverable();
+    //@cmember
+    /* Copy constructor. */
+    ZBBPSimPropertiesDeliverable(const ZBBPSimPropertiesDeliverable& propBasic);
+    //@cmember
+    /* Destructor. */
+    virtual ~ZBBPSimPropertiesDeliverable();
 
 // Attributes
 protected:
 
-	//@cmember
-	/* the deliverable cost. */
-	ZBBPAnnualNumberProperties m_Cost;
+    //@cmember
+    /* the deliverable cost. */
+    ZBBPAnnualNumberProperties m_Cost;
 
-	//@cmember
-	/* the deliverable workload forecast. */
-	ZBBPAnnualNumberProperties m_WorkloadForecast;
+    //@cmember
+    /* the deliverable workload forecast. */
+    ZBBPAnnualNumberProperties m_WorkloadForecast;
 
 public:
-	//@cmember
-	/* Gets the deliverable cost. */
-	ZBBPAnnualNumberProperties& GetCost();
+    //@cmember
+    /* Gets the deliverable cost. */
+    ZBBPAnnualNumberProperties& GetCost();
 
-	//@cmember
-	/* Sets the deliverable cost. */
-	void SetCost(const double value);
+    //@cmember
+    /* Sets the deliverable cost. */
+    void SetCost(const double value);
 
-	//@cmember
-	/* Gets the deliverable workload forecast. */
-	ZBBPAnnualNumberProperties& GetWorkloadForecast();
+    //@cmember
+    /* Gets the deliverable workload forecast. */
+    ZBBPAnnualNumberProperties& GetWorkloadForecast();
 
-	//@cmember
-	/* Sets the deliverable workload forecast. */
-	void SetWorkloadForecast(const double value);
+    //@cmember
+    /* Sets the deliverable workload forecast. */
+    void SetWorkloadForecast(const double value);
 
 
 // Operations
 public:
 
-	//@cmember
-	/* Assigns another property to this property. */
-	ZBBPSimPropertiesDeliverable& operator=(const ZBBPSimPropertiesDeliverable& propBasic);
+    //@cmember
+    /* Assigns another property to this property. */
+    ZBBPSimPropertiesDeliverable& operator=(const ZBBPSimPropertiesDeliverable& propBasic);
 
-	//@cmember
-	/* Compares two orientation properties. */
-	BOOL operator==(const ZBBPSimPropertiesDeliverable propBasic) const;
+    //@cmember
+    /* Compares two orientation properties. */
+    BOOL operator==(const ZBBPSimPropertiesDeliverable propBasic) const;
 
-	//@cmember
-	/* Makes a copy of this properties object. */
-	virtual ZBBPSimPropertiesDeliverable* Dup();
-	//@cmember
-	/* Merges another set of properties with this one. */
-	virtual void Merge(ZBBPSimPropertiesDeliverable* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL);
-	//@cmember
-	/* Determines if another set of properties is equal to this one. */
-	virtual BOOL IsEqual(ZBBPSimPropertiesDeliverable* pProp);
+    //@cmember
+    /* Makes a copy of this properties object. */
+    virtual ZBBPSimPropertiesDeliverable* Dup();
+    //@cmember
+    /* Merges another set of properties with this one. */
+    virtual void Merge(ZBBPSimPropertiesDeliverable* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL);
+    //@cmember
+    /* Determines if another set of properties is equal to this one. */
+    virtual BOOL IsEqual(ZBBPSimPropertiesDeliverable* pProp);
 
-	/////////////////////////////////////////////////////////////////////////
-	// IODPropertyContainer interface
+    /////////////////////////////////////////////////////////////////////////
+    // IODPropertyContainer interface
 
-	//@cmember
-	/* Gets the value of the given string property. */
-	virtual BOOL GetValue(const int nPropId, CString& strValue) const;
-	//@cmember
-	/* Gets the value of the given integer property. */
-	virtual BOOL GetValue(const int nPropId, int& nValue) const;
-	//@cmember
-	/* Gets the value of the given unsigned integer property. */
-	virtual BOOL GetValue(const int nPropId, UINT& nValue) const;
-	//@cmember
-	/* Gets the value of the given DWORD property. */
-	virtual BOOL GetValue(const int nPropId, DWORD& dwValue) const;
-	//@cmember
-	/* Gets the value of the given float property. */
-	virtual BOOL GetValue(const int nPropId, float& fValue) const;
-	//@cmember
-	/* Gets the value of the given double property. */
-	virtual BOOL GetValue(const int nPropId, double& dValue) const;
+    //@cmember
+    /* Gets the value of the given string property. */
+    virtual BOOL GetValue(const int nPropId, CString& strValue) const;
+    //@cmember
+    /* Gets the value of the given integer property. */
+    virtual BOOL GetValue(const int nPropId, int& nValue) const;
+    //@cmember
+    /* Gets the value of the given unsigned integer property. */
+    virtual BOOL GetValue(const int nPropId, UINT& nValue) const;
+    //@cmember
+    /* Gets the value of the given DWORD property. */
+    virtual BOOL GetValue(const int nPropId, DWORD& dwValue) const;
+    //@cmember
+    /* Gets the value of the given float property. */
+    virtual BOOL GetValue(const int nPropId, float& fValue) const;
+    //@cmember
+    /* Gets the value of the given double property. */
+    virtual BOOL GetValue(const int nPropId, double& dValue) const;
 
-	//@cmember
-	/* Sets the value of the given string property. */
-	virtual BOOL SetValue(const int nPropId, LPCTSTR lpszValue);
-	//@cmember
-	/* Sets the value of the given integer property. */
-	virtual BOOL SetValue(const int nPropId, const int nValue);
-	//@cmember
-	/* Sets the value of the given unsigned integer property. */
-	virtual BOOL SetValue(const int nPropId, const UINT nValue);
-	//@cmember
-	/* Sets the value of the given unsigned DWORD property. */
-	virtual BOOL SetValue(const int nPropId, const DWORD dwValue);
-	//@cmember
-	/* Sets the value of the given float property. */
-	virtual BOOL SetValue(const int nPropId, const float fValue);
-	//@cmember
-	/* Sets the value of the given double property. */
-	virtual BOOL SetValue(const int nPropId, const double dValue);
+    //@cmember
+    /* Sets the value of the given string property. */
+    virtual BOOL SetValue(const int nPropId, LPCTSTR lpszValue);
+    //@cmember
+    /* Sets the value of the given integer property. */
+    virtual BOOL SetValue(const int nPropId, const int nValue);
+    //@cmember
+    /* Sets the value of the given unsigned integer property. */
+    virtual BOOL SetValue(const int nPropId, const UINT nValue);
+    //@cmember
+    /* Sets the value of the given unsigned DWORD property. */
+    virtual BOOL SetValue(const int nPropId, const DWORD dwValue);
+    //@cmember
+    /* Sets the value of the given float property. */
+    virtual BOOL SetValue(const int nPropId, const float fValue);
+    //@cmember
+    /* Sets the value of the given double property. */
+    virtual BOOL SetValue(const int nPropId, const double dValue);
 
-	//@cmember
-	/* Serializes the orientation properties. */
-	virtual void Serialize(CArchive& ar);
+    //@cmember
+    /* Serializes the orientation properties. */
+    virtual void Serialize(CArchive& ar);
 
 // Implementation
 public:
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 };
 
@@ -218,7 +218,7 @@ public:
 //@rdesc Spacing value.
 inline ZBBPAnnualNumberProperties& ZBBPSimPropertiesDeliverable::GetCost()
 {
-	return m_Cost;
+    return m_Cost;
 }
 
 //@mfunc Sets the vertical spacing between container control point and component.
@@ -226,14 +226,14 @@ inline ZBBPAnnualNumberProperties& ZBBPSimPropertiesDeliverable::GetCost()
 //@parm Spacing value.
 inline void ZBBPSimPropertiesDeliverable::SetCost(const double value)
 {
-	m_Cost = value;
+    m_Cost = value;
 }
 
 //@mfunc Gets the vertical spacing between container control point and component.
 //@rdesc Spacing value.
 inline ZBBPAnnualNumberProperties& ZBBPSimPropertiesDeliverable::GetWorkloadForecast()
 {
-	return m_WorkloadForecast;
+    return m_WorkloadForecast;
 }
 
 //@mfunc Sets the vertical spacing between container control point and component.
@@ -241,7 +241,7 @@ inline ZBBPAnnualNumberProperties& ZBBPSimPropertiesDeliverable::GetWorkloadFore
 //@parm Spacing value.
 inline void ZBBPSimPropertiesDeliverable::SetWorkloadForecast(const double value)
 {
-	m_WorkloadForecast = value;
+    m_WorkloadForecast = value;
 }
 
 //@mfunc Creates a copy of this property.
@@ -249,7 +249,7 @@ inline void ZBBPSimPropertiesDeliverable::SetWorkloadForecast(const double value
 // for cleaning up this object.
 inline ZBBPSimPropertiesDeliverable* ZBBPSimPropertiesDeliverable::Dup()
 {
-	return new ZBBPSimPropertiesDeliverable(*this);
+    return new ZBBPSimPropertiesDeliverable(*this);
 }
 
 /////////////////////////////////////////////////////////////////////////////

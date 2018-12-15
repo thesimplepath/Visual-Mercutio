@@ -58,107 +58,107 @@ typedef Iterator_T<ZBWorkspaceEntity*> ZBWorkspaceEntityIterator;
 
 class AFX_EXT_CLASS ZBWorkspaceGroupEntity : public ZBWorkspaceEntity  
 {
-	DECLARE_SERIAL(ZBWorkspaceGroupEntity)
+    DECLARE_SERIAL(ZBWorkspaceGroupEntity)
 public:
-	ZBWorkspaceGroupEntity(const CString Name = "", ZBWorkspaceEntity* pParent = NULL);
-	ZBWorkspaceGroupEntity(const CString Name, CStringArray* pExtensionList, ZBWorkspaceEntity* pParent = NULL);
-	virtual ~ZBWorkspaceGroupEntity();
+    ZBWorkspaceGroupEntity(const CString Name = "", ZBWorkspaceEntity* pParent = NULL);
+    ZBWorkspaceGroupEntity(const CString Name, CStringArray* pExtensionList, ZBWorkspaceEntity* pParent = NULL);
+    virtual ~ZBWorkspaceGroupEntity();
 
-	void RemoveAllEntities();
+    void RemoveAllEntities();
 
-	virtual bool ContainEntity() const
-	{
-		return true;
-	};
-	virtual size_t GetEntityCount() const
-	{
-		return m_EntitySet.GetSize();
-	};
-	virtual ZBWorkspaceEntity* GetEntityAt( size_t Index )
-	{
-		return (Index < GetEntityCount()) ? m_EntitySet.GetAt( Index ) : NULL;
-	};
-	virtual ZBWorkspaceEntitySet* GetEntitySet()
-	{
-		return &m_EntitySet;
-	};
+    virtual bool ContainEntity() const
+    {
+        return true;
+    };
+    virtual size_t GetEntityCount() const
+    {
+        return m_EntitySet.GetSize();
+    };
+    virtual ZBWorkspaceEntity* GetEntityAt( size_t Index )
+    {
+        return (Index < GetEntityCount()) ? m_EntitySet.GetAt( Index ) : NULL;
+    };
+    virtual ZBWorkspaceEntitySet* GetEntitySet()
+    {
+        return &m_EntitySet;
+    };
 
-	virtual void ClearExtensionList()
-	{
-		m_ExtensionList.RemoveAll();
-	};
-	virtual void SetExtensionList( CStringArray& ExtensionArray );
-	virtual void AddElementToExtensionList( CStringArray& ExtensionArray );
-	virtual CStringArray* GetExtensionList()
-	{
-		return &m_ExtensionList;
-	};
-	virtual void SetExtensionList( const CString Extensions );
-	virtual void GetExtensionList( CString& Extensions );
-	virtual bool ContainThisExtension( const CString Extension );
+    virtual void ClearExtensionList()
+    {
+        m_ExtensionList.RemoveAll();
+    };
+    virtual void SetExtensionList( CStringArray& ExtensionArray );
+    virtual void AddElementToExtensionList( CStringArray& ExtensionArray );
+    virtual CStringArray* GetExtensionList()
+    {
+        return &m_ExtensionList;
+    };
+    virtual void SetExtensionList( const CString Extensions );
+    virtual void GetExtensionList( CString& Extensions );
+    virtual bool ContainThisExtension( const CString Extension );
 
-	virtual bool DisplayProperties();
-
-
-	////////////////////////////////////////////////////////////////
-	// Group management functions
-	ZBWorkspaceGroupEntity* AddGroup( const CString Name, CStringArray* pExtensionList = NULL );
-	ZBWorkspaceGroupEntity* AddGroup( const CString Name, CStringArray* pExtensionList, const CString InGroupName );
-	ZBWorkspaceGroupEntity* AddGroup( const CString Name, CStringArray* pExtensionList, ZBWorkspaceGroupEntity* pInGroup );
-	ZBWorkspaceGroupEntity* AddGroup( const CString Name, CString& Extensions );
-	ZBWorkspaceGroupEntity* AddGroup( const CString Name, CString& Extensions, const CString InGroupName );
-	ZBWorkspaceGroupEntity* AddGroup( const CString Name, CString& Extensions, ZBWorkspaceGroupEntity* pInGroup );
+    virtual bool DisplayProperties();
 
 
-	bool RemoveGroup( const CString Name, bool Deeper = false );
-	bool RemoveGroup( const CString Name, const CString InGroupName );
-	bool RemoveGroup( const CString Name, ZBWorkspaceGroupEntity* pInGroup );
-	bool RemoveGroup( ZBWorkspaceGroupEntity* pGroup );
-
-	ZBWorkspaceEntitySet* FindGroup( const CString Name, bool Deeper = false );
-	ZBWorkspaceEntitySet* FindGroup( const CString Name, const CString InGroupName );
-	ZBWorkspaceEntitySet* FindGroup( const CString Name, ZBWorkspaceGroupEntity* pInGroup );
-	bool GroupExist( const CString Name, bool Deeper = false );
-	bool GroupExist( const CString Name, const CString InGroupName );
-	bool GroupExist( const CString Name, ZBWorkspaceGroupEntity* pInGroup );
+    ////////////////////////////////////////////////////////////////
+    // Group management functions
+    ZBWorkspaceGroupEntity* AddGroup( const CString Name, CStringArray* pExtensionList = NULL );
+    ZBWorkspaceGroupEntity* AddGroup( const CString Name, CStringArray* pExtensionList, const CString InGroupName );
+    ZBWorkspaceGroupEntity* AddGroup( const CString Name, CStringArray* pExtensionList, ZBWorkspaceGroupEntity* pInGroup );
+    ZBWorkspaceGroupEntity* AddGroup( const CString Name, CString& Extensions );
+    ZBWorkspaceGroupEntity* AddGroup( const CString Name, CString& Extensions, const CString InGroupName );
+    ZBWorkspaceGroupEntity* AddGroup( const CString Name, CString& Extensions, ZBWorkspaceGroupEntity* pInGroup );
 
 
-	////////////////////////////////////////////////////////////////
-	// File management functions
-	ZBWorkspaceFileEntity* AddFile( const CString Filename );
-	ZBWorkspaceFileEntity* AddFile( const CString Filename, const CString InGroupName );
-	ZBWorkspaceFileEntity* AddFile( const CString Filename, ZBWorkspaceGroupEntity* pInGroup );
-	bool RemoveFile( ZBWorkspaceFileEntity* pFile );
-	bool RemoveFile( const CString Filename  );
-	bool RemoveFile( const CString Filename, const CString InGroupName  );
-	bool RemoveFile( const CString Filename, ZBWorkspaceGroupEntity* pInGroup  );
+    bool RemoveGroup( const CString Name, bool Deeper = false );
+    bool RemoveGroup( const CString Name, const CString InGroupName );
+    bool RemoveGroup( const CString Name, ZBWorkspaceGroupEntity* pInGroup );
+    bool RemoveGroup( ZBWorkspaceGroupEntity* pGroup );
 
-	// Serialization mechanism
-	virtual void Serialize(CArchive& ar);   // overridden for document i/o
+    ZBWorkspaceEntitySet* FindGroup( const CString Name, bool Deeper = false );
+    ZBWorkspaceEntitySet* FindGroup( const CString Name, const CString InGroupName );
+    ZBWorkspaceEntitySet* FindGroup( const CString Name, ZBWorkspaceGroupEntity* pInGroup );
+    bool GroupExist( const CString Name, bool Deeper = false );
+    bool GroupExist( const CString Name, const CString InGroupName );
+    bool GroupExist( const CString Name, ZBWorkspaceGroupEntity* pInGroup );
+
+
+    ////////////////////////////////////////////////////////////////
+    // File management functions
+    ZBWorkspaceFileEntity* AddFile( const CString Filename );
+    ZBWorkspaceFileEntity* AddFile( const CString Filename, const CString InGroupName );
+    ZBWorkspaceFileEntity* AddFile( const CString Filename, ZBWorkspaceGroupEntity* pInGroup );
+    bool RemoveFile( ZBWorkspaceFileEntity* pFile );
+    bool RemoveFile( const CString Filename  );
+    bool RemoveFile( const CString Filename, const CString InGroupName  );
+    bool RemoveFile( const CString Filename, ZBWorkspaceGroupEntity* pInGroup  );
+
+    // Serialization mechanism
+    virtual void Serialize(CArchive& ar);   // overridden for document i/o
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
 protected:
-	////////////////////////////////////////////////////////////////
-	// Group management functions
-	void _FindGroup( const CString Name, ZBWorkspaceGroupEntity* pInGroup );
-	void _FindGroup( const CString Name, bool Deeper = false );
-	ZBWorkspaceGroupEntity* _FindFirstGroup( const CString Name, ZBWorkspaceGroupEntity* pInGroup );
-	ZBWorkspaceGroupEntity* _FindFirstGroup( const CString Name, bool Deeper = false );
-	bool _RemoveGroups( ZBWorkspaceEntitySet& Set );
+    ////////////////////////////////////////////////////////////////
+    // Group management functions
+    void _FindGroup( const CString Name, ZBWorkspaceGroupEntity* pInGroup );
+    void _FindGroup( const CString Name, bool Deeper = false );
+    ZBWorkspaceGroupEntity* _FindFirstGroup( const CString Name, ZBWorkspaceGroupEntity* pInGroup );
+    ZBWorkspaceGroupEntity* _FindFirstGroup( const CString Name, bool Deeper = false );
+    bool _RemoveGroups( ZBWorkspaceEntitySet& Set );
 
-	void RecalculateParent();
-	bool ParseExtension( const CString Extensions, CStringArray& ExtensionArray );
+    void RecalculateParent();
+    bool ParseExtension( const CString Extensions, CStringArray& ExtensionArray );
 
 // Members are protected, since they need to be access directly by sub-class
 protected:
-	ZBWorkspaceEntitySet m_EntitySet;
-	CStringArray m_ExtensionList;
+    ZBWorkspaceEntitySet m_EntitySet;
+    CStringArray m_ExtensionList;
 
-	static ZBWorkspaceEntitySet m_FindSet;
+    static ZBWorkspaceEntitySet m_FindSet;
 
 
 };

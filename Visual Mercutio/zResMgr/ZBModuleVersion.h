@@ -13,9 +13,9 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 10/2002
+// <nl>Created:         10/2002
 // <nl>Description:  ZBModuleVersion works with file version information
-//					 for a module
+//                     for a module
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -49,48 +49,48 @@
 #if WINVER < 0x0400
 typedef struct _DllVersionInfo
 {
-	DWORD cbSize;
-	DWORD dwMajorVersion;	// Major version
-	DWORD dwMinorVersion;	// Minor version
-	DWORD dwBuildNumber;	// Build number
-	DWORD dwPlatformID;		// DLLVER_PLATFORM_*
+    DWORD cbSize;
+    DWORD dwMajorVersion;    // Major version
+    DWORD dwMinorVersion;    // Minor version
+    DWORD dwBuildNumber;    // Build number
+    DWORD dwPlatformID;        // DLLVER_PLATFORM_*
 } DLLVERSIONINFO;
 
 // Platform IDs for DLLVERSIONINFO
-#define DLLVER_PLATFORM_WINDOWS	0x00000001	// Windows 95
-#define DLLVER_PLATFORM_NT		0x00000002	// Windows NT
+#define DLLVER_PLATFORM_WINDOWS    0x00000001    // Windows 95
+#define DLLVER_PLATFORM_NT        0x00000002    // Windows NT
 #endif // WINVER < 0x0400
 
 class AFX_EXT_CLASS ZBModuleVersion : public VS_FIXEDFILEINFO
 {
 public:
 
-	ZBModuleVersion();
-	virtual ~ZBModuleVersion();
+    ZBModuleVersion();
+    virtual ~ZBModuleVersion();
 
-	bool		GetFileVersionInfo	( LPCTSTR modulename );
-	CString		GetValue			( LPCTSTR lpKeyName );
-	static bool	DllGetVersion		( LPCTSTR modulename, DLLVERSIONINFO& dvi );
+    bool        GetFileVersionInfo    ( LPCTSTR modulename );
+    CString        GetValue            ( LPCTSTR lpKeyName );
+    static bool    DllGetVersion        ( LPCTSTR modulename, DLLVERSIONINFO& dvi );
 
-	WORD GetLangID() const
-	{
-		return m_translation.langID;
-	};
+    WORD GetLangID() const
+    {
+        return m_translation.langID;
+    };
 
-	WORD GetCharset() const
-	{
-		return m_translation.charset;
-	};
+    WORD GetCharset() const
+    {
+        return m_translation.charset;
+    };
 
 protected:
 
-	BYTE* m_pVersionInfo;	// all version info
+    BYTE* m_pVersionInfo;    // all version info
 
-	struct TRANSLATION
-	{
-		WORD langID;		// language ID
-		WORD charset;		// character set (code page)
-	} m_translation;
+    struct TRANSLATION
+    {
+        WORD langID;        // language ID
+        WORD charset;        // character set (code page)
+    } m_translation;
 };
 
 #endif

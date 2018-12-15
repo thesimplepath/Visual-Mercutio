@@ -39,163 +39,163 @@ class ZDProcessGraphModelMdl;
 
 class AFX_EXT_CLASS ZBBPPackageSymbol : public ZBSymbol
 {
-	DECLARE_SERIAL( ZBBPPackageSymbol )
+    DECLARE_SERIAL( ZBBPPackageSymbol )
 
 public:
 
-	ZBBPPackageSymbol( const CString Name = _T( "" ), const CString Filename = _T( "" ) );
-	virtual ~ZBBPPackageSymbol();
+    ZBBPPackageSymbol( const CString Name = _T( "" ), const CString Filename = _T( "" ) );
+    virtual ~ZBBPPackageSymbol();
 
-	/* Copy constructor. */
-	ZBBPPackageSymbol( const ZBBPPackageSymbol& src );
+    /* Copy constructor. */
+    ZBBPPackageSymbol( const ZBBPPackageSymbol& src );
 
-	/* Assignment operator. */
-	ZBBPPackageSymbol& operator=( const ZBBPPackageSymbol& src );
+    /* Assignment operator. */
+    ZBBPPackageSymbol& operator=( const ZBBPPackageSymbol& src );
 
-	/* Create a duplicate copy of this object. */
-	virtual CODComponent* Dup() const;
+    /* Create a duplicate copy of this object. */
+    virtual CODComponent* Dup() const;
 
-	// Copy the definition only
-	virtual void CopySymbolDefinitionFrom( CODSymbolComponent& src );
+    // Copy the definition only
+    virtual void CopySymbolDefinitionFrom( CODSymbolComponent& src );
 
-	// Overloaded to be able to modify the activity name
-	// and description
-	virtual BOOL SetSymbolName( const CString value );
+    // Overloaded to be able to modify the activity name
+    // and description
+    virtual BOOL SetSymbolName( const CString value );
 
-	// Return true if the symbol can contain a child model
-	virtual bool CanContainChildModel() const
-	{
-		return true;
-	}
+    // Return true if the symbol can contain a child model
+    virtual bool CanContainChildModel() const
+    {
+        return true;
+    }
 
-	//////////////////////////////////////////////////////////////////////
-	// Attributes management methods
-	virtual bool AcceptDynamicAttributes() const
-	{
-		// No dynamic attributes
-		return false;
-	}
+    //////////////////////////////////////////////////////////////////////
+    // Attributes management methods
+    virtual bool AcceptDynamicAttributes() const
+    {
+        // No dynamic attributes
+        return false;
+    }
 
-	// Call by the controller when a tooltip is required
-	virtual bool OnToolTip( CString& ToolTipText, CPoint point, ToolTipMode ToolTip = NormalToolTip );
+    // Call by the controller when a tooltip is required
+    virtual bool OnToolTip( CString& ToolTipText, CPoint point, ToolTipMode ToolTip = NormalToolTip );
 
-	// Drag and drop methods
-	virtual bool AcceptDropItem( CObject* pObj, CPoint pt );
-	virtual bool DropItem( CObject* pObj, CPoint pt );
+    // Drag and drop methods
+    virtual bool AcceptDropItem( CObject* pObj, CPoint pt );
+    virtual bool DropItem( CObject* pObj, CPoint pt );
 
-	/* Creates the symbol component. */
-	BOOL Create( const CString Name = _T( "" ), const CString Filename = _T( "" ) );
+    /* Creates the symbol component. */
+    BOOL Create( const CString Name = _T( "" ), const CString Filename = _T( "" ) );
 
-	bool IsLoaded() const
-	{
-		return m_pPackageDoc != NULL;
-	}
+    bool IsLoaded() const
+    {
+        return m_pPackageDoc != NULL;
+    }
 
-	ZDProcessGraphModelDoc* GetPackageDocumentPtr()
-	{
-		return m_pPackageDoc;
-	}
+    ZDProcessGraphModelDoc* GetPackageDocumentPtr()
+    {
+        return m_pPackageDoc;
+    }
 
-	bool LoadPackage( ZDProcessModelDocTmpl* pDocTmpl, ZDProcessGraphModelMdl* pParent = NULL );
-	bool UnloadPackage();
+    bool LoadPackage( ZDProcessModelDocTmpl* pDocTmpl, ZDProcessGraphModelMdl* pParent = NULL );
+    bool UnloadPackage();
 
-	bool IsLinkedToFilename() const
-	{
-		return !m_FilenameLinkedTo.IsEmpty();
-	}
+    bool IsLinkedToFilename() const
+    {
+        return !m_FilenameLinkedTo.IsEmpty();
+    }
 
-	CString GetFilenameLinkedTo() const
-	{
-		return m_FilenameLinkedTo;
-	}
+    CString GetFilenameLinkedTo() const
+    {
+        return m_FilenameLinkedTo;
+    }
 
-	void SetFilenameLinkedTo( CString value )
-	{
-		m_FilenameLinkedTo = value;
-	}
+    void SetFilenameLinkedTo( CString value )
+    {
+        m_FilenameLinkedTo = value;
+    }
 
-	void ClearLinkedToFilename()
-	{
-		m_FilenameLinkedTo.Empty();
-	}
+    void ClearLinkedToFilename()
+    {
+        m_FilenameLinkedTo.Empty();
+    }
 
-	void SetPackageName( const CString value )
-	{
-		ZBSymbol::SetSymbolName(value);
-	}
+    void SetPackageName( const CString value )
+    {
+        ZBSymbol::SetSymbolName(value);
+    }
 
-	const CString GetPackageName()
-	{
-		return ZBSymbol::GetSymbolName();
-	}
+    const CString GetPackageName()
+    {
+        return ZBSymbol::GetSymbolName();
+    }
 
-	bool GetDisplayPreview() const
-	{
-		return m_DisplayPreview;
-	}
+    bool GetDisplayPreview() const
+    {
+        return m_DisplayPreview;
+    }
 
-	void SetDisplayPreview( bool value )
-	{
-		m_DisplayPreview = value;
-	}
+    void SetDisplayPreview( bool value )
+    {
+        m_DisplayPreview = value;
+    }
 
-	virtual void OnDraw( CDC* pDC );
+    virtual void OnDraw( CDC* pDC );
 
-	ULONG STDMETHODCALLTYPE AddRef()
-	{
-		return CODSymbolComponent::AddRef();
-	}
+    ULONG STDMETHODCALLTYPE AddRef()
+    {
+        return CODSymbolComponent::AddRef();
+    }
 
-	ULONG STDMETHODCALLTYPE Release()
-	{
-		return CODSymbolComponent::Release();
-	}
+    ULONG STDMETHODCALLTYPE Release()
+    {
+        return CODSymbolComponent::Release();
+    }
 
-	// JMR-MODIF - Le 3 mai 2006 - Fonction permettant de définir si le symbole est un paquet.
-	virtual BOOL IsPackage()
-	{
-		return TRUE;
-	}
+    // JMR-MODIF - Le 3 mai 2006 - Fonction permettant de définir si le symbole est un paquet.
+    virtual BOOL IsPackage()
+    {
+        return TRUE;
+    }
 
-	// Creation of a new child model
-	virtual BOOL CreateEmptyChildModel( CODModel* pParent );
+    // Creation of a new child model
+    virtual BOOL CreateEmptyChildModel( CODModel* pParent );
 
-	/* Serializes the symbol. */
-	virtual void Serialize( CArchive& ar );
+    /* Serializes the symbol. */
+    virtual void Serialize( CArchive& ar );
 
-	virtual int GetRightSubMenu() const;
-	virtual int GetIconIndex() const;
+    virtual int GetRightSubMenu() const;
+    virtual int GetIconIndex() const;
 
-	virtual BOOL OnDoubleClick();
+    virtual BOOL OnDoubleClick();
 
 protected:
 
-	virtual void AdjustElementPosition();
+    virtual void AdjustElementPosition();
 
 private:
 
-	// The model for the canvas. The model holds all information about 
-	// the canvas, while the viewport actually displays it.
-	CRect					m_CommentRect;
-	CPoint					m_LinkedToFileBitmapPosition;
-	bool					m_DisplayPreview;
+    // The model for the canvas. The model holds all information about 
+    // the canvas, while the viewport actually displays it.
+    CRect                    m_CommentRect;
+    CPoint                    m_LinkedToFileBitmapPosition;
+    bool                    m_DisplayPreview;
 
-	// Used to link the package to a filename
-	CString					m_FilenameLinkedTo;
-	ZDProcessGraphModelDoc*	m_pPackageDoc;
+    // Used to link the package to a filename
+    CString                    m_FilenameLinkedTo;
+    ZDProcessGraphModelDoc*    m_pPackageDoc;
 
-	// Bitmap resource
-	static ZBitmap			m_LinkedToFileBitmap;
+    // Bitmap resource
+    static ZBitmap            m_LinkedToFileBitmap;
 };
 
 inline int ZBBPPackageSymbol::GetRightSubMenu() const
 {
-	return 9;
+    return 9;
 }
 
 inline int ZBBPPackageSymbol::GetIconIndex() const
 {
-	return ( IsLocal() ) ? 11 : 19;
+    return ( IsLocal() ) ? 11 : 19;
 }
 
 #endif // !defined(AFX_ZBBPPackageSymbol_H__D6010BE6_7C2A_47FF_857B_0C64A020F48F__INCLUDED_)

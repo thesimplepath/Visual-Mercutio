@@ -30,31 +30,31 @@
 //#define AFX_DATA AFX_EXT_CLASS
 
 
-class AFX_EXT_CLASS ZBActivityEventManager : public	ZBEventManager
+class AFX_EXT_CLASS ZBActivityEventManager : public    ZBEventManager
 {
   public:
       ZBActivityEventManager ();
       ~ZBActivityEventManager();
-	  ZBEventActivity*	AddEvent(ActivityEventType EventType,
-								 CString Filename,
-								 COleDateTime Time, 
-							     CString FolderName,
-								 CString ProcessName,
-								 COleDateTime ProcessCreationDate,
-								 COleDateTime ProcessDueDate,
- 								 CString ActivityType,
-								 CString ActivityName,
-								 COleDateTime ActivityCreationDate,
-								 COleDateTime ActivityDueDate,
-								 CString Sender,
-								 CString Receiver,
-								 CString ProcessFilename,
-								 CString ExchangeDataFilename,
-								 CString ProcessExchangeDataFilename,
-								 CString ActivityStatus,
-								 CString Comments );
+      ZBEventActivity*    AddEvent(ActivityEventType EventType,
+                                 CString Filename,
+                                 COleDateTime Time, 
+                                 CString FolderName,
+                                 CString ProcessName,
+                                 COleDateTime ProcessCreationDate,
+                                 COleDateTime ProcessDueDate,
+                                  CString ActivityType,
+                                 CString ActivityName,
+                                 COleDateTime ActivityCreationDate,
+                                 COleDateTime ActivityDueDate,
+                                 CString Sender,
+                                 CString Receiver,
+                                 CString ProcessFilename,
+                                 CString ExchangeDataFilename,
+                                 CString ProcessExchangeDataFilename,
+                                 CString ActivityStatus,
+                                 CString Comments );
 
-	  virtual ZBEvent*	LoadEventFromFile( const CString Filename );
+      virtual ZBEvent*    LoadEventFromFile( const CString Filename );
 
   protected:
 

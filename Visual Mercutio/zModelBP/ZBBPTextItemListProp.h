@@ -84,129 +84,129 @@
 
 
 class AFX_EXT_CLASS ZBBPTextItemListProperties : public CODIntProperty, 
-				public sfl::CPropertyContainer<IODPropertyContainer, CODPropertyAccessor<ZBBPTextItemListProperties> >
+                public sfl::CPropertyContainer<IODPropertyContainer, CODPropertyAccessor<ZBBPTextItemListProperties> >
 {
-	DECLARE_SERIAL(ZBBPTextItemListProperties)
+    DECLARE_SERIAL(ZBBPTextItemListProperties)
 
 // Construction/Destruction
 public:
-	//@cmember
-	/* Constructor. */
-	ZBBPTextItemListProperties(int nId = ZS_BP_PROP_TEXTITEMLIST);
-	//@cmember
-	/* Copy constructor. */
-	ZBBPTextItemListProperties(const ZBBPTextItemListProperties& propProcess);
-	//@cmember
-	/* Destructor. */
-	virtual ~ZBBPTextItemListProperties();
+    //@cmember
+    /* Constructor. */
+    ZBBPTextItemListProperties(int nId = ZS_BP_PROP_TEXTITEMLIST);
+    //@cmember
+    /* Copy constructor. */
+    ZBBPTextItemListProperties(const ZBBPTextItemListProperties& propProcess);
+    //@cmember
+    /* Destructor. */
+    virtual ~ZBBPTextItemListProperties();
 
 // Attributes
 protected:
-	//@cmember
-	/* The decision list. */
-	CString m_TextItemList;
+    //@cmember
+    /* The decision list. */
+    CString m_TextItemList;
 
 public:
-	//@cmember
-	/* Gets the decision list. */
-	CString GetTextItemList() const;
+    //@cmember
+    /* Gets the decision list. */
+    CString GetTextItemList() const;
 
-	//@cmember
-	/* Sets the task list. */
-	void SetTextItemList(LPCTSTR lpszValue);
+    //@cmember
+    /* Sets the task list. */
+    void SetTextItemList(LPCTSTR lpszValue);
 
 
 // Operations
 public:
-	//@cmember
-	/* Compare the property identifier with another identifier. */
-	virtual BOOL CompareId(const int nId) const;
+    //@cmember
+    /* Compare the property identifier with another identifier. */
+    virtual BOOL CompareId(const int nId) const;
 
-	//@cmember
-	/* Sets this set of fill properties equal to another. */
-	ZBBPTextItemListProperties& operator=(const ZBBPTextItemListProperties& propProcess);
+    //@cmember
+    /* Sets this set of fill properties equal to another. */
+    ZBBPTextItemListProperties& operator=(const ZBBPTextItemListProperties& propProcess);
 
-	//@cmember
-	/* Determines if another set of fill properties is equal to this one. */
-	BOOL operator==(const ZBBPTextItemListProperties propProcess) const;
+    //@cmember
+    /* Determines if another set of fill properties is equal to this one. */
+    BOOL operator==(const ZBBPTextItemListProperties propProcess) const;
 
-	//@cmember
-	/* Makes a copy of this properties object. */
-	virtual CODProperty* Dup();
-	//@cmember
-	/* Merges another set of properties with this one. */
-	virtual void Merge(CODProperty* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL);
-	//@cmember
-	/* Determines if another set of properties is equal to this one. */
-	virtual BOOL IsEqual(CODProperty* pProp);
+    //@cmember
+    /* Makes a copy of this properties object. */
+    virtual CODProperty* Dup();
+    //@cmember
+    /* Merges another set of properties with this one. */
+    virtual void Merge(CODProperty* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL);
+    //@cmember
+    /* Determines if another set of properties is equal to this one. */
+    virtual BOOL IsEqual(CODProperty* pProp);
 
-	// The GUID map implements the QueryGuid function
-	BEGIN_GUID_MAP(ZBBPTextItemListProperties)
-		GUID_ENTRY(IODPropertyContainer)
-		GUID_ENTRY(sfl::IPropertyContainer)
-		GUID_CHAIN_ENTRY(CODIntProperty)
-	END_GUID_MAP
+    // The GUID map implements the QueryGuid function
+    BEGIN_GUID_MAP(ZBBPTextItemListProperties)
+        GUID_ENTRY(IODPropertyContainer)
+        GUID_ENTRY(sfl::IPropertyContainer)
+        GUID_CHAIN_ENTRY(CODIntProperty)
+    END_GUID_MAP
 
-	//@cmember
-	/* Add a reference to this object. */
-	ULONG STDMETHODCALLTYPE AddRef();
-	//@cmember
-	/* Release a reference to this object. */
-	ULONG STDMETHODCALLTYPE Release();
+    //@cmember
+    /* Add a reference to this object. */
+    ULONG STDMETHODCALLTYPE AddRef();
+    //@cmember
+    /* Release a reference to this object. */
+    ULONG STDMETHODCALLTYPE Release();
 
-	/////////////////////////////////////////////////////////////////////////
-	// IODPropertyContainer interface
+    /////////////////////////////////////////////////////////////////////////
+    // IODPropertyContainer interface
 
-	//@cmember
-	/* Gets the value of the given string property. */
-	virtual BOOL GetValue(const int nPropId, CString& strValue) const;
-	//@cmember
-	/* Gets the value of the given integer property. */
-	virtual BOOL GetValue(const int nPropId, int& nValue) const;
-	//@cmember
-	/* Gets the value of the given unsigned integer property. */
-	virtual BOOL GetValue(const int nPropId, UINT& nValue) const;
-	//@cmember
-	/* Gets the value of the given DWORD property. */
-	virtual BOOL GetValue(const int nPropId, DWORD& dwValue) const;
-	//@cmember
-	/* Gets the value of the given float property. */
-	virtual BOOL GetValue(const int nPropId, float& fValue) const;
+    //@cmember
+    /* Gets the value of the given string property. */
+    virtual BOOL GetValue(const int nPropId, CString& strValue) const;
+    //@cmember
+    /* Gets the value of the given integer property. */
+    virtual BOOL GetValue(const int nPropId, int& nValue) const;
+    //@cmember
+    /* Gets the value of the given unsigned integer property. */
+    virtual BOOL GetValue(const int nPropId, UINT& nValue) const;
+    //@cmember
+    /* Gets the value of the given DWORD property. */
+    virtual BOOL GetValue(const int nPropId, DWORD& dwValue) const;
+    //@cmember
+    /* Gets the value of the given float property. */
+    virtual BOOL GetValue(const int nPropId, float& fValue) const;
 
-	//@cmember
-	/* Sets the value of the given string property. */
-	virtual BOOL SetValue(const int nPropId, LPCTSTR lpszValue);
-	//@cmember
-	/* Sets the value of the given integer property. */
-	virtual BOOL SetValue(const int nPropId, const int nValue);
-	//@cmember
-	/* Sets the value of the given unsigned integer property. */
-	virtual BOOL SetValue(const int nPropId, const UINT nValue);
-	//@cmember
-	/* Sets the value of the given unsigned DWORD property. */
-	virtual BOOL SetValue(const int nPropId, const DWORD dwValue);
-	//@cmember
-	/* Sets the value of the given float property. */
-	virtual BOOL SetValue(const int nPropId, const float fValue);
+    //@cmember
+    /* Sets the value of the given string property. */
+    virtual BOOL SetValue(const int nPropId, LPCTSTR lpszValue);
+    //@cmember
+    /* Sets the value of the given integer property. */
+    virtual BOOL SetValue(const int nPropId, const int nValue);
+    //@cmember
+    /* Sets the value of the given unsigned integer property. */
+    virtual BOOL SetValue(const int nPropId, const UINT nValue);
+    //@cmember
+    /* Sets the value of the given unsigned DWORD property. */
+    virtual BOOL SetValue(const int nPropId, const DWORD dwValue);
+    //@cmember
+    /* Sets the value of the given float property. */
+    virtual BOOL SetValue(const int nPropId, const float fValue);
 
-	//@cmember
-	/* Serializes the line properties. */
-	virtual void Serialize(CArchive& ar);
+    //@cmember
+    /* Serializes the line properties. */
+    virtual void Serialize(CArchive& ar);
 
-	/////////////////////////////////////////////////////////////////////////
-	// Internal helper functions subject to change.
+    /////////////////////////////////////////////////////////////////////////
+    // Internal helper functions subject to change.
 private:
 
-	/* Additional mutators for use with CODIntPropertyAccessor */
-	void SetTextItemListEx(const CString value);
-	/* Registers the fill property meta-data. */
-	bool RegisterProperties();
-	
+    /* Additional mutators for use with CODIntPropertyAccessor */
+    void SetTextItemListEx(const CString value);
+    /* Registers the fill property meta-data. */
+    bool RegisterProperties();
+    
 // Implementation
 public:
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 };
 
@@ -217,21 +217,21 @@ public:
 //@rdesc New reference count value.
 inline ULONG ZBBPTextItemListProperties::AddRef()
 {
-	return CODIntProperty::AddRef();
+    return CODIntProperty::AddRef();
 }
 
 //@mfunc Release a reference to this object.
 //@rdesc New reference count value.
 inline ULONG ZBBPTextItemListProperties::Release()
 {
-	return CODIntProperty::Release();
+    return CODIntProperty::Release();
 }
 
 //@mfunc Gets the decision list.
 //@rdesc The decision list.
 inline CString ZBBPTextItemListProperties::GetTextItemList() const
 {
-	return m_TextItemList;
+    return m_TextItemList;
 }
 
 //@mfunc Creates a copy of this property.
@@ -239,7 +239,7 @@ inline CString ZBBPTextItemListProperties::GetTextItemList() const
 // for cleaning up this object.
 inline CODProperty* ZBBPTextItemListProperties::Dup()
 {
-	return new ZBBPTextItemListProperties(*this);
+    return new ZBBPTextItemListProperties(*this);
 }
 
 /////////////////////////////////////////////////////////////////////////////

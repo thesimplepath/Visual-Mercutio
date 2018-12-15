@@ -10,7 +10,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#define VC_EXTRALEAN		// Exclude rarely-used stuff from Windows headers
+#define VC_EXTRALEAN        // Exclude rarely-used stuff from Windows headers
 
 //#ifdef _WINNT_40
 //// For compatibility reason with platform sdk used
@@ -29,7 +29,7 @@
 // Plateforme cible définie à Windows NT4 et supérieures pour les versions NT de Windows.
 #ifndef _WIN32_WINNT
 #define _WIN32_WINNT 0x0400
-#endif						
+#endif                        
 
 // Plateforme cible définie à Windows98 et supérieures pour les versions standards de Windows.
 #ifndef _WIN32_WINDOWS
@@ -52,20 +52,20 @@
 
 
 #ifndef _AFX_NO_DB_SUPPORT
-#include <afxdb.h>			// MFC ODBC database classes
+#include <afxdb.h>            // MFC ODBC database classes
 #endif // _AFX_NO_DB_SUPPORT
 
 #ifndef _AFX_NO_DAO_SUPPORT
-#include <afxdao.h>			// MFC DAO database classes
+#include <afxdao.h>            // MFC DAO database classes
 #endif // _AFX_NO_DAO_SUPPORT
 
-#include <afxdtctl.h>		// MFC support for Internet Explorer 4 Common Controls
+#include <afxdtctl.h>        // MFC support for Internet Explorer 4 Common Controls
 #ifndef _AFX_NO_AFXCMN_SUPPORT
-#include <afxcmn.h>			// MFC support for Windows Common Controls
+#include <afxcmn.h>            // MFC support for Windows Common Controls
 #endif // _AFX_NO_AFXCMN_SUPPORT
 
 
-#ifdef _ENABLETRACE			// If enable trace is defined
+#ifdef _ENABLETRACE            // If enable trace is defined
 #include "zBaseLib\ZGTrace.h"
 #endif
 
@@ -78,7 +78,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include <zWeb\zWebLib.h>		// The web library
+#include <zWeb\zWebLib.h>        // The web library
 
 // Use Objective Toolkit as a DLL
 #define _SECDLL

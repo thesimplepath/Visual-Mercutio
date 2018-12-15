@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 04/2002
+// <nl>Created:         04/2002
 // <nl>Description:  ZBBPRuleListProperties manages a list of rules
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -49,7 +49,7 @@
 //@topic Process Properties Change Flags | Different aspects of the Process
 // properties that can be changed individually.
 //@flag Z_CHANGE_RULE_LIST | Change the rule list.
-#define	Z_CHANGE_RULE_LIST	0x0001
+#define    Z_CHANGE_RULE_LIST    0x0001
 
 /////////////////////////////////////////////////////////////////////////////
 // Fill property IDs
@@ -61,7 +61,7 @@
 // in conjunction with the <c IODPropertyContainer> interface implemented
 // by the process property container.
 //@flag Z_RULE_LIST | Identifier for the rule list property.
-#define	Z_RULE_LIST			1
+#define    Z_RULE_LIST            1
 
 /////////////////////////////////////////////////////////////////////////////
 // ZBBPRuleListProperties
@@ -80,143 +80,143 @@
 //@base public | CPropertyContainer<lt>IODPropertyContainer, sfl::CODIntPropertyAccessor<lt>ZBBPRuleListProperties<gt> <gt>
 
 class AFX_EXT_CLASS ZBBPRuleListProperties : public CODIntProperty,
-											 public sfl::CPropertyContainer<IODPropertyContainer, CODPropertyAccessor<ZBBPRuleListProperties> >
+                                             public sfl::CPropertyContainer<IODPropertyContainer, CODPropertyAccessor<ZBBPRuleListProperties> >
 {
-	DECLARE_SERIAL( ZBBPRuleListProperties )
+    DECLARE_SERIAL( ZBBPRuleListProperties )
 
 // Construction/Destruction
 public:
 
-	//@cmember
-	/* Constructor. */
-	ZBBPRuleListProperties( int nId = ZS_BP_PROP_RULELIST );
+    //@cmember
+    /* Constructor. */
+    ZBBPRuleListProperties( int nId = ZS_BP_PROP_RULELIST );
 
-	//@cmember
-	/* Copy constructor. */
-	ZBBPRuleListProperties( const ZBBPRuleListProperties& propProcess );
+    //@cmember
+    /* Copy constructor. */
+    ZBBPRuleListProperties( const ZBBPRuleListProperties& propProcess );
 
-	//@cmember
-	/* Destructor. */
-	virtual ~ZBBPRuleListProperties();
+    //@cmember
+    /* Destructor. */
+    virtual ~ZBBPRuleListProperties();
 
 // Operations
 public:
 
-	//@cmember
-	/* Sets this set of fill properties equal to another. */
-	ZBBPRuleListProperties& operator=( const ZBBPRuleListProperties& propProcess );
+    //@cmember
+    /* Sets this set of fill properties equal to another. */
+    ZBBPRuleListProperties& operator=( const ZBBPRuleListProperties& propProcess );
 
-	//@cmember
-	/* Determines if another set of fill properties is equal to this one. */
-	BOOL operator==( const ZBBPRuleListProperties propProcess ) const;
+    //@cmember
+    /* Determines if another set of fill properties is equal to this one. */
+    BOOL operator==( const ZBBPRuleListProperties propProcess ) const;
 
-	//@cmember
-	/* Makes a copy of this properties object. */
-	virtual CODProperty* Dup();
+    //@cmember
+    /* Makes a copy of this properties object. */
+    virtual CODProperty* Dup();
 
-	//@cmember
-	/* Merges another set of properties with this one. */
-	virtual void Merge( CODProperty* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL );
+    //@cmember
+    /* Merges another set of properties with this one. */
+    virtual void Merge( CODProperty* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL );
 
-	//@cmember
-	/* Determines if another set of properties is equal to this one. */
-	virtual BOOL IsEqual( CODProperty* pProp );
+    //@cmember
+    /* Determines if another set of properties is equal to this one. */
+    virtual BOOL IsEqual( CODProperty* pProp );
 
-	// The GUID map implements the QueryGuid function
-	BEGIN_GUID_MAP(ZBBPRuleListProperties)
-		GUID_ENTRY(IODPropertyContainer)
-		GUID_ENTRY(sfl::IPropertyContainer)
-		GUID_CHAIN_ENTRY(CODIntProperty)
-	END_GUID_MAP
+    // The GUID map implements the QueryGuid function
+    BEGIN_GUID_MAP(ZBBPRuleListProperties)
+        GUID_ENTRY(IODPropertyContainer)
+        GUID_ENTRY(sfl::IPropertyContainer)
+        GUID_CHAIN_ENTRY(CODIntProperty)
+    END_GUID_MAP
 
-	//@cmember
-	/* Add a reference to this object. */
-	ULONG STDMETHODCALLTYPE AddRef();
-	//@cmember
-	/* Release a reference to this object. */
-	ULONG STDMETHODCALLTYPE Release();
+    //@cmember
+    /* Add a reference to this object. */
+    ULONG STDMETHODCALLTYPE AddRef();
+    //@cmember
+    /* Release a reference to this object. */
+    ULONG STDMETHODCALLTYPE Release();
 
-	/////////////////////////////////////////////////////////////////////////
-	// IODPropertyContainer interface
+    /////////////////////////////////////////////////////////////////////////
+    // IODPropertyContainer interface
 
-	//@cmember
-	/* Compare the property identifier with another identifier. */
-	virtual BOOL CompareId( const int nId ) const;
+    //@cmember
+    /* Compare the property identifier with another identifier. */
+    virtual BOOL CompareId( const int nId ) const;
 
-	//@cmember
-	/* Gets the task list. */
-	CString GetRuleList() const;
+    //@cmember
+    /* Gets the task list. */
+    CString GetRuleList() const;
 
-	//@cmember
-	/* Sets the task list. */
-	void SetRuleList( LPCTSTR lpszValue );
+    //@cmember
+    /* Sets the task list. */
+    void SetRuleList( LPCTSTR lpszValue );
 
-	//@cmember
-	/* Gets the value of the given string property. */
-	virtual BOOL GetValue( const int nPropId, CString& strValue ) const;
+    //@cmember
+    /* Gets the value of the given string property. */
+    virtual BOOL GetValue( const int nPropId, CString& strValue ) const;
 
-	//@cmember
-	/* Gets the value of the given integer property. */
-	virtual BOOL GetValue( const int nPropId, int& nValue ) const;
+    //@cmember
+    /* Gets the value of the given integer property. */
+    virtual BOOL GetValue( const int nPropId, int& nValue ) const;
 
-	//@cmember
-	/* Gets the value of the given unsigned integer property. */
-	virtual BOOL GetValue( const int nPropId, UINT& nValue ) const;
+    //@cmember
+    /* Gets the value of the given unsigned integer property. */
+    virtual BOOL GetValue( const int nPropId, UINT& nValue ) const;
 
-	//@cmember
-	/* Gets the value of the given DWORD property. */
-	virtual BOOL GetValue( const int nPropId, DWORD& dwValue ) const;
+    //@cmember
+    /* Gets the value of the given DWORD property. */
+    virtual BOOL GetValue( const int nPropId, DWORD& dwValue ) const;
 
-	//@cmember
-	/* Gets the value of the given float property. */
-	virtual BOOL GetValue( const int nPropId, float& fValue ) const;
+    //@cmember
+    /* Gets the value of the given float property. */
+    virtual BOOL GetValue( const int nPropId, float& fValue ) const;
 
-	//@cmember
-	/* Sets the value of the given string property. */
-	virtual BOOL SetValue( const int nPropId, LPCTSTR lpszValue );
+    //@cmember
+    /* Sets the value of the given string property. */
+    virtual BOOL SetValue( const int nPropId, LPCTSTR lpszValue );
 
-	//@cmember
-	/* Sets the value of the given integer property. */
-	virtual BOOL SetValue( const int nPropId, const int nValue );
+    //@cmember
+    /* Sets the value of the given integer property. */
+    virtual BOOL SetValue( const int nPropId, const int nValue );
 
-	//@cmember
-	/* Sets the value of the given unsigned integer property. */
-	virtual BOOL SetValue( const int nPropId, const UINT nValue );
+    //@cmember
+    /* Sets the value of the given unsigned integer property. */
+    virtual BOOL SetValue( const int nPropId, const UINT nValue );
 
-	//@cmember
-	/* Sets the value of the given unsigned DWORD property. */
-	virtual BOOL SetValue( const int nPropId, const DWORD dwValue );
+    //@cmember
+    /* Sets the value of the given unsigned DWORD property. */
+    virtual BOOL SetValue( const int nPropId, const DWORD dwValue );
 
-	//@cmember
-	/* Sets the value of the given float property. */
-	virtual BOOL SetValue( const int nPropId, const float fValue );
+    //@cmember
+    /* Sets the value of the given float property. */
+    virtual BOOL SetValue( const int nPropId, const float fValue );
 
-	//@cmember
-	/* Serializes the line properties. */
-	virtual void Serialize( CArchive& ar );
+    //@cmember
+    /* Serializes the line properties. */
+    virtual void Serialize( CArchive& ar );
 
 // Implementation
 public:
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 private:
 
-	/* Additional mutators for use with CODIntPropertyAccessor */
-	void SetRuleListEx( const CString value );
+    /* Additional mutators for use with CODIntPropertyAccessor */
+    void SetRuleListEx( const CString value );
 
-	/* Registers the fill property meta-data. */
-	bool RegisterProperties();
+    /* Registers the fill property meta-data. */
+    bool RegisterProperties();
 
 // Attributes
 protected:
 
-	//@cmember
-	/* The task list. */
-	CString m_RuleList;
+    //@cmember
+    /* The task list. */
+    CString m_RuleList;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -226,21 +226,21 @@ protected:
 //@rdesc New reference count value.
 inline ULONG ZBBPRuleListProperties::AddRef()
 {
-	return CODIntProperty::AddRef();
+    return CODIntProperty::AddRef();
 }
 
 //@mfunc Release a reference to this object.
 //@rdesc New reference count value.
 inline ULONG ZBBPRuleListProperties::Release()
 {
-	return CODIntProperty::Release();
+    return CODIntProperty::Release();
 }
 
 //@mfunc Gets the task list.
 //@rdesc The task list.
 inline CString ZBBPRuleListProperties::GetRuleList() const
 {
-	return m_RuleList;
+    return m_RuleList;
 }
 
 //@mfunc Creates a copy of this property.
@@ -248,7 +248,7 @@ inline CString ZBBPRuleListProperties::GetRuleList() const
 // for cleaning up this object.
 inline CODProperty* ZBBPRuleListProperties::Dup()
 {
-	return new ZBBPRuleListProperties( *this );
+    return new ZBBPRuleListProperties( *this );
 }
 
 #endif // __ZBBPRuleListProp_H__

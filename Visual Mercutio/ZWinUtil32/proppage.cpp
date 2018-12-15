@@ -1,10 +1,10 @@
 //## begin module%3705B8640383.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%3705B8640383.cm
 
 //## begin module%3705B8640383.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%3705B8640383.cp
 
 //## Module: PropPage%3705B8640383; Package body
@@ -30,8 +30,8 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
 BEGIN_MESSAGE_MAP(ZIGenericPropPage, CPropertyPage)
-	//{{AFX_MSG_MAP(ZIGenericPropPage)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZIGenericPropPage)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //## end module%3705B8640383.additionalDeclarations
 

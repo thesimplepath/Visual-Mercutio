@@ -45,7 +45,7 @@
 //@topic Process Properties Change Flags | Different aspects of the Process
 // properties that can be changed individually.
 //@flag Z_CHANGE_MANAGEMENT_CASE | Change the management name.
-#define Z_CHANGE_MANAGEMENT_CASE	0x0001
+#define Z_CHANGE_MANAGEMENT_CASE    0x0001
 
 /////////////////////////////////////////////////////////////////////////////
 // Fill property IDs
@@ -57,7 +57,7 @@
 // in conjunction with the <c IODPropertyContainer> interface implemented
 // by the process property container.
 //@flag Z_MANAGEMENT_CASE | Identifier for the management case property.
-#define Z_MANAGEMENT_CASE	1
+#define Z_MANAGEMENT_CASE    1
 
 /////////////////////////////////////////////////////////////////////////////
 // ZBBPProcessProperties
@@ -77,146 +77,146 @@
 //
 
 class AFX_EXT_CLASS ZBBPProcessProperties : public CODIntProperty,
-											public sfl::CPropertyContainer<IODPropertyContainer,
-																		   CODPropertyAccessor<ZBBPProcessProperties> >
+                                            public sfl::CPropertyContainer<IODPropertyContainer,
+                                                                           CODPropertyAccessor<ZBBPProcessProperties> >
 {
-	DECLARE_SERIAL( ZBBPProcessProperties )
+    DECLARE_SERIAL( ZBBPProcessProperties )
 
 // Construction/Destruction
 public:
 
-	//@cmember
-	/* Constructor. */
-	ZBBPProcessProperties( int nId = ZS_BP_PROP_PROCESS );
+    //@cmember
+    /* Constructor. */
+    ZBBPProcessProperties( int nId = ZS_BP_PROP_PROCESS );
 
-	//@cmember
-	/* Copy constructor. */
-	ZBBPProcessProperties( const ZBBPProcessProperties& propProcess );
+    //@cmember
+    /* Copy constructor. */
+    ZBBPProcessProperties( const ZBBPProcessProperties& propProcess );
 
-	//@cmember
-	/* Destructor. */
-	virtual ~ZBBPProcessProperties();
+    //@cmember
+    /* Destructor. */
+    virtual ~ZBBPProcessProperties();
 
 // Operations
 public:
 
-	//@cmember
-	/* Compare the property identifier with another identifier. */
-	virtual BOOL CompareId( const int nId ) const;
+    //@cmember
+    /* Compare the property identifier with another identifier. */
+    virtual BOOL CompareId( const int nId ) const;
 
-	//@cmember
-	/* Sets this set of fill properties equal to another. */
-	ZBBPProcessProperties& operator=( const ZBBPProcessProperties& propProcess );
+    //@cmember
+    /* Sets this set of fill properties equal to another. */
+    ZBBPProcessProperties& operator=( const ZBBPProcessProperties& propProcess );
 
-	//@cmember
-	/* Determines if another set of fill properties is equal to this one. */
-	BOOL operator==( const ZBBPProcessProperties propProcess ) const;
+    //@cmember
+    /* Determines if another set of fill properties is equal to this one. */
+    BOOL operator==( const ZBBPProcessProperties propProcess ) const;
 
-	//@cmember
-	/* Makes a copy of this properties object. */
-	virtual CODProperty* Dup();
+    //@cmember
+    /* Makes a copy of this properties object. */
+    virtual CODProperty* Dup();
 
-	//@cmember
-	/* Merges another set of properties with this one. */
-	virtual void Merge( CODProperty* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL );
+    //@cmember
+    /* Merges another set of properties with this one. */
+    virtual void Merge( CODProperty* pProperty, DWORD dwChangeFlags = OD_CHANGE_ALL );
 
-	//@cmember
-	/* Determines if another set of properties is equal to this one. */
-	virtual BOOL IsEqual( CODProperty* pProp );
+    //@cmember
+    /* Determines if another set of properties is equal to this one. */
+    virtual BOOL IsEqual( CODProperty* pProp );
 
-	// The GUID map implements the QueryGuid function
-	BEGIN_GUID_MAP(ZBBPProcessProperties)
-		GUID_ENTRY(IODPropertyContainer)
-		GUID_ENTRY(sfl::IPropertyContainer)
-		GUID_CHAIN_ENTRY(CODIntProperty)
-	END_GUID_MAP
+    // The GUID map implements the QueryGuid function
+    BEGIN_GUID_MAP(ZBBPProcessProperties)
+        GUID_ENTRY(IODPropertyContainer)
+        GUID_ENTRY(sfl::IPropertyContainer)
+        GUID_CHAIN_ENTRY(CODIntProperty)
+    END_GUID_MAP
 
-	//@cmember
-	/* Add a reference to this object. */
-	ULONG STDMETHODCALLTYPE AddRef();
+    //@cmember
+    /* Add a reference to this object. */
+    ULONG STDMETHODCALLTYPE AddRef();
 
-	//@cmember
-	/* Release a reference to this object. */
-	ULONG STDMETHODCALLTYPE Release();
+    //@cmember
+    /* Release a reference to this object. */
+    ULONG STDMETHODCALLTYPE Release();
 
 public:
 
-	//@cmember
-	/* Gets the management case. */
-	CString GetManagementCase() const;
+    //@cmember
+    /* Gets the management case. */
+    CString GetManagementCase() const;
 
-	//@cmember
-	/* Sets the management case. */
-	void SetManagementCase( LPCTSTR lpszName );
+    //@cmember
+    /* Sets the management case. */
+    void SetManagementCase( LPCTSTR lpszName );
 
-	/////////////////////////////////////////////////////////////////////////
-	// IODPropertyContainer interface
+    /////////////////////////////////////////////////////////////////////////
+    // IODPropertyContainer interface
 
-	//@cmember
-	/* Gets the value of the given string property. */
-	virtual BOOL GetValue( const int nPropId, CString& strValue ) const;
+    //@cmember
+    /* Gets the value of the given string property. */
+    virtual BOOL GetValue( const int nPropId, CString& strValue ) const;
 
-	//@cmember
-	/* Gets the value of the given integer property. */
-	virtual BOOL GetValue( const int nPropId, int& nValue ) const;
+    //@cmember
+    /* Gets the value of the given integer property. */
+    virtual BOOL GetValue( const int nPropId, int& nValue ) const;
 
-	//@cmember
-	/* Gets the value of the given unsigned integer property. */
-	virtual BOOL GetValue( const int nPropId, UINT& nValue ) const;
+    //@cmember
+    /* Gets the value of the given unsigned integer property. */
+    virtual BOOL GetValue( const int nPropId, UINT& nValue ) const;
 
-	//@cmember
-	/* Gets the value of the given DWORD property. */
-	virtual BOOL GetValue( const int nPropId, DWORD& dwValue ) const;
+    //@cmember
+    /* Gets the value of the given DWORD property. */
+    virtual BOOL GetValue( const int nPropId, DWORD& dwValue ) const;
 
-	//@cmember
-	/* Gets the value of the given float property. */
-	virtual BOOL GetValue( const int nPropId, float& fValue ) const;
+    //@cmember
+    /* Gets the value of the given float property. */
+    virtual BOOL GetValue( const int nPropId, float& fValue ) const;
 
-	//@cmember
-	/* Sets the value of the given string property. */
-	virtual BOOL SetValue( const int nPropId, LPCTSTR lpszValue );
+    //@cmember
+    /* Sets the value of the given string property. */
+    virtual BOOL SetValue( const int nPropId, LPCTSTR lpszValue );
 
-	//@cmember
-	/* Sets the value of the given integer property. */
-	virtual BOOL SetValue( const int nPropId, const int nValue );
+    //@cmember
+    /* Sets the value of the given integer property. */
+    virtual BOOL SetValue( const int nPropId, const int nValue );
 
-	//@cmember
-	/* Sets the value of the given unsigned integer property. */
-	virtual BOOL SetValue( const int nPropId, const UINT nValue );
+    //@cmember
+    /* Sets the value of the given unsigned integer property. */
+    virtual BOOL SetValue( const int nPropId, const UINT nValue );
 
-	//@cmember
-	/* Sets the value of the given unsigned DWORD property. */
-	virtual BOOL SetValue( const int nPropId, const DWORD dwValue );
+    //@cmember
+    /* Sets the value of the given unsigned DWORD property. */
+    virtual BOOL SetValue( const int nPropId, const DWORD dwValue );
 
-	//@cmember
-	/* Sets the value of the given float property. */
-	virtual BOOL SetValue( const int nPropId, const float fValue );
+    //@cmember
+    /* Sets the value of the given float property. */
+    virtual BOOL SetValue( const int nPropId, const float fValue );
 
-	//@cmember
-	/* Serializes the line properties. */
-	virtual void Serialize( CArchive& ar );
+    //@cmember
+    /* Serializes the line properties. */
+    virtual void Serialize( CArchive& ar );
 
 // Implementation
 public:
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump( CDumpContext& dc ) const;
+    virtual void AssertValid() const;
+    virtual void Dump( CDumpContext& dc ) const;
 #endif
 
 private:
 
-	/* Additional mutators for use with CODIntPropertyAccessor */
-	void SetManagementCaseEx( const CString name );
+    /* Additional mutators for use with CODIntPropertyAccessor */
+    void SetManagementCaseEx( const CString name );
 
-	/* Registers the fill property meta-data. */
-	bool RegisterProperties();
+    /* Registers the fill property meta-data. */
+    bool RegisterProperties();
 
 // Attributes
 protected:
 
-	//@cmember
-	/* The management case. */
-	CString m_ManagementCase;
+    //@cmember
+    /* The management case. */
+    CString m_ManagementCase;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -226,21 +226,21 @@ protected:
 //@rdesc New reference count value.
 inline ULONG ZBBPProcessProperties::AddRef()
 {
-	return CODIntProperty::AddRef();
+    return CODIntProperty::AddRef();
 }
 
 //@mfunc Release a reference to this object.
 //@rdesc New reference count value.
 inline ULONG ZBBPProcessProperties::Release()
 {
-	return CODIntProperty::Release();
+    return CODIntProperty::Release();
 }
 
 //@mfunc Gets the management case name.
 //@rdesc The management case name.
 inline CString ZBBPProcessProperties::GetManagementCase() const
 {
-	return m_ManagementCase;
+    return m_ManagementCase;
 }
 
 //@mfunc Creates a copy of this property.
@@ -248,7 +248,7 @@ inline CString ZBBPProcessProperties::GetManagementCase() const
 // for cleaning up this object.
 inline CODProperty* ZBBPProcessProperties::Dup()
 {
-	return new ZBBPProcessProperties( *this );
+    return new ZBBPProcessProperties( *this );
 }
 
 #endif // __ZBBPProcessProp_H__

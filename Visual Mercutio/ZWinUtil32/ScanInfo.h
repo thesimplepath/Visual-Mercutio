@@ -10,10 +10,10 @@
 #include "zBaseLib\ZWizard.h"
 
 #ifndef _WIN32
-	#include "ZWinUtil.h"
+    #include "ZWinUtil.h"
 #endif
 #ifdef _WIN32
-	#include "ZWinUtil32.h"
+    #include "ZWinUtil32.h"
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
@@ -23,35 +23,35 @@ class ZIScanInformation : public ZIWizardDialog
 {
 // Construction
 public:
-	ZIScanInformation(const CString Name = "", const CString Description = "", CWnd* pParent = NULL);   // standard constructor
-	CString	GetDescription() const { return m_Description; };
-	CString	GetName() const { return m_Name; };
+    ZIScanInformation(const CString Name = "", const CString Description = "", CWnd* pParent = NULL);   // standard constructor
+    CString    GetDescription() const { return m_Description; };
+    CString    GetName() const { return m_Name; };
 
 private:
 // Dialog Data
-	//{{AFX_DATA(ZIScanInformation)
-	enum { IDD = IDD_WZSCANNING_INFODOC };
-	CString	m_Description;
-	CString	m_Name;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZIScanInformation)
+    enum { IDD = IDD_WZSCANNING_INFODOC };
+    CString    m_Description;
+    CString    m_Name;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZIScanInformation)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZIScanInformation)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZIScanInformation)
-	virtual BOOL OnInitDialog();
-	virtual void OnOK();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZIScanInformation)
+    virtual BOOL OnInitDialog();
+    virtual void OnOK();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 
 private:

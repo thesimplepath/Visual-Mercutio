@@ -33,49 +33,49 @@ ZSplashImage::~ZSplashImage()
 
 bool ZSplashImage::Display( LPCTSTR szFilename, const CString Info /*= ""*/, CWnd* pParentWnd /*= NULL*/ ) 
 {
-	m_pParentWnd = pParentWnd;
-	m_BitmapFilename = szFilename;
-	m_Info = Info;
+    m_pParentWnd = pParentWnd;
+    m_BitmapFilename = szFilename;
+    m_Info = Info;
 
-	return ProcessDisplay();
+    return ProcessDisplay();
 }
 
 bool ZSplashImage::Display( UINT nResID, const CString Info /*= ""*/, CWnd* pParentWnd /*= NULL*/ ) 
 {
-	m_pParentWnd = pParentWnd;
-	m_BitmapResID = nResID;
-	m_Info = Info;
+    m_pParentWnd = pParentWnd;
+    m_BitmapResID = nResID;
+    m_Info = Info;
 
-	return ProcessDisplay();
+    return ProcessDisplay();
 }
 
 bool ZSplashImage::Display(const CString Info /*= ""*/)
 {
-	// Check if the constructor has been called correctly
-	if (m_BitmapFilename.IsEmpty() && m_BitmapResID == 0)
-		return false;
+    // Check if the constructor has been called correctly
+    if (m_BitmapFilename.IsEmpty() && m_BitmapResID == 0)
+        return false;
 
-	// If the info is not empty, assigns the its new value
-	if (!Info.IsEmpty())
-		m_Info = Info;
+    // If the info is not empty, assigns the its new value
+    if (!Info.IsEmpty())
+        m_Info = Info;
 
-	return ProcessDisplay();
+    return ProcessDisplay();
 }
 
 
 bool ZSplashImage::ProcessDisplay()
 {
-	ZSplashDialog*	pSplash;
-	if (m_BitmapFilename.IsEmpty())
-		pSplash = new ZSplashDialog( m_BitmapResID, m_Info, m_pParentWnd );
-	else
-		pSplash = new ZSplashDialog( m_BitmapFilename, m_Info, m_pParentWnd );
+    ZSplashDialog*    pSplash;
+    if (m_BitmapFilename.IsEmpty())
+        pSplash = new ZSplashDialog( m_BitmapResID, m_Info, m_pParentWnd );
+    else
+        pSplash = new ZSplashDialog( m_BitmapFilename, m_Info, m_pParentWnd );
 
-	if (!pSplash)
-		return false;
+    if (!pSplash)
+        return false;
 
-	pSplash->DoModal();
-	delete pSplash;
-	return true;
+    pSplash->DoModal();
+    delete pSplash;
+    return true;
 }
 

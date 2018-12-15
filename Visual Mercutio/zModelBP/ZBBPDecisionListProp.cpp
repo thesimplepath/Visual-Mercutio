@@ -41,19 +41,19 @@ IMPLEMENT_SERIAL( ZBBPDecisionListProperties, CODIntProperty, def_Version )
 //@parmopt int | nId | OD_PROP_FILL | The identifier of the property.
 //@parm ZBBPDecisionListProperties& | propProcess | The fill property to copy.
 ZBBPDecisionListProperties::ZBBPDecisionListProperties( int nId )
-	: CODIntProperty( nId )
+    : CODIntProperty( nId )
 {
-	m_DecisionList = _T( "" );
+    m_DecisionList = _T( "" );
 
-	RegisterProperties();
+    RegisterProperties();
 }
 
 ZBBPDecisionListProperties::ZBBPDecisionListProperties( const ZBBPDecisionListProperties& propProcess )
-	: CODIntProperty( propProcess.GetId() )
+    : CODIntProperty( propProcess.GetId() )
 {
-	m_DecisionList  = propProcess.GetDecisionList();
+    m_DecisionList  = propProcess.GetDecisionList();
 
-	RegisterProperties();
+    RegisterProperties();
 }
 
 //@mfunc Destructor.
@@ -66,15 +66,15 @@ ZBBPDecisionListProperties::~ZBBPDecisionListProperties()
 //@parm The new decision list.
 void ZBBPDecisionListProperties::SetDecisionList( LPCTSTR lpszValue )
 {
-	if ( lpszValue != NULL )
-	{
-		m_DecisionList = lpszValue;
-	}
-	else
-	{
-		TRACE0( _T( "Z -> Invalid Decision List pointer!\n" ) );
-		ASSERT( FALSE );
-	}
+    if ( lpszValue != NULL )
+    {
+        m_DecisionList = lpszValue;
+    }
+    else
+    {
+        TRACE0( _T( "Z -> Invalid Decision List pointer!\n" ) );
+        ASSERT( FALSE );
+    }
 }
 
 //@mfunc Sets the decision list.
@@ -82,7 +82,7 @@ void ZBBPDecisionListProperties::SetDecisionList( LPCTSTR lpszValue )
 //@parm The new decision list.
 void ZBBPDecisionListProperties::SetDecisionListEx( const CString value )
 {
-	SetDecisionList( value );
+    SetDecisionList( value );
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -93,10 +93,10 @@ void ZBBPDecisionListProperties::SetDecisionListEx( const CString value )
 //@parm Property identifier to compare to.
 BOOL ZBBPDecisionListProperties::CompareId( const int nId ) const
 {
-	int nIdMin = m_nId;
-	int nIdMax = m_nId + Z_DECISION_LIST;
+    int nIdMin = m_nId;
+    int nIdMax = m_nId + Z_DECISION_LIST;
 
-	return ( nId >= nIdMin && nId <= nIdMax );
+    return ( nId >= nIdMin && nId <= nIdMax );
 }
 
 //@mfunc Sets this property object equal to the one passed in.
@@ -104,10 +104,10 @@ BOOL ZBBPDecisionListProperties::CompareId( const int nId ) const
 //@parm The property to copy.
 ZBBPDecisionListProperties& ZBBPDecisionListProperties::operator=( const ZBBPDecisionListProperties& propProcess )
 {
-	SetId( propProcess.GetId() );
-	SetDecisionList( propProcess.GetDecisionList() );
+    SetId( propProcess.GetId() );
+    SetDecisionList( propProcess.GetDecisionList() );
 
-	return *this;
+    return *this;
 }
 
 //@mfunc Tests if this property is equal to the one passed in.
@@ -115,7 +115,7 @@ ZBBPDecisionListProperties& ZBBPDecisionListProperties::operator=( const ZBBPDec
 //@parm The property to test against.
 BOOL ZBBPDecisionListProperties::operator==( const ZBBPDecisionListProperties propProcess ) const
 {
-	return ( GetDecisionList() == propProcess.GetDecisionList() );
+    return ( GetDecisionList() == propProcess.GetDecisionList() );
 }
 
 //@mfunc Merges the values of the property passed in with the values in this
@@ -126,15 +126,15 @@ BOOL ZBBPDecisionListProperties::operator==( const ZBBPDecisionListProperties pr
 // to merge into this property object.
 void ZBBPDecisionListProperties::Merge( CODProperty* pProperty, DWORD dwChangeFlags )
 {
-	ZBBPDecisionListProperties* pProcessProps = (ZBBPDecisionListProperties*)pProperty;
+    ZBBPDecisionListProperties* pProcessProps = (ZBBPDecisionListProperties*)pProperty;
 
-	if ( pProcessProps )
-	{
-		if ( dwChangeFlags & Z_CHANGE_DECISION_LIST )
-		{
-			m_DecisionList = pProcessProps->GetDecisionList();
-		}
-	}
+    if ( pProcessProps )
+    {
+        if ( dwChangeFlags & Z_CHANGE_DECISION_LIST )
+        {
+            m_DecisionList = pProcessProps->GetDecisionList();
+        }
+    }
 }
 
 //@mfunc Tests if this property is equal to the one passed in. This method
@@ -143,17 +143,17 @@ void ZBBPDecisionListProperties::Merge( CODProperty* pProperty, DWORD dwChangeFl
 //@parm A pointer to the property to test against.
 BOOL ZBBPDecisionListProperties::IsEqual( CODProperty* pProp )
 {
-	if ( GetId() == pProp->GetId() )
-	{
-		ZBBPDecisionListProperties* pProcessProp = (ZBBPDecisionListProperties*)pProp;
+    if ( GetId() == pProp->GetId() )
+    {
+        ZBBPDecisionListProperties* pProcessProp = (ZBBPDecisionListProperties*)pProp;
 
-		if ( pProcessProp )
-		{
-			return ( *this == *pProcessProp );
-		}
-	}
+        if ( pProcessProp )
+        {
+            return ( *this == *pProcessProp );
+        }
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -183,97 +183,97 @@ BOOL ZBBPDecisionListProperties::IsEqual( CODProperty* pProp )
 
 BOOL ZBBPDecisionListProperties::GetValue( const int nPropId, CString& strValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_DECISION_LIST:
-		{
-			strValue = m_DecisionList;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_DECISION_LIST:
+        {
+            strValue = m_DecisionList;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPDecisionListProperties::GetValue( const int nPropId, int& nValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_DECISION_LIST:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_DECISION_LIST:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPDecisionListProperties::GetValue( const int nPropId, UINT& nValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_DECISION_LIST:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_DECISION_LIST:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPDecisionListProperties::GetValue( const int nPropId, DWORD& dwValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_DECISION_LIST:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_DECISION_LIST:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPDecisionListProperties::GetValue( const int nPropId, float& fValue ) const
 {
-	switch ( nPropId )
-	{
-		case Z_DECISION_LIST:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_DECISION_LIST:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 //@mfunc | ZBBPDecisionListProperties | SetValue | Sets the value of the given property.
@@ -300,97 +300,97 @@ BOOL ZBBPDecisionListProperties::GetValue( const int nPropId, float& fValue ) co
 
 BOOL ZBBPDecisionListProperties::SetValue( const int nPropId, LPCTSTR lpszValue )
 {
-	switch ( nPropId )
-	{
-		case Z_DECISION_LIST:
-		{
-			m_DecisionList = lpszValue;
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_DECISION_LIST:
+        {
+            m_DecisionList = lpszValue;
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPDecisionListProperties::SetValue( const int nPropId, const int nValue )
 {
-	switch ( nPropId )
-	{
-		case Z_DECISION_LIST:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_DECISION_LIST:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPDecisionListProperties::SetValue( const int nPropId, const UINT nValue )
 {
-	switch ( nPropId )
-	{
-		case Z_DECISION_LIST:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_DECISION_LIST:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPDecisionListProperties::SetValue( const int nPropId, const DWORD dwValue )
 {
-	switch ( nPropId )
-	{
-		case Z_DECISION_LIST:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_DECISION_LIST:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL ZBBPDecisionListProperties::SetValue( const int nPropId, const float fValue )
 {
-	switch ( nPropId )
-	{
-		case Z_DECISION_LIST:
-		{
-			throw new CODPropertyConversionException();
-			break;
-		}
+    switch ( nPropId )
+    {
+        case Z_DECISION_LIST:
+        {
+            throw new CODPropertyConversionException();
+            break;
+        }
 
-		default:
-		{
-			return FALSE;
-		}
-	}
+        default:
+        {
+            return FALSE;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -398,32 +398,32 @@ BOOL ZBBPDecisionListProperties::SetValue( const int nPropId, const float fValue
 
 bool ZBBPDecisionListProperties::RegisterProperties()
 {
-	static bool propsRegistered = false;
+    static bool propsRegistered = false;
 
-	if ( !propsRegistered )
-	{
-		bool success = true;
+    if ( !propsRegistered )
+    {
+        bool success = true;
 
-		if ( success )
-		{
-			success = RegisterProperty( Z_DECISION_LIST,
-										IDS_Z_DECISION_LIST_NAME,
-										IDS_Z_DECISION_LIST_DESC,
-										_PropertyAccessor( &ZBBPDecisionListProperties::GetDecisionList,
-														   &ZBBPDecisionListProperties::SetDecisionListEx ),
-										VT_BSTR,
-										PROP_DIRECT );
-		}
+        if ( success )
+        {
+            success = RegisterProperty( Z_DECISION_LIST,
+                                        IDS_Z_DECISION_LIST_NAME,
+                                        IDS_Z_DECISION_LIST_DESC,
+                                        _PropertyAccessor( &ZBBPDecisionListProperties::GetDecisionList,
+                                                           &ZBBPDecisionListProperties::SetDecisionListEx ),
+                                        VT_BSTR,
+                                        PROP_DIRECT );
+        }
 
-		if ( !success )
-		{
-			ZBBPDecisionListProperties::GetPropertyMap().DeleteAll();
-		}
+        if ( !success )
+        {
+            ZBBPDecisionListProperties::GetPropertyMap().DeleteAll();
+        }
 
-		propsRegistered = success;
-	}
+        propsRegistered = success;
+    }
 
-	return propsRegistered;
+    return propsRegistered;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -432,14 +432,14 @@ bool ZBBPDecisionListProperties::RegisterProperties()
 #ifdef _DEBUG
 void ZBBPDecisionListProperties::AssertValid() const
 {
-	CODIntProperty::AssertValid();
+    CODIntProperty::AssertValid();
 }
 
 void ZBBPDecisionListProperties::Dump( CDumpContext& dc ) const
 {
-	CODIntProperty::Dump( dc );
+    CODIntProperty::Dump( dc );
 
-	dc << _T( "Decision list = " ) << m_DecisionList << _T( "\n" );
+    dc << _T( "Decision list = " ) << m_DecisionList << _T( "\n" );
 }
 #endif //_DEBUG
 
@@ -451,25 +451,25 @@ void ZBBPDecisionListProperties::Dump( CDumpContext& dc ) const
 //@parm The archive to use for serialization.
 void ZBBPDecisionListProperties::Serialize( CArchive& ar )
 {
-	CODIntProperty::Serialize( ar );
+    CODIntProperty::Serialize( ar );
 
-	if ( ar.IsStoring() )
-	{
-		TRACE( _T( "ZBBPDecisionListProperties::Serialize : Start Save\n" ) );
+    if ( ar.IsStoring() )
+    {
+        TRACE( _T( "ZBBPDecisionListProperties::Serialize : Start Save\n" ) );
 
-		PUT_SCHEMA( ar, ZBBPDecisionListProperties );
-		ar << m_DecisionList;
+        PUT_SCHEMA( ar, ZBBPDecisionListProperties );
+        ar << m_DecisionList;
 
-		TRACE( _T( "ZBBPDecisionListProperties::Serialize : End Save\n" ) );
-	}
-	else
-	{
-		TRACE( _T( "ZBBPDecisionListProperties::Serialize : Start Read\n" ) );
+        TRACE( _T( "ZBBPDecisionListProperties::Serialize : End Save\n" ) );
+    }
+    else
+    {
+        TRACE( _T( "ZBBPDecisionListProperties::Serialize : Start Read\n" ) );
 
-		UINT nSchema;
-		GET_SCHEMA( ar, nSchema );
-		ar >> m_DecisionList;
+        UINT nSchema;
+        GET_SCHEMA( ar, nSchema );
+        ar >> m_DecisionList;
 
-		TRACE( _T( "ZBBPDecisionListProperties::Serialize : End Read\n" ) );
-	}
+        TRACE( _T( "ZBBPDecisionListProperties::Serialize : End Read\n" ) );
+    }
 }

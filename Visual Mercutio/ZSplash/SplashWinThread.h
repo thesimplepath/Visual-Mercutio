@@ -15,55 +15,55 @@
 
 class ZSplashWinThread : public CWinThread
 {
-	DECLARE_DYNCREATE(ZSplashWinThread)
+    DECLARE_DYNCREATE(ZSplashWinThread)
 public:
-	ZSplashWinThread(size_t MaxTime = 20, bool IncludeProgress = true, CWnd* pParentWnd = NULL);
-	ZSplashWinThread(LPCTSTR szFilename, size_t MaxTime = 20, bool IncludeProgress = true, CWnd* pParentWnd = NULL);
-	ZSplashWinThread(UINT nResID, size_t MaxTime = 20, bool IncludeProgress = true, CWnd* pParentWnd = NULL);
-	virtual ~ZSplashWinThread();
-	void SetProgress(size_t value);
-	void SetText(const CString value);
-	void SetText(UINT nResID);
-	void AssignParentWindow(CWnd* pParentWnd);
+    ZSplashWinThread(size_t MaxTime = 20, bool IncludeProgress = true, CWnd* pParentWnd = NULL);
+    ZSplashWinThread(LPCTSTR szFilename, size_t MaxTime = 20, bool IncludeProgress = true, CWnd* pParentWnd = NULL);
+    ZSplashWinThread(UINT nResID, size_t MaxTime = 20, bool IncludeProgress = true, CWnd* pParentWnd = NULL);
+    virtual ~ZSplashWinThread();
+    void SetProgress(size_t value);
+    void SetText(const CString value);
+    void SetText(UINT nResID);
+    void AssignParentWindow(CWnd* pParentWnd);
 
 // Operations
 public:
-	void KillThread();
+    void KillThread();
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZSplashWinThread)
-	public:
-	virtual BOOL InitInstance();
-	virtual int ExitInstance();
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZSplashWinThread)
+    public:
+    virtual BOOL InitInstance();
+    virtual int ExitInstance();
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZSplashWinThread)
-		// NOTE - the ClassWizard will add and remove member functions here.
-	//}}AFX_MSG
+    // Generated message map functions
+    //{{AFX_MSG(ZSplashWinThread)
+        // NOTE - the ClassWizard will add and remove member functions here.
+    //}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 
-	virtual int Run( );
+    virtual int Run( );
 
-	
+    
 private:
-	void Delete();
+    void Delete();
 
 private:
-	ZSplashWnd		m_SplashWnd;
-	HANDLE			m_hEventKill;
-	HANDLE			m_hEventDead;
-	COleDateTime	m_StartTime;
-	size_t			m_MaxTime;
-	CString			m_BitmapFile;
-	UINT			m_nResID;
-	CWnd*			m_pParentWnd;
-	bool			m_IncludeProgress;
+    ZSplashWnd        m_SplashWnd;
+    HANDLE            m_hEventKill;
+    HANDLE            m_hEventDead;
+    COleDateTime    m_StartTime;
+    size_t            m_MaxTime;
+    CString            m_BitmapFile;
+    UINT            m_nResID;
+    CWnd*            m_pParentWnd;
+    bool            m_IncludeProgress;
 };
 
 

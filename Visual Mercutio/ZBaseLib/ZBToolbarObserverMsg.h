@@ -33,26 +33,26 @@
 
 class AFX_EXT_CLASS ZBToolbarObserverMsg : public ZIObserverMsg  
 {
-	DECLARE_DYNAMIC( ZBToolbarObserverMsg )
+    DECLARE_DYNAMIC( ZBToolbarObserverMsg )
 
 public:
 
-	ZBToolbarObserverMsg( UINT MessageID = 0 );
-	virtual ~ZBToolbarObserverMsg();
+    ZBToolbarObserverMsg( UINT MessageID = 0 );
+    virtual ~ZBToolbarObserverMsg();
 
-	UINT GetMessageID() const
-	{
-		return m_MessageID;
-	};
+    UINT GetMessageID() const
+    {
+        return m_MessageID;
+    };
 
-	void SetMessageID( UINT value )
-	{
-		m_MessageID = value;
-	};
+    void SetMessageID( UINT value )
+    {
+        m_MessageID = value;
+    };
 
 private:
 
-	UINT m_MessageID;
+    UINT m_MessageID;
 };
 
 #endif // !defined(AFX_ZBToolbarObserverMsg_H__31A212D8_7CA2_4BEB_9709_8C785F4909B3__INCLUDED_)

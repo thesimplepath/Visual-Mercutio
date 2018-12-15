@@ -1,10 +1,10 @@
 //## begin module%3719856300CE.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%3719856300CE.cm
 
 //## begin module%3719856300CE.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%3719856300CE.cp
 
 //## Module: ZBPoint%3719856300CE; Package body
@@ -58,46 +58,46 @@ ZBPoint::~ZBPoint()
 void ZBPoint::Serialize (CArchive& ar)
 {
   //## begin ZBPoint::Serialize%924419478.body preserve=yes
-	if (ar.IsStoring())
-	{	// Write the elements
-		ar << *this;
-	}
-	else
-	{	// Read the elements
-		ar >> *this;
-	}
+    if (ar.IsStoring())
+    {    // Write the elements
+        ar << *this;
+    }
+    else
+    {    // Read the elements
+        ar >> *this;
+    }
   //## end ZBPoint::Serialize%924419478.body
 }
 
 CArchive& operator >> (CArchive& ar, ZBPoint& Point)
 {
   //## begin ZBPoint::operator >>%924419479.body preserve=yes
-	if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() <= 12)
-	{
-		WORD	wTemp;
-		ar >> wTemp;
-		Point.x = (int)wTemp;
-      	ar >> wTemp;
-		Point.y = (int)wTemp;
-	}
-	else
-	{
-		DWORD	dwTemp;
-		ar >> dwTemp;
-		Point.x = (int)dwTemp;
-      	ar >> dwTemp;
-		Point.x = (int)dwTemp;
-	}
-	return ar;
+    if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() <= 12)
+    {
+        WORD    wTemp;
+        ar >> wTemp;
+        Point.x = (int)wTemp;
+          ar >> wTemp;
+        Point.y = (int)wTemp;
+    }
+    else
+    {
+        DWORD    dwTemp;
+        ar >> dwTemp;
+        Point.x = (int)dwTemp;
+          ar >> dwTemp;
+        Point.x = (int)dwTemp;
+    }
+    return ar;
   //## end ZBPoint::operator >>%924419479.body
 }
 
 CArchive& operator << (CArchive& ar, ZBPoint& Point)
 {
   //## begin ZBPoint::operator <<%924419480.body preserve=yes
-	ar << (DWORD)Point.x;
+    ar << (DWORD)Point.x;
     ar << (DWORD)Point.y;
-	return ar;
+    return ar;
   //## end ZBPoint::operator <<%924419480.body
 }
 

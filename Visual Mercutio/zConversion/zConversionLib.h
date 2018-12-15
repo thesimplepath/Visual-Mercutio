@@ -12,7 +12,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 04/2002
+// <nl>Created:         04/2002
 // <nl>Description:  ConversionLib include file for automatic library linking
 //
 /////////////////////////////////////////////////////////////////////////////

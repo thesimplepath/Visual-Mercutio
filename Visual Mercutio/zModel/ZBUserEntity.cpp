@@ -24,16 +24,16 @@ IMPLEMENT_SERIAL( ZBUserEntity, CObject, def_Version )
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBUserEntity::ZBUserEntity( const CString	Name		/*= ""*/,
-							const CString	Description	/*= ""*/,
-							const float		Cost		/*= 0*/,
-							ZBUserEntity*	pParent		/*= NULL*/ )
-	: m_EntityName			( Name ),
-	  m_EntityDescription	( Description ),
-	  m_EntityCost			( Cost ),
-	  m_pParent				( pParent )
+ZBUserEntity::ZBUserEntity( const CString    Name        /*= ""*/,
+                            const CString    Description    /*= ""*/,
+                            const float        Cost        /*= 0*/,
+                            ZBUserEntity*    pParent        /*= NULL*/ )
+    : m_EntityName            ( Name ),
+      m_EntityDescription    ( Description ),
+      m_EntityCost            ( Cost ),
+      m_pParent                ( pParent )
 {
-	CreateGUID();
+    CreateGUID();
 }
 
 ZBUserEntity::~ZBUserEntity()
@@ -42,27 +42,27 @@ ZBUserEntity::~ZBUserEntity()
 
 ZBUserEntity::ZBUserEntity( const ZBUserEntity& src )
 {
-	*this = src;
+    *this = src;
 }
 
 ZBUserEntity& ZBUserEntity::operator=( const ZBUserEntity& src )
 {
-	m_GUID				= src.m_GUID;
-	m_EntityName		= src.m_EntityName;
-	m_EntityDescription	= src.m_EntityDescription;
-	m_EntityCost		= src.m_EntityCost;
+    m_GUID                = src.m_GUID;
+    m_EntityName        = src.m_EntityName;
+    m_EntityDescription    = src.m_EntityDescription;
+    m_EntityCost        = src.m_EntityCost;
 
-	return *this;
+    return *this;
 }
 
 ZBUserEntity* ZBUserEntity::Clone() const
 {
-	return ( new ZBUserEntity( *this ) );
+    return ( new ZBUserEntity( *this ) );
 }
 
 void ZBUserEntity::CreateGUID()
 {
-	m_GUID = ZUGUID::CreateNewGUID();
+    m_GUID = ZUGUID::CreateNewGUID();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -70,12 +70,12 @@ void ZBUserEntity::CreateGUID()
 #ifdef _DEBUG
 void ZBUserEntity::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void ZBUserEntity::Dump( CDumpContext& dc ) const
 {
-	CObject::Dump( dc );
+    CObject::Dump( dc );
 }
 #endif //_DEBUG
 
@@ -84,33 +84,33 @@ void ZBUserEntity::Dump( CDumpContext& dc ) const
 
 void ZBUserEntity::Serialize ( CArchive& ar )
 {
-	if ( ar.IsStoring() )
-	{
-		// Write the elements
-		ar << m_GUID;
-		ar << m_EntityName;
-		ar << m_EntityDescription;
-		ar << m_EntityCost;
-	}
-	else
-	{
-		// Read the elements
-		CString s;
-		ar >> s;
+    if ( ar.IsStoring() )
+    {
+        // Write the elements
+        ar << m_GUID;
+        ar << m_EntityName;
+        ar << m_EntityDescription;
+        ar << m_EntityCost;
+    }
+    else
+    {
+        // Read the elements
+        CString s;
+        ar >> s;
 
-		if ( ar.m_pDocument &&
-			 dynamic_cast<ZDBaseDocument*>(ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 19 )
-		{
-			m_GUID = s;
-			ar >> m_EntityName;
-		}
-		else
-		{
-			CreateGUID();
-			m_EntityName = s;
-		}
+        if ( ar.m_pDocument &&
+             dynamic_cast<ZDBaseDocument*>(ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 19 )
+        {
+            m_GUID = s;
+            ar >> m_EntityName;
+        }
+        else
+        {
+            CreateGUID();
+            m_EntityName = s;
+        }
 
-		ar >> m_EntityDescription;
-		ar >> m_EntityCost;
-	}
+        ar >> m_EntityDescription;
+        ar >> m_EntityCost;
+    }
 }

@@ -1,10 +1,10 @@
 // **************************************************************************************************************
-// *									  ZVRenameModelPageInTreeDlg											*
+// *                                      ZVRenameModelPageInTreeDlg                                            *
 // **************************************************************************************************************
-// * JMR-MODIF - Le 3 avril 2006 - Ajout de la classe ZVRenameModelPageInTreeDlg.								*
+// * JMR-MODIF - Le 3 avril 2006 - Ajout de la classe ZVRenameModelPageInTreeDlg.                                *
 // **************************************************************************************************************
-// * Cette classe permet à l'utilisateur de renommer une page sélectionnée dans l'arbre à l'aide du menu		*
-// * contextuel.																								*
+// * Cette classe permet à l'utilisateur de renommer une page sélectionnée dans l'arbre à l'aide du menu        *
+// * contextuel.                                                                                                *
 // **************************************************************************************************************
 
 #if !defined(AFX_ZVRenameModelPageInTreeDlg_H__5CD7AD82_AB75_4CDC_9B1B_0F0808494530__INCLUDED_)
@@ -49,46 +49,46 @@ class AFX_EXT_CLASS ZVRenameModelPageInTreeDlg : public ZIDialog
 // Construction
 public:
 
-	// Standard constructor
-	ZVRenameModelPageInTreeDlg( CString					ProposedName	= _T( "" ),
-								CStringArray*			pArrayPageName	= NULL,
-								CWnd*					pParent			= NULL );
+    // Standard constructor
+    ZVRenameModelPageInTreeDlg( CString                    ProposedName    = _T( "" ),
+                                CStringArray*            pArrayPageName    = NULL,
+                                CWnd*                    pParent            = NULL );
 
-	CString GetPageName() const;
+    CString GetPageName() const;
 
-	// Dialog Data
-	//{{AFX_DATA(ZVRenameModelPageInTreeDlg)
-	enum { IDD = IDD_RENAME_MODELPAGE_IN_TREE };
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZVRenameModelPageInTreeDlg)
+    enum { IDD = IDD_RENAME_MODELPAGE_IN_TREE };
+    //}}AFX_DATA
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVRenameModelPageInTreeDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVRenameModelPageInTreeDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVRenameModelPageInTreeDlg)
-	virtual BOOL OnInitDialog();
-	virtual void OnOK();
-	afx_msg void OnEnChangePagename();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVRenameModelPageInTreeDlg)
+    virtual BOOL OnInitDialog();
+    virtual void OnOK();
+    afx_msg void OnEnChangePagename();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 // Implementation
 private:
 
-	CStringArray*			m_pArrayPageName;
-	CString					m_PageName;
+    CStringArray*            m_pArrayPageName;
+    CString                    m_PageName;
 };
 
 inline CString ZVRenameModelPageInTreeDlg::GetPageName() const
 {
-	return m_PageName;
+    return m_PageName;
 }
 
 //{{AFX_INSERT_LOCATION}}

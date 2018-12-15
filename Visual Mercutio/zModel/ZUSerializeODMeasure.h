@@ -37,11 +37,11 @@
 class AFX_EXT_CLASS ZUSerializeODMeasure  
 {
 public:
-	ZUSerializeODMeasure();
-	virtual ~ZUSerializeODMeasure();
+    ZUSerializeODMeasure();
+    virtual ~ZUSerializeODMeasure();
 
-	static void SerializeReadODMeasure(CArchive& ar, CODMeasure& Measure);
-	static void SerializeWriteODMeasure(CArchive& ar, CODMeasure& Measure);
+    static void SerializeReadODMeasure(CArchive& ar, CODMeasure& Measure);
+    static void SerializeWriteODMeasure(CArchive& ar, CODMeasure& Measure);
 
 };
 

@@ -33,12 +33,12 @@ class AFX_EXT_CLASS ZUActivityLog
   public:
       ZUActivityLog(CString LogFileName = "", BOOL UseDatabase = FALSE);
       BOOL Create(CString LogFileName, BOOL UseDatabase = FALSE);
-	  BOOL Initialize();
+      BOOL Initialize();
 
       ~ZUActivityLog();
 
 
-      //	The log filename.
+      //    The log filename.
       const CString GetLogFileName () const;
       void SetLogFileName (CString value);
 
@@ -52,10 +52,10 @@ class AFX_EXT_CLASS ZUActivityLog
 
     // Data Members for Class Attributes
 
-	   CString m_LogFileName;
-	   BOOL						m_UseDatabase;
-	   ZUActivityLogDatabase*	m_pActivityLogDatabase;
-	   ZUActivityLogFile*		m_pActivityLogFile;
+       CString m_LogFileName;
+       BOOL                        m_UseDatabase;
+       ZUActivityLogDatabase*    m_pActivityLogDatabase;
+       ZUActivityLogFile*        m_pActivityLogFile;
 };
 
 

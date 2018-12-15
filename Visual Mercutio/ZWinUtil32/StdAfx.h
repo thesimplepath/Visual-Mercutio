@@ -9,7 +9,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#define VC_EXTRALEAN				// Exclude rarely-used stuff from Windows headers
+#define VC_EXTRALEAN                // Exclude rarely-used stuff from Windows headers
 
 //#ifdef _WINNT_40
 //// For compatibility reason with platform sdk used
@@ -28,7 +28,7 @@
 // Plateforme cible définie à Windows NT4 et supérieures pour les versions NT de Windows.
 #ifndef _WIN32_WINNT
 #define _WIN32_WINNT 0x0400
-#endif						
+#endif                        
 
 // Plateforme cible définie à Windows98 et supérieures pour les versions standards de Windows.
 #ifndef _WIN32_WINDOWS
@@ -40,37 +40,37 @@
 #define _WIN32_IE 0x0400
 #endif
 
-#include <afxwin.h>					// MFC core and standard components
-#include <afxext.h>					// MFC extensions
+#include <afxwin.h>                    // MFC core and standard components
+#include <afxext.h>                    // MFC extensions
 #include <afxcoll.h>
 
 #ifdef _WIN32
-	#ifndef _AFX_NO_OLE_SUPPORT
-	#include <afxole.h>				// MFC OLE classes
-	#include <afxodlgs.h>			// MFC OLE dialog classes
-	#include <afxdisp.h>			// MFC Automation classes
-	#endif // _AFX_NO_OLE_SUPPORT
+    #ifndef _AFX_NO_OLE_SUPPORT
+    #include <afxole.h>                // MFC OLE classes
+    #include <afxodlgs.h>            // MFC OLE dialog classes
+    #include <afxdisp.h>            // MFC Automation classes
+    #endif // _AFX_NO_OLE_SUPPORT
 #endif
 
 #ifndef _AFX_NO_DB_SUPPORT
-#include <afxdb.h>					// MFC ODBC database classes
+#include <afxdb.h>                    // MFC ODBC database classes
 #endif // _AFX_NO_DB_SUPPORT
 
 #ifdef _WIN32
-	#ifndef _AFX_NO_DAO_SUPPORT
-	#include <afxdao.h>				// MFC DAO database classes
-	#endif // _AFX_NO_DAO_SUPPORT
+    #ifndef _AFX_NO_DAO_SUPPORT
+    #include <afxdao.h>                // MFC DAO database classes
+    #endif // _AFX_NO_DAO_SUPPORT
 
-#include <afxdtctl.h>				// MFC support for Internet Explorer 4 Common Controls
+#include <afxdtctl.h>                // MFC support for Internet Explorer 4 Common Controls
 #ifndef _AFX_NO_AFXCMN_SUPPORT
-#include <afxcmn.h>					// MFC support for Windows Common Controls
+#include <afxcmn.h>                    // MFC support for Windows Common Controls
 #endif // _AFX_NO_AFXCMN_SUPPORT
 
 #endif
 
-#include <afxmt.h>					// MFC Mutex Support
+#include <afxmt.h>                    // MFC Mutex Support
 
-#ifdef _ENABLETRACE					// If enable trace is defined
+#ifdef _ENABLETRACE                    // If enable trace is defined
 #include "zBaseLib\ZGTrace.h"
 #endif
 
@@ -82,7 +82,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include <CJ60Lib.h>				// CJ60 Library components
+#include <CJ60Lib.h>                // CJ60 Library components
 
 //put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
@@ -93,16 +93,16 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 
 #include "ZAConst.h"
-#include "zMacros.h"				// JMR-MODIF - Le 30 mars 2006 - Ajout de l'en-tête zMacros.h
+#include "zMacros.h"                // JMR-MODIF - Le 30 mars 2006 - Ajout de l'en-tête zMacros.h
 #include "Define.h"
 #include "Message.h"
 
 #include "ZSrvMess.h"
 
-#include <zBaseLib\zBaseLib.h>		// The base library
-#include <zEvent\zEventLib.h>		// The event library
-#include <zWeb\zWebLib.h>			// The web library
-#include <zRes32\zRes32Lib.h>		// The web library
+#include <zBaseLib\zBaseLib.h>        // The base library
+#include <zEvent\zEventLib.h>        // The event library
+#include <zWeb\zWebLib.h>            // The web library
+#include <zRes32\zRes32Lib.h>        // The web library
 
 // Use Objective Toolkit as a DLL
 #define _SECDLL

@@ -1,10 +1,10 @@
 // **************************************************************************************************************
-// *							Classe ZUExtractModelLogicalPrestationsAssigned									*
+// *                            Classe ZUExtractModelLogicalPrestationsAssigned                                    *
 // **************************************************************************************************************
-// * JMR-MODIF - Le 20 février 2006 - Ajout de la classe ZUExtractModelLogicalPrestationsAssigned.				*
+// * JMR-MODIF - Le 20 février 2006 - Ajout de la classe ZUExtractModelLogicalPrestationsAssigned.                *
 // **************************************************************************************************************
-// * Cette classe permet de déterminer quelle prestation est attibuée à quel symbole. A partir de cette liste,	*
-// * il est possible de reconstruire la hiérarchie des liens existants entre symboles et prestations.			*
+// * Cette classe permet de déterminer quelle prestation est attibuée à quel symbole. A partir de cette liste,    *
+// * il est possible de reconstruire la hiérarchie des liens existants entre symboles et prestations.            *
 // **************************************************************************************************************
 
 #if !defined(AFX_ZUExtractModelLogicalPrestationsAssigned_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
@@ -42,25 +42,25 @@ class AFX_EXT_CLASS ZUExtractModelLogicalPrestationsAssigned : public ZUModelNav
 {
 public:
 
-	ZUExtractModelLogicalPrestationsAssigned( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
-	virtual ~ZUExtractModelLogicalPrestationsAssigned();
+    ZUExtractModelLogicalPrestationsAssigned( ZDProcessGraphModelMdl* pModel = NULL, void* pClass = NULL );
+    virtual ~ZUExtractModelLogicalPrestationsAssigned();
 
-	CODComponentSet& GetComponentSet()
-	{
-		return m_Set;
-	};
+    CODComponentSet& GetComponentSet()
+    {
+        return m_Set;
+    };
 
-	// Call-back methods
-	virtual bool OnStart();
-	virtual bool OnFinish();
+    // Call-back methods
+    virtual bool OnStart();
+    virtual bool OnFinish();
 
-	virtual bool OnSymbol( ZBSymbol* pSymbol );
-	virtual bool OnLink( ZBLinkSymbol* pLink );
+    virtual bool OnSymbol( ZBSymbol* pSymbol );
+    virtual bool OnLink( ZBLinkSymbol* pLink );
 
 private:
 
-	ZBPrestationsEntity*	m_pPrestationsEntity;
-	CODComponentSet			m_Set;
+    ZBPrestationsEntity*    m_pPrestationsEntity;
+    CODComponentSet            m_Set;
 };
 
 #endif // !defined(AFX_ZUExtractModelLogicalPrestationsAssigned_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)

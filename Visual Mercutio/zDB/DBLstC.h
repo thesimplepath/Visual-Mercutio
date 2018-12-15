@@ -38,49 +38,49 @@ class AFX_EXT_CLASS ZCDatabaseListCtrl : public ZIListCtrl
 {
 // Attributes
 public:
-	ZCDatabaseListCtrl( const CString DatabaseFilename = "", const CString Tablename = "" );
-	virtual CDaoRecordset* GetRecordSet();
-	virtual long GetRecordCount();
-	BOOL	Initialize( const CString DatabaseFilename, const CString Tablename );
-	BOOL	Refresh();
+    ZCDatabaseListCtrl( const CString DatabaseFilename = "", const CString Tablename = "" );
+    virtual CDaoRecordset* GetRecordSet();
+    virtual long GetRecordCount();
+    BOOL    Initialize( const CString DatabaseFilename, const CString Tablename );
+    BOOL    Refresh();
 
 // Operations
 public:
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZCDatabaseListCtrl)
-	public:
-	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-	protected:
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZCDatabaseListCtrl)
+    public:
+    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+    protected:
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
-	virtual ~ZCDatabaseListCtrl();
+    virtual ~ZCDatabaseListCtrl();
 
 protected:
-	CImageList* m_pImageList;
+    CImageList* m_pImageList;
 // Generated message map functions
 protected:
-	//{{AFX_MSG(ZCDatabaseListCtrl)
-	afx_msg void OnGetDispInfo(NMHDR* pNMHDR, LRESULT* pResult);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(ZCDatabaseListCtrl)
+    afx_msg void OnGetDispInfo(NMHDR* pNMHDR, LRESULT* pResult);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
     ZCDatabaseListCtrl(const ZCDatabaseListCtrl &right);
-    const	ZCDatabaseListCtrl & operator=(const ZCDatabaseListCtrl &right);
-	void	BuildColumns();
-	BOOL	OpenDatabase();
-	BOOL	CloseDatabase();
+    const    ZCDatabaseListCtrl & operator=(const ZCDatabaseListCtrl &right);
+    void    BuildColumns();
+    BOOL    OpenDatabase();
+    BOOL    CloseDatabase();
 
 private:
-	CDaoRecordset*	m_pRecordSet;
-	CDaoDatabase*	m_pDataBase;
-	BOOL			m_ColumnsBuilt;
-	CString			m_DatabaseFilename;
-	CString			m_Tablename;
+    CDaoRecordset*    m_pRecordSet;
+    CDaoDatabase*    m_pDataBase;
+    BOOL            m_ColumnsBuilt;
+    CString            m_DatabaseFilename;
+    CString            m_Tablename;
 };
 
 /////////////////////////////////////////////////////////////////////////////

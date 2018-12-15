@@ -34,16 +34,16 @@
 class AFX_EXT_CLASS ZBSearchSymbolLogLine : public ZBGenericSymbolErrorLine  
 {
 public:
-	ZBSearchSymbolLogLine();
+    ZBSearchSymbolLogLine();
 
-	ZBSearchSymbolLogLine( const CString symbolname,
-						   const CString symbolpath, 
-						   const CString message = "" );
-	ZBSearchSymbolLogLine( const CString symbolname,
-						   const CString symbolpath, 
-						   UINT nIDSmessage );
-	
-	virtual ~ZBSearchSymbolLogLine();
+    ZBSearchSymbolLogLine( const CString symbolname,
+                           const CString symbolpath, 
+                           const CString message = "" );
+    ZBSearchSymbolLogLine( const CString symbolname,
+                           const CString symbolpath, 
+                           UINT nIDSmessage );
+    
+    virtual ~ZBSearchSymbolLogLine();
 
 
 

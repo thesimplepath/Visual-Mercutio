@@ -41,33 +41,33 @@ class AFX_EXT_CLASS ZVInputURLDialog : public CDialog
 {
 // Construction
 public:
-	ZVInputURLDialog(const CString URL = "", CWnd* pParent = NULL);   // standard constructor
+    ZVInputURLDialog(const CString URL = "", CWnd* pParent = NULL);   // standard constructor
 
-	CString	GetURL() const { return m_URL; };
+    CString    GetURL() const { return m_URL; };
 
 private:
 // Dialog Data
-	//{{AFX_DATA(ZVInputURLDialog)
-	enum { IDD = IDD_INPUT_URL };
-	CString	m_URL;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZVInputURLDialog)
+    enum { IDD = IDD_INPUT_URL };
+    CString    m_URL;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVInputURLDialog)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVInputURLDialog)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVInputURLDialog)
-		// NOTE: the ClassWizard will add member functions here
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVInputURLDialog)
+        // NOTE: the ClassWizard will add member functions here
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

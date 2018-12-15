@@ -1,9 +1,9 @@
 // **************************************************************************************************************
-// *									   Classe ZVSelectRuleDlg												*
+// *                                       Classe ZVSelectRuleDlg                                                *
 // **************************************************************************************************************
-// * JMR-MODIF - Le 15 novembre 2006 - Ajout de la classe ZVSelectRuleDlg.										*
+// * JMR-MODIF - Le 15 novembre 2006 - Ajout de la classe ZVSelectRuleDlg.                                        *
 // **************************************************************************************************************
-// * Cette classe représente l'interface de sélection d'une règle, ou d'un groupe de règles, dans la liste.		*
+// * Cette classe représente l'interface de sélection d'une règle, ou d'un groupe de règles, dans la liste.        *
 // **************************************************************************************************************
 
 #if !defined(AFX_ZVSELECTRULEDLG_H__16B257AC_C5CD_4411_8750_F4510E61718B__INCLUDED_)
@@ -46,59 +46,59 @@ class AFX_EXT_CLASS ZVSelectRuleDlg : public CDialog
 // Construction
 public:
 
-	// Standard constructor
-	ZVSelectRuleDlg( const CString					Title				= _T( "" ),
-						   ZBLogicalRulesEntity*	pMainRule			= NULL,
-						   bool						AllowRuleSelection	= true,
-						   CWnd*					pParent				= NULL );
+    // Standard constructor
+    ZVSelectRuleDlg( const CString                    Title                = _T( "" ),
+                           ZBLogicalRulesEntity*    pMainRule            = NULL,
+                           bool                        AllowRuleSelection    = true,
+                           CWnd*                    pParent                = NULL );
 
-	// Standard constructor
-	ZVSelectRuleDlg( UINT					nTitle,
-					 ZBLogicalRulesEntity*	pMainRule,
-					 bool					AllowRuleSelection	= true,
-					 CWnd*					pParent				= NULL );
+    // Standard constructor
+    ZVSelectRuleDlg( UINT                    nTitle,
+                     ZBLogicalRulesEntity*    pMainRule,
+                     bool                    AllowRuleSelection    = true,
+                     CWnd*                    pParent                = NULL );
 
-	~ZVSelectRuleDlg();
+    ~ZVSelectRuleDlg();
 
-	void Release();
+    void Release();
 
-	ZBRulesEntity* GetSelectedRuleEntity() const
-	{
-		return m_pRuleEntity;
-	};
+    ZBRulesEntity* GetSelectedRuleEntity() const
+    {
+        return m_pRuleEntity;
+    };
 
 private:
 
-	// Dialog Data
-	//{{AFX_DATA(ZVSelectRuleDlg)
-	enum { IDD = IDD_RULE_SELECTION };
-	ZCRulesTreeCtrl m_Ctrl;
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(ZVSelectRuleDlg)
+    enum { IDD = IDD_RULE_SELECTION };
+    ZCRulesTreeCtrl m_Ctrl;
+    //}}AFX_DATA
 
-	// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVSelectRuleDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVSelectRuleDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVSelectRuleDlg)
-	virtual BOOL OnInitDialog();
-	afx_msg void OnSelchangedRulesTree(NMHDR* pNMHDR, LRESULT* pResult);
-	virtual void OnOK();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVSelectRuleDlg)
+    virtual BOOL OnInitDialog();
+    afx_msg void OnSelchangedRulesTree(NMHDR* pNMHDR, LRESULT* pResult);
+    virtual void OnOK();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
 
-	CString					m_Title;
-	ZBRulesEntity*			m_pRuleEntity;
-	ZBLogicalRulesEntity*	m_pMainRule;
-	bool					m_AllowRuleSelection;
+    CString                    m_Title;
+    ZBRulesEntity*            m_pRuleEntity;
+    ZBLogicalRulesEntity*    m_pMainRule;
+    bool                    m_AllowRuleSelection;
 };
 
 //{{AFX_INSERT_LOCATION}}

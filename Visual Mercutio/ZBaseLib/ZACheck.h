@@ -1,10 +1,10 @@
 //## begin module%3373B1970190.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%3373B1970190.cm
 
 //## begin module%3373B1970190.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%3373B1970190.cp
 
 //## Module: ZACheck%3373B1970190; Package specification
@@ -49,7 +49,7 @@
 
 
 //## Class: PLFNCheck%3373B1310082
-//	Manage the check button.
+//    Manage the check button.
 //## Category: ZBaseLib::Base objects%37E9429A0111
 //## Subsystem: ZBaseLib%37A08E0C019D
 //## Persistence: Transient
@@ -58,9 +58,9 @@
 class AFX_EXT_CLASS PLFNCheck : public PLFNTwoStates  //## Inherits: <unnamed>%3373B1310083
 {
   //## begin PLFNCheck%3373B1310082.initialDeclarations preserve=yes
-	public:
-	// Inherited feature
-		typedef PLFNTwoStates inherited;
+    public:
+    // Inherited feature
+        typedef PLFNTwoStates inherited;
   //## end PLFNCheck%3373B1310082.initialDeclarations
 
   public:
@@ -78,48 +78,48 @@ class AFX_EXT_CLASS PLFNCheck : public PLFNTwoStates  //## Inherits: <unnamed>%3
 
     //## Other Operations (specified)
       //## Operation: operator =%863220179
-      //	A copy constructor with a pointer.
+      //    A copy constructor with a pointer.
       const PLFNCheck& operator = (const PLFNCheck* right);
 
       //## Operation: Clone%863220180
-      //	Make a clone of the object.
+      //    Make a clone of the object.
       virtual PlanFinObject* Clone ();
 
       //## Operation: Serialize%863220181
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: DrawObject%863220182
-      //	Draw the object with the current DC.
+      //    Draw the object with the current DC.
       virtual void DrawObject (CDC* pDC, ZIView* pView);
 
       //## Operation: EditObject%863220183
-      //	Edit the object.
+      //    Edit the object.
       void EditObject (CWnd* pParentWnd, CDC* pDC, ZDDocument* pDoc);
 
       //## Operation: IsSelected%863265786
-      //	Is this object selected.
+      //    Is this object selected.
       virtual BOOL IsSelected (const CPoint& point) const;
 
       //## Operation: CopyObject%863615079
       virtual void CopyObject (PlanFinObject* pSrc);
 
       //## Operation: GetPropertyTabs%885128488
-      //	Return the list of tabs that should be displayed when
-      //	the user asks for object properties.
+      //    Return the list of tabs that should be displayed when
+      //    the user asks for object properties.
       virtual UINT GetPropertyTabs () const;
 
     // Additional Public Declarations
       //## begin PLFNCheck%3373B1310082.public preserve=yes
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
       //## end PLFNCheck%3373B1310082.public
   protected:
     // Additional Protected Declarations
       //## begin PLFNCheck%3373B1310082.protected preserve=yes
-	DECLARE_SERIAL(PLFNCheck)
+    DECLARE_SERIAL(PLFNCheck)
       //## end PLFNCheck%3373B1310082.protected
   private:
     // Additional Private Declarations
@@ -143,14 +143,14 @@ class AFX_EXT_CLASS PLFNCheck : public PLFNTwoStates  //## Inherits: <unnamed>%3
 inline BOOL PLFNCheck::IsSelected (const CPoint& point) const
 {
   //## begin PLFNCheck::IsSelected%863265786.body preserve=yes
-	return( m_rctObject.PtInRect( point ) );
+    return( m_rctObject.PtInRect( point ) );
   //## end PLFNCheck::IsSelected%863265786.body
 }
 
 inline UINT PLFNCheck::GetPropertyTabs () const
 {
   //## begin PLFNCheck::GetPropertyTabs%885128488.body preserve=yes
-  	return PropertyGeneralBasicPage | PropertySizePage | PropertyCheckBoxPage;
+      return PropertyGeneralBasicPage | PropertySizePage | PropertyCheckBoxPage;
   //## end PLFNCheck::GetPropertyTabs%885128488.body
 }
 

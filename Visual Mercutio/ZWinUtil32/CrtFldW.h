@@ -39,31 +39,31 @@
 class AFX_EXT_CLASS ZICreateFolderWizard  
 {
 public:
-	ZICreateFolderWizard( BOOL UseFolderNameAsFilename, CString FileDirectory, CString FileExtension = "", CString FolderName = "", CString FolderDescription = "" );
-	
-	// Start the wizard
-	BOOL	PlayWizard();
-	
-	// Get information, if successful
-	CString	GetFolderFilename() const { return m_CompleteFilename; };
-	CString	GetFolderName() const { return m_FolderName; };
-	CString	GetFolderDescription() const { return m_FolderDescription; };
+    ZICreateFolderWizard( BOOL UseFolderNameAsFilename, CString FileDirectory, CString FileExtension = "", CString FolderName = "", CString FolderDescription = "" );
+    
+    // Start the wizard
+    BOOL    PlayWizard();
+    
+    // Get information, if successful
+    CString    GetFolderFilename() const { return m_CompleteFilename; };
+    CString    GetFolderName() const { return m_FolderName; };
+    CString    GetFolderDescription() const { return m_FolderDescription; };
 
 
-	virtual ~ZICreateFolderWizard();
+    virtual ~ZICreateFolderWizard();
 
 
 private:
-	CString m_FileDirectory;
-	CString m_FolderName;
-	CString m_FolderDescription;
-	CString m_FileExtension;
-	CString m_CompleteFilename;
+    CString m_FileDirectory;
+    CString m_FolderName;
+    CString m_FolderDescription;
+    CString m_FileExtension;
+    CString m_CompleteFilename;
 
-	BOOL	m_UseFolderNameAsFilename;
+    BOOL    m_UseFolderNameAsFilename;
 
 private:
-	BOOL CheckFolderExist( const CString Filename = "" );
+    BOOL CheckFolderExist( const CString Filename = "" );
 
 };
 

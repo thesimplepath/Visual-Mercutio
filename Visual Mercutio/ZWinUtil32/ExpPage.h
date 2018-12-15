@@ -1,10 +1,10 @@
 //## begin module%35B620CA026E.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%35B620CA026E.cm
 
 //## begin module%35B620CA026E.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%35B620CA026E.cp
 
 //## Module: ExpPage%35B620CA026E; Package specification
@@ -19,10 +19,10 @@
 
 //## begin module%35B620CA026E.includes preserve=yes
 #ifndef _WIN32
-	#include "ZWinUtil.h"
+    #include "ZWinUtil.h"
 #endif
 #ifdef _WIN32
-	#include "ZWinUtil32.h"
+    #include "ZWinUtil32.h"
 #endif
 //## end module%35B620CA026E.includes
 
@@ -41,7 +41,7 @@
 //## end ZIExportPage%35B620390175.preface
 
 //## Class: ZIExportPage%35B620390175
-//	This page contains calculation options for the system.
+//    This page contains calculation options for the system.
 //## Category: ZWinUtil library::Options classes::Property page for options%3705BE0901B4
 //## Subsystem: ZWinUtil%36DEE1730346
 //## Persistence: Transient
@@ -52,15 +52,15 @@
 class ZIExportPage : public ZIGenericPropPage  //## Inherits: <unnamed>%370530B602FD
 {
   //## begin ZIExportPage%35B620390175.initialDeclarations preserve=yes
-	public:
-	// Dialog Data
-		//{{AFX_DATA(ZIExportPage)
-	enum { IDD = IDD_EXPORTPAGE };
-//	CString	m_SVMFile;
-	int		m_Propagation;
-	CString	m_SchemaName;
-	BOOL	m_EmptyWhenZero;
-	//}}AFX_DATA
+    public:
+    // Dialog Data
+        //{{AFX_DATA(ZIExportPage)
+    enum { IDD = IDD_EXPORTPAGE };
+//    CString    m_SVMFile;
+    int        m_Propagation;
+    CString    m_SchemaName;
+    BOOL    m_EmptyWhenZero;
+    //}}AFX_DATA
   //## end ZIExportPage%35B620390175.initialDeclarations
 
   public:
@@ -84,19 +84,19 @@ class ZIExportPage : public ZIGenericPropPage  //## Inherits: <unnamed>%370530B6
 
     //## Other Operations (specified)
       //## Operation: DoDataExchange%901127512
-      //	Do data exchange mecanism of MFC dialog
+      //    Do data exchange mecanism of MFC dialog
       virtual void DoDataExchange (CDataExchange* pDX);
 
     // Additional Protected Declarations
       //## begin ZIExportPage%35B620390175.protected preserve=yes
       
-	// Generated message map functions
-	//{{AFX_MSG(ZIExportPage)
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
-	virtual void OnOK();	
-	
+    // Generated message map functions
+    //{{AFX_MSG(ZIExportPage)
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
+    virtual void OnOK();    
+    
       //## end ZIExportPage%35B620390175.protected
   private:
     //## Constructors (generated)

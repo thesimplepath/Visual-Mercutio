@@ -1,5 +1,5 @@
 //## begin module%33CA790C035C.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%33CA790C035C.cm
 
 //## begin module%33CA790C035C.cp preserve=no
@@ -51,7 +51,7 @@
 //## end ZAFontManager%33CA5F860104.preface
 
 //## Class: ZAFontManager%33CA5F860104
-//	Manage the fonts created by the user.
+//    Manage the fonts created by the user.
 //## Category: ZUtil library::Font & Style classes%36F91D94013C
 //## Subsystem: ZUtil%366D71940075
 //## Persistence: Transient
@@ -62,9 +62,9 @@
 class AFX_EXT_CLASS ZAFontManager : public CObject  //## Inherits: <unnamed>%33D78EB00302
 {
   //## begin ZAFontManager%33CA5F860104.initialDeclarations preserve=yes
-	public:
-	// Inherited feature
-		typedef CObject inherited;
+    public:
+    // Inherited feature
+        typedef CObject inherited;
   //## end ZAFontManager%33CA5F860104.initialDeclarations
 
   public:
@@ -82,52 +82,52 @@ class AFX_EXT_CLASS ZAFontManager : public CObject  //## Inherits: <unnamed>%33D
 
     //## Other Operations (specified)
       //## Operation: AddFont%868907715
-      //	Add a new font into the FontArray.
+      //    Add a new font into the FontArray.
       HandleFont AddFont (ZAFont* pFont);
 
       //## Operation: RemoveFont%868907716
-      //	Remove a specific font from the manager.
+      //    Remove a specific font from the manager.
       BOOL RemoveFont (HandleFont hFont);
 
       //## Operation: FindFont%868907717
-      //	Search a specific font with the LogFont and the color
-      //	.
+      //    Search a specific font with the LogFont and the color
+      //    .
       HandleFont FindFont (LOGFONT* pLogFont, COLORREF Col);
 
       //## Operation: FindFont%869402481
-      //	Search a specific font with a ZAFont pointer.
-      //	.
+      //    Search a specific font with a ZAFont pointer.
+      //    .
       HandleFont FindFont (ZAFont* pFont);
 
       //## Operation: GetFont%869402482
-      //	Get the pointer of a font by passing the handle of the
-      //	font.
+      //    Get the pointer of a font by passing the handle of the
+      //    font.
       ZAFont* GetFont (HandleFont hFont);
 
       //## Operation: Serialize%869764511
-      //	Serialization function required for MFC mecanism.
+      //    Serialization function required for MFC mecanism.
       virtual void Serialize (CArchive& ar);
 
       //## Operation: GetElements%870446012
-      //	Return the number of elements of the FontManager.
+      //    Return the number of elements of the FontManager.
       size_t GetElements ();
 
       //## Operation: RotateFont%880893867
-      //	Takes an initial font and rotate it by the specified
-      //	angle.
+      //    Takes an initial font and rotate it by the specified
+      //    angle.
       HandleFont RotateFont (HandleFont hFont, int iAngle);
 
     // Additional Public Declarations
       //## begin ZAFontManager%33CA5F860104.public preserve=yes
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
       //## end ZAFontManager%33CA5F860104.public
   protected:
     // Additional Protected Declarations
       //## begin ZAFontManager%33CA5F860104.protected preserve=yes
-	DECLARE_SERIAL(ZAFontManager)
+    DECLARE_SERIAL(ZAFontManager)
       //## end ZAFontManager%33CA5F860104.protected
   private:
     // Additional Private Declarations
@@ -138,7 +138,7 @@ class AFX_EXT_CLASS ZAFontManager : public CObject  //## Inherits: <unnamed>%33D
     // Data Members for Has Relationships
 
       //## Documentation ZAFontManager::FontArray.has
-      //	Contains the fonts created.
+      //    Contains the fonts created.
       //## begin ZAFontManager::FontArray%33CA78D000DC.has preserve=no  public: CObArray {1 -> 1VO}
       CObArray m_FontArray;
       //## end ZAFontManager::FontArray%33CA78D000DC.has
@@ -159,23 +159,23 @@ class AFX_EXT_CLASS ZAFontManager : public CObject  //## Inherits: <unnamed>%33D
 inline HandleFont ZAFontManager::AddFont (ZAFont* pFont)
 {
   //## begin ZAFontManager::AddFont%868907715.body preserve=yes
-  	pFont->SethFontNumber( m_FontArray.Add( pFont ) );
-  	return pFont->GethFontNumber();
+      pFont->SethFontNumber( m_FontArray.Add( pFont ) );
+      return pFont->GethFontNumber();
   //## end ZAFontManager::AddFont%868907715.body
 }
 
 inline ZAFont* ZAFontManager::GetFont (HandleFont hFont)
 {
   //## begin ZAFontManager::GetFont%869402482.body preserve=yes
-	// Return the pointer
-	return (hFont == NoFontDefined || hFont >= m_FontArray.GetSize()) ? NULL : ((ZAFont*)(m_FontArray[(int)hFont]));
+    // Return the pointer
+    return (hFont == NoFontDefined || hFont >= m_FontArray.GetSize()) ? NULL : ((ZAFont*)(m_FontArray[(int)hFont]));
   //## end ZAFontManager::GetFont%869402482.body
 }
 
 inline size_t ZAFontManager::GetElements ()
 {
   //## begin ZAFontManager::GetElements%870446012.body preserve=yes
-  	return m_FontArray.GetSize();
+      return m_FontArray.GetSize();
   //## end ZAFontManager::GetElements%870446012.body
 }
 

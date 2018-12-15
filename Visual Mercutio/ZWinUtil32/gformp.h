@@ -17,10 +17,10 @@
 //#include "Property.h"
 
 #ifndef _WIN32
-	#include "ZWinUtil.h"
+    #include "ZWinUtil.h"
 #endif
 #ifdef _WIN32
-	#include "ZWinUtil32.h"
+    #include "ZWinUtil32.h"
 #endif
 
 
@@ -45,30 +45,30 @@ class AFX_EXT_CLASS ZIGenericFormPage : public CPropertyPage
 {
 // Construction
 public:
-	ZIGenericFormPage();	// standard constructor
-	ZIGenericFormPage( CWnd *pMain, CString sTitle, ZDTemplateManager* pTemplateManager );
+    ZIGenericFormPage();    // standard constructor
+    ZIGenericFormPage( CWnd *pMain, CString sTitle, ZDTemplateManager* pTemplateManager );
     ~ZIGenericFormPage();
-    CString	GetCaption() const { return m_strCaption; };
+    CString    GetCaption() const { return m_strCaption; };
     
-	virtual BOOL OnSetActive();     // called when this page gets the focus
+    virtual BOOL OnSetActive();     // called when this page gets the focus
 // Dialog Data
-	//{{AFX_DATA(ZIGenericFormPage)
-	enum { IDD = IDD_GENERICFORM };
-	CListBox	m_ctlListOfPlan;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZIGenericFormPage)
+    enum { IDD = IDD_GENERICFORM };
+    CListBox    m_ctlListOfPlan;
+    //}}AFX_DATA
 
 // Implementation
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	// Generated message map functions
-	//{{AFX_MSG(ZIGenericFormPage)
-	afx_msg void OnSelChangeList();
-	afx_msg void OnDblclkListOfForms();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZIGenericFormPage)
+    afx_msg void OnSelChangeList();
+    afx_msg void OnDblclkListOfForms();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 private:
-	ZDTemplateManager*	m_pTemplateManager;
+    ZDTemplateManager*    m_pTemplateManager;
 };
 
 //#undef  AFX_DATA

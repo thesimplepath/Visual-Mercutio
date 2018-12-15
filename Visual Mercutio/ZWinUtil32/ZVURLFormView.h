@@ -18,7 +18,7 @@
 
 
 #ifdef _WIN32
-	#include "ZWinUtil32.h"
+    #include "ZWinUtil32.h"
 #endif
 
 #include "zFormsRes\zFormsRes.h"
@@ -53,26 +53,26 @@ class _ZCAddressIntelliEdit : public ZCIntelliEdit
 {
 // Construction
 public:
-	_ZCAddressIntelliEdit( CWnd* pParent = NULL, CStringArray* pArrayOfValues = NULL );
+    _ZCAddressIntelliEdit( CWnd* pParent = NULL, CStringArray* pArrayOfValues = NULL );
 
 // Operations
 public:
-	virtual void	OnEnter();
-	void	SetParent(CWnd* pParent);
+    virtual void    OnEnter();
+    void    SetParent(CWnd* pParent);
 
 // Implementation
 public:
-	virtual ~_ZCAddressIntelliEdit();
+    virtual ~_ZCAddressIntelliEdit();
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(_ZCAddressIntelliEdit)
-	//}}AFX_MSG
+    //{{AFX_MSG(_ZCAddressIntelliEdit)
+    //}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 
 private:
-	CWnd*			m_pParent;
+    CWnd*            m_pParent;
 
 };
 
@@ -88,48 +88,48 @@ class _ZVURLFormViewButtonToolBar : public CStatic
 public:
 // Construction
 public:
-	_ZVURLFormViewButtonToolBar(CWnd* pParent = NULL); // Default constructor
-	void	SetParent(CWnd* pParent);
+    _ZVURLFormViewButtonToolBar(CWnd* pParent = NULL); // Default constructor
+    void    SetParent(CWnd* pParent);
 // Operations
 public:
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(_ZVURLFormViewButtonToolBar)
-	public:
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	protected:
-	virtual void PreSubclassWindow();
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(_ZVURLFormViewButtonToolBar)
+    public:
+    virtual BOOL PreTranslateMessage(MSG* pMsg);
+    protected:
+    virtual void PreSubclassWindow();
+    //}}AFX_VIRTUAL
 
 // Implementation
 public:
-	virtual ~_ZVURLFormViewButtonToolBar();
+    virtual ~_ZVURLFormViewButtonToolBar();
 
-	// Generated message map functions
+    // Generated message map functions
 protected:
-	//{{AFX_MSG(_ZVURLFormViewButtonToolBar)
-	afx_msg void OnStopWebButton();
-	afx_msg void OnRefreshWebButton();
-	afx_msg void OnPrevWebButton();
-	afx_msg void OnNextWebButton();
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	//}}AFX_MSG
+    //{{AFX_MSG(_ZVURLFormViewButtonToolBar)
+    afx_msg void OnStopWebButton();
+    afx_msg void OnRefreshWebButton();
+    afx_msg void OnPrevWebButton();
+    afx_msg void OnNextWebButton();
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    //}}AFX_MSG
 
 
 // Attributes
 private:
-	CWnd*			m_pParent;
-	CCJFlatButton	m_PrevWebButton;
-	CCJFlatButton	m_NextWebButton;
-	CCJFlatButton	m_StopWebButton;
-	CCJFlatButton	m_RefreshWebButton;
+    CWnd*            m_pParent;
+    CCJFlatButton    m_PrevWebButton;
+    CCJFlatButton    m_NextWebButton;
+    CCJFlatButton    m_StopWebButton;
+    CCJFlatButton    m_RefreshWebButton;
 
-	CImageList		m_ImageList;
-	CToolTipCtrl	m_tooltip;
+    CImageList        m_ImageList;
+    CToolTipCtrl    m_tooltip;
 
 
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -143,54 +143,54 @@ private:
 class AFX_EXT_CLASS ZVURLFormView : public CFormView
 {
 public:
-	DECLARE_DYNCREATE(ZVURLFormView)
-	ZVURLFormView();           
-	virtual ~ZVURLFormView();
+    DECLARE_DYNCREATE(ZVURLFormView)
+    ZVURLFormView();           
+    virtual ~ZVURLFormView();
 
 // Form Data
 private:
-	//{{AFX_DATA(ZVURLFormView)
-	enum { IDD = IDD_URLWINDOW };
-	_ZCAddressIntelliEdit	m_URLEdit;
-	ZCFlatButton	m_GoButton;
-	_ZVURLFormViewButtonToolBar	m_FlatToolBar;
-	CString	m_URL;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZVURLFormView)
+    enum { IDD = IDD_URLWINDOW };
+    _ZCAddressIntelliEdit    m_URLEdit;
+    ZCFlatButton    m_GoButton;
+    _ZVURLFormViewButtonToolBar    m_FlatToolBar;
+    CString    m_URL;
+    //}}AFX_DATA
 
-	ZWebBrowser*	m_pBrowser;
-	CStringArray	m_ValueArray;
+    ZWebBrowser*    m_pBrowser;
+    CStringArray    m_ValueArray;
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVURLFormView)
-	protected:
-	virtual void OnInitialUpdate( );
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVURLFormView)
+    protected:
+    virtual void OnInitialUpdate( );
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
 private:
-	void SizeControl();
+    void SizeControl();
 
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVURLFormView)
-	afx_msg LRESULT OnStopWebButton( WPARAM wParam, LPARAM lParam );
-	afx_msg LRESULT OnRefreshWebButton( WPARAM wParam, LPARAM lParam );
-	afx_msg LRESULT OnPrevWebButton( WPARAM wParam, LPARAM lParam );
-	afx_msg LRESULT OnNextWebButton( WPARAM wParam, LPARAM lParam );
-	afx_msg LRESULT OnGoMessage( WPARAM wParam, LPARAM lParam );
+    // Generated message map functions
+    //{{AFX_MSG(ZVURLFormView)
+    afx_msg LRESULT OnStopWebButton( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnRefreshWebButton( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnPrevWebButton( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnNextWebButton( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnGoMessage( WPARAM wParam, LPARAM lParam );
 
-	afx_msg void OnGo();
-	afx_msg void OnSize(UINT nType, int cx, int cy);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    afx_msg void OnGo();
+    afx_msg void OnSize(UINT nType, int cx, int cy);
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

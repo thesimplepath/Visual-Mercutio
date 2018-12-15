@@ -1,10 +1,10 @@
 //## begin module%37E7FBA501A6.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%37E7FBA501A6.cm
 
 //## begin module%37E7FBA501A6.cp preserve=no
-//	ADSoft Copyright 1994-1995
-//	Dominique Aigroz
+//    ADSoft Copyright 1994-1995
+//    Dominique Aigroz
 //## end module%37E7FBA501A6.cp
 
 //## Module: GFDataF%37E7FBA501A6; Package specification
@@ -53,7 +53,7 @@
 
 
 //## Class: ZUFieldDefinitionDataFeed%37E7FA7C02FD
-//	Data feed for field definition.
+//    Data feed for field definition.
 //## Category: ZUtil library::Data feed \rclasses%36F7CCFF024A
 //## Subsystem: ZUtil%366D71940075
 //## Persistence: Transient
@@ -67,13 +67,13 @@ class AFX_EXT_CLASS ZUFieldDefinitionDataFeed : public ZUExport  //## Inherits: 
   public:
     //## Constructors (specified)
       //## Operation: ZUFieldDefinitionDataFeed%937950157
-      //	Constructs an export class with the filename and the
-      //	field definition manager.
+      //    Constructs an export class with the filename and the
+      //    field definition manager.
       ZUFieldDefinitionDataFeed (CString Filename = "", ZBFieldRepository* pFieldRepository = NULL, ZAObjectDefinition* pObjectDefinition = NULL, BOOL GenerateHeader = FALSE, SynchronizationSeparatorType SeparatorType = AutomaticSeparator, CString Schema = szOriginalSchema, int PropagationMode = LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
 
       //## Operation: ZUFieldDefinitionDataFeed%938030360
-      //	Constructs an export class with the filename and the
-      //	field definition manager.
+      //    Constructs an export class with the filename and the
+      //    field definition manager.
       ZUFieldDefinitionDataFeed (CString Filename, ZBFieldRepository* pFieldRepository, BOOL GenerateHeader = FALSE, SynchronizationSeparatorType SeparatorType = AutomaticSeparator, CString Schema = szOriginalSchema, int PropagationMode = LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
 
     //## Destructor (generated)
@@ -82,39 +82,39 @@ class AFX_EXT_CLASS ZUFieldDefinitionDataFeed : public ZUExport  //## Inherits: 
 
     //## Other Operations (specified)
       //## Operation: GetExportedLine%937950158
-      //	Build the export line and return it.
+      //    Build the export line and return it.
       virtual CString GetExportedLine (CObject* pObj);
 
       //## Operation: ProcessLine%937950159
-      //	Process the line and updates the document.
+      //    Process the line and updates the document.
       virtual BOOL ProcessLine (CString Line);
 
       //## Operation: GetHeaderLine%937950160
-      //	This function builds the header line.
+      //    This function builds the header line.
       virtual CString GetHeaderLine ();
 
       //## Operation: Create%937950163
-      //	Create the export class.
+      //    Create the export class.
       virtual void Create (CString Filename, ZBFieldRepository* pFieldRepository = NULL, ZAObjectDefinition* pObjectDefinition = NULL, BOOL GenerateHeader = FALSE, SynchronizationSeparatorType SeparatorType = AutomaticSeparator, CString Schema = szOriginalSchema, int PropagationMode = LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
 
       //## Operation: Create%938030361
-      //	Create the export class.
+      //    Create the export class.
       virtual void Create (CString Filename, ZBFieldRepository* pFieldRepository = NULL, BOOL GenerateHeader = FALSE, SynchronizationSeparatorType SeparatorType = AutomaticSeparator, CString Schema = szOriginalSchema, int PropagationMode = LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
 
       //## Operation: ForecastedTotalObject%937950164
-      //	This function should return the forecasted total object.
+      //    This function should return the forecasted total object.
       virtual double ForecastedTotalObject ();
 
       //## Operation: DoExportLoop%937950165
-      //	This function do the loop for export.
+      //    This function do the loop for export.
       virtual BOOL DoExportLoop ();
 
       //## Operation: PreImport%937950166
-      //	This function imports the file to the document.
+      //    This function imports the file to the document.
       virtual BOOL PreImport ();
 
       //## Operation: PostImport%938372467
-      //	This function imports the file to the document.
+      //    This function imports the file to the document.
       virtual BOOL PostImport ();
 
     // Additional Public Declarations
@@ -141,39 +141,39 @@ class AFX_EXT_CLASS ZUFieldDefinitionDataFeed : public ZUExport  //## Inherits: 
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: pSourceFieldRepository%37E7FB280015
-      //	Points to the field repository.
+      //    Points to the field repository.
       const ZBFieldRepository* GetpSourceFieldRepository () const;
       void SetpSourceFieldRepository (ZBFieldRepository* value);
 
       //## Attribute: pImportedFieldRepository%37F91127027B
-      //	Points to the field repository.
+      //    Points to the field repository.
       const ZBFieldRepository* GetpImportedFieldRepository () const;
       void SetpImportedFieldRepository (ZBFieldRepository* value);
 
     // Data Members for Class Attributes
 
       //## Attribute: LineArray%37E934EE038F
-      //	Contains all imported lines.
+      //    Contains all imported lines.
       //## begin ZUFieldDefinitionDataFeed::LineArray%37E934EE038F.attr preserve=no  private: CObArray {U} 
       CObArray m_LineArray;
       //## end ZUFieldDefinitionDataFeed::LineArray%37E934EE038F.attr
 
       //## Attribute: pObjectDefinition%37E9361102C5
-      //	Containe the object to export.
+      //    Containe the object to export.
       //## begin ZUFieldDefinitionDataFeed::pObjectDefinition%37E9361102C5.attr preserve=no  private: ZAObjectDefinition* {U} 
       ZAObjectDefinition* m_pObjectDefinition;
       //## end ZUFieldDefinitionDataFeed::pObjectDefinition%37E9361102C5.attr
 
     // Additional Private Declarations
       //## begin ZUFieldDefinitionDataFeed%37E7FA7C02FD.private preserve=yes
-	  class	FieldExport
-	  {
-		public:
-		  FieldExport( const CString Key = "", const CString Value = "");
-		  ~FieldExport();
-		  CString	m_Key;
-		  CString	m_Value;
-	  };
+      class    FieldExport
+      {
+        public:
+          FieldExport( const CString Key = "", const CString Value = "");
+          ~FieldExport();
+          CString    m_Key;
+          CString    m_Value;
+      };
       //## end ZUFieldDefinitionDataFeed%37E7FA7C02FD.private
   private:  //## implementation
     // Data Members for Class Attributes
@@ -202,18 +202,18 @@ class AFX_EXT_CLASS ZUFieldDefinitionDataFeed : public ZUExport  //## Inherits: 
 inline void ZUFieldDefinitionDataFeed::Create (CString Filename, ZBFieldRepository* pFieldRepository, ZAObjectDefinition* pObjectDefinition, BOOL GenerateHeader, SynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
 {
   //## begin ZUFieldDefinitionDataFeed::Create%937950163.body preserve=yes
-  	m_pSourceFieldRepository = pFieldRepository;
-	m_pObjectDefinition = pObjectDefinition;
-	ZUExport::Create (Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar);
+      m_pSourceFieldRepository = pFieldRepository;
+    m_pObjectDefinition = pObjectDefinition;
+    ZUExport::Create (Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar);
   //## end ZUFieldDefinitionDataFeed::Create%937950163.body
 }
 
 inline void ZUFieldDefinitionDataFeed::Create (CString Filename, ZBFieldRepository* pFieldRepository, BOOL GenerateHeader, SynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
 {
   //## begin ZUFieldDefinitionDataFeed::Create%938030361.body preserve=yes
-  	m_pSourceFieldRepository = pFieldRepository;
-	m_pObjectDefinition = NULL;
-	ZUExport::Create (Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar);
+      m_pSourceFieldRepository = pFieldRepository;
+    m_pObjectDefinition = NULL;
+    ZUExport::Create (Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar);
   //## end ZUFieldDefinitionDataFeed::Create%938030361.body
 }
 
@@ -258,7 +258,7 @@ inline void ZUFieldDefinitionDataFeed::SetpImportedFieldRepository (ZBFieldRepos
 // WARNING: this code will be lost if code is regenerated.
 #if 0
 //## begin ZUFieldDefinitionDataFeed::GetImportedFieldRepository%939069931.body preserve=no
-	return m_pImportedFieldRepository;
+    return m_pImportedFieldRepository;
 //## end ZUFieldDefinitionDataFeed::GetImportedFieldRepository%939069931.body
 
 #endif

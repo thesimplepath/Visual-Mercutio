@@ -44,12 +44,12 @@ class ZIBasicSymbolVisitor;
 class AFX_EXT_CLASS ZIBasicSymbolAcceptVisitor  
 {
 public:
-	ZIBasicSymbolAcceptVisitor();
-	virtual ~ZIBasicSymbolAcceptVisitor();
+    ZIBasicSymbolAcceptVisitor();
+    virtual ~ZIBasicSymbolAcceptVisitor();
 
-	/* AcceptVisitor method let the object be visited
-	   by concreted derived ZIBasicSymbolVisitor classes */
-	virtual bool AcceptVisitor( ZIBasicSymbolVisitor& Visitor ) = 0;
+    /* AcceptVisitor method let the object be visited
+       by concreted derived ZIBasicSymbolVisitor classes */
+    virtual bool AcceptVisitor( ZIBasicSymbolVisitor& Visitor ) = 0;
 
 };
 

@@ -48,54 +48,54 @@ class AFX_EXT_CLASS ZVDeleteModelPageDlg : public ZIDialog
 {
 // Construction
 public:
-	ZVDeleteModelPageDlg(ZDProcessGraphModelMdl* pModel, ZBRuntimeClassSet* pSet = NULL, CWnd* pParent = NULL);   // standard constructor
+    ZVDeleteModelPageDlg(ZDProcessGraphModelMdl* pModel, ZBRuntimeClassSet* pSet = NULL, CWnd* pParent = NULL);   // standard constructor
 
-	CString	GetPageName() const;
+    CString    GetPageName() const;
     ZDProcessGraphPage* GetSelectedPage()
-	{
-		return m_pSelectedPage;
-	};
+    {
+        return m_pSelectedPage;
+    };
 
 // Dialog Data
-	//{{AFX_DATA(ZVDeleteModelPageDlg)
-	enum { IDD = IDD_DELETE_MODELPAGE };
-	ZCProcessModelTree	m_SymbolTree;
-	CString	m_PageName;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZVDeleteModelPageDlg)
+    enum { IDD = IDD_DELETE_MODELPAGE };
+    ZCProcessModelTree    m_SymbolTree;
+    CString    m_PageName;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVDeleteModelPageDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVDeleteModelPageDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVDeleteModelPageDlg)
-	virtual void OnOK();
-	afx_msg void OnSelchangedSymboltree(NMHDR* pNMHDR, LRESULT* pResult);
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVDeleteModelPageDlg)
+    virtual void OnOK();
+    afx_msg void OnSelchangedSymboltree(NMHDR* pNMHDR, LRESULT* pResult);
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	ZDProcessGraphModelMdl* m_pModel;
+    ZDProcessGraphModelMdl* m_pModel;
 
 // Implementation
 private:
     ZDProcessGraphPage* m_pSelectedPage;
-	ZDProcessGraphPage* m_pRootPage;
-	// Set of elements that can be displayed in the tree
-	ZBRuntimeClassSet* m_pSet;
+    ZDProcessGraphPage* m_pRootPage;
+    // Set of elements that can be displayed in the tree
+    ZBRuntimeClassSet* m_pSet;
 };
 
-inline CString	ZVDeleteModelPageDlg::GetPageName() const
+inline CString    ZVDeleteModelPageDlg::GetPageName() const
 {
-	return m_PageName;
+    return m_PageName;
 }
 
 //{{AFX_INSERT_LOCATION}}

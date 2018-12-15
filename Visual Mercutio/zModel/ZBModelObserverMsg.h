@@ -42,41 +42,41 @@ class ZDProcessGraphPage;
 
 class AFX_EXT_CLASS ZBModelObserverMsg : public ZIObserverMsg  
 {
-	DECLARE_DYNAMIC(ZBModelObserverMsg)
+    DECLARE_DYNAMIC(ZBModelObserverMsg)
 public:
-	enum MessageActionType { NoAction, RedrawElement, RedrawElementSet, RemoveElement, RemoveElementSet, AddElement, AddElementSet, BrowseElement, EnsureElementVisible, SelectElement };
+    enum MessageActionType { NoAction, RedrawElement, RedrawElementSet, RemoveElement, RemoveElementSet, AddElement, AddElementSet, BrowseElement, EnsureElementVisible, SelectElement };
 
 public:
-	ZBModelObserverMsg( MessageActionType ActionType = NoAction, ZDProcessGraphModelDoc* pDoc = NULL, ZDProcessGraphModelMdl* pModel = NULL, CODComponent* pElement = NULL );
-	ZBModelObserverMsg( MessageActionType ActionType, ZDProcessGraphModelDoc* pDoc, ZDProcessGraphModelMdl* pModel, ZDProcessGraphPage* pPage );
-	ZBModelObserverMsg( MessageActionType ActionType, ZDProcessGraphModelDoc* pDoc, ZDProcessGraphModelMdl* pModel, CODComponentSet* pElementSet );
-	virtual ~ZBModelObserverMsg();
+    ZBModelObserverMsg( MessageActionType ActionType = NoAction, ZDProcessGraphModelDoc* pDoc = NULL, ZDProcessGraphModelMdl* pModel = NULL, CODComponent* pElement = NULL );
+    ZBModelObserverMsg( MessageActionType ActionType, ZDProcessGraphModelDoc* pDoc, ZDProcessGraphModelMdl* pModel, ZDProcessGraphPage* pPage );
+    ZBModelObserverMsg( MessageActionType ActionType, ZDProcessGraphModelDoc* pDoc, ZDProcessGraphModelMdl* pModel, CODComponentSet* pElementSet );
+    virtual ~ZBModelObserverMsg();
 
-	MessageActionType GetActionType() const { return m_ActionType; };
-	void SetActionType( MessageActionType value ) { m_ActionType = value; };
+    MessageActionType GetActionType() const { return m_ActionType; };
+    void SetActionType( MessageActionType value ) { m_ActionType = value; };
 
-	ZDProcessGraphModelDoc*	GetpDoc() const { return m_pDoc; };
-	void SetpDoc( ZDProcessGraphModelDoc* value ) { m_pDoc = value; };
+    ZDProcessGraphModelDoc*    GetpDoc() const { return m_pDoc; };
+    void SetpDoc( ZDProcessGraphModelDoc* value ) { m_pDoc = value; };
 
-	ZDProcessGraphModelMdl*	GetpModel() const { return m_pModel; };
-	void SetpModel( ZDProcessGraphModelMdl* value ) { m_pModel = value; };
+    ZDProcessGraphModelMdl*    GetpModel() const { return m_pModel; };
+    void SetpModel( ZDProcessGraphModelMdl* value ) { m_pModel = value; };
 
-	CODComponent*	GetpElement() const { return m_pElement; };
-	void SetpElement( CODComponent* value ) { m_pElement = value; };
-	
-	CODComponentSet*	GetpElementSet() const { return m_pElementSet; };
-	void SetpElementSet( CODComponentSet* value ) { m_pElementSet = value; };
+    CODComponent*    GetpElement() const { return m_pElement; };
+    void SetpElement( CODComponent* value ) { m_pElement = value; };
+    
+    CODComponentSet*    GetpElementSet() const { return m_pElementSet; };
+    void SetpElementSet( CODComponentSet* value ) { m_pElementSet = value; };
 
-	ZDProcessGraphPage*	GetpPage() const { return m_pPage; };
-	void SetpPage( ZDProcessGraphPage* value ) { m_pPage = value; };
-	
+    ZDProcessGraphPage*    GetpPage() const { return m_pPage; };
+    void SetpPage( ZDProcessGraphPage* value ) { m_pPage = value; };
+    
 private:
-	MessageActionType			m_ActionType;
-	ZDProcessGraphModelDoc*		m_pDoc;
-	ZDProcessGraphModelMdl*		m_pModel;
-	CODComponent*				m_pElement;
-	CODComponentSet*			m_pElementSet;
-	ZDProcessGraphPage*			m_pPage;
+    MessageActionType            m_ActionType;
+    ZDProcessGraphModelDoc*        m_pDoc;
+    ZDProcessGraphModelMdl*        m_pModel;
+    CODComponent*                m_pElement;
+    CODComponentSet*            m_pElementSet;
+    ZDProcessGraphPage*            m_pPage;
 };
 
 #endif // !defined(AFX_ZBModelObserverMsg_H__31A212D8_7CA2_4BEB_9709_8C785F4909B3__INCLUDED_)

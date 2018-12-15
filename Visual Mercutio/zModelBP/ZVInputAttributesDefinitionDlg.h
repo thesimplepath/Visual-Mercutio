@@ -43,67 +43,67 @@ class AFX_EXT_CLASS ZVInputAttributesDefinitionDlg : public CDialog
 {
 // Construction
 public:
-	ZVInputAttributesDefinitionDlg(ZBDynamicPropertiesManager* pPropManager, ZBPropertySet* pSet, ZBInputAttribute* pInputAttr = NULL, CWnd* pParent = NULL);   // standard constructor
+    ZVInputAttributesDefinitionDlg(ZBDynamicPropertiesManager* pPropManager, ZBPropertySet* pSet, ZBInputAttribute* pInputAttr = NULL, CWnd* pParent = NULL);   // standard constructor
 
-	int GetCategoryID() const
-	{
-		return m_CategoryID;
-	};
-	int GetItemID() const
-	{
-		return m_ItemID;
-	};
-	CString	GetDefaultValue() const
-	{
-		return m_DefaultValue;
-	};
-	int GetVisibility() const
-	{
-		return m_Visibility;
-	};
-	int GetFlag() const
-	{
-		return m_Flag;
-	};
+    int GetCategoryID() const
+    {
+        return m_CategoryID;
+    };
+    int GetItemID() const
+    {
+        return m_ItemID;
+    };
+    CString    GetDefaultValue() const
+    {
+        return m_DefaultValue;
+    };
+    int GetVisibility() const
+    {
+        return m_Visibility;
+    };
+    int GetFlag() const
+    {
+        return m_Flag;
+    };
 
 private:
 // Dialog Data
-	//{{AFX_DATA(ZVInputAttributesDefinitionDlg)
-	enum { IDD = IDD_INPUTATTRIBUTES_DEF };
-	CComboBox	m_VisibilityList;
-	CComboBox	m_FlagList;
-	CString	m_DefaultValue;
-	CString	m_DynamicAttributeName;
-	//}}AFX_DATA
+    //{{AFX_DATA(ZVInputAttributesDefinitionDlg)
+    enum { IDD = IDD_INPUTATTRIBUTES_DEF };
+    CComboBox    m_VisibilityList;
+    CComboBox    m_FlagList;
+    CString    m_DefaultValue;
+    CString    m_DynamicAttributeName;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZVInputAttributesDefinitionDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZVInputAttributesDefinitionDlg)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(ZVInputAttributesDefinitionDlg)
-	virtual void OnOK();
-	virtual BOOL OnInitDialog();
-	afx_msg void OnChooseDynAttr();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(ZVInputAttributesDefinitionDlg)
+    virtual void OnOK();
+    virtual BOOL OnInitDialog();
+    afx_msg void OnChooseDynAttr();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	ZBDynamicPropertiesManager* m_pPropManager;
-	ZBPropertySet* m_pSet;
-	ZBInputAttribute* m_pInputAttr;
+    ZBDynamicPropertiesManager* m_pPropManager;
+    ZBPropertySet* m_pSet;
+    ZBInputAttribute* m_pInputAttr;
 
-	int m_CategoryID;
-	int m_ItemID;
-	int m_Visibility;
-	int m_Flag;
+    int m_CategoryID;
+    int m_ItemID;
+    int m_Visibility;
+    int m_Flag;
 
 };
 

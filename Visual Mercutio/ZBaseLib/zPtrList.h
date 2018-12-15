@@ -40,28 +40,28 @@ template<class BASE_CLASS, class TYPE>
 class AFX_EXT_CLASS ZTTypedPtrList : public CTypedPtrList<BASE_CLASS, TYPE>
 {
 public:
-	ZTTypedPtrList(int nBlockSize = 10) 
-		: CTypedPtrList<BASE_CLASS, TYPE>(nBlockSize) 
-	{
-	}
+    ZTTypedPtrList(int nBlockSize = 10) 
+        : CTypedPtrList<BASE_CLASS, TYPE>(nBlockSize) 
+    {
+    }
 
-	~ZTTypedPtrList()
-	{
-		Destroy();
-	}
+    ~ZTTypedPtrList()
+    {
+        Destroy();
+    }
 
-	void Destroy()
-	{
-		POSITION pos = GetHeadPosition();
+    void Destroy()
+    {
+        POSITION pos = GetHeadPosition();
 
-		while(pos != NULL)
-		{
-			TYPE node = GetNext(pos);
-			delete node;
-		}
+        while(pos != NULL)
+        {
+            TYPE node = GetNext(pos);
+            delete node;
+        }
 
-		RemoveAll();
-	}
+        RemoveAll();
+    }
 };
 
 #endif //!defined(_ZPTRLIST_H)

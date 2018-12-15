@@ -44,32 +44,32 @@ class AFX_EXT_CLASS ZUDynamicAttributesManipulator
 {
 public:
 
-	ZUDynamicAttributesManipulator();
-	virtual ~ZUDynamicAttributesManipulator();
+    ZUDynamicAttributesManipulator();
+    virtual ~ZUDynamicAttributesManipulator();
 
-	static void GetCategories( ZDProcessGraphModelMdl*	pModel,
-							   CStringArray&			StaticAttributes,
-							   CStringArray&			DynamicAttributes );
+    static void GetCategories( ZDProcessGraphModelMdl*    pModel,
+                               CStringArray&            StaticAttributes,
+                               CStringArray&            DynamicAttributes );
 
-	static bool AssignProperty( ZDProcessGraphModelMdl*	pModel,
-								ZBProperty*				pProperty,
-								CRuntimeClass*			pRTClass	= NULL );
+    static bool AssignProperty( ZDProcessGraphModelMdl*    pModel,
+                                ZBProperty*                pProperty,
+                                CRuntimeClass*            pRTClass    = NULL );
 
-	static bool ReassignProperty		( ZDProcessGraphModelMdl* pModel, ZBProperty* pProperty );
-	static bool DeleteProperty			( ZDProcessGraphModelMdl* pModel, ZBProperty* pProperty );
-	static void ExtractUniqueAttributes	( ZDProcessGraphModelMdl* pModel, ZBPropertySet& Set );
+    static bool ReassignProperty        ( ZDProcessGraphModelMdl* pModel, ZBProperty* pProperty );
+    static bool DeleteProperty            ( ZDProcessGraphModelMdl* pModel, ZBProperty* pProperty );
+    static void ExtractUniqueAttributes    ( ZDProcessGraphModelMdl* pModel, ZBPropertySet& Set );
 
-	static bool AssignDynamicPropertyOnSymbol( ZBDynamicPropertiesManager*	pDynamicPropertiesManager,
-											   ZBSymbol*					pSymbol );
+    static bool AssignDynamicPropertyOnSymbol( ZBDynamicPropertiesManager*    pDynamicPropertiesManager,
+                                               ZBSymbol*                    pSymbol );
 
-	static bool AssignDynamicPropertyOnSymbol( ZBDynamicPropertiesManager*	pDynamicPropertiesManager,
-											   ZBLinkSymbol*				pSymbol );
+    static bool AssignDynamicPropertyOnSymbol( ZBDynamicPropertiesManager*    pDynamicPropertiesManager,
+                                               ZBLinkSymbol*                pSymbol );
 
 private:
 
-	static bool AssignDynamicPropertyOnSymbol( ZBDynamicPropertiesManager*	pDynamicPropertiesManager,
-											   ZIBasicSymbol*				pSymbol,
-											   const CString&				ClassName );
+    static bool AssignDynamicPropertyOnSymbol( ZBDynamicPropertiesManager*    pDynamicPropertiesManager,
+                                               ZIBasicSymbol*                pSymbol,
+                                               const CString&                ClassName );
 };
 
 #endif // !defined(AFX_ZUDYNAMICATTRIBUTESMANIPULATOR_H__2D70943F_BFF5_4D6B_B874_3DA54C957314__INCLUDED_)

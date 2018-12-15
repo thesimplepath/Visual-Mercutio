@@ -12,59 +12,59 @@
 class ZDHistoryProcessStatusRecordsetVersion99 : public CDaoRecordset
 {
 public:
-	ZDHistoryProcessStatusRecordsetVersion99(CDaoDatabase* pDatabase = NULL, CString DatabaseFilename = "");
-	DECLARE_DYNAMIC(ZDHistoryProcessStatusRecordsetVersion99)
+    ZDHistoryProcessStatusRecordsetVersion99(CDaoDatabase* pDatabase = NULL, CString DatabaseFilename = "");
+    DECLARE_DYNAMIC(ZDHistoryProcessStatusRecordsetVersion99)
 
 
-	const CString GetProcessStatusIDFieldName() const { return _T("[ProcessStatusID]"); };
-	const CString GetProcessIDFieldName() const { return _T("[ProcessID]"); };
-	const CString GetDateFieldName() const { return _T("[Date]"); };
-	const CString GetStatusFieldName() const { return _T("[Status]"); };
-	const CString GetCurrentActivityFieldName() const { return _T("[CurrentActivity]"); };
+    const CString GetProcessStatusIDFieldName() const { return _T("[ProcessStatusID]"); };
+    const CString GetProcessIDFieldName() const { return _T("[ProcessID]"); };
+    const CString GetDateFieldName() const { return _T("[Date]"); };
+    const CString GetStatusFieldName() const { return _T("[Status]"); };
+    const CString GetCurrentActivityFieldName() const { return _T("[CurrentActivity]"); };
 
-	long	GetProcessStatusID() const { return m_ProcessStatusID; };
-	void	SetProcessStatusID( long value ) { m_ProcessStatusID = value; };
+    long    GetProcessStatusID() const { return m_ProcessStatusID; };
+    void    SetProcessStatusID( long value ) { m_ProcessStatusID = value; };
 
-	long	GetProcessID() const { return m_ProcessID; };
-	void	SetProcessID( long value ) { m_ProcessID = value; };
+    long    GetProcessID() const { return m_ProcessID; };
+    void    SetProcessID( long value ) { m_ProcessID = value; };
 
-	COleDateTime	GetDate() const { return m_Date; };
-	void	SetDate( COleDateTime value ) { m_Date = value; };
+    COleDateTime    GetDate() const { return m_Date; };
+    void    SetDate( COleDateTime value ) { m_Date = value; };
 
-	CString	GetStatus() const { return m_Status; };
-	void	SetStatus( CString value ) { m_Status = value; };
+    CString    GetStatus() const { return m_Status; };
+    void    SetStatus( CString value ) { m_Status = value; };
 
-	long	GetCurrentActivity() const { return m_CurrentActivity; };
-	void	SetCurrentActivity( long value ) { m_CurrentActivity = value; };
+    long    GetCurrentActivity() const { return m_CurrentActivity; };
+    void    SetCurrentActivity( long value ) { m_CurrentActivity = value; };
 
 
 private:
 // Field/Param Data
-	//{{AFX_FIELD(ZDHistoryProcessStatusRecordsetVersion99, CDaoRecordset)
-	long	m_ProcessStatusID;
-	long	m_ProcessID;
-	COleDateTime	m_Date;
-	CString	m_Status;
-	long	m_CurrentActivity;
-	//}}AFX_FIELD
+    //{{AFX_FIELD(ZDHistoryProcessStatusRecordsetVersion99, CDaoRecordset)
+    long    m_ProcessStatusID;
+    long    m_ProcessID;
+    COleDateTime    m_Date;
+    CString    m_Status;
+    long    m_CurrentActivity;
+    //}}AFX_FIELD
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(ZDHistoryProcessStatusRecordsetVersion99)
-	public:
-	virtual CString GetDefaultDBName();		// REVIEW:  Get a comment here
-	virtual CString GetDefaultSQL(); 	// default SQL for Recordset
-	virtual void DoFieldExchange(CDaoFieldExchange* pFX);	// RFX support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(ZDHistoryProcessStatusRecordsetVersion99)
+    public:
+    virtual CString GetDefaultDBName();        // REVIEW:  Get a comment here
+    virtual CString GetDefaultSQL();     // default SQL for Recordset
+    virtual void DoFieldExchange(CDaoFieldExchange* pFX);    // RFX support
+    //}}AFX_VIRTUAL
 
 // Implementation
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
 
 private:
-	CString		m_DatabaseFilename;
+    CString        m_DatabaseFilename;
 
 };
 

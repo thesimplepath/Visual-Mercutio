@@ -13,7 +13,7 @@
 // ProcessSoft products.
 //
 // Author:       Dom
-// <nl>Created:		 04/2002
+// <nl>Created:         04/2002
 // <nl>Description:  ZBKeepStringUsage this class keep usage of strings
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -52,29 +52,29 @@
 class AFX_EXT_CLASS ZBKeepStringUsage  
 {
 public:
-	ZBKeepStringUsage();
-	virtual ~ZBKeepStringUsage();
+    ZBKeepStringUsage();
+    virtual ~ZBKeepStringUsage();
 
 
-	bool	StringAlreadyGenerated( const CString str )
-	{
-		int size = m_StringsArray.GetSize();
-		for (int i = 0; i < size; ++i)
-		{
-			if (m_StringsArray.GetAt(i) == str)
-				return true;
-		}
-		m_StringsArray.Add( str );
-		return false;
-	};
-	void	ResetStringsArray()
-	{
-		m_StringsArray.RemoveAll();
-	};
+    bool    StringAlreadyGenerated( const CString str )
+    {
+        int size = m_StringsArray.GetSize();
+        for (int i = 0; i < size; ++i)
+        {
+            if (m_StringsArray.GetAt(i) == str)
+                return true;
+        }
+        m_StringsArray.Add( str );
+        return false;
+    };
+    void    ResetStringsArray()
+    {
+        m_StringsArray.RemoveAll();
+    };
 
 
 private:
-	CStringArray m_StringsArray;
+    CStringArray m_StringsArray;
 
 };
 

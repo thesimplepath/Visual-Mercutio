@@ -18,8 +18,8 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 ZBIOStreamGrid::ZBIOStreamGrid( CGXGridCore* pGridCore /*= NULL*/ )
-	: ZBIStreamGrid( pGridCore ),
-	  ZBOStreamGrid( pGridCore )
+    : ZBIStreamGrid( pGridCore ),
+      ZBOStreamGrid( pGridCore )
 {
 }
 

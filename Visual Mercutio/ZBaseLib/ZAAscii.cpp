@@ -1,10 +1,10 @@
 //## begin module%334FC4630321.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%334FC4630321.cm
 
 //## begin module%334FC4630321.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%334FC4630321.cp
 
 //## Module: ZAAscii%334FC4630321; Package body
@@ -75,12 +75,12 @@ PLFNAscii::~PLFNAscii()
 const PLFNAscii & PLFNAscii::operator=(const PLFNAscii &right)
 {
   //## begin PLFNAscii::operator=%.body preserve=yes
-	this->PlanFinObject::operator=( (inherited&)right );
-	m_iJustify = right.m_iJustify;
-  	m_IsStriked = right.m_IsStriked;
-  	m_StrikeStyle = right.m_StrikeStyle;
-  	m_KeepHistory = right.m_KeepHistory;
-	return *this;
+    this->PlanFinObject::operator=( (inherited&)right );
+    m_iJustify = right.m_iJustify;
+      m_IsStriked = right.m_IsStriked;
+      m_StrikeStyle = right.m_StrikeStyle;
+      m_KeepHistory = right.m_KeepHistory;
+    return *this;
   //## end PLFNAscii::operator=%.body
 }
 
@@ -90,67 +90,67 @@ const PLFNAscii & PLFNAscii::operator=(const PLFNAscii &right)
 const PLFNAscii& PLFNAscii::operator = (const PLFNAscii* right)
 {
   //## begin PLFNAscii::operator =%829516133.body preserve=yes
-	this->PlanFinObject::operator=( (inherited*)right );
-	m_iJustify = right->m_iJustify;
-  	m_IsStriked = right->m_IsStriked;
-  	m_StrikeStyle = right->m_StrikeStyle;
-  	m_KeepHistory = right->m_KeepHistory;
-	return *this;
+    this->PlanFinObject::operator=( (inherited*)right );
+    m_iJustify = right->m_iJustify;
+      m_IsStriked = right->m_IsStriked;
+      m_StrikeStyle = right->m_StrikeStyle;
+      m_KeepHistory = right->m_KeepHistory;
+    return *this;
   //## end PLFNAscii::operator =%829516133.body
 }
 
 void PLFNAscii::Serialize (CArchive& ar)
 {
   //## begin PLFNAscii::Serialize%829516183.body preserve=yes
-	PlanFinObject::Serialize(ar);
-	if (ar.IsStoring())
-	{	// Write the elements
-		ar << (WORD)m_iJustify;
-      	ar << (WORD)m_IsStriked;
-      	ar << (WORD)m_StrikeStyle;
-      	ar << (WORD)m_KeepHistory;
-	}
-	else
-	{	// Read the elements
-		WORD	wTemp;
-		if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 0)
-		{
-			ar >> wTemp;
-			m_iJustify = wTemp;
-		}
-		if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
-		{
-	      	ar >> wTemp;
-	      	m_IsStriked = (BOOL)wTemp;
-	      	
-	      	ar >> wTemp;
-	      	m_StrikeStyle = (StrikeStyles)wTemp;
-	    }
-	    if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 7)
-	    {
-	    	ar >> wTemp;
-	    	m_KeepHistory = (BOOL)wTemp;
-	    }
-	}
+    PlanFinObject::Serialize(ar);
+    if (ar.IsStoring())
+    {    // Write the elements
+        ar << (WORD)m_iJustify;
+          ar << (WORD)m_IsStriked;
+          ar << (WORD)m_StrikeStyle;
+          ar << (WORD)m_KeepHistory;
+    }
+    else
+    {    // Read the elements
+        WORD    wTemp;
+        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 0)
+        {
+            ar >> wTemp;
+            m_iJustify = wTemp;
+        }
+        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
+        {
+              ar >> wTemp;
+              m_IsStriked = (BOOL)wTemp;
+              
+              ar >> wTemp;
+              m_StrikeStyle = (StrikeStyles)wTemp;
+        }
+        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 7)
+        {
+            ar >> wTemp;
+            m_KeepHistory = (BOOL)wTemp;
+        }
+    }
   //## end PLFNAscii::Serialize%829516183.body
 }
 
 UINT PLFNAscii::GetJustify (ZDDocument* pDoc) const
 {
   //## begin PLFNAscii::GetJustify%833261594.body preserve=yes
-  	if (m_iJustify != NoAlignement)
-	  	return m_iJustify;
-  	if (pDoc && pDoc->GetStyleManager().GetStyle( GethStyle() ))
-  		return pDoc->GetStyleManager().GetStyle( GethStyle() )->GetJustify();
-  	return 0;
+      if (m_iJustify != NoAlignement)
+          return m_iJustify;
+      if (pDoc && pDoc->GetStyleManager().GetStyle( GethStyle() ))
+          return pDoc->GetStyleManager().GetStyle( GethStyle() )->GetJustify();
+      return 0;
   //## end PLFNAscii::GetJustify%833261594.body
 }
 
 PlanFinObject* PLFNAscii::Clone ()
 {
   //## begin PLFNAscii::Clone%849755977.body preserve=yes
-	PLFNAscii*	pObject = new PLFNAscii( *this );
-	return pObject;
+    PLFNAscii*    pObject = new PLFNAscii( *this );
+    return pObject;
   //## end PLFNAscii::Clone%849755977.body
 }
 
@@ -162,12 +162,12 @@ PlanFinObject* PLFNAscii::Clone ()
 #ifdef _DEBUG
 void PLFNAscii::AssertValid() const
 {
-	CObject::AssertValid();
+    CObject::AssertValid();
 }
 
 void PLFNAscii::Dump(CDumpContext& dc) const
 {
-	CObject::Dump(dc);
+    CObject::Dump(dc);
 }
 #endif //_DEBUG
 

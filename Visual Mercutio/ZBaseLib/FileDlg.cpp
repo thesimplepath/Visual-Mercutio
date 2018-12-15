@@ -1,10 +1,10 @@
 //## begin module%35D41FDA034A.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%35D41FDA034A.cm
 
 //## begin module%35D41FDA034A.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%35D41FDA034A.cp
 
 //## Module: FileDlg%35D41FDA034A; Package body
@@ -38,74 +38,74 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 // Class ZIFileDialog
 
 BEGIN_MESSAGE_MAP( ZIFileDialog, CFileDialog )
-	//{{AFX_MSG_MAP(ZIFileDialog)
-	// NOTE: the ClassWizard will add message map macros here
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(ZIFileDialog)
+    // NOTE: the ClassWizard will add message map macros here
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZIFileDialog::ZIFileDialog( const CString	Title,
-							const CString	Filter,
-							int				FilterCount,
-							const CString	InitialDir )
-	//## begin ZIFileDialog::ZIFileDialog%903091426.hasinit preserve=no
-	//## end ZIFileDialog::ZIFileDialog%903091426.hasinit
-	//## begin ZIFileDialog::ZIFileDialog%903091426.initialization preserve=yes
-	: CFileDialog	( TRUE ),
-	  m_Title		( Title ),
-	  m_Filter		( Filter ),
-	  m_FilterCount	( FilterCount ),
-	  m_InitialDir	( InitialDir )
-	//## end ZIFileDialog::ZIFileDialog%903091426.initialization
+ZIFileDialog::ZIFileDialog( const CString    Title,
+                            const CString    Filter,
+                            int                FilterCount,
+                            const CString    InitialDir )
+    //## begin ZIFileDialog::ZIFileDialog%903091426.hasinit preserve=no
+    //## end ZIFileDialog::ZIFileDialog%903091426.hasinit
+    //## begin ZIFileDialog::ZIFileDialog%903091426.initialization preserve=yes
+    : CFileDialog    ( TRUE ),
+      m_Title        ( Title ),
+      m_Filter        ( Filter ),
+      m_FilterCount    ( FilterCount ),
+      m_InitialDir    ( InitialDir )
+    //## end ZIFileDialog::ZIFileDialog%903091426.initialization
 {
-	//## begin ZIFileDialog::ZIFileDialog%903091426.body preserve=yes
-	//## end ZIFileDialog::ZIFileDialog%903091426.body
+    //## begin ZIFileDialog::ZIFileDialog%903091426.body preserve=yes
+    //## end ZIFileDialog::ZIFileDialog%903091426.body
 }
 
-ZIFileDialog::ZIFileDialog( UINT			nIDTitle,
-							const CString	Filter,
-							int				FilterCount,
-							const CString	InitialDir )
-	//## begin ZIFileDialog::ZIFileDialog%918051898.hasinit preserve=no
-	//## end ZIFileDialog::ZIFileDialog%918051898.hasinit
-	//## begin ZIFileDialog::ZIFileDialog%918051898.initialization preserve=yes
-	: CFileDialog	( TRUE ),
-	  m_Filter		( Filter ),
-	  m_FilterCount	( FilterCount ),
-	  m_InitialDir	( InitialDir )
-	//## end ZIFileDialog::ZIFileDialog%918051898.initialization
+ZIFileDialog::ZIFileDialog( UINT            nIDTitle,
+                            const CString    Filter,
+                            int                FilterCount,
+                            const CString    InitialDir )
+    //## begin ZIFileDialog::ZIFileDialog%918051898.hasinit preserve=no
+    //## end ZIFileDialog::ZIFileDialog%918051898.hasinit
+    //## begin ZIFileDialog::ZIFileDialog%918051898.initialization preserve=yes
+    : CFileDialog    ( TRUE ),
+      m_Filter        ( Filter ),
+      m_FilterCount    ( FilterCount ),
+      m_InitialDir    ( InitialDir )
+    //## end ZIFileDialog::ZIFileDialog%918051898.initialization
 {
-	//## begin ZIFileDialog::ZIFileDialog%918051898.body preserve=yes
-	if ( nIDTitle != 0 )
-	{
-		m_Title.LoadString( nIDTitle );
-	}
-	//## end ZIFileDialog::ZIFileDialog%918051898.body
+    //## begin ZIFileDialog::ZIFileDialog%918051898.body preserve=yes
+    if ( nIDTitle != 0 )
+    {
+        m_Title.LoadString( nIDTitle );
+    }
+    //## end ZIFileDialog::ZIFileDialog%918051898.body
 }
 
 ZIFileDialog::~ZIFileDialog()
 {
-	//## begin ZIFileDialog::~ZIFileDialog%.body preserve=yes
-	//## end ZIFileDialog::~ZIFileDialog%.body
+    //## begin ZIFileDialog::~ZIFileDialog%.body preserve=yes
+    //## end ZIFileDialog::~ZIFileDialog%.body
 }
 
 //## Other Operations (implementation)
 int ZIFileDialog::DoModal()
 {
-	//## begin ZIFileDialog::DoModal%903091427.body preserve=yes
-	m_ofn.nMaxCustFilter	+= m_FilterCount;
-	m_ofn.lpstrFilter		 = m_Filter;
-	m_ofn.hwndOwner			 = AfxGetMainWnd()->GetSafeHwnd();
-	m_ofn.lpstrTitle		 = m_Title;
-	m_ofn.lpstrFile			 = m_Filename.GetBuffer( _MAX_PATH );
+    //## begin ZIFileDialog::DoModal%903091427.body preserve=yes
+    m_ofn.nMaxCustFilter    += m_FilterCount;
+    m_ofn.lpstrFilter         = m_Filter;
+    m_ofn.hwndOwner             = AfxGetMainWnd()->GetSafeHwnd();
+    m_ofn.lpstrTitle         = m_Title;
+    m_ofn.lpstrFile             = m_Filename.GetBuffer( _MAX_PATH );
 
-	// Set the initial directory
-	m_ofn.lpstrInitialDir = m_InitialDir;
+    // Set the initial directory
+    m_ofn.lpstrInitialDir = m_InitialDir;
 
-	BOOL bRet = CFileDialog::DoModal() == IDOK ? TRUE : FALSE;
-	m_Filename.ReleaseBuffer();
+    BOOL bRet = CFileDialog::DoModal() == IDOK ? TRUE : FALSE;
+    m_Filename.ReleaseBuffer();
 
-	return bRet;
-	//## end ZIFileDialog::DoModal%903091427.body
+    return bRet;
+    //## end ZIFileDialog::DoModal%903091427.body
 }
 
 // Additional Declarations
@@ -117,8 +117,8 @@ int ZIFileDialog::DoModal()
 #ifdef _WIN32
 BOOL ZIFileDialog::OnFileNameOK()
 {
-	m_PathName = GetFolderPath();
-	return CFileDialog::OnFileNameOK();
+    m_PathName = GetFolderPath();
+    return CFileDialog::OnFileNameOK();
 }
 #endif
 
@@ -130,43 +130,43 @@ BOOL ZIFileDialog::OnFileNameOK()
 #if 0
 //## begin ZIFileDialog::ZIFileDialog%918998214.initialization preserve=no
 #ifdef _WIN32
-	: CFileDialog( TRUE,
-				   NULL,
-				   NULL,
-				   OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | ( ( DirectoryOnly==true ) ? ( OFN_EXPLORER | OFN_NOVALIDATE ) : 0 ) ),
+    : CFileDialog( TRUE,
+                   NULL,
+                   NULL,
+                   OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | ( ( DirectoryOnly==true ) ? ( OFN_EXPLORER | OFN_NOVALIDATE ) : 0 ) ),
 #else
-	: CFileDialog( TRUE,
-				   NULL,
-				   NULL,
-				   OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT ),
+    : CFileDialog( TRUE,
+                   NULL,
+                   NULL,
+                   OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT ),
 #endif
-	m_DirectoryOnly	( DirectoryOnly ),
-	m_InitialDir	( InitialDir )
+    m_DirectoryOnly    ( DirectoryOnly ),
+    m_InitialDir    ( InitialDir )
 //## end ZIFileDialog::ZIFileDialog%918998214.initialization
 
 //## begin ZIFileDialog::ZIFileDialog%918998214.body preserve=no
-	if ( nIDTitle != 0 )
-	{
-		m_Title.LoadString( nIDTitle );
-	}
+    if ( nIDTitle != 0 )
+    {
+        m_Title.LoadString( nIDTitle );
+    }
 //## end ZIFileDialog::ZIFileDialog%918998214.body
 
 //## begin ZIFileDialog::ZIFileDialog%918998215.initialization preserve=no
 #ifdef _WIN32
-	: CFileDialog( TRUE,
-				   NULL,
-				   NULL,
-				   OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | ( ( DirectoryOnly == true ) ? ( OFN_EXPLORER | OFN_NOVALIDATE ) : 0 ) ),
+    : CFileDialog( TRUE,
+                   NULL,
+                   NULL,
+                   OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | ( ( DirectoryOnly == true ) ? ( OFN_EXPLORER | OFN_NOVALIDATE ) : 0 ) ),
 #else
-	: CFileDialog( TRUE,
-				   NULL,
-				   NULL,
-				   OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT ),
+    : CFileDialog( TRUE,
+                   NULL,
+                   NULL,
+                   OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT ),
 #endif
 
-				   m_DirectoryOnly	( DirectoryOnly ),
-				   m_Title			( Title ),
-				   m_InitialDir		( InitialDir )
+                   m_DirectoryOnly    ( DirectoryOnly ),
+                   m_Title            ( Title ),
+                   m_InitialDir        ( InitialDir )
 //## end ZIFileDialog::ZIFileDialog%918998215.initialization
 
 #endif

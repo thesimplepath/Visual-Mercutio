@@ -1,10 +1,10 @@
 //## begin module%37EA7A5D000F.cm preserve=no
-//	  %X% %Q% %Z% %W%
+//      %X% %Q% %Z% %W%
 //## end module%37EA7A5D000F.cm
 
 //## begin module%37EA7A5D000F.cp preserve=no
-//	ADSoft / Advanced Dedicated Software
-//	Dominique AIGROZ
+//    ADSoft / Advanced Dedicated Software
+//    Dominique AIGROZ
 //## end module%37EA7A5D000F.cp
 
 //## Module: PaintOp%37EA7A5D000F; Package body

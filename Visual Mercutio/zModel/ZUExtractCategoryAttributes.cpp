@@ -22,13 +22,13 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZUExtractCategoryAttributes::ZUExtractCategoryAttributes( ZDProcessGraphModelMdl*	pModel			/*= NULL*/,
-														  CStringArray*				pStaticArray	/*= NULL*/,
-														  CStringArray*				pDynamicArray	/*= NULL*/,
-														  void*						pClass			/*= NULL*/)
-	: ZUModelNavigation	( pModel, pClass ),
-	  m_pStaticArray	( pStaticArray ),
-	  m_pDynamicArray	( pDynamicArray )
+ZUExtractCategoryAttributes::ZUExtractCategoryAttributes( ZDProcessGraphModelMdl*    pModel            /*= NULL*/,
+                                                          CStringArray*                pStaticArray    /*= NULL*/,
+                                                          CStringArray*                pDynamicArray    /*= NULL*/,
+                                                          void*                        pClass            /*= NULL*/)
+    : ZUModelNavigation    ( pModel, pClass ),
+      m_pStaticArray    ( pStaticArray ),
+      m_pDynamicArray    ( pDynamicArray )
 {
 }
 
@@ -38,96 +38,96 @@ ZUExtractCategoryAttributes::~ZUExtractCategoryAttributes()
 
 bool ZUExtractCategoryAttributes::OnStart()
 {
-	// Reset the array of categories
-	ResetStringsArray();
+    // Reset the array of categories
+    ResetStringsArray();
 
-	if ( m_pDynamicArray )
-	{
-		m_pDynamicArray->RemoveAll();
-	}
+    if ( m_pDynamicArray )
+    {
+        m_pDynamicArray->RemoveAll();
+    }
 
-	if ( m_pStaticArray )
-	{
-		m_pStaticArray->RemoveAll();
-	}
+    if ( m_pStaticArray )
+    {
+        m_pStaticArray->RemoveAll();
+    }
 
-	// Nothing more to do
-	return true;
+    // Nothing more to do
+    return true;
 }
 
 bool ZUExtractCategoryAttributes::OnFinish()
 {
-	// Send it to the soap server
-	return true;
+    // Send it to the soap server
+    return true;
 }
 
 bool ZUExtractCategoryAttributes::OnSymbol( ZBSymbol* pSymbol )
 {
-	ZBPropertySet PropSet;
+    ZBPropertySet PropSet;
 
-	// Retrieve the property set from object
-	pSymbol->FillProperties( PropSet, true );
+    // Retrieve the property set from object
+    pSymbol->FillProperties( PropSet, true );
 
-	// Add the attributes to the pPublishAttribDef class
-	FillAttribCategory( PropSet );
+    // Add the attributes to the pPublishAttribDef class
+    FillAttribCategory( PropSet );
 
-	// Remove all properties
-	ZBPropertyIterator i( &PropSet );
-	ZBProperty* pProp;
+    // Remove all properties
+    ZBPropertyIterator i( &PropSet );
+    ZBProperty* pProp;
 
-	for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
-	{
-		delete pProp;
-	}
+    for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    {
+        delete pProp;
+    }
 
-	PropSet.RemoveAll();
+    PropSet.RemoveAll();
 
-	return true;
+    return true;
 }
 
 bool ZUExtractCategoryAttributes::OnLink( ZBLinkSymbol* pLink )
 {
-	ZBPropertySet PropSet;
+    ZBPropertySet PropSet;
 
-	// Retrieve the property set from object
-	pLink->FillProperties( PropSet, true );
+    // Retrieve the property set from object
+    pLink->FillProperties( PropSet, true );
 
-	// Add the attributes to the pPublishAttribDef class
-	FillAttribCategory( PropSet );
+    // Add the attributes to the pPublishAttribDef class
+    FillAttribCategory( PropSet );
 
-	// Remove all properties
-	ZBPropertyIterator i( &PropSet );
-	ZBProperty* pProp;
+    // Remove all properties
+    ZBPropertyIterator i( &PropSet );
+    ZBProperty* pProp;
 
-	for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
-	{
-		delete pProp;
-	}
+    for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    {
+        delete pProp;
+    }
 
-	PropSet.RemoveAll();
+    PropSet.RemoveAll();
 
-	return true;
+    return true;
 }
 
 void ZUExtractCategoryAttributes::FillAttribCategory( ZBPropertySet& PropSet )
 {
-	// Remove all properties
-	ZBPropertyIterator i( &PropSet );
-	ZBProperty* pProp;
+    // Remove all properties
+    ZBPropertyIterator i( &PropSet );
+    ZBProperty* pProp;
 
-	for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
-	{
-		// Check if the category has already been generated
-		if ( !StringAlreadyGenerated( pProp->GetCategory() ) )
-		{
-			if ( pProp->IsDynamic() && m_pDynamicArray )
-			{
-				m_pDynamicArray->Add( pProp->GetCategory() );
-			}
-			else if ( m_pStaticArray )
-			{
-				m_pStaticArray->Add( pProp->GetCategory() );
-			}
-		}
-	}
+    for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    {
+        // Check if the category has already been generated
+        if ( !StringAlreadyGenerated( pProp->GetCategory() ) )
+        {
+            if ( pProp->IsDynamic() && m_pDynamicArray )
+            {
+                m_pDynamicArray->Add( pProp->GetCategory() );
+            }
+            else if ( m_pStaticArray )
+            {
+                m_pStaticArray->Add( pProp->GetCategory() );
+            }
+        }
+    }
 }
