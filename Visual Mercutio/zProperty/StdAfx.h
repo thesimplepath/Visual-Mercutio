@@ -16,7 +16,7 @@
 //// For compatibility reason with platform sdk used
 //// with Visual C++ 6.0
 //// Dominique Aigroz october 2002
-//#define  WINVER  0x0400
+//#define  WINVER  0x0501
 //#else
 //#define WINVER 0x0501
 //#endif // _WINNT_40
@@ -25,7 +25,7 @@
 
 // Version de Winver définie pour Windows NT4 et supérieures.
 #ifndef WINVER
-#define WINVER 0x0400
+#define WINVER 0x0501
 #endif
 
 // Plateforme cible définie à Windows NT4 et supérieures pour les versions NT de Windows.

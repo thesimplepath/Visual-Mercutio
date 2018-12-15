@@ -24,15 +24,15 @@
 /*
 #ifdef _WINNT_40
     // for compatibility reason with platform sdk used with Visual C++ 6.0
-        #define  WINVER  0x0400
-    #else
-        #define WINVER 0x0501
+    #define  WINVER  0x0501
+#else
+    #define WINVER 0x0501
 #endif
 */
 
-// NT4 and higher Window version
+// set Windows version for NT4 and higher
 #ifndef WINVER
-    #define WINVER 0x0400
+    #define WINVER 0x0501
 #endif
 
 // set target platform to Window NT4 and higher
@@ -40,7 +40,7 @@
     #define _WIN32_WINNT 0x0400
 #endif
 
-// set Windows version to Windows 98 and higher
+// set Win32 Windows version to Windows 98 and higher
 #ifndef _WIN32_WINDOWS
     #define _WIN32_WINDOWS 0x0410
 #endif

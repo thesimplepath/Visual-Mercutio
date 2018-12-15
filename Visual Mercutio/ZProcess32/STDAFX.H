@@ -19,7 +19,7 @@
 
 // Version de Winver définie pour Windows NT4 et supérieures.
 #ifndef WINVER
-#define WINVER 0x0400
+#define WINVER 0x0501
 #endif
 
 // Plateforme cible définie à Windows NT4 et supérieures pour les versions NT de Windows.

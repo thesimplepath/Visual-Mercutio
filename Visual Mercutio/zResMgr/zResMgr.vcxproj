@@ -17,6 +17,7 @@
     <SccProvider />
     <Keyword>MFCProj</Keyword>
     <ProjectGuid>{DCC4FC4F-3100-4780-8A5F-099169D5FDAC}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">

@@ -17,6 +17,7 @@
     <SccProvider />
     <Keyword>MFCProj</Keyword>
     <ProjectGuid>{8BE451D8-979F-4024-B25A-BB48B4C96953}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -71,6 +72,7 @@
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>..\Include;..\zFormsRes;..\..\Third party\Stingray Studio\Include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <OutputFile>..\exe\ZRes32d.dll</OutputFile>
@@ -109,6 +111,7 @@
       <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalIncludeDirectories>..\Include;..\zFormsRes;..\..\Third party\Stingray Studio\Include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <OutputFile>..\exeR\ZRes32.dll</OutputFile>

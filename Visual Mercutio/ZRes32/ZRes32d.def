@@ -2,7 +2,7 @@
 
 LIBRARY      "ZRes32d"
 
-; JMR-MODIF - le 19 mai 2005 - DESCRIPTION supprimé car non pris en charge par le compilateur.
+; NOTE deactivated because unsupported by the compiler
 ;DESCRIPTION  'ZRes32d Windows Dynamic Link Library'
 
 EXPORTS

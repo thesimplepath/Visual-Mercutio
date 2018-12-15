@@ -1,37 +1,30 @@
-// zRes32Lib.h : header file
-//
-// Copyright © 1993-2000 Aigroz Dominique - Advanced Dedicated Software
-//        mailto:dominique.aigroz@adsoft-form.com
-//        http://www.adsoft-form.com
-//
-//
-// ==========================================================================  
-// HISTORY:    
-// ==========================================================================
-//
-//////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> zRes32Lib -----------------------------------------------------------*
+ ****************************************************************************
+ * Description : zRes32 DLL main entry point                                *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#ifndef __ZRES32LIB_H__
-#define __ZRES32LIB_H__
+#ifndef zRes32LibH
+#define zRes32LibH
 
 #if _MSC_VER >= 1000
-#pragma once
-#endif // _MSC_VER >= 1000
-
-#ifdef _AFXDLL
-#ifdef _DEBUG
-#pragma comment(lib,"zRes32d.lib") 
-#pragma message("Automatically linking with zRes32d.dll")
-#endif // _DEBUG
-#ifdef NDEBUG
-#pragma comment(lib,"zRes32.lib") 
-#pragma message("Automatically linking with zRes32.dll") 
-#endif // NDEBUG
-#endif // _AFXDLL
-
-#ifndef __ZRES_H__
-#include "zRes.h"
+    #pragma once
 #endif
 
+#ifdef _AFXDLL
+    #ifdef _DEBUG
+        #pragma comment(lib, "zRes32d.lib") 
+        #pragma message("Automatically linking with zRes32d.dll")
+    #endif
 
-#endif // __ZRES32LIB_H__
+    #ifdef NDEBUG
+        #pragma comment(lib, "zRes32.lib") 
+        #pragma message("Automatically linking with zRes32.dll") 
+    #endif
+#endif
+
+// visual mercutio
+#include "zRes.h"
+
+#endif

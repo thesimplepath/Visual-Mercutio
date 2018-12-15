@@ -16,7 +16,7 @@
 // Modifiez les définitions suivantes si vous devez cibler une plate-forme avant celles spécifiées ci-dessous.
 // Reportez-vous à MSDN pour obtenir les dernières informations sur les valeurs correspondantes pour les différentes plates-formes.
 #ifndef WINVER                // Autorise l'utilisation des fonctionnalités spécifiques à Windows 95 et Windows NT 4 ou version ultérieure.
-#define WINVER 0x0400        // Attribuez la valeur appropriée à cet élément pour cibler Windows 98 et Windows 2000 ou version ultérieure.
+#define WINVER 0x0501        // Attribuez la valeur appropriée à cet élément pour cibler Windows 98 et Windows 2000 ou version ultérieure.
 #endif
 
 #ifndef _WIN32_WINNT        // Autorise l'utilisation des fonctionnalités spécifiques à Windows NT 4 ou version ultérieure.
