@@ -50,14 +50,14 @@
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental />
     <IncludePath>..\..\Third party\CJ60Lib\Include;..\..\Third party\EasySoap++-0.6.1\include;..\..\Third party\Stingray Studio\Include;..\..\Third party\Stingray Studio\Regex\include;..\;..\Include;res;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\Third party\CJ60Lib\lib;..\..\Third party\EasySoap++-0.6.1\win32\Debug;..\..\Third party\Stingray Studio\Lib;..\..\Third party\Stingray Studio\Regex\lib\vc6;..\Lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib;..\..\Third party\EasySoap++-0.6.1\win32\Debug;..\..\Third party\Stingray Studio\Lib;..\..\Third party\Stingray Studio\Regex\lib\vc6;..\Lib;$(LibraryPath);..\..\Third party\CJ60Lib\lib;..\..\Third party\Stingray Studio\Lib;..\..\Third party\Stingray Studio\Regex\lib\vc6;..\Lib</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>.\Release\</OutDir>
     <IntDir>.\Release\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>..\..\Third party\CJ60Lib\Include;..\..\Third party\EasySoap++-0.6.1\include;..\..\Third party\Stingray Studio\Include;..\..\Third party\Stingray Studio\Regex\include;..\;..\Include;res;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\Third party\CJ60Lib\lib;..\..\Third party\EasySoap++-0.6.1\win32\Release;..\..\Third party\Stingray Studio\Lib;..\..\Third party\Stingray Studio\Regex\lib\vc6;..\Lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib;..\..\Third party\EasySoap++-0.6.1\win32\Release;..\..\Third party\Stingray Studio\Lib;..\..\Third party\Stingray Studio\Regex\lib\vc6;..\Lib;$(LibraryPath);..\..\Third party\CJ60Lib\lib;..\..\Third party\Stingray Studio\Lib;..\..\Third party\Stingray Studio\Regex\lib\vc6;..\Lib</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -79,13 +79,14 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Ddao35.lib;version.lib;Htmlhelp.lib;mpr.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ddao35.lib;version.lib;Htmlhelp.lib;mpr.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>..\Exe\ZProcess32.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>.\Debug/ZProcess32.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -98,7 +99,7 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x040c</Culture>
-      <AdditionalIncludeDirectories>E:\Processoft\travail\vc6\PSS Dev\dll;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -119,11 +120,12 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Ddao35.lib;version.lib;Htmlhelp.lib;mpr.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ddao35.lib;version.lib;Htmlhelp.lib;mpr.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>..\ExeR\ZProcess32.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
