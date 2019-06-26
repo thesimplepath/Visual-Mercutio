@@ -144,7 +144,7 @@ size_t ZDProcessGraphModelMdlBP::GetStartSymbolInStartProcess( CODNodeArray& Nod
     // entering up links
     CODNodeArray RetainProcessNodes;
 
-    for ( size_t nNodeIdx = 0; nNodeIdx < Counter; ++nNodeIdx )
+    for (std::size_t nNodeIdx = 0; nNodeIdx < Counter; ++nNodeIdx)
     {
         IODNode* pINode                = ProcessNodes.GetAt( nNodeIdx );
         ZBBPProcessSymbol* pProcess    = static_cast<ZBBPProcessSymbol*>( pINode );
@@ -171,15 +171,13 @@ size_t ZDProcessGraphModelMdlBP::GetStartSymbolInStartProcess( CODNodeArray& Nod
         // The first time, we don't go deeper
         // if at the end of the search we don't found any start symbol,
         // Then recursively call the GetStartSymbols function
-        for ( nNodeIdx = 0; nNodeIdx < (size_t)RetainProcessNodes.GetSize(); ++nNodeIdx )
+        for (std::size_t nNodeIdx = 0; nNodeIdx < std::size_t(RetainProcessNodes.GetSize()); ++nNodeIdx)
         {
-            IODNode* pINode                = RetainProcessNodes.GetAt( nNodeIdx );
-            ZBBPProcessSymbol* pProcess    = static_cast<ZBBPProcessSymbol*>( pINode );
+            IODNode*           pINode   = RetainProcessNodes.GetAt(nNodeIdx);
+            ZBBPProcessSymbol* pProcess = static_cast<ZBBPProcessSymbol*>(pINode);
 
-            if ( !pProcess )
-            {
+            if (!pProcess)
                 continue;
-            }
 
             CODModel* pSubModel = pProcess->GetChildModel();
 
@@ -190,14 +188,12 @@ size_t ZDProcessGraphModelMdlBP::GetStartSymbolInStartProcess( CODNodeArray& Nod
             }
         }
 
-        // Now, check the size of the Nodes Array
-        if ( Nodes.GetSize() > 0 )
-        {
+        // now, check the size of the Nodes Array
+        if (Nodes.GetSize() > 0)
             return Nodes.GetSize();
-        }
 
         // Otherwise, redo the loop but call GetStartSymbols function instead
-        for ( nNodeIdx = 0; nNodeIdx < (size_t)RetainProcessNodes.GetSize(); ++nNodeIdx )
+        for (std::size_t nNodeIdx = 0; nNodeIdx < std::size_t(RetainProcessNodes.GetSize()); ++nNodeIdx)
         {
             IODNode* pINode = RetainProcessNodes.GetAt( nNodeIdx );
             ZBBPProcessSymbol* pProcess = static_cast<ZBBPProcessSymbol*>( pINode );

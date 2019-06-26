@@ -690,57 +690,42 @@ int Parser::miLegalLookAhead( int first_arg, ... )
 
 exit:
 
-    va_end ( args );
+    va_end(args);
 
-    return ( rval );
+    return rval;
 }
-
+//---------------------------------------------------------------------------
 /* Returns TRUE if the string is a legal function, FALSE otherwise. */
-/*-----------------------*/
-int Parser::isfunc( char *s )
+int Parser::isfunc(char* pStr)
 {
-    int len = strlen( s );
-    register i;
+             int len = strlen(pStr);
+    register int i;
 
-    for ( i = 0; i < len ; i++ )
-    {
-        if ( *( s + i ) != toupper ( *( mcpInput + i ) ) )
-        {
+    for (i = 0; i < len ; ++i)
+        if (*(pStr + i) != toupper (*(mcpInput + i)))
             break;
-        }
-    }
 
-    if ( i < len )
-    {
-        return( FALSE );
-    }
+    if (i < len)
+        return FALSE;
 
-    for ( i = 0; i < len ; i++ )
-    {
-        curtoken.funcname[i] = toupper ( *( mcpInput + i ) );
-    }
+    for (i = 0; i < len ; ++i)
+        curtoken.funcname[i] = toupper(*(mcpInput + i));
 
-    curtoken.funcname[len] = 0;
-    mcpInput += len;
+    curtoken.funcname[len]  = 0;
+    mcpInput               += len;
 
-    return( TRUE );
+    return TRUE;
 }
-
-/*-------------------------------------*/
-void Parser::vPush( struct TOKENREC *token )
+//---------------------------------------------------------------------------
+void Parser::vPush(struct TOKENREC* pToken)
 {
-    /* Pushes a new token onto the stack */
-    if ( miStackTop == PARSERSTACKSIZE - 1 )
-    {
+    // push a new token onto the stack
+    if (miStackTop == PARSERSTACKSIZE - 1)
         mcError = TRUE;
-    }
     else
-    {
-        stack[++miStackTop] = *token;
-    }
+        stack[++miStackTop] = *pToken;
 }
-
-/*-----------------------------*/
+//---------------------------------------------------------------------------
 struct TOKENREC Parser::vPop()
 {
     /* Pops the top token off of the stack */

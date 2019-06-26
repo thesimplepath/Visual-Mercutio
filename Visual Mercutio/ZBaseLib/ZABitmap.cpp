@@ -334,27 +334,23 @@ void PLFNBitmap::Dump( CDumpContext& dc ) const
 void PLFNBitmap::Serialize( CArchive& ar )
 {
     //## begin PLFNBitmap::Serialize%863541708.body preserve=yes
-    PlanFinObject::Serialize( ar );
+    PlanFinObject::Serialize(ar);
 
-    if ( ar.IsStoring() )
+    if (ar.IsStoring())
     {
         // Write the elements
         // Serialize the BITMAP
-        ar << (DWORD)m_nHeaderSize;
+        ar << DWORD(m_nHeaderSize);
 
-        for ( int i = 0; i < m_nHeaderSize; ++i )
-        {
-            ar << ( (BYTE*)m_pBitmapInfoHeader )[i];
-        }
+        for (int i = 0; i < m_nHeaderSize; ++i)
+            ar << ((BYTE*)m_pBitmapInfoHeader)[i];
 
-        ar << (DWORD)m_nBytes;
+        ar << DWORD(m_nBytes);
 
-        for ( i = 0; i < m_nBytes; ++i )
-        {
-            ar << ( (BYTE*)m_pBits )[i];
-        }
+        for (int i = 0; i < m_nBytes; ++i)
+            ar << ((BYTE*)m_pBits)[i];
 
-        ar << (WORD)m_DisplayStyle;
+        ar << WORD(m_DisplayStyle);
     }
     else
     {
@@ -374,45 +370,43 @@ void PLFNBitmap::Serialize( CArchive& ar )
 
         BYTE bByte;
 
-        for ( int i = 0; i < m_nHeaderSize; ++i )
+        for (int i = 0; i < m_nHeaderSize; ++i)
         {
             ar >> bByte;
-            ( (BYTE*)m_pBitmapInfoHeader )[i] = bByte;
+            ((BYTE*)m_pBitmapInfoHeader)[i] = bByte;
         }
 
-        // Read the bits
+        // read the bits
         ar >> dwTemp;
 
         m_nBytes = (size_t)dwTemp;
 
-        if ( m_pBits )
-        {
+        if (m_pBits)
             delete m_pBits;
-        }
 
         m_pBits = (BYTE*)new char[m_nBytes];
 
-        for ( i = 0; i < m_nBytes; ++i )
+        for (int i = 0; i < m_nBytes; ++i)
         {
             ar >> bByte;
-            ( (BYTE*)m_pBits )[i] = bByte;
+            ((BYTE*)m_pBits)[i] = bByte;
         }
 
-        m_hBitmap = CreateDIBitmap( AfxGetMainWnd()->GetDC()->GetSafeHdc(),
-                                    m_pBitmapInfoHeader,
-                                    CBM_INIT,
-                                    m_pBits,
-                                    (PBITMAPINFO)m_pBitmapInfoHeader,
-                                    DIB_RGB_COLORS );
+        m_hBitmap = ::CreateDIBitmap(AfxGetMainWnd()->GetDC()->GetSafeHdc(),
+                                     m_pBitmapInfoHeader,
+                                     CBM_INIT,
+                                     m_pBits,
+                                     (PBITMAPINFO)m_pBitmapInfoHeader,
+                                     DIB_RGB_COLORS);
 
         m_Bitmap.Attach( m_hBitmap );
         m_Bitmap.DDBToDIB( BI_RGB, NULL );
 
-        if ( ( (ZDDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 5 )
+        if (((ZDDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
         {
             WORD wTemp;
             ar >> wTemp;
-            m_DisplayStyle = (DisplayStyles)wTemp;
+            m_DisplayStyle = DisplayStyles(wTemp);
         }
     }
 

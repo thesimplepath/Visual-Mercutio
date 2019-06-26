@@ -5,74 +5,58 @@
 
 #include "DocOptDG.h"
 #include "zBaseLib\MsgBox.h"
-#ifndef _WIN32
-    #include "Opendird.h"
-#endif
+#include "zBaseLib\FileDlg.h"
 #ifdef _WIN32
     #include "Opendird32.h"
+#else
+    #include "Opendird.h"
 #endif
-#include "zBaseLib\FileDlg.h"
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char BASED_CODE THIS_FILE[] = __FILE__;
+    #undef THIS_FILE
+    static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// ZADocOptionDLG dialog
-
-
-ZADocOptionDLG::ZADocOptionDLG(ZDDocumentOptions* pDocOptions, CWnd* pParent /*=NULL*/)
-    : CDialog(ZADocOptionDLG::IDD, pParent), m_pDocOptions( pDocOptions )
+//---------------------------------------------------------------------------
+// ZADocOptionDLG
+//---------------------------------------------------------------------------
+ZADocOptionDLG::ZADocOptionDLG(ZDDocumentOptions* pDocOptions, CWnd* pParent) :
+    CDialog(ZADocOptionDLG::IDD, pParent),
+    m_pDocOptions(pDocOptions),
+    m_EmtyStyle(-1),
+    m_SynchronisationYesNo(-1),
+    m_ShowHiddenFieldYesNoDoc(-1),
+    m_ShowEmptyLineYesNoDoc(-1),
+    m_SynchronizationTime(0),
+    m_FLF_Filename(""),
+    m_GenerateHeader(-1),
+    m_SeparatorType(-1),
+    m_AutomaticFilenameGeneration(-1),
+    m_PrintEmptyStyleWhenEmpty(FALSE)
 {
-    //{{AFX_DATA_INIT(ZADocOptionDLG)
-    m_EmtyStyle = -1;
-    m_SynchronisationYesNo = -1;
-    m_ShowHiddenFieldYesNoDoc = -1;
-    m_ShowEmptyLineYesNoDoc = -1;
-    m_SynchronizationTime = 0;
-    m_FLF_Filename = "";
-    m_GenerateHeader = -1;
-    m_SeparatorType = -1;
-    m_AutomaticFilenameGeneration = -1;
-    m_PrintEmptyStyleWhenEmpty = FALSE;
-    //}}AFX_DATA_INIT
     switch (m_pDocOptions->GetEmptyStyle())
     {
-        case DottedLine :         m_EmtyStyle = 1;
-                                break;
-        case SmallLine :        m_EmtyStyle = 2;
-                                break;
-        case DashLine :         m_EmtyStyle = 3;
-                                break;
-        case SolidLine :         m_EmtyStyle = 4;
-                                break;
-//        Nothing (NoEmpty) and default is m_EmtyStyle = 0;
-        default: m_EmtyStyle = 0;
+        case DottedLine: m_EmtyStyle = 1; break;
+        case SmallLine:  m_EmtyStyle = 2; break;
+        case DashLine:   m_EmtyStyle = 3; break;
+        case SolidLine:  m_EmtyStyle = 4; break;
+        default:         m_EmtyStyle = 0;
     }
-    
+
     switch (m_pDocOptions->GetShowEmptyLine())
     {
-        case YesOption :         m_ShowEmptyLineYesNoDoc = 0;
-                                break;
-        case NoOption :            m_ShowEmptyLineYesNoDoc = 1;
-                                break;
-        case ApplicationOption :     m_ShowEmptyLineYesNoDoc = 2;
-                                    break;
-        default: m_ShowEmptyLineYesNoDoc = 2;
+        case YesOption: m_ShowEmptyLineYesNoDoc = 0; break;
+        case NoOption:  m_ShowEmptyLineYesNoDoc = 1; break;
+        default:        m_ShowEmptyLineYesNoDoc = 2;
     }
 
     m_PrintEmptyStyleWhenEmpty = m_pDocOptions->GetPrintEmptyStyleWhenEmpty();
 
     switch (m_pDocOptions->GetShowHiddenField())
     {
-        case YesOption :         m_ShowHiddenFieldYesNoDoc = 0;
-                                break;
-        case NoOption :            m_ShowHiddenFieldYesNoDoc = 1;
-                                break;
-        case ApplicationOption :     m_ShowHiddenFieldYesNoDoc = 2;
-                                    break;
-        default: m_ShowHiddenFieldYesNoDoc = 2;
+        case YesOption: m_ShowHiddenFieldYesNoDoc = 0; break;
+        case NoOption:  m_ShowHiddenFieldYesNoDoc = 1; break;
+        default:        m_ShowHiddenFieldYesNoDoc = 2;
     }
 
     if (m_pDocOptions->GetIsSynchronizeExchangeFeedFile())
@@ -81,40 +65,25 @@ ZADocOptionDLG::ZADocOptionDLG(ZDDocumentOptions* pDocOptions, CWnd* pParent /*=
         m_SynchronisationYesNo = 1;
 
     m_SynchronizationTime = m_pDocOptions->GetSynchronizeTimeSequence();
-    
-    m_FLF_Filename = m_pDocOptions->GetSynchronizeFilename();
-    
+    m_FLF_Filename        = m_pDocOptions->GetSynchronizeFilename();
+
     switch (m_pDocOptions->GetAutomaticSynchronizeFilename())
     {
-        case AutomaticName :         m_AutomaticFilenameGeneration = 0;
-                                     break;
-        case FilenameSpecified :    m_AutomaticFilenameGeneration = 1;
-                                    break;
-        case FolderSpecified :         m_AutomaticFilenameGeneration = 2;
-                                    break;
-        default: m_AutomaticFilenameGeneration = 0;
+        case FilenameSpecified: m_AutomaticFilenameGeneration = 1; break;
+        case FolderSpecified:   m_AutomaticFilenameGeneration = 2; break;
+        default:                m_AutomaticFilenameGeneration = 0;
     }
-    
-    
-    m_GenerateHeader = (m_pDocOptions->GetSynchronizationHeader() == TRUE ) ? 0 : 1;
+
+    m_GenerateHeader = (m_pDocOptions->GetSynchronizationHeader() == TRUE) ? 0 : 1;
 
     switch (m_pDocOptions->GetSynchronizationSeparator())
     {
-        case AutomaticSeparator :     m_SeparatorType = 0;
-                                     break;
-        case TabSeparator :            m_SeparatorType = 1;
-                                    break;
-        case CommaSeparator :         m_SeparatorType = 2;
-                                    break;
-        case SemiColumnSeparator :    m_SeparatorType = 3;
-                                    break;
-        case QuoteSeparator :         m_SeparatorType = 4;
-                                    break;
-        default: m_SeparatorType = 0;
+        case TabSeparator:        m_SeparatorType = 1; break;
+        case CommaSeparator:      m_SeparatorType = 2; break;
+        case SemiColumnSeparator: m_SeparatorType = 3; break;
+        case QuoteSeparator:      m_SeparatorType = 4; break;
+        default:                  m_SeparatorType = 0;
     }
-    
-    
-    
 }
 
 void ZADocOptionDLG::DoDataExchange(CDataExchange* pDX)
@@ -260,51 +229,53 @@ void ZADocOptionDLG::OnOK()
     }
     
 }
-
+//---------------------------------------------------------------------------
 void ZADocOptionDLG::OnPaint()
 {
-    CPaintDC dc(this); // device context for painting
+    // device context for painting
+    CPaintDC dc(this);
 
-    CPen    pen( PS_SOLID, 1, defCOLOR_BLACK );
-    CPen   *OldPen;
-    register i;
-        
-    OldPen = dc.SelectObject( &pen );
+    CPen  pen(PS_SOLID, 1, defCOLOR_BLACK);
+    CPen* pOldPen;
+
+    pOldPen = dc.SelectObject(&pen);
 
     // Draw the different empty styles
-    CRect        DashedLineRect, LinedRect, PointRect, SmallLineRect;
+    CRect dashedLineRect, linedRect, pointRect, smallLineRect;
 
-    m_DashedLineCtrl.GetClientRect( &DashedLineRect );
-    m_DashedLineCtrl.MapWindowPoints( this, &DashedLineRect );
-    for (i = DashedLineRect.left; i < DashedLineRect.right; i += 4)
+    m_DashedLineCtrl.GetClientRect(&dashedLineRect);
+    m_DashedLineCtrl.MapWindowPoints(this, &dashedLineRect);
+
+    for (register int i = dashedLineRect.left; i < dashedLineRect.right; i += 4)
     {
-        dc.MoveTo( i, DashedLineRect.bottom-2 );
-        dc.LineTo( i + 2, DashedLineRect.bottom-2 );
+        dc.MoveTo(i,     dashedLineRect.bottom - 2);
+        dc.LineTo(i + 2, dashedLineRect.bottom - 2);
     }
     
-    m_DottedCtrl.GetClientRect( &PointRect );
-    m_DottedCtrl.MapWindowPoints( this, &PointRect );
-    for (i = PointRect.left; i < PointRect.right; i += 2)
+    m_DottedCtrl.GetClientRect(&pointRect);
+    m_DottedCtrl.MapWindowPoints(this, &pointRect);
+
+    for (register int i = pointRect.left; i < pointRect.right; i += 2)
     {
-        dc.MoveTo( i, PointRect.bottom-2 );
-        dc.LineTo( i + 1, PointRect.bottom-2 );
+        dc.MoveTo(i,     pointRect.bottom - 2);
+        dc.LineTo(i + 1, pointRect.bottom - 2);
     }
 
-    m_SmallLineCtrl.GetClientRect( &SmallLineRect );
-    m_SmallLineCtrl.MapWindowPoints( this, &SmallLineRect );
-    for (i = SmallLineRect.left; i < SmallLineRect.right; i += 8)
+    m_SmallLineCtrl.GetClientRect(&smallLineRect);
+    m_SmallLineCtrl.MapWindowPoints(this, &smallLineRect);
+
+    for (register int i = smallLineRect.left; i < smallLineRect.right; i += 8)
     {
-        dc.MoveTo( i, SmallLineRect.bottom-2 );
-        dc.LineTo( i + 4, SmallLineRect.bottom-2 );
+        dc.MoveTo(i,     smallLineRect.bottom - 2);
+        dc.LineTo(i + 4, smallLineRect.bottom - 2);
     }
 
-    m_LinedCtrl.GetClientRect( &LinedRect );
-    m_LinedCtrl.MapWindowPoints( this, &LinedRect );
-    dc.MoveTo( LinedRect.left, LinedRect.bottom-2 );
-    dc.LineTo( LinedRect.right, LinedRect.bottom-2 );
+    m_LinedCtrl.GetClientRect(&linedRect);
+    m_LinedCtrl.MapWindowPoints(this, &linedRect);
+    dc.MoveTo(linedRect.left,  linedRect.bottom - 2);
+    dc.LineTo(linedRect.right, linedRect.bottom - 2);
 }
-
-
+//---------------------------------------------------------------------------
 void ZADocOptionDLG::CheckControlState()
 {
     UpdateData( TRUE );

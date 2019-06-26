@@ -1,146 +1,135 @@
-// ZUExtractModelAttributes.cpp: implementation of the ZUExtractModelAttributes class.
-//
-//////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> ZUExtractModelAttributes --------------------------------------------*
+ ****************************************************************************
+ * Description : Navigates through the model and extract unique symbol      *
+ *               attributes                                                 *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
+ // mfc
 #include "stdafx.h"
-#include "ProcGraphModelMdl.h"
-#include "ZUExtractModelAttributes.h"
 
+// processsoft
+#include "ZUExtractModelAttributes.h"
 #include "ZBSymbol.h"
 #include "ZBLinkSymbol.h"
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
 #endif
 
-// JMR-MODIF - Le 1er mars 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
-
-ZUExtractModelAttributes::ZUExtractModelAttributes( ZDProcessGraphModelMdl*    pModel    /*= NULL*/,
-                                                    void*                    pClass    /*= NULL*/ )
-    : ZUModelNavigation( pModel, pClass )
-{
-}
-
+//---------------------------------------------------------------------------
+// ZUExtractModelAttributes
+//---------------------------------------------------------------------------
+ZUExtractModelAttributes::ZUExtractModelAttributes(ZDProcessGraphModelMdl* pModel, void* pClass) :
+    ZUModelNavigation(pModel, pClass)
+{}
+//---------------------------------------------------------------------------
 ZUExtractModelAttributes::~ZUExtractModelAttributes()
-{
-}
-
+{}
+//---------------------------------------------------------------------------
 bool ZUExtractModelAttributes::OnStart()
 {
-    m_pPropertySet = static_cast<ZBPropertySet*>( m_pClass );
+    m_pPropertySet = static_cast<ZBPropertySet*>(m_pClass);
 
-    if ( !m_pPropertySet )
-    {
+    if (!m_pPropertySet)
         return false;
-    }
 
-    // Reset the array of ids
-    memset( m_IDArray, 0, sizeof( m_IDArray ) );
+    // reset the array of ids
+    std::memset(m_IDArray, 0, sizeof(m_IDArray));
 
-    // Nothing more to do
+    // nothing more to do
     return true;
 }
-
+//---------------------------------------------------------------------------
 bool ZUExtractModelAttributes::OnFinish()
 {
     return true;
 }
-
-bool ZUExtractModelAttributes::OnSymbol( ZBSymbol* pSymbol )
+//---------------------------------------------------------------------------
+bool ZUExtractModelAttributes::OnSymbol(ZBSymbol* pSymbol)
 {
-    ZBPropertySet PropSet;
+    ZBPropertySet propSet;
 
     // Retrieve the property set from object
-    pSymbol->FillProperties( PropSet, true );
+    pSymbol->FillProperties(propSet, true);
 
     // Add the attributes to the pPublishAttribDef class
-    ProcessAttrib( PropSet );
+    ProcessAttrib(propSet);
 
     // Remove all properties
-    ZBPropertyIterator i( &PropSet );
-    ZBProperty* pProp;
+    ZBPropertyIterator i(&propSet);
+    ZBProperty*        pProp;
 
-    for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
-    {
+    for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
         delete pProp;
-    }
 
-    PropSet.RemoveAll();
+    propSet.RemoveAll();
 
     return true;
 }
-
-bool ZUExtractModelAttributes::OnLink( ZBLinkSymbol* pLink )
+//---------------------------------------------------------------------------
+bool ZUExtractModelAttributes::OnLink(ZBLinkSymbol* pLink)
 {
-    ZBPropertySet PropSet;
+    ZBPropertySet propSet;
 
-    // Retrieve the property set from object
-    pLink->FillProperties( PropSet, true );
+    // retrieve the property set from object
+    pLink->FillProperties(propSet, true);
 
-    // Add the attributes to the pPublishAttribDef class
-    ProcessAttrib( PropSet );
+    // add the attributes to the pPublishAttribDef class
+    ProcessAttrib(propSet);
 
-    // Remove all properties
-    ZBPropertyIterator i( &PropSet );
-    ZBProperty* pProp;
+    // remove all properties
+    ZBPropertyIterator i(&propSet);
+    ZBProperty*        pProp;
 
-    for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
-    {
+    for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
         delete pProp;
-    }
 
-    PropSet.RemoveAll();
+    propSet.RemoveAll();
 
     return true;
 }
-
-void ZUExtractModelAttributes::ProcessAttrib( ZBPropertySet& PropSet )
+//---------------------------------------------------------------------------
+void ZUExtractModelAttributes::ProcessAttrib(ZBPropertySet& propSet)
 {
-    ASSERT( m_pPropertySet );
+    ASSERT(m_pPropertySet);
 
-    // Remove all properties
-    ZBPropertyIterator i( &PropSet );
-    ZBProperty* pProp;
+    // remove all properties
+    ZBPropertyIterator i(&propSet);
+    ZBProperty*        pProp;
 
-    for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        short left    = pProp->GetCategoryID() & 0x0000FFFF;
-        short right    = pProp->GetItemID() & 0x0000FFFF;
-        int Key        = ( left << 16 ) | right;
+        const short left  = pProp->GetCategoryID() & 0x0000FFFF;
+        const short right = pProp->GetItemID()     & 0x0000FFFF;
+        const int   key   = (left << 16) | right;
 
-        // If the key doesn't exist yet,
-        // add it to the final property set
-        if ( !KeyExist( Key ) )
-        {
-            m_pPropertySet->Add( pProp->Dup() );
-        }
+        // if the key doesn't exist yet, add it to the final property set
+        if (!KeyExist(key))
+            m_pPropertySet->Add(pProp->Dup());
     }
 }
-
-bool ZUExtractModelAttributes::KeyExist( int key )
+//---------------------------------------------------------------------------
+bool ZUExtractModelAttributes::KeyExist(int key)
 {
-    for ( int i = 0; i < sizeof( m_IDArray ) && m_IDArray[i] != 0; ++i )
+    int index = 0;
+
+    for (int i = 0; i < sizeof(m_IDArray) && m_IDArray[i] != 0; ++i)
     {
-        if ( m_IDArray[i] == key )
-        {
+        if (m_IDArray[i] == key)
             return true;
-        }
+
+        index = i;
     }
 
-    // doesn't exist
-
-    // Check the array size before inserting the element
-    if ( i < sizeof( m_IDArray ) / sizeof( int ) )
-    {
+    // doesn't exist, check the array size before inserting the element
+    if (index < sizeof(m_IDArray) / sizeof(int))
         // add it for the next time
-        m_IDArray[i] = key;
-    }
+        m_IDArray[index] = key;
 
     return false;
 }
+//---------------------------------------------------------------------------

@@ -698,49 +698,44 @@ bool ZVPublishToMessengerStart::LoadStateFromIniFile()
 
     return true;
 }
-
+//---------------------------------------------------------------------------
 bool ZVPublishToMessengerStart::SaveStateToIniFile()
 {
-    ZUSystemOption SystemOption( m_IniFile, gPublishMessengerSectionName );
+    ZUSystemOption systemOption(m_IniFile, gPublishMessengerSectionName);
 
-    // Saves the options
+    // save the options
     // JMR-MODIF - Le 30 mai 2006 - Ajouté la ligne pour l'écritue de m_IncludePrestations.
-    SystemOption.WriteOption( gPublishMessengerIncludeModelEntityName,            m_IncludeModel );
-    SystemOption.WriteOption( gPublishMessengerIncludeGroupsEntityName,            m_IncludeGroups );
-    SystemOption.WriteOption( gPublishMessengerIncludeSystemsEntityName,        m_IncludeSystems );
-    SystemOption.WriteOption( gPublishMessengerIncludePrestationsEntityName,    m_IncludePrestations );
-    SystemOption.WriteOption( gPublishMessengerLastAddressEntityName,            m_MessengerAddress );
-    SystemOption.WriteOption( gPublishMessengerAliasName,                        m_MessengerAlias );
+    systemOption.WriteOption(gPublishMessengerIncludeModelEntityName,       m_IncludeModel );
+    systemOption.WriteOption(gPublishMessengerIncludeGroupsEntityName,      m_IncludeGroups );
+    systemOption.WriteOption(gPublishMessengerIncludeSystemsEntityName,     m_IncludeSystems );
+    systemOption.WriteOption(gPublishMessengerIncludePrestationsEntityName, m_IncludePrestations );
+    systemOption.WriteOption(gPublishMessengerLastAddressEntityName,        m_MessengerAddress );
+    systemOption.WriteOption(gPublishMessengerAliasName,                    m_MessengerAlias );
 
-    CString KeyName;
+    CString keyName;
 
-    // Add the address to the array
-    bool Found = false;
+    // add the address to the array
+    bool found = false;
 
-    for ( int Idx = 0; Idx < m_ArrayOfAddress.GetSize(); ++Idx )
+    for (int idx = 0; idx < m_ArrayOfAddress.GetSize(); ++idx)
+        if (m_ArrayOfAddress.GetAt(idx) == m_MessengerAddress)
+            found = true;
+
+    if (!found)
+        m_ArrayOfAddress.Add(m_MessengerAddress);
+
+    for (int idx = 0; idx < m_ArrayOfAddress.GetSize(); ++idx)
     {
-        if ( m_ArrayOfAddress.GetAt( Idx ) == m_MessengerAddress )
-        {
-            Found = true;
-        }
-    }
-
-    if ( !Found )
-    {
-        m_ArrayOfAddress.Add( m_MessengerAddress );
-    }
-
-    for ( Idx = 0; Idx < m_ArrayOfAddress.GetSize(); ++Idx )
-    {
-        // Format the key
-        KeyName.Format( _T( "%s_%d" ), (const char*)gPublishMessengerAddressEntityName, Idx );
+        // format the key
+        keyName.Format(_T("%s_%d"), (const char*)gPublishMessengerAddressEntityName, idx);
 
         // Write the string to the ini file
-        SystemOption.WriteOption( KeyName, m_ArrayOfAddress.GetAt( Idx ) );
+        systemOption.WriteOption(keyName, m_ArrayOfAddress.GetAt(idx));
     }
 
     return true;
 }
+//---------------------------------------------------------------------------
 
 /////////////////////////////////////////////////////////////////////////////
 // ZVPublishToMessengerLogon dialog

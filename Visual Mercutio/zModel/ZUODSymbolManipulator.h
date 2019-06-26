@@ -32,6 +32,7 @@ class ZBSymbolLabel;
 
 // JMR-MODIF - Le 4 mai 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
+// todo FIXME -cImprovement -oJean: pass all CString parameters by reference when possible
 class AFX_EXT_CLASS ZUODSymbolManipulator
 {
 public:
@@ -42,10 +43,10 @@ public:
 // Manipulation functions
 public:
 
-    static ZBSymbolEdit* CreateEditText( CODComponent*    pSymbol,
-                                         const CString    AreaName,
-                                         const CString    EditName,
-                                         CODComponent*    pParent        = NULL );
+    static ZBSymbolEdit* CreateEditText(CODComponent*  pSymbol,
+                                        const CString& AreaName,
+                                        const CString& EditName,
+                                        CODComponent*  pParent = NULL);
 
     static ZBSymbolEdit* CreateAndReplaceEditText( CODComponent*    pSymbol,
                                                    const CString    EditName,
@@ -56,7 +57,7 @@ public:
                                                      bool            NotifyParent,
                                                      CODComponent*    pParent            = NULL );
 
-    static BOOL RemoveSymbol( CODComponent* pSymbol, const CString SymbolName );
+    static BOOL RemoveSymbol( CODComponent* pSymbol, const CString& SymbolName );
     static BOOL RemoveSymbol( CODComponent* pSymbol, CODComponent* pComponent );
 
     static CODComponent* FindSymbol( CODComponent* pSymbol, const CString SymbolName );

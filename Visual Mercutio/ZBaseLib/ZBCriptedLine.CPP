@@ -2,235 +2,242 @@
 //    Dominique AIGROZ
 // Source file: ZBCriptedLine.cpp
 
-
-
 #include "StdAfx.h"
 
 // ZBCriptedLine
 #include "ZBCriptedLine.h"
 
-
-
-const int    CriptedLineLength = 100;
-const int    CriptedNumberOfItem = 25;    // Multiply by 4 must give CriptedLineLength
-
-
-IMPLEMENT_DYNCREATE( ZBCriptedLine, CObject );
-
-// Class ZBCriptedLine 
-
-
+//---------------------------------------------------------------------------
+// Global variables
+//---------------------------------------------------------------------------
+const int CriptedLineLength   = 100;
+const int CriptedNumberOfItem = 25;  // multiply by 4 must give CriptedLineLength
+//---------------------------------------------------------------------------
+// StdAfx
+//---------------------------------------------------------------------------
+IMPLEMENT_DYNCREATE(ZBCriptedLine, CObject);
+//---------------------------------------------------------------------------
+// ZBCriptedLine 
+//---------------------------------------------------------------------------
 ZBCriptedLine::ZBCriptedLine()
+{}
+//---------------------------------------------------------------------------
+ZBCriptedLine::ZBCriptedLine(const ZBCriptedLine& right)
 {
+    *this = right;
 }
-
-
+//---------------------------------------------------------------------------
 ZBCriptedLine::~ZBCriptedLine()
 {
-  srand( (unsigned)time( NULL ) );
-  GenerateRandomLine();
+    std::srand(unsigned(time(NULL)));
+    GenerateRandomLine();
 }
-
-
-ZBCriptedLine::ZBCriptedLine(const ZBCriptedLine &right)
+//---------------------------------------------------------------------------
+const ZBCriptedLine& ZBCriptedLine::operator=(const ZBCriptedLine& right)
 {
-      *this = right;
+    m_sEntity = right.m_sEntity;
+    return *this;
 }
-
-const ZBCriptedLine& ZBCriptedLine::operator=(const ZBCriptedLine &right)
+//---------------------------------------------------------------------------
+void ZBCriptedLine::CriptEntity(const CString& line)
 {
-      m_sEntity = right.m_sEntity;
-      return *this;
-}
+    CString cryptedLine = line;
 
-
-void ZBCriptedLine::CriptEntity(CString& Line)
-{
-      char*    cpKey = Line.GetBuffer(Line.GetLength()+1);
+    char* pCpKey = cryptedLine.GetBuffer(cryptedLine.GetLength() + 1);
       
-      for( ; *cpKey; ++cpKey )
-          *cpKey ^= 140;
-      Line.ReleaseBuffer();
-}
+    for (; *pCpKey; ++pCpKey)
+        *pCpKey ^= 140;
 
+    cryptedLine.ReleaseBuffer();
+}
+//---------------------------------------------------------------------------
 CString ZBCriptedLine::GenerateRandomLine(int size)
 {
-    CString    Line;
+    const int count     = size / 4;
+    const int leftCount = size - (count * 4);
+    CString   line;
+    char      szBuf[30];
 
-    int        Counter = size / 4;
-    int        LeftCounter = size - (Counter*4);
-      char    szBuf[30];
-    for (int i = 0; i < Counter; ++i)
+    for (int i = 0; i < count; ++i)
     {
-          sprintf( szBuf, "%04.04d", rand() );
-        szBuf[4] = 0x00;
-          Line += szBuf;
+        sprintf(szBuf, "%04.04d", std::rand());
+        szBuf[4]  = 0x00;
+        line     += szBuf;
     }
-    for (i = 0; i < LeftCounter; ++i)
+
+    for (int i = 0; i < leftCount; ++i)
     {
-          sprintf( szBuf, "%1.1d", rand() );
-          Line += szBuf[0];
+        sprintf(szBuf, "%1.1d", std::rand());
+        line += szBuf[0];
     }
-      return Line;
+
+    return line;
 }
-
+//---------------------------------------------------------------------------
 CString ZBCriptedLine::GenerateRandomLine()
 {
     m_sEntity = GenerateRandomLine(CriptedLineLength);
 
-    // And finally, cript the entity
-      CriptEntity(m_sEntity);
-      return m_sEntity;
+    // and finally, cript the entity
+    CriptEntity(m_sEntity);
+    
+    return m_sEntity;
 }
-
-CString ZBCriptedLine::GenerateLine(CString value)
+//---------------------------------------------------------------------------
+CString ZBCriptedLine::GenerateLine(const CString& value)
 {
-      char    szBuf[5];
-    sprintf( szBuf, "%03d", value.GetLength() );
-    m_sEntity = szBuf;
+    char szBuf[5];
+    sprintf(szBuf, "%03d", value.GetLength());
+
+    m_sEntity  = szBuf;
     m_sEntity += value;
-    int Len = value.GetLength()+3;
-    if (Len < CriptedLineLength)
-    {
-        // Add random char
-        for (int i = Len; i < CriptedLineLength; ++i)
+
+    const int len = value.GetLength() + 3;
+
+    if (len < CriptedLineLength)
+        // add random char
+        for (int i = len; i < CriptedLineLength; ++i)
         {
-              sprintf( szBuf, "%1.1d", rand() );
-              m_sEntity += szBuf[0];
+            sprintf(szBuf, "%1.1d", std::rand());
+            m_sEntity += szBuf[0];
         }
-    }
-    // And finally, cript the entity
-      CriptEntity(m_sEntity);
-      return m_sEntity;
-}
 
-CString ZBCriptedLine::GenerateLine(CTime& Date)
+    // and finally, cript the entity
+    CriptEntity(m_sEntity);
+
+    return m_sEntity;
+}
+//---------------------------------------------------------------------------
+CString ZBCriptedLine::GenerateLine(CTime& date)
 {
-    int LeftSize = (CriptedLineLength - 8) / 2;
-    m_sEntity = GenerateRandomLine( LeftSize );
+    const int leftSize = (CriptedLineLength - 8) / 2;
+    m_sEntity = GenerateRandomLine(leftSize);
 
-      char    szBuf[20];
-    sprintf( szBuf, "%04d%02d%02d", Date.GetYear(), 
-                                      Date.GetMonth(),
-                                      Date.GetDay());
-      m_sEntity += szBuf;
+    char szBuf[20];
+    sprintf(szBuf, "%04d%02d%02d", date.GetYear(),  date.GetMonth(), date.GetDay());
+    m_sEntity += szBuf;
 
-    int RightSize = CriptedLineLength - 8 - LeftSize;
-    CString    RightLine = GenerateRandomLine( RightSize );
-      m_sEntity += RightLine;
+    const int     rightSize = CriptedLineLength - 8 - leftSize;
+          CString rightLine = GenerateRandomLine(rightSize);
+    m_sEntity              += rightLine;
 
-    CriptEntity( m_sEntity );
-      return m_sEntity;
+    CriptEntity(m_sEntity);
+
+    return m_sEntity;
 }
-
-CString ZBCriptedLine::GenerateLine(ZBDate& Date)
+//---------------------------------------------------------------------------
+CString ZBCriptedLine::GenerateLine(ZBDate& date)
 {
-    int LeftSize = (CriptedLineLength - 8) / 2;
-    m_sEntity = GenerateRandomLine( LeftSize );
+    const int leftSize = (CriptedLineLength - 8) / 2;
+    m_sEntity = GenerateRandomLine(leftSize);
 
-      char    szBuf[20];
-    sprintf( szBuf, "%04d%02d%02d", Date.GetYear(), 
-                                      Date.GetMonth(),
-                                      Date.GetDay());
-      m_sEntity += szBuf;
+    char szBuf[20];
+    sprintf(szBuf, "%04d%02d%02d", date.GetYear(), date.GetMonth(), date.GetDay());
+    m_sEntity += szBuf;
 
-    int RightSize = CriptedLineLength - 8 - LeftSize;
-    CString    RightLine = GenerateRandomLine( RightSize );
-      m_sEntity += RightLine;
+    const int     rightSize = CriptedLineLength - 8 - leftSize;
+          CString rightLine = GenerateRandomLine(rightSize);
+    m_sEntity              += rightLine;
 
-    CriptEntity( m_sEntity );
-      return m_sEntity;
+    CriptEntity(m_sEntity);
+
+    return m_sEntity;
 }
-
+//---------------------------------------------------------------------------
 CString ZBCriptedLine::GenerateLine(int value)
 {
-    int LeftSize = (CriptedLineLength - 10) / 2;
-    m_sEntity = GenerateRandomLine( LeftSize );
+    const int leftSize = (CriptedLineLength - 10) / 2;
+    m_sEntity = GenerateRandomLine(leftSize);
   
-      char    szBuf[30];
-      // Add the counter
-      sprintf( szBuf, "%10.10d", value );
-    szBuf[10] = 0x00;
-      m_sEntity += szBuf;
+    char szBuf[30];
 
-    int RightSize = CriptedLineLength - 10 - LeftSize;
-    CString    RightLine = GenerateRandomLine( RightSize );
-      m_sEntity += RightLine;
+    // add the counter
+    sprintf(szBuf, "%10.10d", value);
+    szBuf[10]  = 0x00;
+    m_sEntity += szBuf;
 
-    CriptEntity( m_sEntity );
-      return m_sEntity;
+    const int     rightSize = CriptedLineLength - 10 - leftSize;
+          CString rightLine = GenerateRandomLine(rightSize);
+    m_sEntity              += rightLine;
+
+    CriptEntity(m_sEntity);
+
+    return m_sEntity;
 }
-
-
+//---------------------------------------------------------------------------
 CString ZBCriptedLine::GetString()
 {
-      // Decript the entity
-      CriptEntity( m_sEntity );
-    CString    Length = m_sEntity.Left(3);
-    int        Len = atoi( Length );
-      CString        sTemp = m_sEntity.Mid(3, Len);
-      return sTemp;
+    // decript the entity
+    CriptEntity(m_sEntity);
+    const CString length = m_sEntity.Left(3);
+    const int     len    = std::atoi(length);
+    const CString sTemp  = m_sEntity.Mid(3, len);
+
+    return sTemp;
 }
-
-
+//---------------------------------------------------------------------------
 int ZBCriptedLine::GetInt()
 {
-      // Decript the entity
-      CriptEntity( m_sEntity );
+    // decript the entity
+    CriptEntity(m_sEntity);
 
-    int LeftSize = (CriptedLineLength - 10) / 2;
-    int RightSize = CriptedLineLength - 10 - LeftSize;
+    const int     leftSize  = (CriptedLineLength - 10) / 2;
+    const int     rightSize =  CriptedLineLength - 10 - leftSize;
+    const CString sTemp     = m_sEntity.Right(rightSize + 10);
 
-      CString        sTemp = m_sEntity.Right(RightSize + 10);
-      // Extract the string number
-      CString        sNum( sTemp, 10 );
-      return atoi( sNum );
+    // extract the string number
+    const CString sNum(sTemp, 10);
+
+    return std::atoi(sNum);
 }
-
+//---------------------------------------------------------------------------
 CTime ZBCriptedLine::GetCTime()
 {
-      // Decript the entity
-      CriptEntity( m_sEntity );
+    // decript the entity
+    CriptEntity( m_sEntity );
 
-    int LeftSize = (CriptedLineLength - 8) / 2;
-    int RightSize = CriptedLineLength - 8 - LeftSize;
+    const int     leftSize  = (CriptedLineLength - 8) / 2;
+    const int     rightSize =  CriptedLineLength - 8 - leftSize;
+          CString sTemp     = m_sEntity.Right(rightSize + 8);
 
-      CString        sTemp = m_sEntity.Right(RightSize + 8);
-      // Extract the string number
-      CString        sDate( sTemp, 8 );
+    // extract the string number
+    const CString sDate(sTemp, 8);
 
-      // Extract the year
-      CString        sYear = sDate.Left( 4 );
-      // Extract the day
-      CString        sDay = m_sEntity.Right(2);
-      // Extract the month
-      sTemp = m_sEntity.Right(4);
-      CString        sMonth( sTemp, 2 );
-      return CTime( atoi( sYear ), atoi( sMonth ), atoi( sDay ), 0, 0, 0 );
+    // extract the year
+    const CString sYear = sDate.Left(4);
+
+    // extract the day
+    const CString sDay = m_sEntity.Right(2);
+
+    // extract the month
+    sTemp = m_sEntity.Right(4);
+    const CString sMonth(sTemp, 2);
+
+    return CTime(std::atoi(sYear), std::atoi(sMonth), std::atoi(sDay), 0, 0, 0);
 }
-
+//---------------------------------------------------------------------------
 ZBDate ZBCriptedLine::GetDate()
 {
-      // Decript the entity
-      CriptEntity( m_sEntity );
+    // decript the entity
+    CriptEntity(m_sEntity);
 
-    int LeftSize = (CriptedLineLength - 8) / 2;
-    int RightSize = CriptedLineLength - 8 - LeftSize;
+    const int     leftSize  = (CriptedLineLength - 8) / 2;
+    const int     rightSize =  CriptedLineLength - 8 - leftSize;
+          CString sTemp     = m_sEntity.Right(rightSize + 8);
 
-      CString        sTemp = m_sEntity.Right(RightSize + 8);
-      // Extract the string number
-      CString        sDate( sTemp, 8 );
+    // extract the string number
+    const CString sDate(sTemp, 8);
 
-      // Extract the year
-      CString        sYear = sDate.Left( 4 );
-      // Extract the day
-      CString        sDay = m_sEntity.Right(2);
-      // Extract the month
-      sTemp = m_sEntity.Right(4);
-      CString        sMonth( sTemp, 2 );
-      return CTime( atoi( sYear ), atoi( sMonth ), atoi( sDay ), 0, 0, 0 );
+    // extract the year
+    const CString sYear = sDate.Left(4);
+
+    // extract the day
+    const CString sDay = m_sEntity.Right(2);
+
+    // extract the month
+    sTemp = m_sEntity.Right(4);
+    const CString sMonth(sTemp, 2);
+
+    return CTime(std::atoi(sYear), std::atoi(sMonth), std::atoi(sDay), 0, 0, 0);
 }
-
-
-
-
+//---------------------------------------------------------------------------

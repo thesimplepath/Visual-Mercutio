@@ -21,15 +21,6 @@
 #pragma warning(disable : 4786)    // identifier was truncated to '255' characters in the debug information
 #pragma warning(disable : 4996)
 
-/*
-#ifdef _WINNT_40
-    // for compatibility reason with platform sdk used with Visual C++ 6.0
-    #define  WINVER  0x0501
-#else
-    #define WINVER 0x0501
-#endif
-*/
-
 // set Windows version for NT4 and higher
 #ifndef WINVER
     #define WINVER 0x0501
@@ -37,7 +28,7 @@
 
 // set target platform to Window NT4 and higher
 #ifndef _WIN32_WINNT
-    #define _WIN32_WINNT 0x0400
+    #define _WIN32_WINNT _WIN32_WINNT_WINXP
 #endif
 
 // set Win32 Windows version to Windows 98 and higher

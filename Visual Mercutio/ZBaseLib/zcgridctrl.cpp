@@ -2512,152 +2512,154 @@ int ZCGridCtrl::CompareChildren( const void* p1, const void* p2 )
 
     return StrComp( &( pItem1->GetItemText() ), &( pItem2->GetItemText() ) );
 }
-
-void ZCGridCtrl::Sort( CTreeItem* pParent, BOOL bSortChildren )
+//---------------------------------------------------------------------------
+void ZCGridCtrl::Sort(CTreeItem* pParent, BOOL bSortChildren)
 {
-    const int nChildren = NumChildren( pParent );
+    const int nChildren = NumChildren(pParent);
 
-    if ( nChildren > 1 )
+    if (nChildren > 1)
     {
         CTreeItem** ppSortArray = new CTreeItem*[nChildren];
 
-        // Fill in array with pointers to our children.
+        // fill in array with pointers to our children
         POSITION pos = pParent->m_listChild.GetHeadPosition();
 
-        for ( int i = 0; pos; i++ )
+        for (int i = 0; pos; ++i)
         {
-            ASSERT( i < nChildren );
-            ppSortArray[i] = (CTreeItem*)pParent->m_listChild.GetAt( pos );
-            pParent->m_listChild.GetNext( pos );
+            ASSERT(i < nChildren);
+            ppSortArray[i] = (CTreeItem*)pParent->m_listChild.GetAt(pos);
+            pParent->m_listChild.GetNext(pos);
         }
 
-        qsort( ppSortArray, nChildren, sizeof(CTreeItem*), CompareChildren );
+        qsort(ppSortArray, nChildren, sizeof(CTreeItem*), CompareChildren);
 
-        // Reorg children with new sorted list
+        // reorganize children with new sorted list
         pos = pParent->m_listChild.GetHeadPosition();
 
-        for ( i = 0; pos; i++ )
+        for (int i = 0; pos; ++i)
         {
-            ASSERT( i < nChildren );
-            pParent->m_listChild.SetAt( pos, ppSortArray[i] );
-            pParent->m_listChild.GetNext( pos );
+            ASSERT(i < nChildren);
+            pParent->m_listChild.SetAt(pos, ppSortArray[i]);
+            pParent->m_listChild.GetNext(pos );
         }
 
-        delete [] ppSortArray;
+        delete[] ppSortArray;
     }
 
-    if( bSortChildren )
+    if (bSortChildren)
     {
         POSITION pos = pParent->m_listChild.GetHeadPosition();
 
-        while ( pos )
+        while (pos)
         {
-            CTreeItem *pChild = (CTreeItem*)pParent->m_listChild.GetNext( pos );
-            Sort( pChild, TRUE );
+            CTreeItem* pChild = (CTreeItem*)pParent->m_listChild.GetNext(pos);
+            Sort(pChild, TRUE);
         }
     }
 }
-
-void ZCGridCtrl::SortEx( BOOL bSortChildren )
+//---------------------------------------------------------------------------
+void ZCGridCtrl::SortEx(BOOL bSortChildren)
 {
-    int nItems = m_RootItems.GetCount();
+    const int nItems = m_RootItems.GetCount();
 
-    if ( nItems > 0 )
+    if (nItems > 0)
     {
-        if( bSortChildren )
+        if (bSortChildren)
         {
-            POSITION posSortChildren = GetRootHeadPosition();
+            POSITION pPosSortChildren = GetRootHeadPosition();
 
-            while( posSortChildren != NULL )
+            while (pPosSortChildren)
             {
-                CTreeItem *pParent =(CTreeItem*)GetNextRoot( posSortChildren );
+                CTreeItem* pParent = (CTreeItem*)GetNextRoot(pPosSortChildren);
 
-                // Sort children
-                Sort( pParent, TRUE );
+                // sort children
+                Sort(pParent, TRUE);
             }
         }
 
-        // Set hideflag for rootitems
-        POSITION posHide = GetRootHeadPosition();
+        // set hideflag for rootitems
+        POSITION pPosHide = GetRootHeadPosition();
 
-        while( posHide != NULL )
+        while (pPosHide)
         {
-            CTreeItem *pParent =(CTreeItem*)GetNextRoot( posHide );
-            Collapse( pParent );
+            CTreeItem* pParent =(CTreeItem*)GetNextRoot(pPosHide);
+            Collapse(pParent);
         }
 
-        // This is quite okay, I don´t delete the internal state
+        // this is quite okay, I don´t delete the internal state
         DeleteAllItems();
 
         // Sort rootitems
         CTreeItem** ppSortArray = new CTreeItem*[nItems];
 
-        // Fill in array with pointers to our children.
-        POSITION posCur = m_RootItems.GetHeadPosition();
+        // fill in array with pointers to our children.
+        POSITION pPosCur = m_RootItems.GetHeadPosition();
 
-        for ( int i = 0; posCur; i++ )
+        for (int i = 0; pPosCur; ++i)
         {
-            ppSortArray[i] = (CTreeItem*)m_RootItems.GetAt( posCur );
-            m_RootItems.GetNext( posCur );
+            ppSortArray[i] = (CTreeItem*)m_RootItems.GetAt(pPosCur);
+            m_RootItems.GetNext(pPosCur);
         }
 
-        qsort( ppSortArray, nItems, sizeof(CTreeItem*), CompareChildren );
+        qsort(ppSortArray, nItems, sizeof(CTreeItem*), CompareChildren);
 
         // reorg rootitems with new sorted list
-        posCur = m_RootItems.GetHeadPosition();
+        pPosCur = m_RootItems.GetHeadPosition();
 
-        for ( i = 0; posCur; i++ )
+        for (int i = 0; pPosCur; ++i)
         {
-            m_RootItems.SetAt( posCur, ppSortArray[i] );
-            m_RootItems.GetNext( posCur );
+            m_RootItems.SetAt(pPosCur, ppSortArray[i]);
+            m_RootItems.GetNext(pPosCur);
         }
 
-        delete [] ppSortArray;
+        delete[] ppSortArray;
 
-        // Do a "repaint" of only the rootitems...you could "refresh" the children with a expand 
-        int nIndex = 0;
-        POSITION pos = GetRootHeadPosition();
+        // do a "repaint" of only the rootitems...you could "refresh" the children with a expand 
+        int      nIndex = 0;
+        POSITION pPos   = GetRootHeadPosition();
 
-        while( pos != NULL )
+        while (pPos)
         {
-            CTreeItem *pParent = (CTreeItem*)GetNextRoot( pos );
+            CTreeItem* pParent = (CTreeItem*)GetNextRoot(pPos);
 
-            if( pParent != NULL )
+            if (pParent)
             {
+                CItemInfo* lp  = GetData(pParent);
+                CString    str = lp->GetItemText();
+
                 LV_ITEM lvItem;
-                lvItem.mask        = LVIF_TEXT | LVIF_INDENT | LVIF_PARAM;
-                CItemInfo* lp    = GetData( pParent );
-                CString str        = lp->GetItemText();
-                lvItem.pszText    = str.GetBuffer( 1 );
+                lvItem.mask     = LVIF_TEXT | LVIF_INDENT | LVIF_PARAM;
+                lvItem.pszText  = str.GetBuffer(1);
                 lvItem.iItem    = nIndex;
-                lvItem.iSubItem    = 0;
-                // Associate the root and all its children with this listviewitem
-                lvItem.lParam    = (LPARAM)pParent;
-                lvItem.iIndent    = GetIndent( pParent );
-                CListCtrl::InsertItem( &lvItem );
+                lvItem.iSubItem = 0;
 
-                int nSize = lp->GetItemCount();
+                // associate the root and all its children with this listviewitem
+                lvItem.lParam  = (LPARAM)pParent;
+                lvItem.iIndent = GetIndent(pParent);
+                CListCtrl::InsertItem(&lvItem);
 
-                for( i = 0; i < nSize; i++ )
+                const int nSize = lp->GetItemCount();
+
+                for (int i = 0; i < nSize; ++i)
                 {
-                    CString strSubItems    = lp->GetSubItem( i );
-                    lvItem.mask            = LVIF_TEXT;
-                    lvItem.iSubItem        = i + 1;
-                    lvItem.pszText        = strSubItems.GetBuffer( 1 );
-                    SetItem( &lvItem );
+                    CString strSubItems = lp->GetSubItem(i);
+                    lvItem.mask         = LVIF_TEXT;
+                    lvItem.iSubItem     = i + 1;
+                    lvItem.pszText      = strSubItems.GetBuffer(1);
+                    SetItem(&lvItem);
                 }
 
-                nIndex++;
+                ++nIndex;
             }
         }
     }
 }
-
-int ZCGridCtrl::NumChildren( const CTreeItem *pItem ) const
+//---------------------------------------------------------------------------
+int ZCGridCtrl::NumChildren(const CTreeItem* pItem) const
 {
     return pItem->m_listChild.GetCount();
 }
-
+//---------------------------------------------------------------------------
 BOOL ZCGridCtrl::ItemHasChildren( const CTreeItem* pItem ) const
 {
     BOOL bChildren = pItem->m_listChild.GetCount() != 0;

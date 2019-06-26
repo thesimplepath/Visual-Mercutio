@@ -673,41 +673,29 @@ CStringArray&    PLFNTime::GetFormatChoice()
 
     return m_FormatChoice;
 }
-
-void            PLFNTime::SetFormatWithChoice( const CString& sValue )
+//---------------------------------------------------------------------------
+void PLFNTime::SetFormatWithChoice( const CString& sValue )
 {
-    // Run through the array and compare which one is
-    // the same
-    for( int i = 0; i < m_FormatChoice.GetSize( ); ++i )
+    const INT_PTR formatChoiceCount = m_FormatChoice.GetSize();
+          INT_PTR index             = 0;
+
+    // run through the array and compare which one is the same
+    for (INT_PTR i = 0; i < formatChoiceCount; ++i)
         if (m_FormatChoice[i] == sValue)
-            break;
-    // One format has been found
-    if (i <  m_FormatChoice.GetSize( ))
-    {
-        switch (i)
         {
-            case 0:
-            {
-                m_FormatType = Standard;
-                break;
-            }
-            case 1:
-            {
-                m_FormatType = Date;
-                break;
-            }
-            case 2:
-            {
-                m_FormatType = Date1;
-                break;
-            }
-            case 3:
-            {
-                m_FormatType = Date2;
-                break;
-            }
+            index = i;
+            break;
         }
-    }
+
+    // one format has been found
+    if (index < formatChoiceCount)
+        switch (index)
+        {
+            case 0: m_FormatType = Standard; break;
+            case 1: m_FormatType = Date;     break;
+            case 2: m_FormatType = Date1;    break;
+            case 3: m_FormatType = Date2;    break;
+        }
 }
 
 void PLFNTime::DrawObject( CDC* pDC, ZIView* pView )
@@ -883,20 +871,22 @@ CString PLFNLong::GetUnformatedObject ()
     sprintf( m_szFormatBuffer, "%lf", m_Long );
     return GetFormatedBuffer();
 }
-
+//---------------------------------------------------------------------------
 // This function convert the string
 // and set the object with the right value
 // For this function convert the
 // string to a long.
-BOOL    PLFNLong::ConvertFormatedObject( const CString& sValue, BOOL bLocateFormat, BOOL EmptyWhenZero )
+BOOL PLFNLong::ConvertFormatedObject(const CString& sValue, BOOL bLocateFormat, BOOL EmptyWhenZero)
 {
     if (sValue.IsEmpty())
     {
         EmptyObject();
         return TRUE;
     }
-    // Saves the oldvalue to make comparison
-    double    OldValue = m_Long;
+
+    // save the oldvalue to make comparison
+    double OldValue = m_Long;
+
     // Convert the string to a double
     // assign the result to the value
     // Test if the char % is present
@@ -904,124 +894,127 @@ BOOL    PLFNLong::ConvertFormatedObject( const CString& sValue, BOOL bLocateForm
     // divide the number by 100
     // If the char % is present the char '
     // can't be present at the same time
-    char    *cpPos;
-    if( (cpPos=strchr( (const char*)sValue, '%' )) != (char*)NULL )
+    char* pCpPos = const_cast<char*>(std::strchr((const char*)sValue, '%'));
+
+    if (pCpPos)
     {
-        // Test if at the same time char '
-        if( strchr( (const char*)sValue, '\'' ) )
+        // test if at the same time char '
+        if (std::strchr((const char*)sValue, '\''))
         {
             AfxMessageBox( IDS_WZFORMATNUMBERERROR );
             return FALSE;
         }
-        // Replace the percentage sign
-        *cpPos=0x00;
-        m_Long = atof( (const char*)sValue ) / 100;
+
+        // replace the percentage sign
+        *pCpPos = 0x00;
+         m_Long = std::atof((const char*)sValue) / 100;
+
         if (bLocateFormat)
-            SetFormatType( Percentage );
-        // Tests if it is necessary to empty the object on zeros
-        if (EmptyWhenZero && m_Long == 0)
+            SetFormatType(Percentage);
+
+        // test if it is necessary to empty the object on zeros
+        if (EmptyWhenZero && !m_Long)
             EmptyObject();
-        // Has changed ???
+
+        // has changed?
         return (OldValue != m_Long) ? TRUE : FALSE;
     }
 
     // Detect dash or double-dash
-    bool    b2Dash = false;
-    bool    b1Dash = false;
-    if (strstr( (const char*)sValue, ".--" ))
+    bool b2Dash = false;
+    bool b1Dash = false;
+
+    if (std::strstr((const char*)sValue, ".--"))
         b2Dash = true;
     else 
-        if (strstr( (const char*)sValue, ".-" ))
-            b1Dash = true;
+    if (std::strstr((const char*)sValue, ".-"))
+        b1Dash = true;
 
-    // Test if char ' for amounts
-    if( strchr( (const char*)sValue, '\'' ) )
+    // test if char ' for amounts
+    if (std::strchr((const char*)sValue, '\''))
     {
 
-        // Remove the ' char
-        const char*    pBuffer = (const char*)sValue;
+        // remove the ' char
+        const char* pBuffer = (const char*)sValue;
         char        szTemp[100];
+        std::size_t index = 0;
 
-        for (int i = 0; *pBuffer ; ++pBuffer)
-        {
-            if (*pBuffer != '\'' )
-                szTemp[i++] = *pBuffer;
-        }
-        szTemp[i] = 0x00;
-        // If dahs or double-dash, remove it
-        // before converting to number
-        if (b2Dash == true)
-        {
-            // Set artificial end of buffer
-            szTemp[i-2] = 0x00;
-        }
-        else
-            if (b1Dash == true)
+        for (int i = 0; *pBuffer; ++pBuffer)
+            if (*pBuffer != '\'')
             {
-                // Set artificial end of buffer
-                szTemp[i-1] = 0x00;
+                szTemp[i] = *pBuffer;
+                ++i;
+                index = i;
             }
-        m_Long = atof( szTemp );
+
+        szTemp[index] = 0x00;
+
+        // if dahs or double-dash, remove it before converting to number
+        if (b2Dash)
+            // set artificial end of buffer
+            szTemp[index - 2] = 0x00;
+        else
+        if (b1Dash)
+            // set artificial end of buffer
+            szTemp[index - 1] = 0x00;
+
+        m_Long = std::atof(szTemp);
+
         if (bLocateFormat)
-        {
-            if (strchr( (const char*)sValue, ',') || strchr( (const char*)sValue, '.') )
+            if (std::strchr((const char*)sValue, ',') || std::strchr((const char*)sValue, '.'))
             {
-                if (b2Dash == true)
-                    SetFormatType( Amount2DashTrail );
+                if (b2Dash)
+                    SetFormatType(Amount2DashTrail);
                 else
-                    if (b1Dash == true)
-                        SetFormatType( Amount1DashTrail );
-                    else
-                        SetFormatType( Amount2 );
+                if (b1Dash)
+                    SetFormatType(Amount1DashTrail);
+                else
+                    SetFormatType(Amount2);
             }
             else
-            {
-                SetFormatType( Amount );
-            }
-        }
+                SetFormatType(Amount);
     }
     else
     {
-        char        szTemp[100];
-        int            i = sValue.GetLength()-1;
+        char szTemp[100];
+        int  i = sValue.GetLength() - 1;
 
-        strcpy( szTemp, (const char*)sValue );
-        // If dahs or double-dash, remove it
-        // before converting to number
-        if (b2Dash == true)
-        {
-            // Set artificial end of buffer
-            szTemp[i-2] = 0x00;
-        }
+        std::strcpy(szTemp, (const char*)sValue);
+
+        // if dahs or double-dash, remove it before converting to number
+        if (b2Dash)
+            // set artificial end of buffer
+            szTemp[i - 2] = 0x00;
         else
-            if (b1Dash == true)
-            {
-                // Set artificial end of buffer
-                szTemp[i-1] = 0x00;
-            }
+        if (b1Dash)
+            // Set artificial end of buffer
+            szTemp[i - 1] = 0x00;
 
-        m_Long = atof( szTemp );
-        if (bLocateFormat && (strchr( (const char*)sValue, ',') || strchr( (const char*)sValue, '.')))
+        m_Long = std::atof(szTemp);
+
+        if (bLocateFormat && (std::strchr((const char*)sValue, ',') || std::strchr((const char*)sValue, '.')))
         {
-            if (b2Dash == true)
-                SetFormatType( Amount2Dash );
+            if (b2Dash)
+                SetFormatType(Amount2Dash);
             else
-                if (b1Dash == true)
-                    SetFormatType( Amount1Dash );
-                else
-                    SetFormatType( Amount1 );
+            if (b1Dash)
+                SetFormatType(Amount1Dash);
+            else
+                SetFormatType(Amount1);
         }
     }
-    // Tests if it is necessary to empty the object on zeros
-    if (EmptyWhenZero && m_Long == 0)
+
+    // test if it is necessary to empty the object on zeros
+    if (EmptyWhenZero && !m_Long)
         EmptyObject();
     else
         ClearEmptyObjectFlag();
-    // Has changed ???
+
+    // has changed?
     return (OldValue != m_Long) ? TRUE : FALSE;
 }
-
-CStringArray&    PLFNLong::GetFormatChoice()
+//---------------------------------------------------------------------------
+CStringArray& PLFNLong::GetFormatChoice()
 {
     m_FormatChoice.RemoveAll();
     // Read the number and format it
@@ -1082,68 +1075,34 @@ CStringArray&    PLFNLong::GetFormatChoice()
     return m_FormatChoice;
 }
 
-void            PLFNLong::SetFormatWithChoice( const CString& sValue )
+void PLFNLong::SetFormatWithChoice(const CString& sValue)
 {
-    // Run through the array and compare which one is
-    // the same
-    for( int i = 0; i < m_FormatChoice.GetSize( ); ++i )
-        if (m_FormatChoice[i] == sValue)
-            break;
-    // One format has been found
-    if (i <  m_FormatChoice.GetSize( ))
-    {
-        switch (i)
-        {
-            case 0:
-            {
-                m_FormatType = Standard;
-                break;
-            }
-            case 1:
-            {
-                m_FormatType = Amount;
-                break;
-            }
-            case 2:
-            {
-                m_FormatType = Amount1;
-                break;
-            }
-            case 3:
-            {
-                m_FormatType = Amount2;
-                break;
-            }
-            case 4:
-            {
-                m_FormatType = Amount1Dash;
-                break;
-            }
-            case 5:
-            {
-                m_FormatType = Amount2Dash;
-                break;
-            }
-            case 6:
-            {
-                m_FormatType = Amount1DashTrail;
-                break;
-            }
-            case 7:
-            {
-                m_FormatType = Amount2DashTrail;
-                break;
-            }
-            case 8:
-            {
-                m_FormatType = Percentage;
-                break;
-            }
-        }
-    }
-}
+    const INT_PTR formatChoiceCount = m_FormatChoice.GetSize();
+          INT_PTR index             = 0;
 
-               
+    // run through the array and compare which one is the same
+    for (INT_PTR i = 0; i < formatChoiceCount; ++i)
+        if (m_FormatChoice[i] == sValue)
+        {
+            index = i;
+            break;
+        }
+
+    // one format has been found
+    if (index <  m_FormatChoice.GetSize( ))
+        switch (index)
+        {
+            case 0: m_FormatType = Standard;         break;
+            case 1: m_FormatType = Amount;           break;
+            case 2: m_FormatType = Amount1;          break;
+            case 3: m_FormatType = Amount2;          break;
+            case 4: m_FormatType = Amount1Dash;      break;
+            case 5: m_FormatType = Amount2Dash;      break;
+            case 6: m_FormatType = Amount1DashTrail; break;
+            case 7: m_FormatType = Amount2DashTrail; break;
+            case 8: m_FormatType = Percentage;       break;
+        }
+}
 
 void PLFNLong::DrawObject( CDC* pDC, ZIView* pView )
 {

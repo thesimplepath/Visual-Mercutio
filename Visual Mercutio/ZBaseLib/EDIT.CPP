@@ -218,25 +218,20 @@ CStringArray* Edit::GetArrayOfValues()
 
     return NULL;
 }
-
-void Edit::LoadFromHistoric( CComboBox& Combo )
+//---------------------------------------------------------------------------
+void Edit::LoadFromHistoric(CComboBox& Combo)
 {
     CStringArray* pValueArray = Edit::GetArrayOfValues();
 
-    // No values found neither in Global historic manager nor in local historic manager
-    if ( !pValueArray )
-    {
+    // no values found neither in Global historic manager nor in local historic manager
+    if (!pValueArray)
         return;
-    }
 
-    for ( register i = 0; i < pValueArray->GetSize() ; i++ )
-    {
-        if ( !pValueArray->GetAt( i ).IsEmpty() )
-        {
-            Combo.AddString( pValueArray->GetAt( i ) );
-        }
-    }
+    for (register int i = 0; i < pValueArray->GetSize() ; ++i)
+        if (!pValueArray->GetAt(i).IsEmpty())
+            Combo.AddString( pValueArray->GetAt(i));
 }
+//---------------------------------------------------------------------------
 
 /////////////////////////////////////////////////////////////////////////////
 // StrEdit

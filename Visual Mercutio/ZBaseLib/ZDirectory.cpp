@@ -117,7 +117,8 @@ BOOL ZDirectory::CreateDirectory( const CString Directory )
 
 BOOL ZDirectory::DeleteDirectory( const CString Directory, BOOL IncludeContents /*= FALSE*/, BOOL IncludeSubDirectory /*= FALSE*/ )
 {
-    static    Error = FALSE;
+    static BOOL Error = FALSE;
+
     if (IncludeContents)
     {
         if (!ZDirectory::DeleteFileFromDirectory( Directory ))

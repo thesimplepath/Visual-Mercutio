@@ -45,11 +45,15 @@
     <OutDir>.\Debug\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental />
+    <IncludePath>..\..\Third party\Stingray Studio\Regex\include;..\..\Third party\Stingray Studio\Include;..\Include;..\zResMgr;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\Third party\Stingray Studio\Regex\lib\vc6;..\..\Third party\Stingray Studio\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>.\Release\</OutDir>
     <IntDir>.\Release\</IntDir>
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>..\..\Third party\Stingray Studio\Regex\include;..\..\Third party\Stingray Studio\Include;..\Include;..\zResMgr;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\Third party\Stingray Studio\Regex\lib\vc6;..\..\Third party\Stingray Studio\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -139,6 +143,7 @@
     <None Include="zMediatorD.def" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="ZBMediator.h" />
     <ClInclude Include="zMediator.h" />

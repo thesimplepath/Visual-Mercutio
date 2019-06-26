@@ -21,7 +21,7 @@
 //#define WINVER 0x0501
 //#endif // _WINNT_40
 
-//#define _WIN32_WINNT   0x0400
+//#define _WIN32_WINNT   _WIN32_WINNT_WINXP
 
 // Version de Winver définie pour Windows NT4 et supérieures.
 #ifndef WINVER
@@ -30,7 +30,7 @@
 
 // Plateforme cible définie à Windows NT4 et supérieures pour les versions NT de Windows.
 #ifndef _WIN32_WINNT
-#define _WIN32_WINNT 0x0400
+#define _WIN32_WINNT _WIN32_WINNT_WINXP
 #endif                        
 
 // Plateforme cible définie à Windows98 et supérieures pour les versions standards de Windows.

@@ -157,7 +157,7 @@ inline HandleStyle ZAStyleManager::AddStyle (ZAStyle* pStyle)
 {
   //## begin ZAStyleManager::AddStyle%869857714.body preserve=yes
       // Scans the array to know if empty place to store the new style
-      for (register i = 0; i < m_StyleArray.GetSize(); ++i)
+      for (register int i = 0; i < m_StyleArray.GetSize(); ++i)
       {
           // Check if an empty place
           if (m_StyleArray[i] == NULL)

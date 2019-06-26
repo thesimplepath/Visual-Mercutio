@@ -17,7 +17,7 @@
 #endif
 
 #ifndef _WIN32_WINNT        // Autorise l'utilisation des fonctionnalités spécifiques à Windows NT 4 ou version ultérieure.
-#define _WIN32_WINNT 0x0400    // Attribuez la valeur appropriée à cet élément pour cibler Windows 2000 ou version ultérieure.
+#define _WIN32_WINNT _WIN32_WINNT_WINXP    // Attribuez la valeur appropriée à cet élément pour cibler Windows 2000 ou version ultérieure.
 #endif                        
 
 #ifndef _WIN32_WINDOWS        // Autorise l'utilisation des fonctionnalités spécifiques à Windows 98 ou version ultérieure.

@@ -1,104 +1,97 @@
-// stdafx.h : Fichier Include pour les fichiers Include système standard,
-// ou les fichiers Include spécifiques aux projets qui sont utilisés fréquemment,
-// et sont rarement modifiés
+/****************************************************************************
+ * ==> StdAfx --------------------------------------------------------------*
+ ****************************************************************************
+ * Description : Include file for standard system include files, or project *
+ *               specific include files that are used frequently, but are   *
+ *               changed infrequently                                       *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_STDAFX_H__AA3SDCF4_2899_A4A8_78DR_123400DF0056__INCLUDED_)
+#ifndef AFX_STDAFX_H__AA3SDCF4_2899_A4A8_78DR_123400DF0056__INCLUDED_
 #define AFX_STDAFX_H__AA3SDCF4_2899_A4A8_78DR_123400DF0056__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
+// exclude rarely-used stuff from Windows headers
 #ifndef VC_EXTRALEAN
-#define VC_EXTRALEAN        // Exclure les en-têtes Windows rarement utilisés
+    #define VC_EXTRALEAN
 #endif
 
-// Modifiez les définitions suivantes si vous devez cibler une plate-forme avant celles spécifiées ci-dessous.
-// Reportez-vous à MSDN pour obtenir les dernières informations sur les valeurs correspondantes pour les différentes plates-formes.
-#ifndef WINVER                // Autorise l'utilisation des fonctionnalités spécifiques à Windows 95 et Windows NT 4 ou version ultérieure.
-#define WINVER 0x0501        // Attribuez la valeur appropriée à cet élément pour cibler Windows 98 et Windows 2000 ou version ultérieure.
+#ifndef WINVER
+    #define WINVER 0x0501
 #endif
 
-#ifndef _WIN32_WINNT        // Autorise l'utilisation des fonctionnalités spécifiques à Windows NT 4 ou version ultérieure.
-#define _WIN32_WINNT 0x0400    // Attribuez la valeur appropriée à cet élément pour cibler Windows 2000 ou version ultérieure.
+#ifndef _WIN32_WINNT
+    #define _WIN32_WINNT _WIN32_WINNT_WINXP
 #endif
 
-#ifndef _WIN32_WINDOWS        // Autorise l'utilisation des fonctionnalités spécifiques à Windows 98 ou version ultérieure.
-#define _WIN32_WINDOWS 0x0410 // Attribuez la valeur appropriée à cet élément pour cibler Windows Me ou version ultérieure.
+#ifndef _WIN32_WINDOWS
+    #define _WIN32_WINDOWS 0x0410
 #endif
 
-#ifndef _WIN32_IE            // Autorise l'utilisation des fonctionnalités spécifiques à IE 4.0 ou version ultérieure.
-#define _WIN32_IE 0x0400    // Attribuez la valeur appropriée à cet élément pour cibler IE 5.0 ou version ultérieure.
+#ifndef _WIN32_IE
+    #define _WIN32_IE 0x0400
 #endif
 
-#define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS    // certains constructeurs CString seront explicites
+// make several CString constructor explicit
+#define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS
 
-#include <afxwin.h>         // Composants MFC principaux et standard
-#include <afxext.h>         // Extensions MFC
+// mfc
+#include <afxwin.h>
+#include <afxext.h>
 
 #ifndef _AFX_NO_OLE_SUPPORT
-#include <afxole.h>         // Classes OLE MFC
-#include <afxodlgs.h>       // Classes de boîte de dialogue OLE MFC
-#include <afxdisp.h>        // Classes MFC Automation
-#endif // _AFX_NO_OLE_SUPPORT
+    #include <afxole.h>
+    #include <afxodlgs.h>
+    #include <afxdisp.h>
+#endif
 
 #ifndef _AFX_NO_DB_SUPPORT
-#include <afxdb.h>            // Classes de base de données ODBC MFC
-#endif // _AFX_NO_DB_SUPPORT
+    #include <afxdb.h>
+#endif
 
 #ifndef _AFX_NO_DAO_SUPPORT
-#include <afxdao.h>            // Classes de base de données DAO MFC
-#endif // _AFX_NO_DAO_SUPPORT
+    #include <afxdao.h>
+#endif
 
-#include <afxdtctl.h>        // Prise en charge des MFC pour les contrôles communs Internet Explorer 4
+#include <afxdtctl.h>
+
 #ifndef _AFX_NO_AFXCMN_SUPPORT
-#include <afxcmn.h>            // Prise en charge des MFC pour les contrôles communs Windows
-#endif // _AFX_NO_AFXCMN_SUPPORT
+    #include <afxcmn.h>
+#endif
 
 #include <afxmt.h>
 
+// visual mercutio
 #include "ZAConst.h"
 #include "Define.h"
 #include "Message.h"
 #include "Planfin.hdf"
-
 #include "ZSrvMess.h"
 
-// Use Objective Toolkit as a DLL
+// use Objective Toolkit as a DLL
 #define _SECDLL
 
-// Stingray Objective Toolkit
-#include "toolkit/secall.h"
-// Objective Toolkit Resources
+// stingray studio
+#include "toolkit\secall.h"
 #include "toolkit\secres.h"
 
-// Use Objective Views as a DLL
+// use Objective Views as a DLL
 #define _OVDLL
 
-// Objective Views Header Files
 #include "views\OdAll.h"
 
-// ***********************************************************
-// *
-// *  zForms Resources
-// *
-// ***********************************************************
-
-#include "zFormsRes\zFormsRes.h"
-#include "zRes32\zRes.h"
-
-// ***********************************************************
-// *
-// *  zBaseLib Resources
-// *
-// ***********************************************************
-
+// resources
+#include "..\zFormsRes\zFormsRes.h"
+#include "..\zRes32\zRes.h"
 #include "zMediatorRes.h"
 
-// Undefine the SubclassWindow macro
+// undefine the SubclassWindow macro
 #undef SubclassWindow
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_STDAFX_H__AA3SDCF4_2899_A4A8_78DR_123400DF0056__INCLUDED_)
+#endif

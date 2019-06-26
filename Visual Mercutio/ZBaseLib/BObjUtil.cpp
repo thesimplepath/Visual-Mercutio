@@ -33,10 +33,13 @@
 
 // JMR-MODIF - Le 21 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-const char szSectionKey[]    = _T( "Keys" );
-const char szTypeEntry[]    = _T( "Entry" );
-const char szLineEntry[]    = _T( "Line" );
-
+//---------------------------------------------------------------------------
+// Global variables
+//---------------------------------------------------------------------------
+const char szSectionKey[] = _T("Keys");
+const char szTypeEntry[]  = _T("Entry");
+const char szLineEntry[]  = _T("Line");
+//---------------------------------------------------------------------------
 const UINT ZBObjectUtility::ClassResourceBitmapIDArrary[] =
 {
     IDB_AMOUNT_BITMAP,
@@ -58,7 +61,7 @@ const UINT ZBObjectUtility::ClassResourceBitmapIDArrary[] =
     IDB_IMAGE_BITMAP,
     0
 };
-
+//---------------------------------------------------------------------------
 const UINT ZBObjectUtility::EditionClassResourceIDArrary[] =
 {
     IDS_AMOUNT_CLASS,
@@ -79,7 +82,7 @@ const UINT ZBObjectUtility::EditionClassResourceIDArrary[] =
     IDS_MULTICOLUMN_CLASS,
     0
 };
-
+//---------------------------------------------------------------------------
 const UINT ZBObjectUtility::ClassResourceIDArrary[] =
 {
     IDS_AMOUNT_CLASS,
@@ -104,6 +107,7 @@ const UINT ZBObjectUtility::ClassResourceIDArrary[] =
     IDS_MULTICOLUMN_CLASS,
     0
 };
+//---------------------------------------------------------------------------
 //## end module%36CE9A9F0369.additionalDeclarations
 
 // Class ZBObjectUtility 
@@ -328,222 +332,183 @@ UINT ZBObjectUtility::GetBitmapClass ( const CString className )
 PlanFinObject* ZBObjectUtility::ConstructObject ( const CString& sClassName )
 {
     //## begin ZBObjectUtility::ConstructObject%919498961.body preserve=yes
-    PlanFinObject*    pObj = NULL;
+    PlanFinObject* pObj = NULL;
     
     // Fill the list with all objects' type
     const CStringArray& Array = GetClassNameArray();
 
-    for ( int i = 0; i < Array.GetSize(); ++i )
-    {
-        if ( sClassName == Array.GetAt( i ) )
+    const INT_PTR arrayCount = Array.GetSize();
+          INT_PTR index      = 0;
+
+    for (INT_PTR i = 0; i < arrayCount; ++i)
+        if (sClassName == Array.GetAt(i))
         {
+            index = i;
             break;
         }
-    }
 
-    switch( i )
+    switch (index)
     {
         case 0:
-        {
             pObj = new PLFNLong;
             break;
-        }
 
         case 1:
-        {
             pObj = new PLFNLong;
-            ( (PLFNLong*)pObj )->SetKeepHistory( TRUE );
+            ((PLFNLong*)pObj)->SetKeepHistory(TRUE);
             break;
-        }
 
         case 2:
-        {
             pObj = new PLFNLong;
-            ( (PLFNLong*)pObj )->SetCalculatedField();
+            ((PLFNLong*)pObj)->SetCalculatedField();
             break;
-        }
 
         case 3:
-        {
             pObj = new PLFNTime;
             break;
-        }
 
         case 4:
-        {
             pObj = new PLFNString;
             break;
-        }
 
         case 5:
-        {
             pObj = new PLFNString;
-            ( (PLFNString*)pObj )->SetKeepHistory( TRUE );
+            ((PLFNString*)pObj)->SetKeepHistory(TRUE);
             break;
-        }
 
         case 6:
-        {
             pObj = new PLFNStatic;
             break;
-        }
 
         case 7:
-        {
             pObj = new PLFNBoundText;
             break;
-        }
 
         case 8:
-        {
-            pObj = new PLFNBoundText( TRUE );    // TRUE is for static bound text
+            // TRUE is for static bound text
+            pObj = new PLFNBoundText(TRUE);
             break;
-        }
 
         case 9:
-        {
             pObj = new PLFNAutoNumbered;
             break;
-        }
 
         case 10:
-        {
             pObj = new PLFNSquare;
             break;
-        }
 
         case 11:
-        {
             pObj = new PLFNLine;
             break;
-        }
 
         case 12:
-        {
             pObj = new PLFNRect;
             break;
-        }
 
         case 13:
-        {
-            pObj = new PLFNRect( TRUE );
+            pObj = new PLFNRect(TRUE);
             break;
-        }
 
         case 14:
-        {
             pObj = new PLFNBitmap;
             break;
-        }
 
         case 15:
-        {
             pObj = new PLFNCheck;
             break;
-        }
 
         case 16:
-        {
             pObj = new PLFNRadio;
             break;
-        }
 
         case 17:
-        {
             pObj = new PLFNMaskString;
             break;
-        }
 
         case 18:
-        {
             pObj = new PLFNMaskString;
-            ( (PLFNMaskString*)pObj )->SetKeepHistory( TRUE );
+            ((PLFNMaskString*)pObj)->SetKeepHistory(TRUE);
             break;
-        }
 
         case 19:
-        {
             pObj = new PLFNMultiColumn;
             break;
-        }
 
-        default: ASSERT( FALSE );
+        default:
+            ASSERT(FALSE);
     }
 
     return pObj;
     //## end ZBObjectUtility::ConstructObject%919498961.body
 }
-
+//---------------------------------------------------------------------------
 void ZBObjectUtility::LoadResource ()
 {
-    //## begin ZBObjectUtility::LoadResource%919592602.body preserve=yes
     // Assign the Edition class name
-    if ( m_EditionClassNameArray.GetSize() <= 0 )
+    if (m_EditionClassNameArray.GetSize() <= 0)
     {
-        CString    sLabel;
+        CString sLabel;
 
-        for ( register i = 0; EditionClassResourceIDArrary[i]; ++i )
+        for (register int i = 0; EditionClassResourceIDArrary[i]; ++i)
         {
-            sLabel.LoadString( EditionClassResourceIDArrary[i] );
-            m_EditionClassNameArray.Add( sLabel );
+            sLabel.LoadString(EditionClassResourceIDArrary[i]);
+            m_EditionClassNameArray.Add(sLabel);
         }
     }
 
-    // Assign the class name
-    if ( m_ClassNameArray.GetSize() <= 0 )
+    // assign the class name
+    if (m_ClassNameArray.GetSize() <= 0)
     {
-        CString    sLabel;
-        for ( register i = 0; ClassResourceIDArrary[i]; ++i )
+        CString sLabel;
+
+        for (register int i = 0; ClassResourceIDArrary[i]; ++i)
         {
-            sLabel.LoadString( ClassResourceIDArrary[i] );
-            m_ClassNameArray.Add( sLabel );
+            sLabel.LoadString(ClassResourceIDArrary[i]);
+            m_ClassNameArray.Add(sLabel);
         }
     }
-    //## end ZBObjectUtility::LoadResource%919592602.body
 }
-
-BOOL ZBObjectUtility::InitializeDefinition ( const CString IniFile )
+//---------------------------------------------------------------------------
+BOOL ZBObjectUtility::InitializeDefinition(const CString iniFile)
 {
-    //## begin ZBObjectUtility::InitializeDefinition%937851058.body preserve=yes
-    ZUSystemOption    m_SystemOption;
+    ZUSystemOption systemOption;
 
     m_FieldTypeDescriptionArray.RemoveAll();
 
-    // Check if the file exists
-    ZFile File( IniFile );
+    // check if the file exists
+    ZFile file(iniFile);
 
-    if ( !File.Exist() )
+    if (!file.Exist())
         return FALSE;
 
     // Create the ini reader
-    if ( !m_SystemOption.Create( IniFile, szSectionKey ) )
+    if (!systemOption.Create(iniFile, szSectionKey))
         return FALSE;
 
-    char    Buffer[100];
-    CString    FieldKey;
-    CString    Description;
+    char    buffer[100];
+    CString fieldKey;
+    CString description;
 
-    for ( int i = 0; TRUE ;++i )
+    for (int i = 0; TRUE; ++i)
     {
-        // Build the key
-        sprintf( Buffer, _T( "%s%d" ), szTypeEntry, i );
-        FieldKey = m_SystemOption.ReadOption( Buffer, _T( "" ) );
+        // build the key
+        std::sprintf(buffer, _T("%s%d"), szTypeEntry, i);
+        fieldKey = systemOption.ReadOption(buffer, _T(""));
 
-        // If no more entry
-        if ( FieldKey.IsEmpty() )
+        // if no more entry
+        if (fieldKey.IsEmpty())
             break;
 
-        Description                = LoadFieldDefinition( IniFile, FieldKey );
-        ObjectDefinition* pDef    = new ObjectDefinition( FieldKey, Description );
+        description            = LoadFieldDefinition(iniFile, fieldKey);
+        ObjectDefinition* pDef = new ObjectDefinition(fieldKey, description);
 
-        m_FieldTypeDescriptionArray.Add( (CObject*)pDef );
+        m_FieldTypeDescriptionArray.Add((CObject*)pDef);
     }
 
     return TRUE;
-    //## end ZBObjectUtility::InitializeDefinition%937851058.body
 }
-
-CString ZBObjectUtility::LoadFieldDefinition ( const CString IniFile, const CString FieldKey )
+//---------------------------------------------------------------------------
+CString ZBObjectUtility::LoadFieldDefinition(const CString IniFile, const CString FieldKey)
 {
     //## begin ZBObjectUtility::LoadFieldDefinition%937851059.body preserve=yes
     ZUSystemOption    m_SystemOptionField( IniFile, FieldKey );

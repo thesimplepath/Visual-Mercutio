@@ -762,125 +762,101 @@ void ZBBPProcedureSymbol::CheckRulesSync( CStringArray& RulesList )
         }
     }
 }
-
-bool ZBBPProcedureSymbol::FillProperties( ZBPropertySet&    PropSet,
-                                          bool                NumericValue    /*= false*/,
-                                          bool                GroupValue        /*= false*/ )
+//---------------------------------------------------------------------------
+bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericValue, bool groupValue)
 {
     CODModel * pModel = GetRootModel();
 
-    // RS-MODIF 17.11.04 ExtApp should appear in Conceptor
-    
-    //if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-    //    dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetUseWorkflow() )
-    //{
-        // If no file, add one new
-        if ( GetExtFileCount() == 0 )
-        {
-            AddNewExtFile();
-        }
+    // if no file, add new one
+    if (!GetExtFileCount())
+        AddNewExtFile();
 
-        // If no application, add one new
-        if ( GetExtAppCount() == 0 )
-        {
-            AddNewExtApp();
-        }
-    //}
+    // if no application, add new one
+    if (!GetExtAppCount())
+        AddNewExtApp();
 
-    // Les propriétés "Nom", "Description" et "Référence" du groupe "General" sont affichées par la classe de base.
+    // FIXME translate comment!
+    // les propriétés "Nom", "Description" et "Référence" du groupe "General" sont affichées par la classe de base.
     // C'est aussi ici que les propriétés pour les liens et fichiers externes sont ajoutées.
-    if ( !ZBSymbol::FillProperties( PropSet, NumericValue, GroupValue ) )
-    {
+    if (!ZBSymbol::FillProperties(propSet, numericValue, groupValue))
         return false;
-    }
 
-    // Only local symbol have access to properties
-    if ( !IsLocal() )
-    {
+    // only local symbol have access to properties
+    if (!IsLocal())
         return true;
-    }
 
-    // Initialize the Currency symbol with the user local currency symbol
-    // defined in the Control Panel
-    CString CurrencySymbol = ZAGlobal::GetLocaleCurrency();
+    // initialize the Currency symbol with the user local currency symbol defined in the Control Panel
+    CString currencySymbol = ZAGlobal::GetLocaleCurrency();
 
+    // FIXME translate comment
     // JMR-MODIF - Le 30 juillet 2007 - Mets à jour le symbole monétaire en fonction de la sélection utilisateur.
-    if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) )
+    if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
     {
-        CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetDocument();
+        CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
 
-        if ( pDoc && ISA( pDoc, ZDProcessGraphModelDoc ) )
-        {
-            // Retreive the model's currency symbol
-            CurrencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetCurrencySymbol();
-        }
+        if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
+            // retreive the model's currency symbol
+            currencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
     }
 
-    int        Count;
-    CString FinalPropName;
-    CString PropTitle;
-    CString PropName;
-    CString PropDesc;
+    int     count;
+    CString finalPropName;
+    CString propTitle;
+    CString propName;
+    CString propDesc;
+    bool    groupEnabled = true;
 
-    bool GroupEnabled = true;
+    if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
+            !dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
+        groupEnabled = false;
 
-    if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-         !dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->MainUserGroupIsValid() )
-    {
-        GroupEnabled = false;
-    }
-
+    // FIXME translate comments
     // ************************************************************************************************************
     // JMR-MODIF - Le 22 novembre 2006 - Nouvelle architecture des règles.
 
-    // If the menu is not loaded, load it
-    if ( gRulesMenu.GetSafeHmenu() == NULL )
+    // if the menu is not loaded, load it
+    if (!gRulesMenu.GetSafeHmenu())
+        gRulesMenu.LoadMenu(IDR_RULES_MENU);
+
+    if (m_Rules.GetRulesCount() > 0)
     {
-        gRulesMenu.LoadMenu( IDR_RULES_MENU );
-    }
+        CString ruleSectionTitle = _T("");
+        CString ruleName         = _T("");
+        CString ruleDesc         = _T("");
 
-    if ( m_Rules.GetRulesCount() > 0 )
-    {
-        CString RuleSectionTitle    = _T( "" );
-        CString RuleName            = _T( "" );
-        CString RuleDesc            = _T( "" );
+        ruleSectionTitle.LoadString(IDS_Z_RULES_TITLE);
+        ruleDesc.LoadString(IDS_Z_RULES_DESC);
 
-        RuleSectionTitle.LoadString( IDS_Z_RULES_TITLE );
-        RuleDesc.LoadString( IDS_Z_RULES_DESC );
+        ZBLogicalRulesEntity* pMainRule = NULL;
 
-        ZBLogicalRulesEntity* p_MainRule = NULL;
-
-        if ( GetOwnerModel() != NULL && ISA( GetOwnerModel(), ZDProcessGraphModelMdlBP ) )
+        if (GetOwnerModel() && ISA(GetOwnerModel(), ZDProcessGraphModelMdlBP))
         {
-            ZDProcessGraphModelMdlBP* p_Model = reinterpret_cast<ZDProcessGraphModelMdlBP*>( GetOwnerModel() );
+            ZDProcessGraphModelMdlBP* pOwnerModel = reinterpret_cast<ZDProcessGraphModelMdlBP*>(GetOwnerModel());
 
-            if ( p_Model != NULL                    &&
-                 p_Model->GetController() != NULL    &&
-                 ISA( p_Model->GetController(), ZDProcessGraphModelControllerBP ) )
+            if (pOwnerModel && pOwnerModel->GetController() && ISA(pOwnerModel->GetController(), ZDProcessGraphModelControllerBP))
             {
-                ZDProcessGraphModelControllerBP* p_Controller =
-                    reinterpret_cast<ZDProcessGraphModelControllerBP*>( p_Model->GetController() );
+                ZDProcessGraphModelControllerBP* pController =
+                        reinterpret_cast<ZDProcessGraphModelControllerBP*>(pOwnerModel->GetController());
 
-                if ( p_Controller != NULL && ISA( p_Controller->GetDocument(), ZDProcessGraphModelDoc ) )
+                if (pController && ISA(pController->GetDocument(), ZDProcessGraphModelDoc))
                 {
-                    ZDProcessGraphModelDoc* p_Document =
-                        reinterpret_cast<ZDProcessGraphModelDoc*>( p_Controller->GetDocument() );
+                    ZDProcessGraphModelDoc* pDocument =
+                            reinterpret_cast<ZDProcessGraphModelDoc*>(pController->GetDocument());
 
-                    if ( p_Document != NULL && p_Document->GetMainLogicalRules() != NULL )
-                    {
-                        p_MainRule = p_Document->GetMainLogicalRules();
-                    }
+                    if (pDocument && pDocument->GetMainLogicalRules())
+                        pMainRule = pDocument->GetMainLogicalRules();
                 }
             }
         }
 
-        for ( int i = 0; i < m_Rules.GetRulesCount(); i++ )
+        for (int i = 0; i < m_Rules.GetRulesCount(); ++i)
         {
+            // FIXME translate comments
             // Le contrôle des règles ne peut être appliqué que si le modèle est en phase avec le système des règles.
-            if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-                dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->MainLogicalRulesIsValid() )
+            if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
+                    dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainLogicalRulesIsValid())
             {
-                CString m_SafeName = GetRuleNameByGUID( p_MainRule, m_Rules.GetRuleGUID( i ) );
+                CString safeName = GetRuleNameByGUID(pMainRule, m_Rules.GetRuleGUID(i));
 
                 // ********************************************************************************************
                 // JMR-MODIF - Le 8 octobre 2007 - Rééctriture de la routine suite à un bug de perte de règles.
@@ -898,34 +874,34 @@ bool ZBBPProcedureSymbol::FillProperties( ZBPropertySet&    PropSet,
                 }
                 */
 
-                if ( !m_SafeName.IsEmpty() && m_SafeName != m_Rules.GetRuleName( i ) )
-                {
-                    m_Rules.SetRuleName( i, m_SafeName );
-                }
+                if (!safeName.IsEmpty() && safeName != m_Rules.GetRuleName(i))
+                    m_Rules.SetRuleName(i, safeName);
                 // ********************************************************************************************
             }
 
-            RuleName.Format( IDS_Z_RULES_NAME, i + 1 );
+            ruleName.Format(IDS_Z_RULES_NAME, i + 1);
 
+            // FIXME translate comments
             // Propriété "Règle x" du groupe "Règles"
-            ZBProperty* pRule = new ZBProperty( RuleSectionTitle,
-                                                ZS_BP_PROP_RULES,
-                                                RuleName,
-                                                Z_RULE_NAME + ( i * _MaxRulesSize ),
-                                                RuleDesc,
-                                                m_Rules.GetRuleName( i ),
-                                                ZBProperty::PT_EDIT_MENU,
-                                                true,
-                                                ZBStringFormat( ZBStringFormat::General ),
-                                                NULL,
-                                                &gRulesMenu );
+            ZBProperty* pRule = new ZBProperty(ruleSectionTitle,
+                                               ZS_BP_PROP_RULES,
+                                               ruleName,
+                                               Z_RULE_NAME + (i * _MaxRulesSize),
+                                               ruleDesc,
+                                               m_Rules.GetRuleName( i ),
+                                               ZBProperty::PT_EDIT_MENU,
+                                               true,
+                                               ZBStringFormat(ZBStringFormat::General),
+                                               NULL,
+                                               &gRulesMenu);
 
             pRule->EnableDragNDrop();
-            PropSet.Add( pRule );
+            propSet.Add(pRule);
         }
     }
     // ************************************************************************************************************
 
+    // FIXME translate comments
     // ************************************************************************************************************
     // JMR-MODIF - Le 22 novembre 2006 - ATTENTION : L'ancienne architecture de règles ci-dessous a maintenant
     // changé, et est désignée sous le terme de contrôle, car celle-ci était devenue obsolète après la nouvelle
@@ -937,568 +913,580 @@ bool ZBBPProcedureSymbol::FillProperties( ZBPropertySet&    PropSet,
     // des classes et des ressources. Si une nouvelle modification doit être approtée à l'architecture des contrôles
     // il faut donc le faire avec la plus grande prudence.
 
-    // Add rules
-    ZBBPRuleListProperties* pRulesProps;;
+    // add rules
+    ZBBPRuleListProperties* pRulesProps;
 
-    if ( ( pRulesProps = (ZBBPRuleListProperties*)GetProperty( ZS_BP_PROP_RULELIST ) ) == NULL )
+    if ((pRulesProps = (ZBBPRuleListProperties*)GetProperty( ZS_BP_PROP_RULELIST)) == NULL)
     {
         // try to add it
         ZBBPRuleListProperties propRules;
-        AddProperty( propRules );
+        AddProperty(propRules);
 
-        // Retreive it
-        pRulesProps = (ZBBPRuleListProperties*)GetProperty( ZS_BP_PROP_RULELIST );
+        // retreive it
+        pRulesProps = (ZBBPRuleListProperties*)GetProperty(ZS_BP_PROP_RULELIST);
 
-        if ( !pRulesProps )
-        {
+        if (!pRulesProps)
             return false;
-        }
     }
 
-    // Run through all tasks properties
-    // Add one to the counter to have always one empty task
-    Count = GetRuleCount() + 1;
-    PropTitle.LoadString( IDS_ZS_BP_PROP_RULELST_TITLE );
-    CStringArray* pArrayOfValues = ZAGlobal::GetHistoricValueManager().GetFieldHistory( PropTitle );
+    // run through all tasks properties, add one to the counter to have always one empty task
+    count = GetRuleCount() + 1;
+    propTitle.LoadString(IDS_ZS_BP_PROP_RULELST_TITLE);
+    CStringArray* pArrayOfValues = ZAGlobal::GetHistoricValueManager().GetFieldHistory(propTitle);
 
-    PropName.LoadString( IDS_Z_RULE_LIST_NAME );
-    PropDesc.LoadString( IDS_Z_RULE_LIST_DESC );
+    propName.LoadString(IDS_Z_RULE_LIST_NAME);
+    propDesc.LoadString(IDS_Z_RULE_LIST_DESC);
 
-    for ( int i = 0; i < Count; ++i )
+    int index = 0;
+
+    for (int i = 0; i < count; ++i)
     {
-        FinalPropName.Format( _T( "%s %d" ), PropName, i + 1 );
+        index = i;
 
+        finalPropName.Format(_T("%s %d"), propName, i + 1);
+
+        // FIXME translate comments
         // Propriété "Contrôle x" du groupe "Contrôles"
-        ZBProperty* pRuleList = new ZBProperty( PropTitle,
-                                                ZS_BP_PROP_RULELIST,
-                                                FinalPropName,
-                                                Z_RULE_LIST + ( i * _MaxRuleListSize ),
-                                                PropDesc,
-                                                GetRuleAt(i),
-                                                ZBProperty::PT_EDIT_INTELI,
-                                                true, // Enable
-                                                ZBStringFormat( ZBStringFormat::General ),
-                                                pArrayOfValues );
+        ZBProperty* pRuleList = new ZBProperty(propTitle,
+                                               ZS_BP_PROP_RULELIST,
+                                               finalPropName,
+                                               Z_RULE_LIST + (i * _MaxRuleListSize),
+                                               propDesc,
+                                               GetRuleAt(i),
+                                               ZBProperty::PT_EDIT_INTELI,
+                                               true, // Enable
+                                               ZBStringFormat(ZBStringFormat::General),
+                                               pArrayOfValues);
 
         pRuleList->EnableDragNDrop();
-        PropSet.Add( pRuleList );
+        propSet.Add(pRuleList);
     }
 
-    // Now continue to add empty tasks till the maximum size
-    for ( ; i < _MaxRuleListSize; ++i )
+    // now continue to add empty tasks till the maximum size
+    for (int i = index; i < _MaxRuleListSize; ++i)
     {
-        FinalPropName.Format( _T( "%s %d" ), PropName, i + 1 );
+        finalPropName.Format(_T("%s %d"), propName, i + 1);
 
         // Propriété "Contrôle x" du groupe "Contrôles", mais celles-ci sont vides et ne sont pas affichées.
-        ZBProperty* pRuleList = new ZBProperty( PropTitle,
-                                                ZS_BP_PROP_RULELIST,
-                                                FinalPropName,
-                                                Z_RULE_LIST + ( i * _MaxRuleListSize ),
-                                                PropDesc,
-                                                _T( "" ),
-                                                ZBProperty::PT_EDIT_INTELI,
-                                                false, // Disable
-                                                ZBStringFormat( ZBStringFormat::General ),
-                                                pArrayOfValues );
+        ZBProperty* pRuleList = new ZBProperty(propTitle,
+                                               ZS_BP_PROP_RULELIST,
+                                               finalPropName,
+                                               Z_RULE_LIST + (i * _MaxRuleListSize),
+                                               propDesc,
+                                               _T(""),
+                                               ZBProperty::PT_EDIT_INTELI,
+                                               false, // Disable
+                                               ZBStringFormat(ZBStringFormat::General),
+                                               pArrayOfValues);
 
         pRuleList->EnableDragNDrop();
-        PropSet.Add( pRuleList );
+        propSet.Add(pRuleList);
     }
     // ************************************************************************************************************
 
     // ***********************************************************************************************************
     // JMR-MODIF - Le 3 juin 2007 - Ajout des propriétés liées aux risques.
 
+    // FIXME translate comments
     // Obtient le menu des risques si celui-ci n'est pas encore présent.
-    if ( gRiskMenu.GetSafeHmenu() == NULL )
+    if (!gRiskMenu.GetSafeHmenu())
+        gRiskMenu.LoadMenu(IDR_RISK_MENU);
+
+    CString finalRiskName  = _T("");
+    CString finalRiskTitle = _T("");
+    CString riskTitle      = _T("");
+    CString riskName       = _T("");
+    CString riskDesc       = _T("");
+
+    riskTitle.LoadString(IDS_ZS_BP_PROP_RISK_TITLE);
+
+    for (int i = 0; i < GetRiskCount(); ++i)
     {
-        gRiskMenu.LoadMenu( IDR_RISK_MENU );
-    }
+        finalRiskTitle.Format(_T("%s (%d)"), riskTitle, i + 1);
 
-    CString FinalRiskName    = _T( "" );
-    CString FinalRiskTitle    = _T( "" );
-    CString RiskTitle        = _T( "" );
-    CString RiskName        = _T( "" );
-    CString RiskDesc        = _T( "" );
+        riskName.LoadString(IDS_Z_RISK_NAME_NAME);
+        riskDesc.LoadString(IDS_Z_RISK_NAME_DESC);
 
-    RiskTitle.LoadString( IDS_ZS_BP_PROP_RISK_TITLE );
-
-    for ( i = 0; i < GetRiskCount(); ++i )
-    {
-        FinalRiskTitle.Format( _T( "%s (%d)" ), RiskTitle, i + 1 );
-
-        RiskName.LoadString( IDS_Z_RISK_NAME_NAME );
-        RiskDesc.LoadString( IDS_Z_RISK_NAME_DESC );
-
+        // FIXME translate comments
         // Propriété "Titre Risque" du groupe "Risque (x)"
-        ZBProperty* pRisk = new ZBProperty( FinalRiskTitle,
-                                            ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-                                            RiskName,
-                                            ( GroupValue == true ) ? Z_RISK_NAME : ( Z_RISK_NAME + ( i * _MaxRisksSize ) ),
-                                            RiskDesc,
-                                            GetRiskName( i ),
-                                            ZBProperty::PT_EDIT_MENU,
-                                            true,
-                                            ZBStringFormat( ZBStringFormat::General ),
-                                            NULL,
-                                            &gRiskMenu );
+        ZBProperty* pRisk = new ZBProperty(finalRiskTitle,
+                                           (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
+                                           riskName,
+                                           (groupValue? Z_RISK_NAME : (Z_RISK_NAME + (i * _MaxRisksSize))),
+                                           riskDesc,
+                                           GetRiskName(i),
+                                           ZBProperty::PT_EDIT_MENU,
+                                           true,
+                                           ZBStringFormat(ZBStringFormat::General),
+                                           NULL,
+                                           &gRiskMenu);
 
-        PropSet.Add( pRisk );
+        propSet.Add(pRisk);
 
-        RiskName.LoadString( IDS_Z_RISK_DESC_NAME );
-        RiskDesc.LoadString( IDS_Z_RISK_DESC_DESC );
+        riskName.LoadString(IDS_Z_RISK_DESC_NAME);
+        riskDesc.LoadString(IDS_Z_RISK_DESC_DESC);
 
+        // FIXME translate comments
         // Propriété "Description" du groupe "Risque (x)"
-        pRisk = new ZBProperty( FinalRiskTitle,
-                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-                                RiskName,
-                                ( GroupValue == true ) ? Z_RISK_DESC : ( Z_RISK_DESC + ( i * _MaxRisksSize ) ),
-                                RiskDesc,
-                                GetRiskDesc( i ),
-                                ZBProperty::PT_EDIT_EXTENDED );
+        pRisk = new ZBProperty(finalRiskTitle,
+                               (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
+                               riskName,
+                               (groupValue ? Z_RISK_DESC : (Z_RISK_DESC + (i * _MaxRisksSize))),
+                               riskDesc,
+                               GetRiskDesc(i),
+                               ZBProperty::PT_EDIT_EXTENDED);
 
-        PropSet.Add( pRisk );
+        propSet.Add(pRisk);
 
-        RiskName.LoadString( IDS_Z_RISK_TYPE_NAME );
-        RiskDesc.LoadString( IDS_Z_RISK_TYPE_DESC );
+        riskName.LoadString(IDS_Z_RISK_TYPE_NAME);
+        riskDesc.LoadString(IDS_Z_RISK_TYPE_DESC);
 
-        CString s_NoRiskType = _T( "" );
-        s_NoRiskType.LoadString( IDS_NO_RISK_TYPE );
+        CString sNoRiskType = _T("");
+        sNoRiskType.LoadString(IDS_NO_RISK_TYPE);
 
-        pRisk = new ZBProperty( FinalRiskTitle,
-                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-                                RiskName,
-                                ( GroupValue == true ) ? Z_RISK_TYPE : ( Z_RISK_TYPE + ( i * _MaxRisksSize ) ),
-                                RiskDesc,
-                                GetRiskType( i ).IsEmpty() ? s_NoRiskType : GetRiskType( i ),
-                                ZBProperty::PT_EDIT_EXTENDED_READONLY );
+        pRisk = new ZBProperty(finalRiskTitle,
+                               (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
+                               riskName,
+                               (groupValue ? Z_RISK_TYPE : (Z_RISK_TYPE + (i * _MaxRisksSize))),
+                               riskDesc,
+                               GetRiskType(i).IsEmpty() ? sNoRiskType : GetRiskType(i),
+                               ZBProperty::PT_EDIT_EXTENDED_READONLY);
 
-        PropSet.Add( pRisk );
+        propSet.Add(pRisk);
 
-        RiskName.LoadString( IDS_Z_RISK_IMPACT_NAME );
-        RiskDesc.LoadString( IDS_Z_RISK_IMPACT_DESC );
+        riskName.LoadString(IDS_Z_RISK_IMPACT_NAME);
+        riskDesc.LoadString(IDS_Z_RISK_IMPACT_DESC);
 
+        // FIXME translate comments
         // Propriété "Impact" du groupe "Risque (x)"
-        pRisk = new ZBProperty( FinalRiskTitle,
-                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-                                RiskName,
-                                ( GroupValue == true ) ? Z_RISK_IMPACT : ( Z_RISK_IMPACT + ( i * _MaxRisksSize ) ),
-                                RiskDesc,
-                                ZBMediator::Instance()->GetMainApp()->GetRiskImpactContainer()->GetElementAt( GetRiskImpact( i ) ),
-                                ZBProperty::PT_EDIT_EXTENDED_READONLY );
+        pRisk = new ZBProperty(finalRiskTitle,
+                               (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
+                               riskName,
+                               (groupValue ? Z_RISK_IMPACT : (Z_RISK_IMPACT + (i * _MaxRisksSize))),
+                               riskDesc,
+                               ZBMediator::Instance()->GetMainApp()->GetRiskImpactContainer()->GetElementAt(GetRiskImpact(i)),
+                               ZBProperty::PT_EDIT_EXTENDED_READONLY);
 
-        PropSet.Add( pRisk );
+        propSet.Add(pRisk);
 
-        RiskName.LoadString( IDS_Z_RISK_PROBABILITY_NAME );
-        RiskDesc.LoadString( IDS_Z_RISK_PROBABILITY_DESC );
+        riskName.LoadString(IDS_Z_RISK_PROBABILITY_NAME);
+        riskDesc.LoadString(IDS_Z_RISK_PROBABILITY_DESC);
 
+        // FIXME translate comments
         // Propriété "Probabilité" du groupe "Risque (x)"
-        pRisk = new ZBProperty( FinalRiskTitle,
-                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-                                RiskName,
-                                ( GroupValue == true ) ? Z_RISK_PROBABILITY : ( Z_RISK_PROBABILITY + ( i * _MaxRisksSize ) ),
-                                RiskDesc,
-                                ZBMediator::Instance()->GetMainApp()->GetRiskProbabilityContainer()->GetElementAt( GetRiskProbability( i ) ),
-                                ZBProperty::PT_EDIT_EXTENDED_READONLY );
+        pRisk = new ZBProperty(finalRiskTitle,
+                               (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
+                               riskName,
+                               (groupValue ? Z_RISK_PROBABILITY : (Z_RISK_PROBABILITY + (i * _MaxRisksSize))),
+                               riskDesc,
+                               ZBMediator::Instance()->GetMainApp()->GetRiskProbabilityContainer()->GetElementAt(GetRiskProbability(i)),
+                               ZBProperty::PT_EDIT_EXTENDED_READONLY);
 
-        PropSet.Add( pRisk );
+        propSet.Add(pRisk);
 
-        RiskName.LoadString( IDS_Z_RISK_SEVERITY_NAME );
-        RiskDesc.LoadString( IDS_Z_RISK_SEVERITY_DESC );
+        riskName.LoadString(IDS_Z_RISK_SEVERITY_NAME);
+        riskDesc.LoadString(IDS_Z_RISK_SEVERITY_DESC);
 
+        // FIXME translate comments
         // Propriété "Sévérité" du groupe "Risque (x)"
-        pRisk = new ZBProperty( FinalRiskTitle,
-                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-                                RiskName,
-                                ( GroupValue == true ) ? Z_RISK_SEVERITY : ( Z_RISK_SEVERITY + ( i * _MaxRisksSize ) ),
-                                RiskDesc,
-                                (double)GetRiskSeverity( i ),
-                                ZBProperty::PT_EDIT_NUMBER_READONLY );
+        pRisk = new ZBProperty(finalRiskTitle,
+                               (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
+                               riskName,
+                               (groupValue ? Z_RISK_SEVERITY : (Z_RISK_SEVERITY + (i * _MaxRisksSize))),
+                               riskDesc,
+                               double(GetRiskSeverity(i)),
+                               ZBProperty::PT_EDIT_NUMBER_READONLY);
 
-        PropSet.Add( pRisk );
+        propSet.Add(pRisk);
 
-        RiskName.LoadString( IDS_Z_RISK_UE_NAME );
-        RiskDesc.LoadString( IDS_Z_RISK_UE_DESC );
+        riskName.LoadString(IDS_Z_RISK_UE_NAME);
+        riskDesc.LoadString(IDS_Z_RISK_UE_DESC);
 
+        // FIXME translate comments
         // Propriété "Est. unit." du groupe "Risque (x)"
-        pRisk = new ZBProperty( FinalRiskTitle,
-                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-                                RiskName,
-                                ( GroupValue == true ) ? Z_RISK_UE : ( Z_RISK_UE + ( i * _MaxRisksSize ) ),
-                                RiskDesc,
-                                GetRiskUE( i ),
-                                ZBProperty::PT_EDIT_NUMBER,
-                                true,
-                                ZBStringFormat( ZBStringFormat::Currency, true, 2, CurrencySymbol ) );
+        pRisk = new ZBProperty(finalRiskTitle,
+                               (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
+                               riskName,
+                               (groupValue ? Z_RISK_UE : (Z_RISK_UE + (i * _MaxRisksSize))),
+                               riskDesc,
+                               GetRiskUE(i),
+                               ZBProperty::PT_EDIT_NUMBER,
+                               true,
+                               ZBStringFormat(ZBStringFormat::Currency, true, 2, currencySymbol));
 
-        PropSet.Add( pRisk );
+        propSet.Add(pRisk);
 
-        RiskName.LoadString( IDS_Z_RISK_POA_NAME );
-        RiskDesc.LoadString( IDS_Z_RISK_POA_DESC );
+        riskName.LoadString(IDS_Z_RISK_POA_NAME);
+        riskDesc.LoadString(IDS_Z_RISK_POA_DESC);
 
+        // FIXME translate comments
         // Propriété "POA" du groupe "Risque (x)"
-        pRisk = new ZBProperty( FinalRiskTitle,
-                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-                                RiskName,
-                                ( GroupValue == true ) ? Z_RISK_POA : ( Z_RISK_POA + ( i * _MaxRisksSize ) ),
-                                RiskDesc,
-                                GetRiskPOA( i ),
-                                ZBProperty::PT_EDIT_NUMBER,
-                                true,
-                                ZBStringFormat( ZBStringFormat::Currency, true, 2, CurrencySymbol ) );
+        pRisk = new ZBProperty(finalRiskTitle,
+                               (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
+                               riskName,
+                               (groupValue ? Z_RISK_POA : (Z_RISK_POA + (i * _MaxRisksSize))),
+                               riskDesc,
+                               GetRiskPOA(i),
+                               ZBProperty::PT_EDIT_NUMBER,
+                               true,
+                               ZBStringFormat(ZBStringFormat::Currency, true, 2, currencySymbol));
 
-        PropSet.Add( pRisk );
+        propSet.Add(pRisk);
 
-        RiskName.LoadString( IDS_Z_RISK_ACTION_NAME );
-        RiskDesc.LoadString( IDS_Z_RISK_ACTION_DESC );
+        riskName.LoadString(IDS_Z_RISK_ACTION_NAME);
+        riskDesc.LoadString(IDS_Z_RISK_ACTION_DESC);
 
+        // FIXME translate comments
         // Propriété "Action" du groupe "Risque (x)"
-        pRisk = new ZBProperty( FinalRiskTitle,
-                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-                                RiskName,
-                                ( GroupValue == true ) ? Z_RISK_ACTION : ( Z_RISK_ACTION + ( i * _MaxRisksSize ) ),
-                                RiskDesc,
-                                ( GetRiskAction( i ) == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo(),
-                                ZBProperty::PT_COMBO_STRING_READONLY,
-                                TRUE,
-                                ZBStringFormat( ZBStringFormat::General ),
-                                ZAGlobal::GetArrayYesNo() );
+        pRisk = new ZBProperty(finalRiskTitle,
+                               (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
+                               riskName,
+                               (groupValue ? Z_RISK_ACTION : (Z_RISK_ACTION + (i * _MaxRisksSize))),
+                               riskDesc,
+                               (GetRiskAction(i) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo()),
+                               ZBProperty::PT_COMBO_STRING_READONLY,
+                               TRUE,
+                               ZBStringFormat(ZBStringFormat::General),
+                               ZAGlobal::GetArrayYesNo());
 
-        PropSet.Add( pRisk );
+        propSet.Add(pRisk);
     }
     // ***********************************************************************************************************
 
-    // Add tasks
-    ZBBPTaskListProperties* pTasksProps = (ZBBPTaskListProperties*)GetProperty( ZS_BP_PROP_TASKLIST );
+    // add tasks
+    ZBBPTaskListProperties* pTasksProps = (ZBBPTaskListProperties*)GetProperty(ZS_BP_PROP_TASKLIST);
 
-    if ( !pTasksProps )
-    {
+    if (!pTasksProps)
         return false;
-    }
 
-    // Run through all tasks properties
-    // Add one to the counter to have always one empty task
-    Count = GetTaskCount() + 1;
-    PropTitle.LoadString( IDS_ZS_BP_PROP_PROCEDURE_TSKLST_TITLE );
-    pArrayOfValues = ZAGlobal::GetHistoricValueManager().GetFieldHistory( PropTitle );
+    // run through all tasks properties, add one to the counter to have always one empty task
+    count = GetTaskCount() + 1;
+    propTitle.LoadString(IDS_ZS_BP_PROP_PROCEDURE_TSKLST_TITLE);
+    pArrayOfValues = ZAGlobal::GetHistoricValueManager().GetFieldHistory(propTitle);
 
-    PropName.LoadString( IDS_Z_TASK_LIST_NAME );
-    PropDesc.LoadString( IDS_Z_TASK_LIST_DESC );
+    propName.LoadString(IDS_Z_TASK_LIST_NAME);
+    propDesc.LoadString(IDS_Z_TASK_LIST_DESC);
 
-    for ( i = 0; i < Count; ++i )
+    index = 0;
+
+    for (int i = 0; i < count; ++i)
     {
-        FinalPropName.Format( _T( "%s %d" ), PropName, i + 1 );
+        index = i;
 
+        finalPropName.Format(_T("%s %d"), propName, i + 1);
+
+        // FIXME translate comments
         // Propriété "Tâche x" du groupe "Tâches"
-        ZBProperty* pTaskList = new ZBProperty( PropTitle,
-                                                ZS_BP_PROP_TASKLIST,
-                                                FinalPropName,
-                                                Z_TASK_LIST + ( i * _MaxTaskListSize ),
-                                                PropDesc,
-                                                GetTaskAt( i ),
-                                                ZBProperty::PT_EDIT_INTELI,
-                                                true, // Enable
-                                                ZBStringFormat( ZBStringFormat::General ),
-                                                pArrayOfValues );
+        ZBProperty* pTaskList = new ZBProperty(propTitle,
+                                               ZS_BP_PROP_TASKLIST,
+                                               finalPropName,
+                                               Z_TASK_LIST + (i * _MaxTaskListSize),
+                                               propDesc,
+                                               GetTaskAt(i),
+                                               ZBProperty::PT_EDIT_INTELI,
+                                               true, // Enable
+                                               ZBStringFormat(ZBStringFormat::General),
+                                               pArrayOfValues);
 
         pTaskList->EnableDragNDrop();
-        PropSet.Add( pTaskList );
+        propSet.Add(pTaskList);
     }
-    // Now continue to add empty tasks till the maximum size
-    for ( ; i < _MaxTaskListSize; ++i )
-    {
-        FinalPropName.Format( _T( "%s %d" ), PropName, i + 1 );
 
+    // now continue to add empty tasks till the maximum size
+    for (int i = index; i < _MaxTaskListSize; ++i)
+    {
+        finalPropName.Format(_T("%s %d"), propName, i + 1);
+
+        // FIXME translate comments
         // Propriété "Tâche x" du groupe "Tâches"
-        ZBProperty* pTaskList = new ZBProperty( PropTitle,
-                                                ZS_BP_PROP_TASKLIST,
-                                                FinalPropName,
-                                                Z_TASK_LIST + ( i * _MaxTaskListSize ),
-                                                PropDesc,
-                                                _T( "" ),
-                                                ZBProperty::PT_EDIT_INTELI,
-                                                false, // Disable
-                                                ZBStringFormat( ZBStringFormat::General ),
-                                                pArrayOfValues );
+        ZBProperty* pTaskList = new ZBProperty(propTitle,
+                                               ZS_BP_PROP_TASKLIST,
+                                               finalPropName,
+                                               Z_TASK_LIST + (i * _MaxTaskListSize),
+                                               propDesc,
+                                               _T(""),
+                                               ZBProperty::PT_EDIT_INTELI,
+                                               false, // Disable
+                                               ZBStringFormat(ZBStringFormat::General),
+                                               pArrayOfValues);
 
         pTaskList->EnableDragNDrop();
-        PropSet.Add( pTaskList );
+        propSet.Add(pTaskList);
     }
 
-    // Add decisions
-    ZBBPDecisionListProperties* pDecisionsProps = (ZBBPDecisionListProperties*)GetProperty( ZS_BP_PROP_DECISIONLIST );
+    // add decisions
+    ZBBPDecisionListProperties* pDecisionsProps = (ZBBPDecisionListProperties*)GetProperty(ZS_BP_PROP_DECISIONLIST);
 
-    if ( !pDecisionsProps )
-    {
+    if (!pDecisionsProps)
         return false;
-    }
 
-    // Run through all tasks properties
-    // Add one to the counter to have always one empty decision
-    Count = GetDecisionCount() + 1;
-    PropTitle.LoadString( IDS_ZS_BP_PROP_PROCEDURE_DECLST_TITLE );
-    pArrayOfValues = ZAGlobal::GetHistoricValueManager().GetFieldHistory( PropTitle );
+    // run through all tasks properties, add one to the counter to have always one empty decision
+    count = GetDecisionCount() + 1;
+    propTitle.LoadString(IDS_ZS_BP_PROP_PROCEDURE_DECLST_TITLE);
+    pArrayOfValues = ZAGlobal::GetHistoricValueManager().GetFieldHistory(propTitle);
 
-    PropName.LoadString( IDS_Z_DECISION_LIST_NAME );
-    PropDesc.LoadString( IDS_Z_DECISION_LIST_DESC );
+    propName.LoadString(IDS_Z_DECISION_LIST_NAME);
+    propDesc.LoadString(IDS_Z_DECISION_LIST_DESC);
 
-    for ( i = 0; i < Count; ++i )
+    index = 0;
+
+    for (int i = 0; i < count; ++i)
     {
-        FinalPropName.Format( _T( "%s %d" ), PropName, i + 1 );
+        index = i;
 
+        finalPropName.Format(_T("%s %d"), propName, i + 1);
+
+        // FIXME translate comments
         // Propriété "Décision x" du groupe "Décisions"
-        ZBProperty* pDecList = new ZBProperty(  PropTitle,
-                                                ZS_BP_PROP_DECISIONLIST,
-                                                FinalPropName,
-                                                Z_DECISION_LIST + ( i * _MaxDecisionListSize ),
-                                                PropDesc,
-                                                GetDecisionAt( i ),
-                                                ZBProperty::PT_EDIT_INTELI,
-                                                true, // Enable
-                                                ZBStringFormat( ZBStringFormat::General ),
-                                                pArrayOfValues );
+        ZBProperty* pDecList = new ZBProperty(propTitle,
+                                              ZS_BP_PROP_DECISIONLIST,
+                                              finalPropName,
+                                              Z_DECISION_LIST + (i * _MaxDecisionListSize),
+                                              propDesc,
+                                              GetDecisionAt(i),
+                                              ZBProperty::PT_EDIT_INTELI,
+                                              true, // Enable
+                                              ZBStringFormat(ZBStringFormat::General),
+                                              pArrayOfValues);
 
         pDecList->EnableDragNDrop();
-        PropSet.Add( pDecList );
+        propSet.Add(pDecList);
     }
 
-    // Now continue to add empty decisions till the maximum size
-    for ( ; i < _MaxDecisionListSize; ++i )
+    // now continue to add empty decisions till the maximum size
+    for (int i = index; i < _MaxDecisionListSize; ++i)
     {
-        FinalPropName.Format( _T( "%s %d" ), PropName, i + 1 );
+        finalPropName.Format(_T("%s %d"), propName, i + 1);
 
         // Propriété "Décision x" du groupe "Décisions"
-        ZBProperty* pDecList = new ZBProperty(  PropTitle,
-                                                ZS_BP_PROP_DECISIONLIST,
-                                                FinalPropName,
-                                                Z_DECISION_LIST + ( i * _MaxDecisionListSize ),
-                                                PropDesc,
-                                                _T( "" ),
-                                                ZBProperty::PT_EDIT_INTELI,
-                                                false, // Disable
-                                                ZBStringFormat( ZBStringFormat::General ),
-                                                pArrayOfValues );
+        ZBProperty* pDecList = new ZBProperty(propTitle,
+                                              ZS_BP_PROP_DECISIONLIST,
+                                              finalPropName,
+                                              Z_DECISION_LIST + (i * _MaxDecisionListSize),
+                                              propDesc,
+                                              _T(""),
+                                              ZBProperty::PT_EDIT_INTELI,
+                                              false, // Disable
+                                              ZBStringFormat(ZBStringFormat::General),
+                                              pArrayOfValues);
 
         pDecList->EnableDragNDrop();
-        PropSet.Add( pDecList );
+        propSet.Add(pDecList);
     }
 
-    int HourPerDay    = -1;
-    int DayPerWeek    = -1;
-    int DayPerMonth    = -1;
-    int DayPerYear    = -1;
+    int hourPerDay  = -1;
+    int dayPerWeek  = -1;
+    int dayPerMonth = -1;
+    int dayPerYear  = -1;
 
-    if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) )
+    if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
     {
-        CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetDocument();
+        CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
 
-        if ( pDoc && ISA( pDoc, ZDProcessGraphModelDoc ) )
+        if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
         {
+            // FIXME translate comments
             // JMR-MODIF - Le 30 juillet 2007 - Cette opération est effectuée une fois pour toutes au début de la fonction.
             // Retreive the model's currency symbol
             //CurrencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetCurrencySymbol();
 
-            // Retreive the standard time definition
-            HourPerDay    = dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetHourPerDay();
-            DayPerWeek    = dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetDayPerWeek();
-            DayPerMonth    = dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetDayPerMonth();
-            DayPerYear    = dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetDayPerYear();
+            // retreive the standard time definition
+            hourPerDay  = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetHourPerDay();
+            dayPerWeek  = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetDayPerWeek();
+            dayPerMonth = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetDayPerMonth();
+            dayPerYear  = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetDayPerYear();
         }
     }
 
     // RS-MODIF 17.11.04 error has to be defined here
-    bool Error;
+    bool error;
         
-    if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-         dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetIntegrateCostSimulation() )
+    if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
+            dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
     {
+        // FIXME translate comments
         // Propriété "Multiplicateur" du groupe "Procédure"
-        ZBProperty* pMultiplier = new ZBProperty( IDS_ZS_BP_PROP_PROCEDURE_TITLE,
-                                                  ZS_BP_PROP_PROCEDURE_COST,
-                                                  IDS_Z_COST_MULTIPLIER_NAME,
-                                                  Z_COST_MULTIPLIER,
-                                                  IDS_Z_COST_MULTIPLIER_DESC,
-                                                  GetMultiplier(),
-                                                  ZBProperty::PT_EDIT_NUMBER,
-                                                  true,
-                                                  ZBStringFormat( ZBStringFormat::Accounting, true, -1 ) );
+        ZBProperty* pMultiplier = new ZBProperty(IDS_ZS_BP_PROP_PROCEDURE_TITLE,
+                                                 ZS_BP_PROP_PROCEDURE_COST,
+                                                 IDS_Z_COST_MULTIPLIER_NAME,
+                                                 Z_COST_MULTIPLIER,
+                                                 IDS_Z_COST_MULTIPLIER_DESC,
+                                                 GetMultiplier(),
+                                                 ZBProperty::PT_EDIT_NUMBER,
+                                                 true,
+                                                 ZBStringFormat(ZBStringFormat::Accounting, true, -1));
 
-        PropSet.Add( pMultiplier );
+        propSet.Add(pMultiplier);
 
         ZBProperty* pTime;
 
-        if ( NumericValue )
-        {
+        if (numericValue)
+            // FIXME translate comments
             // Propriété "Temps standard" du groupe "Procédure"
-            pTime = new ZBProperty( IDS_ZS_BP_PROP_PROCEDURE_TITLE,
-                                    ZS_BP_PROP_PROCEDURE_COST,
-                                    IDS_Z_COST_PROCESSING_TIME_NAME,
-                                    Z_COST_PROCESSING_TIME,
-                                    IDS_Z_COST_PROCESSING_TIME_DESC,
-                                    GetProcessingTime(),
-                                    ZBProperty::PT_EDIT_NUMBER );
-        }
+            pTime = new ZBProperty(IDS_ZS_BP_PROP_PROCEDURE_TITLE,
+                                   ZS_BP_PROP_PROCEDURE_COST,
+                                   IDS_Z_COST_PROCESSING_TIME_NAME,
+                                   Z_COST_PROCESSING_TIME,
+                                   IDS_Z_COST_PROCESSING_TIME_DESC,
+                                   GetProcessingTime(),
+                                   ZBProperty::PT_EDIT_NUMBER);
         else
-        {
+            // FIXME translate comments
             // Propriété "Temps standard" du groupe "Procédure"
-            pTime = new ZBProperty( IDS_ZS_BP_PROP_PROCEDURE_TITLE,
-                                    ZS_BP_PROP_PROCEDURE_COST,
-                                    IDS_Z_COST_PROCESSING_TIME_NAME,
-                                    Z_COST_PROCESSING_TIME,
-                                    IDS_Z_COST_PROCESSING_TIME_DESC,
-                                    ZBDuration( GetProcessingTime(),
-                                                HourPerDay,
-                                                DayPerWeek,
-                                                DayPerMonth,
-                                                DayPerYear ),
-                                    ZBProperty::PT_EDIT_DURATION,
-                                    true,
-                                    ZBStringFormat(ZBStringFormat::Duration7 ) );
-        }
+            pTime = new ZBProperty(IDS_ZS_BP_PROP_PROCEDURE_TITLE,
+                                   ZS_BP_PROP_PROCEDURE_COST,
+                                   IDS_Z_COST_PROCESSING_TIME_NAME,
+                                   Z_COST_PROCESSING_TIME,
+                                   IDS_Z_COST_PROCESSING_TIME_DESC,
+                                   ZBDuration(GetProcessingTime(),
+                                              hourPerDay,
+                                              dayPerWeek,
+                                              dayPerMonth,
+                                              dayPerYear),
+                                   ZBProperty::PT_EDIT_DURATION,
+                                   true,
+                                   ZBStringFormat(ZBStringFormat::Duration7));
 
-        PropSet.Add( pTime );
+        propSet.Add(pTime);
 
+        // FIXME translate comments
         // Propriété "Coût unitaire" du groupe "Procédure"
-        ZBProperty* pPrice = new ZBProperty( IDS_ZS_BP_PROP_PROCEDURE_TITLE,
-                                             ZS_BP_PROP_PROCEDURE_COST,
-                                             IDS_Z_COST_UNITARY_COST_NAME,
-                                             Z_COST_UNITARY_COST,
-                                             IDS_Z_COST_UNITARY_COST_DESC,
-                                             GetUnitaryCost(),
-                                             ZBProperty::PT_EDIT_NUMBER,
-                                             true,
-                                             ZBStringFormat( ZBStringFormat::Currency, true, 2, CurrencySymbol ) );
+        ZBProperty* pPrice = new ZBProperty(IDS_ZS_BP_PROP_PROCEDURE_TITLE,
+                                            ZS_BP_PROP_PROCEDURE_COST,
+                                            IDS_Z_COST_UNITARY_COST_NAME,
+                                            Z_COST_UNITARY_COST,
+                                            IDS_Z_COST_UNITARY_COST_DESC,
+                                            GetUnitaryCost(),
+                                            ZBProperty::PT_EDIT_NUMBER,
+                                            true,
+                                            ZBStringFormat(ZBStringFormat::Currency, true, 2, currencySymbol));
 
-        PropSet.Add( pPrice );
+        propSet.Add(pPrice);
 
         ZBProperty* pProcessingDuration;
 
-        if ( NumericValue )
-        {
+        if (numericValue)
+            // FIXME translate comments
             // Propriété "Durée moyenne (pondérée)" du groupe "Procédure"
-            pProcessingDuration = new ZBProperty( IDS_ZS_BP_PROP_PROCEDURE_TITLE,
-                                                  ZS_BP_PROP_PROCEDURE_COST,
-                                                  IDS_Z_COST_PROCESSING_DURATION_NAME,
-                                                  Z_COST_PROCESSING_DURATION,
-                                                  IDS_Z_COST_PROCESSING_DURATION_DESC,
-                                                  GetProcessingDuration(),
-                                                  ZBProperty::PT_EDIT_NUMBER );
-        }
+            pProcessingDuration = new ZBProperty(IDS_ZS_BP_PROP_PROCEDURE_TITLE,
+                                                 ZS_BP_PROP_PROCEDURE_COST,
+                                                 IDS_Z_COST_PROCESSING_DURATION_NAME,
+                                                 Z_COST_PROCESSING_DURATION,
+                                                 IDS_Z_COST_PROCESSING_DURATION_DESC,
+                                                 GetProcessingDuration(),
+                                                 ZBProperty::PT_EDIT_NUMBER);
         else
-        {
+            // FIXME translate comments
             // Propriété "Durée moyenne (pondérée)" du groupe "Procédure"
-            pProcessingDuration = new ZBProperty( IDS_ZS_BP_PROP_PROCEDURE_TITLE,
-                                                  ZS_BP_PROP_PROCEDURE_COST,
-                                                  IDS_Z_COST_PROCESSING_DURATION_NAME,
-                                                  Z_COST_PROCESSING_DURATION,
-                                                  IDS_Z_COST_PROCESSING_DURATION_DESC,
-                                                  ZBDuration( GetProcessingDuration(),
-                                                              HourPerDay,
-                                                              DayPerWeek,
-                                                              DayPerMonth,
-                                                              DayPerYear ),
-                                                ZBProperty::PT_EDIT_DURATION_READONLY,
-                                                true,
-                                                ZBStringFormat(ZBStringFormat::Duration7 ) );
-        }
+            pProcessingDuration = new ZBProperty(IDS_ZS_BP_PROP_PROCEDURE_TITLE,
+                                                 ZS_BP_PROP_PROCEDURE_COST,
+                                                 IDS_Z_COST_PROCESSING_DURATION_NAME,
+                                                 Z_COST_PROCESSING_DURATION,
+                                                 IDS_Z_COST_PROCESSING_DURATION_DESC,
+                                                 ZBDuration(GetProcessingDuration(),
+                                                            hourPerDay,
+                                                            dayPerWeek,
+                                                            dayPerMonth,
+                                                            dayPerYear),
+                                                 ZBProperty::PT_EDIT_DURATION_READONLY,
+                                                 true,
+                                                 ZBStringFormat(ZBStringFormat::Duration7));
 
-        PropSet.Add( pProcessingDuration );
+        propSet.Add(pProcessingDuration);
 
         ZBProperty* pProcessingDurationMax;
 
-        if ( NumericValue )
-        {
+        if (numericValue)
+            // FIXME translate comments
             // Propriété "Durée moyenne (maximum)" du groupe "Procédure"
-            pProcessingDurationMax = new ZBProperty( IDS_ZS_BP_PROP_PROCEDURE_TITLE,
-                                                     ZS_BP_PROP_PROCEDURE_COST,
-                                                     IDS_Z_COST_PROCESSING_DURATIONMAX_NAME,
-                                                     Z_COST_PROCESSING_DURATIONMAX,
-                                                     IDS_Z_COST_PROCESSING_DURATIONMAX_DESC,
-                                                     GetProcessingDurationMax(),
-                                                     ZBProperty::PT_EDIT_NUMBER );
-        }
+            pProcessingDurationMax = new ZBProperty(IDS_ZS_BP_PROP_PROCEDURE_TITLE,
+                                                    ZS_BP_PROP_PROCEDURE_COST,
+                                                    IDS_Z_COST_PROCESSING_DURATIONMAX_NAME,
+                                                    Z_COST_PROCESSING_DURATIONMAX,
+                                                    IDS_Z_COST_PROCESSING_DURATIONMAX_DESC,
+                                                    GetProcessingDurationMax(),
+                                                    ZBProperty::PT_EDIT_NUMBER);
         else
-        {
+            // FIXME translate comments
             // Propriété "Durée moyenne (maximum)" du groupe "Procédure"
-            pProcessingDurationMax = new ZBProperty( IDS_ZS_BP_PROP_PROCEDURE_TITLE,
-                                                     ZS_BP_PROP_PROCEDURE_COST,
-                                                     IDS_Z_COST_PROCESSING_DURATIONMAX_NAME,
-                                                     Z_COST_PROCESSING_DURATIONMAX,
-                                                     IDS_Z_COST_PROCESSING_DURATIONMAX_DESC,
-                                                     ZBDuration( GetProcessingDurationMax(),
-                                                                 HourPerDay,
-                                                                 DayPerWeek,
-                                                                 DayPerMonth,
-                                                                 DayPerYear ),
-                                                     ZBProperty::PT_EDIT_DURATION_READONLY,
-                                                     true,
-                                                     ZBStringFormat( ZBStringFormat::Duration7 ) );
-        }
+            pProcessingDurationMax = new ZBProperty(IDS_ZS_BP_PROP_PROCEDURE_TITLE,
+                                                    ZS_BP_PROP_PROCEDURE_COST,
+                                                    IDS_Z_COST_PROCESSING_DURATIONMAX_NAME,
+                                                    Z_COST_PROCESSING_DURATIONMAX,
+                                                    IDS_Z_COST_PROCESSING_DURATIONMAX_DESC,
+                                                    ZBDuration(GetProcessingDurationMax(),
+                                                               hourPerDay,
+                                                               dayPerWeek,
+                                                               dayPerMonth,
+                                                               dayPerYear),
+                                                    ZBProperty::PT_EDIT_DURATION_READONLY,
+                                                    true,
+                                                    ZBStringFormat(ZBStringFormat::Duration7));
 
-        PropSet.Add( pProcessingDurationMax );
+        propSet.Add(pProcessingDurationMax);
 
-        float UnitCost = RetreiveUnitCost( GetUnitGUID(), Error );
+        const float unitCost = RetreiveUnitCost(GetUnitGUID(), error);
 
+        // FIXME translate comments
         // Propriété "Coût" du groupe "Unité de traitement"
-        ZBProperty* pUnitCost = new ZBProperty( IDS_ZS_BP_PROP_UNIT_TITLE,
-                                                ZS_BP_PROP_UNIT,
-                                                IDS_Z_UNIT_COST_NAME,
-                                                Z_UNIT_COST,
-                                                IDS_Z_UNIT_COST_DESC,
-                                                UnitCost,
-                                                ZBProperty::PT_EDIT_NUMBER_READONLY,
-                                                true,
-                                                ZBStringFormat( ZBStringFormat::Currency, true, 2, CurrencySymbol ) );
+        ZBProperty* pUnitCost = new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
+                                               ZS_BP_PROP_UNIT,
+                                               IDS_Z_UNIT_COST_NAME,
+                                               Z_UNIT_COST,
+                                               IDS_Z_UNIT_COST_DESC,
+                                               unitCost,
+                                               ZBProperty::PT_EDIT_NUMBER_READONLY,
+                                               true,
+                                               ZBStringFormat(ZBStringFormat::Currency, true, 2, currencySymbol));
 
-        PropSet.Add( pUnitCost );
+        propSet.Add(pUnitCost);
 
         ZBProperty* pUnitDoubleValid;
 
-        if ( NumericValue )
-        {
+        if (numericValue)
+            // FIXME translate comments
             // Propriété "Double validation" du groupe "Unité de traitement"
-            pUnitDoubleValid = new ZBProperty( IDS_ZS_BP_PROP_UNIT_TITLE,
-                                               ZS_BP_PROP_UNIT,
-                                               IDS_Z_UNIT_DOUBLE_VALIDATION_NAME,
-                                               Z_UNIT_DOUBLE_VALIDATION,
-                                               IDS_Z_UNIT_DOUBLE_VALIDATION_DESC,
-                                               (double)GetUnitDoubleValidationType(),
-                                               ZBProperty::PT_EDIT_NUMBER,
-                                               false, // Disabled
-                                               ZBStringFormat( ZBStringFormat::General ) );
-        }
+            pUnitDoubleValid = new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
+                                              ZS_BP_PROP_UNIT,
+                                              IDS_Z_UNIT_DOUBLE_VALIDATION_NAME,
+                                              Z_UNIT_DOUBLE_VALIDATION,
+                                              IDS_Z_UNIT_DOUBLE_VALIDATION_DESC,
+                                              double(GetUnitDoubleValidationType()),
+                                              ZBProperty::PT_EDIT_NUMBER,
+                                              false, // Disabled
+                                              ZBStringFormat(ZBStringFormat::General));
         else
-        {
+            // FIXME translate comments
             // Propriété "Double validation" du groupe "Unité de traitement"
-            pUnitDoubleValid = new ZBProperty( IDS_ZS_BP_PROP_UNIT_TITLE,
-                                               ZS_BP_PROP_UNIT,
-                                               IDS_Z_UNIT_DOUBLE_VALIDATION_NAME,
-                                               Z_UNIT_DOUBLE_VALIDATION,
-                                               IDS_Z_UNIT_DOUBLE_VALIDATION_DESC,
-                                               GetUnitDoubleValidationTypeString( GetUnitDoubleValidationType() ),
-                                               ZBProperty::PT_COMBO_STRING_READONLY,
-                                               false, // Disabled
-                                               ZBStringFormat( ZBStringFormat::General ),
-                                               &m_UnitDoubleValidationTypeArray );
-        }
+            pUnitDoubleValid = new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
+                                              ZS_BP_PROP_UNIT,
+                                              IDS_Z_UNIT_DOUBLE_VALIDATION_NAME,
+                                              Z_UNIT_DOUBLE_VALIDATION,
+                                              IDS_Z_UNIT_DOUBLE_VALIDATION_DESC,
+                                              GetUnitDoubleValidationTypeString(GetUnitDoubleValidationType()),
+                                              ZBProperty::PT_COMBO_STRING_READONLY,
+                                              false, // Disabled
+                                              ZBStringFormat(ZBStringFormat::General),
+                                              &m_UnitDoubleValidationTypeArray);
 
-        PropSet.Add( pUnitDoubleValid );
+        propSet.Add(pUnitDoubleValid);
     }
 
+    // FIXME translate comments
     // RS-MODIF 17.11.04, Unit GUID and Name should appear in Conceptor
     // Propriété "Guid" du groupe "Unité de traitement"
-    ZBProperty* pUnitGUID = new ZBProperty( IDS_ZS_BP_PROP_UNIT_TITLE,
-                                            ZS_BP_PROP_UNIT,
-                                            IDS_Z_UNIT_GUID_NAME,
-                                            Z_UNIT_GUID,
-                                            IDS_Z_UNIT_GUID_DESC,
-                                            GetUnitGUID(),
-                                            ZBProperty::PT_EDIT_EXTENDED_READONLY,
-                                            false ); // Not enable, used for saving the unit GUID
+    ZBProperty* pUnitGUID = new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
+                                           ZS_BP_PROP_UNIT,
+                                           IDS_Z_UNIT_GUID_NAME,
+                                           Z_UNIT_GUID,
+                                           IDS_Z_UNIT_GUID_DESC,
+                                           GetUnitGUID(),
+                                           ZBProperty::PT_EDIT_EXTENDED_READONLY,
+                                           false); // not enable, used for saving the unit GUID
 
-    PropSet.Add( pUnitGUID );
+    propSet.Add(pUnitGUID);
 
-    CString UnitName = RetreiveUnitName( GetUnitGUID(), Error );
+    const CString unitName = RetreiveUnitName(GetUnitGUID(), error);
 
     // Propriété "Unité" du groupe "Unité de traitement"
     ZBProperty* pUnitName = new ZBProperty( IDS_ZS_BP_PROP_UNIT_TITLE,
@@ -1506,220 +1494,228 @@ bool ZBBPProcedureSymbol::FillProperties( ZBPropertySet&    PropSet,
                                             IDS_Z_UNIT_NAME_NAME,
                                             Z_UNIT_NAME,
                                             IDS_Z_UNIT_NAME_DESC,
-                                            UnitName,
-                                            ( GroupEnabled ) ? ZBProperty::PT_EDIT_EXTENDED_READONLY : ZBProperty::PT_EDIT_STRING_READONLY );
-    PropSet.Add( pUnitName );
+                                            unitName,
+                                            (groupEnabled ? ZBProperty::PT_EDIT_EXTENDED_READONLY : ZBProperty::PT_EDIT_STRING_READONLY));
+    propSet.Add(pUnitName);
 
-    // If the menu is not loaded, load it
-    if ( gCombinationMenu.GetSafeHmenu() == NULL )
-    {
-        gCombinationMenu.LoadMenu( IDR_COMBINATION_MENU );
-    }
+    // if the menu is not loaded, load it
+    if (!gCombinationMenu.GetSafeHmenu())
+        gCombinationMenu.LoadMenu(IDR_COMBINATION_MENU);
 
+    // FIXME translate comments
     // RS-MODIF 17.11.04 should appear only in Messenger
-    if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-         dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetIntegrateCostSimulation() )
+    if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
+            dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
     {
-        // Run through all combination properties
-        CString FinalPropTitle;
-        Count = GetCombinationCount();
-        PropTitle.LoadString( IDS_ZS_BP_PROP_COMBINATION_TITLE );
+        // run through all combination properties
+        CString finalPropTitle;
+        count = GetCombinationCount();
+        propTitle.LoadString(IDS_ZS_BP_PROP_COMBINATION_TITLE);
 
-        // Necessary to check if the initial combination is correct
+        // necessary to check if the initial combination is correct
         CheckInitialCombination();
 
-        for ( i = 0; i < Count; ++i )
+        index = 0;
+
+        for (int i = 0; i < count; ++i)
         {
-            FinalPropTitle.Format( _T( "%s (%d)" ), PropTitle, i + 1 );
+            index = i;
 
-            PropName.LoadString( IDS_Z_COMBINATION_NAME_NAME );
-            PropDesc.LoadString( IDS_Z_COMBINATION_NAME_DESC );
+            finalPropTitle.Format(_T("%s (%d)"), propTitle, i + 1);
 
+            propName.LoadString(IDS_Z_COMBINATION_NAME_NAME);
+            propDesc.LoadString(IDS_Z_COMBINATION_NAME_DESC);
+
+            // FIXME translate comments
             // Propriété "Titre comb." du groupe "Combinaisons x"
-            ZBProperty* pCombination = new ZBProperty( FinalPropTitle,
-                                                       ( GroupValue == true ) ? ZS_BP_PROP_COMBINATION : ( ZS_BP_PROP_COMBINATION + i ),
-                                                       PropName,
-                                                       ( GroupValue == true ) ? Z_COMBINATION_NAME : ( Z_COMBINATION_NAME + ( i * _MaxCombinationListSize ) ),
-                                                       PropDesc,
-                                                       GetCombinationName( i ),
-                                                       ZBProperty::PT_EDIT_MENU,
-                                                       true,
-                                                       ZBStringFormat( ZBStringFormat::General ),
-                                                       NULL,
-                                                       &gCombinationMenu );
+            ZBProperty* pCombination = new ZBProperty(finalPropTitle,
+                                                      (groupValue? ZS_BP_PROP_COMBINATION : (ZS_BP_PROP_COMBINATION + i)),
+                                                      propName,
+                                                      (groupValue ? Z_COMBINATION_NAME : (Z_COMBINATION_NAME + (i * _MaxCombinationListSize))),
+                                                      propDesc,
+                                                      GetCombinationName(i),
+                                                      ZBProperty::PT_EDIT_MENU,
+                                                      true,
+                                                      ZBStringFormat(ZBStringFormat::General),
+                                                      NULL,
+                                                      &gCombinationMenu);
 
-            PropSet.Add( pCombination );
+            propSet.Add(pCombination);
 
-            PropName.LoadString( IDS_Z_COMBINATION_DELIVERABLES_NAME );
-            PropDesc.LoadString( IDS_Z_COMBINATION_DELIVERABLES_DESC );
+            propName.LoadString(IDS_Z_COMBINATION_DELIVERABLES_NAME);
+            propDesc.LoadString(IDS_Z_COMBINATION_DELIVERABLES_DESC);
 
+            // FIXME translate comments
             // Propriété "Livrables" du groupe "Combinaisons x"
-            pCombination = new ZBProperty( FinalPropTitle,
-                                           ( GroupValue == true ) ? ZS_BP_PROP_COMBINATION : ( ZS_BP_PROP_COMBINATION + i ),
-                                           PropName,
-                                           ( GroupValue == true ) ? Z_COMBINATION_DELIVERABLES : ( Z_COMBINATION_DELIVERABLES + ( i * _MaxCombinationListSize ) ),
-                                           PropDesc,
-                                           GetCombinationDeliverables( i ),
-                                           ZBProperty::PT_EDIT_EXTENDED_READONLY );
+            pCombination = new ZBProperty(finalPropTitle,
+                                          (groupValue? ZS_BP_PROP_COMBINATION : (ZS_BP_PROP_COMBINATION + i)),
+                                          propName,
+                                          (groupValue? Z_COMBINATION_DELIVERABLES : (Z_COMBINATION_DELIVERABLES + (i * _MaxCombinationListSize))),
+                                          propDesc,
+                                          GetCombinationDeliverables(i),
+                                          ZBProperty::PT_EDIT_EXTENDED_READONLY);
 
-            PropSet.Add( pCombination );
+            propSet.Add(pCombination);
 
-            PropName.LoadString( IDS_Z_COMBINATION_ACTIVATION_PERC_NAME );
-            PropDesc.LoadString( IDS_Z_COMBINATION_ACTIVATION_PERC_DESC );
-            float MaxPercent = GetMaxActivationPerc( GetCombinationMaster( i ) );
+            propName.LoadString(IDS_Z_COMBINATION_ACTIVATION_PERC_NAME);
+            propDesc.LoadString(IDS_Z_COMBINATION_ACTIVATION_PERC_DESC);
+            
+            const float maxPercent = GetMaxActivationPerc(GetCombinationMaster(i));
 
+            // FIXME translate comments
             // Propriété "Pourcentage" du groupe "Combinaisons x"
-            pCombination = new ZBProperty( FinalPropTitle,
-                                           ( GroupValue == true ) ? ZS_BP_PROP_COMBINATION : ( ZS_BP_PROP_COMBINATION + i ),
-                                           PropName,
-                                           ( GroupValue == true ) ? Z_COMBINATION_ACTIVATION_PERC : ( Z_COMBINATION_ACTIVATION_PERC + ( i * _MaxCombinationListSize ) ),
-                                           PropDesc,
-                                           MaxPercent,
-                                           ZBProperty::PT_EDIT_NUMBER_READONLY,
-                                           true,
-                                           ZBStringFormat( ZBStringFormat::Percentage ) );
+            pCombination = new ZBProperty(finalPropTitle,
+                                          (groupValue? ZS_BP_PROP_COMBINATION : (ZS_BP_PROP_COMBINATION + i)),
+                                          propName,
+                                          (groupValue? Z_COMBINATION_ACTIVATION_PERC : (Z_COMBINATION_ACTIVATION_PERC + (i * _MaxCombinationListSize))),
+                                          propDesc,
+                                          maxPercent,
+                                          ZBProperty::PT_EDIT_NUMBER_READONLY,
+                                          true,
+                                          ZBStringFormat(ZBStringFormat::Percentage));
 
-            PropSet.Add( pCombination );
+            propSet.Add(pCombination);
 
-            PropName.LoadString( IDS_Z_COMBINATION_MASTER_NAME );
-            PropDesc.LoadString( IDS_Z_COMBINATION_MASTER_DESC );
+            propName.LoadString(IDS_Z_COMBINATION_MASTER_NAME);
+            propDesc.LoadString(IDS_Z_COMBINATION_MASTER_DESC);
 
+            // FIXME translate comments
             // Propriété "Maître" du groupe "Combinaisons x"
-            pCombination = new ZBProperty( FinalPropTitle,
-                                           ( GroupValue == true ) ? ZS_BP_PROP_COMBINATION : ( ZS_BP_PROP_COMBINATION + i ),
-                                           PropName,
-                                           ( GroupValue == true ) ? Z_COMBINATION_MASTER : ( Z_COMBINATION_MASTER + ( i * _MaxCombinationListSize ) ),
-                                           PropDesc,
-                                           GetCombinationMaster( i ),
-                                           ZBProperty::PT_EDIT_EXTENDED_READONLY );
+            pCombination = new ZBProperty(finalPropTitle,
+                                          (groupValue ? ZS_BP_PROP_COMBINATION : (ZS_BP_PROP_COMBINATION + i)),
+                                          propName,
+                                          (groupValue ? Z_COMBINATION_MASTER : (Z_COMBINATION_MASTER + (i * _MaxCombinationListSize))),
+                                          propDesc,
+                                          GetCombinationMaster(i),
+                                          ZBProperty::PT_EDIT_EXTENDED_READONLY);
 
-            PropSet.Add( pCombination );
+            propSet.Add(pCombination);
         }
     }
 
-    if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-         dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetIntegrateCostSimulation() )
+    if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
+            dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
     {
-        double dValue = (double)CalculateProcedureActivation();
+        const double dValue = double(CalculateProcedureActivation());
 
+        // FIXME translate comments
         // Propriété "Activation" du groupe "Calculs et prévisions"
-        ZBProperty* pSimProp = new ZBProperty( IDS_ZS_BP_PROP_SIM_PROCEDURE,
-                                               ZS_BP_PROP_SIM_PROCEDURE,
-                                               IDS_Z_SIM_PROCEDURE_ACTIVATION_NAME,
-                                               Z_SIM_PROCEDURE_ACTIVATION,
-                                               IDS_Z_SIM_PROCEDURE_ACTIVATION_DESC,
-                                               dValue,
-                                               ZBProperty::PT_EDIT_NUMBER_READONLY,
-                                               true,
-                                               ZBStringFormat( ZBStringFormat::Accounting, true, 0 ) );
+        ZBProperty* pSimProp = new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCEDURE,
+                                              ZS_BP_PROP_SIM_PROCEDURE,
+                                              IDS_Z_SIM_PROCEDURE_ACTIVATION_NAME,
+                                              Z_SIM_PROCEDURE_ACTIVATION,
+                                              IDS_Z_SIM_PROCEDURE_ACTIVATION_DESC,
+                                              dValue,
+                                              ZBProperty::PT_EDIT_NUMBER_READONLY,
+                                              true,
+                                              ZBStringFormat(ZBStringFormat::Accounting, true, 0));
 
-        PropSet.Add( pSimProp );
+        propSet.Add(pSimProp);
 
+        // FIXME translate comments
         // Propriété "Coût HMO" du groupe "Calculs et prévisions"
-        pSimProp = new ZBProperty( IDS_ZS_BP_PROP_SIM_PROCEDURE,
-                                   ZS_BP_PROP_SIM_PROCEDURE,
-                                   IDS_Z_SIM_PROCEDURE_COST_NAME,
-                                   Z_SIM_PROCEDURE_COST,
-                                   IDS_Z_SIM_PROCEDURE_COST_DESC,
-                                   (double)GetProcedureCost(),
-                                   ZBProperty::PT_EDIT_NUMBER_READONLY,
-                                   true,
-                                   ZBStringFormat( ZBStringFormat::Currency, true, 2, CurrencySymbol ) );
+        pSimProp = new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCEDURE,
+                                  ZS_BP_PROP_SIM_PROCEDURE,
+                                  IDS_Z_SIM_PROCEDURE_COST_NAME,
+                                  Z_SIM_PROCEDURE_COST,
+                                  IDS_Z_SIM_PROCEDURE_COST_DESC,
+                                  double(GetProcedureCost()),
+                                  ZBProperty::PT_EDIT_NUMBER_READONLY,
+                                  true,
+                                  ZBStringFormat( ZBStringFormat::Currency, true, 2, currencySymbol));
 
-        PropSet.Add( pSimProp );
+        propSet.Add(pSimProp);
 
-        if ( NumericValue )
-        {
+        if (numericValue)
+            // FIXME translate comments
             // Propriété "Charge" du groupe "Calculs et prévisions"
-            pSimProp = new ZBProperty( IDS_ZS_BP_PROP_SIM_PROCEDURE,
-                                       ZS_BP_PROP_SIM_PROCEDURE,
-                                       IDS_Z_SIM_PROCEDURE_WORKLOAD_FORECAST_NAME,
-                                       Z_SIM_PROCEDURE_WORKLOAD_FORECAST,
-                                       IDS_Z_SIM_PROCEDURE_WORKLOAD_FORECAST_DESC,
-                                       (double)GetProcedureWorkloadForecast(),
-                                       ZBProperty::PT_EDIT_NUMBER );
-        }
+            pSimProp = new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCEDURE,
+                                      ZS_BP_PROP_SIM_PROCEDURE,
+                                      IDS_Z_SIM_PROCEDURE_WORKLOAD_FORECAST_NAME,
+                                      Z_SIM_PROCEDURE_WORKLOAD_FORECAST,
+                                      IDS_Z_SIM_PROCEDURE_WORKLOAD_FORECAST_DESC,
+                                      double(GetProcedureWorkloadForecast()),
+                                      ZBProperty::PT_EDIT_NUMBER);
         else
-        {
+            // FIXME translate comments
             // Propriété "Charge" du groupe "Calculs et prévisions"
-            pSimProp = new ZBProperty( IDS_ZS_BP_PROP_SIM_PROCEDURE,
-                                       ZS_BP_PROP_SIM_PROCEDURE,
-                                       IDS_Z_SIM_PROCEDURE_WORKLOAD_FORECAST_NAME,
-                                       Z_SIM_PROCEDURE_WORKLOAD_FORECAST,
-                                       IDS_Z_SIM_PROCEDURE_WORKLOAD_FORECAST_DESC,
-                                       ZBDuration( (double)GetProcedureWorkloadForecast(),
-                                                    HourPerDay,
-                                                    DayPerWeek,
-                                                    DayPerMonth,
-                                                    DayPerYear ),
-                                       ZBProperty::PT_EDIT_DURATION_READONLY,
-                                       true,
-                                       ZBStringFormat( ZBStringFormat::Duration7 ) );
-        }
+            pSimProp = new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCEDURE,
+                                      ZS_BP_PROP_SIM_PROCEDURE,
+                                      IDS_Z_SIM_PROCEDURE_WORKLOAD_FORECAST_NAME,
+                                      Z_SIM_PROCEDURE_WORKLOAD_FORECAST,
+                                      IDS_Z_SIM_PROCEDURE_WORKLOAD_FORECAST_DESC,
+                                      ZBDuration(double(GetProcedureWorkloadForecast()),
+                                                 hourPerDay,
+                                                 dayPerWeek,
+                                                 dayPerMonth,
+                                                 dayPerYear),
+                                      ZBProperty::PT_EDIT_DURATION_READONLY,
+                                      true,
+                                      ZBStringFormat(ZBStringFormat::Duration7));
 
-        PropSet.Add( pSimProp );
+        propSet.Add(pSimProp);
 
+        // FIXME translate comments
         // Propriété "Coût" du groupe "Calculs et prévisions"
-        pSimProp = new ZBProperty( IDS_ZS_BP_PROP_SIM_PROCEDURE,
-                                   ZS_BP_PROP_SIM_PROCEDURE,
-                                   IDS_Z_SIM_PROCEDURE_COST_FORECAST_NAME,
-                                   Z_SIM_PROCEDURE_COST_FORECAST,
-                                   IDS_Z_SIM_PROCEDURE_COST_FORECAST_DESC,
-                                   (double)GetProcedureCostForecast(),
-                                   ZBProperty::PT_EDIT_NUMBER_READONLY,
-                                   true,
-                                   ZBStringFormat( ZBStringFormat::Currency, true, 2, CurrencySymbol ) );
+        pSimProp = new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCEDURE,
+                                  ZS_BP_PROP_SIM_PROCEDURE,
+                                  IDS_Z_SIM_PROCEDURE_COST_FORECAST_NAME,
+                                  Z_SIM_PROCEDURE_COST_FORECAST,
+                                  IDS_Z_SIM_PROCEDURE_COST_FORECAST_DESC,
+                                  double(GetProcedureCostForecast()),
+                                  ZBProperty::PT_EDIT_NUMBER_READONLY,
+                                  true,
+                                  ZBStringFormat(ZBStringFormat::Currency, true, 2, currencySymbol));
 
-        PropSet.Add( pSimProp );
+        propSet.Add(pSimProp);
 
-        if ( NumericValue )
-        {
+        if (numericValue)
+            // FIXME translate comments
             // Propriété "Charge / activation" du groupe "Calculs et prévisions"
-            pSimProp = new ZBProperty( IDS_ZS_BP_PROP_SIM_PROCEDURE,
-                                       ZS_BP_PROP_SIM_PROCEDURE,
-                                       IDS_Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV_NAME,
-                                       Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV,
-                                       IDS_Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV_DESC,
-                                       (double)GetProcedureWorkloadPerActivity(),
-                                       ZBProperty::PT_EDIT_NUMBER );
-        }
+            pSimProp = new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCEDURE,
+                                      ZS_BP_PROP_SIM_PROCEDURE,
+                                      IDS_Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV_NAME,
+                                      Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV,
+                                      IDS_Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV_DESC,
+                                      double(GetProcedureWorkloadPerActivity()),
+                                      ZBProperty::PT_EDIT_NUMBER);
         else
-        {
+            // FIXME translate comments
             // Propriété "Charge / activation" du groupe "Calculs et prévisions"
-            pSimProp = new ZBProperty( IDS_ZS_BP_PROP_SIM_PROCEDURE,
-                                       ZS_BP_PROP_SIM_PROCEDURE,
-                                       IDS_Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV_NAME,
-                                       Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV,
-                                       IDS_Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV_DESC,
-                                       ZBDuration( (double)GetProcedureWorkloadPerActivity(),
-                                                    HourPerDay,
-                                                    DayPerWeek,
-                                                    DayPerMonth,
-                                                    DayPerYear ),
-                                       ZBProperty::PT_EDIT_DURATION_READONLY,
-                                       true,
-                                       ZBStringFormat( ZBStringFormat::Duration7 ) );
-        }
+            pSimProp = new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCEDURE,
+                                      ZS_BP_PROP_SIM_PROCEDURE,
+                                      IDS_Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV_NAME,
+                                      Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV,
+                                      IDS_Z_SIM_PROCEDURE_WORKLOAD_P_ACTIV_DESC,
+                                      ZBDuration(double(GetProcedureWorkloadPerActivity()),
+                                                 hourPerDay,
+                                                 dayPerWeek,
+                                                 dayPerMonth,
+                                                 dayPerYear),
+                                      ZBProperty::PT_EDIT_DURATION_READONLY,
+                                      true,
+                                      ZBStringFormat(ZBStringFormat::Duration7));
 
-        PropSet.Add( pSimProp );
+        propSet.Add(pSimProp);
 
+        // FIXME translate comments
         // Propriété "Coût / activation" du groupe "Calculs et prévisions"
-        pSimProp = new ZBProperty( IDS_ZS_BP_PROP_SIM_PROCEDURE,
-                                   ZS_BP_PROP_SIM_PROCEDURE,
-                                   IDS_Z_SIM_PROCEDURE_COST_P_ACTIV_NAME,
-                                   Z_SIM_PROCEDURE_COST_P_ACTIV,
-                                   IDS_Z_SIM_PROCEDURE_COST_P_ACTIV_DESC,
-                                   GetProcedureCostPerActivity(),
-                                   ZBProperty::PT_EDIT_NUMBER_READONLY,
-                                   true,
-                                   ZBStringFormat( ZBStringFormat::Currency, true, 2, CurrencySymbol ) );
+        pSimProp = new ZBProperty(IDS_ZS_BP_PROP_SIM_PROCEDURE,
+                                  ZS_BP_PROP_SIM_PROCEDURE,
+                                  IDS_Z_SIM_PROCEDURE_COST_P_ACTIV_NAME,
+                                  Z_SIM_PROCEDURE_COST_P_ACTIV,
+                                  IDS_Z_SIM_PROCEDURE_COST_P_ACTIV_DESC,
+                                  GetProcedureCostPerActivity(),
+                                  ZBProperty::PT_EDIT_NUMBER_READONLY,
+                                  true,
+                                  ZBStringFormat(ZBStringFormat::Currency, true, 2, currencySymbol));
 
-        PropSet.Add( pSimProp );
+        propSet.Add(pSimProp);
     }
 
     return true;
 }
-
+//---------------------------------------------------------------------------
 bool ZBBPProcedureSymbol::SaveProperties( ZBPropertySet& PropSet )
 {
     if ( !ZBSymbol::SaveProperties( PropSet ) )

@@ -40,34 +40,41 @@ BOOL    ZBEventQueueManager::DispatchToEventQueue( ZBEventActivity& EventActivit
     m_EventActivityFile.ExportActivityToFile( Filename, &EventActivity );
     return TRUE;
 }
-
-CString    ZBEventQueueManager::BuildActivityEventFilename( ZBEventActivity& EventActivity )
+//---------------------------------------------------------------------------
+CString ZBEventQueueManager::BuildActivityEventFilename(ZBEventActivity& EventActivity)
 {
-    CString    File = m_Directory + "\\" + EventActivity.GetFilename() + EventActivity.GetFileExtension();
+    CString file  = m_Directory + "\\" + EventActivity.GetFilename() + EventActivity.GetFileExtension();
+    int     index = 0;
+
     for (int i = 0; i < 20; ++i)
     {
-        // Check if the file exists
+        index = i;
+
         CFileStatus status;
-        if (CFile::GetStatus( File, status ))
+
+        // check if the file exists
+        if (CFile::GetStatus(file, status))
         {
             TRACE("SLEEP IN DISPATCH TO EVENT QUEUE");
             ::Sleep(100);
             continue;
         }
-        else
-            break;
+
+        break;
     }
-    if (i < 20)
-        return File;
-    char FileBuffer[MAX_PATH];
-    // If the filename already exists, choose another name
-    GetTempFileName( m_Directory,    // pointer to directory name for temporary file
-      "Exp",                        // pointer to file name prefix
-      0,                            // number used to create temporary file name
-      FileBuffer);                    // pointer to buffer that receives the new 
-                                    // file name
+
+    if (index < 20)
+        return file;
+
+    char fileBuffer[MAX_PATH];
+
+    // if the filename already exists, choose another name
+    ::GetTempFileName(m_Directory, // pointer to directory name for temporary file
+                      "Exp",       // pointer to file name prefix
+                      0,           // number used to create temporary file name
+                      fileBuffer); // pointer to buffer that receives the new file name
     TRACE("TEMPORARY FILE CREATED");
-    return FileBuffer;
+    
+    return fileBuffer;
 }
-
-
+//---------------------------------------------------------------------------

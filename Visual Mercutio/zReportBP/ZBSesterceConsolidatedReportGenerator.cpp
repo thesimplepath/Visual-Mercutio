@@ -599,14 +599,12 @@ void ZBSesterceConsolidatedReportGenerator::FillGridUnitGroup( ZBUserGroupEntity
                         Index,
                         ostream );
 
-    for ( i = 1; i < m_ModelArray.GetSize() && i < m_NavigationTotalArray.GetSize(); ++i )
-    {
-        FillProcessFigures( ( (ZDProcessGraphModelMdl*)m_ModelArray.GetAt( i ) ),
-                            ( (ZUUserGroupCalculateTotals*)m_NavigationTotalArray.GetAt( i ) ),
-                            pGroup,
-                            Index,
-                            ostream );
-    }
+    for (int i = 1; i < m_ModelArray.GetSize() && i < m_NavigationTotalArray.GetSize(); ++i)
+        FillProcessFigures(((ZDProcessGraphModelMdl*)m_ModelArray.GetAt(i)),
+                           ((ZUUserGroupCalculateTotals*)m_NavigationTotalArray.GetAt(i)),
+                           pGroup,
+                           Index,
+                           ostream);
 
     if ( pGroup->ContainEntity() )
     {

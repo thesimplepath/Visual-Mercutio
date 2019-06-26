@@ -233,9 +233,9 @@ bool ZUGridMercutioRepProcedureNavigation::OnProcedureSymbol( ZBBPProcedureSymbo
     *m_postream << _T( "\t\t" );
 
     // Build the next columns with the combination name, maximum column is limited to 4
-    size_t Count = min( pSymbol->GetCombinationCount(), 4 );
+    std::size_t Count = min( pSymbol->GetCombinationCount(), 4 );
 
-    for ( size_t i = 0; i < Count; ++i )
+    for (std::size_t i = 0; i < Count; ++i)
     {
         *m_postream << pSymbol->GetCombinationName( i );
         *m_postream << m_LightGrayStyle;
@@ -311,7 +311,7 @@ bool ZUGridMercutioRepProcedureNavigation::OnProcedureSymbol( ZBBPProcedureSymbo
     // Build the next lines with the rules themselves, at least one empty line
     Count = max( pSymbol->GetRuleCount(), 1 );
 
-    for ( i = 0; i < Count; ++i )
+    for (std::size_t i = 0; i < Count; ++i)
     {
         *m_postream << _T( "\n" );
         *m_postream << m_BlueStyle;
@@ -336,7 +336,7 @@ bool ZUGridMercutioRepProcedureNavigation::OnProcedureSymbol( ZBBPProcedureSymbo
     // Build the next lines with the tasks themselves, at least one empty line
     Count = max( pSymbol->GetTaskCount(), 1 );
 
-    for ( i = 0; i < Count; ++i )
+    for (std::size_t i = 0; i < Count; ++i)
     {
         *m_postream << _T( "\n" );
         *m_postream << m_BlueStyle;
@@ -361,7 +361,7 @@ bool ZUGridMercutioRepProcedureNavigation::OnProcedureSymbol( ZBBPProcedureSymbo
     // Build the next lines with the decisions themselves, at least one empty line
     Count = max( pSymbol->GetDecisionCount(), 1 );
 
-    for ( i = 0; i < Count; ++i )
+    for (std::size_t i = 0; i < Count; ++i)
     {
         *m_postream << _T( "\n" );
         *m_postream << m_BlueStyle;
@@ -386,7 +386,7 @@ bool ZUGridMercutioRepProcedureNavigation::OnProcedureSymbol( ZBBPProcedureSymbo
     // Build the next lines with the forms, document and other
     Count = pSymbol->GetExtFileCount();
 
-    for ( i = 0; i < Count; ++i )
+    for (std::size_t i = 0; i < Count; ++i)
     {
         *m_postream << _T( "\n" );
         *m_postream << m_BlueStyle;
@@ -411,7 +411,7 @@ bool ZUGridMercutioRepProcedureNavigation::OnProcedureSymbol( ZBBPProcedureSymbo
     // Build the next lines with the forms, document and other
     Count = pSymbol->GetExtAppCount();
 
-    for ( i = 0; i < Count; ++i )
+    for (std::size_t i = 0; i < Count; ++i)
     {
         *m_postream << _T( "\n" );
         *m_postream << m_BlueStyle;

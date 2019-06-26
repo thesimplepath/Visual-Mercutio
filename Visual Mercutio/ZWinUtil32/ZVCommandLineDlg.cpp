@@ -113,8 +113,7 @@ void ZVCommandLineDlg::DoDataExchange(CDataExchange* pDX)
     DDX_Text(pDX, IDC_CMD_JOBNAME, m_JobName);
     //}}AFX_DATA_MAP
 }
-
-
+//---------------------------------------------------------------------------
 BEGIN_MESSAGE_MAP(ZVCommandLineDlg, CDialog)
     //{{AFX_MSG_MAP(ZVCommandLineDlg)
     ON_COMMAND(ID_FILE_ARG, OnFileArg)
@@ -124,41 +123,41 @@ BEGIN_MESSAGE_MAP(ZVCommandLineDlg, CDialog)
     ON_EN_CHANGE(IDC_CMD_APPLICATION, OnChangeApplication)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// ZVCommandLineDlg message handlers
-
-BOOL ZVCommandLineDlg::OnInitDialog() 
+//---------------------------------------------------------------------------
+BOOL ZVCommandLineDlg::OnInitDialog()
 {
     CDialog::OnInitDialog();
-    
-    m_Application.SetWindowText( m_CommandLine );
-    m_StartupDirectory.SetWindowText( m_StartupDir );
-    m_Arguments.SetWindowText( m_Parameters );
 
-    // Fill the priority list box
-    size_t Count = (ZAGlobal::GetArrayJobPriority()) ? ZAGlobal::GetArrayJobPriority()->GetSize() : 0;
-    for (size_t i = 0; i < Count; ++i)
-        m_PriorityList.AddString( ZAGlobal::GetArrayJobPriority()->GetAt(i) );
-    // Fill the window mode list box
-    Count = (ZAGlobal::GetArrayWindowMode()) ? ZAGlobal::GetArrayWindowMode()->GetSize() : 0;
-    for (i = 0; i < Count; ++i)
-        m_WindowModeList.AddString( ZAGlobal::GetArrayWindowMode()->GetAt(i) );
+    m_Application.SetWindowText(m_CommandLine);
+    m_StartupDirectory.SetWindowText(m_StartupDir);
+    m_Arguments.SetWindowText(m_Parameters);
 
-    // Sets the right priority job
-    m_PriorityList.SelectString( -1, ZAGlobal::GetJobPriorityString( m_Priority ) );
+    std::size_t count = (ZAGlobal::GetArrayJobPriority()) ? ZAGlobal::GetArrayJobPriority()->GetSize() : 0;
 
-    // Sets the right window mode
-    m_WindowModeList.SelectString( -1, ZAGlobal::GetWindowModeString( m_WindowMode ) );
+    // fill the priority list box
+    for (std::size_t i = 0; i < count; ++i)
+        m_PriorityList.AddString(ZAGlobal::GetArrayJobPriority()->GetAt(i));
+
+    count = (ZAGlobal::GetArrayWindowMode()) ? ZAGlobal::GetArrayWindowMode()->GetSize() : 0;
+
+    // fill the window mode list box
+    for (std::size_t i = 0; i < count; ++i)
+        m_WindowModeList.AddString(ZAGlobal::GetArrayWindowMode()->GetAt(i));
+
+    // set the right job priority
+    m_PriorityList.SelectString(-1, ZAGlobal::GetJobPriorityString(m_Priority));
+
+    // set the right window mode
+    m_WindowModeList.SelectString(-1, ZAGlobal::GetWindowModeString(m_WindowMode));
         
-    UpdateData( FALSE );
+    UpdateData(FALSE);
     CheckControlState();
-    
-    return TRUE;  // return TRUE unless you set the focus to a control
-                  // EXCEPTION: OCX Property Pages should return FALSE
+
+    // return TRUE unless you set the focus to a control
+    // EXCEPTION: OCX Property Pages should return FALSE
+    return TRUE;
 }
-
-
+//---------------------------------------------------------------------------
 void ZVCommandLineDlg::OnFileArg()
 {
     CString title;

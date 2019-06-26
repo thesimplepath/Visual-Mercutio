@@ -1217,106 +1217,89 @@ void ZCPropertyListCtrl::RedrawItem( int nItem )
         ReleaseDC( pDC );
     }
 }
-
+//---------------------------------------------------------------------------
 void ZCPropertyListCtrl::CheckState()
 {
-    if ( !IsListInPhase() )
-    {
-        Refresh( false );
-    }
+    if (!IsListInPhase())
+        Refresh(false);
 }
-
+//---------------------------------------------------------------------------
 bool ZCPropertyListCtrl::IsListInPhase()
 {
-    int nItem    = 0;
-    int nCount    = GetCount();
+          int nItem  = 0;
+    const int nCount = GetCount();
 
-    // Run trough the item list and check simulatenously the property item manager
-    // Run through all items
-    ZBItemCategoryIterator i( &m_pPropertyItemManager->GetItemCategorySet() );
+    // run trough the item list and check simulatenously the property item manager
+    // run through all items
+    ZBItemCategoryIterator  i(&m_pPropertyItemManager->GetItemCategorySet());
     ZBPropertyItemCategory* pPropertyItemTab = i.GetFirst(); 
+    int                     index = 0;
 
-    for ( int nIndex = 0; ( nIndex < nCount ) && ( pPropertyItemTab != NULL ); ++nIndex, pPropertyItemTab = i.GetNext() )
+    for (int nIndex = 0; (nIndex < nCount) && pPropertyItemTab; ++nIndex, pPropertyItemTab = i.GetNext())
     {
-        // Retreive the item from the list control
-        ZBPropertyItem* pItem = GetPropertyItem( nIndex );
+        index = nIndex;
 
-        while ( pPropertyItemTab && !pPropertyItemTab->GetEnabled() )
-        {
+        // retreive the item from the list control
+        ZBPropertyItem* pItem = GetPropertyItem(nIndex);
+
+        while (pPropertyItemTab && !pPropertyItemTab->GetEnabled())
             pPropertyItemTab = i.GetNext();
-        }
 
-        // No item, no category, next
-        if ( !pItem && !pPropertyItemTab )
-        {
+        // no item, no category, next
+        if (!pItem && !pPropertyItemTab)
             continue;
-        }
 
-        // If no item only, return not in phase
-        if ( !pItem )
-        {
+        // if no item only, return not in phase
+        if (!pItem)
             return false;
-        }
 
-        // If no category only, return not in phase
-        if ( !pPropertyItemTab )
-        {
+        // if no category only, return not in phase
+        if (!pPropertyItemTab)
             return false;
-        }
 
-        // Check if the item is a category and the same
-        // if not, return not in phase
-        if ( !ISA( pItem, ZBPropertyItemCategory ) || pItem != pPropertyItemTab )
-        {
+        // check if the item is a category and the same, if not, return not in phase
+        if (!ISA(pItem, ZBPropertyItemCategory) || pItem != pPropertyItemTab)
             return false;
-        }
 
-        // Now process the category.
+        // now process the category.
         // First, check if children are visible
         // if so, then check all childrens
-        if ( pPropertyItemTab->GetChildrenVisible() )
+        if (pPropertyItemTab->GetChildrenVisible())
         {
-            // Now run through category's elements
-            ZBPropertyItemIterator j( &pPropertyItemTab->GetPropertyItemSet() );
+            // now run through category's elements
+            ZBPropertyItemIterator j(&pPropertyItemTab->GetPropertyItemSet());
 
-            for ( ZBPropertyItem* pChildPropertyCatItem = j.GetFirst(); pChildPropertyCatItem; pChildPropertyCatItem = j.GetNext() )
+            for (ZBPropertyItem* pChildPropertyCatItem = j.GetFirst(); pChildPropertyCatItem; pChildPropertyCatItem = j.GetNext())
             {
-                // Retreive the immediate following item from the list control
-                pItem = GetPropertyItem( ++nIndex );
+                // retreive the immediate following item from the list control
+                pItem = GetPropertyItem(++nIndex);
 
-                while ( pChildPropertyCatItem && !pChildPropertyCatItem->GetEnabled() )
-                {
+                while (pChildPropertyCatItem && !pChildPropertyCatItem->GetEnabled())
                     pChildPropertyCatItem = j.GetNext();
-                }
 
-                // If no child item category only, break the loop
-                if ( !pChildPropertyCatItem )
+                // if no child item category only, break the loop
+                if (!pChildPropertyCatItem)
                 {
                     --nIndex; // Since we reached the end of elements and all were not enable
                     break;
                 }
 
-                // Check if the same item
-                // if not, return not in phase
-                if ( pItem != pChildPropertyCatItem )
-                {
+                // check if the same item, if not, return not in phase
+                if (pItem != pChildPropertyCatItem)
                     return false;
-                }
-            } // End while for posChild
-        } // End of children visible
+            }
+        }
     }
 
     // Check if at the loop end, both iterators are at the end,
     // if not, return not in phase
-    if ( ( nIndex < nCount ) || ( pPropertyItemTab != NULL ) )
-    {
+    if ((index < nCount) || pPropertyItemTab)
         return false;
-    }
 
     // In phase
     return true;
 }
-
+//---------------------------------------------------------------------------
 void ZCPropertyListCtrl::OnMouseMove( UINT nFlags, CPoint point )
 {
     // Tests if we are in splitter moving mode

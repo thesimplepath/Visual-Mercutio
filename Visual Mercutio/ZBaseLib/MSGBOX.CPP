@@ -209,28 +209,21 @@ void MsgBox::OnCancelBtn()
 
     CDialog::EndDialog( IDCANCEL );
 }
-
-/////////////////////////////////////////////////////////////////////////////
-// MsgBox privates functions
-
+//---------------------------------------------------------------------------
 // JMR-MODIF - Le 6 novembre 2006 - Cette fonction nettoie les ressources utilisées par le dialog box.
 void MsgBox::ReleaseDialog()
 {
-    // Remove the timer
-    KillTimer( m_uTimerID );
+    // remove the timer
+    KillTimer(m_uTimerID);
     m_uTimerID = 0;
 
-    for( int i = 0; i < NUMBER_OF_ICON ;i++ )
-    {
-        DestroyIcon( m_pIcon[i] );
-    }
+    for (int i = 0; i < NUMBER_OF_ICON ; ++i)
+        DestroyIcon(m_pIcon[i]);
 
-    for( i = 0; i < ANIMATION2_NUMBER_OF_ICON ;i++ )
-    {
-        DestroyIcon( m_pIconAnimation2[i] );
-    }
+    for (int i = 0; i < ANIMATION2_NUMBER_OF_ICON; ++i)
+        DestroyIcon(m_pIconAnimation2[i]);
 }
-
+//---------------------------------------------------------------------------
 void MsgBox::AdjustSize()
 {
     // Device context for painting

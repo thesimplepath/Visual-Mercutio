@@ -20,24 +20,19 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
-// JMR-MODIF - Le 9 février 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
-
+//---------------------------------------------------------------------------
+// ZUODSymbolManipulator
+//---------------------------------------------------------------------------
 ZUODSymbolManipulator::ZUODSymbolManipulator()
-{
-}
-
+{}
+//---------------------------------------------------------------------------
 ZUODSymbolManipulator::~ZUODSymbolManipulator()
-{
-}
-
-ZBSymbolEdit* ZUODSymbolManipulator::CreateEditText( CODComponent*    pSymbol,
-                                                     const CString    AreaName,
-                                                     const CString    EditName,
-                                                     CODComponent*    pParent        /*= NULL*/ )
+{}
+//---------------------------------------------------------------------------
+ZBSymbolEdit* ZUODSymbolManipulator::CreateEditText( CODComponent*  pSymbol,
+                                                     const CString& AreaName,
+                                                     const CString& EditName,
+                                                     CODComponent*  pParent)
 {
     CODComponent* pAreaComp = ZUODSymbolManipulator::FindSymbol( pSymbol, AreaName );
 
@@ -300,55 +295,51 @@ BOOL ZUODSymbolManipulator::SetSymbolVisible( CODComponent* pSymbol, const CStri
     // If does not exist, then return false as an error
     return FALSE;
 }
-
-BOOL ZUODSymbolManipulator::RemoveSymbol( CODComponent* pSymbol, const CString SymbolName )
+//---------------------------------------------------------------------------
+BOOL ZUODSymbolManipulator::RemoveSymbol(CODComponent* pSymbol, const CString& SymbolName)
 {
-    CODComponent* pComp = ZUODSymbolManipulator::FindSymbol( pSymbol, SymbolName );
+    CODComponent* pComp = ZUODSymbolManipulator::FindSymbol(pSymbol, SymbolName);
 
-    if ( pComp )
-    {
-        return ZUODSymbolManipulator::RemoveSymbol( pSymbol, pComp );
-    }
+    if (pComp)
+        return ZUODSymbolManipulator::RemoveSymbol(pSymbol, pComp);
 
     return FALSE;
 }
-
-BOOL ZUODSymbolManipulator::RemoveSymbol( CODComponent* pSymbol, CODComponent* pComponent )
+//---------------------------------------------------------------------------
+BOOL ZUODSymbolManipulator::RemoveSymbol(CODComponent* pSymbol, CODComponent* pComponent)
 {
     // Try to find the right symbol
     CODComponentSet* pSet = pSymbol->GetComponents();
 
-    for ( int i = 0; i < pSet->GetSize(); ++i )
+    for (int i = 0; i < pSet->GetSize(); ++i)
     {
-        CODComponent* pCompLeft = pSet->GetAt( i );
+        CODComponent* pCompLeft = pSet->GetAt(i);
 
-        // Is it the right component
-        if ( pCompLeft == pComponent )
+        // is it the right component
+        if (pCompLeft == pComponent)
         {
-            pSet->RemoveAt( i );
+            pSet->RemoveAt(i);
             return TRUE;
         }
 
-        // Try to locate the components in its childs
-        if ( pCompLeft->RemoveChild( pComponent ) )
-        {
+        // try to locate the components in its childs
+        if (pCompLeft->RemoveChild(pComponent))
             return TRUE;
-        }
     }
 
-    // If not found, try to locate a label
-    if ( pSymbol && ISA( pSymbol, CODSymbolComponent ) )
+    // if not found, try to locate a label
+    if (pSymbol && ISA(pSymbol, CODSymbolComponent))
     {
         CODLabelComponent* pLabel;
 
-        for ( i = 0; i < dynamic_cast<CODSymbolComponent*>( pSymbol )->GetNumLabels(); ++i )
+        for (int i = 0; i < dynamic_cast<CODSymbolComponent*>(pSymbol)->GetNumLabels(); ++i)
         {
-            pLabel = dynamic_cast<CODSymbolComponent*>( pSymbol )->GetLabel( i );
+            pLabel = dynamic_cast<CODSymbolComponent*>(pSymbol)->GetLabel(i);
 
-            // Try to locate the components in its childs
-            if ( pLabel == pComponent )
+            // try to locate the components in its childs
+            if (pLabel == pComponent)
             {
-                dynamic_cast<CODSymbolComponent*>( pSymbol )->RemoveLabel( pLabel );
+                dynamic_cast<CODSymbolComponent*>(pSymbol)->RemoveLabel(pLabel);
                 return TRUE;
             }
         }
@@ -356,158 +347,137 @@ BOOL ZUODSymbolManipulator::RemoveSymbol( CODComponent* pSymbol, CODComponent* p
 
     return FALSE;
 }
-
-CODComponent* ZUODSymbolManipulator::FindLabel( CODSymbolComponent* pSymbol, const CString SymbolName )
+//---------------------------------------------------------------------------
+CODComponent* ZUODSymbolManipulator::FindLabel(CODSymbolComponent* pSymbol, const CString SymbolName)
 {
     CODLabelComponent* pLabel;
 
-    for ( int i = 0; i < pSymbol->GetNumLabels(); ++i )
+    for (int i = 0; i < pSymbol->GetNumLabels(); ++i)
     {
-        pLabel = pSymbol->GetLabel( i );
+        pLabel = pSymbol->GetLabel(i);
 
         if ( pLabel->GetName() == SymbolName )
-        {
             return pLabel;
-        }
     }
 
     return NULL;
 }
-
-CODComponent* ZUODSymbolManipulator::FindSymbol( CODComponent* pSymbol, const CString SymbolName )
+//---------------------------------------------------------------------------
+CODComponent* ZUODSymbolManipulator::FindSymbol(CODComponent* pSymbol, const CString symbolName)
 {
-    // Try to find the right label
+    // try to find the right label
     CODComponentSet* pSet = pSymbol->GetComponents();
 
-    for ( int i = 0; i < pSet->GetSize(); ++i )
+    for (int i = 0; i < pSet->GetSize(); ++i)
     {
-        CODComponent* pComponent = pSet->GetAt( i );
+        CODComponent* pComponent = pSet->GetAt(i);
 
-        // Is it the right component
-        if ( pComponent->GetName() == SymbolName )
-        {
+        // is it the right component?
+        if (pComponent->GetName() == symbolName)
             return pComponent;
-        }
 
-        // Try to locate the symbol in the childs of components
-        CODComponent* pInChildComponent = ZUODSymbolManipulator::FindSymbolInChild( pComponent, SymbolName );
+        // try to locate the symbol in the childs of components
+        CODComponent* pInChildComponent = ZUODSymbolManipulator::FindSymbolInChild(pComponent, symbolName);
 
-        if ( pInChildComponent )
-        {
+        if (pInChildComponent)
             return pInChildComponent;
-        }
     }
 
-    // If not found, try to locate the symbol in labels
-    if ( ISA( pSymbol, CODSymbolComponent ) )
+    // if not found, try to locate the symbol in labels
+    if (ISA(pSymbol, CODSymbolComponent))
     {
         CODLabelComponent* pLabel;
 
-        for ( i = 0; i < dynamic_cast<CODSymbolComponent*>( pSymbol )->GetNumLabels(); ++i )
+        for (int i = 0; i < dynamic_cast<CODSymbolComponent*>(pSymbol)->GetNumLabels(); ++i)
         {
-            pLabel = dynamic_cast<CODSymbolComponent*>( pSymbol )->GetLabel( i );
+            pLabel = dynamic_cast<CODSymbolComponent*>(pSymbol)->GetLabel(i);
 
-            if ( pLabel->GetName() == SymbolName )
-            {
+            if (pLabel->GetName() == symbolName)
                 return pLabel;
-            }
 
             // ****************************************************************************************
             // JMR-MODIF - Le 17 mars 2006 - Permets la compatibilité des anciens modèles de documents.
             // Teste et convertit les composants de type Label utilisant un faux nom de composant.
-            CString m_ComponentType = _T( "" );
+            CString componentType = _T("");
 
-            pLabel->GetValue( OD_PROP_TYPE, m_ComponentType );
+            pLabel->GetValue(OD_PROP_TYPE, componentType);
 
-            if ( SymbolName == SymbolNameComponentControlLabel && m_ComponentType == _T( "Label" ) )
+            if (symbolName == SymbolNameComponentControlLabel && componentType == _T("Label"))
             {
-                pLabel->SetName( SymbolNameComponentControlLabel );
+                pLabel->SetName(SymbolNameComponentControlLabel);
                 return pLabel;
             }
             // ****************************************************************************************
 
-            CODComponent* pInChildComponent = ZUODSymbolManipulator::FindSymbolInChild( pLabel, SymbolName );
+            CODComponent* pInChildComponent = ZUODSymbolManipulator::FindSymbolInChild(pLabel, symbolName);
 
-            if ( pInChildComponent )
-            {
+            if (pInChildComponent)
                 return pInChildComponent;
-            }
         }
     }
 
     return NULL;
 }
-
+//---------------------------------------------------------------------------
 // Create the symbol name label
-CODComponent* ZUODSymbolManipulator::FindSymbolInChild( CODComponent* pSymbol, const CString SymbolName )
+CODComponent* ZUODSymbolManipulator::FindSymbolInChild(CODComponent* pSymbol, const CString SymbolName)
 {
-    // Try to find the right symbol in childs
-    int ChildCount = pSymbol->GetChildCount();
+    // try to find the right symbol in childs
+    const int childCount = pSymbol->GetChildCount();
 
-    for ( int i = 0; i < ChildCount; ++i )
+    for (int i = 0; i < childCount; ++i)
     {
-        CODComponent* pComponent = pSymbol->GetChild( i );
+        CODComponent* pComponent = pSymbol->GetChild(i);
 
-        if ( pComponent->GetName() == SymbolName )
-        {
+        if (pComponent->GetName() == SymbolName)
             return pComponent;
-        }
     }
 
     return NULL;
 }
-
-void ZUODSymbolManipulator::MatchSymbolAreaName( CODComponent* pSymbol, CODComponent* pSrcSymbol )
+//---------------------------------------------------------------------------
+void ZUODSymbolManipulator::MatchSymbolAreaName(CODComponent* pSymbol, CODComponent* pSrcSymbol)
 {
-    // Assigns the component name
-    CODComponentSet* pSet        = pSymbol->GetComponents();
-    CODComponentSet* pSrcSet    = pSrcSymbol->GetComponents();
+    // assign the component name
+    CODComponentSet* pSet    = pSymbol->GetComponents();
+    CODComponentSet* pSrcSet = pSrcSymbol->GetComponents();
 
-    for ( int i = 0; i < pSet->GetSize(); ++i )
+    for (int i = 0; i < pSet->GetSize(); ++i)
     {
-        CODComponent* pComponent    = pSet->GetAt( i );
-        CODComponent* pSrcComponent    = pSrcSet->GetAt( i );
+        CODComponent* pComponent    = pSet->GetAt(i);
+        CODComponent* pSrcComponent = pSrcSet->GetAt(i);
 
-        if ( !pComponent || !pSrcComponent )
-        {
+        if (!pComponent || !pSrcComponent)
             continue;
-        }
 
-        // If we do have specific name from the source
-        if ( pSrcComponent->GetName().Left( 3 ) == _T( "ZC_" ) )
-        {
-            // Assign the source name to the destination component
-            pComponent->SetName( pSrcComponent->GetName() );
-        }
+        // if we do have specific name from the source
+        if (pSrcComponent->GetName().Left(3) == _T("ZC_"))
+            // assign the source name to the destination component
+            pComponent->SetName(pSrcComponent->GetName());
 
-        // Match symbol name also in child of components
-        ZUODSymbolManipulator::MatchSymbolAreaNameInChild( pComponent, pSrcComponent );
+        // match symbol name also in child of components
+        ZUODSymbolManipulator::MatchSymbolAreaNameInChild(pComponent, pSrcComponent);
     }
-    // Match for labels
-    if ( ISA( pSymbol, CODSymbolComponent ) )
-    {
-        for ( i = 0; i < dynamic_cast<CODSymbolComponent*>( pSymbol )->GetNumLabels(); ++i )
-        {
-            CODLabelComponent* pLabel        = dynamic_cast<CODSymbolComponent*>( pSymbol )->GetLabel( i );
-            CODLabelComponent* pSrcLabel    = dynamic_cast<CODSymbolComponent*>( pSrcSymbol )->GetLabel( i );
 
-            if ( !pLabel || !pSrcLabel )
-            {
+    // match for labels
+    if (ISA(pSymbol, CODSymbolComponent))
+        for (int i = 0; i < dynamic_cast<CODSymbolComponent*>(pSymbol)->GetNumLabels(); ++i)
+        {
+            CODLabelComponent* pLabel    = dynamic_cast<CODSymbolComponent*>(pSymbol)->GetLabel(i);
+            CODLabelComponent* pSrcLabel = dynamic_cast<CODSymbolComponent*>(pSrcSymbol)->GetLabel(i);
+
+            if (!pLabel || !pSrcLabel)
                 continue;
-            }
 
-            // If we do have specific name from the source
-            if ( pSrcLabel->GetName().Left( 3 ) == _T( "ZC_" ) )
-            {
-                // Assign the source name to the destination component
-                pLabel->SetName( pSrcLabel->GetName() );
-            }
+            // if we do have specific name from the source
+            if (pSrcLabel->GetName().Left(3) == _T("ZC_"))
+                // assign the source name to the destination component
+                pLabel->SetName(pSrcLabel->GetName());
 
-            ZUODSymbolManipulator::MatchSymbolAreaNameInChild( pLabel, pSrcLabel );
+            ZUODSymbolManipulator::MatchSymbolAreaNameInChild(pLabel, pSrcLabel);
         }
-    }
 }
-
+//---------------------------------------------------------------------------
 // Create the symbol name label
 void ZUODSymbolManipulator::MatchSymbolAreaNameInChild( CODComponent* pSymbol, CODComponent* pSrcSymbol )
 {

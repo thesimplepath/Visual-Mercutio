@@ -1750,121 +1750,102 @@ bool ZBPropertyItemManager::OnDropInternalPropertyItem( ZBPropertyItem* pSrcProp
 
     return false;
 }
-
-bool ZBPropertyItemManager::OnDropCategory( ZBPropertyItemCategory* pSrcCategoryItem,
-                                            ZBPropertyItem*            pDstPropertyItem,
-                                            bool                    Top2Down )
+//---------------------------------------------------------------------------
+bool ZBPropertyItemManager::OnDropCategory(ZBPropertyItemCategory* pSrcCategoryItem,
+                                           ZBPropertyItem*         pDstPropertyItem,
+                                           bool                    top2Down)
 {
-    if ( !pDstPropertyItem || !pSrcCategoryItem )
-    {
+    if (!pDstPropertyItem || !pSrcCategoryItem)
         return false;
-    }
 
     ZBPropertyItemCategory* pDstCategoryItem;
 
-    // If the destination is a category
-    if ( ISA( pDstPropertyItem, ZBPropertyItemCategory ) )
-    {
+    // if the destination is a category
+    if (ISA(pDstPropertyItem, ZBPropertyItemCategory))
         pDstCategoryItem = dynamic_cast<ZBPropertyItemCategory*>(pDstPropertyItem);
-    }
     else
-    {
-        // Locate the category of the property item
-        pDstCategoryItem = GetTab( pDstPropertyItem );
-    }
+        // locate the category of the property item
+        pDstCategoryItem = GetTab(pDstPropertyItem);
 
-    if ( !pDstCategoryItem )
-    {
+    if (!pDstCategoryItem)
         return false;
-    }
 
-    // Now change the category order
-    if ( pSrcCategoryItem->GetCategoryOrder() == -1 ||
-         pDstCategoryItem->GetCategoryOrder() == -1 )
-    {
+    // now change the category order
+    if (pSrcCategoryItem->GetCategoryOrder() == -1 || pDstCategoryItem->GetCategoryOrder() == -1)
         SetInitialCategoryOrder();
-    }
 
-    // Swap the two category order
-    int SrcCategoryOrder = pSrcCategoryItem->GetCategoryOrder();
-    int DstCategoryOrder = pDstCategoryItem->GetCategoryOrder();
+    // swap the two category order
+    int  srcCategoryOrder = pSrcCategoryItem->GetCategoryOrder();
+    int  dstCategoryOrder = pDstCategoryItem->GetCategoryOrder();
+    bool foundSrc         = false;
 
-    bool FoundSrc = false;
+    ZBItemCategoryIterator  i(&m_PropertyItemTabSet);
+    ZBPropertyItemCategory* pItemCat;
 
-    ZBItemCategoryIterator i( &m_PropertyItemTabSet );
-
-    for ( ZBPropertyItemCategory* pItemCat = (Top2Down) ? i.GetFirst() : i.GetLast(); pItemCat; pItemCat = (Top2Down) ? i.GetNext() : i.GetPrev() )
-    {
-        // If we found the right source property,
-        // break the loop and set the flag
-        if ( pItemCat == pSrcCategoryItem )
+    for (pItemCat = (top2Down ? i.GetFirst() : i.GetLast()); pItemCat; pItemCat = (top2Down ? i.GetNext() : i.GetPrev()))
+        // if we found the right source property, break the loop and set the flag
+        if (pItemCat == pSrcCategoryItem)
         {
-            FoundSrc = true;
-            break;
-        }
-    }
-
-    // If the source hasn't been reached, then error
-    if ( !FoundSrc )
-    {
-        return false;
-    }
-
-    // Now, from the source till the destination, copy the element to the previous
-    bool FoundDst = false;
-
-    int PreviousCategoryOrder = pItemCat->GetCategoryOrder();
-
-    for ( pItemCat = (Top2Down) ? i.GetNext() : i.GetPrev(); pItemCat; pItemCat = (Top2Down) ? i.GetNext() : i.GetPrev() )
-    {
-#ifdef _DEBUG
-        CString s;
-        s.Format( _T( " Before Item = %s Order = %d   ---  " ),
-                  (const char*)pItemCat->GetName(), pItemCat->GetCategoryOrder() );
-
-        TRACE( s );
-#endif
-
-        int Order = PreviousCategoryOrder;
-
-        // Save the previous category order
-        PreviousCategoryOrder = pItemCat->GetCategoryOrder();
-
-        // Copy the current category order value to the previous element
-        pItemCat->SetCategoryOrder( Order );
-
-        if ( pItemCat == pDstCategoryItem )
-        {
-            FoundDst = true;
+            foundSrc = true;
             break;
         }
 
-#ifdef _DEBUG
-        s.Format( _T( " After Item = %s Order = %d\n " ),
-                  (const char*)pItemCat->GetName(), pItemCat->GetCategoryOrder() );
-
-        TRACE( s );
-#endif
-    }
-
-    // If the destination hasn't been reached, then error
-    if ( !FoundSrc || !pItemCat )
-    {
+    // if the source hasn't been reached, then error
+    if (!foundSrc)
         return false;
+
+    // wow, from the source till the destination, copy the element to the previous
+    bool foundDst              = false;
+    int  previousCategoryOrder = pItemCat->GetCategoryOrder();
+
+    for (pItemCat = (top2Down ? i.GetNext() : i.GetPrev()); pItemCat; pItemCat = (top2Down ? i.GetNext() : i.GetPrev()))
+    {
+        #ifdef _DEBUG
+            CString s;
+            s.Format(_T( " Before Item = %s Order = %d   ---  "),
+                    (const char*)pItemCat->GetName(), pItemCat->GetCategoryOrder());
+
+            TRACE(s);
+        #endif
+
+        const int order = previousCategoryOrder;
+
+        // save the previous category order
+        previousCategoryOrder = pItemCat->GetCategoryOrder();
+
+        // copy the current category order value to the previous element
+        pItemCat->SetCategoryOrder(order);
+
+        if (pItemCat == pDstCategoryItem)
+        {
+            foundDst = true;
+            break;
+        }
+
+        #ifdef _DEBUG
+            s.Format(_T(" After Item = %s Order = %d\n "),
+                    (const char*)pItemCat->GetName(), pItemCat->GetCategoryOrder());
+
+            TRACE(s);
+        #endif
     }
+
+    // if the destination hasn't been reached, then error
+    if (!foundSrc || !pItemCat)
+        return false;
 
     // Copy the saved category order value of the droped item
-    pSrcCategoryItem->SetCategoryOrder( DstCategoryOrder );
+    pSrcCategoryItem->SetCategoryOrder(dstCategoryOrder);
 
-    // Re order the category
+    // re-order the category
     ReOrderCategory();
 
-    // And saves the new order
+    // and saves the new order
     SaveAllCategoryOrders();
 
     return true;
 }
-
+//---------------------------------------------------------------------------
 void ZBPropertyItemManager::SaveAllCategoryOrders()
 {
     // Now run through the list of categories and set category order
@@ -1890,80 +1871,72 @@ void ZBPropertyItemManager::SetInitialCategoryOrder()
         ++CategoryOrder;
     }
 }
-
-// Re order the category
+//---------------------------------------------------------------------------
+// Re-order the category
 void ZBPropertyItemManager::ReOrderCategory()
 {
-    // Run through all categories and check if 
-    // category order is correctly sets
-    bool OrderSet = false;
+    // run through all categories and check if category order is correctly set
+    bool orderSet = false;
 
-    ZBItemCategoryIterator i( &m_PropertyItemTabSet );
+    ZBItemCategoryIterator i(&m_PropertyItemTabSet);
 
-    for ( ZBPropertyItemCategory* pItemCat = i.GetFirst(); pItemCat; pItemCat = i.GetNext() )
+    for (ZBPropertyItemCategory* pItemCat = i.GetFirst(); pItemCat; pItemCat = i.GetNext())
     {
         // order is not set,
         // then re assigns initial order
         // we cannot do in another, since some objects can have more attributes
         // event if they are in the same group of objects.
-        if ( pItemCat->GetCategoryOrder() == -1 )
+        if (pItemCat->GetCategoryOrder() == -1)
         {
-            if ( OrderSet )
+            if (orderSet)
             {
                 SetInitialCategoryOrder();
 
-                // And saves the new order
+                // and saves the new order
                 SaveAllCategoryOrders();
             }
 
             return;
         }
 
-        OrderSet = true;
+        orderSet = true;
     }
 
-    // Transfert item to temporary set
-    ZBItemCategorySet TempItemTabSet;
-
+    // transfert item to temporary set
+    ZBItemCategorySet      tempItemTabSet;
     ZBItemCategoryIterator j(&m_PropertyItemTabSet);
 
-    for ( pItemCat = j.GetFirst(); pItemCat; pItemCat = j.GetNext() )
-    {
-        TempItemTabSet.Add( pItemCat );
-    }
+    for (ZBPropertyItemCategory* pItemCat = j.GetFirst(); pItemCat; pItemCat = j.GetNext())
+        tempItemTabSet.Add(pItemCat);
 
-    // Remove all elements from the initial set
-    // just the pointer, not the element itself
+    // remove all elements from the initial set, just the pointer, not the element itself
     m_PropertyItemTabSet.RemoveAll();
 
-    // Now, inserts element in order
-    ZBItemCategoryIterator s( &TempItemTabSet );
+    // now insert elements in order
+    ZBItemCategoryIterator s(&tempItemTabSet);
 
-    for ( ZBPropertyItemCategory* pSrcItemCat = s.GetFirst(); pSrcItemCat; pSrcItemCat = s.GetNext() )
+    for (ZBPropertyItemCategory* pSrcItemCat = s.GetFirst(); pSrcItemCat; pSrcItemCat = s.GetNext())
     {
-        // Inserts in order
-        bool Inserted = false;
-        int Index = 0;
-        ZBItemCategoryIterator d( &m_PropertyItemTabSet );
+        // insert in order
+        bool                   inserted = false;
+        int                    index = 0;
+        ZBItemCategoryIterator d(&m_PropertyItemTabSet);
 
-        for ( ZBPropertyItemCategory* pDstItemCat = d.GetFirst(); pDstItemCat; pDstItemCat = d.GetNext(), ++Index )
-        {
-            if ( pSrcItemCat->GetCategoryOrder() < pDstItemCat->GetCategoryOrder() )
+        for (ZBPropertyItemCategory* pDstItemCat = d.GetFirst(); pDstItemCat; pDstItemCat = d.GetNext(), ++index)
+            if (pSrcItemCat->GetCategoryOrder() < pDstItemCat->GetCategoryOrder())
             {
-                Inserted = true;
+                inserted = true;
 
-                m_PropertyItemTabSet.InsertAt( Index, pSrcItemCat );
+                m_PropertyItemTabSet.InsertAt(index, pSrcItemCat);
                 break;
             }
-        }
 
-        // If not inserted, then add it to the end
-        if ( !Inserted )
-        {
-            m_PropertyItemTabSet.Add( pSrcItemCat );
-        }
+        // if not inserted, then add it to the end
+        if (!inserted)
+            m_PropertyItemTabSet.Add(pSrcItemCat);
     }
 
-    // Remove all elements from the temporary set
-    TempItemTabSet.RemoveAll();
+    // remove all elements from the temporary set
+    tempItemTabSet.RemoveAll();
 }
+//---------------------------------------------------------------------------

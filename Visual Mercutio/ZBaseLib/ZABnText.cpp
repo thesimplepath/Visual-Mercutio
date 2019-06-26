@@ -148,126 +148,138 @@ void PLFNBoundText::DrawObject (CDC* pDC, ZIView* pView)
     PlanFinObject::DrawObject( pDC, pView );
   //## end PLFNBoundText::DrawObject%882107400.body
 }
-
-void PLFNBoundText::DrawEmpty (CDC* pDC, ZIView* pView)
+//---------------------------------------------------------------------------
+void PLFNBoundText::DrawEmpty(CDC* pDC, ZIView* pView)
 {
-  //## begin PLFNBoundText::DrawEmpty%882107401.body preserve=yes
-    // If we are printing and it is not necessary to print the empty style,
-    // just return
-    if (pDC->IsPrinting() && 
-        pView->GetDocument()->GetDocOptions().GetPrintEmptyStyleWhenEmpty() == FALSE)
+    // if we are printing and it is not necessary to print the empty style, just return
+    if (pDC->IsPrinting() &&  pView->GetDocument()->GetDocOptions().GetPrintEmptyStyleWhenEmpty() == FALSE)
         return;
-    CFont    *OldFont;
-    OldFont = pDC->SelectObject( GetFont(pView) );
-    // Retreive the text size to be able to
-    // draw correct number of lines
-    CSize    TextSize;
-    TextSize = pDC->GetTextExtent( "A", 1 );
-    pDC->SelectObject( OldFont );
 
-    // Draw the doted line without the dotted line style
-    // it is bugged when it print
-    CPen    pen( PS_SOLID, 1, GetColor( pView ) );
-    CPen   *OldPen;
-        
-    OldPen = pDC->SelectObject( &pen );
-    int    iLine = __max( 1, m_rctObject.Height() / (TextSize.cy+2) );
-    UINT    nLeftHanging = (UINT)GetHanging(); // / (double)TextSize.cx);
+    CFont* pOldFont = pDC->SelectObject(GetFont(pView));
+    
+    // retreive the text size to be able to draw correct number of lines
+    const CSize TextSize = pDC->GetTextExtent("A", 1);
+    pDC->SelectObject(pOldFont);
+
+    // draw the doted line without the dotted line style it is bugged when it print
+          CPen  pen(PS_SOLID, 1, GetColor(pView));
+          CPen* pOldPen      = pDC->SelectObject(&pen);
+          int   iLine        = __max(1, m_rctObject.Height() / (TextSize.cy + 2));
+    const UINT  nLeftHanging = UINT(GetHanging()); // / (double)TextSize.cx);
     
     switch (pView->GetDocument()->GetDocOptions().GetEmptyStyle())
     {
         case DottedLine:
         {
-            // If hanging, the first line is drawn differently
-            register y = 0;
+            // if hanging, the first line is drawn differently
+            register int y = 0;
+
             if (GetHanging())
             {
-                // Calculate the start point
+                // calculate the start point
                 for (int i = m_rctObject.left + nLeftHanging; i < m_rctObject.right; i += 2)
                 {
-                    pDC->MoveTo( i, (m_rctObject.top + (y*(TextSize.cy+2)) ) + TextSize.cy );
-                    pDC->LineTo( i + 1, (m_rctObject.top + (y*(TextSize.cy+2)) ) + TextSize.cy );
+                    pDC->MoveTo(i,     (m_rctObject.top + (y * (TextSize.cy +2 ))) + TextSize.cy);
+                    pDC->LineTo(i + 1, (m_rctObject.top + (y * (TextSize.cy + 2))) + TextSize.cy);
                 }
+
                 y = 1;
             }
+
             for ( ; y < iLine; ++y)
                 for (int i = m_rctObject.left; i < m_rctObject.right; i += 2)
                 {
-                    pDC->MoveTo( i, (m_rctObject.top + (y*(TextSize.cy+2)) ) + TextSize.cy );
-                    pDC->LineTo( i + 1, (m_rctObject.top + (y*(TextSize.cy+2)) ) + TextSize.cy );
+                    pDC->MoveTo(i,     (m_rctObject.top + (y * (TextSize.cy + 2))) + TextSize.cy);
+                    pDC->LineTo(i + 1, (m_rctObject.top + (y * (TextSize.cy + 2))) + TextSize.cy);
                 }
+
             break;
         }
+
         case SmallLine:
         {
-            // If hanging, the first line is drawn differently
-            register y = 0;
+            // if hanging, the first line is drawn differently
+            register int y = 0;
+
             if (GetHanging())
             {
-                // Calculate the start point
+                // calculate the start point
                 for (int i = m_rctObject.left + nLeftHanging; i < m_rctObject.right; i += 8)
                 {
-                    pDC->MoveTo( i, (m_rctObject.top + (y*(TextSize.cy+2)) ) + TextSize.cy );
-                    pDC->LineTo( i + 4, (m_rctObject.top + (y*(TextSize.cy+2)) ) + TextSize.cy );
+                    pDC->MoveTo(i,     (m_rctObject.top + (y * (TextSize.cy + 2))) + TextSize.cy);
+                    pDC->LineTo(i + 4, (m_rctObject.top + (y * (TextSize.cy + 2))) + TextSize.cy);
                 }
                 y = 1;
             }
+
             for ( ; y < iLine; ++y)
                 for (int i = m_rctObject.left; i < m_rctObject.right; i += 8)
                 {
-                    pDC->MoveTo( i, (m_rctObject.top + (y*(TextSize.cy+2)) ) + TextSize.cy );
-                    pDC->LineTo( i + 4, (m_rctObject.top + (y*(TextSize.cy+2)) ) + TextSize.cy );
+                    pDC->MoveTo(i,     (m_rctObject.top + (y * (TextSize.cy + 2))) + TextSize.cy);
+                    pDC->LineTo(i + 4, (m_rctObject.top + (y * (TextSize.cy + 2))) + TextSize.cy);
                 }
+
             break;
         }
+
         case SolidLine:
         {
-            // If hanging, the first line is drawn differently
-            register y = 0;
+            // if hanging, the first line is drawn differently
+            register int y = 0;
+
             if (GetHanging())
             {
-                // Calculate the start point
-                pDC->MoveTo( m_rctObject.left + nLeftHanging, (m_rctObject.top + (y*(TextSize.cy+2)) ) + TextSize.cy );
-                pDC->LineTo( m_rctObject.right, (m_rctObject.top + (y*(TextSize.cy+2)) ) + TextSize.cy );
+                // calculate the start point
+                pDC->MoveTo( m_rctObject.left + nLeftHanging, (m_rctObject.top + (y * (TextSize.cy + 2))) + TextSize.cy);
+                pDC->LineTo( m_rctObject.right,               (m_rctObject.top + (y * (TextSize.cy + 2))) + TextSize.cy);
+
                 y = 1;
             }
-            for ( ; y < iLine; ++y)
+
+            for (; y < iLine; ++y)
             {
-                pDC->MoveTo( m_rctObject.left, (m_rctObject.top + (y*(TextSize.cy+2)) ) + TextSize.cy );
-                pDC->LineTo( m_rctObject.right, (m_rctObject.top + (y*(TextSize.cy+2)) ) + TextSize.cy );
+                pDC->MoveTo(m_rctObject.left,  (m_rctObject.top + (y * (TextSize.cy + 2))) + TextSize.cy);
+                pDC->LineTo(m_rctObject.right, (m_rctObject.top + (y * (TextSize.cy + 2))) + TextSize.cy);
             }
+
             break;
         }
+
         case DashLine:
         {
-            // If hanging, the first line is drawn differently
-            register y = 0;
+            // if hanging, the first line is drawn differently
+            register int y = 0;
+
             if (GetHanging())
             {
-                // Calculate the start point
+                // calculate the start point
                 for (int i = m_rctObject.left + nLeftHanging; i < m_rctObject.right; i += 4)
                 {
-                    pDC->MoveTo( i, (m_rctObject.top + (y*(TextSize.cy+2)) ) + TextSize.cy );
-                    pDC->LineTo( i + 2, (m_rctObject.top + (y*(TextSize.cy+2)) ) + TextSize.cy );
+                    pDC->MoveTo(i,     (m_rctObject.top + (y * (TextSize.cy + 2))) + TextSize.cy);
+                    pDC->LineTo(i + 2, (m_rctObject.top + (y * (TextSize.cy + 2))) + TextSize.cy);
                 }
+
                 y = 1;
             }
-            for ( ; y < iLine; ++y)
+
+            for (; y < iLine; ++y)
                 for (int i = m_rctObject.left; i < m_rctObject.right; i += 4)
                 {
-                    pDC->MoveTo( i, (m_rctObject.top + (y*(TextSize.cy+2)) ) + TextSize.cy );
-                    pDC->LineTo( i + 2, (m_rctObject.top + (y*(TextSize.cy+2)) ) + TextSize.cy );
+                    pDC->MoveTo(i,     (m_rctObject.top + (y * (TextSize.cy + 2))) + TextSize.cy);
+                    pDC->LineTo(i + 2, (m_rctObject.top + (y * (TextSize.cy + 2))) + TextSize.cy);
                 }
+
             break;
         }
-        default: break;
+
+        default:
+            break;
     }
 
-    pDC->SelectObject( OldPen );
-  //## end PLFNBoundText::DrawEmpty%882107401.body
+    pDC->SelectObject(pOldPen);
 }
-
-void PLFNBoundText::Serialize (CArchive& ar)
+//---------------------------------------------------------------------------
+void PLFNBoundText::Serialize(CArchive& ar)
 {
   //## begin PLFNBoundText::Serialize%882107402.body preserve=yes
     PLFNString::Serialize(ar);

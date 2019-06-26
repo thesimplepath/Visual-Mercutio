@@ -49,11 +49,15 @@
     <OutDir>.\Release\</OutDir>
     <IntDir>.\Release\</IntDir>
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>..\..\Third party\CJ60Lib\Include;..\;..\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\Third party\CJ60Lib\lib;..\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>.\Debug\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental />
+    <IncludePath>..\..\Third party\CJ60Lib\Include;..\;..\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\Third party\CJ60Lib\lib;..\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

@@ -207,9 +207,9 @@ bool ZUGridMercutioRepDeliverableNavigation::OnDeliverableLinkSymbol( ZBDelivera
     *m_postream << m_BlackBorderStyle;
 
     // Build the next lines with the key info itself, at least one empty line
-    size_t Count = max( pSymbol->GetTextItemCount(), 1 );
+    std::size_t Count = max( pSymbol->GetTextItemCount(), 1 );
 
-    for ( size_t i = 0; i < Count; ++i )
+    for (std::size_t i = 0; i < Count; ++i)
     {
         *m_postream << _T( "\n" );
         *m_postream << m_BlueStyle;
@@ -234,7 +234,7 @@ bool ZUGridMercutioRepDeliverableNavigation::OnDeliverableLinkSymbol( ZBDelivera
     // Build the next lines with the rules themselves, at least one empty line
     Count = max( pSymbol->GetRuleCount(), 1 );
 
-    for ( i = 0; i < Count; ++i )
+    for (std::size_t i = 0; i < Count; ++i)
     {
         *m_postream << _T( "\n" );
         *m_postream << m_BlueStyle;
@@ -259,7 +259,7 @@ bool ZUGridMercutioRepDeliverableNavigation::OnDeliverableLinkSymbol( ZBDelivera
     // Build the next lines with the forms, document and other
     Count = pSymbol->GetExtFileCount();
 
-    for ( i = 0; i < Count; ++i )
+    for (std::size_t i = 0; i < Count; ++i)
     {
         *m_postream << _T( "\n" );
         *m_postream << m_BlueStyle;

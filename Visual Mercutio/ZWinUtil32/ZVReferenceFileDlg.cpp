@@ -93,42 +93,36 @@ void ZVReferenceFileDlg::DoDataExchange( CDataExchange* pDX )
     DDX_Text(pDX, IDC_REFERENCE_FILE, m_Reference);
     //}}AFX_DATA_MAP
 }
-
-/////////////////////////////////////////////////////////////////////////////
-// ZVReferenceFileDlg message handlers
-
+//---------------------------------------------------------------------------
 BOOL ZVReferenceFileDlg::OnInitDialog()
 {
     CDialog::OnInitDialog();
 
-    // Fill the activation type list box
-    size_t Count = ( ZAGlobal::GetArrayActivationType() ) ? ZAGlobal::GetArrayActivationType()->GetSize() : 0;
+    // fill the activation type list box
+    std::size_t count = (ZAGlobal::GetArrayActivationType()) ? ZAGlobal::GetArrayActivationType()->GetSize() : 0;
 
-    for ( size_t i = 0; i < Count; ++i )
-    {
-        m_ActivationTypeCtrl.AddString( ZAGlobal::GetArrayActivationType()->GetAt( i ) );
-    }
+    for (std::size_t i = 0; i < count; ++i)
+        m_ActivationTypeCtrl.AddString(ZAGlobal::GetArrayActivationType()->GetAt(i));
 
-    // Fill the insertion type list box
-    Count = ( ZAGlobal::GetArrayInsertionType() ) ? ZAGlobal::GetArrayInsertionType()->GetSize() : 0;
+    // fill the insertion type list box
+    count = (ZAGlobal::GetArrayInsertionType()) ? ZAGlobal::GetArrayInsertionType()->GetSize() : 0;
 
-    for ( i = 0; i < Count; ++i )
-    {
-        m_InsertionTypeCtrl.AddString( ZAGlobal::GetArrayInsertionType()->GetAt( i ) );
-    }
+    for (std::size_t i = 0; i < count; ++i)
+        m_InsertionTypeCtrl.AddString(ZAGlobal::GetArrayInsertionType()->GetAt(i));
 
-    // Sets the right activation type
-    m_ActivationTypeCtrl.SelectString( -1, ZAGlobal::GetActivationTypeString( m_ActivationType ) );
+    // set the right activation type
+    m_ActivationTypeCtrl.SelectString(-1, ZAGlobal::GetActivationTypeString(m_ActivationType));
 
-    // Sets the right insertion type
-    m_InsertionTypeCtrl.SelectString( -1, ZAGlobal::GetInsertionTypeString( m_InsertionType ) );
+    // set the right insertion type
+    m_InsertionTypeCtrl.SelectString(-1, ZAGlobal::GetInsertionTypeString(m_InsertionType));
 
     CheckControlState();
 
-    return TRUE;    // return TRUE unless you set the focus to a control
-                    // EXCEPTION: OCX Property Pages should return FALSE
+    // return TRUE unless you set the focus to a control
+    // EXCEPTION: OCX Property Pages should return FALSE
+    return TRUE;
 }
-
+//---------------------------------------------------------------------------
 void ZVReferenceFileDlg::OnAddfile()
 {
     // Set the "*.*" files filter

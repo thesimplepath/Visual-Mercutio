@@ -49,11 +49,15 @@
     <OutDir>.\Release\</OutDir>
     <IntDir>.\Release\</IntDir>
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>..\..\Third party\Stingray Studio\Include;..\..\Third party\Stingray Studio\Regex\include;..\;..\Include;res;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\Third party\Stingray Studio\Lib;..\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>.\Debug\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental />
+    <IncludePath>..\..\Third party\Stingray Studio\Include;..\..\Third party\Stingray Studio\Regex\include;..\;..\Include;res;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\Third party\Stingray Studio\Lib;..\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

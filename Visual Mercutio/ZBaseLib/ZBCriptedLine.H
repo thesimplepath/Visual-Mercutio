@@ -35,75 +35,67 @@
 
 class AFX_EXT_CLASS ZBCriptedLine : public CObject
 {
-  DECLARE_DYNCREATE( ZBCriptedLine );
+    DECLARE_DYNCREATE( ZBCriptedLine );
 
-  public:
-    //## Constructors (generated)
-      ZBCriptedLine();
-    //## Destructor (generated)
-      ~ZBCriptedLine();
+    public:
+        ZBCriptedLine();
 
-      ZBCriptedLine(const ZBCriptedLine &right);
-      const ZBCriptedLine & operator=(const ZBCriptedLine &right);
+        ZBCriptedLine(const ZBCriptedLine &right);
 
-      // This function generates a random line.
-      CString GenerateRandomLine();
+        ~ZBCriptedLine();
 
-      CString GenerateLine(CString value);
+        const ZBCriptedLine & operator=(const ZBCriptedLine &right);
 
-      CString GenerateLine(CTime& Date);
-      CString GenerateLine(ZBDate& Date);
+        // This function generates a random line.
+        CString GenerateRandomLine();
 
-      CString GenerateLine(int value);
+        CString GenerateLine(const CString& value);
 
-      // Decript the string and return it.
-      CString GetString();
+        CString GenerateLine(CTime& date);
+        CString GenerateLine(ZBDate& date);
 
-      // Decript the int and return it.
-      int GetInt();
+        CString GenerateLine(int value);
 
-      // Decript the date and return it.
-      CTime  GetCTime();
-      // Decript the date and return it.
-      ZBDate GetDate();
+        // Decript the string and return it.
+        CString GetString();
 
-    //## Get and Set Operations for Has Relationships (generated)
+        // Decript the int and return it.
+        int GetInt();
 
-      //## Documentation ZBCriptedLine::sEntity.has
-      //    The entity
-      const CString GetsEntity() const;
-      void SetsEntity(const CString value);
+        // Decript the date and return it.
+        CTime GetCTime();
 
+        // Decript the date and return it.
+        ZBDate GetDate();
 
+        //## Get and Set Operations for Has Relationships (generated)
 
-  private:  
+        //## Documentation ZBCriptedLine::sEntity.has
+        //    The entity
+        const CString GetEntity() const;
+        void SetEntity(const CString& value);
 
-      //    Take the key and cript it.
-      void CriptEntity(CString& Line);
+    private:
+        CString m_sEntity;
 
-      CString GenerateRandomLine(int size);
+        // Take the key and cript it.
+        void CriptEntity(const CString& line);
 
-  private:
-
-      CString m_sEntity;
-
+        CString GenerateRandomLine(int size);
 };
 
-// Class ZBCriptedLine 
-
-
-inline const CString ZBCriptedLine::GetsEntity() const
+//---------------------------------------------------------------------------
+// ZBCriptedLine 
+//---------------------------------------------------------------------------
+inline const CString ZBCriptedLine::GetEntity() const
 {
-  return m_sEntity;
+    return m_sEntity;
 }
-
-inline void ZBCriptedLine::SetsEntity(const CString value)
+//---------------------------------------------------------------------------
+inline void ZBCriptedLine::SetEntity(const CString& value)
 {
-  m_sEntity = value;
+    m_sEntity = value;
 }
-
-
+//---------------------------------------------------------------------------
 
 #endif
-
-

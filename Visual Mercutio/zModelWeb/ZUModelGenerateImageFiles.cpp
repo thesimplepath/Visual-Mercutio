@@ -644,60 +644,59 @@ CString ZUModelGenerateImageFiles::ReplaceSpecialCharInString( CString s )
 
     return s;
 }
-
-bool ZUModelGenerateImageFiles::CreateHtmlPage( ZDProcessGraphModelMdl* pModel, const CString ImageFilename )
+//---------------------------------------------------------------------------
+bool ZUModelGenerateImageFiles::CreateHtmlPage(ZDProcessGraphModelMdl* pModel, const CString imageFilename)
 {
-    CString HtmlFilename = BuildModelHTMLFilename( pModel );
-    CString HtmlFilenameForPrinter = BuildModelHTMLFilenameForPrinter( pModel );
+    CString htmlFilename           = BuildModelHTMLFilename(pModel);
+    CString htmlFilenameForPrinter = BuildModelHTMLFilenameForPrinter(pModel);
     
-    // Refresh Setup Copyfile Window
-    m_FileGenerateWindow.SetDestination( HtmlFilename );
+    // refresh Setup Copyfile Window
+    m_FileGenerateWindow.SetDestination(htmlFilename);
     m_FileGenerateWindow.UpdateWindow();
+
     MSG msg;
 
-    if ( PeekMessage( &msg, NULL, NULL, NULL, PM_NOREMOVE ) )
+    if (::PeekMessage(&msg, NULL, NULL, NULL, PM_NOREMOVE))
     {
-        GetMessage( &msg, NULL, NULL, NULL );
-        TranslateMessage( &msg );
-        DispatchMessage( &msg );
+        ::GetMessage(&msg, NULL, NULL, NULL);
+        ::TranslateMessage(&msg);
+        ::DispatchMessage(&msg);
     }
 
-    // Check if the html file has already been generated
+    // check if the html file has already been generated
     // this is to avoid generating twice the same html file
     // it takes time and it will optimize the generation
-    if ( !StringAlreadyGenerated( HtmlFilename ) )
+    if (!StringAlreadyGenerated(htmlFilename))
     {
-        ZDHtmlFile HtmlFile( HtmlFilename );
+        ZDHtmlFile htmlFile(htmlFilename);
         
-        if ( !HtmlFile.OpenFileCreate() )
-        {
+        if (!htmlFile.OpenFileCreate())
             return false;
-        }
 
-        // Write header
+        // write header
         CString s;
-        s.Format( IDS_MODELGENHTML_1,
-                  (const char*)pModel->GetAbsolutePath(),                        // Model path
-                  (const char*)ZBDate::GetToday().GetStandardFormatedDate() );    // Current date
-        HtmlFile << s;
+        s.Format(IDS_MODELGENHTML_1,
+                 (const char*)pModel->GetAbsolutePath(),                        // Model path
+                 (const char*)ZBDate::GetToday().GetStandardFormatedDate() );    // Current date
+        htmlFile << s;
 
-        // Build the CSS filename
-        CString AJPopupCSSFilename = m_IncludeDirectory + _T( "\\" ) + gAJPopupCSSFile;
-        s.Format( IDS_MODELGENHTML_50,
-                  (const char*)CalculatePath( AJPopupCSSFilename, HtmlFilename ) );
-        HtmlFile << s;
+        // build the CSS filename
+        CString ajPopupCSSFilename = m_IncludeDirectory + _T("\\") + gAJPopupCSSFile;
+        s.Format(IDS_MODELGENHTML_50,
+                 (const char*)CalculatePath(ajPopupCSSFilename, htmlFilename));
+        htmlFile << s;
 
-        // Build the ajlib javascript filename
-        CString AJLibJSFilename = m_IncludeDirectory + _T( "\\" ) + gAJLibJSFile;
-        s.Format( IDS_MODELGENHTML_52,
-                  (const char*)CalculatePath( AJLibJSFilename, HtmlFilename ) );
-        HtmlFile << s;
+        // build the ajlib javascript filename
+        CString ajLibJSFilename = m_IncludeDirectory + _T("\\") + gAJLibJSFile;
+        s.Format(IDS_MODELGENHTML_52,
+                 (const char*)CalculatePath(ajLibJSFilename, htmlFilename));
+        htmlFile << s;
 
-        // Build the ajpopup javascript filename
-        CString AJPopupJSFilename = m_IncludeDirectory + _T( "\\" ) + gAJPopupJSFile;
-        s.Format( IDS_MODELGENHTML_52,
-                  (const char*)CalculatePath( AJPopupJSFilename, HtmlFilename ) );
-        HtmlFile << s;
+        // build the ajpopup javascript filename
+        CString ajPopupJSFilename = m_IncludeDirectory + _T("\\") + gAJPopupJSFile;
+        s.Format(IDS_MODELGENHTML_52,
+                 (const char*)CalculatePath(ajPopupJSFilename, htmlFilename));
+        htmlFile << s;
 
         // ************************************************************************************************************
         // JMR-MODIF - Le 5 juillet 2005 - Adaptation de la page : L'action du click et l'action du passage
@@ -707,348 +706,321 @@ bool ZUModelGenerateImageFiles::CreateHtmlPage( ZDProcessGraphModelMdl* pModel, 
 //        s.Format( IDS_MODELGENHTML_73,
 //                    (const char*)CalculatePath( BuildModelHTMLFilenameEmptyPropertyPage(), HtmlFilename ));
 
-        // Inscrit l'en-tête JavaScript.
-        s.LoadString( IDS_MODELGENHTML_79 );
-        HtmlFile << s;
+        // inscrit l'en-tête JavaScript
+        s.LoadString(IDS_MODELGENHTML_79);
+        htmlFile << s;
 
         CODComponentSet* pSet = pModel->GetComponents();
 
-        // Set the object counter
-        int ObjectCounter = 1;
+        // set the object counter
+        int objectCounter = 1;
 
-        for ( int i = 0; i < pSet->GetSize(); ++i )
+        for (int i = 0; i < pSet->GetSize(); ++i)
         {
-            CODComponent* pComp = pSet->GetAt( i );
+            CODComponent* pComp = pSet->GetAt(i);
 
-            if ( !pComp )
-            {
+            if (!pComp)
                 continue;
-            }
 
-            if ( ISA( pComp, ZBSymbol ) || ISA( pComp, ZBLinkSymbol ) )
+            if (ISA(pComp, ZBSymbol) || ISA(pComp, ZBLinkSymbol))
             {
-                s.Format( IDS_MODELGENHTML_86, ObjectCounter );
-
-                HtmlFile << s;
-
-                ObjectCounter++;
+                s.Format(IDS_MODELGENHTML_86, objectCounter);
+                htmlFile << s;
+                ++objectCounter;
             }
         }
 
-        s.LoadString( IDS_MODELGENHTML_87 );
-        HtmlFile << s;
+        s.LoadString(IDS_MODELGENHTML_87);
+        htmlFile << s;
 
-        // Reset the object counter
-        ObjectCounter = 1;
+        // reset the object counter
+        objectCounter = 1;
 
-        for ( i = 0; i < pSet->GetSize(); ++i )
+        for (int i = 0; i < pSet->GetSize(); ++i)
         {
-            CODComponent* pComp = pSet->GetAt( i );
+            CODComponent* pComp = pSet->GetAt(i);
 
-            if ( !pComp )
-            {
+            if (!pComp)
                 continue;
-            }
 
-            if ( ISA( pComp, ZBSymbol ) || ISA( pComp, ZBLinkSymbol ) )
+            if (ISA(pComp, ZBSymbol) || ISA(pComp, ZBLinkSymbol))
             {
-                s.Format( IDS_MODELGENHTML_82,
-                          ObjectCounter,
-                          ObjectCounter,
-                          ObjectCounter
-                         );
-
-                HtmlFile << s;
-
-                ObjectCounter++;
+                s.Format(IDS_MODELGENHTML_82, objectCounter, objectCounter, objectCounter);
+                htmlFile << s;
+                ++objectCounter;
             }
         }
 
-        s.LoadString( IDS_MODELGENHTML_83 );
-        HtmlFile << s;
+        s.LoadString(IDS_MODELGENHTML_83);
+        htmlFile << s;
 
-        // Reset the object counter
-        ObjectCounter = 1;
+        // reset the object counter
+        objectCounter = 1;
 
-        for ( i = 0; i < pSet->GetSize(); ++i )
+        for (int i = 0; i < pSet->GetSize(); ++i)
         {
-            CODComponent* pComp = pSet->GetAt( i );
+            CODComponent* pComp = pSet->GetAt(i);
 
-            if ( !pComp )
-            {
+            if (!pComp)
                 continue;
-            }
 
-            if ( ISA( pComp, ZBSymbol ) || ISA( pComp, ZBLinkSymbol ) )
+            if (ISA(pComp, ZBSymbol) || ISA(pComp, ZBLinkSymbol))
             {
-                // If no sub-model, just the area for the popup
-                CODModel* pOwnerModel = dynamic_cast<ZIBasicSymbol*>( pComp )->GetOwnerModel();
+                // if no sub-model, just the area for the popup
+                CODModel* pOwnerModel = dynamic_cast<ZIBasicSymbol*>(pComp)->GetOwnerModel();
 
-                s.Format( IDS_MODELGENHTML_84, ObjectCounter );
+                s.Format(IDS_MODELGENHTML_84, objectCounter);
 
-                HtmlFile << s;
+                htmlFile << s;
 
-                s.Format( IDS_MODELGENHTML_88,
-                          (const char*)CalculatePath( BuildSymbolPropertyHTMLFilename( dynamic_cast<ZIBasicSymbol*>( pComp ),
-                                                                                       ( pOwnerModel && ISA( pOwnerModel, ZDProcessGraphModelMdl ) ) ? dynamic_cast<ZDProcessGraphModelMdl*>( pOwnerModel ) : pModel ),
-                                                                                       HtmlFilename ) );
+                s.Format(IDS_MODELGENHTML_88,
+                         (const char*)CalculatePath(BuildSymbolPropertyHTMLFilename(dynamic_cast<ZIBasicSymbol*>(pComp),
+                                                                                   (pOwnerModel && ISA(pOwnerModel, ZDProcessGraphModelMdl)) ? dynamic_cast<ZDProcessGraphModelMdl*>(pOwnerModel) : pModel),
+                                                                                    htmlFilename));
 
-                HtmlFile << s;
+                htmlFile << s;
 
-                s.Format( IDS_MODELGENHTML_89,
-                          ObjectCounter,
-                          ObjectCounter,
-                          ObjectCounter,
-                          ObjectCounter
-                        );
+                s.Format(IDS_MODELGENHTML_89,
+                         objectCounter,
+                         objectCounter,
+                         objectCounter,
+                         objectCounter);
 
-                HtmlFile << s;
+                htmlFile << s;
 
-                ObjectCounter++;
+                ++objectCounter;
             }
         }
 
-        // Inscrit la fin du bloc JavaScript.
-        s.LoadString( IDS_MODELGENHTML_90 );
-        HtmlFile << s;
+        // inscrit la fin du bloc JavaScript.
+        s.LoadString(IDS_MODELGENHTML_90);
+        htmlFile << s;
         // ************************************************************************************************************
 
-        // End of head and body
-        s.LoadString( IDS_MODELGENHTML_51 );
-        HtmlFile << s;
+        // end of head and body
+        s.LoadString(IDS_MODELGENHTML_51);
+        htmlFile << s;
 
-        // Write the navigation table header
-        s.LoadString( IDS_MODELGENHTML_6 );
-        HtmlFile << s;
+        // write the navigation table header
+        s.LoadString(IDS_MODELGENHTML_6);
+        htmlFile << s;
 
-        CString LogoImage;
+        CString logoImage;
 
-        // Write the parent if there is one
-        if ( pModel->GetParent() )
+        // write the parent if there is one
+        if (pModel->GetParent())
         {
-            // Retreive the parent html filename and name
-            CString ParentHtmlFilename    = BuildModelHTMLFilename( pModel->GetParent() );
-            CString ParentName            = pModel->GetParent()->GetAbsolutePath();
-            LogoImage                    = m_ImageDirectory + _T( "\\" ) + gParentImageFile;
+            // retreive the parent html filename and name
+            CString parentHtmlFilename = BuildModelHTMLFilename( pModel->GetParent() );
+            CString parentName         = pModel->GetParent()->GetAbsolutePath();
+            logoImage                  = m_ImageDirectory + _T("\\") + gParentImageFile;
 
-            s.Format( IDS_MODELGENHTML_11,
-                      (const char*)CalculatePath( ParentHtmlFilename, HtmlFilename ),    // Root filename
-                      (const char*)CalculatePath( LogoImage, HtmlFilename ),            // logo complete filename
-                      (const char*)CalculatePath( ParentHtmlFilename, HtmlFilename ),    // Root filename
-                      (const char*)ParentName );                                        // Root name 
+            s.Format(IDS_MODELGENHTML_11,
+                     (const char*)CalculatePath(parentHtmlFilename, htmlFilename), // Root filename
+                     (const char*)CalculatePath(logoImage,          htmlFilename), // logo complete filename
+                     (const char*)CalculatePath(parentHtmlFilename, htmlFilename), // Root filename
+                     (const char*)parentName);                                     // Root name 
 
-            HtmlFile << s;
+            htmlFile << s;
         }
         else
         {
-            // Retreive the parent html filename and name
-            CString ParentName    = _T( "Index" );
-            LogoImage            = m_ImageDirectory + _T( "\\" ) + gHomeImageFile;
+            // retreive the parent html filename and name
+            CString parentName = _T("Index");
+            logoImage          = m_ImageDirectory + _T("\\") + gHomeImageFile;
 
-            s.Format( IDS_MODELGENHTML_85,
-                      (const char*)CalculatePath( m_IndexHtmlFilename, HtmlFilename ),    // Root filename
-                      (const char*)CalculatePath( LogoImage, HtmlFilename ),            // logo complete filename
-                      (const char*)CalculatePath( m_IndexHtmlFilename, HtmlFilename ),    // Root filename
-                      (const char*)ParentName );                                        // Root name 
+            s.Format(IDS_MODELGENHTML_85,
+                     (const char*)CalculatePath(m_IndexHtmlFilename, htmlFilename), // Root filename
+                     (const char*)CalculatePath(logoImage,           htmlFilename), // logo complete filename
+                     (const char*)CalculatePath(m_IndexHtmlFilename, htmlFilename), // Root filename
+                     (const char*)parentName);                                      // Root name 
 
-            HtmlFile << s;
+            htmlFile << s;
         }
 
-        // Write the print facilities
-        LogoImage = m_ImageDirectory + _T( "\\" ) + gPrinterImageFile;
-        s.Format( IDS_MODELGENHTML_15,
-                  (const char*)CalculatePath( HtmlFilenameForPrinter, HtmlFilename ),    // The printable filename
-                  (const char*)CalculatePath( LogoImage, HtmlFilename ) );                // logo complete filename
-        HtmlFile << s;
+        // write the print facilities
+        logoImage = m_ImageDirectory + _T("\\") + gPrinterImageFile;
+        s.Format(IDS_MODELGENHTML_15,
+                 (const char*)CalculatePath(htmlFilenameForPrinter, htmlFilename),  // The printable filename
+                 (const char*)CalculatePath(logoImage,              htmlFilename)); // logo complete filename
+        htmlFile << s;
 
         // Write the navigation table footer
-        s.LoadString( IDS_MODELGENHTML_9 );
-        HtmlFile << s;
+        s.LoadString(IDS_MODELGENHTML_9);
+        htmlFile << s;
 
-        // Create all the popups for all symbols
+        // create all the popups for all symbols
 
         // Javascript starts here
-        s.LoadString( IDS_MODELGENHTML_53 );
-        HtmlFile << s;
+        s.LoadString(IDS_MODELGENHTML_53);
+        htmlFile << s;
 
-        // Create a dummy object to avoid copyright on the first object
-        if ( true )
+        // create a dummy object to avoid copyright on the first object
+        if (true)
         {
-            s.Format( IDS_MODELGENHTML_55, 0); // Allocate the new popup object
-            HtmlFile << s;
+            s.Format(IDS_MODELGENHTML_55, 0); // Allocate the new popup object
+            htmlFile << s;
 
-            s.Format( IDS_MODELGENHTML_57, 0, _T( "" ) ); 
-            HtmlFile << s;
+            s.Format(IDS_MODELGENHTML_57, 0, _T("")); 
+            htmlFile << s;
 
-            s.Format( IDS_MODELGENHTML_58, 0, _T( "" ) ); 
-            HtmlFile << s;
+            s.Format(IDS_MODELGENHTML_58, 0, _T("")); 
+            htmlFile << s;
 
-            s.Format( IDS_MODELGENHTML_61, 0); // Create the new popup object
-            HtmlFile << s;
+            s.Format(IDS_MODELGENHTML_61, 0); // Create the new popup object
+            htmlFile << s;
         }
 
-        ObjectCounter = 1;
+        objectCounter = 1;
 
-        for ( i = 0; i < pSet->GetSize(); ++i )
+        for (int i = 0; i < pSet->GetSize(); ++i)
         {
-            CODComponent* pComp = pSet->GetAt( i );
+            CODComponent* pComp = pSet->GetAt(i);
 
-            if ( !pComp )
-            {
+            if (!pComp)
                 continue;
-            }
 
-            // For all symbols, create a popup 
-            if ( ISA( pComp, ZBSymbol ) || ISA( pComp, ZBLinkSymbol ) )
+            // for all symbols, create a popup 
+            if (ISA(pComp, ZBSymbol) || ISA(pComp, ZBLinkSymbol))
             {
-                s.Format( IDS_MODELGENHTML_55, ObjectCounter );    // Allocate the new popup object
-                HtmlFile << s;
+                s.Format(IDS_MODELGENHTML_55, objectCounter);    // Allocate the new popup object
+                htmlFile << s;
 
-                s.Format( IDS_MODELGENHTML_57,
-                          ObjectCounter,    // The header is the symbol name
-                          (const char*)ReplaceSpecialCharInString( dynamic_cast<ZIBasicSymbol*>( pComp )->GetSymbolName() ) );
-                HtmlFile << s;
+                s.Format(IDS_MODELGENHTML_57,
+                         objectCounter,    // The header is the symbol name
+                         (const char*)ReplaceSpecialCharInString(dynamic_cast<ZIBasicSymbol*>(pComp)->GetSymbolName()));
+                htmlFile << s;
 
                 CString dummy;
-                dummy.Format( IDS_SYMBOLDESCRIPTION_HTML, dynamic_cast<ZIBasicSymbol*>( pComp )->GetSymbolComment() );
+                dummy.Format(IDS_SYMBOLDESCRIPTION_HTML, dynamic_cast<ZIBasicSymbol*>(pComp)->GetSymbolComment());
 
-                s.Format( IDS_MODELGENHTML_58,
-                          ObjectCounter,    // The text is the symbol description
-                          (const char*)ReplaceSpecialCharInString( dummy ) ); 
+                s.Format(IDS_MODELGENHTML_58,
+                         objectCounter,    // The text is the symbol description
+                         (const char*)ReplaceSpecialCharInString(dummy)); 
 
-                HtmlFile << s;
+                htmlFile << s;
 
-                dummy.Format( IDS_SYMBOLREF_HTML,
-                              dynamic_cast<ZIBasicSymbol*>( pComp )->GetSymbolReferenceNumber() );
+                dummy.Format(IDS_SYMBOLREF_HTML,
+                             dynamic_cast<ZIBasicSymbol*>(pComp)->GetSymbolReferenceNumber());
 
-                s.Format( IDS_MODELGENHTML_58,
-                          ObjectCounter,    // The text is the symbol description
-                          (const char*)dummy ); 
+                s.Format(IDS_MODELGENHTML_58,
+                         objectCounter,    // The text is the symbol description
+                         (const char*)dummy); 
 
-                HtmlFile << s;
+                htmlFile << s;
 
-                // Test if has an external document
-                if ( ( ISA( pComp, ZBSymbol ) &&
-                     dynamic_cast<ZBSymbol*>( pComp )->AcceptExtFile() ) ||
-                     ( ISA( pComp, ZBLinkSymbol ) &&
-                     dynamic_cast<ZBLinkSymbol*>( pComp )->AcceptExtFile() ) )
-                {
-                    for ( size_t Idx = 0; Idx < dynamic_cast<ZBExtFilePropertyMgr*>( pComp )->GetExtFileCount(); ++Idx )
+                // test if has an external document
+                if ((ISA(pComp, ZBSymbol)     && dynamic_cast<ZBSymbol*>(pComp)->AcceptExtFile()) ||
+                    (ISA(pComp, ZBLinkSymbol) && dynamic_cast<ZBLinkSymbol*>(pComp)->AcceptExtFile()))
+                    for (std::size_t idx = 0; idx < dynamic_cast<ZBExtFilePropertyMgr*>(pComp)->GetExtFileCount(); ++idx)
                     {
-                        // For each link, create a link with a blank target
+                        // for each link, create a link with a blank target
                         ZBExtFileProperties* pFileProperty =
-                            dynamic_cast<ZBExtFilePropertyMgr*>( pComp )->GetExtFileProperty( Idx );
+                                dynamic_cast<ZBExtFilePropertyMgr*>(pComp)->GetExtFileProperty(idx);
 
-                        if ( pFileProperty )
+                        if (pFileProperty)
                         {
-                            dummy.Format( IDS_SYMBOLEXTFILE_HTML,
-                                          Idx + 1, (const char*)pFileProperty->GetFileTitle() );
+                            dummy.Format(IDS_SYMBOLEXTFILE_HTML, idx + 1, (const char*)pFileProperty->GetFileTitle());
 
-                            s.Format( IDS_MODELGENHTML_60,
-                                      ObjectCounter,                                                 // The object number
-                                      (const char*)dummy,                                             // The file title
-                                      (const char*)ReplaceBackSlash( pFileProperty->GetFilename() ), // The file path
-                                      (const char*)gBlankTarget );                                     // The target frame
+                            s.Format(IDS_MODELGENHTML_60,
+                                     objectCounter,                                               // The object number
+                                     (const char*)dummy,                                          // The file title
+                                     (const char*)ReplaceBackSlash(pFileProperty->GetFilename()), // The file path
+                                     (const char*)gBlankTarget);                                  // The target frame
 
-                            HtmlFile << s;
+                            htmlFile << s;
                         }
                     }
-                }
 
-                // If has a unit defined, insert the unit link
-                if ( ( ISA( pComp, ZBSymbol ) &&
-                     dynamic_cast<ZBSymbol*>( pComp )->HasUnit() ) ||
-                     ( ISA( pComp, ZBLinkSymbol ) &&
-                     dynamic_cast<ZBLinkSymbol*>( pComp )->HasUnit() ) )
+                // if has a unit defined, insert the unit link
+                if ((ISA(pComp, ZBSymbol)      && dynamic_cast<ZBSymbol*>(pComp)->HasUnit()) ||
+                    (ISA(pComp, ZBLinkSymbol ) && dynamic_cast<ZBLinkSymbol*>(pComp)->HasUnit()))
                 {
                     ZBUserEntity* pUserEntity =
-                        pModel->GetMainUserGroup()->FindGroupByGUID( dynamic_cast<ZIBasicSymbol*>( pComp )->GetUnitGUID(), true );
+                            pModel->GetMainUserGroup()->FindGroupByGUID(dynamic_cast<ZIBasicSymbol*>(pComp)->GetUnitGUID(), true);
 
-                    if ( pUserEntity && ISA( pUserEntity, ZBUserGroupEntity ) )
+                    if (pUserEntity && ISA(pUserEntity, ZBUserGroupEntity))
                     {
-                        dummy.Format( IDS_SYMBOLUNIT_HTML,
-                                      (const char*)dynamic_cast<ZIBasicSymbol*>( pComp )->GetUnitName() );
+                        dummy.Format(IDS_SYMBOLUNIT_HTML, (const char*)dynamic_cast<ZIBasicSymbol*>(pComp)->GetUnitName());
 
-                        s.Format( IDS_MODELGENHTML_59,
-                                  ObjectCounter,        // The object number
-                                  (const char*)dummy,    // The file title
-                                  (const char*)CalculatePath( BuildUserHTMLFilename( dynamic_cast<ZBUserGroupEntity*>( pUserEntity ) ), HtmlFilename ) ); // The file path
+                        s.Format(IDS_MODELGENHTML_59,
+                                 objectCounter,      // The object number
+                                 (const char*)dummy, // The file title
+                                 (const char*)CalculatePath(BuildUserHTMLFilename(dynamic_cast<ZBUserGroupEntity*>(pUserEntity)),
+                                 htmlFilename)); // The file path
 
-                        HtmlFile << s;
+                        htmlFile << s;
                     }
                 }
 
-                // If has a system defined, insert the system link
-                if ( ( ISA( pComp, ZBSymbol ) &&
-                     dynamic_cast<ZBSymbol*>( pComp )->AcceptExtApp() ) ||
-                     ( ISA( pComp, ZBLinkSymbol ) &&
-                     dynamic_cast<ZBLinkSymbol*>( pComp )->AcceptExtApp() ) )
-                {
-                    for ( size_t Idx = 0; Idx < dynamic_cast<ZBExtAppPropertyMgr*>( pComp )->GetExtAppCount(); ++Idx )
+                // if has a system defined, insert the system link
+                if ((ISA(pComp, ZBSymbol)     && dynamic_cast<ZBSymbol*>(pComp)->AcceptExtApp()) ||
+                    (ISA(pComp, ZBLinkSymbol) && dynamic_cast<ZBLinkSymbol*>(pComp)->AcceptExtApp()))
+                    for (std::size_t idx = 0; idx < dynamic_cast<ZBExtAppPropertyMgr*>(pComp)->GetExtAppCount(); ++idx)
                     {
-                        // For each link, create a link with a blank target
-                        ZBExtAppProperties* pAppProperty = dynamic_cast<ZBExtAppPropertyMgr*>( pComp )->GetExtAppProperty( Idx );
+                        // for each link, create a link with a blank target
+                        ZBExtAppProperties* pAppProperty = dynamic_cast<ZBExtAppPropertyMgr*>(pComp)->GetExtAppProperty(idx);
 
-                        if ( pAppProperty )
+                        if (pAppProperty)
                         {
                             ZBSystemEntity* pSystemEntity =
-                                pModel->GetMainLogicalSystem()->FindSystemByGUID( pAppProperty->GetCommandParameters().Right( pAppProperty->GetCommandParameters().GetLength() - gLogicalSystemKey.GetLength() ), true );
+                                    pModel->GetMainLogicalSystem()->FindSystemByGUID(pAppProperty->GetCommandParameters().Right(pAppProperty->GetCommandParameters().GetLength() - gLogicalSystemKey.GetLength()), true);
 
-                            if ( pSystemEntity && ISA( pSystemEntity, ZBLogicalSystemEntity ) )
+                            if (pSystemEntity && ISA(pSystemEntity, ZBLogicalSystemEntity))
                             {
-                                dummy.Format( IDS_SYMBOLEXTAPP_HTML, Idx + 1,
-                                              (const char*)pAppProperty->GetCommandTitle() );
+                                dummy.Format(IDS_SYMBOLEXTAPP_HTML,
+                                             idx + 1,
+                                             (const char*)pAppProperty->GetCommandTitle());
 
-                                s.Format( IDS_MODELGENHTML_59,
-                                          ObjectCounter,        // The object number
-                                          (const char*)dummy,    // The file title
-                                          (const char*)CalculatePath( BuildLogicalSystemHTMLFilename( dynamic_cast<ZBLogicalSystemEntity*>( pSystemEntity ) ), HtmlFilename ) ); // The file path
+                                s.Format(IDS_MODELGENHTML_59,
+                                         objectCounter,      // The object number
+                                         (const char*)dummy, // The file title
+                                         (const char*)CalculatePath(BuildLogicalSystemHTMLFilename(dynamic_cast<ZBLogicalSystemEntity*>(pSystemEntity)), htmlFilename)); // The file path
 
-                                HtmlFile << s;
+                                htmlFile << s;
                             }
                         }
                     }
-                }
 
-                // If has a sub-model defined, create a link to enter in the symbol child model
-                if ( ISA( pComp, ZBSymbol ) && ( (ZBSymbol*)pComp )->GetChildModel() )
+                // if has a sub-model defined, create a link to enter in the symbol child model
+                if (ISA(pComp, ZBSymbol) && ((ZBSymbol*)pComp)->GetChildModel())
                 {
                     ZDProcessGraphModelMdl* pSubModel =
-                        reinterpret_cast<ZDProcessGraphModelMdl*>( ( (ZBSymbol*)pComp )->GetChildModel() );
+                            reinterpret_cast<ZDProcessGraphModelMdl*>(((ZBSymbol*)pComp)->GetChildModel());
 
-                    // Retreive the html filename for the reference
-                    CString SymbolChildModelHtmlFilename = BuildModelHTMLFilename( pSubModel );
-                    dummy.Format( IDS_GOINSYMBOL_HTML,
-                                  (const char*)dynamic_cast<ZIBasicSymbol*>( pComp )->GetSymbolName() );
+                    // retreive the html filename for the reference
+                    CString symbolChildModelHtmlFilename = BuildModelHTMLFilename(pSubModel);
+                    dummy.Format(IDS_GOINSYMBOL_HTML,
+                                 (const char*)dynamic_cast<ZIBasicSymbol*>(pComp)->GetSymbolName());
 
-                    s.Format( IDS_MODELGENHTML_59,
-                              ObjectCounter,        // The object number
-                              (const char*)dummy,    // The file title
-                              (const char*)CalculatePath( SymbolChildModelHtmlFilename, HtmlFilename ) ); // The file path
+                    s.Format(IDS_MODELGENHTML_59,
+                             objectCounter,      // The object number
+                             (const char*)dummy, // The file title
+                             (const char*)CalculatePath(symbolChildModelHtmlFilename, htmlFilename)); // The file path
 
-                    HtmlFile << s;
+                    htmlFile << s;
 
-                    // Check if the symbol has more than one page
-                    if ( pSubModel->GetPageSet() )
+                    // check if the symbol has more than one page
+                    if (pSubModel->GetPageSet())
                     {
-                        ZBProcessGraphPageIterator i( pSubModel->GetPageSet() );
-                        ZDProcessGraphPage* pPage = i.GetFirst();
+                        ZBProcessGraphPageIterator i(pSubModel->GetPageSet());
+                        ZDProcessGraphPage*        pPage = i.GetFirst();
 
-                        if ( pPage )
+                        if (pPage)
                         {
-                            // Skip the first page
-                            for ( pPage = i.GetNext(); pPage != NULL; pPage = i.GetNext() )
+                            // skip the first page
+                            for (pPage = i.GetNext(); pPage; pPage = i.GetNext())
                             {
-                                // Retreive the html filename for the reference
-                                SymbolChildModelHtmlFilename = BuildModelHTMLFilename( pPage->GetpModel() );
-                                dummy.Format( IDS_GOINSYMBOL_HTML, (const char*)pPage->GetPageName() );
+                                // retreive the html filename for the reference
+                                symbolChildModelHtmlFilename = BuildModelHTMLFilename(pPage->GetpModel());
+                                dummy.Format(IDS_GOINSYMBOL_HTML, (const char*)pPage->GetPageName());
 
-                                s.Format( IDS_MODELGENHTML_59,
-                                          ObjectCounter,        // The object number
-                                          (const char*)dummy,    // The file title
-                                          (const char*)CalculatePath( SymbolChildModelHtmlFilename, HtmlFilename ) ); // The file path
+                                s.Format(IDS_MODELGENHTML_59,
+                                         objectCounter,      // The object number
+                                         (const char*)dummy, // The file title
+                                         (const char*)CalculatePath(symbolChildModelHtmlFilename, htmlFilename)); // The file path
 
-                                HtmlFile << s;
+                                htmlFile << s;
                             }
                         }
                     }
@@ -1056,87 +1028,74 @@ bool ZUModelGenerateImageFiles::CreateHtmlPage( ZDProcessGraphModelMdl* pModel, 
 
                 // *********************************************************************************************
                 // JMR-MODIF - Le 2 mars 2006 - Ajout du code pour l'intégration des rapports processus.
-                if ( ISA( pComp, ZBSymbol )                &&
-                     ( (ZBSymbol*)pComp )->IsProcess()    &&
-                     m_pInfo->GetIncludeProcessReport() )
+                if (ISA(pComp, ZBSymbol) && ((ZBSymbol*)pComp)->IsProcess() && m_pInfo->GetIncludeProcessReport())
                 {
-                    CString ProcessReportPath =
-                        BuildProcessReportHTMLFilename( dynamic_cast<ZIBasicSymbol*>( pComp )->GetSymbolName() );
+                    CString processReportPath =
+                            BuildProcessReportHTMLFilename(dynamic_cast<ZIBasicSymbol*>(pComp)->GetSymbolName());
 
-                    // Retreive the html filename for the reference
-                    dummy.LoadString( IDS_GOINREPORT_HTML );
+                    // retreive the html filename for the reference
+                    dummy.LoadString(IDS_GOINREPORT_HTML);
 
-                    s.Format( IDS_MODELGENHTML_59,
-                              ObjectCounter,                    // The object number
-                              (const char*)dummy,                // The file title
-                              (const char*)ProcessReportPath );    // The file path
+                    s.Format(IDS_MODELGENHTML_59,
+                             objectCounter,                   // The object number
+                             (const char*)dummy,              // The file title
+                             (const char*)processReportPath); // The file path
 
-                    HtmlFile << s;
+                    htmlFile << s;
                 }
                 // *********************************************************************************************
 
-                s.Format( IDS_MODELGENHTML_61, ObjectCounter ); // Create the new popup object
-                HtmlFile << s;
+                s.Format(IDS_MODELGENHTML_61, objectCounter); // Create the new popup object
+                htmlFile << s;
 
-                // Next object
-                ++ObjectCounter;
+                // next object
+                ++objectCounter;
             }
         }
 
-        // Javascript end here
-        s.LoadString( IDS_MODELGENHTML_54 );
-        HtmlFile << s;
+        // javascript end here
+        s.LoadString(IDS_MODELGENHTML_54);
+        htmlFile << s;
 
-        // Write the hotspot table header
-        s.Format( IDS_MODELGENHTML_2,
-                  (const char*)pModel->GetAbsolutePath(),                        // Object name
-                  (const char*)CalculatePath( ImageFilename, HtmlFilename ) );    // Image file
+        // write the hotspot table header
+        s.Format(IDS_MODELGENHTML_2,
+                 (const char*)pModel->GetAbsolutePath(),                   // Object name
+                 (const char*)CalculatePath(imageFilename, htmlFilename)); // Image file
 
-        HtmlFile << s;
+        htmlFile << s;
 
-        // Write all hot spots
+        // write all hot spots
 
-        // Run throught the model elements and write the hotspot entities
-        CString SymbolHtmlFilename;
-        CRect    SymbolCoordinates;
+        // run throught the model elements and write the hotspot entities
+        CString symbolHtmlFilename;
+        CRect   symbolCoordinates;
 
         // Process the model components
         pSet = pModel->GetComponents();
 
-        // Set the object counter
-        ObjectCounter = 1;
+        // set the object counter
+        objectCounter = 1;
 
-        for ( i = 0; i < pSet->GetSize(); ++i )
+        for (int i = 0; i < pSet->GetSize(); ++i)
         {
-            CODComponent* pComp = pSet->GetAt( i );
+            CODComponent* pComp = pSet->GetAt(i);
 
-            if ( !pComp )
-            {
+            if (!pComp)
                 continue;
-            }
 
-            if ( ISA( pComp, ZBSymbol) || ISA( pComp, ZBLinkSymbol ) )
+            if (ISA(pComp, ZBSymbol) || ISA(pComp, ZBLinkSymbol))
             {
-                // If no sub-model, just the area for the popup
-                CODModel* pOwnerModel = dynamic_cast<ZIBasicSymbol*>( pComp )->GetOwnerModel();
+                // if no sub-model, just the area for the popup
+                CODModel* pOwnerModel = dynamic_cast<ZIBasicSymbol*>(pComp)->GetOwnerModel();
 
-                if ( ISA( pComp, ZBSymbol ) )
-                {
-                    // And then, retreive the symbol position
-                    SymbolCoordinates = pComp->GetBaseRgn().GetBounds();
-                }
+                // and then, retreive the symbol position
+                if (ISA(pComp, ZBSymbol))
+                    symbolCoordinates = pComp->GetBaseRgn().GetBounds();
                 else
-                {
-                    // And then, retreive the label position
-                    if ( dynamic_cast<ZBLinkSymbol*>( pComp )->GetNumLabels() > 0 )
-                    {
-                        SymbolCoordinates = dynamic_cast<ZBLinkSymbol*>( pComp )->GetLabel( 0 )->GetBounds();
-                    }
-                    else
-                    {
-                        SymbolCoordinates = dynamic_cast<ZBLinkSymbol*>( pComp )->GetBaseRgn().GetBounds();
-                    }
-                }
+                if (dynamic_cast<ZBLinkSymbol*>(pComp)->GetNumLabels() > 0)
+                    symbolCoordinates = dynamic_cast<ZBLinkSymbol*>(pComp)->GetLabel(0)->GetBounds();
+                else
+                    symbolCoordinates = dynamic_cast<ZBLinkSymbol*>(pComp)->GetBaseRgn().GetBounds();
 
                 // ****************************************************************************************************
                 // JMR-MODIF - Le 5 juillet 2005 - Adaptation de la page : L'action du click et l'action du passage
@@ -1154,80 +1113,78 @@ bool ZUModelGenerateImageFiles::CreateHtmlPage( ZDProcessGraphModelMdl* pModel, 
                                                SymbolCoordinates.right,
                                                SymbolCoordinates.bottom );
 */
-                s.Format( IDS_MODELGENHTML_91,
-                          ObjectCounter,                // The object number
-                          ObjectCounter,                // The object number
-                          (const char*)gPSSLeftTarget,    // The target frame
-                          SymbolCoordinates.left,        // The coordinates
-                          SymbolCoordinates.top,
-                          SymbolCoordinates.right,
-                          SymbolCoordinates.bottom );
+                s.Format(IDS_MODELGENHTML_91,
+                         objectCounter,               // The object number
+                         objectCounter,               // The object number
+                         (const char*)gPSSLeftTarget, // The target frame
+                         symbolCoordinates.left,      // The coordinates
+                         symbolCoordinates.top,
+                         symbolCoordinates.right,
+                         symbolCoordinates.bottom);
                 // ****************************************************************************************************
 
-                HtmlFile << s;
+                htmlFile << s;
 
                 // Next object
-                ++ObjectCounter;
+                ++objectCounter;
             }
         }
 
-        // Write the hotspot table footer
-        s.LoadString( IDS_MODELGENHTML_4 );
-        HtmlFile << s;
+        // write the hotspot table footer
+        s.LoadString(IDS_MODELGENHTML_4);
+        htmlFile << s;
 
-        // Write the footer
+        // write the footer
         s.LoadString( IDS_MODELGENHTML_5 );
-        HtmlFile << s;
+        htmlFile << s;
 
-        HtmlFile.CloseFile();
+        htmlFile.CloseFile();
     }
 
-    // Check if the html file has already been generated
+    // check if the html file has already been generated
     // this is to avoid generating twice the same html file
     // it takes time and it will optimize the generation
-    if ( !StringAlreadyGenerated( HtmlFilenameForPrinter ) )
+    if (!StringAlreadyGenerated(htmlFilenameForPrinter))
     {
         // Refresh Setup Copyfile Window
-        m_FileGenerateWindow.SetDestination( HtmlFilenameForPrinter );
+        m_FileGenerateWindow.SetDestination(htmlFilenameForPrinter);
         m_FileGenerateWindow.UpdateWindow();
 
-        if ( PeekMessage( &msg, NULL, NULL, NULL, PM_NOREMOVE ) )
+        if (::PeekMessage(&msg, NULL, NULL, NULL, PM_NOREMOVE))
         {
-            GetMessage( &msg, NULL, NULL, NULL );
-            TranslateMessage( &msg );
-            DispatchMessage( &msg );
+            ::GetMessage(&msg, NULL, NULL, NULL);
+            ::TranslateMessage(&msg);
+            ::DispatchMessage(&msg);
         }
 
-        // Now create the printable HTML file
-        ZDHtmlFile PrintableHtmlFile( HtmlFilenameForPrinter );
-        
-        if ( !PrintableHtmlFile.OpenFileCreate() )
-        {
+        // now create the printable HTML file
+        ZDHtmlFile printableHtmlFile(htmlFilenameForPrinter);
+
+        if (!printableHtmlFile.OpenFileCreate())
             return false;
-        }
 
         CString s;
 
-        // Write header
-        s.Format( IDS_MODELGENHTML_1,
-                  (const char*)pModel->GetAbsolutePath(),                        // Model path
-                  (const char*)ZBDate::GetToday().GetStandardFormatedDate() );    // Current date
-        PrintableHtmlFile << s;
+        // write header
+        s.Format(IDS_MODELGENHTML_1,
+                 (const char*)pModel->GetAbsolutePath(),                     // Model path
+                 (const char*)ZBDate::GetToday().GetStandardFormatedDate()); // Current date
+        printableHtmlFile << s;
 
-        s.Format( IDS_MODELGENHTML_16,
-                  (const char*)CalculatePath( ImageFilename, HtmlFilename ) ); // The model image
-        PrintableHtmlFile << s;
+        s.Format(IDS_MODELGENHTML_16,
+                 (const char*)CalculatePath(imageFilename, htmlFilename)); // The model image
+        printableHtmlFile << s;
 
-        // Write the footer
-        s.LoadString( IDS_MODELGENHTML_5 );
-        PrintableHtmlFile << s;
+        // write the footer
+        s.LoadString(IDS_MODELGENHTML_5);
+        printableHtmlFile << s;
 
-        PrintableHtmlFile.CloseFile();
+        printableHtmlFile.CloseFile();
     }
 
     return true;
 }
-
+//---------------------------------------------------------------------------
 bool ZUModelGenerateImageFiles::GenerateIndexPage( ZDProcessGraphModelMdl* pModel )
 {
     // Saves the root html filename

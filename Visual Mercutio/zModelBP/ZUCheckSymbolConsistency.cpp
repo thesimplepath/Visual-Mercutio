@@ -1327,29 +1327,29 @@ bool ZUCheckSymbolConsistency::CheckUniqueRef( ZIBasicSymbol* pSymbol )
 
     return true;
 }
-
-bool ZUCheckSymbolConsistency::RefExist( int ref )
+//---------------------------------------------------------------------------
+bool ZUCheckSymbolConsistency::RefExist(int ref)
 {
+    // FIXME translate comments
     // JMR-MODIF - Le 20 mars 2006 - Le code -1 ne doit pas être pris en charge.
-    if ( ref == -1 )
-    {
+    if (ref == -1)
         return false;
-    }
 
-    for ( int i = 0; i < m_RefIDSize && m_pIDArray[i] != 0; ++i )
+    int index = 0;
+
+    for (int i = 0; i < m_RefIDSize && m_pIDArray[i] != 0; ++i)
     {
-        if ( m_pIDArray[i] == ref )
-        {
+        index = i;
+
+        if (m_pIDArray[i] == ref)
             return true;
-        }
     }
 
-    // Check the array size before inserting the element
-    if ( i < m_RefIDSize )
-    {
-        // Add it for the next time
-        m_pIDArray[i] = ref;
-    }
+    // check the array size before inserting the element
+    if (index < m_RefIDSize)
+        // add it for the next time
+        m_pIDArray[index] = ref;
 
     return false;
 }
+//---------------------------------------------------------------------------

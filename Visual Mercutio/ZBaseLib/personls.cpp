@@ -105,48 +105,41 @@ void ZUMailUserList::Serialize (CArchive& ar)
     m_PersonList.Serialize( ar );
   //## end ZUMailUserList::Serialize%928062192.body
 }
-
-MapiRecipDesc* ZUMailUserList::GetMapiRecipDescPtr ()
+//---------------------------------------------------------------------------
+MapiRecipDesc* ZUMailUserList::GetMapiRecipDescPtr()
 {
-  //## begin ZUMailUserList::GetMapiRecipDescPtr%913452745.body preserve=yes
-      if (m_MapiRecipDescPtr)
-          delete [] m_MapiRecipDescPtr;
+    if (m_MapiRecipDescPtr)
+        delete[] m_MapiRecipDescPtr;
       
-      m_MapiRecipDescPtr = new FAR MapiRecipDesc[GetCount()];
+    m_MapiRecipDescPtr = new FAR MapiRecipDesc[GetCount()];
       
-      for (register i = 0; i < GetCount(); ++i)
-      {
-        memset((lpMapiFileDesc)(&m_MapiRecipDescPtr[i]), 0, sizeof(MapiRecipDesc));
-        m_MapiRecipDescPtr[i].ulRecipClass = GetAt( i )->GetRecipClass();
-        m_MapiRecipDescPtr[i].lpszName = (char*)((const char*)(GetAt( i )->GetPersonName()));
-//    .lpszAddress = NULL;
-//    .ulEIDSize = 0;
-//    .lpEntryID = NULL;
-          
+    for (register int i = 0; i < GetCount(); ++i)
+    {
+        std::memset(lpMapiFileDesc(&m_MapiRecipDescPtr[i]), 0, sizeof(MapiRecipDesc));
+        m_MapiRecipDescPtr[i].ulRecipClass = GetAt(i)->GetRecipClass();
+        m_MapiRecipDescPtr[i].lpszName     = (char*)((const char*)(GetAt(i)->GetPersonName()));
     }
+
     return m_MapiRecipDescPtr;
-  //## end ZUMailUserList::GetMapiRecipDescPtr%913452745.body
 }
-
-void ZUMailUserList::Fill (CStringArray& PersonList, ULONG RecipClass)
+//---------------------------------------------------------------------------
+void ZUMailUserList::Fill(CStringArray& PersonList, ULONG RecipClass)
 {
-  //## begin ZUMailUserList::Fill%913659114.body preserve=yes
       RemoveAllPersons();
-      for (register i = 0; i < PersonList.GetSize(); ++i)
+
+      for (register int i = 0; i < PersonList.GetSize(); ++i)
           AddPerson( PersonList[i], RecipClass );
-  //## end ZUMailUserList::Fill%913659114.body
 }
-
-void ZUMailUserList::Fill (ZUUserManager& PersonList, ULONG RecipClass)
+//---------------------------------------------------------------------------
+void ZUMailUserList::Fill(ZUUserManager& PersonList, ULONG RecipClass)
 {
-  //## begin ZUMailUserList::Fill%913659115.body preserve=yes
       RemoveAllPersons();
+
       for (register size_t i = 0; i < PersonList.GetCount(); ++i)
           AddPerson( *PersonList.GetAt(i), RecipClass );
-  //## end ZUMailUserList::Fill%913659115.body
 }
-
-void ZUMailUserList::Fill (lpMapiRecipDesc* pMapiDesc, ULONG Count)
+//---------------------------------------------------------------------------
+void ZUMailUserList::Fill(lpMapiRecipDesc* pMapiDesc, ULONG Count)
 {
   //## begin ZUMailUserList::Fill%921575860.body preserve=yes
       RemoveAllPersons();

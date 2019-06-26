@@ -416,22 +416,22 @@ public:
         return GetTemplateMapCollection().GetNumEntries();
     };
 
-    _TemplateMapCollection::_TemplateEntry* GetTemplateAt( const int nIdx ) const
+    typename _TemplateMapCollection::_TemplateEntry* GetTemplateAt( const int nIdx ) const
     {
         return GetTemplateMapCollection().GetTemplateAt( nIdx );
     };
 
-    _TemplateMapCollection::_TemplateEntry* GetTemplateByResource( UINT nIDRes ) const
+    typename _TemplateMapCollection::_TemplateEntry* GetTemplateByResource( UINT nIDRes ) const
     {
         return GetTemplateMapCollection().GetTemplateEntryByResource( nIDRes );
     };
 
-    _TemplateMapCollection::_TemplateEntry* GetTemplateEntryByExtension( const CString Ext ) const
+    typename _TemplateMapCollection::_TemplateEntry* GetTemplateEntryByExtension( const CString Ext ) const
     {
         return GetTemplateMapCollection().GetTemplateEntryByExtension( Ext );
     };
 
-    _TemplateMapCollection::_TemplateEntry* GetTemplateEntryByFilename( const CString Filename ) const
+    typename _TemplateMapCollection::_TemplateEntry* GetTemplateEntryByFilename( const CString Filename ) const
     {
         return GetTemplateMapCollection().GetTemplateEntryByFilename( Filename );
     };

@@ -201,7 +201,7 @@ void ZBCriptedFileInfo::WriteEntityTable()
           return;
       }
     for (size_t i = 0; i < m_TableEntries; ++i )
-        m_FileStream << m_EntityTable[i].GetsEntity() << endl;
+        m_FileStream << m_EntityTable[i].GetEntity() << endl;
       m_FileStream.close();
 
     // Set a default date to hide the file modifications
@@ -246,7 +246,7 @@ void ZBCriptedFileInfo::LoadEntityTable()
     {
         char    szTemp[1000];
         m_FileStream.getline( szTemp, sizeof( szTemp ) );
-        m_EntityTable[i].SetsEntity( szTemp ); 
+        m_EntityTable[i].SetEntity( szTemp ); 
     }
 
       m_FileStream.close();

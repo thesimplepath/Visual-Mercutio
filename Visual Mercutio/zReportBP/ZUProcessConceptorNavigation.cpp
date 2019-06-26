@@ -394,7 +394,7 @@ bool ZUProcessConceptorNavigation::OnProcedureSymbol( ZBBPProcedureSymbol* pProc
     // rules themselves, at least one empty line
     int Count = max( pProcedure->GetRuleCount(), 1 );
 
-    for ( int i = 0; i < Count; ++i )
+    for (int i = 0; i < Count; ++i)
     {
         s.Format( IDS_CONCEPTOR_RULE_NB, i + 1 );
         *m_postream << s;
@@ -429,7 +429,7 @@ bool ZUProcessConceptorNavigation::OnProcedureSymbol( ZBBPProcedureSymbol* pProc
     // tasks themselves, at least one empty line
     Count = max( pProcedure->GetTaskCount(), 1 );
 
-    for ( i = 0; i < Count; ++i )
+    for (int i = 0; i < Count; ++i)
     {
         s.Format( IDS_CONCEPTOR_TASK_NB, i + 1 );
         *m_postream << s;
@@ -464,7 +464,7 @@ bool ZUProcessConceptorNavigation::OnProcedureSymbol( ZBBPProcedureSymbol* pProc
     // decisions themselves, at least one empty line
     Count = max( pProcedure->GetDecisionCount(), 1 );
 
-    for ( i = 0; i < Count; ++i )
+    for (int i = 0; i < Count; ++i)
     {
         s.Format( IDS_CONCEPTOR_DECISION_NB, i + 1 );
         *m_postream << s;

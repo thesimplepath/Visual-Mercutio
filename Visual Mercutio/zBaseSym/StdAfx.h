@@ -32,7 +32,7 @@
 
 // Plateforme cible définie à Windows NT4 et supérieures pour les versions NT de Windows.
 #ifndef _WIN32_WINNT
-#define _WIN32_WINNT 0x0400
+#define _WIN32_WINNT _WIN32_WINNT_WINXP
 #endif                        
 
 // Plateforme cible définie à Windows98 et supérieures pour les versions standards de Windows.

@@ -121,7 +121,7 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_ZSPLASH_APP         ICON    DISCARDABLE     "icon1.ico"
+IDI_ZSPLASH_APP    ICON    DISCARDABLE    "icon1.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //

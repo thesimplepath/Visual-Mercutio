@@ -227,23 +227,24 @@ void ZUSOAPPublishModelAttributes::PublishAttribDef( ZBPropertySet& PropSet )
         }
     }
 }
-
-bool ZUSOAPPublishModelAttributes::KeyExist( int key )
+//---------------------------------------------------------------------------
+bool ZUSOAPPublishModelAttributes::KeyExist(int key)
 {
-    for ( int i = 0; i < sizeof( m_IDArray ) && m_IDArray[i] != 0; ++i )
+    int index = 0;
+
+    for (int i = 0; i < sizeof(m_IDArray) && m_IDArray[i] != 0; ++i)
     {
-        if ( m_IDArray[i] == key )
-        {
+        index = i;
+
+        if (m_IDArray[i] == key)
             return true;
-        }
     }
 
-    // Dosen't exist, check the array size before inserting the element
-    if ( i < sizeof( m_IDArray ) / sizeof( int ) )
-    {
+    // dosen't exist, check the array size before inserting the element
+    if (index < sizeof(m_IDArray) / sizeof(int))
         // add it for the next time
-        m_IDArray[i] = key;
-    }
+        m_IDArray[index] = key;
 
     return false;
 }
+//---------------------------------------------------------------------------

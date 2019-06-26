@@ -1046,7 +1046,7 @@ bool ZUGridSesterceProcessNavigation::OnProcedureSymbol( ZBBPProcedureSymbol* pS
     *m_postream << _T( "\t" );
 
     // Right 13 times
-    for ( int i=0; i<13; ++i )
+    for (int i = 0; i < 13; ++i)
     {
         *m_postream << m_GrayStyle;
         *m_postream << _T( "\t" );
@@ -1060,7 +1060,7 @@ bool ZUGridSesterceProcessNavigation::OnProcedureSymbol( ZBBPProcedureSymbol* pS
     *m_postream << _T( "\t" );
 
     // The procedure activation for each month
-    for ( i = 0; i < 12; ++i )
+    for (int i = 0; i < 12; ++i)
     {
         *m_postream << pSymbol->GetProcedureActivation().GetNumberAt( i );
         *m_postream << m_LightGrayStyle;
@@ -1077,7 +1077,7 @@ bool ZUGridSesterceProcessNavigation::OnProcedureSymbol( ZBBPProcedureSymbol* pS
     *m_postream << _T( "\t" );
 
     // The procedure cost for each month
-    for ( i = 0; i < 12; ++i )
+    for (int i = 0; i < 12; ++i)
     {
         *m_postream << pSymbol->GetProcedureCost().GetNumberAt( i );
         *m_postream << m_LightGrayStyle;
@@ -1094,7 +1094,7 @@ bool ZUGridSesterceProcessNavigation::OnProcedureSymbol( ZBBPProcedureSymbol* pS
     *m_postream << _T( "\t" );
 
     // The procedure workload for each month
-    for ( i = 0; i < 12; ++i )
+    for (int i = 0; i < 12; ++i)
     {
         *m_postream << pSymbol->GetProcedureWorkloadForecast().GetNumberAt( i );
         *m_postream << m_LightGrayStyle;
@@ -1111,7 +1111,7 @@ bool ZUGridSesterceProcessNavigation::OnProcedureSymbol( ZBBPProcedureSymbol* pS
     *m_postream << _T( "\t" );
 
     // The procedure cost for each month
-    for ( i = 0; i < 12; ++i )
+    for (int i = 0; i < 12; ++i)
     {
         *m_postream << pSymbol->GetProcedureCostForecast().GetNumberAt( i );
         *m_postream << m_LightGrayStyle;
@@ -1276,7 +1276,7 @@ bool ZUGridSesterceProcessNavigation::OnDeliverableLinkSymbol( ZBDeliverableLink
     }
 
     // Right 13 times
-    for ( i = 0; i < 13; ++i )
+    for (int i = 0; i < 13; ++i)
     {
         *m_postream << m_GrayStyle;
         *m_postream << _T( "\t" );
@@ -1290,7 +1290,7 @@ bool ZUGridSesterceProcessNavigation::OnDeliverableLinkSymbol( ZBDeliverableLink
     *m_postream << _T( "\t" );
 
     // The deliverable cost for each month
-    for ( i = 0; i < 12; ++i )
+    for (int i = 0; i < 12; ++i)
     {
         *m_postream << pSymbol->GetCost().GetNumberAt( i );
         *m_postream << m_LightGrayStyle;
@@ -1307,7 +1307,7 @@ bool ZUGridSesterceProcessNavigation::OnDeliverableLinkSymbol( ZBDeliverableLink
     *m_postream << _T( "\t" );
 
     // The deliverable cost for each month
-    for ( i = 0; i < 12; ++i )
+    for (int i = 0; i < 12; ++i)
     {
         *m_postream << pSymbol->GetWorkloadForecast().GetNumberAt( i );
         *m_postream << m_LightGrayStyle;
@@ -1317,7 +1317,7 @@ bool ZUGridSesterceProcessNavigation::OnDeliverableLinkSymbol( ZBDeliverableLink
     }
 
     // Right 13 times
-    for ( i = 0; i < 13; ++i )
+    for (int i = 0; i < 13; ++i)
     {
         *m_postream << m_GrayStyle;
         *m_postream << _T( "\t" );
@@ -1331,3 +1331,4 @@ bool ZUGridSesterceProcessNavigation::OnDeliverableLinkSymbol( ZBDeliverableLink
 
     return true;
 }
+//---------------------------------------------------------------------------

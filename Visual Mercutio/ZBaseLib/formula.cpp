@@ -64,8 +64,10 @@ ZAFormula::ZAFormula( ZDDocument& Doc, const CString& str )
     CString        sPage=sTemp.Left( iSep );
     m_iPage = atoi( sPage );
     m_sFormula = sTemp.Right( sTemp.GetLength()-iSep-1 );
-    // Extract object Name
-    VERIFY( (cpFind = strchr( m_sFormula, '=' )) );
+
+    // extract object Name
+    VERIFY(cpFind = const_cast<char*>(std::strchr(m_sFormula, '=')));
+
     m_sObjectName = m_sFormula.Left( (int)(cpFind-m_sFormula-1) );
     m_sExtractedFormula = cpFind+1;
     // Get the pointer to the object

@@ -117,7 +117,7 @@ BOOL    ZUWatchDirectory::PauseWatching()
     return TRUE;
 }
 
-BOOL    ZUWatchDirectory::ResumeWatching()
+BOOL ZUWatchDirectory::ResumeWatching()
 {
     if (GetWatchingStatus() != ZUWatchDirectory::Paused)
         return FALSE;
@@ -129,7 +129,7 @@ BOOL    ZUWatchDirectory::ResumeWatching()
     return TRUE;
 }
 
-int    ZUWatchDirectory::RefreshFileList()
+int ZUWatchDirectory::RefreshFileList()
 {
     // Reset flags
     m_FileHaveBeenAdded = FALSE;
@@ -164,41 +164,53 @@ int    ZUWatchDirectory::RefreshFileList()
         AddFile( finder.GetFilePath() );
         ++FileCounter;
     }
+
     finder.Close();
-    // Check for add file
-    for (register int SourceIndex = 0; SourceIndex < m_FileArray.GetSize(); ++SourceIndex)
+
+    // check for add file
+    for (register INT_PTR sourceIndex = 0; sourceIndex < m_FileArray.GetSize(); ++sourceIndex)
     {
-        for (register int i = 0; i < m_TemporaryFileArray.GetSize(); ++i)
-        {
-            if (m_TemporaryFileArray.GetAt(i) == m_FileArray.GetAt(SourceIndex))
+        register INT_PTR index = 0;
+
+        for (register INT_PTR i = 0; i < m_TemporaryFileArray.GetSize(); ++i)
+            if (m_TemporaryFileArray.GetAt(i) == m_FileArray.GetAt(sourceIndex))
+            {
+                index = i;
                 break;
-        }
-        // If the file has not been found, Set the flag for add
-        if (i >= m_TemporaryFileArray.GetSize())
+            }
+
+        // if the file has not been found, Set the flag for add
+        if (index >= m_TemporaryFileArray.GetSize())
         {
             m_FileHaveBeenAdded = TRUE;
             break;
         }
     }
-    // Check for remove file
-    for (SourceIndex = 0; SourceIndex < m_TemporaryFileArray.GetSize(); ++SourceIndex)
+
+    // check for remove file
+    for (register INT_PTR sourceIndex = 0; sourceIndex < m_TemporaryFileArray.GetSize(); ++sourceIndex)
     {
-        for (register int i = 0; i < m_FileArray.GetSize(); ++i)
-        {
-            if (m_FileArray.GetAt(i) == m_TemporaryFileArray.GetAt(SourceIndex))
+        register INT_PTR index = 0;
+
+        for (register INT_PTR i = 0; i < m_FileArray.GetSize(); ++i)
+            if (m_FileArray.GetAt(i) == m_TemporaryFileArray.GetAt(sourceIndex))
+            {
+                index = i;
                 break;
-        }
-        // If the file has not been found, Set the flag for add
-        if (i >= m_FileArray.GetSize())
+            }
+
+        // if the file has not been found, Set the flag for add
+        if (index >= m_FileArray.GetSize())
         {
             m_FileHaveBeenRemoved = TRUE;
             break;
         }
     }
+
     return FileCounter;
 }
 
-void    ZUWatchDirectory::SetNotifyFilter()
+void ZUWatchDirectory::SetNotifyFilter()
 {
     // Initialize notify filter
     m_NotifyFilter = 0;

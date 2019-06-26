@@ -1612,32 +1612,24 @@ ZBLogicalRulesEntity* ZAApp::GetMainLogicalRules()
 
 void ZAApp::SetVisualToolObject( const CString& sClassName )
 {
-    // Find the class
+    // find the class
     const CStringArray& Array = ZBObjectUtility::GetClassNameArray();
 
-    for ( int i = 0; i < Array.GetSize(); ++i )
+    int index = 0;
+
+    for (int i = 0; i < Array.GetSize(); ++i)
     {
-        if ( sClassName == Array.GetAt( i ) )
-        {
+        index = i;
+
+        if (sClassName == Array.GetAt(i))
             break;
-        }
     }
 
-    // Set the appropriate tool
-    switch( i )
+    // set the appropriate tool
+    switch (index)
     {
-        case 0:
-        {
-            ZIVisualTool::m_CurrentToolType = VToolSelect;
-            break;
-        }
-
-        case 1:
-        default:
-        {
-            ZIVisualTool::m_CurrentToolType = VToolEdit;
-            break;
-        }
+        case 0:  ZIVisualTool::m_CurrentToolType = VToolSelect; break;
+        default: ZIVisualTool::m_CurrentToolType = VToolEdit;   break;
     }
 }
 

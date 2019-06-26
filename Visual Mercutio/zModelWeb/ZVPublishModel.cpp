@@ -191,58 +191,50 @@ bool ZVPublishModel::LoadStateFromIniFile()
 
     return true;
 }
-
+//---------------------------------------------------------------------------
 bool ZVPublishModel::SaveStateToIniFile()
 {
-    ZUSystemOption SystemOption( m_IniFile, gPublishModelHTMLSectionName );
+    ZUSystemOption SystemOption(m_IniFile, gPublishModelHTMLSectionName);
 
     // JMR-MODIF - Le 6 juillet 2005 - Ajout des options pour le rapport Conceptor.
     // JMR-MODIF - Le 2 mars 2006 - Ajout des options pour le rapport processus.
     // JMR-MODIF - Le 14 janvier 2007 - Ajout des options pour le livre des règles.
     // Saves the options
-    SystemOption.WriteOption( gPublishModelHTMLPublishConceptor,                m_PublishConceptor );
-    SystemOption.WriteOption( gPublishModelHTMLPublishConceptorDetails,            m_PublishConceptorDetails );
-    SystemOption.WriteOption( gPublishModelHTMLPublishConceptorDeliverables,    m_PublishConceptorDeliverables );
-    SystemOption.WriteOption( gPublishModelHTMLPublishProcess,                    m_PublishProcess );
-    SystemOption.WriteOption( gPublishModelHTMLPublishRuleBook,                    m_PublishRuleBook );
-    SystemOption.WriteOption( gPublishModelHTMLVisualizeEntityName,                m_VisualizeResult );
+    SystemOption.WriteOption( gPublishModelHTMLPublishConceptor,             m_PublishConceptor );
+    SystemOption.WriteOption( gPublishModelHTMLPublishConceptorDetails,      m_PublishConceptorDetails );
+    SystemOption.WriteOption( gPublishModelHTMLPublishConceptorDeliverables, m_PublishConceptorDeliverables );
+    SystemOption.WriteOption( gPublishModelHTMLPublishProcess,               m_PublishProcess );
+    SystemOption.WriteOption( gPublishModelHTMLPublishRuleBook,              m_PublishRuleBook );
+    SystemOption.WriteOption( gPublishModelHTMLVisualizeEntityName,          m_VisualizeResult );
+    SystemOption.WriteOption( gPublishModelHTMLLastLanguageEntityName,       m_Language );
+    SystemOption.WriteOption( gPublishModelHTMLAddressEntityName,            m_Directory );
+    SystemOption.WriteOption( gPublishModelHTMLLogoFilenameEntityName,       m_ImageFilename );
+    SystemOption.WriteOption( gPublishModelHTMLLogoRefHTMLEntityName,        m_HyperLink );
 
-    SystemOption.WriteOption( gPublishModelHTMLLastLanguageEntityName,            m_Language );
-
-    SystemOption.WriteOption( gPublishModelHTMLAddressEntityName,                m_Directory );
-    SystemOption.WriteOption( gPublishModelHTMLLogoFilenameEntityName,            m_ImageFilename );
-    SystemOption.WriteOption( gPublishModelHTMLLogoRefHTMLEntityName,            m_HyperLink );
-
-    CString KeyName;
+    CString keyName;
 
     // Add the address to the array
-    bool Found = false;
+    bool found = false;
 
-    for ( int Idx = 0; Idx < m_ArrayOfAddress.GetSize(); ++Idx )
+    for (int idx = 0; idx < m_ArrayOfAddress.GetSize(); ++idx)
+        if (m_ArrayOfAddress.GetAt(idx) == m_Directory)
+            found = true;
+
+    if (!found)
+        m_ArrayOfAddress.Add(m_Directory);
+
+    for (int idx = 0; idx < m_ArrayOfAddress.GetSize(); ++idx)
     {
-        if ( m_ArrayOfAddress.GetAt( Idx ) == m_Directory )
-        {
-            Found = true;
-        }
-    }
+        // format the key
+        keyName.Format(_T("%s_%d"), (const char*)gPublishModelHTMLAddressEntityName, idx);
 
-    if ( !Found )
-    {
-        m_ArrayOfAddress.Add( m_Directory );
-    }
-
-    for ( Idx = 0; Idx < m_ArrayOfAddress.GetSize(); ++Idx )
-    {
-        // Format the key
-        KeyName.Format( _T( "%s_%d" ), (const char*)gPublishModelHTMLAddressEntityName, Idx );
-
-        // Write the string to the ini file
-        SystemOption.WriteOption( KeyName, m_ArrayOfAddress.GetAt( Idx ) );
+        // write the string to the ini file
+        SystemOption.WriteOption(keyName, m_ArrayOfAddress.GetAt(idx));
     }
 
     return true;
 }
-
+//---------------------------------------------------------------------------
 // RS-MODIF 12.12.04 save attributes to ini file
 bool ZVPublishModel::SaveAttributesToIniFile()
 {
