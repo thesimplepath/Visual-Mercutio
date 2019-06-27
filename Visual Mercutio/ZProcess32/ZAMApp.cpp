@@ -64,7 +64,7 @@
 
 #include "zBaseLib\ZDirectory.h"
 
-#include "zSplash\Splash.h"
+#include "zSplash\PSS_SplashController.h"
 
 // Used to access predefined registry keys
 #include "RegistryDef.h"
@@ -327,11 +327,11 @@ BOOL ZAMainApp::InitInstance()
 
 #ifndef _ZNOSPLASH
     // Start Splash
-    ZSplash Splash;
+    PSS_SplashController Splash;
 
     if ( m_IDD_Splash != 0 )
     {
-        Splash.Display( m_IDD_Splash, 5 );
+        Splash.Show( m_IDD_Splash, 5 );
     }
 #endif
 
@@ -404,7 +404,7 @@ BOOL ZAMainApp::InitInstance()
         if ( m_IDD_Splash != 0 )
         {
             // End the splash display
-            Splash.EndDisplay();
+            Splash.Hide();
         }
 #endif
 
@@ -438,7 +438,7 @@ BOOL ZAMainApp::InitInstance()
         if ( m_IDD_Splash != 0 )
         {
             // End the splash display
-            Splash.EndDisplay();
+            Splash.Hide();
         }
 #endif
         return FALSE;
@@ -741,7 +741,7 @@ BOOL ZAMainApp::InitInstance()
     // End the splash
     if ( m_IDD_Splash != 0 )
     {
-        Splash.EndDisplay();
+        Splash.Hide();
     }
 #endif
 
