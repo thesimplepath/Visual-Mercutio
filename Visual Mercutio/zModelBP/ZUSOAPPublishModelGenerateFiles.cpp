@@ -20,7 +20,7 @@
 #include "zBaseLib\File.h"
 #include "zWeb\ZDHtmlFile.h"
 
-#include "zConversion\ZUStringConversion.h"
+#include "zConversion\PSS_StringTools.h"
 
 #include "zBaseLib\ZBServer.h"
 
@@ -67,7 +67,7 @@ bool ZUSOAPPublishModelGenerateFiles::OnStart()
     if ( m_pModelInfo )
     {
         // Sets the correct address
-        pPublishSettings::url = (const char*)m_pModelInfo->m_MessengerAddress;
+        pPublishSettings::m_Url = (const char*)m_pModelInfo->m_MessengerAddress;
     }
 
     // Create the window for file generation feedback
@@ -246,7 +246,7 @@ CString ZUSOAPPublishModelGenerateFiles::BuildModelHTMLFilename( ZDProcessGraphM
 
 CString ZUSOAPPublishModelGenerateFiles::ParseModelName( CString ModelName )
 {
-    return ZUStringConversion::ConvertSpecialChar( ModelName );
+    return PSS_StringTools::ConvertSpecialChar( ModelName );
 }
 
 bool ZUSOAPPublishModelGenerateFiles::CreateHtmlPage( ZDProcessGraphModelMdl* pModel, const CString ImageFilename )

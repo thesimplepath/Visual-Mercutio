@@ -360,7 +360,7 @@ CString ZVPublishPrestationsReport::GenerateFilename( CString Directory, CString
 {
     CString sFilename     = Directory;
     sFilename            += _T( "PrestationsReport_" );
-    sFilename            += ZUStringConversion::ConvertSpecialChar( PrestationName );
+    sFilename            += PSS_StringTools::ConvertSpecialChar( PrestationName );
     sFilename            += _T( ".htm" );
 
     return sFilename;

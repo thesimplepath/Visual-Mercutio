@@ -50,13 +50,13 @@ bool ZUSOAPPubCheckUniverse::IsValid()
     if ( m_pInfo && m_pInfo->m_pDoc && m_pInfo->m_pDoc->GetMainLogicalSystem() )
     {
         // Sets the correct address
-        pPublishSettings::url = (const char*)m_pInfo->m_MessengerAddress;
+        pPublishSettings::m_Url = (const char*)m_pInfo->m_MessengerAddress;
 
         m_cu.reset();
 
-        m_cu.addUniverse( puniverse( String16( m_pInfo->m_pDoc->GetSystemDefGUID() ),
-                                     String16( m_pInfo->m_pDoc->GetPrestationsDefGUID() ),
-                                     String16( m_pInfo->m_pDoc->GetUserDefGUID() ) ) );
+        m_cu.addUniverse( puniverse( PSS_String16( m_pInfo->m_pDoc->GetSystemDefGUID() ),
+                                     PSS_String16( m_pInfo->m_pDoc->GetPrestationsDefGUID() ),
+                                     PSS_String16( m_pInfo->m_pDoc->GetUserDefGUID() ) ) );
 
         m_cu.addAlias( m_pInfo->m_MessengerAlias );
 

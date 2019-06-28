@@ -51,57 +51,51 @@ BEGIN_EASYSOAP_NAMESPACE
 template<>
 class SOAPTypeTraits<pfile>
 {
-public:
+    public:
+        static void GetType(SOAPQName& qname)
+        {
+            qname.Set(_T("pfile"), _T("urn:xml-soap-pssfile"));
+        }
 
-    static void GetType( SOAPQName& qname )
-    {
-        qname.Set( _T( "pfile" ), _T( "urn:xml-soap-pssfile" ) );
-    }
+        static SOAPParameter& Serialize( SOAPParameter& param, const pfile& val )
+        {
+            param.AddParameter(_T("len"))    << int(val.m_Len);
+            param.AddParameter(_T("folder")) << int(val.m_Folder);
+            param.AddParameter(_T("crc"))    << int(val.m_Crc);
+            param.AddParameter(_T("doc"))    << val.m_Doc.c_str();
+            param.AddParameter(_T("fname"))  << val.m_FileName.c_str();
 
-    static SOAPParameter& Serialize( SOAPParameter& param, const pfile& val )
-    {        
-        param.AddParameter( _T( "len" ) )        << (int)val.len;
-        param.AddParameter( _T( "folder" ) )    << (int)val.folder;        
-        param.AddParameter( _T( "crc" ) )        << (int)val.crc;
-        param.AddParameter( _T( "doc" ) )        << val.doc.c_str();
-        param.AddParameter( _T( "fname" ) )        << val.fname.c_str();
-
-        return param;
-    }
+            return param;
+        }
     
-    static const SOAPParameter& Deserialize( const SOAPParameter& param, pfile& val )
-    {
-        SOAPString tmp;
-        int v;
+        static const SOAPParameter& Deserialize(const SOAPParameter& param, pfile& val)
+        {
+            SOAPString tmp;
+            int        v;
 
-        param.GetParameter( _T( "len" ) )        >> v;
-        val.len = v;
-        param.GetParameter( _T( "folder" ) )    >> val.folder;
-        param.GetParameter( _T( "crc" ) )        >> v;
-        val.crc = v;
-        param.GetParameter( _T( "doc" ) )        >> tmp;
-        val.doc = tmp.Str();
-        param.GetParameter( _T( "fname" ) )        >> tmp;
-        val.fname = tmp.Str();        
-        return param;
-    }
+            param.GetParameter(_T("len"))    >> v;   val.m_Len      = v;
+            param.GetParameter(_T("folder")) >>      val.m_Folder;
+            param.GetParameter(_T("crc"))    >> v;   val.m_Crc      = v;
+            param.GetParameter(_T("doc"))    >> tmp; val.m_Doc      = tmp.Str();
+            param.GetParameter(_T("fname"))  >> tmp; val.m_FileName = tmp.Str();        
+
+            return param;
+        }
 };
 
 template<>
 class SOAPTypeTraits< SOAPArray<pfile> > : public SOAPArrayTypeTraits
-{
-};
+{};
 
 class AFX_EXT_CLASS pPublishFile
 {
-public:
+    public:
+        pPublishFile();
+        ~pPublishFile();
 
-    pPublishFile();
-    ~pPublishFile();
-
-    bool pubFile( pfile mfile );
-    int pubHasChanged( int mfolder, string mfilename, int mday, int mmonth, int myear, int mhour, int mmin, int msec );
-    pfile pubGetFile( int mfolder, string mfilename );
+        bool pubFile(pfile mfile);
+        int pubHasChanged(int mfolder, const std::string& mfilename, int mday, int mmonth, int myear, int mhour, int mmin, int msec);
+        pfile pubGetFile(int mfolder, const std::string& mfilename);
 };
 
 END_EASYSOAP_NAMESPACE

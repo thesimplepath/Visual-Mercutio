@@ -29,8 +29,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zConversion\String16.h"
-string convertTo( String16 inStr );
+// processsoft
+#include "zConversion\PSS_String16.h"
+#include "zConversion\PSS_StringTools.h"
 
 #ifdef _ZSOAPEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -42,26 +43,24 @@ string convertTo( String16 inStr );
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
+// todo FIXME -cCheck -oJean: changed the class member names (updated with m_), see what is the impact on Messenger
 class AFX_EXT_CLASS pdistribmap
 {
-public:
+    public:
+        int         m_PdAttribID;
+        int         m_AttribDefID;
+        std::string m_MData;
+        int         m_Mlop;
 
-    pdistribmap()
-    {
-    }
+        pdistribmap()
+        {}
 
-    pdistribmap( int pdattribid, int attribdefid, String16 mdata, int mlop )
-    {
-        this->pdattribid    = pdattribid;
-        this->attribdefid    = attribdefid;
-        this->mdata            = convertTo( mdata );
-        this->mlop            = mlop;
-    }
-
-    int        pdattribid;
-    int        attribdefid;    
-    string    mdata;    
-    int        mlop;
+        pdistribmap(int pdAttribID, int attribDefID, const PSS_String16& mData, int mlop) :
+            m_PdAttribID(pdAttribID),
+            m_AttribDefID(attribDefID),
+            m_MData(PSS_StringTools::ConvertTo(mData)),
+            m_Mlop(mlop)
+        {}
 };
 
 #endif

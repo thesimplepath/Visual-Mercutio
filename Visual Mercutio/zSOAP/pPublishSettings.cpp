@@ -12,12 +12,9 @@
 /////////////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
-
 #include "pPublishSettings.h"
 
-// JMR-MODIF - Le 15 septembre 2005 - Ajout des décorations Unicode _T(), nettoyage du code inutile.(En commentaires)
-
-string pPublishSettings::url            = _T( "http://localhost:8080/soap/servlet/rpcrouter" );
-string pPublishSettings::modelservice    = _T( "urn:emessenger" );
-string pPublishSettings::serverservice    = _T( "urn:pssserver" );
-string pPublishSettings::fileservice    = _T( "urn:pssfile" );
+std::string pPublishSettings::m_Url           = _T("http://localhost:8080/soap/servlet/rpcrouter");
+std::string pPublishSettings::m_ModelService  = _T("urn:emessenger");
+std::string pPublishSettings::m_ServerService = _T("urn:pssserver");
+std::string pPublishSettings::m_FileService   = _T("urn:pssfile");

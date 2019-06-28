@@ -29,9 +29,10 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zConversion\String16.h"
-string convertTo( String16 inStr );
-string base64encode( const unsigned char *pcBuffIn, long nLenIn );
+// processsoft
+#include "zConversion\PSS_String16.h"
+#include "zConversion\PSS_StringTools.h"
+#include "zConversion\PSS_Encoding.h"
 
 #ifdef _ZSOAPEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -43,111 +44,107 @@ string base64encode( const unsigned char *pcBuffIn, long nLenIn );
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
+// todo FIXME -cCheck -oJean: changed the class member names (updated with m_), see what is the impact on Messenger
 class AFX_EXT_CLASS pfile
 {
-public:
-
-    enum m_directoryMode
-    {
-        publicFolder,
-        privateFolder
-    };
-
-    pfile()
-    {
-    }
-
-    void operator = ( const pfile& ref )
-    {
-        folder    = ref.folder;
-        fname    = ref.fname;
-        doc        = ref.doc;
-        len        = ref.len;
-        crc        = ref.crc;
-    }
-
-    pfile( int publicis, int folderid, string fpath, string filename )
-    {
-        ispublic    = publicis;
-        folder        = folderid;
-        fname        = filename;
-
-        FILE* fo = fopen( ( fpath + _T( "\\" ) + filename ).c_str(), "rb" );
-
-        if ( fo == NULL )
-            throw _T( "Wrong file name" );
-
-        //get file length
-        fseek( fo, 0, SEEK_END );
-
-        len = ftell( fo );
-
-        fseek( fo, 0, SEEK_SET );        
-
-        //alloc memory
-        char* doc = (char*)new char[len + 1];
-        
-        //read file
-        int left    = len;
-        int pos        = 0;
-
-        while ( left > 0 )
+    public:
+        enum IEDirectoryMode
         {
-            int doread = 16384;
+            publicFolder,
+            privateFolder
+        };
 
-            if ( left<16364 )
-                doread = left;
+        std::string m_Doc;
+        unsigned    m_Crc;
+        unsigned    m_Len;
+        std::string m_FileName;
+        int         m_Folder;
+        int         m_IsPublic;
 
-            int read = fread( (char*)doc + pos, doread, 1, fo );
+        pfile()
+        {}
 
-            pos        += doread;
-            left    -= doread;
+        pfile(int isPublic, int folderID, const std::string& fPath, const std::string& fileName) :
+            m_FileName(fileName),
+            m_Folder(folderID),
+            m_IsPublic(isPublic)
+        {
+            std::FILE* pFile = std::fopen((fPath + _T("\\") + fileName).c_str(), "rb");
+
+            if (!pFile)
+                throw _T("Wrong file name");
+
+            // get file length
+            std::fseek(pFile, 0, SEEK_END);
+            m_Len = std::ftell(pFile);
+            std::fseek(pFile, 0, SEEK_SET);
+
+            // alloc memory
+            char* pDoc = new char[m_Len + 1];
+        
+            // read file
+            int left = m_Len;
+            int pos  = 0;
+
+            while (left > 0)
+            {
+                int doRead = 16384;
+
+                if (left < 16364)
+                    doRead = left;
+
+                const int read = std::fread(pDoc + pos, doRead, 1, pFile);
+
+                pos  += doRead;
+                left -= doRead;
+            }
+
+            // just in case...
+            pDoc[m_Len] = 0;
+
+            // encode file
+            m_Doc = PSS_Encoding::Base64Encode(pDoc, m_Len);
+
+            // calculate crc
+            m_Crc = 0;
+
+            for (std::size_t i = 0; i < m_Len; ++i)
+                m_Crc += i * pDoc[i];
+
+            // clean memory
+            delete[] pDoc;
+
+            std::fclose(pFile);
         }
 
-        doc[len] = 0;    //just in case
+        void operator = (const pfile& ref)
+        {
+            m_Folder   = ref.m_Folder;
+            m_FileName = ref.m_FileName;
+            m_Doc      = ref.m_Doc;
+            m_Len      = ref.m_Len;
+            m_Crc      = ref.m_Crc;
+        }
 
-        //encode file
-        this->doc = base64encode( (const unsigned char*)doc, len );        
+        bool save(const std::string& path)
+        {
+            std::string fileName = path + _T("\\") + m_FileName;
+            std::FILE*  pFile    = std::fopen(fileName.c_str(), "wb");
 
-        //FILE* q=fopen("c:\\qqq","wb");fwrite(this->doc.c_str(),this->doc.length(),1,q);fclose(q);printf("W=%d\n",len);
+            if (!pFile)
+                return false;
 
-        //calc crc
-        crc = 0;
+            std::fwrite(m_Doc.c_str(), m_Len, 1, pFile);
+            std::fclose(pFile);
 
-        for ( unsigned int i = 0; i < len; i++ )
-            crc += i * doc[i];
+            return true;
+        }
 
-        //clean mem
-        delete [] doc;
-
-        fclose( fo );
-    }
-
-    bool save( string path )
-    {
-        string fl    = path + _T( "\\" ) + fname;
-        FILE* fo    = fopen( fl.c_str(), "wb" );
-
-        fwrite( doc.c_str(), len, 1, fo );
-        fclose( fo );
-
-        return true;
-    }
-
-    string            doc;
-    unsigned int    crc;
-    unsigned int    len;
-    string            fname;
-    int                folder;
-    int                ispublic;
-    
-private:
-
-    string pBase64Encoder( string doc )
-    {
-        string ret = _T( "" );
-        return ret;
-    }
+    private:
+        std::string pBase64Encoder(const std::string& doc)
+        {
+            return _T("");
+        }
 };
 
 #endif

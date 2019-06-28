@@ -17,7 +17,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zConversion\String16.h"
+// processsoft
+#include "zConversion\PSS_String16.h"
+#include "zConversion\PSS_StringTools.h"
 
 #ifdef _ZSOAPEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -29,28 +31,24 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-string convertTo( String16 inStr );
-
+// todo FIXME -cCheck -oJean: changed the class member names (updated with m_), see what is the impact on Messenger
 class AFX_EXT_CLASS puniverse
 {
-public:
+    public:
+        std::string m_GuidSystem;
+        std::string m_GuidPrestation;
+        std::string m_GuidWorkgroup;
 
-    puniverse()
-    {
-    };
+        puniverse()
+        {};
 
-    puniverse( String16    guidSystem,
-               String16    guidPrestation,
-               String16    guidWorkgroup )
-    {
-        this->guidSystem        = convertTo( guidSystem );
-        this->guidPrestation    = convertTo( guidPrestation );
-        this->guidWorkgroup        = convertTo( guidWorkgroup );
-    }
-
-    string    guidSystem;
-    string    guidPrestation;
-    string    guidWorkgroup;
+        puniverse(const PSS_String16& guidSystem,
+                  const PSS_String16& guidPrestation,
+                  const PSS_String16& guidWorkgroup) :
+            m_GuidSystem    (PSS_StringTools::ConvertTo(guidSystem)),
+            m_GuidPrestation(PSS_StringTools::ConvertTo(guidPrestation)),
+            m_GuidWorkgroup (PSS_StringTools::ConvertTo(guidWorkgroup))
+        {}
 };
 
-#endif // __PUNIVERSE_HDR_
+#endif

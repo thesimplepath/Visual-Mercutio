@@ -20,7 +20,7 @@
 #ifndef __PPUBLISHMESSENGERINFO_HDR_
 #define __PPUBLISHMESSENGERINFO_HDR_
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -29,26 +29,25 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 #ifdef _ZSOAPEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 class AFX_EXT_CLASS pPublishMessengerInfo
 {
-public:
+    public:
+        pPublishMessengerInfo();
+        ~pPublishMessengerInfo();
 
-    pPublishMessengerInfo();
-    ~pPublishMessengerInfo();
+        int GetVersion();
+        std::string GetLanguage();
 
-    int GetVersion();
-    string GetLanguage();
-
-    int Authenticate( string login, string passwd );
+        int Authenticate(const std::string& login, const std::string& passwd );
 };
 
 #endif

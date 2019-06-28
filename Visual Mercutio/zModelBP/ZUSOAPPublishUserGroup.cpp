@@ -47,7 +47,7 @@ bool ZUSOAPPublishUserGroup::Publish()
          m_pInfo->m_pDoc->GetMainUserGroup() )
     {
         // Sets the correct address
-        pPublishSettings::url = (const char*)m_pInfo->m_MessengerAddress;
+        pPublishSettings::m_Url = (const char*)m_pInfo->m_MessengerAddress;
 
         // Process all user groups
         _PublishUserGroup( m_pInfo->m_pDoc->GetMainUserGroup() );
@@ -79,11 +79,11 @@ void ZUSOAPPublishUserGroup::_PublishUserGroup( ZBUserGroupEntity* pGroup )
 
     //JMR-MODIF - Le 29 mai 2006 - Ajout de la publication vers le champ "mission" (4ème paramètre).
     //JMR-MODIF - Le 6 décembre 2006 - Ajout de la publication vers le champ "daycost" (5ème paramètre).
-    m_pw.addWorkgroup( pworkgroup( String16( pGroup->GetGUID()),                                                                // Workgroup GUID
-                                   String16( ( ( pGroup->GetParent() != NULL ) ? pGroup->GetParent()->GetGUID() : _T( "" ) ) ),    // Parent GUID
-                                   String16( pGroup->GetEntityName() ),                                                            // Workgroup name
-                                   String16( pGroup->GetEntityDescription() ),                                                    // Mission
-                                   String16( DayCost ) ) );                                                                        // Coût journalier
+    m_pw.addWorkgroup( pworkgroup(PSS_String16( pGroup->GetGUID()),                                                                // Workgroup GUID
+                                  PSS_String16( ( ( pGroup->GetParent() != NULL ) ? pGroup->GetParent()->GetGUID() : _T( "" ) ) ),    // Parent GUID
+                                  PSS_String16( pGroup->GetEntityName() ),                                                            // Workgroup name
+                                  PSS_String16( pGroup->GetEntityDescription() ),                                                    // Mission
+                                  PSS_String16( DayCost ) ) );                                                                        // Coût journalier
 
     // JMR-MODIF - Le 21 juin 2006 - Ajout de l'alias dans la publication.
     m_pw.addAlias( m_pInfo->m_MessengerAlias );

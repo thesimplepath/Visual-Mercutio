@@ -17,7 +17,7 @@
 //Default constructor
 pCheckUniverse::pCheckUniverse()
 {
-    m_Alias = _T( "" );
+    m_Alias = _T("");
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -35,14 +35,14 @@ void pCheckUniverse::reset()
 
 /////////////////////////////////////////////////////////////////////////////////
 //add new procedure
-void pCheckUniverse::addUniverse( puniverse universe )
+void pCheckUniverse::addUniverse(puniverse universe)
 {
-    m_universe.insert( m_universe.end(), universe );
+    m_universe.insert(m_universe.end(), universe);
 }
 
-void pCheckUniverse::addAlias( CString Alias )
+void pCheckUniverse::addAlias(const CString& alias)
 {
-    m_Alias = Alias;
+    m_Alias = alias;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -50,50 +50,46 @@ void pCheckUniverse::addAlias( CString Alias )
 //    out:returns true on success
 bool pCheckUniverse::check()
 {
-    SOAPDebugger::SetFile( _T( "c:\\psssoap_pubcheckuniverse.log" ) );
+    SOAPDebugger::SetFile(_T("c:\\psssoap_pubcheckuniverse.log"));
 
-    bool RetValue = true;
+    bool retValue = true;
 
     try
     {
-        TRACE( _T( "pCheckUniverse.check()" ) );
+        TRACE(_T("pCheckUniverse.check()"));
 
-        // Defs
-        string wdsl_urn = pPublishSettings::modelservice;
+        // defs
+        std::string wdsl_urn = pPublishSettings::m_ModelService;
 
-        // Initialize objects
-        string url = pPublishSettings::url;
-        SOAPProxy proxy( url.c_str() );
+        // initialize objects
+        std::string url = pPublishSettings::m_Url;
+        SOAPProxy proxy(url.c_str());
 
-        // Send
-        SOAPMethod checkUniverse( _T( "pubCheckUniverse" ), wdsl_urn.c_str(), _T( "http://" ) );
-        checkUniverse.AddParameter( _T( "universenbr" ) ).SetValue( (int)m_universe.size() );
+        // send
+        SOAPMethod checkUniverse(_T("pubCheckUniverse"), wdsl_urn.c_str(), _T("http://"));
+        checkUniverse.AddParameter(_T("universenbr")).SetValue(int(m_universe.size()));
 
-        SOAPArray<puniverse> universea;
+        SOAPArray<puniverse>      universea;
         list<puniverse>::iterator universei;
 
-        for ( universei = m_universe.begin(); universei != m_universe.end(); ++universei )
-        {
-            universea.Add( *universei );
-        }
+        for (universei = m_universe.begin(); universei != m_universe.end(); ++universei)
+            universea.Add(*universei);
 
-        SOAPParameter& p = checkUniverse.AddParameter( _T( "universe" ) );
+        SOAPParameter& p = checkUniverse.AddParameter(_T("universe"));
         p << universea;
 
-        checkUniverse.AddParameter( _T( "alias" ) ).SetValue( m_Alias );
+        checkUniverse.AddParameter(_T("alias")).SetValue(m_Alias);
 
-        if ( (int)proxy.Execute( checkUniverse ).GetReturnValue() < 0 )
-        {
-            RetValue = false;
-        }
+        if (int(proxy.Execute(checkUniverse).GetReturnValue()) < 0)
+            retValue = false;
     }
-    catch ( SOAPException& ex )
+    catch (SOAPException& ex)
     {
         TRACE( _T( "Caught SOAP exception:%s\n" ), ex.What().Str() );
-        RetValue = false;
+        retValue = false;
     }
 
     SOAPDebugger::Close();
 
-    return RetValue;
+    return retValue;
 }

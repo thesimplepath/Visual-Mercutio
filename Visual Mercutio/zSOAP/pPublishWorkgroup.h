@@ -28,19 +28,18 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
 #include "pworkgroup.h"
 
 #ifdef _ZSOAPEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    //put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
-
-// JMR-MODIF - Le 15 septembre 2005 - Ajout de la décoration Unicode _T( ) pour les chaînes de caractères de cette classe.
 
 //Define serializers / soap mapping
 
@@ -51,76 +50,57 @@ BEGIN_EASYSOAP_NAMESPACE
 template<>
 class SOAPTypeTraits<pworkgroup>
 {
-public:
+    public:
+        static void GetType(SOAPQName& qname)
+        {
+            qname.Set(_T("pworkgroup"), _T("urn:xml-soap-emessenger"));
+        }
 
-    static void GetType( SOAPQName& qname )
-    {
-        qname.Set( _T( "pworkgroup" ), _T( "urn:xml-soap-emessenger" ) );
-    }
+        static SOAPParameter& Serialize(SOAPParameter& param, const pworkgroup& val)
+        {
+            param.AddParameter(_T("wkgid"))     << val.m_WkGrpID.c_str();
+            param.AddParameter(_T("wkgparent")) << val.m_WkGrpParent.c_str();
+            param.AddParameter(_T("wkgname"))   << val.m_WkGrpName.c_str();
+            param.AddParameter(_T("mission"))   << val.m_Mission.c_str();
+            param.AddParameter(_T("daycost"))   << val.m_DayCost.c_str();
 
-    static SOAPParameter& Serialize( SOAPParameter& param, const pworkgroup& val )
-    {
-        param.AddParameter( _T( "wkgid" ) )        << val.wkgid.c_str();
-        param.AddParameter( _T( "wkgparent" ) )    << val.wkgparent.c_str();
-        param.AddParameter( _T( "wkgname" ) )    << val.wkgname.c_str();
+            return param;
+        }
 
-        // JMR-MODIF - Le 29 mai 2006 - Ajout du paramètre "mission".
-        param.AddParameter( _T( "mission" ) )    << val.mission.c_str();
+        static const SOAPParameter& Deserialize(const SOAPParameter& param, pworkgroup& val)
+        {
+            SOAPString tmp;
 
-        // JMR-MODIF - Le 6 décembre 2006 - Ajout du paramètre "daycost".
-        param.AddParameter( _T( "daycost" ) )    << val.daycost.c_str();
-        return param;
-    }
+            param.GetParameter(_T("wkgid"))     >> tmp; val.m_WkGrpID     = tmp.Str();
+            param.GetParameter(_T("wkgparent")) >> tmp; val.m_WkGrpParent = tmp.Str();
+            param.GetParameter(_T("wkgname"))   >> tmp; val.m_WkGrpName   = tmp.Str();
+            param.GetParameter(_T("mission"))   >> tmp; val.m_Mission     = tmp.Str();
+            param.GetParameter(_T("daycost"))   >> tmp; val.m_DayCost     = tmp.Str();
 
-    static const SOAPParameter& Deserialize( const SOAPParameter& param, pworkgroup& val )
-    {
-        SOAPString tmp;
-
-        param.GetParameter( _T( "wkgid" ) )        >> tmp;
-        val.wkgid        = tmp.Str();
-        param.GetParameter( _T( "wkgparent" ) )    >> tmp;
-        val.wkgparent    = tmp.Str();
-        param.GetParameter( _T( "wkgname" ) )    >> tmp;
-        val.wkgname        = tmp.Str();
-
-        // JMR-MODIF - Le 29 mai 2006 - Ajout du paramètre "mission".
-        param.GetParameter( _T( "mission" ) )    >> tmp;
-        val.mission        = tmp.Str();
-
-        // JMR-MODIF - Le 6 décembre 2006 - Ajout du paramètre "daycost".
-        param.GetParameter( _T( "daycost" ) )    >> tmp;
-        val.daycost        = tmp.Str();
-
-        return param;
-    }
+            return param;
+        }
 };
 
 template<>
 class SOAPTypeTraits< SOAPArray<pworkgroup> > : public SOAPArrayTypeTraits
-{
-};
+{};
 
 class AFX_EXT_CLASS pPublishWorkgroup
 {
-public:
+    public:
+        pPublishWorkgroup();
+        ~pPublishWorkgroup();
 
-    pPublishWorkgroup();
-    ~pPublishWorkgroup();
+        void reset();
+        void addWorkgroup(pworkgroup wkg);
 
-    void reset();
-    void addWorkgroup( pworkgroup wkg );
+        void addAlias(const CString& alias);
 
-    // JMR-MODIF - Le 21 juin 2006 - Ajout de la fonction addAlias.
-    void addAlias( CString Alias );
+        bool send();
 
-    bool send();
-
-private:
-
-    // JMR-MODIF - Le 21 juin 2006 - Ajout de la variable m_Alias.
-    CString                m_Alias;
-
-    list<pworkgroup>    m_workgroups;
+    private:
+        CString          m_Alias;
+        list<pworkgroup> m_workgroups;
 };
 
 END_EASYSOAP_NAMESPACE

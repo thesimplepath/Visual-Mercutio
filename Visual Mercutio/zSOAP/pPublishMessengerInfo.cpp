@@ -12,15 +12,12 @@
 /////////////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
-
-#include "pPublishSettings.h"
 #include "pPublishMessengerInfo.h"
 
+// processsoft
+#include "zConversion\PSS_Encoding.h"
+#include "pPublishSettings.h"
 #include "zSoapException.h"
-
-// JMR-MODIF - Le 15 septembre 2005 - Ajout des décorations Unicode _T(), nettoyage du code inutile.(En commentaires)
-
-string md5encode( string data, long nEncryptLength );
 
 pPublishMessengerInfo::pPublishMessengerInfo()
 {
@@ -39,10 +36,10 @@ int pPublishMessengerInfo::GetVersion()
     try
     {
         // defs
-        string wdsl_urn = pPublishSettings::serverservice;
+        string wdsl_urn = pPublishSettings::m_ServerService;
 
         // initialize objects
-        string url = pPublishSettings::url;
+        string url = pPublishSettings::m_Url;
         SOAPProxy proxy( url.c_str() );
 
         // pubInit
@@ -64,17 +61,17 @@ int pPublishMessengerInfo::GetVersion()
 
 ////////////////////////////////////////////////////////////
 // returns ISO code for installed server version 
-string pPublishMessengerInfo::GetLanguage()
+std::string pPublishMessengerInfo::GetLanguage()
 {
     SOAPDebugger::SetFile( _T( "c:\\psssoap_getlanguage.log" ) );
 
     try
     {
         // defs
-        string wdsl_urn = pPublishSettings::serverservice;        
+        string wdsl_urn = pPublishSettings::m_ServerService;
 
         // initialize objects
-        string url = pPublishSettings::url;
+        string url = pPublishSettings::m_Url;
         SOAPProxy proxy( url.c_str() );
 
         // pubInit
@@ -97,17 +94,17 @@ string pPublishMessengerInfo::GetLanguage()
 
 ////////////////////////////////////////////////////////////
 // authenticate on server (administrator only)
-int pPublishMessengerInfo::Authenticate( string login, string passwd )
+int pPublishMessengerInfo::Authenticate(const std::string& login, const std::string& passwd)
 {
     SOAPDebugger::SetFile( _T( "c:\\psssoap_authenticate.log" ) );
 
     try
     {
         // defs
-        string wdsl_urn = pPublishSettings::serverservice;
+        string wdsl_urn = pPublishSettings::m_ServerService;
 
         // initialize objects
-        string url = pPublishSettings::url;
+        string url = pPublishSettings::m_Url;
         SOAPProxy proxy( url.c_str() );
 
         // pubAuth
@@ -119,7 +116,7 @@ int pPublishMessengerInfo::Authenticate( string login, string passwd )
         SOAPMethod authenticate( _T( "Authenticate" ), wdsl_urn.c_str(), _T( "http://" ) );
 
         authenticate.AddParameter( _T( "login" ) ).SetValue( login.c_str() );
-        authenticate.AddParameter( _T( "passwd" ) ).SetValue( md5encode( passwd, 32 ).c_str() );
+        authenticate.AddParameter( _T( "passwd" ) ).SetValue(PSS_Encoding::MD5Encode( passwd, 32 ).c_str() );
 
         int ret;
 

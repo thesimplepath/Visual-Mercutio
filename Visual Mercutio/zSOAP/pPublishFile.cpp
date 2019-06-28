@@ -35,7 +35,7 @@ pPublishFile::~pPublishFile()
 /////////////////////////////////////////////////////////////////////////////////
 // send data to urn:pssfile , method: pubFile
 // out:returns true on success
-bool pPublishFile::pubFile( pfile mfile )
+bool pPublishFile::pubFile(pfile mfile)
 {
     SOAPDebugger::SetFile( _T( "c:\\psssoap_pufile.log" ) );
 
@@ -44,10 +44,10 @@ bool pPublishFile::pubFile( pfile mfile )
     try
     {
         // Defs
-        string wdsl_urn = pPublishSettings::fileservice;
+        string wdsl_urn = pPublishSettings::m_FileService;
 
         // Initialize objects
-        string url = pPublishSettings::url;
+        string url = pPublishSettings::m_Url;
         SOAPProxy proxy( url.c_str() );
 
         // Proc
@@ -75,21 +75,21 @@ bool pPublishFile::pubFile( pfile mfile )
 
 /////////////////////////////////////////////////////////////////////////////////
 // check if the file has changed on the server recently - 0=no , 1=a recent file is available, -1=old file available
-int pPublishFile::pubHasChanged( int    mfolder,
-                                 string    mfilename,
-                                 int    mday,
-                                 int    mmonth,
-                                 int    myear,
-                                 int    mhour,
-                                 int    mmin,
-                                 int    msec )
+int pPublishFile::pubHasChanged(int                mfolder,
+                                const std::string& mfilename,
+                                int                mday,
+                                int                mmonth,
+                                int                myear,
+                                int                mhour,
+                                int                mmin,
+                                int                msec)
 {
     return 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 // download the file from the server
-pfile pPublishFile::pubGetFile( int mfolder, string mfilename )
+pfile pPublishFile::pubGetFile(int mfolder, const std::string& mfilename)
 {
     SOAPDebugger::SetFile( _T( "c:\\psssoap.log" ) );
     pfile rstr;
@@ -100,7 +100,7 @@ pfile pPublishFile::pubGetFile( int mfolder, string mfilename )
         string wdsl_urn = _T( "urn:pssfile" );    //not from config engine at time....pPublishSettings::service;
 
         // Initialize objects
-        string url = pPublishSettings::url;
+        string url = pPublishSettings::m_Url;
         SOAPProxy proxy( url.c_str() );
 
         // Proc

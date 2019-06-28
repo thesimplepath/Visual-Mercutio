@@ -49,9 +49,9 @@ void pPublishWorkgroup::addWorkgroup( pworkgroup wkg )
 }
 
 // JMR-MODIF - Le 21 juin 2006 - Cette fonction permet d'ajouter l'alias, nécessaire pour la publication.
-void pPublishWorkgroup::addAlias( CString Alias )
+void pPublishWorkgroup::addAlias(const CString& alias)
 {
-    m_Alias = Alias;
+    m_Alias = alias;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -68,10 +68,10 @@ bool pPublishWorkgroup::send()
         TRACE( _T( "pPublishWorkgroup.send()\n" ) );
 
         // Defs
-        string wdsl_urn = pPublishSettings::modelservice;
+        string wdsl_urn = pPublishSettings::m_ModelService;
 
         // Initialize objects
-        string url = pPublishSettings::url;
+        string url = pPublishSettings::m_Url;
         SOAPProxy proxy( url.c_str() );
 
         // Send

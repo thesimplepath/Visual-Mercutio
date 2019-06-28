@@ -26,7 +26,7 @@
 #include "zBaseLib\ZUStringFormater.h"
 #include "zBaseLib\ZBTokenizer.h"
 
-#include "zConversion\ZUStringConversion.h"
+#include "zConversion\PSS_StringTools.h"
 
 #include "zModel\ProcGraphModelDoc.h"
 #include "zModel\ZBSymbol.h"

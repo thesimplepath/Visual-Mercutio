@@ -29,8 +29,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zConversion\String16.h"
-string convertTo( String16 inStr );
+// processsoft
+#include "zConversion\PSS_String16.h"
+#include "zConversion\PSS_StringTools.h"
 
 #ifdef _ZSOAPEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -42,28 +43,26 @@ string convertTo( String16 inStr );
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
+// todo FIXME -cCheck -oJean: changed the class member names (updated with m_), see what is the impact on Messenger
 class AFX_EXT_CLASS ppdattr
 {
 public:
+    int         m_PdAttribID;
+    int         m_Prow;
+    int         m_AttribDefID;
+    std::string m_MValue;
+    int         m_StatICyn;
 
     ppdattr()
-    {
-    }
+    {}
 
-    ppdattr( int pdattribid, int prow, int attribdefid, String16 mvalue, int staticyn )
-    {
-        this->pdattribid    = pdattribid;
-        this->prow            = prow;
-        this->attribdefid    = attribdefid;
-        this->mvalue        = convertTo( mvalue );
-        this->staticyn        = staticyn;
-    }
-
-    int        pdattribid;
-    int        prow;
-    int        attribdefid;
-    string    mvalue;
-    int        staticyn;
+    ppdattr(int pdAttribID, int prow, int attribDefID, const PSS_String16& mValue, int statICyn) :
+        m_PdAttribID(pdAttribID),
+        m_Prow(prow),
+        m_AttribDefID(attribDefID),
+        m_MValue(PSS_StringTools::ConvertTo(mValue)),
+        m_StatICyn(statICyn)
+    {}
 };
 
 #endif

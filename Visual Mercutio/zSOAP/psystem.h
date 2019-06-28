@@ -21,7 +21,7 @@
 #ifndef __PSYSTEM_HDR_
 #define __PSYSTEM_HDR_
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -29,58 +29,53 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zConversion\String16.h"
+// processsoft
+#include "zConversion\PSS_String16.h"
+#include "zConversion\PSS_StringTools.h"
 
 #ifdef _ZSOAPEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 30 mars 2006 - Ajout des décorations Unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-string convertTo( String16 inStr );
-
+// todo FIXME -cCheck -oJean: changed the class member names (updated with m_), see what is the impact on Messenger
 class AFX_EXT_CLASS psystem
 {
-public:
+    public:
+        std::string m_SystemID;
+        std::string m_SystemParent;
+        std::string m_SystemTitle;
+        std::string m_Command;
+        std::string m_Parameters;
+        std::string m_Directory;
+        int         m_Priority;
+        int         m_Windowst;
 
-    psystem()
-    {
-    }
+        psystem()
+        {}
 
-    psystem( String16    systemid,
-             String16    systemparent,
-             String16    systemtitle,
-             String16    command,
-             String16    parameters,
-             String16    directory,
-             int        priority,
-             int        windowst )
-    {
-        this->systemid        = convertTo( systemid );
-        this->systemparent    = convertTo( systemparent );
-        this->systemtitle    = convertTo( systemtitle );
-        this->command        = convertTo( command );
-        this->parameters    = convertTo( parameters );
-        this->directory        = convertTo( directory );
-        this->priority        = priority;
-        this->windowst        = windowst;
-    }
-
-    string    systemid;
-    string    systemparent;
-    string    systemtitle;
-    string    command;
-    string    parameters;
-    string    directory;
-
-    int        priority;
-    int        windowst;
+        psystem(const PSS_String16& systemID,
+                const PSS_String16& systemParent,
+                const PSS_String16& systemTitle,
+                const PSS_String16& command,
+                const PSS_String16& parameters,
+                const PSS_String16& directory,
+                int                 priority,
+                int                 windowst) :
+            m_SystemID    (PSS_StringTools::ConvertTo(systemID)),
+            m_SystemParent(PSS_StringTools::ConvertTo(systemParent)),
+            m_SystemTitle (PSS_StringTools::ConvertTo(systemTitle)),
+            m_Command     (PSS_StringTools::ConvertTo(command)),
+            m_Parameters  (PSS_StringTools::ConvertTo(parameters)),
+            m_Directory   (PSS_StringTools::ConvertTo(directory)),
+            m_Priority    (priority),
+            m_Windowst    (windowst)
+        {}
 };
 
 #endif

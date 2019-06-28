@@ -96,9 +96,9 @@ void pPublishModel::addInput( pinput inputs )
 }
 
 // JMR-MODIF - Le 21 juin 2006 - Cette fonction permet d'ajouter l'alias, nécessaire pour la publication.
-void pPublishModel::addAlias( CString Alias )
+void pPublishModel::addAlias(const CString& alias)
 {
-    m_Alias = Alias;
+    m_Alias = alias;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -112,10 +112,10 @@ bool pPublishModel::send()
     TRACE( _T( "pPublishModel::send().init\n" ) );
 
     // defs
-    string wdsl_urn = pPublishSettings::modelservice;
+    string wdsl_urn = pPublishSettings::m_ModelService;
 
     // initialize objects
-    string url = pPublishSettings::url;
+    string url = pPublishSettings::m_Url;
     SOAPProxy proxy( url.c_str() );
 
     int modelid = -1;
@@ -163,7 +163,7 @@ bool pPublishModel::send()
 
         if ( modelid < 0 )
         {
-            throw ZBSoapException( IDS_PUBMODELSERVERFAIL, m_model.modelname.c_str(), __FILE__, __LINE__ );
+            throw ZBSoapException( IDS_PUBMODELSERVERFAIL, m_model.m_ModelName.c_str(), __FILE__, __LINE__ );
         }
     }
     catch ( SOAPException& ex )
@@ -202,7 +202,7 @@ bool pPublishModel::send()
 
             if ( (int)proxy.Execute( pubProc ).GetReturnValue() < 0 )
             {
-                throw ZBSoapException( IDS_PUBPROCSERVERFAIL, m_model.modelname.c_str(), __FILE__, __LINE__ );
+                throw ZBSoapException( IDS_PUBPROCSERVERFAIL, m_model.m_ModelName.c_str(), __FILE__, __LINE__ );
             }
         }
     }
@@ -242,7 +242,7 @@ bool pPublishModel::send()
 
             if ( (int)proxy.Execute( pubDeliv ).GetReturnValue() < 0 )
             {
-                throw ZBSoapException( IDS_PUBDELIVSERVERFAIL, m_model.modelname.c_str(), __FILE__, __LINE__ );
+                throw ZBSoapException( IDS_PUBDELIVSERVERFAIL, m_model.m_ModelName.c_str(), __FILE__, __LINE__ );
             }
         }
     }
@@ -309,7 +309,7 @@ bool pPublishModel::send()
 
                 if ( (int)proxy.Execute( pubPdattr ).GetReturnValue() < 0 )
                 {
-                    throw ZBSoapException( IDS_PUBPDATTRSERVERFAIL, m_model.modelname.c_str(), __FILE__, __LINE__ );
+                    throw ZBSoapException( IDS_PUBPDATTRSERVERFAIL, m_model.m_ModelName.c_str(), __FILE__, __LINE__ );
                 }
             }
             while ( pdattri != m_pdattrs.end() );
@@ -351,7 +351,7 @@ bool pPublishModel::send()
 
             if ( (int)proxy.Execute( pubDistrib ).GetReturnValue() < 0 )
             {
-                throw ZBSoapException( IDS_PUBDISTRIBSERVERFAIL, m_model.modelname.c_str(), __FILE__, __LINE__ );
+                throw ZBSoapException( IDS_PUBDISTRIBSERVERFAIL, m_model.m_ModelName.c_str(), __FILE__, __LINE__ );
             }
         }
     }
@@ -391,7 +391,7 @@ bool pPublishModel::send()
 
             if ( (int)proxy.Execute( pubDistribmap ).GetReturnValue() < 0 )
             {
-                throw ZBSoapException( IDS_PUBDISTRIBMAPSERVERFAIL, m_model.modelname.c_str(), __FILE__, __LINE__ );
+                throw ZBSoapException( IDS_PUBDISTRIBMAPSERVERFAIL, m_model.m_ModelName.c_str(), __FILE__, __LINE__ );
             }
         }
     }
@@ -431,7 +431,7 @@ bool pPublishModel::send()
 
             if ( (int)proxy.Execute( pubInput ).GetReturnValue() < 0 )
             {
-                throw ZBSoapException( IDS_PUBINPUTSERVERFAIL, m_model.modelname.c_str(), __FILE__, __LINE__ );
+                throw ZBSoapException( IDS_PUBINPUTSERVERFAIL, m_model.m_ModelName.c_str(), __FILE__, __LINE__ );
             }
         }
     }
@@ -453,7 +453,7 @@ bool pPublishModel::send()
 
         if ( (int)proxy.Execute( pubDone ).GetReturnValue() < 0 )
         {
-            throw ZBSoapException( IDS_PUBDONESERVERFAIL, m_model.modelname.c_str(), __FILE__, __LINE__ );
+            throw ZBSoapException( IDS_PUBDONESERVERFAIL, m_model.m_ModelName.c_str(), __FILE__, __LINE__ );
         }
     }
     catch ( SOAPException& ex )
@@ -469,7 +469,7 @@ bool pPublishModel::send()
     return true;
 }
 
-int pPublishModel::getModelVersion( string modelref )
+int pPublishModel::getModelVersion(const std::string& modelref )
 {
     SOAPDebugger::SetFile( _T( "c:\\psssoap.log" ) );
 
@@ -478,10 +478,10 @@ int pPublishModel::getModelVersion( string modelref )
         TRACE( _T( "pPublishModel::getModelVersion %s\n" ), modelref.c_str() );
 
         // defs
-        string wdsl_urn = pPublishSettings::modelservice;
+        string wdsl_urn = pPublishSettings::m_ModelService;
 
         // initialize objects
-        string url = pPublishSettings::url;
+        string url = pPublishSettings::m_Url;
         SOAPProxy proxy( url.c_str() );
 
         // pubInit

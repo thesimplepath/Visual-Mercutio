@@ -48,7 +48,7 @@ bool ZUSOAPPublishModelAttributes::OnStart()
     m_MessengerAddress = static_cast<const char*>( m_pClass );
 
     // Sets the correct address
-    pPublishSettings::url = (const char*)m_MessengerAddress;
+    pPublishSettings::m_Url = (const char*)m_MessengerAddress;
 
     // Reset the array of ids
     memset( m_IDArray, 0, sizeof( m_IDArray ) );
@@ -205,11 +205,11 @@ void ZUSOAPPublishModelAttributes::PublishAttribDef( ZBPropertySet& PropSet )
                 m_pLog->AddLine( e );
             }
 
-            m_pa.addAttribDef( pattribdef( Key,                                // Attrib ID
-                                           pProp->GetItemID(),                // Group ID
-                                           String16( pProp->GetLabel() ),    // Text
-                                           Type,                            // Type (1 = String)
-                                           1 ) );                            // 1 = Mandatory (Always set to 1)
+            m_pa.addAttribDef( pattribdef(Key,                                // Attrib ID
+                                          pProp->GetItemID(),                // Group ID
+                                          PSS_String16( pProp->GetLabel() ),    // Text
+                                          Type,                            // Type (1 = String)
+                                          1 ) );                            // 1 = Mandatory (Always set to 1)
 
             // JMR-MODIF - Le 21 juin 2006 - Ajout de l'alias dans la publication.
             m_pa.addAlias( m_pInfo->m_MessengerAlias );

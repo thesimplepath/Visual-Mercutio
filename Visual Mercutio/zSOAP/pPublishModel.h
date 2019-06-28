@@ -57,346 +57,309 @@ BEGIN_EASYSOAP_NAMESPACE
 template<>
 class SOAPTypeTraits<pproc>
 {
-public:
+    public:
+        static void GetType(SOAPQName& qname)
+        {
+            qname.Set(_T("pproc"), _T("urn:xml-soap-emessenger"));
+        }
 
-    static void GetType( SOAPQName& qname )
-    {
-        qname.Set( _T( "pproc" ), _T( "urn:xml-soap-emessenger" ) );
-    }
+        static SOAPParameter& Serialize(SOAPParameter& param, const pproc& val)
+        {
+            param.AddParameter(_T("procid"))          << val.m_ProcID;
+            param.AddParameter(_T("wkgid"))           << val.m_WkGrpID.c_str();
+            param.AddParameter(_T("proctype"))        << val.m_ProcType;
+            param.AddParameter(_T("doublesign"))      << val.m_DoubleSign;
+            param.AddParameter(_T("procidprocessus")) << val.m_ProcIDProcessus;
+            return param;
+        }
 
-    // JMR-MODIF - Le 23 mai 2006 - Ajout du code pour la prise en charge du nouveau champ procidprocessus.
-    static SOAPParameter& Serialize( SOAPParameter& param, const pproc& val )
-    {
-        param.AddParameter( _T( "procid" ) )            << val.procid;
-        param.AddParameter( _T( "wkgid" ) )                << val.wkgid.c_str();
-        param.AddParameter( _T( "proctype" ) )            << val.proctype;
-        param.AddParameter( _T( "doublesign" ) )        << val.doublesign;
-        param.AddParameter( _T( "procidprocessus" ) )    << val.procidprocessus;
+        static const SOAPParameter& Deserialize(const SOAPParameter& param, pproc& val)
+        {
+            SOAPString tmp;
 
-        return param;
-    }
-
-    // JMR-MODIF - Le 23 mai 2006 - Ajout du code pour la prise en charge du nouveau champ procidprocessus.
-    static const SOAPParameter& Deserialize( const SOAPParameter& param, pproc& val )
-    {
-        SOAPString tmp;
-
-        param.GetParameter( _T( "procid" ) )            >> val.procid;
-        param.GetParameter( _T( "wkgid" ) )                >> tmp;
-        val.wkgid = tmp.Str();
-        param.GetParameter( _T( "proctype" ) )            >> val.proctype;
-        param.GetParameter( _T( "doublesign" ) )        >> val.doublesign;
-        param.GetParameter( _T( "procidprocessus" ) )    >> val.procidprocessus;
-
-        return param;
-    }
+            param.GetParameter(_T("procid"))          >>      val.m_ProcID;
+            param.GetParameter(_T("wkgid"))           >> tmp; val.m_WkGrpID = tmp.Str();
+            param.GetParameter(_T("proctype"))        >>      val.m_ProcType;
+            param.GetParameter(_T("doublesign"))      >>      val.m_DoubleSign;
+            param.GetParameter(_T("procidprocessus")) >>      val.m_ProcIDProcessus;
+            return param;
+        }
 };
 
 template<>
 class SOAPTypeTraits< SOAPArray<pproc> > : public SOAPArrayTypeTraits
-{
-};
+{};
 
 /////////////////////////////////////////////
 // pdeliv soap mapping
 template<>
 class SOAPTypeTraits<pdeliv>
 {
-public:
+    public:
+        static void GetType(SOAPQName& qname)
+        {
+            qname.Set(_T("pdeliv"), _T("urn:xml-soap-emessenger"));
+        }
 
-    static void GetType( SOAPQName& qname )
-    {
-        qname.Set( _T( "pdeliv" ), _T( "urn:xml-soap-emessenger" ) );
-    }
+        static SOAPParameter& Serialize(SOAPParameter& param, const pdeliv& val)
+        {
+            param.AddParameter(_T("delivid"))          << val.m_DelivID;
+            param.AddParameter(_T("procidsrc"))        << val.m_ProcIDSrc;
+            param.AddParameter(_T("procidtrg"))        << val.m_ProcIDTrg;
+            param.AddParameter(_T("delivname"))        << val.m_DelivName.c_str();
+            param.AddParameter(_T("lateral"))          << val.m_Lateral;
+            param.AddParameter(_T("lateraldirection")) << val.m_LateralDirection;
+            param.AddParameter(_T("doublesign"))       << val.m_DoubleSign;
 
-    static SOAPParameter& Serialize( SOAPParameter& param, const pdeliv& val )
-    {
-        param.AddParameter( _T( "delivid" ) )            << val.delivid;
-        param.AddParameter( _T( "procidsrc" ) )            << val.procidsrc;
-        param.AddParameter( _T( "procidtrg" ) )            << val.procidtrg;
-        param.AddParameter( _T( "delivname" ) )            << val.delivname.c_str();
-        param.AddParameter( _T( "lateral" ) )            << val.lateral;
-        param.AddParameter( _T( "lateraldirection" ) )    << val.lateraldirection;
-        param.AddParameter( _T( "doublesign" ) )        << val.doublesign;
+            return param;
+        }
 
-        return param;
-    }
+        static const SOAPParameter& Deserialize(const SOAPParameter& param, pdeliv& val)
+        {
+            SOAPString tmp;
 
-    static const SOAPParameter& Deserialize( const SOAPParameter& param, pdeliv& val )
-    {
-        SOAPString tmp;
+            param.GetParameter(_T("delivid"))          >>      val.m_DelivID;
+            param.GetParameter(_T("procidsrc"))        >>      val.m_ProcIDSrc;
+            param.GetParameter(_T("procidtrg"))        >>      val.m_ProcIDTrg;
+            param.GetParameter(_T("delivname"))        >> tmp; val.m_DelivName = tmp.Str();
+            param.GetParameter(_T("lateral"))          >>      val.m_Lateral;
+            param.GetParameter(_T("lateraldirection")) >>      val.m_LateralDirection;
+            param.GetParameter(_T("doublesign"))       >>      val.m_DoubleSign;
 
-        param.GetParameter( _T( "delivid" ) )            >> val.delivid;
-        param.GetParameter( _T( "procidsrc" ) )            >> val.procidsrc;
-        param.GetParameter( _T( "procidtrg" ) )            >> val.procidtrg;
-        param.GetParameter( _T( "delivname" ) )            >> tmp;
-        val.delivname = tmp.Str();
-        param.GetParameter( _T( "lateral" ) )            >> val.lateral;
-        param.GetParameter( _T( "lateraldirection" ) )    >> val.lateraldirection;
-        param.GetParameter( _T( "doublesign" ) )        >> val.doublesign;
-
-        return param;
-    }
+            return param;
+        }
 };
 
 template<>
 class SOAPTypeTraits< SOAPArray<pdeliv> > : public SOAPArrayTypeTraits
-{
-};
+{};
 
 /////////////////////////////////////////////
 // pmodel soap mapping
 template<>
 class SOAPTypeTraits<pmodel>
 {
-public:
+    public:
+        static void GetType(SOAPQName& qname)
+        {
+            qname.Set(_T("pmodel"), _T("urn:xml-soap-emessenger"));
+        }
 
-    static void GetType( SOAPQName& qname )
-    {
-        qname.Set( _T( "pmodel" ), _T( "urn:xml-soap-emessenger" ) );
-    }
+        static SOAPParameter& Serialize(SOAPParameter& param, const pmodel& val)
+        {
+            param.AddParameter(_T("modelname")) << val.m_ModelName.c_str();
+            param.AddParameter(_T("modelref"))  << val.m_ModelRef.c_str();
+            param.AddParameter(_T("startdate")) << val.m_StartDate.c_str();
+            param.AddParameter(_T("enddate"))   << val.m_EndDate.c_str();
 
-    static SOAPParameter& Serialize( SOAPParameter& param, const pmodel& val )
-    {
-        param.AddParameter( _T( "modelname" ) )    << val.modelname.c_str();
-        param.AddParameter( _T( "modelref" ) )    << val.modelref.c_str();
+            return param;
+        }
 
-        // JMR-MODIF - Le 21 juin 2006 - Ajout de la sérialisation des dates de validité.
-        param.AddParameter( _T( "startdate" ) )    << val.startdate.c_str();
-        param.AddParameter( _T( "enddate" ) )    << val.enddate.c_str();
+        static const SOAPParameter& Deserialize(const SOAPParameter& param, pmodel& val)
+        {
+            SOAPString tmp;
 
-        return param;
-    }
+            param.GetParameter(_T("modelname")) >>tmp; val.m_ModelName = tmp.Str();
+            param.GetParameter(_T("modelref"))  >>tmp; val.m_ModelRef  = tmp.Str();
+            param.GetParameter(_T("startdate")) >>tmp; val.m_StartDate = tmp.Str();
+            param.GetParameter(_T("enddate"))   >>tmp; val.m_EndDate   = tmp.Str();
 
-    static const SOAPParameter& Deserialize( const SOAPParameter& param, pmodel& val )
-    {
-        SOAPString tmp;
-
-        param.GetParameter( _T( "modelname" ) )    >>tmp;
-        val.modelname = tmp.Str();
-        param.GetParameter( _T( "modelref" ) )    >>tmp;
-        val.modelref = tmp.Str();
-
-        // JMR-MODIF - Le 21 juin 2006 - Ajout de la désérialisation des dates de validité.
-        param.GetParameter( _T( "startdate" ) )    >>tmp;
-        val.startdate = tmp.Str();
-        param.GetParameter( _T( "enddate" ) )    >>tmp;
-        val.enddate = tmp.Str();
-
-        return param;
-    }
+            return param;
+        }
 };
 
 template<>
 class SOAPTypeTraits< SOAPArray<pmodel> > : public SOAPArrayTypeTraits
-{
-};
+{};
 
 /////////////////////////////////////////////
 // ppdattr soap mapping
 template<>
 class SOAPTypeTraits<ppdattr>
 {
-public:
+    public:
+        static void GetType(SOAPQName& qname)
+        {
+            qname.Set(_T("ppdattr"), _T("urn:xml-soap-emessenger"));
+        }
 
-    static void GetType( SOAPQName& qname )
-    {
-        qname.Set( _T( "ppdattr" ), _T( "urn:xml-soap-emessenger" ) );
-    }
+        static SOAPParameter& Serialize( SOAPParameter& param, const ppdattr& val )
+        {
+            param.AddParameter(_T("pdattribid"))  << val.m_PdAttribID;
+            param.AddParameter(_T("prow"))        << val.m_Prow;
+            param.AddParameter(_T("attribdefid")) << val.m_AttribDefID;
+            param.AddParameter(_T("mvalue"))      << val.m_MValue.c_str();
 
-    static SOAPParameter& Serialize( SOAPParameter& param, const ppdattr& val )
-    {
-        param.AddParameter( _T( "pdattribid" ) )    << val.pdattribid;
-        param.AddParameter( _T( "prow" ) )            << val.prow;
-        param.AddParameter( _T( "attribdefid" ) )    << val.attribdefid;
-        param.AddParameter( _T( "mvalue" ) )        << val.mvalue.c_str();
+            return param;
+        }
 
-        return param;
-    }
+        static const SOAPParameter& Deserialize(const SOAPParameter& param, ppdattr& val)
+        {
+            SOAPString tmp;
 
-    static const SOAPParameter& Deserialize( const SOAPParameter& param, ppdattr& val )
-    {
-        SOAPString tmp;
+            param.GetParameter(_T("pdattribid"))  >>     val.m_PdAttribID;
+            param.GetParameter(_T("prow"))        >>     val.m_Prow;
+            param.GetParameter(_T("attribdefid")) >>     val.m_AttribDefID;
+            param.GetParameter(_T("mvalue"))      >>tmp; val.m_MValue = tmp.Str();
 
-        param.GetParameter( _T( "pdattribid" ) )    >> val.pdattribid;
-        param.GetParameter( _T( "prow" ) )            >> val.prow;
-        param.GetParameter( _T( "attribdefid" ) )    >> val.attribdefid;
-        param.GetParameter( _T( "mvalue" ) )        >>tmp;
-        val.mvalue = tmp.Str();
-
-        return param;
-    }
+            return param;
+        }
 };
 
 template<>
 class SOAPTypeTraits< SOAPArray<ppdattr> > : public SOAPArrayTypeTraits
-{
-};
+{};
 
 /////////////////////////////////////////////
 // pdistrib soap mapping
 template<>
 class SOAPTypeTraits<pdistrib>
 {
-public:
+    public:
+        static void GetType(SOAPQName& qname)
+        {
+            qname.Set(_T("pdistrib"), _T("urn:xml-soap-emessenger"));
+        }
 
-    static void GetType( SOAPQName& qname )
-    {
-        qname.Set( _T( "pdistrib" ), _T( "urn:xml-soap-emessenger" ) );
-    }
+        static SOAPParameter& Serialize(SOAPParameter& param, const pdistrib& val)
+        {
+            param.AddParameter(_T("wkgid"))       << val.m_WkGrpID.c_str();
+            param.AddParameter(_T("attribdefid")) << val.m_AttribDefID;
+            param.AddParameter(_T("mop"))         << val.m_Mop;
+            param.AddParameter(_T("mdata"))       << val.m_MData.c_str();
 
-    static SOAPParameter& Serialize( SOAPParameter& param, const pdistrib& val )
-    {
-        param.AddParameter( _T( "wkgid" ) )            << val.wkgid.c_str();
-        param.AddParameter( _T( "attribdefid" ) )    << val.attribdefid;
-        param.AddParameter( _T( "mop" ) )            << val.mop;
-        param.AddParameter( _T( "mdata" ) )            << val.mdata.c_str();
+            return param;
+        }
 
-        return param;
-    }
+        static const SOAPParameter& Deserialize(const SOAPParameter& param, pdistrib& val)
+        {
+            SOAPString tmp;
 
-    static const SOAPParameter& Deserialize( const SOAPParameter& param, pdistrib& val )
-    {
-        SOAPString tmp;
+            param.GetParameter(_T("wkgid"))       >> tmp; val.m_WkGrpID = tmp.Str();
+            param.GetParameter(_T("attribdefid")) >>      val.m_AttribDefID;
+            param.GetParameter(_T("mop"))         >>      val.m_Mop;
+            param.GetParameter(_T("mdata"))       >> tmp; val.m_MData = tmp.Str();
 
-        param.GetParameter( _T( "wkgid" ) )            >> tmp;
-        val.wkgid = tmp.Str();
-        param.GetParameter( _T( "attribdefid" ) )    >> val.attribdefid;
-        param.GetParameter( _T( "mop" ) )            >> val.mop;
-        param.GetParameter( _T( "mdata" ) )            >> tmp;
-        val.mdata = tmp.Str();
-
-        return param;
-    }
+            return param;
+        }
 };
 
 template<>
 class SOAPTypeTraits< SOAPArray<pdistrib> > : public SOAPArrayTypeTraits
-{
-};
+{};
 
 /////////////////////////////////////////////
 // pdistribmap soap mapping
 template<>
 class SOAPTypeTraits<pdistribmap>
 {
-public:
+    public:
+        static void GetType(SOAPQName& qname)
+        {
+            qname.Set(_T("pdistribmap"), _T("urn:xml-soap-emessenger"));
+        }
 
-    static void GetType( SOAPQName& qname )
-    {
-        qname.Set( _T( "pdistribmap" ), _T( "urn:xml-soap-emessenger" ) );
-    }
+        static SOAPParameter& Serialize(SOAPParameter& param, const pdistribmap& val)
+        {
+            param.AddParameter(_T("pdattribid"))  << val.m_PdAttribID;
+            param.AddParameter(_T("attribdefid")) << val.m_AttribDefID;
+            param.AddParameter(_T("mdata"))       << val.m_MData.c_str();
+            param.AddParameter(_T("mlop"))        << val.m_Mlop;
 
-    static SOAPParameter& Serialize( SOAPParameter& param, const pdistribmap& val )
-    {    
-        param.AddParameter( _T( "pdattribid" ) )    << val.pdattribid;
-        param.AddParameter( _T( "attribdefid" ) )    << val.attribdefid;
-        param.AddParameter( _T( "mdata" ) )            << val.mdata.c_str();
-        param.AddParameter( _T( "mlop" ) )            << val.mlop;
+            return param;
+        }
 
-        return param;
-    }
+        static const SOAPParameter& Deserialize(const SOAPParameter& param, pdistribmap& val)
+        {
+            SOAPString tmp;
 
-    static const SOAPParameter& Deserialize( const SOAPParameter& param, pdistribmap& val )
-    {
-        SOAPString tmp;
+            param.GetParameter(_T("pdattribid"))  >>      val.m_PdAttribID;
+            param.GetParameter(_T("attribdefid")) >>      val.m_AttribDefID;
+            param.GetParameter(_T("mdata"))       >> tmp; val.m_MData = tmp.Str();
+            param.GetParameter(_T("mlop"))        >>      val.m_Mlop;
 
-        param.GetParameter( _T( "pdattribid" ) )    >> val.pdattribid;
-        param.GetParameter( _T( "attribdefid" ) )    >> val.attribdefid;
-        param.GetParameter( _T( "mdata" ) )            >> tmp;
-        val.mdata = tmp.Str();
-        param.GetParameter( _T( "mlop" ) )            >> val.mlop;
-
-        return param;
-    }
+            return param;
+        }
 };
 
 template<>
 class SOAPTypeTraits< SOAPArray<pdistribmap> > : public SOAPArrayTypeTraits
-{
-};
+{};
 
 /////////////////////////////////////////////
 // pinput soap mapping
 template<>
 class SOAPTypeTraits<pinput>
 {
-public:
+    public:
 
-    static void GetType( SOAPQName& qname )
-    {
-        qname.Set( _T( "pinput" ), _T( "urn:xml-soap-emessenger" ) );
-    }
+        static void GetType(SOAPQName& qname)
+        {
+            qname.Set(_T("pinput"), _T("urn:xml-soap-emessenger"));
+        }
 
-    static SOAPParameter& Serialize( SOAPParameter& param, const pinput& val )
-    {    
-        //param.AddParameter( _T( "modelid" ) )        << val.modelid;
-        param.AddParameter( _T( "pdattribid" ) )    << val.pdattribid;
-        param.AddParameter( _T( "attribdefid" ) )    << val.attribdefid;
-        param.AddParameter( _T( "mdefval" ) )        << val.mdefval.c_str();
-        param.AddParameter( _T( "mflag" ) )            << val.mflag;
-        param.AddParameter( _T( "constraintid" ) )    << val.constraintid;
+        static SOAPParameter& Serialize(SOAPParameter& param, const pinput& val)
+        {    
+            //param.AddParameter(_T("modelid"))      << val.m_ModelID;
+            param.AddParameter(_T("pdattribid"))   << val.m_PdAttribID;
+            param.AddParameter(_T("attribdefid"))  << val.m_AttribDefID;
+            param.AddParameter(_T("mdefval"))      << val.m_MDefVal.c_str();
+            param.AddParameter(_T("mflag"))        << val.m_MFlag;
+            param.AddParameter(_T("constraintid")) << val.m_ConstraintID;
 
-        return param;
-    }
+            return param;
+        }
 
-    static const SOAPParameter& Deserialize( const SOAPParameter& param, pinput& val )
-    {
-        SOAPString tmp;
+        static const SOAPParameter& Deserialize(const SOAPParameter& param, pinput& val)
+        {
+            SOAPString tmp;
 
-        //param.GetParameter( _T( "modelid" ) )        >> val.modelid;
-        param.GetParameter( _T( "pdattribid" ) )    >> val.pdattribid;
-        param.GetParameter( _T( "attribdefid" ) )    >> val.attribdefid;
-        param.GetParameter( _T( "mdefval" ) )        >> tmp;
-        val.mdefval = tmp.Str();
-        param.GetParameter( _T( "mflag" ) )            >> val.mflag;
-        param.GetParameter( _T( "constraintid" ) )    >> val.constraintid;
+            //param.GetParameter(_T("modelid"))      >>      val.m_ModelID;
+            param.GetParameter(_T("pdattribid"))   >>      val.m_PdAttribID;
+            param.GetParameter(_T("attribdefid"))  >>      val.m_AttribDefID;
+            param.GetParameter(_T("mdefval"))      >> tmp; val.m_MDefVal = tmp.Str();
+            param.GetParameter(_T("mflag"))        >>      val.m_MFlag;
+            param.GetParameter(_T("constraintid")) >>      val.m_ConstraintID;
 
-        return param;
-    }
+            return param;
+        }
 };
 
 template<>
 class SOAPTypeTraits< SOAPArray<pinput> > : public SOAPArrayTypeTraits
-{
-};
+{};
 
 class AFX_EXT_CLASS pPublishModel
 {
-public:
+    public:
+        pPublishModel();
+        ~pPublishModel();
 
-    pPublishModel();
-    ~pPublishModel();
-
-    void reset();
+        void reset();
     
-    void setModel        ( pmodel model );
-    void addProc        ( pproc proc );
-    void addDeliv        ( pdeliv deliv );
-    void addAttr        ( ppdattr pdattr );
-    void addDistrib        ( pdistrib distrib );
-    void addDistribmap    ( pdistribmap distribmap );
-    void addInput        ( pinput inputs );
+        void setModel(pmodel model);
+        void addProc(pproc proc);
+        void addDeliv(pdeliv deliv);
+        void addAttr(ppdattr pdattr);
+        void addDistrib(pdistrib distrib);
+        void addDistribmap(pdistribmap distribmap);
+        void addInput(pinput inputs);
 
-    // JMR-MODIF - Le 21 juin 2006 - Ajout de la fonction addAlias.
-    void addAlias( CString Alias );
+        void addAlias(const CString& alias);
 
-    bool send();
+        bool send();
 
-    int getModelVersion(string model);
+        int getModelVersion(const std::string& model);
 
-private:
-
-    // JMR-MODIF - Le 21 juin 2006 - Ajout de la variable m_Alias.
-    CString                m_Alias;
-
-    pmodel                m_model;
-    list<pproc>            m_procs;
-    list<pdeliv>        m_delivs;
-    list<ppdattr>        m_pdattrs;
-    list<pdistrib>        m_distribs;
-    list<pdistribmap>    m_distribmaps;
-    list<pinput>        m_inputs;
+    private:
+        CString           m_Alias;
+        pmodel            m_model;
+        list<pproc>       m_procs;
+        list<pdeliv>      m_delivs;
+        list<ppdattr>     m_pdattrs;
+        list<pdistrib>    m_distribs;
+        list<pdistribmap> m_distribmaps;
+        list<pinput>      m_inputs;
 };
 
 END_EASYSOAP_NAMESPACE

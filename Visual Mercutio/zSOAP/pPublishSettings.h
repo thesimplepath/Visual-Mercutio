@@ -17,6 +17,7 @@
 // <nl>Description:  XXXClass frame window support
 //
 /////////////////////////////////////////////////////////////////////////////
+
 #ifndef __PPUBLISHSETTINGS_HDR_
 #define __PPUBLISHSETTINGS_HDR_
 
@@ -29,31 +30,27 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 #ifdef _ZSOAPEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // Put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 30 mars 2006 - Ajout des décorations Unicode _T( ), nettoyage du code inutile. (En commentaires)
-
+// todo FIXME -cCheck -oJean: changed the class member names (updated with m_), see what is the impact on Messenger
 class AFX_EXT_CLASS pPublishSettings
 {
-private:
+    public:
+        static std::string m_Url;
+        static std::string m_ModelService;
+        static std::string m_ServerService;
+        static std::string m_FileService;
 
-    pPublishSettings()
-    {
-    };
-
-public:
-
-    static string url;
-    static string modelservice;
-    static string serverservice;
-    static string fileservice;
+    private:
+        pPublishSettings()
+        {};
 };
 
 #endif

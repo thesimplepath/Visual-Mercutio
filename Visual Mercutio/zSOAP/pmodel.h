@@ -29,8 +29,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zConversion\String16.h"
-string convertTo( String16 inStr );
+// processsoft
+#include "zConversion\PSS_String16.h"
+#include "zConversion\PSS_StringTools.h"
 
 #ifdef _ZSOAPEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -42,26 +43,27 @@ string convertTo( String16 inStr );
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
+// todo FIXME -cCheck -oJean: changed the class member names (updated with m_), see what is the impact on Messenger
 class AFX_EXT_CLASS pmodel
 {
-public:
+    public:
+        std::string m_ModelName; // model name
+        std::string m_ModelRef;  // Model ref (GIID) used for groups version
+        std::string m_StartDate; // validity start date
+        std::string m_EndDate;   // expiration date
 
-    pmodel()
-    {
-    }
+        pmodel()
+        {}
 
-    pmodel ( String16 modelname, String16 modelref, String16 startdate, String16 enddate )
-    {
-        this->modelname    = convertTo( modelname );
-        this->modelref    = convertTo( modelref );
-        this->startdate    = convertTo( startdate );
-        this->enddate    = convertTo( enddate );
-    }
-
-    string modelname;    // Name of the model
-    string modelref;    // Model ref (GIID) used to group versions
-    string startdate;    // JMR-MODIF - Le 21 juin 2006 - Variable de début de validité.
-    string enddate;        // JMR-MODIF - Le 21 juin 2006 - Variable de fin de validité.
+        pmodel(const PSS_String16& modelName,
+               const PSS_String16& modelRef,
+               const PSS_String16& startDate,
+               const PSS_String16& endDate) :
+            m_ModelName(PSS_StringTools::ConvertTo(modelName)),
+            m_ModelRef (PSS_StringTools::ConvertTo(modelRef)),
+            m_StartDate(PSS_StringTools::ConvertTo(startDate)),
+            m_EndDate  (PSS_StringTools::ConvertTo(endDate))
+        {}
 };
 
 #endif

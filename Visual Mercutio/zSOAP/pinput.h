@@ -29,8 +29,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zConversion\String16.h"
-string convertTo( String16 inStr );
+// processsoft
+#include "zConversion\PSS_String16.h"
+#include "zConversion\PSS_StringTools.h"
 
 #ifdef _ZSOAPEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -42,28 +43,26 @@ string convertTo( String16 inStr );
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
+// todo FIXME -cCheck -oJean: changed the class member names (updated with m_), see what is the impact on Messenger
 class AFX_EXT_CLASS pinput
 {
 public:
+    int         m_PdAttribID;
+    int         m_AttribDefID;
+    std::string m_MDefVal;
+    int         m_MFlag;
+    int         m_ConstraintID;
 
     pinput()
-    {
-    }
+    {}
 
-    pinput( int pdattribid, int attribdefid, String16 mdefval, int mflag, int constraintid )
-    {
-        this->pdattribid    = pdattribid;
-        this->attribdefid    = attribdefid;
-        this->mdefval        = convertTo( mdefval );
-        this->mflag            = mflag;        
-        this->constraintid    = constraintid;
-    }
- 
-    int        pdattribid;
-    int        attribdefid;
-    string    mdefval;
-    int        mflag;
-    int        constraintid;
-};
+    pinput(int pdAttribID, int attribDefID, const PSS_String16& mDefVal, int mFlag, int constraintID) :
+        m_PdAttribID(pdAttribID),
+        m_AttribDefID(attribDefID),
+        m_MDefVal(PSS_StringTools::ConvertTo(mDefVal)),
+        m_MFlag(mFlag),
+        m_ConstraintID(constraintID)
+    {}
+ };
 
 #endif

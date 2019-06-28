@@ -29,8 +29,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zConversion\String16.h"
-string convertTo( String16 inStr );
+// processsoft
+#include "zConversion\PSS_String16.h"
+#include "zConversion\PSS_StringTools.h"
 
 #ifdef _ZSOAPEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -42,30 +43,30 @@ string convertTo( String16 inStr );
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
+// todo FIXME -cCheck -oJean: changed the class member names (updated with m_), see what is the impact on Messenger
 class AFX_EXT_CLASS pworkgroup
 {
-public:
+    public:
+        std::string m_WkGrpID;
+        std::string m_WkGrpParent;
+        std::string m_WkGrpName;
+        std::string m_Mission;
+        std::string m_DayCost;
 
-    pworkgroup()
-    {
-    }
+        pworkgroup()
+        {}
 
-    // JMR-MODIF - Le 24 mai 2006 - Ajout du paramètre mission.
-    // JMR-MODIF - Le 6 décembre 2006 - Ajout du paramètre daycost.
-    pworkgroup( String16 wkgid, String16 wkgparent, String16 wkgname, String16 mission, String16 daycost )
-    {
-        this->wkgid        = convertTo( wkgid );
-        this->wkgparent    = convertTo( wkgparent );
-        this->wkgname    = convertTo( wkgname );
-        this->mission    = convertTo( mission );
-        this->daycost    = convertTo( daycost );
-    }
-
-    string    wkgid;
-    string    wkgparent;
-    string    wkgname;
-    string    mission;    // JMR-MODIF - Le 24 mai 2006 - Ajout de la variable mission.
-    string    daycost;    // JMR-MODIF - Le 6 décembre 2006 - Ajout de la variable daycost.
+        pworkgroup(const PSS_String16& wkGrpID,
+                   const PSS_String16& wkGrpParent,
+                   const PSS_String16& wkGrpName,
+                   const PSS_String16& mission,
+                   const PSS_String16& dayCost) :
+            m_WkGrpID    (PSS_StringTools::ConvertTo(wkGrpID)),
+            m_WkGrpParent(PSS_StringTools::ConvertTo(wkGrpParent)),
+            m_WkGrpName  (PSS_StringTools::ConvertTo(wkGrpName)),
+            m_Mission    (PSS_StringTools::ConvertTo(mission)),
+            m_DayCost    (PSS_StringTools::ConvertTo(dayCost))
+        {}
 };
 
 #endif

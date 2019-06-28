@@ -17,8 +17,8 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zConversion\String16.h"
-
+// processsoft
+#include "zConversion\PSS_String16.h"
 #include "pprestations.h"
 
 #ifdef _ZSOAPEXPORT
@@ -31,8 +31,6 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-string convertTo( String16 inStr );
-
 /////////////////////////////////////////////
 //Define serializers / soap mapping
 
@@ -42,65 +40,56 @@ BEGIN_EASYSOAP_NAMESPACE
 template<>
 class SOAPTypeTraits<pprestations>
 {
-public:
+    public:
 
-    static void GetType( SOAPQName& qname )
-    {
-        qname.Set( _T( "pprestations" ), _T( "urn:xml-soap-emessenger" ) );
-    }
+        static void GetType(SOAPQName& qname)
+        {
+            qname.Set(_T("pprestations"), _T("urn:xml-soap-emessenger"));
+        }
 
-    static SOAPParameter& Serialize( SOAPParameter& param, const pprestations& val )
-    {
-        param.AddParameter( _T( "prestationid" ) )        << val.prestationid.c_str();
-        param.AddParameter( _T( "prestationparent" ) )    << val.prestationparent.c_str();
-        param.AddParameter( _T( "prestationtitle" ) )    << val.prestationtitle.c_str();
+        static SOAPParameter& Serialize(SOAPParameter& param, const pprestations& val)
+        {
+            param.AddParameter(_T("prestationid"))     << val.m_PrestationID.c_str();
+            param.AddParameter(_T("prestationparent")) << val.m_PrestationParent.c_str();
+            param.AddParameter(_T("prestationtitle"))  << val.m_PrestationTitle.c_str();
 
-        return param;
-    }
+            return param;
+        }
 
-    static const SOAPParameter& Deserialize( const SOAPParameter& param, pprestations& val )
-    {
-        SOAPString tmp;
+        static const SOAPParameter& Deserialize(const SOAPParameter& param, pprestations& val)
+        {
+            SOAPString tmp;
 
-        param.GetParameter( _T( "prestationid" ) )        >> tmp;
-        val.prestationid        = tmp.Str();
-        param.GetParameter( _T( "prestationparent" ) )    >> tmp;
-        val.prestationparent    = tmp.Str();
-        param.GetParameter( _T( "prestationtitle" ) )    >> tmp;
-        val.prestationtitle        = tmp.Str();
+            param.GetParameter(_T("prestationid"))     >> tmp; val.m_PrestationID     = tmp.Str();
+            param.GetParameter(_T("prestationparent")) >> tmp; val.m_PrestationParent = tmp.Str();
+            param.GetParameter(_T("prestationtitle"))  >> tmp; val.m_PrestationTitle  = tmp.Str();
 
-        return param;
-    }
+            return param;
+        }
 };
 
 template<>
 class SOAPTypeTraits< SOAPArray<pprestations> > : public SOAPArrayTypeTraits
-{
-};
+{};
 
 class AFX_EXT_CLASS pPublishPrestations
 {
-public:
+    public:
+        pPublishPrestations();
+        ~pPublishPrestations();
 
-    pPublishPrestations();
-    ~pPublishPrestations();
+        void reset();
+        void addPrestation(pprestations wkg);
 
-    void reset();
-    void addPrestation( pprestations wkg );
+        void addAlias(const CString& alias);
 
-    // JMR-MODIF - Le 21 juin 2006 - Ajout de la fonction addAlias.
-    void addAlias( CString Alias );
+        bool send();
 
-    bool send();
-
-private:
-
-    // JMR-MODIF - Le 21 juin 2006 - Ajout de la variable m_Alias.
-    CString                m_Alias;
-
-    list<pprestations>    m_prestations;
+    private:
+        CString            m_Alias;
+        list<pprestations> m_prestations;
 };
 
 END_EASYSOAP_NAMESPACE
 
-#endif // __PPUBLISHPRESTATIONS_HDR_
+#endif

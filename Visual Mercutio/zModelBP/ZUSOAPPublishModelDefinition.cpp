@@ -154,7 +154,7 @@ bool ZUSOAPPublishModelDefinition::OnStart()
     m_MessengerAddress                            = pInfo->m_MessengerAddress;
 
     // Sets the correct address
-    pPublishSettings::url = (const char*)m_MessengerAddress;
+    pPublishSettings::m_Url = (const char*)m_MessengerAddress;
 
     // Reset the counter for rows
     m_CounterRow = 0;
@@ -164,10 +164,10 @@ bool ZUSOAPPublishModelDefinition::OnStart()
         return false;
     }
 
-    m_pm.setModel( pmodel( String16( m_pModel->GetModelName() ),    // Model name
-                           String16( m_pDoc->GetGUID() ),            // Model ref GUID
-                           String16( pInfo->m_BeginDate ),            // JMR-MODIF - Date de validité de début
-                           String16( pInfo->m_EndDate ) ) );        // JMR-MODIF - Date de validité de fin.
+    m_pm.setModel( pmodel(PSS_String16( m_pModel->GetModelName() ),    // Model name
+                          PSS_String16( m_pDoc->GetGUID() ),            // Model ref GUID
+                          PSS_String16( pInfo->m_BeginDate ),            // JMR-MODIF - Date de validité de début
+                          PSS_String16( pInfo->m_EndDate ) ) );        // JMR-MODIF - Date de validité de fin.
 
     // Nothing more to do
     return true;
@@ -216,11 +216,11 @@ bool ZUSOAPPublishModelDefinition::OnFinish()
                     m_pLog->AddLine( e );
                 }
 
-                m_pm.addInput( pinput( pInputAttrib->GetSymbolRef(),                // Object ID (proc or deliv) or -1 for global
-                                       Key,                                            // Attrib def ID
-                                       String16( pInputAttrib->GetDefaultValue() ),    // Default value
-                                       pInputAttrib->GetFlag(),                        // Flag
-                                       -1 ) );                                        // -1 (Reserved for future use)
+                m_pm.addInput( pinput(pInputAttrib->GetSymbolRef(),                // Object ID (proc or deliv) or -1 for global
+                                      Key,                                            // Attrib def ID
+                                      PSS_String16( pInputAttrib->GetDefaultValue() ),    // Default value
+                                      pInputAttrib->GetFlag(),                        // Flag
+                                     -1 ) );                                        // -1 (Reserved for future use)
             }
         }
     }
@@ -271,10 +271,10 @@ bool ZUSOAPPublishModelDefinition::OnFinish()
                         // Change for Gaya 4 september 2002
                         // m_pm.addDistrib( pdistrib( String16( pAttrib->GetUserGroupGUID() ),
 
-                        m_pm.addDistrib( pdistrib( String16( pRole->GetRoleGUID() ),            // WkgCls ID
-                                                   Key,                                            // Attrib Def ID
-                                                   pDistribRule->GetOperator(),                    // Operator ID
-                                                   String16( pDistribRule->GetValue() ) ) );    // Data
+                        m_pm.addDistrib( pdistrib(PSS_String16( pRole->GetRoleGUID() ),            // WkgCls ID
+                                                  Key,                                            // Attrib Def ID
+                                                  pDistribRule->GetOperator(),                    // Operator ID
+                                                  PSS_String16( pDistribRule->GetValue() ) ) );    // Data
 
                         if ( m_pLog && m_pLog->IsInDebugMode() )
                         {
@@ -292,7 +292,7 @@ bool ZUSOAPPublishModelDefinition::OnFinish()
 
                         m_pm.addDistribmap( pdistribmap( pAttrib->GetSymbolRef(),                    // Object ID
                                                          Key,                                        // Attrib Def ID
-                                                         String16( pDistribRule->GetValue() ),        // Data
+                                                         PSS_String16( pDistribRule->GetValue() ),        // Data
                                                          pDistribRule->GetLogicalOperator() ) );    // Logical operator (0=AND 1=OR)
                     }
                 }
@@ -317,11 +317,11 @@ bool ZUSOAPPublishModelDefinition::OnPageSymbol( ZBBPPageSymbol* pSymbol )
 bool ZUSOAPPublishModelDefinition::OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
 {
     // JMR-MODIF - Le 30 mai 2006 - Ajout du paramètre procidprocessus. (Paramètre 5)
-    m_pm.addProc( pproc( pSymbol->GetSymbolReferenceNumber(),        // Object ID (Unique between proc/deliv)
-                         String16( pSymbol->GetUnitGUID() ),        // Workgroup ClsID
-                         2,                                         // 2 = procedure symbol
-                         pSymbol->GetUnitDoubleValidationType(),    // Double Sign
-                         GetParentSymbolReference( pSymbol ) ) );    // Processus parent
+    m_pm.addProc( pproc(pSymbol->GetSymbolReferenceNumber(),        // Object ID (Unique between proc/deliv)
+                        PSS_String16( pSymbol->GetUnitGUID() ),        // Workgroup ClsID
+                        2,                                         // 2 = procedure symbol
+                        pSymbol->GetUnitDoubleValidationType(),    // Double Sign
+                        GetParentSymbolReference( pSymbol ) ) );    // Processus parent
 
     ZBPropertySet PropSet;
 
@@ -382,11 +382,11 @@ bool ZUSOAPPublishModelDefinition::OnProcessSymbol( ZBBPProcessSymbol* pSymbol )
 bool ZUSOAPPublishModelDefinition::OnStartSymbol( ZBBPStartSymbol* pSymbol )
 {
     // JMR-MODIF - Le 30 mai 2006 - Ajout du paramètre procidprocessus. (Paramètre 5)
-    m_pm.addProc( pproc( pSymbol->GetSymbolReferenceNumber(),        // Object ID (unique between proc/deliv)
-                         String16( pSymbol->GetUnitGUID() ),        // Workgroup ClsID
-                         0,                                         // 0 = start symbol
-                         0,                                            // Double Sign
-                         GetParentSymbolReference( pSymbol ) ) );    // Processus parent
+    m_pm.addProc( pproc(pSymbol->GetSymbolReferenceNumber(),        // Object ID (unique between proc/deliv)
+                        PSS_String16( pSymbol->GetUnitGUID() ),        // Workgroup ClsID
+                        0,                                         // 0 = start symbol
+                        0,                                            // Double Sign
+                        GetParentSymbolReference( pSymbol ) ) );    // Processus parent
 
     ZBPropertySet PropSet;
 
@@ -413,11 +413,11 @@ bool ZUSOAPPublishModelDefinition::OnStartSymbol( ZBBPStartSymbol* pSymbol )
 bool ZUSOAPPublishModelDefinition::OnStopSymbol( ZBBPStopSymbol* pSymbol )
 {
     // JMR-MODIF - Le 30 mai 2006 - Ajout du paramètre procidprocessus. (Paramètre 5)
-    m_pm.addProc( pproc( pSymbol->GetSymbolReferenceNumber(),        // Object ID (unique between proc/deliv)
-                         String16( pSymbol->GetUnitGUID() ),        // Workgroup ClsID
-                         1,                                         // 1 = stop symbol
-                         0,                                            // Double Sign
-                         GetParentSymbolReference( pSymbol ) ) );    // Processus parent
+    m_pm.addProc( pproc(pSymbol->GetSymbolReferenceNumber(),        // Object ID (unique between proc/deliv)
+                        PSS_String16( pSymbol->GetUnitGUID() ),        // Workgroup ClsID
+                        1,                                         // 1 = stop symbol
+                        0,                                            // Double Sign
+                        GetParentSymbolReference( pSymbol ) ) );    // Processus parent
 
     ZBPropertySet PropSet;
 
@@ -649,7 +649,7 @@ bool ZUSOAPPublishModelDefinition::OnDeliverableLinkSymbol( ZBDeliverableLinkSym
     m_pm.addDeliv( pdeliv( pSymbol->GetSymbolReferenceNumber(),                            // Object ID (unique between proc/deliv)
                            dynamic_cast<ZBSymbol*>(pSrc)->GetSymbolReferenceNumber(),    // Src proc
                            dynamic_cast<ZBSymbol*>(pDst)->GetSymbolReferenceNumber(),    // Trg proc
-                           String16(pSymbol->GetSymbolName()),                            // Deliv name
+                           PSS_String16(pSymbol->GetSymbolName()),                            // Deliv name
                            (Lateral == true) ? 1 : 0,                                    // Lateral direction : 0 = normal, 1 = lateral starts here
                            LateralDirection,                                            // 0 : top, 1 : right, 2 : bottom, 3 : left
                            pSymbol->GetUnitDoubleValidationType()));                    // Double Sign
@@ -755,7 +755,7 @@ void ZUSOAPPublishModelDefinition::PublishAttribDef( int Ref, ZBProperty* pProp 
         m_pm.addAttr( ppdattr( Ref,                                    // Object ref ID (either a proc or deliv)
                                m_CounterRow++,                        // Row number
                                Key,                                    // Ref on attribute definition table
-                               String16( s ),                        // Value
+                               PSS_String16( s ),                        // Value
                                ( pProp->IsDynamic() ) ? 0 : 1 ) );
     }
 }

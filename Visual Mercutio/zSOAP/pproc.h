@@ -29,8 +29,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zConversion\String16.h"
-string convertTo( String16 inStr );
+// processsoft
+#include "zConversion\PSS_String16.h"
+#include "zConversion\PSS_StringTools.h"
 
 #ifdef _ZSOAPEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -42,47 +43,26 @@ string convertTo( String16 inStr );
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
+// todo FIXME -cCheck -oJean: changed the class member names (updated with m_), see what is the impact on Messenger
 class AFX_EXT_CLASS pproc
 {
-public:
+    public:
+        int         m_ProcID;
+        std::string m_WkGrpID;
+        int         m_ProcType;        // 0 = start, 1 = stop, 2 = normal
+        int         m_DoubleSign;      // 0 = no, 1 = yes, by any employee of this group, 2 = yes, by chief of this group
+        int         m_ProcIDProcessus; // 0 = processus, x = all others parent processus
 
-    pproc()
-    {
-    }
+        pproc()
+        {}
 
-    // JMR-MODIF - Le 23 mai 2006 - Ajout du paramètre procidprocessus.
-    pproc( int procid, String16 wkgid, int proctype, int doublesign, int procidprocessus )
-    {
-        this->procid            = procid;
-        this->wkgid                = convertTo( wkgid );
-        this->proctype            = proctype;
-        this->doublesign        = doublesign;
-        this->procidprocessus    = procidprocessus;
-    }
-
-    int        procid;
-    string    wkgid;
-    
-    /*
-     * 0=start
-     * 1=stop
-     * 2=normal
-    */
-    int proctype;
-
-    /*
-     * 0=no
-     * 1=yes, by any employee of this group
-     * 2=yes, by chief of this group
-    */
-    int doublesign;
-
-    // JMR-MODIF - Le 23 mai 2006 - Ajout de la variable procidprocessus.
-    /*
-     * 0 = processus
-     * x = all others parent processus
-    */
-    int procidprocessus;
+        pproc(int procID, const PSS_String16& wkGrpID, int procType, int doubleSign, int procIDProcessus) :
+            m_ProcID(procID),
+            m_WkGrpID(PSS_StringTools::ConvertTo(wkGrpID)),
+            m_ProcType(procType),
+            m_DoubleSign(doubleSign),
+            m_ProcIDProcessus(procIDProcessus)
+        {}
 };
 
 #endif

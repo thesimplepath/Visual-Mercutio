@@ -49,9 +49,9 @@ void pPublishAttribDef::addAttribDef( pattribdef attribdef )
 }
 
 // JMR-MODIF - Le 21 juin 2006 - Cette fonction permet d'ajouter l'alias, nécessaire pour la publication.
-void pPublishAttribDef::addAlias( CString Alias )
+void pPublishAttribDef::addAlias(const CString& alias)
 {
-    m_Alias = Alias;
+    m_Alias = alias;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -66,10 +66,10 @@ bool pPublishAttribDef::send()
     try
     {
         // Defs
-        string wdsl_urn = pPublishSettings::modelservice;
+        string wdsl_urn = pPublishSettings::m_ModelService;
 
         // Initialize objects
-        string url = pPublishSettings::url;
+        string url = pPublishSettings::m_Url;
         SOAPProxy proxy( url.c_str() );
 
         // Proc

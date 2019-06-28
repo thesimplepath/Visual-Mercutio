@@ -37,7 +37,7 @@ bool ZUSOAPPublishPrestations::Publish()
     if ( m_pInfo && m_pInfo->m_pDoc && m_pInfo->m_pDoc->GetMainLogicalPrestations() )
     {
         // Sets the correct address
-        pPublishSettings::url = (const char*)m_pInfo->m_MessengerAddress;
+        pPublishSettings::m_Url = (const char*)m_pInfo->m_MessengerAddress;
 
         // Process all prestations
         _PublishPrestations( m_pInfo->m_pDoc->GetMainLogicalPrestations() );
@@ -63,9 +63,9 @@ void ZUSOAPPublishPrestations::_PublishPrestations( ZBLogicalPrestationsEntity* 
         m_pLog->AddLine( e );
     }
 
-    m_pp.addPrestation( pprestations( String16( p_Prestations->GetGUID() ),
-                                      String16( ( p_Prestations->GetParent() != NULL ) ? p_Prestations->GetParent()->GetGUID() : _T( "" ) ),
-                                      String16( p_Prestations->GetEntityName() ) ) );
+    m_pp.addPrestation( pprestations(PSS_String16( p_Prestations->GetGUID() ),
+                                     PSS_String16( ( p_Prestations->GetParent() != NULL ) ? p_Prestations->GetParent()->GetGUID() : _T( "" ) ),
+                                     PSS_String16( p_Prestations->GetEntityName() ) ) );
 
     // JMR-MODIF - Le 21 juin 2006 - Ajout de l'alias dans la publication.
     m_pp.addAlias( m_pInfo->m_MessengerAlias );

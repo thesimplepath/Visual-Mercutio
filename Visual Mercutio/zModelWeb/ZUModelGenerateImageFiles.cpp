@@ -33,7 +33,7 @@
 #include "zBaseLib\File.h"
 #include "zWeb\ZDHtmlFile.h"
 
-#include "zConversion\ZUStringConversion.h"
+#include "zConversion\PSS_StringTools.h"
 #include "zBaseLib\ZUStringFormater.h"
 
 #include "zBaseLib\ZAGlobal.h"
@@ -523,7 +523,7 @@ CString ZUModelGenerateImageFiles::BuildPrestationsReportHTMLFilename( CString P
 
 CString ZUModelGenerateImageFiles::ParseModelName( CString ModelName )
 {
-    return ZUStringConversion::ConvertSpecialChar( ModelName );
+    return PSS_StringTools::ConvertSpecialChar( ModelName );
 }
 
 CString ZUModelGenerateImageFiles::CalculatePath( CString Filename, CString RefFilename )

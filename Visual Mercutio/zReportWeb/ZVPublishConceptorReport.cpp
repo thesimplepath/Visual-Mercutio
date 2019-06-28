@@ -8,7 +8,7 @@
 #include "stdafx.h"
 #include "ZVPublishConceptorReport.h"
 
-#include "zConversion\ZUStringConversion.h"
+#include "zConversion\PSS_StringTools.h"
 
 #include "zReportWebRes.h"
 #include "zRMdlBP.h"
@@ -127,7 +127,7 @@ CString ZVPublishConceptorReport::GenerateFilename( CString Directory, CString E
 {
     CString sFilename     = Directory;
     sFilename            += _T( "Conceptor_" );
-    sFilename            += ZUStringConversion::ConvertSpecialChar( EntityName );
+    sFilename            += PSS_StringTools::ConvertSpecialChar( EntityName );
     sFilename            += _T( ".htm" );
 
     return sFilename;

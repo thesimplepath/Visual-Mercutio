@@ -785,7 +785,7 @@ BOOL ZVPublishToMessengerLogon::OnInitDialog()
     // Sets the correct address
     if ( m_pInfo )
     {
-        pPublishSettings::url = (const char*)m_pInfo->m_MessengerAddress;
+        pPublishSettings::m_Url = (const char*)m_pInfo->m_MessengerAddress;
     }
 
     return TRUE;    // return TRUE unless you set the focus to a control

@@ -29,8 +29,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zConversion\String16.h"
-string convertTo( String16 inStr );
+// processsoft
+#include "zConversion\PSS_String16.h"
+#include "zConversion\PSS_StringTools.h"
 
 #ifdef _ZSOAPEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -42,43 +43,36 @@ string convertTo( String16 inStr );
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
+// todo FIXME -cCheck -oJean: changed the class member names (updated with m_), see what is the impact on Messenger
 class AFX_EXT_CLASS pdeliv
 {
-public:
+    public:
+        int         m_DelivID;
+        int         m_ProcIDSrc;
+        int         m_ProcIDTrg;
+        std::string m_DelivName;
+        int         m_Lateral;          // 0 = normal, 1 = lateral starts here
+        int         m_LateralDirection; // 0 = top, 1 = right, 2 = bottom, 3 = left
+        int         m_DoubleSign;       // 0 = no,  1 = employees, 2 = chiefs
 
-    pdeliv()
-    {
-    }
+        pdeliv()
+        {}
 
-    pdeliv( int            delivid,
-            int            procidsrc,
-            int            procidtrg,
-            String16    delivname,
-            int            lateral,
-            int            lateraldirection,
-            int            doublesign )
-    {
-        this->delivid            = delivid;
-        this->procidsrc            = procidsrc;
-        this->procidtrg            = procidtrg;
-        this->delivname            = convertTo( delivname );
-        this->lateral            = lateral;
-        this->lateraldirection    = lateraldirection;
-        this->doublesign        = doublesign;
-    }
-
-    int        delivid;
-    int        procidsrc;
-    int        procidtrg;
-    string    delivname;
-
-    /*
-     * 0 = normal
-     * 1 = lateral starts here
-    */
-    int        lateral;
-    int        lateraldirection;    // 0 : top, 1 : right,     2 : bottom, 3 : left
-    int        doublesign;            // 0 : no,  1 : employees, 2 : chiefs
+        pdeliv(int                 delivID,
+               int                 procIDSrc,
+               int                 procIDTrg,
+               const PSS_String16& delivName,
+               int                 lateral,
+               int                 lateralDirection,
+               int                 doubleSign) :
+            m_DelivID(delivID),
+            m_ProcIDSrc(procIDSrc),
+            m_ProcIDTrg(procIDTrg),
+            m_DelivName(PSS_StringTools::ConvertTo(delivName)),
+            m_Lateral(lateral),
+            m_LateralDirection(lateralDirection),
+            m_DoubleSign(doubleSign)
+        {}
 };
 
 #endif

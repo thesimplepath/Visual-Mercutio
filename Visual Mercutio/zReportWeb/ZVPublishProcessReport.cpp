@@ -9,7 +9,7 @@
 #include "stdafx.h"
 #include "ZVPublishProcessReport.h"
 
-#include "zConversion\ZUStringConversion.h"
+#include "zConversion\PSS_StringTools.h"
 #include "zBaseLib\ZUStringFormater.h"
 
 #include "zReportWebRes.h"
@@ -1971,7 +1971,7 @@ CString ZVPublishProcessReport::GenerateFilename( CString Directory, CString Pro
 {
     CString sFilename     = Directory;
     sFilename            += _T( "ProcessReport_" );
-    sFilename            += ZUStringConversion::ConvertSpecialChar( ProcessName );
+    sFilename            += PSS_StringTools::ConvertSpecialChar( ProcessName );
     sFilename            += _T( ".htm" );
 
     return sFilename;

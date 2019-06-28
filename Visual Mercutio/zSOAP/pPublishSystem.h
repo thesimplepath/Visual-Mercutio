@@ -29,23 +29,19 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zConversion\String16.h"
-
+// processsoft
+#include "zConversion\PSS_String16.h"
 #include "psystem.h"
 
 #ifdef _ZSOAPEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // Put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
-
-// JMR-MODIF - Le 30 mars 2006 - Ajout des décorations Unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-string convertTo( String16 inStr );
 
 /////////////////////////////////////////////
 //Define serializers / soap mapping
@@ -56,76 +52,63 @@ BEGIN_EASYSOAP_NAMESPACE
 template<>
 class SOAPTypeTraits<psystem>
 {
-public:
+    public:
+        static void GetType(SOAPQName& qname)
+        {
+            qname.Set(_T("psystem"), _T("urn:xml-soap-emessenger"));
+        }
 
-    static void GetType( SOAPQName& qname )
-    {
-        qname.Set( _T( "psystem" ), _T( "urn:xml-soap-emessenger" ) );
-    }
+        static SOAPParameter& Serialize(SOAPParameter& param, const psystem& val)
+        {
+            param.AddParameter(_T("systemid"))     << val.m_SystemID.c_str();
+            param.AddParameter(_T("systemparent")) << val.m_SystemParent.c_str();
+            param.AddParameter(_T("systemtitle"))  << val.m_SystemTitle.c_str();
+            param.AddParameter(_T("command"))      << val.m_Command.c_str();
+            param.AddParameter(_T("parameters"))   << val.m_Parameters.c_str();
+            param.AddParameter(_T("directory"))    << val.m_Directory.c_str();
+            param.AddParameter(_T("priority"))     << val.m_Priority;
+            param.AddParameter(_T("windowst"))     << val.m_Windowst;
 
-    static SOAPParameter& Serialize( SOAPParameter& param, const psystem& val )
-    {
-        param.AddParameter( _T( "systemid" ) )        << val.systemid.c_str();
-        param.AddParameter( _T( "systemparent" ) )    << val.systemparent.c_str();
-        param.AddParameter( _T( "systemtitle" ) )    << val.systemtitle.c_str();
-        param.AddParameter( _T( "command" ) )        << val.command.c_str();
-        param.AddParameter( _T( "parameters" ) )    << val.parameters.c_str();
-        param.AddParameter( _T( "directory" ) )        << val.directory.c_str();
-        param.AddParameter( _T( "priority" ) )        << val.priority;
-        param.AddParameter( _T( "windowst" ) )        << val.windowst;
+            return param;
+        }
 
-        return param;
-    }
+        static const SOAPParameter& Deserialize(const SOAPParameter& param, psystem& val)
+        {
+            SOAPString tmp;
 
-    static const SOAPParameter& Deserialize( const SOAPParameter& param, psystem& val )
-    {
-        SOAPString tmp;
+            param.GetParameter(_T("systemid"))     >> tmp; val.m_SystemID     = tmp.Str();
+            param.GetParameter(_T("systemparent")) >> tmp; val.m_SystemParent = tmp.Str();
+            param.GetParameter(_T("systemtitle"))  >> tmp; val.m_SystemTitle  = tmp.Str();
+            param.GetParameter(_T("command"))      >> tmp; val.m_Command      = tmp.Str();
+            param.GetParameter(_T("parameters"))   >> tmp; val.m_Parameters   = tmp.Str();
+            param.GetParameter(_T("directory"))    >> tmp; val.m_Directory    = tmp.Str();
+            param.GetParameter(_T("priority"))     >>      val.m_Priority;
+            param.GetParameter(_T("windowst"))     >>      val.m_Windowst;
 
-        param.GetParameter( _T( "systemid" ) )        >> tmp;
-        val.systemid        = tmp.Str();
-        param.GetParameter( _T( "systemparent" ) )    >> tmp;
-        val.systemparent    = tmp.Str();
-        param.GetParameter( _T( "systemtitle" ) )    >> tmp;
-        val.systemtitle        = tmp.Str();
-        param.GetParameter( _T( "command" ) )        >> tmp;
-        val.command            = tmp.Str();
-        param.GetParameter( _T( "parameters" ) )    >> tmp;
-        val.parameters        = tmp.Str();
-        param.GetParameter( _T( "directory" ) )        >> tmp;
-        val.directory        = tmp.Str();
-        param.GetParameter( _T( "priority" ) )        >> val.priority;
-        param.GetParameter( _T( "windowst" ) )        >> val.windowst;
-
-        return param;
-    }
+            return param;
+        }
 };
 
 template<>
 class SOAPTypeTraits< SOAPArray<psystem> > : public SOAPArrayTypeTraits
-{
-};
+{};
 
 class AFX_EXT_CLASS pPublishSystem
 {
-public:
+    public:
+        pPublishSystem();
+        ~pPublishSystem();
 
-    pPublishSystem();
-    ~pPublishSystem();
+        void reset();
+        void addSystem( psystem syst );
 
-    void reset();
-    void addSystem( psystem syst );
+        void addAlias(const CString& alias);
 
-    // JMR-MODIF - Le 21 juin 2006 - Ajout de la fonction addAlias.
-    void addAlias( CString Alias );
+        bool send();
 
-    bool send();
-
-private:
-
-    // JMR-MODIF - Le 21 juin 2006 - Ajout de la variable m_Alias.
-    CString            m_Alias;
-
-    list<psystem>    m_systems;
+    private:
+        CString       m_Alias;
+        list<psystem> m_systems;
 };
 
 END_EASYSOAP_NAMESPACE

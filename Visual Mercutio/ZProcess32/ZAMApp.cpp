@@ -41,7 +41,9 @@
 #include "zWinUtil32\SrvChoos.h"
 #include "zBaseLib\ZMessage.h"
 
-#define _EVALUATION_VERSION 1
+// this was previoulsy necessary because Visual Mercutio was a commercial product before being open source, but now...
+// uncomment the libe below to re-enable the product key protection
+//#define _EVALUATION_VERSION
 
 #ifdef _EVALUATION_VERSION
     #include "zScty\security.h"
