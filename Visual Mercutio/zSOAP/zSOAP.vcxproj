@@ -146,39 +146,39 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="pCheckUniverse.cpp" />
-    <ClCompile Include="pPublishAttribDef.cpp">
+    <ClCompile Include="PSS_SoapPublisher_MessengerUniverse.cpp" />
+    <ClCompile Include="PSS_SoapPublisher_ModelAttributes.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="pPublishFile.cpp">
+    <ClCompile Include="PSS_SoapPublisher_File.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="pPublishMessengerInfo.cpp">
+    <ClCompile Include="PSS_SoapPublisher_MessengerInfo.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="pPublishModel.cpp">
+    <ClCompile Include="PSS_SoapPublisher_Model.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="pPublishPrestations.cpp" />
-    <ClCompile Include="pPublishSettings.cpp">
+    <ClCompile Include="PSS_SoapPublisher_Prestations.cpp" />
+    <ClCompile Include="PSS_SoapPublisher_Settings.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="pPublishSystem.cpp">
+    <ClCompile Include="PSS_SoapPublisher_System.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -224,36 +224,33 @@
     <ResourceCompile Include="zSOAP.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pattribdef.h" />
-    <ClInclude Include="pCheckUniverse.h" />
-    <ClInclude Include="pdeliv.h" />
-    <ClInclude Include="pdistrib.h" />
-    <ClInclude Include="pdistribmap.h" />
-    <ClInclude Include="pfile.h" />
-    <ClInclude Include="pinput.h" />
-    <ClInclude Include="pmodel.h" />
-    <ClInclude Include="ppdattr.h" />
-    <ClInclude Include="pprestations.h" />
-    <ClInclude Include="pproc.h" />
-    <ClInclude Include="pPublishAttribDef.h" />
-    <ClInclude Include="pPublishFile.h" />
-    <ClInclude Include="pPublishMessengerInfo.h" />
-    <ClInclude Include="pPublishModel.h" />
-    <ClInclude Include="pPublishPrestations.h" />
-    <ClInclude Include="pPublishSettings.h" />
-    <ClInclude Include="pPublishSystem.h" />
+    <ClInclude Include="PSS_SoapData_ModelAttributes.h" />
+    <ClInclude Include="PSS_SoapPublisher_MessengerUniverse.h" />
+    <ClInclude Include="PSS_SoapData_Deliverable.h" />
+    <ClInclude Include="PSS_SoapData_Distribution.h" />
+    <ClInclude Include="PSS_SoapData_DistributionMap.h" />
+    <ClInclude Include="PSS_SoapData_File.h" />
+    <ClInclude Include="PSS_SoapData_Input.h" />
+    <ClInclude Include="PSS_SoapData_Model.h" />
+    <ClInclude Include="PSS_SoapData_SymbolAttributes.h" />
+    <ClInclude Include="PSS_SoapData_Prestations.h" />
+    <ClInclude Include="PSS_SoapData_Process.h" />
+    <ClInclude Include="PSS_SoapPublisher_ModelAttributes.h" />
+    <ClInclude Include="PSS_SoapPublisher_File.h" />
+    <ClInclude Include="PSS_SoapPublisher_MessengerInfo.h" />
+    <ClInclude Include="PSS_SoapPublisher_Model.h" />
+    <ClInclude Include="PSS_SoapPublisher_Prestations.h" />
+    <ClInclude Include="PSS_SoapPublisher_Settings.h" />
+    <ClInclude Include="PSS_SoapPublisher_System.h" />
     <ClInclude Include="pPublishWorkgroup.h" />
-    <ClInclude Include="psystem.h" />
-    <ClInclude Include="puniverse.h" />
+    <ClInclude Include="PSS_SoapData_System.h" />
+    <ClInclude Include="PSS_SoapData_MessengerUniverse.h" />
     <ClInclude Include="pworkgroup.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="zSoapException.h" />
     <ClInclude Include="zSOAPIncAll.h" />
     <ClInclude Include="zSOAPLib.h" />
     <ClInclude Include="zSOAPRes.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\zConversion\zConversion.vcxproj">

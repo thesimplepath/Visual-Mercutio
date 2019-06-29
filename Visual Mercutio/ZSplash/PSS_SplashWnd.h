@@ -31,60 +31,60 @@ class PSS_SplashWnd : public CWnd
         *@param pParent - splash screen parent window
         *@return true on success, otherwise false
         */
-        bool CreateSplashWindow(bool includeProgress, CWnd* pParent);
+        virtual bool CreateSplashWindow(bool includeProgress, CWnd* pParent);
 
         /**
         * Shows the splash screen
         *@return true on success, otherwise false
         */
-        bool Show();
+        virtual bool Show();
 
         /**
         * Hides the splash screen
         *@return true on success, otherwise false
         */
-        bool Hide();
+        virtual bool Hide();
 
         /**
         * Updates the splash screen
         */
-        void Update();
+        virtual void Update();
 
         /**
         * Sets the splash screen parent window
         *@param pParent - splash screen parent window
         */
-        void SetParent(CWnd* pParent);
+        virtual void SetParent(CWnd* pParent);
 
         /**
         * Sets the splash screen text
         *@param value - splash screen text to show
         */
-        void SetText(const CString& value);
+        virtual void SetText(const CString& value);
 
         /**
         * Sets the splash screen text
         *@param value - splash screen text resource identifier to show
         */
-        void SetText(UINT resID);
+        virtual void SetText(UINT resID);
 
         /**
         * Sets the splash screen progress
         *@param value - progress value
         */
-        void SetProgress(std::size_t value);
+        virtual void SetProgress(std::size_t value);
 
         /**
         * Loads the splash screen image
         *@param pFileName - splash screen image file name
         */
-        bool LoadBitmapImage(LPCTSTR pFileName);
+        virtual bool LoadBitmapImage(LPCTSTR pFileName);
 
         /**
         * Loads the splash screen image
         *@param pFileName - splash screen image resource identifier
         */
-        bool LoadBitmapImage(UINT resID);
+        virtual bool LoadBitmapImage(UINT resID);
 
     protected:
         /// generated message map functions

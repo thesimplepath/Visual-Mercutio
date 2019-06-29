@@ -36,13 +36,13 @@ bool ZUSOAPPublishPrestations::Publish()
 {
     if ( m_pInfo && m_pInfo->m_pDoc && m_pInfo->m_pDoc->GetMainLogicalPrestations() )
     {
-        // Sets the correct address
-        pPublishSettings::m_Url = (const char*)m_pInfo->m_MessengerAddress;
+        // set the correct address
+        PSS_SoapPublisher_Settings::m_Url = (const char*)m_pInfo->m_MessengerAddress;
 
         // Process all prestations
         _PublishPrestations( m_pInfo->m_pDoc->GetMainLogicalPrestations() );
 
-        return m_pp.send();
+        return m_pp.Send();
     }
 
     return false;
@@ -63,12 +63,11 @@ void ZUSOAPPublishPrestations::_PublishPrestations( ZBLogicalPrestationsEntity* 
         m_pLog->AddLine( e );
     }
 
-    m_pp.addPrestation( pprestations(PSS_String16( p_Prestations->GetGUID() ),
-                                     PSS_String16( ( p_Prestations->GetParent() != NULL ) ? p_Prestations->GetParent()->GetGUID() : _T( "" ) ),
-                                     PSS_String16( p_Prestations->GetEntityName() ) ) );
+    m_pp.Set(PSS_SoapData_Prestations(PSS_String16(p_Prestations->GetGUID()),
+                                      PSS_String16(p_Prestations->GetParent() ? p_Prestations->GetParent()->GetGUID() : _T("")),
+                                      PSS_String16(p_Prestations->GetEntityName())));
 
-    // JMR-MODIF - Le 21 juin 2006 - Ajout de l'alias dans la publication.
-    m_pp.addAlias( m_pInfo->m_MessengerAlias );
+    m_pp.AddAlias(m_pInfo->m_MessengerAlias);
 
 #ifdef _DEBUG
     CString s;

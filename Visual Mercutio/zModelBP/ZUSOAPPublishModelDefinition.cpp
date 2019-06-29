@@ -10,7 +10,7 @@
 #include "zModel\ProcGraphModelDoc.h"
 
 #include "ZBPublishMessengerModelInformation.h"
-#include "zSOAP\pPublishSettings.h"
+#include "zSOAP\PSS_SoapPublisher_Settings.h"
 
 #include "zModel\ZBSymbol.h"
 #include "zModel\ZBLinkSymbol.h"
@@ -56,8 +56,7 @@ ZUSOAPPublishModelDefinition::ZUSOAPPublishModelDefinition( ZBPublishMessengerMo
       m_pDoc                ( NULL ),
       m_CounterRow            ( 0 )
 {
-    // JMR-MODIF - Le 21 juin 2006 - Ajout de l'alias dans la publication.
-    m_pm.addAlias( m_pInfo->m_MessengerAlias );
+    m_PubMdl.AddAlias(m_pInfo->m_MessengerAlias);
 }
 
 ZUSOAPPublishModelDefinition::~ZUSOAPPublishModelDefinition()
@@ -153,8 +152,8 @@ bool ZUSOAPPublishModelDefinition::OnStart()
     m_pDoc                                        = pInfo->m_pDoc;
     m_MessengerAddress                            = pInfo->m_MessengerAddress;
 
-    // Sets the correct address
-    pPublishSettings::m_Url = (const char*)m_MessengerAddress;
+    // set the correct address
+    PSS_SoapPublisher_Settings::m_Url = (const char*)m_MessengerAddress;
 
     // Reset the counter for rows
     m_CounterRow = 0;
@@ -164,12 +163,11 @@ bool ZUSOAPPublishModelDefinition::OnStart()
         return false;
     }
 
-    m_pm.setModel( pmodel(PSS_String16( m_pModel->GetModelName() ),    // Model name
-                          PSS_String16( m_pDoc->GetGUID() ),            // Model ref GUID
-                          PSS_String16( pInfo->m_BeginDate ),            // JMR-MODIF - Date de validité de début
-                          PSS_String16( pInfo->m_EndDate ) ) );        // JMR-MODIF - Date de validité de fin.
+    m_PubMdl.SetModel(PSS_SoapData_Model(PSS_String16(m_pModel->GetModelName()), // model name
+                                         PSS_String16(m_pDoc->GetGUID()),        // model ref GUID
+                                         PSS_String16(pInfo->m_BeginDate),       // start date
+                                         PSS_String16(pInfo->m_EndDate)));       // end date
 
-    // Nothing more to do
     return true;
 }
 
@@ -216,11 +214,11 @@ bool ZUSOAPPublishModelDefinition::OnFinish()
                     m_pLog->AddLine( e );
                 }
 
-                m_pm.addInput( pinput(pInputAttrib->GetSymbolRef(),                // Object ID (proc or deliv) or -1 for global
-                                      Key,                                            // Attrib def ID
-                                      PSS_String16( pInputAttrib->GetDefaultValue() ),    // Default value
-                                      pInputAttrib->GetFlag(),                        // Flag
-                                     -1 ) );                                        // -1 (Reserved for future use)
+                m_PubMdl.Add(PSS_SoapData_Input(pInputAttrib->GetSymbolRef(),                  // object ID (proc or deliv) or -1 for global
+                                                Key,                                           // attrib def ID
+                                                PSS_String16(pInputAttrib->GetDefaultValue()), // default value
+                                                pInputAttrib->GetFlag(),                       // flag
+                                               -1));                                           // -1 (reserved for future use)
             }
         }
     }
@@ -268,13 +266,10 @@ bool ZUSOAPPublishModelDefinition::OnFinish()
                             m_pLog->AddLine( e );
                         }
 
-                        // Change for Gaya 4 september 2002
-                        // m_pm.addDistrib( pdistrib( String16( pAttrib->GetUserGroupGUID() ),
-
-                        m_pm.addDistrib( pdistrib(PSS_String16( pRole->GetRoleGUID() ),            // WkgCls ID
-                                                  Key,                                            // Attrib Def ID
-                                                  pDistribRule->GetOperator(),                    // Operator ID
-                                                  PSS_String16( pDistribRule->GetValue() ) ) );    // Data
+                        m_PubMdl.Add(PSS_SoapData_Distribution(PSS_String16(pRole->GetRoleGUID()),       // wkGrpClsID
+                                                               Key,                                      // attrib def ID
+                                                               pDistribRule->GetOperator(),              // operator ID
+                                                               PSS_String16(pDistribRule->GetValue()))); // data
 
                         if ( m_pLog && m_pLog->IsInDebugMode() )
                         {
@@ -290,18 +285,18 @@ bool ZUSOAPPublishModelDefinition::OnFinish()
                             m_pLog->AddLine( e );
                         }
 
-                        m_pm.addDistribmap( pdistribmap( pAttrib->GetSymbolRef(),                    // Object ID
-                                                         Key,                                        // Attrib Def ID
-                                                         PSS_String16( pDistribRule->GetValue() ),        // Data
-                                                         pDistribRule->GetLogicalOperator() ) );    // Logical operator (0=AND 1=OR)
+                        m_PubMdl.Add(PSS_SoapData_DistributionMap(pAttrib->GetSymbolRef(),                // object ID
+                                                                  Key,                                    // attrib def ID
+                                                                  PSS_String16(pDistribRule->GetValue()), // data
+                                                                  pDistribRule->GetLogicalOperator()));   // logical operator (0 = AND, 1 = OR)
                     }
                 }
             }
         }
     }
  
-    // Send it to the soap server
-    return m_pm.send();
+    // send it to the soap server
+    return m_PubMdl.Send();
 }
 
 bool ZUSOAPPublishModelDefinition::OnDoorSymbol( ZBBPDoorSymbol* pSymbol )
@@ -316,12 +311,11 @@ bool ZUSOAPPublishModelDefinition::OnPageSymbol( ZBBPPageSymbol* pSymbol )
 
 bool ZUSOAPPublishModelDefinition::OnProcedureSymbol( ZBBPProcedureSymbol* pSymbol )
 {
-    // JMR-MODIF - Le 30 mai 2006 - Ajout du paramètre procidprocessus. (Paramètre 5)
-    m_pm.addProc( pproc(pSymbol->GetSymbolReferenceNumber(),        // Object ID (Unique between proc/deliv)
-                        PSS_String16( pSymbol->GetUnitGUID() ),        // Workgroup ClsID
-                        2,                                         // 2 = procedure symbol
-                        pSymbol->GetUnitDoubleValidationType(),    // Double Sign
-                        GetParentSymbolReference( pSymbol ) ) );    // Processus parent
+    m_PubMdl.Add(PSS_SoapData_Process(pSymbol->GetSymbolReferenceNumber(),    // object ID (unique between proc/deliv)
+                                      PSS_String16( pSymbol->GetUnitGUID()),  // workgroup clsID
+                                      2,                                      // 2 = procedure symbol
+                                      pSymbol->GetUnitDoubleValidationType(), // double sign
+                                      GetParentSymbolReference(pSymbol)));    // parent process
 
     ZBPropertySet PropSet;
 
@@ -345,16 +339,13 @@ bool ZUSOAPPublishModelDefinition::OnProcedureSymbol( ZBBPProcedureSymbol* pSymb
     return true;
 }
 
-bool ZUSOAPPublishModelDefinition::OnProcessSymbol( ZBBPProcessSymbol* pSymbol )
+bool ZUSOAPPublishModelDefinition::OnProcessSymbol(ZBBPProcessSymbol* pSymbol)
 {
-    // ***********************************************************************************************************
-    // JMR-MODIF - Le 28 mars 2006 - Ajout de la publication des processus vers Messenger.
-
-    m_pm.addProc( pproc( pSymbol->GetSymbolReferenceNumber(),    // Object ID (Unique between proc/deliv)
-                         _T( "" ),                                // Aucun GUID publié pour les procédures.
-                         4,                                     // 4 = process symbol
-                         0,                                        // Double Sign
-                         0 ) );                                    // Processus parent
+    m_PubMdl.Add(PSS_SoapData_Process(pSymbol->GetSymbolReferenceNumber(), // object ID (Unique between proc/deliv)
+                                      _T(""),                              // no published GUID for processes
+                                      4,                                   // 4 = process symbol
+                                      0,                                   // double sign
+                                      0));                                 // parent process
 
     ZBPropertySet PropSet;
 
@@ -374,19 +365,17 @@ bool ZUSOAPPublishModelDefinition::OnProcessSymbol( ZBBPProcessSymbol* pSymbol )
     }
 
     PropSet.RemoveAll();
-    // ***********************************************************************************************************
 
     return true;
 }
 
 bool ZUSOAPPublishModelDefinition::OnStartSymbol( ZBBPStartSymbol* pSymbol )
 {
-    // JMR-MODIF - Le 30 mai 2006 - Ajout du paramètre procidprocessus. (Paramètre 5)
-    m_pm.addProc( pproc(pSymbol->GetSymbolReferenceNumber(),        // Object ID (unique between proc/deliv)
-                        PSS_String16( pSymbol->GetUnitGUID() ),        // Workgroup ClsID
-                        0,                                         // 0 = start symbol
-                        0,                                            // Double Sign
-                        GetParentSymbolReference( pSymbol ) ) );    // Processus parent
+    m_PubMdl.Add(PSS_SoapData_Process(pSymbol->GetSymbolReferenceNumber(),  // object ID (unique between proc/deliv)
+                                      PSS_String16(pSymbol->GetUnitGUID()), // workgroup ClsID
+                                      0,                                    // 0 = start symbol
+                                      0,                                    // double sign
+                                      GetParentSymbolReference(pSymbol)));  // parent process
 
     ZBPropertySet PropSet;
 
@@ -412,12 +401,11 @@ bool ZUSOAPPublishModelDefinition::OnStartSymbol( ZBBPStartSymbol* pSymbol )
 
 bool ZUSOAPPublishModelDefinition::OnStopSymbol( ZBBPStopSymbol* pSymbol )
 {
-    // JMR-MODIF - Le 30 mai 2006 - Ajout du paramètre procidprocessus. (Paramètre 5)
-    m_pm.addProc( pproc(pSymbol->GetSymbolReferenceNumber(),        // Object ID (unique between proc/deliv)
-                        PSS_String16( pSymbol->GetUnitGUID() ),        // Workgroup ClsID
-                        1,                                         // 1 = stop symbol
-                        0,                                            // Double Sign
-                        GetParentSymbolReference( pSymbol ) ) );    // Processus parent
+    m_PubMdl.Add(PSS_SoapData_Process(pSymbol->GetSymbolReferenceNumber(),  // object ID (unique between proc/deliv)
+                                      PSS_String16(pSymbol->GetUnitGUID()), // workgroup clsID
+                                      1,                                    // 1 = stop symbol
+                                      0,                                    // double sign
+                                      GetParentSymbolReference(pSymbol)));  // parent process
 
     ZBPropertySet PropSet;
 
@@ -646,13 +634,13 @@ bool ZUSOAPPublishModelDefinition::OnDeliverableLinkSymbol( ZBDeliverableLinkSym
         }
     }
 
-    m_pm.addDeliv( pdeliv( pSymbol->GetSymbolReferenceNumber(),                            // Object ID (unique between proc/deliv)
-                           dynamic_cast<ZBSymbol*>(pSrc)->GetSymbolReferenceNumber(),    // Src proc
-                           dynamic_cast<ZBSymbol*>(pDst)->GetSymbolReferenceNumber(),    // Trg proc
-                           PSS_String16(pSymbol->GetSymbolName()),                            // Deliv name
-                           (Lateral == true) ? 1 : 0,                                    // Lateral direction : 0 = normal, 1 = lateral starts here
-                           LateralDirection,                                            // 0 : top, 1 : right, 2 : bottom, 3 : left
-                           pSymbol->GetUnitDoubleValidationType()));                    // Double Sign
+    m_PubMdl.Add(PSS_SoapData_Deliverable(pSymbol->GetSymbolReferenceNumber(),                       // object ID (unique between proc/deliv)
+                                          dynamic_cast<ZBSymbol*>(pSrc)->GetSymbolReferenceNumber(), // src proc
+                                          dynamic_cast<ZBSymbol*>(pDst)->GetSymbolReferenceNumber(), // trg proc
+                                          PSS_String16(pSymbol->GetSymbolName()),                    // deliv name
+                                          Lateral ? 1 : 0,                                           // lateral direction: 0 = normal, 1 = lateral starts here
+                                          LateralDirection,                                          // 0 = top, 1 = right, 2 = bottom, 3 = left
+                                          pSymbol->GetUnitDoubleValidationType()));                  // double sign
 
     ZBPropertySet PropSet;
 
@@ -698,7 +686,7 @@ void ZUSOAPPublishModelDefinition::PublishAttribDef( int Ref, ZBProperty* pProp 
 
         CString s;
 
-        switch ( pProp->GetPTValueType() )
+        switch (pProp->GetPTValueType())
         {
             case ZBProperty::PT_DOUBLE:
             {
@@ -739,23 +727,24 @@ void ZUSOAPPublishModelDefinition::PublishAttribDef( int Ref, ZBProperty* pProp 
             }
         }
         
-        if ( m_pLog && m_pLog->IsInDebugMode() )
+        if (m_pLog && m_pLog->IsInDebugMode())
         {
             CString message;
-            message.Format( IDS_AL_PUBLISHSYMBOLATTRIBUTE,
-                            Ref,
-                            Key,
-                            (const char*)s,
-                            ( pProp->IsDynamic() ) ? 0 : 1 );
+            message.Format(IDS_AL_PUBLISHSYMBOLATTRIBUTE,
+                           Ref,
+                           Key,
+                           (const char*)s,
+                           pProp->IsDynamic() ? 0 : 1);
 
-            ZBGenericSymbolErrorLine e( message );
-            m_pLog->AddLine( e );
+            ZBGenericSymbolErrorLine e(message);
+            m_pLog->AddLine(e);
         }
 
-        m_pm.addAttr( ppdattr( Ref,                                    // Object ref ID (either a proc or deliv)
-                               m_CounterRow++,                        // Row number
-                               Key,                                    // Ref on attribute definition table
-                               PSS_String16( s ),                        // Value
-                               ( pProp->IsDynamic() ) ? 0 : 1 ) );
+        m_PubMdl.Add(PSS_SoapData_SymbolAttributes(Ref,                          // object ref ID (either a proc or deliv)
+                                                   m_CounterRow,                 // row number
+                                                   Key,                          // ref on attribute definition table
+                                                   PSS_String16(s),              // value
+                                                   pProp->IsDynamic() ? 0 : 1));
+        ++m_CounterRow;
     }
 }

@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include "ZUSOAPPublishLogicalSystem.h"
 
-#include "zSOAP\pPublishSettings.h"
+#include "zSOAP\PSS_SoapPublisher_Settings.h"
 #include "zModel\ZBLogicalSystemEntity.h"
 #include "ZBPublishMessengerModelInformation.h"
 
@@ -45,12 +45,12 @@ bool ZUSOAPPublishLogicalSystem::Publish()
     if ( m_pInfo && m_pInfo->m_pDoc && m_pInfo->m_pDoc->GetMainLogicalSystem() )
     {
         // Sets the correct address
-        pPublishSettings::m_Url = (const char*)m_pInfo->m_MessengerAddress;
+        PSS_SoapPublisher_Settings::m_Url = (const char*)m_pInfo->m_MessengerAddress;
 
         // Process all logical systems
         _PublishLogicalSystem( m_pInfo->m_pDoc->GetMainLogicalSystem() );
 
-        return m_ps.send();
+        return m_PubSys.Send();
     }
 
     return false;
@@ -71,17 +71,15 @@ void ZUSOAPPublishLogicalSystem::_PublishLogicalSystem( ZBLogicalSystemEntity* p
         m_pLog->AddLine( e );
     }
 
-    m_ps.addSystem( psystem(PSS_String16( pSystem->GetGUID() ),
-                            PSS_String16( ( pSystem->GetParent() != NULL ) ? pSystem->GetParent()->GetGUID() : _T( "" ) ),
-                            PSS_String16( pSystem->GetEntityName() ),
-                            PSS_String16( _T( "" ) ),            // Command in fact does not exist yet
-                            PSS_String16( _T( "" ) ),            // Parameters in fact does not exist yet
-                            PSS_String16( _T( "" ) ),            // Directory in fact does not exist yet
-                            0,                                // Priority doesn't exist yet
-                            0 ) );                            // Windows mode doesn't exist yet
-
-    // JMR-MODIF - Publication de l'alias
-    m_ps.addAlias( m_pInfo->m_MessengerAlias );
+    m_PubSys.Add(PSS_SoapData_System(PSS_String16(pSystem->GetGUID()),
+                                     PSS_String16(pSystem->GetParent() ? pSystem->GetParent()->GetGUID() : _T("")),
+                                     PSS_String16(pSystem->GetEntityName()),
+                                     PSS_String16(_T("")), // command in fact does not exist yet
+                                     PSS_String16(_T("")), // parameters in fact does not exist yet
+                                     PSS_String16(_T("")), // directory in fact does not exist yet
+                                     0,                    // priority doesn't exist yet
+                                     0));                  // Windows mode doesn't exist yet
+    m_PubSys.AddAlias(m_pInfo->m_MessengerAlias);
 
 #ifdef _DEBUG
     CString s;

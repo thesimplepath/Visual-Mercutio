@@ -72,7 +72,7 @@ class AFX_EXT_CLASS PSS_String16
         *@param i - char index to set
         *@param c - char to set
         */
-        void SetAt(std::size_t i, char c)
+        inline void SetAt(std::size_t i, char c)
         {
             ASSERT(i < Length());
             m_pSz[i] = c;
@@ -82,7 +82,7 @@ class AFX_EXT_CLASS PSS_String16
         * Gets string length
         *@return string length
         */
-        std::size_t Length() const
+        inline std::size_t Length() const
         {
             return wcslen(m_pSz);
         }

@@ -89,14 +89,14 @@ class AFX_EXT_CLASS pPublishWorkgroup
 {
     public:
         pPublishWorkgroup();
-        ~pPublishWorkgroup();
+        virtual ~pPublishWorkgroup();
 
-        void reset();
-        void addWorkgroup(pworkgroup wkg);
+        virtual void reset();
+        virtual void addWorkgroup(pworkgroup wkg);
 
-        void addAlias(const CString& alias);
+        virtual void addAlias(const CString& alias);
 
-        bool send();
+        virtual bool send();
 
     private:
         CString          m_Alias;

@@ -10,7 +10,7 @@
 #include "zModel\ZBInfoModelGraphicGeneration.h"
 
 #include "ZBPublishMessengerModelInformation.h"
-#include "zSOAP\pPublishSettings.h"
+#include "zSOAP\PSS_SoapPublisher_Settings.h"
 
 #include "zModel\ZBSymbol.h"
 #include "zModel\ZBLinkSymbol.h"
@@ -66,8 +66,8 @@ bool ZUSOAPPublishModelGenerateFiles::OnStart()
 
     if ( m_pModelInfo )
     {
-        // Sets the correct address
-        pPublishSettings::m_Url = (const char*)m_pModelInfo->m_MessengerAddress;
+        // set the correct address
+        PSS_SoapPublisher_Settings::m_Url = (const char*)m_pModelInfo->m_MessengerAddress;
     }
 
     // Create the window for file generation feedback
@@ -94,24 +94,20 @@ bool ZUSOAPPublishModelGenerateFiles::OnStart()
 
     if ( ZFile::Exist( ZDirectory::NormalizeDirectory( m_pInfo->GetpServer()->GetSystemDirectory() ) + _T( "\\" ) + gHomeImageFile ) )
     {
-        if ( m_pf.pubFile( pfile( pfile::publicFolder,
-                                  1,
-                                  (const char*)m_pInfo->GetpServer()->GetSystemDirectory(),
-                                  (const char*)gHomeImageFile ) ) == false )
-        {
-            TRACE( _T( "Problem publishing gHomeImageFile\n" ) );
-        }
+        if (!m_PubFile.Add(PSS_SoapData_File(PSS_SoapData_File::IE_DM_PublicFolder,
+                                             1,
+                                             (const char*)m_pInfo->GetpServer()->GetSystemDirectory(),
+                                             (const char*)gHomeImageFile)))
+            TRACE(_T("Problem publishing gHomeImageFile\n"));
     }
 
     if ( ZFile::Exist( ZDirectory::NormalizeDirectory( m_pInfo->GetpServer()->GetSystemDirectory() ) + _T( "\\" ) + gParentImageFile ) )
     {
-        if ( m_pf.pubFile( pfile( pfile::publicFolder,
-                                  1,
-                                  (const char*)m_pInfo->GetpServer()->GetSystemDirectory(),
-                                  (const char*)gParentImageFile ) ) == false )
-        {
-            TRACE( _T( "Problem publishing gParentImageFile\n" ) );
-        }
+        if (!m_PubFile.Add(PSS_SoapData_File(PSS_SoapData_File::IE_DM_PublicFolder,
+                                             1,
+                                             (const char*)m_pInfo->GetpServer()->GetSystemDirectory(),
+                                             (const char*)gParentImageFile)))
+            TRACE(_T("Problem publishing gParentImageFile\n"));
     }
 
     // Reset the array of generated filenames
@@ -199,22 +195,18 @@ bool ZUSOAPPublishModelGenerateFiles::GenerateModel( ZDProcessGraphModelMdl* pMo
                 {
                     ZFile file( ImageFilename );
 
-                    // Now publish the filename
-                     if ( m_pf.pubFile( pfile( pfile::publicFolder,
-                                              1,
-                                              (const char*)m_TargetDirectory,
-                                              (const char*)file.GetFileName() ) ) == false )
-                    {
-                        TRACE1( _T( "Problem publishing the file %s\n" ), (const char*)ImageFilename );
-                    }
+                    // publish the filename
+                    if (!m_PubFile.Add(PSS_SoapData_File(PSS_SoapData_File::IE_DM_PublicFolder,
+                                                         1,
+                                                         (const char*)m_TargetDirectory,
+                                                         (const char*)file.GetFileName())))
+                        TRACE1(_T("Problem publishing the file %s\n"), (const char*)ImageFilename);
                 }
                 else
-                {
-                    TRACE1( _T( "Problem exporting the file %s\n" ), (const char*)ImageFilename );
-                }
+                    TRACE1(_T("Problem exporting the file %s\n"), (const char*)ImageFilename);
             }
 
-            // Create the html page
+            // create the html page
             CreateHtmlPage( pModel, ImageFilename );
 
             return true;
@@ -244,9 +236,9 @@ CString ZUSOAPPublishModelGenerateFiles::BuildModelHTMLFilename( ZDProcessGraphM
     return Filename;
 }
 
-CString ZUSOAPPublishModelGenerateFiles::ParseModelName( CString ModelName )
+CString ZUSOAPPublishModelGenerateFiles::ParseModelName(const CString& modelName)
 {
-    return PSS_StringTools::ConvertSpecialChar( ModelName );
+    return PSS_StringTools::ConvertSpecialChar(modelName);
 }
 
 bool ZUSOAPPublishModelGenerateFiles::CreateHtmlPage( ZDProcessGraphModelMdl* pModel, const CString ImageFilename )
@@ -427,13 +419,11 @@ bool ZUSOAPPublishModelGenerateFiles::CreateHtmlPage( ZDProcessGraphModelMdl* pM
 
     ZFile file( HtmlFilename );
 
-     if ( m_pf.pubFile( pfile( pfile::publicFolder,
-                              1,
-                              (const char*)m_TargetDirectory,
-                              (const char*)file.GetFileName() ) ) == false )
-    {
-        TRACE( _T( "Problem publishing gPrinterImageFile\n" ) );
-    }
+     if (!m_PubFile.Add(PSS_SoapData_File(PSS_SoapData_File::IE_DM_PublicFolder,
+                                          1,
+                                          (const char*)m_TargetDirectory,
+                                          (const char*)file.GetFileName())))
+        TRACE(_T("Problem publishing gPrinterImageFile\n"));
 
     return true;
 }

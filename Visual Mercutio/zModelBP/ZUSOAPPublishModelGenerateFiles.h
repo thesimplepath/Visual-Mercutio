@@ -23,10 +23,10 @@
 #define AFX_ZUSOAPPublishModelGenerateFiles_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -34,71 +34,55 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
 #include "zModel\ZUModelNavigation.h"
 #include "zModelWeb\ZVPublishModelGenerate.h"
 #include "zBaseLib\ZBKeepStringUsage.h"
+#include "zSOAP\PSS_SoapPublisher_File.h"
 
-#include "zSOAP\pPublishFile.h"
-
-//////////////////////////////////////////////////////////////////////
-// Forward class declaration
+// forward class declaration
 class ZBPublishMessengerModelInformation;
 class ZBInfoModelGraphicGeneration;
 
 #ifdef _ZMODELBPEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
-
-// JMR-MODIF - Le 29 mars 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-/////////////////////////////////////////////////////////////////////////////
-// ZUSOAPPublishModelGenerateFiles
 
 class AFX_EXT_CLASS ZUSOAPPublishModelGenerateFiles : public ZUModelNavigation, public ZBKeepStringUsage
 {
 public:
-
-    ZUSOAPPublishModelGenerateFiles( ZDProcessGraphModelMdl*                pModel    = NULL,
-                                     void*                                    pClass    = NULL,
-                                     ZBPublishMessengerModelInformation*    pInfo    = NULL );
+    ZUSOAPPublishModelGenerateFiles(ZDProcessGraphModelMdl*             pModel = NULL,
+                                    void*                               pClass = NULL,
+                                    ZBPublishMessengerModelInformation* pInfo  = NULL);
 
     virtual ~ZUSOAPPublishModelGenerateFiles();
 
-public:
-
-    // Call-back methods
     virtual bool OnStart();
     virtual bool OnFinish();
-    virtual bool OnSymbol( ZBSymbol* pSymbol );
-    virtual bool OnLink( ZBLinkSymbol* pLink );
+    virtual bool OnSymbol(ZBSymbol* pSymbol);
+    virtual bool OnLink(ZBLinkSymbol* pLink);
 
 private:
+    ZVPublishModelGenerate              m_FileGenerateWindow;
+    ZBPublishMessengerModelInformation* m_pModelInfo;
+    ZBInfoModelGraphicGeneration*       m_pInfo;
+    PSS_SoapPublisher_File              m_PubFile;
+    CString                             m_RootHtmlFilename;
+    CString                             m_RootName;
+    CString                             m_TargetDirectory;
 
-    bool    GenerateModel( ZDProcessGraphModelMdl* pModel );
-    bool    CreateHtmlPage( ZDProcessGraphModelMdl* pModel, const CString ImageFilename );
+    bool GenerateModel(ZDProcessGraphModelMdl* pModel);
+    bool CreateHtmlPage(ZDProcessGraphModelMdl* pModel, const CString ImageFilename);
 
-    CString BuildModelImageFilename( ZDProcessGraphModelMdl* pModel );
-    CString BuildModelHTMLFilename( ZDProcessGraphModelMdl* pModel );
-    CString ParseModelName( CString ModelName );
-
-private:
-
-    ZVPublishModelGenerate                m_FileGenerateWindow;
-
-    CString                                m_RootHtmlFilename;
-    CString                                m_RootName;
-    CString                                m_TargetDirectory;
-
-    ZBPublishMessengerModelInformation*    m_pModelInfo;
-    ZBInfoModelGraphicGeneration*        m_pInfo;
-
-    pPublishFile                        m_pf;
+    CString BuildModelImageFilename(ZDProcessGraphModelMdl* pModel);
+    CString BuildModelHTMLFilename(ZDProcessGraphModelMdl* pModel);
+    CString ParseModelName(const CString& modelName);
 };
 
-#endif // !defined(AFX_ZUSOAPPublishModelGenerateFiles_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
+#endif

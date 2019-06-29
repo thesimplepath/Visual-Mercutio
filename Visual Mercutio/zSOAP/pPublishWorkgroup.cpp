@@ -12,13 +12,11 @@
 /////////////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
-
-#include "pPublishSettings.h"
 #include "pPublishWorkgroup.h"
 
+// processsoft
+#include "PSS_SoapPublisher_Settings.h"
 #include "zSoapException.h"
-
-// JMR-MODIF - Le 15 septembre 2005 - Ajout de la décoration Unicode _T(), nettoyage du code inutile. (En commenatires)
 
 /////////////////////////////////////////////////////////////////////////////////
 // Default constructor.
@@ -68,10 +66,10 @@ bool pPublishWorkgroup::send()
         TRACE( _T( "pPublishWorkgroup.send()\n" ) );
 
         // Defs
-        string wdsl_urn = pPublishSettings::m_ModelService;
+        string wdsl_urn = PSS_SoapPublisher_Settings::m_ModelService;
 
         // Initialize objects
-        string url = pPublishSettings::m_Url;
+        string url = PSS_SoapPublisher_Settings::m_Url;
         SOAPProxy proxy( url.c_str() );
 
         // Send

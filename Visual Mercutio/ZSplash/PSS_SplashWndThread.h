@@ -68,31 +68,31 @@ class PSS_SplashWndThread : public CWinThread
         * Sets progress position
         *@param value - progress value
         */
-        void SetProgress(std::size_t value);
+        virtual void SetProgress(std::size_t value);
 
         /**
         * Sets text
         *@param value - text to show
         */
-        void SetText(const CString& value);
+        virtual void SetText(const CString& value);
 
         /**
         * Sets text
         *@param resID - text resource identifier to show
         */
-        void SetText(UINT resID);
+        virtual void SetText(UINT resID);
 
         /**
         * Assigns parent window
         *@param pParent - parent window owning the splash screen
         */
-        void SetParent(CWnd* pParent);
+        virtual void SetParent(CWnd* pParent);
 
         /**
         * Kills the thread
         *@note This function is called in the context of other threads, not the thread itself
         */
-        void KillThread();
+        virtual void KillThread();
 
     protected:
         /// Generated message map functions

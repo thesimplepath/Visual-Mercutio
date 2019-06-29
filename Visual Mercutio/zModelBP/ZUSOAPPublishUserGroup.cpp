@@ -6,7 +6,7 @@
 #include "ZUSOAPPublishUserGroup.h"
 
 #include "ZBPublishMessengerModelInformation.h"
-#include "zSOAP\pPublishSettings.h"
+#include "zSOAP\PSS_SoapPublisher_Settings.h"
 
 #include "zModel\ProcGraphModelDoc.h"
 #include "zModel\ZBUserGroupEntity.h"
@@ -47,7 +47,7 @@ bool ZUSOAPPublishUserGroup::Publish()
          m_pInfo->m_pDoc->GetMainUserGroup() )
     {
         // Sets the correct address
-        pPublishSettings::m_Url = (const char*)m_pInfo->m_MessengerAddress;
+        PSS_SoapPublisher_Settings::m_Url = (const char*)m_pInfo->m_MessengerAddress;
 
         // Process all user groups
         _PublishUserGroup( m_pInfo->m_pDoc->GetMainUserGroup() );

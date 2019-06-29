@@ -40,6 +40,9 @@ PSS_SplashDialog::PSS_SplashDialog(LPCTSTR pFileName, const CString& info, CWnd*
     m_BitmapResID(0)
 {}
 //---------------------------------------------------------------------------
+PSS_SplashDialog::~PSS_SplashDialog()
+{}
+//---------------------------------------------------------------------------
 BOOL PSS_SplashDialog::OnInitDialog()
 {
     CDialog::OnInitDialog();

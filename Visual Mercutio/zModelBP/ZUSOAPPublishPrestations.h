@@ -30,8 +30,8 @@
 #include "zBaseLib\ZILog.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
 
-#include "zSOAP\pPublishSettings.h"
-#include "zSOAP\pPublishPrestations.h"
+#include "zSOAP\PSS_SoapPublisher_Settings.h"
+#include "zSOAP\PSS_SoapPublisher_Prestations.h"
 
 //////////////////////////////////////////////////////////////////////
 // Forward class declaration

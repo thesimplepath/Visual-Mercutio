@@ -202,9 +202,6 @@
     <ClInclude Include="PSS_Utf.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\zMediator\zMediator.vcxproj">
       <Project>{1c630aa1-d3e9-4bfa-975c-3d8a8a75f8f0}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

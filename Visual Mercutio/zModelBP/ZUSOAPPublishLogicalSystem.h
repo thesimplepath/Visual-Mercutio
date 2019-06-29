@@ -17,7 +17,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zSOAP\pPublishSystem.h"
+#include "zSOAP\PSS_SoapPublisher_System.h"
 
 //////////////////////////////////////////////////////////////////////
 // Forward class declaration
@@ -52,9 +52,9 @@ private:
 
 private:
 
-    ZBPublishMessengerModelInformation*    m_pInfo;
-    pPublishSystem                        m_ps;
-    ZILog*                                m_pLog;
+    ZBPublishMessengerModelInformation* m_pInfo;
+    PSS_SoapPublisher_System            m_PubSys;
+    ZILog*                              m_pLog;
 };
 
 #endif // !defined(AFX_ZUSOAPPUBLISHLOGICALSYSTEM_H__D709CBA3_F30E_4D59_80D9_F6AADB7A8749__INCLUDED_)

@@ -39,7 +39,7 @@
 
 #include "ZUProcessNavigation.h"
 
-#include "zSOAP\pPublishModel.h"
+#include "zSOAP\PSS_SoapPublisher_Model.h"
 #include "zProperty\ZIProperties.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -95,17 +95,11 @@ private:
     void PublishAttribDef                    ( int Ref, ZBProperty* pProp );
 
 private:
-
-    // JMR-MODIF - Le 21 juin 2006 - Ajout de la variable m_pInfo.
-    ZBPublishMessengerModelInformation*    m_pInfo;
-
-    pPublishModel                        m_pm;
-
-    ZDProcessGraphModelDoc*                m_pDoc;
-
-    CString                                m_MessengerAddress;
-
-    int                                    m_CounterRow;
+    ZBPublishMessengerModelInformation* m_pInfo;
+    PSS_SoapPublisher_Model             m_PubMdl;
+    ZDProcessGraphModelDoc*             m_pDoc;
+    CString                             m_MessengerAddress;
+    int                                 m_CounterRow;
 };
 
 #endif // !defined(AFX_ZUSOAPPublishModelDefinition_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)

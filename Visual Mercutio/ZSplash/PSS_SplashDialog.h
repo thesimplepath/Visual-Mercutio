@@ -47,6 +47,8 @@ class PSS_SplashDialog : public CDialog
         */
         PSS_SplashDialog(UINT resID = 0, const CString& info = "", CWnd* pParent = NULL);
 
+        virtual ~PSS_SplashDialog();
+
     protected:
         /**
         * Called when dialog is initialized

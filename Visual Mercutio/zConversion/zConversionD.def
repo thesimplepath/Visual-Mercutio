@@ -1,9 +1,9 @@
 ; zConversionD.def : Declares the module parameters for the DLL.
 
-LIBRARY      "zConversionD"
+LIBRARY "zConversionD"
 
-; JMR-MODIF - Le 23 mai 2005 - DESCRIPTION supprimé car non pris en charge par le compilateur.
-;DESCRIPTION  'zConversionD Windows Dynamic Link Library'
+; NOTE deactivated because unsupported by the compiler
+;DESCRIPTION 'zConversionD Windows Dynamic Link Library'
 
 EXPORTS
     ; Explicit exports can go here

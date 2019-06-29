@@ -438,14 +438,14 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUSOAPPubCheckUniverse.cpp" />
+    <ClCompile Include="PSS_SoapPublishMessengerUniverse.cpp" />
     <ClCompile Include="ZUSOAPPublishLogicalSystem.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUSOAPPublishModelAttributes.cpp">
+    <ClCompile Include="PSS_SoapPublishModelAttributes.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -661,9 +661,9 @@
     <ClInclude Include="ZUProcessCalculateTotals.h" />
     <ClInclude Include="ZUProcessClearDurationFigures.h" />
     <ClInclude Include="ZUProcessNavigation.h" />
-    <ClInclude Include="ZUSOAPPubCheckUniverse.h" />
+    <ClInclude Include="PSS_SoapPublishMessengerUniverse.h" />
     <ClInclude Include="ZUSOAPPublishLogicalSystem.h" />
-    <ClInclude Include="ZUSOAPPublishModelAttributes.h" />
+    <ClInclude Include="PSS_SoapPublishModelAttributes.h" />
     <ClInclude Include="ZUSOAPPublishModelDefinition.h" />
     <ClInclude Include="ZUSOAPPublishModelGenerateFiles.h" />
     <ClInclude Include="ZUSOAPPublishPrestations.h" />
@@ -716,9 +716,6 @@
     <Image Include="res\modelisa.bmp" />
     <Image Include="res\toolbar1.bmp" />
     <Image Include="res\Web2.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ZBaseLib\ZBaseLib.vcxproj">

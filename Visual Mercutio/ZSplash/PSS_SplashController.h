@@ -52,7 +52,7 @@ class AFX_EXT_CLASS PSS_SplashController
         *@param pParent - parent window owning the splash screen, can be NULL
         *@return true on success, otherwise false
         */
-        bool Show(LPCTSTR pFileName, std::size_t maxTime = 20, bool includeProgress = true, CWnd* pParent = NULL);
+        virtual bool Show(LPCTSTR pFileName, std::size_t maxTime = 20, bool includeProgress = true, CWnd* pParent = NULL);
 
         /**
         * Shows the splash screen
@@ -62,37 +62,37 @@ class AFX_EXT_CLASS PSS_SplashController
         *@param pParent - parent window owning the splash screen, can be NULL
         *@return true on success, otherwise false
         */
-        bool Show(UINT resID, std::size_t MaxTime = 20, bool IncludeProgress = true, CWnd* pParent = NULL);
+        virtual bool Show(UINT resID, std::size_t MaxTime = 20, bool IncludeProgress = true, CWnd* pParent = NULL);
 
         /**
         * Hides the splash screen
         *@return true on success, otherwise false
         */
-        bool Hide();
+        virtual bool Hide();
 
         /**
         * Sets progress position
         *@param value - progress value
         */
-        void SetProgress(std::size_t value);
+        virtual void SetProgress(std::size_t value);
 
         /**
         * Sets text
         *@param value - text to show
         */
-        void SetText(const CString& value);
+        virtual void SetText(const CString& value);
 
         /**
         * Sets text
         *@param resID - text resource identifier to show
         */
-        void SetText(UINT resID);
+        virtual void SetText(UINT resID);
 
         /**
         * Assigns parent window
         *@param pParent - parent window owning the splash screen
         */
-        void SetParent(CWnd* pParent);
+        virtual void SetParent(CWnd* pParent);
 
     private:
         PSS_SplashWndThread* m_pThread;

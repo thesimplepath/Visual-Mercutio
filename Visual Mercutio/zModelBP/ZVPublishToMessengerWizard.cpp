@@ -15,18 +15,14 @@
 
 #include "ZUSOAPPublishUserGroup.h"
 #include "ZUSOAPPublishLogicalSystem.h"
-// JMR-MODIF - Le 6 avril 2006 - Ajout de l'en-tête pour la publication des prestations.
 #include "ZUSOAPPublishPrestations.h"
-
-// JMR-MODIF - Le 21 juin 2006 - Ajout de l'en-tête pour le test des univers.
-#include "ZUSOAPPubCheckUniverse.h"
-
+#include "PSS_SoapPublishMessengerUniverse.h"
 #include "ZUSOAPPublishModelDefinition.h"
-#include "ZUSOAPPublishModelAttributes.h"
+#include "PSS_SoapPublishModelAttributes.h"
 #include "ZUSOAPPublishModelGenerateFiles.h"
 
-#include "zSOAP\pPublishSettings.h"
-#include "zSOAP\pPublishMessengerInfo.h"
+#include "zSOAP\PSS_SoapPublisher_Settings.h"
+#include "zSOAP\PSS_SoapPublisher_MessengerInfo.h"
 
 #include "ZUCheckValidUnit.h"
 #include "ZUCheckMessengerValidUnit.h"
@@ -207,13 +203,13 @@ int ZVPublishToMessengerWizard::DoModal()
         // ***************************************************************************************************
         // JMR-MODIF - Le 21 juin 2006 - Ajout du contrôle des référentiels pour la publication multi-modèles.
 
-        int        nbCheck        = 0;
-        BOOL    IsCheckOK    = FALSE;
-        ZUSOAPPubCheckUniverse SOAPPubCheckUniverse( &Info, m_pLog );
+        int                              nbCheck   = 0;
+        BOOL                             IsCheckOK = FALSE;
+        PSS_SoapPublishMessengerUniverse SOAPPubCheckUniverse(&Info, m_pLog);
 
         do
         {
-            if ( SOAPPubCheckUniverse.IsValid() )
+            if ( SOAPPubCheckUniverse.Publish() )
             {
                 if ( m_pLog )
                 {
@@ -399,9 +395,9 @@ int ZVPublishToMessengerWizard::DoModal()
                 m_pLog->AddLine( e );
             }
 
-            ZUSOAPPublishModelAttributes SOAPPublishAttributes( &Info,
-                                                                m_pModelDoc->GetModel(),
-                                                                (void*)( (const char*)Start.GetMessengerAddress() ) );
+            PSS_SoapPublishModelAttributes SOAPPublishAttributes(&Info,
+                                                                 m_pModelDoc->GetModel(),
+                                                                 (void*)((const char*)Start.GetMessengerAddress()));
 
             // Assigns the log pointer
             SOAPPublishAttributes.SetLog( m_pLog );
@@ -785,7 +781,7 @@ BOOL ZVPublishToMessengerLogon::OnInitDialog()
     // Sets the correct address
     if ( m_pInfo )
     {
-        pPublishSettings::m_Url = (const char*)m_pInfo->m_MessengerAddress;
+        PSS_SoapPublisher_Settings::m_Url = (const char*)m_pInfo->m_MessengerAddress;
     }
 
     return TRUE;    // return TRUE unless you set the focus to a control
@@ -794,31 +790,24 @@ BOOL ZVPublishToMessengerLogon::OnInitDialog()
 
 void ZVPublishToMessengerLogon::OnOK()
 {
-    UpdateData( TRUE );
+    UpdateData(TRUE);
 
-    pPublishMessengerInfo i;
+    PSS_SoapPublisher_MessengerInfo info;
 
-    if ( i.Authenticate( (const char*)m_Username, (const char*)m_Password ) < 0 )
+    if (info.Authenticate((const char*)m_Username, (const char*)m_Password) < 0)
     {
-        // Error message
+        // error message
         MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_INVALID_MESSENGER_USERPSWD, MB_OK );
+        mbox.DisplayMsgBox(IDS_INVALID_MESSENGER_USERPSWD, MB_OK);
         return;
     }
 
-    // ******************************************************************************************
-    // JMR-MODIF - Le 19 juin 2006 - Ajout du code pour la mise à jour des variables de validité.
+    CWnd* m_DateBox_Begin = GetDlgItem(IDC_MESSENGER_DATE_BEGIN);
 
-    CWnd* m_DateBox_Begin    = GetDlgItem( IDC_MESSENGER_DATE_BEGIN );
+    if (m_DateBox_Begin)
+        m_DateBox_Begin->GetWindowText(m_Date_Begin);
 
-    if ( m_DateBox_Begin != NULL )
-    {
-        m_DateBox_Begin->GetWindowText( m_Date_Begin );
-    }
-
-    // JMR-MODIF - Le 27 juin 2006 - En attendant la réponse d'Eric et d'Auxilio...
-    m_Date_End = _T( "null" );
-    // ******************************************************************************************
+    m_Date_End = _T("null");
 
     ZIWizardDialog::OnOK();
 }

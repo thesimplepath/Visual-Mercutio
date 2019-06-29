@@ -1,8 +1,8 @@
 ; zSOAP.def : Declares the module parameters for the DLL.
 
-LIBRARY      "zSOAP"
+LIBRARY "zSOAP"
 
-; JMR-MODIF - Le 2 juin 2005 - DESCRIPTION supprimé car non pris en charge par le compilateur.
+; NOTE deactivated because unsupported by the compiler
 ;DESCRIPTION  'zSOAP Windows Dynamic Link Library'
 
 EXPORTS

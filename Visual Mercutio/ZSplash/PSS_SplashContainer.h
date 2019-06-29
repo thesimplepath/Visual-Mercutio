@@ -61,7 +61,7 @@ class AFX_EXT_CLASS PSS_SplashContainer
         *@param info - info text to show
         *@param pParent - splash screen parent form
         */
-        bool Show(LPCTSTR pFileName, const CString& info = "", CWnd* pParent = NULL);
+        virtual bool Show(LPCTSTR pFileName, const CString& info = "", CWnd* pParent = NULL);
 
         /**
         * Shows the splash screen
@@ -69,13 +69,13 @@ class AFX_EXT_CLASS PSS_SplashContainer
         *@param info - info text to show
         *@param pParent - splash screen parent form
         */
-        bool Show(UINT nResID, const CString& info = "", CWnd* pParent = NULL);
+        virtual bool Show(UINT nResID, const CString& info = "", CWnd* pParent = NULL);
 
         /**
         * Shows the splash screen
         *@param info - info text to show
         */
-        bool Show(const CString& info = "");
+        virtual bool Show(const CString& info = "");
 
     private:
         CWnd*   m_pParentWnd;
