@@ -204,7 +204,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="zSoapException.cpp">
+    <ClCompile Include="PSS_SoapException.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -247,7 +247,7 @@
     <ClInclude Include="PSS_SoapData_MessengerUniverse.h" />
     <ClInclude Include="PSS_SoapData_Workgroup.h" />
     <ClInclude Include="StdAfx.h" />
-    <ClInclude Include="zSoapException.h" />
+    <ClInclude Include="PSS_SoapException.h" />
     <ClInclude Include="zSOAPIncAll.h" />
     <ClInclude Include="zSOAPLib.h" />
     <ClInclude Include="zSOAPRes.h" />

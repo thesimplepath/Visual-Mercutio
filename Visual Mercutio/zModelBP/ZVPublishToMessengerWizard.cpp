@@ -33,7 +33,7 @@
 
 #include "zBaseLib\ZUSystemOption.h"
 
-#include "zSOAP\zSoapException.h"
+#include "zSOAP\PSS_SoapException.h"
 
 #include "zBaseLib\MsgBox.h"
 

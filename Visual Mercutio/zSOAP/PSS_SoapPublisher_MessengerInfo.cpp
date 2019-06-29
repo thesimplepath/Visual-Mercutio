@@ -11,7 +11,7 @@
 // processsoft
 #include "zConversion\PSS_Encoding.h"
 #include "PSS_SoapData_Settings.h"
-#include "zSoapException.h"
+#include "PSS_SoapException.h"
 
 //---------------------------------------------------------------------------
 // PSS_SoapPublisher_MessengerInfo

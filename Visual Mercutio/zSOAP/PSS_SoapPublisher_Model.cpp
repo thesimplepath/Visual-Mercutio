@@ -10,7 +10,7 @@
 
 // processsoft
 #include "PSS_SoapData_Settings.h"
-#include "zSoapException.h"
+#include "PSS_SoapException.h"
 
 //---------------------------------------------------------------------------
 // PSS_SoapPublisher_Model
@@ -95,7 +95,7 @@ bool PSS_SoapPublisher_Model::Send()
 
         // send the data to SOAP proxy and check the result
         if (int(proxy.Execute(pubInit).GetReturnValue()) < 0)
-            throw ZBSoapException(IDS_PUBINITSERVERFAIL, NULL, __FILE__, __LINE__);
+            throw PSS_SoapException(IDS_PUBINITSERVERFAIL, NULL, __FILE__, __LINE__);
     }
     catch (SOAPException& ex)
     {
@@ -124,7 +124,7 @@ bool PSS_SoapPublisher_Model::Send()
 
         // check the result
         if (modelID < 0)
-            throw ZBSoapException(IDS_PUBMODELSERVERFAIL, m_Model.m_ModelName.c_str(), __FILE__, __LINE__);
+            throw PSS_SoapException(IDS_PUBMODELSERVERFAIL, m_Model.m_ModelName.c_str(), __FILE__, __LINE__);
     }
     catch (SOAPException& ex)
     {
@@ -161,7 +161,7 @@ bool PSS_SoapPublisher_Model::Send()
 
             // send the data to SOAP proxy and check the result
             if (int(proxy.Execute(pubProc).GetReturnValue()) < 0)
-                throw ZBSoapException(IDS_PUBPROCSERVERFAIL, m_Model.m_ModelName.c_str(), __FILE__, __LINE__);
+                throw PSS_SoapException(IDS_PUBPROCSERVERFAIL, m_Model.m_ModelName.c_str(), __FILE__, __LINE__);
         }
     }
     catch (SOAPException& ex)
@@ -199,7 +199,7 @@ bool PSS_SoapPublisher_Model::Send()
 
             // send the data to SOAP proxy and check the result
             if (int(proxy.Execute(pubDeliv).GetReturnValue()) < 0)
-                throw ZBSoapException(IDS_PUBDELIVSERVERFAIL, m_Model.m_ModelName.c_str(), __FILE__, __LINE__);
+                throw PSS_SoapException(IDS_PUBDELIVSERVERFAIL, m_Model.m_ModelName.c_str(), __FILE__, __LINE__);
         }
     }
     catch (SOAPException& ex)
@@ -254,7 +254,7 @@ bool PSS_SoapPublisher_Model::Send()
 
                 // send the data to SOAP proxy and check the result
                 if (int(proxy.Execute( pubPdattr ).GetReturnValue()) < 0)
-                    throw ZBSoapException(IDS_PUBPDATTRSERVERFAIL, m_Model.m_ModelName.c_str(), __FILE__, __LINE__);
+                    throw PSS_SoapException(IDS_PUBPDATTRSERVERFAIL, m_Model.m_ModelName.c_str(), __FILE__, __LINE__);
             }
             while (it != m_DataSet_SymAttr.end());
         }
@@ -293,7 +293,7 @@ bool PSS_SoapPublisher_Model::Send()
 
             // send the data to SOAP proxy and check the result
             if (int(proxy.Execute(pubDistrib).GetReturnValue()) < 0)
-                throw ZBSoapException(IDS_PUBDISTRIBSERVERFAIL, m_Model.m_ModelName.c_str(), __FILE__, __LINE__);
+                throw PSS_SoapException(IDS_PUBDISTRIBSERVERFAIL, m_Model.m_ModelName.c_str(), __FILE__, __LINE__);
         }
     }
     catch (SOAPException& ex)
@@ -331,7 +331,7 @@ bool PSS_SoapPublisher_Model::Send()
 
             // send the data to SOAP proxy and check the result
             if (int(proxy.Execute(pubDistribmap).GetReturnValue()) < 0)
-                throw ZBSoapException(IDS_PUBDISTRIBMAPSERVERFAIL, m_Model.m_ModelName.c_str(), __FILE__, __LINE__);
+                throw PSS_SoapException(IDS_PUBDISTRIBMAPSERVERFAIL, m_Model.m_ModelName.c_str(), __FILE__, __LINE__);
         }
     }
     catch (SOAPException& ex)
@@ -368,7 +368,7 @@ bool PSS_SoapPublisher_Model::Send()
 
             // send the data to SOAP proxy and check the result
             if (int(proxy.Execute(pubInput).GetReturnValue()) < 0)
-                throw ZBSoapException(IDS_PUBINPUTSERVERFAIL, m_Model.m_ModelName.c_str(), __FILE__, __LINE__);
+                throw PSS_SoapException(IDS_PUBINPUTSERVERFAIL, m_Model.m_ModelName.c_str(), __FILE__, __LINE__);
         }
     }
     catch (SOAPException& ex)
@@ -386,7 +386,7 @@ bool PSS_SoapPublisher_Model::Send()
 
         // send the data to SOAP proxy and check the result
         if (int(proxy.Execute(pubDone).GetReturnValue()) < 0)
-            throw ZBSoapException(IDS_PUBDONESERVERFAIL, m_Model.m_ModelName.c_str(), __FILE__, __LINE__);
+            throw PSS_SoapException(IDS_PUBDONESERVERFAIL, m_Model.m_ModelName.c_str(), __FILE__, __LINE__);
     }
     catch (SOAPException& ex)
     {
