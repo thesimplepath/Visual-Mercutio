@@ -10,7 +10,7 @@
 #include "zModel\ZBInfoModelGraphicGeneration.h"
 
 #include "ZBPublishMessengerModelInformation.h"
-#include "zSOAP\PSS_SoapPublisher_Settings.h"
+#include "zSOAP\PSS_SoapData_Settings.h"
 
 #include "zModel\ZBSymbol.h"
 #include "zModel\ZBLinkSymbol.h"
@@ -67,7 +67,7 @@ bool ZUSOAPPublishModelGenerateFiles::OnStart()
     if ( m_pModelInfo )
     {
         // set the correct address
-        PSS_SoapPublisher_Settings::m_Url = (const char*)m_pModelInfo->m_MessengerAddress;
+        PSS_SoapData_Settings::m_Url = (const char*)m_pModelInfo->m_MessengerAddress;
     }
 
     // Create the window for file generation feedback

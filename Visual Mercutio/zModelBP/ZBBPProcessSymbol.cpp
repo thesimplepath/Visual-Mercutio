@@ -1549,7 +1549,7 @@ bool ZBBPProcessSymbol::FillProperties( ZBPropertySet&    PropSet,
                                 RiskName,
                                 ( GroupValue == true ) ? Z_RISK_IMPACT : ( Z_RISK_IMPACT + ( i * _MaxRisksSize ) ),
                                 RiskDesc,
-                                ZBMediator::Instance()->GetMainApp()->GetRiskImpactContainer()->GetElementAt( GetRiskImpact( i ) ),
+                                PSS_Application::Instance()->GetMainForm()->GetRiskImpactContainer()->GetElementAt( GetRiskImpact( i ) ),
                                 ZBProperty::PT_EDIT_EXTENDED_READONLY );
 
         PropSet.Add( pRisk );
@@ -1563,7 +1563,7 @@ bool ZBBPProcessSymbol::FillProperties( ZBPropertySet&    PropSet,
                                 RiskName,
                                 ( GroupValue == true ) ? Z_RISK_PROBABILITY : ( Z_RISK_PROBABILITY + ( i * _MaxRisksSize ) ),
                                 RiskDesc,
-                                ZBMediator::Instance()->GetMainApp()->GetRiskProbabilityContainer()->GetElementAt( GetRiskProbability( i ) ),
+                                PSS_Application::Instance()->GetMainForm()->GetRiskProbabilityContainer()->GetElementAt( GetRiskProbability( i ) ),
                                 ZBProperty::PT_EDIT_EXTENDED_READONLY );
 
         PropSet.Add( pRisk );

@@ -1,85 +1,56 @@
-//## begin module%364419D001FB.cm preserve=no
-//      %X% %Q% %Z% %W%
-//## end module%364419D001FB.cm
-
-//## begin module%364419D001FB.cp preserve=no
-//    ADSoft / Advanced Dedicated Software
-//    Dominique AIGROZ
-//## end module%364419D001FB.cp
-
-//## Module: ZAApp%364419D001FB; Package body
-//## Subsystem: PlanFin%334FC46302B2
-//## Source file: z:\adsoft~1\ZPROCESS\ZAApp.cpp
-
-//## begin module%364419D001FB.additionalIncludes preserve=no
 #include <StdAfx.h>
-//## end module%364419D001FB.additionalIncludes
-
-//## begin module%364419D001FB.includes preserve=yes
-//## end module%364419D001FB.includes
-
-// ZAApp
 #include "ZAApp.h"
-//## begin module%364419D001FB.declarations preserve=no
-//## end module%364419D001FB.declarations
 
-//## begin module%364419D001FB.additionalDeclarations preserve=yes
-#include "Resource.h"
+// processsoft
+#include "zMediator\PSS_Application.h"
 #include "zBaseLib\MsgBox.h"
 #include "zBaseLib\ZMessage.h"
-#include "zWinUtil32\newform.h"
 #include "zBaseLib\VTools.h"
 #include "zBaseLib\ZDirectory.h"
-
-// BObjUtil
 #include "zBaseLib\BObjUtil.h"
-
-#include "zWinUtil32\FoldInfo.h"
-
 #include "zBaseLib\FileDlg.h"
-
-#include "zWinUtil32\SysOpt32.h"
-
-#include "WelcomP.h"
-#include "ViewMod.h"
-#include "zWeb\HtmlDlg.h"
-
-// Resource manager helper class
-#include "zResMgr\ZBResourceManager.h"
-
-#include "MdlWkfOpt.h"
-
-#include "zWinUtil32\CrtFldW.h"
-
 #include "zBaseLib\BaseMdi.h"
-
+#include "zBaseLib\ZILog.h"
+#include "zBaseLib\ZDWorkspaceEnvDocument.h"
+#include "zBaseLib\ZBWorkspaceObserverMsg.h"
+#include "zBaseLib\ZBWorkspaceWizardTemplateMg.h"
+#include "zBaseLib\BObjUtil.h"
+#include "zBaseLib\ZUFloatingToolbar.h"
+#include "zWinUtil32\newform.h"
+#include "zWinUtil32\FoldInfo.h"
+#include "zWinUtil32\SysOpt32.h"
+#include "zWinUtil32\CrtFldW.h"
+#include "zResMgr\ZBResourceManager.h"
+#include "zPtyMgr\ZVChoosePropertyDlg.h"
 #include "zModel\ProcGraphModelMdl.h"
 #include "zModel\ProcGraphModelVp.h"
 #include "zModel\ProcGraphChildFrm.h"
 #include "zModel\ProcGraphModelDoc.h"
-
-// JMR-MODIF - Le 30 mai 2005 - Ajout de _ZMODELEXPORT pour résoudre des erreurs liées à l'importation/exportation des DLL.
 #define _ZMODELEXPORT
 #include "zModel\ProcGraphModelView.h"
 #undef _ZMODELEXPORT
-
+#include "zModel\ZUDynamicAttributesManipulator.h"
+#include "zModel\ZVSelectModelSymbolDlg.h"
+#include "zModel\ZBGenericSymbolErrorLine.h"
+#include "zModel\ZDUserEntityDocument.h"
+#include "zModel\ZBUserGroupObserverMsg.h"
+#include "zModel\ZDLogicalSystemDocument.h"
+#include "zModel\ZBLogicalSystemObserverMsg.h"
+#include "zModel\ZDLogicalPrestationsDocument.h"
+#include "zModel\ZBLogicalPrestationsObserverMsg.h"
+#include "zModel\ZDLogicalRulesDocument.h"
+#include "zModel\ZBLogicalRulesObserverMsg.h"
+#include "zModel\ZAModelGlobal.h"
+#include "zModel\ZBDocObserverMsg.h"
 #include "zModelBP\ProcGraphModelMdlBP.h"
 #include "zModelBP\ZBBPProcessSymbol.h"
-
-// JMR-MODIF - Le 7 juin 2005 - Ajout de l'en-tête ProcGraphModelCtlrBP pour prendre en considération cette classe.
 #include "zModelBP\ProcGraphModelCtlrBP.h"
-
-// Symbol Properties
-#include "zPtyMgr\ZVChoosePropertyDlg.h"
-#include "zModel\ZUDynamicAttributesManipulator.h"
-
-// Model to the Web
+#include "zModelBP\ZBBPPageSymbol.h"
+#include "zModelBP\ZVPublishToMessengerWizard.h"
+#include "zModelBP\ZVRiskTypeContainer.h"
+#include "zModelBP\ZVRiskImpactContainer.h"
+#include "zModelBP\ZVRiskProbabilityContainer.h"
 #include "zModelWeb\ZUPublishModelToHTML.h"
-
-// JMR-MODIF - Le 21 juillet 2005 - Ajout de l'en-tête pour l'exportation des rapports
-#include "zReportWeb\ZUPublishReportToHTML.h"
-
-// Report includes
 #include "zReport\ZVGridReportChildFrm.h"
 #include "zReport\ZDGridReportDoc.h"
 #include "zReport\ZVGridReportView.h"
@@ -88,75 +59,33 @@
 #include "zReportBP\ZBSesterceReportGenerator.h"
 #include "zReportBP\ZBSesterceUnitReportGenerator.h"
 #include "zReportBP\ZBSesterceConsolidatedReportGenerator.h"
-// JMR-MODIF - Le 7 mars 2006 - Ajout de l'en-tête ZBPrestationsReportGenerator.h
 #include "zReportBP\ZBPrestationsReportGenerator.h"
 #include "zReportBP\ZVReportCreationWizard.h"
 #include "zReportBP\ZBConceptorReportGenerator.h"
+#include "zReportWeb\ZUPublishReportToHTML.h"
+#include "zWeb\HtmlDlg.h"
+#include "WelcomP.h"
+#include "ViewMod.h"
+#include "MdlWkfOpt.h"
 #include "ZVConceptorReportOptions.h"
-
-#include "zModelBP\ZBBPPageSymbol.h"
-#include "zModel\ZVSelectModelSymbolDlg.h"
-
-// Publication to Messenger
-#include "zModelBP\ZVPublishToMessengerWizard.h"
-
 #include "ZVProcessWorkspace.h"
 #include "ZVOutputWorkspace.h"
-
-// Include files for log
-#include "zBaseLib\ZILog.h"
-#include "zModel\ZBGenericSymbolErrorLine.h"
-
-// Workspace document
-#include "zBaseLib\ZDWorkspaceEnvDocument.h"
 #include "ZVWorkspaceCreationWizard.h"
-#include "zBaseLib\ZBWorkspaceObserverMsg.h"
-#include "zBaseLib\ZBWorkspaceWizardTemplateMg.h"
 
-// User group document
-#include "zModel\ZDUserEntityDocument.h"
-#include "zModel\ZBUserGroupObserverMsg.h"
-
-// Logical system document
-#include "zModel\ZDLogicalSystemDocument.h"
-#include "zModel\ZBLogicalSystemObserverMsg.h"
-
-// JMR-MODIF - Le 10 octobre 2005 - Ajout des en-têtes pour l'intégration des nouvelles classes de prestations.
-#include "zModel\ZDLogicalPrestationsDocument.h"
-#include "zModel\ZBLogicalPrestationsObserverMsg.h"
-
-// JMR-MODIF - Le 15 novembre 2006 - Ajout des en-têtes pour l'intégration des nouvelles classes de règles.
-#include "zModel\ZDLogicalRulesDocument.h"
-#include "zModel\ZBLogicalRulesObserverMsg.h"
-
-// JMR-MODIF - Le 8 juillet 2007 - Ajout des en-têtes pour l'intégration des nouvelles classes de risques.
-#include "zModelBP\ZVRiskTypeContainer.h"
-#include "zModelBP\ZVRiskImpactContainer.h"
-#include "zModelBP\ZVRiskProbabilityContainer.h"
-
-// Global for model
-#include "zModel\ZAModelGlobal.h"
-
-#include "zModel\ZBDocObserverMsg.h"
-
-// JMR-MODIF - Le 23 août 2005 - Ajout de headers pour permettre l'accès à certaines données à détruire.
-#include "zBaseLib\BObjUtil.h"
-#include "zBaseLib\ZUFloatingToolbar.h"
-
-// JMR-MODIF - Le 1er janvier 2007 - Ajout de l'en-tête ZBMediator.h
-#include "zMediator\ZBMediator.h"
-
-/////////////////////////////////////////////////////////////////////////////
-// Define the Objective Views GUIDs. The GUIDs are declared in OdGuids.h.
-// Including initguid.h before OdGuids.h forces the GUIDs to be defined
-// in this module. Skip this if statically linking to the Objective Views
-// library, because the GUIDs will be linked into the app from the library.
+// stingray studio
 #ifdef _OVDLL
-#include "initguid.h"
-#include "Views\OdGuids.h"
-#include "Foundation\Compatibility\Common\CmnGuids.h"
-#include "ZAApp.h"
+    // Define the Objective Views GUIDs. The GUIDs are declared in OdGuids.h.
+    // Including initguid.h before OdGuids.h forces the GUIDs to be defined
+    // in this module. Skip this if statically linking to the Objective Views
+    // library, because the GUIDs will be linked into the app from the library
+    #include "initguid.h"
+    #include "Views\OdGuids.h"
+    #include "Foundation\Compatibility\Common\CmnGuids.h"
+    #include "ZAApp.h"
 #endif
+
+// resources
+#include "Resource.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -371,18 +300,16 @@ ZAApp::ZAApp()
     m_CppTopicName    = _T( "DDE_ZPROCESS_TOPIC" );
 
     // JMR-MODIF - Le 1er janvier 2007 - Ajout de l'inscription de cette classe dans le médiateur.
-    ZBMediator::Instance()->Register( this );
+    PSS_Application::Instance()->RegisterMainForm(this);
 }
 
 // Destructeur de la classe ZAApp.
 ZAApp::~ZAApp()
 {
-    // JMR-MODIF - Le 23 août 2005 - La fonction Release s'occupe du nettoyage.
     Release();
 
-    // JMR-MODIF - Le 1er janvier 2007 - Ajout de la désinscription de cette classe dans le médiateur.
-    ZBMediator::Instance()->UnregisterMainApp();
-    ZBMediator::Instance()->Release();
+    PSS_Application::Instance()->UnregisterMainForm();
+    PSS_Application::Instance()->Release();
 }
 
 // **************************************************************************************************************
@@ -552,8 +479,8 @@ BOOL ZAApp::InitAppl()
     // Creation of Visual Tools
     static ZIVisualToolEdit VisualToolEdit;
 
-    ZBResourceManager::LoadFromDirectory( ZDirectory::NormalizeDirectory( GetApplicationDirectory() ) + _T( "\\resdll" ) );
-    ZBResourceManager::ChangeLanguage( FrenchLang );
+    ZBResourceManager::LoadFromDirectory(ZDirectory::NormalizeDirectory(GetApplicationDir()) + _T("\\resdll"));
+    ZBResourceManager::ChangeLanguage(FrenchLang);
 
     // No errors
     return( TRUE );
@@ -1751,7 +1678,7 @@ BOOL ZAApp::IsCursorCapturedValid( const CPoint& point, ZIView* pView )
 // ******************************************************* Document *********************************************
 
 // JMR-MODIF - Le 24 avril 2006 - Ajout du nom du fichier dans la fonction pour le test de la lecture seule.
-void ZAApp::OnAfterOpenDocument( CDocument* pDoc, CString Filename )
+void ZAApp::OnAfterOpenDocument(CDocument* pDoc, const CString& filename )
 {
     ASSERT( pDoc );
 
@@ -1759,7 +1686,7 @@ void ZAApp::OnAfterOpenDocument( CDocument* pDoc, CString Filename )
     {
         // ******************************************************************************************************
         // JMR-MODIF - Le 24 avril 2006 - Teste si le fichier est en lecture seule.
-        ZFile* theFile = new ZFile( Filename );
+        ZFile* theFile = new ZFile(filename);
 
         if ( theFile != NULL )
         {

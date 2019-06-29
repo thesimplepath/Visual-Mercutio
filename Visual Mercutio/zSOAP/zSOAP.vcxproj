@@ -172,7 +172,7 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
     <ClCompile Include="PSS_SoapPublisher_Prestations.cpp" />
-    <ClCompile Include="PSS_SoapPublisher_Settings.cpp">
+    <ClCompile Include="PSS_SoapData_Settings.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -184,7 +184,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="pPublishWorkgroup.cpp">
+    <ClCompile Include="PSS_SoapPublisher_Workgroup.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -240,12 +240,12 @@
     <ClInclude Include="PSS_SoapPublisher_MessengerInfo.h" />
     <ClInclude Include="PSS_SoapPublisher_Model.h" />
     <ClInclude Include="PSS_SoapPublisher_Prestations.h" />
-    <ClInclude Include="PSS_SoapPublisher_Settings.h" />
+    <ClInclude Include="PSS_SoapData_Settings.h" />
     <ClInclude Include="PSS_SoapPublisher_System.h" />
-    <ClInclude Include="pPublishWorkgroup.h" />
+    <ClInclude Include="PSS_SoapPublisher_Workgroup.h" />
     <ClInclude Include="PSS_SoapData_System.h" />
     <ClInclude Include="PSS_SoapData_MessengerUniverse.h" />
-    <ClInclude Include="pworkgroup.h" />
+    <ClInclude Include="PSS_SoapData_Workgroup.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="zSoapException.h" />
     <ClInclude Include="zSOAPIncAll.h" />

@@ -505,14 +505,14 @@ class AFX_EXT_CLASS PSS_SoapPublisher_Model
         virtual int GetModelVersion(const std::string& model);
 
     private:
-        CString                             m_Alias;
-        PSS_SoapData_Model                  m_Model;
-        list<PSS_SoapData_Process>          m_DataSet_Proc;
-        list<PSS_SoapData_Deliverable>      m_DataSet_Deliv;
-        list<PSS_SoapData_SymbolAttributes> m_DataSet_SymAttr;
-        list<PSS_SoapData_Distribution>     m_DataSet_Distrib;
-        list<PSS_SoapData_DistributionMap>  m_DataSet_DistribMap;
-        list<PSS_SoapData_Input>            m_DataSet_Inputs;
+        CString                                  m_Alias;
+        PSS_SoapData_Model                       m_Model;
+        std::list<PSS_SoapData_Process>          m_DataSet_Proc;
+        std::list<PSS_SoapData_Deliverable>      m_DataSet_Deliv;
+        std::list<PSS_SoapData_SymbolAttributes> m_DataSet_SymAttr;
+        std::list<PSS_SoapData_Distribution>     m_DataSet_Distrib;
+        std::list<PSS_SoapData_DistributionMap>  m_DataSet_DistribMap;
+        std::list<PSS_SoapData_Input>            m_DataSet_Inputs;
 };
 
 END_EASYSOAP_NAMESPACE

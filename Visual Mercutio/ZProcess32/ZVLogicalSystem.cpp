@@ -14,19 +14,16 @@
 #include "stdafx.h"
 #include "ZVLogicalSystem.h"
 
-// JMR-MODIF - Le 1er janvier 2007 - Ajout de l'en-tête ZBMediator.h
-#include "zMediator\ZBMediator.h"
-
+// processsoft
+#include "zMediator\PSS_Application.h"
 #include "zBaseLib\ZBToolbarObserverMsg.h"
 #include "Resource.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
-
-// JMR-MODIF - Le 10 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
 /////////////////////////////////////////////////////////////////////////////
 // Constant definition
@@ -206,20 +203,16 @@ void _ZILogicalSystemFlatToolBar::OnAddSystemButton()
 
 void _ZILogicalSystemFlatToolBar::OnRenameSystemButton()
 {
-    ZBToolbarObserverMsg Msg( UM_LGS_RENAMESYSTEM );
-    NotifyAllObservers( &Msg );
-
-    // JMR-MODIF - Le 1er janvier 2007 - Ordonne au médiateur de rafraîchir l'affichage.
-    ZBMediator::Instance()->RefreshPropertiesWorkspace();
+    ZBToolbarObserverMsg msg(UM_LGS_RENAMESYSTEM);
+    NotifyAllObservers(&msg);
+    PSS_Application::Instance()->RefreshPropertiesWorkspace();
 }
 
 void _ZILogicalSystemFlatToolBar::OnDeleteSystemButton()
 {
-    ZBToolbarObserverMsg Msg( UM_LGS_DELETESYSTEM );
-    NotifyAllObservers( &Msg );
-
-    // JMR-MODIF - Le 1er janvier 2007 - Ordonne au médiateur de rafraîchir l'affichage.
-    ZBMediator::Instance()->RefreshPropertiesWorkspace();
+    ZBToolbarObserverMsg msg(UM_LGS_DELETESYSTEM);
+    NotifyAllObservers(&msg);
+    PSS_Application::Instance()->RefreshPropertiesWorkspace();
 }
 
 // JMR-MODIF - Le 27 février 2006 - Ajout de la fonction de réponse à l'événement du bouton Move.

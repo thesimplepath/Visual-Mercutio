@@ -3,20 +3,19 @@
 #include "stdafx.h"
 #include "DocTmplEx.h"
 
-// JMR-MODIF - Le 16 octobre 2007 - Ajout de l'en-tête ZBMediator.h
-#include "zMediator\ZBMediator.h"
-
+// mfc
 #include <afxadv.h>
 
+// processsoft
+#include "zMediator\PSS_Application.h"
+
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
-// JMR-MODIF - Le 28 mai 2007 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-IMPLEMENT_DYNAMIC( ZDDocTemplateEx, CMultiDocTemplate )
+IMPLEMENT_DYNAMIC(ZDDocTemplateEx, CMultiDocTemplate)
 
 /////////////////////////////////////////////////////////////////////////////
 // ZDDocTemplateEx
@@ -61,119 +60,93 @@ ZDDocTemplateEx::~ZDDocTemplateEx()
 /////////////////////////////////////////////////////////////////////////////
 // ZDDocTemplateEx implementation
 
-void ZDDocTemplateEx::AddToRecentFileList( LPCTSTR lpszPathName )
+void ZDDocTemplateEx::AddToRecentFileList(LPCTSTR pPathName)
 {
-    ASSERT_VALID( this );
-    ASSERT( lpszPathName != NULL );
-    ASSERT( AfxIsValidString( lpszPathName ) );
+    ASSERT_VALID(this);
+    ASSERT(pPathName);
+    ASSERT(AfxIsValidString(pPathName));
 
-    if ( m_pRecentFileList != NULL )
-    {
-        m_pRecentFileList->Add( lpszPathName );
-    }
+    if (m_pRecentFileList)
+        m_pRecentFileList->Add(pPathName);
 }
-
-void ZDDocTemplateEx::LoadStdProfileSettings( UINT nMaxMRU )
+//---------------------------------------------------------------------------
+void ZDDocTemplateEx::LoadStdProfileSettings(UINT maxMRU)
 {
-    ASSERT_VALID( this );
-    ASSERT( m_pRecentFileList == NULL );
+    ASSERT_VALID(this);
+    ASSERT(!m_pRecentFileList);
 
-    CString FileEntry = _T( "File%d" );
-    CString FileSection;
+    CString fileEntry = _T("File%d");
+    CString fileSection;
 
-    GetDocString( FileSection, CDocTemplate::docName );
+    GetDocString(fileSection, CDocTemplate::docName);
 
-    if ( nMaxMRU != 0 )
+    // create file MRU since nMaxMRU not zero
+    if (maxMRU)
     {
-        // Create file MRU since nMaxMRU not zero
-        m_pRecentFileList = new CRecentFileList( 0, FileSection, FileEntry, nMaxMRU );
+        m_pRecentFileList = new CRecentFileList(0, fileSection, fileEntry, maxMRU);
         m_pRecentFileList->ReadList();
     }
 }
-
+//---------------------------------------------------------------------------
 void ZDDocTemplateEx::SaveStdProfileSettings()
 {
-    ASSERT_VALID( this );
+    ASSERT_VALID(this);
 
-    if ( m_pRecentFileList != NULL )
-    {
+    if (m_pRecentFileList)
         m_pRecentFileList->WriteList();
-    }
 }
-
-void ZDDocTemplateEx::OnUpdateRecentFileMenu( CCmdUI* pCmdUI )
+//---------------------------------------------------------------------------
+void ZDDocTemplateEx::OnUpdateRecentFileMenu(CCmdUI* pCmdUI)
 {
-    ASSERT_VALID( this );
+    ASSERT_VALID(this);
 
-    // Updating a submenu?
-    if ( pCmdUI->m_pSubMenu!=NULL )
+    // updating a submenu?
+    if (pCmdUI->m_pSubMenu)
     {
-        // The following inactivates the submenu when the MRU list is empty
         UINT nEnable = MF_ENABLED;
 
-        if ( ( m_pRecentFileList==NULL )            ||
-             ( m_pRecentFileList->GetSize() == 0 )    ||
-             (*m_pRecentFileList)[0].IsEmpty() )
-        {
+        // inactivate the submenu when the file list is empty
+        if ((!m_pRecentFileList) || (!m_pRecentFileList->GetSize() == 0 ) || (*m_pRecentFileList)[0].IsEmpty())
             nEnable = ( MF_DISABLED | MF_GRAYED );
-        }
         
-        pCmdUI->m_pMenu->EnableMenuItem( pCmdUI->m_nIndex, MF_BYPOSITION | nEnable );
-
+        pCmdUI->m_pMenu->EnableMenuItem(pCmdUI->m_nIndex, MF_BYPOSITION | nEnable);
         return;
     }
 
-    // No MRU files
-    if ( m_pRecentFileList == NULL )
-    {
-        pCmdUI->Enable( FALSE );
-    }
+    // no files to reopen?
+    if (!m_pRecentFileList)
+        pCmdUI->Enable(FALSE);
     else
-    {
-        m_pRecentFileList->UpdateMenu( pCmdUI );
-    }
+        m_pRecentFileList->UpdateMenu(pCmdUI);
 }
-
-BOOL ZDDocTemplateEx::OnOpenRecentFile( UINT nID )
+//---------------------------------------------------------------------------
+BOOL ZDDocTemplateEx::OnOpenRecentFile(UINT id)
 {
-    ASSERT_VALID( this );
-    ASSERT( m_pRecentFileList != NULL );
+    ASSERT_VALID(this);
+    ASSERT(m_pRecentFileList);
 
-    ASSERT( nID >= m_nMenuId );
-    ASSERT( nID < m_nMenuId + (UINT)m_pRecentFileList->GetSize() );
+    ASSERT(id >= m_nMenuId);
+    ASSERT(id <  m_nMenuId + UINT(m_pRecentFileList->GetSize()));
 
-    int nIndex = nID - m_nMenuId;
+    const int index = id - m_nMenuId;
 
-    ASSERT( ( *m_pRecentFileList )[nIndex].GetLength() != 0 );
+    ASSERT((*m_pRecentFileList)[index].GetLength());
 
-    TRACE2( _T( "MRU: open file (%d) '%s'.\n" ),
-            ( nIndex ) + 1,
-            (LPCTSTR)( *m_pRecentFileList )[nIndex] );
+    TRACE2(_T("MRU: open file (%d) '%s'.\n"), index + 1, LPCTSTR((*m_pRecentFileList)[index]));
 
-    // ***********************************************************************************************
-    // JMR-MODIF - Le 16 octobre 2007 - Modification de la routine de chargement des fichiers récents.
+    // get opened document and its related file name
+    LPCTSTR    pFile = (*m_pRecentFileList)[index];
+    CDocument* pDoc  = OpenDocumentFile(pFile);
 
-    /*if ( OpenDocumentFile( (*m_pRecentFileList)[nIndex] ) == NULL )
-    {
-        m_pRecentFileList->Remove( nIndex );
-    }*/
-
-    LPCTSTR        p_File    = (*m_pRecentFileList)[nIndex];
-    CDocument*    p_Doc    = OpenDocumentFile( p_File );
-
-    if ( p_Doc == NULL )
-    {
-        m_pRecentFileList->Remove( nIndex );
-    }
+    // update the reopen files list
+    if (!pDoc)
+        m_pRecentFileList->Remove(index);
     else
-    {
-        ZBMediator::Instance()->GetMainApp()->OnAfterOpenDocument( p_Doc, p_File );
-    }
-    // ***********************************************************************************************
+        PSS_Application::Instance()->GetMainForm()->OnAfterOpenDocument(pDoc, pFile);
 
     return TRUE;
 }
-
+//---------------------------------------------------------------------------
 // This hack is necessary because the menu ID is a member of the class.
 // MFC message maps need the IDs to be global.
 BOOL ZDDocTemplateEx::OnCmdMsg( UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo )

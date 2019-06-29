@@ -130,7 +130,7 @@ public:
     void SetsLastLoadedFile( CString value );
 
     const CString GetServerIniFile() const;
-    void SetServerIniFile( CString value );
+    void SetServerIniFile(const CString& value);
 
     // JMR-MODIF - Le 8 juillet 2007 - Ajout des fonctions GetRiskTypeFile et SetRiskTypeFile.
     const CString GetRiskTypeFile() const;
@@ -429,7 +429,7 @@ inline const CString ZAApplicationOption::GetServerIniFile() const
     return m_ServerIniFile;
 }
 
-inline void ZAApplicationOption::SetServerIniFile( CString value )
+inline void ZAApplicationOption::SetServerIniFile(const CString& value)
 {
     m_ServerIniFile = value;
 }

@@ -9,7 +9,7 @@
 #include "PSS_SoapPublisher_File.h"
 
 // processsoft
-#include "PSS_SoapPublisher_Settings.h"
+#include "PSS_SoapData_Settings.h"
 #include "zSoapException.h"
 
 //---------------------------------------------------------------------------
@@ -30,10 +30,10 @@ bool PSS_SoapPublisher_File::Add(const PSS_SoapData_File& file)
     try
     {
         // create the SOAP proxy
-        SOAPProxy proxy(PSS_SoapPublisher_Settings::m_Url.c_str());
+        SOAPProxy proxy(PSS_SoapData_Settings::m_Url.c_str());
 
         // open the SOAP protocol
-        SOAPMethod pubFile(_T("pubFile"), PSS_SoapPublisher_Settings::m_FileService.c_str(), _T("http://"));
+        SOAPMethod pubFile(_T("pubFile"), PSS_SoapData_Settings::m_FileService.c_str(), _T("http://"));
 
         // add the file
         SOAPParameter& ref = pubFile.AddParameter(_T("mfile"));
@@ -79,7 +79,7 @@ PSS_SoapData_File PSS_SoapPublisher_File::GetFile(int folder, const std::string&
         std::string wdslUrn = _T("urn:pssfile");
 
         // create the SOAP proxy
-        SOAPProxy proxy(PSS_SoapPublisher_Settings::m_Url.c_str());
+        SOAPProxy proxy(PSS_SoapData_Settings::m_Url.c_str());
 
         // open the SOAP protocol
         SOAPMethod getFile(_T("pubGetFile"), wdslUrn.c_str(), _T("http://"));

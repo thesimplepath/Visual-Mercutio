@@ -78,11 +78,11 @@ private:
     void LoadImpactList();
     void LoadProbabilityList();
     void UpdateSeverity();
-    void SelectFileToOpen( CString Directory, CString Caption, CString Extension, CString& Filename );
+    void SelectFileToOpen(const CString& dir, const CString& caption, const CString& extension, CString& filename);
 
-    BOOL ReloadTypeFile( CString Filename );
-    BOOL ReloadImpactFile( CString Filename );
-    BOOL ReloadProbabilityFile( CString Filename );
+    BOOL ReloadTypeFile(const CString& filename);
+    BOOL ReloadImpactFile(const CString& filename);
+    BOOL ReloadProbabilityFile(const CString& filename);
 
 private:
 

@@ -1,7 +1,11 @@
-// stdafx.cpp : fichier source incluant simplement les fichiers Include standard 
-// zReportWeb.pch représente l'en-tête précompilé
-// stdafx.obj contient les informations de type précompilées
+/****************************************************************************
+ * ==> StdAfh --------------------------------------------------------------*
+ ****************************************************************************
+ * Description : Source file that includes just the standard includes       *
+ *               -> zSplash.pch will be the pre-compiled header             *
+ *               -> stdafx.obj will contain the pre-compiled type           *
+ *                  information                                             *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
-
-

@@ -17,7 +17,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zSOAP\pPublishWorkgroup.h"
+#include "zSOAP\PSS_SoapPublisher_Workgroup.h"
 
 //////////////////////////////////////////////////////////////////////
 // Forward class declaration
@@ -58,8 +58,8 @@ private:
 private:
 
     ZBPublishMessengerModelInformation* m_pInfo;
-    pPublishWorkgroup                    m_pw;
-    ZILog*                                m_pLog;
+    PSS_SoapPublisher_Workgroup         m_PubWorkgroup;
+    ZILog*                              m_pLog;
 };
 
 #endif // !defined(AFX_ZUSOAPPUBLISHUSERGROUP_H__007D541D_39C0_4FA9_A177_CB51E06B7DE7__INCLUDED_)

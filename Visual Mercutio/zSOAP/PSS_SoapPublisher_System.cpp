@@ -9,7 +9,7 @@
 #include "PSS_SoapPublisher_System.h"
 
 // processsoft
-#include "PSS_SoapPublisher_Settings.h"
+#include "PSS_SoapData_Settings.h"
 #include "zSoapException.h"
 
 //---------------------------------------------------------------------------
@@ -49,10 +49,10 @@ bool PSS_SoapPublisher_System::Send()
         TRACE(_T("pPublishSystem.send()"));
 
         // create the SOAP proxy
-        SOAPProxy proxy(PSS_SoapPublisher_Settings::m_Url.c_str());
+        SOAPProxy proxy(PSS_SoapData_Settings::m_Url.c_str());
 
         // open the SOAP protocol
-        SOAPMethod pubSystem(_T("pubSystem"), PSS_SoapPublisher_Settings::m_ModelService.c_str(), _T("http://"));
+        SOAPMethod pubSystem(_T("pubSystem"), PSS_SoapData_Settings::m_ModelService.c_str(), _T("http://"));
 
         // add the system number
         pubSystem.AddParameter(_T("systemnbr")).SetValue(int(m_DataSet.size()));
@@ -60,7 +60,7 @@ bool PSS_SoapPublisher_System::Send()
         SOAPArray<PSS_SoapData_System> systems;
 
         // populate the SOAP data array
-        for (list<PSS_SoapData_System>::iterator it = m_DataSet.begin(); it != m_DataSet.end(); ++it)
+        for (std::list<PSS_SoapData_System>::iterator it = m_DataSet.begin(); it != m_DataSet.end(); ++it)
             systems.Add(*it);
 
         // add data set

@@ -9,9 +9,13 @@
 #include "stdafx.h"
 #include "ZUCalculateRisks.h"
 
+// processsoft
+#include "zMediator\PSS_Application.h"
 #include "zModel\ZBSymbol.h"
 #include "zModel\ZBLinkSymbol.h"
-
+#include "zModel\ProcGraphModelCtlr.h"
+#include "zModel\ZUODSymbolManipulator.h"
+#include "zModel\ZBGenericSymbolErrorLine.h"
 #include "ZBBPDoorSymbol.h"
 #include "ZBBPPageSymbol.h"
 #include "ZBBPProcedureSymbol.h"
@@ -19,30 +23,17 @@
 #include "ZBBPStartSymbol.h"
 #include "ZBBPStopSymbol.h"
 #include "ZBDeliverableLinkSymbol.h"
-
 #include "ProcGraphModelMdlBP.h"
-
-#include "zModel\ProcGraphModelCtlr.h"
-
 #include "ZUCheckValidUnit.h"
-
-#include "zModel\ZUODSymbolManipulator.h"
-
-// Include files for log
 #include "zBaseLib\ZILog.h"
-#include "zModel\ZBGenericSymbolErrorLine.h"
-
 #include "zBaseLib\ZBTokenizer.h"
-
-#include "zMediator\ZBMediator.h"
-
 #include "zModelBPRes.h"
 #include "zRMdlBP.h"
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[]=__FILE__;
+    #define new DEBUG_NEW
 #endif
 
 //////////////////////////////////////////////////////////////////////
@@ -133,7 +124,7 @@ bool ZUCalculateRisks::Calculate( CODComponent& Symbol )
         m_pLog->AddLine( e );
     }
 
-    ZBMediator::Instance()->GetMainApp()->DoRefreshProperties();
+    PSS_Application::Instance()->GetMainForm()->DoRefreshProperties();
 
     return true;
 }

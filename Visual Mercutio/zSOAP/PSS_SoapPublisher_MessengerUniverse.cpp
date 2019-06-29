@@ -9,7 +9,7 @@
 #include "PSS_SoapPublisher_MessengerUniverse.h"
 
 // processsoft
-#include "PSS_SoapPublisher_Settings.h"
+#include "PSS_SoapData_Settings.h"
 #include "zSoapException.h"
 
 //---------------------------------------------------------------------------
@@ -49,10 +49,10 @@ bool PSS_SoapPublisher_MessengerUniverse::Send()
         TRACE(_T("pCheckUniverse.send()"));
 
         // create the SOAP proxy
-        SOAPProxy proxy(PSS_SoapPublisher_Settings::m_Url.c_str());
+        SOAPProxy proxy(PSS_SoapData_Settings::m_Url.c_str());
 
         // open the SOAP protocol
-        SOAPMethod messengerUniverse(_T("pubCheckUniverse"), PSS_SoapPublisher_Settings::m_ModelService.c_str(), _T("http://"));
+        SOAPMethod messengerUniverse(_T("pubCheckUniverse"), PSS_SoapData_Settings::m_ModelService.c_str(), _T("http://"));
 
         // add data count
         messengerUniverse.AddParameter(_T("universenbr")).SetValue(int(m_DataSet.size()));
@@ -60,7 +60,7 @@ bool PSS_SoapPublisher_MessengerUniverse::Send()
         SOAPArray<PSS_SoapData_MessengerUniverse> universes;
 
         // populate the SOAP data array
-        for (list<PSS_SoapData_MessengerUniverse>::iterator it = m_DataSet.begin(); it != m_DataSet.end(); ++it)
+        for (std::list<PSS_SoapData_MessengerUniverse>::iterator it = m_DataSet.begin(); it != m_DataSet.end(); ++it)
             universes.Add(*it);
 
         // add data set

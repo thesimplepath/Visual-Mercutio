@@ -2,10 +2,26 @@
 
 #include "stdafx.h"
 #include "ProcGraphModelCtlrBP.h"
-#include "ProcGraphModelMdlBP.h"
-#include "zModel\ProcGraphModelVp.h"
 
+// processsoft
+#include "zMediator\PSS_Application.h"
+#include "zBaseLib\ZUFloatingToolbar.h"
+#include "zBaseLib\ZBToolbarObserverMsg.h"
+#include "zBaseLib\FileDlg.h"
+#include "zModel\ProcGraphModelVp.h"
 #include "zModel\ZBLinkSymbol.h"
+#include "zModel\ProcGraphModelDoc.h"
+#define _ZMODELEXPORT
+#include "zModel\ProcGraphModelView.h"
+#undef _ZMODELEXPORT
+#include "zModel\ZUBuildSymbolNewName.h"
+#include "zModel\ZDProcessGraphPage.h"
+#include "zModel\ZVInsertModelNewPageDlg.h"
+#include "zModel\ZVRenameModelPageDlg.h"
+#include "zModel\ZVRenameModelPageInTreeDlg.h"
+#include "zModel\ZVDeleteModelPageDlg.h"
+#include "zModel\ZBUnitObserverMsg.h"
+#include "zModel\ZBDocObserverMsg.h"
 #include "zModelBP\ZBBPProcedureSymbol.h"
 #include "zModelBP\ZBBPProcessSymbol.h"
 #include "zModelBP\ZBBPStartSymbol.h"
@@ -16,50 +32,13 @@
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
 #include "zModelBP\ZBBPGenericSymbol.h"
 #include "zModelBP\ZBBPTextZone.h"
-
-#include "zModel\ProcGraphModelDoc.h"
-
-// JMR-MODIF - Le 9 octobre 2006 - Ajout de l'en-tête ZUDeleteCorruptedSymbols.h
+#include "ProcGraphModelMdlBP.h"
 #include "ZUDeleteCorruptedSymbols.h"
-
-// JMR-MODIF - Le 25 mai 2005 - Ajout de #define _ZMODELEXPORT et #undef _ZMODELEXPORT pour supprimer une erreur.
-#define _ZMODELEXPORT
-#include "zModel\ProcGraphModelView.h"
-#undef _ZMODELEXPORT
-
-// Sesterce recalculation
 #include "ZBSesterceRecalculationAutomate.h"
-
-// Duration recalculation
 #include "ZBDurationRecalculationAutomate.h"
-
-// Utility class to found the next available symbol name
-#include "zModel\ZUBuildSymbolNewName.h"
-
-#include "zModel\ZDProcessGraphPage.h"
-#include "zModel\ZVInsertModelNewPageDlg.h"
-#include "zModel\ZVRenameModelPageDlg.h"
-#include "zModel\ZVRenameModelPageInTreeDlg.h"
-#include "zModel\ZVDeleteModelPageDlg.h"
-
 #include "ZVInputAttributesSelectionDlg.h"
-
-#include "zModel\ZBUnitObserverMsg.h"
-#include "zBaseLib\ZBToolbarObserverMsg.h"
-#include "zModel\ZBDocObserverMsg.h"
-
-#include "zBaseLib\FileDlg.h"
-
-#include "zBaseLib\ZUFloatingToolbar.h"
-
-// JMR-MODIF - Le 21 juillet 2007 - Ajout de l'en-tête ZVRiskCalculateParametersDlg.h
 #include "ZVRiskCalculateParametersDlg.h"
-
-// JMR-MODIF - Le 21 juillet 2007 - Ajout de l'en-tête ZUCalculateRisks.h
 #include "ZUCalculateRisks.h"
-
-// JMR-MODIF - Le 29 juillet 2007 - Ajout de l'en-tête ZBMediator.h
-#include "zMediator\ZBMediator.h"
 
 // JMR-MODIF - Le 30 juillet 2007 - Ajout de l'en-tête ZAGlobal.h
 #include "zBaseLib\ZAGlobal.h"
@@ -1435,31 +1414,31 @@ void ZDProcessGraphModelControllerBP::OnCalculateRisks()
         }
     }
 
-    ZVRiskCalculateParametersDlg m_RiskParametersDlg( ZBMediator::Instance()->GetMainApp()->GetApplicationIniFilename(),
-                                                      CurrencySymbol );
+    ZVRiskCalculateParametersDlg riskParametersDlg(PSS_Application::Instance()->GetMainForm()->GetApplicationIniFilename(),
+                                                   CurrencySymbol );
 
-    if ( m_RiskParametersDlg.DoModal() == IDOK )
+    if (riskParametersDlg.DoModal() == IDOK)
     {
-        // Assign casted pointer
+        // assign casted pointer
         ZDProcessGraphModelDoc* pDoc = (ZDProcessGraphModelDoc*)GetDocument();
 
-        if ( pDoc != NULL )
+        if (pDoc)
         {
-            ZUCalculateRisks m_CalculateRisks( m_RiskParametersDlg.GetOrangeSeverityLevel(),
-                                               m_RiskParametersDlg.GetRedSeverityLevel(),
-                                               m_RiskParametersDlg.GetOrangeUE(),
-                                               m_RiskParametersDlg.GetRedUE(),
-                                               m_RiskParametersDlg.GetOrangePOA(),
-                                               m_RiskParametersDlg.GetRedPOA(),
-                                               m_RiskParametersDlg.IsOrangeActionEnabled(),
-                                               m_RiskParametersDlg.IsOrangeNoActionEnabled(),
-                                               m_RiskParametersDlg.IsRedActionEnabled(),
-                                               m_RiskParametersDlg.IsRedNoActionEnabled(),
-                                               m_RiskParametersDlg.IsDefaultColorsEnabled(),
-                                               GetRootModel(),
-                                               pDoc->GetModelOutputLog() );
+            ZUCalculateRisks calculateRisks(riskParametersDlg.GetOrangeSeverityLevel(),
+                                            riskParametersDlg.GetRedSeverityLevel(),
+                                            riskParametersDlg.GetOrangeUE(),
+                                            riskParametersDlg.GetRedUE(),
+                                            riskParametersDlg.GetOrangePOA(),
+                                            riskParametersDlg.GetRedPOA(),
+                                            riskParametersDlg.IsOrangeActionEnabled(),
+                                            riskParametersDlg.IsOrangeNoActionEnabled(),
+                                            riskParametersDlg.IsRedActionEnabled(),
+                                            riskParametersDlg.IsRedNoActionEnabled(),
+                                            riskParametersDlg.IsDefaultColorsEnabled(),
+                                            GetRootModel(),
+                                            pDoc->GetModelOutputLog());
 
-            m_CalculateRisks.Calculate( *GetRootModel() );
+            calculateRisks.Calculate(*GetRootModel());
         }
     }
 }

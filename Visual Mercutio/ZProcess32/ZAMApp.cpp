@@ -325,7 +325,7 @@ BOOL ZAMainApp::InitInstance()
     m_HelpFile = OnBuildHelpFilename();
 
     // Assigns globally the application directory
-    ZAGlobal::SetApplicationDirectory( GetApplicationDirectory() );
+    ZAGlobal::SetApplicationDirectory(GetApplicationDir());
 
 #ifndef _ZNOSPLASH
     // Start Splash
@@ -393,7 +393,7 @@ BOOL ZAMainApp::InitInstance()
 
     // JMR-MODIF - Le 15 avril 2007 - Ajouté GetApplicationDirectory() dans la variable Create.
     // Initialize the Application Options
-    GetApplicationOptions().Create( m_pszProfileName, GetApplicationDirectory() );
+    GetApplicationOptions().Create(m_pszProfileName, GetApplicationDir());
 
     if ( !GetApplicationOptions().LoadOption() )
     {
@@ -455,18 +455,15 @@ BOOL ZAMainApp::InitInstance()
 
     if ( FirstLoad == _T( "1" ) )
     {
-        CString SubDirectory = AfxGetApp()->GetProfileString( ApplicationConfigSectionName,
-                                                              szSubDirectoryNameEntry,
-                                                              _T( "" ) );
+        const CString subDirectory = AfxGetApp()->GetProfileString(ApplicationConfigSectionName,
+                                                                   szSubDirectoryNameEntry,
+                                                                   _T(""));
 
-        CString ServerDirectory = ZDirectory::NormalizeDirectory( GetApplicationDirectory() ) + _T( "\\" );
+        const CString serverDirectory = ZDirectory::NormalizeDirectory(GetApplicationDir()) + _T("\\") + subDirectory;
+        const CString serverIniFile   = GetServer().CreateInitialEnvironment(serverDirectory);
 
-        ServerDirectory += SubDirectory;
-
-        CString ServerIniFile = GetServer().CreateInitialEnvironment( ServerDirectory );
-
-        // Then asks the server to create an initial environement
-        if ( ServerIniFile.IsEmpty() )
+        // then asks the server to create an initial environement
+        if (serverIniFile.IsEmpty())
         {
             ZIMessage Message;
             Message.DisplayMessage( IDS_ONFIRSTUSE_FAIL, IDS_ONFIRSTUSE_FAIL_TITLE );
@@ -474,7 +471,7 @@ BOOL ZAMainApp::InitInstance()
             return FALSE;
         }
         // Assign the new server ini file
-        SetServerIniFile( ServerIniFile );
+        SetServerIniFile(serverIniFile);
     }
 
     if ( GetServerIniFile().IsEmpty() )
@@ -818,10 +815,10 @@ void ZAMainApp::Release()
 
 // ************************************************** Fichiers **************************************************
 
-CString ZAMainApp::GetApplicationDirectory() const
+CString ZAMainApp::GetApplicationDir() const
 {
-    HINSTANCE    hInstance = AfxGetInstanceHandle();
-    CString        AppDir;
+    HINSTANCE hInstance = AfxGetInstanceHandle();
+    CString   appDir;
 
     if ( hInstance != NULL )
     {
@@ -830,13 +827,13 @@ CString ZAMainApp::GetApplicationDirectory() const
         if ( GetModuleFileName( hInstance, lpszModule, _MAX_PATH ) )
         {
             ZFile File( lpszModule );
-            AppDir = ZDirectory::NormalizeDirectory( File.GetFilePath() );
+            appDir = ZDirectory::NormalizeDirectory( File.GetFilePath() );
         }
 
         delete []lpszModule;
     }
 
-    return AppDir;
+    return appDir;
 }
 
 #ifdef _ZCHECKINFO

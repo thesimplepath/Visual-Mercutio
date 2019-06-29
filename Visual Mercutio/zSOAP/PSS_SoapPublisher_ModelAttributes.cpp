@@ -9,7 +9,7 @@
 #include "PSS_SoapPublisher_ModelAttributes.h"
 
 // processsoft
-#include "PSS_SoapPublisher_Settings.h"
+#include "PSS_SoapData_Settings.h"
 #include "zSoapException.h"
 
 //---------------------------------------------------------------------------
@@ -47,10 +47,10 @@ bool PSS_SoapPublisher_ModelAttributes::Send()
     try
     {
         // create the SOAP proxy
-        SOAPProxy proxy(PSS_SoapPublisher_Settings::m_Url.c_str());
+        SOAPProxy proxy(PSS_SoapData_Settings::m_Url.c_str());
 
         // open the SOAP protocol
-        SOAPMethod pubAttribDef(_T("pubAttribDef"), PSS_SoapPublisher_Settings::m_ModelService.c_str(), _T("http://"));
+        SOAPMethod pubAttribDef(_T("pubAttribDef"), PSS_SoapData_Settings::m_ModelService.c_str(), _T("http://"));
 
         // add data count
         pubAttribDef.AddParameter(_T("attribdefnbr")).SetValue(int(m_DataSet.size()));
@@ -58,7 +58,7 @@ bool PSS_SoapPublisher_ModelAttributes::Send()
         SOAPArray<PSS_SoapData_ModelAttributes> attribDefs;
 
         // populate the SOAP data array
-        for (list<PSS_SoapData_ModelAttributes>::iterator it = m_DataSet.begin(); it != m_DataSet.end(); ++it)
+        for (std::list<PSS_SoapData_ModelAttributes>::iterator it = m_DataSet.begin(); it != m_DataSet.end(); ++it)
             attribDefs.Add(*it);
 
         // add data set

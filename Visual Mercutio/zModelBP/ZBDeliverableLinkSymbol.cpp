@@ -2488,7 +2488,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                riskName,
                                (groupValue ? Z_RISK_IMPACT : (Z_RISK_IMPACT + (i * _MaxRisksSize))),
                                riskDesc,
-                               ZBMediator::Instance()->GetMainApp()->GetRiskImpactContainer()->GetElementAt(GetRiskImpact(i)),
+                               PSS_Application::Instance()->GetMainForm()->GetRiskImpactContainer()->GetElementAt(GetRiskImpact(i)),
                                ZBProperty::PT_EDIT_EXTENDED_READONLY);
 
         propSet.Add(pRisk);
@@ -2503,7 +2503,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                riskName,
                                (groupValue ? Z_RISK_PROBABILITY : (Z_RISK_PROBABILITY + (i * _MaxRisksSize))),
                                riskDesc,
-                               ZBMediator::Instance()->GetMainApp()->GetRiskProbabilityContainer()->GetElementAt(GetRiskProbability(i)),
+                               PSS_Application::Instance()->GetMainForm()->GetRiskProbabilityContainer()->GetElementAt(GetRiskProbability(i)),
                                ZBProperty::PT_EDIT_EXTENDED_READONLY);
 
         propSet.Add(pRisk);

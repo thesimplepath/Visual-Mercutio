@@ -4,14 +4,14 @@
 #define ZASINGLEINSTANCEAPPLICATION_H__4DAE1EA2_2F04_11D3_9832_00C04FB4D0D7__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
 #ifndef __AFXWIN_H__
     #error include 'stdafx.h' before including this file for PCH
 #endif
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -19,27 +19,26 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "ddeml.h"    // DDE definition
+// DDE
+#include "ddeml.h"
 
-// JMR-MODIF - Le 31 décembre 2006 - Ajout de l'en-tête zMediatorZAApp.h
-#include "zMediator\zMediatorZAApp.h"
+// processsoft
+#include "zMediator\PSS_MainForm.h"
 
 #ifdef _ZBASELIBEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
-
-// JMR-MODIF - Le 31 décembre 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
 /////////////////////////////////////////////////////////////////////////////
 // ZASingleInstanceApplication:
 
-class AFX_EXT_CLASS ZASingleInstanceApplication : public zMediatorZAApp
+class AFX_EXT_CLASS ZASingleInstanceApplication : public PSS_MainForm
 {
 public:
 

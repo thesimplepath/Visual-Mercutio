@@ -21,7 +21,7 @@
 #include "PSS_SoapPublishModelAttributes.h"
 #include "ZUSOAPPublishModelGenerateFiles.h"
 
-#include "zSOAP\PSS_SoapPublisher_Settings.h"
+#include "zSOAP\PSS_SoapData_Settings.h"
 #include "zSOAP\PSS_SoapPublisher_MessengerInfo.h"
 
 #include "ZUCheckValidUnit.h"
@@ -781,7 +781,7 @@ BOOL ZVPublishToMessengerLogon::OnInitDialog()
     // Sets the correct address
     if ( m_pInfo )
     {
-        PSS_SoapPublisher_Settings::m_Url = (const char*)m_pInfo->m_MessengerAddress;
+        PSS_SoapData_Settings::m_Url = (const char*)m_pInfo->m_MessengerAddress;
     }
 
     return TRUE;    // return TRUE unless you set the focus to a control

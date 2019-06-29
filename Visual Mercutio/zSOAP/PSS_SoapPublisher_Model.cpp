@@ -9,7 +9,7 @@
 #include "PSS_SoapPublisher_Model.h"
 
 // processsoft
-#include "PSS_SoapPublisher_Settings.h"
+#include "PSS_SoapData_Settings.h"
 #include "zSoapException.h"
 
 //---------------------------------------------------------------------------
@@ -81,14 +81,14 @@ bool PSS_SoapPublisher_Model::Send()
     TRACE(_T("pPublishModel::send().init\n"));
 
     // create the SOAP proxy
-    SOAPProxy proxy(PSS_SoapPublisher_Settings::m_Url.c_str());
+    SOAPProxy proxy(PSS_SoapData_Settings::m_Url.c_str());
 
     try
     {
         TRACE(_T("pPublishModel::send().pubInit\n"));
 
         // open the SOAP protocol
-        SOAPMethod pubInit(_T("pubInit"), PSS_SoapPublisher_Settings::m_ModelService.c_str(), _T("http://"));
+        SOAPMethod pubInit(_T("pubInit"), PSS_SoapData_Settings::m_ModelService.c_str(), _T("http://"));
 
         // add alias
         pubInit.AddParameter(_T("alias")).SetValue(m_Alias);
@@ -110,7 +110,7 @@ bool PSS_SoapPublisher_Model::Send()
         TRACE(_T("pPublishModel::send().pubModel\n"));
 
         // open the SOAP protocol
-        SOAPMethod pubModel(_T("pubModel"), PSS_SoapPublisher_Settings::m_ModelService.c_str(), _T("http://"));
+        SOAPMethod pubModel(_T("pubModel"), PSS_SoapData_Settings::m_ModelService.c_str(), _T("http://"));
 
         // add parameter
         SOAPParameter& mdl = pubModel.AddParameter();
@@ -140,7 +140,7 @@ bool PSS_SoapPublisher_Model::Send()
         if (m_DataSet_Proc.size() > 0)
         {
             // open the SOAP protocol
-            SOAPMethod pubProc(_T("pubProc"), PSS_SoapPublisher_Settings::m_ModelService.c_str(), _T("http://"));
+            SOAPMethod pubProc(_T("pubProc"), PSS_SoapData_Settings::m_ModelService.c_str(), _T("http://"));
 
             // add model identifier and procedure number
             pubProc.AddParameter(_T("modelid")).SetValue(modelID);
@@ -149,7 +149,7 @@ bool PSS_SoapPublisher_Model::Send()
             SOAPArray<PSS_SoapData_Process> procs;
 
             // populate the SOAP data array
-            for (list<PSS_SoapData_Process>::iterator it = m_DataSet_Proc.begin(); it != m_DataSet_Proc.end(); ++it)
+            for (std::list<PSS_SoapData_Process>::iterator it = m_DataSet_Proc.begin(); it != m_DataSet_Proc.end(); ++it)
                 procs.Add(*it);
 
             // add data set
@@ -178,7 +178,7 @@ bool PSS_SoapPublisher_Model::Send()
         if (m_DataSet_Deliv.size() > 0)
         {
             // open the SOAP protocol
-            SOAPMethod pubDeliv(_T("pubDeliv"), PSS_SoapPublisher_Settings::m_ModelService.c_str(), _T("http://"));
+            SOAPMethod pubDeliv(_T("pubDeliv"), PSS_SoapData_Settings::m_ModelService.c_str(), _T("http://"));
 
             // add model identifier and deliveries count
             pubDeliv.AddParameter(_T("modelid")).SetValue(modelID);
@@ -187,7 +187,7 @@ bool PSS_SoapPublisher_Model::Send()
             SOAPArray<PSS_SoapData_Deliverable> delivs;
 
             // populate the SOAP data array
-            for (list<PSS_SoapData_Deliverable>::iterator it = m_DataSet_Deliv.begin(); it != m_DataSet_Deliv.end(); ++it)
+            for (std::list<PSS_SoapData_Deliverable>::iterator it = m_DataSet_Deliv.begin(); it != m_DataSet_Deliv.end(); ++it)
                 delivs.Add(*it);
 
             // add data set
@@ -216,16 +216,16 @@ bool PSS_SoapPublisher_Model::Send()
         if (m_DataSet_SymAttr.size() > 0)
         {
             // open the SOAP protocol
-            SOAPMethod pubPdattr(_T("pubPdattr"), PSS_SoapPublisher_Settings::m_ModelService.c_str(), _T("http://"));
+            SOAPMethod pubPdattr(_T("pubPdattr"), PSS_SoapData_Settings::m_ModelService.c_str(), _T("http://"));
 
             // add model identifier
             pubPdattr.AddParameter(_T("modelid")).SetValue(modelID);
 
             SOAPArray<PSS_SoapData_SymbolAttributes> pdattrs;
 
-            list<PSS_SoapData_SymbolAttributes>::iterator it   = m_DataSet_SymAttr.begin();
-            SOAPParameter&                                size = pubPdattr.AddParameter("pdattrnbr");
-            SOAPParameter&                                r    = pubPdattr.AddParameter("pdattr");
+            std::list<PSS_SoapData_SymbolAttributes>::iterator it   = m_DataSet_SymAttr.begin();
+            SOAPParameter&                                     size = pubPdattr.AddParameter("pdattrnbr");
+            SOAPParameter&                                     r    = pubPdattr.AddParameter("pdattr");
 
             // add alias
             pubPdattr.AddParameter(_T("alias")).SetValue(m_Alias);
@@ -273,7 +273,7 @@ bool PSS_SoapPublisher_Model::Send()
         if (m_DataSet_Distrib.size() > 0)
         {
             // open the SOAP protocol
-            SOAPMethod pubDistrib(_T("pubDistrib"), PSS_SoapPublisher_Settings::m_ModelService.c_str(), _T("http://"));
+            SOAPMethod pubDistrib(_T("pubDistrib"), PSS_SoapData_Settings::m_ModelService.c_str(), _T("http://"));
 
             pubDistrib.AddParameter(_T("modelid")).SetValue(modelID);
             pubDistrib.AddParameter(_T("distribnbr")).SetValue(int(m_DataSet_Distrib.size()));
@@ -281,7 +281,7 @@ bool PSS_SoapPublisher_Model::Send()
             SOAPArray<PSS_SoapData_Distribution> distribs;
 
             // populate the SOAP data array
-            for (list<PSS_SoapData_Distribution>::iterator it = m_DataSet_Distrib.begin(); it != m_DataSet_Distrib.end(); ++it)
+            for (std::list<PSS_SoapData_Distribution>::iterator it = m_DataSet_Distrib.begin(); it != m_DataSet_Distrib.end(); ++it)
                 distribs.Add(*it);
 
             // add data set
@@ -310,7 +310,7 @@ bool PSS_SoapPublisher_Model::Send()
         if (m_DataSet_DistribMap.size() > 0)
         {
             // open the SOAP protocol
-            SOAPMethod pubDistribmap(_T("pubDistribmap"), PSS_SoapPublisher_Settings::m_ModelService.c_str(), _T("http://"));
+            SOAPMethod pubDistribmap(_T("pubDistribmap"), PSS_SoapData_Settings::m_ModelService.c_str(), _T("http://"));
 
             pubDistribmap.AddParameter(_T("modelid")).SetValue(modelID);
             pubDistribmap.AddParameter(_T("distribmapnbr")).SetValue(int(m_DataSet_DistribMap.size()));
@@ -318,7 +318,7 @@ bool PSS_SoapPublisher_Model::Send()
             SOAPArray<PSS_SoapData_DistributionMap> distribmaps;
 
             // populate the SOAP data array
-            for (list<PSS_SoapData_DistributionMap>::iterator it = m_DataSet_DistribMap.begin();
+            for (std::list<PSS_SoapData_DistributionMap>::iterator it = m_DataSet_DistribMap.begin();
                     it != m_DataSet_DistribMap.end(); ++it)
                 distribmaps.Add(*it);
 
@@ -348,7 +348,7 @@ bool PSS_SoapPublisher_Model::Send()
         if (m_DataSet_Inputs.size() > 0)
         {
             // open the SOAP protocol
-            SOAPMethod pubInput(_T("pubInput"), PSS_SoapPublisher_Settings::m_ModelService.c_str(), _T("http://"));
+            SOAPMethod pubInput(_T("pubInput"), PSS_SoapData_Settings::m_ModelService.c_str(), _T("http://"));
 
             pubInput.AddParameter(_T("modelid")).SetValue(modelID);
             pubInput.AddParameter(_T("inputnbr")).SetValue(int(m_DataSet_Inputs.size()));
@@ -356,7 +356,7 @@ bool PSS_SoapPublisher_Model::Send()
             SOAPArray<PSS_SoapData_Input> inputs;
 
             // populate the SOAP data array
-            for (list<PSS_SoapData_Input>::iterator it = m_DataSet_Inputs.begin(); it != m_DataSet_Inputs.end(); ++it)
+            for (std::list<PSS_SoapData_Input>::iterator it = m_DataSet_Inputs.begin(); it != m_DataSet_Inputs.end(); ++it)
                 inputs.Add(*it);
 
             // add data set
@@ -382,7 +382,7 @@ bool PSS_SoapPublisher_Model::Send()
         TRACE(_T("pPublishModel::send().pubDone\n"));
 
         // notify that publication was processed
-        SOAPMethod pubDone(_T("pubDone"), PSS_SoapPublisher_Settings::m_ModelService.c_str(), _T("http://"));
+        SOAPMethod pubDone(_T("pubDone"), PSS_SoapData_Settings::m_ModelService.c_str(), _T("http://"));
 
         // send the data to SOAP proxy and check the result
         if (int(proxy.Execute(pubDone).GetReturnValue()) < 0)
@@ -407,10 +407,10 @@ int PSS_SoapPublisher_Model::GetModelVersion(const std::string& modelref )
         TRACE(_T("pPublishModel::getModelVersion %s\n"), modelref.c_str());
 
         // create the SOAP proxy
-        SOAPProxy proxy(PSS_SoapPublisher_Settings::m_Url.c_str());
+        SOAPProxy proxy(PSS_SoapData_Settings::m_Url.c_str());
 
         // open the SOAP protocol
-        SOAPMethod pubGetModelVersion(_T("pubGetModelVersion"), PSS_SoapPublisher_Settings::m_ModelService.c_str(), _T("http://"));
+        SOAPMethod pubGetModelVersion(_T("pubGetModelVersion"), PSS_SoapData_Settings::m_ModelService.c_str(), _T("http://"));
 
         // set model reference and alias
         pubGetModelVersion.AddParameter(_T("modelref")).SetValue(modelref.c_str());

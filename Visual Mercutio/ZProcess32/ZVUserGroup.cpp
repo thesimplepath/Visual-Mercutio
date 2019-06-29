@@ -13,23 +13,17 @@
 #include "stdafx.h"
 #include "ZVUserGroup.h"
 
-// JMR-MODIF - Le 1er janvier 2007 - Ajout de l'en-tête ZBMediator.h
-#include "zMediator\ZBMediator.h"
-
+// processsoft
+#include "zMediator\PSS_Application.h"
 #include "zBaseLib\ZBToolbarObserverMsg.h"
-
+#include "zModel\ProcGraphModelDoc.h"
 #include "Resource.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
-
-// RS-MODIF 20.12.04 we need doc informations
-#include "zModel\ProcGraphModelDoc.h"
-
-// JMR-MODIF - Le 10 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
 /////////////////////////////////////////////////////////////////////////////
 // Constant definition
@@ -253,20 +247,16 @@ void _ZIUserGroupFlatToolBar::OnAddGroupButton()
 
 void _ZIUserGroupFlatToolBar::OnRenameGroupButton()
 {
-    ZBToolbarObserverMsg Msg( UM_UGP_RENAMEGROUP );
-    NotifyAllObservers( &Msg );
-
-    // JMR-MODIF - Le 1er janvier 2007 - Ordonne au médiateur de rafraîchir l'affichage.
-    ZBMediator::Instance()->RefreshSelectedSymbolAndProperties();
+    ZBToolbarObserverMsg msg(UM_UGP_RENAMEGROUP);
+    NotifyAllObservers(&msg);
+    PSS_Application::Instance()->RefreshSelectedSymbolAndProperties();
 }
 
 void _ZIUserGroupFlatToolBar::OnDeleteGroupButton()
 {
-    ZBToolbarObserverMsg Msg( UM_UGP_DELETEGROUP );
-    NotifyAllObservers( &Msg );
-
-    // JMR-MODIF - Le 1er janvier 2007 - Ordonne au médiateur de rafraîchir l'affichage.
-    ZBMediator::Instance()->RefreshSelectedSymbolAndProperties();
+    ZBToolbarObserverMsg msg(UM_UGP_DELETEGROUP);
+    NotifyAllObservers(&msg);
+    PSS_Application::Instance()->RefreshSelectedSymbolAndProperties();
 }
 
 void _ZIUserGroupFlatToolBar::OnAddRoleButton()

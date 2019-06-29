@@ -1,7 +1,7 @@
 /****************************************************************************
- * ==> PSS_SoapPublisher_Settings ------------------------------------------*
+ * ==> PSS_SoapData_Settings -----------------------------------------------*
  ****************************************************************************
- * Description : Settings for the SOAP protocol                             *
+ * Description : SOAP data containing the settings                          *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
@@ -27,10 +27,10 @@
 #endif
 
 /**
-* Settings for the SOAP protocol
+* SOAP data containing the settings
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_SoapPublisher_Settings
+class AFX_EXT_CLASS PSS_SoapData_Settings
 {
     public:
         static std::string m_Url;
@@ -39,7 +39,7 @@ class AFX_EXT_CLASS PSS_SoapPublisher_Settings
         static std::string m_FileService;
 
     private:
-        PSS_SoapPublisher_Settings()
+        PSS_SoapData_Settings()
         {};
 };
 

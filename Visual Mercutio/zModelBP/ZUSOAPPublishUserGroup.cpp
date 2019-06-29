@@ -6,7 +6,7 @@
 #include "ZUSOAPPublishUserGroup.h"
 
 #include "ZBPublishMessengerModelInformation.h"
-#include "zSOAP\PSS_SoapPublisher_Settings.h"
+#include "zSOAP\PSS_SoapData_Settings.h"
 
 #include "zModel\ProcGraphModelDoc.h"
 #include "zModel\ZBUserGroupEntity.h"
@@ -47,12 +47,12 @@ bool ZUSOAPPublishUserGroup::Publish()
          m_pInfo->m_pDoc->GetMainUserGroup() )
     {
         // Sets the correct address
-        PSS_SoapPublisher_Settings::m_Url = (const char*)m_pInfo->m_MessengerAddress;
+        PSS_SoapData_Settings::m_Url = (const char*)m_pInfo->m_MessengerAddress;
 
         // Process all user groups
         _PublishUserGroup( m_pInfo->m_pDoc->GetMainUserGroup() );
 
-        return m_pw.send();
+        return m_PubWorkgroup.Send();
     }
 
     return false;
@@ -77,16 +77,12 @@ void ZUSOAPPublishUserGroup::_PublishUserGroup( ZBUserGroupEntity* pGroup )
     CString DayCost;
     DayCost.Format( _T( "%.2f" ), pGroup->GetEntityCost() );
 
-    //JMR-MODIF - Le 29 mai 2006 - Ajout de la publication vers le champ "mission" (4ème paramètre).
-    //JMR-MODIF - Le 6 décembre 2006 - Ajout de la publication vers le champ "daycost" (5ème paramètre).
-    m_pw.addWorkgroup( pworkgroup(PSS_String16( pGroup->GetGUID()),                                                                // Workgroup GUID
-                                  PSS_String16( ( ( pGroup->GetParent() != NULL ) ? pGroup->GetParent()->GetGUID() : _T( "" ) ) ),    // Parent GUID
-                                  PSS_String16( pGroup->GetEntityName() ),                                                            // Workgroup name
-                                  PSS_String16( pGroup->GetEntityDescription() ),                                                    // Mission
-                                  PSS_String16( DayCost ) ) );                                                                        // Coût journalier
-
-    // JMR-MODIF - Le 21 juin 2006 - Ajout de l'alias dans la publication.
-    m_pw.addAlias( m_pInfo->m_MessengerAlias );
+    m_PubWorkgroup.Add(PSS_SoapData_Workgroup(PSS_String16(pGroup->GetGUID()),                                             // workgroup GUID
+                                              PSS_String16(pGroup->GetParent() ? pGroup->GetParent()->GetGUID() : _T("")), // parent GUID
+                                              PSS_String16(pGroup->GetEntityName()),                                       // workgroup name
+                                              PSS_String16(pGroup->GetEntityDescription()),                                // mission
+                                              PSS_String16(DayCost)));                                                     // day cost
+    m_PubWorkgroup.AddAlias(m_pInfo->m_MessengerAlias);
 
 #ifdef _DEBUG
     CString s;

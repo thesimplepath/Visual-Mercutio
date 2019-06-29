@@ -9,17 +9,15 @@
 #include "stdafx.h"
 #include "ZVRules.h"
 
-// JMR-MODIF - Le 1er janvier 2007 - Ajout de l'en-tête ZBMediator.h
-#include "zMediator\ZBMediator.h"
-
+// processsoft
+#include "zMediator\PSS_Application.h"
 #include "zBaseLib\ZBToolbarObserverMsg.h"
-
 #include "Resource.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
@@ -193,20 +191,16 @@ void _ZIRulesFlatToolBar::OnAddRuleButton()
 
 void _ZIRulesFlatToolBar::OnRenameRuleButton()
 {
-    ZBToolbarObserverMsg Msg( UM_RUL_RENAMERULE );
-    NotifyAllObservers( &Msg );
-
-    // JMR-MODIF - Le 1er janvier 2007 - Ordonne au médiateur de rafraîchir l'affichage.
-    ZBMediator::Instance()->RefreshPropertiesWorkspace();
+    ZBToolbarObserverMsg msg(UM_RUL_RENAMERULE);
+    NotifyAllObservers(&msg);
+    PSS_Application::Instance()->RefreshPropertiesWorkspace();
 }
 
 void _ZIRulesFlatToolBar::OnDeleteRuleButton()
 {
-    ZBToolbarObserverMsg Msg( UM_RUL_DELETERULE );
-    NotifyAllObservers( &Msg );
-
-    // JMR-MODIF - Le 1er janvier 2007 - Ordonne au médiateur de rafraîchir l'affichage.
-    ZBMediator::Instance()->RefreshPropertiesWorkspace();
+    ZBToolbarObserverMsg msg(UM_RUL_DELETERULE);
+    NotifyAllObservers(&msg);
+    PSS_Application::Instance()->RefreshPropertiesWorkspace();
 }
 
 void _ZIRulesFlatToolBar::OnMoveRuleButton()

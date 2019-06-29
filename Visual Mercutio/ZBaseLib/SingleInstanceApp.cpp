@@ -19,7 +19,7 @@ ZASingleInstanceApplication* p_OneApp;
 /////////////////////////////////////////////////////////////////////////////
 // ZASingleInstanceApplication
 
-BEGIN_MESSAGE_MAP( ZASingleInstanceApplication, zMediatorZAApp )
+BEGIN_MESSAGE_MAP(ZASingleInstanceApplication, PSS_MainForm)
     //{{AFX_MSG_MAP(ZASingleInstanceApplication)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()

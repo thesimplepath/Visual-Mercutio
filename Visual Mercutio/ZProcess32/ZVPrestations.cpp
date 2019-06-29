@@ -9,17 +9,15 @@
 #include "stdafx.h"
 #include "ZVPrestations.h"
 
-// JMR-MODIF - Le 1er janvier 2007 - Ajout de l'en-tête ZBMediator.h
-#include "zMediator\ZBMediator.h"
-
+// processsoft
+#include "zMediator\PSS_Application.h"
 #include "zBaseLib\ZBToolbarObserverMsg.h"
-
 #include "Resource.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
@@ -193,20 +191,16 @@ void _ZIPrestationsFlatToolBar::OnAddPrestationButton()
 
 void _ZIPrestationsFlatToolBar::OnRenamePrestationButton()
 {
-    ZBToolbarObserverMsg Msg( UM_PRS_RENAMEPRESTATION );
-    NotifyAllObservers( &Msg );
-
-    // JMR-MODIF - Le 1er janvier 2007 - Ordonne au médiateur de rafraîchir l'affichage.
-    ZBMediator::Instance()->RefreshPropertiesWorkspace();
+    ZBToolbarObserverMsg msg(UM_PRS_RENAMEPRESTATION);
+    NotifyAllObservers(&msg);
+    PSS_Application::Instance()->RefreshPropertiesWorkspace();
 }
 
 void _ZIPrestationsFlatToolBar::OnDeletePrestationButton()
 {
-    ZBToolbarObserverMsg Msg( UM_PRS_DELETEPRESTATION );
-    NotifyAllObservers( &Msg );
-
-    // JMR-MODIF - Le 1er janvier 2007 - Ordonne au médiateur de rafraîchir l'affichage.
-    ZBMediator::Instance()->RefreshPropertiesWorkspace();
+    ZBToolbarObserverMsg msg(UM_PRS_DELETEPRESTATION);
+    NotifyAllObservers(&msg);
+    PSS_Application::Instance()->RefreshPropertiesWorkspace();
 }
 
 void _ZIPrestationsFlatToolBar::OnMovePrestationButton()

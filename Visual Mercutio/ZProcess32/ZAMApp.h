@@ -127,7 +127,7 @@ public:
     virtual BOOL LoadUserFile() const = 0;
 
     // Return the application directory
-    CString GetApplicationDirectory() const;
+    CString GetApplicationDir() const;
 
 #ifdef _ZCHECKINFO
     // Return the application directory
@@ -589,7 +589,7 @@ public:
 
     //## Operation: SetServerIniFile%912623195
     // Set the global ini file. This function is virtual.
-    virtual void SetServerIniFile( CString& value );
+    virtual void SetServerIniFile(const CString& value );
 
     //## Operation: GetDocumentList%928442320
     // Fill the document list with open document.
@@ -881,10 +881,10 @@ inline CString ZAMainApp::GetServerIniFile()
     //## end ZAMainApp::GetServerIniFile%912537579.body
 }
 
-inline void ZAMainApp::SetServerIniFile( CString& value )
+inline void ZAMainApp::SetServerIniFile(const CString& value)
 {
     //## begin ZAMainApp::SetServerIniFile%912623195.body preserve=yes
-    GetApplicationOptions().SetServerIniFile( value );
+    GetApplicationOptions().SetServerIniFile(value);
     //## end ZAMainApp::SetServerIniFile%912623195.body
 }
 

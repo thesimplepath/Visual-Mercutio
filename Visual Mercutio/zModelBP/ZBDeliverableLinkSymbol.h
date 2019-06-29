@@ -13,7 +13,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -21,38 +21,19 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-// JMR-MODIF - Le 27 mars 2006 - Ajout des en-têtes ProcGraphModelMdlBP.h et ZDProcessGraphPage.h.
-#include "ProcGraphModelMdlBP.h"
+// processsoft
+#include "zMediator\PSS_Application.h"
 #include "zModel\ZDProcessGraphPage.h"
-
-// JMR-MODIF - Le 19 novembre 2006 - Ajout de l'en-tête ZBLogicalRulesEntity.h
 #include "zModel\ZBLogicalRulesEntity.h"
-
-// JMR-MODIF - Le 22 novembre 2006 - Ajout de l'en-tête ZBProcRules.h
-#include "ZBProcRules.h"
-
-// JMR-MODIF - Le 22 novembre 2006 - Ajout de l'en-tête ZBBPRulesProp.h
-#include "ZBBPRulesProp.h"
-
-// JMR-MODIF - Le 3 juin 2007 - Ajout de l'en-tête ZBProcRisk.h
-#include "ZBProcRisk.h"
-
-// JMR-MODIF - Le 3 juin 2007 - Ajout de l'en-tête ZBBPRiskProp.h
-#include "ZBBPRiskProp.h"
-
-// JMR-MODIF - Le 8 juillet 2007 - Ajout de l'en-tête ZBMediator.
-#include "zMediator\ZBMediator.h"
-
-// JMR-MODIF - Le 8 juillet 2007 - Ajout de l'en-tête ZVRiskTypeContainer.
-#include "ZVRiskTypeContainer.h"
-
-// JMR-MODIF - Le 11 juillet 2007 - Ajout de l'en-tête ZVRiskImpactContainer.
-#include "ZVRiskImpactContainer.h"
-
-// JMR-MODIF - Le 11 juillet 2007 - Ajout de l'en-tête ZVRiskProbabilityContainer.
-#include "ZVRiskProbabilityContainer.h"
-
 #include "zModel\ZBLinkSymbol.h"
+#include "ProcGraphModelMdlBP.h"
+#include "ZBProcRules.h"
+#include "ZBBPRulesProp.h"
+#include "ZBProcRisk.h"
+#include "ZBBPRiskProp.h"
+#include "ZVRiskTypeContainer.h"
+#include "ZVRiskImpactContainer.h"
+#include "ZVRiskProbabilityContainer.h"
 #include "ZBBPAnnualNumberProp.h"
 #include "ZBBPSimPropDeliverable.h"
 #include "ZBBPCostPropDeliverable2.h"
@@ -709,21 +690,18 @@ public:
         m_Risks.SetRiskDesc( Index, Value );
     }
 
+    // todo FIXME -cFeature -oJean: such functions are repeated 1000x in the code, please make a common function!
     // Obtient le type du risque, en spécifiant son index.
-    CString GetRiskType( size_t Index ) const
+    CString GetRiskType(std::size_t index) const
     {
-        int        Count        = ZBMediator::Instance()->GetMainApp()->GetRiskTypeContainer()->GetElementCount();
-        CString    s_RiskType    = m_Risks.GetRiskType( Index );
+        int     count    = PSS_Application::Instance()->GetMainForm()->GetRiskTypeContainer()->GetElementCount();
+        CString riskType = m_Risks.GetRiskType(index);
 
-        for ( int i = 0; i < Count; i++ )
-        {
-            if ( s_RiskType == ZBMediator::Instance()->GetMainApp()->GetRiskTypeContainer()->GetElementAt( i ) )
-            {
-                return m_Risks.GetRiskType( Index );
-            }
-        }
+        for (int i = 0; i < count; ++i)
+            if (riskType == PSS_Application::Instance()->GetMainForm()->GetRiskTypeContainer()->GetElementAt(i))
+                return m_Risks.GetRiskType(index);
 
-        return _T( "" );
+        return _T("");
     }
 
     // Inscrit le type du risque, en spécifiant son index.

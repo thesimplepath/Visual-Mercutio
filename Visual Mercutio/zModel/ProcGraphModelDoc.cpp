@@ -1,17 +1,17 @@
 // ProcGraphModelDoc.cpp : implementation of the ZDProcessGraphModelDoc class
 
 #include "stdafx.h"
+#include "ProcGraphModelDoc.h"
 
+// processsoft
+#include "zMediator\PSS_Application.h"
+#include "zProperty\ZBDynamicPropertiesManager.h"
 #include "zBaseLib\ZBDocumentObserverMsg.h"
 #include "zBaseLib\File.h"
 #include "zBaseLib\ZILog.h"
 #include "zBaseLib\ZUFloatingToolbar.h"
 #include "zBaseLib\ZUGUID.h"
 #include "zBaseLib\MsgBox.h"
-
-#include "zProperty\ZBDynamicPropertiesManager.h"
-
-#include "ProcGraphModelDoc.h"
 #include "ProcGraphModelView.h"
 #include "ProcGraphChildFrm.h"
 #include "ProcGraphModelCtlr.h"
@@ -19,9 +19,6 @@
 #include "ZBUnitObserverMsg.h"
 #include "ZBLogicalSystemEntity.h"
 #include "ZBGenericSymbolErrorLine.h"
-
-// JMR-MODIF - Le 29 juillet 2007 - Ajout de l'en-tête ZBMediator.h
-#include "zMediator\ZBMediator.h"
 
 #include "zModelRes.h"
 
@@ -1169,10 +1166,9 @@ BOOL ZDProcessGraphModelDoc::OnSaveDocument( const char* pszPathName )
     }
     // *******************************************************************************************************
 
-    // If it is a template, check the model
-    if ( DocumentIsTemplate() )
-    {
-    }
+    // if template check the model
+    if (DocumentIsTemplate())
+    {}
 
     // Build the new title,
     // FALSE: do not add to MRU
@@ -1181,8 +1177,7 @@ BOOL ZDProcessGraphModelDoc::OnSaveDocument( const char* pszPathName )
     // Adapt the model information
     GetModel()->SetModelName( GetTitle() );
 
-    // JMR-MODIF - Le 29 juillet 2007 - Mets à jour le nom du dernier fichier sauveagrdé.
-    ZBMediator::Instance()->GetMainApp()->UpdateLastLoadedFile( pszPathName );
+    PSS_Application::Instance()->GetMainForm()->UpdateLastLoadedFile(pszPathName);
 
     // Message to notify the start of filesave
     if ( m_pOutputLog )

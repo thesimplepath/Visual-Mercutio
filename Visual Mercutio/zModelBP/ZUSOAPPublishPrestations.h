@@ -30,7 +30,6 @@
 #include "zBaseLib\ZILog.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
 
-#include "zSOAP\PSS_SoapPublisher_Settings.h"
 #include "zSOAP\PSS_SoapPublisher_Prestations.h"
 
 //////////////////////////////////////////////////////////////////////

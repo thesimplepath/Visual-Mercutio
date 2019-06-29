@@ -84,7 +84,7 @@ public:
                                    const BOOL        KeepHistoryOnProcess        = TRUE );
 
     //    Set the server ini file
-    void SetServerIniFile( const CString value );
+    void SetServerIniFile(const CString& value);
 
     // Get the defined server ini file
     const CString GetServerIniFile() const;
@@ -371,7 +371,7 @@ inline const CString ZBServer::GetNormalModelTemplate() const
 }
 
 // Set the server ini file
-inline void ZBServer::SetServerIniFile( const CString value )
+inline void ZBServer::SetServerIniFile(const CString& value)
 {
     m_IniFile = value;
 }

@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include "ZUSOAPPublishLogicalSystem.h"
 
-#include "zSOAP\PSS_SoapPublisher_Settings.h"
+#include "zSOAP\PSS_SoapData_Settings.h"
 #include "zModel\ZBLogicalSystemEntity.h"
 #include "ZBPublishMessengerModelInformation.h"
 
@@ -45,7 +45,7 @@ bool ZUSOAPPublishLogicalSystem::Publish()
     if ( m_pInfo && m_pInfo->m_pDoc && m_pInfo->m_pDoc->GetMainLogicalSystem() )
     {
         // Sets the correct address
-        PSS_SoapPublisher_Settings::m_Url = (const char*)m_pInfo->m_MessengerAddress;
+        PSS_SoapData_Settings::m_Url = (const char*)m_pInfo->m_MessengerAddress;
 
         // Process all logical systems
         _PublishLogicalSystem( m_pInfo->m_pDoc->GetMainLogicalSystem() );

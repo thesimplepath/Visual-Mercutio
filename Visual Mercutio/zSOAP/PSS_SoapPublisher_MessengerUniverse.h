@@ -124,8 +124,8 @@ class AFX_EXT_CLASS PSS_SoapPublisher_MessengerUniverse
         virtual bool Send();
 
     private:
-        CString                              m_Alias;
-        list<PSS_SoapData_MessengerUniverse> m_DataSet;
+        CString                                   m_Alias;
+        std::list<PSS_SoapData_MessengerUniverse> m_DataSet;
 };
 
 END_EASYSOAP_NAMESPACE

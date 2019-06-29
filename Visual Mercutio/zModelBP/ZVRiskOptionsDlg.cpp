@@ -9,23 +9,20 @@
 #include "stdafx.h"
 #include "ZVRiskOptionsDlg.h"
 
+// processsoft
 #include "zBaseLib\ZAGlobal.h"
-#include "zMediator\ZBMediator.h"
-
+#include "zMediator\PSS_Application.h"
 #include "ZVRiskModifyDlg.h"
 #include "ZVRiskModifyStaticDlg.h"
-
 #include "ZVRiskTypeContainer.h"
 #include "ZVRiskImpactContainer.h"
 #include "ZVRiskProbabilityContainer.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
-
-// JMR-MODIF - Le 12 juin 2007 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
 BEGIN_MESSAGE_MAP( ZVRiskOptionsDlg, CDialog )
     //{{AFX_MSG_MAP(ZVRiskOptionsDlg)
@@ -143,67 +140,69 @@ void ZVRiskOptionsDlg::UpdateSeverity()
 }
 
 // Cette fonction permet à l'utilisateur de sélectionner un fichier exstant.
-void ZVRiskOptionsDlg::SelectFileToOpen( CString Directory, CString Caption, CString Extension, CString& Filename )
+void ZVRiskOptionsDlg::SelectFileToOpen(const CString& dir, const CString& caption, const CString& extension, CString& filename)
 {
-    CString s_Filename    = _T( "" );
-    CString s_Filter    = _T( "" );
+    CFileDialog dlgFile(TRUE);
 
-    CFileDialog m_DlgFile( TRUE );
+    CString title = _T("");
+    VERIFY(title.LoadString(IDS_RISK_OPENFILE));
 
-    CString s_Title = _T( "" );
-    VERIFY( s_Title.LoadString( IDS_RISK_OPENFILE ) );
+    // configure the Open File dialog
+    dlgFile.m_ofn.lpstrTitle  = title;
+    dlgFile.m_ofn.hwndOwner   = AfxGetMainWnd()->GetSafeHwnd();
+    dlgFile.m_ofn.Flags      |= OFN_HIDEREADONLY | OFN_FILEMUSTEXIST;
 
-    // Configuration de la fenêtre "Ouvrir un fichier..."
-    m_DlgFile.m_ofn.lpstrTitle        = s_Title;
-    m_DlgFile.m_ofn.hwndOwner        = AfxGetMainWnd()->GetSafeHwnd();
-    m_DlgFile.m_ofn.Flags           |= OFN_HIDEREADONLY | OFN_FILEMUSTEXIST;
+    CString filter = _T("");
 
-    // Crée le filtre d'extension des fichiers d'initialisation (*.ini)
-    s_Filter += Caption;
-    s_Filter += (char)'\0';
-    s_Filter += _T( "*" ) + Extension;
-    s_Filter += (char)'\0';
+    // create ini file extension filter (*.ini)
+    filter += caption;
+    filter += (char)'\0';
+    filter += _T( "*" ) + extension;
+    filter += (char)'\0';
 
-    m_DlgFile.m_ofn.nMaxCustFilter++;
+    ++dlgFile.m_ofn.nMaxCustFilter;
 
-    // Crée le filtre d'extension pour tous les fichiers (*.*)
-    CString s_AllFilter = _T( "" );
-    VERIFY( s_AllFilter.LoadString( AFX_IDS_ALLFILTER ) );
+    // create all files extension filter (*.*)
+    CString allFilter = _T("");
+    VERIFY(allFilter.LoadString(AFX_IDS_ALLFILTER));
 
-    s_Filter += s_AllFilter;
-    s_Filter += (char)'\0';
-    s_Filter += _T( "*.*" );
-    s_Filter += (char)'\0';
+    filter += allFilter;
+    filter += '\0';
+    filter += _T("*.*");
+    filter += '\0';
 
-    m_DlgFile.m_ofn.nMaxCustFilter++;
+    ++dlgFile.m_ofn.nMaxCustFilter;
 
-    // Ajoute les données nécessaires pour les fichiers.
-    m_DlgFile.m_ofn.nMaxFile        = _MAX_PATH;
-    m_DlgFile.m_ofn.lpstrFile        = s_Filename.GetBuffer( _MAX_PATH );
-    m_DlgFile.m_ofn.lpstrFilter        = s_Filter;
-    m_DlgFile.m_ofn.lpstrInitialDir    = Directory;
+    CString fn = _T("");
 
-    if ( m_DlgFile.DoModal() == IDOK )
+    // add file data
+    dlgFile.m_ofn.nMaxFile        = _MAX_PATH;
+    dlgFile.m_ofn.lpstrFile       = fn.GetBuffer(_MAX_PATH);
+    dlgFile.m_ofn.lpstrFilter     = filter;
+    dlgFile.m_ofn.lpstrInitialDir = dir;
+
+    // show the Open File dialog
+    if (dlgFile.DoModal() == IDOK)
     {
-        Filename = s_Filename.GetBuffer();
+        filename = fn.GetBuffer();
         return;
     }
 
-    Filename = _T( "" );
+    filename = _T("");
 }
 
 // Cette fonction mets à jour les données des types après un changement de fichier.
-BOOL ZVRiskOptionsDlg::ReloadTypeFile( CString Filename )
+BOOL ZVRiskOptionsDlg::ReloadTypeFile(const CString& filename )
 {
-    ZBMediator::Instance()->GetMainApp()->GetRiskTypeContainer()->RemoveAllElements();
+    PSS_Application::Instance()->GetMainForm()->GetRiskTypeContainer()->RemoveAllElements();
 
-    if ( ZBMediator::Instance()->GetMainApp()->GetRiskTypeContainer()->LoadFile( Filename ) == TRUE )
+    if (PSS_Application::Instance()->GetMainForm()->GetRiskTypeContainer()->LoadFile(filename))
     {
         LoadTypeList();
 
-        CString s_NoRiskType = _T( "" );
-        s_NoRiskType.LoadString( IDS_NO_RISK_TYPE );
-        m_RiskTypeCtrl.SetWindowText( s_NoRiskType );
+        CString noRiskType = _T("");
+        noRiskType.LoadString(IDS_NO_RISK_TYPE);
+        m_RiskTypeCtrl.SetWindowText(noRiskType);
 
         return TRUE;
     }
@@ -212,16 +211,14 @@ BOOL ZVRiskOptionsDlg::ReloadTypeFile( CString Filename )
 }
 
 // Cette fonction mets à jour les données des impacts après un changement de fichier.
-BOOL ZVRiskOptionsDlg::ReloadImpactFile( CString Filename )
+BOOL ZVRiskOptionsDlg::ReloadImpactFile(const CString& filename )
 {
-    ZBMediator::Instance()->GetMainApp()->GetRiskImpactContainer()->RemoveAllElements();
+    PSS_Application::Instance()->GetMainForm()->GetRiskImpactContainer()->RemoveAllElements();
 
-    if ( ZBMediator::Instance()->GetMainApp()->GetRiskImpactContainer()->LoadFile( Filename ) == TRUE )
+    if (PSS_Application::Instance()->GetMainForm()->GetRiskImpactContainer()->LoadFile(filename))
     {
         LoadImpactList();
-
-        m_RiskImpactCtrl.SetCurSel( m_RiskImpact );
-
+        m_RiskImpactCtrl.SetCurSel(m_RiskImpact);
         return TRUE;
     }
 
@@ -229,16 +226,14 @@ BOOL ZVRiskOptionsDlg::ReloadImpactFile( CString Filename )
 }
 
 // Cette fonction mets à jour les données des probabilités après un changement de fichier.
-BOOL ZVRiskOptionsDlg::ReloadProbabilityFile( CString Filename )
+BOOL ZVRiskOptionsDlg::ReloadProbabilityFile(const CString& filename )
 {
-    ZBMediator::Instance()->GetMainApp()->GetRiskProbabilityContainer()->RemoveAllElements();
+    PSS_Application::Instance()->GetMainForm()->GetRiskProbabilityContainer()->RemoveAllElements();
 
-    if ( ZBMediator::Instance()->GetMainApp()->GetRiskProbabilityContainer()->LoadFile( Filename ) == TRUE )
+    if (PSS_Application::Instance()->GetMainForm()->GetRiskProbabilityContainer()->LoadFile(filename))
     {
         LoadProbabilityList();
-
-        m_RiskProbabilityCtrl.SetCurSel( m_RiskProbability );
-
+        m_RiskProbabilityCtrl.SetCurSel(m_RiskProbability);
         return TRUE;
     }
 
@@ -248,53 +243,32 @@ BOOL ZVRiskOptionsDlg::ReloadProbabilityFile( CString Filename )
 // Cette fonction remplit la liste des types de risques.
 void ZVRiskOptionsDlg::LoadTypeList()
 {
-    if ( m_RiskTypeCtrl.GetCount() > 0 )
-    {
-        while ( m_RiskTypeCtrl.GetCount() > 0 )
-        {
-            m_RiskTypeCtrl.DeleteString( 0 );
-        }
-    }
+    while (m_RiskTypeCtrl.GetCount() > 0)
+        m_RiskTypeCtrl.DeleteString(0);
 
-    for ( int i = 0; i < ZBMediator::Instance()->GetMainApp()->GetRiskTypeContainer()->GetElementCount(); i++ )
-    {
-        m_RiskTypeCtrl.AddString( ZBMediator::Instance()->GetMainApp()->GetRiskTypeContainer()->GetElementAt( i ) );
-    }
+    for (int i = 0; i < PSS_Application::Instance()->GetMainForm()->GetRiskTypeContainer()->GetElementCount(); ++i)
+        m_RiskTypeCtrl.AddString(PSS_Application::Instance()->GetMainForm()->GetRiskTypeContainer()->GetElementAt(i));
 }
 
 // Cette fonction remplit la liste des impacts des risques.
 void ZVRiskOptionsDlg::LoadImpactList()
 {
-    if ( m_RiskImpactCtrl.GetCount() > 0 )
-    {
-        while ( m_RiskImpactCtrl.GetCount() > 0 )
-        {
-            m_RiskImpactCtrl.DeleteString( 0 );
-        }
-    }
+    while (m_RiskImpactCtrl.GetCount() > 0)
+        m_RiskImpactCtrl.DeleteString(0);
 
-    for ( int i = 0; i < ZBMediator::Instance()->GetMainApp()->GetRiskImpactContainer()->GetElementCount(); i++ )
-    {
-        m_RiskImpactCtrl.AddString( ZBMediator::Instance()->GetMainApp()->GetRiskImpactContainer()->GetElementAt( i ) );
-    }
+    for (int i = 0; i < PSS_Application::Instance()->GetMainForm()->GetRiskImpactContainer()->GetElementCount(); ++i)
+        m_RiskImpactCtrl.AddString(PSS_Application::Instance()->GetMainForm()->GetRiskImpactContainer()->GetElementAt(i));
 }
 
 // Cette fonction remplit la liste des probabilités des risques.
 void ZVRiskOptionsDlg::LoadProbabilityList()
 {
-    if ( m_RiskProbabilityCtrl.GetCount() > 0 )
-    {
-        while ( m_RiskProbabilityCtrl.GetCount() > 0 )
-        {
-            m_RiskProbabilityCtrl.DeleteString( 0 );
-        }
-    }
+    while (m_RiskProbabilityCtrl.GetCount() > 0)
+        m_RiskProbabilityCtrl.DeleteString(0);
 
-    for ( int i = 0; i < ZBMediator::Instance()->GetMainApp()->GetRiskProbabilityContainer()->GetElementCount(); i++ )
-    {
+    for (int i = 0; i < PSS_Application::Instance()->GetMainForm()->GetRiskProbabilityContainer()->GetElementCount(); ++i)
         m_RiskProbabilityCtrl.AddString
-            ( ZBMediator::Instance()->GetMainApp()->GetRiskProbabilityContainer()->GetElementAt( i ) );
-    }
+                (PSS_Application::Instance()->GetMainForm()->GetRiskProbabilityContainer()->GetElementAt(i));
 }
 
 void ZVRiskOptionsDlg::DoDataExchange( CDataExchange* pDX )
@@ -357,97 +331,82 @@ void ZVRiskOptionsDlg::OnCbnSelchangeRiskProbability()
 // Cette fonction est appelée lorsque l'utilisateur clique sur le bouton "modifier un fichier de type".
 void ZVRiskOptionsDlg::OnBnClickedModifyRiskType()
 {
-    CString m_TypeFilename = ZBMediator::Instance()->GetMainApp()->GetRiskTypeContainer()->GetFilename();
+    const CString         typeFilename = PSS_Application::Instance()->GetMainForm()->GetRiskTypeContainer()->GetFilename();
+          ZVRiskModifyDlg modifyTypeDlg(typeFilename, sRiskTypeExtension);
 
-    ZVRiskModifyDlg m_ModifyTypeDlg( m_TypeFilename, sRiskTypeExtension );
-
-    if ( m_ModifyTypeDlg.DoModal() == TRUE )
-    {
-        ReloadTypeFile( m_ModifyTypeDlg.GetFilename() );
-    }
+    if (modifyTypeDlg.DoModal())
+        ReloadTypeFile(modifyTypeDlg.GetFilename());
 }
 
 // Cette fonction est appelée lorsque l'utilisateur clique sur le bouton "ouvrir un fichier de type".
 void ZVRiskOptionsDlg::OnBnClickedOpenRiskType()
 {
-    CString m_Filename    = _T( "" );
-    CString m_Desc        = _T( "" );
+    CString filename = _T("");
+    CString desc     = _T("");
 
-    m_Desc.LoadString( IDS_RISK_TYPE_FILE_DESCRIPTION );
+    desc.LoadString(IDS_RISK_TYPE_FILE_DESCRIPTION);
 
-    SelectFileToOpen( ZBMediator::Instance()->GetMainApp()->GetApplicationDirectory() + szRiskDirectory,
-                      m_Desc,
-                      sRiskTypeExtension,
-                      m_Filename );
+    SelectFileToOpen(PSS_Application::Instance()->GetMainForm()->GetApplicationDir() + szRiskDirectory,
+                     desc,
+                     sRiskTypeExtension,
+                     filename );
 
-    if ( !m_Filename.IsEmpty() )
-    {
-        ReloadTypeFile( m_Filename );
-    }
+    if (!filename.IsEmpty())
+        ReloadTypeFile(filename);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur clique sur le bouton "modifier un fichier d'impact".
 void ZVRiskOptionsDlg::OnBnClickedModifyRiskImpact()
 {
-    CString m_ImpactFilename = ZBMediator::Instance()->GetMainApp()->GetRiskImpactContainer()->GetFilename();
+    const CString               impactFilename = PSS_Application::Instance()->GetMainForm()->GetRiskImpactContainer()->GetFilename();
+          ZVRiskModifyStaticDlg riskModifyStatic(impactFilename, sRiskImpactExtension, 5);
 
-    ZVRiskModifyStaticDlg m_RiskModifyStatic( m_ImpactFilename, sRiskImpactExtension, 5 );
-
-    if ( m_RiskModifyStatic.DoModal() == IDOK )
-    {
-        ReloadImpactFile( m_RiskModifyStatic.GetFilename() );
-    }
+    if (riskModifyStatic.DoModal() == IDOK)
+        ReloadImpactFile(riskModifyStatic.GetFilename());
 }
 
 // Cette fonction est appelée lorsque l'utilisateur clique sur le bouton "ouvrir un fichier d'impact".
 void ZVRiskOptionsDlg::OnBnClickedOpenRiskImpact()
 {
-    CString m_Filename    = _T( "" );
-    CString m_Desc        = _T( "" );
+    CString filename = _T("");
+    CString desc     = _T("");
 
-    m_Desc.LoadString( IDS_RISK_IMPACT_FILE_DESCRIPTION );
+    desc.LoadString(IDS_RISK_IMPACT_FILE_DESCRIPTION);
 
-    SelectFileToOpen( ZBMediator::Instance()->GetMainApp()->GetApplicationDirectory() + szRiskDirectory,
-                      m_Desc,
-                      sRiskImpactExtension,
-                      m_Filename );
+    SelectFileToOpen(PSS_Application::Instance()->GetMainForm()->GetApplicationDir() + szRiskDirectory,
+                     desc,
+                     sRiskImpactExtension,
+                     filename);
 
-    if ( !m_Filename.IsEmpty() )
-    {
-        ReloadImpactFile( m_Filename );
-    }
+    if (!filename.IsEmpty())
+        ReloadImpactFile(filename);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur clique sur le bouton "modifier un fichier de probabilités".
 void ZVRiskOptionsDlg::OnBnClickedModifyRiskProbability()
 {
-    CString m_ProbabilityFilename = ZBMediator::Instance()->GetMainApp()->GetRiskProbabilityContainer()->GetFilename();
+    const CString               probabilityFileName = PSS_Application::Instance()->GetMainForm()->GetRiskProbabilityContainer()->GetFilename();
+          ZVRiskModifyStaticDlg riskModifyStatic(probabilityFileName, sRiskProbabilityExtension, 6);
 
-    ZVRiskModifyStaticDlg m_RiskModifyStatic( m_ProbabilityFilename, sRiskProbabilityExtension, 6 );
-
-    if ( m_RiskModifyStatic.DoModal() == IDOK )
-    {
-        ReloadProbabilityFile( m_RiskModifyStatic.GetFilename() );
-    }
+    if (riskModifyStatic.DoModal() == IDOK)
+        ReloadProbabilityFile(riskModifyStatic.GetFilename());
 }
 
 // Cette fonction est appelée lorsque l'utilisateur clique sur le bouton "ouvrir un fichier de probabilités".
 void ZVRiskOptionsDlg::OnBnClickedOpenRiskProbability()
 {
-    CString m_Filename = _T( "" );
-    CString m_Desc        = _T( "" );
+    CString filename = _T("");
+    CString desc     = _T("");
 
-    m_Desc.LoadString( IDS_RISK_PROBABILITY_FILE_DESCRIPTION );
+    desc.LoadString(IDS_RISK_PROBABILITY_FILE_DESCRIPTION);
 
-    SelectFileToOpen( ZBMediator::Instance()->GetMainApp()->GetApplicationDirectory() + szRiskDirectory,
-                      m_Desc,
-                      sRiskProbabilityExtension,
-                      m_Filename );
+    SelectFileToOpen(PSS_Application::Instance()->GetMainForm()->GetApplicationDir() + szRiskDirectory,
+                     desc,
+                     sRiskProbabilityExtension,
+                     filename);
 
-    if ( !m_Filename.IsEmpty() )
-    {
-        ReloadProbabilityFile( m_Filename );
-    }
+    if (!filename.IsEmpty())
+        ReloadProbabilityFile(filename);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur clique sur le bouton "OK".

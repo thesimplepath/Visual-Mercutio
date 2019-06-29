@@ -1,58 +1,68 @@
-// zMediator.cpp : définit les fonctions d'initialisation pour la DLL.
+/****************************************************************************
+ * ==> zMediator -----------------------------------------------------------*
+ ****************************************************************************
+ * Description : DLL main entry point                                       *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
 
-// Cette ligne est à décommenter si l'outil Visual Leak Detector est utilisé.
+// uncomment this line if the Visual Leak Detector tool is used
 //#include <VLD.h>
 
 #include <afxdllx.h>
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
-AFX_EXT_DATA AFX_EXTENSION_MODULE ZMediatorDLL = { NULL, NULL };
-
+//---------------------------------------------------------------------------
+// Global variables
+//---------------------------------------------------------------------------
+AFX_EXT_DATA AFX_EXTENSION_MODULE g_zMediatorDLL = {NULL, NULL};
+//---------------------------------------------------------------------------
+// DLL main entry point
+//---------------------------------------------------------------------------
 extern "C" int APIENTRY
-DllMain( HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved )
+DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 {
-    // Remove this if you use lpReserved
-    UNREFERENCED_PARAMETER( lpReserved );
+    // remove this if you use lpReserved
+    UNREFERENCED_PARAMETER(lpReserved);
 
-    if ( dwReason == DLL_PROCESS_ATTACH )
+    switch (dwReason)
     {
-        TRACE0( "ZMEDIATOR.DLL Initializing!\n" );
-        
-        // Extension DLL one-time initialization
-        if ( !AfxInitExtensionModule( ZMediatorDLL, hInstance ) )
+        case DLL_PROCESS_ATTACH:
         {
-            return 0;
+            TRACE0("ZMEDIATOR.DLL Initializing!\n");
+
+            // extension DLL one-time initialization
+            if (!AfxInitExtensionModule(g_zMediatorDLL, hInstance))
+                return 0;
+
+            // insert this DLL into the resource chain. NOTE: If this Extension DLL is being implicitly linked to by
+            // an MFC Regular DLL (such as an ActiveX Control) instead of an MFC application, then you will want to
+            // remove this line from DllMain and put it in a separate function exported from this Extension DLL. The
+            // Regular DLL that uses this Extension DLL should then explicitly call that function to initialize this
+            // Extension DLL. Otherwise, the CDynLinkLibrary object will not be attached to the regular DLL's resource
+            // chain, and serious problems will result
+            new CDynLinkLibrary(g_zMediatorDLL);
+
+            break;
         }
 
-        // Insert this DLL into the resource chain
-        // NOTE: If this Extension DLL is being implicitly linked to by
-        //  an MFC Regular DLL (such as an ActiveX Control)
-        //  instead of an MFC application, then you will want to
-        //  remove this line from DllMain and put it in a separate
-        //  function exported from this Extension DLL.  The Regular DLL
-        //  that uses this Extension DLL should then explicitly call that
-        //  function to initialize this Extension DLL.  Otherwise,
-        //  the CDynLinkLibrary object will not be attached to the
-        //  Regular DLL's resource chain, and serious problems will
-        //  result.
+        case DLL_PROCESS_DETACH:
+        {
+            TRACE0("ZMEDIATOR.DLL Terminating!\n");
 
-        new CDynLinkLibrary( ZMediatorDLL );
-    }
-    else if ( dwReason == DLL_PROCESS_DETACH )
-    {
-        TRACE0( "ZMEDIATOR.DLL Terminating!\n" );
+            // terminate the library before destructors are called
+            AfxTermExtensionModule(g_zMediatorDLL);
 
-        // Terminate the library before destructors are called
-        AfxTermExtensionModule( ZMediatorDLL );
+            break;
+        }
     }
 
-    // Ok
     return 1;
 }
+//---------------------------------------------------------------------------

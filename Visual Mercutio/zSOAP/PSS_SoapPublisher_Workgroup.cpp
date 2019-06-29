@@ -1,87 +1,86 @@
 /****************************************************************************
- * ==> PSS_SoapPublisher_Prestations ---------------------------------------*
+ * ==> PSS_SoapPublisher_Workgroup -----------------------------------------*
  ****************************************************************************
- * Description : SOAP protocol to publish the prestations                   *
+ * Description : SOAP protocol to publish a workgroup                       *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include "stdafx.h"
-#include "PSS_SoapPublisher_Prestations.h"
+#include "PSS_SoapPublisher_Workgroup.h"
 
 // processsoft
 #include "PSS_SoapData_Settings.h"
 #include "zSoapException.h"
 
 //---------------------------------------------------------------------------
-// PSS_SoapPublisher_Prestations
+// PSS_SoapPublisher_Workgroup
 //---------------------------------------------------------------------------
-pPublishPrestations::pPublishPrestations()
+PSS_SoapPublisher_Workgroup::PSS_SoapPublisher_Workgroup()
 {
     m_Alias = _T("");
 }
 //---------------------------------------------------------------------------
-pPublishPrestations::~pPublishPrestations()
+PSS_SoapPublisher_Workgroup::~PSS_SoapPublisher_Workgroup()
 {}
 //---------------------------------------------------------------------------
-void pPublishPrestations::Reset()
+void PSS_SoapPublisher_Workgroup::Reset()
 {
     m_DataSet.clear();
 }
 //---------------------------------------------------------------------------
-void pPublishPrestations::Set(const PSS_SoapData_Prestations& data)
+void PSS_SoapPublisher_Workgroup::Add(const PSS_SoapData_Workgroup& data)
 {
     m_DataSet.insert(m_DataSet.end(), data);
 }
 //---------------------------------------------------------------------------
-void pPublishPrestations::AddAlias(const CString& alias)
+void PSS_SoapPublisher_Workgroup::AddAlias(const CString& alias)
 {
     m_Alias = alias;
 }
 //---------------------------------------------------------------------------
-bool pPublishPrestations::Send()
+bool PSS_SoapPublisher_Workgroup::Send()
 {
-    SOAPDebugger::SetFile(_T("c:\\psssoap_pubprestations.log"));
+    SOAPDebugger::SetFile(_T("c:\\psssoap_pubwkg.log"));
 
     bool result = true;
 
     try
     {
-        TRACE(_T("pPublishPrestations.send()"));
+        TRACE(_T("pPublishWorkgroup.send()\n"));
 
         // create the SOAP proxy
         SOAPProxy proxy(PSS_SoapData_Settings::m_Url.c_str());
 
         // open the SOAP protocol
-        SOAPMethod pubPrestations(_T("pubPrestations"), PSS_SoapData_Settings::m_ModelService.c_str(), _T("http://"));
+        SOAPMethod pubWorkgroup(_T("pubWorkgroup"), PSS_SoapData_Settings::m_ModelService.c_str(), _T("http://"));
 
-        // add prestations count
-        pubPrestations.AddParameter(_T("prestationsnbr")).SetValue(int(m_DataSet.size()));
+        // add data count
+        pubWorkgroup.AddParameter(_T("wkgnbr")).SetValue(int(m_DataSet.size()));
 
-        SOAPArray<PSS_SoapData_Prestations> prestations;
+        SOAPArray<PSS_SoapData_Workgroup> workgroups;
 
         // populate the SOAP data array
-        for (std::list<PSS_SoapData_Prestations>::iterator it = m_DataSet.begin(); it != m_DataSet.end(); ++it)
-            prestations.Add(*it);
+        for (std::list<PSS_SoapData_Workgroup>::iterator it = m_DataSet.begin(); it != m_DataSet.end(); ++it)
+            workgroups.Add(*it);
 
         // add data set
-        SOAPParameter& p = pubPrestations.AddParameter(_T("prestations"));
-        p << prestations;
+        SOAPParameter& p = pubWorkgroup.AddParameter(_T("wkg"));
+        p << workgroups;
 
         // add alias
-        pubPrestations.AddParameter(_T("alias")).SetValue(m_Alias);
+        pubWorkgroup.AddParameter(_T("alias")).SetValue(m_Alias);
 
         // send the data to SOAP proxy and check the result
-        if (int(proxy.Execute(pubPrestations).GetReturnValue()) < 0)
+        if (int(proxy.Execute(pubWorkgroup).GetReturnValue()) < 0)
             result = false;
     }
     catch (SOAPException& ex)
     {
-        TRACE(_T("Caught SOAP exception:%s\n"), ex.What().Str());
+        TRACE(_T("Caught SOAP exception:%s\n" ), ex.What().Str());
         result = false;
     }
 
     SOAPDebugger::Close();
-
     return result;
 }
 //---------------------------------------------------------------------------

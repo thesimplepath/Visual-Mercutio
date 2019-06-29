@@ -9,20 +9,18 @@
 #include "stdafx.h"
 #include "ZVRiskCalculateParametersDlg.h"
 
-#include "zMediator\ZBMediator.h"
-
+// processsoft
+#include "zMediator\PSS_Application.h"
 #include "zBaseLib\ZDTextFile.h"
 #include "zBaseLib\file.h"
-
 #include "zBaseLib\MsgBox.h"
 #include "zBaseLib\file.h"
-
 #include "zBaseLib\ZUSystemOption.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
 // Définition des clés pour le fichier de configuration.

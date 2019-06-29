@@ -16,7 +16,7 @@
 #include "zModel\ZBSymbol.h"
 #include "zModel\ZBLinkSymbol.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
-#include "zSOAP\PSS_SoapPublisher_Settings.h"
+#include "zSOAP\PSS_SoapData_Settings.h"
 #include "zModelBPRes.h"
 
 #ifdef _DEBUG
@@ -41,8 +41,8 @@ PSS_SoapPublishModelAttributes::~PSS_SoapPublishModelAttributes()
 bool PSS_SoapPublishModelAttributes::OnStart()
 {
     // get the server address
-    m_MessengerAddress      = static_cast<const char*>(m_pClass);
-    PSS_SoapPublisher_Settings::m_Url = (const char*)m_MessengerAddress;
+    m_MessengerAddress           = static_cast<const char*>(m_pClass);
+    PSS_SoapData_Settings::m_Url = (const char*)m_MessengerAddress;
 
     // reset the IDs array
     std::memset(m_IDArray, 0, sizeof(m_IDArray));

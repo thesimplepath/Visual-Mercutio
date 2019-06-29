@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zConversion\PSS_Encoding.h"
-#include "PSS_SoapPublisher_Settings.h"
+#include "PSS_SoapData_Settings.h"
 #include "zSoapException.h"
 
 //---------------------------------------------------------------------------
@@ -29,10 +29,10 @@ int PSS_SoapPublisher_MessengerInfo::GetVersion()
     try
     {
         // create the SOAP proxy
-        SOAPProxy proxy(PSS_SoapPublisher_Settings::m_Url.c_str());
+        SOAPProxy proxy(PSS_SoapData_Settings::m_Url.c_str());
 
         // open the SOAP protocol
-        SOAPMethod pubGetVersion(_T("pubGetVersion"), PSS_SoapPublisher_Settings::m_ServerService.c_str(), _T("http://"));
+        SOAPMethod pubGetVersion(_T("pubGetVersion"), PSS_SoapData_Settings::m_ServerService.c_str(), _T("http://"));
 
         // execute the query and get the result
         const int result = proxy.Execute(pubGetVersion).GetReturnValue();
@@ -56,10 +56,10 @@ std::string PSS_SoapPublisher_MessengerInfo::GetLanguage()
     try
     {
         // create the SOAP proxy
-        SOAPProxy proxy(PSS_SoapPublisher_Settings::m_Url.c_str());
+        SOAPProxy proxy(PSS_SoapData_Settings::m_Url.c_str());
 
         // open the SOAP protocol
-        SOAPMethod pubGetLanguage(_T("pubGetLanguage"), PSS_SoapPublisher_Settings::m_ServerService.c_str(), _T("http://"));
+        SOAPMethod pubGetLanguage(_T("pubGetLanguage"), PSS_SoapData_Settings::m_ServerService.c_str(), _T("http://"));
 
         SOAPString result;
 
@@ -86,10 +86,10 @@ int PSS_SoapPublisher_MessengerInfo::Authenticate(const std::string& login, cons
     try
     {
         // create the SOAP proxy
-        SOAPProxy proxy(PSS_SoapPublisher_Settings::m_Url.c_str());
+        SOAPProxy proxy(PSS_SoapData_Settings::m_Url.c_str());
 
         // open the SOAP protocol
-        SOAPMethod authenticate(_T("Authenticate"), PSS_SoapPublisher_Settings::m_ServerService.c_str(), _T("http://"));
+        SOAPMethod authenticate(_T("Authenticate"), PSS_SoapData_Settings::m_ServerService.c_str(), _T("http://"));
 
         // Set the login and password
         authenticate.AddParameter(_T("login")).SetValue(login.c_str());

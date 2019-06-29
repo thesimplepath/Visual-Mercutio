@@ -9,6 +9,8 @@
 #include "stdafx.h"
 #include "ZUSOAPPublishPrestations.h"
 
+// processsoft
+#include "zSOAP\PSS_SoapData_Settings.h"
 #include "zModelBPRes.h"
 
 #ifdef _DEBUG
@@ -37,7 +39,7 @@ bool ZUSOAPPublishPrestations::Publish()
     if ( m_pInfo && m_pInfo->m_pDoc && m_pInfo->m_pDoc->GetMainLogicalPrestations() )
     {
         // set the correct address
-        PSS_SoapPublisher_Settings::m_Url = (const char*)m_pInfo->m_MessengerAddress;
+        PSS_SoapData_Settings::m_Url = (const char*)m_pInfo->m_MessengerAddress;
 
         // Process all prestations
         _PublishPrestations( m_pInfo->m_pDoc->GetMainLogicalPrestations() );

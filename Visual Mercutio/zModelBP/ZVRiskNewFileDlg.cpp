@@ -9,18 +9,17 @@
 #include "stdafx.h"
 #include "ZVRiskNewFileDlg.h"
 
-#include "zMediator\ZBMediator.h"
-
+// processsoft
+#include "zMediator\PSS_Application.h"
 #include "zBaseLib\ZDTextFile.h"
 #include "zBaseLib\file.h"
-
 #include "zBaseLib\MsgBox.h"
 #include "zBaseLib\file.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
 BEGIN_MESSAGE_MAP( ZVRiskNewFileDlg, CDialog )
@@ -91,10 +90,10 @@ BOOL ZVRiskNewFileDlg::OnInitDialog()
 {
     CDialog::OnInitDialog();
 
-    m_Directory = ZBMediator::Instance()->GetMainApp()->GetApplicationDirectory() + szRiskDirectory;
-    m_Directory_Ctrl.SetWindowText( m_Directory );
+    m_Directory = PSS_Application::Instance()->GetMainForm()->GetApplicationDir() + szRiskDirectory;
+    m_Directory_Ctrl.SetWindowText(m_Directory);
 
-    m_OK_Ctrl.EnableWindow( FALSE );
+    m_OK_Ctrl.EnableWindow(FALSE);
 
     return TRUE;
 }

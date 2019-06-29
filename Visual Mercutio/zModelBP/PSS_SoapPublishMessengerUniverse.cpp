@@ -10,7 +10,7 @@
 #include "PSS_SoapPublishMessengerUniverse.h"
 
 // processsoft
-#include "zSOAP\PSS_SoapPublisher_Settings.h"
+#include "zSOAP\PSS_SoapData_Settings.h"
 #include "ZBPublishMessengerModelInformation.h"
 #include "zModel\ProcGraphModelDoc.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
@@ -40,7 +40,7 @@ bool PSS_SoapPublishMessengerUniverse::Publish()
     if (m_pInfo && m_pInfo->m_pDoc && m_pInfo->m_pDoc->GetMainLogicalSystem())
     {
         // get the Messenger url
-        PSS_SoapPublisher_Settings::m_Url = (const char*)m_pInfo->m_MessengerAddress;
+        PSS_SoapData_Settings::m_Url = (const char*)m_pInfo->m_MessengerAddress;
 
         // populate the data to send
         m_PubMngUni.Reset();

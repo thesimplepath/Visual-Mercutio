@@ -10,7 +10,7 @@
 #include "zModel\ProcGraphModelDoc.h"
 
 #include "ZBPublishMessengerModelInformation.h"
-#include "zSOAP\PSS_SoapPublisher_Settings.h"
+#include "zSOAP\PSS_SoapData_Settings.h"
 
 #include "zModel\ZBSymbol.h"
 #include "zModel\ZBLinkSymbol.h"
@@ -153,7 +153,7 @@ bool ZUSOAPPublishModelDefinition::OnStart()
     m_MessengerAddress                            = pInfo->m_MessengerAddress;
 
     // set the correct address
-    PSS_SoapPublisher_Settings::m_Url = (const char*)m_MessengerAddress;
+    PSS_SoapData_Settings::m_Url = (const char*)m_MessengerAddress;
 
     // Reset the counter for rows
     m_CounterRow = 0;

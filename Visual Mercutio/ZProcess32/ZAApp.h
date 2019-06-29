@@ -236,9 +236,9 @@ public:
     void Release();
 
     // JMR-MODIF - Le 29 juillet 2007 - Cette fonction permet de mettre à jour le dernier fichier chargé.
-    void UpdateLastLoadedFile( CString Filename )
+    void UpdateLastLoadedFile(const CString& filename )
     {
-        SetLastLoadedFile( Filename );
+        SetLastLoadedFile(filename);
     }
 
     //## Other Operations (specified)
@@ -304,8 +304,8 @@ protected:
 
     /////////////////////////////////////////////////////////////////////////////
     // Open Save call-back operations
-    virtual void OnAfterOpenDocument( CDocument* pDoc, CString Filename );
-    virtual void OnAfterSaveDocument( CDocument* pDoc );
+    virtual void OnAfterOpenDocument(CDocument* pDoc, const CString& filename);
+    virtual void OnAfterSaveDocument(CDocument* pDoc);
 
     // Called by the framework when a server has been chosen
     virtual void OnServerChanged();
