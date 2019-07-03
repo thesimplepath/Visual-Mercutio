@@ -10,11 +10,13 @@
 #include "PSS_SoapPublishMessengerUniverse.h"
 
 // processsoft
-#include "zSOAP\PSS_SoapData_Settings.h"
-#include "ZBPublishMessengerModelInformation.h"
+#include "zBaseLib\ZILog.h"
 #include "zModel\ProcGraphModelDoc.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
-#include "zBaseLib\ZILog.h"
+#include "zSOAP\PSS_SoapData_Settings.h"
+#include "ZBPublishMessengerModelInformation.h"
+
+// resources
 #include "zModelBPRes.h"
 
 #ifdef _DEBUG
@@ -39,16 +41,17 @@ bool PSS_SoapPublishMessengerUniverse::Publish()
     // valid info to send?
     if (m_pInfo && m_pInfo->m_pDoc && m_pInfo->m_pDoc->GetMainLogicalSystem())
     {
-        // get the Messenger url
+        // copy the publication address from source info
         PSS_SoapData_Settings::m_Url = (const char*)m_pInfo->m_MessengerAddress;
 
-        // populate the data to send
+        // publish the Messenger universe and its alias
         m_PubMngUni.Reset();
         m_PubMngUni.Add(PSS_SoapData_MessengerUniverse(PSS_String16(m_pInfo->m_pDoc->GetSystemDefGUID()),
                                                        PSS_String16(m_pInfo->m_pDoc->GetPrestationsDefGUID()),
                                                        PSS_String16(m_pInfo->m_pDoc->GetUserDefGUID())));
         m_PubMngUni.AddAlias(m_pInfo->m_MessengerAlias);
 
+        // log the debug info
         #ifdef _DEBUG
             CString s;
             s.Format(_T(" System def GUID = %s\n" ), (const char*)m_pInfo->m_pDoc->GetSystemDefGUID());

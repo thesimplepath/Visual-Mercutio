@@ -5,7 +5,7 @@
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include <afxdllx.h>
 
 #ifdef _DEBUG

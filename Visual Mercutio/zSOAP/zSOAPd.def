@@ -1,4 +1,4 @@
-; zSOAPd.def : Declares the module parameters for the DLL.
+; zSOAPd.def: Declares the module parameters for the DLL
 
 LIBRARY "zSOAPd"
 
@@ -6,4 +6,4 @@ LIBRARY "zSOAPd"
 ;DESCRIPTION 'zSOAPd Windows Dynamic Link Library'
 
 EXPORTS
-    ; Explicit exports can go here
+    ; explicit exports can go here

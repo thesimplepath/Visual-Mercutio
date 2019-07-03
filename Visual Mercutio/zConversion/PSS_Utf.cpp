@@ -5,7 +5,7 @@
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "PSS_Utf.h"
 
 //---------------------------------------------------------------------------
@@ -255,13 +255,21 @@ std::string PSS_Utf::UTF16toUTF8(const PSS_String16& str)
     char*     pTrg    = new char[len * 2 + 2];
     char*     pOutput = pTrg;
 
-    if (ConvertUTF16toUTF8((UTF16**)&str,
-                           (const UTF16*)(str + len),
-                           (UTF8**)&pTrg,
-                           (const UTF8*)(pTrg + len * 2)) != ok)
+    try
+    {
+        if (ConvertUTF16toUTF8((UTF16**)&str,
+            (const UTF16*)(str + len),
+            (UTF8**)&pTrg,
+            (const UTF8*)(pTrg + len * 2)) != ok)
+        {
+            delete[] pOutput;
+            return _T("");
+        }
+    }
+    catch (...)
     {
         delete[] pOutput;
-        return _T("");
+        throw;
     }
 
     std::string ret = pOutput;
@@ -277,13 +285,21 @@ PSS_String16 PSS_Utf::UTF8toUTF16(const std::string& str)
     wchar_t*    pOutput = pTrg;
     const char* pSrcPtr = str.c_str();
 
-    if (ConvertUTF8toUTF16((UTF8**)&(pSrcPtr),
-                           (UTF8*)(pSrcPtr + len),
-                           (UTF16**)&(pTrg),
-                           (const UTF16*)(pTrg + len * 2)) != ok)
+    try
+    {
+        if (ConvertUTF8toUTF16((UTF8**)&(pSrcPtr),
+                               (UTF8*)(pSrcPtr + len),
+                               (UTF16**)&(pTrg),
+                               (const UTF16*)(pTrg + len * 2)) != ok)
+        {
+            delete[] pOutput;
+            return _T("");
+        }
+    }
+    catch (...)
     {
         delete[] pOutput;
-        return _T("");
+        throw;
     }
 
     PSS_String16 ret(pOutput);

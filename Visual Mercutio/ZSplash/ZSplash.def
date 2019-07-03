@@ -1,9 +1,0 @@
-; zSplash.def : Declares the module parameters for the DLL.
-
-LIBRARY "zSplash"
-
-; NOTE deactivated because unsupported by the compiler
-;DESCRIPTION 'zSplash Windows Dynamic Link Library'
-
-EXPORTS
-    ; Explicit exports can go here

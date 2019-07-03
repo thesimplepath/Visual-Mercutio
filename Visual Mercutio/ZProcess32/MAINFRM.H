@@ -7,8 +7,8 @@
 #include "zBaseLib\BaseFrm.h"
 
 #include "zWinUtil32\ProjectBar.h"
-#include "zTip\TipBar.h"
-#include "zTip\HelpBar.h"
+#include "zTip\PSS_TipOfDayBar.h"
+#include "zTip\PSS_HelpContextBar.h"
 #include "zBaseLib\ZISubject.h"
 #include "ZVProcessWorkspace.h"
 #include "ZVOutputWorkspace.h"
@@ -47,7 +47,7 @@ public:
         return m_ProjectWindowBar;
     };
 
-    ZTipOfDayBar& GetwndTipOfDayBar()
+    PSS_TipOfDayBar& GetwndTipOfDayBar()
     {
         return m_wndTipOfDayBar;
     };
@@ -122,12 +122,11 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-
-    ZIProjectBar            m_ProjectWindowBar;
-    ZTipOfDayBar            m_wndTipOfDayBar;
-    ZVProcessWorkspace        m_wndWorkspace;
-    ZVOutputWorkspace        m_wndOutputWorkspace;
-    ZVPropertiesWorkspace    m_wndPropertiesWorkspace;
+    ZIProjectBar          m_ProjectWindowBar;
+    PSS_TipOfDayBar       m_wndTipOfDayBar;
+    ZVProcessWorkspace    m_wndWorkspace;
+    ZVOutputWorkspace     m_wndOutputWorkspace;
+    ZVPropertiesWorkspace m_wndPropertiesWorkspace;
 };
 
 #endif // __DSGNFRM_H

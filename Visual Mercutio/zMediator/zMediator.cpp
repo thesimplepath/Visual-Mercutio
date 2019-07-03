@@ -5,7 +5,7 @@
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#include "stdafx.h"
+#include "StdAfx.h"
 
 // uncomment this line if the Visual Leak Detector tool is used
 //#include <VLD.h>

@@ -1,7 +1,7 @@
 /****************************************************************************
  * ==> zSOAPLib ------------------------------------------------------------*
  ****************************************************************************
- * Description : easysoap library link                                      *
+ * Description : zSOAP global linking                                       *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
@@ -18,7 +18,7 @@
         #pragma message("Automatically linking with zSOAPd.dll")
     #endif
     #ifdef NDEBUG
-        #pragma comment(lib,"zSOAP.lib") 
+        #pragma comment(lib, "zSOAP.lib") 
         #pragma message("Automatically linking with zSOAP.dll") 
     #endif
 #endif

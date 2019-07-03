@@ -143,18 +143,14 @@
     <None Include="zMediatorD.def" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Resource.h" />
-    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="StdAfx.h" />
     <ClInclude Include="PSS_Application.h" />
-    <ClInclude Include="zMediator.h" />
+    <ClInclude Include="zMediatorLib.h" />
     <ClInclude Include="zMediatorRes.h" />
     <ClInclude Include="PSS_MainForm.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="zMediator.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -47,6 +47,12 @@ class ZBPublishMessengerModelInformation;
 class AFX_EXT_CLASS PSS_SoapPublishModelAttributes : public ZUModelNavigation
 {
     public:
+        /**
+        * Constructor
+        *@param pInfo - info to publish
+        *@param pModel - owning model, can be NULL
+        *@param pClass - owning class, can be NULL
+        */
         PSS_SoapPublishModelAttributes(ZBPublishMessengerModelInformation* pInfo,
                                        ZDProcessGraphModelMdl*             pModel = NULL,
                                        void*                               pClass = NULL);
@@ -63,16 +69,18 @@ class AFX_EXT_CLASS PSS_SoapPublishModelAttributes : public ZUModelNavigation
         * Called when a publication is finished
         *@return true on success, otherwise false
         */
-        virtual bool OnFinish    ();
+        virtual bool OnFinish();
 
         /**
         * Called when symbol properties should be added to publication
+        *@param pSymbol - symbol for which attributes sould be published
         *@return true on success, otherwise false
         */
         virtual bool OnSymbol(ZBSymbol* pSymbol);
 
         /**
         * Called when link properties should be added to publication
+        *@param pSymbol - symbol for which attributes sould be published
         *@return true on success, otherwise false
         */
         virtual bool OnLink(ZBLinkSymbol* pLink);
@@ -89,7 +97,7 @@ class AFX_EXT_CLASS PSS_SoapPublishModelAttributes : public ZUModelNavigation
         *@param key - key to check and add
         *@return true if key already exists and was not added, false if key was not found and added
         */
-        bool KeyExist (int key);
+        bool KeyExist(int key);
 
     private:
         ZBPublishMessengerModelInformation* m_pInfo;

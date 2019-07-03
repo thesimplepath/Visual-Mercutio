@@ -1,0 +1,10 @@
+; ZSplRes.def: Declares the module parameters for the DLL
+
+LIBRARY "ZSplRes"
+
+; NOTE deactivated because unsupported by the compiler
+;DESCRIPTION 'ZSplRes Windows Dynamic Link Library'
+
+EXPORTS
+    ; explicit exports can go here
+    InitZSplResDLL    @1

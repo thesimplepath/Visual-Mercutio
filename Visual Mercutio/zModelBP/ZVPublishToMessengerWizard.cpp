@@ -4,46 +4,35 @@
 #include "stdafx.h"
 #include "ZVPublishToMessengerWizard.h"
 
+// processsoft
+#include "zBaseLib\ZILog.h"
+#include "zBaseLib\ZUSystemOption.h"
+#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\ZAGlobal.h"
 #include "zModel\ProcGraphModelDoc.h"
-// JMR-MODIF - Le 25 mai 2005 - Ajout de #define _ZMODELEXPORT et #undef _ZMODELEXPORT pour supprimer une erreur.
 #define _ZMODELEXPORT
 #include "zModel\ProcGraphModelView.h"
 #undef _ZMODELEXPORT
-
-#include "ZBPublishMessengerModelInformation.h"
 #include "zModel\ZBInfoModelGraphicGeneration.h"
-
-#include "ZUSOAPPublishUserGroup.h"
-#include "ZUSOAPPublishLogicalSystem.h"
-#include "ZUSOAPPublishPrestations.h"
-#include "PSS_SoapPublishMessengerUniverse.h"
-#include "ZUSOAPPublishModelDefinition.h"
-#include "PSS_SoapPublishModelAttributes.h"
-#include "ZUSOAPPublishModelGenerateFiles.h"
-
+#include "zModel\ZBGenericSymbolErrorLine.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
 #include "zSOAP\PSS_SoapPublisher_MessengerInfo.h"
-
+#include "zSOAP\PSS_SoapException.h"
+#include "ZBPublishMessengerModelInformation.h"
+#include "PSS_SoapPublishUserGroup.h"
+#include "PSS_SoapPublishLogicalSystem.h"
+#include "PSS_SoapPublishPrestations.h"
+#include "PSS_SoapPublishMessengerUniverse.h"
+#include "PSS_SoapPublishModelDefinition.h"
+#include "PSS_SoapPublishModelAttributes.h"
+#include "PSS_SOAPPublishModelGenerateFiles.h"
 #include "ZUCheckValidUnit.h"
 #include "ZUCheckMessengerValidUnit.h"
 
-// Include files for log
-#include "zBaseLib\ZILog.h"
-#include "zModel\ZBGenericSymbolErrorLine.h"
-
-#include "zBaseLib\ZUSystemOption.h"
-
-#include "zSOAP\PSS_SoapException.h"
-
-#include "zBaseLib\MsgBox.h"
-
-#include "zBaseLib\ZAGlobal.h"
-#include ".\zvpublishtomessengerwizard.h"
-
 #ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[]=__FILE__;
+    #define new DEBUG_NEW
 #endif
 
 // JMR-MODIF - Le 2 mars 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
@@ -255,7 +244,7 @@ int ZVPublishToMessengerWizard::DoModal()
                 m_pLog->AddLine( e );
             }
 
-            ZUSOAPPublishUserGroup SOAPPublishGroups( &Info, m_pLog );
+            PSS_SoapPublishUserGroup SOAPPublishGroups( &Info, m_pLog );
 
             int retries = 0;
 
@@ -300,7 +289,7 @@ int ZVPublishToMessengerWizard::DoModal()
                 m_pLog->AddLine( e );
             }
 
-            ZUSOAPPublishLogicalSystem SOAPPublishLogicalSystem( &Info, m_pLog );
+            PSS_SoapPublishLogicalSystem SOAPPublishLogicalSystem( &Info, m_pLog );
 
             int retries = 0;
 
@@ -347,7 +336,7 @@ int ZVPublishToMessengerWizard::DoModal()
                 m_pLog->AddLine( e );
             }
 
-            ZUSOAPPublishPrestations SOAPPublishPrestations( &Info, m_pLog );
+            PSS_SoapPublishPrestations SOAPPublishPrestations( &Info, m_pLog );
 
             int retries = 0;
 
@@ -444,7 +433,7 @@ int ZVPublishToMessengerWizard::DoModal()
             }
 
             // Publish the model
-            ZUSOAPPublishModelDefinition SOAPPublishModel( &Info,
+            PSS_SoapPublishModelDefinition SOAPPublishModel( &Info,
                                                            m_pModelDoc->GetModel(),
                                                            static_cast<void*>( &Info ) );
 
@@ -506,7 +495,7 @@ int ZVPublishToMessengerWizard::DoModal()
                                                     pDC,
                                                     ZAGlobal::GetServer() );
 
-            ZUSOAPPublishModelGenerateFiles ModelGen( m_pModelDoc->GetModel(), &ModelInfo, &Info );
+            PSS_SoapPublishModelGenerateFiles ModelGen( m_pModelDoc->GetModel(), &ModelInfo, &Info );
 
             // Assigns the log pointer
             ModelGen.SetLog( m_pLog );

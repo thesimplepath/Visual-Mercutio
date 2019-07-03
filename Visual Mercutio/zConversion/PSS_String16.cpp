@@ -6,7 +6,7 @@
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#include <StdAfx.h>
+#include "StdAfx.h"
 #include "PSS_String16.h"
 
 #ifdef _DEBUG

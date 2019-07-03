@@ -1488,7 +1488,7 @@ ZIProjectBar* ZAApp::GetProjectWindowBar()
 // ************************************************* Tip of day *************************************************
 
 // Cette fonction permet d'obtenir le pointeur sur l'espace de travail de la fenêtre "Tip of day".
-ZTipOfDayBar* ZAApp::GetwndTipOfDayBar()
+PSS_TipOfDayBar* ZAApp::GetwndTipOfDayBar()
 {
     ZIMainFrame* pFrame = GetMainFrame();
 

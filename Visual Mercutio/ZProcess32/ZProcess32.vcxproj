@@ -702,26 +702,6 @@
       <Project>{b6990205-cf36-49c7-85ce-6f5aed455305}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\ZSplash\ZSplash.vcxproj">
-      <Project>{a24a764a-48ee-493d-8590-698769f8baa8}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\ZSplRes\ZSplRes.vcxproj">
-      <Project>{329bc652-cc7c-4a8e-8c1f-2cdc98564a03}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\ztip\ztip.vcxproj">
-      <Project>{895c61ca-88cd-4bf7-8d73-132abb03d7db}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\ZWeb\ZWeb.vcxproj">
-      <Project>{b84cbcb4-91bf-4e9b-9818-014caaf2371e}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\ZWinUtil32\ZWinUtil32.vcxproj">
-      <Project>{cec2c95d-f221-48fc-868f-4e38ecbbb4d3}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\zWkf\zWkf.vcxproj">
       <Project>{4e050203-8cbe-42ef-b185-b776f6c6c492}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

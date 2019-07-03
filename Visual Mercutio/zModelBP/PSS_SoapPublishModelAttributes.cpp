@@ -17,6 +17,8 @@
 #include "zModel\ZBLinkSymbol.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
+
+// resources
 #include "zModelBPRes.h"
 
 #ifdef _DEBUG
@@ -31,8 +33,8 @@
 PSS_SoapPublishModelAttributes::PSS_SoapPublishModelAttributes(ZBPublishMessengerModelInformation* pInfo,
                                                                ZDProcessGraphModelMdl*             pModel,
                                                                void*                               pClass) :
-    m_pInfo(pInfo),
-    ZUModelNavigation(pModel, pClass)
+    ZUModelNavigation(pModel, pClass),
+    m_pInfo(pInfo)
 {}
 //---------------------------------------------------------------------------
 PSS_SoapPublishModelAttributes::~PSS_SoapPublishModelAttributes()
@@ -40,7 +42,7 @@ PSS_SoapPublishModelAttributes::~PSS_SoapPublishModelAttributes()
 //---------------------------------------------------------------------------
 bool PSS_SoapPublishModelAttributes::OnStart()
 {
-    // get the server address
+    // copy the publication address from source info
     m_MessengerAddress           = static_cast<const char*>(m_pClass);
     PSS_SoapData_Settings::m_Url = (const char*)m_MessengerAddress;
 
@@ -52,16 +54,18 @@ bool PSS_SoapPublishModelAttributes::OnStart()
 //---------------------------------------------------------------------------
 bool PSS_SoapPublishModelAttributes::OnFinish()
 {
-    // get the main document
-    CDocument* pDoc = m_pModel->GetDocument();
-
-    // found the correct one?
-    if (!pDoc || !ISA(pDoc, ZDProcessGraphModelDoc))
+    if (!m_pModel)
         return false;
 
-    // get the dynamics properties
-    ZBDynamicPropertiesManager* pDynPropMgr =
-        dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetDynamicPropertiesManager();
+    // get the model main document
+    ZDProcessGraphModelDoc* pDoc = dynamic_cast<ZDProcessGraphModelDoc*>(m_pModel->GetDocument());
+
+    // found it?
+    if (!pDoc)
+        return false;
+
+    // get the dynamic properties
+    ZBDynamicPropertiesManager* pDynPropMgr = pDoc->GetDynamicPropertiesManager();
 
     if (!pDynPropMgr)
         return false;
@@ -158,7 +162,7 @@ void PSS_SoapPublishModelAttributes::Publish(const ZBPropertySet& propSet)
         // check if property already exists in array, add it if not
         if (!KeyExist(key))
         {
-            // log the newly added proeprty content
+            // log the newly added property content
             if (m_pLog && m_pLog->IsInDebugMode())
             {
                 CString message;
@@ -171,7 +175,7 @@ void PSS_SoapPublishModelAttributes::Publish(const ZBPropertySet& propSet)
                 m_pLog->AddLine(e);
             }
 
-            // add a SOAP agent for the property
+            // publish the property
             m_PubMdlAttr.Add
                     (PSS_SoapData_ModelAttributes(key,                             // attrib ID
                                                   pProp->GetItemID(),              // group ID

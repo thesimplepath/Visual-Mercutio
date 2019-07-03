@@ -439,7 +439,7 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
     <ClCompile Include="PSS_SoapPublishMessengerUniverse.cpp" />
-    <ClCompile Include="ZUSOAPPublishLogicalSystem.cpp">
+    <ClCompile Include="PSS_SoapPublishLogicalSystem.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -451,20 +451,20 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUSOAPPublishModelDefinition.cpp">
+    <ClCompile Include="PSS_SoapPublishModelDefinition.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUSOAPPublishModelGenerateFiles.cpp">
+    <ClCompile Include="PSS_SoapPublishModelGenerateFiles.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUSOAPPublishPrestations.cpp" />
-    <ClCompile Include="ZUSOAPPublishUserGroup.cpp">
+    <ClCompile Include="PSS_SoapPublishPrestations.cpp" />
+    <ClCompile Include="PSS_SoapPublishUserGroup.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -662,12 +662,12 @@
     <ClInclude Include="ZUProcessClearDurationFigures.h" />
     <ClInclude Include="ZUProcessNavigation.h" />
     <ClInclude Include="PSS_SoapPublishMessengerUniverse.h" />
-    <ClInclude Include="ZUSOAPPublishLogicalSystem.h" />
+    <ClInclude Include="PSS_SoapPublishLogicalSystem.h" />
     <ClInclude Include="PSS_SoapPublishModelAttributes.h" />
-    <ClInclude Include="ZUSOAPPublishModelDefinition.h" />
-    <ClInclude Include="ZUSOAPPublishModelGenerateFiles.h" />
-    <ClInclude Include="ZUSOAPPublishPrestations.h" />
-    <ClInclude Include="ZUSOAPPublishUserGroup.h" />
+    <ClInclude Include="PSS_SoapPublishModelDefinition.h" />
+    <ClInclude Include="PSS_SoapPublishModelGenerateFiles.h" />
+    <ClInclude Include="PSS_SoapPublishPrestations.h" />
+    <ClInclude Include="PSS_SoapPublishUserGroup.h" />
     <ClInclude Include="ZUUserGroupCalculateTotals.h" />
     <ClInclude Include="ZVAddRemoveCombinationDeliverableDlg.h" />
     <ClInclude Include="ZVAddRemoveDeliveryDeliverablesDlg.h" />

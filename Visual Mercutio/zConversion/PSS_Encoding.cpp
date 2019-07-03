@@ -5,7 +5,7 @@
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "PSS_Encoding.h"
 
 // std
@@ -173,7 +173,7 @@ static unsigned char g_Padding[64]      =
                     break;
             }
 
-        if (errors > 0)
+        if (errors)
             TRACE(_T("Base 64 decoding error\n"));
 
         // convert the decoded buffer to string
@@ -298,7 +298,7 @@ std::string PSS_Encoding::Base64Encode(const char* pStr, std::size_t len)
                 M_Base64PutChar('=');
             }
 
-            if (cols > 0)
+            if (cols)
                 M_Base64PutChar('\n');
         }
 
@@ -371,10 +371,10 @@ void PSS_Encoding::MD5Update(IMD5Context* pContext, char* pStr, std::size_t len)
 
     unsigned i, index, partLen;
 
-    // Compute number of bytes mod 64
+    // compute number of bytes mod 64
     index = unsigned((pContext->m_Count[0] >> 3) & 0x3F);
 
-    // Update number of bits
+    // update number of bits
     if ((pContext->m_Count[0] += (len << 3)) < (len << 3))
         ++pContext->m_Count[1];
 

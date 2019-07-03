@@ -5,7 +5,7 @@
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "PSS_SoapData_Settings.h"
 
 std::string PSS_SoapData_Settings::m_Url           = _T("http://localhost:8080/soap/servlet/rpcrouter");
