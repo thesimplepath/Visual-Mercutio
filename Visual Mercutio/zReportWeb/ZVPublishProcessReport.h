@@ -39,7 +39,7 @@
 
 #include "zModelWeb\ZVPublishModelGenerate.h"
 
-#include "zWeb\ZDHtmlFile.h"
+#include "zWeb\PSS_HtmlFile.h"
 
 #include "zProperty\ZBPropertyAttributes.h"
 
@@ -166,7 +166,7 @@ private:
 
     ZDProcessGraphModelMdl*            m_pRootModel;
 
-    ZDHtmlFile                        HtmlFile;
+    PSS_HtmlFile                      HtmlFile;
 
     ZVPublishModelGenerate            m_FileGenerateWindow;
 

@@ -9,7 +9,7 @@
 #include "PSS_TipOfDayDlg.h"
 
 // processsoft
-#include "zWeb\ZWebBrowser.h"
+#include "zWeb\PSS_WebBrowser.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -41,18 +41,18 @@ PSS_TipOfDayDlg::PSS_TipOfDayDlg(UINT resID, CWnd* pParent) :
     CString strTemp;
     strTemp.Format("%d", resID);
     
-    m_strURL = ZWebBrowser::BuildResourceToURL(strTemp);
+    m_strURL = PSS_WebBrowser::BuildResourceToURL(strTemp);
 }
 //---------------------------------------------------------------------------
-PSS_TipOfDayDlg::PSS_TipOfDayDlg(LPCTSTR url, BOOL isRes, CWnd* pParent) :
+PSS_TipOfDayDlg::PSS_TipOfDayDlg(LPCTSTR pURL, BOOL isRes, CWnd* pParent) :
     CDialog(PSS_TipOfDayDlg::IDD, pParent),
     m_DontShowOnStartup(FALSE),
     m_pBrowser(NULL)
 {
     if (isRes)
-        m_strURL = ZWebBrowser::BuildResourceToURL(url);
+        m_strURL = PSS_WebBrowser::BuildResourceToURL(pURL);
     else
-        m_strURL = url;
+        m_strURL = pURL;
 }
 //---------------------------------------------------------------------------
 PSS_TipOfDayDlg::~PSS_TipOfDayDlg()
@@ -79,7 +79,7 @@ BOOL PSS_TipOfDayDlg::OnInitDialog()
         GetDlgItem(IDC_WEBCTRL)->MapWindowPoints( this, &rect );
 
         // create the control
-        m_pBrowser = new ZWebBrowser;
+        m_pBrowser = new PSS_WebBrowser;
         ASSERT (m_pBrowser);
 
         if (!m_pBrowser->Create(NULL, NULL, WS_VISIBLE, rect, this, NULL))

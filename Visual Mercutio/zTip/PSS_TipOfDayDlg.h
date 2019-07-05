@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zWeb\ZWebBrowser.h"
+#include "zWeb\PSS_WebBrowser.h"
 
 // resources
 #include "ZTipRes.h"
@@ -61,29 +61,26 @@ class AFX_EXT_CLASS PSS_TipOfDayDlg : public CDialog
 
         /**
         * Constructor
-        *@param resID - resource identifier
+        *@param resID - resource identifier containing the url to show
         *@param parent - parent form, can be NULL
         */
         PSS_TipOfDayDlg(UINT resID, CWnd* pParent = NULL);
 
         /**
         * Constructor
-        *@param url - url
-        *@param isRes - if true, url is a resource
+        *@param pURL - url to show
+        *@param isRes - if TRUE, url is a resource path
         *@param parent - parent form, can be NULL
         */
-        PSS_TipOfDayDlg(LPCTSTR url, BOOL isRes, CWnd* pParent = NULL);
+        PSS_TipOfDayDlg(LPCTSTR pURL, BOOL isRes, CWnd* pParent = NULL);
 
         virtual ~PSS_TipOfDayDlg();
 
         /**
         * Checks if dialog shouldn't be shown on startup
-        *@return true if dialog shouldn't be shown on startup, otherwise false
+        *@return TRUE if dialog shouldn't be shown on startup, otherwise FALSE
         */
-        BOOL DoNotShowOnStartup() const
-        {
-            return m_DontShowOnStartup;
-        }
+        virtual inline BOOL DoNotShowOnStartup() const;
 
     protected:
         /// generated virtual function overrides
@@ -98,8 +95,17 @@ class AFX_EXT_CLASS PSS_TipOfDayDlg : public CDialog
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZWebBrowser* m_pBrowser;
-        CString      m_strURL;
+        PSS_WebBrowser* m_pBrowser;
+        CString         m_strURL;
 };
+
+//---------------------------------------------------------------------------
+// PSS_TipOfDayDlg
+//---------------------------------------------------------------------------
+BOOL PSS_TipOfDayDlg::DoNotShowOnStartup() const
+{
+    return m_DontShowOnStartup;
+}
+//---------------------------------------------------------------------------
 
 #endif

@@ -33,6 +33,7 @@
     #define _WIN32_IE 0x0400
 #endif
 
+// mfc
 #include <afxwin.h>               // MFC core and standard components
 #include <afxext.h>               // MFC extensions
 

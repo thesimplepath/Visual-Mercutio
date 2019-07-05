@@ -24,7 +24,7 @@
 #include "zModel\ZBGenericSymbolErrorLine.h"
 #include "ZBPublishMessengerModelInformation.h"
 #include "zSOAP\PSS_SoapData_Settings.h"
-#include "zWeb\ZDHtmlFile.h"
+#include "zWeb\PSS_HtmlFile.h"
 #include "ZBBPStartSymbol.h"
 
 // resources
@@ -261,7 +261,7 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(ZDProcessGraphModelMdl* p
     if (StringAlreadyGenerated(htmlFileName))
         return true;
 
-    ZDHtmlFile htmlFile(htmlFileName);
+    PSS_HtmlFile htmlFile(htmlFileName);
     
     if (!htmlFile.OpenFileCreate())
         return false;

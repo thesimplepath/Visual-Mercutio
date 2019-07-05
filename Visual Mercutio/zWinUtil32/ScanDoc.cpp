@@ -3,21 +3,16 @@
 //  Source file: ScanDoc.cpp
 
 #include <StdAfx.h>
-
-// ScanDoc
 #include "ScanDoc.h"
 
+// processsoft
+#include "zBaseLib\file.h"
+#include "zBaseLib\ZDirectory.h"
+#include "zBaseLib\MsgBox.h"
+#include "zWeb\PSS_FilePreviewDlg.h"
 #include "ScanWelcome.h"
 #include "ScanInfo.h"
 #include "ScanContinue.h"
-#include "zWeb\ZVFilePreviewDlg.h"
-
-#include "zBaseLib\file.h"
-#include "zBaseLib\ZDirectory.h"
-
-#include "zBaseLib\MsgBox.h"
-
-
 
 ZIScanDocuments::Document::Document( const CString Filename /*= ""*/, const CString Name /*= ""*/, const CString Description /*= ""*/ )
 : m_Filename(Filename), m_Name(Name), m_Description(Description)
@@ -76,8 +71,9 @@ BOOL ZIScanDocuments::ProcessChoose ()
             break;
 
         // Show the file in preview
-        ZVFilePreviewDlg    FilePreviewDlg( (LPCTSTR)ScanContinueSelect.GetFilename(), FALSE );
-        FilePreviewDlg.DoModal();
+        PSS_FilePreviewDlg PSS_FilePreviewDlg( (LPCTSTR)ScanContinueSelect.GetFilename(), FALSE );
+        PSS_FilePreviewDlg.DoModal();
+
         // Asks if the user wants to include the selected file
         MsgBox        mbox;
         if (mbox.DisplayMsgBox( IDS_CONFIRM_INSERT_SCANDOC, MB_YESNO ) == IDYES)

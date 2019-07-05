@@ -50,8 +50,8 @@ void ZVURLFormView::OnInitialUpdate( )
         GetDlgItem(IDC_WEBCTRL)->GetClientRect (&rect);
         GetDlgItem(IDC_WEBCTRL)->MapWindowPoints( this, &rect );
 
-        // Create the control.
-        m_pBrowser = new ZWebBrowser;
+        // create the control
+        m_pBrowser = new PSS_WebBrowser;
         ASSERT (m_pBrowser);
         if (!m_pBrowser->Create(NULL,NULL,WS_VISIBLE,rect,this,NULL))
         {

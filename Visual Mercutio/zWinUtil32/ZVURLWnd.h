@@ -26,8 +26,8 @@
 #include "zBaseLib\ZISubject.h"
 #include "zBaseLib\ZIObserver.h"
 #include "zBaseLib\FlatBtn.h"
-#include "zWeb\ZWebBrowser.h"
 #include "zBaseLib\ZCIntelliEdit.h"
+#include "zWeb\PSS_WebBrowser.h"
 
 #ifdef _ZWINUTIL32EXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -153,16 +153,13 @@ private:
     DECLARE_MESSAGE_MAP()
 
 private:
-
-    _ZCURLWndAddressIntelliEdit    m_URLEdit;
+    _ZCURLWndAddressIntelliEdit m_URLEdit;
     ZCFlatButton                m_GoButton;
-    _ZVURLWndButtonToolBar        m_FlatToolBar;
-    CString                        m_URL;
-
+    _ZVURLWndButtonToolBar      m_FlatToolBar;
+    PSS_WebBrowser*             m_pBrowser;
     COLORREF                    m_clrBtnFace;
-
-    ZWebBrowser*                m_pBrowser;
     CStringArray                m_ValueArray;
+    CString                     m_URL;
 };
 
 //{{AFX_INSERT_LOCATION}}

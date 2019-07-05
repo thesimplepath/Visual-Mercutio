@@ -41,7 +41,7 @@
 
 #include "zModelWeb\ZVPublishModelGenerate.h"
 
-#include "zWeb\ZDHtmlFile.h"
+#include "zWeb\PSS_HtmlFile.h"
 
 #ifdef _ZREPORTWEBEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -110,7 +110,7 @@ private:
     ZDProcessGraphModelDoc*                m_pSourceDoc;
     ZBBPProcessSymbol*                    m_pPreviousProcess;
 
-    ZDHtmlFile                            HtmlFile;
+    PSS_HtmlFile                          HtmlFile;
 
     ZVPublishModelGenerate                m_FileGenerateWindow;
 

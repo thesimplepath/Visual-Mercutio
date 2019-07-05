@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zWeb\ZWebBrowser.h"
+#include "zWeb\PSS_WebBrowser.h"
 
 #ifdef _ZTIPEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -45,35 +45,35 @@ class AFX_EXT_CLASS PSS_HelpContextBar : public SECControlBar
 
         /**
         * Sets the url
-        *@param resID - resource identifier
-        *@param hInstance - instance handle, can be NULL
+        *@param resID - resource identifier containing the help message to show
+        *@param hInstance - application instance, can be NULL
         */
         virtual inline void SetURL(UINT resID, HINSTANCE hInstance = NULL);
 
         /**
         * Sets the url
-        *@param url - url
-        *@param isRes - if TRUE url is a resource name
-        *@param hInstance - instance handle, can be NULL
+        *@param pURL - url containing the help message to show
+        *@param isRes - if TRUE, url is a resource path
+        *@param hInstance - application instance, can be NULL
         */
-        virtual inline void SetURL(LPCTSTR url, BOOL isRes, HINSTANCE hInstance = NULL);
+        virtual inline void SetURL(LPCTSTR pURL, BOOL isRes, HINSTANCE hInstance = NULL);
 
         /**
         * Sets the url
-        *@param resID - resource identifier
-        *@param param - parameters
-        *@param hInstance - instance handle, can be NULL
+        *@param resID - resource identifier containing the help message to show
+        *@param pParams - web link parameters, e.g. "?language=EN_en"
+        *@param hInstance - application instance, can be NULL
         */
-        virtual inline void SetURL(UINT resID, LPCTSTR param, HINSTANCE hInstance = NULL);
+        virtual inline void SetURL(UINT resID, LPCTSTR pParams, HINSTANCE hInstance = NULL);
 
         /**
         * Sets the url
-        *@param url - url
-        *@param isRes - if TRUE url is a resource name
-        *@param param - parameters
-        *@param hInstance - instance handle, can be NULL
+        *@param pURL - url containing the help message to show
+        *@param isRes - if TRUE, url is a resource path
+        *@param pParams - web link parameters, e.g. "?language=EN_en"
+        *@param hInstance - application instance, can be NULL
         */
-        virtual inline void SetURL(LPCTSTR url, BOOL isRes, LPCTSTR param, HINSTANCE hInstance = NULL);
+        virtual inline void SetURL(LPCTSTR pURL, BOOL isRes, LPCTSTR pParams, HINSTANCE hInstance = NULL);
 
         /**
         * Navigates to url
@@ -82,35 +82,35 @@ class AFX_EXT_CLASS PSS_HelpContextBar : public SECControlBar
 
         /**
         * Navigates to url
-        *@param resID - resource identifier
-        *@param hInstance - instance handle, can be NULL
+        *@param resID - resource identifier containing the help message to show
+        *@param hInstance - application instance, can be NULL
         */
         virtual inline void Navigate(UINT resID, HINSTANCE hInstance = NULL);
 
         /**
         * Navigates to url
-        *@param url - url
-        *@param isRes - if TRUE url is a resource name
-        *@param hInstance - instance handle, can be NULL
+        *@param pURL - url containing the help message to show
+        *@param isRes - if TRUE, url is a resource path
+        *@param hInstance - application instance, can be NULL
         */
-        virtual inline void Navigate(LPCTSTR url, BOOL isRes, HINSTANCE hInstance = NULL);
+        virtual inline void Navigate(LPCTSTR pURL, BOOL isRes, HINSTANCE hInstance = NULL);
 
         /**
         * Navigates to url
-        *@param resID - resource identifier
-        *@param param - parameters
-        *@param hInstance - instance handle, can be NULL
+        *@param resID - resource identifier containing the help message to show
+        *@param pParams - web link parameters, e.g. "?language=EN_en"
+        *@param hInstance - application instance, can be NULL
         */
-        virtual inline void Navigate(UINT resID, LPCTSTR param, HINSTANCE hInstance = NULL);
+        virtual inline void Navigate(UINT resID, LPCTSTR pParams, HINSTANCE hInstance = NULL);
 
         /**
         * Navigates to url
-        *@param url - url
-        *@param isRes - if TRUE url is a resource name
-        *@param param - parameters
-        *@param hInstance - instance handle, can be NULL
+        *@param pURL - url containing the help message to show
+        *@param isRes - if TRUE, url is a resource path
+        *@param pParams - web link parameters, e.g. "?language=EN_en"
+        *@param hInstance - application instance, can be NULL
         */
-        virtual inline void Navigate(LPCTSTR url, BOOL isRes, LPCTSTR param, HINSTANCE hInstance = NULL);
+        virtual inline void Navigate(LPCTSTR pURL, BOOL isRes, LPCTSTR pParams, HINSTANCE hInstance = NULL);
 
     protected:
         /// generated message map functions
@@ -121,7 +121,7 @@ class AFX_EXT_CLASS PSS_HelpContextBar : public SECControlBar
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZWebBrowser* m_pBrowser;
+        PSS_WebBrowser* m_pBrowser;
 };
 
 //---------------------------------------------------------------------------
@@ -133,22 +133,22 @@ void PSS_HelpContextBar::SetURL(UINT resID, HINSTANCE hInstance)
         m_pBrowser->SetURL(resID, hInstance); 
 }
 //---------------------------------------------------------------------------
-void PSS_HelpContextBar::SetURL(LPCTSTR url, BOOL isRes, HINSTANCE hInstance)
+void PSS_HelpContextBar::SetURL(LPCTSTR pURL, BOOL isRes, HINSTANCE hInstance)
 {
     if (m_pBrowser)
-        m_pBrowser->SetURL(url, isRes, hInstance); 
+        m_pBrowser->SetURL(pURL, isRes, hInstance);
 }
 //---------------------------------------------------------------------------
-void PSS_HelpContextBar::SetURL(UINT resID, LPCTSTR param, HINSTANCE hInstance)
+void PSS_HelpContextBar::SetURL(UINT resID, LPCTSTR pParams, HINSTANCE hInstance)
 {
     if (m_pBrowser)
-        m_pBrowser->SetURL(resID, param, hInstance);
+        m_pBrowser->SetURL(resID, pParams, hInstance);
 }
 //---------------------------------------------------------------------------
-void PSS_HelpContextBar::SetURL(LPCTSTR url, BOOL isRes, LPCTSTR param, HINSTANCE hInstance)
+void PSS_HelpContextBar::SetURL(LPCTSTR pURL, BOOL isRes, LPCTSTR pParams, HINSTANCE hInstance)
 {
     if (m_pBrowser)
-        m_pBrowser->SetURL(url, isRes, param, hInstance);
+        m_pBrowser->SetURL(pURL, isRes, pParams, hInstance);
 }
 //---------------------------------------------------------------------------
 void PSS_HelpContextBar::Navigate()
@@ -163,22 +163,22 @@ void PSS_HelpContextBar::Navigate(UINT resID, HINSTANCE hInstance)
         m_pBrowser->Navigate(resID, hInstance);
 }
 //---------------------------------------------------------------------------
-void PSS_HelpContextBar::Navigate(LPCTSTR url, BOOL isRes, HINSTANCE hInstance)
+void PSS_HelpContextBar::Navigate(LPCTSTR pURL, BOOL isRes, HINSTANCE hInstance)
 {
     if (m_pBrowser)
-        m_pBrowser->Navigate(url, isRes, hInstance);
+        m_pBrowser->Navigate(pURL, isRes, hInstance);
 }
 //---------------------------------------------------------------------------
-void PSS_HelpContextBar::Navigate(UINT resID, LPCTSTR param, HINSTANCE hInstance)
+void PSS_HelpContextBar::Navigate(UINT resID, LPCTSTR pParams, HINSTANCE hInstance)
 {
     if (m_pBrowser)
-        m_pBrowser->Navigate(resID, param, hInstance);
+        m_pBrowser->Navigate(resID, pParams, hInstance);
 }
 //---------------------------------------------------------------------------
-void PSS_HelpContextBar::Navigate(LPCTSTR url, BOOL isRes, LPCTSTR param, HINSTANCE hInstance)
+void PSS_HelpContextBar::Navigate(LPCTSTR pURL, BOOL isRes, LPCTSTR pParams, HINSTANCE hInstance)
 {
     if (m_pBrowser)
-        m_pBrowser->Navigate(url, isRes, param, hInstance);
+        m_pBrowser->Navigate(pURL, isRes, pParams, hInstance);
 }
 //---------------------------------------------------------------------------
 

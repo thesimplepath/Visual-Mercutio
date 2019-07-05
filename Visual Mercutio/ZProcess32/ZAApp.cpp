@@ -63,7 +63,7 @@
 #include "zReportBP\ZVReportCreationWizard.h"
 #include "zReportBP\ZBConceptorReportGenerator.h"
 #include "zReportWeb\ZUPublishReportToHTML.h"
-#include "zWeb\HtmlDlg.h"
+#include "zWeb\PSS_HtmlDialog.h"
 #include "WelcomP.h"
 #include "ViewMod.h"
 #include "MdlWkfOpt.h"
@@ -3802,7 +3802,7 @@ void ZAApp::OnUpdateGeneratePrestationsReport( CCmdUI* pCmdUI )
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "A propos de Conceptor".
 void ZAApp::OnAppAbout()
 {
-    ZHtmlDialog About( IDR_ABOUT_CONCEPTOR_02 );
+    PSS_HtmlDialog About( IDR_ABOUT_CONCEPTOR_02 );
     
     About.SetSize( 600, 600 );
     
@@ -3814,7 +3814,7 @@ void ZAApp::OnAppAbout()
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Support".
 void ZAApp::OnHelpSupport()
 {
-    ZHtmlDialog About( IDR_SUPPORT_CONCEPTOR_02 );
+    PSS_HtmlDialog About( IDR_SUPPORT_CONCEPTOR_02 );
     
     About.SetSize( 600, 600 );
     

@@ -28,8 +28,8 @@
 #endif
 
 #include "zBaseLib\FlatBtn.h"
-#include "zWeb\ZWebBrowser.h"
 #include "zBaseLib\ZCIntelliEdit.h"
+#include "zWeb\PSS_WebBrowser.h"
 
 
 #ifdef _ZWINUTIL32EXPORT
@@ -157,7 +157,7 @@ private:
     CString    m_URL;
     //}}AFX_DATA
 
-    ZWebBrowser*    m_pBrowser;
+    PSS_WebBrowser* m_pBrowser;
     CStringArray    m_ValueArray;
 
 // Overrides

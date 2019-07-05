@@ -24,7 +24,7 @@
 // Resource manager helper class
 #include "zResMgr\ZBResourceManager.h"
 
-#include "ZUModelGenerateImageFiles.h"
+#include "PSS_ModelGenerateImageFiles.h"
 #include "zModel\ZBInfoModelGraphicGeneration.h"
 
 // ZVPublishModel
@@ -113,9 +113,9 @@ bool ZUPublishModelToHTML::ExportModelToHTMLFile( ZDProcessGraphModelDoc*    pDo
     // Sets the new language for generation
     ZBResourceManager::ChangeLanguage( PublishModel.GetLanguage() );
 
-    ZUModelGenerateImageFiles ModelGen( pDoc->GetModel(),
-                                        &ModelInfo,
-                                        &PropAttributes );
+    PSS_ModelGenerateImageFiles ModelGen( pDoc->GetModel(),
+                                          &ModelInfo,
+                                          &PropAttributes );
 
     ModelGen.Navigate();
 
@@ -172,7 +172,7 @@ bool ZUPublishModelToHTML::ExportModelToHTMLFile( ZDProcessGraphModelDoc*    pDo
         // If the visualization is required
         if ( PublishModel.GetVisualizeResult() )
         {
-            m_pReportInfo->IndexName        = ModelGen.GetIndexHtmlFilename();
+            m_pReportInfo->IndexName        = ModelGen.GetIndexHtmlFileName();
             m_pReportInfo->DoLaunchBrowser    = TRUE;
         }
         else

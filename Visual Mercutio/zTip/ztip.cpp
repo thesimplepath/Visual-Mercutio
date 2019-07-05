@@ -5,6 +5,7 @@
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
+ // mfc
 #include "StdAfx.h"
 #include <afxdllx.h>
 

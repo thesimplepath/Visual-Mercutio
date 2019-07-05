@@ -46,14 +46,14 @@
     <_ProjectFileVersion>15.0.28127.55</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>.\Debug\</OutDir>
+    <OutDir>..\Exe\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental />
     <IncludePath>..\..\Third party\CJ60Lib\Include;..\..\Third party\EasySoap++-0.6.1\include;..\..\Third party\Stingray Studio\Include;..\..\Third party\Stingray Studio\Regex\include;..\;..\Include;res;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib;..\..\Third party\EasySoap++-0.6.1\win32\Debug;..\..\Third party\Stingray Studio\Lib;..\..\Third party\Stingray Studio\Regex\lib\vc6;..\Lib;$(LibraryPath);..\..\Third party\CJ60Lib\lib;..\..\Third party\Stingray Studio\Lib;..\..\Third party\Stingray Studio\Regex\lib\vc6;..\Lib</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>.\Release\</OutDir>
+    <OutDir>..\ExeR\</OutDir>
     <IntDir>.\Release\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>..\..\Third party\CJ60Lib\Include;..\..\Third party\EasySoap++-0.6.1\include;..\..\Third party\Stingray Studio\Include;..\..\Third party\Stingray Studio\Regex\include;..\;..\Include;res;$(IncludePath)</IncludePath>

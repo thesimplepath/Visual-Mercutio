@@ -48,7 +48,7 @@ int PSS_HelpContextBar::OnCreate(LPCREATESTRUCT pCreateStruct)
     GetClientRect(&rect);
 
     // create the control
-    m_pBrowser = new ZWebBrowser;
+    m_pBrowser = new PSS_WebBrowser;
     ASSERT(m_pBrowser);
 
     if (!m_pBrowser->Create(NULL, NULL, WS_VISIBLE, rect, this, NULL))

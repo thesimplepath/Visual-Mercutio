@@ -91,7 +91,7 @@ int ZVURLWnd::OnCreate( LPCREATESTRUCT lpCreateStruct )
     m_GoButton.DrawTransparent();
 
     // Create the control.
-    m_pBrowser = new ZWebBrowser;
+    m_pBrowser = new PSS_WebBrowser;
     ASSERT ( m_pBrowser );
 
     if ( !m_pBrowser->Create( NULL, NULL, WS_VISIBLE, CRect( 0, 0, 0, 0 ), this, IDC_URLWND_WEBBROWSER ) )
