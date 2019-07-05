@@ -1,72 +1,66 @@
-// stdafx.h : include file for standard system include files,
-//  or project specific include files that are used frequently, but
-//      are changed infrequently
+/****************************************************************************
+ * ==> StdAfh --------------------------------------------------------------*
+ ****************************************************************************
+ * Description : Include file for standard system files, or project         *
+ *               specific include files that are used frequently, but are   *
+ *               changed infrequently                                       *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #if !defined(AFX_STDAFX_H__18E07886_BBB7_47E7_8624_D0A5C9BCBC34__INCLUDED_)
 #define AFX_STDAFX_H__18E07886_BBB7_47E7_8624_D0A5C9BCBC34__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-#define VC_EXTRALEAN        // Exclude rarely-used stuff from Windows headers
+ // exclude rarely-used stuff from Windows headers
+#define VC_EXTRALEAN
 
-//#ifdef _WINNT_40
-//// For compatibility reason with platform sdk used
-//// with Visual C++ 6.0
-//// Dominique Aigroz october 2002
-//#define  WINVER  0x0501
-//#else
-//#define WINVER 0x0501
-//#endif // _WINNT_40
-
-// Version de Winver définie pour Windows NT4 et supérieures.
 #ifndef WINVER
-#define WINVER 0x0501
+    #define WINVER 0x0501
 #endif
 
-// Plateforme cible définie à Windows NT4 et supérieures pour les versions NT de Windows.
 #ifndef _WIN32_WINNT
-#define _WIN32_WINNT _WIN32_WINNT_WINXP
+    #define _WIN32_WINNT _WIN32_WINNT_WINXP
 #endif
 
-// Plateforme cible définie à Windows98 et supérieures pour les versions standards de Windows.
 #ifndef _WIN32_WINDOWS
-#define _WIN32_WINDOWS 0x0410
+    #define _WIN32_WINDOWS 0x0410
 #endif
 
-// Internet Explorer définie à la version NT4.
 #ifndef _WIN32_IE
-#define _WIN32_IE 0x0400
+    #define _WIN32_IE 0x0400
 #endif
 
-#include <afxwin.h>            // MFC core and standard components
-#include <afxext.h>            // MFC extensions
+// mfc
+#include <afxwin.h>               // MFC core and standard components
+#include <afxext.h>               // MFC extensions
 
 #ifndef _AFX_NO_OLE_SUPPORT
-#include <afxole.h>            // MFC OLE classes
-#include <afxodlgs.h>        // MFC OLE dialog classes
-#include <afxdisp.h>        // MFC Automation classes
-#endif // _AFX_NO_OLE_SUPPORT
-
-#ifndef _AFX_NO_DB_SUPPORT
-#include <afxdb.h>            // MFC ODBC database classes
-#endif // _AFX_NO_DB_SUPPORT
-
-#ifndef _AFX_NO_DAO_SUPPORT
-#include <afxdao.h>            // MFC DAO database classes
-#endif // _AFX_NO_DAO_SUPPORT
-
-#include <afxdtctl.h>        // MFC support for Internet Explorer 4 Common Controls
-#ifndef _AFX_NO_AFXCMN_SUPPORT
-#include <afxcmn.h>            // MFC support for Windows Common Controls
-#endif // _AFX_NO_AFXCMN_SUPPORT
-
-#ifdef _ENABLETRACE            // If enable trace is defined
-#include "zBaseLib\ZGTrace.h"
+    #include <afxole.h>           // MFC OLE classes
+    #include <afxodlgs.h>         // MFC OLE dialog classes
+    #include <afxdisp.h>          // MFC Automation classes
 #endif
 
-// Change the definition of AFX_EXT... to make it import
+#ifndef _AFX_NO_DB_SUPPORT
+    #include <afxdb.h>            // MFC ODBC database classes
+#endif
+
+#ifndef _AFX_NO_DAO_SUPPORT
+    #include <afxdao.h>           // MFC DAO database classes
+#endif
+
+#include <afxdtctl.h>             // MFC support for Internet Explorer 4 Common Controls
+#ifndef _AFX_NO_AFXCMN_SUPPORT
+    #include <afxcmn.h>           // MFC support for Windows Common Controls
+#endif
+
+#ifdef _ENABLETRACE
+    #include "zBaseLib\ZGTrace.h" // uf enabled, trace is defined
+#endif
+
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -74,9 +68,10 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include <CJ60Lib.h>                    // CJ60 Library components
+// CJ60 Library components
+#include <CJ60Lib.h>
 
-// Put the values back to make AFX_EXT_CLASS export again
+// put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -84,34 +79,30 @@
 #define AFX_EXT_API AFX_API_EXPORT
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 
+// processsoft
 #include "ZAConst.h"
 #include "Define.h"
 #include "Message.h"
 #include "PlanFin.hdf"
 
-#include <zBaseLib\zBaseLib.h>            // The base library
-#include <zBaseSym\zBaseSymLib.h>        // The base symbol library
-#include "zConversion\zConversionLib.h"    // To include the zConversion library
-#include <zProperty\zPropertyLib.h>        // The property library
-#include <zModel\zModelLib.h>            // The model library
-#include <zResMgr\zResMgrLib.h>            // The resource manager library
-#include <zWeb\zWebLib.h>                // The web library
-#include <zDB\zDBLib.h>                    // The Database library
-#include <zWinUtil32\zWinUtil32Lib.h>    // The windows utility library
-#include <zEvent\zEventLib.h>            // The event library
-#include <zRes32\zRes32Lib.h>            // Resource library
+#include <zBaseLib\zBaseLib.h>
+#include <zBaseSym\zBaseSymLib.h>
+#include <zConversion\zConversionLib.h>
+#include <zProperty\zPropertyLib.h>
+#include <zModel\zModelLib.h>
+#include <zResMgr\zResMgrLib.h>
+#include <zWeb\zWebLib.h>
+#include <zDB\zDBLib.h>
+#include <zWinUtil32\zWinUtil32Lib.h>
+#include <zEvent\zEventLib.h>
+#include <zRes32\zRes32Lib.h>
 
-// Use Objective Views as a DLL
+// stingray studio
 #define _OVDLL
 
-// Objective Views Header Files
 #include "Views\OdAll.h"
 
-// ***********************************************************
-// *
-// *  zForms Resources
-// *
-// ***********************************************************
+// resources
 #include "zFormsRes\zFormsRes.h"
 #include "zRes32\zRes.h"
 

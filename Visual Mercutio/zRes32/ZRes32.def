@@ -1,0 +1,10 @@
+; ZRes32.def: Declares the module parameters for the DLL
+
+LIBRARY "ZRes32"
+
+; NOTE deactivated because unsupported by the compiler
+;DESCRIPTION 'ZRes32 Windows Dynamic Link Library'
+
+EXPORTS
+    ; explicit exports can go here
+    InitZRes32DLL    @1

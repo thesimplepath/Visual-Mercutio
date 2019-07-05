@@ -50,7 +50,7 @@
 #include "zModelBP\ZVRiskTypeContainer.h"
 #include "zModelBP\ZVRiskImpactContainer.h"
 #include "zModelBP\ZVRiskProbabilityContainer.h"
-#include "zModelWeb\ZUPublishModelToHTML.h"
+#include "zModelWeb\PSS_PublishModelToHTML.h"
 #include "zReport\ZVGridReportChildFrm.h"
 #include "zReport\ZDGridReportDoc.h"
 #include "zReport\ZVGridReportView.h"
@@ -2587,7 +2587,7 @@ void ZAApp::OnExportModelToHTMLFile()
 
     if ( m_pReportInfo != NULL )
     {
-        ZUPublishModelToHTML::ExportModelToHTMLFile( dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() ),
+        PSS_PublishModelToHTML::ExportModelToHTMLFile( dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() ),
                                                      dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() )->GetFirstModelView(),
                                                      m_pReportInfo,
                                                      m_pszProfileName );
@@ -2597,7 +2597,7 @@ void ZAApp::OnExportModelToHTMLFile()
 
         if ( m_pReportInfo->DoLaunchBrowser == TRUE )
         {
-            ZUPublishModelToHTML::LaunchBrowser( m_pReportInfo->IndexName );
+            PSS_PublishModelToHTML::LaunchBrowser( m_pReportInfo->IndexName );
         }
 
         delete m_pReportInfo;

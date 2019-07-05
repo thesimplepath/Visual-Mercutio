@@ -155,7 +155,7 @@
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="ZUPublishModelToHTML.cpp">
+    <ClCompile Include="PSS_PublishModelToHTML.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -215,7 +215,7 @@
     <ClInclude Include="zModelWebLib.h" />
     <ClInclude Include="zModelWebRes.h" />
     <ClInclude Include="PSS_ModelGenerateImageFiles.h" />
-    <ClInclude Include="ZUPublishModelToHTML.h" />
+    <ClInclude Include="PSS_PublishModelToHTML.h" />
     <ClInclude Include="ZVPublishModel.h" />
     <ClInclude Include="ZVPublishModelAttributes.h" />
     <ClInclude Include="ZVPublishModelBanner.h" />

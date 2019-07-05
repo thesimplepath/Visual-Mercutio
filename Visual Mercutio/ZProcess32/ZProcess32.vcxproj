@@ -674,10 +674,6 @@
       <Project>{546ac0c4-e6cb-4b49-a604-cf6e2aa41031}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\ZRes32\ZRes32.vcxproj">
-      <Project>{8be451d8-979f-4024-b25a-bb48b4c96953}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\zResMgr\zResMgr.vcxproj">
       <Project>{dcc4fc4f-3100-4780-8a5f-099169d5fdac}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
