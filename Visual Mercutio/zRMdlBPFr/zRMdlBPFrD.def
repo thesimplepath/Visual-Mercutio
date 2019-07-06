@@ -1,9 +1,9 @@
-; zRMdlBPFrD.def : Declares the module parameters for the DLL.
+; zRMdlBPFrD.def: Declares the module parameters for the DLL
 
-LIBRARY      "zRMdlBPFrD"
+LIBRARY "zRMdlBPFrD"
 
-; JMR-MODIF - Le 2 juin 2005 - DESCRIPTION supprimé car non pris en charge par le compilateur.
-;DESCRIPTION  'zRMdlBPFrD Windows Dynamic Link Library'
+; NOTE deactivated because unsupported by the compiler
+;DESCRIPTION 'zRMdlBPFrD Windows Dynamic Link Library'
 
 EXPORTS
-    ; Explicit exports can go here
+    ; explicit exports can go here

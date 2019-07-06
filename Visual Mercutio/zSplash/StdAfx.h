@@ -14,7 +14,8 @@
     #pragma once
 #endif
 
-#define VC_EXTRALEAN // exclude rarely-used stuff from Windows headers
+// exclude rarely-used stuff from Windows headers
+#define VC_EXTRALEAN
 
 #ifndef WINVER
     #define WINVER 0x0501

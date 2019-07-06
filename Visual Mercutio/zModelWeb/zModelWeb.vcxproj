@@ -228,9 +228,6 @@
     <Image Include="icon1.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ZBaseLib\ZBaseLib.vcxproj">
       <Project>{55112ad1-6307-4711-b20c-8fb984d1c596}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
