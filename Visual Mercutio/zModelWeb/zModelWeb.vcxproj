@@ -160,22 +160,22 @@
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="ZVPublishModel.cpp">
+    <ClCompile Include="PSS_PublishModel.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="ZVPublishModelAttributes.cpp">
+    <ClCompile Include="PSS_PublishModelAttributesDialog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="ZVPublishModelBanner.cpp">
+    <ClCompile Include="PSS_PublishModelBannerDialog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="ZVPublishModelGenerate.cpp">
+    <ClCompile Include="PSS_PublishModelGenerate.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -216,10 +216,10 @@
     <ClInclude Include="zModelWebRes.h" />
     <ClInclude Include="PSS_ModelGenerateImageFiles.h" />
     <ClInclude Include="PSS_PublishModelToHTML.h" />
-    <ClInclude Include="ZVPublishModel.h" />
-    <ClInclude Include="ZVPublishModelAttributes.h" />
-    <ClInclude Include="ZVPublishModelBanner.h" />
-    <ClInclude Include="ZVPublishModelGenerate.h" />
+    <ClInclude Include="PSS_PublishModel.h" />
+    <ClInclude Include="PSS_PublishModelAttributesDialog.h" />
+    <ClInclude Include="PSS_PublishModelBannerDialog.h" />
+    <ClInclude Include="PSS_PublishModelGenerate.h" />
     <ClInclude Include="ZVPublishModelOptions.h" />
     <ClInclude Include="ZVPublishModelSelDir.h" />
     <ClInclude Include="ZVPublishModelWelcome.h" />

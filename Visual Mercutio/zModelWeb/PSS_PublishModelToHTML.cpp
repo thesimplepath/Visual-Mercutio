@@ -22,7 +22,7 @@
 #include "zModel\ZUDynamicAttributesManipulator.h"
 #include "zModel\ZBInfoModelGraphicGeneration.h"
 #include "PSS_ModelGenerateImageFiles.h"
-#include "ZVPublishModel.h"
+#include "PSS_PublishModel.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -53,12 +53,12 @@ bool PSS_PublishModelToHTML::ExportModelToHTMLFile(ZDProcessGraphModelDoc*  pDoc
     ZBPropertyAttributes propAttributes;
 
     // start with the wizard to choose the directory to export the model
-    ZVPublishModel publishModel(&propAttributes, &propSet, iniFilename);
+    PSS_PublishModel publishModel(&propAttributes, &propSet, iniFilename);
 
-    if (!publishModel.Choose())
+    if (!publishModel.SelectDir())
         return false;
 
-    if (publishModel.GetDirectory().IsEmpty())
+    if (publishModel.GetDir().IsEmpty())
         return false;
 
     CWaitCursor cursor;
@@ -70,7 +70,7 @@ bool PSS_PublishModelToHTML::ExportModelToHTMLFile(ZDProcessGraphModelDoc*  pDoc
 
         ZBInfoModelGraphicGeneration modelInfo(pDoc->GetModel(),
                                                pView->GetModelController(),
-                                               publishModel.GetDirectory(),
+                                               publishModel.GetDir(),
                                                false,
                                                publishModel.GetPublishConceptor(),
                                                publishModel.GetPublishProcess(),
@@ -93,7 +93,7 @@ bool PSS_PublishModelToHTML::ExportModelToHTMLFile(ZDProcessGraphModelDoc*  pDoc
 
         if (pReportInfo)
         {
-            pReportInfo->Directory = publishModel.GetDirectory();
+            pReportInfo->Directory = publishModel.GetDir();
 
             if (publishModel.GetPublishConceptor())
             {

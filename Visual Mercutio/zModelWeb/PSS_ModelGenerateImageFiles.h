@@ -28,7 +28,7 @@
 #include "zProperty\ZBPropertyAttributes.h"
 #include "zModel\ZUModelNavigation.h"
 #include "zModel\ZBInfoModelGraphicGeneration.h"
-#include "zModelWeb\ZVPublishModelGenerate.h"
+#include "zModelWeb\PSS_PublishModelGenerate.h"
 
 // forward class declaration
 class ZIBasicSymbol;
@@ -116,7 +116,7 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, publ
         static std::size_t            m_IndexItem;
         ZBInfoModelGraphicGeneration* m_pInfo;
         ZBPropertyAttributes*         m_pPropAttributes;
-        ZVPublishModelGenerate        m_FileGenerateWindow;
+        PSS_PublishModelGenerate      m_FileGenerateWindow;
         CString                       m_RootHtmlFileName;
         CString                       m_IndexHtmlFileName;
         CString                       m_RootName;
