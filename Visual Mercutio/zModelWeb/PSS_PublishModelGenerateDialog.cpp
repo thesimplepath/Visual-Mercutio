@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_PublishModelGenerate --------------------------------------------*
+ * ==> PSS_PublishModelGenerateDialog --------------------------------------*
  ****************************************************************************
  * Description : Dialog box showing the model publication progression       *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include "StdAfx.h"
-#include "PSS_PublishModelGenerate.h"
+#include "PSS_PublishModelGenerateDialog.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -17,23 +17,23 @@
 //---------------------------------------------------------------------------
 // Message loop
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_PublishModelGenerate, ZIWizardDialog)
-    //{{AFX_MSG_MAP(PSS_PublishModelGenerate)
+BEGIN_MESSAGE_MAP(PSS_PublishModelGenerateDialog, ZIWizardDialog)
+    //{{AFX_MSG_MAP(PSS_PublishModelGenerateDialog)
     ON_WM_CTLCOLOR()
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_PublishModelGenerate
 //---------------------------------------------------------------------------
-PSS_PublishModelGenerate::PSS_PublishModelGenerate() :
+PSS_PublishModelGenerateDialog::PSS_PublishModelGenerateDialog() :
     ZIWizardDialog(),
-    m_RequestCancel(false),
+    m_CancelRequested(false),
     m_Destination(_T(""))
 {}
 //---------------------------------------------------------------------------
-bool PSS_PublishModelGenerate::Create(CWnd* pParent)
+bool PSS_PublishModelGenerateDialog::Create(CWnd* pParent)
 {
-    return ZIWizardDialog::Create(PSS_PublishModelGenerate::IDD,
+    return ZIWizardDialog::Create(PSS_PublishModelGenerateDialog::IDD,
                                   IDB_WZBMP1,
                                   0,
                                   0,
@@ -44,17 +44,17 @@ bool PSS_PublishModelGenerate::Create(CWnd* pParent)
                                   pParent);
 }
 //---------------------------------------------------------------------------
-void PSS_PublishModelGenerate::DoDataExchange(CDataExchange* pDX)
+void PSS_PublishModelGenerateDialog::DoDataExchange(CDataExchange* pDX)
 {
     ZIWizardDialog::DoDataExchange(pDX);
 
-    //{{AFX_DATA_MAP(PSS_PublishModelGenerate)
+    //{{AFX_DATA_MAP(PSS_PublishModelGenerateDialog)
     DDX_Control(pDX, IDC_AVIFILEMOVE, m_FileMoveAnimation);
     DDX_Text(pDX, IDC_FILEDESTINATION, m_Destination);
     //}}AFX_DATA_MAP
 }
 //---------------------------------------------------------------------------
-void PSS_PublishModelGenerate::SetDestination(const CString& destination)
+void PSS_PublishModelGenerateDialog::SetDestination(const CString& destination)
 {
     m_Destination = destination;
     UpdateData(FALSE);
@@ -69,7 +69,7 @@ void PSS_PublishModelGenerate::SetDestination(const CString& destination)
     }
 }
 //---------------------------------------------------------------------------
-BOOL PSS_PublishModelGenerate::OnInitDialog()
+BOOL PSS_PublishModelGenerateDialog::OnInitDialog()
 {
     ZIWizardDialog::OnInitDialog();
 
@@ -81,12 +81,13 @@ BOOL PSS_PublishModelGenerate::OnInitDialog()
     return TRUE;
 }
 //---------------------------------------------------------------------------
-void PSS_PublishModelGenerate::OnCancel()
+void PSS_PublishModelGenerateDialog::OnCancel()
 {
-    m_RequestCancel = true;
+    m_CancelRequested = true;
+    ZIWizardDialog::OnCancel();
 }
 //---------------------------------------------------------------------------
-HBRUSH PSS_PublishModelGenerate::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT ctlColor)
+HBRUSH PSS_PublishModelGenerateDialog::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT ctlColor)
 {
     // update the animated object background
     if (pWnd && pDC && pWnd->GetDlgCtrlID() == IDC_AVIFILEMOVE)

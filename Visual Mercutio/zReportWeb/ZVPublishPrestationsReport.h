@@ -43,7 +43,7 @@
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
 #include "zModelBP\ZBBPUnitProp2.h"
 
-#include "zModelWeb\PSS_PublishModelGenerate.h"
+#include "zModelWeb\PSS_PublishModelGenerateDialog.h"
 
 #include "zWeb\PSS_HtmlFile.h"
 
@@ -105,7 +105,7 @@ private:
 
     PSS_HtmlFile                          HtmlFile;
 
-    PSS_PublishModelGenerate              m_FileGenerateWindow;
+    PSS_PublishModelGenerateDialog        m_FileGenerateWindow;
 };
 
 #endif // !defined(AFX_ZVPUBLISHPRESTATIONSREPORT_H__2911BA6F_30D8_459C_9B9A_A644F79B704F__INCLUDED_)

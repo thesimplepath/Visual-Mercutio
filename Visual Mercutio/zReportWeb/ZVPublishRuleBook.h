@@ -26,7 +26,7 @@
 
 #include "zModelBP\ProcGraphModelMdlBP.h"
 
-#include "zModelWeb\PSS_PublishModelGenerate.h"
+#include "zModelWeb\PSS_PublishModelGenerateDialog.h"
 
 #include "zWeb\PSS_HtmlFile.h"
 
@@ -71,7 +71,7 @@ private:
 
     PSS_HtmlFile                          HtmlFile;
 
-    PSS_PublishModelGenerate              m_FileGenerateWindow;
+    PSS_PublishModelGenerateDialog        m_FileGenerateWindow;
 
     int                                    Level;
     int                                    Lvl1Counter;

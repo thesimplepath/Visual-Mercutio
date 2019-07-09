@@ -9,11 +9,11 @@
 #include "PSS_PublishModel.h"
 
 // processsoft
-#include "ZVPublishModelWelcome.h"
-#include "ZVPublishModelSelDir.h"
+#include "PSS_PublishModelWelcomeDialog.h"
+#include "PSS_PublishModelSelDirDialog.h"
 #include "PSS_PublishModelBannerDialog.h"
 #include "PSS_PublishModelAttributesDialog.h"
-#include "ZVPublishModelOptions.h"
+#include "PSS_PublishModelOptionsDialog.h"
 
 #include "zBaseLib\ZUSystemOption.h"
 
@@ -61,7 +61,7 @@ PSS_PublishModel::~PSS_PublishModel()
 //---------------------------------------------------------------------------
 BOOL PSS_PublishModel::SelectDir()
 {
-    ZVPublishModelWelcome welcome;
+    PSS_PublishModelWelcomeDialog welcome;
 
     if (welcome.DoModal() == IDCANCEL)
         return FALSE;
@@ -72,7 +72,7 @@ BOOL PSS_PublishModel::SelectDir()
     // load attributes
     LoadAttributesFromIniFile();
 
-    ZVPublishModelSelectDirectory select(m_Directory, &m_ArrayOfAddress);
+    PSS_PublishModelSelDirDialog select(m_Directory, &m_ArrayOfAddress);
 
     if (select.DoModal() == IDCANCEL)
         return FALSE;
@@ -97,7 +97,7 @@ BOOL PSS_PublishModel::SelectDir()
     if (attributes.DoModal() == IDCANCEL)
         return FALSE;
 
-    ZVPublishModelOptions options(m_VisualizeResult,
+    PSS_PublishModelOptionsDialog options(m_VisualizeResult,
         m_PublishConceptor,
         m_PublishConceptorDetails,
         m_PublishConceptorDeliverables,

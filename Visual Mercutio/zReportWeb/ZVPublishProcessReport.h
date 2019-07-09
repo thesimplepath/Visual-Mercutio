@@ -37,7 +37,7 @@
 #include "zModelBP\ZBBPStopSymbol.h"
 #include "zModelBP\ZBDeliverableLinkSymbol.h"
 
-#include "zModelWeb\PSS_PublishModelGenerate.h"
+#include "zModelWeb\PSS_PublishModelGenerateDialog.h"
 
 #include "zWeb\PSS_HtmlFile.h"
 
@@ -168,7 +168,7 @@ private:
 
     PSS_HtmlFile                      HtmlFile;
 
-    PSS_PublishModelGenerate          m_FileGenerateWindow;
+    PSS_PublishModelGenerateDialog    m_FileGenerateWindow;
 
     _ZVSymbolContainer                m_StartContainer;
     _ZVSymbolContainer                m_StopContainer;

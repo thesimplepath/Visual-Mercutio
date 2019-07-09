@@ -24,7 +24,7 @@
 // processsoft
 #include "zBaseLib\ZBKeepStringUsage.h"
 #include "zModel\ZUModelNavigation.h"
-#include "zModelWeb\PSS_PublishModelGenerate.h"
+#include "zModelWeb\PSS_PublishModelGenerateDialog.h"
 #include "zSOAP\PSS_SoapPublisher_File.h"
 
 // forward class declaration
@@ -87,7 +87,7 @@ class AFX_EXT_CLASS PSS_SoapPublishModelGenerateFiles : public ZUModelNavigation
         virtual bool OnLink(ZBLinkSymbol* pLink);
 
     private:
-        PSS_PublishModelGenerate            m_FileGenerateWindow;
+        PSS_PublishModelGenerateDialog      m_FileGenerateWindow;
         ZBPublishMessengerModelInformation* m_pModelInfo;
         ZBInfoModelGraphicGeneration*       m_pInfo;
         PSS_SoapPublisher_File              m_PubFile;
