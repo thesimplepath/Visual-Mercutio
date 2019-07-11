@@ -18,10 +18,10 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
+// processsoft
 #include "ZBStateMachineCollection.h"
 #include "ZBStateObject.h"
-#include "AutomationCollections.h"
+#include "PSS_AutomationCollections.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // Forward class declaration

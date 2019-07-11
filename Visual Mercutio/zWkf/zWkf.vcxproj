@@ -46,14 +46,14 @@
     <_ProjectFileVersion>15.0.28127.55</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>.\Release\</OutDir>
+    <OutDir>..\exeR\</OutDir>
     <IntDir>.\Release\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>..\..\Third party\Stingray Studio\Include;..\..\Third party\Stingray Studio\Regex\include;..\;..\Include;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\Third party\Stingray Studio\Regex\lib\vc6;..\..\Third party\Stingray Studio\Lib;..\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>.\Debug\</OutDir>
+    <OutDir>..\exe\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental />
     <IncludePath>..\..\Third party\Stingray Studio\Include;..\..\Third party\Stingray Studio\Regex\include;..\;..\Include;$(IncludePath)</IncludePath>
@@ -137,7 +137,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CThinThread.cpp">
+    <ClCompile Include="PSS_ThinThread.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -151,13 +151,13 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ZBAutomationMachine.cpp">
+    <ClCompile Include="PSS_AutomationMachine.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBMainAutomationRunnerThread.cpp">
+    <ClCompile Include="PSS_MainAutomationRunnerThread.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -232,11 +232,11 @@
     <ResourceCompile Include="zWkf.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AutomationCollections.h" />
-    <ClInclude Include="CThinThread.h" />
+    <ClInclude Include="PSS_AutomationCollections.h" />
+    <ClInclude Include="PSS_ThinThread.h" />
     <ClInclude Include="StdAfx.h" />
-    <ClInclude Include="ZBAutomationMachine.h" />
-    <ClInclude Include="ZBMainAutomationRunnerThread.h" />
+    <ClInclude Include="PSS_AutomationMachine.h" />
+    <ClInclude Include="PSS_MainAutomationRunnerThread.h" />
     <ClInclude Include="ZBMainPathRunnerThread.h" />
     <ClInclude Include="ZBPathMachine.h" />
     <ClInclude Include="ZBStateLink.h" />
@@ -246,9 +246,6 @@
     <ClInclude Include="ZDModelStateMachineDocument.h" />
     <ClInclude Include="zWkfLib.h" />
     <ClInclude Include="zWkfRes.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ZBaseLib\ZBaseLib.vcxproj">

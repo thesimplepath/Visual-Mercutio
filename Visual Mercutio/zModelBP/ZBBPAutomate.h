@@ -22,8 +22,8 @@
 #define AFX_ZBBPAutomate_H__1CC9AE94_368B_41BE_90E1_527CD3EC61F8__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
 // Change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -33,7 +33,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zWkf\ZBAutomationMachine.h"
+#include "zWkf\PSS_AutomationMachine.h"
 
 #ifdef _ZMODELBPEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -47,7 +47,7 @@
 
 // JMR-MODIf - Le 21 mars 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-class AFX_EXT_CLASS ZBBPAutomate : public ZBAutomationMachine
+class AFX_EXT_CLASS ZBBPAutomate : public PSS_AutomationMachine
 {
 public:
 
@@ -62,11 +62,11 @@ public:
     // the symbol and link pointer and the direction 
     // attributes if there is one.
     // Return the move status
-    virtual ZBAutomationMachine::AutomationMoveStatus RequestMoveForward( ZBStateObject*    pState,
-                                                                           ZBStateMachine*    pStateMachine,
-                                                                           ZBSymbolSet&        SymbolSet,
-                                                                           ZBStateLinksSet&    StateLinkSet,
-                                                                           ZILog*            pLog );
+    virtual IEAutomationMoveStatus RequestMoveForward(ZBStateObject*    pState,
+                                                      ZBStateMachine*    pStateMachine,
+                                                      ZBSymbolSet&        SymbolSet,
+                                                      ZBStateLinksSet&    StateLinkSet,
+                                                      ZILog*            pLog );
 
     
     //////////////////////////////////////////////////////////////////////
@@ -101,30 +101,30 @@ public:
 
 private:
 
-    ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardStartSymbol( ZBStateObject*    pState,
+    IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardStartSymbol( ZBStateObject*    pState,
                                                                                            ZBSymbolSet&        SymbolSet,
                                                                                            ZBStateLinksSet&    StateLinkSet,
                                                                                            ZILog*            pLog );
 
-    ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardProcedureSymbol( ZBStateObject*    pState,
+    IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardProcedureSymbol( ZBStateObject*    pState,
                                                                                                ZBSymbolSet&        SymbolSet,
                                                                                                ZBStateLinksSet&    StateLinkSet,
                                                                                                ZILog*            pLog );
 
-    ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardDoorSymbol( ZBStateObject*    pState,
+    IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardDoorSymbol( ZBStateObject*    pState,
                                                                                           ZBSymbolSet&        SymbolSet,
                                                                                           ZBStateLinksSet&    StateLinkSet,
                                                                                           ZILog*            pLog );
 
-    ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardPageSymbol( ZBStateObject*    pState,
+    IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPageSymbol( ZBStateObject*    pState,
                                                                                           ZBSymbolSet&        SymbolSet,
                                                                                           ZBStateLinksSet&    StateLinkSet,
                                                                                           ZILog*            pLog );
 
-    ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardStopSymbol( ZBStateObject*    pState,
+    IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardStopSymbol( ZBStateObject*    pState,
                                                                                           ZBSymbolSet&        SymbolSet,
                                                                                           ZBStateLinksSet&    StateLinkSet,
                                                                                           ZILog*            pLog );
 };
 
-#endif // !defined(AFX_ZBBPAutomate_H__1CC9AE94_368B_41BE_90E1_527CD3EC61F8__INCLUDED_)
+#endif

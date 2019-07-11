@@ -34,7 +34,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 
-#include "AutomationCollections.h"
+#include "PSS_AutomationCollections.h"
 #include "zModel\ZBLinkSymbol.h"
 
 /////////////////////////////////////////////////////////////////////////////

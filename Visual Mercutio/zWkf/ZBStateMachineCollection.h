@@ -34,7 +34,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 #include "ZBStateLink.h"
-#include "AutomationCollections.h"
+#include "PSS_AutomationCollections.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // Forward class declaration

@@ -2,19 +2,14 @@
 #define AFX_ZBMainPathRunnerThread_H__E8B82D08_88FE_4C53_991E_88017EFE6A65__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-// ZBMainPathRunnerThread.h : header file
-//
+    #pragma once
+#endif
 
+// processsoft
+#include "PSS_AutomationCollections.h"
+#include "PSS_ThinThread.h" 
 
-
-#include "CThinThread.h" 
-#include "AutomationCollections.h"
-
-
-/////////////////////////////////////////////////////////////////////////////
-// Forward class declaration
+// forward class declaration
 class ZBSymbol;
 class ZBLinkSymbol;
 class ZDProcessGraphModelMdl;
@@ -33,7 +28,7 @@ class ZILog;
 /////////////////////////////////////////////////////////////////////////////
 // ZBMainPathRunnerThread thread
 
-class ZBMainPathRunnerThread : public CThinThread
+class ZBMainPathRunnerThread : public PSS_ThinThread
 {
 protected:
     ZBMainPathRunnerThread();    // protected constructor used by dynamic creation     

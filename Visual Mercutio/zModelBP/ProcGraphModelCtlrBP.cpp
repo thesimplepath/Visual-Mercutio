@@ -1301,9 +1301,9 @@ void ZDProcessGraphModelControllerBP::OnRecalculateModelParameters()
 
         // Initialize the calculator
         ZBSesterceRecalculationAutomate Recalc( GetRootModel(), pDoc->GetAnalyzerOutputLog() );
-        Recalc.SetMaximumWaitingForOtherLinks( 1000 );
-        Recalc.SetMaximumPaused( 1000 );
-        Recalc.SetMaximumLoop( 2000 );
+        Recalc.SetMaxWaitingForOtherLinks( 1000 );
+        Recalc.SetMaxPaused( 1000 );
+        Recalc.SetMaxLoop( 2000 );
         Recalc.Start( 1 );
 
         // Set the modified flag
@@ -1357,9 +1357,9 @@ void ZDProcessGraphModelControllerBP::OnRecalculateModelDurations()
 
         // Initialize the calculator
         ZBDurationRecalculationAutomate Recalc( pSymbol, GetRootModel(), pDoc->GetAnalyzerOutputLog() );
-        Recalc.SetMaximumWaitingForOtherLinks( 1000 );
-        Recalc.SetMaximumPaused( 1000 );
-        Recalc.SetMaximumLoop( 2000 );
+        Recalc.SetMaxWaitingForOtherLinks( 1000 );
+        Recalc.SetMaxPaused( 1000 );
+        Recalc.SetMaxLoop( 2000 );
         Recalc.SetAllowUncompletePath(); // Sets the allow uncomplete path
         Recalc.Start( 1 );
 

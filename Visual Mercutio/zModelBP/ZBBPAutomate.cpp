@@ -47,12 +47,12 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 ZBBPAutomate::ZBBPAutomate( ZDProcessGraphModelMdl* pModel /*= NULL*/, ZILog* pLog /*= NULL*/ )
-    : ZBAutomationMachine( pModel, pLog )
+    : PSS_AutomationMachine( pModel, pLog )
 {
 }
 
 ZBBPAutomate::ZBBPAutomate( ZBSymbol* pSymbol, ZDProcessGraphModelMdl* pModel /*= NULL*/, ZILog* pLog /*= NULL*/ )
-    : ZBAutomationMachine( pSymbol, pModel, pLog )
+    : PSS_AutomationMachine( pSymbol, pModel, pLog )
 {
 }
 
@@ -368,7 +368,7 @@ bool ZBBPAutomate::OnReachMaximumInPauseCounter( ZILog* pLog )
 
 //////////////////////////////////////////////////////////////////////
 // Workflow operations
-ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForward( ZBStateObject*        pState,
+PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForward( ZBStateObject*        pState,
                                                                             ZBStateMachine*        pStateMachine,
                                                                             ZBSymbolSet&        SymbolSet,
                                                                             ZBStateLinksSet&    StateLinkSet,
@@ -397,13 +397,13 @@ ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForward( ZBSt
 
     // Increment the error counter
     IncrementErrorCounter();
-    return ZBAutomationMachine::AS_Error;
+    return PSS_AutomationMachine::IE_AS_Error;
 }
 
 //////////////////////////////////////////////////////////////////////
 // For start symbol, we only need to fill the symbol set and the state link set with correct objects
 // If there is no following symbol or link attached to the start symbol, return error
-ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardStartSymbol( ZBStateObject*    pState,
+PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardStartSymbol( ZBStateObject*    pState,
                                                                                        ZBSymbolSet&        SymbolSet,
                                                                                        ZBStateLinksSet&    StateLinkSet,
                                                                                        ZILog*            pLog )
@@ -429,7 +429,7 @@ ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardStartS
 
         // Increment the error counter
         IncrementErrorCounter();
-        return ZBAutomationMachine::AS_Error;
+        return PSS_AutomationMachine::IE_AS_Error;
     }
 
     // Retreiving leaving links
@@ -451,18 +451,18 @@ ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardStartS
 
         // Increment the error counter
         IncrementErrorCounter();
-        return ZBAutomationMachine::AS_Error;
+        return PSS_AutomationMachine::IE_AS_Error;
     }
 
     // Ok to move forward
-    return ZBAutomationMachine::AS_CanMoveForward;
+    return PSS_AutomationMachine::IE_AS_CanMoveForward;
 }
 
 //////////////////////////////////////////////////////////////////////
 // For procedure symbol, we need to check if all links are completed.
 // if it is not the case, return the waiting on other links status.
 // if all links are completed, we need to fill the symbol set and the state link set with correct objects
-ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardProcedureSymbol( ZBStateObject*    pState,
+PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardProcedureSymbol( ZBStateObject*    pState,
                                                                                            ZBSymbolSet&        SymbolSet,
                                                                                            ZBStateLinksSet&    StateLinkSet,
                                                                                            ZILog*            pLog )
@@ -495,7 +495,7 @@ ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardProced
         else
         {
             // It is not necessary to check further, we have not completed the first step
-            return ZBAutomationMachine::AS_IsWaitingForLinks;
+            return PSS_AutomationMachine::IE_AS_IsWaitingForLinks;
         }
     }
 
@@ -548,7 +548,7 @@ ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardProced
 
                         // Increment the error counter
                         IncrementErrorCounter();
-                        return ZBAutomationMachine::AS_Error;
+                        return PSS_AutomationMachine::IE_AS_Error;
                     }
 
                     CODEdgeArray LeavingRightEdges;
@@ -574,7 +574,7 @@ ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardProced
 
                         // Increment the error counter
                         IncrementErrorCounter();
-                        return ZBAutomationMachine::AS_Error;
+                        return PSS_AutomationMachine::IE_AS_Error;
                     }
 
                     // Before giving the ok to move forward, continue the test to know if left lateral links
@@ -617,7 +617,7 @@ ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardProced
 
                         // Increment the error counter
                         IncrementErrorCounter();
-                        return ZBAutomationMachine::AS_Error;
+                        return PSS_AutomationMachine::IE_AS_Error;
                     }
 
                     CODEdgeArray LeavingLeftEdges;
@@ -643,7 +643,7 @@ ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardProced
 
                         // Increment the error counter
                         IncrementErrorCounter();
-                        return ZBAutomationMachine::AS_Error;
+                        return PSS_AutomationMachine::IE_AS_Error;
                     }
                 }
             }
@@ -657,18 +657,18 @@ ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardProced
         {
             if ( ExistingEnteringRightCount > 0 && EnteringRightEdgesCompleted == false )
             {
-                return ZBAutomationMachine::AS_IsWaitingForLinks;
+                return PSS_AutomationMachine::IE_AS_IsWaitingForLinks;
             }
 
             // We already have entering links and the up is completed,
             // then we need to wait on all links
             if ( ExistingEnteringLeftCount > 0 && EnteringLeftEdgesCompleted == false )
             {
-                return ZBAutomationMachine::AS_IsWaitingForLinks;
+                return PSS_AutomationMachine::IE_AS_IsWaitingForLinks;
             }
 
             // Ok to move forward
-            return ZBAutomationMachine::AS_CanMoveForward;
+            return PSS_AutomationMachine::IE_AS_CanMoveForward;
         }
     }
 
@@ -700,7 +700,7 @@ ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardProced
 
             // Increment the error counter
             IncrementErrorCounter();
-            return ZBAutomationMachine::AS_Error;
+            return PSS_AutomationMachine::IE_AS_Error;
         }
 
         CODEdgeArray LeavingDownEdges;
@@ -724,18 +724,18 @@ ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardProced
 
             // Increment the error counter
             IncrementErrorCounter();
-            return ZBAutomationMachine::AS_Error;
+            return PSS_AutomationMachine::IE_AS_Error;
         }
 
         // Ok to move forward
-        return ZBAutomationMachine::AS_CanMoveForward;
+        return PSS_AutomationMachine::IE_AS_CanMoveForward;
     }
 
     // Problem
-    return ZBAutomationMachine::AS_Error;
+    return PSS_AutomationMachine::IE_AS_Error;
 }
 
-ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardDoorSymbol( ZBStateObject*    pState,
+PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardDoorSymbol( ZBStateObject*    pState,
                                                                                       ZBSymbolSet&        SymbolSet,
                                                                                       ZBStateLinksSet&    StateLinkSet,
                                                                                       ZILog*            pLog )
@@ -759,7 +759,7 @@ ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardDoorSy
 
         // Increment the error counter
         IncrementErrorCounter();
-        return ZBAutomationMachine::AS_Error;
+        return PSS_AutomationMachine::IE_AS_Error;
     }
 
     // Now take the next symbol attached to the twin
@@ -785,7 +785,7 @@ ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardDoorSy
 
         // Increment the error counter
         IncrementErrorCounter();
-        return ZBAutomationMachine::AS_Error;
+        return PSS_AutomationMachine::IE_AS_Error;
     }
 
     // Retreiving leaving links
@@ -810,14 +810,14 @@ ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardDoorSy
 
         // Increment the error counter
         IncrementErrorCounter();
-        return ZBAutomationMachine::AS_Error;
+        return PSS_AutomationMachine::IE_AS_Error;
     }
 
     // Ok to move forward
-    return ZBAutomationMachine::AS_CanMoveForward;
+    return PSS_AutomationMachine::IE_AS_CanMoveForward;
 }
 
-ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardPageSymbol( ZBStateObject*    pState,
+PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPageSymbol( ZBStateObject*    pState,
                                                                                       ZBSymbolSet&        SymbolSet,
                                                                                       ZBStateLinksSet&    StateLinkSet,
                                                                                       ZILog*            pLog )
@@ -841,7 +841,7 @@ ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardPageSy
 
         // Increment the error counter
         IncrementErrorCounter();
-        return ZBAutomationMachine::AS_Error;
+        return PSS_AutomationMachine::IE_AS_Error;
     }
 
     // Now take the next symbol attached to the twin
@@ -867,7 +867,7 @@ ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardPageSy
 
         // Increment the error counter
         IncrementErrorCounter();
-        return ZBAutomationMachine::AS_Error;
+        return PSS_AutomationMachine::IE_AS_Error;
     }
 
     // Retreiving leaving links
@@ -892,14 +892,14 @@ ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardPageSy
 
         // Increment the error counter
         IncrementErrorCounter();
-        return ZBAutomationMachine::AS_Error;
+        return PSS_AutomationMachine::IE_AS_Error;
     }
 
     // Ok to move forward
-    return ZBAutomationMachine::AS_CanMoveForward;
+    return PSS_AutomationMachine::IE_AS_CanMoveForward;
 }
 
-ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardStopSymbol( ZBStateObject*    pState,
+PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardStopSymbol( ZBStateObject*    pState,
                                                                                       ZBSymbolSet&        SymbolSet,
                                                                                       ZBStateLinksSet&    StateLinkSet,
                                                                                       ZILog*            pLog )
@@ -907,5 +907,5 @@ ZBAutomationMachine::AutomationMoveStatus ZBBPAutomate::RequestMoveForwardStopSy
     ZBBPStopSymbol* pStop = dynamic_cast<ZBBPStopSymbol*>( pState->GetpSymbol() );
 
     // It is finished when we reached a stop symbol
-    return ZBAutomationMachine::AS_IsFinished;
+    return PSS_AutomationMachine::IE_AS_IsFinished;
 }

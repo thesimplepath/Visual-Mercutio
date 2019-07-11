@@ -19,7 +19,7 @@
 
 
 #include "ZBStateLink.h"
-#include "AutomationCollections.h"
+#include "PSS_AutomationCollections.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // Forward class declaration
