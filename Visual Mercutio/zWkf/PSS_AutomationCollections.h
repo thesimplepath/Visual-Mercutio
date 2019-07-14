@@ -17,9 +17,9 @@
 // forward class declaration
 class ZBSymbol;
 class ZBLinkSymbol;
-class ZBStateLink;
-class ZBStateObject;
-class ZBStateMachine;
+class PSS_StateObject;
+class PSS_StateMachine;
+class PSS_StateLink;
 
 // scope symbols in stingray foundation library
 using namespace sfl;
@@ -27,61 +27,61 @@ using namespace sfl;
 /**
 * ZBSymbol collection
 */
-typedef CCArray_T<ZBSymbol*, ZBSymbol*> ZBSymbolSet;
+typedef CCArray_T<ZBSymbol*, ZBSymbol*> PSS_SymbolSet;
 
 /**
 * ZBSymbol collection iterator
 */
-typedef Iterator_T<ZBSymbol*> ZBSymbolIterator;
+typedef Iterator_T<ZBSymbol*> PSS_SymbolIterator;
 
 /**
 * ZBLinkSymbol collection
 */
-typedef CCArray_T<ZBLinkSymbol*, ZBLinkSymbol*> ZBLinkSymbolSet;
+typedef CCArray_T<ZBLinkSymbol*, ZBLinkSymbol*> PSS_LinkSymbolSet;
 
 /**
 * ZBLinkSymbol collection iterator
 */
-typedef Iterator_T<ZBLinkSymbol*> ZBLinkSymbolIterator;
+typedef Iterator_T<ZBLinkSymbol*> PSS_LinkSymbolIterator;
 
 /**
 * State machine handle collection
 */
-typedef CArray<int,int> ZBStateMachineHandleSet;
+typedef CArray<std::intptr_t, std::intptr_t> PSS_StateMachineHandleSet;
 
 /**
 * ZBStateObject collection
 */
-typedef CCArray_T<ZBStateObject*, ZBStateObject*> ZBStateObjectSet;
+typedef CCArray_T<PSS_StateObject*, PSS_StateObject*> PSS_StateObjectSet;
 
 /**
 * ZBStateObject collection iterator
 */
-typedef Iterator_T<ZBStateObject*> ZBStateObjectIterator;
+typedef Iterator_T<PSS_StateObject*> PSS_StateObjectIterator;
 
 /**
 * ZBStateMachine collection
 */
-typedef CCArray_T<ZBStateMachine*, ZBStateMachine*> ZBStateMachineSet;
+typedef CCArray_T<PSS_StateMachine*, PSS_StateMachine*> PSS_StateMachineSet;
 
 /**
 * ZBStateMachine collection iterator
 */
-typedef Iterator_T<ZBStateMachine*> ZBStateMachineIterator;
+typedef Iterator_T<PSS_StateMachine*> PSS_StateMachineIterator;
 
 /**
-* ZBStateLink collection
+* PSS_StateLink collection
 */
-typedef CCArray_T<ZBStateLink*, ZBStateLink*> ZBStateLinksSet;
+typedef CCArray_T<PSS_StateLink*, PSS_StateLink*> PSS_StateLinksSet;
 
 /**
-* ZBStateLink collection iterator
+* PSS_StateLink collection iterator
 */
-typedef Iterator_T<ZBStateLink*> ZBStateLinksIterator;
+typedef Iterator_T<PSS_StateLink*> PSS_StateLinksIterator;
 
 /**
 * State machine handle
 */
-typedef int StateMachineHandle;
+typedef std::intptr_t PSS_StateMachineHandle;
 
 #endif

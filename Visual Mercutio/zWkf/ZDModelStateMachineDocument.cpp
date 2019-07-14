@@ -15,10 +15,11 @@ static char THIS_FILE[] = __FILE__;
 
 IMPLEMENT_DYNCREATE(ZDModelStateMachineDocument, CDocument)
 
-ZDModelStateMachineDocument::ZDModelStateMachineDocument(ZBStateMachineCollection* pModelStateMachine /*= NULL*/)
-: m_pStateMachineCollection(pModelStateMachine), m_IsLoaded(false)
-{
-}
+ZDModelStateMachineDocument::ZDModelStateMachineDocument(PSS_StateMachineCollection* pModelStateMachine) :
+    CDocument(),
+    m_pStateMachineCollection(pModelStateMachine),
+    m_IsLoaded(false)
+{}
 
 BOOL ZDModelStateMachineDocument::OnNewDocument()
 {
@@ -32,11 +33,10 @@ BOOL ZDModelStateMachineDocument::OnNewDocument()
 }
 
 ZDModelStateMachineDocument::~ZDModelStateMachineDocument()
-{
-}
+{}
 
 
-bool ZDModelStateMachineDocument::ReadFromFile( const CString Filename, ZBStateMachineCollection* pModelStateMachine /*= NULL*/ )
+bool ZDModelStateMachineDocument::ReadFromFile(const CString& fileName, PSS_StateMachineCollection* pModelStateMachine)
 {
     // Check if necessary to assign a model state machine pointer
     if (pModelStateMachine)
@@ -45,37 +45,39 @@ bool ZDModelStateMachineDocument::ReadFromFile( const CString Filename, ZBStateM
     if (!m_pStateMachineCollection)
         return false;
 
-    bool            RetValue = false;
-    CFile            file;
-    CFileException    fe;
-    if (!file.Open( Filename, CFile::modeRead | CFile::shareDenyWrite, &fe ))
+    bool           retValue = false;
+    CFile          file;
+    CFileException fe;
+
+    if (!file.Open(fileName, CFile::modeRead | CFile::shareDenyWrite, &fe))
         return FALSE;
+
     CArchive loadArchive(&file, CArchive::load | CArchive::bNoFlushOnDelete);
     loadArchive.m_pDocument = this;
     loadArchive.m_bForceFlat = FALSE;
     TRY
     {
         Serialize( loadArchive );
-        RetValue = TRUE;
+        retValue = TRUE;
     }
     CATCH( CArchiveException, e )
     {
-        RetValue = FALSE;
+        retValue = FALSE;
     }
     END_CATCH
 
     loadArchive.Close();
     file.Close();
     // If everything is ok, set the pathname.
-    if (RetValue)
-        SetPathName( Filename, FALSE );
+    if (retValue)
+        SetPathName(fileName, FALSE );
     // Set IsLoaded member
-    m_IsLoaded = (RetValue) ? true : false;
-    return RetValue;
+    m_IsLoaded = (retValue) ? true : false;
+    return retValue;
 }
 
 
-bool ZDModelStateMachineDocument::SaveToFile( const CString Filename, ZBStateMachineCollection* pModelStateMachine /*= NULL*/ )
+bool ZDModelStateMachineDocument::SaveToFile(const CString& fileName, PSS_StateMachineCollection* pModelStateMachine)
 {
     // Check if necessary to assign a model state machine pointer
     if (pModelStateMachine)
@@ -87,7 +89,7 @@ bool ZDModelStateMachineDocument::SaveToFile( const CString Filename, ZBStateMac
     bool            RetValue = false;
     CFile            file;
     CFileException    fe;
-    if (!file.Open( Filename, CFile::modeCreate | CFile::modeWrite | CFile::shareDenyWrite, &fe ))
+    if (!file.Open(fileName, CFile::modeCreate | CFile::modeWrite | CFile::shareDenyWrite, &fe))
         return FALSE;
     CArchive saveArchive(&file, CArchive::store | CArchive::bNoFlushOnDelete);
     saveArchive.m_pDocument = this;

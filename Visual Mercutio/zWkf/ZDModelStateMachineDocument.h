@@ -16,7 +16,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 
-#include "ZBStateMachineCollection.h"
+#include "PSS_StateMachineCollection.h"
 
 
 #ifdef _ZWKFEXPORT
@@ -39,13 +39,13 @@ class AFX_EXT_CLASS ZDModelStateMachineDocument : public CDocument
 {
     DECLARE_DYNCREATE(ZDModelStateMachineDocument)
 public:
-    ZDModelStateMachineDocument(ZBStateMachineCollection* pModelStateMachine = NULL);           // Public constructor since not used by dynamic creation
+    ZDModelStateMachineDocument(PSS_StateMachineCollection* pModelStateMachine = NULL);           // Public constructor since not used by dynamic creation
     virtual ~ZDModelStateMachineDocument();
 
 // Operations
 public:
-    bool ReadFromFile( const CString Filename, ZBStateMachineCollection* pModelStateMachine = NULL );
-    bool SaveToFile( const CString Filename, ZBStateMachineCollection* pModelStateMachine = NULL );
+    bool ReadFromFile(const CString& fileName, PSS_StateMachineCollection* pModelStateMachine = NULL);
+    bool SaveToFile(const CString& fileName, PSS_StateMachineCollection* pModelStateMachine = NULL);
 
     bool IsLoaded() const
     {
@@ -84,8 +84,8 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-    ZBStateMachineCollection*    m_pStateMachineCollection;
-    bool                    m_IsLoaded;
+    PSS_StateMachineCollection* m_pStateMachineCollection;
+    bool                        m_IsLoaded;
 };
 
 //{{AFX_INSERT_LOCATION}}

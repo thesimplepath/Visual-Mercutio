@@ -14,7 +14,7 @@
 #include "stdafx.h"
 #include "ZBBPAutomate.h"
 
-#include "zWkf\ZBStateMachine.h"
+#include "zWkf\PSS_StateMachine.h"
 
 #include "zModel\ZBSymbol.h"
 #include "zModel\ZBLinkSymbol.h"
@@ -119,16 +119,16 @@ bool ZBBPAutomate::OnResume( ZILog* pLog )
 
 //////////////////////////////////////////////////////////////////////
 // Call-back workflow operations
-bool ZBBPAutomate::OnObjectIsFinished( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog )
+bool ZBBPAutomate::OnObjectIsFinished(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
 {
     // If log and debug mode is required
     if ( pLog && pLog->IsInDebugMode() )
     {
         CString message;
 
-        if ( pState->GetpSymbol() )
+        if ( pState->GetSymbol() )
         {
-            message.Format( IDS_AL_SYMB_ISFINISHED_DBG, pState->GetpSymbol()->GetSymbolName() );
+            message.Format( IDS_AL_SYMB_ISFINISHED_DBG, pState->GetSymbol()->GetSymbolName() );
         }
         else
         {
@@ -142,16 +142,16 @@ bool ZBBPAutomate::OnObjectIsFinished( ZBStateObject* pState, ZBStateMachine* pS
     return true;
 }
 
-bool ZBBPAutomate::OnObjectIsPaused( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog )
+bool ZBBPAutomate::OnObjectIsPaused(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
 {
     // If log and debug mode is required
     if ( pLog && pLog->IsInDebugMode() )
     {
         CString message;
 
-        if ( pState->GetpSymbol() )
+        if ( pState->GetSymbol() )
         {
-            message.Format( IDS_AL_SYMB_ISPAUSED_DBG, pState->GetpSymbol()->GetSymbolName() );
+            message.Format( IDS_AL_SYMB_ISPAUSED_DBG, pState->GetSymbol()->GetSymbolName() );
         }
         else
         {
@@ -165,18 +165,18 @@ bool ZBBPAutomate::OnObjectIsPaused( ZBStateObject* pState, ZBStateMachine* pSta
     return true;
 }
 
-bool ZBBPAutomate::OnObjectIsWaitingForOtherLinks( ZBStateObject*    pState,
-                                                   ZBStateMachine*    pStateMachine,
-                                                   ZILog*            pLog )
+bool ZBBPAutomate::OnObjectIsWaitingForOtherLinks(PSS_StateObject*  pState,
+                                                  PSS_StateMachine* pStateMachine,
+                                                  ZILog*            pLog )
 {
     // If log and debug mode is required
     if ( pLog && pLog->IsInDebugMode() )
     {
         CString message;
 
-        if ( pState->GetpSymbol() )
+        if ( pState->GetSymbol() )
         {
-            message.Format( IDS_AL_SYMB_ISWAITINGONOTHER_DBG, pState->GetpSymbol()->GetSymbolName() );
+            message.Format( IDS_AL_SYMB_ISWAITINGONOTHER_DBG, pState->GetSymbol()->GetSymbolName() );
         }
         else
         {
@@ -190,16 +190,16 @@ bool ZBBPAutomate::OnObjectIsWaitingForOtherLinks( ZBStateObject*    pState,
     return true;
 }
 
-bool ZBBPAutomate::OnBeforeRequestMoveForward( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog )
+bool ZBBPAutomate::OnBeforeRequestMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
 {
     // If log and debug mode is required
     if ( pLog && pLog->IsInDebugMode() )
     {
         CString message;
 
-        if ( pState->GetpSymbol() )
+        if ( pState->GetSymbol() )
         {
-            message.Format( IDS_AL_SYMB_REQUESTMOVE_DBG, pState->GetpSymbol()->GetSymbolName() );
+            message.Format( IDS_AL_SYMB_REQUESTMOVE_DBG, pState->GetSymbol()->GetSymbolName() );
         }
         else
         {
@@ -213,16 +213,16 @@ bool ZBBPAutomate::OnBeforeRequestMoveForward( ZBStateObject* pState, ZBStateMac
     return true;
 }
 
-bool ZBBPAutomate::OnNextSymbolAfterMoveForward( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog )
+bool ZBBPAutomate::OnNextSymbolAfterMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
 {
     // If log and debug mode is required
     if ( pLog && pLog->IsInDebugMode() )
     {
         CString message;
 
-        if ( pState->GetpSymbol() )
+        if ( pState->GetSymbol() )
         {
-            message.Format( IDS_AL_SYMB_REACHED_DBG, pState->GetpSymbol()->GetSymbolName() );
+            message.Format( IDS_AL_SYMB_REACHED_DBG, pState->GetSymbol()->GetSymbolName() );
         }
         else
         {
@@ -236,16 +236,16 @@ bool ZBBPAutomate::OnNextSymbolAfterMoveForward( ZBStateObject* pState, ZBStateM
     return true;
 }
 
-bool ZBBPAutomate::OnBeforeMoveForward( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog )
+bool ZBBPAutomate::OnBeforeMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
 {
     // If log and debug mode is required
     if ( pLog && pLog->IsInDebugMode() )
     {
         CString message;
 
-        if ( pState->GetpSymbol() )
+        if ( pState->GetSymbol() )
         {
-            message.Format( IDS_AL_SYMB_BEFOREMOVE_DBG, pState->GetpSymbol()->GetSymbolName() );
+            message.Format( IDS_AL_SYMB_BEFOREMOVE_DBG, pState->GetSymbol()->GetSymbolName() );
         }
         else
         {
@@ -259,16 +259,16 @@ bool ZBBPAutomate::OnBeforeMoveForward( ZBStateObject* pState, ZBStateMachine* p
     return true;
 }
 
-bool ZBBPAutomate::OnAfterMoveForward( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog )
+bool ZBBPAutomate::OnAfterMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
 {
     // If log and debug mode is required
     if ( pLog && pLog->IsInDebugMode() )
     {
         CString message;
 
-        if ( pState->GetpSymbol() )
+        if ( pState->GetSymbol() )
         {
-            message.Format( IDS_AL_SYMB_AFTERMOVE_DBG, pState->GetpSymbol()->GetSymbolName() );
+            message.Format( IDS_AL_SYMB_AFTERMOVE_DBG, pState->GetSymbol()->GetSymbolName() );
         }
         else
         {
@@ -282,26 +282,26 @@ bool ZBBPAutomate::OnAfterMoveForward( ZBStateObject* pState, ZBStateMachine* pS
     return true;
 }
 
-bool ZBBPAutomate::OnBeforeMoveBackward( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog )
+bool ZBBPAutomate::OnBeforeMoveBackward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
 {
     return true;
 }
 
-bool ZBBPAutomate::OnAfterMoveBackward( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog )
+bool ZBBPAutomate::OnAfterMoveBackward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
 {
     return true;
 }
 
-bool ZBBPAutomate::OnObjectError( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog )
+bool ZBBPAutomate::OnObjectError(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
 {
     // If log and debug mode is required
     if ( pLog && pLog->IsInDebugMode() )
     {
         CString message;
 
-        if ( pState->GetpSymbol() )
+        if ( pState->GetSymbol() )
         {
-            message.Format( IDS_AL_SYMB_ISINERROR_DBG, pState->GetpSymbol()->GetSymbolName() );
+            message.Format( IDS_AL_SYMB_ISINERROR_DBG, pState->GetSymbol()->GetSymbolName() );
         }
         else
         {
@@ -368,29 +368,29 @@ bool ZBBPAutomate::OnReachMaximumInPauseCounter( ZILog* pLog )
 
 //////////////////////////////////////////////////////////////////////
 // Workflow operations
-PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForward( ZBStateObject*        pState,
-                                                                            ZBStateMachine*        pStateMachine,
-                                                                            ZBSymbolSet&        SymbolSet,
-                                                                            ZBStateLinksSet&    StateLinkSet,
-                                                                            ZILog*                pLog )
+PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForward(PSS_StateObject*   pState,
+                                                                               PSS_StateMachine*  pStateMachine,
+                                                                               PSS_SymbolSet&     SymbolSet,
+                                                                               PSS_StateLinksSet& StateLinkSet,
+                                                                               ZILog*             pLog )
 {
-    if ( pState->GetpSymbol() && ISA( pState->GetpSymbol(), ZBBPStartSymbol ) )
+    if ( pState->GetSymbol() && ISA( pState->GetSymbol(), ZBBPStartSymbol ) )
     {
         return RequestMoveForwardStartSymbol( pState, SymbolSet, StateLinkSet, pLog );
     }
-    else if ( pState->GetpSymbol() && ISA( pState->GetpSymbol(), ZBBPProcedureSymbol ) )
+    else if ( pState->GetSymbol() && ISA( pState->GetSymbol(), ZBBPProcedureSymbol ) )
     {
         return RequestMoveForwardProcedureSymbol( pState, SymbolSet, StateLinkSet, pLog );
     }
-    else if ( pState->GetpSymbol() && ISA( pState->GetpSymbol(), ZBBPDoorSymbol ) )
+    else if ( pState->GetSymbol() && ISA( pState->GetSymbol(), ZBBPDoorSymbol ) )
     {
         return RequestMoveForwardDoorSymbol( pState, SymbolSet, StateLinkSet, pLog );
     }
-    else if ( pState->GetpSymbol() && ISA( pState->GetpSymbol(), ZBBPPageSymbol ) )
+    else if ( pState->GetSymbol() && ISA( pState->GetSymbol(), ZBBPPageSymbol ) )
     {
         return RequestMoveForwardPageSymbol( pState, SymbolSet, StateLinkSet, pLog );
     }
-    else if ( pState->GetpSymbol() && ISA( pState->GetpSymbol(), ZBBPStopSymbol ) )
+    else if ( pState->GetSymbol() && ISA( pState->GetSymbol(), ZBBPStopSymbol ) )
     {
         return RequestMoveForwardStopSymbol( pState, SymbolSet, StateLinkSet, pLog );
     }
@@ -403,12 +403,12 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForward( 
 //////////////////////////////////////////////////////////////////////
 // For start symbol, we only need to fill the symbol set and the state link set with correct objects
 // If there is no following symbol or link attached to the start symbol, return error
-PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardStartSymbol( ZBStateObject*    pState,
-                                                                                       ZBSymbolSet&        SymbolSet,
-                                                                                       ZBStateLinksSet&    StateLinkSet,
-                                                                                       ZILog*            pLog )
+PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardStartSymbol(PSS_StateObject*   pState,
+                                                                                          PSS_SymbolSet&     SymbolSet,
+                                                                                          PSS_StateLinksSet& StateLinkSet,
+                                                                                          ZILog*             pLog )
 {
-    ZBBPStartSymbol* pStart = dynamic_cast<ZBBPStartSymbol*>( pState->GetpSymbol() );
+    ZBBPStartSymbol* pStart = dynamic_cast<ZBBPStartSymbol*>( pState->GetSymbol() );
 
     // Retreiving following nodes
     CODNodeArray FollowingNodes;
@@ -438,7 +438,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardSt
 
     if ( LeavingLinkCount > 0 )
     {
-        CopyEdgeArrayToStateLinksSet( LeavingEdges, ZBStateLink::LinkDirection::EnteringUp, StateLinkSet );
+        CopyEdgeArrayToStateLinksSet(LeavingEdges, PSS_StateLink::IE_LD_EnteringUp, StateLinkSet);
     }
     else
     {
@@ -462,12 +462,12 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardSt
 // For procedure symbol, we need to check if all links are completed.
 // if it is not the case, return the waiting on other links status.
 // if all links are completed, we need to fill the symbol set and the state link set with correct objects
-PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardProcedureSymbol( ZBStateObject*    pState,
-                                                                                           ZBSymbolSet&        SymbolSet,
-                                                                                           ZBStateLinksSet&    StateLinkSet,
-                                                                                           ZILog*            pLog )
+PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardProcedureSymbol(PSS_StateObject*   pState,
+                                                                                              PSS_SymbolSet&     SymbolSet,
+                                                                                              PSS_StateLinksSet& StateLinkSet,
+                                                                                              ZILog*             pLog )
 {
-    ZBBPProcedureSymbol* pProcedure = dynamic_cast<ZBBPProcedureSymbol*>( pState->GetpSymbol() );
+    ZBBPProcedureSymbol* pProcedure = dynamic_cast<ZBBPProcedureSymbol*>( pState->GetSymbol() );
     ASSERT( pProcedure );
 
     bool EnteringUpEdgesCompleted        = false;
@@ -556,9 +556,9 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPr
 
                     if ( LeavingRightLinkCount > 0 )
                     {
-                        CopyEdgeArrayToStateLinksSet( LeavingRightEdges,
-                                                      ZBStateLink::LinkDirection::EnteringRight,
-                                                      StateLinkSet );
+                        CopyEdgeArrayToStateLinksSet(LeavingRightEdges,
+                                                     PSS_StateLink::IE_LD_EnteringRight,
+                                                     StateLinkSet );
                     }
                     else
                     {
@@ -625,9 +625,9 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPr
 
                     if ( LeavingLeftLinkCount > 0 )
                     {
-                        CopyEdgeArrayToStateLinksSet( LeavingLeftEdges,
-                                                      ZBStateLink::LinkDirection::EnteringLeft,
-                                                      StateLinkSet );
+                        CopyEdgeArrayToStateLinksSet(LeavingLeftEdges,
+                                                     PSS_StateLink::IE_LD_EnteringLeft,
+                                                     StateLinkSet );
                     }
                     else
                     {
@@ -708,7 +708,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPr
 
         if ( LeavingDownLinkCount > 0 )
         {
-            CopyEdgeArrayToStateLinksSet( LeavingDownEdges, ZBStateLink::LinkDirection::EnteringUp, StateLinkSet );
+            CopyEdgeArrayToStateLinksSet( LeavingDownEdges, PSS_StateLink::IE_LD_EnteringUp, StateLinkSet );
         }
         else
         {
@@ -735,12 +735,12 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPr
     return PSS_AutomationMachine::IE_AS_Error;
 }
 
-PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardDoorSymbol( ZBStateObject*    pState,
-                                                                                      ZBSymbolSet&        SymbolSet,
-                                                                                      ZBStateLinksSet&    StateLinkSet,
-                                                                                      ZILog*            pLog )
+PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardDoorSymbol(PSS_StateObject*   pState,
+                                                                                         PSS_SymbolSet&     SymbolSet,
+                                                                                         PSS_StateLinksSet& StateLinkSet,
+                                                                                         ZILog*             pLog )
 {
-    ZBBPDoorSymbol* pDoor = dynamic_cast<ZBBPDoorSymbol*>( pState->GetpSymbol() );
+    ZBBPDoorSymbol* pDoor = dynamic_cast<ZBBPDoorSymbol*>( pState->GetSymbol() );
     ASSERT( pDoor );
 
     ZBBPDoorSymbol* pTwinDoor = pDoor->GetTwinDoorSymbol();
@@ -794,7 +794,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardDo
 
     if ( LeavingLinkCount > 0 )
     {
-        CopyEdgeArrayToStateLinksSet( LeavingEdges, ZBStateLink::LinkDirection::EnteringUp, StateLinkSet );
+        CopyEdgeArrayToStateLinksSet( LeavingEdges, PSS_StateLink::IE_LD_EnteringUp, StateLinkSet );
     }
     else
     {
@@ -817,12 +817,12 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardDo
     return PSS_AutomationMachine::IE_AS_CanMoveForward;
 }
 
-PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPageSymbol( ZBStateObject*    pState,
-                                                                                      ZBSymbolSet&        SymbolSet,
-                                                                                      ZBStateLinksSet&    StateLinkSet,
-                                                                                      ZILog*            pLog )
+PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPageSymbol(PSS_StateObject*   pState,
+                                                                                         PSS_SymbolSet&     SymbolSet,
+                                                                                         PSS_StateLinksSet& StateLinkSet,
+                                                                                         ZILog*             pLog )
 {
-    ZBBPPageSymbol* pPage = dynamic_cast<ZBBPPageSymbol*>( pState->GetpSymbol() );
+    ZBBPPageSymbol* pPage = dynamic_cast<ZBBPPageSymbol*>( pState->GetSymbol() );
     ASSERT( pPage );
 
     ZBBPPageSymbol* pTwinPage = pPage->GetTwinPageSymbol();
@@ -876,7 +876,7 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPa
 
     if ( LeavingLinkCount > 0 )
     {
-        CopyEdgeArrayToStateLinksSet( LeavingEdges, ZBStateLink::LinkDirection::EnteringUp, StateLinkSet );
+        CopyEdgeArrayToStateLinksSet( LeavingEdges, PSS_StateLink::IE_LD_EnteringUp, StateLinkSet );
     }
     else
     {
@@ -899,12 +899,12 @@ PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPa
     return PSS_AutomationMachine::IE_AS_CanMoveForward;
 }
 
-PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardStopSymbol( ZBStateObject*    pState,
-                                                                                      ZBSymbolSet&        SymbolSet,
-                                                                                      ZBStateLinksSet&    StateLinkSet,
-                                                                                      ZILog*            pLog )
+PSS_AutomationMachine::IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardStopSymbol(PSS_StateObject*   pState,
+                                                                                         PSS_SymbolSet&     SymbolSet,
+                                                                                         PSS_StateLinksSet& StateLinkSet,
+                                                                                         ZILog*             pLog )
 {
-    ZBBPStopSymbol* pStop = dynamic_cast<ZBBPStopSymbol*>( pState->GetpSymbol() );
+    ZBBPStopSymbol* pStop = dynamic_cast<ZBBPStopSymbol*>( pState->GetSymbol() );
 
     // It is finished when we reached a stop symbol
     return PSS_AutomationMachine::IE_AS_IsFinished;

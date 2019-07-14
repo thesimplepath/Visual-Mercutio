@@ -14,8 +14,8 @@
 #include "zModel\ZBSymbol.h"
 #include "zModel\ZBLinkSymbol.h"
 #include "PSS_AutomationMachine.h"
-#include "ZBStateMachine.h"
-#include "ZBStateMachineCollection.h"
+#include "PSS_StateMachine.h"
+#include "PSS_StateMachineCollection.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -27,6 +27,7 @@
 // PSS_MainAutomationRunnerThread
 //---------------------------------------------------------------------------
 PSS_MainAutomationRunnerThread::PSS_MainAutomationRunnerThread() :
+    PSS_ThinThread(),
     m_pAutomationMachine(NULL),
     m_pLog(NULL),
     m_Timeout(-1),
@@ -38,6 +39,7 @@ PSS_MainAutomationRunnerThread::PSS_MainAutomationRunnerThread() :
 PSS_MainAutomationRunnerThread::PSS_MainAutomationRunnerThread(PSS_AutomationMachine* pAutomationMachine,
                                                                int                    timeout,
                                                                ZILog*                 pLog) :
+    PSS_ThinThread(),
     m_pAutomationMachine(pAutomationMachine),
     m_pLog(pLog),
     m_Timeout(timeout),
@@ -73,7 +75,7 @@ void PSS_MainAutomationRunnerThread::StartWork()
     if (m_pAutomationMachine->GetStartSymbol())
     {
         // create a model state machine for each start symbol
-        StateMachineHandle hStateMachine =
+        PSS_StateMachineHandle hStateMachine =
                 m_pAutomationMachine->GetStateMachineCollection().CreateNewStateMachine(m_pAutomationMachine->GetStartSymbol(), NULL);
 
         // todo -cFeature -oJean: log the error
@@ -99,7 +101,7 @@ void PSS_MainAutomationRunnerThread::StartWork()
                 continue;
 
             // create a model state machine for each start symbol
-            StateMachineHandle hStateMachine =
+            PSS_StateMachineHandle hStateMachine =
                     m_pAutomationMachine->GetStateMachineCollection().CreateNewStateMachine(pSymbol, NULL);
 
             // todo -cFeature -oJean: log the error
@@ -121,7 +123,7 @@ void PSS_MainAutomationRunnerThread::StartWork()
 //---------------------------------------------------------------------------
 void PSS_MainAutomationRunnerThread::DoWork()
 {
-    ZBStateMachineCollection collection;
+    PSS_StateMachineCollection collection;
     m_pAutomationMachine->MergeAllStateObjects(collection);
 
     if (!collection.GetStateMachineCount())
@@ -143,10 +145,10 @@ void PSS_MainAutomationRunnerThread::DoWork()
         return;
     }
 
-    ZBStateMachineIterator it(&collection.GetStateMachineSetConst());
+    PSS_StateMachineIterator it(&collection.GetStateMachineSetConst());
 
     // for each state machine, do the work
-    for (ZBStateMachine* pStateMachine = it.GetFirst(); pStateMachine; pStateMachine = it.GetNext())
+    for (PSS_StateMachine* pStateMachine = it.GetFirst(); pStateMachine; pStateMachine = it.GetNext())
     {
         // call the callback function
         if (!m_pAutomationMachine->OnBeforeRequestMoveForward(pStateMachine->GetCurrentStateObject(),
@@ -154,8 +156,8 @@ void PSS_MainAutomationRunnerThread::DoWork()
                                                               m_pLog))
             return;
 
-        ZBSymbolSet     symbolSet;
-        ZBStateLinksSet stateLinkSet;
+        PSS_SymbolSet     symbolSet;
+        PSS_StateLinksSet stateLinkSet;
 
         switch (m_pAutomationMachine->RequestMoveForward(pStateMachine->GetCurrentStateObject(),
                                                          pStateMachine,
@@ -243,7 +245,7 @@ void PSS_MainAutomationRunnerThread::DoWork()
                 {
                     // no more demultiplication, just push the new symbol on the stack. First, locate the original
                     // state machines and merge them if necessary
-                    ZBStateMachine* pOriginalStateMachine =
+                    PSS_StateMachine* pOriginalStateMachine =
                             m_pAutomationMachine->MergeSourceStateMachines(pStateMachine);
 
                     // call the callback function
@@ -268,7 +270,7 @@ void PSS_MainAutomationRunnerThread::DoWork()
                 {
                     // for each symbol, create a new state machine. First, locate the original state machines
                     // and merge them if necessary
-                    ZBStateMachine* pOriginalStateMachine =
+                    PSS_StateMachine* pOriginalStateMachine =
                             m_pAutomationMachine->MergeSourceStateMachines(pStateMachine);
 
                     // push the symbol and the state link
@@ -276,7 +278,7 @@ void PSS_MainAutomationRunnerThread::DoWork()
                     {
                         // for each symbol, create a new state machine, except for the first one, which continue to
                         // use the existing. Get the current state object of the current state machine
-                        ZBStateObject* pInitialStateObject = pOriginalStateMachine->GetCurrentStateObject();
+                        PSS_StateObject* pInitialStateObject = pOriginalStateMachine->GetCurrentStateObject();
 
                         // call the callback function
                         if (!m_pAutomationMachine->OnAfterMoveForward(pOriginalStateMachine->GetCurrentStateObject(),
@@ -299,7 +301,7 @@ void PSS_MainAutomationRunnerThread::DoWork()
                         for (int i = 1; i < symbolSet.GetSize(); ++i)
                         {
                             // create a model state machine for each state object
-                            StateMachineHandle hStateMachine =
+                            PSS_StateMachineHandle hStateMachine =
                                     m_pAutomationMachine->GetStateMachineCollection().CreateNewStateMachine(pInitialStateObject->Clone());
 
                             if (hStateMachine == -1)
@@ -312,7 +314,7 @@ void PSS_MainAutomationRunnerThread::DoWork()
                             m_MachineHandleSet.Add(hStateMachine);
 
                             // push the state link and the symbol to the newly created state machine
-                            ZBStateMachine* pNewStateMachine = m_pAutomationMachine->GetStateMachine(hStateMachine);
+                            PSS_StateMachine* pNewStateMachine = m_pAutomationMachine->GetStateMachine(hStateMachine);
 
                             if (!pNewStateMachine)
                             {

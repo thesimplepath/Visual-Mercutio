@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ZBDurationRecalculationAutomate.h"
 
-#include "zWkf\ZBStateMachine.h"
+#include "zWkf\PSS_StateMachine.h"
 
 #include "ZUCheckSesterceConsistency.h"
 #include "ZUProcessClearDurationFigures.h"
@@ -121,58 +121,58 @@ bool ZBDurationRecalculationAutomate::OnResume( ZILog* pLog )
 
 //////////////////////////////////////////////////////////////////////
 // Call-back workflow operations
-bool ZBDurationRecalculationAutomate::OnObjectIsFinished( ZBStateObject*    pState,
-                                                          ZBStateMachine*    pStateMachine,
-                                                          ZILog*            pLog )
+bool ZBDurationRecalculationAutomate::OnObjectIsFinished(PSS_StateObject*  pState,
+                                                         PSS_StateMachine* pStateMachine,
+                                                         ZILog*            pLog)
 {
     return ZBBPAutomate::OnObjectIsFinished( pState, pStateMachine, pLog );
 }
 
-bool ZBDurationRecalculationAutomate::OnObjectIsPaused( ZBStateObject*    pState,
-                                                        ZBStateMachine*    pStateMachine,
-                                                        ZILog*            pLog )
+bool ZBDurationRecalculationAutomate::OnObjectIsPaused(PSS_StateObject*  pState,
+                                                       PSS_StateMachine* pStateMachine,
+                                                       ZILog*            pLog)
 {
     return ZBBPAutomate::OnObjectIsPaused( pState, pStateMachine, pLog );
 }
 
-bool ZBDurationRecalculationAutomate::OnObjectIsWaitingForOtherLinks( ZBStateObject*    pState,
-                                                                      ZBStateMachine*    pStateMachine,
-                                                                      ZILog*            pLog )
+bool ZBDurationRecalculationAutomate::OnObjectIsWaitingForOtherLinks(PSS_StateObject*  pState,
+                                                                     PSS_StateMachine* pStateMachine,
+                                                                     ZILog*            pLog)
 {
     return ZBBPAutomate::OnObjectIsWaitingForOtherLinks( pState, pStateMachine, pLog );
 }
 
-bool ZBDurationRecalculationAutomate::OnBeforeRequestMoveForward( ZBStateObject*    pState,
-                                                                  ZBStateMachine*    pStateMachine,
-                                                                  ZILog*            pLog )
+bool ZBDurationRecalculationAutomate::OnBeforeRequestMoveForward(PSS_StateObject*  pState,
+                                                                 PSS_StateMachine* pStateMachine,
+                                                                 ZILog*            pLog)
 {
     return ZBBPAutomate::OnBeforeRequestMoveForward( pState, pStateMachine, pLog );
 }
 
-bool ZBDurationRecalculationAutomate::OnAfterMoveForward( ZBStateObject*    pState,
-                                                          ZBStateMachine*    pStateMachine,
-                                                          ZILog*            pLog )
+bool ZBDurationRecalculationAutomate::OnAfterMoveForward(PSS_StateObject*  pState,
+                                                         PSS_StateMachine* pStateMachine,
+                                                         ZILog*            pLog)
 {
     return ZBBPAutomate::OnAfterMoveForward( pState, pStateMachine, pLog );
 }
 
-bool ZBDurationRecalculationAutomate::OnBeforeMoveBackward( ZBStateObject*    pState,
-                                                            ZBStateMachine*    pStateMachine,
-                                                            ZILog*            pLog )
+bool ZBDurationRecalculationAutomate::OnBeforeMoveBackward(PSS_StateObject*  pState,
+                                                           PSS_StateMachine* pStateMachine,
+                                                           ZILog*            pLog)
 {
     return ZBBPAutomate::OnBeforeMoveBackward( pState, pStateMachine, pLog );
 }
 
-bool ZBDurationRecalculationAutomate::OnAfterMoveBackward( ZBStateObject*    pState,
-                                                           ZBStateMachine*    pStateMachine,
-                                                           ZILog*            pLog )
+bool ZBDurationRecalculationAutomate::OnAfterMoveBackward(PSS_StateObject*  pState,
+                                                          PSS_StateMachine* pStateMachine,
+                                                          ZILog*            pLog)
 {
     return ZBBPAutomate::OnAfterMoveBackward( pState, pStateMachine, pLog );
 }
 
-bool ZBDurationRecalculationAutomate::OnObjectError( ZBStateObject*        pState,
-                                                     ZBStateMachine*    pStateMachine,
-                                                     ZILog* pLog )
+bool ZBDurationRecalculationAutomate::OnObjectError(PSS_StateObject*  pState,
+                                                    PSS_StateMachine* pStateMachine,
+                                                    ZILog*            pLog)
 {
     return ZBBPAutomate::OnObjectError( pState, pStateMachine, pLog );
 }
@@ -192,9 +192,9 @@ bool ZBDurationRecalculationAutomate::OnReachMaximumInPauseCounter( ZILog* pLog 
     return ZBBPAutomate::OnReachMaximumInPauseCounter( pLog );
 }
 
-bool ZBDurationRecalculationAutomate::OnNextSymbolAfterMoveForward( ZBStateObject*    pState,
-                                                                    ZBStateMachine*    pStateMachine,
-                                                                    ZILog*            pLog )
+bool ZBDurationRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObject*  pState,
+                                                                   PSS_StateMachine* pStateMachine,
+                                                                   ZILog*            pLog )
 {
     if ( !ZBBPAutomate::OnNextSymbolAfterMoveForward( pState, pStateMachine, pLog ) )
     {
@@ -218,7 +218,7 @@ bool ZBDurationRecalculationAutomate::OnNextSymbolAfterMoveForward( ZBStateObjec
     // We must found the symbol and the link.
     // Check that we have an Entering up link
     // Now check if we have a procedure
-    if ( pState && pState->GetpSymbol() && ISA( pState->GetpSymbol(), ZBBPProcedureSymbol ) )
+    if ( pState && pState->GetSymbol() && ISA( pState->GetSymbol(), ZBBPProcedureSymbol ) )
     {
         TRACE1( _T( "OnNextSymbolAfterMoveForward: current Procedure is %s\n" ),
                     dynamic_cast<ZBSymbol*>( pState->GetpSymbol() )->GetSymbolName() );
@@ -230,7 +230,7 @@ bool ZBDurationRecalculationAutomate::OnNextSymbolAfterMoveForward( ZBStateObjec
             return false;
         }
 
-        ZBBPProcedureSymbol* pProcedure = dynamic_cast<ZBBPProcedureSymbol*>( pState->GetpSymbol() );
+        ZBBPProcedureSymbol* pProcedure = dynamic_cast<ZBBPProcedureSymbol*>( pState->GetSymbol() );
 
         CODEdgeArray LeavingDownEdges;
         size_t LeavingDownLinkCount = pProcedure->GetEdgesLeaving_Down( LeavingDownEdges );
@@ -245,9 +245,9 @@ bool ZBDurationRecalculationAutomate::OnNextSymbolAfterMoveForward( ZBStateObjec
     return true;
 }
 
-bool ZBDurationRecalculationAutomate::OnBeforeMoveForward( ZBStateObject*    pState,
-                                                           ZBStateMachine*    pStateMachine,
-                                                           ZILog*            pLog )
+bool ZBDurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pState,
+                                                          PSS_StateMachine* pStateMachine,
+                                                          ZILog*            pLog )
 {
     if ( !ZBBPAutomate::OnBeforeMoveForward( pState, pStateMachine, pLog ) )
     {
@@ -270,9 +270,9 @@ bool ZBDurationRecalculationAutomate::OnBeforeMoveForward( ZBStateObject*    pSt
 
     // Now check if we have a start symbol
     // Calculate Deliverables down Durations
-    if ( pState && pState->GetpSymbol() && ISA( pState->GetpSymbol(), ZBBPStartSymbol ) )
+    if ( pState && pState->GetSymbol() && ISA( pState->GetSymbol(), ZBBPStartSymbol ) )
     {
-        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>( pState->GetpSymbol() );
+        ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>( pState->GetSymbol() );
 
         TRACE1( _T( "OnBeforeMoveForward: start in the stack is %s\n" ), pSymbol->GetSymbolName() );
 
@@ -284,11 +284,11 @@ bool ZBDurationRecalculationAutomate::OnBeforeMoveForward( ZBStateObject*    pSt
             SetStartSymbolCaseDurationOfDownDeliverables( pState, LeavingEdges, LeavingLinkCount, pLog );
         }
     }
-    else if ( pState && pState->GetpSymbol() && ISA( pState->GetpSymbol(), ZBBPDoorSymbol ) )
+    else if ( pState && pState->GetSymbol() && ISA( pState->GetSymbol(), ZBBPDoorSymbol ) )
     {
         // Now check if we have a door symbol
         // Duplicate duration information of deliverable symbols
-        ZBBPDoorSymbol* pSymbol = dynamic_cast<ZBBPDoorSymbol*>( pState->GetpSymbol() );
+        ZBBPDoorSymbol* pSymbol = dynamic_cast<ZBBPDoorSymbol*>( pState->GetSymbol() );
 
         TRACE1( _T( "OnBeforeMoveForward: door in the stack is %s\n" ), pSymbol->GetSymbolName() );
 
@@ -354,11 +354,11 @@ bool ZBDurationRecalculationAutomate::OnBeforeMoveForward( ZBStateObject*    pSt
             }
         }
     }
-    else if ( pState && pState->GetpSymbol() && ISA( pState->GetpSymbol(), ZBBPPageSymbol ) )
+    else if ( pState && pState->GetSymbol() && ISA( pState->GetSymbol(), ZBBPPageSymbol ) )
     {
         // Now check if we have a page symbol
         // Duplicate duration information of deliverable symbols
-        ZBBPPageSymbol* pSymbol = dynamic_cast<ZBBPPageSymbol*>( pState->GetpSymbol() );
+        ZBBPPageSymbol* pSymbol = dynamic_cast<ZBBPPageSymbol*>( pState->GetSymbol() );
 
         TRACE1( _T( "OnBeforeMoveForward: page in the stack is %s\n" ), pSymbol->GetSymbolName() );
 
@@ -425,11 +425,11 @@ bool ZBDurationRecalculationAutomate::OnBeforeMoveForward( ZBStateObject*    pSt
             }
         }
     }
-    else if ( pState && pState->GetpSymbol() && ISA( pState->GetpSymbol(), ZBBPProcedureSymbol ) )
+    else if ( pState && pState->GetSymbol() && ISA( pState->GetSymbol(), ZBBPProcedureSymbol ) )
     {
         // Now check if we are a procedure
         // Calculate Deliverables Durations
-        ZBBPProcedureSymbol* pProcedure = dynamic_cast<ZBBPProcedureSymbol*>( pState->GetpSymbol() );
+        ZBBPProcedureSymbol* pProcedure = dynamic_cast<ZBBPProcedureSymbol*>( pState->GetSymbol() );
         ZBBPProcedureSymbol* pLocalProcedureBefore = NULL;
 
         TRACE1( _T( "OnBeforeMoveForward: procedure in the stack is %s\n" ), pProcedure->GetSymbolName() );
@@ -526,11 +526,11 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfLateralDeliverables( CODE
     return true;
 }
 
-bool ZBDurationRecalculationAutomate::SetCaseDurationOfDownDeliverables( ZBStateObject*            pState,
-                                                                         CODEdgeArray&            LeavingEdges,
-                                                                         size_t                    LeavingLinkCount,
-                                                                         ZBBPProcedureSymbol*    pProcedure,
-                                                                         ZILog*                    pLog )
+bool ZBDurationRecalculationAutomate::SetCaseDurationOfDownDeliverables(PSS_StateObject*     pState,
+                                                                        CODEdgeArray&        LeavingEdges,
+                                                                        std::size_t          LeavingLinkCount,
+                                                                        ZBBPProcedureSymbol* pProcedure,
+                                                                        ZILog*               pLog)
 {
     // Retreive entering edges
     // for the maximum duration, the entering deliverables are added 
@@ -582,15 +582,15 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfDownDeliverables( ZBState
 
         for (std::size_t index = 0; index < pState->GetStateLinkCount(); ++index)
         {
-            ZBStateLink* pStateLink = pState->GetStateLinkAt(index);
+            PSS_StateLink* pStateLink = pState->GetStateLinkAt(index);
 
-            if (!pStateLink || !pStateLink->GetpLinkSymbol())
+            if (!pStateLink || !pStateLink->GetLinkSymbol())
                 return false;
 
             // check if we have a deliverable
-            if (ISA(pStateLink->GetpLinkSymbol(), ZBDeliverableLinkSymbol))
+            if (ISA(pStateLink->GetLinkSymbol(), ZBDeliverableLinkSymbol))
             {
-                ZBDeliverableLinkSymbol* pDeliverable = dynamic_cast<ZBDeliverableLinkSymbol*>(pStateLink->GetpLinkSymbol());
+                ZBDeliverableLinkSymbol* pDeliverable = dynamic_cast<ZBDeliverableLinkSymbol*>(pStateLink->GetLinkSymbol());
 
                 // not applicable for entering lateral deliverables
                 if (EnteringEdgesLeft.ContainsEdge(pDeliverable) || EnteringEdgesRight.ContainsEdge(pDeliverable))
@@ -647,15 +647,15 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfDownDeliverables( ZBState
 
         for (std::size_t index = 0; index < pState->GetStateLinkCount(); ++index)
         {
-            ZBStateLink* pStateLink = pState->GetStateLinkAt(index);
+            PSS_StateLink* pStateLink = pState->GetStateLinkAt(index);
 
-            if (!pStateLink || !pStateLink->GetpLinkSymbol())
+            if (!pStateLink || !pStateLink->GetLinkSymbol())
                 return false;
 
             // check if we have a deliverable
-            if (ISA(pStateLink->GetpLinkSymbol(), ZBDeliverableLinkSymbol))
+            if (ISA(pStateLink->GetLinkSymbol(), ZBDeliverableLinkSymbol))
             {
-                ZBDeliverableLinkSymbol* pDeliverable      = dynamic_cast<ZBDeliverableLinkSymbol*>(pStateLink->GetpLinkSymbol());
+                ZBDeliverableLinkSymbol* pDeliverable      = dynamic_cast<ZBDeliverableLinkSymbol*>(pStateLink->GetLinkSymbol());
                 ZBDeliverableLinkSymbol* pLocalDeliverable = NULL;
 
                 // test if it is a local symbol
@@ -782,7 +782,7 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfDownDeliverables( ZBState
     return true;
 }
 
-bool ZBDurationRecalculationAutomate::SetStartSymbolCaseDurationOfDownDeliverables( ZBStateObject*    pState,
+bool ZBDurationRecalculationAutomate::SetStartSymbolCaseDurationOfDownDeliverables(PSS_StateObject*   pState,
                                                                                     CODEdgeArray&    LeavingEdges,
                                                                                     size_t            LeavingLinkCount,
                                                                                     ZILog*            pLog )
@@ -828,11 +828,11 @@ bool ZBDurationRecalculationAutomate::SetStartSymbolCaseDurationOfDownDeliverabl
     return true;
 }
 
-bool ZBDurationRecalculationAutomate::SetCaseDurationOfProcedure( ZBStateObject*        pState,
-                                                                  CODEdgeArray&            LeavingEdges,
-                                                                  size_t                LeavingLinkCount,
-                                                                  ZBBPProcedureSymbol*    pProcedure,
-                                                                  ZILog*                pLog )
+bool ZBDurationRecalculationAutomate::SetCaseDurationOfProcedure(PSS_StateObject*     pState,
+                                                                 CODEdgeArray&        LeavingEdges,
+                                                                 std::size_t          LeavingLinkCount,
+                                                                 ZBBPProcedureSymbol* pProcedure,
+                                                                 ZILog*               pLog )
 {
     // First, we need to check if we are coming back from
     // a lateral loop.
@@ -849,19 +849,19 @@ bool ZBDurationRecalculationAutomate::SetCaseDurationOfProcedure( ZBStateObject*
 
     for ( size_t Index = 0; Index < pState->GetStateLinkCount(); ++Index )
     {
-        ZBStateLink* pStateLink = pState->GetStateLinkAt( Index );
+        PSS_StateLink* pStateLink = pState->GetStateLinkAt( Index );
 
-        if ( !pStateLink || !pStateLink->GetpLinkSymbol() )
+        if ( !pStateLink || !pStateLink->GetLinkSymbol() )
         {
             // Log the error
             return false;
         }
 
         // Check if we have a deliverable
-        if ( ISA( pStateLink->GetpLinkSymbol(), ZBDeliverableLinkSymbol ) )
+        if ( ISA( pStateLink->GetLinkSymbol(), ZBDeliverableLinkSymbol ) )
         {
             ZBDeliverableLinkSymbol* pDeliverable =
-                dynamic_cast<ZBDeliverableLinkSymbol*>( pStateLink->GetpLinkSymbol() );
+                dynamic_cast<ZBDeliverableLinkSymbol*>( pStateLink->GetLinkSymbol() );
 
             // If an entering lateral deliverable
             if ( EnteringEdgesLeft.ContainsEdge( pDeliverable ) ||

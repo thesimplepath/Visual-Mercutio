@@ -163,37 +163,37 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBMainPathRunnerThread.cpp">
+    <ClCompile Include="PSS_MainPathRunnerThread.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBPathMachine.cpp">
+    <ClCompile Include="PSS_PathMachine.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBStateLink.cpp">
+    <ClCompile Include="PSS_StateLink.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBStateMachine.cpp">
+    <ClCompile Include="PSS_StateMachine.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBStateMachineCollection.cpp">
+    <ClCompile Include="PSS_StateMachineCollection.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBStateObject.cpp">
+    <ClCompile Include="PSS_StateObject.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -237,12 +237,12 @@
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="PSS_AutomationMachine.h" />
     <ClInclude Include="PSS_MainAutomationRunnerThread.h" />
-    <ClInclude Include="ZBMainPathRunnerThread.h" />
-    <ClInclude Include="ZBPathMachine.h" />
-    <ClInclude Include="ZBStateLink.h" />
-    <ClInclude Include="ZBStateMachine.h" />
-    <ClInclude Include="ZBStateMachineCollection.h" />
-    <ClInclude Include="ZBStateObject.h" />
+    <ClInclude Include="PSS_MainPathRunnerThread.h" />
+    <ClInclude Include="PSS_PathMachine.h" />
+    <ClInclude Include="PSS_StateLink.h" />
+    <ClInclude Include="PSS_StateMachine.h" />
+    <ClInclude Include="PSS_StateMachineCollection.h" />
+    <ClInclude Include="PSS_StateObject.h" />
     <ClInclude Include="ZDModelStateMachineDocument.h" />
     <ClInclude Include="zWkfLib.h" />
     <ClInclude Include="zWkfRes.h" />

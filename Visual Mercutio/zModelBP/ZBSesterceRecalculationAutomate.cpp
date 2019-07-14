@@ -2,10 +2,11 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ZBSesterceRecalculationAutomate.h"
 
-#include "zWkf\ZBStateMachine.h"
+// processsoft
+#include "zWkf\PSS_StateMachine.h"
 
 #include "ZUCheckSesterceConsistency.h"
 #include "ZUCheckSesterceUnit.h"
@@ -146,37 +147,37 @@ bool ZBSesterceRecalculationAutomate::OnResume( ZILog* pLog )
 
 //////////////////////////////////////////////////////////////////////
 // Call-back workflow operations
-bool ZBSesterceRecalculationAutomate::OnObjectIsFinished( ZBStateObject*    pState,
-                                                          ZBStateMachine*    pStateMachine,
-                                                          ZILog*            pLog )
+bool ZBSesterceRecalculationAutomate::OnObjectIsFinished(PSS_StateObject*  pState,
+                                                         PSS_StateMachine* pStateMachine,
+                                                         ZILog*            pLog )
 {
     return ZBBPAutomate::OnObjectIsFinished( pState, pStateMachine, pLog );
 }
 
-bool ZBSesterceRecalculationAutomate::OnObjectIsPaused( ZBStateObject*    pState,
-                                                        ZBStateMachine*    pStateMachine,
-                                                        ZILog*            pLog )
+bool ZBSesterceRecalculationAutomate::OnObjectIsPaused(PSS_StateObject*  pState,
+                                                       PSS_StateMachine* pStateMachine,
+                                                       ZILog*            pLog )
 {
     return ZBBPAutomate::OnObjectIsPaused( pState, pStateMachine, pLog );
 }
 
-bool ZBSesterceRecalculationAutomate::OnObjectIsWaitingForOtherLinks( ZBStateObject*    pState,
-                                                                      ZBStateMachine*    pStateMachine,
-                                                                      ZILog*            pLog )
+bool ZBSesterceRecalculationAutomate::OnObjectIsWaitingForOtherLinks(PSS_StateObject*  pState,
+                                                                     PSS_StateMachine* pStateMachine,
+                                                                     ZILog*            pLog )
 {
     return ZBBPAutomate::OnObjectIsWaitingForOtherLinks( pState, pStateMachine, pLog );
 }
 
-bool ZBSesterceRecalculationAutomate::OnBeforeRequestMoveForward( ZBStateObject*    pState,
-                                                                  ZBStateMachine*    pStateMachine,
-                                                                  ZILog*            pLog )
+bool ZBSesterceRecalculationAutomate::OnBeforeRequestMoveForward(PSS_StateObject*  pState,
+                                                                 PSS_StateMachine* pStateMachine,
+                                                                 ZILog*            pLog )
 {
     return ZBBPAutomate::OnBeforeRequestMoveForward( pState, pStateMachine, pLog );
 }
 
-bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward( ZBStateObject*    pState,
-                                                                    ZBStateMachine*    pStateMachine,
-                                                                    ZILog*            pLog )
+bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObject*  pState,
+                                                                   PSS_StateMachine* pStateMachine,
+                                                                   ZILog*            pLog )
 {
     if ( !ZBBPAutomate::OnNextSymbolAfterMoveForward( pState, pStateMachine, pLog ) )
     {
@@ -202,11 +203,11 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward( ZBStateObjec
     // 5. the procedure cost
     // 6. the procedure forecast cost
     // 7. the procedure cost per activity
-    if ( pState && pState->GetpSymbol()                        &&
-         ( ISA( pState->GetpSymbol(), ZBBPProcedureSymbol )    ||
-           ISA( pState->GetpSymbol(), ZBBPPageSymbol )        ||
-           ISA( pState->GetpSymbol(), ZBBPDoorSymbol )        ||
-           ISA( pState->GetpSymbol(), ZBBPStopSymbol ) ) )
+    if ( pState && pState->GetSymbol()                        &&
+         ( ISA( pState->GetSymbol(), ZBBPProcedureSymbol )    ||
+           ISA( pState->GetSymbol(), ZBBPPageSymbol )        ||
+           ISA( pState->GetSymbol(), ZBBPDoorSymbol )        ||
+           ISA( pState->GetSymbol(), ZBBPStopSymbol ) ) )
     {
         TRACE1( _T( "OnNextSymbolAfterMoveForward: current symbol is %s\n" ),
                     dynamic_cast<ZBSymbol*>( pState->GetpSymbol() )->GetSymbolName() );
@@ -220,7 +221,7 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward( ZBStateObjec
 
         // Retreive from the state machine the object before the current.
         // One object before the current
-        ZBStateObject* pStateObjectBefore = pStateMachine->PopStateObjectNoRemove( 1 );
+        PSS_StateObject* pStateObjectBefore = pStateMachine->PopStateObjectNoRemove(1);
 
         if ( !pStateObjectBefore )
         {
@@ -228,7 +229,7 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward( ZBStateObjec
             return false;
         }
 
-        if ( !pStateObjectBefore->GetpSymbol() )
+        if ( !pStateObjectBefore->GetSymbol() )
         {
             // Not necessarily an error, then return true
             TRACE( _T( "OnNextSymbolAfterMoveForward: no object before\n" ) );
@@ -236,10 +237,10 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward( ZBStateObjec
         }
 
         // Now check the object before
-        if ( ISA( pStateObjectBefore->GetpSymbol(), ZBBPProcedureSymbol ) )
+        if ( ISA( pStateObjectBefore->GetSymbol(), ZBBPProcedureSymbol ) )
         {
             ZBBPProcedureSymbol* pProcedureBefore =
-                dynamic_cast<ZBBPProcedureSymbol*>( pStateObjectBefore->GetpSymbol() );
+                dynamic_cast<ZBBPProcedureSymbol*>( pStateObjectBefore->GetSymbol() );
 
             ZBBPProcedureSymbol* pLocalProcedureBefore = NULL;
 
@@ -269,19 +270,19 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward( ZBStateObjec
             // Now rung through all links and calculate their quantities
             for ( size_t Index = 0; Index < pState->GetStateLinkCount(); ++Index )
             {
-                ZBStateLink* pStateLink = pState->GetStateLinkAt( Index );
+                PSS_StateLink* pStateLink = pState->GetStateLinkAt( Index );
 
-                if ( !pStateLink || !pStateLink->GetpLinkSymbol() )
+                if ( !pStateLink || !pStateLink->GetLinkSymbol() )
                 {
                     // Log the error
                     return false;
                 }
 
                 // Check if we have a deliverable
-                if ( ISA( pStateLink->GetpLinkSymbol(), ZBDeliverableLinkSymbol ) )
+                if ( ISA( pStateLink->GetLinkSymbol(), ZBDeliverableLinkSymbol ) )
                 {
                     ZBDeliverableLinkSymbol* pDeliverable =
-                        dynamic_cast<ZBDeliverableLinkSymbol*>( pStateLink->GetpLinkSymbol() );
+                        dynamic_cast<ZBDeliverableLinkSymbol*>( pStateLink->GetLinkSymbol() );
 
                     TRACE1( _T( "OnNextSymbolAfterMoveForward: deliverable in the stack%s\n" ),
                             pDeliverable->GetSymbolName() );
@@ -408,19 +409,19 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward( ZBStateObjec
         // Now rung through all links
         for ( size_t Index = 0; Index < pState->GetStateLinkCount(); ++Index )
         {
-            ZBStateLink* pStateLink = pState->GetStateLinkAt( Index );
+            PSS_StateLink* pStateLink = pState->GetStateLinkAt( Index );
 
-            if ( !pStateLink || !pStateLink->GetpLinkSymbol() )
+            if ( !pStateLink || !pStateLink->GetLinkSymbol() )
             {
                 // Log the error
                 return false;
             }
 
             // Check if we have a deliverable
-            if ( ISA( pStateLink->GetpLinkSymbol(), ZBDeliverableLinkSymbol ) )
+            if ( ISA( pStateLink->GetLinkSymbol(), ZBDeliverableLinkSymbol ) )
             {
                 ZBDeliverableLinkSymbol* pDeliverable =
-                    dynamic_cast<ZBDeliverableLinkSymbol*>( pStateLink->GetpLinkSymbol() );
+                    dynamic_cast<ZBDeliverableLinkSymbol*>( pStateLink->GetLinkSymbol() );
 
                 // Test if it is a local symbol
                 if ( !pDeliverable->IsLocal() )
@@ -464,10 +465,10 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward( ZBStateObjec
 
         // Prepare the procedure cost calculation
         // and after the forecast cost and the cost per activation
-        if ( ISA( pStateObjectBefore->GetpSymbol(), ZBBPProcedureSymbol ) )
+        if ( ISA( pStateObjectBefore->GetSymbol(), ZBBPProcedureSymbol ) )
         {
             ZBBPProcedureSymbol* pProcedureBefore =
-                dynamic_cast<ZBBPProcedureSymbol*>( pStateObjectBefore->GetpSymbol() );
+                dynamic_cast<ZBBPProcedureSymbol*>( pStateObjectBefore->GetSymbol() );
 
             ZBBPProcedureSymbol* pLocalProcedureBefore = NULL;
 
@@ -714,14 +715,12 @@ bool ZBSesterceRecalculationAutomate::OnNextSymbolAfterMoveForward( ZBStateObjec
     return true;
 }
 
-bool ZBSesterceRecalculationAutomate::OnBeforeMoveForward( ZBStateObject*    pState,
-                                                           ZBStateMachine*    pStateMachine,
-                                                           ZILog*            pLog )
+bool ZBSesterceRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pState,
+                                                          PSS_StateMachine* pStateMachine,
+                                                          ZILog*            pLog )
 {
-    if ( !ZBBPAutomate::OnBeforeMoveForward( pState, pStateMachine, pLog ) )
-    {
+    if (!ZBBPAutomate::OnBeforeMoveForward(pState, pStateMachine, pLog))
         return false;
-    }
 
 #ifdef _DEBUG
     if ( pState && pState->GetpSymbol() && ISA( pState->GetpSymbol(), ZBSymbol ) )
@@ -733,9 +732,9 @@ bool ZBSesterceRecalculationAutomate::OnBeforeMoveForward( ZBStateObject*    pSt
 
     // Now check if we are a procedure
     // If we are, calculate the procedure activation
-    if ( pState && pState->GetpSymbol() && ISA( pState->GetpSymbol(), ZBBPProcedureSymbol ) )
+    if ( pState && pState->GetSymbol() && ISA( pState->GetSymbol(), ZBBPProcedureSymbol ) )
     {
-        ZBBPProcedureSymbol* pProcedure = dynamic_cast<ZBBPProcedureSymbol*>( pState->GetpSymbol() );
+        ZBBPProcedureSymbol* pProcedure = dynamic_cast<ZBBPProcedureSymbol*>( pState->GetSymbol() );
         ZBBPProcedureSymbol* pLocalProcedureBefore = NULL;
 
         // Test if it is a local symbol
@@ -907,30 +906,30 @@ bool ZBSesterceRecalculationAutomate::OnBeforeMoveForward( ZBStateObject*    pSt
     return true;
 }
 
-bool ZBSesterceRecalculationAutomate::OnAfterMoveForward( ZBStateObject*    pState,
-                                                          ZBStateMachine*    pStateMachine,
-                                                          ZILog*            pLog )
+bool ZBSesterceRecalculationAutomate::OnAfterMoveForward(PSS_StateObject*  pState,
+                                                         PSS_StateMachine* pStateMachine,
+                                                         ZILog*            pLog )
 {
     return ZBBPAutomate::OnAfterMoveForward( pState, pStateMachine, pLog );
 }
 
-bool ZBSesterceRecalculationAutomate::OnBeforeMoveBackward( ZBStateObject*    pState,
-                                                            ZBStateMachine*    pStateMachine,
-                                                            ZILog*            pLog )
+bool ZBSesterceRecalculationAutomate::OnBeforeMoveBackward(PSS_StateObject*  pState,
+                                                           PSS_StateMachine* pStateMachine,
+                                                           ZILog*            pLog )
 {
     return ZBBPAutomate::OnBeforeMoveBackward( pState, pStateMachine, pLog );
 }
 
-bool ZBSesterceRecalculationAutomate::OnAfterMoveBackward( ZBStateObject*    pState,
-                                                           ZBStateMachine*    pStateMachine,
-                                                           ZILog*            pLog )
+bool ZBSesterceRecalculationAutomate::OnAfterMoveBackward(PSS_StateObject*  pState,
+                                                          PSS_StateMachine* pStateMachine,
+                                                          ZILog*            pLog )
 {
     return ZBBPAutomate::OnAfterMoveBackward( pState, pStateMachine, pLog );
 }
 
-bool ZBSesterceRecalculationAutomate::OnObjectError( ZBStateObject*        pState,
-                                                     ZBStateMachine*    pStateMachine,
-                                                     ZILog*                pLog)
+bool ZBSesterceRecalculationAutomate::OnObjectError(PSS_StateObject*  pState,
+                                                    PSS_StateMachine* pStateMachine,
+                                                    ZILog*            pLog)
 {
     return ZBBPAutomate::OnObjectError( pState, pStateMachine, pLog );
 }

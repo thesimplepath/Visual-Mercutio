@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_AutomationMachine -----------------------------------------------*
+ * ==> PSS_PathMachine -----------------------------------------------------*
  ****************************************************************************
- * Description : Provides an automation machine                             *
+ * Description : Provides a path machine                                    *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_AutomationMachineH
-#define PSS_AutomationMachineH
+#ifndef PSS_PathMachine
+#define PSS_PathMachineH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -29,7 +29,7 @@
 class ZBSymbol;
 class ZBLinkSymbol;
 class ZDProcessGraphModelMdl;
-class PSS_MainAutomationRunnerThread;
+class PSS_MainPathRunnerThread;
 class ZILog;
 
 #ifdef _ZWKFEXPORT
@@ -43,62 +43,45 @@ class ZILog;
 #endif
 
 /**
-* Automation machine
+* Path machine
 *@author Dominique Aigroz, Jean-Milost Reymond
 *@note The state machine is owned by this class, because the main thread is only a worker dealing with the state class
 */
-class AFX_EXT_CLASS PSS_AutomationMachine
+class AFX_EXT_CLASS PSS_PathMachine
 {
-    friend class PSS_MainAutomationRunnerThread;
+    friend class PSS_MainPathRunnerThread;
 
     public:
         /**
-        * Automation move status
+        * Path move status
         */
-        enum IEAutomationMoveStatus
+        enum IEPathMoveStatus
         {
-            IE_AS_Error,
-            IE_AS_IsWaitingForLinks,
-            IE_AS_IsPaused,
-            IE_AS_CanMoveForward,
-            IE_AS_IsFinished
+            IE_PS_Error,
+            IE_PS_IsWaitingForLinks,
+            IE_PS_IsPaused,
+            IE_PS_CanMoveForward,
+            IE_PS_IsFinished
         };
 
+    public:
         /**
         * Constructor
         *@param pModel - model, can be NULL
+        *@param pSymbol - symbol, can be NULL
         *@param pLog - logger, can be NULL
         *@param maxLoop - maximum loop counter, -1 to set to infinite
         *@param maxPaused - maximum paused counter, -1 to set to infinite
         *@param maxWaitingForOtherLinks - maximum waiting for other links counter, -1 to set to infinite
-        *@param allowUncompletePath - if true, a path can be broken when object are waiting on other objects
         */
-        PSS_AutomationMachine(ZDProcessGraphModelMdl* pModel                  =  NULL,
-                              ZILog*                  pLog                    =  NULL,
-                              int                     maxLoop                 = -1,
-                              int                     maxPaused               = -1,
-                              int                     maxWaitingForOtherLinks = -1,
-                              bool                    allowUncompletePath     =  false);
+        PSS_PathMachine(ZDProcessGraphModelMdl* pModel                  =  NULL,
+                        ZBSymbol*               pSymbol                 =  NULL,
+                        ZILog*                  pLog                    =  NULL,
+                        int                     maxLoop                 = -1,
+                        int                     maxPaused               = -1,
+                        int                     maxWaitingForOtherLinks = -1);
 
-        /**
-        * Constructor
-        *@param pSymbol - model symbol
-        *@param pModel - model, can be NULL
-        *@param pLog - logger, can be NULL
-        *@param maxLoop - maximum loop counter, -1 to set to infinite
-        *@param maxPaused - maximum paused counter, -1 to set to infinite
-        *@param maxWaitingForOtherLinks - maximum waiting for other links counter, -1 to set to infinite
-        *@param allowUncompletePath - if true, a path can be broken when object are waiting on other objects
-        */
-        PSS_AutomationMachine(ZBSymbol*               pSymbol,
-                              ZDProcessGraphModelMdl* pModel                  =  NULL,
-                              ZILog*                  pLog                    =  NULL,
-                              int                     maxLoop                 = -1,
-                              int                     maxPaused               = -1,
-                              int                     maxWaitingForOtherLinks = -1,
-                              bool                    allowUncompletePath     =  false);
-
-        virtual ~PSS_AutomationMachine();
+        virtual ~PSS_PathMachine();
 
         /**
         * Assigns a model
@@ -107,22 +90,16 @@ class AFX_EXT_CLASS PSS_AutomationMachine
         virtual inline void AssignModel(ZDProcessGraphModelMdl* pModel);
 
         /**
-        * Gets the model used by the automation machine
-        *@return the model used by the automation machine
+        * Gets the model used by the path machine
+        *@return the model used by the path machine
         */
-        virtual inline ZDProcessGraphModelMdl* GetModel() const;
+        virtual inline ZDProcessGraphModelMdl* GetModel();
 
         /**
         * Gets the start symbol
         *@return start symbol
         */
-        virtual inline ZBSymbol* GetStartSymbol() const;
-
-        /**
-        * Sets the start symbol
-        *@param pSymbol - symbol
-        */
-        virtual inline void SetStartSymbol(ZBSymbol* pSymbol);
+        virtual inline ZBSymbol* GetSymbol();
 
         /**
         * Gets the state machine collection
@@ -162,7 +139,7 @@ class AFX_EXT_CLASS PSS_AutomationMachine
         *@return the maximum loop counter
         */
         virtual inline int GetMaxLoop() const;
- 
+
         /**
         * Sets the maximum loop counter
         *@param value - maximum loop counter
@@ -192,51 +169,6 @@ class AFX_EXT_CLASS PSS_AutomationMachine
         *@param value - maximum waiting for other links counter
         */
         virtual inline void SetMaxWaitingForOtherLinks(int value);
-
-        /**
-        * Gets if uncomplete path is allowed
-        *@return true if uncomplete path is allowed, otherwise false
-        */
-        virtual inline bool AllowUncompletePath() const;
-
-        /**
-        * Sets if uncomplete path is allowed
-        *@param value - if true, uncomplete path is allowed
-        */
-        virtual inline void SetAllowUncompletePath(bool value = true);
-
-        /**
-        * Gets the loop counter
-        *@return the loop counter, -1 if infinite
-        */
-        virtual int GetLoopCounter() const;
-
-        /**
-        * Resets the loop counter
-        */
-        virtual void ResetLoopCounter();
-
-        /**
-        * Gets the waiting counter
-        *@return the waiting counter, -1 if infinite
-        */
-        virtual int GetWaitingCounter() const;
-
-        /**
-        * Resets the waiting counter
-        */
-        virtual void ResetWaitingCounter();
-
-        /**
-        * Gets the is paused counter
-        *@return the is paused counter, -1 if infinite
-        */
-        virtual int GetIsPausedCounter() const;
-
-        /**
-        * Resets the is paused counter
-        */
-        virtual void ResetIsPausedCounter();
 
         /**
         * Starts the state machine
@@ -274,11 +206,11 @@ class AFX_EXT_CLASS PSS_AutomationMachine
         *@note This operation must fill sets of symbol and link corresponding to the
         *      the symbol and link pointer and the direction attributes if there is one
         */
-        virtual IEAutomationMoveStatus RequestMoveForward(PSS_StateObject*   pState,
-                                                          PSS_StateMachine*  pStateMachine,
-                                                          PSS_SymbolSet&     symbolSet,
-                                                          PSS_StateLinksSet& stateLinkSet,
-                                                          ZILog*             pLog);
+        virtual IEPathMoveStatus RequestMoveForward(PSS_StateObject*   pState,
+                                                    PSS_StateMachine*  pStateMachine,
+                                                    PSS_SymbolSet&     symbolSet,
+                                                    PSS_StateLinksSet& stateLinkSet,
+                                                    ZILog*             pLog);
 
         /**
         * Called when state machine is starting
@@ -520,16 +452,15 @@ class AFX_EXT_CLASS PSS_AutomationMachine
         virtual inline void DeleteAllFinishedStateMachines();
 
     private:
-        PSS_MainAutomationRunnerThread* m_pMainThread;
-        ZBSymbol*                       m_pSymbol;
-        ZILog*                          m_pLog;
-        std::size_t                     m_ErrorCounter;
-        std::size_t                     m_WarningCounter;
-        int                             m_MaxLoop;
-        int                             m_MaxPaused;
-        int                             m_MaxWaitingForOtherLinks;
-        bool                            m_IsLogging;
-        bool                            m_AllowUncompletePath;
+        PSS_MainPathRunnerThread* m_pMainThread;
+        ZBSymbol*                 m_pSymbol;
+        ZILog*                    m_pLog;
+        std::size_t               m_ErrorCounter;
+        std::size_t               m_WarningCounter;
+        int                       m_MaxLoop;
+        int                       m_MaxPaused;
+        int                       m_MaxWaitingForOtherLinks;
+        bool                      m_IsLogging;
 
         /**
         * Merges all the state objects
@@ -607,195 +538,180 @@ class AFX_EXT_CLASS PSS_AutomationMachine
 };
 
 //---------------------------------------------------------------------------
-// PSS_AutomationMachine
+// PSS_PathMachine
 //---------------------------------------------------------------------------
-void PSS_AutomationMachine::AssignModel(ZDProcessGraphModelMdl* pModel)
+void PSS_PathMachine::AssignModel(ZDProcessGraphModelMdl* pModel)
 {
     m_pModel = pModel;
     m_StateMachineCollection.AssignModel(pModel);
-};
+}
 //---------------------------------------------------------------------------
-ZDProcessGraphModelMdl* PSS_AutomationMachine::GetModel() const
+ZDProcessGraphModelMdl* PSS_PathMachine::GetModel()
 {
     return m_pModel;
 }
 //---------------------------------------------------------------------------
-ZBSymbol* PSS_AutomationMachine::GetStartSymbol() const
+ZBSymbol* PSS_PathMachine::GetSymbol()
 {
     return m_pSymbol;
 }
 //---------------------------------------------------------------------------
-void PSS_AutomationMachine::SetStartSymbol(ZBSymbol* pSymbol)
-{
-    m_pSymbol = pSymbol;
-}
-//---------------------------------------------------------------------------
-PSS_StateMachineCollection& PSS_AutomationMachine::GetStateMachineCollection()
+PSS_StateMachineCollection& PSS_PathMachine::GetStateMachineCollection()
 {
     return m_StateMachineCollection;
 }
 //---------------------------------------------------------------------------
-std::size_t PSS_AutomationMachine::GetStateMachineCount() const
+std::size_t PSS_PathMachine::GetStateMachineCount() const
 {
     return m_StateMachineCollection.GetStateMachineCount();
-};
+}
 //---------------------------------------------------------------------------
-int PSS_AutomationMachine::AddStateMachine(PSS_StateMachine* pStateMachine)
+int PSS_PathMachine::AddStateMachine(PSS_StateMachine* pStateMachine)
 {
     return m_StateMachineCollection.AddStateMachine(pStateMachine);
-};
+}
 //---------------------------------------------------------------------------
-PSS_StateMachineSet& PSS_AutomationMachine::GetStateMachineSet()
+PSS_StateMachineSet& PSS_PathMachine::GetStateMachineSet()
 {
     return m_StateMachineCollection.GetStateMachineSet();
-};
+}
 //---------------------------------------------------------------------------
-const PSS_StateMachineSet& PSS_AutomationMachine::GetStateMachineSetConst() const
+const PSS_StateMachineSet& PSS_PathMachine::GetStateMachineSetConst() const
 {
     return m_StateMachineCollection.GetStateMachineSetConst();
 }
 //---------------------------------------------------------------------------
-PSS_StateMachine* PSS_AutomationMachine::GetStateMachine(PSS_StateMachineHandle hStateMachine)
+PSS_StateMachine* PSS_PathMachine::GetStateMachine(PSS_StateMachineHandle hStateMachine)
 {
     return m_StateMachineCollection.GetStateMachine(hStateMachine);
 }
 //---------------------------------------------------------------------------
-int PSS_AutomationMachine::GetMaxLoop() const
+int PSS_PathMachine::GetMaxLoop() const
 {
     return m_MaxLoop;
 }
 //---------------------------------------------------------------------------
-void PSS_AutomationMachine::SetMaxLoop(int value)
+void PSS_PathMachine::SetMaxLoop(int value)
 {
     m_MaxLoop = value;
 }
 //---------------------------------------------------------------------------
-int PSS_AutomationMachine::GetMaxPaused() const
+int PSS_PathMachine::GetMaxPaused() const
 {
     return m_MaxPaused;
 }
 //---------------------------------------------------------------------------
-void PSS_AutomationMachine::SetMaxPaused(int value)
+void PSS_PathMachine::SetMaxPaused(int value)
 {
     m_MaxPaused = value;
 }
 //---------------------------------------------------------------------------
-int PSS_AutomationMachine::GetMaxWaitingForOtherLinks() const
+int PSS_PathMachine::GetMaxWaitingForOtherLinks() const
 {
     return m_MaxWaitingForOtherLinks;
 }
 //---------------------------------------------------------------------------
-void PSS_AutomationMachine::SetMaxWaitingForOtherLinks(int value)
+void PSS_PathMachine::SetMaxWaitingForOtherLinks(int value)
 {
     m_MaxWaitingForOtherLinks = value;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::AllowUncompletePath() const
-{
-    return m_AllowUncompletePath;
-}
-//---------------------------------------------------------------------------
-void PSS_AutomationMachine::SetAllowUncompletePath(bool value)
-{
-    m_AllowUncompletePath = value;
-}
-//---------------------------------------------------------------------------
-void PSS_AutomationMachine::StartLogging()
+void PSS_PathMachine::StartLogging()
 {
     m_IsLogging = true;
 }
 //---------------------------------------------------------------------------
-void PSS_AutomationMachine::StopLogging()
+void PSS_PathMachine::StopLogging()
 {
     m_IsLogging = false;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::IsLogging() const
+bool PSS_PathMachine::IsLogging() const
 {
     return m_IsLogging;
 }
 //---------------------------------------------------------------------------
-ZILog* PSS_AutomationMachine::GetLog()
+ZILog* PSS_PathMachine::GetLog()
 {
     return m_pLog;
 }
 //---------------------------------------------------------------------------
-std::size_t PSS_AutomationMachine::GetErrorCounter() const
+std::size_t PSS_PathMachine::GetErrorCounter() const
 {
     return m_ErrorCounter;
 }
 //---------------------------------------------------------------------------
-void PSS_AutomationMachine::SetErrorCounter(std::size_t value)
+void PSS_PathMachine::SetErrorCounter(std::size_t value)
 {
     m_ErrorCounter = value;
 }
 //---------------------------------------------------------------------------
-void PSS_AutomationMachine::IncrementErrorCounter()
+void PSS_PathMachine::IncrementErrorCounter()
 {
     ++m_ErrorCounter;
 }
 //---------------------------------------------------------------------------
-void PSS_AutomationMachine::ResetErrorCounter()
+void PSS_PathMachine::ResetErrorCounter()
 {
     m_ErrorCounter = 0;
 }
 //---------------------------------------------------------------------------
-std::size_t PSS_AutomationMachine::GetWarningCounter() const
+std::size_t PSS_PathMachine::GetWarningCounter() const
 {
     return m_WarningCounter;
 }
 //---------------------------------------------------------------------------
-void PSS_AutomationMachine::SetWarningCounter(std::size_t value)
+void PSS_PathMachine::SetWarningCounter(std::size_t value)
 {
     m_WarningCounter = value;
 }
 //---------------------------------------------------------------------------
-void PSS_AutomationMachine::IncrementWarningCounter()
+void PSS_PathMachine::IncrementWarningCounter()
 {
     ++m_WarningCounter;
 }
 //---------------------------------------------------------------------------
-void PSS_AutomationMachine::ResetWarningCounter()
+void PSS_PathMachine::ResetWarningCounter()
 {
     m_WarningCounter = 0;
 }
 //---------------------------------------------------------------------------
-void PSS_AutomationMachine::DeleteAllStateMachines()
+void PSS_PathMachine::DeleteAllStateMachines()
 {
     m_StateMachineCollection.DeleteAllStateMachines();
 }
 //---------------------------------------------------------------------------
-void PSS_AutomationMachine::DeleteAllFinishedStateMachines()
+void PSS_PathMachine::DeleteAllFinishedStateMachines()
 {
     m_FinishedStateMachineCollection.DeleteAllStateMachines();
 }
 //---------------------------------------------------------------------------
-PSS_StateMachineCollection& PSS_AutomationMachine::GetFinishedStateMachineCollection()
+PSS_StateMachineCollection& PSS_PathMachine::GetFinishedStateMachineCollection()
 {
     return m_FinishedStateMachineCollection;
 }
 //---------------------------------------------------------------------------
-std::size_t PSS_AutomationMachine::GetFinishedStateMachineCount() const
+std::size_t PSS_PathMachine::GetFinishedStateMachineCount() const
 {
     return m_FinishedStateMachineCollection.GetStateMachineCount();
 }
 //---------------------------------------------------------------------------
-int PSS_AutomationMachine::AddFinishedStateMachine(PSS_StateMachine* pStateMachine)
+int PSS_PathMachine::AddFinishedStateMachine(PSS_StateMachine* pStateMachine)
 {
     return m_FinishedStateMachineCollection.AddStateMachine(pStateMachine);
 }
 //---------------------------------------------------------------------------
-PSS_StateMachineSet& PSS_AutomationMachine::GetFinishedStateMachineSet()
+PSS_StateMachineSet& PSS_PathMachine::GetFinishedStateMachineSet()
 {
     return m_FinishedStateMachineCollection.GetStateMachineSet();
 }
 //---------------------------------------------------------------------------
-const PSS_StateMachineSet& PSS_AutomationMachine::GetFinishedStateMachineSetConst() const
+const PSS_StateMachineSet& PSS_PathMachine::GetFinishedStateMachineSetConst() const
 {
     return m_FinishedStateMachineCollection.GetStateMachineSetConst();
 }
 //---------------------------------------------------------------------------
-PSS_StateMachine* PSS_AutomationMachine::GetFinishedStateMachine(PSS_StateMachineHandle hStateMachine)
+PSS_StateMachine* PSS_PathMachine::GetFinishedStateMachine(PSS_StateMachineHandle hStateMachine)
 {
     return m_FinishedStateMachineCollection.GetStateMachine(hStateMachine);
 }

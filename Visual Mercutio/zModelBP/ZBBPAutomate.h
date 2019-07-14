@@ -62,11 +62,11 @@ public:
     // the symbol and link pointer and the direction 
     // attributes if there is one.
     // Return the move status
-    virtual IEAutomationMoveStatus RequestMoveForward(ZBStateObject*    pState,
-                                                      ZBStateMachine*    pStateMachine,
-                                                      ZBSymbolSet&        SymbolSet,
-                                                      ZBStateLinksSet&    StateLinkSet,
-                                                      ZILog*            pLog );
+    virtual IEAutomationMoveStatus RequestMoveForward(PSS_StateObject*   pState,
+                                                      PSS_StateMachine*  pStateMachine,
+                                                      PSS_SymbolSet&     symbolSet,
+                                                      PSS_StateLinksSet& stateLinkSet,
+                                                      ZILog*             pLog);
 
     
     //////////////////////////////////////////////////////////////////////
@@ -78,22 +78,22 @@ public:
 
     //////////////////////////////////////////////////////////////////////
     // Status call-back
-    virtual bool OnObjectIsFinished                ( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog );
-    virtual bool OnObjectIsPaused                ( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog );
-    virtual bool OnObjectIsWaitingForOtherLinks    ( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog );
+    virtual bool OnObjectIsFinished                (PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog );
+    virtual bool OnObjectIsPaused                (PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog );
+    virtual bool OnObjectIsWaitingForOtherLinks    (PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog );
 
     //////////////////////////////////////////////////////////////////////
     // Navigation call-back
-    virtual bool OnBeforeRequestMoveForward        ( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog );
-    virtual bool OnNextSymbolAfterMoveForward    ( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog );
-    virtual bool OnBeforeMoveForward            ( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog );
-    virtual bool OnAfterMoveForward                ( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog );
-    virtual bool OnBeforeMoveBackward            ( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog );
-    virtual bool OnAfterMoveBackward            ( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog );
+    virtual bool OnBeforeRequestMoveForward        (PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog );
+    virtual bool OnNextSymbolAfterMoveForward    (PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog );
+    virtual bool OnBeforeMoveForward            (PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog );
+    virtual bool OnAfterMoveForward                (PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog );
+    virtual bool OnBeforeMoveBackward            (PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog );
+    virtual bool OnAfterMoveBackward            (PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog );
 
     //////////////////////////////////////////////////////////////////////
     // Exception call-back
-    virtual bool OnObjectError                    ( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog );
+    virtual bool OnObjectError                    (PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog );
     virtual bool OnReachMaximumLoopCounter        ( ZILog* pLog );
     virtual bool OnReachMaximumInPauseCounter    ( ZILog* pLog );
 
@@ -101,29 +101,29 @@ public:
 
 private:
 
-    IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardStartSymbol( ZBStateObject*    pState,
-                                                                                           ZBSymbolSet&        SymbolSet,
-                                                                                           ZBStateLinksSet&    StateLinkSet,
+    IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardStartSymbol(PSS_StateObject*    pState,
+                                                                                           PSS_SymbolSet&        SymbolSet,
+                                                                                           PSS_StateLinksSet&    StateLinkSet,
                                                                                            ZILog*            pLog );
 
-    IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardProcedureSymbol( ZBStateObject*    pState,
-                                                                                               ZBSymbolSet&        SymbolSet,
-                                                                                               ZBStateLinksSet&    StateLinkSet,
+    IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardProcedureSymbol(PSS_StateObject*    pState,
+                                                                                               PSS_SymbolSet&        SymbolSet,
+                                                                                               PSS_StateLinksSet&    StateLinkSet,
                                                                                                ZILog*            pLog );
 
-    IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardDoorSymbol( ZBStateObject*    pState,
-                                                                                          ZBSymbolSet&        SymbolSet,
-                                                                                          ZBStateLinksSet&    StateLinkSet,
+    IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardDoorSymbol(PSS_StateObject*    pState,
+                                                                                          PSS_SymbolSet&        SymbolSet,
+                                                                                          PSS_StateLinksSet&    StateLinkSet,
                                                                                           ZILog*            pLog );
 
-    IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPageSymbol( ZBStateObject*    pState,
-                                                                                          ZBSymbolSet&        SymbolSet,
-                                                                                          ZBStateLinksSet&    StateLinkSet,
+    IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardPageSymbol(PSS_StateObject*    pState,
+                                                                                          PSS_SymbolSet&        SymbolSet,
+                                                                                          PSS_StateLinksSet&    StateLinkSet,
                                                                                           ZILog*            pLog );
 
-    IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardStopSymbol( ZBStateObject*    pState,
-                                                                                          ZBSymbolSet&        SymbolSet,
-                                                                                          ZBStateLinksSet&    StateLinkSet,
+    IEAutomationMoveStatus ZBBPAutomate::RequestMoveForwardStopSymbol(PSS_StateObject*    pState,
+                                                                                          PSS_SymbolSet&        SymbolSet,
+                                                                                          PSS_StateLinksSet&    StateLinkSet,
                                                                                           ZILog*            pLog );
 };
 

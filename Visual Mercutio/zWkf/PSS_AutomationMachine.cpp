@@ -14,7 +14,7 @@
 #include "zModel\ZBSymbol.h"
 #include "zModel\ZBLinkSymbol.h"
 #include "PSS_MainAutomationRunnerThread.h"
-#include "ZBStateMachine.h"
+#include "PSS_StateMachine.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -141,11 +141,11 @@ bool PSS_AutomationMachine::Resume()
     return true;
 }
 //---------------------------------------------------------------------------
-PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomationMachine::RequestMoveForward(ZBStateObject*   pState,
-                                                                                        ZBStateMachine*  pStateMachine,
-                                                                                        ZBSymbolSet&     symbolSet,
-                                                                                        ZBStateLinksSet& stateLinkSet,
-                                                                                        ZILog*           pLog)
+PSS_AutomationMachine::IEAutomationMoveStatus PSS_AutomationMachine::RequestMoveForward(PSS_StateObject*   pState,
+                                                                                        PSS_StateMachine*  pStateMachine,
+                                                                                        PSS_SymbolSet&     symbolSet,
+                                                                                        PSS_StateLinksSet& stateLinkSet,
+                                                                                        ZILog*             pLog)
 {
     // do nothing in the base class, must be implemented in the derived class
     return IE_AS_Error;
@@ -175,61 +175,61 @@ bool PSS_AutomationMachine::OnResume(ZILog* pLog)
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnObjectIsFinished(ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog)
+bool PSS_AutomationMachine::OnObjectIsFinished(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnObjectIsPaused(ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog)
+bool PSS_AutomationMachine::OnObjectIsPaused(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnObjectIsWaitingForOtherLinks(ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog)
+bool PSS_AutomationMachine::OnObjectIsWaitingForOtherLinks(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnBeforeRequestMoveForward(ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog)
+bool PSS_AutomationMachine::OnBeforeRequestMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnNextSymbolAfterMoveForward(ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog)
+bool PSS_AutomationMachine::OnNextSymbolAfterMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnBeforeMoveForward(ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog)
+bool PSS_AutomationMachine::OnBeforeMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnAfterMoveForward(ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog)
+bool PSS_AutomationMachine::OnAfterMoveForward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnBeforeMoveBackward(ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog)
+bool PSS_AutomationMachine::OnBeforeMoveBackward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnAfterMoveBackward(ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog)
+bool PSS_AutomationMachine::OnAfterMoveBackward(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::OnObjectError(ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog)
+bool PSS_AutomationMachine::OnObjectError(PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog)
 {
     // do nothing in the base class, might be implemented in the derived class
     return true;
@@ -253,17 +253,13 @@ bool PSS_AutomationMachine::OnReachMaxInPauseCounter(ZILog* pLog)
     return true;
 }
 //---------------------------------------------------------------------------
-std::size_t PSS_AutomationMachine::CopyNodeArrayToSymbolSet(CODNodeArray& nodes, ZBSymbolSet& symbolSet)
+std::size_t PSS_AutomationMachine::CopyNodeArrayToSymbolSet(CODNodeArray& nodes, PSS_SymbolSet& symbolSet)
 {
-    std::size_t elementCount = nodes.GetSize();
+    const std::size_t elementCount = nodes.GetSize();
 
     for (std::size_t nodeIndex = 0; nodeIndex < elementCount; ++nodeIndex)
     {
-        IODNode* pINode = nodes.GetAt(nodeIndex);
-
-        if (!pINode)
-            continue;
-
+        IODNode*  pINode  = nodes.GetAt(nodeIndex);
         ZBSymbol* pSymbol = dynamic_cast<ZBSymbol*>(pINode);
 
         if (!pSymbol)
@@ -276,50 +272,46 @@ std::size_t PSS_AutomationMachine::CopyNodeArrayToSymbolSet(CODNodeArray& nodes,
     return symbolSet.GetSize();
 }
 //---------------------------------------------------------------------------
-std::size_t PSS_AutomationMachine::CopyEdgeArrayToStateLinksSet(CODEdgeArray&              edges,
-                                                                ZBStateLink::LinkDirection direction,
-                                                                ZBStateLinksSet&           stateLinkSet)
+std::size_t PSS_AutomationMachine::CopyEdgeArrayToStateLinksSet(CODEdgeArray&                  edges,
+                                                                PSS_StateLink::IELinkDirection direction,
+                                                                PSS_StateLinksSet&             stateLinkSet)
 {
-    std::size_t elementCount = edges.GetSize();
+    const std::size_t elementCount = edges.GetSize();
 
     for (std::size_t edgeIndex = 0; edgeIndex < elementCount; ++edgeIndex)
     {
-        IODEdge* pIEdge = edges.GetAt(edgeIndex);
-
-        if (!pIEdge)
-            continue;
-
-        ZBLinkSymbol* pLink = dynamic_cast<ZBLinkSymbol*>(pIEdge);
+        IODEdge*      pIEdge = edges.GetAt(edgeIndex);
+        ZBLinkSymbol* pLink  = dynamic_cast<ZBLinkSymbol*>(pIEdge);
 
         if (!pLink)
             continue;
 
         // add the state link to the state link set
-        ZBStateLink* pStateLink = new ZBStateLink(pLink, direction, GetModel());
+        PSS_StateLink* pStateLink = new PSS_StateLink(pLink, direction, GetModel());
         stateLinkSet.Add(pStateLink);
     }
 
     return stateLinkSet.GetSize();
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::MergeAllStateObjects(ZBStateMachineCollection& collection)
+bool PSS_AutomationMachine::MergeAllStateObjects(PSS_StateMachineCollection& collection)
 {
     // copy collection to the collection passed as parameter
     collection.CopyCurrentStateObjects(m_StateMachineCollection, true);
 
-    // iterate through all elements of the collection
+    // iterate through all collection elements
     for (int i = 0; i < int(collection.GetStateMachineCount()); ++i)
     {
-        ZBStateMachine* pSrcStateMachine = collection.GetStateMachine(i);
+        PSS_StateMachine* pSrcStateMachine = collection.GetStateMachine(i);
         ASSERT(pSrcStateMachine);
 
         // from the next element till then end of the collection, compare if the state machine last element is equals
         for (int j = i + 1; j < int(collection.GetStateMachineCount()); ++j)
         {
-            ZBStateMachine* pDstStateMachine = collection.GetStateMachine(j);
+            PSS_StateMachine* pDstStateMachine = collection.GetStateMachine(j);
             ASSERT(pDstStateMachine);
 
-            // try to locate if the same state machine object id was found
+            // try to locate the same state machine object id
             if (pSrcStateMachine->IsLastObjectEqual(pDstStateMachine))
             {
                 if (!MergeStateMachine(i, j, collection, true))
@@ -333,17 +325,17 @@ bool PSS_AutomationMachine::MergeAllStateObjects(ZBStateMachineCollection& colle
     return true;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::MergeStateMachine(std::size_t               srcIndex,
-                                              std::size_t               dstIndex,
-                                              ZBStateMachineCollection& collection,
-                                              bool                      deleteDestination)
+bool PSS_AutomationMachine::MergeStateMachine(std::size_t                 srcIndex,
+                                              std::size_t                 dstIndex,
+                                              PSS_StateMachineCollection& collection,
+                                              bool                        deleteDestination)
 {
     // get the source state machine
-    ZBStateMachine* pSrcStateMachine = collection.GetStateMachine(srcIndex);
+    PSS_StateMachine* pSrcStateMachine = collection.GetStateMachine(srcIndex);
     ASSERT(pSrcStateMachine);
 
     // get the destination state machine
-    ZBStateMachine* pDstStateMachine = collection.GetStateMachine(dstIndex);
+    PSS_StateMachine* pDstStateMachine = collection.GetStateMachine(dstIndex);
     ASSERT(pDstStateMachine);
 
     // merge the state machines together
@@ -356,10 +348,10 @@ bool PSS_AutomationMachine::MergeStateMachine(std::size_t               srcIndex
     return true;
 }
 //---------------------------------------------------------------------------
-ZBStateMachine* PSS_AutomationMachine::MergeSourceStateMachines(ZBStateMachine* pStateMachineToMerge)
+PSS_StateMachine* PSS_AutomationMachine::MergeSourceStateMachines(PSS_StateMachine* pStateMachineToMerge)
 {
     // locate the first original state machine
-    ZBStateMachine* pFirstStateMachine = FindOriginalStateMachine(pStateMachineToMerge);
+    PSS_StateMachine* pFirstStateMachine = FindOriginalStateMachine(pStateMachineToMerge);
 
     if (!pFirstStateMachine)
         return NULL;
@@ -367,14 +359,14 @@ ZBStateMachine* PSS_AutomationMachine::MergeSourceStateMachines(ZBStateMachine* 
     // merge all states
     pFirstStateMachine->MergeAllStates();
 
-    ZBStateMachineIterator it(&GetStateMachineSet());
+    PSS_StateMachineIterator it(&GetStateMachineSet());
 
     // iterate through the original state machine collection and try to locate the same state machine
-    for (ZBStateMachine* pStateMachine = it.GetFirst(); pStateMachine;)
+    for (PSS_StateMachine* pStateMachine = it.GetFirst(); pStateMachine;)
         // if found, merge them and return the merged machine
         if (pStateMachine != pFirstStateMachine && pStateMachine->IsLastObjectEqual(pFirstStateMachine))
         {
-            // if equals, merge the two objects together
+            // merge the two machines together
             if (!pFirstStateMachine->Merge(pStateMachine))
                 return NULL;
 
@@ -394,30 +386,30 @@ ZBStateMachine* PSS_AutomationMachine::MergeSourceStateMachines(ZBStateMachine* 
     return pFirstStateMachine;
 }
 //---------------------------------------------------------------------------
-ZBStateMachine* PSS_AutomationMachine::FindOriginalStateMachine(ZBStateMachine* pStateMachineToLocate)
+PSS_StateMachine* PSS_AutomationMachine::FindOriginalStateMachine(PSS_StateMachine* pStateMachineToLocate)
 {
-    ZBStateMachineIterator it(&GetStateMachineSetConst());
+    PSS_StateMachineIterator it(&GetStateMachineSetConst());
 
     // iterate through the original state machine collection and try to locate the same state machine
-    for (ZBStateMachine* pStateMachine = it.GetFirst(); pStateMachine; pStateMachine = it.GetNext() )
+    for (PSS_StateMachine* pStateMachine = it.GetFirst(); pStateMachine; pStateMachine = it.GetNext())
         if (pStateMachine->IsLastObjectEqual(pStateMachineToLocate))
             return pStateMachine;
 
     return NULL;
 }
 //---------------------------------------------------------------------------
-bool PSS_AutomationMachine::MoveFinishedStateMachine(ZBStateMachine* pFinishedStateMachine)
+bool PSS_AutomationMachine::MoveFinishedStateMachine(PSS_StateMachine* pFinishedStateMachine)
 {
     // locate the first original state machine
-    ZBStateMachine* pStateMachineToMove = FindOriginalStateMachine(pFinishedStateMachine);
+    PSS_StateMachine* pStateMachineToMove = FindOriginalStateMachine(pFinishedStateMachine);
 
     if (!pStateMachineToMove)
         return false;
 
-    ZBStateMachineIterator it(&GetStateMachineSet());
+    PSS_StateMachineIterator it(&GetStateMachineSet());
 
     // iterate through state machines
-    for (ZBStateMachine* pStateMachine = it.GetFirst(); pStateMachine; pStateMachine = it.GetNext())
+    for (PSS_StateMachine* pStateMachine = it.GetFirst(); pStateMachine; pStateMachine = it.GetNext())
         if (pStateMachine == pStateMachineToMove)
         {
             // add the state machine to the finished state machine collection

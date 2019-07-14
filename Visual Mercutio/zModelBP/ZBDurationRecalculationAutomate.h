@@ -36,25 +36,25 @@ public:
 
     //////////////////////////////////////////////////////////////////////
     // Status call-back
-    virtual bool OnObjectIsFinished    ( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog );
-    virtual bool OnObjectIsPaused    ( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog );
+    virtual bool OnObjectIsFinished    (PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog );
+    virtual bool OnObjectIsPaused    (PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog );
 
-    virtual bool OnObjectIsWaitingForOtherLinks( ZBStateObject*        pState,
-                                                 ZBStateMachine*    pStateMachine,
-                                                 ZILog*                pLog );
+    virtual bool OnObjectIsWaitingForOtherLinks(PSS_StateObject*  pState,
+                                                PSS_StateMachine* pStateMachine,
+                                                ZILog*            pLog);
 
     //////////////////////////////////////////////////////////////////////
     // Navigation call-back
-    virtual bool OnBeforeRequestMoveForward        ( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog );
-    virtual bool OnNextSymbolAfterMoveForward    ( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog );
-    virtual bool OnBeforeMoveForward            ( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog );
-    virtual bool OnAfterMoveForward                ( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog );
-    virtual bool OnBeforeMoveBackward            ( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog );
-    virtual bool OnAfterMoveBackward            ( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog );
+    virtual bool OnBeforeRequestMoveForward        (PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog);
+    virtual bool OnNextSymbolAfterMoveForward    (PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog);
+    virtual bool OnBeforeMoveForward            (PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog);
+    virtual bool OnAfterMoveForward                (PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog);
+    virtual bool OnBeforeMoveBackward            (PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog);
+    virtual bool OnAfterMoveBackward            (PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog);
 
     //////////////////////////////////////////////////////////////////////
     // Exception call-back
-    virtual bool OnObjectError                    ( ZBStateObject* pState, ZBStateMachine* pStateMachine, ZILog* pLog );
+    virtual bool OnObjectError                    (PSS_StateObject* pState, PSS_StateMachine* pStateMachine, ZILog* pLog);
     virtual bool OnReachMaximumLoopCounter        ( ZILog* pLog );
     virtual bool OnReachMaximumInPauseCounter    ( ZILog* pLog );
 
@@ -79,18 +79,18 @@ private:
                                                ZBBPProcedureSymbol*    pProcedure,
                                                ZILog*                pLog );
 
-    bool SetCaseDurationOfDownDeliverables( ZBStateObject*            pState,
+    bool SetCaseDurationOfDownDeliverables(PSS_StateObject*            pState,
                                             CODEdgeArray&            LeavingEdges,
                                             size_t                    LeavingLinkCount,
                                             ZBBPProcedureSymbol*    pProcedure,
                                             ZILog*                    pLog );
 
-    bool SetStartSymbolCaseDurationOfDownDeliverables( ZBStateObject*    pState,
+    bool SetStartSymbolCaseDurationOfDownDeliverables(PSS_StateObject*    pState,
                                                        CODEdgeArray&    LeavingEdges,
                                                        size_t            LeavingLinkCount,
                                                        ZILog*            pLog );
 
-    bool SetCaseDurationOfProcedure( ZBStateObject*            pState,
+    bool SetCaseDurationOfProcedure(PSS_StateObject*            pState,
                                      CODEdgeArray&            LeavingEdges,
                                      size_t                    LeavingLinkCount,
                                      ZBBPProcedureSymbol*    pProcedure,
@@ -101,4 +101,4 @@ private:
     int m_Pass;
 };
 
-#endif // !defined(AFX_ZBDurationRecalculationAutomate_H__1CC9AE94_368B_41BE_90E1_527CD3EC61F8__INCLUDED_)
+#endif
