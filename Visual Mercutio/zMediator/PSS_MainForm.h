@@ -44,7 +44,6 @@ class ZVRiskProbabilityContainer;
 class AFX_EXT_CLASS PSS_MainForm : public CWinApp
 {
     public:
-
         PSS_MainForm();
         virtual ~PSS_MainForm();
 

@@ -22,9 +22,7 @@
 #ifndef _Security_h__
 #define _Security_h__ 1
 
-
-
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -32,27 +30,35 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-
+// Windows
 #ifdef _WIN32
     #include <winver.h>
 #else
     #include <ver.h>
-#endif // _WIN32
-
+#endif
 #include <SHELLAPI.H>
 #include <direct.h>
 #include <dos.h>
-#include <fstream>
-using namespace std;
 
-/////////////////////////////////////////////////////////////////////////////
+// std
+#include <fstream>
+
+#ifdef _ZSCTYEXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
+#endif
+
 // Constant definition
 
 const    int        iCurrentVersion = 1;
 
 const    int        iPosDateStart = 2;
-const    int        iPosDateLast  = 8;
+const    int        iPosDateLast = 8;
 const    int        iPosCounterStart = 11;
 const    int        iPosCounterLast = 17;
 const    int        iPosVersion = 18;
@@ -60,18 +66,6 @@ const    CString    sLastDate = "LastDate";
 const    CString    sLastCounter = "LastCounter";
 const    CString    sInitialValue = "@@Initial$$Value";
 const    CString    sCheckString = "VERS";
-
-
-#ifdef _ZSCTYEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
-#endif
-
 
 
 class AFX_EXT_CLASS ZASecurityEntity 

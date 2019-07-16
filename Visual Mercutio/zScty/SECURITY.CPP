@@ -1,35 +1,13 @@
-//## begin module.cm preserve=no
-//      %X% %Q% %Z% %W%
-//## end module.cm
-
-//## begin module.cp preserve=no
-//## end module.cp
-
-//## Module: Security; Package body
-//## Subsystem: Security Modules
-//## Source file: d:\adsoft~1\zsecurit\security.cpp
-
-
-//## begin module.additionalIncludes preserve=no
 #include <StdAfx.h>
-//## end module.additionalIncludes
-
-//## begin module.includes preserve=yes
-#include "Eval.h"
-#include "stopprt.h"
-//## end module.includes
-
-// Security
 #include "security.h"
 
-//## begin module.declarations preserve=no
-//## end module.declarations
-
-//## begin module.additionalDeclarations preserve=yes
-#include "ShellApi.h"
-
+// processsoft
 #include "zBaseLib\ZBRegisterSetup.h"
+#include "PSS_StopPrintDialog.h"
+#include "PSS_EvaluationWarnDialog.h"
 
+// Windows
+#include <ShellApi.h>
 
 int    ZASecurity::GetCurrentVersion()
 { 
@@ -483,24 +461,20 @@ int ZASecurity::GetVersion()
 
 void ZASecurity::DisplayWarning()
 {
-  //## begin ZASecurity::DisplayWarning%854929699.body preserve=yes
-      ZIEvalWarning    EvalWarning;
-      EvalWarning.DoModal();
-  //## end ZASecurity::DisplayWarning%854929699.body
+    PSS_EvaluationWarnDialog dialog;
+    dialog.DoModal();
 }
 
 void ZASecurity::DisplayStopWnd()
 {
-  //## begin ZASecurity::DisplayStopWnd%855119248.body preserve=yes
-      ZIStopPrint    StopPrint;
-      if (StopPrint.DoModal() == IDCHANGE)
-    {
-        // Now set the product code to the registry
-        ZBRegisterSetup Registry;
-        Registry.CreateEntry( m_sKey, m_sPID, StopPrint.GetCode() );
-    }
+    PSS_StopPrintDialog dialog;
 
-  //## end ZASecurity::DisplayStopWnd%855119248.body
+    if (dialog.DoModal() != IDCHANGE)
+        return;
+
+    // set the product code to the registry
+    ZBRegisterSetup Registry;
+    Registry.CreateEntry(m_sKey, m_sPID, dialog.GetCode());
 }
 
 BOOL ZASecurity::SetVersion(int iVersion)

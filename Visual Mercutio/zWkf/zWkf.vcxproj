@@ -199,7 +199,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZDModelStateMachineDocument.cpp">
+    <ClCompile Include="PSS_ModelStateMachineDocument.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -243,7 +243,7 @@
     <ClInclude Include="PSS_StateMachine.h" />
     <ClInclude Include="PSS_StateMachineCollection.h" />
     <ClInclude Include="PSS_StateObject.h" />
-    <ClInclude Include="ZDModelStateMachineDocument.h" />
+    <ClInclude Include="PSS_ModelStateMachineDocument.h" />
     <ClInclude Include="zWkfLib.h" />
     <ClInclude Include="zWkfRes.h" />
   </ItemGroup>

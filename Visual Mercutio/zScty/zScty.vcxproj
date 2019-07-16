@@ -46,14 +46,14 @@
     <_ProjectFileVersion>15.0.28127.55</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>.\Release\</OutDir>
+    <OutDir>..\exeR\</OutDir>
     <IntDir>.\Release\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>..\..\Third party\CJ60Lib\Include;..\;..\Include;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\Third party\CJ60Lib\lib;..\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>.\Debug\</OutDir>
+    <OutDir>..\exe\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental />
     <IncludePath>..\..\Third party\CJ60Lib\Include;..\;..\Include;$(IncludePath)</IncludePath>
@@ -138,19 +138,19 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CODE.CPP">
+    <ClCompile Include="PSS_CodeInputDialog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="eval.cpp">
+    <ClCompile Include="PSS_EvaluationWarnDialog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="SECUCHK.CPP">
+    <ClCompile Include="PSS_SecurityCheck.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -170,7 +170,7 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="STOPPRT.CPP">
+    <ClCompile Include="PSS_StopPrintDialog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -202,19 +202,16 @@
     <ResourceCompile Include="zScty.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CODE.H" />
-    <ClInclude Include="eval.h" />
-    <ClInclude Include="SECUCHK.H" />
+    <ClInclude Include="PSS_CodeInputDialog.h" />
+    <ClInclude Include="PSS_EvaluationWarnDialog.h" />
+    <ClInclude Include="PSS_SecurityCheck.h" />
     <ClInclude Include="SECURITY.H" />
     <ClInclude Include="StdAfx.h" />
-    <ClInclude Include="STOPPRT.H" />
+    <ClInclude Include="PSS_StopPrintDialog.h" />
     <ClInclude Include="ZBKeyFile.H" />
     <ClInclude Include="zSctyAll.h" />
     <ClInclude Include="zSctyLib.h" />
     <ClInclude Include="zSctyRes.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ZBaseLib\ZBaseLib.vcxproj">

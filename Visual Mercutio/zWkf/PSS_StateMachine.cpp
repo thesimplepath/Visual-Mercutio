@@ -9,12 +9,11 @@
 #include "PSS_StateMachine.h"
 
 // processsoft
-#include "PSS_StateObject.h"
 #include "zBaseSym\ZIBasicSymbol.h"
 #include "zModel\ProcGraphModelMdl.h"
-
 #include "zModel\ZBSymbol.h"
 #include "zModel\ZBLinkSymbol.h"
+#include "PSS_StateObject.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE

@@ -1184,9 +1184,6 @@
     <Image Include="useritem.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ZEvent\ZEvent.vcxproj">
       <Project>{6a0743ec-ec51-45b0-9648-78b8a18aa3c8}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

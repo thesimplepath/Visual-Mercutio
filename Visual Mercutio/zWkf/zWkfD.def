@@ -1,9 +1,9 @@
-; zWkfD.def : Declares the module parameters for the DLL.
+; zWkfD.def: Declares the module parameters for the DLL
 
-LIBRARY      "zWkfD"
+LIBRARY "zWkfD"
 
-; JMR-MODIF - Le 23 mai 2005 - DESCRIPTION supprimé car non pris en charge par le compilateur.
-;DESCRIPTION  'zWkfD Windows Dynamic Link Library'
+; NOTE deactivated because unsupported by the compiler
+;DESCRIPTION 'zWkfD Windows Dynamic Link Library'
 
 EXPORTS
-    ; Explicit exports can go here
+    ; explicit exports can go here

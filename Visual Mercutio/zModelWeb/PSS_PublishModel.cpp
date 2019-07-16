@@ -9,17 +9,14 @@
 #include "PSS_PublishModel.h"
 
 // processsoft
+#include "zBaseLib\ZUSystemOption.h"
+#include "zBaseLib\ZBTokenizer.h"
+#include "zProperty\zBPropertyAttributes.h"
 #include "PSS_PublishModelWelcomeDialog.h"
 #include "PSS_PublishModelSelDirDialog.h"
 #include "PSS_PublishModelBannerDialog.h"
 #include "PSS_PublishModelAttributesDialog.h"
 #include "PSS_PublishModelOptionsDialog.h"
-
-#include "zBaseLib\ZUSystemOption.h"
-
-// RS-MODIF 12.12.04 we need token to save attributes
-#include "zBaseLib\ZBTokenizer.h"
-#include "zProperty\zBPropertyAttributes.h"
 
 //---------------------------------------------------------------------------
 // Constants

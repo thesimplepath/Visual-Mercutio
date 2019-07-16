@@ -10,8 +10,10 @@
 
 // processsoft
 #include "zBaseLib\ZDirectory.h"
-#include "zRes32\zRes.h"
 #include "zBaseLib\MsgBox.h"
+
+// resources
+#include "zRes32\zRes.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
