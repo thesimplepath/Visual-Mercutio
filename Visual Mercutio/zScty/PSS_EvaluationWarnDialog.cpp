@@ -19,7 +19,7 @@ BEGIN_MESSAGE_MAP(PSS_EvaluationWarnDialog, CDialog)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
-// Message map
+// PSS_EvaluationWarnDialog
 //---------------------------------------------------------------------------
 PSS_EvaluationWarnDialog::PSS_EvaluationWarnDialog(CWnd* pParent) :
     CDialog(IDD_EVALUATIONWARNING, pParent)

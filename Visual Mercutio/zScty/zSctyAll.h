@@ -14,25 +14,19 @@
 // resources
 #include "zScty\zSctyRes.h"
 
-// ***********************************************************
-// *
-// *  ZASecurityEntity
-// *  
-// ***********************************************************
-
-#ifndef _Security_h__
-#include "zScty\Security.h"
-#endif 
-
-// ***********************************************************
-// *
-// *  ZBKeyEntity, ZBKeyFile
-// *
-// ***********************************************************
-
-#ifndef _ZBKeyFile_h__
-#include "zScty\ZBKeyFile.h"
+/**
+* PSS_KeyEntity, PSS_KeyFile
+*/
+#ifndef PSS_KeyFileH
+    #include "zScty\PSS_KeyFile.h"
 #endif
+
+/**
+*  PSS_SecurityEntity, PSS_Security
+*/
+#ifndef PSS_SecurityH
+    #include "zScty\PSS_Security.h"
+#endif 
 
 /**
 * PSS_SecurityCheck

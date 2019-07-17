@@ -156,7 +156,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="SECURITY.CPP">
+    <ClCompile Include="PSS_Security.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -176,7 +176,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBKeyFile.CPP">
+    <ClCompile Include="PSS_KeyFile.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -190,6 +190,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="cpp.hint" />
     <None Include="res\zScty.rc2" />
     <CustomBuild Include="zScty.def">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -205,10 +206,10 @@
     <ClInclude Include="PSS_CodeInputDialog.h" />
     <ClInclude Include="PSS_EvaluationWarnDialog.h" />
     <ClInclude Include="PSS_SecurityCheck.h" />
-    <ClInclude Include="SECURITY.H" />
+    <ClInclude Include="PSS_Security.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="PSS_StopPrintDialog.h" />
-    <ClInclude Include="ZBKeyFile.H" />
+    <ClInclude Include="PSS_KeyFile.h" />
     <ClInclude Include="zSctyAll.h" />
     <ClInclude Include="zSctyLib.h" />
     <ClInclude Include="zSctyRes.h" />

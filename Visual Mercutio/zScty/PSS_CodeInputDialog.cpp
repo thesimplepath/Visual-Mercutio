@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\File.h"
-#include "ZBKeyFile.h"
+#include "PSS_KeyFile.h"
 
 // resources
 #include "zRes32\zRes.h"
@@ -86,7 +86,7 @@ void PSS_CodeInputDialog::OnOK()
         return;
     }
 
-    ZBKeyFile file(wndDir);
+    PSS_KeyFile file(wndDir);
 
     // check the password
     if (!file.IsKeyValid(m_Code))

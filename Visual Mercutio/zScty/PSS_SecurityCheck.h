@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "security.h"
+#include "PSS_Security.h"
 
 #ifdef _ZSCTYEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -33,130 +33,138 @@
 * Manages the security file for product key
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS ZASecurityCheck : public ZASecurity
+class AFX_EXT_CLASS PSS_SecurityCheck : public PSS_Security
 {
     public:
-        ZASecurityCheck();
+        PSS_SecurityCheck();
 
-        ZASecurityCheck(const CString& fileName,
-            int            daysMax,
-            int            counterMax,
-            int            counterMin,
-            const CString& appRegistryKey = "",
-            const CString& appPID         = "");
+        /**
+        * Constructor
+        *@param fileName - security file name
+        *@param daysMax - number of remaining days
+        *@param counterMax - the maximum counter where the app can be opened
+        *@param counterMin - the minimum counter where the days can be checked
+        *@param appRegistryKey - application registry key
+        *@param appPID - application identifier
+        */
+        PSS_SecurityCheck(const CString& fileName,
+                          int            daysMax,
+                          int            counterMax,
+                          int            counterMin,
+                          const CString& appRegistryKey = "",
+                          const CString& appPID         = "");
 
-        ~ZASecurityCheck();
+        virtual ~PSS_SecurityCheck();
 
-        //## Other Operations (specified)
-        //## Operation: Check%812506911
-        //    Check if the user can use the program or a
-        //    functionnality.
-        BOOL Check();
+        /**
+        * Checks if the user can use the program or a functionnality
+        *@return TRUE if the user can use the program or a functionnality, otherwise FALSE
+        */
+        virtual BOOL Check();
 
-        //## Operation: FindOldVersion%812562131
-        //    Find an old filename on the disks.
-        const CString FindOldVersion(const CString&  sExeFilename);
+        /**
+        * Finds an old filename on the disk
+        *@param exeFilename - old exe file name to find
+        *@return found old version file name and path, empty string if not found or on error
+        */
+        virtual const CString FindOldVersion(const CString& exeFilename);
 
-        //## Operation: CreateSecurityFile%812564855
-        BOOL CreateSecurityFile();
+        /**
+        * Creates the security file
+        *@return TRUE on success, otherwise FALSE
+        */
+        virtual BOOL CreateSecurityFile();
 
-        //## Operation: Create%812682977
-        BOOL Create(const CString&  sFilename, int iDaysMax, int iCounterMax, int iCounterMin,
-            const CString ApplicationRegistryKey = "", const CString ApplicationPID = "");
+        /**
+        * Creates a security check
+        *@param fileName - security file name
+        *@param daysMax - number of remaining days
+        *@param counterMax - the maximum counter where the app can be opened
+        *@param counterMin - the minimum counter where the days can be checked
+        *@param appRegistryKey - application registry key
+        *@param appPID - application identifier
+        */
+        virtual BOOL Create(const CString& filename,
+                            int            daysMax,
+                            int            counterMax,
+                            int            counterMin,
+                            const CString& appRegistryKey = "",
+                            const CString& appPID         = "");
 
-        //## Operation: CheckRegistery%854929700
-        BOOL CheckRegistery();
+        /**
+        * Checks the registry to verify if user can use the installed version
+        *@return TRUE if usage is allowed by registry, otherwise FALSE
+        */
+        virtual BOOL CheckRegistry();
 
-        //## Get and Set Operations for Has Relationships (generated)
+        /**
+        * Gets the file name to search
+        *@return the file name to search
+        */
+        virtual inline const CString GetFileNameToSearch() const;
 
-        //## Documentation ZASecurityCheck::sFilenameToSearch.has
-        const CString GetsFilenameToSearch() const;
-        void SetsFilenameToSearch(const CString value);
+        /**
+        * Sets the file name to search
+        *@value - the file name to search
+        */
+        virtual inline void SetFileNameToSearch(const CString& value);
 
-        //## Documentation ZASecurityCheck::sFoundedFilename.has
-        const CString GetsFoundedFilename() const;
-        void SetsFoundedFilename(const CString value);
+        /**
+        * Gets the found file name
+        *@return the found file name
+        */
+        virtual inline const CString GetFoundFileName() const;
+
+        /**
+        * Sets the found file name
+        *@value - the found file name
+        */
+        virtual inline void SetFoundFileName(const CString& value);
 
     private:
-        //## Other Operations (specified)
-        //## Operation: FindFile%812564853
-        //    Find a specific file into a specific drive.
-        //
-        //    The return is the file otherwise an empty string.
-        const CString&  FindFile(const CString&  sFilename, int iDrive);
+        CString m_FileNameToSearch;
+        CString m_FoundFileName;
+        int     m_DaysMax;
+        int     m_CounterMax;
+        int     m_CounterMin;
 
-        //## Operation: FindFileInCurrentDir%812564854
+        /**
+        * Finds a specific file in a specific drive
+        *@param fileName - file name to find
+        *@param drive - drive index
+        *@return found file name, empty string if not found or on error
+        */
+        const CString& FindFile(const CString& filename, int drive);
+
+        /**
+        * Finds a specific file in the current directory
+        *@return TRUE if file was found in the current directory, otherwise FALSE
+        */
         BOOL FindFileInCurrentDir();
-
-        // Data Members for Has Relationships
-
-        //## Documentation ZASecurityCheck::iDaysMax.has
-        //    The maximum days to reach.
-        //## begin ZASecurityCheck::iDaysMax.has preserve=no  public: int {1 -> 1VO}
-        int m_iDaysMax;
-        //## end ZASecurityCheck::iDaysMax.has
-
-        //## Documentation ZASecurityCheck::iCounterMax.has
-        //    The maximum counter to reach.
-        //## begin ZASecurityCheck::iCounterMax.has preserve=no  public: int {1 -> 1VO}
-        int m_iCounterMax;
-        //## end ZASecurityCheck::iCounterMax.has
-
-        //## Documentation ZASecurityCheck::iCounterMin.has
-        //    The minimum counter where the days can be checked.
-        //## begin ZASecurityCheck::iCounterMin.has preserve=no  public: int {1 -> 1VO}
-        int m_iCounterMin;
-        //## end ZASecurityCheck::iCounterMin.has
-
-        //## begin ZASecurityCheck::sFilenameToSearch.has preserve=no  public: CString {1 -> 1VO}
-        CString m_sFilenameToSearch;
-        //## end ZASecurityCheck::sFilenameToSearch.has
-
-        //## begin ZASecurityCheck::sFoundedFilename.has preserve=no  public: CString {1 -> 1VO}
-        CString m_sFoundedFilename;
-        //## end ZASecurityCheck::sFoundedFilename.has
-
-        // Additional Implementation Declarations
-        //## begin ZASecurityCheck.implementation preserve=yes
-        //## end ZASecurityCheck.implementation
 };
 
-// Class ZASecurityCheck 
-
-//## Get and Set Operations for Has Relationships (inline)
-
-inline const CString ZASecurityCheck::GetsFilenameToSearch() const
+//---------------------------------------------------------------------------
+// PSS_SecurityCheck
+//---------------------------------------------------------------------------
+const CString PSS_SecurityCheck::GetFileNameToSearch() const
 {
-  //## begin ZASecurityCheck::GetsFilenameToSearch%.get preserve=no
-  return m_sFilenameToSearch;
-  //## end ZASecurityCheck::GetsFilenameToSearch%.get
+    return m_FileNameToSearch;
 }
-
-inline void ZASecurityCheck::SetsFilenameToSearch(const CString value)
+//---------------------------------------------------------------------------
+void PSS_SecurityCheck::SetFileNameToSearch(const CString& value)
 {
-  //## begin ZASecurityCheck::SetsFilenameToSearch%.set preserve=no
-  m_sFilenameToSearch = value;
-  //## end ZASecurityCheck::SetsFilenameToSearch%.set
+    m_FileNameToSearch = value;
 }
-
-inline const CString ZASecurityCheck::GetsFoundedFilename() const
+//---------------------------------------------------------------------------
+const CString PSS_SecurityCheck::GetFoundFileName() const
 {
-  //## begin ZASecurityCheck::GetsFoundedFilename%.get preserve=no
-  return m_sFoundedFilename;
-  //## end ZASecurityCheck::GetsFoundedFilename%.get
+    return m_FoundFileName;
 }
-
-inline void ZASecurityCheck::SetsFoundedFilename(const CString value)
+//---------------------------------------------------------------------------
+void PSS_SecurityCheck::SetFoundFileName(const CString& value)
 {
-  //## begin ZASecurityCheck::SetsFoundedFilename%.set preserve=no
-  m_sFoundedFilename = value;
-  //## end ZASecurityCheck::SetsFoundedFilename%.set
+    m_FoundFileName = value;
 }
+//---------------------------------------------------------------------------
 
-
-
-
-
-#endif    // _SecuChk_h__
-
-
+#endif

@@ -23,7 +23,7 @@
 
 #ifndef _WIN32_WINNT
     #define _WIN32_WINNT _WIN32_WINNT_WINXP
-#endif                        
+#endif
 
 #ifndef _WIN32_WINDOWS
     #define _WIN32_WINDOWS 0x0410
