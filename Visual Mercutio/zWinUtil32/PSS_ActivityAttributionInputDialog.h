@@ -40,7 +40,7 @@ class AFX_EXT_CLASS PSS_ActivityAttributionInputDialog
     public:
         /**
         * Constructor
-        *@param userMAnager - user manager
+        *@param userManager - user manager
         *@param mail - mail
         *@param pActivity - activity
         *@param lastActivity - if TRUE, activity is the last activity

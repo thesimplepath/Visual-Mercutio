@@ -155,21 +155,21 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="actbattr.cpp">
+    <ClCompile Include="PSS_ActivityAttributionBackupInputDialog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="actcmb.cpp">
+    <ClCompile Include="PSS_ActivityCombo.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="actevtc.cpp">
+    <ClCompile Include="PSS_EventActivityLog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -903,9 +903,9 @@
   <ItemGroup>
     <ClInclude Include="PSS_ActivityAttributionWelcomeDialog.h" />
     <ClInclude Include="PSS_ActivityAttributionInputDialog.h" />
-    <ClInclude Include="actbattr.h" />
-    <ClInclude Include="actcmb.h" />
-    <ClInclude Include="actevtc.h" />
+    <ClInclude Include="PSS_ActivityAttributionBackupInputDialog.h" />
+    <ClInclude Include="PSS_ActivityCombo.h" />
+    <ClInclude Include="PSS_EventActivityLog.h" />
     <ClInclude Include="actevtoverviewc.h" />
     <ClInclude Include="actevtreminderc.h" />
     <ClInclude Include="actevtsc.h" />

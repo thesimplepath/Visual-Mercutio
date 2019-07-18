@@ -13,7 +13,7 @@
 #include "zBaseLib\InpVal.h"
 #include "LstUser.h"
 #include "ActIAttr.h"
-#include "ActBAttr.h"
+#include "PSS_ActivityAttributionBackupInputDialog.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -60,10 +60,10 @@ int PSS_ActivityAttributionInputDialog::DoModal()
 //---------------------------------------------------------------------------
 BOOL PSS_ActivityAttributionInputDialog::ProcessBackupUser()
 {
-    ZIActivityAttributionBackupInput activityAttributionBackupInput(m_UserManager,
-                                                                    m_Mail,
-                                                                    m_pActivity,
-                                                                    m_LastActivity);
+    PSS_ActivityAttributionBackupInputDialog activityAttributionBackupInput(m_UserManager,
+                                                                            m_Mail,
+                                                                            m_pActivity,
+                                                                            m_LastActivity);
 
     return (activityAttributionBackupInput.DoModal() != IDCANCEL);
 }
