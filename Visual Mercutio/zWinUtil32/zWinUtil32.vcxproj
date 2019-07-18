@@ -47,14 +47,14 @@
     <_ProjectFileVersion>15.0.28127.55</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>.\Debug\</OutDir>
+    <OutDir>..\exe\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental />
     <IncludePath>..\..\Third party\CJ60Lib\Include;..\..\Third party\Stingray Studio\Include;..\..\Third party\Stingray Studio\Regex\include;..\;..\Include;res;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\Third party\CJ60Lib\lib;..\..\Third party\Stingray Studio\Lib;..\..\Third party\Stingray Studio\Regex\lib\vc6;..\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>.\Release\</OutDir>
+    <OutDir>..\exeR\</OutDir>
     <IntDir>.\Release\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>..\..\Third party\CJ60Lib\Include;..\..\Third party\Stingray Studio\Include;..\..\Third party\Stingray Studio\Regex\include;..\;..\Include;res;$(IncludePath)</IncludePath>
@@ -141,14 +141,14 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ActAtrW.cpp">
+    <ClCompile Include="PSS_ActivityAttributionWelcomeDialog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="actattr.cpp">
+    <ClCompile Include="PSS_ActivityAttributionInputDialog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -682,7 +682,7 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="ZCLanguageCombo.cpp">
+    <ClCompile Include="PSS_LanguageCombo.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -901,8 +901,8 @@
     <ResourceCompile Include="ZWinUtil32.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ActAtrW.h" />
-    <ClInclude Include="actattr.h" />
+    <ClInclude Include="PSS_ActivityAttributionWelcomeDialog.h" />
+    <ClInclude Include="PSS_ActivityAttributionInputDialog.h" />
     <ClInclude Include="actbattr.h" />
     <ClInclude Include="actcmb.h" />
     <ClInclude Include="actevtc.h" />
@@ -978,7 +978,7 @@
     <ClInclude Include="VIEWPGR.H" />
     <ClInclude Include="WelcomW.h" />
     <ClInclude Include="ZCFormTemplateTree.h" />
-    <ClInclude Include="ZCLanguageCombo.h" />
+    <ClInclude Include="PSS_LanguageCombo.h" />
     <ClInclude Include="ZCWorkspaceTemplateList.h" />
     <ClInclude Include="ZFileVersionDialog.h" />
     <ClInclude Include="ZFormPreviewFileDialog.h" />
@@ -1006,7 +1006,7 @@
     <ClInclude Include="ZVReferenceFileDlg.h" />
     <ClInclude Include="ZVURLFormView.h" />
     <ClInclude Include="ZVURLWnd.h" />
-    <ClInclude Include="ZWinUtil32.h" />
+    <ClInclude Include="ZWinUtil32Res.h" />
     <ClInclude Include="zWinUtil32Lib.h" />
   </ItemGroup>
   <ItemGroup>

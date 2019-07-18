@@ -1,23 +1,22 @@
 // Source file: ActEvtOverviewC.cpp
 
 #include <StdAfx.h>
-
-// ActEvtC
 #include "ActEvtOverviewC.h"
-// The tokenizer
+
+// processsoft
 #include "zBaseLib\ZBTokenizer.h"
 
+// resources
 #ifndef _WIN32
-    #include "ZWinUtil.h"
-#endif
-#ifdef _WIN32
-    #include "ZWinUtil32.h"
+    #include "zWinUtilRes.h"
+#else
+    #include "zWinUtil32Res.h"
 #endif
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
 BEGIN_MESSAGE_MAP(ZCEventActivityOverview, ZITreeCtrl)

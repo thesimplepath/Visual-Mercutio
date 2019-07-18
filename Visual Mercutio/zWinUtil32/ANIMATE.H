@@ -9,15 +9,15 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
 #ifndef _WIN32
+    // 16 bit only
     extern "C" extern void WINAPI InitZWinUtilDLL();
     extern AFX_EXTENSION_MODULE NEAR extensionZWinUtilDLL;
     #define    AFX_EXT_CLASS
-#else // Only in 16bit
-    extern AFX_EXTENSION_MODULE extensionZWinUtil32DLL;
-#endif // Only in 32bit
-
+#else
+    // 32 bit only
+    extern AFX_EXTENSION_MODULE g_zWinUtil32DLL;
+#endif
 
 #ifdef _ZWINUTIL32EXPORT
 //put the values back to make AFX_EXT_CLASS export again

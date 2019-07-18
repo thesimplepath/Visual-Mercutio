@@ -459,27 +459,25 @@ void ZDProcessGraphModelMdl::SetDescription( const CString& value )
     }
 }
 
-const Language ZDProcessGraphModelMdl::GetLanguage()
+const ELanguage ZDProcessGraphModelMdl::GetLanguage()
 {
-    ZBLanguageProp* pProps = (ZBLanguageProp*)GetProperty( ZS_BP_PROP_LANGUAGE );
+    ZBLanguageProp* pProps = (ZBLanguageProp*)GetProperty(ZS_BP_PROP_LANGUAGE);
 
-    // If not present, create it
-    if ( !pProps )
+    // not exists? Create it
+    if (!pProps)
     {
         CreateSymbolProperties();
-        pProps = (ZBLanguageProp*)GetProperty( ZS_BP_PROP_LANGUAGE );
+        pProps = (ZBLanguageProp*)GetProperty(ZS_BP_PROP_LANGUAGE);
     }
 
-    // If not again, return unknown as error
-    if ( !pProps )
-    {
-        return UnknownLang;
-    }
+    // still not exists? Return unknown as error
+    if (!pProps)
+        return E_LN_Unknown;
 
     return pProps->GetLanguage();
 }
 
-void ZDProcessGraphModelMdl::SetLanguage( const Language value )
+void ZDProcessGraphModelMdl::SetLanguage(ELanguage value)
 {
     ZBLanguageProp Props;
     ZBLanguageProp* pProps = (ZBLanguageProp*)GetProperty( ZS_BP_PROP_LANGUAGE );

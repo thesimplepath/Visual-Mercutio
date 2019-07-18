@@ -1,20 +1,19 @@
 // Source file: MessageC.cpp
 
 #include <StdAfx.h>
-
-// MessageC
 #include "MessageC.h"
+
+// resources
 #ifndef _WIN32
-    #include "ZWinUtil.h"
-#endif
-#ifdef _WIN32
-    #include "ZWinUtil32.h"
+    #include "ZWinUtilRes.h"
+#else
+    #include "ZWinUtil32Res.h"
 #endif
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
 static int _gMessageColText[] = { IDS_COLUMN1_EVENTLOG, IDS_COLUMN2_EVENTLOG, IDS_COLUMN3_EVENTLOG };

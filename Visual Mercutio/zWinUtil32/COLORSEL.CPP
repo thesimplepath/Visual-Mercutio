@@ -3,17 +3,17 @@
 
 #include "stdafx.h"
 #include "colorsel.h"
-#ifndef _WIN32
-    #include "ZWinUtil.h"
-#endif
-#ifdef _WIN32
-    #include "ZWinUtil32.h"
-#endif
 
+// resources
+#ifndef _WIN32
+    #include "zWinUtilRes.h"
+#else
+    #include "zWinUtil32Res.h"
+#endif
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char BASED_CODE THIS_FILE[] = __FILE__;
+    #undef THIS_FILE
+    static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
 IMPLEMENT_DYNAMIC(ZIColorSelection, CWnd);

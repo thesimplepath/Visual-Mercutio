@@ -176,8 +176,8 @@ public:
     bool            GetShowPageBorder            () const;
     void            SetShowPageBorder            ( bool value );
 
-    const Language    GetLanguage                    ();
-    void            SetLanguage                    ( const Language value );
+    const ELanguage GetLanguage                    ();
+    void            SetLanguage                    (ELanguage value);
 
     bool IsInCutOperation()
     {

@@ -184,7 +184,7 @@ public:
       //## Operation: IsChoiceActivityDone%934700760
       //## Operation: SetVisibility%935776836
       //    Set the visibility of an activity or process.
-      virtual void SetVisibility (const ThreeState value);
+      virtual void SetVisibility (const EThreeState value);
 
 
      //## Operation: GetActivityStatusString%935923759

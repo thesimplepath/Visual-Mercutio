@@ -119,12 +119,12 @@ public:
 
     //@cmember
     /* Gets the language value. */
-    Language GetLanguage() const;
+    ELanguage GetLanguage() const;
     int GetLanguageInt() const;
 
     //@cmember
     /* Sets the language value. */
-    void SetLanguage( const Language value );
+    void SetLanguage(ELanguage value);
     void SetLanguageInt( const int value );
 
 public:
@@ -213,7 +213,7 @@ protected:
 
     //@cmember
     /* The language. */
-    Language m_Language;
+    ELanguage m_Language;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -233,7 +233,7 @@ inline ULONG ZBLanguageProp::Release()
     return CODIntProperty::Release();
 }
 
-inline Language ZBLanguageProp::GetLanguage() const
+inline ELanguage ZBLanguageProp::GetLanguage() const
 {
     return m_Language;
 }
@@ -243,14 +243,14 @@ inline int ZBLanguageProp::GetLanguageInt() const
     return static_cast<int>( m_Language );
 }
 
-inline void ZBLanguageProp::SetLanguage( const Language value )
+inline void ZBLanguageProp::SetLanguage(ELanguage value)
 {
     m_Language = value;
 }
 
 inline void ZBLanguageProp::SetLanguageInt( const int value )
 {
-    m_Language = static_cast<Language>( value );
+    m_Language = static_cast<ELanguage>(value);
 }
 
 //@mfunc Creates a copy of this property.

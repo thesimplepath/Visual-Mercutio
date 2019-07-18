@@ -20,7 +20,7 @@
 #include "zWinUtil32\FoldInfo.h"
 #include "zWinUtil32\SysOpt32.h"
 #include "zWinUtil32\CrtFldW.h"
-#include "zResMgr\ZBResourceManager.h"
+#include "zResMgr\PSS_ResourceManager.h"
 #include "zPtyMgr\ZVChoosePropertyDlg.h"
 #include "zModel\ProcGraphModelMdl.h"
 #include "zModel\ProcGraphModelVp.h"
@@ -393,7 +393,7 @@ void ZAApp::Release()
     ZAGlobal::Release();
     ZAModelGlobal::Release();
     ZBObjectUtility::Release();
-    ZBResourceManager::Release();
+    PSS_ResourceManager::Release();
     ZUFloatingToolbar::Release();
 
     // Appel à la fonction Release de la classe de base.
@@ -479,8 +479,8 @@ BOOL ZAApp::InitAppl()
     // Creation of Visual Tools
     static ZIVisualToolEdit VisualToolEdit;
 
-    ZBResourceManager::LoadFromDirectory(ZDirectory::NormalizeDirectory(GetApplicationDir()) + _T("\\resdll"));
-    ZBResourceManager::ChangeLanguage(FrenchLang);
+    PSS_ResourceManager::LoadFromDirectory(ZDirectory::NormalizeDirectory(GetApplicationDir()) + _T("\\resdll"));
+    PSS_ResourceManager::ChangeLanguage(E_LN_French);
 
     // No errors
     return( TRUE );
@@ -1602,7 +1602,7 @@ ZDProcessGraphModelDoc* ZAApp::FileNewModel()
         case BerylNotation:
         {
             // Retreive the language assigned to the document
-            Language lang = pNewFile->GetLanguage();
+            ELanguage lang = pNewFile->GetLanguage();
             pNewFile->SetNewModel( new ZDProcessGraphModelMdlBP( pNewFile->GetTitle() ) );
 
             // Sets the language to the document
@@ -1786,7 +1786,7 @@ void ZAApp::OnAfterOpenDocument(CDocument* pDoc, const CString& filename )
         dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->OnPostOpenDocument();
 
         // Request the change of the resource language
-        ZBResourceManager::ChangeLanguage( dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetLanguage() );
+        PSS_ResourceManager::ChangeLanguage( dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetLanguage() );
     }
 }
 
@@ -2604,7 +2604,7 @@ void ZAApp::OnExportModelToHTMLFile()
         m_pReportInfo = NULL;
 
         // JMR-MODIF - Le 28 février 2006 - La réattribution du langage d'origine se fait maintenant ici.
-        ZBResourceManager::ChangeLanguage( dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() )->GetLanguage() );
+        PSS_ResourceManager::ChangeLanguage( dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() )->GetLanguage() );
     }
 }
 
@@ -2865,7 +2865,7 @@ void ZAApp::OnFileProperty()
     if ( dlg.DoModal() == IDOK )
     {
         // Request the change of the resource language
-        ZBResourceManager::ChangeLanguage( dlg.GetLanguage() );
+        PSS_ResourceManager::ChangeLanguage( dlg.GetLanguage() );
 
         // Modified flag
         GetActiveBaseDocument()->SetModifiedFlag();

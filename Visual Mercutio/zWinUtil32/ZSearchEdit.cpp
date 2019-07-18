@@ -4,19 +4,21 @@
 
 #include "stdafx.h"
 #include "ZSearchEdit.h"
-#include "SHFileInfo.h"
+
+// processsoft
 #include "zBaseLib\FileDlg.h"
+#include "SHFileInfo.h"
 
 #ifndef _WIN32
-    #include "ZWinUtil.h"
+    #include "zWinUtilRes.h"
 #else
-    #include "ZWinUtil32.h"
+    #include "zWinUtil32Res.h"
 #endif
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[]=__FILE__;
+    #define new DEBUG_NEW
 #endif
 
 // JMR-MODIF - Le 14 février 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)

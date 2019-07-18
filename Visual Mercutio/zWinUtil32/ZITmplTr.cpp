@@ -1,51 +1,21 @@
-//## begin module%38B979D6016C.cm preserve=no
-//      %X% %Q% %Z% %W%
-//## end module%38B979D6016C.cm
-
-//## begin module%38B979D6016C.cp preserve=no
-//    ADSoft / Advanced Dedicated Software
-//    Dominique AIGROZ
-//## end module%38B979D6016C.cp
-
-//## Module: ZITmplTr%38B979D6016C; Package body
-//## Subsystem: ZWinUtil%36DEE1730346
-//## Source file: z:\adsoft~1\ZWinUtil\ZITmplTr.cpp
-
-//## begin module%38B979D6016C.additionalIncludes preserve=no
 #include <StdAfx.h>
-//## end module%38B979D6016C.additionalIncludes
-
-//## begin module%38B979D6016C.includes preserve=yes
-//## end module%38B979D6016C.includes
-
-// ZITmplTr
 #include "ZITmplTr.h"
-//## begin module%38B979D6016C.declarations preserve=no
-//## end module%38B979D6016C.declarations
 
-//## begin module%38B979D6016C.additionalDeclarations preserve=yes
-#include "zRes32\ZRes.h"
-
+// resources
 #ifndef _WIN32
-    #include "ZWinUtil.h"
+    #include "zWinUtilRes.h"
+#else
+    #include "zWinUtil32Res.h"
 #endif
-#ifdef _WIN32
-    #include "ZWinUtil32.h"
-#endif
+#include "zRes32\zRes.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
-//## end module%38B979D6016C.additionalDeclarations
 
-
-// Class ZITemplateTree 
-
-
-
-
+// Class ZITemplateTree
 
 ZITemplateTree::ZITemplateTree (ZITreeCtrl* pTreeCtrl, ZDTemplateManager* pTemplateManager, BOOL IncludeFiles)
   //## begin ZITemplateTree::ZITemplateTree%951679594.hasinit preserve=no

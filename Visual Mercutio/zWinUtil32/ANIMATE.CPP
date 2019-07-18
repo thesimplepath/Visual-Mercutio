@@ -1,24 +1,26 @@
 // animate.cpp : implementation file
 //
 
-#include "stdafx.h"
-#ifndef _WIN32
-    #include "ZWinUtil.h"
-#endif
-#ifdef _WIN32
-    #include "ZWinUtil32.h"
-#endif
+#include "StdAfx.h"
 #include "animate.h"
+
+// processsoft
 #include "zBaseLib\draw.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char BASED_CODE THIS_FILE[] = __FILE__;
+// resources
+#ifndef _WIN32
+    #include "zWinUtilRes.h"
+#else
+    #include "zWinUtil32Res.h"
 #endif
 
-const    UINT uiLastID = IDB_BITMAP17;
-const    UINT uiFirstID = IDB_BITMAP1;
+#ifdef _DEBUG
+    #undef THIS_FILE
+    static char BASED_CODE THIS_FILE[] = __FILE__;
+#endif
 
+const UINT uiLastID = IDB_BITMAP17;
+const UINT uiFirstID = IDB_BITMAP1;
 
 /////////////////////////////////////////////////////////////////////////////
 // ZIAnimateDlg dialog
@@ -36,10 +38,12 @@ ZIAnimateDlg::ZIAnimateDlg( CWnd* pParent /*=NULL*/ )
     // rect.
     CPoint        pt;
 #ifndef _WIN32
-    GetSizeOfBitmapFile( MAKEINTRESOURCE (uiFirstID), extensionZWinUtilDLL.hModule, &pt );
-#else // Only in 16bit
-    GetSizeOfBitmapFile( MAKEINTRESOURCE (uiFirstID), extensionZWinUtil32DLL.hModule, &pt );
-#endif // Only in 32bit
+    // 16 bit only
+    GetSizeOfBitmapFile(MAKEINTRESOURCE(uiFirstID), g_zWinUtilDLL.hModule, &pt);
+#else
+    // 32 bit only
+    GetSizeOfBitmapFile(MAKEINTRESOURCE(uiFirstID), g_zWinUtil32DLL.hModule, &pt);
+#endif
 
     m_ImageRect.left = 10;
     m_ImageRect.top = 10;
@@ -60,16 +64,18 @@ BOOL ZIAnimateDlg::DisplayNext()
     CDC*    pDC = GetDC();
     ASSERT( pDC );
 #ifndef _WIN32
+    // 16 bit only
     DisplayBitmapFile/*Extent*/( MAKEINTRESOURCE (m_uID), 
-                             pDC->m_hDC, extensionZWinUtilDLL.hModule, 
+                             pDC->m_hDC, g_zWinUtilDLL.hModule, 
                              10, 10 ); 
 //                             SRCAND );
-#else // Only in 16bit
+#else
+    // 32 bit only
     DisplayBitmapFile/*Extent*/( MAKEINTRESOURCE (m_uID), 
-                             pDC->m_hDC, extensionZWinUtil32DLL.hModule,
+                             pDC->m_hDC, g_zWinUtil32DLL.hModule,
                              10, 10 ); 
 //                             SRCAND );
-#endif // Only in 32bit
+#endif
     VERIFY( ReleaseDC( pDC ) );
     return TRUE;
 }

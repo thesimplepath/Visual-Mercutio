@@ -4,10 +4,10 @@
 #define AFX_ZVURLWnd_H__267E06C6_44DC_11D4_9759_0000B45D7C6F__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -15,28 +15,30 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zWinUtil32\ZWinUtil32.h"
-
-#include "zFormsRes\zFormsRes.h"
-
+// mfc
 #ifndef __AFXEXT_H__
-#include <afxext.h>
+    #include <afxext.h>
 #endif
 
+// processsoft
 #include "zBaseLib\ZISubject.h"
 #include "zBaseLib\ZIObserver.h"
 #include "zBaseLib\FlatBtn.h"
 #include "zBaseLib\ZCIntelliEdit.h"
 #include "zWeb\PSS_WebBrowser.h"
 
+// resources
+#include "zWinUtil32\ZWinUtil32Res.h"
+#include "zFormsRes\zFormsRes.h"
+
 #ifdef _ZWINUTIL32EXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 // JMR-MODIF - LE 14 juin 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commenatires)

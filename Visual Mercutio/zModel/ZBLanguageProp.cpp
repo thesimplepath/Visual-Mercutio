@@ -40,12 +40,12 @@ using namespace sfl;
 //
 //@parmopt int | nId | ZS_BP_PROP_LANGUAGE | The identifier of the property.
 //@parm ZBLanguageProp& | propBasic | The language property to copy.
-ZBLanguageProp::ZBLanguageProp( int nId )
-    : CODIntProperty( nId )
+ZBLanguageProp::ZBLanguageProp(int id) :
+    CODIntProperty(id)
 {
-    m_Language = FrenchLang;
+    m_Language = E_LN_French;
 
-    VERIFY( RegisterProperties() );
+    VERIFY(RegisterProperties());
 }
 
 ZBLanguageProp::ZBLanguageProp( const ZBLanguageProp& propBasic )
@@ -251,23 +251,13 @@ BOOL ZBLanguageProp::SetValue( const int nPropId, LPCTSTR lpszValue )
     return FALSE;
 }
 
-BOOL ZBLanguageProp::SetValue( const int nPropId, const int nValue )
+BOOL ZBLanguageProp::SetValue(const int propId, const int value)
 {
-    switch ( nPropId )
+    switch (propId)
     {
-        case Z_LANGUAGE:
-        {
-            m_Language = static_cast<Language>( nValue );
-            break;
-        }
-
-        default:
-        {
-            return FALSE;
-        }
+        case Z_LANGUAGE: m_Language = static_cast<ELanguage>(value); return TRUE;
+        default:                                                     return FALSE;
     }
-
-    return TRUE;
 }
 
 BOOL ZBLanguageProp::SetValue( const int nPropId, const UINT nValue )
@@ -281,7 +271,7 @@ BOOL ZBLanguageProp::SetValue( const int nPropId, const DWORD dwValue )
     {
         case Z_LANGUAGE:
         {
-            m_Language = static_cast<Language>( static_cast<int>( dwValue ) );
+            m_Language = static_cast<ELanguage>( static_cast<int>( dwValue ) );
             break;
         }
 
@@ -300,7 +290,7 @@ BOOL ZBLanguageProp::SetValue( const int nPropId, const float fValue )
     {
         case Z_LANGUAGE:
         {
-            m_Language = static_cast<Language>( static_cast<int>( fValue ) );
+            m_Language = static_cast<ELanguage>( static_cast<int>( fValue ) );
             break;
         }
 
@@ -388,6 +378,6 @@ void ZBLanguageProp::Serialize( CArchive& ar )
 
         int value;
         ar >> value;
-        m_Language = static_cast<Language>( value );
+        m_Language = static_cast<ELanguage>( value );
     }
 }

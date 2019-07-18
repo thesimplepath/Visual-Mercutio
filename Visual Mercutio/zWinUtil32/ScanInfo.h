@@ -2,18 +2,17 @@
 #define AFX_ZIScanInformation_H__4CB3C463_579F_11D3_9612_0000B45D7C6F__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-// ScanInfo.h : header file
-//
+    #pragma once
+#endif
 
+// processsoft
 #include "zBaseLib\ZWizard.h"
 
+// resources
 #ifndef _WIN32
-    #include "ZWinUtil.h"
-#endif
-#ifdef _WIN32
-    #include "ZWinUtil32.h"
+    #include "ZWinUtilRes.h"
+#else
+    #include "ZWinUtil32Res.h"
 #endif
 
 /////////////////////////////////////////////////////////////////////////////

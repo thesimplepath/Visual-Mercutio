@@ -22,10 +22,12 @@ ZIPointerWnd::ZIPointerWnd()
      m_pWndMessage( NULL )
 {
 #ifndef _WIN32
-    m_hcurPointer = ::LoadCursor( extensionZWinUtilDLL.hModule, MAKEINTRESOURCE( IDC_POINTER ) );
-#else // Only in 16bit
-    m_hcurPointer = ::LoadCursor( extensionZWinUtil32DLL.hModule, MAKEINTRESOURCE( IDC_POINTER ) );
-#endif // Only in 32bit
+    // 16 bit only
+    m_hcurPointer = ::LoadCursor(g_zWinUtilDLL.hModule, MAKEINTRESOURCE(IDC_POINTER));
+#else
+    // 32 bit only
+    m_hcurPointer = ::LoadCursor(g_zWinUtil32DLL.hModule, MAKEINTRESOURCE(IDC_POINTER));
+#endif
 }
 
 ZIPointerWnd::~ZIPointerWnd()

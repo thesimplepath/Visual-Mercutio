@@ -260,14 +260,14 @@ public:
     bool        GetShowPageBorder() const;
     void        SetShowPageBorder( bool value );
 
-    const Language GetLanguage()
+    const ELanguage GetLanguage()
     {
         return GetModel()->GetLanguage();
     }
 
-    void SetLanguage( const Language value )
+    void SetLanguage(const ELanguage value)
     {
-        GetModel()->SetLanguage( value );
+        GetModel()->SetLanguage(value);
     }
 
     // ****************************************************************************

@@ -1,25 +1,24 @@
 // pointerw.h : header file
 //
+
 #if !defined(__POINTERW_H)
 #define __POINTERW_H
 
-
-
-#include "zWinUtil32\ZWinUtil32.h"
-
+// processsoft
 #include "Message.h"
 
+// resources
+#include "zWinUtil32\zWinUtil32Res.h"
+
 #ifndef _WIN32
+    // 16 bit only
     extern "C" extern void WINAPI InitZWinUtilDLL();
     extern AFX_EXTENSION_MODULE NEAR extensionZWinUtilDLL;
-    #define    AFX_EXT_CLASS
-#else // Only in 16bit
-    extern AFX_EXTENSION_MODULE extensionZWinUtil32DLL;
-#endif // Only in 32bit
-
-
-
-
+    #define AFX_EXT_CLASS
+#else
+    // 32 bit only
+    extern AFX_EXTENSION_MODULE g_zWinUtil32DLL;
+#endif
 
 /////////////////////////////////////////////////////////////////////////////
 // ZIPointerWnd window

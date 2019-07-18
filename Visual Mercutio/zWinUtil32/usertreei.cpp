@@ -1,26 +1,24 @@
 // Source file: UserTreeI.cpp
 
 #include <StdAfx.h>
-
-// UserTreeI
 #include "UserTreeI.h"
+
+// processsoft
 #include "zRes32\ZRes.h"
 
 #ifndef _WIN32
-    #include "ZWinUtil.h"
-#endif
-#ifdef _WIN32
-    #include "ZWinUtil32.h"
+    #include "zWinUtilRes.h"
+#else
+    #include "zWinUtil32Res.h"
 #endif
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
-// Class ZIUserTree 
-
+// Class ZIUserTree
 
 ZIUserTree::ZIUserTree (ZITreeCtrl* pTreeCtrl, ZUUserManager* pUserManager)
       : m_pTreeCtrl(pTreeCtrl), 

@@ -1,23 +1,24 @@
 // Source file: ActEvtC.cpp
 
 #include <StdAfx.h>
-
-// ActEvtC
 #include "ActEvtC.h"
-#include "zEvent\BActVt.h"
-#ifndef _WIN32
-    #include "ZWinUtil.h"
-#endif
-#ifdef _WIN32
-    #include "ZWinUtil32.h"
-#endif
 
+// processsoft
+#include "zEvent\BActVt.h"
 #include "zEvent\ZProcess.h"
 
+// resources
+#ifndef _WIN32
+    #include "rWinUtilRes.h"
+#endif
+#ifdef _WIN32
+    #include "zWinUtil32Res.h"
+#endif
+
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
 static int _gEventActivityColText[] = { IDS_NOCOLUMNHEADER, IDS_COLUMN12_EVENTACTIVITY, IDS_COLUMN15_EVENTACTIVITY,

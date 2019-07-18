@@ -25,14 +25,14 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_PublishModelOptionsDialog
 //---------------------------------------------------------------------------
-PSS_PublishModelOptionsDialog::PSS_PublishModelOptionsDialog(BOOL     visualize,
-                                                             BOOL     publishConceptorIsChecked,
-                                                             BOOL     publishConceptorDetailsIsChecked,
-                                                             BOOL     publishConceptorDeliverablesIsChecked,
-                                                             BOOL     publishProcessIsChecked,
-                                                             BOOL     publishRuleBookIsChecked,
-                                                             Language initialLanguage,
-                                                             CWnd*    pParent) :
+PSS_PublishModelOptionsDialog::PSS_PublishModelOptionsDialog(BOOL      visualize,
+                                                             BOOL      publishConceptorIsChecked,
+                                                             BOOL      publishConceptorDetailsIsChecked,
+                                                             BOOL      publishConceptorDeliverablesIsChecked,
+                                                             BOOL      publishProcessIsChecked,
+                                                             BOOL      publishRuleBookIsChecked,
+                                                             ELanguage initialLanguage,
+                                                             CWnd*     pParent) :
     ZIWizardDialog(PSS_PublishModelOptionsDialog::IDD,
                       IDB_WZBMP1,
                       0,

@@ -1,22 +1,21 @@
 // Source file: fieldtreec.cpp
 
 #include <StdAfx.h>
-
-// FieldTreeC
 #include "FieldTreeC.h"
-#include "zRes32\ZRes.h"
 
+// resources
 #ifndef _WIN32
-    #include "ZWinUtil.h"
+    #include "ZWinUtilRes.h"
 #endif
 #ifdef _WIN32
-    #include "ZWinUtil32.h"
+    #include "ZWinUtil32Res.h"
 #endif
+#include "zRes32\zRes.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
 BEGIN_MESSAGE_MAP(ZCCommonFieldTree, ZITreeCtrl)

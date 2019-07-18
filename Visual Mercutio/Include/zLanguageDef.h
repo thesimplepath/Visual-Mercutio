@@ -11,12 +11,12 @@
 /**
 * Language enumaration
 */
-enum Language
+enum ELanguage
 {
-    UnknownLang = -1,
-    EnglishLang =  0,
-    FrenchLang  =  1,
-    GermanLang  =  2
+    E_LN_Unknown = -1,
+    E_LN_English =  0,
+    E_LN_French  =  1,
+    E_LN_German  =  2
 };
 
 #endif

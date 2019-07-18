@@ -3,13 +3,20 @@
 //    Source file: UserLst.cpp
 
 #include <StdAfx.h>
-
 #include "UserLst.h"
 
+// resources
+#ifndef _WIN32
+    #include "zWinUtilRes.h"
+#else
+    #include "zWinUtil32Res.h"
+#endif
+#include "zRes32\zRes.h"
+
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
 #ifdef _WIN32
@@ -21,17 +28,6 @@ BEGIN_MESSAGE_MAP(ZCUserList, CListBox)
     //{{AFX_MSG_MAP(ZCUserList)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-
-// Class ZCUserList 
-
-#ifndef _WIN32
-    #include "ZWinUtil.h"
-#endif
-#ifdef _WIN32
-    #include "ZWinUtil32.h"
-#endif
-#include "zRes32\ZRes.h"
 
 #ifdef _WIN32
 static int _gUserColText[] = {    IDS_NOCOLUMNHEADER, 

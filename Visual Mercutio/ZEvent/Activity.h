@@ -271,14 +271,14 @@ public:
       //## Attribute: RequireFormFile%37A09D4C03E5
       //    Defines if when the process starts, a form file is
       //    necessary before starting the activity.
-      const ThreeState GetRequireFormFile () const;
-      void SetRequireFormFile (ThreeState value);
+      const EThreeState GetRequireFormFile () const;
+      void SetRequireFormFile (EThreeState value);
 
       //## Attribute: RequireProcFile%37A09D4D0057
       //    Defines if when the process starts, a process file is
       //    necessary before starting the activity.
-      const ThreeState GetRequireProcFile () const;
-      void SetRequireProcFile (ThreeState value);
+      const EThreeState GetRequireProcFile () const;
+      void SetRequireProcFile (EThreeState value);
 
       //## Attribute: BaseFormNames%37A2A42C031D
       //    Contains the optional form name.
@@ -397,11 +397,11 @@ public:
       //## end ZActivity::pBaseOnProcFile%37A09D4C0381.attr
 
       //## begin ZActivity::RequireFormFile%37A09D4C03E5.attr preserve=no  public: ThreeState {U} FalseState
-      ThreeState m_RequireFormFile;
+      EThreeState m_RequireFormFile;
       //## end ZActivity::RequireFormFile%37A09D4C03E5.attr
 
       //## begin ZActivity::RequireProcFile%37A09D4D0057.attr preserve=no  public: ThreeState {U} FalseState
-      ThreeState m_RequireProcFile;
+      EThreeState m_RequireProcFile;
       //## end ZActivity::RequireProcFile%37A09D4D0057.attr
 
       //## begin ZActivity::FormAttachementType%37A3F0550153.attr preserve=no  public: AttachementType {U} InsertedFile
@@ -624,28 +624,28 @@ inline CStringArray& ZActivity::GetProcessToStartArray ()
   //## end ZActivity::GetProcessToStartArray%378B91690060.get
 }
 
-inline const ThreeState ZActivity::GetRequireFormFile () const
+inline const EThreeState ZActivity::GetRequireFormFile () const
 {
   //## begin ZActivity::GetRequireFormFile%37A09D4C03E5.get preserve=no
   return m_RequireFormFile;
   //## end ZActivity::GetRequireFormFile%37A09D4C03E5.get
 }
 
-inline void ZActivity::SetRequireFormFile (ThreeState value)
+inline void ZActivity::SetRequireFormFile (EThreeState value)
 {
   //## begin ZActivity::SetRequireFormFile%37A09D4C03E5.set preserve=no
   m_RequireFormFile = value;
   //## end ZActivity::SetRequireFormFile%37A09D4C03E5.set
 }
 
-inline const ThreeState ZActivity::GetRequireProcFile () const
+inline const EThreeState ZActivity::GetRequireProcFile () const
 {
   //## begin ZActivity::GetRequireProcFile%37A09D4D0057.get preserve=no
   return m_RequireProcFile;
   //## end ZActivity::GetRequireProcFile%37A09D4D0057.get
 }
 
-inline void ZActivity::SetRequireProcFile (ThreeState value)
+inline void ZActivity::SetRequireProcFile (EThreeState value)
 {
   //## begin ZActivity::SetRequireProcFile%37A09D4D0057.set preserve=no
   m_RequireProcFile = value;

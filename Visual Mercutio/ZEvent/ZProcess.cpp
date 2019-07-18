@@ -396,7 +396,7 @@ void ZProcess::SetStatusFromKeyString (const CString KeyString)
 }
 
 
-void ZProcess::SetVisibility (const ThreeState value)
+void ZProcess::SetVisibility (const EThreeState value)
 {
   //## begin ZProcess::SetVisibility%935776836.body preserve=yes
     // Sets the value for the process itself

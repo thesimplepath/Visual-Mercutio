@@ -3,32 +3,25 @@
 //  Source file: z:\adsoft~1\ZWinUtil\ProcTree.cpp
 
 #include <StdAfx.h>
-
-// ProcTree
 #include "ProcTree.h"
 
+// resources
 #ifndef _WIN32
-    #include "ZWinUtil.h"
-#endif
-#ifdef _WIN32
-    #include "ZWinUtil32.h"
+    #include "zWinUtilRes.h"
+#else
+    #include "zWinUtil32Res.h"
 #endif
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
 BEGIN_MESSAGE_MAP(ZCProcessTreeCtrl, ZITreeCtrl)
     //{{AFX_MSG_MAP(ZCProcessTreeCtrl)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-
-// Class ZCProcessTreeCtrl 
-
-
 
 ZCProcessTreeCtrl::ZCProcessTreeCtrl (ZProcess* pProcess)
       : m_pProcess(pProcess)

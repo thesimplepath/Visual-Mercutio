@@ -11,7 +11,7 @@
 // processsoft
 #include "zBaseLib\ZAGlobal.h"
 #include "zBaseLib\ZUFileLauncher.h"
-#include "zResMgr\ZBResourceManager.h"
+#include "zResMgr\PSS_ResourceManager.h"
 #include "zProperty\ZBPropertyAttributes.h"
 #include "zModel\ProcGraphModelMdl.h"
 #include "zModel\ProcGraphModelCtlr.h"
@@ -81,7 +81,7 @@ bool PSS_PublishModelToHTML::ExportModelToHTMLFile(ZDProcessGraphModelDoc*  pDoc
                                                ZAGlobal::GetServer());
 
         // set the new language for generation
-        ZBResourceManager::ChangeLanguage(publishModel.GetLanguage());
+        PSS_ResourceManager::ChangeLanguage(publishModel.GetLanguage());
 
         PSS_ModelGenerateImageFiles modelGen(pDoc->GetModel(), &modelInfo, &propAttributes);
 

@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zWinUtil32\ZCLanguageCombo.h"
+#include "zWinUtil32\PSS_LanguageCombo.h"
 #include "zProperty\ZBPropertyAttributes.h"
 #include "zLanguageDef.h"
 
@@ -114,7 +114,7 @@ class AFX_EXT_CLASS PSS_PublishModel
         * Gets the publication language
         *@return the publication language
         */
-        virtual inline Language GetLanguage() const;
+        virtual inline ELanguage GetLanguage() const;
 
         /**
         * Gets the property attributes
@@ -145,7 +145,7 @@ class AFX_EXT_CLASS PSS_PublishModel
         ZBPropertyAttributes*   m_pPropAttributes;
         ZBPropertySet*          m_pPropSet;
         _ZBPropertyAttributeSet m_AttributeSet;
-        Language                m_Language;
+        ELanguage               m_Language;
         CStringArray            m_ArrayOfAddress;
         CString                 m_Directory;
         CString                 m_ImageFilename;
@@ -250,7 +250,7 @@ CString PSS_PublishModel::GetImageFilename() const
     return m_ImageFilename;
 }
 //---------------------------------------------------------------------------
-Language PSS_PublishModel::GetLanguage() const
+ELanguage PSS_PublishModel::GetLanguage() const
 {
     return m_Language;
 }

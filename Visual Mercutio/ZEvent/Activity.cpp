@@ -64,7 +64,7 @@ IMPLEMENT_SERIAL(ZActivity, ZBaseActivity, def_Version)
 
 ZActivity::ZActivity (const CString ActivityName, const CString ActivityDescription, int ActivityType, ActivityStatus ActivityStatus)
   //## begin ZActivity::ZActivity%915355672.hasinit preserve=no
-      : m_pBaseOnFormFile(NULL), m_pBaseOnProcFile(NULL), m_RequireFormFile(FalseState), m_RequireProcFile(FalseState), m_FormAttachementType(InsertedFile), m_ProcessAttachementType(InsertedFile), m_PreConditionsDone(FALSE), m_PostConditionsDone(FALSE)
+      : m_pBaseOnFormFile(NULL), m_pBaseOnProcFile(NULL), m_RequireFormFile(E_TS_False), m_RequireProcFile(E_TS_False), m_FormAttachementType(InsertedFile), m_ProcessAttachementType(InsertedFile), m_PreConditionsDone(FALSE), m_PostConditionsDone(FALSE)
   //## end ZActivity::ZActivity%915355672.hasinit
   //## begin ZActivity::ZActivity%915355672.initialization preserve=yes
   , ZBaseActivity( ActivityName, ActivityDescription, ActivityStatus ),
@@ -153,9 +153,9 @@ void ZActivity::Serialize (CArchive& ar)
         ar >> (CObject*&)m_pBaseOnProcFile;
 
         ar >> wValue;
-        m_RequireFormFile = (ThreeState)wValue;
+        m_RequireFormFile = (EThreeState)wValue;
         ar >> wValue;
-        m_RequireProcFile = (ThreeState)wValue;
+        m_RequireProcFile = (EThreeState)wValue;
 
         ar >> wValue;
         m_FormAttachementType = (AttachementType)wValue;
@@ -422,7 +422,7 @@ void ZActivity::DeleteProcessToStart()
 void ZActivity::DeleteBaseOnFormFile()
 {
     RemoveAllFormFiles();
-    SetRequireFormFile( FalseState );
+    SetRequireFormFile(E_TS_False);
     SetFormAttachementType( InsertedFile );
     SetPreFormReadOnly( TRUE );
 }
@@ -430,7 +430,7 @@ void ZActivity::DeleteBaseOnFormFile()
 void ZActivity::DeleteBaseOnProcFile()
 {
     RemoveAllProcFiles();
-    SetRequireProcFile( FalseState );
+    SetRequireProcFile(E_TS_False);
     SetProcessAttachementType( InsertedFile );
     SetPreProcReadOnly( TRUE );
 }

@@ -7,38 +7,19 @@
 //    Dominique Aigroz
 //## end module%35B620CA026E.cp
 
-//## Module: ExpPage%35B620CA026E; Package specification
-//## Subsystem: ZWinUtil%36DEE1730346
-//## Source file: z:\adsoft~1\ZWinUtil\ExpPage.h
-
 #ifndef ExpPage_h
 #define ExpPage_h 1
 
-//## begin module%35B620CA026E.additionalIncludes preserve=no
-//## end module%35B620CA026E.additionalIncludes
-
-//## begin module%35B620CA026E.includes preserve=yes
-#ifndef _WIN32
-    #include "ZWinUtil.h"
-#endif
-#ifdef _WIN32
-    #include "ZWinUtil32.h"
-#endif
-//## end module%35B620CA026E.includes
-
-// PropPage
-#include "PropPage.h"
-// AppOpt
+// processsoft
 #include "zBaseLib\AppOpt.h"
-//## begin module%35B620CA026E.declarations preserve=no
-//## end module%35B620CA026E.declarations
+#include "PropPage.h"
 
-//## begin module%35B620CA026E.additionalDeclarations preserve=yes
-//## end module%35B620CA026E.additionalDeclarations
-
-
-//## begin ZIExportPage%35B620390175.preface preserve=yes
-//## end ZIExportPage%35B620390175.preface
+// resources
+#ifndef _WIN32
+    #include "zWinUtilRes.h"
+#else
+    #include "zWinUtil32Res.h"
+#endif
 
 //## Class: ZIExportPage%35B620390175
 //    This page contains calculation options for the system.
@@ -46,8 +27,6 @@
 //## Subsystem: ZWinUtil%36DEE1730346
 //## Persistence: Transient
 //## Cardinality/Multiplicity: n
-
-//## Uses: <unnamed>%3705E97F020D;ZAApplicationOption { -> }
 
 class ZIExportPage : public ZIGenericPropPage  //## Inherits: <unnamed>%370530B602FD
 {

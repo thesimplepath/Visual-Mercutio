@@ -3,16 +3,17 @@
 #include "stdafx.h"
 #include "MdlWkfOpt.h"
 
+// processsoft
 #include "zModel\ProcGraphModelDoc.h"
 #include "zBaseLib\ZAGlobal.h"
-
 #include "zBaseLib\MsgBox.h"
 
-#include "zWinUtil32\zWinUtil32.h"
+// resources
+#include "zWinUtil32\zWinUtil32Res.h"
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char BASED_CODE THIS_FILE[] = __FILE__;
+    #undef THIS_FILE
+    static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
 // JMR-MODIF - Le 18 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
@@ -89,8 +90,8 @@ int ZVModelWorkflowOptions::DoModal()
         m_Data.m_DayPerYear                    = 220;
         m_Data.m_CurrencySymbol                = ZAGlobal::GetLocaleCurrency();
 
-        // Sets the french language as default
-        m_Data.m_Language = FrenchLang;
+        // set the French language as default
+        m_Data.m_Language = E_LN_French;
     }
 
     // The notation can't be modified in modification mode

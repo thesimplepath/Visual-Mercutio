@@ -14,7 +14,7 @@
 
 // processsoft
 #include "zBaseLib\ZWizard.h"
-#include "zWinUtil32\ZCLanguageCombo.h"
+#include "zWinUtil32\PSS_LanguageCombo.h"
 
 // resources
 #include "zModelWebRes.h"
@@ -37,14 +37,14 @@ class PSS_PublishModelOptionsDialog : public ZIWizardDialog
         *@param initialLanguage - initial language
         *@param pParent - parent window, can be NULL
         */
-        PSS_PublishModelOptionsDialog(BOOL     visualize                             = TRUE,
-                                      BOOL     publishConceptorIsChecked             = TRUE,
-                                      BOOL     publishConceptorDetailsIsChecked      = FALSE,
-                                      BOOL     publishConceptorDeliverablesIsChecked = FALSE,
-                                      BOOL     publishProcessIsChecked               = TRUE,
-                                      BOOL     publishRuleBookIsChecked              = FALSE,
-                                      Language initialLanguage                       = UnknownLang,
-                                      CWnd*    pParent                               = NULL);
+        PSS_PublishModelOptionsDialog(BOOL      visualize                             = TRUE,
+                                      BOOL      publishConceptorIsChecked             = TRUE,
+                                      BOOL      publishConceptorDetailsIsChecked      = FALSE,
+                                      BOOL      publishConceptorDeliverablesIsChecked = FALSE,
+                                      BOOL      publishProcessIsChecked               = TRUE,
+                                      BOOL      publishRuleBookIsChecked              = FALSE,
+                                      ELanguage initialLanguage                       = E_LN_Unknown,
+                                      CWnd*     pParent                               = NULL);
 
         /**
         * Gets the visualize option state
@@ -86,7 +86,7 @@ class PSS_PublishModelOptionsDialog : public ZIWizardDialog
         * Gets the language
         *@return the language
         */
-        virtual inline Language GetLanguage() const;
+        virtual inline ELanguage GetLanguage() const;
 
     protected:
         /// ClassWizard generated virtual function overrides
@@ -111,14 +111,14 @@ class PSS_PublishModelOptionsDialog : public ZIWizardDialog
             IDD = IDD_WZPUBMODEL_OPTIONS
         };
 
-        ZCLanguageCombo m_CbLanguage;
-        Language        m_Language;
-        BOOL            m_Visualize;
-        BOOL            m_PublishConceptorIsChecked;
-        BOOL            m_PublishConceptorDetailsIsChecked;
-        BOOL            m_PublishConceptorDeliverablesIsChecked;
-        BOOL            m_PublishProcessIsChecked;
-        BOOL            m_PublishRuleBookIsChecked;
+        PSS_LanguageCombo m_CbLanguage;
+        ELanguage         m_Language;
+        BOOL              m_Visualize;
+        BOOL              m_PublishConceptorIsChecked;
+        BOOL              m_PublishConceptorDetailsIsChecked;
+        BOOL              m_PublishConceptorDeliverablesIsChecked;
+        BOOL              m_PublishProcessIsChecked;
+        BOOL              m_PublishRuleBookIsChecked;
 };
 
 //---------------------------------------------------------------------------
@@ -154,7 +154,7 @@ BOOL PSS_PublishModelOptionsDialog::GetPublishRuleBook() const
     return m_PublishRuleBookIsChecked;
 }
 //---------------------------------------------------------------------------
-Language PSS_PublishModelOptionsDialog::GetLanguage() const
+ELanguage PSS_PublishModelOptionsDialog::GetLanguage() const
 {
     return m_Language;
 }

@@ -1,22 +1,19 @@
 // ProcGraphChildFrm.cpp : implementation of the ZIProcessGraphChildFrame class
 
-#include "stdafx.h"
-
+#include "StdAfx.h"
 #include "ProcGraphChildFrm.h"
+
+#include "zResMgr\PSS_ResourceManager.h"
+#include "zBaseLib\ZUFloatingToolbar.h"
+#include "zBaseLib\ZBDocumentObserverMsg.h"
 #include "ProcGraphModelDoc.h"
 #include "ProcGraphModelView.h"
 #include "ZDProcessGraphPage.h"
 
-#include "zBaseLib\ZUFloatingToolbar.h"
-#include "zBaseLib\ZBDocumentObserverMsg.h"
-
-// Resource manager helper class
-#include "zResMgr\ZBResourceManager.h"
-
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
 // JMR-MODIF - Le 28 septembre 2005 - Ajout des décorations unicode _T( ), nettoyage du code non utilisé.
@@ -134,7 +131,7 @@ void ZIProcessGraphChildFrame::OnMDIActivate( BOOL bActivate, CWnd* pActivateWnd
         ZUFloatingToolbar::SwitchContext( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetModel()->GetNotation() );
 
         // Request the change of the resource language
-        ZBResourceManager::ChangeLanguage( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetLanguage() );
+        PSS_ResourceManager::ChangeLanguage( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetLanguage() );
 
         // Notify all document's observers about the frame activation
         ZBDocumentObserverMsg Msg( UM_FRAMEHASBEENACTIVATED,
@@ -155,7 +152,7 @@ int ZIProcessGraphChildFrame::OnMouseActivate( CWnd* pDesktopWnd, UINT nHitTest,
         ZUFloatingToolbar::SwitchContext( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetModel()->GetNotation() );
 
         // Request the change of the resource language
-        ZBResourceManager::ChangeLanguage( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetLanguage() );
+        PSS_ResourceManager::ChangeLanguage( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetLanguage() );
 
         // Notify all document's observers about the frame activation
         ZBDocumentObserverMsg Msg( UM_FRAMEHASBEENACTIVATED,

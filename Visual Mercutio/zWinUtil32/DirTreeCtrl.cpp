@@ -3,23 +3,23 @@
 #include "stdafx.h"
 #include "shlobj.h"
 
+// processsoft
 #include "DirTreeCtrl.h"
 
+// resources
 #ifndef _WIN32
-    #include "ZWinUtil.h"
+    #include "zWinUtilRes.h"
 #else
-    #include "ZWinUtil32.h"
+    #include "zWinUtil32Res.h"
 #endif
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
-// JMR-MODIF - Le 20 mars 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-#define NETWORK_NEIGHBOUR _T( "Network Neighborhood" )
+#define NETWORK_NEIGHBOUR _T("Network Neighborhood")
 
 /////////////////////////////////////////////////////////////////////////////
 //Handy local functions.

@@ -1,32 +1,26 @@
 // Source file: fieldtreei.cpp
 
 #include <StdAfx.h>
-
 #include "fieldtreei.h"
-#include "zRes32\ZRes.h"
 
+// processsoft
 #include "zBaseLib\DocData.h"
-
-// BObjUtil
 #include "zBaseLib\BObjUtil.h"
 
+// resources
 #ifndef _WIN32
-    #include "ZWinUtil.h"
+    #include "zWinUtilRes.h"
 #endif
 #ifdef _WIN32
-    #include "ZWinUtil32.h"
+    #include "zWinUtil32Res.h"
 #endif
+#include "zRes32\zRes.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
-
-
-
-
-// Class ZIFieldTree 
 
 ZIFieldTree::ZIFieldTree (ZITreeCtrl* pTreeCtrl, ZDDocument* pDoc, ZBFieldRepository* pFieldRepository)
       : m_pTreeCtrl(pTreeCtrl), 

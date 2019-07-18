@@ -4,13 +4,15 @@
 #define AFX_ZICHOOSESERVERWELCOME_H__4CB3C463_579F_11D3_9612_0000B45D7C6F__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
+// processsoft
 #include "zBaseLib\ZWizard.h"
 #include "DirTreeCtrl.h"
 
-#include "zWinUtil32\ZWinUtil32.h"
+// resources
+#include "zWinUtil32\zWinUtil32Res.h"
 
 // JMR-MODIF - Le 9 avril 2007 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
 

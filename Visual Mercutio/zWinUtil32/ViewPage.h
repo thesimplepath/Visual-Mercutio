@@ -1,44 +1,17 @@
-//## begin module%334FC463032F.cm preserve=no
-//      %X% %Q% %Z% %W%
-//## end module%334FC463032F.cm
-
-//## begin module%334FC463032F.cp preserve=no
-//    ADSoft Copyright 1994-1995
-//    Dominique Aigroz
-//## end module%334FC463032F.cp
-
-//## Module: ViewPage%334FC463032F; Package specification
-//## Subsystem: ZWinUtil%36DEE1730346
-//## Source file: z:\adsoft~1\ZWinUtil\ViewPage.h
 
 #ifndef ViewPage_h
 #define ViewPage_h 1
 
-//## begin module%334FC463032F.additionalIncludes preserve=no
-//## end module%334FC463032F.additionalIncludes
-
-//## begin module%334FC463032F.includes preserve=yes
-#ifndef _WIN32
-    #include "ZWinUtil.h"
-#endif
-#ifdef _WIN32
-    #include "ZWinUtil32.h"
-#endif
-//## end module%334FC463032F.includes
-
-// PropPage
+// processsoft
 #include "PropPage.h"
-// AppOpt
 #include "zBaseLib\AppOpt.h"
-//## begin module%334FC463032F.declarations preserve=no
-//## end module%334FC463032F.declarations
 
-//## begin module%334FC463032F.additionalDeclarations preserve=yes
-//## end module%334FC463032F.additionalDeclarations
-
-
-//## begin ZIViewPage%334FC4610072.preface preserve=yes
-//## end ZIViewPage%334FC4610072.preface
+// resources
+#ifndef _WIN32
+    #include "zWinUtilRes.h"
+#else
+    #include "zWinUtil32Res.h"
+#endif
 
 //## Class: ZIViewPage%334FC4610072
 //    This page contains view options for the system.

@@ -14,11 +14,7 @@
 #ifndef CalcPage_h
 #define CalcPage_h 1
 
-//## begin module%334FC463032C.additionalIncludes preserve=no
-//## end module%334FC463032C.additionalIncludes
-
-//## begin module%334FC463032C.includes preserve=yes
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -26,41 +22,30 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
+// resources
 #ifndef _WIN32
-    #include "ZWinUtil.h"
+    #include "zWinUtilRes.h"
 #endif
 #ifdef _WIN32
-    #include "ZWinUtil32.h"
+    #include "zWinUtil32Res.h"
 #endif
-//## end module%334FC463032C.includes
 
-// PropPage
-#include "PropPage.h"
-// AppOpt
+// processsoft
 #include "zBaseLib\AppOpt.h"
-//## begin module%334FC463032C.declarations preserve=no
-//## end module%334FC463032C.declarations
+#include "PropPage.h"
 
-//## begin module%334FC463032C.additionalDeclarations preserve=yes
-//## end module%334FC463032C.additionalDeclarations
-
-
-//## begin ZICalculationPage%334FC4610046.preface preserve=yes
 #ifdef _ZWINUTIL32EXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 #undef  AFX_DATA
 #define AFX_DATA AFX_EXT_CLASS
-
-//## end ZICalculationPage%334FC4610046.preface
 
 //## Class: ZICalculationPage%334FC4610046
 //    This page contains calculation options for the system.

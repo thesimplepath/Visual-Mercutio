@@ -3,14 +3,23 @@
 //    Source file: ActLstTk.cpp
 
 #include <StdAfx.h>
-
 #include "ActLstTk.h"
+
+// processsoft
 #include "zEvent\ProcIter.h"
 
+// resources
+#ifndef _WIN32
+    #include "zWinUtilRes.h"
+#else
+    #include "zWinUtil32Res.h"
+#endif
+#include "zRes32\zRes.h"
+
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
 #ifdef _WIN32
@@ -24,18 +33,6 @@ BEGIN_MESSAGE_MAP(ZCActivityTaskList, CListBox)
     ON_MESSAGE(UM_SELECTACTIVITYINTASKLIST, OnSelectActivityInTaskList)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-
-
-// Class ZCActivityTaskList 
-
-#ifndef _WIN32
-    #include "ZWinUtil.h"
-#endif
-#ifdef _WIN32
-    #include "ZWinUtil32.h"
-#endif
-#include "zRes32\ZRes.h"
 
 #ifdef _WIN32
 static int _gTaskActivityColText[] = {    IDS_NOCOLUMNHEADER, 

@@ -1,36 +1,21 @@
-//## begin module%373A82F10021.cm preserve=no
-//      %X% %Q% %Z% %W%
-//## end module%373A82F10021.cm
-
-//## begin module%373A82F10021.cp preserve=no
-//    ADSoft / Advanced Dedicated Software
-//    Dominique AIGROZ
-//## end module%373A82F10021.cp
-
-//## Module: FldInfoC%373A82F10021; Package body
-//## Subsystem: ZWinUtil%36DEE1730346
-//## Source file: z:\adsoft~1\ZWinUtil\FldInfoC.cpp
-
-//## begin module%373A82F10021.additionalIncludes preserve=no
 #include <StdAfx.h>
-//## end module%373A82F10021.additionalIncludes
-
-//## begin module%373A82F10021.includes preserve=yes
-//## end module%373A82F10021.includes
-
-// FldInfoC
 #include "FldInfoC.h"
-//## begin module%373A82F10021.declarations preserve=no
-//## end module%373A82F10021.declarations
 
-//## begin module%373A82F10021.additionalDeclarations preserve=yes
-
+// processsoft
 #include "zBaseLib\InpVal.h"
 
+// resources
+#ifndef _WIN32
+    #include "zWinUtilRes.h"
+#else
+    #include "zWinUtil32Res.h"
+#endif
+#include "zRes32\zRes.h"
+
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
 BEGIN_MESSAGE_MAP(ZCFolderInformation, ZIListCtrl)
@@ -38,14 +23,6 @@ BEGIN_MESSAGE_MAP(ZCFolderInformation, ZIListCtrl)
     ON_NOTIFY_REFLECT_EX(NM_DBLCLK, OnDoubleClick)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-#ifndef _WIN32
-    #include "ZWinUtil.h"
-#endif
-#ifdef _WIN32
-    #include "ZWinUtil32.h"
-#endif
-#include "zRes32\ZRes.h"
 
 static int _gColText[] = { IDS_COLUMN1_FOLDERINFO, IDS_COLUMN2_FOLDERINFO };
 static int _gColSize[] = { 80, 165 };

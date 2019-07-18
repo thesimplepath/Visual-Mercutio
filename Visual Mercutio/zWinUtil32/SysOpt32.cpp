@@ -1,28 +1,21 @@
-
 #include "StdAfx.h"
-#include "zBaseLib\Export.h"
-// SysOpt
 #include "SysOpt32.h"
 
-
-// GenPage
+// processsoft
+#include "zBaseLib\Export.h"
 #include "zWinUtil32\GenPage.h"
-// ViewPgR
 #include "ViewPgR.h"
-// ViewPage
 #include "ViewPage.h"
-// CalcPage
 #include "CalcPage.h"
-// ExpPage
 #include "ExpPage.h"
-// NavPage
 #include "NavPage.h"
 
-#include "zWinUtil32\ZWinUtil32.h"
+// resources
+#include "zWinUtil32\zWinUtil32Res.h"
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char BASED_CODE THIS_FILE[] = __FILE__;
+    #undef THIS_FILE
+    static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
 //IMPLEMENT_DYNAMIC(ZISystemOption, ZIBasePropSheet)
@@ -32,12 +25,7 @@ BEGIN_MESSAGE_MAP(ZISystemOption, CPropertySheet)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-
-
-
-
 // Class ZISystemOption 
-
 
 ZISystemOption::ZISystemOption(ZAApplicationOption* pApplicationOptions, unsigned int PageOptions)
   : ZIBasePropSheet(static_cast<UINT>(IDS_SYSTEMOPTION_TITLE)),

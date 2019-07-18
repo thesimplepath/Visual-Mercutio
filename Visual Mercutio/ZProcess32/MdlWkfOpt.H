@@ -4,7 +4,7 @@
 #define MdlWkfOpt_h 1
 
 #include "zBaseLib\ZWizard.h"
-#include "zWinUtil32\ZCLanguageCombo.h"
+#include "zWinUtil32\PSS_LanguageCombo.h"
 #include "Resource.h"
 
 // JMR-MODIF - Le 18 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
@@ -15,18 +15,18 @@ class ZDProcessGraphModelDoc;
 // Dialogs' data
 typedef struct _ModelOptionData
 {
-    BOOL        m_Modify;
-    BOOL        m_CheckConsistency;
-    BOOL        m_IntegrateCostSimulation;
-    BOOL        m_UseModelAsWorkflow;
-    BOOL        m_BrowseInSameModel;
-    int            m_Notation;
-    int            m_HourPerDay;
-    int            m_DayPerWeek;
-    int            m_DayPerMonth;
-    int            m_DayPerYear;
-    CString        m_CurrencySymbol;
-    Language    m_Language;
+    BOOL      m_Modify;
+    BOOL      m_CheckConsistency;
+    BOOL      m_IntegrateCostSimulation;
+    BOOL      m_UseModelAsWorkflow;
+    BOOL      m_BrowseInSameModel;
+    int       m_Notation;
+    int       m_HourPerDay;
+    int       m_DayPerWeek;
+    int       m_DayPerMonth;
+    int       m_DayPerYear;
+    CString   m_CurrencySymbol;
+    ELanguage m_Language;
 } MODELOPTIONDATA;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -41,7 +41,7 @@ public:
     ZVModelWorkflowOptions( BOOL Modify, ZDProcessGraphModelDoc* pDoc, CWnd* pParent = NULL );
 
     // Get methods
-    Language GetLanguage() const
+    ELanguage GetLanguage() const
     {
         return m_Data.m_Language;
     }
@@ -109,16 +109,16 @@ public:
     virtual ~ZVModelWorkflowOptionsOptions(); // standard destructor
 
 private:
+    enum
+    {
+        IDD = IDD_WZ_MODELTYPE_OPTIONS
+    };
 
-    // Dialog Data
-    //{{AFX_DATA(ZVModelWorkflowOptionsOptions)
-    enum { IDD = IDD_WZ_MODELTYPE_OPTIONS };
-    ZCLanguageCombo    m_cbLanguage;
-    BOOL    m_CheckConsistency;
-    BOOL    m_IntegrateCostSimulation;
-    BOOL    m_UseModelAsWorkflow;
-    BOOL    m_BrowseInSameModel;
-    //}}AFX_DATA
+    PSS_LanguageCombo m_cbLanguage;
+    BOOL              m_CheckConsistency;
+    BOOL              m_IntegrateCostSimulation;
+    BOOL              m_UseModelAsWorkflow;
+    BOOL              m_BrowseInSameModel;
 
 // Implementation
 protected:

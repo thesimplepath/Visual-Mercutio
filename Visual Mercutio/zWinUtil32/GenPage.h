@@ -1,24 +1,7 @@
-//## begin module%334FC46302C2.cm preserve=no
-//      %X% %Q% %Z% %W%
-//## end module%334FC46302C2.cm
-
-//## begin module%334FC46302C2.cp preserve=no
-//    ADSoft Copyright 1994-1995
-//    Dominique Aigroz
-//## end module%334FC46302C2.cp
-
-//## Module: GenPage%334FC46302C2; Package specification
-//## Subsystem: ZWinUtil%36DEE1730346
-//## Source file: z:\adsoft~1\ZWinUtil\GenPage.h
-
 #ifndef GenPage_h
 #define GenPage_h 1
 
-//## begin module%334FC46302C2.additionalIncludes preserve=no
-//## end module%334FC46302C2.additionalIncludes
-
-//## begin module%334FC46302C2.includes preserve=yes
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -26,35 +9,22 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zWinUtil32\ZWinUtil32.h"
-
-
-// PropPage
+// processsoft
 #include "PropPage.h"
-// AppOpt
 #include "zBaseLib\AppOpt.h"
-//## begin module%334FC46302C2.declarations preserve=no
-//## end module%334FC46302C2.declarations
 
-//## begin module%334FC46302C2.additionalDeclarations preserve=yes
-//## end module%334FC46302C2.additionalDeclarations
+// resources
+#include "zWinUtil32\zWinUtil32Res.h"
 
-
-//## begin ZIGeneralPage%334FC461003C.preface preserve=yes
 #ifdef _ZWINUTIL32EXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
-
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-
-//## end ZIGeneralPage%334FC461003C.preface
 
 //## Class: ZIGeneralPage%334FC461003C
 //    This page contains general options for the system.

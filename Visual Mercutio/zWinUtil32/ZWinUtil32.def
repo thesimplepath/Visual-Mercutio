@@ -1,9 +1,9 @@
-; ZWinUtil32.def : Declares the module parameters for the DLL.
+; ZWinUtil32.def: Declares the module parameters for the DLL
 
-LIBRARY      "ZWinUtil32"
+LIBRARY "ZWinUtil32"
 
-; JMR-MODIF - Le 25 mai 2005 - DESCRIPTION supprimé car non pris en charge par le compilateur.
+; NOTE deactivated because unsupported by the compiler
 ;DESCRIPTION  'ZWinUtil32 Windows Dynamic Link Library'
 
 EXPORTS
-    ; Explicit exports can go here
+    ; explicit exports can go here

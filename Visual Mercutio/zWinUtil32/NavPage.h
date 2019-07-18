@@ -1,44 +1,16 @@
-//## begin module%35B620AF0085.cm preserve=no
-//      %X% %Q% %Z% %W%
-//## end module%35B620AF0085.cm
-
-//## begin module%35B620AF0085.cp preserve=no
-//    ADSoft Copyright 1994-1995
-//    Dominique Aigroz
-//## end module%35B620AF0085.cp
-
-//## Module: NavPage%35B620AF0085; Package specification
-//## Subsystem: ZWinUtil%36DEE1730346
-//## Source file: z:\adsoft~1\ZWinUtil\NavPage.h
-
 #ifndef NavPage_h
 #define NavPage_h 1
 
-//## begin module%35B620AF0085.additionalIncludes preserve=no
-//## end module%35B620AF0085.additionalIncludes
-
-//## begin module%35B620AF0085.includes preserve=yes
-#ifndef _WIN32
-    #include "ZWinUtil.h"
-#endif
-#ifdef _WIN32
-    #include "ZWinUtil32.h"
-#endif
-//## end module%35B620AF0085.includes
-
-// PropPage
-#include "PropPage.h"
-// AppOpt
+// processsoft
 #include "zBaseLib\AppOpt.h"
-//## begin module%35B620AF0085.declarations preserve=no
-//## end module%35B620AF0085.declarations
+#include "PropPage.h"
 
-//## begin module%35B620AF0085.additionalDeclarations preserve=yes
-//## end module%35B620AF0085.additionalDeclarations
-
-
-//## begin ZINavigationPage%35B61F1D02AD.preface preserve=yes
-//## end ZINavigationPage%35B61F1D02AD.preface
+// resources
+#ifndef _WIN32
+    #include "zWinUtilRes.h"
+#else
+    #include "zWinUtil32Res.h"
+#endif
 
 //## Class: ZINavigationPage%35B61F1D02AD
 //    This page contains calculation options for the system.

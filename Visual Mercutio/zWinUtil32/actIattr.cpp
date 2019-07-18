@@ -106,12 +106,12 @@ BOOL ZIActivityAttributionValueInput::OnInitDialog()
     // Set the visibility type
     switch (m_pActivity->GetIsVisible())
     {
-        case TrueState:
+        case E_TS_True:
         {
             m_VisibilityType = 0;
             break;
         }
-        case FalseState:
+        case E_TS_False:
         {
             m_VisibilityType = 1;
             break;
@@ -205,7 +205,7 @@ void ZIActivityAttributionValueInput::SaveState()
         m_pActivity->AddUser( Text );
     }
     // Sets the real state of the activity
-    m_pActivity->SetVisibility( (m_VisibilityType == 0) ? TrueState : FalseState );
+    m_pActivity->SetVisibility(!m_VisibilityType ? E_TS_True : E_TS_False);
 }
 
 

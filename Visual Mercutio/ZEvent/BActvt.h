@@ -455,11 +455,11 @@ public:
       //    Return TRUE if the activity is considered as visible.
       //    Attributed activity are considered as visible until they
       //    has been selected as invisible.
-      ThreeState IsConsiderAsVisible () const;
+      EThreeState IsConsiderAsVisible () const;
 
       //## Operation: SetVisibility%935776835
       //    Set the visibility of an activity or process.
-      virtual void SetVisibility (const ThreeState value);
+      virtual void SetVisibility (const EThreeState value);
 
       //## Operation: SetParent%936211873
       void SetParent (ZBaseActivity* pParent);
@@ -472,7 +472,7 @@ public:
 
       //## Attribute: IsVisible%37B5237800C0
       //    The real visibility type.
-      const ThreeState& GetIsVisible () const;
+      const EThreeState& GetIsVisible () const;
 
       //## Attribute: StartDate%3786D98F02C5
       //    Contains the start date.
@@ -587,7 +587,7 @@ public:
 
 
       //    Set the visibility of all childs of a process.
-      void SetChildVisibility (const ThreeState value);
+      void SetChildVisibility (const EThreeState value);
 
       //## Operation: MoveActivityDown%935832843
       //    return true if the activity has been correctly moved.
@@ -848,7 +848,7 @@ public:
     // Data Members for Class Attributes
 
       //## begin ZBaseActivity::IsVisible%37B5237800C0.attr preserve=no  public: ThreeState {U} UndefinedState
-      ThreeState m_IsVisible;
+      EThreeState m_IsVisible;
       //## end ZBaseActivity::IsVisible%37B5237800C0.attr
 
       //## begin ZBaseActivity::DaysForBackupResources%37B850C9019F.attr preserve=no  public: size_t {U} 
@@ -1203,7 +1203,7 @@ inline BOOL ZBaseActivity::IsTimeAttributionDone ()
 inline BOOL ZBaseActivity::IsVisibilityAttributionDone ()
 {
   //## begin ZBaseActivity::IsVisibilityAttributionDone%935005730.body preserve=yes
-      return GetIsVisible() != UndefinedState;
+      return GetIsVisible() != E_TS_Undefined;
   //## end ZBaseActivity::IsVisibilityAttributionDone%935005730.body
 }
 
@@ -1266,24 +1266,24 @@ inline ZBResources& ZBaseActivity::GetCurrentResources ()
   //## end ZBaseActivity::GetCurrentResources%934825337.body
 }
 
-inline ThreeState ZBaseActivity::IsConsiderAsVisible () const
+inline EThreeState ZBaseActivity::IsConsiderAsVisible () const
 {
   //## begin ZBaseActivity::IsConsiderAsVisible%935005731.body preserve=yes
-    if (GetIsVisible() == UndefinedState)
-        return UndefinedState;
+    if (GetIsVisible() == E_TS_Undefined)
+        return E_TS_Undefined;
     else
-        if ((GetVisibilityType() == AttributionOfVisibility && GetIsVisible() == TrueState) ||
+        if ((GetVisibilityType() == AttributionOfVisibility && GetIsVisible() == E_TS_True) ||
              GetVisibilityType() == Visible)
-             return TrueState;
+             return E_TS_True;
         else
-            if ((GetVisibilityType() == AttributionOfVisibility && GetIsVisible() == FalseState) ||
+            if ((GetVisibilityType() == AttributionOfVisibility && GetIsVisible() == E_TS_False) ||
                 GetVisibilityType() == Invisible)
-                return FalseState;
-    return UndefinedState;
+                return E_TS_False;
+    return E_TS_Undefined;
   //## end ZBaseActivity::IsConsiderAsVisible%935005731.body
 }
 
-inline void ZBaseActivity::SetVisibility (const ThreeState value)
+inline void ZBaseActivity::SetVisibility (const EThreeState value)
 {
   //## begin ZBaseActivity::SetVisibility%935776835.body preserve=yes
   m_IsVisible = value;
@@ -1292,7 +1292,7 @@ inline void ZBaseActivity::SetVisibility (const ThreeState value)
 
 //## Get and Set Operations for Class Attributes (inline)
 
-inline const ThreeState& ZBaseActivity::GetIsVisible () const
+inline const EThreeState& ZBaseActivity::GetIsVisible () const
 {
   //## begin ZBaseActivity::GetIsVisible%37B5237800C0.get preserve=no
   return m_IsVisible;

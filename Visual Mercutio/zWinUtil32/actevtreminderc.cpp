@@ -1,22 +1,22 @@
 // Source file: ActEvtReminderC.cpp
 
 #include <StdAfx.h>
-
-// ActEvtC
 #include "ActEvtReminderC.h"
-#ifndef _WIN32
-    #include "ZWinUtil.h"
-#endif
-#ifdef _WIN32
-    #include "ZWinUtil32.h"
-#endif
 
+// processsoft
 #include "zEvent\ZProcess.h"
 
+// resources
+#ifndef _WIN32
+    #include "zWinUtilRes.h"
+#else
+    #include "zWinUtil32Res.h"
+#endif
+
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
 static int _gEventReminderColText[] = { IDS_NOCOLUMNHEADER,

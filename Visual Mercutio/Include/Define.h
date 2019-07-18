@@ -156,11 +156,11 @@ enum SynchronizationSeparatorType
 /**
 * Three state type enumeration
 */
-enum ThreeState
+enum EThreeState
 {
-    FalseState,
-    TrueState,
-    UndefinedState
+    E_TS_False,
+    E_TS_True,
+    E_TS_Undefined
 };
 
 /**

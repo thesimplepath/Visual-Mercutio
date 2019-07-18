@@ -175,7 +175,7 @@ bool PSS_PublishModel::LoadStateFromIniFile()
     m_PublishProcess = systemOption.ReadOption(g_PublishModelHTMLPublishProcess, true);
     m_PublishRuleBook = systemOption.ReadOption(g_PublishModelHTMLPublishRuleBook, true);
     m_VisualizeResult = systemOption.ReadOption(g_PublishModelHTMLVisualizeEntityName, true);
-    m_Language = static_cast<Language>(systemOption.ReadOption(g_PublishModelHTMLLastLanguageEntityName, 0));
+    m_Language = static_cast<ELanguage>(systemOption.ReadOption(g_PublishModelHTMLLastLanguageEntityName, 0));
     m_Directory = systemOption.ReadOption(g_PublishModelHTMLAddressEntityName, _T(""));
     m_ImageFilename = systemOption.ReadOption(g_PublishModelHTMLLogoFilenameEntityName, _T(""));
     m_HyperLink = systemOption.ReadOption(g_PublishModelHTMLLogoRefHTMLEntityName, _T(""));

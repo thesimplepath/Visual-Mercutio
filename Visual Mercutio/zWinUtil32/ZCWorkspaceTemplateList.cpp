@@ -1,15 +1,18 @@
 // Source file: ZCWorkspaceTemplateList.cpp
 
 #include <StdAfx.h>
-
 #include "ZCWorkspaceTemplateList.h"
+
+// processsoft
 #include "zBaseLib\ZBWorkspaceWizardTemplateMg.h"
-#include "ZWinUtil32.h"
+
+// resources
+#include "zWinUtil32Res.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
 static int _gWorkspaceTemplateListColText[] = { IDS_NOCOLUMNHEADER,

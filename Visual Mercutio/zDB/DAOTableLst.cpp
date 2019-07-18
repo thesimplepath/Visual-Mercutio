@@ -3,31 +3,26 @@
 //    Source file: DAOTableLst.cpp
 
 #include <StdAfx.h>
-
 #include "DAOTableLst.h"
 
+// resources
+#ifndef _WIN32
+    #include "zWinUtilRes.h"
+#else
+    #include "zWinUtil32\zWinUtil32Res.h"
+#endif
+#include "zRes32\zRes.h"
+
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
 BEGIN_MESSAGE_MAP(ZCDAOTableList, CListBox)
     //{{AFX_MSG_MAP(ZCDAOTableList)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-
-// Class ZCDAOTableList 
-
-#ifndef _WIN32
-    #include "ZWinUtil.h"
-#endif
-#ifdef _WIN32
-    #include "zWinUtil32\ZWinUtil32.h"
-#endif
-#include "zRes32\ZRes.h"
-
 
 ZCDAOTableList::ZCDAOTableList (CDaoDatabase* pDB)
  : m_pDB(pDB)

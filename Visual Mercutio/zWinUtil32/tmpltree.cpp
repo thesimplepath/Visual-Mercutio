@@ -1,39 +1,17 @@
-//## begin module%3735C9FC0149.cm preserve=no
-//      %X% %Q% %Z% %W%
-//## end module%3735C9FC0149.cm
-
-//## begin module%3735C9FC0149.cp preserve=no
-//    ADSoft / Advanced Dedicated Software
-//    Dominique AIGROZ
-//## end module%3735C9FC0149.cp
-
-//## Module: TmplTree%3735C9FC0149; Package body
-//## Subsystem: ZWinUtil%36DEE1730346
-//## Source file: z:\adsoft~1\ZWinUtil\TmplTree.cpp
-
-//## begin module%3735C9FC0149.additionalIncludes preserve=no
 #include <StdAfx.h>
-//## end module%3735C9FC0149.additionalIncludes
-
-//## begin module%3735C9FC0149.includes preserve=yes
-//## end module%3735C9FC0149.includes
-
-// TmplTree
 #include "TmplTree.h"
-//## begin module%3735C9FC0149.declarations preserve=no
-//## end module%3735C9FC0149.declarations
 
-//## begin module%3735C9FC0149.additionalDeclarations preserve=yes
+// resources
 #ifndef _WIN32
-    #include "ZWinUtil.h"
+    #include "zWinUtilRes.h"
 #else
-    #include "ZWinUtil32.h"
+    #include "zWinUtil32Res.h"
 #endif
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
 // JMR-MODIF - Le 10 juillet 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)

@@ -4,25 +4,18 @@
 #ifndef ActBAttr_h
 #define ActBAttr_h 1
 
-
+// processsoft
 #include "zBaseLib\ZWizard.h"
-
-#ifndef _WIN32
-    #include "ZWinUtil.h"
-#endif
-#ifdef _WIN32
-    #include "ZWinUtil32.h"
-#endif
-
-
-// ZUMail
 #include "zBaseLib\ZUMail.h"
-
 #include "zBaseLib\UserMng.h"
-
 #include "zEvent\Activity.h"
 
-
+// resources
+#ifndef _WIN32
+    #include "zWinUtilRes.h"
+#else
+    #include "zWinUtil32Res.h"
+#endif
 
 /////////////////////////////////////////////////////////////////////////////
 // ZIActivityAttributionBackupInput dialog

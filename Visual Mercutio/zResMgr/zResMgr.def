@@ -1,9 +1,9 @@
-; zResMgr.def : Declares the module parameters for the DLL.
+; zResMgr.def: Declares the module parameters for the DLL
 
-LIBRARY      "zResMgr"
+LIBRARY "zResMgr"
 
-; JMR-MODIF - Le 25 mai 2005 - DESCRIPTION supprimé car non pris en charge par le compilateur.
-;DESCRIPTION  'zResMgr Windows Dynamic Link Library'
+; NOTE deactivated because unsupported by the compiler
+;DESCRIPTION 'zResMgr Windows Dynamic Link Library'
 
 EXPORTS
-    ; Explicit exports can go here
+    ; explicit exports can go here

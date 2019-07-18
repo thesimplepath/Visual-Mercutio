@@ -47,7 +47,7 @@ ZBaseActivity::ZBaseActivity( const CString        ActivityName,
                               const CString        ActivityDescription,
                               ActivityStatus    ActivityStatus )
       //## begin ZBaseActivity::ZBaseActivity%931584984.hasinit preserve=no
-    : m_IsVisible                ( UndefinedState ),
+    : m_IsVisible                (E_TS_Undefined),
       m_DurationDays            ( 2 ),
       m_VisibilityType            ( Visible ),
       m_pNextActivity            ( NULL ),
@@ -125,7 +125,7 @@ ZBaseActivity* ZBaseActivity::GetFirstValidActivity() const
     if ( pFirstActivity->IsKindOf( RUNTIME_CLASS( ZActivity ) ) ||
          ( pFirstActivity->HasActivities() && pFirstActivity->GetRunMode() == ChooseMode ) )
     {
-        if ( pFirstActivity->IsConsiderAsVisible() != FalseState )
+        if ( pFirstActivity->IsConsiderAsVisible() != E_TS_False)
         {
             return pFirstActivity;
         }
@@ -145,7 +145,7 @@ ZBaseActivity* ZBaseActivity::GetFirstValidBaseActivity() const
         return NULL;
     }
 
-    if ( pFirstActivity->IsConsiderAsVisible() != FalseState )
+    if ( pFirstActivity->IsConsiderAsVisible() != E_TS_False)
     {
         return pFirstActivity;
     }
@@ -164,7 +164,7 @@ ZBaseActivity* ZBaseActivity::GetNextValidActivity() const
         if ( GetNextBaseActivity()->IsKindOf( RUNTIME_CLASS( ZActivity ) ) ||
              ( GetNextBaseActivity()->HasActivities() && GetNextBaseActivity()->GetRunMode() == ChooseMode ) )
         {
-            if ( GetNextBaseActivity()->IsConsiderAsVisible() != FalseState )
+            if ( GetNextBaseActivity()->IsConsiderAsVisible() != E_TS_False)
             {
                 return GetNextBaseActivity();
             }
@@ -184,7 +184,7 @@ ZBaseActivity* ZBaseActivity::GetNextValidBaseActivity() const
     {
         // If the next activity is a valid activity, return it
         // otherwise, delegate the next search to him
-        if ( GetNextBaseActivity()->IsConsiderAsVisible() != FalseState )
+        if ( GetNextBaseActivity()->IsConsiderAsVisible() != E_TS_False)
         {
             return GetNextBaseActivity();
         }
@@ -206,7 +206,7 @@ ZBaseActivity* ZBaseActivity::GetPreviousValidActivity() const
         if ( GetPreviousBaseActivity()->IsKindOf( RUNTIME_CLASS( ZActivity ) ) ||
              ( GetPreviousBaseActivity()->HasActivities() && GetPreviousBaseActivity()->GetRunMode() == ChooseMode ) )
         {
-            if ( GetPreviousBaseActivity()->IsConsiderAsVisible() != FalseState )
+            if ( GetPreviousBaseActivity()->IsConsiderAsVisible() != E_TS_False)
             {
                 return GetPreviousBaseActivity();
             }
@@ -226,7 +226,7 @@ ZBaseActivity* ZBaseActivity::GetPreviousValidBaseActivity() const
     {
         // If the previous activity is a valid activity, return it
         // otherwise, delegate the next search to him
-        if ( GetPreviousBaseActivity()->IsConsiderAsVisible() != FalseState )
+        if ( GetPreviousBaseActivity()->IsConsiderAsVisible() != E_TS_False)
         {
             return GetPreviousBaseActivity();
         }
@@ -1145,7 +1145,7 @@ BOOL ZBaseActivity::ChoiceActivityAdd ( const CString ActivityName )
     //## end ZProcess::ChoiceActivityAdd%934700762.body
 }
 
-void ZBaseActivity::SetChildVisibility( const ThreeState value )
+void ZBaseActivity::SetChildVisibility( const EThreeState value )
 {
     //## begin ZProcess::SetChildVisibility%935952019.body preserve=yes
     // Sets the value for all activities and sub-process
@@ -1452,7 +1452,7 @@ void ZBaseActivity::SetDefaultProperty()
     m_TimeType                    = TimeDays;
     m_DurationDays                = 2;
     m_VisibilityType            = Visible;
-    m_IsVisible                    = TrueState;
+    m_IsVisible                    = E_TS_True;
     m_DaysForBackupResources    = 2;
     m_UseBackupResources        = FALSE;
     m_RemindDays                = 1;
@@ -1533,7 +1533,7 @@ void ZBaseActivity::Serialize ( CArchive& ar )
         m_VisibilityType = (ActivityVisibilityType)wValue;
 
         ar >> wValue;
-        m_IsVisible = (ThreeState)wValue;
+        m_IsVisible = (EThreeState)wValue;
 
         ar >> wValue;
         m_TimeType = (ActivityTimeOutType)wValue;

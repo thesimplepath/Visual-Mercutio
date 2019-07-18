@@ -2,19 +2,18 @@
 #define AFX_ZIScanContinueSelect_H__4CB3C463_579F_11D3_9612_0000B45D7C6F__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-// ScanContinue.h : header file
-//
+    #pragma once
+#endif
 
+// processsoft
 #include "zBaseLib\ZWizard.h"
 #include "ZSearchEdit.h"
 
+// resources
 #ifndef _WIN32
-    #include "ZWinUtil.h"
-#endif
-#ifdef _WIN32
-    #include "ZWinUtil32.h"
+    #include "zWinUtilRes.h"
+#else
+    #include "zWinUtil32Res.h"
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
