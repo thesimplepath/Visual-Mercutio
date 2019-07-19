@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_EventActivityLog ------------------------------------------------*
+ * ==> PSS_EventActivityLogCtrl --------------------------------------------*
  ****************************************************************************
- * Description : Provides an event activity logger                          *
+ * Description : Provides an event activity logger control                  *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_EventActivityLogH
-#define PSS_EventActivityLogH
+#ifndef PSS_EventActivityLogCtrlH
+#define PSS_EventActivityLogCtrlH
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -17,9 +17,9 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
+#include "zBaseLib\ZIListCtrl.h"
 #include "zEvent\EventManager.h"
 #include "zEvent\ActEvent.h"
-#include "zBaseLib\ZIListCtrl.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -32,49 +32,49 @@
 #endif
 
 /**
-* Event activity logger
+* Event activity logger control
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_EventActivityLog : public ZIListCtrl
+class AFX_EXT_CLASS PSS_EventActivityLogCtrl : public ZIListCtrl
 {
     public:
         /**
         * Constructor
         *@param pEventManager - event manager, can be NULL
         */
-        PSS_EventActivityLog(ZBEventManager* pEventManager = NULL);
+        PSS_EventActivityLogCtrl(ZBEventManager* pEventManager = NULL);
 
-        virtual ~PSS_EventActivityLog();
+        virtual ~PSS_EventActivityLogCtrl();
 
         /**
         * Stream out operator
         *@param left - left event activity
-        *@param listCtrl - list controller
+        *@param listCtrl - event activity log controller
         *@return event activity
         */
         #ifdef _WIN32
-            AFX_EXT_API friend ZBEventActivity& operator >> (ZBEventActivity& left, PSS_EventActivityLog& listCtrl);
+            AFX_EXT_API friend ZBEventActivity& operator >> (ZBEventActivity& left, PSS_EventActivityLogCtrl& listCtrl);
         #endif
 
         /**
         * Initializes the logger
         *@param pEventManager - event manager
         */
-        void Initialize (ZBEventManager* pEventManager);
+        virtual void Initialize (ZBEventManager* pEventManager);
 
         /**
         * Gets selected item
         *@return selected item, NULL if not found or on error
         */
-        ZBEventActivity* GetSelectedItem() const;
+        virtual ZBEventActivity* GetSelectedItem() const;
 
         /**
         * Refreshes the logger
         */
-        void Refresh();
+        virtual void Refresh();
 
     protected:
-        //{{AFX_MSG(PSS_EventActivityLog)
+        //{{AFX_MSG(PSS_EventActivityLogCtrl)
         afx_msg LRESULT OnNewActivityEvent(WPARAM wParam, LPARAM lParam);
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
@@ -87,13 +87,13 @@ class AFX_EXT_CLASS PSS_EventActivityLog : public ZIListCtrl
         * Copy constructor
         *@param other - other combo box to copy from
         */
-        PSS_EventActivityLog(const PSS_EventActivityLog &other);
+        PSS_EventActivityLogCtrl(const PSS_EventActivityLogCtrl &other);
 
         /**
         * Copy operator
         *@param other - other combo box to copy from
         */
-        const PSS_EventActivityLog& operator = (const PSS_EventActivityLog &other);
+        const PSS_EventActivityLogCtrl& operator = (const PSS_EventActivityLogCtrl &other);
 
         /**
         * Checks if columns were built
@@ -109,9 +109,9 @@ class AFX_EXT_CLASS PSS_EventActivityLog : public ZIListCtrl
 };
 
 //---------------------------------------------------------------------------
-// PSS_EventActivityLog
+// PSS_EventActivityLogCtrl
 //---------------------------------------------------------------------------
-BOOL PSS_EventActivityLog::ColumnsHasBeenBuilt() const
+BOOL PSS_EventActivityLogCtrl::ColumnsHasBeenBuilt() const
 {
     return m_ColumnsHasBeenBuilt;
 }

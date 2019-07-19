@@ -4,7 +4,7 @@
 #define MdlWkfOpt_h 1
 
 #include "zBaseLib\ZWizard.h"
-#include "zWinUtil32\PSS_LanguageCombo.h"
+#include "zWinUtil32\PSS_LanguageComboBox.h"
 #include "Resource.h"
 
 // JMR-MODIF - Le 18 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
@@ -114,11 +114,11 @@ private:
         IDD = IDD_WZ_MODELTYPE_OPTIONS
     };
 
-    PSS_LanguageCombo m_cbLanguage;
-    BOOL              m_CheckConsistency;
-    BOOL              m_IntegrateCostSimulation;
-    BOOL              m_UseModelAsWorkflow;
-    BOOL              m_BrowseInSameModel;
+    PSS_LanguageComboBox m_cbLanguage;
+    BOOL                 m_CheckConsistency;
+    BOOL                 m_IntegrateCostSimulation;
+    BOOL                 m_UseModelAsWorkflow;
+    BOOL                 m_BrowseInSameModel;
 
 // Implementation
 protected:

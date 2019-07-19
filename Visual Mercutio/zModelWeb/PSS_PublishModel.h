@@ -17,7 +17,6 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zWinUtil32\PSS_LanguageCombo.h"
 #include "zProperty\ZBPropertyAttributes.h"
 #include "zLanguageDef.h"
 

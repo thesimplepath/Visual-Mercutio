@@ -14,7 +14,7 @@
 
 // processsoft
 #include "zBaseLib\ZWizard.h"
-#include "zWinUtil32\PSS_LanguageCombo.h"
+#include "zWinUtil32\PSS_LanguageComboBox.h"
 
 // resources
 #include "zModelWebRes.h"
@@ -111,14 +111,14 @@ class PSS_PublishModelOptionsDialog : public ZIWizardDialog
             IDD = IDD_WZPUBMODEL_OPTIONS
         };
 
-        PSS_LanguageCombo m_CbLanguage;
-        ELanguage         m_Language;
-        BOOL              m_Visualize;
-        BOOL              m_PublishConceptorIsChecked;
-        BOOL              m_PublishConceptorDetailsIsChecked;
-        BOOL              m_PublishConceptorDeliverablesIsChecked;
-        BOOL              m_PublishProcessIsChecked;
-        BOOL              m_PublishRuleBookIsChecked;
+        PSS_LanguageComboBox m_CbLanguage;
+        ELanguage            m_Language;
+        BOOL                 m_Visualize;
+        BOOL                 m_PublishConceptorIsChecked;
+        BOOL                 m_PublishConceptorDetailsIsChecked;
+        BOOL                 m_PublishConceptorDeliverablesIsChecked;
+        BOOL                 m_PublishProcessIsChecked;
+        BOOL                 m_PublishRuleBookIsChecked;
 };
 
 //---------------------------------------------------------------------------

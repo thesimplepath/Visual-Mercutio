@@ -58,7 +58,7 @@ class AFX_EXT_CLASS PSS_ActivityAttributionWelcomeDialog : public ZIWizardDialog
         /**
         * Constructor
         *@param pActivity - activity
-        *@param pPArent - parent window, can be NULL
+        *@param pParent - parent window, can be NULL
         */
         PSS_ActivityAttributionWelcomeDialog(ZActivity* pActivity, CWnd* pParent = NULL);
 

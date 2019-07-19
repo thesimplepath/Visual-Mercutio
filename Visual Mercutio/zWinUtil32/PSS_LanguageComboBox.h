@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_LanguageCombo ---------------------------------------------------*
+ * ==> PSS_LanguageComboBox ------------------------------------------------*
  ****************************************************************************
  * Description : Provides a combo box allowing to select a language         *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_LanguageComboH
-#define PSS_LanguageComboH
+#ifndef PSS_LanguageComboBoxH
+#define PSS_LanguageComboBoxH
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -33,16 +33,16 @@
 * Combo box allowing to select a language
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_LanguageCombo : public CCJFlatComboBox
+class AFX_EXT_CLASS PSS_LanguageComboBox : public CCJFlatComboBox
 {
     public:
         /**
         * Constructor
         *@param initialLanguage - initial language to select, may be unknown
         */
-        PSS_LanguageCombo(ELanguage initialLanguage = E_LN_Unknown);
+        PSS_LanguageComboBox(ELanguage initialLanguage = E_LN_Unknown);
 
-        virtual ~PSS_LanguageCombo();
+        virtual ~PSS_LanguageComboBox();
 
         /**
         * Initializes the combo box
@@ -69,7 +69,7 @@ class AFX_EXT_CLASS PSS_LanguageCombo : public CCJFlatComboBox
 
     protected:
         /// message map
-        //{{AFX_MSG(PSS_LanguageCombo)
+        //{{AFX_MSG(PSS_LanguageComboBox)
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
 
@@ -80,30 +80,30 @@ class AFX_EXT_CLASS PSS_LanguageCombo : public CCJFlatComboBox
         * Copy constructor
         *@param other - other combo box to copy from
         */
-        PSS_LanguageCombo(const PSS_LanguageCombo& other);
+        PSS_LanguageComboBox(const PSS_LanguageComboBox& other);
 
         /**
         * Copy operator
         *@param other - other combo box to copy from
         */
-        const PSS_LanguageCombo& operator = (const PSS_LanguageCombo& other);
+        const PSS_LanguageComboBox& operator = (const PSS_LanguageComboBox& other);
 };
 
 //---------------------------------------------------------------------------
-// PSS_LanguageCombo
+// PSS_LanguageComboBox
 //---------------------------------------------------------------------------
-int PSS_LanguageCombo::Initialize(ELanguage initialLanguage)
+int PSS_LanguageComboBox::Initialize(ELanguage initialLanguage)
 {
     m_Language = initialLanguage;
     return Initialize();
 }
 //---------------------------------------------------------------------------
-ELanguage PSS_LanguageCombo::GetLanguage() const
+ELanguage PSS_LanguageComboBox::GetLanguage() const
 {
     return static_cast<ELanguage>(GetCurSel());
 }
 //---------------------------------------------------------------------------
-void PSS_LanguageCombo::SelectLanguage(ELanguage newLanguage)
+void PSS_LanguageComboBox::SelectLanguage(ELanguage newLanguage)
 {
     SetCurSel(newLanguage);
 }

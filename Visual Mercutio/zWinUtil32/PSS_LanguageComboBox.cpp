@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_LanguageCombo ---------------------------------------------------*
+ * ==> PSS_LanguageComboBox ------------------------------------------------*
  ****************************************************************************
  * Description : Provides a combo box allowing to select a language         *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include <StdAfx.h>
-#include "PSS_LanguageCombo.h"
+#include "PSS_LanguageComboBox.h"
 
 // processsoft
 #include "zBaseLib\ZBTokenizer.h"
@@ -21,31 +21,32 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_LanguageCombo, CCJFlatComboBox)
-    //{{AFX_MSG_MAP(PSS_LanguageCombo)
+BEGIN_MESSAGE_MAP(PSS_LanguageComboBox, CCJFlatComboBox)
+    //{{AFX_MSG_MAP(PSS_LanguageComboBox)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
-// PSS_LanguageCombo
+// PSS_LanguageComboBox
 //---------------------------------------------------------------------------
-PSS_LanguageCombo::PSS_LanguageCombo(ELanguage initialLanguage) :
+PSS_LanguageComboBox::PSS_LanguageComboBox(ELanguage initialLanguage) :
+    CCJFlatComboBox(),
     m_Language(initialLanguage)
 {}
 //---------------------------------------------------------------------------
-PSS_LanguageCombo::PSS_LanguageCombo(const PSS_LanguageCombo& other)
+PSS_LanguageComboBox::PSS_LanguageComboBox(const PSS_LanguageComboBox& other)
 {
     THROW("Copy constructor is prohibited");
 }
 //---------------------------------------------------------------------------
-PSS_LanguageCombo::~PSS_LanguageCombo()
+PSS_LanguageComboBox::~PSS_LanguageComboBox()
 {}
 //---------------------------------------------------------------------------
-const PSS_LanguageCombo& PSS_LanguageCombo::operator = (const PSS_LanguageCombo& other)
+const PSS_LanguageComboBox& PSS_LanguageComboBox::operator = (const PSS_LanguageComboBox& other)
 {
     THROW("Copy constructor is prohibited");
 }
 //---------------------------------------------------------------------------
-int PSS_LanguageCombo::Initialize ()
+int PSS_LanguageComboBox::Initialize ()
 {
     CString languages;
     languages.LoadString(IDS_LANGUAGE_LIST);

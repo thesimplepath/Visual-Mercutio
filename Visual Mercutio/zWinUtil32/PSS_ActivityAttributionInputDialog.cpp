@@ -12,7 +12,7 @@
 #include "zBaseLib\MsgBox.h"
 #include "zBaseLib\InpVal.h"
 #include "LstUser.h"
-#include "ActIAttr.h"
+#include "PSS_ActivityAttributionValueInputDialog.h"
 #include "PSS_ActivityAttributionBackupInputDialog.h"
 
 #ifdef _DEBUG
@@ -70,13 +70,13 @@ BOOL PSS_ActivityAttributionInputDialog::ProcessBackupUser()
 //---------------------------------------------------------------------------
 BOOL PSS_ActivityAttributionInputDialog::ProcessBaseValue()
 {
-    ZIActivityAttributionValueInput ActivityAttributionInput(m_UserManager,
-                                                             m_Mail,
-                                                             m_pActivity,
-                                                             m_LastActivity && !m_BackupUserAttribution,
-                                                             m_UserAttribution,
-                                                             m_TimeAttribution,
-                                                             m_VisibilityAttribution);
+    PSS_ActivityAttributionValueInputDialog ActivityAttributionInput(m_UserManager,
+                                                                     m_Mail,
+                                                                     m_pActivity,
+                                                                     m_LastActivity && !m_BackupUserAttribution,
+                                                                     m_UserAttribution,
+                                                                     m_TimeAttribution,
+                                                                     m_VisibilityAttribution);
 
     return (ActivityAttributionInput.DoModal() != IDCANCEL);
 }

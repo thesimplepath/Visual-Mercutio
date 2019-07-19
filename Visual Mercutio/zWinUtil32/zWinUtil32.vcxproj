@@ -162,49 +162,49 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="PSS_ActivityCombo.cpp">
+    <ClCompile Include="PSS_ActivityComboBox.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="PSS_EventActivityLog.cpp">
+    <ClCompile Include="PSS_EventActivityLogCtrl.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="actevtoverviewc.cpp">
+    <ClCompile Include="PSS_EventActivityOverviewCtrl.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="actevtreminderc.cpp">
+    <ClCompile Include="PSS_EventActivityViewerReminderCtrl.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="actevtsc.cpp">
+    <ClCompile Include="PSS_EventActivityCtrl.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="actevtuseroverviewc.cpp">
+    <ClCompile Include="PSS_EventActivityUserOverviewCtrl.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="actIattr.cpp">
+    <ClCompile Include="PSS_ActivityAttributionValueInputDialog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -682,7 +682,7 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="PSS_LanguageCombo.cpp">
+    <ClCompile Include="PSS_LanguageComboBox.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -904,13 +904,13 @@
     <ClInclude Include="PSS_ActivityAttributionWelcomeDialog.h" />
     <ClInclude Include="PSS_ActivityAttributionInputDialog.h" />
     <ClInclude Include="PSS_ActivityAttributionBackupInputDialog.h" />
-    <ClInclude Include="PSS_ActivityCombo.h" />
-    <ClInclude Include="PSS_EventActivityLog.h" />
-    <ClInclude Include="actevtoverviewc.h" />
-    <ClInclude Include="actevtreminderc.h" />
-    <ClInclude Include="actevtsc.h" />
-    <ClInclude Include="actevtuseroverviewc.h" />
-    <ClInclude Include="actIattr.h" />
+    <ClInclude Include="PSS_ActivityComboBox.h" />
+    <ClInclude Include="PSS_EventActivityLogCtrl.h" />
+    <ClInclude Include="PSS_EventActivityOverviewCtrl.h" />
+    <ClInclude Include="PSS_EventActivityViewerReminderCtrl.h" />
+    <ClInclude Include="PSS_EventActivityCtrl.h" />
+    <ClInclude Include="PSS_EventActivityUserOverviewCtrl.h" />
+    <ClInclude Include="PSS_ActivityAttributionValueInputDialog.h" />
     <ClInclude Include="actlst.h" />
     <ClInclude Include="actlstat.h" />
     <ClInclude Include="actlsttk.h" />
@@ -978,7 +978,7 @@
     <ClInclude Include="VIEWPGR.H" />
     <ClInclude Include="WelcomW.h" />
     <ClInclude Include="ZCFormTemplateTree.h" />
-    <ClInclude Include="PSS_LanguageCombo.h" />
+    <ClInclude Include="PSS_LanguageComboBox.h" />
     <ClInclude Include="ZCWorkspaceTemplateList.h" />
     <ClInclude Include="ZFileVersionDialog.h" />
     <ClInclude Include="ZFormPreviewFileDialog.h" />

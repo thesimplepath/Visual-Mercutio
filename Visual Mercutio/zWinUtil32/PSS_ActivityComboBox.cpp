@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_ActivityCombo ---------------------------------------------------*
+ * ==> PSS_ActivityComboBox ------------------------------------------------*
  ****************************************************************************
  * Description : Provides an activity combo box                             *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include <StdAfx.h>
-#include "PSS_ActivityCombo.h"
+#include "PSS_ActivityComboBox.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -15,13 +15,20 @@
 #endif
 
 //---------------------------------------------------------------------------
-// PSS_ActivityCombo
+// PSS_ActivityComboBox
 //---------------------------------------------------------------------------
-PSS_ActivityCombo::PSS_ActivityCombo(ZProcess*      pProcess,
-                                     int            activityType,
-                                     const CString& excludedActivity,
-                                     BOOL           stopOnFound,
-                                     BOOL           attributedActivityOnly) :
+PSS_ActivityComboBox::PSS_ActivityComboBox(ZProcess*      pProcess,
+                                           int            activityType,
+                                           const CString& excludedActivity,
+                                           BOOL           stopOnFound,
+                                           BOOL           attributedActivityOnly) :
+    #ifdef _WIN32
+        // 32 bit version
+        CCJFlatComboBox(),
+    #else
+        // 16 bit version
+        CComboBox(),
+    #endif
     m_pProcess(pProcess),
     m_ExcludedActivity(excludedActivity),
     m_ActivityType(activityType),
@@ -29,24 +36,24 @@ PSS_ActivityCombo::PSS_ActivityCombo(ZProcess*      pProcess,
     m_AttributedActivityOnly(attributedActivityOnly)
 {}
 //---------------------------------------------------------------------------
-PSS_ActivityCombo::PSS_ActivityCombo(const PSS_ActivityCombo& other)
+PSS_ActivityComboBox::PSS_ActivityComboBox(const PSS_ActivityComboBox& other)
 {
     THROW("Copy constructor is prohibited for this class");
 }
 //---------------------------------------------------------------------------
-PSS_ActivityCombo::~PSS_ActivityCombo()
+PSS_ActivityComboBox::~PSS_ActivityComboBox()
 {}
 //---------------------------------------------------------------------------
-const PSS_ActivityCombo& PSS_ActivityCombo::operator = (const PSS_ActivityCombo& other)
+const PSS_ActivityComboBox& PSS_ActivityComboBox::operator = (const PSS_ActivityComboBox& other)
 {
     THROW("Copy operator is prohibited for this class");
 }
 //---------------------------------------------------------------------------
-int PSS_ActivityCombo::Initialize(ZProcess*      pProcess,
-                                  int            activityType,
-                                  const CString& excludedActivity,
-                                  BOOL           stopOnFound,
-                                  BOOL           attributedActivityOnly)
+int PSS_ActivityComboBox::Initialize(ZProcess*      pProcess,
+                                     int            activityType,
+                                     const CString& excludedActivity,
+                                     BOOL           stopOnFound,
+                                     BOOL           attributedActivityOnly)
 {
     m_pProcess               = pProcess;
     m_ActivityType           = activityType;
@@ -57,7 +64,7 @@ int PSS_ActivityCombo::Initialize(ZProcess*      pProcess,
     return Refresh();
 }
 //---------------------------------------------------------------------------
-CString PSS_ActivityCombo::GetSelectedActivity()
+CString PSS_ActivityComboBox::GetSelectedActivity()
 {
     const int index = GetCurSel();
 
@@ -71,7 +78,7 @@ CString PSS_ActivityCombo::GetSelectedActivity()
     return "";
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityCombo::SelectActivity(const CString& activityName)
+void PSS_ActivityComboBox::SelectActivity(const CString& activityName)
 {
     const int index = FindString(-1, activityName);
 
@@ -79,7 +86,7 @@ void PSS_ActivityCombo::SelectActivity(const CString& activityName)
         SetCurSel(index);
 }
 //---------------------------------------------------------------------------
-int PSS_ActivityCombo::Refresh()
+int PSS_ActivityComboBox::Refresh()
 {
     CStringArray activityArray;
 

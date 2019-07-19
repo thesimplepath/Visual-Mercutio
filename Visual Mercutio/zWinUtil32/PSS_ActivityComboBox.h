@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_ActivityCombo ---------------------------------------------------*
+ * ==> PSS_ActivityComboBox ------------------------------------------------*
  ****************************************************************************
  * Description : Provides an activity combo box                             *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_ActivityComboH
-#define PSS_ActivityComboH
+#ifndef PSS_ActivityComboBoxH
+#define PSS_ActivityComboBoxH
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -35,10 +35,10 @@
 */
 #ifdef _WIN32
     // 32 bit version
-    class AFX_EXT_CLASS PSS_ActivityCombo : public CCJFlatComboBox
+    class AFX_EXT_CLASS PSS_ActivityComboBox : public CCJFlatComboBox
 #else
     // 16 bit version
-    class AFX_EXT_CLASS PSS_ActivityCombo : public CComboBox
+    class AFX_EXT_CLASS PSS_ActivityComboBox : public CComboBox
 #endif
 {
     public:
@@ -50,13 +50,13 @@
         *@param stopOnFound - if TRUE, stop the search on found
         *@param attributedActivityOnly - if TRUE, attributed activity only will be processed
         */
-        PSS_ActivityCombo(ZProcess*      pProcess               = NULL,
-                          int            activityType           = 0,
-                          const CString& excludedActivity       = "",
-                          BOOL           stopOnFound            = TRUE,
-                          BOOL           attributedActivityOnly = FALSE);
+        PSS_ActivityComboBox(ZProcess*      pProcess               = NULL,
+                             int            activityType           = 0,
+                             const CString& excludedActivity       = "",
+                             BOOL           stopOnFound            = TRUE,
+                             BOOL           attributedActivityOnly = FALSE);
 
-        virtual ~PSS_ActivityCombo();
+        virtual ~PSS_ActivityComboBox();
 
         /**
         * Initializes the combo box
@@ -66,11 +66,11 @@
         *@param stopOnFound - if TRUE, stop the search on found
         *@param attributedActivityOnly - if TRUE, attributed activity only will be processed
         */
-        int Initialize(ZProcess*      pProcess,
-                       int            activityType           = 0,
-                       const CString& excludedActivity       = "",
-                       BOOL           stopOnFound            = TRUE,
-                       BOOL           attributedActivityOnly = FALSE);
+        virtual int Initialize(ZProcess*      pProcess,
+                               int            activityType           = 0,
+                               const CString& excludedActivity       = "",
+                               BOOL           stopOnFound            = TRUE,
+                               BOOL           attributedActivityOnly = FALSE);
 
         /**
         * Gets the selected activity
@@ -82,12 +82,12 @@
         * Selects an activity
         *@param activityName - activity name to select
         */
-        void SelectActivity(const CString& activityName);
+        virtual void SelectActivity(const CString& activityName);
 
         /**
         * Refreshes the combo box
         */
-        int Refresh();
+        virtual int Refresh();
 
     private:
         ZProcess* m_pProcess;
@@ -100,13 +100,13 @@
         * Copy constructor
         *@param other - other combo box to copy from
         */
-        PSS_ActivityCombo(const PSS_ActivityCombo& other);
+        PSS_ActivityComboBox(const PSS_ActivityComboBox& other);
 
         /**
         * Copy operator
         *@param other - other combo box to copy from
         */
-        const PSS_ActivityCombo& operator = (const PSS_ActivityCombo& other);
+        const PSS_ActivityComboBox& operator = (const PSS_ActivityComboBox& other);
 };
 
 #endif
