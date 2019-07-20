@@ -13,9 +13,9 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 13 juin 2007 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_DYNAMIC( ZINewFormPropertySheet, ZIBasePropSheet )
+IMPLEMENT_DYNAMIC(ZINewFormPropertySheet, PSS_BasePropSheet)
 
-BEGIN_MESSAGE_MAP( ZINewFormPropertySheet, CPropertySheet )
+BEGIN_MESSAGE_MAP(ZINewFormPropertySheet, PSS_BasePropSheet)
     //{{AFX_MSG_MAP(ZINewFormPropertySheet)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -24,7 +24,7 @@ END_MESSAGE_MAP()
 // ZINewFormPropertySheet property sheet
 
 ZINewFormPropertySheet::ZINewFormPropertySheet( ZDTemplateManager* pTemplateManager )
-    : ZIBasePropSheet(),
+    : PSS_BasePropSheet(),
       m_FirstInitialization( TRUE ),
       m_pTemplateManager( pTemplateManager )
 {
@@ -40,7 +40,7 @@ void ZINewFormPropertySheet::Initialize()
     // Set the size of the internal array for pointer page
     if ( m_FirstInitialization )
     {
-        ZIBasePropSheet::GetPageArray().SetSize( m_pTemplateManager->GetSize() );
+        PSS_BasePropSheet::GetPageArray().SetSize( m_pTemplateManager->GetSize() );
     }
 
     // Run throughout all template directory
@@ -66,7 +66,7 @@ void ZINewFormPropertySheet::Initialize()
 
             // Replace the pointer to the previous page
             // or insert the right pointer
-            ZIBasePropSheet::GetPageArray().SetAt( i, pFormPage );
+            PSS_BasePropSheet::GetPageArray().SetAt( i, pFormPage );
             AddPage( pFormPage );
         }
     }
@@ -89,7 +89,7 @@ void ZINewFormPropertySheet::ClearContents()
         delete ( (ZIGenericFormPage*)(m_PageArray[i]) );
     }
 
-    ZIBasePropSheet::GetPageArray().RemoveAll();
+    PSS_BasePropSheet::GetPageArray().RemoveAll();
 }
 
 ZINewFormPropertySheet::~ZINewFormPropertySheet()

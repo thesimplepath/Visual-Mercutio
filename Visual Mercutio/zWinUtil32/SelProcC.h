@@ -25,7 +25,7 @@
 #endif
 
 #include "zEvent\ZProcess.h"
-#include "ActLst.h"
+#include "PSS_ActivityListCtrl.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -51,8 +51,8 @@ private:
 // Dialog Data
     //{{AFX_DATA(ZISelectProcessWizardChoose)
     enum { IDD = IDD_WZCHOOSEPROC_SEL };
-    ZCActivityList    m_ActivityProcList;
-    CString            m_ProcessName;
+    PSS_ActivityListCtrl m_ActivityProcList;
+    CString              m_ProcessName;
     //}}AFX_DATA
 
 // Overrides

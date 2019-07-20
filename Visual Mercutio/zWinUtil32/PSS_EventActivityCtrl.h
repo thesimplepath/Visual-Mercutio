@@ -87,13 +87,14 @@ class AFX_EXT_CLASS PSS_EventActivityCtrl : public ZIListCtrl
         * Copy constructor
         *@param other - other object to copy from
         */
-        PSS_EventActivityCtrl(const PSS_EventActivityCtrl &right);
+        PSS_EventActivityCtrl(const PSS_EventActivityCtrl& other);
 
         /**
         * Copy operator
         *@param other - other object to copy from
+        *@return copy of itself
         */
-        const PSS_EventActivityCtrl & operator = (const PSS_EventActivityCtrl &right);
+        const PSS_EventActivityCtrl & operator = (const PSS_EventActivityCtrl& other);
       
         /**
         * Checks if columns were built

@@ -93,6 +93,7 @@ class AFX_EXT_CLASS PSS_EventActivityViewerReminderCtrl : public ZIListCtrl
         /**
         * Copy operator
         *@param other - other object to copy from
+        *@return copy of itself
         */
         const PSS_EventActivityViewerReminderCtrl& operator = (const PSS_EventActivityViewerReminderCtrl& other);
 

@@ -45,7 +45,7 @@
     #include "Property.h"
 #endif
 
-#include "zWinUtil32\CalWnd.h"
+#include "zWinUtil32\PSS_CalendarWindowDialog.h"
 #include "zWinUtil32\ZIObjectNotesDialog.h"
 
 #include "zBaseLib\FileDlg.h"

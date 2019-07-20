@@ -92,6 +92,7 @@ class AFX_EXT_CLASS PSS_EventActivityLogCtrl : public ZIListCtrl
         /**
         * Copy operator
         *@param other - other combo box to copy from
+        *@return copy of itself
         */
         const PSS_EventActivityLogCtrl& operator = (const PSS_EventActivityLogCtrl &other);
 

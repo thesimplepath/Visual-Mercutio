@@ -79,6 +79,7 @@ class AFX_EXT_CLASS PSS_LanguageComboBox : public CCJFlatComboBox
         /**
         * Copy constructor
         *@param other - other combo box to copy from
+        *@return copy of itself
         */
         PSS_LanguageComboBox(const PSS_LanguageComboBox& other);
 

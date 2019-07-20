@@ -6,7 +6,7 @@
 #include "zWinUtil32\GenPage.h"
 #include "ViewPgR.h"
 #include "ViewPage.h"
-#include "CalcPage.h"
+#include "PSS_CalculationPage.h"
 #include "ExpPage.h"
 #include "NavPage.h"
 
@@ -28,7 +28,7 @@ END_MESSAGE_MAP()
 // Class ZISystemOption 
 
 ZISystemOption::ZISystemOption(ZAApplicationOption* pApplicationOptions, unsigned int PageOptions)
-  : ZIBasePropSheet(static_cast<UINT>(IDS_SYSTEMOPTION_TITLE)),
+  : PSS_BasePropSheet(static_cast<UINT>(IDS_SYSTEMOPTION_TITLE)),
     m_pApplicationOptions(pApplicationOptions), m_PageOptions(PageOptions)
 {
     // Add the general page
@@ -53,13 +53,14 @@ ZISystemOption::ZISystemOption(ZAApplicationOption* pApplicationOptions, unsigne
         AddPage( pViewPageReduced );
     }
     
-    // Add the calculation page
+    // add the calculation page
     if (PageOptions & CalculationOptionPage)
     {
-        ZICalculationPage*    pCalculationPage = new ZICalculationPage( pApplicationOptions );
-        GetPageArray().Add( pCalculationPage );
-        AddPage( pCalculationPage );
+        PSS_CalculationPage* pCalculationPage = new PSS_CalculationPage(pApplicationOptions);
+        GetPageArray().Add(pCalculationPage);
+        AddPage(pCalculationPage);
     }
+
     // Add the navigation page
     if (PageOptions & NavigationOptionPage)
     {
@@ -95,7 +96,7 @@ ZISystemOption::~ZISystemOption()
 
 BOOL ZISystemOption::OnInitDialog()
 {
-    BOOL bResult = ZIBasePropSheet::OnInitDialog();
+    BOOL bResult = PSS_BasePropSheet::OnInitDialog();
 
     CenterWindow();
     return bResult;
@@ -104,7 +105,7 @@ BOOL ZISystemOption::OnInitDialog()
 
 int ZISystemOption::DoModal()
 {
-    if (ZIBasePropSheet::DoModal() == IDOK)
+    if (PSS_BasePropSheet::DoModal() == IDOK)
     {
         // Run throughout all pages and test if the page
         // has been initialized. If it is the case,

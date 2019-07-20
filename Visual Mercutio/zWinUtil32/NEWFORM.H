@@ -11,7 +11,7 @@
 // processsoft
 #include "zBaseLib\ZWizard.h"
 #include "zBaseLib\TmplMng.h"
-#include "BPropSht.h"
+#include "PSS_BasePropSheet.h"
 #include "GFormP.h"
 
 // resources
@@ -48,7 +48,7 @@ enum DialogFormExtensionType
 /////////////////////////////////////////////////////////////////////////////
 // ZINewFormPropertySheet property sheet
 
-class AFX_EXT_CLASS ZINewFormPropertySheet : public ZIBasePropSheet    //## Inherits: <unnamed>
+class AFX_EXT_CLASS ZINewFormPropertySheet : public PSS_BasePropSheet
 {
     DECLARE_DYNAMIC( ZINewFormPropertySheet )
 

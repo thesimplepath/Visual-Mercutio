@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_ActivityComboBox ------------------------------------------------*
+ * ==> PSS_ActivityListCtrl ------------------------------------------------*
  ****************************************************************************
- * Description : Provides an activity combo box                             *
+ * Description : Provides an activity list control                          *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_ActivityComboBoxH
-#define PSS_ActivityComboBoxH
+#ifndef PSS_ActivityListCtrlH
+#define PSS_ActivityListCtrlH
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -17,6 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
+#include "zBaseLib\ZIListCtrl.h"
 #include "zEvent\ZProcess.h"
 
 #ifdef _ZWINUTIL32EXPORT
@@ -30,41 +31,41 @@
 #endif
 
 /**
-* Activity combo box
+* Activity list control
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
 #ifdef _WIN32
     // 32 bit version
-    class AFX_EXT_CLASS PSS_ActivityComboBox : public CCJFlatComboBox
+    class AFX_EXT_CLASS PSS_ActivityListCtrl : public ZIListCtrl
 #else
     // 16 bit version
-    class AFX_EXT_CLASS PSS_ActivityComboBox : public CComboBox
+    class AFX_EXT_CLASS PSS_ActivityListCtrl : public CListBox
 #endif
 {
     public:
         /**
         * Constructor
-        *@param pProcess - process, may be NULL
+        *@param pProcess - process, can be NULL
         *@param activityType - activity type
         *@param excludedActivity - excluded activity
-        *@param stopOnFound - if TRUE, stop the search on found
-        *@param attributedActivityOnly - if TRUE, attributed activity only will be processed
+        *@param stopOnFound - if TRUE, search will stop on first found item
+        *@param attributedActivityOnly - if TRUE, only attributed activity will be processed
         */
-        PSS_ActivityComboBox(ZProcess*      pProcess               = NULL,
+        PSS_ActivityListCtrl(ZProcess*      pProcess               = NULL,
                              int            activityType           = 0,
                              const CString& excludedActivity       = "",
                              BOOL           stopOnFound            = TRUE,
                              BOOL           attributedActivityOnly = FALSE);
 
-        virtual ~PSS_ActivityComboBox();
+        virtual ~PSS_ActivityListCtrl();
 
         /**
-        * Initializes the combo box
-        *@param pProcess - process, may be NULL
+        * Initializes the control
+        *@param pProcess - process
         *@param activityType - activity type
         *@param excludedActivity - excluded activity
-        *@param stopOnFound - if TRUE, stop the search on found
-        *@param attributedActivityOnly - if TRUE, attributed activity only will be processed
+        *@param stopOnFound - if TRUE, search will stop on first found item
+        *@param attributedActivityOnly - if TRUE, only attributed activity will be processed
         */
         virtual int Initialize(ZProcess*      pProcess,
                                int            activityType           = 0,
@@ -79,35 +80,42 @@
         virtual CString GetSelectedActivity();
 
         /**
-        * Selects an activity
-        *@param activityName - activity name to select
+        * Gets the selected activities
+        *@param[out] activitiesArray - array containing the selected activities
+        *@return selected activity count
         */
-        virtual void SelectActivity(const CString& activityName);
+        virtual int GetSelectedActivities(CStringArray& activitiesArray);
 
         /**
-        * Refreshes the combo box
+        * Refreshes the control
+        *@return activity count
         */
         virtual int Refresh();
 
+    protected:
+        //{{AFX_MSG(PSS_ActivityListCtrl)
+        //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
+
     private:
         ZProcess* m_pProcess;
-        CString   m_ExcludedActivity;
         int       m_ActivityType;
+        CString   m_ExcludedActivity;
         BOOL      m_StopOnFound;
         BOOL      m_AttributedActivityOnly;
 
         /**
         * Copy constructor
-        *@param other - other combo box to copy from
+        *@param other - other object to copy from
         */
-        PSS_ActivityComboBox(const PSS_ActivityComboBox& other);
+        PSS_ActivityListCtrl(const PSS_ActivityListCtrl& other);
 
         /**
         * Copy operator
-        *@param other - other combo box to copy from
+        *@param other - other object to copy from
         *@return copy of itself
         */
-        const PSS_ActivityComboBox& operator = (const PSS_ActivityComboBox& other);
+        const PSS_ActivityListCtrl & operator = (const PSS_ActivityListCtrl& other);
 };
 
 #endif

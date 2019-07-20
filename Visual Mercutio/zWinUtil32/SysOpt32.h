@@ -10,22 +10,20 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-#include "BPropSht.h"
-
+// processsoft
+#include "PSS_BasePropSheet.h"
 
 // forward class declaration
 class ZAApplicationOption;
 
-
 #ifdef _ZWINUTIL32EXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 
@@ -37,7 +35,7 @@ unsigned int ExportOptionPage = 0x0010;
 unsigned int ViewReducedOptionPage = 0x0020;
 //unsigned int GlobalOptionPage = 0x0020;
 
-class AFX_EXT_CLASS ZISystemOption : public ZIBasePropSheet  //## Inherits: <unnamed>%334FC4610037
+class AFX_EXT_CLASS ZISystemOption : public PSS_BasePropSheet
 {
 //    DECLARE_DYNAMIC(ZISystemOption)
 

@@ -211,70 +211,70 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="actlst.cpp">
+    <ClCompile Include="PSS_ActivityListCtrl.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="actlstat.cpp">
+    <ClCompile Include="PSS_ActivityListAttributionCtrl.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="actlsttk.cpp">
+    <ClCompile Include="PSS_ActivityTaskListCtrl.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="ANIMATE.CPP">
+    <ClCompile Include="PSS_AnimateDialog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="BPROPSHT.CPP">
+    <ClCompile Include="PSS_BasePropSheet.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="BTxtAlgn.cpp">
+    <ClCompile Include="PSS_TextAlignButton.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="CalcPage.cpp">
+    <ClCompile Include="PSS_CalculationPage.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="CalWnd.cpp">
+    <ClCompile Include="PSS_CalendarWindowDialog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="CnfDelMsg.cpp">
+    <ClCompile Include="PSS_ConfirmDeleteMessageDialog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="COLORSEL.CPP">
+    <ClCompile Include="PSS_ColorSelectionWnd.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -911,16 +911,16 @@
     <ClInclude Include="PSS_EventActivityCtrl.h" />
     <ClInclude Include="PSS_EventActivityUserOverviewCtrl.h" />
     <ClInclude Include="PSS_ActivityAttributionValueInputDialog.h" />
-    <ClInclude Include="actlst.h" />
-    <ClInclude Include="actlstat.h" />
-    <ClInclude Include="actlsttk.h" />
-    <ClInclude Include="ANIMATE.H" />
-    <ClInclude Include="BPROPSHT.H" />
-    <ClInclude Include="BTXTALGN.H" />
-    <ClInclude Include="CalcPage.h" />
-    <ClInclude Include="CalWnd.h" />
-    <ClInclude Include="CnfDelMsg.h" />
-    <ClInclude Include="COLORSEL.H" />
+    <ClInclude Include="PSS_ActivityListCtrl.h" />
+    <ClInclude Include="PSS_ActivityListAttributionCtrl.h" />
+    <ClInclude Include="PSS_ActivityTaskListCtrl.h" />
+    <ClInclude Include="PSS_AnimateDialog.h" />
+    <ClInclude Include="PSS_BasePropSheet.h" />
+    <ClInclude Include="PSS_TextAlignButton.h" />
+    <ClInclude Include="PSS_CalculationPage.h" />
+    <ClInclude Include="PSS_CalendarWindowDialog.h" />
+    <ClInclude Include="PSS_ConfirmDeleteMessageDialog.h" />
+    <ClInclude Include="PSS_ColorSelectionWnd.h" />
     <ClInclude Include="CrtFldE.h" />
     <ClInclude Include="CrtFldS.h" />
     <ClInclude Include="CrtFldW.h" />

@@ -147,6 +147,7 @@ class AFX_EXT_CLASS PSS_EventActivityOverviewCtrl : public ZITreeCtrl
         /**
         * Copy operator
         *@param other - other object to copy from
+        *@return copy of itself
         */
         const PSS_EventActivityOverviewCtrl& operator = (const PSS_EventActivityOverviewCtrl& other);
 

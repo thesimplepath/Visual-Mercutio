@@ -26,6 +26,13 @@
 #include "zBaseLib\UserMng.h"
 #include "zEvent\Activity.h"
 
+// resources
+#ifndef _WIN32
+    #include "zWinUtilRes.h"
+#else
+    #include "zWinUtil32Res.h"
+#endif
+
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
     #undef AFX_EXT_CLASS
@@ -34,13 +41,6 @@
     #define AFX_EXT_CLASS AFX_CLASS_EXPORT
     #define AFX_EXT_API AFX_API_EXPORT
     #define AFX_EXT_DATA AFX_DATA_EXPORT
-#endif
-
-// resources
-#ifndef _WIN32
-    #include "zWinUtilRes.h"
-#else
-    #include "zWinUtil32Res.h"
 #endif
 
 /**
