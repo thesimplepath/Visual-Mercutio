@@ -511,26 +511,26 @@ public:
       BOOL MoveObjectInOrder (PlanFinObject* obj, int DocumentIndex = -1);
 
       //## Operation: AssignObjectValue%913970071
-      void AssignObjectValue (CString Name, CString Value, int Page, int PropagationMode = LocateAllPagesEmptyOnly, BOOL EmptyWhenZero = FALSE, int DocumentIndex = -1);
+      void AssignObjectValue (CString Name, CString Value, int Page, int PropagationMode = g_LocateAllPagesEmptyOnly, BOOL EmptyWhenZero = FALSE, int DocumentIndex = -1);
 
       //## Operation: SetCurrentPageToObject%913970072
       void SetCurrentPageToObject (PlanFinObject* obj, int DocumentIndex = -1);
 
       //    Insert a document file at the end of the document data
       //    array.
-      virtual BOOL InsertDocument (const CString FileName, BOOL InsertAsReadOnly = FALSE, int PropagateValue = LocateAllDocumentsEmptyOnly);
+      virtual BOOL InsertDocument (const CString FileName, BOOL InsertAsReadOnly = FALSE, int PropagateValue = g_LocateAllDocumentsEmptyOnly);
 
       //    Insert a document file after a position into the
       //    document data array.
-      virtual BOOL InsertDocumentAfter (const CString FileName, int IndexAfter, BOOL InsertAsReadOnly = FALSE, int PropagateValue = LocateAllDocumentsEmptyOnly);
+      virtual BOOL InsertDocumentAfter (const CString FileName, int IndexAfter, BOOL InsertAsReadOnly = FALSE, int PropagateValue = g_LocateAllDocumentsEmptyOnly);
 
       //    Insert a document file at the end of the document data
       //    array.
-      virtual BOOL InsertExternalDocument (const CString FileName, BOOL InsertAsReadOnly = FALSE, int PropagateValue = LocateAllDocumentsEmptyOnly);
+      virtual BOOL InsertExternalDocument (const CString FileName, BOOL InsertAsReadOnly = FALSE, int PropagateValue = g_LocateAllDocumentsEmptyOnly);
 
       //    Insert a document file after a position into the
       //    document data array.
-      virtual BOOL InsertExternalDocumentAfter (const CString FileName, int IndexAfter, BOOL InsertAsReadOnly = FALSE, int PropagateValue = LocateAllDocumentsEmptyOnly);
+      virtual BOOL InsertExternalDocumentAfter (const CString FileName, int IndexAfter, BOOL InsertAsReadOnly = FALSE, int PropagateValue = g_LocateAllDocumentsEmptyOnly);
 
       //    Insert a binary document file at the end of the document
       //    data array.
@@ -563,27 +563,27 @@ public:
 
       //## Operation: PropagateDocumentValue%934014431
       //    Propagate a value into the document.
-      BOOL PropagateDocumentValue (CString Name, CString Value, int PropagationMode = LocateAllDocumentsEmptyOnly, BOOL EmptyWhenZero = FALSE, int DocumentIndex = -1, int Page = -1);
+      BOOL PropagateDocumentValue (CString Name, CString Value, int PropagationMode = g_LocateAllDocumentsEmptyOnly, BOOL EmptyWhenZero = FALSE, int DocumentIndex = -1, int Page = -1);
 
       //## Operation: PropagateDocumentValueFromTo%945026902
       //    Propagate a value into the document, using the index
       //    range.
-      BOOL PropagateDocumentValueFromTo (CString Name, CString Value, int PropagationMode = LocateAllPagesEmptyOnly, BOOL EmptyWhenZero = FALSE, int DocumentIndexFrom = 0, int DocumentIndexTo = -1, int Page = -1);
+      BOOL PropagateDocumentValueFromTo (CString Name, CString Value, int PropagationMode = g_LocateAllPagesEmptyOnly, BOOL EmptyWhenZero = FALSE, int DocumentIndexFrom = 0, int DocumentIndexTo = -1, int Page = -1);
 
       //## Operation: PropagateExternDocumentAllValues%934145355
       //    Propagate all values coming from a document into this
       //    document.
-      BOOL PropagateExternDocumentAllValues (ZDDocument* pDoc, int PropagationMode = LocateAllDocumentsEmptyOnly, BOOL EmptyWhenZero = FALSE, int DocumentIndex = -1, int Page = -1);
+      BOOL PropagateExternDocumentAllValues (ZDDocument* pDoc, int PropagationMode = g_LocateAllDocumentsEmptyOnly, BOOL EmptyWhenZero = FALSE, int DocumentIndex = -1, int Page = -1);
 
       //## Operation: PropagateInternalDocumentAllValues%945006730
       //    Propagate all values coming from internal documents into
       //    this document.
-      BOOL PropagateInternalDocumentAllValues (int IndexFrom = 0, int IndexTo = -1, int PropagationMode = LocateAllDocumentsEmptyOnly, BOOL EmptyWhenZero = FALSE, int DocumentIndex = -1, int Page = -1);
+      BOOL PropagateInternalDocumentAllValues (int IndexFrom = 0, int IndexTo = -1, int PropagationMode = g_LocateAllDocumentsEmptyOnly, BOOL EmptyWhenZero = FALSE, int DocumentIndex = -1, int Page = -1);
 
       //## Operation: PropagateInternalDocumentOnDocumentValues%945006731
       //    Propagate all values coming from internal documents into
       //    some internal documents.
-      BOOL PropagateInternalDocumentOnDocumentValues (int InIndexFrom = 0, int InIndexTo = -1, int ToIndexFrom = 0, int ToIndexTo = -1, int PropagationMode = LocateAllDocumentsEmptyOnly, BOOL EmptyWhenZero = FALSE);
+      BOOL PropagateInternalDocumentOnDocumentValues (int InIndexFrom = 0, int InIndexTo = -1, int ToIndexFrom = 0, int ToIndexTo = -1, int PropagationMode = g_LocateAllDocumentsEmptyOnly, BOOL EmptyWhenZero = FALSE);
 
       //    Parse a line string to import the activity.
       virtual BOOL ImportActivityFromLineString (size_t CurrentActivity, CString Line);

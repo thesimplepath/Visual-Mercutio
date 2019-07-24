@@ -21,7 +21,7 @@ ZBUserEntitySet ZBUserGroupEntity::m_FindSet;
 
 BOOL            ZBUserGroupEntity::m_bModified = FALSE;
 
-IMPLEMENT_SERIAL( ZBUserGroupEntity, ZBUserEntity, def_Version )
+IMPLEMENT_SERIAL(ZBUserGroupEntity, ZBUserEntity, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

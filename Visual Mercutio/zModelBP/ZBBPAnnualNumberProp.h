@@ -646,133 +646,133 @@ inline void ZBBPAnnualNumberProperties::SetNumberAt( size_t Index, const double 
 inline double ZBBPAnnualNumberProperties::GetNumberJanuary() const
 {
     bool bError;
-    return m_Equalizer.GetNumberAt( IndexJanuary, bError );
+    return m_Equalizer.GetNumberAt(g_IndexJanuary, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetNumberJanuary( const double value )
 {
-    m_Equalizer.SetNumberAt( IndexJanuary, value );
+    m_Equalizer.SetNumberAt(g_IndexJanuary, value);
 }
 
 inline double ZBBPAnnualNumberProperties::GetNumberFebruary() const
 {
     bool bError;
-    return m_Equalizer.GetNumberAt( IndexFebruary, bError );
+    return m_Equalizer.GetNumberAt(g_IndexFebruary, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetNumberFebruary( const double value )
 {
-    m_Equalizer.SetNumberAt( IndexFebruary, value );
+    m_Equalizer.SetNumberAt(g_IndexFebruary, value);
 }
 
 inline double ZBBPAnnualNumberProperties::GetNumberMarch() const
 {
     bool bError;
-    return m_Equalizer.GetNumberAt( IndexMarch, bError );
+    return m_Equalizer.GetNumberAt(g_IndexMarch, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetNumberMarch( const double value )
 {
-    m_Equalizer.SetNumberAt( IndexMarch, value );
+    m_Equalizer.SetNumberAt(g_IndexMarch, value);
 }
 
 inline double ZBBPAnnualNumberProperties::GetNumberApril() const
 {
     bool bError;
-    return m_Equalizer.GetNumberAt( IndexApril, bError );
+    return m_Equalizer.GetNumberAt(g_IndexApril, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetNumberApril( const double value )
 {
-    m_Equalizer.SetNumberAt( IndexApril, value );
+    m_Equalizer.SetNumberAt(g_IndexApril, value);
 }
 
 inline double ZBBPAnnualNumberProperties::GetNumberMay() const
 {
     bool bError;
-    return m_Equalizer.GetNumberAt( IndexMay, bError );
+    return m_Equalizer.GetNumberAt(g_IndexMay, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetNumberMay( const double value )
 {
-    m_Equalizer.SetNumberAt( IndexMay, value );
+    m_Equalizer.SetNumberAt(g_IndexMay, value);
 }
 
 inline double ZBBPAnnualNumberProperties::GetNumberJune() const
 {
     bool bError;
-    return m_Equalizer.GetNumberAt( IndexJune, bError );
+    return m_Equalizer.GetNumberAt(g_IndexJune, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetNumberJune( const double value )
 {
-    m_Equalizer.SetNumberAt( IndexJune, value );
+    m_Equalizer.SetNumberAt(g_IndexJune, value);
 }
 
 inline double ZBBPAnnualNumberProperties::GetNumberJuly() const
 {
     bool bError;
-    return m_Equalizer.GetNumberAt( IndexJuly, bError );
+    return m_Equalizer.GetNumberAt(g_IndexJuly, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetNumberJuly( const double value )
 {
-    m_Equalizer.SetNumberAt( IndexJuly, value );
+    m_Equalizer.SetNumberAt(g_IndexJuly, value);
 }
 
 inline double ZBBPAnnualNumberProperties::GetNumberAugust() const
 {
     bool bError;
-    return m_Equalizer.GetNumberAt( IndexAugust, bError );
+    return m_Equalizer.GetNumberAt(g_IndexAugust, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetNumberAugust( const double value )
 {
-    m_Equalizer.SetNumberAt( IndexAugust, value );
+    m_Equalizer.SetNumberAt(g_IndexAugust, value);
 }
 
 inline double ZBBPAnnualNumberProperties::GetNumberSeptember() const
 {
     bool bError;
-    return m_Equalizer.GetNumberAt( IndexSeptember, bError );
+    return m_Equalizer.GetNumberAt(g_IndexSeptember, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetNumberSeptember( const double value )
 {
-    m_Equalizer.SetNumberAt( IndexSeptember, value );
+    m_Equalizer.SetNumberAt(g_IndexSeptember, value);
 }
 
 inline double ZBBPAnnualNumberProperties::GetNumberOctober() const
 {
     bool bError;
-    return m_Equalizer.GetNumberAt( IndexOctober, bError );
+    return m_Equalizer.GetNumberAt(g_IndexOctober, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetNumberOctober( const double value )
 {
-    m_Equalizer.SetNumberAt( IndexOctober, value );
+    m_Equalizer.SetNumberAt(g_IndexOctober, value);
 }
 
 inline double ZBBPAnnualNumberProperties::GetNumberNovember() const
 {
     bool bError;
-    return m_Equalizer.GetNumberAt( IndexNovember, bError );
+    return m_Equalizer.GetNumberAt(g_IndexNovember, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetNumberNovember( const double value )
 {
-    m_Equalizer.SetNumberAt( IndexNovember, value );
+    m_Equalizer.SetNumberAt(g_IndexNovember, value);
 }
 
 inline double ZBBPAnnualNumberProperties::GetNumberDecember() const
 {
     bool bError;
-    return m_Equalizer.GetNumberAt( IndexDecember, bError );
+    return m_Equalizer.GetNumberAt(g_IndexDecember, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetNumberDecember( const double value )
 {
-    m_Equalizer.SetNumberAt( IndexDecember, value );
+    m_Equalizer.SetNumberAt(g_IndexDecember, value);
 }
 
 inline bool ZBBPAnnualNumberProperties::GetLockNumberYear() const
@@ -798,265 +798,265 @@ inline void ZBBPAnnualNumberProperties::SetLockNumberYearEx( const UINT value )
 inline bool ZBBPAnnualNumberProperties::GetLockNumberJanuary() const
 {
     bool bError;
-    return m_Equalizer.GetLockedFlagAt( IndexJanuary, bError );
+    return m_Equalizer.GetLockedFlagAt(g_IndexJanuary, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberJanuary( const bool value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexJanuary, value );
+    m_Equalizer.SetLockedFlagAt(g_IndexJanuary, value);
 }
 
 inline UINT ZBBPAnnualNumberProperties::GetLockNumberJanuaryEx() const
 {
     bool bError;
-    return (UINT)m_Equalizer.GetLockedFlagAt( IndexJanuary, bError );
+    return (UINT)m_Equalizer.GetLockedFlagAt(g_IndexJanuary, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberJanuaryEx( const UINT value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexJanuary, (value == 1) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexJanuary, (value == 1) ? true : false);
 }
 
 inline bool ZBBPAnnualNumberProperties::GetLockNumberFebruary() const
 {
     bool bError;
-    return m_Equalizer.GetLockedFlagAt( IndexFebruary, bError );
+    return m_Equalizer.GetLockedFlagAt(g_IndexFebruary, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberFebruary( const bool value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexFebruary, value );
+    m_Equalizer.SetLockedFlagAt(g_IndexFebruary, value);
 }
 
 inline UINT ZBBPAnnualNumberProperties::GetLockNumberFebruaryEx() const
 {
     bool bError;
-    return (UINT)m_Equalizer.GetLockedFlagAt( IndexFebruary, bError );
+    return (UINT)m_Equalizer.GetLockedFlagAt(g_IndexFebruary, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberFebruaryEx( const UINT value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexFebruary, ( value == 1 ) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexFebruary, (value == 1) ? true : false);
 }
 
 inline bool ZBBPAnnualNumberProperties::GetLockNumberMarch() const
 {
     bool bError;
-    return m_Equalizer.GetLockedFlagAt( IndexMarch, bError );
+    return m_Equalizer.GetLockedFlagAt(g_IndexMarch, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberMarch( const bool value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexMarch, value );
+    m_Equalizer.SetLockedFlagAt(g_IndexMarch, value);
 }
 
 inline UINT ZBBPAnnualNumberProperties::GetLockNumberMarchEx() const
 {
     bool bError;
-    return (UINT)m_Equalizer.GetLockedFlagAt( IndexMarch, bError );
+    return (UINT)m_Equalizer.GetLockedFlagAt(g_IndexMarch, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberMarchEx( const UINT value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexMarch, ( value == 1 ) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexMarch, (value == 1) ? true : false);
 }
 
 inline bool ZBBPAnnualNumberProperties::GetLockNumberApril() const
 {
     bool bError;
-    return m_Equalizer.GetLockedFlagAt( IndexApril, bError );
+    return m_Equalizer.GetLockedFlagAt(g_IndexApril, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberApril( const bool value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexApril, value );
+    m_Equalizer.SetLockedFlagAt(g_IndexApril, value);
 }
 
 inline UINT ZBBPAnnualNumberProperties::GetLockNumberAprilEx() const
 {
     bool bError;
-    return (UINT)m_Equalizer.GetLockedFlagAt( IndexApril, bError );
+    return (UINT)m_Equalizer.GetLockedFlagAt(g_IndexApril, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberAprilEx( const UINT value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexApril, ( value == 1 ) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexApril, (value == 1) ? true : false);
 }
 
 inline bool ZBBPAnnualNumberProperties::GetLockNumberMay() const
 {
     bool bError;
-    return m_Equalizer.GetLockedFlagAt( IndexMay, bError );
+    return m_Equalizer.GetLockedFlagAt(g_IndexMay, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberMay( const bool value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexMay, value );
+    m_Equalizer.SetLockedFlagAt(g_IndexMay, value);
 }
 
 inline UINT ZBBPAnnualNumberProperties::GetLockNumberMayEx() const
 {
     bool bError;
-    return (UINT)m_Equalizer.GetLockedFlagAt( IndexMay, bError );
+    return (UINT)m_Equalizer.GetLockedFlagAt(g_IndexMay, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberMayEx( const UINT value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexMay, ( value == 1 ) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexMay, (value == 1) ? true : false);
 }
 
 inline bool ZBBPAnnualNumberProperties::GetLockNumberJune() const
 {
     bool bError;
-    return m_Equalizer.GetLockedFlagAt( IndexJune, bError );
+    return m_Equalizer.GetLockedFlagAt(g_IndexJune, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberJune( const bool value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexJune, value );
+    m_Equalizer.SetLockedFlagAt(g_IndexJune, value);
 }
 
 inline UINT ZBBPAnnualNumberProperties::GetLockNumberJuneEx() const
 {
     bool bError;
-    return (UINT)m_Equalizer.GetLockedFlagAt( IndexJune, bError );
+    return (UINT)m_Equalizer.GetLockedFlagAt(g_IndexJune, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberJuneEx( const UINT value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexJune, ( value == 1 ) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexJune, (value == 1) ? true : false);
 }
 
 inline bool ZBBPAnnualNumberProperties::GetLockNumberJuly() const
 {
     bool bError;
-    return m_Equalizer.GetLockedFlagAt( IndexJuly, bError );
+    return m_Equalizer.GetLockedFlagAt(g_IndexJuly, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberJuly( const bool value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexJuly, value );
+    m_Equalizer.SetLockedFlagAt(g_IndexJuly, value);
 }
 
 inline UINT ZBBPAnnualNumberProperties::GetLockNumberJulyEx() const
 {
     bool bError;
-    return (UINT)m_Equalizer.GetLockedFlagAt( IndexJuly, bError );
+    return (UINT)m_Equalizer.GetLockedFlagAt(g_IndexJuly, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberJulyEx( const UINT value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexJuly, ( value == 1 ) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexJuly, (value == 1) ? true : false);
 }
 
 inline bool ZBBPAnnualNumberProperties::GetLockNumberAugust() const
 {
     bool bError;
-    return m_Equalizer.GetLockedFlagAt( IndexAugust, bError );
+    return m_Equalizer.GetLockedFlagAt(g_IndexAugust, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberAugust( const bool value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexAugust, value );
+    m_Equalizer.SetLockedFlagAt(g_IndexAugust, value);
 }
 
 inline UINT ZBBPAnnualNumberProperties::GetLockNumberAugustEx() const
 {
     bool bError;
-    return (UINT)m_Equalizer.GetLockedFlagAt( IndexAugust, bError );
+    return (UINT)m_Equalizer.GetLockedFlagAt(g_IndexAugust, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberAugustEx( const UINT value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexAugust, ( value == 1 ) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexAugust, (value == 1) ? true : false);
 }
 
 inline bool ZBBPAnnualNumberProperties::GetLockNumberSeptember() const
 {
     bool bError;
-    return m_Equalizer.GetLockedFlagAt( IndexSeptember, bError );
+    return m_Equalizer.GetLockedFlagAt(g_IndexSeptember, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberSeptember( const bool value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexSeptember, value );
+    m_Equalizer.SetLockedFlagAt(g_IndexSeptember, value);
 }
 
 inline UINT ZBBPAnnualNumberProperties::GetLockNumberSeptemberEx() const
 {
     bool bError;
-    return (UINT)m_Equalizer.GetLockedFlagAt( IndexSeptember, bError );
+    return (UINT)m_Equalizer.GetLockedFlagAt(g_IndexSeptember, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberSeptemberEx( const UINT value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexSeptember, ( value == 1 ) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexSeptember, (value == 1) ? true : false);
 }
 
 inline bool ZBBPAnnualNumberProperties::GetLockNumberOctober() const
 {
     bool bError;
-    return m_Equalizer.GetLockedFlagAt( IndexOctober, bError );
+    return m_Equalizer.GetLockedFlagAt(g_IndexOctober, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberOctober( const bool value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexOctober, value );
+    m_Equalizer.SetLockedFlagAt(g_IndexOctober, value);
 }
 
 inline UINT ZBBPAnnualNumberProperties::GetLockNumberOctoberEx() const
 {
     bool bError;
-    return (UINT)m_Equalizer.GetLockedFlagAt( IndexOctober, bError );
+    return (UINT)m_Equalizer.GetLockedFlagAt(g_IndexOctober, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberOctoberEx( const UINT value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexOctober, ( value == 1 ) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexOctober, (value == 1) ? true : false);
 }
 
 inline bool ZBBPAnnualNumberProperties::GetLockNumberNovember() const
 {
     bool bError;
-    return m_Equalizer.GetLockedFlagAt( IndexNovember, bError );
+    return m_Equalizer.GetLockedFlagAt(g_IndexNovember, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberNovember( const bool value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexNovember, value );
+    m_Equalizer.SetLockedFlagAt(g_IndexNovember, value);
 }
 
 inline UINT ZBBPAnnualNumberProperties::GetLockNumberNovemberEx() const
 {
     bool bError;
-    return (UINT)m_Equalizer.GetLockedFlagAt( IndexNovember, bError );
+    return (UINT)m_Equalizer.GetLockedFlagAt(g_IndexNovember, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberNovemberEx( const UINT value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexNovember, ( value == 1 ) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexNovember, (value == 1) ? true : false);
 }
 
 inline bool ZBBPAnnualNumberProperties::GetLockNumberDecember() const
 {
     bool bError;
-    return m_Equalizer.GetLockedFlagAt( IndexDecember, bError );
+    return m_Equalizer.GetLockedFlagAt(g_IndexDecember, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberDecember( const bool value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexDecember, value );
+    m_Equalizer.SetLockedFlagAt(g_IndexDecember, value);
 }
 
 inline UINT ZBBPAnnualNumberProperties::GetLockNumberDecemberEx() const
 {
     bool bError;
-    return (UINT)m_Equalizer.GetLockedFlagAt( IndexDecember, bError );
+    return (UINT)m_Equalizer.GetLockedFlagAt(g_IndexDecember, bError);
 }
 
 inline void ZBBPAnnualNumberProperties::SetLockNumberDecemberEx( const UINT value )
 {
-    m_Equalizer.SetLockedFlagAt( IndexDecember, ( value == 1 ) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexDecember, (value == 1) ? true : false);
 }
 
 inline bool ZBBPAnnualNumberProperties::GetForceEqualizer() const

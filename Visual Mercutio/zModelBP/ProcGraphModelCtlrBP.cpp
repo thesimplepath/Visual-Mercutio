@@ -936,7 +936,7 @@ void ZDProcessGraphModelControllerBP::OnLinktoFilePackage()
         CString title;
         VERIFY( title.LoadString( IDS_SELECTUNITIMPORT_TITLE ) );
     
-        CString    File = sSearchAllModelExtension;
+        CString    File = g_SearchAllModelExtension;
 
         // set the first file filter
         CString strFilter = _T( "Modèle (*.mlf)" );

@@ -69,21 +69,23 @@ BOOL ZUFLFDataFeed::ProcessLine (CString Line)
 
     switch (GetSeparatorType())
     {
-        case CommaSeparator :
+        case E_SS_Comma:
         {
-            Tokenizer.SetSeparator( ',' );
+            Tokenizer.SetSeparator(',');
             break;
         }
-        case SemiColumnSeparator :
+
+        case E_SS_SemiColumn:
         {
-            Tokenizer.SetSeparator( ';' );
+            Tokenizer.SetSeparator(';');
             break;
         }
-        case AutomaticSeparator :     
-        case TabSeparator :    
+
+        case E_SS_Automatic:
+        case E_SS_Tab:
         default:
         {
-            Tokenizer.SetSeparator( '\t' );
+            Tokenizer.SetSeparator('\t');
             break;
         }
     }
@@ -96,22 +98,22 @@ BOOL ZUFLFDataFeed::ProcessLine (CString Line)
       // Extract the value
     Value = Tokenizer.GetNextToken();
 
-    if (Key.CompareNoCase( szExportProcessNameKey ) == 0)
+    if (!Key.CompareNoCase(g_ExportProcessNameKey))
         m_ProcessName = Value;
     else
-    if (Key.CompareNoCase( szExportTemplateNameKey ) == 0)
+    if (!Key.CompareNoCase(g_ExportTemplateNameKey))
         m_FormName = Value;
     else
-    if (Key.CompareNoCase( szExportFolderNameKey ) == 0)
+    if (!Key.CompareNoCase(g_ExportFolderNameKey))
         m_FolderName = Value;
     else
-    if (Key.CompareNoCase( szExportFileNameKey ) == 0)
+    if (!Key.CompareNoCase(g_ExportFileNameKey))
         m_FileName = Value;
     else
-    if (Key.CompareNoCase( szExportProcessExchangeFileNameKey ) == 0)
+    if (Key.CompareNoCase(g_ExportProcessExchangeFileNameKey))
         m_ProcessExchangeFileName = Value;
     else
-    if (Key.CompareNoCase( szExportKeepOnlyFLFKey ) == 0)
+    if (Key.CompareNoCase(g_ExportKeepOnlyFLFKey))
         m_KeepOnlyFLF = atoi( Value );
 
     return TRUE;      

@@ -31,7 +31,7 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(PLFNAscii, PlanFinObject, def_Version)
+IMPLEMENT_SERIAL(PLFNAscii, PlanFinObject, g_DefVersion)
 //## end module%334FC4630321.additionalDeclarations
 
 
@@ -43,7 +43,7 @@ IMPLEMENT_SERIAL(PLFNAscii, PlanFinObject, def_Version)
 
 PLFNAscii::PLFNAscii()
   //## begin PLFNAscii::PLFNAscii%.hasinit preserve=no
-      : m_iJustify(NoAlignement), m_IsStriked(FALSE), m_StrikeStyle(NormalStrike), m_KeepHistory(FALSE)
+      : m_iJustify(g_NoAlignement), m_IsStriked(FALSE), m_StrikeStyle(NormalStrike), m_KeepHistory(FALSE)
   //## end PLFNAscii::PLFNAscii%.hasinit
   //## begin PLFNAscii::PLFNAscii%.initialization preserve=yes
   //## end PLFNAscii::PLFNAscii%.initialization
@@ -54,7 +54,7 @@ PLFNAscii::PLFNAscii()
 
 PLFNAscii::PLFNAscii(const PLFNAscii &right)
   //## begin PLFNAscii::PLFNAscii%copy.hasinit preserve=no
-      : m_iJustify(NoAlignement), m_IsStriked(FALSE), m_StrikeStyle(NormalStrike), m_KeepHistory(FALSE)
+      : m_iJustify(g_NoAlignement), m_IsStriked(FALSE), m_StrikeStyle(NormalStrike), m_KeepHistory(FALSE)
   //## end PLFNAscii::PLFNAscii%copy.hasinit
   //## begin PLFNAscii::PLFNAscii%copy.initialization preserve=yes
   //## end PLFNAscii::PLFNAscii%copy.initialization
@@ -138,7 +138,7 @@ void PLFNAscii::Serialize (CArchive& ar)
 UINT PLFNAscii::GetJustify (ZDDocument* pDoc) const
 {
   //## begin PLFNAscii::GetJustify%833261594.body preserve=yes
-      if (m_iJustify != NoAlignement)
+      if (m_iJustify != g_NoAlignement)
           return m_iJustify;
       if (pDoc && pDoc->GetStyleManager().GetStyle( GethStyle() ))
           return pDoc->GetStyleManager().GetStyle( GethStyle() )->GetJustify();

@@ -45,7 +45,7 @@ ZBitmap ZBLinkSymbol::m_ShortCutBitmap;
 // **********************************************************************************************************
 #define _CANSELECTCONVERTER 1
 
-IMPLEMENT_SERIAL( ZBLinkSymbol, CODLinkComponent, def_Version )
+IMPLEMENT_SERIAL(ZBLinkSymbol, CODLinkComponent, g_DefVersion)
 
 // **********************************************************************************************************
 // *              Construction, destruction, opérateurs et fonctions de manipulation de l'objet                *

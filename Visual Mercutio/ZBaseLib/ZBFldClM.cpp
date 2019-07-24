@@ -29,7 +29,7 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(ZBFieldColumnManager, CObject, def_Version)
+IMPLEMENT_SERIAL(ZBFieldColumnManager, CObject, g_DefVersion)
 //## end module%38819AFD0267.additionalDeclarations
 
 

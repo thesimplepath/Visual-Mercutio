@@ -33,7 +33,7 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(PLFNMaskString, PLFNString, def_Version)
+IMPLEMENT_SERIAL(PLFNMaskString, PLFNString, g_DefVersion)
 //## end module%38722BAE018E.additionalDeclarations
 
 

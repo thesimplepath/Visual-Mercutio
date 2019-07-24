@@ -39,7 +39,7 @@ CString ZDHistoryProcessStatusRecordset::GetDefaultDBName()
 
 CString ZDHistoryProcessStatusRecordset::GetDefaultSQL()
 {
-    return _T(HistoryProcessStatusTableName);
+    return _T(g_HistoryProcessStatusTableName);
 }
 
 void ZDHistoryProcessStatusRecordset::DoFieldExchange(CDaoFieldExchange* pFX)

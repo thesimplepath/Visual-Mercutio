@@ -134,34 +134,34 @@ public:
 
     ///////////////////////////////////////////////////////
     // Notation methods
-    ModelNotation GetNotation() const
+    EModelNotation GetNotation() const
     {
         return m_Notation;
     }
 
-    void SetNotation( ModelNotation value )
+    void SetNotation(EModelNotation value)
     {
         m_Notation = value;
     }
 
     bool IsModelInABCNotation() const
     {
-        return m_Notation == ABCNotation;
+        return m_Notation == E_MN_ABC;
     }
 
     bool IsModelInUMLNotation() const
     {
-        return m_Notation == UMLNotation;
+        return m_Notation == E_MN_UML;
     }
 
     bool IsModelInBerylNotation() const
     {
-        return m_Notation == BerylNotation;
+        return m_Notation == E_MN_Beryl;
     }
 
     bool IsModelNotationUnknow() const
     {
-        return m_Notation == UnknownNotation;
+        return m_Notation == E_MN_Unknown;
     }
 
     bool            GetCheckConsistency            () const;
@@ -795,7 +795,7 @@ protected:
     
 protected:
 
-    ModelNotation                                    m_Notation;
+    EModelNotation                                    m_Notation;
     CString                                            m_Name;
 
     // Contains all the pages

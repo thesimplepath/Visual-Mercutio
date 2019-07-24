@@ -45,7 +45,7 @@ BOOL ZDUserLoader::LoadAllUsers ()
 {
   //## begin ZDUserLoader::LoadAllUsers%915200904.body preserve=yes
       ASSERT( m_pUserManager );
-    m_UserImport.Create( m_FileName, m_pUserManager, FALSE, TabSeparator );
+    m_UserImport.Create( m_FileName, m_pUserManager, FALSE, E_SS_Tab);
     return m_UserImport.Import();
   //## end ZDUserLoader::LoadAllUsers%915200904.body
 }

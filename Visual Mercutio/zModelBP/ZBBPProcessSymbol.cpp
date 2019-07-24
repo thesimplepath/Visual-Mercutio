@@ -78,7 +78,7 @@ const size_t    _MaxRulesSize            = 20;
 // JMR-MODIF - Le 3 juin 2007 - Ajout de la constante _MaxRisksSize.
 const size_t    _MaxRisksSize            = 20;
 
-IMPLEMENT_SERIAL( ZBBPProcessSymbol, ZBSymbol, def_Version )
+IMPLEMENT_SERIAL(ZBBPProcessSymbol, ZBSymbol, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

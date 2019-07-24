@@ -65,26 +65,18 @@ ZIPreConditionFormProc::ZIPreConditionFormProc( CString            ActivityName,
     // set the right file filter
     CString strFilter;
 
-    if ( m_IsProcess )
-    {
-        VERIFY( strFilter.LoadString( IDS_PROCESSFILE_FILTERTXT ) );
-    }
+    if (m_IsProcess)
+        VERIFY(strFilter.LoadString(IDS_PROCESSFILE_FILTERTXT));
     else
-    {
-        VERIFY( strFilter.LoadString( IDS_FORMFILE_FILTERTXT ) );
-    }
+        VERIFY(strFilter.LoadString(IDS_FORMFILE_FILTERTXT));
 
     // Next string please
     strFilter += (char)'\0';
 
-    if ( m_IsProcess )
-    {
-        strFilter += sSearchAllProcessExtension;
-    }
+    if (m_IsProcess)
+        strFilter += g_SearchAllProcessExtension;
     else
-    {
-        strFilter += sSearchAllFormExtension;
-    }
+        strFilter += g_SearchAllFormExtension;
 
     // Last string
     strFilter += (char)'\0';

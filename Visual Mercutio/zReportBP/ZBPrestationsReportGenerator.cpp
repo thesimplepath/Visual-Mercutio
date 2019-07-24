@@ -781,7 +781,7 @@ void _ZBPrestationsDatas::Associate( ZBBPProcessSymbol* Process )
 // *                                Classe ZBPrestationsReportGenerator                                    *
 // ******************************************************************************************************
 
-IMPLEMENT_SERIAL( ZBPrestationsReportGenerator, ZBModelBPReportGenerator, def_Version )
+IMPLEMENT_SERIAL(ZBPrestationsReportGenerator, ZBModelBPReportGenerator, g_DefVersion)
 
 // ******************************************************************************************************
 // *                                   Construction et destruction                                        *

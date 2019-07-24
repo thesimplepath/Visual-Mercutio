@@ -308,7 +308,7 @@ class AFX_EXT_CLASS PLFNMultiColumn : public PlanFinObject  //## Inherits: <unna
 inline UINT PLFNMultiColumn::GetRightSubMenu () const
 {
   //## begin PLFNMultiColumn::GetRightSubMenu%948017483.body preserve=yes
-      return MultiColumnRightSubMenu;
+      return g_MultiColumnRightSubMenu;
   //## end PLFNMultiColumn::GetRightSubMenu%948017483.body
 }
 

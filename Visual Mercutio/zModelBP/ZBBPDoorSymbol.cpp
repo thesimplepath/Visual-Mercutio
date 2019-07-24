@@ -32,7 +32,7 @@ static char THIS_FILE[]=__FILE__;
 
 // JMR-MODIF - Le 3 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL( ZBBPDoorSymbol, ZBSymbol, def_Version )
+IMPLEMENT_SERIAL(ZBBPDoorSymbol, ZBSymbol, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

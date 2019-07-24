@@ -32,9 +32,9 @@
 #include "zBaseLib\FldMng.h"
 
 #include "zWinUtil32\newform.h"
-#include "zWinUtil32\FoldInfo.h"
+#include "zWinUtil32\PSS_FolderInfoDialog.h"
 
-#include "zWinUtil32\DocOptDG.h"
+#include "zWinUtil32\PSS_DocOptionDialog.h"
 
 #if defined( _ZDESIGNER ) || defined( _ZSCRIPTOR )
     #include "formasc.h"
@@ -62,7 +62,7 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 11 mai 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL( ZDDocumentReadWrite, ZDDocument, def_Version )
+IMPLEMENT_SERIAL(ZDDocumentReadWrite, ZDDocument, g_DefVersion)
 
 BEGIN_MESSAGE_MAP( ZDDocumentReadWrite, ZDDocument )
     //{{AFX_MSG_MAP(ZDDocumentReadWrite)
@@ -119,7 +119,7 @@ BOOL ZDDocumentReadWrite::OnNewDocument()
     }
 
     // Set the type for Document
-    GetDocumentStamp().SetFileType( DocumentType );
+    GetDocumentStamp().SetFileType(E_FD_DocumentType);
     AssignPredefinedField();
 
     // Set the path name to empty
@@ -372,8 +372,8 @@ void ZDDocumentReadWrite::OnFileOptions()
 
 void ZDDocumentReadWrite::OnFileProperty()
 {
-    ZIFolderInformation FolderInformation( &GetDocumentStamp(), TRUE );
-    FolderInformation.DoModal();
+    PSS_FolderInfoDialog folderInfoDialog(&GetDocumentStamp(), TRUE);
+    folderInfoDialog.DoModal();
 }
 
 void ZDDocumentReadWrite::OnFileSave()
@@ -551,7 +551,7 @@ void ZDDocumentReadWrite::OnFormulaScenarioCreation()
 
 void ZDDocumentReadWrite::OnFormulaScenarioDelete()
 {
-    if ( GetCurrentSchema() == szOriginalSchema )
+    if ( GetCurrentSchema() == g_OriginalSchema )
     {
         MsgBox mbox;
         mbox.DisplayMsgBox( IDS_CANNOTDELETE_ORIGINALSCENARIO, MB_OK );
@@ -568,7 +568,7 @@ void ZDDocumentReadWrite::OnFormulaScenarioDelete()
             GetActiveDocumentData()->GetSchema().DeleteFormulaList( GetActiveDocumentData()->GetCurrentSchema() );
 
             // Set the new current schema. By default, the original
-            ChangeCurrentSchema( szOriginalSchema );
+            ChangeCurrentSchema( g_OriginalSchema );
             SchemaListHasChanged();
         }
     }

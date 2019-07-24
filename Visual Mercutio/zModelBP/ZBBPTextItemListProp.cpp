@@ -33,7 +33,7 @@ using namespace sfl;
 /////////////////////////////////////////////////////////////////////////////
 // ZBBPTextItemListProperties construction/destruction
 
-IMPLEMENT_SERIAL(ZBBPTextItemListProperties, CODIntProperty, def_Version)
+IMPLEMENT_SERIAL(ZBBPTextItemListProperties, CODIntProperty, g_DefVersion)
 
 //@mfunc | ZBBPTextItemListProperties | ZBBPTextItemListProperties | Constructor.
 //

@@ -129,23 +129,23 @@ class AFX_EXT_CLASS ZABorder : public CObject  //## Inherits: <unnamed>%33EC678C
 
       //## Attribute: LeftType%33EC6A5E0352
       //    Define the line type for the left border.
-      const LineType GetLeftType () const;
-      void SetLeftType (LineType value);
+      const ELineType GetLeftType() const;
+      void SetLeftType(ELineType value);
 
       //## Attribute: RightType%33EC6AAF0064
       //    Define the line type for the right border.
-      const LineType GetRightType () const;
-      void SetRightType (LineType value);
+      const ELineType GetRightType () const;
+      void SetRightType(ELineType value);
 
       //## Attribute: TopType%33EC6AC90352
       //    Define the line type for the top border.
-      const LineType GetTopType () const;
-      void SetTopType (LineType value);
+      const ELineType GetTopType() const;
+      void SetTopType(ELineType value);
 
       //## Attribute: BottomType%33EC6AD7001E
       //    Define the line type for the bottom border.
-      const LineType GetBottomType () const;
-      void SetBottomType (LineType value);
+      const ELineType GetBottomType () const;
+      void SetBottomType(ELineType value);
 
       //## Attribute: bShadow%33EC6AE801B8
       //    Define the shadow state.
@@ -189,11 +189,11 @@ class AFX_EXT_CLASS ZABorder : public CObject  //## Inherits: <unnamed>%33EC678C
     //## Other Operations (specified)
       //## Operation: DrawBorderHorizontalLine%908904114
       //    Draw a horizontal line of a border rectangle.
-      void DrawBorderHorizontalLine (CDC* pDC, const CPoint& StartPoint, const CPoint& EndPoint, LineType Type);
+      void DrawBorderHorizontalLine (CDC* pDC, const CPoint& StartPoint, const CPoint& EndPoint, ELineType Type);
 
       //## Operation: DrawBorderVerticalLine%908904115
       //    Draw a vertical line of a border rectangle.
-      void DrawBorderVerticalLine (CDC* pDC, const CPoint& StartPoint, const CPoint& EndPoint, LineType Type);
+      void DrawBorderVerticalLine (CDC* pDC, const CPoint& StartPoint, const CPoint& EndPoint, ELineType Type);
 
     // Additional Private Declarations
       //## begin ZABorder%33EC676303DE.private preserve=yes
@@ -219,19 +219,19 @@ class AFX_EXT_CLASS ZABorder : public CObject  //## Inherits: <unnamed>%33EC678C
       //## end ZABorder::wBottomWidth%33EC6A3F0032.attr
 
       //## begin ZABorder::LeftType%33EC6A5E0352.attr preserve=no  public: LineType {U} NoLine
-      LineType m_LeftType;
+      ELineType m_LeftType;
       //## end ZABorder::LeftType%33EC6A5E0352.attr
 
       //## begin ZABorder::RightType%33EC6AAF0064.attr preserve=no  public: LineType {U} NoLine
-      LineType m_RightType;
+      ELineType m_RightType;
       //## end ZABorder::RightType%33EC6AAF0064.attr
 
       //## begin ZABorder::TopType%33EC6AC90352.attr preserve=no  public: LineType {U} NoLine
-      LineType m_TopType;
+      ELineType m_TopType;
       //## end ZABorder::TopType%33EC6AC90352.attr
 
       //## begin ZABorder::BottomType%33EC6AD7001E.attr preserve=no  public: LineType {U} NoLine
-      LineType m_BottomType;
+      ELineType m_BottomType;
       //## end ZABorder::BottomType%33EC6AD7001E.attr
 
       //## begin ZABorder::bShadow%33EC6AE801B8.attr preserve=no  public: BOOL {U} FALSE
@@ -323,56 +323,56 @@ inline void ZABorder::SetwBottomWidth (WORD value)
   //## end ZABorder::SetwBottomWidth%33EC6A3F0032.set
 }
 
-inline const LineType ZABorder::GetLeftType () const
+inline const ELineType ZABorder::GetLeftType() const
 {
   //## begin ZABorder::GetLeftType%33EC6A5E0352.get preserve=no
   return m_LeftType;
   //## end ZABorder::GetLeftType%33EC6A5E0352.get
 }
 
-inline void ZABorder::SetLeftType (LineType value)
+inline void ZABorder::SetLeftType(ELineType value)
 {
   //## begin ZABorder::SetLeftType%33EC6A5E0352.set preserve=no
   m_LeftType = value;
   //## end ZABorder::SetLeftType%33EC6A5E0352.set
 }
 
-inline const LineType ZABorder::GetRightType () const
+inline const ELineType ZABorder::GetRightType() const
 {
   //## begin ZABorder::GetRightType%33EC6AAF0064.get preserve=no
   return m_RightType;
   //## end ZABorder::GetRightType%33EC6AAF0064.get
 }
 
-inline void ZABorder::SetRightType (LineType value)
+inline void ZABorder::SetRightType(ELineType value)
 {
   //## begin ZABorder::SetRightType%33EC6AAF0064.set preserve=no
   m_RightType = value;
   //## end ZABorder::SetRightType%33EC6AAF0064.set
 }
 
-inline const LineType ZABorder::GetTopType () const
+inline const ELineType ZABorder::GetTopType() const
 {
   //## begin ZABorder::GetTopType%33EC6AC90352.get preserve=no
   return m_TopType;
   //## end ZABorder::GetTopType%33EC6AC90352.get
 }
 
-inline void ZABorder::SetTopType (LineType value)
+inline void ZABorder::SetTopType(ELineType value)
 {
   //## begin ZABorder::SetTopType%33EC6AC90352.set preserve=no
   m_TopType = value;
   //## end ZABorder::SetTopType%33EC6AC90352.set
 }
 
-inline const LineType ZABorder::GetBottomType () const
+inline const ELineType ZABorder::GetBottomType() const
 {
   //## begin ZABorder::GetBottomType%33EC6AD7001E.get preserve=no
   return m_BottomType;
   //## end ZABorder::GetBottomType%33EC6AD7001E.get
 }
 
-inline void ZABorder::SetBottomType (LineType value)
+inline void ZABorder::SetBottomType(ELineType value)
 {
   //## begin ZABorder::SetBottomType%33EC6AD7001E.set preserve=no
   m_BottomType = value;

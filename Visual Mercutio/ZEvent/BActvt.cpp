@@ -39,7 +39,7 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 30 mars 2006 - Ajout des décorations unicode _T( ), nettoyage de code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL( ZBaseActivity, CObject, def_Version )
+IMPLEMENT_SERIAL(ZBaseActivity, CObject, g_DefVersion)
 
 // Class ZBaseActivity
 

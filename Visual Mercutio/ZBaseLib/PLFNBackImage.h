@@ -42,7 +42,7 @@ class AFX_EXT_CLASS PLFNBackImage : public PLFNBitmap
 public:
 // Inherited feature
     typedef PLFNBitmap inherited;
-    virtual UINT GetRightSubMenu() const { return ObjectRightSubMenu; };
+    virtual UINT GetRightSubMenu() const { return g_ObjectRightSubMenu; };
 
 public:
     PLFNBackImage();

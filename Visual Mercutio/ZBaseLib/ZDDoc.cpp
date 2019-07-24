@@ -52,7 +52,7 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 25 avril 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL( ZDDocument, ZDBaseDocument, def_Version )
+IMPLEMENT_SERIAL( ZDDocument, ZDBaseDocument, g_DefVersion )
 
 BEGIN_MESSAGE_MAP( ZDDocument, ZDBaseDocument )
     //{{AFX_MSG_MAP(ZDDocument)
@@ -1284,7 +1284,7 @@ BOOL ZDDocument::CreateRealTimeExport()
                                               GetDocOptions().GetSynchronizationHeader(),        // Generate header or not
                                               GetDocOptions().GetSynchronizationSeparator(),    // Separator type
                                               _T( "" ),                                            // Take the current schema
-                                              LocateAllPages );
+                                              g_LocateAllPages );
 
     ASSERT( m_pRealTimeExport );
     m_pRealTimeExport->StartSynchronization( GetDocOptions().GetSynchronizeTimeSequence() );
@@ -1572,16 +1572,16 @@ BOOL ZDDocument::InsertDocumentAfter( const CString    FileName,
 
     // Only if the document is correct
     // Set the type for Document
-    p_NewDocument->GetStamp().SetFileType( DocumentType );
+    p_NewDocument->GetStamp().SetFileType(E_FD_DocumentType);
 
     // Check if all fonts still available
     CheckDocumentFontAndStyle();
 
     // Before inserting the document, propagate the source document value
-    PropagateExternDocumentAllValues( p_NewDocument, LocateAllDocumentsEmptyOnly, FALSE );
+    PropagateExternDocumentAllValues(p_NewDocument, g_LocateAllDocumentsEmptyOnly, FALSE);
 
     // And then, propagate the document value to the document
-    p_NewDocument->PropagateExternDocumentAllValues( this, LocateAllDocumentsEmptyOnly, FALSE );
+    p_NewDocument->PropagateExternDocumentAllValues(this, g_LocateAllDocumentsEmptyOnly, FALSE);
 
     if ( IndexAfter == -1 )
     {
@@ -1648,7 +1648,7 @@ BOOL ZDDocument::InsertExternalDocumentAfter( const CString    FileName,
     }
 
     // Set the type for Document
-    pNewDocData->GetStamp().SetFileType( DocumentType );
+    pNewDocData->GetStamp().SetFileType(E_FD_DocumentType);
 
     // Set the right type for the document
     pNewDocData->GetStamp().SetDocumentDataType( ExternalFormDataType );
@@ -1711,7 +1711,7 @@ BOOL ZDDocument::InsertBinaryDocumentAfter( const CString    FileName,
     }
 
     // Set the type for Document
-    pNewDocData->GetStamp().SetFileType( DocumentType );
+    pNewDocData->GetStamp().SetFileType(E_FD_DocumentType);
 
     // Set the document name
     pNewDocData->GetStamp().SetTitle( InfoName );
@@ -1797,7 +1797,7 @@ BOOL ZDDocument::InsertExternalBinaryDocumentAfter( const CString    FileName,
     }
 
     // Set the type for Document
-    pNewDocData->GetStamp().SetFileType( DocumentType );
+    pNewDocData->GetStamp().SetFileType(E_FD_DocumentType);
 
     // Set the document name
     pNewDocData->GetStamp().SetTitle( InfoName );
@@ -1861,7 +1861,7 @@ BOOL ZDDocument::InsertURLAfter( const CString URL, int IndexAfter )
     }
 
     // Set the type for Document
-    pNewDocData->GetStamp().SetFileType( DocumentType );
+    pNewDocData->GetStamp().SetFileType(E_FD_DocumentType);
 
     // Set the document name
     pNewDocData->GetStamp().SetTitle( URL );
@@ -1985,7 +1985,7 @@ BOOL ZDDocument::PropagateDocumentValue( CString    Name,
     ZDDocumentData* pData = NULL;
 
     // If does not concern all documents
-    if ( PropagationMode != LocateAllDocumentsEmptyOnly && PropagationMode != LocateAllDocuments )
+    if (PropagationMode != g_LocateAllDocumentsEmptyOnly && PropagationMode != g_LocateAllDocuments)
     {
         // Retreive the document data pointer
         pData = ( DocumentIndex == -1 ) ? GetActiveDocumentData() : GetDocumentDataAt( DocumentIndex );
@@ -2002,34 +2002,34 @@ BOOL ZDDocument::PropagateDocumentValue( CString    Name,
 
     switch ( PropagationMode )
     {
-        case LocateAllDocumentsEmptyOnly:
+        case g_LocateAllDocumentsEmptyOnly:
         {
             // For each document data, call the document function to change the object value
             for ( size_t i = 0; i < GetDocumentDataCount(); ++i )
             {
-                GetDocumentDataAt( i )->AssignObjectValue( Name, Value, 0, LocateAllPagesEmptyOnly, EmptyWhenZero );
+                GetDocumentDataAt( i )->AssignObjectValue( Name, Value, 0, g_LocateAllPagesEmptyOnly, EmptyWhenZero );
             }
 
             break;
         }
 
-        case LocateAllDocuments:
+        case g_LocateAllDocuments:
         {
             // For each document data, call the document function to change the object value
             for ( size_t i = 0; i < GetDocumentDataCount(); ++i )
             {
-                GetDocumentDataAt( i )->AssignObjectValue( Name, Value, 0, LocateAllPages, EmptyWhenZero );
+                GetDocumentDataAt( i )->AssignObjectValue( Name, Value, 0, g_LocateAllPages, EmptyWhenZero );
             }
 
             break;
         }
 
-        case LocatePageOnlyEmptyOnly:
-        case LocateForwardPageEmptyOnly:
-        case LocateAllPagesEmptyOnly:
-        case LocatePageOnly:
-        case LocateForwardPage:
-        case LocateAllPages:
+        case g_LocatePageOnlyEmptyOnly:
+        case g_LocateForwardPageEmptyOnly:
+        case g_LocateAllPagesEmptyOnly:
+        case g_LocatePageOnly:
+        case g_LocateForwardPage:
+        case g_LocateAllPages:
         {
             ASSERT( pData );
             return pData->AssignObjectValue( Name, Value, Page, PropagationMode, EmptyWhenZero );
@@ -2316,7 +2316,7 @@ PlanFinObject* ZDDocument::GetNext( int DocumentIndex )
 CString ZDDocument::GetStandardSchema() const
 {
     //## begin ZDDocument::GetStandardSchema%902579800.body preserve=yes
-    return szOriginalSchema;
+    return g_OriginalSchema;
     //## end ZDDocument::GetStandardSchema%902579800.body
 }
 
@@ -2397,7 +2397,7 @@ void ZDDocument::SetMaxPage( int iPage, int DocumentIndex )
 CString ZDDocument::GetDefaultAssociationString() const
 {
     //## begin ZDDocument::GetDefaultAssociationString%908101537.body preserve=yes
-    return szDefaultAssociationString;
+    return g_DefaultAssociationString;
     //## end ZDDocument::GetDefaultAssociationString%908101537.body
 }
 
@@ -3129,7 +3129,7 @@ void ZDDocument::SerializeRead( CArchive& ar )
         m_iObjectCounter    = (int)wStamp;
 
         // Put the default schema name
-        SchemaName            = szOriginalSchema;
+        SchemaName            = g_OriginalSchema;
     }
     END_CATCH
 
@@ -3233,7 +3233,7 @@ void ZDDocument::SerializeRead( CArchive& ar )
             // Not found then try to initialize the variable
             // by searching certain information in the file
             // to differentiate the type.
-            m_wVersionNumber = def_Version;
+            m_wVersionNumber = g_DefVersion;
         }
         END_CATCH
     }

@@ -33,7 +33,7 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZBBPSimPropertiesDeliverable construction/destruction
 
-IMPLEMENT_SERIAL( ZBBPSimPropertiesDeliverable, CObject, def_Version )
+IMPLEMENT_SERIAL(ZBBPSimPropertiesDeliverable, CObject, g_DefVersion)
 
 using namespace sfl;
 

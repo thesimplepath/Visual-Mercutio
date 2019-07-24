@@ -31,7 +31,7 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(PLFNMultiColumn, PlanFinObject, def_Version)
+IMPLEMENT_SERIAL(PLFNMultiColumn, PlanFinObject, g_DefVersion)
 //## end module%3881855902BB.additionalDeclarations
 
 

@@ -20,7 +20,7 @@ static char THIS_FILE[]=__FILE__;
 
 ZBitmap            ZBBPPackageSymbol::m_LinkedToFileBitmap;
 
-IMPLEMENT_SERIAL(ZBBPPackageSymbol, ZBSymbol, def_Version)
+IMPLEMENT_SERIAL(ZBBPPackageSymbol, ZBSymbol, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

@@ -17,7 +17,7 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 // ZBDistributionRulesForRole class implementation
 
-IMPLEMENT_SERIAL( ZBDistributionRulesForRole, CObject, def_Version )
+IMPLEMENT_SERIAL(ZBDistributionRulesForRole, CObject, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -75,7 +75,7 @@ void ZBDistributionRulesForRole::Serialize( CArchive& ar )
 //////////////////////////////////////////////////////////////////////
 // ZBDistributionAttribute class implementation
 
-IMPLEMENT_SERIAL( ZBDistributionAttribute, CObject, def_Version )
+IMPLEMENT_SERIAL(ZBDistributionAttribute, CObject, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -322,7 +322,7 @@ void ZBDistributionAttribute::Serialize( CArchive& ar )
 //////////////////////////////////////////////////////////////////////
 // ZBDistributionAttributeManager class implementation
 
-IMPLEMENT_SERIAL( ZBDistributionAttributeManager, CObject, def_Version )
+IMPLEMENT_SERIAL(ZBDistributionAttributeManager, CObject, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

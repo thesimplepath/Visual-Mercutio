@@ -50,7 +50,7 @@ CString ZDActivityLogRecordset::GetDefaultDBName()
 
 CString ZDActivityLogRecordset::GetDefaultSQL()
 {
-    return _T(ActivityLogTableName);
+    return _T(g_ActivityLogTableName);
 }
 
 void ZDActivityLogRecordset::DoFieldExchange(CDaoFieldExchange* pFX)

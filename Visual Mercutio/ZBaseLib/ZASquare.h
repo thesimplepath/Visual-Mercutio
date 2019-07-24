@@ -170,13 +170,13 @@ class AFX_EXT_CLASS PLFNSquare : public PlanFinObject  //## Inherits: <unnamed>%
 
       //## Attribute: TypeOfSquare%36305ABB03C1
       //    Defines the way the square should be represented.
-      const SquareType GetTypeOfSquare () const;
-      void SetTypeOfSquare (SquareType value);
+      const ESquareType GetTypeOfSquare () const;
+      void SetTypeOfSquare(ESquareType value);
 
       //## Attribute: ParsingMode%36305B92030C
       //    Defines the way the parsing should be done.
-      const ParsingModeType GetParsingMode () const;
-      void SetParsingMode (ParsingModeType value);
+      const EParsingModeType GetParsingMode() const;
+      void SetParsingMode (EParsingModeType value);
 
     // Additional Public Declarations
       //## begin PLFNSquare%336D04BA0208.public preserve=yes
@@ -216,11 +216,11 @@ class AFX_EXT_CLASS PLFNSquare : public PlanFinObject  //## Inherits: <unnamed>%
       //## end PLFNSquare::pObject%362DF9940391.attr
 
       //## begin PLFNSquare::TypeOfSquare%36305ABB03C1.attr preserve=no  public: SquareType {U} NormalSquare
-      SquareType m_TypeOfSquare;
+      ESquareType m_TypeOfSquare;
       //## end PLFNSquare::TypeOfSquare%36305ABB03C1.attr
 
       //## begin PLFNSquare::ParsingMode%36305B92030C.attr preserve=no  public: ParsingModeType {U} NormalParsing
-      ParsingModeType m_ParsingMode;
+      EParsingModeType m_ParsingMode;
       //## end PLFNSquare::ParsingMode%36305B92030C.attr
 
     // Additional Private Declarations
@@ -277,7 +277,7 @@ inline UINT PLFNSquare::GetRightSubMenu () const
   //## begin PLFNSquare::GetRightSubMenu%909073224.body preserve=yes
       if (m_pObject)
           return m_pObject->GetRightSubMenu();
-    return ObjectRightSubMenu;
+    return g_ObjectRightSubMenu;
   //## end PLFNSquare::GetRightSubMenu%909073224.body
 }
 
@@ -353,28 +353,28 @@ inline void PLFNSquare::SetpObject (PlanFinObject* value)
   //## end PLFNSquare::SetpObject%362DF9940391.set
 }
 
-inline const SquareType PLFNSquare::GetTypeOfSquare () const
+inline const ESquareType PLFNSquare::GetTypeOfSquare() const
 {
   //## begin PLFNSquare::GetTypeOfSquare%36305ABB03C1.get preserve=no
   return m_TypeOfSquare;
   //## end PLFNSquare::GetTypeOfSquare%36305ABB03C1.get
 }
 
-inline void PLFNSquare::SetTypeOfSquare (SquareType value)
+inline void PLFNSquare::SetTypeOfSquare(ESquareType value)
 {
   //## begin PLFNSquare::SetTypeOfSquare%36305ABB03C1.set preserve=no
   m_TypeOfSquare = value;
   //## end PLFNSquare::SetTypeOfSquare%36305ABB03C1.set
 }
 
-inline const ParsingModeType PLFNSquare::GetParsingMode () const
+inline const EParsingModeType PLFNSquare::GetParsingMode () const
 {
   //## begin PLFNSquare::GetParsingMode%36305B92030C.get preserve=no
   return m_ParsingMode;
   //## end PLFNSquare::GetParsingMode%36305B92030C.get
 }
 
-inline void PLFNSquare::SetParsingMode (ParsingModeType value)
+inline void PLFNSquare::SetParsingMode(EParsingModeType value)
 {
   //## begin PLFNSquare::SetParsingMode%36305B92030C.set preserve=no
   m_ParsingMode = value;

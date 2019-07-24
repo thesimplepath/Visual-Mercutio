@@ -41,10 +41,10 @@
 
 ZDDocumentOptions::ZDDocumentOptions()
   //## begin ZDDocumentOptions::ZDDocumentOptions%.hasinit preserve=no
-      : m_EmptyStyle(DashLine), m_IsSynchronizeExchangeFeedFile(FALSE), m_SynchronizeTimeSequence(5), m_ShowHiddenField(ApplicationOption), m_ShowEmptyLine(ApplicationOption)
+      : m_EmptyStyle(E_LT_Dash), m_IsSynchronizeExchangeFeedFile(FALSE), m_SynchronizeTimeSequence(5), m_ShowHiddenField(E_OT_Application), m_ShowEmptyLine(E_OT_Application)
   //## end ZDDocumentOptions::ZDDocumentOptions%.hasinit
   //## begin ZDDocumentOptions::ZDDocumentOptions%.initialization preserve=yes
-  , m_AutomaticSynchronizeFilename(AutomaticName), m_SynchronizationHeader(FALSE), m_SynchronizationSeparator(AutomaticSeparator),
+  , m_AutomaticSynchronizeFilename(E_ST_AutomaticName), m_SynchronizationHeader(FALSE), m_SynchronizationSeparator(E_SS_Automatic),
   m_PrintEmptyStyleWhenEmpty(FALSE)
   //## end ZDDocumentOptions::ZDDocumentOptions%.initialization
 {
@@ -54,7 +54,7 @@ ZDDocumentOptions::ZDDocumentOptions()
 
 ZDDocumentOptions::ZDDocumentOptions(const ZDDocumentOptions &right)
   //## begin ZDDocumentOptions::ZDDocumentOptions%copy.hasinit preserve=no
-      : m_EmptyStyle(DashLine), m_IsSynchronizeExchangeFeedFile(FALSE), m_SynchronizeTimeSequence(5), m_ShowHiddenField(ApplicationOption), m_ShowEmptyLine(ApplicationOption)
+      : m_EmptyStyle(E_LT_Dash), m_IsSynchronizeExchangeFeedFile(FALSE), m_SynchronizeTimeSequence(5), m_ShowHiddenField(E_OT_Application), m_ShowEmptyLine(E_OT_Application)
   //## end ZDDocumentOptions::ZDDocumentOptions%copy.hasinit
   //## begin ZDDocumentOptions::ZDDocumentOptions%copy.initialization preserve=yes
   , m_PrintEmptyStyleWhenEmpty(FALSE)
@@ -98,7 +98,7 @@ CArchive& operator >> (CArchive& ar, ZDDocumentOptions& DocOptions)
   //## begin ZDDocumentOptions::operator >>%890656168.body preserve=yes
     WORD    wValue;
     ar >> wValue;
-    DocOptions.m_EmptyStyle = (LineType)wValue;
+    DocOptions.m_EmptyStyle = ELineType(wValue);
     // If before Version 4 read the FontType
     // And assign the font
     if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 10)
@@ -111,19 +111,19 @@ CArchive& operator >> (CArchive& ar, ZDDocumentOptions& DocOptions)
         DocOptions.m_SynchronizeTimeSequence = (int)lValue;
 
         ar >> wValue;
-        DocOptions.m_ShowHiddenField = (OptionType)wValue;
+        DocOptions.m_ShowHiddenField = EOptionType(wValue);
 
         ar >> wValue;
-        DocOptions.m_ShowEmptyLine = (OptionType)wValue;
+        DocOptions.m_ShowEmptyLine = EOptionType(wValue);
         
         ar >> wValue;
-          DocOptions.m_AutomaticSynchronizeFilename = (SynchronizationFileType)wValue;
+          DocOptions.m_AutomaticSynchronizeFilename = ESynchronizationFileType(wValue);
           
         ar >> wValue;
-          DocOptions.m_SynchronizationHeader = (BOOL)wValue;
+          DocOptions.m_SynchronizationHeader = BOOL(wValue);
 
         ar >> wValue;
-          DocOptions.m_SynchronizationSeparator = (SynchronizationSeparatorType)wValue;
+          DocOptions.m_SynchronizationSeparator = ESynchronizationSeparatorType(wValue);
         
         ar >> DocOptions.m_SynchronizeFilename;
 
@@ -159,7 +159,7 @@ CString ZDDocumentOptions::BuildSynchronizationFileName (CString DocumentFilenam
 {
   //## begin ZDDocumentOptions::BuildSynchronizationFileName%931459606.body preserve=yes
       // If the document option specifies a document filename, assigns it
-      if (GetAutomaticSynchronizeFilename() == FilenameSpecified)
+      if (GetAutomaticSynchronizeFilename() == E_ST_FileNameSpecified)
         return m_SynchronizeFilename;
       // If the filename does not exists, do nothing
     if (DocumentFilename.IsEmpty())
@@ -178,7 +178,7 @@ CString ZDDocumentOptions::BuildSynchronizationFileName (CString DocumentFilenam
 
     CString    Filename;
       // If the document option specifies a folder, create the filename with the folder
-      if (GetAutomaticSynchronizeFilename() == FolderSpecified)
+      if (GetAutomaticSynchronizeFilename() == E_ST_FolderSpecified)
       {
           // In case where it is a folder, the GetSynchronizeFilename returns a folder
         Filename = m_SynchronizeFilename;

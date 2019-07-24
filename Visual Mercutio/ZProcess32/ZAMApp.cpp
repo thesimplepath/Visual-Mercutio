@@ -1981,7 +1981,7 @@ BOOL ZAMainApp::ChooseServer()
     // Save the previous server directory
     CString PreviousServerDir = GetServerIniFile();
 
-    CString IniFile = ( IsWorkingLocaly() ) ? szLocalIniFilename : szGlobalIniFilename;
+    CString IniFile = ( IsWorkingLocaly() ) ? g_LocalIniFileName : g_GlobalIniFileName;
 
     ZAChooseServer ChooseLocalServer( IniFile, IsWorkingLocaly() );
 

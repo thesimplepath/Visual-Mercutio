@@ -12,7 +12,7 @@
 #include "zBaseLib\ZWizard.h"
 #include "zBaseLib\TmplMng.h"
 #include "PSS_BasePropSheet.h"
-#include "GFormP.h"
+#include "PSS_GenericFormPage.h"
 
 // resources
 #include "zWinUtil32\zWinUtil32Res.h"

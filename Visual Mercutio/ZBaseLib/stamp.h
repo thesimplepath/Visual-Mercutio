@@ -52,11 +52,11 @@ enum DocumentFileType
     ModelDocumentFileType
 };
 
-enum FileTypeDefinition
+enum EFileTypeDefinition
 {
-    DocumentType,
-    TemplateType,
-    LibraryType
+    E_FD_DocumentType,
+    E_FD_TemplateType,
+    E_FD_LibraryType
 };
 
 enum DocumentDataType
@@ -193,8 +193,8 @@ public:
     void SetProgramGenerator ( CString value );
 
     //## Attribute: FileType%334FC46003AF
-    const FileTypeDefinition GetFileType () const;
-    void SetFileType ( FileTypeDefinition value );
+    const EFileTypeDefinition GetFileType() const;
+    void SetFileType(EFileTypeDefinition value);
 
     //## Attribute: PublishVersion%373D3A570166
     // The Published version.
@@ -275,7 +275,7 @@ private:
     //## end ZDStamp::ProgramGenerator%334FC46003AE.attr
 
     //## begin ZDStamp::FileType%334FC46003AF.attr preserve=no  public: FileTypeDefinition {V} 
-    FileTypeDefinition m_FileType;
+    EFileTypeDefinition m_FileType;
     //## end ZDStamp::FileType%334FC46003AF.attr
 
     //## begin ZDStamp::PublishVersion%373D3A570166.attr preserve=no  public: LONG {U} 
@@ -451,14 +451,14 @@ inline void ZDStamp::SetProgramGenerator ( CString value )
     //## end ZDStamp::SetProgramGenerator%334FC46003AE.set
 }
 
-inline const FileTypeDefinition ZDStamp::GetFileType () const
+inline const EFileTypeDefinition ZDStamp::GetFileType() const
 {
     //## begin ZDStamp::GetFileType%334FC46003AF.get preserve=no
     return m_FileType;
     //## end ZDStamp::GetFileType%334FC46003AF.get
 }
 
-inline void ZDStamp::SetFileType ( FileTypeDefinition value )
+inline void ZDStamp::SetFileType(EFileTypeDefinition value)
 {
     //## begin ZDStamp::SetFileType%334FC46003AF.set preserve=no
     m_FileType = value;

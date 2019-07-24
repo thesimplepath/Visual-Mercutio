@@ -69,7 +69,7 @@ class AFX_EXT_CLASS ZUExport : public CWnd  //## Inherits: <unnamed>%3652B4BF018
       //## Operation: ZUExport%901558644
       //    Constructs an export class with the filename and the
       //    document pointer
-      ZUExport (CString Filename = "", BOOL GenerateHeader = FALSE, SynchronizationSeparatorType SeparatorType = AutomaticSeparator, CString Schema = szOriginalSchema, int PropagationMode = LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
+      ZUExport (CString Filename = "", BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
 
     //## Destructor (generated)
       ~ZUExport();
@@ -78,7 +78,7 @@ class AFX_EXT_CLASS ZUExport : public CWnd  //## Inherits: <unnamed>%3652B4BF018
     //## Other Operations (specified)
       //## Operation: Create%901558643
       //    Create the export class.
-      virtual void Create (CString Filename, BOOL GenerateHeader = FALSE, SynchronizationSeparatorType SeparatorType = AutomaticSeparator, CString Schema = szOriginalSchema, int PropagationMode = LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
+      virtual void Create (CString Filename, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
 
       //## Operation: Export%901558645
       //    This function exports the records to a file.
@@ -160,7 +160,7 @@ class AFX_EXT_CLASS ZUExport : public CWnd  //## Inherits: <unnamed>%3652B4BF018
 
       //## Attribute: SeparatorType%366A57D800CC
       //    Defines the separator type.
-      const SynchronizationSeparatorType GetSeparatorType () const;
+      const ESynchronizationSeparatorType GetSeparatorType () const;
 
       //## Attribute: SchemaName%35DAB0060145
       //    The schema name used for exportation.
@@ -304,7 +304,7 @@ class AFX_EXT_CLASS ZUExport : public CWnd  //## Inherits: <unnamed>%3652B4BF018
       //## end ZUExport::GenerateHeader%35D4173C0103.attr
 
       //## begin ZUExport::SeparatorType%366A57D800CC.attr preserve=no  public: SynchronizationSeparatorType {U} 
-      SynchronizationSeparatorType m_SeparatorType;
+      ESynchronizationSeparatorType m_SeparatorType;
       //## end ZUExport::SeparatorType%366A57D800CC.attr
 
       //## begin ZUExport::SchemaName%35DAB0060145.attr preserve=no  public: CString {U} 
@@ -345,7 +345,7 @@ class AFX_EXT_CLASS ZUExport : public CWnd  //## Inherits: <unnamed>%3652B4BF018
 
 
 //## Other Operations (inline)
-inline void ZUExport::Create (CString Filename, BOOL GenerateHeader, SynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
+inline void ZUExport::Create (CString Filename, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
 {
   //## begin ZUExport::Create%901558643.body preserve=yes
       m_Filename = Filename;
@@ -367,7 +367,7 @@ inline const BOOL ZUExport::GetGenerateHeader () const
   //## end ZUExport::GetGenerateHeader%35D4173C0103.get
 }
 
-inline const SynchronizationSeparatorType ZUExport::GetSeparatorType () const
+inline const ESynchronizationSeparatorType ZUExport::GetSeparatorType() const
 {
   //## begin ZUExport::GetSeparatorType%366A57D800CC.get preserve=no
   return m_SeparatorType;

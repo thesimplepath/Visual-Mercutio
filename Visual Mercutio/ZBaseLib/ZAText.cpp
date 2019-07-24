@@ -31,7 +31,7 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(PLFNText, PLFNAscii, def_Version)
+IMPLEMENT_SERIAL(PLFNText, PLFNAscii, g_DefVersion)
 //## end module%334FC46302ED.additionalDeclarations
 
 
@@ -120,7 +120,7 @@ void PLFNText::Serialize (CArchive& ar)
     {    // Write the elements
         // Check if template file but not static element.
         // If static, serialize it.
-        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetFileType() == TemplateType && !GetIsStatic()  && !GetDefaultValue())
+        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetFileType() == E_FD_TemplateType && !GetIsStatic()  && !GetDefaultValue())
         {
             CString str(m_Str);
             m_Str = "";

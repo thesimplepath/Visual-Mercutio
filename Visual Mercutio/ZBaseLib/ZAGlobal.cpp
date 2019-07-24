@@ -170,8 +170,8 @@ void ZAGlobal::Initialize( ZBServer*        pServer,
     m_FileDirectory            = FileDirectory;
     m_EventDirectory        = EventDirectory;
 
-    m_ResponsibleUserNameKeyString.LoadString( ResponsibleUserNameIDResource );
-    m_RequestedUserNameKeyString.LoadString( RequestedUserNameIDResource );
+    m_ResponsibleUserNameKeyString.LoadString(g_ResponsibleUserNameIDResource);
+    m_RequestedUserNameKeyString.LoadString(g_RequestedUserNameIDResource);
 
     // Loads the yes no array
     m_ArrayYesNo.RemoveAll();

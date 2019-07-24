@@ -17,9 +17,9 @@
 #include "zBaseLib\BObjUtil.h"
 #include "zBaseLib\ZUFloatingToolbar.h"
 #include "zWinUtil32\newform.h"
-#include "zWinUtil32\FoldInfo.h"
+#include "zWinUtil32\PSS_FolderInfoDialog.h"
 #include "zWinUtil32\SysOpt32.h"
-#include "zWinUtil32\CrtFldW.h"
+#include "zWinUtil32\PSS_CreateFolderWizardDialog.h"
 #include "zResMgr\PSS_ResourceManager.h"
 #include "zPtyMgr\ZVChoosePropertyDlg.h"
 #include "zModel\ProcGraphModelMdl.h"
@@ -1599,7 +1599,7 @@ ZDProcessGraphModelDoc* ZAApp::FileNewModel()
 
     switch ( pNewFile->GetNotation() )
     {
-        case BerylNotation:
+        case E_MN_Beryl:
         {
             // Retreive the language assigned to the document
             ELanguage lang = pNewFile->GetLanguage();
@@ -1610,17 +1610,13 @@ ZDProcessGraphModelDoc* ZAApp::FileNewModel()
             break;
         }
 
-        case ABCNotation:
-        {
+        case E_MN_ABC:
             break;
-        }
 
-        case UMLNotation:
-        {
+        case E_MN_UML:
             break;
-        }
 
-        case UnknownNotation:
+        case E_MN_Unknown:
         default:
         {
             break;
@@ -1628,7 +1624,7 @@ ZDProcessGraphModelDoc* ZAApp::FileNewModel()
     }
 
     // Set the type for Template
-    pNewFile->SetFileType( TemplateType );
+    pNewFile->SetFileType(E_FD_TemplateType);
 
     // Set the path name to empty
     pNewFile->ClearPathName();    // no path name yet
@@ -2359,9 +2355,9 @@ void ZAApp::OnNewWorkspace()
     }
 
     // Start wizard for new workspace
-    ZVWorkspaceCreationWizard WksCreation( m_pWorkspaceTemplateManager,
-                                           GetModelTemplateDirectory(),
-                                           sWorkspaceExtension );
+    ZVWorkspaceCreationWizard WksCreation(m_pWorkspaceTemplateManager,
+                                          GetModelTemplateDirectory(),
+                                          g_WorkspaceExtension);
 
     if ( WksCreation.DoModal() == IDOK )
     {
@@ -2383,7 +2379,7 @@ void ZAApp::OnNewWorkspace()
                 // Set the filename
                 ModelFilename  = ZDirectory::NormalizeDirectory( WksCreation.GetDirectory() ) + _T( "\\" );
                 ModelFilename += WksCreation.GetWorkspaceName();
-                ModelFilename += sModelExtension;
+                ModelFilename += g_ModelExtension;
 
                 pNewFile->SetPathName( ModelFilename );
                 pNewFile->SetModifiedFlag( TRUE );
@@ -2413,7 +2409,7 @@ void ZAApp::OnNewWorkspace()
 
             // Create the model group
             s.LoadString( IDS_WKS_GROUP_MODEL );
-            a.Add( sModelExtensionNoDot );
+            a.Add(g_ModelExtensionNoDot);
             pEnv->AddGroup( s, &a );
 
             if ( pNewFile )
@@ -2425,7 +2421,7 @@ void ZAApp::OnNewWorkspace()
             // Create the report group
             s.LoadString( IDS_WKS_GROUP_REPORT );
             a.RemoveAll();
-            a.Add( sReportExtensionNoDot );
+            a.Add(g_ReportExtensionNoDot);
             pEnv->AddGroup( s, &a );
 
             // Create the document group
@@ -3334,7 +3330,7 @@ void ZAApp::OnUpdateGenerateCheckReport( CCmdUI* pCmdUI )
 {
     pCmdUI->Enable( GetActiveBaseDocument() &&
                     ISA( GetActiveBaseDocument(), ZDProcessGraphModelDoc ) &&
-                    ( (ZDProcessGraphModelDoc*)GetActiveBaseDocument() )->GetNotation() == BerylNotation );
+                    ( (ZDProcessGraphModelDoc*)GetActiveBaseDocument() )->GetNotation() == E_MN_Beryl);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Mercutio".
@@ -3430,7 +3426,7 @@ void ZAApp::OnUpdateGenerateMercutioReport( CCmdUI* pCmdUI )
 {
     pCmdUI->Enable( GetActiveBaseDocument() &&
                     ISA( GetActiveBaseDocument(), ZDProcessGraphModelDoc ) &&
-                    ( (ZDProcessGraphModelDoc*)GetActiveBaseDocument() )->GetNotation() == BerylNotation );
+                    ( (ZDProcessGraphModelDoc*)GetActiveBaseDocument() )->GetNotation() == E_MN_Beryl);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Conceptor".
@@ -3514,7 +3510,7 @@ void ZAApp::OnUpdateGenerateConceptorReport( CCmdUI* pCmdUI )
 {
     pCmdUI->Enable( GetActiveBaseDocument() &&
                     ISA( GetActiveBaseDocument(), ZDProcessGraphModelDoc ) &&
-                    ( (ZDProcessGraphModelDoc*)GetActiveBaseDocument() )->GetNotation() == BerylNotation );
+                    ( (ZDProcessGraphModelDoc*)GetActiveBaseDocument() )->GetNotation() == E_MN_Beryl);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Sesterces".
@@ -3582,7 +3578,7 @@ void ZAApp::OnUpdateGenerateSesterceReport( CCmdUI* pCmdUI )
     }
 
     pCmdUI->Enable( ( (ZDProcessGraphModelDoc*)GetActiveBaseDocument() )->GetIntegrateCostSimulation() &&
-                    ( (ZDProcessGraphModelDoc*)GetActiveBaseDocument() )->GetNotation() == BerylNotation );
+                    ( (ZDProcessGraphModelDoc*)GetActiveBaseDocument() )->GetNotation() == E_MN_Beryl);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Sesterces Unités".
@@ -3794,7 +3790,7 @@ void ZAApp::OnUpdateGeneratePrestationsReport( CCmdUI* pCmdUI )
     }
 
     pCmdUI->Enable( ( (ZDProcessGraphModelDoc*)GetActiveBaseDocument() )->GetIntegrateCostSimulation() &&
-                    ( (ZDProcessGraphModelDoc*)GetActiveBaseDocument() )->GetNotation() == BerylNotation );
+                    ( (ZDProcessGraphModelDoc*)GetActiveBaseDocument() )->GetNotation() == E_MN_Beryl);
 }
 
 // ******************************************************** Menu ? **********************************************

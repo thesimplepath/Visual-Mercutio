@@ -20,8 +20,8 @@
 
 // JMR-MODIF - Le 15 avril 2007 - Ajouté la variable AppDir, qui représente le répertoire d'installation du programme.
 ZAApplicationOption::ZAApplicationOption( CString IniFile, CString AppDir )
-    : m_ExportSchemaName        ( szOriginalSchema ),
-      m_ExportPropagationMode    ( LocatePageOnly )
+    : m_ExportSchemaName(g_OriginalSchema),
+      m_ExportPropagationMode(g_LocatePageOnly)
 {
     // JMR-MODIF - Le 15 avril 2007 - Ajouté l'initialisation de la variable m_AppDir.
     m_AppDir = AppDir;
@@ -68,10 +68,10 @@ BOOL ZAApplicationOption::LoadOption()
     m_ExportFilename = m_SystemOption.ReadOption( szIniExportFile, _T( "Export.txt" ) );
 
     // Retreive the export schema name
-    m_ExportSchemaName = m_SystemOption.ReadOption( szIniExportSchema, szOriginalSchema );
+    m_ExportSchemaName = m_SystemOption.ReadOption( szIniExportSchema, g_OriginalSchema );
 
     // Retreive the propagation mode
-    m_ExportPropagationMode = m_SystemOption.ReadOption( szIniExportPropagationMode, LocateForwardPage );
+    m_ExportPropagationMode = m_SystemOption.ReadOption(szIniExportPropagationMode, g_LocateForwardPage);
 
     // Retreive the empty when zero for numbers
     m_EmptyWhenZero = m_SystemOption.ReadOption( szIniExportEmptyWhenZero, 1 );
@@ -107,19 +107,19 @@ BOOL ZAApplicationOption::LoadOption()
     // JMR-MODIF - Le 15 avril 2007 - Par défaut, fait pointer le serveur sur le référenciel fourni lors de l'installation.
 //    m_ServerIniFile = m_SystemOption.ReadOption( szGlobalIniFileEntry, _T( "" ) );
     m_ServerIniFile = m_SystemOption.ReadOption( szGlobalIniFileEntry,
-                                                 m_AppDir + szLocalRefDirectory + szLocalIniFilename );
+                                                 m_AppDir + g_LocalRefDirectory + g_LocalIniFileName );
 
     // JMR-MODIF - Le 8 juillet 2007 - Ajout de l'initialisation de la variable m_RiskTypeFile.
     m_RiskTypeFile = m_SystemOption.ReadOption( szRiskTypeFileEntry,
-                                                m_AppDir + szRiskDirectory + szRiskTypeFilename );
+                                                m_AppDir + g_RiskDirectory + g_RiskTypeFileName );
 
     // JMR-MODIF - Le 11 juillet 2007 - Ajout de l'initialisation de la variable m_RiskImpactFile.
     m_RiskImpactFile = m_SystemOption.ReadOption( szRiskImpactFileEntry,
-                                                  m_AppDir + szRiskDirectory + szRiskImpactFilename );
+                                                  m_AppDir + g_RiskDirectory + g_RiskImpactFileName );
 
     // JMR-MODIF - Le 11 juillet 2007 - Ajout de l'initialisation de la variable m_RiskProbabilityFile.
     m_RiskProbabilityFile = m_SystemOption.ReadOption( szRiskProbabilityFileEntry,
-                                                       m_AppDir + szRiskDirectory + szRiskProbabilityFilename );
+                                                       m_AppDir + g_RiskDirectory + g_RiskProbabilityFileName );
 
     // Retreive the force network connection flag
     m_ForceNetworkConnection = m_SystemOption.ReadOption( szIniForceNetworkConnection, 1 );

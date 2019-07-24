@@ -31,7 +31,7 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(PLFNTwoStates, PLFNGraphic, def_Version)
+IMPLEMENT_SERIAL(PLFNTwoStates, PLFNGraphic, g_DefVersion)
 //## end module%351388810028.additionalDeclarations
 
 
@@ -47,7 +47,7 @@ IMPLEMENT_SERIAL(PLFNTwoStates, PLFNGraphic, def_Version)
 
 PLFNTwoStates::PLFNTwoStates()
   //## begin PLFNTwoStates::PLFNTwoStates%.hasinit preserve=no
-      : m_CheckType(Rounded), m_bCheckState(FALSE), m_bShowText(TRUE), m_bTextIsCtrl(FALSE), m_OffsetText(10), m_bLeftText(FALSE)
+      : m_CheckType(E_CB_Rounded), m_bCheckState(FALSE), m_bShowText(TRUE), m_bTextIsCtrl(FALSE), m_OffsetText(10), m_bLeftText(FALSE)
   //## end PLFNTwoStates::PLFNTwoStates%.hasinit
   //## begin PLFNTwoStates::PLFNTwoStates%.initialization preserve=yes
   , m_uSize( 10 )
@@ -59,7 +59,7 @@ PLFNTwoStates::PLFNTwoStates()
 
 PLFNTwoStates::PLFNTwoStates(const PLFNTwoStates &right)
   //## begin PLFNTwoStates::PLFNTwoStates%copy.hasinit preserve=no
-      : m_CheckType(Rounded), m_bCheckState(FALSE), m_bShowText(TRUE), m_bTextIsCtrl(FALSE), m_OffsetText(10), m_bLeftText(FALSE)
+      : m_CheckType(E_CB_Rounded), m_bCheckState(FALSE), m_bShowText(TRUE), m_bTextIsCtrl(FALSE), m_OffsetText(10), m_bLeftText(FALSE)
   //## end PLFNTwoStates::PLFNTwoStates%copy.hasinit
   //## begin PLFNTwoStates::PLFNTwoStates%copy.initialization preserve=yes
   //## end PLFNTwoStates::PLFNTwoStates%copy.initialization
@@ -121,7 +121,7 @@ void PLFNTwoStates::Serialize (CArchive& ar)
         ar << (DWORD)m_CheckType;
         ar << (WORD)m_uSize;
         // Serialize the status if not a template or a default value is required
-        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetFileType() == TemplateType && !GetDefaultValue())
+        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetFileType() == E_FD_TemplateType && !GetDefaultValue())
         {
             BOOL    bValue = FALSE;
             ar << (WORD)bValue;
@@ -139,7 +139,7 @@ void PLFNTwoStates::Serialize (CArchive& ar)
     {    // Read the elements
         DWORD    dwValue;
         ar >> dwValue;
-        m_CheckType = (CheckButtonType)dwValue;
+        m_CheckType = ECheckButtonType(dwValue);
         WORD    wValue;
         ar >> wValue;
         m_uSize = wValue;

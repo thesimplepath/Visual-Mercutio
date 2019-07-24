@@ -37,7 +37,7 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(ZActivity, ZBaseActivity, def_Version)
+IMPLEMENT_SERIAL(ZActivity, ZBaseActivity, g_DefVersion)
 //## end module%3675496C018C.additionalDeclarations
 
 

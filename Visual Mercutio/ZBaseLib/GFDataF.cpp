@@ -46,7 +46,7 @@ const    char    FieldHeaderNameKey[] = "$$FieldHeaderName$$";
 
 
 
-ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed (CString Filename, ZBFieldRepository* pFieldRepository, ZAObjectDefinition* pObjectDefinition, BOOL GenerateHeader, SynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
+ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed (CString Filename, ZBFieldRepository* pFieldRepository, ZAObjectDefinition* pObjectDefinition, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
   //## begin ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed%937950157.hasinit preserve=no
   //## end ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed%937950157.hasinit
   //## begin ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed%937950157.initialization preserve=yes
@@ -58,7 +58,7 @@ ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed (CString Filename, ZBFieldR
   //## end ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed%937950157.body
 }
 
-ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed (CString Filename, ZBFieldRepository* pFieldRepository, BOOL GenerateHeader, SynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
+ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed (CString Filename, ZBFieldRepository* pFieldRepository, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
   //## begin ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed%938030360.hasinit preserve=no
   //## end ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed%938030360.hasinit
   //## begin ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed%938030360.initialization preserve=yes
@@ -98,24 +98,27 @@ CString ZUFieldDefinitionDataFeed::GetExportedLine (CObject* pObj)
 
     switch (GetSeparatorType())
     {
-        case CommaSeparator :
+        case E_SS_Comma:
         {
             Tokenizer.SetSeparator( ',' );
             break;
         }
-        case SemiColumnSeparator :
+
+        case E_SS_SemiColumn:
         {
             Tokenizer.SetSeparator( ';' );
             break;
         }
-        case AutomaticSeparator :     
-        case TabSeparator :    
+
+        case E_SS_Automatic:
+        case E_SS_Tab:
         default:
         {
             Tokenizer.SetSeparator( '\t' );
             break;
         }
     }
+
     // Add the field name
     Tokenizer.AddToken( FieldNameKey );
     Tokenizer.AddToken( pObjectDefinition->GetFieldName() );
@@ -185,18 +188,20 @@ BOOL ZUFieldDefinitionDataFeed::ProcessLine (CString Line)
 
     switch (GetSeparatorType())
     {
-        case CommaSeparator :
+        case E_SS_Comma:
         {
             Tokenizer.SetSeparator( ',' );
             break;
         }
-        case SemiColumnSeparator :
+
+        case E_SS_SemiColumn:
         {
             Tokenizer.SetSeparator( ';' );
             break;
         }
-        case AutomaticSeparator :     
-        case TabSeparator :    
+
+        case E_SS_Automatic:
+        case E_SS_Tab:
         default:
         {
             Tokenizer.SetSeparator( '\t' );

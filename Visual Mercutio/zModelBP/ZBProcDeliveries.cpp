@@ -23,7 +23,7 @@ static char THIS_FILE[]=__FILE__;
 // constant definition
 const int LastDeliveryIDProperties = ZS_BP_PROP_DELIVERIES + 39;
 
-IMPLEMENT_SERIAL( ZBProcDeliveries, CObject, def_Version )
+IMPLEMENT_SERIAL(ZBProcDeliveries, CObject, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

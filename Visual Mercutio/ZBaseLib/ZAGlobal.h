@@ -493,17 +493,17 @@ inline void ZAGlobal::SetOpenFileInSilentMode( BOOL value /*= TRUE*/ )
 
 inline CString ZAGlobal::GetFileExtension()
 {
-    return sFormExtensionNoDot;
+    return g_FormExtensionNoDot;
 }
 
 inline CString ZAGlobal::GetProcessFileExtension()
 {
-    return sProcessExtensionNoDot;
+    return g_ProcessExtensionNoDot;
 }
 
 inline CString ZAGlobal::GetModelFileExtension()
 {
-    return sModelExtensionNoDot;
+    return g_ModelExtensionNoDot;
 }
 
 inline const BOOL ZAGlobal::IsDuringInitialization()

@@ -297,7 +297,7 @@ inline const CString& PLFNAutoNumbered::GetStringTextLevel () const
 inline UINT PLFNAutoNumbered::GetRightSubMenu () const
 {
   //## begin PLFNAutoNumbered::GetRightSubMenu%864330569.body preserve=yes
-      return AutoNumberedRightSubMenu;
+      return g_AutoNumberedRightSubMenu;
   //## end PLFNAutoNumbered::GetRightSubMenu%864330569.body
 }
 

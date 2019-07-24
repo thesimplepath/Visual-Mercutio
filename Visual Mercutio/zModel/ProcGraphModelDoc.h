@@ -169,7 +169,7 @@ public:
 
     bool IsUnit()
     {
-        return GetDocumentStamp().GetFileType() == LibraryType;
+        return GetDocumentStamp().GetFileType() == E_FD_LibraryType;
     }
 
     bool HasUnit() const
@@ -178,12 +178,12 @@ public:
     }
 
     // Notation functions
-    ModelNotation GetNotation() const
+    EModelNotation GetNotation() const
     {
         return GetModelConst()->GetNotation();
     }
 
-    void SetNotation( ModelNotation value )
+    void SetNotation(EModelNotation value)
     {
         GetModel()->SetNotation( value );
     }

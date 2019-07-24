@@ -14,7 +14,7 @@ static char THIS_FILE[]=__FILE__;
 
 // JMR-MODIF - Le 21 octobre 2007 - Ajout des décorations unicode _T( ), nettoyage du code nutile. (En commentaires)
 
-IMPLEMENT_SERIAL( ZBPageUnits, CObject, def_Version )
+IMPLEMENT_SERIAL(ZBPageUnits, CObject, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

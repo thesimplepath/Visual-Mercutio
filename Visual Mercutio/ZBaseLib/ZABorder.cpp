@@ -29,7 +29,7 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(ZABorder, CObject, def_Version)
+IMPLEMENT_SERIAL(ZABorder, CObject, g_DefVersion)
 //## end module%33EC6F1A0316.additionalDeclarations
 
 
@@ -50,7 +50,7 @@ IMPLEMENT_SERIAL(ZABorder, CObject, def_Version)
 
 ZABorder::ZABorder()
   //## begin ZABorder::ZABorder%.hasinit preserve=no
-      : m_wLeftWidth(1), m_wTopWidth(1), m_wRightWidth(1), m_wBottomWidth(1), m_LeftType(NoLine), m_RightType(NoLine), m_TopType(NoLine), m_BottomType(NoLine), m_bShadow(FALSE)
+      : m_wLeftWidth(1), m_wTopWidth(1), m_wRightWidth(1), m_wBottomWidth(1), m_LeftType(E_LT_No), m_RightType(E_LT_No), m_TopType(E_LT_No), m_BottomType(E_LT_No), m_bShadow(FALSE)
   //## end ZABorder::ZABorder%.hasinit
   //## begin ZABorder::ZABorder%.initialization preserve=yes
   //## end ZABorder::ZABorder%.initialization
@@ -61,7 +61,7 @@ ZABorder::ZABorder()
 
 ZABorder::ZABorder(const ZABorder &right)
   //## begin ZABorder::ZABorder%copy.hasinit preserve=no
-      : m_wLeftWidth(1), m_wTopWidth(1), m_wRightWidth(1), m_wBottomWidth(1), m_LeftType(NoLine), m_RightType(NoLine), m_TopType(NoLine), m_BottomType(NoLine), m_bShadow(FALSE)
+      : m_wLeftWidth(1), m_wTopWidth(1), m_wRightWidth(1), m_wBottomWidth(1), m_LeftType(E_LT_No), m_RightType(E_LT_No), m_TopType(E_LT_No), m_BottomType(E_LT_No), m_bShadow(FALSE)
   //## end ZABorder::ZABorder%copy.hasinit
   //## begin ZABorder::ZABorder%copy.initialization preserve=yes
   , m_TopColor(defCOLOR_BLACK), m_BottomColor(defCOLOR_BLACK), m_LeftColor(defCOLOR_BLACK), m_RightColor(defCOLOR_BLACK)
@@ -130,15 +130,15 @@ void ZABorder::Serialize (CArchive& ar)
         ar >> m_wBottomWidth;
         WORD    wTemp;
         ar >> wTemp;
-        m_LeftType = (LineType)wTemp;
+        m_LeftType = ELineType(wTemp);
         ar >> wTemp;
-        m_RightType = (LineType)wTemp;
+        m_RightType = ELineType(wTemp);
         ar >> wTemp;
-        m_TopType = (LineType)wTemp;
+        m_TopType = ELineType(wTemp);
         ar >> wTemp;
-        m_BottomType = (LineType)wTemp;
+        m_BottomType = ELineType(wTemp);
         ar >> wTemp;
-        m_bShadow = (LineType)wTemp;
+        m_bShadow = ELineType(wTemp);
         ar >> m_TopColor;
         ar >> m_BottomColor;
         ar >> m_LeftColor;
@@ -213,12 +213,12 @@ void ZABorder::DrawBorderRightLine (CDC* pDC, const CPoint& StartPoint, const CP
   //## end ZABorder::DrawBorderRightLine%908878457.body
 }
 
-void ZABorder::DrawBorderHorizontalLine (CDC* pDC, const CPoint& StartPoint, const CPoint& EndPoint, LineType Type)
+void ZABorder::DrawBorderHorizontalLine (CDC* pDC, const CPoint& StartPoint, const CPoint& EndPoint, ELineType Type)
 {
   //## begin ZABorder::DrawBorderHorizontalLine%908904114.body preserve=yes
     switch (Type)
     {
-        case DottedLine:
+        case E_LT_Dotted:
         {
             for (int i = StartPoint.x; i < EndPoint.x; i += 2)
             {
@@ -227,7 +227,7 @@ void ZABorder::DrawBorderHorizontalLine (CDC* pDC, const CPoint& StartPoint, con
             }
             break;
         }
-        case SmallLine:
+        case E_LT_Small:
         {
             for (int i = StartPoint.x; i < EndPoint.x; i += 8)
             {
@@ -236,13 +236,13 @@ void ZABorder::DrawBorderHorizontalLine (CDC* pDC, const CPoint& StartPoint, con
             }
             break;
         }
-        case SolidLine:
+        case E_LT_Solid:
         {
             pDC->MoveTo( StartPoint.x, StartPoint.y );
             pDC->LineTo( EndPoint.x, EndPoint.y );
             break;
         }
-        case DashLine:
+        case E_LT_Dash:
         {
             for (int i = StartPoint.x; i < EndPoint.x; i += 4)
             {
@@ -256,12 +256,12 @@ void ZABorder::DrawBorderHorizontalLine (CDC* pDC, const CPoint& StartPoint, con
   //## end ZABorder::DrawBorderHorizontalLine%908904114.body
 }
 
-void ZABorder::DrawBorderVerticalLine (CDC* pDC, const CPoint& StartPoint, const CPoint& EndPoint, LineType Type)
+void ZABorder::DrawBorderVerticalLine (CDC* pDC, const CPoint& StartPoint, const CPoint& EndPoint, ELineType Type)
 {
   //## begin ZABorder::DrawBorderVerticalLine%908904115.body preserve=yes
     switch (Type)
     {
-        case DottedLine:
+        case E_LT_Dotted:
         {
             for (int i = StartPoint.y; i < EndPoint.y; i += 2)
             {
@@ -270,7 +270,7 @@ void ZABorder::DrawBorderVerticalLine (CDC* pDC, const CPoint& StartPoint, const
             }
             break;
         }
-        case SmallLine:
+        case E_LT_Small:
         {
             for (int i = StartPoint.y; i < EndPoint.y; i += 8)
             {
@@ -279,13 +279,13 @@ void ZABorder::DrawBorderVerticalLine (CDC* pDC, const CPoint& StartPoint, const
             }
             break;
         }
-        case SolidLine:
+        case E_LT_Solid:
         {
             pDC->MoveTo( StartPoint.x, StartPoint.y );
             pDC->LineTo( EndPoint.x, EndPoint.y );
             break;
         }
-        case DashLine:
+        case E_LT_Dash:
         {
             for (int i = StartPoint.y; i < EndPoint.y; i += 4)
             {

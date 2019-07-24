@@ -52,16 +52,13 @@ void ZINewFormPropertySheet::Initialize()
 
         if ( pTemplateDir )
         {
-            ZIGenericFormPage* pFormPage =
-                new ZIGenericFormPage( NULL,
-                                       pTemplateDir->GetTitle(),
-                                       m_pTemplateManager );
+            PSS_GenericFormPage* pFormPage = new PSS_GenericFormPage(NULL, pTemplateDir->GetTitle(), m_pTemplateManager);
 
-            if ( !m_FirstInitialization )
+            if (!m_FirstInitialization)
             {
-                // Remove the old page
-                RemovePage( 0 );
-                delete ( (ZIGenericFormPage*)(m_PageArray[i]) );
+                // remove the old page
+                RemovePage(0);
+                delete (m_PageArray[i]);
             }
 
             // Replace the pointer to the previous page
@@ -85,9 +82,7 @@ void ZINewFormPropertySheet::ClearContents()
 {
     // Free the pages allocated on the fly by the ZINewForm class
     for ( int i = 0; i < m_PageArray.GetSize(); ++i )
-    {
-        delete ( (ZIGenericFormPage*)(m_PageArray[i]) );
-    }
+        delete (m_PageArray[i]);
 
     PSS_BasePropSheet::GetPageArray().RemoveAll();
 }
@@ -499,8 +494,8 @@ afx_msg LONG ZINewForm::OnCommentChange( UINT message, LONG lParam )
     ASSERT( m_pTemplateManager );
 
     // message contains the current selection
-    ZIGenericFormPage* pFormPage =
-        ( (ZIGenericFormPage*)( m_pSystemPropertySheet->GetPageArray()[m_pSystemPropertySheet->GetCurPage()] ) );
+    PSS_GenericFormPage* pFormPage =
+        ((PSS_GenericFormPage*)m_pSystemPropertySheet->GetPageArray()[m_pSystemPropertySheet->GetCurPage()]);
 
     // Find the right template directory
     m_pCurrentTemplateDir = m_pTemplateManager->FindTemplateDir( pFormPage->GetCaption() );

@@ -22,7 +22,7 @@
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_StateMachineCollection, CObject, def_Version)
+IMPLEMENT_SERIAL(PSS_StateMachineCollection, CObject, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_StateMachineCollection
 //---------------------------------------------------------------------------

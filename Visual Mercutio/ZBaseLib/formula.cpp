@@ -44,7 +44,7 @@ void    ZAFormula::ConstructObjectPointer( ZDDocumentData& Doc, CObList& lstForm
 
 /////////////////////////////////////////////////////////////////////////////
 // ZAFormula
-IMPLEMENT_SERIAL(ZAFormula, CObject, def_Version)
+IMPLEMENT_SERIAL(ZAFormula, CObject, g_DefVersion)
 
 ZAFormula::ZAFormula()
  : m_ResultObject( NULL )
@@ -148,7 +148,7 @@ void ZAFormula::Dump(CDumpContext& dc) const
 
 /////////////////////////////////////////////////////////////////////////////
 // ZAFormulaAssociation
-IMPLEMENT_SERIAL(ZAFormulaAssociation, CObject, def_Version)
+IMPLEMENT_SERIAL(ZAFormulaAssociation, CObject, g_DefVersion)
 
 ZAFormulaAssociation::ZAFormulaAssociation()
 {
@@ -315,7 +315,7 @@ void ZAFormulaAssociation::Dump(CDumpContext& dc) const
 // ZAFormulaAssociationManager
 
 
-IMPLEMENT_SERIAL(ZAFormulaAssociationManager, CObject, def_Version)
+IMPLEMENT_SERIAL(ZAFormulaAssociationManager, CObject, g_DefVersion)
 
 ZAFormulaAssociationManager::ZAFormulaAssociationManager()
  : m_pCurrentAssociation( NULL )
@@ -489,7 +489,7 @@ void ZAFormulaAssociationManager::Dump(CDumpContext& dc) const
 
 /////////////////////////////////////////////////////////////////////////////
 // ZAFormulaSchema
-IMPLEMENT_SERIAL(ZAFormulaSchema, CObject, def_Version)
+IMPLEMENT_SERIAL(ZAFormulaSchema, CObject, g_DefVersion)
 
 ZAFormulaSchema::ZAFormulaSchema()
  : m_sDescription( "" ), m_FormulaSchemaType( UserSchema )
@@ -680,7 +680,7 @@ void ZAFormulaSchema::Dump(CDumpContext& dc) const
 CStringArray        ZASchemaManager::m_SchemaNameArray;
 
 
-IMPLEMENT_SERIAL(ZASchemaManager, CObject, def_Version)
+IMPLEMENT_SERIAL(ZASchemaManager, CObject, g_DefVersion)
 
 ZASchemaManager::ZASchemaManager()
 {
@@ -738,7 +738,7 @@ void ZASchemaManager::InitializeSchemaObjectPointer( ZDDocumentData& Doc )
 void ZASchemaManager::CreateStandardEmptySchema()
 {
     // Create the original schema
-    Create( szOriginalSchema );
+    Create(g_OriginalSchema);
 }
 
 void ZASchemaManager::Create( const CString& sName )
@@ -914,8 +914,8 @@ void ZASchemaManager::Serialize(CArchive& ar)
 void ZASchemaManager::ReadSerializeOldFormat(CArchive& ar)
 {
     // Create the original schema
-    Create( szOriginalSchema );
-    GetFormulaList( szOriginalSchema )->Serialize( ar );
+    Create(g_OriginalSchema);
+    GetFormulaList(g_OriginalSchema)->Serialize( ar );
 }
 
 /////////////////////////////////////////////////////////////////////////////

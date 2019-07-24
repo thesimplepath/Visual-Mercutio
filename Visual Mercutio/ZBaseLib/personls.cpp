@@ -31,7 +31,7 @@
 #undef THIS_FILE
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
-IMPLEMENT_SERIAL(ZUMailUserList, CObject, def_Version)
+IMPLEMENT_SERIAL(ZUMailUserList, CObject, g_DefVersion)
 //## end module%36722E8103D6.additionalDeclarations
 
 

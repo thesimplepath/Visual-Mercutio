@@ -17,14 +17,12 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(PLFNStringHistory, PLFNString, def_Version)
-IMPLEMENT_SERIAL(PLFNCalculated, PLFNLong, def_Version)
-IMPLEMENT_SERIAL(PLFNNumHistory, PLFNLong, def_Version)
-IMPLEMENT_SERIAL(PLFNNumbered, PLFNStatic, def_Version)
-IMPLEMENT_SERIAL(PLFNNumbEdit, PLFNString, def_Version)
-IMPLEMENT_SERIAL(PLFNNumbNumEdit, PLFNLong, def_Version)
-               
-
+IMPLEMENT_SERIAL(PLFNStringHistory, PLFNString, g_DefVersion)
+IMPLEMENT_SERIAL(PLFNCalculated, PLFNLong, g_DefVersion)
+IMPLEMENT_SERIAL(PLFNNumHistory, PLFNLong, g_DefVersion)
+IMPLEMENT_SERIAL(PLFNNumbered, PLFNStatic, g_DefVersion)
+IMPLEMENT_SERIAL(PLFNNumbEdit, PLFNString, g_DefVersion)
+IMPLEMENT_SERIAL(PLFNNumbNumEdit, PLFNLong, g_DefVersion)
 
 /////////////////////////////////////////////////////////////////////////////
 // PLFNNumbered construction/destruction

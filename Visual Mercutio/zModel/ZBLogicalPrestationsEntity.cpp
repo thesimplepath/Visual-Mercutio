@@ -23,7 +23,7 @@ ZBPrestationsEntitySet    ZBLogicalPrestationsEntity::m_FindSet;
 
 BOOL                    ZBLogicalPrestationsEntity::m_bModified = FALSE;
 
-IMPLEMENT_SERIAL( ZBLogicalPrestationsEntity, ZBPrestationsEntity, def_Version )
+IMPLEMENT_SERIAL(ZBLogicalPrestationsEntity, ZBPrestationsEntity, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

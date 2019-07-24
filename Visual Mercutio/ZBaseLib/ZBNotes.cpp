@@ -31,7 +31,7 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
 
-IMPLEMENT_SERIAL(ZBNotes, CObject, def_Version)
+IMPLEMENT_SERIAL(ZBNotes, CObject, g_DefVersion)
 //## end module%37E4CD2600F2.additionalDeclarations
 
 

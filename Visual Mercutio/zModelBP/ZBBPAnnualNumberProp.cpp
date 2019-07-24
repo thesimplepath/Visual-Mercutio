@@ -33,7 +33,7 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZBBPAnnualNumberProperties construction/destruction
 
-IMPLEMENT_SERIAL( ZBBPAnnualNumberProperties, CObject, def_Version )
+IMPLEMENT_SERIAL(ZBBPAnnualNumberProperties, CObject, g_DefVersion)
 
 using namespace sfl;
 
@@ -41,48 +41,48 @@ using namespace sfl;
 
 //@syntax ZBBPAnnualNumberProperties::ZBBPAnnualNumberProperties();
 //@syntax ZBBPAnnualNumberProperties::ZBBPAnnualNumberProperties(const ZBBPAnnualNumberProperties& propBasic);
-ZBBPAnnualNumberProperties::ZBBPAnnualNumberProperties( double TotalNumber /*= 1*/ )
+ZBBPAnnualNumberProperties::ZBBPAnnualNumberProperties(double totalNumber)
 {
-    // Sets the year quantity to 1
-    m_Equalizer.SetTotal( TotalNumber );
+    // set the year quantity to 1
+    m_Equalizer.SetTotal(totalNumber);
 
-    // Calculates the value for one month
-    double OneMonthQuantity = TotalNumber / _NumberOfMonthPerYear;
+    // calculates the value for one month
+    const double OneMonthQuantity = totalNumber / _NumberOfMonthPerYear;
 
-    // Assigns monthly values
-    m_Equalizer.SetNumberAt( IndexJanuary, OneMonthQuantity );
-    m_Equalizer.SetNumberAt( IndexFebruary, OneMonthQuantity );
-    m_Equalizer.SetNumberAt( IndexMarch, OneMonthQuantity );
-    m_Equalizer.SetNumberAt( IndexApril, OneMonthQuantity );
-    m_Equalizer.SetNumberAt( IndexMay, OneMonthQuantity );
-    m_Equalizer.SetNumberAt( IndexJune, OneMonthQuantity );
-    m_Equalizer.SetNumberAt( IndexJuly, OneMonthQuantity );
-    m_Equalizer.SetNumberAt( IndexAugust, OneMonthQuantity );
-    m_Equalizer.SetNumberAt( IndexSeptember, OneMonthQuantity );
-    m_Equalizer.SetNumberAt( IndexOctober, OneMonthQuantity );
-    m_Equalizer.SetNumberAt( IndexNovember, OneMonthQuantity );
-    m_Equalizer.SetNumberAt( IndexDecember, OneMonthQuantity );
+    // assigns monthly values
+    m_Equalizer.SetNumberAt(g_IndexJanuary,   OneMonthQuantity);
+    m_Equalizer.SetNumberAt(g_IndexFebruary,  OneMonthQuantity);
+    m_Equalizer.SetNumberAt(g_IndexMarch,     OneMonthQuantity);
+    m_Equalizer.SetNumberAt(g_IndexApril,     OneMonthQuantity);
+    m_Equalizer.SetNumberAt(g_IndexMay,       OneMonthQuantity);
+    m_Equalizer.SetNumberAt(g_IndexJune,      OneMonthQuantity);
+    m_Equalizer.SetNumberAt(g_IndexJuly,      OneMonthQuantity);
+    m_Equalizer.SetNumberAt(g_IndexAugust,    OneMonthQuantity);
+    m_Equalizer.SetNumberAt(g_IndexSeptember, OneMonthQuantity);
+    m_Equalizer.SetNumberAt(g_IndexOctober,   OneMonthQuantity);
+    m_Equalizer.SetNumberAt(g_IndexNovember,  OneMonthQuantity);
+    m_Equalizer.SetNumberAt(g_IndexDecember,  OneMonthQuantity);
 
-    // Sets the lock flag to false
-    m_Equalizer.SetLockedTotal( false );
-    m_Equalizer.SetLockedFlagAt( IndexJanuary, false );
-    m_Equalizer.SetLockedFlagAt( IndexFebruary, false );
-    m_Equalizer.SetLockedFlagAt( IndexMarch, false );
-    m_Equalizer.SetLockedFlagAt( IndexApril, false );
-    m_Equalizer.SetLockedFlagAt( IndexMay, false );
-    m_Equalizer.SetLockedFlagAt( IndexJune, false );
-    m_Equalizer.SetLockedFlagAt( IndexJuly, false );
-    m_Equalizer.SetLockedFlagAt( IndexAugust, false );
-    m_Equalizer.SetLockedFlagAt( IndexSeptember, false );
-    m_Equalizer.SetLockedFlagAt( IndexOctober, false );
-    m_Equalizer.SetLockedFlagAt( IndexNovember, false );
-    m_Equalizer.SetLockedFlagAt( IndexDecember, false );
+    // set the lock flag to false
+    m_Equalizer.SetLockedTotal(false);
+    m_Equalizer.SetLockedFlagAt(g_IndexJanuary,   false);
+    m_Equalizer.SetLockedFlagAt(g_IndexFebruary,  false);
+    m_Equalizer.SetLockedFlagAt(g_IndexMarch,     false);
+    m_Equalizer.SetLockedFlagAt(g_IndexApril,     false);
+    m_Equalizer.SetLockedFlagAt(g_IndexMay,       false);
+    m_Equalizer.SetLockedFlagAt(g_IndexJune,      false);
+    m_Equalizer.SetLockedFlagAt(g_IndexJuly,      false);
+    m_Equalizer.SetLockedFlagAt(g_IndexAugust,    false);
+    m_Equalizer.SetLockedFlagAt(g_IndexSeptember, false);
+    m_Equalizer.SetLockedFlagAt(g_IndexOctober,   false);
+    m_Equalizer.SetLockedFlagAt(g_IndexNovember,  false);
+    m_Equalizer.SetLockedFlagAt(g_IndexDecember,  false);
 
-    // Calculates all percents according to values
+    // calculate all percents according to values
     m_Equalizer.CalculatePercents();
 
-    // Don't show month details
-    SetForceEqualizer( false );
+    // don't show month details
+    SetForceEqualizer(false);
 }
 
 ZBBPAnnualNumberProperties::ZBBPAnnualNumberProperties( const ZBBPAnnualNumberProperties& right )
@@ -106,10 +106,8 @@ ZBBPAnnualNumberProperties ZBBPAnnualNumberProperties::Max( const ZBBPAnnualNumb
 {
     ZBBPAnnualNumberProperties AnnualPropTemp;
 
-    for ( size_t Index = IndexJanuary; Index < IndexDecember+1; ++Index )
-    {
-        AnnualPropTemp.SetNumberAt( Index, __max( Left.GetNumberAt( Index ), Right.GetNumberAt( Index ) ) );
-    }
+    for (std::size_t index = g_IndexJanuary; index < g_IndexDecember + 1; ++index)
+        AnnualPropTemp.SetNumberAt(index, __max(Left.GetNumberAt(index), Right.GetNumberAt(index)));
 
     // After having set all maxs.
     // Recalculate the total
@@ -124,10 +122,8 @@ ZBBPAnnualNumberProperties ZBBPAnnualNumberProperties::Min( const ZBBPAnnualNumb
 {
     ZBBPAnnualNumberProperties AnnualPropTemp;
 
-    for ( size_t Index = IndexJanuary; Index < IndexDecember+1; ++Index )
-    {
-        AnnualPropTemp.SetNumberAt( Index, __min( Left.GetNumberAt( Index ), Right.GetNumberAt( Index ) ) );
-    }
+    for (std::size_t index = g_IndexJanuary; index < g_IndexDecember + 1; ++index)
+        AnnualPropTemp.SetNumberAt(index, __min(Left.GetNumberAt(index), Right.GetNumberAt(index)));
 
     // After having set all maxs.
     // Recalculate the total
@@ -200,10 +196,8 @@ ZBBPAnnualNumberProperties ZBBPAnnualNumberProperties::operator+( const ZBBPAnnu
 {
     ZBBPAnnualNumberProperties AnnualPropTemp;
 
-    for ( size_t Index = IndexJanuary; Index < IndexDecember+1; ++Index )
-    {
-        AnnualPropTemp.SetNumberAt( Index, GetNumberAt( Index ) + Right.GetNumberAt( Index ) );
-    }
+    for (std::size_t index = g_IndexJanuary; index < g_IndexDecember + 1; ++index)
+        AnnualPropTemp.SetNumberAt(index, GetNumberAt(index) + Right.GetNumberAt(index));
 
     // After having set all maxs.
     // Recalculate the total
@@ -233,10 +227,8 @@ ZBBPAnnualNumberProperties ZBBPAnnualNumberProperties::operator-( const ZBBPAnnu
 {
     ZBBPAnnualNumberProperties AnnualPropTemp;
 
-    for ( size_t Index = IndexJanuary; Index < IndexDecember+1; ++Index )
-    {
-        AnnualPropTemp.SetNumberAt( Index, GetNumberAt( Index ) - Right.GetNumberAt( Index ) );
-    }
+    for (std::size_t index = g_IndexJanuary; index < g_IndexDecember + 1; ++index)
+        AnnualPropTemp.SetNumberAt(index, GetNumberAt(index ) - Right.GetNumberAt(index));
 
     // After having set all maxs.
     // Recalculate the total
@@ -248,69 +240,69 @@ ZBBPAnnualNumberProperties ZBBPAnnualNumberProperties::operator-( const ZBBPAnnu
 
 void ZBBPAnnualNumberProperties::SetAndCalculateQuantitiesBasedOnYear( const double value )
 {
-    m_Equalizer.SetTotalEqualizeNumbers( value );
+    m_Equalizer.SetTotalEqualizeNumbers(value);
 }
 
 void ZBBPAnnualNumberProperties::SetAndCalculateQuantitiesBasedOnJanuary( const double value )
 {
-    m_Equalizer.SetNumberAtEqualize( IndexJanuary, value );
+    m_Equalizer.SetNumberAtEqualize(g_IndexJanuary, value);
 }
 
 void ZBBPAnnualNumberProperties::SetAndCalculateQuantitiesBasedOnFebruary( const double value )
 {
-    m_Equalizer.SetNumberAtEqualize( IndexFebruary, value );
+    m_Equalizer.SetNumberAtEqualize(g_IndexFebruary, value);
 }
 
 void ZBBPAnnualNumberProperties::SetAndCalculateQuantitiesBasedOnMarch( const double value )
 {
-    m_Equalizer.SetNumberAtEqualize( IndexMarch, value );
+    m_Equalizer.SetNumberAtEqualize(g_IndexMarch, value);
 }
 
 void ZBBPAnnualNumberProperties::SetAndCalculateQuantitiesBasedOnApril( const double value )
 {
-    m_Equalizer.SetNumberAtEqualize( IndexApril, value );
+    m_Equalizer.SetNumberAtEqualize(g_IndexApril, value);
 }
 
 
 void ZBBPAnnualNumberProperties::SetAndCalculateQuantitiesBasedOnMay( const double value )
 {
-    m_Equalizer.SetNumberAtEqualize( IndexMay, value );
+    m_Equalizer.SetNumberAtEqualize(g_IndexMay, value);
 }
 
 
 void ZBBPAnnualNumberProperties::SetAndCalculateQuantitiesBasedOnJune( const double value )
 {
-    m_Equalizer.SetNumberAtEqualize( IndexJune, value );
+    m_Equalizer.SetNumberAtEqualize(g_IndexJune, value);
 }
 
 void ZBBPAnnualNumberProperties::SetAndCalculateQuantitiesBasedOnJuly( const double value )
 {
-    m_Equalizer.SetNumberAtEqualize( IndexJuly, value );
+    m_Equalizer.SetNumberAtEqualize(g_IndexJuly, value);
 }
 
 void ZBBPAnnualNumberProperties::SetAndCalculateQuantitiesBasedOnAugust( const double value )
 {
-    m_Equalizer.SetNumberAtEqualize( IndexAugust, value );
+    m_Equalizer.SetNumberAtEqualize(g_IndexAugust, value);
 }
 
 void ZBBPAnnualNumberProperties::SetAndCalculateQuantitiesBasedOnSeptember( const double value )
 {
-    m_Equalizer.SetNumberAtEqualize( IndexSeptember, value );
+    m_Equalizer.SetNumberAtEqualize(g_IndexSeptember, value);
 }
 
 void ZBBPAnnualNumberProperties::SetAndCalculateQuantitiesBasedOnOctober( const double value )
 {
-    m_Equalizer.SetNumberAtEqualize( IndexOctober, value );
+    m_Equalizer.SetNumberAtEqualize(g_IndexOctober, value);
 }
 
 void ZBBPAnnualNumberProperties::SetAndCalculateQuantitiesBasedOnNovember( const double value )
 {
-    m_Equalizer.SetNumberAtEqualize( IndexNovember, value );
+    m_Equalizer.SetNumberAtEqualize(g_IndexNovember, value);
 }
 
 void ZBBPAnnualNumberProperties::SetAndCalculateQuantitiesBasedOnDecember( const double value )
 {
-    m_Equalizer.SetNumberAtEqualize( IndexDecember, value );
+    m_Equalizer.SetNumberAtEqualize(g_IndexDecember, value);
 }
 
 /////////////////////////////////////////////////////////////////////////////

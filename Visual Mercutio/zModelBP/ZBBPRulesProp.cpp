@@ -24,7 +24,7 @@ static char THIS_FILE[] = __FILE__;
 
 using namespace sfl;
 
-IMPLEMENT_SERIAL( ZBBPRulesProperties, CObject, def_Version )
+IMPLEMENT_SERIAL(ZBBPRulesProperties, CObject, g_DefVersion)
 
 // Constructeur par défaut de la classe ZBBPRulesProperties.
 ZBBPRulesProperties::ZBBPRulesProperties()

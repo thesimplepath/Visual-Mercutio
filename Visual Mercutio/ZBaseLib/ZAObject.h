@@ -190,14 +190,14 @@ public:
 
     //## Operation: GetFormatType%829516145
     // Return the format type.
-    FormatType GetFormatType() const;
+    EFormatType GetFormatType() const;
 
     //## Operation: CopyObject%863615075
     virtual void CopyObject( PlanFinObject* pSrc );
 
     //## Operation: SetFormatType%829516146
     // Assign a format type.
-    void SetFormatType( FormatType Fmt );
+    void SetFormatType(EFormatType Fmt);
 
     //## Operation: FormatObject%829516140
     // Format the object with a string.
@@ -555,8 +555,8 @@ public:
 
     //## Attribute: EmptyStyle%35139C250384
     // Defines the empty style when the control is empty.
-    const LineType GetEmptyStyle() const;
-    void SetEmptyStyle( LineType value );
+    const ELineType GetEmptyStyle() const;
+    void SetEmptyStyle(ELineType value);
 
     //## Attribute: TabOrder%35192AEA03A2
     // Define the tab order.
@@ -653,7 +653,7 @@ protected:
     //## Attribute: FormatType%334FC461029B
     // Define the display format.
     //## begin PlanFinObject::FormatType%334FC461029B.attr preserve=no  public: FormatType {V} 
-    FormatType m_FormatType;
+    EFormatType m_FormatType;
     //## end PlanFinObject::FormatType%334FC461029B.attr
 
     //## Attribute: FormatChoice%334FC461029D
@@ -731,7 +731,7 @@ private:
     //## end PlanFinObject::iAngle%347C59770320.attr
 
     //## begin PlanFinObject::EmptyStyle%35139C250384.attr preserve=no  public: LineType {U} AutomaticLine
-    LineType m_EmptyStyle;
+    ELineType m_EmptyStyle;
     //## end PlanFinObject::EmptyStyle%35139C250384.attr
 
     //## begin PlanFinObject::TabOrder%35192AEA03A2.attr preserve=no  public: double {U} 0
@@ -830,14 +830,14 @@ inline int PlanFinObject::GetObjectPage () const
   //## end PlanFinObject::GetObjectPage%829516144.body
 }
 
-inline FormatType PlanFinObject::GetFormatType () const
+inline EFormatType PlanFinObject::GetFormatType() const
 {
   //## begin PlanFinObject::GetFormatType%829516145.body preserve=yes
       return m_FormatType;
   //## end PlanFinObject::GetFormatType%829516145.body
 }
 
-inline void PlanFinObject::SetFormatType (FormatType Fmt)
+inline void PlanFinObject::SetFormatType(EFormatType Fmt)
 {
   //## begin PlanFinObject::SetFormatType%829516146.body preserve=yes
       m_FormatType = Fmt;
@@ -1018,7 +1018,7 @@ inline void PlanFinObject::SelectObject (BOOL bState)
 inline UINT PlanFinObject::GetRightSubMenu () const
 {
   //## begin PlanFinObject::GetRightSubMenu%864330568.body preserve=yes
-      return ObjectRightSubMenu;
+      return g_ObjectRightSubMenu;
   //## end PlanFinObject::GetRightSubMenu%864330568.body
 }
 
@@ -1223,14 +1223,14 @@ inline const int PlanFinObject::GetiAngle () const
   //## end PlanFinObject::GetiAngle%347C59770320.get
 }
 
-inline const LineType PlanFinObject::GetEmptyStyle () const
+inline const ELineType PlanFinObject::GetEmptyStyle() const
 {
   //## begin PlanFinObject::GetEmptyStyle%35139C250384.get preserve=no
   return m_EmptyStyle;
   //## end PlanFinObject::GetEmptyStyle%35139C250384.get
 }
 
-inline void PlanFinObject::SetEmptyStyle (LineType value)
+inline void PlanFinObject::SetEmptyStyle(ELineType value)
 {
   //## begin PlanFinObject::SetEmptyStyle%35139C250384.set preserve=no
   m_EmptyStyle = value;

@@ -60,7 +60,7 @@ class AFX_EXT_CLASS PLFNTwoStates : public PLFNGraphic  //## Inherits: <unnamed>
     public:
     // Inherited feature
         typedef PLFNGraphic inherited;
-          virtual UINT GetRightSubMenu() const { return TwoStateRightSubMenu; };
+          virtual UINT GetRightSubMenu() const { return g_TwoStateRightSubMenu; };
         virtual const BOOL GetIsStatic () const { return FALSE; };
   //## end PLFNTwoStates%35138727014A.initialDeclarations
 
@@ -109,8 +109,8 @@ class AFX_EXT_CLASS PLFNTwoStates : public PLFNGraphic  //## Inherits: <unnamed>
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: CheckType%35138814033E
-      const CheckButtonType GetCheckType () const;
-      void SetCheckType (CheckButtonType value);
+      const ECheckButtonType GetCheckType() const;
+      void SetCheckType(ECheckButtonType value);
 
       //## Attribute: bCheckState%3513881E0226
       const BOOL GetbCheckState () const;
@@ -162,7 +162,7 @@ class AFX_EXT_CLASS PLFNTwoStates : public PLFNGraphic  //## Inherits: <unnamed>
     // Data Members for Class Attributes
 
       //## begin PLFNTwoStates::CheckType%35138814033E.attr preserve=no  public: CheckButtonType {U} Rounded
-      CheckButtonType m_CheckType;
+      ECheckButtonType m_CheckType;
       //## end PLFNTwoStates::CheckType%35138814033E.attr
 
       //## begin PLFNTwoStates::bCheckState%3513881E0226.attr preserve=no  public: BOOL {U} FALSE
@@ -213,14 +213,14 @@ class AFX_EXT_CLASS PLFNTwoStates : public PLFNGraphic  //## Inherits: <unnamed>
 
 //## Get and Set Operations for Class Attributes (inline)
 
-inline const CheckButtonType PLFNTwoStates::GetCheckType () const
+inline const ECheckButtonType PLFNTwoStates::GetCheckType() const
 {
   //## begin PLFNTwoStates::GetCheckType%35138814033E.get preserve=no
   return m_CheckType;
   //## end PLFNTwoStates::GetCheckType%35138814033E.get
 }
 
-inline void PLFNTwoStates::SetCheckType (CheckButtonType value)
+inline void PLFNTwoStates::SetCheckType(ECheckButtonType value)
 {
   //## begin PLFNTwoStates::SetCheckType%35138814033E.set preserve=no
   m_CheckType = value;

@@ -42,7 +42,7 @@ static char THIS_FILE[]=__FILE__;
 // Static variable initialization
 int ZBSesterceConsolidatedReportGenerator::m_UnitLevel = 0;
 
-IMPLEMENT_SERIAL( ZBSesterceConsolidatedReportGenerator, ZBModelBPReportGenerator, def_Version )
+IMPLEMENT_SERIAL(ZBSesterceConsolidatedReportGenerator, ZBModelBPReportGenerator, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

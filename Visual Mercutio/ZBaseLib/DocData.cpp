@@ -59,7 +59,7 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 24 février 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL( ZDDocumentData, CObject, def_Version )
+IMPLEMENT_SERIAL( ZDDocumentData, CObject, g_DefVersion )
 
 #include "ZDDoc.h"
 //## end module%3678E29D0317.additionalDeclarations
@@ -716,7 +716,7 @@ void ZDDocumentData::SerializeRead ( CArchive& ar )
     }
     else
     {
-        SchemaName = szOriginalSchema;    // Put the default schema name
+        SchemaName = g_OriginalSchema;    // Put the default schema name
     }
 
     SetCurrentSchema( SchemaName );
@@ -848,7 +848,7 @@ void ZDDocumentData::SerializeStampWrite ( CArchive& ar, ZDStamp& Stamp )
     //## begin ZDDocumentData::SerializeStampWrite%913885120.body preserve=yes
     // Sets the document type
     Stamp.SetDocumentFileType( FormDocumentFileType );
-    Stamp.SetInternalVersion( lVersionFile );
+    Stamp.SetInternalVersion(g_VersionFile);
     WORD wTemp = 0xFFFF;
 
     // Put the stamp for differentiate
@@ -922,20 +922,14 @@ void ZDDocumentData::AssignPredefinedField ()
 
     do
     {
-        // Assign the page field
-        if( obj->GetObjectName() == mszpPredefinedField[PREDFIELD_PAGE] )
-        {
-            SetCurrentPageToObject( obj );
-        }
+        // assign the page field
+        if (obj->GetObjectName() == g_pPredefinedField[g_PredefinedFieldPage])
+            SetCurrentPageToObject(obj);
 
-        // Assign the date field
-        if( obj->GetObjectName() == mszpPredefinedField[PREDFIELD_DATE] )
-        {
-            if( obj->IsKindOf( RUNTIME_CLASS( PLFNTime ) ) )
-            {
-                ( (PLFNTime*)obj )->SetToday();
-            }
-        }
+        // assign the date field
+        if (obj->GetObjectName() == g_pPredefinedField[g_PredefinedFieldDate])
+            if(obj->IsKindOf(RUNTIME_CLASS(PLFNTime)))
+                ((PLFNTime*)obj)->SetToday();
     }
     while( ( obj = GetNext() ) != NULL );
     //## end ZDDocumentData::AssignPredefinedField%913885122.body
@@ -972,7 +966,7 @@ BOOL ZDDocumentData::ChangeObjectType ( PlanFinObject*    obj,
                     (PlanFinObject&)*pNewObjTemp = (PlanFinObject*)pObjTemp;
 
                     // Initialize certain parameters
-                    pNewObjTemp->SetFormatType( Standard );
+                    pNewObjTemp->SetFormatType(E_FT_Standard);
 
                     // If this object was stored as a pointer to the list
                     // of formula object, change the pointer
@@ -1005,7 +999,7 @@ BOOL ZDDocumentData::ChangeObjectType ( PlanFinObject*    obj,
     (PlanFinObject&)*pNewObj = (PlanFinObject*)obj;
 
     // Initialize certain parameters
-    pNewObj->SetFormatType( Standard );
+    pNewObj->SetFormatType(E_FT_Standard);
 
     // If this object was stored as a pointer to the list
     // of formula object, change the pointer
@@ -1249,10 +1243,8 @@ BOOL ZDDocumentData::AssignObjectValue ( CString    Name,
                                          BOOL        EmptyWhenZero )
 {
     //## begin ZDDocumentData::AssignObjectValue%913885128.body preserve=yes
-    if ( PropagationMode == LocateAllDocuments || PropagationMode == LocateAllDocumentsEmptyOnly )
-    {
-        return FALSE;    // Problem
-    }
+    if (PropagationMode == g_LocateAllDocuments || PropagationMode == g_LocateAllDocumentsEmptyOnly)
+        return FALSE;
 
     // Try to locate the object
     PlanFinObject *pObj;
@@ -1267,7 +1259,7 @@ BOOL ZDDocumentData::AssignObjectValue ( CString    Name,
                 // Function of propagation mode
                 switch ( PropagationMode )
                 {
-                    case LocatePageOnlyEmptyOnly:
+                    case g_LocatePageOnlyEmptyOnly:
                     {
                         // If after the concerned page, end it is finished
                         if ( pObj->GetObjectPage() > Page )
@@ -1285,7 +1277,7 @@ BOOL ZDDocumentData::AssignObjectValue ( CString    Name,
                         break;
                     }
 
-                    case LocateForwardPageEmptyOnly:
+                    case g_LocateForwardPageEmptyOnly:
                     {
                         // If before the page, continue
                         if ( pObj->GetObjectPage() < Page )
@@ -1303,7 +1295,7 @@ BOOL ZDDocumentData::AssignObjectValue ( CString    Name,
                         break;
                     }
 
-                    case LocateAllPagesEmptyOnly:
+                    case g_LocateAllPagesEmptyOnly:
                     {
                         // If the object is not empty, continue
                         if ( !pObj->IsEmpty() )
@@ -1315,7 +1307,7 @@ BOOL ZDDocumentData::AssignObjectValue ( CString    Name,
                         break;
                     }
 
-                    case LocatePageOnly:
+                    case g_LocatePageOnly:
                     {
                         // If after the concerned page, end it is finished
                         if ( pObj->GetObjectPage() > Page )
@@ -1327,7 +1319,7 @@ BOOL ZDDocumentData::AssignObjectValue ( CString    Name,
                         break;
                     }
 
-                    case LocateForwardPage:
+                    case g_LocateForwardPage:
                     {
                         // If before the page, continue
                         if ( pObj->GetObjectPage() < Page )
@@ -1339,7 +1331,7 @@ BOOL ZDDocumentData::AssignObjectValue ( CString    Name,
                         break;
                     }
 
-                    case LocateAllPages:
+                    case g_LocateAllPages:
                     {
                         // All conditions are filled, assign the value
                         break;
@@ -2203,9 +2195,7 @@ void ZDDocumentData::MoveContents( ZDDocumentData* pDocument, BOOL bCopyFormat )
                 if ( !pObjSrc->IsEmpty() )
                 {
                     if ( bCopyFormat )
-                    {
-                        pObjDst->SetFormatType( pObjSrc->GetFormatType() );
-                    }
+                        pObjDst->SetFormatType(pObjSrc->GetFormatType());
 
                     pObjDst->ConvertFormatedObject( pObjSrc->GetFormatedObject() );
                 }

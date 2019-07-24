@@ -90,7 +90,7 @@ BOOL ZVRiskNewFileDlg::OnInitDialog()
 {
     CDialog::OnInitDialog();
 
-    m_Directory = PSS_Application::Instance()->GetMainForm()->GetApplicationDir() + szRiskDirectory;
+    m_Directory = PSS_Application::Instance()->GetMainForm()->GetApplicationDir() + g_RiskDirectory;
     m_Directory_Ctrl.SetWindowText(m_Directory);
 
     m_OK_Ctrl.EnableWindow(FALSE);

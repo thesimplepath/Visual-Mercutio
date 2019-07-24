@@ -18,11 +18,11 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(PLFNStatic, PLFNText, def_Version)
-IMPLEMENT_SERIAL(PLFNTime, PLFNAscii, def_Version)
-IMPLEMENT_SERIAL(PLFNLong, PLFNAscii, def_Version)
-IMPLEMENT_SERIAL(PLFNRect, PLFNGraphic, def_Version)
-IMPLEMENT_SERIAL(PLFNLine, PLFNGraphic, def_Version)
+IMPLEMENT_SERIAL(PLFNStatic, PLFNText, g_DefVersion)
+IMPLEMENT_SERIAL(PLFNTime, PLFNAscii, g_DefVersion)
+IMPLEMENT_SERIAL(PLFNLong, PLFNAscii, g_DefVersion)
+IMPLEMENT_SERIAL(PLFNRect, PLFNGraphic, g_DefVersion)
+IMPLEMENT_SERIAL(PLFNLine, PLFNGraphic, g_DefVersion)
                
 /////////////////////////////////////////////////////////////////////////////
 // PLFNLine construction/destruction
@@ -446,7 +446,7 @@ void PLFNStatic::OnAngleChanged(ZDDocument* pDoc)
 // The default is the zero time.
 PLFNTime::PLFNTime()
 {
-    m_Time = m_ZeroTime;
+    m_Time = g_ZeroTime;
 }
 PLFNTime::PLFNTime(const PLFNTime &right)
 {
@@ -655,19 +655,19 @@ CStringArray&    PLFNTime::GetFormatChoice()
     PLFNTime    TmpTime;
     TmpTime = (PLFNTime*)this;
 
-    TmpTime.SetFormatType( Standard );
+    TmpTime.SetFormatType(E_FT_Standard);
     TmpTime.FormatObject( &TmpTime.m_Time );
     m_FormatChoice.Add( CString( TmpTime.GetFormatedBuffer() ) );
 
-    TmpTime.SetFormatType( Date );
+    TmpTime.SetFormatType(E_FT_Date);
     TmpTime.FormatObject( &TmpTime.m_Time );
     m_FormatChoice.Add( CString( TmpTime.GetFormatedBuffer() ) );
 
-    TmpTime.SetFormatType( Date1 );
+    TmpTime.SetFormatType(E_FT_Date1);
     TmpTime.FormatObject( &TmpTime.m_Time );
     m_FormatChoice.Add( CString( TmpTime.GetFormatedBuffer() ) );
 
-    TmpTime.SetFormatType( Date2 );
+    TmpTime.SetFormatType(E_FT_Date2);
     TmpTime.FormatObject( &TmpTime.m_Time );
     m_FormatChoice.Add( CString( TmpTime.GetFormatedBuffer() ) );
 
@@ -691,10 +691,10 @@ void PLFNTime::SetFormatWithChoice( const CString& sValue )
     if (index < formatChoiceCount)
         switch (index)
         {
-            case 0: m_FormatType = Standard; break;
-            case 1: m_FormatType = Date;     break;
-            case 2: m_FormatType = Date1;    break;
-            case 3: m_FormatType = Date2;    break;
+            case 0: m_FormatType = E_FT_Standard; break;
+            case 1: m_FormatType = E_FT_Date;     break;
+            case 2: m_FormatType = E_FT_Date1;    break;
+            case 3: m_FormatType = E_FT_Date2;    break;
         }
 }
 
@@ -756,11 +756,11 @@ void PLFNTime::Serialize(CArchive& ar)
             {
 #ifdef _WIN32
                 // Construct a CTime for making comparison
-                CTime    ZeroTime( m_ZeroTime.GetYear(), m_ZeroTime.GetMonth(), m_ZeroTime.GetDay(), m_ZeroTime.GetHour(), m_ZeroTime.GetMinute(), m_ZeroTime.GetSecond() );
+                CTime    ZeroTime( g_ZeroTime.GetYear(), g_ZeroTime.GetMonth(), g_ZeroTime.GetDay(), g_ZeroTime.GetHour(), g_ZeroTime.GetMinute(), g_ZeroTime.GetSecond() );
                 m_IsEmpty = (Time == ZeroTime);
 #endif
 #ifndef _WIN32
-                m_IsEmpty = (Time == m_ZeroTime);
+                m_IsEmpty = (Time == g_ZeroTime);
 #endif
             }
         }
@@ -910,7 +910,7 @@ BOOL PLFNLong::ConvertFormatedObject(const CString& sValue, BOOL bLocateFormat, 
          m_Long = std::atof((const char*)sValue) / 100;
 
         if (bLocateFormat)
-            SetFormatType(Percentage);
+            SetFormatType(E_FT_Percentage);
 
         // test if it is necessary to empty the object on zeros
         if (EmptyWhenZero && !m_Long)
@@ -964,15 +964,15 @@ BOOL PLFNLong::ConvertFormatedObject(const CString& sValue, BOOL bLocateFormat, 
             if (std::strchr((const char*)sValue, ',') || std::strchr((const char*)sValue, '.'))
             {
                 if (b2Dash)
-                    SetFormatType(Amount2DashTrail);
+                    SetFormatType(E_FT_Amount2DashTrail);
                 else
                 if (b1Dash)
-                    SetFormatType(Amount1DashTrail);
+                    SetFormatType(E_FT_Amount1DashTrail);
                 else
-                    SetFormatType(Amount2);
+                    SetFormatType(E_FT_Amount2);
             }
             else
-                SetFormatType(Amount);
+                SetFormatType(E_FT_Amount);
     }
     else
     {
@@ -995,12 +995,12 @@ BOOL PLFNLong::ConvertFormatedObject(const CString& sValue, BOOL bLocateFormat, 
         if (bLocateFormat && (std::strchr((const char*)sValue, ',') || std::strchr((const char*)sValue, '.')))
         {
             if (b2Dash)
-                SetFormatType(Amount2Dash);
+                SetFormatType(E_FT_Amount2Dash);
             else
             if (b1Dash)
-                SetFormatType(Amount1Dash);
+                SetFormatType(E_FT_Amount1Dash);
             else
-                SetFormatType(Amount1);
+                SetFormatType(E_FT_Amount1);
         }
     }
 
@@ -1030,45 +1030,45 @@ CStringArray& PLFNLong::GetFormatChoice()
         bWasEmpty = true;
         TmpLong.SetValue( 1035.25 );
     }
-    TmpLong.SetFormatType( Standard );
+    TmpLong.SetFormatType(E_FT_Standard);
     TmpLong.FormatObject( TmpLong.m_Long );
     m_FormatChoice.Add( CString( TmpLong.GetFormatedBuffer() ) );
 
-    TmpLong.SetFormatType( Amount );
-    TmpLong.FormatObject( TmpLong.m_Long );
-    m_FormatChoice.Add( CString( TmpLong.GetFormatedBuffer() ) );
-
-
-    TmpLong.SetFormatType( Amount1 );
-    TmpLong.FormatObject( TmpLong.m_Long );
-    m_FormatChoice.Add( CString( TmpLong.GetFormatedBuffer() ) );
-
-    TmpLong.SetFormatType( Amount2 );
+    TmpLong.SetFormatType(E_FT_Amount);
     TmpLong.FormatObject( TmpLong.m_Long );
     m_FormatChoice.Add( CString( TmpLong.GetFormatedBuffer() ) );
 
 
-    TmpLong.SetFormatType( Amount1Dash );
+    TmpLong.SetFormatType(E_FT_Amount1);
+    TmpLong.FormatObject( TmpLong.m_Long );
+    m_FormatChoice.Add( CString( TmpLong.GetFormatedBuffer() ) );
+
+    TmpLong.SetFormatType(E_FT_Amount2);
     TmpLong.FormatObject( TmpLong.m_Long );
     m_FormatChoice.Add( CString( TmpLong.GetFormatedBuffer() ) );
 
 
-    TmpLong.SetFormatType( Amount2Dash );
+    TmpLong.SetFormatType(E_FT_Amount1Dash);
     TmpLong.FormatObject( TmpLong.m_Long );
     m_FormatChoice.Add( CString( TmpLong.GetFormatedBuffer() ) );
 
-    TmpLong.SetFormatType( Amount1DashTrail );
+
+    TmpLong.SetFormatType(E_FT_Amount2Dash);
     TmpLong.FormatObject( TmpLong.m_Long );
     m_FormatChoice.Add( CString( TmpLong.GetFormatedBuffer() ) );
 
-    TmpLong.SetFormatType( Amount2DashTrail );
+    TmpLong.SetFormatType(E_FT_Amount1DashTrail);
+    TmpLong.FormatObject( TmpLong.m_Long );
+    m_FormatChoice.Add( CString( TmpLong.GetFormatedBuffer() ) );
+
+    TmpLong.SetFormatType(E_FT_Amount2DashTrail);
     TmpLong.FormatObject( TmpLong.m_Long );
     m_FormatChoice.Add( CString( TmpLong.GetFormatedBuffer() ) );
 
     if (bWasEmpty)
         TmpLong.SetValue( 0.5845 );
 
-    TmpLong.SetFormatType( Percentage );
+    TmpLong.SetFormatType(E_FT_Percentage);
     TmpLong.FormatObject( TmpLong.m_Long );
     m_FormatChoice.Add( CString( TmpLong.GetFormatedBuffer() ) );
 
@@ -1092,15 +1092,15 @@ void PLFNLong::SetFormatWithChoice(const CString& sValue)
     if (index <  m_FormatChoice.GetSize( ))
         switch (index)
         {
-            case 0: m_FormatType = Standard;         break;
-            case 1: m_FormatType = Amount;           break;
-            case 2: m_FormatType = Amount1;          break;
-            case 3: m_FormatType = Amount2;          break;
-            case 4: m_FormatType = Amount1Dash;      break;
-            case 5: m_FormatType = Amount2Dash;      break;
-            case 6: m_FormatType = Amount1DashTrail; break;
-            case 7: m_FormatType = Amount2DashTrail; break;
-            case 8: m_FormatType = Percentage;       break;
+            case 0: m_FormatType = E_FT_Standard;         break;
+            case 1: m_FormatType = E_FT_Amount;           break;
+            case 2: m_FormatType = E_FT_Amount1;          break;
+            case 3: m_FormatType = E_FT_Amount2;          break;
+            case 4: m_FormatType = E_FT_Amount1Dash;      break;
+            case 5: m_FormatType = E_FT_Amount2Dash;      break;
+            case 6: m_FormatType = E_FT_Amount1DashTrail; break;
+            case 7: m_FormatType = E_FT_Amount2DashTrail; break;
+            case 8: m_FormatType = E_FT_Percentage;       break;
         }
 }
 

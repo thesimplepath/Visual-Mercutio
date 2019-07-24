@@ -33,7 +33,7 @@ static char THIS_FILE[] = __FILE__;
 // *                                ZBBPCostPropertiesProcedure construction/destruction                                *
 // **********************************************************************************************************************
 
-IMPLEMENT_SERIAL(ZBBPCostPropertiesProcedure, CODIntProperty, def_Version)
+IMPLEMENT_SERIAL(ZBBPCostPropertiesProcedure, CODIntProperty, g_DefVersion)
 
 using namespace sfl;
 

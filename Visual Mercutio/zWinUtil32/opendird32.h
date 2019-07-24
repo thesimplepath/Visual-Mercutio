@@ -3,7 +3,7 @@
 
 // processsoft
 #include "zBaseLib\ZIDialog.h"
-#include "DirTreeCtrl.h"
+#include "PSS_DirTreeCtrl.h"
 
 // resources
 #ifndef _WIN32

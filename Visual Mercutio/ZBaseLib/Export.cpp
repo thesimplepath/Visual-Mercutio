@@ -40,7 +40,7 @@ END_MESSAGE_MAP()
 
 ZUExport::ZUExport ( CString                        Filename,
                      BOOL                            GenerateHeader,
-                     SynchronizationSeparatorType    SeparatorType,
+                     ESynchronizationSeparatorType   SeparatorType,
                      CString                        Schema,
                      int                            PropagationMode,
                      BOOL                            EmptyWhenZero,
@@ -553,26 +553,26 @@ CString ZUExport::BuildLine ( CString Key, CString Value )
 
     switch ( GetSeparatorType() )
     {
-        case CommaSeparator :
+        case E_SS_Comma:
         {
             LineBuffer.Format( _T( "%s,%s\r\n" ), (const char*)Key, (const char*)Value );
             break;
         }
 
-        case SemiColumnSeparator :
+        case E_SS_SemiColumn:
         {
             LineBuffer.Format( _T( "%s;%s\r\n" ), (const char*)Key, (const char*)Value );
             break;
         }
 
-        case QuoteSeparator :
+        case E_SS_Quote:
         {
             LineBuffer.Format( _T( "\"%s\" \"%s\"\r\n" ), (const char*)Key, (const char*)Value );
             break;
         }
 
-        case AutomaticSeparator :
-        case TabSeparator :
+        case E_SS_Automatic:
+        case E_SS_Tab:
         default:
         {
             LineBuffer.Format( _T( "%s\t%s\r\n" ), (const char*)Key, (const char*)Value );

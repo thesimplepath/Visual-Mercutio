@@ -28,7 +28,7 @@ static char THIS_FILE[]=__FILE__;
 // constant definition
 const int LastExtAppIDProperties = ZS_BP_PROP_EXTAPP + 39;
 
-IMPLEMENT_SERIAL( ZBExtApps, CObject, def_Version )
+IMPLEMENT_SERIAL(ZBExtApps, CObject, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

@@ -17,7 +17,7 @@ static char THIS_FILE[]=__FILE__;
 
 
 
-IMPLEMENT_SERIAL(ZBDistributionRule, CObject, def_Version)
+IMPLEMENT_SERIAL(ZBDistributionRule, CObject, g_DefVersion)
 
 
 //////////////////////////////////////////////////////////////////////
@@ -117,7 +117,7 @@ void ZBDistributionRule::Serialize(CArchive& ar)
 
 
 
-IMPLEMENT_SERIAL(ZBDistributionRuleManager, CObject, def_Version)
+IMPLEMENT_SERIAL(ZBDistributionRuleManager, CObject, g_DefVersion)
   
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

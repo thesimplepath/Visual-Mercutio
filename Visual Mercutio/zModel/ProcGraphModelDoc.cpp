@@ -35,7 +35,7 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZDProcessGraphModelDoc
 
-IMPLEMENT_SERIAL( ZDProcessGraphModelDoc, ZDBaseDocument, def_Version )
+IMPLEMENT_SERIAL(ZDProcessGraphModelDoc, ZDBaseDocument, g_DefVersion)
 
 BEGIN_MESSAGE_MAP( ZDProcessGraphModelDoc, ZDBaseDocument )
     //{{AFX_MSG_MAP(ZDProcessGraphModelDoc)
@@ -1433,9 +1433,9 @@ void ZDProcessGraphModelDoc::Serialize( CArchive& ar )
             else
             {
                 // Ce cas ne devrait pas arriver, mais on inscrit quand même une page par défaut.
-                ar << DefaultPaperSize;
-                ar << DefaultStandardSize;
-                ar << DefaultOrientation;
+                ar << g_DefaultPaperSize;
+                ar << g_DefaultStandardSize;
+                ar << g_DefaultOrientation;
             }
             // ***************************************************************************************
 

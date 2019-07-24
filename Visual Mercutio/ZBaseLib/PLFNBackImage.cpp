@@ -12,7 +12,7 @@ static char THIS_FILE[]=__FILE__;
 #endif
 
 
-IMPLEMENT_SERIAL(PLFNBackImage, PLFNBitmap, def_Version)
+IMPLEMENT_SERIAL(PLFNBackImage, PLFNBitmap, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

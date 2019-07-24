@@ -31,7 +31,7 @@ using namespace sfl;
 /////////////////////////////////////////////////////////////////////////////
 // ZBBPProcessProperties construction/destruction
 
-IMPLEMENT_SERIAL( ZBBPProcessProperties, CODIntProperty, def_Version )
+IMPLEMENT_SERIAL(ZBBPProcessProperties, CODIntProperty, g_DefVersion)
 
 //@mfunc | ZBBPProcessProperties | ZBBPProcessProperties | Constructor.
 //

@@ -62,7 +62,7 @@ class AFX_EXT_CLASS PLFNBoundText : public PLFNString  //## Inherits: <unnamed>%
     public:
     // Inherited feature
         typedef PLFNString inherited;
-          virtual UINT GetRightSubMenu() const { return BoundTextRightSubMenu; };
+          virtual UINT GetRightSubMenu() const { return g_BoundTextRightSubMenu; };
   //## end PLFNBoundText%334FC461030D.initialDeclarations
 
   public:

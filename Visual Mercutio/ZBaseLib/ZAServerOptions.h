@@ -351,17 +351,17 @@ inline const CString ZAServerOptions::GetHistoryProcessDatabaseFile() const
 
 inline CString ZAServerOptions::GetNormalTemplate() const
 {
-    return GetSystemDirectory() + _T( "\\" ) + sNormalTemplateFilename;
+    return GetSystemDirectory() + _T( "\\" ) + g_NormalTemplateFileName;
 }
 
 inline CString ZAServerOptions::GetNormalProcessTemplate() const
 {
-    return GetSystemDirectory() + _T( "\\" ) + sNormalProcessTemplateFilename;
+    return GetSystemDirectory() + _T( "\\" ) + g_NormalProcessTemplateFileName;
 }
 
 inline CString ZAServerOptions::GetNormalModelTemplate() const
 {
-    return GetSystemDirectory() + _T( "\\" ) + sNormalModelTemplateFilename;
+    return GetSystemDirectory() + _T( "\\" ) + g_NormalModelTemplateFileName;
 }
 
 #endif       // ZAServerOptions_h

@@ -33,7 +33,7 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(PLFNSquare, PlanFinObject, def_Version)
+IMPLEMENT_SERIAL(PLFNSquare, PlanFinObject, g_DefVersion)
 //## end module%336D05240276.additionalDeclarations
 
 
@@ -48,7 +48,7 @@ IMPLEMENT_SERIAL(PLFNSquare, PlanFinObject, def_Version)
 
 PLFNSquare::PLFNSquare()
   //## begin PLFNSquare::PLFNSquare%.hasinit preserve=no
-      : m_nCharPerSquare(1), m_pObject(NULL), m_TypeOfSquare(NormalSquare), m_ParsingMode(NormalParsing)
+      : m_nCharPerSquare(1), m_pObject(NULL), m_TypeOfSquare(E_SQ_Normal), m_ParsingMode(E_PM_Normal)
   //## end PLFNSquare::PLFNSquare%.hasinit
   //## begin PLFNSquare::PLFNSquare%.initialization preserve=yes
   , m_SizeSquare( CSize(15, 15) ), m_SquareMaxLength( -1 )
@@ -60,7 +60,7 @@ PLFNSquare::PLFNSquare()
 
 PLFNSquare::PLFNSquare(const PLFNSquare &right)
   //## begin PLFNSquare::PLFNSquare%copy.hasinit preserve=no
-      : m_nCharPerSquare(1), m_pObject(NULL), m_TypeOfSquare(NormalSquare), m_ParsingMode(NormalParsing)
+      : m_nCharPerSquare(1), m_pObject(NULL), m_TypeOfSquare(E_SQ_Normal), m_ParsingMode(E_PM_Normal)
   //## end PLFNSquare::PLFNSquare%copy.hasinit
   //## begin PLFNSquare::PLFNSquare%copy.initialization preserve=yes
   //## end PLFNSquare::PLFNSquare%copy.initialization
@@ -72,7 +72,7 @@ PLFNSquare::PLFNSquare(const PLFNSquare &right)
 
 PLFNSquare::PLFNSquare (CSize SquareSize, int iMaxLength)
   //## begin PLFNSquare::PLFNSquare%863099799.hasinit preserve=no
-      : m_nCharPerSquare(1), m_pObject(NULL), m_TypeOfSquare(NormalSquare), m_ParsingMode(NormalParsing)
+      : m_nCharPerSquare(1), m_pObject(NULL), m_TypeOfSquare(E_SQ_Normal), m_ParsingMode(E_PM_Normal)
   //## end PLFNSquare::PLFNSquare%863099799.hasinit
   //## begin PLFNSquare::PLFNSquare%863099799.initialization preserve=yes
   , m_SizeSquare( SquareSize ), m_SquareMaxLength( iMaxLength )
@@ -151,18 +151,18 @@ void PLFNSquare::Serialize (CArchive& ar)
         ar >> m_SizeSquare;
         DWORD dwValue;
         ar >> dwValue;
-        m_SquareMaxLength = (int)dwValue;
+        m_SquareMaxLength = int(dwValue);
         WORD    wValue;
         ar >> wValue;
         m_bAutoAdjustSize = wValue;
         ar >> dwValue;
-        m_nCharPerSquare = (unsigned int)dwValue;
+        m_nCharPerSquare = unsigned(dwValue);
 
         ar >> wValue;
-        m_TypeOfSquare = (SquareType)wValue;
+        m_TypeOfSquare = ESquareType(wValue);
 
         ar >> wValue;
-        m_ParsingMode = (ParsingModeType)wValue;
+        m_ParsingMode = EParsingModeType(wValue);
 
         // Serialize the oject defined
         ar >> m_pObject;

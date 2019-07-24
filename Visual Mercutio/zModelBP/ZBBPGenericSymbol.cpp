@@ -10,7 +10,7 @@
 #include "stdafx.h"
 #include "ZBBPGenericSymbol.h"
 
-IMPLEMENT_SERIAL( ZBBPGenericSymbol, ZBSymbol, def_Version )
+IMPLEMENT_SERIAL(ZBBPGenericSymbol, ZBSymbol, g_DefVersion)
 
 ZBBPGenericSymbol::ZBBPGenericSymbol( const CString Name /*= _T( "" )*/ )
 {

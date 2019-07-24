@@ -29,7 +29,7 @@ static char THIS_FILE[] = __FILE__;
 // *                                    ZBLanguageProp construction/destruction                                    *
 // **************************************************************************************************************
 
-IMPLEMENT_SERIAL( ZBLanguageProp, CODIntProperty, def_Version )
+IMPLEMENT_SERIAL(ZBLanguageProp, CODIntProperty, g_DefVersion)
 
 using namespace sfl;
 

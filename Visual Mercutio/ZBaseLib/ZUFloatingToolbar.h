@@ -33,7 +33,7 @@ class _ToolbarData
 {
     public:
 
-    _ToolbarData( CString Name, UINT nIDToolBar, CFrameWnd* pFrame, ModelNotation Notation )
+    _ToolbarData( CString Name, UINT nIDToolBar, CFrameWnd* pFrame, EModelNotation Notation )
     {
         m_Name            = Name;
         m_nIDToolBar    = nIDToolBar;
@@ -43,7 +43,7 @@ class _ToolbarData
         m_bReloaded        = false;
     };
 
-    _ToolbarData( CString Name, CControlBar* pBar, CFrameWnd* pFrame, ModelNotation Notation )
+    _ToolbarData( CString Name, CControlBar* pBar, CFrameWnd* pFrame, EModelNotation Notation )
     {
         m_Name            = Name;
         m_nIDToolBar    = -1;
@@ -63,7 +63,7 @@ public:
     UINT            m_nIDToolBar;
     CControlBar*    m_pBar;
     CFrameWnd*        m_pFrame;
-    ModelNotation    m_Notation;
+    EModelNotation    m_Notation;
     bool            m_bReloaded;
 };
 
@@ -71,7 +71,7 @@ class _MenubarData
 {
 public:
 
-    _MenubarData( CString Name, UINT nIDRes, CFrameWnd* pFrame, ModelNotation Notation )
+    _MenubarData( CString Name, UINT nIDRes, CFrameWnd* pFrame, EModelNotation Notation )
     {
         m_Name            = Name;
         m_nIDRes        = nIDRes;
@@ -81,7 +81,7 @@ public:
         m_bReloaded        = false;
     };
 
-    _MenubarData( CString Name, CMenu* pMenu, CFrameWnd* pFrame, ModelNotation Notation )
+    _MenubarData( CString Name, CMenu* pMenu, CFrameWnd* pFrame, EModelNotation Notation )
     {
         m_Name            = Name;
         m_nIDRes        = -1;
@@ -101,7 +101,7 @@ public:
     CMenu*            m_pMenu;
     UINT            m_nIDRes;
     CFrameWnd*        m_pFrame;
-    ModelNotation    m_Notation;
+    EModelNotation    m_Notation;
     bool            m_bReloaded;
 };
 
@@ -153,20 +153,20 @@ public:
         return m_pMenuBarManager;
     };
 
-    static bool RegisterToolbar( CString Name, UINT nIDToolBar, CFrameWnd* pFrame, ModelNotation Notation );
+    static bool RegisterToolbar( CString Name, UINT nIDToolBar, CFrameWnd* pFrame, EModelNotation Notation );
     static bool UnRegisterToolbar( UINT nIDToolBar );
 
-    static bool RegisterToolbar( CString Name, CControlBar* pBar, CFrameWnd* pFrame, ModelNotation Notation );
+    static bool RegisterToolbar( CString Name, CControlBar* pBar, CFrameWnd* pFrame, EModelNotation Notation );
     static bool UnRegisterToolbar( CControlBar* pBar );
 
-    static bool RegisterMenubar( CString Name, UINT nIDRes, CFrameWnd* pFrame, ModelNotation Notation );
-    static bool RegisterAndLoadMenubar( CString Name, UINT nIDRes, CFrameWnd* pFrame, ModelNotation Notation );
+    static bool RegisterMenubar( CString Name, UINT nIDRes, CFrameWnd* pFrame, EModelNotation Notation );
+    static bool RegisterAndLoadMenubar( CString Name, UINT nIDRes, CFrameWnd* pFrame, EModelNotation Notation );
     static bool UnRegisterMenubar( UINT nIDRes );
     
-    static bool RegisterMenubar( CString Name, CMenu* pMenu, CFrameWnd* pFrame, ModelNotation Notation );
+    static bool RegisterMenubar( CString Name, CMenu* pMenu, CFrameWnd* pFrame, EModelNotation Notation );
     static bool UnRegisterMenubar( CMenu* pMenu );
 
-    static bool SwitchContext( ModelNotation Notation );
+    static bool SwitchContext( EModelNotation Notation );
 
     static void ReloadBarState();
     static void ReloadBarState(const CString Name);
@@ -174,22 +174,22 @@ public:
 
 private:
 
-    static bool HideToolbars( ModelNotation Notation );
-    static bool ShowToolbars( ModelNotation Notation );
+    static bool HideToolbars( EModelNotation Notation );
+    static bool ShowToolbars( EModelNotation Notation );
     static bool ToolbarExist( CString Name );
     static bool ToolbarExist( UINT nIDToolBar );
     static bool ToolbarExist( CControlBar* pBar );
     static bool MenubarExist( CString Name );
     static bool MenubarExist( UINT nIDRes );
     static bool MenubarExist( CMenu* pMenu );
-    static bool HideMenubars( ModelNotation Notation );
-    static bool ShowMenubars( ModelNotation Notation );
+    static bool HideMenubars( EModelNotation Notation );
+    static bool ShowMenubars( EModelNotation Notation );
 
 private:
 
     static ZBToolbarSet                m_ToolbarSet;
     static ZBMenubarSet                m_MenubarSet;
-    static ModelNotation            m_CurrentNotation;
+    static EModelNotation            m_CurrentNotation;
     static ZAWindowConfiguration*    m_pWndConf;
     static SECToolBarManager*        m_pToolBarManager;
     static SECMenuBar*                m_pMenuBarManager;

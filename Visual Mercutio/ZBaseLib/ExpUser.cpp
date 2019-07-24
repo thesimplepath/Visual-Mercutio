@@ -31,7 +31,7 @@
 // Class ZUUserExport 
 
 
-ZUUserExport::ZUUserExport (CString Filename, ZUUserManager* pUserManager, BOOL GenerateHeader, SynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
+ZUUserExport::ZUUserExport (CString Filename, ZUUserManager* pUserManager, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
   //## begin ZUUserExport::ZUUserExport%922203348.hasinit preserve=no
   //## end ZUUserExport::ZUUserExport%922203348.hasinit
   //## begin ZUUserExport::ZUUserExport%922203348.initialization preserve=yes
@@ -61,21 +61,23 @@ CString ZUUserExport::GetExportedLine (CObject* pObj)
 
     switch (GetSeparatorType())
     {
-        case CommaSeparator :
+        case E_SS_Comma:
         {
-            Tokenizer.SetSeparator( ',' );
+            Tokenizer.SetSeparator(',');
             break;
         }
-        case SemiColumnSeparator :
+
+        case E_SS_SemiColumn:
         {
-            Tokenizer.SetSeparator( ';' );
+            Tokenizer.SetSeparator(';');
             break;
         }
-        case AutomaticSeparator :     
-        case TabSeparator :    
+
+        case E_SS_Automatic:
+        case E_SS_Tab:
         default:
         {
-            Tokenizer.SetSeparator( '\t' );
+            Tokenizer.SetSeparator('\t');
             break;
         }
     }
@@ -115,21 +117,23 @@ BOOL ZUUserExport::ProcessLine (CString Line)
 
     switch (GetSeparatorType())
     {
-        case CommaSeparator :
+        case E_SS_Comma:
         {
-            Tokenizer.SetSeparator( ',' );
+            Tokenizer.SetSeparator(',');
             break;
         }
-        case SemiColumnSeparator :
+
+        case E_SS_SemiColumn:
         {
-            Tokenizer.SetSeparator( ';' );
+            Tokenizer.SetSeparator(';');
             break;
         }
-        case AutomaticSeparator :     
-        case TabSeparator :    
+
+        case E_SS_Automatic:
+        case E_SS_Tab:
         default:
         {
-            Tokenizer.SetSeparator( '\t' );
+            Tokenizer.SetSeparator('\t');
             break;
         }
     }
@@ -168,18 +172,20 @@ CString ZUUserExport::GetHeaderLine ()
 
     switch (GetSeparatorType())
     {
-        case CommaSeparator :
+        case E_SS_Comma:
         {
             Tokenizer.SetSeparator( ',' );
             break;
         }
-        case SemiColumnSeparator :
+
+        case E_SS_SemiColumn:
         {
             Tokenizer.SetSeparator( ';' );
             break;
         }
-        case AutomaticSeparator :     
-        case TabSeparator :    
+
+        case E_SS_Automatic:
+        case E_SS_Tab:
         default:
         {
             Tokenizer.SetSeparator( '\t' );

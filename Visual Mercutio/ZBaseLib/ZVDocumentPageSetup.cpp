@@ -20,9 +20,9 @@ ZVDocumentPageSetup::ZVDocumentPageSetup()
 {
     sBkGndName            = _T( "" );
 
-    m_StandardSize        = DefaultStandardSize;
-    m_Orientation        = DefaultOrientation;
-    m_PaperSize            = DefaultPaperSize;
+    m_StandardSize        = g_DefaultStandardSize;
+    m_Orientation        = g_DefaultOrientation;
+    m_PaperSize            = g_DefaultPaperSize;
 
     bIsFormatDefined    = FALSE;
     bIsCancelled        = FALSE;
@@ -71,9 +71,9 @@ BOOL ZVDocumentPageSetup::GetPrinterSettings( CSize& PaperSize, short& StandardS
         // JMR-MODIF - Le 24 avril 2006 - Teste la validité de la variable pDC avant de l'utiliser.
         if ( pDC == NULL )
         {
-            PaperSize        = DefaultPaperSize;
-            StandardSize    = DefaultStandardSize;
-            Orientation        = DefaultOrientation;
+            PaperSize        = g_DefaultPaperSize;
+            StandardSize    = g_DefaultStandardSize;
+            Orientation        = g_DefaultOrientation;
 
             delete pPrintDlg;
 
@@ -101,9 +101,9 @@ BOOL ZVDocumentPageSetup::GetPrinterSettings( CSize& PaperSize, short& StandardS
     }
     else
     {
-        PaperSize        = DefaultPaperSize;
-        StandardSize    = DefaultStandardSize;
-        Orientation        = DefaultOrientation;
+        PaperSize        = g_DefaultPaperSize;
+        StandardSize    = g_DefaultStandardSize;
+        Orientation        = g_DefaultOrientation;
     }
 
     delete pPrintDlg;
@@ -205,9 +205,9 @@ void ZVDocumentPageSetup::OnUserDefinePageFormat()
 
         AfxMessageBox( m_MsgStr, MB_ICONWARNING );
 
-        m_PageSetupDlg.SetPaperSize            ( DefaultPaperSize );
-        m_PageSetupDlg.SetStandardSize        ( DefaultStandardSize );
-        m_PageSetupDlg.SetOrientation        ( DefaultOrientation );
+        m_PageSetupDlg.SetPaperSize            ( g_DefaultPaperSize );
+        m_PageSetupDlg.SetStandardSize        ( g_DefaultStandardSize );
+        m_PageSetupDlg.SetOrientation        ( g_DefaultOrientation );
 
         bCanPrint = FALSE;
     }

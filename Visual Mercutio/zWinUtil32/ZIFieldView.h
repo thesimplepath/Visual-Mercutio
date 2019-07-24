@@ -15,7 +15,7 @@
 
 // processsoft
 #include "zBaseLib\ZITreeView.h"
-#include "fieldtreei.h"
+#include "PSS_FieldTree.h"
 
 // resources
 #ifndef _WIN32
@@ -84,10 +84,9 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-    ZDDocument*            m_pDoc;
-    ZBFieldRepository*    m_pFieldRepository;
-    ZIFieldTree            m_FieldTree;
-
+    ZDDocument*        m_pDoc;
+    ZBFieldRepository* m_pFieldRepository;
+    PSS_FieldTree      m_FieldTree;
 };
 
 

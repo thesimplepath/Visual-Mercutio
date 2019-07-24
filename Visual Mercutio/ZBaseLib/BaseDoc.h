@@ -137,7 +137,7 @@ public:
     void SetDocumentType( const DocumentFileType value );
 
     // Change the type of the file.
-    void SetFileType( const FileTypeDefinition value );
+    void SetFileType(const EFileTypeDefinition value);
 
     // Clear the path name.
     void ClearPathName();
@@ -219,7 +219,7 @@ inline void ZDBaseDocument::SetDocumentType( const DocumentFileType value )
     GetDocumentStamp().SetDocumentFileType( value );
 }
 
-inline void ZDBaseDocument::SetFileType( const FileTypeDefinition value )
+inline void ZDBaseDocument::SetFileType(const EFileTypeDefinition value)
 {
     GetDocumentStamp().SetFileType( value );
 }
@@ -246,17 +246,17 @@ inline BOOL ZDBaseDocument::DocumentTypeIsModel() const
 
 inline BOOL ZDBaseDocument::DocumentIsDocument() const
 {
-    return m_DocumentStamp.GetFileType() == DocumentType;
+    return m_DocumentStamp.GetFileType() == E_FD_DocumentType;
 }
 
 inline BOOL ZDBaseDocument::DocumentIsTemplate() const
 {
-    return m_DocumentStamp.GetFileType() == TemplateType;
+    return m_DocumentStamp.GetFileType() == E_FD_TemplateType;
 }
 
 inline BOOL ZDBaseDocument::DocumentIsLibrary() const
 {
-    return m_DocumentStamp.GetFileType() == LibraryType;
+    return m_DocumentStamp.GetFileType() == E_FD_LibraryType;
 }
 
 inline BOOL ZDBaseDocument::IsReadOnly()

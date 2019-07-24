@@ -11,7 +11,7 @@
 
 #include "zModelBPRes.h"
 
-IMPLEMENT_SERIAL( ZBBPTextZone, ZBTextZone, def_Version )
+IMPLEMENT_SERIAL(ZBBPTextZone, ZBTextZone, g_DefVersion)
 
 ZBBPTextZone::ZBBPTextZone()
 {

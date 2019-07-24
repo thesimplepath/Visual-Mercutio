@@ -32,7 +32,7 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 10 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL( ZDBaseDocument, CDocument, def_Version )
+IMPLEMENT_SERIAL( ZDBaseDocument, CDocument, g_DefVersion )
 
 BEGIN_MESSAGE_MAP( ZDBaseDocument, CDocument )
     //{{AFX_MSG_MAP(ZDDocumentRead)
@@ -88,7 +88,7 @@ void ZDBaseDocument::SerializeStampWrite( CArchive& ar, ZDFolderStamp& Stamp )
 {
     //## begin ZDBaseDocument::SerializeStampWrite%919330582.body preserve=yes
     // First, sets the new version before writing to disk
-    Stamp.SetInternalVersion( lVersionFile );
+    Stamp.SetInternalVersion(g_VersionFile);
     WORD wTemp = 0xFFFF;
 
     // Put the stamp for differentiate
@@ -206,29 +206,19 @@ void ZDBaseDocument::Dump( CDumpContext& dc ) const
 
 void ZDBaseDocument::Serialize( CArchive& ar )
 {
-    //## begin ZDDocumentRead::Serialize%902579790.body preserve=yes
-    // If write is required
-    if ( ar.IsStoring() )
-    {
-        // Write informations
-        SerializeStampWrite( ar, GetDocumentStamp() );
-    }
+    // do write?
+    if (ar.IsStoring())
+        // write data
+        SerializeStampWrite(ar, GetDocumentStamp());
     else
     {
-        WORD wStamp = 0xFFFF;
-        wStamp = SerializeStampRead( ar, GetDocumentStamp() );
+        // read data
+        const WORD wStamp = SerializeStampRead(ar, GetDocumentStamp());
 
-        if ( wStamp != 0xFFFF )
-        {
-            AfxThrowArchiveException( CArchiveException::generic );
-        }
+        if (wStamp != 0xFFFF)
+            AfxThrowArchiveException(CArchiveException::generic);
 
-        if ( GetDocumentStamp().GetInternalVersion() > lVersionFile )
-        {
-            AfxThrowArchiveException( CArchiveException::badSchema );
-        }
+        if (GetDocumentStamp().GetInternalVersion() > g_VersionFile)
+            AfxThrowArchiveException(CArchiveException::badSchema);
     }
-    //## end ZDDocumentRead::Serialize%902579790.body
 }
-
-//## end module%36CBF3570347.epilog

@@ -24,7 +24,7 @@
 #include "zBaseLib\ZISubject.h"
 #include "zBaseLib\ZIObserver.h"
 #include "zBaseLib\FlatBtn.h"
-#include "DirTreeCtrl.h"
+#include "PSS_DirTreeCtrl.h"
 #include "ZSearchEdit.h"
 
 // resources
@@ -125,8 +125,8 @@ private:
 private:
 
     ZCSearchEdit            m_Filename;
-    ZIDirTreeCtrl            m_DirTreeCtrl;
-    _ZVFileWndButtonToolBar    m_FlatToolBar;
+    PSS_DirTreeCtrl         m_DirTreeCtrl;
+    _ZVFileWndButtonToolBar m_FlatToolBar;
 
     COLORREF                m_clrBtnFace;
 };

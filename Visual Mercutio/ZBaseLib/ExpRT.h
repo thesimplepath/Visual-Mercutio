@@ -67,7 +67,7 @@ class AFX_EXT_CLASS ZUDocumentExport : public ZUExport  //## Inherits: <unnamed>
       //## Operation: ZUDocumentExport%911215686
       //    Constructs an export class with the filename and the
       //    document pointer
-      ZUDocumentExport (CString Filename = "", ZDDocument* pDoc = NULL, BOOL GenerateHeader = FALSE, SynchronizationSeparatorType SeparatorType = AutomaticSeparator, CString Schema = szOriginalSchema, int PropagationMode = LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
+      ZUDocumentExport (CString Filename = "", ZDDocument* pDoc = NULL, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
 
     //## Destructor (generated)
       ~ZUDocumentExport();
@@ -92,7 +92,7 @@ class AFX_EXT_CLASS ZUDocumentExport : public ZUExport  //## Inherits: <unnamed>
 
       //## Operation: Create%922203343
       //    Create the export class.
-      virtual void Create (CString Filename, ZDDocument* pDoc, BOOL GenerateHeader = FALSE, SynchronizationSeparatorType SeparatorType = AutomaticSeparator, CString Schema = szOriginalSchema, int PropagationMode = LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
+      virtual void Create (CString Filename, ZDDocument* pDoc, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
 
       //## Operation: Import%922203344
       //    This function imports the file to the document.
@@ -184,7 +184,7 @@ class AFX_EXT_CLASS ZUDocumentExport : public ZUExport  //## Inherits: <unnamed>
 
 
 //## Other Operations (inline)
-inline void ZUDocumentExport::Create (CString Filename, ZDDocument* pDoc, BOOL GenerateHeader, SynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
+inline void ZUDocumentExport::Create (CString Filename, ZDDocument* pDoc, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
 {
   //## begin ZUDocumentExport::Create%922203343.body preserve=yes
       m_pDoc = pDoc;

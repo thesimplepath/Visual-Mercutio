@@ -9,148 +9,148 @@
 #ifndef DefineH
 #define DefineH
 
+ // windows
+#include <atltypes.h>
+
 // assign the system zero time
 #ifndef _WIN32
-    static CTime        m_ZeroTime(1970, 01, 01, 12, 00, 00);
+    static CTime g_ZeroTime(1970, 01, 01, 12, 00, 00);
 #else
     #include <atlcomtime.h>
 
     // assign the system zero time
-    static COleDateTime m_ZeroTime(1970, 01, 01, 12, 00, 00);
+    static COleDateTime g_ZeroTime(1970, 01, 01, 12, 00, 00);
 #endif
-
-// windows
-#include <atltypes.h>
 
 /**
 * Button type enumeration
 */
-enum CheckButtonType
+enum ECheckButtonType
 {
-    Rounded,
-    Squared
+    E_CB_Rounded,
+    E_CB_Squared
 };
 
 /**
 * Class type enumeration
 */
-enum ClassType
+enum EClassType
 {
-    Rect,
-    Line,
-    Static,
-    Numbered,
-    NumbEdit,
-    NumbNumEdit,
-    String,
-    StringHistory,
-    NumHistory,
-    Time,
-    Int,
-    Word,
-    Long,
-    Calculated,
-    Nothing,
-    AllObjects,
-    ExportedSVM,
-    Text,
-    Graphic
+    E_CT_Rect,
+    E_CT_Line,
+    E_CT_Static,
+    E_CT_Numbered,
+    E_CT_NumbEdit,
+    E_CT_NumbNumEdit,
+    E_CT_String,
+    E_CT_StringHistory,
+    E_CT_NumHistory,
+    E_CT_Time,
+    E_CT_Int,
+    E_CT_Word,
+    E_CT_Long,
+    E_CT_Calculated,
+    E_CT_Nothing,
+    E_CT_AllObjects,
+    E_CT_ExportedSVM,
+    E_CT_Text,
+    E_CT_Graphic
 };
 
 /**
 * Format type enumeration
 */
-enum FormatType
+enum EFormatType
 {
-    Percentage       = '%',
-    Date             = 'd',
-    Date1            = '1',
-    Date2            = '2',
-    Date3            = '3',
-    Date4            = '4',
-    Date5            = '5',
-    Date6            = '6',
-    Amount           = 'a',
-    Amount1          = 'b',
-    Amount2          = 'c',
-    Amount1Dash      = 'v',
-    Amount2Dash      = 'w',
-    Amount1DashTrail = 'x',
-    Amount2DashTrail = 'y',
-    Standard         = 'n'
+    E_FT_Percentage       = '%',
+    E_FT_Date             = 'd',
+    E_FT_Date1            = '1',
+    E_FT_Date2            = '2',
+    E_FT_Date3            = '3',
+    E_FT_Date4            = '4',
+    E_FT_Date5            = '5',
+    E_FT_Date6            = '6',
+    E_FT_Amount           = 'a',
+    E_FT_Amount1          = 'b',
+    E_FT_Amount2          = 'c',
+    E_FT_Amount1Dash      = 'v',
+    E_FT_Amount2Dash      = 'w',
+    E_FT_Amount1DashTrail = 'x',
+    E_FT_Amount2DashTrail = 'y',
+    E_FT_Standard         = 'n'
 };
 
 /**
 * Line type enumeration
 */
-enum LineType
+enum ELineType
 {
-    AutomaticLine,
-    NoLine,
-    DottedLine,
-    SolidLine,
-    DashLine,
-    SmallLine
+    E_LT_Automatic,
+    E_LT_No,
+    E_LT_Dotted,
+    E_LT_Solid,
+    E_LT_Dash,
+    E_LT_Small
 };
 
 /**
 * Square type enumeration
 */
-enum SquareType
+enum ESquareType
 {
-    NormalSquare,
-    TopSquareOnly,
-    BottomSquareOnly
+    E_SQ_Normal,
+    E_SQ_TopOnly,
+    E_SQ_BottomOnly
 };
 
 /**
 * Parsing mode type enumeration
 */
-enum ParsingModeType
+enum EParsingModeType
 {
-    NormalParsing,
-    ReplaceDelimiterParsing
+    E_PM_Normal,
+    E_PM_ReplaceDelimiter
 };
 
 /**
 * Special help type enumeration
 */
-enum SpecialHelpType
+enum ESpecialHelpType
 {
-    DesignerSH,
-    WriterSH
+    E_SH_Designer,
+    E_SH_Writer
 };
 
 /**
 * Option type enumeration
 */
-enum OptionType
+enum EOptionType
 {
-    ApplicationOption,
-    YesOption,
-    NoOption
+    E_OT_Application,
+    E_OT_Yes,
+    E_OT_No
 };
 
 /**
 * Synchronization file type enumeration
 */
-enum SynchronizationFileType
+enum ESynchronizationFileType
 {
-    AutomaticName,
-    FilenameSpecified,
-    FolderSpecified
+    E_ST_AutomaticName,
+    E_ST_FileNameSpecified,
+    E_ST_FolderSpecified
 };
 
 /**
 * Synchronization separator type enumeration
 */
-enum SynchronizationSeparatorType
+enum ESynchronizationSeparatorType
 {
-    AutomaticSeparator,
-    TabSeparator,
-    CommaSeparator,
-    SemiColumnSeparator,
-    QuoteSeparator
+    E_SS_Automatic,
+    E_SS_Tab,
+    E_SS_Comma,
+    E_SS_SemiColumn,
+    E_SS_Quote
 };
 
 /**
@@ -166,184 +166,186 @@ enum EThreeState
 /**
 * Install Component type enumeration
 */
-enum InstallComponentType
+enum EInstallComponentType
 {
-    WindowsDirectory,
-    SystemDirectory,
-    ApplicationDirectory,
-    DefineDirectory
+    E_IC_WindowsDirectory,
+    E_IC_SystemDirectory,
+    E_IC_ApplicationDirectory,
+    E_IC_DefineDirectory
 };
 
 /**
 * Model notations enumeration
 */
-enum ModelNotation
+enum EModelNotation
 {
-    ABCNotation,
-    UMLNotation,
-    BerylNotation,
-    UnknownNotation
+    E_MN_ABC,
+    E_MN_UML,
+    E_MN_Beryl,
+    E_MN_Unknown
 };
 
 // file version for the serialization
-const UINT def_Version  = 1;
-const long lVersionFile = 27; // Version 13 for 32bit compatibility
-                              // Version 15 for DocumentType and Key1
-                              // Version 16 for DisplayName in ZUser class
-                              // Version 17 for model compatibility and multi-activities
-                              // Version 18 for zForms.01 Beta 2
-                              // Version 18 for Conceptor Beta 1
-                              // Version 19 for Conceptor Beta 2
-                              // Version 20 for Conceptor Beta 3 and Release Conceptor/Sesterces
-                              // Version 21 for Conceptor/Messenger Beta 1
-                              // Version 22 for Conceptor Release 2005 - SP1
-                              // Version 23 for Conceptor Release 2005 - SP2
-                              // Version 24 for Conceptor Release 2006 - SP1
-                              // Version 25 for Conceptor Release 2006 - SP2
-                              // Version 26 for Conceptor Release 2007 - SP1 Prima
-                              // Version 27 for Conceptor Release 2007 - SP1
+const UINT g_DefVersion = 1;
+
+// Version 13 for 32bit compatibility
+// Version 15 for DocumentType and Key1
+// Version 16 for DisplayName in ZUser class
+// Version 17 for model compatibility and multi-activities
+// Version 18 for zForms.01 Beta 2
+// Version 18 for Conceptor Beta 1
+// Version 19 for Conceptor Beta 2
+// Version 20 for Conceptor Beta 3 and Release Conceptor/Sesterces
+// Version 21 for Conceptor/Messenger Beta 1
+// Version 22 for Conceptor Release 2005 - SP1
+// Version 23 for Conceptor Release 2005 - SP2
+// Version 24 for Conceptor Release 2006 - SP1
+// Version 25 for Conceptor Release 2006 - SP2
+// Version 26 for Conceptor Release 2007 - SP1 Prima
+// Version 27 for Conceptor Release 2007 - SP1
+const long g_VersionFile = 27;
 
 // default object list
 #define def_szObjectKey _T("Object")
 
-const int     def_iObjectCounter                   = 830;
+const int     g_DefObjectCounter                   = 830;
 
-const UINT    NoAlignement                         = 0x8000;
+const UINT    g_NoAlignement                       = 0x8000;
 
-const CString sNormalTemplateFilename              = _T("Normal.plf");
-const CString sNormalProcessTemplateFilename       = _T("Normal.wlf");
-const CString sNormalModelTemplateFilename         = _T("Normal.mlf");
-const CString sSystemSubDirectory                  = _T("System");
-const CString sUserDefinitionFilename              = _T("UserDef.txt");
-const CString sActivityLogFilename                 = _T("Activity.log");
-const CString sActivityLogDatabase                 = _T("Activity.mdb");
-const CString sHistoryProcessDatabase              = _T("Process.mdb");
-const CString sEventExtension                      = _T(".exp");
-const CString sEventMessageExtension               = _T(".mxp");
-const CString sEventTemporalExtension              = _T(".txp");
-const CString sProcessDataFeedExtension            = _T(".slf");
-const CString sProcessExtension                    = _T(".wlf");
-const CString sFormExtension                       = _T(".plf");
-const CString sModelExtension                      = _T(".mlf");
-const CString sReportExtension                     = _T(".rlf");
-const CString sWorkspaceExtension                  = _T(".klf");
-const CString sRiskTypeExtension                   = _T(".typ");
-const CString sRiskImpactExtension                 = _T(".imp");
-const CString sRiskProbabilityExtension            = _T(".pro");
-const CString sEventExtensionNoDot                 = _T("exp");
-const CString sEventMessageExtensionNoDot          = _T("mxp");
-const CString sEventDeleteExtensionNoDot           = _T("dxp");
-const CString sProcessDataFeedExtensionNoDot       = _T("slf");
-const CString sProcessExtensionNoDot               = _T("wlf");
-const CString sFormExtensionNoDot                  = _T("plf");
-const CString sModelExtensionNoDot                 = _T("mlf");
-const CString sReportExtensionNoDot                = _T("rlf");
-const CString sWorkspaceExtensionNoDot             = _T("klf");
-const CString sDocumentExtensionListNoDot          = _T("doc;xls;ppt;htm;html");
-const CString sRiskTypeExtensionNoDot              = _T("typ");
-const CString sRiskImpactExtensionNoDot            = _T("imp");
-const CString sRiskProbabilityExtensionNoDot       = _T("pro");
-const CString sSearchAllProcessExtension           = _T("*.wlf");
-const CString sSearchAllFormExtension              = _T("*.plf");
-const CString sSearchAllModelExtension             = _T("*.mlf");
+const CString g_NormalTemplateFileName             = _T("Normal.plf");
+const CString g_NormalProcessTemplateFileName      = _T("Normal.wlf");
+const CString g_NormalModelTemplateFileName        = _T("Normal.mlf");
+const CString g_SystemSubDirectory                 = _T("System");
+const CString g_UserDefinitionFileName             = _T("UserDef.txt");
+const CString g_ActivityLogFileName                = _T("Activity.log");
+const CString g_ActivityLogDatabase                = _T("Activity.mdb");
+const CString g_HistoryProcessDatabase             = _T("Process.mdb");
+const CString g_EventExtension                     = _T(".exp");
+const CString g_EventMessageExtension              = _T(".mxp");
+const CString g_EventTemporalExtension             = _T(".txp");
+const CString g_ProcessDataFeedExtension           = _T(".slf");
+const CString g_ProcessExtension                   = _T(".wlf");
+const CString g_FormExtension                      = _T(".plf");
+const CString g_ModelExtension                     = _T(".mlf");
+const CString g_ReportExtension                    = _T(".rlf");
+const CString g_WorkspaceExtension                 = _T(".klf");
+const CString g_RiskTypeExtension                  = _T(".typ");
+const CString g_RiskImpactExtension                = _T(".imp");
+const CString g_RiskProbabilityExtension           = _T(".pro");
+const CString g_EventExtensionNoDot                = _T("exp");
+const CString g_EventMessageExtensionNoDot         = _T("mxp");
+const CString g_EventDeleteExtensionNoDot          = _T("dxp");
+const CString g_ProcessDataFeedExtensionNoDot      = _T("slf");
+const CString g_ProcessExtensionNoDot              = _T("wlf");
+const CString g_FormExtensionNoDot                 = _T("plf");
+const CString g_ModelExtensionNoDot                = _T("mlf");
+const CString g_ReportExtensionNoDot               = _T("rlf");
+const CString g_WorkspaceExtensionNoDot            = _T("klf");
+const CString g_DocumentExtensionListNoDot         = _T("doc;xls;ppt;htm;html");
+const CString g_RiskTypeExtensionNoDot             = _T("typ");
+const CString g_RiskImpactExtensionNoDot           = _T("imp");
+const CString g_RiskProbabilityExtensionNoDot      = _T("pro");
+const CString g_SearchAllProcessExtension          = _T("*.wlf");
+const CString g_SearchAllFormExtension             = _T("*.plf");
+const CString g_SearchAllModelExtension            = _T("*.mlf");
 
-const UINT    ResponsibleUserNameIDResource        = 5008;  // IDS_RESPONSIBLEUSERNAMESTR
-const UINT    RequestedUserNameIDResource          = 5009;  // IDS_REQUESTUSERNAMESTR
+const UINT    g_ResponsibleUserNameIDResource      = 5008;  // IDS_RESPONSIBLEUSERNAMESTR
+const UINT    g_RequestedUserNameIDResource        = 5009;  // IDS_REQUESTUSERNAMESTR
 
 // declares the right sub menu item
-const UINT    ObjectRightSubMenu                   = 0;
-const UINT    GraphicRightSubMenu                  = 1;
-const UINT    AutoNumberedRightSubMenu             = 2;
-const UINT    CalculatedRightSubMenu               = 3;
-const UINT    NumberRightSubMenu                   = 4;
-const UINT    BitmapRightSubMenu                   = 5;
-const UINT    TwoStateRightSubMenu                 = 6;
-const UINT    BoundTextRightSubMenu                = 7;
-const UINT    DateRightSubMenu                     = 8;
-const UINT    MaskEditRightSubMenu                 = 9;
-const UINT    MultiColumnRightSubMenu              = 10;
-const UINT    OnPageRightSubMenu                   = 11;
-const UINT    OnDisplayFieldNameSubMenu            = 12;
+const UINT    g_ObjectRightSubMenu                 = 0;
+const UINT    g_GraphicRightSubMenu                = 1;
+const UINT    g_AutoNumberedRightSubMenu           = 2;
+const UINT    g_CalculatedRightSubMenu             = 3;
+const UINT    g_NumberRightSubMenu                 = 4;
+const UINT    g_BitmapRightSubMenu                 = 5;
+const UINT    g_TwoStateRightSubMenu               = 6;
+const UINT    g_BoundTextRightSubMenu              = 7;
+const UINT    g_DateRightSubMenu                   = 8;
+const UINT    g_MaskEditRightSubMenu               = 9;
+const UINT    g_MultiColumnRightSubMenu            = 10;
+const UINT    g_OnPageRightSubMenu                 = 11;
+const UINT    g_OnDisplayFieldNameSubMenu          = 12;
 
 // INI file implementation
-const char    szIniObjectCounterHistEntry[]        = _T("Nb of Obj Historic");
-const char    szOriginalSchema[]                   = _T("Standard");
-const char    szDefaultAssociationString[]         = _T("Défaut");
+const char    g_IniObjectCounterHistEntry[]        = _T("Nb of Obj Historic");
+const char    g_OriginalSchema[]                   = _T("Standard");
+const char    g_DefaultAssociationString[]         = _T("Défaut");
 
 // constants used in export files
-const char    szExportProcessNameKey[]             = _T("$$ProcessName$$");
-const char    szExportTemplateNameKey[]            = _T("$$TemplateName$$");
-const char    szExportFolderNameKey[]              = _T("$$FolderName$$");
-const char    szExportFileNameKey[]                = _T("$$FileName$$");
-const char    szExportProcessExchangeFileNameKey[] = _T("$$ProcessExchangeFileName$$");
-const char    szExportKeepOnlyFLFKey[]             = _T("$$KeepOnlyFLF$$");
+const char    g_ExportProcessNameKey[]             = _T("$$ProcessName$$");
+const char    g_ExportTemplateNameKey[]            = _T("$$TemplateName$$");
+const char    g_ExportFolderNameKey[]              = _T("$$FolderName$$");
+const char    g_ExportFileNameKey[]                = _T("$$FileName$$");
+const char    g_ExportProcessExchangeFileNameKey[] = _T("$$ProcessExchangeFileName$$");
+const char    g_ExportKeepOnlyFLFKey[]             = _T("$$KeepOnlyFLF$$");
 
 // this table contains the predefined fields known by the system. They are hard coded, because for each
 // new field, the method should be added in the same time, and they are known only at this time
-static char*  mszpPredefinedField[]                = { _T("#Page#"), _T("#Date#"), NULL };
+static char*  g_pPredefinedField[]                 = { _T("#Page#"), _T("#Date#"), NULL };
 
 // constants to point the right element in the table of predefined fields
-const int     PREDFIELD_PAGE                       = 0;
-const int     PREDFIELD_DATE                       = 1;
+const int     g_PredefinedFieldPage                = 0;
+const int     g_PredefinedFieldDate                = 1;
 
 // constants used to load the resources for the Dlls
-const int     OBJECT_DLLFILENAME                   = 0;
-const int     OBJECT_TITLE                         = 1;
-const int     OBJECT_EXPLANATION                   = 2;
-const int     OBJECT_COUNTER                       = 3;
-const int     OBJECT_STARTDEFINITION               = 4;
+const int     g_ObjectDllFileName                  = 0;
+const int     g_ObjectTitle                        = 1;
+const int     g_ObjectExplanation                  = 2;
+const int     g_ObjectCounter                      = 3;
+const int     g_ObjectStartDefinition              = 4;
 
 // constants used to load the formula resources for the Dlls
-const int     FORMULA_COUNTER                      = 0;
-const int     FORMULA_STARTDEFINITION              = 1;
+const int     g_FormulaCounter                     = 0;
+const int     g_FormulaStartDefinition             = 1;
 
-const int     LocateAllDocumentsEmptyOnly          = 8;
-const int     LocateAllDocuments                   = 7;
+const int     g_LocateAllDocumentsEmptyOnly        = 8;
+const int     g_LocateAllDocuments                 = 7;
 
-const int     LocatePageOnlyEmptyOnly              = 6;
-const int     LocateForwardPageEmptyOnly           = 5;
-const int     LocateAllPagesEmptyOnly              = 4;
+const int     g_LocatePageOnlyEmptyOnly            = 6;
+const int     g_LocateForwardPageEmptyOnly         = 5;
+const int     g_LocateAllPagesEmptyOnly            = 4;
 
-const int     LocatePageOnly                       = 3;
-const int     LocateForwardPage                    = 2;
-const int     LocateAllPages                       = 1;
+const int     g_LocatePageOnly                     = 3;
+const int     g_LocateForwardPage                  = 2;
+const int     g_LocateAllPages                     = 1;
 
-const char    szGlobalIniFilename[]                = _T("ZGlobal.ini");
-const char    szLocalIniFilename[]                 = _T("ZLocal.ini");
-const char    szRiskTypeFilename[]                 = _T("ZRiskTypeDefault.typ");
-const char    szRiskImpactFilename[]               = _T("ZRiskImpactDefault.imp");
-const char    szRiskProbabilityFilename[]          = _T("ZRiskProbabilityDefault.pro");
-const char    szLocalRefDirectory[]                = _T("\\LocalRef\\");
-const char    szRiskDirectory[]                    = _T("\\Risks\\");
+const char    g_GlobalIniFileName[]                = _T("ZGlobal.ini");
+const char    g_LocalIniFileName[]                 = _T("ZLocal.ini");
+const char    g_RiskTypeFileName[]                 = _T("ZRiskTypeDefault.typ");
+const char    g_RiskImpactFileName[]               = _T("ZRiskImpactDefault.imp");
+const char    g_RiskProbabilityFileName[]          = _T("ZRiskProbabilityDefault.pro");
+const char    g_LocalRefDirectory[]                = _T("\\LocalRef\\");
+const char    g_RiskDirectory[]                    = _T("\\Risks\\");
 
-const char    ActivityLogTableName[]               = _T("[ActivityLog]");
-const char    HistoryProcessTableName[]            = _T("[HistoryProcess]");
-const char    HistoryProcessStatusTableName[]      = _T("[HistoryProcessStatus]");
-const char    HistoryActivityTableName[]           = _T("[HistoryActivity]");
-const char    HistoryActivityStatusTableName[]     = _T("[HistoryActivityStatus]");
-const char    HistoryFolderStatusTableName[]       = _T("[HistoryFolderStatus]");
+const char    g_ActivityLogTableName[]             = _T("[ActivityLog]");
+const char    g_HistoryProcessTableName[]          = _T("[HistoryProcess]");
+const char    g_HistoryProcessStatusTableName[]    = _T("[HistoryProcessStatus]");
+const char    g_HistoryActivityTableName[]         = _T("[HistoryActivity]");
+const char    g_HistoryActivityStatusTableName[]   = _T("[HistoryActivityStatus]");
+const char    g_HistoryFolderStatusTableName[]     = _T("[HistoryFolderStatus]");
 
 // month constant definition
-const int     IndexJanuary                         = 0;
-const int     IndexFebruary                        = 1;
-const int     IndexMarch                           = 2;
-const int     IndexApril                           = 3;
-const int     IndexMay                             = 4;
-const int     IndexJune                            = 5;
-const int     IndexJuly                            = 6;
-const int     IndexAugust                          = 7;
-const int     IndexSeptember                       = 8;
-const int     IndexOctober                         = 9;
-const int     IndexNovember                        = 10;
-const int     IndexDecember                        = 11;
+const int     g_IndexJanuary                       = 0;
+const int     g_IndexFebruary                      = 1;
+const int     g_IndexMarch                         = 2;
+const int     g_IndexApril                         = 3;
+const int     g_IndexMay                           = 4;
+const int     g_IndexJune                          = 5;
+const int     g_IndexJuly                          = 6;
+const int     g_IndexAugust                        = 7;
+const int     g_IndexSeptember                     = 8;
+const int     g_IndexOctober                       = 9;
+const int     g_IndexNovember                      = 10;
+const int     g_IndexDecember                      = 11;
 
 // rows and columns report constants
-const int     nbRows                               = 60;
-const int     nbColumns                            = 15;
+const int     g_NbRows                             = 60;
+const int     g_NbColumns                          = 15;
 
 // default page dimensions
-const CSize   DefaultPaperSize(204, 280);
-const short   DefaultStandardSize                  = DMPAPER_A4;
-const short   DefaultOrientation                   = DMORIENT_PORTRAIT;
+const CSize   g_DefaultPaperSize(204, 280);
+const short   g_DefaultStandardSize                = DMPAPER_A4;
+const short   g_DefaultOrientation                 = DMORIENT_PORTRAIT;
 
 #endif

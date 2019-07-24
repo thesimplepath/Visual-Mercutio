@@ -78,8 +78,8 @@ class AFX_EXT_CLASS ZDDocumentOptions
 
       //## Attribute: EmptyStyle%351657670046
       //    Defines the empty style when the controls are empty.
-      const LineType GetEmptyStyle () const;
-      void SetEmptyStyle (LineType value);
+      const ELineType GetEmptyStyle() const;
+      void SetEmptyStyle(ELineType value);
 
       //## Attribute: IsSynchronizeExchangeFeedFile%36501278034D
       //    Specifiy if it is necessary to synchronize the feed data
@@ -94,18 +94,18 @@ class AFX_EXT_CLASS ZDDocumentOptions
 
       //## Attribute: ShowHiddenField%3650151D02C4
       //    Specifiy if hidden fields must be shown.
-      const OptionType GetShowHiddenField () const;
-      void SetShowHiddenField (OptionType value);
+      const EOptionType GetShowHiddenField() const;
+      void SetShowHiddenField(EOptionType value);
 
       //## Attribute: ShowEmptyLine%3650154403C5
       //    Specify if empty lines must be shown if there are emty.
-      const OptionType GetShowEmptyLine () const;
-      void SetShowEmptyLine (OptionType value);
+      const EOptionType GetShowEmptyLine() const;
+      void SetShowEmptyLine(EOptionType value);
 
       //## Attribute: AutomaticSynchronizeFilename%366A4F5A03BF
       //    Is the filename automatically created.
-      const SynchronizationFileType GetAutomaticSynchronizeFilename () const;
-      void SetAutomaticSynchronizeFilename (SynchronizationFileType value);
+      const ESynchronizationFileType GetAutomaticSynchronizeFilename() const;
+      void SetAutomaticSynchronizeFilename(ESynchronizationFileType value);
 
       //## Attribute: SynchronizeFilename%366A4F7802C8
       //    The synchronization filename if not automatic.
@@ -119,8 +119,8 @@ class AFX_EXT_CLASS ZDDocumentOptions
 
       //## Attribute: SynchronizationSeparator%366A5603008C
       //    Defines the seperator type.
-      const SynchronizationSeparatorType GetSynchronizationSeparator () const;
-      void SetSynchronizationSeparator (SynchronizationSeparatorType value);
+      const ESynchronizationSeparatorType GetSynchronizationSeparator() const;
+      void SetSynchronizationSeparator(ESynchronizationSeparatorType value);
 
     // Additional Public Declarations
       //## begin ZDDocumentOptions%351656F90334.public preserve=yes
@@ -137,7 +137,7 @@ class AFX_EXT_CLASS ZDDocumentOptions
     // Data Members for Class Attributes
 
       //## begin ZDDocumentOptions::EmptyStyle%351657670046.attr preserve=no  public: LineType {V} DashLine
-      LineType m_EmptyStyle;
+      ELineType m_EmptyStyle;
       //## end ZDDocumentOptions::EmptyStyle%351657670046.attr
 
       //## begin ZDDocumentOptions::IsSynchronizeExchangeFeedFile%36501278034D.attr preserve=no  public: BOOL {U} FALSE
@@ -149,15 +149,15 @@ class AFX_EXT_CLASS ZDDocumentOptions
       //## end ZDDocumentOptions::SynchronizeTimeSequence%365012BB03A4.attr
 
       //## begin ZDDocumentOptions::ShowHiddenField%3650151D02C4.attr preserve=no  public: OptionType {U} ApplicationOption
-      OptionType m_ShowHiddenField;
+      EOptionType m_ShowHiddenField;
       //## end ZDDocumentOptions::ShowHiddenField%3650151D02C4.attr
 
       //## begin ZDDocumentOptions::ShowEmptyLine%3650154403C5.attr preserve=no  public: OptionType {U} ApplicationOption
-      OptionType m_ShowEmptyLine;
+      EOptionType m_ShowEmptyLine;
       //## end ZDDocumentOptions::ShowEmptyLine%3650154403C5.attr
 
       //## begin ZDDocumentOptions::AutomaticSynchronizeFilename%366A4F5A03BF.attr preserve=no  public: SynchronizationFileType {U} 
-      SynchronizationFileType m_AutomaticSynchronizeFilename;
+      ESynchronizationFileType m_AutomaticSynchronizeFilename;
       //## end ZDDocumentOptions::AutomaticSynchronizeFilename%366A4F5A03BF.attr
 
       //## begin ZDDocumentOptions::SynchronizeFilename%366A4F7802C8.attr preserve=no  public: CString {U} 
@@ -169,7 +169,7 @@ class AFX_EXT_CLASS ZDDocumentOptions
       //## end ZDDocumentOptions::SynchronizationHeader%366A55DB01C5.attr
 
       //## begin ZDDocumentOptions::SynchronizationSeparator%366A5603008C.attr preserve=no  public: SynchronizationSeparatorType {U} 
-      SynchronizationSeparatorType m_SynchronizationSeparator;
+      ESynchronizationSeparatorType m_SynchronizationSeparator;
       //## end ZDDocumentOptions::SynchronizationSeparator%366A5603008C.attr
 
     // Additional Private Declarations
@@ -191,14 +191,14 @@ class AFX_EXT_CLASS ZDDocumentOptions
 
 //## Get and Set Operations for Class Attributes (inline)
 
-inline const LineType ZDDocumentOptions::GetEmptyStyle () const
+inline const ELineType ZDDocumentOptions::GetEmptyStyle() const
 {
   //## begin ZDDocumentOptions::GetEmptyStyle%351657670046.get preserve=no
   return m_EmptyStyle;
   //## end ZDDocumentOptions::GetEmptyStyle%351657670046.get
 }
 
-inline void ZDDocumentOptions::SetEmptyStyle (LineType value)
+inline void ZDDocumentOptions::SetEmptyStyle(ELineType value)
 {
   //## begin ZDDocumentOptions::SetEmptyStyle%351657670046.set preserve=no
   m_EmptyStyle = value;
@@ -233,42 +233,42 @@ inline void ZDDocumentOptions::SetSynchronizeTimeSequence (int value)
   //## end ZDDocumentOptions::SetSynchronizeTimeSequence%365012BB03A4.set
 }
 
-inline const OptionType ZDDocumentOptions::GetShowHiddenField () const
+inline const EOptionType ZDDocumentOptions::GetShowHiddenField() const
 {
   //## begin ZDDocumentOptions::GetShowHiddenField%3650151D02C4.get preserve=no
   return m_ShowHiddenField;
   //## end ZDDocumentOptions::GetShowHiddenField%3650151D02C4.get
 }
 
-inline void ZDDocumentOptions::SetShowHiddenField (OptionType value)
+inline void ZDDocumentOptions::SetShowHiddenField(EOptionType value)
 {
   //## begin ZDDocumentOptions::SetShowHiddenField%3650151D02C4.set preserve=no
   m_ShowHiddenField = value;
   //## end ZDDocumentOptions::SetShowHiddenField%3650151D02C4.set
 }
 
-inline const OptionType ZDDocumentOptions::GetShowEmptyLine () const
+inline const EOptionType ZDDocumentOptions::GetShowEmptyLine() const
 {
   //## begin ZDDocumentOptions::GetShowEmptyLine%3650154403C5.get preserve=no
   return m_ShowEmptyLine;
   //## end ZDDocumentOptions::GetShowEmptyLine%3650154403C5.get
 }
 
-inline void ZDDocumentOptions::SetShowEmptyLine (OptionType value)
+inline void ZDDocumentOptions::SetShowEmptyLine(EOptionType value)
 {
   //## begin ZDDocumentOptions::SetShowEmptyLine%3650154403C5.set preserve=no
   m_ShowEmptyLine = value;
   //## end ZDDocumentOptions::SetShowEmptyLine%3650154403C5.set
 }
 
-inline const SynchronizationFileType ZDDocumentOptions::GetAutomaticSynchronizeFilename () const
+inline const ESynchronizationFileType ZDDocumentOptions::GetAutomaticSynchronizeFilename() const
 {
   //## begin ZDDocumentOptions::GetAutomaticSynchronizeFilename%366A4F5A03BF.get preserve=no
   return m_AutomaticSynchronizeFilename;
   //## end ZDDocumentOptions::GetAutomaticSynchronizeFilename%366A4F5A03BF.get
 }
 
-inline void ZDDocumentOptions::SetAutomaticSynchronizeFilename (SynchronizationFileType value)
+inline void ZDDocumentOptions::SetAutomaticSynchronizeFilename(ESynchronizationFileType value)
 {
   //## begin ZDDocumentOptions::SetAutomaticSynchronizeFilename%366A4F5A03BF.set preserve=no
   m_AutomaticSynchronizeFilename = value;
@@ -303,14 +303,14 @@ inline void ZDDocumentOptions::SetSynchronizationHeader (BOOL value)
   //## end ZDDocumentOptions::SetSynchronizationHeader%366A55DB01C5.set
 }
 
-inline const SynchronizationSeparatorType ZDDocumentOptions::GetSynchronizationSeparator () const
+inline const ESynchronizationSeparatorType ZDDocumentOptions::GetSynchronizationSeparator() const
 {
   //## begin ZDDocumentOptions::GetSynchronizationSeparator%366A5603008C.get preserve=no
   return m_SynchronizationSeparator;
   //## end ZDDocumentOptions::GetSynchronizationSeparator%366A5603008C.get
 }
 
-inline void ZDDocumentOptions::SetSynchronizationSeparator (SynchronizationSeparatorType value)
+inline void ZDDocumentOptions::SetSynchronizationSeparator(ESynchronizationSeparatorType value)
 {
   //## begin ZDDocumentOptions::SetSynchronizationSeparator%366A5603008C.set preserve=no
   m_SynchronizationSeparator = value;

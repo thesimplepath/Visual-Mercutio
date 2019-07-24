@@ -35,7 +35,7 @@
 
 
 
-ZUFieldValueDataFeed::ZUFieldValueDataFeed (CString Filename, ZBFieldRepository* pFieldRepository, ZAObjectDefinition* pObjectDefinition, BOOL GenerateHeader, SynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
+ZUFieldValueDataFeed::ZUFieldValueDataFeed (CString Filename, ZBFieldRepository* pFieldRepository, ZAObjectDefinition* pObjectDefinition, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
   //## begin ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696498.hasinit preserve=no
   //## end ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696498.hasinit
   //## begin ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696498.initialization preserve=yes
@@ -48,7 +48,7 @@ ZUFieldValueDataFeed::ZUFieldValueDataFeed (CString Filename, ZBFieldRepository*
   //## end ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696498.body
 }
 
-ZUFieldValueDataFeed::ZUFieldValueDataFeed (CString Filename, CStringArray* pValueArray, BOOL GenerateHeader, SynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
+ZUFieldValueDataFeed::ZUFieldValueDataFeed (CString Filename, CStringArray* pValueArray, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
   //## begin ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696510.hasinit preserve=no
   //## end ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696510.hasinit
   //## begin ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696510.initialization preserve=yes
@@ -84,18 +84,20 @@ CString ZUFieldValueDataFeed::GetExportedLine (CObject* pObj)
 
     switch (GetSeparatorType())
     {
-        case CommaSeparator :
+        case E_SS_Comma:
         {
             Tokenizer.SetSeparator( ',' );
             break;
         }
-        case SemiColumnSeparator :
+
+        case E_SS_SemiColumn:
         {
             Tokenizer.SetSeparator( ';' );
             break;
         }
-        case AutomaticSeparator :     
-        case TabSeparator :    
+
+        case E_SS_Automatic:
+        case E_SS_Tab:
         default:
         {
             Tokenizer.SetSeparator( '\t' );

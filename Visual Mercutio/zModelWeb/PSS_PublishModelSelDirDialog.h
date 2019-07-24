@@ -15,7 +15,7 @@
 // processsoft
 #include "zBaseLib\ZWizard.h"
 #include "zBaseLib\ZCIntelliEdit.h"
-#include "zWinUtil32\DirTreeCtrl.h"
+#include "zWinUtil32\PSS_DirTreeCtrl.h"
 
 // resources
 #include "zModelWebRes.h"
@@ -64,8 +64,8 @@ class PSS_PublishModelSelDirDialog : public ZIWizardDialog
             IDD = IDD_WZPUBMODEL_SEL
         };
 
-        ZIDirTreeCtrl m_DirTreeCtrl;
-        ZCIntelliEdit m_CbDirectory;
+        PSS_DirTreeCtrl m_DirTreeCtrl;
+        ZCIntelliEdit   m_CbDirectory;
 
         /// ClassWizard generated virtual function overrides
         //{{AFX_VIRTUAL(PSS_PublishModelSelDirDialog)

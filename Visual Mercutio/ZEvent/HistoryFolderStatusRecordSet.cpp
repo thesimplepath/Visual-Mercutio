@@ -41,7 +41,7 @@ CString ZDHistoryFolderStatusRecordset::GetDefaultDBName()
 
 CString ZDHistoryFolderStatusRecordset::GetDefaultSQL()
 {
-    return _T(HistoryFolderStatusTableName);
+    return _T(g_HistoryFolderStatusTableName);
 }
 
 void ZDHistoryFolderStatusRecordset::DoFieldExchange(CDaoFieldExchange* pFX)

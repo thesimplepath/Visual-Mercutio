@@ -191,152 +191,152 @@ void ZVEqualizeQuantityDlg::InitializeVariables()
             }
             case Z_NUMBER_JANUARY:
             {
-                m_Equalizer.SetNumberAt( IndexJanuary, pProp->GetValueDouble() );
+                m_Equalizer.SetNumberAt(g_IndexJanuary, pProp->GetValueDouble());
                 m_QuantityJanuary.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
             case Z_NUMBER_FEBRUARY:
             {
-                m_Equalizer.SetNumberAt( IndexFebruary, pProp->GetValueDouble() );
+                m_Equalizer.SetNumberAt(g_IndexFebruary, pProp->GetValueDouble());
                 m_QuantityFebruary.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
             case Z_NUMBER_MARCH:
             {
-                m_Equalizer.SetNumberAt( IndexMarch, pProp->GetValueDouble() );
+                m_Equalizer.SetNumberAt(g_IndexMarch, pProp->GetValueDouble());
                 m_QuantityMarch.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
             case Z_NUMBER_APRIL:
             {
-                m_Equalizer.SetNumberAt( IndexApril, pProp->GetValueDouble() );
+                m_Equalizer.SetNumberAt(g_IndexApril, pProp->GetValueDouble());
                 m_QuantityApril.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
             case Z_NUMBER_MAY    :
             {
-                m_Equalizer.SetNumberAt( IndexMay, pProp->GetValueDouble() );
+                m_Equalizer.SetNumberAt(g_IndexMay, pProp->GetValueDouble());
                 m_QuantityMay.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
             case Z_NUMBER_JUNE    :
             {
-                m_Equalizer.SetNumberAt( IndexJune, pProp->GetValueDouble() );
+                m_Equalizer.SetNumberAt(g_IndexJune, pProp->GetValueDouble());
                 m_QuantityJune.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
             case Z_NUMBER_JULY    :
             {
-                m_Equalizer.SetNumberAt( IndexJuly, pProp->GetValueDouble() );
+                m_Equalizer.SetNumberAt(g_IndexJuly, pProp->GetValueDouble());
                 m_QuantityJuly.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
             case Z_NUMBER_AUGUST:
             {
-                m_Equalizer.SetNumberAt( IndexAugust, pProp->GetValueDouble() );
+                m_Equalizer.SetNumberAt(g_IndexAugust, pProp->GetValueDouble());
                 m_QuantityAugust.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
             case Z_NUMBER_SEPTEMBER:
             {
-                m_Equalizer.SetNumberAt( IndexSeptember, pProp->GetValueDouble() );
+                m_Equalizer.SetNumberAt(g_IndexSeptember, pProp->GetValueDouble());
                 m_QuantitySeptember.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
             case Z_NUMBER_OCTOBER:
             {
-                m_Equalizer.SetNumberAt( IndexOctober, pProp->GetValueDouble() );
+                m_Equalizer.SetNumberAt(g_IndexOctober, pProp->GetValueDouble());
                 m_QuantityOctober.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
             case Z_NUMBER_NOVEMBER:
             {
-                m_Equalizer.SetNumberAt( IndexNovember, pProp->GetValueDouble() );
+                m_Equalizer.SetNumberAt(g_IndexNovember, pProp->GetValueDouble());
                 m_QuantityNovember.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
             case Z_NUMBER_DECEMBER:
             {
-                m_Equalizer.SetNumberAt( IndexDecember, pProp->GetValueDouble() );
+                m_Equalizer.SetNumberAt(g_IndexDecember, pProp->GetValueDouble());
                 m_QuantityDecember.Format(szFormatNumbers, pProp->GetValueDouble());
                 break;
             }
             case Z_LOCKED_YEAR:
             {
                 m_LockYear = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
-                m_Equalizer.SetLockedTotal( (m_LockYear == TRUE) ? true : false );
+                m_Equalizer.SetLockedTotal(m_LockYear);
                 break;
             }
             case Z_LOCKED_JANUARY:
             {
                 m_LockJanuary = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
-                m_Equalizer.SetLockedFlagAt( IndexJanuary, (m_LockJanuary == TRUE) ? true : false );
+                m_Equalizer.SetLockedFlagAt(g_IndexJanuary, m_LockJanuary);
                 break;
             }
             case Z_LOCKED_FEBRUARY:
             {
                 m_LockFebruary = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
-                m_Equalizer.SetLockedFlagAt( IndexFebruary, (m_LockFebruary == TRUE) ? true : false );
+                m_Equalizer.SetLockedFlagAt(g_IndexFebruary, m_LockFebruary);
                 break;
             }
             case Z_LOCKED_MARCH:
             {
                 m_LockMarch = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
-                m_Equalizer.SetLockedFlagAt( IndexMarch, (m_LockMarch == TRUE) ? true : false );
+                m_Equalizer.SetLockedFlagAt(g_IndexMarch, m_LockMarch);
                 break;
             }
             case Z_LOCKED_APRIL:
             {
                 m_LockApril = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
-                m_Equalizer.SetLockedFlagAt( IndexApril, (m_LockApril == TRUE) ? true : false );
+                m_Equalizer.SetLockedFlagAt(g_IndexApril, m_LockApril);
                 break;
             }
             case Z_LOCKED_MAY:
             {
                 m_LockMay = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
-                m_Equalizer.SetLockedFlagAt( IndexMay, (m_LockMay == TRUE) ? true : false );
+                m_Equalizer.SetLockedFlagAt(g_IndexMay, m_LockMay);
                 break;
             }
             case Z_LOCKED_JUNE:
             {
                 m_LockJune = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
-                m_Equalizer.SetLockedFlagAt( IndexJune, (m_LockJune == TRUE) ? true : false );
+                m_Equalizer.SetLockedFlagAt(g_IndexJune, m_LockJune);
                 break;
             }
             case Z_LOCKED_JULY:
             {
                 m_LockJuly = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
-                m_Equalizer.SetLockedFlagAt( IndexJuly, (m_LockJuly == TRUE) ? true : false );
+                m_Equalizer.SetLockedFlagAt(g_IndexJuly, m_LockJuly);
                 break;
             }
             case Z_LOCKED_AUGUST:
             {
                 m_LockAugust = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
-                m_Equalizer.SetLockedFlagAt( IndexAugust, (m_LockAugust == TRUE) ? true : false );
+                m_Equalizer.SetLockedFlagAt(g_IndexAugust, m_LockAugust);
                 break;
             }
             case Z_LOCKED_SEPTEMBER:
             {
                 m_LockSeptember = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
-                m_Equalizer.SetLockedFlagAt( IndexSeptember, (m_LockSeptember == TRUE) ? true : false );
+                m_Equalizer.SetLockedFlagAt(g_IndexSeptember, m_LockSeptember);
                 break;
             }
             case Z_LOCKED_OCTOBER:
             {
                 m_LockOctober = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
-                m_Equalizer.SetLockedFlagAt( IndexOctober, (m_LockOctober == TRUE) ? true : false );
+                m_Equalizer.SetLockedFlagAt(g_IndexOctober, m_LockOctober);
                 break;
             }
             case Z_LOCKED_NOVEMBER:
             {
                 m_LockNovember = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
-                m_Equalizer.SetLockedFlagAt( IndexNovember, (m_LockNovember == TRUE) ? true : false );
+                m_Equalizer.SetLockedFlagAt(g_IndexNovember, m_LockNovember);
                 break;
             }
             case Z_LOCKED_DECEMBER:
             {
                 m_LockDecember = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
-                m_Equalizer.SetLockedFlagAt( IndexDecember, (m_LockDecember == TRUE) ? true : false );
+                m_Equalizer.SetLockedFlagAt(g_IndexDecember, m_LockDecember);
                 break;
             }
             case Z_FORCE_EQUALIZER:
@@ -350,51 +350,51 @@ void ZVEqualizeQuantityDlg::InitializeVariables()
     bool bError;
 
     m_SliderSeptember.SetRange( 0, 100 );
-    m_SliderSeptember.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexSeptember, bError) / m_Equalizer.GetTotal()) * 100) );
+    m_SliderSeptember.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexSeptember, bError) / m_Equalizer.GetTotal()) * 100) );
     m_SliderSeptember.SetTicFreq( 10 );
 
     m_SliderOctober.SetRange( 0, 100 );
-    m_SliderOctober.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexOctober, bError) / m_Equalizer.GetTotal()) * 100) );
+    m_SliderOctober.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexOctober, bError) / m_Equalizer.GetTotal()) * 100) );
     m_SliderOctober.SetTicFreq( 10 );
 
     m_SliderNovember.SetRange( 0, 100 );
-    m_SliderNovember.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexNovember, bError) / m_Equalizer.GetTotal()) * 100) );
+    m_SliderNovember.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexNovember, bError) / m_Equalizer.GetTotal()) * 100) );
     m_SliderNovember.SetTicFreq( 10 );
 
     m_SliderMay.SetRange( 0, 100 );
-    m_SliderMay.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexMay, bError) / m_Equalizer.GetTotal()) * 100) );
+    m_SliderMay.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexMay, bError) / m_Equalizer.GetTotal()) * 100) );
     m_SliderMay.SetTicFreq( 10 );
 
     m_SliderMarch.SetRange( 0, 100 );
-    m_SliderMarch.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexMarch, bError) / m_Equalizer.GetTotal()) * 100) );
+    m_SliderMarch.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexMarch, bError) / m_Equalizer.GetTotal()) * 100) );
     m_SliderMarch.SetTicFreq( 10 );
 
     m_SliderJune.SetRange( 0, 100 );
-    m_SliderJune.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexJune, bError) / m_Equalizer.GetTotal()) * 100) );
+    m_SliderJune.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexJune, bError) / m_Equalizer.GetTotal()) * 100) );
     m_SliderJune.SetTicFreq( 10 );
 
     m_SliderJuly.SetRange( 0, 100 );
-    m_SliderJuly.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexJuly, bError) / m_Equalizer.GetTotal()) * 100) );
+    m_SliderJuly.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexJuly, bError) / m_Equalizer.GetTotal()) * 100) );
     m_SliderJuly.SetTicFreq( 10 );
 
     m_SliderJanuary.SetRange( 0, 100 );
-    m_SliderJanuary.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexJanuary, bError) / m_Equalizer.GetTotal()) * 100) );
+    m_SliderJanuary.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexJanuary, bError) / m_Equalizer.GetTotal()) * 100) );
     m_SliderJanuary.SetTicFreq( 10 );
 
     m_SliderFebruary.SetRange( 0, 100 );
-    m_SliderFebruary.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexFebruary, bError) / m_Equalizer.GetTotal()) * 100) );
+    m_SliderFebruary.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexFebruary, bError) / m_Equalizer.GetTotal()) * 100) );
     m_SliderFebruary.SetTicFreq( 10 );
 
     m_SliderDecember.SetRange( 0, 100 );
-    m_SliderDecember.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexDecember, bError) / m_Equalizer.GetTotal()) * 100) );
+    m_SliderDecember.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexDecember, bError) / m_Equalizer.GetTotal()) * 100) );
     m_SliderDecember.SetTicFreq( 10 );
 
     m_SliderAugust.SetRange( 0, 100 );
-    m_SliderAugust.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexAugust, bError) / m_Equalizer.GetTotal()) * 100) );
+    m_SliderAugust.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexAugust, bError) / m_Equalizer.GetTotal()) * 100) );
     m_SliderAugust.SetTicFreq( 10 );
 
     m_SliderApril.SetRange( 0, 100 );
-    m_SliderApril.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexApril, bError) / m_Equalizer.GetTotal()) * 100) );
+    m_SliderApril.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexApril, bError) / m_Equalizer.GetTotal()) * 100) );
     m_SliderApril.SetTicFreq( 10 );
 
     // Finally, calculates all the percents
@@ -424,132 +424,132 @@ void ZVEqualizeQuantityDlg::SaveVariables()
             }
             case Z_NUMBER_JANUARY:
             {
-                pProp->SetValueDouble( m_Equalizer.GetNumberAt(IndexJanuary, bError ) );
+                pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexJanuary, bError ) );
                 break;
             }
             case Z_NUMBER_FEBRUARY:
             {
-                pProp->SetValueDouble( m_Equalizer.GetNumberAt(IndexFebruary, bError ) );
+                pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexFebruary, bError ) );
                 break;
             }
             case Z_NUMBER_MARCH:
             {
-                pProp->SetValueDouble( m_Equalizer.GetNumberAt(IndexMarch, bError ) );
+                pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexMarch, bError ) );
                 break;
             }
             case Z_NUMBER_APRIL:
             {
-                pProp->SetValueDouble( m_Equalizer.GetNumberAt(IndexApril, bError ) );
+                pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexApril, bError ) );
                 break;
             }
             case Z_NUMBER_MAY    :
             {
-                pProp->SetValueDouble( m_Equalizer.GetNumberAt(IndexMay, bError ) );
+                pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexMay, bError ) );
                 break;
             }
             case Z_NUMBER_JUNE    :
             {
-                pProp->SetValueDouble( m_Equalizer.GetNumberAt(IndexJune, bError ) );
+                pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexJune, bError ) );
                 break;
             }
             case Z_NUMBER_JULY    :
             {
-                pProp->SetValueDouble( m_Equalizer.GetNumberAt(IndexJuly, bError ) );
+                pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexJuly, bError ) );
                 break;
             }
             case Z_NUMBER_AUGUST:
             {
-                pProp->SetValueDouble( m_Equalizer.GetNumberAt(IndexAugust, bError ) );
+                pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexAugust, bError ) );
                 break;
             }
             case Z_NUMBER_SEPTEMBER:
             {
-                pProp->SetValueDouble( m_Equalizer.GetNumberAt(IndexSeptember, bError ) );
+                pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexSeptember, bError ) );
                 break;
             }
             case Z_NUMBER_OCTOBER:
             {
-                pProp->SetValueDouble( m_Equalizer.GetNumberAt(IndexOctober, bError ) );
+                pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexOctober, bError ) );
                 break;
             }
             case Z_NUMBER_NOVEMBER:
             {
-                pProp->SetValueDouble( m_Equalizer.GetNumberAt(IndexNovember, bError ) );
+                pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexNovember, bError ) );
                 break;
             }
             case Z_NUMBER_DECEMBER:
             {
-                pProp->SetValueDouble( m_Equalizer.GetNumberAt(IndexDecember, bError ) );
+                pProp->SetValueDouble( m_Equalizer.GetNumberAt(g_IndexDecember, bError ) );
                 break;
             }
             case Z_LOCKED_YEAR:
             {
-                pProp->SetValueString( (m_LockYear == TRUE) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                pProp->SetValueString(m_LockYear ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_JANUARY:
             {
-                pProp->SetValueString( (m_LockJanuary == TRUE) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                pProp->SetValueString(m_LockJanuary ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_FEBRUARY:
             {
-                pProp->SetValueString( (m_LockFebruary == TRUE) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                pProp->SetValueString(m_LockFebruary ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_MARCH:
             {
-                pProp->SetValueString( (m_LockMarch == TRUE) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                pProp->SetValueString(m_LockMarch ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_APRIL:
             {
-                pProp->SetValueString( (m_LockApril == TRUE) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                pProp->SetValueString(m_LockApril ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_MAY:
             {
-                pProp->SetValueString( (m_LockMay == TRUE) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                pProp->SetValueString(m_LockMay ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_JUNE:
             {
-                pProp->SetValueString( (m_LockJune == TRUE) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                pProp->SetValueString(m_LockJune ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_JULY:
             {
-                pProp->SetValueString( (m_LockJuly == TRUE) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                pProp->SetValueString(m_LockJuly ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_AUGUST:
             {
-                pProp->SetValueString( (m_LockAugust == TRUE) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                pProp->SetValueString(m_LockAugust ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_SEPTEMBER:
             {
-                pProp->SetValueString( (m_LockSeptember == TRUE) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                pProp->SetValueString(m_LockSeptember ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_OCTOBER:
             {
-                pProp->SetValueString( (m_LockOctober == TRUE) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                pProp->SetValueString(m_LockOctober ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_NOVEMBER:
             {
-                pProp->SetValueString( (m_LockNovember == TRUE) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                pProp->SetValueString(m_LockNovember ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_DECEMBER:
             {
-                pProp->SetValueString( (m_LockDecember == TRUE) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                pProp->SetValueString(m_LockDecember ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
                 break;
             }
             case Z_FORCE_EQUALIZER:
             {
-                pProp->SetValueString( (m_ForceEqualizer == TRUE) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo() );
+                pProp->SetValueString(m_ForceEqualizer ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
                 break;
             }
         }
@@ -558,35 +558,36 @@ void ZVEqualizeQuantityDlg::SaveVariables()
 
 void ZVEqualizeQuantityDlg::ApplyEqualizerToControls()
 {
-    bool bError;
-    // Assigns quantities to strings
-    m_QuantityYear.Format(szFormatNumbers, m_Equalizer.GetTotal() );
-    m_QuantityJanuary.Format(szFormatNumbers, m_Equalizer.GetNumberAt( IndexJanuary, bError));
-    m_QuantityFebruary.Format(szFormatNumbers, m_Equalizer.GetNumberAt( IndexFebruary, bError));
-    m_QuantityMarch.Format(szFormatNumbers, m_Equalizer.GetNumberAt( IndexMarch, bError));
-    m_QuantityApril.Format(szFormatNumbers, m_Equalizer.GetNumberAt( IndexApril, bError));
-    m_QuantityMay.Format(szFormatNumbers, m_Equalizer.GetNumberAt( IndexMay, bError));
-    m_QuantityJune.Format(szFormatNumbers, m_Equalizer.GetNumberAt( IndexJune, bError));
-    m_QuantityJuly.Format(szFormatNumbers, m_Equalizer.GetNumberAt( IndexJuly, bError));
-    m_QuantityAugust.Format(szFormatNumbers, m_Equalizer.GetNumberAt( IndexAugust, bError));
-    m_QuantitySeptember.Format(szFormatNumbers, m_Equalizer.GetNumberAt( IndexSeptember, bError));
-    m_QuantityOctober.Format(szFormatNumbers, m_Equalizer.GetNumberAt( IndexOctober, bError));
-    m_QuantityNovember.Format(szFormatNumbers, m_Equalizer.GetNumberAt( IndexNovember, bError));
-    m_QuantityDecember.Format(szFormatNumbers, m_Equalizer.GetNumberAt( IndexDecember, bError));
+    bool error;
+
+    // assigns quantities to strings
+    m_QuantityYear.Format     (szFormatNumbers, m_Equalizer.GetTotal());
+    m_QuantityJanuary.Format  (szFormatNumbers, m_Equalizer.GetNumberAt(g_IndexJanuary,   error));
+    m_QuantityFebruary.Format (szFormatNumbers, m_Equalizer.GetNumberAt(g_IndexFebruary,  error));
+    m_QuantityMarch.Format    (szFormatNumbers, m_Equalizer.GetNumberAt(g_IndexMarch,     error));
+    m_QuantityApril.Format    (szFormatNumbers, m_Equalizer.GetNumberAt(g_IndexApril,     error));
+    m_QuantityMay.Format      (szFormatNumbers, m_Equalizer.GetNumberAt(g_IndexMay,       error));
+    m_QuantityJune.Format     (szFormatNumbers, m_Equalizer.GetNumberAt(g_IndexJune,      error));
+    m_QuantityJuly.Format     (szFormatNumbers, m_Equalizer.GetNumberAt(g_IndexJuly,      error));
+    m_QuantityAugust.Format   (szFormatNumbers, m_Equalizer.GetNumberAt(g_IndexAugust,    error));
+    m_QuantitySeptember.Format(szFormatNumbers, m_Equalizer.GetNumberAt(g_IndexSeptember, error));
+    m_QuantityOctober.Format  (szFormatNumbers, m_Equalizer.GetNumberAt(g_IndexOctober,   error));
+    m_QuantityNovember.Format (szFormatNumbers, m_Equalizer.GetNumberAt(g_IndexNovember,  error));
+    m_QuantityDecember.Format (szFormatNumbers, m_Equalizer.GetNumberAt(g_IndexDecember,  error));
 
     // Assigns slider values
-    m_SliderSeptember.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexSeptember, bError) / m_Equalizer.GetTotal()) * 100) );
-    m_SliderOctober.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexOctober, bError) / m_Equalizer.GetTotal()) * 100) );
-    m_SliderNovember.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexNovember, bError) / m_Equalizer.GetTotal()) * 100) );
-    m_SliderMay.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexMay, bError) / m_Equalizer.GetTotal()) * 100) );
-    m_SliderMarch.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexMarch, bError) / m_Equalizer.GetTotal()) * 100) );
-    m_SliderJune.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexJune, bError) / m_Equalizer.GetTotal()) * 100) );
-    m_SliderJuly.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexJuly, bError) / m_Equalizer.GetTotal()) * 100) );
-    m_SliderJanuary.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexJanuary, bError) / m_Equalizer.GetTotal()) * 100) );
-    m_SliderFebruary.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexFebruary, bError) / m_Equalizer.GetTotal()) * 100) );
-    m_SliderDecember.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexDecember, bError) / m_Equalizer.GetTotal()) * 100) );
-    m_SliderAugust.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexAugust, bError) / m_Equalizer.GetTotal()) * 100) );
-    m_SliderApril.SetPos( static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(IndexApril, bError) / m_Equalizer.GetTotal()) * 100) );
+    m_SliderSeptember.SetPos(static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexSeptember, error) / m_Equalizer.GetTotal()) * 100));
+    m_SliderOctober.SetPos  (static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexOctober,   error) / m_Equalizer.GetTotal()) * 100));
+    m_SliderNovember.SetPos (static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexNovember,  error) / m_Equalizer.GetTotal()) * 100));
+    m_SliderMay.SetPos      (static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexMay,       error) / m_Equalizer.GetTotal()) * 100));
+    m_SliderMarch.SetPos    (static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexMarch,     error) / m_Equalizer.GetTotal()) * 100));
+    m_SliderJune.SetPos     (static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexJune,      error) / m_Equalizer.GetTotal()) * 100));
+    m_SliderJuly.SetPos     (static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexJuly,      error) / m_Equalizer.GetTotal()) * 100));
+    m_SliderJanuary.SetPos  (static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexJanuary,   error) / m_Equalizer.GetTotal()) * 100));
+    m_SliderFebruary.SetPos (static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexFebruary,  error) / m_Equalizer.GetTotal()) * 100));
+    m_SliderDecember.SetPos (static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexDecember,  error) / m_Equalizer.GetTotal()) * 100));
+    m_SliderAugust.SetPos   (static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexAugust,    error) / m_Equalizer.GetTotal()) * 100));
+    m_SliderApril.SetPos    (static_cast<int>(static_cast<double>(m_Equalizer.GetNumberAt(g_IndexApril,     error) / m_Equalizer.GetTotal()) * 100));
 
     UpdateData(FALSE);
 }
@@ -649,28 +650,24 @@ void ZVEqualizeQuantityDlg::CheckControlState()
 void ZVEqualizeQuantityDlg::OnAprActLock() 
 {
     CheckControlState();
-    
-    m_Equalizer.SetLockedFlagAt( IndexApril, (m_LockApril == TRUE) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexApril, m_LockApril);
 }
 
 void ZVEqualizeQuantityDlg::OnReleasedcaptureAprActSlider(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-    int currentPos = m_SliderApril.GetPos();
-    m_Equalizer.SetPercentAtEqualize( IndexApril, static_cast<double>(currentPos) / static_cast<double>(100) );
-
+    m_Equalizer.SetPercentAtEqualize(g_IndexApril, double(m_SliderApril.GetPos()) / 100.0);
     ApplyEqualizerToControls();
-
     *pResult = 0;
 }
 
 void ZVEqualizeQuantityDlg::OnChangeAprActivation() 
 {
     UpdateData( TRUE );
-    
+
     double Number = atof(m_QuantityApril);
     if (Number < 0)
         Number = 0;
-    m_Equalizer.SetNumberAtEqualize( IndexApril, Number );
+    m_Equalizer.SetNumberAtEqualize(g_IndexApril, Number);
 
     ApplyEqualizerToControls();
 }
@@ -678,28 +675,24 @@ void ZVEqualizeQuantityDlg::OnChangeAprActivation()
 void ZVEqualizeQuantityDlg::OnAugActLock() 
 {
     CheckControlState();
-
-    m_Equalizer.SetLockedFlagAt( IndexAugust, (m_LockAugust == TRUE) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexAugust, m_LockAugust);
 }
 
 void ZVEqualizeQuantityDlg::OnReleasedcaptureAugActSlider(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-    int currentPos = m_SliderAugust.GetPos();
-    m_Equalizer.SetPercentAtEqualize( IndexAugust, static_cast<double>(currentPos) / static_cast<double>(100) );
-
+    m_Equalizer.SetPercentAtEqualize(g_IndexAugust, double(m_SliderAugust.GetPos()) / 100.0);
     ApplyEqualizerToControls();
-    
     *pResult = 0;
 }
 
 void ZVEqualizeQuantityDlg::OnChangeAugActivation() 
 {
     UpdateData( TRUE );
-    
+
     double Number = atof(m_QuantityAugust);
     if (Number < 0)
         Number = 0;
-    m_Equalizer.SetNumberAtEqualize( IndexAugust, Number );
+    m_Equalizer.SetNumberAtEqualize(g_IndexAugust, Number);
 
     ApplyEqualizerToControls();
 }
@@ -707,28 +700,24 @@ void ZVEqualizeQuantityDlg::OnChangeAugActivation()
 void ZVEqualizeQuantityDlg::OnDecActLock() 
 {
     CheckControlState();
-
-    m_Equalizer.SetLockedFlagAt( IndexDecember, (m_LockDecember == TRUE) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexDecember, m_LockDecember);
 }
 
 void ZVEqualizeQuantityDlg::OnReleasedcaptureDecActSlider(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-    int currentPos = m_SliderDecember.GetPos();
-    m_Equalizer.SetPercentAtEqualize( IndexDecember, static_cast<double>(currentPos) / static_cast<double>(100) );
-
+    m_Equalizer.SetPercentAtEqualize(g_IndexDecember, double(m_SliderDecember.GetPos()) / 100.0);
     ApplyEqualizerToControls();
-    
     *pResult = 0;
 }
 
 void ZVEqualizeQuantityDlg::OnChangeDecActivation() 
 {
     UpdateData( TRUE );
-    
+
     double Number = atof(m_QuantityDecember);
     if (Number < 0)
         Number = 0;
-    m_Equalizer.SetNumberAtEqualize( IndexDecember, Number );
+    m_Equalizer.SetNumberAtEqualize(g_IndexDecember, Number);
 
     ApplyEqualizerToControls();
 }
@@ -736,28 +725,24 @@ void ZVEqualizeQuantityDlg::OnChangeDecActivation()
 void ZVEqualizeQuantityDlg::OnFebActLock() 
 {
     CheckControlState();
-
-    m_Equalizer.SetLockedFlagAt( IndexFebruary, (m_LockFebruary == TRUE) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexFebruary, m_LockFebruary);
 }
 
 void ZVEqualizeQuantityDlg::OnReleasedcaptureFebActSlider(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-    int currentPos = m_SliderFebruary.GetPos();
-    m_Equalizer.SetPercentAtEqualize( IndexFebruary, static_cast<double>(currentPos) / static_cast<double>(100) );
-
+    m_Equalizer.SetPercentAtEqualize(g_IndexFebruary, double(m_SliderFebruary.GetPos()) / 100.0);
     ApplyEqualizerToControls();
-    
     *pResult = 0;
 }
 
 void ZVEqualizeQuantityDlg::OnChangeFebActivation() 
 {
     UpdateData( TRUE );
-    
+
     double Number = atof(m_QuantityFebruary);
     if (Number < 0)
         Number = 0;
-    m_Equalizer.SetNumberAtEqualize( IndexFebruary, Number );
+    m_Equalizer.SetNumberAtEqualize(g_IndexFebruary, Number);
 
     ApplyEqualizerToControls();
 }
@@ -765,28 +750,24 @@ void ZVEqualizeQuantityDlg::OnChangeFebActivation()
 void ZVEqualizeQuantityDlg::OnJanActLock() 
 {
     CheckControlState();
-
-    m_Equalizer.SetLockedFlagAt( IndexJanuary, (m_LockJanuary == TRUE) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexJanuary, m_LockJanuary);
 }
 
 void ZVEqualizeQuantityDlg::OnReleasedcaptureJanActSlider(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-    int currentPos = m_SliderJanuary.GetPos();
-    m_Equalizer.SetPercentAtEqualize( IndexJanuary, static_cast<double>(currentPos) / static_cast<double>(100) );
-
+    m_Equalizer.SetPercentAtEqualize(g_IndexJanuary, double(m_SliderJanuary.GetPos()) / 100.0);
     ApplyEqualizerToControls();
-    
     *pResult = 0;
 }
 
 void ZVEqualizeQuantityDlg::OnChangeJanActivation() 
 {
     UpdateData( TRUE );
-    
+
     double Number = atof(m_QuantityJanuary);
     if (Number < 0)
         Number = 0;
-    m_Equalizer.SetNumberAtEqualize( IndexJanuary, Number );
+    m_Equalizer.SetNumberAtEqualize(g_IndexJanuary, Number);
 
     ApplyEqualizerToControls();
 }
@@ -794,28 +775,24 @@ void ZVEqualizeQuantityDlg::OnChangeJanActivation()
 void ZVEqualizeQuantityDlg::OnJulActLock() 
 {
     CheckControlState();
-
-    m_Equalizer.SetLockedFlagAt( IndexJuly, (m_LockJuly == TRUE) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexJuly, m_LockJuly);
 }
 
 void ZVEqualizeQuantityDlg::OnReleasedcaptureJulActSlider(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-    int currentPos = m_SliderJuly.GetPos();
-    m_Equalizer.SetPercentAtEqualize( IndexJuly, static_cast<double>(currentPos) / static_cast<double>(100) );
-
+    m_Equalizer.SetPercentAtEqualize(g_IndexJuly, double(m_SliderJuly.GetPos()) / 100.0);
     ApplyEqualizerToControls();
-    
     *pResult = 0;
 }
 
 void ZVEqualizeQuantityDlg::OnChangeJulActivation() 
 {
     UpdateData( TRUE );
-    
+
     double Number = atof(m_QuantityJuly);
     if (Number < 0)
         Number = 0;
-    m_Equalizer.SetNumberAtEqualize( IndexJuly, Number );
+    m_Equalizer.SetNumberAtEqualize(g_IndexJuly, Number);
 
     ApplyEqualizerToControls();
 }
@@ -823,28 +800,24 @@ void ZVEqualizeQuantityDlg::OnChangeJulActivation()
 void ZVEqualizeQuantityDlg::OnJunActLock() 
 {
     CheckControlState();
-
-    m_Equalizer.SetLockedFlagAt( IndexJune, (m_LockJune == TRUE) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexJune, m_LockJune);
 }
 
 void ZVEqualizeQuantityDlg::OnReleasedcaptureJunActSlider(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-    int currentPos = m_SliderJune.GetPos();
-    m_Equalizer.SetPercentAtEqualize( IndexJune, static_cast<double>(currentPos) / static_cast<double>(100) );
-
+    m_Equalizer.SetPercentAtEqualize(g_IndexJune, double(m_SliderJune.GetPos()) / 100.0);
     ApplyEqualizerToControls();
-    
     *pResult = 0;
 }
 
 void ZVEqualizeQuantityDlg::OnChangeJunActivation() 
 {
     UpdateData( TRUE );
-    
+
     double Number = atof(m_QuantityJune);
     if (Number < 0)
         Number = 0;
-    m_Equalizer.SetNumberAtEqualize( IndexJune, Number );
+    m_Equalizer.SetNumberAtEqualize(g_IndexJune, Number);
 
     ApplyEqualizerToControls();
 }
@@ -852,28 +825,24 @@ void ZVEqualizeQuantityDlg::OnChangeJunActivation()
 void ZVEqualizeQuantityDlg::OnMarActLock() 
 {
     CheckControlState();
-
-    m_Equalizer.SetLockedFlagAt( IndexMarch, (m_LockMarch == TRUE) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexMarch, m_LockMarch);
 }
 
 void ZVEqualizeQuantityDlg::OnReleasedcaptureMarActSlider(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-    int currentPos = m_SliderMarch.GetPos();
-    m_Equalizer.SetPercentAtEqualize( IndexMarch, static_cast<double>(currentPos) / static_cast<double>(100) );
-
+    m_Equalizer.SetPercentAtEqualize(g_IndexMarch, double(m_SliderMarch.GetPos()) / 100.0);
     ApplyEqualizerToControls();
-    
     *pResult = 0;
 }
 
 void ZVEqualizeQuantityDlg::OnChangeMarActivation() 
 {
     UpdateData( TRUE );
-    
+
     double Number = atof(m_QuantityMarch);
     if (Number < 0)
         Number = 0;
-    m_Equalizer.SetNumberAtEqualize( IndexMarch, Number );
+    m_Equalizer.SetNumberAtEqualize(g_IndexMarch, Number);
 
     ApplyEqualizerToControls();
 }
@@ -881,28 +850,24 @@ void ZVEqualizeQuantityDlg::OnChangeMarActivation()
 void ZVEqualizeQuantityDlg::OnMayActLock() 
 {
     CheckControlState();
-
-    m_Equalizer.SetLockedFlagAt( IndexMay, (m_LockMay == TRUE) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexMay, m_LockMay);
 }
 
 void ZVEqualizeQuantityDlg::OnReleasedcaptureMayActSlider(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-    int currentPos = m_SliderMay.GetPos();
-    m_Equalizer.SetPercentAtEqualize( IndexMay, static_cast<double>(currentPos) / static_cast<double>(100) );
-
+    m_Equalizer.SetPercentAtEqualize(g_IndexMay, double(m_SliderMay.GetPos()) / 100.0);
     ApplyEqualizerToControls();
-    
     *pResult = 0;
 }
 
 void ZVEqualizeQuantityDlg::OnChangeMayActivation() 
 {
     UpdateData( TRUE );
-    
+
     double Number = atof(m_QuantityMay);
     if (Number < 0)
         Number = 0;
-    m_Equalizer.SetNumberAtEqualize( IndexMay, Number );
+    m_Equalizer.SetNumberAtEqualize(g_IndexMay, Number);
 
     ApplyEqualizerToControls();
 }
@@ -910,28 +875,24 @@ void ZVEqualizeQuantityDlg::OnChangeMayActivation()
 void ZVEqualizeQuantityDlg::OnNovActLock() 
 {
     CheckControlState();
-
-    m_Equalizer.SetLockedFlagAt( IndexNovember, (m_LockNovember == TRUE) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexNovember, m_LockNovember);
 }
 
 void ZVEqualizeQuantityDlg::OnReleasedcaptureNovActSlider(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-    int currentPos = m_SliderNovember.GetPos();
-    m_Equalizer.SetPercentAtEqualize( IndexNovember, static_cast<double>(currentPos) / static_cast<double>(100) );
-
+    m_Equalizer.SetPercentAtEqualize(g_IndexNovember, double(m_SliderNovember.GetPos()) / 100.0);
     ApplyEqualizerToControls();
-    
     *pResult = 0;
 }
 
 void ZVEqualizeQuantityDlg::OnChangeNovActivation() 
 {
     UpdateData( TRUE );
-    
+
     double Number = atof(m_QuantityNovember);
     if (Number < 0)
         Number = 0;
-    m_Equalizer.SetNumberAtEqualize( IndexNovember, Number );
+    m_Equalizer.SetNumberAtEqualize(g_IndexNovember, Number);
 
     ApplyEqualizerToControls();
 }
@@ -939,28 +900,24 @@ void ZVEqualizeQuantityDlg::OnChangeNovActivation()
 void ZVEqualizeQuantityDlg::OnOctActLock() 
 {
     CheckControlState();
-
-    m_Equalizer.SetLockedFlagAt( IndexOctober, (m_LockOctober == TRUE) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexOctober, m_LockOctober);
 }
 
 void ZVEqualizeQuantityDlg::OnReleasedcaptureOctActSlider(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-    int currentPos = m_SliderOctober.GetPos();
-    m_Equalizer.SetPercentAtEqualize( IndexOctober, static_cast<double>(currentPos) / static_cast<double>(100) );
-
+    m_Equalizer.SetPercentAtEqualize(g_IndexOctober, double(m_SliderOctober.GetPos()) / 100.0);
     ApplyEqualizerToControls();
-    
     *pResult = 0;
 }
 
 void ZVEqualizeQuantityDlg::OnChangeOctActivation() 
 {
     UpdateData( TRUE );
-    
+
     double Number = atof(m_QuantityOctober);
     if (Number < 0)
         Number = 0;
-    m_Equalizer.SetNumberAtEqualize( IndexOctober, Number );
+    m_Equalizer.SetNumberAtEqualize(g_IndexOctober, Number);
 
     ApplyEqualizerToControls();
 }
@@ -968,28 +925,24 @@ void ZVEqualizeQuantityDlg::OnChangeOctActivation()
 void ZVEqualizeQuantityDlg::OnSepActLock() 
 {
     CheckControlState();
-
-    m_Equalizer.SetLockedFlagAt( IndexSeptember, (m_LockSeptember == TRUE) ? true : false );
+    m_Equalizer.SetLockedFlagAt(g_IndexSeptember, m_LockSeptember);
 }
 
 void ZVEqualizeQuantityDlg::OnReleasedcaptureSepActSlider(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-    int currentPos = m_SliderSeptember.GetPos();
-    m_Equalizer.SetPercentAtEqualize( IndexSeptember, static_cast<double>(currentPos) / static_cast<double>(100) );
-
+    m_Equalizer.SetPercentAtEqualize(g_IndexSeptember, double(m_SliderSeptember.GetPos()) / 100.0);
     ApplyEqualizerToControls();
-    
     *pResult = 0;
 }
 
 void ZVEqualizeQuantityDlg::OnChangeSepActivation() 
 {
     UpdateData( TRUE );
-    
+
     double Number = atof(m_QuantitySeptember);
     if (Number < 0)
         Number = 0;
-    m_Equalizer.SetNumberAtEqualize( IndexSeptember, Number );
+    m_Equalizer.SetNumberAtEqualize(g_IndexSeptember, Number);
 
     ApplyEqualizerToControls();
 }
@@ -997,7 +950,7 @@ void ZVEqualizeQuantityDlg::OnChangeSepActivation()
 void ZVEqualizeQuantityDlg::OnChangeTotalActivation() 
 {
     UpdateData( TRUE );
-    
+
     double Total = atof(m_QuantityYear);
     if (Total < 0)
         Total = 0;
@@ -1010,7 +963,7 @@ void ZVEqualizeQuantityDlg::OnYearActLock()
 {
     CheckControlState();
 
-    m_Equalizer.SetLockedTotal( (m_LockYear == TRUE) ? true : false );
+    m_Equalizer.SetLockedTotal(m_LockYear);
 }
 
 
@@ -1050,7 +1003,7 @@ void ZVEqualizeQuantityDlg::OnDefault()
     m_LockApril = FALSE;
 
     UpdateData( FALSE );
-    // Check the control state for the dialog
-    CheckControlState();
 
+    // check the control state for the dialog
+    CheckControlState();
 }

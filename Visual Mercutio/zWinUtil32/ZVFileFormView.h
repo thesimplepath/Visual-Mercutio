@@ -20,7 +20,7 @@
 
 // processsoft
 #include "zBaseLib\FlatBtn.h"
-#include "DirTreeCtrl.h"
+#include "PSS_DirTreeCtrl.h"
 #include "ZSearchEdit.h"
 
 // resources
@@ -76,12 +76,12 @@ protected:
 
 // Attributes
 private:
-    CWnd*            m_pParent;
-    CCJFlatButton    m_StopWebButton;
-    CCJFlatButton    m_RefreshWebButton;
+    CWnd*         m_pParent;
+    CCJFlatButton m_StopWebButton;
+    CCJFlatButton m_RefreshWebButton;
 
-    CImageList        m_ImageList;
-    CToolTipCtrl    m_tooltip;
+    CImageList    m_ImageList;
+    CToolTipCtrl  m_tooltip;
 
 
     DECLARE_MESSAGE_MAP()
@@ -106,9 +106,9 @@ public:
 private:
     //{{AFX_DATA(ZVFileFormView)
     enum { IDD = IDD_FILEWINDOW };
-    ZCSearchEdit                    m_Filename;
-    ZIDirTreeCtrl                    m_DirTreeCtrl;
-    _ZVFileFormViewButtonToolBar    m_FlatToolBar;
+    ZCSearchEdit                 m_Filename;
+    PSS_DirTreeCtrl              m_DirTreeCtrl;
+    _ZVFileFormViewButtonToolBar m_FlatToolBar;
     //}}AFX_DATA
 
 

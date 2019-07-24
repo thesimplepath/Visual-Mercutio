@@ -23,7 +23,7 @@ ZBMenubarSet                ZUFloatingToolbar::m_MenubarSet;
 ZAWindowConfiguration*        ZUFloatingToolbar::m_pWndConf            = NULL;
 SECToolBarManager*            ZUFloatingToolbar::m_pToolBarManager    = NULL;
 SECMenuBar*                    ZUFloatingToolbar::m_pMenuBarManager    = NULL;
-ModelNotation                ZUFloatingToolbar::m_CurrentNotation    = UnknownNotation;
+EModelNotation                ZUFloatingToolbar::m_CurrentNotation    = E_MN_Unknown;
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -70,7 +70,7 @@ void ZUFloatingToolbar::Release()
     m_MenubarSet.RemoveAll();
 }
 
-bool ZUFloatingToolbar::RegisterToolbar( CString Name, UINT nIDToolBar, CFrameWnd* pFrame, ModelNotation Notation )
+bool ZUFloatingToolbar::RegisterToolbar( CString Name, UINT nIDToolBar, CFrameWnd* pFrame, EModelNotation Notation )
 {
     // Check existence of toolbar
     if ( ToolbarExist( nIDToolBar ) )
@@ -120,7 +120,7 @@ bool ZUFloatingToolbar::UnRegisterToolbar( UINT nIDToolBar )
     return false;
 }
 
-bool ZUFloatingToolbar::RegisterToolbar( CString Name, CControlBar* pBar, CFrameWnd* pFrame, ModelNotation Notation )
+bool ZUFloatingToolbar::RegisterToolbar( CString Name, CControlBar* pBar, CFrameWnd* pFrame, EModelNotation Notation )
 {
     // Check existence of toolbar
     if ( ToolbarExist( Name ) )
@@ -160,7 +160,7 @@ bool ZUFloatingToolbar::UnRegisterToolbar( CControlBar* pBar )
     return false;
 }
 
-bool ZUFloatingToolbar::RegisterMenubar( CString Name, CMenu* pMenu, CFrameWnd* pFrame, ModelNotation Notation )
+bool ZUFloatingToolbar::RegisterMenubar( CString Name, CMenu* pMenu, CFrameWnd* pFrame, EModelNotation Notation )
 {
     // Check existence of toolbar
     if ( MenubarExist( Name ) )
@@ -198,7 +198,7 @@ bool ZUFloatingToolbar::UnRegisterMenubar( CMenu* pMenu )
     return false;
 }
 
-bool ZUFloatingToolbar::RegisterMenubar( CString Name, UINT nIDRes, CFrameWnd* pFrame, ModelNotation Notation )
+bool ZUFloatingToolbar::RegisterMenubar( CString Name, UINT nIDRes, CFrameWnd* pFrame, EModelNotation Notation )
 {
     // Check existence of toolbar
     if ( MenubarExist( Name ) )
@@ -220,7 +220,7 @@ bool ZUFloatingToolbar::RegisterMenubar( CString Name, UINT nIDRes, CFrameWnd* p
     return ( m_MenubarSet.GetSize() > ActSize ) ? true : false;
 }
 
-bool ZUFloatingToolbar::RegisterAndLoadMenubar( CString Name, UINT nIDRes, CFrameWnd* pFrame, ModelNotation Notation )
+bool ZUFloatingToolbar::RegisterAndLoadMenubar( CString Name, UINT nIDRes, CFrameWnd* pFrame, EModelNotation Notation )
 {
     if ( pFrame && ISA( pFrame, ZIBaseMainFrame ) )
     {
@@ -254,7 +254,7 @@ bool ZUFloatingToolbar::UnRegisterMenubar( UINT nIDRes )
     return false;
 }
 
-bool ZUFloatingToolbar::SwitchContext( ModelNotation Notation )
+bool ZUFloatingToolbar::SwitchContext( EModelNotation Notation )
 {
     // If we already are in the current notation,
     // do nothing
@@ -386,7 +386,7 @@ bool ZUFloatingToolbar::MenubarExist( CMenu* pMenu )
     return false;
 }
 
-bool ZUFloatingToolbar::HideToolbars( ModelNotation Notation )
+bool ZUFloatingToolbar::HideToolbars( EModelNotation Notation )
 {
     ZBToolbarIterator i( &m_ToolbarSet );
     _ToolbarData* pData;
@@ -421,7 +421,7 @@ bool ZUFloatingToolbar::HideToolbars( ModelNotation Notation )
     return true;
 }
 
-bool ZUFloatingToolbar::ShowToolbars( ModelNotation Notation )
+bool ZUFloatingToolbar::ShowToolbars( EModelNotation Notation )
 {
     ZBToolbarIterator i( &m_ToolbarSet );
     _ToolbarData* pData;
@@ -456,7 +456,7 @@ bool ZUFloatingToolbar::ShowToolbars( ModelNotation Notation )
     return true;
 }
 
-bool ZUFloatingToolbar::HideMenubars( ModelNotation Notation )
+bool ZUFloatingToolbar::HideMenubars( EModelNotation Notation )
 {
     ZBMenubarIterator i( &m_MenubarSet );
     _MenubarData* pData;
@@ -479,7 +479,7 @@ bool ZUFloatingToolbar::HideMenubars( ModelNotation Notation )
     return true;
 }
 
-bool ZUFloatingToolbar::ShowMenubars( ModelNotation Notation )
+bool ZUFloatingToolbar::ShowMenubars(EModelNotation Notation )
 {
     ZBMenubarIterator i( &m_MenubarSet );
     _MenubarData* pData;

@@ -23,7 +23,7 @@ ZBRulesEntitySet    ZBLogicalRulesEntity::m_FindSet;
 
 BOOL                ZBLogicalRulesEntity::m_bModified = FALSE;
 
-IMPLEMENT_SERIAL( ZBLogicalRulesEntity, ZBRulesEntity, def_Version )
+IMPLEMENT_SERIAL(ZBLogicalRulesEntity, ZBRulesEntity, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

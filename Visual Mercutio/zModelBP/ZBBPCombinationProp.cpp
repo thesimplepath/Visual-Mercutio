@@ -34,7 +34,7 @@ using namespace sfl;
 /////////////////////////////////////////////////////////////////////////////
 // ZBBPCombinationProperties construction/destruction
 
-IMPLEMENT_SERIAL( ZBBPCombinationProperties, CObject, def_Version )
+IMPLEMENT_SERIAL(ZBBPCombinationProperties, CObject, g_DefVersion)
 
 //@mfunc | ZBBPCombinationProperties | ZBBPCombinationProperties | Constructor.
 //

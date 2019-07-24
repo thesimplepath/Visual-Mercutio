@@ -12,7 +12,7 @@ static char THIS_FILE[]=__FILE__;
 
 // JMR-MODIF - Le 28 mars 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL( ZBModelSet, CObject, def_Version )
+IMPLEMENT_SERIAL(ZBModelSet, CObject, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

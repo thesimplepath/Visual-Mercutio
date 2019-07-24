@@ -32,7 +32,7 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(PLFNBoundText, PLFNString, def_Version)
+IMPLEMENT_SERIAL(PLFNBoundText, PLFNString, g_DefVersion)
 //## end module%334FC46302F0.additionalDeclarations
 
 
@@ -166,10 +166,10 @@ void PLFNBoundText::DrawEmpty(CDC* pDC, ZIView* pView)
           CPen* pOldPen      = pDC->SelectObject(&pen);
           int   iLine        = __max(1, m_rctObject.Height() / (TextSize.cy + 2));
     const UINT  nLeftHanging = UINT(GetHanging()); // / (double)TextSize.cx);
-    
+
     switch (pView->GetDocument()->GetDocOptions().GetEmptyStyle())
     {
-        case DottedLine:
+        case E_LT_Dotted:
         {
             // if hanging, the first line is drawn differently
             register int y = 0;
@@ -196,7 +196,7 @@ void PLFNBoundText::DrawEmpty(CDC* pDC, ZIView* pView)
             break;
         }
 
-        case SmallLine:
+        case E_LT_Small:
         {
             // if hanging, the first line is drawn differently
             register int y = 0;
@@ -222,7 +222,7 @@ void PLFNBoundText::DrawEmpty(CDC* pDC, ZIView* pView)
             break;
         }
 
-        case SolidLine:
+        case E_LT_Solid:
         {
             // if hanging, the first line is drawn differently
             register int y = 0;
@@ -245,7 +245,7 @@ void PLFNBoundText::DrawEmpty(CDC* pDC, ZIView* pView)
             break;
         }
 
-        case DashLine:
+        case E_LT_Dash:
         {
             // if hanging, the first line is drawn differently
             register int y = 0;

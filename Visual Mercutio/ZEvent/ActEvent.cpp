@@ -158,21 +158,18 @@ CString    ZBEventActivity::GetActivityStatusString() const
 }
 
 
-CString    ZBEventActivity::GetFileExtension( int EventType ) const
+CString ZBEventActivity::GetFileExtension(int eventType) const
 {
-    EventType = (EventType == -1) ? GetActivityEventType() : (ActivityEventType)EventType;
-    switch (EventType)
+    switch ((eventType == -1) ? GetActivityEventType() : ActivityEventType(eventType))
     {
-        case ToDoActivity: return sEventExtension;
-        case MessageActivity: return sEventMessageExtension;
-        case DeleteToDoEvent: 
+        case ToDoActivity:                return g_EventExtension;
+        case MessageActivity:             return g_EventMessageExtension;
+        case DeleteToDoEvent:
         case LogActivityEvent:
         case DeleteFileEvent:
         case FindProcessStateEvent:
-        case FindProcessesInitiatedEvent:
-        {
-            return sEventTemporalExtension;
-        }
+        case FindProcessesInitiatedEvent: return g_EventTemporalExtension;
     }
+
     return ".err";
 }

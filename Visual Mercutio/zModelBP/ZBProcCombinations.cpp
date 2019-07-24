@@ -29,7 +29,7 @@ static char THIS_FILE[]=__FILE__;
 // constant definition
 const int LastCombinationIDProperties = ZS_BP_PROP_COMBINATION + 39;
 
-IMPLEMENT_SERIAL( ZBProcCombinations, CObject, def_Version )
+IMPLEMENT_SERIAL(ZBProcCombinations, CObject, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

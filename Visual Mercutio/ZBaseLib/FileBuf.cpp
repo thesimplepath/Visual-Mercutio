@@ -35,7 +35,7 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 24 février 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL( ZBFileBuffer, CObject, def_Version )
+IMPLEMENT_SERIAL(ZBFileBuffer, CObject, g_DefVersion)
 //## end module%37F6428900F8.additionalDeclarations
 
 ZBFileBuffer::ZBFileBuffer( const ZBFileBuffer &right )

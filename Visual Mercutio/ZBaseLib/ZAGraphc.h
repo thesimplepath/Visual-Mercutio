@@ -190,7 +190,7 @@ class AFX_EXT_CLASS PLFNGraphic : public PlanFinObject  //## Inherits: <unnamed>
 inline UINT PLFNGraphic::GetRightSubMenu () const
 {
   //## begin PLFNGraphic::GetRightSubMenu%864336731.body preserve=yes
-      return GraphicRightSubMenu;
+      return g_GraphicRightSubMenu;
   //## end PLFNGraphic::GetRightSubMenu%864336731.body
 }
 

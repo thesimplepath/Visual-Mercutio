@@ -38,7 +38,7 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(ZProcess, ZBaseActivity, def_Version)
+IMPLEMENT_SERIAL(ZProcess, ZBaseActivity, g_DefVersion)
 //## end module%3675498E00B8.additionalDeclarations
 
 

@@ -31,7 +31,7 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(PLFNAutoNumbered, PlanFinObject, def_Version)
+IMPLEMENT_SERIAL(PLFNAutoNumbered, PlanFinObject, g_DefVersion)
 
 
 

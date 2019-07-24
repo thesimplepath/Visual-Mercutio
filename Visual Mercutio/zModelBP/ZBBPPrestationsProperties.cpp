@@ -15,7 +15,7 @@
 // *                    Classe ZBBPPrestationNode : Représente une prestation particulière.                        *
 // **************************************************************************************************************
 
-IMPLEMENT_SERIAL( ZBBPPrestationNode, CObject, def_Version )
+IMPLEMENT_SERIAL(ZBBPPrestationNode, CObject, g_DefVersion)
 
 // Constructeur par défaut de la classe ZBBPPrestationNode.
 ZBBPPrestationNode::ZBBPPrestationNode()

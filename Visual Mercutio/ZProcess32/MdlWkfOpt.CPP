@@ -41,25 +41,25 @@ int ZVModelWorkflowOptions::DoModal()
 
         switch ( m_pDoc->GetNotation() )
         {
-            case BerylNotation:
+            case E_MN_Beryl:
             {
                 m_Data.m_Notation = 0;
                 break;
             }
 
-            case ABCNotation:
+            case E_MN_ABC:
             {
                 m_Data.m_Notation = 1;
                 break;
             }
 
-            case UMLNotation:
+            case E_MN_UML:
             {
                 m_Data.m_Notation = 2;
                 break;
             }
 
-            case UnknownNotation:
+            case E_MN_Unknown:
             default:
             {
                 m_Data.m_Notation = 3;
@@ -132,26 +132,26 @@ int ZVModelWorkflowOptions::DoModal()
     {
         case 0:
         {
-            m_pDoc->SetNotation( BerylNotation );
+            m_pDoc->SetNotation(E_MN_Beryl);
             break;
         }
 
         case 1:
         {
-            m_pDoc->SetNotation( ABCNotation );
+            m_pDoc->SetNotation(E_MN_ABC);
             break;
         }
 
         case 2:
         {
-            m_pDoc->SetNotation( UMLNotation );
+            m_pDoc->SetNotation(E_MN_UML);
             break;
         }
 
         case 3:
         default:
         {
-            m_pDoc->SetNotation( UnknownNotation );
+            m_pDoc->SetNotation(E_MN_Unknown);
             break;
         }
     }

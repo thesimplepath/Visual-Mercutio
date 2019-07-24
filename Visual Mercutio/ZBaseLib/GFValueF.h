@@ -69,12 +69,12 @@ class AFX_EXT_CLASS ZUFieldValueDataFeed : public ZUExport  //## Inherits: <unna
       //## Operation: ZUFieldValueDataFeed%941696498
       //    Constructs an export class with the filename and the
       //    field definition manager.
-      ZUFieldValueDataFeed (CString Filename = "", ZBFieldRepository* pFieldRepository = NULL, ZAObjectDefinition* pObjectDefinition = NULL, BOOL GenerateHeader = FALSE, SynchronizationSeparatorType SeparatorType = AutomaticSeparator, CString Schema = szOriginalSchema, int PropagationMode = LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
+      ZUFieldValueDataFeed (CString Filename = "", ZBFieldRepository* pFieldRepository = NULL, ZAObjectDefinition* pObjectDefinition = NULL, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
 
       //## Operation: ZUFieldValueDataFeed%941696510
       //    Constructs an import class with the filename and a
       //    string array.
-      ZUFieldValueDataFeed (CString Filename, CStringArray* pValueArray, BOOL GenerateHeader = FALSE, SynchronizationSeparatorType SeparatorType = AutomaticSeparator, CString Schema = szOriginalSchema, int PropagationMode = LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
+      ZUFieldValueDataFeed (CString Filename, CStringArray* pValueArray, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
 
     //## Destructor (generated)
       ~ZUFieldValueDataFeed();
@@ -95,11 +95,11 @@ class AFX_EXT_CLASS ZUFieldValueDataFeed : public ZUExport  //## Inherits: <unna
 
       //## Operation: Create%941696503
       //    Create the export class.
-      virtual void Create (CString Filename, ZBFieldRepository* pFieldRepository = NULL, ZAObjectDefinition* pObjectDefinition = NULL, BOOL GenerateHeader = FALSE, SynchronizationSeparatorType SeparatorType = AutomaticSeparator, CString Schema = szOriginalSchema, int PropagationMode = LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
+      virtual void Create (CString Filename, ZBFieldRepository* pFieldRepository = NULL, ZAObjectDefinition* pObjectDefinition = NULL, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
 
       //## Operation: Create%941696511
       //    Create the export class.
-      virtual void Create (CString Filename, CStringArray* pValueArray = NULL, BOOL GenerateHeader = FALSE, SynchronizationSeparatorType SeparatorType = AutomaticSeparator, CString Schema = szOriginalSchema, int PropagationMode = LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
+      virtual void Create (CString Filename, CStringArray* pValueArray = NULL, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
 
       //## Operation: ForecastedTotalObject%941696505
       //    This function should return the forecasted total object.
@@ -170,7 +170,7 @@ class AFX_EXT_CLASS ZUFieldValueDataFeed : public ZUExport  //## Inherits: <unna
 
 
 //## Other Operations (inline)
-inline void ZUFieldValueDataFeed::Create (CString Filename, ZBFieldRepository* pFieldRepository, ZAObjectDefinition* pObjectDefinition, BOOL GenerateHeader, SynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
+inline void ZUFieldValueDataFeed::Create (CString Filename, ZBFieldRepository* pFieldRepository, ZAObjectDefinition* pObjectDefinition, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
 {
   //## begin ZUFieldValueDataFeed::Create%941696503.body preserve=yes
     m_pSourceFieldRepository = pFieldRepository;
@@ -179,7 +179,7 @@ inline void ZUFieldValueDataFeed::Create (CString Filename, ZBFieldRepository* p
   //## end ZUFieldValueDataFeed::Create%941696503.body
 }
 
-inline void ZUFieldValueDataFeed::Create (CString Filename, CStringArray* pValueArray, BOOL GenerateHeader, SynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
+inline void ZUFieldValueDataFeed::Create (CString Filename, CStringArray* pValueArray, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
 {
   //## begin ZUFieldValueDataFeed::Create%941696511.body preserve=yes
     m_pValueArray = pValueArray;

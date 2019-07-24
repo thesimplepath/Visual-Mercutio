@@ -41,7 +41,7 @@ CString ZDHistoryActivityStatusRecordset::GetDefaultDBName()
 
 CString ZDHistoryActivityStatusRecordset::GetDefaultSQL()
 {
-    return _T(HistoryActivityStatusTableName);
+    return _T(g_HistoryActivityStatusTableName);
 }
 
 void ZDHistoryActivityStatusRecordset::DoFieldExchange(CDaoFieldExchange* pFX)

@@ -35,7 +35,7 @@ static char THIS_FILE[]=__FILE__;
 
 // JMR-MODIF - Le 29 mars 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL( ZBConceptorReportGenerator, ZBModelBPReportGenerator, def_Version )
+IMPLEMENT_SERIAL(ZBConceptorReportGenerator, ZBModelBPReportGenerator, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -166,11 +166,11 @@ void ZBConceptorReportGenerator::FillTabUnitGroup( ZBUserGroupEntity* pGroup )
 // Cette fonction sert à remplir les données d'une feuille, représentée par la variable Index, du rapport.
 bool ZBConceptorReportGenerator::FillGrid( CGXGridCore& GridCore, size_t Index )
 {
-    // Default size
-    GridCore.SetRowCount( nbRows );        // 60 rows
-    GridCore.SetColCount( nbColumns );    // 15 columns
+    // Default size (60 rows * 15 columns)
+    GridCore.SetRowCount(g_NbRows);
+    GridCore.SetColCount(g_NbColumns);
 
-    ZBOStreamGrid ostream( &GridCore );
+    ZBOStreamGrid ostream(&GridCore);
 
     CGXStyle Style;
 

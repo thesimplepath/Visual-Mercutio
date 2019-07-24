@@ -56,8 +56,8 @@ class AFX_EXT_CLASS ZDProcessDocumentOptions
 
       //## Attribute: AutomaticSynchronizeFilename%366A4F5A03BF
       //    Is the filename automatically created.
-      const SynchronizationFileType GetAutomaticSynchronizeFilename () const;
-      void SetAutomaticSynchronizeFilename (SynchronizationFileType value);
+      const ESynchronizationFileType GetAutomaticSynchronizeFilename() const;
+      void SetAutomaticSynchronizeFilename(ESynchronizationFileType value);
 
       //    The synchronization filename if not automatic.
       const CString GetSynchronizeFilename () const;
@@ -68,8 +68,8 @@ class AFX_EXT_CLASS ZDProcessDocumentOptions
       void SetSynchronizationHeader (BOOL value);
 
       //    Defines the seperator type.
-      const SynchronizationSeparatorType GetSynchronizationSeparator () const;
-      void SetSynchronizationSeparator (SynchronizationSeparatorType value);
+      const ESynchronizationSeparatorType GetSynchronizationSeparator() const;
+      void SetSynchronizationSeparator(ESynchronizationSeparatorType value);
 
 
   protected:
@@ -80,13 +80,13 @@ class AFX_EXT_CLASS ZDProcessDocumentOptions
 
       int m_SynchronizeTimeSequence;
 
-      SynchronizationFileType m_AutomaticSynchronizeFilename;
+      ESynchronizationFileType m_AutomaticSynchronizeFilename;
 
       CString m_SynchronizeFilename;
 
       BOOL m_SynchronizationHeader;
 
-      SynchronizationSeparatorType m_SynchronizationSeparator;
+      ESynchronizationSeparatorType m_SynchronizationSeparator;
 
   private: 
 
@@ -118,12 +118,12 @@ inline void ZDProcessDocumentOptions::SetSynchronizeTimeSequence (int value)
   m_SynchronizeTimeSequence = value;
 }
 
-inline const SynchronizationFileType ZDProcessDocumentOptions::GetAutomaticSynchronizeFilename () const
+inline const ESynchronizationFileType ZDProcessDocumentOptions::GetAutomaticSynchronizeFilename() const
 {
   return m_AutomaticSynchronizeFilename;
 }
 
-inline void ZDProcessDocumentOptions::SetAutomaticSynchronizeFilename (SynchronizationFileType value)
+inline void ZDProcessDocumentOptions::SetAutomaticSynchronizeFilename(ESynchronizationFileType value)
 {
   m_AutomaticSynchronizeFilename = value;
 }
@@ -148,16 +148,14 @@ inline void ZDProcessDocumentOptions::SetSynchronizationHeader (BOOL value)
   m_SynchronizationHeader = value;
 }
 
-inline const SynchronizationSeparatorType ZDProcessDocumentOptions::GetSynchronizationSeparator () const
+inline const ESynchronizationSeparatorType ZDProcessDocumentOptions::GetSynchronizationSeparator() const
 {
   return m_SynchronizationSeparator;
 }
 
-inline void ZDProcessDocumentOptions::SetSynchronizationSeparator (SynchronizationSeparatorType value)
+inline void ZDProcessDocumentOptions::SetSynchronizationSeparator(ESynchronizationSeparatorType value)
 {
   m_SynchronizationSeparator = value;
 }
-
-
 
 #endif

@@ -29,7 +29,7 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(ZAObjectDefinition, CObject, def_Version)
+IMPLEMENT_SERIAL(ZAObjectDefinition, CObject, g_DefVersion)
 //## end module%363DC9BE02EA.additionalDeclarations
 
 

@@ -27,7 +27,7 @@ static char THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 17 mars 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL( ZBBasicProperties, CODIntProperty, def_Version )
+IMPLEMENT_SERIAL(ZBBasicProperties, CODIntProperty, g_DefVersion)
 
 using namespace sfl;
 

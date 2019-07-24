@@ -9,7 +9,7 @@
 
 // processsoft
 #include "zBaseLib\ZWizard.h"
-#include "DirTreeCtrl.h"
+#include "PSS_DirTreeCtrl.h"
 
 // resources
 #include "zWinUtil32\zWinUtil32Res.h"
@@ -37,8 +37,8 @@ private:
     // Dialog Data
     //{{AFX_DATA(ZIChooseServerSelect)
     enum { IDD = IDD_WZCHOOSESRV_SEL };
-    ZIDirTreeCtrl    m_DirTreeCtrl;
-    CString    m_Directory;
+    PSS_DirTreeCtrl m_DirTreeCtrl;
+    CString         m_Directory;
     //}}AFX_DATA
 
     // Overrides

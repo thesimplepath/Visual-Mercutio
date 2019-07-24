@@ -43,7 +43,7 @@ static char THIS_FILE[]=__FILE__;
 // when migrating the ObjectiveViews version 8.1
 #define _CANSELECTCONVERTER 1
 
-IMPLEMENT_SERIAL( ZBSymbol, CODSymbolComponent, def_Version )
+IMPLEMENT_SERIAL(ZBSymbol, CODSymbolComponent, g_DefVersion)
 
 // **********************************************************************************************************************
 // *                                            Construction/Destruction                                                *

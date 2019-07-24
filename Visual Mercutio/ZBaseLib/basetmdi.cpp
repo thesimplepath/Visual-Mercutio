@@ -79,7 +79,7 @@ void ZIBaseTitleMDIPage::OnUpdateFrameTitle( BOOL bAddToTitle )
         CString        sNewTitle;
 
         if ( ( (ZDDocument*)pDoc )->GetPathName().IsEmpty() )
-            sTitle = sFormExtension;
+            sTitle = g_FormExtension;
         else
             sTitle = ( (ZDDocument*)pDoc )->GetTitle();
 

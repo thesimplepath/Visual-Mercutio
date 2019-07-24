@@ -38,7 +38,7 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 20 août 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL( PlanFinObject, CObject, def_Version )
+IMPLEMENT_SERIAL(PlanFinObject, CObject, g_DefVersion)
 
 // Add this one because Microsoft is unable
 // to support the local
@@ -90,7 +90,7 @@ PlanFinObject::PlanFinObject()
       m_uGroupNumber        ( 0 ),
       m_hFont                ( -1 ),
       m_iAngle                ( 0 ),
-      m_EmptyStyle            ( AutomaticLine ),
+      m_EmptyStyle            (E_LT_Automatic),
       m_TabOrder            ( 0 ),
       m_pBorder                ( NULL ),
       m_DefaultValue        ( FALSE ),
@@ -99,8 +99,8 @@ PlanFinObject::PlanFinObject()
     //## begin PlanFinObject::PlanFinObject%.initialization preserve=yes
       m_rctObject            ( 0, 0, 0, 0 ),
       m_iPage                ( 0 ),
-      m_FormatType            ( Standard ),
-      m_hStyle                ( NormalStyle ),
+      m_FormatType            (E_FT_Standard),
+      m_hStyle                (NormalStyle),
       m_HasBeenChanged        ( FALSE ),
       m_ReadOnly            ( FALSE ),
       m_ReadOnlyAtRuntime    ( FALSE ),
@@ -123,7 +123,7 @@ PlanFinObject::PlanFinObject( const PlanFinObject &right )
       m_uGroupNumber    ( 0 ),
       m_hFont            ( -1 ),
       m_iAngle            ( 0 ),
-      m_EmptyStyle        ( AutomaticLine ),
+      m_EmptyStyle        (E_LT_Automatic),
       m_TabOrder        ( 0 ),
       m_pBorder            ( NULL ),
       m_DefaultValue    ( FALSE ),
@@ -295,7 +295,7 @@ void PlanFinObject::FormatObject( CTime* time )
     //## begin PlanFinObject::FormatObject%829516141.body preserve=yes
     switch( GetFormatType() )
     {
-        case Date:
+        case E_FT_Date:
         {
             sprintf( m_szFormatBuffer,
                      _T( "%d %s, %04d" ),
@@ -306,7 +306,7 @@ void PlanFinObject::FormatObject( CTime* time )
             break;
         }
 
-        case Date1:
+        case E_FT_Date1:
         {
             sprintf( m_szFormatBuffer,
                      _T( "%s, %d %s %04d" ),
@@ -318,7 +318,7 @@ void PlanFinObject::FormatObject( CTime* time )
             break;
         }
 
-        case Date2:
+        case E_FT_Date2:
         {
             sprintf( m_szFormatBuffer,
                      _T( "%d.%d.%04d %dh%d" ),
@@ -348,13 +348,13 @@ void PlanFinObject::FormatObject( DOUBLE dValue )
     //## begin PlanFinObject::FormatObject%829516142.body preserve=yes
     switch( GetFormatType() )
     {
-        case Percentage:
+        case E_FT_Percentage:
         {
             sprintf( m_szFormatBuffer, _T( "%3.3lg%c" ), dValue*100, _T( '%' ) );
             break;
         }
 
-        case Amount:
+        case E_FT_Amount:
         {
             // Use lf to remove the exponent notation
             // and .0 to remove the decimals
@@ -392,7 +392,7 @@ void PlanFinObject::FormatObject( DOUBLE dValue )
             break;
         }
 
-        case Amount2:
+        case E_FT_Amount2:
         {
             // Use lf to remove the exponent notation
             char szTemp[100];
@@ -438,7 +438,7 @@ void PlanFinObject::FormatObject( DOUBLE dValue )
 
         // In the default case
         // just copy the source
-        case Standard:
+        case E_FT_Standard:
         {
             // Use lf to remove the exponent notation
             // and .0 to remove the decimals
@@ -446,7 +446,7 @@ void PlanFinObject::FormatObject( DOUBLE dValue )
             break;
         }
 
-        case Amount1:
+        case E_FT_Amount1:
         {
             // Use lf to remove the exponent notation
             // and .0 to remove the decimals
@@ -454,7 +454,7 @@ void PlanFinObject::FormatObject( DOUBLE dValue )
             break;
         }
 
-        case Amount1Dash:
+        case E_FT_Amount1Dash:
         {
             // Use lf to remove the exponent notation
             // and .0 to remove the decimals + add .-
@@ -462,7 +462,7 @@ void PlanFinObject::FormatObject( DOUBLE dValue )
             break;
         }
 
-        case Amount2Dash:
+        case E_FT_Amount2Dash:
         {
             // Use lf to remove the exponent notation
             // and .0 to remove the decimals + add .--
@@ -470,7 +470,7 @@ void PlanFinObject::FormatObject( DOUBLE dValue )
             break;
         }
 
-        case Amount1DashTrail:
+        case E_FT_Amount1DashTrail:
         {
             // Use lf to remove the exponent notation
             // and .0 to remove the decimals
@@ -511,7 +511,7 @@ void PlanFinObject::FormatObject( DOUBLE dValue )
             break;
         }
 
-        case Amount2DashTrail:
+        case E_FT_Amount2DashTrail:
         {
             // Use lf to remove the exponent notation
             // and .0 to remove the decimals
@@ -625,7 +625,7 @@ void PlanFinObject::DrawEmpty( CDC* pDC, ZIView* pView )
 
     switch ( pView->GetDocument()->GetDocOptions().GetEmptyStyle() )
     {
-        case DottedLine:
+        case E_LT_Dotted:
         {
             for ( int i = m_rctObject.left; i < m_rctObject.right; i += 2 )
             {
@@ -636,7 +636,7 @@ void PlanFinObject::DrawEmpty( CDC* pDC, ZIView* pView )
             break;
         }
 
-        case SmallLine:
+        case E_LT_Small:
         {
             for ( int i = m_rctObject.left; i < m_rctObject.right; i += 8 )
             {
@@ -647,7 +647,7 @@ void PlanFinObject::DrawEmpty( CDC* pDC, ZIView* pView )
             break;
         }
 
-        case SolidLine:
+        case E_LT_Solid:
         {
             pDC->MoveTo( m_rctObject.left, m_rctObject.bottom - 2 );
             pDC->LineTo( m_rctObject.right, m_rctObject.bottom - 2 );
@@ -655,7 +655,7 @@ void PlanFinObject::DrawEmpty( CDC* pDC, ZIView* pView )
             break;
         }
 
-        case DashLine:
+        case E_LT_Dash:
         {
             for ( int i = m_rctObject.left; i < m_rctObject.right; i += 4 )
             {
@@ -1115,7 +1115,7 @@ void PlanFinObject::SethStyle( HandleStyle value )
     SetFillColor( -1 );
 
     // No Justification
-    SetJustify( NoAlignement );
+    SetJustify(g_NoAlignement);
 
     // No Border
     SetpBorder( NULL );
@@ -1340,7 +1340,7 @@ void PlanFinObject::FormatObject( COleDateTime* time )
 {
     switch( GetFormatType() )
     {
-        case Date:
+        case E_FT_Date:
         {
             sprintf( m_szFormatBuffer,
                      _T( "%d %s, %04d" ),
@@ -1351,7 +1351,7 @@ void PlanFinObject::FormatObject( COleDateTime* time )
             break;
         }
 
-        case Date1:
+        case E_FT_Date1:
         {
             sprintf( m_szFormatBuffer,
                      _T( "%s, %d %s %04d" ),
@@ -1363,7 +1363,7 @@ void PlanFinObject::FormatObject( COleDateTime* time )
             break;
         }
 
-        case Date2:
+        case E_FT_Date2:
         {
             sprintf( m_szFormatBuffer,
                      _T( "%d.%d.%04d %dh%d" ),
@@ -1449,9 +1449,9 @@ void PlanFinObject::Serialize (CArchive& ar)
         ar << (WORD)m_DefaultValue;
 
         // Test if template
-        if ( ( (ZDDocument*)ar.m_pDocument )->GetDocumentStamp().GetFileType() == TemplateType    &&
-             !GetDefaultValue()                                                                    &&
-             !GetIsStatic() )
+        if (((ZDDocument*)ar.m_pDocument )->GetDocumentStamp().GetFileType() == E_FD_TemplateType &&
+            !GetDefaultValue()                                                                    &&
+            !GetIsStatic() )
         {
             m_IsEmpty = TRUE;
         }
@@ -1484,7 +1484,7 @@ void PlanFinObject::Serialize (CArchive& ar)
 
         // To keep the serialization as before
         // do the following
-        m_FormatType = (FormatType)wTemp;
+        m_FormatType = EFormatType(wTemp);
         
         if ( ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 1 )
         {
@@ -1522,7 +1522,7 @@ void PlanFinObject::Serialize (CArchive& ar)
         if ( ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 5 )
         {
             ar >> wTemp;
-            m_EmptyStyle = (LineType)wTemp;
+            m_EmptyStyle = ELineType(wTemp);
             ar >> m_TabOrder;
         }
 

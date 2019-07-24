@@ -3,11 +3,11 @@
 
 // processsoft
 #include "zBaseLib\Export.h"
-#include "zWinUtil32\GenPage.h"
+#include "zWinUtil32\PSS_GeneralPage.h"
 #include "ViewPgR.h"
 #include "ViewPage.h"
 #include "PSS_CalculationPage.h"
-#include "ExpPage.h"
+#include "PSS_ExportPage.h"
 #include "NavPage.h"
 
 // resources
@@ -34,7 +34,7 @@ ZISystemOption::ZISystemOption(ZAApplicationOption* pApplicationOptions, unsigne
     // Add the general page
     if (PageOptions & GeneralOptionPage)
     {
-        ZIGeneralPage*    pGeneralPage = new ZIGeneralPage( pApplicationOptions );
+        PSS_GeneralPage* pGeneralPage = new PSS_GeneralPage(pApplicationOptions);
         GetPageArray().Add( pGeneralPage );
         AddPage( pGeneralPage );
     }
@@ -71,7 +71,7 @@ ZISystemOption::ZISystemOption(ZAApplicationOption* pApplicationOptions, unsigne
     // Add the export page
     if (PageOptions & ExportOptionPage)
     {
-        ZIExportPage*    pExportPage = new ZIExportPage( pApplicationOptions );
+        PSS_ExportPage* pExportPage = new PSS_ExportPage(pApplicationOptions);
         GetPageArray().Add( pExportPage );
         AddPage( pExportPage );
     }

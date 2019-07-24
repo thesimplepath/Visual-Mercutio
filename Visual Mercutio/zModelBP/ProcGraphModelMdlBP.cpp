@@ -45,7 +45,7 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZDProcessGraphModelMdlBP
 
-IMPLEMENT_SERIAL( ZDProcessGraphModelMdlBP, ZDProcessGraphModelMdl, def_Version )
+IMPLEMENT_SERIAL(ZDProcessGraphModelMdlBP, ZDProcessGraphModelMdl, g_DefVersion)
 
 ZDProcessGraphModelMdlBP::ZDProcessGraphModelMdlBP( const CString                Name    /*= ""*/,
                                                     ZDProcessGraphModelMdlBP*    pParent    /*= NULL*/ )
@@ -54,7 +54,7 @@ ZDProcessGraphModelMdlBP::ZDProcessGraphModelMdlBP( const CString               
       m_pDistributionAttributes    ( NULL )
 {
     // Set the right notation
-    m_Notation = BerylNotation;
+    m_Notation = E_MN_Beryl;
 }
 
 ZDProcessGraphModelMdlBP::~ZDProcessGraphModelMdlBP()

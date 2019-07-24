@@ -14,7 +14,7 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 // ZBInputAttribute class implementation
 
-IMPLEMENT_SERIAL( ZBInputAttribute, CObject, def_Version )
+IMPLEMENT_SERIAL(ZBInputAttribute, CObject, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -80,7 +80,7 @@ void ZBInputAttribute::Serialize( CArchive& ar )
 //////////////////////////////////////////////////////////////////////
 // ZBInputAttributeManager class implementation
 
-IMPLEMENT_SERIAL( ZBInputAttributeManager, CObject, def_Version )
+IMPLEMENT_SERIAL(ZBInputAttributeManager, CObject, g_DefVersion)
   
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

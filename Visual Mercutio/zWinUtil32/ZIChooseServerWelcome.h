@@ -9,7 +9,7 @@
 
 // processsoft
 #include "zBaseLib\ZWizard.h"
-#include "DirTreeCtrl.h"
+#include "PSS_DirTreeCtrl.h"
 
 // resources
 #include "zWinUtil32\zWinUtil32Res.h"

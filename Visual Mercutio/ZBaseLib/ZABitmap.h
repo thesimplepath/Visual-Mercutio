@@ -70,7 +70,7 @@ class AFX_EXT_CLASS PLFNBitmap : public PlanFinObject  //## Inherits: <unnamed>%
     public:
     // Inherited feature
         typedef PlanFinObject inherited;
-          virtual UINT GetRightSubMenu() const { return BitmapRightSubMenu; };
+          virtual UINT GetRightSubMenu() const { return g_BitmapRightSubMenu; };
   //## end PLFNBitmap%337898F5019A.initialDeclarations
 
   public:

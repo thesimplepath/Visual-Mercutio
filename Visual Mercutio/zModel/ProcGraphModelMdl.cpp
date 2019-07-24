@@ -67,13 +67,13 @@ ZBLogicalRulesEntity*        ZDProcessGraphModelMdl::m_pMainLogicalRules        
 /////////////////////////////////////////////////////////////////////////////
 // ZDProcessGraphModelMdl
 
-IMPLEMENT_SERIAL( ZDProcessGraphModelMdl, CODModel, def_Version )
+IMPLEMENT_SERIAL(ZDProcessGraphModelMdl, CODModel, g_DefVersion)
 
 ZDProcessGraphModelMdl::ZDProcessGraphModelMdl( const CString            Name    /*= ""*/,
                                                 ZDProcessGraphModelMdl*    pParent    /*= NULL*/ )
     :    m_hMetaFile                        ( NULL ),
         m_pParent                        ( pParent ),
-        m_Notation                        ( UnknownNotation ),
+        m_Notation                        (E_MN_Unknown),
         m_pPageSet                        ( NULL ),
         m_pCtlr                            ( NULL ),
         m_MainUserGroupIsValid            ( false ),
@@ -3974,7 +3974,7 @@ void ZDProcessGraphModelMdl::Serialize( CArchive& ar )
         DWORD dwValue;
         ar >> dwValue;
 
-        m_Notation = (ModelNotation)dwValue;
+        m_Notation = EModelNotation(dwValue);
 
         // JMR-MODIF - Le 2 juillet 2006 - Sauvegarde de la variable de génération des références internes.
         if ( dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 25 )

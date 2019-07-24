@@ -39,7 +39,7 @@
 
 
 
-ZUDocumentExport::ZUDocumentExport (CString Filename, ZDDocument* pDoc, BOOL GenerateHeader, SynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
+ZUDocumentExport::ZUDocumentExport(CString Filename, ZDDocument* pDoc, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
   //## begin ZUDocumentExport::ZUDocumentExport%911215686.hasinit preserve=no
   //## end ZUDocumentExport::ZUDocumentExport%911215686.hasinit
   //## begin ZUDocumentExport::ZUDocumentExport%911215686.initialization preserve=yes
@@ -68,23 +68,26 @@ CString ZUDocumentExport::GetExportedLine (CObject* pObj)
 
     switch (GetSeparatorType())
     {
-        case CommaSeparator :         
+        case E_SS_Comma:
         {
             LineBuffer.Format( "%s,%s\r\n", (const char*)((PlanFinObject*)pObj)->GetObjectName(), (const char*)((PlanFinObject*)pObj)->GetUnformatedObject() );
              break;
-         }
-        case SemiColumnSeparator :    
+        }
+
+        case E_SS_SemiColumn:
         {
             LineBuffer.Format( "%s;%s\r\n", (const char*)((PlanFinObject*)pObj)->GetObjectName(), (const char*)((PlanFinObject*)pObj)->GetUnformatedObject() );
              break;
-         }
-        case QuoteSeparator :         
+        }
+
+        case E_SS_Quote:
         {
             LineBuffer.Format( "\"%s\" \"%s\"\r\n", (const char*)((PlanFinObject*)pObj)->GetObjectName(), (const char*)((PlanFinObject*)pObj)->GetUnformatedObject() );
              break;
-         }
-        case AutomaticSeparator :     
-        case TabSeparator :            
+        }
+
+        case E_SS_Automatic:
+        case E_SS_Tab:
         default:
         {
             LineBuffer.Format( "%s\t%s\r\n", (const char*)((PlanFinObject*)pObj)->GetObjectName(), (const char*)((PlanFinObject*)pObj)->GetUnformatedObject() );
@@ -116,42 +119,48 @@ BOOL ZUDocumentExport::ProcessLine (CString Line)
     CString    Name;
     CString    Value;
 
-      char*    pCurrent = Line.GetBuffer(Line.GetLength()+2);
+    char*    pCurrent = Line.GetBuffer(Line.GetLength()+2);
     char*    pNext;      
 
     char    SeparatorChar;
     switch (GetSeparatorType())
     {
-        case TabSeparator :            
+        case E_SS_Tab:
         {
             SeparatorChar = '\t';
-             break;
-         }
-        case CommaSeparator :         
+            break;
+        }
+
+        case E_SS_Comma:
         {
             SeparatorChar = ',';
-             break;
-         }
-        case SemiColumnSeparator :    
+            break;
+        }
+
+        case E_SS_SemiColumn:
         {
             SeparatorChar = ';';
-             break;
-         }
-        case QuoteSeparator :         
+            break;
+        }
+
+        case E_SS_Quote:
         {
             SeparatorChar = '"';
-            // Skip the first Quote char
+
+            // skip the first Quote char
             if (*pCurrent != '"')
                 return FALSE;
+
             ++pCurrent;
-             break;
-         }
-        case AutomaticSeparator :     
+            break;
+        }
+
+        case E_SS_Automatic:
         default:
         {
             SeparatorChar = '\t';
-             break;
-         }
+            break;
+        }
     }
 
       // Extract the object name
@@ -169,7 +178,7 @@ BOOL ZUDocumentExport::ProcessLine (CString Line)
     pCurrent = ++pNext;
 
     // If Quote, skips the "
-    if (GetSeparatorType() == QuoteSeparator)
+    if (GetSeparatorType() == E_SS_Quote)
     {
           // Find the first quote char
         pNext = strchr( pCurrent, SeparatorChar );
@@ -190,28 +199,23 @@ BOOL ZUDocumentExport::ProcessLine (CString Line)
     // Call the document to change the object value
       for (size_t i = 0; i < m_pDoc->GetDocumentDataCount(); ++i)
         m_pDoc->GetDocumentDataAt(i)->AssignObjectValue( Name, Value, 0, GetPropagationMode(), GetEmptyWhenZero() );
-    return TRUE;      
+    return TRUE;
   //## end ZUDocumentExport::ProcessLine%911215689.body
 }
 
 CString ZUDocumentExport::GetHeaderLine ()
 {
-  //## begin ZUDocumentExport::GetHeaderLine%911215690.body preserve=yes
     switch (GetSeparatorType())
     {
-        case AutomaticSeparator :     
-        case TabSeparator :            return "Nom\tValeur\r\n";
-
-        case CommaSeparator :         return "Nom,Valeur\r\n";
-
-        case SemiColumnSeparator :    return "Nom;Valeur\r\n";
-
-        case QuoteSeparator :         return "\"Nom\" \"Valeur\"\r\n";
-        
-        default: break;
+        case E_SS_Automatic:
+        case E_SS_Tab:        return "Nom\tValeur\r\n";
+        case E_SS_Comma:      return "Nom,Valeur\r\n";
+        case E_SS_SemiColumn: return "Nom;Valeur\r\n";
+        case E_SS_Quote:      return "\"Nom\" \"Valeur\"\r\n";
+        default:              break;
     }
+
     return "Nom\tValeur\r\n";
-  //## end ZUDocumentExport::GetHeaderLine%911215690.body
 }
 
 BOOL ZUDocumentExport::Import ()
@@ -233,22 +237,22 @@ BOOL ZUDocumentExport::ExportAdditionalInfo ()
   //## begin ZUDocumentExport::ExportAdditionalInfo%922203346.body preserve=yes
       if (m_pDoc->GetDocumentStamp().GetDocumentFileType() == ProcessDocumentFileType)
       {
-          WriteLine ( BuildLine (szExportProcessNameKey, m_pDoc->GetDocumentStamp().GetTitle()) );
-        WriteLine ( BuildLine (szExportTemplateNameKey, "") );
-        WriteLine ( BuildLine (szExportProcessExchangeFileNameKey, m_pDoc->GetDocumentStamp().GetKey1()) );
+          WriteLine ( BuildLine (g_ExportProcessNameKey, m_pDoc->GetDocumentStamp().GetTitle()) );
+        WriteLine ( BuildLine (g_ExportTemplateNameKey, "") );
+        WriteLine ( BuildLine (g_ExportProcessExchangeFileNameKey, m_pDoc->GetDocumentStamp().GetKey1()) );
     }
     else
     {
-          WriteLine ( BuildLine (szExportProcessNameKey, "") );
-        WriteLine ( BuildLine (szExportTemplateNameKey, m_pDoc->GetDocumentStamp().GetTitle()) );
+          WriteLine ( BuildLine (g_ExportProcessNameKey, "") );
+        WriteLine ( BuildLine (g_ExportTemplateNameKey, m_pDoc->GetDocumentStamp().GetTitle()) );
     }
-      WriteLine ( BuildLine (szExportFolderNameKey, m_pDoc->GetDocumentStamp().GetFolderName()) );
+      WriteLine ( BuildLine (g_ExportFolderNameKey, m_pDoc->GetDocumentStamp().GetFolderName()) );
     // If only keep FLF, do not export the filename
     if (m_pDoc->GetKeepOnlyFLF())
-          WriteLine ( BuildLine (szExportFileNameKey, "") );
+          WriteLine ( BuildLine (g_ExportFileNameKey, "") );
     else
-          WriteLine ( BuildLine (szExportFileNameKey, m_pDoc->GetPathName()) );
-    WriteLine ( BuildLine (szExportKeepOnlyFLFKey, (m_pDoc->GetKeepOnlyFLF()==TRUE) ? "1" : "0") );
+          WriteLine ( BuildLine (g_ExportFileNameKey, m_pDoc->GetPathName()) );
+    WriteLine ( BuildLine (g_ExportKeepOnlyFLFKey, (m_pDoc->GetKeepOnlyFLF()==TRUE) ? "1" : "0") );
       return TRUE;
   //## end ZUDocumentExport::ExportAdditionalInfo%922203346.body
 }

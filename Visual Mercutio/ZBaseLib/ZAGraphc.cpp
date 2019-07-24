@@ -31,7 +31,7 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(PLFNGraphic, PlanFinObject, def_Version)
+IMPLEMENT_SERIAL(PLFNGraphic, PlanFinObject, g_DefVersion)
 //## end module%33747B820334.additionalDeclarations
 
 

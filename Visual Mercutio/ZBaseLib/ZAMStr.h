@@ -61,7 +61,7 @@ class AFX_EXT_CLASS PLFNMaskString : public PLFNString  //## Inherits: <unnamed>
     public:
     // Inherited feature
         typedef PLFNString inherited;
-          virtual UINT GetRightSubMenu() const { return MaskEditRightSubMenu; };
+          virtual UINT GetRightSubMenu() const { return g_MaskEditRightSubMenu; };
   //## end PLFNMaskString%38722B7803AE.initialDeclarations
 
   public:

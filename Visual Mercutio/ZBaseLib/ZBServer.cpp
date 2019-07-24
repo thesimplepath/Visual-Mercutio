@@ -50,7 +50,7 @@ BOOL ZBServer::CreateEmptyServerObject( BOOL            IsLocalServer,
 
     // Build the ini file
     m_IniFile = Root + _T( "\\" );
-    m_IniFile += (IsLocalServer) ? CString( szLocalIniFilename ) : CString( szGlobalIniFilename );
+    m_IniFile += (IsLocalServer) ? CString(g_LocalIniFileName) : CString(g_GlobalIniFileName);
 
     return m_ServerOptions.CreateEmptyServerOption( RootPath,
                                                     TemplateDirectory,

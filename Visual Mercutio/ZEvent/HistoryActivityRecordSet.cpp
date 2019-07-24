@@ -45,7 +45,7 @@ CString ZDHistoryActivityRecordset::GetDefaultDBName()
 
 CString ZDHistoryActivityRecordset::GetDefaultSQL()
 {
-    return _T(HistoryActivityTableName);
+    return _T(g_HistoryActivityTableName);
 }
 
 void ZDHistoryActivityRecordset::DoFieldExchange(CDaoFieldExchange* pFX)

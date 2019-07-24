@@ -11,7 +11,7 @@
 
 // ******************************* Construction / destruction / implémentation ******************************
 
-IMPLEMENT_SERIAL( ZBTextZone, CODTextComponent, def_Version )
+IMPLEMENT_SERIAL(ZBTextZone, CODTextComponent, g_DefVersion)
 
 ZBTextZone::ZBTextZone()
 {

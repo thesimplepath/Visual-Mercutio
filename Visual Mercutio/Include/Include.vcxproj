@@ -92,7 +92,7 @@
     <ClInclude Include="RegistryDef.h" />
     <ClInclude Include="Stbox.h" />
     <ClInclude Include="Toolbarx.h" />
-    <ClInclude Include="Zaconst.h" />
+    <ClInclude Include="ZAconst.h" />
     <ClInclude Include="ZEvent.h" />
     <ClInclude Include="zLanguageDef.h" />
     <ClInclude Include="zMacros.h" />

@@ -29,7 +29,7 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(ZDGlobalFieldDocument, ZDBaseDocument, def_Version)
+IMPLEMENT_SERIAL(ZDGlobalFieldDocument, ZDBaseDocument, g_DefVersion)
 
 BEGIN_MESSAGE_MAP(ZDGlobalFieldDocument, ZDBaseDocument)
     //{{AFX_MSG_MAP(ZDGlobalFieldDocument)

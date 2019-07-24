@@ -279,7 +279,7 @@ public:
 
     //    Return the number of the submenu when the user click the
     //    right mouse button.
-    virtual UINT GetRightSubMenu() const { return DateRightSubMenu; };
+    virtual UINT GetRightSubMenu() const { return g_DateRightSubMenu; };
     
     //    Return the list of tabs that should be displayed when
     //    the user asks for object properties.
@@ -437,8 +437,9 @@ inline double PLFNLong::GetValue( ) const
 inline UINT PLFNLong::GetRightSubMenu() const
 {
     if (IsCalculatedField())
-        return CalculatedRightSubMenu;
-      return NumberRightSubMenu;
+        return g_CalculatedRightSubMenu;
+
+    return g_NumberRightSubMenu;
 }
 
 inline UINT PLFNLong::GetPropertyTabs() const

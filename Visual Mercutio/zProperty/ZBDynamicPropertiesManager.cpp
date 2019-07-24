@@ -23,7 +23,7 @@ const int gItemStep        = 1;
 //////////////////////////////////////////////////////////////////////
 // _ZBDynamicPropertyInfo
 
-IMPLEMENT_SERIAL( _ZBDynamicPropertyInfo, CObject, def_Version )
+IMPLEMENT_SERIAL(_ZBDynamicPropertyInfo, CObject, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -129,7 +129,7 @@ void _ZBDynamicPropertyInfo::Serialize( CArchive& ar )
 //////////////////////////////////////////////////////////////////////
 // ZBDynamicPropertiesManager
 
-IMPLEMENT_SERIAL( ZBDynamicPropertiesManager, CObject, def_Version )
+IMPLEMENT_SERIAL(ZBDynamicPropertiesManager, CObject, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

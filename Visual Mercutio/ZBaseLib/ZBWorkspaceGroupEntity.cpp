@@ -25,7 +25,7 @@ static char THIS_FILE[]=__FILE__;
 
 ZBWorkspaceEntitySet ZBWorkspaceGroupEntity::m_FindSet;
 
-IMPLEMENT_SERIAL( ZBWorkspaceGroupEntity, ZBWorkspaceEntity, def_Version )
+IMPLEMENT_SERIAL(ZBWorkspaceGroupEntity, ZBWorkspaceEntity, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

@@ -76,7 +76,7 @@ ZIViewCode::ZIViewCode()
   //## end ZIViewCode::ZIViewCode%.initialization
 {
   //## begin ZIViewCode::ZIViewCode%.body preserve=yes
-    m_iCodeType = AllObjects;
+    m_iCodeType = E_CT_AllObjects;
     m_ViewType = FormFieldCodeView;
   //## end ZIViewCode::ZIViewCode%.body
 }
@@ -119,38 +119,38 @@ void ZIViewCode::OnDraw (CDC* pDC)
             continue;
         switch (GetDisplayCode())
         {
-            case AllObjects :
+            case E_CT_AllObjects :
             {
                 // Display object on the right page
                 // and if he is visible into the viewport
                 obj->DisplayObjectName( pDC );
                 break;
             }
-            case Long :
+            case E_CT_Long :
             {
                 if(    obj->IsKindOf(RUNTIME_CLASS(PLFNLong)) )
                     obj->DisplayObjectName( pDC );
                 break;
             }
-            case Calculated :
+            case E_CT_Calculated :
             {
                 if (obj->IsKindOf(RUNTIME_CLASS(PLFNLong)) && ((PLFNLong*)obj)->IsCalculatedField())
                     obj->DisplayObjectName( pDC );
                 break;
             }
-            case Static:
+            case E_CT_Static:
             {
                 if (obj->IsKindOf(RUNTIME_CLASS(PLFNText)) && ((PLFNText*)obj)->GetIsStatic())
                     obj->DisplayObjectName( pDC );
                 break;
             }
-            case Text:
+            case E_CT_Text:
             {
                 if ( (obj->IsKindOf(RUNTIME_CLASS(PLFNText)) && !((PLFNText*)obj)->GetIsStatic()) || obj->IsKindOf(RUNTIME_CLASS(PLFNAutoNumbered)))
                     obj->DisplayObjectName( pDC );
                 break;
             }
-            case Graphic:
+            case E_CT_Graphic:
             {
                 if (obj->IsKindOf(RUNTIME_CLASS(PLFNGraphic)) && obj->IsKindOf(RUNTIME_CLASS(PLFNBitmap)))
                     obj->DisplayObjectName( pDC );
@@ -226,75 +226,75 @@ void ZIViewCode::OnRButtonDown(UINT nFlags, CPoint point)
 
 void ZIViewCode::OnDisplayallCode()
 {
-    m_iCodeType = AllObjects;
+    m_iCodeType = E_CT_AllObjects;
     RedrawWindow();
 }
 
 void ZIViewCode::OnUpdateDisplayallCode(CCmdUI* pCmdUI)
 {
-    pCmdUI->SetCheck( m_iCodeType == AllObjects );
+    pCmdUI->SetCheck(m_iCodeType == E_CT_AllObjects);
 }
 
 
 void ZIViewCode::OnDisplayStaticCode()
 {
-    m_iCodeType = (m_iCodeType == Static) ? AllObjects : Static;
+    m_iCodeType = (m_iCodeType == E_CT_Static) ? E_CT_AllObjects : E_CT_Static;
     RedrawWindow();
 }
 
 void ZIViewCode::OnUpdateDisplayStaticCode(CCmdUI* pCmdUI)
 {
-    pCmdUI->SetCheck( m_iCodeType == Static );
+    pCmdUI->SetCheck(m_iCodeType == E_CT_Static);
 }
 
 void ZIViewCode::OnDisplayTextCode()
 {
-    m_iCodeType = (m_iCodeType == Text) ? AllObjects : Text;
+    m_iCodeType = (m_iCodeType == E_CT_Text) ? E_CT_AllObjects : E_CT_Text;
     RedrawWindow();
 }
 
 void ZIViewCode::OnUpdateDisplayTextCode(CCmdUI* pCmdUI)
 {
-    pCmdUI->SetCheck( m_iCodeType == Text );
+    pCmdUI->SetCheck(m_iCodeType == E_CT_Text);
 }
 
 void ZIViewCode::OnOnlyNumericFields()
 {
-    m_iCodeType = (m_iCodeType == Long) ? AllObjects : Long;
+    m_iCodeType = (m_iCodeType == E_CT_Long) ? E_CT_AllObjects : E_CT_Long;
     RedrawWindow();
 }
 
 void ZIViewCode::OnUpdateOnlyNumericFields(CCmdUI* pCmdUI)
 {
-    pCmdUI->SetCheck( m_iCodeType == Long );
+    pCmdUI->SetCheck(m_iCodeType == E_CT_Long);
 }
 
 void ZIViewCode::OnDisplayCalculatedCode()
 {
-    m_iCodeType = (m_iCodeType == Calculated) ? AllObjects : Calculated;
+    m_iCodeType = (m_iCodeType == E_CT_Calculated) ? E_CT_AllObjects : E_CT_Calculated;
     RedrawWindow();
 }
 
 void ZIViewCode::OnUpdateDisplayCalculatedCode(CCmdUI* pCmdUI)
 {
-    pCmdUI->SetCheck( m_iCodeType == Calculated );
+    pCmdUI->SetCheck(m_iCodeType == E_CT_Calculated);
 }
 
 
 void ZIViewCode::OnDisplayGraphicCode()
 {
-    m_iCodeType = (m_iCodeType == Graphic) ? AllObjects : Graphic;
+    m_iCodeType = (m_iCodeType == E_CT_Graphic) ? E_CT_AllObjects : E_CT_Graphic;
     RedrawWindow();
 }
 
 void ZIViewCode::OnUpdateDisplayGraphicCode(CCmdUI* pCmdUI)
 {
-    pCmdUI->SetCheck( m_iCodeType == Graphic );
+    pCmdUI->SetCheck(m_iCodeType == E_CT_Graphic);
 }
 
 afx_msg LONG ZIViewCode::OnDisplayFieldType(UINT message, LONG lParam)
 {
-    m_iCodeType = (ClassType)lParam;
+    m_iCodeType = EClassType(lParam);
     RedrawWindow();
     return( 1 );
 }

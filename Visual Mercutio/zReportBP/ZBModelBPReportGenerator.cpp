@@ -22,7 +22,7 @@ static char THIS_FILE[]=__FILE__;
 
 // JMR-MODIF - Le 7 mars 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL( ZBModelBPReportGenerator, ZBGenericGridReportGenerator, def_Version )
+IMPLEMENT_SERIAL(ZBModelBPReportGenerator, ZBGenericGridReportGenerator, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

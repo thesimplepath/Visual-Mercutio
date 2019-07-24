@@ -36,7 +36,7 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 10 septembre 2007 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL( PLFNBitmap, PlanFinObject, def_Version )
+IMPLEMENT_SERIAL(PLFNBitmap, PlanFinObject, g_DefVersion)
 //## end module%337899310226.additionalDeclarations
 
 // Class PLFNBitmap

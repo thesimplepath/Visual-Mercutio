@@ -28,7 +28,7 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
 
-IMPLEMENT_SERIAL(ZBMailMessage, CObject, def_Version)
+IMPLEMENT_SERIAL(ZBMailMessage, CObject, g_DefVersion)
 //## end module%374DA431001C.additionalDeclarations
 
 

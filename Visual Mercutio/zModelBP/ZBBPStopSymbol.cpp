@@ -50,7 +50,7 @@ static char THIS_FILE[]=__FILE__;
 
 // JMR-MODIF - Le 6 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL( ZBBPStopSymbol, ZBSymbol, def_Version )
+IMPLEMENT_SERIAL(ZBBPStopSymbol, ZBSymbol, g_DefVersion)
 
 // JMR-MODIF - Le 18 décembre 2006 - Ajout de la nouvelle variable statique gRulesMenu.
 static CMenu gRulesMenu;

@@ -288,7 +288,7 @@ public:
     BOOL AssignObjectValue( CString    Name,
                             CString    Value,
                             int        Page,
-                            int        PropagationMode    = LocateAllPages,
+                            int        PropagationMode    = g_LocateAllPages,
                             BOOL    EmptyWhenZero    = FALSE );
 
     //## Operation: SetCurrentPageToObject%913885130

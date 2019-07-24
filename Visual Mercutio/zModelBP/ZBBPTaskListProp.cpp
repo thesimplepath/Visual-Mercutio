@@ -33,7 +33,7 @@ using namespace sfl;
 /////////////////////////////////////////////////////////////////////////////
 // ZBBPTaskListProperties construction/destruction
 
-IMPLEMENT_SERIAL(ZBBPTaskListProperties, CODIntProperty, def_Version)
+IMPLEMENT_SERIAL(ZBBPTaskListProperties, CODIntProperty, g_DefVersion)
 
 //@mfunc | ZBBPTaskListProperties | ZBBPTaskListProperties | Constructor.
 //

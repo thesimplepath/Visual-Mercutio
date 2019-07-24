@@ -40,7 +40,7 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
-IMPLEMENT_SERIAL( ZBBPStartSymbol, ZBSymbol, def_Version )
+IMPLEMENT_SERIAL(ZBBPStartSymbol, ZBSymbol, g_DefVersion)
 
 // JMR-MODIF - Le 18 décembre 2006 - Ajout de la nouvelle variable statique gRulesMenu.
 static CMenu gRulesMenu;

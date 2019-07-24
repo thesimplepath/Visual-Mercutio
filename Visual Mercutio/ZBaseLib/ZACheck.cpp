@@ -31,7 +31,7 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(PLFNCheck, PLFNTwoStates, def_Version)
+IMPLEMENT_SERIAL(PLFNCheck, PLFNTwoStates, g_DefVersion)
 //## end module%3373B18A0140.additionalDeclarations
 
 
@@ -114,7 +114,7 @@ void PLFNCheck::DrawObject (CDC* pDC, ZIView* pView)
               RectControl.left = RectControl.right - GetuSize();
           switch (GetCheckType())
           {
-              case Rounded:
+              case E_CB_Rounded:
               {
                   pDC->Ellipse( RectControl.left, RectControl.top, RectControl.left+GetuSize(), RectControl.top+GetuSize() );
                   // Display a point
@@ -137,7 +137,7 @@ void PLFNCheck::DrawObject (CDC* pDC, ZIView* pView)
                   
                   break;
               }
-              case Squared:
+              case E_CB_Squared:
               {
                 // Draw the square
                 pDC->MoveTo( RectControl.left, RectControl.top );

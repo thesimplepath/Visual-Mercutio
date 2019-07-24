@@ -12,7 +12,7 @@ static char THIS_FILE[]=__FILE__;
 #endif
 
 
-IMPLEMENT_SERIAL(ZBInputScenario, CObject, def_Version)
+IMPLEMENT_SERIAL(ZBInputScenario, CObject, g_DefVersion)
 
 
 //////////////////////////////////////////////////////////////////////

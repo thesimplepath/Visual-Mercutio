@@ -78,62 +78,62 @@ public:
     double    GetfQuantityApril() const
     {
         bool bError;
-        return m_Equalizer.GetNumberAt( IndexApril, bError );
+        return m_Equalizer.GetNumberAt(g_IndexApril, bError);
     };
     double    GetfQuantityAugust() const
     {
             bool bError;
-            return m_Equalizer.GetNumberAt( IndexAugust, bError );
+            return m_Equalizer.GetNumberAt(g_IndexAugust, bError);
     };
     double    GetfQuantityDecember() const
     {
             bool bError;
-            return m_Equalizer.GetNumberAt( IndexDecember, bError );
+            return m_Equalizer.GetNumberAt(g_IndexDecember, bError);
     };
     double    GetfQuantityFebruary() const
     {
             bool bError;
-            return m_Equalizer.GetNumberAt( IndexFebruary, bError );
+            return m_Equalizer.GetNumberAt(g_IndexFebruary, bError);
     };
     double    GetfQuantityJanuary() const
     {
             bool bError;
-            return m_Equalizer.GetNumberAt( IndexJanuary, bError );
+            return m_Equalizer.GetNumberAt(g_IndexJanuary, bError);
     };
     double    GetfQuantityJuly() const
     {
             bool bError;
-            return m_Equalizer.GetNumberAt( IndexJuly, bError );
+            return m_Equalizer.GetNumberAt(g_IndexJuly, bError);
     };
     double    GetfQuantityJune() const
     {
             bool bError;
-            return m_Equalizer.GetNumberAt( IndexJune, bError );
+            return m_Equalizer.GetNumberAt(g_IndexJune, bError);
     };
     double    GetfQuantityMarch() const
     {
             bool bError;
-            return m_Equalizer.GetNumberAt( IndexMarch, bError );
+            return m_Equalizer.GetNumberAt(g_IndexMarch, bError);
     };
     double    GetfQuantityMay() const
     {
             bool bError;
-            return m_Equalizer.GetNumberAt( IndexMay, bError );
+            return m_Equalizer.GetNumberAt(g_IndexMay, bError);
     };
     double    GetfQuantityNovember() const
     {
             bool bError;
-            return m_Equalizer.GetNumberAt( IndexNovember, bError );
+            return m_Equalizer.GetNumberAt(g_IndexNovember, bError);
     };
     double    GetfQuantityOctober() const
     {
             bool bError;
-            return m_Equalizer.GetNumberAt( IndexOctober, bError );
+            return m_Equalizer.GetNumberAt(g_IndexOctober, bError);
     };
     double    GetfQuantitySeptember() const
     {
             bool bError;
-            return m_Equalizer.GetNumberAt( IndexSeptember, bError );
+            return m_Equalizer.GetNumberAt(g_IndexSeptember, bError);
     };
     double    GetfQuantityYear() const
     {

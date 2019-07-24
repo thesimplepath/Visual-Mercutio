@@ -33,9 +33,9 @@ ZVDocumentPageSetupDlg::ZVDocumentPageSetupDlg( CWnd* pParent /*=NULL*/ )
                           IDS_WZ_PAGESETUP_S,
                           IDS_WZ_PAGESETUP_T )
 {
-    m_PaperSize        = DefaultPaperSize;
-    m_StandardSize    = DefaultStandardSize;
-    m_Orientation    = DefaultOrientation;
+    m_PaperSize        = g_DefaultPaperSize;
+    m_StandardSize    = g_DefaultStandardSize;
+    m_Orientation    = g_DefaultOrientation;
 
     sBkGndName        = _T( "" );
 }

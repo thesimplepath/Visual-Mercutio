@@ -111,7 +111,7 @@ void ZIModelTemplateCopyDlg::OnOK()
     }
 
     // Check if normal template is specified
-    if ( m_sFilename + _T( "." ) + m_FileExtension == sNormalModelTemplateFilename )
+    if ( m_sFilename + _T( "." ) + m_FileExtension == g_NormalModelTemplateFileName )
     {
         MsgBox mbox;
         mbox.DisplayMsgBox( IDS_NORMALTMPL_CANNOTBEUSED, MB_OK );

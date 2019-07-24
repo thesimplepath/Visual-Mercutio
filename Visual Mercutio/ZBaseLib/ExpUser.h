@@ -70,7 +70,7 @@ class AFX_EXT_CLASS ZUUserExport : public ZUExport  //## Inherits: <unnamed>%36F
       //## Operation: ZUUserExport%922203348
       //    Constructs an export class with the filename and the
       //    user manager pointer
-      ZUUserExport (CString Filename = "", ZUUserManager* pUserManager = NULL, BOOL GenerateHeader = FALSE, SynchronizationSeparatorType SeparatorType = AutomaticSeparator, CString Schema = szOriginalSchema, int PropagationMode = LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
+      ZUUserExport (CString Filename = "", ZUUserManager* pUserManager = NULL, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
 
     //## Destructor (generated)
       ~ZUUserExport();
@@ -99,7 +99,7 @@ class AFX_EXT_CLASS ZUUserExport : public ZUExport  //## Inherits: <unnamed>%36F
 
       //## Operation: Create%922203355
       //    Create the export class.
-      virtual void Create (CString Filename, ZUUserManager* pUserManager = NULL, BOOL GenerateHeader = FALSE, SynchronizationSeparatorType SeparatorType = AutomaticSeparator, CString Schema = szOriginalSchema, int PropagationMode = LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
+      virtual void Create (CString Filename, ZUUserManager* pUserManager = NULL, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
 
       //## Operation: ForecastedTotalObject%922203369
       //    This function should return the forecasted total object.
@@ -154,7 +154,7 @@ class AFX_EXT_CLASS ZUUserExport : public ZUExport  //## Inherits: <unnamed>%36F
 
 
 //## Other Operations (inline)
-inline void ZUUserExport::Create (CString Filename, ZUUserManager* pUserManager, BOOL GenerateHeader, SynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
+inline void ZUUserExport::Create(CString Filename, ZUUserManager* pUserManager, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
 {
   //## begin ZUUserExport::Create%922203355.body preserve=yes
       m_pUserManager = pUserManager;

@@ -31,7 +31,7 @@ using namespace sfl;
 /////////////////////////////////////////////////////////////////////////////
 // ZBExtFileProperties construction/destruction
 
-IMPLEMENT_SERIAL( ZBExtFileProperties, CObject, def_Version )
+IMPLEMENT_SERIAL(ZBExtFileProperties, CObject, g_DefVersion)
 
 //@mfunc | ZBExtFileProperties | ZBExtFileProperties | Constructor.
 //

@@ -28,7 +28,7 @@
 #undef THIS_FILE
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
-IMPLEMENT_SERIAL(ZDTemplateFile, CObject, def_Version)
+IMPLEMENT_SERIAL(ZDTemplateFile, CObject, g_DefVersion)
 //## end module%345A3A4401AE.additionalDeclarations
 
 
@@ -82,17 +82,15 @@ const ZDTemplateFile & ZDTemplateFile::operator=(const ZDTemplateFile &right)
 
 
 
-//## Other Operations (implementation)
 BOOL ZDTemplateFile::Create (CString Filename)
 {
-  //## begin ZDTemplateFile::Create%878377697.body preserve=yes
-      // Save the filename
-      m_Filename = Filename;
+    // save the filename
+    m_Filename = Filename;
       
     if (!m_Stamp.ReadFromFile( m_Filename ))
         return FALSE;
-    return m_Persistent = ( m_Stamp.GetInternalVersion() != -1 && m_Stamp.GetFileType() == TemplateType ) ? TRUE : FALSE;
-  //## end ZDTemplateFile::Create%878377697.body
+
+    return m_Persistent = (m_Stamp.GetInternalVersion() != -1 && m_Stamp.GetFileType() == E_FD_TemplateType) ? TRUE : FALSE;
 }
 
 CArchive& operator >> (CArchive& ar, ZDTemplateFile& TemplateFile)

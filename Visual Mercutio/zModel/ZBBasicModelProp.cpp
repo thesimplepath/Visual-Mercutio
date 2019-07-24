@@ -27,7 +27,7 @@ static char THIS_FILE[] = __FILE__;
 
 using namespace sfl;
 
-IMPLEMENT_SERIAL( ZBBasicModelProperties, CODIntProperty, def_Version )
+IMPLEMENT_SERIAL(ZBBasicModelProperties, CODIntProperty, g_DefVersion)
 
 // **************************************************************************************************************
 // *                                ZBBasicModelProperties construction/destruction                                *

@@ -21,7 +21,7 @@ static char THIS_FILE[]=__FILE__;
 // constant definition
 const int LastRuleIDProperties = ZS_BP_PROP_RULES + 39;
 
-IMPLEMENT_SERIAL( ZBProcRules, CObject, def_Version )
+IMPLEMENT_SERIAL(ZBProcRules, CObject, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

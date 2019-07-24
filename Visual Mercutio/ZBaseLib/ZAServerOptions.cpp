@@ -104,10 +104,10 @@ void ZAServerOptions::SetRootPath( const CString value )
     m_UserDirectory                    = m_SystemDirectory        + _T( "\\Users" );
     m_ModelTemplateDirectory        = m_RootPath            + _T( "\\Model" );
     m_ModelUnitDirectory            = m_RootPath            + _T( "\\Units" );
-    m_UserDefinitionFile            = m_SystemDirectory        + _T( "\\" ) + sUserDefinitionFilename;
-    m_LogDatabaseFile                = m_LogDirectory        + _T( "\\" ) + sActivityLogDatabase;
-    m_LogFile                        = m_LogDirectory        + _T( "\\" ) + sActivityLogFilename;
-    m_HistoryProcessDatabaseFile    = m_LogDirectory        + _T( "\\" ) + sHistoryProcessDatabase;
+    m_UserDefinitionFile            = m_SystemDirectory        + _T( "\\" ) + g_UserDefinitionFileName;
+    m_LogDatabaseFile                = m_LogDirectory        + _T( "\\" ) + g_ActivityLogDatabase;
+    m_LogFile                        = m_LogDirectory        + _T( "\\" ) + g_ActivityLogFileName;
+    m_HistoryProcessDatabaseFile    = m_LogDirectory        + _T( "\\" ) + g_HistoryProcessDatabase;
     m_FieldDefinitionIniFile        = m_RootPath            + _T( "\\System\\FieldDef.ini" );
 }
 

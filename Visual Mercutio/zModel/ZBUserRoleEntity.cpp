@@ -12,7 +12,7 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
-IMPLEMENT_SERIAL(ZBUserRoleEntity, ZBUserEntity, def_Version)
+IMPLEMENT_SERIAL(ZBUserRoleEntity, ZBUserEntity, g_DefVersion)
 
 
 //////////////////////////////////////////////////////////////////////

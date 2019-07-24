@@ -29,7 +29,7 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(ZAFontManager, CObject, def_Version)
+IMPLEMENT_SERIAL(ZAFontManager, CObject, g_DefVersion)
 //## end module%33CA78FC01AE.additionalDeclarations
 
 

@@ -50,7 +50,7 @@ ZDStamp::ZDStamp()
   //## end ZDStamp::ZDStamp%.hasinit
   //## begin ZDStamp::ZDStamp%.initialization preserve=yes
     : m_Stamp("ADSoft"), m_InternalVersion(-1), 
-      m_FileType( DocumentType ), m_DocumentDataType(FormDataType),
+      m_FileType(E_FD_DocumentType), m_DocumentDataType(FormDataType),
       m_PublishVersion(0), m_ReadOnly(FALSE),
       m_DocumentFileType(FormDocumentFileType)
   //## end ZDStamp::ZDStamp%.initialization
@@ -140,7 +140,7 @@ CArchive& operator >> (CArchive& ar, ZDStamp& Stamp)
     ar >> Stamp.m_ProgramGenerator;
     WORD    wValue;
     ar >> wValue;
-    Stamp.m_FileType = (FileTypeDefinition)wValue;
+    Stamp.m_FileType = EFileTypeDefinition(wValue);
     if (Stamp.m_InternalVersion >= 13)
     {
         ar >> Stamp.m_PublishVersion;

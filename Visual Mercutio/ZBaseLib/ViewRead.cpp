@@ -335,7 +335,7 @@ void ZIViewRead::OnRButtonDown(UINT nFlags, CPoint point)
     if ((SelectedObject=ActiveSelectedObject( point )))
         pMenu = DummyMenu.GetSubMenu( SelectedObject->GetRightSubMenu() );
     else
-        pMenu = DummyMenu.GetSubMenu( OnPageRightSubMenu );
+        pMenu = DummyMenu.GetSubMenu(g_OnPageRightSubMenu);
        if (pMenu)
        {
         ClientToScreen( &pt );

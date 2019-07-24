@@ -332,7 +332,7 @@ void ZVRiskOptionsDlg::OnCbnSelchangeRiskProbability()
 void ZVRiskOptionsDlg::OnBnClickedModifyRiskType()
 {
     const CString         typeFilename = PSS_Application::Instance()->GetMainForm()->GetRiskTypeContainer()->GetFilename();
-          ZVRiskModifyDlg modifyTypeDlg(typeFilename, sRiskTypeExtension);
+          ZVRiskModifyDlg modifyTypeDlg(typeFilename, g_RiskTypeExtension);
 
     if (modifyTypeDlg.DoModal())
         ReloadTypeFile(modifyTypeDlg.GetFilename());
@@ -346,9 +346,9 @@ void ZVRiskOptionsDlg::OnBnClickedOpenRiskType()
 
     desc.LoadString(IDS_RISK_TYPE_FILE_DESCRIPTION);
 
-    SelectFileToOpen(PSS_Application::Instance()->GetMainForm()->GetApplicationDir() + szRiskDirectory,
+    SelectFileToOpen(PSS_Application::Instance()->GetMainForm()->GetApplicationDir() + g_RiskDirectory,
                      desc,
-                     sRiskTypeExtension,
+                     g_RiskTypeExtension,
                      filename );
 
     if (!filename.IsEmpty())
@@ -359,7 +359,7 @@ void ZVRiskOptionsDlg::OnBnClickedOpenRiskType()
 void ZVRiskOptionsDlg::OnBnClickedModifyRiskImpact()
 {
     const CString               impactFilename = PSS_Application::Instance()->GetMainForm()->GetRiskImpactContainer()->GetFilename();
-          ZVRiskModifyStaticDlg riskModifyStatic(impactFilename, sRiskImpactExtension, 5);
+          ZVRiskModifyStaticDlg riskModifyStatic(impactFilename, g_RiskImpactExtension, 5);
 
     if (riskModifyStatic.DoModal() == IDOK)
         ReloadImpactFile(riskModifyStatic.GetFilename());
@@ -373,9 +373,9 @@ void ZVRiskOptionsDlg::OnBnClickedOpenRiskImpact()
 
     desc.LoadString(IDS_RISK_IMPACT_FILE_DESCRIPTION);
 
-    SelectFileToOpen(PSS_Application::Instance()->GetMainForm()->GetApplicationDir() + szRiskDirectory,
+    SelectFileToOpen(PSS_Application::Instance()->GetMainForm()->GetApplicationDir() + g_RiskDirectory,
                      desc,
-                     sRiskImpactExtension,
+                     g_RiskImpactExtension,
                      filename);
 
     if (!filename.IsEmpty())
@@ -386,7 +386,7 @@ void ZVRiskOptionsDlg::OnBnClickedOpenRiskImpact()
 void ZVRiskOptionsDlg::OnBnClickedModifyRiskProbability()
 {
     const CString               probabilityFileName = PSS_Application::Instance()->GetMainForm()->GetRiskProbabilityContainer()->GetFilename();
-          ZVRiskModifyStaticDlg riskModifyStatic(probabilityFileName, sRiskProbabilityExtension, 6);
+          ZVRiskModifyStaticDlg riskModifyStatic(probabilityFileName, g_RiskProbabilityExtension, 6);
 
     if (riskModifyStatic.DoModal() == IDOK)
         ReloadProbabilityFile(riskModifyStatic.GetFilename());
@@ -400,9 +400,9 @@ void ZVRiskOptionsDlg::OnBnClickedOpenRiskProbability()
 
     desc.LoadString(IDS_RISK_PROBABILITY_FILE_DESCRIPTION);
 
-    SelectFileToOpen(PSS_Application::Instance()->GetMainForm()->GetApplicationDir() + szRiskDirectory,
+    SelectFileToOpen(PSS_Application::Instance()->GetMainForm()->GetApplicationDir() + g_RiskDirectory,
                      desc,
-                     sRiskProbabilityExtension,
+                     g_RiskProbabilityExtension,
                      filename);
 
     if (!filename.IsEmpty())

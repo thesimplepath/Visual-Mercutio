@@ -29,7 +29,7 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(ZAHistoryFieldManager, CObject, def_Version)
+IMPLEMENT_SERIAL(ZAHistoryFieldManager, CObject, g_DefVersion)
 //## end module%363481C90252.additionalDeclarations
 
 // Class ZAHistoryFieldManager 

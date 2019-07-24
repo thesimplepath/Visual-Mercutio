@@ -30,7 +30,7 @@ using namespace sfl;
 /////////////////////////////////////////////////////////////////////////////
 // ZBExtAppProperties construction/destruction
 
-IMPLEMENT_SERIAL( ZBExtAppProperties, CObject, def_Version )
+IMPLEMENT_SERIAL(ZBExtAppProperties, CObject, g_DefVersion)
 
 //@mfunc | ZBExtAppProperties | ZBExtAppProperties | Constructor.
 //

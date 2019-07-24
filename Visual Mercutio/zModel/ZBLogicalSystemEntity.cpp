@@ -19,7 +19,7 @@ ZBSystemEntitySet    ZBLogicalSystemEntity::m_FindSet;
 
 BOOL                ZBLogicalSystemEntity::m_bModified    = FALSE;
 
-IMPLEMENT_SERIAL( ZBLogicalSystemEntity, ZBSystemEntity, def_Version )
+IMPLEMENT_SERIAL(ZBLogicalSystemEntity, ZBSystemEntity, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

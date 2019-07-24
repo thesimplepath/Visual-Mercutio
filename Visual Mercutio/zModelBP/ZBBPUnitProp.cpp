@@ -35,7 +35,7 @@ using namespace sfl;
 /////////////////////////////////////////////////////////////////////////////
 // ZBBPUnitProperties construction/destruction
 
-IMPLEMENT_SERIAL(ZBBPUnitProperties, CODIntProperty, def_Version)
+IMPLEMENT_SERIAL(ZBBPUnitProperties, CODIntProperty, g_DefVersion)
 
 //@mfunc | ZBBPUnitProperties | ZBBPUnitProperties | Constructor.
 //

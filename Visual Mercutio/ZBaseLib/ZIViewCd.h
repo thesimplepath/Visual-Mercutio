@@ -65,10 +65,10 @@ class AFX_EXT_CLASS ZIViewCode : public ZIView  //## Inherits: <unnamed>%3365104
 
     //## Other Operations (specified)
       //## Operation: GetDisplayCode%862658274
-      ClassType GetDisplayCode ();
+      EClassType GetDisplayCode ();
 
       //## Operation: SetDisplayCode%862658275
-      void SetDisplayCode (ClassType Type);
+      void SetDisplayCode(EClassType Type);
 
     // Additional Public Declarations
       //## begin ZIViewCode%3365104501F4.public preserve=yes
@@ -135,7 +135,7 @@ class AFX_EXT_CLASS ZIViewCode : public ZIView  //## Inherits: <unnamed>%3365104
 
       //## Attribute: iCodeType%336B1F0D0140
       //## begin ZIViewCode::iCodeType%336B1F0D0140.attr preserve=no  private: ClassType {U} 
-      ClassType m_iCodeType;
+      EClassType m_iCodeType;
       //## end ZIViewCode::iCodeType%336B1F0D0140.attr
 
       //## Attribute: iSavePageForPrinting%35BF04420022
@@ -160,14 +160,14 @@ class AFX_EXT_CLASS ZIViewCode : public ZIView  //## Inherits: <unnamed>%3365104
 
 
 //## Other Operations (inline)
-inline ClassType ZIViewCode::GetDisplayCode ()
+inline EClassType ZIViewCode::GetDisplayCode()
 {
   //## begin ZIViewCode::GetDisplayCode%862658274.body preserve=yes
   return m_iCodeType;
   //## end ZIViewCode::GetDisplayCode%862658274.body
 }
 
-inline void ZIViewCode::SetDisplayCode (ClassType Type)
+inline void ZIViewCode::SetDisplayCode(EClassType Type)
 {
   //## begin ZIViewCode::SetDisplayCode%862658275.body preserve=yes
   m_iCodeType = Type;

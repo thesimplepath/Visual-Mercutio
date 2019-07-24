@@ -191,9 +191,9 @@ BOOL ZUActivityLogDatabase::ClearLog ()
     try 
     {
         CString    Query = "DELETE ";
-        Query += ActivityLogTableName; 
+        Query += g_ActivityLogTableName; 
         Query += ".* FROM "; 
-        Query += ActivityLogTableName; 
+        Query += g_ActivityLogTableName; 
         Query += ";";
         
         m_LogDatabase.Execute( Query );

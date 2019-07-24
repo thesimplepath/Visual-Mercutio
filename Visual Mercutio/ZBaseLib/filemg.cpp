@@ -35,7 +35,7 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 27 juin 2007 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL( ZFileManager, CObject, def_Version )
+IMPLEMENT_SERIAL(ZFileManager, CObject, g_DefVersion)
 
 //## end module%36754E690034.additionalDeclarations
 

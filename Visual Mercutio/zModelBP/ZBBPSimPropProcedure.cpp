@@ -31,7 +31,7 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZBBPSimPropertiesProcedure construction/destruction
 
-IMPLEMENT_SERIAL( ZBBPSimPropertiesProcedure, CObject, def_Version )
+IMPLEMENT_SERIAL(ZBBPSimPropertiesProcedure, CObject, g_DefVersion)
 
 using namespace sfl;
 
