@@ -15,7 +15,7 @@
 
 // processsoft
 #include "zBaseLib\ZIDialog.h"
-#include "HoverButton.h"
+#include "PSS_HoverButton.h"
 
 // resources
 #ifndef _WIN32
@@ -46,9 +46,9 @@ public:
 // Dialog Data
     //{{AFX_DATA(ZVTakeOwnerShipActions)
     enum { IDD = IDD_PROCESS_TAKEOWNERSHIP };
-    ZUHoverButton    m_ViewCommandBtn;
-    ZUHoverButton    m_CancelCommandBtn;
-    ZUHoverButton    m_AcceptCommandBtn;
+    PSS_HoverButton m_ViewCommandBtn;
+    PSS_HoverButton m_CancelCommandBtn;
+    PSS_HoverButton m_AcceptCommandBtn;
     //}}AFX_DATA
 
 

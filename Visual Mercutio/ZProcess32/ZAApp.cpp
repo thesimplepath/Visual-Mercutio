@@ -16,7 +16,7 @@
 #include "zBaseLib\ZBWorkspaceWizardTemplateMg.h"
 #include "zBaseLib\BObjUtil.h"
 #include "zBaseLib\ZUFloatingToolbar.h"
-#include "zWinUtil32\newform.h"
+#include "zWinUtil32\PSS_NewFormDialog.h"
 #include "zWinUtil32\PSS_FolderInfoDialog.h"
 #include "zWinUtil32\SysOpt32.h"
 #include "zWinUtil32\PSS_CreateFolderWizardDialog.h"

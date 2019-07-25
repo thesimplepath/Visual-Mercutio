@@ -62,10 +62,10 @@ void PSS_CreateFolderWizardExistDialog::DoDataExchange(CDataExchange* pDX)
     ZIWizardDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_CreateFolderWizardExistDialog)
-    DDX_Control(pDX, IDC_OTHERFILENAME, m_FileName);
+    DDX_Control(pDX, IDC_OTHERFILENAME,   m_FileName);
     DDX_Control(pDX, IDC_FOLDERDIRECTORY, m_Directory);
-    DDX_Radio(pDX, IDC_FOLDERCHOICE, m_Choice);
-    DDX_Text(pDX, IDC_FOLDERFILENAME, m_Folder);
+    DDX_Radio  (pDX, IDC_FOLDERCHOICE,    m_Choice);
+    DDX_Text   (pDX, IDC_FOLDERFILENAME,  m_Folder);
     //}}AFX_DATA_MAP
 }
 //---------------------------------------------------------------------------

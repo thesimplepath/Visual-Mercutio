@@ -15,7 +15,7 @@
 
 // processsoft
 #include "zBaseLib\ZIDialog.h"
-#include "HoverButton.h"
+#include "PSS_HoverButton.h"
 
 // resources
 #ifndef _WIN32
@@ -54,13 +54,13 @@ public:
 // Dialog Data
     //{{AFX_DATA(ZIProcessCloseActions)
     enum { IDD = IDD_PROCESSCLOSE };
-    ZUHoverButton    m_AbortCommand;
-    ZUHoverButton    m_TrashCommandBtn;
-    ZUHoverButton    m_SuspendCommandBtn;
-    ZUHoverButton    m_SendCommandBtn;
-    ZUHoverButton    m_RejectCommandBtn;
-    ZUHoverButton    m_CancelCommandBtn;
-    ZUHoverButton    m_AcceptCommandBtn;
+    PSS_HoverButton m_AbortCommand;
+    PSS_HoverButton m_TrashCommandBtn;
+    PSS_HoverButton m_SuspendCommandBtn;
+    PSS_HoverButton m_SendCommandBtn;
+    PSS_HoverButton m_RejectCommandBtn;
+    PSS_HoverButton m_CancelCommandBtn;
+    PSS_HoverButton m_AcceptCommandBtn;
     //}}AFX_DATA
 
 

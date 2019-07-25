@@ -28,13 +28,13 @@ void ZIProcessCloseActions::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(ZIProcessCloseActions)
-    DDX_Control(pDX, IDC_ABORTCOMMAND, m_AbortCommand);
-    DDX_Control(pDX, IDC_TRASHCOMMAND, m_TrashCommandBtn);
+    DDX_Control(pDX, IDC_ABORTCOMMAND,   m_AbortCommand);
+    DDX_Control(pDX, IDC_TRASHCOMMAND,   m_TrashCommandBtn);
     DDX_Control(pDX, IDC_SUSPENDCOMMAND, m_SuspendCommandBtn);
-    DDX_Control(pDX, IDC_SENDCOMMAND, m_SendCommandBtn);
-    DDX_Control(pDX, IDC_REJECTCOMMAND, m_RejectCommandBtn);
-    DDX_Control(pDX, IDC_CANCELCOMMAND, m_CancelCommandBtn);
-    DDX_Control(pDX, IDC_ACCEPTCOMMAND, m_AcceptCommandBtn);
+    DDX_Control(pDX, IDC_SENDCOMMAND,    m_SendCommandBtn);
+    DDX_Control(pDX, IDC_REJECTCOMMAND,  m_RejectCommandBtn);
+    DDX_Control(pDX, IDC_CANCELCOMMAND,  m_CancelCommandBtn);
+    DDX_Control(pDX, IDC_ACCEPTCOMMAND,  m_AcceptCommandBtn);
     //}}AFX_DATA_MAP
 }
 
@@ -97,23 +97,23 @@ BOOL ZIProcessCloseActions::OnInitDialog()
     {
         if (GetDlgItem(IDC_SENDCOMMAND))
            GetDlgItem(IDC_SENDCOMMAND)->EnableWindow( FALSE );
-        m_SendCommandBtn.SetButtonState(BUTTON_GREYED);
+        m_SendCommandBtn.SetButtonState(E_HB_Greyed);
 
     }
     if (!m_AcceptRejectCommand)
     {
         if (GetDlgItem(IDC_ACCEPTCOMMAND))
            GetDlgItem(IDC_ACCEPTCOMMAND)->EnableWindow( FALSE );
-        m_AcceptCommandBtn.SetButtonState(BUTTON_GREYED);
+        m_AcceptCommandBtn.SetButtonState(E_HB_Greyed);
         if (GetDlgItem(IDC_REJECTCOMMAND))
            GetDlgItem(IDC_REJECTCOMMAND)->EnableWindow( FALSE );
-        m_RejectCommandBtn.SetButtonState(BUTTON_GREYED);
+        m_RejectCommandBtn.SetButtonState(E_HB_Greyed);
     }
     if (!m_SuspendCommand)
     {
         if (GetDlgItem(IDC_SUSPENDCOMMAND))
            GetDlgItem(IDC_SUSPENDCOMMAND)->EnableWindow( FALSE );
-        m_SendCommandBtn.SetButtonState(BUTTON_GREYED);
+        m_SendCommandBtn.SetButtonState(E_HB_Greyed);
     }
     
     return TRUE;  // return TRUE unless you set the focus to a control

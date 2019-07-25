@@ -23,7 +23,7 @@
 // processsoft
 #include "zBaseLib\ZIDialog.h"
 #include "zEvent\ActEvent.h"
-#include "HoverButton.h"
+#include "PSS_HoverButton.h"
 
 // resources
 #ifdef _WIN32
@@ -57,12 +57,12 @@ class AFX_EXT_CLASS PSS_ConfirmDeleteMessageDialog : public ZIDialog
             IDD = IDD_CONFIRM_DELETE_MSGEVT
         };
 
-        ZUHoverButton m_Delete;
-        ZUHoverButton m_DoNotDelete;
-        CString       m_ActivityName;
-        CString       m_Message;
-        CString       m_ProcessName;
-        CString       m_Status;
+        PSS_HoverButton m_Delete;
+        PSS_HoverButton m_DoNotDelete;
+        CString         m_ActivityName;
+        CString         m_Message;
+        CString         m_ProcessName;
+        CString         m_Status;
 
         /**
         * Constructor

@@ -31,7 +31,7 @@
 // FldMng
 #include "zBaseLib\FldMng.h"
 
-#include "zWinUtil32\newform.h"
+#include "zWinUtil32\PSS_NewFormDialog.h"
 #include "zWinUtil32\PSS_FolderInfoDialog.h"
 
 #include "zWinUtil32\PSS_DocOptionDialog.h"
@@ -105,18 +105,14 @@ ZDDocumentReadWrite::~ZDDocumentReadWrite()
 
 BOOL ZDDocumentReadWrite::OnNewDocument()
 {
-    ZAGlobal::SetpCurrentDocumentForSerialization( this );
-    ZINewForm NewForm( &ZAGlobal::GetTemplateManager(), StartForm, FormType );
+    ZAGlobal::SetpCurrentDocumentForSerialization(this);
+    PSS_NewFormDialog newFormDialog(&ZAGlobal::GetTemplateManager(), E_DT_StartForm, E_ET_Form);
 
-    if ( NewForm.DoModal() == IDCANCEL )
-    {
+    if (newFormDialog.DoModal() == IDCANCEL)
         return FALSE;
-    }
 
-    if ( !OpenDocument( (const char*)NewForm.GetFileName(), FALSE ) )
-    {
+    if (!OpenDocument((const char*)newFormDialog.GetFileName(), FALSE))
         return FALSE;
-    }
 
     // Set the type for Document
     GetDocumentStamp().SetFileType(E_FD_DocumentType);

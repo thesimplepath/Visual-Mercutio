@@ -37,12 +37,12 @@ void PSS_ConfirmDeleteMessageDialog::DoDataExchange(CDataExchange* pDX)
     CDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_ConfirmDeleteMessageDialog)
-    DDX_Control(pDX, IDOK, m_Delete);
-    DDX_Control(pDX, IDCANCEL, m_DoNotDelete);
-    DDX_Text(pDX, IDC_ACTIVITY_NAME, m_ActivityName);
-    DDX_Text(pDX, IDC_MESSAGE_TEXT, m_Message);
-    DDX_Text(pDX, IDC_PROCESS_NAME, m_ProcessName);
-    DDX_Text(pDX, IDC_STATUS_TEXT, m_Status);
+    DDX_Control(pDX, IDOK,              m_Delete);
+    DDX_Control(pDX, IDCANCEL,          m_DoNotDelete);
+    DDX_Text   (pDX, IDC_ACTIVITY_NAME, m_ActivityName);
+    DDX_Text   (pDX, IDC_MESSAGE_TEXT,  m_Message);
+    DDX_Text   (pDX, IDC_PROCESS_NAME,  m_ProcessName);
+    DDX_Text   (pDX, IDC_STATUS_TEXT,   m_Status);
     //}}AFX_DATA_MAP
 }
 //---------------------------------------------------------------------------

@@ -30,10 +30,10 @@ public:
 // Dialog Data
     //{{AFX_DATA(ZIWelcomeWriter)
     enum { IDD = IDD_WELCOME_WRITER };
-    ZUHoverButton    m_FileOpenProcess;
-    ZUHoverButton    m_StartProcess;
-    ZUHoverButton    m_StartForm;
-    ZUHoverButton    m_FileOpen;
+    PSS_HoverButton m_FileOpenProcess;
+    PSS_HoverButton m_StartProcess;
+    PSS_HoverButton m_StartForm;
+    PSS_HoverButton m_FileOpen;
     //}}AFX_DATA
 #endif    
 

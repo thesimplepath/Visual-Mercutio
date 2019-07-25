@@ -11,7 +11,7 @@
 // processsoft
 #include "zBaseLib\MsgBox.h"
 #include "zBaseLib\InpVal.h"
-#include "LstUser.h"
+#include "PSS_UserListDialog.h"
 #include "PSS_ActivityAttributionValueInputDialog.h"
 #include "PSS_ActivityAttributionBackupInputDialog.h"
 

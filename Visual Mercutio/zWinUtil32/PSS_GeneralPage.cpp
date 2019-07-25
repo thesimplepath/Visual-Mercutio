@@ -61,12 +61,9 @@ void PSS_GeneralPage::SaveValuesToObject()
 
         ((ZAApplicationOption&)GetObject()).SetShowWelcomeScreen(BOOL(m_BtnShowWelcome.GetCheck()));
         ((ZAApplicationOption&)GetObject()).SetMaximizeFormOnOpen(BOOL(m_BtnMaximizeForm.GetCheck()));
-
         ((ZAApplicationOption&)GetObject()).SetbScreenPos(BOOL(m_BtnScreenPos.GetCheck()));
-
         ((ZAApplicationOption&)GetObject()).SetbCreateOnStartup(BOOL(m_BtnStartupOpenFile.GetCheck()));
         ((ZAApplicationOption&)GetObject()).SetbOpenLastLoadedFile(BOOL(m_BtnReloadLastFile.GetCheck()));
-
         ((ZAApplicationOption&)GetObject()).SetDontShowTaskList(m_DontShowTaskList);
         ((ZAApplicationOption&)GetObject()).SetDontShowToolTip(m_DontShowTips);
         ((ZAApplicationOption&)GetObject()).SetForceNetworkConnection(m_ForceNetwork);

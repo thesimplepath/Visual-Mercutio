@@ -15,7 +15,7 @@
 // processsoft
 #include "zBaseLib\ZIDialog.h"
 #include "zBaseLib\AppOpt.h"
-#include "HoverButton.h"
+#include "PSS_HoverButton.h"
 
 // resources
 #include "zWinUtil32\zWinUtil32Res.h"
@@ -48,10 +48,10 @@ public:
     // Dialog Data
     //{{AFX_DATA(ZIWelcomeDialog)
     enum { IDD = IDD_WELCOME };
-    CHyperLink        m_HyperLink;
-    ZUHoverButton    m_LastFile;
-    ZUHoverButton    m_Cancel;
-    BOOL    m_DoNotStart;
+    CHyperLink      m_HyperLink;
+    PSS_HoverButton m_LastFile;
+    PSS_HoverButton m_Cancel;
+    BOOL            m_DoNotStart;
     //}}AFX_DATA
 
 // Implementation

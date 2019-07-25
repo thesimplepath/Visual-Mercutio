@@ -101,6 +101,12 @@ BOOL CALLBACK PSS_FontComboBox::EnumFontProc(LPLOGFONT pFont, LPTEXTMETRIC pText
     // add only TTF fonts, change here if other fonts should also be supported
     if (type == TRUETYPE_FONTTYPE)
     {
+        if (!pFont || !pData)
+        {
+            TRACE("EnumFontProc - Font and/or data are missing");
+            return TRUE;
+        }
+
         const int       index    = ((PSS_FontComboBox*)pData)->AddString(pFont->lfFaceName);
               LPLOGFONT pLogFont = NULL;
 

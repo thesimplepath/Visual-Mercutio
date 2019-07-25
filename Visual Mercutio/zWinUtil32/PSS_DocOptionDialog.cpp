@@ -114,20 +114,20 @@ void PSS_DocOptionDialog::DoDataExchange(CDataExchange* pDX)
     CDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_DocOptionDialog)
-    DDX_Control(pDX, IDC_SMALLLINE, m_SmallLineCtrl);
-    DDX_Control(pDX, IDC_DASHEDLINE, m_DashedLineCtrl);
-    DDX_Control(pDX, IDC_POINT, m_DottedCtrl);
-    DDX_Control(pDX, IDC_LINED, m_LinedCtrl);
-    DDX_Radio(pDX, IDC_EMPTYSTYLES, m_EmptyStyle);
-    DDX_Radio(pDX, IDC_SYNCHRONIZATION, m_SynchronisationYesNo);
-    DDX_Radio(pDX, IDC_HIDDENFIELDS_SHOW, m_ShowHiddenFieldYesNoDoc);
-    DDX_Radio(pDX, IDC_SHOWEMPTYLINE, m_ShowEmptyLineYesNoDoc);
-    DDX_Text(pDX, IDC_SYNCHRO_TIME, m_SynchronizationTime);
-    DDX_Text(pDX, IDC_FLF_FILENAME, m_FLF_FileName);
-    DDX_Radio(pDX, IDC_HEADER, m_GenerateHeader);
-    DDX_Radio(pDX, IDC_SEPARATOR, m_SeparatorType);
-    DDX_Radio(pDX, IDC_AUTOMATICFILENAME, m_AutomaticFileNameGeneration);
-    DDX_Check(pDX, IDC_PRINTEMPTYLINE, m_PrintEmptyStyleWhenEmpty);
+    DDX_Control(pDX, IDC_SMALLLINE,         m_SmallLineCtrl);
+    DDX_Control(pDX, IDC_DASHEDLINE,        m_DashedLineCtrl);
+    DDX_Control(pDX, IDC_POINT,             m_DottedCtrl);
+    DDX_Control(pDX, IDC_LINED,             m_LinedCtrl);
+    DDX_Radio  (pDX, IDC_EMPTYSTYLES,       m_EmptyStyle);
+    DDX_Radio  (pDX, IDC_SYNCHRONIZATION,   m_SynchronisationYesNo);
+    DDX_Radio  (pDX, IDC_HIDDENFIELDS_SHOW, m_ShowHiddenFieldYesNoDoc);
+    DDX_Radio  (pDX, IDC_SHOWEMPTYLINE,     m_ShowEmptyLineYesNoDoc);
+    DDX_Text   (pDX, IDC_SYNCHRO_TIME,      m_SynchronizationTime);
+    DDX_Text   (pDX, IDC_FLF_FILENAME,      m_FLF_FileName);
+    DDX_Radio  (pDX, IDC_HEADER,            m_GenerateHeader);
+    DDX_Radio  (pDX, IDC_SEPARATOR,         m_SeparatorType);
+    DDX_Radio  (pDX, IDC_AUTOMATICFILENAME, m_AutomaticFileNameGeneration);
+    DDX_Check  (pDX, IDC_PRINTEMPTYLINE,    m_PrintEmptyStyleWhenEmpty);
     //}}AFX_DATA_MAP
 }
 //---------------------------------------------------------------------------

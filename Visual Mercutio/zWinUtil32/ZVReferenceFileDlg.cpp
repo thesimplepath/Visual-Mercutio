@@ -3,17 +3,17 @@
 #include "stdafx.h"
 #include "ZVReferenceFileDlg.h"
 
-#include "NewForm.h"
+// processsoft
 #include "zBaseLib\FileDlg.h"
-#include "ZVInputURLDialog.h"
-
 #include "zBaseLib\ZAGlobal.h"
+#include "PSS_NewFormDialog.h"
+#include "ZVInputURLDialog.h"
 #include "ZVReferenceFileDlg.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
 // JMR-MODIF - Le 12 juin 2007 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
@@ -186,18 +186,16 @@ void ZVReferenceFileDlg::OnAddurl()
 
 void ZVReferenceFileDlg::OnScriptor()
 {
-    ZINewForm NewForm( &ZAGlobal::GetTemplateManager(), SelectForm, FormType );
+    PSS_NewFormDialog newFormDialog(&ZAGlobal::GetTemplateManager(), E_DT_SelectForm, E_ET_Form);
 
-    if ( NewForm.DoModal() != IDOK )
-    {
+    if (newFormDialog.DoModal() != IDOK)
         return;
-    }
 
-    // Check if not empty
-    if ( !NewForm.GetFormName().IsEmpty() )
+    // check if not empty
+    if (!newFormDialog.GetFormName().IsEmpty())
     {
-        m_Reference = NewForm.GetFormName();
-        UpdateData( FALSE );
+        m_Reference = newFormDialog.GetFormName();
+        UpdateData(FALSE);
         CheckControlState();
     }
 }

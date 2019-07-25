@@ -63,8 +63,8 @@ void PSS_CreateFolderWizardStartDialog::DoDataExchange(CDataExchange* pDX)
 
     //{{AFX_DATA_MAP(PSS_CreateFolderWizardStartDialog)
     DDX_Control(pDX, IDC_COMPLETEFILENAME, m_CompleteFileName);
-    DDX_Text(pDX, IDC_FOLDERCOMMENT, m_FolderComment);
-    DDX_Text(pDX, IDC_FOLDERFILENAME, m_FolderName);
+    DDX_Text   (pDX, IDC_FOLDERCOMMENT,    m_FolderComment);
+    DDX_Text   (pDX, IDC_FOLDERFILENAME,   m_FolderName);
     //}}AFX_DATA_MAP
 }
 //---------------------------------------------------------------------------

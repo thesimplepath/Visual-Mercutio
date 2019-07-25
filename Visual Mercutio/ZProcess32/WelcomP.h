@@ -34,10 +34,10 @@ public:
 // Dialog Data
     //{{AFX_DATA(ZIWelcomeProcess)
     enum { IDD = IDD_WELCOME_PROCESS };
-    ZUHoverButton    m_OpenModel;
-    ZUHoverButton    m_OpenProject;
-    ZUHoverButton    m_CreateNewModel;
-    ZUHoverButton    m_CreateNewProject;
+    PSS_HoverButton m_OpenModel;
+    PSS_HoverButton m_OpenProject;
+    PSS_HoverButton m_CreateNewModel;
+    PSS_HoverButton m_CreateNewProject;
     //}}AFX_DATA
 #endif    
 

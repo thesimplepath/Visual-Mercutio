@@ -179,7 +179,7 @@ CString PSS_EventActivityOverviewCtrl::GetSelectedUser()
     return "";
 }
 //---------------------------------------------------------------------------
-CString    PSS_EventActivityOverviewCtrl::GetSelectedProcess()
+CString PSS_EventActivityOverviewCtrl::GetSelectedProcess()
 {
     HTREEITEM hSelected = GetSelectedItem();
 

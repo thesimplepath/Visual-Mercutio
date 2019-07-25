@@ -68,8 +68,8 @@ void PSS_ExportPage::DoDataExchange(CDataExchange* pDX)
     CDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_ExportPage)
-    DDX_Radio(pDX, IDC_PROPAGATION, m_Propagation);
-    DDX_Text(pDX, IDC_SCHEMANAME, m_SchemaName);
+    DDX_Radio(pDX, IDC_PROPAGATION,   m_Propagation);
+    DDX_Text (pDX, IDC_SCHEMANAME,    m_SchemaName);
     DDX_Check(pDX, IDC_EMPTYWHENZERO, m_EmptyWhenZero);
     //}}AFX_DATA_MAP
 }

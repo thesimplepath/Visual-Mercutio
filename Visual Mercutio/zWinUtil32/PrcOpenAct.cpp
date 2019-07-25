@@ -34,9 +34,9 @@ void ZVOpenProcessActions::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(ZVOpenProcessActions)
-    DDX_Control(pDX, IDC_VISUALIZE, m_ViewCommandBtn);
+    DDX_Control(pDX, IDC_VISUALIZE,     m_ViewCommandBtn);
     DDX_Control(pDX, IDC_CANCELCOMMAND, m_CancelCommandBtn);
-    DDX_Control(pDX, IDC_OPENPROCESS, m_AcceptCommandBtn);
+    DDX_Control(pDX, IDC_OPENPROCESS,   m_AcceptCommandBtn);
     //}}AFX_DATA_MAP
 }
 
