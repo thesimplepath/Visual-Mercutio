@@ -14,7 +14,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ProjectI.h"
+#include "PSS_ProjectTree.h"
 
 // resources
 #ifndef _WIN32
@@ -72,8 +72,8 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-    BOOL                    m_OnlyVisible;
-    ZIProjectTree    m_ProjectTree;
+    BOOL            m_OnlyVisible;
+    PSS_ProjectTree m_ProjectTree;
 
 };
 

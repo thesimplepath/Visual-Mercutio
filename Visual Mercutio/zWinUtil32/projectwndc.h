@@ -12,15 +12,14 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-#include "ProjectI.h"
+// processsoft
 #include "zBaseLib\ZITreeCtl.h"
+#include "PSS_ProjectTree.h"
 
 /////////////////////////////////////////////////////////////////////////
 // Forward class declaration
 class ZDDocument;
 class ZDDocumentData;
-
 
 #ifdef _ZWINUTIL32EXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -31,11 +30,6 @@ class ZDDocumentData;
 #define AFX_EXT_API AFX_API_EXPORT
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
-
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-
-
 
 class AFX_EXT_CLASS ZCProjectWindowTree : public ZITreeCtrl
 {
@@ -60,16 +54,12 @@ class AFX_EXT_CLASS ZCProjectWindowTree : public ZITreeCtrl
     //}}AFX_MSG
     DECLARE_MESSAGE_MAP()
   private:
+      ZDDocument*     m_pDoc;
+      BOOL            m_OnlyVisible;
+      PSS_ProjectTree m_ProjectTree;
+
       ZCProjectWindowTree(const ZCProjectWindowTree &right);
       const ZCProjectWindowTree & operator=(const ZCProjectWindowTree &right);
-
-  private:
-
-  private: //## implementation
-    ZDDocument*        m_pDoc;
-    BOOL            m_OnlyVisible;
-    ZIProjectTree    m_ProjectTree;
-
 };
 
 //#undef  AFX_DATA

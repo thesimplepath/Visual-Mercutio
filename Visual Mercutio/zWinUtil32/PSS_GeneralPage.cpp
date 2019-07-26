@@ -10,12 +10,6 @@
 
 // processsoft
 #include "zBaseLib\msgbox.h"
-#ifndef _WIN32
-    #include "Opendird.h"
-#endif
-#ifdef _WIN32
-    #include "Opendird32.h"
-#endif
 
 #ifdef _DEBUG
     #undef THIS_FILE

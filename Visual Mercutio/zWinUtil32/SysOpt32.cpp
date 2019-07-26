@@ -8,7 +8,7 @@
 #include "ViewPage.h"
 #include "PSS_CalculationPage.h"
 #include "PSS_ExportPage.h"
-#include "NavPage.h"
+#include "PSS_NavigationPage.h"
 
 // resources
 #include "zWinUtil32\zWinUtil32Res.h"
@@ -56,18 +56,21 @@ ZISystemOption::ZISystemOption(ZAApplicationOption* pApplicationOptions, unsigne
     // add the calculation page
     if (PageOptions & CalculationOptionPage)
     {
-        PSS_CalculationPage* pCalculationPage = new PSS_CalculationPage(pApplicationOptions);
-        GetPageArray().Add(pCalculationPage);
-        AddPage(pCalculationPage);
+        std::unique_ptr<PSS_CalculationPage> pCalculationPage(new PSS_CalculationPage(pApplicationOptions));
+        GetPageArray().Add(pCalculationPage.get());
+        AddPage(pCalculationPage.get());
+        pCalculationPage.release();
     }
 
     // Add the navigation page
     if (PageOptions & NavigationOptionPage)
     {
-        ZINavigationPage*    pNavigationPage = new ZINavigationPage( pApplicationOptions );
-        GetPageArray().Add( pNavigationPage );
-        AddPage( pNavigationPage );
+        std::unique_ptr<PSS_NavigationPage> pNavigationPage(new PSS_NavigationPage(pApplicationOptions));
+        GetPageArray().Add(pNavigationPage.get());
+        AddPage(pNavigationPage.get());
+        pNavigationPage.release();
     }
+
     // Add the export page
     if (PageOptions & ExportOptionPage)
     {

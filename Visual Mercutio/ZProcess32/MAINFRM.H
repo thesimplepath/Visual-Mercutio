@@ -5,8 +5,7 @@
 #define __DSGNFRM_H
 
 #include "zBaseLib\BaseFrm.h"
-
-#include "zWinUtil32\ProjectBar.h"
+#include "zWinUtil32\PSS_ProjectBar.h"
 #include "zTip\PSS_TipOfDayBar.h"
 #include "zTip\PSS_HelpContextBar.h"
 #include "zBaseLib\ZISubject.h"
@@ -42,7 +41,7 @@ public:
         return &m_wndPropertiesWorkspace;
     };
 
-    ZIProjectBar& GetProjectWindowBar()
+    PSS_ProjectBar& GetProjectWindowBar()
     {
         return m_ProjectWindowBar;
     };
@@ -122,7 +121,7 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-    ZIProjectBar          m_ProjectWindowBar;
+    PSS_ProjectBar        m_ProjectWindowBar;
     PSS_TipOfDayBar       m_wndTipOfDayBar;
     ZVProcessWorkspace    m_wndWorkspace;
     ZVOutputWorkspace     m_wndOutputWorkspace;

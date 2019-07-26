@@ -12,7 +12,7 @@
 #include "zBaseLib\MsgBox.h"
 #include "zBaseLib\FileDlg.h"
 #ifdef _WIN32
-    #include "Opendird32.h"
+    #include "PSS_OpenDirDialog.h"
 #else
     #include "Opendird.h"
 #endif
@@ -199,11 +199,11 @@ void PSS_DocOptionDialog::OnSelectFLF()
     {
         case 2:
         {
-            ZIOpenDirDlg dlgDirectory;
+            PSS_OpenDirDialog openDirDialog;
 
-            if (dlgDirectory.ProcessDirectory() != "")
+            if (openDirDialog.ProcessDirectory() != "")
             {
-                m_FLF_FileName = dlgDirectory.GetDirectory();
+                m_FLF_FileName = openDirDialog.GetDirectory();
                 UpdateData(FALSE);
             }
 

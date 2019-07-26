@@ -5,7 +5,8 @@
 #define PointDlg_h 1
 
 
-#include "zWinUtil32\PointerW.h"
+#include "zWinUtil32\PSS_NewFormDialog.h"
+#include "zWinUtil32\PSS_PointerWnd.h"
 #include "zBaseLib\PlanfObj.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -31,9 +32,9 @@ public:
     //}}AFX_DATA
 
 private:
-    int                m_ID;
-    ZIPointerWnd    m_PointerWindow;
-    PlanFinObject*    m_Obj;
+    int            m_ID;
+    PSS_PointerWnd m_PointerWindow;
+    PlanFinObject* m_Obj;
 
 // Implementation
 protected:

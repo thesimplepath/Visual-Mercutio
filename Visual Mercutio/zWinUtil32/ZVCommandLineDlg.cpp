@@ -6,7 +6,7 @@
 
 
 #include "zBaseLib\FileDlg.h"
-#include "opendird32.h"
+#include "PSS_OpenDirDialog.h"
 #include "SysVarDlg.h"
 
 #include "zBaseLib\ZAGlobal.h"
@@ -184,15 +184,15 @@ void ZVCommandLineDlg::OnFileArg()
 
 void ZVCommandLineDlg::OnDirArg()
 {
-    ZIOpenDirDlg    dlgDirectory;
+    PSS_OpenDirDialog openDirDialog;
     
-    if (dlgDirectory.ProcessDirectory() != "")
+    if (openDirDialog.ProcessDirectory() != "")
     {
         CString Text;
         m_Arguments.GetWindowText( Text );
         if (!Text.IsEmpty())
             Text += " ";
-        Text += dlgDirectory.GetDirectory();
+        Text += openDirDialog.GetDirectory();
         m_Arguments.SetWindowText( Text );
     }
 }

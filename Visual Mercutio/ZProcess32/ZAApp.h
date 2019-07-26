@@ -77,7 +77,7 @@ class ZAApp : public ZAMainApp, public ZBGridAppAdapter
     ZVProcessWorkspace*        GetProcessWorkspace();
     ZVPropertiesWorkspace*    GetPropertiesWorkspace();
 
-    ZIProjectBar* GetProjectWindowBar();
+    PSS_ProjectBar* GetProjectWindowBar();
     PSS_TipOfDayBar* GetwndTipOfDayBar();
 
     // Workspace functions

@@ -12,7 +12,7 @@
 #include "zBaseLib\File.h"
 #include "PSS_CreateFolderWizardStartDialog.h"
 #include "PSS_CreateFolderWizardExistDialog.h"
-#include "opendird32.h"
+#include "PSS_OpenDirDialog.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -53,7 +53,7 @@ BOOL PSS_CreateFolderWizardDialog::PlayWizard()
     // if the file directory is empty, get it
     if (m_FileDirectory.IsEmpty())
     {
-        ZIOpenDirDlg openDirDlg(IDS_CHOOSEDIRECTORYFORFOLDER);
+        PSS_OpenDirDialog openDirDlg(IDS_CHOOSEDIRECTORYFORFOLDER);
         m_FileDirectory = openDirDlg.ProcessDirectory();
 
         if (m_FileDirectory.IsEmpty())

@@ -1473,14 +1473,12 @@ ZVPropertiesWorkspace* ZAApp::GetPropertiesWorkspace()
 // ********************************************* Project Window Bar *********************************************
 
 // Cette fonction permet d'obtenir le pointeur sur l'espace de travail de la barre d'outils des projets.
-ZIProjectBar* ZAApp::GetProjectWindowBar()
+PSS_ProjectBar* ZAApp::GetProjectWindowBar()
 {
     ZIMainFrame* pFrame = GetMainFrame();
 
-    if ( pFrame )
-    {
+    if (pFrame)
         return &pFrame->GetProjectWindowBar();
-    }
 
     return NULL;
 }
