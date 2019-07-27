@@ -3,7 +3,7 @@
 
 // processsoft
 #include "zBaseLib\AppOpt.h"
-#include "PropPage.h"
+#include "PSS_GenericPropPage.h"
 
 // resources
 #ifndef _WIN32
@@ -21,7 +21,7 @@
 
 //## Uses: <unnamed>%3705E97B0239;ZAApplicationOption { -> }
 
-class ZIViewPageReduced : public ZIGenericPropPage  //## Inherits: <unnamed>%370530CC0222
+class ZIViewPageReduced : public PSS_GenericPropPage
 {
   //## begin ZIViewPageReduced%334FC4610072.initialDeclarations preserve=yes
     public:

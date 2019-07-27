@@ -1,12 +1,16 @@
 /****************************************************************************
- * ==> PSS_PosSizePropertyPage ---------------------------------------------*
+ * ==> PSS_SelectProcessWizardStartDialog ----------------------------------*
  ****************************************************************************
- * Description : Provides a position and size property page                 *
+ * Description : Provides a select process Wizard start dialog box          *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_PosSizePropertyPageH
-#define PSS_PosSizePropertyPageH
+#ifndef PSS_SelectProcessWizardStartDialogH
+#define PSS_SelectProcessWizardStartDialogH
+
+#if _MSC_VER > 1000
+    #pragma once
+#endif
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -17,13 +21,11 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "PSS_GenericPropPage.h"
+#include "zBaseLib\ZWizard.h"
+#include "ZSearchEdit.h"
 
 // resources
-#include "zRes32\ZRes.h"
-
-// forward declaration
-class PlanFinObject;
+#include "zWinUtil32\zWinUtil32Res.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -36,48 +38,40 @@ class PlanFinObject;
 #endif
 
 /**
-* Position and size property page
+* Select process Wizard start dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PosSizePropertyPage : public PSS_GenericPropPage
+class PSS_SelectProcessWizardStartDialog : public ZIWizardDialog
 {
     public:
+        /**
+        * Constructor
+        *@param processName - process name
+        *@param pParent - parent window, can be NULL
+        */
+        PSS_SelectProcessWizardStartDialog(const CString& processName, CWnd* pParent = NULL);
+
+    protected:
+        /// ClassWizard generated virtual function overrides
+        //{{AFX_VIRTUAL(PSS_SelectProcessWizardStartDialog)
+        virtual void DoDataExchange(CDataExchange* pDX);
+        //}}AFX_VIRTUAL
+
+        /// Generated message map functions
+        //{{AFX_MSG(PSS_SelectProcessWizardStartDialog)
+        //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
+
+    private:
         /**
         * Dialog resources
         */
         enum
         {
-            IDD = IDD_SIZE_POSITION_PROPERTY
+            IDD = IDD_WZCHOOSEPROC_WELCOME
         };
 
-        double m_PositionX;
-        double m_PositionY;
-        double m_Width;
-        double m_Height;
-
-        /**
-        * Constructor
-        *@param pObj - planfin object
-        */
-        PSS_PosSizePropertyPage(PlanFinObject* pObj = NULL);
-
-        /**
-        * Saves the values to object
-        */
-        virtual void SaveValuesToObject();
-
-    protected:
-        /**
-        * DDX/DDV support
-        *@param pDX - DDX/DDV data
-        */
-        virtual void DoDataExchange(CDataExchange* pDX);
-
-        /// Generated message map functions
-        //{{AFX_MSG(PSS_PosSizePropertyPage)
-        virtual BOOL OnInitDialog();
-        //}}AFX_MSG
-        DECLARE_MESSAGE_MAP()
+        CString m_ProcessName;
 };
 
 #endif

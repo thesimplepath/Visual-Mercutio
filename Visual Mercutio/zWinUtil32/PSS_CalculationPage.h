@@ -19,7 +19,7 @@
 
 // processsoft
 #include "zBaseLib\AppOpt.h"
-#include "PropPage.h"
+#include "PSS_GenericPropPage.h"
 
 // resources
 #ifndef _WIN32
@@ -43,7 +43,7 @@
 * Text button with alignement style
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_CalculationPage : public ZIGenericPropPage
+class PSS_CalculationPage : public PSS_GenericPropPage
 {
     public:
         /**

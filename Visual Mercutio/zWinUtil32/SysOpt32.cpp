@@ -110,14 +110,21 @@ int ZISystemOption::DoModal()
 {
     if (PSS_BasePropSheet::DoModal() == IDOK)
     {
-        // Run throughout all pages and test if the page
-        // has been initialized. If it is the case,
-        // requests to save
-        CObArray&    PageArray = GetPageArray();
-          for (int i = 0; i < PageArray.GetSize(); ++i)
-              if (((ZIGenericPropPage*)(PageArray[i]))->HasBeenInitialized())
-                  ((ZIGenericPropPage*)(PageArray[i]))->SaveValuesToObject();
+              CObArray&   pageArray = GetPageArray();
+        const std::size_t pageCount = pageArray.GetSize();
+
+        // iterate through all pages and test if the page has been initialized, save it if it is the case
+        for (int i = 0; i < pageCount; ++i)
+        {
+            PSS_GenericPropPage* pPage = (PSS_GenericPropPage*)pageArray[i];
+            ASSERT(pPage);
+
+            if (pPage->Initialized())
+                pPage->SaveValuesToObject();
+        }
+
         return IDOK;
     }
+
     return IDCANCEL;
 }

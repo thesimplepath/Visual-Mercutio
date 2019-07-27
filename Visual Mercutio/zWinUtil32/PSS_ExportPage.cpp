@@ -20,7 +20,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_ExportPage, ZIGenericPropPage)
+BEGIN_MESSAGE_MAP(PSS_ExportPage, PSS_GenericPropPage)
     //{{AFX_MSG_MAP(PSS_ExportPage)
     //ON_BN_CLICKED(IDC_SELECT, OnSelect)
     //}}AFX_MSG_MAP
@@ -29,11 +29,11 @@ END_MESSAGE_MAP()
 // PSS_ExportPage
 //---------------------------------------------------------------------------
 PSS_ExportPage::PSS_ExportPage(ZAApplicationOption* pApplicationOptions) :
-    ZIGenericPropPage(PSS_ExportPage::IDD, pApplicationOptions)
+    PSS_GenericPropPage(PSS_ExportPage::IDD, pApplicationOptions)
 {}
 //---------------------------------------------------------------------------
 PSS_ExportPage::PSS_ExportPage(const PSS_ExportPage& other) :
-    ZIGenericPropPage(PSS_ExportPage::IDD, NULL)
+    PSS_GenericPropPage(PSS_ExportPage::IDD, NULL)
 {
     THROW("Copy constructor isn't allowed for this class");
 }
@@ -98,7 +98,7 @@ BOOL PSS_ExportPage::OnInitDialog()
 //---------------------------------------------------------------------------
 void PSS_ExportPage::OnOK()
 {
-    if (HasBeenInitialized())
+    if (Initialized())
         SaveValuesToObject();
 }
 //---------------------------------------------------------------------------

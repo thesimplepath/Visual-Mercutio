@@ -19,7 +19,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_GeneralPage, ZIGenericPropPage)
+BEGIN_MESSAGE_MAP(PSS_GeneralPage, PSS_GenericPropPage)
     //{{AFX_MSG_MAP(PSS_GeneralPage)
     ON_BN_CLICKED(IDC_RELOADLASTFILE, OnReloadLastFile)
     ON_BN_CLICKED(IDC_STARTUPOPENFILE, OnStartupOpenFile)
@@ -30,11 +30,11 @@ END_MESSAGE_MAP()
 // PSS_GeneralPage
 //---------------------------------------------------------------------------
 PSS_GeneralPage::PSS_GeneralPage(ZAApplicationOption* pApplicationOptions) :
-    ZIGenericPropPage(PSS_GeneralPage::IDD, pApplicationOptions)
+    PSS_GenericPropPage(PSS_GeneralPage::IDD, pApplicationOptions)
 {}
 //---------------------------------------------------------------------------
 PSS_GeneralPage::PSS_GeneralPage(const PSS_GeneralPage& other) :
-    ZIGenericPropPage(PSS_GeneralPage::IDD, NULL)
+    PSS_GenericPropPage(PSS_GeneralPage::IDD, NULL)
 {
     THROW("Copy constructor isn't allowed for this class");
 }
@@ -123,7 +123,7 @@ void PSS_GeneralPage::OnStartupOpenFile()
 //---------------------------------------------------------------------------
 void PSS_GeneralPage::OnOK()
 {
-    if (HasBeenInitialized())
+    if (Initialized())
         SaveValuesToObject();
 }
 //---------------------------------------------------------------------------

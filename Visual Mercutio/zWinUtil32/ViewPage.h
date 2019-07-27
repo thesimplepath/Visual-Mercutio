@@ -3,8 +3,8 @@
 #define ViewPage_h 1
 
 // processsoft
-#include "PropPage.h"
 #include "zBaseLib\AppOpt.h"
+#include "PSS_GenericPropPage.h"
 
 // resources
 #ifndef _WIN32
@@ -13,90 +13,63 @@
     #include "zWinUtil32Res.h"
 #endif
 
-//## Class: ZIViewPage%334FC4610072
-//    This page contains view options for the system.
-//## Category: ZWinUtil library::Options classes::Property page for options%3705BE0901B4
-//## Subsystem: ZWinUtil%36DEE1730346
-//## Persistence: Transient
-//## Cardinality/Multiplicity: n
-
-//## Uses: <unnamed>%3705E97B0239;ZAApplicationOption { -> }
-
-class ZIViewPage : public ZIGenericPropPage  //## Inherits: <unnamed>%370530CC0222
+class ZIViewPage : public PSS_GenericPropPage
 {
-  //## begin ZIViewPage%334FC4610072.initialDeclarations preserve=yes
     public:
-    // Dialog Data
-        //{{AFX_DATA(ZIViewPage)
-    enum { IDD = IDD_VIEWPAGE };
-    BOOL    m_bCalculatedField;
-    BOOL    m_bShowHiddenField;
-    BOOL    m_bAnimationShow;
-    BOOL    m_bShowBoundsRect;
-    BOOL    m_AutomaticCreateFieldName;
-    //}}AFX_DATA
-  //## end ZIViewPage%334FC4610072.initialDeclarations
+        /**
+        * Dialog resources
+        */
+        enum
+        {
+            IDD = IDD_VIEWPAGE
+        };
 
-  public:
-    //## Constructors (specified)
-      //## Operation: ZIViewPage%923121235
-      ZIViewPage (ZAApplicationOption* pApplicationOptions);
+        BOOL m_bCalculatedField;
+        BOOL m_bShowHiddenField;
+        BOOL m_bAnimationShow;
+        BOOL m_bShowBoundsRect;
+        BOOL m_AutomaticCreateFieldName;
 
-    //## Destructor (generated)
-      ~ZIViewPage();
+        /**
+        * Constructor
+        *@param pApplicationOptions - application options
+        */
+        ZIViewPage (ZAApplicationOption* pApplicationOptions);
 
+        virtual ~ZIViewPage();
 
-    //## Other Operations (specified)
-      //## Operation: SaveValuesToObject%923121236
-      virtual void SaveValuesToObject ();
+        /**
+        * Saves the values to object
+        */
+        virtual void SaveValuesToObject();
 
-    // Additional Public Declarations
-      //## begin ZIViewPage%334FC4610072.public preserve=yes
-      //## end ZIViewPage%334FC4610072.public
+    protected:
+        /**
+        * Do data exchange mecanism of MFC dialog
+        *@param pDX - DDX/DDV data
+        */
+        virtual void DoDataExchange (CDataExchange* pDX);
 
-  protected:
+        /// Generated message map functions
+        //{{AFX_MSG(ZIViewPage)
+        virtual BOOL OnInitDialog();
+        virtual void OnOK();
+        //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
 
-    //## Other Operations (specified)
-      //## Operation: DoDataExchange%827992043
-      //    Do data exchange mecanism of MFC dialog
-      virtual void DoDataExchange (CDataExchange* pDX);
+    private:
+        /**
+        * Copy constructor
+        *@param other - other object to copy from
+        */
+        ZIViewPage(const ZIViewPage& other);
 
-    // Additional Protected Declarations
-      //## begin ZIViewPage%334FC4610072.protected preserve=yes
-      
-    // Generated message map functions
-    //{{AFX_MSG(ZIViewPage)
-    virtual BOOL OnInitDialog();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
-    virtual void OnOK();    
-    
-      //## end ZIViewPage%334FC4610072.protected
-  private:
-    //## Constructors (generated)
-      ZIViewPage(const ZIViewPage &right);
-
-    //## Assignment Operation (generated)
-      const ZIViewPage & operator=(const ZIViewPage &right);
-
-    // Additional Private Declarations
-      //## begin ZIViewPage%334FC4610072.private preserve=yes
-      //## end ZIViewPage%334FC4610072.private
-
-  private: //## implementation
-    // Additional Implementation Declarations
-      //## begin ZIViewPage%334FC4610072.implementation preserve=yes
-      //## end ZIViewPage%334FC4610072.implementation
-
+        /**
+        * Copy operator
+        *@param other - other object to copy from
+        *@return copy of itself
+        */
+        const ZIViewPage& operator = (const ZIViewPage& other);
 };
-
-//## begin ZIViewPage%334FC4610072.postscript preserve=yes
-//## end ZIViewPage%334FC4610072.postscript
-
-// Class ZIViewPage 
-
-//## begin module%334FC463032F.epilog preserve=yes
-//## end module%334FC463032F.epilog
-
 
 #endif

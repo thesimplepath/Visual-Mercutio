@@ -29,48 +29,29 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-BEGIN_MESSAGE_MAP(ZIViewPage, ZIGenericPropPage)
+BEGIN_MESSAGE_MAP(ZIViewPage, PSS_GenericPropPage)
     //{{AFX_MSG_MAP(ZIViewPage)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-//## end module%334FC463032D.additionalDeclarations
 
-
-// Class ZIViewPage 
-
-ZIViewPage::ZIViewPage (ZAApplicationOption* pApplicationOptions)
-  //## begin ZIViewPage::ZIViewPage%923121235.hasinit preserve=no
-  //## end ZIViewPage::ZIViewPage%923121235.hasinit
-  //## begin ZIViewPage::ZIViewPage%923121235.initialization preserve=yes
-    : ZIGenericPropPage(ZIViewPage::IDD, pApplicationOptions)
-  //## end ZIViewPage::ZIViewPage%923121235.initialization
-{
-  //## begin ZIViewPage::ZIViewPage%923121235.body preserve=yes
-  //## end ZIViewPage::ZIViewPage%923121235.body
-}
-
+ZIViewPage::ZIViewPage(ZAApplicationOption* pApplicationOptions) :
+    PSS_GenericPropPage(ZIViewPage::IDD, pApplicationOptions)
+{}
 
 ZIViewPage::~ZIViewPage()
-{
-  //## begin ZIViewPage::~ZIViewPage%.body preserve=yes
-  //## end ZIViewPage::~ZIViewPage%.body
-}
+{}
 
-
-
-//## Other Operations (implementation)
 void ZIViewPage::DoDataExchange (CDataExchange* pDX)
 {
-  //## begin ZIViewPage::DoDataExchange%827992043.body preserve=yes
     CDialog::DoDataExchange(pDX);
+
     //{{AFX_DATA_MAP(ZIViewPage)
-    DDX_Check(pDX, IDC_CALCULATEDFIELD, m_bCalculatedField);
-    DDX_Check(pDX, IDC_SHOWHIDDENFIELDS, m_bShowHiddenField);
-    DDX_Check(pDX, IDC_ANIMATION, m_bAnimationShow);
-    DDX_Check(pDX, IDC_SHOWBOUNDSRECT, m_bShowBoundsRect);
+    DDX_Check(pDX, IDC_CALCULATEDFIELD,     m_bCalculatedField);
+    DDX_Check(pDX, IDC_SHOWHIDDENFIELDS,    m_bShowHiddenField);
+    DDX_Check(pDX, IDC_ANIMATION,           m_bAnimationShow);
+    DDX_Check(pDX, IDC_SHOWBOUNDSRECT,      m_bShowBoundsRect);
     DDX_Check(pDX, IDC_AUTOCREATEFIELDNAME, m_AutomaticCreateFieldName);
     //}}AFX_DATA_MAP
-  //## end ZIViewPage::DoDataExchange%827992043.body
 }
 
 void ZIViewPage::SaveValuesToObject ()
@@ -102,15 +83,12 @@ BOOL ZIViewPage::OnInitDialog()
       
     CDialog::OnInitDialog();
 
-    return TRUE;  // return TRUE  unless you set the focus to a control
+    // return TRUE unless the focus is set to a control
+    return TRUE;
 }
 
 void ZIViewPage::OnOK()
 {
-    if (HasBeenInitialized())
+    if (Initialized())
         SaveValuesToObject();
 }
-
-  //## end ZIViewPage%334FC4610072.declarations
-//## begin module%334FC463032D.epilog preserve=yes
-//## end module%334FC463032D.epilog

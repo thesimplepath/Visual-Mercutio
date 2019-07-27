@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\AppOpt.h"
-#include "PropPage.h"
+#include "PSS_GenericPropPage.h"
 
 // resources
 #ifndef _WIN32
@@ -23,7 +23,7 @@
 * Export options page
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_ExportPage : public ZIGenericPropPage
+class PSS_ExportPage : public PSS_GenericPropPage
 {
     public:
         /**

@@ -18,7 +18,7 @@
 
 // processsoft
 #include "zBaseLib\AppOpt.h"
-#include "PropPage.h"
+#include "PSS_GenericPropPage.h"
 
 // resources
 #ifndef _WIN32
@@ -41,7 +41,7 @@
 * Navigation page
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_NavigationPage : public ZIGenericPropPage
+class PSS_NavigationPage : public PSS_GenericPropPage
 {
     public:
         /**

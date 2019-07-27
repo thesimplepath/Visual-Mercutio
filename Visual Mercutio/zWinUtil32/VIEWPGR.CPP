@@ -29,46 +29,27 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-BEGIN_MESSAGE_MAP(ZIViewPageReduced, ZIGenericPropPage)
+BEGIN_MESSAGE_MAP(ZIViewPageReduced, PSS_GenericPropPage)
     //{{AFX_MSG_MAP(ZIViewPageReduced)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-//## end module%334FC463032D.additionalDeclarations
 
-
-// Class ZIViewPageReduced 
-
-ZIViewPageReduced::ZIViewPageReduced (ZAApplicationOption* pApplicationOptions)
-  //## begin ZIViewPageReduced::ZIViewPageReduced%923121235.hasinit preserve=no
-  //## end ZIViewPageReduced::ZIViewPageReduced%923121235.hasinit
-  //## begin ZIViewPageReduced::ZIViewPageReduced%923121235.initialization preserve=yes
-    : ZIGenericPropPage(ZIViewPageReduced::IDD, pApplicationOptions)
-  //## end ZIViewPageReduced::ZIViewPageReduced%923121235.initialization
-{
-  //## begin ZIViewPageReduced::ZIViewPageReduced%923121235.body preserve=yes
-  //## end ZIViewPageReduced::ZIViewPageReduced%923121235.body
-}
-
+ZIViewPageReduced::ZIViewPageReduced(ZAApplicationOption* pApplicationOptions) :
+    PSS_GenericPropPage(ZIViewPageReduced::IDD, pApplicationOptions)
+{}
 
 ZIViewPageReduced::~ZIViewPageReduced()
+{}
+
+void ZIViewPageReduced::DoDataExchange(CDataExchange* pDX)
 {
-  //## begin ZIViewPageReduced::~ZIViewPageReduced%.body preserve=yes
-  //## end ZIViewPageReduced::~ZIViewPageReduced%.body
-}
-
-
-
-//## Other Operations (implementation)
-void ZIViewPageReduced::DoDataExchange (CDataExchange* pDX)
-{
-  //## begin ZIViewPageReduced::DoDataExchange%827992043.body preserve=yes
     CDialog::DoDataExchange(pDX);
+
     //{{AFX_DATA_MAP(ZIViewPageReduced)
-    DDX_Check(pDX, IDC_CALCULATEDFIELD, m_bCalculatedField);
+    DDX_Check(pDX, IDC_CALCULATEDFIELD,  m_bCalculatedField);
     DDX_Check(pDX, IDC_SHOWHIDDENFIELDS, m_bShowHiddenField);
-    DDX_Check(pDX, IDC_ANIMATION, m_bAnimationShow);
+    DDX_Check(pDX, IDC_ANIMATION,        m_bAnimationShow);
     //}}AFX_DATA_MAP
-  //## end ZIViewPageReduced::DoDataExchange%827992043.body
 }
 
 void ZIViewPageReduced::SaveValuesToObject ()
@@ -96,16 +77,12 @@ BOOL ZIViewPageReduced::OnInitDialog()
       
     CDialog::OnInitDialog();
 
-    return TRUE;  // return TRUE  unless you set the focus to a control
+    // return TRUE unless the focus is set to a control
+    return TRUE;
 }
 
 void ZIViewPageReduced::OnOK()
 {
-    if (HasBeenInitialized())
+    if (Initialized())
         SaveValuesToObject();
 }
-
-
-  //## end ZIViewPageReduced%334FC4610072.declarations
-//## begin module%334FC463032D.epilog preserve=yes
-//## end module%334FC463032D.epilog

@@ -17,7 +17,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_CalculationPage, ZIGenericPropPage)
+BEGIN_MESSAGE_MAP(PSS_CalculationPage, PSS_GenericPropPage)
     //{{AFX_MSG_MAP(PSS_CalculationPage)
     ON_BN_CLICKED(IDC_AUTOCALCULATION, OnAutocalculation)
     //}}AFX_MSG_MAP
@@ -26,11 +26,11 @@ END_MESSAGE_MAP()
 // PSS_CalculationPage
 //---------------------------------------------------------------------------
 PSS_CalculationPage::PSS_CalculationPage(ZAApplicationOption* pApplicationOptions) :
-    ZIGenericPropPage(PSS_CalculationPage::IDD, pApplicationOptions)
+    PSS_GenericPropPage(PSS_CalculationPage::IDD, pApplicationOptions)
 {}
 //---------------------------------------------------------------------------
 PSS_CalculationPage::PSS_CalculationPage(const PSS_CalculationPage& other) :
-    ZIGenericPropPage(PSS_CalculationPage::IDD, NULL)
+    PSS_GenericPropPage(PSS_CalculationPage::IDD, NULL)
 {
     THROW("Copy constructor isn't allowed for this class");
 }
@@ -80,7 +80,7 @@ void PSS_CalculationPage::OnAutocalculation()
 //---------------------------------------------------------------------------
 void PSS_CalculationPage::OnOK()
 {
-    if (HasBeenInitialized())
+    if (Initialized())
         SaveValuesToObject();
 }
 //---------------------------------------------------------------------------

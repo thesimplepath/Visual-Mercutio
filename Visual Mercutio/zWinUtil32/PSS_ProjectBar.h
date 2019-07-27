@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ProjectWndC.h"
+#include "PSS_ProjectWindowTreeCtrl.h"
 
 // resources
 #include "zWinUtil32\zWinUtil32Res.h"
@@ -68,8 +68,8 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-    ZCProjectWindowTree m_ProjectWindowCtrl;
-    BOOL                m_VisibleOnly;
+    PSS_ProjectWindowTreeCtrl m_ProjectWindowCtrl;
+    BOOL                      m_VisibleOnly;
 };
 
 #endif

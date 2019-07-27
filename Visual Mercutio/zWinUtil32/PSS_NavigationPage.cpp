@@ -16,7 +16,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_NavigationPage, ZIGenericPropPage)
+BEGIN_MESSAGE_MAP(PSS_NavigationPage, PSS_GenericPropPage)
     //{{AFX_MSG_MAP(PSS_NavigationPage)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -24,12 +24,12 @@ END_MESSAGE_MAP()
 // PSS_NavigationPage
 //---------------------------------------------------------------------------
 PSS_NavigationPage::PSS_NavigationPage(ZAApplicationOption* pApplicationOptions) :
-    ZIGenericPropPage(PSS_NavigationPage::IDD, pApplicationOptions),
+    PSS_GenericPropPage(PSS_NavigationPage::IDD, pApplicationOptions),
     m_GoNextEdit(FALSE)
 {}
 //---------------------------------------------------------------------------
 PSS_NavigationPage::PSS_NavigationPage(const PSS_NavigationPage& other) :
-    ZIGenericPropPage(PSS_NavigationPage::IDD, NULL)
+    PSS_GenericPropPage(PSS_NavigationPage::IDD, NULL)
 {
     THROW("Copy constructor isn't allowed for this class");
 }
@@ -73,7 +73,7 @@ BOOL PSS_NavigationPage::OnInitDialog()
 //---------------------------------------------------------------------------
 void PSS_NavigationPage::OnOK()
 {
-    if (HasBeenInitialized())
+    if (Initialized())
         SaveValuesToObject();
 }
 //---------------------------------------------------------------------------

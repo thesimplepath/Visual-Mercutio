@@ -20,7 +20,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_PosSizePropertyPage, CPropertyPage)
+BEGIN_MESSAGE_MAP(PSS_PosSizePropertyPage, PSS_GenericPropPage)
     //{{AFX_MSG_MAP(PSS_PosSizePropertyPage)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -28,7 +28,7 @@ END_MESSAGE_MAP()
 // PSS_PosSizePropertyPage
 //---------------------------------------------------------------------------
 PSS_PosSizePropertyPage::PSS_PosSizePropertyPage(PlanFinObject* pObj) :
-    ZIGenericPropPage(PSS_PosSizePropertyPage::IDD, pObj),
+    PSS_GenericPropPage(PSS_PosSizePropertyPage::IDD, pObj),
     m_PositionX(0.0),
     m_PositionY(0.0),
     m_Width(0.0),

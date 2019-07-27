@@ -17,8 +17,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "PropPage.h"
 #include "zBaseLib\AppOpt.h"
+#include "PSS_GenericPropPage.h"
 
 // resources
 #include "zWinUtil32\zWinUtil32Res.h"
@@ -37,7 +37,7 @@
 * General page
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_GeneralPage : public ZIGenericPropPage
+class AFX_EXT_CLASS PSS_GeneralPage : public PSS_GenericPropPage
 {
     public:
         /**

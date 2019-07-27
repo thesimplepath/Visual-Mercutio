@@ -19,9 +19,6 @@
 // mfc
 #include "Mfc.h"
 
-// processsoft
-#include "PropPage.h"
-
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
     #undef AFX_EXT_CLASS
