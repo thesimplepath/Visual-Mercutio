@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_ActivityAttributionValueInputDialog -----------------------------*
+ * ==> PSS_ActivityAttributionInputValueDialog -----------------------------*
  ****************************************************************************
- * Description : Provides the activity attribution value input dialog box   *
+ * Description : Provides the activity attribution input value dialog box   *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include "stdafx.h"
-#include "PSS_ActivityAttributionValueInputDialog.h"
+#include "PSS_ActivityAttributionInputValueDialog.h"
 
 #include "ZVChooseResources.h"
 #include "zBaseLib\ZBTokenizer.h"
@@ -22,8 +22,8 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_ActivityAttributionValueInputDialog, ZIWizardDialog)
-    //{{AFX_MSG_MAP(ZIActivityAttributionValueInput)
+BEGIN_MESSAGE_MAP(PSS_ActivityAttributionInputValueDialog, ZIWizardDialog)
+    //{{AFX_MSG_MAP(PSS_ActivityAttributionInputValueDialog)
     ON_BN_CLICKED(IDNEXT, OnNext)
     ON_BN_CLICKED(IDC_ADDUSER, OnAddUser)
     ON_BN_CLICKED(IDC_REMOVEUSER, OnDeleteUser)
@@ -34,9 +34,9 @@ BEGIN_MESSAGE_MAP(PSS_ActivityAttributionValueInputDialog, ZIWizardDialog)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
-// PSS_ActivityAttributionValueInputDialog
+// PSS_ActivityAttributionInputValueDialog
 //---------------------------------------------------------------------------
-PSS_ActivityAttributionValueInputDialog::PSS_ActivityAttributionValueInputDialog(ZUUserManager& userManager,
+PSS_ActivityAttributionInputValueDialog::PSS_ActivityAttributionInputValueDialog(ZUUserManager& userManager,
                                                                                  ZUMail&        mail,
                                                                                  ZActivity*     pActivity,
                                                                                  BOOL           lastActivity,
@@ -44,7 +44,7 @@ PSS_ActivityAttributionValueInputDialog::PSS_ActivityAttributionValueInputDialog
                                                                                  BOOL           timeAttribution,
                                                                                  BOOL           visibilityAttribution,
                                                                                  CWnd*          pParent) :
-    ZIWizardDialog(PSS_ActivityAttributionValueInputDialog::IDD,
+    ZIWizardDialog(PSS_ActivityAttributionInputValueDialog::IDD,
                    IDB_WZBMP1,
                    0,
                    0,
@@ -64,7 +64,7 @@ PSS_ActivityAttributionValueInputDialog::PSS_ActivityAttributionValueInputDialog
     ASSERT(m_pActivity);
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityAttributionValueInputDialog::DoDataExchange(CDataExchange* pDX)
+void PSS_ActivityAttributionInputValueDialog::DoDataExchange(CDataExchange* pDX)
 {
     ZIWizardDialog::DoDataExchange(pDX);
 
@@ -76,7 +76,7 @@ void PSS_ActivityAttributionValueInputDialog::DoDataExchange(CDataExchange* pDX)
     //}}AFX_DATA_MAP
 }
 //---------------------------------------------------------------------------
-BOOL PSS_ActivityAttributionValueInputDialog::OnInitDialog()
+BOOL PSS_ActivityAttributionInputValueDialog::OnInitDialog()
 {
     ZIWizardDialog::OnInitDialog();
 
@@ -123,7 +123,7 @@ BOOL PSS_ActivityAttributionValueInputDialog::OnInitDialog()
     return TRUE;
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityAttributionValueInputDialog::OnAddUser()
+void PSS_ActivityAttributionInputValueDialog::OnAddUser()
 {
     ZVChooseResources chooseResources(m_UserManager);
 
@@ -146,7 +146,7 @@ void PSS_ActivityAttributionValueInputDialog::OnAddUser()
     CheckControlState();
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityAttributionValueInputDialog::OnDeleteUser()
+void PSS_ActivityAttributionInputValueDialog::OnDeleteUser()
 {
     const int curSel = m_UserList.GetCurSel();
 
@@ -156,12 +156,12 @@ void PSS_ActivityAttributionValueInputDialog::OnDeleteUser()
     CheckControlState();
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityAttributionValueInputDialog::OnSelChangeUserList()
+void PSS_ActivityAttributionInputValueDialog::OnSelChangeUserList()
 {
     CheckControlState();
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityAttributionValueInputDialog::OnOK()
+void PSS_ActivityAttributionInputValueDialog::OnOK()
 {
     if (!CheckData())
         return;
@@ -171,7 +171,7 @@ void PSS_ActivityAttributionValueInputDialog::OnOK()
     ZIWizardDialog::OnOK();
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityAttributionValueInputDialog::OnNext()
+void PSS_ActivityAttributionInputValueDialog::OnNext()
 {
     if (!CheckData())
         return;
@@ -180,7 +180,7 @@ void PSS_ActivityAttributionValueInputDialog::OnNext()
     EndDialog(IDNEXT);
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityAttributionValueInputDialog::OnAddEmail()
+void PSS_ActivityAttributionInputValueDialog::OnAddEmail()
 {
     CString title;
     title.LoadString(IDS_ENTER_EMAILADRESS);
@@ -197,12 +197,12 @@ void PSS_ActivityAttributionValueInputDialog::OnAddEmail()
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityAttributionValueInputDialog::OnVisibilityType()
+void PSS_ActivityAttributionInputValueDialog::OnVisibilityType()
 {
     CheckControlState();
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityAttributionValueInputDialog::CheckControlState()
+void PSS_ActivityAttributionInputValueDialog::CheckControlState()
 {
     UpdateData();
 
@@ -225,7 +225,7 @@ void PSS_ActivityAttributionValueInputDialog::CheckControlState()
        GetDlgItem(IDC_TIMEOUT)->EnableWindow(m_TimeAttribution && m_VisibilityType != 1);
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityAttributionValueInputDialog::SaveState()
+void PSS_ActivityAttributionInputValueDialog::SaveState()
 {
     UpdateData();
 
@@ -248,7 +248,7 @@ void PSS_ActivityAttributionValueInputDialog::SaveState()
     m_pActivity->SetVisibility(!m_VisibilityType ? E_TS_True : E_TS_False);
 }
 //---------------------------------------------------------------------------
-BOOL PSS_ActivityAttributionValueInputDialog::CheckData()
+BOOL PSS_ActivityAttributionInputValueDialog::CheckData()
 {
     UpdateData();
 

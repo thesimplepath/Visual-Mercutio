@@ -1,16 +1,12 @@
 /****************************************************************************
- * ==> PSS_ActivityAttributionValueInputDialog -----------------------------*
+ * ==> PSS_ActivityAttributionInputBackupDialog ----------------------------*
  ****************************************************************************
- * Description : Provides the activity attribution value input dialog box   *
+ * Description : Provides an activity attribution input backup dialog box   *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_ActivityAttributionValueInputDialogH
-#define PSS_ActivityAttributionValueInputDialogH
-
-#if _MSC_VER > 1000
-    #pragma once
-#endif
+#ifndef PSS_ActivityAttributionInputBackupDialogH
+#define PSS_ActivityAttributionInputBackupDialogH
 
  // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -26,13 +22,6 @@
 #include "zBaseLib\UserMng.h"
 #include "zEvent\Activity.h"
 
-// resources
-#ifndef _WIN32
-    #include "zWinUtilRes.h"
-#else
-    #include "zWinUtil32Res.h"
-#endif
-
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
     #undef AFX_EXT_CLASS
@@ -43,41 +32,47 @@
     #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
+// resources
+#ifndef _WIN32
+    #include "zWinUtilRes.h"
+#else
+    #include "zWinUtil32Res.h"
+#endif
+
 /**
-* Activity attribution welcome dialog box
+* Activity attribution input backup dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_ActivityAttributionValueInputDialog : public ZIWizardDialog
+class PSS_ActivityAttributionInputBackupDialog : public ZIWizardDialog
 {
     public:
         /**
-        * Dialog resources
+        * Dialog data
         */
         enum
         {
-            IDD = IDD_WZTIMERESOURCE_ATTR
+            IDD = IDD_WZBACKRESOURCE_ATTR
         };
-
-        CListBox m_UserList;
-        CString  m_ActivityName;
-        UINT     m_TimeOutDays;
-        int      m_VisibilityType;
 
         /**
         * Constructor
         *@param userManager - user manager
+        *@param mail - mail
+        *@param pActivity - activity
+        *@param lastActivity - if TRUE, activity is the last activity
         *@param pParent - parent window, can be NULL
         */
-        PSS_ActivityAttributionValueInputDialog(ZUUserManager& userManager,
-                                                ZUMail&        mail,
-                                                ZActivity*     pActivity,
-                                                BOOL           lastActivity,
-                                                BOOL           userAttribution       = TRUE,
-                                                BOOL           timeAttribution       = TRUE,
-                                                BOOL           visibilityAttribution = TRUE,
-                                                CWnd*          pParent               = NULL);
+        PSS_ActivityAttributionInputBackupDialog(ZUUserManager& userManager,
+                                                 ZUMail&        mail,
+                                                 ZActivity*     pActivity,
+                                                 BOOL           lastActivity,
+                                                 CWnd*          pParent = NULL);
 
-        virtual inline ZActivity* GetActivity() const;
+        /**
+        * Gets the activity
+        *@return the activity
+        */
+        virtual inline ZActivity* GetActivity();
 
     protected:
         /**
@@ -87,15 +82,14 @@ class PSS_ActivityAttributionValueInputDialog : public ZIWizardDialog
         virtual void DoDataExchange(CDataExchange* pDX);
 
         /// Generated message map functions
-        //{{AFX_MSG(PSS_ActivityAttributionValueInputDialog)
+        //{{AFX_MSG(PSS_ActivityAttributionInputBackupDialog)
         virtual BOOL OnInitDialog();
         afx_msg void OnAddUser();
         afx_msg void OnDeleteUser();
         afx_msg void OnSelChangeUserList();
+        afx_msg void OnAddEmail();
         virtual void OnOK();
         afx_msg void OnNext();
-        afx_msg void OnAddEmail();
-        afx_msg void OnVisibilityType();
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
     
@@ -103,10 +97,9 @@ class PSS_ActivityAttributionValueInputDialog : public ZIWizardDialog
         ZUUserManager& m_UserManager;
         ZUMail&        m_Mail;
         ZActivity*     m_pActivity;
+        CListBox       m_UserList;
+        CString        m_ActivityName;
         BOOL           m_LastActivity;
-        BOOL           m_UserAttribution;
-        BOOL           m_TimeAttribution;
-        BOOL           m_VisibilityAttribution;
 
         /**
         * Checks the control state
@@ -126,9 +119,9 @@ class PSS_ActivityAttributionValueInputDialog : public ZIWizardDialog
 };
 
 //---------------------------------------------------------------------------
-// PSS_ActivityAttributionValueInputDialog
+// PSS_ActivityAttributionInputBackupDialog
 //---------------------------------------------------------------------------
-ZActivity* PSS_ActivityAttributionValueInputDialog::GetActivity() const
+ZActivity* PSS_ActivityAttributionInputBackupDialog::GetActivity()
 {
     return m_pActivity;
 }

@@ -22,14 +22,14 @@
 //---------------------------------------------------------------------------
 // PSS_SelectProcessWizard
 //---------------------------------------------------------------------------
-PSS_SelectProcessWizard::PSS_SelectProcessWizard(ZProcess& Process) :
-    m_Process(Process)
+PSS_SelectProcessWizard::PSS_SelectProcessWizard(ZProcess& process) :
+    m_Process(process)
 {}
 //---------------------------------------------------------------------------
 PSS_SelectProcessWizard::~PSS_SelectProcessWizard()
 {}
 //---------------------------------------------------------------------------
-BOOL PSS_SelectProcessWizard::PlayWizard()
+BOOL PSS_SelectProcessWizard::Execute()
 {
     PSS_SelectProcessWizardStartDialog selectProcessWizardStartDialog(m_Process.GetName());
 

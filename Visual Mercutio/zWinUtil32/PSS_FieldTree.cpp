@@ -68,7 +68,7 @@ void PSS_FieldTree::Empty()
         m_pTreeCtrl->DeleteAllItems();
 }
 //---------------------------------------------------------------------------
-void PSS_FieldTree::Refresh ()
+void PSS_FieldTree::Refresh()
 {
     if (!m_pTreeCtrl)
         return;

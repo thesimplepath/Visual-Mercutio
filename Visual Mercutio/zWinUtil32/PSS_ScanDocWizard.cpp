@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_ScanDocuments ---------------------------------------------------*
+ * ==> PSS_ScanDocWizard ---------------------------------------------------*
  ****************************************************************************
- * Description : Provides a scan documents manager                          *
+ * Description : Provides a scan documents Wizard                           *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include <StdAfx.h>
-#include "PSS_ScanDocuments.h"
+#include "PSS_ScanDocWizard.h"
 
 // processsoft
 #include "zBaseLib\file.h"
@@ -18,28 +18,28 @@
 #include "PSS_ScanContinueSelectDialog.h"
 
 //---------------------------------------------------------------------------
-// PSS_ScanDocuments::IDocument
+// PSS_ScanDocWizard::IDocument
 //---------------------------------------------------------------------------
-PSS_ScanDocuments::IDocument::IDocument(const CString& fileName, const CString& name, const CString& description) :
+PSS_ScanDocWizard::IDocument::IDocument(const CString& fileName, const CString& name, const CString& description) :
     m_FileName(fileName),
     m_Name(name),
     m_Description(description)
 {}
 //---------------------------------------------------------------------------
-PSS_ScanDocuments::IDocument::~IDocument()
+PSS_ScanDocWizard::IDocument::~IDocument()
 {}
 //---------------------------------------------------------------------------
-// PSS_ScanDocuments
+// PSS_ScanDocWizard
 //---------------------------------------------------------------------------
-PSS_ScanDocuments::PSS_ScanDocuments()
+PSS_ScanDocWizard::PSS_ScanDocWizard()
 {}
 //---------------------------------------------------------------------------
-PSS_ScanDocuments::PSS_ScanDocuments(const PSS_ScanDocuments& other)
+PSS_ScanDocWizard::PSS_ScanDocWizard(const PSS_ScanDocWizard& other)
 {
     THROW("Copy constructor isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-PSS_ScanDocuments::~PSS_ScanDocuments()
+PSS_ScanDocWizard::~PSS_ScanDocWizard()
 {
     const std::size_t docCount = GetDocumentCount();
 
@@ -50,17 +50,17 @@ PSS_ScanDocuments::~PSS_ScanDocuments()
     m_Doc.RemoveAll();
 }
 //---------------------------------------------------------------------------
-const PSS_ScanDocuments& PSS_ScanDocuments::operator = (const PSS_ScanDocuments& other)
+const PSS_ScanDocWizard& PSS_ScanDocWizard::operator = (const PSS_ScanDocWizard& other)
 {
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-BOOL PSS_ScanDocuments::SelectDocuments()
+BOOL PSS_ScanDocWizard::Execute()
 {
     return ProcessSelection();
 }
 //---------------------------------------------------------------------------
-PSS_ScanDocuments::IDocument* PSS_ScanDocuments::GetDocumentAt(std::size_t index)
+PSS_ScanDocWizard::IDocument* PSS_ScanDocWizard::GetDocumentAt(std::size_t index)
 {
     if (index < std::size_t(m_Doc.GetSize()))
         return (IDocument*)m_Doc.GetAt(index);
@@ -68,7 +68,7 @@ PSS_ScanDocuments::IDocument* PSS_ScanDocuments::GetDocumentAt(std::size_t index
     return NULL;
 }
 //---------------------------------------------------------------------------
-void PSS_ScanDocuments::AddDocument(const CString& fileName, const CString& name, const CString& description)
+void PSS_ScanDocWizard::AddDocument(const CString& fileName, const CString& name, const CString& description)
 {
     std::unique_ptr<IDocument> pDoc(new IDocument(fileName, name, description));
     
@@ -79,7 +79,7 @@ void PSS_ScanDocuments::AddDocument(const CString& fileName, const CString& name
     }
 }
 //---------------------------------------------------------------------------
-BOOL PSS_ScanDocuments::ProcessSelection()
+BOOL PSS_ScanDocWizard::ProcessSelection()
 {
     PSS_ScanWelcomeDialog scanWelcomeDialog;
 

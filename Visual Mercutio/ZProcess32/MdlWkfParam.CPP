@@ -4,21 +4,18 @@
 #include "stdafx.h"
 #include "MdlWkfParam.h"
 
-#include "zWinUtil32\TmplSava.h"
+// processsoft
+#include "zBaseLib\MsgBox.h"
+#include "zWinUtil32\PSS_TemplateCopyDialog.h"
 #include "zModel\ProcGraphModelDoc.h"
 
-#include "zBaseLib\MsgBox.h"
-
 #ifdef _DEBUG
-#undef THIS_FILE
-static char BASED_CODE THIS_FILE[] = __FILE__;
+    #undef THIS_FILE
+    static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
-
-
 
 /////////////////////////////////////////////////////////////////////////////
 // ZVModelWorkflowParameters class
-
 
 ZVModelWorkflowParameters::ZVModelWorkflowParameters(BOOL Modify, ZDProcessGraphModelDoc* pDoc, ZDTemplateManager* pTemplateManager, CString FileExtension, CWnd* pParent /*=NULL*/)
     : m_Modify(Modify),
@@ -28,11 +25,9 @@ ZVModelWorkflowParameters::ZVModelWorkflowParameters(BOOL Modify, ZDProcessGraph
       m_CheckConsistency(false),
       m_SaveModelInWkfFile(false),
       m_FileExist(false)
-{
-}
+{}
 
-
-int    ZVModelWorkflowParameters::DoModal()
+int ZVModelWorkflowParameters::DoModal()
 {
 
     ZVModelWorkflowParametersWelcome    Welcome;
@@ -40,10 +35,10 @@ int    ZVModelWorkflowParameters::DoModal()
     if (Welcome.DoModal() == IDCANCEL)
         return IDCANCEL;
 
-    // Ask for process file destination
-    ZITemplateCopyDlg    TemplateCopyDlg( m_pTemplateManager, m_FileExtension, &m_FolderStamp, TRUE );
+    // ask for process file destination
+    PSS_TemplateCopyDialog templateCopyDialog(m_pTemplateManager, m_FileExtension, &m_FolderStamp, TRUE);
 
-    if (TemplateCopyDlg.DoModal() == IDCANCEL)
+    if (templateCopyDialog.DoModal() == IDCANCEL)
         return IDCANCEL;
 
     ZVModelWorkflowParametersOptions    Options( m_Modify, *m_pDoc );
@@ -51,19 +46,20 @@ int    ZVModelWorkflowParameters::DoModal()
     if (Options.DoModal() == IDCANCEL)
         return IDCANCEL;
             
-    // Save options
-    m_CheckConsistency = Options.GetCheckConsistency();
+    // save options
+    m_CheckConsistency   = Options.GetCheckConsistency();
     m_SaveModelInWkfFile = Options.GetSaveModelInWorkflow();
-    // Save template information 
-    m_FolderStamp.SetTemplate ( TemplateCopyDlg.GetFilename() );
-    m_FolderStamp.SetTemplate( TemplateCopyDlg.GetFilename() );
-    m_FolderStamp.SetExplanation( TemplateCopyDlg.GetDescription() );
-    m_FolderStamp.SetTitle( TemplateCopyDlg.GetTitle() );
-    // Set the file exist flag
-    m_FileExist = TemplateCopyDlg.FileChooseExists();
 
+    // save template information 
+    m_FolderStamp.SetTemplate (templateCopyDialog.GetFileName());
+    m_FolderStamp.SetTemplate(templateCopyDialog.GetFileName());
+    m_FolderStamp.SetExplanation(templateCopyDialog.GetDescription());
+    m_FolderStamp.SetTitle(templateCopyDialog.GetTitle());
 
-    return IDOK;    
+    // set the file exist flag
+    m_FileExist = templateCopyDialog.SelectedFileExists();
+
+    return IDOK;
 }
 
 

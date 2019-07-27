@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_CreateFolderWizardDialog ----------------------------------------*
+ * ==> PSS_CreateFolderWizard ----------------------------------------------*
  ****************************************************************************
- * Description : Provides a create folder Wizard dialog box                 *
+ * Description : Provides a create folder Wizard                            *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include "stdafx.h"
-#include "PSS_CreateFolderWizardDialog.h"
+#include "PSS_CreateFolderWizard.h"
 
 // processsoft
 #include "zBaseLib\File.h"
@@ -23,11 +23,11 @@
 //---------------------------------------------------------------------------
 // PSS_CreateFolderWizardDialog
 //---------------------------------------------------------------------------
-PSS_CreateFolderWizardDialog::PSS_CreateFolderWizardDialog(BOOL           useFolderNameAsFileName,
-                                                           const CString& fileDirectory,
-                                                           const CString& fileExtension,
-                                                           const CString& folderName,
-                                                           const CString& folderDescription) :
+PSS_CreateFolderWizard::PSS_CreateFolderWizard(BOOL           useFolderNameAsFileName,
+                                               const CString& fileDirectory,
+                                               const CString& fileExtension,
+                                               const CString& folderName,
+                                               const CString& folderDescription) :
     m_FileDirectory(fileDirectory),
     m_FolderName(folderName),
     m_FolderDescription(folderDescription),
@@ -35,10 +35,10 @@ PSS_CreateFolderWizardDialog::PSS_CreateFolderWizardDialog(BOOL           useFol
     m_UseFolderNameAsFileName(useFolderNameAsFileName)
 {}
 //---------------------------------------------------------------------------
-PSS_CreateFolderWizardDialog::~PSS_CreateFolderWizardDialog()
+PSS_CreateFolderWizard::~PSS_CreateFolderWizard()
 {}
 //---------------------------------------------------------------------------
-BOOL PSS_CreateFolderWizardDialog::PlayWizard()
+BOOL PSS_CreateFolderWizard::Execute()
 {
     PSS_CreateFolderWizardStartDialog createFolderWizardStart(m_UseFolderNameAsFileName,
                                                               m_FileDirectory,
@@ -138,7 +138,7 @@ BOOL PSS_CreateFolderWizardDialog::PlayWizard()
     return TRUE;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_CreateFolderWizardDialog::CheckFolderExist(const CString& fileName)
+BOOL PSS_CreateFolderWizard::CheckFolderExist(const CString& fileName)
 {
     // build the complete file name
     if (fileName.IsEmpty())

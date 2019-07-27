@@ -11,7 +11,7 @@
 #include "zBaseLib\ZISubject.h"
 #include "zBaseLib\ZIObserver.h"
 #include "ZCProcessModelDocument.h"
-#include "zWinUtil32\ZCFormTemplateTree.h"
+#include "zWinUtil32\PSS_FormTemplateTreeCtrl.h"
 #include "zWinUtil32\ZVURLWnd.h"
 #include "zWinUtil32\ZVFileWnd.h"
 #include "zBaseLib\ZCWorkspaceTreeCtrl.h"
@@ -127,7 +127,7 @@ public:
 
     ///////////////////////////////////////////////////////////
     // Form template methods
-    ZCFormTemplateTree* GetFormTemplateView();
+    PSS_FormTemplateTreeCtrl* GetFormTemplateView();
 
     void ActivateFormTemplateTab()
     {
@@ -310,7 +310,7 @@ private:
 
     ZCWorkspaceTreeCtrl        m_WorkspaceView;
     ZCProcessModelDocument    m_ProcessModelView;
-    ZCFormTemplateTree        m_FormTemplateView;
+    PSS_FormTemplateTreeCtrl  m_FormTemplateView;
     ZVUserGroup                m_UserView;
     ZVLogicalSystem            m_LogicalSystemView;
     ZVPrestations            m_PrestationsView;    // JMR-MODIF - Le 11 octobre 2005 - Ajout variable m_PrestationsView.
@@ -324,7 +324,7 @@ inline ZCProcessModelDocument* ZVProcessWorkspace::GetModelDocumentTree()
     return &m_ProcessModelView;
 }
 
-inline ZCFormTemplateTree* ZVProcessWorkspace::GetFormTemplateView()
+inline PSS_FormTemplateTreeCtrl* ZVProcessWorkspace::GetFormTemplateView()
 {
     return &m_FormTemplateView;
 }

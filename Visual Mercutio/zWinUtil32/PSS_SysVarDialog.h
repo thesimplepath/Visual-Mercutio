@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_SelectProcessWizard ---------------------------------------------*
+ * ==> PSS_SysVarDialog ----------------------------------------------------*
  ****************************************************************************
- * Description : Provides a select process Wizard                           *
+ * Description : Provides a system variables converter dialog box           *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_SelectProcessWizardH
-#define PSS_SelectProcessWizardH
+#ifndef PSS_SysVarDialogH
+#define PSS_SysVarDialogH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -21,15 +21,10 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zEvent\ZProcess.h"
+#include "zBaseLib\ZIDialog.h"
 
 // resources
-#ifndef _WIN32
-    #include "ZWinUtilRes.h"
-#endif
-#ifdef _WIN32
-    #include "ZWinUtil32Res.h"
-#endif
+#include "zWinUtil32Res.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -42,43 +37,57 @@
 #endif
 
 /**
-* Select process Wizard
+* System variables dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_SelectProcessWizard
+class AFX_EXT_CLASS PSS_SysVarDialog : public ZIDialog
 {
     public:
         /**
         * Constructor
-        *@param process - process
+        *@param pParent - parent window, can be NULL
         */
-        PSS_SelectProcessWizard(ZProcess& process);
-
-        virtual ~PSS_SelectProcessWizard();
+        PSS_SysVarDialog(CWnd* pParent = NULL);
 
         /**
-        * Executes the wizard
-        *@return TRUE on success, otherwise FALSE
+        * Gets the keyword
+        *@return the keyword
         */
-        virtual BOOL Execute();
+        virtual inline const CString GetKeyword() const;
 
-        /**
-        * Gets the base activity name
-        *@return the base activity name
-        */
-        virtual inline CString GetBaseActivityName() const;
+    protected:
+        // ClassWizard generated virtual function overrides
+        //{{AFX_VIRTUAL(PSS_SysVarDialog)
+        virtual void DoDataExchange(CDataExchange* pDX);
+        //}}AFX_VIRTUAL
+
+        // Generated message map functions
+        //{{AFX_MSG(PSS_SysVarDialog)
+        virtual BOOL OnInitDialog();
+        afx_msg void OnSelchangeSystemVarlist();
+        virtual void OnOK();
+        //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
 
     private:
-        ZProcess& m_Process;
-        CString   m_BaseActivityName;
+        /**
+        * Dialog resources
+        */
+        enum
+        {
+            IDD = IDD_SYSTEMVAR
+        };
+
+        CListBox m_SysVarList;
+        CString  m_Keyword;
 };
 
 //---------------------------------------------------------------------------
-// PSS_SelectProcessWizard
+// PSS_SysVarDialog
 //---------------------------------------------------------------------------
-CString PSS_SelectProcessWizard::GetBaseActivityName() const
+const CString PSS_SysVarDialog::GetKeyword() const
 {
-    return m_BaseActivityName;
+    return m_Keyword;
 }
 //---------------------------------------------------------------------------
 

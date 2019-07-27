@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_ActivityAttributionInputDialog ----------------------------------*
+ * ==> PSS_ActivityAttributionInputWizard ----------------------------------*
  ****************************************************************************
- * Description : Provides an activity attribution input dialog box          *
+ * Description : Provides an activity attribution input wizard              *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_ActivityAttributionInputDialogH
-#define PSS_ActivityAttributionInputDialogH
+#ifndef PSS_ActivityAttributionInputWizardH
+#define PSS_ActivityAttributionInputWizardH
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -32,10 +32,10 @@
 #endif
 
 /**
-* Activity attribution input dialog box
+* Activity attribution input Wizard
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_ActivityAttributionInputDialog
+class AFX_EXT_CLASS PSS_ActivityAttributionInputWizard
 {
     public:
         /**
@@ -50,7 +50,7 @@ class AFX_EXT_CLASS PSS_ActivityAttributionInputDialog
         *@param visibilityAttribution - if TRUE, is a visibility attribution
         *@param pParent - parent window, can be NULL
         */
-        PSS_ActivityAttributionInputDialog(ZUUserManager& userManager,
+        PSS_ActivityAttributionInputWizard(ZUUserManager& userManager,
                                            ZUMail&        mail,
                                            ZActivity*     pActivity,
                                            BOOL           lastActivity,
@@ -67,10 +67,10 @@ class AFX_EXT_CLASS PSS_ActivityAttributionInputDialog
         virtual inline ZActivity* GetActivity() const;
 
         /**
-        * Shows the dialog and wait until closed
+        * Executes the wizard
         *@return modal result
         */
-        virtual int DoModal();
+        virtual int Execute();
 
     private:
         ZUUserManager& m_UserManager;
@@ -96,9 +96,9 @@ class AFX_EXT_CLASS PSS_ActivityAttributionInputDialog
 };
 
 //---------------------------------------------------------------------------
-// PSS_ActivityAttributionInputDialog
+// PSS_ActivityAttributionInputWizard
 //---------------------------------------------------------------------------
-ZActivity* PSS_ActivityAttributionInputDialog::GetActivity() const
+ZActivity* PSS_ActivityAttributionInputWizard::GetActivity() const
 {
     return m_pActivity;
 }

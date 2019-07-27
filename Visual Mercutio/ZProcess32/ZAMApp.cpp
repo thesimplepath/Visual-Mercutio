@@ -38,7 +38,7 @@
 // UserLd
 #include "zBaseLib\UserLd.h"
 
-#include "zWinUtil32\SrvChoos.h"
+#include "zWinUtil32\PSS_SelectServerWizard.h"
 #include "zBaseLib\ZMessage.h"
 
 // this was previoulsy necessary because Visual Mercutio was a commercial product before being open source, but now...
@@ -1978,61 +1978,56 @@ void ZAMainApp::SetPrinterSettings( short Orientation, short Format )
 
 BOOL ZAMainApp::ChooseServer()
 {
-    // Save the previous server directory
-    CString PreviousServerDir = GetServerIniFile();
+    // save the previous server directory
+    const CString prevServerDir = GetServerIniFile();
+    const CString iniFile       = (IsWorkingLocaly() ? g_LocalIniFileName : g_GlobalIniFileName);
 
-    CString IniFile = ( IsWorkingLocaly() ) ? g_LocalIniFileName : g_GlobalIniFileName;
+    PSS_SelectServerWizard selectLocalServer(iniFile, IsWorkingLocaly());
 
-    ZAChooseServer ChooseLocalServer( IniFile, IsWorkingLocaly() );
-
-    if ( ChooseLocalServer.ChooseServer() )
+    if (selectLocalServer.Execute())
     {
-        SetServerIniFile( ChooseLocalServer.GetIniFile() );
+        SetServerIniFile(selectLocalServer.GetIniFile());
 
-        // Close the session first
+        // close the session first
         GetServer().CloseSession();
 
         // open the new server session
-        if ( !OpenServerSession() )
+        if (!OpenServerSession())
         {
-            // The server cannot be reached
+            // the server cannot be reached
             ZIMessage Message;
-            Message.DisplayMessage( IDS_SERVERCANNOTBEOPEN, IDS_NOSERVER_SELECTED_TITLE );
+            Message.DisplayMessage(IDS_SERVERCANNOTBEOPEN, IDS_NOSERVER_SELECTED_TITLE);
 
             return FALSE;
         }
 
-        // Check if the server directory has changed
-        if ( PreviousServerDir != GetServerIniFile() )
-        {
+        // check if the server directory has changed
+        if (prevServerDir != GetServerIniFile())
             OnServerChanged();
-        }
 
         CString prompt;
-        AfxFormatString1( prompt, IDS_SERVER_CHOOSED, ChooseLocalServer.GetServerDirectory() );
+        AfxFormatString1(prompt, IDS_SERVER_CHOOSED, selectLocalServer.GetServerDirectory());
 
         CString title;
-        title.LoadString( IDS_NF_SELECTSERVER_TITLE );
+        title.LoadString(IDS_NF_SELECTSERVER_TITLE);
 
-        ZIMessage Message;
-        Message.DisplayMessage( prompt, title );
+        ZIMessage message;
+        message.DisplayMessage(prompt, title);
 
-        // And finally, save the new parameters
+        // save the new parameters
         GetApplicationOptions().SaveOption();
         SaveApplicationOptions();
 
-#ifndef _ZDESIGNER
-        // Now set the server directory to the registry
-        ZBRegisterSetup Registry;
+        #ifndef _ZDESIGNER
+            // set the server directory to the registry
+            ZBRegisterSetup registry;
 
-        Registry.CreateEntry( REGKEY_SCRIPTORROOT,
-                              REGKEY_SERVERPATH,
-                              ZDirectory::NormalizeDirectory( ChooseLocalServer.GetServerDirectory() ) );
+            registry.CreateEntry(REGKEY_SCRIPTORROOT,
+                                 REGKEY_SERVERPATH,
+                                 ZDirectory::NormalizeDirectory(selectLocalServer.GetServerDirectory()));
 
-        Registry.CreateEntry( REGKEY_SCRIPTORROOT,
-                              REGKEY_SERVERINI,
-                              GetServerIniFile() );
-#endif
+            registry.CreateEntry(REGKEY_SCRIPTORROOT, REGKEY_SERVERINI, GetServerIniFile());
+        #endif
 
         return TRUE;
     }

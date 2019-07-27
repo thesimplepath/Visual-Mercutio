@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_ScanDocuments ---------------------------------------------------*
+ * ==> PSS_ScanDocWizard ---------------------------------------------------*
  ****************************************************************************
- * Description : Provides a scan documents manager                          *
+ * Description : Provides a scan documents Wizard                           *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_ScanDocumentsH
-#define PSS_ScanDocumentsH
+#ifndef PSS_ScanDocWizardH
+#define PSS_ScanDocWizardH
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -27,10 +27,10 @@
 #endif
 
 /**
-* Scan documents manager
+* Scan documents Wizard
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_ScanDocuments
+class AFX_EXT_CLASS PSS_ScanDocWizard
 {
     public:
         /**
@@ -54,14 +54,14 @@ class AFX_EXT_CLASS PSS_ScanDocuments
                 virtual ~IDocument();
         };
 
-        PSS_ScanDocuments();
-        virtual ~PSS_ScanDocuments();
+        PSS_ScanDocWizard();
+        virtual ~PSS_ScanDocWizard();
 
         /**
-        * Selects the documents
+        * Executes the wizard
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL SelectDocuments();
+        virtual BOOL Execute();
 
         /**
         * Gets the document count
@@ -83,14 +83,14 @@ class AFX_EXT_CLASS PSS_ScanDocuments
         * Copy constructor
         *@param other - other object to copy from
         */
-        PSS_ScanDocuments(const PSS_ScanDocuments& other);
+        PSS_ScanDocWizard(const PSS_ScanDocWizard& other);
 
         /**
         * Copy operator
         *@param other - other object to copy from
         *@return copy of itself
         */
-        const PSS_ScanDocuments & operator = (const PSS_ScanDocuments& other);
+        const PSS_ScanDocWizard & operator = (const PSS_ScanDocWizard& other);
 
         /**
         * Adds a document
@@ -108,9 +108,9 @@ class AFX_EXT_CLASS PSS_ScanDocuments
 };
 
 //---------------------------------------------------------------------------
-// PSS_ScanDocuments
+// PSS_ScanDocWizard
 //---------------------------------------------------------------------------
-std::size_t PSS_ScanDocuments::GetDocumentCount() const
+std::size_t PSS_ScanDocWizard::GetDocumentCount() const
 {
     return m_Doc.GetSize();
 }

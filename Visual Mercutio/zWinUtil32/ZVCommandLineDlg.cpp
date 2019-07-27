@@ -4,22 +4,21 @@
 #include "stdafx.h"
 #include "ZVCommandLineDlg.h"
 
-
+// processsoft
 #include "zBaseLib\FileDlg.h"
-#include "PSS_OpenDirDialog.h"
-#include "SysVarDlg.h"
-
 #include "zBaseLib\ZAGlobal.h"
-
 #include "zBaseLib\File.h"
-
 #include "zBaseLib\MsgBox.h"
-#include "zRes32\Zres.h"
+#include "PSS_OpenDirDialog.h"
+#include "PSS_SysVarDialog.h"
+
+// resources
+#include "zRes32\zRes.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
@@ -188,32 +187,33 @@ void ZVCommandLineDlg::OnDirArg()
     
     if (openDirDialog.ProcessDirectory() != "")
     {
-        CString Text;
-        m_Arguments.GetWindowText( Text );
-        if (!Text.IsEmpty())
-            Text += " ";
-        Text += openDirDialog.GetDirectory();
-        m_Arguments.SetWindowText( Text );
+        CString text;
+        m_Arguments.GetWindowText(text);
+
+        if (!text.IsEmpty())
+            text += " ";
+
+        text += openDirDialog.GetDirectory();
+        m_Arguments.SetWindowText(text);
     }
 }
 
 void ZVCommandLineDlg::OnSysVarArg()
 {
-    ZISysVarDlg    SysVarDlg;
+    PSS_SysVarDialog sysVarDialog;
 
-    
-    if (SysVarDlg.DoModal() == IDOK)
+    if (sysVarDialog.DoModal() == IDOK)
     {
-        CString Text;
-        m_Arguments.GetWindowText( Text );
-        if (!Text.IsEmpty())
-            Text += " ";
-        Text += SysVarDlg.GetKeyword();
-        m_Arguments.SetWindowText( Text );
+        CString text;
+        m_Arguments.GetWindowText(text);
+
+        if (!text.IsEmpty())
+            text += " ";
+
+        text += sysVarDialog.GetKeyword();
+        m_Arguments.SetWindowText(text);
     }
 }
-
-
 
 void ZVCommandLineDlg::OnOK()
 {

@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_CreateFolderWizardDialog ----------------------------------------*
+ * ==> PSS_CreateFolderWizard ----------------------------------------------*
  ****************************************************************************
- * Description : Provides a create folder Wizard dialog box                 *
+ * Description : Provides a create folder Wizard                            *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_CreateFolderWizardDialogH
-#define PSS_CreateFolderWizardDialogH
+#ifndef PSS_CreateFolderWizardH
+#define PSS_CreateFolderWizardH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -34,10 +34,10 @@
 #endif
 
 /**
-* Create folder Wizard dialog box
+* Create folder Wizard
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_CreateFolderWizardDialog
+class AFX_EXT_CLASS PSS_CreateFolderWizard
 {
     public:
         /**
@@ -48,19 +48,19 @@ class AFX_EXT_CLASS PSS_CreateFolderWizardDialog
         *@param folderName - folder name
         *@param folderDescription - folder description
         */
-        PSS_CreateFolderWizardDialog(BOOL           useFolderNameAsFileName,
-                                     const CString& fileDirectory,
-                                     const CString& fileExtension     = "",
-                                     const CString& folderName        = "",
-                                     const CString& folderDescription = "");
+        PSS_CreateFolderWizard(BOOL           useFolderNameAsFileName,
+                               const CString& fileDirectory,
+                               const CString& fileExtension     = "",
+                               const CString& folderName        = "",
+                               const CString& folderDescription = "");
 
-        virtual ~PSS_CreateFolderWizardDialog();
+        virtual ~PSS_CreateFolderWizard();
 
         /**
-        * Starts the wizard
+        * Executes the wizard
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL PlayWizard();
+        virtual BOOL Execute();
     
         /**
         * Gets the folder file name
@@ -97,19 +97,19 @@ class AFX_EXT_CLASS PSS_CreateFolderWizardDialog
 };
 
 //---------------------------------------------------------------------------
-// PSS_CreateFolderWizardDialog
+// PSS_CreateFolderWizard
 //---------------------------------------------------------------------------
-CString PSS_CreateFolderWizardDialog::GetFolderFileName() const
+CString PSS_CreateFolderWizard::GetFolderFileName() const
 {
     return m_CompleteFileName;
 }
 //---------------------------------------------------------------------------
-CString PSS_CreateFolderWizardDialog::GetFolderName() const
+CString PSS_CreateFolderWizard::GetFolderName() const
 {
     return m_FolderName;
 }
 //---------------------------------------------------------------------------
-CString PSS_CreateFolderWizardDialog::GetFolderDescription() const
+CString PSS_CreateFolderWizard::GetFolderDescription() const
 {
     return m_FolderDescription;
 }

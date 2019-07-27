@@ -18,8 +18,7 @@
 #include "zBaseLib\ZUFloatingToolbar.h"
 #include "zWinUtil32\PSS_NewFormDialog.h"
 #include "zWinUtil32\PSS_FolderInfoDialog.h"
-#include "zWinUtil32\SysOpt32.h"
-#include "zWinUtil32\PSS_CreateFolderWizardDialog.h"
+#include "zWinUtil32\PSS_SystemOptionSheet.h"
 #include "zResMgr\PSS_ResourceManager.h"
 #include "zPtyMgr\ZVChoosePropertyDlg.h"
 #include "zModel\ProcGraphModelMdl.h"
@@ -1792,30 +1791,29 @@ void ZAApp::OnAfterSaveDocument( CDocument* pDoc )
 
 void ZAApp::OnOptions()
 {
-    ZISystemOption dlg( &GetApplicationOptions(),
-                        GeneralOptionPage | CalculationOptionPage | NavigationOptionPage | ViewReducedOptionPage );
-    
-    if ( dlg.DoModal() == IDOK )
+    PSS_SystemOptionSheet systemOptionsSheet(&GetApplicationOptions(),
+                                             PSS_SystemOptionSheet::IEOptionPage(PSS_SystemOptionSheet::IE_OP_General     |
+                                                                                 PSS_SystemOptionSheet::IE_OP_Calculation |
+                                                                                 PSS_SystemOptionSheet::IE_OP_Navigation  |
+                                                                                 PSS_SystemOptionSheet::IE_OP_ViewReduced));
+
+    // options have changed?
+    if (systemOptionsSheet.DoModal() == IDOK)
     {
-        // If options have changed, refresh the views.
-        CObList DocList;
-        GetDocumentList( DocList );
+        // refresh the views
+        CObList docList;
+        GetDocumentList(docList);
 
-        // Iterate through the list in head-to-tail order.
-        POSITION    pos;
-        CDocument*    pDocument;
-
-        for ( pos = DocList.GetHeadPosition(); pos != NULL; )
+        // iterate through the list in head-to-tail order.
+        for (POSITION pPos = docList.GetHeadPosition(); pPos;)
         {
-            pDocument = (CDocument*)DocList.GetNext( pos );
+            CDocument* pDocument = (CDocument*)docList.GetNext(pPos);
 
-            if ( pDocument )
-            {
-                pDocument->UpdateAllViews( NULL );
-            }
+            if (pDocument)
+                pDocument->UpdateAllViews(NULL);
         }
 
-        // Save options immediatly
+        // save options immediatly
         GetApplicationOptions().SaveOption();
         SaveApplicationOptions();
     }

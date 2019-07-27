@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_ActivityAttributionBackupInputDialog ----------------------------*
+ * ==> PSS_ActivityAttributionInputBackupDialog ----------------------------*
  ****************************************************************************
- * Description : Provides an activity attribution backup input dialog box   *
+ * Description : Provides an activity attribution input backup dialog box   *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include "stdafx.h"
-#include "PSS_ActivityAttributionBackupInputDialog.h"
+#include "PSS_ActivityAttributionInputBackupDialog.h"
 
 // processsoft
 #include "zBaseLib\ZBTokenizer.h"
@@ -22,8 +22,8 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_ActivityAttributionBackupInputDialog, ZIWizardDialog)
-    //{{AFX_MSG_MAP(PSS_ActivityAttributionBackupInputDialog)
+BEGIN_MESSAGE_MAP(PSS_ActivityAttributionInputBackupDialog, ZIWizardDialog)
+    //{{AFX_MSG_MAP(PSS_ActivityAttributionInputBackupDialog)
     ON_BN_CLICKED(IDNEXT, OnNext)
     ON_BN_CLICKED(IDC_ADDUSER, OnAddUser)
     ON_BN_CLICKED(IDC_REMOVEUSER, OnDeleteUser)
@@ -32,14 +32,14 @@ BEGIN_MESSAGE_MAP(PSS_ActivityAttributionBackupInputDialog, ZIWizardDialog)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
-// PSS_ActivityAttributionBackupInputDialog
+// PSS_ActivityAttributionInputBackupDialog
 //---------------------------------------------------------------------------
-PSS_ActivityAttributionBackupInputDialog::PSS_ActivityAttributionBackupInputDialog(ZUUserManager& userManager,
+PSS_ActivityAttributionInputBackupDialog::PSS_ActivityAttributionInputBackupDialog(ZUUserManager& userManager,
                                                                                    ZUMail&        mail,
                                                                                    ZActivity*     pActivity,
                                                                                    BOOL           lastActivity,
                                                                                    CWnd*          pParent) :
-    ZIWizardDialog(PSS_ActivityAttributionBackupInputDialog::IDD,
+    ZIWizardDialog(PSS_ActivityAttributionInputBackupDialog::IDD,
                    IDB_WZBMP1,
                    0,
                    0,
@@ -53,17 +53,17 @@ PSS_ActivityAttributionBackupInputDialog::PSS_ActivityAttributionBackupInputDial
     ASSERT(m_pActivity);
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityAttributionBackupInputDialog::DoDataExchange(CDataExchange* pDX)
+void PSS_ActivityAttributionInputBackupDialog::DoDataExchange(CDataExchange* pDX)
 {
     ZIWizardDialog::DoDataExchange(pDX);
 
-    //{{AFX_DATA_MAP(PSS_ActivityAttributionBackupInputDialog)
+    //{{AFX_DATA_MAP(PSS_ActivityAttributionInputBackupDialog)
     DDX_Control(pDX, IDC_USERLIST,     m_UserList);
     DDX_Text   (pDX, IDC_ACTIVITYNAME, m_ActivityName);
     //}}AFX_DATA_MAP
 }
 //---------------------------------------------------------------------------
-BOOL PSS_ActivityAttributionBackupInputDialog::OnInitDialog()
+BOOL PSS_ActivityAttributionInputBackupDialog::OnInitDialog()
 {
     ASSERT(m_pActivity);
     m_ActivityName = m_pActivity->GetName();
@@ -91,7 +91,7 @@ BOOL PSS_ActivityAttributionBackupInputDialog::OnInitDialog()
     return TRUE;
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityAttributionBackupInputDialog::OnAddUser()
+void PSS_ActivityAttributionInputBackupDialog::OnAddUser()
 {
     ZVChooseResources chooseResources(m_UserManager);
 
@@ -114,7 +114,7 @@ void PSS_ActivityAttributionBackupInputDialog::OnAddUser()
     CheckControlState();
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityAttributionBackupInputDialog::OnDeleteUser()
+void PSS_ActivityAttributionInputBackupDialog::OnDeleteUser()
 {
     const int curSel = m_UserList.GetCurSel();
 
@@ -124,12 +124,12 @@ void PSS_ActivityAttributionBackupInputDialog::OnDeleteUser()
     CheckControlState();
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityAttributionBackupInputDialog::OnSelChangeUserList()
+void PSS_ActivityAttributionInputBackupDialog::OnSelChangeUserList()
 {
     CheckControlState();
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityAttributionBackupInputDialog::OnAddEmail()
+void PSS_ActivityAttributionInputBackupDialog::OnAddEmail()
 {
     CString title;
     title.LoadString(IDS_ENTER_EMAILADRESS);
@@ -142,7 +142,7 @@ void PSS_ActivityAttributionBackupInputDialog::OnAddEmail()
             m_UserList.AddString(inputValue.GetValue());
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityAttributionBackupInputDialog::OnOK()
+void PSS_ActivityAttributionInputBackupDialog::OnOK()
 {
     if (!CheckData())
         return;
@@ -152,7 +152,7 @@ void PSS_ActivityAttributionBackupInputDialog::OnOK()
     ZIWizardDialog::OnOK();
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityAttributionBackupInputDialog::OnNext()
+void PSS_ActivityAttributionInputBackupDialog::OnNext()
 {
     if (!CheckData())
         return;
@@ -162,13 +162,13 @@ void PSS_ActivityAttributionBackupInputDialog::OnNext()
     EndDialog(IDNEXT);
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityAttributionBackupInputDialog::CheckControlState()
+void PSS_ActivityAttributionInputBackupDialog::CheckControlState()
 {
     if (GetDlgItem(IDC_REMOVEUSER))
         GetDlgItem(IDC_REMOVEUSER)->EnableWindow(m_UserList.GetCurSel() != LB_ERR);
 }
 //---------------------------------------------------------------------------
-void PSS_ActivityAttributionBackupInputDialog::SaveState()
+void PSS_ActivityAttributionInputBackupDialog::SaveState()
 {
     UpdateData();
 
@@ -187,7 +187,7 @@ void PSS_ActivityAttributionBackupInputDialog::SaveState()
     }
 }
 //---------------------------------------------------------------------------
-BOOL PSS_ActivityAttributionBackupInputDialog::CheckData()
+BOOL PSS_ActivityAttributionInputBackupDialog::CheckData()
 {
     UpdateData();
 

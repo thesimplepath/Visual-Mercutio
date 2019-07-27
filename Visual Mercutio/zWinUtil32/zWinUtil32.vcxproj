@@ -148,7 +148,7 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="PSS_ActivityAttributionInputDialog.cpp">
+    <ClCompile Include="PSS_ActivityAttributionInputWizard.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -204,7 +204,7 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="PSS_ActivityAttributionValueInputDialog.cpp">
+    <ClCompile Include="PSS_ActivityAttributionInputValueDialog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -295,7 +295,7 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="PSS_CreateFolderWizardDialog.cpp">
+    <ClCompile Include="PSS_CreateFolderWizard.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -512,7 +512,7 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="PSS_ScanDocuments.cpp">
+    <ClCompile Include="PSS_ScanDocWizard.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -561,7 +561,7 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="SrvChoos.cpp">
+    <ClCompile Include="PSS_SelectServerWizard.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -577,42 +577,42 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="SysOpt32.cpp">
+    <ClCompile Include="PSS_SystemOptionSheet.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="SysVar.cpp">
+    <ClCompile Include="PSS_SysVarConverter.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="SysVarDlg.cpp">
+    <ClCompile Include="PSS_SysVarDialog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="TMPLSAVA.CPP">
+    <ClCompile Include="PSS_TemplateCopyDialog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="tmpltree.cpp">
+    <ClCompile Include="PSS_TemplateTreeCtrl.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="TreeOptDlg.cpp">
+    <ClCompile Include="PSS_VisualStackedPagesDialog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -675,7 +675,7 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="ZCFormTemplateTree.cpp">
+    <ClCompile Include="PSS_FormTemplateTreeCtrl.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -902,15 +902,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PSS_ActivityAttributionWelcomeDialog.h" />
-    <ClInclude Include="PSS_ActivityAttributionInputDialog.h" />
-    <ClInclude Include="PSS_ActivityAttributionBackupInputDialog.h" />
+    <ClInclude Include="PSS_ActivityAttributionInputWizard.h" />
+    <ClInclude Include="PSS_ActivityAttributionInputBackupDialog.h" />
     <ClInclude Include="PSS_ActivityComboBox.h" />
     <ClInclude Include="PSS_EventActivityLogCtrl.h" />
     <ClInclude Include="PSS_EventActivityOverviewCtrl.h" />
     <ClInclude Include="PSS_EventActivityViewerReminderCtrl.h" />
     <ClInclude Include="PSS_EventActivityCtrl.h" />
     <ClInclude Include="PSS_EventActivityUserOverviewCtrl.h" />
-    <ClInclude Include="PSS_ActivityAttributionValueInputDialog.h" />
+    <ClInclude Include="PSS_ActivityAttributionInputValueDialog.h" />
     <ClInclude Include="PSS_ActivityListCtrl.h" />
     <ClInclude Include="PSS_ActivityListAttributionCtrl.h" />
     <ClInclude Include="PSS_ActivityTaskListCtrl.h" />
@@ -923,7 +923,7 @@
     <ClInclude Include="PSS_ColorSelectionWnd.h" />
     <ClInclude Include="PSS_CreateFolderWizardExistDialog.h" />
     <ClInclude Include="PSS_CreateFolderWizardStartDialog.h" />
-    <ClInclude Include="PSS_CreateFolderWizardDialog.h" />
+    <ClInclude Include="PSS_CreateFolderWizard.h" />
     <ClInclude Include="PSS_DirTreeCtrl.h" />
     <ClInclude Include="PSS_DocOptionDialog.h" />
     <ClInclude Include="PSS_ExportPage.h" />
@@ -954,21 +954,21 @@
     <ClInclude Include="PSS_GenericPropPage.h" />
     <ClInclude Include="PSS_RejectActivityInputDialog.h" />
     <ClInclude Include="PSS_ScanContinueSelectDialog.h" />
-    <ClInclude Include="PSS_ScanDocuments.h" />
+    <ClInclude Include="PSS_ScanDocWizard.h" />
     <ClInclude Include="PSS_ScanInformationDialog.h" />
     <ClInclude Include="PSS_ScanWelcomeDialog.h" />
     <ClInclude Include="PSS_SelectProcessWizardDialog.h" />
     <ClInclude Include="PSS_SelectProcessWizardStartDialog.h" />
     <ClInclude Include="PSS_SelectProcessWizard.h" />
     <ClInclude Include="PSS_SortableObArray.h" />
-    <ClInclude Include="SrvChoos.h" />
+    <ClInclude Include="PSS_SelectServerWizard.h" />
     <ClInclude Include="StdAfx.h" />
-    <ClInclude Include="SysOpt32.h" />
-    <ClInclude Include="SysVar.h" />
-    <ClInclude Include="SysVarDlg.h" />
-    <ClInclude Include="TMPLSAVA.H" />
-    <ClInclude Include="tmpltree.h" />
-    <ClInclude Include="TreeOptDlg.h" />
+    <ClInclude Include="PSS_SystemOptionSheet.h" />
+    <ClInclude Include="PSS_SysVarConverter.h" />
+    <ClInclude Include="PSS_SysVarDialog.h" />
+    <ClInclude Include="PSS_TemplateCopyDialog.h" />
+    <ClInclude Include="PSS_TemplateTreeCtrl.h" />
+    <ClInclude Include="PSS_VisualStackedPagesDialog.h" />
     <ClInclude Include="UserInfoDlg.h" />
     <ClInclude Include="userlst.h" />
     <ClInclude Include="userprp.h" />
@@ -977,7 +977,7 @@
     <ClInclude Include="ViewPage.h" />
     <ClInclude Include="VIEWPGR.H" />
     <ClInclude Include="WelcomW.h" />
-    <ClInclude Include="ZCFormTemplateTree.h" />
+    <ClInclude Include="PSS_FormTemplateTreeCtrl.h" />
     <ClInclude Include="PSS_LanguageComboBox.h" />
     <ClInclude Include="ZCWorkspaceTemplateList.h" />
     <ClInclude Include="ZFileVersionDialog.h" />

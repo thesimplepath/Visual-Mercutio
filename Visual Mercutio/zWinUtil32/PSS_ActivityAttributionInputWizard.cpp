@@ -1,19 +1,19 @@
 /****************************************************************************
- * ==> PSS_ActivityAttributionInputDialog ----------------------------------*
+ * ==> PSS_ActivityAttributionInputWizard ----------------------------------*
  ****************************************************************************
- * Description : Provides an activity attribution input dialog box          *
+ * Description : Provides an activity attribution input wizard              *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include "StdAfx.h"
-#include "PSS_ActivityAttributionInputDialog.h"
+#include "PSS_ActivityAttributionInputWizard.h"
 
 // processsoft
 #include "zBaseLib\MsgBox.h"
 #include "zBaseLib\InpVal.h"
+#include "PSS_ActivityAttributionInputBackupDialog.h"
+#include "PSS_ActivityAttributionInputValueDialog.h"
 #include "PSS_UserListDialog.h"
-#include "PSS_ActivityAttributionValueInputDialog.h"
-#include "PSS_ActivityAttributionBackupInputDialog.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -21,9 +21,9 @@
 #endif
 
 //---------------------------------------------------------------------------
-// PSS_ActivityAttributionInputDialog
+// PSS_ActivityAttributionInputWizard
 //---------------------------------------------------------------------------
-PSS_ActivityAttributionInputDialog::PSS_ActivityAttributionInputDialog(ZUUserManager& userManager,
+PSS_ActivityAttributionInputWizard::PSS_ActivityAttributionInputWizard(ZUUserManager& userManager,
                                                                        ZUMail&        mail,
                                                                        ZActivity*     pActivity,
                                                                        BOOL           lastActivity,
@@ -44,7 +44,7 @@ PSS_ActivityAttributionInputDialog::PSS_ActivityAttributionInputDialog(ZUUserMan
     ASSERT(m_pActivity);
 }
 //---------------------------------------------------------------------------
-int PSS_ActivityAttributionInputDialog::DoModal()
+int PSS_ActivityAttributionInputWizard::Execute()
 {
     if (m_UserAttribution || m_TimeAttribution || m_VisibilityAttribution)
         if (!ProcessBaseValue())
@@ -58,9 +58,9 @@ int PSS_ActivityAttributionInputDialog::DoModal()
     return IDOK;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_ActivityAttributionInputDialog::ProcessBackupUser()
+BOOL PSS_ActivityAttributionInputWizard::ProcessBackupUser()
 {
-    PSS_ActivityAttributionBackupInputDialog activityAttributionBackupInput(m_UserManager,
+    PSS_ActivityAttributionInputBackupDialog activityAttributionBackupInput(m_UserManager,
                                                                             m_Mail,
                                                                             m_pActivity,
                                                                             m_LastActivity);
@@ -68,9 +68,9 @@ BOOL PSS_ActivityAttributionInputDialog::ProcessBackupUser()
     return (activityAttributionBackupInput.DoModal() != IDCANCEL);
 }
 //---------------------------------------------------------------------------
-BOOL PSS_ActivityAttributionInputDialog::ProcessBaseValue()
+BOOL PSS_ActivityAttributionInputWizard::ProcessBaseValue()
 {
-    PSS_ActivityAttributionValueInputDialog ActivityAttributionInput(m_UserManager,
+    PSS_ActivityAttributionInputValueDialog ActivityAttributionInput(m_UserManager,
                                                                      m_Mail,
                                                                      m_pActivity,
                                                                      m_LastActivity && !m_BackupUserAttribution,
