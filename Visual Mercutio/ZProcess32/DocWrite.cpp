@@ -106,7 +106,9 @@ ZDDocumentReadWrite::~ZDDocumentReadWrite()
 BOOL ZDDocumentReadWrite::OnNewDocument()
 {
     ZAGlobal::SetpCurrentDocumentForSerialization(this);
-    PSS_NewFormDialog newFormDialog(&ZAGlobal::GetTemplateManager(), E_DT_StartForm, E_ET_Form);
+    PSS_NewFormDialog newFormDialog(&ZAGlobal::GetTemplateManager(),
+                                    PSS_NewFormDialog::IE_T_StartForm,
+                                    PSS_NewFormDialog::IE_ET_Form);
 
     if (newFormDialog.DoModal() == IDCANCEL)
         return FALSE;

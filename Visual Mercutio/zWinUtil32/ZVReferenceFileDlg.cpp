@@ -186,7 +186,9 @@ void ZVReferenceFileDlg::OnAddurl()
 
 void ZVReferenceFileDlg::OnScriptor()
 {
-    PSS_NewFormDialog newFormDialog(&ZAGlobal::GetTemplateManager(), E_DT_SelectForm, E_ET_Form);
+    PSS_NewFormDialog newFormDialog(&ZAGlobal::GetTemplateManager(),
+                                    PSS_NewFormDialog::IE_T_SelectForm,
+                                    PSS_NewFormDialog::IE_ET_Form);
 
     if (newFormDialog.DoModal() != IDOK)
         return;

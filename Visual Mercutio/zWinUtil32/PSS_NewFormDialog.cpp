@@ -122,9 +122,9 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_NewFormDialog
 //---------------------------------------------------------------------------
-PSS_NewFormDialog::PSS_NewFormDialog(ZDTemplateManager*       pTemplateManager,
-                                     EDialogFormType          type,
-                                     EDialogFormExtensionType extensionType) :
+PSS_NewFormDialog::PSS_NewFormDialog(ZDTemplateManager*        pTemplateManager,
+                                     IEDialogFormType          type,
+                                     IEDialogFormExtensionType extensionType) :
     ZIWizardDialog(PSS_NewFormDialog::IDD,
                    IDB_WZBMP2,
                    0,
@@ -174,15 +174,15 @@ BOOL PSS_NewFormDialog::OnInitDialog()
 
     switch (m_Type)
     {
-        case E_DT_AttachForm:
+        case IE_T_AttachForm:
             // on attach, change the window title and the button text
             SetWizardWindowTitle(IDS_ATTACHTITLE);
 
             switch (m_ExtensionType)
             {
-                case E_ET_ProcessForm: resID = IDS_PROCESSTEXT; break;
-                case E_ET_ModelForm:   resID = IDS_MODELTEXT;   break;
-                default:               resID = IDS_FORMSTEXT;   break;
+                case IE_ET_ProcessForm: resID = IDS_PROCESSTEXT; break;
+                case IE_ET_ModelForm:   resID = IDS_MODELTEXT;   break;
+                default:                resID = IDS_FORMSTEXT;   break;
             }
 
             SetWizardSubjectText(resID);
@@ -196,30 +196,30 @@ BOOL PSS_NewFormDialog::OnInitDialog()
 
             break;
 
-        case E_DT_OpenForm:
+        case IE_T_OpenForm:
             switch (m_ExtensionType)
             {
-                case E_ET_ProcessForm: resID = IDS_OPENPROCESSTITLE; break;
-                case E_ET_ModelForm:   resID = IDS_OPENMODELTITLE;   break;
-                default:               resID = IDS_OPENTITLE;        break;
+                case IE_ET_ProcessForm: resID = IDS_OPENPROCESSTITLE; break;
+                case IE_ET_ModelForm:   resID = IDS_OPENMODELTITLE;   break;
+                default:                resID = IDS_OPENTITLE;        break;
             }
 
             SetWizardWindowTitle(resID);
 
             switch (m_ExtensionType)
             {
-                case E_ET_ProcessForm: resID = IDS_PROCESSTEXT; break;
-                case E_ET_ModelForm:   resID = IDS_MODELTEXT;   break;
-                default:               resID = IDS_FORMSTEXT;   break;
+                case IE_ET_ProcessForm: resID = IDS_PROCESSTEXT; break;
+                case IE_ET_ModelForm:   resID = IDS_MODELTEXT;   break;
+                default:                resID = IDS_FORMSTEXT;   break;
             }
 
             SetWizardSubjectText(resID);
 
             switch (m_ExtensionType)
             {
-                case E_ET_ProcessForm: resID = IDS_OPENPROCESSDLG_TEXT; break;
-                case E_ET_ModelForm:   resID = IDS_OPENMODELDLG_TEXT;   break;
-                default:               resID = IDS_OPENFORMDLG_TEXT;    break;
+                case IE_ET_ProcessForm: resID = IDS_OPENPROCESSDLG_TEXT; break;
+                case IE_ET_ModelForm:   resID = IDS_OPENMODELDLG_TEXT;   break;
+                default:                resID = IDS_OPENFORMDLG_TEXT;    break;
             }
 
             SetWizardBodyText(resID);
@@ -233,30 +233,30 @@ BOOL PSS_NewFormDialog::OnInitDialog()
 
             break;
 
-        case E_DT_StartForm:
+        case IE_T_StartForm:
             switch (m_ExtensionType)
             {
-                case E_ET_ProcessForm: resID = IDS_STARTPROCESSTITLE; break;
-                case E_ET_ModelForm:   resID = IDS_STARTMODELTITLE;   break;
-                default:               resID = IDS_STARTTITLE;        break;
+                case IE_ET_ProcessForm: resID = IDS_STARTPROCESSTITLE; break;
+                case IE_ET_ModelForm:   resID = IDS_STARTMODELTITLE;   break;
+                default:                resID = IDS_STARTTITLE;        break;
             }
 
             SetWizardWindowTitle(resID);
 
             switch (m_ExtensionType)
             {
-                case E_ET_ProcessForm: resID = IDS_PROCESSTEXT; break;
-                case E_ET_ModelForm:   resID = IDS_MODELTEXT;   break;
-                default:               resID = IDS_FORMSTEXT;   break;
+                case IE_ET_ProcessForm: resID = IDS_PROCESSTEXT; break;
+                case IE_ET_ModelForm:   resID = IDS_MODELTEXT;   break;
+                default:                resID = IDS_FORMSTEXT;   break;
             }
 
             SetWizardSubjectText(resID);
 
             switch (m_ExtensionType)
             {
-                case E_ET_ProcessForm: resID = IDS_STARTPROCESSDLG_TEXT; break;
-                case E_ET_ModelForm:   resID = IDS_STARTMODELDLG_TEXT;   break;
-                default:               resID = IDS_STARTFORMDLG_TEXT;    break;
+                case IE_ET_ProcessForm: resID = IDS_STARTPROCESSDLG_TEXT; break;
+                case IE_ET_ModelForm:   resID = IDS_STARTMODELDLG_TEXT;   break;
+                default:                resID = IDS_STARTFORMDLG_TEXT;    break;
             }
 
             SetWizardBodyText(resID);
@@ -270,30 +270,30 @@ BOOL PSS_NewFormDialog::OnInitDialog()
 
             break;
 
-        case E_DT_SelectForm:
+        case IE_T_SelectForm:
             switch (m_ExtensionType)
             {
-                case E_ET_ProcessForm: resID = IDS_SELECTPROCESSTITLE; break;
-                case E_ET_ModelForm:   resID = IDS_SELECTMODELTITLE;   break;
-                default:               resID = IDS_SELECTTITLE;        break;
+                case IE_ET_ProcessForm: resID = IDS_SELECTPROCESSTITLE; break;
+                case IE_ET_ModelForm:   resID = IDS_SELECTMODELTITLE;   break;
+                default:                resID = IDS_SELECTTITLE;        break;
             }
 
             SetWizardWindowTitle(resID);
 
             switch (m_ExtensionType)
             {
-                case E_ET_ProcessForm: resID = IDS_PROCESSTEXT; break;
-                case E_ET_ModelForm:   resID = IDS_MODELTEXT;   break;
-                default:               resID = IDS_FORMSTEXT;   break;
+                case IE_ET_ProcessForm: resID = IDS_PROCESSTEXT; break;
+                case IE_ET_ModelForm:   resID = IDS_MODELTEXT;   break;
+                default:                resID = IDS_FORMSTEXT;   break;
             }
 
             SetWizardSubjectText(resID);
 
             switch (m_ExtensionType)
             {
-                case E_ET_ProcessForm: resID = IDS_SELECTPROCESSDLG_TEXT; break;
-                case E_ET_ModelForm:   resID = IDS_SELECTMODELDLG_TEXT;   break;
-                default:               resID = IDS_SELECTFORMDLG_TEXT;    break;
+                case IE_ET_ProcessForm: resID = IDS_SELECTPROCESSDLG_TEXT; break;
+                case IE_ET_ModelForm:   resID = IDS_SELECTMODELDLG_TEXT;   break;
+                default:                resID = IDS_SELECTFORMDLG_TEXT;    break;
             }
 
             SetWizardBodyText(resID);

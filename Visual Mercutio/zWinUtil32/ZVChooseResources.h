@@ -15,7 +15,7 @@
 
 // processsoft
 #include "zBaseLib\ZIDialog.h"
-#include "UserTreeC.h"
+#include "PSS_UserTreeCtrl.h"
 
 // resources
 #ifndef _WIN32
@@ -48,8 +48,8 @@ public:
 // Dialog Data
     //{{AFX_DATA(ZVChooseResources)
     enum { IDD = IDD_CHOOSE_RESOURCE };
-    ZCUserTree    m_ResourceTree;
-    CListBox    m_ResourceList;
+    PSS_UserTreeCtrl m_ResourceTree;
+    CListBox         m_ResourceList;
     //}}AFX_DATA
 
 

@@ -36,27 +36,6 @@
 #endif
 
 /**
-* Dialog form type enumeration
-*/
-enum EDialogFormType
-{
-    E_DT_StartForm,
-    E_DT_AttachForm,
-    E_DT_OpenForm,
-    E_DT_SelectForm
-};
-
-/**
-* Dialog form extension type enumeration
-*/
-enum EDialogFormExtensionType
-{
-    E_ET_Form,
-    E_ET_ProcessForm,
-    E_ET_ModelForm
-};
-
-/**
 * New form wizard dialog box property sheet
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
@@ -138,6 +117,27 @@ class AFX_EXT_CLASS PSS_NewFormDialog : public ZIWizardDialog
             IDD = IDD_NEWFORM
         };
 
+        /**
+        * Dialog form type enumeration
+        */
+        enum IEDialogFormType
+        {
+            IE_T_StartForm,
+            IE_T_AttachForm,
+            IE_T_OpenForm,
+            IE_T_SelectForm
+        };
+
+        /**
+        * Dialog form extension type enumeration
+        */
+        enum IEDialogFormExtensionType
+        {
+            IE_ET_Form,
+            IE_ET_ProcessForm,
+            IE_ET_ModelForm
+        };
+
         CStatic       m_Text;
         CButton       m_CopyFormatWnd;
         CButton       m_Button;
@@ -151,9 +151,9 @@ class AFX_EXT_CLASS PSS_NewFormDialog : public ZIWizardDialog
         *@param type - form type
         *@param extensionType - form extension type
         */
-        PSS_NewFormDialog(ZDTemplateManager*       pTemplateManager,
-                          EDialogFormType          type,
-                          EDialogFormExtensionType extensionType);
+        PSS_NewFormDialog(ZDTemplateManager*        pTemplateManager,
+                          IEDialogFormType          type,
+                          IEDialogFormExtensionType extensionType);
 
         virtual ~PSS_NewFormDialog();
 
@@ -200,14 +200,14 @@ class AFX_EXT_CLASS PSS_NewFormDialog : public ZIWizardDialog
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZDTemplateManager*        m_pTemplateManager;
-        PSS_NewFormPropertySheet* m_pSystemPropertySheet;
-        ZDTemplateDir*            m_pCurrentTemplateDir;
-        ZDTemplateFile*           m_pCurrentTemplateFile;
-        EDialogFormType           m_Type;
-        EDialogFormExtensionType  m_ExtensionType;
-        CString                   m_SelectedFormName;
-        CString                   m_SelectedFileName;
+        ZDTemplateManager*         m_pTemplateManager;
+        PSS_NewFormPropertySheet*  m_pSystemPropertySheet;
+        ZDTemplateDir*             m_pCurrentTemplateDir;
+        ZDTemplateFile*            m_pCurrentTemplateFile;
+        IEDialogFormType           m_Type;
+        IEDialogFormExtensionType  m_ExtensionType;
+        CString                    m_SelectedFormName;
+        CString                    m_SelectedFileName;
 };
 
 //---------------------------------------------------------------------------
