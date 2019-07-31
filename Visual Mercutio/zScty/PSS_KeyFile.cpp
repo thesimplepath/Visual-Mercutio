@@ -23,7 +23,7 @@ PSS_KeyEntity::~PSS_KeyEntity()
 CString PSS_KeyEntity::GenerateRandomEntity()
 {
     char buffer[60];
-    std::sprintf(buffer, "%04d-%04d-%04d-%04d-%04d", std::rand(), std::rand(), std::rand(), std::rand(), std::rand());
+    sprintf_s(buffer, _tcslen(buffer), "%04d-%04d-%04d-%04d-%04d", std::rand(), std::rand(), std::rand(), std::rand(), std::rand());
     m_Entity = buffer;
     return m_Entity;
 }

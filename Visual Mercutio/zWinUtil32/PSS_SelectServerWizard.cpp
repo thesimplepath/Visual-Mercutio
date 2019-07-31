@@ -11,8 +11,8 @@
 // processsoft
 #include "zRes32\ZRes.h"
 #include "zBaseLib\ZMessage.h"
-#include "ZIChooseServerWelcome.h"
-#include "ZIChooseServerSel.h"
+#include "PSS_SelectServerWelcomeDialog.h"
+#include "PSS_SelectServerDialog.h"
 
 //---------------------------------------------------------------------------
 // Static variables
@@ -69,12 +69,12 @@ BOOL PSS_SelectServerWizard::ProcessSelection()
     if (m_File.IsEmpty())
         return FALSE;
 
-    ZIChooseServerWelcome selectServerWelcomeDialog(m_Local);
+    PSS_SelectServerWelcomeDialog selectServerWelcomeDialog(m_Local);
 
     if (selectServerWelcomeDialog.DoModal() == IDCANCEL)
         return FALSE;
 
-    ZIChooseServerSelect selectServerDialog(m_Local);
+    PSS_SelectServerDialog selectServerDialog(m_Local);
 
     if (selectServerDialog.DoModal() == IDCANCEL)
         return FALSE;

@@ -166,7 +166,7 @@ void ZCDatabaseListCtrl::BuildColumns()
             int len = m_fieldinfo.m_strName.GetLength();
             CString temp = m_fieldinfo.m_strName;
             TCHAR* szBuffer = new TCHAR[len + 1];
-            strcpy(szBuffer, temp.GetBuffer(len));
+            strcpy_s(szBuffer, _tcslen(szBuffer), temp.GetBuffer(len));
             temp.ReleaseBuffer();
             lvColumn.pszText = szBuffer;
             InsertColumn(i, &lvColumn);//insert column        
@@ -235,7 +235,7 @@ void ZCDatabaseListCtrl::OnGetDispInfo(NMHDR* pNMHDR, LRESULT* pResult)
         switch(variant->vt)
         {
             case VT_ERROR:{    
-                            strcpy(szValue, "Error");                    
+                            strcpy_s(szValue, _tcslen(szValue), "Error");
                             break;
                           }
             case VT_I2:{    wsprintf(szValue, "%d", variant->iVal);
@@ -252,25 +252,25 @@ void ZCDatabaseListCtrl::OnGetDispInfo(NMHDR* pNMHDR, LRESULT* pResult)
                        }
             case VT_CY:{    COleCurrency c(varValue);
                             CString s = c.Format();//ie. 1.00
-                            strcpy(szValue, s.GetBuffer(s.GetLength()));
+                            strcpy_s(szValue, _tcslen(szValue), s.GetBuffer(s.GetLength()));
                             s.ReleaseBuffer();
                             break;
                        }
             case VT_DATE:{    COleDateTime t(variant->date);
                             CString s = t.Format( "%B %d, %Y" );//Day of Week, Month Day, Year
-                            strcpy(szValue, s.GetBuffer(s.GetLength()));
+                            strcpy_s(szValue, _tcslen(szValue), s.GetBuffer(s.GetLength()));
                             s.ReleaseBuffer();
                             break;
                          }
             case VT_BSTR:{  CString str = V_BSTRT( &varValue );//convert BSTR to CString
-                            strcpy(szValue, str.GetBuffer(str.GetLength()));
+                            strcpy_s(szValue, _tcslen(szValue), str.GetBuffer(str.GetLength()));
                             str.ReleaseBuffer();
                             break;
                         }
             case VT_BOOL:{    if(variant->boolVal)
-                                strcpy(szValue, "TRUE");
+                                strcpy_s(szValue, _tcslen(szValue), "TRUE");
                             else
-                                strcpy(szValue, "FALSE");
+                                strcpy_s(szValue, _tcslen(szValue), "FALSE");
                             break;
                          }
             case VT_UI1:{    wsprintf(szValue, "%d", variant->bVal);

@@ -46,14 +46,14 @@
     <_ProjectFileVersion>15.0.28127.55</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>.\Release\</OutDir>
+    <OutDir>..\exeR\</OutDir>
     <IntDir>.\Release\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>..\..\Third party\CJ60Lib\Include;..\..\Third party\Stingray Studio\Include;..\..\Third party\Stingray Studio\Regex\include;..\;..\Include;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\Third party\CJ60Lib\lib;..\..\Third party\Stingray Studio\Lib;..\..\Third party\Stingray Studio\Regex\lib\vc6;..\;..\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>.\Debug\</OutDir>
+    <OutDir>..\exe\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental />
     <IncludePath>..\..\Third party\CJ60Lib\Include;..\..\Third party\Stingray Studio\Include;..\..\Third party\Stingray Studio\Regex\include;..\;..\Include;$(IncludePath)</IncludePath>

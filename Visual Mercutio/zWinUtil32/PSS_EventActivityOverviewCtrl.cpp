@@ -324,12 +324,13 @@ CString PSS_EventActivityOverviewCtrl::FormatActivityText(ZBEventActivity* pData
     activityNameLabel.LoadString(IDS_COLUMN3_EVENTREMINDER);
 
     char buffer[100];
-    std::sprintf(buffer,
-                 "%s: %s - %s: %s",
-                 (const char*)processNameLabel,
-                 (const char*)pData->GetProcessName(),
-                 (const char*)activityNameLabel,
-                 (const char*)pData->GetActivityName());
+    sprintf_s(buffer,
+              _tcslen(buffer),
+              "%s: %s - %s: %s",
+              (const char*)processNameLabel,
+              (const char*)pData->GetProcessName(),
+              (const char*)activityNameLabel,
+              (const char*)pData->GetActivityName());
 
     return buffer;
 }

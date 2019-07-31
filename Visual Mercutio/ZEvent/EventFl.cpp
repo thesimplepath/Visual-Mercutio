@@ -77,12 +77,12 @@ BOOL ZBEventFile::ImportLine()
 void ZBEventFile::ExportLine()
 {
     char drive[_MAX_DRIVE];
-    char dir[_MAX_DIR];
+    char dir  [_MAX_DIR];
     char fname[_MAX_FNAME];
-    char ext[_MAX_EXT];
+    char ext  [_MAX_EXT];
 
-    _splitpath( (const char*)m_Filename, drive, dir, fname, ext );
-    BuildLine( CString(drive) + dir, CString(fname) + ext );
+    _splitpath_s((const char*)m_Filename, drive, _tcslen(drive), dir, _tcslen(dir), fname, _tcslen(fname), ext, _tcslen(ext));
+    BuildLine(CString(drive) + dir, CString(fname) + ext);
     WriteLine();
 }
 

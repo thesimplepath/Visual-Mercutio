@@ -74,9 +74,9 @@ const ZBEventActivityReminder & ZBEventActivityReminder::operator=(const ZBEvent
 }
 
 
-CString     ZBEventActivityReminder::GetRemainingDaysString() const
+CString ZBEventActivityReminder::GetRemainingDaysString() const
 {
-    char    Buffer[10];
-    sprintf( Buffer, "%d", m_RemainingDays );
-    return Buffer;
+    char buffer[10];
+    sprintf_s(buffer, _tcslen(buffer), "%d", m_RemainingDays);
+    return buffer;
 }

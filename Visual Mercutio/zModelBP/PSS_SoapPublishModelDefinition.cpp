@@ -522,7 +522,7 @@ bool PSS_SoapPublishModelDefinition::OnDeliverableLinkSymbol(ZBDeliverableLinkSy
         CODNodeArray followingNodes;
         pTwinPage->GetFollowingSymbols_Down(followingNodes);
 
-        std:size_t followingSymbolCount =
+        const std::size_t followingSymbolCount =
             ZUODSymbolManipulator::KeepOnlySymbolsISA(followingNodes, RUNTIME_CLASS(ZBSymbol));
 
         if (!followingSymbolCount)

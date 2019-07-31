@@ -14,7 +14,7 @@ static char THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 17 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-BEGIN_MESSAGE_MAP( ZIWelcomeProcess, ZIWelcomeDialog )
+BEGIN_MESSAGE_MAP(ZIWelcomeProcess, PSS_WelcomeDialog)
     //{{AFX_MSG_MAP(ZIWelcomeProcess)
     ON_BN_CLICKED(ID_WELCOME_CREATE_NEWMODEL, OnWelcomeCreateNewModel)
     ON_BN_CLICKED(ID_WELCOME_CREATE_NEWPROJECT, OnWelcomeCreateNewProject)
@@ -26,19 +26,20 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // ZIWelcomeProcess dialog
 
-ZIWelcomeProcess::ZIWelcomeProcess( ZAApplicationOption*    pApplicationOptions,
-                                    BOOL                    EnableMoveToGeneral,
-                                    CWnd*                    pParent /*=NULL*/ )
-    : ZIWelcomeDialog( ZIWelcomeProcess::IDD, IDB_WELCOME_P, pApplicationOptions, EnableMoveToGeneral, pParent )
-{
-    //{{AFX_DATA_INIT(ZIWelcomeProcess)
-        // NOTE: the ClassWizard will add member initialization here
-    //}}AFX_DATA_INIT
-}
+ZIWelcomeProcess::ZIWelcomeProcess( ZAApplicationOption* pApplicationOptions,
+                                    BOOL                 EnableMoveToGeneral,
+                                    CWnd*                pParent) :
+    PSS_WelcomeDialog(ZIWelcomeProcess::IDD,
+                      IDB_WELCOME_P,
+                      pApplicationOptions,
+                      EnableMoveToGeneral,
+                      pParent)
+{}
 
-void ZIWelcomeProcess::DoDataExchange( CDataExchange* pDX )
+void ZIWelcomeProcess::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWelcomeDialog::DoDataExchange( pDX );
+    PSS_WelcomeDialog::DoDataExchange(pDX);
+
     //{{AFX_DATA_MAP(ZIWelcomeProcess)
     DDX_Control(pDX, ID_WELCOME_OPENMODEL, m_OpenModel);
     DDX_Control(pDX, ID_WELCOME_OPENPROJECT, m_OpenProject);
@@ -74,10 +75,10 @@ void ZIWelcomeProcess::OnWelcomeOpenProject()
     EndDialog( ID_WELCOME_OPENPROJECT );
 }
 
-BOOL ZIWelcomeProcess::OnInitDialog() 
+BOOL ZIWelcomeProcess::OnInitDialog()
 {
-    ZIWelcomeDialog::OnInitDialog();
-    
-    return TRUE;  // return TRUE unless you set the focus to a control
-                  // EXCEPTION: OCX Property Pages should return FALSE
+    PSS_WelcomeDialog::OnInitDialog();
+
+    // return TRUE unless the focus is set to a control. NOTE OCX property pages should return FALSE
+    return TRUE;
 }

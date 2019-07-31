@@ -5,17 +5,18 @@
 #define AFX_ZVWORKSPACECREATIONWIZARD_H__5DA4C599_18FB_4411_B32C_FA6E5C4462DB__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
+// processsoft
 #include "zBaseLib\ZWizard.h"
-#include "Resource.h"
 #include "zWinUtil32\ZSearchEdit.h"
-#include "zWinUtil32\ZCWorkspaceTemplateList.h"
+#include "zWinUtil32\PSS_WorkspaceTemplateListCtrl.h"
 
-// JMR-MODIF - Le 14 juin 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
+// resources
+#include "Resource.h"
 
-// Forward class declaration
+// forward class declaration
 class ZBWorkspaceWizardTemplateMg;
 
 class ZVWorkspaceCreationWizard
@@ -141,12 +142,16 @@ public:
     ZVWorkspaceTemplate( ZBWorkspaceWizardTemplateMg*    pWorkspaceTemplateManager    = NULL,
                          CWnd*                            pParent                        = NULL);
 
-    // Dialog Data
-    //{{AFX_DATA(ZVWorkspaceTemplate)
-    enum { IDD = IDD_WZ_WORKSPACE_TEMPLATE };
-    ZCWorkspaceTemplateList    m_TemplateList;
-    CString    m_Comment;
-    //}}AFX_DATA
+    /**
+    * Dialog resources
+    */
+    enum
+    {
+        IDD = IDD_WZ_WORKSPACE_TEMPLATE
+    };
+
+    PSS_WorkspaceTemplateListCtrl m_TemplateList;
+    CString                       m_Comment;
 
     // Overrides
     // ClassWizard generated virtual function overrides

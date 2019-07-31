@@ -235,8 +235,10 @@ CString ZActivity::GetDefaultString ()
     if (GetActivityStatus() != ActivityNotStarted)
     {
         Line += " Démarré le: ";
-        char    buf[30];
-        sprintf( buf, "%d.%d.%d", GetStartDate().GetDay(), GetStartDate().GetMonth(), GetStartDate().GetYear());
+
+        char buf[30];
+        sprintf_s(buf, _tcslen(buf), "%d.%d.%d", GetStartDate().GetDay(), GetStartDate().GetMonth(), GetStartDate().GetYear());
+
         Line += buf;
     }
     return Line;

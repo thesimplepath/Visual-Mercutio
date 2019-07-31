@@ -34,13 +34,13 @@ class ZCSearchEdit;
 
 // JMR-MODIF - Le 4 avril 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-typedef enum ZSEARCHEDIT_TYPE
+typedef enum
 {
     ZSEARCHEDIT_DIRECTORY = 0,
     ZSEARCHEDIT_FILE,
     ZSEARCHEDIT_POPUP,
     ZSEARCHEDIT_EXTENDED
-};
+} ZSEARCHEDIT_TYPE;
 
 class ZEditButton : public CButton
 {

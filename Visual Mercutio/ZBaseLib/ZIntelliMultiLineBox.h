@@ -2,10 +2,8 @@
 #define AFX__ZCInternalMultiLineEdit_H__85036D1D_E0AF_4249_9C4A_469775DEE39B__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-// _ZCInternalMultiLineEdit.h : header file
-//
+    #pragma once
+#endif
 
 /////////////////////////////////////////////////////////////////////////////
 // Forward class declaration

@@ -12,19 +12,8 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
+// processsoft
 #include "zBaseLib\ZDib.h"
-
-
-class ZAbstractPreview
-{
-public:
-    virtual void SetPreviewFile(const CString& csFileName)=0;
-    virtual void DrawPreview(CDC *pDC,int x,int y,int width,int height)=0;
-    virtual CRect Calc(int bmpWid,int bmpDep,int wndWid,int wndDep);
-};
-
-
 
 #ifdef _ZWINUTIL32EXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -36,11 +25,13 @@ public:
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-
-/////////////////////////////////////////////////////////////////////////////
-// ZIPreviewFileDialog dialog
+class ZAbstractPreview
+{
+public:
+    virtual void SetPreviewFile(const CString& csFileName) = 0;
+    virtual void DrawPreview(CDC *pDC, int x, int y, int width, int height) = 0;
+    virtual CRect Calc(int bmpWid, int bmpDep, int wndWid, int wndDep);
+};
 
 class AFX_EXT_CLASS ZIPreviewFileDialog : public CFileDialog
 {
@@ -81,4 +72,4 @@ protected:
     CString m_InitialDir;
 };
 
-#endif    // __ZPREVIEWFILEDIALOG__
+#endif

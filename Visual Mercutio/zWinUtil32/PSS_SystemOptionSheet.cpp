@@ -11,11 +11,11 @@
 // processsoft
 #include "zBaseLib\Export.h"
 #include "zWinUtil32\PSS_GeneralPage.h"
-#include "ViewPgR.h"
-#include "ViewPage.h"
+#include "PSS_ViewPage.h"
+#include "PSS_ReducedViewPage.h"
 #include "PSS_CalculationPage.h"
-#include "PSS_ExportPage.h"
 #include "PSS_NavigationPage.h"
+#include "PSS_ExportPage.h"
 
 // resources
 #include "zWinUtil32\zWinUtil32Res.h"
@@ -52,7 +52,7 @@ PSS_SystemOptionSheet::PSS_SystemOptionSheet(ZAApplicationOption* pAppOptions, I
     // add the view page
     if (optionPages & IE_OP_View)
     {
-        std::unique_ptr<ZIViewPage> pViewPage(new ZIViewPage(pAppOptions));
+        std::unique_ptr<PSS_ViewPage> pViewPage(new PSS_ViewPage(pAppOptions));
         GetPageArray().Add(pViewPage.get());
         AddPage(pViewPage.get());
         pViewPage.release();
@@ -61,7 +61,7 @@ PSS_SystemOptionSheet::PSS_SystemOptionSheet(ZAApplicationOption* pAppOptions, I
     // add the view page (reduced version)
     if (optionPages & IE_OP_ViewReduced)
     {
-        std::unique_ptr<ZIViewPageReduced> pViewPageReduced(new ZIViewPageReduced(pAppOptions));
+        std::unique_ptr<PSS_ReducedViewPage> pViewPageReduced(new PSS_ReducedViewPage(pAppOptions));
         GetPageArray().Add(pViewPageReduced.get());
         AddPage(pViewPageReduced.get());
         pViewPageReduced.release();

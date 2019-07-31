@@ -70,10 +70,11 @@ inline bool ZBInputScenario::AddField( ZBFieldInputScenario* pField )
     {
         m_InputFieldSet.Add( pField );
     }
-    catch( CMemoryException e() )
+    catch (CMemoryException&)
     {
         return false;
     }
+
     return true;
 }
 

@@ -119,8 +119,10 @@ const CString PSS_SecurityCheck::FindOldVersion(const CString& exeFileName)
             // convert drive letter to string
             try
             {
-                pBuffer     = new char[18];
-                driveLetter = itoa(drive, pBuffer, 10);
+                pBuffer = new char[18];
+                
+                if (!_itoa_s(drive, pBuffer, _tcslen(pBuffer), 10))
+                    driveLetter = pBuffer;
             }
             catch (...)
             {
@@ -236,7 +238,9 @@ const CString& PSS_SecurityCheck::FindFile(const CString& fileName, int drive)
     try
     {
         pBuffer = new char[18];
-        driveLetter = itoa(drive, pBuffer, 10);
+
+        if (!_itoa_s(drive, pBuffer, _tcslen(pBuffer), 10))
+            driveLetter = pBuffer;
     }
     catch (...)
     {

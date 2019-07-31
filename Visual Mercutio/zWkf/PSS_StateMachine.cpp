@@ -280,7 +280,7 @@ void PSS_StateMachine::RemoveStateObjectAt(std::size_t index, bool deleteObject)
     {
         m_Set.RemoveAt(index);
 
-        if (DeleteObject)
+        if (deleteObject)
             delete pStateObject;
     }
 }

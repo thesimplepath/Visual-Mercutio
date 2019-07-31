@@ -86,17 +86,17 @@ void PSS_TemplateTreeCtrl::Refresh()
 //---------------------------------------------------------------------------
 CString PSS_TemplateTreeCtrl::GetNameSelectedItem()
 {
-    return m_TemplateTree.GetNameSelectedItem();
+    return m_TemplateTree.GetSelectedItemName();
 }
 //---------------------------------------------------------------------------
 ZDTemplateDir* PSS_TemplateTreeCtrl::GetSelectedFolderItem()
 {
-    return m_TemplateTree.GetSelectedFolderItem();
+    return m_TemplateTree.GetSelectedItemFolder();
 }
 //---------------------------------------------------------------------------
 ZDTemplateFile* PSS_TemplateTreeCtrl::GetSelectedFileItem()
 {
-    return m_TemplateTree.GetSelectedFileItem();
+    return m_TemplateTree.GetSelectedItemFile();
 }
 //---------------------------------------------------------------------------
 BOOL PSS_TemplateTreeCtrl::SelectItemName(const CString& name)

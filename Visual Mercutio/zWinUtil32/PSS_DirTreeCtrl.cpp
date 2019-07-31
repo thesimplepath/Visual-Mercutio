@@ -527,7 +527,7 @@ TCHAR* PSS_DirTreeCtrl::MakeObjectDynamic(LPTSTR pData)
     if (length > 0)
     {
         pRet = new TCHAR[length];
-        std::_tcscpy(pRet, pData);
+        _tcscpy_s(pRet, _tcslen(pRet), pData);
     }
 
     return pRet;

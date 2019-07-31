@@ -46,7 +46,7 @@
 #endif
 
 #include "zWinUtil32\PSS_CalendarWindowDialog.h"
-#include "zWinUtil32\ZIObjectNotesDialog.h"
+#include "zWinUtil32\PSS_ObjectNotesDialog.h"
 
 #include "zBaseLib\FileDlg.h"
 
@@ -346,18 +346,18 @@ Edit* ZIViewModify::CreateEditControl ( PlanFinObject* pObj, CDC* pDC )
     //## end ZIViewModify::CreateEditControl%938177641.body
 }
 
-void ZIViewModify::AddObjectNotes ( PlanFinObject* pObj )
+void ZIViewModify::AddObjectNotes(PlanFinObject* pObj)
 {
     //## begin ZIViewModify::AddObjectNotes%941353880.body preserve=yes
-    ZIObjectNotesDialog    ObjectNotesDialog( ( pObj->GetNotesPointer() ) ? pObj->GetNotesPointer()->GetComment() : _T( "" ),
-                                           ( pObj->GetNotesPointer() ) ? pObj->GetNotesPointer()->GetUsername() : _T( "" ) );
+    PSS_ObjectNotesDialog objectNotesDialog(pObj->GetNotesPointer() ? pObj->GetNotesPointer()->GetComment()  : _T(""),
+                                            pObj->GetNotesPointer() ? pObj->GetNotesPointer()->GetUsername() : _T(""));
 
-    switch ( ObjectNotesDialog.DoModal() )
+    switch (objectNotesDialog.DoModal())
     {
         case IDOK:
         {
             // Save the notes
-            pObj->AddNotes( ObjectNotesDialog.GetComment(), ZAGlobal::GetConnectedUserName() );
+            pObj->AddNotes(objectNotesDialog.GetComment(), ZAGlobal::GetConnectedUserName());
             break;
         }
 

@@ -314,7 +314,7 @@ void PSS_ActivityTaskListCtrl::InsertActivity(ZBaseActivity& activity, bool isCu
 
         // the remaining days
         if (activity.GetActivityStatus() == ActivityNotStarted)
-            std::strcpy(buffer, " - ");
+            strcpy_s(buffer, _tcslen(buffer), " - ");
         else
         {
             ZBDate dateEnd = activity.GetForecastedEndDate();
@@ -326,9 +326,9 @@ void PSS_ActivityTaskListCtrl::InsertActivity(ZBaseActivity& activity, bool isCu
             COleDateTimeSpan dateTimeSpan(dateEnd - dateToday);
 
             if (dateTimeSpan.GetStatus() == COleDateTimeSpan::valid)
-                std::sprintf(buffer, "%d", int(dateTimeSpan.GetTotalDays()));
+                sprintf_s(buffer, _tcslen(buffer), "%d", int(dateTimeSpan.GetTotalDays()));
             else
-                std::strcpy(buffer, "-");
+                strcpy_s(buffer, _tcslen(buffer), "-");
         }
 
         SetItem(index, 6, LVIF_TEXT, buffer, 0, LVIF_TEXT, LVIF_TEXT, 0);

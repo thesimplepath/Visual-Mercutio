@@ -51,11 +51,12 @@ BOOL ZUActivityLogDatabase::OpenRead ()
             return FALSE;
         }
     } 
-    catch (CDaoException e()) 
+    catch (CDaoException&)
     {
         return (FALSE);
     }
-   return TRUE;
+
+    return TRUE;
 }
 
 BOOL ZUActivityLogDatabase::OpenWrite ()
@@ -77,11 +78,12 @@ BOOL ZUActivityLogDatabase::OpenWrite ()
             return FALSE;
         }
     } 
-    catch (CDaoException e()) 
+    catch (CDaoException&)
     {
         return (FALSE);
     }
-   return TRUE;;
+
+    return TRUE;
 }
 
 BOOL ZUActivityLogDatabase::Close ()
@@ -121,11 +123,10 @@ BOOL ZUActivityLogDatabase::AppendToLog (ZBEventActivity& EventActivity)
         if (m_pLogRecordset->IsOpen() && m_pLogRecordset->CanUpdate())
             m_pLogRecordset->AddNew();
     }
-    catch (CDaoException e()) 
+    catch (CDaoException&)
     {
         return (FALSE);
     }
-
 
       ZBDate    CurrentDate = ZBDate::GetToday();
 
@@ -172,10 +173,11 @@ BOOL ZUActivityLogDatabase::AppendToLog (ZBEventActivity& EventActivity)
         m_pLogRecordset->Update();
         m_pLogRecordset->Close();
     }
-    catch (CDaoException e()) 
+    catch (CDaoException&)
     {
         return (FALSE);
     }
+
     return TRUE;
 }
 
@@ -201,12 +203,12 @@ BOOL ZUActivityLogDatabase::ClearLog ()
 //        m_pLogRecordset->m_strFilter = Query;
 //        m_pLogRecordset->Requery();
     } 
-    catch (CDaoException e()) 
+    catch (CDaoException&)
     {
         Close();
         return FALSE;
     }
-    
+
     Close();
 
     return TRUE;

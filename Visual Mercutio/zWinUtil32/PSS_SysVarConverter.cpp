@@ -132,7 +132,7 @@ CString PSS_SysVarConverter::GetVariableContent(const CString& variable)
         if (m_pDoc)
         {
             char buffer[5];
-            std::sprintf(buffer, "%l", m_pDoc->GetDocumentStamp().GetPublishVersion());
+            sprintf_s(buffer, _tcslen(buffer), "%ld", m_pDoc->GetDocumentStamp().GetPublishVersion());
             return buffer;
         }
     }

@@ -23,7 +23,7 @@
 // processsoft
 #include "zBaseLib\ZITreeCtl.h"
 #include "zBaseLib\TmplMng.h"
-#include "ZITmplTr.h"
+#include "PSS_TemplateTree.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -125,7 +125,7 @@ class AFX_EXT_CLASS PSS_TemplateTreeCtrl : public ZITreeCtrl
 
     protected:
         ZDTemplateManager* m_pTemplateManager;
-        ZITemplateTree     m_TemplateTree;
+        PSS_TemplateTree   m_TemplateTree;
         BOOL               m_IncludeFiles;
 
         /// Additional Protected Declarations

@@ -110,7 +110,7 @@ void PSS_CreateFolderWizardStartDialog::OnChangeFolderName()
         char dir  [_MAX_DIR];
         char fName[_MAX_FNAME];
         char ext  [_MAX_EXT];
-        _splitpath((const char*)fileName, drive, dir, fName, ext);
+        _splitpath_s((const char*)fileName, drive, _tcslen(drive), dir, _tcslen(dir), fName, _tcslen(fName), ext, _tcslen(ext));
 
         if (m_FolderName.IsEmpty())
             m_CompleteFileName.SetWindowText(CString(drive) + dir);

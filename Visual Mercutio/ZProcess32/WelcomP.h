@@ -2,10 +2,13 @@
 #define AFX_WELCOMP_H__798CD2E7_31E3_11D3_95D5_0000B45D7C6F__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-#include "zWinUtil32\ZIWelcom.h"
+// processsoft
+#include "zWinUtil32\PSS_WelcomeDialog.h"
+
+// resources
 #include "Resource.h"
 
 // JMR-MODIF - Le 17 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
@@ -13,7 +16,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // ZIWelcomeProcess dialog
 
-class ZIWelcomeProcess : public ZIWelcomeDialog
+class ZIWelcomeProcess : public PSS_WelcomeDialog
 {
 // Construction
 public:

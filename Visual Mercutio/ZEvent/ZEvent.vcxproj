@@ -46,14 +46,14 @@
     <_ProjectFileVersion>15.0.28127.55</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>.\Release\</OutDir>
+    <OutDir>..\exeR\</OutDir>
     <IntDir>.\Release\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>..\..\Third party\CJ60Lib\Include;..\;..\Include;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\Third party\CJ60Lib\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>.\Debug\</OutDir>
+    <OutDir>..\exe\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental />
     <IncludePath>..\..\Third party\CJ60Lib\Include;..\;..\Include;$(IncludePath)</IncludePath>
@@ -73,6 +73,8 @@
       <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <OutputFile>..\exeR\ZEvent.dll</OutputFile>
@@ -112,6 +114,8 @@
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <OutputFile>..\exe\ZEventD.dll</OutputFile>

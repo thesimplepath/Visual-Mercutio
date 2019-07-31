@@ -72,7 +72,8 @@ class AFX_EXT_CLASS PSS_SoapData_File
             m_Folder(folderID),
             m_IsPublic(isPublic)
         {
-            std::FILE* pFile = std::fopen((fPath + _T("\\") + fileName).c_str(), "rb");
+            std::FILE* pFile;
+            fopen_s(&pFile, (fPath + _T("\\") + fileName).c_str(), "rb");
 
             if (!pFile)
                 throw _T("Wrong file name");
@@ -141,7 +142,9 @@ class AFX_EXT_CLASS PSS_SoapData_File
         bool Save(const std::string& path)
         {
             std::string fileName = path + _T("\\") + m_FileName;
-            std::FILE*  pFile    = std::fopen(fileName.c_str(), "wb");
+            
+            std::FILE* pFile;
+            fopen_s(&pFile, fileName.c_str(), "wb");
 
             if (!pFile)
                 return false;

@@ -115,7 +115,7 @@ BOOL ZDProcessHistoryDAO::OpenRead()
             return FALSE;
         }
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         return ( FALSE );
     }
@@ -184,7 +184,7 @@ BOOL ZDProcessHistoryDAO::OpenWrite()
             return FALSE;
         }
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         return ( FALSE );
     }
@@ -290,7 +290,7 @@ long ZDProcessHistoryDAO::FindProcess( ZBEventActivity& EventActivity )
             m_pHistoryProcessRecordset->Open( dbOpenDynaset, NULL, dbConsistent );
         }
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         return -1;
     }
@@ -373,7 +373,7 @@ long ZDProcessHistoryDAO::FindProcess( ZBEventActivity& EventActivity )
             return -1;
         }
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         m_pHistoryProcessRecordset->Close();
         return -1;
@@ -402,7 +402,7 @@ long ZDProcessHistoryDAO::FindActivity( long ProcessID, ZBDate& CurrentDate, ZBE
             m_pHistoryActivityRecordset->Open( dbOpenDynaset, NULL, dbConsistent );
         }
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         return -1;
     }
@@ -454,7 +454,7 @@ long ZDProcessHistoryDAO::FindActivity( long ProcessID, ZBDate& CurrentDate, ZBE
             return -1;
         }
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         m_pHistoryActivityRecordset->Close();
         return -1;
@@ -488,7 +488,7 @@ bool ZDProcessHistoryDAO::AddNewProcessRecord( ZBEventActivity& EventActivity )
             m_pHistoryProcessRecordset->AddNew();
         }
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         m_pHistoryProcessRecordset->Close();
         return false;
@@ -536,7 +536,7 @@ bool ZDProcessHistoryDAO::AddNewProcessRecord( ZBEventActivity& EventActivity )
         m_pHistoryProcessRecordset->Update();
         m_pHistoryProcessRecordset->Close();
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         m_pHistoryProcessRecordset->Close();
         return false;
@@ -564,7 +564,7 @@ bool ZDProcessHistoryDAO::ModifyProcessStatusRecord( long ProcessID, ZBEventActi
             m_pHistoryProcessStatusRecordset->Open( dbOpenDynaset, NULL, dbConsistent );
         }
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         return false;
     }
@@ -586,7 +586,7 @@ bool ZDProcessHistoryDAO::ModifyProcessStatusRecord( long ProcessID, ZBEventActi
             return AddProcessStatusRecord( ProcessID, EventActivity );
         }
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         return false;
     }
@@ -600,7 +600,7 @@ bool ZDProcessHistoryDAO::ModifyProcessStatusRecord( long ProcessID, ZBEventActi
             m_pHistoryProcessStatusRecordset->Edit();
         }
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         m_pHistoryProcessStatusRecordset->Close();
         return false;
@@ -633,7 +633,7 @@ bool ZDProcessHistoryDAO::ModifyProcessStatusRecord( long ProcessID, ZBEventActi
         m_pHistoryProcessStatusRecordset->Update();
         m_pHistoryProcessStatusRecordset->Close();
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         return false;
     }
@@ -665,7 +665,7 @@ bool ZDProcessHistoryDAO::AddProcessStatusRecord( long ProcessID, ZBEventActivit
             m_pHistoryProcessStatusRecordset->AddNew();
         }
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         return false;
     }
@@ -696,7 +696,7 @@ bool ZDProcessHistoryDAO::AddProcessStatusRecord( long ProcessID, ZBEventActivit
         m_pHistoryProcessStatusRecordset->Update();
         m_pHistoryProcessStatusRecordset->Close();
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         return false;
     }
@@ -725,7 +725,7 @@ bool ZDProcessHistoryDAO::ModifyActivityStatusRecord( long                Proces
             m_pHistoryActivityStatusRecordset->Open( dbOpenDynaset, NULL, dbConsistent );
         }
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         return false;
     }
@@ -793,7 +793,7 @@ bool ZDProcessHistoryDAO::ModifyActivityStatusRecord( long                Proces
             return AddActivityStatusRecord( ProcessID, ActivityID, EventActivity );
         }
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         return false;
     }
@@ -807,7 +807,7 @@ bool ZDProcessHistoryDAO::ModifyActivityStatusRecord( long                Proces
             m_pHistoryActivityStatusRecordset->Edit();
         }
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         m_pHistoryActivityStatusRecordset->Close();
         return false;
@@ -846,7 +846,7 @@ bool ZDProcessHistoryDAO::ModifyActivityStatusRecord( long                Proces
         m_pHistoryActivityStatusRecordset->Update();
         m_pHistoryActivityStatusRecordset->Close();
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         return false;
     }
@@ -878,7 +878,7 @@ bool ZDProcessHistoryDAO::AddActivityStatusRecord( long ProcessID, long Activity
             m_pHistoryActivityStatusRecordset->AddNew();
         }
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         return false;
     }
@@ -915,7 +915,7 @@ bool ZDProcessHistoryDAO::AddActivityStatusRecord( long ProcessID, long Activity
         m_pHistoryActivityStatusRecordset->Update();
         m_pHistoryActivityStatusRecordset->Close();
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         return false;
     }
@@ -942,7 +942,7 @@ bool ZDProcessHistoryDAO::ModifyFolderStatusRecord( long ProcessID, long Activit
             m_pHistoryFolderStatusRecordset->Open( dbOpenDynaset, NULL, dbConsistent );
         }
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         return false;
     }
@@ -987,7 +987,7 @@ bool ZDProcessHistoryDAO::ModifyFolderStatusRecord( long ProcessID, long Activit
             return AddFolderStatusRecord( ProcessID, ActivityID, EventActivity );
         }
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         return false;
     }
@@ -1001,7 +1001,7 @@ bool ZDProcessHistoryDAO::ModifyFolderStatusRecord( long ProcessID, long Activit
             m_pHistoryFolderStatusRecordset->Edit();
         }
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         m_pHistoryFolderStatusRecordset->Close();
         return false;
@@ -1040,7 +1040,7 @@ bool ZDProcessHistoryDAO::ModifyFolderStatusRecord( long ProcessID, long Activit
         m_pHistoryFolderStatusRecordset->Update();
         m_pHistoryFolderStatusRecordset->Close();
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         return false;
     }
@@ -1072,7 +1072,7 @@ bool ZDProcessHistoryDAO::AddFolderStatusRecord( long ProcessID, long ActivityID
             m_pHistoryFolderStatusRecordset->AddNew();
         }
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         return false;
     }
@@ -1109,7 +1109,7 @@ bool ZDProcessHistoryDAO::AddFolderStatusRecord( long ProcessID, long ActivityID
         m_pHistoryFolderStatusRecordset->Update();
         m_pHistoryFolderStatusRecordset->Close();
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         return false;
     }
@@ -1163,7 +1163,7 @@ BOOL ZDProcessHistoryDAO::AppendEventToHistoric( ZBEventActivity& EventActivity 
             m_pHistoryActivityRecordset->AddNew();
         }
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         return ( FALSE );
     }
@@ -1217,7 +1217,7 @@ BOOL ZDProcessHistoryDAO::AppendEventToHistoric( ZBEventActivity& EventActivity 
 
         ActivityID = FindActivity( ProcessID, CurrentDate, EventActivity );
     }
-    catch ( CDaoException e() )
+    catch (CDaoException&)
     {
         return ( FALSE );
     }
