@@ -11,7 +11,7 @@
 // processsoft
 #include "zBaseLib\File.h"
 #include "zBaseLib\ZAGlobal.h"
-#include "ZVFormFilePreviewDlg.h"
+#include "PSS_FileFormPreviewDialog.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -77,7 +77,7 @@ void PSS_ProcessTakeOwnershipActionsDialog::OnViewCommand()
     // launch the file in preview
     if (file.Exist())
     {
-        ZVFormFilePreviewDlg filePreviewDlg(m_FileName, ZAGlobal::GetpProcessDocTemplate());
+        PSS_FileFormPreviewDialog filePreviewDlg(m_FileName, ZAGlobal::GetpProcessDocTemplate());
         filePreviewDlg.DoModal();
     }
 }

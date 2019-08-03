@@ -4,20 +4,19 @@
 #include "stdafx.h"
 #include "ZBExtFilePropertyMgr.h"
 
-#include "ProcGraphModelMdl.h"
-
+// processsoft
 #include "zBaseLib\ZAGlobal.h"
 #include "zBaseLib\ZBTokenizer.h"
-
-#include "zWinUtil32\ZVReferenceFileDlg.h"
-
 #include "zBaseLib\ZNetResourceWrapper.h"
 #include "zBaseLib\TmplFile.h"
 #include "zBaseLib\File.h"
+#include "zWinUtil32\PSS_ReferenceFileDialog.h"
+#include "ProcGraphModelMdl.h"
 
+// resources
+#include "zFormsRes\zFormsRes.h"
 #include "zModelRes.h"
 #include "zRBProp.h"
-#include "zFormsRes\zFormsRes.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -331,14 +330,14 @@ bool ZBExtFilePropertyMgr::ProcessExtendedInput( ZBProperty&    Property,
         int i = Property.GetCategoryID() - ZS_BP_PROP_EXTFILE;
 
         // Call the dialog
-        ZVReferenceFileDlg dlg( GetFilename( i ),
-                                GetInsertionType( i ),
-                                GetActivationType( i ) );
+        PSS_ReferenceFileDialog refFileDlg(GetFilename(i),
+                                           GetInsertionType(i),
+                                           GetActivationType(i));
 
-        if ( dlg.DoModal() == IDOK )
+        if (refFileDlg.DoModal() == IDOK)
         {
-            value = dlg.GetReference();
-            ZFile file( dlg.GetReference() );
+            value = refFileDlg.GetReference();
+            ZFile file(refFileDlg.GetReference());
 
             if ( file.Exist() )
             {
@@ -346,12 +345,12 @@ bool ZBExtFilePropertyMgr::ProcessExtendedInput( ZBProperty&    Property,
             }
             else
             {
-                SetFileTitle( i, dlg.GetReference() );
+                SetFileTitle(i, refFileDlg.GetReference());
             }
 
-            SetFilename( i, dlg.GetReference() );
-            SetInsertionType( i, dlg.GetInsertionType() );
-            SetActivationType( i, dlg.GetActivationType() );
+            SetFilename(i, refFileDlg.GetReference());
+            SetInsertionType(i, refFileDlg.GetInsertionType());
+            SetActivationType(i, refFileDlg.GetActivationType());
 
             Refresh = true;
             return true;
@@ -403,14 +402,14 @@ bool ZBExtFilePropertyMgr::DoInsertExtFile( bool DisplayDialog /*= true*/ )
     {
         if ( DisplayDialog )
         {
-            // Call the dialog
-            ZVReferenceFileDlg dlg( GetFilename( Idx ),
-                                    GetInsertionType( Idx ),
-                                    GetActivationType( Idx ) );
+            // call the dialog
+            PSS_ReferenceFileDialog refFileDlg(GetFilename(Idx),
+                                               GetInsertionType(Idx),
+                                               GetActivationType(Idx));
 
-            if ( dlg.DoModal() == IDOK )
+            if (refFileDlg.DoModal() == IDOK)
             {
-                ZFile file( dlg.GetReference() );
+                ZFile file(refFileDlg.GetReference());
 
                 if ( file.Exist() )
                 {
@@ -418,12 +417,12 @@ bool ZBExtFilePropertyMgr::DoInsertExtFile( bool DisplayDialog /*= true*/ )
                 }
                 else
                 {
-                    SetFileTitle( Idx, dlg.GetReference() );
+                    SetFileTitle(Idx, refFileDlg.GetReference());
                 }
 
-                SetFilename( Idx, dlg.GetReference() );
-                SetInsertionType( Idx, dlg.GetInsertionType() );
-                SetActivationType( Idx, dlg.GetActivationType() );
+                SetFilename(Idx, refFileDlg.GetReference());
+                SetInsertionType(Idx, refFileDlg.GetInsertionType());
+                SetActivationType(Idx, refFileDlg.GetActivationType());
             }
         }
 

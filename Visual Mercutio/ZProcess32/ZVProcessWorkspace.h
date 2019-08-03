@@ -10,16 +10,15 @@
 
 #include "zBaseLib\ZISubject.h"
 #include "zBaseLib\ZIObserver.h"
-#include "ZCProcessModelDocument.h"
+#include "zBaseLib\ZCWorkspaceTreeCtrl.h"
 #include "zWinUtil32\PSS_FormTemplateTreeCtrl.h"
 #include "zWinUtil32\PSS_FileWnd.h"
-#include "zWinUtil32\ZVURLWnd.h"
-#include "zBaseLib\ZCWorkspaceTreeCtrl.h"
-
+#include "zWinUtil32\PSS_UrlWnd.h"
+#include "ZCProcessModelDocument.h"
 #include "ZVLogicalSystem.h"
 #include "ZVUserGroup.h"
-#include "ZVPrestations.h"    // JMR-MODIF - Le 11 octobre 2005 - Ajout de l'en-tête du gestionnaire de prestations.
-#include "ZVRules.h"        // JMR-MODIF - Le 13 novembre 2006 - Ajout de l'en-tête du gestionnaire de règles.
+#include "ZVPrestations.h"
+#include "ZVRules.h"
 
 // JMR-MODIF - Le 11 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
@@ -203,7 +202,7 @@ public:
 
     ///////////////////////////////////////////////////////////
     // Web view methods
-    ZVURLWnd* GetWebView();
+    PSS_UrlWnd* GetWebView();
 
     void ActivateWebTab()
     {
@@ -316,7 +315,7 @@ private:
     ZVPrestations            m_PrestationsView;    // JMR-MODIF - Le 11 octobre 2005 - Ajout variable m_PrestationsView.
     ZVRules                    m_RulesView;        // JMR-MODIF - Le 13 novembre 2006 - Ajout de la variable m_RulesView.
     PSS_FileWnd                m_FileView;
-    ZVURLWnd                m_URLView;
+    PSS_UrlWnd                m_URLView;
 };
 
 inline ZCProcessModelDocument* ZVProcessWorkspace::GetModelDocumentTree()
@@ -349,7 +348,7 @@ inline PSS_FileWnd* ZVProcessWorkspace::GetFileView()
     return &m_FileView;
 }
 
-inline ZVURLWnd* ZVProcessWorkspace::GetWebView()
+inline PSS_UrlWnd* ZVProcessWorkspace::GetWebView()
 {
     return &m_URLView;
 }
