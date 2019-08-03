@@ -102,7 +102,7 @@ class PSS_UrlWndButtonToolBar : public CStatic, public ZISubject
         * Sets the parent window
         *@param pParent - parent window
         */
-        void SetParent(CWnd* pParent);
+        virtual void SetParent(CWnd* pParent);
 
     protected:
         /// ClassWizard generated virtual function overrides
