@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\ZWizard.h"
-#include "zWinUtil32\ZSearchEdit.h"
+#include "zWinUtil32\PSS_SearchEdit.h"
 #include "zWinUtil32\PSS_WorkspaceTemplateListCtrl.h"
 
 // resources
@@ -92,8 +92,8 @@ private:
     // Dialog Data
     //{{AFX_DATA(ZVWorkspaceStart)
     enum { IDD = IDD_WZ_WORKSPACE_START };
-    ZCSearchEdit    m_Directory;
-    CString    m_WorkspaceName;
+    PSS_SearchEdit m_Directory;
+    CString        m_WorkspaceName;
     //}}AFX_DATA
 
     // Overrides

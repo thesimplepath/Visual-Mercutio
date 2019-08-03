@@ -23,7 +23,7 @@
 
 // processsoft
 #include "zBaseLib\ZWizard.h"
-#include "ZSearchEdit.h"
+#include "PSS_SearchEdit.h"
 
 // resources
 #include "zWinUtil32\zWinUtil32Res.h"
@@ -135,8 +135,8 @@ class PSS_CreateFolderWizardExistDialog : public ZIWizardDialog
             IDD = IDD_WZCREATEFOLDERFILE_EXIST
         };
 
-        ZCSearchEdit               m_FileName;
-        ZCSearchEdit               m_Directory;
+        PSS_SearchEdit             m_FileName;
+        PSS_SearchEdit             m_Directory;
         CString                    m_Folder;
         CString                    m_FileDirectory;
         CString                    m_CompleteFileName;

@@ -24,12 +24,9 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZCInPlaceDurationEdit
 
-IMPLEMENT_DYNAMIC(ZCInPlaceDurationEdit, CEdit)
+IMPLEMENT_DYNAMIC(ZCInPlaceDurationEdit, PSS_SearchEdit)
 
-
-
-
-BEGIN_MESSAGE_MAP(ZCInPlaceDurationEdit, ZCSearchEdit)
+BEGIN_MESSAGE_MAP(ZCInPlaceDurationEdit, PSS_SearchEdit)
     //{{AFX_MSG_MAP(ZCInPlaceDurationEdit)
     ON_WM_CREATE()
     ON_WM_ERASEBKGND()
@@ -37,7 +34,6 @@ BEGIN_MESSAGE_MAP(ZCInPlaceDurationEdit, ZCSearchEdit)
     ON_WM_CHAR()
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
 
 BOOL ZCInPlaceDurationEdit::PreTranslateMessage(MSG* pMsg) 
 {
@@ -91,7 +87,7 @@ BOOL ZCInPlaceDurationEdit::PreTranslateMessage(MSG* pMsg)
         }
     }
     
-    return ZCSearchEdit::PreTranslateMessage(pMsg);
+    return PSS_SearchEdit::PreTranslateMessage(pMsg);
 }
 
 void ZCInPlaceDurationEdit::SetEditText(const CString& strText)
@@ -251,15 +247,15 @@ void ZCInPlaceDurationEdit::CancelEdit()
 
 void ZCInPlaceDurationEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) 
 {
-    // Sets the has changed flag
-    m_HasChanged = true;    
-    // Call the base function
-    ZCSearchEdit::OnChar(nChar, nRepCnt, nFlags);
+    // set the has changed flag
+    m_HasChanged = true;
+
+    // call the base function
+    PSS_SearchEdit::OnChar(nChar, nRepCnt, nFlags);
 }
 
 void ZCInPlaceDurationEdit::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
-{
-}
+{}
 
 void ZCInPlaceDurationEdit::OnExtendedCommand()
 {
@@ -301,12 +297,11 @@ void ZCInPlaceDurationEdit::OnExtendedCommand()
 
 int ZCInPlaceDurationEdit::OnCreate(LPCREATESTRUCT lpCreateStruct) 
 {
-    // JMR-MODIF - Le 11 août 2005 - Ajout de l'appel à la fonction DoCreateButton.
-    ZCSearchEdit::DoCreateButton( TRUE );
+    DoCreateButton(TRUE);
 
-    if( ZCSearchEdit::OnCreate( lpCreateStruct ) == -1 )
+    if(PSS_SearchEdit::OnCreate( lpCreateStruct ) == -1)
         return -1;
-    
+
     CRect rect;
     GetClientRect(rect);
     rect.DeflateRect(0, 1);
@@ -323,15 +318,12 @@ int ZCInPlaceDurationEdit::OnCreate(LPCREATESTRUCT lpCreateStruct)
     return 0;
 }
 
-
 BOOL ZCInPlaceDurationEdit::OnEraseBkgnd(CDC* /*pDC*/)
 {
-    return TRUE;    
+    return TRUE;
 }
 
 void ZCInPlaceDurationEdit::OnSetFocus(CWnd* pOldWnd) 
 {
-    ZCSearchEdit::OnSetFocus(pOldWnd);
-    
+    PSS_SearchEdit::OnSetFocus(pOldWnd);
 }
-

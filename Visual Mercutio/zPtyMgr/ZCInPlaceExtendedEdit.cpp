@@ -21,9 +21,9 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZCInPlaceExtendedEdit
 
-IMPLEMENT_DYNAMIC( ZCInPlaceExtendedEdit, CEdit )
+IMPLEMENT_DYNAMIC(ZCInPlaceExtendedEdit, PSS_SearchEdit)
 
-BEGIN_MESSAGE_MAP( ZCInPlaceExtendedEdit, ZCSearchEdit )
+BEGIN_MESSAGE_MAP(ZCInPlaceExtendedEdit, PSS_SearchEdit)
     //{{AFX_MSG_MAP(ZCInPlaceExtendedEdit)
     ON_WM_CREATE()
     ON_WM_ERASEBKGND()
@@ -88,7 +88,7 @@ BOOL ZCInPlaceExtendedEdit::PreTranslateMessage( MSG* pMsg )
         }
     }
     
-    return ZCSearchEdit::PreTranslateMessage( pMsg );
+    return PSS_SearchEdit::PreTranslateMessage( pMsg );
 }
 
 void ZCInPlaceExtendedEdit::SetEditText( const CString& strText )
@@ -375,7 +375,7 @@ void ZCInPlaceExtendedEdit::OnChar( UINT nChar, UINT nRepCnt, UINT nFlags )
     m_HasChanged = true;
 
     // Call the base function
-    ZCSearchEdit::OnChar( nChar, nRepCnt, nFlags );
+    PSS_SearchEdit::OnChar( nChar, nRepCnt, nFlags );
 }
 
 void ZCInPlaceExtendedEdit::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
@@ -421,16 +421,13 @@ void ZCInPlaceExtendedEdit::OnExtendedCommand()
     }
 }
 
-int ZCInPlaceExtendedEdit::OnCreate( LPCREATESTRUCT lpCreateStruct )
+int ZCInPlaceExtendedEdit::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-    // JMR-MODIF - Le 11 août 2005 - Ajout de l'appel à la fonction DoCreateButton.
-    ZCSearchEdit::DoCreateButton( TRUE );
+    DoCreateButton(TRUE);
 
-    if( ZCSearchEdit::OnCreate( lpCreateStruct ) == -1 )
-    {
+    if (PSS_SearchEdit::OnCreate(lpCreateStruct) == -1)
         return -1;
-    }
-    
+
     CRect rect;
     GetClientRect( rect );
     rect.DeflateRect( 0, 1 );
@@ -458,6 +455,5 @@ BOOL ZCInPlaceExtendedEdit::OnEraseBkgnd( CDC* /*pDC*/ )
 
 void ZCInPlaceExtendedEdit::OnSetFocus( CWnd* pOldWnd )
 {
-    ZCSearchEdit::OnSetFocus( pOldWnd );
-    
+    PSS_SearchEdit::OnSetFocus(pOldWnd);
 }

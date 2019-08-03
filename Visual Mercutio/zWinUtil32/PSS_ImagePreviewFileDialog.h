@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZPreviewFileDialog.h"
+#include "PSS_FilePreviewDialog.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -30,10 +30,10 @@
 #endif
 
 /**
-* Preview bitmap
+* Preview bitmap form
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PreviewDIB : public ZAbstractPreview
+class AFX_EXT_CLASS PSS_PreviewBitmapForm : public PSS_AbstractPreviewForm
 {
     public:
         /**
@@ -60,7 +60,7 @@ class AFX_EXT_CLASS PSS_PreviewDIB : public ZAbstractPreview
 * Image preview file dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_ImagePreviewFileDialog : public ZIPreviewFileDialog
+class PSS_ImagePreviewFileDialog : public PSS_FilePreviewDialog
 {
     DECLARE_DYNAMIC(PSS_ImagePreviewFileDialog)
 
@@ -83,7 +83,7 @@ class PSS_ImagePreviewFileDialog : public ZIPreviewFileDialog
         DECLARE_MESSAGE_MAP()
 
     private:
-        PSS_PreviewDIB m_Preview;
+        PSS_PreviewBitmapForm m_Preview;
 };
 
 #endif

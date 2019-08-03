@@ -17,7 +17,7 @@
 
 
 #include "zProperty\ZIInPlaceEdit.h"
-#include "zWinUtil32\ZSearchEdit.h"
+#include "zWinUtil32\PSS_SearchEdit.h"
 
 
 
@@ -35,7 +35,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // ZCInPlaceSearchEdit
 
-class AFX_EXT_CLASS ZCInPlaceSearchEdit : public ZCSearchEdit, public ZIInPlaceEdit
+class AFX_EXT_CLASS ZCInPlaceSearchEdit : public PSS_SearchEdit, public ZIInPlaceEdit
 {
     ZCInPlaceSearchEdit(const ZCInPlaceSearchEdit& d);
     ZCInPlaceSearchEdit operator=(const ZCInPlaceSearchEdit& d);

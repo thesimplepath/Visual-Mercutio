@@ -1,5 +1,9 @@
-// ZVFormFilePreviewDlg.cpp : implementation file
-//
+/****************************************************************************
+ * ==> PSS_FormFilePreviewDialog -------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a form file preview dialog                        *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
 #include "ZVFormFilePreviewDlg.h"

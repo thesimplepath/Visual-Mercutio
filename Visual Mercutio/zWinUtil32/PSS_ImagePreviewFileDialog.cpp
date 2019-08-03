@@ -15,15 +15,15 @@
 #endif
 
 //---------------------------------------------------------------------------
-// PSS_PreviewDIB
+// PSS_PreviewBitmapForm
 //---------------------------------------------------------------------------
-void PSS_PreviewDIB::SetPreviewFile(const CString& fileName)
+void PSS_PreviewBitmapForm::SetPreviewFile(const CString& fileName)
 {
     if (!m_Dib.OpenDIB(fileName)) 
         m_Dib.DestroyDIB();
 }
 //---------------------------------------------------------------------------
-void PSS_PreviewDIB::DrawPreview(CDC* pDC, int X, int Y, int width, int height)
+void PSS_PreviewBitmapForm::DrawPreview(CDC* pDC, int X, int Y, int width, int height)
 {
     if (!m_Dib.IsValid()) 
         return;
@@ -35,11 +35,11 @@ void PSS_PreviewDIB::DrawPreview(CDC* pDC, int X, int Y, int width, int height)
 //---------------------------------------------------------------------------
 // Dynamic construction
 //---------------------------------------------------------------------------
-IMPLEMENT_DYNAMIC(PSS_ImagePreviewFileDialog, ZIPreviewFileDialog)
+IMPLEMENT_DYNAMIC(PSS_ImagePreviewFileDialog, PSS_FilePreviewDialog)
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_ImagePreviewFileDialog, ZIPreviewFileDialog)
+BEGIN_MESSAGE_MAP(PSS_ImagePreviewFileDialog, PSS_FilePreviewDialog)
     //{{AFX_MSG_MAP(PSS_ImagePreviewFileDialog)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -50,14 +50,14 @@ PSS_ImagePreviewFileDialog::PSS_ImagePreviewFileDialog(BOOL           openFileDi
                                                        const CString& title,
                                                        const CString& initialDir,
                                                        CWnd*          pParentWnd) :
-    ZIPreviewFileDialog(&m_Preview,
-                        openFileDialog,
-                        title,
-                        initialDir,
-                        "bmp",
-                        "*.bmp",
-                        OFN_HIDEREADONLY | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR |OFN_PATHMUSTEXIST,
-                        "Bitmap Files (*.bmp)|*.bmp|All Files (*.*)|*.*||",
-                        pParentWnd)
+    PSS_FilePreviewDialog(&m_Preview,
+                          openFileDialog,
+                          title,
+                          initialDir,
+                          "bmp",
+                          "*.bmp",
+                          OFN_HIDEREADONLY | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR |OFN_PATHMUSTEXIST,
+                          "Bitmap Files (*.bmp)|*.bmp|All Files (*.*)|*.*||",
+                          pParentWnd)
 {}
 //---------------------------------------------------------------------------

@@ -49,7 +49,7 @@ PSS_CreateFolderWizardStartDialog::PSS_CreateFolderWizardStartDialog(BOOL       
     m_FileExtension(fileExtension),
     m_UseFolderNameAsFileName(useFolderNameAsFilename)
 {
-    m_CompleteFileName.SetSearchType(ZSEARCHEDIT_FILE, IDS_CHOOSEFILENAMEFORFOLDER, m_FolderDirectory, "", 0);
+    m_CompleteFileName.SetSearchType(PSS_SearchEditButton::IE_T_File, IDS_CHOOSEFILENAMEFORFOLDER, m_FolderDirectory, "", 0);
     GetCurrentDirectory(_MAX_DIR - 1, m_Dir);
 
     // if the last char of the directory is not a backslash, add one

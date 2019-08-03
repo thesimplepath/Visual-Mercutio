@@ -12,8 +12,8 @@
 #include "zBaseLib\ZIObserver.h"
 #include "ZCProcessModelDocument.h"
 #include "zWinUtil32\PSS_FormTemplateTreeCtrl.h"
+#include "zWinUtil32\PSS_FileWnd.h"
 #include "zWinUtil32\ZVURLWnd.h"
-#include "zWinUtil32\ZVFileWnd.h"
 #include "zBaseLib\ZCWorkspaceTreeCtrl.h"
 
 #include "ZVLogicalSystem.h"
@@ -184,7 +184,7 @@ public:
 
     ///////////////////////////////////////////////////////////
     // File methods
-    ZVFileWnd* GetFileView();
+    PSS_FileWnd* GetFileView();
 
     void ActivateFileTab()
     {
@@ -315,7 +315,7 @@ private:
     ZVLogicalSystem            m_LogicalSystemView;
     ZVPrestations            m_PrestationsView;    // JMR-MODIF - Le 11 octobre 2005 - Ajout variable m_PrestationsView.
     ZVRules                    m_RulesView;        // JMR-MODIF - Le 13 novembre 2006 - Ajout de la variable m_RulesView.
-    ZVFileWnd                m_FileView;
+    PSS_FileWnd                m_FileView;
     ZVURLWnd                m_URLView;
 };
 
@@ -344,7 +344,7 @@ inline ZVLogicalSystem* ZVProcessWorkspace::GetLogicalSystemView()
     return &m_LogicalSystemView;
 }
 
-inline ZVFileWnd* ZVProcessWorkspace::GetFileView()
+inline PSS_FileWnd* ZVProcessWorkspace::GetFileView()
 {
     return &m_FileView;
 }

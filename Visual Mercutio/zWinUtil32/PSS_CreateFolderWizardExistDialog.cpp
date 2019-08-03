@@ -45,8 +45,8 @@ PSS_CreateFolderWizardExistDialog::PSS_CreateFolderWizardExistDialog(const CStri
     m_InitialFileName(initialFileName),
     m_InitialChoice(initialChoice)
 {
-    m_FileName.SetSearchType(ZSEARCHEDIT_FILE, IDS_CHOOSEFILENAMEFORFOLDER, fileDirectory, "", 0);
-    m_Directory.SetSearchType(ZSEARCHEDIT_DIRECTORY, IDS_CHOOSEDIRECTORYFORFOLDER, fileDirectory);
+    m_FileName.SetSearchType(PSS_SearchEditButton::IE_T_File, IDS_CHOOSEFILENAMEFORFOLDER, fileDirectory, "", 0);
+    m_Directory.SetSearchType(PSS_SearchEditButton::IE_T_Directory, IDS_CHOOSEDIRECTORYFORFOLDER, fileDirectory);
 
     switch (m_InitialChoice)
     {

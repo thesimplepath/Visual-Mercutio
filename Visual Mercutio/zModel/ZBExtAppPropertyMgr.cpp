@@ -7,7 +7,7 @@
 #include "ProcGraphModelMdl.h"
 #include "ZBSymbol.h"
 
-#include "zWinUtil32\ZVCommandLineDlg.h"
+#include "zWinUtil32\PSS_CommandLineDialog.h"
 
 #include "zBaseLib\ZAGlobal.h"
 #include "zBaseLib\ZBTokenizer.h"
@@ -494,34 +494,34 @@ bool ZBExtAppPropertyMgr::SaveProperty( ZBProperty& Property )
     return true;
 }
 
-bool ZBExtAppPropertyMgr::ProcessExtendedInput( ZBProperty&        Property,
-                                                CString&        value,
-                                                ZBPropertySet&    Properties,
-                                                bool&            Refresh )
+bool ZBExtAppPropertyMgr::ProcessExtendedInput(ZBProperty&    prop,
+                                               CString&       value,
+                                               ZBPropertySet& props,
+                                               bool&          refresh)
 {
-    if ( Property.GetCategoryID() >= ZS_BP_PROP_EXTAPP &&
-         Property.GetCategoryID() <= ( ZS_BP_PROP_EXTAPP + (int)GetExtAppCount() ) )
+    if (prop.GetCategoryID() >= ZS_BP_PROP_EXTAPP &&
+        prop.GetCategoryID() <= (ZS_BP_PROP_EXTAPP + int(GetExtAppCount())))
     {
-        int i = Property.GetCategoryID() - ZS_BP_PROP_EXTAPP;
+        const int index = prop.GetCategoryID() - ZS_BP_PROP_EXTAPP;
 
         // Call the dialog
-        ZVCommandLineDlg dlg( GetCommandTitle( i ),
-                              GetCommandLine( i ),
-                              GetCommandParameters( i ),
-                              GetCommandStartupDirectory( i ),
-                              GetPriorityLevel( i ),
-                              GetWindowStartMode( i ) );
+        PSS_CommandLineDialog dlg(GetCommandTitle(index),
+                                  GetCommandLine(index),
+                                  GetCommandParameters(index),
+                                  GetCommandStartupDirectory(index),
+                                  GetPriorityLevel(index),
+                                  GetWindowStartMode(index));
 
-        if ( dlg.DoModal() == IDOK )
+        if (dlg.DoModal() == IDOK)
         {
             value = dlg.GetJobName();
-            SetCommandLine( i, dlg.GetCommandLine() );
-            SetCommandParameters( i, dlg.GetParameters() );
-            SetCommandStartupDirectory( i, dlg.GetStartupDir() );
-            SetPriorityLevel( i, dlg.GetPriority() );
-            SetWindowStartMode( i, dlg.GetWindowMode() );
+            SetCommandLine(index, dlg.GetCommandLine());
+            SetCommandParameters(index, dlg.GetParameters());
+            SetCommandStartupDirectory(index, dlg.GetStartupDir());
+            SetPriorityLevel(index, dlg.GetPriority());
+            SetWindowStartMode(index, dlg.GetWindowMode());
 
-            Refresh = true;
+            refresh = true;
             return true;
         }
     }
@@ -538,7 +538,7 @@ bool ZBExtAppPropertyMgr::ProcessMenuCommand( int                MenuCommand,
     if ( Property.GetCategoryID() >= ZS_BP_PROP_EXTAPP &&
          Property.GetCategoryID() <= ( ZS_BP_PROP_EXTAPP + (int)GetExtAppCount() ) )
     {
-        switch( MenuCommand )
+        switch (MenuCommand)
         {
             case ID_ADD_NEWEXTAPP:
             {
@@ -564,31 +564,31 @@ bool ZBExtAppPropertyMgr::ProcessMenuCommand( int                MenuCommand,
     return false;
 }
 
-bool ZBExtAppPropertyMgr::DoInsertExtApp( bool DisplayDialog /*= true*/ )
+bool ZBExtAppPropertyMgr::DoInsertExtApp(bool displayDialog)
 {
-    int Idx = AddNewExtApp();
+    const int index = AddNewExtApp();
 
-    // Add a new external application
-    if ( Idx >= 0 )
+    // add a new external application
+    if (index >= 0)
     {
-        if ( DisplayDialog )
+        if (displayDialog)
         {
             // Call the dialog
-            ZVCommandLineDlg dlg( GetCommandTitle( Idx ),
-                                  GetCommandLine( Idx ),
-                                  GetCommandParameters( Idx ),
-                                  GetCommandStartupDirectory( Idx ),
-                                  GetPriorityLevel( Idx ),
-                                  GetWindowStartMode( Idx ) );
+            PSS_CommandLineDialog dlg(GetCommandTitle(index),
+                                      GetCommandLine(index),
+                                      GetCommandParameters(index),
+                                      GetCommandStartupDirectory(index),
+                                      GetPriorityLevel(index),
+                                      GetWindowStartMode(index));
 
-            if ( dlg.DoModal() == IDOK )
+            if (dlg.DoModal() == IDOK)
             {
-                SetCommandTitle( Idx, dlg.GetJobName() );
-                SetCommandLine( Idx, dlg.GetCommandLine() );
-                SetCommandParameters( Idx, dlg.GetParameters() );
-                SetCommandStartupDirectory( Idx, dlg.GetStartupDir() );
-                SetPriorityLevel( Idx, dlg.GetPriority() );
-                SetWindowStartMode( Idx, dlg.GetWindowMode() );
+                SetCommandTitle(index, dlg.GetJobName());
+                SetCommandLine(index, dlg.GetCommandLine());
+                SetCommandParameters(index, dlg.GetParameters());
+                SetCommandStartupDirectory(index, dlg.GetStartupDir());
+                SetPriorityLevel(index, dlg.GetPriority());
+                SetWindowStartMode(index, dlg.GetWindowMode());
             }
         }
 

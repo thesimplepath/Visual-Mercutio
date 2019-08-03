@@ -269,7 +269,7 @@ public:
     }
 
     // Called to process the extended input for the property value
-    virtual bool ProcessExtendedInput( ZBProperty& Property, CString& value, ZBPropertySet& Properties, bool& Refresh );
+    virtual bool ProcessExtendedInput(ZBProperty& prop, CString& value, ZBPropertySet& props, bool& refresh);
 
     // Called to process the a menu command for the property value
     virtual bool ProcessMenuCommand( int            MenuCommand,

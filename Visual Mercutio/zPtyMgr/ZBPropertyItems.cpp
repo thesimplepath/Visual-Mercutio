@@ -91,10 +91,10 @@ void ZBPropertyItemExtended::CreateInPlaceControl( CWnd*            pWndParent,
     CWnd* pWnd = dynamic_cast<CWnd*>( pWndInPlaceControl );
     DestroyInPlaceControl( pWndInPlaceControl );
 
-    pWndInPlaceControl = new ZCInPlaceExtendedEdit( IsReadOnly() );
+    pWndInPlaceControl = new ZCInPlaceExtendedEdit(IsReadOnly());
 
     // For processing extended command
-    ( (ZCInPlaceExtendedEdit*)pWndInPlaceControl )->SetSearchType( ZSEARCHEDIT_EXTENDED );
+    ((ZCInPlaceExtendedEdit*)pWndInPlaceControl)->SetSearchType(PSS_SearchEditButton::IE_T_Extended);
 
     switch( m_Type )
     {
@@ -233,7 +233,7 @@ void ZBPropertyItemDuration::CreateInPlaceControl( CWnd*            pWndParent,
     pWndInPlaceControl = new ZCInPlaceDurationEdit( IsReadOnly() );
 
     // For processing extended command
-    ( (ZCInPlaceExtendedEdit*)pWndInPlaceControl )->SetSearchType( ZSEARCHEDIT_EXTENDED );
+    ((ZCInPlaceExtendedEdit*)pWndInPlaceControl)->SetSearchType(PSS_SearchEditButton::IE_T_Extended);
 
     switch( m_Type )
     {
@@ -267,7 +267,7 @@ void ZBPropertyItemDate::CreateInPlaceControl( CWnd*            pWndParent,
     pWndInPlaceControl = new ZCInPlaceDateEdit( IsReadOnly() );
 
     // For processing extended command
-    ( (ZCInPlaceExtendedEdit*)pWndInPlaceControl )->SetSearchType( ZSEARCHEDIT_EXTENDED );
+    ((ZCInPlaceExtendedEdit*)pWndInPlaceControl)->SetSearchType(PSS_SearchEditButton::IE_T_Extended);
 
     switch( m_Type )
     {
@@ -302,7 +302,7 @@ void ZBPropertyItemTime::CreateInPlaceControl( CWnd*            pWndParent,
     pWndInPlaceControl = new ZCInPlaceTimeEdit( IsReadOnly() );
 
     // For processing extended command
-    ( (ZCInPlaceExtendedEdit*)pWndInPlaceControl )->SetSearchType( ZSEARCHEDIT_EXTENDED );
+    ((ZCInPlaceExtendedEdit*)pWndInPlaceControl)->SetSearchType(PSS_SearchEditButton::IE_T_Extended);
 
     switch( m_Type )
     {
@@ -340,23 +340,23 @@ void ZBPropertyItemMenuFileDir::CreateInPlaceControl( CWnd*                pWndP
         case MFD_MENU:
         {
             // Enable all menu items and no notification
-            ( (ZCInPlaceSearchEdit*)pWndInPlaceControl )->SetSearchType( ZSEARCHEDIT_POPUP,
-                                                                         m_pMenu,
-                                                                         true,
-                                                                         true );
+            ((ZCInPlaceSearchEdit*)pWndInPlaceControl )->SetSearchType(PSS_SearchEditButton::IE_T_Popup,
+                                                                       m_pMenu,
+                                                                       true,
+                                                                       true);
 
             break;
         }
 
         case MFD_FILE:
         {
-            ( (ZCInPlaceSearchEdit*)pWndInPlaceControl )->SetSearchType( ZSEARCHEDIT_FILE );
+            ((ZCInPlaceSearchEdit*)pWndInPlaceControl)->SetSearchType(PSS_SearchEditButton::IE_T_File);
             break;
         }
 
         case MFD_DIRECTORY:
         {
-            ( (ZCInPlaceSearchEdit*)pWndInPlaceControl )->SetSearchType( ZSEARCHEDIT_DIRECTORY );
+            ((ZCInPlaceSearchEdit*)pWndInPlaceControl)->SetSearchType(PSS_SearchEditButton::IE_T_Directory);
             break;
         }
     }

@@ -1,5 +1,12 @@
-#if !defined(AFX_ZVFORMFILEPREVIEWDLG_H__803DD553_2E0D_11D4_9736_0000B45D7C6F__INCLUDED_)
-#define AFX_ZVFORMFILEPREVIEWDLG_H__803DD553_2E0D_11D4_9736_0000B45D7C6F__INCLUDED_
+/****************************************************************************
+ * ==> PSS_FormFilePreviewDialog -------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a form file preview dialog                        *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
+
+#ifndef PSS_FormFilePreviewDialogH
+#define PSS_FormFilePreviewDialogH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -90,40 +97,33 @@ protected:
     DECLARE_MESSAGE_MAP()
 };
 
-
-
-/////////////////////////////////////////////////////////////////////////////
-// ZVFormFilePreviewDlg dialog
-
 class AFX_EXT_CLASS ZVFormFilePreviewDlg : public CDialog
 {
 // Construction
 public:
-    ZVFormFilePreviewDlg(const CString Filename, ZDDocTemplateEx* pDocTemplate, CWnd* pParent = NULL);   // standard constructor
+    /**
+    * Dialog resources
+    */
+    enum
+    {
+        IDD = IDD_FORM_FILEPREVIEW
+    };
+
+    ZIButtonToolBarFormFilePreview m_FlatToolBar;
+
+    ZVFormFilePreviewDlg(const CString fileName, ZDDocTemplateEx* pDocTemplate, CWnd* pParent = NULL);
     virtual ~ZVFormFilePreviewDlg();
 
-// Dialog Data
-    //{{AFX_DATA(ZVFormFilePreviewDlg)
-    enum { IDD = IDD_FORM_FILEPREVIEW };
-    ZIButtonToolBarFormFilePreview        m_FlatToolBar;
-    //}}AFX_DATA
-
-
-// Overrides
-    // ClassWizard generated virtual function overrides
+protected:
+    /// ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZVFormFilePreviewDlg)
-    public:
     virtual BOOL PreTranslateMessage(MSG* pMsg);
     virtual BOOL OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo);
-    protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     virtual void PostNcDestroy();
     //}}AFX_VIRTUAL
 
-// Implementation
-protected:
-
-    // Generated message map functions
+    /// Generated message map functions
     //{{AFX_MSG(ZVFormFilePreviewDlg)
     virtual BOOL OnInitDialog();
     afx_msg void OnSize(UINT nType, int cx, int cy);
@@ -134,25 +134,15 @@ protected:
 
 
 private:
+    CCreateContext   m_Context; 
+    CString          m_Filename;
+    ZIViewRead*      m_pView;
+    CFrameWnd*       m_pFrameWindow;
+    ZDDocument*      m_pDocument;
+    ZDDocTemplateEx* m_pDocTemplate;
+
     void SizeControl();
     void CloseDocument();
-
-private:
-    CCreateContext        m_Context; 
-    CString                m_Filename;
-    ZIViewRead*            m_pView;
-    CFrameWnd*            m_pFrameWindow;
-    ZDDocument*            m_pDocument;
-    ZDDocTemplateEx*    m_pDocTemplate;
-
 };
 
-
-
-
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVFORMFILEPREVIEWDLG_H__803DD553_2E0D_11D4_9736_0000B45D7C6F__INCLUDED_)
+#endif

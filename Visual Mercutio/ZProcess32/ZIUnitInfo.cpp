@@ -27,7 +27,7 @@ ZIUnitInfo::ZIUnitInfo(const CString Name /*= ""*/,
     //{{AFX_DATA_INIT(ZIUnitInfo)
     m_UnitName = Name;
     //}}AFX_DATA_INIT
-    m_UnitDirectory.SetSearchType(ZSEARCHEDIT_DIRECTORY, "", m_Directory);
+    m_UnitDirectory.SetSearchType(PSS_SearchEditButton::IE_T_Directory, "", m_Directory);
 
     // If the directory is empty, use the current directory
     if (m_Directory.IsEmpty())

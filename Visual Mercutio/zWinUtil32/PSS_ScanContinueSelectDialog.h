@@ -22,7 +22,7 @@
 
 // processsoft
 #include "zBaseLib\ZWizard.h"
-#include "ZSearchEdit.h"
+#include "PSS_SearchEdit.h"
 
 // resources
 #ifndef _WIN32
@@ -83,10 +83,10 @@ class PSS_ScanContinueSelectDialog : public ZIWizardDialog
             IDD = IDD_WZSCANNING_CONTINUESEL
         };
 
-        ZCSearchEdit m_File;
-        CString      m_CompleteFileName;
-        int          m_ScanType;
-        bool         m_FirstTime;
+        PSS_SearchEdit m_File;
+        CString        m_CompleteFileName;
+        int            m_ScanType;
+        bool           m_FirstTime;
 };
 
 //---------------------------------------------------------------------------

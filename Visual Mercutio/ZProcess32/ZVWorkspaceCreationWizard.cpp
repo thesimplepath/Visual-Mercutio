@@ -91,7 +91,7 @@ ZVWorkspaceStart::ZVWorkspaceStart( const CString    InitialDirectory    /*= ""*
     //}}AFX_DATA_INIT
 
     // Defines the edit as search for file
-    m_Directory.SetSearchType( ZSEARCHEDIT_DIRECTORY, IDS_SELWORKSPACE_DIR_T, InitialDirectory );
+    m_Directory.SetSearchType(PSS_SearchEditButton::IE_T_Directory, IDS_SELWORKSPACE_DIR_T, InitialDirectory);
 }
 
 bool ZVWorkspaceStart::Validate()

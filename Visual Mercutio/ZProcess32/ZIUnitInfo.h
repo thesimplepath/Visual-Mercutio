@@ -8,7 +8,7 @@
 //
 
 #include "Resource.h"
-#include "zWinUtil32\ZSearchEdit.h"
+#include "zWinUtil32\PSS_SearchEdit.h"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -30,8 +30,8 @@ private:
 // Dialog Data
     //{{AFX_DATA(ZIUnitInfo)
     enum { IDD = IDD_UNIT_INFO };
-    ZCSearchEdit    m_UnitDirectory;
-    CString    m_UnitName;
+    PSS_SearchEdit m_UnitDirectory;
+    CString        m_UnitName;
     //}}AFX_DATA
 
     CString    m_Directory;

@@ -21,9 +21,9 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZCInPlaceSearchEdit
 
-IMPLEMENT_DYNAMIC( ZCInPlaceSearchEdit, CEdit )
+IMPLEMENT_DYNAMIC(ZCInPlaceSearchEdit, PSS_SearchEdit)
 
-BEGIN_MESSAGE_MAP( ZCInPlaceSearchEdit, ZCSearchEdit )
+BEGIN_MESSAGE_MAP(ZCInPlaceSearchEdit, PSS_SearchEdit)
     //{{AFX_MSG_MAP(ZCInPlaceSearchEdit)
     ON_WM_CREATE()
     ON_WM_ERASEBKGND()
@@ -88,8 +88,8 @@ BOOL ZCInPlaceSearchEdit::PreTranslateMessage( MSG* pMsg )
             }
         }
     }
-    
-    return ZCSearchEdit::PreTranslateMessage( pMsg );
+
+    return PSS_SearchEdit::PreTranslateMessage( pMsg );
 }
 
 void ZCInPlaceSearchEdit::SetEditText( const CString& strText )
@@ -353,7 +353,7 @@ void ZCInPlaceSearchEdit::OnChar( UINT nChar, UINT nRepCnt, UINT nFlags )
     m_HasChanged = true;
 
     // Call the base function
-    ZCSearchEdit::OnChar( nChar, nRepCnt, nFlags );
+    PSS_SearchEdit::OnChar( nChar, nRepCnt, nFlags );
 }
 
 void ZCInPlaceSearchEdit::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
@@ -394,13 +394,10 @@ void ZCInPlaceSearchEdit::OnMenuCommand( int MenuCommand )
 
 int ZCInPlaceSearchEdit::OnCreate( LPCREATESTRUCT lpCreateStruct )
 {
-    // JMR-MODIF - Le 11 août 2005 - Ajout de l'appel à la fonction DoCreateButton.
-    ZCSearchEdit::DoCreateButton( TRUE );
+    DoCreateButton(TRUE);
 
-    if( ZCSearchEdit::OnCreate( lpCreateStruct ) == -1 )
-    {
+    if (PSS_SearchEdit::OnCreate(lpCreateStruct) == -1)
         return -1;
-    }
 
     CRect rect;
     GetClientRect( rect );
@@ -427,7 +424,7 @@ BOOL ZCInPlaceSearchEdit::OnEraseBkgnd( CDC* /*pDC*/ )
     return TRUE;
 }
 
-void ZCInPlaceSearchEdit::OnSetFocus( CWnd* pOldWnd )
+void ZCInPlaceSearchEdit::OnSetFocus(CWnd* pOldWnd)
 {
-    ZCSearchEdit::OnSetFocus( pOldWnd );
+    PSS_SearchEdit::OnSetFocus(pOldWnd);
 }

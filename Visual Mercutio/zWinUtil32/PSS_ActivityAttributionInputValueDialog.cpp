@@ -8,15 +8,15 @@
 #include "stdafx.h"
 #include "PSS_ActivityAttributionInputValueDialog.h"
 
-#include "ZVChooseResources.h"
+// processsoft
 #include "zBaseLib\ZBTokenizer.h"
-
 #include "zBaseLib\MsgBox.h"
 #include "zBaseLib\InpVal.h"
+#include "PSS_SelectResourcesDialog.h"
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char BASED_CODE THIS_FILE[] = __FILE__;
+    #undef THIS_FILE
+    static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
 //---------------------------------------------------------------------------
@@ -125,12 +125,12 @@ BOOL PSS_ActivityAttributionInputValueDialog::OnInitDialog()
 //---------------------------------------------------------------------------
 void PSS_ActivityAttributionInputValueDialog::OnAddUser()
 {
-    ZVChooseResources chooseResources(m_UserManager);
+    PSS_SelectResourcesDialog selectResourcesDialog(m_UserManager);
 
-    if (chooseResources.DoModal() == IDOK && !chooseResources.GetUserListString().IsEmpty())
+    if (selectResourcesDialog.DoModal() == IDOK && !selectResourcesDialog.GetUserListString().IsEmpty())
     {
         ZBTokenizer tokenizer(';');
-        CString     token = tokenizer.GetFirstToken(chooseResources.GetUserListString());
+        CString     token = tokenizer.GetFirstToken(selectResourcesDialog.GetUserListString());
 
         // parse the user delimiter string
         while (!token.IsEmpty())

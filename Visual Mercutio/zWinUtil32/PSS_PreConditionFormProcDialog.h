@@ -22,7 +22,7 @@
 
 // processsoft
 #include "zBaseLib\ZWizard.h"
-#include "ZSearchEdit.h"
+#include "PSS_SearchEdit.h"
 
 // resources
 #ifndef _WIN32
@@ -56,9 +56,9 @@ class AFX_EXT_CLASS PSS_PreConditionFormProcDialog : public ZIWizardDialog
             IDD = IDD_WZPREACT_FORMPROC
         };
 
-        ZCSearchEdit m_FileName;
-        CString      m_ActivityName;
-        CString      m_FormName;
+        PSS_SearchEdit m_FileName;
+        CString        m_ActivityName;
+        CString        m_FormName;
 
         /**
         * Constructor

@@ -40,7 +40,7 @@ PSS_PublishModelBannerDialog::PSS_PublishModelBannerDialog(const CString& hyperL
     m_HyperLink(hyperLink),
     m_ImageFilename(imageFileName)
 {
-    m_Image.SetSearchType(ZSEARCHEDIT_FILE);
+    m_Image.SetSearchType(PSS_SearchEditButton::IE_T_File);
 }
 //---------------------------------------------------------------------------
 void PSS_PublishModelBannerDialog::DoDataExchange(CDataExchange* pDX)

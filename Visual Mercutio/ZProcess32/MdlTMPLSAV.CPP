@@ -58,7 +58,7 @@ ZIModelTemplateCopyDlg::ZIModelTemplateCopyDlg( CString            FileExtension
         m_sTitle = m_pFolderStamp->GetTitle();
     }
 
-    m_ModelDirectory.SetSearchType( ZSEARCHEDIT_DIRECTORY, IDS_CHOOSEDIRECTORY, m_Directory );
+    m_ModelDirectory.SetSearchType(PSS_SearchEditButton::IE_T_Directory, IDS_CHOOSEDIRECTORY, m_Directory);
 
     // If the directory is empty, use the current directory
     if ( m_Directory.IsEmpty() )

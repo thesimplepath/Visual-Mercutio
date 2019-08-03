@@ -17,7 +17,7 @@
 
 
 #include "zProperty\ZIInPlaceEdit.h"
-#include "zWinUtil32\ZSearchEdit.h"
+#include "zWinUtil32\PSS_SearchEdit.h"
 
 
 #ifdef _ZPTYMGREXPORT
@@ -34,7 +34,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // ZCInPlaceExtendedEdit
 
-class AFX_EXT_CLASS ZCInPlaceExtendedEdit : public ZCSearchEdit, public ZIInPlaceEdit
+class AFX_EXT_CLASS ZCInPlaceExtendedEdit : public PSS_SearchEdit, public ZIInPlaceEdit
 {
     ZCInPlaceExtendedEdit(const ZCInPlaceExtendedEdit& d);
     ZCInPlaceExtendedEdit operator=(const ZCInPlaceExtendedEdit& d);

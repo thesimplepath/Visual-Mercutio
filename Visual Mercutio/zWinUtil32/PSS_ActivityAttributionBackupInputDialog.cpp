@@ -12,7 +12,7 @@
 #include "zBaseLib\ZBTokenizer.h"
 #include "zBaseLib\MsgBox.h"
 #include "zBaseLib\InpVal.h"
-#include "ZVChooseResources.h"
+#include "PSS_SelectResourcesDialog.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -79,7 +79,7 @@ BOOL PSS_ActivityAttributionInputBackupDialog::OnInitDialog()
 
     // disable the posibility to change the name
     if (GetDlgItem(IDC_ACTIVITYNAME))
-       GetDlgItem(IDC_ACTIVITYNAME)->EnableWindow( FALSE );
+       GetDlgItem(IDC_ACTIVITYNAME)->EnableWindow(FALSE);
 
     if (GetDlgItem(IDOK))
        GetDlgItem(IDOK)->EnableWindow(m_LastActivity);
@@ -93,12 +93,12 @@ BOOL PSS_ActivityAttributionInputBackupDialog::OnInitDialog()
 //---------------------------------------------------------------------------
 void PSS_ActivityAttributionInputBackupDialog::OnAddUser()
 {
-    ZVChooseResources chooseResources(m_UserManager);
+    PSS_SelectResourcesDialog selectResourcesDialog(m_UserManager);
 
-    if (chooseResources.DoModal() == IDOK && !chooseResources.GetUserListString().IsEmpty())
+    if (selectResourcesDialog.DoModal() == IDOK && !selectResourcesDialog.GetUserListString().IsEmpty())
     {
         ZBTokenizer tokenizer(';');
-        CString     token = tokenizer.GetFirstToken(chooseResources.GetUserListString());
+        CString     token = tokenizer.GetFirstToken(selectResourcesDialog.GetUserListString());
 
         // parse the user delimiter string
         while (!token.IsEmpty())

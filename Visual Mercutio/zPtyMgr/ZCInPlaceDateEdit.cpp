@@ -21,12 +21,9 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZCInPlaceDateEdit
 
-IMPLEMENT_DYNAMIC(ZCInPlaceDateEdit, CEdit)
+IMPLEMENT_DYNAMIC(ZCInPlaceDateEdit, PSS_SearchEdit)
 
-
-
-
-BEGIN_MESSAGE_MAP(ZCInPlaceDateEdit, ZCSearchEdit)
+BEGIN_MESSAGE_MAP(ZCInPlaceDateEdit, PSS_SearchEdit)
     //{{AFX_MSG_MAP(ZCInPlaceDateEdit)
     ON_WM_CREATE()
     ON_WM_ERASEBKGND()
@@ -34,7 +31,6 @@ BEGIN_MESSAGE_MAP(ZCInPlaceDateEdit, ZCSearchEdit)
     ON_WM_CHAR()
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
 
 BOOL ZCInPlaceDateEdit::PreTranslateMessage(MSG* pMsg) 
 {
@@ -88,7 +84,7 @@ BOOL ZCInPlaceDateEdit::PreTranslateMessage(MSG* pMsg)
         }
     }
     
-    return ZCSearchEdit::PreTranslateMessage(pMsg);
+    return PSS_SearchEdit::PreTranslateMessage(pMsg);
 }
 
 void ZCInPlaceDateEdit::SetEditText(const CString& strText)
@@ -255,7 +251,7 @@ void ZCInPlaceDateEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
     // Sets the has changed flag
     m_HasChanged = true;    
     // Call the base function
-    ZCSearchEdit::OnChar(nChar, nRepCnt, nFlags);
+    PSS_SearchEdit::OnChar(nChar, nRepCnt, nFlags);
 }
 
 void ZCInPlaceDateEdit::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
@@ -299,10 +295,9 @@ void ZCInPlaceDateEdit::OnExtendedCommand()
 
 int ZCInPlaceDateEdit::OnCreate(LPCREATESTRUCT lpCreateStruct) 
 {
-    // JMR-MODIF - Le 11 août 2005 - Ajout de l'appel à la fonction DoCreateButton.
-    ZCSearchEdit::DoCreateButton( FALSE );
+    DoCreateButton(FALSE);
 
-    if( ZCSearchEdit::OnCreate( lpCreateStruct ) == -1 )
+    if (PSS_SearchEdit::OnCreate( lpCreateStruct ) == -1)
         return -1;
     
     CRect rect;
@@ -324,12 +319,10 @@ int ZCInPlaceDateEdit::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 BOOL ZCInPlaceDateEdit::OnEraseBkgnd(CDC* /*pDC*/)
 {
-    return TRUE;    
+    return TRUE;
 }
 
 void ZCInPlaceDateEdit::OnSetFocus(CWnd* pOldWnd) 
 {
-    ZCSearchEdit::OnSetFocus(pOldWnd);
-    
+    PSS_SearchEdit::OnSetFocus(pOldWnd);
 }
-

@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_SelectProcessWizardDialog ---------------------------------------*
+ * ==> PSS_SelectResourcesDialog -------------------------------------------*
  ****************************************************************************
- * Description : Provides a select process Wizard dialog box                *
+ * Description : Provides a select resources dialog box                     *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_SelectProcessWizardDialogH
-#define PSS_SelectProcessWizardDialogH
+#ifndef PSS_SelectResourcesDialogH
+#define PSS_SelectResourcesDialogH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -21,16 +21,14 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZWizard.h"
-#include "zEvent\ZProcess.h"
-#include "PSS_SearchEdit.h"
-#include "PSS_ActivityListCtrl.h"
+#include "zBaseLib\ZIDialog.h"
+#include "PSS_UserTreeCtrl.h"
 
 // resources
 #ifndef _WIN32
-    #include "ZWinUtilRes.h"
+    #include "zWinUtilRes.h"
 #else
-    #include "ZWinUtil32Res.h"
+    #include "zWinUtil32Res.h"
 #endif
 
 #ifdef _ZWINUTIL32EXPORT
@@ -44,65 +42,69 @@
 #endif
 
 /**
-* Select process Wizard dialog box
+* Select resources dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_SelectProcessWizardDialog : public ZIWizardDialog
+class AFX_EXT_CLASS PSS_SelectResourcesDialog : public ZIDialog
 {
     public:
-        /**
-        * Constructor
-        *@param process - process
-        *@param pParent - parent window, can be NULL
-        */
-        PSS_SelectProcessWizardDialog(ZProcess& Process, CWnd* pParent = NULL);
-
-        /**
-        * Gets the base activity name
-        *@return the base activity name
-        */
-        virtual inline CString GetBaseActivityName() const;
-
-    protected:
-        /// ClassWizard generated virtual function overrides
-        //{{AFX_VIRTUAL(PSS_SelectProcessWizardDialog)
-        virtual void DoDataExchange(CDataExchange* pDX);
-        //}}AFX_VIRTUAL
-
-        // Generated message map functions
-        //{{AFX_MSG(PSS_SelectProcessWizardDialog)
-        virtual BOOL OnInitDialog();
-        afx_msg void OnClickActivityProcList(NMHDR* pNMHDR, LRESULT* pResult);
-        virtual void OnOK();
-        //}}AFX_MSG
-        DECLARE_MESSAGE_MAP()
-
-    private:
         /**
         * Dialog resources
         */
         enum
         {
-            IDD = IDD_WZCHOOSEPROC_SEL
+            IDD = IDD_CHOOSE_RESOURCE
         };
 
-        PSS_ActivityListCtrl m_ActivityProcList;
-        ZProcess&            m_Process;
-        CString              m_ProcessName;
-        CString              m_BaseActivityName;
+        PSS_UserTreeCtrl m_ResourceTree;
+        CListBox         m_ResourceList;
+
+        /**
+        * Constructor
+        *@param userManager - user manager
+        *@param pParent - parent window, can be NULL
+        */
+        PSS_SelectResourcesDialog(ZUUserManager& userManager, CWnd* pParent = NULL);
+
+        /**
+        * Gets the user list string
+        *@return the user list string
+        */
+        virtual inline CString GetUserListString() const;
+
+    protected:
+        /// ClassWizard generated virtual function overrides
+        //{{AFX_VIRTUAL(PSS_SelectResourcesDialog)
+        virtual void DoDataExchange(CDataExchange* pDX);
+        //}}AFX_VIRTUAL
+
+        /// Generated message map functions
+        //{{AFX_MSG(PSS_SelectResourcesDialog)
+        virtual BOOL OnInitDialog();
+        afx_msg void OnAddResource();
+        afx_msg void OnRemoveResource();
+        afx_msg void OnSelchangedResourceTree(NMHDR* pNMHDR, LRESULT* pResult);
+        afx_msg void OnSelchangeResourceList();
+        virtual void OnOK();
+        //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
+
+    private:
+        ZUUserManager& m_UserManager;
+        CString        m_UserListString;
 
         /**
         * Checks the control states
         */
-        void CheckControlStates();
+        void CheckControlState();
 };
 
 //---------------------------------------------------------------------------
-// PSS_SelectProcessWizardDialog
+// PSS_SelectResourcesDialog
 //---------------------------------------------------------------------------
-CString PSS_SelectProcessWizardDialog::GetBaseActivityName() const
+CString PSS_SelectResourcesDialog::GetUserListString() const
 {
-    return m_BaseActivityName;
+    return m_UserListString;
 }
 //---------------------------------------------------------------------------
 

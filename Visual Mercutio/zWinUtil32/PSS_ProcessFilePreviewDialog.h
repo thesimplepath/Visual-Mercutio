@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_FormPreviewFileDialog -------------------------------------------*
+ * ==> PSS_ProcessFilePreviewDialog ----------------------------------------*
  ****************************************************************************
- * Description : Provides a form preview file dialog box                    *
+ * Description : Provides a process preview file dialog box                 *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_FormPreviewFileDialogH
-#define PSS_FormPreviewFileDialogH
+#ifndef PSS_ProcessFilePreviewDialogH
+#define PSS_ProcessFilePreviewDialogH
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -30,21 +30,21 @@
 #endif
 
 /**
-* Preview form
+* Process preview form
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PreviewForm : public PSS_AbstractPreviewForm
+class PSS_ProcessPreviewForm : public PSS_AbstractPreviewForm
 {
     public:
         /**
         * Sets the preview file
         *@param fileName - file name
         */
-        virtual void SetPreviewFile(const CString& fileName);
+        virtual void SetPreviewFile(const CString& csFileName);
 
         /**
-        * Draws the preview form content
-        *@param pDC - device context to paint to
+        * Draws the preview content
+        *@param pDC - device context to draw to
         *@param x - x start position in pixels
         *@param y - y start position in pixels
         *@param width - canvas width in pixels
@@ -54,33 +54,33 @@ class AFX_EXT_CLASS PSS_PreviewForm : public PSS_AbstractPreviewForm
 };
 
 /**
-* Form preview file dialog box
+* Process preview file dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_FormPreviewFileDialog : public PSS_FilePreviewDialog
+class AFX_EXT_CLASS PSS_ProcessFilePreviewDialog : public PSS_FilePreviewDialog
 {
-    DECLARE_DYNAMIC(PSS_FormPreviewFileDialog)
+    DECLARE_DYNAMIC(PSS_ProcessFilePreviewDialog)
 
     public:
         /**
         * Constructor
-        *@param openFileDialog - if TRUE, file open dialog box will be opened, otherwise file save as dialog box will be opened
-        *@param title - dialog box title to show
-        *@param initalDir - initial directory to start from
-        *@param pPArentWnd - parent window, can be NULL
+        *@param openFileDialog - if TRUE, file open dialog box will be shown, otherwise file save as dialog box will be shown
+        *@param title - title
+        *@param initialDir - initial directory to start from
+        *@param pParentWnd - parent window, can be NULL
         */
-        PSS_FormPreviewFileDialog(BOOL           openFileDialog,
-                                  const CString& title      = "",
-                                  const CString& initialDir = "",
-                                  CWnd*          pParentWnd = NULL);
+        PSS_ProcessFilePreviewDialog(BOOL           openFileDialog,
+                                     const CString& title      = "",
+                                     const CString& initialDir = "",
+                                     CWnd*          pParentWnd = NULL);
 
     protected:
-        //{{AFX_MSG(PSS_FormPreviewFileDialog)
+        //{{AFX_MSG(PSS_ProcessFilePreviewDialog)
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
 
     private:
-        PSS_PreviewForm m_Preview;
+        PSS_ProcessPreviewForm m_Preview;
 };
 
 #endif

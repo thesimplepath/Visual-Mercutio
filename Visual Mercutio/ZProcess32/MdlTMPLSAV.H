@@ -2,7 +2,7 @@
 
 #include "Resource.h"
 
-#include "zWinUtil32\ZSearchEdit.h"
+#include "zWinUtil32\PSS_SearchEdit.h"
 #include "zBaseLib\ZIDialog.h"
 
 #include "zBaseLib\FldStamp.h"
@@ -56,10 +56,10 @@ private:
 
     //{{AFX_DATA(ZIModelTemplateCopyDlg)
     enum { IDD = IDD_MODELTEMPLATESAVE };
-    ZCSearchEdit m_ModelDirectory;
-    CString m_sDescription;
-    CString m_sFilename;
-    CString m_sTitle;
+    PSS_SearchEdit m_ModelDirectory;
+    CString        m_sDescription;
+    CString        m_sFilename;
+    CString        m_sTitle;
     //}}AFX_DATA
 
 // Implementation

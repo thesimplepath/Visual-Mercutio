@@ -22,7 +22,7 @@
 
 // processsoft
 #include "zBaseLib\ZWizard.h"
-#include "ZSearchEdit.h"
+#include "PSS_SearchEdit.h"
 
 // resources
 #include "zWinUtil32\zWinUtil32Res.h"

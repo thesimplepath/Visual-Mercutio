@@ -14,7 +14,7 @@
 
 // processsoft
 #include "zBaseLib\ZWizard.h"
-#include "zWinUtil32\ZSearchEdit.h"
+#include "zWinUtil32\PSS_SearchEdit.h"
 
 // resources
 #include "zModelWebRes.h"
@@ -70,9 +70,9 @@ class PSS_PublishModelBannerDialog : public ZIWizardDialog
             IDD = IDD_WZPUBMODEL_BANNER
         };
 
-        CString      m_ImageFilename;
-        ZCSearchEdit m_Image;
-        CString      m_HyperLink;
+        CString        m_ImageFilename;
+        PSS_SearchEdit m_Image;
+        CString        m_HyperLink;
 };
 
 //---------------------------------------------------------------------------

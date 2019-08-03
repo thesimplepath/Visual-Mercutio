@@ -35,7 +35,7 @@ PSS_ScanContinueSelectDialog::PSS_ScanContinueSelectDialog(bool firstTime, CWnd*
     m_ScanType(1),
     m_FirstTime(firstTime)
 {
-    m_File.SetSearchType(ZSEARCHEDIT_FILE, _T(""));
+    m_File.SetSearchType(PSS_SearchEditButton::IE_T_File, _T(""));
 }
 //---------------------------------------------------------------------------
 void PSS_ScanContinueSelectDialog::DoDataExchange(CDataExchange* pDX)
