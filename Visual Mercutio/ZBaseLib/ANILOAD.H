@@ -1,8 +1,14 @@
-// aniload.h : header file
+/****************************************************************************
+ * ==> PSS_StatusBar -------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a status bar                                      *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(__ANILOAD_H)
-#define __ANILOAD_H
+#ifndef PSS_StatusBarH
+#define PSS_StatusBarH
 
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -10,10 +16,10 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-extern AFX_EXTENSION_MODULE ZBaseLibDLL;
+extern AFX_EXTENSION_MODULE g_zBaseLibDLL;
 
 #ifdef _ZBASELIBEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
+// put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -22,56 +28,63 @@ extern AFX_EXTENSION_MODULE ZBaseLibDLL;
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 31 décembre 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-/////////////////////////////////////////////////////////////////////////////
-// ZIStatusBar view
-
-class AFX_EXT_CLASS ZIStatusBar : public SECStatusBar
+/**
+* Status bar
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_StatusBar : public SECStatusBar
 {
-    DECLARE_DYNCREATE( ZIStatusBar )
+    DECLARE_DYNCREATE(PSS_StatusBar)
 
-public:
+    public:
+        PSS_StatusBar();
+        virtual ~PSS_StatusBar();
 
-    // Protected constructor used by dynamic creation
-    ZIStatusBar();
+        /**
+        * Pre-creates the window
+        *@param cs - create structure
+        */
+        virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 
-    virtual ~ZIStatusBar();
+        /**
+        * Sets the current percentage
+        *@param value - percentage value
+        */
+        virtual void SetCurrentPercentage(int value);
 
-// Operations
-public:
+        /**
+        * Begins the animated percentage
+        */
+        virtual void BeginAniPercentage();
 
-    void    SetCurrentPercentage( int iPerc );
-    void    BeginAniPercentage();
-    void    EndAniPercentage();
-    virtual BOOL PreCreateWindow( CREATESTRUCT& cs );
+        /**
+        * Ends the animated percentage
+        */
+        virtual void EndAniPercentage();
 
-// Generated message map functions
-protected:
+    protected:
+        /// Generated message map functions
+        //{{AFX_MSG(PSS_StatusBar)
+        //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
 
-    //{{AFX_MSG(ZIStatusBar)
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
-
-// Implementation
-private:
-
-    CFont    m_Font;
-    BOOL    m_bIsStarted;
-    int        m_iPerc;
-    int        m_iImage;
-    CRect    m_ItemRect;
-    int        m_iBackWidth;
-    int        m_iLeftStart;
-    int        m_iStep;
-    DWORD    m_dwTickCount;
-    BOOL    m_SwapLight;
-    static    HBITMAP    m_hBtmBack;
-    static    HBITMAP    m_hBtmGreenLight;
-    static    HBITMAP    m_hBtmRedLight;
-    CBrush    m_LtBlueBrush;
-    CPen    m_BlackPen;
-    CPen    m_WhitePen;
+    private:
+        static HBITMAP m_hBtmBack;
+        static HBITMAP m_hBtmGreenLight;
+        static HBITMAP m_hBtmRedLight;
+        CFont          m_Font;
+        CBrush         m_LtBlueBrush;
+        CPen           m_BlackPen;
+        CPen           m_WhitePen;
+        CRect          m_ItemRect;
+        DWORD          m_TickCount;
+        int            m_Percent;
+        int            m_Image;
+        int            m_BackWidth;
+        int            m_LeftStart;
+        int            m_Step;
+        BOOL           m_SwapLight;
+        BOOL           m_IsStarted;
 };
 
-#endif  // __ANILOAD_H
+#endif

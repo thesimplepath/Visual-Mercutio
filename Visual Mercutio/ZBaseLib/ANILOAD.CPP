@@ -1,215 +1,217 @@
-// aniload.cpp : implementation file
+/****************************************************************************
+ * ==> PSS_StatusBar -------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a status bar                                      *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "StdAfx.h"
 #include "aniload.h"
+
+// processsoft
 #include "draw.h"
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char BASED_CODE THIS_FILE[] = __FILE__;
+    #undef THIS_FILE
+    static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-// JMR-MODIF - Le 21 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-/////////////////////////////////////////////////////////////////////////////
-// ZIStatusBar
-
-IMPLEMENT_DYNCREATE( ZIStatusBar, SECStatusBar )
-
-HBITMAP    ZIStatusBar::m_hBtmBack;
-HBITMAP    ZIStatusBar::m_hBtmGreenLight;
-HBITMAP    ZIStatusBar::m_hBtmRedLight;
-
-BEGIN_MESSAGE_MAP( ZIStatusBar, SECStatusBar )
-    //{{AFX_MSG_MAP(ZIStatusBar)
+//---------------------------------------------------------------------------
+// Static variables
+//---------------------------------------------------------------------------
+HBITMAP PSS_StatusBar::m_hBtmBack;
+HBITMAP PSS_StatusBar::m_hBtmGreenLight;
+HBITMAP PSS_StatusBar::m_hBtmRedLight;
+//---------------------------------------------------------------------------
+// Dynamic construction
+//---------------------------------------------------------------------------
+IMPLEMENT_DYNCREATE(PSS_StatusBar, SECStatusBar)
+//---------------------------------------------------------------------------
+// Message map
+//---------------------------------------------------------------------------
+BEGIN_MESSAGE_MAP(PSS_StatusBar, SECStatusBar)
+    //{{AFX_MSG_MAP(PSS_StatusBar)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-ZIStatusBar::ZIStatusBar()
-    : m_SwapLight( FALSE )
+//---------------------------------------------------------------------------
+// PSS_StatusBar
+//---------------------------------------------------------------------------
+PSS_StatusBar::PSS_StatusBar() :
+    SECStatusBar(),
+    m_TickCount(0),
+    m_Percent(0),
+    m_Image(0),
+    m_BackWidth(0),
+    m_LeftStart(0),
+    m_Step(0),
+    m_SwapLight(FALSE),
+    m_IsStarted(FALSE)
 {
-    m_iPerc                = 0;
-    m_hBtmBack            = LoadBitmap ( ZBaseLibDLL.hModule, MAKEINTRESOURCE( IDB_ANILOADBACK ) );
-    m_hBtmGreenLight    = LoadBitmap ( ZBaseLibDLL.hModule, MAKEINTRESOURCE( IDB_GREENLIGHT ) );
-    m_hBtmRedLight        = LoadBitmap ( ZBaseLibDLL.hModule, MAKEINTRESOURCE( IDB_REDLIGHT ) );
+    m_hBtmBack       = LoadBitmap (g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDB_ANILOADBACK));
+    m_hBtmGreenLight = LoadBitmap (g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDB_GREENLIGHT));
+    m_hBtmRedLight   = LoadBitmap (g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDB_REDLIGHT));
 
     BITMAP bm;
-    GetObject ( m_hBtmBack, sizeof ( BITMAP ), &bm );
-    m_iBackWidth = bm.bmWidth + 1;
+    GetObject(m_hBtmBack, sizeof(BITMAP), &bm);
+    m_BackWidth = bm.bmWidth + 1;
 
-    // Calculate the step
-    m_iStep = m_iBackWidth / 100;
+    // calculate the step
+    m_Step = m_BackWidth / 100;
 
-    // Create the font
-    VERIFY( m_Font.CreateFont( 10,                    // Height
-                               8,                    // Width
-                               0,                    // Escapment
-                               0,                    // Orientation
-                               FW_MEDIUM,            // Weight
-                               0,                    // Italic
-                               0,                    // Underline
-                               0,                    // StrikeOut
-                               DEFAULT_CHARSET,
-                               OUT_DEVICE_PRECIS,
-                               CLIP_TT_ALWAYS,
-                               PROOF_QUALITY,
-                               DEFAULT_PITCH,
-                               _T( "Courier" ) ) );
+    // create the font
+    VERIFY(m_Font.CreateFont(10,                   // Height
+                             8,                    // Width
+                             0,                    // Escapment
+                             0,                    // Orientation
+                             FW_MEDIUM,            // Weight
+                             0,                    // Italic
+                             0,                    // Underline
+                             0,                    // StrikeOut
+                             DEFAULT_CHARSET,
+                             OUT_DEVICE_PRECIS,
+                             CLIP_TT_ALWAYS,
+                             PROOF_QUALITY,
+                             DEFAULT_PITCH,
+                             _T("Courier")));
 
-    m_LtBlueBrush.CreateSolidBrush( defCOLOR_LTBLUE );
-    m_BlackPen.CreatePen( PS_SOLID, 1, defCOLOR_BLACK );
-    m_WhitePen.CreatePen( PS_SOLID, 1, defCOLOR_WHITE );
+    m_LtBlueBrush.CreateSolidBrush(defCOLOR_LTBLUE);
+    m_BlackPen.CreatePen(PS_SOLID, 1, defCOLOR_BLACK);
+    m_WhitePen.CreatePen(PS_SOLID, 1, defCOLOR_WHITE);
 }
-
-ZIStatusBar::~ZIStatusBar()
+//---------------------------------------------------------------------------
+PSS_StatusBar::~PSS_StatusBar()
 {
-    VERIFY( DeleteObject( m_hBtmBack ) );
-    VERIFY( DeleteObject( m_hBtmGreenLight ) );
-    VERIFY( DeleteObject( m_hBtmRedLight ) );
+    VERIFY(DeleteObject(m_hBtmBack));
+    VERIFY(DeleteObject(m_hBtmGreenLight));
+    VERIFY(DeleteObject(m_hBtmRedLight));
 }
-
-BOOL ZIStatusBar::PreCreateWindow( CREATESTRUCT& cs )
+//---------------------------------------------------------------------------
+BOOL PSS_StatusBar::PreCreateWindow(CREATESTRUCT& cs)
 {
-    // Add gripper
+    // add gripper
     cs.style |= SBARS_SIZEGRIP;
-    return SECStatusBar::PreCreateWindow( cs );
+    return SECStatusBar::PreCreateWindow(cs);
 }
-
-void ZIStatusBar::SetCurrentPercentage( int iPerc )
+//---------------------------------------------------------------------------
+void PSS_StatusBar::SetCurrentPercentage(int value)
 {
-    // Check if started
-    if( !m_bIsStarted )
-    {
+    // check if started
+    if (!m_IsStarted)
         return;
-    }
 
-    if( m_iPerc != iPerc )
+    if (m_Percent != value)
     {
-        m_iPerc = __min( 100, iPerc );
+        m_Percent = __min(100, value);
 
-        // Calculate the size of the left meter
-        m_iLeftStart += m_iStep;
+        // calculate the left meter size
+        m_LeftStart += m_Step;
 
-        // To regulate the animation time
-        // Check the elapsed time between two
-        // animation and change the image only
-        // if the time is greater than a certain
-        // value.
-        BOOL    bDisplay = TRUE;
-        DWORD    dwTemp = GetTickCount();
+        // to regulate the animation time, check the elapsed time between two
+        // animation and change the image only if the time is greater than a
+        // certain value
+        BOOL  show = TRUE;
+        DWORD temp = GetTickCount();
 
-        if( m_dwTickCount )
+        if (m_TickCount)
         {
-            if( dwTemp - m_dwTickCount < 50 )
-            {
-                bDisplay = FALSE;
-            }
+            if (temp - m_TickCount < 50)
+                show = FALSE;
             else
-            {
-                m_dwTickCount = dwTemp;
-            }
+                m_TickCount = temp;
         }
         else
-        {
-            m_dwTickCount = dwTemp;
-        }
+            m_TickCount = temp;
 
         CDC* pDC = GetDC();
-        ASSERT( pDC );
+        ASSERT(pDC);
 
-        if ( m_iLeftStart < m_iBackWidth )
+        if (m_LeftStart < m_BackWidth)
         {
-            // Display the meter
-            CPen*    pOldPen;
-            CBrush*    pOldBrush;
+            // show the meter
+            CBrush* pOldBrush = pDC->SelectObject(&m_LtBlueBrush);
+            CPen*   pOldPen   = pDC->SelectObject(&m_BlackPen);
 
-            pOldBrush = pDC->SelectObject( &m_LtBlueBrush );
-            pOldPen = pDC->SelectObject( &m_BlackPen );
+            pDC->Rectangle(m_ItemRect.left   + 2,
+                           m_ItemRect.top    + 2,
+                           m_ItemRect.left   + m_LeftStart,
+                           m_ItemRect.bottom - 1);
 
-            pDC->Rectangle( m_ItemRect.left + 2,
-                            m_ItemRect.top + 2,
-                            m_ItemRect.left + m_iLeftStart,
-                            m_ItemRect.bottom - 1 );
-
-            pDC->SelectObject( &m_WhitePen );
-            pDC->MoveTo( m_ItemRect.left + m_iLeftStart - 2, m_ItemRect.bottom - 2 );
-            pDC->LineTo( m_ItemRect.left + 2, m_ItemRect.bottom - 2 );
-            pDC->LineTo( m_ItemRect.left + 2, m_ItemRect.top + 2 );
+            pDC->SelectObject(&m_WhitePen);
+            pDC->MoveTo(m_ItemRect.left + m_LeftStart - 2, m_ItemRect.bottom - 2);
+            pDC->LineTo(m_ItemRect.left + 2,               m_ItemRect.bottom - 2);
+            pDC->LineTo(m_ItemRect.left + 2,               m_ItemRect.top    + 2);
     
-            pDC->SelectObject( pOldBrush );
-            pDC->SelectObject( pOldPen );
+            pDC->SelectObject(pOldBrush);
+            pDC->SelectObject(pOldPen);
         }
 
-        if( bDisplay )
+        if (show)
         {
-            if ( m_SwapLight )
+            if (m_SwapLight)
             {
-                DisplayBitmap ( m_hBtmGreenLight,
-                                pDC->m_hDC,
-                                AfxGetInstanceHandle(),
-                                m_ItemRect.left + m_iBackWidth,
-                                m_ItemRect.top );
+                DisplayBitmap(m_hBtmGreenLight,
+                              pDC->m_hDC,
+                              AfxGetInstanceHandle(),
+                              m_ItemRect.left + m_BackWidth,
+                              m_ItemRect.top);
             }
             else
-            {
-                DisplayBitmap ( m_hBtmRedLight,
-                                pDC->m_hDC,
-                                AfxGetInstanceHandle(),
-                                m_ItemRect.left + m_iBackWidth,
-                                m_ItemRect.top );
-            }
+                DisplayBitmap(m_hBtmRedLight,
+                              pDC->m_hDC,
+                              AfxGetInstanceHandle(),
+                              m_ItemRect.left + m_BackWidth,
+                              m_ItemRect.top );
 
-            // Switch the light
-            m_SwapLight = ( m_SwapLight ) ? FALSE : TRUE;
+            // switch the light
+            m_SwapLight = (m_SwapLight ? FALSE : TRUE);
         }
 
-        VERIFY( ReleaseDC( pDC ) );
+        VERIFY(ReleaseDC(pDC));
     }
 }
-
-void ZIStatusBar::BeginAniPercentage()
+//---------------------------------------------------------------------------
+void PSS_StatusBar::BeginAniPercentage()
 {
-    // Create the timer for the animation
-    m_bIsStarted    = TRUE;
-    m_iImage        = 0;
-    m_iPerc            = 0;
-    m_dwTickCount    = 0;
+    // create the animation timer
+    m_IsStarted = TRUE;
+    m_Image     = 0;
+    m_Percent   = 0;
+    m_TickCount = 0;
 
-    // Calculate the start position
-    m_iLeftStart = 5;
-    GetItemRect( 0, &m_ItemRect );
+    // calculate the start position
+    m_LeftStart = 5;
+    GetItemRect(0, &m_ItemRect);
 
     CDC* pDC = GetDC();
-    ASSERT( pDC );
+    ASSERT(pDC);
 
-    DisplayBitmap ( m_hBtmBack,
-                    pDC->m_hDC,
-                    AfxGetInstanceHandle(),
-                    m_ItemRect.left,
-                    m_ItemRect.top );
+    DisplayBitmap(m_hBtmBack,
+                  pDC->m_hDC,
+                  AfxGetInstanceHandle(),
+                  m_ItemRect.left,
+                  m_ItemRect.top);
 
-    // Displays the first percentage
-    CPen*    pOldPen;
-    CBrush*    pOldBrush;
-    pOldBrush = pDC->SelectObject( &m_LtBlueBrush );
-    pOldPen = pDC->SelectObject( &m_BlackPen );
+    // show the first percentage
+    CBrush* pOldBrush = pDC->SelectObject(&m_LtBlueBrush);
+    CPen*   pOldPen   = pDC->SelectObject(&m_BlackPen);
 
-    pDC->Rectangle( m_ItemRect.left + 2,
-                    m_ItemRect.top + 2,
-                    m_ItemRect.left + m_iLeftStart,
-                    m_ItemRect.bottom - 1 );
+    pDC->Rectangle(m_ItemRect.left   + 2,
+                   m_ItemRect.top    + 2,
+                   m_ItemRect.left   + m_LeftStart,
+                   m_ItemRect.bottom - 1);
 
-    pDC->SelectObject( &m_WhitePen );
-    pDC->MoveTo( m_ItemRect.left + m_iLeftStart - 2, m_ItemRect.bottom - 2 );
-    pDC->LineTo( m_ItemRect.left + 2, m_ItemRect.bottom - 2 );
-    pDC->LineTo( m_ItemRect.left + 2, m_ItemRect.top + 2 );
+    pDC->SelectObject(&m_WhitePen);
+    pDC->MoveTo(m_ItemRect.left + m_LeftStart - 2, m_ItemRect.bottom - 2);
+    pDC->LineTo(m_ItemRect.left + 2,               m_ItemRect.bottom - 2);
+    pDC->LineTo(m_ItemRect.left + 2,               m_ItemRect.top    + 2);
 
-    pDC->SelectObject( pOldBrush );
-    pDC->SelectObject( pOldPen );
-    VERIFY( ReleaseDC( pDC ) );
+    pDC->SelectObject(pOldBrush);
+    pDC->SelectObject(pOldPen);
+    VERIFY(ReleaseDC(pDC));
 }
-
-void ZIStatusBar::EndAniPercentage()
+//---------------------------------------------------------------------------
+void PSS_StatusBar::EndAniPercentage()
 {
-    Invalidate( TRUE );
+    Invalidate(TRUE);
 }
+//---------------------------------------------------------------------------

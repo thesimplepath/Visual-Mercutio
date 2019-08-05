@@ -1,5 +1,5 @@
 /****************************************************************************
- * ==> ZWinUtil32 ----------------------------------------------------------*
+ * ==> zWinUtil32 ----------------------------------------------------------*
  ****************************************************************************
  * Description : DLL main entry point                                       *
  * Developer   : Processsoft                                                *
@@ -9,9 +9,9 @@
 #include <afxdllx.h>
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
 //---------------------------------------------------------------------------
