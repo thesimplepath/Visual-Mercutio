@@ -73,223 +73,181 @@ class AFX_EXT_CLASS PSS_BaseMainFrame : public SECMDIFrameWnd
 {
     DECLARE_DYNAMIC(PSS_BaseMainFrame)
 
-public:
-    #ifdef __CREATE_LOGO_
-        PSS_MainMDIClient m_MDIClient; // the MDI client necessary to subclassing the main frame
-    #endif
+    public:
+        #ifdef __CREATE_LOGO_
+            PSS_MainMDIClient m_MDIClient; // the MDI client necessary to subclassing the main frame
+        #endif
 
-    /**
-    * Constructor
-    *@param mustSaveBarState - if true, the save bar state will be saved
-    */
-    PSS_BaseMainFrame(bool mustSaveBarState = true);
-
-    virtual ~PSS_BaseMainFrame();
-
-    /**
-    * Sets if the save bar state should be saved
-    *@param mustSaveBarState - if true, the save bar state will be saved
-    */
-    virtual inline void SetMustSaveBarState(bool mustSaveBarState);
-
-    /**
-    * Gets if the save bar state should be saved
-    *@param mustSaveBarState - if true, the save bar state will be saved
-    */
-    virtual inline bool GetMustSaveBarState() const;
-
-    /**
-    * Called when the bar state is reloaded
-    *@param reset - if true, bar state will also be reseted
-    */
-    virtual void OnReloadBarState(bool reset = false);
-
-    /**
-    * Called when the bar state is saved
-    */
-    virtual void OnSaveBarState();
-
-    /**
-    * Gets the status bar
-    *@return the status bar
-    */
-    virtual inline PSS_StatusBar& GetStatusBar();
-
-    #ifdef __CREATE_LOGO_
         /**
-        * Creates the client
-        *@param pCreateStruct - create structure
-        *@param pMenu - menu
-        *@return the created client identifier
+        * Constructor
+        *@param mustSaveBarState - if true, the save bar state will be saved
         */
-        virtual int CreateClient(LPCREATESTRUCT pCreateStruct, CMenu* pMenu);
-    #endif
+        PSS_BaseMainFrame(bool mustSaveBarState = true);
 
-    /**
-    * Loads the menu bar
-    *@param menuID - menu identifier
-    */
-    virtual void LoadMenuBar(UINT menuID);
+        virtual ~PSS_BaseMainFrame();
 
-    /**
-    * Sets the page number
-    *@param page - page number
-    *@param total - total page
-    */
-    virtual inline void SetPageNumber(int page, int totalPage);
+        /**
+        * Sets if the save bar state should be saved
+        *@param mustSaveBarState - if true, the save bar state will be saved
+        */
+        virtual inline void SetMustSaveBarState(bool mustSaveBarState);
 
-    /**
-    * Called when the full screen is toggled
-    */
-    virtual void OnViewFullScreen();
+        /**
+        * Gets if the save bar state should be saved
+        *@param mustSaveBarState - if true, the save bar state will be saved
+        */
+        virtual inline bool GetMustSaveBarState() const;
 
-    /**
-    * Checks if the window is in full screen mode
-    *@return TRUE if the window is in full screeen mode, otherwise FALSE
-    */
-    virtual inline BOOL IsFullScreen();
+        /**
+        * Called when the bar state is reloaded
+        *@param reset - if true, bar state will also be reseted
+        */
+        virtual void OnReloadBarState(bool reset = false);
 
-    /**
-    * Checks if the window pointer (i.e the mouse cursor) is visible
-    *@return TRUE if the pointer window is visible, otherwise FALSE
-    */
-    virtual BOOL PointerWindowIsVisible()
-    {
-        return FALSE;
-    }
+        /**
+        * Called when the bar state is saved
+        */
+        virtual void OnSaveBarState();
 
-    /**
-    * Shows the window pointer (i.e the mouse cursor) 
-    */
-    virtual void ShowPointerWindow()
-    {}
+        /**
+        * Gets the status bar
+        *@return the status bar
+        */
+        virtual inline PSS_StatusBar& GetStatusBar();
 
-    /**
-    * Hides the window pointer (i.e the mouse cursor) 
-    */
-    virtual void HidePointerWindow()
-    {}
+        #ifdef __CREATE_LOGO_
+            /**
+            * Creates the client
+            *@param pCreateStruct - create structure
+            *@param pMenu - menu
+            *@return the created client identifier
+            */
+            virtual int CreateClient(LPCREATESTRUCT pCreateStruct, CMenu* pMenu);
+        #endif
 
-    /**
-    * Gets the window configuration
-    *@return the window configuration
-    */
-    virtual inline ZAWindowConfiguration& GetWindowConfiguration();
+        /**
+        * Loads the menu bar
+        *@param menuID - menu identifier
+        */
+        virtual void LoadMenuBar(UINT menuID);
 
-    /**
-    * Asserts the class validity
-    */
-    #ifdef _DEBUG
-        virtual void AssertValid() const;
-    #endif
+        /**
+        * Sets the page number
+        *@param page - page number
+        *@param total - total page
+        */
+        virtual inline void SetPageNumber(int page, int totalPage);
 
-    /**
-    * Dumps the class content
-    *@param dc - dump context
-    */
-    #ifdef _DEBUG
-        virtual void Dump(CDumpContext& dc) const;
-    #endif
+        /**
+        * Called when the full screen is toggled
+        */
+        virtual void OnViewFullScreen();
 
-    /// ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(PSS_BaseMainFrame)
-    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-    //}}AFX_VIRTUAL
+        /**
+        * Checks if the window is in full screen mode
+        *@return TRUE if the window is in full screeen mode, otherwise FALSE
+        */
+        virtual inline BOOL IsFullScreen();
 
-protected:
-    PSS_StatusBar     m_StatusBar;
-    SECCustomToolBar* m_ToolBar;
-    int               m_Page;
-    int               m_TotalPage;
-    bool              m_MustSaveBarState;
+        /**
+        * Checks if the window pointer (i.e the mouse cursor) is visible
+        *@return TRUE if the pointer window is visible, otherwise FALSE
+        */
+        virtual BOOL PointerWindowIsVisible();
 
-    /**
-    * Creates the toolbar
-    *@return TRUE on success, otherwise FALSE
-    *@note CreateToolBars function must be implemented by the derived class,
-    *      it lets the user create all the toolbars
-    */
-    virtual BOOL CreateToolBars() = 0;
+        /**
+        * Shows the window pointer (i.e the mouse cursor) 
+        */
+        virtual void ShowPointerWindow();
 
-    /**
-    * Creates the status bar
-    *@return TRUE on success, otherwise FALSE
-    *@note CreateMainStatusBar function mus be implement by the derived class,
-    *      it lets the user create the main status bar
-    */
-    virtual BOOL CreateStatusBar() = 0;
+        /**
+        * Hides the window pointer (i.e the mouse cursor) 
+        */
+        virtual void HidePointerWindow();
 
-    /**
-    * Creates the menu bars
-    *@return TRUE on success, otherwise FALSE
-    *@note CreateMenuBars function mus be implement by the derived class,
-    *      it lets the user create the all the menus
-    */
-    virtual BOOL CreateMenuBars() = 0;
+        /**
+        * Gets the window configuration
+        *@return the window configuration
+        */
+        virtual inline ZAWindowConfiguration& GetWindowConfiguration();
 
-    /**
-    * Initializes the docking windows
-    *@return TRUE on success, otherwise FALSE
-    *@note InitializeDockingWindows function must be implement by the derived class,
-    *      it lets the user initializing all docking windows
-    */
-    virtual BOOL InitializeDockingWindows() = 0;
+        /**
+        * Asserts the class validity
+        */
+        #ifdef _DEBUG
+            virtual void AssertValid() const;
+        #endif
 
-    /**
-    * Creates the palette bar
-    *@param id - identifier
-    *@param point - docking point
-    *@param title - title
-    *@param enableDocking - enable docking mode
-    *@return the created palette bar, NULL on error
-    */
-    virtual SECCustomToolBar* CreatePaletteBar(UINT           id,
-                                               const CPoint&  point,
-                                               const CString& title         = _T(""),
-                                               DWORD          enableDocking = CBRS_ALIGN_ANY);
+        /**
+        * Dumps the class content
+        *@param dc - dump context
+        */
+        #ifdef _DEBUG
+            virtual void Dump(CDumpContext& dc) const;
+        #endif
 
-    /**
-    * Creates the palette bar
-    *@param id - identifier
-    *@param point - docking point
-    *@param pIDArray - identifier array
-    *@param idCount - identifier array item count
-    *@param columns - columns
-    *@return the created palette bar, NULL on error
-    */
-    virtual SECCustomToolBar* CreatePaletteBar(UINT          id,
-                                               const CPoint& point,
-                                               const UINT*   pIDArray = NULL,
-                                               int           idCount  = 0,
-                                               UINT          columns  = 1);
+        /// ClassWizard generated virtual function overrides
+        //{{AFX_VIRTUAL(PSS_BaseMainFrame)
+        virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+        //}}AFX_VIRTUAL
 
-    /**
-    * Creates the toolbar
-    *@param id - identifier
-    *@param title - title
-    *@param enableDocking - enable docking mode
-    *@return the created palette bar, NULL on error
-    */
-    virtual SECCustomToolBar* CreateToolBar(UINT id, const CString& title = _T(""), DWORD enableDocking = CBRS_ALIGN_ANY);
+    protected:
+        PSS_StatusBar     m_StatusBar;
+        SECCustomToolBar* m_ToolBar;
+        int               m_Page;
+        int               m_TotalPage;
+        bool              m_MustSaveBarState;
 
-    /// generated message map
-    //{{AFX_MSG(PSS_BaseMainFrame)
-    afx_msg int  OnCreate(LPCREATESTRUCT lpCreateStruct);
-    afx_msg void OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu);
-    afx_msg void OnViewPointer();
-    afx_msg void OnUpdateViewPointer(CCmdUI* pCmdUI);
-    afx_msg void OnUpdateHelpIndex(CCmdUI* pCmdUI);
-    afx_msg void OnUpdateHelpUsing(CCmdUI* pCmdUI);
-    afx_msg void OnClose();
-    afx_msg LRESULT OnFSModeChange(WPARAM wPar, LPARAM lPar);
-    virtual BOOL OnCommand( WPARAM wParam, LPARAM lParam );
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+        /**
+        * Creates the toolbar
+        *@return TRUE on success, otherwise FALSE
+        *@note CreateToolBars function must be implemented by the derived class,
+        *      it lets the user create all the toolbars
+        */
+        virtual BOOL CreateToolBars() = 0;
 
-private:
-    bool                  m_SaveBarStateHasBeenInitialized;
-    ZAWindowConfiguration m_WindowConfiguration;
-    SECFullScreenView     m_FSView;
+        /**
+        * Creates the status bar
+        *@return TRUE on success, otherwise FALSE
+        *@note CreateMainStatusBar function mus be implement by the derived class,
+        *      it lets the user create the main status bar
+        */
+        virtual BOOL CreateStatusBar() = 0;
+
+        /**
+        * Creates the menu bars
+        *@return TRUE on success, otherwise FALSE
+        *@note CreateMenuBars function mus be implement by the derived class,
+        *      it lets the user create the all the menus
+        */
+        virtual BOOL CreateMenuBars() = 0;
+
+        /**
+        * Initializes the docking windows
+        *@return TRUE on success, otherwise FALSE
+        *@note InitializeDockingWindows function must be implement by the derived class,
+        *      it lets the user initializing all docking windows
+        */
+        virtual BOOL InitializeDockingWindows() = 0;
+
+        /// generated message map
+        //{{AFX_MSG(PSS_BaseMainFrame)
+        afx_msg int  OnCreate(LPCREATESTRUCT lpCreateStruct);
+        afx_msg void OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu);
+        afx_msg void OnViewPointer();
+        afx_msg void OnUpdateViewPointer(CCmdUI* pCmdUI);
+        afx_msg void OnUpdateHelpIndex(CCmdUI* pCmdUI);
+        afx_msg void OnUpdateHelpUsing(CCmdUI* pCmdUI);
+        afx_msg void OnClose();
+        afx_msg LRESULT OnFSModeChange(WPARAM wPar, LPARAM lPar);
+        virtual BOOL OnCommand( WPARAM wParam, LPARAM lParam );
+        //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
+
+    private:
+        ZAWindowConfiguration m_WindowConfiguration;
+        SECFullScreenView     m_FSView;
+        bool                  m_SaveBarStateHasBeenInitialized;
 };
 
 //---------------------------------------------------------------------------
