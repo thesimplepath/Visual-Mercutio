@@ -5,7 +5,7 @@
 #include "ZBSystemEntity.h"
 
 // BaseDoc
-#include "zBaseLib\BaseDoc.h"
+#include "zBaseLib\PSS_BaseDocument.h"
 #include "zBaseLib\ZUGUID.h"
 
 #ifdef _DEBUG

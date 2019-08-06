@@ -2470,7 +2470,7 @@ void ZBBPProcessSymbol::Serialize( CArchive& ar )
     if ( ar.m_pDocument )
     {
         // JMR-MODIF - Le 1er février 2006 - Ajout du code pour la sérialisation des prestations.
-        if ( dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 24 )
+        if ( dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 24 )
         {
             m_PrestProperties.Serialize( ar );
 
@@ -2479,13 +2479,13 @@ void ZBBPProcessSymbol::Serialize( CArchive& ar )
         }
 
         // JMR-MODIF - Le 18 décembre 2006 - Ajout du code pour la sérialisation des règles.
-        if ( dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 26 )
+        if ( dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 26 )
         {
             m_Rules.Serialize( ar );
         }
 
         // JMR-MODIF - Le 10 juin 2007 - Ajout du code pour la sérialisation des risques.
-        if ( dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 27 )
+        if ( dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 27 )
         {
             m_Risks.Serialize( ar );
         }
@@ -2512,7 +2512,7 @@ void ZBBPProcessSymbol::Serialize( CArchive& ar )
             m_DisplayPreview = ( wValue == 0 ) ? false : true;
 
             // JMR-MODIF - Le 16 février 2006 - Ajout de la variable m_IsUserModified dans la sérialisation.
-            if ( dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 24 )
+            if ( dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 24 )
             {
                 ar >> wValue;
                 m_IsUserModified = ( wValue == 0 ) ? false : true;

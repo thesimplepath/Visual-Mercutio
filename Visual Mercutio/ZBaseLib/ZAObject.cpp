@@ -1471,7 +1471,7 @@ void PlanFinObject::Serialize (CArchive& ar)
         WORD wTemp;
         // If before Version 4 read the FontType
         // And assign the font
-        if ( ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() < 4 )
+        if ( ( (PSS_BaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() < 4 )
         {
             ar >> wTemp;
         }
@@ -1485,8 +1485,8 @@ void PlanFinObject::Serialize (CArchive& ar)
         // To keep the serialization as before
         // do the following
         m_FormatType = EFormatType(wTemp);
-        
-        if ( ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 1 )
+
+        if ( ( (PSS_BaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 1 )
         {
             ar >> wTemp;
             m_bIsVisible = (int)wTemp;
@@ -1495,19 +1495,19 @@ void PlanFinObject::Serialize (CArchive& ar)
             m_bMustBePrinted = (int)wTemp;
         }
 
-        if ( ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 2 )
+        if ( ( (PSS_BaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 2 )
         {
             ar >> m_Color;
             ar >> m_FillColor;
         }
 
-        if ( ( (ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 3 )
+        if ( ( (PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 3 )
         {
             ar >> m_uGroupNumber;
         }
 
         // Version 4
-        if ( ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 4 )
+        if ( ( (PSS_BaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 4 )
         {
             ar >> m_hFont;
 
@@ -1519,7 +1519,7 @@ void PlanFinObject::Serialize (CArchive& ar)
         }
 
         // Version 5
-        if ( ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 5 )
+        if ( ( (PSS_BaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 5 )
         {
             ar >> wTemp;
             m_EmptyStyle = ELineType(wTemp);
@@ -1527,14 +1527,14 @@ void PlanFinObject::Serialize (CArchive& ar)
         }
 
         // Version 7
-        if ( ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 7 )
+        if ( ( (PSS_BaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 7 )
         {
             // Deserialize the font pointer
             ar >> m_pBorder;
         }
 
         // Version 8
-        if ( ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 8 )
+        if ( ( (PSS_BaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 8 )
         {
             // Deserialize the default value
             ar >> wTemp;
@@ -1542,7 +1542,7 @@ void PlanFinObject::Serialize (CArchive& ar)
         }
 
         // Version 12
-        if ( ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 12 )
+        if ( ( (PSS_BaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 12 )
         {
             // Deserialize the empty value
             ar >> wTemp;
@@ -1550,7 +1550,7 @@ void PlanFinObject::Serialize (CArchive& ar)
         }
 
         // Version 14
-        if ( ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 14 )
+        if ( ( (PSS_BaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 14 )
         {
             // Deserialize the read-only value
             ar >> wTemp;
@@ -1559,7 +1559,7 @@ void PlanFinObject::Serialize (CArchive& ar)
         }
 
         // Version 17
-        if ( ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 17 )
+        if ( ( (PSS_BaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 17 )
         {
             ar >> m_UserHelp;
         }

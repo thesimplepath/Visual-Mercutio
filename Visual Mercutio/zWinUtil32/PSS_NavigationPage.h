@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\AppOpt.h"
+#include "zBaseLib\PSS_ApplicationOption.h"
 #include "PSS_GenericPropPage.h"
 
 // resources
@@ -54,7 +54,11 @@ class PSS_NavigationPage : public PSS_GenericPropPage
 
         BOOL m_GoNextEdit;
 
-        PSS_NavigationPage(ZAApplicationOption* pApplicationOptions);
+        /**
+        * Constructor
+        *@param pApplicationOptions - application options
+        */
+        PSS_NavigationPage(PSS_ApplicationOption* pApplicationOptions);
 
         virtual ~PSS_NavigationPage();
 

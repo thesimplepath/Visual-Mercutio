@@ -15,35 +15,28 @@
 #define Export_h 1
 
 //## begin module%35BCB061033D.additionalIncludes preserve=no
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
 #define AFX_EXT_CLASS AFX_CLASS_IMPORT
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
-//## end module%35BCB061033D.additionalIncludes
 
-//## begin module%35BCB061033D.includes preserve=yes
-//## end module%35BCB061033D.includes
-
-// Mfc
+// mfc
 #include "Mfc.h"
-//## begin module%35BCB061033D.declarations preserve=no
-//## end module%35BCB061033D.declarations
 
-//## begin module%35BCB061033D.additionalDeclarations preserve=yes
-#include "AniLoad.h"
-
+// processsoft
+#include "PSS_StatusBar.h"
 
 #ifdef _ZBASELIBEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 //#undef  AFX_DATA
@@ -69,7 +62,7 @@ class AFX_EXT_CLASS ZUExport : public CWnd  //## Inherits: <unnamed>%3652B4BF018
       //## Operation: ZUExport%901558644
       //    Constructs an export class with the filename and the
       //    document pointer
-      ZUExport (CString Filename = "", BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
+      ZUExport (CString Filename = "", BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, PSS_StatusBar* pStatusBar = NULL);
 
     //## Destructor (generated)
       ~ZUExport();
@@ -78,7 +71,7 @@ class AFX_EXT_CLASS ZUExport : public CWnd  //## Inherits: <unnamed>%3652B4BF018
     //## Other Operations (specified)
       //## Operation: Create%901558643
       //    Create the export class.
-      virtual void Create (CString Filename, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, ZIStatusBar* pStatusBar = NULL);
+      virtual void Create (CString Filename, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, PSS_StatusBar* pStatusBar = NULL);
 
       //## Operation: Export%901558645
       //    This function exports the records to a file.
@@ -237,7 +230,7 @@ class AFX_EXT_CLASS ZUExport : public CWnd  //## Inherits: <unnamed>%3652B4BF018
       //## Attribute: pStatusBar%36501976018E
       //    Points to the status bar used to display progress bar.
       //## begin ZUExport::pStatusBar%36501976018E.attr preserve=no  public: ZIStatusBar* {U} 
-      ZIStatusBar* m_pStatusBar;
+      PSS_StatusBar* m_pStatusBar;
       //## end ZUExport::pStatusBar%36501976018E.attr
 
       //## Attribute: SourceIsModified%3652EE5301BA
@@ -345,7 +338,7 @@ class AFX_EXT_CLASS ZUExport : public CWnd  //## Inherits: <unnamed>%3652B4BF018
 
 
 //## Other Operations (inline)
-inline void ZUExport::Create (CString Filename, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
+inline void ZUExport::Create(CString Filename, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
 {
   //## begin ZUExport::Create%901558643.body preserve=yes
       m_Filename = Filename;

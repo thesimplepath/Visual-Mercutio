@@ -21,7 +21,7 @@
 #include "ZBBPSimPropProcess.h"
 
 // JMR-MODIF - Le 14 mars 2006 - Ajout de l'en-tête BaseDoc.h pour la sérialisation.
-#include "zBaseLib\BaseDoc.h"
+#include "zBaseLib\PSS_BaseDocument.h"
 
 #include "zModelBPRes.h"
 
@@ -486,7 +486,7 @@ void ZBBPSimPropertiesProcess::Serialize( CArchive& ar )
     else
     {
         if ( ar.m_pDocument &&
-             dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 24 )
+             dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 24 )
         {
             m_ProcessCost.Serialize( ar );
         }

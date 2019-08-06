@@ -101,7 +101,7 @@ CArchive& operator >> (CArchive& ar, ZDDocumentOptions& DocOptions)
     DocOptions.m_EmptyStyle = ELineType(wValue);
     // If before Version 4 read the FontType
     // And assign the font
-    if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 10)
+    if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 10)
     {
         ar >> wValue;
         DocOptions.m_IsSynchronizeExchangeFeedFile = (BOOL)wValue;
@@ -129,7 +129,7 @@ CArchive& operator >> (CArchive& ar, ZDDocumentOptions& DocOptions)
 
     }
     // Version 17
-    if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 17)
+    if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 17)
     {
         ar >> wValue;
         DocOptions.m_PrintEmptyStyleWhenEmpty = (BOOL)wValue;

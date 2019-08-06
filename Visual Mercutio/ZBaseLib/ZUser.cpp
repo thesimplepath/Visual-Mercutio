@@ -24,7 +24,7 @@
 //## end module%36725CA70063.declarations
 
 //## begin module%36725CA70063.additionalDeclarations preserve=yes
-#include "BaseDoc.h"
+#include "PSS_BaseDocument.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -137,7 +137,7 @@ CArchive& operator >> (CArchive& ar, ZUser& User)
     ar >> wValue;
     User.m_IsAdministrator = (BOOL)wValue;
 
-    if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 16)
+    if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 16)
         ar >> User.m_DisplayName;
 
       return ar;

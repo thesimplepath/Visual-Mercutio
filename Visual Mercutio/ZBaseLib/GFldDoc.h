@@ -34,7 +34,7 @@
 // Stamp
 #include "Stamp.h"
 // BaseDoc
-#include "BaseDoc.h"
+#include "PSS_BaseDocument.h"
 //## begin module%363DC8690159.declarations preserve=no
 //## end module%363DC8690159.declarations
 
@@ -63,7 +63,7 @@
 //## Uses: <unnamed>%363DC8240075;ZAGlobalFieldManager { -> }
 //## Uses: <unnamed>%36C9E66A01C7;ZAHistoryFieldManager { -> }
 
-class AFX_EXT_CLASS ZDGlobalFieldDocument : public ZDBaseDocument  //## Inherits: <unnamed>%363DC8240073
+class AFX_EXT_CLASS ZDGlobalFieldDocument : public PSS_BaseDocument  //## Inherits: <unnamed>%363DC8240073
 {
 protected:
 
@@ -73,7 +73,7 @@ protected:
 public:
     
     // Inherited feature
-    typedef ZDBaseDocument inherited;
+    typedef PSS_BaseDocument inherited;
     //## end ZDGlobalFieldDocument%363DC8240069.initialDeclarations
 
 public:

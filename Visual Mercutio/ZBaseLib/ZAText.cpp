@@ -120,7 +120,7 @@ void PLFNText::Serialize (CArchive& ar)
     {    // Write the elements
         // Check if template file but not static element.
         // If static, serialize it.
-        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetFileType() == E_FD_TemplateType && !GetIsStatic()  && !GetDefaultValue())
+        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetFileType() == E_FD_TemplateType && !GetIsStatic()  && !GetDefaultValue())
         {
             CString str(m_Str);
             m_Str = "";
@@ -136,14 +136,14 @@ void PLFNText::Serialize (CArchive& ar)
     {    // Read the elements
         ar >> m_Str;
           
-        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
+        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
         {
             WORD    wTemp;
               ar >> wTemp;
             m_IsStatic = (BOOL)wTemp;
         }
         // Before version 12
-        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 12)
+        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 12)
         {
             m_IsEmpty = m_Str.IsEmpty();
         }

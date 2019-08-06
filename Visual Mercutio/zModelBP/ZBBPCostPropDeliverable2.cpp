@@ -19,7 +19,7 @@
 #include "stdafx.h"
 #include "ZBBPCostPropDeliverable2.h"
 
-#include "zBaseLib\BaseDoc.h"
+#include "zBaseLib\PSS_BaseDocument.h"
 
 #include "zModelBPRes.h"
 
@@ -623,19 +623,19 @@ void ZBBPCostPropertiesDeliverable2::Serialize( CArchive& ar )
         ar >> m_UnitaryCost;
 
         if ( ar.m_pDocument &&
-             ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 20 )
+             ( (PSS_BaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 20 )
         {
             ar >> m_CaseDuration;
         }
 
         if ( ar.m_pDocument &&
-             ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 21 )
+             ( (PSS_BaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 21 )
         {
             ar >> m_CaseDurationMax;
         }
 
         if ( ar.m_pDocument &&
-             ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 20 )
+             ( (PSS_BaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 20 )
         {
             ar >> m_TargetDuration;
             ar >> m_GreenLineDuration;

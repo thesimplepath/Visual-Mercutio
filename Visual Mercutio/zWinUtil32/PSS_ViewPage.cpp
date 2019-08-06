@@ -23,7 +23,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_ViewPage
 //---------------------------------------------------------------------------
-PSS_ViewPage::PSS_ViewPage(ZAApplicationOption* pApplicationOptions) :
+PSS_ViewPage::PSS_ViewPage(PSS_ApplicationOption* pApplicationOptions) :
     PSS_GenericPropPage(PSS_ViewPage::IDD, pApplicationOptions),
     m_CalculatedField(FALSE),
     m_ShowHiddenField(FALSE),
@@ -51,11 +51,15 @@ void PSS_ViewPage::SaveValuesToObject()
     if (::IsWindow(GetSafeHwnd()))
         UpdateData(TRUE);
 
-    ((ZAApplicationOption&)GetObject()).SetbAnimationShow(m_AnimationShow);
-    ((ZAApplicationOption&)GetObject()).SetbCalculateFieldShow(m_CalculatedField);
-    ((ZAApplicationOption&)GetObject()).SetbShowHiddenField(m_ShowHiddenField);
-    ((ZAApplicationOption&)GetObject()).SetbShowBoundsRect(m_ShowBoundsRect);
-    ((ZAApplicationOption&)GetObject()).SetAutomaticFieldNameCreation(m_AutomaticCreateFieldName);
+    // get application options container
+    PSS_ApplicationOption& appOpt = (PSS_ApplicationOption&)GetObject();
+
+    // update options
+    appOpt.SetShowAnimation             (m_AnimationShow);
+    appOpt.SetShowCalculateField        (m_CalculatedField);
+    appOpt.SetShowHiddenField           (m_ShowHiddenField);
+    appOpt.SetShowBoundsRect            (m_ShowBoundsRect);
+    appOpt.SetAutomaticFieldNameCreation(m_AutomaticCreateFieldName);
 }
 //---------------------------------------------------------------------------
 void PSS_ViewPage::DoDataExchange (CDataExchange* pDX)
@@ -76,11 +80,15 @@ BOOL PSS_ViewPage::OnInitDialog()
     // set initialisation flag
     SetInitialized();
 
-    m_CalculatedField          = ((ZAApplicationOption&)GetObject()).GetbCalculateFieldShow();
-    m_ShowHiddenField          = ((ZAApplicationOption&)GetObject()).GetbShowHiddenField();
-    m_AnimationShow            = ((ZAApplicationOption&)GetObject()).GetbAnimationShow();
-    m_ShowBoundsRect           = ((ZAApplicationOption&)GetObject()).GetbShowBoundsRect();
-    m_AutomaticCreateFieldName = ((ZAApplicationOption&)GetObject()).GetAutomaticFieldNameCreation();
+    // get application options container
+    PSS_ApplicationOption& appOpt = (PSS_ApplicationOption&)GetObject();
+
+    // update options
+    m_CalculatedField          = appOpt.GetShowCalculateField();
+    m_ShowHiddenField          = appOpt.GetShowHiddenField();
+    m_AnimationShow            = appOpt.GetShowAnimation();
+    m_ShowBoundsRect           = appOpt.GetShowBoundsRect();
+    m_AutomaticCreateFieldName = appOpt.GetAutomaticFieldNameCreation();
 
     CDialog::OnInitDialog();
 

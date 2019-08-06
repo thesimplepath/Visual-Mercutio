@@ -4807,13 +4807,13 @@ void ZBDeliverableLinkSymbol::Serialize( CArchive& ar )
         m_SimProperties.Serialize( ar );
 
         // JMR-MODIF - Le 10 juin 2007 - Ajout du code pour la sérialisation des risques.
-        if ( dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 27 )
+        if ( dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 27 )
         {
             m_Risks.Serialize( ar );
         }
 
         if ( ar.IsStoring() ||
-             dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 19 )
+             dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 19 )
         {
             m_CostDeliverableProperties.Serialize( ar );
 
@@ -4850,13 +4850,13 @@ void ZBDeliverableLinkSymbol::Serialize( CArchive& ar )
         }
         else
         {
-            if ( ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 20 )
+            if ( ( (PSS_BaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 20 )
             {
                 m_UnitProp.Serialize( ar );
             }
 
             // JMR-MODIF - Le 26 novembre 2006 - Ajout de la sérialisation des règles.
-            if ( ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 26 )
+            if ( ( (PSS_BaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 26 )
             {
                 m_Rules.Serialize( ar );
             }

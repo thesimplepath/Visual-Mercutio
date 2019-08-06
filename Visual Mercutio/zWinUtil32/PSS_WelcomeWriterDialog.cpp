@@ -28,9 +28,9 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_WelcomeWriterDialog
 //---------------------------------------------------------------------------
-PSS_WelcomeWriterDialog::PSS_WelcomeWriterDialog(ZAApplicationOption* pApplicationOptions,
-                                                 BOOL                 enableMoveToGeneral,
-                                                 CWnd*                pParent) :
+PSS_WelcomeWriterDialog::PSS_WelcomeWriterDialog(PSS_ApplicationOption* pApplicationOptions,
+                                                 BOOL                   enableMoveToGeneral,
+                                                 CWnd*                  pParent) :
     PSS_WelcomeDialog(PSS_WelcomeWriterDialog::IDD, IDB_WELCOME, pApplicationOptions, enableMoveToGeneral, pParent)
 {}
 //---------------------------------------------------------------------------

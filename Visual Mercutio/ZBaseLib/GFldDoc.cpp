@@ -29,9 +29,9 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(ZDGlobalFieldDocument, ZDBaseDocument, g_DefVersion)
+IMPLEMENT_SERIAL(ZDGlobalFieldDocument, PSS_BaseDocument, g_DefVersion)
 
-BEGIN_MESSAGE_MAP(ZDGlobalFieldDocument, ZDBaseDocument)
+BEGIN_MESSAGE_MAP(ZDGlobalFieldDocument, PSS_BaseDocument)
     //{{AFX_MSG_MAP(ZDGlobalFieldDocument)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -100,15 +100,11 @@ BOOL ZDGlobalFieldDocument::ReadDocument ( const CString            Filename,
 
 BOOL ZDGlobalFieldDocument::ReadDocument ( const CString Filename )
 {
-    //## begin ZDGlobalFieldDocument::ReadDocument%939754014.body preserve=yes
     for ( int i = 0; i < 5; ++i )
-    {
-        if ( ZDBaseDocument::ReadDocument( Filename ) )
+        if (PSS_BaseDocument::ReadDocument(Filename))
             return TRUE;
-    }
 
     return FALSE;
-    //## end ZDGlobalFieldDocument::ReadDocument%939754014.body
 }
 
 // Additional Declarations
@@ -135,11 +131,11 @@ void ZDGlobalFieldDocument::Serialize ( CArchive& ar )
     //## begin ZDGlobalFieldDocument::Serialize%910019973.body preserve=yes
     if ( ar.IsStoring() )
     {
-        SerializeStampWrite( ar, GetDocumentStamp() );
+        WriteFileStamp(ar, GetDocumentStamp());
     }
     else
     {
-        SerializeStampRead( ar, GetDocumentStamp() );
+        ReadFileStamp(ar, GetDocumentStamp());
     }
 
     if ( m_pGlobalFieldManager && m_pHistoryValueManager )

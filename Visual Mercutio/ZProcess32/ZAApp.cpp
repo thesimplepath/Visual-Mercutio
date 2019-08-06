@@ -733,9 +733,9 @@ BOOL ZAApp::ExitAppl()
     }
 
     // JMR-MODIF - Le 14 juillet 2007 - Mets à jour le nom des fichiers des listes pour les règles.
-    GetApplicationOptions().SetRiskTypeFile( m_pRiskTypeContainer->GetFilename() );
-    GetApplicationOptions().SetRiskImpactFile( m_pRiskImpactContainer->GetFilename() );
-    GetApplicationOptions().SetRiskProbabilityFile( m_pRiskProbabilityContainer->GetFilename() );
+    GetApplicationOptions().SetRiskTypeFileName(m_pRiskTypeContainer->GetFilename());
+    GetApplicationOptions().SetRiskImpactFileName(m_pRiskImpactContainer->GetFilename());
+    GetApplicationOptions().SetRiskProbabilityFileName(m_pRiskProbabilityContainer->GetFilename());
 
     if ( !ZAMainApp::ExitAppl() )
     {
@@ -1157,10 +1157,8 @@ BOOL ZAApp::LoadTypeRiskFile()
     {
         m_pRiskTypeContainer = new ZVRiskTypeContainer();
 
-        if ( m_pRiskTypeContainer->LoadFile( GetApplicationOptions().GetRiskTypeFile() ) == FALSE )
-        {
+        if (!m_pRiskTypeContainer->LoadFile(GetApplicationOptions().GetRiskTypeFileName()))
             return FALSE;
-        }
     }
 
     return TRUE;
@@ -1173,10 +1171,8 @@ BOOL ZAApp::LoadImpactRiskFile()
     {
         m_pRiskImpactContainer = new ZVRiskImpactContainer();
 
-        if ( m_pRiskImpactContainer->LoadFile( GetApplicationOptions().GetRiskImpactFile() ) == FALSE )
-        {
+        if (!m_pRiskImpactContainer->LoadFile(GetApplicationOptions().GetRiskImpactFileName()))
             return FALSE;
-        }
     }
 
     return TRUE;
@@ -1189,10 +1185,8 @@ BOOL ZAApp::LoadProbabilityRiskFile()
     {
         m_pRiskProbabilityContainer = new ZVRiskProbabilityContainer();
 
-        if ( m_pRiskProbabilityContainer->LoadFile( GetApplicationOptions().GetRiskProbabilityFile() ) == FALSE )
-        {
+        if (!m_pRiskProbabilityContainer->LoadFile(GetApplicationOptions().GetRiskProbabilityFileName()))
             return FALSE;
-        }
     }
 
     return TRUE;
@@ -2931,7 +2925,7 @@ void ZAApp::OnDynamicAttributesDisplay()
 void ZAApp::OnUpdateDynamicAttributesDisplay( CCmdUI* pCmdUI )
 {
     BOOL Enable = FALSE;
-    ZDBaseDocument* pDoc = GetActiveBaseDocument();
+    PSS_BaseDocument* pDoc = GetActiveBaseDocument();
 
     if ( pDoc && ISA( pDoc, ZDProcessGraphModelDoc ) &&
          dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->HasDynamicPropertiesManager() )

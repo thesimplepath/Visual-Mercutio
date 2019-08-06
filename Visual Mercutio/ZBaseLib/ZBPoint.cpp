@@ -24,7 +24,7 @@
 //## end module%3719856300CE.declarations
 
 //## begin module%3719856300CE.additionalDeclarations preserve=yes
-#include "BaseDoc.h"
+#include "PSS_BaseDocument.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -72,7 +72,7 @@ void ZBPoint::Serialize (CArchive& ar)
 CArchive& operator >> (CArchive& ar, ZBPoint& Point)
 {
   //## begin ZBPoint::operator >>%924419479.body preserve=yes
-    if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() <= 12)
+    if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() <= 12)
     {
         WORD    wTemp;
         ar >> wTemp;

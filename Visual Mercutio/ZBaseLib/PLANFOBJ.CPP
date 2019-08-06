@@ -121,7 +121,7 @@ void PLFNLine::SizePositionHasChanged()
 
 void PLFNLine::Serialize(CArchive& ar)
 {
-    if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
+    if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
         PLFNGraphic::Serialize(ar);
     else
         PlanFinObject::Serialize(ar);
@@ -135,9 +135,9 @@ void PLFNLine::Serialize(CArchive& ar)
     // If is reading from file
     {    // If the version is before the version 0
         // Then the rectangle for line must be modified
-        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 0)
+        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 0)
             m_rctObject.bottom = m_rctObject.top;
-        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 2)
+        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 2)
         {
             ar >> m_StartPoint;
             ar >> m_EndPoint;
@@ -312,7 +312,7 @@ void PLFNRect::DrawObject( CDC* pDC, ZIView* pView )
 
 void PLFNRect::Serialize(CArchive& ar)
 {
-    if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
+    if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
         PLFNGraphic::Serialize(ar);
     else
         PlanFinObject::Serialize(ar);
@@ -324,7 +324,7 @@ void PLFNRect::Serialize(CArchive& ar)
     }
     else
     {    // Read the elements
-        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
+        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
         {
             ar >> m_ArcOffset;
             WORD    wTemp;
@@ -745,14 +745,14 @@ void PLFNTime::Serialize(CArchive& ar)
     else
     {    // Read the elements
         // Before version 12
-        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 13)
+        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 13)
         {
             CTime    Time;
             ar >> Time;
             if (Time.GetTime() >= 0)
                 m_Time.SetDateTime( Time.GetYear(), Time.GetMonth(), Time.GetDay(), Time.GetHour(), Time.GetMinute(), Time.GetSecond() );
             // Before version 12
-            if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 12)
+            if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 12)
             {
 #ifdef _WIN32
                 // Construct a CTime for making comparison
@@ -1254,7 +1254,7 @@ void PLFNLong::Serialize(CArchive& ar)
     {    // Read the elements
         WORD    wValue;
         ar >> m_Long;
-        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 1)
+        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 1)
         {
             m_bIsCalculatedField = FALSE;
             m_bKeepTheValue = FALSE;
@@ -1267,24 +1267,24 @@ void PLFNLong::Serialize(CArchive& ar)
             m_bKeepTheValue = wValue;
         }
         // Between version 2 and 4
-        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 2 && ((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() <= 5)
+        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 2 && ((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() <= 5)
         {
             CStringArray    m_SchemaArray;        // Contains the schema array
             m_SchemaArray.Serialize( ar );
         }
-        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
+        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
         {
             ar >> wValue;
             m_IsRounded = (BOOL)wValue;
             ar >> m_dRounded;
         }
-        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 6)
+        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 6)
         {
             ar >> wValue;
             m_IconDisplayType = (IconDisplayType)wValue;
         }
         // Before version 12
-        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 12)
+        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 12)
         {
             m_IsEmpty = (m_Long == FLT_MAX);
             if (m_Long == FLT_MAX)
@@ -1292,7 +1292,7 @@ void PLFNLong::Serialize(CArchive& ar)
         }
     }
     // Serialize Associations
-    if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 6)
+    if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 6)
         m_Associations.Serialize( ar );
 }
 

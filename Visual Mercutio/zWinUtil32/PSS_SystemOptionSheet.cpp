@@ -35,7 +35,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_SystemOptionSheet
 //---------------------------------------------------------------------------
-PSS_SystemOptionSheet::PSS_SystemOptionSheet(ZAApplicationOption* pAppOptions, IEOptionPage optionPages) :
+PSS_SystemOptionSheet::PSS_SystemOptionSheet(PSS_ApplicationOption* pAppOptions, IEOptionPage optionPages) :
     PSS_BasePropSheet(static_cast<UINT>(IDS_SYSTEMOPTION_TITLE)),
     m_pAppOptions(pAppOptions),
     m_OptionPages(optionPages)

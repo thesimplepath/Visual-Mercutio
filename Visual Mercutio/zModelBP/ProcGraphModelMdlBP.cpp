@@ -5,7 +5,7 @@
 #include "ProcGraphModelCtlrBP.h"
 #include "zModel\ProcGraphModelVp.h"
 
-#include "zBaseLib\BaseDoc.h"
+#include "zBaseLib\PSS_BaseDocument.h"
 
 #include "ZBBPPageSymbol.h"
 #include "ZBBPDoorSymbol.h"
@@ -761,7 +761,7 @@ void ZDProcessGraphModelMdlBP::Serialize( CArchive& ar )
 
         // Serialize the input attributes
         if ( ar.m_pDocument && 
-             dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 21 )
+             dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 21 )
         {
             int Value;
             ar >> Value;

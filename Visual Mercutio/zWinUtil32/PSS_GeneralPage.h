@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\AppOpt.h"
+#include "zBaseLib\PSS_ApplicationOption.h"
 #include "PSS_GenericPropPage.h"
 
 // resources
@@ -61,7 +61,7 @@ class AFX_EXT_CLASS PSS_GeneralPage : public PSS_GenericPropPage
         * Constructor
         *@param pApplicationOptions - application options
         */
-        PSS_GeneralPage(ZAApplicationOption* pApplicationOptions);
+        PSS_GeneralPage(PSS_ApplicationOption* pApplicationOptions);
 
         virtual ~PSS_GeneralPage();
 

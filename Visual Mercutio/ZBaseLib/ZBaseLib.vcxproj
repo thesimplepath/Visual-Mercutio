@@ -144,25 +144,25 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ANILOAD.CPP">
+    <ClCompile Include="PSS_StatusBar.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="AppOpt.cpp">
+    <ClCompile Include="PSS_ApplicationOption.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="BaseDoc.cpp">
+    <ClCompile Include="PSS_BaseDocument.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="BASEFRM.CPP">
+    <ClCompile Include="PSS_BaseMainFrameWnd.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1346,10 +1346,10 @@
     <ResourceCompile Include="ZBaseLib.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ANILOAD.H" />
-    <ClInclude Include="AppOpt.h" />
-    <ClInclude Include="BaseDoc.h" />
-    <ClInclude Include="BASEFRM.H" />
+    <ClInclude Include="PSS_StatusBar.h" />
+    <ClInclude Include="PSS_ApplicationOption.h" />
+    <ClInclude Include="PSS_BaseDocument.h" />
+    <ClInclude Include="PSS_BaseMainFrameWnd.h" />
     <ClInclude Include="BASEMDI.H" />
     <ClInclude Include="basetmdi.h" />
     <ClInclude Include="BObjUtil.h" />

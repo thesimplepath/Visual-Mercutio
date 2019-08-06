@@ -26,7 +26,7 @@
 #include "ZBModelSet.h"
 
 // BaseDoc
-#include "zBaseLib\BaseDoc.h"
+#include "zBaseLib\PSS_BaseDocument.h"
 
 #include "ZBPageUnits.h"
 
@@ -56,7 +56,7 @@ class ZBDynamicPropertiesManager;
 
 // JMR-MODIF - Le 28 septembre 2005 - Ajout des décorations unicode _T(), nettoyage du code inutile.(En commentaires)
 
-class AFX_EXT_CLASS ZDProcessGraphModelDoc : public ZDBaseDocument,
+class AFX_EXT_CLASS ZDProcessGraphModelDoc : public PSS_BaseDocument,
                                              public ZISubject,
                                              public ZIObserver
 {
@@ -65,7 +65,7 @@ public:
     DECLARE_SERIAL( ZDProcessGraphModelDoc )
 
     // Inherited feature
-    typedef ZDBaseDocument inherited;
+    typedef PSS_BaseDocument inherited;
 
     // Can be created to be used with ReadFromFile method
     ZDProcessGraphModelDoc();
@@ -690,12 +690,12 @@ inline void ZDProcessGraphModelDoc::ClearWorkflowFilename()
 
 inline CDocTemplate* ZDProcessGraphModelDoc::GetDocTemplate() const
 {
-    return ZDBaseDocument::GetDocTemplate();
+    return PSS_BaseDocument::GetDocTemplate();
 }
 
 inline void ZDProcessGraphModelDoc::SetModifiedFlag( BOOL bModified /*= TRUE*/ )
 {
-    ZDBaseDocument::SetModifiedFlag( bModified );
+    PSS_BaseDocument::SetModifiedFlag( bModified );
 }
 
 // Gets a pointer to the model of the canvas.

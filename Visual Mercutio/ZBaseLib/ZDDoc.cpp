@@ -52,9 +52,9 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 25 avril 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL( ZDDocument, ZDBaseDocument, g_DefVersion )
+IMPLEMENT_SERIAL(ZDDocument, PSS_BaseDocument, g_DefVersion)
 
-BEGIN_MESSAGE_MAP( ZDDocument, ZDBaseDocument )
+BEGIN_MESSAGE_MAP(ZDDocument, PSS_BaseDocument)
     //{{AFX_MSG_MAP(ZDDocument)
     ON_COMMAND(ID_PAGE_RECALCULATE, OnPageRecalculate)
     ON_COMMAND(ID_PAGE_NEXT, OnPageNext)
@@ -1231,7 +1231,7 @@ int ZDDocument::NextVisibleDocumentAvailable( size_t DocumentIndex ) const
 
 void ZDDocument::OnCloseDocument()
 {
-    ZDBaseDocument::OnCloseDocument();
+    PSS_BaseDocument::OnCloseDocument();
 
     if ( !ZAGlobal::OpenFileInSilentMode() )
     {
@@ -3069,7 +3069,7 @@ void ZDDocument::SerializeWrite( CArchive& ar )
     CheckDocumentFontAndStyle();
 
     // Call the base class for serialization
-    ZDBaseDocument::Serialize( ar );
+    PSS_BaseDocument::Serialize( ar );
 
     CalculateForecastedObjectCount();
     
@@ -3104,7 +3104,7 @@ void ZDDocument::SerializeRead( CArchive& ar )
 
     TRY
     {
-        ZDBaseDocument::Serialize( ar );
+        PSS_BaseDocument::Serialize( ar );
 
         WORD wTemp;
         ar >> wTemp;

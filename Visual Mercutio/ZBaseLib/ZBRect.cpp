@@ -24,7 +24,7 @@
 //## end module%3713991C036E.declarations
 
 //## begin module%3713991C036E.additionalDeclarations preserve=yes
-#include "BaseDoc.h"
+#include "PSS_BaseDocument.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -72,7 +72,7 @@ void ZBRect::Serialize (CArchive& ar)
 CArchive& operator >> (CArchive& ar, ZBRect& Rect)
 {
   //## begin ZBRect::operator >>%924031311.body preserve=yes
-    if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() <= 12)
+    if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() <= 12)
     {
         WORD    wTemp;
         ar >> wTemp;

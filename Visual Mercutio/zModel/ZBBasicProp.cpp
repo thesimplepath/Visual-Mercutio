@@ -530,7 +530,7 @@ void ZBBasicProperties::Serialize( CArchive& ar )
         // JMR-MODIF - Le 22 juillet 2007 - Sérialisation de la nouvelle propriété "Niveau du risque".
         if ( ar.m_pDocument )
         {
-            if ( dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 27 )
+            if ( dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 27 )
             {
                 ar << m_SymbolRiskLevel;
             }
@@ -548,7 +548,7 @@ void ZBBasicProperties::Serialize( CArchive& ar )
         // JMR-MODIF - Le 22 juillet 2007 - Sérialisation de la nouvelle propriété "Niveau du risque".
         if ( ar.m_pDocument )
         {
-            if ( dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 27 )
+            if ( dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 27 )
             {
                 ar >> m_SymbolRiskLevel;
             }

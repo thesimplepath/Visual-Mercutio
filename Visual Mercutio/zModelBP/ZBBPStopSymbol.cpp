@@ -1211,13 +1211,13 @@ void ZBBPStopSymbol::Serialize( CArchive& ar )
     if ( ar.m_pDocument )
     {
         // JMR-MODIF - Le 10 juin 2007 - Ajout du code pour la sérialisation des risques.
-        if ( dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 27 )
+        if ( dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 27 )
         {
             m_Risks.Serialize( ar );
         }
 
         if ( ar.IsStoring() ||
-             dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 19 )
+             dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 19 )
         {
             m_UnitProp.Serialize( ar );
         }
@@ -1240,7 +1240,7 @@ void ZBBPStopSymbol::Serialize( CArchive& ar )
         }
         else
         {
-            if ( ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 26 )
+            if ( ( (PSS_BaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 26 )
             {
                 m_Rules.Serialize( ar );
             }

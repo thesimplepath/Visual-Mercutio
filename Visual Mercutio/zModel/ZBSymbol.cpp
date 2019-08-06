@@ -9,7 +9,7 @@
 #include "ZUODSymbolManipulator.h"
 
 #include "ProcGraphModelMdl.h"
-#include "zBaseLib\BaseDoc.h"
+#include "zBaseLib\PSS_BaseDocument.h"
 
 #include "ZBDocObserverMsg.h"
 #include "ZBSymbolObserverMsg.h"
@@ -2138,7 +2138,7 @@ void ZBSymbol::Serialize( CArchive& ar )
 
             // If we have the right version, then deserialize the current line and label color
             if ( ar.m_pDocument &&
-                 dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 19 )
+                 dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 19 )
             {
                 ar >> m_CurrentLineColor;
                 ar >> m_CurrentLabelLineColor;
@@ -2175,7 +2175,7 @@ void ZBSymbol::Serialize( CArchive& ar )
 
             // Serialize the dynamic properties
             if ( ar.m_pDocument &&
-                 dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 21 )
+                 dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 21 )
             {
                 ar >> (CObject*&)m_DynamicPropManager;
             }

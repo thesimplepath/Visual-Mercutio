@@ -24,7 +24,7 @@
 #include "ZBLogicalPrestationsEntity.h"
 
 // BaseDoc
-#include "zBaseLib\BaseDoc.h"
+#include "zBaseLib\PSS_BaseDocument.h"
 
 #ifdef _ZMODELEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -36,14 +36,14 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-class AFX_EXT_CLASS ZDLogicalPrestationsDocument : public ZDBaseDocument
+class AFX_EXT_CLASS ZDLogicalPrestationsDocument : public PSS_BaseDocument
 {
     DECLARE_DYNCREATE( ZDLogicalPrestationsDocument )
 
 public:
 
     // Inherited feature
-    typedef ZDBaseDocument inherited;
+    typedef PSS_BaseDocument inherited;
 
     ZDLogicalPrestationsDocument();
     ~ZDLogicalPrestationsDocument();

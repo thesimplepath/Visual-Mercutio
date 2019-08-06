@@ -15,7 +15,7 @@
 #include "zProperty\ZBDynamicProperties.h"
 
 #include "ProcGraphModelMdl.h"
-#include "zBaseLib\BaseDoc.h"
+#include "zBaseLib\PSS_BaseDocument.h"
 
 #include "ZBSymbolObserverMsg.h"
 #include "ZBDocObserverMsg.h"
@@ -1987,7 +1987,7 @@ void ZBLinkSymbol::Serialize( CArchive& ar )
             m_DisplayAttributeArea = ( ( wValue == 1 ) ? ( true ) : ( false ) );
 
             if ( ar.m_pDocument &&
-                 dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 19 )
+                 dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 19 )
             {
                 ar >> m_CurrentLineColor;
                 ar >> m_CurrentLabelLineColor;
@@ -2017,7 +2017,7 @@ void ZBLinkSymbol::Serialize( CArchive& ar )
 
             // Serialize the dynamic properties
             if ( ar.m_pDocument &&
-                 dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 21 )
+                 dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 21 )
             {
                 ar >> (CObject*&)m_DynamicPropManager;
             }

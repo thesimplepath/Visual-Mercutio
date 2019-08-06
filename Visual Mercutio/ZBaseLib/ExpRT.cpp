@@ -39,7 +39,7 @@
 
 
 
-ZUDocumentExport::ZUDocumentExport(CString Filename, ZDDocument* pDoc, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
+ZUDocumentExport::ZUDocumentExport(CString Filename, ZDDocument* pDoc, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
   //## begin ZUDocumentExport::ZUDocumentExport%911215686.hasinit preserve=no
   //## end ZUDocumentExport::ZUDocumentExport%911215686.hasinit
   //## begin ZUDocumentExport::ZUDocumentExport%911215686.initialization preserve=yes

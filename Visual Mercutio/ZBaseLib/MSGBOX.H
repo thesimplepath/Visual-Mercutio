@@ -23,7 +23,7 @@
 
 // JMR-MODIF - Le 12 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-extern AFX_EXTENSION_MODULE ZBaseLibDLL;
+extern AFX_EXTENSION_MODULE g_zBaseLibDLL;
 
 #define ID_TIMERABOUT                15
 #define NUMBER_OF_ICON                7

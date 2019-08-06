@@ -236,23 +236,24 @@ void ZIMessage::OnCloseWindow()
 
 void ZIMessage::CloseWindow()
 {
-    // Remove the timer
-    KillTimer( m_uTimerID );
+    // remove the timer
+    KillTimer(m_uTimerID);
     m_uTimerID = 0;
-    for( int i=0; i < NUMBER_OF_MESSAGE_ICON ;i++ )
-        DestroyIcon( m_pIcon[i] );
+
+    for(int i = 0; i < NUMBER_OF_MESSAGE_ICON; ++i)
+        DestroyIcon(m_pIcon[i]);
 
     ReleaseCapture();
-    EndDialog( IDOK );    
+    EndDialog(IDOK);
 }
 
-void ZIMessage::OnLButtonDown(UINT nFlags, CPoint point) 
+void ZIMessage::OnLButtonDown(UINT nFlags, CPoint point)
 {
     ZIDialog::OnLButtonDown(nFlags, point);
     CloseWindow();
 }
 
-void ZIMessage::OnLButtonDblClk(UINT nFlags, CPoint point) 
+void ZIMessage::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
     ZIDialog::OnLButtonDblClk(nFlags, point);
     CloseWindow();
@@ -262,27 +263,27 @@ int ZIMessage::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (CDialog::OnCreate(lpCreateStruct) == -1)
         return -1;
-    m_pIcon[0] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE (IDI_TIPS1) );
-    m_pIcon[1] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE (IDI_TIPS2) ); 
-    m_pIcon[2] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE (IDI_TIPS3) );
-    m_pIcon[3] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE (IDI_TIPS4) );
-    m_pIcon[4] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE (IDI_TIPS5) );
-    m_pIcon[5] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE (IDI_TIPS6) );
-    m_pIcon[6] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE (IDI_TIPS7) );
-    m_pIcon[7] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE (IDI_TIPS8) );
-    m_pIcon[8] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE (IDI_TIPS9) );
-    m_pIcon[9] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE (IDI_TIPS10) );
-    m_pIcon[10] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE (IDI_TIPS11) );
-    m_pIcon[11] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE (IDI_TIPS12) );
-    m_pIcon[12] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE (IDI_TIPS13) );
-    m_pIcon[13] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE (IDI_TIPS14) );
-    m_pIcon[14] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE (IDI_TIPS15) );
-    m_pIcon[15] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE (IDI_TIPS16) );
-    
-    // Create the timer for the animation
-    m_uTimerID = SetTimer( ID_TIMERMESSAGE, 120, NULL );
-    return 0;
-    
+
+    m_pIcon[0]  = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_TIPS1));
+    m_pIcon[1]  = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_TIPS2));
+    m_pIcon[2]  = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_TIPS3));
+    m_pIcon[3]  = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_TIPS4));
+    m_pIcon[4]  = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_TIPS5));
+    m_pIcon[5]  = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_TIPS6));
+    m_pIcon[6]  = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_TIPS7));
+    m_pIcon[7]  = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_TIPS8));
+    m_pIcon[8]  = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_TIPS9));
+    m_pIcon[9]  = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_TIPS10));
+    m_pIcon[10] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_TIPS11));
+    m_pIcon[11] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_TIPS12));
+    m_pIcon[12] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_TIPS13));
+    m_pIcon[13] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_TIPS14));
+    m_pIcon[14] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_TIPS15));
+    m_pIcon[15] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_TIPS16));
+
+    // create the timer for the animation
+    m_uTimerID = SetTimer(ID_TIMERMESSAGE, 120, NULL);
+
     return 0;
 }
 

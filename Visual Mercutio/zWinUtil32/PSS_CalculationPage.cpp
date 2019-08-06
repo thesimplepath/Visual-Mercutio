@@ -25,7 +25,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_CalculationPage
 //---------------------------------------------------------------------------
-PSS_CalculationPage::PSS_CalculationPage(ZAApplicationOption* pApplicationOptions) :
+PSS_CalculationPage::PSS_CalculationPage(PSS_ApplicationOption* pApplicationOptions) :
     PSS_GenericPropPage(PSS_CalculationPage::IDD, pApplicationOptions)
 {}
 //---------------------------------------------------------------------------
@@ -48,10 +48,10 @@ void PSS_CalculationPage::SaveValuesToObject()
     if (::IsWindow(GetSafeHwnd()))
         UpdateData(TRUE);
 
-    ((ZAApplicationOption&)GetObject()).SetbAutoCalculate(GetAutoCalculate());
+    ((PSS_ApplicationOption&)GetObject()).SetAutoCalculate(GetAutoCalculate());
 }
 //---------------------------------------------------------------------------
-void PSS_CalculationPage::DoDataExchange (CDataExchange* pDX)
+void PSS_CalculationPage::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
 
@@ -65,7 +65,7 @@ BOOL PSS_CalculationPage::OnInitDialog()
     // set initialisation flag
     SetInitialized();
 
-    m_AutoCalculate = ((ZAApplicationOption&)GetObject()).GetbAutoCalculate();
+    m_AutoCalculate = ((PSS_ApplicationOption&)GetObject()).GetAutoCalculate();
 
     CDialog::OnInitDialog();
 

@@ -587,7 +587,7 @@ afx_msg LRESULT ZVProcessWorkspace::OnDocumentHasBeenSelected( WPARAM wParam, LP
         return 1;
     }
 
-    ZDBaseDocument* pDoc = (ZDBaseDocument*)lParam;
+    PSS_BaseDocument* pDoc = (PSS_BaseDocument*)lParam;
 
     if ( pDoc && ISA( pDoc, ZDProcessGraphModelDoc ) )
     {

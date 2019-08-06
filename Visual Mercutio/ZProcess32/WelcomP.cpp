@@ -26,9 +26,9 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // ZIWelcomeProcess dialog
 
-ZIWelcomeProcess::ZIWelcomeProcess( ZAApplicationOption* pApplicationOptions,
-                                    BOOL                 EnableMoveToGeneral,
-                                    CWnd*                pParent) :
+ZIWelcomeProcess::ZIWelcomeProcess(PSS_ApplicationOption* pApplicationOptions,
+                                   BOOL                   EnableMoveToGeneral,
+                                   CWnd*                  pParent) :
     PSS_WelcomeDialog(ZIWelcomeProcess::IDD,
                       IDB_WELCOME_P,
                       pApplicationOptions,

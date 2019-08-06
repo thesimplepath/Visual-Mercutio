@@ -637,7 +637,7 @@ void ZAFormulaSchema::Serialize(CArchive& ar)
     else
     {    // Read informations
         ar >> m_sSchemaName;
-        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 2)
+        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 2)
         {
             ar >> m_sDescription;
             WORD    wTemp;

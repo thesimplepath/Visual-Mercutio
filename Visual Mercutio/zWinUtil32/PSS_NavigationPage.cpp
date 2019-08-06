@@ -23,7 +23,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_NavigationPage
 //---------------------------------------------------------------------------
-PSS_NavigationPage::PSS_NavigationPage(ZAApplicationOption* pApplicationOptions) :
+PSS_NavigationPage::PSS_NavigationPage(PSS_ApplicationOption* pApplicationOptions) :
     PSS_GenericPropPage(PSS_NavigationPage::IDD, pApplicationOptions),
     m_GoNextEdit(FALSE)
 {}
@@ -47,7 +47,7 @@ void PSS_NavigationPage::SaveValuesToObject()
     if (::IsWindow(GetSafeHwnd()))
         UpdateData(TRUE);
 
-    ((ZAApplicationOption&)GetObject()).SetGoNextEdit(m_GoNextEdit);
+    ((PSS_ApplicationOption&)GetObject()).SetGoNextEdit(m_GoNextEdit);
 }
 //---------------------------------------------------------------------------
 void PSS_NavigationPage::DoDataExchange (CDataExchange* pDX)
@@ -64,7 +64,7 @@ BOOL PSS_NavigationPage::OnInitDialog()
     // set initialisation flag
     SetInitialized();
       
-    m_GoNextEdit = ((ZAApplicationOption&)GetObject()).GetGoNextEdit();
+    m_GoNextEdit = ((PSS_ApplicationOption&)GetObject()).GetGoNextEdit();
     CDialog::OnInitDialog();
 
     // return TRUE unless the focus is set to a control

@@ -29,11 +29,11 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_WelcomeDialog
 //---------------------------------------------------------------------------
-PSS_WelcomeDialog::PSS_WelcomeDialog(UINT                 id,
-                                     UINT                 bitmapID,
-                                     ZAApplicationOption* pAppOptions,
-                                     BOOL                 enableMoveToGeneral,
-                                     CWnd*                pParent) :
+PSS_WelcomeDialog::PSS_WelcomeDialog(UINT                   id,
+                                     UINT                   bitmapID,
+                                     PSS_ApplicationOption* pAppOptions,
+                                     BOOL                   enableMoveToGeneral,
+                                     CWnd*                  pParent) :
     ZIDialog(id, TRUE, pParent),
     m_BitmapID(bitmapID),
     m_pAppOptions(pAppOptions),

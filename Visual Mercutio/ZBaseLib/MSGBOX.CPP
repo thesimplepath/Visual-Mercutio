@@ -90,33 +90,31 @@ void MsgBox::DoChangeCancelBtnToUnlockBtn( BOOL Value /*= TRUE*/ )
 /////////////////////////////////////////////////////////////////////////////
 // MsgBox message handlers
 
-int MsgBox::OnCreate( LPCREATESTRUCT lpCreateStruct )
+int MsgBox::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-    if ( CDialog::OnCreate( lpCreateStruct ) == -1 )
-    {
+    if (CDialog::OnCreate(lpCreateStruct) == -1)
         return -1;
-    }
 
-    m_pIcon[0] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE ( IDI_ICONAPP1 ) );
-    m_pIcon[1] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE ( IDI_ICONAPP2 ) ); 
-    m_pIcon[2] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE ( IDI_ICONAPP3 ) );
-    m_pIcon[3] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE ( IDI_ICONAPP4 ) );
-    m_pIcon[4] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE ( IDI_ICONAPP5 ) );
-    m_pIcon[5] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE ( IDI_ICONAPP6 ) );
-    m_pIcon[6] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE ( IDI_ICONAPP7 ) );
+    m_pIcon[0] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_ICONAPP1));
+    m_pIcon[1] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_ICONAPP2));
+    m_pIcon[2] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_ICONAPP3));
+    m_pIcon[3] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_ICONAPP4));
+    m_pIcon[4] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_ICONAPP5));
+    m_pIcon[5] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_ICONAPP6));
+    m_pIcon[6] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_ICONAPP7));
 
-    m_pIconAnimation2[0] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE ( IDI_ICONAPP_1 ) );
-    m_pIconAnimation2[1] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE ( IDI_ICONAPP_2 ) ); 
-    m_pIconAnimation2[2] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE ( IDI_ICONAPP_3 ) );
-    m_pIconAnimation2[3] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE ( IDI_ICONAPP_4 ) );
-    m_pIconAnimation2[4] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE ( IDI_ICONAPP_5 ) );
-    m_pIconAnimation2[5] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE ( IDI_ICONAPP_6 ) );
-    m_pIconAnimation2[6] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE ( IDI_ICONAPP_7 ) );
-    m_pIconAnimation2[7] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE ( IDI_ICONAPP_8 ) );
-    m_pIconAnimation2[8] = ::LoadIcon( ZBaseLibDLL.hModule, MAKEINTRESOURCE ( IDI_ICONAPP_9 ) );
-    
-    // Create the timer for the animation
-    m_uTimerID = SetTimer( ID_TIMERABOUT, 80, NULL );
+    m_pIconAnimation2[0] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_ICONAPP_1));
+    m_pIconAnimation2[1] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_ICONAPP_2));
+    m_pIconAnimation2[2] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_ICONAPP_3));
+    m_pIconAnimation2[3] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_ICONAPP_4));
+    m_pIconAnimation2[4] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_ICONAPP_5));
+    m_pIconAnimation2[5] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_ICONAPP_6));
+    m_pIconAnimation2[6] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_ICONAPP_7));
+    m_pIconAnimation2[7] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_ICONAPP_8));
+    m_pIconAnimation2[8] = ::LoadIcon(g_zBaseLibDLL.hModule, MAKEINTRESOURCE(IDI_ICONAPP_9));
+
+    // create the timer for the animation
+    m_uTimerID = SetTimer(ID_TIMERABOUT, 80, NULL);
 
     return 0;
 }

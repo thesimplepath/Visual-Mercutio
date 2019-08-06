@@ -16,7 +16,7 @@
 
 #include "ZBBPUnitProp.h"
 
-#include "zBaseLib\BaseDoc.h"
+#include "zBaseLib\PSS_BaseDocument.h"
 
 // Resources
 #include "zRMdlBP.h"

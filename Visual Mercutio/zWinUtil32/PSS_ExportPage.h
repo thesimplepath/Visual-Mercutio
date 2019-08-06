@@ -9,7 +9,7 @@
 #define PSS_ExportPageH
 
 // processsoft
-#include "zBaseLib\AppOpt.h"
+#include "zBaseLib\PSS_ApplicationOption.h"
 #include "PSS_GenericPropPage.h"
 
 // resources
@@ -42,7 +42,7 @@ class PSS_ExportPage : public PSS_GenericPropPage
         * Constructor
         *@param pAppOptions - application options
         */
-        PSS_ExportPage(ZAApplicationOption* pApplicationOptions);
+        PSS_ExportPage(PSS_ApplicationOption* pApplicationOptions);
 
         virtual ~PSS_ExportPage();
 

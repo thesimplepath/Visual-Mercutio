@@ -16,9 +16,9 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZDUserEntityDocument
 
-IMPLEMENT_DYNCREATE( ZDUserEntityDocument, ZDBaseDocument )
+IMPLEMENT_DYNCREATE(ZDUserEntityDocument, PSS_BaseDocument)
 
-BEGIN_MESSAGE_MAP( ZDUserEntityDocument, ZDBaseDocument )
+BEGIN_MESSAGE_MAP(ZDUserEntityDocument, PSS_BaseDocument)
     //{{AFX_MSG_MAP(ZDUserEntityDocument)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -172,7 +172,7 @@ void ZDUserEntityDocument::Serialize( CArchive& ar )
     if ( ( ar.IsLoading() && !IsBeta1Format() ) || ar.IsStoring() )
     {
         // Serialize stamp and base information.
-        ZDBaseDocument::Serialize( ar );
+        PSS_BaseDocument::Serialize( ar );
     }
 
     // Serialize the environement

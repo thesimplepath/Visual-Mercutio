@@ -21,7 +21,7 @@
 #include "stdafx.h"
 #include "ZBBPCostPropProcedure2.h"
 
-#include "zBaseLib\BaseDoc.h"
+#include "zBaseLib\PSS_BaseDocument.h"
 
 #include "zModelBPRes.h"
 
@@ -515,13 +515,13 @@ void ZBBPCostPropertiesProcedure2::Serialize( CArchive& ar )
         ar >> m_UnitaryCost;
 
         if ( ar.m_pDocument &&
-             ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 20 )
+             ( (PSS_BaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 20 )
         {
             ar >> m_ProcessingDuration;
         }
 
         if ( ar.m_pDocument &&
-             ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 21 )
+             ( (PSS_BaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 21 )
         {
             ar >> m_ProcessingDurationMax;
         }

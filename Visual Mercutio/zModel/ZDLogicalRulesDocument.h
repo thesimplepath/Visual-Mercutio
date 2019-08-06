@@ -24,7 +24,7 @@
 #include "ZBLogicalRulesEntity.h"
 
 // BaseDoc
-#include "zBaseLib\BaseDoc.h"
+#include "zBaseLib\PSS_BaseDocument.h"
 
 #ifdef _ZMODELEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -36,14 +36,14 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-class AFX_EXT_CLASS ZDLogicalRulesDocument : public ZDBaseDocument
+class AFX_EXT_CLASS ZDLogicalRulesDocument : public PSS_BaseDocument
 {
     DECLARE_DYNCREATE( ZDLogicalRulesDocument )
 
 public:
 
     // Inherited feature
-    typedef ZDBaseDocument inherited;
+    typedef PSS_BaseDocument inherited;
 
     ZDLogicalRulesDocument();
     ~ZDLogicalRulesDocument();

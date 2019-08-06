@@ -18,7 +18,7 @@
 
 // processsoft
 #include "zBaseLib\ZIDialog.h"
-#include "zBaseLib\AppOpt.h"
+#include "zBaseLib\PSS_ApplicationOption.h"
 #include "PSS_HoverButton.h"
 
 // resources
@@ -63,11 +63,11 @@ class AFX_EXT_CLASS PSS_WelcomeDialog : public ZIDialog
         *@param enableMoveToGeneral - if TRUE, the move to general mode will be enabled
         *@param pPArent - parent window, can be NULL
         */
-        PSS_WelcomeDialog(UINT                 id,
-                          UINT                 bitmapID,
-                          ZAApplicationOption* pAppOptions,
-                          BOOL                 enableMoveToGeneral = FALSE,
-                          CWnd*                pParent             = NULL);
+        PSS_WelcomeDialog(UINT                   id,
+                          UINT                   bitmapID,
+                          PSS_ApplicationOption* pAppOptions,
+                          BOOL                   enableMoveToGeneral = FALSE,
+                          CWnd*                  pParent             = NULL);
 
     protected:
         /**
@@ -92,9 +92,9 @@ class AFX_EXT_CLASS PSS_WelcomeDialog : public ZIDialog
         void SaveState();
 
     private:
-        BOOL                 m_EnableMoveToGeneral;
-        ZAApplicationOption* m_pAppOptions;
-        UINT                 m_BitmapID;
+        BOOL                   m_EnableMoveToGeneral;
+        PSS_ApplicationOption* m_pAppOptions;
+        UINT                   m_BitmapID;
 };
 
 #endif

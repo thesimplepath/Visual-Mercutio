@@ -22,7 +22,7 @@ class ZIWelcomeProcess : public PSS_WelcomeDialog
 public:
 
     // standard constructor
-    ZIWelcomeProcess( ZAApplicationOption* pApplicationOptions, BOOL EnableMoveToGeneral = FALSE, CWnd* pParent = NULL );
+    ZIWelcomeProcess(PSS_ApplicationOption* pApplicationOptions, BOOL EnableMoveToGeneral = FALSE, CWnd* pParent = NULL);
 
 // Dialog Data
 #ifndef _WIN32

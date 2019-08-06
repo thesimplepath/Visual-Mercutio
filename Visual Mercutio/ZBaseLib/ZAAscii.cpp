@@ -113,12 +113,12 @@ void PLFNAscii::Serialize (CArchive& ar)
     else
     {    // Read the elements
         WORD    wTemp;
-        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 0)
+        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 0)
         {
             ar >> wTemp;
             m_iJustify = wTemp;
         }
-        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
+        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
         {
               ar >> wTemp;
               m_IsStriked = (BOOL)wTemp;
@@ -126,7 +126,7 @@ void PLFNAscii::Serialize (CArchive& ar)
               ar >> wTemp;
               m_StrikeStyle = (StrikeStyles)wTemp;
         }
-        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 7)
+        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 7)
         {
             ar >> wTemp;
             m_KeepHistory = (BOOL)wTemp;

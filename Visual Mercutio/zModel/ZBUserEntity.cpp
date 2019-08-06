@@ -6,7 +6,7 @@
 #include "ZBUserEntity.h"
 
 // BaseDoc
-#include "zBaseLib\BaseDoc.h"
+#include "zBaseLib\PSS_BaseDocument.h"
 
 #include "zBaseLib\ZUGUID.h"
 
@@ -99,7 +99,7 @@ void ZBUserEntity::Serialize ( CArchive& ar )
         ar >> s;
 
         if ( ar.m_pDocument &&
-             dynamic_cast<ZDBaseDocument*>(ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 19 )
+             dynamic_cast<PSS_BaseDocument*>(ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 19 )
         {
             m_GUID = s;
             ar >> m_EntityName;

@@ -20,7 +20,7 @@
 #include "PSS_BasePropSheet.h"
 
 // forward class declaration
-class ZAApplicationOption;
+class PSS_ApplicationOption;
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -58,7 +58,7 @@ class AFX_EXT_CLASS PSS_SystemOptionSheet : public PSS_BasePropSheet
         *@param pAppOptions - application options
         *@param optionPages - option pages to show
         */
-        PSS_SystemOptionSheet(ZAApplicationOption* pAppOptions, IEOptionPage optionPages = IE_OP_General);
+        PSS_SystemOptionSheet(PSS_ApplicationOption* pAppOptions, IEOptionPage optionPages = IE_OP_General);
 
         virtual ~PSS_SystemOptionSheet();
 
@@ -76,8 +76,8 @@ class AFX_EXT_CLASS PSS_SystemOptionSheet : public PSS_BasePropSheet
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZAApplicationOption* m_pAppOptions;
-        IEOptionPage         m_OptionPages;
+        PSS_ApplicationOption* m_pAppOptions;
+        IEOptionPage           m_OptionPages;
 
         /**
         * Copy constructor

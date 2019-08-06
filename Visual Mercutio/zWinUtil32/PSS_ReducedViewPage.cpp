@@ -23,7 +23,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_ReducedViewPage
 //---------------------------------------------------------------------------
-PSS_ReducedViewPage::PSS_ReducedViewPage(ZAApplicationOption* pApplicationOptions) :
+PSS_ReducedViewPage::PSS_ReducedViewPage(PSS_ApplicationOption* pApplicationOptions) :
     PSS_GenericPropPage(PSS_ReducedViewPage::IDD, pApplicationOptions),
     m_CalculatedField(FALSE),
     m_ShowHiddenField(FALSE),
@@ -49,9 +49,13 @@ void PSS_ReducedViewPage::SaveValuesToObject()
     if (::IsWindow(GetSafeHwnd()))
         UpdateData(TRUE);
 
-    ((ZAApplicationOption&)GetObject()).SetbAnimationShow(m_AnimationShow);
-    ((ZAApplicationOption&)GetObject()).SetbCalculateFieldShow(m_CalculatedField);
-    ((ZAApplicationOption&)GetObject()).SetbShowHiddenField(m_ShowHiddenField);
+    // get application options container
+    PSS_ApplicationOption& appOpt = (PSS_ApplicationOption&)GetObject();
+
+    // update options
+    appOpt.SetShowAnimation     (m_AnimationShow);
+    appOpt.SetShowCalculateField(m_CalculatedField);
+    appOpt.SetShowHiddenField   (m_ShowHiddenField);
 }
 //---------------------------------------------------------------------------
 void PSS_ReducedViewPage::DoDataExchange(CDataExchange* pDX)
@@ -70,9 +74,13 @@ BOOL PSS_ReducedViewPage::OnInitDialog()
     // set initialisation flag
     SetInitialized();
 
-    m_CalculatedField = ((ZAApplicationOption&)GetObject()).GetbCalculateFieldShow();
-    m_ShowHiddenField = ((ZAApplicationOption&)GetObject()).GetbShowHiddenField();
-    m_AnimationShow   = ((ZAApplicationOption&)GetObject()).GetbAnimationShow();
+    // get application options container
+    PSS_ApplicationOption& appOpt = (PSS_ApplicationOption&)GetObject();
+
+    // update options
+    m_CalculatedField = appOpt.GetShowCalculateField();
+    m_ShowHiddenField = appOpt.GetShowHiddenField();
+    m_AnimationShow   = appOpt.GetShowAnimation();
       
     CDialog::OnInitDialog();
 

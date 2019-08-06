@@ -35,7 +35,7 @@
 // FldStamp
 //#include "FldStamp.h"
 // BaseDoc
-#include "BaseDoc.h"
+#include "PSS_BaseDocument.h"
 // Formula Manager
 #include "Formula.h"
 // The font manager
@@ -81,12 +81,12 @@ class ZBFieldRepository;
 //## Uses: <unnamed>%36501B2200AE;ZUDocumentExport { -> }
 //## Uses: <unnamed>%3678EEE70284;ZDDocumentData { -> }
 
-class AFX_EXT_CLASS ZDDocument : public ZDBaseDocument  //## Inherits: <unnamed>%35CC2E84011D
+class AFX_EXT_CLASS ZDDocument : public PSS_BaseDocument  //## Inherits: <unnamed>%35CC2E84011D
 {
   //## begin ZDDocument%35CC2E450326.initialDeclarations preserve=yes
 public:
     // Inherited feature
-        typedef ZDBaseDocument inherited;
+        typedef PSS_BaseDocument inherited;
 
         void            GetStyleArrayName( CStringArray& StyleArray );
         void            StyleListHasChanged();

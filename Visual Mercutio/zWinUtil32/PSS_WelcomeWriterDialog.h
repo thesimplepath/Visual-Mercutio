@@ -73,9 +73,9 @@ class AFX_EXT_CLASS PSS_WelcomeWriterDialog : public PSS_WelcomeDialog
         *@param enableMoveToGeneral - if TRUE, move to general option will be enabled
         *@param pPArent - parent window, can be NULL
         */
-        PSS_WelcomeWriterDialog(ZAApplicationOption* pApplicationOptions,
-                                BOOL                 enableMoveToGeneral = FALSE,
-                                CWnd*                pParent             = NULL);
+        PSS_WelcomeWriterDialog(PSS_ApplicationOption* pApplicationOptions,
+                                BOOL                   enableMoveToGeneral = FALSE,
+                                CWnd*                  pParent             = NULL);
 
     protected:
         /// ClassWizard generated virtual function overrides

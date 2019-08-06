@@ -29,7 +29,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_GeneralPage
 //---------------------------------------------------------------------------
-PSS_GeneralPage::PSS_GeneralPage(ZAApplicationOption* pApplicationOptions) :
+PSS_GeneralPage::PSS_GeneralPage(PSS_ApplicationOption* pApplicationOptions) :
     PSS_GenericPropPage(PSS_GeneralPage::IDD, pApplicationOptions)
 {}
 //---------------------------------------------------------------------------
@@ -53,14 +53,18 @@ void PSS_GeneralPage::SaveValuesToObject()
     {
         UpdateData(TRUE);
 
-        ((ZAApplicationOption&)GetObject()).SetShowWelcomeScreen(BOOL(m_BtnShowWelcome.GetCheck()));
-        ((ZAApplicationOption&)GetObject()).SetMaximizeFormOnOpen(BOOL(m_BtnMaximizeForm.GetCheck()));
-        ((ZAApplicationOption&)GetObject()).SetbScreenPos(BOOL(m_BtnScreenPos.GetCheck()));
-        ((ZAApplicationOption&)GetObject()).SetbCreateOnStartup(BOOL(m_BtnStartupOpenFile.GetCheck()));
-        ((ZAApplicationOption&)GetObject()).SetbOpenLastLoadedFile(BOOL(m_BtnReloadLastFile.GetCheck()));
-        ((ZAApplicationOption&)GetObject()).SetDontShowTaskList(m_DontShowTaskList);
-        ((ZAApplicationOption&)GetObject()).SetDontShowToolTip(m_DontShowTips);
-        ((ZAApplicationOption&)GetObject()).SetForceNetworkConnection(m_ForceNetwork);
+        // get application options container
+        PSS_ApplicationOption& appOpt = (PSS_ApplicationOption&)GetObject();
+
+        // update application options
+        appOpt.SetShowWelcomeScreen     (BOOL(m_BtnShowWelcome.GetCheck()));
+        appOpt.SetMaximizeFormOnOpen    (BOOL(m_BtnMaximizeForm.GetCheck()));
+        appOpt.SetScreenPos             (BOOL(m_BtnScreenPos.GetCheck()));
+        appOpt.SetCreateOnStartup       (BOOL(m_BtnStartupOpenFile.GetCheck()));
+        appOpt.SetOpenLastLoadedFile    (BOOL(m_BtnReloadLastFile.GetCheck()));
+        appOpt.SetDontShowTaskList      (m_DontShowTaskList);
+        appOpt.SetDontShowToolTip       (m_DontShowTips);
+        appOpt.SetForceNetworkConnection(m_ForceNetwork);
     }
 }
 //---------------------------------------------------------------------------
@@ -85,17 +89,20 @@ BOOL PSS_GeneralPage::OnInitDialog()
     // set initialisation flag
     SetInitialized();
 
-    m_DontShowTaskList = ((ZAApplicationOption&)GetObject()).GetDontShowTaskList();
-    m_DontShowTips     = ((ZAApplicationOption&)GetObject()).GetDontShowToolTip();
-    m_ForceNetwork     = ((ZAApplicationOption&)GetObject()).GetForceNetworkConnection();
+    // get application options container
+    PSS_ApplicationOption& appOpt = (PSS_ApplicationOption&)GetObject();
+
+    m_DontShowTaskList = appOpt.GetDontShowTaskList();
+    m_DontShowTips     = appOpt.GetDontShowToolTip();
+    m_ForceNetwork     = appOpt.GetForceNetworkConnection();
 
     CDialog::OnInitDialog();
 
-    m_BtnShowWelcome.SetCheck    (INT(((ZAApplicationOption&)GetObject()).GetShowWelcomeScreen()));
-    m_BtnStartupOpenFile.SetCheck(INT(((ZAApplicationOption&)GetObject()).GetbCreateOnStartup()));
-    m_BtnScreenPos.SetCheck      (INT(((ZAApplicationOption&)GetObject()).GetbScreenPos()));
-    m_BtnMaximizeForm.SetCheck   (INT(((ZAApplicationOption&)GetObject()).GetMaximizeFormOnOpen()));
-    m_BtnReloadLastFile.SetCheck (INT(((ZAApplicationOption&)GetObject()).GetbOpenLastLoadedFile()));
+    m_BtnShowWelcome.SetCheck    (INT(appOpt.GetShowWelcomeScreen()));
+    m_BtnStartupOpenFile.SetCheck(INT(appOpt.GetCreateOnStartup()));
+    m_BtnScreenPos.SetCheck      (INT(appOpt.GetScreenPos()));
+    m_BtnMaximizeForm.SetCheck   (INT(appOpt.GetMaximizeFormOnOpen()));
+    m_BtnReloadLastFile.SetCheck (INT(appOpt.GetOpenLastLoadedFile()));
 
     OnShowWelcomeScreen();
 

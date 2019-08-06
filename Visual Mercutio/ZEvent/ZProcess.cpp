@@ -31,7 +31,7 @@
 
 #include "zBaseLib\ZMessage.h"
 #include "zBaseLib\MsgBox.h"
-#include "zBaseLib\BaseDoc.h"
+#include "zBaseLib\PSS_BaseDocument.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -101,7 +101,7 @@ void ZProcess::Serialize (CArchive& ar)
     }
     else
     {
-        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 17)
+        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 17)
         {
             ar >> CurrentActivityName;
         }
@@ -113,7 +113,7 @@ void ZProcess::Serialize (CArchive& ar)
         ar >> wValue;
         m_UseMail = (BOOL)wValue;
 
-        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 17)
+        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 17)
         {
             ar >> wValue;
             m_RunMode = (ActivityRunMode)wValue;
@@ -124,13 +124,13 @@ void ZProcess::Serialize (CArchive& ar)
         ar >> wValue;
         m_DoNotUseInternalMessage = (BOOL)wValue;
     }
-    if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 17)
+    if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 17)
     {
         m_ActivityArray.Serialize( ar );
     }
     m_AuthorizedUser.Serialize( ar );
 
-    if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 17)
+    if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 17)
     {
         m_ChoiceActivityArray.Serialize( ar );
         // Once the activity array is serialized, and in reading mode

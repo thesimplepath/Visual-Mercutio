@@ -17,9 +17,9 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_DYNCREATE( ZDLogicalPrestationsDocument, ZDBaseDocument )
+IMPLEMENT_DYNCREATE(ZDLogicalPrestationsDocument, PSS_BaseDocument)
 
-BEGIN_MESSAGE_MAP( ZDLogicalPrestationsDocument, ZDBaseDocument )
+BEGIN_MESSAGE_MAP(ZDLogicalPrestationsDocument, PSS_BaseDocument)
     //{{AFX_MSG_MAP(ZDPrestationsDocument)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -139,7 +139,7 @@ void ZDLogicalPrestationsDocument::Dump( CDumpContext& dc ) const
 void ZDLogicalPrestationsDocument::Serialize( CArchive& ar )
 {
     // Serialize stamp and base information.
-    ZDBaseDocument::Serialize( ar );
+    PSS_BaseDocument::Serialize( ar );
 
     // Serialize the environement
     m_PrestationsEnvironment.Serialize( ar );

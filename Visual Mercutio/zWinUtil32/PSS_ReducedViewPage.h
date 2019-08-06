@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\AppOpt.h"
+#include "zBaseLib\PSS_ApplicationOption.h"
 #include "PSS_GenericPropPage.h"
 
 // resources
@@ -60,7 +60,7 @@ class PSS_ReducedViewPage : public PSS_GenericPropPage
         * Constructor
         *@param pApplicationOptions - application options
         */
-        PSS_ReducedViewPage(ZAApplicationOption* pApplicationOptions);
+        PSS_ReducedViewPage(PSS_ApplicationOption* pApplicationOptions);
 
         virtual ~PSS_ReducedViewPage();
 

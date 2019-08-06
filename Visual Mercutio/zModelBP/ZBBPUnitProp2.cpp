@@ -15,7 +15,7 @@
 
 #include "ZBBPUnitProp2.h"
 
-#include "zBaseLib\BaseDoc.h"
+#include "zBaseLib\PSS_BaseDocument.h"
 
 // Resources
 #include "zModelBPRes.h"
@@ -606,7 +606,7 @@ void ZBBPUnitProperties2::Serialize( CArchive& ar )
         GET_SCHEMA( ar, nSchema );
 
         if ( !ar.m_pDocument ||
-             dynamic_cast<ZDBaseDocument*>(ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 19 )
+             dynamic_cast<PSS_BaseDocument*>(ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 19 )
         {
             ar >> m_UnitName;
             ar >> m_UnitCost;
@@ -620,7 +620,7 @@ void ZBBPUnitProperties2::Serialize( CArchive& ar )
         }
 
         if ( !ar.m_pDocument ||
-             ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 20 )
+             ( (PSS_BaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 20 )
         {
             ar >> m_DoubleValidationType;
         }

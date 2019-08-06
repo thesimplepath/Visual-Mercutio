@@ -16,7 +16,7 @@
 #include "ZBLogicalSystemEntity.h"
 
 // BaseDoc
-#include "zBaseLib\BaseDoc.h"
+#include "zBaseLib\PSS_BaseDocument.h"
 
 #ifdef _ZMODELEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -33,14 +33,14 @@
 /////////////////////////////////////////////////////////////////////////////
 // ZDLogicalSystemDocument document
 
-class AFX_EXT_CLASS ZDLogicalSystemDocument : public ZDBaseDocument
+class AFX_EXT_CLASS ZDLogicalSystemDocument : public PSS_BaseDocument
 {
     DECLARE_DYNCREATE( ZDLogicalSystemDocument )
 
 public:
 
     // Inherited feature
-    typedef ZDBaseDocument inherited;
+    typedef PSS_BaseDocument inherited;
 
     // Public constructor since not used by dynamic creation
     ZDLogicalSystemDocument();

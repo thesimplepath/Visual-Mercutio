@@ -31,7 +31,7 @@
 // Class ZUUserExport 
 
 
-ZUUserExport::ZUUserExport (CString Filename, ZUUserManager* pUserManager, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, ZIStatusBar* pStatusBar)
+ZUUserExport::ZUUserExport (CString Filename, ZUUserManager* pUserManager, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
   //## begin ZUUserExport::ZUUserExport%922203348.hasinit preserve=no
   //## end ZUUserExport::ZUUserExport%922203348.hasinit
   //## begin ZUUserExport::ZUUserExport%922203348.initialization preserve=yes

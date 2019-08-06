@@ -11,7 +11,7 @@
 
 #include "zBaseLib\ZBTokenizer.h"
 
-#include "zBaseLib\BaseDoc.h"
+#include "zBaseLib\PSS_BaseDocument.h"
 
 // Resources
 #include "zModelBPRes.h"

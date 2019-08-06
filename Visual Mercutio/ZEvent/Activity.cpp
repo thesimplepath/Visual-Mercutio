@@ -24,7 +24,7 @@
 //## end module%3675496C018C.declarations
 
 //## begin module%3675496C018C.additionalDeclarations preserve=yes
-#include "zBaseLib\BaseDoc.h"
+#include "zBaseLib\PSS_BaseDocument.h"
 #include "zRes32\ZRes.h"
 
 #include "zBaseLib\ZMessage.h"
@@ -132,7 +132,7 @@ void ZActivity::Serialize (CArchive& ar)
     }
     else
     {
-        if (((ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 17)
+        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 17)
         {
             ar >> m_ActivityType;
         }

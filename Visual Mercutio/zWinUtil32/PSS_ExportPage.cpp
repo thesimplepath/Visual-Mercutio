@@ -28,7 +28,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_ExportPage
 //---------------------------------------------------------------------------
-PSS_ExportPage::PSS_ExportPage(ZAApplicationOption* pApplicationOptions) :
+PSS_ExportPage::PSS_ExportPage(PSS_ApplicationOption* pApplicationOptions) :
     PSS_GenericPropPage(PSS_ExportPage::IDD, pApplicationOptions)
 {}
 //---------------------------------------------------------------------------
@@ -51,15 +51,18 @@ void PSS_ExportPage::SaveValuesToObject()
     if (::IsWindow(GetSafeHwnd()))
         UpdateData(TRUE);
 
-    ((ZAApplicationOption&)GetObject()).SetExportSchemaName(m_SchemaName);
-    ((ZAApplicationOption&)GetObject()).SetEmptyWhenZero(m_EmptyWhenZero);
+    // get application options container
+    PSS_ApplicationOption& appOpt = (PSS_ApplicationOption&)GetObject();
+
+    appOpt.SetExportSchemaName(m_SchemaName);
+    appOpt.SetEmptyWhenZero(m_EmptyWhenZero);
 
     switch (m_Propagation)
     {
-        case 0:  ((ZAApplicationOption&)GetObject()).SetExportPropagationMode(g_LocatePageOnly);    break;
-        case 1:  ((ZAApplicationOption&)GetObject()).SetExportPropagationMode(g_LocateForwardPage); break;
-        case 2:  ((ZAApplicationOption&)GetObject()).SetExportPropagationMode(g_LocateAllPages);    break;
-        default: ((ZAApplicationOption&)GetObject()).SetExportPropagationMode(g_LocateForwardPage); break;
+        case 0:  appOpt.SetExportPropagationMode(g_LocatePageOnly);    break;
+        case 1:  appOpt.SetExportPropagationMode(g_LocateForwardPage); break;
+        case 2:  appOpt.SetExportPropagationMode(g_LocateAllPages);    break;
+        default: appOpt.SetExportPropagationMode(g_LocateForwardPage); break;
     }
 }
 //---------------------------------------------------------------------------
@@ -79,10 +82,14 @@ BOOL PSS_ExportPage::OnInitDialog()
     // set initialisation flag
     SetInitialized();
 
-    m_SchemaName    = ((ZAApplicationOption&)GetObject()).GetExportSchemaName();
-    m_EmptyWhenZero = ((ZAApplicationOption&)GetObject()).GetEmptyWhenZero();
+    // get application options container
+    PSS_ApplicationOption& appOpt = (PSS_ApplicationOption&)GetObject();
+
+    // update options
+    m_SchemaName    = appOpt.GetExportSchemaName();
+    m_EmptyWhenZero = appOpt.GetEmptyWhenZero();
     
-    switch (((ZAApplicationOption&)GetObject()).GetExportPropagationMode())
+    switch (appOpt.GetExportPropagationMode())
     {
         case g_LocatePageOnly:    m_Propagation = 0; break;
         case g_LocateForwardPage: m_Propagation = 1; break;

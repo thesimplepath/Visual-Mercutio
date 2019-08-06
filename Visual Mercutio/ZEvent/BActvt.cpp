@@ -29,7 +29,7 @@
 
 #include "ZProcess.h"
 #include "Activity.h"
-#include "zBaseLib\BaseDoc.h"
+#include "zBaseLib\PSS_BaseDocument.h"
 //## end module%3786DB6B0323.additionalDeclarations
 
 #ifdef _DEBUG
@@ -1557,7 +1557,7 @@ void ZBaseActivity::Serialize ( CArchive& ar )
         ar >> m_BackupResources;
 
         // Version 17
-        if ( ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 17 )
+        if ( ( (PSS_BaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 17 )
         {
             ar >> CurrentActivityName;
 
@@ -1568,12 +1568,12 @@ void ZBaseActivity::Serialize ( CArchive& ar )
         }
     }
 
-    if ( ( (ZDBaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 17 )
+    if ( ( (PSS_BaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 17 )
     {
         m_ActivityArray.Serialize( ar );
     }
 
-    if ( ( (ZDBaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 17 )
+    if ( ( (PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 17 )
     {
         m_ChoiceActivityArray.Serialize( ar );
 

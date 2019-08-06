@@ -38,13 +38,13 @@ END_MESSAGE_MAP()
 
 //## end module%35BCB05A02BB.additionalDeclarations
 
-ZUExport::ZUExport ( CString                        Filename,
-                     BOOL                            GenerateHeader,
-                     ESynchronizationSeparatorType   SeparatorType,
-                     CString                        Schema,
-                     int                            PropagationMode,
-                     BOOL                            EmptyWhenZero,
-                     ZIStatusBar*                    pStatusBar )
+ZUExport::ZUExport (CString                       Filename,
+                    BOOL                          GenerateHeader,
+                    ESynchronizationSeparatorType SeparatorType,
+                    CString                       Schema,
+                    int                           PropagationMode,
+                    BOOL                          EmptyWhenZero,
+                    PSS_StatusBar*                pStatusBar)
     //## begin ZUExport::ZUExport%901558644.hasinit preserve=no
     : m_pCurrent                    ( NULL ),
       m_TimeSynchronizationValue    ( 5 ),

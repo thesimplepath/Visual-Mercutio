@@ -26,7 +26,7 @@
 
 #include "FlatBtn.h"
 
-extern AFX_EXTENSION_MODULE ZBaseLibDLL;
+extern AFX_EXTENSION_MODULE g_zBaseLibDLL;
 
 #define    ID_TIMERMESSAGE 16
 #define    NUMBER_OF_MESSAGE_ICON 16

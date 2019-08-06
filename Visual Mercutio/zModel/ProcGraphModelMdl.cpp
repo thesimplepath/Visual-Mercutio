@@ -3910,14 +3910,14 @@ void ZDProcessGraphModelMdl::SerializePageSet( CArchive& ar )
 void ZDProcessGraphModelMdl::Serialize( CArchive& ar )
 {
     // JMR-MODIF - Le 5 août 2005 - Inscription de la trame de fond sous forme de nom de fichier plutôt que directement.
-    if ( dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 22 )
+    if ( dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 22 )
     {
         if ( ar.IsStoring() )
         {
             ar << m_BkGndFilename;
 
             // JMR-MODIF - Le 7 octobre 2005 - Intègre le marquage du logo au document.
-            if ( dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 23 )
+            if ( dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 23 )
             {
                 // JMR-MODIF - Le 10 septembre 2007 - Conversion de BOOL en int pour respecter la logique du code.
                 ar << (int)bIsLogo;
@@ -3934,7 +3934,7 @@ void ZDProcessGraphModelMdl::Serialize( CArchive& ar )
             ar >> m_BkGndFilename;
 
             // JMR-MODIF - Le 7 octobre 2005 - Récupère le marquage du logo depuis le document.
-            if ( dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 23 )
+            if ( dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 23 )
             {
                 // JMR-MODIF - Le 10 septembre 2007 - Conversion de int en BOOL pour respecter la logique du code.
                 int Value;
@@ -3961,7 +3961,7 @@ void ZDProcessGraphModelMdl::Serialize( CArchive& ar )
         ar << (DWORD)m_Notation;
 
         // JMR-MODIF - Le 2 juillet 2006 - Sauvegarde de la variable de génération des références internes.
-        if ( dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 25 )
+        if ( dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 25 )
         {
             ar << m_NextAvailableRefNbr;
         }
@@ -3977,7 +3977,7 @@ void ZDProcessGraphModelMdl::Serialize( CArchive& ar )
         m_Notation = EModelNotation(dwValue);
 
         // JMR-MODIF - Le 2 juillet 2006 - Sauvegarde de la variable de génération des références internes.
-        if ( dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 25 )
+        if ( dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 25 )
         {
             ar >> m_NextAvailableRefNbr;
         }

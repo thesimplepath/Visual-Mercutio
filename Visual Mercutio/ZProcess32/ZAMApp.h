@@ -80,7 +80,7 @@
 #include "zBaseLib\TmplMng.h"
 
 // AppOpt
-#include "zBaseLib\AppOpt.h"
+#include "zBaseLib\PSS_ApplicationOption.h"
 
 // FieldRep
 #include "zBaseLib\FieldRep.h"
@@ -110,7 +110,7 @@ public:
     typedef ZASingleInstanceApplication inherited;
 
     // Component windows
-    ZIStatusBar& GetStatusBar()
+    PSS_StatusBar& GetStatusBar()
     {
         return( (ZIMainFrame*)AfxGetMainWnd() )->GetStatusBar();
     }
@@ -172,7 +172,7 @@ public:
 
     BOOL IsAutoCalculate()
     {
-        return GetApplicationOptions().GetbAutoCalculate();
+        return GetApplicationOptions().GetAutoCalculate();
     }
 
     BOOL GoNextEdit()
@@ -182,47 +182,47 @@ public:
 
     BOOL ShowCalculateField()
     {
-        return GetApplicationOptions().GetbCalculateFieldShow();
+        return GetApplicationOptions().GetShowCalculateField();
     }
 
     BOOL ShowHiddenField()
     {
-        return GetApplicationOptions().GetbShowHiddenField();
+        return GetApplicationOptions().GetShowHiddenField();
     }
 
     BOOL ShowBoundsRect()
     {
-        return GetApplicationOptions().GetbShowBoundsRect();
+        return GetApplicationOptions().GetShowBoundsRect();
     }
 
     BOOL ShowAnimation()
     {
-        return GetApplicationOptions().GetbAnimationShow();
+        return GetApplicationOptions().GetShowAnimation();
     }
 
     BOOL ShowCreateFormsOnStartup()
     {
-        return GetApplicationOptions().GetbCreateOnStartup();
+        return GetApplicationOptions().GetCreateOnStartup();
     }
 
     BOOL MustOpenLastLoadedFile()
     {
-        return GetApplicationOptions().GetbOpenLastLoadedFile();
+        return GetApplicationOptions().GetOpenLastLoadedFile();
     }
 
     const CString GetLastLoadedFile()
     {
-        return GetApplicationOptions().GetsLastLoadedFile();
+        return GetApplicationOptions().GetLastLoadedFileName();
     }
 
     BOOL AutomaticFieldNameCreation()
     {
-        return GetApplicationOptions().GetAutomaticFieldNameCreation ();
+        return GetApplicationOptions().GetAutomaticFieldNameCreation();
     }
 
     void SetLastLoadedFile( const CString value )
     {
-        GetApplicationOptions().SetsLastLoadedFile( value );
+        GetApplicationOptions().SetLastLoadedFileName(value);
     }
 
     const CString GetExportSchemaName()
@@ -530,7 +530,7 @@ public:
     ZDDocument* GetActiveDocument();
 
     // Return the casted active base document.
-    ZDBaseDocument* GetActiveBaseDocument();
+    PSS_BaseDocument* GetActiveBaseDocument();
 
     //## Operation: GetStyleManager%870446010
     // Return the style manager of the current document.
@@ -620,7 +620,7 @@ public:
 
     //## Attribute: ApplicationOptions%3705D2C00105
     // Is the application options class.
-    ZAApplicationOption& GetApplicationOptions();
+    PSS_ApplicationOption& GetApplicationOptions();
 
     virtual void WinHelp( DWORD dwData, UINT nCmd = HELP_CONTEXT );
 
@@ -714,7 +714,7 @@ protected:
 
     PlanFinObject*        m_pOldSelectedObj;
 
-    ZAApplicationOption    m_ApplicationOptions;
+    PSS_ApplicationOption m_ApplicationOptions;
 
     ZBFieldRepository*    m_FieldRepository;
 
@@ -786,9 +786,7 @@ inline BOOL ZAMainApp::ShouldSaveDesign() const
 
 inline BOOL ZAMainApp::ShouldPrintLine() const
 {
-    //## begin ZAMainApp::ShouldPrintLine%834216957.body preserve=yes
-    return m_ApplicationOptions.GetbPrintLine();
-    //## end ZAMainApp::ShouldPrintLine%834216957.body
+    return m_ApplicationOptions.GetPrintLine();
 }
 
 inline CDocument* ZAMainApp::GetActiveCDocument()
@@ -818,14 +816,14 @@ inline ZDDocument* ZAMainApp::GetActiveDocument()
     //## end ZAMainApp::GetActiveDocument%853735838.body
 }
 
-inline ZDBaseDocument* ZAMainApp::GetActiveBaseDocument()
+inline PSS_BaseDocument* ZAMainApp::GetActiveBaseDocument()
 {
     if ( AfxGetMainWnd() &&
          ( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame() &&
          ( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame()->GetActiveDocument() &&
-         ISA( ( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame()->GetActiveDocument(), ZDBaseDocument ) )
+         ISA( ( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame()->GetActiveDocument(), PSS_BaseDocument) )
     {
-        return (ZDBaseDocument*)( ( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame()->GetActiveDocument() );
+        return (PSS_BaseDocument*)( ( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame()->GetActiveDocument() );
     }
 
     return NULL;
@@ -876,16 +874,12 @@ inline ZDDocument* ZAMainApp::GetCurrentDocument() const
 
 inline CString ZAMainApp::GetServerIniFile()
 {
-    //## begin ZAMainApp::GetServerIniFile%912537579.body preserve=yes
-    return GetApplicationOptions().GetServerIniFile();
-    //## end ZAMainApp::GetServerIniFile%912537579.body
+    return GetApplicationOptions().GetServerIniFileName();
 }
 
 inline void ZAMainApp::SetServerIniFile(const CString& value)
 {
-    //## begin ZAMainApp::SetServerIniFile%912623195.body preserve=yes
-    GetApplicationOptions().SetServerIniFile(value);
-    //## end ZAMainApp::SetServerIniFile%912623195.body
+    GetApplicationOptions().SetServerIniFileName(value);
 }
 
 //## Get and Set Operations for Has Relationships (inline)
@@ -906,11 +900,9 @@ inline ZUActivityLog& ZAMainApp::GetActivityLog()
     //## end ZAMainApp::GetActivityLog%369BC5AC0258.get
 }
 
-inline ZAApplicationOption& ZAMainApp::GetApplicationOptions()
+inline PSS_ApplicationOption& ZAMainApp::GetApplicationOptions()
 {
-    //## begin ZAMainApp::GetApplicationOptions%3705D2C00105.get preserve=no
     return m_ApplicationOptions;
-    //## end ZAMainApp::GetApplicationOptions%3705D2C00105.get
 }
 
 #ifdef _ZCHECKINFO

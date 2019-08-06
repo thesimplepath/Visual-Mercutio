@@ -35,9 +35,9 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZDProcessGraphModelDoc
 
-IMPLEMENT_SERIAL(ZDProcessGraphModelDoc, ZDBaseDocument, g_DefVersion)
+IMPLEMENT_SERIAL(ZDProcessGraphModelDoc, PSS_BaseDocument, g_DefVersion)
 
-BEGIN_MESSAGE_MAP( ZDProcessGraphModelDoc, ZDBaseDocument )
+BEGIN_MESSAGE_MAP(ZDProcessGraphModelDoc, PSS_BaseDocument)
     //{{AFX_MSG_MAP(ZDProcessGraphModelDoc)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -450,7 +450,7 @@ void ZDProcessGraphModelDoc::PreCloseFrame( CFrameWnd* pFrame )
     }
 
     // Call the base class function
-    ZDBaseDocument::PreCloseFrame( pFrame );
+    PSS_BaseDocument::PreCloseFrame(pFrame);
 }
 
 bool ZDProcessGraphModelDoc::AssignCurrentUserDefGUID()
@@ -978,7 +978,7 @@ void ZDProcessGraphModelDoc::AllocatePropertiesManager( bool DeleteFirst /*= fal
 
 BOOL ZDProcessGraphModelDoc::IsModified()
 {
-    return ZDBaseDocument::IsModified() || GetModel()->IsModified();
+    return PSS_BaseDocument::IsModified() || GetModel()->IsModified();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1008,7 +1008,7 @@ void ZDProcessGraphModelDoc::DeleteContents()
         DocumentAlreadyOpened = TRUE;
     }
 
-    ZDBaseDocument::DeleteContents();
+    PSS_BaseDocument::DeleteContents();
 }
 
 // JMR-MODIF - Le 29 septembre 2005 - Cette fonction permet de déterminer si le document est en cours de fermeture.
@@ -1036,7 +1036,7 @@ void ZDProcessGraphModelDoc::OnCloseDocument()
     }
     // ********************************************************************************************************
 
-    ZDBaseDocument::OnCloseDocument();
+    PSS_BaseDocument::OnCloseDocument();
 }
 
 BOOL ZDProcessGraphModelDoc::OnOpenDocument( LPCTSTR lpszPathName )
@@ -1053,7 +1053,7 @@ BOOL ZDProcessGraphModelDoc::OnOpenDocument( LPCTSTR lpszPathName )
         m_pOutputLog->AddLine( e );
     }
 
-    if ( !ZDBaseDocument::OnOpenDocument( lpszPathName ) )
+    if (!PSS_BaseDocument::OnOpenDocument(lpszPathName))
     {
         return FALSE;
     }
@@ -1081,7 +1081,7 @@ BOOL ZDProcessGraphModelDoc::OnNewDocument()
     // JMR-MODIF - Le 29 septembre 2005 - Bascule le flag IsDocumentClosing en mode normal.
     IsDocumentClosing = FALSE;
 
-    if ( !ZDBaseDocument::OnNewDocument() )
+    if (!PSS_BaseDocument::OnNewDocument())
     {
         return FALSE;
     }
@@ -1215,7 +1215,7 @@ BOOL ZDProcessGraphModelDoc::OnSaveDocument( const char* pszPathName )
     SetFileReadOnly( pszPathName, FALSE );
 
     // And save the document
-    BOOL RetValue = ZDBaseDocument::OnSaveDocument( pszPathName );
+    BOOL RetValue = PSS_BaseDocument::OnSaveDocument(pszPathName);
 
     // JMR-MODIF - Le 27 avril 2006 - Verrouille à nouveau le fichier à la fin de la sauvegarde.
     SetFileReadOnly( pszPathName, TRUE );
@@ -1353,10 +1353,10 @@ void ZDProcessGraphModelDoc::Dump( CDumpContext& dc ) const
 void ZDProcessGraphModelDoc::Serialize( CArchive& ar )
 {
     // Serialize stamp and base information.
-    ZDBaseDocument::Serialize( ar );
+    PSS_BaseDocument::Serialize( ar );
 
     m_PageUnits.Serialize( ar );
-    
+
     // Serialize the canvas model.
     m_EmptyModel.Serialize( ar );
 
@@ -1376,14 +1376,14 @@ void ZDProcessGraphModelDoc::Serialize( CArchive& ar )
 
             // JMR-MODIF - Le 1er février 2006 - A partir de la version 24, les prestations sont aussi disponibles.
             if ( ar.m_pDocument &&
-                 dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 24 )
+                 dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 24 )
             {
                 ar << m_PrestationsDefGUID;
             }
 
             // JMR-MODIF - Le 19 novembre 2006 - A partir de la version 26, les règles sont aussi disponibles.
             if ( ar.m_pDocument &&
-                 dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 26 )
+                 dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 26 )
             {
                 ar << m_RulesDefGUID;
             }
@@ -1455,14 +1455,14 @@ void ZDProcessGraphModelDoc::Serialize( CArchive& ar )
 
                 // JMR-MODIF - Le 1er février 2006 - A partir de la version 24, les prestations sont aussi disponibles.
                 if ( ar.m_pDocument &&
-                     dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 24 )
+                     dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 24 )
                 {
                     ar >> m_PrestationsDefGUID;
                 }
 
                 // JMR-MODIF - Le 19 novembre 2006 - A partir de la version 26, les règles sont aussi disponibles.
                 if ( ar.m_pDocument &&
-                     dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 26 )
+                     dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 26 )
                 {
                     ar >> m_RulesDefGUID;
                 }
@@ -1508,7 +1508,7 @@ void ZDProcessGraphModelDoc::Serialize( CArchive& ar )
 
             // Serialize the dynamic properties manager
             if ( ar.m_pDocument &&
-                 dynamic_cast<ZDBaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 21 )
+                 dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 21 )
             {
                 ar >> (CObject*&)m_DynamicPropertiesManager;
             }
