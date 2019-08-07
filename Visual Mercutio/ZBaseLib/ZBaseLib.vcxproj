@@ -186,7 +186,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="CmdLine.cpp">
+    <ClCompile Include="PSS_CommandLine.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1353,7 +1353,7 @@
     <ClInclude Include="PSS_BaseMDIPage.h" />
     <ClInclude Include="PSS_BaseTitleMDIPage.h" />
     <ClInclude Include="PSS_ObjectUtility.h" />
-    <ClInclude Include="CmdLine.h" />
+    <ClInclude Include="PSS_CommandLine.h" />
     <ClInclude Include="colorbtn.h" />
     <ClInclude Include="DocData.h" />
     <ClInclude Include="DocOpt.h" />
