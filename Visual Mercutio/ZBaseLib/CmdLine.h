@@ -1,98 +1,97 @@
-//## begin module%375181F103E6.cm preserve=no
-//      %X% %Q% %Z% %W%
-//## end module%375181F103E6.cm
+/****************************************************************************
+ * ==> PSS_CommandLine -----------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides an encapsulated command line                      *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-//## begin module%375181F103E6.cp preserve=no
-//    ADSoft Copyright 1994-1995
-//    Dominique Aigroz
-//## end module%375181F103E6.cp
+#ifndef PSS_CommandLineH
+#define PSS_CommandLineH
 
-//## Module: CmdLine%375181F103E6; Package specification
-//## Subsystem: ZBaseLib%37A08E0C019D
-//## Source file: z:\adsoft~1\ZBaseLib\CmdLine.h
-
-#ifndef CmdLine_h
-#define CmdLine_h 1
-
-//## begin module%375181F103E6.additionalIncludes preserve=no
-//## end module%375181F103E6.additionalIncludes
-
-//## begin module%375181F103E6.includes preserve=yes
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
 #define AFX_EXT_CLASS AFX_CLASS_IMPORT
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
-//## end module%375181F103E6.includes
 
-// Mfc
+// mfc
 #include "Mfc.h"
-//## begin module%375181F103E6.declarations preserve=no
-//## end module%375181F103E6.declarations
 
-//## begin module%375181F103E6.additionalDeclarations preserve=yes
 #ifdef _ZBASELIBEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-//## end module%375181F103E6.additionalDeclarations
-
-
-//## Class: ZUCommandLine%375171A7021D
-//    Encapsulate a command line.
-//## Category: ZBaseLib::Command Line%3751719B0374
-//## Subsystem: ZBaseLib%37A08E0C019D
-//## Persistence: Transient
-//## Cardinality/Multiplicity: n
-
-class AFX_EXT_CLASS ZUCommandLine : public CObject  //## Inherits: <unnamed>%375181C9038E
+/**
+* Encapsulated command line
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_CommandLine : public CObject
 {
-  //## begin ZUCommandLine%375171A7021D.initialDeclarations preserve=yes
-  //## end ZUCommandLine%375171A7021D.initialDeclarations
+public:
+    /**
+    * Constructor
+    *@param commandLine - command line to process
+    *@param startupDir - startup directory
+    *@param arguments - arguments
+    *@param priority - priority
+    */
+    PSS_CommandLine(const CString& commandLine = "",
+                    const CString& startupDir  = "",
+                    const CString& arguments   = "",
+                    DWORD          priority    = NORMAL_PRIORITY_CLASS);
 
-  public:
-    //## Constructors (generated)
-      ZUCommandLine(const ZUCommandLine &right);
+    /**
+    * Copy constructor
+    *@param other - other object to copy from
+    */
+    PSS_CommandLine(const PSS_CommandLine& other);
 
-    //## Constructors (specified)
-      //## Operation: ZUCommandLine%928085167
-      //    The standard constructor.
-      ZUCommandLine (const CString CommandLine = "", const CString StartupDirectory = "", const CString Arguments = "", DWORD Priority = NORMAL_PRIORITY_CLASS);
+    virtual ~PSS_CommandLine();
 
-    //## Destructor (generated)
-      virtual ~ZUCommandLine();
+    /**
+    * Copy operator
+    *@param other - other object to copy from
+    *@return copy of itself
+    */
+    const PSS_CommandLine& operator = (const PSS_CommandLine& other);
 
-    //## Assignment Operation (generated)
-      const ZUCommandLine & operator=(const ZUCommandLine &right);
+    /**
+    * Initializes the command line
+    *@param commandLine - command line to process
+    *@param startupDir - startup directory
+    *@param arguments - arguments
+    *@param priority - priority
+    */
+    void Initialize(const CString& commandLine,
+                    const CString& startupDirectory = "",
+                    const CString& arguments        = "",
+                    DWORD          priority         = NORMAL_PRIORITY_CLASS);
 
+      /**
+      * Launches the command line
+      *@return TRUE on success, otherwise FALSE
+      */
+      BOOL Launch();
 
-    //## Other Operations (specified)
-      //## Operation: Initialize%934529056
-      //    Initialize the command line object.
-      void Initialize (const CString CommandLine, const CString StartupDirectory = "", const CString Arguments = "", DWORD Priority = NORMAL_PRIORITY_CLASS);
+      /**
+      * Serializes the class content
+      *@param ar - archive in which the class content should be written
+      */
+      virtual void Serialize(CArchive& ar);
 
-      //## Operation: Launch%928085168
-      //    Launch the command line.
-      BOOL Launch ();
-
-      //## Operation: Serialize%928085169
-      //    Serialization function required for MFC mecanism.
-      virtual void Serialize (CArchive& ar);
-
-      //## Operation: GetProcessInformation%928085170
-      //    Returns the process information of the launch command
-      //    line.
-      PROCESS_INFORMATION* GetProcessInformation () const;
+      /**
+      * Get the launch command lineprocess information
+      *@return the launch command lineprocess information
+      */
+      ::PROCESS_INFORMATION* GetProcessInformation() const;
 
     //## Get and Set Operations for Class Attributes (generated)
 
