@@ -48,7 +48,7 @@
 #include "MsgBox.h"
 
 // BObjUtil
-#include "BObjUtil.h"
+#include "PSS_ObjectUtility.h"
 
 #include "ZIView.h"
 
@@ -627,12 +627,12 @@ void ZDDocumentData::ChangeCalculatedFieldInAssociation ( ZAFormulaAssociation* 
 
 void ZDDocumentData::ReplaceCalculatedFields ()
 {
-    //## begin ZDDocumentData::ReplaceCalculatedFields%913885115.body preserve=yes
-    CString sLabel;
-    sLabel.LoadString( IDS_AMOUNT_CLASS );
-    PlanFinObject *pObjTemp;
+    CString label;
+    label.LoadString(IDS_AMOUNT_CLASS);
 
-    if( ( pObjTemp = GetHead() ) != NULL )
+    PlanFinObject* pObjTemp;
+
+    if ((pObjTemp = GetHead()) != NULL)
     {
         do
         {
@@ -640,7 +640,7 @@ void ZDDocumentData::ReplaceCalculatedFields ()
             // change it in number
             if ( pObjTemp->IsKindOf( RUNTIME_CLASS( PLFNCalculated ) ) )
             {
-                PlanFinObject* pNewObjTemp = ZBObjectUtility::ConstructObject( sLabel );
+                PlanFinObject* pNewObjTemp = PSS_ObjectUtility::BuildObject(label);
 
                 if ( !pNewObjTemp )
                 {
@@ -956,7 +956,7 @@ BOOL ZDDocumentData::ChangeObjectType ( PlanFinObject*    obj,
                 // change it
                 if ( pObjTemp != obj && pObjTemp->GetObjectName() == obj->GetObjectName() )
                 {
-                    PlanFinObject* pNewObjTemp = ZBObjectUtility::ConstructObject( sName );
+                    PlanFinObject* pNewObjTemp = PSS_ObjectUtility::BuildObject(sName);
 
                     if ( !pNewObjTemp )
                     {
@@ -989,7 +989,7 @@ BOOL ZDDocumentData::ChangeObjectType ( PlanFinObject*    obj,
         }
     }
 
-    PlanFinObject* pNewObj = ZBObjectUtility::ConstructObject( sName );
+    PlanFinObject* pNewObj = PSS_ObjectUtility::BuildObject(sName);
 
     if ( !pNewObj )
     {

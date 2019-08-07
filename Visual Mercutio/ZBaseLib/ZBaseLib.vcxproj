@@ -162,25 +162,25 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="PSS_BaseMainFrameWnd.cpp">
+    <ClCompile Include="PSS_BaseMainFrame.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="BASEMDI.CPP">
+    <ClCompile Include="PSS_BaseMDIPage.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="basetmdi.cpp">
+    <ClCompile Include="PSS_BaseTitleMDIPage.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="BObjUtil.cpp">
+    <ClCompile Include="PSS_ObjectUtility.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1349,10 +1349,10 @@
     <ClInclude Include="PSS_StatusBar.h" />
     <ClInclude Include="PSS_ApplicationOption.h" />
     <ClInclude Include="PSS_BaseDocument.h" />
-    <ClInclude Include="PSS_BaseMainFrameWnd.h" />
-    <ClInclude Include="BASEMDI.H" />
-    <ClInclude Include="basetmdi.h" />
-    <ClInclude Include="BObjUtil.h" />
+    <ClInclude Include="PSS_BaseMainFrame.h" />
+    <ClInclude Include="PSS_BaseMDIPage.h" />
+    <ClInclude Include="PSS_BaseTitleMDIPage.h" />
+    <ClInclude Include="PSS_ObjectUtility.h" />
     <ClInclude Include="CmdLine.h" />
     <ClInclude Include="colorbtn.h" />
     <ClInclude Include="DocData.h" />

@@ -39,7 +39,7 @@
 #include "zBaseLib\Edit.h"
 
 // BObjUtil
-#include "zBaseLib\BObjUtil.h"
+#include "zBaseLib\PSS_ObjectUtility.h"
 
 #if defined( _ZDESIGNER ) || defined( _ZSCRIPTOR )
     #include "Property.h"
@@ -237,7 +237,7 @@ void ZIViewModify::EditObject ( PlanFinObject* pObj )
 Edit* ZIViewModify::CreateEditControl ( PlanFinObject* pObj, CDC* pDC )
 {
     //## begin ZIViewModify::CreateEditControl%938177641.body preserve=yes
-    switch ( ZBObjectUtility::GetClassNameID( pObj ) )
+    switch (PSS_ObjectUtility::GetClassNameID(pObj))
     {
         case IDS_STATICTEXT_CLASS: 
         {

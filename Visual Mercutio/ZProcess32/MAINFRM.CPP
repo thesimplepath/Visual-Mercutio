@@ -352,9 +352,9 @@ END_BUTTON_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // ZIMainFrame
 
-IMPLEMENT_DYNAMIC( ZIMainFrame, ZIBaseMainFrame )
+IMPLEMENT_DYNAMIC(ZIMainFrame, PSS_BaseMainFrame)
 
-BEGIN_MESSAGE_MAP( ZIMainFrame, ZIBaseMainFrame )
+BEGIN_MESSAGE_MAP(ZIMainFrame, PSS_BaseMainFrame)
     //{{AFX_MSG_MAP(ZIMainFrame)
     ON_WM_CREATE()
     ON_WM_CLOSE()
@@ -395,16 +395,12 @@ static UINT BASED_CODE indicators[] =
 /////////////////////////////////////////////////////////////////////////////
 // ZIMainFrame construction/destruction
 
-ZIMainFrame::ZIMainFrame()
-{
-    // JMR-MODIF - Le 30 septemnre 2007 - Initialisation des variables m_nPage et m_nTotalPage.
-    m_nPage            = 0;
-    m_nTotalPage    = 0;
-}
+ZIMainFrame::ZIMainFrame() :
+    PSS_BaseMainFrame()
+{}
 
 ZIMainFrame::~ZIMainFrame()
-{
-}
+{}
 
 // JMR-MODIF - Le 16 août 2005 - Surcharge de la commande OnDDEExecute pour corriger un bug de Visual Studio 7.1.
 LRESULT ZIMainFrame::OnDDEExecute( WPARAM wParam, LPARAM lParam )
@@ -509,7 +505,7 @@ void ZIMainFrame::OnReloadBarState( bool Reset /*= false*/ )
         }
     }
 
-    ZIBaseMainFrame::OnReloadBarState( Reload );
+    PSS_BaseMainFrame::OnReloadBarState( Reload );
 
     if ( Reload )
     {
@@ -519,7 +515,7 @@ void ZIMainFrame::OnReloadBarState( bool Reset /*= false*/ )
 
 void ZIMainFrame::OnSaveBarState()
 {
-    ZIBaseMainFrame::OnSaveBarState();
+    PSS_BaseMainFrame::OnSaveBarState();
 }
 
 BOOL ZIMainFrame::CreateToolBars()
@@ -744,14 +740,13 @@ BOOL ZIMainFrame::CreateToolBars()
 
 BOOL ZIMainFrame::CreateStatusBar()
 {
-    if ( !m_wndStatusBar.Create( this ) ||
-         !m_wndStatusBar.SetIndicators( indicators, sizeof( indicators ) / sizeof( UINT ) ) )
+    if (!m_StatusBar.Create(this) || !m_StatusBar.SetIndicators(indicators, sizeof(indicators) / sizeof(UINT)))
     {
-        TRACE( _T( "Failed to create status bar\n" ) );
+        TRACE(_T("Failed to create status bar\n"));
         return FALSE;    // Fail to create
     }
 
-    m_wndStatusBar.SetPaneInfo( 3, ID_INDICATOR_PAGE, SBPS_NORMAL, 80 );
+    m_StatusBar.SetPaneInfo(3, ID_INDICATOR_PAGE, SBPS_NORMAL, 80);
 
     return TRUE;
 }
@@ -774,10 +769,8 @@ BOOL ZIMainFrame::CreateMenuBars()
 
 int ZIMainFrame::OnCreate( LPCREATESTRUCT lpCreateStruct )
 {
-    if ( ZIBaseMainFrame::OnCreate( lpCreateStruct ) == -1 )
-    {
+    if (PSS_BaseMainFrame::OnCreate(lpCreateStruct) == -1)
         return -1;
-    }
 
     return 0;
 }
@@ -995,12 +988,12 @@ void ZIMainFrame::Dump( CDumpContext& dc ) const
 
 void ZIMainFrame::OnViewFullScreen()
 {
-    ZIBaseMainFrame::OnViewFullScreen();
+    PSS_BaseMainFrame::OnViewFullScreen();
 }
 
-void ZIMainFrame::OnUpdateViewFullScreen( CCmdUI* pCmdUI )
+void ZIMainFrame::OnUpdateViewFullScreen(CCmdUI* pCmdUI)
 {
-    pCmdUI->SetCheck( ZIBaseMainFrame::IsFullScreen() );
+    pCmdUI->SetCheck(PSS_BaseMainFrame::IsFullScreen());
 }
 
 void ZIMainFrame::OnViewProjectWindow()
@@ -1073,7 +1066,7 @@ void ZIMainFrame::OnUpdatePage( CCmdUI *pCmdUI )
 {
     pCmdUI->Enable();
     char strPage[50];
-    sprintf( strPage, _T( "Page %d/%d" ), m_nPage, m_nTotalPage );
+    std::sprintf(strPage, _T("Page %d/%d"), m_Page, m_TotalPage);
     pCmdUI->SetText( strPage );
 }
 
@@ -1109,19 +1102,15 @@ afx_msg LRESULT ZIMainFrame::OnDocumentLoaded( WPARAM wParam, LPARAM lParam )
 
 void ZIMainFrame::OnClose()
 {
-    if ( ZAApp::ZAGetApp()->ExitAppl() )
-    {
-        // JMR-MODIF - Le 30 août 2005 - Sauvegarde de l'état de l'environnement avant la destruction.
-        if ( ZIBaseMainFrame::MustSaveBarState() )
-        {
-            ZIBaseMainFrame::OnSaveBarState();
-        }
+    if (!ZAApp::ZAGetApp()->ExitAppl())
+        return;
 
-        // JMR-MODIF - Le 29 août 2005 - Ajout du code de nettoyage dans la fonction OnClose.
-        m_wndWorkspace.Release();
-        m_wndOutputWorkspace.Release();
-        m_wndPropertiesWorkspace.Release();
+    if (GetMustSaveBarState())
+        OnSaveBarState();
 
-        ZIBaseMainFrame::OnClose();
-    }
+    m_wndWorkspace.Release();
+    m_wndOutputWorkspace.Release();
+    m_wndPropertiesWorkspace.Release();
+
+    PSS_BaseMainFrame::OnClose();
 }

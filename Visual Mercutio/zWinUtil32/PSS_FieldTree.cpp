@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\DocData.h"
-#include "zBaseLib\BObjUtil.h"
+#include "zBaseLib\PSS_ObjectUtility.h"
 
 // resources
 #ifndef _WIN32
@@ -169,7 +169,7 @@ HTREEITEM PSS_FieldTree::AddDocumentFieldItem(PlanFinObject* pObj, HTREEITEM hPa
 //---------------------------------------------------------------------------
 int PSS_FieldTree::GetItemIndex(PlanFinObject* pObj)
 {
-    switch (ZBObjectUtility::GetClassNameID(pObj))
+    switch (PSS_ObjectUtility::GetClassNameID(pObj))
     {
         case IDS_STATICTEXT_CLASS:       return 6;
         case IDS_DATE_CLASS:             return 9;

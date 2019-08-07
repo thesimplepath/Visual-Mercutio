@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_BaseMainFrameWnd ------------------------------------------------*
+ * ==> PSS_BaseMainFrame ---------------------------------------------------*
  ****************************************************************************
- * Description : Provides a basic main frame window                         *
+ * Description : Provides a basic main frame                                *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_BaseMainFrameWndH
-#define PSS_BaseMainFrameWndH
+#ifndef PSS_BaseMainFrameH
+#define PSS_BaseMainFrameH
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -33,14 +33,14 @@
 
 #ifdef __CREATE_LOGO_
     /**
-    * Main MDI client window
+    * Main MDI client frame
     *@author Dominique Aigroz, Jean-Milost Reymond
     */
-    class PSS_MainMDIClient : public CWnd
+    class PSS_MainMDIClientFrame : public CWnd
     {
         public:
-            PSS_MainMDIClient();
-            virtual ~PSS_MainMDIClient();
+            PSS_MainMDIClientFrame();
+            virtual ~PSS_MainMDIClientFrame();
 
         protected:
             /// Generated message map functions
@@ -54,7 +54,7 @@
             * Gets the super window process address (for the subclassing)
             *@return the super window process address
             */
-            WNDPROC* GetSuperWndProcAddr();
+            virtual WNDPROC* GetSuperWndProcAddr();
 
         private:
             /**
@@ -75,7 +75,7 @@ class AFX_EXT_CLASS PSS_BaseMainFrame : public SECMDIFrameWnd
 
     public:
         #ifdef __CREATE_LOGO_
-            PSS_MainMDIClient m_MDIClient; // the MDI client necessary to subclassing the main frame
+            PSS_MainMDIClientFrame m_MDIClientFrame; // the MDI client necessary to subclassing the main frame
         #endif
 
         /**
@@ -193,7 +193,7 @@ class AFX_EXT_CLASS PSS_BaseMainFrame : public SECMDIFrameWnd
 
     protected:
         PSS_StatusBar     m_StatusBar;
-        SECCustomToolBar* m_ToolBar;
+        SECCustomToolBar* m_pToolBar;
         int               m_Page;
         int               m_TotalPage;
         bool              m_MustSaveBarState;

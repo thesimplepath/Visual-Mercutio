@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{05ed07f4-fc7d-4326-86f1-da5d7fd214e5}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{8c897d84-7255-4f0c-b5c2-30b1f451f496}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{789697c8-3161-4550-bf74-2e6ea14634a7}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="Packages">
+      <UniqueIdentifier>{3a7d99c4-e6ec-4a9f-91f0-698987a4f344}</UniqueIdentifier>
+      <Extensions>vcx;vcp;vcw</Extensions>
+    </Filter>
+    <Filter Include="Diagrams">
+      <UniqueIdentifier>{824c8d8c-636f-478a-8be1-751db4e369b0}</UniqueIdentifier>
+      <Extensions>vcd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DAOTableDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DAOTableLst.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DBLstC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zDB.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZUDatabaseManipulator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\zDB.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Uml\Database controls package.vcx">
+      <Filter>Packages</Filter>
+    </None>
+    <None Include="Uml\Database utility package.vcx">
+      <Filter>Packages</Filter>
+    </None>
+    <None Include="Uml\zDB.vcp">
+      <Filter>Packages</Filter>
+    </None>
+    <None Include="Uml\Database controls.vcd">
+      <Filter>Diagrams</Filter>
+    </None>
+    <None Include="Uml\Database manipulator.vcd">
+      <Filter>Diagrams</Filter>
+    </None>
+    <None Include="Uml\zDB.vcw">
+      <Filter>Packages</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="zDB.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DAOTableDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DAOTableLst.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DBLstC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="zDBLib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="zDBRes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZUDatabaseManipulator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="zDB.def">
+      <Filter>Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="zDBd.def">
+      <Filter>Source Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

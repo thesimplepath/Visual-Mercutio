@@ -26,7 +26,7 @@
 //## begin module%37E7FB9C0275.additionalDeclarations preserve=yes
 #include "ZBTokenizer.h"
 // BObjUtil
-#include "BObjUtil.h"
+#include "PSS_ObjectUtility.h"
 
 
 const    char    FieldNameKey[] = "$$FieldName$$";
@@ -343,7 +343,7 @@ BOOL ZUFieldDefinitionDataFeed::PostImport ()
             // Set the class name
             pObjectDefinition->SetClassName( ClassName );
             // Create a new object with the class name
-            PlanFinObject* pObj = ZBObjectUtility::ConstructObject( ClassName );
+            PlanFinObject* pObj = PSS_ObjectUtility::BuildObject(ClassName);
             // Set the fieldname
             pObj->SetObjectName( FieldName );
             // Assign it

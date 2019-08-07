@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{635ff945-3da1-43ae-aec0-5a4ed25df18d}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{180da460-f791-42bd-950e-38cc97a76dc1}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{1b9293b8-7846-4e97-9722-89ff7c0d2d18}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="Symbols">
+      <UniqueIdentifier>{1340eea3-9604-4657-be3b-e14e46d88488}</UniqueIdentifier>
+      <Extensions>sym</Extensions>
+    </Filter>
+    <Filter Include="Diagrams">
+      <UniqueIdentifier>{a7e03bb1-b23c-42c8-9160-832a1e1549ae}</UniqueIdentifier>
+      <Extensions>vcd</Extensions>
+    </Filter>
+    <Filter Include="Packages">
+      <UniqueIdentifier>{1e451c5a-5d53-462c-ae66-077f9472ae0f}</UniqueIdentifier>
+      <Extensions>vcx;vcp;vcw</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zBaseSym.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZIBasicSymbol.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZIBasicSymbolAcceptVisitor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZIBasicSymbolVisitor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZINavigableModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZINavigableSymbol.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZIObjectPath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="package_.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\zBaseSym.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Activity.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\Alerte.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\BPProcess.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\Comment.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\CRE.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\CRI.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\CRO.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\Decision.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\Document.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\Door.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\Délai.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\En cours.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\Incident.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\Indicateur.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\Non validé.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\OPAP 1.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\OPAP 2.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\OPAP 3.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\Package.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\Page.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\Procedure.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\Process.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\Qualité.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\Risque.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\Start.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\Stop.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\UML_Activity.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\UML_End.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\UML_Start.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="res\Validé.sym">
+      <Filter>Symbols</Filter>
+    </None>
+    <None Include="Uml\Base Symbol Interfaces Class Diagram.vcd">
+      <Filter>Diagrams</Filter>
+    </None>
+    <None Include="Uml\Symbol Interfaces.vcx">
+      <Filter>Packages</Filter>
+    </None>
+    <None Include="Uml\zBaseSym.vcp">
+      <Filter>Packages</Filter>
+    </None>
+    <None Include="Uml\zBaseSym.vcw">
+      <Filter>Packages</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="zBaseSym.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="zBaseSymLib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="zBaseSymRes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZIBasicSymbol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZIBasicSymbolAcceptVisitor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZIBasicSymbolVisitor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZINavigableModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZINavigableSymbol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZIObjectPath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="zBaseSym.def">
+      <Filter>Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="zBaseSymD.def">
+      <Filter>Source Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

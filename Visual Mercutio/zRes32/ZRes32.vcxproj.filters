@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{c6b064a5-1ab5-4287-be1d-8f09affae53f}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{ce77e6fd-b2ff-41ab-97ef-a22a79f5c5f2}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{db9a777b-b95c-4366-a4be-6bc6b1c39334}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="Packages">
+      <UniqueIdentifier>{ac01b823-d9a7-4e1a-bd7f-ef9aa345a836}</UniqueIdentifier>
+      <Extensions>vcx;vcp;vcw</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zRes32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Res\calendar.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\clicktoc.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\cur00001.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\CUR00002.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\CUR00003.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\CUR00004.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\CURSOR1.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\design.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\EMPTY.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\move.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\NEWOBJEC.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\NUMBER.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\OdConnect.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\OdDeleteVertex.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\OdInsertImage.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\OdInsertPort.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\OdInsertSymbol.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\OdInsertText.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\OdInsertVertex.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\OdMove.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\OdMoveCopy.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\OdMoveReady.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\OdMoveVertex.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\OdPan.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\OdPanReady.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\OdRotate.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\OdRotateCopy.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\OdRotateReady.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\OdSmallCross.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\OdZoom.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\OdZoomRect.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\panmove.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\POINTER.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\PROPERTY.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\SCENARIO.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\SELECTOR.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Res\taborder.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\ZRes32.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Uml\ZRes32.vcp">
+      <Filter>Packages</Filter>
+    </None>
+    <None Include="Res\Download.avi" />
+    <None Include="Res\Filemove.avi" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="zRes32Lib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="zRes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Res\admin.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ALIGNBOT.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ALIGNCEN.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ALIGNLEF.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ALIGNRIG.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ALIGNTOP.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ALIGNVCE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\AMOUNT_B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\attrsymb.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\attruser.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BACKASSC.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\backupus.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\bitmap1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BMP00001.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BMP00002.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BMP00003.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BMP00011.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\CALC_BIT.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\CALCBACK.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\CALCSHOW.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\CALCULAT.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\CALCULAT.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\calcwith.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\choiceac.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\DATE_BIT.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\document.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\fielddoc.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\fieldtypes.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\filetypes.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\formsymb.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\HIDDEN.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\il_attri.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\il_formi.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\il_stand.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\IMAGE_BI.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\INSERT.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\insertfi.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\LINE_BIT.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\linktomo.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\LOCKED.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\MULTILIN.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\notes.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\POINTERW.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\pos_imag.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\PRINTER.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\RECTANGL.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\rectangl.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\respuser.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\SECTION_.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\SHHELP.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\shhelp_d.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\SHHELP_N.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\SHHELP_T.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\SHNUMB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\shortcut.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\singleus.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\sizeobje.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\SMULTILI.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\SQUARE_B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\STEXT_BI.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\TEXT_BIT.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\useradmi.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\userdept.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\userofac.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\USERS.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\usersymb.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\WELCOME.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Wzasscbi.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Wzattach.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\WZCALCBI.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Wzchgtyp.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Wzcreate.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Wzcrtcal.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\WZFORMAT.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="zRes32d.def">
+      <Filter>Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="zRes32.def">
+      <Filter>Source Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="zRes32.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

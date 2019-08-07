@@ -1,0 +1,1206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{6861974e-1f4d-46bc-b8b7-82972c115c8c}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{5438a7de-86f6-4a74-8a1d-084ba7542327}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{733c445f-849c-42cd-a36b-e7a26e715cb1}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="Packages">
+      <UniqueIdentifier>{dd7c02f8-733e-4c95-80f8-faaf4888f81f}</UniqueIdentifier>
+      <Extensions>vcx;vcp;vcw</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZWinUtil32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ActivityAttributionWelcomeDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ActivityAttributionBackupInputDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_EventActivityOverviewCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_EventActivityViewerReminderCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_EventActivityLogCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ActivityComboBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_LanguageComboBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_EventActivityCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_EventActivityUserOverviewCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ActivityListCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ActivityListAttributionCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ActivityTaskListCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_AnimateDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_BasePropSheet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_TextAlignButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_CalculationPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_CalendarWindowDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ConfirmDeleteMessageDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ColorSelectionWnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_CreateFolderWizardExistDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_CreateFolderWizardStartDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_DirTreeCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_DocOptionDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ExportPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_CommonFieldTreeCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FieldTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FolderInfoCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FolderInfoDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FontComboBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_GeneralPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_GenericFormPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_NewFormDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_HoverButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_UserListDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_EventLogCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_NavigationPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_OpenDirDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_PointerWnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_PosSizePropertyPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ProcessCloseActionsDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ProcessOpenActionsDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ProcessTakeOwnershipActionsDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_PreConditionFormProcDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_PreConditionFormProcWelcomeDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ProcessTreeCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ProjectBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ProjectTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ProjectWindowTreeCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_GenericPropPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_RejectActivityInputDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ScanContinueSelectDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ScanInformationDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ScanWelcomeDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_SelectProcessWizardDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_SelectProcessWizardStartDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_SelectProcessWizard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_SortableObArray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_CreateFolderWizard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ActivityAttributionInputWizard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ActivityAttributionInputValueDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ScanDocWizard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_SelectServerWizard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_SystemOptionSheet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_SysVarConverter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_SysVarDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_TemplateCopyDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_TemplateTreeCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FormTemplateTreeCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_VisualStackedPagesDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_UserInfoDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_UserListCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_UserPropertyCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_UserTreeCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_UserTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ViewPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ReducedViewPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_WelcomeWriterDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_WorkspaceTemplateListCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FileVersionDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FormPreviewFileDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_SelectServerDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_SelectServerWelcomeDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FieldView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FormTemplateView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ImagePreviewFileDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ObjectNotesDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ProcessTemplateView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ProjectView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_TemplateView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_TemplateTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_UserView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_WelcomeDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FilePreviewDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ProcessFilePreviewDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_SearchEdit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_SelectResourcesDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_CommandLineDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FileFormView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FileWnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FileFormPreviewDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_UrlInputDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ReferenceFileDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_UrlFormView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_UrlWnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Res\POINTER.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\ZWinUtil32.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Uml\ZWinUtil32.vcp">
+      <Filter>Packages</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ZWinUtil32.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="zWinUtil32Lib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityAttributionWelcomeDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZWinUtil32Res.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_EventActivityOverviewCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_EventActivityViewerReminderCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_EventActivityLogCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityComboBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_LanguageComboBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_EventActivityCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_EventActivityUserOverviewCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityListCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityListAttributionCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityTaskListCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_AnimateDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_BasePropSheet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_TextAlignButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_CalculationPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_CalendarWindowDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ConfirmDeleteMessageDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ColorSelectionWnd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_CreateFolderWizardExistDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_CreateFolderWizardStartDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_DirTreeCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_DocOptionDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ExportPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_CommonFieldTreeCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FieldTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FolderInfoCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FolderInfoDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FontComboBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_GeneralPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_GenericFormPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_NewFormDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_HoverButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_UserListDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_EventLogCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_NavigationPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_OpenDirDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_PointerWnd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_PosSizePropertyPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ProcessCloseActionsDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ProcessOpenActionsDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ProcessTakeOwnershipActionsDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_PreConditionFormProcDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_PreConditionFormProcWelcomeDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ProcessTreeCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ProjectBar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ProjectTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ProjectWindowTreeCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_GenericPropPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_RejectActivityInputDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ScanContinueSelectDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ScanInformationDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ScanWelcomeDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SelectProcessWizardDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SelectProcessWizardStartDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SelectProcessWizard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SortableObArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_CreateFolderWizard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityAttributionInputWizard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityAttributionInputValueDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityAttributionInputBackupDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ScanDocWizard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SelectServerWizard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SystemOptionSheet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SysVarConverter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SysVarDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_TemplateCopyDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_TemplateTreeCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FormTemplateTreeCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_VisualStackedPagesDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_UserInfoDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_UserListCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_UserPropertyCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_UserTreeCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_UserTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ViewPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ReducedViewPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_WelcomeWriterDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_WorkspaceTemplateListCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FileVersionDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FormPreviewFileDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SelectServerDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SelectServerWelcomeDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FieldView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FormTemplateView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ImagePreviewFileDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ObjectNotesDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ProcessTemplateView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ProjectView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_TemplateView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_TemplateTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_UserView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_WelcomeDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FilePreviewDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ProcessFilePreviewDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SearchEdit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SelectResourcesDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_CommandLineDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FileFormView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FileWnd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FileFormPreviewDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_UrlInputDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ReferenceFileDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_UrlFormView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_UrlWnd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Res\actchoos.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Activitl.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Activits.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="activity.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\activity.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ANILOADB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Apptl.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Appts.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BITMAP1.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BITMAP10.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BITMAP11.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BITMAP12.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BITMAP13.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BITMAP14.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BITMAP15.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BITMAP16.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BITMAP17.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\bitmap18.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BITMAP2.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BITMAP3.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BITMAP4.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BITMAP5.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BITMAP6.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BITMAP7.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BITMAP8.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BITMAP9.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BMP00001.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\bmp00002.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\bmp00003.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BMP00004.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BMP00005.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BMP00006.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BMP00007.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\bmp00008.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\bmp00009.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\bmp00010.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\bmp00011.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\bmp00012.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\bmp00013.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\bmp00014.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\bmp00015.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\bmp00016.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\bmp00017.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\bmp00018.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\buttons.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\COL_SELD.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\COL_SELF.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\COL_SELU.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\commandl.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Contactl.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Contacts.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Distlstl.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Distlsts.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Docl.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Docs.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\donotope.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Exiteml.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Exitems.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\filetypes.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\folderit.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\GREENLIG.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ICO00001.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ICO00002.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ICO00003.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ICO00004.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ICO00005.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ICO00006.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ICO00007.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ICO00008.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\icon1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\icon100.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\icon101.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\icon102.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\icon106.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\icon2.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\icon77.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\icon83.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\icon84.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\icon85.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\icon91.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\icon97.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\icon98.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\icon99.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ICONAPP1.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ICONAPP2.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ICONAPP3.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ICONAPP4.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ICONAPP5.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ICONAPP6.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ICONAPP7.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ICONAPP_.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ID_CANCE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ID_OK_PR.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\il_stand.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\incremen.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Ipml.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Ipms.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\loupe.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\menu_but.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\messagei.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\newstech.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Notel.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Notes.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Oofl.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Oofs.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\POINTERW.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\POINTERWE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Postitl.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Postits.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Postl.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Posts.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\processi.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="processi.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\rbo.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\rbs.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\rbu.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\rbx.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Recl.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Recs.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\REDLIGHT.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\ref_file.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\rejectac.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Remotel.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Remotes.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Reportl.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Reports.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Resendl.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Resends.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\SCDCNCLL.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Scdcncll.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Scdreql.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\SCDREQL.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Scdresns.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Scdrespl.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\SCDRESPL.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Scdresps.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Scdrestl.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\SCDRESTL.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Scdrests.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Securl.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Securs.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\server.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Signl.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Signs.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\suspenda.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\sysvar.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\table.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Taskaccl.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Taskaccs.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Taskdecl.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Taskdecs.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Taskl.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Taskreql.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Taskreqs.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Tasks.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\template.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\templatef.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\TIPS.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\TIPS2.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\TIPS3.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\TIPS4.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\TIPS5.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\TIPS6.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\TRASH01.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\url_fv_b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="useritem.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\USERS.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\WELCOME.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\workspac.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\wz1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\wz2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\wzbmp2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="ZWinUtil32.def">
+      <Filter>Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ZWinUtil32d.def">
+      <Filter>Source Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

@@ -1,18 +1,18 @@
 /****************************************************************************
- * ==> PSS_BaseMainFrameWnd ------------------------------------------------*
+ * ==> PSS_BaseMainFrame ---------------------------------------------------*
  ****************************************************************************
- * Description : Provides a basic main frame window                         *
+ * Description : Provides a basic main frame                                *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include "stdafx.h"
-#include "PSS_BaseMainFrameWnd.h"
+#include "PSS_BaseMainFrame.h"
 
 // processsoft
 #include "draw.h"
 #include "VTools.h"
 #include "Message.h"
-#include "BaseMdi.h"
+#include "PSS_BaseMDIPage.h"
 #include "ZUFloatingToolbar.h"
 
 #ifdef _DEBUG
@@ -41,23 +41,23 @@ const int g_AppToolBarWndNotify = RegisterWindowMessage(_T("WM_ZFORMS_TOOLBARWND
     //-----------------------------------------------------------------------
     // Message map
     //-----------------------------------------------------------------------
-    BEGIN_MESSAGE_MAP(PSS_MainMDIClient, CWnd)
-        //{{AFX_MSG_MAP(PSS_MainMDIClient)
+    BEGIN_MESSAGE_MAP(PSS_MainMDIClientFrame, CWnd)
+        //{{AFX_MSG_MAP(PSS_MainMDIClientFrame)
         ON_WM_SIZE()
         ON_WM_ERASEBKGND()
         //}}AFX_MSG_MAP
     END_MESSAGE_MAP()
     //-----------------------------------------------------------------------
-    // PSS_MainMDIClient
+    // PSS_MainMDIClientFrame
     //-----------------------------------------------------------------------
-    PSS_MainMDIClient::PSS_MainMDIClient() :
+    PSS_MainMDIClientFrame::PSS_MainMDIClientFrame() :
         CWnd()
     {}
     //-----------------------------------------------------------------------
-    PSS_MainMDIClient::~PSS_MainMDIClient()
+    PSS_MainMDIClientFrame::~PSS_MainMDIClientFrame()
     {}
     //-----------------------------------------------------------------------
-    void PSS_MainMDIClient::OnSize(UINT nType, int cx, int cy)
+    void PSS_MainMDIClientFrame::OnSize(UINT nType, int cx, int cy)
     {
         CWnd::OnSize(nType, cx, cy);
 
@@ -66,7 +66,7 @@ const int g_AppToolBarWndNotify = RegisterWindowMessage(_T("WM_ZFORMS_TOOLBARWND
         InvalidateRect(&rect);
     }
     //-----------------------------------------------------------------------
-    BOOL PSS_MainMDIClient::OnEraseBkgnd(CDC* pDC)
+    BOOL PSS_MainMDIClientFrame::OnEraseBkgnd(CDC* pDC)
     {
         ASSERT_VALID(pDC);
 
@@ -85,13 +85,13 @@ const int g_AppToolBarWndNotify = RegisterWindowMessage(_T("WM_ZFORMS_TOOLBARWND
         return(TRUE);
     }
     //-----------------------------------------------------------------------
-    WNDPROC* PSS_MainMDIClient::GetSuperWndProcAddr()
+    WNDPROC* PSS_MainMDIClientFrame::GetSuperWndProcAddr()
     {
         static WNDPROC pOldProc;
         return(&pOldProc);
     }
     //-----------------------------------------------------------------------
-    void PSS_MainMDIClient::ShowLogo(CDC *pDC)
+    void PSS_MainMDIClientFrame::ShowLogo(CDC *pDC)
     {
         CRect  rect;
         GetClientRect(&rect);
@@ -172,7 +172,7 @@ PSS_BaseMainFrame::~PSS_BaseMainFrame()
 //---------------------------------------------------------------------------
 void PSS_BaseMainFrame::OnReloadBarState(bool reset)
 {
-    if (MustSaveBarState())
+    if (GetMustSaveBarState())
     {
         m_WindowConfiguration.Create(AfxGetApp()->m_pszProfileName);
         m_WindowConfiguration.RestoreWindowPosition(this, _T("MainWindow"));
@@ -182,7 +182,7 @@ void PSS_BaseMainFrame::OnReloadBarState(bool reset)
             if (reset)
                 LoadBarState(_T("Unknown profile"));
             else
-                LoadBarState(def_SaveWindowStateStr);
+                LoadBarState(M_Def_SaveWindowStateStr);
 
             SECToolBarManager* pToolBarManager = dynamic_cast<SECToolBarManager*>(m_pControlBarManager);
             ASSERT(pToolBarManager);
@@ -205,7 +205,7 @@ void PSS_BaseMainFrame::OnReloadBarState(bool reset)
 //---------------------------------------------------------------------------
 void PSS_BaseMainFrame::OnSaveBarState()
 {
-    if (MustSaveBarState())
+    if (GetMustSaveBarState())
     {
         // if not initialized, do it before saving space
         if (!m_SaveBarStateHasBeenInitialized)
@@ -215,11 +215,11 @@ void PSS_BaseMainFrame::OnSaveBarState()
 
         if (m_pControlBarManager)
         {
-            SaveBarState(def_SaveWindowStateStr);
+            SaveBarState(M_Def_SaveWindowStateStr);
 
             SECToolBarManager* pToolBarManager = dynamic_cast<SECToolBarManager*>(m_pControlBarManager);
             ASSERT(pToolBarManager);
-            pToolBarManager->SaveState(def_SaveWindowStateStr);
+            pToolBarManager->SaveState(M_Def_SaveWindowStateStr);
         }
     }
 }
@@ -231,7 +231,7 @@ void PSS_BaseMainFrame::OnSaveBarState()
             return FALSE;
 
         // m_hWndMDIClient is the pointer to the MDI Client
-        m_MDIClient.SubclassWindow(m_hWndMDIClient);
+        m_MDIClientFrame.SubclassWindow(m_hWndMDIClient);
 
         return TRUE;
     }

@@ -4,7 +4,8 @@
 #if !defined(__DSGNFRM_H)
 #define __DSGNFRM_H
 
-#include "zBaseLib\BaseFrm.h"
+// processsoft
+#include "zBaseLib\PSS_BaseMainFrame.h"
 #include "zWinUtil32\PSS_ProjectBar.h"
 #include "zTip\PSS_TipOfDayBar.h"
 #include "zTip\PSS_HelpContextBar.h"
@@ -15,7 +16,7 @@
 
 // JMR-MODIF - Le 18 octobre 2005 - Ajout des décorartions unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-class ZIMainFrame : public ZIBaseMainFrame
+class ZIMainFrame : public PSS_BaseMainFrame
 {
     DECLARE_DYNAMIC( ZIMainFrame )
 

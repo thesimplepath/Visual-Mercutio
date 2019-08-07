@@ -26,7 +26,7 @@
 //## begin module%3821259D03D7.additionalDeclarations preserve=yes
 #include "ZBTokenizer.h"
 // BObjUtil
-#include "BObjUtil.h"
+#include "PSS_ObjectUtility.h"
 //## end module%3821259D03D7.additionalDeclarations
 
 

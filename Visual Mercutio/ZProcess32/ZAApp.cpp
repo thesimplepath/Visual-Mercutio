@@ -7,14 +7,14 @@
 #include "zBaseLib\ZMessage.h"
 #include "zBaseLib\VTools.h"
 #include "zBaseLib\ZDirectory.h"
-#include "zBaseLib\BObjUtil.h"
+#include "zBaseLib\PSS_ObjectUtility.h"
 #include "zBaseLib\FileDlg.h"
-#include "zBaseLib\BaseMdi.h"
+#include "zBaseLib\PSS_BaseMDIPage.h"
 #include "zBaseLib\ZILog.h"
 #include "zBaseLib\ZDWorkspaceEnvDocument.h"
 #include "zBaseLib\ZBWorkspaceObserverMsg.h"
 #include "zBaseLib\ZBWorkspaceWizardTemplateMg.h"
-#include "zBaseLib\BObjUtil.h"
+#include "zBaseLib\PSS_ObjectUtility.h"
 #include "zBaseLib\ZUFloatingToolbar.h"
 #include "zWinUtil32\PSS_NewFormDialog.h"
 #include "zWinUtil32\PSS_FolderInfoDialog.h"
@@ -391,7 +391,7 @@ void ZAApp::Release()
     // Désallocation des objets statiques.
     ZAGlobal::Release();
     ZAModelGlobal::Release();
-    ZBObjectUtility::Release();
+    PSS_ObjectUtility::Release();
     PSS_ResourceManager::Release();
     ZUFloatingToolbar::Release();
 
@@ -442,11 +442,11 @@ BOOL ZAApp::InitAppl()
 
     // Register the application's document templates. Document templates
     // serve as the connection between documents, frame windows and views.
-    ZDDocTemplateEx* pDocTemplate = new ZDDocTemplateEx( IDR_MDIPAGE,
-                                                         RUNTIME_CLASS( ZDDocumentReadWrite ),
-                                                         RUNTIME_CLASS( ZIBaseMDIPage ),
-                                                         RUNTIME_CLASS( ZIViewModify ),
-                                                         ID_FILE_MRU_FORMS1);
+    ZDDocTemplateEx* pDocTemplate = new ZDDocTemplateEx(IDR_MDIPAGE,
+                                                        RUNTIME_CLASS(ZDDocumentReadWrite),
+                                                        RUNTIME_CLASS(PSS_BaseMDIPage),
+                                                        RUNTIME_CLASS(ZIViewModify),
+                                                        ID_FILE_MRU_FORMS1);
 
     AddDocTemplate( pDocTemplate );
     ZAGlobal::SetpDocTemplate( pDocTemplate );
@@ -1531,7 +1531,7 @@ ZBLogicalRulesEntity* ZAApp::GetMainLogicalRules()
 void ZAApp::SetVisualToolObject( const CString& sClassName )
 {
     // find the class
-    const CStringArray& Array = ZBObjectUtility::GetClassNameArray();
+    const CStringArray& Array = PSS_ObjectUtility::GetClassNameArray();
 
     int index = 0;
 

@@ -53,7 +53,7 @@
 // FileDlg
 #include "zBaseLib\FileDlg.h"
 // BObjUtil
-#include "zBaseLib\BObjUtil.h"
+#include "zBaseLib\PSS_ObjectUtility.h"
 
 #include "ZEvent.h"
 
@@ -644,7 +644,7 @@ BOOL ZAMainApp::InitInstance()
                                                (LPARAM)GetFieldRepository() );
 
     // Initialize object definition
-    ZBObjectUtility::InitializeDefinition( GetServer().GetFieldDefinitionIniFile() );
+    PSS_ObjectUtility::InitializeDefinition(GetServer().GetFieldDefinitionIniFile());
 
     // Initialize painting resources
     ZBPaintResources::Initialize();

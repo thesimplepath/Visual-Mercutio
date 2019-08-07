@@ -8,6 +8,7 @@
 #ifndef PSS_BaseDocumentH
 #define PSS_BaseDocumentH
 
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA

@@ -3,10 +3,10 @@
 
 #include "stdafx.h"
 #include "ZUFloatingToolbar.h"
-#include "basefrm.h"
 
-// ZConfigW
-#include "ZConfigW.h"
+// processsoft
+#include "PSS_BaseMainFrame.h"
+#include "zConfigW.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -208,10 +208,10 @@ bool ZUFloatingToolbar::RegisterMenubar( CString Name, UINT nIDRes, CFrameWnd* p
 
     int ActSize = m_MenubarSet.GetSize();
 
-    if ( pFrame && ISA( pFrame, ZIBaseMainFrame ) )
+    if ( pFrame && ISA( pFrame, PSS_BaseMainFrame) )
     {
         // Used to load additional menu
-        dynamic_cast<ZIBaseMainFrame*>( pFrame )->LoadAdditionalMenus( 1, nIDRes );
+        dynamic_cast<PSS_BaseMainFrame*>( pFrame )->LoadAdditionalMenus( 1, nIDRes );
     }
 
     // Add the menu to the internal array
@@ -222,9 +222,9 @@ bool ZUFloatingToolbar::RegisterMenubar( CString Name, UINT nIDRes, CFrameWnd* p
 
 bool ZUFloatingToolbar::RegisterAndLoadMenubar( CString Name, UINT nIDRes, CFrameWnd* pFrame, EModelNotation Notation )
 {
-    if ( pFrame && ISA( pFrame, ZIBaseMainFrame ) )
+    if ( pFrame && ISA( pFrame, PSS_BaseMainFrame) )
     {
-        dynamic_cast<ZIBaseMainFrame*>( pFrame )->LoadMenuBar( nIDRes );
+        dynamic_cast<PSS_BaseMainFrame*>( pFrame )->LoadMenuBar( nIDRes );
         return ZUFloatingToolbar::RegisterMenubar( Name, nIDRes, pFrame, Notation );
     }
 
