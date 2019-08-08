@@ -9,7 +9,7 @@
 #include "PSS_FieldTree.h"
 
 // processsoft
-#include "zBaseLib\DocData.h"
+#include "zBaseLib\PSS_DocumentData.h"
 #include "zBaseLib\PSS_ObjectUtility.h"
 
 // resources
@@ -121,7 +121,7 @@ HTREEITEM PSS_FieldTree::AddTypeItem(const CString& fieldType, int iconIndex, HT
     return m_pTreeCtrl->InsertItem(&curTreeItem);
 }
 //---------------------------------------------------------------------------
-HTREEITEM PSS_FieldTree::AddDocumentItem(ZDDocumentData* pData, HTREEITEM hParentTreeItem, int iconIndex)
+HTREEITEM PSS_FieldTree::AddDocumentItem(PSS_DocumentData* pData, HTREEITEM hParentTreeItem, int iconIndex)
 {
     if (!pData)
         return NULL;
@@ -212,7 +212,7 @@ void PSS_FieldTree::CreateTree()
         // iterate through document data
         for (std::size_t i = 0; m_pDoc && i < docDataCount; ++i)
         {
-            ZDDocumentData* pDocData = m_pDoc->GetDocumentDataAt(i);
+            PSS_DocumentData* pDocData = m_pDoc->GetDocumentDataAt(i);
 
             if (pDocData && !pDocData->IsBinaryDataValid())
             {

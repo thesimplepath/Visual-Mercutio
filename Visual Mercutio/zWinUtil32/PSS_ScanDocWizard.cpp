@@ -21,6 +21,7 @@
 // PSS_ScanDocWizard::IDocument
 //---------------------------------------------------------------------------
 PSS_ScanDocWizard::IDocument::IDocument(const CString& fileName, const CString& name, const CString& description) :
+    CObject(),
     m_FileName(fileName),
     m_Name(name),
     m_Description(description)
@@ -47,7 +48,7 @@ PSS_ScanDocWizard::~PSS_ScanDocWizard()
         if (GetDocumentAt(index))
             delete GetDocumentAt(index);
 
-    m_Doc.RemoveAll();
+    m_DocArray.RemoveAll();
 }
 //---------------------------------------------------------------------------
 const PSS_ScanDocWizard& PSS_ScanDocWizard::operator = (const PSS_ScanDocWizard& other)
@@ -62,8 +63,8 @@ BOOL PSS_ScanDocWizard::Execute()
 //---------------------------------------------------------------------------
 PSS_ScanDocWizard::IDocument* PSS_ScanDocWizard::GetDocumentAt(std::size_t index)
 {
-    if (index < std::size_t(m_Doc.GetSize()))
-        return (IDocument*)m_Doc.GetAt(index);
+    if (index < std::size_t(m_DocArray.GetSize()))
+        return (IDocument*)m_DocArray.GetAt(index);
 
     return NULL;
 }
@@ -74,7 +75,7 @@ void PSS_ScanDocWizard::AddDocument(const CString& fileName, const CString& name
     
     if (pDoc.get())
     {
-        m_Doc.Add((CObject*)pDoc.get());
+        m_DocArray.Add(pDoc.get());
         pDoc.release();
     }
 }

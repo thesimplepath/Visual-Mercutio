@@ -24,7 +24,7 @@
 #include "ZAApp.h"
 #include "zBaseLib\MsgBox.h"
 #include "zBaseLib\ExpRT.h"
-#include "zBaseLib\DocData.h"
+#include "zBaseLib\PSS_DocumentData.h"
 
 #include "zBaseLib\Edit.h"
 

@@ -98,6 +98,7 @@ const UINT PSS_ObjectUtility::m_ClassResourceIDArrary[] =
 // PSS_ObjectUtility::IObjectDefinition
 //---------------------------------------------------------------------------
 PSS_ObjectUtility::IObjectDefinition::IObjectDefinition(const CString& key, const CString& description) :
+    CObject(),
     m_Key(key),
     m_Description(description)
 {}
@@ -155,12 +156,12 @@ const CString PSS_ObjectUtility::GetFieldTypeDescription(PlanFinObject* pObj)
 //---------------------------------------------------------------------------
 const CString PSS_ObjectUtility::GetFieldTypeDescription(const CString& className)
 {
+    PlanFinObject* pTempObj = BuildObject(className);
     CString        fieldExplanation;
-    PlanFinObject* pTempObj = PSS_ObjectUtility::BuildObject(className);
 
     if (pTempObj)
     {
-        fieldExplanation = PSS_ObjectUtility::GetFieldTypeDescription(pTempObj);
+        fieldExplanation = GetFieldTypeDescription(pTempObj);
         delete pTempObj;
     }
 
@@ -190,8 +191,6 @@ UINT PSS_ObjectUtility::GetBitmapClass(const CString& className)
 //---------------------------------------------------------------------------
 PlanFinObject* PSS_ObjectUtility::BuildObject(const CString& className)
 {
-    PlanFinObject* pObj = NULL;
-
     // fill the list with all objects' type
     const CStringArray& stringArray = GetClassNameArray();
     const INT_PTR       arrayCount  = stringArray.GetSize();
@@ -204,105 +203,107 @@ PlanFinObject* PSS_ObjectUtility::BuildObject(const CString& className)
             break;
         }
 
+    std::unique_ptr<PlanFinObject> pObj;
+
     switch (index)
     {
         case 0:
-            pObj = new PLFNLong;
+            pObj.reset(new PLFNLong);
             break;
 
         case 1:
-            pObj = new PLFNLong;
-            ((PLFNLong*)pObj)->SetKeepHistory(TRUE);
+            pObj.reset(new PLFNLong);
+            ((PLFNLong*)pObj.get())->SetKeepHistory(TRUE);
             break;
 
         case 2:
-            pObj = new PLFNLong;
-            ((PLFNLong*)pObj)->SetCalculatedField();
+            pObj.reset(new PLFNLong);
+            ((PLFNLong*)pObj.get())->SetCalculatedField();
             break;
 
         case 3:
-            pObj = new PLFNTime;
+            pObj.reset(new PLFNTime);
             break;
 
         case 4:
-            pObj = new PLFNString;
+            pObj.reset(new PLFNString);
             break;
 
         case 5:
-            pObj = new PLFNString;
-            ((PLFNString*)pObj)->SetKeepHistory(TRUE);
+            pObj.reset(new PLFNString);
+            ((PLFNString*)pObj.get())->SetKeepHistory(TRUE);
             break;
 
         case 6:
-            pObj = new PLFNStatic;
+            pObj.reset(new PLFNStatic);
             break;
 
         case 7:
-            pObj = new PLFNBoundText;
+            pObj.reset(new PLFNBoundText);
             break;
 
         case 8:
             // TRUE is for static bound text
-            pObj = new PLFNBoundText(TRUE);
+            pObj.reset(new PLFNBoundText(TRUE));
             break;
 
         case 9:
-            pObj = new PLFNAutoNumbered;
+            pObj.reset(new PLFNAutoNumbered);
             break;
 
         case 10:
-            pObj = new PLFNSquare;
+            pObj.reset(new PLFNSquare);
             break;
 
         case 11:
-            pObj = new PLFNLine;
+            pObj.reset(new PLFNLine);
             break;
 
         case 12:
-            pObj = new PLFNRect;
+            pObj.reset(new PLFNRect);
             break;
 
         case 13:
-            pObj = new PLFNRect(TRUE);
+            pObj.reset(new PLFNRect(TRUE));
             break;
 
         case 14:
-            pObj = new PLFNBitmap;
+            pObj.reset(new PLFNBitmap);
             break;
 
         case 15:
-            pObj = new PLFNCheck;
+            pObj.reset(new PLFNCheck);
             break;
 
         case 16:
-            pObj = new PLFNRadio;
+            pObj.reset(new PLFNRadio);
             break;
 
         case 17:
-            pObj = new PLFNMaskString;
+            pObj.reset(new PLFNMaskString);
             break;
 
         case 18:
-            pObj = new PLFNMaskString;
-            ((PLFNMaskString*)pObj)->SetKeepHistory(TRUE);
+            pObj.reset(new PLFNMaskString);
+            ((PLFNMaskString*)pObj.get())->SetKeepHistory(TRUE);
             break;
 
         case 19:
-            pObj = new PLFNMultiColumn;
+            pObj.reset(new PLFNMultiColumn);
             break;
 
         default:
             ASSERT(FALSE);
     }
 
-    return pObj;
+    return pObj.release();
 }
 //---------------------------------------------------------------------------
 BOOL PSS_ObjectUtility::InitializeDefinition(const CString& iniFileName)
 {
     ZUSystemOption systemOption;
 
-    m_FieldTypeDescriptionArray.RemoveAll();
+    Release();
 
     // check if the file exists
     ZFile file(iniFileName);
@@ -328,10 +329,11 @@ BOOL PSS_ObjectUtility::InitializeDefinition(const CString& iniFileName)
         if (fieldKey.IsEmpty())
             break;
 
-        description             = LoadFieldDefinition(iniFileName, fieldKey);
-        IObjectDefinition* pDef = new IObjectDefinition(fieldKey, description);
+        description = LoadFieldDefinition(iniFileName, fieldKey);
 
-        m_FieldTypeDescriptionArray.Add((CObject*)pDef);
+        std::unique_ptr<IObjectDefinition> pDef(new IObjectDefinition(fieldKey, description));
+        m_FieldTypeDescriptionArray.Add(pDef.get());
+        pDef.release();
     }
 
     return TRUE;
@@ -350,7 +352,7 @@ CString PSS_ObjectUtility::LoadFieldDefinition(const CString& iniFileName, const
 
         const CString line = m_SystemOptionField.ReadOption(buffer, _T(""));
 
-        // If no more entry
+        // no more entry?
         if (line.IsEmpty())
             break;
 
@@ -444,6 +446,8 @@ void PSS_ObjectUtility::Release()
     for (int i = 0; i < descCount; ++i)
         if (m_FieldTypeDescriptionArray.GetAt(i))
             delete m_FieldTypeDescriptionArray.GetAt(i);
+
+    m_FieldTypeDescriptionArray.RemoveAll();
 }
 //---------------------------------------------------------------------------
 const CString PSS_ObjectUtility::GetFieldTypeDescriptionIniFile(const char* pKey)
@@ -452,7 +456,7 @@ const CString PSS_ObjectUtility::GetFieldTypeDescriptionIniFile(const char* pKey
 
     for (int i = 0; i < descCount; ++i)
     {
-        IObjectDefinition* pObjDef = (IObjectDefinition*)m_FieldTypeDescriptionArray.GetAt(i);
+        IObjectDefinition* pObjDef = dynamic_cast<IObjectDefinition*>(m_FieldTypeDescriptionArray.GetAt(i));
 
         if (pObjDef && pObjDef->m_Key == pKey)
             return pObjDef->m_Description;
@@ -461,7 +465,7 @@ const CString PSS_ObjectUtility::GetFieldTypeDescriptionIniFile(const char* pKey
     return _T("");
 }
 //---------------------------------------------------------------------------
-void PSS_ObjectUtility::LoadResource ()
+void PSS_ObjectUtility::LoadResource()
 {
     // assign the edition class name
     if (m_EditionClassNameArray.GetSize() <= 0)

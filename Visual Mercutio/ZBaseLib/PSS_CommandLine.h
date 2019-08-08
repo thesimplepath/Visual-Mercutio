@@ -1,7 +1,7 @@
 /****************************************************************************
  * ==> PSS_CommandLine -----------------------------------------------------*
  ****************************************************************************
- * Description : Provides an encapsulated command line                      *
+ * Description : Provides an encapsulated command line console              *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
@@ -30,7 +30,7 @@
 #endif
 
 /**
-* Encapsulated command line
+* Encapsulated command line console
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
 class AFX_EXT_CLASS PSS_CommandLine : public CObject
@@ -84,8 +84,8 @@ class AFX_EXT_CLASS PSS_CommandLine : public CObject
         virtual BOOL Launch();
 
         /**
-        * Serializes the class content
-        *@param ar - archive in which the class content should be written
+        * Serializes the class content to an archive
+        *@param ar - archive
         */
         virtual void Serialize(CArchive& ar);
 
@@ -111,7 +111,7 @@ class AFX_EXT_CLASS PSS_CommandLine : public CObject
         * Gets the arguments
         *@return the arguments
         */
-        virtual inline const CString GetArguments () const;
+        virtual inline const CString GetArguments() const;
 
         /**
         * Sets the arguments
@@ -123,13 +123,13 @@ class AFX_EXT_CLASS PSS_CommandLine : public CObject
         * Gets the startup directory
         *@return the startup directory
         */
-        virtual inline const CString GetStartupDirectory() const;
+        virtual inline const CString GetStartupDir() const;
 
         /**
         * Sets the startup directory
         *@param value - the startup directory
         */
-        virtual inline void SetStartupDirectory(const CString& value);
+        virtual inline void SetStartupDir(const CString& value);
 
         /**
         * Gets the priority

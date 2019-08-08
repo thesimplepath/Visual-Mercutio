@@ -27,7 +27,7 @@ PSS_CommandLine::PSS_CommandLine(const CString& commandLine,
                                  const CString& startupDir,
                                  const CString& arguments,
                                  DWORD          priority) :
-    m_pProcessInfo(NULL)
+    m_pProcessInfo(NULL),
     m_CommandLine(commandLine),
     m_StartupDir(startupDir),
     m_Arguments(arguments),
@@ -37,7 +37,7 @@ PSS_CommandLine::PSS_CommandLine(const CString& commandLine,
 //---------------------------------------------------------------------------
 PSS_CommandLine::PSS_CommandLine(const PSS_CommandLine& other)
 {
-    *this = right;
+    *this = other;
 }
 //---------------------------------------------------------------------------
 PSS_CommandLine::~PSS_CommandLine()
@@ -48,10 +48,10 @@ PSS_CommandLine::~PSS_CommandLine()
 //---------------------------------------------------------------------------
 const PSS_CommandLine& PSS_CommandLine::operator = (const PSS_CommandLine& other)
 {
-    m_CommandLine      = other.m_CommandLine;
-    m_StartupDirectory = other.m_StartupDirectory;
-    m_Arguments        = other.m_Arguments;
-    m_Priority         = other.m_Priority;
+    m_CommandLine = other.m_CommandLine;
+    m_StartupDir  = other.m_StartupDir;
+    m_Arguments   = other.m_Arguments;
+    m_Priority    = other.m_Priority;
 
     return *this;
 }
@@ -79,7 +79,7 @@ void PSS_CommandLine::Serialize(CArchive& ar)
     {
         // write the elements
         ar << m_CommandLine;
-        ar << m_StartupDirectory;
+        ar << m_StartupDir;
         ar << m_Arguments;
         ar << m_Priority;
     }
@@ -87,7 +87,7 @@ void PSS_CommandLine::Serialize(CArchive& ar)
     {
         // read the elements
         ar >> m_CommandLine;
-        ar >> m_StartupDirectory;
+        ar >> m_StartupDir;
         ar >> m_Arguments;
         ar >> m_Priority;
     }

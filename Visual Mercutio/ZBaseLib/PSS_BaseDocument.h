@@ -43,27 +43,6 @@ class AFX_EXT_CLASS PSS_BaseDocument : public CDocument
         virtual ~PSS_BaseDocument();
 
         /**
-        * Serializes the document
-        *@param archive - archive in which document should be written
-        */
-        virtual void Serialize(CArchive& archive);
-
-        /**
-        * Reads the file stamp
-        *@param archive - archive from which document should be read
-        *@param[out] stamp - folder stamp to read
-        *@return the file stamp
-        */
-        static int ReadFileStamp(CArchive& archive, ZDFolderStamp& stamp);
-
-        /**
-        * Writes the file stamp
-        *@param archive - archive in which file stamp should be written
-        *@param stamp - file stamp to write
-        */
-        static void WriteFileStamp(CArchive& archive, ZDFolderStamp& stamp);
-
-        /**
         * Reads the document
         *@param fileName - document file name to read
         *@return TRUE on success, otherwise FALSE
@@ -209,6 +188,27 @@ class AFX_EXT_CLASS PSS_BaseDocument : public CDocument
         *@param userName - user name
         */
         virtual void FillFolderStampInformationForModification(const CString& userName);
+
+        /**
+        * Serializes the class content to an archive
+        *@param ar - archive
+        */
+        virtual void Serialize(CArchive& ar);
+
+        /**
+        * Reads the file stamp
+        *@param archive - archive from which document should be read
+        *@param[out] stamp - folder stamp to read
+        *@return the file stamp
+        */
+        static int ReadFileStamp(CArchive& archive, ZDFolderStamp& stamp);
+
+        /**
+        * Writes the file stamp
+        *@param archive - archive in which file stamp should be written
+        *@param stamp - file stamp to write
+        */
+        static void WriteFileStamp(CArchive& archive, ZDFolderStamp& stamp);
 
         /**
         * Asserts the class validity

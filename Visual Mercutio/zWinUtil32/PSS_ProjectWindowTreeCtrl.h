@@ -22,7 +22,7 @@
 
 // forward class declaration
 class ZDDocument;
-class ZDDocumentData;
+class PSS_DocumentData;
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -72,7 +72,7 @@ class AFX_EXT_CLASS PSS_ProjectWindowTreeCtrl : public ZITreeCtrl
         * Gets the selected document
         *@return the selected document, NULL if no selection or on error
         */
-        virtual ZDDocumentData* GetSelectedDocument();
+        virtual PSS_DocumentData* GetSelectedDocument();
 
         /**
         * Gets the selected document title

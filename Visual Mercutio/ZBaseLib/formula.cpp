@@ -8,7 +8,7 @@
 
 #include "ZAObject.h"
 #include "ZDDoc.h"
-#include "DocData.h"
+#include "PSS_DocumentData.h"
 
 #include "msgbox.h"
 
@@ -20,17 +20,16 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-
-void    ZAFormula::ConstructObjectPointer( ZDDocumentData& Doc, CObList& lstFormula )
+void ZAFormula::ConstructObjectPointer(PSS_DocumentData& doc, CObList& lstFormula)
 {
     ZAFormula*  obj;
-    POSITION    Position = lstFormula.GetHeadPosition( );
-    
+    POSITION    Position = lstFormula.GetHeadPosition();
+
     while (Position)
     {
-        obj = (ZAFormula*)lstFormula.GetNext( Position );
+        obj = (ZAFormula*)lstFormula.GetNext(Position);
         // Get the pointer to the object
-        obj->m_ResultObject = Doc.GetObjectPtr( obj->m_sObjectName );
+        obj->m_ResultObject = doc.GetObject(obj->m_sObjectName);
 
         if (!obj->m_ResultObject)
         {
@@ -47,57 +46,55 @@ void    ZAFormula::ConstructObjectPointer( ZDDocumentData& Doc, CObList& lstForm
 IMPLEMENT_SERIAL(ZAFormula, CObject, g_DefVersion)
 
 ZAFormula::ZAFormula()
- : m_ResultObject( NULL )
-{
-}
+    : m_ResultObject(NULL)
+{}
 
-ZAFormula::ZAFormula( ZDDocument& Doc, const CString& str )
+ZAFormula::ZAFormula(ZDDocument& Doc, const CString& str)
 {
-//                char    szBuf[300];
-//                sprintf( szBuf, "%s"    , (const char*)str );
-//                AfxMessageBox( szBuf );
+    //                char    szBuf[300];
+    //                sprintf( szBuf, "%s"    , (const char*)str );
+    //                AfxMessageBox( szBuf );
     char*        cpFind;
-    
+
     CString        sTemp = str;
     int            iSep;
-    VERIFY( (iSep=sTemp.Find(',')) != -1 );
-    CString        sPage=sTemp.Left( iSep );
-    m_iPage = atoi( sPage );
-    m_sFormula = sTemp.Right( sTemp.GetLength()-iSep-1 );
+    VERIFY((iSep = sTemp.Find(',')) != -1);
+    CString        sPage = sTemp.Left(iSep);
+    m_iPage = atoi(sPage);
+    m_sFormula = sTemp.Right(sTemp.GetLength() - iSep - 1);
 
     // extract object Name
     VERIFY(cpFind = const_cast<char*>(std::strchr(m_sFormula, '=')));
 
-    m_sObjectName = m_sFormula.Left( (int)(cpFind-m_sFormula-1) );
-    m_sExtractedFormula = cpFind+1;
+    m_sObjectName = m_sFormula.Left((int)(cpFind - m_sFormula - 1));
+    m_sExtractedFormula = cpFind + 1;
     // Get the pointer to the object
-    m_ResultObject = Doc.GetObjectPtr( m_sObjectName );
-    ASSERT( m_ResultObject );
+    m_ResultObject = Doc.GetObjectPtr(m_sObjectName);
+    ASSERT(m_ResultObject);
 }
 
 ZAFormula* ZAFormula::Clone()
 {
-    ZAFormula*    pObject = new ZAFormula( *this );
+    ZAFormula*    pObject = new ZAFormula(*this);
     return pObject;
 }
 
 ZAFormula::~ZAFormula()
-{
-}
+{}
 
 ZAFormula::ZAFormula(const ZAFormula &right)
 {
-      *this = right;
+    *this = right;
 }
 
 const ZAFormula & ZAFormula::operator=(const ZAFormula &right)
 {
-      m_sFormula = right.m_sFormula;
-      m_sExtractedFormula = right.m_sExtractedFormula;
-      m_sObjectName = right.m_sObjectName;
-      // Not a deep copy
-      m_ResultObject = right.m_ResultObject;
-      m_iPage = right.m_iPage;
+    m_sFormula = right.m_sFormula;
+    m_sExtractedFormula = right.m_sExtractedFormula;
+    m_sObjectName = right.m_sObjectName;
+    // Not a deep copy
+    m_ResultObject = right.m_ResultObject;
+    m_iPage = right.m_iPage;
     return *this;
 }
 
@@ -113,7 +110,7 @@ void ZAFormula::Serialize(CArchive& ar)
         ar << m_sFormula;
         ar << m_sExtractedFormula;
         ar << m_sObjectName;
-//        ar << m_ResultObject;
+        //        ar << m_ResultObject;
     }
     else
     {    // Read informations
@@ -151,13 +148,11 @@ void ZAFormula::Dump(CDumpContext& dc) const
 IMPLEMENT_SERIAL(ZAFormulaAssociation, CObject, g_DefVersion)
 
 ZAFormulaAssociation::ZAFormulaAssociation()
-{
-}
+{}
 
-ZAFormulaAssociation::ZAFormulaAssociation( const CString Name, const CString ObjectNameInitiator )
- : m_AssociationName( Name ),  m_ObjectNameInitiator( ObjectNameInitiator )
-{
-}
+ZAFormulaAssociation::ZAFormulaAssociation(const CString Name, const CString ObjectNameInitiator)
+    : m_AssociationName(Name), m_ObjectNameInitiator(ObjectNameInitiator)
+{}
 
 
 ZAFormulaAssociation::~ZAFormulaAssociation()
@@ -173,14 +168,14 @@ ZAFormulaAssociation::~ZAFormulaAssociation()
 ZAFormulaAssociation*    ZAFormulaAssociation::Clone()
 {
     ZAFormulaAssociation*    pNewAssociation = new ZAFormulaAssociation;
-    
+
     ZAFormula*              obj;
-    POSITION                Position = m_lstFormula.GetHeadPosition( );
-    
+    POSITION                Position = m_lstFormula.GetHeadPosition();
+
     while (Position)
     {
-        obj = (ZAFormula*)m_lstFormula.GetNext( Position );
-        pNewAssociation->m_lstFormula.AddTail( obj->Clone() );
+        obj = (ZAFormula*)m_lstFormula.GetNext(Position);
+        pNewAssociation->m_lstFormula.AddTail(obj->Clone());
     }
     // Copy members
     pNewAssociation->m_AssociationName = m_AssociationName;
@@ -188,70 +183,70 @@ ZAFormulaAssociation*    ZAFormulaAssociation::Clone()
     return pNewAssociation;
 }
 
-void ZAFormulaAssociation::AddFormula( ZAFormula* pFormula )
+void ZAFormulaAssociation::AddFormula(ZAFormula* pFormula)
 {
-    m_lstFormula.AddTail( pFormula );
+    m_lstFormula.AddTail(pFormula);
 }
 
-void ZAFormulaAssociation::DeleteFormula( const CString& Name )
+void ZAFormulaAssociation::DeleteFormula(const CString& Name)
 {
     ZAFormula*  obj;
-    POSITION    Position = m_lstFormula.GetHeadPosition( );
-    
+    POSITION    Position = m_lstFormula.GetHeadPosition();
+
     while (Position)
     {
-        obj = (ZAFormula*)m_lstFormula.GetNext( Position );
+        obj = (ZAFormula*)m_lstFormula.GetNext(Position);
         if (obj->GetObjectName() == Name)
         {
-            DeleteFormula( obj );
+            DeleteFormula(obj);
             return;
         }
     }
 }
 
-void ZAFormulaAssociation::DeleteFormula( ZAFormula* pFormula )
+void ZAFormulaAssociation::DeleteFormula(ZAFormula* pFormula)
 {
-    POSITION    Position = m_lstFormula.Find( pFormula );
-    
+    POSITION    Position = m_lstFormula.Find(pFormula);
+
     if (Position)
     {
         delete (ZAFormula*)pFormula;
         // Destroy the object in the list
-        m_lstFormula.RemoveAt( Position );
+        m_lstFormula.RemoveAt(Position);
     }
 }
 
-ZAFormula*    ZAFormulaAssociation::GetFormulaAt( int Index )
+ZAFormula*    ZAFormulaAssociation::GetFormulaAt(int Index)
 {
-    POSITION    Position = m_lstFormula.FindIndex( Index );
+    POSITION    Position = m_lstFormula.FindIndex(Index);
     if (Position)
-        return (ZAFormula*)m_lstFormula.GetAt( Position );
+        return (ZAFormula*)m_lstFormula.GetAt(Position);
     return NULL;
 }
 
 
-ZAFormula* ZAFormulaAssociation::FindFormula( const CString& Name )
+ZAFormula* ZAFormulaAssociation::FindFormula(const CString& Name)
 {
     ZAFormula*  obj;
-    POSITION    Position = m_lstFormula.GetHeadPosition( );
-    
+    POSITION    Position = m_lstFormula.GetHeadPosition();
+
     while (Position)
     {
-        obj = (ZAFormula*)m_lstFormula.GetNext( Position );
+        obj = (ZAFormula*)m_lstFormula.GetNext(Position);
         if (obj->GetObjectName() == Name)
             return obj;
     }
     return NULL;
 }
 
-ZAFormula* ZAFormulaAssociation::FindFormulaFullString( const CString& Formula )
+ZAFormula* ZAFormulaAssociation::FindFormulaFullString(const CString& Formula)
 {
     ZAFormula*  obj;
-    POSITION    Position = m_lstFormula.GetHeadPosition( );
-    
+    POSITION    Position = m_lstFormula.GetHeadPosition();
+
     while (Position)
     {
-        obj = (ZAFormula*)m_lstFormula.GetNext( Position );
+        obj = (ZAFormula*)m_lstFormula.GetNext(Position);
         if (obj->GetFormula() == Formula)
             return obj;
     }
@@ -259,16 +254,16 @@ ZAFormula* ZAFormulaAssociation::FindFormulaFullString( const CString& Formula )
 }
 
 
-size_t ZAFormulaAssociation::GetFormulaArray( CStringArray& Array )
+size_t ZAFormulaAssociation::GetFormulaArray(CStringArray& Array)
 {
     ZAFormula*  obj;
-    POSITION    Position = m_lstFormula.GetHeadPosition( );
-    
-    Array.RemoveAll();    
+    POSITION    Position = m_lstFormula.GetHeadPosition();
+
+    Array.RemoveAll();
     while (Position)
     {
-        obj = (ZAFormula*)m_lstFormula.GetNext( Position );
-        Array.Add( obj->GetFormula() );
+        obj = (ZAFormula*)m_lstFormula.GetNext(Position);
+        Array.Add(obj->GetFormula());
     }
     // Return the number of element
     return Array.GetSize();
@@ -292,7 +287,7 @@ void ZAFormulaAssociation::Serialize(CArchive& ar)
         ar >> m_AssociationName;
         ar >> m_ObjectNameInitiator;
     }
-    m_lstFormula.Serialize( ar );
+    m_lstFormula.Serialize(ar);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -318,9 +313,8 @@ void ZAFormulaAssociation::Dump(CDumpContext& dc) const
 IMPLEMENT_SERIAL(ZAFormulaAssociationManager, CObject, g_DefVersion)
 
 ZAFormulaAssociationManager::ZAFormulaAssociationManager()
- : m_pCurrentAssociation( NULL )
-{
-}
+    : m_pCurrentAssociation(NULL)
+{}
 
 ZAFormulaAssociationManager::~ZAFormulaAssociationManager()
 {
@@ -331,7 +325,7 @@ ZAFormulaAssociationManager::~ZAFormulaAssociationManager()
     }
 }
 
-void ZAFormulaAssociationManager::AssignContents( const ZAFormulaAssociationManager& ManagerSource )
+void ZAFormulaAssociationManager::AssignContents(const ZAFormulaAssociationManager& ManagerSource)
 {
     // First delete the contents
     while (!m_lstAssociation.IsEmpty())
@@ -339,16 +333,16 @@ void ZAFormulaAssociationManager::AssignContents( const ZAFormulaAssociationMana
         delete m_lstAssociation.GetHead();
         m_lstAssociation.RemoveHead();
     }
-    
+
     ZAFormulaAssociation*      obj;
-    POSITION                Position = ManagerSource.m_lstAssociation.GetHeadPosition( );
-    
+    POSITION                Position = ManagerSource.m_lstAssociation.GetHeadPosition();
+
     while (Position)
     {
         // Read the next element of the source
-        obj = (ZAFormulaAssociation*)ManagerSource.m_lstAssociation.GetNext( Position );
+        obj = (ZAFormulaAssociation*)ManagerSource.m_lstAssociation.GetNext(Position);
         // Add a clone of the element to the list
-        m_lstAssociation.AddTail( obj->Clone() );
+        m_lstAssociation.AddTail(obj->Clone());
     }
     // Set Association to null
     m_pCurrentAssociation = NULL;
@@ -361,14 +355,14 @@ void ZAFormulaAssociationManager::AssignContents( const ZAFormulaAssociationMana
 ZAFormulaAssociationManager*    ZAFormulaAssociationManager::Clone()
 {
     ZAFormulaAssociationManager*    pNewAssociationManager = new ZAFormulaAssociationManager;
-    
+
     ZAFormulaAssociation*      obj;
-    POSITION                Position = m_lstAssociation.GetHeadPosition( );
-    
+    POSITION                Position = m_lstAssociation.GetHeadPosition();
+
     while (Position)
     {
-        obj = (ZAFormulaAssociation*)m_lstAssociation.GetNext( Position );
-        pNewAssociationManager->m_lstAssociation.AddTail( obj->Clone() );
+        obj = (ZAFormulaAssociation*)m_lstAssociation.GetNext(Position);
+        pNewAssociationManager->m_lstAssociation.AddTail(obj->Clone());
     }
     // Set Association to null
     pNewAssociationManager->m_pCurrentAssociation = NULL;
@@ -378,47 +372,47 @@ ZAFormulaAssociationManager*    ZAFormulaAssociationManager::Clone()
 }
 
 
-void    ZAFormulaAssociationManager::AddAssociation( ZAFormulaAssociation* pAssociation )
+void    ZAFormulaAssociationManager::AddAssociation(ZAFormulaAssociation* pAssociation)
 {
-    m_lstAssociation.AddTail( pAssociation );
+    m_lstAssociation.AddTail(pAssociation);
 }
 
-void    ZAFormulaAssociationManager::DeleteAssociation( ZAFormulaAssociation* pAssociation )
+void    ZAFormulaAssociationManager::DeleteAssociation(ZAFormulaAssociation* pAssociation)
 {
-    POSITION    Position = m_lstAssociation.Find( pAssociation );
-    
+    POSITION    Position = m_lstAssociation.Find(pAssociation);
+
     if (Position)
     {
         delete (ZAFormulaAssociation*)pAssociation;
         // Destroy the object in the list
-        m_lstAssociation.RemoveAt( Position );
+        m_lstAssociation.RemoveAt(Position);
     }
 }
 
-void    ZAFormulaAssociationManager::DeleteAssociation( const CString& Name )
+void    ZAFormulaAssociationManager::DeleteAssociation(const CString& Name)
 {
     ZAFormulaAssociation*  obj;
-    POSITION            Position = m_lstAssociation.GetHeadPosition( );
-    
+    POSITION            Position = m_lstAssociation.GetHeadPosition();
+
     while (Position)
     {
-        obj = (ZAFormulaAssociation*)m_lstAssociation.GetNext( Position );
+        obj = (ZAFormulaAssociation*)m_lstAssociation.GetNext(Position);
         if (obj->GetAssociationName() == Name)
         {
-            DeleteAssociation( obj );
+            DeleteAssociation(obj);
             return;
         }
     }
 }
 
-ZAFormulaAssociation*    ZAFormulaAssociationManager::FindAssociation( const CString& Name )
+ZAFormulaAssociation*    ZAFormulaAssociationManager::FindAssociation(const CString& Name)
 {
     ZAFormulaAssociation*  obj;
-    POSITION            Position = m_lstAssociation.GetHeadPosition( );
-    
+    POSITION            Position = m_lstAssociation.GetHeadPosition();
+
     while (Position)
     {
-        obj = (ZAFormulaAssociation*)m_lstAssociation.GetNext( Position );
+        obj = (ZAFormulaAssociation*)m_lstAssociation.GetNext(Position);
         if (obj->GetAssociationName() == Name)
             return obj;
     }
@@ -429,13 +423,13 @@ ZAFormulaAssociation*    ZAFormulaAssociationManager::FindAssociation( const CSt
 CStringArray& ZAFormulaAssociationManager::RefreshAssociationArray()
 {
     ZAFormulaAssociation*  obj;
-    POSITION            Position = m_lstAssociation.GetHeadPosition( );
-    
-    m_AssociationArrayName.RemoveAll();    
+    POSITION            Position = m_lstAssociation.GetHeadPosition();
+
+    m_AssociationArrayName.RemoveAll();
     while (Position)
     {
-        obj = (ZAFormulaAssociation*)m_lstAssociation.GetNext( Position );
-        m_AssociationArrayName.Add( obj->GetAssociationName() );
+        obj = (ZAFormulaAssociation*)m_lstAssociation.GetNext(Position);
+        m_AssociationArrayName.Add(obj->GetAssociationName());
     }
     return m_AssociationArrayName;
 }
@@ -443,15 +437,15 @@ CStringArray& ZAFormulaAssociationManager::RefreshAssociationArray()
 
 // Run through the list of association
 // and for each association, construct all formula pointers
-void    ZAFormulaAssociationManager::InitializeFormulaAssociations( ZDDocumentData& Doc )
+void ZAFormulaAssociationManager::InitializeFormulaAssociations(PSS_DocumentData& doc)
 {
     ZAFormulaAssociation*  obj;
-    POSITION            Position = m_lstAssociation.GetHeadPosition( );
-    
+    POSITION            Position = m_lstAssociation.GetHeadPosition();
+
     while (Position)
     {
-        obj = (ZAFormulaAssociation*)m_lstAssociation.GetNext( Position );
-        ZAFormula::ConstructObjectPointer( Doc, obj->GetFormulaList() );
+        obj = (ZAFormulaAssociation*)m_lstAssociation.GetNext(Position);
+        ZAFormula::ConstructObjectPointer(doc, obj->GetFormulaList());
     }
 }
 
@@ -460,7 +454,7 @@ void    ZAFormulaAssociationManager::InitializeFormulaAssociations( ZDDocumentDa
 
 void ZAFormulaAssociationManager::Serialize(CArchive& ar)
 {
-    m_lstAssociation.Serialize( ar );
+    m_lstAssociation.Serialize(ar);
     if (ar.IsStoring())
         ar << m_pCurrentAssociation;
     else
@@ -492,9 +486,8 @@ void ZAFormulaAssociationManager::Dump(CDumpContext& dc) const
 IMPLEMENT_SERIAL(ZAFormulaSchema, CObject, g_DefVersion)
 
 ZAFormulaSchema::ZAFormulaSchema()
- : m_sDescription( "" ), m_FormulaSchemaType( UserSchema )
-{
-}
+    : m_sDescription(""), m_FormulaSchemaType(UserSchema)
+{}
 
 ZAFormulaSchema::~ZAFormulaSchema()
 {
@@ -508,16 +501,16 @@ ZAFormulaSchema::~ZAFormulaSchema()
 ZAFormulaSchema*    ZAFormulaSchema::Clone()
 {
     ZAFormulaSchema*    pNewFormulaSchema = new ZAFormulaSchema;
-    
+
     ZAFormula*          obj;
-    POSITION            Position = m_lstFormula.GetHeadPosition( );
-    
+    POSITION            Position = m_lstFormula.GetHeadPosition();
+
     while (Position)
     {
-        obj = (ZAFormula*)m_lstFormula.GetNext( Position );
+        obj = (ZAFormula*)m_lstFormula.GetNext(Position);
         ZAFormula*    pNewFormula = new ZAFormula;
         (ZAFormula&)*pNewFormula = (ZAFormula&)*obj;
-        pNewFormulaSchema->m_lstFormula.AddTail( pNewFormula );
+        pNewFormulaSchema->m_lstFormula.AddTail(pNewFormula);
     }
     // Copy the name
     pNewFormulaSchema->m_sSchemaName = m_sSchemaName;
@@ -527,35 +520,35 @@ ZAFormulaSchema*    ZAFormulaSchema::Clone()
 }
 
 
-BOOL        ZAFormulaSchema::DeletePageFormulas( int iPage, BOOL bRedistribute )
+BOOL        ZAFormulaSchema::DeletePageFormulas(int iPage, BOOL bRedistribute)
 {
     ZAFormula*          obj;
-    POSITION            Position = m_lstFormula.GetHeadPosition( );
-    
+    POSITION            Position = m_lstFormula.GetHeadPosition();
+
     while (Position)
     {
-        obj = (ZAFormula*)m_lstFormula.GetNext( Position );
+        obj = (ZAFormula*)m_lstFormula.GetNext(Position);
         if (obj->GetPage() == iPage)
         {
             // Save the position within the list
-            POSITION ElementPosition = m_lstFormula.Find( obj ); 
+            POSITION ElementPosition = m_lstFormula.Find(obj);
             if (!ElementPosition)
                 return FALSE;
             // Destroy the object
             delete (ZAFormula*)obj;
             // Destroy the object in the list
-            m_lstFormula.RemoveAt( ElementPosition );
+            m_lstFormula.RemoveAt(ElementPosition);
         }
     }
 
     if (bRedistribute)
     {
         // Redistribute the objects' pages
-        Position = m_lstFormula.GetTailPosition( );
-            
-        while( Position )
+        Position = m_lstFormula.GetTailPosition();
+
+        while (Position)
         {
-            obj = (ZAFormula*)m_lstFormula.GetPrev( Position );
+            obj = (ZAFormula*)m_lstFormula.GetPrev(Position);
             // Test the object's page, if before the deleted page
             // continue the loop
             // For formula it impossible to stop the loop
@@ -563,13 +556,13 @@ BOOL        ZAFormulaSchema::DeletePageFormulas( int iPage, BOOL bRedistribute )
             // by page
             if (obj->GetPage() < iPage)
                 continue;
-            obj->SetPage( obj->GetPage() - 1 );
+            obj->SetPage(obj->GetPage() - 1);
         }
     }
     return TRUE;
 }
 
-BOOL        ZAFormulaSchema::CopyPageFormulas( ZAFormulaSchema*    pFormulaDst, int iPage )
+BOOL        ZAFormulaSchema::CopyPageFormulas(ZAFormulaSchema*    pFormulaDst, int iPage)
 {
     ZAFormula*          obj;
     POSITION            Position;
@@ -579,9 +572,9 @@ BOOL        ZAFormulaSchema::CopyPageFormulas( ZAFormulaSchema*    pFormulaDst, 
     // formula corresponding to the page    
     int        iPos;
     BOOL    bFoundOne = FALSE;
-    for (Position = m_lstFormula.GetHeadPosition( ), iPos = 0; Position; ++iPos)
+    for (Position = m_lstFormula.GetHeadPosition(), iPos = 0; Position; ++iPos)
     {
-        obj = (ZAFormula*)m_lstFormula.GetNext( Position );
+        obj = (ZAFormula*)m_lstFormula.GetNext(Position);
         if (obj->GetPage() == iPage)
         {
             bFoundOne = TRUE;
@@ -591,11 +584,11 @@ BOOL        ZAFormulaSchema::CopyPageFormulas( ZAFormulaSchema*    pFormulaDst, 
     // If nothing found, OK
     if (!bFoundOne)
         return TRUE;
-        
-    Position = m_lstFormula.GetHeadPosition( );
+
+    Position = m_lstFormula.GetHeadPosition();
     while (Position)
     {
-        obj = (ZAFormula*)m_lstFormula.GetNext( Position );
+        obj = (ZAFormula*)m_lstFormula.GetNext(Position);
         if (obj->GetPage() == iPage)
         {
             // If it is the first element to be inserted,
@@ -604,20 +597,20 @@ BOOL        ZAFormulaSchema::CopyPageFormulas( ZAFormulaSchema*    pFormulaDst, 
             {
                 if (!iPos)
                 {
-                    InsertedPosition = pFormulaDst->m_lstFormula.AddHead( (CObject*)obj->Clone() );
+                    InsertedPosition = pFormulaDst->m_lstFormula.AddHead((CObject*)obj->Clone());
                     continue;
                 }
                 else
                 {
-                    InsertedPosition = pFormulaDst->m_lstFormula.GetHeadPosition( );
-                    
+                    InsertedPosition = pFormulaDst->m_lstFormula.GetHeadPosition();
+
                     for (int iSearchPosition = 0; InsertedPosition && iSearchPosition < iPos; ++iSearchPosition)
                     {
-                        pFormulaDst->m_lstFormula.GetNext( InsertedPosition );
+                        pFormulaDst->m_lstFormula.GetNext(InsertedPosition);
                     }
                 }
             }
-            InsertedPosition = pFormulaDst->m_lstFormula.InsertAfter( InsertedPosition, (CObject*)obj->Clone() );
+            InsertedPosition = pFormulaDst->m_lstFormula.InsertAfter(InsertedPosition, (CObject*)obj->Clone());
         }
     }
     return TRUE;
@@ -647,12 +640,12 @@ void ZAFormulaSchema::Serialize(CArchive& ar)
         else
         {
             CString    sText;
-            sText.LoadString( IDS_DESCRIPTIONSTANDARDSCHEMA );
-            SetDescription( sText );
-            SetFormulaSchemaType( UserSchema );
+            sText.LoadString(IDS_DESCRIPTIONSTANDARDSCHEMA);
+            SetDescription(sText);
+            SetFormulaSchemaType(UserSchema);
         }
     }
-    m_lstFormula.Serialize( ar );
+    m_lstFormula.Serialize(ar);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -683,12 +676,11 @@ CStringArray        ZASchemaManager::m_SchemaNameArray;
 IMPLEMENT_SERIAL(ZASchemaManager, CObject, g_DefVersion)
 
 ZASchemaManager::ZASchemaManager()
-{
-}
+{}
 
 ZASchemaManager::ZASchemaManager(const ZASchemaManager &right)
 {
-      *this = right;
+    *this = right;
 }
 
 ZASchemaManager::~ZASchemaManager()
@@ -706,31 +698,31 @@ const ZASchemaManager & ZASchemaManager::operator=(const ZASchemaManager &right)
     // Copy elements      
     ZAFormulaSchema*    obj;
     POSITION            Position;
-    
-    Position = ((ZASchemaManager &)right).m_lstSchema.GetHeadPosition( );
+
+    Position = ((ZASchemaManager &)right).m_lstSchema.GetHeadPosition();
     while (Position)
     {
-        obj = (ZAFormulaSchema *)((ZASchemaManager &)right).m_lstSchema.GetNext( Position );
-        m_lstSchema.AddTail( obj->Clone() );
+        obj = (ZAFormulaSchema *)((ZASchemaManager &)right).m_lstSchema.GetNext(Position);
+        m_lstSchema.AddTail(obj->Clone());
     }
     return *this;
 }
 
 ZASchemaManager*    ZASchemaManager::Clone()
 {
-    ZASchemaManager*    pNewManager = new ZASchemaManager( *this );
+    ZASchemaManager*    pNewManager = new ZASchemaManager(*this);
     return pNewManager;
 }
 
-void ZASchemaManager::InitializeSchemaObjectPointer( ZDDocumentData& Doc )
+void ZASchemaManager::InitializeSchemaObjectPointer(PSS_DocumentData& Doc)
 {
     ZAFormulaSchema*      obj;
-    POSITION            Position = m_lstSchema.GetHeadPosition( );
-    
+    POSITION            Position = m_lstSchema.GetHeadPosition();
+
     while (Position)
     {
-        obj = (ZAFormulaSchema*)m_lstSchema.GetNext( Position );
-        ZAFormula::ConstructObjectPointer( Doc, obj->GetFormulaList() );
+        obj = (ZAFormulaSchema*)m_lstSchema.GetNext(Position);
+        ZAFormula::ConstructObjectPointer(Doc, obj->GetFormulaList());
     }
 }
 
@@ -741,42 +733,42 @@ void ZASchemaManager::CreateStandardEmptySchema()
     Create(g_OriginalSchema);
 }
 
-void ZASchemaManager::Create( const CString& sName )
+void ZASchemaManager::Create(const CString& sName)
 {
     // Create the original 
     ZAFormulaSchema*    pOriginalSchema = new ZAFormulaSchema;
-    
-    pOriginalSchema->SetSchemaName( sName );
-    m_lstSchema.AddTail( pOriginalSchema );
+
+    pOriginalSchema->SetSchemaName(sName);
+    m_lstSchema.AddTail(pOriginalSchema);
 
 }
 
-CObList*        ZASchemaManager::GetFormulaSchema( const CString& sName )
+CObList*        ZASchemaManager::GetFormulaSchema(const CString& sName)
 {
     if (sName.IsEmpty())
         return NULL;
     ZAFormulaSchema*      obj;
-    POSITION            Position = m_lstSchema.GetHeadPosition( );
-    
+    POSITION            Position = m_lstSchema.GetHeadPosition();
+
     while (Position)
     {
-        obj = (ZAFormulaSchema*)m_lstSchema.GetNext( Position );
+        obj = (ZAFormulaSchema*)m_lstSchema.GetNext(Position);
         if (obj->GetSchemaName() == sName)
             return (CObList*)obj;
     }
     return NULL;
 }
 
-CObList*    ZASchemaManager::GetFormulaList( const CString& sName )
+CObList*    ZASchemaManager::GetFormulaList(const CString& sName)
 {
     if (sName.IsEmpty())
         return NULL;
     ZAFormulaSchema*      obj;
-    POSITION            Position = m_lstSchema.GetHeadPosition( );
-    
+    POSITION            Position = m_lstSchema.GetHeadPosition();
+
     while (Position)
     {
-        obj = (ZAFormulaSchema*)m_lstSchema.GetNext( Position );
+        obj = (ZAFormulaSchema*)m_lstSchema.GetNext(Position);
         if (obj->GetSchemaName() == sName)
             return &(obj->GetFormulaList());
     }
@@ -786,13 +778,13 @@ CObList*    ZASchemaManager::GetFormulaList( const CString& sName )
 CStringArray&    ZASchemaManager::GetFormulaArrayName()
 {
     ZAFormulaSchema*      obj;
-    POSITION            Position = m_lstSchema.GetHeadPosition( );
-    
+    POSITION            Position = m_lstSchema.GetHeadPosition();
+
     m_SchemaNameArray.RemoveAll();
     while (Position)
     {
-        obj = (ZAFormulaSchema*)m_lstSchema.GetNext( Position );
-        m_SchemaNameArray.Add( obj->GetSchemaName() );
+        obj = (ZAFormulaSchema*)m_lstSchema.GetNext(Position);
+        m_SchemaNameArray.Add(obj->GetSchemaName());
     }
     return m_SchemaNameArray;
 }
@@ -800,14 +792,14 @@ CStringArray&    ZASchemaManager::GetFormulaArrayName()
 CStringArray&    ZASchemaManager::GetFormulaUserArrayName()
 {
     ZAFormulaSchema*      obj;
-    POSITION            Position = m_lstSchema.GetHeadPosition( );
-    
+    POSITION            Position = m_lstSchema.GetHeadPosition();
+
     m_SchemaNameArray.RemoveAll();
     while (Position)
     {
-        obj = (ZAFormulaSchema*)m_lstSchema.GetNext( Position );
+        obj = (ZAFormulaSchema*)m_lstSchema.GetNext(Position);
         if (obj->GetFormulaSchemaType() == UserSchema)
-            m_SchemaNameArray.Add( obj->GetSchemaName() );
+            m_SchemaNameArray.Add(obj->GetSchemaName());
     }
     return m_SchemaNameArray;
 }
@@ -815,88 +807,88 @@ CStringArray&    ZASchemaManager::GetFormulaUserArrayName()
 CStringArray&    ZASchemaManager::GetFormulaSystemArrayName()
 {
     ZAFormulaSchema*      obj;
-    POSITION            Position = m_lstSchema.GetHeadPosition( );
-    
+    POSITION            Position = m_lstSchema.GetHeadPosition();
+
     m_SchemaNameArray.RemoveAll();
     while (Position)
     {
-        obj = (ZAFormulaSchema*)m_lstSchema.GetNext( Position );
+        obj = (ZAFormulaSchema*)m_lstSchema.GetNext(Position);
         if (obj->GetFormulaSchemaType() == SystemSchema)
-            m_SchemaNameArray.Add( obj->GetSchemaName() );
+            m_SchemaNameArray.Add(obj->GetSchemaName());
     }
     return m_SchemaNameArray;
 }
 
-BOOL    ZASchemaManager::CopySchema( const CString& sSource, const CString sNew )
+BOOL    ZASchemaManager::CopySchema(const CString& sSource, const CString sNew)
 {
     ZAFormulaSchema*    pSource;
-    pSource = (ZAFormulaSchema*)GetFormulaSchema( sSource );
+    pSource = (ZAFormulaSchema*)GetFormulaSchema(sSource);
     if (pSource)
     {
         ZAFormulaSchema*    pNew = pSource->Clone();
-        pNew->SetSchemaName( sNew );
-        m_lstSchema.AddTail( pNew );
+        pNew->SetSchemaName(sNew);
+        m_lstSchema.AddTail(pNew);
         return TRUE;
     }
     return FALSE;
 }
 
 
-BOOL    ZASchemaManager::DeletePageFormulas( int iPage )
+BOOL    ZASchemaManager::DeletePageFormulas(int iPage)
 {
     ZAFormulaSchema*      obj;
-    POSITION            Position = m_lstSchema.GetHeadPosition( );
+    POSITION            Position = m_lstSchema.GetHeadPosition();
     BOOL                bRetValue = 0;
     while (Position)
     {
-        obj = (ZAFormulaSchema*)m_lstSchema.GetNext( Position );
-        bRetValue |= !DeletePageFormulas( obj->GetSchemaName(), iPage );
+        obj = (ZAFormulaSchema*)m_lstSchema.GetNext(Position);
+        bRetValue |= !DeletePageFormulas(obj->GetSchemaName(), iPage);
     }
     return !bRetValue;
 }
 
-BOOL    ZASchemaManager::DeletePageFormulas( const CString& sName, int iPage )
+BOOL    ZASchemaManager::DeletePageFormulas(const CString& sName, int iPage)
 {
-    ZAFormulaSchema*    pFormula =     (ZAFormulaSchema*)GetFormulaSchema( sName );
-    return pFormula->DeletePageFormulas( iPage );
+    ZAFormulaSchema*    pFormula = (ZAFormulaSchema*)GetFormulaSchema(sName);
+    return pFormula->DeletePageFormulas(iPage);
 }
 
-BOOL    ZASchemaManager::CopyPageFormulas( const CString& sName, ZASchemaManager& SchemaDst, int iPage )
+BOOL    ZASchemaManager::CopyPageFormulas(const CString& sName, ZASchemaManager& SchemaDst, int iPage)
 {
-    ZAFormulaSchema*    pFormula =     (ZAFormulaSchema*)GetFormulaSchema( sName );
-    ZAFormulaSchema*    pFormulaDst =     (ZAFormulaSchema*)SchemaDst.GetFormulaSchema( sName );
+    ZAFormulaSchema*    pFormula = (ZAFormulaSchema*)GetFormulaSchema(sName);
+    ZAFormulaSchema*    pFormulaDst = (ZAFormulaSchema*)SchemaDst.GetFormulaSchema(sName);
     // First delete the previous formula.
     // Without redistributing the pages.
     if (pFormulaDst)    // If the Association exist
     {
-        if (!pFormulaDst->DeletePageFormulas( iPage, FALSE ))
+        if (!pFormulaDst->DeletePageFormulas(iPage, FALSE))
             return FALSE;
     }
     if (!pFormulaDst)    // If the Association does not exist create it before
     {
-        SchemaDst.Create( sName );
-        pFormulaDst =     (ZAFormulaSchema*)SchemaDst.GetFormulaSchema( sName );
-        ASSERT( pFormulaDst != NULL );
+        SchemaDst.Create(sName);
+        pFormulaDst = (ZAFormulaSchema*)SchemaDst.GetFormulaSchema(sName);
+        ASSERT(pFormulaDst != NULL);
     }
-    return pFormula->CopyPageFormulas( pFormulaDst, iPage );
+    return pFormula->CopyPageFormulas(pFormulaDst, iPage);
 }
 
-BOOL    ZASchemaManager::DeleteFormulaList( const CString& sName )
+BOOL    ZASchemaManager::DeleteFormulaList(const CString& sName)
 {
     ZAFormulaSchema*      obj;
-    POSITION            Position = m_lstSchema.GetHeadPosition( );
-    
+    POSITION            Position = m_lstSchema.GetHeadPosition();
+
     while (Position)
     {
-        obj = (ZAFormulaSchema*)m_lstSchema.GetNext( Position );
+        obj = (ZAFormulaSchema*)m_lstSchema.GetNext(Position);
         if (obj->GetSchemaName() == sName)
         {
             // Save the position within the list
-            Position = m_lstSchema.Find( obj ); 
+            Position = m_lstSchema.Find(obj);
             // Destroy the object
             delete (ZAFormulaSchema*)obj;
             // Destroy the object in the list
-            m_lstSchema.RemoveAt( Position );
+            m_lstSchema.RemoveAt(Position);
             return TRUE;
         }
     }
@@ -908,14 +900,14 @@ BOOL    ZASchemaManager::DeleteFormulaList( const CString& sName )
 
 void ZASchemaManager::Serialize(CArchive& ar)
 {
-    m_lstSchema.Serialize( ar );
+    m_lstSchema.Serialize(ar);
 }
 
 void ZASchemaManager::ReadSerializeOldFormat(CArchive& ar)
 {
     // Create the original schema
     Create(g_OriginalSchema);
-    GetFormulaList(g_OriginalSchema)->Serialize( ar );
+    GetFormulaList(g_OriginalSchema)->Serialize(ar);
 }
 
 /////////////////////////////////////////////////////////////////////////////

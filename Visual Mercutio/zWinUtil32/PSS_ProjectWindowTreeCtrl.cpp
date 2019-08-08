@@ -77,7 +77,7 @@ void PSS_ProjectWindowTreeCtrl::Refresh()
     m_ProjectTree.Refresh();
 }
 //---------------------------------------------------------------------------
-ZDDocumentData* PSS_ProjectWindowTreeCtrl::GetSelectedDocument()
+PSS_DocumentData* PSS_ProjectWindowTreeCtrl::GetSelectedDocument()
 {
     return m_ProjectTree.GetSelectedDocument();
 }

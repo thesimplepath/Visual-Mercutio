@@ -13,7 +13,7 @@
 
 // processsoft
 #include "ZDDoc.h"
-#include "DocData.h"
+#include "PSS_DocumentData.h"
 #include "ZAGlobal.h"
 
 #ifdef _DEBUG
@@ -73,7 +73,7 @@ void PSS_BaseTitleMDIPage::OnUpdateFrameTitle(BOOL addToTitle)
     if (!pDocument)
         return;
 
-    ZDDocumentData* pDocData = pDocument->GetActiveDocumentData();
+    PSS_DocumentData* pDocData = pDocument->GetActiveDocumentData();
 
     if (!pDocData)
         return;

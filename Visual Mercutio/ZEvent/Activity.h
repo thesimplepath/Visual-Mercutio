@@ -19,7 +19,7 @@
 
 //## begin module%36754981018C.includes preserve=yes
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -27,37 +27,23 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-//## end module%36754981018C.includes
-
-// MailMsg
-#include "zBaseLib\MailMsg.h"
-// CmdLine
-#include "zBaseLib\CmdLine.h"
-// BActvt
-#include "BActvt.h"
-//## begin module%36754981018C.declarations preserve=no
-//## end module%36754981018C.declarations
-
-//## begin module%36754981018C.additionalDeclarations preserve=yes
+// processsoft
 #include "zBaseLib\FileMg.h"
+#include "zBaseLib\MailMsg.h"
+#include "zBaseLib\PSS_CommandLine.h"
+#include "BActvt.h"
 
-const    char    RejectActivityToPrevious[] = "/P";
+const char RejectActivityToPrevious[] = "/P";
 
 #ifdef _ZEVENTEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
-
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-
-//## end module%36754981018C.additionalDeclarations
-
 
 //## Class: ZActivity%36725B6400FF
 //    Implements an activity.
@@ -261,8 +247,8 @@ public:
 
       //## Attribute: pCommandLine%3751A33D032F
       //    A pointer to the command line.
-      ZUCommandLine* GetpCommandLine ();
-      void SetpCommandLine (ZUCommandLine* value);
+      PSS_CommandLine* GetpCommandLine ();
+      void SetpCommandLine(PSS_CommandLine* value);
 
       //## Attribute: ProcessToStartArray%378B91690060
       //    Contains the array of process to start
@@ -354,10 +340,10 @@ public:
 
   private:
     //## Constructors (generated)
-      ZActivity(const ZActivity &right);
+      ZActivity(const ZActivity& other);
 
     //## Assignment Operation (generated)
-      const ZActivity & operator=(const ZActivity &right);
+      const ZActivity& operator = (const ZActivity& other);
 
     // Data Members for Class Attributes
 
@@ -381,7 +367,7 @@ public:
       //## end ZActivity::pMailMessage%37500DB1008C.attr
 
       //## begin ZActivity::pCommandLine%3751A33D032F.attr preserve=no  public: ZUCommandLine* {U} 
-      ZUCommandLine* m_pCommandLine;
+      PSS_CommandLine* m_pCommandLine;
       //## end ZActivity::pCommandLine%3751A33D032F.attr
 
       //## Attribute: pBaseOnFormFile%37A09D4C031D
@@ -603,18 +589,14 @@ inline void ZActivity::SetpMailMessage (ZBMailMessage* value)
   //## end ZActivity::SetpMailMessage%37500DB1008C.set
 }
 
-inline ZUCommandLine* ZActivity::GetpCommandLine ()
+inline PSS_CommandLine* ZActivity::GetpCommandLine()
 {
-  //## begin ZActivity::GetpCommandLine%3751A33D032F.get preserve=no
-  return m_pCommandLine;
-  //## end ZActivity::GetpCommandLine%3751A33D032F.get
+    return m_pCommandLine;
 }
 
-inline void ZActivity::SetpCommandLine (ZUCommandLine* value)
+inline void ZActivity::SetpCommandLine(PSS_CommandLine* value)
 {
-  //## begin ZActivity::SetpCommandLine%3751A33D032F.set preserve=no
-  m_pCommandLine = value;
-  //## end ZActivity::SetpCommandLine%3751A33D032F.set
+    m_pCommandLine = value;
 }
 
 inline CStringArray& ZActivity::GetProcessToStartArray ()

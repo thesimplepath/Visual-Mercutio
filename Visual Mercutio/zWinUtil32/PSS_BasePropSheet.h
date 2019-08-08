@@ -118,7 +118,7 @@ class AFX_EXT_CLASS PSS_BasePropSheet : public CPropertySheet
         *@param other - other object to copy from
         *@return copy of itself
         */
-        const PSS_BasePropSheet & operator = (const PSS_BasePropSheet& other);
+        const PSS_BasePropSheet& operator = (const PSS_BasePropSheet& other);
 };
 
 //---------------------------------------------------------------------------

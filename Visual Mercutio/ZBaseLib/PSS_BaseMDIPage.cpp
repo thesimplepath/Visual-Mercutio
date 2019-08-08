@@ -11,7 +11,7 @@
 // processsoft
 #include "PSS_BaseMainFrame.h"
 #include "ZDDoc.h"
-#include "DocData.h"
+#include "PSS_DocumentData.h"
 #include "ZIView.h"
 #include "ZAGlobal.h"
 #include "ZBCommandObserverMsg.h"

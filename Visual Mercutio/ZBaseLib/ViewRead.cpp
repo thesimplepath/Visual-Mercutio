@@ -21,7 +21,7 @@
 // ViewRead
 #include "ViewRead.h"
 // DocData
-#include "DocData.h"
+#include "PSS_DocumentData.h"
 
 //## begin module%3620D873038F.additionalDeclarations preserve=yes
 
@@ -73,7 +73,9 @@ void ZIViewRead::OnDraw (CDC* pDC)
     ZDDocument*    pDoc = GetDocument();
     if (!pDoc || !pDoc->GetActiveDocumentData())
         return;
-    ZDDocumentData*    pDocData = pDoc->GetActiveDocumentData();
+
+    PSS_DocumentData* pDocData = pDoc->GetActiveDocumentData();
+
     if (pDocData)
     {
         // Translate to absolute coordinates

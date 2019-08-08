@@ -20,7 +20,7 @@
 /////////////////////////////////////////////////////////////////////////
 // Forward definition
 class ZDDocument;
-class ZDDocumentData;
+class PSS_DocumentData;
 class PlanFinObject;
 
 
@@ -59,7 +59,7 @@ public:
     PlanFinObject*    GetResultObjectPointer() const { return m_ResultObject; };
 
     // Scans the formula list to find object pointer
-    static void        ConstructObjectPointer( ZDDocumentData& Doc, CObList& lstFormula );
+    static void ConstructObjectPointer(PSS_DocumentData& doc, CObList& lstFormula);
     
 // Implementation
 public:
@@ -138,7 +138,7 @@ protected:
 public:
     ZAFormulaAssociationManager();
     
-    void                InitializeFormulaAssociations( ZDDocumentData& Doc );
+    void                InitializeFormulaAssociations(PSS_DocumentData& doc);
     
     void                AddAssociation( ZAFormulaAssociation* pAssociation );
     void                DeleteAssociation( const CString& Name );
@@ -233,7 +233,7 @@ public:
     ZASchemaManager(const ZASchemaManager &right);
     const ZASchemaManager & operator=(const ZASchemaManager &right);
 
-    void                InitializeSchemaObjectPointer( ZDDocumentData& Doc );
+    void                InitializeSchemaObjectPointer(PSS_DocumentData& doc);
     
     CObList*            GetFormulaList( const CString& sName );
     CObList*            GetFormulaSchema( const CString& sName );

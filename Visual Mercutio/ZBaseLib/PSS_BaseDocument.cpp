@@ -44,58 +44,6 @@ const PSS_BaseDocument& PSS_BaseDocument::operator = (const PSS_BaseDocument& ot
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-void PSS_BaseDocument::Serialize(CArchive& archive)
-{
-    // do write?
-    if (archive.IsStoring())
-        // write data
-        WriteFileStamp(archive, GetDocumentStamp());
-    else
-    {
-        // read data
-        const WORD stamp = ReadFileStamp(archive, GetDocumentStamp());
-
-        if (stamp != 0xFFFF)
-            AfxThrowArchiveException(CArchiveException::generic);
-
-        if (GetDocumentStamp().GetInternalVersion() > g_VersionFile)
-            AfxThrowArchiveException(CArchiveException::badSchema);
-    }
-}
-//---------------------------------------------------------------------------
-int PSS_BaseDocument::ReadFileStamp(CArchive& archive, ZDFolderStamp& stamp)
-{
-    WORD fileStamp = 0;
-
-    TRY
-    {
-        archive >> fileStamp;
-    }
-    CATCH(CArchiveException, e)
-    {
-        return 0;
-    }
-    END_CATCH
-
-    // check if the stamp has been set for next generation of files
-    if (fileStamp == 0xFFFF)
-        archive >> stamp;
-
-    return fileStamp;
-}
-//---------------------------------------------------------------------------
-void PSS_BaseDocument::WriteFileStamp(CArchive& archive, ZDFolderStamp& stamp)
-{
-    // set the new version before writing the file
-    stamp.SetInternalVersion(g_VersionFile);
-    
-    WORD temp = 0xFFFF;
-
-    // put the stamp for differentiate the new generation of files
-    archive << temp;
-    archive << stamp;
-}
-//---------------------------------------------------------------------------
 BOOL PSS_BaseDocument::ReadDocument(const CString& fileName)
 {
     BOOL           result = FALSE;
@@ -168,6 +116,58 @@ void PSS_BaseDocument::FillFolderStampInformationForModification(const CString& 
     // and therefore, updates the folder information
     GetDocumentStamp().SetModificationUserName(userName);
     GetDocumentStamp().SetModificationDate(CTime::GetCurrentTime());
+}
+//---------------------------------------------------------------------------
+void PSS_BaseDocument::Serialize(CArchive& ar)
+{
+    // do write?
+    if (ar.IsStoring())
+        // write data
+        WriteFileStamp(ar, GetDocumentStamp());
+    else
+    {
+        // read data
+        const WORD stamp = ReadFileStamp(ar, GetDocumentStamp());
+
+        if (stamp != 0xFFFF)
+            AfxThrowArchiveException(CArchiveException::generic);
+
+        if (GetDocumentStamp().GetInternalVersion() > g_VersionFile)
+            AfxThrowArchiveException(CArchiveException::badSchema);
+    }
+}
+//---------------------------------------------------------------------------
+int PSS_BaseDocument::ReadFileStamp(CArchive& archive, ZDFolderStamp& stamp)
+{
+    WORD fileStamp = 0;
+
+    TRY
+    {
+        archive >> fileStamp;
+    }
+        CATCH(CArchiveException, e)
+    {
+        return 0;
+    }
+    END_CATCH
+
+        // check if the stamp has been set for next generation of files
+        if (fileStamp == 0xFFFF)
+            archive >> stamp;
+
+    return fileStamp;
+}
+//---------------------------------------------------------------------------
+void PSS_BaseDocument::WriteFileStamp(CArchive& archive, ZDFolderStamp& stamp)
+{
+    // set the new version before writing the file
+    stamp.SetInternalVersion(g_VersionFile);
+
+    WORD temp = 0xFFFF;
+
+    // put the stamp for differentiate the new generation of files
+    archive << temp;
+    archive << stamp;
 }
 //---------------------------------------------------------------------------
 #ifdef _DEBUG

@@ -31,7 +31,7 @@
 //## begin module%36500BDD017F.additionalDeclarations preserve=yes
 #include "ZDDoc.h"
 // DocData
-#include "DocData.h"
+#include "PSS_DocumentData.h"
 
 
 // Class ZUDocumentExport 

@@ -109,7 +109,7 @@ class AFX_EXT_CLASS PSS_FieldTree
         *@param iconIndex - icon index
         *@return newly added item handle, NULL on error
         */
-        virtual HTREEITEM AddDocumentItem(ZDDocumentData* pData, HTREEITEM hParentTreeItem, int iconIndex);
+        virtual HTREEITEM AddDocumentItem(PSS_DocumentData* pData, HTREEITEM hParentTreeItem, int iconIndex);
 
         /**
         * Adds a repository field item

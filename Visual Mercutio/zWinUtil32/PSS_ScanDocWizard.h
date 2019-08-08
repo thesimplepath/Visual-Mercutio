@@ -36,7 +36,7 @@ class AFX_EXT_CLASS PSS_ScanDocWizard
         /**
         * Document
         */
-        class IDocument
+        class IDocument : public CObject
         {
             public:
                 CString m_FileName;
@@ -77,7 +77,7 @@ class AFX_EXT_CLASS PSS_ScanDocWizard
         virtual IDocument* GetDocumentAt(std::size_t index);
 
     private:
-        CObArray m_Doc;
+        CObArray m_DocArray;
 
         /**
         * Copy constructor
@@ -112,7 +112,7 @@ class AFX_EXT_CLASS PSS_ScanDocWizard
 //---------------------------------------------------------------------------
 std::size_t PSS_ScanDocWizard::GetDocumentCount() const
 {
-    return m_Doc.GetSize();
+    return m_DocArray.GetSize();
 }
 //---------------------------------------------------------------------------
 

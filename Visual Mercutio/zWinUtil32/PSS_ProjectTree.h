@@ -18,7 +18,7 @@
 
 // forward class declaration
 class ZDDocument;
-class ZDDocumentData;
+class PSS_DocumentData;
 class ZITreeCtrl;
 
 #ifdef _ZWINUTIL32EXPORT
@@ -70,7 +70,7 @@ class AFX_EXT_CLASS PSS_ProjectTree
         * Gets the selected document
         *@return the selected document, NULL if no selection or on error
         */
-        ZDDocumentData* GetSelectedDocument();
+        PSS_DocumentData* GetSelectedDocument();
 
         /**
         * Gets the selected document title
@@ -107,7 +107,7 @@ class AFX_EXT_CLASS PSS_ProjectTree
         *@param iconIndex - icon index
         *@return newly added item handle, NULL on error
         */
-        HTREEITEM AddDocumentItem(ZDDocumentData* pData, HTREEITEM hParentTreeItem, int iconIndex);
+        HTREEITEM AddDocumentItem(PSS_DocumentData* pData, HTREEITEM hParentTreeItem, int iconIndex);
 
     private:
         /**

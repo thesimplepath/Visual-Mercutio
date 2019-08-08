@@ -123,11 +123,13 @@ class AFX_EXT_CLASS PSS_ObjectUtility
         /**
         * Object definition
         */
-        class IObjectDefinition
+        class IObjectDefinition : public CObject
         {
             public:
                 CString m_Key;
                 CString m_Description;
+
+                typedef CObject inherited;
 
                 /**
                 * Constructor
@@ -136,7 +138,7 @@ class AFX_EXT_CLASS PSS_ObjectUtility
                 */
                 IObjectDefinition(const CString& key, const CString& description);
 
-                ~IObjectDefinition();
+                virtual ~IObjectDefinition();
         };
 
         static const UINT         m_ClassResourceIDArrary[21];

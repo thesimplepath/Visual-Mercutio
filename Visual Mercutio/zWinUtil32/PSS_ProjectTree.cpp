@@ -11,7 +11,7 @@
 // processsoft
 #include "zBaseLib\ZITreeCtl.h"
 #include "zBaseLib\ZDDoc.h"
-#include "zBaseLib\DocData.h"
+#include "zBaseLib\PSS_DocumentData.h"
 #include "zBaseLib\File.h"
 #include "zRes32\ZRes.h"
 
@@ -78,7 +78,7 @@ void PSS_ProjectTree::Refresh ()
     }
 }
 //---------------------------------------------------------------------------
-ZDDocumentData* PSS_ProjectTree::GetSelectedDocument()
+PSS_DocumentData* PSS_ProjectTree::GetSelectedDocument()
 {
     if (m_pTreeCtrl)
         return NULL;
@@ -86,7 +86,7 @@ ZDDocumentData* PSS_ProjectTree::GetSelectedDocument()
     HTREEITEM hSelected = m_pTreeCtrl->GetSelectedItem();
 
     if (hSelected)
-        return dynamic_cast<ZDDocumentData*>((CObject*)m_pTreeCtrl->GetItemData(hSelected));
+        return dynamic_cast<PSS_DocumentData*>((CObject*)m_pTreeCtrl->GetItemData(hSelected));
 
     return NULL;
 }
@@ -127,7 +127,7 @@ HTREEITEM PSS_ProjectTree::AddDocumentTypeItem(const CString& documentType, int 
     return m_pTreeCtrl->InsertItem(&curTreeItem);
 }
 //---------------------------------------------------------------------------
-HTREEITEM PSS_ProjectTree::AddDocumentItem(ZDDocumentData* pData, HTREEITEM hParentTreeItem, int iconIndex)
+HTREEITEM PSS_ProjectTree::AddDocumentItem(PSS_DocumentData* pData, HTREEITEM hParentTreeItem, int iconIndex)
 {
     if (!pData)
         return NULL;
