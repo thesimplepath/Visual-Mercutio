@@ -216,7 +216,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="DRAW.C">
+    <ClCompile Include="PSS_DrawFunctions.c">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -1358,7 +1358,7 @@
     <ClInclude Include="DocData.h" />
     <ClInclude Include="DocOpt.h" />
     <ClInclude Include="DocTmplEx.h" />
-    <ClInclude Include="DRAW.H" />
+    <ClInclude Include="PSS_DrawFunctions.h" />
     <ClInclude Include="EDIT.H" />
     <ClInclude Include="Export.h" />
     <ClInclude Include="ExpRT.h" />

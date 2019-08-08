@@ -35,9 +35,6 @@
     <ClCompile Include="DocTmplEx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DRAW.C">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="EDIT.CPP">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -602,6 +599,9 @@
     <ClCompile Include="PSS_CommandLine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_DrawFunctions.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -727,9 +727,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DocTmplEx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DRAW.H">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EDIT.H">
@@ -1300,6 +1297,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_CommandLine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_DrawFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
