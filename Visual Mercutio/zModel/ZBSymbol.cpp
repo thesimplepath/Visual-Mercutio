@@ -23,7 +23,7 @@
 #include "ZBBasicProp.h"
 
 #include "Views\OdGuids.h"
-#include "zBaseLib\Draw.h"
+#include "zBaseLib\PSS_DrawFunctions.h"
 
 //////////////////////////////////////////////////////////////////////
 // Static members definition

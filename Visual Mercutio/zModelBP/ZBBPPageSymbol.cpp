@@ -20,7 +20,7 @@
 
 #include "zBaseLib\MsgBox.h"
 #include "zModelBPRes.h"
-#include "zBaseLib\Draw.h"
+#include "zBaseLib\PSS_DrawFunctions.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

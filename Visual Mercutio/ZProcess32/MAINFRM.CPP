@@ -2,7 +2,7 @@
 
 #include "stdafx.h"
 #include "MainFrm.h"
-#include "zBaseLib\draw.h"
+#include "zBaseLib\PSS_DrawFunctions.h"
 #include "ZAApp.h"
 
 #include "ZCProcessModelDocument.h"

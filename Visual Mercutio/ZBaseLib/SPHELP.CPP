@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "PlanfObj.h"
 #include "sphelp.h"
-#include "draw.h"
+#include "PSS_DrawFunctions.h"
 
 
 #ifdef _DEBUG
@@ -36,7 +36,12 @@ SpecialHelp::~SpecialHelp()
     DestroyWindow();
 }
 
-BOOL SpecialHelp::CreateSpecialHelp( CWnd *pParentWnd, CRect *rct, PlanFinObject* pObj, UINT uiRes, size_t NumberOfButton, BOOL AutoCalculateOption )
+BOOL SpecialHelp::CreateSpecialHelp(CWnd*          pParentWnd,
+                                    CRect*         rct,
+                                    PlanFinObject* pObj,
+                                    UINT           uiRes,
+                                    std::size_t    NumberOfButton,
+                                    BOOL           AutoCalculateOption)
 {
     // Saves the bitmap ID and the number of button
     m_uiRes = uiRes;
@@ -59,10 +64,10 @@ BOOL SpecialHelp::CreateSpecialHelp( CWnd *pParentWnd, CRect *rct, PlanFinObject
     m_AutoCalculateOption = AutoCalculateOption;
 
     HINSTANCE hInst = AfxFindResourceHandle(MAKEINTRESOURCE (m_uiRes), RT_BITMAP);
-    GetSizeOfBitmapFile( MAKEINTRESOURCE (m_uiRes), hInst, &m_BitmapPoint );
+    GetSizeOfBitmapFile( MAKEINTRESOURCE (m_uiRes), hInst, &m_BitmapSize);
     // create the helper window
     if( CreateEx( 0, m_strClassName, "", WS_VISIBLE | WS_CHILD, 
-                           rct->left, rct->bottom, m_BitmapPoint.x, m_BitmapPoint.y,
+                           rct->left, rct->bottom, m_BitmapSize.cx, m_BitmapSize.cy,
                            pParentWnd->GetSafeHwnd(), (HMENU)NULL) == FALSE )
         return( FALSE );
     SetWindowPos( &wndTop, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOREDRAW );
@@ -108,8 +113,7 @@ void SpecialHelp::OnPaint()
     if (m_uiRes)
     {
         HINSTANCE hInst = AfxFindResourceHandle(MAKEINTRESOURCE (m_uiRes), RT_BITMAP);
-        DisplayBitmapFile ( MAKEINTRESOURCE (m_uiRes), dc.m_hDC, hInst, 
-                            0, 0 );
+        ShowBitmapFile(MAKEINTRESOURCE(m_uiRes), dc.m_hDC, hInst, 0, 0);
     }    
 }
 

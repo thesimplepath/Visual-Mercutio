@@ -20,7 +20,7 @@
 #include "ZBSymbolObserverMsg.h"
 #include "ZBDocObserverMsg.h"
 
-#include "zBaseLib\Draw.h"
+#include "zBaseLib\PSS_DrawFunctions.h"
 
 // Resource include
 #include "zModelRes.h"

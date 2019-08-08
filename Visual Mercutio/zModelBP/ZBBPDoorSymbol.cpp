@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ZBBPDoorSymbol.h"
 
-#include "zBaseLib\Draw.h"
+#include "zBaseLib\PSS_DrawFunctions.h"
 #include "zBaseLib\MsgBox.h"
 
 #include "zBaseSym\zBaseSymRes.h"

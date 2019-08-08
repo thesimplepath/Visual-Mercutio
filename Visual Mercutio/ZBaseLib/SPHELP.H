@@ -3,8 +3,7 @@
 #if !defined(__SPHELP_H)
 #define __SPHELP_H
 
-
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -12,14 +11,11 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-
+// processsoft
 #include "ZAObject.h"
 
-
-
 #ifdef _ZBASELIBEXPORT
-//put the values back to make AFX_EXT_CLASS export again
+    // put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -28,32 +24,25 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-
-
-/////////////////////////////////////////////////////////////////////////////
-// SpecialHelp window
-
 class SpecialHelp : public CWnd
 {
-// Construction
+    // Construction
 public:
     //SpecialHelp();
-    SpecialHelp( );
+    SpecialHelp();
 
-// Attributes
+    // Attributes
 private:
-      static CString near m_strClassName;          // the special help window class name
+    static CString near m_strClassName;          // the special help window class name
 // Operations
 public:
     // Create function pure virtual
-    virtual BOOL    Create( CWnd *pParentWnd, CRect *rct, PlanFinObject* pObj, BOOL AutoCalculateOption = FALSE ) = 0;
-    BOOL    CreateSpecialHelp( CWnd *pParentWnd,  
-                               CRect *rct, PlanFinObject* pObj, 
-                               UINT uiRes, size_t NumberOfButton, 
-                               BOOL AutoCalculateOption = FALSE );    // create the special help window
-      BOOL    DestroyWindow();                      // destroy the window
+    virtual BOOL    Create(CWnd *pParentWnd, CRect *rct, PlanFinObject* pObj, BOOL AutoCalculateOption = FALSE) = 0;
+    BOOL    CreateSpecialHelp(CWnd *pParentWnd,
+                              CRect *rct, PlanFinObject* pObj,
+                              UINT uiRes, size_t NumberOfButton,
+                              BOOL AutoCalculateOption = FALSE);    // create the special help window
+    BOOL    DestroyWindow();                      // destroy the window
     void    SetWizardCursor();
     void    SetEmptyCursor();
     void    SetPropertyCursor();
@@ -65,7 +54,7 @@ public:
     size_t            GetNumberOfButton() const;
     int                GetButtonPosition(CPoint& point) const;
 
-// Implementation
+    // Implementation
 private:
     HCURSOR            m_hcurWizard;
     HCURSOR            m_hcurEmpty;
@@ -74,7 +63,7 @@ private:
     HCURSOR            m_hcurNumber;
     HCURSOR            m_hcurCalendar;
     HCURSOR            m_hcurNote;
-    CPoint            m_BitmapPoint;
+    CSize            m_BitmapSize;
     size_t            m_NumberOfButton;
     PlanFinObject*     m_pObj;
     UINT            m_uiRes;
@@ -85,7 +74,7 @@ protected:
 #ifdef _WIN32
     CMonthCalCtrl*    m_pMonthCal;
 #endif
-    
+
 protected:
     void OnObjectProperty(CPoint point);
     void OnAssociationMenu(CPoint point);
@@ -97,7 +86,7 @@ protected:
     virtual void LButtonDown(UINT nFlags, CPoint point) = 0;
     virtual void MouseMove(UINT nFlags, CPoint point) = 0;
 
-// Implementation
+    // Implementation
 public:
     virtual ~SpecialHelp();
 
@@ -113,55 +102,55 @@ protected:
 };
 
 
-inline    PlanFinObject*     SpecialHelp::GetObjectPointer() const 
-{ 
-    return m_pObj; 
+inline    PlanFinObject*     SpecialHelp::GetObjectPointer() const
+{
+    return m_pObj;
 }
 
-inline    size_t            SpecialHelp::GetNumberOfButton() const 
-{ 
-    return m_NumberOfButton; 
+inline    size_t            SpecialHelp::GetNumberOfButton() const
+{
+    return m_NumberOfButton;
 }
 
-inline    int                SpecialHelp::GetButtonPosition( CPoint& point ) const 
-{ 
-    return point.x / ( m_BitmapPoint.x / GetNumberOfButton() );
+inline    int                SpecialHelp::GetButtonPosition(CPoint& point) const
+{
+    return point.x / (m_BitmapSize.cx / GetNumberOfButton());
 }
 
 
 inline    void    SpecialHelp::SetWizardCursor()
 {
-    SetCursor( m_hcurWizard );
+    SetCursor(m_hcurWizard);
 }
 
 inline    void    SpecialHelp::SetEmptyCursor()
 {
-    SetCursor( m_hcurEmpty );
+    SetCursor(m_hcurEmpty);
 }
 
 inline    void    SpecialHelp::SetPropertyCursor()
 {
-    SetCursor( m_hcurProperty );
+    SetCursor(m_hcurProperty);
 }
 
 inline    void    SpecialHelp::SetScenarioCursor()
 {
-    SetCursor( m_hcurScenario );
+    SetCursor(m_hcurScenario);
 }
 
 inline    void    SpecialHelp::SetNumberCursor()
 {
-    SetCursor( m_hcurNumber );
+    SetCursor(m_hcurNumber);
 }
 
 inline    void    SpecialHelp::SetCalendarCursor()
 {
-    SetCursor( m_hcurCalendar );
+    SetCursor(m_hcurCalendar);
 }
 
 inline    void    SpecialHelp::SetNoteCursor()
 {
-    SetCursor( m_hcurNote );
+    SetCursor(m_hcurNote);
 }
 
 
@@ -170,17 +159,17 @@ inline    void    SpecialHelp::SetNoteCursor()
 
 class AFX_EXT_CLASS SpecialHelpNumber : public SpecialHelp
 {
-// Construction
+    // Construction
 public:
     SpecialHelpNumber();
-    virtual BOOL    Create( CWnd *pParentWnd, CRect *rct, PlanFinObject* pObj, BOOL AutoCalculateOption = FALSE );    // create the special help window
+    virtual BOOL    Create(CWnd *pParentWnd, CRect *rct, PlanFinObject* pObj, BOOL AutoCalculateOption = FALSE);    // create the special help window
 
 // Attributes
 private:
-// Operations
+    // Operations
 public:
 
-// Implementation
+    // Implementation
 protected:
     virtual void LButtonDown(UINT nFlags, CPoint point);
     virtual void MouseMove(UINT nFlags, CPoint point);
@@ -199,17 +188,17 @@ protected:
 
 class AFX_EXT_CLASS SpecialHelpNumberDesigner : public SpecialHelp
 {
-// Construction
+    // Construction
 public:
     SpecialHelpNumberDesigner();
-    virtual BOOL    Create( CWnd *pParentWnd, CRect *rct, PlanFinObject* pObj, BOOL AutoCalculateOption = FALSE );    // create the special help window
+    virtual BOOL    Create(CWnd *pParentWnd, CRect *rct, PlanFinObject* pObj, BOOL AutoCalculateOption = FALSE);    // create the special help window
 
 // Attributes
 private:
-// Operations
+    // Operations
 public:
 
-// Implementation
+    // Implementation
 protected:
     virtual void LButtonDown(UINT nFlags, CPoint point);
     virtual void MouseMove(UINT nFlags, CPoint point);
@@ -228,17 +217,17 @@ protected:
 
 class AFX_EXT_CLASS SpecialHelpNumberScenario : public SpecialHelp
 {
-// Construction
+    // Construction
 public:
     SpecialHelpNumberScenario();
-    virtual BOOL    Create( CWnd *pParentWnd, CRect *rct, PlanFinObject* pObj, BOOL AutoCalculateOption = FALSE );    // create the special help window
+    virtual BOOL    Create(CWnd *pParentWnd, CRect *rct, PlanFinObject* pObj, BOOL AutoCalculateOption = FALSE);    // create the special help window
 
 // Attributes
 private:
-// Operations
+    // Operations
 public:
 
-// Implementation
+    // Implementation
 protected:
     virtual void LButtonDown(UINT nFlags, CPoint point);
     virtual void MouseMove(UINT nFlags, CPoint point);
@@ -257,17 +246,17 @@ protected:
 
 class AFX_EXT_CLASS SpecialHelpNumberScenarioDesigner : public SpecialHelp
 {
-// Construction
+    // Construction
 public:
     SpecialHelpNumberScenarioDesigner();
-    virtual BOOL    Create( CWnd *pParentWnd, CRect *rct, PlanFinObject* pObj, BOOL AutoCalculateOption = FALSE );    // create the special help window
+    virtual BOOL    Create(CWnd *pParentWnd, CRect *rct, PlanFinObject* pObj, BOOL AutoCalculateOption = FALSE);    // create the special help window
 
 // Attributes
 private:
-// Operations
+    // Operations
 public:
 
-// Implementation
+    // Implementation
 protected:
     virtual void LButtonDown(UINT nFlags, CPoint point);
     virtual void MouseMove(UINT nFlags, CPoint point);
@@ -287,17 +276,17 @@ protected:
 
 class AFX_EXT_CLASS SpecialHelpDate : public SpecialHelp
 {
-// Construction
+    // Construction
 public:
     SpecialHelpDate();
-    virtual BOOL    Create( CWnd *pParentWnd, CRect *rct, PlanFinObject* pObj, BOOL AutoCalculateOption = FALSE );    // create the special help window
+    virtual BOOL    Create(CWnd *pParentWnd, CRect *rct, PlanFinObject* pObj, BOOL AutoCalculateOption = FALSE);    // create the special help window
 
 // Attributes
 private:
-// Operations
+    // Operations
 public:
 
-// Implementation
+    // Implementation
 protected:
     virtual void LButtonDown(UINT nFlags, CPoint point);
     virtual void MouseMove(UINT nFlags, CPoint point);
@@ -317,17 +306,17 @@ protected:
 
 class AFX_EXT_CLASS SpecialHelpDateDesigner : public SpecialHelp
 {
-// Construction
+    // Construction
 public:
     SpecialHelpDateDesigner();
-    virtual BOOL    Create( CWnd *pParentWnd, CRect *rct, PlanFinObject* pObj, BOOL AutoCalculateOption = FALSE );    // create the special help window
+    virtual BOOL    Create(CWnd *pParentWnd, CRect *rct, PlanFinObject* pObj, BOOL AutoCalculateOption = FALSE);    // create the special help window
 
 // Attributes
 private:
-// Operations
+    // Operations
 public:
 
-// Implementation
+    // Implementation
 protected:
     virtual void LButtonDown(UINT nFlags, CPoint point);
     virtual void MouseMove(UINT nFlags, CPoint point);
@@ -348,17 +337,17 @@ protected:
 
 class AFX_EXT_CLASS SpecialHelpDefault : public SpecialHelp
 {
-// Construction
+    // Construction
 public:
     SpecialHelpDefault();
-    virtual BOOL    Create( CWnd *pParentWnd, CRect *rct, PlanFinObject* pObj, BOOL AutoCalculateOption = FALSE );    // create the special help window
+    virtual BOOL    Create(CWnd *pParentWnd, CRect *rct, PlanFinObject* pObj, BOOL AutoCalculateOption = FALSE);    // create the special help window
 
 // Attributes
 private:
-// Operations
+    // Operations
 public:
 
-// Implementation
+    // Implementation
 protected:
     virtual void LButtonDown(UINT nFlags, CPoint point);
     virtual void MouseMove(UINT nFlags, CPoint point);
@@ -378,17 +367,17 @@ protected:
 
 class AFX_EXT_CLASS SpecialHelpDefaultDesigner : public SpecialHelp
 {
-// Construction
+    // Construction
 public:
     SpecialHelpDefaultDesigner();
-    virtual BOOL    Create( CWnd *pParentWnd, CRect *rct, PlanFinObject* pObj, BOOL AutoCalculateOption = FALSE );    // create the special help window
+    virtual BOOL    Create(CWnd *pParentWnd, CRect *rct, PlanFinObject* pObj, BOOL AutoCalculateOption = FALSE);    // create the special help window
 
 // Attributes
 private:
-// Operations
+    // Operations
 public:
 
-// Implementation
+    // Implementation
 protected:
     virtual void LButtonDown(UINT nFlags, CPoint point);
     virtual void MouseMove(UINT nFlags, CPoint point);

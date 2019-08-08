@@ -9,7 +9,7 @@
 #include "PSS_AnimateDialog.h"
 
 // processsoft
-#include "zBaseLib\draw.h"
+#include "zBaseLib\PSS_DrawFunctions.h"
 
 // resources
 #ifndef _WIN32
@@ -44,21 +44,21 @@ PSS_AnimateDialog::PSS_AnimateDialog(CWnd* pParent) :
     m_ID(g_FirstID),
     m_Stop(FALSE)
 {
-    CPoint pt;
+    SIZE size;
 
     // calculate the bitmap image rect (used later for invalidation)
     #ifndef _WIN32
         // 16 bit only
-        GetSizeOfBitmapFile(MAKEINTRESOURCE(g_FirstID), g_zWinUtilDLL.hModule, &pt);
+        GetSizeOfBitmapFile(MAKEINTRESOURCE(g_FirstID), g_zWinUtilDLL.hModule, &size);
     #else
         // 32 bit only
-        GetSizeOfBitmapFile(MAKEINTRESOURCE(g_FirstID), g_zWinUtil32DLL.hModule, &pt);
+        GetSizeOfBitmapFile(MAKEINTRESOURCE(g_FirstID), g_zWinUtil32DLL.hModule, &size);
     #endif
 
     m_ImageRect.left   = 10;
     m_ImageRect.top    = 10;
-    m_ImageRect.right  = m_ImageRect.left + pt.x;
-    m_ImageRect.bottom = m_ImageRect.top + pt.y;
+    m_ImageRect.right  = m_ImageRect.left + size.cx;
+    m_ImageRect.bottom = m_ImageRect.top  + size.cy;
     Create(IDD_ANIMATEDLG, pParent);
     ShowWindow(SW_SHOW);
 }
@@ -78,10 +78,10 @@ BOOL PSS_AnimateDialog::ShowNext()
 
     #ifndef _WIN32
         // 16 bit only
-        DisplayBitmapFile(MAKEINTRESOURCE(m_ID), pDC->m_hDC, g_zWinUtilDLL.hModule, 10, 10);
+        ShowBitmapFile(MAKEINTRESOURCE(m_ID), pDC->m_hDC, g_zWinUtilDLL.hModule, 10, 10);
     #else
         // 32 bit only
-        DisplayBitmapFile(MAKEINTRESOURCE(m_ID), pDC->m_hDC, g_zWinUtil32DLL.hModule, 10, 10);
+        ShowBitmapFile(MAKEINTRESOURCE(m_ID), pDC->m_hDC, g_zWinUtil32DLL.hModule, 10, 10);
     #endif
 
     VERIFY(ReleaseDC(pDC));

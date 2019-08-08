@@ -7,7 +7,7 @@
 #include "obsolete.h"
 #include "ZDDoc.h"
 #include "zamath.h"
-#include "draw.h"
+#include "PSS_DrawFunctions.h"
 
 #include <FLOAT.H>
 

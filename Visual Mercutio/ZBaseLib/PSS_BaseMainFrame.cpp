@@ -9,7 +9,7 @@
 #include "PSS_BaseMainFrame.h"
 
 // processsoft
-#include "draw.h"
+#include "PSS_DrawFunctions.h"
 #include "VTools.h"
 #include "Message.h"
 #include "PSS_BaseMDIPage.h"

@@ -9,7 +9,7 @@
 #include "PSS_WelcomeDialog.h"
 
 // processsoft
-#include "zBaseLib\Draw.h"
+#include "zBaseLib\PSS_DrawFunctions.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -77,7 +77,7 @@ void PSS_WelcomeDialog::OnPaint()
 
     HINSTANCE hInst = AfxFindResourceHandle(MAKEINTRESOURCE(m_BitmapID), RT_BITMAP);
 
-    DisplayBitmapFile(MAKEINTRESOURCE(m_BitmapID), dc.m_hDC, hInst, 3, 3);
+    ShowBitmapFile(MAKEINTRESOURCE(m_BitmapID), dc.m_hDC, hInst, 3, 3);
 }
 //---------------------------------------------------------------------------
 HBRUSH PSS_WelcomeDialog::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)

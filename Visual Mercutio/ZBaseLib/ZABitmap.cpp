@@ -25,7 +25,7 @@
 //## end module%337899310226.declarations
 
 //## begin module%337899310226.additionalDeclarations preserve=yes
-#include "Draw.h"
+#include "PSS_DrawFunctions.h"
 #include "ZDDoc.h"
 #include "ZBitmap.h"
 

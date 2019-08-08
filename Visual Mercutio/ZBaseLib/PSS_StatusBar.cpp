@@ -9,7 +9,7 @@
 #include "PSS_StatusBar.h"
 
 // processsoft
-#include "draw.h"
+#include "PSS_DrawFunctions.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -149,18 +149,18 @@ void PSS_StatusBar::SetCurrentPercentage(int value)
         {
             if (m_SwapLight)
             {
-                DisplayBitmap(m_hBtmGreenLight,
-                              pDC->m_hDC,
-                              AfxGetInstanceHandle(),
-                              m_ItemRect.left + m_BackWidth,
-                              m_ItemRect.top);
+                ShowBitmap(m_hBtmGreenLight,
+                           pDC->m_hDC,
+                           AfxGetInstanceHandle(),
+                           m_ItemRect.left + m_BackWidth,
+                           m_ItemRect.top);
             }
             else
-                DisplayBitmap(m_hBtmRedLight,
-                              pDC->m_hDC,
-                              AfxGetInstanceHandle(),
-                              m_ItemRect.left + m_BackWidth,
-                              m_ItemRect.top );
+                ShowBitmap(m_hBtmRedLight,
+                           pDC->m_hDC,
+                           AfxGetInstanceHandle(),
+                           m_ItemRect.left + m_BackWidth,
+                           m_ItemRect.top );
 
             // switch the light
             m_SwapLight = (m_SwapLight ? FALSE : TRUE);
@@ -185,11 +185,11 @@ void PSS_StatusBar::BeginAniPercentage()
     CDC* pDC = GetDC();
     ASSERT(pDC);
 
-    DisplayBitmap(m_hBtmBack,
-                  pDC->m_hDC,
-                  AfxGetInstanceHandle(),
-                  m_ItemRect.left,
-                  m_ItemRect.top);
+    ShowBitmap(m_hBtmBack,
+               pDC->m_hDC,
+               AfxGetInstanceHandle(),
+               m_ItemRect.left,
+               m_ItemRect.top);
 
     // show the first percentage
     CBrush* pOldBrush = pDC->SelectObject(&m_LtBlueBrush);

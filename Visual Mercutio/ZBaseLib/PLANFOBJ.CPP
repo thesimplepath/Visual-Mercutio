@@ -6,7 +6,7 @@
 #include "ZIView.h"
 #include "planfobj.h"
 #include "zamath.h"
-#include "draw.h"
+#include "PSS_DrawFunctions.h"
 
 #include "ZDDoc.h"
 
@@ -1140,16 +1140,24 @@ void PLFNLong::DrawCalculatedSymbol (CDC* pDC)
         {
             if (IsCalculatedField())
             {
-                PlanFinObject::DrawBoundRect( pDC );
-                // Show calculator icon in association mode
-                DisplayBitmapFile(     MAKEINTRESOURCE (IDB_CALCBACKASSC), pDC->m_hDC, hInst, 
-                                      m_rctObject.right, m_rctObject.bottom );
+                PlanFinObject::DrawBoundRect(pDC);
+
+                // show calculator icon in association mode
+                ShowBitmapFile(MAKEINTRESOURCE(IDB_CALCBACKASSC),
+                               pDC->m_hDC,
+                               hInst,
+                               m_rctObject.right,
+                               m_rctObject.bottom);
             }
             else
             {
-                // Show icon in association mode
-                DisplayBitmapFile(     MAKEINTRESOURCE (IDB_BACKASSC), pDC->m_hDC, hInst, 
-                                      m_rctObject.right, m_rctObject.bottom );
+                // show icon in association mode
+                ShowBitmapFile(MAKEINTRESOURCE(IDB_BACKASSC),
+                               pDC->m_hDC,
+                               hInst,
+                               m_rctObject.right,
+                               m_rctObject.bottom);
+
                 PlanFinObject::DrawRightCorner( pDC );
             }
         }
@@ -1157,32 +1165,45 @@ void PLFNLong::DrawCalculatedSymbol (CDC* pDC)
         {
             if (m_IconDisplayType == AssociationIcon)
             {
-                PlanFinObject::DrawBoundRect( pDC );
-                // Display the field as calculate with association
-                DisplayBitmapFile(     MAKEINTRESOURCE (IDB_CALCWITHASSC), pDC->m_hDC, hInst, 
-                                      m_rctObject.right, m_rctObject.bottom );
+                PlanFinObject::DrawBoundRect(pDC);
+
+                // show the field as calculate with association
+                ShowBitmapFile(MAKEINTRESOURCE(IDB_CALCWITHASSC),
+                               pDC->m_hDC,
+                               hInst,
+                               m_rctObject.right,
+                               m_rctObject.bottom);
             }
             else
-                if (IsCalculatedField())
+            if (IsCalculatedField())
+            {
+                PlanFinObject::DrawBoundRect( pDC );
+                // show the field as protected
+                if (KeepTheValue())
+                    ShowBitmapFileExtent(MAKEINTRESOURCE(IDB_LOCKED),
+                                            pDC->m_hDC,
+                                            hInst,
+                                            m_rctObject.right,
+                                            m_rctObject.bottom,
+                                            SRCAND);
+                else
                 {
-                    PlanFinObject::DrawBoundRect( pDC );
-                    // Display the field as protected
-                    if (KeepTheValue())
-                        DisplayBitmapFileExtent( MAKEINTRESOURCE (IDB_LOCKED), pDC->m_hDC, hInst, 
-                                                   m_rctObject.right, m_rctObject.bottom,
-                                                   SRCAND );
+                    if (GetAssociations().GetCount())
+                        // show calculator icon for association mode
+                        ShowBitmapFile(MAKEINTRESOURCE(IDB_CALCSHOWASSC),
+                                        pDC->m_hDC,
+                                        hInst,
+                                        m_rctObject.right,
+                                        m_rctObject.bottom);
                     else
-                    {
-                        if (GetAssociations().GetCount())
-                            // Show calculator icon for association mode
-                            DisplayBitmapFile(     MAKEINTRESOURCE (IDB_CALCSHOWASSC), pDC->m_hDC, hInst, 
-                                                  m_rctObject.right, m_rctObject.bottom );                
-                        else
-                            // Display the field as calculate
-                            DisplayBitmapFile(     MAKEINTRESOURCE (IDB_CALCULATOR), pDC->m_hDC, hInst, 
-                                                  m_rctObject.right, m_rctObject.bottom );
-                    }
+                        // show the field as calculate
+                        ShowBitmapFile(MAKEINTRESOURCE(IDB_CALCULATOR),
+                                        pDC->m_hDC,
+                                        hInst,
+                                        m_rctObject.right,
+                                        m_rctObject.bottom);
                 }
+            }
         }
     }
 }

@@ -18,7 +18,7 @@
 //## begin module%334FC46302E7.includes preserve=yes
 #include "ZIView.h"
 #include "ZDDoc.h"
-#include "Draw.h"
+#include "PSS_DrawFunctions.h"
 
 // PaintRes
 #include "PaintRes.h"
@@ -676,56 +676,46 @@ void PlanFinObject::DrawEmpty( CDC* pDC, ZIView* pView )
     //## end PlanFinObject::DrawEmpty%829516174.body
 }
 
-void PlanFinObject::DrawHiddenSymbol( CDC* pDC )
+void PlanFinObject::DrawHiddenSymbol(CDC* pDC)
 {
-    //## begin PlanFinObject::DrawHiddenSymbol%944215345.body preserve=yes
-    // Draw the object rectangle
-    PlanFinObject::DrawBoundRect( pDC );
+    // draw the object rectangle
+    PlanFinObject::DrawBoundRect(pDC);
 
-    DisplayBitmapFileExtent( MAKEINTRESOURCE( IDB_HIDDEN ),
-                             pDC->m_hDC,
-                             AfxFindResourceHandle( MAKEINTRESOURCE( IDB_HIDDEN ), RT_BITMAP ),
-                             m_rctObject.right,
-                             m_rctObject.bottom,
-                             SRCAND );
-    //## end PlanFinObject::DrawHiddenSymbol%944215345.body
+    ShowBitmapFileExtent(MAKEINTRESOURCE(IDB_HIDDEN),
+                         pDC->m_hDC,
+                         AfxFindResourceHandle(MAKEINTRESOURCE(IDB_HIDDEN), RT_BITMAP),
+                         m_rctObject.right,
+                         m_rctObject.bottom,
+                         SRCAND);
 }
 
 void PlanFinObject::DrawHiddenOnPrintSymbol( CDC* pDC )
 {
-    //## begin PlanFinObject::DrawHiddenOnPrintSymbol%944215346.body preserve=yes
-    // Draw the object rectangle
-    PlanFinObject::DrawBoundRect( pDC );
+    // draw the object rectangle
+    PlanFinObject::DrawBoundRect(pDC);
 
-    DisplayBitmapFileExtent( MAKEINTRESOURCE( IDB_PRINTER ),
-                             pDC->m_hDC,
-                             AfxFindResourceHandle( MAKEINTRESOURCE( IDB_PRINTER ), RT_BITMAP ),
-                             m_rctObject.right,
-                             m_rctObject.bottom,
-                             SRCAND );
-    //## end PlanFinObject::DrawHiddenOnPrintSymbol%944215346.body
+    ShowBitmapFileExtent(MAKEINTRESOURCE(IDB_PRINTER),
+                         pDC->m_hDC,
+                         AfxFindResourceHandle(MAKEINTRESOURCE(IDB_PRINTER), RT_BITMAP),
+                         m_rctObject.right,
+                         m_rctObject.bottom,
+                         SRCAND);
 }
 
-void PlanFinObject::DrawCalculatedSymbol( CDC* pDC )
-{
-    //## begin PlanFinObject::DrawCalculatedSymbol%944215347.body preserve=yes
-    // In the base class, do noting
-    //## end PlanFinObject::DrawCalculatedSymbol%944215347.body
-}
+void PlanFinObject::DrawCalculatedSymbol(CDC* pDC)
+{}
 
-void PlanFinObject::DrawNoteSymbol( CDC* pDC )
+void PlanFinObject::DrawNoteSymbol(CDC* pDC)
 {
-    //## begin PlanFinObject::DrawNoteSymbol%944215348.body preserve=yes
-    // Draw the object rectangle
-    PlanFinObject::DrawBoundRect( pDC );
+    // draw the object rectangle
+    PlanFinObject::DrawBoundRect(pDC);
 
-    DisplayBitmapFileExtent( MAKEINTRESOURCE( IDB_NOTES ),
-                             pDC->m_hDC,
-                             AfxFindResourceHandle( MAKEINTRESOURCE( IDB_NOTES ), RT_BITMAP ),
-                             m_rctObject.right,
-                             m_rctObject.bottom,
-                             SRCAND );
-    //## end PlanFinObject::DrawNoteSymbol%944215348.body
+    ShowBitmapFileExtent(MAKEINTRESOURCE(IDB_NOTES),
+                         pDC->m_hDC,
+                         AfxFindResourceHandle(MAKEINTRESOURCE(IDB_NOTES), RT_BITMAP),
+                         m_rctObject.right,
+                         m_rctObject.bottom,
+                         SRCAND);
 }
 
 void PlanFinObject::DrawObjectRectangle( CDC* pDC )

@@ -10,7 +10,7 @@
 #include "zBaseLib\File.h"
 
 #include "zModelBPRes.h"
-#include "zBaseLib\Draw.h"
+#include "zBaseLib\PSS_DrawFunctions.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -196,7 +196,7 @@ void ZBBPPackageSymbol::OnDraw(CDC* pDC)
 //        reinterpret_cast<ZDProcessGraphModelMdl*>(m_pModel)->DrawMetaFile(pDC, m_CommentRect);
     if (IsLinkedToFilename() && m_LinkedToFileBitmap.IsValid())
     {
-        DisplayBitmap( (HBITMAP)m_LinkedToFileBitmap, pDC->m_hDC, AfxGetInstanceHandle(), m_LinkedToFileBitmapPosition.x, m_LinkedToFileBitmapPosition.y );
+        ShowBitmap(HBITMAP(m_LinkedToFileBitmap), pDC->m_hDC, AfxGetInstanceHandle(), m_LinkedToFileBitmapPosition.x, m_LinkedToFileBitmapPosition.y);
 //        m_LinkedToFileBitmap.DrawBitmap( pDC, NULL, m_LinkedToFileBitmapPosition.x, m_LinkedToFileBitmapPosition.y );
     }
 }

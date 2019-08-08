@@ -2,7 +2,7 @@
 
 #include "stdafx.h"
 #include "ZWizard.h"
-#include "draw.h"
+#include "PSS_DrawFunctions.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -356,19 +356,15 @@ void ZIWizardDialog::Paint( CDC& dc )
 
     if ( m_nBitmapID != 0 )
     {
-        DisplayBitmapFile ( MAKEINTRESOURCE( m_nBitmapID ),
-                            dc.m_hDC,
-                            m_hInst,
-                            m_DialogRect.right - 52,
-                            m_DialogRect.top   + 6 );
+        ShowBitmapFile(MAKEINTRESOURCE(m_nBitmapID),
+                       dc.m_hDC,
+                       m_hInst,
+                       m_DialogRect.right - 52,
+                       m_DialogRect.top   + 6);
     }
     else
-    {
-        if ( m_hIcon )
-        {
-            dc.DrawIcon( m_DialogRect.right - 50, m_DialogRect.top + 6, m_hIcon );
-        }
-    }
+    if (m_hIcon)
+        dc.DrawIcon(m_DialogRect.right - 50, m_DialogRect.top + 6, m_hIcon);
 }
 
 /////////////////////////////////////////////////////////////////////////////

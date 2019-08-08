@@ -9,7 +9,7 @@
 #include "PSS_PointerWnd.h"
 
 // processsoft
-#include "zBaseLib\Draw.h"
+#include "zBaseLib\PSS_DrawFunctions.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -119,7 +119,7 @@ void PSS_PointerWnd::OnPaint()
 
     // find the resource instance handle
     HINSTANCE hInst = AfxFindResourceHandle(MAKEINTRESOURCE(m_ID), RT_BITMAP);
-    
-    DisplayBitmapFile(MAKEINTRESOURCE(m_ID), dc.m_hDC, hInst, 0, 0);
+
+    ShowBitmapFile(MAKEINTRESOURCE(m_ID), dc.m_hDC, hInst, 0, 0);
 }
 //---------------------------------------------------------------------------

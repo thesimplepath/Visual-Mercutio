@@ -27,7 +27,7 @@
 #include "zBaseLib\ZAGlobal.h"
 #include "zBaseLib\ZBToolbarObserverMsg.h"
 #include "zBaseLib\MsgBox.h"
-#include "zBaseLib\Draw.h"
+#include "zBaseLib\PSS_DrawFunctions.h"
 
 // Global for model
 #include "zModel\ZAModelGlobal.h"

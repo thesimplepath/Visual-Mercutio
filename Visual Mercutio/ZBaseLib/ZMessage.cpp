@@ -24,7 +24,7 @@
 //## end module%36DEE3D90136.declarations
 
 //## begin module%36DEE3D90136.additionalDeclarations preserve=yes
-#include "Draw.h"
+#include "PSS_DrawFunctions.h"
 #ifdef _DEBUG
 #undef THIS_FILE
 static char BASED_CODE THIS_FILE[] = __FILE__;
@@ -216,15 +216,12 @@ void ZIMessage::OnPaint()
     dc.SelectObject( OldFont );
     dc.SelectObject( OldBrush );
 
-    
     if (m_IDBitmap && m_hInst)
-    {
-        DisplayBitmapFile ( MAKEINTRESOURCE (m_IDBitmap), dc.m_hDC, m_hInst, 
-                            rect.right-5, 
-                            rect.top+5 );
-    }
-    
-    
+        ShowBitmapFile(MAKEINTRESOURCE(m_IDBitmap),
+                       dc.m_hDC,
+                       m_hInst,
+                       rect.right - 5,
+                       rect.top   + 5);
 }
 
 
