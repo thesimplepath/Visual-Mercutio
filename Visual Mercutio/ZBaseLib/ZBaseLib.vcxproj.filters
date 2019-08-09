@@ -596,6 +596,12 @@
     <ClCompile Include="PSS_DrawFunctions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DocOpt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DocTmplEx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">

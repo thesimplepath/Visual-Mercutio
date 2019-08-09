@@ -1,43 +1,14 @@
-//## begin module%351657D400C8.cm preserve=no
-//      %X% %Q% %Z% %W%
-//## end module%351657D400C8.cm
+/****************************************************************************
+ * ==> PSS_DocumentOptions -------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides document options                                  *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-//## begin module%351657D400C8.cp preserve=no
-//    ADSoft / Advanced Dedicated Software
-//    Dominique AIGROZ
-//## end module%351657D400C8.cp
-
-//## Module: DocOpt%351657D400C8; Package body
-//## Subsystem: PlanFin%334FC46302B2
-//## Source file: z:\adsoft~1\ZProcess\DocOpt.cpp
-
-//## begin module%351657D400C8.additionalIncludes preserve=no
 #include <StdAfx.h>
-//## end module%351657D400C8.additionalIncludes
-
-//## begin module%351657D400C8.includes preserve=yes
-#include "ZDDoc.h"
-//## end module%351657D400C8.includes
-
-// DocOpt
 #include "DocOpt.h"
-//## begin module%351657D400C8.declarations preserve=no
-//## end module%351657D400C8.declarations
 
-//## begin module%351657D400C8.additionalDeclarations preserve=yes
-//## end module%351657D400C8.additionalDeclarations
-
-
-// Class ZDDocumentOptions 
-
-
-
-
-
-
-
-
-
+#include "ZDDoc.h"
 
 ZDDocumentOptions::ZDDocumentOptions()
   //## begin ZDDocumentOptions::ZDDocumentOptions%.hasinit preserve=no

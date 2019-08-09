@@ -1,324 +1,309 @@
-//## begin module%351657DC033E.cm preserve=no
-//      %X% %Q% %Z% %W%
-//## end module%351657DC033E.cm
+/****************************************************************************
+ * ==> PSS_DocumentOptions -------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides document options                                  *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-//## begin module%351657DC033E.cp preserve=no
-//    ADSoft Copyright 1994-1995
-//    Dominique Aigroz
-//## end module%351657DC033E.cp
+#ifndef PSS_DocumentOptionsH
+#define PSS_DocumentOptionsH
 
-//## Module: DocOpt%351657DC033E; Package specification
-//## Subsystem: PlanFin%334FC46302B2
-//## Source file: z:\adsoft~1\ZProcess\DocOpt.h
-
-#ifndef DocOpt_h
-#define DocOpt_h 1
-
-
-#ifdef _AFXEXT
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
 #define AFX_EXT_CLASS AFX_CLASS_IMPORT
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
-#endif
-
-
-//#include "ZAObject.h"
-
 
 #ifdef _ZBASELIBEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-
-
-
-class AFX_EXT_CLASS ZDDocumentOptions 
+class AFX_EXT_CLASS ZDDocumentOptions
 {
-  //## begin ZDDocumentOptions%351656F90334.initialDeclarations preserve=yes
-  //## end ZDDocumentOptions%351656F90334.initialDeclarations
+    public:
+        ZDDocumentOptions();
 
-  public:
-    //## Constructors (generated)
-      ZDDocumentOptions();
+        /**
+        * Copy constructor
+        *@param other - other object to copy from
+        */
+        ZDDocumentOptions(const ZDDocumentOptions& other);
 
-      ZDDocumentOptions(const ZDDocumentOptions &right);
+        virtual ~ZDDocumentOptions();
 
-    //## Destructor (generated)
-      virtual ~ZDDocumentOptions();
+        /**
+        * Copy operator
+        *@param other - other object to copy from
+        *@return copy of itself
+        */
+        const ZDDocumentOptions& operator = (const ZDDocumentOptions& other);
 
-    //## Assignment Operation (generated)
-      const ZDDocumentOptions & operator=(const ZDDocumentOptions &right);
+        /**
+        * Stores the object document options from the archive
+        *@param ar - archive
+        *@param docOptions - document options
+        *@return provided archive, to allow to chain operators like a >> b >> c
+        */
+        AFX_EXT_API friend CArchive& operator >> (CArchive& ar, ZDDocumentOptions& docOptions);
 
+        /**
+        * Stores the object document options to the archive
+        *@param ar - archive
+        *@param docOptions - document options
+        *@return provided archive, to allow to chain operators like a << b << c
+        */
+        AFX_EXT_API friend CArchive& operator << (CArchive& ar, const ZDDocumentOptions& docOptions);
 
-    //## Other Operations (specified)
-      //## Operation: operator >>%890656168
-      //    Store from the archive to the object Document Option.
-      AFX_EXT_API friend CArchive& operator >> (CArchive& ar, ZDDocumentOptions& DocOptions);
+        /**
+        * Builds the synchronization file name
+        *@param documentFileName - document file name
+        *@return built synchronization file name
+        */
+        virtual CString BuildSynchronizationFileName(const CString& documentFileName);
 
-      //## Operation: operator <<%890656169
-      //    Store the object Document Option to the archive.
-      AFX_EXT_API friend CArchive& operator << (CArchive& ar, const ZDDocumentOptions& DocOptions);
+        /**
+        * Gets the empty style to use when the controls are empty
+        *@return the empty style to use when the controls are empty
+        */
+        virtual inline const ELineType GetEmptyStyle() const;
 
-      //## Operation: BuildSynchronizationFileName%931459606
-      CString BuildSynchronizationFileName (CString DocumentFilename);
+        /**
+        * Sets the empty style to use when the controls are empty
+        *@param value - the empty style to use when the controls are empty
+        */
+        virtual inline void SetEmptyStyle(ELineType value);
 
-    //## Get and Set Operations for Class Attributes (generated)
+        /**
+        * Gets if it's necessary to synchronize the feed data file
+        *@return TRUE if it is necessary to synchronize the feed data file, otherwise FALSE
+        */
+        virtual inline const BOOL GetIsSynchronizeExchangeFeedFile() const;
 
-      //## Attribute: EmptyStyle%351657670046
-      //    Defines the empty style when the controls are empty.
-      const ELineType GetEmptyStyle() const;
-      void SetEmptyStyle(ELineType value);
+        /**
+        * Sets if it's necessary to synchronize the feed data file
+        *@param value - if TRUE, it's necessary to synchronize the feed data file
+        */
+        virtual inline void SetIsSynchronizeExchangeFeedFile(BOOL value);
 
-      //## Attribute: IsSynchronizeExchangeFeedFile%36501278034D
-      //    Specifiy if it is necessary to synchronize the feed data
-      //    file.
-      const BOOL GetIsSynchronizeExchangeFeedFile () const;
-      void SetIsSynchronizeExchangeFeedFile (BOOL value);
+        /**
+        * Gets the synchronization time (in seconds)
+        *@return the synchronization time (in seconds)
+        */
+        virtual inline const int GetSynchronizeTimeSequence() const;
 
-      //## Attribute: SynchronizeTimeSequence%365012BB03A4
-      //    Defines if the synchronization time (in seconds).
-      const int GetSynchronizeTimeSequence () const;
-      void SetSynchronizeTimeSequence (int value);
+        /**
+        * Sets the synchronization time (in seconds)
+        *@param value - the synchronization time (in seconds)
+        */
+        virtual inline void SetSynchronizeTimeSequence(int value);
 
-      //## Attribute: ShowHiddenField%3650151D02C4
-      //    Specifiy if hidden fields must be shown.
-      const EOptionType GetShowHiddenField() const;
-      void SetShowHiddenField(EOptionType value);
+        /**
+        * Gets if hidden fields must be shown
+        *@return yes, no or application
+        */
+        virtual inline const EOptionType GetShowHiddenField() const;
 
-      //## Attribute: ShowEmptyLine%3650154403C5
-      //    Specify if empty lines must be shown if there are emty.
-      const EOptionType GetShowEmptyLine() const;
-      void SetShowEmptyLine(EOptionType value);
+        /**
+        * Sets if hidden fields must be shown
+        *@param value - yes, no or application
+        */
+        virtual inline void SetShowHiddenField(EOptionType value);
 
-      //## Attribute: AutomaticSynchronizeFilename%366A4F5A03BF
-      //    Is the filename automatically created.
-      const ESynchronizationFileType GetAutomaticSynchronizeFilename() const;
-      void SetAutomaticSynchronizeFilename(ESynchronizationFileType value);
+        /**
+        * Gets if empty lines must be shown if there are emty
+        *@return yes, no or application
+        */
+        virtual inline const EOptionType GetShowEmptyLine() const;
 
-      //## Attribute: SynchronizeFilename%366A4F7802C8
-      //    The synchronization filename if not automatic.
-      const CString GetSynchronizeFilename () const;
-      void SetSynchronizeFilename (CString value);
+        /**
+        * Sets if empty lines must be shown if there are emty
+        *@param value - yes, no or application
+        */
+        virtual inline void SetShowEmptyLine(EOptionType value);
 
-      //## Attribute: SynchronizationHeader%366A55DB01C5
-      //    Ceates or not a synchronization header
-      const BOOL GetSynchronizationHeader () const;
-      void SetSynchronizationHeader (BOOL value);
+        /**
+        * Gets if the file name is automatically created
+        *@return automatic name, file name specified, or folder specified
+        */
+        virtual inline const ESynchronizationFileType GetAutomaticSynchronizeFileName() const;
 
-      //## Attribute: SynchronizationSeparator%366A5603008C
-      //    Defines the seperator type.
-      const ESynchronizationSeparatorType GetSynchronizationSeparator() const;
-      void SetSynchronizationSeparator(ESynchronizationSeparatorType value);
+        /**
+        * Sets if the file name is automatically created
+        *@return automatic name, file name specified, or folder specified
+        */
+        virtual inline void SetAutomaticSynchronizeFileName(ESynchronizationFileType value);
 
-    // Additional Public Declarations
-      //## begin ZDDocumentOptions%351656F90334.public preserve=yes
-      BOOL GetPrintEmptyStyleWhenEmpty() const { return m_PrintEmptyStyleWhenEmpty; };
-      void    SetPrintEmptyStyleWhenEmpty( BOOL value ) { m_PrintEmptyStyleWhenEmpty = value; };
-      //## end ZDDocumentOptions%351656F90334.public
+        /**
+        * Gets the synchronization file name if not automatic
+        *@return the synchronization file name
+        */
+        virtual inline const CString GetSynchronizeFileName() const;
 
-  protected:
-    // Additional Protected Declarations
-      //## begin ZDDocumentOptions%351656F90334.protected preserve=yes
-      //## end ZDDocumentOptions%351656F90334.protected
+        /**
+        * Sets the synchronization file name if not automatic
+        *@param value - the synchronization file name
+        */
+        virtual inline void SetSynchronizeFileName(const CString& value);
 
-  private:
-    // Data Members for Class Attributes
+        /**
+        * Gets if the header should be synchronized
+        *@return TRUE if the header should be synchronized, otherwise FALSE
+        */
+        virtual inline const BOOL GetSynchronizationHeader() const;
 
-      //## begin ZDDocumentOptions::EmptyStyle%351657670046.attr preserve=no  public: LineType {V} DashLine
-      ELineType m_EmptyStyle;
-      //## end ZDDocumentOptions::EmptyStyle%351657670046.attr
+        /**
+        * Sets if the header should be synchronized
+        *@param value - if TRUE, the header should be synchronized
+        */
+        virtual inline void SetSynchronizationHeader(BOOL value);
 
-      //## begin ZDDocumentOptions::IsSynchronizeExchangeFeedFile%36501278034D.attr preserve=no  public: BOOL {U} FALSE
-      BOOL m_IsSynchronizeExchangeFeedFile;
-      //## end ZDDocumentOptions::IsSynchronizeExchangeFeedFile%36501278034D.attr
+        /**
+        * Gets the seperator type
+        *@return the separator type
+        */
+        virtual inline const ESynchronizationSeparatorType GetSynchronizationSeparator() const;
 
-      //## begin ZDDocumentOptions::SynchronizeTimeSequence%365012BB03A4.attr preserve=no  public: int {U} 5
-      int m_SynchronizeTimeSequence;
-      //## end ZDDocumentOptions::SynchronizeTimeSequence%365012BB03A4.attr
+        /**
+        * Sets the seperator type
+        *@param value - the separator type
+        */
+        virtual inline void SetSynchronizationSeparator(ESynchronizationSeparatorType value);
 
-      //## begin ZDDocumentOptions::ShowHiddenField%3650151D02C4.attr preserve=no  public: OptionType {U} ApplicationOption
-      EOptionType m_ShowHiddenField;
-      //## end ZDDocumentOptions::ShowHiddenField%3650151D02C4.attr
+        /**
+        * Gets if empty style should be printed
+        *@return TRUE if empty style should be printed, otherwise FALSE
+        */
+        virtual inline BOOL GetPrintEmptyStyleWhenEmpty() const;
 
-      //## begin ZDDocumentOptions::ShowEmptyLine%3650154403C5.attr preserve=no  public: OptionType {U} ApplicationOption
-      EOptionType m_ShowEmptyLine;
-      //## end ZDDocumentOptions::ShowEmptyLine%3650154403C5.attr
+        /**
+        * Sets if empty style should be printed
+        *@param value - if TRUE, empty style should be printed
+        */
+        virtual inline void SetPrintEmptyStyleWhenEmpty(BOOL value);
 
-      //## begin ZDDocumentOptions::AutomaticSynchronizeFilename%366A4F5A03BF.attr preserve=no  public: SynchronizationFileType {U} 
-      ESynchronizationFileType m_AutomaticSynchronizeFilename;
-      //## end ZDDocumentOptions::AutomaticSynchronizeFilename%366A4F5A03BF.attr
-
-      //## begin ZDDocumentOptions::SynchronizeFilename%366A4F7802C8.attr preserve=no  public: CString {U} 
-      CString m_SynchronizeFilename;
-      //## end ZDDocumentOptions::SynchronizeFilename%366A4F7802C8.attr
-
-      //## begin ZDDocumentOptions::SynchronizationHeader%366A55DB01C5.attr preserve=no  public: BOOL {U} 
-      BOOL m_SynchronizationHeader;
-      //## end ZDDocumentOptions::SynchronizationHeader%366A55DB01C5.attr
-
-      //## begin ZDDocumentOptions::SynchronizationSeparator%366A5603008C.attr preserve=no  public: SynchronizationSeparatorType {U} 
-      ESynchronizationSeparatorType m_SynchronizationSeparator;
-      //## end ZDDocumentOptions::SynchronizationSeparator%366A5603008C.attr
-
-    // Additional Private Declarations
-      //## begin ZDDocumentOptions%351656F90334.private preserve=yes
-      BOOL    m_PrintEmptyStyleWhenEmpty;
-      //## end ZDDocumentOptions%351656F90334.private
-
-  private:  //## implementation
-    // Additional Implementation Declarations
-      //## begin ZDDocumentOptions%351656F90334.implementation preserve=yes
-      //## end ZDDocumentOptions%351656F90334.implementation
-
+    private:
+        EOptionType                   m_ShowHiddenField;
+        EOptionType                   m_ShowEmptyLine;
+        ELineType                     m_EmptyStyle;
+        ESynchronizationFileType      m_AutomaticSynchronizeFileName;
+        ESynchronizationSeparatorType m_SynchronizationSeparator;
+        CString                       m_SynchronizeFileName;
+        int                           m_SynchronizeTimeSequence;
+        BOOL                          m_IsSynchronizeExchangeFeedFile;
+        BOOL                          m_SynchronizationHeader;
+        BOOL                          m_PrintEmptyStyleWhenEmpty;
 };
 
-//## begin ZDDocumentOptions%351656F90334.postscript preserve=yes
-//## end ZDDocumentOptions%351656F90334.postscript
-
-// Class ZDDocumentOptions 
-
-//## Get and Set Operations for Class Attributes (inline)
-
-inline const ELineType ZDDocumentOptions::GetEmptyStyle() const
+//---------------------------------------------------------------------------
+// PSS_DocumentOptions
+//---------------------------------------------------------------------------
+const ELineType ZDDocumentOptions::GetEmptyStyle() const
 {
-  //## begin ZDDocumentOptions::GetEmptyStyle%351657670046.get preserve=no
-  return m_EmptyStyle;
-  //## end ZDDocumentOptions::GetEmptyStyle%351657670046.get
+    return m_EmptyStyle;
 }
-
-inline void ZDDocumentOptions::SetEmptyStyle(ELineType value)
+//---------------------------------------------------------------------------
+void ZDDocumentOptions::SetEmptyStyle(ELineType value)
 {
-  //## begin ZDDocumentOptions::SetEmptyStyle%351657670046.set preserve=no
-  m_EmptyStyle = value;
-  //## end ZDDocumentOptions::SetEmptyStyle%351657670046.set
+    m_EmptyStyle = value;
 }
-
-inline const BOOL ZDDocumentOptions::GetIsSynchronizeExchangeFeedFile () const
+//---------------------------------------------------------------------------
+const BOOL ZDDocumentOptions::GetIsSynchronizeExchangeFeedFile() const
 {
-  //## begin ZDDocumentOptions::GetIsSynchronizeExchangeFeedFile%36501278034D.get preserve=no
-  return m_IsSynchronizeExchangeFeedFile;
-  //## end ZDDocumentOptions::GetIsSynchronizeExchangeFeedFile%36501278034D.get
+    return m_IsSynchronizeExchangeFeedFile;
 }
-
-inline void ZDDocumentOptions::SetIsSynchronizeExchangeFeedFile (BOOL value)
+//---------------------------------------------------------------------------
+void ZDDocumentOptions::SetIsSynchronizeExchangeFeedFile(BOOL value)
 {
-  //## begin ZDDocumentOptions::SetIsSynchronizeExchangeFeedFile%36501278034D.set preserve=no
-  m_IsSynchronizeExchangeFeedFile = value;
-  //## end ZDDocumentOptions::SetIsSynchronizeExchangeFeedFile%36501278034D.set
+    m_IsSynchronizeExchangeFeedFile = value;
 }
-
-inline const int ZDDocumentOptions::GetSynchronizeTimeSequence () const
+//---------------------------------------------------------------------------
+const int ZDDocumentOptions::GetSynchronizeTimeSequence() const
 {
-  //## begin ZDDocumentOptions::GetSynchronizeTimeSequence%365012BB03A4.get preserve=no
-  return m_SynchronizeTimeSequence;
-  //## end ZDDocumentOptions::GetSynchronizeTimeSequence%365012BB03A4.get
+    return m_SynchronizeTimeSequence;
 }
-
-inline void ZDDocumentOptions::SetSynchronizeTimeSequence (int value)
+//---------------------------------------------------------------------------
+void ZDDocumentOptions::SetSynchronizeTimeSequence(int value)
 {
-  //## begin ZDDocumentOptions::SetSynchronizeTimeSequence%365012BB03A4.set preserve=no
-  m_SynchronizeTimeSequence = value;
-  //## end ZDDocumentOptions::SetSynchronizeTimeSequence%365012BB03A4.set
+    m_SynchronizeTimeSequence = value;
 }
-
-inline const EOptionType ZDDocumentOptions::GetShowHiddenField() const
+//---------------------------------------------------------------------------
+const EOptionType ZDDocumentOptions::GetShowHiddenField() const
 {
-  //## begin ZDDocumentOptions::GetShowHiddenField%3650151D02C4.get preserve=no
-  return m_ShowHiddenField;
-  //## end ZDDocumentOptions::GetShowHiddenField%3650151D02C4.get
+    return m_ShowHiddenField;
 }
-
-inline void ZDDocumentOptions::SetShowHiddenField(EOptionType value)
+//---------------------------------------------------------------------------
+void ZDDocumentOptions::SetShowHiddenField(EOptionType value)
 {
-  //## begin ZDDocumentOptions::SetShowHiddenField%3650151D02C4.set preserve=no
-  m_ShowHiddenField = value;
-  //## end ZDDocumentOptions::SetShowHiddenField%3650151D02C4.set
+    m_ShowHiddenField = value;
 }
-
-inline const EOptionType ZDDocumentOptions::GetShowEmptyLine() const
+//---------------------------------------------------------------------------
+const EOptionType ZDDocumentOptions::GetShowEmptyLine() const
 {
-  //## begin ZDDocumentOptions::GetShowEmptyLine%3650154403C5.get preserve=no
-  return m_ShowEmptyLine;
-  //## end ZDDocumentOptions::GetShowEmptyLine%3650154403C5.get
+    return m_ShowEmptyLine;
 }
-
-inline void ZDDocumentOptions::SetShowEmptyLine(EOptionType value)
+//---------------------------------------------------------------------------
+void ZDDocumentOptions::SetShowEmptyLine(EOptionType value)
 {
-  //## begin ZDDocumentOptions::SetShowEmptyLine%3650154403C5.set preserve=no
-  m_ShowEmptyLine = value;
-  //## end ZDDocumentOptions::SetShowEmptyLine%3650154403C5.set
+    m_ShowEmptyLine = value;
 }
-
-inline const ESynchronizationFileType ZDDocumentOptions::GetAutomaticSynchronizeFilename() const
+//---------------------------------------------------------------------------
+const ESynchronizationFileType ZDDocumentOptions::GetAutomaticSynchronizeFileName() const
 {
-  //## begin ZDDocumentOptions::GetAutomaticSynchronizeFilename%366A4F5A03BF.get preserve=no
-  return m_AutomaticSynchronizeFilename;
-  //## end ZDDocumentOptions::GetAutomaticSynchronizeFilename%366A4F5A03BF.get
+    return m_AutomaticSynchronizeFileName;
 }
-
-inline void ZDDocumentOptions::SetAutomaticSynchronizeFilename(ESynchronizationFileType value)
+//---------------------------------------------------------------------------
+void ZDDocumentOptions::SetAutomaticSynchronizeFileName(ESynchronizationFileType value)
 {
-  //## begin ZDDocumentOptions::SetAutomaticSynchronizeFilename%366A4F5A03BF.set preserve=no
-  m_AutomaticSynchronizeFilename = value;
-  //## end ZDDocumentOptions::SetAutomaticSynchronizeFilename%366A4F5A03BF.set
+    m_AutomaticSynchronizeFileName = value;
 }
-
-inline const CString ZDDocumentOptions::GetSynchronizeFilename () const
+//---------------------------------------------------------------------------
+const CString ZDDocumentOptions::GetSynchronizeFileName() const
 {
-  //## begin ZDDocumentOptions::GetSynchronizeFilename%366A4F7802C8.get preserve=no
-  return m_SynchronizeFilename;
-  //## end ZDDocumentOptions::GetSynchronizeFilename%366A4F7802C8.get
+    return m_SynchronizeFileName;
 }
-
-inline void ZDDocumentOptions::SetSynchronizeFilename (CString value)
+//---------------------------------------------------------------------------
+void ZDDocumentOptions::SetSynchronizeFileName(const CString& value)
 {
-  //## begin ZDDocumentOptions::SetSynchronizeFilename%366A4F7802C8.set preserve=no
-  m_SynchronizeFilename = value;
-  //## end ZDDocumentOptions::SetSynchronizeFilename%366A4F7802C8.set
+    m_SynchronizeFileName = value;
 }
-
-inline const BOOL ZDDocumentOptions::GetSynchronizationHeader () const
+//---------------------------------------------------------------------------
+const BOOL ZDDocumentOptions::GetSynchronizationHeader() const
 {
-  //## begin ZDDocumentOptions::GetSynchronizationHeader%366A55DB01C5.get preserve=no
-  return m_SynchronizationHeader;
-  //## end ZDDocumentOptions::GetSynchronizationHeader%366A55DB01C5.get
+    return m_SynchronizationHeader;
 }
-
-inline void ZDDocumentOptions::SetSynchronizationHeader (BOOL value)
+//---------------------------------------------------------------------------
+void ZDDocumentOptions::SetSynchronizationHeader(BOOL value)
 {
-  //## begin ZDDocumentOptions::SetSynchronizationHeader%366A55DB01C5.set preserve=no
-  m_SynchronizationHeader = value;
-  //## end ZDDocumentOptions::SetSynchronizationHeader%366A55DB01C5.set
+    m_SynchronizationHeader = value;
 }
-
-inline const ESynchronizationSeparatorType ZDDocumentOptions::GetSynchronizationSeparator() const
+//---------------------------------------------------------------------------
+const ESynchronizationSeparatorType ZDDocumentOptions::GetSynchronizationSeparator() const
 {
-  //## begin ZDDocumentOptions::GetSynchronizationSeparator%366A5603008C.get preserve=no
-  return m_SynchronizationSeparator;
-  //## end ZDDocumentOptions::GetSynchronizationSeparator%366A5603008C.get
+    return m_SynchronizationSeparator;
 }
-
-inline void ZDDocumentOptions::SetSynchronizationSeparator(ESynchronizationSeparatorType value)
+//---------------------------------------------------------------------------
+void ZDDocumentOptions::SetSynchronizationSeparator(ESynchronizationSeparatorType value)
 {
-  //## begin ZDDocumentOptions::SetSynchronizationSeparator%366A5603008C.set preserve=no
-  m_SynchronizationSeparator = value;
-  //## end ZDDocumentOptions::SetSynchronizationSeparator%366A5603008C.set
+    m_SynchronizationSeparator = value;
 }
-
-//## begin module%351657DC033E.epilog preserve=yes
-//## end module%351657DC033E.epilog
-
+//---------------------------------------------------------------------------
+BOOL ZDDocumentOptions::GetPrintEmptyStyleWhenEmpty() const
+{
+    return m_PrintEmptyStyleWhenEmpty;
+}
+//---------------------------------------------------------------------------
+void ZDDocumentOptions::SetPrintEmptyStyleWhenEmpty(BOOL value)
+{
+    m_PrintEmptyStyleWhenEmpty = value;
+}
+//---------------------------------------------------------------------------
 
 #endif

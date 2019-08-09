@@ -1940,8 +1940,8 @@ void PSS_DocumentData::OnDrawForms(CDC*    pDC,
                 {
                     // when printing test if the object is empty, and if must print empty line, and if the
                     // object must be printed
-                    if ((pObj->GetbMustBePrinted() && pObj->GetbIsVisible()) &&
-                            (!pObj->IsEmpty() || m_pDocument->ShouldPrintLine()))
+                    if (( pObj->GetbMustBePrinted() && pObj->GetbIsVisible()) &&
+                        (!pObj->IsEmpty() || m_pDocument->ShouldPrintLine()))
                         pObj->DrawObject(pDC, pView);
                 }
                 else
