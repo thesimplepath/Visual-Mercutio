@@ -672,9 +672,6 @@
     <ClInclude Include="zModelRes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZTMvcScrollView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZUAssignDynamicAttributesToModel.h">
       <Filter>Header Files</Filter>
     </ClInclude>

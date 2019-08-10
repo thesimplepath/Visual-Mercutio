@@ -823,7 +823,6 @@
     <ClInclude Include="ZDUserEntityDocument.h" />
     <ClInclude Include="zModelLib.h" />
     <ClInclude Include="zModelRes.h" />
-    <ClInclude Include="ZTMvcScrollView.h" />
     <ClInclude Include="ZUAssignDynamicAttributesToModel.h" />
     <ClInclude Include="ZUBuildGenericSymbolNewName.h" />
     <ClInclude Include="ZUBuildSymbolNewName.h" />

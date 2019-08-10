@@ -20,12 +20,433 @@
 #include "zBaseLib\ZAGlobal.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
-// JMR-MODIF - Le 29 septembre 2005 - Ajout des décorations unicoder _T( ), nettoyage du code inutile. (En commentaires)
+//---------------------------------------------------------------------------
+// PSS_MvcScrollView
+//---------------------------------------------------------------------------
+PSS_MvcScrollView::PSS_MvcScrollView()
+{
+    m_szLineScroll      = CSize(10, 10);
+    m_bUpdateScrollBars = FALSE;
+}
+//---------------------------------------------------------------------------
+PSS_MvcScrollView::~PSS_MvcScrollView()
+{}
+//---------------------------------------------------------------------------
+
+BOOL PSS_MvcScrollView::Create(LPCTSTR            lpszClassName,
+                               LPCTSTR            lpszWindowName,
+                               DWORD                dwStyle,
+                               const RECT&        rect,
+                               CWnd*                pParentWnd,
+                               UINT                nID,
+                               CCreateContext*    pContext)
+{
+    SetContainer(NULL);
+
+    BOOL bSuccess = ZIDropScrollView::Create(lpszClassName,
+                                             lpszWindowName,
+                                             dwStyle,
+                                             rect,
+                                             pParentWnd,
+                                             nID,
+                                             pContext);
+
+    if (bSuccess)
+    {
+        bSuccess = ZIProcessGraphModelViewport::Create(this, NULL);
+
+        if (bSuccess && m_pCtlr != NULL)
+        {
+            // Make sure model is set on controller, because model
+            // may have been assigned to this viewport before
+            // the controller was created.
+            m_pCtlr->SetModel(m_pModel);
+        }
+    }
+
+    return bSuccess;
+}
+
+//@doc ZTMvcScrollView
+//@mfunc Casts this object to the base viewport class
+//@rdesc Returns "this" instance cast to the base viewport class
+ZIProcessGraphModelViewport* PSS_MvcScrollView::GetViewport()
+{
+    return (ZIProcessGraphModelViewport*)this;
+}
+
+//@doc ZTMvcScrollView
+//@mfunc Sets up default viewport initialization
+//@rdesc void
+void PSS_MvcScrollView::OnInitialUpdate()
+{
+    // construct the viewport in your derived class constructor
+    // and delete it in the destructor
+    ZIDropScrollView::OnInitialUpdate();
+
+    // viewport initialization
+    CRect r;
+    GetClientRect(&r);
+    MvcWrapper_T< ZIProcessGraphModelViewport>::SetSize(r.Size());
+    MvcWrapper_T< ZIProcessGraphModelViewport>::OnInitialUpdate();
+
+    UpdateScrollBarPos();
+    UpdateScrollBarSize();
+}
+
+//@doc ZTMvcScrollView
+//@mfunc Forwards commands to the embedded viewport
+//@rdesc TRUE if message was handled, otherwise FALSE.
+//@parm UINT | nID | Contains the command ID.
+//@parm int | nCode | Identifies the command notification code.
+//@parm void* | pExtra | Used according to the value of nCode.
+//@parm AFX_CMDHANDLERINFO* | pHandlerInfo | If not NULL, OnCmdMsg fills in the pTarget and pmf members of the pHandlerInfo structure instead of dispatching the command. Typically, this parameter should be NULL.
+BOOL PSS_MvcScrollView::OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo)
+{
+    BOOL bHandled = ZIProcessGraphModelViewport::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
+
+    if (!bHandled)
+    {
+        bHandled = ZIDropScrollView::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
+    }
+
+    return bHandled;
+}
+
+//@doc ZTMvcScrollView
+//@mfunc Forwards messages to the embedded viewport
+//@rdesc TRUE if message was handled, otherwise FALSE.
+//@parm UINT | message | The windows message being handled
+//@parm WPARAM | wParam | Specifies additional message-dependent information.
+//@parm LPARAM | lParam | Specifies additional message-dependent information.
+//@parm LRESULT* | pResult | The return value
+//@comm
+// This handler also watches for scrolling and sizing messages to call DoScrollViewport.
+//@xref <mf ZTMvcScrollView::DoScrollViewport>
+BOOL PSS_MvcScrollView::OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
+{
+    BOOL bHandled = ZIProcessGraphModelViewport::OnWndMsg(message, wParam, lParam, pResult);
+
+    if (!bHandled)
+    {
+        bHandled = ZIDropScrollView::OnWndMsg(message, wParam, lParam, pResult);
+    }
+
+    // handle messages here that could cause scrolling
+    switch (message)
+    {
+        case WM_SIZE:
+        {
+            // Resize the logical rect of the viewport
+            int nWidth = LOWORD(lParam);    // Width of client area
+            int nHeight = HIWORD(lParam);    // Height of client area
+            MvcWrapper_T<ZIProcessGraphModelViewport>::SetSize(nWidth, nHeight);
+
+            // Viewport scrolling
+            int        nMapMode;
+            SIZE    sizeTotal;
+            SIZE    sizePage;
+            SIZE    sizeLine;
+
+            GetDeviceScrollSizes(nMapMode, sizeTotal, sizePage, sizeLine);
+
+            // You need to call SetScrollSizes in your OnInitialUpdate override
+            if (nMapMode > 0)
+            {
+                DoScrollViewport(GetScrollPosition());
+            }
+
+            break;
+        }
+
+        case WM_HSCROLL:
+        case WM_VSCROLL:
+        {
+            int nScrollCode = (int)LOWORD(wParam);
+
+            if (nScrollCode != SB_ENDSCROLL)
+            {
+                CPoint        ptScroll;
+                SCROLLINFO    siH;
+                SCROLLINFO    siV;
+
+                GetScrollInfo(SB_HORZ, &siH);
+                GetScrollInfo(SB_VERT, &siV);
+
+                if (nScrollCode == SB_THUMBTRACK)
+                {
+                    ptScroll.x = siH.nTrackPos;
+                    ptScroll.y = siV.nTrackPos;
+                }
+                else
+                {
+                    ptScroll.x = siH.nPos;
+                    ptScroll.y = siV.nPos;
+                }
+
+                DoScrollViewport(ptScroll);
+                bHandled = TRUE;
+            }
+
+            break;
+        }
+
+        case WM_MOUSEWHEEL:
+        {
+            DoScrollViewport(GetScrollPosition());
+        }
+    }
+
+    return bHandled;
+}
+
+//@doc ZTMvcScrollView
+//@mfunc Prepares the device context for drawing.
+//@rdesc void
+//@parm CDC* | pDC | Points to the device context to be used for rendering an image.
+//@parm CPrintInfo* | pInfo | Points to a CPrintInfo structure that describes the 
+// current print job if OnPrepareDC is being called for printing or print preview; 
+// the m_nCurPage member specifies the page about to be printed. This parameter is 
+// NULL if OnPrepareDC is being called for screen display.
+void PSS_MvcScrollView::OnPrepareDC(CDC* pDC, CPrintInfo* pInfo)
+{
+    ASSERT(ZIDropScrollView::m_nMapMode == MM_TEXT);
+    MvcWrapper_T<ZIProcessGraphModelViewport>::OnPrepareDC(pDC);
+
+    // For default Printing behavior
+    CView::OnPrepareDC(pDC, pInfo);
+}
+
+//@doc ZTMvcScrollView
+//@mfunc Called by MFC framework to scroll the view.
+//@rdesc TRUE if view scrolled; otherwise FALSE.
+//@parm CSize | sizeScroll | Horizontal and vertical offset to scroll.
+//@parmopt BOOL | bDoScroll | TRUE | Indicates if scroll should actually be performed.
+//@comm Overrides OnScrollBy in ZIDropScrollView in order to prevent the window from scrolling.
+// This function is identical to OnScrollBy in ZIDropScrollView, except that the call to
+// CWnd::ScrollWindow has been removed.
+BOOL PSS_MvcScrollView::OnScrollBy(CSize sizeScroll, BOOL bDoScroll)
+{
+    int xOrig, x;
+    int yOrig, y;
+
+    // Don't scroll if there is no valid scroll range (ie. no scroll bar)
+    CScrollBar* pBar;
+    DWORD dwStyle = GetStyle();
+    pBar = GetScrollBarCtrl(SB_VERT);
+
+    if ((pBar != NULL && !pBar->IsWindowEnabled()) || (pBar == NULL && !(dwStyle & WS_VSCROLL)))
+    {
+        // vertical scroll bar not enabled
+        sizeScroll.cy = 0;
+    }
+
+    pBar = GetScrollBarCtrl(SB_HORZ);
+
+    if ((pBar != NULL && !pBar->IsWindowEnabled()) || (pBar == NULL && !(dwStyle & WS_HSCROLL)))
+    {
+        // horizontal scroll bar not enabled
+        sizeScroll.cx = 0;
+    }
+
+    // adjust current x position
+    xOrig = x = GetScrollPos(SB_HORZ);
+    int xMax = GetScrollLimit(SB_HORZ);
+    x += sizeScroll.cx;
+
+    if (x < 0)
+    {
+        x = 0;
+    }
+    else if (x > xMax)
+    {
+        x = xMax;
+    }
+
+    // adjust current y position
+    yOrig = y = GetScrollPos(SB_VERT);
+    int yMax = GetScrollLimit(SB_VERT);
+    y += sizeScroll.cy;
+
+    if (y < 0)
+    {
+        y = 0;
+    }
+    else if (y > yMax)
+    {
+        y = yMax;
+    }
+
+    // Did anything change?
+    if (x == xOrig && y == yOrig)
+    {
+        return FALSE;
+    }
+
+    if (bDoScroll)
+    {
+        // do scroll and update scroll positions
+        if (x != xOrig)
+        {
+            SetScrollPos(SB_HORZ, x);
+        }
+
+        if (y != yOrig)
+        {
+            SetScrollPos(SB_VERT, y);
+        }
+    }
+
+    return TRUE;
+}
+
+//@doc ZTMvcScrollView
+//@mfunc Delegates to the embedded viewport
+//@rdesc void
+//@parm CDC* | pDC | The device context to draw on
+void PSS_MvcScrollView::OnDraw(CDC* pDC)
+{
+    if (m_bUpdateScrollBars)
+    {
+        UpdateScrollBarPos();
+        UpdateScrollBarSize();
+
+        m_bUpdateScrollBars = FALSE;
+    }
+
+    ZIProcessGraphModelViewport::Draw(pDC);
+}
+
+//@doc ZTMvcScrollView
+//@mfunc Scrolls the embedded viewport in response to WM_xSCROLL or WM_SIZE messages
+//@rdesc void
+//@parm CPoint | ptScrollPos | The current scroll position, in logical units
+//@comm
+// To keep the scroll view and embedded viewport in sync, the logical origin of the
+// viewport is scrolled to match the ZIDropScrollView.
+void PSS_MvcScrollView::DoScrollViewport(CPoint ptScrollPos)
+{
+    CSize szLog(ptScrollPos.x, ptScrollPos.y);
+    ZIProcessGraphModelViewport::DPtoLP(&szLog);
+
+    ptScrollPos.x = szLog.cx;
+    ptScrollPos.y = szLog.cy;
+
+    // same as Pan, except using absolute coordinates, not offsets
+    ZIProcessGraphModelViewport::SetLogOrigin(ptScrollPos);
+    ZIProcessGraphModelViewport::InvalidateVisual(this, FALSE, TRUE);
+}
+
+void PSS_MvcScrollView::UpdateScrollBarPos()
+{
+    CPoint ptLogOrigin = ZIProcessGraphModelViewport::GetLogOrigin();
+
+    // Convert logical origin of viewport into device coordinates
+    // that can be used to adjust the scrollbars.
+    CSize szDev(ptLogOrigin.x, ptLogOrigin.y);
+    ZIProcessGraphModelViewport::LPtoDP(&szDev);
+    CPoint ptScrollPos(szDev.cx, szDev.cy);
+
+    SetScrollPos(SB_HORZ, ptScrollPos.x, TRUE);
+    SetScrollPos(SB_VERT, ptScrollPos.y, TRUE);
+}
+
+void PSS_MvcScrollView::UpdateScrollBarSize()
+{
+    // The scroll view mapping mode is always set to MM_TEXT, so device
+    // coordinates in the viewport are the same as logical coordinates used
+    // by the scrollbars. Logical coordinates in the viewport must be
+    // converted to device units before being used to set the scrollbar
+    // positions or sizes.
+
+    CSize szTotal = ZIProcessGraphModelViewport::GetVirtualSize();
+    ZIProcessGraphModelViewport::LPtoDP(&szTotal);
+
+    CSize szPage(GetBounds().Size());
+
+    CRect rcInnerMargins;
+    ZIProcessGraphModelViewport::GetMargins(rcInnerMargins);
+
+    CSize szInnerMargins(rcInnerMargins.left + rcInnerMargins.right,
+                         rcInnerMargins.top + rcInnerMargins.bottom);
+
+    szTotal = szTotal + szInnerMargins;
+
+    SetScrollSizes(MM_TEXT, szTotal, szPage, m_szLineScroll);
+}
+
+// If visual part changes position, reset scrollbar rects
+CPoint PSS_MvcScrollView::SetOrigin(int x, int y)
+{
+    CPoint pt = MvcWrapper_T<ZIProcessGraphModelViewport>::SetOrigin(x, y);
+    UpdateScrollBarPos();
+    return pt;
+}
+
+CPoint PSS_MvcScrollView::SetLogOrigin(int x, int y)
+{
+    CPoint ptPrev = MvcWrapper_T<ZIProcessGraphModelViewport>::SetLogOrigin(x, y);
+    UpdateScrollBarPos();
+    return ptPrev;
+}
+
+void PSS_MvcScrollView::SetVirtualSize(int cx, int cy)
+{
+    MvcWrapper_T<ZIProcessGraphModelViewport>::SetVirtualSize(cx, cy);
+    UpdateScrollBarPos();
+    UpdateScrollBarSize();
+}
+
+void PSS_MvcScrollView::SetVirtualOrigin(int x, int y)
+{
+    MvcWrapper_T<ZIProcessGraphModelViewport>::SetVirtualOrigin(x, y);
+    UpdateScrollBarPos();
+}
+
+CSize PSS_MvcScrollView::SetExtents(int cx, int cy)
+{
+    CSize size = MvcWrapper_T<ZIProcessGraphModelViewport>::SetExtents(cx, cy);
+    m_bUpdateScrollBars = TRUE;
+    return size;
+}
+
+CSize PSS_MvcScrollView::SetSize(int cx, int cy)
+{
+    CSize size = MvcWrapper_T<ZIProcessGraphModelViewport>::SetSize(cx, cy);
+    UpdateScrollBarPos();
+    UpdateScrollBarSize();
+    return size;
+}
+
+CSize PSS_MvcScrollView::SetLogSize(int cx, int cy)
+{
+    CSize size = MvcWrapper_T<ZIProcessGraphModelViewport>::SetLogSize(cx, cy);
+    UpdateScrollBarPos();
+    UpdateScrollBarSize();
+    return size;
+}
+
+// Logical extents have changed. Adjust scrollbars to compensate
+CSize PSS_MvcScrollView::SetLogExtents(int cx, int cy)
+{
+    CSize sizeExtents = MvcWrapper_T<ZIProcessGraphModelViewport>::SetLogExtents(cx, cy);
+    m_bUpdateScrollBars = TRUE;
+    return sizeExtents;
+}
+
+// Logical extents have changed. Adjust scrollbars to compensate
+CSize PSS_MvcScrollView::SetLogScaling(float fScaleWidth, float fScaleHeight)
+{
+    CSize sizeExtents = MvcWrapper_T<ZIProcessGraphModelViewport>::SetLogScaling(fScaleWidth, fScaleHeight);
+    UpdateScrollBarPos();
+    UpdateScrollBarSize();
+    return sizeExtents;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // ZIProcessGraphModelView
@@ -312,7 +733,7 @@ void ZIProcessGraphModelView::SizeVpToModel()
 
 void ZIProcessGraphModelView::OnInitialUpdate()
 {
-    ZTMvcScrollView<ZIProcessGraphModelViewport>::OnInitialUpdate();
+    PSS_MvcScrollView::OnInitialUpdate();
 
     // Set the document page units
     if ( GetDocument() && ISA( GetDocument(), ZDProcessGraphModelDoc ) )

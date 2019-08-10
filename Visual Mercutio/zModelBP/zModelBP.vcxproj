@@ -89,7 +89,6 @@
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>..\lib\zModelBPd.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -127,7 +126,6 @@
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>..\lib\zModelBP.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Midl>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
