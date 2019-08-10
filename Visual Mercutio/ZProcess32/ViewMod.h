@@ -89,7 +89,7 @@ class ZIViewModify : public ZIViewRead  //## Inherits: <unnamed>%3624C90D00CE
 
       //## Operation: CreateEditControl%938177641
       //    returns the right edit control. Based on the object.
-      virtual Edit* CreateEditControl (PlanFinObject* pObj, CDC* pDC = NULL);
+      virtual PSS_Edit* CreateEditControl (PlanFinObject* pObj, CDC* pDC = NULL);
 
       //## Operation: AddObjectNotes%941353880
       //    Add an object notes.

@@ -6,10 +6,10 @@
 #define AFX_ZBUNITMANAGER_H__B10D7C0F_7F60_408B_80A8_803A62263396__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -17,37 +17,31 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
+// processsoft
+#include "zBaseLib\PSS_ProcessModelDocTmpl.h"
 #include "ZBUnit.h"
-#include "zBaseLib\ProcessModelDocTmpl.h"
-
 
 class ZBModelSet;
 
-
 #ifdef _ZMODELEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
-
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-
 
 class AFX_EXT_CLASS ZBUnitManager : public CObject  
 {
     DECLARE_SERIAL(ZBUnitManager)
 
 public:
-    ZBUnitManager(ZDProcessModelDocTmpl* pDocTmpl = NULL);
+    ZBUnitManager(PSS_ProcessModelDocTmpl* pDocTmpl = NULL);
     virtual ~ZBUnitManager();
 
-    void    Initialize(ZDProcessModelDocTmpl* pDocTmpl);
+    void    Initialize(PSS_ProcessModelDocTmpl* pDocTmpl);
 
     size_t    FillModelSet( ZBModelSet& Set );
 
@@ -82,8 +76,8 @@ public:
     virtual void Serialize(CArchive& ar);
 
 private:
-    CObArray                m_UnitSet;
-    ZDProcessModelDocTmpl*    m_pDocTmpl;
+    CObArray                 m_UnitSet;
+    PSS_ProcessModelDocTmpl* m_pDocTmpl;
 
 private:
     // No Copy constructor

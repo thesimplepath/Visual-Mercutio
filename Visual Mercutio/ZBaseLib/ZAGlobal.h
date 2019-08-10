@@ -23,14 +23,14 @@
 #include "ZUMail.h"
 
 // Doc Template Ex
-#include "DocTmplEx.h"
+#include "PSS_DocTemplateEx.h"
 
 // ZBHistoricValueManager
 #include "ZBHistoricValueManager.h"
 
 // Forward declaration
 class ZDDocument;
-class ZDProcessModelDocTmpl;
+class PSS_ProcessModelDocTmpl;
 class ZBServer;
 
 #ifdef _ZBASELIBEXPORT
@@ -218,33 +218,33 @@ public:
     static ZDTemplateManager& GetModelTemplateManager();
 
     //    Keep the pointer on the multi doc template.
-    static ZDDocTemplateEx* GetpDocTemplate()
+    static PSS_DocTemplateEx* GetpDocTemplate()
     {
         return m_pDocTemplate;
     }
 
-    static void SetpDocTemplate( ZDDocTemplateEx* value )
+    static void SetpDocTemplate(PSS_DocTemplateEx* value)
     {
         m_pDocTemplate = value;
     }
 
     //    Keep the pointer on the process multi doc template.
-    static ZDDocTemplateEx* GetpProcessDocTemplate()
+    static PSS_DocTemplateEx* GetpProcessDocTemplate()
     {
         return m_pProcessDocTemplate;
     }
 
-    static void SetpProcessDocTemplate( ZDDocTemplateEx* value )
+    static void SetpProcessDocTemplate(PSS_DocTemplateEx* value )
     {
         m_pProcessDocTemplate = value;
     }
 
-    static ZDProcessModelDocTmpl* GetpProcessModelDocumentTemplate()
+    static PSS_ProcessModelDocTmpl* GetpProcessModelDocumentTemplate()
     {
         return m_pProcessModelDocumentTemplate; 
     }
 
-    static void SetpProcessModelDocumentTemplate ( ZDProcessModelDocTmpl* value )
+    static void SetpProcessModelDocumentTemplate ( PSS_ProcessModelDocTmpl* value )
     {
         m_pProcessModelDocumentTemplate = value;
     }
@@ -455,12 +455,12 @@ private:
 
     static ZBDaySet                    m_DaySet;
 
-    static ZDDocTemplateEx*            m_pDocTemplate;
-    static ZDDocTemplateEx*            m_pProcessDocTemplate;
+    static PSS_DocTemplateEx*        m_pDocTemplate;
+    static PSS_DocTemplateEx*        m_pProcessDocTemplate;
 
     static CMultiDocTemplate*        m_pReportDocTemplate;
 
-    static ZDProcessModelDocTmpl*    m_pProcessModelDocumentTemplate;
+    static PSS_ProcessModelDocTmpl*    m_pProcessModelDocumentTemplate;
 
     static ZBServer*                m_pServer;
 

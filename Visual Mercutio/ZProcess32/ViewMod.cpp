@@ -234,7 +234,7 @@ void ZIViewModify::EditObject ( PlanFinObject* pObj )
     //## end ZIViewModify::EditObject%938177640.body
 }
 
-Edit* ZIViewModify::CreateEditControl ( PlanFinObject* pObj, CDC* pDC )
+PSS_Edit* ZIViewModify::CreateEditControl ( PlanFinObject* pObj, CDC* pDC )
 {
     //## begin ZIViewModify::CreateEditControl%938177641.body preserve=yes
     switch (PSS_ObjectUtility::GetClassNameID(pObj))
@@ -274,7 +274,7 @@ Edit* ZIViewModify::CreateEditControl ( PlanFinObject* pObj, CDC* pDC )
 
         case IDS_MULTITEXT_CLASS: 
         {
-            return new StrEdit( TRUE );
+            return new PSS_StrEdit( TRUE );
         }
 
         case IDS_HISTOTEXT_CLASS: 
@@ -287,7 +287,7 @@ Edit* ZIViewModify::CreateEditControl ( PlanFinObject* pObj, CDC* pDC )
             if ( pObj->IsMemberOfMultiColumn() )
                 return new StrEditHistoric;
             else
-                return new StrEdit;
+                return new PSS_StrEdit;
         }
 
         case IDS_SQUARETEXT_CLASS: 

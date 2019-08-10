@@ -19,22 +19,19 @@ IMPLEMENT_SERIAL(ZBUnitManager, CObject, g_DefVersion)
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBUnitManager::ZBUnitManager(ZDProcessModelDocTmpl* pDocTmpl)
-: m_pDocTmpl(pDocTmpl)
-{
-
-}
+ZBUnitManager::ZBUnitManager(PSS_ProcessModelDocTmpl* pDocTmpl) :
+    m_pDocTmpl(pDocTmpl)
+{}
 
 ZBUnitManager::~ZBUnitManager()
 {
     UnloadAllUnits();
 }
 
-void    ZBUnitManager::Initialize(ZDProcessModelDocTmpl* pDocTmpl)
+void    ZBUnitManager::Initialize(PSS_ProcessModelDocTmpl* pDocTmpl)
 {
     m_pDocTmpl = pDocTmpl;
 }
-
 
 size_t    ZBUnitManager::FillModelSet( ZBModelSet& Set )
 {

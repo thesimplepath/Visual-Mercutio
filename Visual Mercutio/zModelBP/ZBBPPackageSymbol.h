@@ -19,7 +19,7 @@
 
 #include "zModel\ZBSymbol.h"
 // Forward declaration
-class ZDProcessModelDocTmpl;
+class PSS_ProcessModelDocTmpl;
 class ZDProcessGraphModelDoc;
 class ZDProcessGraphModelMdl;
 
@@ -96,7 +96,7 @@ public:
         return m_pPackageDoc;
     }
 
-    bool LoadPackage( ZDProcessModelDocTmpl* pDocTmpl, ZDProcessGraphModelMdl* pParent = NULL );
+    bool LoadPackage(PSS_ProcessModelDocTmpl* pDocTmpl, ZDProcessGraphModelMdl* pParent = NULL );
     bool UnloadPackage();
 
     bool IsLinkedToFilename() const

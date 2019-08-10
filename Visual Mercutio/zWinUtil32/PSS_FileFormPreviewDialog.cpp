@@ -225,7 +225,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_FileFormPreviewDialog
 //---------------------------------------------------------------------------
-PSS_FileFormPreviewDialog::PSS_FileFormPreviewDialog(const CString& fileName, ZDDocTemplateEx* pDocTemplate, CWnd* pParent) :
+PSS_FileFormPreviewDialog::PSS_FileFormPreviewDialog(const CString& fileName, PSS_DocTemplateEx* pDocTemplate, CWnd* pParent) :
     CDialog(PSS_FileFormPreviewDialog::IDD, pParent),
     m_pView(NULL),
     m_pFrameWindow(NULL),

@@ -29,7 +29,7 @@
 
 
 // DocOpt
-#include "DocOpt.h"
+#include "PSS_DocumentOptions.h"
 // HistFMng
 #include "HistFMng.h"
 // FldStamp
@@ -46,7 +46,7 @@
 // Forward class declaration
 class ZIHtmlView;
 class ZIView;
-class Edit;
+class PSS_Edit;
 class ZUDocumentExport;
 class PSS_DocumentData;
 class PlanFinObject;
@@ -481,11 +481,11 @@ public:
 
     //## Operation: GetEditControl%907776836
     //    Returns the pointeur on the edit control.
-    virtual Edit* GetEditControl();
+    virtual PSS_Edit* GetEditControl();
 
     //## Operation: AssignEditControl%907776838
     //    Assigns a new created edit control.
-    void AssignEditControl(Edit* pEdit);
+    void AssignEditControl(PSS_Edit* pEdit);
 
     //## Operation: CreateAutomaticNewName%908620920
     //    Create automatically a new name.
@@ -605,7 +605,7 @@ public:
 
       //## Attribute: DocOptions%35CC4CD303BA
       //    Contains the document options.
-    ZDDocumentOptions& GetDocOptions();
+    PSS_DocumentOptions& GetDocOptions();
 
     //## Attribute: HistoryValueManager%36348F570175
     //    This is the manager of history field values.
@@ -726,10 +726,10 @@ protected:
 
   // Data Members for Class Attributes
 
-    Edit* m_strEdit;
+    PSS_Edit* m_strEdit;
 
     //## begin ZDDocument::DocOptions%35CC4CD303BA.attr preserve=no  public: ZDDocumentOptions {U} 
-    ZDDocumentOptions m_DocOptions;
+    PSS_DocumentOptions m_DocOptions;
     //## end ZDDocument::DocOptions%35CC4CD303BA.attr
 
     //## Attribute: wVersionNumber%35D08226028E
@@ -928,7 +928,7 @@ inline CStringArray* ZDDocument::GetObjectFieldNameArray() const
 
 //## Get and Set Operations for Class Attributes (inline)
 
-inline ZDDocumentOptions& ZDDocument::GetDocOptions()
+inline PSS_DocumentOptions& ZDDocument::GetDocOptions()
 {
     //## begin ZDDocument::GetDocOptions%35CC4CD303BA.get preserve=no
     return m_DocOptions;
@@ -1061,14 +1061,14 @@ inline BOOL ZDDocument::OnOpenDocument(const char* pszPathName)
 }
 
 
-inline Edit* ZDDocument::GetEditControl()
+inline PSS_Edit* ZDDocument::GetEditControl()
 {
     //## begin ZDDocumentReadWrite::GetEditControl%907776836.body preserve=yes
     return m_strEdit;
     //## end ZDDocumentReadWrite::GetEditControl%907776836.body
 }
 
-inline void ZDDocument::AssignEditControl(Edit* pEdit)
+inline void ZDDocument::AssignEditControl(PSS_Edit* pEdit)
 {
     //## begin ZDDocumentReadWrite::AssignEditControl%907776838.body preserve=yes
     m_strEdit = pEdit;

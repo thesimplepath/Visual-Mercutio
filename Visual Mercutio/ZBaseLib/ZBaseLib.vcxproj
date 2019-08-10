@@ -204,13 +204,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="DocOpt.cpp">
+    <ClCompile Include="PSS_DocumentOptions.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="DocTmplEx.cpp">
+    <ClCompile Include="PSS_DocTemplateEx.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -448,7 +448,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ProcessModelDocTmpl.cpp">
+    <ClCompile Include="PSS_ProcessModelDocTmpl.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1356,8 +1356,8 @@
     <ClInclude Include="PSS_CommandLine.h" />
     <ClInclude Include="PSS_ColorBtn.h" />
     <ClInclude Include="PSS_DocumentData.h" />
-    <ClInclude Include="DocOpt.h" />
-    <ClInclude Include="DocTmplEx.h" />
+    <ClInclude Include="PSS_DocumentOptions.h" />
+    <ClInclude Include="PSS_DocTemplateEx.h" />
     <ClInclude Include="PSS_DrawFunctions.h" />
     <ClInclude Include="EDIT.H" />
     <ClInclude Include="Export.h" />
@@ -1396,7 +1396,7 @@
     <ClInclude Include="personls.h" />
     <ClInclude Include="PLANFOBJ.H" />
     <ClInclude Include="PLFNBackImage.h" />
-    <ClInclude Include="ProcessModelDocTmpl.h" />
+    <ClInclude Include="PSS_ProcessModelDocTmpl.h" />
     <ClInclude Include="ProcOpt.h" />
     <ClInclude Include="RSETACT.H" />
     <ClInclude Include="RSETUSER.H" />

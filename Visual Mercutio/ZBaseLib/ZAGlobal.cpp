@@ -10,8 +10,8 @@
 
 #include "ZDHistoricValueDocument.h"
 
-#include "DocTmplEx.h"
-#include "ProcessModelDocTmpl.h"
+#include "PSS_DocTemplateEx.h"
+#include "PSS_ProcessModelDocTmpl.h"
 
 #include "ZBTokenizer.h"
 
@@ -94,9 +94,9 @@ ZBHistoricValueManager    ZAGlobal::m_HistoricValueManager;
 
 ZDDocument*                ZAGlobal::m_pCurrentDocumentForSerialization    = NULL;
 ZUser*                    ZAGlobal::m_ConnectedUser                        = NULL;
-ZDDocTemplateEx*        ZAGlobal::m_pDocTemplate                        = NULL;
-ZDDocTemplateEx*        ZAGlobal::m_pProcessDocTemplate                    = NULL;
-ZDProcessModelDocTmpl*    ZAGlobal::m_pProcessModelDocumentTemplate        = NULL;
+PSS_DocTemplateEx*        ZAGlobal::m_pDocTemplate                        = NULL;
+PSS_DocTemplateEx*        ZAGlobal::m_pProcessDocTemplate                    = NULL;
+PSS_ProcessModelDocTmpl*    ZAGlobal::m_pProcessModelDocumentTemplate        = NULL;
 CMultiDocTemplate*        ZAGlobal::m_pReportDocTemplate                    = NULL;
 
 ZDTemplateManager        ZAGlobal::m_TemplateManager;

@@ -442,11 +442,11 @@ BOOL ZAApp::InitAppl()
 
     // Register the application's document templates. Document templates
     // serve as the connection between documents, frame windows and views.
-    ZDDocTemplateEx* pDocTemplate = new ZDDocTemplateEx(IDR_MDIPAGE,
-                                                        RUNTIME_CLASS(ZDDocumentReadWrite),
-                                                        RUNTIME_CLASS(PSS_BaseMDIPage),
-                                                        RUNTIME_CLASS(ZIViewModify),
-                                                        ID_FILE_MRU_FORMS1);
+    PSS_DocTemplateEx* pDocTemplate = new PSS_DocTemplateEx(IDR_MDIPAGE,
+                                                            RUNTIME_CLASS(ZDDocumentReadWrite),
+                                                            RUNTIME_CLASS(PSS_BaseMDIPage),
+                                                            RUNTIME_CLASS(ZIViewModify),
+                                                            ID_FILE_MRU_FORMS1);
 
     AddDocTemplate( pDocTemplate );
     ZAGlobal::SetpDocTemplate( pDocTemplate );
@@ -464,8 +464,8 @@ BOOL ZAApp::InitAppl()
 
     // Register the application's document templates. Document templates
     //  serve as the connection between documents, frame windows and views.
-    ZDProcessModelDocTmpl* pProcessModelDocumentTemplate =
-        new ZDProcessModelDocTmpl( IDR_MODEL,
+    PSS_ProcessModelDocTmpl* pProcessModelDocumentTemplate =
+        new PSS_ProcessModelDocTmpl( IDR_MODEL,
                                    RUNTIME_CLASS( ZDProcessGraphModelDoc ),
                                    RUNTIME_CLASS( ZIProcessGraphChildFrame ),                // custom MDI child frame
                                    RUNTIME_CLASS( ZIProcessGraphModelView ),
@@ -770,7 +770,7 @@ BOOL ZAApp::SaveApplicationOptions()
 // JMR-MODIF - Le 28 décembre 2006 - Cette fonction ordonne le rafraîchissement des symboles et des propriétés.
 void ZAApp::DoRefreshSymbolsAndProperties()
 {
-    ZDProcessModelDocTmpl* m_pDocTmpl = ZAGlobal::GetpProcessModelDocumentTemplate();
+    PSS_ProcessModelDocTmpl* m_pDocTmpl = ZAGlobal::GetpProcessModelDocumentTemplate();
     POSITION myPosition = m_pDocTmpl->GetFirstDocPosition();
 
     while ( myPosition != NULL )
@@ -788,7 +788,7 @@ void ZAApp::DoRefreshSymbolsAndProperties()
 // JMR-MODIF - Le 28 décembre 2006 - Cette fonction ordonne le rafraîchissement des propriétés.
 void ZAApp::DoRefreshProperties()
 {
-    ZDProcessModelDocTmpl* m_pDocTmpl = ZAGlobal::GetpProcessModelDocumentTemplate();
+    PSS_ProcessModelDocTmpl* m_pDocTmpl = ZAGlobal::GetpProcessModelDocumentTemplate();
     POSITION myPosition = m_pDocTmpl->GetFirstDocPosition();
 
     while ( myPosition != NULL )

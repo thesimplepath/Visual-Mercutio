@@ -250,10 +250,10 @@ BOOL ZAMainApp::OnCmdMsg( UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO*
             CDocTemplate* pTemplate = m_pDocManager->GetNextDocTemplate(pos);
             ASSERT_KINDOF( CDocTemplate, pTemplate );
 
-            if ( pTemplate->IsKindOf( RUNTIME_CLASS( ZDDocTemplateEx ) ) )        
+            if ( pTemplate->IsKindOf( RUNTIME_CLASS( PSS_DocTemplateEx ) ) )        
             {
-                if ( ( nID >= ( (ZDDocTemplateEx*)pTemplate )->GetMenuID() ) &&
-                     ( nID <= ( (ZDDocTemplateEx*)pTemplate )->GetMenuID() + MRU_RANGE ) )
+                if ( ( nID >= ( (PSS_DocTemplateEx*)pTemplate )->GetMenuID() ) &&
+                     ( nID <= ( (PSS_DocTemplateEx*)pTemplate )->GetMenuID() + M_MRU_RANGE ) )
                 {
                     bResult |= pTemplate->OnCmdMsg( nID, nCode, pExtra, pHandlerInfo );
                 }
@@ -1792,7 +1792,7 @@ BOOL ZAMainApp::IsCursorCapturedValid( const CPoint& point, ZIView* pView )
 
     // Retrieve the window of the special help
     // to check if the cursor is on the window
-    Edit* pEdit = pDoc->GetEditControl();
+    PSS_Edit* pEdit = pDoc->GetEditControl();
 
     if ( pEdit )
     {

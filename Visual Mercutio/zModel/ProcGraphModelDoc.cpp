@@ -364,9 +364,9 @@ bool ZDProcessGraphModelDoc::CreateUnitManager()
         return false;
     }
 
-    if ( GetDocTemplate() && ISA( GetDocTemplate(), ZDProcessModelDocTmpl ) )
+    if ( GetDocTemplate() && ISA( GetDocTemplate(), PSS_ProcessModelDocTmpl ) )
     {
-        m_pUnitManager->Initialize( (ZDProcessModelDocTmpl*)GetDocTemplate() );
+        m_pUnitManager->Initialize( (PSS_ProcessModelDocTmpl*)GetDocTemplate() );
     }
 
     return true;
@@ -1519,9 +1519,9 @@ void ZDProcessGraphModelDoc::Serialize( CArchive& ar )
             // Initialize the unit manager is there is one defined
             if ( m_pUnitManager )
             {
-                if ( GetDocTemplate() && ISA( GetDocTemplate(), ZDProcessModelDocTmpl ) )
+                if ( GetDocTemplate() && ISA( GetDocTemplate(), PSS_ProcessModelDocTmpl ) )
                 {
-                    m_pUnitManager->Initialize( (ZDProcessModelDocTmpl*)GetDocTemplate() );
+                    m_pUnitManager->Initialize( (PSS_ProcessModelDocTmpl*)GetDocTemplate() );
                     m_pUnitManager->LoadAllUnits();
                 }
             }

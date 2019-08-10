@@ -1,19 +1,14 @@
-//---------------------------------------------------------------------------
-// Author    : Dominique Aigroz            
-// HeaderFile: edit.h
-// Created   : 14.12.1994
-// Modify    :           
-//
-//
-//                 Classes Edit,  StrEdit, StrEditHistoric
-//                    in charge of edition.
-//
-//---------------------------------------------------------------------------
+/****************************************************************************
+ * ==> PSS_Edit ------------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides several edit components                           *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(__EDIT_H)
-#define __EDIT_H
+#ifndef PSS_EditH
+#define PSS_EditH
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -21,218 +16,302 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-// FieldRep
+// processsoft
 #include "FieldRep.h"
 #include "MskEdit.h"
 #include "ZCGridCtrl.h"
 #include "ZBDragEdit.h"
 #include "ZCIntelliEdit.h"
-
 #include "sphelp.h"
 
-// Forward declaration
+// forward classes declaration
 class ZDDocument;
 
 #ifdef _ZBASELIBEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 20 août 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-/////////////////////////////////////////////////////////////////////////////
-// Edit window
-
-class AFX_EXT_CLASS Edit
+/**
+* Basic edit component
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_Edit
 {
-// Construction
-public:
+    public:
+        PSS_Edit();
+        virtual ~PSS_Edit();
 
-    Edit();
-    virtual ~Edit();
+        /**
+        * Pre-creates the edit
+        *@param designerMode - if TRUE, the edit will be created in designer mode
+        *@param pParentWnd - parent window
+        *@param pDC - device context to draw to
+        *@param pDoc - document
+        *@param pEditedObj - edited object
+        *@param pFieldRepository - field repository, can be NULL
+        *@param autoCalculateOption - if TRUE, the options will be auto-calculated
+        *@param goNextEditOption - if TRUE, the focus will be set to next available edit on exit
+        */
+        virtual void PreCreateEdit(BOOL               designerMode,
+                                   CWnd*              pParentWnd,
+                                   CDC*               pDC,
+                                   ZDDocument*        pDoc,
+                                   PlanFinObject*     pEditedObj,
+                                   ZBFieldRepository* pFieldRepository    = NULL,
+                                   BOOL               autoCalculateOption = FALSE,
+                                   BOOL               goNextEditOption    = FALSE);
 
-    void PreCreateEdit( BOOL                DesignerMode,
-                        CWnd*                pParentWnd,
-                        CDC*                pDC,
-                        ZDDocument*            pDoc,
-                        PlanFinObject*        pEditedObj,
-                        ZBFieldRepository*    pFieldRepository    = NULL,
-                        BOOL                AutoCalculateOption    = FALSE,
-                        BOOL                GoNextEditOption    = FALSE );
+        /**
+        * Creates the edit
+        *@param designerMode - if TRUE, the edit will be created in designer mode
+        *@param pParentWnd - parent window
+        *@param pDC - device context to draw to
+        *@param pDoc - document
+        *@param pEditedObj - edited object
+        *@param pFieldRepository - field repository, can be NULL
+        *@param autoCalculateOption - if TRUE, the options will be auto-calculated
+        *@param goNextEditOption - if TRUE, the focus will be set to next available edit on exit
+        */
+        virtual void Create(BOOL               designerMode,
+                            CWnd*              pParentWnd,
+                            CDC*               pDC,
+                            ZDDocument*        pDoc,
+                            PlanFinObject*     pEditedObj,
+                            ZBFieldRepository* pFieldRepository    = NULL,
+                            BOOL               autoCalculateOption = FALSE,
+                            BOOL               goNextEditOption    = FALSE) = 0;
 
-    virtual void Create( BOOL                DesignerMode,
-                         CWnd*                pParentWnd,
-                         CDC*                pDC,
-                         ZDDocument*        pDoc,
-                         PlanFinObject*        pEditedObj,
-                         ZBFieldRepository*    pFieldRepository    = NULL,
-                         BOOL                AutoCalculateOption    = FALSE,
-                         BOOL                GoNextEditOption    = FALSE ) = 0;
+        /**
+        * Checks the edit bounds
+        *@param pDC - device context
+        *@param pParentWnd - parent window
+        *@param rect - rect to check
+        *@return the edit bounds rect
+        */
+        virtual CRect CheckBounds(CDC* pDC, CWnd *pParentWnd, const CRect& rct);
 
-    virtual CRect CheckBounds( CDC* pDC, CWnd *pParentWnd, CRect& rct );
+        /**
+        * Gets the specialized help functions
+        *@return the specialized help functions
+        */
+        virtual inline SpecialHelp* GetSpecialHelp() const;
 
-    // Special help functions
-    SpecialHelp* GetSpecialHelp() const
-    {
-        return m_pSpecialHelp;
-    };
+        /**
+        * Gets the client rect
+        *@param[out] rect - client rect
+        */
+        virtual inline void GetClientRect(CRect& Rect) const;
 
-    void GetClientRect( CRect& Rect ) const
-    {
-        Rect = m_Rect;
-    };
+        /**
+        * Gets if window is visible
+        *@return TRUE if window is visible, otherwise FALSE
+        */
+        virtual inline BOOL IsWindowVisible();
 
-    // Virtual function used for base access class
-    virtual BOOL IsWindowVisible()
-    {
-        return FALSE;
-    };
+        /**
+        * Sets content is modified flag
+        *@param modify - if TRUE, the content will be set as modified
+        */
+        virtual inline void SetModify(BOOL modify);
 
-    virtual void MapWindowPoints( CWnd* pwndTo, LPRECT lpRect )
-    {
-    };
+        /**
+        * Sets the go to next edit flag
+        *@param next - if TRUE, the focus will be set to next available edit on exit
+        */
+        virtual inline void SetGoNext(BOOL next);
 
-// Implementation
-public:
+        /**
+        * Maps the window points
+        *@param pWndTo - window to point to
+        *@param pRect - rect
+        */
+        virtual void MapWindowPoints(CWnd* pWndTo, LPRECT pRect);
 
-    void SetModify( BOOL bModify );
+        /**
+        * Destroys the edit resources
+        */
+        virtual void DestroyEdit();
 
-    void SetGoNext( BOOL bNext )
-    {
-        m_GoNext = bNext;
-    };
+    protected:
+        CWnd*              m_pParentWnd;
+        SpecialHelp*       m_pSpecialHelp;
+        PlanFinObject*     m_pEditedObj;
+        ZDDocument*        m_pDoc;
+        ZBFieldRepository* m_pFieldRepository;
+        CRect              m_Rect;
+        BOOL               m_Save;
+        BOOL               m_GoNext;
+        BOOL               m_AutoCalculateOption;
+        BOOL               m_GoNextEditOption;
+        BOOL               m_ReadOnly;
+        BOOL               m_IsSorted;
 
-    virtual void DestroyEdit()
-    {
-    };
+        /**
+        * Gets the value array
+        *@return the value array
+        */
+        virtual CStringArray* GetArrayOfValues();
 
-protected:
+        /**
+        * Adds string to historic
+        *@param str - string to add
+        */
+        virtual void AddToHistoric(const CString& str);
 
-    CStringArray*    GetArrayOfValues();
-    void             AddToHistoric( CString str );
-    void            LoadFromHistoric( CComboBox& Combo );
+        /**
+        * Loads combobox from historic
+        *@param combobox - combobox to populate with historic
+        */
+        virtual void LoadFromHistoric(CComboBox& combobox);
 
-// Operations
-private:
-
-    void CreateSpecialHelp( BOOL Designer = FALSE );
-
-// Attributes
-protected:
-
-    CWnd*                    m_pParentWnd;
-     SpecialHelp*            m_pSpecialHelp;            // The specialized helper
-     BOOL                    m_Save;                    // Flag to say if save is necessary or not
-    BOOL                    m_GoNext;                // Flag to say if it is necessary
-                                                    // to go directly to the next editable
-                                                    // field
-    PlanFinObject*            m_pEditedObj;            // Pointer to the Edited Object
-    ZDDocument*                m_pDoc;                    // Pointer to the current document
-    ZBFieldRepository*        m_pFieldRepository;        // Saves the pointer of the field repository
-    BOOL                    m_AutoCalculateOption;
-    BOOL                    m_GoNextEditOption;
-    BOOL                    m_ReadOnly;
-    BOOL                    m_IsSorted;
-    CRect                    m_Rect;
+    private:
+        /**
+        * Creates the specialized help functions
+        *@param designer - if TRUE, edit is opened in designer mode
+        */
+        void CreateSpecialHelp(BOOL designer = FALSE);
 };
 
-// inline functions ----------------------------------------------------------
-
-inline void Edit::SetModify( BOOL bModify )
+//---------------------------------------------------------------------------
+// PSS_Edit
+//---------------------------------------------------------------------------
+SpecialHelp* PSS_Edit::GetSpecialHelp() const
 {
-    m_Save = bModify;
+    return m_pSpecialHelp;
 }
-
-/////////////////////////////////////////////////////////////////////////////
-// StrEdit window
-
-class AFX_EXT_CLASS StrEdit : public ZBDragEdit, public Edit
+//---------------------------------------------------------------------------
+void PSS_Edit::GetClientRect(CRect& Rect) const
 {
-// Construction
-public:
-
-    StrEdit( BOOL bMultiLine = FALSE, int iMaxChar = -1 );
-    virtual ~StrEdit();
-
-    virtual void Create( BOOL                DesignerMode,
-                         CWnd*                pParentWnd,
-                         CDC*                pDC,
-                         ZDDocument*        pDoc,
-                         PlanFinObject*        pEditedObj,
-                         ZBFieldRepository*    pFieldRepository    = NULL,
-                         BOOL                AutoCalculateOption    = FALSE,
-                         BOOL                GoNextEditOption    = FALSE );
-
-    virtual void DestroyEdit();
-
-    // Virtual function used for base access class
-    virtual BOOL IsWindowVisible();
-    virtual void MapWindowPoints( CWnd* pwndTo, LPRECT lpRect );
-
-// Attributes
-private:
-
-    BOOL    m_bMultiLine;
-    int        m_iMaxChar;
-
-// Operations
-protected:
-
-    // Generated message map functions
-    //{{AFX_MSG(StrEdit)
-    afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
-    afx_msg void OnKillFocus(CWnd* pNewWnd);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
-};
-
-inline BOOL StrEdit::IsWindowVisible()
+    Rect = m_Rect;
+}
+//---------------------------------------------------------------------------
+BOOL PSS_Edit::IsWindowVisible()
 {
-    if ( ::IsWindow( GetSafeHwnd() ) && ZBDragEdit::IsWindowVisible() )
-    {
-        return TRUE;
-    }
-
     return FALSE;
 }
-
-inline void StrEdit::MapWindowPoints( CWnd* pwndTo, LPRECT lpRect )
+//---------------------------------------------------------------------------
+void PSS_Edit::SetModify(BOOL modify)
 {
-    ZBDragEdit::MapWindowPoints( pwndTo, lpRect );
+    m_Save = modify;
 }
-
-/////////////////////////////////////////////////////////////////////////////
-// NumEdit window
-
-class AFX_EXT_CLASS NumEdit : public ZBDragEdit, public Edit
+//---------------------------------------------------------------------------
+void PSS_Edit::SetGoNext(BOOL next)
 {
-// Construction
+    m_GoNext = next;
+}
+//---------------------------------------------------------------------------
+
+/**
+* String edit component
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_StrEdit : public ZBDragEdit, public PSS_Edit
+{
+    public:
+        /**
+        * Constructor
+        *@param multiline - if TRUE, the edit component will support the multiline
+        *@param maxChar - maximum allowed chars, infinite if -1
+        */
+        PSS_StrEdit(BOOL multiLine = FALSE, int maxChar = -1);
+
+        virtual ~PSS_StrEdit();
+
+        /**
+        * Creates the edit
+        *@param designerMode - if TRUE, the edit will be created in designer mode
+        *@param pParentWnd - parent window
+        *@param pDC - device context to draw to
+        *@param pDoc - document
+        *@param pEditedObj - edited object
+        *@param pFieldRepository - field repository, can be NULL
+        *@param autoCalculateOption - if TRUE, the options will be auto-calculated
+        *@param goNextEditOption - if TRUE, the focus will be set to next available edit on exit
+        */
+        virtual void Create(BOOL               designerMode,
+                            CWnd*              pParentWnd,
+                            CDC*               pDC,
+                            ZDDocument*        pDoc,
+                            PlanFinObject*     pEditedObj,
+                            ZBFieldRepository* pFieldRepository = NULL,
+                            BOOL               autoCalculateOption = FALSE,
+                            BOOL               goNextEditOption = FALSE);
+
+        /**
+        * Gets if window is visible
+        *@return TRUE if window is visible, otherwise FALSE
+        */
+        virtual inline BOOL IsWindowVisible();
+
+        /**
+        * Maps the window points
+        *@param pWndTo - window to point to
+        *@param pRect - rect
+        */
+        virtual inline void MapWindowPoints(CWnd* pwndTo, LPRECT lpRect);
+
+        /**
+        * Destroys the edit
+        */
+        virtual void DestroyEdit();
+
+    protected:
+        /// Generated message map functions
+        //{{AFX_MSG(PSS_StrEdit)
+        afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
+        afx_msg void OnKillFocus(CWnd* pNewWnd);
+        //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
+
+    private:
+        int  m_MaxChar;
+        BOOL m_MultiLine;
+};
+
+//---------------------------------------------------------------------------
+// PSS_StrEdit
+//---------------------------------------------------------------------------
+BOOL PSS_StrEdit::IsWindowVisible()
+{
+    return (::IsWindow(GetSafeHwnd()) && ZBDragEdit::IsWindowVisible());
+}
+//---------------------------------------------------------------------------
+void PSS_StrEdit::MapWindowPoints(CWnd* pwndTo, LPRECT lpRect)
+{
+    ZBDragEdit::MapWindowPoints(pwndTo, lpRect);
+}
+//---------------------------------------------------------------------------
+
+class AFX_EXT_CLASS NumEdit : public ZBDragEdit, public PSS_Edit
+{
+    // Construction
 public:
 
     NumEdit();
     virtual ~NumEdit();
 
-    virtual void Create( BOOL                DesignerMode,
-                         CWnd*                pParentWnd,
-                         CDC*                pDC,
-                         ZDDocument*        pDoc,
-                         PlanFinObject*        pEditedObj,
-                         ZBFieldRepository*    pFieldRepository    = NULL,
-                         BOOL                AutoCalculateOption    = FALSE,
-                         BOOL                GoNextEditOption    = FALSE );
+    virtual void Create(BOOL                DesignerMode,
+                        CWnd*                pParentWnd,
+                        CDC*                pDC,
+                        ZDDocument*        pDoc,
+                        PlanFinObject*        pEditedObj,
+                        ZBFieldRepository*    pFieldRepository = NULL,
+                        BOOL                AutoCalculateOption = FALSE,
+                        BOOL                GoNextEditOption = FALSE);
 
     virtual void DestroyEdit();
 
     // Virtual function used for base access class
     virtual BOOL IsWindowVisible();
-    virtual void MapWindowPoints( CWnd* pwndTo, LPRECT lpRect );
+    virtual void MapWindowPoints(CWnd* pwndTo, LPRECT lpRect);
 
-// Implementation
+    // Implementation
 protected:
 
     // Generated message map functions
@@ -245,7 +324,7 @@ protected:
 
 inline BOOL NumEdit::IsWindowVisible()
 {
-    if ( ::IsWindow( GetSafeHwnd() ) && ZBDragEdit::IsWindowVisible() )
+    if (::IsWindow(GetSafeHwnd()) && ZBDragEdit::IsWindowVisible())
     {
         return TRUE;
     }
@@ -253,38 +332,38 @@ inline BOOL NumEdit::IsWindowVisible()
     return FALSE;
 }
 
-inline void NumEdit::MapWindowPoints( CWnd* pwndTo, LPRECT lpRect )
+inline void NumEdit::MapWindowPoints(CWnd* pwndTo, LPRECT lpRect)
 {
-    ZBDragEdit::MapWindowPoints( pwndTo, lpRect );
+    ZBDragEdit::MapWindowPoints(pwndTo, lpRect);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // CalcEdit window
 
-class AFX_EXT_CLASS CalcEdit : public ZBDragEdit, public Edit
+class AFX_EXT_CLASS CalcEdit : public ZBDragEdit, public PSS_Edit
 {
-// Construction
+    // Construction
 public:
 
     CalcEdit();
     virtual ~CalcEdit();
 
-    virtual void Create( BOOL                DesignerMode,
-                         CWnd*                pParentWnd,
-                         CDC*                pDC,
-                         ZDDocument*        pDoc,
-                         PlanFinObject*        pEditedObj,
-                         ZBFieldRepository*    pFieldRepository    = NULL,
-                         BOOL                AutoCalculateOption    = FALSE,
-                         BOOL                GoNextEditOption    = FALSE );
+    virtual void Create(BOOL                DesignerMode,
+                        CWnd*                pParentWnd,
+                        CDC*                pDC,
+                        ZDDocument*        pDoc,
+                        PlanFinObject*        pEditedObj,
+                        ZBFieldRepository*    pFieldRepository = NULL,
+                        BOOL                AutoCalculateOption = FALSE,
+                        BOOL                GoNextEditOption = FALSE);
 
     virtual void DestroyEdit();
 
     // Virtual function used for base access class
     virtual BOOL IsWindowVisible();
-    virtual void MapWindowPoints( CWnd* pwndTo, LPRECT lpRect );
+    virtual void MapWindowPoints(CWnd* pwndTo, LPRECT lpRect);
 
-// Implementation
+    // Implementation
 protected:
 
     // Generated message map functions
@@ -296,7 +375,7 @@ protected:
 
 inline BOOL CalcEdit::IsWindowVisible()
 {
-    if ( ::IsWindow( GetSafeHwnd() ) && ZBDragEdit::IsWindowVisible() )
+    if (::IsWindow(GetSafeHwnd()) && ZBDragEdit::IsWindowVisible())
     {
         return TRUE;
     }
@@ -304,38 +383,38 @@ inline BOOL CalcEdit::IsWindowVisible()
     return FALSE;
 }
 
-inline void CalcEdit::MapWindowPoints( CWnd* pwndTo, LPRECT lpRect )
+inline void CalcEdit::MapWindowPoints(CWnd* pwndTo, LPRECT lpRect)
 {
-    ZBDragEdit::MapWindowPoints( pwndTo, lpRect );
+    ZBDragEdit::MapWindowPoints(pwndTo, lpRect);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // TimeEdit window
 
-class AFX_EXT_CLASS TimeEdit : public ZBDragEdit, public Edit
+class AFX_EXT_CLASS TimeEdit : public ZBDragEdit, public PSS_Edit
 {
-// Construction
+    // Construction
 public:
 
     TimeEdit();
     virtual ~TimeEdit();
 
-    virtual void Create( BOOL                DesignerMode,
-                         CWnd*                pParentWnd,
-                         CDC*                pDC,
-                         ZDDocument*        pDoc,
-                         PlanFinObject*        pEditedObj,
-                         ZBFieldRepository*    pFieldRepository    = NULL,
-                         BOOL                AutoCalculateOption    = FALSE,
-                         BOOL                GoNextEditOption    = FALSE );
+    virtual void Create(BOOL                DesignerMode,
+                        CWnd*                pParentWnd,
+                        CDC*                pDC,
+                        ZDDocument*        pDoc,
+                        PlanFinObject*        pEditedObj,
+                        ZBFieldRepository*    pFieldRepository = NULL,
+                        BOOL                AutoCalculateOption = FALSE,
+                        BOOL                GoNextEditOption = FALSE);
 
     virtual void DestroyEdit();
 
     // Virtual function used for base access class
     virtual BOOL IsWindowVisible();
-    virtual void MapWindowPoints( CWnd* pwndTo, LPRECT lpRect );
+    virtual void MapWindowPoints(CWnd* pwndTo, LPRECT lpRect);
 
-// Implementation
+    // Implementation
 protected:
 
     // Generated message map functions
@@ -348,7 +427,7 @@ protected:
 
 inline BOOL TimeEdit::IsWindowVisible()
 {
-    if ( ::IsWindow( GetSafeHwnd() ) && ZBDragEdit::IsWindowVisible() )
+    if (::IsWindow(GetSafeHwnd()) && ZBDragEdit::IsWindowVisible())
     {
         return TRUE;
     }
@@ -356,30 +435,30 @@ inline BOOL TimeEdit::IsWindowVisible()
     return FALSE;
 }
 
-inline void TimeEdit::MapWindowPoints( CWnd* pwndTo, LPRECT lpRect )
+inline void TimeEdit::MapWindowPoints(CWnd* pwndTo, LPRECT lpRect)
 {
-    ZBDragEdit::MapWindowPoints( pwndTo, lpRect );
+    ZBDragEdit::MapWindowPoints(pwndTo, lpRect);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // StrEditHistoric window
 
-class AFX_EXT_CLASS StrEditHistoric : public ZCIntelliEdit, public Edit
+class AFX_EXT_CLASS StrEditHistoric : public ZCIntelliEdit, public PSS_Edit
 {
-// Construction
+    // Construction
 public:
 
-    StrEditHistoric( int iMaxChar = -1 );
+    StrEditHistoric(int iMaxChar = -1);
     virtual ~StrEditHistoric();
 
-    virtual void Create( BOOL                DesignerMode,
-                         CWnd*                pParentWnd,
-                         CDC*                pDC,
-                         ZDDocument*        pDoc,
-                         PlanFinObject*        pEditedObj,
-                         ZBFieldRepository*    pFieldRepository    = NULL,
-                         BOOL                AutoCalculateOption    = FALSE,
-                         BOOL                GoNextEditOption    = FALSE );
+    virtual void Create(BOOL                DesignerMode,
+                        CWnd*                pParentWnd,
+                        CDC*                pDC,
+                        ZDDocument*        pDoc,
+                        PlanFinObject*        pEditedObj,
+                        ZBFieldRepository*    pFieldRepository = NULL,
+                        BOOL                AutoCalculateOption = FALSE,
+                        BOOL                GoNextEditOption = FALSE);
 
     virtual void DestroyEdit();
 
@@ -390,9 +469,9 @@ public:
 
     // Virtual function used for base access class
     virtual BOOL IsWindowVisible();
-    virtual void MapWindowPoints( CWnd* pwndTo, LPRECT lpRect );
+    virtual void MapWindowPoints(CWnd* pwndTo, LPRECT lpRect);
 
-// Implementation
+    // Implementation
 protected:
 
     // Generated message map functions
@@ -402,7 +481,7 @@ protected:
     //}}AFX_MSG
     DECLARE_MESSAGE_MAP()
 
-// Attributes
+    // Attributes
 private:
 
     int m_iMaxChar;
@@ -410,7 +489,7 @@ private:
 
 inline BOOL StrEditHistoric::IsWindowVisible()
 {
-    if ( ::IsWindow( GetSafeHwnd() ) && ZCIntelliEdit::IsWindowVisible() )
+    if (::IsWindow(GetSafeHwnd()) && ZCIntelliEdit::IsWindowVisible())
     {
         return TRUE;
     }
@@ -418,37 +497,37 @@ inline BOOL StrEditHistoric::IsWindowVisible()
     return FALSE;
 }
 
-inline void StrEditHistoric::MapWindowPoints( CWnd* pwndTo, LPRECT lpRect )
+inline void StrEditHistoric::MapWindowPoints(CWnd* pwndTo, LPRECT lpRect)
 {
-    ZCIntelliEdit::MapWindowPoints( pwndTo, lpRect );
+    ZCIntelliEdit::MapWindowPoints(pwndTo, lpRect);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
-class AFX_EXT_CLASS NumEditHistoric : public ZCIntelliEdit, public Edit
+class AFX_EXT_CLASS NumEditHistoric : public ZCIntelliEdit, public PSS_Edit
 {
-// Construction
+    // Construction
 public:
 
     NumEditHistoric();
     virtual ~NumEditHistoric();
 
-    virtual void Create( BOOL                DesignerMode,
-                         CWnd*                pParentWnd,
-                         CDC*                pDC,
-                         ZDDocument*        pDoc,
-                         PlanFinObject*        pEditedObj,
-                         ZBFieldRepository*    pFieldRepository    = NULL,
-                         BOOL                AutoCalculateOption    = FALSE,
-                         BOOL                GoNextEditOption    = FALSE );
+    virtual void Create(BOOL                DesignerMode,
+                        CWnd*                pParentWnd,
+                        CDC*                pDC,
+                        ZDDocument*        pDoc,
+                        PlanFinObject*        pEditedObj,
+                        ZBFieldRepository*    pFieldRepository = NULL,
+                        BOOL                AutoCalculateOption = FALSE,
+                        BOOL                GoNextEditOption = FALSE);
 
     virtual void DestroyEdit();
 
     // Virtual function used for base access class
     virtual BOOL IsWindowVisible();
-    virtual void MapWindowPoints( CWnd* pwndTo, LPRECT lpRect );
+    virtual void MapWindowPoints(CWnd* pwndTo, LPRECT lpRect);
 
-// Implementation
+    // Implementation
 protected:
 
     // Generated message map functions
@@ -461,7 +540,7 @@ protected:
 
 inline BOOL NumEditHistoric::IsWindowVisible()
 {
-    if ( ::IsWindow( GetSafeHwnd() ) && ZCIntelliEdit::IsWindowVisible() )
+    if (::IsWindow(GetSafeHwnd()) && ZCIntelliEdit::IsWindowVisible())
     {
         return TRUE;
     }
@@ -469,38 +548,38 @@ inline BOOL NumEditHistoric::IsWindowVisible()
     return FALSE;
 }
 
-inline void NumEditHistoric::MapWindowPoints( CWnd* pwndTo, LPRECT lpRect )
+inline void NumEditHistoric::MapWindowPoints(CWnd* pwndTo, LPRECT lpRect)
 {
-    ZCIntelliEdit::MapWindowPoints( pwndTo, lpRect );
+    ZCIntelliEdit::MapWindowPoints(pwndTo, lpRect);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // FieldNameEdit window
 
-class AFX_EXT_CLASS FieldNameEdit : public ZCIntelliEdit, public Edit
+class AFX_EXT_CLASS FieldNameEdit : public ZCIntelliEdit, public PSS_Edit
 {
-// Construction
+    // Construction
 public:
 
-    FieldNameEdit( int iMaxChar = -1 );
+    FieldNameEdit(int iMaxChar = -1);
     virtual ~FieldNameEdit();
 
-    virtual void Create( BOOL                DesignerMode,
-                         CWnd*                pParentWnd,
-                         CDC*                pDC,
-                         ZDDocument*        pDoc,
-                         PlanFinObject*        pEditedObj,
-                         ZBFieldRepository*    pFieldRepository    = NULL,
-                         BOOL                AutoCalculateOption    = FALSE,
-                         BOOL                GoNextEditOption    = FALSE );
+    virtual void Create(BOOL                DesignerMode,
+                        CWnd*                pParentWnd,
+                        CDC*                pDC,
+                        ZDDocument*        pDoc,
+                        PlanFinObject*        pEditedObj,
+                        ZBFieldRepository*    pFieldRepository = NULL,
+                        BOOL                AutoCalculateOption = FALSE,
+                        BOOL                GoNextEditOption = FALSE);
 
     virtual void DestroyEdit();
 
     // Virtual function used for base access class
     virtual BOOL IsWindowVisible();
-    virtual void MapWindowPoints( CWnd* pwndTo, LPRECT lpRect );
+    virtual void MapWindowPoints(CWnd* pwndTo, LPRECT lpRect);
 
-// Operations
+    // Operations
 protected:
     // Generated message map functions
     //{{AFX_MSG(FieldNameEdit)
@@ -509,7 +588,7 @@ protected:
     //}}AFX_MSG
     DECLARE_MESSAGE_MAP()
 
-// Attributes
+    // Attributes
 private:
 
     int m_iMaxChar;
@@ -517,7 +596,7 @@ private:
 
 inline BOOL FieldNameEdit::IsWindowVisible()
 {
-    if ( ::IsWindow( GetSafeHwnd() ) && ZCIntelliEdit::IsWindowVisible() )
+    if (::IsWindow(GetSafeHwnd()) && ZCIntelliEdit::IsWindowVisible())
     {
         return TRUE;
     }
@@ -525,38 +604,38 @@ inline BOOL FieldNameEdit::IsWindowVisible()
     return FALSE;
 }
 
-inline void FieldNameEdit::MapWindowPoints( CWnd* pwndTo, LPRECT lpRect )
+inline void FieldNameEdit::MapWindowPoints(CWnd* pwndTo, LPRECT lpRect)
 {
-    ZCIntelliEdit::MapWindowPoints( pwndTo, lpRect );
+    ZCIntelliEdit::MapWindowPoints(pwndTo, lpRect);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // MaskEdit window
 
-class AFX_EXT_CLASS MaskEdit : public ZMaskEdit, public Edit
+class AFX_EXT_CLASS MaskEdit : public ZMaskEdit, public PSS_Edit
 {
-// Construction
+    // Construction
 public:
 
     MaskEdit();
     virtual ~MaskEdit();
 
-    virtual void Create( BOOL                DesignerMode,
-                         CWnd*                pParentWnd,
-                         CDC*                pDC,
-                         ZDDocument*        pDoc,
-                         PlanFinObject*        pEditedObj,
-                         ZBFieldRepository*    pFieldRepository    = NULL,
-                         BOOL                AutoCalculateOption    = FALSE,
-                         BOOL                GoNextEditOption    = FALSE );
+    virtual void Create(BOOL                DesignerMode,
+                        CWnd*                pParentWnd,
+                        CDC*                pDC,
+                        ZDDocument*        pDoc,
+                        PlanFinObject*        pEditedObj,
+                        ZBFieldRepository*    pFieldRepository = NULL,
+                        BOOL                AutoCalculateOption = FALSE,
+                        BOOL                GoNextEditOption = FALSE);
 
     virtual void DestroyEdit();
 
     // Virtual function used for base access class
     virtual BOOL IsWindowVisible();
-    virtual void MapWindowPoints( CWnd* pwndTo, LPRECT lpRect );
+    virtual void MapWindowPoints(CWnd* pwndTo, LPRECT lpRect);
 
-// Operations
+    // Operations
 protected:
 
     // Generated message map functions
@@ -569,7 +648,7 @@ protected:
 
 inline BOOL MaskEdit::IsWindowVisible()
 {
-    if ( ::IsWindow( GetSafeHwnd() ) && ZMaskEdit::IsWindowVisible() )
+    if (::IsWindow(GetSafeHwnd()) && ZMaskEdit::IsWindowVisible())
     {
         return TRUE;
     }
@@ -577,44 +656,44 @@ inline BOOL MaskEdit::IsWindowVisible()
     return FALSE;
 }
 
-inline void MaskEdit::MapWindowPoints( CWnd* pwndTo, LPRECT lpRect )
+inline void MaskEdit::MapWindowPoints(CWnd* pwndTo, LPRECT lpRect)
 {
-    ZMaskEdit::MapWindowPoints( pwndTo, lpRect );
+    ZMaskEdit::MapWindowPoints(pwndTo, lpRect);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // MultiColumnEdit window
 
-class AFX_EXT_CLASS MultiColumnEdit : public ZCGridCtrl, public Edit
+class AFX_EXT_CLASS MultiColumnEdit : public ZCGridCtrl, public PSS_Edit
 {
-// Construction
+    // Construction
 public:
 
     MultiColumnEdit();
     virtual ~MultiColumnEdit();
 
-    virtual void Create( BOOL                DesignerMode,
-                         CWnd*                pParentWnd,
-                         CDC*                pDC,
-                         ZDDocument*        pDoc,
-                         PlanFinObject*        pEditedObj,
-                         ZBFieldRepository*    pFieldRepository    = NULL,
-                         BOOL                AutoCalculateOption    = FALSE,
-                         BOOL                GoNextEditOption    = FALSE );
+    virtual void Create(BOOL                DesignerMode,
+                        CWnd*                pParentWnd,
+                        CDC*                pDC,
+                        ZDDocument*        pDoc,
+                        PlanFinObject*        pEditedObj,
+                        ZBFieldRepository*    pFieldRepository = NULL,
+                        BOOL                AutoCalculateOption = FALSE,
+                        BOOL                GoNextEditOption = FALSE);
 
     virtual void DestroyEdit();
 
     // Virtual function used for base access class
     virtual BOOL IsWindowVisible();
-    virtual void MapWindowPoints( CWnd* pwndTo, LPRECT lpRect );
+    virtual void MapWindowPoints(CWnd* pwndTo, LPRECT lpRect);
 
     // Called before editing the cell
-    virtual void OnBeginLabelEdit( int iItem, int iSubItem );
+    virtual void OnBeginLabelEdit(int iItem, int iSubItem);
 
     // Called after having updated the cell
-    virtual void OnEndLabelEdit( LPCSTR pszText, int iItem, int iSubItem );
+    virtual void OnEndLabelEdit(LPCSTR pszText, int iItem, int iSubItem);
 
-// Operations
+    // Operations
 protected:
 
     // Generated message map functions
@@ -629,7 +708,7 @@ private:
     void BuildColumns();
     void FillControl();
 
-// Attributes
+    // Attributes
 private:
 
     int        m_cx;
@@ -640,7 +719,7 @@ private:
 
 inline BOOL MultiColumnEdit::IsWindowVisible()
 {
-    if ( ::IsWindow( GetSafeHwnd() ) && ZCGridCtrl::IsWindowVisible() )
+    if (::IsWindow(GetSafeHwnd()) && ZCGridCtrl::IsWindowVisible())
     {
         return TRUE;
     }
@@ -648,9 +727,9 @@ inline BOOL MultiColumnEdit::IsWindowVisible()
     return FALSE;
 }
 
-inline void MultiColumnEdit::MapWindowPoints( CWnd* pwndTo, LPRECT lpRect )
+inline void MultiColumnEdit::MapWindowPoints(CWnd* pwndTo, LPRECT lpRect)
 {
-    ZCGridCtrl::MapWindowPoints( pwndTo, lpRect );
+    ZCGridCtrl::MapWindowPoints(pwndTo, lpRect);
 }
 
-#endif // __EDIT_H
+#endif

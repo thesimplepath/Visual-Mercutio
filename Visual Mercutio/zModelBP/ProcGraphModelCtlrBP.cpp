@@ -1035,9 +1035,9 @@ void ZDProcessGraphModelControllerBP::OnLoadPackage()
             ZIProcessGraphModelView*    pView = GetView();
 
             if ( GetDocument() && GetDocument()->GetDocTemplate() &&
-                 ISA( GetDocument()->GetDocTemplate(), ZDProcessModelDocTmpl ) )
+                 ISA( GetDocument()->GetDocTemplate(), PSS_ProcessModelDocTmpl) )
             {
-                if ( !pPackage->LoadPackage( (ZDProcessModelDocTmpl*)GetDocument()->GetDocTemplate(), GetModel() ) )
+                if ( !pPackage->LoadPackage( (PSS_ProcessModelDocTmpl*)GetDocument()->GetDocTemplate(), GetModel() ) )
                 {
                     // Error
                     return;

@@ -78,7 +78,7 @@ CString    ZBUnit::CreateUniqueKey()
     return _T( "" );
 }
 
-bool ZBUnit::LoadUnit( ZDProcessModelDocTmpl* pDocTmpl )
+bool ZBUnit::LoadUnit( PSS_ProcessModelDocTmpl* pDocTmpl )
 {
     // Check if the file exists
     ZFile File( m_Filename );

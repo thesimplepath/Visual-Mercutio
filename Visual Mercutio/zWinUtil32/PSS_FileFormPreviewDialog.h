@@ -23,7 +23,7 @@
 // processsoft
 #include "zBaseLib\ViewRead.h"
 #include "zBaseLib\ZDDoc.h"
-#include "zBaseLib\DocTmplEx.h"
+#include "zBaseLib\PSS_DocTemplateEx.h"
 
 // resources
 #include "zWinUtil32Res.h"
@@ -112,7 +112,7 @@ class AFX_EXT_CLASS PSS_FileFormPreviewDialog : public CDialog
         *@param pDocTemplate - document template
         *@param pPArent - parent window, can be NULL
         */
-        PSS_FileFormPreviewDialog(const CString& fileName, ZDDocTemplateEx* pDocTemplate, CWnd* pParent = NULL);
+        PSS_FileFormPreviewDialog(const CString& fileName, PSS_DocTemplateEx* pDocTemplate, CWnd* pParent = NULL);
         virtual ~PSS_FileFormPreviewDialog();
 
     protected:
@@ -134,12 +134,12 @@ class AFX_EXT_CLASS PSS_FileFormPreviewDialog : public CDialog
         DECLARE_MESSAGE_MAP()
 
     private:
-        CCreateContext   m_Context;
-        ZIViewRead*      m_pView;
-        CFrameWnd*       m_pFrameWindow;
-        ZDDocument*      m_pDocument;
-        ZDDocTemplateEx* m_pDocTemplate;
-        CString          m_FileName;
+        CCreateContext     m_Context;
+        ZIViewRead*        m_pView;
+        CFrameWnd*         m_pFrameWindow;
+        ZDDocument*        m_pDocument;
+        PSS_DocTemplateEx* m_pDocTemplate;
+        CString            m_FileName;
 
         /**
         * Sizes the control

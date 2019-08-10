@@ -34,8 +34,8 @@
 #include <CTYPE.H>
 #include <locale.h>
 
-#include "zBaseLib\DocTmplEx.h"
-#include "zBaseLib\ProcessModelDocTmpl.h"
+#include "zBaseLib\PSS_DocTemplateEx.h"
+#include "zBaseLib\PSS_ProcessModelDocTmpl.h"
 
 #ifdef _ZCHECKINFO
 #include "zBaseLib\ZBCriptedFileApplicationTypeInfo.h"

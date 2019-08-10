@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\DocOpt.h"
+#include "zBaseLib\PSS_DocumentOptions.h"
 #include "zRes32\zRes.h"
 
 #ifdef _ZWINUTIL32EXPORT
@@ -69,7 +69,7 @@ class AFX_EXT_CLASS PSS_DocOptionDialog : public CDialog
         *@param pDocOptions - document options
         *@param pPArent - parent window, can be NULL
         */
-        PSS_DocOptionDialog(ZDDocumentOptions* pDocOptions, CWnd* pParent = NULL);
+        PSS_DocOptionDialog(PSS_DocumentOptions* pDocOptions, CWnd* pParent = NULL);
 
     protected:
         /**
@@ -89,7 +89,7 @@ class AFX_EXT_CLASS PSS_DocOptionDialog : public CDialog
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZDDocumentOptions* m_pDocOptions;
+        PSS_DocumentOptions* m_pDocOptions;
 
         /**
         * Checks the control state

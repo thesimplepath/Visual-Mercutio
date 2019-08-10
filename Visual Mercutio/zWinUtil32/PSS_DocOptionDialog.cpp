@@ -44,7 +44,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_DocOptionDialog
 //---------------------------------------------------------------------------
-PSS_DocOptionDialog::PSS_DocOptionDialog(ZDDocumentOptions* pDocOptions, CWnd* pParent) :
+PSS_DocOptionDialog::PSS_DocOptionDialog(PSS_DocumentOptions* pDocOptions, CWnd* pParent) :
     CDialog(PSS_DocOptionDialog::IDD, pParent),
     m_pDocOptions(pDocOptions),
     m_EmptyStyle(-1),
@@ -88,9 +88,9 @@ PSS_DocOptionDialog::PSS_DocOptionDialog(ZDDocumentOptions* pDocOptions, CWnd* p
         m_SynchronisationYesNo = 1;
 
     m_SynchronizationTime = m_pDocOptions->GetSynchronizeTimeSequence();
-    m_FLF_FileName        = m_pDocOptions->GetSynchronizeFilename();
+    m_FLF_FileName        = m_pDocOptions->GetSynchronizeFileName();
 
-    switch (m_pDocOptions->GetAutomaticSynchronizeFilename())
+    switch (m_pDocOptions->GetAutomaticSynchronizeFileName())
     {
         case E_ST_FileNameSpecified: m_AutomaticFileNameGeneration = 1; break;
         case E_ST_FolderSpecified:   m_AutomaticFileNameGeneration = 2; break;
@@ -296,13 +296,13 @@ void PSS_DocOptionDialog::OnOK()
         m_pDocOptions->SetIsSynchronizeExchangeFeedFile(FALSE);
 
     m_pDocOptions->SetSynchronizeTimeSequence(m_SynchronizationTime);
-    m_pDocOptions->SetSynchronizeFilename(m_FLF_FileName);
+    m_pDocOptions->SetSynchronizeFileName(m_FLF_FileName);
 
     switch (m_AutomaticFileNameGeneration)
     {
-        case 1:  m_pDocOptions->SetAutomaticSynchronizeFilename(E_ST_FileNameSpecified); break;
-        case 2:  m_pDocOptions->SetAutomaticSynchronizeFilename(E_ST_FolderSpecified);   break;
-        default: m_pDocOptions->SetAutomaticSynchronizeFilename(E_ST_AutomaticName);
+        case 1:  m_pDocOptions->SetAutomaticSynchronizeFileName(E_ST_FileNameSpecified); break;
+        case 2:  m_pDocOptions->SetAutomaticSynchronizeFileName(E_ST_FolderSpecified);   break;
+        default: m_pDocOptions->SetAutomaticSynchronizeFileName(E_ST_AutomaticName);
     }
 
     if (!m_GenerateHeader)

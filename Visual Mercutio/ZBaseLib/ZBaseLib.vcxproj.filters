@@ -134,9 +134,6 @@
     <ClCompile Include="PLFNBackImage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ProcessModelDocTmpl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ProcOpt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -596,10 +593,13 @@
     <ClCompile Include="PSS_DrawFunctions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DocOpt.cpp">
+    <ClCompile Include="PSS_DocumentOptions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DocTmplEx.cpp">
+    <ClCompile Include="PSS_DocTemplateEx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ProcessModelDocTmpl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -717,12 +717,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DocOpt.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DocTmplEx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="EDIT.H">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -832,9 +826,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PLFNBackImage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ProcessModelDocTmpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ProcOpt.h">
@@ -1300,6 +1291,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_DrawFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_DocumentOptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_DocTemplateEx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ProcessModelDocTmpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
