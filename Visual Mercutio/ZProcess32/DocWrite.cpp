@@ -26,7 +26,7 @@
 #include "zBaseLib\ExpRT.h"
 #include "zBaseLib\PSS_DocumentData.h"
 
-#include "zBaseLib\Edit.h"
+#include "zBaseLib\PSS_Edit.h"
 
 // FldMng
 #include "zBaseLib\FldMng.h"

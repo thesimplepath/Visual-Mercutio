@@ -226,7 +226,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="EDIT.CPP">
+    <ClCompile Include="PSS_Edit.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1359,7 +1359,7 @@
     <ClInclude Include="PSS_DocumentOptions.h" />
     <ClInclude Include="PSS_DocTemplateEx.h" />
     <ClInclude Include="PSS_DrawFunctions.h" />
-    <ClInclude Include="EDIT.H" />
+    <ClInclude Include="PSS_Edit.h" />
     <ClInclude Include="Export.h" />
     <ClInclude Include="ExpRT.h" />
     <ClInclude Include="ExpUser.h" />

@@ -36,7 +36,7 @@
 #include "zBaseLib\ZAMultiC.h"
 #include "zBaseLib\ZAMStr.h"
 
-#include "zBaseLib\Edit.h"
+#include "zBaseLib\PSS_Edit.h"
 
 // BObjUtil
 #include "zBaseLib\PSS_ObjectUtility.h"
@@ -236,40 +236,39 @@ void ZIViewModify::EditObject ( PlanFinObject* pObj )
 
 PSS_Edit* ZIViewModify::CreateEditControl ( PlanFinObject* pObj, CDC* pDC )
 {
-    //## begin ZIViewModify::CreateEditControl%938177641.body preserve=yes
     switch (PSS_ObjectUtility::GetClassNameID(pObj))
     {
         case IDS_STATICTEXT_CLASS: 
         {
-            return new CalcEdit;
+            return new PSS_CalcEdit;
         }
 
         case IDS_DATE_CLASS: 
         {
-            return new TimeEdit;
+            return new PSS_TimeEdit;
         }
 
         case IDS_CALCULATED_CLASS: 
         {
-            return new CalcEdit;
+            return new PSS_CalcEdit;
         }
 
         case IDS_HISTOAMOUNT_CLASS: 
         {
-            return new NumEditHistoric;
+            return new PSS_NumEditHistoric;
         }
 
         case IDS_AMOUNT_CLASS: 
         {
             if ( pObj->IsMemberOfMultiColumn() )
-                return new NumEditHistoric;
+                return new PSS_NumEditHistoric;
             else
-                return new NumEdit;
+                return new PSS_NumEdit;
         }
 
         case IDS_MULTITEXTSTATIC_CLASS: 
         {
-            return new CalcEdit;
+            return new PSS_CalcEdit;
         }
 
         case IDS_MULTITEXT_CLASS: 
@@ -279,13 +278,13 @@ PSS_Edit* ZIViewModify::CreateEditControl ( PlanFinObject* pObj, CDC* pDC )
 
         case IDS_HISTOTEXT_CLASS: 
         {
-            return new StrEditHistoric;
+            return new PSS_StrEditHistoric;
         }
 
         case IDS_TEXT_CLASS: 
         {
             if ( pObj->IsMemberOfMultiColumn() )
-                return new StrEditHistoric;
+                return new PSS_StrEditHistoric;
             else
                 return new PSS_StrEdit;
         }
@@ -326,24 +325,23 @@ PSS_Edit* ZIViewModify::CreateEditControl ( PlanFinObject* pObj, CDC* pDC )
 
         case IDS_MASKSTRING_CLASS: 
         {
-            return new MaskEdit;
+            return new PSS_MaskEdit;
         }
 
         case IDS_MASKSTRINGHISTO_CLASS: 
         {
-            return new MaskEdit;
+            return new PSS_MaskEdit;
         }
 
         case IDS_MULTICOLUMN_CLASS: 
         {
-            return new MultiColumnEdit;
+            return new PSS_MultiColumnEdit;
         }
 
         default: break;
     }
 
     return NULL;
-    //## end ZIViewModify::CreateEditControl%938177641.body
 }
 
 void ZIViewModify::AddObjectNotes(PlanFinObject* pObj)

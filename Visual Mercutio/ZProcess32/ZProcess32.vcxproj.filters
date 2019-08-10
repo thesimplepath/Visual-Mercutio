@@ -1,0 +1,984 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="DocWrite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IMPPRC.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MAINFRM.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MdlTMPLSAV.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MdlWkfOpt.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MdlWkfParam.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="POINTDLG.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProcessNameDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewMod.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WelcomP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZAApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZAMApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZCProcessModelDocument.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZIUnitInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZVConceptorReportOptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZVLogicalSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZVOutputWorkspace.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZVPrestations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZVProcessWorkspace.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZVPropertiesWorkspace.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZVRules.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZVUserGroup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZVWorkspaceCreationWizard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DocWrite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IMPPRC.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MAINFRM.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MdlTMPLSAV.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MdlWkfOpt.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MdlWkfParam.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="POINTDLG.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProcessNameDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="STDAFX.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewMod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WelcomP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZAApp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZAMApp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZCProcessModelDocument.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zFormsRes\zFormsRes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZHelpContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZIUnitInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTTemplateDocument.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZVConceptorReportOptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZVLogicalSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZVOutputWorkspace.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZVPrestations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZVProcessWorkspace.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZVPropertiesWorkspace.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZVRules.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZVUserGroup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZVWorkspaceCreationWizard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\3dADSoft.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\abc_main.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ABOUTLOG.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\actdltd.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\actdltf.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\actdltu.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\actdltx.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\actmodd.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\actmodf.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\actmodu.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\actmodx.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\actprcd.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\actprcf.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\actprcu.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\actprcx.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\actrend.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\actrenf.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\actrenu.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\actrenx.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\attruser.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Backassc.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\backupus.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bitmap1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bmp00001.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bmp00002.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BMP00004.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BMP00005.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BMP00006.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BMP00007.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BMP00008.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BMP00009.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BMP00010.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BMP00011.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Calcback.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Calcshow.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\CALCULAT.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\CALCULAT.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\choiceac.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\CLIP01.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\CLIP02.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\CLOCK01.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\COL_SELD.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\COL_SELF.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\COL_SELU.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\conceptor.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\CREATION.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\crtprcd.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\crtprcf.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\crtprcu.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\crtprcx.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\DARROW.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\decision.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\DELOCK.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\DSCVY.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\EYE.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\formsymb.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Fullscre.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\fulltool.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\GEND.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\GENF.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\genf1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\GENU.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\genu1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\GENX.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\HELPD.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\HELPF.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\HELPU.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\HIDDEN.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ICO00001.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ico00002.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ico00003.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ICO3DICO.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ico00004.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ico00005.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ico00006.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ico00007.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ico00008.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ico00009.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ico00010.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ico00011.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ico00012.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ico00013.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ico00014.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ico00015.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ico00016.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ico00017.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ico00018.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ico27362.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icon_ama.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ICON_EDI.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ICON_PEN.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ICON_REN.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icon1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icon2.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ICONAPP1.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ICONAPP2.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ICONAPP3.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ICONAPP4.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ICONAPP5.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ICONAPP6.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ICONAPP7.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ID_APPLY.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ID_CANCE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ID_OK_PR.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\IDR_DEFI.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\IDR_FEED.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\IDR_HIST.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\idr_main.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\idr_merc.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\idr_mode.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Idr_proc.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\IDR_PROC.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\il_filev.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\il_input.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\il_logic.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\il_model.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\il_outpu.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\il_outpu.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\il_panvi.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\il_prope.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\il_prope.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\il_stand.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\il_symbo.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\il_userv.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\il_works.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_flag.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\linktomo.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\LOCKED.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\LOCKED.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\mainfram.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\MAPIF1L.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\MAPIF5L.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\model1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\modelisa.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\MOVEDWND.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\MOVEDWNF.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\MOVEDWNU.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Movedwnx.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\MOVEUPD.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\MOVEUPF.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\MOVEUPU.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Moveupx.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\MSDTX.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\NOTCALCU.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OBJECT.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ObjectivDoc.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\od_canva.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdAlign.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdCanvas.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdCompLbClosedCurve.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdCompLbCurve.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdCompLbEllipse.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdCompLbImage.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdCompLbLine.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdCompLbLink.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdCompLbPolygon.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdCompLbPort.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdCompLbRect.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdCompLbSymbol.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdCompLbText.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdDownArrow.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdDrawing.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdLabelOffset.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdLayout.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdLink.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdNudge.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdRightArrow.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdRotate.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdStructure.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdTrueType.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OdZoomPan.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\PAGE.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\PLANFDOC.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\PLANFIN.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\POINTER.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\POINTERW.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\POOL.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\POS_IMAG.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\POSTL.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\prcbldd.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\prcbldf.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\prcbldu.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\prcbldx.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\PrestationsFlatToolbar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\PRINTER.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\process.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\PROCESS.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\process2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\processsoft.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\prop_fla.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\QuestionMark.gif">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\RARROW.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\RECTANGL.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\rejectac.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\respuser.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\RulesFlatToolbar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\SCDCNCLL.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\SCDREQL.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\SCDRESPL.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\SCDRESTL.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\shortcut.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\SIZEOBJE.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\suspenda.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\symbol1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\template.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\tips.gif">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\TIPS.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Toolbar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\toolbar1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\toupille.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\TRASH01.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ugp_flat.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\unit.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\unit_gla.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\userofac.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\welcome.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\wizard.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\workspac.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\wz1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WZBITMAP.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\3DGNO.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\3DSMOVE.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\about_conceptor_02.htm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\CUR00001.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\CUR00002.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\CUR00003.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\CUR00004.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\CURSOR1.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\DANGE~10.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\DANGER~3.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\DESIGN.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\EMPTY.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\HCROSS.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\helpcont.htm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\NEWOBJEC.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\NUMBER.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\od_inser.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\OdConnect.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\OdDeleteVertex.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\OdInsertImage.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\OdInsertPort.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\OdInsertSymbol.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\OdInsertText.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\OdInsertVertex.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\OdMove.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\OdMoveCopy.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\OdMoveReady.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\OdMoveVertex.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\OdPan.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\OdPanReady.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\OdRotate.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\OdRotateCopy.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\OdRotateReady.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\OdSmallCross.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\OdZoom.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\OdZoomRect.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Package.sym">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\PROPERTY.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\SCENARIO.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\SELECTOR.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\support_conceptor_02.htm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\tips.htm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Wizard.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Uml\ZProcess32.vcp">
+      <Filter>Packages</Filter>
+    </None>
+    <None Include="Uml\ZProcess32.vcw">
+      <Filter>Packages</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Diagrams">
+      <UniqueIdentifier>{2ec25e9f-1e33-4109-8ca8-16d03e05629c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{33f18a43-1965-4f2d-8ba1-fa0e2452410d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packages">
+      <UniqueIdentifier>{9b53112d-0c6c-4eeb-9873-57b6a58e8817}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{59943ace-a00a-4d8b-a600-aa20ec36c932}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{1ed86bb0-235b-4baa-9292-fb4e4c1c9f60}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ZProcess32.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

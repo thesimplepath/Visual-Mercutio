@@ -30,7 +30,7 @@
 #include "zBaseLib\ZABitmap.h"
 #include "zBaseLib\ZABnText.h"
 #include "zBaseLib\MsgBox.h"
-#include "zBaseLib\Edit.h"
+#include "zBaseLib\PSS_Edit.h"
 
 #include "Resource.h"
 #include "zRes32\zRes.h"

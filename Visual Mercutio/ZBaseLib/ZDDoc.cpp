@@ -38,7 +38,7 @@
 
 #include "ZIView.h"
 #include "ZIHtmlView.h"
-#include "Edit.h"
+#include "PSS_Edit.h"
 
 // ExpRT
 #include "ExpRT.h"
