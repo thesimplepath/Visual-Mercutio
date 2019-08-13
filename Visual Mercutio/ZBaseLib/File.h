@@ -140,7 +140,7 @@ class AFX_EXT_CLASS PSS_File : public CObject
         * Gets the file name path
         *@return the file name path
         */
-        CString GetFilePath();
+        CString GetFilePath() const;
 
         /**
         * Sets the file name path and rebuild the complete file name
@@ -152,7 +152,7 @@ class AFX_EXT_CLASS PSS_File : public CObject
         * Gets the file name drive
         *@return the file name drive
         */
-        const char GetFileDrive();
+        const char GetFileDrive() const;
 
         /**
         * Sets the file name drive and rebuild the complete file name
@@ -241,7 +241,7 @@ class AFX_EXT_CLASS PSS_File : public CObject
         *@param[out] tm - last write time on function ends, on success
         *@return TRUE on success, otherwise FALSE
         */
-        static BOOL GetLastWriteTime(CString Filename, SYSTEMTIME& tm);
+        static BOOL GetLastWriteTime(CString fileName, SYSTEMTIME& tm);
 
         /**
         * Gets the last write time

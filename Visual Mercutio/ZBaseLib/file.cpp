@@ -64,209 +64,283 @@ int PSS_File::operator!=(const PSS_File& other) const
     return m_FileName != other.m_FileName;
 }
 //---------------------------------------------------------------------------
-CArchive& operator>>(CArchive& ar, PSS_File& File)
+CArchive& operator >> (CArchive& ar, PSS_File& File)
 {
     ar >> File.m_FileName;
 
-    WORD wValue;
-    ar >> wValue;
-    File.m_AttachementType = (AttachementType)wValue;
+    WORD value;
+    ar >> value;
+    File.m_AttachementType = IEAttachementType(value);
 
-    // Build completely all file components
-    File.ReBuild();
-
-    return ar;
-    //## end ZFile::operator >>%933795312.body
-}
-//---------------------------------------------------------------------------
-CArchive& operator<<(CArchive& ar, ZFile& File)
-{
-    //## begin ZFile::operator <<%933795313.body preserve=yes
-    ar << File.m_FileName;
-    ar << (WORD)File.m_AttachementType;
+    // build completely all file components
+    File.Rebuild();
 
     return ar;
-    //## end ZFile::operator <<%933795313.body
 }
 //---------------------------------------------------------------------------
-
-//## Other Operations (implementation)
-void ZFile::ReBuild()
+CArchive& operator << (CArchive& ar, PSS_File& file)
 {
-    //## begin ZFile::ReBuild%940749602.body preserve=yes
-    _splitpath(m_FileName, m_szDrive, m_szDir, m_szFname, m_szExt);
-    CString s(m_szDir);
+    ar << file.m_FileName;
+    ar << WORD(file.m_AttachementType);
 
-    // If \\ at the end of path, remove it
-    // JMR-MODIF - Le 18 avril 2006 - Teste si la chaîne est vide avant de tenter d'extraire un caractère.
-    while (!s.IsEmpty() && s.GetAt(s.GetLength() - 1) == '\\')
-    {
-        s = s.Left(s.GetLength() - 1);
-    }
+    return ar;
+}
+//---------------------------------------------------------------------------
+void PSS_File::Rebuild()
+{
+    _splitpath(m_FileName, m_Drive, m_Dir, m_FileNameBuffer, m_FileExt);
+    CString str(m_Dir);
 
-    // Rebuild the filename
-    m_FileName = m_szDrive;
-    m_FileName += s;
+    // if \\ at the end of path, remove it
+    while (!str.IsEmpty() && str.GetAt(str.GetLength() - 1) == '\\')
+        str = str.Left(str.GetLength() - 1);
+
+    // rebuild the file name
+    m_FileName  = m_Drive;
+    m_FileName += str;
     m_FileName += _T("\\");
-    m_FileName += m_szFname;
-    m_FileName += m_szExt;
-    //## end ZFile::ReBuild%940749602.body
+    m_FileName += m_FileNameBuffer;
+    m_FileName += m_Ext;
 }
-
-CString ZFile::GetCompleteFileName() const
+//---------------------------------------------------------------------------
+CString PSS_File::GetCompleteFileName() const
 {
     return m_FileName;
 }
-
-void ZFile::SetCompleteFileName(const CString& fileName, IEAttachementType attachement)
+//---------------------------------------------------------------------------
+void PSS_File::SetCompleteFileName(const CString& fileName, IEAttachementType attachement)
 {
     m_FileName        = fileName;
-    m_AttachementType = Attachement;
+    m_AttachementType = attachement;
 
-    std::_splitpath(m_FileName, m_szDrive, m_szDir, m_szFname, m_szExt);
+    _splitpath(m_FileName, m_Drive, m_Dir, m_FileNameBuffer, m_FileExt);
 }
-
-CString ZFile::GetFileName() const
+//---------------------------------------------------------------------------
+CString PSS_File::GetFileName() const
 {
-    //## begin ZFile::GetFileName%933795307.body preserve=yes
     CString str;
-    str.Format(_T("%s%s"), m_szFname, m_szExt);
+    str.Format(_T("%s%s"), m_FileNameBuffer, m_Ext);
 
     return str;
-    //## end ZFile::GetFileName%933795307.body
 }
-
-void ZFile::SetFileName(const CString& fileName, IEAttachementType attachement)
+//---------------------------------------------------------------------------
+void PSS_File::SetFileName(const CString& fileName, IEAttachementType attachement)
 {
-    m_FileName  = m_szDrive;
-    m_FileName += m_szDir;
+    m_FileName  = m_Drive;
+    m_FileName += m_Dir;
     m_FileName += fileName;
 }
-
-CString ZFile::GetFilePath() const
+//---------------------------------------------------------------------------
+CString PSS_File::GetFilePath() const
 {
     CString str;
-    str.Format(_T("%s%s"), m_szDrive, m_szDir);
+    str.Format(_T("%s%s"), m_Drive, m_Dir);
 
     return str;
 }
-
-void ZFile::SetFilePath(const CString& path)
+//---------------------------------------------------------------------------
+void PSS_File::SetFilePath(const CString& path)
 {
-    m_FileName = m_szDrive;
+    m_FileName  = m_Drive;
     m_FileName += path;
-    m_FileName += m_szFname;
-    m_FileName += m_szExt;
+    m_FileName += m_FileNameBuffer;
+    m_FileName += m_FileExt;
 }
-
-const char ZFile::GetFileDrive() const
+//---------------------------------------------------------------------------
+const char PSS_File::GetFileDrive() const
 {
     return m_FileName[0];
 }
-
-void ZFile::SetFileDrive(const char drive)
+//---------------------------------------------------------------------------
+void PSS_File::SetFileDrive(const char drive)
 {
     m_FileName  = drive;
     m_FileName += _T(":");
-    m_FileName += m_szDir;
-    m_FileName += m_szFname;
-    m_FileName += m_szExt;
+    m_FileName += m_Dir;
+    m_FileName += m_FileNameBuffer;
+    m_FileName += m_Ext;
 }
-
-CString ZFile::GetShowName() const
+//---------------------------------------------------------------------------
+CString PSS_File::GetDisplayName() const
 {
-    //## begin ZFile::GetDisplayName%933795315.body preserve=yes
     SHFILEINFO sfi;
-
     ::SHGetFileInfo(m_FileName, 0, &sfi, sizeof(SHFILEINFO), SHGFI_DISPLAYNAME);
 
     return sfi.szDisplayName;
-    //## end ZFile::GetDisplayName%933795315.body
 }
-
-int ZFile::GetIconIndex() const
+//---------------------------------------------------------------------------
+int PSS_File::GetIconIndex() const
 {
-    //## begin ZFile::GetIconIndex%933795316.body preserve=yes
     SHFILEINFO sfi;
-
     ::SHGetFileInfo(m_FileName, 0, &sfi, sizeof(SHFILEINFO), SHGFI_SYSICONINDEX | SHGFI_SMALLICON);
 
     return sfi.iIcon;
-    //## end ZFile::GetIconIndex%933795316.body
 }
-
-CString ZFile::GetFileTitle() const
+//---------------------------------------------------------------------------
+CString PSS_File::GetFileTitle() const
 {
-    //## begin ZFile::GetFileTitle%933795317.body preserve=yes
-    return m_szFname;
-    //## end ZFile::GetFileTitle%933795317.body
+    return m_FileNameBuffer;
 }
-
-CString ZFile::GetFileExt() const
+//---------------------------------------------------------------------------
+CString PSS_File::GetFileExt() const
 {
-    //## begin ZFile::GetFileExt%933795318.body preserve=yes
-    return m_szExt;
-    //## end ZFile::GetFileExt%933795318.body
+    return m_FileExt;
 }
-
-CString ZFile::GetDescription() const
+//---------------------------------------------------------------------------
+CString PSS_File::GetDescription() const
 {
-    //## begin ZFile::GetDescription%933795319.body preserve=yes
     SHFILEINFO sfi;
-
     ::SHGetFileInfo(m_FileName, 0, &sfi, sizeof(SHFILEINFO), SHGFI_TYPENAME);
 
     return sfi.szTypeName;
-    //## end ZFile::GetDescription%933795319.body
 }
-
-BOOL ZFile::Exist() const
+//---------------------------------------------------------------------------
+BOOL PSS_File::Exist(const CString& fileName)
 {
-    return ZFile::Exist(GetCompleteFileName());
-}
-
-BOOL ZFile::Exist(const CString& fileName) const
-{
-    // Check for existence
-    if ((_access(Filename, 0)) != -1)
+    // check for existence
+    if ((::_access(fileName, 0)) != -1)
     {
-        WIN32_FIND_DATA fd;
+        ::WIN32_FIND_DATA fd;
+        CString           findPath = fileName;
+        const int         slash    = findPath.ReverseFind(_T('\\'));
+        const int         length   = findPath.GetLength();
 
-        CString    szFindPath = Filename;
-        int        nSlash = szFindPath.ReverseFind(_T('\\'));
-        int        nLength = szFindPath.GetLength();
-
-        if (nSlash == nLength - 1)
-        {
-            if (nLength == 3)
+        if (slash == length - 1)
+            if (length == 3)
             {
-                if (szFindPath.GetAt(1) == _T(':'))
-                {
+                if (findPath.GetAt(1) == _T(':'))
                     return TRUE;
-                }
             }
             else
-            {
-                szFindPath = szFindPath.Left(nSlash);
-            }
-        }
+                findPath = findPath.Left(slash);
 
-        HANDLE hFind = FindFirstFile(szFindPath, &fd);
+        HANDLE hFind = FindFirstFile(findPath, &fd);
 
         if (hFind != INVALID_HANDLE_VALUE)
-        {
             FindClose(hFind);
-        }
 
         return hFind != INVALID_HANDLE_VALUE;
     }
 
     return FALSE;
 }
-
-HANDLE ZFile::GetFileHandle(CString Filename)
+//---------------------------------------------------------------------------
+BOOL PSS_File::Exist() const
 {
-    HANDLE hFile = CreateFile(Filename,
+    return Exist(GetCompleteFileName());
+}
+//---------------------------------------------------------------------------
+BOOL PSS_File::IsReadOnly() const
+{
+    CFileStatus rStatus;
+    CFile::GetStatus(GetCompleteFileName(), rStatus);
+
+    return rStatus.m_attribute & CFile::readOnly;
+}
+//---------------------------------------------------------------------------
+BOOL PSS_File::SetReadOnly(BOOL readOnly)
+{
+    // read the file status
+    CFileStatus rStatus;
+    CFile::GetStatus(GetCompleteFileName(), rStatus);
+
+    // no need to change?
+    if (( readOnly && ((rStatus.m_attribute & CFile::readOnly) == 0)) ||
+        (!readOnly && ((rStatus.m_attribute & CFile::readOnly) == 1)))
+    {
+        // otherwise, set the new file status
+        if (readOnly)
+            rStatus.m_attribute |=  CFile::readOnly;
+        else
+            rStatus.m_attribute &= ~CFile::readOnly;
+
+        TRY
+        {
+            CFile::SetStatus(GetCompleteFileName(), rStatus);
+        }
+        CATCH(CFileException, e)
+        {
+            return FALSE;
+        }
+        END_CATCH
+    }
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+BOOL PSS_File::IsArchive() const
+{
+    CFileStatus rStatus;
+    CFile::GetStatus(GetCompleteFileName(), rStatus);
+
+    return rStatus.m_attribute & CFile::archive;
+}
+//---------------------------------------------------------------------------
+BOOL PSS_File::SetArchive(BOOL archive)
+{
+    // read the file status
+    CFileStatus rStatus;
+    CFile::GetStatus(GetCompleteFileName(), rStatus);
+
+    // no need to change?
+    if (( archive && ((rStatus.m_attribute & CFile::archive) == 0)) ||
+        (!archive && ((rStatus.m_attribute & CFile::archive) == 1)))
+    {
+        // otherwise, set the new file status
+        if (archive)
+            rStatus.m_attribute |=  CFile::archive;
+        else
+            rStatus.m_attribute &= ~CFile::archive;
+
+        TRY
+        {
+            CFile::SetStatus(GetCompleteFileName(), rStatus);
+        }
+        CATCH(CFileException, e)
+        {
+            return FALSE;
+        }
+        END_CATCH
+    }
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+BOOL PSS_File::GetLastWriteTime(const CString& fileName, SYSTEMTIME& tm)
+{
+    FILETIME ftCreate, ftAccess, ftWrite, ftLocal;
+
+    HANDLE hFile = GetFileHandle(fileName);
+
+    if (!hFile)
+        return FALSE;
+
+    // get the file times for the file
+    if (!GetFileTime(hFile, &ftCreate, &ftAccess, &ftWrite))
+        return FALSE;
+
+    // convert the last-write time to local time
+    if (!FileTimeToLocalFileTime(&ftWrite, &ftLocal))
+        return FALSE;
+
+    // convert the local file time from UTC to system time
+    FileTimeToSystemTime(&ftLocal, &tm);
+
+    // close the file handle before leaving the function, otherwise the handle remains open to the file
+    // and the system will not be able to access the file further
+    CloseHandle(hFile);
+
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+BOOL PSS_File::GetLastWriteTime(SYSTEMTIME& tm)
+{
+    return GetLastWriteTime(GetCompleteFileName(), tm);
+}
+//---------------------------------------------------------------------------
+HANDLE PSS_File::GetFileHandle(const CString& fileName)
+{
+    HANDLE hFile = CreateFile(fileName,
                               GENERIC_READ,
                               0,
                               NULL,
@@ -275,148 +349,8 @@ HANDLE ZFile::GetFileHandle(CString Filename)
                               NULL);
 
     if (hFile != INVALID_HANDLE_VALUE)
-    {
         return hFile;
-    }
 
     return NULL;
 }
-
-BOOL ZFile::IsReadOnly() const
-{
-    //## begin ZFile::IsReadOnly%941091645.body preserve=yes
-    CFileStatus rStatus;
-    CFile::GetStatus(GetCompleteFileName(), rStatus);
-
-    return rStatus.m_attribute & CFile::readOnly;
-    //## end ZFile::IsReadOnly%941091645.body
-}
-
-BOOL ZFile::SetReadOnly(BOOL ReadOnly)
-{
-    //## begin ZFile::SetReadOnly%941091646.body preserve=yes
-    // First, read the file status
-    CFileStatus rStatus;
-    CFile::GetStatus(GetCompleteFileName(), rStatus);
-
-    // If no need to change
-    if ((ReadOnly == TRUE && ((rStatus.m_attribute & CFile::readOnly) == 0)) ||
-        (ReadOnly == FALSE && ((rStatus.m_attribute & CFile::readOnly) == 1)))
-    {
-        // Otherwise, sets the new file status
-        if (ReadOnly == TRUE)
-        {
-            rStatus.m_attribute |= CFile::readOnly;
-        }
-        else
-        {
-            rStatus.m_attribute &= ~CFile::readOnly;
-        }
-
-        TRY
-        {
-            CFile::SetStatus(GetCompleteFileName(), rStatus);
-        }
-            CATCH(CFileException, e)
-        {
-            return FALSE;
-        }
-        END_CATCH
-    }
-
-    return TRUE;
-    //## end ZFile::SetReadOnly%941091646.body
-}
-
-BOOL ZFile::IsArchive() const
-{
-    //## begin ZFile::IsArchive%941091647.body preserve=yes
-    CFileStatus rStatus;
-    CFile::GetStatus(GetCompleteFileName(), rStatus);
-
-    return rStatus.m_attribute & CFile::archive;
-    //## end ZFile::IsArchive%941091647.body
-}
-
-BOOL ZFile::SetArchive(BOOL Archive)
-{
-    //## begin ZFile::SetArchive%941091648.body preserve=yes
-    // First, read the file status
-    CFileStatus rStatus;
-    CFile::GetStatus(GetCompleteFileName(), rStatus);
-
-    // If no need to change
-    if ((Archive == TRUE && ((rStatus.m_attribute & CFile::archive) == 0)) ||
-        (Archive == FALSE && ((rStatus.m_attribute & CFile::archive) == 1)))
-    {
-        // Otherwise, sets the new file status
-        if (Archive == TRUE)
-        {
-            rStatus.m_attribute |= CFile::archive;
-        }
-        else
-        {
-            rStatus.m_attribute &= ~CFile::archive;
-        }
-
-        TRY
-        {
-            CFile::SetStatus(GetCompleteFileName(), rStatus);
-        }
-            CATCH(CFileException, e)
-        {
-            return FALSE;
-        }
-        END_CATCH
-    }
-
-    return TRUE;
-    //## end ZFile::SetArchive%941091648.body
-}
-
-BOOL ZFile::GetLastWriteTime(SYSTEMTIME& tm)
-{
-    return ZFile::GetLastWriteTime(GetCompleteFileName(), tm);
-}
-
-BOOL ZFile::GetLastWriteTime(CString Filename, SYSTEMTIME& tm)
-{
-    FILETIME ftCreate, ftAccess, ftWrite, ftLocal;
-
-    HANDLE hFile = ZFile::GetFileHandle(Filename);
-
-    if (hFile == NULL)
-    {
-        return FALSE;
-    }
-
-    // Retrieve the file times for the file.
-    if (!GetFileTime(hFile, &ftCreate, &ftAccess, &ftWrite))
-    {
-        return FALSE;
-    }
-
-    // Convert the last-write time to local time.
-    if (!FileTimeToLocalFileTime(&ftWrite, &ftLocal))
-    {
-        return FALSE;
-    }
-
-    // Convert the local file time from UTC to system time.
-    FileTimeToSystemTime(&ftLocal, &tm);
-
-    // Close the file handle before leaving the function
-    // otherwise, we have an open handle to a file and the system
-    // will not be able to access the file further
-    CloseHandle(hFile);
-
-    return TRUE;
-}
-
-// Additional Declarations
-
-//## begin ZFile%37A8A5510200.declarations preserve=yes
-//## end ZFile%37A8A5510200.declarations
-
-//## begin module%36754E560054.epilog preserve=yes
-//## end module%36754E560054.epilog
+//---------------------------------------------------------------------------
