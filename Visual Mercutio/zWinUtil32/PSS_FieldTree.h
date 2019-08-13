@@ -19,7 +19,7 @@
 // processsoft
 #include "zBaseLib\ZITreeCtl.h"
 #include "zBaseLib\ZDDoc.h"
-#include "zBaseLib\FieldRep.h"
+#include "zBaseLib\PSS_FieldRepository.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -44,7 +44,7 @@ class AFX_EXT_CLASS PSS_FieldTree
         *@param pDoc - document, can be NULL
         *@param pFieldRepository - field repository, can be NULL
         */
-        PSS_FieldTree(ZITreeCtrl* pTreeCtrl = NULL, ZDDocument* pDoc = NULL, ZBFieldRepository* pFieldRepository = NULL);
+        PSS_FieldTree(ZITreeCtrl* pTreeCtrl = NULL, ZDDocument* pDoc = NULL, PSS_FieldRepository* pFieldRepository = NULL);
 
         virtual ~PSS_FieldTree();
 
@@ -54,7 +54,7 @@ class AFX_EXT_CLASS PSS_FieldTree
         *@param pDoc - document
         *@param pFieldRepository - field repository, can be NULL
         */
-        virtual void Initialize(ZITreeCtrl* pTreeCtrl, ZDDocument* pDoc, ZBFieldRepository* pFieldRepository = NULL);
+        virtual void Initialize(ZITreeCtrl* pTreeCtrl, ZDDocument* pDoc, PSS_FieldRepository* pFieldRepository = NULL);
 
         /**
         * Empties the tree
@@ -84,14 +84,14 @@ class AFX_EXT_CLASS PSS_FieldTree
         virtual void OnFieldListChanged();
 
     protected:
-        ZITreeCtrl*        m_pTreeCtrl;
-        ZDDocument*        m_pDoc;
-        ZBFieldRepository* m_pFieldRepository;
-        CString            m_DocumentType;
-        CString            m_RepositoryType;
-        CString            m_NoDocument;
-        CString            m_NoRepository;
-        BOOL               m_HasBeenInitialized;
+        ZITreeCtrl*          m_pTreeCtrl;
+        ZDDocument*          m_pDoc;
+        PSS_FieldRepository* m_pFieldRepository;
+        CString              m_DocumentType;
+        CString              m_RepositoryType;
+        CString              m_NoDocument;
+        CString              m_NoRepository;
+        BOOL                 m_HasBeenInitialized;
 
         /**
         * Adds a type item
@@ -145,7 +145,7 @@ class AFX_EXT_CLASS PSS_FieldTree
         *@param other - other object to copy from
         *@return copy of itself
         */
-        const PSS_FieldTree & operator = (const PSS_FieldTree& other);
+        const PSS_FieldTree& operator = (const PSS_FieldTree& other);
 
         /**
         * Creates the tree

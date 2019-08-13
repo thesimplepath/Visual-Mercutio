@@ -9,7 +9,7 @@
 #include "PSS_SystemOptionSheet.h"
 
 // processsoft
-#include "zBaseLib\Export.h"
+#include "zBaseLib\PSS_Export.h"
 #include "zWinUtil32\PSS_GeneralPage.h"
 #include "PSS_ViewPage.h"
 #include "PSS_ReducedViewPage.h"

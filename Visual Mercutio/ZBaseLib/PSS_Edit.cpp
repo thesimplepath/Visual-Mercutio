@@ -48,14 +48,14 @@ PSS_Edit::~PSS_Edit()
         delete m_pSpecialHelp;
 }
 //---------------------------------------------------------------------------
-void PSS_Edit::PreCreateEdit(BOOL               designerMode,
-                             CWnd*              pParentWnd,
-                             CDC*               pDC,
-                             ZDDocument*        pDoc,
-                             PlanFinObject*     pEditedObj,
-                             ZBFieldRepository* pFieldRepository,
-                             BOOL               autoCalculateOption,
-                             BOOL               goNextEditOption)
+void PSS_Edit::PreCreateEdit(BOOL                 designerMode,
+                             CWnd*                pParentWnd,
+                             CDC*                 pDC,
+                             ZDDocument*          pDoc,
+                             PlanFinObject*       pEditedObj,
+                             PSS_FieldRepository* pFieldRepository,
+                             BOOL                 autoCalculateOption,
+                             BOOL                 goNextEditOption)
 {
     m_pParentWnd          = pParentWnd;
     m_pEditedObj          = pEditedObj;
@@ -231,14 +231,14 @@ PSS_StrEdit::~PSS_StrEdit()
     PSS_Edit::~PSS_Edit();
 }
 //---------------------------------------------------------------------------
-void PSS_StrEdit::Create(BOOL               designerMode,
-                         CWnd*              pParentWnd,
-                         CDC*               pDC,
-                         ZDDocument*        pDoc,
-                         PlanFinObject*     pEditedObj,
-                         ZBFieldRepository* pFieldRepository,
-                         BOOL               autoCalculateOption,
-                         BOOL               goNextEditOption)
+void PSS_StrEdit::Create(BOOL                 designerMode,
+                         CWnd*                pParentWnd,
+                         CDC*                 pDC,
+                         ZDDocument*          pDoc,
+                         PlanFinObject*       pEditedObj,
+                         PSS_FieldRepository* pFieldRepository,
+                         BOOL                 autoCalculateOption,
+                         BOOL                 goNextEditOption)
 {
     PreCreateEdit(designerMode,
                   pParentWnd,
@@ -373,14 +373,14 @@ PSS_NumEdit::~PSS_NumEdit()
     PSS_Edit::~PSS_Edit();
 }
 //---------------------------------------------------------------------------
-void PSS_NumEdit::Create(BOOL               designerMode,
-                         CWnd*              pParentWnd,
-                         CDC*               pDC,
-                         ZDDocument*        pDoc,
-                         PlanFinObject*     pEditedObj,
-                         ZBFieldRepository* pFieldRepository,
-                         BOOL               autoCalculateOption,
-                         BOOL               goNextEditOption)
+void PSS_NumEdit::Create(BOOL                 designerMode,
+                         CWnd*                pParentWnd,
+                         CDC*                 pDC,
+                         ZDDocument*          pDoc,
+                         PlanFinObject*       pEditedObj,
+                         PSS_FieldRepository* pFieldRepository,
+                         BOOL                 autoCalculateOption,
+                         BOOL                 goNextEditOption)
 {
     PreCreateEdit(designerMode,
                   pParentWnd,
@@ -513,14 +513,14 @@ PSS_CalcEdit::~PSS_CalcEdit()
     PSS_Edit::~PSS_Edit();
 }
 //---------------------------------------------------------------------------
-void PSS_CalcEdit::Create(BOOL               designerMode,
-                          CWnd*              pParentWnd,
-                          CDC*               pDC,
-                          ZDDocument*        pDoc,
-                          PlanFinObject*     pEditedObj,
-                          ZBFieldRepository* pFieldRepository,
-                          BOOL               autoCalculateOption,
-                          BOOL               goNextEditOption)
+void PSS_CalcEdit::Create(BOOL                 designerMode,
+                          CWnd*                pParentWnd,
+                          CDC*                 pDC,
+                          ZDDocument*          pDoc,
+                          PlanFinObject*       pEditedObj,
+                          PSS_FieldRepository* pFieldRepository,
+                          BOOL                 autoCalculateOption,
+                          BOOL                 goNextEditOption)
 {
     PreCreateEdit(designerMode,
                   pParentWnd,
@@ -584,14 +584,14 @@ PSS_TimeEdit::~PSS_TimeEdit()
     PSS_Edit::~PSS_Edit();
 }
 //---------------------------------------------------------------------------
-void PSS_TimeEdit::Create(BOOL               designerMode,
-                          CWnd*              pParentWnd,
-                          CDC*               pDC,
-                          ZDDocument*        pDoc,
-                          PlanFinObject*     pEditedObj,
-                          ZBFieldRepository* pFieldRepository,
-                          BOOL               autoCalculateOption,
-                          BOOL               goNextEditOption)
+void PSS_TimeEdit::Create(BOOL                 designerMode,
+                          CWnd*                pParentWnd,
+                          CDC*                 pDC,
+                          ZDDocument*          pDoc,
+                          PlanFinObject*       pEditedObj,
+                          PSS_FieldRepository* pFieldRepository,
+                          BOOL                 autoCalculateOption,
+                          BOOL                 goNextEditOption)
 {
     PreCreateEdit(designerMode,
                   pParentWnd,
@@ -733,14 +733,14 @@ PSS_StrEditHistoric::~PSS_StrEditHistoric()
     PSS_Edit::~PSS_Edit();
 }
 //---------------------------------------------------------------------------
-void PSS_StrEditHistoric::Create(BOOL               designerMode,
-                                 CWnd*              pParentWnd,
-                                 CDC*               pDC,
-                                 ZDDocument*        pDoc,
-                                 PlanFinObject*     pEditedObj,
-                                 ZBFieldRepository* pFieldRepository,
-                                 BOOL               autoCalculateOption,
-                                 BOOL               goNextEditOption)
+void PSS_StrEditHistoric::Create(BOOL                 designerMode,
+                                 CWnd*                pParentWnd,
+                                 CDC*                 pDC,
+                                 ZDDocument*          pDoc,
+                                 PlanFinObject*       pEditedObj,
+                                 PSS_FieldRepository* pFieldRepository,
+                                 BOOL                 autoCalculateOption,
+                                 BOOL                 goNextEditOption)
 {
     PreCreateEdit(designerMode,
                   pParentWnd,
@@ -869,14 +869,14 @@ PSS_NumEditHistoric::~PSS_NumEditHistoric()
     PSS_Edit::~PSS_Edit();
 }
 //---------------------------------------------------------------------------
-void PSS_NumEditHistoric::Create(BOOL               designerMode,
-                                 CWnd*              pParentWnd,
-                                 CDC*               pDC,
-                                 ZDDocument*        pDoc,
-                                 PlanFinObject*     pEditedObj,
-                                 ZBFieldRepository* pFieldRepository,
-                                 BOOL               autoCalculateOption,
-                                 BOOL               goNextEditOption)
+void PSS_NumEditHistoric::Create(BOOL                 designerMode,
+                                 CWnd*                pParentWnd,
+                                 CDC*                 pDC,
+                                 ZDDocument*          pDoc,
+                                 PlanFinObject*       pEditedObj,
+                                 PSS_FieldRepository* pFieldRepository,
+                                 BOOL                 autoCalculateOption,
+                                 BOOL                 goNextEditOption)
 {
     PreCreateEdit(designerMode,
                   pParentWnd,
@@ -1005,14 +1005,14 @@ PSS_FieldNameEdit::~PSS_FieldNameEdit()
     PSS_Edit::~PSS_Edit();
 }
 //---------------------------------------------------------------------------
-void PSS_FieldNameEdit::Create(BOOL               designerMode,
-                               CWnd*              pParentWnd,
-                               CDC*               pDC,
-                               ZDDocument*        pDoc,
-                               PlanFinObject*     pEditedObj,
-                               ZBFieldRepository* pFieldRepository,
-                               BOOL               autoCalculateOption,
-                               BOOL               goNextEditOption)
+void PSS_FieldNameEdit::Create(BOOL                 designerMode,
+                               CWnd*                pParentWnd,
+                               CDC*                 pDC,
+                               ZDDocument*          pDoc,
+                               PlanFinObject*       pEditedObj,
+                               PSS_FieldRepository* pFieldRepository,
+                               BOOL                 autoCalculateOption,
+                               BOOL                 goNextEditOption)
 {
     PreCreateEdit(designerMode,
                   pParentWnd,
@@ -1123,14 +1123,14 @@ PSS_MaskEdit::~PSS_MaskEdit()
     PSS_Edit::~PSS_Edit();
 }
 //---------------------------------------------------------------------------
-void PSS_MaskEdit::Create(BOOL               designerMode,
-                          CWnd*              pParentWnd,
-                          CDC*               pDC,
-                          ZDDocument*        pDoc,
-                          PlanFinObject*     pEditedObj,
-                          ZBFieldRepository* pFieldRepository,
-                          BOOL               autoCalculateOption,
-                          BOOL               goNextEditOption)
+void PSS_MaskEdit::Create(BOOL                 designerMode,
+                          CWnd*                pParentWnd,
+                          CDC*                 pDC,
+                          ZDDocument*          pDoc,
+                          PlanFinObject*       pEditedObj,
+                          PSS_FieldRepository* pFieldRepository,
+                          BOOL                 autoCalculateOption,
+                          BOOL                 goNextEditOption)
 {
     PLFNMaskString* pMaskString = dynamic_cast<PLFNMaskString*>(m_pEditedObj);
 
@@ -1250,14 +1250,14 @@ PSS_MultiColumnEdit::~PSS_MultiColumnEdit()
     PSS_Edit::~PSS_Edit();
 }
 //---------------------------------------------------------------------------
-void PSS_MultiColumnEdit::Create(BOOL               designerMode,
-                                 CWnd*              pParentWnd,
-                                 CDC*               pDC,
-                                 ZDDocument*        pDoc,
-                                 PlanFinObject*     pEditedObj,
-                                 ZBFieldRepository* pFieldRepository,
-                                 BOOL               autoCalculateOption,
-                                 BOOL               goNextEditOption)
+void PSS_MultiColumnEdit::Create(BOOL                 designerMode,
+                                 CWnd*                pParentWnd,
+                                 CDC*                 pDC,
+                                 ZDDocument*          pDoc,
+                                 PlanFinObject*       pEditedObj,
+                                 PSS_FieldRepository* pFieldRepository,
+                                 BOOL                 autoCalculateOption,
+                                 BOOL                 goNextEditOption)
 {
     if (!pEditedObj->IsKindOf(RUNTIME_CLASS(PLFNMultiColumn)))
         return;

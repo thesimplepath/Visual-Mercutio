@@ -47,10 +47,10 @@
 class ZIHtmlView;
 class ZIView;
 class PSS_Edit;
-class ZUDocumentExport;
+class PSS_DocumentExport;
 class PSS_DocumentData;
 class PlanFinObject;
-class ZBFieldRepository;
+class PSS_FieldRepository;
 
 
 
@@ -513,8 +513,8 @@ public:
     BOOL ChangeObjectType(PlanFinObject* obj, const CString& sName, const CString& sFinalValue, BOOL bPropagate = FALSE, int DocumentIndex = -1);
 
     //## Operation: InsertObject%913970068
-    BOOL InsertObject(PlanFinObject* obj, ZBFieldRepository* pFieldRepository = NULL, BOOL InsertInGlobalRepository = FALSE, int DocumentIndex = -1, BOOL Refresh = FALSE);
-    BOOL InsertObjectAtHead(PlanFinObject* obj, ZBFieldRepository* pFieldRepository = NULL, BOOL InsertInGlobalRepository = FALSE, int DocumentIndex = -1, BOOL Refresh = FALSE);
+    BOOL InsertObject(PlanFinObject* obj, PSS_FieldRepository* pFieldRepository = NULL, BOOL InsertInGlobalRepository = FALSE, int DocumentIndex = -1, BOOL Refresh = FALSE);
+    BOOL InsertObjectAtHead(PlanFinObject* obj, PSS_FieldRepository* pFieldRepository = NULL, BOOL InsertInGlobalRepository = FALSE, int DocumentIndex = -1, BOOL Refresh = FALSE);
 
     //## Operation: DeleteObject%913970069
     BOOL DeleteObject(PlanFinObject* obj, BOOL DeleteFromMemory = TRUE, int DocumentIndex = -1, BOOL Refresh = FALSE);
@@ -618,8 +618,8 @@ public:
 
     //## Attribute: pRealTimeExport%3652AE800319
     //    Points to the real time export object.
-    ZUDocumentExport* GetpRealTimeExport();
-    void SetpRealTimeExport(ZUDocumentExport* value);
+    PSS_DocumentExport* GetpRealTimeExport();
+    void SetpRealTimeExport(PSS_DocumentExport* value);
 
     //## Attribute: DocumentDataArray%3678EAF803E5
     //    Contains the documents data.
@@ -743,7 +743,7 @@ protected:
     //## end ZDDocument::SynchronizationFileName%365171060273.attr
 
     //## begin ZDDocument::pRealTimeExport%3652AE800319.attr preserve=no  public: ZUDocumentExport* {U} NULL
-    ZUDocumentExport* m_pRealTimeExport;
+    PSS_DocumentExport* m_pRealTimeExport;
     //## end ZDDocument::pRealTimeExport%3652AE800319.attr
 
     //## begin ZDDocument::DocumentDataArray%3678EAF803E5.attr preserve=no  public: CObArray {V} 
@@ -956,14 +956,14 @@ inline void ZDDocument::SetSynchronizationFileName(CString value)
     //## end ZDDocument::SetSynchronizationFileName%365171060273.set
 }
 
-inline ZUDocumentExport* ZDDocument::GetpRealTimeExport()
+inline PSS_DocumentExport* ZDDocument::GetpRealTimeExport()
 {
     //## begin ZDDocument::GetpRealTimeExport%3652AE800319.get preserve=no
     return m_pRealTimeExport;
     //## end ZDDocument::GetpRealTimeExport%3652AE800319.get
 }
 
-inline void ZDDocument::SetpRealTimeExport(ZUDocumentExport* value)
+inline void ZDDocument::SetpRealTimeExport(PSS_DocumentExport* value)
 {
     //## begin ZDDocument::SetpRealTimeExport%3652AE800319.set preserve=no
     m_pRealTimeExport = value;

@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\FileDlg.h"
-#include "zBaseLib\Export.h"
+#include "zBaseLib\PSS_Export.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE

@@ -83,7 +83,7 @@
 #include "zBaseLib\PSS_ApplicationOption.h"
 
 // FieldRep
-#include "zBaseLib\FieldRep.h"
+#include "zBaseLib\PSS_FieldRepository.h"
 
 // GFldDoc
 #include "zBaseLib\GFldDoc.h"
@@ -562,7 +562,7 @@ public:
     virtual BOOL IsCursorCapturedValid( const CPoint& point, ZIView* pView );
 
     //## Operation: GetFieldRepository%910104706
-    ZBFieldRepository* GetFieldRepository();
+    PSS_FieldRepository* GetFieldRepository();
 
     //## Operation: SetCurrentDocument%910434288
     // Sets the current document.
@@ -716,7 +716,7 @@ protected:
 
     PSS_ApplicationOption m_ApplicationOptions;
 
-    ZBFieldRepository*    m_FieldRepository;
+    PSS_FieldRepository*  m_FieldRepository;
 
     CString                m_HelpFile;
 
@@ -847,7 +847,7 @@ inline ZAFontManager& ZAMainApp::GetFontManager()
     //## end ZAMainApp::GetFontManager%870446011.body
 }
 
-inline ZBFieldRepository* ZAMainApp::GetFieldRepository()
+inline PSS_FieldRepository* ZAMainApp::GetFieldRepository()
 {
     //## begin ZAMainApp::GetFieldRepository%910104706.body preserve=yes
     if ( m_FieldRepository != NULL )

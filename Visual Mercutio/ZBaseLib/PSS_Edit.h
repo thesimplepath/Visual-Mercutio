@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "FieldRep.h"
+#include "PSS_FieldRepository.h"
 #include "MskEdit.h"
 #include "ZCGridCtrl.h"
 #include "ZBDragEdit.h"
@@ -58,14 +58,14 @@ class AFX_EXT_CLASS PSS_Edit
         *@param autoCalculateOption - if TRUE, the options will be auto-calculated
         *@param goNextEditOption - if TRUE, the focus will be set to next available edit on exit
         */
-        virtual void PreCreateEdit(BOOL               designerMode,
-                                   CWnd*              pParentWnd,
-                                   CDC*               pDC,
-                                   ZDDocument*        pDoc,
-                                   PlanFinObject*     pEditedObj,
-                                   ZBFieldRepository* pFieldRepository    = NULL,
-                                   BOOL               autoCalculateOption = FALSE,
-                                   BOOL               goNextEditOption    = FALSE);
+        virtual void PreCreateEdit(BOOL                 designerMode,
+                                   CWnd*                pParentWnd,
+                                   CDC*                 pDC,
+                                   ZDDocument*          pDoc,
+                                   PlanFinObject*       pEditedObj,
+                                   PSS_FieldRepository* pFieldRepository    = NULL,
+                                   BOOL                 autoCalculateOption = FALSE,
+                                   BOOL                 goNextEditOption    = FALSE);
 
         /**
         * Creates the edit
@@ -78,14 +78,14 @@ class AFX_EXT_CLASS PSS_Edit
         *@param autoCalculateOption - if TRUE, the options will be auto-calculated
         *@param goNextEditOption - if TRUE, the focus will be set to next available edit on exit
         */
-        virtual void Create(BOOL               designerMode,
-                            CWnd*              pParentWnd,
-                            CDC*               pDC,
-                            ZDDocument*        pDoc,
-                            PlanFinObject*     pEditedObj,
-                            ZBFieldRepository* pFieldRepository    = NULL,
-                            BOOL               autoCalculateOption = FALSE,
-                            BOOL               goNextEditOption    = FALSE) = 0;
+        virtual void Create(BOOL                 designerMode,
+                            CWnd*                pParentWnd,
+                            CDC*                 pDC,
+                            ZDDocument*          pDoc,
+                            PlanFinObject*       pEditedObj,
+                            PSS_FieldRepository* pFieldRepository    = NULL,
+                            BOOL                 autoCalculateOption = FALSE,
+                            BOOL                 goNextEditOption    = FALSE) = 0;
 
         /**
         * Checks the edit bounds
@@ -139,18 +139,18 @@ class AFX_EXT_CLASS PSS_Edit
         virtual void DestroyEdit();
 
     protected:
-        CWnd*              m_pParentWnd;
-        SpecialHelp*       m_pSpecialHelp;
-        PlanFinObject*     m_pEditedObj;
-        ZDDocument*        m_pDoc;
-        ZBFieldRepository* m_pFieldRepository;
-        CRect              m_Rect;
-        BOOL               m_Save;
-        BOOL               m_GoNext;
-        BOOL               m_AutoCalculateOption;
-        BOOL               m_GoNextEditOption;
-        BOOL               m_ReadOnly;
-        BOOL               m_IsSorted;
+        CWnd*                m_pParentWnd;
+        SpecialHelp*         m_pSpecialHelp;
+        PlanFinObject*       m_pEditedObj;
+        ZDDocument*          m_pDoc;
+        PSS_FieldRepository* m_pFieldRepository;
+        CRect                m_Rect;
+        BOOL                 m_Save;
+        BOOL                 m_GoNext;
+        BOOL                 m_AutoCalculateOption;
+        BOOL                 m_GoNextEditOption;
+        BOOL                 m_ReadOnly;
+        BOOL                 m_IsSorted;
 
         /**
         * Gets the value array
@@ -234,14 +234,14 @@ class AFX_EXT_CLASS PSS_StrEdit : public ZBDragEdit, public PSS_Edit
         *@param autoCalculateOption - if TRUE, the options will be auto-calculated
         *@param goNextEditOption - if TRUE, the focus will be set to next available edit on exit
         */
-        virtual void Create(BOOL               designerMode,
-                            CWnd*              pParentWnd,
-                            CDC*               pDC,
-                            ZDDocument*        pDoc,
-                            PlanFinObject*     pEditedObj,
-                            ZBFieldRepository* pFieldRepository    = NULL,
-                            BOOL               autoCalculateOption = FALSE,
-                            BOOL               goNextEditOption    = FALSE);
+        virtual void Create(BOOL                 designerMode,
+                            CWnd*                pParentWnd,
+                            CDC*                 pDC,
+                            ZDDocument*          pDoc,
+                            PlanFinObject*       pEditedObj,
+                            PSS_FieldRepository* pFieldRepository    = NULL,
+                            BOOL                 autoCalculateOption = FALSE,
+                            BOOL                 goNextEditOption    = FALSE);
 
         /**
         * Gets if window is visible
@@ -309,14 +309,14 @@ class AFX_EXT_CLASS PSS_NumEdit : public ZBDragEdit, public PSS_Edit
         *@param autoCalculateOption - if TRUE, the options will be auto-calculated
         *@param goNextEditOption - if TRUE, the focus will be set to next available edit on exit
         */
-        virtual void Create(BOOL               designerMode,
-                            CWnd*              pParentWnd,
-                            CDC*               pDC,
-                            ZDDocument*        pDoc,
-                            PlanFinObject*     pEditedObj,
-                            ZBFieldRepository* pFieldRepository    = NULL,
-                            BOOL               autoCalculateOption = FALSE,
-                            BOOL               goNextEditOption    = FALSE);
+        virtual void Create(BOOL                 designerMode,
+                            CWnd*                pParentWnd,
+                            CDC*                 pDC,
+                            ZDDocument*          pDoc,
+                            PlanFinObject*       pEditedObj,
+                            PSS_FieldRepository* pFieldRepository    = NULL,
+                            BOOL                 autoCalculateOption = FALSE,
+                            BOOL                 goNextEditOption    = FALSE);
 
         /**
         * Gets if window is visible
@@ -380,14 +380,14 @@ class AFX_EXT_CLASS PSS_CalcEdit : public ZBDragEdit, public PSS_Edit
         *@param autoCalculateOption - if TRUE, the options will be auto-calculated
         *@param goNextEditOption - if TRUE, the focus will be set to next available edit on exit
         */
-        virtual void Create(BOOL               designerMode,
-                            CWnd*              pParentWnd,
-                            CDC*               pDC,
-                            ZDDocument*        pDoc,
-                            PlanFinObject*     pEditedObj,
-                            ZBFieldRepository* pFieldRepository    = NULL,
-                            BOOL               autoCalculateOption = FALSE,
-                            BOOL               goNextEditOption    = FALSE);
+        virtual void Create(BOOL                 designerMode,
+                            CWnd*                pParentWnd,
+                            CDC*                 pDC,
+                            ZDDocument*          pDoc,
+                            PlanFinObject*       pEditedObj,
+                            PSS_FieldRepository* pFieldRepository    = NULL,
+                            BOOL                 autoCalculateOption = FALSE,
+                            BOOL                 goNextEditOption    = FALSE);
 
         /**
         * Gets if window is visible
@@ -450,14 +450,14 @@ class AFX_EXT_CLASS PSS_TimeEdit : public ZBDragEdit, public PSS_Edit
         *@param autoCalculateOption - if TRUE, the options will be auto-calculated
         *@param goNextEditOption - if TRUE, the focus will be set to next available edit on exit
         */
-        virtual void Create(BOOL               designerMode,
-                            CWnd*              pParentWnd,
-                            CDC*               pDC,
-                            ZDDocument*        pDoc,
-                            PlanFinObject*     pEditedObj,
-                            ZBFieldRepository* pFieldRepository    = NULL,
-                            BOOL               autoCalculateOption = FALSE,
-                            BOOL               goNextEditOption    = FALSE);
+        virtual void Create(BOOL                 designerMode,
+                            CWnd*                pParentWnd,
+                            CDC*                 pDC,
+                            ZDDocument*          pDoc,
+                            PlanFinObject*       pEditedObj,
+                            PSS_FieldRepository* pFieldRepository    = NULL,
+                            BOOL                 autoCalculateOption = FALSE,
+                            BOOL                 goNextEditOption    = FALSE);
 
         /**
         * Gets if window is visible
@@ -526,14 +526,14 @@ class AFX_EXT_CLASS PSS_StrEditHistoric : public ZCIntelliEdit, public PSS_Edit
         *@param autoCalculateOption - if TRUE, the options will be auto-calculated
         *@param goNextEditOption - if TRUE, the focus will be set to next available edit on exit
         */
-        virtual void Create(BOOL               designerMode,
-                            CWnd*              pParentWnd,
-                            CDC*               pDC,
-                            ZDDocument*        pDoc,
-                            PlanFinObject*     pEditedObj,
-                            ZBFieldRepository* pFieldRepository    = NULL,
-                            BOOL               autoCalculateOption = FALSE,
-                            BOOL               goNextEditOption    = FALSE);
+        virtual void Create(BOOL                 designerMode,
+                            CWnd*                pParentWnd,
+                            CDC*                 pDC,
+                            ZDDocument*          pDoc,
+                            PlanFinObject*       pEditedObj,
+                            PSS_FieldRepository* pFieldRepository    = NULL,
+                            BOOL                 autoCalculateOption = FALSE,
+                            BOOL                 goNextEditOption    = FALSE);
 
         /**
         * Gets the maximum char
@@ -611,14 +611,14 @@ class AFX_EXT_CLASS PSS_NumEditHistoric : public ZCIntelliEdit, public PSS_Edit
         *@param autoCalculateOption - if TRUE, the options will be auto-calculated
         *@param goNextEditOption - if TRUE, the focus will be set to next available edit on exit
         */
-        virtual void Create(BOOL               designerMode,
-                            CWnd*              pParentWnd,
-                            CDC*               pDC,
-                            ZDDocument*        pDoc,
-                            PlanFinObject*     pEditedObj,
-                            ZBFieldRepository* pFieldRepository    = NULL,
-                            BOOL               autoCalculateOption = FALSE,
-                            BOOL               goNextEditOption    = FALSE);
+        virtual void Create(BOOL                 designerMode,
+                            CWnd*                pParentWnd,
+                            CDC*                 pDC,
+                            ZDDocument*          pDoc,
+                            PlanFinObject*       pEditedObj,
+                            PSS_FieldRepository* pFieldRepository    = NULL,
+                            BOOL                 autoCalculateOption = FALSE,
+                            BOOL                 goNextEditOption    = FALSE);
 
         /**
         * Gets if window is visible
@@ -687,14 +687,14 @@ class AFX_EXT_CLASS PSS_FieldNameEdit : public ZCIntelliEdit, public PSS_Edit
         *@param autoCalculateOption - if TRUE, the options will be auto-calculated
         *@param goNextEditOption - if TRUE, the focus will be set to next available edit on exit
         */
-        virtual void Create(BOOL               designerMode,
-                            CWnd*              pParentWnd,
-                            CDC*               pDC,
-                            ZDDocument*        pDoc,
-                            PlanFinObject*     pEditedObj,
-                            ZBFieldRepository* pFieldRepository    = NULL,
-                            BOOL               autoCalculateOption = FALSE,
-                            BOOL               goNextEditOption    = FALSE);
+        virtual void Create(BOOL                 designerMode,
+                            CWnd*                pParentWnd,
+                            CDC*                 pDC,
+                            ZDDocument*          pDoc,
+                            PlanFinObject*       pEditedObj,
+                            PSS_FieldRepository* pFieldRepository    = NULL,
+                            BOOL                 autoCalculateOption = FALSE,
+                            BOOL                 goNextEditOption    = FALSE);
 
         /**
         * Gets if window is visible
@@ -761,14 +761,14 @@ class AFX_EXT_CLASS PSS_MaskEdit : public ZMaskEdit, public PSS_Edit
         *@param autoCalculateOption - if TRUE, the options will be auto-calculated
         *@param goNextEditOption - if TRUE, the focus will be set to next available edit on exit
         */
-        virtual void Create(BOOL               designerMode,
-                            CWnd*              pParentWnd,
-                            CDC*               pDC,
-                            ZDDocument*        pDoc,
-                            PlanFinObject*     pEditedObj,
-                            ZBFieldRepository* pFieldRepository    = NULL,
-                            BOOL               autoCalculateOption = FALSE,
-                            BOOL               goNextEditOption    = FALSE);
+        virtual void Create(BOOL                 designerMode,
+                            CWnd*                pParentWnd,
+                            CDC*                 pDC,
+                            ZDDocument*          pDoc,
+                            PlanFinObject*       pEditedObj,
+                            PSS_FieldRepository* pFieldRepository    = NULL,
+                            BOOL                 autoCalculateOption = FALSE,
+                            BOOL                 goNextEditOption    = FALSE);
 
         /**
         * Gets if window is visible
@@ -832,14 +832,14 @@ class AFX_EXT_CLASS PSS_MultiColumnEdit : public ZCGridCtrl, public PSS_Edit
         *@param autoCalculateOption - if TRUE, the options will be auto-calculated
         *@param goNextEditOption - if TRUE, the focus will be set to next available edit on exit
         */
-        virtual void Create(BOOL               designerMode,
-                            CWnd*              pParentWnd,
-                            CDC*               pDC,
-                            ZDDocument*        pDoc,
-                            PlanFinObject*     pEditedObj,
-                            ZBFieldRepository* pFieldRepository    = NULL,
-                            BOOL               autoCalculateOption = FALSE,
-                            BOOL               goNextEditOption    = FALSE);
+        virtual void Create(BOOL                 designerMode,
+                            CWnd*                pParentWnd,
+                            CDC*                 pDC,
+                            ZDDocument*          pDoc,
+                            PlanFinObject*       pEditedObj,
+                            PSS_FieldRepository* pFieldRepository    = NULL,
+                            BOOL                 autoCalculateOption = FALSE,
+                            BOOL                 goNextEditOption    = FALSE);
 
         /**
         * Gets if window is visible

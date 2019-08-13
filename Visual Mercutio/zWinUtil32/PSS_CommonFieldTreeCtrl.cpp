@@ -33,7 +33,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_CommonFieldTreeCtrl
 //---------------------------------------------------------------------------
-PSS_CommonFieldTreeCtrl::PSS_CommonFieldTreeCtrl(ZBFieldRepository* pFieldRepository) :
+PSS_CommonFieldTreeCtrl::PSS_CommonFieldTreeCtrl(PSS_FieldRepository* pFieldRepository) :
     m_pFieldRepository(pFieldRepository)
 {
     m_FieldDescriptionKey.LoadString(IDS_DESCFIELD_DESCRIPTION);
@@ -59,14 +59,14 @@ const PSS_CommonFieldTreeCtrl& PSS_CommonFieldTreeCtrl::operator = (const PSS_Co
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-void PSS_CommonFieldTreeCtrl::Initialize(ZBFieldRepository* pFieldRepository)
+void PSS_CommonFieldTreeCtrl::Initialize(PSS_FieldRepository* pFieldRepository)
 {
     m_pFieldRepository = pFieldRepository;
     InitializeTree();
     Refresh();
 }
 //---------------------------------------------------------------------------
-void PSS_CommonFieldTreeCtrl::ReInitialize(ZBFieldRepository* pFieldRepository)
+void PSS_CommonFieldTreeCtrl::ReInitialize(PSS_FieldRepository* pFieldRepository)
 {
     m_pFieldRepository = pFieldRepository;
     Refresh();

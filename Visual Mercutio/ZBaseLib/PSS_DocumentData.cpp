@@ -22,7 +22,7 @@
 #include "PLFNBackImage.h"
 #include "ZBFldCol.h"
 #include "FileBuf.h"
-#include "FieldRep.h"
+#include "PSS_FieldRepository.h"
 #include "ZBTokenizer.h"
 #include "MsgBox.h"
 #include "PSS_ObjectUtility.h"
@@ -835,10 +835,10 @@ CString PSS_DocumentData::BuildAutomaticNewName(const CString& prefix)
     return name;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_DocumentData::InsertObject(PlanFinObject*     pObj,
-                                    ZBFieldRepository* pFieldRepository,
-                                    BOOL               insertInGlobalRepository,
-                                    BOOL               refresh)
+BOOL PSS_DocumentData::InsertObject(PlanFinObject*       pObj,
+                                    PSS_FieldRepository* pFieldRepository,
+                                    BOOL                 insertInGlobalRepository,
+                                    BOOL                 refresh)
 {
     if (!pObj)
         return FALSE;
@@ -896,10 +896,10 @@ BOOL PSS_DocumentData::InsertObject(PlanFinObject*     pObj,
     return TRUE;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_DocumentData::InsertObjectAtHead(PlanFinObject*     pObj,
-                                          ZBFieldRepository* pFieldRepository,
-                                          BOOL               insertInGlobalRepository,
-                                          BOOL               refresh)
+BOOL PSS_DocumentData::InsertObjectAtHead(PlanFinObject*       pObj,
+                                          PSS_FieldRepository* pFieldRepository,
+                                          BOOL                 insertInGlobalRepository,
+                                          BOOL                 refresh)
 {
     if (!pObj)
         return FALSE;

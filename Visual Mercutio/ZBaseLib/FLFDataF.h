@@ -28,7 +28,7 @@
 //## end module%382BBDF40333.includes
 
 // Export
-#include "Export.h"
+#include "PSS_Export.h"
 //## begin module%382BBDF40333.declarations preserve=no
 //## end module%382BBDF40333.declarations
 
@@ -56,7 +56,7 @@
 //## Persistence: Transient
 //## Cardinality/Multiplicity: n
 
-class AFX_EXT_CLASS ZUFLFDataFeed : public ZUExport  //## Inherits: <unnamed>%382BBC9E03AB
+class AFX_EXT_CLASS ZUFLFDataFeed : public PSS_Export
 {
   //## begin ZUFLFDataFeed%382BBC9E03AA.initialDeclarations preserve=yes
   //## end ZUFLFDataFeed%382BBC9E03AA.initialDeclarations

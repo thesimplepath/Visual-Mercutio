@@ -221,7 +221,7 @@ ZAMainApp::ZAMainApp()
     m_IDD_Support        = 0;
 
     // JMR-MODIF - Le 23 août 2005 - Gestion dynamique des objets.
-    m_FieldRepository    = new ZBFieldRepository();
+    m_FieldRepository    = new PSS_FieldRepository();
 }
 
 ZAMainApp::~ZAMainApp()

@@ -232,25 +232,25 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="Export.cpp">
+    <ClCompile Include="PSS_Export.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ExpRT.cpp">
+    <ClCompile Include="PSS_DocumentExport.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ExpUser.cpp">
+    <ClCompile Include="PSS_UserExport.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="FieldRep.cpp">
+    <ClCompile Include="PSS_FieldRepository.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1360,10 +1360,10 @@
     <ClInclude Include="PSS_DocTemplateEx.h" />
     <ClInclude Include="PSS_DrawFunctions.h" />
     <ClInclude Include="PSS_Edit.h" />
-    <ClInclude Include="Export.h" />
-    <ClInclude Include="ExpRT.h" />
-    <ClInclude Include="ExpUser.h" />
-    <ClInclude Include="FieldRep.h" />
+    <ClInclude Include="PSS_Export.h" />
+    <ClInclude Include="PSS_DocumentExport.h" />
+    <ClInclude Include="PSS_UserExport.h" />
+    <ClInclude Include="PSS_FieldRepository.h" />
     <ClInclude Include="File.h" />
     <ClInclude Include="FileBuf.h" />
     <ClInclude Include="FileDlg.h" />

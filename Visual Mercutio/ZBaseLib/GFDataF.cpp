@@ -46,11 +46,11 @@ const    char    FieldHeaderNameKey[] = "$$FieldHeaderName$$";
 
 
 
-ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed (CString Filename, ZBFieldRepository* pFieldRepository, ZAObjectDefinition* pObjectDefinition, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
+ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed (CString Filename, PSS_FieldRepository* pFieldRepository, ZAObjectDefinition* pObjectDefinition, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
   //## begin ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed%937950157.hasinit preserve=no
   //## end ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed%937950157.hasinit
   //## begin ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed%937950157.initialization preserve=yes
-  : ZUExport( Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar ),
+  : PSS_Export( Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar ),
     m_pSourceFieldRepository(pFieldRepository), m_pObjectDefinition(pObjectDefinition)
   //## end ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed%937950157.initialization
 {
@@ -58,11 +58,11 @@ ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed (CString Filename, ZBFieldR
   //## end ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed%937950157.body
 }
 
-ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed (CString Filename, ZBFieldRepository* pFieldRepository, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
+ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed (CString Filename, PSS_FieldRepository* pFieldRepository, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
   //## begin ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed%938030360.hasinit preserve=no
   //## end ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed%938030360.hasinit
   //## begin ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed%938030360.initialization preserve=yes
-  : ZUExport( Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar ),
+  : PSS_Export( Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar ),
     m_pSourceFieldRepository(pFieldRepository), m_pObjectDefinition(NULL)
   //## end ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed%938030360.initialization
 {

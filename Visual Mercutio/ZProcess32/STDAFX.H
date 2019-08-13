@@ -6,16 +6,18 @@
 #define __STDAFX_H
 
 #if _MSC_VER > 1000
-#pragma once
+    #pragma once
 #endif // _MSC_VER > 1000
 
-#define SECURITY_WIN32        // Required in 32 bit
+// required in 32 bit
+#define SECURITY_WIN32
 
 // Disable non-critical warnings
-#pragma warning( disable : 4786)    // identifier was truncated to '255' characters in the debug information
-#pragma warning( disable : 4996)
+#pragma warning(disable : 4786)    // identifier was truncated to '255' characters in the debug information
+#pragma warning(disable : 4996)
 
-#define VC_EXTRALEAN                // Exclude rarely-used stuff from Windows headers
+// exclude rarely-used stuff from Windows headers
+#define VC_EXTRALEAN
 
 // Version de Winver définie pour Windows NT4 et supérieures.
 #ifndef WINVER

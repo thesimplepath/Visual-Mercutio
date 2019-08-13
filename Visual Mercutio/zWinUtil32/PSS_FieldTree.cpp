@@ -30,7 +30,7 @@
 //---------------------------------------------------------------------------
 // PSS_FieldTree
 //---------------------------------------------------------------------------
-PSS_FieldTree::PSS_FieldTree(ZITreeCtrl* pTreeCtrl, ZDDocument* pDoc, ZBFieldRepository* pFieldRepository) :
+PSS_FieldTree::PSS_FieldTree(ZITreeCtrl* pTreeCtrl, ZDDocument* pDoc, PSS_FieldRepository* pFieldRepository) :
     m_pTreeCtrl(pTreeCtrl), 
     m_pDoc(pDoc), 
     m_pFieldRepository(pFieldRepository),
@@ -50,7 +50,7 @@ const PSS_FieldTree& PSS_FieldTree::operator = (const PSS_FieldTree& other)
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-void PSS_FieldTree::Initialize(ZITreeCtrl* pTreeCtrl, ZDDocument* pDoc, ZBFieldRepository* pFieldRepository)
+void PSS_FieldTree::Initialize(ZITreeCtrl* pTreeCtrl, ZDDocument* pDoc, PSS_FieldRepository* pFieldRepository)
 {
     m_pTreeCtrl        = pTreeCtrl;
     m_pDoc             = pDoc;

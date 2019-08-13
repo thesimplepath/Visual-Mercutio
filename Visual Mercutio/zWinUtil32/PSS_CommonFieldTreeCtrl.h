@@ -18,7 +18,7 @@
 
 // processsoft
 #include "zBaseLib\ZITreeCtl.h"
-#include "zBaseLib\FieldRep.h"
+#include "zBaseLib\PSS_FieldRepository.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -37,7 +37,7 @@ class AFX_EXT_CLASS PSS_CommonFieldTreeCtrl : public ZITreeCtrl
         * Constructor
         *@param pFieldRepository - filed repository, can be NULL
         */
-        PSS_CommonFieldTreeCtrl(ZBFieldRepository* pFieldRepository = NULL);
+        PSS_CommonFieldTreeCtrl(PSS_FieldRepository* pFieldRepository = NULL);
 
         virtual ~PSS_CommonFieldTreeCtrl();
 
@@ -45,13 +45,13 @@ class AFX_EXT_CLASS PSS_CommonFieldTreeCtrl : public ZITreeCtrl
         * Initialize the control
         *@param pFieldRepository - filed repository
         */
-        virtual void Initialize(ZBFieldRepository* pFieldRepository);
+        virtual void Initialize(PSS_FieldRepository* pFieldRepository);
 
         /**
         * Reinitialize the control
         *@param pFieldRepository - filed repository
         */
-        virtual void ReInitialize(ZBFieldRepository* pFieldRepository);
+        virtual void ReInitialize(PSS_FieldRepository* pFieldRepository);
 
         /**
         * Refreshes the control
@@ -69,14 +69,14 @@ class AFX_EXT_CLASS PSS_CommonFieldTreeCtrl : public ZITreeCtrl
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZBFieldRepository* m_pFieldRepository;
-        CImageList         m_ImageListTree;
-        CString            m_FieldDescriptionKey;
-        CString            m_UserHelpKey;
-        CString            m_IsReadOnlyKey;
-        CString            m_SortedKey;
-        CString            m_ClassNameKey;
-        CString            m_HistoryKey;
+        PSS_FieldRepository* m_pFieldRepository;
+        CImageList           m_ImageListTree;
+        CString              m_FieldDescriptionKey;
+        CString              m_UserHelpKey;
+        CString              m_IsReadOnlyKey;
+        CString              m_SortedKey;
+        CString              m_ClassNameKey;
+        CString              m_HistoryKey;
 
         /**
         * Copy constructor

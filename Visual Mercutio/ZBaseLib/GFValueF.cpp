@@ -35,11 +35,11 @@
 
 
 
-ZUFieldValueDataFeed::ZUFieldValueDataFeed (CString Filename, ZBFieldRepository* pFieldRepository, ZAObjectDefinition* pObjectDefinition, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
+ZUFieldValueDataFeed::ZUFieldValueDataFeed (CString Filename, PSS_FieldRepository* pFieldRepository, ZAObjectDefinition* pObjectDefinition, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
   //## begin ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696498.hasinit preserve=no
   //## end ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696498.hasinit
   //## begin ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696498.initialization preserve=yes
-  : ZUExport( Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar ),
+  : PSS_Export( Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar ),
     m_pSourceFieldRepository(pFieldRepository),
     m_pObjectDefinition(pObjectDefinition)
   //## end ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696498.initialization
@@ -52,7 +52,7 @@ ZUFieldValueDataFeed::ZUFieldValueDataFeed (CString Filename, CStringArray* pVal
   //## begin ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696510.hasinit preserve=no
   //## end ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696510.hasinit
   //## begin ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696510.initialization preserve=yes
-  : ZUExport( Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar ),
+  : PSS_Export( Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar ),
     m_pValueArray(pValueArray)
   //## end ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696510.initialization
 {

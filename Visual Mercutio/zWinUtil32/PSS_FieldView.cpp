@@ -45,7 +45,7 @@ PSS_FieldView::PSS_FieldView() :
 PSS_FieldView::~PSS_FieldView()
 {}
 //---------------------------------------------------------------------------
-void PSS_FieldView::Initialize(ZDDocument* pDoc, ZBFieldRepository* pFieldRepository)
+void PSS_FieldView::Initialize(ZDDocument* pDoc, PSS_FieldRepository* pFieldRepository)
 {
     m_pDoc             = pDoc;
     m_pFieldRepository = pFieldRepository;
@@ -90,7 +90,7 @@ int PSS_FieldView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 afx_msg LRESULT PSS_FieldView::OnInitializeFieldRepository(WPARAM wParam, LPARAM lParam)
 {
 
-    m_pFieldRepository = (ZBFieldRepository*)lParam;
+    m_pFieldRepository = (PSS_FieldRepository*)lParam;
 
     if (!m_pFieldRepository)
         m_FieldTree.Empty();

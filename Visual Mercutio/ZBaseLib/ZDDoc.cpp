@@ -39,9 +39,7 @@
 #include "ZIView.h"
 #include "ZIHtmlView.h"
 #include "PSS_Edit.h"
-
-// ExpRT
-#include "ExpRT.h"
+#include "PSS_DocumentExport.h"
 
 #include "ZAGlobal.h"
 
@@ -1276,12 +1274,12 @@ BOOL ZDDocument::CreateRealTimeExport()
     }
 
     // Create the object.
-    m_pRealTimeExport = new ZUDocumentExport(File,
-                                             this,
-                                             GetDocOptions().GetSynchronizationHeader(),        // Generate header or not
-                                             GetDocOptions().GetSynchronizationSeparator(),    // Separator type
-                                             _T(""),                                            // Take the current schema
-                                             g_LocateAllPages);
+    m_pRealTimeExport = new PSS_DocumentExport(File,
+                                               this,
+                                               GetDocOptions().GetSynchronizationHeader(),        // Generate header or not
+                                               GetDocOptions().GetSynchronizationSeparator(),    // Separator type
+                                               _T(""),                                            // Take the current schema
+                                               g_LocateAllPages);
 
     ASSERT(m_pRealTimeExport);
     m_pRealTimeExport->StartSynchronization(GetDocOptions().GetSynchronizeTimeSequence());
@@ -1380,11 +1378,11 @@ CString ZDDocument::BuildAutomaticNewName(const CString& sPrefix, int DocumentIn
     //## end ZDDocumentReadWrite::BuildAutomaticNewName%913970074.body
 }
 
-BOOL ZDDocument::InsertObject(PlanFinObject*        obj,
-                              ZBFieldRepository*    pFieldRepository,
-                              BOOL                    InsertInGlobalRepository,
-                              int                    DocumentIndex,
-                              BOOL                    Refresh                        /*= FALSE*/)
+BOOL ZDDocument::InsertObject(PlanFinObject*       obj,
+                              PSS_FieldRepository* pFieldRepository,
+                              BOOL                 InsertInGlobalRepository,
+                              int                  DocumentIndex,
+                              BOOL                 Refresh                        /*= FALSE*/)
 {
     //## begin ZDDocumentReadWrite::InsertObject%913970068.body preserve=yes
     if (DocumentIndex == -1)
@@ -1413,11 +1411,11 @@ BOOL ZDDocument::InsertObject(PlanFinObject*        obj,
     //## end ZDDocumentReadWrite::InsertObject%913970068.body
 }
 
-BOOL ZDDocument::InsertObjectAtHead(PlanFinObject*        obj,
-                                    ZBFieldRepository*    pFieldRepository,
-                                    BOOL                InsertInGlobalRepository,
-                                    int                DocumentIndex,
-                                    BOOL                Refresh                        /*= FALSE*/)
+BOOL ZDDocument::InsertObjectAtHead(PlanFinObject*       obj,
+                                    PSS_FieldRepository* pFieldRepository,
+                                    BOOL                 InsertInGlobalRepository,
+                                    int                  DocumentIndex,
+                                    BOOL                 Refresh                        /*= FALSE*/)
 {
     //## begin ZDDocumentReadWrite::InsertObject%913970068.body preserve=yes
     if (DocumentIndex == -1)

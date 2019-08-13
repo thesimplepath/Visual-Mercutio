@@ -58,7 +58,7 @@ class AFX_EXT_CLASS PSS_FieldView : public ZITreeView
         *@param pDoc - document
         *@param pFieldRepository - field repository, can be NULL
         */
-        virtual void Initialize(ZDDocument* pDoc, ZBFieldRepository* pFieldRepository = NULL);
+        virtual void Initialize(ZDDocument* pDoc, PSS_FieldRepository* pFieldRepository = NULL);
 
     protected:
         /// ClassWizard generated virtual function overrides
@@ -103,9 +103,9 @@ class AFX_EXT_CLASS PSS_FieldView : public ZITreeView
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZDDocument*        m_pDoc;
-        ZBFieldRepository* m_pFieldRepository;
-        PSS_FieldTree      m_FieldTree;
+        ZDDocument*          m_pDoc;
+        PSS_FieldRepository* m_pFieldRepository;
+        PSS_FieldTree        m_FieldTree;
 };
 
 //---------------------------------------------------------------------------

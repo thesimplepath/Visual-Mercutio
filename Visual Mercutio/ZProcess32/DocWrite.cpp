@@ -23,7 +23,7 @@
 //## begin module%35CC454D007B.additionalDeclarations preserve=yes
 #include "ZAApp.h"
 #include "zBaseLib\MsgBox.h"
-#include "zBaseLib\ExpRT.h"
+#include "zBaseLib\PSS_DocumentExport.h"
 #include "zBaseLib\PSS_DocumentData.h"
 
 #include "zBaseLib\PSS_Edit.h"
@@ -295,15 +295,15 @@ void ZDDocumentReadWrite::OnExport()
 
     if ( FileDialog.DoModal() == IDOK )
     {
-        ZUDocumentExport ExportText( FileDialog.GetFilename(),
-                                     this,
-                                     GetDocOptions().GetSynchronizationHeader(),
-                                     GetDocOptions().GetSynchronizationSeparator(),
-                                     ZAApp::ZAGetApp()->GetExportSchemaName(),
-                                     ZAApp::ZAGetApp()->GetExportPropagationMode(),
-                                     ZAApp::ZAGetApp()->GetEmptyWhenZero() );
+        PSS_DocumentExport exportText(FileDialog.GetFilename(),
+                                      this,
+                                      GetDocOptions().GetSynchronizationHeader(),
+                                      GetDocOptions().GetSynchronizationSeparator(),
+                                      ZAApp::ZAGetApp()->GetExportSchemaName(),
+                                      ZAApp::ZAGetApp()->GetExportPropagationMode(),
+                                      ZAApp::ZAGetApp()->GetEmptyWhenZero());
 
-        ExportText.Export();
+        exportText.Export();
     }
 }
 
@@ -333,15 +333,15 @@ void ZDDocumentReadWrite::OnImport()
 
     if ( FileDialog.DoModal() == IDOK )
     {
-        ZUDocumentExport ExportText( FileDialog.GetFilename(),
-                                     this,
-                                     GetDocOptions().GetSynchronizationHeader(),
-                                     GetDocOptions().GetSynchronizationSeparator(),
-                                     ZAApp::ZAGetApp()->GetExportSchemaName(),
-                                     ZAApp::ZAGetApp()->GetExportPropagationMode(),
-                                     ZAApp::ZAGetApp()->GetEmptyWhenZero() );
+        PSS_DocumentExport exportText(FileDialog.GetFilename(),
+                                      this,
+                                      GetDocOptions().GetSynchronizationHeader(),
+                                      GetDocOptions().GetSynchronizationSeparator(),
+                                      ZAApp::ZAGetApp()->GetExportSchemaName(),
+                                      ZAApp::ZAGetApp()->GetExportPropagationMode(),
+                                      ZAApp::ZAGetApp()->GetEmptyWhenZero());
 
-        ExportText.Import();
+        exportText.Import();
 
         // Recalculate formulas
         CalculateAllFormula( GetMainView(), TRUE );

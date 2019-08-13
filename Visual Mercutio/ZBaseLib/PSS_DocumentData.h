@@ -23,11 +23,11 @@
 #include "ZAFontMg.h"
 #include "ZUFileLauncher.h"
 
-// forward declaration
+// forward class declarations
 class ZDDocument;
 class ZBFileBuffer;
 class PlanFinObject;
-class ZBFieldRepository;
+class PSS_FieldRepository;
 class ZIView;
 
 #ifdef _ZBASELIBEXPORT
@@ -355,10 +355,10 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         *@param refresh - if TRUE, repository will be refreshed after inserted
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL InsertObject(PlanFinObject*     pObj,
-                                  ZBFieldRepository* pFieldRepository         = NULL,
-                                  BOOL               insertInGlobalRepository = FALSE,
-                                  BOOL               refresh                  = FALSE);
+        virtual BOOL InsertObject(PlanFinObject*       pObj,
+                                  PSS_FieldRepository* pFieldRepository         = NULL,
+                                  BOOL                 insertInGlobalRepository = FALSE,
+                                  BOOL                 refresh                  = FALSE);
 
         /**
         * Inserts an object on the head
@@ -368,10 +368,10 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         *@param refresh - if TRUE, repository will be refreshed after inserted
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL InsertObjectAtHead(PlanFinObject*     pObj,
-                                        ZBFieldRepository* pFieldRepository         = NULL,
-                                        BOOL               insertInGlobalRepository = FALSE,
-                                        BOOL               refresh                  = FALSE);
+        virtual BOOL InsertObjectAtHead(PlanFinObject*       pObj,
+                                        PSS_FieldRepository* pFieldRepository         = NULL,
+                                        BOOL                 insertInGlobalRepository = FALSE,
+                                        BOOL                 refresh                  = FALSE);
 
         /**
         * Deletes an object
