@@ -1,318 +1,361 @@
+/****************************************************************************
+ * ==> PSS_PaletteBar ------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a palette bar                                     *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include <StdAfx.h>
-
 #include "palette.h"
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char BASED_CODE THIS_FILE[] = __FILE__;
+    #undef THIS_FILE
+    static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-#define CYCAPTION 9     /* height of the caption */
-
-/////////////////////////////////////////////////////////////////////////////
-// CMainFrame
-
-BEGIN_MESSAGE_MAP(ZIPaletteBar, CToolBar)
-#ifndef _WIN32
-    //{{AFX_MSG_MAP(ZIPaletteBar)
-    ON_WM_LBUTTONDOWN()
-    ON_WM_MOUSEMOVE()
-    ON_WM_LBUTTONUP()
-    ON_WM_MOUSEACTIVATE()
-    ON_WM_RBUTTONDOWN()
-    ON_MESSAGE(ID_PALMENU_PROP, OnPropriety)
-    ON_MESSAGE(ID_PALMENU_HIDE, OnHide)
+//---------------------------------------------------------------------------
+// Global defines
+//---------------------------------------------------------------------------
+#define M_CaptionHeight 9
+//---------------------------------------------------------------------------
+// Message map
+//---------------------------------------------------------------------------
+BEGIN_MESSAGE_MAP(PSS_PaletteBar, CToolBar)
+    //{{AFX_MSG_MAP(PSS_PaletteBar)
+    #ifndef _WIN32
+        ON_WM_LBUTTONDOWN()
+        ON_WM_MOUSEMOVE()
+        ON_WM_LBUTTONUP()
+        ON_WM_MOUSEACTIVATE()
+        ON_WM_RBUTTONDOWN()
+        ON_MESSAGE(ID_PALMENU_PROP, OnPropriety)
+        ON_MESSAGE(ID_PALMENU_HIDE, OnHide)
+    #endif
     //}}AFX_MSG_MAP
-#endif // Only in 16bit
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// ZIPaletteBar construction/destruction
-
-ZIPaletteBar::ZIPaletteBar()
+//---------------------------------------------------------------------------
+// PSS_PaletteBar
+//---------------------------------------------------------------------------
+PSS_PaletteBar::PSS_PaletteBar() :
+    m_Columns(1)
+    #ifndef _WIN32
+        ,
+        m_pParent(NULL),
+        m_CxRightBorder(3),
+        m_TrackMove(FALSE)
+    #endif
 {
-    m_nColumns = 1;
+    #ifndef _WIN32
+        m_cyTopBorder    = CYCAPTION + 2;
+        m_cxLeftBorder   = 3;
+        m_cyBottomBorder = 3;
+
+        // create the menu
+        m_Menu.CreatePopupMenu();
+
+        CString label;
+        label.LoadString(IDS_PALMENU_PROP);
+        m_Menu.AppendMenu(MF_STRING, ID_PALMENU_PROP, label);
+
+        label.LoadString(IDS_PALMENU_HIDE);
+        m_Menu.AppendMenu(MF_STRING, ID_PALMENU_HIDE, label);
+    #endif
+}
+//---------------------------------------------------------------------------
+PSS_PaletteBar::~PSS_PaletteBar()
+{}
+//---------------------------------------------------------------------------
 #ifndef _WIN32
-    m_bTrackMove = FALSE;
-    m_cyTopBorder = CYCAPTION+2;
-    m_cxLeftBorder = 3;
-    m_cxRightBorder = 3;
-    m_cyBottomBorder = 3;
-    // Create the menu
-    // for the management of the right-click
-    m_Menu.CreatePopupMenu();
-    CString    sLabel;
-    sLabel.LoadString( IDS_PALMENU_PROP );
-    m_Menu.AppendMenu( MF_STRING, ID_PALMENU_PROP, sLabel );
-    sLabel.LoadString( IDS_PALMENU_HIDE );
-    m_Menu.AppendMenu( MF_STRING, ID_PALMENU_HIDE, sLabel );
-#endif // Only in 16bit
-}
+    BOOL PSS_PaletteBar::Create(CWnd* pParent, int x, int y)
+    {
+        ASSERT(pParent);
+        m_pParent = pParent;
 
-ZIPaletteBar::~ZIPaletteBar()
+        return CWnd::CreateEx(0,
+                              "AfxControlBar",
+                              NULL,
+                              WS_POPUP,
+                              x,
+                              y,
+                              0,
+                              0,
+                              pParent->GetSafeHwnd(),
+                              NULL,
+                              NULL);
+    }
+#endif
+//---------------------------------------------------------------------------
+void PSS_PaletteBar::SetColumnCount(UINT columns)
 {
-}
+    m_Columns = columns;
 
-void ZIPaletteBar::SetSizes(SIZE sizeButton, SIZE sizeImage, UINT nColumns)
+    #ifndef _WIN32
+        RecalcLayout(count);
+    #else
+        const int btnCount = GetToolBarCtrl().GetButtonCount();
+
+        for (int i = 0; i < btnCount; ++i)
+        {
+                  UINT style = GetButtonStyle(i);
+            const BOOL wrap  = !((i + 1) % columns);
+
+            if (wrap)
+                style |=  TBBS_WRAPPED;
+            else
+                style &= ~TBBS_WRAPPED;
+
+            SetButtonStyle(i, style);
+        }
+
+        Invalidate();
+        GetParentFrame()->RecalcLayout();
+    #endif
+}
+//---------------------------------------------------------------------------
+void PSS_PaletteBar::SetSizes(const SIZE& sizeButton, const SIZE& sizeImage, UINT columns)
 {
-    SetColumns( nColumns );
+    SetColumns(columns);
     CToolBar::SetSizes(sizeButton, sizeImage);
 }
-
-BOOL ZIPaletteBar::SetButtons(const UINT FAR* lpIDArray,
-    int nIDCount, UINT nColumns)
+//---------------------------------------------------------------------------
+BOOL PSS_PaletteBar::SetButtons(const UINT FAR* pIDArray, int idCount, UINT columns)
 {
-    if (CToolBar::SetButtons(lpIDArray, nIDCount))
+    if (CToolBar::SetButtons(pIDArray, idCount))
     {
-        SetColumns( nColumns );
+        SetColumns(columns);
         return TRUE;
     }
+
     return FALSE;
 }
-
-#ifndef _WIN32
-BOOL ZIPaletteBar::Create(CWnd* pOwnerWnd, int x, int y)
-{
-    ASSERT(pOwnerWnd != NULL);
-    m_pOwnerWnd = pOwnerWnd;
-
-    return CWnd::CreateEx(0, "AfxControlBar", NULL, WS_POPUP,
-        x, y, 0, 0, pOwnerWnd->GetSafeHwnd(), NULL, NULL);
-}
-
-void ZIPaletteBar::RecalcLayout(UINT nButtonCount)
-{
-    SetWindowPos(NULL, 0, 0,
-        m_cxLeftBorder + (m_sizeButton.cx-1) * m_nColumns + m_cxRightBorder + 1,
-        m_cyTopBorder + m_cyBottomBorder + (m_sizeButton.cy-1) *
-        ((nButtonCount + m_nColumns - 1) / m_nColumns) + 1,
-        SWP_NOZORDER|SWP_NOMOVE);
-    Invalidate();
-}
-#endif // Only in 16bit
-
-
-void ZIPaletteBar::SetColumns(UINT nColumns)
-{
-    m_nColumns = nColumns;
-
-#ifndef _WIN32
-    RecalcLayout( m_nCount );
-#else
-    int nCount = GetToolBarCtrl().GetButtonCount();
-
-    for(int i = 0; i < nCount; i++)
-    {
-        UINT nStyle = GetButtonStyle(i);
-        BOOL bWrap = (((i + 1) % nColumns) == 0);
-        if (bWrap)
-            nStyle |= TBBS_WRAPPED;
-        else
-            nStyle &= ~TBBS_WRAPPED;
-
-        SetButtonStyle(i, nStyle);
-    }
-
-    Invalidate();
-    GetParentFrame()->RecalcLayout();
-#endif
-}
-
-
-/////////////////////////////////////////////////////////////////////////////
-// ZIPaletteBar diagnostics
-
+//---------------------------------------------------------------------------
 #ifdef _DEBUG
-void ZIPaletteBar::AssertValid() const
-{
-    CToolBar::AssertValid();
-}
-
-void ZIPaletteBar::Dump(CDumpContext& dc) const
-{
-    CToolBar::Dump(dc);
-}
-
-#endif //_DEBUG
-
-/////////////////////////////////////////////////////////////////////////////
-// ZIPaletteBar message handlers
-
+    void PSS_PaletteBar::AssertValid() const
+    {
+        CToolBar::AssertValid();
+    }
+#endif
+//---------------------------------------------------------------------------
+#ifdef _DEBUG
+    void PSS_PaletteBar::Dump(CDumpContext& dc) const
+    {
+        CToolBar::Dump(dc);
+    }
+#endif
+//---------------------------------------------------------------------------
 #ifndef _WIN32
-
-void ZIPaletteBar::DoPaint(CDC* pDC)
-{
-    CControlBar::DoPaint(pDC);      // draws any borders
-
-    CRect rect;
-    GetClientRect(&rect);
-
-    // Draw the frame border
-    CBrush brBlack;
-    brBlack.CreateSolidBrush(::GetSysColor(COLOR_WINDOWFRAME));
-    pDC->FrameRect(rect,&brBlack);
-    rect.bottom = CYCAPTION;
-    pDC->FrameRect(rect,&brBlack);
-
-    // Fill in the caption color
-    CBrush brCaption;
-    brCaption.CreateSolidBrush(::GetSysColor(COLOR_ACTIVECAPTION));
-    rect.InflateRect(-1, -1);
-    pDC->FillRect(rect, &brCaption);
-
-    // We need to initialize the bitmap selection process.
-    DrawState ds;
-    if (!PrepareDrawButton(ds))
-        return;     // something went wrong
-
-    GetClientRect(&rect);
-    rect.top = m_cyTopBorder;
-    rect.bottom = rect.top + m_sizeButton.cy;
-
-    // Now draw each visible button
-    for (int iButton = 0; iButton < m_nCount; )
+    void PSS_PaletteBar::GetItemRect(int index, LPRECT pRect) const
     {
-        rect.left = m_cxLeftBorder;
-        for (UINT nCol = 0; nCol < m_nColumns; nCol++, iButton++)
-        {
-            rect.right = rect.left + m_sizeButton.cx;
-            if (pDC->RectVisible(&rect))
-            {
-                UINT nID, nStyle;
-                int iImage;
-                GetButtonInfo(iButton, nID, nStyle, iImage);
-                DrawButton(pDC->m_hDC, rect.left, rect.top,
-                    iImage, nStyle);
-            }
-            rect.left = rect.right - 1; // prepare for overlap
-        }
-        rect.top = rect.bottom-1;
+        ASSERT(index >= 0 && index < m_nCount);
+        ASSERT(AfxIsValidAddress(pRect, sizeof(RECT)));
+
+        pRect->left  = m_cxLeftBorder + (index - (index / m_Columns) * m_Columns) * (m_sizeButton.cx - 1);
+        pRect->right = pRect->left + m_sizeButton.cx;
+
+        pRect->top    = m_cyTopBorder + (index / m_Columns) * (m_sizeButton.cy - 1);
+        pRect->bottom = pRect->top + m_sizeButton.cy;
+}
+#endif
+//---------------------------------------------------------------------------
+#ifndef _WIN32
+    int PSS_PaletteBar::HitTest(const CPoint& point)
+    {
+        // check for x hit
+        if (point.x < m_cxLeftBorder || point.x >= int(m_cxLeftBorder + m_sizeButton.cx * m_Columns))
+            return -1;
+
+        const UINT rows = (m_nCount + m_Columns - 1) / m_Columns;
+
+        // check for y hit
+        if (point.y < m_cyTopBorder || point.y >= int(m_cyTopBorder + m_sizeButton.cy * rows))
+            return -1;
+
+        const int button =
+                ((point.y - m_cyTopBorder)  / (m_sizeButton.cy - 1) * m_Columns +
+                 (point.x - m_cxLeftBorder) / (m_sizeButton.cx - 1));
+
+        return (button < m_nCount) ? button : -1;
+    }
+#endif
+//---------------------------------------------------------------------------
+#ifndef _WIN32
+    void PSS_PaletteBar::DoPaint(CDC* pDC)
+    {
+        // draws any borders
+        CControlBar::DoPaint(pDC);
+
+        CRect rect;
+        GetClientRect(&rect);
+
+        // draw the frame border
+        CBrush brBlack;
+        brBlack.CreateSolidBrush(::GetSysColor(COLOR_WINDOWFRAME));
+        pDC->FrameRect(rect, &brBlack);
+        rect.bottom = CYCAPTION;
+        pDC->FrameRect(rect, &brBlack);
+
+        // fill in the caption color
+        CBrush brCaption;
+        brCaption.CreateSolidBrush(::GetSysColor(COLOR_ACTIVECAPTION));
+        rect.InflateRect(-1, -1);
+        pDC->FillRect(rect, &brCaption);
+
+        DrawState ds;
+
+        // initialize the bitmap selection process
+        if (!PrepareDrawButton(ds))
+            return;
+
+        GetClientRect(&rect);
+        rect.top    = m_cyTopBorder;
         rect.bottom = rect.top + m_sizeButton.cy;
-    }
 
-    EndDrawButton(ds);
+        // draw each visible button
+        for (int i = 0; i < m_nCount;)
+        {
+            rect.left = m_cxLeftBorder;
+
+            for (UINT nCol = 0; nCol < m_nColumns; ++nCol, ++i)
+            {
+                rect.right = rect.left + m_sizeButton.cx;
+
+                if (pDC->RectVisible(&rect))
+                {
+                    UINT id, style;
+                    int  image;
+
+                    GetButtonInfo(i, id, style, image);
+                    DrawButton(pDC->m_hDC, rect.left, rect.top, image, style);
+                }
+
+                // prepare for overlap
+                rect.left = rect.right - 1;
+            }
+
+            rect.top    = rect.bottom - 1;
+            rect.bottom = rect.top    + m_sizeButton.cy;
+        }
+
+        EndDrawButton(ds);
 }
-
-void ZIPaletteBar::OnLButtonDown(UINT nFlags, CPoint point)
-{
-    if (point.y <= m_cyTopBorder)
+#endif
+//---------------------------------------------------------------------------
+#ifndef _WIN32
+    void PSS_PaletteBar::InvertTracker(const CPoint& point)
     {
-        m_bTrackMove = TRUE;
-        m_ptMouse = point;
-        SetCapture();
-        ClientToScreen(&point);
-        InvertTracker(point);
-        m_ptLast = point;
-    }
-    else
-        CToolBar::OnLButtonDown(nFlags, point);
-}
+        CRect rectFrame;
+        GetWindowRect(&rectFrame);
 
-void ZIPaletteBar::OnMouseMove(UINT nFlags, CPoint point)
-{
-    if (m_bTrackMove)
+        CDC dc;
+        dc.Attach(::GetDC(NULL));
+
+        dc.PatBlt(point.x - m_Mouse.x,                     point.y - m_Mouse.y,                      rectFrame.Width(),     2,                      PATINVERT);
+        dc.PatBlt(point.x - m_Mouse.x + rectFrame.Width(), point.y - m_Mouse.y,                      2,                     rectFrame.Height(),     PATINVERT);
+        dc.PatBlt(point.x - m_Mouse.x,                     point.y - m_Mouse.y + rectFrame.Height(), rectFrame.Width() + 2, 2,                      PATINVERT);
+        dc.PatBlt(point.x - m_Mouse.x,                     point.y - m_Mouse.y + 2,                  2,                     rectFrame.Height() - 2, PATINVERT);
+        ::ReleaseDC(NULL, dc.Detach());
+    }
+#endif
+//---------------------------------------------------------------------------
+#ifndef _WIN32
+    void PSS_PaletteBar::RecalcLayout(UINT buttonCount)
     {
-        CPoint    pt( point );
-        ClientToScreen(&point);
-        InvertTracker(m_ptLast);
-        m_ptLast = point;
-        InvertTracker(m_ptLast);
+        ::SetWindowPos(NULL,
+                       0,
+                       0,
+                       m_cxLeftBorder + (m_sizeButton.cx - 1) * m_Columns  +  m_CxRightBorder + 1,
+                       m_cyTopBorder  + m_cyBottomBorder                   + (m_sizeButton.cy - 1) *
+                       ((buttonCount  + m_Columns        - 1) / m_Columns) + 1,
+                       SWP_NOZORDER | SWP_NOMOVE);
+ 
+        Invalidate();
     }
-    else
-        CToolBar::OnMouseMove(nFlags, point);
-}
-
-void ZIPaletteBar::InvertTracker(CPoint point)
-{
-    CRect rectFrame;
-    GetWindowRect(&rectFrame);
-    CDC dc;
-    dc.Attach(::GetDC(NULL));
-
-    dc.PatBlt(point.x-m_ptMouse.x, point.y-m_ptMouse.y, rectFrame.Width(),
-            2, PATINVERT);
-    dc.PatBlt(point.x-m_ptMouse.x+rectFrame.Width(), point.y-m_ptMouse.y,
-            2, rectFrame.Height(), PATINVERT);
-    dc.PatBlt(point.x-m_ptMouse.x, point.y-m_ptMouse.y+rectFrame.Height(),
-            rectFrame.Width()+2, 2, PATINVERT);
-    dc.PatBlt(point.x-m_ptMouse.x, point.y-m_ptMouse.y+2, 2,
-            rectFrame.Height()-2, PATINVERT);
-    ::ReleaseDC(NULL,dc.Detach());
-}
-
-void ZIPaletteBar::OnLButtonUp(UINT nFlags, CPoint point)
-{
-    if (m_bTrackMove)
+#endif
+//---------------------------------------------------------------------------
+#ifndef _WIN32
+    int PSS_PaletteBar::OnMouseActivate(CWnd*, UINT, UINT)
     {
-        m_bTrackMove=FALSE;
-        ReleaseCapture();
-        InvertTracker(m_ptLast);
-        ClientToScreen(&point);
-        SetWindowPos(NULL, point.x-m_ptMouse.x, point.y-m_ptMouse.y,0,0,
-                SWP_NOZORDER|SWP_NOSIZE);
-        ShowWindow(SW_SHOW);
+        return MA_NOACTIVATE;
     }
-    else
-        CToolBar::OnLButtonUp(nFlags, point);
-}
+#endif
+//---------------------------------------------------------------------------
+#ifndef _WIN32
+    void PSS_PaletteBar::OnLButtonDown(UINT nFlags, CPoint point)
+    {
+        if (point.y <= m_cyTopBorder)
+        {
+            m_TrackMove = TRUE;
+            m_Mouse     = point;
 
-void ZIPaletteBar::GetItemRect(int nIndex, LPRECT lpRect) const
-{
-    ASSERT(nIndex >= 0 && nIndex < m_nCount);
-    ASSERT(AfxIsValidAddress(lpRect, sizeof(RECT)));
+            SetCapture();
+            ClientToScreen(&point);
+            InvertTracker(point);
 
-    lpRect->left = m_cxLeftBorder +
-            (nIndex - (nIndex / m_nColumns) * m_nColumns) * (m_sizeButton.cx-1);
-    lpRect->right = lpRect->left + m_sizeButton.cx;
+            m_Last = point;
+        }
+        else
+            CToolBar::OnLButtonDown(nFlags, point);
+    }
+#endif
+//---------------------------------------------------------------------------
+#ifndef _WIN32
+    void PSS_PaletteBar::OnLButtonUp(UINT nFlags, CPoint point)
+    {
+        if (m_TrackMove)
+        {
+            m_TrackMove = FALSE;
 
-    lpRect->top = m_cyTopBorder + (nIndex / m_nColumns) * (m_sizeButton.cy-1);
-    lpRect->bottom = lpRect->top + m_sizeButton.cy;
-}
+            ReleaseCapture();
+            InvertTracker(m_ptLast);
+            ClientToScreen(&point);
 
-int ZIPaletteBar::HitTest(CPoint point)  // in window relative coords
-{
-    if (point.x < m_cxLeftBorder ||
-            point.x >= (int)(m_cxLeftBorder + m_sizeButton.cx * m_nColumns))
-        return -1;      // no X hit
+            SetWindowPos(NULL, point.x - m_ptMouse.x, point.y - m_ptMouse.y, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
+            ShowWindow(SW_SHOW);
+        }
+        else
+            CToolBar::OnLButtonUp(nFlags, point);
+    }
+#endif
+//---------------------------------------------------------------------------
+#ifndef _WIN32
+    void PSS_PaletteBar::OnRButtonDown(UINT nFlags, CPoint point)
+    {
+        // show the context menu
+        ClientToScreen(&point);
+        m_Menu.TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, AfxGetMainWnd());
+        CToolBar::OnRButtonDown(nFlags, point);
+    }
+#endif
+//---------------------------------------------------------------------------
+#ifndef _WIN32
+    void PSS_PaletteBar::OnMouseMove(UINT nFlags, CPoint point)
+    {
+        if (m_TrackMove)
+        {
+            CPoint pt(point);
+            ClientToScreen(&point);
 
-    UINT nRows = (m_nCount + m_nColumns - 1) / m_nColumns;
-
-    if (point.y < m_cyTopBorder ||
-            point.y >= (int)(m_cyTopBorder + m_sizeButton.cy * nRows))
-        return -1;      // no Y hit
-
-    int iButton = ((point.y - m_cyTopBorder) / (m_sizeButton.cy-1) * m_nColumns +
-            (point.x - m_cxLeftBorder) / (m_sizeButton.cx-1));
-    return ( iButton < m_nCount ) ? iButton : -1;
-}
-
-int ZIPaletteBar::OnMouseActivate(CWnd*, UINT, UINT)
-{
-    return MA_NOACTIVATE;
-}
-
-// Display a dialog box for option
-void ZIPaletteBar::OnRButtonDown(UINT nFlags, CPoint point)
-{
-    // Display the context menu
-    ClientToScreen( &point );
-    m_Menu.TrackPopupMenu( TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, AfxGetMainWnd() );
-    CToolBar::OnRButtonDown(nFlags, point);
-}
-
-
-
-LONG    ZIPaletteBar::OnPropriety( UINT, LONG )
-{
-    return( 1 );
-}
-
-LONG    ZIPaletteBar::OnHide( UINT, LONG )
-{
-    ShowWindow( SW_HIDE );
-    return( 1 );
-}
-
-
-#endif // Only in 16bit
+            InvertTracker(m_Last);
+            m_Last = point;
+            InvertTracker(m_Last);
+        }
+        else
+            CToolBar::OnMouseMove(nFlags, point);
+    }
+#endif
+//---------------------------------------------------------------------------
+#ifndef _WIN32
+    LONG PSS_PaletteBar::OnPropriety(UINT, LONG)
+    {
+        return 1;
+    }
+#endif
+//---------------------------------------------------------------------------
+#ifndef _WIN32
+    LONG PSS_PaletteBar::OnHide(UINT, LONG)
+    {
+        ShowWindow(SW_HIDE);
+        return 1;
+    }
+#endif
+//---------------------------------------------------------------------------
