@@ -12,9 +12,8 @@
 // processsoft
 #include "zMediator\PSS_Application.h"
 #include "zBaseLib\ZDTextFile.h"
-#include "zBaseLib\file.h"
+#include "zBaseLib\PSS_File.h"
 #include "zBaseLib\MsgBox.h"
-#include "zBaseLib\file.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -130,7 +129,7 @@ void ZVRiskNewFileDlg::OnBnClickedDirectorySelect()
 // Cette fonction est appelée lorsque l'utilisateur clique sur le bouton "Ok".
 void ZVRiskNewFileDlg::OnBnClickedOk()
 {
-    ZFile m_File;
+    PSS_File m_File;
 
     if ( !m_File.Exist( m_Directory ) )
     {

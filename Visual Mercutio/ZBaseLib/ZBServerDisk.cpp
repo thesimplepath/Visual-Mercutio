@@ -6,7 +6,7 @@
 
 // ZBServerDisk
 #include "ZBServerDisk.h"
-#include "File.h"
+#include "PSS_File.h"
 #include "ZDirectory.h"
 
 // Class ZBServerDisk 

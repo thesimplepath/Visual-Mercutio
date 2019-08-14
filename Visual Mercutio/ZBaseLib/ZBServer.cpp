@@ -6,7 +6,7 @@
 
 // ZBServer
 #include "ZBServer.h"
-#include "File.h"
+#include "PSS_File.h"
 #include "ZDirectory.h"
 
 // ZNetWork
@@ -71,8 +71,8 @@ int ZBServer::OpenSession( const CString IniFile, BOOL bCheckStructure /*= TRUE*
     m_IniFile = IniFile;
 
     // Check the filename to avoid improper filename
-    ZFile file( m_IniFile );
-    file.ReBuild();
+    PSS_File file( m_IniFile );
+    file.Rebuild();
     m_IniFile = file.GetCompleteFileName();
 
     return ZBServer::OpenSession( bCheckStructure );
@@ -83,8 +83,8 @@ int ZBServer::OpenSessionForceNetwork( const CString IniFile, BOOL bCheckStructu
     m_IniFile = IniFile;
 
     // Check the filename to avoid improper filename
-    ZFile file( m_IniFile );
-    file.ReBuild();
+    PSS_File file( m_IniFile );
+    file.Rebuild();
     m_IniFile = file.GetCompleteFileName();
 
     return ZBServer::OpenSession( bCheckStructure, TRUE );
@@ -99,7 +99,7 @@ int ZBServer::OpenSession( BOOL bCheckStructure /*= TRUE*/, BOOL ForceNetwork /*
     }
 
     // Check if the path and the ini file exist
-    ZFile File( m_IniFile );
+    PSS_File File( m_IniFile );
 
     // Check if the ini file exists
     if ( File.Exist() == FALSE )
@@ -191,7 +191,7 @@ BOOL ZBServer::SaveDefinitionToIniFile()
 
 int ZBServer::CheckStructure()
 {
-    ZFile file( m_IniFile );
+    PSS_File file( m_IniFile );
 
     // Check if the root path is empty
     if ( m_ServerOptions.GetRootPath().IsEmpty() )

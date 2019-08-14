@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\MsgBox.h"
-#include "zBaseLib\FileDlg.h"
+#include "zBaseLib\PSS_FileDialog.h"
 #ifdef _WIN32
     #include "PSS_OpenDirDialog.h"
 #else
@@ -236,11 +236,11 @@ void PSS_DocOptionDialog::OnSelectFLF()
             filter += "*.*";
             filter += (char)'\0';
 
-            ZIFileDialog fileDialog(title, filter, 2);
+            PSS_FileDialog fileDialog(title, filter, 2);
 
             if (fileDialog.DoModal() == IDOK)
             {
-                m_FLF_FileName = fileDialog.GetFilename();
+                m_FLF_FileName = fileDialog.GetFileName();
                 UpdateData(FALSE);
             }
 

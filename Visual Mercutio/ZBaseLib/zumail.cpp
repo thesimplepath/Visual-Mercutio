@@ -215,10 +215,10 @@ BOOL ZUMail::SendMail (ZBMailMessage& MailMessage)
 
     CString    Message;
     // If file has been defined
-    if (MailMessage.GetFileCount() > 0 && MailMessage.GetAttachementType() != AttachementUndefined)
+    if (MailMessage.GetFileCount() > 0 && MailMessage.GetAttachementType() != PSS_File::IE_AT_Undefined)
     {
         // If the files must be inserted
-        if (MailMessage.GetAttachementType() == InsertedFile)
+        if (MailMessage.GetAttachementType() == PSS_File::IE_AT_InsertedFile)
         {
             message.nFileCount = MailMessage.GetFileCount();
             message.lpFiles = MailMessage.GetMapiFileDescPtr();
@@ -454,7 +454,7 @@ BOOL ZUMail::SendDocuments (ZUMailFileDescription& FileList, CString Subject, CS
     message.lpszSubject = (char*)((const char*)Subject);
     CString    Message = MessageHeader;
     // If the files must be inserted
-    if (FileList.GetAttachementType() == InsertedFile)
+    if (FileList.GetAttachementType() == PSS_File::IE_AT_InsertedFile)
     {
         message.nFileCount = FileList.GetCount();
         message.lpFiles = FileList.GetMapiFileDescPtr();

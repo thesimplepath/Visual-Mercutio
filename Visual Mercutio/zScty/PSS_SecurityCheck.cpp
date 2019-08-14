@@ -14,7 +14,7 @@
 #endif
 
 // processsoft
-#include "zBaseLib\File.h"
+#include "zBaseLib\PSS_File.h"
 #include "zBaseLib\ZBRegisterSetup.h"
 #include "PSS_KeyFile.h"
 
@@ -60,7 +60,7 @@ BOOL PSS_SecurityCheck::Check()
             winDir += _T("\\winkeys.key");
 
             // key file exists?
-            if (ZFile::Exist(winDir))
+            if (PSS_File::Exist(winDir))
             {
                 PSS_KeyFile file(winDir);
 

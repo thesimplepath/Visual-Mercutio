@@ -9,7 +9,7 @@
 #include "PSS_ScanDocWizard.h"
 
 // processsoft
-#include "zBaseLib\file.h"
+#include "zBaseLib\PSS_File.h"
 #include "zBaseLib\ZDirectory.h"
 #include "zBaseLib\MsgBox.h"
 #include "zWeb\PSS_FilePreviewDlg.h"
@@ -118,7 +118,7 @@ BOOL PSS_ScanDocWizard::ProcessSelection()
             // add the document in the table
             AddDocument(scanContinueSelectDialog.GetFileName(), scanInforDialog.GetName(), scanInforDialog.GetDescription());
 
-            ZFile fileSelected(scanContinueSelectDialog.GetFileName());
+            PSS_File fileSelected(scanContinueSelectDialog.GetFileName());
 
             // change de directory to prevent the user to select the same
             ZDirectory::ChangeCurrentDirectory(fileSelected.GetFilePath());

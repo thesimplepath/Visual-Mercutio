@@ -64,7 +64,7 @@ IMPLEMENT_SERIAL(ZActivity, ZBaseActivity, g_DefVersion)
 
 ZActivity::ZActivity (const CString ActivityName, const CString ActivityDescription, int ActivityType, ActivityStatus ActivityStatus)
   //## begin ZActivity::ZActivity%915355672.hasinit preserve=no
-      : m_pBaseOnFormFile(NULL), m_pBaseOnProcFile(NULL), m_RequireFormFile(E_TS_False), m_RequireProcFile(E_TS_False), m_FormAttachementType(InsertedFile), m_ProcessAttachementType(InsertedFile), m_PreConditionsDone(FALSE), m_PostConditionsDone(FALSE)
+      : m_pBaseOnFormFile(NULL), m_pBaseOnProcFile(NULL), m_RequireFormFile(E_TS_False), m_RequireProcFile(E_TS_False), m_FormAttachementType(PSS_File::IE_AT_InsertedFile), m_ProcessAttachementType(PSS_File::IE_AT_InsertedFile), m_PreConditionsDone(FALSE), m_PostConditionsDone(FALSE)
   //## end ZActivity::ZActivity%915355672.hasinit
   //## begin ZActivity::ZActivity%915355672.initialization preserve=yes
   , ZBaseActivity( ActivityName, ActivityDescription, ActivityStatus ),
@@ -158,9 +158,9 @@ void ZActivity::Serialize (CArchive& ar)
         m_RequireProcFile = (EThreeState)wValue;
 
         ar >> wValue;
-        m_FormAttachementType = (AttachementType)wValue;
+        m_FormAttachementType = PSS_File::IEAttachementType(wValue);
         ar >> wValue;
-        m_ProcessAttachementType = (AttachementType)wValue;
+        m_ProcessAttachementType = PSS_File::IEAttachementType(wValue);
 
         ar >> wValue;
         m_PreFormReadOnly = (BOOL)wValue;
@@ -312,21 +312,21 @@ void ZActivity::CalculateForecastedStartDate ()
   //## end ZActivity::CalculateForecastedStartDate%931585007.body
 }
 
-BOOL ZActivity::AddFormFile (CString FileName, AttachementType Attachement)
+BOOL ZActivity::AddFormFile (CString FileName, PSS_File::IEAttachementType Attachement)
 {
   //## begin ZActivity::AddFormFile%933697291.body preserve=yes
     if (!m_pBaseOnFormFile)
-        m_pBaseOnFormFile = new ZFileManager;
+        m_pBaseOnFormFile = new PSS_FileManager;
     m_pBaseOnFormFile->AddFile( FileName, Attachement );
     return m_pBaseOnFormFile->GetCount() > 0;
   //## end ZActivity::AddFormFile%933697291.body
 }
 
-BOOL ZActivity::AddFormFiles (CStringArray& FileNameArray, AttachementType Attachement)
+BOOL ZActivity::AddFormFiles (CStringArray& FileNameArray, PSS_File::IEAttachementType Attachement)
 {
   //## begin ZActivity::AddFormFiles%933697292.body preserve=yes
     if (!m_pBaseOnFormFile)
-        m_pBaseOnFormFile = new ZFileManager;
+        m_pBaseOnFormFile = new PSS_FileManager;
     for (int i = 0; i < FileNameArray.GetSize(); ++i)
         m_pBaseOnFormFile->AddFile( FileNameArray.GetAt(i), Attachement );
     return m_pBaseOnFormFile->GetCount() > 0;
@@ -343,21 +343,21 @@ BOOL ZActivity::RemoveAllFormFiles ()
   //## end ZActivity::RemoveAllFormFiles%933697293.body
 }
 
-BOOL ZActivity::AddProcFile (CString FileName, AttachementType Attachement)
+BOOL ZActivity::AddProcFile (CString FileName, PSS_File::IEAttachementType Attachement)
 {
   //## begin ZActivity::AddProcFile%933697294.body preserve=yes
     if (!m_pBaseOnProcFile)
-        m_pBaseOnProcFile = new ZFileManager;
+        m_pBaseOnProcFile = new PSS_FileManager;
     m_pBaseOnProcFile->AddFile( FileName, Attachement );
     return m_pBaseOnProcFile->GetCount() > 0;
   //## end ZActivity::AddProcFile%933697294.body
 }
 
-BOOL ZActivity::AddProcFiles (CStringArray& FileNameArray, AttachementType Attachement)
+BOOL ZActivity::AddProcFiles (CStringArray& FileNameArray, PSS_File::IEAttachementType Attachement)
 {
   //## begin ZActivity::AddProcFiles%933697295.body preserve=yes
     if (!m_pBaseOnProcFile)
-        m_pBaseOnProcFile = new ZFileManager;
+        m_pBaseOnProcFile = new PSS_FileManager;
     for (int i = 0; i < FileNameArray.GetSize(); ++i)
         m_pBaseOnProcFile->AddFile( FileNameArray.GetAt(i), Attachement );
     return m_pBaseOnProcFile->GetCount() > 0;
@@ -392,7 +392,7 @@ size_t ZActivity::GetProcFileCount () const
   //## end ZActivity::GetProcFileCount%933795323.body
 }
 
-ZFile* ZActivity::GetFormFileAt (size_t Index)
+PSS_File* ZActivity::GetFormFileAt (std::size_t Index)
 {
   //## begin ZActivity::GetFormFileAt%933795324.body preserve=yes
     if (Index < GetFormFileCount())
@@ -401,7 +401,7 @@ ZFile* ZActivity::GetFormFileAt (size_t Index)
   //## end ZActivity::GetFormFileAt%933795324.body
 }
 
-ZFile* ZActivity::GetProcFileAt (size_t Index)
+PSS_File* ZActivity::GetProcFileAt (std::size_t Index)
 {
   //## begin ZActivity::GetProcFileAt%933795325.body preserve=yes
     if (Index < GetProcFileCount())
@@ -425,7 +425,7 @@ void ZActivity::DeleteBaseOnFormFile()
 {
     RemoveAllFormFiles();
     SetRequireFormFile(E_TS_False);
-    SetFormAttachementType( InsertedFile );
+    SetFormAttachementType(PSS_File::IE_AT_InsertedFile);
     SetPreFormReadOnly( TRUE );
 }
 
@@ -433,7 +433,7 @@ void ZActivity::DeleteBaseOnProcFile()
 {
     RemoveAllProcFiles();
     SetRequireProcFile(E_TS_False);
-    SetProcessAttachementType( InsertedFile );
+    SetProcessAttachementType(PSS_File::IE_AT_InsertedFile);
     SetPreProcReadOnly( TRUE );
 }
 

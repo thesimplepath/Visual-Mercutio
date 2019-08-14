@@ -27,13 +27,14 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 
-#include "FileMg.h"
+#include "PSS_FileManager.h"
 //## end module%374DA4370260.includes
 
 // MFileDsc
 #include "MFileDsc.h"
 // PersonLs
 #include "PersonLs.h"
+
 // Mfc
 #include "Mfc.h"
 //## begin module%374DA4370260.declarations preserve=no
@@ -126,18 +127,18 @@ class AFX_EXT_CLASS ZBMailMessage : public CObject  //## Inherits: <unnamed>%375
       void RemoveAllMailUser ();
 
       //## Operation: FillFile%947849678
-      void FillFile (CStringArray& FileList, AttachementType AttachType = InsertedFile);
+      void FillFile (CStringArray& FileList, PSS_File::IEAttachementType AttachType = PSS_File::IE_AT_InsertedFile);
 
       //## Operation: FillFile%947849679
-      void FillFile (ZFileManager& FileList, AttachementType AttachType = InsertedFile);
+      void FillFile (PSS_FileManager& FileList, PSS_File::IEAttachementType AttachType = PSS_File::IE_AT_InsertedFile);
 
       //## Operation: AddFile%947849680
       //    Returns true of done.
-      BOOL AddFile (CString& File, AttachementType AttachType = InsertedFile);
+      BOOL AddFile (CString& File, PSS_File::IEAttachementType AttachType = PSS_File::IE_AT_InsertedFile);
 
       //## Operation: AddFile%947849681
       //    Returns true of done.
-      BOOL AddFile (ZFile& File, AttachementType AttachType = InsertedFile);
+      BOOL AddFile (PSS_File& File, PSS_File::IEAttachementType AttachType = PSS_File::IE_AT_InsertedFile);
 
       //## Operation: GetFileCount%947849682
       int GetFileCount () const;
@@ -154,7 +155,7 @@ class AFX_EXT_CLASS ZBMailMessage : public CObject  //## Inherits: <unnamed>%375
       const CString GetHyperLinkText ();
 
       //## Operation: GetAttachementType%947849686
-      AttachementType GetAttachementType () const;
+      PSS_File::IEAttachementType GetAttachementType () const;
 
     //## Get and Set Operations for Class Attributes (generated)
 
@@ -288,7 +289,7 @@ inline void ZBMailMessage::RemoveAllMailUser ()
   //## end ZBMailMessage::RemoveAllMailUser%928062190.body
 }
 
-inline void ZBMailMessage::FillFile (CStringArray& FileList, AttachementType AttachType)
+inline void ZBMailMessage::FillFile (CStringArray& FileList, PSS_File::IEAttachementType AttachType)
 {
   //## begin ZBMailMessage::FillFile%947849678.body preserve=yes
     if (!m_pMailFileList)
@@ -298,7 +299,7 @@ inline void ZBMailMessage::FillFile (CStringArray& FileList, AttachementType Att
   //## end ZBMailMessage::FillFile%947849678.body
 }
 
-inline void ZBMailMessage::FillFile (ZFileManager& FileList, AttachementType AttachType)
+inline void ZBMailMessage::FillFile (PSS_FileManager& FileList, PSS_File::IEAttachementType AttachType)
 {
   //## begin ZBMailMessage::FillFile%947849679.body preserve=yes
     if (!m_pMailFileList)
@@ -308,7 +309,7 @@ inline void ZBMailMessage::FillFile (ZFileManager& FileList, AttachementType Att
   //## end ZBMailMessage::FillFile%947849679.body
 }
 
-inline BOOL ZBMailMessage::AddFile (CString& File, AttachementType AttachType)
+inline BOOL ZBMailMessage::AddFile (CString& File, PSS_File::IEAttachementType AttachType)
 {
   //## begin ZBMailMessage::AddFile%947849680.body preserve=yes
     if (!m_pMailFileList)
@@ -319,7 +320,7 @@ inline BOOL ZBMailMessage::AddFile (CString& File, AttachementType AttachType)
   //## end ZBMailMessage::AddFile%947849680.body
 }
 
-inline BOOL ZBMailMessage::AddFile (ZFile& File, AttachementType AttachType)
+inline BOOL ZBMailMessage::AddFile (PSS_File& File, PSS_File::IEAttachementType AttachType)
 {
   //## begin ZBMailMessage::AddFile%947849681.body preserve=yes
     if (!m_pMailFileList)
@@ -365,12 +366,12 @@ inline const CString ZBMailMessage::GetHyperLinkText ()
   //## end ZBMailMessage::GetHyperLinkText%947849685.body
 }
 
-inline AttachementType ZBMailMessage::GetAttachementType () const
+inline PSS_File::IEAttachementType ZBMailMessage::GetAttachementType () const
 {
   //## begin ZBMailMessage::GetAttachementType%947849686.body preserve=yes
     if (m_pMailFileList)
         return m_pMailFileList->GetAttachementType();
-    return AttachementUndefined;
+    return PSS_File::IE_AT_Undefined;
   //## end ZBMailMessage::GetAttachementType%947849686.body
 }
 

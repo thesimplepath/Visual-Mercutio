@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include "ZUSymbolLoaderFILE.h"
 
-#include "zBaseLib\File.h"
+#include "zBaseLib\PSS_File.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -31,7 +31,7 @@ ZUSymbolLoaderFILE::~ZUSymbolLoaderFILE()
 int ZUSymbolLoaderFILE::LoadSymbol( const CString Location, ZBSymbolEntitySet& CompSet )
 {
     // Check the existence of file
-    if (!ZFile::Exist(Location))
+    if (!PSS_File::Exist(Location))
         return 0;
 
     ZBSymbolEntity    Entity;

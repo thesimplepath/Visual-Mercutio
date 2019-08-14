@@ -9,9 +9,9 @@
 #include "PSS_CommandLineDialog.h"
 
 // processsoft
-#include "zBaseLib\FileDlg.h"
+#include "zBaseLib\PSS_FileDialog.h"
 #include "zBaseLib\ZAGlobal.h"
-#include "zBaseLib\File.h"
+#include "zBaseLib\PSS_File.h"
 #include "zBaseLib\MsgBox.h"
 #include "PSS_OpenDirDialog.h"
 #include "PSS_SysVarDialog.h"
@@ -126,7 +126,7 @@ void PSS_CommandLineDialog::OnFileArg()
     strFilter += "*.*";
     strFilter += (char)'\0';
 
-    ZIFileDialog fileDialog(title, strFilter, 1);
+    PSS_FileDialog fileDialog(title, strFilter, 1);
 
     if (fileDialog.DoModal() == IDOK)
     {
@@ -136,7 +136,7 @@ void PSS_CommandLineDialog::OnFileArg()
         if (!text.IsEmpty())
             text += " ";
 
-        text += fileDialog.GetFilename();
+        text += fileDialog.GetFileName();
         m_Arguments.SetWindowText(text);
     }
 }
@@ -196,7 +196,7 @@ void PSS_CommandLineDialog::OnChangeApplication()
     if (m_CommandLine.IsEmpty())
         return;
 
-    ZFile file(m_CommandLine);
+    PSS_File file(m_CommandLine);
     m_JobName = file.GetDisplayName();
 
     // if not empty, update the control data

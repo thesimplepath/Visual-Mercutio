@@ -328,7 +328,7 @@ public:
 
         _TemplateEntry* GetTemplateEntryByFilename( const CString Filename ) const
         {
-            ZFile file( Filename );
+            PSS_File file( Filename );
             return GetTemplateEntryByExtension( file.GetFileExt() );
         };
 
@@ -349,7 +349,7 @@ public:
 
         UINT GetTemplateIDByFilename( const CString Filename ) const
         {
-            ZFile file( Filename );
+            PSS_File file( Filename );
             return GetTemplateIDByExtension( file.GetFileExt() );
         };
 

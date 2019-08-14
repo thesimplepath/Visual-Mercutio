@@ -7,7 +7,7 @@
 #include "zMediator\PSS_Application.h"
 #include "zProperty\ZBDynamicPropertiesManager.h"
 #include "zBaseLib\ZBDocumentObserverMsg.h"
-#include "zBaseLib\File.h"
+#include "zBaseLib\PSS_File.h"
 #include "zBaseLib\ZILog.h"
 #include "zBaseLib\ZUFloatingToolbar.h"
 #include "zBaseLib\ZUGUID.h"
@@ -374,7 +374,7 @@ bool ZDProcessGraphModelDoc::CreateUnitManager()
 
 bool ZDProcessGraphModelDoc::InsertUnit( const CString Filename )
 {
-    ZFile File( Filename );
+    PSS_File File( Filename );
 
     if ( !File.Exist() )
     {
@@ -1240,7 +1240,7 @@ BOOL ZDProcessGraphModelDoc::OnSaveDocument( const char* pszPathName )
 BOOL ZDProcessGraphModelDoc::SetFileReadOnly( const char* pszPathName, BOOL Value )
 {
     BOOL    bRet    = FALSE;
-    ZFile*    theFile    = new ZFile( pszPathName );
+    PSS_File*    theFile    = new PSS_File( pszPathName );
 
     if ( theFile != NULL )
     {

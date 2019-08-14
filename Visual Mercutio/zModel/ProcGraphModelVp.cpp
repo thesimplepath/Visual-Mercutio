@@ -6,7 +6,7 @@
 #include "ProcGraphModelView.h"
 #include "ProcGraphModelMdl.h"
 
-#include "zBaseLib\File.h"
+#include "zBaseLib\PSS_File.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -257,7 +257,7 @@ BOOL ZIProcessGraphModelViewport::AssignNewController( ZDProcessGraphModelContro
 SECImage* ZIProcessGraphModelViewport::CreateImageObjectFromFileExtension( const CString Filename )
 {
     SECImage* pImage = NULL;
-    ZFile file( Filename );
+    PSS_File file( Filename );
 
     if ( file.GetFileExt().CompareNoCase( _T( ".gif" ) ) == 0 )
     {
@@ -290,7 +290,7 @@ SECImage* ZIProcessGraphModelViewport::CreateImageObjectFromFileExtension( const
 SECImage* ZIProcessGraphModelViewport::LoadImageFromFile( const CString Filename )
 {
     // JMR-MODIF - Le 5 août 2005 - Ajout du test de la présence d'un fichier avant de tenter de charger ce fichier.
-    ZFile myFile( Filename );
+    PSS_File myFile( Filename );
 
     if ( myFile.Exist() )
     {

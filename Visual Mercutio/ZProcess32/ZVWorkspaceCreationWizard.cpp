@@ -6,7 +6,7 @@
 #include "ZVWorkspaceCreationWizard.h"
 #include "zBaseLib\ZBWorkspaceWizardTemplateMg.h"
 
-#include "zBaseLib\File.h"
+#include "zBaseLib\PSS_File.h"
 #include "zBaseLib\ZDirectory.h"
 #include "zBaseLib\MsgBox.h"
 
@@ -137,7 +137,7 @@ bool ZVWorkspaceStart::Validate()
     else
     {
         // Check if the workspace already exist. If exit, ask to replace
-        if ( ZFile::Exist( m_WorkspaceFilename ) )
+        if (PSS_File::Exist( m_WorkspaceFilename ) )
         {
             MsgBox mbox;
 

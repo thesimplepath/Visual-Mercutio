@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include "ZBWorkspaceEnv.h"
 
-#include "File.h"
+#include "PSS_File.h"
 #include "ZUFileLauncher.h"
 
 #ifdef _DEBUG
@@ -54,7 +54,7 @@ void ZBWorkspaceEnv::OpenLastFiles()
     for ( int i= 0; i < Count; ++i )
     {
         // Check if the file exists
-        if ( ZFile::Exist( m_OpenedFileArray.GetAt( i ) ) )
+        if (PSS_File::Exist( m_OpenedFileArray.GetAt( i ) ) )
         {
             ZUFileLauncher fl;
 

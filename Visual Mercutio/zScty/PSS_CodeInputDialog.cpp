@@ -9,7 +9,7 @@
 #include "PSS_CodeInputDialog.h"
 
 // processsoft
-#include "zBaseLib\File.h"
+#include "zBaseLib\PSS_File.h"
 #include "PSS_KeyFile.h"
 
 // resources
@@ -77,7 +77,7 @@ void PSS_CodeInputDialog::OnOK()
 
     wndDir += _T("\\winkeys.key");
 
-    if (!ZFile::Exist(wndDir))
+    if (!PSS_File::Exist(wndDir))
     {
         text.LoadString(IDS_PASSWORDFAILED2);
         caption.LoadString(IDS_PASSWORDCAPTION);

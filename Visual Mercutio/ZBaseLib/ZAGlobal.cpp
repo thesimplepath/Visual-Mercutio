@@ -15,7 +15,7 @@
 
 #include "ZBTokenizer.h"
 
-#include "FileDlg.h"
+#include "PSS_FileDialog.h"
 
 #include "zBaseLibRes.h"
 
@@ -386,15 +386,15 @@ CString    ZAGlobal::ChooseFormulaireFile( const CString InitialDir )
     strFilter += _T( "*.plf" );
     strFilter += (char)'\0';    // Last string
 
-    static CString ChoosedFile;
-    ZIFileDialog FileDialog( title, strFilter, 1, ( InitialDir.IsEmpty() ) ? GetFileDirectory() : InitialDir );
+    static CString selectedFile;
+    PSS_FileDialog fileDialog( title, strFilter, 1, ( InitialDir.IsEmpty() ) ? GetFileDirectory() : InitialDir );
 
-    if ( FileDialog.DoModal() == IDOK )
+    if ( fileDialog.DoModal() == IDOK )
     {
-        return ChoosedFile = FileDialog.GetFilename();
+        return selectedFile = fileDialog.GetFileName();
     }
 
-    return ChoosedFile = _T( "" );
+    return selectedFile = _T( "" );
 }
 
 const bool ZAGlobal::InitializeNetwork()

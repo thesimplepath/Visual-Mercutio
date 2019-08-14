@@ -9,7 +9,7 @@
 #include "PSS_ProcessTakeOwnershipActionsDialog.h"
 
 // processsoft
-#include "zBaseLib\File.h"
+#include "zBaseLib\PSS_File.h"
 #include "zBaseLib\ZAGlobal.h"
 #include "PSS_FileFormPreviewDialog.h"
 
@@ -72,7 +72,7 @@ BOOL PSS_ProcessTakeOwnershipActionsDialog::OnInitDialog()
 //---------------------------------------------------------------------------
 void PSS_ProcessTakeOwnershipActionsDialog::OnViewCommand()
 {
-    ZFile file(m_FileName);
+    PSS_File file(m_FileName);
 
     // launch the file in preview
     if (file.Exist())

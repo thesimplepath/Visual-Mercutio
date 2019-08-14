@@ -51,7 +51,7 @@
 #include "Resource.h"
 
 // FileDlg
-#include "zBaseLib\FileDlg.h"
+#include "zBaseLib\PSS_FileDialog.h"
 
 #include <IO.H>
 
@@ -291,11 +291,11 @@ void ZDDocumentReadWrite::OnExport()
     strFilter += _T( "*.*" );
     strFilter += (char)'\0';    // last string
 
-    ZIFileDialog FileDialog( title, strFilter, 2, ZAApp::ZAGetApp()->GetFileDirectory() );
+    PSS_FileDialog fileDialog( title, strFilter, 2, ZAApp::ZAGetApp()->GetFileDirectory() );
 
-    if ( FileDialog.DoModal() == IDOK )
+    if ( fileDialog.DoModal() == IDOK )
     {
-        PSS_DocumentExport exportText(FileDialog.GetFilename(),
+        PSS_DocumentExport exportText(fileDialog.GetFileName(),
                                       this,
                                       GetDocOptions().GetSynchronizationHeader(),
                                       GetDocOptions().GetSynchronizationSeparator(),
@@ -329,11 +329,11 @@ void ZDDocumentReadWrite::OnImport()
     strFilter += _T( "*.*" );
     strFilter += (char)'\0';    // last string
 
-    ZIFileDialog FileDialog( title, strFilter, 2, ZAApp::ZAGetApp()->GetFileDirectory() );
+    PSS_FileDialog fileDialog( title, strFilter, 2, ZAApp::ZAGetApp()->GetFileDirectory() );
 
-    if ( FileDialog.DoModal() == IDOK )
+    if ( fileDialog.DoModal() == IDOK )
     {
-        PSS_DocumentExport exportText(FileDialog.GetFilename(),
+        PSS_DocumentExport exportText(fileDialog.GetFileName(),
                                       this,
                                       GetDocOptions().GetSynchronizationHeader(),
                                       GetDocOptions().GetSynchronizationSeparator(),

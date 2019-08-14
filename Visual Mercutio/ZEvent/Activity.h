@@ -28,7 +28,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\FileMg.h"
+#include "zBaseLib\PSS_FileManager.h"
 #include "zBaseLib\MailMsg.h"
 #include "zBaseLib\PSS_CommandLine.h"
 #include "BActvt.h"
@@ -193,11 +193,11 @@ public:
 
       //## Operation: AddFormFile%933697291
       //    Add a filename
-      BOOL AddFormFile (CString FileName, AttachementType Attachement = InsertedFile);
+      BOOL AddFormFile (CString FileName, PSS_File::IEAttachementType Attachement = PSS_File::IE_AT_InsertedFile);
 
       //## Operation: AddFormFiles%933697292
       //    Add several filenames
-      BOOL AddFormFiles (CStringArray& FileNameArray, AttachementType Attachement = InsertedFile);
+      BOOL AddFormFiles (CStringArray& FileNameArray, PSS_File::IEAttachementType Attachement = PSS_File::IE_AT_InsertedFile);
 
       //## Operation: RemoveAllFormFiles%933697293
       //    Remove all filenames
@@ -205,11 +205,11 @@ public:
 
       //## Operation: AddProcFile%933697294
       //    Add a filename
-      BOOL AddProcFile (CString FileName, AttachementType Attachement = InsertedFile);
+      BOOL AddProcFile (CString FileName, PSS_File::IEAttachementType Attachement = PSS_File::IE_AT_InsertedFile);
 
       //## Operation: AddProcFiles%933697295
       //    Add several filenames
-      BOOL AddProcFiles (CStringArray& FileNameArray, AttachementType Attachement = InsertedFile);
+      BOOL AddProcFiles (CStringArray& FileNameArray, PSS_File::IEAttachementType Attachement = PSS_File::IE_AT_InsertedFile);
 
       //## Operation: RemoveAllProcFiles%933697296
       //    Remove all filenames
@@ -225,11 +225,11 @@ public:
 
       //## Operation: GetFormFileAt%933795324
       //    Return the ZFile pointer at the specified position.
-      ZFile* GetFormFileAt (size_t Index);
+      PSS_File* GetFormFileAt (size_t Index);
 
       //## Operation: GetProcFileAt%933795325
       //    Return the ZFile pointer at the specified position.
-      ZFile* GetProcFileAt (size_t Index);
+      PSS_File* GetProcFileAt (size_t Index);
 
     //## Get and Set Operations for Class Attributes (generated)
 
@@ -276,13 +276,13 @@ public:
 
       //## Attribute: FormAttachementType%37A3F0550153
       //    Defines the form attachement type.
-      const AttachementType GetFormAttachementType () const;
-      void SetFormAttachementType (AttachementType value);
+      const PSS_File::IEAttachementType GetFormAttachementType () const;
+      void SetFormAttachementType (PSS_File::IEAttachementType value);
 
       //## Attribute: ProcessAttachementType%37A3F0780262
       //    Defines the process attachement type.
-      const AttachementType GetProcessAttachementType () const;
-      void SetProcessAttachementType (AttachementType value);
+      const PSS_File::IEAttachementType GetProcessAttachementType () const;
+      void SetProcessAttachementType (PSS_File::IEAttachementType value);
 
       //## Attribute: PreConditionsDone%37A400820139
       //    Flag for preconditions. TRUE if already completed.
@@ -373,13 +373,13 @@ public:
       //## Attribute: pBaseOnFormFile%37A09D4C031D
       //    The pointer to the file manager of form files.
       //## begin ZActivity::pBaseOnFormFile%37A09D4C031D.attr preserve=no  public: ZFileManager* {U} NULL
-      ZFileManager* m_pBaseOnFormFile;
+      PSS_FileManager* m_pBaseOnFormFile;
       //## end ZActivity::pBaseOnFormFile%37A09D4C031D.attr
 
       //## Attribute: pBaseOnProcFile%37A09D4C0381
       //    The pointer to the file manager of processus files.
       //## begin ZActivity::pBaseOnProcFile%37A09D4C0381.attr preserve=no  public: ZFileManager* {U} NULL
-      ZFileManager* m_pBaseOnProcFile;
+      PSS_FileManager* m_pBaseOnProcFile;
       //## end ZActivity::pBaseOnProcFile%37A09D4C0381.attr
 
       //## begin ZActivity::RequireFormFile%37A09D4C03E5.attr preserve=no  public: ThreeState {U} FalseState
@@ -391,11 +391,11 @@ public:
       //## end ZActivity::RequireProcFile%37A09D4D0057.attr
 
       //## begin ZActivity::FormAttachementType%37A3F0550153.attr preserve=no  public: AttachementType {U} InsertedFile
-      AttachementType m_FormAttachementType;
+      PSS_File::IEAttachementType m_FormAttachementType;
       //## end ZActivity::FormAttachementType%37A3F0550153.attr
 
       //## begin ZActivity::ProcessAttachementType%37A3F0780262.attr preserve=no  public: AttachementType {U} InsertedFile
-      AttachementType m_ProcessAttachementType;
+      PSS_File::IEAttachementType m_ProcessAttachementType;
       //## end ZActivity::ProcessAttachementType%37A3F0780262.attr
 
       //## begin ZActivity::PreConditionsDone%37A400820139.attr preserve=no  public: BOOL {U} FALSE
@@ -648,28 +648,28 @@ inline CStringArray& ZActivity::GetBaseProcNames ()
   //## end ZActivity::GetBaseProcNames%37A2A4770325.get
 }
 
-inline const AttachementType ZActivity::GetFormAttachementType () const
+inline const PSS_File::IEAttachementType ZActivity::GetFormAttachementType () const
 {
   //## begin ZActivity::GetFormAttachementType%37A3F0550153.get preserve=no
   return m_FormAttachementType;
   //## end ZActivity::GetFormAttachementType%37A3F0550153.get
 }
 
-inline void ZActivity::SetFormAttachementType (AttachementType value)
+inline void ZActivity::SetFormAttachementType (PSS_File::IEAttachementType value)
 {
   //## begin ZActivity::SetFormAttachementType%37A3F0550153.set preserve=no
   m_FormAttachementType = value;
   //## end ZActivity::SetFormAttachementType%37A3F0550153.set
 }
 
-inline const AttachementType ZActivity::GetProcessAttachementType () const
+inline const PSS_File::IEAttachementType ZActivity::GetProcessAttachementType () const
 {
   //## begin ZActivity::GetProcessAttachementType%37A3F0780262.get preserve=no
   return m_ProcessAttachementType;
   //## end ZActivity::GetProcessAttachementType%37A3F0780262.get
 }
 
-inline void ZActivity::SetProcessAttachementType (AttachementType value)
+inline void ZActivity::SetProcessAttachementType (PSS_File::IEAttachementType value)
 {
   //## begin ZActivity::SetProcessAttachementType%37A3F0780262.set preserve=no
   m_ProcessAttachementType = value;

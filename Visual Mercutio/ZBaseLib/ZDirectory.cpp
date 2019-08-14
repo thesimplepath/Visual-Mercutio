@@ -4,8 +4,8 @@
 
 #include "stdafx.h"
 #include "ZDirectory.h"
-#include "File.h"
-#include "findfile.h"
+#include "PSS_File.h"
+#include "PSS_FindFile.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -98,13 +98,11 @@ int    ZDirectory::FindFile( const CString Filter, CStringArray& FileArray )
 }
 
 
-int        ZDirectory::FindFile( const CString Filter, const CString Directory, CStringArray& FileArray, bool IncludeSubDir /*= false*/ )
+int ZDirectory::FindFile(const CString Filter, const CString Directory, CStringArray& fileArray, bool IncludeSubDir)
 {
-    ZUFindFile    Find( FileArray );
+    PSS_FindFile findFile(fileArray);
 
-    int    FoundFile = Find.FindFile( Filter, Directory );
-    return FoundFile;
-
+    return findFile.FindFile(Filter, Directory);
 }
 
 BOOL ZDirectory::CreateDirectory( const CString Directory )
@@ -214,7 +212,7 @@ BOOL    ZDirectory::CopyFileFromToDirectory( const CString SrcDirectory, const C
     // Check existance source file
     CString    Source = ZDirectory::NormalizeDirectory( SrcDirectory ) + "\\";
     Source += Filename;
-    ZFile    File( Source );
+    PSS_File File( Source );
     if (!File.Exist())
         return FALSE;
     // Build destination file
@@ -227,7 +225,7 @@ BOOL    ZDirectory::CopyFileFromToDirectory( const CString SrcDirectory, const C
 
 BOOL    ZDirectory::CopyFile( const CString SrcFile, const CString DstFile, BOOL Overwrite /*=TRUE*/ )
 {
-    ZFile    File( SrcFile );
+    PSS_File File( SrcFile );
     if (!File.Exist())
         return FALSE;
     return ::CopyFile( SrcFile, DstFile, !Overwrite );
@@ -300,7 +298,7 @@ BOOL    ZDirectory::MoveFileFromToDirectory( const CString SrcDirectory, const C
     // Check existance source file
     CString    Source = ZDirectory::NormalizeDirectory( SrcDirectory ) + "\\";
     Source += Filename;
-    ZFile    File( Source );
+    PSS_File File( Source );
     if (!File.Exist())
         return FALSE;
     // Build destination file
@@ -316,7 +314,7 @@ BOOL    ZDirectory::MoveFileFromToDirectory( const CString SrcDirectory, const C
 
 BOOL    ZDirectory::MoveFile( const CString SrcFile, const CString DstFile, BOOL Overwrite /*=TRUE*/ )
 {
-    ZFile    File( SrcFile );
+    PSS_File File( SrcFile );
     if (!File.Exist())
         return FALSE;
     // Copy file allowed

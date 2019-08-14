@@ -21,7 +21,7 @@
 #include "Obsolete.h"
 #include "PLFNBackImage.h"
 #include "ZBFldCol.h"
-#include "FileBuf.h"
+#include "PSS_FileBuffer.h"
 #include "PSS_FieldRepository.h"
 #include "ZBTokenizer.h"
 #include "MsgBox.h"
@@ -1390,7 +1390,7 @@ BOOL PSS_DocumentData::CreateBufferFromFile(const CString& fileName)
     if (m_pFileBuffer)
         ClearFileBuffer();
 
-    m_pFileBuffer = new ZBFileBuffer;
+    m_pFileBuffer = new PSS_FileBuffer;
 
     if (!m_pFileBuffer)
         return FALSE;

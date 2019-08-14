@@ -12,9 +12,8 @@
 // processsoft
 #include "zMediator\PSS_Application.h"
 #include "zBaseLib\ZDTextFile.h"
-#include "zBaseLib\file.h"
+#include "zBaseLib\PSS_File.h"
 #include "zBaseLib\MsgBox.h"
-#include "zBaseLib\file.h"
 #include "zBaseLib\ZUSystemOption.h"
 
 #ifdef _DEBUG

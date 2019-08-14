@@ -11,7 +11,7 @@
 
 // processsoft
 #include "zBaseLib\ZDirectory.h"
-#include "zBaseLib\File.h"
+#include "zBaseLib\PSS_File.h"
 #include "zBaseLib\ZBServer.h"
 #include "zBaseLib\ZILog.h"
 #include "zConversion\PSS_StringTools.h"
@@ -87,7 +87,7 @@ bool PSS_SoapPublishModelGenerateFiles::OnStart()
         return false;
 
     // publish the home image file, if it exists
-    if (ZFile::Exist(ZDirectory::NormalizeDirectory(m_pInfo->GetpServer()->GetSystemDirectory()) + _T("\\") + g_HomeImageFile))
+    if (PSS_File::Exist(ZDirectory::NormalizeDirectory(m_pInfo->GetpServer()->GetSystemDirectory()) + _T("\\") + g_HomeImageFile))
         if (!m_PubFile.Add(PSS_SoapData_File(PSS_SoapData_File::IE_DM_PublicFolder,
                                              1,
                                              (const char*)m_pInfo->GetpServer()->GetSystemDirectory(),
@@ -95,7 +95,7 @@ bool PSS_SoapPublishModelGenerateFiles::OnStart()
             TRACE(_T("Problem publishing the Home image file\n"));
 
     // publish the parent image file, if it exists
-    if (ZFile::Exist(ZDirectory::NormalizeDirectory(m_pInfo->GetpServer()->GetSystemDirectory()) + _T("\\") + g_ParentImageFile))
+    if (PSS_File::Exist(ZDirectory::NormalizeDirectory(m_pInfo->GetpServer()->GetSystemDirectory()) + _T("\\") + g_ParentImageFile))
         if (!m_PubFile.Add(PSS_SoapData_File(PSS_SoapData_File::IE_DM_PublicFolder,
                                              1,
                                              (const char*)m_pInfo->GetpServer()->GetSystemDirectory(),
@@ -186,7 +186,7 @@ bool PSS_SoapPublishModelGenerateFiles::PublishModel(ZDProcessGraphModelMdl* pMo
         // generate the file
         if (pVp->ExportModelToImageFile(imageFilename, *pDC))
         {
-            ZFile file(imageFilename);
+            PSS_File file(imageFilename);
 
             // publish the file name
             if (!m_PubFile.Add(PSS_SoapData_File(PSS_SoapData_File::IE_DM_PublicFolder,
@@ -240,8 +240,8 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(ZDProcessGraphModelMdl* p
     if (!pModel)
         return false;
 
-    const CString htmlFileName = BuildModelHTMLFilename(pModel);
-          ZFile   rootHtmlFile(m_RootHtmlFileName);
+    const CString  htmlFileName = BuildModelHTMLFilename(pModel);
+          PSS_File rootHtmlFile(m_RootHtmlFileName);
 
     // refresh Setup Copyfile Window
     m_FileGenerateWindow.SetDestination(htmlFileName);
@@ -295,9 +295,9 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(ZDProcessGraphModelMdl* p
     if (pModel->GetParent())
     {
         // get the parent html filename and name
-        const CString parentHtmlFileName = BuildModelHTMLFilename(pModel->GetParent());
-              ZFile   parentHtmlFile(parentHtmlFileName);
-        const CString ParentName         = pModel->GetParent()->GetAbsolutePath();
+        const CString  parentHtmlFileName = BuildModelHTMLFilename(pModel->GetParent());
+              PSS_File parentHtmlFile(parentHtmlFileName);
+        const CString  ParentName         = pModel->GetParent()->GetAbsolutePath();
 
         s.Format(IDS_SOAPMODELGENHTML_11,
                  (const char*)parentHtmlFile.GetFileName(), // root filename
@@ -322,7 +322,7 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(ZDProcessGraphModelMdl* p
     htmlFile << s;
 
     // write the hotspot table header
-    ZFile image(imageFileName);
+    PSS_File image(imageFileName);
 
     s.Format(IDS_SOAPMODELGENHTML_2,
              (const char*)pModel->GetAbsolutePath(), // object name
@@ -352,7 +352,7 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(ZDProcessGraphModelMdl* p
             // get the html filename for the reference
             symbolHtmlFileName = BuildModelHTMLFilename(dynamic_cast<ZDProcessGraphModelMdl*>(pCompSym->GetChildModel()));
 
-            ZFile symbol(symbolHtmlFileName);
+            PSS_File symbol(symbolHtmlFileName);
 
             // get the symbol position
             symbolCoordinates = pComp->GetBaseRgn().GetBounds();
@@ -412,7 +412,7 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(ZDProcessGraphModelMdl* p
         m_pLog->AddLine(e);
     }
 
-    ZFile file(htmlFileName);
+    PSS_File file(htmlFileName);
 
     // publish the file name
     if (!m_PubFile.Add(PSS_SoapData_File(PSS_SoapData_File::IE_DM_PublicFolder,

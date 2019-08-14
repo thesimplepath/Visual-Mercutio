@@ -9,7 +9,7 @@
 #include "ZBWorkspaceObserverMsg.h"
 
 #include "zBaseLibRes.h"
-#include "FileDlg.h"
+#include "PSS_FileDialog.h"
 #include "ZVWorkspaceGroupNameDlg.h"
 #include "ZVWorkspaceRenameGroupNameDlg.h"
 
@@ -717,7 +717,7 @@ _ZInternalWksTreeData::~_ZInternalWksTreeData()
 
 ZBWorkspaceGroupEntity* ZCWorkspaceTreeCtrl::GetFileBestGroup( const CString Filename ) const
 {
-    ZFile file( Filename );
+    PSS_File file( Filename );
     CString ext = file.GetFileExt();
 
     // Check if there is a point to start the extension string
@@ -1042,21 +1042,21 @@ void ZCWorkspaceTreeCtrl::OnWksAddFile()
         strFilter += _T( "*.*" );
         strFilter += (char)'\0';    // Last string
 
-        ZIFileDialog FileDialog( title, strFilter, 1 );
+        PSS_FileDialog fileDialog( title, strFilter, 1 );
 
-        if ( FileDialog.DoModal() == IDOK )
+        if ( fileDialog.DoModal() == IDOK )
         {
             ASSERT( m_pWorkspaceEnv != NULL );
 
             // If the root is selected, then use addfile to project for inserting the file at the best place.
             if ( IsRootSelected() )
             {
-                OnAddFileToProject( FileDialog.GetFilename() );
+                OnAddFileToProject( fileDialog.GetFileName() );
             }
             else
             {
                 // Add file to the workspace
-                ZBWorkspaceFileEntity* pFile = m_pWorkspaceEnv->AddFile( FileDialog.GetFilename(),
+                ZBWorkspaceFileEntity* pFile = m_pWorkspaceEnv->AddFile( fileDialog.GetFileName(),
                                                                          GetSelectedGroup() );
 
                 // Now, add the file from the tree

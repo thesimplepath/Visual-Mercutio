@@ -81,7 +81,7 @@ bool ZBModelBPReportGenerator::ReportDataMustBeReloaded() const
     {
         SYSTEMTIME tm;
 
-        if ( ZFile::GetLastWriteTime( m_Filename, tm ) )
+        if (PSS_File::GetLastWriteTime( m_Filename, tm ) )
         {
             return ( ZBDate( tm ) > m_LastUpdateDateTime ) ? true : false;
         }
@@ -116,7 +116,7 @@ void ZBModelBPReportGenerator::OnPostDataFilled( size_t Index )
         // filename last write date/time
         SYSTEMTIME tm;
 
-        if ( ZFile::GetLastWriteTime( m_Filename, tm ) )
+        if (PSS_File::GetLastWriteTime( m_Filename, tm ) )
         {
             m_LastUpdateDateTime = ZBDate( tm );
         }

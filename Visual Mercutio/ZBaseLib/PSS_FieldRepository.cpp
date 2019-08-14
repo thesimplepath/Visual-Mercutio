@@ -9,7 +9,7 @@
 #include "PSS_FieldRepository.h"
 
 // processsoft
-#include "File.h"
+#include "PSS_File.h"
 
 //---------------------------------------------------------------------------
 // PSS_FieldRepository
@@ -60,7 +60,7 @@ BOOL PSS_FieldRepository::OpenRepository(const CString& fileName, BOOL readOnly)
 {
     m_ReadOnly = readOnly;
 
-    ZFile file(fileName);
+    PSS_File file(fileName);
 
     // keep repository file name
     m_FileName = fileName;

@@ -1634,7 +1634,7 @@ BOOL ZDDocument::InsertExternalDocumentAfter(const CString    FileName,
         return FALSE;
     }
 
-    ZFile File(FileName);
+    PSS_File File(FileName);
 
     // Check if file exists
     if (!File.Exist())
@@ -1783,7 +1783,7 @@ BOOL ZDDocument::InsertExternalBinaryDocumentAfter(const CString    FileName,
         return FALSE;
     }
 
-    ZFile File(FileName);
+    PSS_File File(FileName);
 
     // Check if file exists
     if (!File.Exist())

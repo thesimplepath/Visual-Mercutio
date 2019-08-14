@@ -8,7 +8,7 @@
 #include "zBaseLib\VTools.h"
 #include "zBaseLib\ZDirectory.h"
 #include "zBaseLib\PSS_ObjectUtility.h"
-#include "zBaseLib\FileDlg.h"
+#include "zBaseLib\PSS_FileDialog.h"
 #include "zBaseLib\PSS_BaseMDIPage.h"
 #include "zBaseLib\ZILog.h"
 #include "zBaseLib\ZDWorkspaceEnvDocument.h"
@@ -835,7 +835,7 @@ bool ZAApp::LoadUserGroupFile()
             SaveUserGroupFile( false );
         }
 
-        ZFile file( m_UserGroupFilename );
+        PSS_File file( m_UserGroupFilename );
 
         // Notify observers about the user group initialisation
         ZBUserGroupObserverMsg Msg( UM_INITUSERGROUP,
@@ -919,7 +919,7 @@ bool ZAApp::LoadLogicalSystemFile()
             m_pLogicalSystemDocument->GetLogicalSystemEnvironment().SetEntityDescription( _T("Systèmes Logiques ...") );
         }
 
-        ZFile file( m_LogicalSystemFilename );
+        PSS_File file( m_LogicalSystemFilename );
 
         // Notify observers about the logical system initialisation
         ZBLogicalSystemObserverMsg Msg( UM_INITLOGICALSYSTEM,
@@ -1003,7 +1003,7 @@ bool ZAApp::LoadPrestationsFile()
             m_pPrestationsDocument->GetPrestationsEnvironment().SetEntityDescription( _T( "Gamme des prestations." ) );
         }
 
-        ZFile file( m_PrestationsFilename );
+        PSS_File file( m_PrestationsFilename );
 
         // Notify observers about the user group initialisation
         ZBLogicalPrestationsObserverMsg Msg( UM_INITPRESTATIONS,
@@ -1088,7 +1088,7 @@ bool ZAApp::LoadRulesFile()
             m_pRulesDocument->GetRulesEnvironment().SetEntityDescription( _T( "Entrée du recueil des règles." ) );
         }
 
-        ZFile file( m_RulesFilename );
+        PSS_File file( m_RulesFilename );
 
         // Notify observers about the user group initialisation
         ZBLogicalRulesObserverMsg Msg( UM_INITRULES,
@@ -1673,7 +1673,7 @@ void ZAApp::OnAfterOpenDocument(CDocument* pDoc, const CString& filename )
     {
         // ******************************************************************************************************
         // JMR-MODIF - Le 24 avril 2006 - Teste si le fichier est en lecture seule.
-        ZFile* theFile = new ZFile(filename);
+        PSS_File* theFile = new PSS_File(filename);
 
         if ( theFile != NULL )
         {
@@ -2302,7 +2302,7 @@ CString ZAApp::OnBuildHelpFilename()
         
         if ( GetModuleFileName( hInstance, lpszModule, _MAX_PATH ) )
         {
-            ZFile File( lpszModule );
+            PSS_File File( lpszModule );
 
             HelpFile = ZDirectory::NormalizeDirectory( File.GetFilePath() ) + _T( "\\zConceptor.chm" );
         }
@@ -2465,12 +2465,12 @@ void ZAApp::OnOpenWorkspace()
     strFilter += _T( "*.*" );
     strFilter += (char)'\0';        // last string
 
-    ZIFileDialog FileDialog( title, strFilter, 2, ZAApp::ZAGetApp()->GetModelTemplateDirectory() );
+    PSS_FileDialog fileDialog( title, strFilter, 2, ZAApp::ZAGetApp()->GetModelTemplateDirectory() );
 
-    if ( FileDialog.DoModal() == IDOK )
+    if ( fileDialog.DoModal() == IDOK )
     {
         CWaitCursor Cursor;
-        OpenWorkspaceFile( FileDialog.GetFilename() );
+        OpenWorkspaceFile( fileDialog.GetFileName() );
     }
 }
 
@@ -3291,7 +3291,7 @@ void ZAApp::OnGenerateCheckReport()
                                                                          dynamic_cast<ZDProcessGraphModelMdlBP*>( pCurrentDoc->GetModel() ),
                                              pCurrentDoc ) );
 
-        ZFile file( pCurrentDoc->GetPathName() );
+        PSS_File file( pCurrentDoc->GetPathName() );
         CString s;
         s.LoadString( IDS_CHECKREPORT_FILENAME );
         CString fn = file.GetFilePath() + s + file.GetFileTitle();
@@ -3376,7 +3376,7 @@ void ZAApp::OnGenerateMercutioReport()
                                                                                     dynamic_cast<ZDProcessGraphModelMdlBP*>( dynamic_cast<ZBBPProcessSymbol*>( Dlg.GetSelectedSymbol() )->GetChildModel() ),
                                                                                     pCurrentDoc ) );
 
-                ZFile file( pCurrentDoc->GetPathName() );
+                PSS_File file( pCurrentDoc->GetPathName() );
 
                 CString fn = file.GetFilePath() +
                              dynamic_cast<ZBSymbol*>( Dlg.GetSelectedSymbol() )->GetSymbolName() +
@@ -3464,7 +3464,7 @@ void ZAApp::OnGenerateConceptorReport()
                                                                                  Dlg.m_Detail,
                                                                                  Dlg.m_Deliverables ) );
 
-            ZFile file( pCurrentDoc->GetPathName() );
+            PSS_File file( pCurrentDoc->GetPathName() );
             CString s;
             s.LoadString( IDS_CONCEPTORREPORT_FILENAME );
             CString fn = file.GetFilePath() + s + file.GetFileTitle();
@@ -3534,7 +3534,7 @@ void ZAApp::OnGenerateSesterceReport()
                                                                             dynamic_cast<ZDProcessGraphModelMdlBP*>( pCurrentDoc->GetModel() ),
                                                                             pCurrentDoc ) );
 
-        ZFile file( pCurrentDoc->GetPathName() );
+        PSS_File file( pCurrentDoc->GetPathName() );
         CString s;
         s.LoadString( IDS_SESTERCES_FILENAME );
         CString fn = file.GetFilePath() + s + file.GetFileTitle();
@@ -3611,7 +3611,7 @@ void ZAApp::OnGenerateSesterceUnitReport()
                                                                                 pCurrentDoc,
                                                                                 dlg.IncludeMonthDetail() ) );
 
-        ZFile file( pCurrentDoc->GetPathName() );
+        PSS_File file( pCurrentDoc->GetPathName() );
         CString s;
         s.LoadString( IDS_SESTERCESUNIT_FILENAME );
         CString fn = file.GetFilePath() + s + file.GetFileTitle();
@@ -3675,7 +3675,7 @@ void ZAApp::OnGenerateSesterceConsolidatedReport()
                                                                                         pCurrentDoc,
                                                                                         dlg.IncludeMonthDetail() ) );
 
-        ZFile file( pCurrentDoc->GetPathName() );
+        PSS_File file( pCurrentDoc->GetPathName() );
         CString s;
         s.LoadString( IDS_SESTERCESCONSOLIDATED_FILENAME );
         CString fn = file.GetFilePath() + s + file.GetFileTitle();
@@ -3742,7 +3742,7 @@ void ZAApp::OnGeneratePrestationsReport()
 
         CString s;
         CString strFilterExt;
-        ZFile file( pCurrentDoc->GetPathName() );
+        PSS_File file( pCurrentDoc->GetPathName() );
 
         s.LoadString( IDS_PRESTATIONSREPORT_FILENAME );
 

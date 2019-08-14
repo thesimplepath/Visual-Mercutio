@@ -5,7 +5,7 @@
 #include "zBaseLib\MsgBox.h"
 
 #include "zBaseLib\ZDirectory.h"
-#include "zBaseLib\File.h"
+#include "zBaseLib\PSS_File.h"
 #include "Resource.h"
 
 #ifdef _DEBUG

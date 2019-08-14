@@ -9,7 +9,7 @@
 #include "PSS_SelectProcessWizard.h"
 
 // processsoft
-#include "zBaseLib\File.h"
+#include "zBaseLib\PSS_File.h"
 #include "PSS_SelectProcessWizardStartDialog.h"
 #include "PSS_SelectProcessWizardDialog.h"
 

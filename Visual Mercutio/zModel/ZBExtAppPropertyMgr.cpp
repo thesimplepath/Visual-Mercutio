@@ -14,7 +14,7 @@
 
 #include "zBaseLib\ZNetResourceWrapper.h"
 #include "zBaseLib\TmplFile.h"
-#include "zBaseLib\File.h"
+#include "zBaseLib\PSS_File.h"
 
 #include "zBaseLib\MsgBox.h"
 
@@ -609,7 +609,7 @@ bool ZBExtAppPropertyMgr::AcceptDropItem( CObject* pObj, CPoint pt )
         // If it is a file, check what kind of file
         if ( ISA( pObj, ZNetResourceWrapper ) )
         {
-            ZFile file( ( (ZNetResourceWrapper*)pObj )->GetFilename() );
+            PSS_File file( ( (ZNetResourceWrapper*)pObj )->GetFilename() );
 
             if ( ( file.GetFileExt().CompareNoCase( _T( ".exe" ) ) == 0 ||
                    file.GetFileExt().CompareNoCase( _T( ".com" ) ) == 0 ||
@@ -638,7 +638,7 @@ bool ZBExtAppPropertyMgr::DropItem( CObject* pObj, CPoint pt )
         // If it is a file, check what kind of file
         if ( ISA( pObj, ZNetResourceWrapper ) )
         {
-            ZFile file( ( (ZNetResourceWrapper*)pObj )->GetFilename() );
+            PSS_File file( ( (ZNetResourceWrapper*)pObj )->GetFilename() );
 
             // Add a new external application
             // First, check if there is an empty one.

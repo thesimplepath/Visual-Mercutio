@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\ZAGlobal.h"
-#include "zBaseLib\File.h"
+#include "zBaseLib\PSS_File.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -283,7 +283,7 @@ BOOL PSS_FileFormPreviewDialog::OnInitDialog()
         // show error message
         return FALSE;
 
-    ZFile file(m_FileName);
+    PSS_File file(m_FileName);
 
     if (!file.Exist())
         // show error message

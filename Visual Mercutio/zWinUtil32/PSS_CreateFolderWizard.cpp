@@ -9,7 +9,7 @@
 #include "PSS_CreateFolderWizard.h"
 
 // processsoft
-#include "zBaseLib\File.h"
+#include "zBaseLib\PSS_File.h"
 #include "PSS_CreateFolderWizardStartDialog.h"
 #include "PSS_CreateFolderWizardExistDialog.h"
 #include "PSS_OpenDirDialog.h"
@@ -146,7 +146,7 @@ BOOL PSS_CreateFolderWizard::CheckFolderExist(const CString& fileName)
     else
         m_CompleteFileName = fileName;
 
-    ZFile file(m_CompleteFileName);
+    PSS_File file(m_CompleteFileName);
     return file.Exist();
 }
 //---------------------------------------------------------------------------

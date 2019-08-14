@@ -12,7 +12,7 @@
 #include "zBaseLib\ZITreeCtl.h"
 #include "zBaseLib\ZDDoc.h"
 #include "zBaseLib\PSS_DocumentData.h"
-#include "zBaseLib\File.h"
+#include "zBaseLib\PSS_File.h"
 #include "zRes32\ZRes.h"
 
 // resources
@@ -160,7 +160,7 @@ void PSS_ProjectTree::CreateTree()
     else
     {
         // extract the file name
-        ZFile file(m_pDoc->GetPathName());
+        PSS_File file(m_pDoc->GetPathName());
         hRoot = AddDocumentTypeItem(file.GetFileTitle(), 0);
     }
 

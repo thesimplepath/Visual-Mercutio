@@ -9,7 +9,7 @@
 #include "PSS_SearchEdit.h"
 
 // processsoft
-#include "zBaseLib\FileDlg.h"
+#include "zBaseLib\PSS_FileDialog.h"
 #include "SHFileInfo.h"
 
 #ifndef _WIN32
@@ -215,10 +215,10 @@ void PSS_SearchEditButton::OnClicked()
 
         case IE_T_File:
         {
-            ZIFileDialog fileDlg(m_Title, m_Filters, m_FilterCount, m_InitialDir);
+            PSS_FileDialog fileDlg(m_Title, m_Filters, m_FilterCount, m_InitialDir);
 
             if (fileDlg.DoModal() == IDOK)
-                m_pWnd->SetWindowText(fileDlg.GetFilename());
+                m_pWnd->SetWindowText(fileDlg.GetFileName());
 
             break;
         }

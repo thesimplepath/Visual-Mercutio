@@ -9,7 +9,7 @@
 #include "ZBCriptedFileInfo.h"
 
 // ZFile
-#include "File.h"
+#include "PSS_File.h"
 
 // Class ZBCriptedFileInfo 
 
@@ -224,7 +224,7 @@ void ZBCriptedFileInfo::LoadEntityTable()
         }
     }
 
-    ZFile    File(GetFilename());
+    PSS_File File(GetFilename());
     if (!File.Exist())
     {
         // The filename does not exist

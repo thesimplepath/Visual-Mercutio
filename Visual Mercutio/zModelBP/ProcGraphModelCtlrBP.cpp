@@ -7,7 +7,7 @@
 #include "zMediator\PSS_Application.h"
 #include "zBaseLib\ZUFloatingToolbar.h"
 #include "zBaseLib\ZBToolbarObserverMsg.h"
-#include "zBaseLib\FileDlg.h"
+#include "zBaseLib\PSS_FileDialog.h"
 #include "zModel\ProcGraphModelVp.h"
 #include "zModel\ZBLinkSymbol.h"
 #include "zModel\ProcGraphModelDoc.h"
@@ -951,10 +951,10 @@ void ZDProcessGraphModelControllerBP::OnLinktoFilePackage()
         strFilter += (char)'\0';        // next string please
         strFilter += _T( "*.*" );
         strFilter += (char)'\0';        // last string
-        
-        ZIFileDialog    ChooseFile( IDS_SELECTUNIT_FILEDLGTITLE, strFilter, 2 );
 
-        if ( ChooseFile.DoModal() == IDCANCEL )
+        PSS_FileDialog fileDialog( IDS_SELECTUNIT_FILEDLGTITLE, strFilter, 2 );
+
+        if (fileDialog.DoModal() == IDCANCEL )
         {
             return;
         }
@@ -962,14 +962,14 @@ void ZDProcessGraphModelControllerBP::OnLinktoFilePackage()
         // Check if it is a unit
         ZDFolderStamp FolderStamp;
 
-        if ( !FolderStamp.ReadFromFile( ChooseFile.GetFilename() ) )
+        if ( !FolderStamp.ReadFromFile(fileDialog.GetFileName() ) )
         {
             // Error message
             return;
         }
 
         // Set the filename
-        pPackage->SetFilenameLinkedTo( ChooseFile.GetFilename() );
+        pPackage->SetFilenameLinkedTo(fileDialog.GetFileName() );
 
         // Update the symbol
         CODComponentSet CompSet;

@@ -12,7 +12,7 @@
 #include "zBaseLib\MsgBox.h"
 
 // FileDlg
-#include "zBaseLib\FileDlg.h"
+#include "zBaseLib\PSS_FileDialog.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -328,14 +328,14 @@ void ZVGridView::ExportToTextFile()
     strFilter += _T( "*.*" );
     strFilter += (char)'\0';        // last string
 
-    ZIFileDialog FileDialog( title, strFilter, 2, _T( "" ) );
+    PSS_FileDialog fileDialog( title, strFilter, 2, _T( "" ) );
 
-    if ( FileDialog.DoModal() == IDCANCEL )
+    if ( fileDialog.DoModal() == IDCANCEL )
     {
         return;
     }
 
-    if ( !ExportToTextFile( FileDialog.GetFilename() ) )
+    if ( !ExportToTextFile( fileDialog.GetFileName() ) )
     {
         // In write mode no chance, file corruption
         MsgBox mbox;
@@ -380,14 +380,14 @@ void ZVGridView::ImportTextFile()
     strFilter += _T( "*.*" );
     strFilter += (char)'\0';        // Last string
 
-    ZIFileDialog FileDialog( title, strFilter, 2, _T( "" ) );
+    PSS_FileDialog fileDialog( title, strFilter, 2, _T( "" ) );
 
-    if ( FileDialog.DoModal() == IDCANCEL )
+    if ( fileDialog.DoModal() == IDCANCEL )
     {
         return;
     }
 
-    if ( !ImportTextFile( FileDialog.GetFilename() ) )
+    if ( !ImportTextFile( fileDialog.GetFileName() ) )
     {
         MsgBox mbox;
         mbox.DisplayMsgBox( IDS_IMPORTFILE_FAIL );

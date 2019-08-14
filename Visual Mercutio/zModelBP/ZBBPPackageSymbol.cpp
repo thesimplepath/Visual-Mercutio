@@ -7,7 +7,7 @@
 
 #include "zModel\ProcGraphModelDoc.h"
 #include "ProcGraphModelMdlBP.h"
-#include "zBaseLib\File.h"
+#include "zBaseLib\PSS_File.h"
 
 #include "zModelBPRes.h"
 #include "zBaseLib\PSS_DrawFunctions.h"
@@ -142,7 +142,7 @@ void ZBBPPackageSymbol::AdjustElementPosition()
 bool    ZBBPPackageSymbol::LoadPackage(PSS_ProcessModelDocTmpl* pDocTmpl, ZDProcessGraphModelMdl* pParent)
 {
     // Check if the file exists
-    ZFile    File(m_FilenameLinkedTo);
+    PSS_File File(m_FilenameLinkedTo);
     if (!File.Exist())
         return false;
 

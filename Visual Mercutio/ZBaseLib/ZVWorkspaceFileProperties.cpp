@@ -4,11 +4,11 @@
 #include "stdafx.h"
 #include "ZVWorkspaceFileProperties.h"
 
-#include "File.h"
+#include "PSS_File.h"
 
 #include "zBaseLibRes.h"
 #include "MsgBox.h"
-#include "FileDlg.h"
+#include "PSS_FileDialog.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -56,7 +56,7 @@ void ZVWorkspaceFileProperties::OnOK()
 {
     UpdateData( TRUE );
     
-    if (!ZFile::Exist( m_Filename ))
+    if (!PSS_File::Exist( m_Filename ))
     {
         // Error message
         MsgBox        mbox;
@@ -72,10 +72,10 @@ void ZVWorkspaceFileProperties::OnOK()
             strFilter += "*.*";
             strFilter += (char)'\0';        // last string
 
-            ZIFileDialog    FileDialog( title, strFilter, 1 );
-            if (FileDialog.DoModal() == IDOK)
+            PSS_FileDialog fileDialog( title, strFilter, 1 );
+            if (fileDialog.DoModal() == IDOK)
             {
-                m_Filename = FileDialog.GetFilename();
+                m_Filename = fileDialog.GetFileName();
                 UpdateData( FALSE );
             }
         }

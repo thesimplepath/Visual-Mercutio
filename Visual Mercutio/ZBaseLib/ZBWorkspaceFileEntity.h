@@ -22,7 +22,7 @@
 
 #include "ZBWorkspaceEntity.h"
 // File
-#include "File.h"
+#include "PSS_File.h"
 
 
 #ifdef _ZBASELIBEXPORT
@@ -49,24 +49,24 @@ public:
 
     virtual bool HasFilename() const
     {
-        return (const_cast<ZFile&>(m_File).GetCompleteFileName().IsEmpty()) ? false : true;
+        return (const_cast<PSS_File&>(m_File).GetCompleteFileName().IsEmpty()) ? false : true;
     };
 
     virtual CString GetFilename() const
     {
-        return const_cast<ZFile&>(m_File).GetCompleteFileName();
+        return const_cast<PSS_File&>(m_File).GetCompleteFileName();
     };
     virtual CString GetFileTitle() const
     {
-        return const_cast<ZFile&>(m_File).GetFileName();
+        return const_cast<PSS_File&>(m_File).GetFileName();
     };
     virtual CString GetFilePath() const
     {
-        return const_cast<ZFile&>(m_File).GetFilePath();
+        return const_cast<PSS_File&>(m_File).GetFilePath();
     };
     virtual CString GetFileExt() const
     {
-        return const_cast<ZFile&>(m_File).GetFileExt();
+        return const_cast<PSS_File&>(m_File).GetFileExt();
     };
     virtual void SetFilename( const CString value )
     {
@@ -88,7 +88,7 @@ public:
 #endif
 
 private:
-    ZFile    m_File;
+    PSS_File m_File;
 };
 
 #endif // !defined(AFX_ZBWORKSPACEFILEENTITY_H__D0AD894D_7827_44C4_90DC_EE82005CFD7B__INCLUDED_)

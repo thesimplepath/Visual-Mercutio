@@ -5,7 +5,7 @@
 #include "ActEvtToDoMgr.h"
 #include "ActEvtFl.h"
 #include "zBaseLib\ZDirectory.h"
-#include "zBaseLib\File.h"
+#include "zBaseLib\PSS_File.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -33,7 +33,7 @@ ZBEvent*    ZBActivityEventToDoManager::LoadEventFromFile( const CString Filenam
         pEvent->IsKindOf(RUNTIME_CLASS(ZBEventActivity)) && 
         ((ZBEventActivity*)pEvent)->GetActivityEventType() == ToDoActivity)
     {
-        ZFile    File(Filename);
+        PSS_File File(Filename);
         CString    Path = ZDirectory::NormalizeDirectory( File.GetFilePath() );
         // If are not in root directory
         if (Path.CompareNoCase( GetRootDirectory() ) != 0)

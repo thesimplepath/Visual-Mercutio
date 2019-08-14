@@ -10,7 +10,7 @@
 
 #include "ZUFileLauncher.h"
 
-#include "FileDlg.h"
+#include "PSS_FileDialog.h"
 
 #include "zBaseLibRes.h"
 #include "MsgBox.h"
@@ -42,7 +42,7 @@ ZBWorkspaceFileEntity::~ZBWorkspaceFileEntity()
 
 HICON ZBWorkspaceFileEntity::GetFilenameIcon() const
 {
-    int IconIndex = const_cast<ZFile&>( m_File ).GetIconIndex();
+    int IconIndex = const_cast<PSS_File&>( m_File ).GetIconIndex();
 
     if ( IconIndex < 0 )
     {
@@ -72,12 +72,12 @@ bool ZBWorkspaceFileEntity::OpenFile()
             strFilter += _T( "*.*" );
             strFilter += (char)'\0';            // Last string
 
-            ZIFileDialog FileDialog( title, strFilter, 1 );
+            PSS_FileDialog fileDialog( title, strFilter, 1 );
 
-            if ( FileDialog.DoModal() == IDOK )
+            if ( fileDialog.DoModal() == IDOK )
             {
-                // Assigns the new filename
-                m_File.SetCompleteFileName( FileDialog.GetFilename() );
+                // Assigns the new file name
+                m_File.SetCompleteFileName( fileDialog.GetFileName() );
             }
             else
             {

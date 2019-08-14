@@ -9,7 +9,7 @@
 #include "zBaseLib\ZBTokenizer.h"
 #include "zBaseLib\ZNetResourceWrapper.h"
 #include "zBaseLib\TmplFile.h"
-#include "zBaseLib\File.h"
+#include "zBaseLib\PSS_File.h"
 #include "zWinUtil32\PSS_ReferenceFileDialog.h"
 #include "ProcGraphModelMdl.h"
 
@@ -337,7 +337,7 @@ bool ZBExtFilePropertyMgr::ProcessExtendedInput( ZBProperty&    Property,
         if (refFileDlg.DoModal() == IDOK)
         {
             value = refFileDlg.GetReference();
-            ZFile file(refFileDlg.GetReference());
+            PSS_File file(refFileDlg.GetReference());
 
             if ( file.Exist() )
             {
@@ -409,7 +409,7 @@ bool ZBExtFilePropertyMgr::DoInsertExtFile( bool DisplayDialog /*= true*/ )
 
             if (refFileDlg.DoModal() == IDOK)
             {
-                ZFile file(refFileDlg.GetReference());
+                PSS_File file(refFileDlg.GetReference());
 
                 if ( file.Exist() )
                 {
@@ -450,7 +450,7 @@ bool ZBExtFilePropertyMgr::AcceptDropItem( CObject* pObj, CPoint pt )
         if ( ISA( pObj, ZNetResourceWrapper ) )
         {
             // If an executable, not allowed
-            ZFile file( ( (ZNetResourceWrapper*)pObj )->GetFilename() );
+            PSS_File file( ( (ZNetResourceWrapper*)pObj )->GetFilename() );
 
             if ( file.GetFileExt().CompareNoCase( _T( ".exe" ) ) == 0 ||
                  file.GetFileExt().CompareNoCase( _T( ".com" ) ) == 0 ||
@@ -497,7 +497,7 @@ bool ZBExtFilePropertyMgr::DropItem( CObject* pObj, CPoint pt )
         // If it is a file, add it
         if ( Idx >= 0 && ISA( pObj, ZNetResourceWrapper ) )
         {
-            ZFile file( ( (ZNetResourceWrapper*)pObj )->GetFilename() );
+            PSS_File file( ( (ZNetResourceWrapper*)pObj )->GetFilename() );
 
             if ( file.Exist() )
             {

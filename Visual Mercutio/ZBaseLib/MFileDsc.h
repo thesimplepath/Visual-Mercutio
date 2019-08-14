@@ -26,7 +26,7 @@
 //## end module%366EBC24022D.includes
 
 // FileMg
-#include "FileMg.h"
+#include "PSS_FileManager.h"
 //## begin module%366EBC24022D.declarations preserve=no
 //## end module%366EBC24022D.declarations
 
@@ -70,10 +70,10 @@ class AFX_EXT_CLASS ZUMailFileDescription
 
     //## Constructors (specified)
       //## Operation: ZUMailFileDescription%913223370
-      ZUMailFileDescription (CStringArray& FileList, AttachementType AttachType = InsertedFile);
+      ZUMailFileDescription (CStringArray& FileList, PSS_File::IEAttachementType AttachType = PSS_File::IE_AT_InsertedFile);
 
       //## Operation: ZUMailFileDescription%913659110
-      ZUMailFileDescription (ZFileManager& FileList, AttachementType AttachType = InsertedFile);
+      ZUMailFileDescription (PSS_FileManager& FileList, PSS_File::IEAttachementType AttachType = PSS_File::IE_AT_InsertedFile);
 
     //## Destructor (generated)
       ~ZUMailFileDescription();
@@ -81,18 +81,18 @@ class AFX_EXT_CLASS ZUMailFileDescription
 
     //## Other Operations (specified)
       //## Operation: Fill%913223371
-      void Fill (CStringArray& FileList, AttachementType AttachType = InsertedFile);
+      void Fill (CStringArray& FileList, PSS_File::IEAttachementType AttachType = PSS_File::IE_AT_InsertedFile);
 
       //## Operation: Fill%913659108
-      void Fill (ZFileManager& FileList, AttachementType AttachType = InsertedFile);
+      void Fill (PSS_FileManager& FileList, PSS_File::IEAttachementType AttachType = PSS_File::IE_AT_InsertedFile);
 
       //## Operation: AddFile%913223372
       //    Returns true of done.
-      BOOL AddFile (CString& File, AttachementType AttachType = InsertedFile);
+      BOOL AddFile (CString& File, PSS_File::IEAttachementType AttachType = PSS_File::IE_AT_InsertedFile);
 
       //## Operation: AddFile%913659109
       //    Returns true of done.
-      BOOL AddFile (ZFile& File, AttachementType AttachType = InsertedFile);
+      BOOL AddFile (PSS_File& File, PSS_File::IEAttachementType AttachType = PSS_File::IE_AT_InsertedFile);
 
       //## Operation: GetCount%913223373
       int GetCount () const;
@@ -111,8 +111,8 @@ class AFX_EXT_CLASS ZUMailFileDescription
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: AttachementType%36724CCB01A5
-      const AttachementType GetAttachementType () const;
-      void SetAttachementType (AttachementType value);
+      const PSS_File::IEAttachementType GetAttachementType () const;
+      void SetAttachementType (PSS_File::IEAttachementType value);
 
     // Additional Public Declarations
       //## begin ZUMailFileDescription%366EBAA60269.public preserve=yes
@@ -143,7 +143,7 @@ class AFX_EXT_CLASS ZUMailFileDescription
       //## end ZUMailFileDescription::FileArray%366EBBC80068.attr
 
       //## begin ZUMailFileDescription::AttachementType%36724CCB01A5.attr preserve=no  public: AttachementType {U} 
-      AttachementType m_AttachementType;
+      PSS_File::IEAttachementType m_AttachementType;
       //## end ZUMailFileDescription::AttachementType%36724CCB01A5.attr
 
       //## Attribute: HyperLinkText%367254160196
@@ -169,7 +169,7 @@ class AFX_EXT_CLASS ZUMailFileDescription
 
 
 //## Other Operations (inline)
-inline BOOL ZUMailFileDescription::AddFile (CString& File, AttachementType AttachType)
+inline BOOL ZUMailFileDescription::AddFile (CString& File, PSS_File::IEAttachementType AttachType)
 {
   //## begin ZUMailFileDescription::AddFile%913223372.body preserve=yes
       m_AttachementType = AttachType;
@@ -193,22 +193,18 @@ inline void ZUMailFileDescription::RemoveAllFiles ()
 
 //## Get and Set Operations for Class Attributes (inline)
 
-inline const AttachementType ZUMailFileDescription::GetAttachementType () const
+inline const PSS_File::IEAttachementType ZUMailFileDescription::GetAttachementType () const
 {
   //## begin ZUMailFileDescription::GetAttachementType%36724CCB01A5.get preserve=no
   return m_AttachementType;
   //## end ZUMailFileDescription::GetAttachementType%36724CCB01A5.get
 }
 
-inline void ZUMailFileDescription::SetAttachementType (AttachementType value)
+inline void ZUMailFileDescription::SetAttachementType (PSS_File::IEAttachementType value)
 {
   //## begin ZUMailFileDescription::SetAttachementType%36724CCB01A5.set preserve=no
   m_AttachementType = value;
   //## end ZUMailFileDescription::SetAttachementType%36724CCB01A5.set
 }
-
-//## begin module%366EBC24022D.epilog preserve=yes
-//## end module%366EBC24022D.epilog
-
 
 #endif

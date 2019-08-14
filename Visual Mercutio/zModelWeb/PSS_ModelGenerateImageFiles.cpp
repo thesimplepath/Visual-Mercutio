@@ -11,7 +11,7 @@
 
 // processsoft
 #include "zBaseLib\ZBServer.h"
-#include "zBaseLib\File.h"
+#include "zBaseLib\PSS_File.h"
 #include "zBaseLib\ZUStringFormater.h"
 #include "zBaseLib\ZAGlobal.h"
 #include "zModel\ProcGraphModelMdl.h"
@@ -120,7 +120,7 @@ bool PSS_ModelGenerateImageFiles::OnStart()
         }
         else
         {
-            ZFile file(m_pInfo->GetImageFilename());
+            PSS_File file(m_pInfo->GetImageFilename());
             m_InternalLogoFileName = file.GetFileName();
             ZDirectory::CopyFileFromToDirectory(file.GetFilePath(), m_ImageDirectory, m_InternalLogoFileName);
         }
@@ -283,8 +283,8 @@ CString PSS_ModelGenerateImageFiles::BuildFileNameAndPath(const CString& fileNam
         return fileName;
 
     // if path is relative, run through the path and replace its location
-    ZFile refFile(refFileName);
-    ZFile File(fileName);
+    PSS_File refFile(refFileName);
+    PSS_File File(fileName);
 
     CString refFilePath(refFile.GetFilePath());
     LPTSTR  pRefFilePath = refFilePath.GetBuffer(refFilePath.GetLength());

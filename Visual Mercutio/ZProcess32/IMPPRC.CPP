@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ImpPrc.h"
 // FileDlg
-#include "zBaseLib\FileDlg.h"
+#include "zBaseLib\PSS_FileDialog.h"
 
 #include "zBaseLib\MsgBox.h"
 
@@ -58,10 +58,10 @@ void ZIImportProcess::OnSelect()
     strFilter += "*.*";
     strFilter += (char)'\0';        // last string
 
-    ZIFileDialog    FileDialog( title, strFilter, 1 );
-    if (FileDialog.DoModal() == IDOK)
+    PSS_FileDialog fileDialog( title, strFilter, 1 );
+    if (fileDialog.DoModal() == IDOK)
     {
-        m_File = FileDialog.GetFilename();
+        m_File = fileDialog.GetFileName();
         UpdateData( FALSE );
     }
     

@@ -8,17 +8,17 @@
 //---------------------------------------------------------------------------
 ZUMailFileDescription::ZUMailFileDescription() :
     m_MapiFileDescPtr(NULL),
-    m_AttachementType(InsertedFile)
+    m_AttachementType(PSS_File::IE_AT_InsertedFile)
 {}
 //---------------------------------------------------------------------------
-ZUMailFileDescription::ZUMailFileDescription (CStringArray& fileList, AttachementType attachType) :
+ZUMailFileDescription::ZUMailFileDescription (CStringArray& fileList, PSS_File::IEAttachementType attachType) :
     m_MapiFileDescPtr(NULL),
     m_AttachementType(attachType)
 {
     Fill(fileList, attachType);
 }
 //---------------------------------------------------------------------------
-ZUMailFileDescription::ZUMailFileDescription (ZFileManager& fileList, AttachementType attachType) :
+ZUMailFileDescription::ZUMailFileDescription(PSS_FileManager& fileList, PSS_File::IEAttachementType attachType) :
     m_MapiFileDescPtr(NULL)
 {
     Fill(fileList, attachType);
@@ -30,7 +30,7 @@ ZUMailFileDescription::~ZUMailFileDescription()
         delete[] m_MapiFileDescPtr;
 }
 //---------------------------------------------------------------------------
-void ZUMailFileDescription::Fill(CStringArray& FileList, AttachementType AttachType)
+void ZUMailFileDescription::Fill(CStringArray& FileList, PSS_File::IEAttachementType AttachType)
 {
     RemoveAllFiles();
 
@@ -38,7 +38,7 @@ void ZUMailFileDescription::Fill(CStringArray& FileList, AttachementType AttachT
         AddFile(FileList[i]);
 }
 //---------------------------------------------------------------------------
-void ZUMailFileDescription::Fill(ZFileManager& FileList, AttachementType AttachType)
+void ZUMailFileDescription::Fill(PSS_FileManager& FileList, PSS_File::IEAttachementType AttachType)
 {
     RemoveAllFiles();
     
@@ -46,7 +46,7 @@ void ZUMailFileDescription::Fill(ZFileManager& FileList, AttachementType AttachT
         AddFile( *FileList.GetAt(i) );
 }
 //---------------------------------------------------------------------------
-BOOL ZUMailFileDescription::AddFile(ZFile& File, AttachementType AttachType)
+BOOL ZUMailFileDescription::AddFile(PSS_File& File, PSS_File::IEAttachementType AttachType)
 {
     SetAttachementType(File.GetAttachementType());
     return (m_FileArray.Add(File.GetCompleteFileName()) >= 0);

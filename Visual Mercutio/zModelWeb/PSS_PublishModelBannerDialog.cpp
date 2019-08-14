@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\MsgBox.h"
-#include "zBaseLib\File.h"
+#include "zBaseLib\PSS_File.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -71,7 +71,7 @@ void PSS_PublishModelBannerDialog::OnOK()
     // check the image reference
     m_Image.GetWindowText(m_ImageFilename);
 
-    if (!m_ImageFilename.IsEmpty() && !ZFile::Exist(m_ImageFilename))
+    if (!m_ImageFilename.IsEmpty() && !PSS_File::Exist(m_ImageFilename))
     {
         MsgBox mbox;
         mbox.DisplayMsgBox(IDS_IMAGEFILENAME_NOTFOUND, MB_OK);

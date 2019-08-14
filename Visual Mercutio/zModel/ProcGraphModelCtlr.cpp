@@ -21,7 +21,7 @@
 #include "zBaseLib\ZBToolbarObserverMsg.h"
 
 // FileDlg
-#include "zBaseLib\FileDlg.h"
+#include "zBaseLib\PSS_FileDialog.h"
 
 #include "zProperty\ZBPropertyObserverMsg.h"
 #include "zProperty\ZBDynamicProperties.h"
@@ -5454,15 +5454,15 @@ BOOL ZDProcessGraphModelController::AskImageFilename( CString& Filename )
     strFilter += _T( "*.tif" );
     strFilter += (char)'\0';        // last string
 
-    ZIFileDialog FileDialog( title, strFilter, 6, _T( "" ) );
+    PSS_FileDialog fileDialog( title, strFilter, 6, _T( "" ) );
 
-    if ( FileDialog.DoModal() == IDCANCEL )
+    if ( fileDialog.DoModal() == IDCANCEL )
     {
         Filename = _T( "" );
         return FALSE;
     }
 
-    Filename = FileDialog.GetFilename();
+    Filename = fileDialog.GetFileName();
     return TRUE;
 }
 

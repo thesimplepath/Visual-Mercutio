@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ZBUnit.h"
 #include "ProcGraphModelDoc.h"
-#include "zBaseLib\File.h"
+#include "zBaseLib\PSS_File.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -81,7 +81,7 @@ CString    ZBUnit::CreateUniqueKey()
 bool ZBUnit::LoadUnit( PSS_ProcessModelDocTmpl* pDocTmpl )
 {
     // Check if the file exists
-    ZFile File( m_Filename );
+    PSS_File File( m_Filename );
 
     if ( !File.Exist() )
     {

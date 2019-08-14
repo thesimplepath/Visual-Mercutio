@@ -12,7 +12,7 @@
 #include "ZBModelObserverMsg.h"
 
 // FileDlg
-#include "zBaseLib\FileDlg.h"
+#include "zBaseLib\PSS_FileDialog.h"
 
 #include "zRes32\zRes.h"
 #include "zBaseLib\MsgBox.h"
@@ -1147,16 +1147,16 @@ bool ZIProcessGraphModelView::ChooseExportModelToImageFile()
     strFilter += _T( "*.tif" );
     strFilter += (char)'\0';        // last string
 
-    ZIFileDialog FileDialog( title, strFilter, 6, _T( "" ) );
+    PSS_FileDialog fileDialog( title, strFilter, 6, _T( "" ) );
 
-    if ( FileDialog.DoModal() == IDCANCEL )
+    if ( fileDialog.DoModal() == IDCANCEL )
     {
         return false; 
     }
 
     CClientDC attribDC( this );
 
-    if ( !ExportModelToImageFile( FileDialog.GetFilename(), attribDC ) )
+    if ( !ExportModelToImageFile( fileDialog.GetFileName(), attribDC ) )
     {
         // In write mode no chance, file corruption
         MsgBox mbox;

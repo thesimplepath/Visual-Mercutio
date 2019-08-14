@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\ZUSystemOption.h"
-#include "File.h"
+#include "PSS_File.h"
 #include "ZARadio.h"
 #include "ZASquare.h"
 #include "ZABnText.h"
@@ -306,7 +306,7 @@ BOOL PSS_ObjectUtility::InitializeDefinition(const CString& iniFileName)
     Release();
 
     // check if the file exists
-    ZFile file(iniFileName);
+    PSS_File file(iniFileName);
 
     if (!file.Exist())
         return FALSE;

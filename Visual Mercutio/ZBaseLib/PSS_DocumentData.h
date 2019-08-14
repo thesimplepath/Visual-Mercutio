@@ -25,7 +25,7 @@
 
 // forward class declarations
 class ZDDocument;
-class ZBFileBuffer;
+class PSS_FileBuffer;
 class PlanFinObject;
 class PSS_FieldRepository;
 class ZIView;
@@ -554,7 +554,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         * Gets the file buffer
         *@return the file buffer, NULL on error
         */
-        virtual inline ZBFileBuffer* GetFileBuffer();
+        virtual inline PSS_FileBuffer* GetFileBuffer();
 
         /**
         * Checks if is a form data
@@ -839,7 +839,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
 
     private:
         ZDDocument*     m_pDocument;
-        ZBFileBuffer*   m_pFileBuffer;
+        PSS_FileBuffer* m_pFileBuffer;
         ZDStamp         m_Stamp;
         ZASchemaManager m_Schema;
         ZAFontManager   m_FontManager;
@@ -1027,7 +1027,7 @@ void PSS_DocumentData::SetReadOnlyAtRuntime(BOOL value)
     m_ReadOnlyAtRuntime = value;
 }
 //---------------------------------------------------------------------------
-ZBFileBuffer* PSS_DocumentData::GetFileBuffer()
+PSS_FileBuffer* PSS_DocumentData::GetFileBuffer()
 {
     return m_pFileBuffer;
 }

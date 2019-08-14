@@ -9,7 +9,7 @@
 #include "PSS_ExportPage.h"
 
 // processsoft
-#include "zBaseLib\FileDlg.h"
+#include "zBaseLib\PSS_FileDialog.h"
 #include "zBaseLib\PSS_Export.h"
 
 #ifdef _DEBUG

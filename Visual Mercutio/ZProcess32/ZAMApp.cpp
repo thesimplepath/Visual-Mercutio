@@ -51,7 +51,7 @@
 #endif // _EVALUATION_VERSION
 
 // FileDlg
-#include "zBaseLib\FileDlg.h"
+#include "zBaseLib\PSS_FileDialog.h"
 // BObjUtil
 #include "zBaseLib\PSS_ObjectUtility.h"
 
@@ -826,7 +826,7 @@ CString ZAMainApp::GetApplicationDir() const
 
         if ( GetModuleFileName( hInstance, lpszModule, _MAX_PATH ) )
         {
-            ZFile File( lpszModule );
+            PSS_File File( lpszModule );
             appDir = ZDirectory::NormalizeDirectory( File.GetFilePath() );
         }
 
@@ -2093,7 +2093,7 @@ BOOL ZAMainApp::OpenServerSession()
             }
 
             // Initialize the server with default values
-            ZFile file( GetServerIniFile() );
+            PSS_File file( GetServerIniFile() );
             CString ServerIniFile = GetServer().CreateInitialEnvironment( file.GetFilePath() );
 
             // Then asks the server to create an initial environement

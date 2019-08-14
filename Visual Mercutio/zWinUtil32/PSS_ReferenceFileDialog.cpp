@@ -9,7 +9,7 @@
 #include "PSS_ReferenceFileDialog.h"
 
 // processsoft
-#include "zBaseLib\FileDlg.h"
+#include "zBaseLib\PSS_FileDialog.h"
 #include "zBaseLib\ZAGlobal.h"
 #include "PSS_NewFormDialog.h"
 #include "PSS_UrlInputDialog.h"
@@ -92,11 +92,11 @@ void PSS_ReferenceFileDialog::OnAddfile()
     filters += _T("*.*");
     filters += (char)'\0';
 
-    ZIFileDialog fileDialog(IDS_SELECT_A_FILE, filters, 1);
+    PSS_FileDialog fileDialog(IDS_SELECT_A_FILE, filters, 1);
 
     if (fileDialog.DoModal() == IDOK)
     {
-        CString fileName = fileDialog.GetFilename();
+        CString fileName = fileDialog.GetFileName();
 
         // is empty?
         if (!fileName.IsEmpty())

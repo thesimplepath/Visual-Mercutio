@@ -13,7 +13,7 @@
 #include "ZVRiskNewFileDlg.h"
 
 #include "zBaseLib\ZDTextFile.h"
-#include "zBaseLib\file.h"
+#include "zBaseLib\PSS_File.h"
 
 #include "zBaseLib\MsgBox.h"
 
@@ -189,7 +189,7 @@ void ZVRiskModifyStaticDlg::OnBnClickedStaticNewFile()
 // Cette fonction est appelée lorsque l'utilisateur clique sur le bouton OK.
 void ZVRiskModifyStaticDlg::OnBnClickedOk()
 {
-    ZFile m_File;
+    PSS_File m_File;
 
     if ( m_File.Exist( m_Filename ) == TRUE )
     {
