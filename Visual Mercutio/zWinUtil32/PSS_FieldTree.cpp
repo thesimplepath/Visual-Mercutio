@@ -77,7 +77,7 @@ void PSS_FieldTree::Refresh()
     CreateTree();
 }
 //---------------------------------------------------------------------------
-ZAObjectDefinition* PSS_FieldTree::GetSelectedRepositoryField()
+PSS_FieldObjectDefinition* PSS_FieldTree::GetSelectedRepositoryField()
 {
     if (!m_pTreeCtrl)
         return NULL;
@@ -85,7 +85,7 @@ ZAObjectDefinition* PSS_FieldTree::GetSelectedRepositoryField()
     HTREEITEM hSelected = m_pTreeCtrl->GetSelectedItem();
 
     if (hSelected)
-        return dynamic_cast<ZAObjectDefinition*>((CObject*)m_pTreeCtrl->GetItemData(hSelected));
+        return dynamic_cast<PSS_FieldObjectDefinition*>((CObject*)m_pTreeCtrl->GetItemData(hSelected));
 
     return NULL;
 }
@@ -137,13 +137,13 @@ HTREEITEM PSS_FieldTree::AddDocumentItem(PSS_DocumentData* pData, HTREEITEM hPar
     return m_pTreeCtrl->InsertItem(&curTreeItem);
 }
 //---------------------------------------------------------------------------
-void PSS_FieldTree::AddRepositoryFieldItem(ZAObjectDefinition* pField, HTREEITEM hParentTreeItem)
+void PSS_FieldTree::AddRepositoryFieldItem(PSS_FieldObjectDefinition* pField, HTREEITEM hParentTreeItem)
 {
     TV_INSERTSTRUCT curTreeItem;
     curTreeItem.hParent             = hParentTreeItem;
     curTreeItem.hInsertAfter        = TVI_LAST;
-    curTreeItem.item.iImage         = GetItemIndex(pField->GetpObject());
-    curTreeItem.item.iSelectedImage = GetItemIndex(pField->GetpObject());
+    curTreeItem.item.iImage         = GetItemIndex(pField->GetObject());
+    curTreeItem.item.iSelectedImage = GetItemIndex(pField->GetObject());
     curTreeItem.item.pszText        = (char*)((const char*)pField->GetFieldName());
     curTreeItem.item.lParam         = LPARAM(pField);
     curTreeItem.item.mask           = TVIF_IMAGE | TVIF_TEXT | TVIF_SELECTEDIMAGE | TVIF_PARAM;

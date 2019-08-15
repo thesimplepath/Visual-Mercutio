@@ -137,7 +137,7 @@ void PSS_BaseDocument::Serialize(CArchive& ar)
     }
 }
 //---------------------------------------------------------------------------
-int PSS_BaseDocument::ReadFileStamp(CArchive& archive, ZDFolderStamp& stamp)
+int PSS_BaseDocument::ReadFileStamp(CArchive& archive, PSS_FolderStamp& stamp)
 {
     WORD fileStamp = 0;
 
@@ -145,20 +145,20 @@ int PSS_BaseDocument::ReadFileStamp(CArchive& archive, ZDFolderStamp& stamp)
     {
         archive >> fileStamp;
     }
-        CATCH(CArchiveException, e)
+    CATCH (CArchiveException, e)
     {
         return 0;
     }
     END_CATCH
 
-        // check if the stamp has been set for next generation of files
-        if (fileStamp == 0xFFFF)
-            archive >> stamp;
+    // check if the stamp has been set for next generation of files
+    if (fileStamp == 0xFFFF)
+        archive >> stamp;
 
     return fileStamp;
 }
 //---------------------------------------------------------------------------
-void PSS_BaseDocument::WriteFileStamp(CArchive& archive, ZDFolderStamp& stamp)
+void PSS_BaseDocument::WriteFileStamp(CArchive& archive, PSS_FolderStamp& stamp)
 {
     // set the new version before writing the file
     stamp.SetInternalVersion(g_VersionFile);

@@ -26,7 +26,7 @@
 #endif
 
 // processsoft
-#include "zBaseLib\FlatBtn.h"
+#include "zBaseLib\PSS_FlatButton.h"
 #include "zBaseLib\ZCIntelliEdit.h"
 #include "zWeb\PSS_WebBrowser.h"
 
@@ -177,7 +177,7 @@ class AFX_EXT_CLASS PSS_UrlFormView : public CFormView
         PSS_WebBrowser*              m_pBrowser;
         PSS_UrlFormViewButtonToolBar m_FlatToolBar;
         PSS_AddressIntelliEdit       m_URLEdit;
-        ZCFlatButton                 m_GoButton;
+        PSS_FlatButton               m_GoButton;
         CStringArray                 m_ValueArray;
         CString                      m_URL;
 

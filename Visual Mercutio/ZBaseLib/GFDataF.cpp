@@ -46,7 +46,7 @@ const    char    FieldHeaderNameKey[] = "$$FieldHeaderName$$";
 
 
 
-ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed (CString Filename, PSS_FieldRepository* pFieldRepository, ZAObjectDefinition* pObjectDefinition, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
+ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed (CString Filename, PSS_FieldRepository* pFieldRepository, PSS_FieldObjectDefinition* pObjectDefinition, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
   //## begin ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed%937950157.hasinit preserve=no
   //## end ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed%937950157.hasinit
   //## begin ZUFieldDefinitionDataFeed::ZUFieldDefinitionDataFeed%937950157.initialization preserve=yes
@@ -84,7 +84,7 @@ ZUFieldDefinitionDataFeed::~ZUFieldDefinitionDataFeed()
 CString ZUFieldDefinitionDataFeed::GetExportedLine (CObject* pObj)
 {
   //## begin ZUFieldDefinitionDataFeed::GetExportedLine%937950158.body preserve=yes
-    ZAObjectDefinition*        pObjectDefinition = (ZAObjectDefinition*)pObj;
+    PSS_FieldObjectDefinition* pObjectDefinition = (PSS_FieldObjectDefinition*)pObj;
     if (!pObjectDefinition)
         return "";
 
@@ -328,16 +328,16 @@ BOOL ZUFieldDefinitionDataFeed::PostImport ()
     // No fieldname found, error
     if (FieldName.IsEmpty())
         return FALSE;
-    ZAObjectDefinition* pObjectDefinition = m_pSourceFieldRepository->FindField( FieldName );
+    PSS_FieldObjectDefinition* pObjectDefinition = m_pSourceFieldRepository->FindField( FieldName );
     if (!pObjectDefinition)
     {
         // Otherwise, create the class and add it to the repository
-        pObjectDefinition = new ZAObjectDefinition;
+        pObjectDefinition = new PSS_FieldObjectDefinition;
         if (!pObjectDefinition)
             return FALSE;
         pObjectDefinition->SetFieldName( FieldName );
         if (ClassName.IsEmpty())
-            pObjectDefinition->SetpObject( NULL );
+            pObjectDefinition->SetObject( NULL );
         else
         {
             // Set the class name
@@ -347,7 +347,7 @@ BOOL ZUFieldDefinitionDataFeed::PostImport ()
             // Set the fieldname
             pObj->SetObjectName( FieldName );
             // Assign it
-            pObjectDefinition->SetpObject( pObj );
+            pObjectDefinition->SetObject( pObj );
         }
         // Add the field to the repository
         m_pSourceFieldRepository->AddField( pObjectDefinition );

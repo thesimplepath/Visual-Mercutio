@@ -206,7 +206,7 @@ bool PSS_StateObject::Merge(PSS_StateObjectSet& others)
     return true;
 }
 //---------------------------------------------------------------------------
-void PSS_StateObject::Serialize (CArchive& ar)
+void PSS_StateObject::Serialize(CArchive& ar)
 {
     if (ar.IsStoring())
     {

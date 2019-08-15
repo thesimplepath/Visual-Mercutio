@@ -50,7 +50,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_FolderInfoCtrl
 //---------------------------------------------------------------------------
-PSS_FolderInfoCtrl::PSS_FolderInfoCtrl(ZDFolderStamp* pFolderStamp, BOOL canModify) :
+PSS_FolderInfoCtrl::PSS_FolderInfoCtrl(PSS_FolderStamp* pFolderStamp, BOOL canModify) :
     m_pFolderStamp(pFolderStamp),
     m_IsColumnBuilt(FALSE),
     m_CanModify(canModify)
@@ -69,7 +69,7 @@ const PSS_FolderInfoCtrl& PSS_FolderInfoCtrl::operator = (const PSS_FolderInfoCt
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-void PSS_FolderInfoCtrl::Initialize (ZDFolderStamp* pFolderStamp, BOOL removeAll, BOOL canModify)
+void PSS_FolderInfoCtrl::Initialize(PSS_FolderStamp* pFolderStamp, BOOL removeAll, BOOL canModify)
 {
     if (removeAll)
         DeleteAllItems();

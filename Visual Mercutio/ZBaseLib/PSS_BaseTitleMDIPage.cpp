@@ -94,7 +94,7 @@ void PSS_BaseTitleMDIPage::OnUpdateFrameTitle(BOOL addToTitle)
     else
         title = pDocument->GetTitle();
 
-    ZDFolderStamp& docStamp = pDocument->GetDocumentStamp();
+    PSS_FolderStamp& docStamp = pDocument->GetDocumentStamp();
 
     if (pDocument->DocumentIsTemplate())
         newTitle = m_TypeFile                      +

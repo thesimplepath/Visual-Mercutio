@@ -20,7 +20,7 @@
 #include "Mfc.h"
 
 // processsoft
-#include "zBaseLib\FldStamp.h"
+#include "zBaseLib\PSS_FolderStamp.h"
 #include "zBaseLib\ZIListCtrl.h"
 
 #ifdef _ZWINUTIL32EXPORT
@@ -45,7 +45,7 @@ class AFX_EXT_CLASS PSS_FolderInfoCtrl : public ZIListCtrl
         *@param pFolderStamp - folder stamp, can be NULL
         *@param canModify - if TRUE, folder can be modified
         */
-        PSS_FolderInfoCtrl(ZDFolderStamp* pFolderStamp = NULL, BOOL canModify = FALSE);
+        PSS_FolderInfoCtrl(PSS_FolderStamp* pFolderStamp = NULL, BOOL canModify = FALSE);
 
         virtual ~PSS_FolderInfoCtrl();
 
@@ -55,7 +55,7 @@ class AFX_EXT_CLASS PSS_FolderInfoCtrl : public ZIListCtrl
         *@param removeAll - if TRUE, all previous folder content will be removed
         *@param canModify - if TRUE, folder can be modified
         */
-        virtual void Initialize (ZDFolderStamp* pFolderStamp, BOOL removeAll = TRUE, BOOL canModify = FALSE);
+        virtual void Initialize(PSS_FolderStamp* pFolderStamp, BOOL removeAll = TRUE, BOOL canModify = FALSE);
 
         /**
         * Refreshes the control
@@ -68,17 +68,17 @@ class AFX_EXT_CLASS PSS_FolderInfoCtrl : public ZIListCtrl
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZDFolderStamp* m_pFolderStamp;
-        CString        m_FolderNameTitle;
-        CString        m_FolderDescriptionTitle;
-        CString        m_CreationUserTitle;
-        CString        m_CreationDateTitle;
-        CString        m_PublishVersionTitle;
-        CString        m_TypeTitle;
-        CString        m_TemplateNameTitle;
-        CString        m_TemplateFilenameTitle;
-        BOOL           m_IsColumnBuilt;
-        BOOL           m_CanModify;
+        PSS_FolderStamp* m_pFolderStamp;
+        CString          m_FolderNameTitle;
+        CString          m_FolderDescriptionTitle;
+        CString          m_CreationUserTitle;
+        CString          m_CreationDateTitle;
+        CString          m_PublishVersionTitle;
+        CString          m_TypeTitle;
+        CString          m_TemplateNameTitle;
+        CString          m_TemplateFilenameTitle;
+        BOOL             m_IsColumnBuilt;
+        BOOL             m_CanModify;
 
         /**
         * Copy constructor

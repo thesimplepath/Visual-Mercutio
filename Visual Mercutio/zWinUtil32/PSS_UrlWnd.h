@@ -28,7 +28,7 @@
 // processsoft
 #include "zBaseLib\ZISubject.h"
 #include "zBaseLib\ZIObserver.h"
-#include "zBaseLib\FlatBtn.h"
+#include "zBaseLib\PSS_FlatButton.h"
 #include "zBaseLib\ZCIntelliEdit.h"
 #include "zWeb\PSS_WebBrowser.h"
 
@@ -146,7 +146,7 @@ class AFX_EXT_CLASS PSS_UrlWnd : public CWnd, public ZISubject, public ZIObserve
         PSS_WebBrowser*              m_pBrowser;
         PSS_UrlWndAddressIntelliEdit m_URLEdit;
         PSS_UrlWndButtonToolBar      m_FlatToolBar;
-        ZCFlatButton                 m_GoButton;
+        PSS_FlatButton               m_GoButton;
         CStringArray                 m_ValueArray;
         CString                      m_URL;
         COLORREF                     m_ClrBtnFace;

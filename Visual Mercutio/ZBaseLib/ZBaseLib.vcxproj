@@ -286,25 +286,25 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="FlatBtn.cpp">
+    <ClCompile Include="PSS_FlatButton.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="FldDesc.cpp">
+    <ClCompile Include="PSS_FieldObjectDefinition.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="FldMng.cpp">
+    <ClCompile Include="PSS_GlobalFieldManager.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="fldstamp.cpp">
+    <ClCompile Include="PSS_FolderStamp.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -418,7 +418,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="palette.cpp">
+    <ClCompile Include="PSS_PaletteBar.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1369,10 +1369,10 @@
     <ClInclude Include="PSS_FileDialog.h" />
     <ClInclude Include="PSS_FileManager.h" />
     <ClInclude Include="PSS_FindFile.h" />
-    <ClInclude Include="FlatBtn.h" />
-    <ClInclude Include="FldDesc.h" />
-    <ClInclude Include="FldMng.h" />
-    <ClInclude Include="FldStamp.h" />
+    <ClInclude Include="PSS_FlatButton.h" />
+    <ClInclude Include="PSS_FieldObjectDefinition.h" />
+    <ClInclude Include="PSS_GlobalFieldManager.h" />
+    <ClInclude Include="PSS_FolderStamp.h" />
     <ClInclude Include="FLFDataF.h" />
     <ClInclude Include="formula.h" />
     <ClInclude Include="GFDataF.h" />
@@ -1391,7 +1391,7 @@
     <ClInclude Include="OutlookSplitterWnd.h" />
     <ClInclude Include="PaintOp.h" />
     <ClInclude Include="PaintRes.h" />
-    <ClInclude Include="palette.h" />
+    <ClInclude Include="PSS_PaletteBar.h" />
     <ClInclude Include="PersonDs.h" />
     <ClInclude Include="personls.h" />
     <ClInclude Include="PLANFOBJ.H" />

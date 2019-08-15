@@ -16,6 +16,11 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// class name mapping
+#ifndef PSS_DocumentData
+    #define PSS_DocumentData ZDDocumentData
+#endif
+
 // forward class declaration
 class ZDDocument;
 class PSS_DocumentData;

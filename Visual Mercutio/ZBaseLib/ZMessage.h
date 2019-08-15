@@ -24,7 +24,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "FlatBtn.h"
+#include "PSS_FlatButton.h"
 
 extern AFX_EXTENSION_MODULE g_zBaseLibDLL;
 
@@ -165,8 +165,8 @@ class AFX_EXT_CLASS ZIMessage : public ZIDialog  //## Inherits: <unnamed>%36DEE3
     // Dialog Data
     //{{AFX_DATA(ZIMessage)
     enum { IDD = IDD_MESSAGEDLG };
-    ZCFlatButton    m_CloseButton;
-    CStatic    m_icnApp;
+    PSS_FlatButton m_CloseButton;
+    CStatic        m_icnApp;
     //}}AFX_DATA
 
     HCURSOR            m_Cursor;

@@ -960,7 +960,7 @@ void ZDProcessGraphModelControllerBP::OnLinktoFilePackage()
         }
 
         // Check if it is a unit
-        ZDFolderStamp FolderStamp;
+        PSS_FolderStamp FolderStamp;
 
         if ( !FolderStamp.ReadFromFile(fileDialog.GetFileName() ) )
         {

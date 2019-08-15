@@ -14,11 +14,7 @@
 #ifndef ZDDoc_h
 #define ZDDoc_h 1
 
-//## begin module%35CC307B0030.additionalIncludes preserve=no
-//## end module%35CC307B0030.additionalIncludes
-
-//## begin module%35CC307B0030.includes preserve=yes
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -26,24 +22,20 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-
-// DocOpt
+// processsoft
 #include "PSS_DocumentOptions.h"
-// HistFMng
 #include "HistFMng.h"
-// FldStamp
-//#include "FldStamp.h"
-// BaseDoc
 #include "PSS_BaseDocument.h"
-// Formula Manager
 #include "Formula.h"
-// The font manager
 #include "ZAFontMg.h"
-// The style manager
 #include "ZAStylMg.h"
 
-// Forward class declaration
+// class name mapping
+#ifndef PSS_DocumentData
+    #define PSS_DocumentData ZDDocumentData
+#endif
+
+// forward class declaration
 class ZIHtmlView;
 class ZIView;
 class PSS_Edit;
@@ -52,16 +44,14 @@ class PSS_DocumentData;
 class PlanFinObject;
 class PSS_FieldRepository;
 
-
-
 #ifdef _ZBASELIBEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 //#undef  AFX_DATA

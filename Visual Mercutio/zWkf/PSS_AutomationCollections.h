@@ -14,6 +14,17 @@
 
 #include "StdAfx.h"
 
+ // class name mapping
+#ifndef PSS_StateObject
+    #define PSS_StateObject ZBStateObject
+#endif
+#ifndef PSS_StateMachine
+    #define PSS_StateMachine ZBStateMachine
+#endif
+#ifndef PSS_StateLink
+    #define PSS_StateLink ZBStateLink
+#endif
+
 // forward class declaration
 class ZBSymbol;
 class ZBLinkSymbol;

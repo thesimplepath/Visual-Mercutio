@@ -62,7 +62,7 @@ class AFX_EXT_CLASS PSS_CommonFieldTreeCtrl : public ZITreeCtrl
         * Gets the selected field
         *@return the selected filed, NULL if no selection or on error
         */
-        virtual ZAObjectDefinition* GetSelectedField();
+        virtual PSS_FieldObjectDefinition* GetSelectedField();
 
         //{{AFX_MSG(PSS_CommonFieldTreeCtrl)
         //}}AFX_MSG
@@ -105,7 +105,7 @@ class AFX_EXT_CLASS PSS_CommonFieldTreeCtrl : public ZITreeCtrl
         * Adds a field item
         *@param pField - field item to add
         */
-        void AddFieldItem(ZAObjectDefinition* pField);
+        void AddFieldItem(PSS_FieldObjectDefinition* pField);
 
         /**
         * Adds a field history item

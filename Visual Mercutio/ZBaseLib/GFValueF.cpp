@@ -35,7 +35,7 @@
 
 
 
-ZUFieldValueDataFeed::ZUFieldValueDataFeed (CString Filename, PSS_FieldRepository* pFieldRepository, ZAObjectDefinition* pObjectDefinition, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
+ZUFieldValueDataFeed::ZUFieldValueDataFeed (CString Filename, PSS_FieldRepository* pFieldRepository, PSS_FieldObjectDefinition* pObjectDefinition, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
   //## begin ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696498.hasinit preserve=no
   //## end ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696498.hasinit
   //## begin ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696498.initialization preserve=yes
@@ -73,7 +73,7 @@ ZUFieldValueDataFeed::~ZUFieldValueDataFeed()
 CString ZUFieldValueDataFeed::GetExportedLine (CObject* pObj)
 {
   //## begin ZUFieldValueDataFeed::GetExportedLine%941696500.body preserve=yes
-    ZAObjectDefinition*        pObjectDefinition = (ZAObjectDefinition*)pObj;
+    PSS_FieldObjectDefinition* pObjectDefinition = (PSS_FieldObjectDefinition*)pObj;
     if (!pObjectDefinition || !m_pSourceFieldRepository)
         return "";
 

@@ -21,7 +21,7 @@ PSS_FieldRepository::PSS_FieldRepository() :
     m_ReadOnly(TRUE),
     m_IsValid(FALSE)
 {
-    m_GlobalFieldManager  = new ZAGlobalFieldManager();
+    m_GlobalFieldManager  = new PSS_GlobalFieldManager();
     m_HistoryValueManager = new ZAHistoryFieldManager();
     m_Document            = new ZDGlobalFieldDocument();
 }
@@ -118,11 +118,11 @@ BOOL PSS_FieldRepository::Import(PSS_FieldRepository& fieldRepository, BOOL repl
 
     for (int i = 0; i < fieldCount; ++i)
     {
-        ZAObjectDefinition* pObjectDefinition = fieldRepository.GetFieldAt(i);
+        PSS_FieldObjectDefinition* pObjectDefinition = fieldRepository.GetFieldAt(i);
 
         if (pObjectDefinition)
         {
-            ZAObjectDefinition* pSourceObjectDefinition = FindField(pObjectDefinition->GetFieldName());
+            PSS_FieldObjectDefinition* pSourceObjectDefinition = FindField(pObjectDefinition->GetFieldName());
 
             // if a source already exists and the replace flag is false, do nothing
             if (pSourceObjectDefinition && replaceExisting == FALSE)
@@ -140,11 +140,11 @@ BOOL PSS_FieldRepository::Import(PSS_FieldRepository& fieldRepository, BOOL repl
                 pSourceObjectDefinition->SetSorted(pObjectDefinition->IsSorted());
 
                 // if no object included
-                if (!pSourceObjectDefinition->GetpObject())
+                if (!pSourceObjectDefinition->GetObject())
                 {
                     // assign the object
                     pSourceObjectDefinition->SetClassName(pObjectDefinition->GetClassName());
-                    pSourceObjectDefinition->SetpObject(pObjectDefinition->GetpObject() ? pObjectDefinition->GetpObject()->Clone() : NULL);
+                    pSourceObjectDefinition->SetObject(pObjectDefinition->GetObject() ? pObjectDefinition->GetObject()->Clone() : NULL);
                 }
             }
 

@@ -5,7 +5,7 @@
 #define MdlWkfParam_h 1
 
 
-#include "zBaseLib\FldStamp.h"
+#include "zBaseLib\PSS_FolderStamp.h"
 #include "zBaseLib\ZWizard.h"
 
 #include "Resource.h"
@@ -24,7 +24,7 @@ public:
     ZVModelWorkflowParameters(BOOL Modify, ZDProcessGraphModelDoc* pDoc, ZDTemplateManager* pTemplateManager, CString FileExtension, CWnd* pParent = NULL);    // standard constructor
 
     // Get methods
-    ZDFolderStamp&    GetFolderStamp() { return m_FolderStamp; };
+    PSS_FolderStamp&    GetFolderStamp() { return m_FolderStamp; };
     bool            GetCheckConsistency() const { return m_CheckConsistency; };
     bool            GetSaveModelInWorkflow() const { return m_SaveModelInWkfFile; };
     bool            FileChooseExists() const { return m_FileExist; };
@@ -37,7 +37,7 @@ private:
     ZDTemplateManager*        m_pTemplateManager;
     CString                    m_FileExtension;
 // the folder stamp used to save information
-    ZDFolderStamp            m_FolderStamp;
+    PSS_FolderStamp            m_FolderStamp;
     bool                    m_CheckConsistency;
     bool                    m_SaveModelInWkfFile;
     bool                    m_FileExist;

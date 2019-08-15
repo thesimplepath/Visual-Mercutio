@@ -5,7 +5,7 @@
 #include "zWinUtil32\PSS_SearchEdit.h"
 #include "zBaseLib\ZIDialog.h"
 
-#include "zBaseLib\FldStamp.h"
+#include "zBaseLib\PSS_FolderStamp.h"
 
 // JMR-MODIF - Le 9 décembre 2007 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
@@ -20,7 +20,7 @@ public:
     // Standard constructor
     ZIModelTemplateCopyDlg( CString            FileExtension,
                             const CString    Directory,
-                            ZDFolderStamp*    pFolderStamp    = NULL,
+                           PSS_FolderStamp*    pFolderStamp    = NULL,
                             BOOL            AllowReplace    = FALSE,
                             CWnd*            pParent            = NULL );
 
@@ -79,7 +79,7 @@ protected:
 
 private:
 
-    ZDFolderStamp*    m_pFolderStamp;
+    PSS_FolderStamp*    m_pFolderStamp;
 
     CString            m_FileExtension;
     CString            m_Directory;

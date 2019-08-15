@@ -69,7 +69,7 @@ class AFX_EXT_CLASS ZUFieldValueDataFeed : public PSS_Export
       //## Operation: ZUFieldValueDataFeed%941696498
       //    Constructs an export class with the filename and the
       //    field definition manager.
-      ZUFieldValueDataFeed (CString Filename = "", PSS_FieldRepository* pFieldRepository = NULL, ZAObjectDefinition* pObjectDefinition = NULL, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, PSS_StatusBar* pStatusBar = NULL);
+      ZUFieldValueDataFeed (CString Filename = "", PSS_FieldRepository* pFieldRepository = NULL, PSS_FieldObjectDefinition* pObjectDefinition = NULL, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, PSS_StatusBar* pStatusBar = NULL);
 
       //## Operation: ZUFieldValueDataFeed%941696510
       //    Constructs an import class with the filename and a
@@ -95,7 +95,7 @@ class AFX_EXT_CLASS ZUFieldValueDataFeed : public PSS_Export
 
       //## Operation: Create%941696503
       //    Create the export class.
-      virtual void Create (CString Filename, PSS_FieldRepository* pFieldRepository = NULL, ZAObjectDefinition* pObjectDefinition = NULL, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, PSS_StatusBar* pStatusBar = NULL);
+      virtual void Create (CString Filename, PSS_FieldRepository* pFieldRepository = NULL, PSS_FieldObjectDefinition* pObjectDefinition = NULL, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, PSS_StatusBar* pStatusBar = NULL);
 
       //## Operation: Create%941696511
       //    Create the export class.
@@ -137,7 +137,7 @@ class AFX_EXT_CLASS ZUFieldValueDataFeed : public PSS_Export
       //## Attribute: pObjectDefinition%38212538027F
       //    Containe the object to export.
       //## begin ZUFieldValueDataFeed::pObjectDefinition%38212538027F.attr preserve=no  private: ZAObjectDefinition* {U} 
-      ZAObjectDefinition* m_pObjectDefinition;
+      PSS_FieldObjectDefinition* m_pObjectDefinition;
       //## end ZUFieldValueDataFeed::pObjectDefinition%38212538027F.attr
 
       //## Attribute: pValueArray%3821408B014F
@@ -170,7 +170,7 @@ class AFX_EXT_CLASS ZUFieldValueDataFeed : public PSS_Export
 
 
 //## Other Operations (inline)
-inline void ZUFieldValueDataFeed::Create (CString Filename, PSS_FieldRepository* pFieldRepository, ZAObjectDefinition* pObjectDefinition, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
+inline void ZUFieldValueDataFeed::Create (CString Filename, PSS_FieldRepository* pFieldRepository, PSS_FieldObjectDefinition* pObjectDefinition, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
 {
   //## begin ZUFieldValueDataFeed::Create%941696503.body preserve=yes
     m_pSourceFieldRepository = pFieldRepository;

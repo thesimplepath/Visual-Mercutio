@@ -69,7 +69,7 @@ void PSS_Edit::PreCreateEdit(BOOL                 designerMode,
     if (m_pFieldRepository && (pField = m_pFieldRepository->FindFieldHistory(m_pEditedObj->GetObjectName())))
         m_ReadOnly = pField->IsReadOnly();
 
-    ZAObjectDefinition* pObjectDefinition = NULL;
+    PSS_FieldObjectDefinition* pObjectDefinition = NULL;
 
     if (m_pFieldRepository && (pObjectDefinition = m_pFieldRepository->FindField(m_pEditedObj->GetObjectName())))
         m_IsSorted = pObjectDefinition->IsSorted();

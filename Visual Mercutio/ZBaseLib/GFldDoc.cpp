@@ -61,7 +61,7 @@ ZDGlobalFieldDocument::~ZDGlobalFieldDocument()
 }
 
 void ZDGlobalFieldDocument::Initialize ( const CString            Filename,
-                                         ZAGlobalFieldManager*    pGlobalFieldManager,
+                                        PSS_GlobalFieldManager*    pGlobalFieldManager,
                                          ZAHistoryFieldManager*    pHistoryValueManager )
 {
     //## begin ZDGlobalFieldDocument::Initialize%938959794.body preserve=yes
@@ -73,7 +73,7 @@ void ZDGlobalFieldDocument::Initialize ( const CString            Filename,
     //## end ZDGlobalFieldDocument::Initialize%938959794.body
 }
 
-void ZDGlobalFieldDocument::Initialize ( ZAGlobalFieldManager*    pGlobalFieldManager,
+void ZDGlobalFieldDocument::Initialize (PSS_GlobalFieldManager*    pGlobalFieldManager,
                                          ZAHistoryFieldManager*    pHistoryValueManager )
 {
     //## begin ZDGlobalFieldDocument::Initialize%938372464.body preserve=yes
@@ -84,7 +84,7 @@ void ZDGlobalFieldDocument::Initialize ( ZAGlobalFieldManager*    pGlobalFieldMa
 }
 
 BOOL ZDGlobalFieldDocument::ReadDocument ( const CString            Filename,
-                                           ZAGlobalFieldManager*    pGlobalFieldManager,
+                                          PSS_GlobalFieldManager*    pGlobalFieldManager,
                                            ZAHistoryFieldManager*    pHistoryValueManager)
 {
     //## begin ZDGlobalFieldDocument::ReadDocument%938242443.body preserve=yes

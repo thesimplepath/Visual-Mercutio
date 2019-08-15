@@ -33,6 +33,9 @@
     #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
+// old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
+#define PSS_ModelStateMachineDocument ZDModelStateMachineDocument
+
 /**
 * State machine document
 *@author Dominique Aigroz, Jean-Milost Reymond

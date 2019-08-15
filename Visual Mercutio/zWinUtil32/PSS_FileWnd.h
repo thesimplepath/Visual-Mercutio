@@ -28,7 +28,7 @@
 // processsoft
 #include "zBaseLib\ZISubject.h"
 #include "zBaseLib\ZIObserver.h"
-#include "zBaseLib\FlatBtn.h"
+#include "zBaseLib\PSS_FlatButton.h"
 #include "PSS_DirTreeCtrl.h"
 #include "PSS_SearchEdit.h"
 

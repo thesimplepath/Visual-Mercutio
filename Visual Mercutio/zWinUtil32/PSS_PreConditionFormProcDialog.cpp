@@ -9,7 +9,7 @@
 #include "PSS_PreConditionFormProcDialog.h"
 
 // processsoft
-#include "zBaseLib\FldStamp.h"
+#include "zBaseLib\PSS_FolderStamp.h"
 #include "zBaseLib\MsgBox.h"
 #include "zRes32\ZRes.h"
 
@@ -228,7 +228,7 @@ BOOL PSS_PreConditionFormProcDialog::CheckFiles()
 
         if ((m_FormNameArray.GetSize() > 0 && m_CurrentFormIndex <= m_FormNameArray.GetSize() - 1))
         {
-            ZDFolderStamp stamp;
+            PSS_FolderStamp stamp;
 
             if (!stamp.ReadFromFile(fileName))
             {

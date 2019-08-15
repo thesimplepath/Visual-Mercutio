@@ -29,7 +29,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 PSS_TemplateCopyDialog::PSS_TemplateCopyDialog(ZDTemplateManager* pTemplateManager,
                                                const CString&     fileExtension,
-                                               ZDFolderStamp*     pFolderStamp,
+                                               PSS_FolderStamp*   pFolderStamp,
                                                BOOL               allowReplace,
                                                CWnd*              pParent) :
     ZIDialog(PSS_TemplateCopyDialog::IDD, TRUE, pParent),

@@ -70,7 +70,7 @@ class AFX_EXT_CLASS PSS_FieldTree
         * Gets the selected repository field
         *@return the selected repository field, NULL if not found or on error
         */
-        virtual ZAObjectDefinition* GetSelectedRepositoryField();
+        virtual PSS_FieldObjectDefinition* GetSelectedRepositoryField();
 
         /**
         * Gets the selected document field
@@ -116,7 +116,7 @@ class AFX_EXT_CLASS PSS_FieldTree
         *@param pField - repository field to add
         *@param hParentTreeItem - parent tree in which the item will be added
         */
-        virtual void AddRepositoryFieldItem(ZAObjectDefinition* pField, HTREEITEM hParentTreeItem);
+        virtual void AddRepositoryFieldItem(PSS_FieldObjectDefinition* pField, HTREEITEM hParentTreeItem);
 
         /**
         * Adds a document field item

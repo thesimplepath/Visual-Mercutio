@@ -16,8 +16,11 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
+#define PSS_BaseDocument ZDBaseDocument
+
 // processsoft
-#include "FldStamp.h"
+#include "PSS_FolderStamp.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -59,7 +62,7 @@ class AFX_EXT_CLASS PSS_BaseDocument : public CDocument
         * Gets the document file stamp
         *@return the document file stamp
         */
-        virtual inline ZDFolderStamp& GetDocumentStamp();
+        virtual inline PSS_FolderStamp& GetDocumentStamp();
 
         /**
         * Clears the path name
@@ -201,14 +204,14 @@ class AFX_EXT_CLASS PSS_BaseDocument : public CDocument
         *@param[out] stamp - folder stamp to read
         *@return the file stamp
         */
-        static int ReadFileStamp(CArchive& archive, ZDFolderStamp& stamp);
+        static int ReadFileStamp(CArchive& archive, PSS_FolderStamp& stamp);
 
         /**
         * Writes the file stamp
         *@param archive - archive in which file stamp should be written
         *@param stamp - file stamp to write
         */
-        static void WriteFileStamp(CArchive& archive, ZDFolderStamp& stamp);
+        static void WriteFileStamp(CArchive& archive, PSS_FolderStamp& stamp);
 
         /**
         * Asserts the class validity
@@ -240,7 +243,7 @@ class AFX_EXT_CLASS PSS_BaseDocument : public CDocument
         virtual inline BOOL RequestSaveTemplate(const CString& userName = _T(""));
 
     private:
-        ZDFolderStamp m_DocumentStamp;
+        PSS_FolderStamp m_DocumentStamp;
 
         /**
         * Copy constructor
@@ -257,9 +260,9 @@ class AFX_EXT_CLASS PSS_BaseDocument : public CDocument
 };
 
 //---------------------------------------------------------------------------
-// PSS_BaseDocument
+// PSS_FolderStamp
 //---------------------------------------------------------------------------
-ZDFolderStamp& PSS_BaseDocument::GetDocumentStamp()
+PSS_FolderStamp& PSS_BaseDocument::GetDocumentStamp()
 {
     return m_DocumentStamp;
 }

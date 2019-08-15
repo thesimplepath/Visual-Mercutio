@@ -23,18 +23,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FlatBtn.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FldDesc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FldMng.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fldstamp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FLFDataF.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -87,9 +75,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PaintRes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="palette.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="personds.cpp">
@@ -602,6 +587,21 @@
     <ClCompile Include="PSS_FindFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_PaletteBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FlatButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FieldObjectDefinition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_GlobalFieldManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FolderStamp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -717,18 +717,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FlatBtn.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FldDesc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FldMng.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FldStamp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FLFDataF.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -781,9 +769,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PaintRes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="palette.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PersonDs.h">
@@ -1300,6 +1285,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_FindFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_PaletteBar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FlatButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FieldObjectDefinition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_GlobalFieldManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FolderStamp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -153,7 +153,7 @@ BOOL ZIMessage::OnInitDialog()
     
     m_CloseButton.SetIcon(IDI_CLOSEWINDOW);
     m_CloseButton.SetBtnCursor( IDC_CLOSEWINDOW );
-    m_CloseButton.SetAlign( ZCFlatButton::ST_ALIGN_HORIZ_RIGHT );
+    m_CloseButton.SetAlign(PSS_FlatButton::IE_ST_ALIGN_HORZ_RIGHT);
     m_CloseButton.DrawTransparent();
 //    m_CloseButton.AutoLoad( IDC_CLOSEWINDOW, this );
     

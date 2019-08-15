@@ -78,7 +78,7 @@ void PSS_CommonFieldTreeCtrl::Refresh()
     CreateTree();
 }
 //---------------------------------------------------------------------------
-ZAObjectDefinition* PSS_CommonFieldTreeCtrl::GetSelectedField()
+PSS_FieldObjectDefinition* PSS_CommonFieldTreeCtrl::GetSelectedField()
 {
     HTREEITEM hSelected = GetSelectedItem();
 
@@ -87,7 +87,7 @@ ZAObjectDefinition* PSS_CommonFieldTreeCtrl::GetSelectedField()
         CObject* pObj = (CObject*)GetItemData(hSelected);
 
         if (pObj)
-            return dynamic_cast<ZAObjectDefinition*>(pObj);
+            return dynamic_cast<PSS_FieldObjectDefinition*>(pObj);
     }
 
     return NULL;
@@ -109,7 +109,7 @@ void PSS_CommonFieldTreeCtrl::InitializeTree()
     LoadImageList(IDB_FIELDINFO_TYPES, 17, 1, RGB(255, 255, 255));
 }
 //---------------------------------------------------------------------------
-void PSS_CommonFieldTreeCtrl::AddFieldItem(ZAObjectDefinition* pField)
+void PSS_CommonFieldTreeCtrl::AddFieldItem(PSS_FieldObjectDefinition* pField)
 {
     TV_INSERTSTRUCT curTreeItem;
     curTreeItem.hParent             = NULL; 

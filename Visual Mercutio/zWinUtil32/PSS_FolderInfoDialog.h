@@ -18,7 +18,7 @@
 
 // processsoft
 #include "zBaseLib\ZIDialog.h"
-#include "zBaseLib\FldStamp.h"
+#include "zBaseLib\PSS_FolderStamp.h"
 #include "PSS_FolderInfoCtrl.h"
 
 // resources
@@ -62,7 +62,7 @@ class AFX_EXT_CLASS PSS_FolderInfoDialog : public ZIDialog
         *@param readOnly - if TRUE, folder is read-only
         *@param pPArent - parent window, can be NULL
         */
-        PSS_FolderInfoDialog(ZDFolderStamp* pFolderStamp = NULL, BOOL readOnly = FALSE, CWnd* pParent = NULL);
+        PSS_FolderInfoDialog(PSS_FolderStamp* pFolderStamp = NULL, BOOL readOnly = FALSE, CWnd* pParent = NULL);
 
         /**
         * Gets the folder name
@@ -89,10 +89,10 @@ class AFX_EXT_CLASS PSS_FolderInfoDialog : public ZIDialog
         virtual void OnOK();
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
-    
+
     private:
-        ZDFolderStamp* m_pFolderStamp;
-        BOOL           m_ReadOnly;
+        PSS_FolderStamp* m_pFolderStamp;
+        BOOL             m_ReadOnly;
 };
 
 //---------------------------------------------------------------------------

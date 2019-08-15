@@ -223,7 +223,7 @@ void PSS_UrlFormView::OnInitialUpdate()
     CFormView::OnInitialUpdate();
 
     m_GoButton.SetIcon(IDI_GOWEB);
-    m_GoButton.SetAlign(ZCFlatButton::ST_ALIGN_HORIZ_RIGHT);
+    m_GoButton.SetAlign(PSS_FlatButton::IE_ST_ALIGN_HORZ_RIGHT);
     m_GoButton.SetTooltipText(IDS_GOWEB);
 
     m_GoButton.DrawTransparent();

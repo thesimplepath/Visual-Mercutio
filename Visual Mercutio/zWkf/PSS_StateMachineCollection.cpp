@@ -204,7 +204,7 @@ int PSS_StateMachineCollection::AddStateMachine(PSS_StateMachine* pStateMachine)
     return GetStateMachineCount() - 1;
 }
 //---------------------------------------------------------------------------
-void PSS_StateMachineCollection::Serialize (CArchive& ar)
+void PSS_StateMachineCollection::Serialize(CArchive& ar)
 {
     if (ar.IsStoring())
     {

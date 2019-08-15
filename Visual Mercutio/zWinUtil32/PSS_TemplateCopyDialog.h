@@ -51,7 +51,7 @@ public:
     */
     PSS_TemplateCopyDialog(ZDTemplateManager* pTemplateManager,
                            const CString&     fileExtension,
-                           ZDFolderStamp*     pFolderStamp = NULL,
+                           PSS_FolderStamp*   pFolderStamp = NULL,
                            BOOL               allowReplace = FALSE,
                            CWnd*              pParent      = NULL);
 
@@ -109,7 +109,7 @@ private:
         CListBox         m_TemplateDirList;
     #endif
     ZDTemplateManager*   m_pTemplateManager;
-    ZDFolderStamp*       m_pFolderStamp;
+    PSS_FolderStamp*     m_pFolderStamp;
     CString              m_Title;
     CString              m_Description;
     CString              m_FileName;

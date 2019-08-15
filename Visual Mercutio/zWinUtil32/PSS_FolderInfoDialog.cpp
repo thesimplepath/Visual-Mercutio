@@ -27,7 +27,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_FolderInfoDialog
 //---------------------------------------------------------------------------
-PSS_FolderInfoDialog::PSS_FolderInfoDialog(ZDFolderStamp* pFolderStamp, BOOL readOnly, CWnd* pParent) :
+PSS_FolderInfoDialog::PSS_FolderInfoDialog(PSS_FolderStamp* pFolderStamp, BOOL readOnly, CWnd* pParent) :
     ZIDialog(PSS_FolderInfoDialog::IDD, TRUE, pParent),
     m_pFolderStamp(pFolderStamp),
     m_ReadOnly(readOnly)

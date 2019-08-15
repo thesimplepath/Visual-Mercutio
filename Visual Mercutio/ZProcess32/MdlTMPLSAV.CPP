@@ -27,7 +27,7 @@ END_MESSAGE_MAP()
 
 ZIModelTemplateCopyDlg::ZIModelTemplateCopyDlg( CString            FileExtension,
                                                 const CString    Directory,
-                                                ZDFolderStamp*    pFolderStamp,
+                                               PSS_FolderStamp*    pFolderStamp,
                                                 BOOL            AllowReplace    /*= FALSE*/,
                                                 CWnd*            pParent            /*= NULL*/ )
     : ZIDialog            ( ZIModelTemplateCopyDlg::IDD, TRUE, pParent ),

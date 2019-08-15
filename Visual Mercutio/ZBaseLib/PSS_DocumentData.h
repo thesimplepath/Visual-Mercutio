@@ -16,12 +16,22 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
+#ifndef PSS_DocumentData 
+    #define PSS_DocumentData ZDDocumentData
+#endif
+
 // processsoft
 #include "Formula.h"
 #include "Stamp.h"
 #include "ZAStylMg.h"
 #include "ZAFontMg.h"
 #include "ZUFileLauncher.h"
+
+// class name mapping
+#ifndef PSS_FileBuffer
+    #define PSS_FileBuffer ZBFileBuffer
+#endif
 
 // forward class declarations
 class ZDDocument;

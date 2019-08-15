@@ -126,7 +126,7 @@ class AFX_EXT_CLASS PSS_FieldRepository
         *@param pField - field to add
         *@return the index of the added field
         */
-        virtual inline int AddField(ZAObjectDefinition* pField);
+        virtual inline int AddField(PSS_FieldObjectDefinition* pField);
 
         /**
         * Deletes a field
@@ -146,14 +146,14 @@ class AFX_EXT_CLASS PSS_FieldRepository
         *@param name - field name
         *@return found field, NULL if not found or on error
         */
-        virtual inline ZAObjectDefinition* FindField(const CString& name);
+        virtual inline PSS_FieldObjectDefinition* FindField(const CString& name);
 
         /**
         * Gets the object at a specific location
         *@param index - field index
         *@return the object at the specific location, NULL if not found or on error
         */
-        virtual inline ZAObjectDefinition* GetFieldAt(int index);
+        virtual inline PSS_FieldObjectDefinition* GetFieldAt(int index);
 
         /**
         * Gets the field description
@@ -198,12 +198,12 @@ class AFX_EXT_CLASS PSS_FieldRepository
         virtual BOOL Import(PSS_FieldRepository& fieldRepository, BOOL replaceExisting = FALSE);
 
     private:
-        ZAGlobalFieldManager*  m_GlobalFieldManager;
-        ZAHistoryFieldManager* m_HistoryValueManager;
-        ZDGlobalFieldDocument* m_Document;
-        CString                m_FileName;
-        BOOL                   m_ReadOnly;
-        BOOL                   m_IsValid;
+        PSS_GlobalFieldManager* m_GlobalFieldManager;
+        ZAHistoryFieldManager*  m_HistoryValueManager;
+        ZDGlobalFieldDocument*  m_Document;
+        CString                 m_FileName;
+        BOOL                    m_ReadOnly;
+        BOOL                    m_IsValid;
 
         /**
         * Copy constructor
@@ -276,7 +276,7 @@ std::size_t PSS_FieldRepository::GetFieldCount()
     return 0;
 }
 //---------------------------------------------------------------------------
-int PSS_FieldRepository::AddField(ZAObjectDefinition* pField)
+int PSS_FieldRepository::AddField(PSS_FieldObjectDefinition* pField)
 {
     if (m_GlobalFieldManager)
         return m_GlobalFieldManager->AddField(pField);
@@ -300,7 +300,7 @@ BOOL PSS_FieldRepository::DeleteAllField()
     return FALSE;
 }
 //---------------------------------------------------------------------------
-ZAObjectDefinition* PSS_FieldRepository::FindField(const CString& name)
+PSS_FieldObjectDefinition* PSS_FieldRepository::FindField(const CString& name)
 {
     if (m_GlobalFieldManager)
         return m_GlobalFieldManager->FindField(name);
@@ -308,7 +308,7 @@ ZAObjectDefinition* PSS_FieldRepository::FindField(const CString& name)
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZAObjectDefinition* PSS_FieldRepository::GetFieldAt(int index)
+PSS_FieldObjectDefinition* PSS_FieldRepository::GetFieldAt(int index)
 {
     if (m_GlobalFieldManager)
         return m_GlobalFieldManager->GetAt(index);

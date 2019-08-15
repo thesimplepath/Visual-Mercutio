@@ -69,7 +69,7 @@ class AFX_EXT_CLASS ZUFieldDefinitionDataFeed : public PSS_Export
       //## Operation: ZUFieldDefinitionDataFeed%937950157
       //    Constructs an export class with the filename and the
       //    field definition manager.
-      ZUFieldDefinitionDataFeed (CString Filename = "", PSS_FieldRepository* pFieldRepository = NULL, ZAObjectDefinition* pObjectDefinition = NULL, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, PSS_StatusBar* pStatusBar = NULL);
+      ZUFieldDefinitionDataFeed (CString Filename = "", PSS_FieldRepository* pFieldRepository = NULL, PSS_FieldObjectDefinition* pObjectDefinition = NULL, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, PSS_StatusBar* pStatusBar = NULL);
 
       //## Operation: ZUFieldDefinitionDataFeed%938030360
       //    Constructs an export class with the filename and the
@@ -95,7 +95,7 @@ class AFX_EXT_CLASS ZUFieldDefinitionDataFeed : public PSS_Export
 
       //## Operation: Create%937950163
       //    Create the export class.
-      virtual void Create (CString Filename, PSS_FieldRepository* pFieldRepository = NULL, ZAObjectDefinition* pObjectDefinition = NULL, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, PSS_StatusBar* pStatusBar = NULL);
+      virtual void Create (CString Filename, PSS_FieldRepository* pFieldRepository = NULL, PSS_FieldObjectDefinition* pObjectDefinition = NULL, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, PSS_StatusBar* pStatusBar = NULL);
 
       //## Operation: Create%938030361
       //    Create the export class.
@@ -161,7 +161,7 @@ class AFX_EXT_CLASS ZUFieldDefinitionDataFeed : public PSS_Export
       //## Attribute: pObjectDefinition%37E9361102C5
       //    Containe the object to export.
       //## begin ZUFieldDefinitionDataFeed::pObjectDefinition%37E9361102C5.attr preserve=no  private: ZAObjectDefinition* {U} 
-      ZAObjectDefinition* m_pObjectDefinition;
+      PSS_FieldObjectDefinition* m_pObjectDefinition;
       //## end ZUFieldDefinitionDataFeed::pObjectDefinition%37E9361102C5.attr
 
     // Additional Private Declarations
@@ -199,7 +199,7 @@ class AFX_EXT_CLASS ZUFieldDefinitionDataFeed : public PSS_Export
 
 
 //## Other Operations (inline)
-inline void ZUFieldDefinitionDataFeed::Create (CString Filename, PSS_FieldRepository* pFieldRepository, ZAObjectDefinition* pObjectDefinition, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
+inline void ZUFieldDefinitionDataFeed::Create (CString Filename, PSS_FieldRepository* pFieldRepository, PSS_FieldObjectDefinition* pObjectDefinition, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
 {
   //## begin ZUFieldDefinitionDataFeed::Create%937950163.body preserve=yes
       m_pSourceFieldRepository = pFieldRepository;
@@ -246,19 +246,5 @@ inline void ZUFieldDefinitionDataFeed::SetpImportedFieldRepository (PSS_FieldRep
   m_pImportedFieldRepository = value;
   //## end ZUFieldDefinitionDataFeed::SetpImportedFieldRepository%37F91127027B.set
 }
-
-//## begin module%37E7FBA501A6.epilog preserve=yes
-//## end module%37E7FBA501A6.epilog
-
-
-#endif
-
-
-// Detached code regions:
-// WARNING: this code will be lost if code is regenerated.
-#if 0
-//## begin ZUFieldDefinitionDataFeed::GetImportedFieldRepository%939069931.body preserve=no
-    return m_pImportedFieldRepository;
-//## end ZUFieldDefinitionDataFeed::GetImportedFieldRepository%939069931.body
 
 #endif

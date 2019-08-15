@@ -151,11 +151,4 @@ void ZBModelBPReportGenerator::Serialize( CArchive& ar )
 
     // Serialize the tab name array
     m_TabNameArray.Serialize( ar );
-
-    if ( ar.IsStoring() )
-    {
-    }
-    else
-    {
-    }
 }

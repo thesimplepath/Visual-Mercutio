@@ -19,7 +19,7 @@
 // processsoft
 #include "zBaseLib\ZConfigW.h"
 #include "PSS_StatusBar.h"
-#include "palette.h"
+#include "PSS_PaletteBar.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again

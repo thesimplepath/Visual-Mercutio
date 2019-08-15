@@ -29,7 +29,7 @@
 #include "zBaseLib\PSS_Edit.h"
 
 // FldMng
-#include "zBaseLib\FldMng.h"
+#include "zBaseLib\PSS_GlobalFieldManager.h"
 
 #include "zWinUtil32\PSS_NewFormDialog.h"
 #include "zWinUtil32\PSS_FolderInfoDialog.h"
@@ -87,21 +87,11 @@ BEGIN_MESSAGE_MAP( ZDDocumentReadWrite, ZDDocument )
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-//## end module%35CC454D007B.additionalDeclarations
-
-// Class ZDDocumentReadWrite
-
 ZDDocumentReadWrite::ZDDocumentReadWrite()
-{
-}
+{}
 
 ZDDocumentReadWrite::~ZDDocumentReadWrite()
-{
-    //## begin ZDDocumentReadWrite::~ZDDocumentReadWrite%.body preserve=yes
-    //## end ZDDocumentReadWrite::~ZDDocumentReadWrite%.body
-}
-
-//## begin ZDDocumentReadWrite%35CC443703C5.declarations preserve=yes
+{}
 
 BOOL ZDDocumentReadWrite::OnNewDocument()
 {

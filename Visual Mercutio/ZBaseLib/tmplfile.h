@@ -30,7 +30,7 @@
 //## end module%345A3A5503B6.includes
 
 // FldStamp
-#include "FldStamp.h"
+#include "PSS_FolderStamp.h"
 //## begin module%345A3A5503B6.declarations preserve=no
 //## end module%345A3A5503B6.declarations
 
@@ -59,7 +59,7 @@
 
 //## Uses: <unnamed>%345AFB23024E;ZDFolderStamp { -> }
 
-class AFX_EXT_CLASS ZDTemplateFile : public CObject  //## Inherits: <unnamed>%345B0BC00244
+class AFX_EXT_CLASS ZDTemplateFile : public CObject
 {
   //## begin ZDTemplateFile%345A3A01035C.initialDeclarations preserve=yes
   //## end ZDTemplateFile%345A3A01035C.initialDeclarations
@@ -122,7 +122,7 @@ class AFX_EXT_CLASS ZDTemplateFile : public CObject  //## Inherits: <unnamed>%34
       //## Attribute: Stamp%345A3AB10122
       //    Defines the template stamp contained in the template
       //    filename.
-      const ZDFolderStamp GetStamp () const;
+      const PSS_FolderStamp GetStamp () const;
 
     // Additional Public Declarations
       //## begin ZDTemplateFile%345A3A01035C.public preserve=yes
@@ -142,7 +142,7 @@ class AFX_EXT_CLASS ZDTemplateFile : public CObject  //## Inherits: <unnamed>%34
       //## end ZDTemplateFile::Filename%345A3A8403C0.attr
 
       //## begin ZDTemplateFile::Stamp%345A3AB10122.attr preserve=no  public: ZDFolderStamp {V} 
-      ZDFolderStamp m_Stamp;
+      PSS_FolderStamp m_Stamp;
       //## end ZDTemplateFile::Stamp%345A3AB10122.attr
 
       //## Attribute: Persistent%345B01600294
@@ -199,15 +199,11 @@ inline const CString ZDTemplateFile::GetFilename () const
   //## end ZDTemplateFile::GetFilename%345A3A8403C0.get
 }
 
-inline const ZDFolderStamp ZDTemplateFile::GetStamp () const
+inline const PSS_FolderStamp ZDTemplateFile::GetStamp () const
 {
   //## begin ZDTemplateFile::GetStamp%345A3AB10122.get preserve=no
   return m_Stamp;
   //## end ZDTemplateFile::GetStamp%345A3AB10122.get
 }
-
-//## begin module%345A3A5503B6.epilog preserve=yes
-//## end module%345A3A5503B6.epilog
-
 
 #endif
