@@ -1,61 +1,58 @@
-// PLFNBackImage.cpp: implementation of the PLFNBackImage class.
-//
-//////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_PLFNBackImage ---------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a financial plan background image                 *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
 #include "PLFNBackImage.h"
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[]=__FILE__;
+    #define new DEBUG_NEW
 #endif
 
-
-IMPLEMENT_SERIAL(PLFNBackImage, PLFNBitmap, g_DefVersion)
-
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
-
-PLFNBackImage::PLFNBackImage()
+//---------------------------------------------------------------------------
+// Serialization
+//---------------------------------------------------------------------------
+IMPLEMENT_SERIAL(PSS_PLFNBackImage, PLFNBitmap, g_DefVersion)
+//---------------------------------------------------------------------------
+// PSS_PLFNBackImage
+//---------------------------------------------------------------------------
+PSS_PLFNBackImage::PSS_PLFNBackImage() :
+    PLFNBitmap()
+{}
+//---------------------------------------------------------------------------
+PSS_PLFNBackImage::~PSS_PLFNBackImage()
+{}
+//---------------------------------------------------------------------------
+PSS_PLFNBackImage::PSS_PLFNBackImage(const PSS_PLFNBackImage& other)
 {
-
+    *this = other;
 }
-
-PLFNBackImage::~PLFNBackImage()
+//---------------------------------------------------------------------------
+const PSS_PLFNBackImage& PSS_PLFNBackImage::operator = (const PSS_PLFNBackImage& other)
 {
-
-}
-
-
-PLFNBackImage::PLFNBackImage(const PLFNBackImage &right)
-{
-    *this = right;
-}
-
-
-const PLFNBackImage & PLFNBackImage::operator=(const PLFNBackImage &right)
-{
-    this->PLFNBitmap::operator=( (inherited&)right );
+    PLFNBitmap::operator = ((inherited&)other);
     return *this;
 }
-
-
-
-const PLFNBackImage& PLFNBackImage::operator = (const PLFNBackImage* right)
+//---------------------------------------------------------------------------
+const PSS_PLFNBackImage& PSS_PLFNBackImage::operator = (const PSS_PLFNBackImage* pOther)
 {
-    this->PLFNBitmap::operator=( (inherited*)right );
+    PLFNBitmap::operator = ((inherited*)pOther);
     return *this;
 }
-
-PlanFinObject* PLFNBackImage::Clone ()
+//---------------------------------------------------------------------------
+PlanFinObject* PSS_PLFNBackImage::Clone() const
 {
-    PLFNBackImage*    pObject = new PLFNBackImage( *this );
-    return pObject;
+    std::unique_ptr<PSS_PLFNBackImage> pObject(new PSS_PLFNBackImage(*this));
+    return pObject.release();
 }
-
-void PLFNBackImage::CopyObject (PlanFinObject* pSrc)
+//---------------------------------------------------------------------------
+void PSS_PLFNBackImage::CopyObject(PlanFinObject* pSrc)
 {
-    ((PLFNBackImage*)this)->PLFNBackImage::operator=( (PLFNBackImage*)pSrc );
+    this->PSS_PLFNBackImage::operator = ((PSS_PLFNBackImage*)pSrc);
 }
+//---------------------------------------------------------------------------

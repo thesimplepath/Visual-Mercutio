@@ -17,7 +17,9 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
-#define PSS_BaseDocument ZDBaseDocument
+#ifndef PSS_BaseDocument
+    #define PSS_BaseDocument ZDBaseDocument
+#endif
 
 // processsoft
 #include "PSS_FolderStamp.h"

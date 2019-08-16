@@ -1,119 +1,114 @@
-#include "StdAfx.h"
+/****************************************************************************
+ * ==> PSS_ProcessDocumentOptions ------------------------------------------*
+ ****************************************************************************
+ * Description : Provides the process document options                      *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-// ProcOpt
+#include "StdAfx.h"
 #include "ProcOpt.h"
 
-
-// Class ZDProcessDocumentOptions 
-
-
-
-
-
-
-
-
-
-
-ZDProcessDocumentOptions::ZDProcessDocumentOptions()
-      : m_IsSynchronizeExchangeFeedFile(FALSE), m_SynchronizeTimeSequence(5),
-        m_AutomaticSynchronizeFilename(E_ST_AutomaticName), m_SynchronizationHeader(FALSE), m_SynchronizationSeparator(E_SS_Automatic)
+//---------------------------------------------------------------------------
+// PSS_ProcessDocumentOptions
+//---------------------------------------------------------------------------
+PSS_ProcessDocumentOptions::PSS_ProcessDocumentOptions() :
+    m_AutomaticSynchronizeFileName(E_ST_AutomaticName),
+    m_SynchronizationSeparator(E_SS_Automatic),
+    m_SynchronizeTimeSequence(5),
+    m_IsSynchronizeExchangeFeedFile(FALSE),
+    m_SynchronizationHeader(FALSE)
 {}
-
-ZDProcessDocumentOptions::ZDProcessDocumentOptions(const ZDProcessDocumentOptions &right)
+//---------------------------------------------------------------------------
+PSS_ProcessDocumentOptions::PSS_ProcessDocumentOptions(const PSS_ProcessDocumentOptions& other)
 {
-  *this = right;
+  *this = other;
 }
-
-
-ZDProcessDocumentOptions::~ZDProcessDocumentOptions()
+//---------------------------------------------------------------------------
+PSS_ProcessDocumentOptions::~PSS_ProcessDocumentOptions()
+{}
+//---------------------------------------------------------------------------
+const PSS_ProcessDocumentOptions& PSS_ProcessDocumentOptions::operator = (const PSS_ProcessDocumentOptions& other)
 {
-}
-
-
-const ZDProcessDocumentOptions & ZDProcessDocumentOptions::operator=(const ZDProcessDocumentOptions &right)
-{
-    m_IsSynchronizeExchangeFeedFile = right.m_IsSynchronizeExchangeFeedFile;
-    m_SynchronizeTimeSequence = right.m_SynchronizeTimeSequence;
-    m_AutomaticSynchronizeFilename = right.m_AutomaticSynchronizeFilename;
-    m_SynchronizationHeader = right.m_SynchronizationHeader;
-    m_SynchronizationSeparator = right.m_SynchronizationSeparator;
-    m_SynchronizeFilename = right.m_SynchronizeFilename;
+    m_AutomaticSynchronizeFileName  = other.m_AutomaticSynchronizeFileName;
+    m_SynchronizationSeparator      = other.m_SynchronizationSeparator;
+    m_SynchronizeFileName           = other.m_SynchronizeFileName;
+    m_SynchronizeTimeSequence       = other.m_SynchronizeTimeSequence;
+    m_IsSynchronizeExchangeFeedFile = other.m_IsSynchronizeExchangeFeedFile;
+    m_SynchronizationHeader         = other.m_SynchronizationHeader;
     return *this;
 }
-
-
-CString ZDProcessDocumentOptions::BuildSynchronizationFileName (CString DocumentFilename)
+//---------------------------------------------------------------------------
+CArchive& operator >> (CArchive& ar, PSS_ProcessDocumentOptions& docOptions)
 {
-      // If the document option specifies a document filename, assigns it
-      if (GetAutomaticSynchronizeFilename() == E_ST_FileNameSpecified)
-        return m_SynchronizeFilename;
-      // If the filename does not exists, do nothing
-    if (DocumentFilename.IsEmpty())
-        return "";
-        
-      // If the synchro filename does not exist, build it
-    // Extract the filename
-    char         drive[_MAX_DRIVE];
-    char         dir[_MAX_DIR];
-    char         fname[_MAX_FNAME];
-    char         ext[_MAX_EXT];
+    WORD value;
+    ar >> value;
+    docOptions.m_IsSynchronizeExchangeFeedFile = BOOL(value);
 
-    _splitpath( (const char*)DocumentFilename, drive, dir, fname, ext );
-
-    CString    Filename;
-      // If the document option specifies a folder, create the filename with the folder
-      if (GetAutomaticSynchronizeFilename() == E_ST_FolderSpecified)
-      {
-          // In case where it is a folder, the GetSynchronizeFilename returns a folder
-        Filename = m_SynchronizeFilename;
-        Filename += "\\";
-        Filename += fname;
-        Filename += g_ProcessDataFeedExtension;
-        return Filename;
-      }
-
-    Filename = drive;
-    Filename += dir;
-    Filename += fname;
-    Filename += g_ProcessDataFeedExtension;
-    return Filename;
-}
-
-
-CArchive& operator >> (CArchive& ar, ZDProcessDocumentOptions& DocOptions)
-{
-    WORD    wValue;
-    ar >> wValue;
-    DocOptions.m_IsSynchronizeExchangeFeedFile = BOOL(wValue);
-
-    LONG    lValue;
+    LONG lValue;
     ar >> lValue;
-    DocOptions.m_SynchronizeTimeSequence = int(lValue);
+    docOptions.m_SynchronizeTimeSequence = int(lValue);
 
-    ar >> wValue;
-      DocOptions.m_AutomaticSynchronizeFilename = ESynchronizationFileType(wValue);
-      
-    ar >> wValue;
-      DocOptions.m_SynchronizationHeader = BOOL(wValue);
+    ar >> value;
+    docOptions.m_AutomaticSynchronizeFileName = ESynchronizationFileType(value);
 
-    ar >> wValue;
-      DocOptions.m_SynchronizationSeparator = ESynchronizationSeparatorType(wValue);
-    
-    ar >> DocOptions.m_SynchronizeFilename;
+    ar >> value;
+    docOptions.m_SynchronizationHeader = BOOL(value);
+
+    ar >> value;
+    docOptions.m_SynchronizationSeparator = ESynchronizationSeparatorType(value);
+
+    ar >> docOptions.m_SynchronizeFileName;
 
     return ar;
 }
-
-CArchive& operator << (CArchive& ar, const ZDProcessDocumentOptions& DocOptions)
+//---------------------------------------------------------------------------
+CArchive& operator << (CArchive& ar, const PSS_ProcessDocumentOptions& docOptions)
 {
-    ar << (WORD)DocOptions.m_IsSynchronizeExchangeFeedFile;
-    ar << (LONG)DocOptions.m_SynchronizeTimeSequence;
-    ar << (WORD)DocOptions.m_AutomaticSynchronizeFilename;
-    ar << (WORD)DocOptions.m_SynchronizationHeader;
-    ar << (WORD)DocOptions.m_SynchronizationSeparator;
-    ar << DocOptions.m_SynchronizeFilename;
-    
+    ar << WORD(docOptions.m_IsSynchronizeExchangeFeedFile);
+    ar << LONG(docOptions.m_SynchronizeTimeSequence);
+    ar << WORD(docOptions.m_AutomaticSynchronizeFileName);
+    ar << WORD(docOptions.m_SynchronizationHeader);
+    ar << WORD(docOptions.m_SynchronizationSeparator);
+    ar << docOptions.m_SynchronizeFileName;
+
     return ar;
 }
+//---------------------------------------------------------------------------
+CString PSS_ProcessDocumentOptions::BuildSynchronizationFileName(const CString& documentFileName)
+{
+    // if the document option specifies a document file name, assign it
+    if (GetAutomaticSynchronizeFileName() == E_ST_FileNameSpecified)
+        return m_SynchronizeFileName;
 
+    // if the filename does not exists, do nothing
+    if (documentFileName.IsEmpty())
+        return "";
+
+    // if the synchronization file name does not exist, build it
+    char drive   [_MAX_DRIVE];
+    char dir     [_MAX_DIR];
+    char fnBuffer[_MAX_FNAME];
+    char ext     [_MAX_EXT];
+
+    // extract the file name
+    ::_splitpath((const char*)documentFileName, drive, dir, fnBuffer, ext);
+
+    CString fileName;
+
+    // if the document option specifies a folder, use it to build the file name
+    if (GetAutomaticSynchronizeFileName() == E_ST_FolderSpecified)
+    {
+        fileName  = m_SynchronizeFileName;
+        fileName += "\\";
+        fileName += fnBuffer;
+        fileName += g_ProcessDataFeedExtension;
+        return fileName;
+    }
+
+    fileName  = drive;
+    fileName += dir;
+    fileName += fnBuffer;
+    fileName += g_ProcessDataFeedExtension;
+    return fileName;
+}
+//---------------------------------------------------------------------------

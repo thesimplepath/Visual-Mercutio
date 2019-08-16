@@ -93,7 +93,7 @@ class AFX_EXT_CLASS PSS_File : public CObject
         int operator != (const PSS_File& other) const;
 
         /**
-        * Stores from the archive to the object stamp
+        * Stores from the archive to the file
         *@param ar - archive
         *@param file - file
         *@return archive, to allow operator to be chained with other items, e.g a >> b >> c
@@ -101,7 +101,7 @@ class AFX_EXT_CLASS PSS_File : public CObject
         AFX_EXT_API friend CArchive& operator >> (CArchive& ar, PSS_File& File);
 
         /**
-        * Stores the object stamp to the archive
+        * Stores the file to the archive
         *@param ar - archive
         *@param file - file
         *@return archive, to allow operator to be chained with other items, e.g a << b << c

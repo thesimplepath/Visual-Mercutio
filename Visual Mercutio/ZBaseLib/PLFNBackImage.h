@@ -1,16 +1,17 @@
-// PLFNBackImage.h: interface for the PLFNBackImage class.
-//
-//////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_PLFNBackImage ---------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a financial plan background image                 *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_PLFNBACKIMAGE_H__9E7EF5E5_0BDA_4534_8016_BDC9AD35F5C0__INCLUDED_)
-#define AFX_PLFNBACKIMAGE_H__9E7EF5E5_0BDA_4534_8016_BDC9AD35F5C0__INCLUDED_
+#ifndef PSS_PLFNBackImageH
+#define PSS_PLFNBackImageH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-
-//change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -18,60 +19,92 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-
-#include "ZABitmap.h"
-
-
-//## begin module%3378993C0104.additionalDeclarations preserve=yes
-#ifdef _ZBASELIBEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+ // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
+#ifndef PSS_PLFNBackImage
+    //#define PSS_PLFNBackImage PLFNBackImage
 #endif
 
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
+// processsoft
+#include "ZABitmap.h"
 
-class AFX_EXT_CLASS PLFNBackImage : public PLFNBitmap  
+#ifdef _ZBASELIBEXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
+#endif
+
+/**
+* Financial plan background image
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_PLFNBackImage : public PLFNBitmap
 {
-public:
-// Inherited feature
-    typedef PLFNBitmap inherited;
-    virtual UINT GetRightSubMenu() const { return g_ObjectRightSubMenu; };
+    DECLARE_SERIAL(PSS_PLFNBackImage)
 
-public:
-    PLFNBackImage();
-    virtual ~PLFNBackImage();
+    public:
+        typedef PLFNBitmap inherited;
 
-    PLFNBackImage(const PLFNBackImage &right);
+        PSS_PLFNBackImage();
 
-    const PLFNBackImage & operator=(const PLFNBackImage &right);
-    //    A copy constructor with a pointer.
-    const PLFNBackImage& operator = (const PLFNBackImage* right);
+        /**
+        * Copy constructor
+        *@param other - other object to copy from
+        */
+        PSS_PLFNBackImage(const PSS_PLFNBackImage& other);
 
-    //    Make a clone of the object.
-    virtual PlanFinObject* Clone ();
+        virtual ~PSS_PLFNBackImage();
 
-    virtual void CopyObject (PlanFinObject* pSrc);
+        /**
+        * Copy operator
+        *@param other - other object to copy from
+        *@return copy of itself
+        */
+        const PSS_PLFNBackImage& operator = (const PSS_PLFNBackImage& other);
+        const PSS_PLFNBackImage& operator = (const PSS_PLFNBackImage* pOther);
 
-    virtual BOOL IsHint(CPoint& point) const;
+        /**
+        * Clones the object
+        *@return the cloned object, NULL on error
+        */
+        virtual PlanFinObject* Clone() const;
 
-// Implementation
-protected:
-    DECLARE_SERIAL(PLFNBackImage)
+        /**
+        * Gets the right sub-menu identifier
+        *@return the right sub-menu identifier
+        */
+        virtual inline UINT GetRightSubMenu() const;
 
+        /**
+        * Copies the object
+        *@param pSrc - source object to copy from
+        */
+        virtual void CopyObject (PlanFinObject* pSrc);
+
+        /**
+        * Checks if a hint should be shown
+        *@param point - hint point
+        *@return TRUE if a hint should be shown, otherwise FALSE
+        */
+        virtual inline BOOL IsHint(CPoint& point) const;
 };
 
-
-// Can't be selected
-inline BOOL PLFNBackImage::IsHint(CPoint& point) const
+//---------------------------------------------------------------------------
+// PSS_PLFNBackImage
+//---------------------------------------------------------------------------
+UINT PSS_PLFNBackImage::GetRightSubMenu() const
 {
+    return g_ObjectRightSubMenu;
+}
+//---------------------------------------------------------------------------
+BOOL PSS_PLFNBackImage::IsHint(CPoint& point) const
+{
+    // can't be selected
     return FALSE;
 }
+//---------------------------------------------------------------------------
 
-#endif // !defined(AFX_PLFNBACKIMAGE_H__9E7EF5E5_0BDA_4534_8016_BDC9AD35F5C0__INCLUDED_)
+#endif
