@@ -23,7 +23,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-BEGIN_MESSAGE_MAP( ZVRiskModifyDlg, CDialog )
+BEGIN_MESSAGE_MAP(ZVRiskModifyDlg, CDialog)
     //{{AFX_MSG_MAP(ZVRiskModifyDlg)
     ON_BN_CLICKED(IDOK, OnBnClickedOk)
     ON_BN_CLICKED(IDC_ADD_ELEMENT, OnBnClickedAddElement)
@@ -37,13 +37,13 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // ZVRiskModifyDlg dialog
 
-ZVRiskModifyDlg::ZVRiskModifyDlg( CString    Filename,
-                                  CString    Extension,
-                                  CWnd*        pParent        /*= NULL*/ )
-    : CDialog        ( ZVRiskModifyDlg::IDD, pParent ),
-      m_Filename    ( Filename ),
-      m_Extension    ( Extension ),
-      m_Element        ( _T( "" ) )
+ZVRiskModifyDlg::ZVRiskModifyDlg(CString    Filename,
+                                 CString    Extension,
+                                 CWnd*        pParent        /*= NULL*/)
+    : CDialog(ZVRiskModifyDlg::IDD, pParent),
+    m_Filename(Filename),
+    m_Extension(Extension),
+    m_Element(_T(""))
 {
     //{{AFX_DATA_INIT(ZVRiskModifyDlg)
     //}}AFX_DATA_INIT
@@ -55,9 +55,9 @@ CString ZVRiskModifyDlg::GetFilename()
     return m_Filename;
 }
 
-void ZVRiskModifyDlg::DoDataExchange( CDataExchange* pDX )
+void ZVRiskModifyDlg::DoDataExchange(CDataExchange* pDX)
 {
-    CDialog::DoDataExchange( pDX );
+    CDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(ZVRiskModifyDlg)
     DDX_Control(pDX, IDC_ELEMENTS_LIST, m_ElementsListCtrl);
@@ -79,18 +79,18 @@ BOOL ZVRiskModifyDlg::OnInitDialog()
 
     ZDTextFile p_File;
 
-    if ( p_File.OpenRead( m_Filename ) == TRUE )
+    if (p_File.OpenRead(m_Filename) == TRUE)
     {
-        BOOL    m_EndReached    = FALSE;
-        CString    m_Text            = _T( "" );
+        BOOL    m_EndReached = FALSE;
+        CString    m_Text = _T("");
 
-        while( m_EndReached != TRUE )
+        while (m_EndReached != TRUE)
         {
             p_File >> m_Text;
 
-            if ( m_Text.IsEmpty() == false )
+            if (m_Text.IsEmpty() == false)
             {
-                m_ElementsListCtrl.AddString( m_Text );
+                m_ElementsListCtrl.AddString(m_Text);
             }
             else
             {
@@ -103,13 +103,13 @@ BOOL ZVRiskModifyDlg::OnInitDialog()
     else
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_CANNOT_OPEN_RISK_FILE, MB_OK );
+        mBox.Show(IDS_CANNOT_OPEN_RISK_FILE, MB_OK);
 
-        m_ElementsListCtrl.EnableWindow( FALSE );
-        m_ElementCtrl.EnableWindow( FALSE );
-        m_Add.EnableWindow( FALSE );
-        m_Del.EnableWindow( FALSE );
-        m_OK.EnableWindow( FALSE );
+        m_ElementsListCtrl.EnableWindow(FALSE);
+        m_ElementCtrl.EnableWindow(FALSE);
+        m_Add.EnableWindow(FALSE);
+        m_Del.EnableWindow(FALSE);
+        m_OK.EnableWindow(FALSE);
     }
 
     return TRUE;
@@ -118,58 +118,58 @@ BOOL ZVRiskModifyDlg::OnInitDialog()
 // Cette fonction est appelée lorsque l'utilisateur entre une saisie dans la boîte de texte des nouveaux éléments.
 void ZVRiskModifyDlg::OnEnChangeNewElement()
 {
-    m_ElementCtrl.GetWindowText( m_Element );
+    m_ElementCtrl.GetWindowText(m_Element);
 
-    if ( m_Element.IsEmpty() == false )
+    if (m_Element.IsEmpty() == false)
     {
-        m_Add.EnableWindow( TRUE );
+        m_Add.EnableWindow(TRUE);
     }
     else
     {
-        m_Add.EnableWindow( FALSE );
+        m_Add.EnableWindow(FALSE);
     }
 }
 
 // Cette fonction est appelée lorsque la sélection de la liste des éléments a changé.
 void ZVRiskModifyDlg::OnLbnSelchangeElementsList()
 {
-    m_Del.EnableWindow( TRUE );
+    m_Del.EnableWindow(TRUE);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur clique sur le bouton Ajouter.
 void ZVRiskModifyDlg::OnBnClickedAddElement()
 {
-    if ( m_Element.IsEmpty() == false )
+    if (m_Element.IsEmpty() == false)
     {
-        m_ElementsListCtrl.AddString( m_Element );
+        m_ElementsListCtrl.AddString(m_Element);
     }
 
-    m_Element = _T( "" );
-    m_ElementCtrl.SetWindowText( m_Element );
+    m_Element = _T("");
+    m_ElementCtrl.SetWindowText(m_Element);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur clique sur le bouton Supprimer.
 void ZVRiskModifyDlg::OnBnClickedDelElement()
 {
-    if ( ( m_ElementsListCtrl.GetCurSel() ) >= 0 && ( m_ElementsListCtrl.GetCurSel() < m_ElementsListCtrl.GetCount() ) )
+    if ((m_ElementsListCtrl.GetCurSel()) >= 0 && (m_ElementsListCtrl.GetCurSel() < m_ElementsListCtrl.GetCount()))
     {
-        m_ElementsListCtrl.DeleteString( m_ElementsListCtrl.GetCurSel() );
-        m_Del.EnableWindow( FALSE );
+        m_ElementsListCtrl.DeleteString(m_ElementsListCtrl.GetCurSel());
+        m_Del.EnableWindow(FALSE);
     }
 }
 
 // Cette fonction est appelée lorsque l'utilisateur clique sur le bouton "Nouveau"
 void ZVRiskModifyDlg::OnBnClickedNewFile()
 {
-    ZVRiskNewFileDlg m_NewFileDlg( m_Extension );
+    ZVRiskNewFileDlg m_NewFileDlg(m_Extension);
 
-    if ( m_NewFileDlg.DoModal() == IDOK )
+    if (m_NewFileDlg.DoModal() == IDOK)
     {
-        m_Filename = m_NewFileDlg.GetDirectory() + _T( "\\" ) + m_NewFileDlg.GetFilename() + m_Extension;
+        m_Filename = m_NewFileDlg.GetDirectory() + _T("\\") + m_NewFileDlg.GetFilename() + m_Extension;
 
-        while ( m_ElementsListCtrl.GetCount() > 0 )
+        while (m_ElementsListCtrl.GetCount() > 0)
         {
-            m_ElementsListCtrl.DeleteString( 0 );
+            m_ElementsListCtrl.DeleteString(0);
         }
     }
 }
@@ -179,20 +179,18 @@ void ZVRiskModifyDlg::OnBnClickedOk()
 {
     PSS_File m_File;
 
-    if ( m_File.Exist( m_Filename ) == TRUE )
-    {
-        CFile::Remove( m_Filename );
-    }
+    if (m_File.Exist(m_Filename) == TRUE)
+        CFile::Remove(m_Filename);
 
     ZDTextFile p_NewFile;
 
-    p_NewFile.OpenWrite( m_Filename );
+    p_NewFile.OpenWrite(m_Filename);
 
-    for ( int i = 0; i < m_ElementsListCtrl.GetCount(); i++ )
+    for (int i = 0; i < m_ElementsListCtrl.GetCount(); i++)
     {
-        CString s = _T( "" );
-        m_ElementsListCtrl.GetText( i, s );
-        p_NewFile << s + _T( "\r\n" );
+        CString s = _T("");
+        m_ElementsListCtrl.GetText(i, s);
+        p_NewFile << s + _T("\r\n");
     }
 
     p_NewFile.CloseFile();

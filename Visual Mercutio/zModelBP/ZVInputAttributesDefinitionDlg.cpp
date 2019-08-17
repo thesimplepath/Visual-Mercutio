@@ -24,14 +24,14 @@ static char THIS_FILE[] = __FILE__;
 
 
 ZVInputAttributesDefinitionDlg::ZVInputAttributesDefinitionDlg(ZBDynamicPropertiesManager* pPropManager, ZBPropertySet* pSet, ZBInputAttribute* pInputAttr /*= NULL*/, CWnd* pParent /*=NULL*/)
-: CDialog(ZVInputAttributesDefinitionDlg::IDD, pParent),
-  m_pPropManager(pPropManager),
-  m_pSet(pSet),
-  m_pInputAttr(pInputAttr),
-  m_CategoryID(-1),
-  m_ItemID(-1),
-  m_Visibility(-1),
-  m_Flag(-1)
+    : CDialog(ZVInputAttributesDefinitionDlg::IDD, pParent),
+    m_pPropManager(pPropManager),
+    m_pSet(pSet),
+    m_pInputAttr(pInputAttr),
+    m_CategoryID(-1),
+    m_ItemID(-1),
+    m_Visibility(-1),
+    m_Flag(-1)
 
 {
     //{{AFX_DATA_INIT(ZVInputAttributesDefinitionDlg)
@@ -62,15 +62,15 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // ZVInputAttributesDefinitionDlg message handlers
 
-void ZVInputAttributesDefinitionDlg::OnOK() 
+void ZVInputAttributesDefinitionDlg::OnOK()
 {
-    UpdateData( TRUE );
-    
+    UpdateData(TRUE);
+
     if (m_DynamicAttributeName.IsEmpty())
     {
         // A dynamic attributes must be chosen
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_DYNAMICATTRIBUTES_REQUIRED, MB_OK ); 
+        mBox.Show(IDS_DYNAMICATTRIBUTES_REQUIRED, MB_OK);
 
     }
 
@@ -80,12 +80,12 @@ void ZVInputAttributesDefinitionDlg::OnOK()
     CDialog::OnOK();
 }
 
-BOOL ZVInputAttributesDefinitionDlg::OnInitDialog() 
+BOOL ZVInputAttributesDefinitionDlg::OnInitDialog()
 {
     if (m_pInputAttr &&
         m_pPropManager)
     {
-        ZBProperty*  pProp = m_pPropManager->GetPropertyItem( m_pInputAttr->GetCategoryID(), m_pInputAttr->GetItemID() );
+        ZBProperty*  pProp = m_pPropManager->GetPropertyItem(m_pInputAttr->GetCategoryID(), m_pInputAttr->GetItemID());
 
         if (pProp)
         {
@@ -97,26 +97,26 @@ BOOL ZVInputAttributesDefinitionDlg::OnInitDialog()
     }
 
     CDialog::OnInitDialog();
-    
+
     if (m_pInputAttr)
     {
         if (GetDlgItem(IDC_CHOOSE_DYNATTR))
-            GetDlgItem(IDC_CHOOSE_DYNATTR)->EnableWindow( FALSE );
+            GetDlgItem(IDC_CHOOSE_DYNATTR)->EnableWindow(FALSE);
 
-        m_FlagList.SetCurSel( m_pInputAttr->GetFlag() );
-        m_VisibilityList.SetCurSel( (m_pInputAttr->GetSymbolRef() != -1) ? 0 : 1 );
+        m_FlagList.SetCurSel(m_pInputAttr->GetFlag());
+        m_VisibilityList.SetCurSel((m_pInputAttr->GetSymbolRef() != -1) ? 0 : 1);
     }
-    
+
     return TRUE;  // return TRUE unless you set the focus to a control
                   // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-void ZVInputAttributesDefinitionDlg::OnChooseDynAttr() 
+void ZVInputAttributesDefinitionDlg::OnChooseDynAttr()
 {
     if (!m_pSet)
         return;
 
-    ZVChoosePropertyDlg choose( m_pSet, 2 );
+    ZVChoosePropertyDlg choose(m_pSet, 2);
     if (choose.DoModal() == IDOK)
     {
         ZBProperty* pProp = choose.GetSelectedProperty();

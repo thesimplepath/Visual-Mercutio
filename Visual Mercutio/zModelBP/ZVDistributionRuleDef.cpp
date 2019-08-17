@@ -19,8 +19,8 @@ static char THIS_FILE[] = __FILE__;
 
 
 ZVDistributionRuleDef::ZVDistributionRuleDef(ZBDistributionRule* pRule /*= NULL*/, CWnd* pParent /*= NULL*/)
-: CDialog(ZVDistributionRuleDef::IDD, pParent),
-  m_pRule(pRule)
+    : CDialog(ZVDistributionRuleDef::IDD, pParent),
+    m_pRule(pRule)
 {
     //{{AFX_DATA_INIT(ZVDistributionRuleDef)
     m_Operator = 0;
@@ -49,28 +49,28 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // ZVDistributionRuleDef message handlers
 
-void ZVDistributionRuleDef::OnOK() 
+void ZVDistributionRuleDef::OnOK()
 {
     UpdateData(TRUE);
 
     if (m_Operator <= 0)
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_OPERATORRULE_MISSING, MB_OK );
+        mBox.Show(IDS_OPERATORRULE_MISSING, MB_OK);
         return;
     }
 
     if (m_Value.IsEmpty())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_OPERATORVALUE_MISSING, MB_OK );
+        mBox.Show(IDS_OPERATORVALUE_MISSING, MB_OK);
         return;
     }
-    
+
     CDialog::OnOK();
 }
 
-BOOL ZVDistributionRuleDef::OnInitDialog() 
+BOOL ZVDistributionRuleDef::OnInitDialog()
 {
     if (m_pRule)
     {
@@ -81,8 +81,7 @@ BOOL ZVDistributionRuleDef::OnInitDialog()
     }
 
     CDialog::OnInitDialog();
-    
-    
+
     return TRUE;  // return TRUE unless you set the focus to a control
                   // EXCEPTION: OCX Property Pages should return FALSE
 }

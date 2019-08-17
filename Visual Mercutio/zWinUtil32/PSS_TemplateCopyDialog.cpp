@@ -131,21 +131,21 @@ void PSS_TemplateCopyDialog::OnOK()
     if (!pTemplateDir)
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_CATEGORYMISSING, MB_OK);
+        mBox.Show(IDS_CATEGORYMISSING, MB_OK);
         return;
     }
 
     if (m_FileName.IsEmpty())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FILENAMEMISSING, MB_OK);
+        mBox.Show(IDS_FILENAMEMISSING, MB_OK);
         return;
     }
 
     if (m_Title.IsEmpty())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_TITLEMISSING, MB_OK);
+        mBox.Show(IDS_TITLEMISSING, MB_OK);
         return;
     }
 
@@ -156,7 +156,7 @@ void PSS_TemplateCopyDialog::OnOK()
     #endif
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_TEMPLATEFILENAMEERROR, MB_OK);
+        mBox.Show(IDS_TEMPLATEFILENAMEERROR, MB_OK);
         return;
     }
 
@@ -171,11 +171,11 @@ void PSS_TemplateCopyDialog::OnOK()
         // if not exists, allow file replacement dialog box if possible, otherwise show an error message and return
         if (!m_AllowReplace)
         {
-            mBox.ShowMsgBox(IDS_FORMALREADYEXIST, MB_OK);
+            mBox.Show(IDS_FORMALREADYEXIST, MB_OK);
             return;
         }
         else
-        if (mBox.ShowMsgBox(IDS_FORMALREADYEXIST_CONTREPLACE, MB_YESNO) == IDNO)
+        if (mBox.Show(IDS_FORMALREADYEXIST_CONTREPLACE, MB_YESNO) == IDNO)
             return;
 
         // set the selected file exists flag

@@ -25,20 +25,20 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZVRulesInfoDlg dialog
 
-BEGIN_MESSAGE_MAP( ZVRulesInfoDlg, CDialog )
+BEGIN_MESSAGE_MAP(ZVRulesInfoDlg, CDialog)
     //{{AFX_MSG_MAP(ZVRulesInfoDlg)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZVRulesInfoDlg::ZVRulesInfoDlg( UINT                    nTitleID        /*= -1*/,
-                                ZBLogicalRulesEntity*    pLogicalRule    /*= NULL*/,
-                                const CString            Name            /*= _T( "" )*/,
-                                const CString            Description        /*= _T( "" )*/,
-                                bool                    ModifyMode        /*= false*/,
-                                CWnd*                    pParent            /*=NULL*/ )
-    : CDialog        ( ZVRulesInfoDlg::IDD, pParent ),
-      m_pRule        ( pLogicalRule ),
-      m_ModifyMode    ( ModifyMode )
+ZVRulesInfoDlg::ZVRulesInfoDlg(UINT                    nTitleID        /*= -1*/,
+                               ZBLogicalRulesEntity*    pLogicalRule    /*= NULL*/,
+                               const CString            Name            /*= _T( "" )*/,
+                               const CString            Description        /*= _T( "" )*/,
+                               bool                    ModifyMode        /*= false*/,
+                               CWnd*                    pParent            /*=NULL*/)
+    : CDialog(ZVRulesInfoDlg::IDD, pParent),
+    m_pRule(pLogicalRule),
+    m_ModifyMode(ModifyMode)
 {
     //{{AFX_DATA_INIT(ZVRulesInfoDlg)
     m_Description = Description;
@@ -46,19 +46,18 @@ ZVRulesInfoDlg::ZVRulesInfoDlg( UINT                    nTitleID        /*= -1*/
     //}}AFX_DATA_INIT
 
     // Assigns also the initial cost
-    if ( nTitleID != -1 )
+    if (nTitleID != -1)
     {
-        m_Title.LoadString( nTitleID );
+        m_Title.LoadString(nTitleID);
     }
 }
 
 ZVRulesInfoDlg::~ZVRulesInfoDlg()
-{
-}
+{}
 
-void ZVRulesInfoDlg::DoDataExchange( CDataExchange* pDX )
+void ZVRulesInfoDlg::DoDataExchange(CDataExchange* pDX)
 {
-    CDialog::DoDataExchange( pDX );
+    CDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(ZVRulesInfoDlg)
     DDX_Text(pDX, IDC_RULE_DESCRIPTION, m_Description);
@@ -71,15 +70,15 @@ void ZVRulesInfoDlg::DoDataExchange( CDataExchange* pDX )
 
 void ZVRulesInfoDlg::OnOK()
 {
-    UpdateData( TRUE );
+    UpdateData(TRUE);
 
-    if ( !m_ModifyMode )
+    if (!m_ModifyMode)
     {
-        if ( m_pRule && m_pRule->RuleExist( m_Name ) )
+        if (m_pRule && m_pRule->RuleExist(m_Name))
         {
             // Already exists
             PSS_MsgBox mBox;
-            mBox.ShowMsgBox( IDS_RULE_ALREADYEXIST, MB_OK );
+            mBox.Show(IDS_RULE_ALREADYEXIST, MB_OK);
             return;
         }
     }
@@ -90,17 +89,17 @@ void ZVRulesInfoDlg::OnOK()
 BOOL ZVRulesInfoDlg::OnInitDialog()
 {
     CDialog::OnInitDialog();
-    
-    if ( !m_Title.IsEmpty() )
+
+    if (!m_Title.IsEmpty())
     {
-        SetWindowText( m_Title );
+        SetWindowText(m_Title);
     }
 
-    if ( m_ModifyMode )
+    if (m_ModifyMode)
     {
-        if ( GetDlgItem( IDC_RULE_NAME ) )
+        if (GetDlgItem(IDC_RULE_NAME))
         {
-            GetDlgItem( IDC_RULE_NAME )->EnableWindow( FALSE );
+            GetDlgItem(IDC_RULE_NAME)->EnableWindow(FALSE);
         }
     }
 

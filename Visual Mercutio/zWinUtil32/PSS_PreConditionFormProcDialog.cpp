@@ -223,7 +223,7 @@ BOOL PSS_PreConditionFormProcDialog::CheckFiles()
         if (fileName.IsEmpty())
         {
             PSS_MsgBox mBox;
-            mBox.ShowMsgBox(IDS_PROCFORMFILEMISSING, MB_OK);
+            mBox.Show(IDS_PROCFORMFILEMISSING, MB_OK);
 
             return FALSE;
         }
@@ -235,7 +235,7 @@ BOOL PSS_PreConditionFormProcDialog::CheckFiles()
             if (!stamp.ReadFromFile(fileName))
             {
                 PSS_MsgBox mBox;
-                mBox.ShowMsgBox(IDS_PROCFORMFILEINVALID, MB_OK);
+                mBox.Show(IDS_PROCFORMFILEINVALID, MB_OK);
 
                 return FALSE;
             }
@@ -243,7 +243,7 @@ BOOL PSS_PreConditionFormProcDialog::CheckFiles()
             if (stamp.GetTitle() != m_FormNameArray.GetAt(m_CurrentFormIndex))
             {
                 PSS_MsgBox mBox;
-                mBox.ShowMsgBox(IDS_PROCFORMFILE_TITLENEQ, MB_OK);
+                mBox.Show(IDS_PROCFORMFILE_TITLENEQ, MB_OK);
 
                 return FALSE;
             }

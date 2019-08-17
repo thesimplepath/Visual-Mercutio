@@ -131,7 +131,7 @@ BOOL ZDDocument::OpenDocument(const char* pszPathName, BOOL bSetLastLoaded)
         !GetActiveDocumentData()->GetSchema().GetFormulaList(GetCurrentSchema()))
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FILECORRUPTED, MB_OK);
+        mBox.Show(IDS_FILECORRUPTED, MB_OK);
         return FALSE;
     }
 
@@ -170,7 +170,7 @@ BOOL ZDDocument::OpenDocument(const char* pszPathName, BOOL bSetLastLoaded)
         {
             // In write mode no chance, file corruption
             PSS_MsgBox mBox;
-            mBox.ShowMsgBox(IDS_RTEXPORT_CREATIONFAILED);
+            mBox.Show(IDS_RTEXPORT_CREATIONFAILED);
         }
     }
 
@@ -3116,7 +3116,7 @@ void ZDDocument::SerializeRead(CArchive& ar)
         if (e->m_cause == CArchiveException::badSchema)
         {
             PSS_MsgBox mBox;
-            mBox.ShowMsgBox(IDS_FILEGENERATEDNEWERVER, MB_OK);
+            mBox.Show(IDS_FILEGENERATEDNEWERVER, MB_OK);
             THROW_LAST();
         }
 
@@ -3140,7 +3140,7 @@ void ZDDocument::SerializeRead(CArchive& ar)
             if (!AddDocumentData(pNewDocument))
             {
                 PSS_MsgBox mBox;
-                mBox.ShowMsgBox(IDS_FILECORRUPTED, MB_OK);
+                mBox.Show(IDS_FILECORRUPTED, MB_OK);
             }
 
             SetActiveDocumentIndex(0);
@@ -3196,7 +3196,7 @@ void ZDDocument::SerializeRead(CArchive& ar)
             if (wStamp == 0xFFFF)
             {
                 PSS_MsgBox mBox;
-                mBox.ShowMsgBox(IDS_FILECORRUPTED, MB_OK);
+                mBox.Show(IDS_FILECORRUPTED, MB_OK);
                 THROW_LAST();
             }
         }
@@ -3221,7 +3221,7 @@ void ZDDocument::SerializeRead(CArchive& ar)
             if (wStamp == 0xFFFF)
             {
                 PSS_MsgBox mBox;
-                mBox.ShowMsgBox(IDS_FILECORRUPTED);
+                mBox.Show(IDS_FILECORRUPTED);
                 THROW_LAST();
             }
 
@@ -3265,13 +3265,13 @@ void ZDDocument::SerializeRead(CArchive& ar)
             SetForecastedObjectCount(pNewDocument->GetObjectCount());
 
             PSS_MsgBox mBox;
-            mBox.ShowMsgBox(IDS_FILEPROBLEM, MB_OK);
+            mBox.Show(IDS_FILEPROBLEM, MB_OK);
         }
 
         if (pNewDocument->GetStamp().GetTemplate().IsEmpty())
         {
             PSS_MsgBox mBox;
-            mBox.ShowMsgBox(IDS_TEMPLATEPROBLEM, MB_OK);
+            mBox.Show(IDS_TEMPLATEPROBLEM, MB_OK);
         }
     }
 

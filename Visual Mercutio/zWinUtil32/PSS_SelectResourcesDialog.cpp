@@ -100,7 +100,7 @@ void PSS_SelectResourcesDialog::OnOK()
         PSS_MsgBox mBox;
 
         // show warning message
-        if (mBox.ShowMsgBox(IDS_LISTOFUSEREMPTY_CONTINUE, MB_YESNO) == IDNO)
+        if (mBox.Show(IDS_LISTOFUSEREMPTY_CONTINUE, MB_YESNO) == IDNO)
             return;
     }
 

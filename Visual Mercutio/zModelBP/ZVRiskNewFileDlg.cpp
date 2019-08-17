@@ -16,12 +16,12 @@
 #include "zBaseLib\PSS_MsgBox.h"
 
 #ifdef _DEBUG
-    #define new DEBUG_NEW
-    #undef THIS_FILE
-    static char THIS_FILE[] = __FILE__;
+#define new DEBUG_NEW
+#undef THIS_FILE
+static char THIS_FILE[] = __FILE__;
 #endif
 
-BEGIN_MESSAGE_MAP( ZVRiskNewFileDlg, CDialog )
+BEGIN_MESSAGE_MAP(ZVRiskNewFileDlg, CDialog)
     //{{AFX_MSG_MAP(ZVRiskNewFileDlg)
     ON_BN_CLICKED(IDC_DIRECTORY_SELECT, OnBnClickedDirectorySelect)
     ON_EN_CHANGE(IDC_FILENAME, OnEnChangeFilename)
@@ -33,11 +33,11 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // ZVRiskNewFileDlg dialog
 
-ZVRiskNewFileDlg::ZVRiskNewFileDlg( CString Extension, CWnd* pParent /*= NULL*/ )
-    : CDialog        ( ZVRiskNewFileDlg::IDD, pParent ),
-      m_Extension    ( Extension ),
-      m_Filename    ( _T( "" ) ),
-      m_Directory    ( _T( "" ) )
+ZVRiskNewFileDlg::ZVRiskNewFileDlg(CString Extension, CWnd* pParent /*= NULL*/)
+    : CDialog(ZVRiskNewFileDlg::IDD, pParent),
+    m_Extension(Extension),
+    m_Filename(_T("")),
+    m_Directory(_T(""))
 {
     //{{AFX_DATA_INIT(ZVRiskNewFileDlg)
     //}}AFX_DATA_INIT
@@ -58,19 +58,19 @@ CString ZVRiskNewFileDlg::GetFilename()
 // Cette fonction contrôle les entrées utilisateurs.
 void ZVRiskNewFileDlg::CheckUserEntry()
 {
-    if ( ( m_Filename.IsEmpty() == FALSE ) && ( m_Directory.IsEmpty() == FALSE ) )
+    if ((m_Filename.IsEmpty() == FALSE) && (m_Directory.IsEmpty() == FALSE))
     {
-        m_OK_Ctrl.EnableWindow( TRUE );
+        m_OK_Ctrl.EnableWindow(TRUE);
     }
     else
     {
-        m_OK_Ctrl.EnableWindow( FALSE );
+        m_OK_Ctrl.EnableWindow(FALSE);
     }
 }
 
-void ZVRiskNewFileDlg::DoDataExchange( CDataExchange* pDX )
+void ZVRiskNewFileDlg::DoDataExchange(CDataExchange* pDX)
 {
-    CDialog::DoDataExchange( pDX );
+    CDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(ZVRiskNewFileDlg)
     DDX_Text(pDX, IDC_FILENAME, m_Filename);
@@ -100,7 +100,7 @@ BOOL ZVRiskNewFileDlg::OnInitDialog()
 // Cette fonction est appelée lorsque le nom du fichier change.
 void ZVRiskNewFileDlg::OnEnChangeFilename()
 {
-    m_Filename_Ctrl.GetWindowText( m_Filename );
+    m_Filename_Ctrl.GetWindowText(m_Filename);
 
     CheckUserEntry();
 }
@@ -108,7 +108,7 @@ void ZVRiskNewFileDlg::OnEnChangeFilename()
 // Cette fonction est appelée lorsque le nom du répertoire change.
 void ZVRiskNewFileDlg::OnEnChangeDirectory()
 {
-    m_Directory_Ctrl.GetWindowText( m_Directory );
+    m_Directory_Ctrl.GetWindowText(m_Directory);
 
     CheckUserEntry();
 }
@@ -117,12 +117,12 @@ void ZVRiskNewFileDlg::OnEnChangeDirectory()
 void ZVRiskNewFileDlg::OnBnClickedDirectorySelect()
 {
     CSHFileInfo m_FileInfo;
-    m_FileInfo.m_strTitle = _T( m_Directory );
+    m_FileInfo.m_strTitle = _T(m_Directory);
 
-    if ( m_FileInfo.BrowseForFolder( GetParent() ) == IDOK )
+    if (m_FileInfo.BrowseForFolder(GetParent()) == IDOK)
     {
         m_Directory = m_FileInfo.m_strPath;
-        m_Directory_Ctrl.SetWindowText( m_Directory );
+        m_Directory_Ctrl.SetWindowText(m_Directory);
     }
 }
 
@@ -131,20 +131,20 @@ void ZVRiskNewFileDlg::OnBnClickedOk()
 {
     PSS_File m_File;
 
-    if ( !m_File.Exist( m_Directory ) )
+    if (!m_File.Exist(m_Directory))
     {
         PSS_MsgBox mBox;
 
-        mBox.ShowMsgBox( IDS_BAD_DIRECTORY, MB_OK );
+        mBox.Show(IDS_BAD_DIRECTORY, MB_OK);
 
         return;
     }
 
-    if ( m_File.Exist( m_Directory + _T( "\\" ) + m_Filename + m_Extension ) )
+    if (m_File.Exist(m_Directory + _T("\\") + m_Filename + m_Extension))
     {
         PSS_MsgBox mBox;
 
-        mBox.ShowMsgBox( IDS_RISK_FILE_ALREADY_EXIST, MB_OK );
+        mBox.Show(IDS_RISK_FILE_ALREADY_EXIST, MB_OK);
 
         return;
     }

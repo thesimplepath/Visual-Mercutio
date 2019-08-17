@@ -197,7 +197,7 @@ bool PSS_RegisterSetup::GetRegValue(HKEY           hRoot,
 void PSS_RegisterSetup::ShowGenericError() const
 {
     PSS_MsgBox mBox;
-    mBox.ShowMsgBox(_T("Cannot access the Windows registry.\r\n\r\nReceived error:\r\Internal error."), MB_OK);
+    mBox.Show(_T("Cannot access the Windows registry.\r\n\r\nReceived error:\r\nInternal error."), MB_OK);
 }
 //---------------------------------------------------------------------------
 void PSS_RegisterSetup::ShowError(DWORD errorCode, bool useLocale) const
@@ -228,6 +228,6 @@ void PSS_RegisterSetup::ShowError(DWORD errorCode, bool useLocale) const
     }
 
     PSS_MsgBox mBox;
-    mBox.ShowMsgBox(_T(("Cannot access the Windows registry.\r\n\r\nReceived error:\r\n" + errMsg).c_str()), MB_OK);
+    mBox.Show(_T(("Cannot access the Windows registry.\r\n\r\nReceived error:\r\n" + errMsg).c_str()), MB_OK);
 }
 //---------------------------------------------------------------------------

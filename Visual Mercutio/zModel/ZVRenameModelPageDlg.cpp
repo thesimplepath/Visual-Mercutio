@@ -24,38 +24,38 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZVRenameModelPageDlg dialog
 
-BEGIN_MESSAGE_MAP( ZVRenameModelPageDlg, ZIDialog )
+BEGIN_MESSAGE_MAP(ZVRenameModelPageDlg, ZIDialog)
     //{{AFX_MSG_MAP(ZVRenameModelPageDlg)
     ON_NOTIFY(TVN_SELCHANGED, IDC_EXISTINGPROCESS, OnSelchangedSymboltree)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZVRenameModelPageDlg::ZVRenameModelPageDlg( ZDProcessGraphModelMdl*    pModel,
-                                            CStringArray*            pArrayPageName    /*= NULL*/,
-                                            ZDProcessGraphPage*        pPageToRename    /*= NULL*/,
-                                            ZBRuntimeClassSet*        pSet            /*= NULL*/,
-                                            CWnd*                    pParent            /*= NULL*/ )
-    : ZIDialog            ( ZVRenameModelPageDlg::IDD, TRUE, pParent ),
-      m_pModel            ( pModel ),
-      m_pArrayPageName    ( pArrayPageName ),
-      m_pSelectedPage    ( NULL ),
-      m_pPageToRename    ( pPageToRename ),
-      m_pSet            ( pSet )
+ZVRenameModelPageDlg::ZVRenameModelPageDlg(ZDProcessGraphModelMdl*    pModel,
+                                           CStringArray*            pArrayPageName    /*= NULL*/,
+                                           ZDProcessGraphPage*        pPageToRename    /*= NULL*/,
+                                           ZBRuntimeClassSet*        pSet            /*= NULL*/,
+                                           CWnd*                    pParent            /*= NULL*/)
+    : ZIDialog(ZVRenameModelPageDlg::IDD, TRUE, pParent),
+    m_pModel(pModel),
+    m_pArrayPageName(pArrayPageName),
+    m_pSelectedPage(NULL),
+    m_pPageToRename(pPageToRename),
+    m_pSet(pSet)
 {
     //{{AFX_DATA_INIT(ZVRenameModelPageDlg)
     m_PageName = _T("");
     //}}AFX_DATA_INIT
 
     // If a page to rename is defined, assigns the selected page
-    if ( m_pPageToRename )
+    if (m_pPageToRename)
     {
         m_pSelectedPage = m_pPageToRename;
     }
 }
 
-void ZVRenameModelPageDlg::DoDataExchange( CDataExchange* pDX )
+void ZVRenameModelPageDlg::DoDataExchange(CDataExchange* pDX)
 {
-    ZIDialog::DoDataExchange( pDX );
+    ZIDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(ZVRenameModelPageDlg)
     DDX_Control(pDX, IDC_EXISTINGPROCESS, m_SymbolTree);
@@ -70,81 +70,81 @@ BOOL ZVRenameModelPageDlg::OnInitDialog()
 {
     ZIDialog::OnInitDialog();
 
-    if ( m_pModel )
+    if (m_pModel)
     {
         ZBModelSet DocumentModelSet;
-        DocumentModelSet.AddModel( m_pModel );
+        DocumentModelSet.AddModel(m_pModel);
 
-        m_SymbolTree.Initialize( _T( "Document" ), &DocumentModelSet, IDB_IL_BP_SYMBOLS, m_pSet );
+        m_SymbolTree.Initialize(_T("Document"), &DocumentModelSet, IDB_IL_BP_SYMBOLS, m_pSet);
 
         // Set the OK disabled at startup
-        if ( GetDlgItem( IDOK ) )
+        if (GetDlgItem(IDOK))
         {
-            GetDlgItem( IDOK )->EnableWindow( FALSE );
+            GetDlgItem(IDOK)->EnableWindow(FALSE);
         }
     }
 
-    if ( m_pPageToRename )
+    if (m_pPageToRename)
     {
-        m_SymbolTree.SelectItemName( m_pPageToRename->GetPageName() );
-        m_SymbolTree.EnableWindow( FALSE );
+        m_SymbolTree.SelectItemName(m_pPageToRename->GetPageName());
+        m_SymbolTree.EnableWindow(FALSE);
     }
 
     return TRUE;    // return TRUE unless you set the focus to a control
                     // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-void ZVRenameModelPageDlg::OnSelchangedSymboltree( NMHDR* pNMHDR, LRESULT* pResult )
+void ZVRenameModelPageDlg::OnSelchangedSymboltree(NMHDR* pNMHDR, LRESULT* pResult)
 {
     NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
 
-    if ( m_SymbolTree.GetSelectedPage () != NULL )
+    if (m_SymbolTree.GetSelectedPage() != NULL)
     {
-        m_pSelectedPage    = m_SymbolTree.GetSelectedPage();
-        m_PageName        = m_pSelectedPage->GetPageName();
+        m_pSelectedPage = m_SymbolTree.GetSelectedPage();
+        m_PageName = m_pSelectedPage->GetPageName();
 
-        if ( GetDlgItem( IDOK ) )
+        if (GetDlgItem(IDOK))
         {
-            GetDlgItem( IDOK )->EnableWindow( TRUE );
+            GetDlgItem(IDOK)->EnableWindow(TRUE);
         }
     }
     else
     {
-        m_pSelectedPage    = NULL;
-        m_PageName        = _T( "" );
+        m_pSelectedPage = NULL;
+        m_PageName = _T("");
 
-        if ( GetDlgItem( IDOK ) )
+        if (GetDlgItem(IDOK))
         {
-            GetDlgItem( IDOK )->EnableWindow( FALSE );
+            GetDlgItem(IDOK)->EnableWindow(FALSE);
         }
     }
 
-    UpdateData( FALSE );
+    UpdateData(FALSE);
 
     *pResult = 0;
 }
 
 void ZVRenameModelPageDlg::OnOK()
 {
-    UpdateData( TRUE );
+    UpdateData(TRUE);
 
-    if ( m_PageName.IsEmpty() )
+    if (m_PageName.IsEmpty())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_NEWMODELPAGE_EMPTY, MB_OK );
+        mBox.Show(IDS_NEWMODELPAGE_EMPTY, MB_OK);
         return;
     }
 
     // Check existence of new page name
-    if ( m_pArrayPageName )
+    if (m_pArrayPageName)
     {
-        for ( int i = 0; i < m_pArrayPageName->GetSize(); ++i )
+        for (int i = 0; i < m_pArrayPageName->GetSize(); ++i)
         {
-            if ( m_PageName == m_pArrayPageName->GetAt( i ) )
+            if (m_PageName == m_pArrayPageName->GetAt(i))
             {
                 // Display error message
                 PSS_MsgBox mBox;
-                mBox.ShowMsgBox( IDS_NEWMODELPAGE_ALREADYEXIST, MB_OK );
+                mBox.Show(IDS_NEWMODELPAGE_ALREADYEXIST, MB_OK);
                 return;
             }
         }

@@ -65,7 +65,7 @@ BOOL PSS_Export::Export()
     if (!OpenFileCreate())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_EXPORTFILE_FAIL, MB_OK);
+        mBox.Show(IDS_EXPORTFILE_FAIL, MB_OK);
         return FALSE;
     }
 
@@ -108,7 +108,7 @@ BOOL PSS_Export::Import()
     if (!OpenFileRead())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_IMPORTFILE_NF, MB_OK);
+        mBox.Show(IDS_IMPORTFILE_NF, MB_OK);
         return FALSE;
     }
 

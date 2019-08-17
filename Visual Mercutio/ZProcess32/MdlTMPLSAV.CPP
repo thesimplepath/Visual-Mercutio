@@ -15,7 +15,7 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 9 décembre 2007 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-BEGIN_MESSAGE_MAP( ZIModelTemplateCopyDlg, CDialog )
+BEGIN_MESSAGE_MAP(ZIModelTemplateCopyDlg, CDialog)
     //{{AFX_MSG_MAP(ZIModelTemplateCopyDlg)
     ON_EN_CHANGE(IDC_TITLE, OnChangeTitle)
     ON_BN_CLICKED(ID_DONTSAVE, OnDontSave)
@@ -25,35 +25,35 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // ZIModelTemplateCopyDlg dialog
 
-ZIModelTemplateCopyDlg::ZIModelTemplateCopyDlg( CString            FileExtension,
-                                                const CString    Directory,
+ZIModelTemplateCopyDlg::ZIModelTemplateCopyDlg(CString            FileExtension,
+                                               const CString    Directory,
                                                PSS_FolderStamp*    pFolderStamp,
-                                                BOOL            AllowReplace    /*= FALSE*/,
-                                                CWnd*            pParent            /*= NULL*/ )
-    : ZIDialog            ( ZIModelTemplateCopyDlg::IDD, TRUE, pParent ),
-      m_FileExtension    ( FileExtension ),
-      m_Directory        ( Directory ),
-      m_pFolderStamp    ( pFolderStamp ),
-      m_AllowReplace    ( AllowReplace ),
-      m_FileExist        ( false )
+                                               BOOL            AllowReplace    /*= FALSE*/,
+                                               CWnd*            pParent            /*= NULL*/)
+    : ZIDialog(ZIModelTemplateCopyDlg::IDD, TRUE, pParent),
+    m_FileExtension(FileExtension),
+    m_Directory(Directory),
+    m_pFolderStamp(pFolderStamp),
+    m_AllowReplace(AllowReplace),
+    m_FileExist(false)
 {
     //{{AFX_DATA_INIT(ZIModelTemplateCopyDlg)
-    m_sDescription    = _T( "" );
-    m_sFilename        = _T( "" );
-    m_sTitle        = _T( "" );
+    m_sDescription = _T("");
+    m_sFilename = _T("");
+    m_sTitle = _T("");
     //}}AFX_DATA_INIT
 
-    if ( m_pFolderStamp )
+    if (m_pFolderStamp)
     {
         m_sDescription = m_pFolderStamp->GetExplanation();
 
-#ifdef _WIN32
+    #ifdef _WIN32
         m_sFilename = m_pFolderStamp->GetTitle();
-#endif
-#ifndef _WIN32
+    #endif
+    #ifndef _WIN32
         // In 16bit only 8 character for the filename
-        m_sFilename = m_pFolderStamp->GetTitle().Left( 8 );
-#endif
+        m_sFilename = m_pFolderStamp->GetTitle().Left(8);
+    #endif
 
         m_sTitle = m_pFolderStamp->GetTitle();
     }
@@ -61,15 +61,15 @@ ZIModelTemplateCopyDlg::ZIModelTemplateCopyDlg( CString            FileExtension
     m_ModelDirectory.SetSearchType(PSS_SearchEditButton::IE_T_Directory, IDS_CHOOSEDIRECTORY, m_Directory);
 
     // If the directory is empty, use the current directory
-    if ( m_Directory.IsEmpty() )
+    if (m_Directory.IsEmpty())
     {
-        GetCurrentDirectory( 500, m_Directory.GetBuffer( 500 ) );
+        GetCurrentDirectory(500, m_Directory.GetBuffer(500));
     }
 }
 
-void ZIModelTemplateCopyDlg::DoDataExchange( CDataExchange* pDX )
+void ZIModelTemplateCopyDlg::DoDataExchange(CDataExchange* pDX)
 {
-    ZIDialog::DoDataExchange( pDX );
+    ZIDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(ZIModelTemplateCopyDlg)
     DDX_Control(pDX, IDC_MODELDIR, m_ModelDirectory);
@@ -84,69 +84,69 @@ void ZIModelTemplateCopyDlg::DoDataExchange( CDataExchange* pDX )
 
 void ZIModelTemplateCopyDlg::OnOK()
 {
-    UpdateData( TRUE );
-    
-    m_ModelDirectory.GetWindowText( m_Directory );
-    m_Directory = ZDirectory::NormalizeDirectory( m_Directory );
+    UpdateData(TRUE);
 
-    if ( m_Directory.IsEmpty() )
+    m_ModelDirectory.GetWindowText(m_Directory);
+    m_Directory = ZDirectory::NormalizeDirectory(m_Directory);
+
+    if (m_Directory.IsEmpty())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_DIRECTORY_MISSING, MB_OK );
+        mBox.Show(IDS_DIRECTORY_MISSING, MB_OK);
         return;
     }
 
-    if ( m_sFilename.IsEmpty() )
+    if (m_sFilename.IsEmpty())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_FILENAMEMISSING, MB_OK );
+        mBox.Show(IDS_FILENAMEMISSING, MB_OK);
         return;
     }
 
-    if ( m_sTitle.IsEmpty() )
+    if (m_sTitle.IsEmpty())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_TITLEMISSING, MB_OK );
+        mBox.Show(IDS_TITLEMISSING, MB_OK);
         return;
     }
 
     // Check if normal template is specified
-    if ( m_sFilename + _T( "." ) + m_FileExtension == g_NormalModelTemplateFileName )
+    if (m_sFilename + _T(".") + m_FileExtension == g_NormalModelTemplateFileName)
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_NORMALTMPL_CANNOTBEUSED, MB_OK );
+        mBox.Show(IDS_NORMALTMPL_CANNOTBEUSED, MB_OK);
         return;
     }
 
 #ifndef _WIN32
-    if ( m_sFilename.GetLength() > 8 || m_sFilename.Find( '.' ) != -1 )
-#endif
-#ifdef _WIN32
-    if ( m_sFilename.Find( '.' ) != -1 )
-#endif
-    {
-        PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_TEMPLATEFILENAMEERROR, MB_OK );
-        return;
-    }
+    if (m_sFilename.GetLength() > 8 || m_sFilename.Find('.') != -1)
+    #endif
+    #ifdef _WIN32
+        if (m_sFilename.Find('.') != -1)
+        #endif
+        {
+            PSS_MsgBox mBox;
+            mBox.Show(IDS_TEMPLATEFILENAMEERROR, MB_OK);
+            return;
+        }
 
     // Build the complete filename to know if already exist
-    CString sFile = m_Directory + _T( "\\" ) + m_sFilename + _T( "." ) + m_FileExtension;
+    CString sFile = m_Directory + _T("\\") + m_sFilename + _T(".") + m_FileExtension;
     CFileStatus status;
 
-    if ( CFile::GetStatus( sFile, status ) )
+    if (CFile::GetStatus(sFile, status))
     {
         // If does not allow replacement of file
         // error message and return
         PSS_MsgBox mBox;
 
-        if ( !m_AllowReplace )
+        if (!m_AllowReplace)
         {
-            mBox.ShowMsgBox( IDS_FORMALREADYEXIST, MB_OK );
+            mBox.Show(IDS_FORMALREADYEXIST, MB_OK);
             return;
         }
 
-        if ( mBox.ShowMsgBox( IDS_FORMALREADYEXIST_CONTREPLACE, MB_YESNO ) == IDNO )
+        if (mBox.Show(IDS_FORMALREADYEXIST_CONTREPLACE, MB_YESNO) == IDNO)
         {
             return;
         }
@@ -157,7 +157,7 @@ void ZIModelTemplateCopyDlg::OnOK()
 
     // Add the extension
     m_sFilename = sFile;
-    UpdateData( FALSE );
+    UpdateData(FALSE);
     CDialog::OnOK();
 }
 
@@ -165,7 +165,7 @@ BOOL ZIModelTemplateCopyDlg::OnInitDialog()
 {
     ZIDialog::OnInitDialog();
 
-    m_ModelDirectory.SetWindowText( m_Directory );
+    m_ModelDirectory.SetWindowText(m_Directory);
 
     // return TRUE unless you set the focus to a control
     return TRUE;
@@ -179,20 +179,20 @@ void ZIModelTemplateCopyDlg::OnChangeTitle()
     // with the ENM_CHANGE flag ORed into the mask.
 
     // Trap input and change the filename
-    UpdateData( TRUE );
+    UpdateData(TRUE);
 
 #ifndef _WIN32
     // In 16bit only copy 8 character of the title
-    m_sFilename = m_sTitle.Left( 8 );
+    m_sFilename = m_sTitle.Left(8);
 #endif
 #ifdef _WIN32
     m_sFilename = m_sTitle;
 #endif
 
-    UpdateData( FALSE );
+    UpdateData(FALSE);
 }
 
 void ZIModelTemplateCopyDlg::OnDontSave()
 {
-    ZIDialog::EndDialog( ID_DONTSAVE );
+    ZIDialog::EndDialog(ID_DONTSAVE);
 }

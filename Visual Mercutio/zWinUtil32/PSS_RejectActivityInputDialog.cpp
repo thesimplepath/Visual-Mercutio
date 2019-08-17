@@ -92,7 +92,7 @@ void PSS_RejectActivityInputDialog::OnOK()
         PSS_MsgBox mBox;
 
         // ask the user if he wants to insert it from the central repository
-        if (mBox.ShowMsgBox(IDS_REJECTTEXTEMPTY, MB_YESNO) == IDNO)
+        if (mBox.Show(IDS_REJECTTEXTEMPTY, MB_YESNO) == IDNO)
             return;
     }
 

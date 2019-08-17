@@ -195,7 +195,7 @@ BOOL PSS_ActivityAttributionInputBackupDialog::CheckData()
     if (m_UserList.GetCount() <= 0)
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_ONEPERSON_REQUIRED, MB_OK);
+        mBox.Show(IDS_ONEPERSON_REQUIRED, MB_OK);
         return FALSE;
     }
 

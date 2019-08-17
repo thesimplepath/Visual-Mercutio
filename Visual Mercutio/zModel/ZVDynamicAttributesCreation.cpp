@@ -20,7 +20,7 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -29,16 +29,14 @@ static char THIS_FILE[]=__FILE__;
 // **************************************************************************************************************
 
 // Constructeur par défaut de la classe ZVDynamicAttributesCreation.
-ZVDynamicAttributesCreation::ZVDynamicAttributesCreation( ZDProcessGraphModelDoc* pModelDoc, bool SymbolSelected )
-    : m_pModelDoc        ( pModelDoc ),
-      m_SymbolSelected    ( SymbolSelected )
-{
-}
+ZVDynamicAttributesCreation::ZVDynamicAttributesCreation(ZDProcessGraphModelDoc* pModelDoc, bool SymbolSelected)
+    : m_pModelDoc(pModelDoc),
+    m_SymbolSelected(SymbolSelected)
+{}
 
 // Destructeur de la classe ZVDynamicAttributesCreation.
 ZVDynamicAttributesCreation::~ZVDynamicAttributesCreation()
-{
-}
+{}
 
 // **************************************************************************************************************
 // *                                Classe ZVDynamicAttributesCreation : Fonctions                                *
@@ -46,36 +44,36 @@ ZVDynamicAttributesCreation::~ZVDynamicAttributesCreation()
 
 int    ZVDynamicAttributesCreation::DoModal()
 {
-    if ( !m_pModelDoc )
+    if (!m_pModelDoc)
         return IDCANCEL;
 
-    ZVDynamicAttributesCreationS1 Cat( m_pModelDoc );
+    ZVDynamicAttributesCreationS1 Cat(m_pModelDoc);
 
-    if ( Cat.DoModal() == IDCANCEL )
+    if (Cat.DoModal() == IDCANCEL)
         return IDCANCEL;
 
     // Assigns values
     m_CategoryName = Cat.GetCategoryName();
 
-    ZVDynamicAttributesCreationS2 Attr( m_pModelDoc, m_CategoryName, m_SymbolSelected );
-    
-    if ( Attr.DoModal() == IDCANCEL )
+    ZVDynamicAttributesCreationS2 Attr(m_pModelDoc, m_CategoryName, m_SymbolSelected);
+
+    if (Attr.DoModal() == IDCANCEL)
         return IDCANCEL;
 
     // Assigns values
-    m_AttributeName            = Attr.GetAttributeName();
-    m_AttributeDescription    = Attr.GetAttributeDescription();
-    m_PropertyType            = Attr.GetPropertyType();
-    m_Visibility            = Attr.GetVisibility();
+    m_AttributeName = Attr.GetAttributeName();
+    m_AttributeDescription = Attr.GetAttributeDescription();
+    m_PropertyType = Attr.GetPropertyType();
+    m_Visibility = Attr.GetVisibility();
 
-    return IDOK;    
+    return IDOK;
 }
 
 // **************************************************************************************************************
 // *                               Classe ZVDynamicAttributesCreationS1 : Message map                            *
 // **************************************************************************************************************
 
-BEGIN_MESSAGE_MAP( ZVDynamicAttributesCreationS1, ZIWizardDialog )
+BEGIN_MESSAGE_MAP(ZVDynamicAttributesCreationS1, ZIWizardDialog)
     //{{AFX_MSG_MAP(ZVDynamicAttributesCreationS1)
     ON_BN_CLICKED(IDNEXT, OnNext)
     ON_EN_CHANGE(IDC_CATEGORYNAME, OnChangeCategoryName)
@@ -88,15 +86,15 @@ END_MESSAGE_MAP()
 // **************************************************************************************************************
 
 // Constructeur par défaut de la classe ZVDynamicAttributesCreationS1.
-ZVDynamicAttributesCreationS1::ZVDynamicAttributesCreationS1( ZDProcessGraphModelDoc* pModelDoc, CWnd* pParent /*=NULL*/ )
-    : ZIWizardDialog        ( ZVDynamicAttributesCreationS1::IDD,
-                              IDB_WZBMP1,
-                              0,
-                              0,
-                              IDS_WZ_DYNATTRS1_ST_S,
-                              IDS_WZ_DYNATTRS1_ST_T ),
-      m_pModelDoc            ( pModelDoc ),
-      m_InternalNameChange    ( false )
+ZVDynamicAttributesCreationS1::ZVDynamicAttributesCreationS1(ZDProcessGraphModelDoc* pModelDoc, CWnd* pParent /*=NULL*/)
+    : ZIWizardDialog(ZVDynamicAttributesCreationS1::IDD,
+                     IDB_WZBMP1,
+                     0,
+                     0,
+                     IDS_WZ_DYNATTRS1_ST_S,
+                     IDS_WZ_DYNATTRS1_ST_T),
+    m_pModelDoc(pModelDoc),
+    m_InternalNameChange(false)
 {
     //{{AFX_DATA_INIT(ZVDynamicAttributesCreationS1)
     m_CategoryName = _T("");
@@ -107,9 +105,9 @@ ZVDynamicAttributesCreationS1::ZVDynamicAttributesCreationS1( ZDProcessGraphMode
 // *                               Classe ZVDynamicAttributesCreationS1 : Fonctions                                *
 // **************************************************************************************************************
 
-void ZVDynamicAttributesCreationS1::DoDataExchange( CDataExchange* pDX )
+void ZVDynamicAttributesCreationS1::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange( pDX );
+    ZIWizardDialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(ZVDynamicAttributesCreationS1)
     DDX_Control(pDX, IDC_CATEGORY_LIST, m_CategoryList);
     DDX_Text(pDX, IDC_CATEGORYNAME, m_CategoryName);
@@ -118,21 +116,21 @@ void ZVDynamicAttributesCreationS1::DoDataExchange( CDataExchange* pDX )
 
 bool ZVDynamicAttributesCreationS1::CheckData()
 {
-    UpdateData( TRUE );
+    UpdateData(TRUE);
 
-    if ( m_CategoryName.IsEmpty() )
+    if (m_CategoryName.IsEmpty())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_PROPCATEGORYNAME_MISSING, MB_OK );
+        mBox.Show(IDS_PROPCATEGORYNAME_MISSING, MB_OK);
         return false;
     }
 
-    for ( int i = 0; i < m_StaticAttribArray.GetSize(); ++i )
+    for (int i = 0; i < m_StaticAttribArray.GetSize(); ++i)
     {
-        if ( m_StaticAttribArray.GetAt(i) == m_CategoryName )
+        if (m_StaticAttribArray.GetAt(i) == m_CategoryName)
         {
             PSS_MsgBox mBox;
-            mBox.ShowMsgBox( IDS_PROPCATEGORYNAME_EXIST, MB_OK );
+            mBox.Show(IDS_PROPCATEGORYNAME_EXIST, MB_OK);
             return false;
         }
     }
@@ -144,68 +142,68 @@ bool ZVDynamicAttributesCreationS1::CheckData()
 // *                           Classe ZVDynamicAttributesCreationS1 : message handlers                            *
 // **************************************************************************************************************
 
-BOOL ZVDynamicAttributesCreationS1::OnInitDialog() 
+BOOL ZVDynamicAttributesCreationS1::OnInitDialog()
 {
     ZIWizardDialog::OnInitDialog();
-    
-    if ( m_pModelDoc &&
-         m_pModelDoc->GetModel() && 
-         m_pModelDoc->GetDynamicPropertiesManager() )
+
+    if (m_pModelDoc &&
+        m_pModelDoc->GetModel() &&
+        m_pModelDoc->GetDynamicPropertiesManager())
     {
-        ZUDynamicAttributesManipulator::GetCategories( m_pModelDoc->GetModel(),
-                                                       m_StaticAttribArray,
-                                                       m_DynamicAttribArray );
+        ZUDynamicAttributesManipulator::GetCategories(m_pModelDoc->GetModel(),
+                                                      m_StaticAttribArray,
+                                                      m_DynamicAttribArray);
 
         // Now, fill list box with dynamic categories
-        for ( int i = 0; i < m_DynamicAttribArray.GetSize(); ++i )
-            m_CategoryList.AddString( m_DynamicAttribArray.GetAt( i ) );
+        for (int i = 0; i < m_DynamicAttribArray.GetSize(); ++i)
+            m_CategoryList.AddString(m_DynamicAttribArray.GetAt(i));
     }
 
     return TRUE;  // return TRUE unless you set the focus to a control
                   // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-void ZVDynamicAttributesCreationS1::OnOK() 
+void ZVDynamicAttributesCreationS1::OnOK()
 {
     // Check information
-    if ( !CheckData() )
+    if (!CheckData())
         return;
 
     ZIWizardDialog::OnOK();
 }
 
-void ZVDynamicAttributesCreationS1::OnNext() 
+void ZVDynamicAttributesCreationS1::OnNext()
 {
     // Check information
-    if ( !CheckData() )
+    if (!CheckData())
         return;
 
-    EndDialog( IDNEXT );
+    EndDialog(IDNEXT);
 }
 
-void ZVDynamicAttributesCreationS1::OnChangeCategoryName() 
+void ZVDynamicAttributesCreationS1::OnChangeCategoryName()
 {
     // TODO: If this is a RICHEDIT control, the control will not
     // send this notification unless you override the ZIWizardDialog::OnInitDialog()
     // function and call CRichEditCtrl().SetEventMask()
     // with the ENM_CHANGE flag ORed into the mask.
-    
-    if ( m_InternalNameChange )
+
+    if (m_InternalNameChange)
         return;
 
-    UpdateData( TRUE );
-    m_CategoryList.SelectString( 0, (const char*)m_CategoryName );
+    UpdateData(TRUE);
+    m_CategoryList.SelectString(0, (const char*)m_CategoryName);
 }
 
-void ZVDynamicAttributesCreationS1::OnSelchangeCategoryList() 
+void ZVDynamicAttributesCreationS1::OnSelchangeCategoryList()
 {
-    int CurSel = m_CategoryList.GetCurSel();    
-    if ( CurSel != LB_ERR )
+    int CurSel = m_CategoryList.GetCurSel();
+    if (CurSel != LB_ERR)
     {
         m_InternalNameChange = true;
 
-        m_CategoryList.GetText( CurSel, m_CategoryName);
-        UpdateData( FALSE );
+        m_CategoryList.GetText(CurSel, m_CategoryName);
+        UpdateData(FALSE);
 
         m_InternalNameChange = false;
     }
@@ -215,7 +213,7 @@ void ZVDynamicAttributesCreationS1::OnSelchangeCategoryList()
 // *                               Classe ZVDynamicAttributesCreationS2 : Message map                            *
 // **************************************************************************************************************
 
-BEGIN_MESSAGE_MAP( ZVDynamicAttributesCreationS2, ZIWizardDialog )
+BEGIN_MESSAGE_MAP(ZVDynamicAttributesCreationS2, ZIWizardDialog)
     //{{AFX_MSG_MAP(ZVDynamicAttributesCreationS2)
     ON_BN_CLICKED(IDNEXT, OnNext)
     //}}AFX_MSG_MAP
@@ -226,19 +224,19 @@ END_MESSAGE_MAP()
 // **************************************************************************************************************
 
 // Constructeur par défaut de la classe ZVDynamicAttributesCreationS2.
-ZVDynamicAttributesCreationS2::ZVDynamicAttributesCreationS2( ZDProcessGraphModelDoc*    pModelDoc,
-                                                              const CString                Category,
-                                                              bool                        SymbolSelected,
-                                                              CWnd*                        pParent /*=NULL*/)
-    : ZIWizardDialog    ( ZVDynamicAttributesCreationS2::IDD,
-                          IDB_WZBMP1,
-                          0,
-                          0,
-                          IDS_WZ_DYNATTRS2_ST_S,
-                          IDS_WZ_DYNATTRS2_ST_T ),
-      m_pModelDoc        ( pModelDoc ),
-      m_Category        ( Category ),
-      m_SymbolSelected    ( SymbolSelected )
+ZVDynamicAttributesCreationS2::ZVDynamicAttributesCreationS2(ZDProcessGraphModelDoc*    pModelDoc,
+                                                             const CString                Category,
+                                                             bool                        SymbolSelected,
+                                                             CWnd*                        pParent /*=NULL*/)
+    : ZIWizardDialog(ZVDynamicAttributesCreationS2::IDD,
+                     IDB_WZBMP1,
+                     0,
+                     0,
+                     IDS_WZ_DYNATTRS2_ST_S,
+                     IDS_WZ_DYNATTRS2_ST_T),
+    m_pModelDoc(pModelDoc),
+    m_Category(Category),
+    m_SymbolSelected(SymbolSelected)
 {
     //{{AFX_DATA_INIT(ZVDynamicAttributesCreationS2)
     m_AttributeDescription = _T("");
@@ -250,9 +248,9 @@ ZVDynamicAttributesCreationS2::ZVDynamicAttributesCreationS2( ZDProcessGraphMode
 // *                               Classe ZVDynamicAttributesCreationS2 : Fonctions                                *
 // **************************************************************************************************************
 
-void ZVDynamicAttributesCreationS2::DoDataExchange( CDataExchange* pDX )
+void ZVDynamicAttributesCreationS2::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange( pDX );
+    ZIWizardDialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(ZVDynamicAttributesCreationS2)
     DDX_Control(pDX, IDC_ATTRIB_VISIBILITY, m_AttributeVisibility);
     DDX_Control(pDX, IDC_ATTRIB_TYPE, m_AttributeType);
@@ -263,33 +261,33 @@ void ZVDynamicAttributesCreationS2::DoDataExchange( CDataExchange* pDX )
 
 bool ZVDynamicAttributesCreationS2::CheckData()
 {
-    UpdateData( TRUE );
+    UpdateData(TRUE);
 
-    if ( m_AttributeName.IsEmpty() )
+    if (m_AttributeName.IsEmpty())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_PROPATTRIBNAME_MISSING, MB_OK );
+        mBox.Show(IDS_PROPATTRIBNAME_MISSING, MB_OK);
         return false;
     }
 
-    if ( !m_pModelDoc || !m_pModelDoc->GetDynamicPropertiesManager() )
+    if (!m_pModelDoc || !m_pModelDoc->GetDynamicPropertiesManager())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_PROP_INITIALIZATIONPRB, MB_OK );
+        mBox.Show(IDS_PROP_INITIALIZATIONPRB, MB_OK);
         return false;
     }
 
-    if ( m_pModelDoc->GetDynamicPropertiesManager()->PropertyItemExist( m_Category, m_AttributeName ) )
+    if (m_pModelDoc->GetDynamicPropertiesManager()->PropertyItemExist(m_Category, m_AttributeName))
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_PROPATTRIBNAME_EXIST, MB_OK );
+        mBox.Show(IDS_PROPATTRIBNAME_EXIST, MB_OK);
         return false;
     }
 
     m_Visibility = m_AttributeVisibility.GetCurSel();
     int DataType = m_AttributeType.GetCurSel();
 
-    switch ( DataType )
+    switch (DataType)
     {
         case 0:
         {
@@ -337,74 +335,74 @@ bool ZVDynamicAttributesCreationS2::CheckData()
 // *                           Classe ZVDynamicAttributesCreationS1 : message handlers                            *
 // **************************************************************************************************************
 
-BOOL ZVDynamicAttributesCreationS2::OnInitDialog() 
+BOOL ZVDynamicAttributesCreationS2::OnInitDialog()
 {
     ZIWizardDialog::OnInitDialog();
-    
+
     CString strValues;
 
     // Fill combo-boxes
     ZBTokenizer token;
 
     // Data type combo.
-    strValues.LoadString( IDS_PROPTYPE_LIST );
+    strValues.LoadString(IDS_PROPTYPE_LIST);
 
-    CString str = token.GetFirstToken( strValues );
+    CString str = token.GetFirstToken(strValues);
 
     // Run through all tokens
-    while ( !str.IsEmpty() )
+    while (!str.IsEmpty())
     {
-        m_AttributeType.AddString( str );
+        m_AttributeType.AddString(str);
 
         // Get the next token
         str = token.GetNextToken();
     }
 
     // Selects the first item in the list
-    m_AttributeType.SetCurSel( 0 );
+    m_AttributeType.SetCurSel(0);
 
     // Visibility combo.
-    strValues.LoadString( IDS_PROPVISIBILITY_LIST );
+    strValues.LoadString(IDS_PROPVISIBILITY_LIST);
 
-    str = token.GetFirstToken( strValues );
+    str = token.GetFirstToken(strValues);
 
     // Run through all tokens
-    while ( !str.IsEmpty() )
+    while (!str.IsEmpty())
     {
-        m_AttributeVisibility.AddString( str );
+        m_AttributeVisibility.AddString(str);
 
         // Get the next token
         str = token.GetNextToken();
     }
 
     // Selects the first item in the list
-    m_AttributeVisibility.SetCurSel( 0 );
-    
+    m_AttributeVisibility.SetCurSel(0);
+
     // If no symbol are selected
-    if ( !m_SymbolSelected )
+    if (!m_SymbolSelected)
     {
-        m_AttributeVisibility.SetCurSel( 2 );
-        m_AttributeVisibility.EnableWindow( FALSE );
+        m_AttributeVisibility.SetCurSel(2);
+        m_AttributeVisibility.EnableWindow(FALSE);
     }
-    
+
     return TRUE;  // return TRUE unless you set the focus to a control
                   // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-void ZVDynamicAttributesCreationS2::OnOK() 
+void ZVDynamicAttributesCreationS2::OnOK()
 {
     // Check information
-    if ( !CheckData() )
+    if (!CheckData())
         return;
 
     ZIWizardDialog::OnOK();
 }
 
-void ZVDynamicAttributesCreationS2::OnNext() 
+void ZVDynamicAttributesCreationS2::OnNext()
 {
     // Check information
-    if ( !CheckData() )
+    if (!CheckData())
         return;
 
-    EndDialog( IDNEXT );
+    EndDialog(IDNEXT);
 }

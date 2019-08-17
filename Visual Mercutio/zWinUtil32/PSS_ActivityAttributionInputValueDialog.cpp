@@ -256,7 +256,7 @@ BOOL PSS_ActivityAttributionInputValueDialog::CheckData()
     if (m_VisibilityAttribution && m_VisibilityType == -1)
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_VISIBILITY_REQUIRED, MB_OK);
+        mBox.Show(IDS_VISIBILITY_REQUIRED, MB_OK);
         return FALSE;
     }
 
@@ -269,7 +269,7 @@ BOOL PSS_ActivityAttributionInputValueDialog::CheckData()
     if (m_TimeAttribution && m_TimeOutDays <= 0)
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_TIMEOUT_REQUIRED, MB_OK);
+        mBox.Show(IDS_TIMEOUT_REQUIRED, MB_OK);
         return FALSE;
     }
 
@@ -277,7 +277,7 @@ BOOL PSS_ActivityAttributionInputValueDialog::CheckData()
     if (m_UserAttribution && m_UserList.GetCount() <= 0)
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_ONEPERSON_REQUIRED, MB_OK);
+        mBox.Show(IDS_ONEPERSON_REQUIRED, MB_OK);
         return FALSE;
     }
 

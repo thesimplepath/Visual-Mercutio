@@ -33,9 +33,9 @@ CMenu ZVGridView::m_PopupMenu;
 /////////////////////////////////////////////////////////////////////////////
 // ZVGridView
 
-GXIMPLEMENT_DYNCREATE( ZVGridView, CGXGridView )
+GXIMPLEMENT_DYNCREATE(ZVGridView, CGXGridView)
 
-BEGIN_MESSAGE_MAP( ZVGridView, CGXGridView )
+BEGIN_MESSAGE_MAP(ZVGridView, CGXGridView)
     //{{AFX_MSG_MAP(ZVGridView)
         // NOTE - the ClassWizard will add and remove mapping macros here.
         //    DO NOT EDIT what you see in these blocks of generated code!
@@ -65,19 +65,17 @@ END_MESSAGE_MAP()
 // ZVGridView construction/destruction
 
 ZVGridView::ZVGridView()
-{
-}
+{}
 
 ZVGridView::~ZVGridView()
+{}
+
+BOOL ZVGridView::PreCreateWindow(CREATESTRUCT& cs)
 {
+    return CGXGridView::PreCreateWindow(cs);
 }
 
-BOOL ZVGridView::PreCreateWindow( CREATESTRUCT& cs )
-{
-    return CGXGridView::PreCreateWindow( cs );
-}
-
-int ZVGridView::OnCreate( LPCREATESTRUCT lpCreateStruct )
+int ZVGridView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     EnableIntelliMouse();
 
@@ -90,7 +88,7 @@ int ZVGridView::OnCreate( LPCREATESTRUCT lpCreateStruct )
 
     EnableFormulaEngine();
 
-    if ( CGXGridView::OnCreate( lpCreateStruct ) == -1 )
+    if (CGXGridView::OnCreate(lpCreateStruct) == -1)
     {
         return -1;
     }
@@ -104,63 +102,63 @@ int ZVGridView::OnCreate( LPCREATESTRUCT lpCreateStruct )
 void ZVGridView::SetupControls()
 {
     // owner drawn checkbox
-    RegisterControl( GX_IDS_CTRL_CHECKBOX, new ZCGridCheckBox( this ) );
+    RegisterControl(GX_IDS_CTRL_CHECKBOX, new ZCGridCheckBox(this));
 
 }
 
-void ZVGridView::InsertGroupCtrl( ROWCOL        Row,
-                                  ROWCOL        Col,
-                                  int            CoveringCells,
-                                  bool            Horizontal,
-                                  bool            Collapsed,
-                                  const CString    Label            /*= ""*/,
-                                  const CString    ToolTipText        /*= ""*/ )
+void ZVGridView::InsertGroupCtrl(ROWCOL        Row,
+                                 ROWCOL        Col,
+                                 int            CoveringCells,
+                                 bool            Horizontal,
+                                 bool            Collapsed,
+                                 const CString    Label            /*= ""*/,
+                                 const CString    ToolTipText        /*= ""*/)
 {
-    ASSERT ( GetDocument() );
+    ASSERT(GetDocument());
 
-    GetDocument()->InsertGroupCtrl( Row,
-                                    Col,
-                                    CoveringCells,
-                                    Horizontal,
-                                    Collapsed,
-                                    Label,
-                                    ToolTipText );
+    GetDocument()->InsertGroupCtrl(Row,
+                                   Col,
+                                   CoveringCells,
+                                   Horizontal,
+                                   Collapsed,
+                                   Label,
+                                   ToolTipText);
 }
 
-ZCGridGroup* ZVGridView::FindGroupCtrl( ROWCOL Row, ROWCOL Col )
+ZCGridGroup* ZVGridView::FindGroupCtrl(ROWCOL Row, ROWCOL Col)
 {
-    ASSERT ( GetDocument() );
-    return GetDocument()->FindGroupCtrl( Row, Col );
+    ASSERT(GetDocument());
+    return GetDocument()->FindGroupCtrl(Row, Col);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // ZVGridView drawing
 
-void ZVGridView::OnDraw( CDC* pDC )
+void ZVGridView::OnDraw(CDC* pDC)
 {
     ZDGridDocument* pDoc = GetDocument();
-    ASSERT_VALID( pDoc );
-    CGXGridView::OnDraw( pDC );
+    ASSERT_VALID(pDoc);
+    CGXGridView::OnDraw(pDC);
 }
 
 void ZVGridView::OnInitialUpdate()
 {
     // Do we have a grid param
-    if ( GetDocument()->GetGridParam() == NULL )
+    if (GetDocument()->GetGridParam() == NULL)
     {
 
         // Asks for the grid param creation
-        if ( !GetDocument()->CreateGridParam() )
+        if (!GetDocument()->CreateGridParam())
         {
             return;
         }
 
         // Pass the pointer to the grid view
         // FALSE indicates that document is responsible for deleting the object.
-        SetParam( GetDocument()->GetGridParam(), FALSE );
+        SetParam(GetDocument()->GetGridParam(), FALSE);
 
-        SetRowCount( 60 );    // 60 rows
-        SetColCount( 15 );    // 15 columns
+        SetRowCount(60);    // 60 rows
+        SetColCount(15);    // 15 columns
     }
     else
     {
@@ -171,16 +169,16 @@ void ZVGridView::OnInitialUpdate()
 
         // pass the pointer to the grid view
         // FALSE indicates that document is responsible for deleting the object.
-        SetParam( GetDocument()->GetGridParam(), FALSE );
+        SetParam(GetDocument()->GetGridParam(), FALSE);
     }
 
     // Custom initialization of styles map
-    if ( GetParam()->GetStylesMap() == NULL )
+    if (GetParam()->GetStylesMap() == NULL)
     {
         // Create a stylesmap and connect it with the parameter-object
         CGXStylesMap* pStyMap = new CGXStylesMap;
-        
-        GetParam()->SetStylesMap( pStyMap );
+
+        GetParam()->SetStylesMap(pStyMap);
 
         // Add standard styles
         pStyMap->CreateStandardStyles();
@@ -196,7 +194,7 @@ void ZVGridView::OnInitialUpdate()
     }
 
     // Custom initialization of property object
-    if ( GetParam()->GetProperties() == NULL )
+    if (GetParam()->GetProperties() == NULL)
     {
         // create a stylesmap and connect it with the parameter-object
         CGXProperties* pProperties = new CGXProperties;
@@ -204,13 +202,13 @@ void ZVGridView::OnInitialUpdate()
         pProperties->AddDefaultUserProperties();
 
         // Sets the standard properties
-        pProperties->SetDisplayHorzLines( TRUE );
-        pProperties->SetDisplayVertLines( TRUE );
-        pProperties->SetPrintHorzLines( FALSE );
-        pProperties->SetPrintVertLines( FALSE );
-        
-        pProperties->SetPrintColHeaders( FALSE );
-        pProperties->SetPrintRowHeaders( FALSE );
+        pProperties->SetDisplayHorzLines(TRUE);
+        pProperties->SetDisplayVertLines(TRUE);
+        pProperties->SetPrintHorzLines(FALSE);
+        pProperties->SetPrintVertLines(FALSE);
+
+        pProperties->SetPrintColHeaders(FALSE);
+        pProperties->SetPrintRowHeaders(FALSE);
         // END OF SAMPLE CODE
 
         // If you want to specify a specific profile section
@@ -220,11 +218,11 @@ void ZVGridView::OnInitialUpdate()
 
         pProperties->ReadProfile();
 
-        GetParam()->SetProperties( pProperties );
+        GetParam()->SetProperties(pProperties);
     }
 
     // Custom initialization of printer settings
-    if ( GetParam()->GetPrintDevice() == NULL )
+    if (GetParam()->GetPrintDevice() == NULL)
     {
         // Initialize printer object if you want to have
         // some default settings for the grid printing, e.g. Print Landscape
@@ -235,24 +233,24 @@ void ZVGridView::OnInitialUpdate()
     // Register all controls for the view
     SetupControls();
 
-    EnableHints( FALSE );
+    EnableHints(FALSE);
 
     // Lock any drawing
     BOOL bOld = LockUpdate();
 
     // Initialize the grid data
     // Disable undo mechanism for the following commands
-    GetParam()->EnableUndo( FALSE );
+    GetParam()->EnableUndo(FALSE);
 
     // Floating cells mode
     // The other possible mode for floatcells is gxnFloatEvalOnDisplay 
-    SetFloatCellsMode( gxnFloatDelayEval );
+    SetFloatCellsMode(gxnFloatDelayEval);
 
     // Reenable undo mechanism
-    GetParam()->EnableUndo( TRUE );
+    GetParam()->EnableUndo(TRUE);
 
     // Unlock drawing
-    LockUpdate( bOld );
+    LockUpdate(bOld);
 
     // Register all controls for the grid
 
@@ -276,23 +274,23 @@ void ZVGridView::SetupUserAttributes()
     stylesmap->RegisterDefaultUserAttributes();
 }
 
-void ZVGridView::SetPopupMenu( UINT nIDRes )
+void ZVGridView::SetPopupMenu(UINT nIDRes)
 {
     // If already allocated, destroy it first
-    if ( m_PopupMenu.GetSafeHmenu() != NULL )
+    if (m_PopupMenu.GetSafeHmenu() != NULL)
     {
         m_PopupMenu.DestroyMenu();
     }
 
-    m_PopupMenu.LoadMenu( nIDRes );
+    m_PopupMenu.LoadMenu(nIDRes);
 }
 
-BOOL ZVGridView::OnRButtonClickedRowCol( ROWCOL nRow, ROWCOL nCol, UINT nFlags, CPoint pt )
+BOOL ZVGridView::OnRButtonClickedRowCol(ROWCOL nRow, ROWCOL nCol, UINT nFlags, CPoint pt)
 {
-    CMenu* pPopup = ( m_PopupMenu.GetSafeHmenu() != NULL ) ? m_PopupMenu.GetSubMenu( 0 ) : NULL;
+    CMenu* pPopup = (m_PopupMenu.GetSafeHmenu() != NULL) ? m_PopupMenu.GetSubMenu(0) : NULL;
 
     // We cannot proceed with the right button click
-    if ( pPopup == NULL )
+    if (pPopup == NULL)
     {
         return FALSE;
     }
@@ -300,8 +298,8 @@ BOOL ZVGridView::OnRButtonClickedRowCol( ROWCOL nRow, ROWCOL nCol, UINT nFlags, 
     CWnd* pWndPopupOwner = AfxGetMainWnd();
 
     // Display the menu
-    ClientToScreen( &pt );
-    pPopup->TrackPopupMenu( TPM_LEFTALIGN | TPM_RIGHTBUTTON, pt.x, pt.y, pWndPopupOwner );
+    ClientToScreen(&pt);
+    pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, pt.x, pt.y, pWndPopupOwner);
 
     // We processed the message
     return TRUE;
@@ -311,49 +309,49 @@ void ZVGridView::ExportToTextFile()
 {
     CString title;
 
-    VERIFY( title.LoadString( IDS_EXPORTFILE_CHOOSETITLE ) );
+    VERIFY(title.LoadString(IDS_EXPORTFILE_CHOOSETITLE));
 
     // Set the "*.txt" files filter
     CString strFilter;
-    VERIFY( strFilter.LoadString( IDS_EXPORTFILE_FILTER ) );
+    VERIFY(strFilter.LoadString(IDS_EXPORTFILE_FILTER));
     strFilter += (char)'\0';        // next string please
-    strFilter += _T( "*.txt" );
+    strFilter += _T("*.txt");
     strFilter += (char)'\0';        // last string
 
     // append the "*.*" all files filter
     CString allFilter;
-    VERIFY( allFilter.LoadString( AFX_IDS_ALLFILTER ) );
+    VERIFY(allFilter.LoadString(AFX_IDS_ALLFILTER));
     strFilter += allFilter;
     strFilter += (char)'\0';        // next string please
-    strFilter += _T( "*.*" );
+    strFilter += _T("*.*");
     strFilter += (char)'\0';        // last string
 
-    PSS_FileDialog fileDialog( title, strFilter, 2, _T( "" ) );
+    PSS_FileDialog fileDialog(title, strFilter, 2, _T(""));
 
-    if ( fileDialog.DoModal() == IDCANCEL )
+    if (fileDialog.DoModal() == IDCANCEL)
     {
         return;
     }
 
-    if ( !ExportToTextFile( fileDialog.GetFileName() ) )
+    if (!ExportToTextFile(fileDialog.GetFileName()))
     {
         // In write mode no chance, file corruption
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_EXPORTFILE_FAIL );
+        mBox.Show(IDS_EXPORTFILE_FAIL);
         return;
     }
 }
 
-bool ZVGridView::ExportToTextFile( const CString Filename )
+bool ZVGridView::ExportToTextFile(const CString Filename)
 {
     CFile textFile;
 
-    if ( !textFile.Open( Filename, CFile::modeCreate | CFile::modeWrite ) )
+    if (!textFile.Open(Filename, CFile::modeCreate | CFile::modeWrite))
     {
         return false;
     }
 
-    CopyTextToFile( textFile, CGXRange( 0, 1, GetRowCount(), GetColCount() ) );
+    CopyTextToFile(textFile, CGXRange(0, 1, GetRowCount(), GetColCount()));
 
     textFile.Close();
 
@@ -361,45 +359,45 @@ bool ZVGridView::ExportToTextFile( const CString Filename )
 }
 
 void ZVGridView::ImportTextFile()
-{ 
+{
     CString title;
-    VERIFY( title.LoadString( IDS_IMPORTFILE_CHOOSETITLE ) );
+    VERIFY(title.LoadString(IDS_IMPORTFILE_CHOOSETITLE));
 
     // Set the "*.txt" files filter
     CString strFilter;
-    VERIFY( strFilter.LoadString( IDS_EXPORTFILE_FILTER ) );
+    VERIFY(strFilter.LoadString(IDS_EXPORTFILE_FILTER));
     strFilter += (char)'\0';        // Next string please
-    strFilter += _T( "*.txt" );
+    strFilter += _T("*.txt");
     strFilter += (char)'\0';        // Last string
 
     // Append the "*.*" all files filter
     CString allFilter;
-    VERIFY( allFilter.LoadString( AFX_IDS_ALLFILTER ) );
+    VERIFY(allFilter.LoadString(AFX_IDS_ALLFILTER));
     strFilter += allFilter;
     strFilter += (char)'\0';        // Next string please
-    strFilter += _T( "*.*" );
+    strFilter += _T("*.*");
     strFilter += (char)'\0';        // Last string
 
-    PSS_FileDialog fileDialog( title, strFilter, 2, _T( "" ) );
+    PSS_FileDialog fileDialog(title, strFilter, 2, _T(""));
 
-    if ( fileDialog.DoModal() == IDCANCEL )
+    if (fileDialog.DoModal() == IDCANCEL)
     {
         return;
     }
 
-    if ( !ImportTextFile( fileDialog.GetFileName() ) )
+    if (!ImportTextFile(fileDialog.GetFileName()))
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_IMPORTFILE_FAIL );
+        mBox.Show(IDS_IMPORTFILE_FAIL);
         return;
     }
 }
 
-bool ZVGridView::ImportTextFile( const CString Filename )
+bool ZVGridView::ImportTextFile(const CString Filename)
 {
     CFile textFile;
 
-    if ( !textFile.Open( Filename, CFile::modeRead ) )
+    if (!textFile.Open(Filename, CFile::modeRead))
     {
         return false;
     }
@@ -408,9 +406,9 @@ bool ZVGridView::ImportTextFile( const CString Filename )
     DWORD dwSize = (DWORD)textFile.GetLength();
     pszBuffer = new TCHAR[dwSize];
 
-    textFile.Read( pszBuffer, dwSize );
+    textFile.Read(pszBuffer, dwSize);
 
-    PasteTextFromBuffer( pszBuffer, dwSize, CGXRange( 0, 1 ) );
+    PasteTextFromBuffer(pszBuffer, dwSize, CGXRange(0, 1));
 
     textFile.Close();
 
@@ -422,61 +420,61 @@ void ZVGridView::FreezeSplitter()
 {
     ZDGridDocument* pDoc = GetDocument();
 
-    if ( pDoc                            &&
-         ( pDoc->GetFrozenRow() != 0    ||
-         pDoc->GetFrozenHeaderRow() != 0 ) )
+    if (pDoc &&
+        (pDoc->GetFrozenRow() != 0 ||
+         pDoc->GetFrozenHeaderRow() != 0))
     {
-        SetFrozenRows( pDoc->GetFrozenRow(), pDoc->GetFrozenHeaderRow() );
+        SetFrozenRows(pDoc->GetFrozenRow(), pDoc->GetFrozenHeaderRow());
     }
 
-    if ( pDoc                            &&
-         ( pDoc->GetFrozenCol() != 0    ||
-         pDoc->GetFrozenHeaderCol() != 0 ) )
+    if (pDoc &&
+        (pDoc->GetFrozenCol() != 0 ||
+         pDoc->GetFrozenHeaderCol() != 0))
     {
-        SetFrozenCols( pDoc->GetFrozenCol(), pDoc->GetFrozenHeaderCol() );
+        SetFrozenCols(pDoc->GetFrozenCol(), pDoc->GetFrozenHeaderCol());
     }
 }
 
 void ZVGridView::UnfreezeSplitter()
 {
-    SetFrozenRows( 0, 0 );
-    SetFrozenCols( 0, 0 );
+    SetFrozenRows(0, 0);
+    SetFrozenCols(0, 0);
 }
 
 void ZVGridView::UnhideAll()
 {
-    HideRows( 0, GetRowCount(), FALSE );
-    HideCols( 0, GetColCount(), FALSE );
+    HideRows(0, GetRowCount(), FALSE);
+    HideCols(0, GetColCount(), FALSE);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // ZVGridView printing
 
-BOOL ZVGridView::OnPreparePrinting( CPrintInfo* pInfo )
+BOOL ZVGridView::OnPreparePrinting(CPrintInfo* pInfo)
 {
     // default preparation
-    return DoPreparePrinting( pInfo );
+    return DoPreparePrinting(pInfo);
 }
 
-void ZVGridView::OnBeginPrinting( CDC* pDC, CPrintInfo* pInfo )
+void ZVGridView::OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo)
 {
-    CGXGridView::OnBeginPrinting( pDC, pInfo );
+    CGXGridView::OnBeginPrinting(pDC, pInfo);
     // TODO: add extra initialization before printing
 }
 
-void ZVGridView::OnEndPrinting( CDC* pDC, CPrintInfo* pInfo )
+void ZVGridView::OnEndPrinting(CDC* pDC, CPrintInfo* pInfo)
 {
-    CGXGridView::OnEndPrinting( pDC, pInfo );
+    CGXGridView::OnEndPrinting(pDC, pInfo);
 
     // TODO: add cleanup after printing
 }
 
-void ZVGridView::OnPrint( CDC* pDC, CPrintInfo* pInfo )
+void ZVGridView::OnPrint(CDC* pDC, CPrintInfo* pInfo)
 {
     // add customized printing code here
 
     // Print the canvas
-    CGXGridView::OnPrint( pDC, pInfo );
+    CGXGridView::OnPrint(pDC, pInfo);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -484,38 +482,38 @@ void ZVGridView::OnPrint( CDC* pDC, CPrintInfo* pInfo )
 
 void ZVGridView::OnViewZoomIn()
 {
-    if ( GetZoom() < 300 )
+    if (GetZoom() < 300)
     {
-        SetZoom( GetZoom() * 11 / 10 );
+        SetZoom(GetZoom() * 11 / 10);
     }
 }
 
 void ZVGridView::OnViewZoomOut()
 {
-    if ( GetZoom() > 40 )
+    if (GetZoom() > 40)
     {
-        SetZoom( GetZoom() * 10 / 11 );
+        SetZoom(GetZoom() * 10 / 11);
     }
 }
 
-void ZVGridView::OnUpdateViewZoomIn( CCmdUI* pCmdUI )
+void ZVGridView::OnUpdateViewZoomIn(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetParam() && GetZoom() < 300 );
+    pCmdUI->Enable(GetParam() && GetZoom() < 300);
 }
 
-void ZVGridView::OnUpdateViewZoomOut( CCmdUI* pCmdUI )
+void ZVGridView::OnUpdateViewZoomOut(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetParam() && GetZoom() > 40 );
+    pCmdUI->Enable(GetParam() && GetZoom() > 40);
 }
 
-void ZVGridView::OnClickedButtonRowCol( ROWCOL nRow, ROWCOL nCol )
+void ZVGridView::OnClickedButtonRowCol(ROWCOL nRow, ROWCOL nCol)
 {
-    ZCGridGroup* pCtrl = FindGroupCtrl( nRow, nCol );
+    ZCGridGroup* pCtrl = FindGroupCtrl(nRow, nCol);
 
     // Toggle the group control
-    if ( pCtrl )
+    if (pCtrl)
     {
-        pCtrl->SetCollapsed( !pCtrl->GetCollapsed() );
+        pCtrl->SetCollapsed(!pCtrl->GetCollapsed());
     }
 }
 
@@ -524,47 +522,45 @@ void ZVGridView::OnExportToTextFile()
     ZVGridView::ExportToTextFile();
 }
 
-void ZVGridView::OnUpdateExportToTextFile( CCmdUI* pCmdUI )
-{
-}
+void ZVGridView::OnUpdateExportToTextFile(CCmdUI* pCmdUI)
+{}
 
 void ZVGridView::OnImportFromTextFile()
 {
     ZVGridView::ImportTextFile();
 }
 
-void ZVGridView::OnUpdateImportFromTextFile( CCmdUI* pCmdUI )
-{
-}
+void ZVGridView::OnUpdateImportFromTextFile(CCmdUI* pCmdUI)
+{}
 
 void ZVGridView::OnFreezeSplitter()
 {
     FreezeSplitter();
 }
 
-void ZVGridView::OnUpdateFreezeSplitter( CCmdUI* pCmdUI )
+void ZVGridView::OnUpdateFreezeSplitter(CCmdUI* pCmdUI)
 {
-    ROWCOL FrozenRow        = GetFrozenRows();
-    ROWCOL FrozenCol        = GetFrozenCols();
-    ROWCOL FrozenHeaderRow    = GetHeaderRows();
-    ROWCOL FrozenHeaderCol    = GetHeaderCols();
+    ROWCOL FrozenRow = GetFrozenRows();
+    ROWCOL FrozenCol = GetFrozenCols();
+    ROWCOL FrozenHeaderRow = GetHeaderRows();
+    ROWCOL FrozenHeaderCol = GetHeaderCols();
 
     ZDGridDocument* pDoc = GetDocument();
 
-    if ( pDoc )
+    if (pDoc)
     {
-        pCmdUI->Enable( FrozenRow == 0                    &&
-                        FrozenCol == 0                    &&
-                        FrozenHeaderRow == 0            &&
-                        FrozenHeaderCol == 0            &&
-                        ( pDoc->GetFrozenRow() != 0        ||
-                        pDoc->GetFrozenCol() != 0        ||
-                        pDoc->GetFrozenHeaderRow() != 0    ||
-                        pDoc->GetFrozenHeaderCol() != 0 ) );
+        pCmdUI->Enable(FrozenRow == 0 &&
+                       FrozenCol == 0 &&
+                       FrozenHeaderRow == 0 &&
+                       FrozenHeaderCol == 0 &&
+                       (pDoc->GetFrozenRow() != 0 ||
+                        pDoc->GetFrozenCol() != 0 ||
+                        pDoc->GetFrozenHeaderRow() != 0 ||
+                        pDoc->GetFrozenHeaderCol() != 0));
     }
     else
     {
-        pCmdUI->Enable( FALSE );
+        pCmdUI->Enable(FALSE);
     }
 }
 
@@ -573,25 +569,25 @@ void ZVGridView::OnUnfreezeSplitter()
     UnfreezeSplitter();
 }
 
-void ZVGridView::OnUpdateUnfreezeSplitter( CCmdUI* pCmdUI )
+void ZVGridView::OnUpdateUnfreezeSplitter(CCmdUI* pCmdUI)
 {
-    ROWCOL FrozenRow        = GetFrozenRows();
-    ROWCOL FrozenCol        = GetFrozenCols();
-    ROWCOL FrozenHeaderRow    = GetHeaderRows();
-    ROWCOL FrozenHeaderCol    = GetHeaderCols();
+    ROWCOL FrozenRow = GetFrozenRows();
+    ROWCOL FrozenCol = GetFrozenCols();
+    ROWCOL FrozenHeaderRow = GetHeaderRows();
+    ROWCOL FrozenHeaderCol = GetHeaderCols();
 
     ZDGridDocument* pDoc = GetDocument();
 
-    if ( pDoc )
+    if (pDoc)
     {
-        pCmdUI->Enable( FrozenRow != 0            ||
-                        FrozenCol != 0            ||
-                        FrozenHeaderRow != 0    ||
-                        FrozenHeaderCol != 0 );
+        pCmdUI->Enable(FrozenRow != 0 ||
+                       FrozenCol != 0 ||
+                       FrozenHeaderRow != 0 ||
+                       FrozenHeaderCol != 0);
     }
     else
     {
-        pCmdUI->Enable( FALSE );
+        pCmdUI->Enable(FALSE);
     }
 }
 
@@ -600,9 +596,9 @@ void ZVGridView::OnUnhideAll()
     UnhideAll();
 }
 
-void ZVGridView::OnUpdateUnhideAll( CCmdUI* pCmdUI )
+void ZVGridView::OnUpdateUnhideAll(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( TRUE );
+    pCmdUI->Enable(TRUE);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -614,24 +610,24 @@ void ZVGridView::AssertValid() const
     CGXGridView::AssertValid();
 }
 
-void ZVGridView::Dump( CDumpContext& dc ) const
+void ZVGridView::Dump(CDumpContext& dc) const
 {
-    CGXGridView::Dump( dc );
+    CGXGridView::Dump(dc);
 }
 
 // Non-debug version is inline
 ZDGridDocument* ZVGridView::GetDocument()
 {
-    ASSERT( m_pDocument->IsKindOf( RUNTIME_CLASS( ZDGridDocument ) ) );
+    ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(ZDGridDocument)));
     return (ZDGridDocument*)m_pDocument;
 }
 
 // Non-debug version is inline
 ZDGridDocument* ZVGridView::GetMasterDocument()
 {
-    if ( m_pDocument && ISA( dynamic_cast<ZDGridDocument*>( m_pDocument )->GetPrimaryDocument(), ZDGridDocument ) )
+    if (m_pDocument && ISA(dynamic_cast<ZDGridDocument*>(m_pDocument)->GetPrimaryDocument(), ZDGridDocument))
     {
-        return dynamic_cast<ZDGridDocument*>( dynamic_cast<ZDGridDocument*>( m_pDocument )->GetPrimaryDocument() );
+        return dynamic_cast<ZDGridDocument*>(dynamic_cast<ZDGridDocument*>(m_pDocument)->GetPrimaryDocument());
     }
 
     return NULL;
@@ -640,6 +636,6 @@ ZDGridDocument* ZVGridView::GetMasterDocument()
 // Non-debug version is inline
 ZDGridDocument* ZVGridView::GetMasterDocument()
 {
-    return ( GetDocument() ) ? (ZDGridDocument*)( GetDocument()->GetPrimaryDocument() ) : NULL;
+    return (GetDocument()) ? (ZDGridDocument*)(GetDocument()->GetPrimaryDocument()) : NULL;
 }
 #endif

@@ -60,7 +60,7 @@ void ZVWorkspaceFileProperties::OnOK()
     {
         // Error message
         PSS_MsgBox mBox;
-        if (mBox.ShowMsgBox( IDS_WKS_FILENAME_DEXIST, MB_YESNO ) == IDYES)
+        if (mBox.Show( IDS_WKS_FILENAME_DEXIST, MB_YESNO ) == IDYES)
         {
             CString title;
             VERIFY(title.LoadString(IDS_WORKSPACE_FILESELECT_T));

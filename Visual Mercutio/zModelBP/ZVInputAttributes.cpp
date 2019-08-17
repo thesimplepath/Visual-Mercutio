@@ -32,37 +32,36 @@ static char THIS_FILE[] = __FILE__;
 
 /////////////////////////////////////////////////////////////////////////////
 // Constant definition
-const int _FlatToolbarHeight    = 22;
+const int _FlatToolbarHeight = 22;
 
-const int IDC_ADDINPUTATTRIBUTE            = 8000;
-const int IDC_DELETEINPUTATTRIBUTE        = 8001;
-const int IDC_REFRESHVIEWS                = 8002;
-const int IDC_MODIFYINPUTATTRIBUTE        = 8003;
-const int IDC_SHOWSYMBOLATTRIBUTE        = 8004;
-const int IDC_SHOWALLATTRIBUTE            = 8005;
+const int IDC_ADDINPUTATTRIBUTE = 8000;
+const int IDC_DELETEINPUTATTRIBUTE = 8001;
+const int IDC_REFRESHVIEWS = 8002;
+const int IDC_MODIFYINPUTATTRIBUTE = 8003;
+const int IDC_SHOWSYMBOLATTRIBUTE = 8004;
+const int IDC_SHOWALLATTRIBUTE = 8005;
 
-const int UM_REFRESH                    = 21000;
-const int UM_ADDINPUTATTRIBUTE            = 21001;
-const int UM_DELETEINPUTATTRIBUTE        = 21002;
-const int UM_MODIFYINPUTATTRIBUTE        = 21003;
-const int UM_SHOWSYMBOLATTRIBUTE        = 21004;
-const int UM_SHOWALLATTRIBUTE            = 21005;
+const int UM_REFRESH = 21000;
+const int UM_ADDINPUTATTRIBUTE = 21001;
+const int UM_DELETEINPUTATTRIBUTE = 21002;
+const int UM_MODIFYINPUTATTRIBUTE = 21003;
+const int UM_SHOWSYMBOLATTRIBUTE = 21004;
+const int UM_SHOWALLATTRIBUTE = 21005;
 
-const int IDC_INPUTATTRIBUTE_FLATTOOLBAR    = 11000;
-const int IDC_INPUTATTRIBUTE_LISTCTRL        = 11001;
+const int IDC_INPUTATTRIBUTE_FLATTOOLBAR = 11000;
+const int IDC_INPUTATTRIBUTE_LISTCTRL = 11001;
 
 /////////////////////////////////////////////////////////////////////////////
 // _ZVFlatToolBarInputAttributes
 
 _ZVFlatToolBarInputAttributes::_ZVFlatToolBarInputAttributes()
 {
-    m_ImageList.Create(IDB_INPUTATTRIBUTE_FLATTOOLBAR,20, 1, RGB(255,0,255));
+    m_ImageList.Create(IDB_INPUTATTRIBUTE_FLATTOOLBAR, 20, 1, RGB(255, 0, 255));
 }
 
 _ZVFlatToolBarInputAttributes::~_ZVFlatToolBarInputAttributes()
-{
-}
- 
+{}
+
 
 BEGIN_MESSAGE_MAP(_ZVFlatToolBarInputAttributes, CStatic)
     //{{AFX_MSG_MAP(_ZVFlatToolBarInputAttributes)
@@ -79,7 +78,7 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // _ZVFlatToolBarInputAttributes message handlers
 
-int _ZVFlatToolBarInputAttributes::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int _ZVFlatToolBarInputAttributes::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (CStatic::OnCreate(lpCreateStruct) == -1)
         return -1;
@@ -89,64 +88,64 @@ int _ZVFlatToolBarInputAttributes::OnCreate(LPCREATESTRUCT lpCreateStruct)
     CRect rc;
     GetWindowRect(&rc);
     ScreenToClient(&rc);
-    rc.top+=1; rc.bottom-=1;
-    rc.left+=1;
-    rc.right = rc.left+24;
+    rc.top += 1; rc.bottom -= 1;
+    rc.left += 1;
+    rc.right = rc.left + 24;
 
-    
-    if (!m_RefreshButton.Create(NULL, WS_VISIBLE|BS_ICON|BS_OWNERDRAW|BS_CENTER|BS_VCENTER,
-        rc, this, IDC_REFRESHVIEWS))
+
+    if (!m_RefreshButton.Create(NULL, WS_VISIBLE | BS_ICON | BS_OWNERDRAW | BS_CENTER | BS_VCENTER,
+                                rc, this, IDC_REFRESHVIEWS))
     {
         TRACE0("Unable to create button.\n");
         return -1;
     }
-    m_RefreshButton.SetIcon(m_ImageList.ExtractIcon(IconIndex++), CSize(20,20));
-    rc.OffsetRect(24,0);
+    m_RefreshButton.SetIcon(m_ImageList.ExtractIcon(IconIndex++), CSize(20, 20));
+    rc.OffsetRect(24, 0);
 
-    if (!m_AddInputAttributeButton.Create(NULL, WS_VISIBLE|BS_ICON|BS_OWNERDRAW|BS_CENTER|BS_VCENTER,
-        rc, this, IDC_ADDINPUTATTRIBUTE))
+    if (!m_AddInputAttributeButton.Create(NULL, WS_VISIBLE | BS_ICON | BS_OWNERDRAW | BS_CENTER | BS_VCENTER,
+                                          rc, this, IDC_ADDINPUTATTRIBUTE))
     {
         TRACE0("Unable to create button.\n");
         return -1;
     }
-    m_AddInputAttributeButton.SetIcon(m_ImageList.ExtractIcon(IconIndex++), CSize(20,20));
-    rc.OffsetRect(24,0);
+    m_AddInputAttributeButton.SetIcon(m_ImageList.ExtractIcon(IconIndex++), CSize(20, 20));
+    rc.OffsetRect(24, 0);
 
-    if (!m_DeleteInputAttributeButton.Create(NULL, WS_VISIBLE|BS_ICON|BS_OWNERDRAW|BS_CENTER|BS_VCENTER,
-        rc, this, IDC_DELETEINPUTATTRIBUTE))
+    if (!m_DeleteInputAttributeButton.Create(NULL, WS_VISIBLE | BS_ICON | BS_OWNERDRAW | BS_CENTER | BS_VCENTER,
+                                             rc, this, IDC_DELETEINPUTATTRIBUTE))
     {
         TRACE0("Unable to create button.\n");
         return -1;
     }
-    m_DeleteInputAttributeButton.SetIcon(m_ImageList.ExtractIcon(IconIndex++), CSize(20,20));
-    rc.OffsetRect(24,0);
+    m_DeleteInputAttributeButton.SetIcon(m_ImageList.ExtractIcon(IconIndex++), CSize(20, 20));
+    rc.OffsetRect(24, 0);
 
-    if (!m_ModifyInputAttributeButton.Create(NULL, WS_VISIBLE|BS_ICON|BS_OWNERDRAW|BS_CENTER|BS_VCENTER,
-        rc, this, IDC_MODIFYINPUTATTRIBUTE))
+    if (!m_ModifyInputAttributeButton.Create(NULL, WS_VISIBLE | BS_ICON | BS_OWNERDRAW | BS_CENTER | BS_VCENTER,
+                                             rc, this, IDC_MODIFYINPUTATTRIBUTE))
     {
         TRACE0("Unable to create button.\n");
         return -1;
     }
-    m_ModifyInputAttributeButton.SetIcon(m_ImageList.ExtractIcon(IconIndex++), CSize(20,20));
-    rc.OffsetRect(24,0);
+    m_ModifyInputAttributeButton.SetIcon(m_ImageList.ExtractIcon(IconIndex++), CSize(20, 20));
+    rc.OffsetRect(24, 0);
 
-    if (!m_ShowSymbolAttributeButton.Create(NULL, WS_VISIBLE|BS_ICON|BS_OWNERDRAW|BS_CENTER|BS_VCENTER,
-        rc, this, IDC_SHOWSYMBOLATTRIBUTE))
+    if (!m_ShowSymbolAttributeButton.Create(NULL, WS_VISIBLE | BS_ICON | BS_OWNERDRAW | BS_CENTER | BS_VCENTER,
+                                            rc, this, IDC_SHOWSYMBOLATTRIBUTE))
     {
         TRACE0("Unable to create button.\n");
         return -1;
     }
-    m_ShowSymbolAttributeButton.SetIcon(m_ImageList.ExtractIcon(IconIndex++), CSize(20,20));
-    rc.OffsetRect(24,0);
+    m_ShowSymbolAttributeButton.SetIcon(m_ImageList.ExtractIcon(IconIndex++), CSize(20, 20));
+    rc.OffsetRect(24, 0);
 
-    if (!m_ShowAllAttributeButton.Create(NULL, WS_VISIBLE|BS_ICON|BS_OWNERDRAW|BS_CENTER|BS_VCENTER,
-        rc, this, IDC_SHOWALLATTRIBUTE))
+    if (!m_ShowAllAttributeButton.Create(NULL, WS_VISIBLE | BS_ICON | BS_OWNERDRAW | BS_CENTER | BS_VCENTER,
+                                         rc, this, IDC_SHOWALLATTRIBUTE))
     {
         TRACE0("Unable to create button.\n");
         return -1;
     }
-    m_ShowAllAttributeButton.SetIcon(m_ImageList.ExtractIcon(IconIndex++), CSize(20,20));
-    rc.OffsetRect(24,0);
+    m_ShowAllAttributeButton.SetIcon(m_ImageList.ExtractIcon(IconIndex++), CSize(20, 20));
+    rc.OffsetRect(24, 0);
 
 
     // Create the ToolTip control.
@@ -163,54 +162,54 @@ int _ZVFlatToolBarInputAttributes::OnCreate(LPCREATESTRUCT lpCreateStruct)
     return 0;
 }
 
-void _ZVFlatToolBarInputAttributes::PreSubclassWindow() 
+void _ZVFlatToolBarInputAttributes::PreSubclassWindow()
 {
     CStatic::PreSubclassWindow();
 
 
 }
 
-void _ZVFlatToolBarInputAttributes::OnRefreshButton() 
+void _ZVFlatToolBarInputAttributes::OnRefreshButton()
 {
     ZBToolbarObserverMsg    Msg(UM_REFRESH);
-    NotifyAllObservers( &Msg );
+    NotifyAllObservers(&Msg);
 }
 
-void _ZVFlatToolBarInputAttributes::OnAddInputAttributeButton() 
+void _ZVFlatToolBarInputAttributes::OnAddInputAttributeButton()
 {
     ZBToolbarObserverMsg    Msg(UM_ADDINPUTATTRIBUTE);
-    NotifyAllObservers( &Msg );
+    NotifyAllObservers(&Msg);
 }
 
-void _ZVFlatToolBarInputAttributes::OnDeleteInputAttributeButton() 
+void _ZVFlatToolBarInputAttributes::OnDeleteInputAttributeButton()
 {
     ZBToolbarObserverMsg    Msg(UM_DELETEINPUTATTRIBUTE);
-    NotifyAllObservers( &Msg );
+    NotifyAllObservers(&Msg);
 }
 
 
-void _ZVFlatToolBarInputAttributes::OnModifyInputAttributeButton() 
+void _ZVFlatToolBarInputAttributes::OnModifyInputAttributeButton()
 {
     ZBToolbarObserverMsg    Msg(UM_MODIFYINPUTATTRIBUTE);
-    NotifyAllObservers( &Msg );
+    NotifyAllObservers(&Msg);
 }
 
-void _ZVFlatToolBarInputAttributes::OnShowSymbolAttributeButton() 
+void _ZVFlatToolBarInputAttributes::OnShowSymbolAttributeButton()
 {
     ZBToolbarObserverMsg    Msg(UM_SHOWSYMBOLATTRIBUTE);
-    NotifyAllObservers( &Msg );
+    NotifyAllObservers(&Msg);
 }
 
-void _ZVFlatToolBarInputAttributes::OnShowAllAttributeButton() 
+void _ZVFlatToolBarInputAttributes::OnShowAllAttributeButton()
 {
     ZBToolbarObserverMsg    Msg(UM_SHOWALLATTRIBUTE);
-    NotifyAllObservers( &Msg );
+    NotifyAllObservers(&Msg);
 }
 
 
 
 
-BOOL _ZVFlatToolBarInputAttributes::PreTranslateMessage(MSG* pMsg) 
+BOOL _ZVFlatToolBarInputAttributes::PreTranslateMessage(MSG* pMsg)
 {
     // Let the ToolTip process this message.
     m_tooltip.RelayEvent(pMsg);
@@ -233,90 +232,88 @@ END_MESSAGE_MAP()
 
 
 ZVInputAttributes::ZVInputAttributes()
-: m_pCurrentDoc(NULL),
-  m_SymbolRef(-1)
-{
-}
+    : m_pCurrentDoc(NULL),
+    m_SymbolRef(-1)
+{}
 
 ZVInputAttributes::~ZVInputAttributes()
-{
-}
+{}
 
 
-void ZVInputAttributes::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
+void ZVInputAttributes::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
 {
     // Forward the message to the property control
-    m_listctrl.OnUpdate( pSubject, pMsg );
+    m_listctrl.OnUpdate(pSubject, pMsg);
 
-    if (pMsg && ISA(pMsg,ZBSymbolObserverMsg))
+    if (pMsg && ISA(pMsg, ZBSymbolObserverMsg))
     {
         if (dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetActionType() == ZBSymbolObserverMsg::ElementSelected)
         {
             if (dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetpElement() &&
-                (ISA(dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetpElement(),ZBSymbol) || 
-                 ISA(dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetpElement(),ZBLinkSymbol)))
+                (ISA(dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetpElement(), ZBSymbol) ||
+                 ISA(dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetpElement(), ZBLinkSymbol)))
                 m_SymbolRef = dynamic_cast<ZIBasicSymbol*>(dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetpElement())->GetSymbolReferenceNumber();
         }
     }
     else
-    if (pMsg && ISA(pMsg,ZBToolbarObserverMsg))
-    {
-        switch (dynamic_cast<ZBToolbarObserverMsg*>(pMsg)->GetMessageID())
+        if (pMsg && ISA(pMsg, ZBToolbarObserverMsg))
         {
-            case UM_REFRESH:
+            switch (dynamic_cast<ZBToolbarObserverMsg*>(pMsg)->GetMessageID())
             {
-                OnRefresh();
-                break;
-            }
-            case UM_ADDINPUTATTRIBUTE:
-            {
-                OnAddInputAttribute();
-                break;
-            }
-            case UM_DELETEINPUTATTRIBUTE:
-            {
-                OnDeleteInputAttribute();
-                break;
-            }
-            case UM_MODIFYINPUTATTRIBUTE:
-            {
-                OnModifyInputAttribute();
-                break;
-            }
-            case UM_SHOWSYMBOLATTRIBUTE:
-            {
-                ShowAll( false );
-                break;
-            }
-            case UM_SHOWALLATTRIBUTE:
-            {
-                ShowAll();
-                break;
+                case UM_REFRESH:
+                {
+                    OnRefresh();
+                    break;
+                }
+                case UM_ADDINPUTATTRIBUTE:
+                {
+                    OnAddInputAttribute();
+                    break;
+                }
+                case UM_DELETEINPUTATTRIBUTE:
+                {
+                    OnDeleteInputAttribute();
+                    break;
+                }
+                case UM_MODIFYINPUTATTRIBUTE:
+                {
+                    OnModifyInputAttribute();
+                    break;
+                }
+                case UM_SHOWSYMBOLATTRIBUTE:
+                {
+                    ShowAll(false);
+                    break;
+                }
+                case UM_SHOWALLATTRIBUTE:
+                {
+                    ShowAll();
+                    break;
+                }
             }
         }
-    }
-    else
-    // Check about document close
-    if (pMsg && ISA(pMsg,ZBDocumentObserverMsg) &&
-        ISA(dynamic_cast<ZBDocumentObserverMsg*>(pMsg)->GetpDocument(),ZDProcessGraphModelDoc))
-    {
-        switch (dynamic_cast<ZBDocumentObserverMsg*>(pMsg)->GetMessageID())
-        {
-            case UM_REFRESHDOCUMENT:
-            case UM_OPENDOCUMENT: break;
-
-            case UM_CLOSEDOCUMENT:
+        else
+            // Check about document close
+            if (pMsg && ISA(pMsg, ZBDocumentObserverMsg) &&
+                ISA(dynamic_cast<ZBDocumentObserverMsg*>(pMsg)->GetpDocument(), ZDProcessGraphModelDoc))
             {
-                Empty();
-                break;
-            }
-            case UM_FRAMEHASBEENACTIVATED:
-            {
-                m_pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>( dynamic_cast<ZBDocumentObserverMsg*>(pMsg)->GetpDocument() );
-            }
+                switch (dynamic_cast<ZBDocumentObserverMsg*>(pMsg)->GetMessageID())
+                {
+                    case UM_REFRESHDOCUMENT:
+                    case UM_OPENDOCUMENT: break;
 
-        }
-    }
+                    case UM_CLOSEDOCUMENT:
+                    {
+                        Empty();
+                        break;
+                    }
+                    case UM_FRAMEHASBEENACTIVATED:
+                    {
+                        m_pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(dynamic_cast<ZBDocumentObserverMsg*>(pMsg)->GetpDocument());
+                    }
+
+                }
+            }
 
 
 }
@@ -342,32 +339,32 @@ void ZVInputAttributes::Empty()
 // ZVInputAttributes message handlers
 
 
-int ZVInputAttributes::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int ZVInputAttributes::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (CWnd::OnCreate(lpCreateStruct) == -1)
         return -1;
 
     // Create the flat toolbar
-    reinterpret_cast<CStatic&>(m_FlatToolBar).Create(_T(""),WS_CHILD|WS_VISIBLE|LBS_NOINTEGRALHEIGHT, CRect(0,0,100,_FlatToolbarHeight), this, IDC_INPUTATTRIBUTE_FLATTOOLBAR);
+    reinterpret_cast<CStatic&>(m_FlatToolBar).Create(_T(""), WS_CHILD | WS_VISIBLE | LBS_NOINTEGRALHEIGHT, CRect(0, 0, 100, _FlatToolbarHeight), this, IDC_INPUTATTRIBUTE_FLATTOOLBAR);
     // Create the list control
-    m_listctrl.Create(WS_CHILD|WS_VISIBLE|WS_VSCROLL|WS_HSCROLL|LBS_NOINTEGRALHEIGHT|LVS_REPORT, CRect(0,0,0,0), this, IDC_INPUTATTRIBUTE_LISTCTRL); 
-    
+    m_listctrl.Create(WS_CHILD | WS_VISIBLE | WS_VSCROLL | WS_HSCROLL | LBS_NOINTEGRALHEIGHT | LVS_REPORT, CRect(0, 0, 0, 0), this, IDC_INPUTATTRIBUTE_LISTCTRL);
+
     // Attach us as an observer for messages
-    m_FlatToolBar.AttachObserver( this );
-    m_listctrl.AttachObserver( this );
+    m_FlatToolBar.AttachObserver(this);
+    m_listctrl.AttachObserver(this);
 
     return 0;
 }
 
-void ZVInputAttributes::OnSize(UINT nType, int cx, int cy) 
+void ZVInputAttributes::OnSize(UINT nType, int cx, int cy)
 {
     CWnd::OnSize(nType, cx, cy);
 
     if (::IsWindow(m_FlatToolBar.GetSafeHwnd()) &&
         ::IsWindow(m_listctrl.GetSafeHwnd()))
     {
-        m_FlatToolBar.MoveWindow(0, 0, cx, _FlatToolbarHeight);     
-        m_listctrl.MoveWindow(0, _FlatToolbarHeight, cx, cy-_FlatToolbarHeight);
+        m_FlatToolBar.MoveWindow(0, 0, cx, _FlatToolbarHeight);
+        m_listctrl.MoveWindow(0, _FlatToolbarHeight, cx, cy - _FlatToolbarHeight);
     }
 }
 
@@ -385,7 +382,7 @@ void ZVInputAttributes::OnAddInputAttribute()
     if (!m_pCurrentDoc)
         return;
     if (!m_pCurrentDoc->GetModel() ||
-        !ISA(m_pCurrentDoc->GetModel(),ZDProcessGraphModelMdlBP))
+        !ISA(m_pCurrentDoc->GetModel(), ZDProcessGraphModelMdlBP))
         return;
 
     if (!dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->HasInputAttributes())
@@ -397,37 +394,37 @@ void ZVInputAttributes::OnAddInputAttribute()
 
     if (!m_pCurrentDoc->HasDynamicPropertiesManager())
         m_pCurrentDoc->AllocatePropertiesManager();
-    
+
     ZBDynamicPropertiesManager* pDynPropMgr = m_pCurrentDoc->GetDynamicPropertiesManager();
     if (!pDynPropMgr)
         return;
 
     ZBPropertySet Set;
-    ZUDynamicAttributesManipulator::ExtractUniqueAttributes( m_pCurrentDoc->GetModel(), Set );
+    ZUDynamicAttributesManipulator::ExtractUniqueAttributes(m_pCurrentDoc->GetModel(), Set);
 
 
-    ZVInputAttributesDefinitionDlg dlg( m_pCurrentDoc->GetDynamicPropertiesManager(), &Set );
+    ZVInputAttributesDefinitionDlg dlg(m_pCurrentDoc->GetDynamicPropertiesManager(), &Set);
     if (dlg.DoModal() == IDOK)
     {
         // Allocate a new attribute
         ZBInputAttribute* pInputAttribute = new ZBInputAttribute;
-        ASSERT( pInputAttribute );
+        ASSERT(pInputAttribute);
 
         // Assigns value members
-        pInputAttribute->SetCategoryID( dlg.GetCategoryID() );
-        pInputAttribute->SetItemID( dlg.GetItemID() );
+        pInputAttribute->SetCategoryID(dlg.GetCategoryID());
+        pInputAttribute->SetItemID(dlg.GetItemID());
         // If for the symbol selected
         if (dlg.GetVisibility() == 0)
-            pInputAttribute->SetSymbolRef( m_SymbolRef );
+            pInputAttribute->SetSymbolRef(m_SymbolRef);
         else
             // For the whole model
-            pInputAttribute->SetSymbolRef( -1 );
+            pInputAttribute->SetSymbolRef(-1);
 
-        pInputAttribute->SetDefaultValue( dlg.GetDefaultValue() );
-        pInputAttribute->SetFlag( dlg.GetFlag() );
+        pInputAttribute->SetDefaultValue(dlg.GetDefaultValue());
+        pInputAttribute->SetFlag(dlg.GetFlag());
 
         // Then add the new attribute
-        pInputAttrManager->AddInputAttribute( pInputAttribute );
+        pInputAttrManager->AddInputAttribute(pInputAttribute);
 
         // Document is modified
         m_pCurrentDoc->SetModifiedFlag();
@@ -450,7 +447,7 @@ void ZVInputAttributes::OnDeleteInputAttribute()
         return;
 
     if (!m_pCurrentDoc->GetModel() ||
-        !ISA(m_pCurrentDoc->GetModel(),ZDProcessGraphModelMdlBP))
+        !ISA(m_pCurrentDoc->GetModel(), ZDProcessGraphModelMdlBP))
         return;
 
     ZBInputAttributeManager* pInputAttrManager = dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pCurrentDoc->GetModel())->GetInputAttributes();
@@ -462,9 +459,9 @@ void ZVInputAttributes::OnDeleteInputAttribute()
     if (!pInputAttribute)
         return;
     PSS_MsgBox mBox;
-    if (mBox.ShowMsgBox( IDS_DELETEINPUTATTR_CONF, MB_YESNO ) == IDYES)
+    if (mBox.Show(IDS_DELETEINPUTATTR_CONF, MB_YESNO) == IDYES)
     {
-        pInputAttrManager->DeleteInputAttribute( pInputAttribute );
+        pInputAttrManager->DeleteInputAttribute(pInputAttribute);
 
         // Document is modified
         m_pCurrentDoc->SetModifiedFlag();
@@ -473,7 +470,6 @@ void ZVInputAttributes::OnDeleteInputAttribute()
 
     }
 }
-
 
 void ZVInputAttributes::OnModifyInputAttribute()
 {
@@ -484,17 +480,17 @@ void ZVInputAttributes::OnModifyInputAttribute()
     if (!pInputAttribute)
         return;
 
-    ZVInputAttributesDefinitionDlg dlg( m_pCurrentDoc->GetDynamicPropertiesManager(), NULL, pInputAttribute );
+    ZVInputAttributesDefinitionDlg dlg(m_pCurrentDoc->GetDynamicPropertiesManager(), NULL, pInputAttribute);
     if (dlg.DoModal() == IDOK)
     {
-        pInputAttribute->SetDefaultValue( dlg.GetDefaultValue() );
+        pInputAttribute->SetDefaultValue(dlg.GetDefaultValue());
         // If for the symbol selected
         if (dlg.GetVisibility() == 0)
-            pInputAttribute->SetSymbolRef( m_SymbolRef );
+            pInputAttribute->SetSymbolRef(m_SymbolRef);
         else
             // For the whole model
-            pInputAttribute->SetSymbolRef( -1 );
-        pInputAttribute->SetFlag( dlg.GetFlag() );
+            pInputAttribute->SetSymbolRef(-1);
+        pInputAttribute->SetFlag(dlg.GetFlag());
 
         // Document is modified
         m_pCurrentDoc->SetModifiedFlag();

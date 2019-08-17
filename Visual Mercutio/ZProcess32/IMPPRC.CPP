@@ -18,8 +18,8 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 
 ZIImportProcess::ZIImportProcess(CString File, BOOL Import, CWnd* pParent /*=NULL*/)
-    : ZIDialog(ZIImportProcess::IDD, TRUE, pParent), 
-      m_Import(Import), m_InitialFile(File)
+    : ZIDialog(ZIImportProcess::IDD, TRUE, pParent),
+    m_Import(Import), m_InitialFile(File)
 {
     //{{AFX_DATA_INIT(ZIImportProcess)
     m_File = m_InitialFile;
@@ -58,13 +58,13 @@ void ZIImportProcess::OnSelect()
     strFilter += "*.*";
     strFilter += (char)'\0';        // last string
 
-    PSS_FileDialog fileDialog( title, strFilter, 1 );
+    PSS_FileDialog fileDialog(title, strFilter, 1);
     if (fileDialog.DoModal() == IDOK)
     {
         m_File = fileDialog.GetFileName();
-        UpdateData( FALSE );
+        UpdateData(FALSE);
     }
-    
+
 }
 
 void ZIImportProcess::OnOK()
@@ -73,30 +73,28 @@ void ZIImportProcess::OnOK()
     if (m_File.IsEmpty())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_FILENAMEMISSING, MB_OK );
+        mBox.Show(IDS_FILENAMEMISSING, MB_OK);
         return;
     }
     ZIDialog::OnOK();
 }
 
-BOOL ZIImportProcess::OnInitDialog() 
+BOOL ZIImportProcess::OnInitDialog()
 {
     ZIDialog::OnInitDialog();
-    
+
     if (m_Import == FALSE)
     {
         CString    Title;
-        Title.LoadString( IDS_EXPORTPROCESS_TITLE );
-        SetWindowText( Title );
+        Title.LoadString(IDS_EXPORTPROCESS_TITLE);
+        SetWindowText(Title);
 
         if (GetDlgItem(IDOK))
         {
-            Title.LoadString( IDS_EXPORTPROCESS_BUTTON );
-            GetDlgItem(IDOK)->SetWindowText( Title );
+            Title.LoadString(IDS_EXPORTPROCESS_BUTTON);
+            GetDlgItem(IDOK)->SetWindowText(Title);
         }
     }
-
-
 
     return TRUE;  // return TRUE unless you set the focus to a control
                   // EXCEPTION: OCX Property Pages should return FALSE

@@ -19,20 +19,20 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZVLogicalSystemInfoDlg dialog
 
-BEGIN_MESSAGE_MAP( ZVLogicalSystemInfoDlg, CDialog )
+BEGIN_MESSAGE_MAP(ZVLogicalSystemInfoDlg, CDialog)
     //{{AFX_MSG_MAP(ZVLogicalSystemInfoDlg)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZVLogicalSystemInfoDlg::ZVLogicalSystemInfoDlg( UINT                    nTitleID        /*= -1*/,
-                                                ZBLogicalSystemEntity*    pLogicalSystem    /*= NULL*/,
-                                                const CString            Name            /*= _T( "" )*/,
-                                                const CString            Description        /*= _T( "" )*/,
-                                                bool                    ModifyMode        /*= false*/,
-                                                CWnd*                    pParent            /*=NULL*/ )
-    : CDialog            ( ZVLogicalSystemInfoDlg::IDD, pParent ),
-      m_pLogicalSystem    ( pLogicalSystem ),
-      m_ModifyMode        ( ModifyMode )
+ZVLogicalSystemInfoDlg::ZVLogicalSystemInfoDlg(UINT                    nTitleID        /*= -1*/,
+                                               ZBLogicalSystemEntity*    pLogicalSystem    /*= NULL*/,
+                                               const CString            Name            /*= _T( "" )*/,
+                                               const CString            Description        /*= _T( "" )*/,
+                                               bool                    ModifyMode        /*= false*/,
+                                               CWnd*                    pParent            /*=NULL*/)
+    : CDialog(ZVLogicalSystemInfoDlg::IDD, pParent),
+    m_pLogicalSystem(pLogicalSystem),
+    m_ModifyMode(ModifyMode)
 {
     //{{AFX_DATA_INIT(ZVLogicalSystemInfoDlg)
     m_Description = Description;
@@ -40,13 +40,13 @@ ZVLogicalSystemInfoDlg::ZVLogicalSystemInfoDlg( UINT                    nTitleID
     //}}AFX_DATA_INIT
 
     // Assigns also the initial cost
-    if ( nTitleID != -1 )
-        m_Title.LoadString( nTitleID );
+    if (nTitleID != -1)
+        m_Title.LoadString(nTitleID);
 }
 
-void ZVLogicalSystemInfoDlg::DoDataExchange( CDataExchange* pDX )
+void ZVLogicalSystemInfoDlg::DoDataExchange(CDataExchange* pDX)
 {
-    CDialog::DoDataExchange( pDX );
+    CDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(ZVLogicalSystemInfoDlg)
     DDX_Text(pDX, IDC_LOGICALSYSTEM_DESCRIPTION, m_Description);
@@ -57,17 +57,17 @@ void ZVLogicalSystemInfoDlg::DoDataExchange( CDataExchange* pDX )
 /////////////////////////////////////////////////////////////////////////////
 // ZVLogicalSystemInfoDlg message handlers
 
-void ZVLogicalSystemInfoDlg::OnOK() 
+void ZVLogicalSystemInfoDlg::OnOK()
 {
-    UpdateData( TRUE );
+    UpdateData(TRUE);
 
-    if ( !m_ModifyMode )
+    if (!m_ModifyMode)
     {
-        if ( m_pLogicalSystem && m_pLogicalSystem->SystemExist( m_Name ) )
+        if (m_pLogicalSystem && m_pLogicalSystem->SystemExist(m_Name))
         {
             // Already exists
             PSS_MsgBox mBox;
-            mBox.ShowMsgBox( IDS_LOGICALSYSTEM_ALREADYEXIST, MB_OK );
+            mBox.Show(IDS_LOGICALSYSTEM_ALREADYEXIST, MB_OK);
             return;
         }
     }
@@ -75,17 +75,17 @@ void ZVLogicalSystemInfoDlg::OnOK()
     CDialog::OnOK();
 }
 
-BOOL ZVLogicalSystemInfoDlg::OnInitDialog() 
+BOOL ZVLogicalSystemInfoDlg::OnInitDialog()
 {
     CDialog::OnInitDialog();
-    
-    if ( !m_Title.IsEmpty() )
-        SetWindowText( m_Title );
 
-    if ( m_ModifyMode )
+    if (!m_Title.IsEmpty())
+        SetWindowText(m_Title);
+
+    if (m_ModifyMode)
     {
-        if ( GetDlgItem( IDC_LOGICALSYSTEM_NAME ) )
-            GetDlgItem( IDC_LOGICALSYSTEM_NAME )->EnableWindow( FALSE );
+        if (GetDlgItem(IDC_LOGICALSYSTEM_NAME))
+            GetDlgItem(IDC_LOGICALSYSTEM_NAME)->EnableWindow(FALSE);
     }
 
     return TRUE;  // return TRUE unless you set the focus to a control

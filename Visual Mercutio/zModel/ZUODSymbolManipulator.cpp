@@ -16,7 +16,7 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -29,21 +29,21 @@ ZUODSymbolManipulator::ZUODSymbolManipulator()
 ZUODSymbolManipulator::~ZUODSymbolManipulator()
 {}
 //---------------------------------------------------------------------------
-ZBSymbolEdit* ZUODSymbolManipulator::CreateEditText( CODComponent*  pSymbol,
-                                                     const CString& AreaName,
-                                                     const CString& EditName,
-                                                     CODComponent*  pParent)
+ZBSymbolEdit* ZUODSymbolManipulator::CreateEditText(CODComponent*  pSymbol,
+                                                    const CString& AreaName,
+                                                    const CString& EditName,
+                                                    CODComponent*  pParent)
 {
-    CODComponent* pAreaComp = ZUODSymbolManipulator::FindSymbol( pSymbol, AreaName );
+    CODComponent* pAreaComp = ZUODSymbolManipulator::FindSymbol(pSymbol, AreaName);
 
-    if ( !pAreaComp )
+    if (!pAreaComp)
     {
         return NULL;
     }
 
-    CODComponent* pComp = ZUODSymbolManipulator::FindSymbol( pSymbol, EditName );
+    CODComponent* pComp = ZUODSymbolManipulator::FindSymbol(pSymbol, EditName);
 
-    if ( pComp != NULL )
+    if (pComp != NULL)
     {
         return NULL;
     }
@@ -51,17 +51,17 @@ ZBSymbolEdit* ZUODSymbolManipulator::CreateEditText( CODComponent*  pSymbol,
     return NULL;
 }
 
-ZBSymbolEdit* ZUODSymbolManipulator::CreateAndReplaceEditText( CODComponent*    pSymbol,
-                                                               const CString    EditName,
-                                                               CODComponent*    pParent        /*= NULL*/ )
+ZBSymbolEdit* ZUODSymbolManipulator::CreateAndReplaceEditText(CODComponent*    pSymbol,
+                                                              const CString    EditName,
+                                                              CODComponent*    pParent        /*= NULL*/)
 {
-    CODComponent* pComp = ZUODSymbolManipulator::FindSymbol( pSymbol, EditName );
+    CODComponent* pComp = ZUODSymbolManipulator::FindSymbol(pSymbol, EditName);
 
-    if ( !pComp || !ISA( pComp, CODTextComponent ) )
+    if (!pComp || !ISA(pComp, CODTextComponent))
     {
-        if ( pSymbol && ISA( pSymbol, CODSymbolComponent ) )
+        if (pSymbol && ISA(pSymbol, CODSymbolComponent))
         {
-            pComp = ZUODSymbolManipulator::FindLabel( dynamic_cast<CODSymbolComponent*>( pSymbol ), EditName );
+            pComp = ZUODSymbolManipulator::FindLabel(dynamic_cast<CODSymbolComponent*>(pSymbol), EditName);
         }
     }
 
@@ -69,211 +69,211 @@ ZBSymbolEdit* ZUODSymbolManipulator::CreateAndReplaceEditText( CODComponent*    
     ZBSymbolEdit* pEdit = new ZBSymbolEdit;
 
     // Set its size
-    pEdit->Create( ( pComp ) ? pComp->GetBounds() : pSymbol->GetBounds(), NULL );
+    pEdit->Create((pComp) ? pComp->GetBounds() : pSymbol->GetBounds(), NULL);
 
-    if ( pParent )
+    if (pParent)
     {
-        pParent->AppendChild( pEdit );
+        pParent->AppendChild(pEdit);
     }
     else
     {
-        pSymbol->AppendChild( pEdit );
+        pSymbol->AppendChild(pEdit);
     }
 
     // Set its properties
-    if ( pComp )
+    if (pComp)
     {
-        if ( pComp->GetProperty( OD_PROP_EDIT ) )
+        if (pComp->GetProperty(OD_PROP_EDIT))
         {
-            pEdit->SetProperty( pComp->GetProperty( OD_PROP_EDIT ) );
+            pEdit->SetProperty(pComp->GetProperty(OD_PROP_EDIT));
         }
 
-        if ( pComp->GetProperty( OD_PROP_ORIENTATION ) )
+        if (pComp->GetProperty(OD_PROP_ORIENTATION))
         {
-            pEdit->SetProperty( pComp->GetProperty( OD_PROP_ORIENTATION ) );
+            pEdit->SetProperty(pComp->GetProperty(OD_PROP_ORIENTATION));
         }
 
-        if ( pComp->GetProperty( OD_PROP_FONT ) )
+        if (pComp->GetProperty(OD_PROP_FONT))
         {
-            pEdit->SetProperty( pComp->GetProperty( OD_PROP_FONT ) );
+            pEdit->SetProperty(pComp->GetProperty(OD_PROP_FONT));
         }
 
-        if ( pComp->GetProperty( OD_PROP_FILL ) )
+        if (pComp->GetProperty(OD_PROP_FILL))
         {
-            pEdit->SetProperty( pComp->GetProperty( OD_PROP_FILL ) );
+            pEdit->SetProperty(pComp->GetProperty(OD_PROP_FILL));
         }
 
-        if ( pComp->GetProperty( OD_PROP_LINE ) )
+        if (pComp->GetProperty(OD_PROP_LINE))
         {
-            pEdit->SetProperty( pComp->GetProperty( OD_PROP_LINE ) );
+            pEdit->SetProperty(pComp->GetProperty(OD_PROP_LINE));
         }
 
-        if ( pComp->GetProperty( OD_PROP_WORDBREAK ) )
+        if (pComp->GetProperty(OD_PROP_WORDBREAK))
         {
-            pEdit->SetProperty( pComp->GetProperty( OD_PROP_WORDBREAK ) );
+            pEdit->SetProperty(pComp->GetProperty(OD_PROP_WORDBREAK));
         }
 
-        if ( pComp->GetProperty( OD_PROP_MULTILINE ) )
+        if (pComp->GetProperty(OD_PROP_MULTILINE))
         {
-            pEdit->SetProperty( pComp->GetProperty( OD_PROP_MULTILINE ) );
+            pEdit->SetProperty(pComp->GetProperty(OD_PROP_MULTILINE));
         }
 
-        if ( pComp->GetProperty( OD_PROP_HORZ_ALIGNMENT ) )
+        if (pComp->GetProperty(OD_PROP_HORZ_ALIGNMENT))
         {
-            pEdit->SetProperty( pComp->GetProperty( OD_PROP_HORZ_ALIGNMENT ) );
+            pEdit->SetProperty(pComp->GetProperty(OD_PROP_HORZ_ALIGNMENT));
         }
 
-        if ( pComp->GetProperty( OD_PROP_VERT_ALIGNMENT ) )
+        if (pComp->GetProperty(OD_PROP_VERT_ALIGNMENT))
         {
-            pEdit->SetProperty( pComp->GetProperty( OD_PROP_VERT_ALIGNMENT ) );
+            pEdit->SetProperty(pComp->GetProperty(OD_PROP_VERT_ALIGNMENT));
         }
 
-        if ( pComp->GetProperty( OD_PROP_TRANSPARENT ) )
+        if (pComp->GetProperty(OD_PROP_TRANSPARENT))
         {
-            pEdit->SetProperty( pComp->GetProperty( OD_PROP_TRANSPARENT ) );
+            pEdit->SetProperty(pComp->GetProperty(OD_PROP_TRANSPARENT));
         }
 
-        if ( pComp->GetProperty( OD_PROP_TRANSPARENT_COLOR ) )
+        if (pComp->GetProperty(OD_PROP_TRANSPARENT_COLOR))
         {
-            pEdit->SetProperty( pComp->GetProperty( OD_PROP_TRANSPARENT_COLOR ) );
+            pEdit->SetProperty(pComp->GetProperty(OD_PROP_TRANSPARENT_COLOR));
         }
 
-        pEdit->SetText( ( (CODTextComponent*)pComp )->GetText() );
+        pEdit->SetText(((CODTextComponent*)pComp)->GetText());
     }
 
     // Now, set the new symbol name.
-    pEdit->SetName( EditName );
+    pEdit->SetName(EditName);
 
     // Now remove the previous edit.
-    if ( pComp )
+    if (pComp)
     {
-        ZUODSymbolManipulator::RemoveSymbol( pSymbol, pComp );
+        ZUODSymbolManipulator::RemoveSymbol(pSymbol, pComp);
     }
 
     return pEdit;
 }
 
-ZBSymbolLabel* ZUODSymbolManipulator::CreateAndReplaceLabelText( CODComponent*    pSymbol,
-                                                                 const CString    EditName,
-                                                                 bool            NotifyParent,
-                                                                 CODComponent*    pParent            /*= NULL*/ )
+ZBSymbolLabel* ZUODSymbolManipulator::CreateAndReplaceLabelText(CODComponent*    pSymbol,
+                                                                const CString    EditName,
+                                                                bool            NotifyParent,
+                                                                CODComponent*    pParent            /*= NULL*/)
 {
-    CODComponent* pComp = ZUODSymbolManipulator::FindSymbol( pSymbol, EditName );
+    CODComponent* pComp = ZUODSymbolManipulator::FindSymbol(pSymbol, EditName);
 
-    if ( !pComp || !ISA( pComp, CODTextComponent ) )
+    if (!pComp || !ISA(pComp, CODTextComponent))
     {
-        if ( pSymbol && ISA( pSymbol, CODSymbolComponent ) )
+        if (pSymbol && ISA(pSymbol, CODSymbolComponent))
         {
-            pComp = ZUODSymbolManipulator::FindLabel( dynamic_cast<CODSymbolComponent*>( pSymbol ), EditName );
+            pComp = ZUODSymbolManipulator::FindLabel(dynamic_cast<CODSymbolComponent*>(pSymbol), EditName);
         }
     }
 
     // Create the new symbol
-    ZBSymbolLabel* pEdit = new ZBSymbolLabel( NotifyParent );
+    ZBSymbolLabel* pEdit = new ZBSymbolLabel(NotifyParent);
 
     // Set its size
-    dynamic_cast<CODTextComponent*>(pEdit)->Create( ( pComp ) ? pComp->GetBounds() : pSymbol->GetBounds(), NULL );
+    dynamic_cast<CODTextComponent*>(pEdit)->Create((pComp) ? pComp->GetBounds() : pSymbol->GetBounds(), NULL);
 
-    if ( pParent )
+    if (pParent)
     {
-        if ( pParent && ISA( pParent, CODSymbolComponent ) )
+        if (pParent && ISA(pParent, CODSymbolComponent))
         {
-            dynamic_cast<CODSymbolComponent*>( pParent )->AddLabel( pEdit );
+            dynamic_cast<CODSymbolComponent*>(pParent)->AddLabel(pEdit);
         }
         else
         {
-            pParent->AppendChild( pEdit );
+            pParent->AppendChild(pEdit);
         }
     }
     else
     {
-        if ( pSymbol && ISA( pSymbol, CODSymbolComponent ) )
+        if (pSymbol && ISA(pSymbol, CODSymbolComponent))
         {
-            dynamic_cast<CODSymbolComponent*>( pSymbol )->AddLabel( pEdit );
+            dynamic_cast<CODSymbolComponent*>(pSymbol)->AddLabel(pEdit);
         }
         else
         {
-            pSymbol->AppendChild( pEdit );
+            pSymbol->AppendChild(pEdit);
         }
     }
 
     // Set its properties
-    if ( pComp )
+    if (pComp)
     {
-        if ( pComp->GetProperty( OD_PROP_EDIT ) )
+        if (pComp->GetProperty(OD_PROP_EDIT))
         {
-            pEdit->SetProperty( pComp->GetProperty( OD_PROP_EDIT ) );
+            pEdit->SetProperty(pComp->GetProperty(OD_PROP_EDIT));
         }
 
-        if ( pComp->GetProperty( OD_PROP_ORIENTATION ) )
+        if (pComp->GetProperty(OD_PROP_ORIENTATION))
         {
-            pEdit->SetProperty( pComp->GetProperty( OD_PROP_ORIENTATION ) );
+            pEdit->SetProperty(pComp->GetProperty(OD_PROP_ORIENTATION));
         }
 
-        if ( pComp->GetProperty( OD_PROP_FONT ) )
+        if (pComp->GetProperty(OD_PROP_FONT))
         {
-            pEdit->SetProperty( pComp->GetProperty( OD_PROP_FONT ) );
+            pEdit->SetProperty(pComp->GetProperty(OD_PROP_FONT));
         }
 
-        if ( pComp->GetProperty( OD_PROP_FILL ) )
+        if (pComp->GetProperty(OD_PROP_FILL))
         {
-            pEdit->SetProperty( pComp->GetProperty( OD_PROP_FILL ) );
+            pEdit->SetProperty(pComp->GetProperty(OD_PROP_FILL));
         }
 
-        if ( pComp->GetProperty( OD_PROP_LINE ) )
+        if (pComp->GetProperty(OD_PROP_LINE))
         {
-            pEdit->SetProperty( pComp->GetProperty( OD_PROP_LINE ) );
+            pEdit->SetProperty(pComp->GetProperty(OD_PROP_LINE));
         }
 
-        if ( pComp->GetProperty( OD_PROP_WORDBREAK ) )
+        if (pComp->GetProperty(OD_PROP_WORDBREAK))
         {
-            pEdit->SetProperty( pComp->GetProperty( OD_PROP_WORDBREAK ) );
+            pEdit->SetProperty(pComp->GetProperty(OD_PROP_WORDBREAK));
         }
 
-        if ( pComp->GetProperty( OD_PROP_MULTILINE ) )
+        if (pComp->GetProperty(OD_PROP_MULTILINE))
         {
-            pEdit->SetProperty( pComp->GetProperty( OD_PROP_MULTILINE ) );
+            pEdit->SetProperty(pComp->GetProperty(OD_PROP_MULTILINE));
         }
 
-        if ( pComp->GetProperty( OD_PROP_HORZ_ALIGNMENT ) )
+        if (pComp->GetProperty(OD_PROP_HORZ_ALIGNMENT))
         {
-            pEdit->SetProperty( pComp->GetProperty( OD_PROP_HORZ_ALIGNMENT ) );
+            pEdit->SetProperty(pComp->GetProperty(OD_PROP_HORZ_ALIGNMENT));
         }
 
-        if ( pComp->GetProperty( OD_PROP_VERT_ALIGNMENT ) )
+        if (pComp->GetProperty(OD_PROP_VERT_ALIGNMENT))
         {
-            pEdit->SetProperty( pComp->GetProperty( OD_PROP_VERT_ALIGNMENT ) );
+            pEdit->SetProperty(pComp->GetProperty(OD_PROP_VERT_ALIGNMENT));
         }
 
-        if ( pComp->GetProperty( OD_PROP_TRANSPARENT ) )
+        if (pComp->GetProperty(OD_PROP_TRANSPARENT))
         {
-            pEdit->SetProperty( pComp->GetProperty( OD_PROP_TRANSPARENT ) );
+            pEdit->SetProperty(pComp->GetProperty(OD_PROP_TRANSPARENT));
         }
 
-        if ( pComp->GetProperty( OD_PROP_TRANSPARENT_COLOR ) )
+        if (pComp->GetProperty(OD_PROP_TRANSPARENT_COLOR))
         {
-            pEdit->SetProperty( pComp->GetProperty( OD_PROP_TRANSPARENT_COLOR ) );
+            pEdit->SetProperty(pComp->GetProperty(OD_PROP_TRANSPARENT_COLOR));
         }
-        
-        pEdit->SetText( ( (CODTextComponent*)pComp )->GetText() );
+
+        pEdit->SetText(((CODTextComponent*)pComp)->GetText());
     }
     // Now, set the new symbol name.
-    pEdit->SetName( EditName );
+    pEdit->SetName(EditName);
 
     // Now remove the previous edit.
-    if ( pComp )
+    if (pComp)
     {
-        ZUODSymbolManipulator::RemoveSymbol( pSymbol, pComp );
+        ZUODSymbolManipulator::RemoveSymbol(pSymbol, pComp);
     }
 
     return pEdit;
 }
 
-BOOL ZUODSymbolManipulator::IsSymbolVisible( CODComponent* pSymbol, const CString SymbolName )
+BOOL ZUODSymbolManipulator::IsSymbolVisible(CODComponent* pSymbol, const CString SymbolName)
 {
-    CODComponent* pComp = ZUODSymbolManipulator::FindSymbol( pSymbol, SymbolName );
+    CODComponent* pComp = ZUODSymbolManipulator::FindSymbol(pSymbol, SymbolName);
 
-    if ( pComp )
+    if (pComp)
     {
         return pComp->IsVisible();
     }
@@ -282,13 +282,13 @@ BOOL ZUODSymbolManipulator::IsSymbolVisible( CODComponent* pSymbol, const CStrin
     return FALSE;
 }
 
-BOOL ZUODSymbolManipulator::SetSymbolVisible( CODComponent* pSymbol, const CString SymbolName, BOOL bVisible )
+BOOL ZUODSymbolManipulator::SetSymbolVisible(CODComponent* pSymbol, const CString SymbolName, BOOL bVisible)
 {
-    CODComponent* pComp = ZUODSymbolManipulator::FindSymbol( pSymbol, SymbolName );
+    CODComponent* pComp = ZUODSymbolManipulator::FindSymbol(pSymbol, SymbolName);
 
-    if ( pComp )
+    if (pComp)
     {
-        pComp->SetVisible( bVisible );
+        pComp->SetVisible(bVisible);
         return TRUE;
     }
 
@@ -356,7 +356,7 @@ CODComponent* ZUODSymbolManipulator::FindLabel(CODSymbolComponent* pSymbol, cons
     {
         pLabel = pSymbol->GetLabel(i);
 
-        if ( pLabel->GetName() == SymbolName )
+        if (pLabel->GetName() == SymbolName)
             return pLabel;
     }
 
@@ -439,12 +439,12 @@ CODComponent* ZUODSymbolManipulator::FindSymbolInChild(CODComponent* pSymbol, co
 void ZUODSymbolManipulator::MatchSymbolAreaName(CODComponent* pSymbol, CODComponent* pSrcSymbol)
 {
     // assign the component name
-    CODComponentSet* pSet    = pSymbol->GetComponents();
+    CODComponentSet* pSet = pSymbol->GetComponents();
     CODComponentSet* pSrcSet = pSrcSymbol->GetComponents();
 
     for (int i = 0; i < pSet->GetSize(); ++i)
     {
-        CODComponent* pComponent    = pSet->GetAt(i);
+        CODComponent* pComponent = pSet->GetAt(i);
         CODComponent* pSrcComponent = pSrcSet->GetAt(i);
 
         if (!pComponent || !pSrcComponent)
@@ -463,7 +463,7 @@ void ZUODSymbolManipulator::MatchSymbolAreaName(CODComponent* pSymbol, CODCompon
     if (ISA(pSymbol, CODSymbolComponent))
         for (int i = 0; i < dynamic_cast<CODSymbolComponent*>(pSymbol)->GetNumLabels(); ++i)
         {
-            CODLabelComponent* pLabel    = dynamic_cast<CODSymbolComponent*>(pSymbol)->GetLabel(i);
+            CODLabelComponent* pLabel = dynamic_cast<CODSymbolComponent*>(pSymbol)->GetLabel(i);
             CODLabelComponent* pSrcLabel = dynamic_cast<CODSymbolComponent*>(pSrcSymbol)->GetLabel(i);
 
             if (!pLabel || !pSrcLabel)
@@ -479,49 +479,49 @@ void ZUODSymbolManipulator::MatchSymbolAreaName(CODComponent* pSymbol, CODCompon
 }
 //---------------------------------------------------------------------------
 // Create the symbol name label
-void ZUODSymbolManipulator::MatchSymbolAreaNameInChild( CODComponent* pSymbol, CODComponent* pSrcSymbol )
+void ZUODSymbolManipulator::MatchSymbolAreaNameInChild(CODComponent* pSymbol, CODComponent* pSrcSymbol)
 {
     // Match symbol names in childs
     int ChildCount = pSymbol->GetChildCount();
 
-    for ( int i = 0; i < ChildCount; ++i )
+    for (int i = 0; i < ChildCount; ++i)
     {
-        CODComponent* pComponent    = pSymbol->GetChild( i );
-        CODComponent* pSrcComponent    = pSrcSymbol->GetChild( i );
+        CODComponent* pComponent = pSymbol->GetChild(i);
+        CODComponent* pSrcComponent = pSrcSymbol->GetChild(i);
 
-        if ( !pComponent || !pSrcComponent )
+        if (!pComponent || !pSrcComponent)
         {
             continue;
         }
 
-        if ( pSrcComponent->GetName().Left( 3 ) == _T( "ZC_" ) )
+        if (pSrcComponent->GetName().Left(3) == _T("ZC_"))
         {
             // Assign the source name to the destination component
-            pComponent->SetName( pSrcComponent->GetName() );
+            pComponent->SetName(pSrcComponent->GetName());
         }
     }
 }
 
 // JMR-MODIF - Le 22 juillet 2007 - Cette fonction permet de mettre ou enlever la propriété italique d'un label de symbole.
-BOOL ZUODSymbolManipulator::SetLabelItalic( CODSymbolComponent*    pSymbol,
-                                            BOOL                DoSetTextItalic,
-                                            const CString        LabelName /*= ""*/ )
+BOOL ZUODSymbolManipulator::SetLabelItalic(CODSymbolComponent*    pSymbol,
+                                           BOOL                DoSetTextItalic,
+                                           const CString        LabelName /*= ""*/)
 {
-    BOOL retValue    = FALSE;
-    int LabelCount    = pSymbol->GetNumLabels();
+    BOOL retValue = FALSE;
+    int LabelCount = pSymbol->GetNumLabels();
 
-    for ( int i = 0; i < LabelCount; ++i )
+    for (int i = 0; i < LabelCount; ++i)
     {
-        CODLabelComponent* pLabel = pSymbol->GetLabel( i );
+        CODLabelComponent* pLabel = pSymbol->GetLabel(i);
 
-        if ( !pLabel )
+        if (!pLabel)
         {
             continue;
         }
 
-        if ( LabelName.IsEmpty() || pLabel->GetName() == LabelName )
+        if (LabelName.IsEmpty() || pLabel->GetName() == LabelName)
         {
-            retValue = pLabel->SetValue( OD_PROP_FONT + OD_FONT_ITALIC, DoSetTextItalic );
+            retValue = pLabel->SetValue(OD_PROP_FONT + OD_FONT_ITALIC, DoSetTextItalic);
         }
     }
 
@@ -529,25 +529,25 @@ BOOL ZUODSymbolManipulator::SetLabelItalic( CODSymbolComponent*    pSymbol,
 }
 
 // JMR-MODIF - Le 22 juillet 2007 - Cette fonction permet de changer la couleur du label d'un symbole.
-BOOL ZUODSymbolManipulator::ChangeLabelTextColor( CODSymbolComponent*    pSymbol,
-                                              COLORREF                col,
-                                              const CString            LabelName /*= ""*/ )
+BOOL ZUODSymbolManipulator::ChangeLabelTextColor(CODSymbolComponent*    pSymbol,
+                                                 COLORREF                col,
+                                                 const CString            LabelName /*= ""*/)
 {
-    BOOL retValue    = FALSE;
-    int LabelCount    = pSymbol->GetNumLabels();
+    BOOL retValue = FALSE;
+    int LabelCount = pSymbol->GetNumLabels();
 
-    for ( int i = 0; i < LabelCount; ++i )
+    for (int i = 0; i < LabelCount; ++i)
     {
-        CODLabelComponent* pLabel = pSymbol->GetLabel( i );
+        CODLabelComponent* pLabel = pSymbol->GetLabel(i);
 
-        if ( !pLabel )
+        if (!pLabel)
         {
             continue;
         }
 
-        if ( LabelName.IsEmpty() || pLabel->GetName() == LabelName )
+        if (LabelName.IsEmpty() || pLabel->GetName() == LabelName)
         {
-            retValue = pLabel->SetValue( OD_PROP_FONT + OD_FONT_COLOR, col );
+            retValue = pLabel->SetValue(OD_PROP_FONT + OD_FONT_COLOR, col);
         }
     }
 
@@ -555,29 +555,29 @@ BOOL ZUODSymbolManipulator::ChangeLabelTextColor( CODSymbolComponent*    pSymbol
 }
 
 // JMR-MODIF - Le 22 juillet 2007 - Cette fonction permet de mettre ou enlever la propriété italique d'un texte de symbole.
-BOOL ZUODSymbolManipulator::SetTextItalic( CODComponent*    pSymbol,
-                                           BOOL                DoSetTextItalic,
-                                           const CString    SymbolName        /*= ""*/ )
+BOOL ZUODSymbolManipulator::SetTextItalic(CODComponent*    pSymbol,
+                                          BOOL                DoSetTextItalic,
+                                          const CString    SymbolName        /*= ""*/)
 {
     BOOL retValue = FALSE;
 
     // Try to find the right symbol in childs
     int ChildCount = pSymbol->GetChildCount();
 
-    for ( int i = 0; i < ChildCount; ++i )
+    for (int i = 0; i < ChildCount; ++i)
     {
-        CODComponent* pComponent = pSymbol->GetChild( i );
+        CODComponent* pComponent = pSymbol->GetChild(i);
 
-        if ( !pComponent )
+        if (!pComponent)
         {
             continue;
         }
 
-        if ( SymbolName.IsEmpty() || pComponent->GetName() == SymbolName )
+        if (SymbolName.IsEmpty() || pComponent->GetName() == SymbolName)
         {
-            if ( pComponent->GetName() != _T( "Texte1") )
+            if (pComponent->GetName() != _T("Texte1"))
             {
-                if ( pComponent->SetValue( OD_PROP_FONT + OD_FONT_ITALIC, DoSetTextItalic ) )
+                if (pComponent->SetValue(OD_PROP_FONT + OD_FONT_ITALIC, DoSetTextItalic))
                 {
                     // Sets the right value
                     retValue = TRUE;
@@ -586,9 +586,9 @@ BOOL ZUODSymbolManipulator::SetTextItalic( CODComponent*    pSymbol,
         }
 
         // If has child components
-        if ( pComponent->GetChildCount() > 0 )
+        if (pComponent->GetChildCount() > 0)
         {
-            retValue = ZUODSymbolManipulator::SetTextItalic( pComponent, DoSetTextItalic, SymbolName );
+            retValue = ZUODSymbolManipulator::SetTextItalic(pComponent, DoSetTextItalic, SymbolName);
         }
     }
 
@@ -596,29 +596,29 @@ BOOL ZUODSymbolManipulator::SetTextItalic( CODComponent*    pSymbol,
 }
 
 // JMR-MODIF - Le 22 juillet 2007 - Cette fonction permet de changer la couleur du texte d'un symbole.
-BOOL ZUODSymbolManipulator::ChangeTextColor( CODComponent*    pSymbol,
-                                             COLORREF        col,
-                                             const CString    SymbolName            /*= _T( "" )*/ )
+BOOL ZUODSymbolManipulator::ChangeTextColor(CODComponent*    pSymbol,
+                                            COLORREF        col,
+                                            const CString    SymbolName            /*= _T( "" )*/)
 {
     BOOL retValue = FALSE;
 
     // Try to find the right symbol in childs
     int ChildCount = pSymbol->GetChildCount();
 
-    for ( int i = 0; i < ChildCount; ++i )
+    for (int i = 0; i < ChildCount; ++i)
     {
-        CODComponent* pComponent = pSymbol->GetChild( i );
+        CODComponent* pComponent = pSymbol->GetChild(i);
 
-        if ( !pComponent )
+        if (!pComponent)
         {
             continue;
         }
 
-        if ( SymbolName.IsEmpty() || pComponent->GetName() == SymbolName )
+        if (SymbolName.IsEmpty() || pComponent->GetName() == SymbolName)
         {
-            if ( pComponent->GetName() != _T( "Texte1") )
+            if (pComponent->GetName() != _T("Texte1"))
             {
-                if ( pComponent->SetValue( OD_PROP_FONT + OD_FONT_COLOR, col ) )
+                if (pComponent->SetValue(OD_PROP_FONT + OD_FONT_COLOR, col))
                 {
                     // Sets the right value
                     retValue = TRUE;
@@ -627,9 +627,9 @@ BOOL ZUODSymbolManipulator::ChangeTextColor( CODComponent*    pSymbol,
         }
 
         // If has child components
-        if ( pComponent->GetChildCount() > 0 )
+        if (pComponent->GetChildCount() > 0)
         {
-            retValue = ZUODSymbolManipulator::ChangeTextColor( pComponent, col, SymbolName );
+            retValue = ZUODSymbolManipulator::ChangeTextColor(pComponent, col, SymbolName);
         }
     }
 
@@ -637,56 +637,56 @@ BOOL ZUODSymbolManipulator::ChangeTextColor( CODComponent*    pSymbol,
 }
 
 // JMR-MODIF - Le 22 juillet 2007 - Cette fonction permet d'obtenir la couleur du texte d'un symbole.
-COLORREF ZUODSymbolManipulator::GetTextColor( CODComponent*    pSymbol,
-                                              const CString    SymbolName    /*= ""*/ )
+COLORREF ZUODSymbolManipulator::GetTextColor(CODComponent*    pSymbol,
+                                             const CString    SymbolName    /*= ""*/)
 {
     DWORD Color;
 
     // Try to find the right symbol in childs
     int ChildCount = pSymbol->GetChildCount();
 
-    for ( int i = 0; i < ChildCount; ++i )
+    for (int i = 0; i < ChildCount; ++i)
     {
-        CODComponent* pComponent = pSymbol->GetChild( i );
+        CODComponent* pComponent = pSymbol->GetChild(i);
 
-        if ( !pComponent )
+        if (!pComponent)
         {
             continue;
         }
 
-        if ( SymbolName.IsEmpty() || pComponent->GetName() == SymbolName )
+        if (SymbolName.IsEmpty() || pComponent->GetName() == SymbolName)
         {
-            if ( pComponent->GetValue( OD_PROP_FONT + OD_FONT_COLOR, Color ) )
+            if (pComponent->GetValue(OD_PROP_FONT + OD_FONT_COLOR, Color))
             {
                 return (COLORREF)Color;
             }
         }
 
         // If has child components
-        if ( pComponent->GetChildCount() > 0 )
+        if (pComponent->GetChildCount() > 0)
         {
-            ZUODSymbolManipulator::GetTextColor( pComponent, SymbolName );
+            ZUODSymbolManipulator::GetTextColor(pComponent, SymbolName);
         }
     }
 
-    return RGB( 0, 0, 0 );
+    return RGB(0, 0, 0);
 }
 
-BOOL ZUODSymbolManipulator::ChangeComponentLineColor( CODComponent* pSymbol, COLORREF col )
+BOOL ZUODSymbolManipulator::ChangeComponentLineColor(CODComponent* pSymbol, COLORREF col)
 {
-    return pSymbol->SetValue( OD_PROP_LINE + OD_LINE_COLOR, col );
+    return pSymbol->SetValue(OD_PROP_LINE + OD_LINE_COLOR, col);
 }
 
-BOOL ZUODSymbolManipulator::ChangeComponentLineWidth( CODComponent* pSymbol, int width )
+BOOL ZUODSymbolManipulator::ChangeComponentLineWidth(CODComponent* pSymbol, int width)
 {
-    return pSymbol->SetValue( OD_PROP_LINE + OD_LINE_WIDTH, width );
+    return pSymbol->SetValue(OD_PROP_LINE + OD_LINE_WIDTH, width);
 }
 
-BOOL ZUODSymbolManipulator::ChangeComponentLineColorWidth( CODComponent* pSymbol, COLORREF col, int width )
+BOOL ZUODSymbolManipulator::ChangeComponentLineColorWidth(CODComponent* pSymbol, COLORREF col, int width)
 {
-    BOOL bSuccess = pSymbol->SetValue( OD_PROP_LINE + OD_LINE_COLOR, col );
+    BOOL bSuccess = pSymbol->SetValue(OD_PROP_LINE + OD_LINE_COLOR, col);
 
-    if ( !pSymbol->SetValue( OD_PROP_LINE + OD_LINE_WIDTH, width ) )
+    if (!pSymbol->SetValue(OD_PROP_LINE + OD_LINE_WIDTH, width))
     {
         bSuccess = FALSE;
     }
@@ -695,27 +695,27 @@ BOOL ZUODSymbolManipulator::ChangeComponentLineColorWidth( CODComponent* pSymbol
 }
 
 // Cette fonction permet de changer la couleur de toutes les lignes d'un symbole.
-BOOL ZUODSymbolManipulator::ChangeLineColor( CODComponent*    pSymbol,
-                                             COLORREF        col,
-                                             const CString    SymbolName    /*= ""*/ )
+BOOL ZUODSymbolManipulator::ChangeLineColor(CODComponent*    pSymbol,
+                                            COLORREF        col,
+                                            const CString    SymbolName    /*= ""*/)
 {
     BOOL retValue = FALSE;
 
     // Try to find the right symbol in childs
     int ChildCount = pSymbol->GetChildCount();
 
-    for ( int i = 0; i < ChildCount; ++i )
+    for (int i = 0; i < ChildCount; ++i)
     {
-        CODComponent* pComponent = pSymbol->GetChild( i );
+        CODComponent* pComponent = pSymbol->GetChild(i);
 
-        if ( !pComponent )
+        if (!pComponent)
         {
             continue;
         }
 
-        if ( SymbolName.IsEmpty() || pComponent->GetName() == SymbolName )
+        if (SymbolName.IsEmpty() || pComponent->GetName() == SymbolName)
         {
-            if ( pComponent->SetValue( OD_PROP_LINE + OD_LINE_COLOR, col ) )
+            if (pComponent->SetValue(OD_PROP_LINE + OD_LINE_COLOR, col))
             {
                 // Sets the right value
                 retValue = TRUE;
@@ -723,9 +723,9 @@ BOOL ZUODSymbolManipulator::ChangeLineColor( CODComponent*    pSymbol,
         }
 
         // If has child components
-        if ( pComponent->GetChildCount() > 0 )
+        if (pComponent->GetChildCount() > 0)
         {
-            retValue = ZUODSymbolManipulator::ChangeLineColor( pComponent, col, SymbolName );
+            retValue = ZUODSymbolManipulator::ChangeLineColor(pComponent, col, SymbolName);
         }
     }
 
@@ -733,25 +733,25 @@ BOOL ZUODSymbolManipulator::ChangeLineColor( CODComponent*    pSymbol,
 }
 
 // Cette fonction permet de changer la largeur de toutes les lignes d'un symbole.
-BOOL ZUODSymbolManipulator::ChangeLineWidth( CODComponent* pSymbol, int width, const CString SymbolName /*= ""*/ )
+BOOL ZUODSymbolManipulator::ChangeLineWidth(CODComponent* pSymbol, int width, const CString SymbolName /*= ""*/)
 {
     BOOL retValue = FALSE;
 
     // Try to find the right symbol in childs
     int ChildCount = pSymbol->GetChildCount();
 
-    for ( int i = 0; i < ChildCount; ++i )
+    for (int i = 0; i < ChildCount; ++i)
     {
-        CODComponent* pComponent = pSymbol->GetChild( i );
+        CODComponent* pComponent = pSymbol->GetChild(i);
 
-        if ( !pComponent )
+        if (!pComponent)
         {
             continue;
         }
 
-        if ( SymbolName.IsEmpty() || pComponent->GetName() == SymbolName )
+        if (SymbolName.IsEmpty() || pComponent->GetName() == SymbolName)
         {
-            if ( pComponent->SetValue( OD_PROP_LINE + OD_LINE_WIDTH, width ) )
+            if (pComponent->SetValue(OD_PROP_LINE + OD_LINE_WIDTH, width))
             {
                 // Sets the right value
                 retValue = TRUE;
@@ -759,9 +759,9 @@ BOOL ZUODSymbolManipulator::ChangeLineWidth( CODComponent* pSymbol, int width, c
         }
 
         // If has child components
-        if ( pComponent->GetChildCount() > 0 )
+        if (pComponent->GetChildCount() > 0)
         {
-            retValue = ZUODSymbolManipulator::ChangeLineWidth( pComponent, width, SymbolName );
+            retValue = ZUODSymbolManipulator::ChangeLineWidth(pComponent, width, SymbolName);
         }
     }
 
@@ -769,39 +769,39 @@ BOOL ZUODSymbolManipulator::ChangeLineWidth( CODComponent* pSymbol, int width, c
 }
 
 // Cette fonction permet de changer la couleur et la largeur de toutes les lignes d'un symbole.
-BOOL ZUODSymbolManipulator::ChangeLineColorWidth( CODComponent*    pSymbol,
-                                                  COLORREF        col,
-                                                  int            width,
-                                                  const CString    SymbolName /*= ""*/ )
+BOOL ZUODSymbolManipulator::ChangeLineColorWidth(CODComponent*    pSymbol,
+                                                 COLORREF        col,
+                                                 int            width,
+                                                 const CString    SymbolName /*= ""*/)
 {
     BOOL retValue = FALSE;
 
     // Try to find the right symbol in childs
     int ChildCount = pSymbol->GetChildCount();
 
-    for ( int i = 0; i < ChildCount; ++i )
+    for (int i = 0; i < ChildCount; ++i)
     {
-        CODComponent* pComponent = pSymbol->GetChild( i );
+        CODComponent* pComponent = pSymbol->GetChild(i);
 
-        if ( !pComponent )
+        if (!pComponent)
         {
             continue;
         }
 
-        if ( SymbolName.IsEmpty() || pComponent->GetName() == SymbolName )
+        if (SymbolName.IsEmpty() || pComponent->GetName() == SymbolName)
         {
-            retValue = pComponent->SetValue( OD_PROP_LINE + OD_LINE_COLOR, col );
+            retValue = pComponent->SetValue(OD_PROP_LINE + OD_LINE_COLOR, col);
 
-            if ( !pComponent->SetValue( OD_PROP_LINE + OD_LINE_WIDTH, width ) )
+            if (!pComponent->SetValue(OD_PROP_LINE + OD_LINE_WIDTH, width))
             {
                 retValue = FALSE;
             }
         }
 
         // If has child components
-        if ( pComponent->GetChildCount() > 0 )
+        if (pComponent->GetChildCount() > 0)
         {
-            retValue = ZUODSymbolManipulator::ChangeLineColorWidth( pComponent, col, width, SymbolName );
+            retValue = ZUODSymbolManipulator::ChangeLineColorWidth(pComponent, col, width, SymbolName);
         }
     }
 
@@ -811,25 +811,25 @@ BOOL ZUODSymbolManipulator::ChangeLineColorWidth( CODComponent*    pSymbol,
 // JMR-MODIF - Le 24 juin 2005 - Ajout de la fonction ChangeLineStyle, afin de permettre la manipulation de
 // l'attribut du style de trait de la ligne.
 // Cette fonction permet de changer le style de toutes les lignes d'un symbole.
-BOOL ZUODSymbolManipulator::ChangeLineStyle( CODComponent* pSymbol, int style, const CString SymbolName /*= ""*/ )
+BOOL ZUODSymbolManipulator::ChangeLineStyle(CODComponent* pSymbol, int style, const CString SymbolName /*= ""*/)
 {
     BOOL retValue = FALSE;
 
     // Try to find the right symbol in childs
     int ChildCount = pSymbol->GetChildCount();
 
-    for ( int i = 0; i < ChildCount; ++i )
+    for (int i = 0; i < ChildCount; ++i)
     {
-        CODComponent* pComponent = pSymbol->GetChild( i );
+        CODComponent* pComponent = pSymbol->GetChild(i);
 
-        if ( !pComponent )
+        if (!pComponent)
         {
             continue;
         }
 
-        if ( SymbolName.IsEmpty() || pComponent->GetName() == SymbolName )
+        if (SymbolName.IsEmpty() || pComponent->GetName() == SymbolName)
         {
-            if ( pComponent->SetValue( OD_PROP_LINE + OD_LINE_STYLE, style ) )
+            if (pComponent->SetValue(OD_PROP_LINE + OD_LINE_STYLE, style))
             {
                 // Sets the right value
                 retValue = TRUE;
@@ -837,87 +837,87 @@ BOOL ZUODSymbolManipulator::ChangeLineStyle( CODComponent* pSymbol, int style, c
         }
 
         // If has child components
-        if ( pComponent->GetChildCount() > 0 )
+        if (pComponent->GetChildCount() > 0)
         {
-            retValue = ZUODSymbolManipulator::ChangeLineStyle( pComponent, style, SymbolName );
+            retValue = ZUODSymbolManipulator::ChangeLineStyle(pComponent, style, SymbolName);
         }
     }
 
     return retValue;
 }
 
-BOOL ZUODSymbolManipulator::ChangeLabelLineColor( CODSymbolComponent*    pSymbol,
-                                                  COLORREF                col,
-                                                  const CString            LabelName /*= ""*/ )
+BOOL ZUODSymbolManipulator::ChangeLabelLineColor(CODSymbolComponent*    pSymbol,
+                                                 COLORREF                col,
+                                                 const CString            LabelName /*= ""*/)
 {
-    BOOL retValue    = FALSE;
-    int LabelCount    = pSymbol->GetNumLabels();
+    BOOL retValue = FALSE;
+    int LabelCount = pSymbol->GetNumLabels();
 
-    for ( int i = 0; i < LabelCount; ++i )
+    for (int i = 0; i < LabelCount; ++i)
     {
-        CODLabelComponent* pLabel = pSymbol->GetLabel( i );
+        CODLabelComponent* pLabel = pSymbol->GetLabel(i);
 
-        if ( !pLabel )
+        if (!pLabel)
         {
             continue;
         }
 
-        if ( LabelName.IsEmpty() || pLabel->GetName() == LabelName )
+        if (LabelName.IsEmpty() || pLabel->GetName() == LabelName)
         {
-            retValue = pLabel->SetValue( OD_PROP_LINE + OD_LINE_COLOR, col );
+            retValue = pLabel->SetValue(OD_PROP_LINE + OD_LINE_COLOR, col);
         }
     }
 
     return retValue;
 }
 
-BOOL ZUODSymbolManipulator::ChangeLabelLineWidth( CODSymbolComponent*    pSymbol,
-                                                  int                    width,
-                                                  const CString            LabelName /*= ""*/ )
+BOOL ZUODSymbolManipulator::ChangeLabelLineWidth(CODSymbolComponent*    pSymbol,
+                                                 int                    width,
+                                                 const CString            LabelName /*= ""*/)
 {
-    BOOL retValue    = FALSE;
-    int LabelCount    = pSymbol->GetNumLabels();
+    BOOL retValue = FALSE;
+    int LabelCount = pSymbol->GetNumLabels();
 
-    for ( int i = 0; i < LabelCount; ++i )
+    for (int i = 0; i < LabelCount; ++i)
     {
-        CODLabelComponent* pLabel = pSymbol->GetLabel( i );
+        CODLabelComponent* pLabel = pSymbol->GetLabel(i);
 
-        if ( !pLabel )
+        if (!pLabel)
         {
             continue;
         }
 
-        if ( LabelName.IsEmpty() || pLabel->GetName() == LabelName )
+        if (LabelName.IsEmpty() || pLabel->GetName() == LabelName)
         {
-            retValue = pLabel->SetValue( OD_PROP_LINE + OD_LINE_WIDTH, width );
+            retValue = pLabel->SetValue(OD_PROP_LINE + OD_LINE_WIDTH, width);
         }
     }
 
     return retValue;
 }
 
-BOOL ZUODSymbolManipulator::ChangeLabelLineColorWidth( CODSymbolComponent*    pSymbol,
-                                                       COLORREF                col,
-                                                       int                    width,
-                                                       const CString        LabelName /*= ""*/ )
+BOOL ZUODSymbolManipulator::ChangeLabelLineColorWidth(CODSymbolComponent*    pSymbol,
+                                                      COLORREF                col,
+                                                      int                    width,
+                                                      const CString        LabelName /*= ""*/)
 {
-    BOOL retValue    = FALSE;
-    int LabelCount    = pSymbol->GetNumLabels();
+    BOOL retValue = FALSE;
+    int LabelCount = pSymbol->GetNumLabels();
 
-    for ( int i = 0; i < LabelCount; ++i )
+    for (int i = 0; i < LabelCount; ++i)
     {
-        CODLabelComponent* pLabel = pSymbol->GetLabel( i );
+        CODLabelComponent* pLabel = pSymbol->GetLabel(i);
 
-        if ( !pLabel )
+        if (!pLabel)
         {
             continue;
         }
 
-        if ( LabelName.IsEmpty() || pLabel->GetName() == LabelName )
+        if (LabelName.IsEmpty() || pLabel->GetName() == LabelName)
         {
-            retValue = pLabel->SetValue( OD_PROP_LINE + OD_LINE_COLOR, col );
+            retValue = pLabel->SetValue(OD_PROP_LINE + OD_LINE_COLOR, col);
 
-            if ( !pLabel->SetValue( OD_PROP_LINE + OD_LINE_WIDTH, width ) )
+            if (!pLabel->SetValue(OD_PROP_LINE + OD_LINE_WIDTH, width))
             {
                 // Sets the right value
                 retValue = FALSE;
@@ -927,171 +927,171 @@ BOOL ZUODSymbolManipulator::ChangeLabelLineColorWidth( CODSymbolComponent*    pS
     return retValue;
 }
 
-void ZUODSymbolManipulator::ApplyFormatFromObject( CODComponent*    pSymbol,
-                                                   CODComponent&    Object,
-                                                   bool                Font    /*= true*/,
-                                                   bool                Fill    /*= true*/,
-                                                   bool                Line    /*= true*/ )
+void ZUODSymbolManipulator::ApplyFormatFromObject(CODComponent*    pSymbol,
+                                                  CODComponent&    Object,
+                                                  bool                Font    /*= true*/,
+                                                  bool                Fill    /*= true*/,
+                                                  bool                Line    /*= true*/)
 {
-    if ( pSymbol )
+    if (pSymbol)
     {
-        if ( Object.GetProperty( OD_PROP_EDIT ) )
+        if (Object.GetProperty(OD_PROP_EDIT))
         {
-            pSymbol->SetProperty( Object.GetProperty( OD_PROP_EDIT ) );
+            pSymbol->SetProperty(Object.GetProperty(OD_PROP_EDIT));
         }
 
-        if ( Object.GetProperty( OD_PROP_ORIENTATION ) )
+        if (Object.GetProperty(OD_PROP_ORIENTATION))
         {
-            pSymbol->SetProperty( Object.GetProperty( OD_PROP_ORIENTATION ) );
+            pSymbol->SetProperty(Object.GetProperty(OD_PROP_ORIENTATION));
         }
 
-        if ( Object.GetProperty( OD_PROP_FONT ) )
+        if (Object.GetProperty(OD_PROP_FONT))
         {
-            pSymbol->SetProperty( Object.GetProperty( OD_PROP_FONT ) );
+            pSymbol->SetProperty(Object.GetProperty(OD_PROP_FONT));
         }
 
-        if ( Object.GetProperty( OD_PROP_FILL ) )
+        if (Object.GetProperty(OD_PROP_FILL))
         {
-            pSymbol->SetProperty( Object.GetProperty( OD_PROP_FILL ) );
+            pSymbol->SetProperty(Object.GetProperty(OD_PROP_FILL));
         }
 
-        if ( Object.GetProperty( OD_PROP_LINE ) )
+        if (Object.GetProperty(OD_PROP_LINE))
         {
-            pSymbol->SetProperty( Object.GetProperty( OD_PROP_LINE ) );
+            pSymbol->SetProperty(Object.GetProperty(OD_PROP_LINE));
         }
 
-        if ( Object.GetProperty( OD_PROP_WORDBREAK ) )
+        if (Object.GetProperty(OD_PROP_WORDBREAK))
         {
-            pSymbol->SetProperty( Object.GetProperty( OD_PROP_WORDBREAK ) );
+            pSymbol->SetProperty(Object.GetProperty(OD_PROP_WORDBREAK));
         }
 
-        if ( Object.GetProperty( OD_PROP_MULTILINE ) )
+        if (Object.GetProperty(OD_PROP_MULTILINE))
         {
-            pSymbol->SetProperty( Object.GetProperty( OD_PROP_MULTILINE ) );
+            pSymbol->SetProperty(Object.GetProperty(OD_PROP_MULTILINE));
         }
 
-        if ( Object.GetProperty( OD_PROP_HORZ_ALIGNMENT ) )
+        if (Object.GetProperty(OD_PROP_HORZ_ALIGNMENT))
         {
-            pSymbol->SetProperty( Object.GetProperty( OD_PROP_HORZ_ALIGNMENT ) );
+            pSymbol->SetProperty(Object.GetProperty(OD_PROP_HORZ_ALIGNMENT));
         }
 
-        if ( Object.GetProperty( OD_PROP_VERT_ALIGNMENT ) )
+        if (Object.GetProperty(OD_PROP_VERT_ALIGNMENT))
         {
-            pSymbol->SetProperty( Object.GetProperty( OD_PROP_VERT_ALIGNMENT ) );
+            pSymbol->SetProperty(Object.GetProperty(OD_PROP_VERT_ALIGNMENT));
         }
 
-        if ( Object.GetProperty( OD_PROP_TRANSPARENT ) )
+        if (Object.GetProperty(OD_PROP_TRANSPARENT))
         {
-            pSymbol->SetProperty( Object.GetProperty( OD_PROP_TRANSPARENT ) );
+            pSymbol->SetProperty(Object.GetProperty(OD_PROP_TRANSPARENT));
         }
 
-        if ( Object.GetProperty( OD_PROP_TRANSPARENT_COLOR ) )
+        if (Object.GetProperty(OD_PROP_TRANSPARENT_COLOR))
         {
-            pSymbol->SetProperty( Object.GetProperty( OD_PROP_TRANSPARENT_COLOR ) );
+            pSymbol->SetProperty(Object.GetProperty(OD_PROP_TRANSPARENT_COLOR));
         }
     }
 
     // Try to find the right symbol in childs
     int ChildCount = Object.GetChildCount();
 
-    for ( int i = 0; i < ChildCount; ++i )
+    for (int i = 0; i < ChildCount; ++i)
     {
-        CODComponent* pComponent = Object.GetChild( i );
+        CODComponent* pComponent = Object.GetChild(i);
 
-        if ( !pComponent )
+        if (!pComponent)
         {
             continue;
         }
 
-        ZUODSymbolManipulator::ApplyFormatFromObject( pSymbol, *pComponent, Font, Fill, Line );
+        ZUODSymbolManipulator::ApplyFormatFromObject(pSymbol, *pComponent, Font, Fill, Line);
     }
 }
 
 // JMR-MODIF - Le 4 mai 2006 - Cette fonction permet de copier le style d'un objet source vers un autre objet.
-BOOL ZUODSymbolManipulator::CopySymbolStyle( CODComponent* pSrcSymbol, CODComponent* pTrgSymbol )
+BOOL ZUODSymbolManipulator::CopySymbolStyle(CODComponent* pSrcSymbol, CODComponent* pTrgSymbol)
 {
     BOOL b_Result = TRUE;
 
-    if ( pSrcSymbol != NULL && pTrgSymbol != NULL )
+    if (pSrcSymbol != NULL && pTrgSymbol != NULL)
     {
-        if ( pSrcSymbol->GetProperty( OD_PROP_EDIT ) )
+        if (pSrcSymbol->GetProperty(OD_PROP_EDIT))
         {
-            pTrgSymbol->SetProperty( pSrcSymbol->GetProperty( OD_PROP_EDIT ) );
+            pTrgSymbol->SetProperty(pSrcSymbol->GetProperty(OD_PROP_EDIT));
         }
 
-        if ( pSrcSymbol->GetProperty( OD_PROP_ORIENTATION ) )
+        if (pSrcSymbol->GetProperty(OD_PROP_ORIENTATION))
         {
-            pTrgSymbol->SetProperty( pSrcSymbol->GetProperty( OD_PROP_ORIENTATION ) );
+            pTrgSymbol->SetProperty(pSrcSymbol->GetProperty(OD_PROP_ORIENTATION));
         }
 
-        if ( pSrcSymbol->GetProperty( OD_PROP_FONT ) )
+        if (pSrcSymbol->GetProperty(OD_PROP_FONT))
         {
-            pTrgSymbol->SetProperty( pSrcSymbol->GetProperty( OD_PROP_FONT ) );
+            pTrgSymbol->SetProperty(pSrcSymbol->GetProperty(OD_PROP_FONT));
         }
 
-        if ( pSrcSymbol->GetProperty( OD_PROP_FILL ) )
+        if (pSrcSymbol->GetProperty(OD_PROP_FILL))
         {
-            pTrgSymbol->SetProperty( pSrcSymbol->GetProperty( OD_PROP_FILL ) );
+            pTrgSymbol->SetProperty(pSrcSymbol->GetProperty(OD_PROP_FILL));
         }
 
-        if ( pSrcSymbol->GetProperty( OD_PROP_LINE ) )
+        if (pSrcSymbol->GetProperty(OD_PROP_LINE))
         {
-            pTrgSymbol->SetProperty( pSrcSymbol->GetProperty( OD_PROP_LINE ) );
+            pTrgSymbol->SetProperty(pSrcSymbol->GetProperty(OD_PROP_LINE));
         }
 
-        if ( pSrcSymbol->GetProperty( OD_PROP_WORDBREAK ) )
+        if (pSrcSymbol->GetProperty(OD_PROP_WORDBREAK))
         {
-            pTrgSymbol->SetProperty( pSrcSymbol->GetProperty( OD_PROP_WORDBREAK ) );
+            pTrgSymbol->SetProperty(pSrcSymbol->GetProperty(OD_PROP_WORDBREAK));
         }
 
-        if ( pSrcSymbol->GetProperty( OD_PROP_MULTILINE ) )
+        if (pSrcSymbol->GetProperty(OD_PROP_MULTILINE))
         {
-            pTrgSymbol->SetProperty( pSrcSymbol->GetProperty( OD_PROP_MULTILINE ) );
+            pTrgSymbol->SetProperty(pSrcSymbol->GetProperty(OD_PROP_MULTILINE));
         }
 
-        if ( pSrcSymbol->GetProperty( OD_PROP_HORZ_ALIGNMENT ) )
+        if (pSrcSymbol->GetProperty(OD_PROP_HORZ_ALIGNMENT))
         {
-            pTrgSymbol->SetProperty( pSrcSymbol->GetProperty( OD_PROP_HORZ_ALIGNMENT ) );
+            pTrgSymbol->SetProperty(pSrcSymbol->GetProperty(OD_PROP_HORZ_ALIGNMENT));
         }
 
-        if ( pSrcSymbol->GetProperty( OD_PROP_VERT_ALIGNMENT ) )
+        if (pSrcSymbol->GetProperty(OD_PROP_VERT_ALIGNMENT))
         {
-            pTrgSymbol->SetProperty( pSrcSymbol->GetProperty( OD_PROP_VERT_ALIGNMENT ) );
+            pTrgSymbol->SetProperty(pSrcSymbol->GetProperty(OD_PROP_VERT_ALIGNMENT));
         }
 
-        if ( pSrcSymbol->GetProperty( OD_PROP_TRANSPARENT ) )
+        if (pSrcSymbol->GetProperty(OD_PROP_TRANSPARENT))
         {
-            pTrgSymbol->SetProperty( pSrcSymbol->GetProperty( OD_PROP_TRANSPARENT ) );
+            pTrgSymbol->SetProperty(pSrcSymbol->GetProperty(OD_PROP_TRANSPARENT));
         }
 
-        if ( pSrcSymbol->GetProperty( OD_PROP_TRANSPARENT_COLOR ) )
+        if (pSrcSymbol->GetProperty(OD_PROP_TRANSPARENT_COLOR))
         {
-            pTrgSymbol->SetProperty( pSrcSymbol->GetProperty( OD_PROP_TRANSPARENT_COLOR ) );
+            pTrgSymbol->SetProperty(pSrcSymbol->GetProperty(OD_PROP_TRANSPARENT_COLOR));
         }
 
         // Try to find the right symbol in childs
         int SrcChildCount = pSrcSymbol->GetChildCount();
         int TrgChildCount = pTrgSymbol->GetChildCount();
 
-        if ( SrcChildCount == TrgChildCount )
+        if (SrcChildCount == TrgChildCount)
         {
-            for ( int i = 0; i < SrcChildCount; ++i )
+            for (int i = 0; i < SrcChildCount; ++i)
             {
-                CODComponent* pSrcComponent = pSrcSymbol->GetChild( i );
-                CODComponent* pTrgComponent = pTrgSymbol->GetChild( i );
+                CODComponent* pSrcComponent = pSrcSymbol->GetChild(i);
+                CODComponent* pTrgComponent = pTrgSymbol->GetChild(i);
 
-                if ( pSrcComponent == NULL || pTrgComponent == NULL )
+                if (pSrcComponent == NULL || pTrgComponent == NULL)
                 {
                     continue;
                 }
 
-                b_Result = ZUODSymbolManipulator::CopySymbolStyle( pSrcComponent, pTrgComponent );
+                b_Result = ZUODSymbolManipulator::CopySymbolStyle(pSrcComponent, pTrgComponent);
             }
         }
         else
         {
             PSS_MsgBox mBox;
-            mBox.ShowMsgBox( IDS_CANNOTCOPYSTYLE, MB_OK );
+            mBox.Show(IDS_CANNOTCOPYSTYLE, MB_OK);
             b_Result = FALSE;
         }
     }
@@ -1100,46 +1100,46 @@ BOOL ZUODSymbolManipulator::CopySymbolStyle( CODComponent* pSrcSymbol, CODCompon
 }
 
 // Find ports having the name specified, copy their pointer to the set.
-size_t ZUODSymbolManipulator::GetPortName( CODSymbolComponent*    pSymbol,
-                                           const CString        PortName,
-                                           CODPortSet&            Ports )
+size_t ZUODSymbolManipulator::GetPortName(CODSymbolComponent*    pSymbol,
+                                          const CString        PortName,
+                                          CODPortSet&            Ports)
 {
-    ASSERT( pSymbol != NULL );
+    ASSERT(pSymbol != NULL);
 
     // Retreive all ports
     CODPortSet setPorts;
-    pSymbol->GetAllPorts( setPorts );
+    pSymbol->GetAllPorts(setPorts);
 
-    CODPortIterator i( &setPorts );
-    
-    for ( CODPortComponent* pPortComp = i.GetFirst(); pPortComp != NULL; pPortComp = i.GetNext() )
+    CODPortIterator i(&setPorts);
+
+    for (CODPortComponent* pPortComp = i.GetFirst(); pPortComp != NULL; pPortComp = i.GetNext())
     {
-        if ( pPortComp->GetName() == PortName )
+        if (pPortComp->GetName() == PortName)
         {
-            Ports.Add( pPortComp );
+            Ports.Add(pPortComp);
         }
     }
 
     return Ports.GetSize();
 }
 
-size_t ZUODSymbolManipulator::KeepOnlySymbolsISA( CODNodeArray& Nodes, const CRuntimeClass* pClass )
+size_t ZUODSymbolManipulator::KeepOnlySymbolsISA(CODNodeArray& Nodes, const CRuntimeClass* pClass)
 {
-    for ( int nNodeIdx = 0; nNodeIdx < Nodes.GetSize(); ++nNodeIdx )
+    for (int nNodeIdx = 0; nNodeIdx < Nodes.GetSize(); ++nNodeIdx)
     {
-        IODNode* pINode                = Nodes.GetAt( nNodeIdx );
-        CODSymbolComponent* pComp    = static_cast<CODSymbolComponent*>( pINode );
+        IODNode* pINode = Nodes.GetAt(nNodeIdx);
+        CODSymbolComponent* pComp = static_cast<CODSymbolComponent*>(pINode);
 
-        if ( !pComp )
+        if (!pComp)
         {
             // Log problem
             return 0;
         }
 
-        if ( !pComp->IsKindOf( pClass ) )
+        if (!pComp->IsKindOf(pClass))
         {
             // Remove the symbol from the array
-            Nodes.RemoveAt( nNodeIdx );
+            Nodes.RemoveAt(nNodeIdx);
             --nNodeIdx;
         }
     }
@@ -1147,23 +1147,23 @@ size_t ZUODSymbolManipulator::KeepOnlySymbolsISA( CODNodeArray& Nodes, const CRu
     return Nodes.GetSize();
 }
 
-size_t ZUODSymbolManipulator::KeepOnlyLinksISA( CODEdgeArray& Edges, const CRuntimeClass* pClass )
+size_t ZUODSymbolManipulator::KeepOnlyLinksISA(CODEdgeArray& Edges, const CRuntimeClass* pClass)
 {
-    for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
+    for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
     {
-        IODEdge* pIEdge            = Edges.GetAt( nEdgeIdx );
-        CODLinkComponent* pComp    = static_cast<CODLinkComponent*>( pIEdge );
+        IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
+        CODLinkComponent* pComp = static_cast<CODLinkComponent*>(pIEdge);
 
-        if ( !pComp )
+        if (!pComp)
         {
             // Log problem
             return 0;
         }
 
-        if ( !pComp->IsKindOf( pClass ) )
+        if (!pComp->IsKindOf(pClass))
         {
             // Remove the link from the array
-            Edges.RemoveAt( nEdgeIdx );
+            Edges.RemoveAt(nEdgeIdx);
             --nEdgeIdx;
         }
     }
@@ -1171,20 +1171,20 @@ size_t ZUODSymbolManipulator::KeepOnlyLinksISA( CODEdgeArray& Edges, const CRunt
     return Edges.GetSize();
 }
 
-bool ZUODSymbolManipulator::HasSymbolsISA( CODNodeArray& Nodes, const CRuntimeClass* pClass )
+bool ZUODSymbolManipulator::HasSymbolsISA(CODNodeArray& Nodes, const CRuntimeClass* pClass)
 {
-    for ( int nNodeIdx = 0; nNodeIdx < Nodes.GetSize(); ++nNodeIdx )
+    for (int nNodeIdx = 0; nNodeIdx < Nodes.GetSize(); ++nNodeIdx)
     {
-        IODNode* pINode                = Nodes.GetAt( nNodeIdx );
-        CODSymbolComponent* pComp    = static_cast<CODSymbolComponent*>( pINode );
+        IODNode* pINode = Nodes.GetAt(nNodeIdx);
+        CODSymbolComponent* pComp = static_cast<CODSymbolComponent*>(pINode);
 
-        if ( !pComp )
+        if (!pComp)
         {
             continue;
         }
 
         // Same class type, return true
-        if ( pComp->IsKindOf( pClass ) )
+        if (pComp->IsKindOf(pClass))
         {
             return true;
         }
@@ -1194,20 +1194,20 @@ bool ZUODSymbolManipulator::HasSymbolsISA( CODNodeArray& Nodes, const CRuntimeCl
     return false;
 }
 
-bool ZUODSymbolManipulator::HasLinksISA( CODEdgeArray& Edges, const CRuntimeClass* pClass )
+bool ZUODSymbolManipulator::HasLinksISA(CODEdgeArray& Edges, const CRuntimeClass* pClass)
 {
-    for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
+    for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
     {
-        IODEdge* pIEdge            = Edges.GetAt( nEdgeIdx );
-        CODLinkComponent* pComp    = static_cast<CODLinkComponent*>( pIEdge );
+        IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
+        CODLinkComponent* pComp = static_cast<CODLinkComponent*>(pIEdge);
 
-        if ( !pComp )
+        if (!pComp)
         {
             continue;
         }
 
         // Same class type, return true
-        if ( pComp->IsKindOf( pClass ) )
+        if (pComp->IsKindOf(pClass))
         {
             return true;
         }
@@ -1218,7 +1218,7 @@ bool ZUODSymbolManipulator::HasLinksISA( CODEdgeArray& Edges, const CRuntimeClas
 }
 
 // Get all the following symbols attached to the port specified as parameter. Copy the pointer to the set.
-size_t ZUODSymbolManipulator::GetPortFollowingSymbols( CODPortComponent& Port, CODComponentSet& Set )
+size_t ZUODSymbolManipulator::GetPortFollowingSymbols(CODPortComponent& Port, CODComponentSet& Set)
 {
     // Retreive the owner
     CODSymbolComponent* pComp = Port.GetOwner();
@@ -1227,12 +1227,12 @@ size_t ZUODSymbolManipulator::GetPortFollowingSymbols( CODPortComponent& Port, C
     return Set.GetSize();
 }
 
-size_t ZUODSymbolManipulator::KeepFollowingSymbolsByPortName( const CString PortName, CODNodeArray& Nodes )
+size_t ZUODSymbolManipulator::KeepFollowingSymbolsByPortName(const CString PortName, CODNodeArray& Nodes)
 {
     return Nodes.GetSize();
 }
 
-bool ZUODSymbolManipulator::IsSymbolFollowingByPortName( CODSymbolComponent* pSymbol, const CString PortName )
+bool ZUODSymbolManipulator::IsSymbolFollowingByPortName(CODSymbolComponent* pSymbol, const CString PortName)
 {
     return false;
 }

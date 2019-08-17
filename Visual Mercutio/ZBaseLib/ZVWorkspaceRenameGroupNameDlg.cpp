@@ -21,7 +21,7 @@ static char THIS_FILE[] = __FILE__;
 
 ZVWorkspaceRenameGroupNameDlg::ZVWorkspaceRenameGroupNameDlg(const CString GroupName, ZBWorkspaceGroupEntity* pParentGroup /*= NULL*/, CWnd* pParent /*=NULL*/)
     : CDialog(ZVWorkspaceRenameGroupNameDlg::IDD, pParent),
-      m_pParentGroup(pParentGroup)
+    m_pParentGroup(pParentGroup)
 {
     //{{AFX_DATA_INIT(ZVWorkspaceRenameGroupNameDlg)
     m_GroupName = GroupName;
@@ -46,26 +46,26 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // ZVWorkspaceRenameGroupNameDlg message handlers
 
-void ZVWorkspaceRenameGroupNameDlg::OnOK() 
+void ZVWorkspaceRenameGroupNameDlg::OnOK()
 {
-    UpdateData( TRUE );
-    if (m_pParentGroup && m_pParentGroup->GroupExist( m_GroupName ))
+    UpdateData(TRUE);
+    if (m_pParentGroup && m_pParentGroup->GroupExist(m_GroupName))
     {
         // Already exists
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_WKS_GROUP_ALREADYEXIST, MB_OK );
+        mBox.Show(IDS_WKS_GROUP_ALREADYEXIST, MB_OK);
         return;
     }
-    
+
     CDialog::OnOK();
 }
 
-BOOL ZVWorkspaceRenameGroupNameDlg::OnInitDialog() 
+BOOL ZVWorkspaceRenameGroupNameDlg::OnInitDialog()
 {
     CDialog::OnInitDialog();
-    
+
     // TODO: Add extra initialization here
-    
-    return TRUE;  // return TRUE unless you set the focus to a control
-                  // EXCEPTION: OCX Property Pages should return FALSE
+
+    // return TRUE unless the focus is set to a control. NOTE OCX property pages should return FALSE
+    return TRUE;
 }

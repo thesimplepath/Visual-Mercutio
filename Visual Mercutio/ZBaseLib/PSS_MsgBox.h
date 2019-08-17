@@ -66,7 +66,7 @@ class AFX_EXT_CLASS PSS_MsgBox : public CDialog
         *@param style - style
         *@return dialog modal result
         */
-        int ShowMsgBox(LPCSTR pMessage, UINT style = MB_YESNOCANCEL);
+        virtual int Show(LPCSTR pMessage, UINT style = MB_YESNOCANCEL);
 
         /**
         * Shows the message box
@@ -75,13 +75,13 @@ class AFX_EXT_CLASS PSS_MsgBox : public CDialog
         *@param hInstance - instance
         *@return dialog modal result
         */
-        int ShowMsgBox(UINT messageID, UINT style = MB_YESNOCANCEL, HINSTANCE hInstance = NULL);
+        virtual int Show(UINT messageID, UINT style = MB_YESNOCANCEL, HINSTANCE hInstance = NULL);
 
         /**
         * Switches the 3rd button label between cancel or unlock
         *@param value - if TRUE, the 3rd button text will show unlock instead of cancel
         */
-        void DoChangeCancelBtnToUnlockBtn(BOOL Value = TRUE);
+        virtual void DoChangeCancelBtnToUnlockBtn(BOOL Value = TRUE);
 
     protected:
         /**

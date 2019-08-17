@@ -48,7 +48,7 @@ PSS_MsgBox::PSS_MsgBox(CWnd* pParent) :
 PSS_MsgBox::~PSS_MsgBox()
 {}
 //---------------------------------------------------------------------------
-int PSS_MsgBox::ShowMsgBox(LPCSTR pMessage, UINT style)
+int PSS_MsgBox::Show(LPCSTR pMessage, UINT style)
 {
     m_Text  = pMessage;
     m_Style = style;
@@ -56,7 +56,7 @@ int PSS_MsgBox::ShowMsgBox(LPCSTR pMessage, UINT style)
     return DoModal();
 }
 //---------------------------------------------------------------------------
-int PSS_MsgBox::ShowMsgBox(UINT messageID, UINT style, HINSTANCE hInstance)
+int PSS_MsgBox::Show(UINT messageID, UINT style, HINSTANCE hInstance)
 {
     if (hInstance)
     {

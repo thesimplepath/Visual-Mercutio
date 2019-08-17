@@ -26,7 +26,7 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -38,18 +38,18 @@ IMPLEMENT_SERIAL(ZBBPDoorSymbol, ZBSymbol, g_DefVersion)
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBBPDoorSymbol::ZBBPDoorSymbol( const CString Name /*= ""*/ )
-    : m_DisplayPreview        ( false ),
-      m_pTwinDoorSymbol        ( NULL ),
-      m_TwinDoorRefNumber    ( -1 )
+ZBBPDoorSymbol::ZBBPDoorSymbol(const CString Name /*= ""*/)
+    : m_DisplayPreview(false),
+    m_pTwinDoorSymbol(NULL),
+    m_TwinDoorRefNumber(-1)
 {
-    ZBSymbol::SetSymbolName( Name );
+    ZBSymbol::SetSymbolName(Name);
 
     // ***********************************************************************************************
     // JMR-MODIF - Le 1er mai 2006 - Redimensionne la zone de texte par rapport à la largeur du texte.
     CODTextComponent* pText = GetSymbolNameTextEdit();
 
-    if ( pText )
+    if (pText)
     {
         pText->SizeToText();
     }
@@ -57,127 +57,126 @@ ZBBPDoorSymbol::ZBBPDoorSymbol( const CString Name /*= ""*/ )
 }
 
 ZBBPDoorSymbol::~ZBBPDoorSymbol()
-{
-}
+{}
 
-ZBBPDoorSymbol::ZBBPDoorSymbol( const ZBBPDoorSymbol& src )
+ZBBPDoorSymbol::ZBBPDoorSymbol(const ZBBPDoorSymbol& src)
 {
     *this = src;
 }
 
-ZBBPDoorSymbol& ZBBPDoorSymbol::operator=( const ZBBPDoorSymbol& src )
+ZBBPDoorSymbol& ZBBPDoorSymbol::operator=(const ZBBPDoorSymbol& src)
 {
     // Call the base class assignement operator
-    ZBSymbol::operator=( (const ZBSymbol&)src );
+    ZBSymbol::operator=((const ZBSymbol&)src);
 
-    m_DisplayPreview    = src.m_DisplayPreview;
-    m_TwinDoorRefNumber    = src.m_TwinDoorRefNumber;
-    m_pTwinDoorSymbol    = src.m_pTwinDoorSymbol;
+    m_DisplayPreview = src.m_DisplayPreview;
+    m_TwinDoorRefNumber = src.m_TwinDoorRefNumber;
+    m_pTwinDoorSymbol = src.m_pTwinDoorSymbol;
 
     return *this;
 }
 
 CODComponent* ZBBPDoorSymbol::Dup() const
 {
-    return ( new ZBBPDoorSymbol( *this ) );
+    return (new ZBBPDoorSymbol(*this));
 }
 
 ZDProcessGraphModelMdl* ZBBPDoorSymbol::GetModelDoor()
 {
-    ASSERT( ISA( m_pModel, ZDProcessGraphModelMdl ) );
+    ASSERT(ISA(m_pModel, ZDProcessGraphModelMdl));
 
-    return dynamic_cast<ZDProcessGraphModelMdl*>( m_pModel );
+    return dynamic_cast<ZDProcessGraphModelMdl*>(m_pModel);
 }
 
-bool ZBBPDoorSymbol::SetDoorModel( ZDProcessGraphModelMdl* pModel )
+bool ZBBPDoorSymbol::SetDoorModel(ZDProcessGraphModelMdl* pModel)
 {
     m_pModel = pModel;
 
     // And assign the right door name
-    SetSymbolName( BuildSymbolName() );
+    SetSymbolName(BuildSymbolName());
 
     // ***********************************************************************************************
     // JMR-MODIF - Le 1er mai 2006 - Redimensionne la zone de texte par rapport à la largeur du texte.
     CODTextComponent* pText = GetSymbolNameTextEdit();
 
-    if ( pText )
+    if (pText)
     {
         pText->SizeToText();
     }
     // ***********************************************************************************************
 
-    return ( m_pModel ) ? true : false;
+    return (m_pModel) ? true : false;
 }
 
-void ZBBPDoorSymbol::RecalculateTwinDoorReference( ZDProcessGraphModelMdl* pRootModel )
+void ZBBPDoorSymbol::RecalculateTwinDoorReference(ZDProcessGraphModelMdl* pRootModel)
 {
     // Nothing to do
-    if ( GetTwinDoorReferenceNumber() == -1 || !pRootModel )
+    if (GetTwinDoorReferenceNumber() == -1 || !pRootModel)
     {
         return;
     }
 
     // Locate the other twin
-    CODComponentSet* pSet = pRootModel->GetRoot()->FindSymbolByRefNumber( GetTwinDoorReferenceNumber() );
+    CODComponentSet* pSet = pRootModel->GetRoot()->FindSymbolByRefNumber(GetTwinDoorReferenceNumber());
 
-    if ( pSet && pSet->GetSize() > 0 )
+    if (pSet && pSet->GetSize() > 0)
     {
         // If it is a door symbol
-        if ( pSet->GetAt( 0 ) && ISA( pSet->GetAt( 0 ), ZBBPDoorSymbol ) )
+        if (pSet->GetAt(0) && ISA(pSet->GetAt(0), ZBBPDoorSymbol))
         {
-            m_pTwinDoorSymbol = dynamic_cast<ZBBPDoorSymbol*>( pSet->GetAt( 0 ) );
+            m_pTwinDoorSymbol = dynamic_cast<ZBBPDoorSymbol*>(pSet->GetAt(0));
 
             // Check if the door name is correct,
             // then empty the twin door name
-            if ( m_pTwinDoorSymbol->GetTwinDoorReferenceNumber() == GetSymbolReferenceNumber() )
+            if (m_pTwinDoorSymbol->GetTwinDoorReferenceNumber() == GetSymbolReferenceNumber())
             {
             }
         }
     }
 }
 
-void ZBBPDoorSymbol::SetTwinDoorReferenceNumber( int RefNumber )
+void ZBBPDoorSymbol::SetTwinDoorReferenceNumber(int RefNumber)
 {
     m_TwinDoorRefNumber = RefNumber;
 }
 
-void ZBBPDoorSymbol::RemoveTwinDoorSymbol( bool RemoveTwin /*= true*/ )
+void ZBBPDoorSymbol::RemoveTwinDoorSymbol(bool RemoveTwin /*= true*/)
 {
     // If the parent is a model
     CODComponent* pMdl = GetParent();
 
-    if ( pMdl && ISA( pMdl,ZDProcessGraphModelMdl ) && dynamic_cast<ZDProcessGraphModelMdl*>( pMdl )->GetRoot() )
+    if (pMdl && ISA(pMdl, ZDProcessGraphModelMdl) && dynamic_cast<ZDProcessGraphModelMdl*>(pMdl)->GetRoot())
     {
         CODComponentSet* pSet =
-            dynamic_cast<ZDProcessGraphModelMdl*>( pMdl )->GetRoot()->FindSymbolByRefNumber( GetTwinDoorReferenceNumber() );
+            dynamic_cast<ZDProcessGraphModelMdl*>(pMdl)->GetRoot()->FindSymbolByRefNumber(GetTwinDoorReferenceNumber());
 
-        if ( pSet && pSet->GetSize() > 0 )
+        if (pSet && pSet->GetSize() > 0)
         {
             // If it is a door symbol
-            if ( pSet->GetAt( 0 ) && ISA( pSet->GetAt( 0 ), ZBBPDoorSymbol ) )
+            if (pSet->GetAt(0) && ISA(pSet->GetAt(0), ZBBPDoorSymbol))
             {
-                ZBBPDoorSymbol* pDoor = dynamic_cast<ZBBPDoorSymbol*>( pSet->GetAt( 0 ) );
+                ZBBPDoorSymbol* pDoor = dynamic_cast<ZBBPDoorSymbol*>(pSet->GetAt(0));
 
                 // Check if the door name is correct, then empty the twin door name
-                if ( !RemoveTwin || pDoor->GetTwinDoorReferenceNumber() == GetSymbolReferenceNumber() )
+                if (!RemoveTwin || pDoor->GetTwinDoorReferenceNumber() == GetSymbolReferenceNumber())
                 {
-                    if ( RemoveTwin )
+                    if (RemoveTwin)
                     {
-                        pDoor->SetTwinDoorReferenceNumber( -1 );
-                        pDoor->SetTwinDoorSymbol( NULL );
+                        pDoor->SetTwinDoorReferenceNumber(-1);
+                        pDoor->SetTwinDoorSymbol(NULL);
                     }
 
                     // and also empty our twin door name
-                    SetTwinDoorReferenceNumber( -1 );
-                    SetTwinDoorSymbol( NULL );
+                    SetTwinDoorReferenceNumber(-1);
+                    SetTwinDoorSymbol(NULL);
 
                     // and remove the observer we set
-                    DetachObserver( pDoor );
-                    pDoor->DetachObserver( this );
+                    DetachObserver(pDoor);
+                    pDoor->DetachObserver(this);
 
-                    if ( !RemoveTwin )
+                    if (!RemoveTwin)
                     {
-                        SetDoorModel( NULL );
+                        SetDoorModel(NULL);
                     }
                 }
             }
@@ -185,21 +184,21 @@ void ZBBPDoorSymbol::RemoveTwinDoorSymbol( bool RemoveTwin /*= true*/ )
     }
 }
 
-void ZBBPDoorSymbol::AssignTwinDoorSymbol( ZBBPDoorSymbol* pDoor )
+void ZBBPDoorSymbol::AssignTwinDoorSymbol(ZBBPDoorSymbol* pDoor)
 {
     // Assign the twin door symbol
     m_pTwinDoorSymbol = pDoor;
 
     // Sets our twin door name to him
-    SetTwinDoorReferenceNumber( pDoor->GetSymbolReferenceNumber() );
+    SetTwinDoorReferenceNumber(pDoor->GetSymbolReferenceNumber());
 
     // Sets the twin door name to us
-    pDoor->SetTwinDoorReferenceNumber( GetSymbolReferenceNumber() );
-    pDoor->SetTwinDoorSymbol( this );
+    pDoor->SetTwinDoorReferenceNumber(GetSymbolReferenceNumber());
+    pDoor->SetTwinDoorSymbol(this);
 
     // And attach this to the source reference
-    AttachObserver( pDoor );
-    pDoor->AttachObserver( this );
+    AttachObserver(pDoor);
+    pDoor->AttachObserver(this);
 }
 
 // JMR-MODIF - Le 3 septembre 2006 - Cette fonction permet de répercuter un style sur le jumeau d'un symbole.
@@ -207,32 +206,32 @@ BOOL ZBBPDoorSymbol::DuplicateStyleOnTwinSymbol()
 {
     ZBBPDoorSymbol* m_TwinSymbol = GetTwinDoorSymbol();
 
-    if ( m_TwinSymbol != NULL )
+    if (m_TwinSymbol != NULL)
     {
-        return ZUODSymbolManipulator::CopySymbolStyle( this, m_TwinSymbol );
+        return ZUODSymbolManipulator::CopySymbolStyle(this, m_TwinSymbol);
     }
 
     return FALSE;
 }
 
-void ZBBPDoorSymbol::OnSymbolNameChanged( CODComponent& Comp, const CString OldName )
+void ZBBPDoorSymbol::OnSymbolNameChanged(CODComponent& Comp, const CString OldName)
 {
     // Check if the old symbol name was used somewhere in this door symbol
     CODComponent* pComp = &Comp;
 
     // Check if a process and the same we pointed to
-    if ( ISA( pComp, ZBBPProcessSymbol ) &&
-         !dynamic_cast<ZBBPProcessSymbol*>( pComp )->IsChildModelRef() &&
-         dynamic_cast<ZBBPProcessSymbol*>( pComp )->GetChildModel() == GetChildModel() )
+    if (ISA(pComp, ZBBPProcessSymbol) &&
+        !dynamic_cast<ZBBPProcessSymbol*>(pComp)->IsChildModelRef() &&
+        dynamic_cast<ZBBPProcessSymbol*>(pComp)->GetChildModel() == GetChildModel())
     {
         // And assign the right door name
-        SetSymbolName( BuildSymbolName() );
+        SetSymbolName(BuildSymbolName());
 
         // ***********************************************************************************************
         // JMR-MODIF - Le 1er mai 2006 - Redimensionne la zone de texte par rapport à la largeur du texte.
         CODTextComponent* pText = GetSymbolNameTextEdit();
 
-        if ( pText )
+        if (pText)
         {
             pText->SizeToText();
         }
@@ -240,19 +239,19 @@ void ZBBPDoorSymbol::OnSymbolNameChanged( CODComponent& Comp, const CString OldN
     }
 }
 
-void ZBBPDoorSymbol::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
+void ZBBPDoorSymbol::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
 {
-    ZBSymbol* pSymbol = static_cast<ZBSymbol*>( pSubject );
+    ZBSymbol* pSymbol = static_cast<ZBSymbol*>(pSubject);
 
     // If it is a door symbol
-    if ( pSymbol && ISA( pSymbol, ZBBPDoorSymbol ) )
+    if (pSymbol && ISA(pSymbol, ZBBPDoorSymbol))
     {
         // Check if the twin door name we have has changed compared
         // to the door symbol we received the message
-        if ( GetTwinDoorReferenceNumber() != dynamic_cast<ZBBPDoorSymbol*>( pSymbol )->GetSymbolReferenceNumber() )
+        if (GetTwinDoorReferenceNumber() != dynamic_cast<ZBBPDoorSymbol*>(pSymbol)->GetSymbolReferenceNumber())
         {
             // Then, reassign the new name
-            SetTwinDoorReferenceNumber( dynamic_cast<ZBBPDoorSymbol*>( pSymbol )->GetSymbolReferenceNumber() );
+            SetTwinDoorReferenceNumber(dynamic_cast<ZBBPDoorSymbol*>(pSymbol)->GetSymbolReferenceNumber());
         }
     }
 }
@@ -260,7 +259,7 @@ void ZBBPDoorSymbol::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
 CString ZBBPDoorSymbol::BuildSymbolName()
 {
     // If a model is defined
-    if ( m_pModel && ISA( m_pModel, ZDProcessGraphModelMdl ) )
+    if (m_pModel && ISA(m_pModel, ZDProcessGraphModelMdl))
     {
         // ***************************************************************************************************
         // JMR-MODIF - Le 1er mai 2006 - Suppression des guillemets dans le titre des portes.
@@ -270,57 +269,57 @@ CString ZBBPDoorSymbol::BuildSymbolName()
         return DoorStr;
 */
 
-        return reinterpret_cast<ZDProcessGraphModelMdl*>( m_pModel )->GetModelName();
+        return reinterpret_cast<ZDProcessGraphModelMdl*>(m_pModel)->GetModelName();
         // ***************************************************************************************************
     }
 
-    return _T( "" );
+    return _T("");
 }
 
 // Drag and drop methods
-bool ZBBPDoorSymbol::AcceptDropItem( CObject* pObj, CPoint pt )
+bool ZBBPDoorSymbol::AcceptDropItem(CObject* pObj, CPoint pt)
 {
     // JMR-MODIF - Le 19 décembre 2006 - Si le symbole n'est pas local, interdit l'opération de glisser-coller.
-    if ( !IsLocal() )
+    if (!IsLocal())
     {
         return false;
     }
 
-    return ZBSymbol::AcceptDropItem( pObj, pt );
+    return ZBSymbol::AcceptDropItem(pObj, pt);
 }
 
-bool ZBBPDoorSymbol::DropItem( CObject* pObj, CPoint pt )
+bool ZBBPDoorSymbol::DropItem(CObject* pObj, CPoint pt)
 {
-    return ZBSymbol::DropItem( pObj, pt );
+    return ZBSymbol::DropItem(pObj, pt);
 }
 
-void ZBBPDoorSymbol::CopySymbolDefinitionFrom( CODSymbolComponent& src )
+void ZBBPDoorSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
 {
     // Class the base class method
-    ZBSymbol::CopySymbolDefinitionFrom( src );
+    ZBSymbol::CopySymbolDefinitionFrom(src);
 
-    if ( ISA( ( &src ), ZBBPDoorSymbol ) )
+    if (ISA((&src), ZBBPDoorSymbol))
     {
-        m_DisplayPreview    = ( (ZBBPDoorSymbol&)src ).m_DisplayPreview;
-        m_CommentRect        = ( (ZBBPDoorSymbol&)src ).m_CommentRect;
-        m_SubModelPathName    = ( (ZBBPDoorSymbol&)src ).m_SubModelPathName;
+        m_DisplayPreview = ((ZBBPDoorSymbol&)src).m_DisplayPreview;
+        m_CommentRect = ((ZBBPDoorSymbol&)src).m_CommentRect;
+        m_SubModelPathName = ((ZBBPDoorSymbol&)src).m_SubModelPathName;
 
         // The twin door name saves the name of the other door
-        m_TwinDoorRefNumber = ( (ZBBPDoorSymbol&)src ).m_TwinDoorRefNumber;
-        m_pTwinDoorSymbol    = ( (ZBBPDoorSymbol&)src ).m_pTwinDoorSymbol;
+        m_TwinDoorRefNumber = ((ZBBPDoorSymbol&)src).m_TwinDoorRefNumber;
+        m_pTwinDoorSymbol = ((ZBBPDoorSymbol&)src).m_pTwinDoorSymbol;
     }
 }
 
-BOOL ZBBPDoorSymbol::Create( const CString Name /*= ""*/ )
+BOOL ZBBPDoorSymbol::Create(const CString Name /*= ""*/)
 {
     m_IsInCreationProcess = true;
 
-    BOOL RetValue = ZBSymbol::Create( IDR_BP_DOOR,
-                                      AfxFindResourceHandle( MAKEINTRESOURCE( IDR_PACKAGE_SYM ),
-                                      _T( "Symbol" ) ),
-                                      Name );
+    BOOL RetValue = ZBSymbol::Create(IDR_BP_DOOR,
+                                     AfxFindResourceHandle(MAKEINTRESOURCE(IDR_PACKAGE_SYM),
+                                                           _T("Symbol")),
+                                     Name);
 
-    if ( !CreateSymbolProperties() )
+    if (!CreateSymbolProperties())
     {
         RetValue = FALSE;
     }
@@ -328,18 +327,18 @@ BOOL ZBBPDoorSymbol::Create( const CString Name /*= ""*/ )
     // Change some name's properties
     CODTextComponent* pText = GetSymbolNameTextEdit();
 
-    if ( pText )
+    if (pText)
     {
-        pText->SetValue( OD_PROP_VERT_ALIGNMENT, TRUE );
+        pText->SetValue(OD_PROP_VERT_ALIGNMENT, TRUE);
 
-        CODFontProperties* pFontProp = (CODFontProperties*)pText->GetProperty( OD_PROP_FONT );
+        CODFontProperties* pFontProp = (CODFontProperties*)pText->GetProperty(OD_PROP_FONT);
 
-        if ( pFontProp != NULL )
+        if (pFontProp != NULL)
         {
-            pFontProp->SetFaceName( _T( "Arial" ) );
-            pFontProp->SetWeight( FW_NORMAL );
-            pFontProp->SetPointSize( 8 );
-            pText->SetProperty( pFontProp );
+            pFontProp->SetFaceName(_T("Arial"));
+            pFontProp->SetWeight(FW_NORMAL);
+            pFontProp->SetPointSize(8);
+            pText->SetProperty(pFontProp);
         }
     }
 
@@ -348,87 +347,87 @@ BOOL ZBBPDoorSymbol::Create( const CString Name /*= ""*/ )
     return RetValue;
 }
 
-bool ZBBPDoorSymbol::OnPostCreation( CODModel* pModel /*= NULL*/, CODController* pCtrl /*= NULL*/ )
+bool ZBBPDoorSymbol::OnPostCreation(CODModel* pModel /*= NULL*/, CODController* pCtrl /*= NULL*/)
 {
-    if ( !ZBSymbol::OnPostCreation( pModel, pCtrl ) )
+    if (!ZBSymbol::OnPostCreation(pModel, pCtrl))
     {
         return false;
     }
 
-    if ( pModel && ISA( pModel, ZDProcessGraphModelMdlBP ) )
+    if (pModel && ISA(pModel, ZDProcessGraphModelMdlBP))
     {
         ZDProcessGraphModelMdlBP* pRootModel =
-            reinterpret_cast<ZDProcessGraphModelMdlBP*>( reinterpret_cast<ZDProcessGraphModelMdlBP*>( pModel )->GetRoot() );
+            reinterpret_cast<ZDProcessGraphModelMdlBP*>(reinterpret_cast<ZDProcessGraphModelMdlBP*>(pModel)->GetRoot());
 
-        if ( !pRootModel )
+        if (!pRootModel)
         {
             return false;
         }
 
         // filter object classes
         ZBRuntimeClassSet rtClasses;
-        rtClasses.Add( RUNTIME_CLASS( ZBBPPageSymbol ) );
-        rtClasses.Add( RUNTIME_CLASS( ZBBPProcessSymbol ) );
+        rtClasses.Add(RUNTIME_CLASS(ZBBPPageSymbol));
+        rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
 
-        ZVSelectModelSymbolDlg Dlg( pRootModel,
-                                    ISD_DOOR_SELECTMODEL,
-                                    Selectable_Model | Selectable_GraphPage,
-                                    &rtClasses );
+        ZVSelectModelSymbolDlg Dlg(pRootModel,
+                                   ISD_DOOR_SELECTMODEL,
+                                   Selectable_Model | Selectable_GraphPage,
+                                   &rtClasses);
 
-        if ( Dlg.DoModal() == IDOK )
+        if (Dlg.DoModal() == IDOK)
         {
-            ZIProcessGraphModelViewport*    pNewVp            = NULL;
-            ZDProcessGraphModelMdl*            pSelectedModel    = NULL;
+            ZIProcessGraphModelViewport*    pNewVp = NULL;
+            ZDProcessGraphModelMdl*            pSelectedModel = NULL;
 
             // If a page has been selected
-            if ( Dlg.GetSelectedPage() && Dlg.GetSelectedPage()->GetpModel() )
+            if (Dlg.GetSelectedPage() && Dlg.GetSelectedPage()->GetpModel())
             {
                 pSelectedModel = Dlg.GetSelectedPage()->GetpModel();
             }
 
             // If a a model has been selected
-            if ( Dlg.GetSelectedModel() && ISA( Dlg.GetSelectedModel(), ZDProcessGraphModelMdl ) )
+            if (Dlg.GetSelectedModel() && ISA(Dlg.GetSelectedModel(), ZDProcessGraphModelMdl))
             {
-                pSelectedModel = dynamic_cast<ZDProcessGraphModelMdl*>( Dlg.GetSelectedModel() );
+                pSelectedModel = dynamic_cast<ZDProcessGraphModelMdl*>(Dlg.GetSelectedModel());
             }
 
-            if ( pSelectedModel )
+            if (pSelectedModel)
             {
                 // Assign the model
-                SetDoorModel( pSelectedModel );
+                SetDoorModel(pSelectedModel);
 
                 // And finally, open the model
-                if ( pCtrl )
+                if (pCtrl)
                 {
                     pNewVp =
-                        dynamic_cast<ZDProcessGraphModelControllerBP*>( pCtrl )->BrowseModel( pSelectedModel,
-                                                                                              pSelectedModel->GetParent() );
+                        dynamic_cast<ZDProcessGraphModelControllerBP*>(pCtrl)->BrowseModel(pSelectedModel,
+                                                                                           pSelectedModel->GetParent());
                 }
             }
 
             // Now if the page and the model exist
             // Check if another Page symbol is already in
             // If not, create one with a link to this page
-            if ( m_pModel && pNewVp && pCtrl )
+            if (m_pModel && pNewVp && pCtrl)
             {
                 CODNodeArray Nodes;
-                size_t ElementCount = dynamic_cast<ZDProcessGraphModelMdlBP*>( m_pModel )->GetBPDoorSymbols( Nodes );
+                size_t ElementCount = dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pModel)->GetBPDoorSymbols(Nodes);
                 bool Found = false;
                 ZBBPDoorSymbol* pDoorFound = NULL;
 
-                for ( size_t nNodeIdx = 0; nNodeIdx < ElementCount; ++nNodeIdx )
+                for (size_t nNodeIdx = 0; nNodeIdx < ElementCount; ++nNodeIdx)
                 {
-                    IODNode* pINode = Nodes.GetAt( nNodeIdx );
-                    pDoorFound = static_cast<ZBBPDoorSymbol*>( pINode );
+                    IODNode* pINode = Nodes.GetAt(nNodeIdx);
+                    pDoorFound = static_cast<ZBBPDoorSymbol*>(pINode);
 
-                    if ( !pDoorFound || !pDoorFound->GetChildModel() )
+                    if (!pDoorFound || !pDoorFound->GetChildModel())
                     {
                         continue;
                     }
 
                     // If the door symbol contains a twin door name equivalent
                     // to us, we found it
-                    if ( pDoorFound->GetTwinDoorReferenceNumber() == GetSymbolReferenceNumber() )
+                    if (pDoorFound->GetTwinDoorReferenceNumber() == GetSymbolReferenceNumber())
                     {
                         Found = true;
                         break;
@@ -437,29 +436,29 @@ bool ZBBPDoorSymbol::OnPostCreation( CODModel* pModel /*= NULL*/, CODController*
 
                 // If we don't found the right symbol, add a page symbol on
                 // this new model pointing to the initial model
-                if ( Found == false )
+                if (Found == false)
                 {
-                    dynamic_cast<ZDProcessGraphModelControllerBP*>( pNewVp->GetModelController() )->InsertDoorSymbol();
-                    CODComponent* pNewSymbolInserted = pNewVp->GetModelController()->InsertSymbol( 0, CPoint( 30, 30 ), false );
+                    dynamic_cast<ZDProcessGraphModelControllerBP*>(pNewVp->GetModelController())->InsertDoorSymbol();
+                    CODComponent* pNewSymbolInserted = pNewVp->GetModelController()->InsertSymbol(0, CPoint(30, 30), false);
 
-                    if ( pNewSymbolInserted && ISA( pNewSymbolInserted, ZBBPDoorSymbol ) )
+                    if (pNewSymbolInserted && ISA(pNewSymbolInserted, ZBBPDoorSymbol))
                     {
-                        dynamic_cast<ZBBPDoorSymbol*>( pNewSymbolInserted )->SetDoorModel( reinterpret_cast<ZDProcessGraphModelMdlBP*>( pModel ) );
+                        dynamic_cast<ZBBPDoorSymbol*>(pNewSymbolInserted)->SetDoorModel(reinterpret_cast<ZDProcessGraphModelMdlBP*>(pModel));
 
                         // Assigns the twin door symbol
-                        AssignTwinDoorSymbol( dynamic_cast<ZBBPDoorSymbol*>( pNewSymbolInserted ) );
+                        AssignTwinDoorSymbol(dynamic_cast<ZBBPDoorSymbol*>(pNewSymbolInserted));
                     }
                 }
                 else
                 {
                     // Assigns the twin door symbol
-                    AssignTwinDoorSymbol( dynamic_cast<ZBBPDoorSymbol*>( pDoorFound ) );
+                    AssignTwinDoorSymbol(dynamic_cast<ZBBPDoorSymbol*>(pDoorFound));
                 }
             }
 
             // Build the message
             ZBDocObserverMsg DocMsg;
-            AfxGetMainWnd()->SendMessageToDescendants( UM_DOCUMENTMODELHASCHANGED, 0, (LPARAM)&DocMsg );
+            AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTMODELHASCHANGED, 0, (LPARAM)&DocMsg);
             return true;
         }
     }
@@ -467,21 +466,21 @@ bool ZBBPDoorSymbol::OnPostCreation( CODModel* pModel /*= NULL*/, CODController*
     return false;
 }
 
-bool ZBBPDoorSymbol::OnPreDelete( CODModel* pModel /*= NULL*/, CODController* pCtrl /*= NULL*/ )
+bool ZBBPDoorSymbol::OnPreDelete(CODModel* pModel /*= NULL*/, CODController* pCtrl /*= NULL*/)
 {
-    if ( GetTwinDoorSymbol() )
+    if (GetTwinDoorSymbol())
     {
         PSS_MsgBox mBox;
 
-        if ( mBox.ShowMsgBox( IDS_DELETEDOORSYM_CONF, MB_YESNO ) == IDYES )
+        if (mBox.Show(IDS_DELETEDOORSYM_CONF, MB_YESNO) == IDYES)
         {
             // Retrieve the owner model
             CODModel* pOwnerModel = GetTwinDoorSymbol()->GetOwnerModel();
 
             // Request the symbol deletion
-            if ( pOwnerModel )
+            if (pOwnerModel)
             {
-                dynamic_cast<ZDProcessGraphModelMdl*>( pOwnerModel )->DeleteComponent( GetTwinDoorSymbol() );
+                dynamic_cast<ZDProcessGraphModelMdl*>(pOwnerModel)->DeleteComponent(GetTwinDoorSymbol());
             }
 
             return true;
@@ -494,14 +493,14 @@ bool ZBBPDoorSymbol::OnPreDelete( CODModel* pModel /*= NULL*/, CODController* pC
     return true;
 }
 
-void ZBBPDoorSymbol::OnPostDoubleClick( CODModel* pModel /*= NULL*/, CODController* pCtrl /*= NULL*/ )
+void ZBBPDoorSymbol::OnPostDoubleClick(CODModel* pModel /*= NULL*/, CODController* pCtrl /*= NULL*/)
 {
-    if ( GetTwinDoorSymbol() )
+    if (GetTwinDoorSymbol())
     {
         // ensure the symbol visible
-        if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) ) // Check the model type to be able to cast the controller
+        if (pModel && ISA(pModel, ZDProcessGraphModelMdl)) // Check the model type to be able to cast the controller
         {
-            dynamic_cast<ZDProcessGraphModelController*>( pCtrl )->EnsureSymbolVisible( GetTwinDoorSymbol() );
+            dynamic_cast<ZDProcessGraphModelController*>(pCtrl)->EnsureSymbolVisible(GetTwinDoorSymbol());
         }
     }
 }
@@ -511,9 +510,9 @@ void ZBBPDoorSymbol::AdjustElementPosition()
     ZBSymbol::AdjustElementPosition();
 }
 
-void ZBBPDoorSymbol::OnDraw( CDC* pDC )
+void ZBBPDoorSymbol::OnDraw(CDC* pDC)
 {
-    ZBSymbol::OnDraw( pDC );
+    ZBSymbol::OnDraw(pDC);
 }
 
 BOOL ZBBPDoorSymbol::OnDoubleClick()
@@ -521,17 +520,17 @@ BOOL ZBBPDoorSymbol::OnDoubleClick()
     return TRUE;
 }
 
-bool ZBBPDoorSymbol::OnToolTip( CString& ToolTipText, CPoint point, ToolTipMode ToolTip /*= NormalToolTip*/ )
+bool ZBBPDoorSymbol::OnToolTip(CString& ToolTipText, CPoint point, ToolTipMode ToolTip /*= NormalToolTip*/)
 {
     // If a model is defined
-    if ( m_pModel && ISA( m_pModel, ZDProcessGraphModelMdl ) )
+    if (m_pModel && ISA(m_pModel, ZDProcessGraphModelMdl))
     {
-        ToolTipText.Format( IDS_FS_BPDOOR_TOOLTIP,
-                            (const char*)( reinterpret_cast<ZDProcessGraphModelMdl*>( m_pModel )->GetModelName() ) );
+        ToolTipText.Format(IDS_FS_BPDOOR_TOOLTIP,
+            (const char*)(reinterpret_cast<ZDProcessGraphModelMdl*>(m_pModel)->GetModelName()));
     }
-    else ToolTipText.LoadString( IDS_FS_BPDOOR_ERR_TOOLTIP );
+    else ToolTipText.LoadString(IDS_FS_BPDOOR_ERR_TOOLTIP);
 
-    if ( ToolTip == ZBSymbol::DesignToolTip )
+    if (ToolTip == ZBSymbol::DesignToolTip)
     {
         // From now do nothing,
         // need to implement the result of the control checking
@@ -541,38 +540,36 @@ bool ZBBPDoorSymbol::OnToolTip( CString& ToolTipText, CPoint point, ToolTipMode 
     return true;
 }
 
-void ZBBPDoorSymbol::Serialize( CArchive& ar )
+void ZBBPDoorSymbol::Serialize(CArchive& ar)
 {
     // Serialize the canvas model.
-    ZBSymbol::Serialize( ar );
+    ZBSymbol::Serialize(ar);
 
     // Only if the object is serialize from and to a document
-    if ( ar.m_pDocument )
+    if (ar.m_pDocument)
     {
-        if ( ar.IsStoring() )
+        if (ar.IsStoring())
         {
-            TRACE( _T( "ZBBPDoorSymbol::Serialize : Start Save\n" ) );
+            TRACE(_T("ZBBPDoorSymbol::Serialize : Start Save\n"));
 
             ar << (WORD)m_DisplayPreview;
             ar << m_TwinDoorRefNumber;
 
-            TRACE( _T( "ZBBPDoorSymbol::Serialize : End Save\n" ) );
+            TRACE(_T("ZBBPDoorSymbol::Serialize : End Save\n"));
         }
         else
         {
-            TRACE( _T( "ZBBPDoorSymbol::Serialize : Start Read\n" ) );
+            TRACE(_T("ZBBPDoorSymbol::Serialize : Start Read\n"));
 
             WORD wValue;
             ar >> wValue;
-            m_DisplayPreview = ( wValue == 0 ) ? false : true;
+            m_DisplayPreview = (wValue == 0) ? false : true;
             ar >> m_TwinDoorRefNumber;
 
-            TRACE( _T( "ZBBPDoorSymbol::Serialize : End Read\n" ) );
+            TRACE(_T("ZBBPDoorSymbol::Serialize : End Read\n"));
         }
 
-        if ( m_pModel )
-        {
-            m_pModel->SetName( GetSymbolName() );
-        }
+        if (m_pModel)
+            m_pModel->SetName(GetSymbolName());
     }
 }

@@ -130,7 +130,7 @@ void PSS_PublishModelSelDirDialog::OnOK()
         PSS_MsgBox mBox;
 
         // ask the user to create the directory
-        if (mBox.ShowMsgBox(IDS_DIR_NEEDCREATE, MB_YESNO) == IDNO)
+        if (mBox.Show(IDS_DIR_NEEDCREATE, MB_YESNO) == IDNO)
             return;
 
         // try to create it
@@ -140,7 +140,7 @@ void PSS_PublishModelSelDirDialog::OnOK()
         if (!ZDirectory::Exist(m_Directory))
         {
             PSS_MsgBox mBox;
-            mBox.ShowMsgBox(IDS_DIR_FAILCREATE, MB_OK);
+            mBox.Show(IDS_DIR_FAILCREATE, MB_OK);
             return;
         }
     }

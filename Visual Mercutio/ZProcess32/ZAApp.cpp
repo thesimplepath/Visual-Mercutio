@@ -552,14 +552,14 @@ BOOL ZAApp::PostInitAppl()
     {
         // Warn the user
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FAILOPEN_USERGROUPFILE, MB_OK);
+        mBox.Show(IDS_FAILOPEN_USERGROUPFILE, MB_OK);
     }
 
     if (!LoadLogicalSystemFile())
     {
         // Warn the user
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FAILOPEN_LOGICALSYSTEMFILEFILE, MB_OK);
+        mBox.Show(IDS_FAILOPEN_LOGICALSYSTEMFILEFILE, MB_OK);
     }
 
     // JMR-MODIF - Le 7 octobre 2005 - Ajout de l'appel à la nouvelle fonction d'ouverture du formulaire de prestations.
@@ -567,7 +567,7 @@ BOOL ZAApp::PostInitAppl()
     {
         // Warn the user
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FAILOPEN_PRESTATIONSFILE, MB_OK);
+        mBox.Show(IDS_FAILOPEN_PRESTATIONSFILE, MB_OK);
     }
 
     // JMR-MODIF - Le 19 novembre 2006 - Ajout de l'appel à la nouvelle fonction d'ouverture du formulaire des règles.
@@ -575,28 +575,28 @@ BOOL ZAApp::PostInitAppl()
     {
         // Warn the user
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FAILOPEN_RULESFILE, MB_OK);
+        mBox.Show(IDS_FAILOPEN_RULESFILE, MB_OK);
     }
 
     // JMR-MODIF - Le 8 juillet 2007 - Ajout de l'appel à la nouvelle fonction d'ouverture des types de risques.
     if (!LoadTypeRiskFile())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FAILOPEN_RISKTYPEFILE, MB_OK);
+        mBox.Show(IDS_FAILOPEN_RISKTYPEFILE, MB_OK);
     }
 
     // JMR-MODIF - Le 11 juillet 2007 - Ajout de l'appel à la nouvelle fonction d'ouverture des impacts des risques.
     if (!LoadImpactRiskFile())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FAILOPEN_RISKIMPACTFILE, MB_OK);
+        mBox.Show(IDS_FAILOPEN_RISKIMPACTFILE, MB_OK);
     }
 
     // JMR-MODIF - Le 11 juillet 2007 - Ajout de l'appel à la nouvelle fonction d'ouverture des probabilités des risques.
     if (!LoadProbabilityRiskFile())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FAILOPEN_RISKPROBABILITYFILE, MB_OK);
+        mBox.Show(IDS_FAILOPEN_RISKPROBABILITYFILE, MB_OK);
     }
 
     // Simple command line parsing
@@ -701,7 +701,7 @@ BOOL ZAApp::ExitAppl()
     {
         // Error message
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FAILSAVE_USERGROUPFILE, MB_OK);
+        mBox.Show(IDS_FAILSAVE_USERGROUPFILE, MB_OK);
         return FALSE;
     }
 
@@ -710,7 +710,7 @@ BOOL ZAApp::ExitAppl()
     {
         // Error message
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FAILSAVE_LOGICALSYSTEMFILE, MB_OK);
+        mBox.Show(IDS_FAILSAVE_LOGICALSYSTEMFILE, MB_OK);
         return FALSE;
     }
 
@@ -719,7 +719,7 @@ BOOL ZAApp::ExitAppl()
     {
         // Error message
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FAILSAVE_PRESTATIONSFILE, MB_OK);
+        mBox.Show(IDS_FAILSAVE_PRESTATIONSFILE, MB_OK);
         return FALSE;
     }
 
@@ -728,7 +728,7 @@ BOOL ZAApp::ExitAppl()
     {
         // Error message
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FAILSAVE_RULESFILE, MB_OK);
+        mBox.Show(IDS_FAILSAVE_RULESFILE, MB_OK);
         return FALSE;
     }
 
@@ -861,7 +861,7 @@ bool ZAApp::SaveUserGroupFile(bool AskBeforeSave /*= true*/)
             {
                 // Asks for save
                 PSS_MsgBox mBox;
-                switch (mBox.ShowMsgBox(IDS_CONF_SAVE_USERGROUP_DOC, MB_YESNOCANCEL))
+                switch (mBox.Show(IDS_CONF_SAVE_USERGROUP_DOC, MB_YESNOCANCEL))
                 {
                     case IDYES:
                     {
@@ -889,7 +889,7 @@ bool ZAApp::SaveUserGroupFile(bool AskBeforeSave /*= true*/)
                 PSS_MsgBox mBox;
                 CString s;
                 s.Format(IDS_UNABLETOSAVE_USERGROUP, m_UserGroupFilename);
-                mBox.ShowMsgBox(s, MB_OK);
+                mBox.Show(s, MB_OK);
             }
         }
     }
@@ -946,7 +946,7 @@ bool ZAApp::SaveLogicalSystemFile(bool AskBeforeSave /*= true*/)
                 // Asks for save
                 PSS_MsgBox mBox;
 
-                switch (mBox.ShowMsgBox(IDS_CONF_SAVE_LOGICALSYSTEM_DOC, MB_YESNOCANCEL))
+                switch (mBox.Show(IDS_CONF_SAVE_LOGICALSYSTEM_DOC, MB_YESNOCANCEL))
                 {
                     case IDYES:
                     {
@@ -972,7 +972,7 @@ bool ZAApp::SaveLogicalSystemFile(bool AskBeforeSave /*= true*/)
                 PSS_MsgBox mBox;
                 CString s;
                 s.Format(IDS_UNABLETOSAVE_LOGSYSTEM, m_LogicalSystemFilename);
-                mBox.ShowMsgBox(s, MB_OK);
+                mBox.Show(s, MB_OK);
             }
         }
     }
@@ -1031,7 +1031,7 @@ bool ZAApp::SavePrestationsFile(bool AskBeforeSave /*= true*/)
                 // Asks for save
                 PSS_MsgBox mBox;
 
-                switch (mBox.ShowMsgBox(IDS_CONF_SAVE_PRESTATIONS_DOC, MB_YESNOCANCEL))
+                switch (mBox.Show(IDS_CONF_SAVE_PRESTATIONS_DOC, MB_YESNOCANCEL))
                 {
                     case IDYES:
                     {
@@ -1057,7 +1057,7 @@ bool ZAApp::SavePrestationsFile(bool AskBeforeSave /*= true*/)
                 PSS_MsgBox mBox;
                 CString s;
                 s.Format(IDS_UNABLETOSAVE_PRESTATIONS, m_PrestationsFilename);
-                mBox.ShowMsgBox(s, MB_OK);
+                mBox.Show(s, MB_OK);
             }
         }
     }
@@ -1116,7 +1116,7 @@ bool ZAApp::SaveRulesFile(bool AskBeforeSave /*= true*/)
                 // Asks for save
                 PSS_MsgBox mBox;
 
-                switch (mBox.ShowMsgBox(IDS_CONF_SAVE_RULES_DOC, MB_YESNOCANCEL))
+                switch (mBox.Show(IDS_CONF_SAVE_RULES_DOC, MB_YESNOCANCEL))
                 {
                     case IDYES:
                     {
@@ -1142,7 +1142,7 @@ bool ZAApp::SaveRulesFile(bool AskBeforeSave /*= true*/)
                 PSS_MsgBox mBox;
                 CString s;
                 s.Format(IDS_UNABLETOSAVE_RULES, m_RulesFilename);
-                mBox.ShowMsgBox(s, MB_OK);
+                mBox.Show(s, MB_OK);
             }
         }
     }
@@ -1261,7 +1261,7 @@ bool ZAApp::CloseCurrentWorkspace(bool AskClosingDocument /*= false*/)
             {
                 PSS_MsgBox mBox;
 
-                if (mBox.ShowMsgBox(IDS_CONF_CLOSEALLDOCS_CURRENT_WKSPACE, MB_YESNO) == IDYES)
+                if (mBox.Show(IDS_CONF_CLOSEALLDOCS_CURRENT_WKSPACE, MB_YESNO) == IDYES)
                 {
                     // First, try to save all modified documents
                     if (!SaveAllModified())
@@ -1564,7 +1564,7 @@ ZDProcessGraphModelDoc* ZAApp::FileNewModel()
     if (!pNewFile)
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_NORMALTEMPLATE_NF, MB_OK);
+        mBox.Show(IDS_NORMALTEMPLATE_NF, MB_OK);
         return NULL;
     }
 
@@ -1687,7 +1687,7 @@ void ZAApp::OnAfterOpenDocument(CDocument* pDoc, const CString& filename)
                     mBox.DoChangeCancelBtnToUnlockBtn();
 
                     // Warn the user
-                    switch (mBox.ShowMsgBox(IDS_FILE_READONLY, MB_YESNOCANCEL))
+                    switch (mBox.Show(IDS_FILE_READONLY, MB_YESNOCANCEL))
                     {
                         // L'utilisateur souhaite continuer avec un modèle en lecture seule.
                         case IDYES:
@@ -1701,7 +1701,7 @@ void ZAApp::OnAfterOpenDocument(CDocument* pDoc, const CString& filename)
                         {
                             PSS_MsgBox mWarnBox;
 
-                            if (mWarnBox.ShowMsgBox(IDS_FILE_WARN_UNLOCK, MB_YESNO) == IDNO)
+                            if (mWarnBox.Show(IDS_FILE_WARN_UNLOCK, MB_YESNO) == IDNO)
                             {
                                 dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->SetReadOnly(TRUE);
                                 pDoc->OnCloseDocument();
@@ -1848,14 +1848,14 @@ void ZAApp::OnServerChanged()
     {
         // Warn the user
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FAILOPEN_USERGROUPFILE, MB_OK);
+        mBox.Show(IDS_FAILOPEN_USERGROUPFILE, MB_OK);
     }
 
     if (!LoadLogicalSystemFile())
     {
         // Warn the user
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FAILOPEN_LOGICALSYSTEMFILEFILE, MB_OK);
+        mBox.Show(IDS_FAILOPEN_LOGICALSYSTEMFILEFILE, MB_OK);
     }
 
     // JMR-MODIF - Le 2 février 2006 - Ajout de l'appel à LoadPrestationsFile
@@ -1863,7 +1863,7 @@ void ZAApp::OnServerChanged()
     {
         // Warn the user
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FAILOPEN_PRESTATIONSFILEFILE, MB_OK);
+        mBox.Show(IDS_FAILOPEN_PRESTATIONSFILEFILE, MB_OK);
     }
 
     // JMR-MODIF - Le 19 novembre 2006 - Ajout de l'appel à LoadRulesFile
@@ -1871,7 +1871,7 @@ void ZAApp::OnServerChanged()
     {
         // Warn the user
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FAILOPEN_RULESFILE, MB_OK);
+        mBox.Show(IDS_FAILOPEN_RULESFILE, MB_OK);
     }
 }
 
@@ -2607,7 +2607,7 @@ void ZAApp::OnFileSaveAll()
     {
         // Error message
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FAILSAVE_USERGROUPFILE, MB_OK);
+        mBox.Show(IDS_FAILSAVE_USERGROUPFILE, MB_OK);
     }
 
     // Saves the logical system file
@@ -2615,7 +2615,7 @@ void ZAApp::OnFileSaveAll()
     {
         // Error message
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FAILSAVE_LOGICALSYSTEMFILE, MB_OK);
+        mBox.Show(IDS_FAILSAVE_LOGICALSYSTEMFILE, MB_OK);
     }
 
     // JMR-MODIF - Le 10 octobre 2005 - Sauvegarde le fichier de prestations.
@@ -2623,7 +2623,7 @@ void ZAApp::OnFileSaveAll()
     {
         // Error message
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FAILSAVE_PRESTATIONSFILE, MB_OK);
+        mBox.Show(IDS_FAILSAVE_PRESTATIONSFILE, MB_OK);
     }
 
     // JMR-MODIF - Le 15 novembre 2006 - Sauvegarde le fichier de règles.
@@ -2631,7 +2631,7 @@ void ZAApp::OnFileSaveAll()
     {
         // Error message
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FAILSAVE_RULESFILE, MB_OK);
+        mBox.Show(IDS_FAILSAVE_RULESFILE, MB_OK);
     }
 
     // JMR-MODIF - Le 9 avril 2007 - Si le nom du fichier est vide, la fonction retourne FALSE. C'est juste une indication
@@ -2645,7 +2645,7 @@ void ZAApp::OnFileSaveAll()
         {
             // Warm the user
             PSS_MsgBox mBox;
-            mBox.ShowMsgBox(IDS_FAILSAVE_INTERNALDEFINITION, MB_OK);
+            mBox.Show(IDS_FAILSAVE_INTERNALDEFINITION, MB_OK);
         }
     }
 
@@ -2653,14 +2653,14 @@ void ZAApp::OnFileSaveAll()
     if (!SaveCurrentWorkspace())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FAILSAVE_WORKSPACE, MB_OK);
+        mBox.Show(IDS_FAILSAVE_WORKSPACE, MB_OK);
     }
 
     // Save all modified documents
     if (!SaveAllModifiedNoPrompt())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FAILSAVE_OPENDOCUMENT, MB_OK);
+        mBox.Show(IDS_FAILSAVE_OPENDOCUMENT, MB_OK);
     }
 
     // Saves the global state for model
@@ -2670,13 +2670,13 @@ void ZAApp::OnFileSaveAll()
     if (!GetApplicationOptions().SaveOption())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FAILSAVE_INTERNALDEFINITION, MB_OK);
+        mBox.Show(IDS_FAILSAVE_INTERNALDEFINITION, MB_OK);
     }
 
     if (!SaveApplicationOptions())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FAILSAVE_INTERNALDEFINITION, MB_OK);
+        mBox.Show(IDS_FAILSAVE_INTERNALDEFINITION, MB_OK);
     }
 }
 
@@ -3018,7 +3018,7 @@ void ZAApp::OnWksDeleteGroup()
 
     PSS_MsgBox mBox;
 
-    if (mBox.ShowMsgBox(IDS_CONF_WKS_DELETEGROUP, MB_YESNO) == IDNO)
+    if (mBox.Show(IDS_CONF_WKS_DELETEGROUP, MB_YESNO) == IDNO)
         return;
 
     GetProcessWorkspace()->GetWorkspaceView()->OnWksDeleteGroup();
@@ -3072,7 +3072,7 @@ void ZAApp::OnWksDeleteFile()
 
     PSS_MsgBox mBox;
 
-    if (mBox.ShowMsgBox(IDS_CONF_WKS_DELETEFILE, MB_YESNO) == IDNO)
+    if (mBox.Show(IDS_CONF_WKS_DELETEFILE, MB_YESNO) == IDNO)
         return;
 
     GetProcessWorkspace()->GetWorkspaceView()->OnWksDeleteFile();

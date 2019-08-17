@@ -23,21 +23,21 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZVChoosePropertyDlg dialog
 
-           
+
 ZVChoosePropertyDlg::ZVChoosePropertyDlg(ZIProperties* pProperties, int ShowType /*= 0*/, bool Selection /*= true*/,
-                                         bool AllowItemSelection /*= true*/, bool AllowCategorySelection /*= false*/, 
-                                         ZBDynamicPropertiesManager* pPropManager /*=NULL*/, 
-                                         ZDProcessGraphModelMdl* pModel /*=NULL*/, 
+                                         bool AllowItemSelection /*= true*/, bool AllowCategorySelection /*= false*/,
+                                         ZBDynamicPropertiesManager* pPropManager /*=NULL*/,
+                                         ZDProcessGraphModelMdl* pModel /*=NULL*/,
                                          CWnd* pParent /*=NULL*/)
-: CDialog(ZVChoosePropertyDlg::IDD, pParent),
-  m_pProperties(pProperties),
-  m_Selection(Selection),
-  m_pPropSet(NULL),
-  m_pSelectedProperty(NULL),
-  m_AllowItemSelection(AllowItemSelection),
-  m_AllowCategorySelection(AllowCategorySelection),
-  m_pPropManager(pPropManager),
-  m_pModel(pModel)
+    : CDialog(ZVChoosePropertyDlg::IDD, pParent),
+    m_pProperties(pProperties),
+    m_Selection(Selection),
+    m_pPropSet(NULL),
+    m_pSelectedProperty(NULL),
+    m_AllowItemSelection(AllowItemSelection),
+    m_AllowCategorySelection(AllowCategorySelection),
+    m_pPropManager(pPropManager),
+    m_pModel(pModel)
 {
     //{{AFX_DATA_INIT(ZVChoosePropertyDlg)
     m_PropType = ShowType;
@@ -45,19 +45,19 @@ ZVChoosePropertyDlg::ZVChoosePropertyDlg(ZIProperties* pProperties, int ShowType
 }
 
 ZVChoosePropertyDlg::ZVChoosePropertyDlg(ZBPropertySet* pPropSet, int ShowType /*= 0*/, bool Selection /*= true*/,
-                                         bool AllowItemSelection /*= true*/, bool AllowCategorySelection /*= false*/, 
-                                         ZBDynamicPropertiesManager* pPropManager /*=NULL*/, 
-                                         ZDProcessGraphModelMdl* pModel /*=NULL*/, 
+                                         bool AllowItemSelection /*= true*/, bool AllowCategorySelection /*= false*/,
+                                         ZBDynamicPropertiesManager* pPropManager /*=NULL*/,
+                                         ZDProcessGraphModelMdl* pModel /*=NULL*/,
                                          CWnd* pParent /*=NULL*/)
-: CDialog(ZVChoosePropertyDlg::IDD, pParent),
-  m_pPropSet(pPropSet),
-  m_Selection(Selection),
-  m_pProperties(NULL),
-  m_pSelectedProperty(NULL),
-  m_AllowItemSelection(AllowItemSelection),
-  m_AllowCategorySelection(AllowCategorySelection),
-  m_pPropManager(pPropManager),
-  m_pModel(pModel)
+    : CDialog(ZVChoosePropertyDlg::IDD, pParent),
+    m_pPropSet(pPropSet),
+    m_Selection(Selection),
+    m_pProperties(NULL),
+    m_pSelectedProperty(NULL),
+    m_AllowItemSelection(AllowItemSelection),
+    m_AllowCategorySelection(AllowCategorySelection),
+    m_pPropManager(pPropManager),
+    m_pModel(pModel)
 {
     m_PropType = ShowType;
 }
@@ -66,9 +66,9 @@ ZVChoosePropertyDlg::ZVChoosePropertyDlg(ZBPropertySet* pPropSet, int ShowType /
 void ZVChoosePropertyDlg::CheckControlStates()
 {
     if (GetDlgItem(ID_RENAMEATTRIBUTE))
-        GetDlgItem(ID_RENAMEATTRIBUTE)->EnableWindow( m_PropType == 2 && m_pPropManager != NULL && m_pModel != NULL );
+        GetDlgItem(ID_RENAMEATTRIBUTE)->EnableWindow(m_PropType == 2 && m_pPropManager != NULL && m_pModel != NULL);
     if (GetDlgItem(ID_DELATTRIBUTE))
-        GetDlgItem(ID_DELATTRIBUTE)->EnableWindow( m_PropType == 2 && m_pPropManager != NULL && m_pModel != NULL );
+        GetDlgItem(ID_DELATTRIBUTE)->EnableWindow(m_PropType == 2 && m_pPropManager != NULL && m_pModel != NULL);
 
 }
 
@@ -98,7 +98,7 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // ZVChoosePropertyDlg message handlers
 
-void ZVChoosePropertyDlg::OnOK() 
+void ZVChoosePropertyDlg::OnOK()
 {
     BOOL Enable = FALSE;
     if (m_Selection)
@@ -106,15 +106,15 @@ void ZVChoosePropertyDlg::OnOK()
         int CurSel = m_PropertyList.GetCurSel();
         if (CurSel != LB_ERR)
         {
-            ZBPropertyItem* pProperty = m_PropertyList.GetPropertyItem( CurSel );
+            ZBPropertyItem* pProperty = m_PropertyList.GetPropertyItem(CurSel);
 
             if (pProperty)
             {
                 if (m_AllowItemSelection &&
-                    !ISA(pProperty,ZBPropertyItemCategory))
+                    !ISA(pProperty, ZBPropertyItemCategory))
                     Enable = TRUE;
                 if (m_AllowCategorySelection &&
-                    ISA(pProperty,ZBPropertyItemCategory))
+                    ISA(pProperty, ZBPropertyItemCategory))
                     Enable = TRUE;
             }
         }
@@ -122,38 +122,38 @@ void ZVChoosePropertyDlg::OnOK()
         {
             // Error message
             PSS_MsgBox mBox;
-            mBox.ShowMsgBox( IDS_MUSTSELECT_ATTRIBUTE, MB_OK );
+            mBox.Show(IDS_MUSTSELECT_ATTRIBUTE, MB_OK);
             return;
         }
-        m_pSelectedProperty = m_PropertyList.GetPropertyItem( CurSel );
+        m_pSelectedProperty = m_PropertyList.GetPropertyItem(CurSel);
     }
-    
+
     CDialog::OnOK();
 }
 
-BOOL ZVChoosePropertyDlg::OnInitDialog() 
+BOOL ZVChoosePropertyDlg::OnInitDialog()
 {
     CDialog::OnInitDialog();
-    
+
     // Sets the right type
-    m_PropertyList.SetDisplayType( (PropertyDisplayType)m_PropType );
+    m_PropertyList.SetDisplayType((PropertyDisplayType)m_PropType);
     // Read-only list
     m_PropertyList.SetListInReadOnly();
     // Initialize the control
     if (m_pPropSet)
-        m_PropertyList.Initialize( *m_pPropSet );
+        m_PropertyList.Initialize(*m_pPropSet);
     else
-        m_PropertyList.Initialize( m_pProperties );
-    
+        m_PropertyList.Initialize(m_pProperties);
+
     if (m_Selection == false)
     {
         if (GetDlgItem(IDCANCEL))
-            GetDlgItem(IDCANCEL)->ShowWindow( SW_HIDE );
+            GetDlgItem(IDCANCEL)->ShowWindow(SW_HIDE);
 
         CString s;
-        s.LoadString( IDS_CLOSE_TEXT );
+        s.LoadString(IDS_CLOSE_TEXT);
         if (GetDlgItem(IDOK))
-            GetDlgItem(IDOK)->SetWindowText( s );
+            GetDlgItem(IDOK)->SetWindowText(s);
     }
     CheckControlStates();
 
@@ -161,82 +161,82 @@ BOOL ZVChoosePropertyDlg::OnInitDialog()
                   // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-void ZVChoosePropertyDlg::OnProptype() 
+void ZVChoosePropertyDlg::OnProptype()
 {
     UpdateData(TRUE);
-        
+
     // Sets the right type
-    m_PropertyList.SetDisplayType( (PropertyDisplayType)m_PropType );
+    m_PropertyList.SetDisplayType((PropertyDisplayType)m_PropType);
     // Re-Initialize the control
     if (m_pPropSet)
-        m_PropertyList.Initialize( *m_pPropSet );
+        m_PropertyList.Initialize(*m_pPropSet);
     else
-        m_PropertyList.Initialize( m_pProperties );
+        m_PropertyList.Initialize(m_pProperties);
 
     CheckControlStates();
 }
 
 
-void ZVChoosePropertyDlg::OnDeleteAttribute() 
+void ZVChoosePropertyDlg::OnDeleteAttribute()
 {
     PSS_MsgBox mBox;
-    if (mBox.ShowMsgBox( IDS_CONFIRMDELATTRIB, MB_YESNO ) == IDNO)
+    if (mBox.Show(IDS_CONFIRMDELATTRIB, MB_YESNO) == IDNO)
         return;
 
     ZBPropertyItem* pItem = m_PropertyList.GetCurrentPropertyItem();
-    if (pItem && ISA(pItem,ZBPropertyItemCategory))
+    if (pItem && ISA(pItem, ZBPropertyItemCategory))
         pItem = NULL;
     if (!pItem)
         return;
-    
+
 
     // Find the attribute in the Dynamic Property manager
-    ZBProperty*    pProp = m_PropertyList.GetCorrespondingProperty( pItem );
+    ZBProperty*    pProp = m_PropertyList.GetCorrespondingProperty(pItem);
     if (pProp)
     {
-        ZBProperty* pProperty = m_pPropManager->GetPropertyItem( pProp->GetCategoryID(), pProp->GetItemID() );
+        ZBProperty* pProperty = m_pPropManager->GetPropertyItem(pProp->GetCategoryID(), pProp->GetItemID());
         if (pProperty)
         {
-//            m_PropertyList.DeletePropertyItem( pItem );
-//            m_PropertyList.Refresh();
-            // Reassign the property to all symbols
-            ZUDynamicAttributesManipulator::DeleteProperty( m_pModel, pProperty );
+            //            m_PropertyList.DeletePropertyItem( pItem );
+            //            m_PropertyList.Refresh();
+                        // Reassign the property to all symbols
+            ZUDynamicAttributesManipulator::DeleteProperty(m_pModel, pProperty);
             // Finally, unregister the property
-            m_pPropManager->UnregisterProperty( pProp->GetCategoryID(), pProp->GetItemID() );
+            m_pPropManager->UnregisterProperty(pProp->GetCategoryID(), pProp->GetItemID());
             // Close the dialog
-            CDialog::EndDialog( IDOK );
+            CDialog::EndDialog(IDOK);
 
         }
     }
 
 }
 
-void ZVChoosePropertyDlg::OnRenameAttribute() 
+void ZVChoosePropertyDlg::OnRenameAttribute()
 {
     ZBPropertyItem* pItem = m_PropertyList.GetCurrentPropertyItem();
-    if (pItem && ISA(pItem,ZBPropertyItemCategory))
+    if (pItem && ISA(pItem, ZBPropertyItemCategory))
         pItem = NULL;
     if (!pItem)
         return;
     // Call the dialog to input the new name
-    ZIInputValue InputValue( IDS_RENAMEATTRIB, pItem->GetName());
+    ZIInputValue InputValue(IDS_RENAMEATTRIB, pItem->GetName());
 
     if (InputValue.DoModal() == IDOK)
     {
         // Find the attribute in the Dynamic Property manager
-        ZBProperty*    pProp = m_PropertyList.GetCorrespondingProperty( pItem );
+        ZBProperty*    pProp = m_PropertyList.GetCorrespondingProperty(pItem);
         if (pProp)
         {
-            ZBProperty* pProperty = m_pPropManager->GetPropertyItem( pProp->GetCategoryID(), pProp->GetItemID() );
+            ZBProperty* pProperty = m_pPropManager->GetPropertyItem(pProp->GetCategoryID(), pProp->GetItemID());
             if (pProperty)
             {
-                pProperty->SetLabel( InputValue.GetValue() );
-//                pItem->SetName( InputValue.GetValue() );
-//                m_PropertyList.Refresh();
-                // Reassign the property to all symbols
-                ZUDynamicAttributesManipulator::ReassignProperty( m_pModel, pProperty );
+                pProperty->SetLabel(InputValue.GetValue());
+                //                pItem->SetName( InputValue.GetValue() );
+                //                m_PropertyList.Refresh();
+                                // Reassign the property to all symbols
+                ZUDynamicAttributesManipulator::ReassignProperty(m_pModel, pProperty);
                 // Close the dialog
-                CDialog::EndDialog( IDOK );
+                CDialog::EndDialog(IDOK);
 
             }
         }

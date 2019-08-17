@@ -29,21 +29,21 @@ static char THIS_FILE[] = __FILE__;
 // ZVDistributionAttributesDefinitionDlg dialog
 
 
-ZVDistributionAttributesDefinitionDlg::ZVDistributionAttributesDefinitionDlg(ZBDistributionAttributeManager* pDistributionManager, 
-                                                                             ZBDynamicPropertiesManager* pPropManager, 
+ZVDistributionAttributesDefinitionDlg::ZVDistributionAttributesDefinitionDlg(ZBDistributionAttributeManager* pDistributionManager,
+                                                                             ZBDynamicPropertiesManager* pPropManager,
                                                                              ZBPropertySet* pSet,
                                                                              ZBUserGroupEntity* pMainUserGroup,
                                                                              const CString GroupGUID /*= ""*/,
-                                                                             ZBDistributionAttribute* pDistributionAttr /*= NULL*/, 
+                                                                             ZBDistributionAttribute* pDistributionAttr /*= NULL*/,
                                                                              CWnd* pParent /*=NULL*/)
-: CDialog(ZVDistributionAttributesDefinitionDlg::IDD, pParent),
-  m_pDistributionManager(pDistributionManager),
-  m_pPropManager(pPropManager),
-  m_pSet(pSet),
-  m_pMainUserGroup(pMainUserGroup),
-  m_GroupGUID(GroupGUID),
-  m_pDistributionAttr(pDistributionAttr),
-  m_Allocated(false)
+    : CDialog(ZVDistributionAttributesDefinitionDlg::IDD, pParent),
+    m_pDistributionManager(pDistributionManager),
+    m_pPropManager(pPropManager),
+    m_pSet(pSet),
+    m_pMainUserGroup(pMainUserGroup),
+    m_GroupGUID(GroupGUID),
+    m_pDistributionAttr(pDistributionAttr),
+    m_Allocated(false)
 
 {
     //{{AFX_DATA_INIT(ZVDistributionAttributesDefinitionDlg)
@@ -102,13 +102,13 @@ void ZVDistributionAttributesDefinitionDlg::CheckControlState()
 /////////////////////////////////////////////////////////////////////////////
 // ZVDistributionAttributesDefinitionDlg message handlers
 
-void ZVDistributionAttributesDefinitionDlg::OnOK() 
+void ZVDistributionAttributesDefinitionDlg::OnOK()
 {
     if (m_DynamicAttributeName.IsEmpty())
     {
         // A dynamic attributes must be chosen
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_DYNAMICATTRIBUTES_REQUIRED, MB_OK ); 
+        mBox.Show(IDS_DYNAMICATTRIBUTES_REQUIRED, MB_OK);
         return;
     }
 
@@ -116,14 +116,14 @@ void ZVDistributionAttributesDefinitionDlg::OnOK()
     {
         // A group must be chosen
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_DISTRIBUTIONGROUP_REQUIRED, MB_OK ); 
+        mBox.Show(IDS_DISTRIBUTIONGROUP_REQUIRED, MB_OK);
         return;
     }
-    
+
     CDialog::OnOK();
 }
 
-BOOL ZVDistributionAttributesDefinitionDlg::OnInitDialog() 
+BOOL ZVDistributionAttributesDefinitionDlg::OnInitDialog()
 {
     if (!m_pDistributionAttr)
     {
@@ -133,12 +133,12 @@ BOOL ZVDistributionAttributesDefinitionDlg::OnInitDialog()
         // then assign the group id to the distribution attribute
         if (!m_GroupGUID.IsEmpty() &&
             m_pDistributionAttr)
-            m_pDistributionAttr->SetUserGroupGUID( m_GroupGUID );
+            m_pDistributionAttr->SetUserGroupGUID(m_GroupGUID);
     }
     if (m_pDistributionAttr &&
         m_pPropManager)
     {
-        ZBProperty*  pProp = m_pPropManager->GetPropertyItem( m_pDistributionAttr->GetCategoryID(), m_pDistributionAttr->GetItemID() );
+        ZBProperty*  pProp = m_pPropManager->GetPropertyItem(m_pDistributionAttr->GetCategoryID(), m_pDistributionAttr->GetItemID());
 
         if (pProp)
         {
@@ -148,43 +148,43 @@ BOOL ZVDistributionAttributesDefinitionDlg::OnInitDialog()
         }
 
         // First level is the role name
-        ZBUserEntity* pEntity = m_pMainUserGroup->FindGroupByGUID( m_pDistributionAttr->GetUserGroupGUID(), true );
+        ZBUserEntity* pEntity = m_pMainUserGroup->FindGroupByGUID(m_pDistributionAttr->GetUserGroupGUID(), true);
         m_GroupName = (pEntity) ? pEntity->GetEntityName() : _T("");
 
         // When starting, check the distribution role for a given distribution attribute
-        m_pDistributionManager->CheckDistributionRole( m_pDistributionAttr, m_pMainUserGroup );
+        m_pDistributionManager->CheckDistributionRole(m_pDistributionAttr, m_pMainUserGroup);
 
     }
 
     CDialog::OnInitDialog();
-    
-    m_List.Initialize( m_pDistributionManager, m_pPropManager, m_pMainUserGroup, m_pDistributionAttr, true );  
+
+    m_List.Initialize(m_pDistributionManager, m_pPropManager, m_pMainUserGroup, m_pDistributionAttr, true);
 
     if (!m_Allocated)
     {
         if (GetDlgItem(IDC_CHOOSE_DYNATTR))
-            GetDlgItem(IDC_CHOOSE_DYNATTR)->EnableWindow( FALSE );
+            GetDlgItem(IDC_CHOOSE_DYNATTR)->EnableWindow(FALSE);
         if (GetDlgItem(IDC_CHOOSE_USERGROUP))
-            GetDlgItem(IDC_CHOOSE_USERGROUP)->EnableWindow( FALSE );
+            GetDlgItem(IDC_CHOOSE_USERGROUP)->EnableWindow(FALSE);
 
     }
     else
-    if (!m_GroupGUID.IsEmpty())
-    {
-        if (GetDlgItem(IDC_CHOOSE_USERGROUP))
-            GetDlgItem(IDC_CHOOSE_USERGROUP)->EnableWindow( FALSE );
-    }
+        if (!m_GroupGUID.IsEmpty())
+        {
+            if (GetDlgItem(IDC_CHOOSE_USERGROUP))
+                GetDlgItem(IDC_CHOOSE_USERGROUP)->EnableWindow(FALSE);
+        }
 
     CheckControlState();
-    
+
     return TRUE;  // return TRUE unless you set the focus to a control
                   // EXCEPTION: OCX Property Pages should return FALSE
 }
 
 
-void ZVDistributionAttributesDefinitionDlg::OnChooseDynattr() 
+void ZVDistributionAttributesDefinitionDlg::OnChooseDynattr()
 {
-    ZVChoosePropertyDlg choose( m_pSet, 2 );
+    ZVChoosePropertyDlg choose(m_pSet, 2);
     if (choose.DoModal() == IDOK)
     {
         ZBProperty* pProp = choose.GetSelectedProperty();
@@ -199,27 +199,27 @@ void ZVDistributionAttributesDefinitionDlg::OnChooseDynattr()
         }
 
     }
-    
+
 }
 
-void ZVDistributionAttributesDefinitionDlg::OnChooseUsergroup() 
+void ZVDistributionAttributesDefinitionDlg::OnChooseUsergroup()
 {
     if (!m_pMainUserGroup ||
         !m_pDistributionManager)
         return;
 
-    ZVSelectUserGroupDlg choose( IDS_CHOOSEDISTRIBGROUP_TITLE, m_pMainUserGroup, 
-                                 true, // Allow group selection
-                                 false );    // Allow role selection
+    ZVSelectUserGroupDlg choose(IDS_CHOOSEDISTRIBGROUP_TITLE, m_pMainUserGroup,
+                                true, // Allow group selection
+                                false);    // Allow role selection
     if (choose.DoModal() == IDOK)
     {
         ZBUserEntity* pEntity = choose.GetSelectedUserEntity();
         if (pEntity &&
-            ISA(pEntity,ZBUserGroupEntity))
+            ISA(pEntity, ZBUserGroupEntity))
         {
             m_GroupName = pEntity->GetEntityName();
             m_GroupGUID = pEntity->GetGUID();
-            m_pDistributionAttr->SetUserGroupGUID( m_GroupGUID );
+            m_pDistributionAttr->SetUserGroupGUID(m_GroupGUID);
 
 
             int Size = dynamic_cast<ZBUserGroupEntity*>(pEntity)->GetEntityCount();
@@ -228,7 +228,7 @@ void ZVDistributionAttributesDefinitionDlg::OnChooseUsergroup()
             {
                 ZBUserEntity* pUserEntity = dynamic_cast<ZBUserGroupEntity*>(pEntity)->GetEntityAt(i);
 
-                if (ISA(pUserEntity,ZBUserRoleEntity))
+                if (ISA(pUserEntity, ZBUserRoleEntity))
                 {
                     FoundCount = true;
                     break;
@@ -239,12 +239,12 @@ void ZVDistributionAttributesDefinitionDlg::OnChooseUsergroup()
             if (FoundCount)
             {
                 // When starting, check the distribution role for a given distribution attribute
-                m_pDistributionManager->CheckDistributionRole( m_pDistributionAttr, m_pMainUserGroup );
+                m_pDistributionManager->CheckDistributionRole(m_pDistributionAttr, m_pMainUserGroup);
             }
             else
             {
                 PSS_MsgBox mBox;
-                mBox.ShowMsgBox( IDS_USERGROUP_HASNOROLE, MB_OK );
+                mBox.Show(IDS_USERGROUP_HASNOROLE, MB_OK);
             }
 
             // Push to dialog data
@@ -255,76 +255,76 @@ void ZVDistributionAttributesDefinitionDlg::OnChooseUsergroup()
     }
 }
 
-void ZVDistributionAttributesDefinitionDlg::OnAddruleButton() 
+void ZVDistributionAttributesDefinitionDlg::OnAddruleButton()
 {
     ZBDistributionRulesForRole*    pRole = GetSelectedDistributionRuleForRole();
     if (!pRole)
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_SELECTROLE_MSG, MB_OK );
+        mBox.Show(IDS_SELECTROLE_MSG, MB_OK);
         return;
     }
-    ASSERT( m_pDistributionAttr );
+    ASSERT(m_pDistributionAttr);
 
     ZVDistributionRuleDef dlg;
     if (dlg.DoModal() == IDOK)
     {
-        m_pDistributionAttr->AddDistributionRulesForRole( pRole->GetRoleGUID(), dlg.GetOperator(), dlg.GetValue(), dlg.GetLogicalOperator()-1 );
+        m_pDistributionAttr->AddDistributionRulesForRole(pRole->GetRoleGUID(), dlg.GetOperator(), dlg.GetValue(), dlg.GetLogicalOperator() - 1);
         // Refresh the list
         m_List.Refresh();
     }
 }
 
-void ZVDistributionAttributesDefinitionDlg::OnDelruleButton() 
+void ZVDistributionAttributesDefinitionDlg::OnDelruleButton()
 {
     ZBDistributionRule*    pRule = GetSelectedDistributionRule();
     if (!pRule)
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_SELECTRULE_MSG, MB_OK );
+        mBox.Show(IDS_SELECTRULE_MSG, MB_OK);
         return;
     }
-    
+
     PSS_MsgBox mBox;
-    if (mBox.ShowMsgBox( IDS_DELETERULE_CONFIRM, MB_YESNO ) == IDYES)
+    if (mBox.Show(IDS_DELETERULE_CONFIRM, MB_YESNO) == IDYES)
     {
-        m_pDistributionManager->DeleteDistributionRule( pRule );
+        m_pDistributionManager->DeleteDistributionRule(pRule);
         // Refresh the list
         m_List.Refresh();
     }
 }
 
-void ZVDistributionAttributesDefinitionDlg::OnModruleButton() 
+void ZVDistributionAttributesDefinitionDlg::OnModruleButton()
 {
     ZBDistributionRule*    pRule = GetSelectedDistributionRule();
     if (!pRule)
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_SELECTRULE_MSG, MB_OK );
+        mBox.Show(IDS_SELECTRULE_MSG, MB_OK);
         return;
     }
 
-    ZVDistributionRuleDef dlg( pRule );
+    ZVDistributionRuleDef dlg(pRule);
     if (dlg.DoModal() == IDOK)
     {
-        pRule->SetOperator( dlg.GetOperator() );
-        pRule->SetValue( dlg.GetValue() );
-        pRule->SetLogicalOperator( dlg.GetLogicalOperator()-1 );
+        pRule->SetOperator(dlg.GetOperator());
+        pRule->SetValue(dlg.GetValue());
+        pRule->SetLogicalOperator(dlg.GetLogicalOperator() - 1);
         // Refresh the list
         m_List.Refresh();
     }
 }
 
-void ZVDistributionAttributesDefinitionDlg::OnClickDistriblist(NMHDR* pNMHDR, LRESULT* pResult) 
+void ZVDistributionAttributesDefinitionDlg::OnClickDistriblist(NMHDR* pNMHDR, LRESULT* pResult)
 {
     CheckControlState();
-    
+
     *pResult = 0;
 }
 
-void ZVDistributionAttributesDefinitionDlg::OnDblclkDistriblist(NMHDR* pNMHDR, LRESULT* pResult) 
+void ZVDistributionAttributesDefinitionDlg::OnDblclkDistriblist(NMHDR* pNMHDR, LRESULT* pResult)
 {
     CheckControlState();
-    
+
     *pResult = 0;
 }

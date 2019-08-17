@@ -36,7 +36,7 @@ void ZAFormula::ConstructObjectPointer(PSS_DocumentData& doc, CObList& lstFormul
             CString prompt;
             AfxFormatString1(prompt, IDS_OBJECTMISSING, obj->m_sObjectName);
             PSS_MsgBox mBox;
-            mBox.ShowMsgBox(prompt, MB_OK);
+            mBox.Show(prompt, MB_OK);
         }
     }
 }

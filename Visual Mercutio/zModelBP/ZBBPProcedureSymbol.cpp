@@ -53,7 +53,7 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -67,14 +67,14 @@ static CMenu gRulesMenu;
 // JMR-MODIF - Le 10 juin 2007 - Ajout de la nouvelle variable statique gRiskMenu
 static CMenu gRiskMenu;
 
-const size_t _MaxRuleListSize            = 20;
-const size_t _MaxTaskListSize            = 20;
-const size_t _MaxDecisionListSize        = 20;
-const size_t _MaxCombinationListSize    = 20;
+const size_t _MaxRuleListSize = 20;
+const size_t _MaxTaskListSize = 20;
+const size_t _MaxDecisionListSize = 20;
+const size_t _MaxCombinationListSize = 20;
 // JMR-MODIF - Le 22 novembre 2006 - Ajout de la constante _MaxRulesSize.
-const size_t _MaxRulesSize                = 20;
+const size_t _MaxRulesSize = 20;
 // JMR-MODIF - Le 3 juin 2007 - Ajout de la constante _MaxRisksSize.
-const size_t _MaxRisksSize                = 20;
+const size_t _MaxRisksSize = 20;
 
 IMPLEMENT_SERIAL(ZBBPProcedureSymbol, ZBSymbol, g_DefVersion)
 
@@ -82,44 +82,43 @@ IMPLEMENT_SERIAL(ZBBPProcedureSymbol, ZBSymbol, g_DefVersion)
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBBPProcedureSymbol::ZBBPProcedureSymbol( const CString Name /*= ""*/ )
-    : m_Combinations( this )
+ZBBPProcedureSymbol::ZBBPProcedureSymbol(const CString Name /*= ""*/)
+    : m_Combinations(this)
 {
     m_DisplayAttributeArea = true;
 
-    ZBSymbol::SetSymbolName( Name );
+    ZBSymbol::SetSymbolName(Name);
 
     CreateSymbolProperties();
 }
 
 ZBBPProcedureSymbol::~ZBBPProcedureSymbol()
-{
-}
+{}
 
-ZBBPProcedureSymbol::ZBBPProcedureSymbol( const ZBBPProcedureSymbol& src )
+ZBBPProcedureSymbol::ZBBPProcedureSymbol(const ZBBPProcedureSymbol& src)
 {
     *this = src;
 }
 
-ZBBPProcedureSymbol& ZBBPProcedureSymbol::operator=( const ZBBPProcedureSymbol& src )
+ZBBPProcedureSymbol& ZBBPProcedureSymbol::operator=(const ZBBPProcedureSymbol& src)
 {
     // Call the base class assignement operator
-    ZBSymbol::operator=( (const ZBSymbol&)src );
+    ZBSymbol::operator=((const ZBSymbol&)src);
 
-    m_Combinations    = src.m_Combinations;
+    m_Combinations = src.m_Combinations;
 
     // JMR-MODIF - Le 26 novembre 2006 - Ajout du code de copie pour les règles
-    m_Rules            = src.m_Rules;
+    m_Rules = src.m_Rules;
 
     // JMR-MODIF - Le 29 juillet 2007 - Ajout du code de copie pour les risques
-    m_Risks        = src.m_Risks;
+    m_Risks = src.m_Risks;
 
     return *this;
 }
 
 CODComponent* ZBBPProcedureSymbol::Dup() const
 {
-    return ( new ZBBPProcedureSymbol( *this ) );
+    return (new ZBBPProcedureSymbol(*this));
 }
 
 bool ZBBPProcedureSymbol::AcceptExtApp() const
@@ -154,125 +153,125 @@ bool ZBBPProcedureSymbol::AcceptExtFile() const
     return true;
 }
 
-bool ZBBPProcedureSymbol::OnFillDefaultAttributes( ZBPropertyAttributes* pAttributes )
+bool ZBBPProcedureSymbol::OnFillDefaultAttributes(ZBPropertyAttributes* pAttributes)
 {
-    if ( !pAttributes )
+    if (!pAttributes)
     {
         return false;
     }
 
     // If global attributes have been defined, then copy them
-    if ( ZAModelGlobal::GetGlobalPropertyAttributes( GetObjectTypeID() ).GetAttributeCount() > 0 )
+    if (ZAModelGlobal::GetGlobalPropertyAttributes(GetObjectTypeID()).GetAttributeCount() > 0)
     {
-        *pAttributes = ZAModelGlobal::GetGlobalPropertyAttributes( GetObjectTypeID() );
+        *pAttributes = ZAModelGlobal::GetGlobalPropertyAttributes(GetObjectTypeID());
     }
     else
     {
         // Add the reference number
-        pAttributes->AddAttribute( ZS_BP_PROP_BASIC, Z_SYMBOL_NUMBER );
+        pAttributes->AddAttribute(ZS_BP_PROP_BASIC, Z_SYMBOL_NUMBER);
 
         // Add the unit name
-        pAttributes->AddAttribute( ZS_BP_PROP_UNIT, Z_UNIT_NAME );
+        pAttributes->AddAttribute(ZS_BP_PROP_UNIT, Z_UNIT_NAME);
 
         // No item labels
-        pAttributes->SetDisplayTitleText( false );
+        pAttributes->SetDisplayTitleText(false);
     }
 
-    return ZBSymbol::OnFillDefaultAttributes( pAttributes );
+    return ZBSymbol::OnFillDefaultAttributes(pAttributes);
 }
 
-bool ZBBPProcedureSymbol::OnChangeAttributes( ZBPropertyAttributes* pAttributes )
+bool ZBBPProcedureSymbol::OnChangeAttributes(ZBPropertyAttributes* pAttributes)
 {
-    return ZBSymbol::OnChangeAttributes( pAttributes );
+    return ZBSymbol::OnChangeAttributes(pAttributes);
 }
 
-CString ZBBPProcedureSymbol::GetAttributeString( ZBPropertyAttributes* pAttributes ) const
+CString ZBBPProcedureSymbol::GetAttributeString(ZBPropertyAttributes* pAttributes) const
 {
-    return ZBSymbol::GetAttributeString( pAttributes );
+    return ZBSymbol::GetAttributeString(pAttributes);
 }
 
 CString ZBBPProcedureSymbol::GetRuleList() const
 {
-    ZBBPRuleListProperties* pProps = (ZBBPRuleListProperties*)GetProperty( ZS_BP_PROP_RULELIST );
+    ZBBPRuleListProperties* pProps = (ZBBPRuleListProperties*)GetProperty(ZS_BP_PROP_RULELIST);
 
-    if ( !pProps )
+    if (!pProps)
     {
-        return _T( "" );
+        return _T("");
     }
 
     return pProps->GetRuleList();
 }
 
-void ZBBPProcedureSymbol::SetRuleList( const CString Value )
+void ZBBPProcedureSymbol::SetRuleList(const CString Value)
 {
-    ZBBPRuleListProperties* pProps = (ZBBPRuleListProperties*)GetProperty( ZS_BP_PROP_RULELIST );
+    ZBBPRuleListProperties* pProps = (ZBBPRuleListProperties*)GetProperty(ZS_BP_PROP_RULELIST);
 
-    if ( pProps )
+    if (pProps)
     {
         ZBBPRuleListProperties Props(*pProps);
-        Props.SetRuleList( Value );
-        SetProperty( &Props );
+        Props.SetRuleList(Value);
+        SetProperty(&Props);
     }
 }
 
-bool ZBBPProcedureSymbol::RuleExist( const CString Value )
+bool ZBBPProcedureSymbol::RuleExist(const CString Value)
 {
-    ZBTokenizer token( GetRuleList() );    // Initialize the token with the task list
+    ZBTokenizer token(GetRuleList());    // Initialize the token with the task list
                                         // and with the default ; as separator
 
-    return ( token.TokenExist( Value ) == TRUE ) ? true : false;
+    return (token.TokenExist(Value) == TRUE) ? true : false;
 }
 
-void ZBBPProcedureSymbol::AddRule( const CString Value )
+void ZBBPProcedureSymbol::AddRule(const CString Value)
 {
-    ZBTokenizer token( GetRuleList() );    // Initialize the token with the task list
+    ZBTokenizer token(GetRuleList());    // Initialize the token with the task list
                                         // and with the default ; as separator
 
     // If the new task has been added correctly,
     // then set the new task list
-    if ( token.AddUniqueToken( Value ) )
+    if (token.AddUniqueToken(Value))
     {
         // Add the value to the history
         CString Key;
-        Key.LoadString( IDS_ZS_BP_PROP_RULELST_TITLE );
-        ZAGlobal::GetHistoricValueManager().AddHistoryValue( Key, Value );
+        Key.LoadString(IDS_ZS_BP_PROP_RULELST_TITLE);
+        ZAGlobal::GetHistoricValueManager().AddHistoryValue(Key, Value);
 
         // Set the new task string 
-        SetRuleList( token.GetString() );
+        SetRuleList(token.GetString());
     }
 }
 
-void ZBBPProcedureSymbol::RemoveRule( const CString Value )
+void ZBBPProcedureSymbol::RemoveRule(const CString Value)
 {
-    ZBTokenizer token( GetRuleList() );    // Initialize the token with the task list
+    ZBTokenizer token(GetRuleList());    // Initialize the token with the task list
                                         // and with the default ; as separator
 
     // If the new task has been removed correctly,
     // then set the new task list
-    if ( token.RemoveToken( Value ) )
+    if (token.RemoveToken(Value))
     {
-        SetRuleList( token.GetString() );
+        SetRuleList(token.GetString());
     }
 }
 
-CString ZBBPProcedureSymbol::GetRuleAt( size_t Index )
+CString ZBBPProcedureSymbol::GetRuleAt(size_t Index)
 {
-    ZBTokenizer token( GetRuleList() );    // Initialize the token with the task list
+    ZBTokenizer token(GetRuleList());    // Initialize the token with the task list
                                         // and with the default ; as separator
     CString Value;
 
     // Retreive the specific indexed token
-    if ( token.GetTokenAt( Index, Value ) )
+    if (token.GetTokenAt(Index, Value))
     {
         return Value;
     }
 
-    return _T( "" );
+    return _T("");
 }
 
 size_t ZBBPProcedureSymbol::GetRuleCount() const
 {
-    ZBTokenizer token( GetRuleList() );    // Initialize the token with the task list
+    ZBTokenizer token(GetRuleList());    // Initialize the token with the task list
                                         // and with the default ; as separator
 
     return token.GetTokenCount();
@@ -280,87 +279,87 @@ size_t ZBBPProcedureSymbol::GetRuleCount() const
 
 CString ZBBPProcedureSymbol::GetTaskList() const
 {
-    ZBBPTaskListProperties* pProps = (ZBBPTaskListProperties*)GetProperty( ZS_BP_PROP_TASKLIST );
+    ZBBPTaskListProperties* pProps = (ZBBPTaskListProperties*)GetProperty(ZS_BP_PROP_TASKLIST);
 
-    if ( !pProps )
+    if (!pProps)
     {
-        return _T( "" );
+        return _T("");
     }
 
     return pProps->GetTaskList();
 }
 
-void ZBBPProcedureSymbol::SetTaskList( const CString Value )
+void ZBBPProcedureSymbol::SetTaskList(const CString Value)
 {
-    ZBBPTaskListProperties* pProps = (ZBBPTaskListProperties*)GetProperty( ZS_BP_PROP_TASKLIST );
+    ZBBPTaskListProperties* pProps = (ZBBPTaskListProperties*)GetProperty(ZS_BP_PROP_TASKLIST);
 
-    if ( pProps )
+    if (pProps)
     {
-        ZBBPTaskListProperties Props( *pProps );
-        Props.SetTaskList( Value );
-        SetProperty( &Props );
+        ZBBPTaskListProperties Props(*pProps);
+        Props.SetTaskList(Value);
+        SetProperty(&Props);
     }
 }
 
-bool ZBBPProcedureSymbol::TaskExist( const CString Value )
+bool ZBBPProcedureSymbol::TaskExist(const CString Value)
 {
-    ZBTokenizer token( GetTaskList() );    // Initialize the token with the task list
+    ZBTokenizer token(GetTaskList());    // Initialize the token with the task list
                                         // and with the default ; as separator
 
-    return ( token.TokenExist( Value ) == TRUE ) ? true : false;
+    return (token.TokenExist(Value) == TRUE) ? true : false;
 }
 
-void ZBBPProcedureSymbol::AddTask( const CString Value )
+void ZBBPProcedureSymbol::AddTask(const CString Value)
 {
-    ZBTokenizer token( GetTaskList() );    // Initialize the token with the task list
+    ZBTokenizer token(GetTaskList());    // Initialize the token with the task list
                                         // and with the default ; as separator
 
     // If the new task has been added correctly,
     // then set the new task list
-    if ( token.AddUniqueToken( Value ) )
+    if (token.AddUniqueToken(Value))
     {
         // Add the value to the history
         CString Key;
-        Key.LoadString( IDS_ZS_BP_PROP_PROCEDURE_TSKLST_TITLE );
-        ZAGlobal::GetHistoricValueManager().AddHistoryValue( Key, Value );
+        Key.LoadString(IDS_ZS_BP_PROP_PROCEDURE_TSKLST_TITLE);
+        ZAGlobal::GetHistoricValueManager().AddHistoryValue(Key, Value);
 
         // Set the new task string 
-        SetTaskList( token.GetString() );
+        SetTaskList(token.GetString());
     }
 }
 
-void ZBBPProcedureSymbol::RemoveTask( const CString Value )
+void ZBBPProcedureSymbol::RemoveTask(const CString Value)
 {
-    ZBTokenizer token( GetTaskList() );    // Initialize the token with the task list
+    ZBTokenizer token(GetTaskList());    // Initialize the token with the task list
                                         // and with the default ; as separator
 
     // If the new task has been removed correctly,
     // then set the new task list
-    if ( token.RemoveToken( Value ) )
+    if (token.RemoveToken(Value))
     {
-        SetTaskList( token.GetString() );
+        SetTaskList(token.GetString());
     }
 }
 
-CString ZBBPProcedureSymbol::GetTaskAt( size_t Index )
+CString ZBBPProcedureSymbol::GetTaskAt(size_t Index)
 {
-    ZBTokenizer token( GetTaskList() );    // Initialize the token with the task list
+    ZBTokenizer token(GetTaskList());    // Initialize the token with the task list
                                         // and with the default ; as separator
 
     CString Value;
 
     // Retreive the specific indexed token
-    if ( token.GetTokenAt( Index, Value ) )
+    if (token.GetTokenAt(Index, Value))
     {
         return Value;
     }
 
-    return _T( "" );
+    return _T("");
 }
 
 size_t ZBBPProcedureSymbol::GetTaskCount() const
 {
-    ZBTokenizer token( GetTaskList() );    // Initialize the token with the task list
+    ZBTokenizer token(GetTaskList());    // Initialize the token with the task list
                                         // and with the default ; as separator
 
     return token.GetTokenCount();
@@ -368,123 +367,123 @@ size_t ZBBPProcedureSymbol::GetTaskCount() const
 
 CString ZBBPProcedureSymbol::GetDecisionList() const
 {
-    ZBBPDecisionListProperties* pProps = (ZBBPDecisionListProperties*)GetProperty( ZS_BP_PROP_DECISIONLIST );
+    ZBBPDecisionListProperties* pProps = (ZBBPDecisionListProperties*)GetProperty(ZS_BP_PROP_DECISIONLIST);
 
-    if ( !pProps )
+    if (!pProps)
     {
-        return _T( "" );
+        return _T("");
     }
 
     return pProps->GetDecisionList();
 }
 
-void ZBBPProcedureSymbol::SetDecisionList( const CString Value )
+void ZBBPProcedureSymbol::SetDecisionList(const CString Value)
 {
-    ZBBPDecisionListProperties* pProps = (ZBBPDecisionListProperties*)GetProperty( ZS_BP_PROP_DECISIONLIST );
+    ZBBPDecisionListProperties* pProps = (ZBBPDecisionListProperties*)GetProperty(ZS_BP_PROP_DECISIONLIST);
 
-    if ( pProps )
+    if (pProps)
     {
-        ZBBPDecisionListProperties Props( *pProps );
-        Props.SetDecisionList( Value );
-        SetProperty( &Props );
+        ZBBPDecisionListProperties Props(*pProps);
+        Props.SetDecisionList(Value);
+        SetProperty(&Props);
     }
 }
 
-bool ZBBPProcedureSymbol::DecisionExist( const CString Value )
+bool ZBBPProcedureSymbol::DecisionExist(const CString Value)
 {
-    ZBTokenizer token( GetDecisionList() );    // Initialize the token with the decision list
+    ZBTokenizer token(GetDecisionList());    // Initialize the token with the decision list
                                             // and with the default ; as separator
 
-    return ( token.TokenExist( Value ) == TRUE ) ? true : false;
+    return (token.TokenExist(Value) == TRUE) ? true : false;
 }
 
-void ZBBPProcedureSymbol::AddDecision( const CString Value )
+void ZBBPProcedureSymbol::AddDecision(const CString Value)
 {
-    ZBTokenizer token( GetDecisionList() );    // Initialize the token with the decision list
+    ZBTokenizer token(GetDecisionList());    // Initialize the token with the decision list
                                             // and with the default ; as separator
 
     // If the new decision has been added correctly,
     // then set the new decision list
-    if ( token.AddUniqueToken( Value ) )
+    if (token.AddUniqueToken(Value))
     {
         // Add the value to the history
         CString Key;
-        Key.LoadString( IDS_ZS_BP_PROP_PROCEDURE_DECLST_TITLE );
-        ZAGlobal::GetHistoricValueManager().AddHistoryValue( Key, Value );
+        Key.LoadString(IDS_ZS_BP_PROP_PROCEDURE_DECLST_TITLE);
+        ZAGlobal::GetHistoricValueManager().AddHistoryValue(Key, Value);
 
         // Set the new decision string 
-        SetDecisionList( token.GetString() );
+        SetDecisionList(token.GetString());
     }
 }
 
-void ZBBPProcedureSymbol::RemoveDecision( const CString Value )
+void ZBBPProcedureSymbol::RemoveDecision(const CString Value)
 {
-    ZBTokenizer token( GetDecisionList() );    // Initialize the token with the decision list
+    ZBTokenizer token(GetDecisionList());    // Initialize the token with the decision list
                                             // and with the default ; as separator
 
     // If the new decision has been removed correctly,
     // then set the new decision list
-    if ( token.RemoveToken( Value ) )
+    if (token.RemoveToken(Value))
     {
-        SetDecisionList( token.GetString() );
+        SetDecisionList(token.GetString());
     }
 }
 
-CString ZBBPProcedureSymbol::GetDecisionAt( size_t Index )
+CString ZBBPProcedureSymbol::GetDecisionAt(size_t Index)
 {
-    ZBTokenizer token( GetDecisionList() );    // Initialize the token with the decision list
+    ZBTokenizer token(GetDecisionList());    // Initialize the token with the decision list
                                             // and with the default ; as separator
 
     CString Value;
 
     // Retreive the specific indexed token
-    if ( token.GetTokenAt( Index, Value ) )
+    if (token.GetTokenAt(Index, Value))
     {
         return Value;
     }
 
-    return _T( "" );
+    return _T("");
 }
 
 size_t ZBBPProcedureSymbol::GetDecisionCount() const
 {
-    ZBTokenizer token( GetDecisionList() );    // Initialize the token with the decision list
+    ZBTokenizer token(GetDecisionList());    // Initialize the token with the decision list
                                             // and with the default ; as separator
 
     return token.GetTokenCount();
 }
 
 // JMR-MODIF - Le 25 décembre 2006 - Permet de rechercher le nom original d'une règle en fonction de son GUID.
-CString ZBBPProcedureSymbol::GetRuleNameByGUID( ZBLogicalRulesEntity* p_Rule, CString RuleGUID )
+CString ZBBPProcedureSymbol::GetRuleNameByGUID(ZBLogicalRulesEntity* p_Rule, CString RuleGUID)
 {
-    if ( p_Rule == NULL )
+    if (p_Rule == NULL)
     {
-        return _T( "" );
+        return _T("");
     }
 
-    if ( p_Rule->GetGUID() == RuleGUID )
+    if (p_Rule->GetGUID() == RuleGUID)
     {
         return p_Rule->GetEntityName();
     }
 
-    if ( p_Rule->ContainEntity() )
+    if (p_Rule->ContainEntity())
     {
         int Count = p_Rule->GetEntityCount();
 
-        for ( int i = 0; i < Count; ++i )
+        for (int i = 0; i < Count; ++i)
         {
-            ZBRulesEntity* pEntity = p_Rule->GetEntityAt( i );
+            ZBRulesEntity* pEntity = p_Rule->GetEntityAt(i);
 
-            if ( !pEntity )
+            if (!pEntity)
             {
                 continue;
             }
 
-            if ( ISA( pEntity, ZBLogicalRulesEntity ) )
+            if (ISA(pEntity, ZBLogicalRulesEntity))
             {
-                CString m_Name = GetRuleNameByGUID( dynamic_cast<ZBLogicalRulesEntity*>( pEntity ), RuleGUID );
+                CString m_Name = GetRuleNameByGUID(dynamic_cast<ZBLogicalRulesEntity*>(pEntity), RuleGUID);
 
-                if ( !m_Name.IsEmpty() )
+                if (!m_Name.IsEmpty())
                 {
                     return m_Name;
                 }
@@ -492,219 +491,217 @@ CString ZBBPProcedureSymbol::GetRuleNameByGUID( ZBLogicalRulesEntity* p_Rule, CS
         }
     }
 
-    return _T( "" );
+    return _T("");
 }
 
-void ZBBPProcedureSymbol::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
+void ZBBPProcedureSymbol::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
 {
     // Call the base class method
-    ZBSymbol::OnUpdate( pSubject, pMsg );
+    ZBSymbol::OnUpdate(pSubject, pMsg);
 }
 
 void ZBBPProcedureSymbol::OnConnect(CODConnection* pConnection)
 {
-    ZBSymbol::OnConnect( pConnection );
+    ZBSymbol::OnConnect(pConnection);
 
     CheckInitialCombination();
 }
 
-void ZBBPProcedureSymbol::OnDisconnect( CODConnection* pConnection )
+void ZBBPProcedureSymbol::OnDisconnect(CODConnection* pConnection)
 {
-    ZBSymbol::OnDisconnect( pConnection );
+    ZBSymbol::OnDisconnect(pConnection);
 
     CheckInitialCombination();
 }
 
-void ZBBPProcedureSymbol::OnLinkDisconnect( CODLinkComponent* pLink )
+void ZBBPProcedureSymbol::OnLinkDisconnect(CODLinkComponent* pLink)
 {
-    if ( pLink && ISA( pLink, ZBLinkSymbol ) )
+    if (pLink && ISA(pLink, ZBLinkSymbol))
     {
-        DeleteDeliverableFromAllCombinations( dynamic_cast<ZBLinkSymbol*>( pLink )->GetSymbolName() );
+        DeleteDeliverableFromAllCombinations(dynamic_cast<ZBLinkSymbol*>(pLink)->GetSymbolName());
     }
 }
 
-BOOL ZBBPProcedureSymbol::OnConnectionMove( CODConnection* pConnection )
+BOOL ZBBPProcedureSymbol::OnConnectionMove(CODConnection* pConnection)
 {
-    return ZBSymbol::OnConnectionMove( pConnection );
+    return ZBSymbol::OnConnectionMove(pConnection);
 }
 
 void ZBBPProcedureSymbol::CheckInitialCombination()
 {
     // Now check if only one combination.
     // If it is the case, then set all deliverables to the combination
-    if ( GetCombinationCount() == 1 )
+    if (GetCombinationCount() == 1)
     {
         // Get all deliverables
         CString EnteringDeliverables;
-        GetEnteringUpDeliverable( EnteringDeliverables );
+        GetEnteringUpDeliverable(EnteringDeliverables);
 
         // And set it
-        SetCombinationDeliverables( 0, EnteringDeliverables );
+        SetCombinationDeliverables(0, EnteringDeliverables);
 
         // If no entering deliverables, then remove the master
-        if ( EnteringDeliverables.IsEmpty() )
+        if (EnteringDeliverables.IsEmpty())
         {
-            SetCombinationMaster( 0, EnteringDeliverables );
+            SetCombinationMaster(0, EnteringDeliverables);
         }
         else
         {
             // If there is only one deliverable
             // then sets automatically the master
-            ZBTokenizer token( EnteringDeliverables );
+            ZBTokenizer token(EnteringDeliverables);
 
-            if ( token.GetTokenCount() == 1 )
+            if (token.GetTokenCount() == 1)
             {
                 CString Value;
 
                 // Retreive the specific indexed token
-                if ( token.GetTokenAt( 0, Value ) )
+                if (token.GetTokenAt(0, Value))
                 {
-                    SetCombinationMaster( 0, Value );
+                    SetCombinationMaster(0, Value);
                 }
             }
         }
 
-        SetCombinationActivationPerc( 0, GetMaxActivationPerc( GetCombinationMaster( 0 ) ) );
+        SetCombinationActivationPerc(0, GetMaxActivationPerc(GetCombinationMaster(0)));
     }
 }
 
-void ZBBPProcedureSymbol::OnSymbolNameChanged( CODComponent& Comp, const CString OldName )
+void ZBBPProcedureSymbol::OnSymbolNameChanged(CODComponent& Comp, const CString OldName)
 {
     // Check if the old symbol name was used somewhere in this procedure
 
     CODComponent* pComp = &Comp;
 
     // Check the deliverable for combinations
-    if ( ISA( pComp, ZBLinkSymbol ) )
+    if (ISA(pComp, ZBLinkSymbol))
     {
-        ReplaceDeliverable( OldName, dynamic_cast<ZBLinkSymbol*>( pComp )->GetSymbolName() );
+        ReplaceDeliverable(OldName, dynamic_cast<ZBLinkSymbol*>(pComp)->GetSymbolName());
     }
 }
 
 // JMR-MODIF - Le 10 juin 2007 - Ajout de la fonction OnAddNewRisk.
-void ZBBPProcedureSymbol::OnAddNewRisk( ZBProperty&        Property,
-                                        CString&        value,
-                                        ZBPropertySet&    Properties,
-                                        bool&            Refresh )
+void ZBBPProcedureSymbol::OnAddNewRisk(ZBProperty&        Property,
+                                       CString&        value,
+                                       ZBPropertySet&    Properties,
+                                       bool&            Refresh)
 {
     // Add a new risk
-    if ( AddNewRisk() >= 0 )
+    if (AddNewRisk() >= 0)
     {
         // Sets the refresh flag to true
         Refresh = true;
-        SetModifiedFlag( TRUE );
+        SetModifiedFlag(TRUE);
     }
 }
 
 // JMR-MODIF - Le 10 juin 2007 - Ajout de la fonction OnDelCurrentRisk.
-void ZBBPProcedureSymbol::OnDelCurrentRisk( ZBProperty&        Property,
-                                            CString&        value,
-                                            ZBPropertySet&    Properties,
-                                            bool&            Refresh )
+void ZBBPProcedureSymbol::OnDelCurrentRisk(ZBProperty&        Property,
+                                           CString&        value,
+                                           ZBPropertySet&    Properties,
+                                           bool&            Refresh)
 {
     int Count = GetRiskCount();
 
-    if ( Count <= 1 )
+    if (Count <= 1)
     {
         // Cannot delete all risks
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_CANNOTDELETE_ALLRISKS, MB_OK );
+        mBox.Show(IDS_CANNOTDELETE_ALLRISKS, MB_OK);
         return;
     }
 
     // Otherwise, delete the current selected risk
     int Index = Property.GetCategoryID() - ZS_BP_PROP_RISK;
 
-    if ( DeleteRisk( Index ) )
+    if (DeleteRisk(Index))
     {
         // Sets the refresh flag to true
         Refresh = true;
-        SetModifiedFlag( TRUE );
+        SetModifiedFlag(TRUE);
     }
 }
 
-void ZBBPProcedureSymbol::OnAddNewCombination( ZBProperty&        Property,
-                                               CString&            value,
-                                               ZBPropertySet&    Properties,
-                                               bool&            Refresh )
+void ZBBPProcedureSymbol::OnAddNewCombination(ZBProperty&        Property,
+                                              CString&            value,
+                                              ZBPropertySet&    Properties,
+                                              bool&            Refresh)
 {
     // Add a new combination
-    if ( AddNewCombination() >= 0 )
+    if (AddNewCombination() >= 0)
     {
         // Sets the refresh flag to true
         Refresh = true;
-        SetModifiedFlag( TRUE );
+        SetModifiedFlag(TRUE);
     }
 }
 
-void ZBBPProcedureSymbol::OnDelCurrentCombination( ZBProperty&        Property,
-                                                   CString&            value,
-                                                   ZBPropertySet&    Properties,
-                                                   bool&            Refresh )
+void ZBBPProcedureSymbol::OnDelCurrentCombination(ZBProperty&        Property,
+                                                  CString&            value,
+                                                  ZBPropertySet&    Properties,
+                                                  bool&            Refresh)
 {
     int Count = GetCombinationCount();
 
-    if ( Count <= 1 )
+    if (Count <= 1)
     {
         // Cannot delete all combinations
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_CANNOTDELETE_ALLCOMBINATIONS, MB_OK );
+        mBox.Show(IDS_CANNOTDELETE_ALLCOMBINATIONS, MB_OK);
         return;
     }
 
     // Otherwise, delete the current selected combination
     int Index = Property.GetCategoryID() - ZS_BP_PROP_COMBINATION;
 
-    if ( DeleteCombination( Index ) )
+    if (DeleteCombination(Index))
     {
         // Sets the refresh flag to true
         Refresh = true;
-        SetModifiedFlag( TRUE );
+        SetModifiedFlag(TRUE);
     }
 }
 
-void ZBBPProcedureSymbol::OnAddDeliverableCombination( ZBProperty&        Property,
-                                                       CString&            value,
-                                                       ZBPropertySet&    Properties,
-                                                       bool&            Refresh )
-{
-}
+void ZBBPProcedureSymbol::OnAddDeliverableCombination(ZBProperty&        Property,
+                                                      CString&            value,
+                                                      ZBPropertySet&    Properties,
+                                                      bool&            Refresh)
+{}
 
-void ZBBPProcedureSymbol::OnDelDeliverableCombination( ZBProperty&        Property,
-                                                       CString&            value,
-                                                       ZBPropertySet&    Properties,
-                                                       bool&            Refresh )
-{
-}
+void ZBBPProcedureSymbol::OnDelDeliverableCombination(ZBProperty&        Property,
+                                                      CString&            value,
+                                                      ZBPropertySet&    Properties,
+                                                      bool&            Refresh)
+{}
 
 bool ZBBPProcedureSymbol::CreateSymbolProperties()
 {
-    if ( !ZBSymbol::CreateSymbolProperties() )
+    if (!ZBSymbol::CreateSymbolProperties())
     {
         return false;
     }
 
     ZBBPRuleListProperties propRules;
-    AddProperty( propRules );
+    AddProperty(propRules);
 
     ZBBPTaskListProperties propTasks;
-    AddProperty( propTasks );
+    AddProperty(propTasks);
 
     ZBBPDecisionListProperties propDecisions;
-    AddProperty( propDecisions );
+    AddProperty(propDecisions);
 
     ZBBPCostPropertiesProcedure propCost;
-    AddProperty( propCost );
+    AddProperty(propCost);
 
     ZBBPUnitProperties propUnit;
-    AddProperty( propUnit );
+    AddProperty(propUnit);
 
     // Creates at least one combination property
     m_Combinations.CreateInitialProperties();
 
     // Fill the array of unit double validation type
     m_UnitDoubleValidationTypeArray.RemoveAll();
-    GetUnitDoubleValidationTypeStringArray( m_UnitDoubleValidationTypeArray );
+    GetUnitDoubleValidationTypeStringArray(m_UnitDoubleValidationTypeArray);
 
     // JMR-MODIF - Le 3 juin 2007 - Ajoute au moins un catalogue de propriétés dans les risques.
     m_Risks.CreateInitialProperties();
@@ -713,11 +710,11 @@ bool ZBBPProcedureSymbol::CreateSymbolProperties()
 }
 
 // JMR-MODIF - Le 26 avril 2007 - Cette fonction permet de déterminer si une règle donnée a été attribuée à cet objet.
-BOOL ZBBPProcedureSymbol::ContainsRule( CString RuleName )
+BOOL ZBBPProcedureSymbol::ContainsRule(CString RuleName)
 {
-    for ( int i = 0; i < m_Rules.GetRulesCount(); i++ )
+    for (int i = 0; i < m_Rules.GetRulesCount(); i++)
     {
-        if ( m_Rules.GetRuleName( i ) == RuleName )
+        if (m_Rules.GetRuleName(i) == RuleName)
         {
             return TRUE;
         }
@@ -727,22 +724,22 @@ BOOL ZBBPProcedureSymbol::ContainsRule( CString RuleName )
 }
 
 // JMR-MODIF - Le 9 octobre 2007 - Cette fonction retourne les règles qui ne sont plus synchronisées avec le référentiel.
-void ZBBPProcedureSymbol::CheckRulesSync( CStringArray& RulesList )
+void ZBBPProcedureSymbol::CheckRulesSync(CStringArray& RulesList)
 {
     CODModel * pModel = GetRootModel();
 
-    if ( pModel == NULL )
+    if (pModel == NULL)
     {
         return;
     }
 
-    if ( m_Rules.GetRulesCount() > 0 )
+    if (m_Rules.GetRulesCount() > 0)
     {
         ZBLogicalRulesEntity* p_MainRule = NULL;
 
-        if ( GetOwnerModel() != NULL && ISA( GetOwnerModel(), ZDProcessGraphModelMdlBP ) )
+        if (GetOwnerModel() != NULL && ISA(GetOwnerModel(), ZDProcessGraphModelMdlBP))
         {
-            ZDProcessGraphModelMdlBP* p_Model = reinterpret_cast<ZDProcessGraphModelMdlBP*>( GetOwnerModel() );
+            ZDProcessGraphModelMdlBP* p_Model = reinterpret_cast<ZDProcessGraphModelMdlBP*>(GetOwnerModel());
 
             p_MainRule = p_Model->GetMainLogicalRules();
         }
@@ -751,13 +748,13 @@ void ZBBPProcedureSymbol::CheckRulesSync( CStringArray& RulesList )
             return;
         }
 
-        for ( int i = 0; i < m_Rules.GetRulesCount(); i++ )
+        for (int i = 0; i < m_Rules.GetRulesCount(); i++)
         {
-            CString m_SafeName = GetRuleNameByGUID( p_MainRule, m_Rules.GetRuleGUID( i ) );
+            CString m_SafeName = GetRuleNameByGUID(p_MainRule, m_Rules.GetRuleGUID(i));
 
-            if ( m_SafeName.IsEmpty() )
+            if (m_SafeName.IsEmpty())
             {
-                RulesList.Add( m_Rules.GetRuleName( i ) );
+                RulesList.Add(m_Rules.GetRuleName(i));
             }
         }
     }
@@ -807,7 +804,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
     bool    groupEnabled = true;
 
     if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-            !dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
+        !dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
         groupEnabled = false;
 
     // FIXME translate comments
@@ -821,8 +818,8 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
     if (m_Rules.GetRulesCount() > 0)
     {
         CString ruleSectionTitle = _T("");
-        CString ruleName         = _T("");
-        CString ruleDesc         = _T("");
+        CString ruleName = _T("");
+        CString ruleDesc = _T("");
 
         ruleSectionTitle.LoadString(IDS_Z_RULES_TITLE);
         ruleDesc.LoadString(IDS_Z_RULES_DESC);
@@ -836,12 +833,12 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
             if (pOwnerModel && pOwnerModel->GetController() && ISA(pOwnerModel->GetController(), ZDProcessGraphModelControllerBP))
             {
                 ZDProcessGraphModelControllerBP* pController =
-                        reinterpret_cast<ZDProcessGraphModelControllerBP*>(pOwnerModel->GetController());
+                    reinterpret_cast<ZDProcessGraphModelControllerBP*>(pOwnerModel->GetController());
 
                 if (pController && ISA(pController->GetDocument(), ZDProcessGraphModelDoc))
                 {
                     ZDProcessGraphModelDoc* pDocument =
-                            reinterpret_cast<ZDProcessGraphModelDoc*>(pController->GetDocument());
+                        reinterpret_cast<ZDProcessGraphModelDoc*>(pController->GetDocument());
 
                     if (pDocument && pDocument->GetMainLogicalRules())
                         pMainRule = pDocument->GetMainLogicalRules();
@@ -854,7 +851,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
             // FIXME translate comments
             // Le contrôle des règles ne peut être appliqué que si le modèle est en phase avec le système des règles.
             if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-                    dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainLogicalRulesIsValid())
+                dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainLogicalRulesIsValid())
             {
                 CString safeName = GetRuleNameByGUID(pMainRule, m_Rules.GetRuleGUID(i));
 
@@ -888,7 +885,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                                ruleName,
                                                Z_RULE_NAME + (i * _MaxRulesSize),
                                                ruleDesc,
-                                               m_Rules.GetRuleName( i ),
+                                               m_Rules.GetRuleName(i),
                                                ZBProperty::PT_EDIT_MENU,
                                                true,
                                                ZBStringFormat(ZBStringFormat::General),
@@ -916,7 +913,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
     // add rules
     ZBBPRuleListProperties* pRulesProps;
 
-    if ((pRulesProps = (ZBBPRuleListProperties*)GetProperty( ZS_BP_PROP_RULELIST)) == NULL)
+    if ((pRulesProps = (ZBBPRuleListProperties*)GetProperty(ZS_BP_PROP_RULELIST)) == NULL)
     {
         // try to add it
         ZBBPRuleListProperties propRules;
@@ -992,11 +989,11 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
     if (!gRiskMenu.GetSafeHmenu())
         gRiskMenu.LoadMenu(IDR_RISK_MENU);
 
-    CString finalRiskName  = _T("");
+    CString finalRiskName = _T("");
     CString finalRiskTitle = _T("");
-    CString riskTitle      = _T("");
-    CString riskName       = _T("");
-    CString riskDesc       = _T("");
+    CString riskTitle = _T("");
+    CString riskName = _T("");
+    CString riskDesc = _T("");
 
     riskTitle.LoadString(IDS_ZS_BP_PROP_RISK_TITLE);
 
@@ -1010,9 +1007,9 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         // FIXME translate comments
         // Propriété "Titre Risque" du groupe "Risque (x)"
         ZBProperty* pRisk = new ZBProperty(finalRiskTitle,
-                                           (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
+            (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
                                            riskName,
-                                           (groupValue? Z_RISK_NAME : (Z_RISK_NAME + (i * _MaxRisksSize))),
+                                           (groupValue ? Z_RISK_NAME : (Z_RISK_NAME + (i * _MaxRisksSize))),
                                            riskDesc,
                                            GetRiskName(i),
                                            ZBProperty::PT_EDIT_MENU,
@@ -1029,7 +1026,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         // FIXME translate comments
         // Propriété "Description" du groupe "Risque (x)"
         pRisk = new ZBProperty(finalRiskTitle,
-                               (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
+            (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
                                riskName,
                                (groupValue ? Z_RISK_DESC : (Z_RISK_DESC + (i * _MaxRisksSize))),
                                riskDesc,
@@ -1045,7 +1042,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         sNoRiskType.LoadString(IDS_NO_RISK_TYPE);
 
         pRisk = new ZBProperty(finalRiskTitle,
-                               (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
+            (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
                                riskName,
                                (groupValue ? Z_RISK_TYPE : (Z_RISK_TYPE + (i * _MaxRisksSize))),
                                riskDesc,
@@ -1060,7 +1057,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         // FIXME translate comments
         // Propriété "Impact" du groupe "Risque (x)"
         pRisk = new ZBProperty(finalRiskTitle,
-                               (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
+            (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
                                riskName,
                                (groupValue ? Z_RISK_IMPACT : (Z_RISK_IMPACT + (i * _MaxRisksSize))),
                                riskDesc,
@@ -1075,7 +1072,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         // FIXME translate comments
         // Propriété "Probabilité" du groupe "Risque (x)"
         pRisk = new ZBProperty(finalRiskTitle,
-                               (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
+            (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
                                riskName,
                                (groupValue ? Z_RISK_PROBABILITY : (Z_RISK_PROBABILITY + (i * _MaxRisksSize))),
                                riskDesc,
@@ -1090,7 +1087,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         // FIXME translate comments
         // Propriété "Sévérité" du groupe "Risque (x)"
         pRisk = new ZBProperty(finalRiskTitle,
-                               (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
+            (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
                                riskName,
                                (groupValue ? Z_RISK_SEVERITY : (Z_RISK_SEVERITY + (i * _MaxRisksSize))),
                                riskDesc,
@@ -1105,7 +1102,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         // FIXME translate comments
         // Propriété "Est. unit." du groupe "Risque (x)"
         pRisk = new ZBProperty(finalRiskTitle,
-                               (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
+            (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
                                riskName,
                                (groupValue ? Z_RISK_UE : (Z_RISK_UE + (i * _MaxRisksSize))),
                                riskDesc,
@@ -1122,7 +1119,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         // FIXME translate comments
         // Propriété "POA" du groupe "Risque (x)"
         pRisk = new ZBProperty(finalRiskTitle,
-                               (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
+            (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
                                riskName,
                                (groupValue ? Z_RISK_POA : (Z_RISK_POA + (i * _MaxRisksSize))),
                                riskDesc,
@@ -1139,7 +1136,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         // FIXME translate comments
         // Propriété "Action" du groupe "Risque (x)"
         pRisk = new ZBProperty(finalRiskTitle,
-                               (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
+            (groupValue ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i)),
                                riskName,
                                (groupValue ? Z_RISK_ACTION : (Z_RISK_ACTION + (i * _MaxRisksSize))),
                                riskDesc,
@@ -1274,10 +1271,10 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         propSet.Add(pDecList);
     }
 
-    int hourPerDay  = -1;
-    int dayPerWeek  = -1;
+    int hourPerDay = -1;
+    int dayPerWeek = -1;
     int dayPerMonth = -1;
-    int dayPerYear  = -1;
+    int dayPerYear = -1;
 
     if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
     {
@@ -1291,18 +1288,18 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
             //CurrencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetCurrencySymbol();
 
             // retreive the standard time definition
-            hourPerDay  = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetHourPerDay();
-            dayPerWeek  = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetDayPerWeek();
+            hourPerDay = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetHourPerDay();
+            dayPerWeek = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetDayPerWeek();
             dayPerMonth = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetDayPerMonth();
-            dayPerYear  = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetDayPerYear();
+            dayPerYear = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetDayPerYear();
         }
     }
 
     // RS-MODIF 17.11.04 error has to be defined here
     bool error;
-        
+
     if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-            dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
+        dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
     {
         // FIXME translate comments
         // Propriété "Multiplicateur" du groupe "Procédure"
@@ -1489,13 +1486,13 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
     const CString unitName = RetreiveUnitName(GetUnitGUID(), error);
 
     // Propriété "Unité" du groupe "Unité de traitement"
-    ZBProperty* pUnitName = new ZBProperty( IDS_ZS_BP_PROP_UNIT_TITLE,
-                                            ZS_BP_PROP_UNIT,
-                                            IDS_Z_UNIT_NAME_NAME,
-                                            Z_UNIT_NAME,
-                                            IDS_Z_UNIT_NAME_DESC,
-                                            unitName,
-                                            (groupEnabled ? ZBProperty::PT_EDIT_EXTENDED_READONLY : ZBProperty::PT_EDIT_STRING_READONLY));
+    ZBProperty* pUnitName = new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
+                                           ZS_BP_PROP_UNIT,
+                                           IDS_Z_UNIT_NAME_NAME,
+                                           Z_UNIT_NAME,
+                                           IDS_Z_UNIT_NAME_DESC,
+                                           unitName,
+                                           (groupEnabled ? ZBProperty::PT_EDIT_EXTENDED_READONLY : ZBProperty::PT_EDIT_STRING_READONLY));
     propSet.Add(pUnitName);
 
     // if the menu is not loaded, load it
@@ -1505,7 +1502,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
     // FIXME translate comments
     // RS-MODIF 17.11.04 should appear only in Messenger
     if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-            dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
+        dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
     {
         // run through all combination properties
         CString finalPropTitle;
@@ -1529,7 +1526,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
             // FIXME translate comments
             // Propriété "Titre comb." du groupe "Combinaisons x"
             ZBProperty* pCombination = new ZBProperty(finalPropTitle,
-                                                      (groupValue? ZS_BP_PROP_COMBINATION : (ZS_BP_PROP_COMBINATION + i)),
+                (groupValue ? ZS_BP_PROP_COMBINATION : (ZS_BP_PROP_COMBINATION + i)),
                                                       propName,
                                                       (groupValue ? Z_COMBINATION_NAME : (Z_COMBINATION_NAME + (i * _MaxCombinationListSize))),
                                                       propDesc,
@@ -1548,9 +1545,9 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
             // FIXME translate comments
             // Propriété "Livrables" du groupe "Combinaisons x"
             pCombination = new ZBProperty(finalPropTitle,
-                                          (groupValue? ZS_BP_PROP_COMBINATION : (ZS_BP_PROP_COMBINATION + i)),
+                (groupValue ? ZS_BP_PROP_COMBINATION : (ZS_BP_PROP_COMBINATION + i)),
                                           propName,
-                                          (groupValue? Z_COMBINATION_DELIVERABLES : (Z_COMBINATION_DELIVERABLES + (i * _MaxCombinationListSize))),
+                                          (groupValue ? Z_COMBINATION_DELIVERABLES : (Z_COMBINATION_DELIVERABLES + (i * _MaxCombinationListSize))),
                                           propDesc,
                                           GetCombinationDeliverables(i),
                                           ZBProperty::PT_EDIT_EXTENDED_READONLY);
@@ -1559,15 +1556,15 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
 
             propName.LoadString(IDS_Z_COMBINATION_ACTIVATION_PERC_NAME);
             propDesc.LoadString(IDS_Z_COMBINATION_ACTIVATION_PERC_DESC);
-            
+
             const float maxPercent = GetMaxActivationPerc(GetCombinationMaster(i));
 
             // FIXME translate comments
             // Propriété "Pourcentage" du groupe "Combinaisons x"
             pCombination = new ZBProperty(finalPropTitle,
-                                          (groupValue? ZS_BP_PROP_COMBINATION : (ZS_BP_PROP_COMBINATION + i)),
+                (groupValue ? ZS_BP_PROP_COMBINATION : (ZS_BP_PROP_COMBINATION + i)),
                                           propName,
-                                          (groupValue? Z_COMBINATION_ACTIVATION_PERC : (Z_COMBINATION_ACTIVATION_PERC + (i * _MaxCombinationListSize))),
+                                          (groupValue ? Z_COMBINATION_ACTIVATION_PERC : (Z_COMBINATION_ACTIVATION_PERC + (i * _MaxCombinationListSize))),
                                           propDesc,
                                           maxPercent,
                                           ZBProperty::PT_EDIT_NUMBER_READONLY,
@@ -1582,7 +1579,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
             // FIXME translate comments
             // Propriété "Maître" du groupe "Combinaisons x"
             pCombination = new ZBProperty(finalPropTitle,
-                                          (groupValue ? ZS_BP_PROP_COMBINATION : (ZS_BP_PROP_COMBINATION + i)),
+                (groupValue ? ZS_BP_PROP_COMBINATION : (ZS_BP_PROP_COMBINATION + i)),
                                           propName,
                                           (groupValue ? Z_COMBINATION_MASTER : (Z_COMBINATION_MASTER + (i * _MaxCombinationListSize))),
                                           propDesc,
@@ -1594,7 +1591,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
     }
 
     if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
-            dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
+        dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
     {
         const double dValue = double(CalculateProcedureActivation());
 
@@ -1622,7 +1619,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                   double(GetProcedureCost()),
                                   ZBProperty::PT_EDIT_NUMBER_READONLY,
                                   true,
-                                  ZBStringFormat( ZBStringFormat::Currency, true, 2, currencySymbol));
+                                  ZBStringFormat(ZBStringFormat::Currency, true, 2, currencySymbol));
 
         propSet.Add(pSimProp);
 
@@ -1716,15 +1713,15 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
     return true;
 }
 //---------------------------------------------------------------------------
-bool ZBBPProcedureSymbol::SaveProperties( ZBPropertySet& PropSet )
+bool ZBBPProcedureSymbol::SaveProperties(ZBPropertySet& PropSet)
 {
-    if ( !ZBSymbol::SaveProperties( PropSet ) )
+    if (!ZBSymbol::SaveProperties(PropSet))
     {
         return false;
     }
 
     // Only local symbol have access to properties
-    if ( !IsLocal() )
+    if (!IsLocal())
     {
         return true;
     }
@@ -1732,31 +1729,31 @@ bool ZBBPProcedureSymbol::SaveProperties( ZBPropertySet& PropSet )
     ZBProperty* pProp;
 
     // Save the rules
-    ZBBPRuleListProperties* pRulesProps = (ZBBPRuleListProperties*)GetProperty( ZS_BP_PROP_RULELIST );
+    ZBBPRuleListProperties* pRulesProps = (ZBBPRuleListProperties*)GetProperty(ZS_BP_PROP_RULELIST);
 
-    if ( !pRulesProps )
+    if (!pRulesProps)
     {
         return false;
     }
 
     // Now run through the list of data and fill the property set
-    ZBPropertyIterator f( &PropSet );
+    ZBPropertyIterator f(&PropSet);
 
     // Empty the task list
-    SetRuleList( _T( "" ) );
+    SetRuleList(_T(""));
 
-    for ( pProp = f.GetFirst(); pProp; pProp = f.GetNext() )
+    for (pProp = f.GetFirst(); pProp; pProp = f.GetNext())
     {
-        if ( pProp->GetCategoryID() == ZS_BP_PROP_RULELIST )
+        if (pProp->GetCategoryID() == ZS_BP_PROP_RULELIST)
         {
-            switch ( pProp->GetPTValueType() )
+            switch (pProp->GetPTValueType())
             {
                 case ZBProperty::PT_STRING:
                 {
                     // If not empty, add this new task
-                    if ( !pProp->GetValueString().IsEmpty() )
+                    if (!pProp->GetValueString().IsEmpty())
                     {
-                        AddRule( pProp->GetValueString() );
+                        AddRule(pProp->GetValueString());
                     }
 
                     break;
@@ -1768,69 +1765,69 @@ bool ZBBPProcedureSymbol::SaveProperties( ZBPropertySet& PropSet )
     // *************************************************************************************************************
     // JMR-MODIF - Le 11 juillet 2007 - Ajout du code pour la mise à jour des valeurs des risques.
 
-    ZBPropertyIterator h( &PropSet );
+    ZBPropertyIterator h(&PropSet);
 
-    for ( pProp = h.GetFirst(); pProp; pProp = h.GetNext() )
+    for (pProp = h.GetFirst(); pProp; pProp = h.GetNext())
     {
-        if ( pProp->GetCategoryID() >= ZS_BP_PROP_RISK &&
-             pProp->GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount() )
+        if (pProp->GetCategoryID() >= ZS_BP_PROP_RISK &&
+            pProp->GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount())
         {
             int i = pProp->GetCategoryID() - ZS_BP_PROP_RISK;
 
-            if ( pProp->GetItemID() == Z_RISK_NAME + ( i * _MaxRisksSize ) )
+            if (pProp->GetItemID() == Z_RISK_NAME + (i * _MaxRisksSize))
             {
-                SetRiskName( i, pProp->GetValueString() );
+                SetRiskName(i, pProp->GetValueString());
             }
 
-            if ( pProp->GetItemID() == Z_RISK_DESC + ( i * _MaxRisksSize ) )
+            if (pProp->GetItemID() == Z_RISK_DESC + (i * _MaxRisksSize))
             {
-                SetRiskDesc( i, pProp->GetValueString() );
+                SetRiskDesc(i, pProp->GetValueString());
             }
 
-            if ( pProp->GetItemID() == Z_RISK_UE + ( i * _MaxRisksSize ) )
+            if (pProp->GetItemID() == Z_RISK_UE + (i * _MaxRisksSize))
             {
-                SetRiskUE( i, pProp->GetValueFloat() );
+                SetRiskUE(i, pProp->GetValueFloat());
             }
 
-            if ( pProp->GetItemID() == Z_RISK_POA + ( i * _MaxRisksSize ) )
+            if (pProp->GetItemID() == Z_RISK_POA + (i * _MaxRisksSize))
             {
-                SetRiskPOA( i, pProp->GetValueFloat() );
+                SetRiskPOA(i, pProp->GetValueFloat());
             }
 
-            if ( pProp->GetItemID() == Z_RISK_ACTION + ( i * _MaxRisksSize ) )
+            if (pProp->GetItemID() == Z_RISK_ACTION + (i * _MaxRisksSize))
             {
-                SetRiskAction( i, ( pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo() ? 1 : 0 ) );
+                SetRiskAction(i, (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo() ? 1 : 0));
             }
         }
     }
     // *************************************************************************************************************
 
     // Save the tasks
-    ZBBPTaskListProperties* pTasksProps = (ZBBPTaskListProperties*)GetProperty( ZS_BP_PROP_TASKLIST );
+    ZBBPTaskListProperties* pTasksProps = (ZBBPTaskListProperties*)GetProperty(ZS_BP_PROP_TASKLIST);
 
-    if ( !pTasksProps )
+    if (!pTasksProps)
     {
         return false;
     }
 
     // Now run through the list of data and fill the property set
-    ZBPropertyIterator i( &PropSet );
+    ZBPropertyIterator i(&PropSet);
 
     // Empty the task list
-    SetTaskList( _T( "" ) );
+    SetTaskList(_T(""));
 
-    for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        if ( pProp->GetCategoryID() == ZS_BP_PROP_TASKLIST )
+        if (pProp->GetCategoryID() == ZS_BP_PROP_TASKLIST)
         {
-            switch ( pProp->GetPTValueType() )
+            switch (pProp->GetPTValueType())
             {
                 case ZBProperty::PT_STRING:
                 {
                     // If not empty, add this new task
-                    if ( !pProp->GetValueString().IsEmpty() )
+                    if (!pProp->GetValueString().IsEmpty())
                     {
-                        AddTask( pProp->GetValueString() );
+                        AddTask(pProp->GetValueString());
                     }
 
                     break;
@@ -1841,31 +1838,31 @@ bool ZBBPProcedureSymbol::SaveProperties( ZBPropertySet& PropSet )
 
     // Because using the AddTask function, not necessary to SetProperty
     // Save the decisions
-    ZBBPDecisionListProperties* pDecisionsProps = (ZBBPDecisionListProperties*)GetProperty( ZS_BP_PROP_DECISIONLIST );
+    ZBBPDecisionListProperties* pDecisionsProps = (ZBBPDecisionListProperties*)GetProperty(ZS_BP_PROP_DECISIONLIST);
 
-    if ( !pDecisionsProps )
+    if (!pDecisionsProps)
     {
         return false;
     }
 
     // Now run through the list of data and fill the property set
-    ZBPropertyIterator p( &PropSet );
+    ZBPropertyIterator p(&PropSet);
 
     // Empty the decision list
-    SetDecisionList( _T( "" ) );
+    SetDecisionList(_T(""));
 
-    for ( pProp = p.GetFirst(); pProp; pProp = p.GetNext() )
+    for (pProp = p.GetFirst(); pProp; pProp = p.GetNext())
     {
-        if ( pProp->GetCategoryID() == ZS_BP_PROP_DECISIONLIST )
+        if (pProp->GetCategoryID() == ZS_BP_PROP_DECISIONLIST)
         {
-            switch ( pProp->GetPTValueType() )
+            switch (pProp->GetPTValueType())
             {
                 case ZBProperty::PT_STRING:
                 {
                     // If not empty, add this new decision
-                    if ( !pProp->GetValueString().IsEmpty() )
+                    if (!pProp->GetValueString().IsEmpty())
                     {
-                        AddDecision( pProp->GetValueString() );
+                        AddDecision(pProp->GetValueString());
                     }
 
                     break;
@@ -1876,51 +1873,51 @@ bool ZBBPProcedureSymbol::SaveProperties( ZBPropertySet& PropSet )
 
     // Because using the AddDecision function, not necessary to SetProperty
     // Now run through the list of data and fill the property set
-    ZBPropertyIterator j( &PropSet );
+    ZBPropertyIterator j(&PropSet);
 
-    for ( pProp = j.GetFirst(); pProp; pProp = j.GetNext() )
+    for (pProp = j.GetFirst(); pProp; pProp = j.GetNext())
     {
-        if ( pProp->GetCategoryID() == ZS_BP_PROP_PROCEDURE_COST )
+        if (pProp->GetCategoryID() == ZS_BP_PROP_PROCEDURE_COST)
         {
-            switch ( pProp->GetPTValueType() )
+            switch (pProp->GetPTValueType())
             {
                 case ZBProperty::PT_STRING:
                 {
-                    m_CostProcedureProp.SetValue( pProp->GetItemID(), pProp->GetValueString() );
+                    m_CostProcedureProp.SetValue(pProp->GetItemID(), pProp->GetValueString());
                     break;
                 }
 
                 case ZBProperty::PT_DOUBLE:
                 {
-                    m_CostProcedureProp.SetValue( pProp->GetItemID(),
-                                                  static_cast<float>( pProp->GetValueDouble() ) );
+                    m_CostProcedureProp.SetValue(pProp->GetItemID(),
+                                                 static_cast<float>(pProp->GetValueDouble()));
                     break;
                 }
 
                 case ZBProperty::PT_FLOAT:
                 {
-                    m_CostProcedureProp.SetValue( pProp->GetItemID(), pProp->GetValueFloat() );
+                    m_CostProcedureProp.SetValue(pProp->GetItemID(), pProp->GetValueFloat());
                     break;
 
                 }
                 case ZBProperty::PT_DATE:
                 {
-                    m_CostProcedureProp.SetValue( pProp->GetItemID(),
-                                                  static_cast<float>( (DATE)pProp->GetValueDate() ) );
+                    m_CostProcedureProp.SetValue(pProp->GetItemID(),
+                                                 static_cast<float>((DATE)pProp->GetValueDate()));
                     break;
                 }
 
                 case ZBProperty::PT_TIMESPAN:
                 {
-                    m_CostProcedureProp.SetValue( pProp->GetItemID(),
-                                                  (double)pProp->GetValueTimeSpan() );
+                    m_CostProcedureProp.SetValue(pProp->GetItemID(),
+                        (double)pProp->GetValueTimeSpan());
                     break;
                 }
 
                 case ZBProperty::PT_DURATION:
                 {
-                    m_CostProcedureProp.SetValue( pProp->GetItemID(),
-                                                  (double)pProp->GetValueDuration() );
+                    m_CostProcedureProp.SetValue(pProp->GetItemID(),
+                        (double)pProp->GetValueDuration());
                     break;
                 }
             }
@@ -1928,37 +1925,37 @@ bool ZBBPProcedureSymbol::SaveProperties( ZBPropertySet& PropSet )
     }
 
     // Now run through the list of data and fill the property set
-    ZBPropertyIterator k( &PropSet );
+    ZBPropertyIterator k(&PropSet);
 
-    for ( pProp = k.GetFirst(); pProp; pProp = k.GetNext() )
+    for (pProp = k.GetFirst(); pProp; pProp = k.GetNext())
     {
-        if ( pProp->GetCategoryID() == ZS_BP_PROP_UNIT )
+        if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT)
         {
             // Check if a flag
-            if ( pProp->GetItemID() == Z_UNIT_DOUBLE_VALIDATION )
+            if (pProp->GetItemID() == Z_UNIT_DOUBLE_VALIDATION)
             {
-                m_UnitProp.SetValue( pProp->GetItemID(),
-                                     ConvertUnitDoubleValidationString2Type( pProp->GetValueString() ) );
+                m_UnitProp.SetValue(pProp->GetItemID(),
+                                    ConvertUnitDoubleValidationString2Type(pProp->GetValueString()));
             }
             else
             {
-                switch ( pProp->GetPTValueType() )
+                switch (pProp->GetPTValueType())
                 {
                     case ZBProperty::PT_DOUBLE:
                     {
-                        m_UnitProp.SetValue( pProp->GetItemID(), static_cast<float>( pProp->GetValueDouble() ) );
+                        m_UnitProp.SetValue(pProp->GetItemID(), static_cast<float>(pProp->GetValueDouble()));
                         break;
                     }
 
                     case ZBProperty::PT_FLOAT:
                     {
-                        m_UnitProp.SetValue( pProp->GetItemID(), pProp->GetValueFloat() );
+                        m_UnitProp.SetValue(pProp->GetItemID(), pProp->GetValueFloat());
                         break;
                     }
 
                     case ZBProperty::PT_STRING:
                     {
-                        m_UnitProp.SetValue( pProp->GetItemID(), pProp->GetValueString() );
+                        m_UnitProp.SetValue(pProp->GetItemID(), pProp->GetValueString());
                         break;
                     }
                 }
@@ -1967,60 +1964,60 @@ bool ZBBPProcedureSymbol::SaveProperties( ZBPropertySet& PropSet )
     }
 
     // Now run through the list of data and fill the property set of combination
-    ZBPropertyIterator l( &PropSet );
+    ZBPropertyIterator l(&PropSet);
 
-    for ( pProp = l.GetFirst(); pProp; pProp = l.GetNext() )
+    for (pProp = l.GetFirst(); pProp; pProp = l.GetNext())
     {
-        if ( pProp->GetCategoryID() >= ZS_BP_PROP_COMBINATION &&
-             pProp->GetCategoryID() <= ZS_BP_PROP_COMBINATION + GetCombinationCount() )
+        if (pProp->GetCategoryID() >= ZS_BP_PROP_COMBINATION &&
+            pProp->GetCategoryID() <= ZS_BP_PROP_COMBINATION + GetCombinationCount())
         {
             int i = pProp->GetCategoryID() - ZS_BP_PROP_COMBINATION;
-            ZBBPCombinationProperties* pCombProps = GetCombinationProperty( i );
+            ZBBPCombinationProperties* pCombProps = GetCombinationProperty(i);
 
-            if ( !pCombProps )
+            if (!pCombProps)
             {
                 return false;
             }
 
-            switch ( pProp->GetPTValueType() )
+            switch (pProp->GetPTValueType())
             {
                 case ZBProperty::PT_STRING:
                 {
-                    pCombProps->SetValue( pProp->GetItemID() - ( i * _MaxCombinationListSize ),
-                                          pProp->GetValueString() );
+                    pCombProps->SetValue(pProp->GetItemID() - (i * _MaxCombinationListSize),
+                                         pProp->GetValueString());
                     break;
                 }
 
                 case ZBProperty::PT_DOUBLE:
                 {
-                    pCombProps->SetValue( pProp->GetItemID() - ( i * _MaxCombinationListSize ),
-                                          static_cast<float>( pProp->GetValueDouble() ) );
+                    pCombProps->SetValue(pProp->GetItemID() - (i * _MaxCombinationListSize),
+                                         static_cast<float>(pProp->GetValueDouble()));
                     break;
                 }
 
                 case ZBProperty::PT_FLOAT:
                 {
-                    pCombProps->SetValue( pProp->GetItemID() - ( i * _MaxCombinationListSize ),
-                                          pProp->GetValueFloat() );
+                    pCombProps->SetValue(pProp->GetItemID() - (i * _MaxCombinationListSize),
+                                         pProp->GetValueFloat());
                     break;
                 }
 
                 case ZBProperty::PT_DATE:
                 {
-                    pCombProps->SetValue( pProp->GetItemID() - ( i * _MaxCombinationListSize ),
-                                          static_cast<float>((DATE)pProp->GetValueDate()) );
+                    pCombProps->SetValue(pProp->GetItemID() - (i * _MaxCombinationListSize),
+                                         static_cast<float>((DATE)pProp->GetValueDate()));
                     break;
                 }
 
                 case ZBProperty::PT_TIMESPAN:
                 {
-                    ASSERT( FALSE );
+                    ASSERT(FALSE);
                     break;
                 }
 
                 case ZBProperty::PT_DURATION:
                 {
-                    ASSERT( FALSE );
+                    ASSERT(FALSE);
                     break;
                 }
             }
@@ -2028,68 +2025,68 @@ bool ZBBPProcedureSymbol::SaveProperties( ZBPropertySet& PropSet )
     }
 
     // Now run through the list of data and fill the property set
-    ZBPropertyIterator m( &PropSet );
+    ZBPropertyIterator m(&PropSet);
 
-    for ( pProp = m.GetFirst(); pProp; pProp = m.GetNext() )
+    for (pProp = m.GetFirst(); pProp; pProp = m.GetNext())
     {
-        if ( pProp->GetCategoryID() == ZS_BP_PROP_SIM_PROCEDURE )
+        if (pProp->GetCategoryID() == ZS_BP_PROP_SIM_PROCEDURE)
         {
-            switch ( pProp->GetPTValueType() )
+            switch (pProp->GetPTValueType())
             {
                 case ZBProperty::PT_STRING:
                 {
-                    m_SimulationProperties.SetValue( pProp->GetItemID(), pProp->GetValueString() );
+                    m_SimulationProperties.SetValue(pProp->GetItemID(), pProp->GetValueString());
                     break;
                 }
 
                 case ZBProperty::PT_DOUBLE:
                 {
-                    m_SimulationProperties.SetValue( pProp->GetItemID(), pProp->GetValueDouble() );
+                    m_SimulationProperties.SetValue(pProp->GetItemID(), pProp->GetValueDouble());
                     break;
                 }
 
                 case ZBProperty::PT_FLOAT:
                 {
-                    m_SimulationProperties.SetValue( pProp->GetItemID(), pProp->GetValueFloat() );
+                    m_SimulationProperties.SetValue(pProp->GetItemID(), pProp->GetValueFloat());
                     break;
                 }
 
                 case ZBProperty::PT_DATE:
                 {
-                    m_SimulationProperties.SetValue( pProp->GetItemID(),
-                                                     static_cast<float>( (DATE)pProp->GetValueDate() ) );
+                    m_SimulationProperties.SetValue(pProp->GetItemID(),
+                                                    static_cast<float>((DATE)pProp->GetValueDate()));
                     break;
                 }
 
                 case ZBProperty::PT_TIMESPAN:
                 {
-                    m_SimulationProperties.SetValue( pProp->GetItemID(), (double)pProp->GetValueTimeSpan() );
+                    m_SimulationProperties.SetValue(pProp->GetItemID(), (double)pProp->GetValueTimeSpan());
                     break;
                 }
 
                 case ZBProperty::PT_DURATION:
                 {
-                    m_SimulationProperties.SetValue( pProp->GetItemID(), (double)pProp->GetValueDuration() );
+                    m_SimulationProperties.SetValue(pProp->GetItemID(), (double)pProp->GetValueDuration());
                     break;
                 }
             }
         }
     }
 
-    RefreshAttributeAreaText( true );
+    RefreshAttributeAreaText(true);
 
     return true;
 }
 
-bool ZBBPProcedureSymbol::SaveProperty( ZBProperty& Property )
+bool ZBBPProcedureSymbol::SaveProperty(ZBProperty& Property)
 {
-    if ( !ZBSymbol::SaveProperty( Property ) )
+    if (!ZBSymbol::SaveProperty(Property))
     {
         return false;
     }
 
     // Only local symbol have access to properties
-    if ( !IsLocal() )
+    if (!IsLocal())
     {
         return true;
     }
@@ -2097,111 +2094,111 @@ bool ZBBPProcedureSymbol::SaveProperty( ZBProperty& Property )
     // ************************************************************************************************
     // JMR-MODIF - Le 17 juillet 2007 - Mise à jour des valeurs des propriétés des risques.
 
-    if ( Property.GetCategoryID() >= ZS_BP_PROP_RISK &&
-         Property.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount() )
+    if (Property.GetCategoryID() >= ZS_BP_PROP_RISK &&
+        Property.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount())
     {
         int i = Property.GetCategoryID() - ZS_BP_PROP_RISK;
 
-        if ( Property.GetItemID() == Z_RISK_NAME + ( i * _MaxRisksSize ) )
+        if (Property.GetItemID() == Z_RISK_NAME + (i * _MaxRisksSize))
         {
-            SetRiskName( i, Property.GetValueString() );
+            SetRiskName(i, Property.GetValueString());
         }
 
-        if ( Property.GetItemID() == Z_RISK_DESC + ( i * _MaxRisksSize ) )
+        if (Property.GetItemID() == Z_RISK_DESC + (i * _MaxRisksSize))
         {
-            SetRiskDesc( i, Property.GetValueString() );
+            SetRiskDesc(i, Property.GetValueString());
         }
 
-        if ( Property.GetItemID() == Z_RISK_UE + ( i * _MaxRisksSize ) )
+        if (Property.GetItemID() == Z_RISK_UE + (i * _MaxRisksSize))
         {
-            SetRiskUE( i, Property.GetValueFloat() );
+            SetRiskUE(i, Property.GetValueFloat());
         }
 
-        if ( Property.GetItemID() == Z_RISK_POA + ( i * _MaxRisksSize ) )
+        if (Property.GetItemID() == Z_RISK_POA + (i * _MaxRisksSize))
         {
-            SetRiskPOA( i, Property.GetValueFloat() );
+            SetRiskPOA(i, Property.GetValueFloat());
         }
 
-        if ( Property.GetItemID() == Z_RISK_ACTION + ( i * _MaxRisksSize ) )
+        if (Property.GetItemID() == Z_RISK_ACTION + (i * _MaxRisksSize))
         {
-            SetRiskAction( i, ( Property.GetValueString() == ZAGlobal::GetYesFromArrayYesNo() ? 1 : 0 ) );
+            SetRiskAction(i, (Property.GetValueString() == ZAGlobal::GetYesFromArrayYesNo() ? 1 : 0));
         }
     }
     // ************************************************************************************************
 
     // JMR-MODIF - Le 9 mai 2007 - Contrôle si l'utilisateur a tenté de renommer une règle.
     // Si c'est le cas, réetablit le nom d'origine.
-    if ( Property.GetCategoryID() == ZS_BP_PROP_RULES )
+    if (Property.GetCategoryID() == ZS_BP_PROP_RULES)
     {
-        int Index = ( Property.GetItemID() - Z_RULE_NAME ) / _MaxRulesSize;
+        int Index = (Property.GetItemID() - Z_RULE_NAME) / _MaxRulesSize;
 
-        if ( m_Rules.GetRuleName( Index ) != Property.GetValueString() )
+        if (m_Rules.GetRuleName(Index) != Property.GetValueString())
         {
-            Property.SetValueString( m_Rules.GetRuleName( Index ) );
+            Property.SetValueString(m_Rules.GetRuleName(Index));
         }
     }
 
-    if ( Property.GetCategoryID() >= ZS_BP_PROP_COMBINATION &&
-         Property.GetCategoryID() <= ZS_BP_PROP_COMBINATION + GetCombinationCount() )
+    if (Property.GetCategoryID() >= ZS_BP_PROP_COMBINATION &&
+        Property.GetCategoryID() <= ZS_BP_PROP_COMBINATION + GetCombinationCount())
     {
         int i = Property.GetCategoryID() - ZS_BP_PROP_COMBINATION;
 
-        switch( Property.GetItemID() - ( i * _MaxCombinationListSize ) )
+        switch (Property.GetItemID() - (i * _MaxCombinationListSize))
         {
             case Z_COMBINATION_NAME:
             {
-                SetCombinationName( Property.GetCategoryID() - ZS_BP_PROP_COMBINATION,
-                                    Property.GetValueString() );
+                SetCombinationName(Property.GetCategoryID() - ZS_BP_PROP_COMBINATION,
+                                   Property.GetValueString());
                 break;
             }
 
             case Z_COMBINATION_DELIVERABLES:
             {
-                SetCombinationDeliverables( Property.GetCategoryID() - ZS_BP_PROP_COMBINATION,
-                                            Property.GetValueString() );
+                SetCombinationDeliverables(Property.GetCategoryID() - ZS_BP_PROP_COMBINATION,
+                                           Property.GetValueString());
                 break;
             }
 
             case Z_COMBINATION_ACTIVATION_PERC:
             {
-                SetCombinationActivationPerc( Property.GetCategoryID() - ZS_BP_PROP_COMBINATION,
-                                              Property.GetValueFloat() );
+                SetCombinationActivationPerc(Property.GetCategoryID() - ZS_BP_PROP_COMBINATION,
+                                             Property.GetValueFloat());
                 break;
             }
 
             case Z_COMBINATION_MASTER:
             {
-                SetCombinationMaster( Property.GetCategoryID() - ZS_BP_PROP_COMBINATION,
-                                      Property.GetValueString() );
+                SetCombinationMaster(Property.GetCategoryID() - ZS_BP_PROP_COMBINATION,
+                                     Property.GetValueString());
                 break;
             }
         }
     }
 
-    if ( Property.GetCategoryID() == ZS_BP_PROP_RULELIST )
+    if (Property.GetCategoryID() == ZS_BP_PROP_RULELIST)
     {
         // If not empty, add this new rule
-        if ( !Property.GetValueString().IsEmpty() )
+        if (!Property.GetValueString().IsEmpty())
         {
-            AddRule( Property.GetValueString() );
+            AddRule(Property.GetValueString());
         }
     }
 
-    if ( Property.GetCategoryID() == ZS_BP_PROP_TASKLIST )
+    if (Property.GetCategoryID() == ZS_BP_PROP_TASKLIST)
     {
         // If not empty, add this new task
-        if ( !Property.GetValueString().IsEmpty() )
+        if (!Property.GetValueString().IsEmpty())
         {
-            AddTask( Property.GetValueString() );
+            AddTask(Property.GetValueString());
         }
     }
 
-    if ( Property.GetCategoryID() == ZS_BP_PROP_DECISIONLIST )
+    if (Property.GetCategoryID() == ZS_BP_PROP_DECISIONLIST)
     {
         // If not empty, add this new task
-        if ( !Property.GetValueString().IsEmpty() )
+        if (!Property.GetValueString().IsEmpty())
         {
-            AddDecision( Property.GetValueString() );
+            AddDecision(Property.GetValueString());
         }
     }
 
@@ -2212,63 +2209,63 @@ bool ZBBPProcedureSymbol::SaveProperty( ZBProperty& Property )
     return true;
 }
 
-bool ZBBPProcedureSymbol::CheckPropertyValue( ZBProperty& Property, CString& value, ZBPropertySet& Properties )
+bool ZBBPProcedureSymbol::CheckPropertyValue(ZBProperty& Property, CString& value, ZBPropertySet& Properties)
 {
-    return ZBSymbol::CheckPropertyValue( Property, value, Properties );
+    return ZBSymbol::CheckPropertyValue(Property, value, Properties);
 }
 
-bool ZBBPProcedureSymbol::ProcessExtendedInput( ZBProperty&        Property,
-                                                CString&        value,
-                                                ZBPropertySet&    Properties,
-                                                bool&            Refresh )
+bool ZBBPProcedureSymbol::ProcessExtendedInput(ZBProperty&        Property,
+                                               CString&        value,
+                                               ZBPropertySet&    Properties,
+                                               bool&            Refresh)
 {
     // ****************************************************************************************************
     // JMR-MODIF - Le 13 juin 2007 - Ajout de la prise en charge des risques.
 
-    if ( Property.GetCategoryID() >= ZS_BP_PROP_RISK &&
-         Property.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount() )
+    if (Property.GetCategoryID() >= ZS_BP_PROP_RISK &&
+        Property.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount())
     {
-        int            i                = Property.GetCategoryID() - ZS_BP_PROP_RISK;
-        CODModel*    pModel            = GetRootModel();
-        CString        CurrencySymbol    = ZAGlobal::GetLocaleCurrency();
+        int            i = Property.GetCategoryID() - ZS_BP_PROP_RISK;
+        CODModel*    pModel = GetRootModel();
+        CString        CurrencySymbol = ZAGlobal::GetLocaleCurrency();
 
-        if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) )
+        if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
         {
-            CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetDocument();
+            CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
 
-            if ( pDoc && ISA( pDoc, ZDProcessGraphModelDoc ) )
+            if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
             {
                 // Retreive the model's currency symbol
-                CurrencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetCurrencySymbol();
+                CurrencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
             }
         }
 
-        CString s_NoRiskType = _T( "" );
-        s_NoRiskType.LoadString( IDS_NO_RISK_TYPE );
+        CString s_NoRiskType = _T("");
+        s_NoRiskType.LoadString(IDS_NO_RISK_TYPE);
 
-        ZVRiskOptionsDlg m_RiskOptions( GetRiskName( i ),
-                                        GetRiskDesc( i ),
-                                        ( GetRiskType( i ).IsEmpty() ) ? s_NoRiskType : GetRiskType( i ),
-                                        GetRiskImpact( i ),
-                                        GetRiskProbability( i ),
-                                        GetRiskUE( i ),
-                                        GetRiskPOA( i ),
-                                        GetRiskAction( i ),
-                                        CurrencySymbol );
+        ZVRiskOptionsDlg m_RiskOptions(GetRiskName(i),
+                                       GetRiskDesc(i),
+                                       (GetRiskType(i).IsEmpty()) ? s_NoRiskType : GetRiskType(i),
+                                       GetRiskImpact(i),
+                                       GetRiskProbability(i),
+                                       GetRiskUE(i),
+                                       GetRiskPOA(i),
+                                       GetRiskAction(i),
+                                       CurrencySymbol);
 
-        if ( m_RiskOptions.DoModal() == IDOK )
+        if (m_RiskOptions.DoModal() == IDOK)
         {
-            SetRiskName( i, m_RiskOptions.GetRiskTitle() );
-            SetRiskDesc( i, m_RiskOptions.GetRiskDescription() );
-            SetRiskType( i, m_RiskOptions.GetRiskType() );
-            SetRiskImpact( i, m_RiskOptions.GetRiskImpact() );
-            SetRiskProbability( i, m_RiskOptions.GetRiskProbability() );
-            SetRiskSeverity( i, m_RiskOptions.GetRiskSeverity() );
-            SetRiskUE( i, m_RiskOptions.GetRiskUE() );
-            SetRiskPOA( i, m_RiskOptions.GetRiskPOA() );
-            SetRiskAction( i, m_RiskOptions.GetRiskAction() );
+            SetRiskName(i, m_RiskOptions.GetRiskTitle());
+            SetRiskDesc(i, m_RiskOptions.GetRiskDescription());
+            SetRiskType(i, m_RiskOptions.GetRiskType());
+            SetRiskImpact(i, m_RiskOptions.GetRiskImpact());
+            SetRiskProbability(i, m_RiskOptions.GetRiskProbability());
+            SetRiskSeverity(i, m_RiskOptions.GetRiskSeverity());
+            SetRiskUE(i, m_RiskOptions.GetRiskUE());
+            SetRiskPOA(i, m_RiskOptions.GetRiskPOA());
+            SetRiskAction(i, m_RiskOptions.GetRiskAction());
 
-            SetModifiedFlag( TRUE );
+            SetModifiedFlag(TRUE);
 
             Refresh = true;
 
@@ -2279,32 +2276,32 @@ bool ZBBPProcedureSymbol::ProcessExtendedInput( ZBProperty&        Property,
 
     CODModel * pModel = GetOwnerModel();
 
-    if ( Property.GetCategoryID() == ZS_BP_PROP_UNIT && Property.GetItemID() == Z_UNIT_NAME )
+    if (Property.GetCategoryID() == ZS_BP_PROP_UNIT && Property.GetItemID() == Z_UNIT_NAME)
     {
-        if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) )
+        if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
         {
-            ZVSelectUserGroupDlg dlg( IDS_SELECTAGROUP_T,
-                                      dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetMainUserGroup(),
-                                      true,    // Allow group selection
-                                      false ); // Doesn't allow role selection
+            ZVSelectUserGroupDlg dlg(IDS_SELECTAGROUP_T,
+                                     dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetMainUserGroup(),
+                                     true,    // Allow group selection
+                                     false); // Doesn't allow role selection
 
-            if ( dlg.DoModal() == IDOK )
+            if (dlg.DoModal() == IDOK)
             {
                 ZBUserEntity* pUserEntity = dlg.GetSelectedUserEntity();
 
-                if ( pUserEntity )
+                if (pUserEntity)
                 {
                     value = pUserEntity->GetEntityName();
 
                     // And change the unit GUID of the disable property
-                    ZBPropertyIterator i( &Properties );
+                    ZBPropertyIterator i(&Properties);
                     ZBProperty* pProp;
 
-                    for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+                    for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
                     {
-                        if ( pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_GUID )
+                        if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_GUID)
                         {
-                            pProp->SetValueString( pUserEntity->GetGUID() );
+                            pProp->SetValueString(pUserEntity->GetGUID());
                             break;
                         }
                     }
@@ -2314,24 +2311,24 @@ bool ZBBPProcedureSymbol::ProcessExtendedInput( ZBProperty&        Property,
             }
         }
     }
-    else if ( Property.GetCategoryID() >= ZS_BP_PROP_COMBINATION &&
-              Property.GetCategoryID() <= ZS_BP_PROP_COMBINATION + GetCombinationCount() )
+    else if (Property.GetCategoryID() >= ZS_BP_PROP_COMBINATION &&
+             Property.GetCategoryID() <= ZS_BP_PROP_COMBINATION + GetCombinationCount())
     {
         int i = Property.GetCategoryID() - ZS_BP_PROP_COMBINATION;
 
-        switch( Property.GetItemID() - ( i * _MaxCombinationListSize ) )
+        switch (Property.GetItemID() - (i * _MaxCombinationListSize))
         {
             case Z_COMBINATION_DELIVERABLES:
             {
                 // Get the deliverables
                 CString EnteringDeliverables;
-                GetEnteringUpDeliverable( EnteringDeliverables );
-                CString AvailableDeliverables = GetAvailableDeliverables( EnteringDeliverables );
+                GetEnteringUpDeliverable(EnteringDeliverables);
+                CString AvailableDeliverables = GetAvailableDeliverables(EnteringDeliverables);
 
                 // Call the dialog
-                ZVAddRemoveCombinationDeliverableDlg dlg( AvailableDeliverables, value );
+                ZVAddRemoveCombinationDeliverableDlg dlg(AvailableDeliverables, value);
 
-                if ( dlg.DoModal() == IDOK )
+                if (dlg.DoModal() == IDOK)
                 {
                     value = dlg.GetDeliverables();
                     return true;
@@ -2342,9 +2339,9 @@ bool ZBBPProcedureSymbol::ProcessExtendedInput( ZBProperty&        Property,
 
             case Z_COMBINATION_MASTER:
             {
-                ZVChooseMasterDeliverable dlg( GetCombinationDeliverables( i ), value );
+                ZVChooseMasterDeliverable dlg(GetCombinationDeliverables(i), value);
 
-                if ( dlg.DoModal() == IDOK )
+                if (dlg.DoModal() == IDOK)
                 {
                     value = dlg.GetMaster();
                     return true;
@@ -2355,32 +2352,32 @@ bool ZBBPProcedureSymbol::ProcessExtendedInput( ZBProperty&        Property,
         }
     }
 
-    return ZBSymbol::ProcessExtendedInput( Property, value, Properties, Refresh );
+    return ZBSymbol::ProcessExtendedInput(Property, value, Properties, Refresh);
 }
 
-bool ZBBPProcedureSymbol::ProcessMenuCommand( int                MenuCommand,
-                                              ZBProperty&        Property,
-                                              CString&            value,
-                                              ZBPropertySet&    Properties,
-                                              bool&                Refresh )
+bool ZBBPProcedureSymbol::ProcessMenuCommand(int                MenuCommand,
+                                             ZBProperty&        Property,
+                                             CString&            value,
+                                             ZBPropertySet&    Properties,
+                                             bool&                Refresh)
 {
     // ************************************************************************************************************
     // JMR-MODIF - Le 10 juin - Ajout du code pour traitement du menu des risques.
 
-    if ( Property.GetCategoryID() >= ZS_BP_PROP_RISK &&
-         Property.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount() )
+    if (Property.GetCategoryID() >= ZS_BP_PROP_RISK &&
+        Property.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount())
     {
-        switch( MenuCommand )
+        switch (MenuCommand)
         {
             case ID_ADD_NEWRISK:
             {
-                OnAddNewRisk( Property, value, Properties, Refresh );
+                OnAddNewRisk(Property, value, Properties, Refresh);
                 break;
             }
 
             case ID_DEL_CURRENTRISK:
             {
-                OnDelCurrentRisk( Property, value, Properties, Refresh );
+                OnDelCurrentRisk(Property, value, Properties, Refresh);
                 break;
             }
 
@@ -2394,32 +2391,32 @@ bool ZBBPProcedureSymbol::ProcessMenuCommand( int                MenuCommand,
     }
     // ************************************************************************************************************
 
-    if ( Property.GetCategoryID() >= ZS_BP_PROP_COMBINATION &&
-         Property.GetCategoryID() <= ZS_BP_PROP_COMBINATION + GetCombinationCount() )
+    if (Property.GetCategoryID() >= ZS_BP_PROP_COMBINATION &&
+        Property.GetCategoryID() <= ZS_BP_PROP_COMBINATION + GetCombinationCount())
     {
-        switch( MenuCommand )
+        switch (MenuCommand)
         {
             case ID_ADD_NEWCOMBINATION:
             {
-                OnAddNewCombination( Property, value, Properties, Refresh );
+                OnAddNewCombination(Property, value, Properties, Refresh);
                 break;
             }
 
             case ID_DEL_CURRENTCOMBINATION:
             {
-                OnDelCurrentCombination( Property, value, Properties, Refresh );
+                OnDelCurrentCombination(Property, value, Properties, Refresh);
                 break;
             }
 
             case ID_ADD_DELIVERABLE_COMBINATION:
             {
-                OnAddDeliverableCombination( Property, value, Properties, Refresh );
+                OnAddDeliverableCombination(Property, value, Properties, Refresh);
                 break;
             }
 
             case ID_DEL_DELIVERABLE_COMBINATION:
             {
-                OnDelDeliverableCombination( Property, value, Properties, Refresh );
+                OnDelDeliverableCombination(Property, value, Properties, Refresh);
                 break;
             }
 
@@ -2435,15 +2432,15 @@ bool ZBBPProcedureSymbol::ProcessMenuCommand( int                MenuCommand,
     // ************************************************************************************************************
     // JMR-MODIF - Le 28 novembre 2006 - Ajout du code pour traitement de la fonction supprimer du menu des règles.
 
-    if ( Property.GetCategoryID() == ZS_BP_PROP_RULES )
+    if (Property.GetCategoryID() == ZS_BP_PROP_RULES)
     {
-        switch( MenuCommand )
+        switch (MenuCommand)
         {
             case ID_DEL_CURRENTRULE:
             {
-                int Index = ( Property.GetItemID() - Z_RULE_NAME ) / _MaxRulesSize;
+                int Index = (Property.GetItemID() - Z_RULE_NAME) / _MaxRulesSize;
 
-                m_Rules.DeleteRule( Index );
+                m_Rules.DeleteRule(Index);
 
                 // JMR-MODIF - Le 8 mai 2007 - Demande le rafraîchissement après exécution de l'opération.
                 Refresh = true;
@@ -2459,52 +2456,52 @@ bool ZBBPProcedureSymbol::ProcessMenuCommand( int                MenuCommand,
     }
     // ************************************************************************************************************
 
-    return ZBSymbol::ProcessMenuCommand( MenuCommand, Property, value, Properties, Refresh );
+    return ZBSymbol::ProcessMenuCommand(MenuCommand, Property, value, Properties, Refresh);
 }
 
-bool ZBBPProcedureSymbol::OnPostPropertyChanged( ZBProperty& Property, ZBPropertySet& Properties, bool& Refresh )
+bool ZBBPProcedureSymbol::OnPostPropertyChanged(ZBProperty& Property, ZBPropertySet& Properties, bool& Refresh)
 {
     // Only local symbol have access to properties
-    if ( !IsLocal() )
+    if (!IsLocal())
     {
         return false;
     }
 
     bool RetValue = false;
 
-    if ( Property.GetCategoryID() >= ZS_BP_PROP_COMBINATION &&
-         Property.GetCategoryID() <= ZS_BP_PROP_COMBINATION + GetCombinationCount() )
+    if (Property.GetCategoryID() >= ZS_BP_PROP_COMBINATION &&
+        Property.GetCategoryID() <= ZS_BP_PROP_COMBINATION + GetCombinationCount())
     {
         int i = Property.GetCategoryID() - ZS_BP_PROP_COMBINATION;
 
-        switch( Property.GetItemID() - ( i * _MaxCombinationListSize ) )
+        switch (Property.GetItemID() - (i * _MaxCombinationListSize))
         {
             case Z_COMBINATION_DELIVERABLES:
             {
                 float MaxPercent =
-                    GetMaxActivationPerc( GetCombinationMaster( Property.GetCategoryID() - ZS_BP_PROP_COMBINATION ) );
+                    GetMaxActivationPerc(GetCombinationMaster(Property.GetCategoryID() - ZS_BP_PROP_COMBINATION));
 
                 // Now sets the right value to the right property
-                ZBPropertyIterator s( &Properties );
+                ZBPropertyIterator s(&Properties);
                 ZBProperty* pProp;
                 bool bFound = false;
 
-                for ( pProp = s.GetFirst(); pProp && bFound == false; pProp = s.GetNext() )
+                for (pProp = s.GetFirst(); pProp && bFound == false; pProp = s.GetNext())
                 {
-                    if ( !pProp || ( ( pProp->GetCategoryID() - ZS_BP_PROP_COMBINATION ) != i ) )
+                    if (!pProp || ((pProp->GetCategoryID() - ZS_BP_PROP_COMBINATION) != i))
                     {
                         continue;
                     }
 
-                    if ( pProp->GetItemID() - ( i * _MaxCombinationListSize) == Z_COMBINATION_ACTIVATION_PERC )
+                    if (pProp->GetItemID() - (i * _MaxCombinationListSize) == Z_COMBINATION_ACTIVATION_PERC)
                     {
-                        pProp->SetValueFloat( MaxPercent );
+                        pProp->SetValueFloat(MaxPercent);
                         bFound = true;
                     }
                 }
 
                 // Change the return value if we found
-                if ( bFound )
+                if (bFound)
                 {
                     RetValue = true;
                 }
@@ -2518,37 +2515,37 @@ bool ZBBPProcedureSymbol::OnPostPropertyChanged( ZBProperty& Property, ZBPropert
             }
         }
     }
-    else if ( Property.GetCategoryID() == ZS_BP_PROP_UNIT &&
-              Property.GetItemID() == Z_UNIT_NAME )
+    else if (Property.GetCategoryID() == ZS_BP_PROP_UNIT &&
+             Property.GetItemID() == Z_UNIT_NAME)
     {
         // Run trough the set of properties and changed the unit cost
         // to the value of the property
-        ZBPropertyIterator i( &Properties );
+        ZBPropertyIterator i(&Properties);
         ZBProperty* pProp;
         CString GUID;
 
-        for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+        for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
         {
-            if ( pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_GUID )
+            if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_GUID)
             {
                 GUID = pProp->GetValueString();
                 break;
             }
         }
 
-        if ( !GUID.IsEmpty() )
+        if (!GUID.IsEmpty())
         {
-            for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+            for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
             {
-                if ( pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_COST )
+                if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_COST)
                 {
                     bool Error;
-                    float UnitCost = RetreiveUnitCost( GUID, Error );
+                    float UnitCost = RetreiveUnitCost(GUID, Error);
 
-                    if ( Error == false )
+                    if (Error == false)
                     {
                         // If the previous value is different
-                        pProp->SetValueFloat( UnitCost );
+                        pProp->SetValueFloat(UnitCost);
 
                         // Change the return value
                         RetValue = true;
@@ -2559,7 +2556,7 @@ bool ZBBPProcedureSymbol::OnPostPropertyChanged( ZBProperty& Property, ZBPropert
             }
         }
     }
-    else if ( Property.GetCategoryID() == ZS_BP_PROP_RULELIST )
+    else if (Property.GetCategoryID() == ZS_BP_PROP_RULELIST)
     {
         // Change the return value to reload the properties
         // We need to reload since the rulelist has an empty task.
@@ -2571,44 +2568,44 @@ bool ZBBPProcedureSymbol::OnPostPropertyChanged( ZBProperty& Property, ZBPropert
         // To change the enable flag, we need to check if it is a new
         // property that need to be enabled or not
         // Then we need to insure that only one empty property is enable
-        ZBPropertyIterator i( &Properties );
+        ZBPropertyIterator i(&Properties);
         ZBProperty* pProp;
         size_t        CounterEnableEmpty = 0;
 
-        for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+        for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
         {
-            if ( pProp->GetCategoryID() == ZS_BP_PROP_RULELIST )
+            if (pProp->GetCategoryID() == ZS_BP_PROP_RULELIST)
             {
                 // If the string is not empty, first, sets the enable flag to true
-                if ( !pProp->GetValueString().IsEmpty() )
+                if (!pProp->GetValueString().IsEmpty())
                 {
-                    pProp->SetEnable( true );
+                    pProp->SetEnable(true);
                 }
 
                 // If the string is empty
                 // Check if he has the enable flag and add it to the counter
                 // If the counter is not equal to 1, then enable or disable it
-                if ( pProp->GetValueString().IsEmpty() )
+                if (pProp->GetValueString().IsEmpty())
                 {
-                    if ( pProp->GetEnable() == true )
+                    if (pProp->GetEnable() == true)
                     {
                         ++CounterEnableEmpty;
                     }
                     else
                     {
                         // If not at least one empty element
-                        if ( CounterEnableEmpty < 1 )
+                        if (CounterEnableEmpty < 1)
                         {
-                            pProp->SetEnable( true );
+                            pProp->SetEnable(true);
                             ++CounterEnableEmpty;
                         }
                     }
 
                     // Now if the counter is greather than 1, then you need to disable the empty element
-                    if ( CounterEnableEmpty > 1 )
+                    if (CounterEnableEmpty > 1)
                     {
                         --CounterEnableEmpty;
-                        pProp->SetEnable( false );
+                        pProp->SetEnable(false);
                     }
                 }
             }
@@ -2616,7 +2613,7 @@ bool ZBBPProcedureSymbol::OnPostPropertyChanged( ZBProperty& Property, ZBPropert
 
         RetValue = true;
     }
-    else if ( Property.GetCategoryID() == ZS_BP_PROP_TASKLIST )
+    else if (Property.GetCategoryID() == ZS_BP_PROP_TASKLIST)
     {
         // Change the return value to reload the properties
         // We need to reload since the tasklist has an empty task.
@@ -2628,44 +2625,44 @@ bool ZBBPProcedureSymbol::OnPostPropertyChanged( ZBProperty& Property, ZBPropert
         // To change the enable flag, we need to check if it is a new
         // property that need to be enabled or not
         // Then we need to insure that only one empty property is enable
-        ZBPropertyIterator i( &Properties );
+        ZBPropertyIterator i(&Properties);
         ZBProperty* pProp;
         size_t        CounterEnableEmpty = 0;
 
-        for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+        for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
         {
-            if ( pProp->GetCategoryID() == ZS_BP_PROP_TASKLIST )
+            if (pProp->GetCategoryID() == ZS_BP_PROP_TASKLIST)
             {
                 // If the string is not empty, first, sets the enable flag to true
-                if ( !pProp->GetValueString().IsEmpty() )
+                if (!pProp->GetValueString().IsEmpty())
                 {
-                    pProp->SetEnable( true );
+                    pProp->SetEnable(true);
                 }
 
                 // If the string is empty
                 // Check if he has the enable flag and add it to the counter
                 // If the counter is not equal to 1, then enable or disable it
-                if ( pProp->GetValueString().IsEmpty() )
+                if (pProp->GetValueString().IsEmpty())
                 {
-                    if ( pProp->GetEnable() == true )
+                    if (pProp->GetEnable() == true)
                     {
                         ++CounterEnableEmpty;
                     }
                     else
                     {
                         // If not at least one empty element
-                        if ( CounterEnableEmpty < 1 )
+                        if (CounterEnableEmpty < 1)
                         {
-                            pProp->SetEnable( true );
+                            pProp->SetEnable(true);
                             ++CounterEnableEmpty;
                         }
                     }
 
                     // Now if the counter is greather than 1, then you need to disable the empty element
-                    if ( CounterEnableEmpty > 1 )
+                    if (CounterEnableEmpty > 1)
                     {
                         --CounterEnableEmpty;
-                        pProp->SetEnable( false );
+                        pProp->SetEnable(false);
                     }
                 }
             }
@@ -2673,7 +2670,7 @@ bool ZBBPProcedureSymbol::OnPostPropertyChanged( ZBProperty& Property, ZBPropert
 
         RetValue = true;
     }
-    else if ( Property.GetCategoryID() == ZS_BP_PROP_DECISIONLIST )
+    else if (Property.GetCategoryID() == ZS_BP_PROP_DECISIONLIST)
     {
         // Change the return value to reload the properties
         // We need to reload since the decisionlist has an empty decision.
@@ -2685,44 +2682,44 @@ bool ZBBPProcedureSymbol::OnPostPropertyChanged( ZBProperty& Property, ZBPropert
         // To change the enable flag, we need to check if it is a new
         // property that need to be enabled or not
         // Then we need to insure that only one empty property is enable
-        ZBPropertyIterator i( &Properties );
+        ZBPropertyIterator i(&Properties);
         ZBProperty* pProp;
         size_t        CounterEnableEmpty = 0;
 
-        for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+        for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
         {
-            if ( pProp->GetCategoryID() == ZS_BP_PROP_DECISIONLIST )
+            if (pProp->GetCategoryID() == ZS_BP_PROP_DECISIONLIST)
             {
                 // If the string is not empty, first, sets the enable flag to true
-                if ( !pProp->GetValueString().IsEmpty() )
+                if (!pProp->GetValueString().IsEmpty())
                 {
-                    pProp->SetEnable( true );
+                    pProp->SetEnable(true);
                 }
 
                 // If the string is empty
                 // Check if he has the enable flag and add it to the counter
                 // If the counter is not equal to 1, then enable or disable it
-                if ( pProp->GetValueString().IsEmpty() )
+                if (pProp->GetValueString().IsEmpty())
                 {
-                    if ( pProp->GetEnable() == true )
+                    if (pProp->GetEnable() == true)
                     {
                         ++CounterEnableEmpty;
                     }
                     else
                     {
                         // If not at least one empty element
-                        if ( CounterEnableEmpty < 1 )
+                        if (CounterEnableEmpty < 1)
                         {
-                            pProp->SetEnable( true );
+                            pProp->SetEnable(true);
                             ++CounterEnableEmpty;
                         }
                     }
 
                     // Now if the counter is greather than 1, then you need to disable the empty element
-                    if ( CounterEnableEmpty > 1 )
+                    if (CounterEnableEmpty > 1)
                     {
                         --CounterEnableEmpty;
-                        pProp->SetEnable( false );
+                        pProp->SetEnable(false);
                     }
                 }
             }
@@ -2731,40 +2728,40 @@ bool ZBBPProcedureSymbol::OnPostPropertyChanged( ZBProperty& Property, ZBPropert
         RetValue = true;
     }
 
-    if ( RetValue == false )
+    if (RetValue == false)
     {
-        return ZBSymbol::OnPostPropertyChanged( Property, Properties, Refresh );
+        return ZBSymbol::OnPostPropertyChanged(Property, Properties, Refresh);
     }
 
     return RetValue;
 }
 
-bool ZBBPProcedureSymbol::OnDropInternalPropertyItem( ZBProperty&        SrcProperty,
-                                                      ZBProperty&        DstProperty,
-                                                      bool                Top2Down,
-                                                      ZBPropertySet&    Properties )
+bool ZBBPProcedureSymbol::OnDropInternalPropertyItem(ZBProperty&        SrcProperty,
+                                                     ZBProperty&        DstProperty,
+                                                     bool                Top2Down,
+                                                     ZBPropertySet&    Properties)
 {
     // Call the utility function for swaping two property items
-    bool RetValue = ::SwapInternalPropertyItem( SrcProperty,
-                                                DstProperty,
-                                                Top2Down,
-                                                Properties,
-                                                ZS_BP_PROP_TASKLIST );
+    bool RetValue = ::SwapInternalPropertyItem(SrcProperty,
+                                               DstProperty,
+                                               Top2Down,
+                                               Properties,
+                                               ZS_BP_PROP_TASKLIST);
 
     // If done, return
-    if ( RetValue )
+    if (RetValue)
     {
         return true;
     }
 
-    RetValue = ::SwapInternalPropertyItem( SrcProperty,
-                                           DstProperty,
-                                           Top2Down,
-                                           Properties,
-                                           ZS_BP_PROP_RULELIST );
+    RetValue = ::SwapInternalPropertyItem(SrcProperty,
+                                          DstProperty,
+                                          Top2Down,
+                                          Properties,
+                                          ZS_BP_PROP_RULELIST);
 
     // If done, return
-    if ( RetValue )
+    if (RetValue)
     {
         return true;
     }
@@ -2772,45 +2769,45 @@ bool ZBBPProcedureSymbol::OnDropInternalPropertyItem( ZBProperty&        SrcProp
     // ********************************************************************************************
     // JMR-MODIF - Le 10 décembre 2006 - Ajout du code pour permettre le glisser-coller des règles.
 
-    RetValue = ::SwapInternalPropertyItem( SrcProperty,
-                                           DstProperty,
-                                           Top2Down,
-                                           Properties,
-                                           ZS_BP_PROP_RULES );
+    RetValue = ::SwapInternalPropertyItem(SrcProperty,
+                                          DstProperty,
+                                          Top2Down,
+                                          Properties,
+                                          ZS_BP_PROP_RULES);
 
     // If done, return
-    if ( RetValue )
+    if (RetValue)
     {
-        int SrcIndex = ( SrcProperty.GetItemID() - Z_RULE_NAME ) / _MaxRulesSize;
-        int DstIndex = ( DstProperty.GetItemID() - Z_RULE_NAME ) / _MaxRulesSize;
+        int SrcIndex = (SrcProperty.GetItemID() - Z_RULE_NAME) / _MaxRulesSize;
+        int DstIndex = (DstProperty.GetItemID() - Z_RULE_NAME) / _MaxRulesSize;
 
-        CString SrcRuleName = m_Rules.GetRuleName( SrcIndex );
-        CString SrcRuleDesc = m_Rules.GetRuleDescription( SrcIndex );
-        CString SrcRuleGUID = m_Rules.GetRuleGUID( SrcIndex );
+        CString SrcRuleName = m_Rules.GetRuleName(SrcIndex);
+        CString SrcRuleDesc = m_Rules.GetRuleDescription(SrcIndex);
+        CString SrcRuleGUID = m_Rules.GetRuleGUID(SrcIndex);
 
-        CString DstRuleName = m_Rules.GetRuleName( DstIndex );
-        CString DstRuleDesc = m_Rules.GetRuleDescription( DstIndex );
-        CString DstRuleGUID = m_Rules.GetRuleGUID( DstIndex );
+        CString DstRuleName = m_Rules.GetRuleName(DstIndex);
+        CString DstRuleDesc = m_Rules.GetRuleDescription(DstIndex);
+        CString DstRuleGUID = m_Rules.GetRuleGUID(DstIndex);
 
-        m_Rules.SetRuleName( SrcIndex, DstRuleName );
-        m_Rules.SetRuleDescription( SrcIndex, DstRuleDesc );
-        m_Rules.SetRuleGUID( SrcIndex, DstRuleGUID );
+        m_Rules.SetRuleName(SrcIndex, DstRuleName);
+        m_Rules.SetRuleDescription(SrcIndex, DstRuleDesc);
+        m_Rules.SetRuleGUID(SrcIndex, DstRuleGUID);
 
-        m_Rules.SetRuleName( DstIndex, SrcRuleName );
-        m_Rules.SetRuleDescription( DstIndex, SrcRuleDesc );
-        m_Rules.SetRuleGUID( DstIndex, SrcRuleGUID );
+        m_Rules.SetRuleName(DstIndex, SrcRuleName);
+        m_Rules.SetRuleDescription(DstIndex, SrcRuleDesc);
+        m_Rules.SetRuleGUID(DstIndex, SrcRuleGUID);
 
         return true;
     }
     // ********************************************************************************************
 
     // Otherwise, try to do it for Decisions
-    return ::SwapInternalPropertyItem( SrcProperty, DstProperty, Top2Down, Properties, ZS_BP_PROP_DECISIONLIST );
+    return ::SwapInternalPropertyItem(SrcProperty, DstProperty, Top2Down, Properties, ZS_BP_PROP_DECISIONLIST);
 }
 
-float ZBBPProcedureSymbol::GetMaxActivationPerc( const CString Master )
+float ZBBPProcedureSymbol::GetMaxActivationPerc(const CString Master)
 {
-    if ( Master.IsEmpty() )
+    if (Master.IsEmpty())
     {
         return 0;
     }
@@ -2821,22 +2818,22 @@ float ZBBPProcedureSymbol::GetMaxActivationPerc( const CString Master )
     CODEdgeArray Edges;
 
     // Retreive all entering Up edges of the procedure
-    if ( GetEnteringUpDeliverable( Edges ) > 0 )
+    if (GetEnteringUpDeliverable(Edges) > 0)
     {
-        for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
+        for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
         {
-            IODEdge* pIEdge = Edges.GetAt( nEdgeIdx );
-            ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>( pIEdge );
+            IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
+            ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
 
             // Test if it is a local symbol
-            if ( !pComp->IsLocal() )
+            if (!pComp->IsLocal())
             {
                 // Locate the local symbol
                 CODComponent* pLocalComp = pComp->GetLocalSymbol();
 
-                if ( pLocalComp && ISA( pLocalComp, ZBDeliverableLinkSymbol ) )
+                if (pLocalComp && ISA(pLocalComp, ZBDeliverableLinkSymbol))
                 {
-                    pComp = dynamic_cast<ZBDeliverableLinkSymbol*>( pLocalComp );
+                    pComp = dynamic_cast<ZBDeliverableLinkSymbol*>(pLocalComp);
                 }
                 else
                 {
@@ -2844,10 +2841,10 @@ float ZBBPProcedureSymbol::GetMaxActivationPerc( const CString Master )
                 }
             }
 
-            if ( pComp )
+            if (pComp)
             {
                 // Check if the component is the requested master
-                if ( pComp->GetSymbolName() == Master )
+                if (pComp->GetSymbolName() == Master)
                 {
                     MasterQuantity = (double)pComp->GetQuantity();
                 }
@@ -2857,9 +2854,9 @@ float ZBBPProcedureSymbol::GetMaxActivationPerc( const CString Master )
                 // add its quantity to the sum
                 int CombinationCount = GetCombinationCount();
 
-                for ( int i = 0; i < CombinationCount; ++i )
+                for (int i = 0; i < CombinationCount; ++i)
                 {
-                    if ( pComp->GetSymbolName() == GetCombinationMaster( i ) )
+                    if (pComp->GetSymbolName() == GetCombinationMaster(i))
                     {
                         Sum += (double)pComp->GetQuantity();
                     }
@@ -2868,7 +2865,7 @@ float ZBBPProcedureSymbol::GetMaxActivationPerc( const CString Master )
         }
     }
 
-    return (float)( MasterQuantity / Sum );
+    return (float)(MasterQuantity / Sum);
 }
 
 // To calculate the procedure activation,
@@ -2880,33 +2877,33 @@ ZBBPAnnualNumberProperties ZBBPProcedureSymbol::CalculateProcedureActivation()
     CODEdgeArray Edges;
 
     // Retreive all entering Up edges
-    if ( GetEnteringUpDeliverable( Edges ) == 0 )
+    if (GetEnteringUpDeliverable(Edges) == 0)
     {
         return 0;
     }
 
     // Now for each deliverables, we will calculate the max procedure activation
-    ZBBPAnnualNumberProperties ProcedureActivation( 0 );
+    ZBBPAnnualNumberProperties ProcedureActivation(0);
 
-    for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
+    for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
     {
         IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
-        ZBDeliverableLinkSymbol* pDeliverable = static_cast<ZBDeliverableLinkSymbol*>( pIEdge );
+        ZBDeliverableLinkSymbol* pDeliverable = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
 
-        if ( !pDeliverable )
+        if (!pDeliverable)
         {
             continue;
         }
 
         // Test if it is a local symbol
-        if ( !pDeliverable->IsLocal() )
+        if (!pDeliverable->IsLocal())
         {
             // Locate the local symbol
             CODComponent* pComp = pDeliverable->GetLocalSymbol();
 
-            if ( pComp && ISA( pComp, ZBDeliverableLinkSymbol ) )
+            if (pComp && ISA(pComp, ZBDeliverableLinkSymbol))
             {
-                pDeliverable = dynamic_cast<ZBDeliverableLinkSymbol*>( pComp );
+                pDeliverable = dynamic_cast<ZBDeliverableLinkSymbol*>(pComp);
             }
             else
             {
@@ -2919,13 +2916,13 @@ ZBBPAnnualNumberProperties ZBBPProcedureSymbol::CalculateProcedureActivation()
         // If yes, add it to the procedure activation
         int Count = GetCombinationCount();
 
-        for ( int i = 0; i < Count; ++i )
+        for (int i = 0; i < Count; ++i)
         {
-            TRACE1(    _T( "Master = %s" ), GetCombinationMaster( i ) );
-            TRACE1(    _T( "   Livrable = %s\n" ), pDeliverable->GetSymbolName() );
+            TRACE1(_T("Master = %s"), GetCombinationMaster(i));
+            TRACE1(_T("   Livrable = %s\n"), pDeliverable->GetSymbolName());
 
             // If we have a master
-            if ( !GetCombinationMaster( i ).IsEmpty() && GetCombinationMaster(i) == pDeliverable->GetSymbolName() )
+            if (!GetCombinationMaster(i).IsEmpty() && GetCombinationMaster(i) == pDeliverable->GetSymbolName())
             {
                 ProcedureActivation += pDeliverable->GetQuantity();
             }
@@ -2935,24 +2932,24 @@ ZBBPAnnualNumberProperties ZBBPProcedureSymbol::CalculateProcedureActivation()
     return ProcedureActivation;
 }
 
-int ZBBPProcedureSymbol::GetEnteringUpDeliverable( CString& EnteringDeliverables )
+int ZBBPProcedureSymbol::GetEnteringUpDeliverable(CString& EnteringDeliverables)
 {
     int Counter = 0;
     CODEdgeArray Edges;
 
     // Keep only deliverable symbols
-    if ( GetEnteringUpDeliverable( Edges ) > 0 )
+    if (GetEnteringUpDeliverable(Edges) > 0)
     {
         ZBTokenizer token;    // Initialize the token with ; as separator
-        
-        for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
-        {
-            IODEdge* pIEdge = Edges.GetAt( nEdgeIdx );
-            ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>( pIEdge );
 
-            if ( pComp )
+        for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
+        {
+            IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
+            ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+
+            if (pComp)
             {
-                token.AddToken( pComp->GetSymbolName() );
+                token.AddToken(pComp->GetSymbolName());
                 ++Counter;
             }
         }
@@ -2964,17 +2961,17 @@ int ZBBPProcedureSymbol::GetEnteringUpDeliverable( CString& EnteringDeliverables
     return Counter;
 }
 
-int     ZBBPProcedureSymbol::GetEnteringUpDeliverable( CODEdgeArray& Edges )
+int     ZBBPProcedureSymbol::GetEnteringUpDeliverable(CODEdgeArray& Edges)
 {
     // Retreive all entering Up edges of the procedure
-    GetEdgesEntering_Up( Edges );
+    GetEdgesEntering_Up(Edges);
 
     // And also from all referenced procedures
     // and local symbol if we have a referenced symbol
     CODComponentSet* pSet;
     CODComponentSet  InternalSet;
 
-    if ( IsLocal() )
+    if (IsLocal())
     {
         pSet = GetReferenceSymbols();
     }
@@ -2982,61 +2979,61 @@ int     ZBBPProcedureSymbol::GetEnteringUpDeliverable( CODEdgeArray& Edges )
     {
         pSet = GetReferenceSymbols();
 
-        if ( !pSet )
+        if (!pSet)
         {
             pSet = &InternalSet;
         }
 
         CODComponent* pLocalSymbol = GetLocalSymbol();
 
-        if ( pLocalSymbol )
+        if (pLocalSymbol)
         {
-            pSet->Add( pLocalSymbol );
+            pSet->Add(pLocalSymbol);
         }
     }
 
-    if ( pSet && pSet->GetSize() > 0 )
+    if (pSet && pSet->GetSize() > 0)
     {
-        for ( int i = 0; i < pSet->GetSize(); ++i ) 
+        for (int i = 0; i < pSet->GetSize(); ++i)
         {
-            CODComponent* pComp = pSet->GetAt( i );
+            CODComponent* pComp = pSet->GetAt(i);
 
-            if ( pComp && ISA( pComp, ZBBPProcedureSymbol ) )
+            if (pComp && ISA(pComp, ZBBPProcedureSymbol))
             {
                 CODEdgeArray AdditionalEdges;
-                reinterpret_cast<ZBBPProcedureSymbol*>( pComp )->GetEdgesEntering_Up( AdditionalEdges );
+                reinterpret_cast<ZBBPProcedureSymbol*>(pComp)->GetEdgesEntering_Up(AdditionalEdges);
 
                 // Copy additional edges to the principal edges
-                for ( int nEdgeIdx = 0; nEdgeIdx < AdditionalEdges.GetSize(); ++nEdgeIdx )
+                for (int nEdgeIdx = 0; nEdgeIdx < AdditionalEdges.GetSize(); ++nEdgeIdx)
                 {
                     // Get the link 
-                    Edges.AddEdge( AdditionalEdges.GetAt( nEdgeIdx ) );
+                    Edges.AddEdge(AdditionalEdges.GetAt(nEdgeIdx));
                 }
             }
         }
     }
 
     // Keep only deliverable symbols
-    return (int)ZUODSymbolManipulator::KeepOnlyLinksISA( Edges, RUNTIME_CLASS( ZBDeliverableLinkSymbol ) );
+    return (int)ZUODSymbolManipulator::KeepOnlyLinksISA(Edges, RUNTIME_CLASS(ZBDeliverableLinkSymbol));
 }
 
-int ZBBPProcedureSymbol::GetLeavingDownDeliverable( CString& LeavingDeliverables )
+int ZBBPProcedureSymbol::GetLeavingDownDeliverable(CString& LeavingDeliverables)
 {
     int Counter = 0;
     CODEdgeArray Edges;
 
-    if ( GetLeavingDownDeliverable( Edges ) > 0 )
+    if (GetLeavingDownDeliverable(Edges) > 0)
     {
         ZBTokenizer token;    // Initialize the token with ; as separator
-        
-        for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
-        {
-            IODEdge* pIEdge = Edges.GetAt( nEdgeIdx );
-            ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>( pIEdge );
 
-            if ( pComp )
+        for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
+        {
+            IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
+            ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+
+            if (pComp)
             {
-                token.AddToken( pComp->GetSymbolName() );
+                token.AddToken(pComp->GetSymbolName());
                 ++Counter;
             }
         }
@@ -3048,17 +3045,17 @@ int ZBBPProcedureSymbol::GetLeavingDownDeliverable( CString& LeavingDeliverables
     return Counter;
 }
 
-int ZBBPProcedureSymbol::GetLeavingDownDeliverable( CODEdgeArray& Edges )
+int ZBBPProcedureSymbol::GetLeavingDownDeliverable(CODEdgeArray& Edges)
 {
     // Retreive all leaving down edges
-    GetEdgesLeaving_Down( Edges );
+    GetEdgesLeaving_Down(Edges);
 
     // And also from all referenced procedures
     // and local symbol if we have a referenced symbol
     CODComponentSet* pSet;
     CODComponentSet  InternalSet;
 
-    if ( IsLocal() )
+    if (IsLocal())
     {
         pSet = GetReferenceSymbols();
     }
@@ -3066,61 +3063,61 @@ int ZBBPProcedureSymbol::GetLeavingDownDeliverable( CODEdgeArray& Edges )
     {
         pSet = GetReferenceSymbols();
 
-        if ( !pSet )
+        if (!pSet)
         {
             pSet = &InternalSet;
         }
 
         CODComponent* pLocalSymbol = GetLocalSymbol();
 
-        if ( pLocalSymbol )
+        if (pLocalSymbol)
         {
-            pSet->Add( pLocalSymbol );
+            pSet->Add(pLocalSymbol);
         }
     }
 
-    if ( pSet && pSet->GetSize() > 0 )
+    if (pSet && pSet->GetSize() > 0)
     {
-        for ( int i = 0; i < pSet->GetSize(); ++i )
+        for (int i = 0; i < pSet->GetSize(); ++i)
         {
-            CODComponent* pComp = pSet->GetAt( i );
+            CODComponent* pComp = pSet->GetAt(i);
 
-            if ( pComp && ISA( pComp, ZBBPProcedureSymbol ) )
+            if (pComp && ISA(pComp, ZBBPProcedureSymbol))
             {
                 CODEdgeArray AdditionalEdges;
-                reinterpret_cast<ZBBPProcedureSymbol*>( pComp )->GetEdgesLeaving_Down( AdditionalEdges );
+                reinterpret_cast<ZBBPProcedureSymbol*>(pComp)->GetEdgesLeaving_Down(AdditionalEdges);
 
                 // Copy additional edges to the principal edges
-                for ( int nEdgeIdx = 0; nEdgeIdx < AdditionalEdges.GetSize(); ++nEdgeIdx )
+                for (int nEdgeIdx = 0; nEdgeIdx < AdditionalEdges.GetSize(); ++nEdgeIdx)
                 {
                     // Get the link 
-                    Edges.AddEdge( AdditionalEdges.GetAt(nEdgeIdx) );
+                    Edges.AddEdge(AdditionalEdges.GetAt(nEdgeIdx));
                 }
             }
         }
     }
 
     // Keep only deliverable symbols
-    return (int)ZUODSymbolManipulator::KeepOnlyLinksISA( Edges, RUNTIME_CLASS( ZBDeliverableLinkSymbol ) );
+    return (int)ZUODSymbolManipulator::KeepOnlyLinksISA(Edges, RUNTIME_CLASS(ZBDeliverableLinkSymbol));
 }
 
-int     ZBBPProcedureSymbol::GetLeavingRightDeliverable( CString& LeavingDeliverables )
+int     ZBBPProcedureSymbol::GetLeavingRightDeliverable(CString& LeavingDeliverables)
 {
     int Counter = 0;
     CODEdgeArray Edges;
 
-    if ( GetLeavingRightDeliverable( Edges ) > 0 )
+    if (GetLeavingRightDeliverable(Edges) > 0)
     {
         ZBTokenizer token;    // Initialize the token with ; as separator
-        
-        for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
-        {
-            IODEdge* pIEdge = Edges.GetAt( nEdgeIdx );
-            ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>( pIEdge );
 
-            if ( pComp )
+        for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
+        {
+            IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
+            ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+
+            if (pComp)
             {
-                token.AddToken( pComp->GetSymbolName() );
+                token.AddToken(pComp->GetSymbolName());
                 ++Counter;
             }
         }
@@ -3132,17 +3129,17 @@ int     ZBBPProcedureSymbol::GetLeavingRightDeliverable( CString& LeavingDeliver
     return Counter;
 }
 
-int     ZBBPProcedureSymbol::GetLeavingRightDeliverable( CODEdgeArray& Edges )
+int     ZBBPProcedureSymbol::GetLeavingRightDeliverable(CODEdgeArray& Edges)
 {
     // Retreive all leaving right edges
-    GetEdgesLeaving_Right( Edges );
+    GetEdgesLeaving_Right(Edges);
 
     // And also from all referenced procedures
     // and local symbol if we have a referenced symbol
     CODComponentSet* pSet;
     CODComponentSet  InternalSet;
 
-    if ( IsLocal() )
+    if (IsLocal())
     {
         pSet = GetReferenceSymbols();
     }
@@ -3150,61 +3147,61 @@ int     ZBBPProcedureSymbol::GetLeavingRightDeliverable( CODEdgeArray& Edges )
     {
         pSet = GetReferenceSymbols();
 
-        if ( !pSet )
+        if (!pSet)
         {
             pSet = &InternalSet;
         }
 
         CODComponent* pLocalSymbol = GetLocalSymbol();
 
-        if ( pLocalSymbol )
+        if (pLocalSymbol)
         {
-            pSet->Add( pLocalSymbol );
+            pSet->Add(pLocalSymbol);
         }
     }
 
-    if ( pSet && pSet->GetSize() > 0 )
+    if (pSet && pSet->GetSize() > 0)
     {
-        for ( int i = 0; i < pSet->GetSize(); ++i )
+        for (int i = 0; i < pSet->GetSize(); ++i)
         {
-            CODComponent* pComp = pSet->GetAt( i );
+            CODComponent* pComp = pSet->GetAt(i);
 
-            if ( pComp && ISA( pComp, ZBBPProcedureSymbol ) )
+            if (pComp && ISA(pComp, ZBBPProcedureSymbol))
             {
                 CODEdgeArray AdditionalEdges;
-                reinterpret_cast<ZBBPProcedureSymbol*>( pComp )->GetEdgesLeaving_Right( AdditionalEdges );
+                reinterpret_cast<ZBBPProcedureSymbol*>(pComp)->GetEdgesLeaving_Right(AdditionalEdges);
 
                 // Copy additional edges to the principal edges
-                for ( int nEdgeIdx = 0; nEdgeIdx < AdditionalEdges.GetSize(); ++nEdgeIdx )
+                for (int nEdgeIdx = 0; nEdgeIdx < AdditionalEdges.GetSize(); ++nEdgeIdx)
                 {
                     // Get the link 
-                    Edges.AddEdge( AdditionalEdges.GetAt( nEdgeIdx ) );
+                    Edges.AddEdge(AdditionalEdges.GetAt(nEdgeIdx));
                 }
             }
         }
     }
 
     // Keep only deliverable symbols
-    return (int)ZUODSymbolManipulator::KeepOnlyLinksISA( Edges, RUNTIME_CLASS(ZBDeliverableLinkSymbol ) );
+    return (int)ZUODSymbolManipulator::KeepOnlyLinksISA(Edges, RUNTIME_CLASS(ZBDeliverableLinkSymbol));
 }
 
-int     ZBBPProcedureSymbol::GetLeavingLeftDeliverable( CString& LeavingDeliverables )
+int     ZBBPProcedureSymbol::GetLeavingLeftDeliverable(CString& LeavingDeliverables)
 {
     int Counter = 0;
     CODEdgeArray Edges;
 
-    if ( GetLeavingLeftDeliverable( Edges ) > 0 )
+    if (GetLeavingLeftDeliverable(Edges) > 0)
     {
         ZBTokenizer token;    // Initialize the token with ; as separator
-        
-        for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
-        {
-            IODEdge* pIEdge = Edges.GetAt( nEdgeIdx );
-            ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>( pIEdge );
 
-            if ( pComp )
+        for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
+        {
+            IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
+            ZBDeliverableLinkSymbol* pComp = static_cast<ZBDeliverableLinkSymbol*>(pIEdge);
+
+            if (pComp)
             {
-                token.AddToken( pComp->GetSymbolName() );
+                token.AddToken(pComp->GetSymbolName());
                 ++Counter;
             }
         }
@@ -3216,17 +3213,17 @@ int     ZBBPProcedureSymbol::GetLeavingLeftDeliverable( CString& LeavingDelivera
     return Counter;
 }
 
-int     ZBBPProcedureSymbol::GetLeavingLeftDeliverable( CODEdgeArray& Edges )
+int     ZBBPProcedureSymbol::GetLeavingLeftDeliverable(CODEdgeArray& Edges)
 {
     // Retreive all leaving left edges
-    GetEdgesLeaving_Left( Edges );
+    GetEdgesLeaving_Left(Edges);
 
     // And also from all referenced procedures
     // and local symbol if we have a referenced symbol
     CODComponentSet* pSet;
     CODComponentSet  InternalSet;
 
-    if ( IsLocal() )
+    if (IsLocal())
     {
         pSet = GetReferenceSymbols();
     }
@@ -3234,180 +3231,180 @@ int     ZBBPProcedureSymbol::GetLeavingLeftDeliverable( CODEdgeArray& Edges )
     {
         pSet = GetReferenceSymbols();
 
-        if ( !pSet )
+        if (!pSet)
         {
             pSet = &InternalSet;
         }
 
         CODComponent* pLocalSymbol = GetLocalSymbol();
 
-        if ( pLocalSymbol )
+        if (pLocalSymbol)
         {
-            pSet->Add( pLocalSymbol );
+            pSet->Add(pLocalSymbol);
         }
     }
 
-    if ( pSet && pSet->GetSize() > 0 )
+    if (pSet && pSet->GetSize() > 0)
     {
-        for ( int i = 0; i < pSet->GetSize(); ++i )
+        for (int i = 0; i < pSet->GetSize(); ++i)
         {
-            CODComponent* pComp = pSet->GetAt( i );
+            CODComponent* pComp = pSet->GetAt(i);
 
-            if ( pComp && ISA( pComp, ZBBPProcedureSymbol ) )
+            if (pComp && ISA(pComp, ZBBPProcedureSymbol))
             {
                 CODEdgeArray AdditionalEdges;
-                reinterpret_cast<ZBBPProcedureSymbol*>( pComp )->GetEdgesLeaving_Left( AdditionalEdges );
+                reinterpret_cast<ZBBPProcedureSymbol*>(pComp)->GetEdgesLeaving_Left(AdditionalEdges);
 
                 // Copy additional edges to the principal edges
-                for ( int nEdgeIdx = 0; nEdgeIdx < AdditionalEdges.GetSize(); ++nEdgeIdx )
+                for (int nEdgeIdx = 0; nEdgeIdx < AdditionalEdges.GetSize(); ++nEdgeIdx)
                 {
                     // Get the link 
-                    Edges.AddEdge( AdditionalEdges.GetAt( nEdgeIdx ) );
+                    Edges.AddEdge(AdditionalEdges.GetAt(nEdgeIdx));
                 }
             }
         }
     }
 
     // Keep only deliverable symbols
-    return (int)ZUODSymbolManipulator::KeepOnlyLinksISA( Edges, RUNTIME_CLASS( ZBDeliverableLinkSymbol ) );
+    return (int)ZUODSymbolManipulator::KeepOnlyLinksISA(Edges, RUNTIME_CLASS(ZBDeliverableLinkSymbol));
 }
 
-BOOL ZBBPProcedureSymbol::SetSymbolName( const CString value )
+BOOL ZBBPProcedureSymbol::SetSymbolName(const CString value)
 {
-    BOOL bResult = ZBSymbol::SetSymbolName( value );
+    BOOL bResult = ZBSymbol::SetSymbolName(value);
     return bResult;
 }
 
 // Drag and drop methods
-bool ZBBPProcedureSymbol::AcceptDropItem( CObject* pObj, CPoint pt )
+bool ZBBPProcedureSymbol::AcceptDropItem(CObject* pObj, CPoint pt)
 {
     // JMR-MODIF - Le 18 décembre 2006 - Si le symbole n'est pas local, interdit l'opération de glisser-coller.
-    if ( !IsLocal() )
+    if (!IsLocal())
     {
         return false;
     }
 
     // If a user entity
-    if ( pObj && ISA( pObj, ZBUserGroupEntity ) )
+    if (pObj && ISA(pObj, ZBUserGroupEntity))
     {
         return true;
     }
 
     // JMR-MODIF - Le 19 novembre 2006 - Détermine si l'objet reçu est un objet de type règle.
-    if ( pObj && ISA( pObj, ZBLogicalRulesEntity ) )
+    if (pObj && ISA(pObj, ZBLogicalRulesEntity))
     {
         return true;
     }
 
-    return ZBSymbol::AcceptDropItem( pObj, pt );
+    return ZBSymbol::AcceptDropItem(pObj, pt);
 }
 
-bool ZBBPProcedureSymbol::DropItem( CObject* pObj, CPoint pt )
+bool ZBBPProcedureSymbol::DropItem(CObject* pObj, CPoint pt)
 {
-    if ( pObj && ISA( pObj, ZBUserGroupEntity ) )
+    if (pObj && ISA(pObj, ZBUserGroupEntity))
     {
         // First, check if the user group is valid
         CODModel* pModel = GetRootModel();
 
-        if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-             !dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->MainUserGroupIsValid() )
+        if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
+            !dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
         {
             // Cannot delete all combinations
             PSS_MsgBox mBox;
-            mBox.ShowMsgBox( IDS_CANNOTDROP_USERGROUPNOTINLINE, MB_OK );
+            mBox.Show(IDS_CANNOTDROP_USERGROUPNOTINLINE, MB_OK);
             return false;
         }
 
-        ZBUserGroupEntity* pGroup = dynamic_cast<ZBUserGroupEntity*>( pObj );
-        SetUnitGUID( pGroup->GetGUID() );
-        SetUnitName( pGroup->GetEntityName() );
+        ZBUserGroupEntity* pGroup = dynamic_cast<ZBUserGroupEntity*>(pObj);
+        SetUnitGUID(pGroup->GetGUID());
+        SetUnitName(pGroup->GetEntityName());
 
         // Change the unit cost
-        SetUnitCost( pGroup->GetEntityCost() );
+        SetUnitCost(pGroup->GetEntityCost());
 
         // Set flag for modification
-        SetModifiedFlag( TRUE );
+        SetModifiedFlag(TRUE);
 
         // Refresh the attribute area and redraw the symbol
-        RefreshAttributeAreaText( true );
+        RefreshAttributeAreaText(true);
         return true;
     }
 
     // *********************************************************************************************
     // JMR-MODIF - Le 20 novembre 2006 - Ajout du code pour le traitement des objets de type règles.
-    if ( pObj && ISA( pObj, ZBLogicalRulesEntity ) )
+    if (pObj && ISA(pObj, ZBLogicalRulesEntity))
     {
         // First, check if the rule is valid
         CODModel* pModel = GetRootModel();
 
-        if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-             !dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->MainLogicalRulesIsValid() )
+        if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
+            !dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainLogicalRulesIsValid())
         {
             // Cannot delete all rules
             PSS_MsgBox mBox;
-            mBox.ShowMsgBox( IDS_CANNOTDROP_RULENOTINLINE, MB_OK );
+            mBox.Show(IDS_CANNOTDROP_RULENOTINLINE, MB_OK);
             return false;
         }
 
-        ZBLogicalRulesEntity* pRule = dynamic_cast<ZBLogicalRulesEntity*>( pObj );
+        ZBLogicalRulesEntity* pRule = dynamic_cast<ZBLogicalRulesEntity*>(pObj);
 
         ZBBPRulesProperties* m_NewRule = new ZBBPRulesProperties();
 
-        m_NewRule->SetRuleName( pRule->GetEntityName() );
-        m_NewRule->SetRuleDescription( pRule->GetEntityDescription() );
-        m_NewRule->SetRuleGUID( pRule->GetGUID() );
+        m_NewRule->SetRuleName(pRule->GetEntityName());
+        m_NewRule->SetRuleDescription(pRule->GetEntityDescription());
+        m_NewRule->SetRuleGUID(pRule->GetGUID());
 
-        m_Rules.AddRule( m_NewRule );
+        m_Rules.AddRule(m_NewRule);
 
         // Set flag for modification
-        SetModifiedFlag( TRUE );
+        SetModifiedFlag(TRUE);
 
         // Refresh the attribute area and redraw the symbol
-        RefreshAttributeAreaText( true );
+        RefreshAttributeAreaText(true);
         return true;
     }
     // *********************************************************************************************
 
     // Otherwise, call the base class
-    return ZBSymbol::DropItem( pObj, pt );
+    return ZBSymbol::DropItem(pObj, pt);
 }
 
-void ZBBPProcedureSymbol::CopySymbolDefinitionFrom( CODSymbolComponent& src )
+void ZBBPProcedureSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
 {
     // Class the base class method
-    ZBSymbol::CopySymbolDefinitionFrom( src );
+    ZBSymbol::CopySymbolDefinitionFrom(src);
 
-    if ( ISA( ( &src ), ZBBPProcedureSymbol ) )
+    if (ISA((&src), ZBBPProcedureSymbol))
     {
-        m_CommentRect    = dynamic_cast<ZBBPProcedureSymbol&>( src ).m_CommentRect;
-        m_Combinations    = dynamic_cast<ZBBPProcedureSymbol&>( src ).m_Combinations;
-        m_Combinations.SetParent( this );
+        m_CommentRect = dynamic_cast<ZBBPProcedureSymbol&>(src).m_CommentRect;
+        m_Combinations = dynamic_cast<ZBBPProcedureSymbol&>(src).m_Combinations;
+        m_Combinations.SetParent(this);
 
-        m_SimulationProperties    = dynamic_cast<ZBBPProcedureSymbol&>( src ).m_SimulationProperties;
-        m_UnitProp                = dynamic_cast<ZBBPProcedureSymbol&>( src ).m_UnitProp;
-        m_CostProcedureProp        = dynamic_cast<ZBBPProcedureSymbol&>( src ).m_CostProcedureProp;
+        m_SimulationProperties = dynamic_cast<ZBBPProcedureSymbol&>(src).m_SimulationProperties;
+        m_UnitProp = dynamic_cast<ZBBPProcedureSymbol&>(src).m_UnitProp;
+        m_CostProcedureProp = dynamic_cast<ZBBPProcedureSymbol&>(src).m_CostProcedureProp;
 
         // JMR-MODIF - Le 26 novembre 2006 - Ajout du code de copie pour les règles.
-        m_Rules                    = dynamic_cast<ZBBPProcedureSymbol&>( src ).m_Rules;
+        m_Rules = dynamic_cast<ZBBPProcedureSymbol&>(src).m_Rules;
 
         // JMR-MODIF - Le 29 juillet 2007 - Ajout du code de copie pour les risques
-        m_Risks                    = dynamic_cast<ZBBPProcedureSymbol&>( src ).m_Risks;
+        m_Risks = dynamic_cast<ZBBPProcedureSymbol&>(src).m_Risks;
 
         // Fill the array of unit double validation type
         m_UnitDoubleValidationTypeArray.RemoveAll();
-        GetUnitDoubleValidationTypeStringArray( m_UnitDoubleValidationTypeArray );
+        GetUnitDoubleValidationTypeStringArray(m_UnitDoubleValidationTypeArray);
     }
 }
 
-BOOL ZBBPProcedureSymbol::Create( const CString Name /*= ""*/ )
+BOOL ZBBPProcedureSymbol::Create(const CString Name /*= ""*/)
 {
     m_IsInCreationProcess = true;
 
-    BOOL RetValue = ZBSymbol::Create( IDR_BP_PROCEDURE,
-                                      AfxFindResourceHandle( MAKEINTRESOURCE( IDR_PACKAGE_SYM ), _T( "Symbol" ) ),
-                                      Name );
+    BOOL RetValue = ZBSymbol::Create(IDR_BP_PROCEDURE,
+                                     AfxFindResourceHandle(MAKEINTRESOURCE(IDR_PACKAGE_SYM), _T("Symbol")),
+                                     Name);
 
-    if ( !CreateSymbolProperties() )
+    if (!CreateSymbolProperties())
     {
         RetValue = FALSE;
     }
@@ -3422,9 +3419,9 @@ void ZBBPProcedureSymbol::AdjustElementPosition()
     ZBSymbol::AdjustElementPosition();
 }
 
-void ZBBPProcedureSymbol::OnDraw( CDC* pDC )
+void ZBBPProcedureSymbol::OnDraw(CDC* pDC)
 {
-    ZBSymbol::OnDraw( pDC );
+    ZBSymbol::OnDraw(pDC);
 }
 
 BOOL ZBBPProcedureSymbol::OnDoubleClick()
@@ -3432,14 +3429,14 @@ BOOL ZBBPProcedureSymbol::OnDoubleClick()
     return FALSE;
 }
 
-bool ZBBPProcedureSymbol::OnToolTip( CString& ToolTipText, CPoint point, ToolTipMode ToolTip /*= NormalToolTip*/ )
+bool ZBBPProcedureSymbol::OnToolTip(CString& ToolTipText, CPoint point, ToolTipMode ToolTip /*= NormalToolTip*/)
 {
-    ToolTipText.Format( IDS_FS_BPPROCEDURE_TOOLTIP,
-                        (const char*)GetSymbolName(),
-                        (const char*)GetSymbolComment(),
-                        (const char*)GetSymbolReferenceNumberStr() );
+    ToolTipText.Format(IDS_FS_BPPROCEDURE_TOOLTIP,
+        (const char*)GetSymbolName(),
+                       (const char*)GetSymbolComment(),
+                       (const char*)GetSymbolReferenceNumberStr());
 
-    if ( ToolTip == ZBSymbol::DesignToolTip )
+    if (ToolTip == ZBSymbol::DesignToolTip)
     {
         // From now do nothing,
         // need to implement the result of the control checking
@@ -3449,86 +3446,86 @@ bool ZBBPProcedureSymbol::OnToolTip( CString& ToolTipText, CPoint point, ToolTip
     return true;
 }
 
-void ZBBPProcedureSymbol::Serialize( CArchive& ar )
+void ZBBPProcedureSymbol::Serialize(CArchive& ar)
 {
     // Serialize the canvas model.
-    ZBSymbol::Serialize( ar );
+    ZBSymbol::Serialize(ar);
 
     // Only if the object is serialize from and to a document
-    if ( ar.m_pDocument )
+    if (ar.m_pDocument)
     {
         // Serialize the combinations
-        m_Combinations.Serialize( ar );
+        m_Combinations.Serialize(ar);
 
-        m_SimulationProperties.Serialize( ar );
+        m_SimulationProperties.Serialize(ar);
 
         // JMR-MODIF - Le 10 juin 2007 - Ajout du code pour la sérialisation des risques.
-        if ( dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 27 )
+        if (dynamic_cast<PSS_BaseDocument*>(ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 27)
         {
-            m_Risks.Serialize( ar );
+            m_Risks.Serialize(ar);
         }
 
         // ******************************************************************************************************
         // JMR-MODIF - Le 26 novembre 2006 - Ajout de la sérialisation des règles.
-        if ( ar.IsStoring() )
+        if (ar.IsStoring())
         {
-            m_Rules.Serialize( ar );
+            m_Rules.Serialize(ar);
         }
         else
         {
-            if ( ( (PSS_BaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 26 )
+            if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 26)
             {
-                m_Rules.Serialize( ar );
+                m_Rules.Serialize(ar);
             }
         }
         // ******************************************************************************************************
 
-        if ( ar.IsStoring() ||
-             dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 19 )
+        if (ar.IsStoring() ||
+            dynamic_cast<PSS_BaseDocument*>(ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 19)
         {
-            m_UnitProp.Serialize( ar );
-            m_CostProcedureProp.Serialize( ar );
+            m_UnitProp.Serialize(ar);
+            m_CostProcedureProp.Serialize(ar);
         }
         else
         {
-            TRACE( _T( "ZBBPProcedureSymbol::Serialize : Start Read\n" ) );
+            TRACE(_T("ZBBPProcedureSymbol::Serialize : Start Read\n"));
 
             // Transfert the properties to new format
             ZBBPCostPropertiesProcedure* pCostProps =
-                (ZBBPCostPropertiesProcedure*)GetProperty( ZS_BP_PROP_PROCEDURE_COST );
+                (ZBBPCostPropertiesProcedure*)GetProperty(ZS_BP_PROP_PROCEDURE_COST);
 
-            if ( pCostProps )
+            if (pCostProps)
             {
-                SetMultiplier( pCostProps->GetMultiplier() );
-                SetProcessingTime( pCostProps->GetProcessingTime() );
-                SetUnitaryCost( pCostProps->GetUnitaryCost() );
+                SetMultiplier(pCostProps->GetMultiplier());
+                SetProcessingTime(pCostProps->GetProcessingTime());
+                SetUnitaryCost(pCostProps->GetUnitaryCost());
             }
 
-            ZBBPUnitProperties* pUnitProps = (ZBBPUnitProperties*)GetProperty( ZS_BP_PROP_UNIT );
+            ZBBPUnitProperties* pUnitProps = (ZBBPUnitProperties*)GetProperty(ZS_BP_PROP_UNIT);
 
-            if ( pUnitProps )
+            if (pUnitProps)
             {
-                SetUnitName( pUnitProps->GetUnitName() );
-                SetUnitCost( pUnitProps->GetUnitCost() );
+                SetUnitName(pUnitProps->GetUnitName());
+                SetUnitCost(pUnitProps->GetUnitCost());
             }
 
             // Sets the master if only one deliverable for the combination
             int Count = GetCombinationCount();
 
-            for ( int i = 0; i < Count; ++i )
+            for (int i = 0; i < Count; ++i)
             {
-                CString Deliverables = GetCombinationDeliverables( i );
+                CString Deliverables = GetCombinationDeliverables(i);
 
                 // If no separator, then only one deliverable
                 // Then sets the master to this deliverable
-                if ( Deliverables.Find( ';' ) == -1 )
+                if (Deliverables.Find(';') == -1)
                 {
-                    SetCombinationMaster( i, Deliverables );
+                    SetCombinationMaster(i, Deliverables);
                 }
             }
 
             // JMR-MODIF - Le 6 octobre 2005 - Ajout du traçage de fin.
-            TRACE( _T( "ZBBPProcedureSymbol::Serialize : End Read\n" ) );
+            TRACE(_T("ZBBPProcedureSymbol::Serialize : End Read\n"));
         }
     }
 }

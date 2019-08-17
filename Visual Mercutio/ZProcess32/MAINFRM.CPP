@@ -495,7 +495,7 @@ void ZIMainFrame::OnReloadBarState(bool reset)
     {
         PSS_MsgBox mBox;
 
-        if (mBox.ShowMsgBox(IDS_ASKRESET_TOOLBARS, MB_YESNO) == IDYES)
+        if (mBox.Show(IDS_ASKRESET_TOOLBARS, MB_YESNO) == IDYES)
             reload = true;
     }
 

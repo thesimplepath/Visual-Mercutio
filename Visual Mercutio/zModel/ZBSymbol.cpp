@@ -31,7 +31,7 @@ ZBitmap ZBSymbol::m_ShortCutBitmap;
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -50,22 +50,22 @@ IMPLEMENT_SERIAL(ZBSymbol, CODSymbolComponent, g_DefVersion)
 // **********************************************************************************************************************
 
 // Constructeur par défaut.
-ZBSymbol::ZBSymbol() : ZBExtAppPropertyMgr        ( this ),
-                       m_DynamicPropManager        ( NULL ),
-                       m_IsLocal                ( true ),
-                       m_pReference                ( NULL ),
-                       m_pModel                    ( NULL ),
-                       m_InitialLineWidth        ( 1 ),
-                       m_InitialLineColor        ( defCOLOR_BLACK ),
-                       m_CurrentLineColor        ( defCOLOR_BLACK ),
-                       m_InitialLabelLineWidth    ( 1 ),
-                       m_InitialLabelLineColor    ( defCOLOR_BLACK ),
-                       m_CurrentLabelLineColor    ( defCOLOR_BLACK ),
-                       m_IsInCreationProcess    ( false ),
-                       // JMR-MODIF - Le 7 février 2006 - Initialisation du flag m_IsCopy.
-                       m_IsCopy                    ( FALSE )
+ZBSymbol::ZBSymbol() : ZBExtAppPropertyMgr(this),
+m_DynamicPropManager(NULL),
+m_IsLocal(true),
+m_pReference(NULL),
+m_pModel(NULL),
+m_InitialLineWidth(1),
+m_InitialLineColor(defCOLOR_BLACK),
+m_CurrentLineColor(defCOLOR_BLACK),
+m_InitialLabelLineWidth(1),
+m_InitialLabelLineColor(defCOLOR_BLACK),
+m_CurrentLabelLineColor(defCOLOR_BLACK),
+m_IsInCreationProcess(false),
+// JMR-MODIF - Le 7 février 2006 - Initialisation du flag m_IsCopy.
+m_IsCopy(FALSE)
 {
-    SetSymbol( this );
+    SetSymbol(this);
 
     // Work in absolute relative for the attributes
     m_RelativeCoordinates = true;
@@ -77,7 +77,7 @@ ZBSymbol::ZBSymbol() : ZBExtAppPropertyMgr        ( this ),
 }
 
 // Constructeur de copie.
-ZBSymbol::ZBSymbol( const ZBSymbol& src )
+ZBSymbol::ZBSymbol(const ZBSymbol& src)
 {
     *this = src;
 }
@@ -85,7 +85,7 @@ ZBSymbol::ZBSymbol( const ZBSymbol& src )
 // Destructeur.
 ZBSymbol::~ZBSymbol()
 {
-    if ( m_DynamicPropManager != NULL )
+    if (m_DynamicPropManager != NULL)
     {
         delete m_DynamicPropManager;
         m_DynamicPropManager = NULL;
@@ -96,41 +96,41 @@ ZBSymbol::~ZBSymbol()
 // *                                                    Operators                                                        *
 // **********************************************************************************************************************
 
-ZBSymbol& ZBSymbol::operator=( const ZBSymbol& src )
+ZBSymbol& ZBSymbol::operator=(const ZBSymbol& src)
 {
     // Call the base class assignement operator
-    CODSymbolComponent::operator=    ( (const CODSymbolComponent&)src );
-    ZBExtAppPropertyMgr::operator=    ( (const ZBExtAppPropertyMgr&)src );
-    ZBExtFilePropertyMgr::operator=    ( (const ZBExtFilePropertyMgr&)src );
-    ZVSymbolAttributes::operator=    ( (const ZVSymbolAttributes&)src );
+    CODSymbolComponent::operator=    ((const CODSymbolComponent&)src);
+    ZBExtAppPropertyMgr::operator=    ((const ZBExtAppPropertyMgr&)src);
+    ZBExtFilePropertyMgr::operator=    ((const ZBExtFilePropertyMgr&)src);
+    ZVSymbolAttributes::operator=    ((const ZVSymbolAttributes&)src);
 
-    m_IsLocal                = src.m_IsLocal;
-    m_Name                    = src.m_Name;
-    m_NameOfReference        = src.m_NameOfReference;
-    m_Comment                = src.m_Comment;
-    m_ObjectPath            = src.m_ObjectPath;
-    m_pModel                = src.m_pModel;
-    m_DynamicPropManager    = src.m_DynamicPropManager->Dup();
+    m_IsLocal = src.m_IsLocal;
+    m_Name = src.m_Name;
+    m_NameOfReference = src.m_NameOfReference;
+    m_Comment = src.m_Comment;
+    m_ObjectPath = src.m_ObjectPath;
+    m_pModel = src.m_pModel;
+    m_DynamicPropManager = src.m_DynamicPropManager->Dup();
 
     return *this;
 }
 
 CODComponent* ZBSymbol::Dup() const
 {
-    return ( new ZBSymbol( *this ) );
+    return (new ZBSymbol(*this));
 }
 
-BOOL ZBSymbol::CreateEmptyChildModel( CODModel* pParent )
+BOOL ZBSymbol::CreateEmptyChildModel(CODModel* pParent)
 {
     return FALSE;
 }
 
-bool ZBSymbol::Match( const CString            What,
-                      ZBPropertyAttributes*    pPropAttributes    /*= NULL*/,
-                      bool                    CaseSensitive    /*= false*/,
-                      bool                    PartialSearch    /*= false*/ )
+bool ZBSymbol::Match(const CString            What,
+                     ZBPropertyAttributes*    pPropAttributes    /*= NULL*/,
+                     bool                    CaseSensitive    /*= false*/,
+                     bool                    PartialSearch    /*= false*/)
 {
-    if ( !pPropAttributes )
+    if (!pPropAttributes)
     {
         return false;
     }
@@ -138,16 +138,16 @@ bool ZBSymbol::Match( const CString            What,
     ZBPropertySet PropSet;
 
     // Retrieve the property set from object
-    FillProperties( PropSet );
+    FillProperties(PropSet);
 
     // Match the property set with the property attributes
-    bool RetValue = pPropAttributes->Match( PropSet, What, CaseSensitive, PartialSearch );
+    bool RetValue = pPropAttributes->Match(PropSet, What, CaseSensitive, PartialSearch);
 
     // Remove all properties
-    ZBPropertyIterator i( &PropSet );
+    ZBPropertyIterator i(&PropSet);
     ZBProperty* pProp;
 
-    for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
         delete pProp;
     }
@@ -159,79 +159,79 @@ bool ZBSymbol::Match( const CString            What,
 
 bool ZBSymbol::GetDisplayTitleText() const
 {
-    return ( AcceptDynamicAttributes() ) ? m_Attributes.GetDisplayTitleText() : false;
+    return (AcceptDynamicAttributes()) ? m_Attributes.GetDisplayTitleText() : false;
 }
 
-void ZBSymbol::SetDisplayTitleText( bool value )
+void ZBSymbol::SetDisplayTitleText(bool value)
 {
-    if ( AcceptDynamicAttributes() )
+    if (AcceptDynamicAttributes())
     {
-        m_Attributes.SetDisplayTitleText( value );
+        m_Attributes.SetDisplayTitleText(value);
 
-        if ( GetAttributeTextEdit() )
+        if (GetAttributeTextEdit())
         {
-            GetAttributeTextEdit()->SetText( GetAttributeString( &m_Attributes ) );
+            GetAttributeTextEdit()->SetText(GetAttributeString(&m_Attributes));
             RedrawSymbol();
         }
     }
 }
 
-void ZBSymbol::RefreshAttributeAreaText( bool Redraw /*= false*/ )
+void ZBSymbol::RefreshAttributeAreaText(bool Redraw /*= false*/)
 {
-    if ( AcceptDynamicAttributes() && GetAttributeTextEdit() )
+    if (AcceptDynamicAttributes() && GetAttributeTextEdit())
     {
-        GetAttributeTextEdit()->SetText( GetAttributeString( &m_Attributes ) );
+        GetAttributeTextEdit()->SetText(GetAttributeString(&m_Attributes));
 
-        if ( Redraw )
+        if (Redraw)
         {
             RedrawSymbol();
         }
     }
 }
 
-bool ZBSymbol::OnFillDefaultAttributes( ZBPropertyAttributes* pAttributes )
+bool ZBSymbol::OnFillDefaultAttributes(ZBPropertyAttributes* pAttributes)
 {
-    if ( AcceptDynamicAttributes() && GetAttributeTextEdit() )
+    if (AcceptDynamicAttributes() && GetAttributeTextEdit())
     {
-        GetAttributeTextEdit()->SetText( GetAttributeString( pAttributes ) );
+        GetAttributeTextEdit()->SetText(GetAttributeString(pAttributes));
         RedrawSymbol();
     }
 
     return true;
 }
 
-bool ZBSymbol::OnChangeAttributes( ZBPropertyAttributes* pAttributes )
+bool ZBSymbol::OnChangeAttributes(ZBPropertyAttributes* pAttributes)
 {
-    if ( AcceptDynamicAttributes() && GetAttributeTextEdit() )
+    if (AcceptDynamicAttributes() && GetAttributeTextEdit())
     {
         // Copy the new attributes first
         m_Attributes = *pAttributes;
 
         // Redraw the attribute text
-        GetAttributeTextEdit()->SetText( GetAttributeString( pAttributes ) );
+        GetAttributeTextEdit()->SetText(GetAttributeString(pAttributes));
         RedrawSymbol();
     }
 
     return true;
 }
 
-CString ZBSymbol::GetAttributeString( ZBPropertyAttributes* pAttributes ) const
+CString ZBSymbol::GetAttributeString(ZBPropertyAttributes* pAttributes) const
 {
-    if ( AcceptDynamicAttributes() )
+    if (AcceptDynamicAttributes())
     {
         ZBPropertySet PropSet;
 
         // Retrieve the property set from object
-        const_cast<ZBSymbol*>( this )->FillProperties( PropSet );
+        const_cast<ZBSymbol*>(this)->FillProperties(PropSet);
 
         // Now format the string
-        CString str = pAttributes->GetString( &PropSet );
+        CString str = pAttributes->GetString(&PropSet);
 
         // Remove all properties
-        ZBPropertyIterator i( &PropSet );
+        ZBPropertyIterator i(&PropSet);
         ZBProperty* pProp;
 
-        for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+        for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
         {
             delete pProp;
         }
@@ -242,19 +242,19 @@ CString ZBSymbol::GetAttributeString( ZBPropertyAttributes* pAttributes ) const
         return str;
     }
 
-    return _T( "" );
+    return _T("");
 }
 
-void ZBSymbol::CopySymbolDefinitionFrom( CODSymbolComponent& src )
+void ZBSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
 {
-    if ( ISA( ( &src ), ZBSymbol ) )
+    if (ISA((&src), ZBSymbol))
     {
         // Don't use direct assignement, if
         // symbols are referenced, not notification will be done
-        SetSymbolName    ( reinterpret_cast<ZBSymbol&>( src ).GetSymbolName() );
-        SetSymbolComment( reinterpret_cast<ZBSymbol&>( src ).GetSymbolComment() );
-        SetAbsolutePath    ( reinterpret_cast<ZBSymbol&>( src ).GetAbsolutePath() );
-        SetpModel        ( reinterpret_cast<ZBSymbol&>( src ).GetpModel() );
+        SetSymbolName(reinterpret_cast<ZBSymbol&>(src).GetSymbolName());
+        SetSymbolComment(reinterpret_cast<ZBSymbol&>(src).GetSymbolComment());
+        SetAbsolutePath(reinterpret_cast<ZBSymbol&>(src).GetAbsolutePath());
+        SetpModel(reinterpret_cast<ZBSymbol&>(src).GetpModel());
 
         // Symbol is local
         m_IsLocal = true;
@@ -262,58 +262,58 @@ void ZBSymbol::CopySymbolDefinitionFrom( CODSymbolComponent& src )
         // No reference
         m_pReference = NULL;
         m_NameOfReference.Empty();
-    
-        m_AllSymbolPosition            = dynamic_cast<ZBSymbol&>( src ).m_AllSymbolPosition;
-        m_ChildModelPathName        = dynamic_cast<ZBSymbol&>( src ).m_ChildModelPathName;
 
-        m_CurrentLineColor            = dynamic_cast<ZBSymbol&>( src ).m_CurrentLineColor;
-        m_CurrentLabelLineColor        = dynamic_cast<ZBSymbol&>( src ).m_CurrentLabelLineColor;
-        m_InitialLineColor            = dynamic_cast<ZBSymbol&>( src ).m_InitialLineColor;
-        m_InitialLineWidth            = dynamic_cast<ZBSymbol&>( src ).m_InitialLineWidth;
-        m_InitialLabelLineColor        = dynamic_cast<ZBSymbol&>( src ).m_InitialLabelLineColor;
-        m_InitialLabelLineWidth        = dynamic_cast<ZBSymbol&>( src ).m_InitialLabelLineWidth;
-        m_ShortCutBitmapPosition    = dynamic_cast<ZBSymbol&>( src ).m_ShortCutBitmapPosition;
+        m_AllSymbolPosition = dynamic_cast<ZBSymbol&>(src).m_AllSymbolPosition;
+        m_ChildModelPathName = dynamic_cast<ZBSymbol&>(src).m_ChildModelPathName;
 
-        m_ExternalApplications        = dynamic_cast<ZBSymbol&>( src ).m_ExternalApplications;
-        m_ExternalApplications.SetParent( this );
+        m_CurrentLineColor = dynamic_cast<ZBSymbol&>(src).m_CurrentLineColor;
+        m_CurrentLabelLineColor = dynamic_cast<ZBSymbol&>(src).m_CurrentLabelLineColor;
+        m_InitialLineColor = dynamic_cast<ZBSymbol&>(src).m_InitialLineColor;
+        m_InitialLineWidth = dynamic_cast<ZBSymbol&>(src).m_InitialLineWidth;
+        m_InitialLabelLineColor = dynamic_cast<ZBSymbol&>(src).m_InitialLabelLineColor;
+        m_InitialLabelLineWidth = dynamic_cast<ZBSymbol&>(src).m_InitialLabelLineWidth;
+        m_ShortCutBitmapPosition = dynamic_cast<ZBSymbol&>(src).m_ShortCutBitmapPosition;
 
-        m_ExternalFiles                = dynamic_cast<ZBSymbol&>( src ).m_ExternalFiles;
-        m_ExternalFiles.SetParent( this );
+        m_ExternalApplications = dynamic_cast<ZBSymbol&>(src).m_ExternalApplications;
+        m_ExternalApplications.SetParent(this);
 
-        m_DisplayNameArea            = dynamic_cast<ZBSymbol&>( src ).m_DisplayNameArea;
-        m_DisplayDescriptionArea    = dynamic_cast<ZBSymbol&>( src ).m_DisplayDescriptionArea;
-        m_DisplayAttributeArea        = dynamic_cast<ZBSymbol&>( src ).m_DisplayAttributeArea;
+        m_ExternalFiles = dynamic_cast<ZBSymbol&>(src).m_ExternalFiles;
+        m_ExternalFiles.SetParent(this);
 
-        m_RelativeCoordinates        = dynamic_cast<ZBSymbol&>( src ).m_RelativeCoordinates;
-        m_Attributes                = dynamic_cast<ZBSymbol&>( src ).m_Attributes;
+        m_DisplayNameArea = dynamic_cast<ZBSymbol&>(src).m_DisplayNameArea;
+        m_DisplayDescriptionArea = dynamic_cast<ZBSymbol&>(src).m_DisplayDescriptionArea;
+        m_DisplayAttributeArea = dynamic_cast<ZBSymbol&>(src).m_DisplayAttributeArea;
+
+        m_RelativeCoordinates = dynamic_cast<ZBSymbol&>(src).m_RelativeCoordinates;
+        m_Attributes = dynamic_cast<ZBSymbol&>(src).m_Attributes;
 
         // JMR-MODIF - Le 6 février 2006 - Nettoyage des memory leaks, destruction de la variable
         // m_DynamicPropManager avant de tenter d'en assigner une nouvelle.
-        if ( m_DynamicPropManager )
+        if (m_DynamicPropManager)
         {
             delete m_DynamicPropManager;
             m_DynamicPropManager = NULL;
         }
 
-        m_DynamicPropManager        = dynamic_cast<ZBSymbol&>( src ).m_DynamicPropManager->Dup();
+        m_DynamicPropManager = dynamic_cast<ZBSymbol&>(src).m_DynamicPropManager->Dup();
 
         // Now sets the right area name
-        ZUODSymbolManipulator::MatchSymbolAreaName( this, &src );
+        ZUODSymbolManipulator::MatchSymbolAreaName(this, &src);
     }
 }
 
-void ZBSymbol::SetIsLocal( bool value /*= true*/ )
+void ZBSymbol::SetIsLocal(bool value /*= true*/)
 {
-    if ( value == true )
+    if (value == true)
     {
-        SetCurrentLineColor ( m_InitialLineColor );
-        SetCurrentLabelColor( m_InitialLabelLineColor );
+        SetCurrentLineColor(m_InitialLineColor);
+        SetCurrentLabelColor(m_InitialLabelLineColor);
     }
     else
-    // Sets the new line color to magenta and the line width to 2
+        // Sets the new line color to magenta and the line width to 2
     {
-        SetCurrentLineColor ( defCOLOR_BLUE );
-        SetCurrentLabelColor( defCOLOR_BLUE );
+        SetCurrentLineColor(defCOLOR_BLUE);
+        SetCurrentLabelColor(defCOLOR_BLUE);
     }
 
     m_IsLocal = value;
@@ -323,33 +323,33 @@ void ZBSymbol::SetIsLocal( bool value /*= true*/ )
 }
 
 // JMR-MODIF - Le 22 juillet 2007 - Mets à jour les données graphiques d'un symbole en fonction des risques.
-void ZBSymbol::UpdateGraphicFromRisk( COLORREF Color, BOOL Italic )
+void ZBSymbol::UpdateGraphicFromRisk(COLORREF Color, BOOL Italic)
 {
-    ZUODSymbolManipulator::ChangeTextColor( this, Color );
-    ZUODSymbolManipulator::SetTextItalic( this, Italic );
+    ZUODSymbolManipulator::ChangeTextColor(this, Color);
+    ZUODSymbolManipulator::SetTextItalic(this, Italic);
 
     RedrawSymbol();
 }
 
-void ZBSymbol::ShowInError( bool value /*= true*/ )
+void ZBSymbol::ShowInError(bool value /*= true*/)
 {
-    if ( value == true )
+    if (value == true)
     {
-        SetCurrentLineColor ( defCOLOR_RED );
-        SetCurrentLabelColor( defCOLOR_RED );
+        SetCurrentLineColor(defCOLOR_RED);
+        SetCurrentLabelColor(defCOLOR_RED);
     }
     else
     {
         // Sets the new line color to magenta
-        if ( IsLocal() )
+        if (IsLocal())
         {
-            SetCurrentLineColor ( m_InitialLineColor );
-            SetCurrentLabelColor( m_InitialLabelLineColor );
+            SetCurrentLineColor(m_InitialLineColor);
+            SetCurrentLabelColor(m_InitialLabelLineColor);
         }
         else
         {
-            SetCurrentLineColor ( defCOLOR_BLUE );
-            SetCurrentLabelColor( defCOLOR_BLUE );
+            SetCurrentLineColor(defCOLOR_BLUE);
+            SetCurrentLabelColor(defCOLOR_BLUE);
         }
     }
 
@@ -357,31 +357,31 @@ void ZBSymbol::ShowInError( bool value /*= true*/ )
     RedrawSymbol();
 }
 
-void ZBSymbol::ApplyFormatFromObject( CODSymbolComponent&    Object,
-                                      bool                    Font    /*= true*/,
-                                      bool                    Fill    /*= true*/,
-                                      bool                    Line    /*= true*/ )
+void ZBSymbol::ApplyFormatFromObject(CODSymbolComponent&    Object,
+                                     bool                    Font    /*= true*/,
+                                     bool                    Fill    /*= true*/,
+                                     bool                    Line    /*= true*/)
 {
-    ZUODSymbolManipulator::ApplyFormatFromObject( this, Object, Font, Fill, Line );
+    ZUODSymbolManipulator::ApplyFormatFromObject(this, Object, Font, Fill, Line);
 }
 
 CODComponent* ZBSymbol::GetLocalSymbol()
 {
-    if ( IsLocal() )
+    if (IsLocal())
     {
         return NULL;
     }
 
-    ZDProcessGraphModelMdl* pRootModel = dynamic_cast<ZDProcessGraphModelMdl*>( GetRootModel() );
+    ZDProcessGraphModelMdl* pRootModel = dynamic_cast<ZDProcessGraphModelMdl*>(GetRootModel());
 
-    if ( pRootModel )
+    if (pRootModel)
     {
-        CODComponentSet* pSet = pRootModel->FindSymbol( GetSymbolName(), _T( "" ), true, true, true );
+        CODComponentSet* pSet = pRootModel->FindSymbol(GetSymbolName(), _T(""), true, true, true);
 
         // If found, return it
-        if ( pSet && pSet->GetSize() > 0 && pSet->GetAt( 0 ) )
+        if (pSet && pSet->GetSize() > 0 && pSet->GetAt(0))
         {
-            return pSet->GetAt( 0 );
+            return pSet->GetAt(0);
         }
     }
 
@@ -390,25 +390,25 @@ CODComponent* ZBSymbol::GetLocalSymbol()
 
 CODComponentSet* ZBSymbol::GetReferenceSymbols()
 {
-    if ( !IsLocal() )
+    if (!IsLocal())
     {
         return NULL;
     }
 
-    ZDProcessGraphModelMdl* pRootModel = dynamic_cast<ZDProcessGraphModelMdl*>( GetRootModel() );
+    ZDProcessGraphModelMdl* pRootModel = dynamic_cast<ZDProcessGraphModelMdl*>(GetRootModel());
 
-    if ( pRootModel )
+    if (pRootModel)
     {
-        CODComponentSet*  pSet = pRootModel->FindSymbol( GetSymbolName(), _T( "" ), true, true, false );
+        CODComponentSet*  pSet = pRootModel->FindSymbol(GetSymbolName(), _T(""), true, true, false);
 
-        if ( pSet )
+        if (pSet)
         {
             // Remove us from the set
             for (int i = 0; i < pSet->GetSize(); ++i)
             {
-                if ( pSet->GetAt( i ) == this )
+                if (pSet->GetAt(i) == this)
                 {
-                    pSet->RemoveAt( i );
+                    pSet->RemoveAt(i);
                     --i;
                 }
             }
@@ -423,16 +423,16 @@ CODComponentSet* ZBSymbol::GetReferenceSymbols()
 // Create the symbol name label
 CODLabelComponent* ZBSymbol::CreateSymbolLabel()
 {
-    return CreateLabel( _T( "Test" ) );
+    return CreateLabel(_T("Test"));
 }
 
 // Start the edition of the symbol name
 void ZBSymbol::EditSymbolName()
 {
-    int                    NumLabels        = GetNumLabels();
-    CODLabelComponent*    pSymbolLabel    = NULL;
+    int                    NumLabels = GetNumLabels();
+    CODLabelComponent*    pSymbolLabel = NULL;
 
-    if ( NumLabels == 0 )
+    if (NumLabels == 0)
     {
         pSymbolLabel = CreateSymbolLabel();
     }
@@ -440,9 +440,9 @@ void ZBSymbol::EditSymbolName()
     {
         CODLabelComponent* pTempLabel;
 
-        for ( int i = 0; i < NumLabels; ++i )
+        for (int i = 0; i < NumLabels; ++i)
         {
-            pTempLabel = GetLabel( i );
+            pTempLabel = GetLabel(i);
         }
     }
 }
@@ -452,12 +452,12 @@ CODModel* ZBSymbol::GetOwnerModel()
     // If the parent is a model
     CODComponent* pComp = GetParent();
 
-    while ( pComp )
+    while (pComp)
     {
         // If a model, return it
-        if ( pComp && ISA( pComp, ZDProcessGraphModelMdl ) )
+        if (pComp && ISA(pComp, ZDProcessGraphModelMdl))
         {
-            return dynamic_cast<CODModel*>( pComp );
+            return dynamic_cast<CODModel*>(pComp);
         }
 
         // Otherwise retreive its parent
@@ -472,86 +472,86 @@ CODModel* ZBSymbol::GetRootModel()
     CODModel* pModel = GetOwnerModel();
 
     // If the model is a GraphModel, return the root model
-    if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) )
+    if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
     {
-        return dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetRoot();
+        return dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetRoot();
     }
 
     // Otherwise, return NULL;
     return NULL;
 }
 
-void ZBSymbol::SetModifiedFlag( BOOL Value /*= TRUE*/ )
+void ZBSymbol::SetModifiedFlag(BOOL Value /*= TRUE*/)
 {
     CODModel* pModel = GetRootModel();
 
-    if ( pModel )
+    if (pModel)
     {
-        pModel->SetModifiedFlag( Value );
+        pModel->SetModifiedFlag(Value);
     }
 }
 
-ZBSymbolEdit* ZBSymbol::CreateEditText( const CString AreaName,
-                                        const CString EditName,
-                                        CODComponent* pParent /*= NULL*/ )
+ZBSymbolEdit* ZBSymbol::CreateEditText(const CString AreaName,
+                                       const CString EditName,
+                                       CODComponent* pParent /*= NULL*/)
 {
-    return ZUODSymbolManipulator::CreateEditText( this, AreaName, EditName, pParent );
+    return ZUODSymbolManipulator::CreateEditText(this, AreaName, EditName, pParent);
 }
 
-ZBSymbolEdit* ZBSymbol::CreateAndReplaceEditText( const CString EditName, CODComponent* pParent /*= NULL*/ )
+ZBSymbolEdit* ZBSymbol::CreateAndReplaceEditText(const CString EditName, CODComponent* pParent /*= NULL*/)
 {
-    return ZUODSymbolManipulator::CreateAndReplaceEditText( this, EditName, pParent );
+    return ZUODSymbolManipulator::CreateAndReplaceEditText(this, EditName, pParent);
 }
 
-BOOL ZBSymbol::RemoveSymbol( const CString SymbolName )
+BOOL ZBSymbol::RemoveSymbol(const CString SymbolName)
 {
-    return ZUODSymbolManipulator::RemoveSymbol( this, SymbolName );
+    return ZUODSymbolManipulator::RemoveSymbol(this, SymbolName);
 }
 
-BOOL ZBSymbol::RemoveSymbol( CODComponent* pMainComponent, CODComponent* pComponent )
+BOOL ZBSymbol::RemoveSymbol(CODComponent* pMainComponent, CODComponent* pComponent)
 {
-    return ZUODSymbolManipulator::RemoveSymbol( pMainComponent, pComponent );
+    return ZUODSymbolManipulator::RemoveSymbol(pMainComponent, pComponent);
 }
 
-CODComponent* ZBSymbol::FindSymbol( CODComponent* pMainComponent, const CString SymbolName )
+CODComponent* ZBSymbol::FindSymbol(CODComponent* pMainComponent, const CString SymbolName)
 {
-    return ZUODSymbolManipulator::FindSymbol( pMainComponent, SymbolName );
+    return ZUODSymbolManipulator::FindSymbol(pMainComponent, SymbolName);
 }
 
 // Create the symbol name label
-CODComponent* ZBSymbol::FindSymbolInChild( CODComponent* pMainComponent, const CString SymbolName )
+CODComponent* ZBSymbol::FindSymbolInChild(CODComponent* pMainComponent, const CString SymbolName)
 {
-    return ZUODSymbolManipulator::FindSymbolInChild( pMainComponent, SymbolName );
+    return ZUODSymbolManipulator::FindSymbolInChild(pMainComponent, SymbolName);
 }
 
-bool ZBSymbol::IsNewNameValid( const CString value ) const
+bool ZBSymbol::IsNewNameValid(const CString value) const
 {
-    if ( value.IsEmpty() )
+    if (value.IsEmpty())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_SYMBOLNAME_EMPTY, MB_OK );
+        mBox.Show(IDS_SYMBOLNAME_EMPTY, MB_OK);
         return false;
     }
 
     CODComponent* pComp = GetParent();
 
-    if ( pComp && ISA( pComp, ZDProcessGraphModelMdl ) )
+    if (pComp && ISA(pComp, ZDProcessGraphModelMdl))
     {
         // If not the same and
         // If already exists,
         // display an error message
         // and put back the initial value
-        if ( value != const_cast<ZBSymbol*>( this )->GetSymbolName() &&
-             dynamic_cast<ZDProcessGraphModelMdl*>( pComp )->GetRoot()->SymbolNameAlreadyAllocated( value ) )
+        if (value != const_cast<ZBSymbol*>(this)->GetSymbolName() &&
+            dynamic_cast<ZDProcessGraphModelMdl*>(pComp)->GetRoot()->SymbolNameAlreadyAllocated(value))
         {
             PSS_MsgBox mBox;
-            mBox.ShowMsgBox( IDS_SYMBOLNAME_ALREADYEXIST, MB_OK );
+            mBox.Show(IDS_SYMBOLNAME_ALREADYEXIST, MB_OK);
             return false;
         }
-        else if ( value.FindOneOf( _T( ";:\\/" ) ) != -1 )
+        else if (value.FindOneOf(_T(";:\\/")) != -1)
         {
             PSS_MsgBox mBox;
-            mBox.ShowMsgBox( IDS_SYMBOLNAME_INVALIDCHAR, MB_OK );
+            mBox.Show(IDS_SYMBOLNAME_INVALIDCHAR, MB_OK);
             return false;
         }
     }
@@ -563,20 +563,20 @@ bool ZBSymbol::IsNewNameValid( const CString value ) const
 // *                                            Symbol mouse methods                                                    *
 // **********************************************************************************************************************
 
-BOOL ZBSymbol::Create( UINT nID, HINSTANCE hInst, const CString Name /*= ""*/ )
+BOOL ZBSymbol::Create(UINT nID, HINSTANCE hInst, const CString Name /*= ""*/)
 {
-    if ( !Name.IsEmpty() )
+    if (!Name.IsEmpty())
     {
-        ZBSymbol::SetSymbolName( Name );
+        ZBSymbol::SetSymbolName(Name);
     }
 
-    BOOL RetValue = CODSymbolComponent::Create( nID, hInst );
+    BOOL RetValue = CODSymbolComponent::Create(nID, hInst);
 
-    SetPortsVisible( FALSE );
+    SetPortsVisible(FALSE);
 
-    if ( !GetSymbolName().IsEmpty() )
+    if (!GetSymbolName().IsEmpty())
     {
-        SetSymbolName( GetSymbolName() );
+        SetSymbolName(GetSymbolName());
     }
 
     return TRUE;
@@ -584,56 +584,56 @@ BOOL ZBSymbol::Create( UINT nID, HINSTANCE hInst, const CString Name /*= ""*/ )
 
 CString ZBSymbol::GetSymbolName()
 {
-    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty( ZS_BP_PROP_BASIC );
+    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
-    if ( !pBasicProps )
+    if (!pBasicProps)
     {
-        return _T( "" );
+        return _T("");
     }
 
     return pBasicProps->GetSymbolName();
 }
 
-BOOL ZBSymbol::SetSymbolName( const CString value )
+BOOL ZBSymbol::SetSymbolName(const CString value)
 {
     CString OldName = GetSymbolName();
 
-    if ( OldName != value )
+    if (OldName != value)
     {
-        if ( GetSymbolNameTextEdit() )
+        if (GetSymbolNameTextEdit())
         {
-            GetSymbolNameTextEdit()->SetText( value );
+            GetSymbolNameTextEdit()->SetText(value);
         }
 
         ZBBasicProperties BasicProps;
-        ZBBasicProperties* pCurBasicProps = (ZBBasicProperties*)GetProperty( ZS_BP_PROP_BASIC );
+        ZBBasicProperties* pCurBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
-        if ( pCurBasicProps != NULL )
+        if (pCurBasicProps != NULL)
         {
             BasicProps = *pCurBasicProps;
-            BasicProps.SetSymbolName( value );
-            SetProperty( &BasicProps );
-            
-            // Advise the owner model of symbol changes
-            ZDProcessGraphModelMdl* pRootModel = dynamic_cast<ZDProcessGraphModelMdl*>( GetRootModel() );
+            BasicProps.SetSymbolName(value);
+            SetProperty(&BasicProps);
 
-            if ( pRootModel )
+            // Advise the owner model of symbol changes
+            ZDProcessGraphModelMdl* pRootModel = dynamic_cast<ZDProcessGraphModelMdl*>(GetRootModel());
+
+            if (pRootModel)
             {
-                pRootModel->OnSymbolNameChanged( *this, OldName );
+                pRootModel->OnSymbolNameChanged(*this, OldName);
             }
 
             // The symbol has changed
             // Notify all refences
-            ZBSymbolObserverMsg Msg( ZBSymbolObserverMsg::NameHasChanged, this );
-            NotifyAllObservers( &Msg );
+            ZBSymbolObserverMsg Msg(ZBSymbolObserverMsg::NameHasChanged, this);
+            NotifyAllObservers(&Msg);
 
             // Build the message
-            ZBDocObserverMsg DocMsg( ZBDocObserverMsg::ChangedElement,
-                                     NULL,
-                                     dynamic_cast<ZDProcessGraphModelMdl*>( GetOwnerModel() ),
-                                     this );
+            ZBDocObserverMsg DocMsg(ZBDocObserverMsg::ChangedElement,
+                                    NULL,
+                                    dynamic_cast<ZDProcessGraphModelMdl*>(GetOwnerModel()),
+                                    this);
 
-            AfxGetMainWnd()->SendMessageToDescendants( UM_ELEMENTMODIFIEDDOCUMENTMODEL, 0, (LPARAM)&DocMsg );
+            AfxGetMainWnd()->SendMessageToDescendants(UM_ELEMENTMODIFIEDDOCUMENTMODEL, 0, (LPARAM)&DocMsg);
 
             // Redraw the symbol
             RedrawSymbol();
@@ -648,38 +648,38 @@ BOOL ZBSymbol::SetSymbolName( const CString value )
 
 CString ZBSymbol::GetSymbolComment()
 {
-    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty( ZS_BP_PROP_BASIC );
+    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
-    if ( !pBasicProps )
+    if (!pBasicProps)
     {
-        return _T( "" );
+        return _T("");
     }
 
     return pBasicProps->GetSymbolDescription();
 }
 
-BOOL ZBSymbol::SetSymbolComment( const CString value )
+BOOL ZBSymbol::SetSymbolComment(const CString value)
 {
-    if ( GetSymbolComment() != value )
+    if (GetSymbolComment() != value)
     {
-        if ( GetCommentTextEdit() )
+        if (GetCommentTextEdit())
         {
-            GetCommentTextEdit()->SetText( value );
+            GetCommentTextEdit()->SetText(value);
         }
 
         ZBBasicProperties BasicProps;
-        ZBBasicProperties* pCurBasicProps = (ZBBasicProperties*)GetProperty( ZS_BP_PROP_BASIC );
+        ZBBasicProperties* pCurBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
-        if ( pCurBasicProps != NULL )
+        if (pCurBasicProps != NULL)
         {
             BasicProps = *pCurBasicProps;
-            BasicProps.SetSymbolDescription( value );
-            SetProperty( &BasicProps );
+            BasicProps.SetSymbolDescription(value);
+            SetProperty(&BasicProps);
 
             // The symbol has changed
             // Notify all refences
-            ZBSymbolObserverMsg Msg( ZBSymbolObserverMsg::DescriptionHasChanged, this );
-            NotifyAllObservers( &Msg );
+            ZBSymbolObserverMsg Msg(ZBSymbolObserverMsg::DescriptionHasChanged, this);
+            NotifyAllObservers(&Msg);
 
             // Redraw the symbol
             RedrawSymbol();
@@ -694,9 +694,9 @@ BOOL ZBSymbol::SetSymbolComment( const CString value )
 
 int ZBSymbol::GetSymbolReferenceNumber()
 {
-    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty( ZS_BP_PROP_BASIC );
+    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
-    if ( !pBasicProps )
+    if (!pBasicProps)
     {
         return -1;
     }
@@ -706,33 +706,33 @@ int ZBSymbol::GetSymbolReferenceNumber()
 
 CString ZBSymbol::GetSymbolReferenceNumberStr()
 {
-    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty( ZS_BP_PROP_BASIC );
+    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
-    if ( !pBasicProps )
+    if (!pBasicProps)
     {
-        return _T( "" );
+        return _T("");
     }
 
     return pBasicProps->GetSymbolNumberStr();
 }
 
-BOOL ZBSymbol::SetSymbolReferenceNumber( int value )
+BOOL ZBSymbol::SetSymbolReferenceNumber(int value)
 {
-    if ( GetSymbolReferenceNumber() != value )
+    if (GetSymbolReferenceNumber() != value)
     {
         ZBBasicProperties BasicProps;
-        ZBBasicProperties* pCurBasicProps = (ZBBasicProperties*)GetProperty( ZS_BP_PROP_BASIC );
+        ZBBasicProperties* pCurBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
-        if ( pCurBasicProps != NULL )
+        if (pCurBasicProps != NULL)
         {
             BasicProps = *pCurBasicProps;
-            BasicProps.SetSymbolNumber( value );
-            SetProperty( &BasicProps );
+            BasicProps.SetSymbolNumber(value);
+            SetProperty(&BasicProps);
 
             // The symbol has changed
             // Notify all refences
-            ZBSymbolObserverMsg Msg( ZBSymbolObserverMsg::ElementHasChanged, this );
-            NotifyAllObservers( &Msg );
+            ZBSymbolObserverMsg Msg(ZBSymbolObserverMsg::ElementHasChanged, this);
+            NotifyAllObservers(&Msg);
 
             // Redraw the symbol
             RedrawSymbol();
@@ -745,23 +745,23 @@ BOOL ZBSymbol::SetSymbolReferenceNumber( int value )
     return TRUE;
 }
 
-BOOL ZBSymbol::SetSymbolReferenceNumberStr( const CString value )
+BOOL ZBSymbol::SetSymbolReferenceNumberStr(const CString value)
 {
-    if ( GetSymbolReferenceNumberStr() != value )
+    if (GetSymbolReferenceNumberStr() != value)
     {
         ZBBasicProperties BasicProps;
-        ZBBasicProperties* pCurBasicProps = (ZBBasicProperties*)GetProperty( ZS_BP_PROP_BASIC );
+        ZBBasicProperties* pCurBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
-        if ( pCurBasicProps != NULL )
+        if (pCurBasicProps != NULL)
         {
             BasicProps = *pCurBasicProps;
-            BasicProps.SetSymbolNumber( value );
-            SetProperty( &BasicProps );
+            BasicProps.SetSymbolNumber(value);
+            SetProperty(&BasicProps);
 
             // The symbol has changed
             // Notify all refences
-            ZBSymbolObserverMsg Msg( ZBSymbolObserverMsg::ElementHasChanged, this );
-            NotifyAllObservers( &Msg );
+            ZBSymbolObserverMsg Msg(ZBSymbolObserverMsg::ElementHasChanged, this);
+            NotifyAllObservers(&Msg);
 
             // Redraw the symbol
             RedrawSymbol();
@@ -774,59 +774,59 @@ BOOL ZBSymbol::SetSymbolReferenceNumberStr( const CString value )
     return TRUE;
 }
 
-CString ZBSymbol::RetreiveUnitGUID( const CString Name, bool& Error ) const
+CString ZBSymbol::RetreiveUnitGUID(const CString Name, bool& Error) const
 {
     ZDProcessGraphModelMdl* pModel =
-        dynamic_cast<ZDProcessGraphModelMdl*>( const_cast<ZBSymbol*>( this )->GetOwnerModel() );
+        dynamic_cast<ZDProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
 
-    if ( pModel )
+    if (pModel)
     {
-        return pModel->RetreiveUnitGUID( Name, Error );
+        return pModel->RetreiveUnitGUID(Name, Error);
     }
 
     Error = true;
 
-    return _T( "" );
+    return _T("");
 }
 
-CString ZBSymbol::RetreiveUnitName( const CString GUID, bool& Error ) const
+CString ZBSymbol::RetreiveUnitName(const CString GUID, bool& Error) const
 {
     ZDProcessGraphModelMdl* pModel =
-        dynamic_cast<ZDProcessGraphModelMdl*>( const_cast<ZBSymbol*>( this )->GetOwnerModel() );
+        dynamic_cast<ZDProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
 
-    if ( pModel )
+    if (pModel)
     {
-        return pModel->RetreiveUnitName( GUID, Error );
+        return pModel->RetreiveUnitName(GUID, Error);
     }
 
     Error = true;
 
-    return _T( "" );
+    return _T("");
 }
 
-CString ZBSymbol::RetreiveUnitDescription( const CString GUID, bool& Error ) const
+CString ZBSymbol::RetreiveUnitDescription(const CString GUID, bool& Error) const
 {
     ZDProcessGraphModelMdl* pModel =
-        dynamic_cast<ZDProcessGraphModelMdl*>( const_cast<ZBSymbol*>( this )->GetOwnerModel() );
+        dynamic_cast<ZDProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
 
-    if ( pModel )
+    if (pModel)
     {
-        return pModel->RetreiveUnitDescription( GUID, Error );
+        return pModel->RetreiveUnitDescription(GUID, Error);
     }
 
     Error = true;
 
-    return _T( "" );
+    return _T("");
 }
 
-float ZBSymbol::RetreiveUnitCost( const CString GUID, bool& Error ) const
+float ZBSymbol::RetreiveUnitCost(const CString GUID, bool& Error) const
 {
     ZDProcessGraphModelMdl* pModel =
-        dynamic_cast<ZDProcessGraphModelMdl*>( const_cast<ZBSymbol*>( this )->GetOwnerModel() );
+        dynamic_cast<ZDProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
 
-    if ( pModel )
+    if (pModel)
     {
-        return pModel->RetreiveUnitCost( GUID, Error );
+        return pModel->RetreiveUnitCost(GUID, Error);
     }
 
     Error = true;
@@ -834,108 +834,108 @@ float ZBSymbol::RetreiveUnitCost( const CString GUID, bool& Error ) const
     return 0;
 }
 
-CString ZBSymbol::RetreiveLogicalSystemGUID( const CString Name, bool& Error ) const
+CString ZBSymbol::RetreiveLogicalSystemGUID(const CString Name, bool& Error) const
 {
     ZDProcessGraphModelMdl* pModel =
-        dynamic_cast<ZDProcessGraphModelMdl*>( const_cast<ZBSymbol*>( this )->GetOwnerModel() );
+        dynamic_cast<ZDProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
 
-    if ( pModel )
+    if (pModel)
     {
-        return pModel->RetreiveLogicalSystemGUID( Name, Error );
+        return pModel->RetreiveLogicalSystemGUID(Name, Error);
     }
 
     Error = true;
 
-    return _T( "" );
+    return _T("");
 }
 
-CString ZBSymbol::RetreiveLogicalSystemName( const CString GUID, bool& Error ) const
+CString ZBSymbol::RetreiveLogicalSystemName(const CString GUID, bool& Error) const
 {
     ZDProcessGraphModelMdl* pModel =
-        dynamic_cast<ZDProcessGraphModelMdl*>( const_cast<ZBSymbol*>( this )->GetOwnerModel() );
+        dynamic_cast<ZDProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
 
-    if ( pModel )
+    if (pModel)
     {
-        return pModel->RetreiveLogicalSystemName( GUID, Error );
+        return pModel->RetreiveLogicalSystemName(GUID, Error);
     }
 
     Error = true;
 
-    return _T( "" );
+    return _T("");
 }
 
-CString ZBSymbol::RetreiveLogicalSystemDescription( const CString GUID, bool& Error ) const
+CString ZBSymbol::RetreiveLogicalSystemDescription(const CString GUID, bool& Error) const
 {
     ZDProcessGraphModelMdl* pModel =
-        dynamic_cast<ZDProcessGraphModelMdl*>( const_cast<ZBSymbol*>( this )->GetOwnerModel() );
+        dynamic_cast<ZDProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
 
-    if ( pModel )
+    if (pModel)
     {
-        return pModel->RetreiveLogicalSystemDescription( GUID, Error );
+        return pModel->RetreiveLogicalSystemDescription(GUID, Error);
     }
 
     Error = true;
 
-    return _T( "" );
+    return _T("");
 }
 
 // JMR-MODIF - Le 27 février 2006 - Ajout de la fonction RetreivePrestationName pour mettre à jour les prestations.
-CString ZBSymbol::RetreivePrestationName( const CString GUID, bool& Error ) const
+CString ZBSymbol::RetreivePrestationName(const CString GUID, bool& Error) const
 {
     ZDProcessGraphModelMdl* pModel =
-        dynamic_cast<ZDProcessGraphModelMdl*>( const_cast<ZBSymbol*>( this )->GetOwnerModel() );
+        dynamic_cast<ZDProcessGraphModelMdl*>(const_cast<ZBSymbol*>(this)->GetOwnerModel());
 
-    if ( pModel )
+    if (pModel)
     {
-        return pModel->RetreivePrestationName( GUID, Error );
+        return pModel->RetreivePrestationName(GUID, Error);
     }
 
     Error = true;
 
-    return _T( "" );
+    return _T("");
 }
 
 // JMR-MODIF - Le 22 juillet 2007 - Cette fonction permet d'obtenir le niveau du risque du symbole.
 CString ZBSymbol::GetRiskLevel()
 {
-    if ( IsProcess() || IsProcedure() || IsStart() || IsStop() )
+    if (IsProcess() || IsProcedure() || IsStart() || IsStop())
     {
-        ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty( ZS_BP_PROP_BASIC );
+        ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
         return pBasicProps->GetSymbolRiskLevel();
     }
 
-    return _T( "" );
+    return _T("");
 }
 
 // JMR-MODIF - Le 22 juillet 2007 - Cette fonction permet de définir le niveau du risque du symbole.
-void ZBSymbol::SetRiskLevel( CString Level )
+void ZBSymbol::SetRiskLevel(CString Level)
 {
-    if ( IsProcess() || IsProcedure() || IsStart() || IsStop() )
+    if (IsProcess() || IsProcedure() || IsStart() || IsStop())
     {
-        ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty( ZS_BP_PROP_BASIC );
+        ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
-        pBasicProps->SetSymbolRiskLevel( Level );
+        pBasicProps->SetSymbolRiskLevel(Level);
     }
 }
 
 bool ZBSymbol::CreateSymbolProperties()
 {
     ZBBasicProperties propBasic;
-    AddProperty( propBasic );
+    AddProperty(propBasic);
 
     ZBExtAppPropertyMgr::CreateSymbolProperties();
     ZBExtFilePropertyMgr::CreateSymbolProperties();
 
     // Create the empty attributes if requested
-    if ( AcceptDynamicAttributes() )
+    if (AcceptDynamicAttributes())
     {
-        OnFillDefaultAttributes( &m_Attributes );
+        OnFillDefaultAttributes(&m_Attributes);
     }
 
     // JMR-MODIF - Le 21 septembre 2005 - Nettoyage des memory leaks, destruction de m_DynamicPropManager avant une
     // nouvelle attribution.
-    if ( m_DynamicPropManager != NULL )
+    if (m_DynamicPropManager != NULL)
     {
         delete m_DynamicPropManager;
         m_DynamicPropManager = NULL;
@@ -943,7 +943,7 @@ bool ZBSymbol::CreateSymbolProperties()
 
     m_DynamicPropManager = new ZBDynamicProperties;
 
-    if ( m_DynamicPropManager )
+    if (m_DynamicPropManager)
     {
         m_DynamicPropManager->CreateSymbolProperties();
     }
@@ -951,89 +951,89 @@ bool ZBSymbol::CreateSymbolProperties()
     return true;
 }
 
-bool ZBSymbol::FillProperties( ZBPropertySet& PropSet, bool NumericValue /*= false*/, bool GroupValue /*= false*/ )
+bool ZBSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /*= false*/, bool GroupValue /*= false*/)
 {
-    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty( ZS_BP_PROP_BASIC );
+    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
-    if ( !pBasicProps )
+    if (!pBasicProps)
     {
         return false;
     }
 
     CString Name;
 
-    if ( NumericValue )
+    if (NumericValue)
     {
         Name = pBasicProps->GetSymbolName();
-        Name.Remove( '\n' );
-        Name.Replace( '\r', ' ' );
+        Name.Remove('\n');
+        Name.Replace('\r', ' ');
     }
 
     // Propriété "Nom" du groupe "General"
-    ZBProperty* pNameProp = new ZBProperty( IDS_ZS_BP_PROP_BASIC_TITLE,
-                                            ZS_BP_PROP_BASIC,
-                                            IDS_Z_SYMBOL_NAME_NAME,
-                                            Z_SYMBOL_NAME,
-                                            IDS_Z_SYMBOL_NAME_DESC,
-                                            ( NumericValue == true ) ? Name : pBasicProps->GetSymbolName(),
-                                            ( !IsLocal() || SymbolNameTextEditReadOnly() ) ? ZBProperty::PT_EDIT_MULTILINE_READONLY : ZBProperty::PT_EDIT_MULTILINE );
-    PropSet.Add( pNameProp );
+    ZBProperty* pNameProp = new ZBProperty(IDS_ZS_BP_PROP_BASIC_TITLE,
+                                           ZS_BP_PROP_BASIC,
+                                           IDS_Z_SYMBOL_NAME_NAME,
+                                           Z_SYMBOL_NAME,
+                                           IDS_Z_SYMBOL_NAME_DESC,
+                                           (NumericValue == true) ? Name : pBasicProps->GetSymbolName(),
+                                           (!IsLocal() || SymbolNameTextEditReadOnly()) ? ZBProperty::PT_EDIT_MULTILINE_READONLY : ZBProperty::PT_EDIT_MULTILINE);
+    PropSet.Add(pNameProp);
 
     // Propriété "Description" du groupe "General"
-    ZBProperty* pDescProp = new ZBProperty( IDS_ZS_BP_PROP_BASIC_TITLE,
-                                            ZS_BP_PROP_BASIC,
-                                            IDS_Z_SYMBOL_DESCRIPTION_NAME,
-                                            Z_SYMBOL_DESCRIPTION,
-                                            IDS_Z_SYMBOL_DESCRIPTION_DESC,
-                                            pBasicProps->GetSymbolDescription(),
-                                            ( !IsLocal() || CommentTextEditReadOnly() ) ? ZBProperty::PT_EDIT_MULTILINE_READONLY : ZBProperty::PT_EDIT_MULTILINE );
-    PropSet.Add( pDescProp );
+    ZBProperty* pDescProp = new ZBProperty(IDS_ZS_BP_PROP_BASIC_TITLE,
+                                           ZS_BP_PROP_BASIC,
+                                           IDS_Z_SYMBOL_DESCRIPTION_NAME,
+                                           Z_SYMBOL_DESCRIPTION,
+                                           IDS_Z_SYMBOL_DESCRIPTION_DESC,
+                                           pBasicProps->GetSymbolDescription(),
+                                           (!IsLocal() || CommentTextEditReadOnly()) ? ZBProperty::PT_EDIT_MULTILINE_READONLY : ZBProperty::PT_EDIT_MULTILINE);
+    PropSet.Add(pDescProp);
 
     ZBProperty* pNumberProp;
 
-    if ( NumericValue )
+    if (NumericValue)
     {
         // Propriété "Référence" du groupe "General"
-        pNumberProp = new ZBProperty( IDS_ZS_BP_PROP_BASIC_TITLE,
-                                      ZS_BP_PROP_BASIC,
-                                      IDS_Z_SYMBOL_NUMBER_NAME,
-                                      Z_SYMBOL_NUMBER,
-                                      IDS_Z_SYMBOL_NUMBER_DESC,
-                                      (double)pBasicProps->GetSymbolNumber(),
-                                      IsLocal() ? ZBProperty::PT_EDIT_NUMBER : ZBProperty::PT_EDIT_NUMBER_READONLY );
+        pNumberProp = new ZBProperty(IDS_ZS_BP_PROP_BASIC_TITLE,
+                                     ZS_BP_PROP_BASIC,
+                                     IDS_Z_SYMBOL_NUMBER_NAME,
+                                     Z_SYMBOL_NUMBER,
+                                     IDS_Z_SYMBOL_NUMBER_DESC,
+                                     (double)pBasicProps->GetSymbolNumber(),
+                                     IsLocal() ? ZBProperty::PT_EDIT_NUMBER : ZBProperty::PT_EDIT_NUMBER_READONLY);
     }
     else
     {
         // Propriété "Référence" du groupe "General"
-        pNumberProp = new ZBProperty( IDS_ZS_BP_PROP_BASIC_TITLE,
-                                      ZS_BP_PROP_BASIC,
-                                      IDS_Z_SYMBOL_NUMBER_NAME,
-                                      Z_SYMBOL_NUMBER,
-                                      IDS_Z_SYMBOL_NUMBER_DESC,
-                                      pBasicProps->GetSymbolNumberStr(),
-                                      IsLocal() ? ZBProperty::PT_EDIT_STRING : ZBProperty::PT_EDIT_STRING_READONLY );
+        pNumberProp = new ZBProperty(IDS_ZS_BP_PROP_BASIC_TITLE,
+                                     ZS_BP_PROP_BASIC,
+                                     IDS_Z_SYMBOL_NUMBER_NAME,
+                                     Z_SYMBOL_NUMBER,
+                                     IDS_Z_SYMBOL_NUMBER_DESC,
+                                     pBasicProps->GetSymbolNumberStr(),
+                                     IsLocal() ? ZBProperty::PT_EDIT_STRING : ZBProperty::PT_EDIT_STRING_READONLY);
     }
 
-    PropSet.Add( pNumberProp );
+    PropSet.Add(pNumberProp);
 
     // JMR-MODIF - le 22 juillet 2007 - Ajout de la nouvelle propriété "Niveau du risque"
-    if ( IsProcess() || IsProcedure() || IsStart() || IsStop() )
+    if (IsProcess() || IsProcedure() || IsStart() || IsStop())
     {
         // Propriété "Niveau du risque" du groupe "General"
-        ZBProperty* pRiskProp = new ZBProperty( IDS_ZS_BP_PROP_BASIC_TITLE,
-                                                ZS_BP_PROP_BASIC,
-                                                IDS_Z_SYMBOL_RISK_LEVEL_NAME,
-                                                Z_SYMBOL_RISK_LEVEL,
-                                                IDS_Z_SYMBOL_RISK_LEVEL_DESC,
-                                                pBasicProps->GetSymbolRiskLevel(),
-                                                ZBProperty::PT_EDIT_STRING_READONLY );
-        PropSet.Add( pRiskProp );
+        ZBProperty* pRiskProp = new ZBProperty(IDS_ZS_BP_PROP_BASIC_TITLE,
+                                               ZS_BP_PROP_BASIC,
+                                               IDS_Z_SYMBOL_RISK_LEVEL_NAME,
+                                               Z_SYMBOL_RISK_LEVEL,
+                                               IDS_Z_SYMBOL_RISK_LEVEL_DESC,
+                                               pBasicProps->GetSymbolRiskLevel(),
+                                               ZBProperty::PT_EDIT_STRING_READONLY);
+        PropSet.Add(pRiskProp);
     }
 
     // Les propriétés du groupe "Lien externe" sont ajoutées par la classe ZBExtAppPropertyMgr.
-    if ( IsLocal() && AcceptExtApp() )
+    if (IsLocal() && AcceptExtApp())
     {
-        if ( !ZBExtAppPropertyMgr::FillProperties( PropSet, NumericValue, GroupValue ) )
+        if (!ZBExtAppPropertyMgr::FillProperties(PropSet, NumericValue, GroupValue))
         {
             return false;
         }
@@ -1042,10 +1042,10 @@ bool ZBSymbol::FillProperties( ZBPropertySet& PropSet, bool NumericValue /*= fal
         CODModel * pModel = GetRootModel();
 
         // If messenger activated
-        if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-             dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetUseWorkflow() )
+        if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
+            dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetUseWorkflow())
         {
-            if ( !ZBExtAppPropertyMgr::FillPropertiesMessenger( PropSet, NumericValue, GroupValue ) )
+            if (!ZBExtAppPropertyMgr::FillPropertiesMessenger(PropSet, NumericValue, GroupValue))
             {
                 return false;
             }
@@ -1053,9 +1053,9 @@ bool ZBSymbol::FillProperties( ZBPropertySet& PropSet, bool NumericValue /*= fal
     }
 
     // Les propriétés du groupe "Fichier externe" sont ajoutées par la classe ZBExtFilePropertyMgr.
-    if ( IsLocal() && AcceptExtFile() )
+    if (IsLocal() && AcceptExtFile())
     {
-        if ( !ZBExtFilePropertyMgr::FillProperties( PropSet, NumericValue, GroupValue ) )
+        if (!ZBExtFilePropertyMgr::FillProperties(PropSet, NumericValue, GroupValue))
         {
             return false;
         }
@@ -1063,10 +1063,10 @@ bool ZBSymbol::FillProperties( ZBPropertySet& PropSet, bool NumericValue /*= fal
         // RS-MODIF 11.12.04 segregation conceptor
         CODModel * pModel = GetRootModel();
 
-        if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-             dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetUseWorkflow() ) // if messenger activated
+        if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
+            dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetUseWorkflow()) // if messenger activated
         {
-            if ( !ZBExtFilePropertyMgr::FillPropertiesMessenger( PropSet, NumericValue, GroupValue ) )
+            if (!ZBExtFilePropertyMgr::FillPropertiesMessenger(PropSet, NumericValue, GroupValue))
             {
                 return false;
             }
@@ -1074,9 +1074,9 @@ bool ZBSymbol::FillProperties( ZBPropertySet& PropSet, bool NumericValue /*= fal
     }
 
     // Propriétés dynamiques.
-    if ( m_DynamicPropManager )
+    if (m_DynamicPropManager)
     {
-        if ( !m_DynamicPropManager->FillProperties( PropSet, NumericValue, GroupValue ) )
+        if (!m_DynamicPropManager->FillProperties(PropSet, NumericValue, GroupValue))
         {
             return false;
         }
@@ -1085,58 +1085,58 @@ bool ZBSymbol::FillProperties( ZBPropertySet& PropSet, bool NumericValue /*= fal
     return true;
 }
 
-bool ZBSymbol::SaveProperties( ZBPropertySet& PropSet )
+bool ZBSymbol::SaveProperties(ZBPropertySet& PropSet)
 {
-    if ( !IsLocal() )
+    if (!IsLocal())
     {
         return true;
     }
 
     // Now run through the list of data and fill the property set
-    ZBPropertyIterator i( &PropSet );
+    ZBPropertyIterator i(&PropSet);
     ZBProperty* pProp;
 
-    for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
         // If has not changed, continue
-        if ( pProp->GetHasChanged() == false )
+        if (pProp->GetHasChanged() == false)
         {
             continue;
         }
 
-        if ( pProp->GetCategoryID() == ZS_BP_PROP_BASIC )
+        if (pProp->GetCategoryID() == ZS_BP_PROP_BASIC)
         {
-            switch( pProp->GetItemID() )
+            switch (pProp->GetItemID())
             {
                 case Z_SYMBOL_NAME:
                 {
-                    SetSymbolName( pProp->GetValueString() );
+                    SetSymbolName(pProp->GetValueString());
                     break;
                 }
 
                 case Z_SYMBOL_DESCRIPTION:
                 {
-                    SetSymbolComment( pProp->GetValueString() );
+                    SetSymbolComment(pProp->GetValueString());
                     break;
                 }
 
                 case Z_SYMBOL_NUMBER:
                 {
-                    SetSymbolReferenceNumberStr( pProp->GetValueString() );
+                    SetSymbolReferenceNumberStr(pProp->GetValueString());
                     break;
                 }
             }
         }
     }
 
-    if ( !ZBExtAppPropertyMgr::SaveProperties( PropSet ) || !ZBExtFilePropertyMgr::SaveProperties( PropSet ) )
+    if (!ZBExtAppPropertyMgr::SaveProperties(PropSet) || !ZBExtFilePropertyMgr::SaveProperties(PropSet))
     {
         return false;
     }
 
-    if ( m_DynamicPropManager )
+    if (m_DynamicPropManager)
     {
-        if ( !m_DynamicPropManager->SaveProperties( PropSet ) )
+        if (!m_DynamicPropManager->SaveProperties(PropSet))
         {
             return false;
         }
@@ -1145,81 +1145,81 @@ bool ZBSymbol::SaveProperties( ZBPropertySet& PropSet )
     return true;
 }
 
-bool ZBSymbol::FillProperty( ZBProperty& Property )
+bool ZBSymbol::FillProperty(ZBProperty& Property)
 {
-    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty( ZS_BP_PROP_BASIC );
+    ZBBasicProperties* pBasicProps = (ZBBasicProperties*)GetProperty(ZS_BP_PROP_BASIC);
 
-    if ( !pBasicProps )
+    if (!pBasicProps)
     {
         return false;
     }
 
-    if ( Property.GetCategoryID() == ZS_BP_PROP_BASIC )
+    if (Property.GetCategoryID() == ZS_BP_PROP_BASIC)
     {
-        switch( Property.GetItemID() )
+        switch (Property.GetItemID())
         {
             case Z_SYMBOL_NAME:
             {
-                Property.SetValueString( pBasicProps->GetSymbolName() );
+                Property.SetValueString(pBasicProps->GetSymbolName());
                 break;
             }
 
             case Z_SYMBOL_DESCRIPTION:
             {
-                Property.SetValueString( pBasicProps->GetSymbolDescription() );
+                Property.SetValueString(pBasicProps->GetSymbolDescription());
                 break;
             }
 
             case Z_SYMBOL_NUMBER:
             {
-                Property.SetValueString( pBasicProps->GetSymbolNumberStr() );
+                Property.SetValueString(pBasicProps->GetSymbolNumberStr());
                 break;
             }
         }
     }
 
-    if ( !ZBExtAppPropertyMgr::FillProperty( Property ) || !ZBExtFilePropertyMgr::FillProperty( Property ) )
+    if (!ZBExtAppPropertyMgr::FillProperty(Property) || !ZBExtFilePropertyMgr::FillProperty(Property))
     {
         return false;
     }
 
-    if ( m_DynamicPropManager )
+    if (m_DynamicPropManager)
     {
-        if ( !m_DynamicPropManager->FillProperty( Property ) )
+        if (!m_DynamicPropManager->FillProperty(Property))
         {
             return false;
         }
     }
-    
+
     return true;
 }
 
-bool ZBSymbol::SaveProperty( ZBProperty& Property )
+bool ZBSymbol::SaveProperty(ZBProperty& Property)
 {
-    if ( !IsLocal() )
+    if (!IsLocal())
     {
         return true;
     }
 
-    if ( Property.GetCategoryID() == ZS_BP_PROP_BASIC )
+    if (Property.GetCategoryID() == ZS_BP_PROP_BASIC)
     {
-        switch( Property.GetItemID() )
+        switch (Property.GetItemID())
         {
             case Z_SYMBOL_NAME:
             {
-                SetSymbolName( Property.GetValueString() );
+                SetSymbolName(Property.GetValueString());
                 break;
             }
 
             case Z_SYMBOL_DESCRIPTION:
             {
-                SetSymbolComment( Property.GetValueString() );
+                SetSymbolComment(Property.GetValueString());
                 break;
             }
 
             case Z_SYMBOL_NUMBER:
             {
-                SetSymbolReferenceNumberStr( Property.GetValueString() );
+                SetSymbolReferenceNumberStr(Property.GetValueString());
                 break;
             }
         }
@@ -1228,51 +1228,51 @@ bool ZBSymbol::SaveProperty( ZBProperty& Property )
         SetModifiedFlag();
     }
 
-    if ( !ZBExtAppPropertyMgr::SaveProperty( Property ) || !ZBExtFilePropertyMgr::SaveProperty( Property ) )
+    if (!ZBExtAppPropertyMgr::SaveProperty(Property) || !ZBExtFilePropertyMgr::SaveProperty(Property))
     {
         return false;
     }
 
-    if ( m_DynamicPropManager )
+    if (m_DynamicPropManager)
     {
-        if ( !m_DynamicPropManager->SaveProperty( Property ) )
+        if (!m_DynamicPropManager->SaveProperty(Property))
         {
             return false;
         }
     }
-    
+
     return true;
 }
 
-bool ZBSymbol::CheckPropertyValue( ZBProperty& Property, CString& value, ZBPropertySet& Properties )
+bool ZBSymbol::CheckPropertyValue(ZBProperty& Property, CString& value, ZBPropertySet& Properties)
 {
     // If requested to check the Reference number,
     // Check if allowed
-    if ( Property.GetCategoryID() == ZS_BP_PROP_BASIC )
+    if (Property.GetCategoryID() == ZS_BP_PROP_BASIC)
     {
-        if ( Property.GetItemID() == Z_SYMBOL_NUMBER )
+        if (Property.GetItemID() == Z_SYMBOL_NUMBER)
         {
             CODComponent* pComp = GetParent();
 
-            if ( pComp && ISA( pComp, ZDProcessGraphModelMdl ) )
+            if (pComp && ISA(pComp, ZDProcessGraphModelMdl))
             {
                 // If not the same and
                 // If already exists,
                 // display an error message
                 // and put back the initial value
-                if ( value != GetSymbolReferenceNumberStr() &&
-                     dynamic_cast<ZDProcessGraphModelMdl*>( pComp )->GetRoot()->ReferenceNumberAlreadyAllocated( value ) )
+                if (value != GetSymbolReferenceNumberStr() &&
+                    dynamic_cast<ZDProcessGraphModelMdl*>(pComp)->GetRoot()->ReferenceNumberAlreadyAllocated(value))
                 {
                     PSS_MsgBox mBox;
-                    mBox.ShowMsgBox( IDS_REFERENCENUMBER_ALREADYEXIST, MB_OK );
+                    mBox.Show(IDS_REFERENCENUMBER_ALREADYEXIST, MB_OK);
                     value = GetSymbolReferenceNumberStr();
                     return false;
                 }
             }
         }
-        else if ( Property.GetItemID() == Z_SYMBOL_NAME )
+        else if (Property.GetItemID() == Z_SYMBOL_NAME)
         {
-            if ( !IsNewNameValid( value ) )
+            if (!IsNewNameValid(value))
             {
                 value = GetSymbolName();
                 return false;
@@ -1280,38 +1280,38 @@ bool ZBSymbol::CheckPropertyValue( ZBProperty& Property, CString& value, ZBPrope
         }
     }
 
-    if ( !ZBExtAppPropertyMgr::CheckPropertyValue( Property, value, Properties ) ||
-         !ZBExtFilePropertyMgr::CheckPropertyValue( Property, value, Properties ) )
+    if (!ZBExtAppPropertyMgr::CheckPropertyValue(Property, value, Properties) ||
+        !ZBExtFilePropertyMgr::CheckPropertyValue(Property, value, Properties))
     {
         return false;
     }
 
-    if ( m_DynamicPropManager )
+    if (m_DynamicPropManager)
     {
-        if ( !m_DynamicPropManager->CheckPropertyValue( Property, value, Properties ) )
+        if (!m_DynamicPropManager->CheckPropertyValue(Property, value, Properties))
             return false;
     }
 
     return true;
 }
 
-bool ZBSymbol::ProcessExtendedInput( ZBProperty& Property, CString& value, ZBPropertySet& Properties, bool& Refresh )
+bool ZBSymbol::ProcessExtendedInput(ZBProperty& Property, CString& value, ZBPropertySet& Properties, bool& Refresh)
 {
     bool RetValue = false;
 
-    if ( ZBExtAppPropertyMgr::ProcessExtendedInput( Property, value, Properties, Refresh ) )
+    if (ZBExtAppPropertyMgr::ProcessExtendedInput(Property, value, Properties, Refresh))
     {
         RetValue = true;
     }
 
-    if ( ZBExtFilePropertyMgr::ProcessExtendedInput( Property, value, Properties, Refresh ) )
+    if (ZBExtFilePropertyMgr::ProcessExtendedInput(Property, value, Properties, Refresh))
     {
         RetValue = true;
     }
 
-    if ( m_DynamicPropManager )
+    if (m_DynamicPropManager)
     {
-        if ( m_DynamicPropManager->ProcessExtendedInput( Property, value, Properties, Refresh ) )
+        if (m_DynamicPropManager->ProcessExtendedInput(Property, value, Properties, Refresh))
         {
             RetValue = true;
         }
@@ -1320,28 +1320,28 @@ bool ZBSymbol::ProcessExtendedInput( ZBProperty& Property, CString& value, ZBPro
     return RetValue;
 }
 
-bool ZBSymbol::ProcessMenuCommand( int                MenuCommand,
-                                   ZBProperty&        Property,
-                                   CString&            value,
-                                   ZBPropertySet&    Properties,
-                                   bool&            Refresh )
+bool ZBSymbol::ProcessMenuCommand(int                MenuCommand,
+                                  ZBProperty&        Property,
+                                  CString&            value,
+                                  ZBPropertySet&    Properties,
+                                  bool&            Refresh)
 {
     bool RetValue = false;
 
     // Call the base template class method
-    if ( ZBExtAppPropertyMgr::ProcessMenuCommand( MenuCommand, Property, value, Properties, Refresh ) )
+    if (ZBExtAppPropertyMgr::ProcessMenuCommand(MenuCommand, Property, value, Properties, Refresh))
     {
         RetValue = true;
     }
 
-    if ( ZBExtFilePropertyMgr::ProcessMenuCommand( MenuCommand, Property, value, Properties, Refresh ) )
+    if (ZBExtFilePropertyMgr::ProcessMenuCommand(MenuCommand, Property, value, Properties, Refresh))
     {
         RetValue = true;
     }
 
-    if ( m_DynamicPropManager )
+    if (m_DynamicPropManager)
     {
-        if ( m_DynamicPropManager->ProcessMenuCommand( MenuCommand, Property, value, Properties, Refresh ) )
+        if (m_DynamicPropManager->ProcessMenuCommand(MenuCommand, Property, value, Properties, Refresh))
         {
             RetValue = true;
         }
@@ -1350,24 +1350,24 @@ bool ZBSymbol::ProcessMenuCommand( int                MenuCommand,
     return RetValue;
 }
 
-bool ZBSymbol::OnPrePropertyChanged( CString NewValue, ZBProperty& Property, ZBPropertySet& Properties )
+bool ZBSymbol::OnPrePropertyChanged(CString NewValue, ZBProperty& Property, ZBPropertySet& Properties)
 {
     bool RetValue = true;
 
     // Call the base template class method
-    if ( !ZBExtAppPropertyMgr::OnPrePropertyChanged( NewValue, Property, Properties ) )
+    if (!ZBExtAppPropertyMgr::OnPrePropertyChanged(NewValue, Property, Properties))
     {
         RetValue = false;
     }
 
-    if ( !ZBExtFilePropertyMgr::OnPrePropertyChanged( NewValue, Property, Properties ) )
+    if (!ZBExtFilePropertyMgr::OnPrePropertyChanged(NewValue, Property, Properties))
     {
         RetValue = false;
     }
 
-    if ( m_DynamicPropManager )
+    if (m_DynamicPropManager)
     {
-        if ( !m_DynamicPropManager->OnPrePropertyChanged( NewValue, Property, Properties ) )
+        if (!m_DynamicPropManager->OnPrePropertyChanged(NewValue, Property, Properties))
         {
             RetValue = false;
         }
@@ -1376,24 +1376,24 @@ bool ZBSymbol::OnPrePropertyChanged( CString NewValue, ZBProperty& Property, ZBP
     return RetValue;
 }
 
-bool ZBSymbol::OnPostPropertyChanged( ZBProperty& Property, ZBPropertySet& Properties, bool& Refresh )
+bool ZBSymbol::OnPostPropertyChanged(ZBProperty& Property, ZBPropertySet& Properties, bool& Refresh)
 {
     bool RetValue = false;
 
     // Call the base template class method
-    if ( ZBExtAppPropertyMgr::OnPostPropertyChanged( Property, Properties, Refresh ) )
+    if (ZBExtAppPropertyMgr::OnPostPropertyChanged(Property, Properties, Refresh))
     {
         RetValue = true;
     }
 
-    if ( ZBExtFilePropertyMgr::OnPostPropertyChanged( Property, Properties, Refresh ) )
+    if (ZBExtFilePropertyMgr::OnPostPropertyChanged(Property, Properties, Refresh))
     {
         RetValue = true;
     }
 
-    if ( m_DynamicPropManager )
+    if (m_DynamicPropManager)
     {
-        if ( m_DynamicPropManager->OnPostPropertyChanged( Property, Properties, Refresh ) )
+        if (m_DynamicPropManager->OnPostPropertyChanged(Property, Properties, Refresh))
         {
             RetValue = true;
         }
@@ -1402,14 +1402,14 @@ bool ZBSymbol::OnPostPropertyChanged( ZBProperty& Property, ZBPropertySet& Prope
     return RetValue;
 }
 
-bool ZBSymbol::OnDropInternalPropertyItem( ZBProperty&        SrcProperty,
-                                           ZBProperty&        DstProperty,
-                                           bool                Top2Down,
-                                           ZBPropertySet&    Properties )
+bool ZBSymbol::OnDropInternalPropertyItem(ZBProperty&        SrcProperty,
+                                          ZBProperty&        DstProperty,
+                                          bool                Top2Down,
+                                          ZBPropertySet&    Properties)
 {
-    if ( m_DynamicPropManager )
+    if (m_DynamicPropManager)
     {
-        if ( !m_DynamicPropManager->OnDropInternalPropertyItem( SrcProperty, DstProperty, Top2Down, Properties ) )
+        if (!m_DynamicPropManager->OnDropInternalPropertyItem(SrcProperty, DstProperty, Top2Down, Properties))
         {
             return false;
         }
@@ -1423,9 +1423,9 @@ void ZBSymbol::RedrawSymbol()
     // If the parent is a model
     CODComponent* pComp = GetParent();
 
-    if ( pComp && ISA( pComp, ZDProcessGraphModelMdl ) )
+    if (pComp && ISA(pComp, ZDProcessGraphModelMdl))
     {
-        dynamic_cast<ZDProcessGraphModelMdl*>( pComp )->ReDrawComponent( *this );
+        dynamic_cast<ZDProcessGraphModelMdl*>(pComp)->ReDrawComponent(*this);
     }
 }
 
@@ -1445,20 +1445,20 @@ void ZBSymbol::OnDeleteSymbol()
 
 // When we attach a reference to a symbol,
 // we need to attach the object to the subject
-void ZBSymbol::AssignReferenceSymbol( CODSymbolComponent* pReference )
+void ZBSymbol::AssignReferenceSymbol(CODSymbolComponent* pReference)
 {
     m_pReference = pReference;
 
-    if ( m_pReference && ISA( m_pReference, ZBSymbol ) )
+    if (m_pReference && ISA(m_pReference, ZBSymbol))
     {
         // Sets the same name
-        SetSymbolName( dynamic_cast<ZBSymbol*>( m_pReference )->GetSymbolName() );
+        SetSymbolName(dynamic_cast<ZBSymbol*>(m_pReference)->GetSymbolName());
 
         // Sets as reference
-        SetIsLocal( false );
+        SetIsLocal(false);
 
         // And attach this to the source reference
-        dynamic_cast<ZBSymbol*>( m_pReference )->AttachObserver( this );
+        dynamic_cast<ZBSymbol*>(m_pReference)->AttachObserver(this);
     }
     else
     {
@@ -1470,36 +1470,36 @@ void ZBSymbol::AssignReferenceSymbol( CODSymbolComponent* pReference )
 // we need to deattach the object to the subject
 void ZBSymbol::RemoveReferenceSymbol()
 {
-    if ( m_pReference )
+    if (m_pReference)
     {
-        dynamic_cast<ZBSymbol*>( m_pReference )->DetachObserver( this );
+        dynamic_cast<ZBSymbol*>(m_pReference)->DetachObserver(this);
     }
 
     m_pReference = NULL;
 }
 
-void ZBSymbol::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
+void ZBSymbol::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
 {
-    if ( pSubject && pSubject != this && pMsg && ISA( pMsg, ZBSymbolObserverMsg ) )
+    if (pSubject && pSubject != this && pMsg && ISA(pMsg, ZBSymbolObserverMsg))
     {
-        switch ( dynamic_cast<ZBSymbolObserverMsg*>( pMsg )->GetActionType() )
+        switch (dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetActionType())
         {
             case ZBSymbolObserverMsg::ElementHasChanged:
             case ZBSymbolObserverMsg::NoAction:
             {
-                CopySymbolDefinitionFrom( (ZBSymbol&)*pSubject );
+                CopySymbolDefinitionFrom((ZBSymbol&)*pSubject);
                 break;
             }
 
             case ZBSymbolObserverMsg::NameHasChanged:
             {
-                SetSymbolName( dynamic_cast<ZBSymbol*>( pSubject )->GetSymbolName() );
+                SetSymbolName(dynamic_cast<ZBSymbol*>(pSubject)->GetSymbolName());
                 break;
             }
 
             case ZBSymbolObserverMsg::DescriptionHasChanged:
             {
-                SetSymbolComment( dynamic_cast<ZBSymbol*>( pSubject )->GetSymbolComment() );
+                SetSymbolComment(dynamic_cast<ZBSymbol*>(pSubject)->GetSymbolComment());
                 break;
             }
         }
@@ -1509,62 +1509,62 @@ void ZBSymbol::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
     }
 }
 
-void ZBSymbol::SetCurrentLineColor( COLORREF value )
+void ZBSymbol::SetCurrentLineColor(COLORREF value)
 {
     m_CurrentLineColor = value;
-    ZUODSymbolManipulator::ChangeLineColor( this, value );
+    ZUODSymbolManipulator::ChangeLineColor(this, value);
 }
 
-void ZBSymbol::SetInitialLineColor( COLORREF value )
+void ZBSymbol::SetInitialLineColor(COLORREF value)
 {
     m_InitialLineColor = value;
-    SetCurrentLineColor( value );
+    SetCurrentLineColor(value);
 }
 
-void ZBSymbol::SetInitialLineWidth( int value )
+void ZBSymbol::SetInitialLineWidth(int value)
 {
     m_InitialLineWidth = value;
-    ZUODSymbolManipulator::ChangeLineWidth( this, value );
+    ZUODSymbolManipulator::ChangeLineWidth(this, value);
 }
 
-void ZBSymbol::SetCurrentLabelColor( COLORREF value )
+void ZBSymbol::SetCurrentLabelColor(COLORREF value)
 {
     m_CurrentLabelLineColor = value;
-    ZUODSymbolManipulator::ChangeLabelLineColor( this, value );
+    ZUODSymbolManipulator::ChangeLabelLineColor(this, value);
 }
 
-void ZBSymbol::SetInitialLabelLineColor( COLORREF value )
+void ZBSymbol::SetInitialLabelLineColor(COLORREF value)
 {
     m_InitialLabelLineColor = value;
-    SetCurrentLabelColor( value );
+    SetCurrentLabelColor(value);
 }
 
-void ZBSymbol::SetInitialLabelLineWidth( int value )
+void ZBSymbol::SetInitialLabelLineWidth(int value)
 {
     m_InitialLabelLineWidth = value;
-    ZUODSymbolManipulator::ChangeLabelLineWidth( this, value );
+    ZUODSymbolManipulator::ChangeLabelLineWidth(this, value);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // Following and Entering symbol methods
-size_t ZBSymbol::GetFollowingSymbols( CODNodeArray& Nodes )
+size_t ZBSymbol::GetFollowingSymbols(CODNodeArray& Nodes)
 {
     Nodes.RemoveAll();
 
     IODNode* pINode;
-    pINode = guid_cast<IODNode*>( this );
+    pINode = guid_cast<IODNode*>(this);
     pINode->AddRef();
 
-    if( pINode != NULL )
+    if (pINode != NULL)
     {
-        pINode->GetNodesAdjacentFrom( &Nodes );
+        pINode->GetNodesAdjacentFrom(&Nodes);
         pINode->Release();
     }
 
     return Nodes.GetSize();
 }
 
-size_t ZBSymbol::GetFollowingSymbols_Right( CODNodeArray& Nodes )
+size_t ZBSymbol::GetFollowingSymbols_Right(CODNodeArray& Nodes)
 {
     // First, remove all element
     Nodes.RemoveAll();
@@ -1572,20 +1572,20 @@ size_t ZBSymbol::GetFollowingSymbols_Right( CODNodeArray& Nodes )
     // Now start by retrieving the right edges
     CODEdgeArray Edges;
 
-    if ( GetEdgesLeaving_Right( Edges ) == 0 )
+    if (GetEdgesLeaving_Right(Edges) == 0)
     {
         return 0;
     }
 
     // Now in the Edges array we only have right edges
     // For each edge, retreive the symbol attached on the destination
-    for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
+    for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
     {
         // Get the link 
-        IODEdge* pIEdge = Edges.GetAt( nEdgeIdx );
-        CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>( pIEdge );
+        IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
+        CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>(pIEdge);
 
-        if ( !pLinkIndexed )
+        if (!pLinkIndexed)
         {
             continue;
         }
@@ -1595,16 +1595,16 @@ size_t ZBSymbol::GetFollowingSymbols_Right( CODNodeArray& Nodes )
 
         // If a target component is attached to,
         // add it to the array
-        if ( pComp )
+        if (pComp)
         {
-            Nodes.Add( guid_cast<IODNode*>( pComp ) );
+            Nodes.Add(guid_cast<IODNode*>(pComp));
         }
     }
 
     return Nodes.GetSize();
 }
 
-size_t ZBSymbol::GetFollowingSymbols_Left( CODNodeArray& Nodes )
+size_t ZBSymbol::GetFollowingSymbols_Left(CODNodeArray& Nodes)
 {
     // First, remove all element
     Nodes.RemoveAll();
@@ -1612,20 +1612,20 @@ size_t ZBSymbol::GetFollowingSymbols_Left( CODNodeArray& Nodes )
     // Now start by retrieving the left edges
     CODEdgeArray Edges;
 
-    if ( GetEdgesLeaving_Left( Edges ) == 0 )
+    if (GetEdgesLeaving_Left(Edges) == 0)
     {
         return 0;
     }
 
     // Now in the Edges array we only have left edges
     // For each edge, retreive the symbol attached on the destination
-    for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
+    for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
     {
         // Get the link 
-        IODEdge* pIEdge = Edges.GetAt( nEdgeIdx );
-        CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>( pIEdge );
+        IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
+        CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>(pIEdge);
 
-        if ( !pLinkIndexed )
+        if (!pLinkIndexed)
         {
             continue;
         }
@@ -1635,16 +1635,16 @@ size_t ZBSymbol::GetFollowingSymbols_Left( CODNodeArray& Nodes )
 
         // If a target component is attached to,
         // add it to the array
-        if ( pComp )
+        if (pComp)
         {
-            Nodes.Add( guid_cast<IODNode*>( pComp ) );
+            Nodes.Add(guid_cast<IODNode*>(pComp));
         }
     }
 
     return Nodes.GetSize();
 }
 
-size_t ZBSymbol::GetFollowingSymbols_Up( CODNodeArray& Nodes )
+size_t ZBSymbol::GetFollowingSymbols_Up(CODNodeArray& Nodes)
 {
     // First, remove all element
     Nodes.RemoveAll();
@@ -1652,20 +1652,20 @@ size_t ZBSymbol::GetFollowingSymbols_Up( CODNodeArray& Nodes )
     // Now start by retrieving the up edges
     CODEdgeArray Edges;
 
-    if ( GetEdgesLeaving_Up( Edges ) == 0 )
+    if (GetEdgesLeaving_Up(Edges) == 0)
     {
         return 0;
     }
 
     // Now in the Edges array we only have up edges
     // For each edge, retreive the symbol attached on the destination
-    for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
+    for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
     {
         // Get the link
-        IODEdge* pIEdge = Edges.GetAt( nEdgeIdx );
-        CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>( pIEdge );
+        IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
+        CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>(pIEdge);
 
-        if ( !pLinkIndexed )
+        if (!pLinkIndexed)
         {
             continue;
         }
@@ -1675,16 +1675,16 @@ size_t ZBSymbol::GetFollowingSymbols_Up( CODNodeArray& Nodes )
 
         // If a target component is attached to,
         // add it to the array
-        if ( pComp )
+        if (pComp)
         {
-            Nodes.Add( guid_cast<IODNode*>( pComp ) );
+            Nodes.Add(guid_cast<IODNode*>(pComp));
         }
     }
 
     return Nodes.GetSize();
 }
 
-size_t ZBSymbol::GetFollowingSymbols_Down( CODNodeArray& Nodes )
+size_t ZBSymbol::GetFollowingSymbols_Down(CODNodeArray& Nodes)
 {
     // First, remove all element
     Nodes.RemoveAll();
@@ -1692,20 +1692,20 @@ size_t ZBSymbol::GetFollowingSymbols_Down( CODNodeArray& Nodes )
     // Now start by retrieving the down edges
     CODEdgeArray Edges;
 
-    if ( GetEdgesLeaving_Down( Edges ) == 0 )
+    if (GetEdgesLeaving_Down(Edges) == 0)
     {
         return 0;
     }
 
     // Now in the Edges array we only have down edges
     // For each edge, retreive the symbol attached on the destination
-    for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
+    for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
     {
         // Get the link 
-        IODEdge* pIEdge = Edges.GetAt( nEdgeIdx );
-        CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>( pIEdge );
+        IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
+        CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>(pIEdge);
 
-        if ( !pLinkIndexed )
+        if (!pLinkIndexed)
         {
             continue;
         }
@@ -1715,33 +1715,33 @@ size_t ZBSymbol::GetFollowingSymbols_Down( CODNodeArray& Nodes )
 
         // If a target component is attached to,
         // add it to the array
-        if ( pComp )
+        if (pComp)
         {
-            Nodes.Add( guid_cast<IODNode*>( pComp ) );
+            Nodes.Add(guid_cast<IODNode*>(pComp));
         }
     }
 
     return Nodes.GetSize();
 }
 
-size_t ZBSymbol::GetEnteringSymbols( CODNodeArray& Nodes )
+size_t ZBSymbol::GetEnteringSymbols(CODNodeArray& Nodes)
 {
     Nodes.RemoveAll();
 
     IODNode* pINode;
-    pINode = guid_cast<IODNode*>( this );
+    pINode = guid_cast<IODNode*>(this);
     pINode->AddRef();
 
-    if( pINode != NULL )
+    if (pINode != NULL)
     {
-        pINode->GetNodesAdjacentTo( &Nodes );
+        pINode->GetNodesAdjacentTo(&Nodes);
         pINode->Release();
     }
 
     return Nodes.GetSize();
 }
 
-size_t ZBSymbol::GetEnteringSymbols_Right( CODNodeArray& Nodes )
+size_t ZBSymbol::GetEnteringSymbols_Right(CODNodeArray& Nodes)
 {
     // First, remove all element
     Nodes.RemoveAll();
@@ -1749,20 +1749,20 @@ size_t ZBSymbol::GetEnteringSymbols_Right( CODNodeArray& Nodes )
     // Now start by retrieving the entering right edges
     CODEdgeArray Edges;
 
-    if ( GetEdgesEntering_Right( Edges ) == 0 )
+    if (GetEdgesEntering_Right(Edges) == 0)
     {
         return 0;
     }
 
     // Now in the Edges array we only have right edges
     // For each edge, retreive the symbol attached on the destination
-    for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
+    for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
     {
         // Get the link 
-        IODEdge* pIEdge = Edges.GetAt( nEdgeIdx );
-        CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>( pIEdge );
+        IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
+        CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>(pIEdge);
 
-        if ( !pLinkIndexed )
+        if (!pLinkIndexed)
         {
             continue;
         }
@@ -1772,16 +1772,16 @@ size_t ZBSymbol::GetEnteringSymbols_Right( CODNodeArray& Nodes )
 
         // If a target component is attached to,
         // add it to the array
-        if ( pComp )
+        if (pComp)
         {
-            Nodes.Add( guid_cast<IODNode*>( pComp ) );
+            Nodes.Add(guid_cast<IODNode*>(pComp));
         }
     }
 
     return Nodes.GetSize();
 }
 
-size_t ZBSymbol::GetEnteringSymbols_Left( CODNodeArray& Nodes )
+size_t ZBSymbol::GetEnteringSymbols_Left(CODNodeArray& Nodes)
 {
     // First, remove all element
     Nodes.RemoveAll();
@@ -1789,20 +1789,20 @@ size_t ZBSymbol::GetEnteringSymbols_Left( CODNodeArray& Nodes )
     // Now start by retrieving the entering left edges
     CODEdgeArray Edges;
 
-    if ( GetEdgesEntering_Left( Edges ) == 0 )
+    if (GetEdgesEntering_Left(Edges) == 0)
     {
         return 0;
     }
 
     // Now in the Edges array we only have left edges
     // For each edge, retreive the symbol attached on the destination
-    for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
+    for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
     {
         // Get the link 
-        IODEdge* pIEdge = Edges.GetAt( nEdgeIdx );
-        CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>( pIEdge );
+        IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
+        CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>(pIEdge);
 
-        if ( !pLinkIndexed )
+        if (!pLinkIndexed)
         {
             continue;
         }
@@ -1812,16 +1812,16 @@ size_t ZBSymbol::GetEnteringSymbols_Left( CODNodeArray& Nodes )
 
         // If a target component is attached to,
         // add it to the array
-        if ( pComp )
+        if (pComp)
         {
-            Nodes.Add( guid_cast<IODNode*>( pComp ) );
+            Nodes.Add(guid_cast<IODNode*>(pComp));
         }
     }
 
     return Nodes.GetSize();
 }
 
-size_t ZBSymbol::GetEnteringSymbols_Up( CODNodeArray& Nodes )
+size_t ZBSymbol::GetEnteringSymbols_Up(CODNodeArray& Nodes)
 {
     // First, remove all element
     Nodes.RemoveAll();
@@ -1829,20 +1829,20 @@ size_t ZBSymbol::GetEnteringSymbols_Up( CODNodeArray& Nodes )
     // Now start by retrieving the entering up edges
     CODEdgeArray Edges;
 
-    if ( GetEdgesEntering_Up( Edges ) == 0 )
+    if (GetEdgesEntering_Up(Edges) == 0)
     {
         return 0;
     }
 
     // Now in the Edges array we only have up edges
     // For each edge, retreive the symbol attached on the destination
-    for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
+    for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
     {
         // Get the link 
-        IODEdge* pIEdge = Edges.GetAt( nEdgeIdx );
-        CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>( pIEdge );
+        IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
+        CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>(pIEdge);
 
-        if ( !pLinkIndexed )
+        if (!pLinkIndexed)
         {
             continue;
         }
@@ -1852,16 +1852,16 @@ size_t ZBSymbol::GetEnteringSymbols_Up( CODNodeArray& Nodes )
 
         // If a target component is attached to,
         // add it to the array
-        if ( pComp )
+        if (pComp)
         {
-            Nodes.Add( guid_cast<IODNode*>( pComp ) );
+            Nodes.Add(guid_cast<IODNode*>(pComp));
         }
     }
 
     return Nodes.GetSize();
 }
 
-size_t ZBSymbol::GetEnteringSymbols_Down( CODNodeArray& Nodes )
+size_t ZBSymbol::GetEnteringSymbols_Down(CODNodeArray& Nodes)
 {
     // First, remove all element
     Nodes.RemoveAll();
@@ -1869,20 +1869,20 @@ size_t ZBSymbol::GetEnteringSymbols_Down( CODNodeArray& Nodes )
     // Now start by retrieving the entering down edges
     CODEdgeArray Edges;
 
-    if ( GetEdgesEntering_Down( Edges ) == 0 )
+    if (GetEdgesEntering_Down(Edges) == 0)
     {
         return 0;
     }
 
     // Now in the Edges array we only have down edges
     // For each edge, retreive the symbol attached on the destination
-    for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
+    for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
     {
         // Get the link 
-        IODEdge* pIEdge = Edges.GetAt( nEdgeIdx );
-        CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>( pIEdge );
+        IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
+        CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>(pIEdge);
 
-        if ( !pLinkIndexed )
+        if (!pLinkIndexed)
         {
             continue;
         }
@@ -1892,9 +1892,9 @@ size_t ZBSymbol::GetEnteringSymbols_Down( CODNodeArray& Nodes )
 
         // If a target component is attached to,
         // add it to the array
-        if ( pComp )
+        if (pComp)
         {
-            Nodes.Add( guid_cast<IODNode*>( pComp ) );
+            Nodes.Add(guid_cast<IODNode*>(pComp));
         }
     }
 
@@ -1903,39 +1903,39 @@ size_t ZBSymbol::GetEnteringSymbols_Down( CODNodeArray& Nodes )
 
 /////////////////////////////////////////////////////////////////////////////
 // Following and Entering edge methods
-size_t ZBSymbol::GetEdgesLeaving( CODEdgeArray& Edges )
+size_t ZBSymbol::GetEdgesLeaving(CODEdgeArray& Edges)
 {
     Edges.RemoveAll();
 
     IODNode* pINode;
-    pINode = guid_cast<IODNode*>( this );
+    pINode = guid_cast<IODNode*>(this);
     pINode->AddRef();
 
-    if( pINode != NULL )
+    if (pINode != NULL)
     {
-        pINode->GetEdgesLeaving( &Edges );
+        pINode->GetEdgesLeaving(&Edges);
         pINode->Release();
     }
 
     return Edges.GetSize();
 }
 
-size_t ZBSymbol::GetEdgesLeaving_Name( const CString Name, CODEdgeArray& Edges )
+size_t ZBSymbol::GetEdgesLeaving_Name(const CString Name, CODEdgeArray& Edges)
 {
     // Retreive all leaving edges
-    if ( GetEdgesLeaving( Edges ) == 0 )
+    if (GetEdgesLeaving(Edges) == 0)
     {
         return 0;
     }
 
     // Run through all edges and determine what is the source port name
-    for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
+    for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
     {
         // Get the link 
-        IODEdge* pIEdge = Edges.GetAt( nEdgeIdx );
-        CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>( pIEdge );
+        IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
+        CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>(pIEdge);
 
-        if ( !pLinkIndexed )
+        if (!pLinkIndexed)
         {
             continue;
         }
@@ -1945,9 +1945,9 @@ size_t ZBSymbol::GetEdgesLeaving_Name( const CString Name, CODEdgeArray& Edges )
 
         // If no source port or the name is not down
         // Remove it from the array
-        if ( !pPort || pPort->GetName() != Name )
+        if (!pPort || pPort->GetName() != Name)
         {
-            Edges.RemoveAt( nEdgeIdx );
+            Edges.RemoveAt(nEdgeIdx);
             --nEdgeIdx;
         }
     }
@@ -1956,59 +1956,59 @@ size_t ZBSymbol::GetEdgesLeaving_Name( const CString Name, CODEdgeArray& Edges )
     return Edges.GetSize();
 }
 
-size_t ZBSymbol::GetEdgesLeaving_Right( CODEdgeArray& Edges )
+size_t ZBSymbol::GetEdgesLeaving_Right(CODEdgeArray& Edges)
 {
-    return ZBSymbol::GetEdgesLeaving_Name( PortRIGHTComponentLabel, Edges );
+    return ZBSymbol::GetEdgesLeaving_Name(PortRIGHTComponentLabel, Edges);
 }
 
-size_t ZBSymbol::GetEdgesLeaving_Left( CODEdgeArray& Edges )
+size_t ZBSymbol::GetEdgesLeaving_Left(CODEdgeArray& Edges)
 {
-    return ZBSymbol::GetEdgesLeaving_Name( PortLEFTComponentLabel, Edges );
+    return ZBSymbol::GetEdgesLeaving_Name(PortLEFTComponentLabel, Edges);
 }
 
-size_t ZBSymbol::GetEdgesLeaving_Up( CODEdgeArray& Edges )
+size_t ZBSymbol::GetEdgesLeaving_Up(CODEdgeArray& Edges)
 {
-    return ZBSymbol::GetEdgesLeaving_Name( PortUPComponentLabel, Edges );
+    return ZBSymbol::GetEdgesLeaving_Name(PortUPComponentLabel, Edges);
 }
 
-size_t ZBSymbol::GetEdgesLeaving_Down( CODEdgeArray& Edges )
+size_t ZBSymbol::GetEdgesLeaving_Down(CODEdgeArray& Edges)
 {
-    return ZBSymbol::GetEdgesLeaving_Name( PortDOWNComponentLabel, Edges );
+    return ZBSymbol::GetEdgesLeaving_Name(PortDOWNComponentLabel, Edges);
 }
 
-size_t ZBSymbol::GetEdgesEntering( CODEdgeArray& Edges )
+size_t ZBSymbol::GetEdgesEntering(CODEdgeArray& Edges)
 {
     Edges.RemoveAll();
 
     IODNode* pINode;
-    pINode = guid_cast<IODNode*>( this );
+    pINode = guid_cast<IODNode*>(this);
     pINode->AddRef();
 
-    if( pINode != NULL )
+    if (pINode != NULL)
     {
-        pINode->GetEdgesEntering( &Edges );
+        pINode->GetEdgesEntering(&Edges);
         pINode->Release();
     }
 
     return Edges.GetSize();
 }
 
-size_t ZBSymbol::GetEdgesEntering_Name( const CString Name, CODEdgeArray& Edges )
+size_t ZBSymbol::GetEdgesEntering_Name(const CString Name, CODEdgeArray& Edges)
 {
     // Retreive all entering edges
-    if ( GetEdgesEntering( Edges ) == 0 )
+    if (GetEdgesEntering(Edges) == 0)
     {
         return 0;
     }
 
     // Run through all edges and determine what is the destination port name
-    for ( int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx )
+    for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
     {
         // Get the link
-        IODEdge* pIEdge = Edges.GetAt( nEdgeIdx );
-        CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>( pIEdge );
+        IODEdge* pIEdge = Edges.GetAt(nEdgeIdx);
+        CODLinkComponent* pLinkIndexed = static_cast<CODLinkComponent*>(pIEdge);
 
-        if ( !pLinkIndexed )
+        if (!pLinkIndexed)
         {
             continue;
         }
@@ -2018,9 +2018,9 @@ size_t ZBSymbol::GetEdgesEntering_Name( const CString Name, CODEdgeArray& Edges 
 
         // If no source port or the name is not right
         // Remove it from the array
-        if ( !pPort || pPort->GetName() != Name )
+        if (!pPort || pPort->GetName() != Name)
         {
-            Edges.RemoveAt( nEdgeIdx );
+            Edges.RemoveAt(nEdgeIdx);
             --nEdgeIdx;
         }
     }
@@ -2029,42 +2029,42 @@ size_t ZBSymbol::GetEdgesEntering_Name( const CString Name, CODEdgeArray& Edges 
     return Edges.GetSize();
 }
 
-size_t ZBSymbol::GetEdgesEntering_Right( CODEdgeArray& Edges )
+size_t ZBSymbol::GetEdgesEntering_Right(CODEdgeArray& Edges)
 {
-    return ZBSymbol::GetEdgesEntering_Name( PortRIGHTComponentLabel, Edges );
+    return ZBSymbol::GetEdgesEntering_Name(PortRIGHTComponentLabel, Edges);
 }
 
-size_t ZBSymbol::GetEdgesEntering_Left( CODEdgeArray& Edges )
+size_t ZBSymbol::GetEdgesEntering_Left(CODEdgeArray& Edges)
 {
-    return ZBSymbol::GetEdgesEntering_Name( PortLEFTComponentLabel, Edges );
+    return ZBSymbol::GetEdgesEntering_Name(PortLEFTComponentLabel, Edges);
 }
 
-size_t ZBSymbol::GetEdgesEntering_Up( CODEdgeArray& Edges )
+size_t ZBSymbol::GetEdgesEntering_Up(CODEdgeArray& Edges)
 {
-    return ZBSymbol::GetEdgesEntering_Name( PortUPComponentLabel, Edges );
+    return ZBSymbol::GetEdgesEntering_Name(PortUPComponentLabel, Edges);
 }
 
-size_t ZBSymbol::GetEdgesEntering_Down( CODEdgeArray& Edges )
+size_t ZBSymbol::GetEdgesEntering_Down(CODEdgeArray& Edges)
 {
-    return ZBSymbol::GetEdgesEntering_Name( PortDOWNComponentLabel, Edges );
+    return ZBSymbol::GetEdgesEntering_Name(PortDOWNComponentLabel, Edges);
 }
 
-void ZBSymbol::Serialize( CArchive& ar )
+void ZBSymbol::Serialize(CArchive& ar)
 {
     // Serialize the canvas model.
-    CODSymbolComponent::Serialize( ar );
+    CODSymbolComponent::Serialize(ar);
 
     // Only if the object is serialize from and to a document
-    if ( ar.m_pDocument )
+    if (ar.m_pDocument)
     {
-        if ( ar.IsStoring() )
+        if (ar.IsStoring())
         {
             CODModel* pNULLModel = NULL;
-            CString EmptyString( _T( "" ) );
+            CString EmptyString(_T(""));
 
-            if ( m_pReference )
+            if (m_pReference)
             {
-                m_NameOfReference = dynamic_cast<ZBSymbol*>( m_pReference )->GetSymbolReferenceNumberStr();
+                m_NameOfReference = dynamic_cast<ZBSymbol*>(m_pReference)->GetSymbolReferenceNumberStr();
             }
             else
             {
@@ -2092,16 +2092,16 @@ void ZBSymbol::Serialize( CArchive& ar )
             ar << m_Attributes;
 
             // Keep the child model pathname if there is one
-            if ( m_pModel && ISA( m_pModel, ZDProcessGraphModelMdl ) )
+            if (m_pModel && ISA(m_pModel, ZDProcessGraphModelMdl))
             {
-                ar << dynamic_cast<ZDProcessGraphModelMdl*>( m_pModel )->GetAbsolutePath();
+                ar << dynamic_cast<ZDProcessGraphModelMdl*>(m_pModel)->GetAbsolutePath();
             }
             else
             {
                 ar << EmptyString;
             }
 
-            if ( !IsChildModelRef() )
+            if (!IsChildModelRef())
             {
                 ar << m_pModel;
             }
@@ -2120,7 +2120,7 @@ void ZBSymbol::Serialize( CArchive& ar )
 
             WORD wValue;
             ar >> wValue;
-            m_IsLocal = ( ( wValue == 1 ) ? ( true ) : ( false ) );
+            m_IsLocal = ((wValue == 1) ? (true) : (false));
 
             ar >> m_ObjectPath;
 
@@ -2128,17 +2128,17 @@ void ZBSymbol::Serialize( CArchive& ar )
             ar >> m_NameOfReference;
 
             ar >> wValue;
-            m_DisplayNameArea = ( ( wValue == 1 ) ? ( true ) : ( false ) );
+            m_DisplayNameArea = ((wValue == 1) ? (true) : (false));
 
             ar >> wValue;
-            m_DisplayDescriptionArea = ( ( wValue == 1 ) ? ( true ) : ( false ) );
+            m_DisplayDescriptionArea = ((wValue == 1) ? (true) : (false));
 
             ar >> wValue;
-            m_DisplayAttributeArea = ( ( wValue == 1 ) ? ( true ) : ( false ) );
+            m_DisplayAttributeArea = ((wValue == 1) ? (true) : (false));
 
             // If we have the right version, then deserialize the current line and label color
-            if ( ar.m_pDocument &&
-                 dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 19 )
+            if (ar.m_pDocument &&
+                dynamic_cast<PSS_BaseDocument*>(ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 19)
             {
                 ar >> m_CurrentLineColor;
                 ar >> m_CurrentLabelLineColor;
@@ -2167,38 +2167,38 @@ void ZBSymbol::Serialize( CArchive& ar )
 
             // JMR-MODIF - Le 21 septembre 2005 - Nettoyage des memory leaks, destruction de la variable
             // m_DynamicPropManager avant de tenter d'en assigner une nouvelle.
-            if ( m_DynamicPropManager != NULL )
+            if (m_DynamicPropManager != NULL)
             {
                 delete m_DynamicPropManager;
                 m_DynamicPropManager = NULL;
             }
 
             // Serialize the dynamic properties
-            if ( ar.m_pDocument &&
-                 dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 21 )
+            if (ar.m_pDocument &&
+                dynamic_cast<PSS_BaseDocument*>(ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 21)
             {
                 ar >> (CObject*&)m_DynamicPropManager;
             }
 
-            if ( !m_DynamicPropManager )
+            if (!m_DynamicPropManager)
             {
                 m_DynamicPropManager = new ZBDynamicProperties;
             }
 
-            CODEditProperties* pPropEdit = (CODEditProperties*) GetProperty( OD_PROP_EDIT );
+            CODEditProperties* pPropEdit = (CODEditProperties*)GetProperty(OD_PROP_EDIT);
 
-            if( pPropEdit )
+            if (pPropEdit)
             {
-                pPropEdit->SetCanSelect( TRUE );
+                pPropEdit->SetCanSelect(TRUE);
             }
         }
     }
 
     // Serialize external applications and files
-    if ( !m_IsInCreationProcess )
+    if (!m_IsInCreationProcess)
     {
-        ZBExtAppPropertyMgr::Serialize( ar );
-        ZBExtFilePropertyMgr::Serialize( ar );
+        ZBExtAppPropertyMgr::Serialize(ar);
+        ZBExtFilePropertyMgr::Serialize(ar);
     }
 
     // Once loaded, call the base function 

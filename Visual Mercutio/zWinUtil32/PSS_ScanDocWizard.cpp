@@ -108,7 +108,7 @@ BOOL PSS_ScanDocWizard::ProcessSelection()
         PSS_MsgBox mBox;
 
         // ask if the user wants to include the selected file
-        if (mBox.ShowMsgBox(IDS_CONFIRM_INSERT_SCANDOC, MB_YESNO) == IDYES)
+        if (mBox.Show(IDS_CONFIRM_INSERT_SCANDOC, MB_YESNO) == IDYES)
         {
             PSS_ScanInformationDialog scanInforDialog(scanContinueSelectDialog.GetFileName());
 

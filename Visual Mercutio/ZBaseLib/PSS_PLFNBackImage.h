@@ -21,7 +21,7 @@
 
  // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
 #ifndef PSS_PLFNBackImage
-    //#define PSS_PLFNBackImage PLFNBackImage
+    #define PSS_PLFNBackImage PLFNBackImage
 #endif
 
 // processsoft

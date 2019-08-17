@@ -257,7 +257,7 @@ void PSS_DocOptionDialog::OnOK()
     {
         // do not accept this range
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_SYNCHRO_TIMERANGE, MB_OK);
+        mBox.Show(IDS_SYNCHRO_TIMERANGE, MB_OK);
         return;
     }
 

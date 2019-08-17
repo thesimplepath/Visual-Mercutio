@@ -214,7 +214,7 @@ BOOL PSS_CommandLineDialog::IsOK()
     if (text.IsEmpty())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_APPLICATIONMISSING, MB_OK);
+        mBox.Show(IDS_APPLICATIONMISSING, MB_OK);
 
         return FALSE;
     }

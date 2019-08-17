@@ -130,7 +130,7 @@ void PSS_CreateFolderWizardStartDialog::OnOK()
     if (m_FolderName.IsEmpty())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_NO_FOLDERNAME, MB_OK);
+        mBox.Show(IDS_NO_FOLDERNAME, MB_OK);
         return;
     }
 
@@ -142,7 +142,7 @@ void PSS_CreateFolderWizardStartDialog::OnOK()
         if (m_FileName.IsEmpty())
         {
             PSS_MsgBox mBox;
-            mBox.ShowMsgBox(IDS_FILENAMEMISSING, MB_OK);
+            mBox.Show(IDS_FILENAMEMISSING, MB_OK);
             return;
         }
     }

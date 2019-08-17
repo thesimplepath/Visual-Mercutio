@@ -25,20 +25,20 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZVPrestationsInfoDlg dialog
 
-BEGIN_MESSAGE_MAP( ZVPrestationsInfoDlg, CDialog )
+BEGIN_MESSAGE_MAP(ZVPrestationsInfoDlg, CDialog)
     //{{AFX_MSG_MAP(ZVPrestationsInfoDlg)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZVPrestationsInfoDlg::ZVPrestationsInfoDlg( UINT                        nTitleID            /*= -1*/,
-                                            ZBLogicalPrestationsEntity*    pLogicalPrestation    /*= NULL*/,
-                                            const CString                Name                /*= _T( "" )*/,
-                                            const CString                Description            /*= _T( "" )*/,
-                                            bool                        ModifyMode            /*= false*/,
-                                            CWnd*                        pParent                /*=NULL*/ )
-    : CDialog        ( ZVPrestationsInfoDlg::IDD, pParent ),
-      m_pPrestation    ( pLogicalPrestation ),
-      m_ModifyMode    ( ModifyMode )
+ZVPrestationsInfoDlg::ZVPrestationsInfoDlg(UINT                        nTitleID            /*= -1*/,
+                                           ZBLogicalPrestationsEntity*    pLogicalPrestation    /*= NULL*/,
+                                           const CString                Name                /*= _T( "" )*/,
+                                           const CString                Description            /*= _T( "" )*/,
+                                           bool                        ModifyMode            /*= false*/,
+                                           CWnd*                        pParent                /*=NULL*/)
+    : CDialog(ZVPrestationsInfoDlg::IDD, pParent),
+    m_pPrestation(pLogicalPrestation),
+    m_ModifyMode(ModifyMode)
 {
     //{{AFX_DATA_INIT(ZVPrestationsInfoDlg)
     m_Description = Description;
@@ -46,19 +46,18 @@ ZVPrestationsInfoDlg::ZVPrestationsInfoDlg( UINT                        nTitleID
     //}}AFX_DATA_INIT
 
     // Assigns also the initial cost
-    if ( nTitleID != -1 )
+    if (nTitleID != -1)
     {
-        m_Title.LoadString( nTitleID );
+        m_Title.LoadString(nTitleID);
     }
 }
 
 ZVPrestationsInfoDlg::~ZVPrestationsInfoDlg()
-{
-}
+{}
 
-void ZVPrestationsInfoDlg::DoDataExchange( CDataExchange* pDX )
+void ZVPrestationsInfoDlg::DoDataExchange(CDataExchange* pDX)
 {
-    CDialog::DoDataExchange( pDX );
+    CDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(ZVPrestationsInfoDlg)
     DDX_Text(pDX, IDC_PRESTATION_DESCRIPTION, m_Description);
@@ -71,15 +70,15 @@ void ZVPrestationsInfoDlg::DoDataExchange( CDataExchange* pDX )
 
 void ZVPrestationsInfoDlg::OnOK()
 {
-    UpdateData( TRUE );
+    UpdateData(TRUE);
 
-    if ( !m_ModifyMode )
+    if (!m_ModifyMode)
     {
-        if ( m_pPrestation && m_pPrestation->PrestationExist( m_Name ) )
+        if (m_pPrestation && m_pPrestation->PrestationExist(m_Name))
         {
             // Already exists
             PSS_MsgBox mBox;
-            mBox.ShowMsgBox( IDS_PRESTATION_ALREADYEXIST, MB_OK );
+            mBox.Show(IDS_PRESTATION_ALREADYEXIST, MB_OK);
             return;
         }
     }
@@ -90,18 +89,14 @@ void ZVPrestationsInfoDlg::OnOK()
 BOOL ZVPrestationsInfoDlg::OnInitDialog()
 {
     CDialog::OnInitDialog();
-    
-    if ( !m_Title.IsEmpty() )
-    {
-        SetWindowText( m_Title );
-    }
 
-    if ( m_ModifyMode )
+    if (!m_Title.IsEmpty())
+        SetWindowText(m_Title);
+
+    if (m_ModifyMode)
     {
-        if ( GetDlgItem( IDC_PRESTATION_NAME ) )
-        {
-            GetDlgItem( IDC_PRESTATION_NAME )->EnableWindow( FALSE );
-        }
+        if (GetDlgItem(IDC_PRESTATION_NAME))
+            GetDlgItem(IDC_PRESTATION_NAME)->EnableWindow(FALSE);
     }
 
     return TRUE;    // return TRUE unless you set the focus to a control

@@ -1673,7 +1673,7 @@ void PSS_DocumentData::SerializeRead(CArchive& ar)
                 {
                     PSS_MsgBox mBox;
 
-                    if (mBox.ShowMsgBox(IDS_FILECORRUPTED_RECOVER, MB_YESNO) == IDNO)
+                    if (mBox.Show(IDS_FILECORRUPTED_RECOVER, MB_YESNO) == IDNO)
                         THROW_LAST();
 
                     // otherwise, try to keep existing information
@@ -1705,7 +1705,7 @@ void PSS_DocumentData::SerializeRead(CArchive& ar)
                 {
                     PSS_MsgBox mBox;
 
-                    if (mBox.ShowMsgBox(IDS_FILECORRUPTED_RECOVER, MB_YESNO) == IDNO)
+                    if (mBox.Show(IDS_FILECORRUPTED_RECOVER, MB_YESNO) == IDNO)
                         THROW_LAST();
 
                     // otherwise, try to keep existing information
@@ -1733,7 +1733,7 @@ void PSS_DocumentData::SerializeRead(CArchive& ar)
     if (m_Stamp.GetTemplate().IsEmpty())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_TEMPLATEPROBLEM, MB_OK);
+        mBox.Show(IDS_TEMPLATEPROBLEM, MB_OK);
     }
 
     // check now that the object list is coherent
@@ -1744,7 +1744,7 @@ void PSS_DocumentData::SerializeRead(CArchive& ar)
     if (isInRecoveryMode == true)
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_FILECORRUPTED_MISSINGINFO, MB_OK);
+        mBox.Show(IDS_FILECORRUPTED_MISSINGINFO, MB_OK);
     }
 }
 //---------------------------------------------------------------------------
@@ -1788,7 +1788,7 @@ void PSS_DocumentData::SerializeWrite(CArchive& ar)
         CATCH (CArchiveException, e)
         {
             PSS_MsgBox mBox;
-            mBox.ShowMsgBox(IDS_FILECORRUPTED, MB_OK);
+            mBox.Show(IDS_FILECORRUPTED, MB_OK);
             THROW_LAST();
         }
         END_CATCH
@@ -1801,7 +1801,7 @@ void PSS_DocumentData::SerializeWrite(CArchive& ar)
         {
             // in write mode no chance, file corruption
             PSS_MsgBox mBox;
-            mBox.ShowMsgBox(IDS_FILECORRUPTED);
+            mBox.Show(IDS_FILECORRUPTED);
             THROW_LAST();
         }
         END_CATCH
@@ -2092,7 +2092,7 @@ BOOL PSS_DocumentData::CheckObjectList()
 
                 PSS_MsgBox mBox;
 
-                if (mBox.ShowMsgBox(prompt, MB_YESNO) == IDNO)
+                if (mBox.Show(prompt, MB_YESNO) == IDNO)
                     return FALSE;
 
                 m_ObjElements.RemoveAt(pSavedPosition);

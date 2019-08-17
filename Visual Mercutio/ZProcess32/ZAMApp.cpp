@@ -475,7 +475,7 @@ BOOL ZAMainApp::InitInstance()
     {
         PSS_MsgBox mBox;
 
-        if (mBox.ShowMsgBox(IDS_NOSERVERDEFINED, MB_YESNO) == IDNO)
+        if (mBox.Show(IDS_NOSERVERDEFINED, MB_YESNO) == IDNO)
         {
             ZIMessage Message;
             Message.DisplayMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
@@ -633,7 +633,7 @@ BOOL ZAMainApp::InitInstance()
     if (!LoadGlobalFieldRepository())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_NOGFIELDFILEVALUE, MB_OK);
+        mBox.Show(IDS_NOGFIELDFILEVALUE, MB_OK);
     }
 
     AfxGetMainWnd()->SendMessageToDescendants(UM_INITIALIZE_FIELDREPOSITORY,
@@ -2044,7 +2044,7 @@ BOOL ZAMainApp::OpenServerSession()
             // asks the user to select another one
             PSS_MsgBox mBox;
 
-            if (mBox.ShowMsgBox(IDS_DEFAULTSERVERCANNOTBEOPEN, MB_YESNO) == IDNO)
+            if (mBox.Show(IDS_DEFAULTSERVERCANNOTBEOPEN, MB_YESNO) == IDNO)
             {
                 ZIMessage Message;
                 Message.DisplayMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
@@ -2081,7 +2081,7 @@ BOOL ZAMainApp::OpenServerSession()
             {
                 PSS_MsgBox mBox;
 
-                if (mBox.ShowMsgBox(IDS_SERVERISEMPTYORMOVED_INIT, MB_YESNO) == IDNO)
+                if (mBox.Show(IDS_SERVERISEMPTYORMOVED_INIT, MB_YESNO) == IDNO)
                 {
                     ZIMessage Message;
                     Message.DisplayMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
@@ -2112,7 +2112,7 @@ BOOL ZAMainApp::OpenServerSession()
 
                 PSS_MsgBox mBox;
 
-                if (mBox.ShowMsgBox(IDS_DEFAULTSERVERCANNOTBEOPEN, MB_YESNO) == IDNO)
+                if (mBox.Show(IDS_DEFAULTSERVERCANNOTBEOPEN, MB_YESNO) == IDNO)
                 {
                     ZIMessage Message;
                     Message.DisplayMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);

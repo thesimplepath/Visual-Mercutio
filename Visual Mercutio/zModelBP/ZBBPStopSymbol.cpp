@@ -44,7 +44,7 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -58,83 +58,82 @@ static CMenu gRulesMenu;
 static CMenu gRiskMenu;
 
 // JMR-MODIF - Le 18 décembre 2006 - Ajout de la constante _MaxRulesSize.
-const size_t _MaxRulesSize    = 20;
+const size_t _MaxRulesSize = 20;
 // JMR-MODIF - Le 3 juin 2007 - Ajout de la constante _MaxRisksSize.
-const size_t _MaxRisksSize    = 20;
+const size_t _MaxRisksSize = 20;
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBBPStopSymbol::ZBBPStopSymbol( const CString Name /*= ""*/ )
+ZBBPStopSymbol::ZBBPStopSymbol(const CString Name /*= ""*/)
 {
-    ZBSymbol::SetSymbolName( Name );
+    ZBSymbol::SetSymbolName(Name);
 
     // Change what to show first
-    m_DisplayNameArea            = true;
-    m_DisplayDescriptionArea    = false;
-    m_DisplayAttributeArea        = true;
+    m_DisplayNameArea = true;
+    m_DisplayDescriptionArea = false;
+    m_DisplayAttributeArea = true;
 
     // JMR-MODIF - Le 29 juillet 2007 - Ajout de l'appel à CreateSymbolProperties.
     CreateSymbolProperties();
 }
 
 ZBBPStopSymbol::~ZBBPStopSymbol()
-{
-}
+{}
 
-ZBBPStopSymbol::ZBBPStopSymbol( const ZBBPStopSymbol& src )
+ZBBPStopSymbol::ZBBPStopSymbol(const ZBBPStopSymbol& src)
 {
     *this = src;
 }
 
-ZBBPStopSymbol& ZBBPStopSymbol::operator=( const ZBBPStopSymbol& src )
+ZBBPStopSymbol& ZBBPStopSymbol::operator=(const ZBBPStopSymbol& src)
 {
     // Call the base class assignement operator
-    ZBSymbol::operator=( (const ZBSymbol&)src );
+    ZBSymbol::operator=((const ZBSymbol&)src);
 
-    m_UnitProp    = src.m_UnitProp;
+    m_UnitProp = src.m_UnitProp;
 
     // JMR-MODIF - Le 18 décembre 2006 - Ajout du code de copie pour les règles
-    m_Rules        = src.m_Rules;
+    m_Rules = src.m_Rules;
 
     // JMR-MODIF - Le 29 juillet 2007 - Ajout du code de copie pour les risques
-    m_Risks        = src.m_Risks;
+    m_Risks = src.m_Risks;
 
     return *this;
 }
 
 CODComponent* ZBBPStopSymbol::Dup() const
 {
-    return ( new ZBBPStopSymbol( *this ) );
+    return (new ZBBPStopSymbol(*this));
 }
 
-void ZBBPStopSymbol::CopySymbolDefinitionFrom( CODSymbolComponent& src )
+void ZBBPStopSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
 {
     // Class the base class method
-    ZBSymbol::CopySymbolDefinitionFrom( src );
+    ZBSymbol::CopySymbolDefinitionFrom(src);
 
-    if ( ISA( ( &src ), ZBBPStopSymbol ) )
+    if (ISA((&src), ZBBPStopSymbol))
     {
-        m_UnitProp    = ( (ZBBPStopSymbol&)src ).m_UnitProp;
+        m_UnitProp = ((ZBBPStopSymbol&)src).m_UnitProp;
 
         // JMR-MODIF - Le 18 décembre 2006 - Ajout de la copie de la variable m_Rules.
-        m_Rules        = ( (ZBBPStopSymbol&)src ).m_Rules;
+        m_Rules = ((ZBBPStopSymbol&)src).m_Rules;
 
         // JMR-MODIF - Le 29 juillet 2007 - Ajout du code de copie pour les risques
-        m_Risks        = ( (ZBBPStopSymbol&)src ).m_Risks;
+        m_Risks = ((ZBBPStopSymbol&)src).m_Risks;
     }
 }
 
-BOOL ZBBPStopSymbol::Create( const CString Name /*= ""*/ )
+BOOL ZBBPStopSymbol::Create(const CString Name /*= ""*/)
 {
     m_IsInCreationProcess = true;
 
-    BOOL RetValue = ZBSymbol::Create( IDR_BP_STOP,
-                                      AfxFindResourceHandle( MAKEINTRESOURCE( IDR_UML_END_SYM ), _T( "Symbol" ) ),
-                                      Name );
+    BOOL RetValue = ZBSymbol::Create(IDR_BP_STOP,
+                                     AfxFindResourceHandle(MAKEINTRESOURCE(IDR_UML_END_SYM), _T("Symbol")),
+                                     Name);
 
-    if ( !CreateSymbolProperties() )
+    if (!CreateSymbolProperties())
     {
         RetValue = FALSE;
     }
@@ -144,169 +143,169 @@ BOOL ZBBPStopSymbol::Create( const CString Name /*= ""*/ )
     return RetValue;
 }
 
-bool ZBBPStopSymbol::OnFillDefaultAttributes( ZBPropertyAttributes* pAttributes )
+bool ZBBPStopSymbol::OnFillDefaultAttributes(ZBPropertyAttributes* pAttributes)
 {
-    if ( !pAttributes )
+    if (!pAttributes)
     {
         return false;
     }
 
     // If global attributes have been defined, then copy them
-    if ( ZAModelGlobal::GetGlobalPropertyAttributes(GetObjectTypeID()).GetAttributeCount() > 0 )
+    if (ZAModelGlobal::GetGlobalPropertyAttributes(GetObjectTypeID()).GetAttributeCount() > 0)
     {
-        *pAttributes = ZAModelGlobal::GetGlobalPropertyAttributes( GetObjectTypeID() );
+        *pAttributes = ZAModelGlobal::GetGlobalPropertyAttributes(GetObjectTypeID());
     }
     else
     {
         // Add the reference number
-        pAttributes->AddAttribute( ZS_BP_PROP_BASIC, Z_SYMBOL_NUMBER );
+        pAttributes->AddAttribute(ZS_BP_PROP_BASIC, Z_SYMBOL_NUMBER);
 
         // Add the unit name
-        pAttributes->AddAttribute( ZS_BP_PROP_UNIT, Z_UNIT_NAME );
+        pAttributes->AddAttribute(ZS_BP_PROP_UNIT, Z_UNIT_NAME);
 
         // No item labels
-        pAttributes->SetDisplayTitleText( false );
+        pAttributes->SetDisplayTitleText(false);
     }
 
-    return ZBSymbol::OnFillDefaultAttributes( pAttributes );
+    return ZBSymbol::OnFillDefaultAttributes(pAttributes);
 }
 
-bool ZBBPStopSymbol::OnChangeAttributes( ZBPropertyAttributes* pAttributes )
+bool ZBBPStopSymbol::OnChangeAttributes(ZBPropertyAttributes* pAttributes)
 {
-    return ZBSymbol::OnChangeAttributes( pAttributes );
+    return ZBSymbol::OnChangeAttributes(pAttributes);
 }
 
-CString ZBBPStopSymbol::GetAttributeString( ZBPropertyAttributes* pAttributes ) const
+CString ZBBPStopSymbol::GetAttributeString(ZBPropertyAttributes* pAttributes) const
 {
-    return ZBSymbol::GetAttributeString( pAttributes );
+    return ZBSymbol::GetAttributeString(pAttributes);
 }
 
 // Drag and drop methods
-bool ZBBPStopSymbol::AcceptDropItem( CObject* pObj, CPoint pt )
+bool ZBBPStopSymbol::AcceptDropItem(CObject* pObj, CPoint pt)
 {
     // JMR-MODIF - Le 18 décembre 2006 - Si le symbole n'est pas local, interdit l'opération de glisser-coller.
-    if ( !IsLocal() )
+    if (!IsLocal())
     {
         return false;
     }
 
     // If a user entity
-    if ( pObj && ISA( pObj, ZBUserGroupEntity ) )
+    if (pObj && ISA(pObj, ZBUserGroupEntity))
     {
         return true;
     }
 
     // JMR-MODIF - Le 18 décembre 2006 - Détermine si l'objet reçu est un objet de type règle.
-    if ( pObj && ISA( pObj, ZBLogicalRulesEntity ) )
+    if (pObj && ISA(pObj, ZBLogicalRulesEntity))
     {
         return true;
     }
 
     // Otherwise, call the base class
-    return ZBSymbol::AcceptDropItem( pObj, pt );
+    return ZBSymbol::AcceptDropItem(pObj, pt);
 }
 
-bool ZBBPStopSymbol::DropItem( CObject* pObj, CPoint pt )
+bool ZBBPStopSymbol::DropItem(CObject* pObj, CPoint pt)
 {
-    if ( pObj && ISA( pObj, ZBUserGroupEntity ) )
+    if (pObj && ISA(pObj, ZBUserGroupEntity))
     {
         // First, check if the user group is valid
         CODModel * pModel = GetRootModel();
 
-        if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-             !dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->MainUserGroupIsValid() )
+        if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
+            !dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
         {
             // Cannot delete all combinations
             PSS_MsgBox mBox;
-            mBox.ShowMsgBox( IDS_CANNOTDROP_USERGROUPNOTINLINE, MB_OK ); 
+            mBox.Show(IDS_CANNOTDROP_USERGROUPNOTINLINE, MB_OK);
             return false;
         }
 
-        ZBUserGroupEntity* pGroup = dynamic_cast<ZBUserGroupEntity*>( pObj );
-        SetUnitGUID( pGroup->GetGUID() );
-        SetUnitName( pGroup->GetEntityName() );
+        ZBUserGroupEntity* pGroup = dynamic_cast<ZBUserGroupEntity*>(pObj);
+        SetUnitGUID(pGroup->GetGUID());
+        SetUnitName(pGroup->GetEntityName());
 
         // Change the unit cost
-        SetUnitCost( pGroup->GetEntityCost() );
+        SetUnitCost(pGroup->GetEntityCost());
 
         // Set flag for modification
-        SetModifiedFlag( TRUE );
+        SetModifiedFlag(TRUE);
 
         // Refresh the attribute area and redraw the symbol
-        RefreshAttributeAreaText( true );
+        RefreshAttributeAreaText(true);
 
         return true;
     }
 
     // **********************************************************************************************************
     // JMR-MODIF - Le 18 décembre 2006 - Ajout du code pour le traitement des objets de type règles.
-    if ( pObj && ISA( pObj, ZBLogicalRulesEntity ) )
+    if (pObj && ISA(pObj, ZBLogicalRulesEntity))
     {
         // First, check if the rule is valid
         CODModel* pModel = GetRootModel();
 
-        if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-             !dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->MainLogicalRulesIsValid() )
+        if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
+            !dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainLogicalRulesIsValid())
         {
             // Cannot delete all rules
             PSS_MsgBox mBox;
-            mBox.ShowMsgBox( IDS_CANNOTDROP_RULENOTINLINE, MB_OK );
+            mBox.Show(IDS_CANNOTDROP_RULENOTINLINE, MB_OK);
             return false;
         }
 
-        ZBLogicalRulesEntity* pRule = dynamic_cast<ZBLogicalRulesEntity*>( pObj );
+        ZBLogicalRulesEntity* pRule = dynamic_cast<ZBLogicalRulesEntity*>(pObj);
 
         ZBBPRulesProperties* m_NewRule = new ZBBPRulesProperties();
 
-        m_NewRule->SetRuleName( pRule->GetEntityName() );
-        m_NewRule->SetRuleDescription( pRule->GetEntityDescription() );
-        m_NewRule->SetRuleGUID( pRule->GetGUID() );
+        m_NewRule->SetRuleName(pRule->GetEntityName());
+        m_NewRule->SetRuleDescription(pRule->GetEntityDescription());
+        m_NewRule->SetRuleGUID(pRule->GetGUID());
 
-        m_Rules.AddRule( m_NewRule );
+        m_Rules.AddRule(m_NewRule);
 
         // Set flag for modification
-        SetModifiedFlag( TRUE );
+        SetModifiedFlag(TRUE);
 
         // Refresh the attribute area and redraw the symbol
-        RefreshAttributeAreaText( true );
+        RefreshAttributeAreaText(true);
         return true;
     }
     // **********************************************************************************************************
 
-    return ZBSymbol::DropItem( pObj, pt );
+    return ZBSymbol::DropItem(pObj, pt);
 }
 
 // JMR-MODIF - Le 25 décembre 2006 - Permet de rechercher le nom original d'une règle en fonction de son GUID.
-CString ZBBPStopSymbol::GetRuleNameByGUID( ZBLogicalRulesEntity* p_Rule, CString RuleGUID )
+CString ZBBPStopSymbol::GetRuleNameByGUID(ZBLogicalRulesEntity* p_Rule, CString RuleGUID)
 {
-    if ( p_Rule == NULL )
+    if (p_Rule == NULL)
     {
-        return _T( "" );
+        return _T("");
     }
 
-    if ( p_Rule->GetGUID() == RuleGUID )
+    if (p_Rule->GetGUID() == RuleGUID)
     {
         return p_Rule->GetEntityName();
     }
 
-    if ( p_Rule->ContainEntity() )
+    if (p_Rule->ContainEntity())
     {
         int Count = p_Rule->GetEntityCount();
 
-        for ( int i = 0; i < Count; ++i )
+        for (int i = 0; i < Count; ++i)
         {
-            ZBRulesEntity* pEntity = p_Rule->GetEntityAt( i );
+            ZBRulesEntity* pEntity = p_Rule->GetEntityAt(i);
 
-            if ( !pEntity )
+            if (!pEntity)
             {
                 continue;
             }
 
-            if ( ISA( pEntity, ZBLogicalRulesEntity ) )
+            if (ISA(pEntity, ZBLogicalRulesEntity))
             {
-                CString m_Name = GetRuleNameByGUID( dynamic_cast<ZBLogicalRulesEntity*>( pEntity ), RuleGUID );
+                CString m_Name = GetRuleNameByGUID(dynamic_cast<ZBLogicalRulesEntity*>(pEntity), RuleGUID);
 
-                if ( !m_Name.IsEmpty() )
+                if (!m_Name.IsEmpty())
                 {
                     return m_Name;
                 }
@@ -314,7 +313,7 @@ CString ZBBPStopSymbol::GetRuleNameByGUID( ZBLogicalRulesEntity* p_Rule, CString
         }
     }
 
-    return _T( "" );
+    return _T("");
 }
 
 BOOL ZBBPStopSymbol::OnDoubleClick()
@@ -324,13 +323,13 @@ BOOL ZBBPStopSymbol::OnDoubleClick()
 
 bool ZBBPStopSymbol::CreateSymbolProperties()
 {
-    if ( !ZBSymbol::CreateSymbolProperties() )
+    if (!ZBSymbol::CreateSymbolProperties())
     {
         return false;
     }
-    
+
     ZBBPUnitProperties propUnit;
-    AddProperty( propUnit );
+    AddProperty(propUnit);
 
     // JMR-MODIF - Le 3 juin 2007 - Ajoute au moins un catalogue de propriétés dans les risques.
     m_Risks.CreateInitialProperties();
@@ -339,11 +338,11 @@ bool ZBBPStopSymbol::CreateSymbolProperties()
 }
 
 // JMR-MODIF - Le 26 avril 2007 - Cette fonction permet de déterminer si une règle donnée a été attribuée à cet objet.
-BOOL ZBBPStopSymbol::ContainsRule( CString RuleName )
+BOOL ZBBPStopSymbol::ContainsRule(CString RuleName)
 {
-    for ( int i = 0; i < m_Rules.GetRulesCount(); i++ )
+    for (int i = 0; i < m_Rules.GetRulesCount(); i++)
     {
-        if ( m_Rules.GetRuleName( i ) == RuleName )
+        if (m_Rules.GetRuleName(i) == RuleName)
         {
             return TRUE;
         }
@@ -353,22 +352,22 @@ BOOL ZBBPStopSymbol::ContainsRule( CString RuleName )
 }
 
 // JMR-MODIF - Le 9 octobre 2007 - Cette fonction retourne les règles qui ne sont plus synchronisées avec le référentiel.
-void ZBBPStopSymbol::CheckRulesSync( CStringArray& RulesList )
+void ZBBPStopSymbol::CheckRulesSync(CStringArray& RulesList)
 {
     CODModel * pModel = GetRootModel();
 
-    if ( pModel == NULL )
+    if (pModel == NULL)
     {
         return;
     }
 
-    if ( m_Rules.GetRulesCount() > 0 )
+    if (m_Rules.GetRulesCount() > 0)
     {
         ZBLogicalRulesEntity* p_MainRule = NULL;
 
-        if ( GetOwnerModel() != NULL && ISA( GetOwnerModel(), ZDProcessGraphModelMdlBP ) )
+        if (GetOwnerModel() != NULL && ISA(GetOwnerModel(), ZDProcessGraphModelMdlBP))
         {
-            ZDProcessGraphModelMdlBP* p_Model = reinterpret_cast<ZDProcessGraphModelMdlBP*>( GetOwnerModel() );
+            ZDProcessGraphModelMdlBP* p_Model = reinterpret_cast<ZDProcessGraphModelMdlBP*>(GetOwnerModel());
 
             p_MainRule = p_Model->GetMainLogicalRules();
         }
@@ -377,28 +376,28 @@ void ZBBPStopSymbol::CheckRulesSync( CStringArray& RulesList )
             return;
         }
 
-        for ( int i = 0; i < m_Rules.GetRulesCount(); i++ )
+        for (int i = 0; i < m_Rules.GetRulesCount(); i++)
         {
-            CString m_SafeName = GetRuleNameByGUID( p_MainRule, m_Rules.GetRuleGUID( i ) );
+            CString m_SafeName = GetRuleNameByGUID(p_MainRule, m_Rules.GetRuleGUID(i));
 
-            if ( m_SafeName.IsEmpty() )
+            if (m_SafeName.IsEmpty())
             {
-                RulesList.Add( m_Rules.GetRuleName( i ) );
+                RulesList.Add(m_Rules.GetRuleName(i));
             }
         }
     }
 }
 
-bool ZBBPStopSymbol::FillProperties( ZBPropertySet& PropSet, bool NumericValue /*= false*/, bool GroupValue /*= false*/ )
+bool ZBBPStopSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /*= false*/, bool GroupValue /*= false*/)
 {
-    if ( !ZBSymbol::FillProperties( PropSet, NumericValue, GroupValue ) )
+    if (!ZBSymbol::FillProperties(PropSet, NumericValue, GroupValue))
     {
         return false;
     }
 
     // JMR-MODIF - Le 29 juillet 2007 - Ajout du test de symbole local.
     // Only local symbol have access to properties
-    if ( !IsLocal() )
+    if (!IsLocal())
     {
         return true;
     }
@@ -411,14 +410,14 @@ bool ZBBPStopSymbol::FillProperties( ZBPropertySet& PropSet, bool NumericValue /
     CString CurrencySymbol = ZAGlobal::GetLocaleCurrency();
 
     // JMR-MODIF - Le 30 juillet 2007 - Mets à jour le symbole monétaire en fonction de la sélection utilisateur.
-    if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) )
+    if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
     {
-        CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetDocument();
+        CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
 
-        if ( pDoc && ISA( pDoc, ZDProcessGraphModelDoc ) )
+        if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
         {
             // Retreive the model's currency symbol
-            CurrencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetCurrencySymbol();
+            CurrencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
         }
     }
 
@@ -426,39 +425,39 @@ bool ZBBPStopSymbol::FillProperties( ZBPropertySet& PropSet, bool NumericValue /
     // JMR-MODIF - Le 18 décembre 2006 - Nouvelle architecture des règles.
 
     // If the menu is not loaded, load it
-    if ( gRulesMenu.GetSafeHmenu() == NULL )
+    if (gRulesMenu.GetSafeHmenu() == NULL)
     {
-        gRulesMenu.LoadMenu( IDR_RULES_MENU );
+        gRulesMenu.LoadMenu(IDR_RULES_MENU);
     }
 
-    if ( m_Rules.GetRulesCount() > 0 )
+    if (m_Rules.GetRulesCount() > 0)
     {
-        CString RuleSectionTitle    = _T( "" );
-        CString RuleName            = _T( "" );
-        CString RuleDesc            = _T( "" );
+        CString RuleSectionTitle = _T("");
+        CString RuleName = _T("");
+        CString RuleDesc = _T("");
 
-        RuleSectionTitle.LoadString( IDS_Z_RULES_TITLE );
-        RuleDesc.LoadString( IDS_Z_RULES_DESC );
+        RuleSectionTitle.LoadString(IDS_Z_RULES_TITLE);
+        RuleDesc.LoadString(IDS_Z_RULES_DESC);
 
         ZBLogicalRulesEntity* p_MainRule = NULL;
 
-        if ( GetOwnerModel() != NULL && ISA( GetOwnerModel(), ZDProcessGraphModelMdlBP ) )
+        if (GetOwnerModel() != NULL && ISA(GetOwnerModel(), ZDProcessGraphModelMdlBP))
         {
-            ZDProcessGraphModelMdlBP* p_Model = reinterpret_cast<ZDProcessGraphModelMdlBP*>( GetOwnerModel() );
+            ZDProcessGraphModelMdlBP* p_Model = reinterpret_cast<ZDProcessGraphModelMdlBP*>(GetOwnerModel());
 
-            if ( p_Model != NULL                    &&
-                 p_Model->GetController() != NULL    &&
-                 ISA( p_Model->GetController(), ZDProcessGraphModelControllerBP ) )
+            if (p_Model != NULL &&
+                p_Model->GetController() != NULL &&
+                ISA(p_Model->GetController(), ZDProcessGraphModelControllerBP))
             {
                 ZDProcessGraphModelControllerBP* p_Controller =
-                    reinterpret_cast<ZDProcessGraphModelControllerBP*>( p_Model->GetController() );
+                    reinterpret_cast<ZDProcessGraphModelControllerBP*>(p_Model->GetController());
 
-                if ( p_Controller != NULL && ISA( p_Controller->GetDocument(), ZDProcessGraphModelDoc ) )
+                if (p_Controller != NULL && ISA(p_Controller->GetDocument(), ZDProcessGraphModelDoc))
                 {
                     ZDProcessGraphModelDoc* p_Document =
-                        reinterpret_cast<ZDProcessGraphModelDoc*>( p_Controller->GetDocument() );
+                        reinterpret_cast<ZDProcessGraphModelDoc*>(p_Controller->GetDocument());
 
-                    if ( p_Document != NULL && p_Document->GetMainLogicalRules() != NULL )
+                    if (p_Document != NULL && p_Document->GetMainLogicalRules() != NULL)
                     {
                         p_MainRule = p_Document->GetMainLogicalRules();
                     }
@@ -466,13 +465,13 @@ bool ZBBPStopSymbol::FillProperties( ZBPropertySet& PropSet, bool NumericValue /
             }
         }
 
-        for ( int i = 0; i < m_Rules.GetRulesCount(); i++ )
+        for (int i = 0; i < m_Rules.GetRulesCount(); i++)
         {
             // Le contrôle des règles ne peut être appliqué que si le modèle est en phase avec le système des règles.
-            if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-                dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->MainLogicalRulesIsValid() )
+            if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
+                dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainLogicalRulesIsValid())
             {
-                CString m_SafeName = GetRuleNameByGUID( p_MainRule, m_Rules.GetRuleGUID( i ) );
+                CString m_SafeName = GetRuleNameByGUID(p_MainRule, m_Rules.GetRuleGUID(i));
 
                 // ********************************************************************************************
                 // JMR-MODIF - Le 8 octobre 2007 - Rééctriture de la routine suite à un bug de perte de règles.
@@ -490,30 +489,30 @@ bool ZBBPStopSymbol::FillProperties( ZBPropertySet& PropSet, bool NumericValue /
                 }
                 */
 
-                if ( !m_SafeName.IsEmpty() && m_SafeName != m_Rules.GetRuleName( i ) )
+                if (!m_SafeName.IsEmpty() && m_SafeName != m_Rules.GetRuleName(i))
                 {
-                    m_Rules.SetRuleName( i, m_SafeName );
+                    m_Rules.SetRuleName(i, m_SafeName);
                 }
                 // ********************************************************************************************
             }
 
-            RuleName.Format( IDS_Z_RULES_NAME, i + 1 );
+            RuleName.Format(IDS_Z_RULES_NAME, i + 1);
 
             // Propriété "Règle x" du groupe "Règles"
-            ZBProperty* pRule = new ZBProperty( RuleSectionTitle,
-                                                ZS_BP_PROP_RULES,
-                                                RuleName,
-                                                Z_RULE_NAME + ( i * _MaxRulesSize ),
-                                                RuleDesc,
-                                                m_Rules.GetRuleName( i ),
-                                                ZBProperty::PT_EDIT_MENU,
-                                                true,
-                                                ZBStringFormat( ZBStringFormat::General ),
-                                                NULL,
-                                                &gRulesMenu );
+            ZBProperty* pRule = new ZBProperty(RuleSectionTitle,
+                                               ZS_BP_PROP_RULES,
+                                               RuleName,
+                                               Z_RULE_NAME + (i * _MaxRulesSize),
+                                               RuleDesc,
+                                               m_Rules.GetRuleName(i),
+                                               ZBProperty::PT_EDIT_MENU,
+                                               true,
+                                               ZBStringFormat(ZBStringFormat::General),
+                                               NULL,
+                                               &gRulesMenu);
 
             pRule->EnableDragNDrop();
-            PropSet.Add( pRule );
+            PropSet.Add(pRule);
         }
     }
     // ************************************************************************************************************
@@ -522,221 +521,221 @@ bool ZBBPStopSymbol::FillProperties( ZBPropertySet& PropSet, bool NumericValue /
     // JMR-MODIF - Le 3 juin 2007 - Ajout des propriétés liées aux risques.
 
     // Obtient le menu des risques si celui-ci n'est pas encore présent.
-    if ( gRiskMenu.GetSafeHmenu() == NULL )
+    if (gRiskMenu.GetSafeHmenu() == NULL)
     {
-        gRiskMenu.LoadMenu( IDR_RISK_MENU );
+        gRiskMenu.LoadMenu(IDR_RISK_MENU);
     }
 
-    CString FinalRiskName    = _T( "" );
-    CString FinalRiskTitle    = _T( "" );
-    CString RiskTitle        = _T( "" );
-    CString RiskName        = _T( "" );
-    CString RiskDesc        = _T( "" );
+    CString FinalRiskName = _T("");
+    CString FinalRiskTitle = _T("");
+    CString RiskTitle = _T("");
+    CString RiskName = _T("");
+    CString RiskDesc = _T("");
 
-    RiskTitle.LoadString( IDS_ZS_BP_PROP_RISK_TITLE );
+    RiskTitle.LoadString(IDS_ZS_BP_PROP_RISK_TITLE);
 
-    for ( int i = 0; i < GetRiskCount(); ++i )
+    for (int i = 0; i < GetRiskCount(); ++i)
     {
-        FinalRiskTitle.Format( _T( "%s (%d)" ), RiskTitle, i + 1 );
+        FinalRiskTitle.Format(_T("%s (%d)"), RiskTitle, i + 1);
 
-        RiskName.LoadString( IDS_Z_RISK_NAME_NAME );
-        RiskDesc.LoadString( IDS_Z_RISK_NAME_DESC );
+        RiskName.LoadString(IDS_Z_RISK_NAME_NAME);
+        RiskDesc.LoadString(IDS_Z_RISK_NAME_DESC);
 
         // Propriété "Titre Risque" du groupe "Risque (x)"
-        ZBProperty* pRisk = new ZBProperty( FinalRiskTitle,
-                                            ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-                                            RiskName,
-                                            ( GroupValue == true ) ? Z_RISK_NAME : ( Z_RISK_NAME + ( i * _MaxRisksSize ) ),
-                                            RiskDesc,
-                                            GetRiskName( i ),
-                                            ZBProperty::PT_EDIT_MENU,
-                                            true,
-                                            ZBStringFormat( ZBStringFormat::General ),
-                                            NULL,
-                                            &gRiskMenu );
+        ZBProperty* pRisk = new ZBProperty(FinalRiskTitle,
+            (GroupValue == true) ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                                           RiskName,
+                                           (GroupValue == true) ? Z_RISK_NAME : (Z_RISK_NAME + (i * _MaxRisksSize)),
+                                           RiskDesc,
+                                           GetRiskName(i),
+                                           ZBProperty::PT_EDIT_MENU,
+                                           true,
+                                           ZBStringFormat(ZBStringFormat::General),
+                                           NULL,
+                                           &gRiskMenu);
 
-        PropSet.Add( pRisk );
+        PropSet.Add(pRisk);
 
-        RiskName.LoadString( IDS_Z_RISK_DESC_NAME );
-        RiskDesc.LoadString( IDS_Z_RISK_DESC_DESC );
+        RiskName.LoadString(IDS_Z_RISK_DESC_NAME);
+        RiskDesc.LoadString(IDS_Z_RISK_DESC_DESC);
 
         // Propriété "Description" du groupe "Risque (x)"
-        pRisk = new ZBProperty( FinalRiskTitle,
-                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-                                RiskName,
-                                ( GroupValue == true ) ? Z_RISK_DESC : ( Z_RISK_DESC + ( i * _MaxRisksSize ) ),
-                                RiskDesc,
-                                GetRiskDesc( i ),
-                                ZBProperty::PT_EDIT_EXTENDED );
+        pRisk = new ZBProperty(FinalRiskTitle,
+            (GroupValue == true) ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                               RiskName,
+                               (GroupValue == true) ? Z_RISK_DESC : (Z_RISK_DESC + (i * _MaxRisksSize)),
+                               RiskDesc,
+                               GetRiskDesc(i),
+                               ZBProperty::PT_EDIT_EXTENDED);
 
-        PropSet.Add( pRisk );
+        PropSet.Add(pRisk);
 
-        RiskName.LoadString( IDS_Z_RISK_TYPE_NAME );
-        RiskDesc.LoadString( IDS_Z_RISK_TYPE_DESC );
+        RiskName.LoadString(IDS_Z_RISK_TYPE_NAME);
+        RiskDesc.LoadString(IDS_Z_RISK_TYPE_DESC);
 
-        CString s_NoRiskType = _T( "" );
-        s_NoRiskType.LoadString( IDS_NO_RISK_TYPE );
+        CString s_NoRiskType = _T("");
+        s_NoRiskType.LoadString(IDS_NO_RISK_TYPE);
 
-        pRisk = new ZBProperty( FinalRiskTitle,
-                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-                                RiskName,
-                                ( GroupValue == true ) ? Z_RISK_TYPE : ( Z_RISK_TYPE + ( i * _MaxRisksSize ) ),
-                                RiskDesc,
-                                GetRiskType( i ).IsEmpty() ? s_NoRiskType : GetRiskType( i ),
-                                ZBProperty::PT_EDIT_EXTENDED_READONLY );
+        pRisk = new ZBProperty(FinalRiskTitle,
+            (GroupValue == true) ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                               RiskName,
+                               (GroupValue == true) ? Z_RISK_TYPE : (Z_RISK_TYPE + (i * _MaxRisksSize)),
+                               RiskDesc,
+                               GetRiskType(i).IsEmpty() ? s_NoRiskType : GetRiskType(i),
+                               ZBProperty::PT_EDIT_EXTENDED_READONLY);
 
-        PropSet.Add( pRisk );
+        PropSet.Add(pRisk);
 
-        RiskName.LoadString( IDS_Z_RISK_IMPACT_NAME );
-        RiskDesc.LoadString( IDS_Z_RISK_IMPACT_DESC );
+        RiskName.LoadString(IDS_Z_RISK_IMPACT_NAME);
+        RiskDesc.LoadString(IDS_Z_RISK_IMPACT_DESC);
 
         // Propriété "Impact" du groupe "Risque (x)"
-        pRisk = new ZBProperty( FinalRiskTitle,
-                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-                                RiskName,
-                                ( GroupValue == true ) ? Z_RISK_IMPACT : ( Z_RISK_IMPACT + ( i * _MaxRisksSize ) ),
-                                RiskDesc,
-                                PSS_Application::Instance()->GetMainForm()->GetRiskImpactContainer()->GetElementAt( GetRiskImpact( i ) ),
-                                ZBProperty::PT_EDIT_EXTENDED_READONLY );
+        pRisk = new ZBProperty(FinalRiskTitle,
+            (GroupValue == true) ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                               RiskName,
+                               (GroupValue == true) ? Z_RISK_IMPACT : (Z_RISK_IMPACT + (i * _MaxRisksSize)),
+                               RiskDesc,
+                               PSS_Application::Instance()->GetMainForm()->GetRiskImpactContainer()->GetElementAt(GetRiskImpact(i)),
+                               ZBProperty::PT_EDIT_EXTENDED_READONLY);
 
-        PropSet.Add( pRisk );
+        PropSet.Add(pRisk);
 
-        RiskName.LoadString( IDS_Z_RISK_PROBABILITY_NAME );
-        RiskDesc.LoadString( IDS_Z_RISK_PROBABILITY_DESC );
+        RiskName.LoadString(IDS_Z_RISK_PROBABILITY_NAME);
+        RiskDesc.LoadString(IDS_Z_RISK_PROBABILITY_DESC);
 
         // Propriété "Probabilité" du groupe "Risque (x)"
-        pRisk = new ZBProperty( FinalRiskTitle,
-                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-                                RiskName,
-                                ( GroupValue == true ) ? Z_RISK_PROBABILITY : ( Z_RISK_PROBABILITY + ( i * _MaxRisksSize ) ),
-                                RiskDesc,
-                                PSS_Application::Instance()->GetMainForm()->GetRiskProbabilityContainer()->GetElementAt( GetRiskProbability( i ) ),
-                                ZBProperty::PT_EDIT_EXTENDED_READONLY );
+        pRisk = new ZBProperty(FinalRiskTitle,
+            (GroupValue == true) ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                               RiskName,
+                               (GroupValue == true) ? Z_RISK_PROBABILITY : (Z_RISK_PROBABILITY + (i * _MaxRisksSize)),
+                               RiskDesc,
+                               PSS_Application::Instance()->GetMainForm()->GetRiskProbabilityContainer()->GetElementAt(GetRiskProbability(i)),
+                               ZBProperty::PT_EDIT_EXTENDED_READONLY);
 
-        PropSet.Add( pRisk );
+        PropSet.Add(pRisk);
 
-        RiskName.LoadString( IDS_Z_RISK_SEVERITY_NAME );
-        RiskDesc.LoadString( IDS_Z_RISK_SEVERITY_DESC );
+        RiskName.LoadString(IDS_Z_RISK_SEVERITY_NAME);
+        RiskDesc.LoadString(IDS_Z_RISK_SEVERITY_DESC);
 
         // Propriété "Sévérité" du groupe "Risque (x)"
-        pRisk = new ZBProperty( FinalRiskTitle,
-                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-                                RiskName,
-                                ( GroupValue == true ) ? Z_RISK_SEVERITY : ( Z_RISK_SEVERITY + ( i * _MaxRisksSize ) ),
-                                RiskDesc,
-                                (double)GetRiskSeverity( i ),
-                                ZBProperty::PT_EDIT_NUMBER_READONLY );
+        pRisk = new ZBProperty(FinalRiskTitle,
+            (GroupValue == true) ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                               RiskName,
+                               (GroupValue == true) ? Z_RISK_SEVERITY : (Z_RISK_SEVERITY + (i * _MaxRisksSize)),
+                               RiskDesc,
+                               (double)GetRiskSeverity(i),
+                               ZBProperty::PT_EDIT_NUMBER_READONLY);
 
-        PropSet.Add( pRisk );
+        PropSet.Add(pRisk);
 
-        RiskName.LoadString( IDS_Z_RISK_UE_NAME );
-        RiskDesc.LoadString( IDS_Z_RISK_UE_DESC );
+        RiskName.LoadString(IDS_Z_RISK_UE_NAME);
+        RiskDesc.LoadString(IDS_Z_RISK_UE_DESC);
 
         // Propriété "Est. unit." du groupe "Risque (x)"
-        pRisk = new ZBProperty( FinalRiskTitle,
-                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-                                RiskName,
-                                ( GroupValue == true ) ? Z_RISK_UE : ( Z_RISK_UE + ( i * _MaxRisksSize ) ),
-                                RiskDesc,
-                                GetRiskUE( i ),
-                                ZBProperty::PT_EDIT_NUMBER,
-                                true,
-                                ZBStringFormat( ZBStringFormat::Currency, true, 2, CurrencySymbol ) );
+        pRisk = new ZBProperty(FinalRiskTitle,
+            (GroupValue == true) ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                               RiskName,
+                               (GroupValue == true) ? Z_RISK_UE : (Z_RISK_UE + (i * _MaxRisksSize)),
+                               RiskDesc,
+                               GetRiskUE(i),
+                               ZBProperty::PT_EDIT_NUMBER,
+                               true,
+                               ZBStringFormat(ZBStringFormat::Currency, true, 2, CurrencySymbol));
 
-        PropSet.Add( pRisk );
+        PropSet.Add(pRisk);
 
-        RiskName.LoadString( IDS_Z_RISK_POA_NAME );
-        RiskDesc.LoadString( IDS_Z_RISK_POA_DESC );
+        RiskName.LoadString(IDS_Z_RISK_POA_NAME);
+        RiskDesc.LoadString(IDS_Z_RISK_POA_DESC);
 
         // Propriété "POA" du groupe "Risque (x)"
-        pRisk = new ZBProperty( FinalRiskTitle,
-                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-                                RiskName,
-                                ( GroupValue == true ) ? Z_RISK_POA : ( Z_RISK_POA + ( i * _MaxRisksSize ) ),
-                                RiskDesc,
-                                GetRiskPOA( i ),
-                                ZBProperty::PT_EDIT_NUMBER,
-                                true,
-                                ZBStringFormat( ZBStringFormat::Currency, true, 2, CurrencySymbol ) );
+        pRisk = new ZBProperty(FinalRiskTitle,
+            (GroupValue == true) ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                               RiskName,
+                               (GroupValue == true) ? Z_RISK_POA : (Z_RISK_POA + (i * _MaxRisksSize)),
+                               RiskDesc,
+                               GetRiskPOA(i),
+                               ZBProperty::PT_EDIT_NUMBER,
+                               true,
+                               ZBStringFormat(ZBStringFormat::Currency, true, 2, CurrencySymbol));
 
-        PropSet.Add( pRisk );
+        PropSet.Add(pRisk);
 
-        RiskName.LoadString( IDS_Z_RISK_ACTION_NAME );
-        RiskDesc.LoadString( IDS_Z_RISK_ACTION_DESC );
+        RiskName.LoadString(IDS_Z_RISK_ACTION_NAME);
+        RiskDesc.LoadString(IDS_Z_RISK_ACTION_DESC);
 
         // Propriété "Action" du groupe "Risque (x)"
-        pRisk = new ZBProperty( FinalRiskTitle,
-                                ( GroupValue == true ) ? ZS_BP_PROP_RISK : ( ZS_BP_PROP_RISK + i ),
-                                RiskName,
-                                ( GroupValue == true ) ? Z_RISK_ACTION : ( Z_RISK_ACTION + ( i * _MaxRisksSize ) ),
-                                RiskDesc,
-                                ( GetRiskAction( i ) == true ) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo(),
-                                ZBProperty::PT_COMBO_STRING_READONLY,
-                                TRUE,
-                                ZBStringFormat( ZBStringFormat::General ),
-                                ZAGlobal::GetArrayYesNo() );
+        pRisk = new ZBProperty(FinalRiskTitle,
+            (GroupValue == true) ? ZS_BP_PROP_RISK : (ZS_BP_PROP_RISK + i),
+                               RiskName,
+                               (GroupValue == true) ? Z_RISK_ACTION : (Z_RISK_ACTION + (i * _MaxRisksSize)),
+                               RiskDesc,
+                               (GetRiskAction(i) == true) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo(),
+                               ZBProperty::PT_COMBO_STRING_READONLY,
+                               TRUE,
+                               ZBStringFormat(ZBStringFormat::General),
+                               ZAGlobal::GetArrayYesNo());
 
-        PropSet.Add( pRisk );
+        PropSet.Add(pRisk);
     }
     // ***********************************************************************************************************
 
     bool GroupEnabled = true;
 
     // First, check if the user group is valid
-    if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-         !dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->MainUserGroupIsValid() )
+    if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
+        !dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->MainUserGroupIsValid())
     {
         GroupEnabled = false;
     }
 
-    ZBProperty* pUnitGUID = new ZBProperty( IDS_ZS_BP_PROP_UNIT_TITLE,
-                                            ZS_BP_PROP_UNIT,
-                                            IDS_Z_UNIT_GUID_NAME,
-                                            Z_UNIT_GUID,
-                                            IDS_Z_UNIT_GUID_DESC,
-                                            GetUnitGUID(),
-                                            ZBProperty::PT_EDIT_EXTENDED_READONLY,
-                                            false ); // Not enable, used for saving the unit GUID
+    ZBProperty* pUnitGUID = new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
+                                           ZS_BP_PROP_UNIT,
+                                           IDS_Z_UNIT_GUID_NAME,
+                                           Z_UNIT_GUID,
+                                           IDS_Z_UNIT_GUID_DESC,
+                                           GetUnitGUID(),
+                                           ZBProperty::PT_EDIT_EXTENDED_READONLY,
+                                           false); // Not enable, used for saving the unit GUID
 
-    PropSet.Add( pUnitGUID );
+    PropSet.Add(pUnitGUID);
 
 
     bool Error;
 
-    CString UnitName = RetreiveUnitName( GetUnitGUID(), Error );
-    ZBProperty* pUnitName = new ZBProperty( IDS_ZS_BP_PROP_UNIT_TITLE,
-                                            ZS_BP_PROP_UNIT,
-                                            IDS_Z_UNIT_NAME_NAME,
-                                            Z_UNIT_NAME,
-                                            IDS_Z_UNIT_NAME_DESC,
-                                            UnitName,
-                                            ( GroupEnabled ) ? ZBProperty::PT_EDIT_EXTENDED_READONLY : ZBProperty::PT_EDIT_STRING_READONLY );
+    CString UnitName = RetreiveUnitName(GetUnitGUID(), Error);
+    ZBProperty* pUnitName = new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
+                                           ZS_BP_PROP_UNIT,
+                                           IDS_Z_UNIT_NAME_NAME,
+                                           Z_UNIT_NAME,
+                                           IDS_Z_UNIT_NAME_DESC,
+                                           UnitName,
+                                           (GroupEnabled) ? ZBProperty::PT_EDIT_EXTENDED_READONLY : ZBProperty::PT_EDIT_STRING_READONLY);
 
-    PropSet.Add( pUnitName );
+    PropSet.Add(pUnitName);
 
     // RS-MODIF 17.11.04 UnitCost should only appear in Sesterces
-    if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) &&
-         dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetIntegrateCostSimulation() )
-    
-    {
-        float UnitCost = RetreiveUnitCost( GetUnitGUID(), Error );
-        ZBProperty* pUnitCost = new ZBProperty( IDS_ZS_BP_PROP_UNIT_TITLE,
-                                                ZS_BP_PROP_UNIT,
-                                                IDS_Z_UNIT_COST_NAME,
-                                                Z_UNIT_COST,
-                                                IDS_Z_UNIT_COST_DESC,
-                                                UnitCost,
-                                                ZBProperty::PT_EDIT_NUMBER_READONLY );
+    if (pModel && ISA(pModel, ZDProcessGraphModelMdl) &&
+        dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetIntegrateCostSimulation())
 
-        PropSet.Add( pUnitCost );
+    {
+        float UnitCost = RetreiveUnitCost(GetUnitGUID(), Error);
+        ZBProperty* pUnitCost = new ZBProperty(IDS_ZS_BP_PROP_UNIT_TITLE,
+                                               ZS_BP_PROP_UNIT,
+                                               IDS_Z_UNIT_COST_NAME,
+                                               Z_UNIT_COST,
+                                               IDS_Z_UNIT_COST_DESC,
+                                               UnitCost,
+                                               ZBProperty::PT_EDIT_NUMBER_READONLY);
+
+        PropSet.Add(pUnitCost);
     }
 
     return true;
 }
 
-bool ZBBPStopSymbol::SaveProperties( ZBPropertySet& PropSet )
+bool ZBBPStopSymbol::SaveProperties(ZBPropertySet& PropSet)
 {
-    if ( !ZBSymbol::SaveProperties( PropSet ) )
+    if (!ZBSymbol::SaveProperties(PropSet))
     {
         return false;
     }
@@ -746,87 +745,87 @@ bool ZBBPStopSymbol::SaveProperties( ZBPropertySet& PropSet )
     // *************************************************************************************************************
     // JMR-MODIF - Le 11 juillet 2007 - Ajout du code pour la mise à jour des valeurs des risques.
 
-    ZBPropertyIterator j( &PropSet );
+    ZBPropertyIterator j(&PropSet);
 
-    for ( pProp = j.GetFirst(); pProp; pProp = j.GetNext() )
+    for (pProp = j.GetFirst(); pProp; pProp = j.GetNext())
     {
-        if ( pProp->GetCategoryID() >= ZS_BP_PROP_RISK &&
-             pProp->GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount() )
+        if (pProp->GetCategoryID() >= ZS_BP_PROP_RISK &&
+            pProp->GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount())
         {
             int i = pProp->GetCategoryID() - ZS_BP_PROP_RISK;
 
-            if ( pProp->GetItemID() == Z_RISK_NAME + ( i * _MaxRisksSize ) )
+            if (pProp->GetItemID() == Z_RISK_NAME + (i * _MaxRisksSize))
             {
-                SetRiskName( i, pProp->GetValueString() );
+                SetRiskName(i, pProp->GetValueString());
             }
 
-            if ( pProp->GetItemID() == Z_RISK_DESC + ( i * _MaxRisksSize ) )
+            if (pProp->GetItemID() == Z_RISK_DESC + (i * _MaxRisksSize))
             {
-                SetRiskDesc( i, pProp->GetValueString() );
+                SetRiskDesc(i, pProp->GetValueString());
             }
 
-            if ( pProp->GetItemID() == Z_RISK_UE + ( i * _MaxRisksSize ) )
+            if (pProp->GetItemID() == Z_RISK_UE + (i * _MaxRisksSize))
             {
-                SetRiskUE( i, pProp->GetValueFloat() );
+                SetRiskUE(i, pProp->GetValueFloat());
             }
 
-            if ( pProp->GetItemID() == Z_RISK_POA + ( i * _MaxRisksSize ) )
+            if (pProp->GetItemID() == Z_RISK_POA + (i * _MaxRisksSize))
             {
-                SetRiskPOA( i, pProp->GetValueFloat() );
+                SetRiskPOA(i, pProp->GetValueFloat());
             }
 
-            if ( pProp->GetItemID() == Z_RISK_ACTION + ( i * _MaxRisksSize ) )
+            if (pProp->GetItemID() == Z_RISK_ACTION + (i * _MaxRisksSize))
             {
-                SetRiskAction( i, ( pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo() ? 1 : 0 ) );
+                SetRiskAction(i, (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo() ? 1 : 0));
             }
         }
     }
     // *************************************************************************************************************
 
     // Now run through the list of data and fill the property set
-    ZBPropertyIterator k( &PropSet );
+    ZBPropertyIterator k(&PropSet);
 
-    for ( pProp = k.GetFirst(); pProp; pProp = k.GetNext() )
+    for (pProp = k.GetFirst(); pProp; pProp = k.GetNext())
     {
-        if ( pProp->GetCategoryID() == ZS_BP_PROP_UNIT )
+        if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT)
         {
-            switch ( pProp->GetPTValueType() )
+            switch (pProp->GetPTValueType())
             {
                 case ZBProperty::PT_DOUBLE:
                 {
-                    m_UnitProp.SetValue( pProp->GetItemID(), static_cast<float>( pProp->GetValueDouble() ) );
+                    m_UnitProp.SetValue(pProp->GetItemID(), static_cast<float>(pProp->GetValueDouble()));
                     break;
                 }
 
                 case ZBProperty::PT_FLOAT:
                 {
-                    m_UnitProp.SetValue( pProp->GetItemID(), pProp->GetValueFloat() );
+                    m_UnitProp.SetValue(pProp->GetItemID(), pProp->GetValueFloat());
                     break;
                 }
 
                 case ZBProperty::PT_STRING:
                 {
-                    m_UnitProp.SetValue( pProp->GetItemID(), pProp->GetValueString() );
+                    m_UnitProp.SetValue(pProp->GetItemID(), pProp->GetValueString());
                     break;
                 }
             }
         }
     }
 
-    RefreshAttributeAreaText( true );
+    RefreshAttributeAreaText(true);
 
     return true;
 }
 
-bool ZBBPStopSymbol::SaveProperty( ZBProperty& Property )
+bool ZBBPStopSymbol::SaveProperty(ZBProperty& Property)
 {
-    if ( !ZBSymbol::SaveProperty( Property ) )
+    if (!ZBSymbol::SaveProperty(Property))
     {
         return false;
     }
 
-        // JMR-MODIF - Le 9 mai 2007 - Seuls les symboles locaux ont accès aux propriétés.
-    if ( !IsLocal() )
+    // JMR-MODIF - Le 9 mai 2007 - Seuls les symboles locaux ont accès aux propriétés.
+    if (!IsLocal())
     {
         return true;
     }
@@ -834,47 +833,47 @@ bool ZBBPStopSymbol::SaveProperty( ZBProperty& Property )
     // ************************************************************************************************
     // JMR-MODIF - Le 17 juillet 2007 - Mise à jour des valeurs des propriétés des risques.
 
-    if ( Property.GetCategoryID() >= ZS_BP_PROP_RISK &&
-         Property.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount() )
+    if (Property.GetCategoryID() >= ZS_BP_PROP_RISK &&
+        Property.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount())
     {
         int i = Property.GetCategoryID() - ZS_BP_PROP_RISK;
 
-        if ( Property.GetItemID() == Z_RISK_NAME + ( i * _MaxRisksSize ) )
+        if (Property.GetItemID() == Z_RISK_NAME + (i * _MaxRisksSize))
         {
-            SetRiskName( i, Property.GetValueString() );
+            SetRiskName(i, Property.GetValueString());
         }
 
-        if ( Property.GetItemID() == Z_RISK_DESC + ( i * _MaxRisksSize ) )
+        if (Property.GetItemID() == Z_RISK_DESC + (i * _MaxRisksSize))
         {
-            SetRiskDesc( i, Property.GetValueString() );
+            SetRiskDesc(i, Property.GetValueString());
         }
 
-        if ( Property.GetItemID() == Z_RISK_UE + ( i * _MaxRisksSize ) )
+        if (Property.GetItemID() == Z_RISK_UE + (i * _MaxRisksSize))
         {
-            SetRiskUE( i, Property.GetValueFloat() );
+            SetRiskUE(i, Property.GetValueFloat());
         }
 
-        if ( Property.GetItemID() == Z_RISK_POA + ( i * _MaxRisksSize ) )
+        if (Property.GetItemID() == Z_RISK_POA + (i * _MaxRisksSize))
         {
-            SetRiskPOA( i, Property.GetValueFloat() );
+            SetRiskPOA(i, Property.GetValueFloat());
         }
 
-        if ( Property.GetItemID() == Z_RISK_ACTION + ( i * _MaxRisksSize ) )
+        if (Property.GetItemID() == Z_RISK_ACTION + (i * _MaxRisksSize))
         {
-            SetRiskAction( i, ( Property.GetValueString() == ZAGlobal::GetYesFromArrayYesNo() ? 1 : 0 ) );
+            SetRiskAction(i, (Property.GetValueString() == ZAGlobal::GetYesFromArrayYesNo() ? 1 : 0));
         }
     }
     // ************************************************************************************************
 
     // JMR-MODIF - Le 9 mai 2007 - Contrôle si l'utilisateur a tenté de renommer une règle.
     // Si c'est le cas, réetablit le nom d'origine.
-    if ( Property.GetCategoryID() == ZS_BP_PROP_RULES )
+    if (Property.GetCategoryID() == ZS_BP_PROP_RULES)
     {
-        int Index = ( Property.GetItemID() - Z_RULE_NAME ) / _MaxRulesSize;
+        int Index = (Property.GetItemID() - Z_RULE_NAME) / _MaxRulesSize;
 
-        if ( m_Rules.GetRuleName( Index ) != Property.GetValueString() )
+        if (m_Rules.GetRuleName(Index) != Property.GetValueString())
         {
-            Property.SetValueString( m_Rules.GetRuleName( Index ) );
+            Property.SetValueString(m_Rules.GetRuleName(Index));
         }
     }
 
@@ -885,60 +884,60 @@ bool ZBBPStopSymbol::SaveProperty( ZBProperty& Property )
     return true;
 }
 
-bool ZBBPStopSymbol::CheckPropertyValue( ZBProperty& Property, CString& value, ZBPropertySet& Properties )
+bool ZBBPStopSymbol::CheckPropertyValue(ZBProperty& Property, CString& value, ZBPropertySet& Properties)
 {
-    return ZBSymbol::CheckPropertyValue( Property, value, Properties );
+    return ZBSymbol::CheckPropertyValue(Property, value, Properties);
 }
 
-bool ZBBPStopSymbol::ProcessExtendedInput( ZBProperty& Property, CString& value, ZBPropertySet& Properties, bool& Refresh )
+bool ZBBPStopSymbol::ProcessExtendedInput(ZBProperty& Property, CString& value, ZBPropertySet& Properties, bool& Refresh)
 {
     // ****************************************************************************************************
     // JMR-MODIF - Le 13 juin 2007 - Ajout de la prise en charge des risques.
 
-    if ( Property.GetCategoryID() >= ZS_BP_PROP_RISK &&
-         Property.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount() )
+    if (Property.GetCategoryID() >= ZS_BP_PROP_RISK &&
+        Property.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount())
     {
-        int            i                = Property.GetCategoryID() - ZS_BP_PROP_RISK;
-        CODModel*    pModel            = GetRootModel();
-        CString        CurrencySymbol    = ZAGlobal::GetLocaleCurrency();
+        int            i = Property.GetCategoryID() - ZS_BP_PROP_RISK;
+        CODModel*    pModel = GetRootModel();
+        CString        CurrencySymbol = ZAGlobal::GetLocaleCurrency();
 
-        if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) )
+        if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
         {
-            CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetDocument();
+            CDocument* pDoc = dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetDocument();
 
-            if ( pDoc && ISA( pDoc, ZDProcessGraphModelDoc ) )
+            if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc))
             {
                 // Retreive the model's currency symbol
-                CurrencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetCurrencySymbol();
+                CurrencySymbol = dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetCurrencySymbol();
             }
         }
 
-        CString s_NoRiskType = _T( "" );
-        s_NoRiskType.LoadString( IDS_NO_RISK_TYPE );
+        CString s_NoRiskType = _T("");
+        s_NoRiskType.LoadString(IDS_NO_RISK_TYPE);
 
-        ZVRiskOptionsDlg m_RiskOptions( GetRiskName( i ),
-                                        GetRiskDesc( i ),
-                                        ( GetRiskType( i ).IsEmpty() ) ? s_NoRiskType : GetRiskType( i ),
-                                        GetRiskImpact( i ),
-                                        GetRiskProbability( i ),
-                                        GetRiskUE( i ),
-                                        GetRiskPOA( i ),
-                                        GetRiskAction( i ),
-                                        CurrencySymbol );
+        ZVRiskOptionsDlg m_RiskOptions(GetRiskName(i),
+                                       GetRiskDesc(i),
+                                       (GetRiskType(i).IsEmpty()) ? s_NoRiskType : GetRiskType(i),
+                                       GetRiskImpact(i),
+                                       GetRiskProbability(i),
+                                       GetRiskUE(i),
+                                       GetRiskPOA(i),
+                                       GetRiskAction(i),
+                                       CurrencySymbol);
 
-        if ( m_RiskOptions.DoModal() == IDOK )
+        if (m_RiskOptions.DoModal() == IDOK)
         {
-            SetRiskName( i, m_RiskOptions.GetRiskTitle() );
-            SetRiskDesc( i, m_RiskOptions.GetRiskDescription() );
-            SetRiskType( i, m_RiskOptions.GetRiskType() );
-            SetRiskImpact( i, m_RiskOptions.GetRiskImpact() );
-            SetRiskProbability( i, m_RiskOptions.GetRiskProbability() );
-            SetRiskSeverity( i, m_RiskOptions.GetRiskSeverity() );
-            SetRiskUE( i, m_RiskOptions.GetRiskUE() );
-            SetRiskPOA( i, m_RiskOptions.GetRiskPOA() );
-            SetRiskAction( i, m_RiskOptions.GetRiskAction() );
+            SetRiskName(i, m_RiskOptions.GetRiskTitle());
+            SetRiskDesc(i, m_RiskOptions.GetRiskDescription());
+            SetRiskType(i, m_RiskOptions.GetRiskType());
+            SetRiskImpact(i, m_RiskOptions.GetRiskImpact());
+            SetRiskProbability(i, m_RiskOptions.GetRiskProbability());
+            SetRiskSeverity(i, m_RiskOptions.GetRiskSeverity());
+            SetRiskUE(i, m_RiskOptions.GetRiskUE());
+            SetRiskPOA(i, m_RiskOptions.GetRiskPOA());
+            SetRiskAction(i, m_RiskOptions.GetRiskAction());
 
-            SetModifiedFlag( TRUE );
+            SetModifiedFlag(TRUE);
 
             Refresh = true;
 
@@ -949,31 +948,31 @@ bool ZBBPStopSymbol::ProcessExtendedInput( ZBProperty& Property, CString& value,
 
     CODModel * pModel = GetOwnerModel();
 
-    if ( Property.GetCategoryID() == ZS_BP_PROP_UNIT && Property.GetItemID() == Z_UNIT_NAME )
+    if (Property.GetCategoryID() == ZS_BP_PROP_UNIT && Property.GetItemID() == Z_UNIT_NAME)
     {
-        if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) )
+        if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
         {
-            ZVSelectUserGroupDlg dlg( IDS_SELECTAGROUP_T,
-                                      dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->GetMainUserGroup(),
-                                      true,        // Allow group selection
-                                      false );    // Doesn't allow role selection
+            ZVSelectUserGroupDlg dlg(IDS_SELECTAGROUP_T,
+                                     dynamic_cast<ZDProcessGraphModelMdl*>(pModel)->GetMainUserGroup(),
+                                     true,        // Allow group selection
+                                     false);    // Doesn't allow role selection
 
-            if ( dlg.DoModal() == IDOK )
+            if (dlg.DoModal() == IDOK)
             {
                 ZBUserEntity* pUserEntity = dlg.GetSelectedUserEntity();
 
-                if ( pUserEntity )
+                if (pUserEntity)
                 {
                     value = pUserEntity->GetEntityName();
                     // And change the unit GUID of the disable property
-                    ZBPropertyIterator i( &Properties );
+                    ZBPropertyIterator i(&Properties);
                     ZBProperty* pProp;
 
-                    for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+                    for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
                     {
-                        if ( pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_GUID )
+                        if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_GUID)
                         {
-                            pProp->SetValueString( pUserEntity->GetGUID() );
+                            pProp->SetValueString(pUserEntity->GetGUID());
                             break;
                         }
                     }
@@ -984,33 +983,33 @@ bool ZBBPStopSymbol::ProcessExtendedInput( ZBProperty& Property, CString& value,
         }
     }
 
-    return ZBSymbol::ProcessExtendedInput( Property, value, Properties, Refresh );
+    return ZBSymbol::ProcessExtendedInput(Property, value, Properties, Refresh);
 }
 
 // JMR-MODIF - Le 18 décembre 2006 - Ajout de la fonction ProcessMenuCommand.
-bool ZBBPStopSymbol::ProcessMenuCommand( int            MenuCommand,
-                                         ZBProperty&    Property,
-                                         CString&        value,
-                                         ZBPropertySet&    Properties,
-                                         bool&            Refresh )
+bool ZBBPStopSymbol::ProcessMenuCommand(int            MenuCommand,
+                                        ZBProperty&    Property,
+                                        CString&        value,
+                                        ZBPropertySet&    Properties,
+                                        bool&            Refresh)
 {
     // ************************************************************************************************************
     // JMR-MODIF - Le 10 juin - Ajout du code pour traitement du menu des risques.
 
-    if ( Property.GetCategoryID() >= ZS_BP_PROP_RISK &&
-         Property.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount() )
+    if (Property.GetCategoryID() >= ZS_BP_PROP_RISK &&
+        Property.GetCategoryID() <= ZS_BP_PROP_RISK + GetRiskCount())
     {
-        switch( MenuCommand )
+        switch (MenuCommand)
         {
             case ID_ADD_NEWRISK:
             {
-                OnAddNewRisk( Property, value, Properties, Refresh );
+                OnAddNewRisk(Property, value, Properties, Refresh);
                 break;
             }
 
             case ID_DEL_CURRENTRISK:
             {
-                OnDelCurrentRisk( Property, value, Properties, Refresh );
+                OnDelCurrentRisk(Property, value, Properties, Refresh);
                 break;
             }
 
@@ -1024,15 +1023,15 @@ bool ZBBPStopSymbol::ProcessMenuCommand( int            MenuCommand,
     }
     // ************************************************************************************************************
 
-    if ( Property.GetCategoryID() == ZS_BP_PROP_RULES )
+    if (Property.GetCategoryID() == ZS_BP_PROP_RULES)
     {
-        switch( MenuCommand )
+        switch (MenuCommand)
         {
             case ID_DEL_CURRENTRULE:
             {
-                int Index = ( Property.GetItemID() - Z_RULE_NAME ) / _MaxRulesSize;
+                int Index = (Property.GetItemID() - Z_RULE_NAME) / _MaxRulesSize;
 
-                m_Rules.DeleteRule( Index );
+                m_Rules.DeleteRule(Index);
 
                 // JMR-MODIF - Le 8 mai 2007 - Demande le rafraîchissement après exécution de l'opération.
                 Refresh = true;
@@ -1047,85 +1046,85 @@ bool ZBBPStopSymbol::ProcessMenuCommand( int            MenuCommand,
         }
     }
 
-    return ZBSymbol::ProcessMenuCommand( MenuCommand, Property, value, Properties, Refresh );
+    return ZBSymbol::ProcessMenuCommand(MenuCommand, Property, value, Properties, Refresh);
 }
 
 // JMR-MODIF - Le 10 juin 2007 - Ajout de la fonction OnAddNewRisk.
-void ZBBPStopSymbol::OnAddNewRisk( ZBProperty&        Property,
-                                   CString&            value,
-                                   ZBPropertySet&    Properties,
-                                   bool&            Refresh )
+void ZBBPStopSymbol::OnAddNewRisk(ZBProperty&        Property,
+                                  CString&            value,
+                                  ZBPropertySet&    Properties,
+                                  bool&            Refresh)
 {
     // Add a new risk
-    if ( AddNewRisk() >= 0 )
+    if (AddNewRisk() >= 0)
     {
         // Sets the refresh flag to true
         Refresh = true;
-        SetModifiedFlag( TRUE );
+        SetModifiedFlag(TRUE);
     }
 }
 
 // JMR-MODIF - Le 10 juin 2007 - Ajout de la fonction OnDelCurrentRisk.
-void ZBBPStopSymbol::OnDelCurrentRisk( ZBProperty&        Property,
-                                       CString&            value,
-                                       ZBPropertySet&    Properties,
-                                       bool&            Refresh )
+void ZBBPStopSymbol::OnDelCurrentRisk(ZBProperty&        Property,
+                                      CString&            value,
+                                      ZBPropertySet&    Properties,
+                                      bool&            Refresh)
 {
     int Count = GetRiskCount();
 
-    if ( Count <= 1 )
+    if (Count <= 1)
     {
         // Cannot delete all risks
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_CANNOTDELETE_ALLRISKS, MB_OK );
+        mBox.Show(IDS_CANNOTDELETE_ALLRISKS, MB_OK);
         return;
     }
 
     // Otherwise, delete the current selected risk
     int Index = Property.GetCategoryID() - ZS_BP_PROP_RISK;
 
-    if ( DeleteRisk( Index ) )
+    if (DeleteRisk(Index))
     {
         // Sets the refresh flag to true
         Refresh = true;
-        SetModifiedFlag( TRUE );
+        SetModifiedFlag(TRUE);
     }
 }
 
-bool ZBBPStopSymbol::OnPostPropertyChanged( ZBProperty& Property, ZBPropertySet& Properties, bool& Refresh )
+bool ZBBPStopSymbol::OnPostPropertyChanged(ZBProperty& Property, ZBPropertySet& Properties, bool& Refresh)
 {
     bool RetValue = false;
 
-    if ( Property.GetCategoryID() == ZS_BP_PROP_UNIT && Property.GetItemID() == Z_UNIT_NAME )
+    if (Property.GetCategoryID() == ZS_BP_PROP_UNIT && Property.GetItemID() == Z_UNIT_NAME)
     {
         // Run trough the set of properties and changed the unit cost
         // to the value of the property
-        ZBPropertyIterator i( &Properties );
+        ZBPropertyIterator i(&Properties);
         ZBProperty* pProp;
         CString GUID;
 
-        for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+        for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
         {
-            if ( pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_GUID )
+            if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_GUID)
             {
                 GUID = pProp->GetValueString();
                 break;
             }
         }
 
-        if ( !GUID.IsEmpty() )
+        if (!GUID.IsEmpty())
         {
-            for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+            for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
             {
-                if ( pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_COST )
+                if (pProp->GetCategoryID() == ZS_BP_PROP_UNIT && pProp->GetItemID() == Z_UNIT_COST)
                 {
                     bool Error;
-                    float UnitCost = RetreiveUnitCost( GUID, Error );
+                    float UnitCost = RetreiveUnitCost(GUID, Error);
 
-                    if ( Error == false )
+                    if (Error == false)
                     {
                         // If the previous value is different
-                        pProp->SetValueFloat( UnitCost );
+                        pProp->SetValueFloat(UnitCost);
 
                         // Change the return value
                         RetValue = true;
@@ -1137,47 +1136,47 @@ bool ZBBPStopSymbol::OnPostPropertyChanged( ZBProperty& Property, ZBPropertySet&
         }
     }
 
-    if ( RetValue == false )
+    if (RetValue == false)
     {
-        return ZBSymbol::OnPostPropertyChanged( Property, Properties, Refresh );
+        return ZBSymbol::OnPostPropertyChanged(Property, Properties, Refresh);
     }
 
     return RetValue;
 }
 
 // JMR-MODIF - Le 18 décembre 2006 - Cette fonction est appelée lorsque l'utilisateur a tenté de déplaçer une propriété.
-bool ZBBPStopSymbol::OnDropInternalPropertyItem( ZBProperty&    SrcProperty,
-                                                 ZBProperty&    DstProperty,
-                                                 bool            Top2Down,
-                                                 ZBPropertySet&    Properties )
+bool ZBBPStopSymbol::OnDropInternalPropertyItem(ZBProperty&    SrcProperty,
+                                                ZBProperty&    DstProperty,
+                                                bool            Top2Down,
+                                                ZBPropertySet&    Properties)
 {
-    bool RetValue = ::SwapInternalPropertyItem( SrcProperty,
-                                                DstProperty,
-                                                Top2Down,
-                                                Properties,
-                                                ZS_BP_PROP_RULES );
+    bool RetValue = ::SwapInternalPropertyItem(SrcProperty,
+                                               DstProperty,
+                                               Top2Down,
+                                               Properties,
+                                               ZS_BP_PROP_RULES);
 
     // If done, return
-    if ( RetValue )
+    if (RetValue)
     {
-        int SrcIndex = ( SrcProperty.GetItemID() - Z_RULE_NAME ) / _MaxRulesSize;
-        int DstIndex = ( DstProperty.GetItemID() - Z_RULE_NAME ) / _MaxRulesSize;
+        int SrcIndex = (SrcProperty.GetItemID() - Z_RULE_NAME) / _MaxRulesSize;
+        int DstIndex = (DstProperty.GetItemID() - Z_RULE_NAME) / _MaxRulesSize;
 
-        CString SrcRuleName = m_Rules.GetRuleName( SrcIndex );
-        CString SrcRuleDesc = m_Rules.GetRuleDescription( SrcIndex );
-        CString SrcRuleGUID = m_Rules.GetRuleGUID( SrcIndex );
+        CString SrcRuleName = m_Rules.GetRuleName(SrcIndex);
+        CString SrcRuleDesc = m_Rules.GetRuleDescription(SrcIndex);
+        CString SrcRuleGUID = m_Rules.GetRuleGUID(SrcIndex);
 
-        CString DstRuleName = m_Rules.GetRuleName( DstIndex );
-        CString DstRuleDesc = m_Rules.GetRuleDescription( DstIndex );
-        CString DstRuleGUID = m_Rules.GetRuleGUID( DstIndex );
+        CString DstRuleName = m_Rules.GetRuleName(DstIndex);
+        CString DstRuleDesc = m_Rules.GetRuleDescription(DstIndex);
+        CString DstRuleGUID = m_Rules.GetRuleGUID(DstIndex);
 
-        m_Rules.SetRuleName( SrcIndex, DstRuleName );
-        m_Rules.SetRuleDescription( SrcIndex, DstRuleDesc );
-        m_Rules.SetRuleGUID( SrcIndex, DstRuleGUID );
+        m_Rules.SetRuleName(SrcIndex, DstRuleName);
+        m_Rules.SetRuleDescription(SrcIndex, DstRuleDesc);
+        m_Rules.SetRuleGUID(SrcIndex, DstRuleGUID);
 
-        m_Rules.SetRuleName( DstIndex, SrcRuleName );
-        m_Rules.SetRuleDescription( DstIndex, SrcRuleDesc );
-        m_Rules.SetRuleGUID( DstIndex, SrcRuleGUID );
+        m_Rules.SetRuleName(DstIndex, SrcRuleName);
+        m_Rules.SetRuleDescription(DstIndex, SrcRuleDesc);
+        m_Rules.SetRuleGUID(DstIndex, SrcRuleGUID);
 
         return true;
     }
@@ -1185,14 +1184,14 @@ bool ZBBPStopSymbol::OnDropInternalPropertyItem( ZBProperty&    SrcProperty,
     return false;
 }
 
-bool ZBBPStopSymbol::OnToolTip( CString& ToolTipText, CPoint point, ToolTipMode ToolTip /*= NormalToolTip*/ )
+bool ZBBPStopSymbol::OnToolTip(CString& ToolTipText, CPoint point, ToolTipMode ToolTip /*= NormalToolTip*/)
 {
-    ToolTipText.Format( IDS_FS_BPSTOP_TOOLTIP,
-                        (const char*)GetSymbolName(),
-                        (const char*)GetSymbolComment(),
-                        (const char*)GetSymbolReferenceNumberStr() );
+    ToolTipText.Format(IDS_FS_BPSTOP_TOOLTIP,
+        (const char*)GetSymbolName(),
+                       (const char*)GetSymbolComment(),
+                       (const char*)GetSymbolReferenceNumberStr());
 
-    if ( ToolTip == ZBSymbol::DesignToolTip )
+    if (ToolTip == ZBSymbol::DesignToolTip)
     {
         // From now do nothing,
         // need to implement the result of the control checking
@@ -1202,47 +1201,47 @@ bool ZBBPStopSymbol::OnToolTip( CString& ToolTipText, CPoint point, ToolTipMode 
     return true;
 }
 
-void ZBBPStopSymbol::Serialize( CArchive& ar )
+void ZBBPStopSymbol::Serialize(CArchive& ar)
 {
     // Serialize the canvas model.
-    ZBSymbol::Serialize( ar );
+    ZBSymbol::Serialize(ar);
 
     // Only if the object is serialize from and to a document
-    if ( ar.m_pDocument )
+    if (ar.m_pDocument)
     {
         // JMR-MODIF - Le 10 juin 2007 - Ajout du code pour la sérialisation des risques.
-        if ( dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 27 )
+        if (dynamic_cast<PSS_BaseDocument*>(ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 27)
         {
-            m_Risks.Serialize( ar );
+            m_Risks.Serialize(ar);
         }
 
-        if ( ar.IsStoring() ||
-             dynamic_cast<PSS_BaseDocument*>( ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 19 )
+        if (ar.IsStoring() ||
+            dynamic_cast<PSS_BaseDocument*>(ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 19)
         {
-            m_UnitProp.Serialize( ar );
+            m_UnitProp.Serialize(ar);
         }
         else
         {
             // Transfert the properties to new format
-            ZBBPUnitProperties* pUnitProps = (ZBBPUnitProperties*)GetProperty( ZS_BP_PROP_UNIT );
+            ZBBPUnitProperties* pUnitProps = (ZBBPUnitProperties*)GetProperty(ZS_BP_PROP_UNIT);
 
-            if ( pUnitProps )
+            if (pUnitProps)
             {
-                SetUnitName( pUnitProps->GetUnitName() );
-                SetUnitCost( pUnitProps->GetUnitCost() );
+                SetUnitName(pUnitProps->GetUnitName());
+                SetUnitCost(pUnitProps->GetUnitCost());
             }
         }
 
         // JMR-MODIF - Le 18 décembre 2006 - Ajout du système de règles.
-        if ( ar.IsStoring() )
+        if (ar.IsStoring())
         {
-            m_Rules.Serialize( ar );
+            m_Rules.Serialize(ar);
         }
         else
         {
-            if ( ( (PSS_BaseDocument*)ar.m_pDocument )->GetDocumentStamp().GetInternalVersion() >= 26 )
+            if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 26)
             {
-                m_Rules.Serialize( ar );
+                m_Rules.Serialize(ar);
             }
         }
     }

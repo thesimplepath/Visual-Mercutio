@@ -20,19 +20,19 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZVConceptorReportOptions dialog
 
-BEGIN_MESSAGE_MAP( ZVConceptorReportOptions, ZIWizardDialog )
+BEGIN_MESSAGE_MAP(ZVConceptorReportOptions, ZIWizardDialog)
     //{{AFX_MSG_MAP(ZVConceptorReportOptions)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZVConceptorReportOptions::ZVConceptorReportOptions( CWnd* pParent /*=NULL*/ )
-    : ZIWizardDialog                ( ZVConceptorReportOptions::IDD,
-                                      IDB_WIZ_REPORT,
-                                      0,
-                                      0,
-                                      IDS_WZ_REPORTGENERATION_ST_S,
-                                      IDS_WZ_REPORTGENERATION_ST_T )
-//    : CDialog( ZVConceptorReportOptions::IDD, pParent )
+ZVConceptorReportOptions::ZVConceptorReportOptions(CWnd* pParent /*=NULL*/)
+    : ZIWizardDialog(ZVConceptorReportOptions::IDD,
+                     IDB_WIZ_REPORT,
+                     0,
+                     0,
+                     IDS_WZ_REPORTGENERATION_ST_S,
+                     IDS_WZ_REPORTGENERATION_ST_T)
+    //    : CDialog( ZVConceptorReportOptions::IDD, pParent )
 {
     //{{AFX_DATA_INIT(ZVConceptorReportOptions)
     m_Deliverables = TRUE;
@@ -40,9 +40,9 @@ ZVConceptorReportOptions::ZVConceptorReportOptions( CWnd* pParent /*=NULL*/ )
     //}}AFX_DATA_INIT
 }
 
-void ZVConceptorReportOptions::DoDataExchange( CDataExchange* pDX )
+void ZVConceptorReportOptions::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange( pDX );
+    ZIWizardDialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(ZVConceptorReportOptions)
     DDX_Check(pDX, IDC_DELIVERABLE, m_Deliverables);
     DDX_Check(pDX, IDC_DETAIL, m_Detail);
@@ -56,11 +56,11 @@ void ZVConceptorReportOptions::OnOK()
 {
     UpdateData();
 
-    if ( m_Deliverables == FALSE && m_Detail == FALSE )
+    if (m_Deliverables == FALSE && m_Detail == FALSE)
     {
         // Warm the user
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_ONEOPTIONREQUIRED, MB_OK );
+        mBox.Show(IDS_ONEOPTIONREQUIRED, MB_OK);
         return;
     }
 

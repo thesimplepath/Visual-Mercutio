@@ -48,8 +48,8 @@ void PSS_PublishModelBannerDialog::DoDataExchange(CDataExchange* pDX)
     ZIWizardDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_PublishModelBannerDialog)
-    DDX_Control(pDX, IDC_BANNERIMAGE, m_Image);
-    DDX_Text(pDX, IDC_BANNERHYPERLINK, m_HyperLink);
+    DDX_Control(pDX, IDC_BANNERIMAGE,     m_Image);
+    DDX_Text   (pDX, IDC_BANNERHYPERLINK, m_HyperLink);
     //}}AFX_DATA_MAP
 }
 //---------------------------------------------------------------------------
@@ -74,7 +74,7 @@ void PSS_PublishModelBannerDialog::OnOK()
     if (!m_ImageFilename.IsEmpty() && !PSS_File::Exist(m_ImageFilename))
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox(IDS_IMAGEFILENAME_NOTFOUND, MB_OK);
+        mBox.Show(IDS_IMAGEFILENAME_NOTFOUND, MB_OK);
         return;
     }
 

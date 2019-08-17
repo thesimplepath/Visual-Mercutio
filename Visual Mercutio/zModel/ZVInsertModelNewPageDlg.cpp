@@ -20,31 +20,31 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZVInsertModelNewPageDlg dialog
 
-BEGIN_MESSAGE_MAP( ZVInsertModelNewPageDlg, ZIDialog )
+BEGIN_MESSAGE_MAP(ZVInsertModelNewPageDlg, ZIDialog)
     //{{AFX_MSG_MAP(ZVInsertModelNewPageDlg)
     ON_NOTIFY(TVN_SELCHANGED, IDC_EXISTINGPROCESS, OnSelchangedSymboltree)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZVInsertModelNewPageDlg::ZVInsertModelNewPageDlg( ZDProcessGraphModelMdl*    pModel,
-                                                  const CString                NewPageName        /*= ""*/,
-                                                  CStringArray*                pArrayPageName    /*= NULL*/,
-                                                  ZBRuntimeClassSet*        pSet            /*= NULL*/,
-                                                  CWnd*                        pParent            /*=NULL*/ )
-    : ZIDialog            ( ZVInsertModelNewPageDlg::IDD, TRUE, pParent ),
-      m_pModel            ( pModel ),
-      m_pArrayPageName    ( pArrayPageName ),
-      m_pParentModel    ( pModel ),
-      m_pSet            ( pSet )
+ZVInsertModelNewPageDlg::ZVInsertModelNewPageDlg(ZDProcessGraphModelMdl*    pModel,
+                                                 const CString                NewPageName        /*= ""*/,
+                                                 CStringArray*                pArrayPageName    /*= NULL*/,
+                                                 ZBRuntimeClassSet*        pSet            /*= NULL*/,
+                                                 CWnd*                        pParent            /*=NULL*/)
+    : ZIDialog(ZVInsertModelNewPageDlg::IDD, TRUE, pParent),
+    m_pModel(pModel),
+    m_pArrayPageName(pArrayPageName),
+    m_pParentModel(pModel),
+    m_pSet(pSet)
 {
     //{{AFX_DATA_INIT(ZVInsertModelNewPageDlg)
     m_PageName = NewPageName;
     //}}AFX_DATA_INIT
 }
 
-void ZVInsertModelNewPageDlg::DoDataExchange( CDataExchange* pDX )
+void ZVInsertModelNewPageDlg::DoDataExchange(CDataExchange* pDX)
 {
-    ZIDialog::DoDataExchange( pDX );
+    ZIDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(ZVInsertModelNewPageDlg)
     DDX_Control(pDX, IDC_EXISTINGPROCESS, m_SymbolTree);
@@ -57,23 +57,23 @@ void ZVInsertModelNewPageDlg::CheckControls()
     ZDProcessGraphModelMdl* pParentModel = m_SymbolTree.GetSelectedOwnerModel();
 
     // If a page is selected, then reset the parent model
-    if ( m_SymbolTree.GetSelectedPage() )
+    if (m_SymbolTree.GetSelectedPage())
     {
         pParentModel = NULL;
     }
 
-    if ( pParentModel )
+    if (pParentModel)
     {
-        if ( GetDlgItem( IDOK ) )
+        if (GetDlgItem(IDOK))
         {
-            GetDlgItem( IDOK )->EnableWindow( TRUE );
+            GetDlgItem(IDOK)->EnableWindow(TRUE);
         }
     }
     else
     {
-        if ( GetDlgItem( IDOK ) )
+        if (GetDlgItem(IDOK))
         {
-            GetDlgItem( IDOK )->EnableWindow( FALSE );
+            GetDlgItem(IDOK)->EnableWindow(FALSE);
         }
     }
 }
@@ -83,27 +83,27 @@ void ZVInsertModelNewPageDlg::CheckControls()
 
 void ZVInsertModelNewPageDlg::OnOK()
 {
-    UpdateData( TRUE );
+    UpdateData(TRUE);
 
-    if ( m_PageName.IsEmpty() )
+    if (m_PageName.IsEmpty())
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_NEWMODELPAGE_EMPTY, MB_OK );
+        mBox.Show(IDS_NEWMODELPAGE_EMPTY, MB_OK);
         return;
     }
 
     m_pParentModel = m_SymbolTree.GetSelectedOwnerModel();
 
     // If a page is selected, then reset the parent model
-    if ( m_SymbolTree.GetSelectedPage() )
+    if (m_SymbolTree.GetSelectedPage())
     {
         m_pParentModel = NULL;
     }
 
-    if ( !m_pParentModel )
+    if (!m_pParentModel)
     {
         PSS_MsgBox mBox;
-        mBox.ShowMsgBox( IDS_NEWMODELPAGE_EMPTY, MB_OK );
+        mBox.Show(IDS_NEWMODELPAGE_EMPTY, MB_OK);
         return;
     }
 
@@ -111,15 +111,15 @@ void ZVInsertModelNewPageDlg::OnOK()
     m_ParentModelFullName = m_pParentModel->GetAbsolutePath();
 
     // Check existence of new page name
-    if ( m_pArrayPageName )
+    if (m_pArrayPageName)
     {
-        for ( int i = 0; i < m_pArrayPageName->GetSize(); ++i )
+        for (int i = 0; i < m_pArrayPageName->GetSize(); ++i)
         {
-            if ( m_PageName == m_pArrayPageName->GetAt( i ) )
+            if (m_PageName == m_pArrayPageName->GetAt(i))
             {
                 // Display error message
                 PSS_MsgBox mBox;
-                mBox.ShowMsgBox( IDS_NEWMODELPAGE_ALREADYEXIST, MB_OK );
+                mBox.Show(IDS_NEWMODELPAGE_ALREADYEXIST, MB_OK);
                 return;
             }
         }
@@ -128,7 +128,7 @@ void ZVInsertModelNewPageDlg::OnOK()
     ZIDialog::OnOK();
 }
 
-void ZVInsertModelNewPageDlg::OnSelchangedSymboltree( NMHDR* pNMHDR, LRESULT* pResult )
+void ZVInsertModelNewPageDlg::OnSelchangedSymboltree(NMHDR* pNMHDR, LRESULT* pResult)
 {
     NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
 
@@ -141,13 +141,13 @@ BOOL ZVInsertModelNewPageDlg::OnInitDialog()
 {
     ZIDialog::OnInitDialog();
 
-    if ( m_pModel )
+    if (m_pModel)
     {
         ZBModelSet DocumentModelSet;
-        DocumentModelSet.AddModel( m_pModel );
+        DocumentModelSet.AddModel(m_pModel);
 
-        m_SymbolTree.Initialize( _T( "Document" ), &DocumentModelSet, IDB_IL_BP_SYMBOLS, m_pSet );
-        m_SymbolTree.SelectItemName( m_pModel->GetModelName() );
+        m_SymbolTree.Initialize(_T("Document"), &DocumentModelSet, IDB_IL_BP_SYMBOLS, m_pSet);
+        m_SymbolTree.SelectItemName(m_pModel->GetModelName());
     }
 
     CheckControls();
