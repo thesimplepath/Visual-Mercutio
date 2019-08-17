@@ -9,7 +9,7 @@
 #include "PSS_Export.h"
 
 // processsoft
-#include "MsgBox.h"
+#include "PSS_MsgBox.h"
 
 //---------------------------------------------------------------------------
 // Serialization
@@ -64,8 +64,8 @@ BOOL PSS_Export::Export()
 {
     if (!OpenFileCreate())
     {
-        MsgBox mBox;
-        mBox.DisplayMsgBox(IDS_EXPORTFILE_FAIL, MB_OK);
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_EXPORTFILE_FAIL, MB_OK);
         return FALSE;
     }
 
@@ -107,8 +107,8 @@ BOOL PSS_Export::Import()
 
     if (!OpenFileRead())
     {
-        MsgBox mBox;
-        mBox.DisplayMsgBox(IDS_IMPORTFILE_NF, MB_OK);
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_IMPORTFILE_NF, MB_OK);
         return FALSE;
     }
 

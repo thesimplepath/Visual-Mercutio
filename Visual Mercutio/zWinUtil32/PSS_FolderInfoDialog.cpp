@@ -9,7 +9,7 @@
 #include "PSS_FolderInfoDialog.h"
 
 // processsoft
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "zRes32\Zres.h"
 
 #ifdef _DEBUG

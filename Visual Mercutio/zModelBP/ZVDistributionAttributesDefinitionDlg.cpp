@@ -17,7 +17,7 @@
 #include "zPtyMgr\ZVChoosePropertyDlg.h"
 #include "zModel\ZUDynamicAttributesManipulator.h"
 
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -107,16 +107,16 @@ void ZVDistributionAttributesDefinitionDlg::OnOK()
     if (m_DynamicAttributeName.IsEmpty())
     {
         // A dynamic attributes must be chosen
-        MsgBox        mbox;
-        mbox.DisplayMsgBox( IDS_DYNAMICATTRIBUTES_REQUIRED, MB_OK ); 
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_DYNAMICATTRIBUTES_REQUIRED, MB_OK ); 
         return;
     }
 
     if (m_GroupName.IsEmpty())
     {
         // A group must be chosen
-        MsgBox        mbox;
-        mbox.DisplayMsgBox( IDS_DISTRIBUTIONGROUP_REQUIRED, MB_OK ); 
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_DISTRIBUTIONGROUP_REQUIRED, MB_OK ); 
         return;
     }
     
@@ -243,8 +243,8 @@ void ZVDistributionAttributesDefinitionDlg::OnChooseUsergroup()
             }
             else
             {
-                MsgBox        mbox;
-                mbox.DisplayMsgBox( IDS_USERGROUP_HASNOROLE, MB_OK );
+                PSS_MsgBox mBox;
+                mBox.ShowMsgBox( IDS_USERGROUP_HASNOROLE, MB_OK );
             }
 
             // Push to dialog data
@@ -260,8 +260,8 @@ void ZVDistributionAttributesDefinitionDlg::OnAddruleButton()
     ZBDistributionRulesForRole*    pRole = GetSelectedDistributionRuleForRole();
     if (!pRole)
     {
-        MsgBox        mbox;
-        mbox.DisplayMsgBox( IDS_SELECTROLE_MSG, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_SELECTROLE_MSG, MB_OK );
         return;
     }
     ASSERT( m_pDistributionAttr );
@@ -280,13 +280,13 @@ void ZVDistributionAttributesDefinitionDlg::OnDelruleButton()
     ZBDistributionRule*    pRule = GetSelectedDistributionRule();
     if (!pRule)
     {
-        MsgBox        mbox;
-        mbox.DisplayMsgBox( IDS_SELECTRULE_MSG, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_SELECTRULE_MSG, MB_OK );
         return;
     }
     
-    MsgBox        mbox;
-    if (mbox.DisplayMsgBox( IDS_DELETERULE_CONFIRM, MB_YESNO ) == IDYES)
+    PSS_MsgBox mBox;
+    if (mBox.ShowMsgBox( IDS_DELETERULE_CONFIRM, MB_YESNO ) == IDYES)
     {
         m_pDistributionManager->DeleteDistributionRule( pRule );
         // Refresh the list
@@ -299,8 +299,8 @@ void ZVDistributionAttributesDefinitionDlg::OnModruleButton()
     ZBDistributionRule*    pRule = GetSelectedDistributionRule();
     if (!pRule)
     {
-        MsgBox        mbox;
-        mbox.DisplayMsgBox( IDS_SELECTRULE_MSG, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_SELECTRULE_MSG, MB_OK );
         return;
     }
 

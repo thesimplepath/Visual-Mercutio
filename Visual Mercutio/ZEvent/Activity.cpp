@@ -28,7 +28,7 @@
 #include "zRes32\ZRes.h"
 
 #include "zBaseLib\ZMessage.h"
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #include "zBaseLib\ZBTokenizer.h"
 

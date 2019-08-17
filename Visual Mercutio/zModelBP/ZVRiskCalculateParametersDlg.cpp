@@ -13,7 +13,7 @@
 #include "zMediator\PSS_Application.h"
 #include "zBaseLib\ZDTextFile.h"
 #include "zBaseLib\PSS_File.h"
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\ZUSystemOption.h"
 
 #ifdef _DEBUG

@@ -54,7 +54,7 @@
 
 #include "zBaseLib\ZAGlobal.h"
 
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -253,8 +253,8 @@ bool ZBBPProcessSymbol::DropItem( CObject* pObj, CPoint pt )
              !dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->MainLogicalPrestationsIsValid() )
         {
             // L'entité n'est pas valide.
-            MsgBox mbox;
-            mbox.DisplayMsgBox( IDS_CANNOTDROP_PRESTATIONSNOTINLINE, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_CANNOTDROP_PRESTATIONSNOTINLINE, MB_OK );
             return false;
         }
 
@@ -288,8 +288,8 @@ bool ZBBPProcessSymbol::DropItem( CObject* pObj, CPoint pt )
              !dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->MainLogicalRulesIsValid() )
         {
             // Cannot delete all rules
-            MsgBox mbox;
-            mbox.DisplayMsgBox( IDS_CANNOTDROP_RULENOTINLINE, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_CANNOTDROP_RULENOTINLINE, MB_OK );
             return false;
         }
 
@@ -704,8 +704,8 @@ void ZBBPProcessSymbol::OnDelCurrentRisk( ZBProperty&        Property,
     if ( Count <= 1 )
     {
         // Cannot delete all risks
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_CANNOTDELETE_ALLRISKS, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_CANNOTDELETE_ALLRISKS, MB_OK );
         return;
     }
 
@@ -787,8 +787,8 @@ void ZBBPProcessSymbol::OnDelCurrentDelivery( ZBProperty&        Property,
     if ( Count <= 1 )
     {
         // Cannot delete all deliveries
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_CANNOTDELETE_ALLDELIVERIES, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_CANNOTDELETE_ALLDELIVERIES, MB_OK );
         return;
     }
 

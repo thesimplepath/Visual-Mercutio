@@ -22,7 +22,7 @@
 #include "ZBSymbolObserverMsg.h"
 #include "ZBDocObserverMsg.h"
 
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 // Include files for log
 #include "zBaseLib\ZILog.h"
@@ -829,15 +829,15 @@ bool ZDProcessGraphModelMdl::CheckPropertyValue( ZBProperty& Property, CString& 
         {
             if ( pRoot == this )
             {
-                MsgBox mbox;
-                mbox.DisplayMsgBox( IDS_CANNOTRENAME_ROOTMODEL_USE_SA, MB_OK );
+                PSS_MsgBox mBox;
+                mBox.ShowMsgBox( IDS_CANNOTRENAME_ROOTMODEL_USE_SA, MB_OK );
                 value = GetModelName();
 
                 return false;
             }
 
-            MsgBox mbox;
-            mbox.DisplayMsgBox( IDS_CANNOTRENAME_MODEL_REN_DS, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_CANNOTRENAME_MODEL_REN_DS, MB_OK );
             value = GetModelName();
         }
     }

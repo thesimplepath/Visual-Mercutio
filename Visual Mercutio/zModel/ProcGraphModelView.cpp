@@ -15,7 +15,7 @@
 #include "zBaseLib\PSS_FileDialog.h"
 
 #include "zRes32\zRes.h"
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #include "zBaseLib\ZAGlobal.h"
 
@@ -1159,8 +1159,8 @@ bool ZIProcessGraphModelView::ChooseExportModelToImageFile()
     if ( !ExportModelToImageFile( fileDialog.GetFileName(), attribDC ) )
     {
         // In write mode no chance, file corruption
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_EXPORTFILE_FAIL, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_EXPORTFILE_FAIL, MB_OK );
 
         return false;
     }

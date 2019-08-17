@@ -4,9 +4,9 @@
 #include "MdlWkfOpt.h"
 
 // processsoft
-#include "zModel\ProcGraphModelDoc.h"
 #include "zBaseLib\ZAGlobal.h"
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
+#include "zModel\ProcGraphModelDoc.h"
 
 // resources
 #include "zWinUtil32\zWinUtil32Res.h"

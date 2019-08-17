@@ -7,10 +7,11 @@
 #include "stdafx.h"
 #include "ZVRenameModelPageDlg.h"
 
+// processsoft
+#include "zBaseLib\PSS_MsgBox.h"
 #include "ProcGraphModelMdl.h"
 #include "ZDProcessGraphPage.h"
 #include "ZBModelSet.h"
-#include "zBaseLib\MsgBox.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -129,8 +130,8 @@ void ZVRenameModelPageDlg::OnOK()
 
     if ( m_PageName.IsEmpty() )
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_NEWMODELPAGE_EMPTY, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_NEWMODELPAGE_EMPTY, MB_OK );
         return;
     }
 
@@ -142,8 +143,8 @@ void ZVRenameModelPageDlg::OnOK()
             if ( m_PageName == m_pArrayPageName->GetAt( i ) )
             {
                 // Display error message
-                MsgBox mbox;
-                mbox.DisplayMsgBox( IDS_NEWMODELPAGE_ALREADYEXIST, MB_OK );
+                PSS_MsgBox mBox;
+                mBox.ShowMsgBox( IDS_NEWMODELPAGE_ALREADYEXIST, MB_OK );
                 return;
             }
         }

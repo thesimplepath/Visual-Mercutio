@@ -34,7 +34,7 @@
 #include "ZAMultiC.h"
 #include "ZANumbrd.h"
 #include "Obsolete.h"
-#include "MsgBox.h"
+#include "PSS_MsgBox.h"
 
 #include "ZIView.h"
 #include "ZIHtmlView.h"
@@ -130,8 +130,8 @@ BOOL ZDDocument::OpenDocument(const char* pszPathName, BOOL bSetLastLoaded)
         GetActiveDocumentData()->IsFormData() &&
         !GetActiveDocumentData()->GetSchema().GetFormulaList(GetCurrentSchema()))
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox(IDS_FILECORRUPTED, MB_OK);
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FILECORRUPTED, MB_OK);
         return FALSE;
     }
 
@@ -169,8 +169,8 @@ BOOL ZDDocument::OpenDocument(const char* pszPathName, BOOL bSetLastLoaded)
         if (!StartRealTimeExport())
         {
             // In write mode no chance, file corruption
-            MsgBox mbox;
-            mbox.DisplayMsgBox(IDS_RTEXPORT_CREATIONFAILED);
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox(IDS_RTEXPORT_CREATIONFAILED);
         }
     }
 
@@ -3115,8 +3115,8 @@ void ZDDocument::SerializeRead(CArchive& ar)
         // Set for more recent file
         if (e->m_cause == CArchiveException::badSchema)
         {
-            MsgBox mbox;
-            mbox.DisplayMsgBox(IDS_FILEGENERATEDNEWERVER, MB_OK);
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox(IDS_FILEGENERATEDNEWERVER, MB_OK);
             THROW_LAST();
         }
 
@@ -3139,8 +3139,8 @@ void ZDDocument::SerializeRead(CArchive& ar)
             // Finally, add the document data pointer
             if (!AddDocumentData(pNewDocument))
             {
-                MsgBox mbox;
-                mbox.DisplayMsgBox(IDS_FILECORRUPTED, MB_OK);
+                PSS_MsgBox mBox;
+                mBox.ShowMsgBox(IDS_FILECORRUPTED, MB_OK);
             }
 
             SetActiveDocumentIndex(0);
@@ -3195,8 +3195,8 @@ void ZDDocument::SerializeRead(CArchive& ar)
         {
             if (wStamp == 0xFFFF)
             {
-                MsgBox mbox;
-                mbox.DisplayMsgBox(IDS_FILECORRUPTED, MB_OK);
+                PSS_MsgBox mBox;
+                mBox.ShowMsgBox(IDS_FILECORRUPTED, MB_OK);
                 THROW_LAST();
             }
         }
@@ -3220,8 +3220,8 @@ void ZDDocument::SerializeRead(CArchive& ar)
         {
             if (wStamp == 0xFFFF)
             {
-                MsgBox mbox;
-                mbox.DisplayMsgBox(IDS_FILECORRUPTED);
+                PSS_MsgBox mBox;
+                mBox.ShowMsgBox(IDS_FILECORRUPTED);
                 THROW_LAST();
             }
 
@@ -3264,14 +3264,14 @@ void ZDDocument::SerializeRead(CArchive& ar)
             // Assign the counter list
             SetForecastedObjectCount(pNewDocument->GetObjectCount());
 
-            MsgBox mbox;
-            mbox.DisplayMsgBox(IDS_FILEPROBLEM, MB_OK);
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox(IDS_FILEPROBLEM, MB_OK);
         }
 
         if (pNewDocument->GetStamp().GetTemplate().IsEmpty())
         {
-            MsgBox mbox;
-            mbox.DisplayMsgBox(IDS_TEMPLATEPROBLEM, MB_OK);
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox(IDS_TEMPLATEPROBLEM, MB_OK);
         }
     }
 

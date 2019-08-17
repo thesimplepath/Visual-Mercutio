@@ -12,7 +12,7 @@
 
 #include "ZBLogicalRulesEntity.h"
 
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #include "zBaseLib\zBaseLibRes.h"
 
@@ -78,8 +78,8 @@ void ZVRulesInfoDlg::OnOK()
         if ( m_pRule && m_pRule->RuleExist( m_Name ) )
         {
             // Already exists
-            MsgBox mbox;
-            mbox.DisplayMsgBox( IDS_RULE_ALREADYEXIST, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_RULE_ALREADYEXIST, MB_OK );
             return;
         }
     }

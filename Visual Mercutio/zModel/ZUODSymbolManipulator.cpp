@@ -9,7 +9,7 @@
 #include "zBaseSym\ZIBasicSymbol.h"
 
 // JMR-MODIF - Le 10 mai 2006 - Ajout de l'en-tête MsgBox.h
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 // JMR-MODIF - Le 10 mai 2006 - Ajout de l'en-tête zModelRes.h
 #include "zModelRes.h"
@@ -1090,8 +1090,8 @@ BOOL ZUODSymbolManipulator::CopySymbolStyle( CODComponent* pSrcSymbol, CODCompon
         }
         else
         {
-            MsgBox mbox;
-            mbox.DisplayMsgBox( IDS_CANNOTCOPYSTYLE, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_CANNOTCOPYSTYLE, MB_OK );
             b_Result = FALSE;
         }
     }

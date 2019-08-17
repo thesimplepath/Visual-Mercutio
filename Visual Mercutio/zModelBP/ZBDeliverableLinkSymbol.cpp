@@ -50,7 +50,7 @@
 
 #include "zModel\ZVSelectModelSymbolDlg.h"
 
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -490,8 +490,8 @@ bool ZBDeliverableLinkSymbol::DropItem( CObject* pObj, CPoint pt )
              !dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->MainLogicalRulesIsValid() )
         {
             // Cannot delete all rules
-            MsgBox mbox;
-            mbox.DisplayMsgBox( IDS_CANNOTDROP_RULENOTINLINE, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_CANNOTDROP_RULENOTINLINE, MB_OK );
             return false;
         }
 
@@ -1391,8 +1391,8 @@ bool ZBDeliverableLinkSymbol::CheckPropertyValue( ZBProperty&        Property,
         if ( NewTotal < m_Quantity.GetSumOfLockedNumbers() )
         {
             // Warm the user and put back the old value
-            MsgBox mbox;
-            mbox.DisplayMsgBox( IDS_LOCKEDTOTAL_GREATERINPUT, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_LOCKEDTOTAL_GREATERINPUT, MB_OK );
 
             // Assign the oldvalue
             value.Format( _T( "%f" ), Property.GetValueDouble() );
@@ -1726,8 +1726,8 @@ bool ZBDeliverableLinkSymbol::DoProcessProcessConnection( ZBBPProcessSymbol*    
             // and select the first door
             if ( !pDoorSelected && !pLinkSelected )
             {
-                MsgBox mbox;
-                mbox.DisplayMsgBox( IDS_P2P_FIRSTDELIVERABLE_SELECTED, MB_OK );
+                PSS_MsgBox mBox;
+                mBox.ShowMsgBox( IDS_P2P_FIRSTDELIVERABLE_SELECTED, MB_OK );
                 IODNode* pINode = Nodes.GetAt( 0 );
                 pDoorSelected = static_cast<ZBBPDoorSymbol*>( pINode );
             }
@@ -2001,8 +2001,8 @@ void ZBDeliverableLinkSymbol::OnDelCurrentRisk( ZBProperty&        Property,
     if ( Count <= 1 )
     {
         // Cannot delete all risks
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_CANNOTDELETE_ALLRISKS, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_CANNOTDELETE_ALLRISKS, MB_OK );
         return;
     }
 

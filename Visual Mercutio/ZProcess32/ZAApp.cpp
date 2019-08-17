@@ -3,7 +3,7 @@
 
 // processsoft
 #include "zMediator\PSS_Application.h"
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\ZMessage.h"
 #include "zBaseLib\VTools.h"
 #include "zBaseLib\ZDirectory.h"
@@ -77,10 +77,10 @@
     // Including initguid.h before OdGuids.h forces the GUIDs to be defined
     // in this module. Skip this if statically linking to the Objective Views
     // library, because the GUIDs will be linked into the app from the library
-    #include "initguid.h"
-    #include "Views\OdGuids.h"
-    #include "Foundation\Compatibility\Common\CmnGuids.h"
-    #include "ZAApp.h"
+#include "initguid.h"
+#include "Views\OdGuids.h"
+#include "Foundation\Compatibility\Common\CmnGuids.h"
+#include "ZAApp.h"
 #endif
 
 // resources
@@ -121,9 +121,9 @@ ZBGridAppAdapter::ZBGridAppAdapter()
 
 ZBGridAppAdapter::~ZBGridAppAdapter()
 {
-    if( m_pDocTemplate != NULL )
+    if (m_pDocTemplate != NULL)
     {
-        m_pDocTemplate->CloseAllDocuments( TRUE );
+        m_pDocTemplate->CloseAllDocuments(TRUE);
         delete m_pDocTemplate;
     }
 }
@@ -131,17 +131,17 @@ ZBGridAppAdapter::~ZBGridAppAdapter()
 // you have to override this function and return a CDoctemplate class that is appropriate for this 
 // view and document. The frame is unimportant. Please note that you have to keep track of and 
 // delete all instances of CDocTemplates that you create here
-CDocTemplate* ZBGridAppAdapter::GetDocTemplate( CRuntimeClass* pViewClass, CRuntimeClass* pDocClass )
+CDocTemplate* ZBGridAppAdapter::GetDocTemplate(CRuntimeClass* pViewClass, CRuntimeClass* pDocClass)
 {
-    if ( m_pDocTemplate != NULL )
+    if (m_pDocTemplate != NULL)
     {
         return m_pDocTemplate;
     }
 
-    m_pDocTemplate = new CMultiDocTemplate( IDR_MERCUTIOREPORT,
-                                            RUNTIME_CLASS( ZDGridReportDocument ),
-                                            RUNTIME_CLASS( ZVGridReportChildFrame ),    // custom MDI child frame
-                                            RUNTIME_CLASS( ZVGridReportView ) );
+    m_pDocTemplate = new CMultiDocTemplate(IDR_MERCUTIOREPORT,
+                                           RUNTIME_CLASS(ZDGridReportDocument),
+                                           RUNTIME_CLASS(ZVGridReportChildFrame),    // custom MDI child frame
+                                           RUNTIME_CLASS(ZVGridReportView));
 
     return m_pDocTemplate;
 }
@@ -150,13 +150,13 @@ CDocTemplate* ZBGridAppAdapter::GetDocTemplate( CRuntimeClass* pViewClass, CRunt
 // *                                                  Classe ZAApp                                                *
 // **************************************************************************************************************
 
-IMPLEMENT_DYNAMIC( ZAApp, ZAMainApp )
+IMPLEMENT_DYNAMIC(ZAApp, ZAMainApp)
 
 // **************************************************************************************************************
 // *                                                  Message map                                                *
 // **************************************************************************************************************
 
-BEGIN_MESSAGE_MAP( ZAApp, ZAMainApp )
+BEGIN_MESSAGE_MAP(ZAApp, ZAMainApp)
     //{{AFX_MSG_MAP(ZAApp)
     ON_COMMAND(ID_APP_ABOUT, OnAppAbout)
     ON_COMMAND(ID_HELP_SUPPORT, OnHelpSupport)
@@ -280,23 +280,23 @@ END_MESSAGE_MAP()
 
 // Constructeur par défaut de la classe ZAApp.
 ZAApp::ZAApp()
-    : m_pWorkspaceEnvDocument        ( NULL ),
-      m_pWorkspaceTemplateManager    ( NULL ),
-      m_pUserEntityDocument            ( NULL ),
-      m_pLogicalSystemDocument        ( NULL ),
-      m_pPrestationsDocument        ( NULL ),    // JMR-MODIF - Le 7 octobre 2005 - Initialise le pointeur du document.
-      m_pRulesDocument                ( NULL ),    // JMR-MODIF - Le 15 novembre 2006 - Initialise le pointeur du document.
-      m_pRiskTypeContainer            ( NULL ),    // JMR-MODIF - Le 8 juillet 2007 - Initialise le pointeur de type de risque.
-      m_pRiskImpactContainer        ( NULL ),    // JMR-MODIF - Le 11 juillet 2007 - Initialise le pointeur d'impact.
-      m_pRiskProbabilityContainer    ( NULL )    // JMR-MODIF - Le 11 juillet 2007 - Initialise le pointeur de probabilités.
+    : m_pWorkspaceEnvDocument(NULL),
+    m_pWorkspaceTemplateManager(NULL),
+    m_pUserEntityDocument(NULL),
+    m_pLogicalSystemDocument(NULL),
+    m_pPrestationsDocument(NULL),    // JMR-MODIF - Le 7 octobre 2005 - Initialise le pointeur du document.
+    m_pRulesDocument(NULL),    // JMR-MODIF - Le 15 novembre 2006 - Initialise le pointeur du document.
+    m_pRiskTypeContainer(NULL),    // JMR-MODIF - Le 8 juillet 2007 - Initialise le pointeur de type de risque.
+    m_pRiskImpactContainer(NULL),    // JMR-MODIF - Le 11 juillet 2007 - Initialise le pointeur d'impact.
+    m_pRiskProbabilityContainer(NULL)    // JMR-MODIF - Le 11 juillet 2007 - Initialise le pointeur de probabilités.
 {
-    m_IDD_Splash    = IDB_SPLASHLOGO_2000;
-    m_IDD_About        = IDB_SPLASHLOGO;
-    m_IDD_Support    = IDB_SPLASHLOGO;
+    m_IDD_Splash = IDB_SPLASHLOGO_2000;
+    m_IDD_About = IDB_SPLASHLOGO;
+    m_IDD_Support = IDB_SPLASHLOGO;
 
     // Assigns DDE names
-    m_CppServerName    = _T( "DDE_ZPROCESS_NAME" );
-    m_CppTopicName    = _T( "DDE_ZPROCESS_TOPIC" );
+    m_CppServerName = _T("DDE_ZPROCESS_NAME");
+    m_CppTopicName = _T("DDE_ZPROCESS_TOPIC");
 
     // JMR-MODIF - Le 1er janvier 2007 - Ajout de l'inscription de cette classe dans le médiateur.
     PSS_Application::Instance()->RegisterMainForm(this);
@@ -318,60 +318,60 @@ ZAApp::~ZAApp()
 // JMR-MODIF - Le 23 août 2005 - Ajout de la fonction Release, pour permettre le nettoyage final de l'application.
 void ZAApp::Release()
 {
-    if ( m_pWorkspaceEnvDocument )
+    if (m_pWorkspaceEnvDocument)
     {
         delete m_pWorkspaceEnvDocument;
         m_pWorkspaceEnvDocument = NULL;
     }
 
-    if ( m_pWorkspaceTemplateManager )
+    if (m_pWorkspaceTemplateManager)
     {
         delete m_pWorkspaceTemplateManager;
         m_pWorkspaceTemplateManager = NULL;
     }
 
-    if ( m_pUserEntityDocument )
+    if (m_pUserEntityDocument)
     {
         delete m_pUserEntityDocument;
         m_pUserEntityDocument = NULL;
     }
 
-    if ( m_pLogicalSystemDocument )
+    if (m_pLogicalSystemDocument)
     {
         delete m_pLogicalSystemDocument;
         m_pLogicalSystemDocument = NULL;
     }
 
     // JMR-MODIF - Le 10 octobre 2005 - Ajout du code de destruction du document de prestations.
-    if ( m_pPrestationsDocument )
+    if (m_pPrestationsDocument)
     {
         delete m_pPrestationsDocument;
         m_pPrestationsDocument = NULL;
     }
 
     // JMR-MODIF - Le 15 novembre 2006 - Ajout du code de destruction du document de règles.
-    if ( m_pRulesDocument )
+    if (m_pRulesDocument)
     {
         delete m_pRulesDocument;
         m_pRulesDocument = NULL;
     }
 
     // JMR-MODIF - Le 8 juillet 2007 - Ajout du code de destruction des types de risques en mémoire.
-    if ( m_pRiskTypeContainer )
+    if (m_pRiskTypeContainer)
     {
         delete m_pRiskTypeContainer;
         m_pRiskTypeContainer = NULL;
     }
 
     // JMR-MODIF - Le 11 juillet 2007 - Ajout du code de destruction des impacts des risques en mémoire.
-    if ( m_pRiskImpactContainer )
+    if (m_pRiskImpactContainer)
     {
         delete m_pRiskImpactContainer;
         m_pRiskImpactContainer = NULL;
     }
 
-        // JMR-MODIF - Le 11 juillet 2007 - Ajout du code de destruction des probabilités des risques en mémoire.
-    if ( m_pRiskProbabilityContainer )
+    // JMR-MODIF - Le 11 juillet 2007 - Ajout du code de destruction des probabilités des risques en mémoire.
+    if (m_pRiskProbabilityContainer)
     {
         delete m_pRiskProbabilityContainer;
         m_pRiskProbabilityContainer = NULL;
@@ -405,7 +405,7 @@ void ZAApp::Release()
 
 BOOL ZAApp::InitInstance()
 {
-    if ( !ZAMainApp::InitInstance() )
+    if (!ZAMainApp::InitInstance())
     {
         return FALSE;
     }
@@ -418,24 +418,24 @@ BOOL ZAApp::InitAppl()
 #ifdef _ZCHECKINFO
     // Check the application type
     // zProcess is only available in EntrepriseEdition
-    if ( GetApplicationInfoType() != ZBCriptedFileApplicationTypeInfo::EntrepriseEdition )
+    if (GetApplicationInfoType() != ZBCriptedFileApplicationTypeInfo::EntrepriseEdition)
     {
         ZIMessage Message;
-        Message.DisplayMessage( IDS_APPINFO_INCOMP, IDS_APPINFO_INCOMP_TITLE );
+        Message.DisplayMessage(IDS_APPINFO_INCOMP, IDS_APPINFO_INCOMP_TITLE);
         return FALSE;
     }
 #endif // _ZCHECKINFO
 
     // Grid initialization
     GXInit();
-    GXSetNewGridLineMode( TRUE );
+    GXSetNewGridLineMode(TRUE);
     GXGetEngineState()->SetDefaultWorksheetFunctions();
 
     // Create main MDI Frame window
     ZIMainFrame* pMainFrame = new ZIMainFrame;
     m_pMainWnd = pMainFrame;
 
-    if ( !pMainFrame->LoadFrame( IDR_MAINFRAME ) )
+    if (!pMainFrame->LoadFrame(IDR_MAINFRAME))
     {
         return FALSE;
     }
@@ -448,32 +448,32 @@ BOOL ZAApp::InitAppl()
                                                             RUNTIME_CLASS(ZIViewModify),
                                                             ID_FILE_MRU_FORMS1);
 
-    AddDocTemplate( pDocTemplate );
-    ZAGlobal::SetpDocTemplate( pDocTemplate );
+    AddDocTemplate(pDocTemplate);
+    ZAGlobal::SetpDocTemplate(pDocTemplate);
 
     // Register the report application's document templates. Document templates
     // serve as the connection between documents, frame windows and views.
     CGXMultiDocTemplate* pReportDocTemplate;
-    pReportDocTemplate = new CGXMultiDocTemplate( IDR_MERCUTIOREPORT,
-                                                  RUNTIME_CLASS( ZDGridReportDocument ),
-                                                  RUNTIME_CLASS( ZVGridReportChildFrame ),    // custom MDI child frame
-                                                  RUNTIME_CLASS( ZVGridReportView ) );
+    pReportDocTemplate = new CGXMultiDocTemplate(IDR_MERCUTIOREPORT,
+                                                 RUNTIME_CLASS(ZDGridReportDocument),
+                                                 RUNTIME_CLASS(ZVGridReportChildFrame),    // custom MDI child frame
+                                                 RUNTIME_CLASS(ZVGridReportView));
 
-    AddDocTemplate( pReportDocTemplate );
-    ZAGlobal::SetpReportDocumentTemplate( pReportDocTemplate );
+    AddDocTemplate(pReportDocTemplate);
+    ZAGlobal::SetpReportDocumentTemplate(pReportDocTemplate);
 
     // Register the application's document templates. Document templates
     //  serve as the connection between documents, frame windows and views.
     PSS_ProcessModelDocTmpl* pProcessModelDocumentTemplate =
-        new PSS_ProcessModelDocTmpl( IDR_MODEL,
-                                   RUNTIME_CLASS( ZDProcessGraphModelDoc ),
-                                   RUNTIME_CLASS( ZIProcessGraphChildFrame ),                // custom MDI child frame
-                                   RUNTIME_CLASS( ZIProcessGraphModelView ),
-                                   ID_FILE_MRU_MODEL1 );
+        new PSS_ProcessModelDocTmpl(IDR_MODEL,
+                                    RUNTIME_CLASS(ZDProcessGraphModelDoc),
+                                    RUNTIME_CLASS(ZIProcessGraphChildFrame),                // custom MDI child frame
+                                    RUNTIME_CLASS(ZIProcessGraphModelView),
+                                    ID_FILE_MRU_MODEL1);
 
-    AddDocTemplate( pProcessModelDocumentTemplate );
+    AddDocTemplate(pProcessModelDocumentTemplate);
 
-    ZAGlobal::SetpProcessModelDocumentTemplate( pProcessModelDocumentTemplate );
+    ZAGlobal::SetpProcessModelDocumentTemplate(pProcessModelDocumentTemplate);
 
     // Creation of Visual Tools
     static ZIVisualToolEdit VisualToolEdit;
@@ -482,131 +482,131 @@ BOOL ZAApp::InitAppl()
     PSS_ResourceManager::ChangeLanguage(E_LN_French);
 
     // No errors
-    return( TRUE );
+    return(TRUE);
 }
 
 BOOL ZAApp::PostInitAppl()
 {
-    if ( !ZAMainApp::PostInitAppl() )
+    if (!ZAMainApp::PostInitAppl())
     {
         return FALSE;
     }
 
     // Sets the global historic value filename
-    m_GlobalHistoricValueFilename = GetSystemDirectory() + _T( "\\global.xml" );
+    m_GlobalHistoricValueFilename = GetSystemDirectory() + _T("\\global.xml");
 
     // Read it
-    if ( !ZAGlobal::ReadFromFileHistoricValue( m_GlobalHistoricValueFilename ) )
+    if (!ZAGlobal::ReadFromFileHistoricValue(m_GlobalHistoricValueFilename))
     {
         // Warn the user
     }
 
     // Initialize the global state for model
-    ZAModelGlobal::LoadStateGlobalPropertyAttributes( m_pszProfileName );
+    ZAModelGlobal::LoadStateGlobalPropertyAttributes(m_pszProfileName);
 
     // Attach the necessary observers
-    if ( GetProcessWorkspace() )
+    if (GetProcessWorkspace())
     {
-        AttachObserver( GetProcessWorkspace() );
+        AttachObserver(GetProcessWorkspace());
     }
 
-    if ( GetOutputWorkspace() )
+    if (GetOutputWorkspace())
     {
-        AttachObserver( GetOutputWorkspace() );
+        AttachObserver(GetOutputWorkspace());
     }
 
-    if ( GetPropertiesWorkspace() )
+    if (GetPropertiesWorkspace())
     {
-        AttachObserver( GetPropertiesWorkspace() );
+        AttachObserver(GetPropertiesWorkspace());
     }
 
     // Sets the right inifile to the propertyview
-    if ( GetPropertiesWorkspace() && GetPropertiesWorkspace()->GetPropertyView() )
+    if (GetPropertiesWorkspace() && GetPropertiesWorkspace()->GetPropertyView())
     {
-        GetPropertiesWorkspace()->GetPropertyView()->LoadStateFromIniFile( m_pszProfileName );
+        GetPropertiesWorkspace()->GetPropertyView()->LoadStateFromIniFile(m_pszProfileName);
     }
 
     // Initialize the workspace template manager 
     // It is done manually, since a template manager tool is written
     m_pWorkspaceTemplateManager = new ZBWorkspaceWizardTemplateMg;
-    ASSERT( m_pWorkspaceTemplateManager != NULL );
+    ASSERT(m_pWorkspaceTemplateManager != NULL);
 
     ZBWorkspaceWizardTemplateItem* pTmpItem0 =
-        new ZBWorkspaceWizardTemplateItem( _T( "Projet vide" ),
-                                           _T( "Ce projet ne contient aucun document. Uniquement la structure des dossiers" ) );
+        new ZBWorkspaceWizardTemplateItem(_T("Projet vide"),
+                                          _T("Ce projet ne contient aucun document. Uniquement la structure des dossiers"));
 
-    m_pWorkspaceTemplateManager->AddTemplateItem( pTmpItem0 );
+    m_pWorkspaceTemplateManager->AddTemplateItem(pTmpItem0);
 
     ZBWorkspaceWizardTemplateItem* pTmpItem1 =
-        new ZBWorkspaceWizardTemplateItem( _T( "Projet de base" ), _T( "Ce projet inclus uniquement un modèle" ) );
+        new ZBWorkspaceWizardTemplateItem(_T("Projet de base"), _T("Ce projet inclus uniquement un modèle"));
 
-    m_pWorkspaceTemplateManager->AddTemplateItem( pTmpItem1 );
+    m_pWorkspaceTemplateManager->AddTemplateItem(pTmpItem1);
 
     ZBWorkspaceWizardTemplateItem* pTmpItem2 =
-        new ZBWorkspaceWizardTemplateItem( _T( "Projet Sesterce" ),
-                                           _T( "Ce projet inclus uniquement un modèle et un rapport Sesterce de base" ) );
+        new ZBWorkspaceWizardTemplateItem(_T("Projet Sesterce"),
+                                          _T("Ce projet inclus uniquement un modèle et un rapport Sesterce de base"));
 
-    m_pWorkspaceTemplateManager->AddTemplateItem( pTmpItem2 );
+    m_pWorkspaceTemplateManager->AddTemplateItem(pTmpItem2);
 
-    if ( !LoadUserGroupFile() )
+    if (!LoadUserGroupFile())
     {
         // Warn the user
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_FAILOPEN_USERGROUPFILE, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FAILOPEN_USERGROUPFILE, MB_OK);
     }
 
-    if ( !LoadLogicalSystemFile() )
+    if (!LoadLogicalSystemFile())
     {
         // Warn the user
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_FAILOPEN_LOGICALSYSTEMFILEFILE, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FAILOPEN_LOGICALSYSTEMFILEFILE, MB_OK);
     }
 
     // JMR-MODIF - Le 7 octobre 2005 - Ajout de l'appel à la nouvelle fonction d'ouverture du formulaire de prestations.
-    if ( !LoadPrestationsFile() )
+    if (!LoadPrestationsFile())
     {
         // Warn the user
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_FAILOPEN_PRESTATIONSFILE, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FAILOPEN_PRESTATIONSFILE, MB_OK);
     }
 
     // JMR-MODIF - Le 19 novembre 2006 - Ajout de l'appel à la nouvelle fonction d'ouverture du formulaire des règles.
-    if ( !LoadRulesFile() )
+    if (!LoadRulesFile())
     {
         // Warn the user
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_FAILOPEN_RULESFILE, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FAILOPEN_RULESFILE, MB_OK);
     }
 
     // JMR-MODIF - Le 8 juillet 2007 - Ajout de l'appel à la nouvelle fonction d'ouverture des types de risques.
-    if ( !LoadTypeRiskFile() )
+    if (!LoadTypeRiskFile())
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_FAILOPEN_RISKTYPEFILE, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FAILOPEN_RISKTYPEFILE, MB_OK);
     }
 
     // JMR-MODIF - Le 11 juillet 2007 - Ajout de l'appel à la nouvelle fonction d'ouverture des impacts des risques.
-    if ( !LoadImpactRiskFile() )
+    if (!LoadImpactRiskFile())
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( "Impact pas ouvert"/*IDS_FAILOPEN_RISKIMPACTFILE*/, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FAILOPEN_RISKIMPACTFILE, MB_OK);
     }
 
     // JMR-MODIF - Le 11 juillet 2007 - Ajout de l'appel à la nouvelle fonction d'ouverture des probabilités des risques.
-    if ( !LoadProbabilityRiskFile() )
+    if (!LoadProbabilityRiskFile())
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( "Probabilités pas ouvert"/*IDS_FAILOPEN_RISKPROBABILITYFILE*/, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FAILOPEN_RISKPROBABILITYFILE, MB_OK);
     }
 
     // Simple command line parsing
-    if ( m_lpCmdLine[0] == '\0' )
+    if (m_lpCmdLine[0] == '\0')
     {
-        if ( ShowWelcomeScreen() )
+        if (ShowWelcomeScreen())
         {
-            ZIWelcomeProcess WelcomeDialog( &GetApplicationOptions() );
+            ZIWelcomeProcess WelcomeDialog(&GetApplicationOptions());
 
-            switch( WelcomeDialog.DoModal() )
+            switch (WelcomeDialog.DoModal())
             {
                 case ID_WELCOME_CREATE_NEWMODEL:
                 {
@@ -635,9 +635,9 @@ BOOL ZAApp::PostInitAppl()
 
                 case ID_WELCOME_LASTFILE:
                 {
-                    if ( !GetLastLoadedFile().IsEmpty() )
+                    if (!GetLastLoadedFile().IsEmpty())
                     {
-                        OpenDocumentFile( GetLastLoadedFile() );
+                        OpenDocumentFile(GetLastLoadedFile());
                     }
 
                     break;
@@ -647,11 +647,11 @@ BOOL ZAApp::PostInitAppl()
         else
         {
             // Must reload the last opened file
-            if ( MustOpenLastLoadedFile() )
+            if (MustOpenLastLoadedFile())
             {
-                if ( !GetLastLoadedFile ().IsEmpty() )
+                if (!GetLastLoadedFile().IsEmpty())
                 {
-                    OpenDocumentFile( GetLastLoadedFile() );
+                    OpenDocumentFile(GetLastLoadedFile());
                 }
             }
         }
@@ -659,13 +659,13 @@ BOOL ZAApp::PostInitAppl()
     else
     {
         // open an existing document
-        OpenDocumentFile( m_lpCmdLine );
+        OpenDocumentFile(m_lpCmdLine);
     }
 
     // Set to the model directory
-    if ( !GetModelTemplateDirectory().IsEmpty() )
+    if (!GetModelTemplateDirectory().IsEmpty())
     {
-        ZDirectory::ChangeCurrentDirectory( GetModelTemplateDirectory() );
+        ZDirectory::ChangeCurrentDirectory(GetModelTemplateDirectory());
     }
 
     return TRUE;
@@ -682,53 +682,53 @@ int ZAApp::ExitInstance()
 
 BOOL ZAApp::ExitAppl()
 {
-    if ( !ZAGlobal::SaveToFileHistoricValue( m_GlobalHistoricValueFilename ) )
+    if (!ZAGlobal::SaveToFileHistoricValue(m_GlobalHistoricValueFilename))
     {
         // Warn the user
     }
 
     // Saves the global state for model
-    ZAModelGlobal::SaveStateGlobalPropertyAttributes( m_pszProfileName );
+    ZAModelGlobal::SaveStateGlobalPropertyAttributes(m_pszProfileName);
 
     // Close the current workspace
-    if ( !CloseCurrentWorkspace() )
+    if (!CloseCurrentWorkspace())
     {
         return FALSE;
     }
 
     // Saves the user group file
-    if ( !SaveUserGroupFile() )
+    if (!SaveUserGroupFile())
     {
         // Error message
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_FAILSAVE_USERGROUPFILE, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FAILSAVE_USERGROUPFILE, MB_OK);
         return FALSE;
     }
 
     // Saves the logical system file
-    if ( !SaveLogicalSystemFile() )
+    if (!SaveLogicalSystemFile())
     {
         // Error message
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_FAILSAVE_LOGICALSYSTEMFILE, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FAILSAVE_LOGICALSYSTEMFILE, MB_OK);
         return FALSE;
     }
 
     // JMR-MODIF - Le 10 octobre 2005 - Sauvegarde le fichier de prestations.
-    if ( !SavePrestationsFile() )
+    if (!SavePrestationsFile())
     {
         // Error message
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_FAILSAVE_PRESTATIONSFILE , MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FAILSAVE_PRESTATIONSFILE, MB_OK);
         return FALSE;
     }
 
     // JMR-MODIF - Le 15 novembre 2006 - Sauvegarde le fichier de règles.
-    if ( !SaveRulesFile() )
+    if (!SaveRulesFile())
     {
         // Error message
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_FAILSAVE_RULESFILE , MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FAILSAVE_RULESFILE, MB_OK);
         return FALSE;
     }
 
@@ -737,7 +737,7 @@ BOOL ZAApp::ExitAppl()
     GetApplicationOptions().SetRiskImpactFileName(m_pRiskImpactContainer->GetFilename());
     GetApplicationOptions().SetRiskProbabilityFileName(m_pRiskProbabilityContainer->GetFilename());
 
-    if ( !ZAMainApp::ExitAppl() )
+    if (!ZAMainApp::ExitAppl())
     {
         return FALSE;
     }
@@ -773,12 +773,12 @@ void ZAApp::DoRefreshSymbolsAndProperties()
     PSS_ProcessModelDocTmpl* m_pDocTmpl = ZAGlobal::GetpProcessModelDocumentTemplate();
     POSITION myPosition = m_pDocTmpl->GetFirstDocPosition();
 
-    while ( myPosition != NULL )
+    while (myPosition != NULL)
     {
-        CDocument* m_pDoc                                    = m_pDocTmpl->GetNextDoc( myPosition );
-        ZDProcessGraphModelDoc*    m_pGraphModelDoc            = (ZDProcessGraphModelDoc*)m_pDoc;
-        ZIProcessGraphModelView* m_pGraphModelView            = m_pGraphModelDoc->GetFirstModelView();
-        ZDProcessGraphModelController* m_pModelController    = m_pGraphModelView->GetModelController();
+        CDocument* m_pDoc = m_pDocTmpl->GetNextDoc(myPosition);
+        ZDProcessGraphModelDoc*    m_pGraphModelDoc = (ZDProcessGraphModelDoc*)m_pDoc;
+        ZIProcessGraphModelView* m_pGraphModelView = m_pGraphModelDoc->GetFirstModelView();
+        ZDProcessGraphModelController* m_pModelController = m_pGraphModelView->GetModelController();
 
         m_pModelController->RefreshAllSymbols();
         m_pModelController->RefreshSelectionProperties();
@@ -791,12 +791,12 @@ void ZAApp::DoRefreshProperties()
     PSS_ProcessModelDocTmpl* m_pDocTmpl = ZAGlobal::GetpProcessModelDocumentTemplate();
     POSITION myPosition = m_pDocTmpl->GetFirstDocPosition();
 
-    while ( myPosition != NULL )
+    while (myPosition != NULL)
     {
-        CDocument* m_pDoc                                    = m_pDocTmpl->GetNextDoc( myPosition );
-        ZDProcessGraphModelDoc*    m_pGraphModelDoc            = (ZDProcessGraphModelDoc*)m_pDoc;
-        ZIProcessGraphModelView* m_pGraphModelView            = m_pGraphModelDoc->GetFirstModelView();
-        ZDProcessGraphModelController* m_pModelController    = m_pGraphModelView->GetModelController();
+        CDocument* m_pDoc = m_pDocTmpl->GetNextDoc(myPosition);
+        ZDProcessGraphModelDoc*    m_pGraphModelDoc = (ZDProcessGraphModelDoc*)m_pDoc;
+        ZIProcessGraphModelView* m_pGraphModelView = m_pGraphModelDoc->GetFirstModelView();
+        ZDProcessGraphModelController* m_pModelController = m_pGraphModelView->GetModelController();
 
         m_pModelController->RefreshSelectionProperties();
     }
@@ -809,40 +809,40 @@ void ZAApp::DoRefreshProperties()
 bool ZAApp::LoadUserGroupFile()
 {
     // Read the user group file
-    m_UserGroupFilename = GetSystemDirectory() + _T( "\\Userdef.xml" );
+    m_UserGroupFilename = GetSystemDirectory() + _T("\\Userdef.xml");
 
     // If allocated, then delete it first
-    if ( m_pUserEntityDocument )
+    if (m_pUserEntityDocument)
     {
         delete m_pUserEntityDocument;
     }
 
     m_pUserEntityDocument = new ZDUserEntityDocument();
 
-    if ( m_pUserEntityDocument )
+    if (m_pUserEntityDocument)
     {
-        if ( !m_pUserEntityDocument->ReadFromFile( m_UserGroupFilename ) )
+        if (!m_pUserEntityDocument->ReadFromFile(m_UserGroupFilename))
         {
             // If does not exists, initialize by default
-            m_pUserEntityDocument->GetUserGroupEnvironment().SetEntityName( _T( "Entreprise XYZ" ) );
-            m_pUserEntityDocument->GetUserGroupEnvironment().SetEntityDescription( _T( "Entreprise de ..." ) );
+            m_pUserEntityDocument->GetUserGroupEnvironment().SetEntityName(_T("Entreprise XYZ"));
+            m_pUserEntityDocument->GetUserGroupEnvironment().SetEntityDescription(_T("Entreprise de ..."));
         }
 
-        if ( m_pUserEntityDocument->GetDocumentStamp().GetInternalVersion() < 19 )
+        if (m_pUserEntityDocument->GetDocumentStamp().GetInternalVersion() < 19)
         {
             // For Beta2, during initialization we changed the format, saves it
             m_pUserEntityDocument->SetModifiedFlag();
-            SaveUserGroupFile( false );
+            SaveUserGroupFile(false);
         }
 
-        PSS_File file( m_UserGroupFilename );
+        PSS_File file(m_UserGroupFilename);
 
         // Notify observers about the user group initialisation
-        ZBUserGroupObserverMsg Msg( UM_INITUSERGROUP,
-                                    &m_pUserEntityDocument->GetUserGroupEnvironment(),
-                                    file.GetFileName() );
+        ZBUserGroupObserverMsg Msg(UM_INITUSERGROUP,
+                                   &m_pUserEntityDocument->GetUserGroupEnvironment(),
+                                   file.GetFileName());
 
-        NotifyAllObservers( &Msg );
+        NotifyAllObservers(&Msg);
 
         return true;
     }
@@ -850,18 +850,18 @@ bool ZAApp::LoadUserGroupFile()
     return false;
 }
 
-bool ZAApp::SaveUserGroupFile( bool AskBeforeSave /*= true*/ )
+bool ZAApp::SaveUserGroupFile(bool AskBeforeSave /*= true*/)
 {
-    if ( m_pUserEntityDocument )
+    if (m_pUserEntityDocument)
     {
         // If the file has changed
-        if ( m_pUserEntityDocument->IsModified() )
+        if (m_pUserEntityDocument->IsModified())
         {
-            if ( AskBeforeSave )
+            if (AskBeforeSave)
             {
                 // Asks for save
-                MsgBox mbox;
-                switch ( mbox.DisplayMsgBox( IDS_CONF_SAVE_USERGROUP_DOC, MB_YESNOCANCEL ) )
+                PSS_MsgBox mBox;
+                switch (mBox.ShowMsgBox(IDS_CONF_SAVE_USERGROUP_DOC, MB_YESNOCANCEL))
                 {
                     case IDYES:
                     {
@@ -884,12 +884,12 @@ bool ZAApp::SaveUserGroupFile( bool AskBeforeSave /*= true*/ )
             }
 
             // save the document and return true
-            if ( !m_pUserEntityDocument->SaveToFile( m_UserGroupFilename ) )
+            if (!m_pUserEntityDocument->SaveToFile(m_UserGroupFilename))
             {
-                MsgBox mbox;
+                PSS_MsgBox mBox;
                 CString s;
-                s.Format( IDS_UNABLETOSAVE_USERGROUP, m_UserGroupFilename ); 
-                mbox.DisplayMsgBox( s, MB_OK );
+                s.Format(IDS_UNABLETOSAVE_USERGROUP, m_UserGroupFilename);
+                mBox.ShowMsgBox(s, MB_OK);
             }
         }
     }
@@ -900,33 +900,33 @@ bool ZAApp::SaveUserGroupFile( bool AskBeforeSave /*= true*/ )
 bool ZAApp::LoadLogicalSystemFile()
 {
     // Read the user group file
-    m_LogicalSystemFilename = GetSystemDirectory() + _T( "\\Systemdef.xml" );
+    m_LogicalSystemFilename = GetSystemDirectory() + _T("\\Systemdef.xml");
 
     // If allocated, then delete it first
-    if ( m_pLogicalSystemDocument )
+    if (m_pLogicalSystemDocument)
     {
         delete m_pLogicalSystemDocument;
     }
 
     m_pLogicalSystemDocument = new ZDLogicalSystemDocument();
 
-    if ( m_pLogicalSystemDocument )
+    if (m_pLogicalSystemDocument)
     {
-        if ( !m_pLogicalSystemDocument->ReadFromFile( m_LogicalSystemFilename ) )
+        if (!m_pLogicalSystemDocument->ReadFromFile(m_LogicalSystemFilename))
         {
             // If does not exists, initialize by default
-            m_pLogicalSystemDocument->GetLogicalSystemEnvironment().SetEntityName( _T("Systèmes Logiques") );
-            m_pLogicalSystemDocument->GetLogicalSystemEnvironment().SetEntityDescription( _T("Systèmes Logiques ...") );
+            m_pLogicalSystemDocument->GetLogicalSystemEnvironment().SetEntityName(_T("Systèmes Logiques"));
+            m_pLogicalSystemDocument->GetLogicalSystemEnvironment().SetEntityDescription(_T("Systèmes Logiques ..."));
         }
 
-        PSS_File file( m_LogicalSystemFilename );
+        PSS_File file(m_LogicalSystemFilename);
 
         // Notify observers about the logical system initialisation
-        ZBLogicalSystemObserverMsg Msg( UM_INITLOGICALSYSTEM,
-                                        &m_pLogicalSystemDocument->GetLogicalSystemEnvironment(),
-                                        file.GetFileName() );
+        ZBLogicalSystemObserverMsg Msg(UM_INITLOGICALSYSTEM,
+                                       &m_pLogicalSystemDocument->GetLogicalSystemEnvironment(),
+                                       file.GetFileName());
 
-        NotifyAllObservers( &Msg );
+        NotifyAllObservers(&Msg);
 
         return true;
     }
@@ -934,19 +934,19 @@ bool ZAApp::LoadLogicalSystemFile()
     return false;
 }
 
-bool ZAApp::SaveLogicalSystemFile( bool AskBeforeSave /*= true*/ )
+bool ZAApp::SaveLogicalSystemFile(bool AskBeforeSave /*= true*/)
 {
-    if ( m_pLogicalSystemDocument )
+    if (m_pLogicalSystemDocument)
     {
         // If the file has changed
-        if ( m_pLogicalSystemDocument->IsModified() )
+        if (m_pLogicalSystemDocument->IsModified())
         {
-            if ( AskBeforeSave )
+            if (AskBeforeSave)
             {
                 // Asks for save
-                MsgBox mbox;
+                PSS_MsgBox mBox;
 
-                switch ( mbox.DisplayMsgBox( IDS_CONF_SAVE_LOGICALSYSTEM_DOC, MB_YESNOCANCEL ) )
+                switch (mBox.ShowMsgBox(IDS_CONF_SAVE_LOGICALSYSTEM_DOC, MB_YESNOCANCEL))
                 {
                     case IDYES:
                     {
@@ -967,12 +967,12 @@ bool ZAApp::SaveLogicalSystemFile( bool AskBeforeSave /*= true*/ )
             }
 
             // save the document and return true
-            if ( !m_pLogicalSystemDocument->SaveToFile( m_LogicalSystemFilename ) )
+            if (!m_pLogicalSystemDocument->SaveToFile(m_LogicalSystemFilename))
             {
-                MsgBox mbox;
+                PSS_MsgBox mBox;
                 CString s;
-                s.Format( IDS_UNABLETOSAVE_LOGSYSTEM, m_LogicalSystemFilename );
-                mbox.DisplayMsgBox( s, MB_OK );
+                s.Format(IDS_UNABLETOSAVE_LOGSYSTEM, m_LogicalSystemFilename);
+                mBox.ShowMsgBox(s, MB_OK);
             }
         }
     }
@@ -984,33 +984,33 @@ bool ZAApp::SaveLogicalSystemFile( bool AskBeforeSave /*= true*/ )
 bool ZAApp::LoadPrestationsFile()
 {
     // Read the prestations group file
-    m_PrestationsFilename = GetSystemDirectory() + _T( "\\Prestationsdef.xml" );
+    m_PrestationsFilename = GetSystemDirectory() + _T("\\Prestationsdef.xml");
 
     // If allocated, then delete it first
-    if ( m_pPrestationsDocument )
+    if (m_pPrestationsDocument)
     {
         delete m_pPrestationsDocument;
     }
 
     m_pPrestationsDocument = new ZDLogicalPrestationsDocument();
 
-    if ( m_pPrestationsDocument )
+    if (m_pPrestationsDocument)
     {
-        if ( !m_pPrestationsDocument->ReadFromFile( m_PrestationsFilename ) )
+        if (!m_pPrestationsDocument->ReadFromFile(m_PrestationsFilename))
         {
             // If does not exists, initialize by default
-            m_pPrestationsDocument->GetPrestationsEnvironment().SetEntityName( _T( "Gamme des prestations" ) );
-            m_pPrestationsDocument->GetPrestationsEnvironment().SetEntityDescription( _T( "Gamme des prestations." ) );
+            m_pPrestationsDocument->GetPrestationsEnvironment().SetEntityName(_T("Gamme des prestations"));
+            m_pPrestationsDocument->GetPrestationsEnvironment().SetEntityDescription(_T("Gamme des prestations."));
         }
 
-        PSS_File file( m_PrestationsFilename );
+        PSS_File file(m_PrestationsFilename);
 
         // Notify observers about the user group initialisation
-        ZBLogicalPrestationsObserverMsg Msg( UM_INITPRESTATIONS,
-                                             &m_pPrestationsDocument->GetPrestationsEnvironment(),
-                                             file.GetFileName() );
+        ZBLogicalPrestationsObserverMsg Msg(UM_INITPRESTATIONS,
+                                            &m_pPrestationsDocument->GetPrestationsEnvironment(),
+                                            file.GetFileName());
 
-        NotifyAllObservers( &Msg );
+        NotifyAllObservers(&Msg);
 
         return true;
     }
@@ -1019,19 +1019,19 @@ bool ZAApp::LoadPrestationsFile()
 }
 
 // JMR-MODIF - Le 7 octobre 2005 - Ajout de la fonction SavePrestationsFile.
-bool ZAApp::SavePrestationsFile( bool AskBeforeSave /*= true*/ )
+bool ZAApp::SavePrestationsFile(bool AskBeforeSave /*= true*/)
 {
-    if ( m_pPrestationsDocument )
+    if (m_pPrestationsDocument)
     {
         // If the file has changed
-        if ( m_pPrestationsDocument->IsModified() )
+        if (m_pPrestationsDocument->IsModified())
         {
-            if ( AskBeforeSave )
+            if (AskBeforeSave)
             {
                 // Asks for save
-                MsgBox mbox;
+                PSS_MsgBox mBox;
 
-                switch ( mbox.DisplayMsgBox( IDS_CONF_SAVE_PRESTATIONS_DOC, MB_YESNOCANCEL ) )
+                switch (mBox.ShowMsgBox(IDS_CONF_SAVE_PRESTATIONS_DOC, MB_YESNOCANCEL))
                 {
                     case IDYES:
                     {
@@ -1052,12 +1052,12 @@ bool ZAApp::SavePrestationsFile( bool AskBeforeSave /*= true*/ )
             }
 
             // Save the document and return true
-            if ( !m_pPrestationsDocument->SaveToFile( m_PrestationsFilename ) )
+            if (!m_pPrestationsDocument->SaveToFile(m_PrestationsFilename))
             {
-                MsgBox mbox;
+                PSS_MsgBox mBox;
                 CString s;
-                s.Format( IDS_UNABLETOSAVE_PRESTATIONS, m_PrestationsFilename );
-                mbox.DisplayMsgBox( s, MB_OK );
+                s.Format(IDS_UNABLETOSAVE_PRESTATIONS, m_PrestationsFilename);
+                mBox.ShowMsgBox(s, MB_OK);
             }
         }
     }
@@ -1069,33 +1069,33 @@ bool ZAApp::SavePrestationsFile( bool AskBeforeSave /*= true*/ )
 bool ZAApp::LoadRulesFile()
 {
     // Read the Rules group file
-    m_RulesFilename = GetSystemDirectory() + _T( "\\Rulesdef.xml" );
+    m_RulesFilename = GetSystemDirectory() + _T("\\Rulesdef.xml");
 
     // If allocated, then delete it first
-    if ( m_pRulesDocument )
+    if (m_pRulesDocument)
     {
         delete m_pRulesDocument;
     }
 
     m_pRulesDocument = new ZDLogicalRulesDocument();
 
-    if ( m_pRulesDocument )
+    if (m_pRulesDocument)
     {
-        if ( !m_pRulesDocument->ReadFromFile( m_RulesFilename ) )
+        if (!m_pRulesDocument->ReadFromFile(m_RulesFilename))
         {
             // If does not exists, initialize by default
-            m_pRulesDocument->GetRulesEnvironment().SetEntityName( _T( "Recueil des règles" ) );
-            m_pRulesDocument->GetRulesEnvironment().SetEntityDescription( _T( "Entrée du recueil des règles." ) );
+            m_pRulesDocument->GetRulesEnvironment().SetEntityName(_T("Recueil des règles"));
+            m_pRulesDocument->GetRulesEnvironment().SetEntityDescription(_T("Entrée du recueil des règles."));
         }
 
-        PSS_File file( m_RulesFilename );
+        PSS_File file(m_RulesFilename);
 
         // Notify observers about the user group initialisation
-        ZBLogicalRulesObserverMsg Msg( UM_INITRULES,
-                                       &m_pRulesDocument->GetRulesEnvironment(),
-                                       file.GetFileName() );
+        ZBLogicalRulesObserverMsg Msg(UM_INITRULES,
+                                      &m_pRulesDocument->GetRulesEnvironment(),
+                                      file.GetFileName());
 
-        NotifyAllObservers( &Msg );
+        NotifyAllObservers(&Msg);
 
         return true;
     }
@@ -1104,19 +1104,19 @@ bool ZAApp::LoadRulesFile()
 }
 
 // JMR-MODIF - Le 15 novembre 2006 - Ajout de la fonction SaveRulesFile.
-bool ZAApp::SaveRulesFile( bool AskBeforeSave /*= true*/ )
+bool ZAApp::SaveRulesFile(bool AskBeforeSave /*= true*/)
 {
-    if ( m_pRulesDocument )
+    if (m_pRulesDocument)
     {
         // If the file has changed
-        if ( m_pRulesDocument->IsModified() )
+        if (m_pRulesDocument->IsModified())
         {
-            if ( AskBeforeSave )
+            if (AskBeforeSave)
             {
                 // Asks for save
-                MsgBox mbox;
+                PSS_MsgBox mBox;
 
-                switch ( mbox.DisplayMsgBox( IDS_CONF_SAVE_RULES_DOC, MB_YESNOCANCEL ) )
+                switch (mBox.ShowMsgBox(IDS_CONF_SAVE_RULES_DOC, MB_YESNOCANCEL))
                 {
                     case IDYES:
                     {
@@ -1137,12 +1137,12 @@ bool ZAApp::SaveRulesFile( bool AskBeforeSave /*= true*/ )
             }
 
             // Save the document and return true
-            if ( !m_pRulesDocument->SaveToFile( m_RulesFilename ) )
+            if (!m_pRulesDocument->SaveToFile(m_RulesFilename))
             {
-                MsgBox mbox;
+                PSS_MsgBox mBox;
                 CString s;
-                s.Format( IDS_UNABLETOSAVE_RULES, m_RulesFilename );
-                mbox.DisplayMsgBox( s, MB_OK );
+                s.Format(IDS_UNABLETOSAVE_RULES, m_RulesFilename);
+                mBox.ShowMsgBox(s, MB_OK);
             }
         }
     }
@@ -1153,7 +1153,7 @@ bool ZAApp::SaveRulesFile( bool AskBeforeSave /*= true*/ )
 // JMR-MODIF - Le 8 juillet 2007 - Cette fonction charge en mémoire le fichier des types de risques.
 BOOL ZAApp::LoadTypeRiskFile()
 {
-    if ( m_pRiskTypeContainer == NULL )
+    if (m_pRiskTypeContainer == NULL)
     {
         m_pRiskTypeContainer = new ZVRiskTypeContainer();
 
@@ -1167,7 +1167,7 @@ BOOL ZAApp::LoadTypeRiskFile()
 // JMR-MODIF - Le 11 juillet 2007 - Cette fonction charge en mémoire le fichier des impacts des risques.
 BOOL ZAApp::LoadImpactRiskFile()
 {
-    if ( m_pRiskImpactContainer == NULL )
+    if (m_pRiskImpactContainer == NULL)
     {
         m_pRiskImpactContainer = new ZVRiskImpactContainer();
 
@@ -1181,7 +1181,7 @@ BOOL ZAApp::LoadImpactRiskFile()
 // JMR-MODIF - Le 11 juillet 2007 - Cette fonction charge en mémoire le fichier des probabilités des risques.
 BOOL ZAApp::LoadProbabilityRiskFile()
 {
-    if ( m_pRiskProbabilityContainer == NULL )
+    if (m_pRiskProbabilityContainer == NULL)
     {
         m_pRiskProbabilityContainer = new ZVRiskProbabilityContainer();
 
@@ -1198,7 +1198,7 @@ BOOL ZAApp::LoadProbabilityRiskFile()
 
 ZIMainFrame* ZAApp::GetMainFrame()
 {
-    if ( AfxGetMainWnd() && ISA( AfxGetMainWnd(), ZIMainFrame ) )
+    if (AfxGetMainWnd() && ISA(AfxGetMainWnd(), ZIMainFrame))
     {
         return (ZIMainFrame*)AfxGetMainWnd();
     }
@@ -1223,7 +1223,7 @@ CString ZAApp::GetGlobalIniFile()
 
 ZBWorkspaceEnv* ZAApp::GetCurrentWorkspaceEnvironment()
 {
-    return ( m_pWorkspaceEnvDocument ) ? &m_pWorkspaceEnvDocument->GetWorkspaceEnvironment() : NULL;
+    return (m_pWorkspaceEnvDocument) ? &m_pWorkspaceEnvDocument->GetWorkspaceEnvironment() : NULL;
 }
 
 // ********************************************* Ouverture / Fermeture ******************************************
@@ -1231,84 +1231,84 @@ ZBWorkspaceEnv* ZAApp::GetCurrentWorkspaceEnvironment()
 bool ZAApp::CloseCurrentAndAllocateNewWorkspace()
 {
     // First, check a a workspace is already open
-    if ( WorkspaceEnvironmentExist() )
+    if (WorkspaceEnvironmentExist())
     {
         // Ask before closing all open documents
-        if ( !CloseCurrentWorkspace( true ) )
+        if (!CloseCurrentWorkspace(true))
         {
             return false;
         }
     }
-    
+
     // Allocate a new workspace
     m_pWorkspaceEnvDocument = new ZDWorkspaceEnvDocument();
 
-    return ( m_pWorkspaceEnvDocument != NULL ) ? true : false;
+    return (m_pWorkspaceEnvDocument != NULL) ? true : false;
 }
 
-bool ZAApp::CloseCurrentWorkspace( bool AskClosingDocument /*= false*/ )
+bool ZAApp::CloseCurrentWorkspace(bool AskClosingDocument /*= false*/)
 {
-    if ( WorkspaceEnvironmentExist() )
+    if (WorkspaceEnvironmentExist())
     {
-        if ( IsWorkspaceEnvironmentLoaded() )
+        if (IsWorkspaceEnvironmentLoaded())
         {
-            if ( !SaveCurrentWorkspace() )
+            if (!SaveCurrentWorkspace())
             {
                 return false;
             }
 
-            if ( AskClosingDocument )
+            if (AskClosingDocument)
             {
-                MsgBox mbox;
+                PSS_MsgBox mBox;
 
-                if ( mbox.DisplayMsgBox( IDS_CONF_CLOSEALLDOCS_CURRENT_WKSPACE, MB_YESNO ) == IDYES )
+                if (mBox.ShowMsgBox(IDS_CONF_CLOSEALLDOCS_CURRENT_WKSPACE, MB_YESNO) == IDYES)
                 {
                     // First, try to save all modified documents
-                    if ( !SaveAllModified() )
+                    if (!SaveAllModified())
                     {
                         return false;
                     }
 
-                    if ( GetOutputWorkspace() )
+                    if (GetOutputWorkspace())
                     {
                         GetOutputWorkspace()->DetachAllObservers();
                     }
 
                     // Close all documents without ending session to true
-                    CloseAllDocuments( FALSE );
+                    CloseAllDocuments(FALSE);
                 }
             }
             else
             {
                 // First, try to save all modified documents
-                if ( !SaveAllModified() )
+                if (!SaveAllModified())
                 {
                     return false;
                 }
 
-                if ( GetOutputWorkspace() )
+                if (GetOutputWorkspace())
                 {
                     GetOutputWorkspace()->DetachAllObservers();
                 }
 
                 // Close all documents without ending session to true
-                CloseAllDocuments( TRUE );
+                CloseAllDocuments(TRUE);
             }
         }
 
         // Before deleting the workspace environement,
         // sets the last open file as the workspace filename
-        if ( m_pWorkspaceEnvDocument )
+        if (m_pWorkspaceEnvDocument)
         {
-            SetLastLoadedFile( m_pWorkspaceEnvDocument->GetPathName() );
+            SetLastLoadedFile(m_pWorkspaceEnvDocument->GetPathName());
             delete m_pWorkspaceEnvDocument;
         }
 
         m_pWorkspaceEnvDocument = NULL;
 
         // Notify observers about the workspace closing
-        ZBWorkspaceObserverMsg Msg( UM_CLOSEWORKSPACE );
-        NotifyAllObservers( &Msg );
+        ZBWorkspaceObserverMsg Msg(UM_CLOSEWORKSPACE);
+        NotifyAllObservers(&Msg);
     }
 
     return true;
@@ -1316,15 +1316,15 @@ bool ZAApp::CloseCurrentWorkspace( bool AskClosingDocument /*= false*/ )
 
 // ************************************************** Fichiers **************************************************
 
-CDocument* ZAApp::OpenWorkspaceFile( LPCSTR Filename )
+CDocument* ZAApp::OpenWorkspaceFile(LPCSTR Filename)
 {
-    if ( !CloseCurrentAndAllocateNewWorkspace() )
+    if (!CloseCurrentAndAllocateNewWorkspace())
     {
         return NULL;
     }
 
     // Open the new workspace
-    if ( !m_pWorkspaceEnvDocument->ReadFromFile( Filename ) )
+    if (!m_pWorkspaceEnvDocument->ReadFromFile(Filename))
     {
         // Display error message
         return NULL;
@@ -1332,7 +1332,7 @@ CDocument* ZAApp::OpenWorkspaceFile( LPCSTR Filename )
 
     ZBWorkspaceEnv* pEnv = GetCurrentWorkspaceEnvironment();
 
-    if ( !pEnv )
+    if (!pEnv)
     {
         // Display error message
         return NULL;
@@ -1342,50 +1342,50 @@ CDocument* ZAApp::OpenWorkspaceFile( LPCSTR Filename )
     m_WorkspaceFilename = Filename;
 
     // Notify observers about the workspace initialisation
-    ZBWorkspaceObserverMsg Msg( UM_INITWORKSPACE, pEnv );
-    NotifyAllObservers( &Msg );
+    ZBWorkspaceObserverMsg Msg(UM_INITWORKSPACE, pEnv);
+    NotifyAllObservers(&Msg);
 
     return m_pWorkspaceEnvDocument;
 }
 
-void ZAApp::SaveWorkspaceFile( LPCSTR Filename )
+void ZAApp::SaveWorkspaceFile(LPCSTR Filename)
 {
-    ASSERT( m_pWorkspaceEnvDocument != NULL );
+    ASSERT(m_pWorkspaceEnvDocument != NULL);
 
     // And save it
-    m_pWorkspaceEnvDocument->SaveToFile( Filename );
+    m_pWorkspaceEnvDocument->SaveToFile(Filename);
 
     // Reset the modified flag
-    m_pWorkspaceEnvDocument->SetModifiedFlag( FALSE );
+    m_pWorkspaceEnvDocument->SetModifiedFlag(FALSE);
 }
 
 bool ZAApp::SaveCurrentWorkspace()
 {
     bool bRetValue = true;
 
-    if ( WorkspaceEnvironmentExist() && IsWorkspaceEnvironmentLoaded() )
+    if (WorkspaceEnvironmentExist() && IsWorkspaceEnvironmentLoaded())
     {
-        ASSERT( m_pWorkspaceEnvDocument != NULL );
+        ASSERT(m_pWorkspaceEnvDocument != NULL);
 
         // Sets the loaded files
-        if ( GetCurrentWorkspaceEnvironment() )
+        if (GetCurrentWorkspaceEnvironment())
         {
             CStringArray FileArray;
-            GetDocumentArrayName( FileArray );
-            GetCurrentWorkspaceEnvironment()->SetOpenedFiles( FileArray );
+            GetDocumentArrayName(FileArray);
+            GetCurrentWorkspaceEnvironment()->SetOpenedFiles(FileArray);
         }
 
         // And save it
-        if ( !m_pWorkspaceEnvDocument->SaveToFile( m_WorkspaceFilename ) )
+        if (!m_pWorkspaceEnvDocument->SaveToFile(m_WorkspaceFilename))
         {
             bRetValue = false;
         }
 
         // Reset the modified flag
-        m_pWorkspaceEnvDocument->SetModifiedFlag( FALSE );
+        m_pWorkspaceEnvDocument->SetModifiedFlag(FALSE);
 
         // Sets the last open file as the workspace filename
-        SetLastLoadedFile( m_pWorkspaceEnvDocument->GetPathName() );
+        SetLastLoadedFile(m_pWorkspaceEnvDocument->GetPathName());
     }
 
     return bRetValue;
@@ -1395,20 +1395,20 @@ bool ZAApp::SaveCurrentWorkspace()
 
 bool ZAApp::WorkspaceEnvironmentExist()
 {
-    return ( m_pWorkspaceEnvDocument ) ? true : false;
+    return (m_pWorkspaceEnvDocument) ? true : false;
 }
 
 bool ZAApp::IsWorkspaceEnvironmentLoaded()
 {
-    return ( m_pWorkspaceEnvDocument && m_pWorkspaceEnvDocument->IsLoaded() ) ? true : false;
+    return (m_pWorkspaceEnvDocument && m_pWorkspaceEnvDocument->IsLoaded()) ? true : false;
 }
 
 bool ZAApp::IsWorkspaceEnvironmentModified()
 {
-    if ( m_pWorkspaceEnvDocument )
+    if (m_pWorkspaceEnvDocument)
     {
         // return the flag of the document and the environement
-        return ( m_pWorkspaceEnvDocument->IsModified() ) ? true : false;
+        return (m_pWorkspaceEnvDocument->IsModified()) ? true : false;
     }
 
     return false;
@@ -1425,7 +1425,7 @@ ZVProcessWorkspace* ZAApp::GetProcessWorkspace()
 {
     ZIMainFrame* pFrame = GetMainFrame();
 
-    if ( pFrame )
+    if (pFrame)
     {
         return pFrame->GetWorkspace();
     }
@@ -1440,7 +1440,7 @@ ZVOutputWorkspace* ZAApp::GetOutputWorkspace()
 {
     ZIMainFrame* pFrame = GetMainFrame();
 
-    if ( pFrame )
+    if (pFrame)
     {
         return pFrame->GetOutputWorkspace();
     }
@@ -1455,7 +1455,7 @@ ZVPropertiesWorkspace* ZAApp::GetPropertiesWorkspace()
 {
     ZIMainFrame* pFrame = GetMainFrame();
 
-    if ( pFrame )
+    if (pFrame)
     {
         return pFrame->GetPropertiesWorkspace();
     }
@@ -1483,7 +1483,7 @@ PSS_TipOfDayBar* ZAApp::GetwndTipOfDayBar()
 {
     ZIMainFrame* pFrame = GetMainFrame();
 
-    if ( pFrame )
+    if (pFrame)
     {
         return &pFrame->GetwndTipOfDayBar();
     }
@@ -1495,7 +1495,7 @@ PSS_TipOfDayBar* ZAApp::GetwndTipOfDayBar()
 // Cette fonction permet d'obtenir le pointeur sur l'environnement de travail des utilisateurs.
 ZBUserGroupEntity* ZAApp::GetMainUserGroup()
 {
-    return ( m_pUserEntityDocument ) ? &m_pUserEntityDocument->GetUserGroupEnvironment() : NULL;
+    return (m_pUserEntityDocument) ? &m_pUserEntityDocument->GetUserGroupEnvironment() : NULL;
 }
 
 // ********************************************** Logical systems ***********************************************
@@ -1503,7 +1503,7 @@ ZBUserGroupEntity* ZAApp::GetMainUserGroup()
 // Cette fonction permet d'obtenir le pointeur sur l'environnement de travail des systèmes logiques.
 ZBLogicalSystemEntity* ZAApp::GetMainLogicalSystem()
 {
-    return ( m_pLogicalSystemDocument ) ? &m_pLogicalSystemDocument->GetLogicalSystemEnvironment() : NULL;
+    return (m_pLogicalSystemDocument) ? &m_pLogicalSystemDocument->GetLogicalSystemEnvironment() : NULL;
 }
 
 // ************************************************ Prestations *************************************************
@@ -1512,7 +1512,7 @@ ZBLogicalSystemEntity* ZAApp::GetMainLogicalSystem()
 // Cette fonction permet d'obtenir le pointeur sur l'environnement de travail des prestations.
 ZBLogicalPrestationsEntity* ZAApp::GetMainLogicalPrestations()
 {
-    return ( m_pPrestationsDocument ) ? &m_pPrestationsDocument->GetPrestationsEnvironment() : NULL;
+    return (m_pPrestationsDocument) ? &m_pPrestationsDocument->GetPrestationsEnvironment() : NULL;
 }
 
 // ************************************************** Règles ****************************************************
@@ -1521,14 +1521,14 @@ ZBLogicalPrestationsEntity* ZAApp::GetMainLogicalPrestations()
 // Cette fonction permet d'obtenir le pointeur sur l'environnement de travail des règles.
 ZBLogicalRulesEntity* ZAApp::GetMainLogicalRules()
 {
-    return ( m_pRulesDocument ) ? &m_pRulesDocument->GetRulesEnvironment() : NULL;
+    return (m_pRulesDocument) ? &m_pRulesDocument->GetRulesEnvironment() : NULL;
 }
 
 // **************************************************************************************************************
 // *                                                    Fonctions                                                *
 // **************************************************************************************************************
 
-void ZAApp::SetVisualToolObject( const CString& sClassName )
+void ZAApp::SetVisualToolObject(const CString& sClassName)
 {
     // find the class
     const CStringArray& Array = PSS_ObjectUtility::GetClassNameArray();
@@ -1554,50 +1554,50 @@ void ZAApp::SetVisualToolObject( const CString& sClassName )
 // Cette fonction effectue les opérations nécessaires à  la création d'un nouveau modèle
 ZDProcessGraphModelDoc* ZAApp::FileNewModel()
 {
-    ASSERT( ZAGlobal::GetpProcessModelDocumentTemplate() != NULL );
+    ASSERT(ZAGlobal::GetpProcessModelDocumentTemplate() != NULL);
 
     CWaitCursor Cursor;
 
     ZDProcessGraphModelDoc* pNewFile =
-        (ZDProcessGraphModelDoc*)ZAGlobal::GetpProcessModelDocumentTemplate()->OpenDocumentFile( NULL );
+        (ZDProcessGraphModelDoc*)ZAGlobal::GetpProcessModelDocumentTemplate()->OpenDocumentFile(NULL);
 
-    if ( !pNewFile )
+    if (!pNewFile)
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_NORMALTEMPLATE_NF, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_NORMALTEMPLATE_NF, MB_OK);
         return NULL;
     }
 
     // JMR-MODIF - Le 14 juillet 2005 - Teste si l'utiliateur a abandonné le processus.
     ZVDocumentPageSetup* m_pPageSetup = pNewFile->GetPrinterPageSize();
 
-    if ( m_pPageSetup != NULL )
+    if (m_pPageSetup != NULL)
     {
-        if ( m_pPageSetup->IsCancelled() )
+        if (m_pPageSetup->IsCancelled())
         {
             pNewFile->OnCloseDocument();
             return NULL;
         }
     }
 
-    ZVModelWorkflowOptions Opt( FALSE, pNewFile );
+    ZVModelWorkflowOptions Opt(FALSE, pNewFile);
 
-    if ( Opt.DoModal() == IDCANCEL )
+    if (Opt.DoModal() == IDCANCEL)
     {
         pNewFile->OnCloseDocument();
         return NULL;
     }
 
-    switch ( pNewFile->GetNotation() )
+    switch (pNewFile->GetNotation())
     {
         case E_MN_Beryl:
         {
             // Retreive the language assigned to the document
             ELanguage lang = pNewFile->GetLanguage();
-            pNewFile->SetNewModel( new ZDProcessGraphModelMdlBP( pNewFile->GetTitle() ) );
+            pNewFile->SetNewModel(new ZDProcessGraphModelMdlBP(pNewFile->GetTitle()));
 
             // Sets the language to the document
-            pNewFile->SetLanguage( lang );
+            pNewFile->SetLanguage(lang);
             break;
         }
 
@@ -1621,16 +1621,16 @@ ZDProcessGraphModelDoc* ZAApp::FileNewModel()
     pNewFile->ClearPathName();    // no path name yet
 
     // Assigns the Main User Group
-    pNewFile->AssignMainUserGroup( GetMainUserGroup() );
+    pNewFile->AssignMainUserGroup(GetMainUserGroup());
 
     // Assigns the Main Logical System
-    pNewFile->AssignMainLogicalSystem( GetMainLogicalSystem() );
+    pNewFile->AssignMainLogicalSystem(GetMainLogicalSystem());
 
     // JMR-MODIF - Le 26 janvier 2006 - Assigne le système de prestations.
-    pNewFile->AssignMainLogicalPrestations( GetMainLogicalPrestations() );
+    pNewFile->AssignMainLogicalPrestations(GetMainLogicalPrestations());
 
     // JMR-MODIF - Le 19 novembre 2006 - Assigne le système de règles.
-    pNewFile->AssignMainLogicalRules( GetMainLogicalRules() );
+    pNewFile->AssignMainLogicalRules(GetMainLogicalRules());
 
     // Assigns the current systemdef, userdef and prestationsdef
     pNewFile->AssignCurrentSystemDefGUID();
@@ -1641,19 +1641,19 @@ ZDProcessGraphModelDoc* ZAApp::FileNewModel()
     pNewFile->AssignCurrentRulesDefGUID();
 
     // JMR-MODIF - Le 20 juillet 2005 - Attribue la trame de fond à la nouvelle page.
-    if ( m_pPageSetup != NULL )
+    if (m_pPageSetup != NULL)
     {
-        if ( m_pPageSetup->GetBackGroundFilename() != _T( "" ) )
+        if (m_pPageSetup->GetBackGroundFilename() != _T(""))
         {
             pNewFile->GetFirstModelView()->GetViewport()->
-                GetModelController()->SetImage( m_pPageSetup->GetBackGroundFilename(), FALSE );
+                GetModelController()->SetImage(m_pPageSetup->GetBackGroundFilename(), FALSE);
         }
     }
 
     return pNewFile;
 }
 
-BOOL ZAApp::IsCursorCapturedValid( const CPoint& point, ZIView* pView )
+BOOL ZAApp::IsCursorCapturedValid(const CPoint& point, ZIView* pView)
 {
     return TRUE;
 }
@@ -1665,45 +1665,45 @@ BOOL ZAApp::IsCursorCapturedValid( const CPoint& point, ZIView* pView )
 // ******************************************************* Document *********************************************
 
 // JMR-MODIF - Le 24 avril 2006 - Ajout du nom du fichier dans la fonction pour le test de la lecture seule.
-void ZAApp::OnAfterOpenDocument(CDocument* pDoc, const CString& filename )
+void ZAApp::OnAfterOpenDocument(CDocument* pDoc, const CString& filename)
 {
-    ASSERT( pDoc );
+    ASSERT(pDoc);
 
-    if ( ISA( pDoc, ZDProcessGraphModelDoc ) )
+    if (ISA(pDoc, ZDProcessGraphModelDoc))
     {
         // ******************************************************************************************************
         // JMR-MODIF - Le 24 avril 2006 - Teste si le fichier est en lecture seule.
         PSS_File* theFile = new PSS_File(filename);
 
-        if ( theFile != NULL )
+        if (theFile != NULL)
         {
-            if ( theFile->Exist() )
+            if (theFile->Exist())
             {
-                if ( theFile->IsReadOnly() == TRUE )
+                if (theFile->IsReadOnly() == TRUE)
                 {
-                    MsgBox mbox;
+                    PSS_MsgBox mBox;
 
                     // JMR-MODIF - Le 7 novembre 2006 - Change le bouton Cancel en bouton déverrouiller.
-                    mbox.DoChangeCancelBtnToUnlockBtn();
+                    mBox.DoChangeCancelBtnToUnlockBtn();
 
                     // Warn the user
-                    switch ( mbox.DisplayMsgBox( IDS_FILE_READONLY, MB_YESNOCANCEL ) )
+                    switch (mBox.ShowMsgBox(IDS_FILE_READONLY, MB_YESNOCANCEL))
                     {
                         // L'utilisateur souhaite continuer avec un modèle en lecture seule.
                         case IDYES:
                         {
-                            dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->SetReadOnly( TRUE );
+                            dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->SetReadOnly(TRUE);
                             break;
                         }
 
                         // JMR-MODIF - Le 7 novembre 2006 - Autorise le déverrouillage du fichier.
                         case IDCANCEL:
                         {
-                            MsgBox mWarnBox;
+                            PSS_MsgBox mWarnBox;
 
-                            if ( mWarnBox.DisplayMsgBox( IDS_FILE_WARN_UNLOCK, MB_YESNO ) == IDNO )
+                            if (mWarnBox.ShowMsgBox(IDS_FILE_WARN_UNLOCK, MB_YESNO) == IDNO)
                             {
-                                dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->SetReadOnly( TRUE );
+                                dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->SetReadOnly(TRUE);
                                 pDoc->OnCloseDocument();
 
                                 delete theFile;
@@ -1713,8 +1713,8 @@ void ZAApp::OnAfterOpenDocument(CDocument* pDoc, const CString& filename )
                             }
                             else
                             {
-                                theFile->SetReadOnly( TRUE );
-                                dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->SetReadOnly( FALSE );
+                                theFile->SetReadOnly(TRUE);
+                                dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->SetReadOnly(FALSE);
                             }
 
                             break;
@@ -1724,7 +1724,7 @@ void ZAApp::OnAfterOpenDocument(CDocument* pDoc, const CString& filename )
                         default:
                         case IDNO:
                         {
-                            dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->SetReadOnly( TRUE );
+                            dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->SetReadOnly(TRUE);
                             pDoc->OnCloseDocument();
 
                             delete theFile;
@@ -1737,13 +1737,13 @@ void ZAApp::OnAfterOpenDocument(CDocument* pDoc, const CString& filename )
                 else
                 {
                     // Sinon, on verrouille le modèle tant que l'utilisateur travaille avec.
-                    theFile->SetReadOnly( TRUE );
-                    dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->SetReadOnly( FALSE );
+                    theFile->SetReadOnly(TRUE);
+                    dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->SetReadOnly(FALSE);
                 }
             }
             else
             {
-                dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->SetReadOnly( FALSE );
+                dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->SetReadOnly(FALSE);
             }
 
             delete theFile;
@@ -1751,44 +1751,43 @@ void ZAApp::OnAfterOpenDocument(CDocument* pDoc, const CString& filename )
         }
         else
         {
-            dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->SetReadOnly( FALSE );
+            dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->SetReadOnly(FALSE);
         }
         // ******************************************************************************************************
 
         // Assigns the Main User Group
-        dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->AssignMainUserGroup( GetMainUserGroup() );
+        dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->AssignMainUserGroup(GetMainUserGroup());
 
         // Assigns the Main Logical System
-        dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->AssignMainLogicalSystem( GetMainLogicalSystem() );
+        dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->AssignMainLogicalSystem(GetMainLogicalSystem());
 
         // JMR-MODIF - Le 2 février 2006 - Ajout du code d'assignement pour les prestations
         // Assigns the Main Prestations
-        dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->AssignMainLogicalPrestations( GetMainLogicalPrestations() );
+        dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->AssignMainLogicalPrestations(GetMainLogicalPrestations());
 
         // JMR-MODIF - Le 19 novembre 2006 - Ajout du code d'assignement pour les règles
         // Assigns the Main Rules
-        dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->AssignMainLogicalRules( GetMainLogicalRules() );
+        dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->AssignMainLogicalRules(GetMainLogicalRules());
 
         // Call the post open document
-        dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->OnPostOpenDocument();
+        dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->OnPostOpenDocument();
 
         // Request the change of the resource language
-        PSS_ResourceManager::ChangeLanguage( dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->GetLanguage() );
+        PSS_ResourceManager::ChangeLanguage(dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->GetLanguage());
     }
 }
 
-void ZAApp::OnAfterSaveDocument( CDocument* pDoc )
-{
-}
+void ZAApp::OnAfterSaveDocument(CDocument* pDoc)
+{}
 
 // ******************************************************** Options *********************************************
 
 void ZAApp::OnOptions()
 {
     PSS_SystemOptionSheet systemOptionsSheet(&GetApplicationOptions(),
-                                             PSS_SystemOptionSheet::IEOptionPage(PSS_SystemOptionSheet::IE_OP_General     |
+                                             PSS_SystemOptionSheet::IEOptionPage(PSS_SystemOptionSheet::IE_OP_General |
                                                                                  PSS_SystemOptionSheet::IE_OP_Calculation |
-                                                                                 PSS_SystemOptionSheet::IE_OP_Navigation  |
+                                                                                 PSS_SystemOptionSheet::IE_OP_Navigation |
                                                                                  PSS_SystemOptionSheet::IE_OP_ViewReduced));
 
     // options have changed?
@@ -1823,12 +1822,12 @@ void ZAApp::OnChooseServer()
 void ZAApp::OnServerHasBeenOpened()
 {
     // Put message on the log window
-    if ( GetOutputWorkspace()->GetLogView() )
+    if (GetOutputWorkspace()->GetLogView())
     {
         CString s;
-        s.Format( IDS_LOCALSERVER_OPEN, GetServerIniFile() );
-        ZBGenericSymbolErrorLine e( s );
-        GetOutputWorkspace()->GetLogView()->AddLine( e );
+        s.Format(IDS_LOCALSERVER_OPEN, GetServerIniFile());
+        ZBGenericSymbolErrorLine e(s);
+        GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 
     gFirstTimeChangeServerDirectory = false;
@@ -1845,34 +1844,34 @@ void ZAApp::OnServerChanged()
     CloseCurrentWorkspace();
 
     // Releoad the user group file, the system file, the prestations file and the Rules file.
-    if ( !LoadUserGroupFile() )
+    if (!LoadUserGroupFile())
     {
         // Warn the user
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_FAILOPEN_USERGROUPFILE, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FAILOPEN_USERGROUPFILE, MB_OK);
     }
 
-    if ( !LoadLogicalSystemFile() )
+    if (!LoadLogicalSystemFile())
     {
         // Warn the user
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_FAILOPEN_LOGICALSYSTEMFILEFILE, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FAILOPEN_LOGICALSYSTEMFILEFILE, MB_OK);
     }
 
     // JMR-MODIF - Le 2 février 2006 - Ajout de l'appel à LoadPrestationsFile
-    if ( !LoadPrestationsFile() )
+    if (!LoadPrestationsFile())
     {
         // Warn the user
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_FAILOPEN_PRESTATIONSFILEFILE, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FAILOPEN_PRESTATIONSFILEFILE, MB_OK);
     }
 
     // JMR-MODIF - Le 19 novembre 2006 - Ajout de l'appel à LoadRulesFile
-    if ( !LoadRulesFile() )
+    if (!LoadRulesFile())
     {
         // Warn the user
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_FAILOPEN_RULESFILE, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FAILOPEN_RULESFILE, MB_OK);
     }
 }
 
@@ -1883,17 +1882,17 @@ bool ZAApp::OnRegisterAdditionalTemplate()
     // Set Additionnal document type
     // these documents have no views attached
     // It is necessary to specify call-backs function for FileOpen
-    RegisterAdditionalTemplate( IDR_WORKSPACE_REG );
+    RegisterAdditionalTemplate(IDR_WORKSPACE_REG);
     return true;
 }
 
-CDocument* ZAApp::OnOpenAdditionalTemplateFile( LPCSTR Filename )
+CDocument* ZAApp::OnOpenAdditionalTemplateFile(LPCSTR Filename)
 {
-    switch ( GetTemplateIDByFilename( Filename ) )
+    switch (GetTemplateIDByFilename(Filename))
     {
         case IDR_WORKSPACE_REG:
         {
-            return OpenWorkspaceFile( Filename );
+            return OpenWorkspaceFile(Filename);
         }
 
         default:
@@ -1905,13 +1904,13 @@ CDocument* ZAApp::OnOpenAdditionalTemplateFile( LPCSTR Filename )
     return NULL;
 }
 
-void ZAApp::OnSaveAdditionalTemplateFile( LPCSTR Filename )
+void ZAApp::OnSaveAdditionalTemplateFile(LPCSTR Filename)
 {
-    switch ( GetTemplateIDByFilename( Filename ) )
+    switch (GetTemplateIDByFilename(Filename))
     {
         case IDR_WORKSPACE_REG:
         {
-            SaveWorkspaceFile( Filename );
+            SaveWorkspaceFile(Filename);
             break;
         }
 
@@ -1927,24 +1926,24 @@ void ZAApp::OnSaveAdditionalTemplateFile( LPCSTR Filename )
 // Cette fonction est appelée lorsque l'utilisateur clique sur l'option "Ajouter un groupe" du menu contxtuel.
 void ZAApp::OnUgpAddGroup()
 {
-    if ( GetProcessWorkspace() && GetProcessWorkspace()->GetUserView() )
+    if (GetProcessWorkspace() && GetProcessWorkspace()->GetUserView())
     {
         GetProcessWorkspace()->GetUserView()->OnAddGroup();
     }
 }
 
 // Cette fonction est appelée lorsque l'entrée "Ajouter un groupe" du menu contextuel doit être construite.
-void ZAApp::OnUpdateUgpAddGroup( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateUgpAddGroup(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetUserView() &&
-                    GetProcessWorkspace()->GetUserView()->CanAddGroup() == true );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetUserView() &&
+                   GetProcessWorkspace()->GetUserView()->CanAddGroup() == true);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur clique sur l'option "Supprimer un groupe" du menu contxtuel.
 void ZAApp::OnUgpDeleteGroup()
 {
-    if ( GetProcessWorkspace() && GetProcessWorkspace()->GetUserView() )
+    if (GetProcessWorkspace() && GetProcessWorkspace()->GetUserView())
     {
         GetProcessWorkspace()->GetUserView()->OnDeleteGroup();
 
@@ -1954,17 +1953,17 @@ void ZAApp::OnUgpDeleteGroup()
 }
 
 // Cette fonction est appelée lorsque l'entrée "Supprimer un groupe" du menu contextuel doit être construite.
-void ZAApp::OnUpdateUgpDeleteGroup( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateUgpDeleteGroup(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetUserView() &&
-                    GetProcessWorkspace()->GetUserView()->CanDeleteGroup() == true );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetUserView() &&
+                   GetProcessWorkspace()->GetUserView()->CanDeleteGroup() == true);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur clique sur l'option "Renommer un groupe" du menu contxtuel.
 void ZAApp::OnUgpRenameGroup()
 {
-    if ( GetProcessWorkspace() && GetProcessWorkspace()->GetUserView() )
+    if (GetProcessWorkspace() && GetProcessWorkspace()->GetUserView())
     {
         GetProcessWorkspace()->GetUserView()->OnRenameGroup();
 
@@ -1974,101 +1973,101 @@ void ZAApp::OnUgpRenameGroup()
 }
 
 // Cette fonction est appelée lorsque l'entrée "Renommer un groupe" du menu contextuel doit être construite.
-void ZAApp::OnUpdateUgpRenameGroup( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateUgpRenameGroup(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetUserView() &&
-                    GetProcessWorkspace()->GetUserView()->CanRenameGroup() == true );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetUserView() &&
+                   GetProcessWorkspace()->GetUserView()->CanRenameGroup() == true);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur clique sur l'option "Ajouter une équipe" du menu contxtuel.
 void ZAApp::OnUgpAddRole()
 {
-    if ( GetProcessWorkspace() && GetProcessWorkspace()->GetUserView() )
+    if (GetProcessWorkspace() && GetProcessWorkspace()->GetUserView())
     {
         GetProcessWorkspace()->GetUserView()->OnAddRole();
     }
 }
 
 // Cette fonction est appelée lorsque l'entrée "Ajouter une équipe" du menu contextuel doit être construite.
-void ZAApp::OnUpdateUgpAddRole( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateUgpAddRole(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetUserView() &&
-                    GetProcessWorkspace()->GetUserView()->CanAddRole() == true );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetUserView() &&
+                   GetProcessWorkspace()->GetUserView()->CanAddRole() == true);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur clique sur l'option "Supprimer l'équipe" du menu contxtuel.
 void ZAApp::OnUgpDeleteRole()
 {
-    if ( GetProcessWorkspace() && GetProcessWorkspace()->GetUserView() )
+    if (GetProcessWorkspace() && GetProcessWorkspace()->GetUserView())
     {
         GetProcessWorkspace()->GetUserView()->OnDeleteRole();
     }
 }
 
 // Cette fonction est appelée lorsque l'entrée "Supprimer l'équipe" du menu contextuel doit être construite.
-void ZAApp::OnUpdateUgpDeleteRole( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateUgpDeleteRole(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetUserView() &&
-                    GetProcessWorkspace()->GetUserView()->CanDeleteRole() == true );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetUserView() &&
+                   GetProcessWorkspace()->GetUserView()->CanDeleteRole() == true);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur clique sur l'option "Renommer l'équipe" du menu contxtuel.
 void ZAApp::OnUgpRenameRole()
 {
-    if ( GetProcessWorkspace() && GetProcessWorkspace()->GetUserView() )
+    if (GetProcessWorkspace() && GetProcessWorkspace()->GetUserView())
     {
         GetProcessWorkspace()->GetUserView()->OnRenameRole();
     }
 }
 
 // Cette fonction est appelée lorsque l'entrée "Renommer l'équipe" du menu contextuel doit être construite.
-void ZAApp::OnUpdateUgpRenameRole( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateUgpRenameRole(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetUserView() &&
-                    GetProcessWorkspace()->GetUserView()->CanRenameRole() == true );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetUserView() &&
+                   GetProcessWorkspace()->GetUserView()->CanRenameRole() == true);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur clique sur l'option "Propriétés" du menu contxtuel.
 void ZAApp::OnUgpProperties()
 {
-    if ( GetProcessWorkspace() && GetProcessWorkspace()->GetUserView() )
+    if (GetProcessWorkspace() && GetProcessWorkspace()->GetUserView())
     {
         GetProcessWorkspace()->GetUserView()->OnProperties();
     }
 }
 
 // Cette fonction est appelée lorsque l'entrée "Propriétés" du menu contextuel doit être construite.
-void ZAApp::OnUpdateUgpProperties( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateUgpProperties(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetUserView() &&
-                    GetProcessWorkspace()->GetUserView()->CanProperties() == true );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetUserView() &&
+                   GetProcessWorkspace()->GetUserView()->CanProperties() == true);
 }
 
 // *************************************** Evénements du formulaire Logical System **************************************
 
 void ZAApp::OnAddLogicalSystem()
 {
-    if ( GetProcessWorkspace() && GetProcessWorkspace()->GetLogicalSystemView() )
+    if (GetProcessWorkspace() && GetProcessWorkspace()->GetLogicalSystemView())
     {
         GetProcessWorkspace()->GetLogicalSystemView()->OnAddSystem();
     }
 }
 
-void ZAApp::OnUpdateAddLogicalSystem( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateAddLogicalSystem(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetLogicalSystemView() &&
-                    GetProcessWorkspace()->GetLogicalSystemView()->CanAddSystem() == true );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetLogicalSystemView() &&
+                   GetProcessWorkspace()->GetLogicalSystemView()->CanAddSystem() == true);
 }
 
 void ZAApp::OnDeleteLogicalSystem()
 {
-    if ( GetProcessWorkspace() && GetProcessWorkspace()->GetLogicalSystemView() )
+    if (GetProcessWorkspace() && GetProcessWorkspace()->GetLogicalSystemView())
     {
         GetProcessWorkspace()->GetLogicalSystemView()->OnDeleteSystem();
 
@@ -2077,16 +2076,16 @@ void ZAApp::OnDeleteLogicalSystem()
     }
 }
 
-void ZAApp::OnUpdateDeleteLogicalSystem( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateDeleteLogicalSystem(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetLogicalSystemView() &&
-                    GetProcessWorkspace()->GetLogicalSystemView()->CanDeleteSystem() == true );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetLogicalSystemView() &&
+                   GetProcessWorkspace()->GetLogicalSystemView()->CanDeleteSystem() == true);
 }
 
 void ZAApp::OnRenameLogicalSystem()
 {
-    if ( GetProcessWorkspace() && GetProcessWorkspace()->GetLogicalSystemView() )
+    if (GetProcessWorkspace() && GetProcessWorkspace()->GetLogicalSystemView())
     {
         GetProcessWorkspace()->GetLogicalSystemView()->OnRenameSystem();
 
@@ -2095,26 +2094,26 @@ void ZAApp::OnRenameLogicalSystem()
     }
 }
 
-void ZAApp::OnUpdateRenameLogicalSystem( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateRenameLogicalSystem(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetLogicalSystemView() &&
-                    GetProcessWorkspace()->GetLogicalSystemView()->CanRenameSystem() == true );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetLogicalSystemView() &&
+                   GetProcessWorkspace()->GetLogicalSystemView()->CanRenameSystem() == true);
 }
 
 void ZAApp::OnLogicalSystemProperties()
 {
-    if ( GetProcessWorkspace() && GetProcessWorkspace()->GetLogicalSystemView() )
+    if (GetProcessWorkspace() && GetProcessWorkspace()->GetLogicalSystemView())
     {
         GetProcessWorkspace()->GetLogicalSystemView()->OnProperties();
     }
 }
 
-void ZAApp::OnUpdateLogicalSystemProperties( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateLogicalSystemProperties(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetLogicalSystemView() &&
-                    GetProcessWorkspace()->GetLogicalSystemView()->CanProperties() == true );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetLogicalSystemView() &&
+                   GetProcessWorkspace()->GetLogicalSystemView()->CanProperties() == true);
 }
 
 // ******************* JMR-MODIF - Le 13 octobre 2005 - Ajout des événements du formulaire de prestations ***************
@@ -2122,22 +2121,22 @@ void ZAApp::OnUpdateLogicalSystemProperties( CCmdUI* pCmdUI )
 
 void ZAApp::OnAddPrestation()
 {
-    if ( GetProcessWorkspace() && GetProcessWorkspace()->GetPrestationsView() )
+    if (GetProcessWorkspace() && GetProcessWorkspace()->GetPrestationsView())
     {
         GetProcessWorkspace()->GetPrestationsView()->OnAddPrestation();
     }
 }
 
-void ZAApp::OnUpdateAddPrestation( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateAddPrestation(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetPrestationsView() &&
-                    GetProcessWorkspace()->GetPrestationsView()->CanAddPrestation() == true );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetPrestationsView() &&
+                   GetProcessWorkspace()->GetPrestationsView()->CanAddPrestation() == true);
 }
 
 void ZAApp::OnDeletePrestation()
 {
-    if ( GetProcessWorkspace() && GetProcessWorkspace()->GetPrestationsView() )
+    if (GetProcessWorkspace() && GetProcessWorkspace()->GetPrestationsView())
     {
         GetProcessWorkspace()->GetPrestationsView()->OnDeletePrestation();
 
@@ -2146,16 +2145,16 @@ void ZAApp::OnDeletePrestation()
     }
 }
 
-void ZAApp::OnUpdateDeletePrestation( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateDeletePrestation(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetPrestationsView() &&
-                    GetProcessWorkspace()->GetPrestationsView()->CanDeletePrestation() == true );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetPrestationsView() &&
+                   GetProcessWorkspace()->GetPrestationsView()->CanDeletePrestation() == true);
 }
 
 void ZAApp::OnRenamePrestation()
 {
-    if ( GetProcessWorkspace() && GetProcessWorkspace()->GetPrestationsView() )
+    if (GetProcessWorkspace() && GetProcessWorkspace()->GetPrestationsView())
     {
         GetProcessWorkspace()->GetPrestationsView()->OnRenamePrestation();
 
@@ -2164,26 +2163,26 @@ void ZAApp::OnRenamePrestation()
     }
 }
 
-void ZAApp::OnUpdateRenamePrestation( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateRenamePrestation(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetPrestationsView() &&
-                    GetProcessWorkspace()->GetPrestationsView()->CanRenamePrestation() == true );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetPrestationsView() &&
+                   GetProcessWorkspace()->GetPrestationsView()->CanRenamePrestation() == true);
 }
 
 void ZAApp::OnPrestationProperties()
 {
-    if ( GetProcessWorkspace() && GetProcessWorkspace()->GetPrestationsView() )
+    if (GetProcessWorkspace() && GetProcessWorkspace()->GetPrestationsView())
     {
         GetProcessWorkspace()->GetPrestationsView()->OnProperties();
     }
 }
 
-void ZAApp::OnUpdatePrestationProperties( CCmdUI* pCmdUI )
+void ZAApp::OnUpdatePrestationProperties(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetPrestationsView() &&
-                    GetProcessWorkspace()->GetPrestationsView()->CanProperties() == true );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetPrestationsView() &&
+                   GetProcessWorkspace()->GetPrestationsView()->CanProperties() == true);
 }
 
 // ******************** JMR-MODIF - Le 25 novembre 2006 - Ajout des événements du formulaire des règles *****************
@@ -2191,22 +2190,22 @@ void ZAApp::OnUpdatePrestationProperties( CCmdUI* pCmdUI )
 
 void ZAApp::OnAddRule()
 {
-    if ( GetProcessWorkspace() && GetProcessWorkspace()->GetRulesView() )
+    if (GetProcessWorkspace() && GetProcessWorkspace()->GetRulesView())
     {
         GetProcessWorkspace()->GetRulesView()->OnAddRule();
     }
 }
 
-void ZAApp::OnUpdateAddRule( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateAddRule(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetRulesView() &&
-                    GetProcessWorkspace()->GetRulesView()->CanAddRule() == true );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetRulesView() &&
+                   GetProcessWorkspace()->GetRulesView()->CanAddRule() == true);
 }
 
 void ZAApp::OnDeleteRule()
 {
-    if ( GetProcessWorkspace() && GetProcessWorkspace()->GetRulesView() )
+    if (GetProcessWorkspace() && GetProcessWorkspace()->GetRulesView())
     {
         GetProcessWorkspace()->GetRulesView()->OnDeleteRule();
 
@@ -2215,16 +2214,16 @@ void ZAApp::OnDeleteRule()
     }
 }
 
-void ZAApp::OnUpdateDeleteRule( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateDeleteRule(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetRulesView() &&
-                    GetProcessWorkspace()->GetRulesView()->CanDeleteRule() == true );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetRulesView() &&
+                   GetProcessWorkspace()->GetRulesView()->CanDeleteRule() == true);
 }
 
 void ZAApp::OnRenameRule()
 {
-    if ( GetProcessWorkspace() && GetProcessWorkspace()->GetRulesView() )
+    if (GetProcessWorkspace() && GetProcessWorkspace()->GetRulesView())
     {
         GetProcessWorkspace()->GetRulesView()->OnRenameRule();
 
@@ -2233,59 +2232,59 @@ void ZAApp::OnRenameRule()
     }
 }
 
-void ZAApp::OnUpdateRenameRule( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateRenameRule(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetRulesView() &&
-                    GetProcessWorkspace()->GetRulesView()->CanRenameRule() == true );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetRulesView() &&
+                   GetProcessWorkspace()->GetRulesView()->CanRenameRule() == true);
 }
 
 void ZAApp::OnRuleProperties()
 {
-    if ( GetProcessWorkspace() && GetProcessWorkspace()->GetRulesView() )
+    if (GetProcessWorkspace() && GetProcessWorkspace()->GetRulesView())
     {
         GetProcessWorkspace()->GetRulesView()->OnProperties();
     }
 }
 
-void ZAApp::OnUpdateRuleProperties( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateRuleProperties(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetRulesView() &&
-                    GetProcessWorkspace()->GetRulesView()->CanProperties() == true );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetRulesView() &&
+                   GetProcessWorkspace()->GetRulesView()->CanProperties() == true);
 }
 
 // ******************************************************** Divers **********************************************
 
-BOOL ZAApp::OnIdle( LONG lCount )
+BOOL ZAApp::OnIdle(LONG lCount)
 {
     //## begin ZAApp::OnIdle%910633441.body preserve=yes
-    if ( lCount == 0 )
+    if (lCount == 0)
     {
-        if ( m_pMainWnd != NULL )
+        if (m_pMainWnd != NULL)
         {
             // look for any top-level windows owned by us
             // we use 'HWND's to avoid generation of too many temporary CWnds
-            for ( HWND hWnd = ::GetWindow( m_pMainWnd->m_hWnd, GW_HWNDFIRST );
-                  hWnd != NULL; hWnd = ::GetNextWindow( hWnd, GW_HWNDNEXT ) )
+            for (HWND hWnd = ::GetWindow(m_pMainWnd->m_hWnd, GW_HWNDFIRST);
+                 hWnd != NULL; hWnd = ::GetNextWindow(hWnd, GW_HWNDNEXT))
             {
-                if ( ::GetParent( hWnd ) == m_pMainWnd->m_hWnd )
+                if (::GetParent(hWnd) == m_pMainWnd->m_hWnd)
                 {
                     // if owned window is active, move the activation to the
                     //   application window
-                    if ( GetActiveWindow() == hWnd && ( ::GetCapture() == NULL ) )
+                    if (GetActiveWindow() == hWnd && (::GetCapture() == NULL))
                     {
                         m_pMainWnd->SetActiveWindow();
                     }
-    
+
                     // also update the buttons for the top-level window
-                    SendMessage( hWnd, WM_IDLEUPDATECMDUI, (WPARAM)TRUE, 0L );
+                    SendMessage(hWnd, WM_IDLEUPDATECMDUI, (WPARAM)TRUE, 0L);
                 }
             }
         }
     }
 
-    return CWinApp::OnIdle( lCount );
+    return CWinApp::OnIdle(lCount);
     //## end ZAApp::OnIdle%910633441.body
 }
 
@@ -2296,18 +2295,18 @@ CString ZAApp::OnBuildHelpFilename()
 
     HINSTANCE hInstance = AfxGetResourceHandle();
 
-    if ( hInstance != NULL )
+    if (hInstance != NULL)
     {
         LPTSTR lpszModule = new TCHAR[_MAX_PATH];
-        
-        if ( GetModuleFileName( hInstance, lpszModule, _MAX_PATH ) )
-        {
-            PSS_File File( lpszModule );
 
-            HelpFile = ZDirectory::NormalizeDirectory( File.GetFilePath() ) + _T( "\\zConceptor.chm" );
+        if (GetModuleFileName(hInstance, lpszModule, _MAX_PATH))
+        {
+            PSS_File File(lpszModule);
+
+            HelpFile = ZDirectory::NormalizeDirectory(File.GetFilePath()) + _T("\\zConceptor.chm");
         }
-        
-        delete []lpszModule;
+
+        delete[]lpszModule;
     }
 
     return HelpFile;
@@ -2320,10 +2319,10 @@ void ZAApp::OnAppExit()
     // First close the Pointer window.
     // To go out the pump message of the Pointer window,
     // Posts again the close message
-    if ( GetMainWindow()->PointerWindowIsVisible() )
+    if (GetMainWindow()->PointerWindowIsVisible())
     {
         GetMainWindow()->HidePointerWindow();
-        GetMainWindow()->PostMessage( WM_CLOSE );
+        GetMainWindow()->PostMessage(WM_CLOSE);
         return;
     }
 
@@ -2339,7 +2338,7 @@ void ZAApp::OnAppExit()
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Nouveau projet".
 void ZAApp::OnNewWorkspace()
 {
-    if ( !CloseCurrentAndAllocateNewWorkspace() )
+    if (!CloseCurrentAndAllocateNewWorkspace())
     {
         return;
     }
@@ -2349,30 +2348,30 @@ void ZAApp::OnNewWorkspace()
                                           GetModelTemplateDirectory(),
                                           g_WorkspaceExtension);
 
-    if ( WksCreation.DoModal() == IDOK )
+    if (WksCreation.DoModal() == IDOK)
     {
         ZDProcessGraphModelDoc* pNewFile = NULL;
-        CString ModelFilename = _T( "" );
+        CString ModelFilename = _T("");
 
-        if ( WksCreation.GetWorkspaceName() == _T( "Projet vide" ) )
+        if (WksCreation.GetWorkspaceName() == _T("Projet vide"))
         {
             // Nothing necessary to be created
         }
-        else if ( WksCreation.GetWorkspaceName() == _T( "Projet de base" ) ||
-                  WksCreation.GetWorkspaceName() == _T( "Projet Sesterce" ) )
+        else if (WksCreation.GetWorkspaceName() == _T("Projet de base") ||
+                 WksCreation.GetWorkspaceName() == _T("Projet Sesterce"))
         {
             // Now create the basic workspace
             pNewFile = FileNewModel();
 
-            if ( pNewFile )
+            if (pNewFile)
             {
                 // Set the filename
-                ModelFilename  = ZDirectory::NormalizeDirectory( WksCreation.GetDirectory() ) + _T( "\\" );
+                ModelFilename = ZDirectory::NormalizeDirectory(WksCreation.GetDirectory()) + _T("\\");
                 ModelFilename += WksCreation.GetWorkspaceName();
                 ModelFilename += g_ModelExtension;
 
-                pNewFile->SetPathName( ModelFilename );
-                pNewFile->SetModifiedFlag( TRUE );
+                pNewFile->SetPathName(ModelFilename);
+                pNewFile->SetModifiedFlag(TRUE);
 
                 // Save the filename
                 pNewFile->DoFileSave();
@@ -2383,56 +2382,56 @@ void ZAApp::OnNewWorkspace()
             }
 
             // Only for sesterce project
-            if ( WksCreation.GetWorkspaceName() == _T( "Projet Sesterce" ) )
+            if (WksCreation.GetWorkspaceName() == _T("Projet Sesterce"))
             {
             }
         }
 
         ZBWorkspaceEnv* pEnv = GetCurrentWorkspaceEnvironment();
 
-        if ( pEnv )
+        if (pEnv)
         {
             // Sets the environment's name
-            pEnv->SetEntityName( WksCreation.GetWorkspaceName() );
+            pEnv->SetEntityName(WksCreation.GetWorkspaceName());
             CString s;
             CStringArray a;
 
             // Create the model group
-            s.LoadString( IDS_WKS_GROUP_MODEL );
+            s.LoadString(IDS_WKS_GROUP_MODEL);
             a.Add(g_ModelExtensionNoDot);
-            pEnv->AddGroup( s, &a );
+            pEnv->AddGroup(s, &a);
 
-            if ( pNewFile )
+            if (pNewFile)
             {
                 // And add the new create model file
-                pEnv->AddFile( ModelFilename, s );
+                pEnv->AddFile(ModelFilename, s);
             }
 
             // Create the report group
-            s.LoadString( IDS_WKS_GROUP_REPORT );
+            s.LoadString(IDS_WKS_GROUP_REPORT);
             a.RemoveAll();
             a.Add(g_ReportExtensionNoDot);
-            pEnv->AddGroup( s, &a );
+            pEnv->AddGroup(s, &a);
 
             // Create the document group
-            s.LoadString( IDS_WKS_GROUP_DOCUMENT );
+            s.LoadString(IDS_WKS_GROUP_DOCUMENT);
             a.RemoveAll();
-            a.Add( _T( "doc" ) );
-            a.Add( _T( "xls" ) );
-            a.Add( _T( "ppt" ) );
-            a.Add( _T( "htm" ) );
-            a.Add( _T( "html" ) );
-            a.Add( _T( "pdf" ) );
-            pEnv->AddGroup( s, &a );
-            
+            a.Add(_T("doc"));
+            a.Add(_T("xls"));
+            a.Add(_T("ppt"));
+            a.Add(_T("htm"));
+            a.Add(_T("html"));
+            a.Add(_T("pdf"));
+            pEnv->AddGroup(s, &a);
+
             // Notify observers about the workspace initialisation
-            ZBWorkspaceObserverMsg Msg( UM_INITWORKSPACE, pEnv );
-            NotifyAllObservers( &Msg );
+            ZBWorkspaceObserverMsg Msg(UM_INITWORKSPACE, pEnv);
+            NotifyAllObservers(&Msg);
         }
 
         // Set the workspace filename
         m_WorkspaceFilename = WksCreation.GetWorkspaceFilename();
-        m_pWorkspaceEnvDocument->SetLoaded( true );
+        m_pWorkspaceEnvDocument->SetLoaded(true);
 
         // And save it
         SaveCurrentWorkspace();
@@ -2442,35 +2441,35 @@ void ZAApp::OnNewWorkspace()
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Ouvrir un projet".
 void ZAApp::OnOpenWorkspace()
 {
-    if ( !CloseCurrentAndAllocateNewWorkspace() )
+    if (!CloseCurrentAndAllocateNewWorkspace())
     {
         return;
     }
 
     CString title;
-    VERIFY( title.LoadString( IDS_WORKSPACE_FILEOPEN_T ) );
+    VERIFY(title.LoadString(IDS_WORKSPACE_FILEOPEN_T));
 
     // set the "*.klf" files filter
     CString strFilter;
-    VERIFY( strFilter.LoadString( IDS_WORKSPACEFILE_FILTER ) );
+    VERIFY(strFilter.LoadString(IDS_WORKSPACEFILE_FILTER));
     strFilter += (char)'\0';        // next string please
-    strFilter += _T( "*.klf" );
+    strFilter += _T("*.klf");
     strFilter += (char)'\0';        // last string
 
     // append the "*.*" all files filter
     CString allFilter;
-    VERIFY( allFilter.LoadString( AFX_IDS_ALLFILTER ) );
+    VERIFY(allFilter.LoadString(AFX_IDS_ALLFILTER));
     strFilter += allFilter;
     strFilter += (char)'\0';        // next string please
-    strFilter += _T( "*.*" );
+    strFilter += _T("*.*");
     strFilter += (char)'\0';        // last string
 
-    PSS_FileDialog fileDialog( title, strFilter, 2, ZAApp::ZAGetApp()->GetModelTemplateDirectory() );
+    PSS_FileDialog fileDialog(title, strFilter, 2, ZAApp::ZAGetApp()->GetModelTemplateDirectory());
 
-    if ( fileDialog.DoModal() == IDOK )
+    if (fileDialog.DoModal() == IDOK)
     {
         CWaitCursor Cursor;
-        OpenWorkspaceFile( fileDialog.GetFileName() );
+        OpenWorkspaceFile(fileDialog.GetFileName());
     }
 }
 
@@ -2482,24 +2481,24 @@ void ZAApp::OnSaveWorkspace()
 }
 
 // Cette fonction est appelée lorsque l'entrée "Sauvegarder le projet" doit être mise à jour.
-void ZAApp::OnUpdateSaveWorkspace( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateSaveWorkspace(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( WorkspaceEnvironmentExist() &&
-                    IsWorkspaceEnvironmentLoaded() &&
-                    IsWorkspaceEnvironmentModified() );
+    pCmdUI->Enable(WorkspaceEnvironmentExist() &&
+                   IsWorkspaceEnvironmentLoaded() &&
+                   IsWorkspaceEnvironmentModified());
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Fermer le projet".
 void ZAApp::OnCloseWorkspace()
 {
     // Ask before closing all open documents
-    CloseCurrentWorkspace( true );
+    CloseCurrentWorkspace(true);
 }
 
 // Cette fonction est appelée lorsque l'entrée "Fermer le projet" doit être mise à jour.
-void ZAApp::OnUpdateCloseWorkspace( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateCloseWorkspace(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( WorkspaceEnvironmentExist() && IsWorkspaceEnvironmentLoaded() );
+    pCmdUI->Enable(WorkspaceEnvironmentExist() && IsWorkspaceEnvironmentLoaded());
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Nouveau modèle".
@@ -2513,26 +2512,26 @@ void ZAApp::OnFileNewModel()
 }
 
 // Cette fonction est appelée lorsque l'entrée "Nouveau modèle" doit être mise à jour.
-void ZAApp::OnUpdateFileNewModel( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateFileNewModel(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( TRUE );
+    pCmdUI->Enable(TRUE);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Ouvrir un modèle".
 void ZAApp::OnFileOpenModel()
 {
-    ASSERT( ZAGlobal::GetpProcessModelDocumentTemplate() != NULL );
+    ASSERT(ZAGlobal::GetpProcessModelDocumentTemplate() != NULL);
 
     // Prompt the user (with all document templates)
     CString newName;
-    CString initialDirectory = ( gFirstTimeChangeServerDirectory == true ) ? _T( "" ) : GetModelTemplateDirectory();
+    CString initialDirectory = (gFirstTimeChangeServerDirectory == true) ? _T("") : GetModelTemplateDirectory();
 
-    if ( !DoPromptFileName( newName,
-                            initialDirectory,
-                            AFX_IDS_OPENFILE,
-                            OFN_HIDEREADONLY | OFN_FILEMUSTEXIST,
-                            TRUE,
-                            ZAGlobal::GetpProcessModelDocumentTemplate() ) )
+    if (!DoPromptFileName(newName,
+                          initialDirectory,
+                          AFX_IDS_OPENFILE,
+                          OFN_HIDEREADONLY | OFN_FILEMUSTEXIST,
+                          TRUE,
+                          ZAGlobal::GetpProcessModelDocumentTemplate()))
     {
         // Open cancelled
         return;
@@ -2540,30 +2539,30 @@ void ZAApp::OnFileOpenModel()
 
     CWaitCursor Cursor;
 
-    ZDProcessGraphModelDoc* pOpenFile = reinterpret_cast<ZDProcessGraphModelDoc*>( OpenDocumentFile( newName ) );
+    ZDProcessGraphModelDoc* pOpenFile = reinterpret_cast<ZDProcessGraphModelDoc*>(OpenDocumentFile(newName));
 
-    if ( pOpenFile != NULL )
+    if (pOpenFile != NULL)
     {
         // Add the opened file to recent file list
-        ZAGlobal::GetpProcessModelDocumentTemplate()->AddToRecentFileList( newName );
+        ZAGlobal::GetpProcessModelDocumentTemplate()->AddToRecentFileList(newName);
 
         // Set the last loaded file
-        SetLastLoadedFile( newName );
+        SetLastLoadedFile(newName);
     }
 
     gFirstTimeChangeServerDirectory = true;
 }
 
 // Cette fonction est appelée lorsque l'entrée "Ouvrir un modèle" doit être mise à jour.
-void ZAApp::OnUpdateFileOpenModel( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateFileOpenModel(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( TRUE );
+    pCmdUI->Enable(TRUE);
 }
 
 // Cette fonction est appelée lorsque l'entrée "Enregistrer" doit être mise à jour.
-void ZAApp::OnUpdateFileSave( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateFileSave(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetActiveCDocument() && GetActiveCDocument()->IsModified() );
+    pCmdUI->Enable(GetActiveCDocument() && GetActiveCDocument()->IsModified());
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Enregistrer en tant que page Web".
@@ -2571,125 +2570,125 @@ void ZAApp::OnExportModelToHTMLFile()
 {
     ZUPublishReportInfo* m_pReportInfo = new ZUPublishReportInfo();
 
-    if ( m_pReportInfo != NULL )
+    if (m_pReportInfo != NULL)
     {
-        PSS_PublishModelToHTML::ExportModelToHTMLFile( dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() ),
-                                                     dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() )->GetFirstModelView(),
-                                                     m_pReportInfo,
-                                                     m_pszProfileName );
+        PSS_PublishModelToHTML::ExportModelToHTMLFile(dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument()),
+                                                      dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument())->GetFirstModelView(),
+                                                      m_pReportInfo,
+                                                      m_pszProfileName);
 
-        ZUPublishReportToHTML::ExportReportToHTMLFile( dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() ),
-                                                       m_pReportInfo );
+        ZUPublishReportToHTML::ExportReportToHTMLFile(dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument()),
+                                                      m_pReportInfo);
 
-        if ( m_pReportInfo->DoLaunchBrowser == TRUE )
+        if (m_pReportInfo->DoLaunchBrowser == TRUE)
         {
-            PSS_PublishModelToHTML::LaunchBrowser( m_pReportInfo->IndexName );
+            PSS_PublishModelToHTML::LaunchBrowser(m_pReportInfo->IndexName);
         }
 
         delete m_pReportInfo;
         m_pReportInfo = NULL;
 
         // JMR-MODIF - Le 28 février 2006 - La réattribution du langage d'origine se fait maintenant ici.
-        PSS_ResourceManager::ChangeLanguage( dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() )->GetLanguage() );
+        PSS_ResourceManager::ChangeLanguage(dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument())->GetLanguage());
     }
 }
 
 // Cette fonction est appelée lorsque l'entrée "Enregistrer en tant que page Web" doit être mise à jour.
-void ZAApp::OnUpdateExportModelToHTMLFile( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateExportModelToHTMLFile(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetActiveBaseDocument() && ISA( GetActiveBaseDocument(), ZDProcessGraphModelDoc ) );
+    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc));
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Tout enregistrer".
 void ZAApp::OnFileSaveAll()
 {
     // Saves the user group file
-    if ( !SaveUserGroupFile( false ) )
+    if (!SaveUserGroupFile(false))
     {
         // Error message
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_FAILSAVE_USERGROUPFILE, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FAILSAVE_USERGROUPFILE, MB_OK);
     }
 
     // Saves the logical system file
-    if ( !SaveLogicalSystemFile( false ) )
+    if (!SaveLogicalSystemFile(false))
     {
         // Error message
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_FAILSAVE_LOGICALSYSTEMFILE, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FAILSAVE_LOGICALSYSTEMFILE, MB_OK);
     }
 
     // JMR-MODIF - Le 10 octobre 2005 - Sauvegarde le fichier de prestations.
-    if ( !SavePrestationsFile( false ) )
+    if (!SavePrestationsFile(false))
     {
         // Error message
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_FAILSAVE_PRESTATIONSFILE, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FAILSAVE_PRESTATIONSFILE, MB_OK);
     }
 
     // JMR-MODIF - Le 15 novembre 2006 - Sauvegarde le fichier de règles.
-    if ( !SaveRulesFile( false ) )
+    if (!SaveRulesFile(false))
     {
         // Error message
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_FAILSAVE_RULESFILE, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FAILSAVE_RULESFILE, MB_OK);
     }
 
     // JMR-MODIF - Le 9 avril 2007 - Si le nom du fichier est vide, la fonction retourne FALSE. C'est juste une indication
     // qui signifie que le fichier n'a pas pu être modifié, ce qui est logique puisque le nom est vide, mais ceci provoque
     // l'affichage d'un message d'erreur déconcertant pour l'utilisateur, alors qu'il n'y a pas vraiment de problème.
     // Donc, on empêche l'utilisation de cette fonction si le nom du fichier est vide.
-    if ( m_GlobalHistoricValueFilename.IsEmpty() == false )
+    if (m_GlobalHistoricValueFilename.IsEmpty() == false)
     {
         // Saves all historic values
-        if ( !ZAGlobal::SaveToFileHistoricValue( m_GlobalHistoricValueFilename ) )
+        if (!ZAGlobal::SaveToFileHistoricValue(m_GlobalHistoricValueFilename))
         {
             // Warm the user
-            MsgBox mbox;
-            mbox.DisplayMsgBox( IDS_FAILSAVE_INTERNALDEFINITION, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox(IDS_FAILSAVE_INTERNALDEFINITION, MB_OK);
         }
     }
 
     // Save the current workspace
-    if ( !SaveCurrentWorkspace() )
+    if (!SaveCurrentWorkspace())
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_FAILSAVE_WORKSPACE, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FAILSAVE_WORKSPACE, MB_OK);
     }
 
     // Save all modified documents
-    if ( !SaveAllModifiedNoPrompt() )
+    if (!SaveAllModifiedNoPrompt())
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_FAILSAVE_OPENDOCUMENT, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FAILSAVE_OPENDOCUMENT, MB_OK);
     }
 
     // Saves the global state for model
-    ZAModelGlobal::SaveStateGlobalPropertyAttributes( m_pszProfileName );
+    ZAModelGlobal::SaveStateGlobalPropertyAttributes(m_pszProfileName);
 
     // Finally, saves the application options
-    if ( !GetApplicationOptions().SaveOption() )
+    if (!GetApplicationOptions().SaveOption())
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_FAILSAVE_INTERNALDEFINITION, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FAILSAVE_INTERNALDEFINITION, MB_OK);
     }
 
-    if ( !SaveApplicationOptions() )
+    if (!SaveApplicationOptions())
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_FAILSAVE_INTERNALDEFINITION, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FAILSAVE_INTERNALDEFINITION, MB_OK);
     }
 }
 
 // Cette fonction est appelée lorsque l'entrée "Tout enregistrer" doit être mise à jour.
-void ZAApp::OnUpdadeFileSaveAll( CCmdUI* pCmdUI )
+void ZAApp::OnUpdadeFileSaveAll(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( TRUE );
+    pCmdUI->Enable(TRUE);
 }
 
 // JMR-MODIF - Le 18 juillet 2005 - Mets à jour le menu "Aperçu avant impression"
 // Cette fonction est appelée lorsque l'entrée "Aperçu avant impression" doit être mise à jour.
-void ZAApp::OnUpdateFilePrintPreview( CCmdUI *pCmdUI )
+void ZAApp::OnUpdateFilePrintPreview(CCmdUI *pCmdUI)
 {
     // On va rechercher directement dans le driver les informations nécessaire à la mise à jour.
     // C'est plus rapide et plus efficace que d'aller chercher la réponse de la fonction CanPrint dans
@@ -2697,7 +2696,7 @@ void ZAApp::OnUpdateFilePrintPreview( CCmdUI *pCmdUI )
     PRINTDLG FAR * pPrintDlg = new PRINTDLG;
 
     // Recherche une imprimante par défaut.
-    if ( AfxGetApp()->GetPrinterDeviceDefaults( pPrintDlg ) )
+    if (AfxGetApp()->GetPrinterDeviceDefaults(pPrintDlg))
     {
         // JMR-MODIF - Le 23 février 2006 - Permets l'impression même si le format est incorrect.
 /*
@@ -2718,46 +2717,46 @@ void ZAApp::OnUpdateFilePrintPreview( CCmdUI *pCmdUI )
         // Déverouille les pointeurs vers les structures de paramètres.
         ::GlobalUnlock( pPrintDlg->hDevMode );
 */
-        // ********************************************************************************************************
-        // JMR-MODIF - Le 24 avril 2006 - Teste les imprimantes non prises en charge par le système.
+// ********************************************************************************************************
+// JMR-MODIF - Le 24 avril 2006 - Teste les imprimantes non prises en charge par le système.
 
-        // Obtient les pointeurs vers les deux structures de paramètres.
-        DEVNAMES FAR *lpDevNames    = (DEVNAMES FAR *)::GlobalLock( pPrintDlg->hDevNames );
-        DEVMODE FAR  *lpDevMode        = (DEVMODE FAR  *)::GlobalLock( pPrintDlg->hDevMode );
+// Obtient les pointeurs vers les deux structures de paramètres.
+        DEVNAMES FAR *lpDevNames = (DEVNAMES FAR *)::GlobalLock(pPrintDlg->hDevNames);
+        DEVMODE FAR  *lpDevMode = (DEVMODE FAR  *)::GlobalLock(pPrintDlg->hDevMode);
 
         // Obtient les informations spécifiques au Driver.
-        CString szDriver( (LPTSTR)lpDevNames + lpDevNames->wDriverOffset );
-        CString szDevice( (LPTSTR)lpDevNames + lpDevNames->wDeviceOffset );
-        CString szOutput( (LPTSTR)lpDevNames + lpDevNames->wOutputOffset );
+        CString szDriver((LPTSTR)lpDevNames + lpDevNames->wDriverOffset);
+        CString szDevice((LPTSTR)lpDevNames + lpDevNames->wDeviceOffset);
+        CString szOutput((LPTSTR)lpDevNames + lpDevNames->wOutputOffset);
 
         // Crée un objet CDC basé sur les paramètres courants.
         CDC pDC;
-        pDC.CreateDC( szDriver, szDevice, szOutput, lpDevMode );
+        pDC.CreateDC(szDriver, szDevice, szOutput, lpDevMode);
 
         // Si le DC n'est pas alloué, l'imprimante n'est pas utilisable. C'est le cas p.ex. avec Adobe Distiller.
-        if ( pDC == NULL )
+        if (pDC == NULL)
         {
-            pCmdUI->Enable( FALSE );
+            pCmdUI->Enable(FALSE);
         }
         else
         {
-            pCmdUI->Enable( TRUE );
+            pCmdUI->Enable(TRUE);
 
             // Désalloue le pointeur du CDC.
             pDC.DeleteDC();
         }
 
         // Déverouille les pointeurs vers les structures de paramètres.
-        ::GlobalUnlock( pPrintDlg->hDevNames );
-        ::GlobalUnlock( pPrintDlg->hDevMode );
+        ::GlobalUnlock(pPrintDlg->hDevNames);
+        ::GlobalUnlock(pPrintDlg->hDevMode);
         // ********************************************************************************************************
     }
     else
     {
-        pCmdUI->Enable( FALSE );
+        pCmdUI->Enable(FALSE);
     }
 
-    if ( pPrintDlg != NULL )
+    if (pPrintDlg != NULL)
     {
         delete pPrintDlg;
         pPrintDlg = NULL;
@@ -2766,7 +2765,7 @@ void ZAApp::OnUpdateFilePrintPreview( CCmdUI *pCmdUI )
 
 // JMR-MODIF - Le 18 juillet 2005 - Mets à jour le menu "Imprimer"
 // Cette fonction est appelée lorsque l'entrée "Imprimer" doit être mise à jour.
-void ZAApp::OnUpdateFilePrint( CCmdUI *pCmdUI )
+void ZAApp::OnUpdateFilePrint(CCmdUI *pCmdUI)
 {
     // On va rechercher directement dans le driver les informations nécessaire à la mise à jour.
     // C'est plus rapide et plus efficace que d'aller chercher la réponse de la fonction CanPrint dans
@@ -2774,7 +2773,7 @@ void ZAApp::OnUpdateFilePrint( CCmdUI *pCmdUI )
     PRINTDLG FAR * pPrintDlg = new PRINTDLG;
 
     // Recherche une imprimante par défaut.
-    if ( AfxGetApp()->GetPrinterDeviceDefaults( pPrintDlg ) )
+    if (AfxGetApp()->GetPrinterDeviceDefaults(pPrintDlg))
     {
         // JMR-MODIF - Le 23 février 2006 - Permets l'impression même si le format est incorrect.
 /*
@@ -2796,46 +2795,46 @@ void ZAApp::OnUpdateFilePrint( CCmdUI *pCmdUI )
         ::GlobalUnlock( pPrintDlg->hDevMode );
 */
 
-        // ********************************************************************************************************
-        // JMR-MODIF - Le 24 avril 2006 - Teste les imprimantes non prises en charge par le système.
+// ********************************************************************************************************
+// JMR-MODIF - Le 24 avril 2006 - Teste les imprimantes non prises en charge par le système.
 
-        // Obtient les pointeurs vers les deux structures de paramètres.
-        DEVNAMES FAR *lpDevNames    = (DEVNAMES FAR *)::GlobalLock( pPrintDlg->hDevNames );
-        DEVMODE FAR  *lpDevMode        = (DEVMODE FAR  *)::GlobalLock( pPrintDlg->hDevMode );
+// Obtient les pointeurs vers les deux structures de paramètres.
+        DEVNAMES FAR *lpDevNames = (DEVNAMES FAR *)::GlobalLock(pPrintDlg->hDevNames);
+        DEVMODE FAR  *lpDevMode = (DEVMODE FAR  *)::GlobalLock(pPrintDlg->hDevMode);
 
         // Obtient les informations spécifiques au Driver.
-        CString szDriver( (LPTSTR)lpDevNames + lpDevNames->wDriverOffset );
-        CString szDevice( (LPTSTR)lpDevNames + lpDevNames->wDeviceOffset );
-        CString szOutput( (LPTSTR)lpDevNames + lpDevNames->wOutputOffset );
+        CString szDriver((LPTSTR)lpDevNames + lpDevNames->wDriverOffset);
+        CString szDevice((LPTSTR)lpDevNames + lpDevNames->wDeviceOffset);
+        CString szOutput((LPTSTR)lpDevNames + lpDevNames->wOutputOffset);
 
         // Crée un objet CDC basé sur les paramètres courants.
         CDC pDC;
-        pDC.CreateDC( szDriver, szDevice, szOutput, lpDevMode );
+        pDC.CreateDC(szDriver, szDevice, szOutput, lpDevMode);
 
         // Si le DC n'est pas alloué, l'imprimante n'est pas utilisable. C'est le cas p.ex. avec Adobe Distiller.
-        if ( pDC == NULL )
+        if (pDC == NULL)
         {
-            pCmdUI->Enable( FALSE );
+            pCmdUI->Enable(FALSE);
         }
         else
         {
-            pCmdUI->Enable( TRUE );
+            pCmdUI->Enable(TRUE);
 
             // Désalloue le pointeur du CDC.
             pDC.DeleteDC();
         }
 
         // Déverouille les pointeurs vers les structures de paramètres.
-        ::GlobalUnlock( pPrintDlg->hDevNames );
-        ::GlobalUnlock( pPrintDlg->hDevMode );
+        ::GlobalUnlock(pPrintDlg->hDevNames);
+        ::GlobalUnlock(pPrintDlg->hDevMode);
         // ********************************************************************************************************
     }
     else
     {
-        pCmdUI->Enable( FALSE );
+        pCmdUI->Enable(FALSE);
     }
 
-    if ( pPrintDlg != NULL )
+    if (pPrintDlg != NULL)
     {
         delete pPrintDlg;
         pPrintDlg = NULL;
@@ -2845,13 +2844,13 @@ void ZAApp::OnUpdateFilePrint( CCmdUI *pCmdUI )
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Propriétés".
 void ZAApp::OnFileProperty()
 {
-    ZVModelWorkflowOptions dlg( true, dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() ) );
+    ZVModelWorkflowOptions dlg(true, dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument()));
 
     // If file properties have changed, set the modified flag
-    if ( dlg.DoModal() == IDOK )
+    if (dlg.DoModal() == IDOK)
     {
         // Request the change of the resource language
-        PSS_ResourceManager::ChangeLanguage( dlg.GetLanguage() );
+        PSS_ResourceManager::ChangeLanguage(dlg.GetLanguage());
 
         // Modified flag
         GetActiveBaseDocument()->SetModifiedFlag();
@@ -2859,30 +2858,30 @@ void ZAApp::OnFileProperty()
 }
 
 // Cette fonction est appelée lorsque l'entrée "Propriétés" doit être mise à jour.
-void ZAApp::OnUpdateFileProperty( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateFileProperty(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetActiveBaseDocument() && ISA( GetActiveBaseDocument(), ZDProcessGraphModelDoc ) );
+    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc));
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Publier le modèle vers Messenger".
 void ZAApp::OnPublishToMessenger()
 {
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() );
+    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
 
-    if ( pCurrentDoc )
+    if (pCurrentDoc)
     {
         // Activate the log tab first
         GetOutputWorkspace()->ActivateWorkflowLogTab();
 
-        ZVPublishToMessengerWizard wz( pCurrentDoc, GetOutputWorkspace()->GetLogWorkflowView(), m_pszProfileName );
+        ZVPublishToMessengerWizard wz(pCurrentDoc, GetOutputWorkspace()->GetLogWorkflowView(), m_pszProfileName);
         wz.DoModal();
     }
 }
 
 // Cette fonction est appelée lorsque l'entrée "Publier le modèle vers Messenger" doit être mise à jour.
-void ZAApp::OnUpdatePublishToMessenger( CCmdUI* pCmdUI )
+void ZAApp::OnUpdatePublishToMessenger(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetActiveBaseDocument() && ISA( GetActiveBaseDocument(), ZDProcessGraphModelDoc ) );
+    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc));
 }
 
 // **************************************************** Menu Affichage ******************************************
@@ -2890,29 +2889,29 @@ void ZAApp::OnUpdatePublishToMessenger( CCmdUI* pCmdUI )
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Afficher la liste des attributs".
 void ZAApp::OnDynamicAttributesDisplay()
 {
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() );
+    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
 
-    if ( pCurrentDoc )
+    if (pCurrentDoc)
     {
         ZBPropertySet Set;
-        ZUDynamicAttributesManipulator::ExtractUniqueAttributes( pCurrentDoc->GetModel(), Set );
+        ZUDynamicAttributesManipulator::ExtractUniqueAttributes(pCurrentDoc->GetModel(), Set);
 
-        ZVChoosePropertyDlg choose( &Set,
-                                    2,
-                                    false,    // Selection
-                                    true,    // AllowItemSelection
-                                    false,    // AllowCategorySelection
-                                    pCurrentDoc->GetDynamicPropertiesManager(), pCurrentDoc->GetModel() );
+        ZVChoosePropertyDlg choose(&Set,
+                                   2,
+                                   false,    // Selection
+                                   true,    // AllowItemSelection
+                                   false,    // AllowCategorySelection
+                                   pCurrentDoc->GetDynamicPropertiesManager(), pCurrentDoc->GetModel());
 
-        if ( choose.DoModal() == IDOK )
+        if (choose.DoModal() == IDOK)
         {
         }
 
         // Remove all properties
-        ZBPropertyIterator i( &Set );
+        ZBPropertyIterator i(&Set);
         ZBProperty* pProp;
 
-        for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+        for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
         {
             delete pProp;
         }
@@ -2922,18 +2921,18 @@ void ZAApp::OnDynamicAttributesDisplay()
 }
 
 // Cette fonction est appelée lorsque l'entrée "Afficher la liste des attributs" doit être mise à jour.
-void ZAApp::OnUpdateDynamicAttributesDisplay( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateDynamicAttributesDisplay(CCmdUI* pCmdUI)
 {
     BOOL Enable = FALSE;
     PSS_BaseDocument* pDoc = GetActiveBaseDocument();
 
-    if ( pDoc && ISA( pDoc, ZDProcessGraphModelDoc ) &&
-         dynamic_cast<ZDProcessGraphModelDoc*>( pDoc )->HasDynamicPropertiesManager() )
+    if (pDoc && ISA(pDoc, ZDProcessGraphModelDoc) &&
+        dynamic_cast<ZDProcessGraphModelDoc*>(pDoc)->HasDynamicPropertiesManager())
     {
         Enable = TRUE;
     }
 
-    pCmdUI->Enable( Enable );
+    pCmdUI->Enable(Enable);
 }
 
 // ***************************************************** Menu Projet ********************************************
@@ -2941,171 +2940,167 @@ void ZAApp::OnUpdateDynamicAttributesDisplay( CCmdUI* pCmdUI )
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Ajouter le fichier au projet".
 void ZAApp::OnAddCurrentFileToProject()
 {
-    ASSERT( GetProcessWorkspace()->GetWorkspaceView() != NULL );
+    ASSERT(GetProcessWorkspace()->GetWorkspaceView() != NULL);
 
     CString CurrentFilename;
 
     CDocument* pDoc = GetActiveCDocument();
-    CurrentFilename = ( pDoc ) ? pDoc->GetPathName() : _T( "" );
+    CurrentFilename = (pDoc) ? pDoc->GetPathName() : _T("");
 
-    if ( CurrentFilename.IsEmpty() )
+    if (CurrentFilename.IsEmpty())
     {
         return;
     }
 
     // If the file is modified, then saves it first
-    if ( pDoc->IsModified() )
+    if (pDoc->IsModified())
     {
-        if ( !pDoc->OnSaveDocument( CurrentFilename ) )
+        if (!pDoc->OnSaveDocument(CurrentFilename))
         {
             // Warm the user
             return;
         }
     }
 
-    GetProcessWorkspace()->GetWorkspaceView()->OnAddFileToProject( CurrentFilename );
+    GetProcessWorkspace()->GetWorkspaceView()->OnAddFileToProject(CurrentFilename);
 }
 
 // Cette fonction est appelée lorsque l'entrée "Ajouter le fichier au projet" doit être mise à jour.
-void ZAApp::OnUpdateAddCurrentFileToProject( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateAddCurrentFileToProject(CCmdUI* pCmdUI)
 {
     CString CurrentFilename;
     CDocument* pDoc = GetActiveCDocument();
-    CurrentFilename = ( pDoc ) ? pDoc->GetPathName() : _T( "" );
+    CurrentFilename = (pDoc) ? pDoc->GetPathName() : _T("");
 
-    pCmdUI->Enable( !CurrentFilename.IsEmpty() &&
-                    GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetWorkspaceView() &&
-                    GetProcessWorkspace()->GetWorkspaceView()->CanAddCurrentFileToProject( CurrentFilename ) );
+    pCmdUI->Enable(!CurrentFilename.IsEmpty() &&
+                   GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetWorkspaceView() &&
+                   GetProcessWorkspace()->GetWorkspaceView()->CanAddCurrentFileToProject(CurrentFilename));
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Nouveau dossier".
 void ZAApp::OnWksNewGroup()
 {
-    ASSERT( GetProcessWorkspace()->GetWorkspaceView() != NULL );
+    ASSERT(GetProcessWorkspace()->GetWorkspaceView() != NULL);
 
     GetProcessWorkspace()->GetWorkspaceView()->OnWksNewGroup();
 }
 
 // Cette fonction est appelée lorsque l'entrée "Nouveau dossier" doit être mise à jour.
-void ZAApp::OnUpdateWksNewGroup( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateWksNewGroup(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetWorkspaceView() &&
-                    GetProcessWorkspace()->GetWorkspaceView()->GetSelectedGroup() != NULL ||
-                    GetProcessWorkspace()->GetWorkspaceView()->IsRootSelected() );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetWorkspaceView() &&
+                   GetProcessWorkspace()->GetWorkspaceView()->GetSelectedGroup() != NULL ||
+                   GetProcessWorkspace()->GetWorkspaceView()->IsRootSelected());
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Renommer le dossier".
 void ZAApp::OnWksRenameGroup()
 {
-    ASSERT( GetProcessWorkspace()->GetWorkspaceView() != NULL );
+    ASSERT(GetProcessWorkspace()->GetWorkspaceView() != NULL);
 
     GetProcessWorkspace()->GetWorkspaceView()->OnWksRenameGroup();
 }
 
 // Cette fonction est appelée lorsque l'entrée "Renommer le dossier" doit être mise à jour.
-void ZAApp::OnUpdateWksRenameGroup( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateWksRenameGroup(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetWorkspaceView() &&
-                    GetProcessWorkspace()->GetWorkspaceView()->GetSelectedGroup() != NULL );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetWorkspaceView() &&
+                   GetProcessWorkspace()->GetWorkspaceView()->GetSelectedGroup() != NULL);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Supprimer le dossier".
 void ZAApp::OnWksDeleteGroup()
 {
-    ASSERT( GetProcessWorkspace()->GetWorkspaceView() != NULL );
+    ASSERT(GetProcessWorkspace()->GetWorkspaceView() != NULL);
 
-    MsgBox mbox;
+    PSS_MsgBox mBox;
 
-    if ( mbox.DisplayMsgBox( IDS_CONF_WKS_DELETEGROUP, MB_YESNO ) == IDNO )
-    {
+    if (mBox.ShowMsgBox(IDS_CONF_WKS_DELETEGROUP, MB_YESNO) == IDNO)
         return;
-    }
 
     GetProcessWorkspace()->GetWorkspaceView()->OnWksDeleteGroup();
 }
 
 // Cette fonction est appelée lorsque l'entrée "Supprimer le dossier" doit être mise à jour.
-void ZAApp::OnUpdateWksDeleteGroup( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateWksDeleteGroup(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetWorkspaceView() &&
-                    GetProcessWorkspace()->GetWorkspaceView()->GetSelectedGroup() != NULL );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetWorkspaceView() &&
+                   GetProcessWorkspace()->GetWorkspaceView()->GetSelectedGroup() != NULL);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Ouvrir le fichier".
 void ZAApp::OnWksOpenFile()
 {
-    ASSERT( GetProcessWorkspace()->GetWorkspaceView() != NULL );
+    ASSERT(GetProcessWorkspace()->GetWorkspaceView() != NULL);
 
     GetProcessWorkspace()->GetWorkspaceView()->OnWksOpenFile();
 }
 
 // Cette fonction est appelée lorsque l'entrée "Ouvrir le fichier" doit être mise à jour.
-void ZAApp::OnUpdateWksOpenFile( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateWksOpenFile(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetWorkspaceView() &&
-                    GetProcessWorkspace()->GetWorkspaceView()->GetSelectedFile() != NULL );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetWorkspaceView() &&
+                   GetProcessWorkspace()->GetWorkspaceView()->GetSelectedFile() != NULL);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Insérer un fichier".
 void ZAApp::OnWksAddFile()
 {
-    ASSERT( GetProcessWorkspace()->GetWorkspaceView() != NULL );
+    ASSERT(GetProcessWorkspace()->GetWorkspaceView() != NULL);
 
     GetProcessWorkspace()->GetWorkspaceView()->OnWksAddFile();
 }
 
 // Cette fonction est appelée lorsque l'entrée "Insérer un fichier" doit être mise à jour.
-void ZAApp::OnUpdateWksAddFile( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateWksAddFile(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetWorkspaceView() &&
-                    ( GetProcessWorkspace()->GetWorkspaceView()->GetSelectedGroup() != NULL ||
-                    GetProcessWorkspace()->GetWorkspaceView()->IsRootSelected() ) );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetWorkspaceView() &&
+                   (GetProcessWorkspace()->GetWorkspaceView()->GetSelectedGroup() != NULL ||
+                    GetProcessWorkspace()->GetWorkspaceView()->IsRootSelected()));
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Supprimer le fichier".
 void ZAApp::OnWksDeleteFile()
 {
-    ASSERT( GetProcessWorkspace()->GetWorkspaceView() != NULL );
+    ASSERT(GetProcessWorkspace()->GetWorkspaceView() != NULL);
 
-    MsgBox mbox;
+    PSS_MsgBox mBox;
 
-    if ( mbox.DisplayMsgBox( IDS_CONF_WKS_DELETEFILE, MB_YESNO ) == IDNO )
-    {
+    if (mBox.ShowMsgBox(IDS_CONF_WKS_DELETEFILE, MB_YESNO) == IDNO)
         return;
-    }
 
     GetProcessWorkspace()->GetWorkspaceView()->OnWksDeleteFile();
 }
 
 // Cette fonction est appelée lorsque l'entrée "Supprimer le fichier" doit être mise à jour.
-void ZAApp::OnUpdateWksDeleteFile( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateWksDeleteFile(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetWorkspaceView() &&
-                    GetProcessWorkspace()->GetWorkspaceView()->GetSelectedFile() != NULL );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetWorkspaceView() &&
+                   GetProcessWorkspace()->GetWorkspaceView()->GetSelectedFile() != NULL);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Propriétés".
 void ZAApp::OnWksProperties()
 {
-    ASSERT( GetProcessWorkspace()->GetWorkspaceView() != NULL );
+    ASSERT(GetProcessWorkspace()->GetWorkspaceView() != NULL);
 
     GetProcessWorkspace()->GetWorkspaceView()->OnWksProperties();
 }
 
 // Cette fonction est appelée lorsque l'entrée "Propriétés" doit être mise à jour.
-void ZAApp::OnUpdateWksProperties( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateWksProperties(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetProcessWorkspace() &&
-                    GetProcessWorkspace()->GetWorkspaceView() &&
-                    ( GetProcessWorkspace()->GetWorkspaceView()->GetSelectedEntity() != NULL ||
-                    GetProcessWorkspace()->GetWorkspaceView()->IsRootSelected() ) );
+    pCmdUI->Enable(GetProcessWorkspace() &&
+                   GetProcessWorkspace()->GetWorkspaceView() &&
+                   (GetProcessWorkspace()->GetWorkspaceView()->GetSelectedEntity() != NULL ||
+                    GetProcessWorkspace()->GetWorkspaceView()->IsRootSelected()));
 }
 
 // ***************************************************** Menu Outils ********************************************
@@ -3113,44 +3108,44 @@ void ZAApp::OnUpdateWksProperties( CCmdUI* pCmdUI )
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Assigner au modèle le fichier des groupes".
 void ZAApp::OnAssignCurrentUserdef()
 {
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() );
+    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
 
-    if ( pCurrentDoc )
+    if (pCurrentDoc)
     {
         pCurrentDoc->AssignCurrentUserDefGUID();
     }
 }
 
 // Cette fonction est appelée lorsque l'entrée "Assigner au modèle le fichier des groupes" doit être mise à jour.
-void ZAApp::OnUpdateAssignCurrentUserdef( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateAssignCurrentUserdef(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetActiveBaseDocument() && ISA( GetActiveBaseDocument(), ZDProcessGraphModelDoc ) );
+    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc));
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Assigner au modèle le fichier des systèmes logiques".
 void ZAApp::OnAssignCurrentSystemdef()
 {
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() );
+    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
 
-    if ( pCurrentDoc )
+    if (pCurrentDoc)
     {
         pCurrentDoc->AssignCurrentSystemDefGUID();
     }
 }
 
 // Cette fonction est appelée lorsque l'entrée "Assigner au modèle le fichier des systèmes logiques" doit être mise à jour.
-void ZAApp::OnUpdateAssignCurrentSystemdef( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateAssignCurrentSystemdef(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetActiveBaseDocument() && ISA( GetActiveBaseDocument(), ZDProcessGraphModelDoc ) );
+    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc));
 }
 
 // JMR-MODIF - Le 2 février 2006 - Ajout de la fonction OnAssignCurrentPrestationsDef.
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Assigner au modèle le fichier des prestations".
 void ZAApp::OnAssignCurrentPrestationsDef()
 {
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() );
+    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
 
-    if ( pCurrentDoc )
+    if (pCurrentDoc)
     {
         pCurrentDoc->AssignCurrentPrestationsDefGUID();
     }
@@ -3158,18 +3153,18 @@ void ZAApp::OnAssignCurrentPrestationsDef()
 
 // JMR-MODIF - Le 2 février 2006 - Ajout de la fonction OnUpdateAssignCurrentPrestationsDef.
 // Cette fonction est appelée lorsque l'entrée "Assigner au modèle le fichier des prestations" doit être mise à jour.
-void ZAApp::OnUpdateAssignCurrentPrestationsDef( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateAssignCurrentPrestationsDef(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetActiveBaseDocument() && ISA( GetActiveBaseDocument(), ZDProcessGraphModelDoc ) );
+    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc));
 }
 
 // JMR-MODIF - Le 3 décembre 2006 - Ajout de la fonction OnAssignCurrentRulesDef.
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Assigner au modèle le fichier des règles".
 void ZAApp::OnAssignCurrentRulesDef()
 {
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() );
+    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
 
-    if ( pCurrentDoc )
+    if (pCurrentDoc)
     {
         pCurrentDoc->AssignCurrentRulesDefGUID();
     }
@@ -3177,102 +3172,102 @@ void ZAApp::OnAssignCurrentRulesDef()
 
 // JMR-MODIF - Le 3 décembre 2006 - Ajout de la fonction OnUpdateAssignCurrentRulesDef.
 // Cette fonction est appelée lorsque l'entrée "Assigner au modèle le fichier des règles" doit être mise à jour.
-void ZAApp::OnUpdateAssignCurrentRulesDef( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateAssignCurrentRulesDef(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetActiveBaseDocument() && ISA( GetActiveBaseDocument(), ZDProcessGraphModelDoc ) );
+    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc));
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Réassigner les groupes aux symboles".
 void ZAApp::OnSymbolReassignUsergroup()
 {
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() );
+    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
 
-    if ( pCurrentDoc )
+    if (pCurrentDoc)
     {
-        pCurrentDoc->ReassignUnit( GetOutputWorkspace()->GetLogView() );
+        pCurrentDoc->ReassignUnit(GetOutputWorkspace()->GetLogView());
     }
 }
 
 // Cette fonction est appelée lorsque l'entrée "Réassigner les groupes aux symboles" doit être mise à jour.
-void ZAApp::OnUpdateSymbolReassignUsergroup( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateSymbolReassignUsergroup(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetActiveBaseDocument() && ISA( GetActiveBaseDocument(), ZDProcessGraphModelDoc ) );
+    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc));
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Réassigner les systèmes logiques aux symboles".
 void ZAApp::OnSymbolReassignLogicalsys()
 {
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() );
+    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
 
-    if ( pCurrentDoc )
+    if (pCurrentDoc)
     {
-        pCurrentDoc->ReassignSystem( GetOutputWorkspace()->GetLogView() );
+        pCurrentDoc->ReassignSystem(GetOutputWorkspace()->GetLogView());
     }
 }
 
 // Cette fonction est appelée lorsque l'entrée "Réassigner les systèmes logiques aux symboles" doit être mise à jour.
-void ZAApp::OnUpdateSymbolReassignLogicalsys( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateSymbolReassignLogicalsys(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetActiveBaseDocument() && ISA( GetActiveBaseDocument(), ZDProcessGraphModelDoc ) );
+    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc));
 }
 
 // JMR-MODIF - Le 2 février 2006 - Ajout de la fonction OnSymbolReassignPrestations.
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Réassigner les prestations aux symboles".
 void ZAApp::OnSymbolReassignPrestations()
 {
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() );
+    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
 
-    if ( pCurrentDoc )
+    if (pCurrentDoc)
     {
-        pCurrentDoc->ReassignPrestations( GetOutputWorkspace()->GetLogView() );
+        pCurrentDoc->ReassignPrestations(GetOutputWorkspace()->GetLogView());
     }
 }
 
 // JMR-MODIF - Le 2 février 2006 - Ajout de la fonction OnUpdateSymbolReassignPrestations.
 // Cette fonction est appelée lorsque l'entrée "Réassigner les prestations aux symboles" doit être mise à jour.
-void ZAApp::OnUpdateSymbolReassignPrestations( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateSymbolReassignPrestations(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetActiveBaseDocument() && ISA( GetActiveBaseDocument(), ZDProcessGraphModelDoc ) );
+    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc));
 }
 
 // JMR-MODIF - Le 3 décembre 2006 - Ajout de la fonction OnSymbolReassignRules.
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Réassigner les règles aux symboles".
 void ZAApp::OnSymbolReassignRules()
 {
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() );
+    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
 
-    if ( pCurrentDoc )
+    if (pCurrentDoc)
     {
-        pCurrentDoc->ReassignRules( GetOutputWorkspace()->GetLogView() );
+        pCurrentDoc->ReassignRules(GetOutputWorkspace()->GetLogView());
     }
 }
 
 // JMR-MODIF - Le 3 décembre 2006 - Ajout de la fonction OnUpdateSymbolReassignRules.
 // Cette fonction est appelée lorsque l'entrée "Réassigner les règles aux symboles" doit être mise à jour.
-void ZAApp::OnUpdateSymbolReassignRules( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateSymbolReassignRules(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetActiveBaseDocument() && ISA( GetActiveBaseDocument(), ZDProcessGraphModelDoc ) );
+    pCmdUI->Enable(GetActiveBaseDocument() && ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc));
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport de contrôle".
 void ZAApp::OnGenerateCheckReport()
 {
-    ASSERT( ZAGlobal::GetpReportDocumentTemplate() != NULL );
+    ASSERT(ZAGlobal::GetpReportDocumentTemplate() != NULL);
 
 #ifdef _DEBUG
     COleDateTime start = COleDateTime::GetCurrentTime();
 
-    if ( GetOutputWorkspace()->GetLogView() )
+    if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e( (const char*)start.Format( _T( "Start time= %H : %M : %S" ) ) );
-        GetOutputWorkspace()->GetLogView()->AddLine( e );
+        ZBGenericSymbolErrorLine e((const char*)start.Format(_T("Start time= %H : %M : %S")));
+        GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
 
     //    Return the casted active base document.
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() );
+    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
 
-    if ( !pCurrentDoc->GetModel() || !ISA( pCurrentDoc->GetModel(), ZDProcessGraphModelMdlBP ) )
+    if (!pCurrentDoc->GetModel() || !ISA(pCurrentDoc->GetModel(), ZDProcessGraphModelMdlBP))
     {
         return;
     }
@@ -3281,24 +3276,24 @@ void ZAApp::OnGenerateCheckReport()
 
     // Create an empty report document file
     ZDGridReportDocument* pNewFile =
-        (ZDGridReportDocument*)ZAGlobal::GetpReportDocumentTemplate()->OpenDocumentFile( NULL );
+        (ZDGridReportDocument*)ZAGlobal::GetpReportDocumentTemplate()->OpenDocumentFile(NULL);
 
-    if ( pNewFile )
+    if (pNewFile)
     {
         // Now we have an empty grid report
 
-        pNewFile->SetNewReportGridGenerator( new ZBCheckReportGenerator( pNewFile,
-                                                                         dynamic_cast<ZDProcessGraphModelMdlBP*>( pCurrentDoc->GetModel() ),
-                                             pCurrentDoc ) );
+        pNewFile->SetNewReportGridGenerator(new ZBCheckReportGenerator(pNewFile,
+                                                                       dynamic_cast<ZDProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
+                                                                       pCurrentDoc));
 
-        PSS_File file( pCurrentDoc->GetPathName() );
+        PSS_File file(pCurrentDoc->GetPathName());
         CString s;
-        s.LoadString( IDS_CHECKREPORT_FILENAME );
+        s.LoadString(IDS_CHECKREPORT_FILENAME);
         CString fn = file.GetFilePath() + s + file.GetFileTitle();
         CString strFilterExt;
         ZAGlobal::GetpReportDocumentTemplate()->GetDocString(strFilterExt, CDocTemplate::filterExt);
         fn += strFilterExt;
-        pNewFile->SetPathName( fn );
+        pNewFile->SetPathName(fn);
 
         // After the filename assignement, update the frame title
         pNewFile->UpdateFrameTitle();
@@ -3307,171 +3302,171 @@ void ZAApp::OnGenerateCheckReport()
 #ifdef _DEBUG
     COleDateTime end = COleDateTime::GetCurrentTime();
 
-    if ( GetOutputWorkspace()->GetLogView() )
+    if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e( (const char*)end.Format( _T( "End time= %H : %M : %S" ) ) );
-        GetOutputWorkspace()->GetLogView()->AddLine( e );
+        ZBGenericSymbolErrorLine e((const char*)end.Format(_T("End time= %H : %M : %S")));
+        GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
 }
 
 // Cette fonction est appelée lorsque l'entrée "Générer le rapport de contrôle" doit être mise à jour.
-void ZAApp::OnUpdateGenerateCheckReport( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateGenerateCheckReport(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetActiveBaseDocument() &&
-                    ISA( GetActiveBaseDocument(), ZDProcessGraphModelDoc ) &&
-                    ( (ZDProcessGraphModelDoc*)GetActiveBaseDocument() )->GetNotation() == E_MN_Beryl);
+    pCmdUI->Enable(GetActiveBaseDocument() &&
+                   ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc) &&
+                   ((ZDProcessGraphModelDoc*)GetActiveBaseDocument())->GetNotation() == E_MN_Beryl);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Mercutio".
 void ZAApp::OnGenerateMercutioReport()
 {
-    ASSERT( ZAGlobal::GetpReportDocumentTemplate() != NULL );
+    ASSERT(ZAGlobal::GetpReportDocumentTemplate() != NULL);
 
 #ifdef _DEBUG
     COleDateTime start = COleDateTime::GetCurrentTime();
 
-    if ( GetOutputWorkspace()->GetLogView() )
+    if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e( (const char*)start.Format( _T( "Start time= %H : %M : %S" ) ) );
-        GetOutputWorkspace()->GetLogView()->AddLine( e );
+        ZBGenericSymbolErrorLine e((const char*)start.Format(_T("Start time= %H : %M : %S")));
+        GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
 
     CWaitCursor Cursor;
 
     //    Return the casted active base document.
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() );
+    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
 
-    if ( !pCurrentDoc->GetModel() || !ISA( pCurrentDoc->GetModel(), ZDProcessGraphModelMdlBP ) )
+    if (!pCurrentDoc->GetModel() || !ISA(pCurrentDoc->GetModel(), ZDProcessGraphModelMdlBP))
     {
         return;
     }
 
     // Create an empty report document file
     ZDGridReportDocument* pNewFile =
-        (ZDGridReportDocument*)ZAGlobal::GetpReportDocumentTemplate()->OpenDocumentFile( NULL );
+        (ZDGridReportDocument*)ZAGlobal::GetpReportDocumentTemplate()->OpenDocumentFile(NULL);
 
-    if ( pNewFile )
+    if (pNewFile)
     {
         // Now we have an empty grid report
 
         // Let the user choose a sub-process
         // filter object classes
         ZBRuntimeClassSet rtClasses;
-        rtClasses.Add( RUNTIME_CLASS( ZBBPPageSymbol ) );
-        rtClasses.Add( RUNTIME_CLASS( ZBBPProcessSymbol ) );
+        rtClasses.Add(RUNTIME_CLASS(ZBBPPageSymbol));
+        rtClasses.Add(RUNTIME_CLASS(ZBBPProcessSymbol));
 
-        ZVSelectModelSymbolDlg Dlg( dynamic_cast<ZDProcessGraphModelMdlBP*>( pCurrentDoc->GetModel() ),
-                                    IDS_MERCUTIOREP_SELECTPROCESS,
-                                    Selectable_Model | Selectable_GraphPage,
-                                    &rtClasses );
+        ZVSelectModelSymbolDlg Dlg(dynamic_cast<ZDProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
+                                   IDS_MERCUTIOREP_SELECTPROCESS,
+                                   Selectable_Model | Selectable_GraphPage,
+                                   &rtClasses);
 
-        if ( Dlg.DoModal() == IDOK )
+        if (Dlg.DoModal() == IDOK)
         {
-            if ( Dlg.GetSelectedSymbol() && ISA( Dlg.GetSelectedSymbol(), ZBBPProcessSymbol ) )
+            if (Dlg.GetSelectedSymbol() && ISA(Dlg.GetSelectedSymbol(), ZBBPProcessSymbol))
             {
                 CWaitCursor Cursor2;
-                pNewFile->SetNewReportGridGenerator( new ZBMercutioReportGenerator( pNewFile,
-                                                                                    dynamic_cast<ZDProcessGraphModelMdlBP*>( dynamic_cast<ZBBPProcessSymbol*>( Dlg.GetSelectedSymbol() )->GetChildModel() ),
-                                                                                    pCurrentDoc ) );
+                pNewFile->SetNewReportGridGenerator(new ZBMercutioReportGenerator(pNewFile,
+                                                                                  dynamic_cast<ZDProcessGraphModelMdlBP*>(dynamic_cast<ZBBPProcessSymbol*>(Dlg.GetSelectedSymbol())->GetChildModel()),
+                                                                                  pCurrentDoc));
 
-                PSS_File file( pCurrentDoc->GetPathName() );
+                PSS_File file(pCurrentDoc->GetPathName());
 
                 CString fn = file.GetFilePath() +
-                             dynamic_cast<ZBSymbol*>( Dlg.GetSelectedSymbol() )->GetSymbolName() +
-                             _T( " - " ) +
-                             file.GetFileTitle();
+                    dynamic_cast<ZBSymbol*>(Dlg.GetSelectedSymbol())->GetSymbolName() +
+                    _T(" - ") +
+                    file.GetFileTitle();
 
                 CString strFilterExt;
-                ZAGlobal::GetpReportDocumentTemplate()->GetDocString( strFilterExt, CDocTemplate::filterExt );
+                ZAGlobal::GetpReportDocumentTemplate()->GetDocString(strFilterExt, CDocTemplate::filterExt);
                 fn += strFilterExt;
-                pNewFile->SetPathName( fn );
+                pNewFile->SetPathName(fn);
 
                 // After the filename assignement, update the frame title
                 pNewFile->UpdateFrameTitle();
-                
+
                 return;
             }
         }
 
         // Otherwise, close the document
-        pNewFile->SetModifiedFlag( FALSE );
+        pNewFile->SetModifiedFlag(FALSE);
         pNewFile->OnCloseDocument();
     }
 
 #ifdef _DEBUG
     COleDateTime end = COleDateTime::GetCurrentTime();
 
-    if ( GetOutputWorkspace()->GetLogView() )
+    if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e( (const char*)end.Format( _T( "End time= %H : %M : %S" ) ) );
-        GetOutputWorkspace()->GetLogView()->AddLine( e );
+        ZBGenericSymbolErrorLine e((const char*)end.Format(_T("End time= %H : %M : %S")));
+        GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
 }
 
 // Cette fonction est appelée lorsque l'entrée "Générer le rapport Mercutio" doit être mise à jour.
-void ZAApp::OnUpdateGenerateMercutioReport( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateGenerateMercutioReport(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetActiveBaseDocument() &&
-                    ISA( GetActiveBaseDocument(), ZDProcessGraphModelDoc ) &&
-                    ( (ZDProcessGraphModelDoc*)GetActiveBaseDocument() )->GetNotation() == E_MN_Beryl);
+    pCmdUI->Enable(GetActiveBaseDocument() &&
+                   ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc) &&
+                   ((ZDProcessGraphModelDoc*)GetActiveBaseDocument())->GetNotation() == E_MN_Beryl);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Conceptor".
 void ZAApp::OnGenerateConceptorReport()
 {
-    ASSERT( ZAGlobal::GetpReportDocumentTemplate() != NULL );
+    ASSERT(ZAGlobal::GetpReportDocumentTemplate() != NULL);
 
 #ifdef _DEBUG
     COleDateTime start = COleDateTime::GetCurrentTime();
 
-    if ( GetOutputWorkspace()->GetLogView() )
+    if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e( (const char*)start.Format( _T( "Start time= %H : %M : %S" ) ) );
-        GetOutputWorkspace()->GetLogView()->AddLine( e );
+        ZBGenericSymbolErrorLine e((const char*)start.Format(_T("Start time= %H : %M : %S")));
+        GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
 
     CWaitCursor Cursor;
 
     //    Return the casted active base document.
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() );
+    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
 
-    if ( !pCurrentDoc->GetModel() || !ISA( pCurrentDoc->GetModel(), ZDProcessGraphModelMdlBP ) )
+    if (!pCurrentDoc->GetModel() || !ISA(pCurrentDoc->GetModel(), ZDProcessGraphModelMdlBP))
     {
         return;
     }
 
     // Create an empty report document file
     ZDGridReportDocument* pNewFile =
-        (ZDGridReportDocument*)ZAGlobal::GetpReportDocumentTemplate()->OpenDocumentFile( NULL );
+        (ZDGridReportDocument*)ZAGlobal::GetpReportDocumentTemplate()->OpenDocumentFile(NULL);
 
-    if ( pNewFile )
+    if (pNewFile)
     {
         ZVConceptorReportOptions Dlg;
 
-        if ( Dlg.DoModal() == IDOK )
+        if (Dlg.DoModal() == IDOK)
         {
             CWaitCursor Cursor2;
 
             // JMR-MODIF - Le 6 mars 2006 - Suppression de l'option Synthesys, car apparamment non implémentée.
-            pNewFile->SetNewReportGridGenerator( new ZBConceptorReportGenerator( pNewFile,
-                                                                                 dynamic_cast<ZDProcessGraphModelMdlBP*>( pCurrentDoc->GetModel() ),
-                                                                                 pCurrentDoc,
-                                                                                 TRUE,//Dlg.m_Synthesis,
-                                                                                 Dlg.m_Detail,
-                                                                                 Dlg.m_Deliverables ) );
+            pNewFile->SetNewReportGridGenerator(new ZBConceptorReportGenerator(pNewFile,
+                                                                               dynamic_cast<ZDProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
+                                                                               pCurrentDoc,
+                                                                               TRUE,//Dlg.m_Synthesis,
+                                                                               Dlg.m_Detail,
+                                                                               Dlg.m_Deliverables));
 
-            PSS_File file( pCurrentDoc->GetPathName() );
+            PSS_File file(pCurrentDoc->GetPathName());
             CString s;
-            s.LoadString( IDS_CONCEPTORREPORT_FILENAME );
+            s.LoadString(IDS_CONCEPTORREPORT_FILENAME);
             CString fn = file.GetFilePath() + s + file.GetFileTitle();
             CString strFilterExt;
-            ZAGlobal::GetpReportDocumentTemplate()->GetDocString( strFilterExt, CDocTemplate::filterExt );
+            ZAGlobal::GetpReportDocumentTemplate()->GetDocString(strFilterExt, CDocTemplate::filterExt);
             fn += strFilterExt;
-            pNewFile->SetPathName( fn );
+            pNewFile->SetPathName(fn);
 
             // After the filename assignement, update the frame title
             pNewFile->UpdateFrameTitle();
@@ -3480,68 +3475,68 @@ void ZAApp::OnGenerateConceptorReport()
         }
 
         // Otherwise, close the document
-        pNewFile->SetModifiedFlag( FALSE );
+        pNewFile->SetModifiedFlag(FALSE);
         pNewFile->OnCloseDocument();
     }
 
 #ifdef _DEBUG
     COleDateTime end = COleDateTime::GetCurrentTime();
 
-    if ( GetOutputWorkspace()->GetLogView() )
+    if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e( (const char*)end.Format( _T( "End time= %H : %M : %S" ) ) );
-        GetOutputWorkspace()->GetLogView()->AddLine( e );
+        ZBGenericSymbolErrorLine e((const char*)end.Format(_T("End time= %H : %M : %S")));
+        GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
 }
 
 // Cette fonction est appelée lorsque l'entrée "Générer le rapport Conceptor" doit être mise à jour.
-void ZAApp::OnUpdateGenerateConceptorReport( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateGenerateConceptorReport(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable( GetActiveBaseDocument() &&
-                    ISA( GetActiveBaseDocument(), ZDProcessGraphModelDoc ) &&
-                    ( (ZDProcessGraphModelDoc*)GetActiveBaseDocument() )->GetNotation() == E_MN_Beryl);
+    pCmdUI->Enable(GetActiveBaseDocument() &&
+                   ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc) &&
+                   ((ZDProcessGraphModelDoc*)GetActiveBaseDocument())->GetNotation() == E_MN_Beryl);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Sesterces".
 void ZAApp::OnGenerateSesterceReport()
 {
-    ASSERT( ZAGlobal::GetpReportDocumentTemplate() != NULL );
+    ASSERT(ZAGlobal::GetpReportDocumentTemplate() != NULL);
 
 #ifdef _DEBUG
     COleDateTime start = COleDateTime::GetCurrentTime();
 
-    if ( GetOutputWorkspace()->GetLogView() )
+    if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e( (const char*)start.Format( _T( "Start time= %H : %M : %S" ) ) );
-        GetOutputWorkspace()->GetLogView()->AddLine( e );
+        ZBGenericSymbolErrorLine e((const char*)start.Format(_T("Start time= %H : %M : %S")));
+        GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
 
     //    Return the casted active base document.
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() );
+    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     CWaitCursor Cursor;
 
     // Create an empty report document file
     ZDGridReportDocument* pNewFile =
-        (ZDGridReportDocument*)ZAGlobal::GetpReportDocumentTemplate()->OpenDocumentFile( NULL );
+        (ZDGridReportDocument*)ZAGlobal::GetpReportDocumentTemplate()->OpenDocumentFile(NULL);
 
-    if ( pNewFile )
+    if (pNewFile)
     {
         // Now we have an empty grid report
-        pNewFile->SetNewReportGridGenerator( new ZBSesterceReportGenerator( pNewFile,
-                                                                            dynamic_cast<ZDProcessGraphModelMdlBP*>( pCurrentDoc->GetModel() ),
-                                                                            pCurrentDoc ) );
+        pNewFile->SetNewReportGridGenerator(new ZBSesterceReportGenerator(pNewFile,
+                                                                          dynamic_cast<ZDProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
+                                                                          pCurrentDoc));
 
-        PSS_File file( pCurrentDoc->GetPathName() );
+        PSS_File file(pCurrentDoc->GetPathName());
         CString s;
-        s.LoadString( IDS_SESTERCES_FILENAME );
+        s.LoadString(IDS_SESTERCES_FILENAME);
         CString fn = file.GetFilePath() + s + file.GetFileTitle();
         CString strFilterExt;
-        ZAGlobal::GetpReportDocumentTemplate()->GetDocString( strFilterExt, CDocTemplate::filterExt );
+        ZAGlobal::GetpReportDocumentTemplate()->GetDocString(strFilterExt, CDocTemplate::filterExt);
         fn += strFilterExt;
-        pNewFile->SetPathName( fn );
+        pNewFile->SetPathName(fn);
 
         // After the filename assignement, update the frame title
         pNewFile->UpdateFrameTitle();
@@ -3550,49 +3545,49 @@ void ZAApp::OnGenerateSesterceReport()
 #ifdef _DEBUG
     COleDateTime end = COleDateTime::GetCurrentTime();
 
-    if ( GetOutputWorkspace()->GetLogView() )
+    if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e( (const char*)end.Format( _T( "End time= %H : %M : %S" ) ) );
-        GetOutputWorkspace()->GetLogView()->AddLine( e );
+        ZBGenericSymbolErrorLine e((const char*)end.Format(_T("End time= %H : %M : %S")));
+        GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
 }
 
 // Cette fonction est appelée lorsque l'entrée "Générer le rapport Sesterces" doit être mise à jour.
-void ZAApp::OnUpdateGenerateSesterceReport( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateGenerateSesterceReport(CCmdUI* pCmdUI)
 {
-    if ( !GetActiveBaseDocument() || !ISA( GetActiveBaseDocument(), ZDProcessGraphModelDoc ) )
+    if (!GetActiveBaseDocument() || !ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc))
     {
-        pCmdUI->Enable( FALSE );
+        pCmdUI->Enable(FALSE);
         return;
     }
 
-    pCmdUI->Enable( ( (ZDProcessGraphModelDoc*)GetActiveBaseDocument() )->GetIntegrateCostSimulation() &&
-                    ( (ZDProcessGraphModelDoc*)GetActiveBaseDocument() )->GetNotation() == E_MN_Beryl);
+    pCmdUI->Enable(((ZDProcessGraphModelDoc*)GetActiveBaseDocument())->GetIntegrateCostSimulation() &&
+        ((ZDProcessGraphModelDoc*)GetActiveBaseDocument())->GetNotation() == E_MN_Beryl);
 }
 
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Sesterces Unités".
 void ZAApp::OnGenerateSesterceUnitReport()
 {
-    ASSERT( ZAGlobal::GetpReportDocumentTemplate() != NULL );
+    ASSERT(ZAGlobal::GetpReportDocumentTemplate() != NULL);
 
 #ifdef _DEBUG
     COleDateTime start = COleDateTime::GetCurrentTime();
 
-    if ( GetOutputWorkspace()->GetLogView() )
+    if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e( (const char*)start.Format( _T( "Start time= %H : %M : %S" ) ) );
-        GetOutputWorkspace()->GetLogView()->AddLine( e );
+        ZBGenericSymbolErrorLine e((const char*)start.Format(_T("Start time= %H : %M : %S")));
+        GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
 
     //    Return the casted active base document.
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() );
+    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     // Display the wizard for the report creation
-    ZVReportCreationWizard dlg( true, false );
+    ZVReportCreationWizard dlg(true, false);
 
-    if ( dlg.DoModal() == IDCANCEL )
+    if (dlg.DoModal() == IDCANCEL)
     {
         return;
     }
@@ -3601,24 +3596,24 @@ void ZAApp::OnGenerateSesterceUnitReport()
 
     // Create an empty report document file
     ZDGridReportDocument* pNewFile =
-        (ZDGridReportDocument*)ZAGlobal::GetpReportDocumentTemplate()->OpenDocumentFile( NULL );
+        (ZDGridReportDocument*)ZAGlobal::GetpReportDocumentTemplate()->OpenDocumentFile(NULL);
 
-    if ( pNewFile )
+    if (pNewFile)
     {
         // Now we have an empty grid report
-        pNewFile->SetNewReportGridGenerator( new ZBSesterceUnitReportGenerator( pNewFile,
-                                                                                dynamic_cast<ZDProcessGraphModelMdlBP*>( pCurrentDoc->GetModel() ),
-                                                                                pCurrentDoc,
-                                                                                dlg.IncludeMonthDetail() ) );
+        pNewFile->SetNewReportGridGenerator(new ZBSesterceUnitReportGenerator(pNewFile,
+                                                                              dynamic_cast<ZDProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
+                                                                              pCurrentDoc,
+                                                                              dlg.IncludeMonthDetail()));
 
-        PSS_File file( pCurrentDoc->GetPathName() );
+        PSS_File file(pCurrentDoc->GetPathName());
         CString s;
-        s.LoadString( IDS_SESTERCESUNIT_FILENAME );
+        s.LoadString(IDS_SESTERCESUNIT_FILENAME);
         CString fn = file.GetFilePath() + s + file.GetFileTitle();
         CString strFilterExt;
-        ZAGlobal::GetpReportDocumentTemplate()->GetDocString( strFilterExt, CDocTemplate::filterExt );
+        ZAGlobal::GetpReportDocumentTemplate()->GetDocString(strFilterExt, CDocTemplate::filterExt);
         fn += strFilterExt;
-        pNewFile->SetPathName( fn );
+        pNewFile->SetPathName(fn);
 
         // After the filename assignement, update the frame title
         pNewFile->UpdateFrameTitle();
@@ -3627,10 +3622,10 @@ void ZAApp::OnGenerateSesterceUnitReport()
 #ifdef _DEBUG
     COleDateTime end = COleDateTime::GetCurrentTime();
 
-    if ( GetOutputWorkspace()->GetLogView() )
+    if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e( (const char*)end.Format( _T( "End time= %H : %M : %S" ) ) );
-        GetOutputWorkspace()->GetLogView()->AddLine( e );
+        ZBGenericSymbolErrorLine e((const char*)end.Format(_T("End time= %H : %M : %S")));
+        GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
 }
@@ -3638,25 +3633,25 @@ void ZAApp::OnGenerateSesterceUnitReport()
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Sesterces Consolidé".
 void ZAApp::OnGenerateSesterceConsolidatedReport()
 {
-    ASSERT( ZAGlobal::GetpReportDocumentTemplate() != NULL );
+    ASSERT(ZAGlobal::GetpReportDocumentTemplate() != NULL);
 
 #ifdef _DEBUG
     COleDateTime start = COleDateTime::GetCurrentTime();
 
-    if ( GetOutputWorkspace()->GetLogView() )
+    if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e( (const char*)start.Format( _T( "Start time= %H : %M : %S" ) ) );
-        GetOutputWorkspace()->GetLogView()->AddLine( e );
+        ZBGenericSymbolErrorLine e((const char*)start.Format(_T("Start time= %H : %M : %S")));
+        GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
 
     //    Return the casted active base document.
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() );
+    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     // Display the wizard for the report creation
-    ZVReportCreationWizard dlg( true, false );
+    ZVReportCreationWizard dlg(true, false);
 
-    if ( dlg.DoModal() == IDCANCEL )
+    if (dlg.DoModal() == IDCANCEL)
     {
         return;
     }
@@ -3665,24 +3660,24 @@ void ZAApp::OnGenerateSesterceConsolidatedReport()
 
     // Create an empty report document file
     ZDGridReportDocument* pNewFile =
-        (ZDGridReportDocument*)ZAGlobal::GetpReportDocumentTemplate()->OpenDocumentFile( NULL );
+        (ZDGridReportDocument*)ZAGlobal::GetpReportDocumentTemplate()->OpenDocumentFile(NULL);
 
-    if ( pNewFile )
+    if (pNewFile)
     {
         // Now we have an empty grid report
-        pNewFile->SetNewReportGridGenerator( new ZBSesterceConsolidatedReportGenerator( pNewFile,
-                                                                                        dynamic_cast<ZDProcessGraphModelMdlBP*>( pCurrentDoc->GetModel() ),
-                                                                                        pCurrentDoc,
-                                                                                        dlg.IncludeMonthDetail() ) );
+        pNewFile->SetNewReportGridGenerator(new ZBSesterceConsolidatedReportGenerator(pNewFile,
+                                                                                      dynamic_cast<ZDProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
+                                                                                      pCurrentDoc,
+                                                                                      dlg.IncludeMonthDetail()));
 
-        PSS_File file( pCurrentDoc->GetPathName() );
+        PSS_File file(pCurrentDoc->GetPathName());
         CString s;
-        s.LoadString( IDS_SESTERCESCONSOLIDATED_FILENAME );
+        s.LoadString(IDS_SESTERCESCONSOLIDATED_FILENAME);
         CString fn = file.GetFilePath() + s + file.GetFileTitle();
         CString strFilterExt;
         ZAGlobal::GetpReportDocumentTemplate()->GetDocString(strFilterExt, CDocTemplate::filterExt);
         fn += strFilterExt;
-        pNewFile->SetPathName( fn );
+        pNewFile->SetPathName(fn);
 
         // After the filename assignement, update the frame title
         pNewFile->UpdateFrameTitle();
@@ -3691,10 +3686,10 @@ void ZAApp::OnGenerateSesterceConsolidatedReport()
 #ifdef _DEBUG
     COleDateTime end = COleDateTime::GetCurrentTime();
 
-    if ( GetOutputWorkspace()->GetLogView() )
+    if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e( (const char*)end.Format( _T( "End time= %H : %M : %S" ) ) );
-        GetOutputWorkspace()->GetLogView()->AddLine( e );
+        ZBGenericSymbolErrorLine e((const char*)end.Format(_T("End time= %H : %M : %S")));
+        GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
 }
@@ -3703,25 +3698,25 @@ void ZAApp::OnGenerateSesterceConsolidatedReport()
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Prestations".
 void ZAApp::OnGeneratePrestationsReport()
 {
-    ASSERT( ZAGlobal::GetpReportDocumentTemplate() != NULL );
+    ASSERT(ZAGlobal::GetpReportDocumentTemplate() != NULL);
 
 #ifdef _DEBUG
     COleDateTime start = COleDateTime::GetCurrentTime();
 
-    if ( GetOutputWorkspace()->GetLogView() )
+    if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e( (const char*)start.Format( _T( "Start time= %H : %M : %S" ) ) );
-        GetOutputWorkspace()->GetLogView()->AddLine( e );
+        ZBGenericSymbolErrorLine e((const char*)start.Format(_T("Start time= %H : %M : %S")));
+        GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
 
     // Return the casted active base document.
-    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>( GetActiveBaseDocument() );
+    ZDProcessGraphModelDoc* pCurrentDoc = dynamic_cast<ZDProcessGraphModelDoc*>(GetActiveBaseDocument());
 
     // Display the wizard for the report creation
-    ZVReportCreationWizard dlg( true, false );
+    ZVReportCreationWizard dlg(true, false);
 
-    if ( dlg.DoModal() == IDCANCEL )
+    if (dlg.DoModal() == IDCANCEL)
     {
         return;
     }
@@ -3730,29 +3725,29 @@ void ZAApp::OnGeneratePrestationsReport()
 
     // Create an empty report document file
     ZDGridReportDocument* pNewFile =
-        (ZDGridReportDocument*)ZAGlobal::GetpReportDocumentTemplate()->OpenDocumentFile( NULL );
+        (ZDGridReportDocument*)ZAGlobal::GetpReportDocumentTemplate()->OpenDocumentFile(NULL);
 
-    if ( pNewFile )
+    if (pNewFile)
     {
         // Now we have an empty grid report
-        pNewFile->SetNewReportGridGenerator( new ZBPrestationsReportGenerator( pNewFile,
-                                                                               dynamic_cast<ZDProcessGraphModelMdlBP*>( pCurrentDoc->GetModel() ),
-                                                                               pCurrentDoc,
-                                                                               dlg.IncludeMonthDetail() ) );
+        pNewFile->SetNewReportGridGenerator(new ZBPrestationsReportGenerator(pNewFile,
+                                                                             dynamic_cast<ZDProcessGraphModelMdlBP*>(pCurrentDoc->GetModel()),
+                                                                             pCurrentDoc,
+                                                                             dlg.IncludeMonthDetail()));
 
         CString s;
         CString strFilterExt;
-        PSS_File file( pCurrentDoc->GetPathName() );
+        PSS_File file(pCurrentDoc->GetPathName());
 
-        s.LoadString( IDS_PRESTATIONSREPORT_FILENAME );
+        s.LoadString(IDS_PRESTATIONSREPORT_FILENAME);
 
         CString fn = file.GetFilePath() + s + file.GetFileTitle();
 
-        ZAGlobal::GetpReportDocumentTemplate()->GetDocString( strFilterExt, CDocTemplate::filterExt );
+        ZAGlobal::GetpReportDocumentTemplate()->GetDocString(strFilterExt, CDocTemplate::filterExt);
 
         fn += strFilterExt;
 
-        pNewFile->SetPathName( fn );
+        pNewFile->SetPathName(fn);
 
         // After the filename assignement, update the frame title
         pNewFile->UpdateFrameTitle();
@@ -3761,26 +3756,26 @@ void ZAApp::OnGeneratePrestationsReport()
 #ifdef _DEBUG
     COleDateTime end = COleDateTime::GetCurrentTime();
 
-    if ( GetOutputWorkspace()->GetLogView() )
+    if (GetOutputWorkspace()->GetLogView())
     {
-        ZBGenericSymbolErrorLine e( (const char*)end.Format( _T( "End time= %H : %M : %S" ) ) );
-        GetOutputWorkspace()->GetLogView()->AddLine( e );
+        ZBGenericSymbolErrorLine e((const char*)end.Format(_T("End time= %H : %M : %S")));
+        GetOutputWorkspace()->GetLogView()->AddLine(e);
     }
 #endif
 }
 
 // JMR-MODIF - Le 6 mars 2006 - Ajout de la fonction OnUpdateGeneratePrestationsReport.
 // Cette fonction est appelée lorsque l'entrée "Générer le rapport Prestations" doit être mise à jour.
-void ZAApp::OnUpdateGeneratePrestationsReport( CCmdUI* pCmdUI )
+void ZAApp::OnUpdateGeneratePrestationsReport(CCmdUI* pCmdUI)
 {
-    if ( !GetActiveBaseDocument() || !ISA( GetActiveBaseDocument(), ZDProcessGraphModelDoc ) )
+    if (!GetActiveBaseDocument() || !ISA(GetActiveBaseDocument(), ZDProcessGraphModelDoc))
     {
-        pCmdUI->Enable( FALSE );
+        pCmdUI->Enable(FALSE);
         return;
     }
 
-    pCmdUI->Enable( ( (ZDProcessGraphModelDoc*)GetActiveBaseDocument() )->GetIntegrateCostSimulation() &&
-                    ( (ZDProcessGraphModelDoc*)GetActiveBaseDocument() )->GetNotation() == E_MN_Beryl);
+    pCmdUI->Enable(((ZDProcessGraphModelDoc*)GetActiveBaseDocument())->GetIntegrateCostSimulation() &&
+        ((ZDProcessGraphModelDoc*)GetActiveBaseDocument())->GetNotation() == E_MN_Beryl);
 }
 
 // ******************************************************** Menu ? **********************************************
@@ -3788,10 +3783,10 @@ void ZAApp::OnUpdateGeneratePrestationsReport( CCmdUI* pCmdUI )
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "A propos de Conceptor".
 void ZAApp::OnAppAbout()
 {
-    PSS_HtmlDialog About( IDR_ABOUT_CONCEPTOR_02 );
-    
-    About.SetSize( 600, 600 );
-    
+    PSS_HtmlDialog About(IDR_ABOUT_CONCEPTOR_02);
+
+    About.SetSize(600, 600);
+
     About.DoModal();
 }
 
@@ -3800,10 +3795,10 @@ void ZAApp::OnAppAbout()
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Support".
 void ZAApp::OnHelpSupport()
 {
-    PSS_HtmlDialog About( IDR_SUPPORT_CONCEPTOR_02 );
-    
-    About.SetSize( 600, 600 );
-    
+    PSS_HtmlDialog About(IDR_SUPPORT_CONCEPTOR_02);
+
+    About.SetSize(600, 600);
+
     About.DoModal();
 }
 // *************************************** Fonctions concernant des menus inattribués ***************************
@@ -3814,7 +3809,7 @@ void ZAApp::OnHelpSupport()
 {
     // Standard print setup command
     CWinApp::OnFilePrintSetup();
-    
+
     ZDDocument *pDoc = GetActiveDocument();
     // If the page size has changed, recalculate the page
     if (pDoc)
@@ -3831,6 +3826,6 @@ void ZAApp::OnFileOpen()
 
 void ZAApp::OnProcessFileOpen()
 {
-    ASSERT( FALSE );
+    ASSERT(FALSE);
     return;
 }

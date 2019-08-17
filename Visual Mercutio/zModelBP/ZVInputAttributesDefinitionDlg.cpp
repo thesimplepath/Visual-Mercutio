@@ -11,7 +11,7 @@
 #include "zPtyMgr\ZVChoosePropertyDlg.h"
 #include "zModel\ZUDynamicAttributesManipulator.h"
 
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -69,8 +69,8 @@ void ZVInputAttributesDefinitionDlg::OnOK()
     if (m_DynamicAttributeName.IsEmpty())
     {
         // A dynamic attributes must be chosen
-        MsgBox        mbox;
-        mbox.DisplayMsgBox( IDS_DYNAMICATTRIBUTES_REQUIRED, MB_OK ); 
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_DYNAMICATTRIBUTES_REQUIRED, MB_OK ); 
 
     }
 

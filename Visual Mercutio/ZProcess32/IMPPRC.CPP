@@ -6,7 +6,7 @@
 // FileDlg
 #include "zBaseLib\PSS_FileDialog.h"
 
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -72,8 +72,8 @@ void ZIImportProcess::OnOK()
     UpdateData();
     if (m_File.IsEmpty())
     {
-        MsgBox        mbox;
-        mbox.DisplayMsgBox( IDS_FILENAMEMISSING, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_FILENAMEMISSING, MB_OK );
         return;
     }
     ZIDialog::OnOK();

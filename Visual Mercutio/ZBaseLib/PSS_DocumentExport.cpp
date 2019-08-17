@@ -13,7 +13,7 @@
 #include "ZATwoSts.h"
 #include "ZDDoc.h"
 #include "PSS_DocumentData.h"
-#include "MsgBox.h"
+#include "PSS_MsgBox.h"
 
 //---------------------------------------------------------------------------
 // PSS_DocumentExport

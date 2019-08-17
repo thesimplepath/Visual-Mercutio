@@ -3,17 +3,17 @@
 
 
 #include "stdafx.h"
-
 #include "formula.h"
 
+// std
+#include <Math.h>
+#include <IO.h>
+
+// processsoft
 #include "ZAObject.h"
 #include "ZDDoc.h"
 #include "PSS_DocumentData.h"
-
-#include "msgbox.h"
-
-#include <MATH.H>
-#include <IO.H>
+#include "PSS_MsgBox.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -35,8 +35,8 @@ void ZAFormula::ConstructObjectPointer(PSS_DocumentData& doc, CObList& lstFormul
         {
             CString prompt;
             AfxFormatString1(prompt, IDS_OBJECTMISSING, obj->m_sObjectName);
-            MsgBox        mbox;
-            mbox.DisplayMsgBox(prompt, MB_OK);
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox(prompt, MB_OK);
         }
     }
 }

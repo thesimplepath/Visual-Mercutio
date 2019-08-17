@@ -10,8 +10,10 @@
 
 // processsoft
 #include "zBaseLib\PSS_FolderStamp.h"
-#include "zBaseLib\MsgBox.h"
-#include "zRes32\ZRes.h"
+#include "zBaseLib\PSS_MsgBox.h"
+
+// resources
+#include "zRes32\zRes.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -220,8 +222,8 @@ BOOL PSS_PreConditionFormProcDialog::CheckFiles()
     {
         if (fileName.IsEmpty())
         {
-            MsgBox mbox;
-            mbox.DisplayMsgBox(IDS_PROCFORMFILEMISSING, MB_OK);
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox(IDS_PROCFORMFILEMISSING, MB_OK);
 
             return FALSE;
         }
@@ -232,16 +234,16 @@ BOOL PSS_PreConditionFormProcDialog::CheckFiles()
 
             if (!stamp.ReadFromFile(fileName))
             {
-                MsgBox mbox;
-                mbox.DisplayMsgBox(IDS_PROCFORMFILEINVALID, MB_OK);
+                PSS_MsgBox mBox;
+                mBox.ShowMsgBox(IDS_PROCFORMFILEINVALID, MB_OK);
 
                 return FALSE;
             }
 
             if (stamp.GetTitle() != m_FormNameArray.GetAt(m_CurrentFormIndex))
             {
-                MsgBox mbox;
-                mbox.DisplayMsgBox(IDS_PROCFORMFILE_TITLENEQ, MB_OK);
+                PSS_MsgBox mBox;
+                mBox.ShowMsgBox(IDS_PROCFORMFILE_TITLENEQ, MB_OK);
 
                 return FALSE;
             }

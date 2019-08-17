@@ -9,7 +9,7 @@
 #include "PSS_GenericFormPage.h"
 
 // processsoft
-#include "zBaseLib\msgbox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "planfin.hdf"
 
 #ifdef _DEBUG

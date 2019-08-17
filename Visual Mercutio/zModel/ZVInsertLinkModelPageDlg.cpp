@@ -8,7 +8,7 @@
 #include "ZDProcessGraphPage.h"
 #include "ZBModelSet.h"
 #include "ZBSymbol.h"
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 
 #ifdef _DEBUG
@@ -68,8 +68,8 @@ void ZVInsertLinkModelPageDlg::OnOK()
         m_PageName = m_ExistingPages.GetSelectedPage()->GetPageName();
         if (m_PageName.IsEmpty())
         {
-            MsgBox        mbox;
-            mbox.DisplayMsgBox( IDS_NEWMODELPAGE_EMPTY, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_NEWMODELPAGE_EMPTY, MB_OK );
             return;
         }
         // No parent model is selection of an existing page
@@ -86,8 +86,8 @@ void ZVInsertLinkModelPageDlg::OnOK()
         // Cannot be empty
         if (m_PageName.IsEmpty())
         {
-            MsgBox        mbox;
-            mbox.DisplayMsgBox( IDS_NEWMODELPAGE_EMPTY, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_NEWMODELPAGE_EMPTY, MB_OK );
             return;
         }
         m_pParentModel = m_SymbolTree.GetSelectedOwnerModel();
@@ -96,8 +96,8 @@ void ZVInsertLinkModelPageDlg::OnOK()
         // Check if the right parent model selected
         if (!m_pParentModel)
         {
-            MsgBox        mbox;
-            mbox.DisplayMsgBox( IDS_NEWMODELPAGE_EMPTY, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_NEWMODELPAGE_EMPTY, MB_OK );
             return;
         }
         // Assigns the model pathname
@@ -110,8 +110,8 @@ void ZVInsertLinkModelPageDlg::OnOK()
                 if (m_PageName == m_pArrayPageName->GetAt(i))
                 {
                     // Display error message
-                    MsgBox        mbox;
-                    mbox.DisplayMsgBox( IDS_NEWMODELPAGE_ALREADYEXIST, MB_OK );
+                    PSS_MsgBox mBox;
+                    mBox.ShowMsgBox( IDS_NEWMODELPAGE_ALREADYEXIST, MB_OK );
                     return;
                 }
             }

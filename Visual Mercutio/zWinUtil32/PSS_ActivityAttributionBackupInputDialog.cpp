@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\ZBTokenizer.h"
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\InpVal.h"
 #include "PSS_SelectResourcesDialog.h"
 
@@ -194,8 +194,8 @@ BOOL PSS_ActivityAttributionInputBackupDialog::CheckData()
     // user must be in the list
     if (m_UserList.GetCount() <= 0)
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox(IDS_ONEPERSON_REQUIRED, MB_OK);
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_ONEPERSON_REQUIRED, MB_OK);
         return FALSE;
     }
 

@@ -19,12 +19,12 @@
 #include "ZANumbrd.h"
 #include "ZAMultiC.h"
 #include "Obsolete.h"
-#include "PLFNBackImage.h"
+#include "PSS_PLFNBackImage.h"
 #include "ZBFldCol.h"
 #include "PSS_FileBuffer.h"
 #include "PSS_FieldRepository.h"
 #include "ZBTokenizer.h"
-#include "MsgBox.h"
+#include "PSS_MsgBox.h"
 #include "PSS_ObjectUtility.h"
 #include "ZIView.h"
 #include "ZDDoc.h"
@@ -1671,9 +1671,9 @@ void PSS_DocumentData::SerializeRead(CArchive& ar)
             {
                 if (stamp == 0xFFFF)
                 {
-                    MsgBox mBox;
+                    PSS_MsgBox mBox;
 
-                    if (mBox.DisplayMsgBox(IDS_FILECORRUPTED_RECOVER, MB_YESNO) == IDNO)
+                    if (mBox.ShowMsgBox(IDS_FILECORRUPTED_RECOVER, MB_YESNO) == IDNO)
                         THROW_LAST();
 
                     // otherwise, try to keep existing information
@@ -1703,9 +1703,9 @@ void PSS_DocumentData::SerializeRead(CArchive& ar)
             {
                 if (stamp == 0xFFFF)
                 {
-                    MsgBox mBox;
+                    PSS_MsgBox mBox;
 
-                    if (mBox.DisplayMsgBox(IDS_FILECORRUPTED_RECOVER, MB_YESNO) == IDNO)
+                    if (mBox.ShowMsgBox(IDS_FILECORRUPTED_RECOVER, MB_YESNO) == IDNO)
                         THROW_LAST();
 
                     // otherwise, try to keep existing information
@@ -1732,8 +1732,8 @@ void PSS_DocumentData::SerializeRead(CArchive& ar)
     // signal the user to attach the formulary to a new template
     if (m_Stamp.GetTemplate().IsEmpty())
     {
-        MsgBox mBox;
-        mBox.DisplayMsgBox(IDS_TEMPLATEPROBLEM, MB_OK);
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_TEMPLATEPROBLEM, MB_OK);
     }
 
     // check now that the object list is coherent
@@ -1743,8 +1743,8 @@ void PSS_DocumentData::SerializeRead(CArchive& ar)
     // if switched to recovery mode, show a warning
     if (isInRecoveryMode == true)
     {
-        MsgBox mBox;
-        mBox.DisplayMsgBox(IDS_FILECORRUPTED_MISSINGINFO, MB_OK);
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FILECORRUPTED_MISSINGINFO, MB_OK);
     }
 }
 //---------------------------------------------------------------------------
@@ -1787,8 +1787,8 @@ void PSS_DocumentData::SerializeWrite(CArchive& ar)
         }
         CATCH (CArchiveException, e)
         {
-            MsgBox mBox;
-            mBox.DisplayMsgBox(IDS_FILECORRUPTED, MB_OK);
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox(IDS_FILECORRUPTED, MB_OK);
             THROW_LAST();
         }
         END_CATCH
@@ -1800,8 +1800,8 @@ void PSS_DocumentData::SerializeWrite(CArchive& ar)
         CATCH (CArchiveException, e)
         {
             // in write mode no chance, file corruption
-            MsgBox mBox;
-            mBox.DisplayMsgBox(IDS_FILECORRUPTED);
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox(IDS_FILECORRUPTED);
             THROW_LAST();
         }
         END_CATCH
@@ -1893,7 +1893,7 @@ void PSS_DocumentData::OnDrawBackgroundPicture(CDC* pDC, ZIView* pView, int page
     {
         pObj = (PlanFinObject *)m_ObjElements.GetNext(pPosition);
 
-        if (page == pObj->GetObjectPage() && ISA(pObj, PLFNBackImage))
+        if (page == pObj->GetObjectPage() && ISA(pObj, PSS_PLFNBackImage))
             if (pObj->GetbIsVisible() || m_pDocument->ShouldShowHiddenField())
                 if (pDC->IsPrinting())
                 {
@@ -1901,9 +1901,7 @@ void PSS_DocumentData::OnDrawBackgroundPicture(CDC* pDC, ZIView* pView, int page
                         pObj->DrawObject(pDC, pView);
                 }
                 else
-                {
                     pObj->DrawObject(pDC, pView);
-                }
     }
 }
 //---------------------------------------------------------------------------
@@ -1934,7 +1932,7 @@ void PSS_DocumentData::OnDrawForms(CDC*    pDC,
         pObj = (PlanFinObject*)m_ObjElements.GetNext(pPosition);
 
         // show object on the right page, and if visible in the viewport, and don't draw background images
-        if (pObj && page == pObj->GetObjectPage() && !ISA(pObj, PLFNBackImage))
+        if (pObj && page == pObj->GetObjectPage() && !ISA(pObj, PSS_PLFNBackImage))
             if (pObj->GetbIsVisible() || m_pDocument->ShouldShowHiddenField() || drawHiddenObject)
                 if (pDC->IsPrinting())
                 {
@@ -2092,9 +2090,9 @@ BOOL PSS_DocumentData::CheckObjectList()
                 CString prompt;
                 AfxFormatString1(prompt, IDS_OBJECTSAMEREFERENCE, pObj->GetObjectName());
 
-                MsgBox mBox;
+                PSS_MsgBox mBox;
 
-                if (mBox.DisplayMsgBox(prompt, MB_YESNO) == IDNO)
+                if (mBox.ShowMsgBox(prompt, MB_YESNO) == IDNO)
                     return FALSE;
 
                 m_ObjElements.RemoveAt(pSavedPosition);

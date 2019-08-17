@@ -112,8 +112,8 @@ void ZVDynamicAttributesDuplication::OnBnClickedOk()
     // Teste si les deux champs nécessaires à la copie ont été remplis.
     if ( m_Category.IsEmpty() || m_Name.IsEmpty() )
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_COPYNAMEORCATEGORY_IS_MISSING, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_COPYNAMEORCATEGORY_IS_MISSING, MB_OK );
         return;
     }
 
@@ -122,8 +122,8 @@ void ZVDynamicAttributesDuplication::OnBnClickedOk()
     {
         if ( m_StaticAttribArray.GetAt(i) == m_Name )
         {
-            MsgBox mbox;
-            mbox.DisplayMsgBox( IDS_PROPCATEGORYNAME_EXIST, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_PROPCATEGORYNAME_EXIST, MB_OK );
             return;
         }
     }
@@ -133,8 +133,8 @@ void ZVDynamicAttributesDuplication::OnBnClickedOk()
     {
         if ( m_DynamicAttribArray.GetAt(i) == m_Name )
         {
-            MsgBox mbox;
-            mbox.DisplayMsgBox( IDS_PROPCATEGORYNAME_EXIST, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_PROPCATEGORYNAME_EXIST, MB_OK );
             return;
         }
     }

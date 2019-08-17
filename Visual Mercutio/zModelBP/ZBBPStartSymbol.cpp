@@ -19,7 +19,7 @@
 
 #include "zModel\ProcGraphModelDoc.h"
 #include "zModel\ZVSelectUserGroupDlg.h"
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 // JMR-MODIF - Le 25 décembre 2006 - Ajout de l'en-tête ProcGraphModelCtlrBP.h
 #include "ProcGraphModelCtlrBP.h"
@@ -207,8 +207,8 @@ bool ZBBPStartSymbol::DropItem( CObject* pObj, CPoint pt )
              !dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->MainUserGroupIsValid() )
         {
             // Cannot delete all combinations
-            MsgBox mbox;
-            mbox.DisplayMsgBox( IDS_CANNOTDROP_USERGROUPNOTINLINE, MB_OK ); 
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_CANNOTDROP_USERGROUPNOTINLINE, MB_OK ); 
             return false;
         }
 
@@ -238,8 +238,8 @@ bool ZBBPStartSymbol::DropItem( CObject* pObj, CPoint pt )
              !dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->MainLogicalRulesIsValid() )
         {
             // Cannot delete all rules
-            MsgBox mbox;
-            mbox.DisplayMsgBox( IDS_CANNOTDROP_RULENOTINLINE, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_CANNOTDROP_RULENOTINLINE, MB_OK );
             return false;
         }
 
@@ -1065,8 +1065,8 @@ void ZBBPStartSymbol::OnDelCurrentRisk( ZBProperty&        Property,
     if ( Count <= 1 )
     {
         // Cannot delete all risks
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_CANNOTDELETE_ALLRISKS, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_CANNOTDELETE_ALLRISKS, MB_OK );
         return;
     }
 

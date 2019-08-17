@@ -9,7 +9,7 @@
 #include "PSS_RejectActivityInputDialog.h"
 
 // processsoft
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -89,10 +89,10 @@ void PSS_RejectActivityInputDialog::OnOK()
 
     if (m_RejectText.IsEmpty())
     {
-        MsgBox mBox;
+        PSS_MsgBox mBox;
 
         // ask the user if he wants to insert it from the central repository
-        if (mBox.DisplayMsgBox(IDS_REJECTTEXTEMPTY, MB_YESNO) == IDNO)
+        if (mBox.ShowMsgBox(IDS_REJECTTEXTEMPTY, MB_YESNO) == IDNO)
             return;
     }
 

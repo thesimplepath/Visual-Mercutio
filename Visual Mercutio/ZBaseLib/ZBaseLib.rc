@@ -16,13 +16,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Français (France) resources
+// French (France) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
-#ifdef _WIN32
 LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -30,8 +28,16 @@ LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
+    IDD_MESSAGEDLG, DIALOG
+    BEGIN
+    END
+
+    IDD_DIALOG_FORSAVE, DIALOG
+    BEGIN
+    END
+
     IDD_EMPTYVIEW, DIALOG
     BEGIN
         LEFTMARGIN, 7
@@ -83,45 +89,78 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDI_TIPS7               ICON                    ".\\res\\tips7.ico"
+
 IDI_ICONAPP1            ICON                    ".\\RES\\ICONAPP1.ICO"
+
 IDI_ICONAPP2            ICON                    ".\\RES\\ICONAPP2.ICO"
+
 IDI_ICONAPP3            ICON                    ".\\RES\\ICONAPP3.ICO"
+
 IDI_ICONAPP4            ICON                    ".\\RES\\ICONAPP4.ICO"
+
 IDI_ICONAPP5            ICON                    ".\\RES\\ICONAPP5.ICO"
+
 IDI_ICONAPP6            ICON                    ".\\RES\\ICONAPP6.ICO"
+
 IDI_ICONAPP7            ICON                    ".\\RES\\ICONAPP7.ICO"
+
 IDI_ICONAPP_1           ICON                    ".\\RES\\ICONAPP_.ICO"
+
 IDI_ICONAPP_2           ICON                    ".\\RES\\ICO00006.ICO"
+
 IDI_ICONAPP_3           ICON                    ".\\RES\\ICO00004.ICO"
+
 IDI_ICONAPP_4           ICON                    ".\\RES\\ICO00003.ICO"
+
 IDI_ICONAPP_5           ICON                    ".\\RES\\ICO00002.ICO"
+
 IDI_ICONAPP_6           ICON                    ".\\RES\\ICO00001.ICO"
+
 IDI_ICONAPP_7           ICON                    ".\\RES\\ICO00005.ICO"
+
 IDI_ICONAPP_8           ICON                    ".\\RES\\ICO00007.ICO"
+
 IDI_ICONAPP_9           ICON                    ".\\RES\\ICO00008.ICO"
+
 IDI_TIPS1               ICON                    "RES\\TIPS.ICO"
+
 IDI_TIPS10              ICON                    ".\\res\\tips10.ico"
+
 IDI_TIPS11              ICON                    ".\\res\\tips11.ico"
+
 IDI_TIPS12              ICON                    ".\\res\\tips12.ico"
+
 IDI_TIPS13              ICON                    ".\\res\\tips13.ico"
+
 IDI_TIPS14              ICON                    ".\\res\\tips14.ico"
+
 IDI_TIPS15              ICON                    ".\\res\\tips15.ico"
+
 IDI_TIPS16              ICON                    ".\\res\\tips16.ico"
+
 IDI_TIPS2               ICON                    ".\\RES\\TIPS2.ICO"
+
 IDI_TIPS3               ICON                    ".\\RES\\TIPS3.ICO"
+
 IDI_TIPS4               ICON                    ".\\RES\\TIPS4.ICO"
+
 IDI_TIPS5               ICON                    ".\\RES\\TIPS5.ICO"
+
 IDI_TIPS6               ICON                    ".\\RES\\TIPS6.ICO"
+
 IDI_TIPS8               ICON                    ".\\res\\tips8.ico"
+
 IDI_TIPS9               ICON                    ".\\res\\tips9.ico"
+
 IDI_CLOSEWINDOW         ICON                    ".\\res\\icon1.ico"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Dialog
 //
 
-IDD_MESSAGEDLG DIALOG  0, 0, 248, 168
+IDD_MESSAGEDLG DIALOG 0, 0, 248, 168
 STYLE DS_SETFONT | WS_POPUP | WS_CAPTION
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -130,26 +169,25 @@ BEGIN
     ICON            IDI_TIPS1,IDC_DIALOGMESSAGE_ICON,2,33,20,20
 END
 
-IDD_DIALOG_FORSAVE DIALOG  0, 0, 276, 72
+IDD_DIALOG_FORSAVE DIALOGEX 0, 0, 276, 72
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     DEFPUSHBUTTON   "&Oui",IDYES,37,50,50,14
     PUSHBUTTON      "&Abandon",IDCANCEL,187,50,50,14
     PUSHBUTTON      "&Non",IDNO,112,50,50,14
-    ICON            IDI_ICONAPP1,IDC_DIALOGSAVE_ICON,4,4,18,20
+    ICON            IDI_ICONAPP1,IDC_DIALOGSAVE_ICON,4,4,21,20
 END
 
-IDD_EMPTYVIEW DIALOG  0, 0, 278, 95
+IDD_EMPTYVIEW DIALOG 0, 0, 278, 95
 STYLE DS_SETFONT | WS_CHILD
 FONT 8, "MS Sans Serif"
 BEGIN
-    LTEXT           "Veuillez sélectionner une catégorie dans la barre verticale de gauche.",
-                    IDC_STATIC,7,43,264,24
+    LTEXT           "Veuillez sélectionner une catégorie dans la barre verticale de gauche.",IDC_STATIC,7,43,264,24
     ICON            IDI_TIPS7,IDC_STATIC,7,7,20,20
 END
 
-IDD_WKS_NEWGROUP DIALOG  0, 0, 193, 73
+IDD_WKS_NEWGROUP DIALOG 0, 0, 193, 73
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Nouveau dossier"
 FONT 8, "MS Sans Serif"
@@ -162,7 +200,7 @@ BEGIN
     LTEXT           "Extensions: (optionnel)",IDC_STATIC,7,38,127,9
 END
 
-IDD_WKS_RENAMEGROUP DIALOG  0, 0, 193, 47
+IDD_WKS_RENAMEGROUP DIALOG 0, 0, 193, 47
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Renommer un dossier"
 FONT 8, "MS Sans Serif"
@@ -173,7 +211,7 @@ BEGIN
     LTEXT           "Nom du dossier:",-1,7,7,56,9
 END
 
-IDD_WKS_FILEPROP DIALOG  0, 0, 236, 79
+IDD_WKS_FILEPROP DIALOG 0, 0, 236, 79
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Propriétés du fichier"
 FONT 8, "MS Sans Serif"
@@ -183,18 +221,16 @@ BEGIN
     LTEXT           "Nom:",IDC_STATIC,7,7,48,9
     EDITTEXT        IDC_FILE_TITLE,7,21,164,14,ES_AUTOHSCROLL
     LTEXT           "Fichier:",IDC_STATIC,7,40,54,9
-    EDITTEXT        IDC_FILE_COMPLETEPATH,7,53,222,13,ES_AUTOHSCROLL | 
-                    WS_DISABLED
+    EDITTEXT        IDC_FILE_COMPLETEPATH,7,53,222,13,ES_AUTOHSCROLL | WS_DISABLED
 END
 
-IDD_MGVALUE_INTELLI DIALOG  0, 0, 324, 170
+IDD_MGVALUE_INTELLI DIALOG 0, 0, 324, 170
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Gérer les valeures de la liste"
 FONT 8, "MS Sans Serif"
 BEGIN
     DEFPUSHBUTTON   "Fermer",IDOK,267,7,50,14
-    LISTBOX         IDC_VALUES,7,7,249,156,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
-                    WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_VALUES,7,7,249,156,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Supprimer",IDC_DELVALUE,267,28,50,14
     PUSHBUTTON      "Ajouter",IDC_ADDVALUE,267,49,50,14
 END
@@ -206,27 +242,49 @@ END
 //
 
 IDB_REDLIGHT            BITMAP                  "RES\\REDLIGHT.BMP"
+
 IDB_GREENLIGHT          BITMAP                  "RES\\GREENLIG.BMP"
+
 IDB_ANILOADBACK         BITMAP                  "RES\\ANILOADB.BMP"
+
 CANCEL_PROPD            BITMAP                  "RES\\ID_CANCE.BMP"
+
 CANCEL_PROPF            BITMAP                  "RES\\BMP00006.BMP"
+
 CANCEL_PROPU            BITMAP                  "RES\\BMP00007.BMP"
+
 OK_PROPD                BITMAP                  "RES\\ID_OK_PR.BMP"
+
 OK_PROPF                BITMAP                  "RES\\BMP00005.BMP"
+
 OK_PROPU                BITMAP                  "RES\\BMP00004.BMP"
+
 IDB_BTNARROWDWN         BITMAP                  "res\\bitmap1.bmp"
+
 HELPU                   BITMAP                  "res\\bmp00002.bmp"
+
 HELPF                   BITMAP                  "res\\bmp00001.bmp"
+
 HELPD                   BITMAP                  "res\\cancel_p.bmp"
+
 IDB_HIDDEN              BITMAP                  "RES\\HIDDEN.BMP"
+
 IDB_IL_WORKSPACEENV     BITMAP                  "res\\il_works.bmp"
+
 IDB_IL_USERGROUP        BITMAP                  "res\\il_userg.bmp"
+
 IDB_BTNSPEDITARROWDWN   BITMAP                  "res\\btnarrow.bmp"
+
 IDB_BTNSPEDITARROWDWN1  BITMAP                  "res\\btnspedi.bmp"
+
 IDB_IL_LOGICALSYSTEM    BITMAP                  "res\\bmp00003.bmp"
+
 IDB_PLUSMINUS           BITMAP                  "res\\bmp00008.bmp"
+
 IDB_IL_PRESTATIONS      BITMAP                  "res\\PrestationsIcons.bmp"
+
 IDB_IL_RULES            BITMAP                  "res\\RulesIcons.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -234,8 +292,11 @@ IDB_IL_RULES            BITMAP                  "res\\RulesIcons.bmp"
 //
 
 IDC_SELECTOROBJECT      CURSOR                  "RES\\SELECTOR.CUR"
+
 IDC_CLICKTOCLOSE        CURSOR                  "res\\clicktoc.cur"
+
 IDC_DIALOGMESSAGE_ICON  CURSOR                  "res\\cur27363.cur"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -324,7 +385,7 @@ END
 // Menu
 //
 
-IDR_OBJECTS_POPUP MENU 
+IDR_OBJECTS_POPUP MENU
 BEGIN
     POPUP "Object"
     BEGIN
@@ -496,7 +557,7 @@ BEGIN
     END
 END
 
-IDR_WORKSPACE_SUBMENUS MENU 
+IDR_WORKSPACE_SUBMENUS MENU
 BEGIN
     POPUP "Workspace"
     BEGIN
@@ -529,10 +590,21 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_DIALOG_FORSAVE AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_MATHERROR           "Impossible de calculer une expression."
     IDS_WORKSPACE_FILEADD_T "Sélectionner le fichier à ajouter"
@@ -556,7 +628,7 @@ BEGIN
     IDS_UGP_MOVE_T          "Déplacer sous..."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_WKS_ADDFILE          "Insérer un fichier.\nInsérer un fichier"
     ID_WKS_DELETEFILE       "Supprimer.\nSupprimer"
@@ -567,20 +639,20 @@ BEGIN
     ID_UGP_RENAMEGROUP      "Renommer le groupe.\nRenommer le groupe"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_WKS_NEWGROUP         "Nouveau dossier.\nNouveau dossier"
     ID_WKS_DELETEGROUP      "Supprimer un dossier.\nSupprimer un dossier"
     ID_WKS_RENAMEGROUP      "Renommer un dossier.\nRenommer un dossier"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_FILE_NEXT            "Passer au formulaire suivant.\nFormulaire suivant"
     ID_FILE_PREV            "Passer au formulaire précédent.\nFormulaire précédent"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_UGP_PROPERTIES       "Propriétés.\nPropriétés"
     ID_UGP_ADDROLE          "Ajouter une équipe.\nAjouter une équipe"
@@ -588,12 +660,12 @@ BEGIN
     ID_UGP_RENAMEROLE       "Renommer l'équipe.\nRenommer l'équipe"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_INSERTVALUE_INTELLI "Insérer une nouvelle valeur"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_WKS_PROPGROUP_T     "Propriétés du dossier"
     IDS_WKS_SELECTANOTHERFILE "Sélectionner un autre fichier"
@@ -606,7 +678,7 @@ BEGIN
     IDS_FRENCH_DAYS         "Dimanche;Lundi;Mardi;Mercredi;Jeudi;Vendredi;Samedi"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_MONTH_PREFIX        "month;mois;monat"
     IDS_WEEK_PREFIX         "week;semaine;woche"
@@ -623,7 +695,7 @@ BEGIN
                             "Point Courant -> Fin;Point courant;Début -> Point Courant;Toujours"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_COLLAPSE_BRANCH      "Refermer complètement l'arbre depuis cette branche.\nRefermer"
     ID_EXPAND_BRANCH        "Etendre complètement depuis cette branche.\nEtendre"
@@ -634,7 +706,7 @@ BEGIN
     ID_LS_PROPLOGICALSYSTEM "Propriétés.\nPropriétés"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_NEW_PRESTATION_T    "Nouvelle prestation"
     IDS_RENAME_PRESTATION_T "Renommer une prestation existante"
@@ -648,7 +720,7 @@ BEGIN
     IDS_NO_PRINTER_BY_DEFAULT "Aucune imprimante par défaut n'est installée."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_NEW_RULE_T          "Nouvelle règle"
     IDS_RENAME_RULE_T       "Renommer une règle existante"
@@ -657,18 +729,16 @@ BEGIN
     IDS_RULE_ALREADYEXIST   "Cette règle existe déjà. Veuillez choisir un autre nom."
 END
 
-#endif    // Français (France) resources
+#endif    // French (France) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Français (Suisse) resources
+// French (Switzerland) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRS)
-#ifdef _WIN32
 LANGUAGE LANG_FRENCH, SUBLANG_FRENCH_SWISS
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -676,7 +746,7 @@ LANGUAGE LANG_FRENCH, SUBLANG_FRENCH_SWISS
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_WZ_DOCUMENT_PAGESETUP, DIALOG
     BEGIN
@@ -701,18 +771,15 @@ BEGIN
     DEFPUSHBUTTON   "Suivant >>",IDOK,80,184,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,17,184,50,14
     GROUPBOX        "Orientation",IDC_GP_ORIENTATION,6,63,282,40
-    CONTROL         "Portrait",IDC_PORTRAIT,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,23,73,49,10
-    CONTROL         "Paysage",IDC_LANDSCAPE,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,23,86,49,10
+    CONTROL         "Portrait",IDC_PORTRAIT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,23,73,49,10
+    CONTROL         "Paysage",IDC_LANDSCAPE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,23,86,49,10
     GROUPBOX        "Trame de fond",IDC_GP_BKGND,6,105,282,50
-    LTEXT           "Nom et emplacement du fichier",IDC_LBL_FILENAME,23,117,
-                    117,8
+    LTEXT           "Nom et emplacement du fichier",IDC_LBL_FILENAME,23,117,117,8
     EDITTEXT        IDC_EDIT_FILENAME,23,130,233,14,ES_AUTOHSCROLL
     PUSHBUTTON      "...",IDC_BT_OPENFILE,261,130,18,14
 END
 
-#endif    // Français (Suisse) resources
+#endif    // French (Switzerland) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

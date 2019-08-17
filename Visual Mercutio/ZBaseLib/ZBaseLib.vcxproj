@@ -376,7 +376,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="MSGBOX.CPP">
+    <ClCompile Include="PSS_MsgBox.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -442,7 +442,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="PLFNBackImage.cpp">
+    <ClCompile Include="PSS_PLFNBackImage.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -454,7 +454,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ProcOpt.cpp">
+    <ClCompile Include="PSS_ProcessDocumentOptions.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -864,7 +864,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBRegisterSetup.cpp">
+    <ClCompile Include="PSS_RegisterSetup.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1384,7 +1384,7 @@
     <ClInclude Include="mailmsg.h" />
     <ClInclude Include="MemDC.h" />
     <ClInclude Include="MFileDsc.h" />
-    <ClInclude Include="MSGBOX.H" />
+    <ClInclude Include="PSS_MsgBox.h" />
     <ClInclude Include="MskEdit.h" />
     <ClInclude Include="OBSOLETE.H" />
     <ClInclude Include="OutlookBarView.h" />
@@ -1395,9 +1395,9 @@
     <ClInclude Include="PersonDs.h" />
     <ClInclude Include="personls.h" />
     <ClInclude Include="PLANFOBJ.H" />
-    <ClInclude Include="PLFNBackImage.h" />
+    <ClInclude Include="PSS_PLFNBackImage.h" />
     <ClInclude Include="PSS_ProcessModelDocTmpl.h" />
-    <ClInclude Include="ProcOpt.h" />
+    <ClInclude Include="PSS_ProcessDocumentOptions.h" />
     <ClInclude Include="RSETACT.H" />
     <ClInclude Include="RSETUSER.H" />
     <ClInclude Include="SingleInstanceApp.h" />
@@ -1466,7 +1466,7 @@
     <ClInclude Include="ZBNotes.h" />
     <ClInclude Include="ZBPoint.h" />
     <ClInclude Include="ZBRect.h" />
-    <ClInclude Include="ZBRegisterSetup.h" />
+    <ClInclude Include="PSS_RegisterSetup.h" />
     <ClInclude Include="ZBServer.h" />
     <ClInclude Include="ZBServerDisk.h" />
     <ClInclude Include="ZBSmartString.h" />

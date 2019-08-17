@@ -9,7 +9,7 @@
 #include "ZCGridGroup.h"
 
 #include "zRes32\zRes.h"
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 // FileDlg
 #include "zBaseLib\PSS_FileDialog.h"
@@ -338,8 +338,8 @@ void ZVGridView::ExportToTextFile()
     if ( !ExportToTextFile( fileDialog.GetFileName() ) )
     {
         // In write mode no chance, file corruption
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_EXPORTFILE_FAIL );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_EXPORTFILE_FAIL );
         return;
     }
 }
@@ -389,8 +389,8 @@ void ZVGridView::ImportTextFile()
 
     if ( !ImportTextFile( fileDialog.GetFileName() ) )
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_IMPORTFILE_FAIL );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_IMPORTFILE_FAIL );
         return;
     }
 }

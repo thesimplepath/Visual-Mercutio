@@ -8,7 +8,7 @@
 
 #include "zBaseLib\PSS_File.h"
 #include "zBaseLib\ZDirectory.h"
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -116,9 +116,9 @@ bool ZVWorkspaceStart::Validate()
     if ( !ZDirectory::Exist( m_DirectoryStr ) )
     {
         // Asks the user to create the directory
-        MsgBox mbox;
+        PSS_MsgBox mBox;
 
-        if ( mbox.DisplayMsgBox( IDS_WKSPACE_DIR_NEEDCREATE, MB_YESNO ) == IDNO )
+        if (mBox.ShowMsgBox( IDS_WKSPACE_DIR_NEEDCREATE, MB_YESNO ) == IDNO )
         {
             return false;
         }
@@ -129,8 +129,8 @@ bool ZVWorkspaceStart::Validate()
         // If is still not created, error message
         if ( !ZDirectory::Exist( m_DirectoryStr ) )
         {
-            MsgBox mbox;
-            mbox.DisplayMsgBox( IDS_WKSPACE_DIR_FAILCREATE, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_WKSPACE_DIR_FAILCREATE, MB_OK );
             return false;
         }
     }
@@ -139,9 +139,9 @@ bool ZVWorkspaceStart::Validate()
         // Check if the workspace already exist. If exit, ask to replace
         if (PSS_File::Exist( m_WorkspaceFilename ) )
         {
-            MsgBox mbox;
+            PSS_MsgBox mBox;
 
-            if ( mbox.DisplayMsgBox( IDS_WKSPACE_ALREADYEXIST, MB_YESNO ) == IDNO )
+            if ( mBox.ShowMsgBox( IDS_WKSPACE_ALREADYEXIST, MB_YESNO ) == IDNO )
             {
                 return false;
             }

@@ -30,7 +30,7 @@
 #include "zBaseLib\ZBTokenizer.h"
 
 #include "zBaseLib\ZMessage.h"
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_BaseDocument.h"
 
 #ifdef _DEBUG

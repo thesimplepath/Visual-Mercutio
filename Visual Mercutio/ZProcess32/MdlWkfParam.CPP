@@ -5,7 +5,7 @@
 #include "MdlWkfParam.h"
 
 // processsoft
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "zWinUtil32\PSS_TemplateCopyDialog.h"
 #include "zModel\ProcGraphModelDoc.h"
 

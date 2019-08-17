@@ -10,7 +10,7 @@
 
 #include "ZBGenericGridReportGenerator.h"
 
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #include "zReportRes.h"
 
@@ -469,9 +469,9 @@ bool ZDGridReportDocument::OnPostInitialized( CGXTabWndMgr* pMgr, CGXAppAdapter*
             // If don't use automatic reload, ask the question before
             if ( !UseAutomaticReload() )
             {
-                MsgBox mbox;
+                PSS_MsgBox mBox;
 
-                if ( mbox.DisplayMsgBox( IDS_MASTERDATA_CHANGE_RELOAD, MB_YESNO ) == IDNO )
+                if ( mBox.ShowMsgBox( IDS_MASTERDATA_CHANGE_RELOAD, MB_YESNO ) == IDNO )
                 {
                     // Set the m_ViewRequireDataRefresh to false. This will not required the view to
                     // fill the grid again when the OnInitialUpdate will be called

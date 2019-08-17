@@ -13,7 +13,7 @@
 #include "zMediator\PSS_Application.h"
 #include "zBaseLib\ZDTextFile.h"
 #include "zBaseLib\PSS_File.h"
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -133,18 +133,18 @@ void ZVRiskNewFileDlg::OnBnClickedOk()
 
     if ( !m_File.Exist( m_Directory ) )
     {
-        MsgBox m_Box;
+        PSS_MsgBox mBox;
 
-        m_Box.DisplayMsgBox( IDS_BAD_DIRECTORY, MB_OK );
+        mBox.ShowMsgBox( IDS_BAD_DIRECTORY, MB_OK );
 
         return;
     }
 
     if ( m_File.Exist( m_Directory + _T( "\\" ) + m_Filename + m_Extension ) )
     {
-        MsgBox m_Box;
+        PSS_MsgBox mBox;
 
-        m_Box.DisplayMsgBox( IDS_RISK_FILE_ALREADY_EXIST, MB_OK );
+        mBox.ShowMsgBox( IDS_RISK_FILE_ALREADY_EXIST, MB_OK );
 
         return;
     }

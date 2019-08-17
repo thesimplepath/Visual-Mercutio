@@ -9,7 +9,7 @@
 #include "PSS_SelectProcessWizardDialog.h"
 
 // processsoft
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 // resources
 #include "zRes32\zRes.h"

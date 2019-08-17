@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\ZDirectory.h"
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 // resources
 #include "zRes32\zRes.h"
@@ -127,10 +127,10 @@ void PSS_PublishModelSelDirDialog::OnOK()
 
     if (!ZDirectory::Exist(m_Directory))
     {
-        // asks the user to create the directory
-        MsgBox mbox;
+        PSS_MsgBox mBox;
 
-        if (mbox.DisplayMsgBox(IDS_DIR_NEEDCREATE, MB_YESNO) == IDNO)
+        // ask the user to create the directory
+        if (mBox.ShowMsgBox(IDS_DIR_NEEDCREATE, MB_YESNO) == IDNO)
             return;
 
         // try to create it
@@ -139,8 +139,8 @@ void PSS_PublishModelSelDirDialog::OnOK()
         // if still not created, show an error message
         if (!ZDirectory::Exist(m_Directory))
         {
-            MsgBox mbox;
-            mbox.DisplayMsgBox(IDS_DIR_FAILCREATE, MB_OK);
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox(IDS_DIR_FAILCREATE, MB_OK);
             return;
         }
     }

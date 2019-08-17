@@ -9,7 +9,7 @@
 #include "PSS_TemplateCopyDialog.h"
 
 // processsoft
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -130,22 +130,22 @@ void PSS_TemplateCopyDialog::OnOK()
 
     if (!pTemplateDir)
     {
-        MsgBox mBox;
-        mBox.DisplayMsgBox(IDS_CATEGORYMISSING, MB_OK);
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_CATEGORYMISSING, MB_OK);
         return;
     }
 
     if (m_FileName.IsEmpty())
     {
-        MsgBox mBox;
-        mBox.DisplayMsgBox(IDS_FILENAMEMISSING, MB_OK);
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_FILENAMEMISSING, MB_OK);
         return;
     }
 
     if (m_Title.IsEmpty())
     {
-        MsgBox mBox;
-        mBox.DisplayMsgBox(IDS_TITLEMISSING, MB_OK);
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_TITLEMISSING, MB_OK);
         return;
     }
 
@@ -155,8 +155,8 @@ void PSS_TemplateCopyDialog::OnOK()
         if (m_FileName.GetLength() > 8 || m_FileName.Find('.') != -1)
     #endif
     {
-        MsgBox mBox;
-        mBox.DisplayMsgBox(IDS_TEMPLATEFILENAMEERROR, MB_OK);
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_TEMPLATEFILENAMEERROR, MB_OK);
         return;
     }
 
@@ -166,16 +166,16 @@ void PSS_TemplateCopyDialog::OnOK()
 
     if (CFile::GetStatus(fileName, status))
     {
-        MsgBox mBox;
+        PSS_MsgBox mBox;
 
         // if not exists, allow file replacement dialog box if possible, otherwise show an error message and return
         if (!m_AllowReplace)
         {
-            mBox.DisplayMsgBox(IDS_FORMALREADYEXIST, MB_OK);
+            mBox.ShowMsgBox(IDS_FORMALREADYEXIST, MB_OK);
             return;
         }
         else
-        if (mBox.DisplayMsgBox(IDS_FORMALREADYEXIST_CONTREPLACE, MB_YESNO) == IDNO)
+        if (mBox.ShowMsgBox(IDS_FORMALREADYEXIST_CONTREPLACE, MB_YESNO) == IDNO)
             return;
 
         // set the selected file exists flag

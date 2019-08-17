@@ -19,7 +19,7 @@
 
 #include "zModel\ZUDynamicAttributesManipulator.h"
 
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #include "zModelBPRes.h"
 
@@ -461,8 +461,8 @@ void ZVInputAttributes::OnDeleteInputAttribute()
     ZBInputAttribute* pInputAttribute = GetSelectedInputAttribute();
     if (!pInputAttribute)
         return;
-    MsgBox        mbox;
-    if (mbox.DisplayMsgBox( IDS_DELETEINPUTATTR_CONF, MB_YESNO ) == IDYES)
+    PSS_MsgBox mBox;
+    if (mBox.ShowMsgBox( IDS_DELETEINPUTATTR_CONF, MB_YESNO ) == IDYES)
     {
         pInputAttrManager->DeleteInputAttribute( pInputAttribute );
 

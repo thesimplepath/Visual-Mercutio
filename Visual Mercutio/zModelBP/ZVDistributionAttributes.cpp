@@ -24,7 +24,7 @@
 
 #include "zModel\ZUDynamicAttributesManipulator.h"
 
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #include "zModelBPRes.h"
 
@@ -339,15 +339,15 @@ CString ZVDistributionAttributes::GetAndCheckUnitGUID() const
             UnitGUID = (wchar_t)(dynamic_cast<ZBBPStopSymbol*>(m_pSymbol)->GetUnitGUID().IsEmpty());
         else
         {
-            MsgBox        mbox;
-            mbox.DisplayMsgBox( IDS_DISTRIBUTIONATTR_WRONGSYMBOLSEL, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_DISTRIBUTIONATTR_WRONGSYMBOLSEL, MB_OK );
             return _T("");
         }
 
         if (UnitGUID.IsEmpty())
         {
-            MsgBox        mbox;
-            mbox.DisplayMsgBox( IDS_DISTRIBUTIONATTR_NOUSERGROUPDEF, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_DISTRIBUTIONATTR_NOUSERGROUPDEF, MB_OK );
             return _T("");
         }
 
@@ -446,13 +446,13 @@ void ZVDistributionAttributes::OnDeleteDistributionAttrib()
     ZBDistributionAttribute* pDistributionAttrib = GetSelectedDistributionAttribute();
     if (!pDistributionAttrib)
     {
-        MsgBox        mbox;
-        mbox.DisplayMsgBox( IDS_SELECTDISTRIBATTR_MSG, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_SELECTDISTRIBATTR_MSG, MB_OK );
         return;
     }
 
-    MsgBox        mbox;
-    if (mbox.DisplayMsgBox( IDS_DELETEDISTRIBUTIONATTR_CONF, MB_YESNO ) == IDYES)
+    PSS_MsgBox mBox;
+    if (mBox.ShowMsgBox( IDS_DELETEDISTRIBUTIONATTR_CONF, MB_YESNO ) == IDYES)
     {
         pDistribManager->DeleteDistributionAttribute( pDistributionAttrib );
 
@@ -481,8 +481,8 @@ void ZVDistributionAttributes::OnModifyDistributionAttrib()
     ZBDistributionAttribute* pDistributionAttrib = GetSelectedDistributionAttribute();
     if (!pDistributionAttrib)
     {
-        MsgBox        mbox;
-        mbox.DisplayMsgBox( IDS_SELECTDISTRIBATTR_MSG, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_SELECTDISTRIBATTR_MSG, MB_OK );
         return;
     }
 

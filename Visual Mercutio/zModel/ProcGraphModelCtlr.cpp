@@ -16,7 +16,7 @@
 
 #include "zRes32\zRes.h"
 
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\ZBDocumentObserverMsg.h"
 #include "zBaseLib\ZBToolbarObserverMsg.h"
 
@@ -964,11 +964,11 @@ void ZDProcessGraphModelController::OnEditCopy()
     {
         RefreshAllSymbols();
 
-        MsgBox mBox;
+        PSS_MsgBox mBox;
 
         CString s = _T( "" );
         s.Format( IDS_WARNING_COPY_SELECTION );
-        mBox.DisplayMsgBox( s, MB_OK );
+        mBox.ShowMsgBox( s, MB_OK );
     }
 
     CopySelectionToSet();
@@ -1005,11 +1005,11 @@ void ZDProcessGraphModelController::OnEditCut()
     {
         RefreshAllSymbols();
 
-        MsgBox mBox;
+        PSS_MsgBox mBox;
 
         CString s = _T( "" );
         s.Format( IDS_WARNING_CUT_SELECTION );
-        mBox.DisplayMsgBox( s, MB_OK );
+        mBox.ShowMsgBox( s, MB_OK );
     }
 
     if ( m_pTextEdit != NULL && m_pTextEdit->IsEditing() )
@@ -4586,8 +4586,8 @@ void ZDProcessGraphModelController::EndTextEdit( UINT nFlags, CPoint ptDev )
             {
                 if ( value.IsEmpty() )
                 {
-                    MsgBox mbox;
-                    mbox.DisplayMsgBox( IDS_SYMBOLNAME_EMPTY, MB_OK );
+                    PSS_MsgBox mBox;
+                    mBox.ShowMsgBox( IDS_SYMBOLNAME_EMPTY, MB_OK );
                     IsNameValid = false;
                 }
 
@@ -5040,8 +5040,8 @@ void ZDProcessGraphModelController::OnDeleteCurrentPage()
          GetModel()->GetPageSet()->GetAt( 0 ) == pCurrentPage )
     {
         // Display warning message
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_CANNOTDELETE_ROOTPAGE, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_CANNOTDELETE_ROOTPAGE, MB_OK );
 
         return;
     }
@@ -5273,8 +5273,8 @@ void ZDProcessGraphModelController::OnUpdate( ZISubject* pSubject, ZIObserverMsg
         }
         else
         {
-            MsgBox mbox;
-            mbox.DisplayMsgBox( IDS_SYMBOLNOTFOUND_USESEARCH, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_SYMBOLNOTFOUND_USESEARCH, MB_OK );
         }
     }
     else if ( pMsg && ISA( pMsg, ZBDocumentObserverMsg )                                    &&

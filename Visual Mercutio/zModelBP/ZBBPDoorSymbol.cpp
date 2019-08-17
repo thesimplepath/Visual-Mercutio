@@ -5,7 +5,7 @@
 #include "ZBBPDoorSymbol.h"
 
 #include "zBaseLib\PSS_DrawFunctions.h"
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #include "zBaseSym\zBaseSymRes.h"
 
@@ -471,9 +471,9 @@ bool ZBBPDoorSymbol::OnPreDelete( CODModel* pModel /*= NULL*/, CODController* pC
 {
     if ( GetTwinDoorSymbol() )
     {
-        MsgBox mbox;
+        PSS_MsgBox mBox;
 
-        if ( mbox.DisplayMsgBox( IDS_DELETEDOORSYM_CONF, MB_YESNO ) == IDYES )
+        if ( mBox.ShowMsgBox( IDS_DELETEDOORSYM_CONF, MB_YESNO ) == IDYES )
         {
             // Retrieve the owner model
             CODModel* pOwnerModel = GetTwinDoorSymbol()->GetOwnerModel();

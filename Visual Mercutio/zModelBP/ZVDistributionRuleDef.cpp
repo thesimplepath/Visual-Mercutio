@@ -6,7 +6,7 @@
 
 #include "ZBDistributionRules.h"
 
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -55,15 +55,15 @@ void ZVDistributionRuleDef::OnOK()
 
     if (m_Operator <= 0)
     {
-        MsgBox        mbox;
-        mbox.DisplayMsgBox( IDS_OPERATORRULE_MISSING, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_OPERATORRULE_MISSING, MB_OK );
         return;
     }
 
     if (m_Value.IsEmpty())
     {
-        MsgBox        mbox;
-        mbox.DisplayMsgBox( IDS_OPERATORVALUE_MISSING, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_OPERATORVALUE_MISSING, MB_OK );
         return;
     }
     

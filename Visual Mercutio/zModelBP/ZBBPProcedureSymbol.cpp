@@ -26,7 +26,7 @@
 #include "zBaseLib\ZBTokenizer.h"
 #include "zBaseLib\ZAGlobal.h"
 #include "zBaseLib\ZBToolbarObserverMsg.h"
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_DrawFunctions.h"
 
 // Global for model
@@ -607,8 +607,8 @@ void ZBBPProcedureSymbol::OnDelCurrentRisk( ZBProperty&        Property,
     if ( Count <= 1 )
     {
         // Cannot delete all risks
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_CANNOTDELETE_ALLRISKS, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_CANNOTDELETE_ALLRISKS, MB_OK );
         return;
     }
 
@@ -647,8 +647,8 @@ void ZBBPProcedureSymbol::OnDelCurrentCombination( ZBProperty&        Property,
     if ( Count <= 1 )
     {
         // Cannot delete all combinations
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_CANNOTDELETE_ALLCOMBINATIONS, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_CANNOTDELETE_ALLCOMBINATIONS, MB_OK );
         return;
     }
 
@@ -3313,8 +3313,8 @@ bool ZBBPProcedureSymbol::DropItem( CObject* pObj, CPoint pt )
              !dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->MainUserGroupIsValid() )
         {
             // Cannot delete all combinations
-            MsgBox mbox;
-            mbox.DisplayMsgBox( IDS_CANNOTDROP_USERGROUPNOTINLINE, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_CANNOTDROP_USERGROUPNOTINLINE, MB_OK );
             return false;
         }
 
@@ -3344,8 +3344,8 @@ bool ZBBPProcedureSymbol::DropItem( CObject* pObj, CPoint pt )
              !dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->MainLogicalRulesIsValid() )
         {
             // Cannot delete all rules
-            MsgBox mbox;
-            mbox.DisplayMsgBox( IDS_CANNOTDROP_RULENOTINLINE, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_CANNOTDROP_RULENOTINLINE, MB_OK );
             return false;
         }
 

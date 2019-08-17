@@ -6,7 +6,7 @@
 
 #include "ZBUserGroupEntity.h"
 
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -71,8 +71,8 @@ void ZVUserGroupInfoDlg::OnOK()
         if (m_pGroup && m_pGroup->GroupExist( m_Name ))
         {
             // Already exists
-            MsgBox        mbox;
-            mbox.DisplayMsgBox( IDS_UGP_GROUP_ALREADYEXIST, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_UGP_GROUP_ALREADYEXIST, MB_OK );
             return;
         }
     }

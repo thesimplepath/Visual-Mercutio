@@ -19,13 +19,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Anglais (États-Unis) resources
+// English (United States) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-#ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -35,19 +33,19 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDI_3DICONAPP           ICON                    "res\\ico00015.ico"
+
 IDI_DELOCK              ICON                    "RES\\DELOCK.ICO"
-#endif    // Anglais (États-Unis) resources
+
+#endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Français (France) resources
+// French (France) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
-#ifdef _WIN32
 LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -57,106 +55,167 @@ LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDR_MAINFRAME_2000      ICON                    "res\\idr_main.ico"
+
 IDR_MAINFRAME           ICON                    "RES\\PLANFIN.ICO"
+
 IDR_MDIPAGE             ICON                    "RES\\PLANFDOC.ICO"
+
 IDI_POINTERWINDOW       ICON                    "RES\\POINTERW.ICO"
+
 IDI_POINTER             ICON                    "RES\\POINTER.ICO"
+
 IDI_POINTERWINDOWEMPTY  ICON                    "RES\\ICO00001.ICO"
+
 IDI_3DICONAPP           ICON                    "RES\\ICO3DICO.ICO"
+
 IDI_ICON_RENAME         ICON                    "RES\\ICON_REN.ICO"
+
 IDI_ICON_PEN            ICON                    "RES\\ICON_PEN.ICO"
+
 IDI_ICON_EDITNAME       ICON                    "RES\\ICON_EDI.ICO"
+
 IDI_PAGEFORM            ICON                    "RES\\PAGE.ICO"
+
 IDI_CALCULATOR          ICON                    "RES\\CALCULAT.ICO"
+
 IDI_LOCKED              ICON                    "RES\\LOCKED.ICO"
+
 IDI_NOTCALCULATED       ICON                    "RES\\NOTCALCU.ICO"
+
 IDI_CREATION_TOOLBAR    ICON                    "RES\\CREATION.ICO"
+
 IDR_HISTORYFILEFIELD    ICON                    "RES\\IDR_HIST.ICO"
+
 IDR_FEEDFILEFIELD       ICON                    "RES\\IDR_FEED.ICO"
+
 IDR_DEFINITIONFILEFIELD ICON                    "RES\\IDR_DEFI.ICO"
+
 IDR_PROCESS             ICON                    "RES\\IDR_PROC.ICO"
+
 IDI_ADVISEACTIVITY      ICON                    "RES\\POSTL.ICO"
+
 IDI_ADVISE2ACTIVITY     ICON                    "RES\\MAPIF5L.ICO"
+
 IDI_ENVELOPPE           ICON                    "RES\\MAPIF1L.ICO"
+
 IDI_PROCESS             ICON                    "RES\\PROCESS.ICO"
+
 IDI_GLOBE               ICON                    "RES\\DSCVY.ICO"
+
 IDI_CLOCK               ICON                    "RES\\CLOCK01.ICO"
+
 IDI_EYE                 ICON                    "RES\\EYE.ICO"
+
 IDI_TROMBONE            ICON                    "RES\\CLIP01.ICO"
+
 IDI_TROMBONE2           ICON                    "RES\\CLIP02.ICO"
+
 IDI_SPHERE              ICON                    "RES\\MSDTX.ICO"
+
 IDI_OBJECT              ICON                    "RES\\OBJECT.ICO"
+
 IDI_POOL                ICON                    "RES\\POOL.ICO"
+
 IDI_PROCESS_MODEL       ICON                    "res\\icon1.ico"
+
 IDI_UNIT                ICON                    "res\\unit_gla.ico"
+
 IDI_UNIT_GLASS          ICON                    "res\\unit.ico"
+
 IDR_MODEL               ICON                    "res\\ObjectivDoc.ico"
+
 IDI_MODELWKF_GEN        ICON                    "res\\ico00002.ico"
+
 IDI_FIND                ICON                    "res\\ico00003.ico"
+
 IDI_SCREEN1             ICON                    "res\\ico00004.ico"
+
 IDI_SCREEN2             ICON                    "res\\ico00005.ico"
+
 IDI_DOCUMENTMODEL_TREE  ICON                    "res\\ico00006.ico"
+
 27362                   ICON                    "res\\ico27362.ico"
+
 IDR_MODEL_BP            ICON                    "res\\ico00007.ico"
+
 IDR_MODEL_BP_IMAGE      ICON                    "res\\ico00008.ico"
+
 IDI_WIZARD              ICON                    "res\\wizard.ico"
+
 IDI_DECISIONACTIVITY    ICON                    "res\\decision.ico"
+
 IDI_FORMS               ICON                    "res\\icon2.ico"
+
 IDI_SUSPENDACTIVITY     ICON                    "res\\suspenda.ico"
+
 IDI_IL_OUTPUTSYMBOLVIEW ICON                    "res\\il_outpu.ico"
+
 IDI_IL_PROPERTIESVIEW   ICON                    "res\\il_prope.ico"
+
 IDI_IL_MODELVIEW        ICON                    "res\\il_model.ico"
+
 IDI_IL_FORMVIEW         ICON                    "res\\ico00009.ico"
+
 IDI_IL_FILEVIEW         ICON                    "res\\il_filev.ico"
+
 IDI_IL_USERVIEW         ICON                    "res\\il_userv.ico"
+
 IDI_IL_WEBVIEW          ICON                    "res\\ico00010.ico"
+
 IDI_IL_WORKSPACEVIEW    ICON                    "res\\ico00011.ico"
+
 IDI_WORKSPACE           ICON                    "res\\workspac.ico"
+
 IDR_WORKSPACE           ICON                    "res\\ico00012.ico"
+
 IDI_TOUPILLE            ICON                    "res\\toupille.ico"
+
 IDI_IL_OUTPUTSESTERCEVIEW ICON                    "res\\ico00013.ico"
+
 IDI_ICON_AMALIA         ICON                    "res\\icon_ama.ico"
+
 IDI_ICON_MERCUTIO       ICON                    "res\\ico00014.ico"
+
 IDI_IL_PANVIEW          ICON                    "res\\il_panvi.ico"
+
 IDR_MERCUTIOREPORT      ICON                    "res\\idr_merc.ico"
+
 IDI_IL_LOGICALSYSTEMVIEW ICON                    "res\\il_logic.ico"
+
 IDI_IL_INPUTATTRIBUTEVIEW ICON                    "res\\ico00016.ico"
+
 IDI_IL_DISTRIBATTRIBUTEVIEW ICON                    "res\\il_input.ico"
+
 IDI_IL_PRESTATIONSVIEW  ICON                    "res\\ico00017.ico"
+
 IDI_IL_RULESVIEW        ICON                    "res\\ico00018.ico"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Dialog
 //
 
-IDD_WIZARDINITIAL DIALOG  0, 0, 285, 197
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_WIZARDINITIAL DIALOG 0, 0, 285, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Valeur par défaut du système"
 FONT 8, "MS Sans Serif"
 BEGIN
     EDITTEXT        IDC_FIELDVALUE,107,145,162,16,ES_AUTOHSCROLL
-    LISTBOX         IDC_DEFAULTVALUES,6,122,84,39,LBS_NOINTEGRALHEIGHT | 
-                    WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_DEFAULTVALUES,6,122,84,39,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Liste des valeurs existantes",IDC_WZTEXT1,6,111,92,10
-    EDITTEXT        IDC_EXPLANATION,6,51,273,29,ES_MULTILINE | ES_READONLY | 
-                    NOT WS_VISIBLE | WS_DISABLED | WS_VSCROLL
-    LTEXT           "Explication sur le champ sélectionné:",IDC_STATIC,6,38,
-                    137,10
-    EDITTEXT        IDC_FIELDEXPLANATION,6,55,273,55,ES_MULTILINE | 
-                    ES_READONLY | WS_VSCROLL
+    EDITTEXT        IDC_EXPLANATION,6,51,273,29,ES_MULTILINE | ES_READONLY | NOT WS_VISIBLE | WS_DISABLED | WS_VSCROLL
+    LTEXT           "Explication sur le champ sélectionné:",IDC_STATIC,6,38,137,10
+    EDITTEXT        IDC_FIELDEXPLANATION,6,55,273,55,ES_MULTILINE | ES_READONLY | WS_VSCROLL
     PUSHBUTTON      "Abandonner",IDCANCEL,17,170,50,14
     DEFPUSHBUTTON   "Suivant >>",IDNEXT,84,170,50,14
     PUSHBUTTON      "Aide",ID_HELP,218,170,50,14
     PUSHBUTTON      "Accepter",IDOK,151,170,50,14
-    CONTROL         "Tenir compte des arrondis",IDC_CHECKROUNDED,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,6,150,95,11
+    CONTROL         "Tenir compte des arrondis",IDC_CHECKROUNDED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,150,95,11
 END
 
-IDD_MOVEOBJECT DIALOG  0, 0, 207, 115
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_MOVEOBJECT DIALOG 0, 0, 207, 115
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Déplacer l'objet sélectionné"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -165,7 +224,7 @@ BEGIN
     PUSHBUTTON      "Appliquer",IDPREVIEW,78,97,50,14
 END
 
-IDD_FORM_MANAGE DIALOG  0, 0, 427, 206
+IDD_FORM_MANAGE DIALOG 0, 0, 427, 206
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
 CAPTION "Gérer les formes"
 FONT 8, "MS Sans Serif"
@@ -174,29 +233,21 @@ BEGIN
     PUSHBUTTON      "Abandonner",IDCANCEL,53,190,50,14
     PUSHBUTTON      "Aide",IDHELP,105,190,50,14
     GROUPBOX        "Dossiers",IDC_STATIC,3,3,81,171
-    LISTBOX         IDC_TEMPLATEFOLDER,5,16,75,153,LBS_SORT | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_TEMPLATEFOLDER,5,16,75,153,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
 END
 
-IDD_FORM_MANAGEPAGE DIALOG  13, 54, 319, 129
+IDD_FORM_MANAGEPAGE DIALOG 13, 54, 319, 129
 STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Pages"
 FONT 8, "Helv"
 BEGIN
-    COMBOBOX        IDC_SOURCEFORM,9,17,100,62,CBS_DROPDOWN | WS_VSCROLL | 
-                    WS_TABSTOP
-    LISTBOX         IDC_SOURCEPAGE,9,49,100,40,LBS_SORT | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    COMBOBOX        IDC_DESTINATIONFORM,211,17,100,64,CBS_DROPDOWN | 
-                    WS_VSCROLL | WS_TABSTOP
-    LISTBOX         IDC_DESTINATIONPAGE,212,49,100,40,LBS_SORT | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Champs et formules",IDC_COPYTYPE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,120,65,75,10
-    CONTROL         "Champs uniquements",IDC_COPYTYPE2,"Button",
-                    BS_AUTORADIOBUTTON,120,76,81,10
-    CONTROL         "Formules uniquements",IDC_COPYTYPE3,"Button",
-                    BS_AUTORADIOBUTTON,120,87,83,10
+    COMBOBOX        IDC_SOURCEFORM,9,17,100,62,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_SOURCEPAGE,9,49,100,40,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_DESTINATIONFORM,211,17,100,64,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_DESTINATIONPAGE,212,49,100,40,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Champs et formules",IDC_COPYTYPE,"Button",BS_AUTORADIOBUTTON | WS_GROUP,120,65,75,10
+    CONTROL         "Champs uniquements",IDC_COPYTYPE2,"Button",BS_AUTORADIOBUTTON,120,76,81,10
+    CONTROL         "Formules uniquements",IDC_COPYTYPE3,"Button",BS_AUTORADIOBUTTON,120,87,83,10
     PUSHBUTTON      ">>>>",IDC_COPYPAGE,119,43,34,14
     PUSHBUTTON      "Détruire la page",IDC_DELETEPAGE,9,94,69,14
     GROUPBOX        "Formulaires sources",IDC_STATIC,4,4,111,118
@@ -206,9 +257,8 @@ BEGIN
     GROUPBOX        "Copie",IDC_STATIC,117,32,87,71
 END
 
-IDD_RENAME_FIELD DIALOG  0, 0, 219, 81
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_RENAME_FIELD DIALOG 0, 0, 219, 81
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Renommer un champ"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -216,34 +266,29 @@ BEGIN
     DEFPUSHBUTTON   "Renommer",IDOK,5,65,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,61,65,50,14
     ICON            IDI_ICON_RENAME,IDC_STATIC,4,4,18,20
-    LTEXT           "Cette fonction vous permet de renommer un champ. Attention, en renommant un champ vous pouvez altérer le fonctionnement du formulaire et des calculs.",
-                    IDC_STATIC,32,4,183,25
+    LTEXT           "Cette fonction vous permet de renommer un champ. Attention, en renommant un champ vous pouvez altérer le fonctionnement du formulaire et des calculs.",IDC_STATIC,32,4,183,25
     LTEXT           "Nom du champ:",IDC_STATIC,32,34,57,10
 END
 
-IDD_CHANGEFORMULAPAGE DIALOG  0, 0, 187, 75
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_CHANGEFORMULAPAGE DIALOG 0, 0, 187, 75
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Nouvelle page"
 FONT 8, "MS Sans Serif"
 BEGIN
     EDITTEXT        IDC_PAGE,32,41,74,13
     DEFPUSHBUTTON   "Changer la page",IDOK,3,59,70,14
     PUSHBUTTON      "Abandonner",IDCANCEL,79,59,50,14
-    LTEXT           "Vous pouvez changer la page attribuée à la formule sélectionnée.",
-                    IDC_STATIC,32,4,147,22
+    LTEXT           "Vous pouvez changer la page attribuée à la formule sélectionnée.",IDC_STATIC,32,4,147,22
     ICON            IDI_PAGEFORM,IDC_STATIC,3,3,18,20
     LTEXT           "Page:",IDC_STATIC,32,28,64,10
 END
 
-IDD_STYLEPAGE DIALOG  13, 54, 211, 151
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_STYLEPAGE DIALOG 13, 54, 211, 151
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Styles"
 FONT 8, "Helv"
 BEGIN
-    LISTBOX         IDC_STYLELIST,10,20,111,80,LBS_SORT | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_STYLELIST,10,20,111,80,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     GROUPBOX        "Gestion des styles",-1,5,2,195,146
     GROUPBOX        "Aperçu de la police de caractères",-1,10,105,181,37
     LTEXT           "",IDC_PREVIEWTEXT,15,116,172,20
@@ -253,9 +298,8 @@ BEGIN
     PUSHBUTTON      "Supprimer",IDC_DELETE,126,80,65,15
 END
 
-IDD_NEWMODIFYSTYLE DIALOG  13, 54, 211, 151
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_NEWMODIFYSTYLE DIALOG 13, 54, 211, 151
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Nouveau style"
 FONT 8, "Helv"
 BEGIN
@@ -265,21 +309,18 @@ BEGIN
     PUSHBUTTON      "Couleur de fond",IDC_BACKGROUNDCOLOR,4,70,65,15
     PUSHBUTTON      "OK",IDOK,143,8,65,15
     PUSHBUTTON      "Abandonner",IDCANCEL,143,27,65,15
-    GROUPBOX        "Aperçu de la police de caractères",IDC_STATIC,5,110,200,
-                    37
+    GROUPBOX        "Aperçu de la police de caractères",IDC_STATIC,5,110,200,37
     LTEXT           "",IDC_PREVIEWTEXTFONT,8,121,193,20
     LTEXT           "Nom:",IDC_STATIC,4,13,25,10
     PUSHBUTTON      "Alignement...",IDC_ALIGNEMENT,4,90,65,15
 END
 
-IDD_SELECT_STYLE DIALOG  13, 54, 211, 151
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_SELECT_STYLE DIALOG 13, 54, 211, 151
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Styles"
 FONT 8, "Helv"
 BEGIN
-    LISTBOX         IDC_STYLELIST,10,20,111,80,LBS_SORT | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_STYLELIST,10,20,111,80,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     GROUPBOX        "",-1,5,2,195,146
     GROUPBOX        "Aperçu de la police de caractères",-1,10,105,181,37
     LTEXT           "",IDC_PREVIEWTEXT,15,116,172,20
@@ -287,9 +328,8 @@ BEGIN
     PUSHBUTTON      "Abandonner",IDCANCEL,126,38,65,15
 END
 
-IDD_ROTATE DIALOG  0, 0, 115, 90
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_ROTATE DIALOG 0, 0, 115, 90
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Rotation"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -297,16 +337,13 @@ BEGIN
     DEFPUSHBUTTON   "OK",IDOK,4,74,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,60,74,50,14
     RTEXT           "Angle:",IDC_STATIC,7,4,22,10
-    LTEXT           "rf",IDC_ROTATIONFRAME,7,32,39,14,NOT WS_VISIBLE | 
-                    WS_DISABLED
+    LTEXT           "rf",IDC_ROTATIONFRAME,7,32,39,14,NOT WS_VISIBLE | WS_DISABLED
     SCROLLBAR       IDC_SCROLLBAR,68,1,6,18,SBS_VERT
-    LTEXT           "sf",IDC_SAMPLEFRAME,77,3,39,14,NOT WS_VISIBLE | 
-                    WS_DISABLED
+    LTEXT           "sf",IDC_SAMPLEFRAME,77,3,39,14,NOT WS_VISIBLE | WS_DISABLED
 END
 
-IDD_ASSOCIATION_NAME DIALOG  0, 0, 187, 39
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_ASSOCIATION_NAME DIALOG 0, 0, 187, 39
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Nom de l'association"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -315,30 +352,23 @@ BEGIN
     PUSHBUTTON      "Abandonner",IDCANCEL,131,23,50,14
 END
 
-IDD_WIZARDATTACHFORM DIALOG  0, 0, 285, 197
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_WIZARDATTACHFORM DIALOG 0, 0, 285, 197
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Attacher une forme"
 FONT 8, "MS Sans Serif"
 BEGIN
     LTEXT           "Le formulaire est basé sur une forme.",-1,8,51,128,13
-    LTEXT           "Vous pouvez changer de forme de base. Ceci a pour effet de reprendre le contenu des champs et de les recopier dans la nouvelle forme.",
-                    -1,8,64,267,22
+    LTEXT           "Vous pouvez changer de forme de base. Ceci a pour effet de reprendre le contenu des champs et de les recopier dans la nouvelle forme.",-1,8,64,267,22
     PUSHBUTTON      "Abandonner",IDCANCEL,17,181,50,14
     DEFPUSHBUTTON   "Suivant >>",IDNEXT,84,181,50,14
-    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,
-                    180,18,16
-    CONTROL         "",IDC_FRAME1,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,18,
-                    88,65,86
-    CONTROL         "",IDC_FRAME2,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,98,
-                    88,65,86
-    CONTROL         "",IDC_FRAME3,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,178,
-                    88,65,86
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,266,180,18,16
+    CONTROL         "",IDC_FRAME1,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,18,88,65,86
+    CONTROL         "",IDC_FRAME2,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,98,88,65,86
+    CONTROL         "",IDC_FRAME3,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,178,88,65,86
 END
 
-IDD_FIELDCONTENTS DIALOG  0, 0, 219, 53
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_FIELDCONTENTS DIALOG 0, 0, 219, 53
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Contenu du champ statique"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -346,54 +376,40 @@ BEGIN
     DEFPUSHBUTTON   "Accepter",IDOK,5,37,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,61,37,50,14
     ICON            IDI_ICON_PEN,-1,4,4,18,20
-    LTEXT           "Veuillez introduire le contenu du champs statique.",-1,
-                    32,4,183,9
+    LTEXT           "Veuillez introduire le contenu du champs statique.",-1,32,4,183,9
 END
 
-IDD_PROCESSWINDOW DIALOG  0, 0, 445, 67
+IDD_PROCESSWINDOW DIALOG 0, 0, 445, 67
 STYLE DS_SETFONT | WS_CHILD
 FONT 8, "MS Sans Serif"
 BEGIN
-    CONTROL         "CANCEL_PROP",IDC_CLOSEWINDOW,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,0,0,9,11
-    LISTBOX         IDC_ACTIVITYLIST,1,15,440,50,LBS_NOINTEGRALHEIGHT | 
-                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "CANCEL_PROP",IDC_CLOSEWINDOW,"Button",BS_OWNERDRAW | WS_TABSTOP,0,0,9,11
+    LISTBOX         IDC_ACTIVITYLIST,1,15,440,50,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Liste des activités",IDC_STATIC,16,1,67,8
 END
 
-IDD_PROCESSWINDOWDESIGN DIALOG  0, 0, 369, 200
+IDD_PROCESSWINDOWDESIGN DIALOG 0, 0, 369, 200
 STYLE DS_SETFONT | WS_CHILD
 FONT 8, "MS Sans Serif"
 BEGIN
-    CONTROL         "CANCEL_PROP",IDC_CLOSEWINDOW,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,3,0,9,11
-    CONTROL         "ACTPRC",IDC_ACTIVITY_CREATE,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,211,124,46,16
+    CONTROL         "CANCEL_PROP",IDC_CLOSEWINDOW,"Button",BS_OWNERDRAW | WS_TABSTOP,3,0,9,11
+    CONTROL         "ACTPRC",IDC_ACTIVITY_CREATE,"Button",BS_OWNERDRAW | WS_TABSTOP,211,124,46,16
     GROUPBOX        "Activité sélectionnée",IDC_ACTIVITY_GROUP,211,5,155,68
-    CONTROL         "ACTDLT",IDC_ACTIVITY_DELETE,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,211,181,46,16
-    CONTROL         "ACTMOD",IDC_ACTIVITY_MODIFY,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,211,143,46,16
-    CONTROL         "ACTREN",IDC_ACTIVITY_RENAME,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,211,162,46,16
+    CONTROL         "ACTDLT",IDC_ACTIVITY_DELETE,"Button",BS_OWNERDRAW | WS_TABSTOP,211,181,46,16
+    CONTROL         "ACTMOD",IDC_ACTIVITY_MODIFY,"Button",BS_OWNERDRAW | WS_TABSTOP,211,143,46,16
+    CONTROL         "ACTREN",IDC_ACTIVITY_RENAME,"Button",BS_OWNERDRAW | WS_TABSTOP,211,162,46,16
     EDITTEXT        IDC_ACTIVITYNAME,215,15,92,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_ACTIVITYDESCRIPTION,215,35,146,35,ES_AUTOHSCROLL
     LTEXT           "Processus",IDC_STATIC,16,1,67,8
-    CONTROL         "PRCBLD",IDC_PROCESS_REBUILD,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,211,76,46,16
-    CONTROL         "Tree1",IDC_PROCESSTREE,"SysTreeView32",
-                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,3,12,193,185
-    CONTROL         "CRTPRC",IDC_SUBPROCESS_CREATE,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,211,105,46,16
-    CONTROL         "MOVEUP",IDC_ACTMOVEUP,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,197,77,9,14
-    CONTROL         "MOVEDWN",IDC_ACTMOVEDOWN,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,197,92,9,12
+    CONTROL         "PRCBLD",IDC_PROCESS_REBUILD,"Button",BS_OWNERDRAW | WS_TABSTOP,211,76,46,16
+    CONTROL         "Tree1",IDC_PROCESSTREE,"SysTreeView32",TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,3,12,193,185
+    CONTROL         "CRTPRC",IDC_SUBPROCESS_CREATE,"Button",BS_OWNERDRAW | WS_TABSTOP,211,105,46,16
+    CONTROL         "MOVEUP",IDC_ACTMOVEUP,"Button",BS_OWNERDRAW | WS_TABSTOP,197,77,9,14
+    CONTROL         "MOVEDWN",IDC_ACTMOVEDOWN,"Button",BS_OWNERDRAW | WS_TABSTOP,197,92,9,12
 END
 
-IDD_IMPORTPROCESS_DEFINITION DIALOG  0, 0, 205, 93
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_IMPORTPROCESS_DEFINITION DIALOG 0, 0, 205, 93
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Importer la définition d'un processus"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -403,53 +419,40 @@ BEGIN
     PUSHBUTTON      "Abandonner",IDCANCEL,152,77,50,14
     ICON            IDI_PROCESS,IDC_STATIC,4,6,20,20
     LTEXT           "Fichier:",IDC_STATIC,7,40,61,10
-    LTEXT           "Veuillez sélectionner ou spécifier le fichier à utiliser. ",
-                    IDC_STATIC,37,8,129,23
+    LTEXT           "Veuillez sélectionner ou spécifier le fichier à utiliser. ",IDC_STATIC,37,8,129,23
 END
 
-IDD_GLOBALFIELD DIALOG  0, 0, 359, 386
+IDD_GLOBALFIELD DIALOG 0, 0, 359, 386
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
 FONT 8, "MS Sans Serif"
 BEGIN
-    LISTBOX         IDC_LISTOFGLOBALFIELD,7,6,139,218,LBS_SORT | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_LISTOFGLOBALFIELD,7,6,139,218,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Nom du champ:",IDC_STATIC,151,6,54,10
     EDITTEXT        IDC_FIELDNAME,205,5,150,13,ES_AUTOHSCROLL
     LTEXT           "Type de champ:",IDC_STATIC,151,22,53,10
     EDITTEXT        IDC_FIELDTYPE,206,21,149,13,ES_AUTOHSCROLL | ES_READONLY
-    LTEXT           "Commentaire général sur le type de champ:",IDC_STATIC,
-                    151,41,145,9
-    EDITTEXT        IDC_FIELDTYPECOMMENT,151,56,204,45,ES_MULTILINE | 
-                    ES_AUTOVSCROLL | ES_READONLY
+    LTEXT           "Commentaire général sur le type de champ:",IDC_STATIC,151,41,145,9
+    EDITTEXT        IDC_FIELDTYPECOMMENT,151,56,204,45,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY
     LTEXT           "Commentaire spécifique:",IDC_STATIC,151,105,81,9
-    EDITTEXT        IDC_FIELDDESCRIPTION,151,117,204,43,ES_MULTILINE | 
-                    ES_AUTOVSCROLL
-    LISTBOX         IDC_LIST_HISTORYVALUE,156,243,139,94,LBS_SORT | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_FIELDDESCRIPTION,151,117,204,43,ES_MULTILINE | ES_AUTOVSCROLL
+    LISTBOX         IDC_LIST_HISTORYVALUE,156,243,139,94,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Ajouter",IDC_ADDPREDVAL,300,243,50,15
     PUSHBUTTON      "Enlever",IDC_REMOVEPREDVAL,300,262,50,15
     PUSHBUTTON      "Vider",IDC_REMOVEALLPREDVAL,300,281,50,15
-    CONTROL         "Historique en lecture seulement",IDC_READONLY,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,156,344,122,11
+    CONTROL         "Historique en lecture seulement",IDC_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,156,344,122,11
     GROUPBOX        "Valeures prédéfinies",IDC_PREDVAL_STC,151,230,204,134
     PUSHBUTTON      "Ajouter un champ",IDC_ADDGLOBAL_FIELD,7,231,105,15
     PUSHBUTTON      "Détruire le champ",IDC_REMOVEGLOBAL_FIELD,7,252,105,15
-    PUSHBUTTON      "Détruire tous les champs",IDC_CLEARGLOBAL_FIELD,7,273,
-                    105,15
-    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,337,
-                    369,18,16
+    PUSHBUTTON      "Détruire tous les champs",IDC_CLEARGLOBAL_FIELD,7,273,105,15
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,337,369,18,16
     PUSHBUTTON      "Fermer",IDOK,278,369,50,14
-    PUSHBUTTON      "Propriétés du champ",IDC_GLOBALFIELD_PROPERTY,7,294,105,
-                    15
-    LTEXT           "Commentaire destiné à l'utilisateur:",IDC_STATIC,151,
-                    164,144,9
-    EDITTEXT        IDC_HELPUSERDESCRIPTION,151,175,204,49,ES_MULTILINE | 
-                    ES_AUTOVSCROLL
+    PUSHBUTTON      "Propriétés du champ",IDC_GLOBALFIELD_PROPERTY,7,294,105,15
+    LTEXT           "Commentaire destiné à l'utilisateur:",IDC_STATIC,151,164,144,9
+    EDITTEXT        IDC_HELPUSERDESCRIPTION,151,175,204,49,ES_MULTILINE | ES_AUTOVSCROLL
 END
 
-IDD_BORDERDEFINITION DIALOG  0, 0, 234, 199
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_BORDERDEFINITION DIALOG 0, 0, 234, 199
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Définition des bordures"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -459,73 +462,51 @@ BEGIN
     GROUPBOX        "Bordures",IDC_STATIC,8,72,158,107
     GROUPBOX        "Ligne",IDC_STATIC,170,11,62,167
     LTEXT           "Couleur:",IDC_STATIC,174,116,30,10
-    CONTROL         "BNONE",IDC_BNONE,"Button",BS_OWNERDRAW | WS_TABSTOP,56,
-                    22,22,22
-    CONTROL         "BAROUND",IDC_BAROUND,"Button",BS_OWNERDRAW | WS_TABSTOP,
-                    101,22,22,22
+    CONTROL         "BNONE",IDC_BNONE,"Button",BS_OWNERDRAW | WS_TABSTOP,56,22,22,22
+    CONTROL         "BAROUND",IDC_BAROUND,"Button",BS_OWNERDRAW | WS_TABSTOP,101,22,22,22
     LTEXT           "Aucun",IDC_STATIC,56,47,23,9
     LTEXT           "Autour",IDC_STATIC,101,47,23,9
-    CONTROL         "",IDC_SAMPLE_FRAME,"Static",SS_GRAYFRAME | NOT 
-                    WS_VISIBLE,32,84,105,69
-    CONTROL         "BUP",IDC_BUP,"Button",BS_OWNERDRAW | WS_TABSTOP,12,82,
-                    17,19
-    CONTROL         "BDOWN",IDC_BDOWN,"Button",BS_OWNERDRAW | WS_TABSTOP,12,
-                    136,17,19
-    CONTROL         "BLEFT",IDC_BLEFT,"Button",BS_OWNERDRAW | WS_TABSTOP,31,
-                    156,17,19
-    CONTROL         "BRIGHT",IDC_BRIGHT,"Button",BS_OWNERDRAW | WS_TABSTOP,
-                    123,156,17,19
-    CONTROL         "COL_SEL",IDC_COLORSELBUTTON,"Button",BS_OWNERDRAW | 
-                    WS_GROUP | WS_TABSTOP,221,116,9,9
+    CONTROL         "",IDC_SAMPLE_FRAME,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,32,84,105,69
+    CONTROL         "BUP",IDC_BUP,"Button",BS_OWNERDRAW | WS_TABSTOP,12,82,17,19
+    CONTROL         "BDOWN",IDC_BDOWN,"Button",BS_OWNERDRAW | WS_TABSTOP,12,136,17,19
+    CONTROL         "BLEFT",IDC_BLEFT,"Button",BS_OWNERDRAW | WS_TABSTOP,31,156,17,19
+    CONTROL         "BRIGHT",IDC_BRIGHT,"Button",BS_OWNERDRAW | WS_TABSTOP,123,156,17,19
+    CONTROL         "COL_SEL",IDC_COLORSELBUTTON,"Button",BS_OWNERDRAW | WS_GROUP | WS_TABSTOP,221,116,9,9
     CONTROL         "",IDC_COLORFRAME,"Static",SS_BLACKFRAME,210,115,10,10
     RTEXT           "Epaisseur:",IDC_STATIC,173,131,35,11
     EDITTEXT        IDC_BORDERWIDTH,210,130,14,12,ES_AUTOHSCROLL
-    CONTROL         "",IDC_LINESTYLEFRAME,"Static",SS_GRAYFRAME | NOT 
-                    WS_VISIBLE,176,25,30,76
+    CONTROL         "",IDC_LINESTYLEFRAME,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,176,25,30,76
 END
 
-IDD_PROCESSDOCUMENT_OPTIONS DIALOG  0, 0, 263, 135
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_PROCESSDOCUMENT_OPTIONS DIALOG 0, 0, 263, 135
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Export des données du processus"
 FONT 8, "MS Sans Serif"
 BEGIN
-    CONTROL         "oui",IDC_SYNCHRONIZATION,"Button",BS_AUTORADIOBUTTON | 
-                    WS_GROUP | WS_TABSTOP,120,15,23,11
-    CONTROL         "non",IDC_SYNCHRONIZATION2,"Button",BS_AUTORADIOBUTTON,
-                    147,15,26,11
-    CONTROL         "oui",IDC_AUTOMATICFILENAME,"Button",BS_AUTORADIOBUTTON | 
-                    WS_GROUP | WS_TABSTOP,120,31,26,11
-    CONTROL         "non",IDC_AUTOMATICFILENAME2,"Button",BS_AUTORADIOBUTTON,
-                    147,31,26,11
-    CONTROL         "dossier",IDC_AUTOMATICFILENAME3,"Button",
-                    BS_AUTORADIOBUTTON,174,31,35,11
+    CONTROL         "oui",IDC_SYNCHRONIZATION,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,120,15,23,11
+    CONTROL         "non",IDC_SYNCHRONIZATION2,"Button",BS_AUTORADIOBUTTON,147,15,26,11
+    CONTROL         "oui",IDC_AUTOMATICFILENAME,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,120,31,26,11
+    CONTROL         "non",IDC_AUTOMATICFILENAME2,"Button",BS_AUTORADIOBUTTON,147,31,26,11
+    CONTROL         "dossier",IDC_AUTOMATICFILENAME3,"Button",BS_AUTORADIOBUTTON,174,31,35,11
     EDITTEXT        IDC_FLF_FILENAME,13,45,185,13,ES_AUTOHSCROLL
     PUSHBUTTON      "Sélectionner",IDC_SELECT_FLF,207,43,47,15
-    CONTROL         "oui",IDC_HEADER,"Button",BS_AUTORADIOBUTTON | WS_GROUP | 
-                    WS_TABSTOP,39,65,22,9
+    CONTROL         "oui",IDC_HEADER,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,39,65,22,9
     CONTROL         "non",IDC_HEADER2,"Button",BS_AUTORADIOBUTTON,65,65,28,9
-    CONTROL         "Défaut",IDC_SEPARATOR,"Button",BS_AUTORADIOBUTTON | 
-                    WS_GROUP | WS_TABSTOP,58,79,40,11
-    CONTROL         "Tab",IDC_SEPARATOR2,"Button",BS_AUTORADIOBUTTON,102,79,
-                    28,11
-    CONTROL         ",",IDC_SEPARATOR3,"Button",BS_AUTORADIOBUTTON,137,79,17,
-                    11
-    CONTROL         ";",IDC_SEPARATOR4,"Button",BS_AUTORADIOBUTTON,159,79,16,
-                    11
-    CONTROL         """",IDC_SEPARATOR5,"Button",BS_AUTORADIOBUTTON,179,79,
-                    19,11
+    CONTROL         "Défaut",IDC_SEPARATOR,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,58,79,40,11
+    CONTROL         "Tab",IDC_SEPARATOR2,"Button",BS_AUTORADIOBUTTON,102,79,28,11
+    CONTROL         ",",IDC_SEPARATOR3,"Button",BS_AUTORADIOBUTTON,137,79,17,11
+    CONTROL         ";",IDC_SEPARATOR4,"Button",BS_AUTORADIOBUTTON,159,79,16,11
+    CONTROL         """",IDC_SEPARATOR5,"Button",BS_AUTORADIOBUTTON,179,79,19,11
     DEFPUSHBUTTON   "Accepter",IDOK,4,117,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,57,117,50,14
     GROUPBOX        "Synchronisation des données",IDC_STATIC,4,1,255,111
     LTEXT           "Export sur fichier SLF :",IDC_STATIC,13,16,94,10
-    LTEXT           "Nom de fichier automatique :",IDC_STATIC_PFILE,13,31,93,
-                    11
+    LTEXT           "Nom de fichier automatique :",IDC_STATIC_PFILE,13,31,93,11
     LTEXT           "Entête:",IDC_STATIC,13,64,26,10
     LTEXT           "Séparateur:",IDC_STATIC,13,80,39,10
 END
 
-IDD_PROCESSNAME DIALOG  0, 0, 222, 98
+IDD_PROCESSNAME DIALOG 0, 0, 222, 98
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Nouveau processus"
 FONT 8, "MS Sans Serif"
@@ -534,11 +515,10 @@ BEGIN
     DEFPUSHBUTTON   "Créer",IDOK,165,77,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,107,77,50,14
     ICON            IDI_PROCESS_MODEL,IDC_STATIC,7,7,20,20
-    LTEXT           "Veuillez donner un nouveau à ce nouveau processus.",
-                    IDC_STATIC,39,7,176,11
+    LTEXT           "Veuillez donner un nouveau à ce nouveau processus.",IDC_STATIC,39,7,176,11
 END
 
-IDD_UNIT_INFO DIALOG  0, 0, 258, 149
+IDD_UNIT_INFO DIALOG 0, 0, 258, 149
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Librairie"
 FONT 8, "MS Sans Serif"
@@ -552,7 +532,7 @@ BEGIN
     ICON            IDI_UNIT,IDC_STATIC,7,7,20,20
 END
 
-IDD_OD_BASIC_PROPS DIALOG  0, 0, 212, 44
+IDD_OD_BASIC_PROPS DIALOG 0, 0, 212, 44
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Propriétés"
 FONT 8, "MS Sans Serif"
@@ -565,56 +545,44 @@ BEGIN
     PUSHBUTTON      "Abandonner",IDCANCEL,155,23,50,14
 END
 
-IDD_OD_CANVAS_SIZE_PAGE DIALOG  0, 0, 263, 111
+IDD_OD_CANVAS_SIZE_PAGE DIALOG 0, 0, 263, 111
 STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "Taille et unités"
 FONT 8, "MS Sans Serif"
 BEGIN
     RTEXT           "Largeur:",IDC_STATIC,35,48,80,8
-    EDITTEXT        IDC_OD_DIAGRAM_WIDTH,125,45,36,14,ES_RIGHT | 
-                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_OD_DIAGRAM_WIDTH,125,45,36,14,ES_RIGHT | ES_AUTOHSCROLL
     RTEXT           "Hauteur:",IDC_STATIC,35,67,80,8
-    EDITTEXT        IDC_OD_DIAGRAM_HEIGHT,125,65,36,14,ES_RIGHT | 
-                    ES_AUTOHSCROLL
-    COMBOBOX        IDC_OD_UNIT_OF_MEASURE,125,25,85,89,CBS_DROPDOWNLIST | 
-                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_OD_DIAGRAM_HEIGHT,125,65,36,14,ES_RIGHT | ES_AUTOHSCROLL
+    COMBOBOX        IDC_OD_UNIT_OF_MEASURE,125,25,85,89,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     RTEXT           "Unité de mesure:",IDC_STATIC,35,28,80,8
 END
 
-IDD_OD_COMPONENT_LIST DIALOG  0, 0, 219, 95
+IDD_OD_COMPONENT_LIST DIALOG 0, 0, 219, 95
 STYLE DS_SETFONT | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
 CAPTION "Composants"
 FONT 8, "MS Sans Serif"
 BEGIN
-    LISTBOX         IDC_OD_COMPONENTS,2,3,160,90,LBS_OWNERDRAWFIXED | 
-                    LBS_NOINTEGRALHEIGHT | LBS_EXTENDEDSEL | WS_VSCROLL | 
-                    WS_TABSTOP
+    LISTBOX         IDC_OD_COMPONENTS,2,3,160,90,LBS_OWNERDRAWFIXED | LBS_NOINTEGRALHEIGHT | LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
     DEFPUSHBUTTON   "Fermer",IDOK,166,3,50,14
     PUSHBUTTON      "&Aller vers",IDC_OD_GOTO,166,19,50,14
     PUSHBUTTON      "&Propriétés...",IDC_OD_PROPERTIES,166,35,50,14
     PUSHBUTTON      "&Détruire",IDC_OD_DELETE,166,51,50,14
 END
 
-IDD_OD_COMPPROPPAGE_EDIT DIALOG  0, 0, 224, 127
+IDD_OD_COMPPROPPAGE_EDIT DIALOG 0, 0, 224, 127
 STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Edition"
 FONT 8, "MS Sans Serif"
 BEGIN
-    CONTROL         "Permettre changer propriétés",
-                    IDC_OD_COMPEDITPP_PROPCHGCB,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,7,14,104,8
-    CONTROL         "Lecture seule",IDC_OD_COMPEDITPP_READONLYCB,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,129,14,86,8
-    CONTROL         "Permettre Sélection",IDC_OD_COMPEDITPP_SELECTCB,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,44,100,8
-    CONTROL         "Permettre Echelle",IDC_OD_COMPEDITPP_SCALECB,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,115,45,100,8
-    CONTROL         "Permettre Déplacer",IDC_OD_COMPEDITPP_MOVECB,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,57,100,8
-    CONTROL         "Permettre Etirement",IDC_OD_COMPEDITPP_STRETCHCB,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,115,57,100,8
-    CONTROL         "Permettre Rotation",IDC_OD_COMPEDITPP_ROTATECB,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,69,100,8
+    CONTROL         "Permettre changer propriétés",IDC_OD_COMPEDITPP_PROPCHGCB,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,14,104,8
+    CONTROL         "Lecture seule",IDC_OD_COMPEDITPP_READONLYCB,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,129,14,86,8
+    CONTROL         "Permettre Sélection",IDC_OD_COMPEDITPP_SELECTCB,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,44,100,8
+    CONTROL         "Permettre Echelle",IDC_OD_COMPEDITPP_SCALECB,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,115,45,100,8
+    CONTROL         "Permettre Déplacer",IDC_OD_COMPEDITPP_MOVECB,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,100,8
+    CONTROL         "Permettre Etirement",IDC_OD_COMPEDITPP_STRETCHCB,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,115,57,100,8
+    CONTROL         "Permettre Rotation",IDC_OD_COMPEDITPP_ROTATECB,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,69,100,8
     CONTROL         "Permettre de Contenir",IDC_OD_COMPEDITPP_CONTAINMENTCB,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,115,69,100,8
     CONTROL         "Permettre Edition Vertex",IDC_OD_COMPEDITPP_VERTEXCB,
@@ -623,147 +591,95 @@ BEGIN
     GROUPBOX        "Graphique",IDC_OD_COMPEDITPP_GRAPHEDITGRP,2,34,219,60
 END
 
-IDD_OD_COMPPROPPAGE_FILL DIALOG  0, 0, 224, 127
+IDD_OD_COMPPROPPAGE_FILL DIALOG 0, 0, 224, 127
 STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Remplissage"
 FONT 8, "MS Sans Serif"
 BEGIN
-    CONTROL         "Text Color",IDC_OD_COMPFILLPP_FGCOLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,75,5,48,12
-    CONTROL         "Transparent",IDC_OD_COMPFILLPP_TRANSPCB,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,127,5,93,12
-    CONTROL         "Text Color",IDC_OD_COMPFILLPP_BGCOLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,75,19,48,12
-    CONTROL         "Fond Transparent",IDC_OD_COMPFILLPP_TRANSPBGCB,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,127,19,93,12
-    LISTBOX         IDC_OD_COMPFILLPP_HATCHLB,74,36,146,82,
-                    LBS_OWNERDRAWVARIABLE | LBS_HASSTRINGS | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    RTEXT           "Couleur: ",IDC_OD_COMPFILLPP_FGCOLORLBL,6,5,66,11,
-                    SS_CENTERIMAGE
-    RTEXT           "Couleur de fond: ",IDC_OD_COMPFILLPP_BGCOLORLBL,6,19,66,
-                    11,SS_CENTERIMAGE
-    RTEXT           "Motif: ",IDC_OD_COMPFILLPP_HATCHLBL,5,38,65,11,
-                    SS_CENTERIMAGE
+    CONTROL         "Text Color",IDC_OD_COMPFILLPP_FGCOLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,75,5,48,12
+    CONTROL         "Transparent",IDC_OD_COMPFILLPP_TRANSPCB,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,127,5,93,12
+    CONTROL         "Text Color",IDC_OD_COMPFILLPP_BGCOLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,75,19,48,12
+    CONTROL         "Fond Transparent",IDC_OD_COMPFILLPP_TRANSPBGCB,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,127,19,93,12
+    LISTBOX         IDC_OD_COMPFILLPP_HATCHLB,74,36,146,82,LBS_OWNERDRAWVARIABLE | LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Couleur: ",IDC_OD_COMPFILLPP_FGCOLORLBL,6,5,66,11,SS_CENTERIMAGE
+    RTEXT           "Couleur de fond: ",IDC_OD_COMPFILLPP_BGCOLORLBL,6,19,66,11,SS_CENTERIMAGE
+    RTEXT           "Motif: ",IDC_OD_COMPFILLPP_HATCHLBL,5,38,65,11,SS_CENTERIMAGE
 END
 
-IDD_OD_COMPPROPPAGE_FONT DIALOG  0, 0, 224, 127
+IDD_OD_COMPPROPPAGE_FONT DIALOG 0, 0, 224, 127
 STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Police de caractères"
 FONT 8, "MS Sans Serif"
 BEGIN
-    LISTBOX         IDC_OD_COMPFONTPP_NAMELB,4,4,110,104,LBS_SORT | 
-                    LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    LISTBOX         IDC_OD_COMPFONTPP_STYLELB,120,4,62,56,
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    LISTBOX         IDC_OD_COMPFONTPP_PTSZLB,187,4,32,56,LBS_SORT | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Sousligné",IDC_OD_COMPFONTPP_UNDERLINE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,4,112,54,12
-    CONTROL         "Barré",IDC_OD_COMPFONTPP_STRIKEOUT,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,59,112,41,12
-    CONTROL         "Text Color",IDC_OD_COMPFONTPP_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,170,112,48,12
+    LISTBOX         IDC_OD_COMPFONTPP_NAMELB,4,4,110,104,LBS_SORT | LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_OD_COMPFONTPP_STYLELB,120,4,62,56,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_OD_COMPFONTPP_PTSZLB,187,4,32,56,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Sousligné",IDC_OD_COMPFONTPP_UNDERLINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,112,54,12
+    CONTROL         "Barré",IDC_OD_COMPFONTPP_STRIKEOUT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,59,112,41,12
+    CONTROL         "Text Color",IDC_OD_COMPFONTPP_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,170,112,48,12
     GROUPBOX        "Example",IDC_OD_COMPFONTPP_SAMPLELBL,120,63,99,45
-    CTEXT           "Static",IDC_OD_COMPFONTPP_SAMPLEBOX,125,72,92,34,
-                    SS_CENTERIMAGE | NOT WS_VISIBLE
-    RTEXT           "Couleur du texte: ",IDC_OD_COMPFONTPP_TEXTCOLORLBL,110,
-                    112,58,12,SS_CENTERIMAGE
+    CTEXT           "Static",IDC_OD_COMPFONTPP_SAMPLEBOX,125,72,92,34,SS_CENTERIMAGE | NOT WS_VISIBLE
+    RTEXT           "Couleur du texte: ",IDC_OD_COMPFONTPP_TEXTCOLORLBL,110,112,58,12,SS_CENTERIMAGE
 END
 
-IDD_OD_COMPPROPPAGE_GENERAL DIALOG  0, 0, 224, 127
+IDD_OD_COMPPROPPAGE_GENERAL DIALOG 0, 0, 224, 127
 STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Générale"
 FONT 8, "MS Sans Serif"
 BEGIN
     EDITTEXT        IDC_OD_COMPGENERALPP_NAME,4,15,216,12,ES_AUTOHSCROLL
-    EDITTEXT        IDC_OD_COMPGENERALPP_TYPE,4,44,216,12,ES_AUTOHSCROLL | 
-                    ES_READONLY
-    CONTROL         "Transparent",IDC_OD_COMPGENERALPP_TRANSPARENT,"Button",
-                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,10,81,53,
-                    10
-    CONTROL         "Text Color",IDC_OD_COMPGENERALPP_TRANSPCOLOR,"Button",
-                    BS_OWNERDRAW | NOT WS_VISIBLE | WS_TABSTOP,154,80,60,12
-    LTEXT           "Nom",IDC_OD_COMPGENERALPP_NAMELBL,4,4,214,8,
-                    SS_CENTERIMAGE
-    LTEXT           "Type",IDC_OD_COMPGENERALPP_TYPELBL,4,34,214,8,
-                    SS_CENTERIMAGE
-    RTEXT           "Couleur de Transparence: ",
-                    IDC_OD_COMPGENERALPP_TRANSPCOLORLBL,67,80,85,12,
-                    SS_CENTERIMAGE | NOT WS_VISIBLE
-    GROUPBOX        "Propriétés Image",IDC_OD_COMPGENERALPP_BMPPROPGRP,4,71,
-                    216,25,NOT WS_VISIBLE
+    EDITTEXT        IDC_OD_COMPGENERALPP_TYPE,4,44,216,12,ES_AUTOHSCROLL | ES_READONLY
+    CONTROL         "Transparent",IDC_OD_COMPGENERALPP_TRANSPARENT,"Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,10,81,53,10
+    CONTROL         "Text Color",IDC_OD_COMPGENERALPP_TRANSPCOLOR,"Button",BS_OWNERDRAW | NOT WS_VISIBLE | WS_TABSTOP,154,80,60,12
+    LTEXT           "Nom",IDC_OD_COMPGENERALPP_NAMELBL,4,4,214,8,SS_CENTERIMAGE
+    LTEXT           "Type",IDC_OD_COMPGENERALPP_TYPELBL,4,34,214,8,SS_CENTERIMAGE
+    RTEXT           "Couleur de Transparence: ",IDC_OD_COMPGENERALPP_TRANSPCOLORLBL,67,80,85,12,SS_CENTERIMAGE | NOT WS_VISIBLE
+    GROUPBOX        "Propriétés Image",IDC_OD_COMPGENERALPP_BMPPROPGRP,4,71,216,25,NOT WS_VISIBLE
 END
 
-IDD_OD_COMPPROPPAGE_LABEL DIALOG  0, 0, 224, 127
+IDD_OD_COMPPROPPAGE_LABEL DIALOG 0, 0, 224, 127
 STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "Label"
 FONT 8, "MS Sans Serif"
 BEGIN
-    CONTROL         "Permettre Orientation",IDC_OD_ENABLE_ORIENTATION,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,78,10
-    GROUPBOX        "Orientation Label",IDC_OD_LABELPP_CONTROLPT_GRP,5,21,
-                    211,51
-    CONTROL         "Haut-Gauche",IDC_OD_LABELPP_TOPLEFT,"Button",
-                    BS_AUTORADIOBUTTON,15,34,60,8
-    CONTROL         "Haut-Centre",IDC_OD_LABELPP_TOPCENTER,"Button",
-                    BS_AUTORADIOBUTTON,83,34,60,8
-    CONTROL         "Haut-Droit",IDC_OD_LABELPP_TOPRIGHT,"Button",
-                    BS_AUTORADIOBUTTON,151,34,60,8
-    CONTROL         "Centre-Gauche",IDC_OD_LABELPP_CENTERLEFT,"Button",
-                    BS_AUTORADIOBUTTON,15,45,60,8
-    CONTROL         "Centre",IDC_OD_LABELPP_CENTER,"Button",
-                    BS_AUTORADIOBUTTON,83,45,60,8
-    CONTROL         "Centre-Droit",IDC_OD_LABELPP_CENTERRIGHT,"Button",
-                    BS_AUTORADIOBUTTON,151,45,60,8
-    CONTROL         "Bas-Gauche",IDC_OD_LABELPP_BOTTOMLEFT,"Button",
-                    BS_AUTORADIOBUTTON,15,56,60,8
-    CONTROL         "Bas-Centre",IDC_OD_LABELPP_BOTTOMCENTER,"Button",
-                    BS_AUTORADIOBUTTON,83,56,60,8
-    CONTROL         "Bas-Droit",IDC_OD_LABELPP_BOTTOMRIGHT,"Button",
-                    BS_AUTORADIOBUTTON,151,56,60,8
+    CONTROL         "Permettre Orientation",IDC_OD_ENABLE_ORIENTATION,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,78,10
+    GROUPBOX        "Orientation Label",IDC_OD_LABELPP_CONTROLPT_GRP,5,21,211,51
+    CONTROL         "Haut-Gauche",IDC_OD_LABELPP_TOPLEFT,"Button",BS_AUTORADIOBUTTON,15,34,60,8
+    CONTROL         "Haut-Centre",IDC_OD_LABELPP_TOPCENTER,"Button",BS_AUTORADIOBUTTON,83,34,60,8
+    CONTROL         "Haut-Droit",IDC_OD_LABELPP_TOPRIGHT,"Button",BS_AUTORADIOBUTTON,151,34,60,8
+    CONTROL         "Centre-Gauche",IDC_OD_LABELPP_CENTERLEFT,"Button",BS_AUTORADIOBUTTON,15,45,60,8
+    CONTROL         "Centre",IDC_OD_LABELPP_CENTER,"Button",BS_AUTORADIOBUTTON,83,45,60,8
+    CONTROL         "Centre-Droit",IDC_OD_LABELPP_CENTERRIGHT,"Button",BS_AUTORADIOBUTTON,151,45,60,8
+    CONTROL         "Bas-Gauche",IDC_OD_LABELPP_BOTTOMLEFT,"Button",BS_AUTORADIOBUTTON,15,56,60,8
+    CONTROL         "Bas-Centre",IDC_OD_LABELPP_BOTTOMCENTER,"Button",BS_AUTORADIOBUTTON,83,56,60,8
+    CONTROL         "Bas-Droit",IDC_OD_LABELPP_BOTTOMRIGHT,"Button",BS_AUTORADIOBUTTON,151,56,60,8
     RTEXT           "% Long de la Ligne:",IDC_OD_LBL_PCTALONG,53,35,76,8
     EDITTEXT        IDC_OD_PCTALONG,138,34,31,12,ES_RIGHT | ES_AUTOHSCROLL
-    RTEXT           "Distance de la Ligne:",IDC_OD_LBL_LINE_DISTANCE,65,52,
-                    64,8
-    EDITTEXT        IDC_OD_LINE_DISTANCE,138,52,31,12,ES_RIGHT | 
-                    ES_AUTOHSCROLL
+    RTEXT           "Distance de la Ligne:",IDC_OD_LBL_LINE_DISTANCE,65,52,64,8
+    EDITTEXT        IDC_OD_LINE_DISTANCE,138,52,31,12,ES_RIGHT | ES_AUTOHSCROLL
     GROUPBOX        "Distance Orientation",IDC_STATIC,5,78,122,35
     RTEXT           "X:",IDC_OD_LABELPP_XOFFSETLBL,12,94,14,10
-    EDITTEXT        IDC_OD_LABELPP_XOFFSET,29,92,32,12,ES_RIGHT | 
-                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_OD_LABELPP_XOFFSET,29,92,32,12,ES_RIGHT | ES_AUTOHSCROLL
     RTEXT           "Y:",IDC_OD_LABELPP_YOFFSETLBL,67,94,12,10
-    EDITTEXT        IDC_OD_LABELPP_YOFFSET,83,92,32,12,ES_RIGHT | 
-                    ES_AUTOHSCROLL
-    CONTROL         22001,IDC_OD_LABELPP_LABELOFFSETBMP,"Static",SS_BITMAP | 
-                    SS_SUNKEN | WS_BORDER,134,81,83,39
+    EDITTEXT        IDC_OD_LABELPP_YOFFSET,83,92,32,12,ES_RIGHT | ES_AUTOHSCROLL
+    CONTROL         IDB_OD_LABELOFFSET,IDC_OD_LABELPP_LABELOFFSETBMP,"Static",SS_BITMAP | SS_SUNKEN | WS_BORDER,134,81,83,39
 END
 
-IDD_OD_COMPPROPPAGE_LINE DIALOG  0, 0, 224, 127
+IDD_OD_COMPPROPPAGE_LINE DIALOG 0, 0, 224, 127
 STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Ligne"
 FONT 8, "MS Sans Serif"
 BEGIN
-    CONTROL         "Text Color",IDC_OD_COMPLINEPP_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,39,6,48,12
-    CONTROL         "Transparent",IDC_OD_COMPLINEPP_TRANSPARENTCB,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,115,8,98,10
-    LISTBOX         IDC_OD_COMPLINEPP_STYLELB,6,32,101,73,LBS_OWNERDRAWFIXED | 
-                    LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
-                    WS_TABSTOP
-    LISTBOX         IDC_OD_COMPLINEPP_WIDTHLB,115,32,102,73,
-                    LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Couleur: ",IDC_OD_COMPLINEPP_COLORLBL,6,7,30,11,
-                    SS_CENTERIMAGE
-    LTEXT           "Style: ",IDC_OD_COMPLINEPP_STYLELBL,6,22,44,8,
-                    SS_CENTERIMAGE
-    LTEXT           "Largeur: ",IDC_OD_COMPLINEPP_WIDTHLBL,115,23,44,8,
-                    SS_CENTERIMAGE
+    CONTROL         "Text Color",IDC_OD_COMPLINEPP_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,39,6,48,12
+    CONTROL         "Transparent",IDC_OD_COMPLINEPP_TRANSPARENTCB,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,115,8,98,10
+    LISTBOX         IDC_OD_COMPLINEPP_STYLELB,6,32,101,73,LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_OD_COMPLINEPP_WIDTHLB,115,32,102,73,LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Couleur: ",IDC_OD_COMPLINEPP_COLORLBL,6,7,30,11,SS_CENTERIMAGE
+    LTEXT           "Style: ",IDC_OD_COMPLINEPP_STYLELBL,6,22,44,8,SS_CENTERIMAGE
+    LTEXT           "Largeur: ",IDC_OD_COMPLINEPP_WIDTHLBL,115,23,44,8,SS_CENTERIMAGE
 END
 
-IDD_OD_COMPPROPPAGE_POSSIZE DIALOG  0, 0, 229, 124
+IDD_OD_COMPPROPPAGE_POSSIZE DIALOG 0, 0, 229, 124
 STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Position et Taille"
 FONT 8, "MS Sans Serif"
@@ -782,55 +698,39 @@ BEGIN
     LTEXT           "xxxxxxxxxx",IDC_OD_UNIT_MEASURE_LABEL4,136,73,34,8
 END
 
-IDD_OD_COMPPROPPAGE_TEXT DIALOG  0, 0, 224, 127
+IDD_OD_COMPPROPPAGE_TEXT DIALOG 0, 0, 224, 127
 STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Texte"
 FONT 8, "MS Sans Serif"
 BEGIN
-    LTEXT           "Texte",IDC_OD_COMPTEXTPP_TEXTLBL,4,8,214,8,
-                    SS_CENTERIMAGE
+    LTEXT           "Texte",IDC_OD_COMPTEXTPP_TEXTLBL,4,8,214,8,SS_CENTERIMAGE
     EDITTEXT        IDC_OD_COMPTEXTPP_TEXT,4,19,216,12,ES_AUTOHSCROLL
-    CONTROL         "Lignes Multiples",IDC_OD_COMPTEXTPP_MULTILINE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,14,38,68,8
-    CONTROL         "Par Mots ",IDC_OD_COMPTEXTPP_WORDBREAK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,119,38,68,8
+    CONTROL         "Lignes Multiples",IDC_OD_COMPTEXTPP_MULTILINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,38,68,8
+    CONTROL         "Par Mots ",IDC_OD_COMPTEXTPP_WORDBREAK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,119,38,68,8
     GROUPBOX        "Alignement Horizontal",IDC_STATIC,14,55,84,55,WS_GROUP
-    CONTROL         "Gauche",IDC_OD_COMPTEXTPP_HALIGNLEFT,"Button",
-                    BS_AUTORADIOBUTTON,26,67,41,10
-    CONTROL         "Centre",IDC_OD_COMPTEXTPP_HALIGNCENTER,"Button",
-                    BS_AUTORADIOBUTTON,26,80,37,10
-    CONTROL         "Droit",IDC_OD_COMPTEXTPP_HALIGNRIGHT,"Button",
-                    BS_AUTORADIOBUTTON,26,93,31,10
+    CONTROL         "Gauche",IDC_OD_COMPTEXTPP_HALIGNLEFT,"Button",BS_AUTORADIOBUTTON,26,67,41,10
+    CONTROL         "Centre",IDC_OD_COMPTEXTPP_HALIGNCENTER,"Button",BS_AUTORADIOBUTTON,26,80,37,10
+    CONTROL         "Droit",IDC_OD_COMPTEXTPP_HALIGNRIGHT,"Button",BS_AUTORADIOBUTTON,26,93,31,10
     GROUPBOX        "Alignement Vertical",IDC_STATIC,120,56,83,55,WS_GROUP
-    CONTROL         "Haut",IDC_OD_COMPTEXTPP_VALIGNTOP,"Button",
-                    BS_AUTORADIOBUTTON,131,68,31,10
-    CONTROL         "Centre",IDC_OD_COMPTEXTPP_VALIGNCENTER,"Button",
-                    BS_AUTORADIOBUTTON,131,80,37,10
-    CONTROL         "Bas",IDC_OD_COMPTEXTPP_VALIGNBOTTOM,"Button",
-                    BS_AUTORADIOBUTTON,131,93,28,10
+    CONTROL         "Haut",IDC_OD_COMPTEXTPP_VALIGNTOP,"Button",BS_AUTORADIOBUTTON,131,68,31,10
+    CONTROL         "Centre",IDC_OD_COMPTEXTPP_VALIGNCENTER,"Button",BS_AUTORADIOBUTTON,131,80,37,10
+    CONTROL         "Bas",IDC_OD_COMPTEXTPP_VALIGNBOTTOM,"Button",BS_AUTORADIOBUTTON,131,93,28,10
 END
 
-IDD_OD_COORDINATE_MAPPING_PAGE DIALOG  0, 0, 284, 122
+IDD_OD_COORDINATE_MAPPING_PAGE DIALOG 0, 0, 284, 122
 STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "Correspondance d'unités"
 FONT 8, "MS Sans Serif"
 BEGIN
     LTEXT           "Mode correspondance:",IDC_STATIC,13,21,74,8
-    COMBOBOX        IDC_OD_MAPPING_MODE,91,18,133,58,CBS_DROPDOWNLIST | 
-                    WS_VSCROLL | WS_TABSTOP
-    EDITTEXT        IDC_OD_X_EXTENT,102,37,36,14,ES_RIGHT | ES_AUTOHSCROLL | 
-                    ES_NUMBER
+    COMBOBOX        IDC_OD_MAPPING_MODE,91,18,133,58,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_OD_X_EXTENT,102,37,36,14,ES_RIGHT | ES_AUTOHSCROLL | ES_NUMBER
     LTEXT           "Physique :",IDC_STATIC,30,40,34,8
-    EDITTEXT        IDC_OD_Y_EXTENT,156,37,36,14,ES_RIGHT | ES_AUTOHSCROLL | 
-                    ES_NUMBER
+    EDITTEXT        IDC_OD_Y_EXTENT,156,37,36,14,ES_RIGHT | ES_AUTOHSCROLL | ES_NUMBER
     LTEXT           "Logique:",IDC_STATIC,33,58,28,8
-    EDITTEXT        IDC_OD_X_LOGEXTENT,102,56,36,14,ES_RIGHT | 
-                    ES_AUTOHSCROLL | ES_NUMBER
-    EDITTEXT        IDC_OD_Y_LOGEXTENT,156,56,36,14,ES_RIGHT | 
-                    ES_AUTOHSCROLL | ES_NUMBER
-    CONTROL         "Positif Y Haut",IDC_OD_Y_AXIS_UP,"Button",
-                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_DISABLED | 
-                    WS_TABSTOP,209,59,59,10
+    EDITTEXT        IDC_OD_X_LOGEXTENT,102,56,36,14,ES_RIGHT | ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_OD_Y_LOGEXTENT,156,56,36,14,ES_RIGHT | ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Positif Y Haut",IDC_OD_Y_AXIS_UP,"Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_DISABLED | WS_TABSTOP,209,59,59,10
     LTEXT           "1 Unité Logique X =",IDC_STATIC,34,82,64,8
     LTEXT           "",IDC_OD_LOGXUNIT_MEASURE,103,82,141,8
     LTEXT           "1 Unité Logique Y =",IDC_STATIC,34,96,64,8
@@ -849,35 +749,28 @@ BEGIN
     LTEXT           "Largeur &Ligne:",-1,10,12,46,8
     EDITTEXT        IDC_OD_LINE_WIDTH,82,10,35,12,ES_AUTOHSCROLL,WS_EX_RIGHT
     LTEXT           "&Couleur ligne:",-1,10,27,44,8
-    CONTROL         "Line Color",IDC_OD_LINE_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,82,25,35,12
+    CONTROL         "Line Color",IDC_OD_LINE_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,82,25,35,12
     LTEXT           "Couleur Remplissage:",-1,10,42,69,8
-    CONTROL         "Fill Color",IDC_OD_FILL_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,82,40,35,12
-    CONTROL         "&Hollow",IDC_OD_HOLLOW,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,121,42,37,10
+    CONTROL         "Fill Color",IDC_OD_FILL_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,82,40,35,12
+    CONTROL         "&Hollow",IDC_OD_HOLLOW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,121,42,37,10
     GROUPBOX        "Police de caractères",-1,10,55,195,43
-    LTEXT           "99 point Font\nBold Underline",IDC_OD_FONT,20,70,130,18,
-                    SS_SUNKEN
+    LTEXT           "99 point Font\nBold Underline",IDC_OD_FONT,20,70,130,18,SS_SUNKEN
     PUSHBUTTON      "C&hanger...",IDC_OD_CHANGE_FONT,160,65,35,12
-    CONTROL         "Couleur",IDC_OD_FONT_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,160,80,35,12
+    CONTROL         "Couleur",IDC_OD_FONT_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,160,80,35,12
     DEFPUSHBUTTON   "OK",IDOK,155,10,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,155,27,50,14
     LTEXT           "Invisible!",IDC_OD_LINE_SPIN,166,47,29,8,NOT WS_VISIBLE
 END
 
-IDD_OD_DRAWING_SCALE DIALOG  0, 0, 272, 111
+IDD_OD_DRAWING_SCALE DIALOG 0, 0, 272, 111
 STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "Echelle de dessin"
 FONT 8, "MS Sans Serif"
 BEGIN
     EDITTEXT        IDC_OD_SCALEFROM,100,28,40,14,ES_AUTOHSCROLL | ES_NUMBER
-    COMBOBOX        IDC_OD_SCALEFROM_UNITS,147,29,84,89,CBS_DROPDOWN | 
-                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_OD_SCALEFROM_UNITS,147,29,84,89,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Représente",IDC_STATIC,47,60,40,8
-    COMBOBOX        IDC_OD_SCALETO_UNITS,147,59,84,89,CBS_DROPDOWN | 
-                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_OD_SCALETO_UNITS,147,59,84,89,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
     EDITTEXT        IDC_OD_SCALETO,100,58,40,14,ES_AUTOHSCROLL | ES_NUMBER
     LTEXT           "Unités de dessin",IDC_STATIC,30,31,53,8
 END
@@ -887,35 +780,28 @@ STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Propriétés de la Grille"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    CONTROL         "&Visible",IDC_OD_GRID_VISIBLE,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,10,10,36,10
-    CONTROL         "&Aligner sur la Grille",IDC_OD_SNAP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,10,25,73,10
-    CONTROL         "&Angle",IDC_OD_ANGLE_SNAP,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,10,40,34,10
+    CONTROL         "&Visible",IDC_OD_GRID_VISIBLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,10,36,10
+    CONTROL         "&Aligner sur la Grille",IDC_OD_SNAP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,25,73,10
+    CONTROL         "&Angle",IDC_OD_ANGLE_SNAP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,40,34,10
     LTEXT           "&Couleur:",-1,10,57,27,8
-    CONTROL         "Grid Color",IDC_OD_GRID_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,50,55,35,12
+    CONTROL         "Grid Color",IDC_OD_GRID_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,50,55,35,12
     GROUPBOX        "Espacement",-1,10,70,144,55
     LTEXT           "&Horizontal:",-1,20,87,34,8
-    EDITTEXT        IDC_OD_GRID_SPACING_X,60,85,40,12,ES_AUTOHSCROLL,
-                    WS_EX_RIGHT
+    EDITTEXT        IDC_OD_GRID_SPACING_X,60,85,40,12,ES_AUTOHSCROLL,WS_EX_RIGHT
     LTEXT           "&Vertical:",-1,20,107,26,8
-    EDITTEXT        IDC_OD_GRID_SPACING_Y,60,105,40,12,ES_AUTOHSCROLL,
-                    WS_EX_RIGHT
+    EDITTEXT        IDC_OD_GRID_SPACING_Y,60,105,40,12,ES_AUTOHSCROLL,WS_EX_RIGHT
     DEFPUSHBUTTON   "OK",IDOK,102,10,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,102,27,50,14
     LTEXT           "Millimètres",IDC_OD_UNIT_MEASURE_LABEL1,108,87,37,8
     LTEXT           "Millimètres",IDC_OD_UNIT_MEASURE_LABEL2,108,107,38,8
 END
 
-IDD_OD_LABEL_LIST DIALOG  0, 0, 159, 86
+IDD_OD_LABEL_LIST DIALOG 0, 0, 159, 86
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Labels"
 FONT 8, "MS Sans Serif"
 BEGIN
-    LISTBOX         IDC_OD_LABEL_LIST,7,7,84,72,LBS_SORT | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_OD_LABEL_LIST,7,7,84,72,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     DEFPUSHBUTTON   "Fermer",IDOK,101,7,50,14
     PUSHBUTTON      "&Editer...",IDC_OD_EDIT,102,26,50,14
     PUSHBUTTON      "&Ajouter...",IDC_OD_ADD,102,45,50,14
@@ -928,29 +814,23 @@ CAPTION "Orientation Label"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     GROUPBOX        "&Orientation du Lien",IDC_STATIC,10,5,70,55
-    CONTROL         "&Gauche",IDC_OD_LEFT,"Button",BS_AUTORADIOBUTTON,20,15,
-                    41,10
-    CONTROL         "&Droit",IDC_OD_RIGHT,"Button",BS_AUTORADIOBUTTON,20,25,
-                    31,10
-    CONTROL         "&Dessus",IDC_OD_ABOVE,"Button",BS_AUTORADIOBUTTON,20,35,
-                    39,10
-    CONTROL         "D&essous",IDC_OD_BELOW,"Button",BS_AUTORADIOBUTTON,20,
-                    45,43,10
+    CONTROL         "&Gauche",IDC_OD_LEFT,"Button",BS_AUTORADIOBUTTON,20,15,41,10
+    CONTROL         "&Droit",IDC_OD_RIGHT,"Button",BS_AUTORADIOBUTTON,20,25,31,10
+    CONTROL         "&Dessus",IDC_OD_ABOVE,"Button",BS_AUTORADIOBUTTON,20,35,39,10
+    CONTROL         "D&essous",IDC_OD_BELOW,"Button",BS_AUTORADIOBUTTON,20,45,43,10
     LTEXT           "&Distance de la Source:",IDC_STATIC,10,67,73,8
-    EDITTEXT        IDC_OD_PERCENT_FROM_SOURCE,85,65,35,12,ES_AUTOHSCROLL,
-                    WS_EX_RIGHT
+    EDITTEXT        IDC_OD_PERCENT_FROM_SOURCE,85,65,35,12,ES_AUTOHSCROLL,WS_EX_RIGHT
     LTEXT           "Pourcent",IDC_STATIC,125,67,30,8
     DEFPUSHBUTTON   "OK",IDOK,100,10,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,100,28,50,14
 END
 
-IDD_OD_LINK_LIST DIALOG  0, 0, 159, 86
+IDD_OD_LINK_LIST DIALOG 0, 0, 159, 86
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Liste des liens"
 FONT 8, "MS Sans Serif"
 BEGIN
-    LISTBOX         IDC_OD_LABEL_LIST,7,7,84,72,LBS_SORT | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_OD_LABEL_LIST,7,7,84,72,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     DEFPUSHBUTTON   "OK",IDOK,101,7,50,14
     PUSHBUTTON      "&Editer...",IDC_OD_EDIT,102,26,50,14
     PUSHBUTTON      "&Ajouter...",IDC_OD_ADD,102,45,50,14
@@ -969,48 +849,36 @@ BEGIN
     LTEXT           "L&argeur:",IDC_STATIC,10,42,27,8
     EDITTEXT        IDC_OD_LINE_WIDTH,50,40,35,12,ES_AUTOHSCROLL,WS_EX_RIGHT
     LTEXT           "&Couleur:",IDC_STATIC,10,57,27,8
-    CONTROL         "Line Color",IDC_OD_LINE_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,50,55,35,12
+    CONTROL         "Line Color",IDC_OD_LINE_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,50,55,35,12
     DEFPUSHBUTTON   "OK",IDOK,155,7,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,155,26,50,14
     GROUPBOX        "Source",IDC_STATIC,10,70,140,40
     LTEXT           "Symbole:",IDC_STATIC,20,81,30,8
     LTEXT           "Port:",IDC_STATIC,20,96,16,8
-    LTEXT           "Static",IDC_OD_SOURCE_SYMBOL,55,80,90,12,0,
-                    WS_EX_STATICEDGE
-    LTEXT           "Static",IDC_OD_SOURCE_PORT,55,95,90,12,0,
-                    WS_EX_STATICEDGE
+    LTEXT           "Static",IDC_OD_SOURCE_SYMBOL,55,80,90,12,0,WS_EX_STATICEDGE
+    LTEXT           "Static",IDC_OD_SOURCE_PORT,55,95,90,12,0,WS_EX_STATICEDGE
     GROUPBOX        "Destination",IDC_STATIC,10,115,140,40
     LTEXT           "Symbole:",IDC_STATIC,20,126,30,8
     LTEXT           "Port:",IDC_STATIC,20,142,16,8
-    LTEXT           "Static",IDC_OD_TARGET_SYMBOL,55,125,90,12,0,
-                    WS_EX_STATICEDGE
-    LTEXT           "Static",IDC_OD_TARGET_PORT,55,140,90,12,0,
-                    WS_EX_STATICEDGE
+    LTEXT           "Static",IDC_OD_TARGET_SYMBOL,55,125,90,12,0,WS_EX_STATICEDGE
+    LTEXT           "Static",IDC_OD_TARGET_PORT,55,140,90,12,0,WS_EX_STATICEDGE
     PUSHBUTTON      "Labels...",IDC_OD_LABELS,155,45,50,14
 END
 
-IDD_OD_SYMBOL_LABEL DIALOG  0, 0, 188, 74
+IDD_OD_SYMBOL_LABEL DIALOG 0, 0, 188, 74
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Orientation Label"
 FONT 8, "MS Sans Serif"
 BEGIN
-    CONTROL         "&Ne pas Aligner sur Symbol",IDC_OD_NOT_ALIGNED,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,98,10
+    CONTROL         "&Ne pas Aligner sur Symbol",IDC_OD_NOT_ALIGNED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,98,10
     GROUPBOX        "&Horizontal",IDC_STATIC,7,22,55,45
-    CONTROL         "&Gauche",IDC_OD_LEFT,"Button",BS_AUTORADIOBUTTON,17,33,
-                    41,10
-    CONTROL         "&Centre",IDC_OD_CENTER,"Button",BS_AUTORADIOBUTTON,17,
-                    43,37,10
-    CONTROL         "&Droite",IDC_OD_RIGHT,"Button",BS_AUTORADIOBUTTON,17,53,
-                    35,10
+    CONTROL         "&Gauche",IDC_OD_LEFT,"Button",BS_AUTORADIOBUTTON,17,33,41,10
+    CONTROL         "&Centre",IDC_OD_CENTER,"Button",BS_AUTORADIOBUTTON,17,43,37,10
+    CONTROL         "&Droite",IDC_OD_RIGHT,"Button",BS_AUTORADIOBUTTON,17,53,35,10
     GROUPBOX        "&Vertical",IDC_STATIC,67,22,55,45
-    CONTROL         "&Haut",IDC_OD_TOP,"Button",BS_AUTORADIOBUTTON,77,33,31,
-                    10
-    CONTROL         "&Milieu",IDC_OD_MIDDLE,"Button",BS_AUTORADIOBUTTON,77,
-                    43,34,10
-    CONTROL         "&Bas",IDC_OD_BOTTOM,"Button",BS_AUTORADIOBUTTON,77,53,
-                    28,10
+    CONTROL         "&Haut",IDC_OD_TOP,"Button",BS_AUTORADIOBUTTON,77,33,31,10
+    CONTROL         "&Milieu",IDC_OD_MIDDLE,"Button",BS_AUTORADIOBUTTON,77,43,34,10
+    CONTROL         "&Bas",IDC_OD_BOTTOM,"Button",BS_AUTORADIOBUTTON,77,53,28,10
     DEFPUSHBUTTON   "OK",IDOK,131,7,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,131,24,50,14
 END
@@ -1027,19 +895,14 @@ BEGIN
     LTEXT           "&Largeur:",IDC_STATIC,10,57,27,8
     EDITTEXT        IDC_OD_LINE_WIDTH,50,55,35,12,ES_AUTOHSCROLL,WS_EX_RIGHT
     LTEXT           "&Couleur:",IDC_STATIC,10,72,27,8
-    CONTROL         "Line Color",IDC_OD_LINE_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,50,70,35,12
+    CONTROL         "Line Color",IDC_OD_LINE_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,50,70,35,12
     LTEXT           "&Rmp Couleur:",IDC_STATIC,10,87,44,8
-    CONTROL         "Fill Color",IDC_OD_FILL_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,50,85,35,12
-    CONTROL         "H&ollow",IDC_OD_HOLLOW,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,95,87,37,10
+    CONTROL         "Fill Color",IDC_OD_FILL_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,50,85,35,12
+    CONTROL         "H&ollow",IDC_OD_HOLLOW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,95,87,37,10
     GROUPBOX        "Police de caractères",IDC_STATIC,10,100,195,43
-    LTEXT           "99 point Font\nBold Underline",IDC_OD_FONT,20,115,130,
-                    18,SS_SUNKEN
+    LTEXT           "99 point Font\nBold Underline",IDC_OD_FONT,20,115,130,18,SS_SUNKEN
     PUSHBUTTON      "C&hanger...",IDC_OD_CHANGE_FONT,160,110,35,12
-    CONTROL         "Couleur",IDC_OD_FONT_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,160,125,35,12
+    CONTROL         "Couleur",IDC_OD_FONT_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,160,125,35,12
     DEFPUSHBUTTON   "OK",IDOK,155,10,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,155,27,50,14
     PUSHBUTTON      "&Alignement...",IDC_OD_ALIGNMENT,155,44,50,14
@@ -1047,7 +910,7 @@ BEGIN
     EDITTEXT        IDC_OD_TEXT,50,40,95,12,ES_AUTOHSCROLL
 END
 
-IDD_OD_ZOOM DIALOG  0, 0, 165, 66
+IDD_OD_ZOOM DIALOG 0, 0, 165, 66
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Zoom"
 FONT 8, "MS Sans Serif"
@@ -1055,64 +918,51 @@ BEGIN
     DEFPUSHBUTTON   "OK",IDOK,26,43,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,89,43,50,14
     LTEXT           "%:",IDC_STATIC,66,10,8,8
-    COMBOBOX        IDC_OD_MAGNIFICATION,81,8,63,62,CBS_DROPDOWN | 
-                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_OD_MAGNIFICATION,81,8,63,62,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
 END
 
-IDD_WZ_MODELWKF_START DIALOG  0, 0, 292, 199
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_WZ_MODELWKF_START DIALOG 0, 0, 292, 199
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Définition des paramètres du modèle dans le flux réel des activités"
-
 FONT 8, "MS Sans Serif"
 BEGIN
     DEFPUSHBUTTON   "Suivant >>",IDNEXT,80,184,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,17,184,50,14
-    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,270,
-                    182,18,16
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,270,182,18,16
     PUSHBUTTON      "Modifier",IDOK,144,184,50,14
     ICON            IDI_MODELWKF_GEN,IDC_STATIC,6,42,20,20
-    LTEXT           "Définir ce modèle comme étant la référence dans la génération du fichier qui servira de base aux flux réel des activités du processus.",
-                    IDC_STATIC,39,42,249,19
+    LTEXT           "Définir ce modèle comme étant la référence dans la génération du fichier qui servira de base aux flux réel des activités du processus.",IDC_STATIC,39,42,249,19
     LTEXT           "Etape 1:",IDC_STATIC,6,102,95,9
-    LTEXT           "Définir la forme de référence pour générer le modèle",
-                    IDC_STATIC,6,115,282,9
+    LTEXT           "Définir la forme de référence pour générer le modèle",IDC_STATIC,6,115,282,9
     LTEXT           "Etape 2:",IDC_STATIC,6,138,95,9
-    LTEXT           "Définir les options pour la génération",IDC_STATIC,6,
-                    151,282,9
+    LTEXT           "Définir les options pour la génération",IDC_STATIC,6,151,282,9
 END
 
-IDD_WZ_MODELWKF_OPTIONS DIALOG  0, 0, 292, 199
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_WZ_MODELWKF_OPTIONS DIALOG 0, 0, 292, 199
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Définition des paramètres du modèle dans le flux réel des activités"
-
 FONT 8, "MS Sans Serif"
 BEGIN
-    CONTROL         "Contrôler la consistence entre le modèle et le fichier de flux réel",
-                    IDC_CHECK_CONSISTENCY,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,6,83,219,10
+    CONTROL         "Contrôler la consistence entre le modèle et le fichier de flux réel",IDC_CHECK_CONSISTENCY,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,83,219,10
     DEFPUSHBUTTON   "Terminer",IDOK,144,184,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,17,184,50,14
     PUSHBUTTON      "Suivant >>",IDNEXT,80,184,50,14,NOT WS_VISIBLE
-    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,270,
-                    182,18,16
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,270,182,18,16
     ICON            IDI_MODELWKF_GEN,IDC_STATIC,6,42,20,20
-    CONTROL         "Sauvegarder une image du modèle dans le fichier de flux réel",
-                    IDC_SAVEWKF_INFILE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    32,118,211,11
+    CONTROL         "Sauvegarder une image du modèle dans le fichier de flux réel",IDC_SAVEWKF_INFILE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,32,118,211,11
     ICON            60130,IDC_STATIC,6,115,20,20
 END
 
-IDD_MODELTEMPLATESAVE DIALOG  36, 24, 327, 201
+IDD_MODELTEMPLATESAVE DIALOG 36, 24, 327, 201
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Sauvegarder un nouveau modèle"
 FONT 8, "Helv"
 BEGIN
     EDITTEXT        IDC_TITLE,89,4,233,12,ES_AUTOHSCROLL
     EDITTEXT        IDC_FILENAME,89,24,233,12,ES_AUTOHSCROLL
-    EDITTEXT        IDC_DESCRIPTION,46,60,276,47,ES_MULTILINE | 
-                    ES_AUTOVSCROLL | WS_VSCROLL
+    EDITTEXT        IDC_DESCRIPTION,46,60,276,47,ES_MULTILINE | ES_AUTOVSCROLL | WS_VSCROLL
     DEFPUSHBUTTON   "Sauvegarder",IDOK,69,183,50,14,WS_GROUP
     PUSHBUTTON      "&Abandonner",IDCANCEL,213,183,50,14,WS_GROUP
     PUSHBUTTON      "Aide",IDHELP,272,183,50,14,WS_GROUP
@@ -1120,107 +970,80 @@ BEGIN
     RTEXT           "Nom de la forme:",IDC_STATIC,32,6,55,10
     LTEXT           "Explications:",IDC_STATIC,3,61,41,10
     GROUPBOX        "",IDC_STATIC,3,105,319,73
-    LTEXT           "Le nom de fichier est automatiquement ajusté selon le nom de la forme. Vous pouvez donner un autre nom. ",
-                    IDC_STATIC,32,132,284,17
-    LTEXT           "Le nom de la forme permettra son identification lors de son utilisation future.",
-                    IDC_STATIC,32,115,284,11
+    LTEXT           "Le nom de fichier est automatiquement ajusté selon le nom de la forme. Vous pouvez donner un autre nom. ",IDC_STATIC,32,132,284,17
+    LTEXT           "Le nom de la forme permettra son identification lors de son utilisation future.",IDC_STATIC,32,115,284,11
     ICON            IDR_MODEL,IDC_STATIC,4,4,20,20
     ICON            IDI_ADVISEACTIVITY,IDC_STATIC,6,113,20,20
-    LTEXT           "Vous pouvez sélectionner un autre emplacement que celui par défaut.",
-                    IDC_STATIC,32,162,284,8
+    LTEXT           "Vous pouvez sélectionner un autre emplacement que celui par défaut.",IDC_STATIC,32,162,284,8
     EDITTEXT        IDC_MODELDIR,89,44,233,12,ES_AUTOHSCROLL
     RTEXT           "Emplacement:",IDC_STATIC,30,46,57,8
     PUSHBUTTON      "Ne pas sauvegarder",ID_DONTSAVE,128,183,76,14,WS_GROUP
 END
 
-IDD_PROCESSDLGDESIGN DIALOG  0, 0, 370, 199
-STYLE DS_SETFONT | DS_3DLOOK | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_PROCESSDLGDESIGN DIALOG 0, 0, 370, 199
+STYLE DS_SETFONT | DS_3DLOOK | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 FONT 8, "MS Sans Serif"
 BEGIN
-    CONTROL         "ACTPRC",IDC_ACTIVITY_CREATE,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,3,124,46,16
+    CONTROL         "ACTPRC",IDC_ACTIVITY_CREATE,"Button",BS_OWNERDRAW | WS_TABSTOP,3,124,46,16
     GROUPBOX        "Activité sélectionnée",IDC_ACTIVITY_GROUP,211,5,155,68
-    CONTROL         "ACTDLT",IDC_ACTIVITY_DELETE,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,3,181,46,16
-    CONTROL         "ACTMOD",IDC_ACTIVITY_MODIFY,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,3,143,46,16
-    CONTROL         "ACTREN",IDC_ACTIVITY_RENAME,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,3,162,46,16
+    CONTROL         "ACTDLT",IDC_ACTIVITY_DELETE,"Button",BS_OWNERDRAW | WS_TABSTOP,3,181,46,16
+    CONTROL         "ACTMOD",IDC_ACTIVITY_MODIFY,"Button",BS_OWNERDRAW | WS_TABSTOP,3,143,46,16
+    CONTROL         "ACTREN",IDC_ACTIVITY_RENAME,"Button",BS_OWNERDRAW | WS_TABSTOP,3,162,46,16
     EDITTEXT        IDC_ACTIVITYNAME,215,15,92,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_ACTIVITYDESCRIPTION,215,35,146,35,ES_AUTOHSCROLL
-    CONTROL         "PRCBLD",IDC_PROCESS_REBUILD,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,139,105,46,16
-    CONTROL         "Tree1",IDC_PROCESSTREE,"SysTreeView32",
-                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,3,12,193,90
-    CONTROL         "CRTPRC",IDC_SUBPROCESS_CREATE,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,3,105,46,16
-    CONTROL         "MOVEUP",IDC_ACTMOVEUP,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,197,46,9,14
-    CONTROL         "MOVEDWN",IDC_ACTMOVEDOWN,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,197,61,9,12
+    CONTROL         "PRCBLD",IDC_PROCESS_REBUILD,"Button",BS_OWNERDRAW | WS_TABSTOP,139,105,46,16
+    CONTROL         "Tree1",IDC_PROCESSTREE,"SysTreeView32",TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,3,12,193,90
+    CONTROL         "CRTPRC",IDC_SUBPROCESS_CREATE,"Button",BS_OWNERDRAW | WS_TABSTOP,3,105,46,16
+    CONTROL         "MOVEUP",IDC_ACTMOVEUP,"Button",BS_OWNERDRAW | WS_TABSTOP,197,46,9,14
+    CONTROL         "MOVEDWN",IDC_ACTMOVEDOWN,"Button",BS_OWNERDRAW | WS_TABSTOP,197,61,9,12
     PUSHBUTTON      "Fermer",IDOK,323,185,43,12
 END
 
-IDD_WZ_MODELTYPE_NOTATION DIALOG  0, 0, 292, 199
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_WZ_MODELTYPE_NOTATION DIALOG 0, 0, 292, 199
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Définition du modèle"
 FONT 8, "MS Sans Serif"
 BEGIN
-    CONTROL         "Mercutio",IDC_MODEL_NOTATION,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,105,87,50,10
-    CONTROL         "Amalia",IDC_MODEL_NOTATION2,"Button",BS_AUTORADIOBUTTON | 
-                    WS_DISABLED,105,108,42,10
+    CONTROL         "Mercutio",IDC_MODEL_NOTATION,"Button",BS_AUTORADIOBUTTON | WS_GROUP,105,87,50,10
+    CONTROL         "Amalia",IDC_MODEL_NOTATION2,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,105,108,42,10
     CONTROL         "UML (sans génération de workflow)",IDC_MODEL_NOTATION3,
                     "Button",BS_AUTORADIOBUTTON | WS_DISABLED,105,130,136,10
-    CONTROL         "aucune",IDC_MODEL_NOTATION4,"Button",BS_AUTORADIOBUTTON,
-                    105,151,136,10
+    CONTROL         "aucune",IDC_MODEL_NOTATION4,"Button",BS_AUTORADIOBUTTON,105,151,136,10
     DEFPUSHBUTTON   "Suivant >>",IDNEXT,80,184,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,17,184,50,14
-    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,270,
-                    182,18,16
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,270,182,18,16
     PUSHBUTTON      "Modifier",IDOK,144,184,50,14
     ICON            IDI_ICON_MERCUTIO,IDC_STATIC,159,83,20,20
     LTEXT           "Notation utilisée:",IDC_STATIC,39,86,61,9
     ICON            IDI_ICON_AMALIA,IDC_STATIC,157,105,20,20
 END
 
-IDD_WZ_MODELTYPE_OPTIONS DIALOG  0, 0, 292, 199
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_WZ_MODELTYPE_OPTIONS DIALOG 0, 0, 292, 199
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Définition des paramètres du modèle"
 FONT 8, "MS Sans Serif"
 BEGIN
-    CONTROL         "Contrôler la cohérence du modèle",
-                    IDC_CHECKMODEL_CONSISTENCY,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,32,75,126,10
-    CONTROL         "Ouvrir les sous-modèles dans la même fenêtre",
-                    IDC_BROWSEMODEL_INSAMEWINDOW,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,32,89,162,10
-    CONTROL         "Intégrer l'image du sous-modèle dans le symbol du sous-processus",
-                    IDC_SHOWPREVIEW_SUBMODEL,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,32,103,229,10
-    CONTROL         "Utiliser le modèle pour le workflow  (Messenger)",
-                    IDC_USEMODEL_ASWORKFLOW,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,32,117,184,10
-    CONTROL         "Intégrer la simulation des coûts (Sesterces)",
-                    IDC_INTEGRATE_COSTSIMULATION,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,32,131,168,10
+    CONTROL         "Contrôler la cohérence du modèle",IDC_CHECKMODEL_CONSISTENCY,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,32,75,126,10
+    CONTROL         "Ouvrir les sous-modèles dans la même fenêtre",IDC_BROWSEMODEL_INSAMEWINDOW,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,32,89,162,10
+    CONTROL         "Intégrer l'image du sous-modèle dans le symbol du sous-processus",IDC_SHOWPREVIEW_SUBMODEL,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,32,103,229,10
+    CONTROL         "Utiliser le modèle pour le workflow  (Messenger)",IDC_USEMODEL_ASWORKFLOW,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,32,117,184,10
+    CONTROL         "Intégrer la simulation des coûts (Sesterces)",IDC_INTEGRATE_COSTSIMULATION,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,32,131,168,10
     DEFPUSHBUTTON   "Terminer",IDOK,138,184,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,17,184,50,14
     PUSHBUTTON      "Suivant >>",IDNEXT,80,184,50,14
-    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,270,
-                    182,18,16
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,270,182,18,16
     ICON            IDI_MODELWKF_GEN,IDC_STATIC,6,56,20,20
     LTEXT           "Langue :",IDC_STATIC,32,148,31,10
-    COMBOBOX        IDC_MODEL_LANGUAGE,66,147,113,85,CBS_DROPDOWNLIST | 
-                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODEL_LANGUAGE,66,147,113,85,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
 END
 
-IDD_WZ_WORKSPACE_START DIALOG  0, 0, 292, 199
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_WZ_WORKSPACE_START DIALOG 0, 0, 292, 199
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Création d'un projet"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -1228,45 +1051,35 @@ BEGIN
     EDITTEXT        IDC_WORKSPACE_FOLDER,38,130,167,12,ES_AUTOHSCROLL
     DEFPUSHBUTTON   "Suivant >>",IDNEXT,80,184,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,17,184,50,14
-    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,270,
-                    182,18,16
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,270,182,18,16
     PUSHBUTTON      "Modifier",IDOK,144,184,50,14
     ICON            IDI_SCREEN1,IDC_STATIC,6,55,20,20
     LTEXT           "Répertoire:",IDC_STATIC,38,117,36,9
-    LTEXT           "Le projet vous permet d'organiser une série de modèles, de rapports et de documents annexes.",
-                    IDC_STATIC,37,57,238,18
+    LTEXT           "Le projet vous permet d'organiser une série de modèles, de rapports et de documents annexes.",IDC_STATIC,37,57,238,18
     LTEXT           "Nom du projet:",IDC_STATIC,38,85,89,9
 END
 
-IDD_WZ_WORKSPACE_TEMPLATE DIALOG  0, 0, 292, 199
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+IDD_WZ_WORKSPACE_TEMPLATE DIALOG 0, 0, 292, 199
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Projets prédéfinis"
 FONT 8, "MS Sans Serif"
 BEGIN
     DEFPUSHBUTTON   "Créer",IDOK,80,184,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,17,184,50,14
     PUSHBUTTON      "Suivant >>",IDNEXT,80,184,50,14,NOT WS_VISIBLE
-    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,270,
-                    182,18,16
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,270,182,18,16
     ICON            IDI_WORKSPACE,-1,6,55,21,20
-    LTEXT           "Vous pouvez sélectionner un projet de base qui contient différents rapports et documents prédéfinis.",
-                    -1,37,57,238,18
-    CONTROL         "List1",IDC_WKS_TEMPLATELIST,"SysListView32",LVS_REPORT | 
-                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | 
-                    WS_BORDER | WS_TABSTOP,38,85,134,88
-    LTEXT           "Veuillez sélectionner un projet dans la liste de gauche",
-                    IDC_WKS_COMMENT,177,85,111,89,SS_SUNKEN | WS_BORDER
+    LTEXT           "Vous pouvez sélectionner un projet de base qui contient différents rapports et documents prédéfinis.",-1,37,57,238,18
+    CONTROL         "List1",IDC_WKS_TEMPLATELIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,38,85,134,88
+    LTEXT           "Veuillez sélectionner un projet dans la liste de gauche",IDC_WKS_COMMENT,177,85,111,89,SS_SUNKEN | WS_BORDER
 END
 
 IDD_WZ_MODELTYPE_COSTOPT DIALOGEX 0, 0, 292, 199
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Définition des paramètres de calcul des coûts du modèle"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
-    COMBOBOX        IDC_CURRENCY_SYMBOL,110,75,47,43,CBS_DROPDOWN | 
-                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_CURRENCY_SYMBOL,110,75,47,43,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
     EDITTEXT        IDC_HOUR_PERDAY,129,94,28,13,ES_AUTOHSCROLL
     EDITTEXT        IDC_DAY_PERWEEK,129,114,28,13,ES_AUTOHSCROLL
     EDITTEXT        IDC_DAY_PERMONTH,129,134,28,13,ES_AUTOHSCROLL
@@ -1274,8 +1087,7 @@ BEGIN
     DEFPUSHBUTTON   "Terminer",IDOK,80,184,50,14
     PUSHBUTTON      "Suivant >>",IDNEXT,80,184,50,14,NOT WS_VISIBLE
     PUSHBUTTON      "Abandonner",IDCANCEL,17,184,50,14
-    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,270,
-                    182,18,16
+    CONTROL         "HELP",ID_HELP,"Button",BS_OWNERDRAW | WS_TABSTOP,270,182,18,16
     ICON            IDI_CALCULATOR,IDC_STATIC,6,67,20,20
     LTEXT           "Symbole monétaire:",IDC_STATIC,32,78,61,9
     LTEXT           "Heures par jour de travail:",IDC_STATIC,32,97,86,10
@@ -1285,30 +1097,20 @@ BEGIN
 END
 
 IDD_WELCOME_PROCESS DIALOGEX 0, 0, 291, 122
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Démarrage"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
-    CONTROL         "Fermer",IDCANCEL,"Button",BS_OWNERDRAW | BS_LEFT | 
-                    WS_TABSTOP,174,93,113,14
-    CONTROL         "Ouvrir dernier fichier",ID_WELCOME_LASTFILE,"Button",
-                    BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,174,75,113,14
-    CONTROL         "Ouvrir un modèle existant",ID_WELCOME_OPENMODEL,"Button",
-                    BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,174,57,113,14
-    CONTROL         "Ne plus montrer cette fenêtre",IDC_DONOTSTART,"Button",
-                    BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,184,111,103,
-                    11
-    CONTROL         "Créer nouveau modèle",ID_WELCOME_CREATE_NEWMODEL,"Button",
-                    BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,174,39,113,14
-    LTEXT           "Pour obtenir des informations, visitez notre site Internet",
-                    IDC_HYPERLINK_HTTP,1,112,173,10
+    CONTROL         "Fermer",IDCANCEL,"Button",BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,174,93,113,14
+    CONTROL         "Ouvrir dernier fichier",ID_WELCOME_LASTFILE,"Button",BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,174,75,113,14
+    CONTROL         "Ouvrir un modèle existant",ID_WELCOME_OPENMODEL,"Button",BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,174,57,113,14
+    CONTROL         "Ne plus montrer cette fenêtre",IDC_DONOTSTART,"Button",BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,184,111,103,11
+    CONTROL         "Créer nouveau modèle",ID_WELCOME_CREATE_NEWMODEL,"Button",BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,174,39,113,14
+    LTEXT           "Pour obtenir des informations, visitez notre site Internet",IDC_HYPERLINK_HTTP,1,112,173,10
     CONTROL         "Créer nouveau projet",ID_WELCOME_CREATE_NEWPROJECT,
-                    "Button",BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,174,3,113,
-                    14
+                    "Button",BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,174,3,113,14
     CONTROL         "Ouvrir un projet existant",ID_WELCOME_OPENPROJECT,
-                    "Button",BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,174,21,113,
-                    14
+                    "Button",BS_OWNERDRAW | BS_LEFT | WS_TABSTOP,174,21,113,14
 END
 
 IDD_CONCEPTOR_REPORT DIALOGEX 0, 0, 292, 199
@@ -1318,10 +1120,8 @@ FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     DEFPUSHBUTTON   "Générer",IDOK,144,184,50,14
     PUSHBUTTON      "Abandonner",IDCANCEL,17,184,50,14
-    CONTROL         "Détail",IDC_DETAIL,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,13,73,68,11
-    CONTROL         "Inclure les livrables",IDC_DELIVERABLE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,13,85,80,11
+    CONTROL         "Détail",IDC_DETAIL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,73,68,11
+    CONTROL         "Inclure les livrables",IDC_DELIVERABLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,85,80,11
     GROUPBOX        "Options de génération",IDC_STATIC,6,59,276,43
     PUSHBUTTON      "Suivant >>",IDNEXT,80,184,50,14,WS_DISABLED
 END
@@ -1387,113 +1187,214 @@ END
 //
 
 IDB_MDI                 BITMAP                  "RES\\3DADSOFT.BMP"
+
 MOVEUPD                 BITMAP                  "RES\\MOVEUPD.BMP"
+
 MOVEUPU                 BITMAP                  "RES\\MOVEUPU.BMP"
+
 MOVEUPF                 BITMAP                  "RES\\MOVEUPF.BMP"
+
 MOVEDWND                BITMAP                  "RES\\MOVEDWND.BMP"
+
 MOVEDWNF                BITMAP                  "RES\\MOVEDWNF.BMP"
+
 MOVEDWNU                BITMAP                  "RES\\MOVEDWNU.BMP"
+
 MOVEDWNX                BITMAP                  "RES\\MOVEDWNX.BMP"
+
 MOVEUPX                 BITMAP                  "RES\\MOVEUPX.BMP"
+
 IDB_LOCKED              BITMAP                  "RES\\LOCKED.BMP"
+
 IDB_CALCULATOR          BITMAP                  "RES\\CALCULAT.BMP"
+
 IDB_PRINTER             BITMAP                  "RES\\PRINTER.BMP"
+
 IDB_HIDDEN              BITMAP                  "RES\\HIDDEN.BMP"
+
 APPLY_PROPD             BITMAP                  "RES\\ID_APPLY.BMP"
+
 APPLY_PROPU             BITMAP                  "RES\\BMP00008.BMP"
+
 APPLY_PROPF             BITMAP                  "RES\\BMP00009.BMP"
+
 APPLY_PROPX             BITMAP                  "RES\\BMP00010.BMP"
+
 IDB_CALCWITHASSC        BITMAP                  "RES\\BMP00011.BMP"
+
 HELPU                   BITMAP                  "RES\\HELPU.BMP"
+
 HELPD                   BITMAP                  "RES\\HELPD.BMP"
+
 HELPF                   BITMAP                  "RES\\HELPF.BMP"
+
 IDB_CALCSHOWASSC        BITMAP                  "RES\\CALCSHOW.BMP"
+
 IDB_CALCBACKASSC        BITMAP                  "RES\\CALCBACK.BMP"
+
 IDB_BACKASSC            BITMAP                  "RES\\BACKASSC.BMP"
+
 GEND                    BITMAP                  "RES\\GEND.BMP"
+
 GENF                    BITMAP                  "RES\\GENF.BMP"
+
 GENU                    BITMAP                  "RES\\GENU.BMP"
+
 GENX                    BITMAP                  "RES\\GENX.BMP"
+
 OK_PROPU                BITMAP                  "RES\\BMP00004.BMP"
+
 OK_PROPF                BITMAP                  "RES\\BMP00005.BMP"
+
 OK_PROPD                BITMAP                  "RES\\ID_OK_PR.BMP"
+
 CANCEL_PROPU            BITMAP                  "RES\\BMP00007.BMP"
+
 CANCEL_PROPF            BITMAP                  "RES\\BMP00006.BMP"
+
 CANCEL_PROPD            BITMAP                  "RES\\ID_CANCE.BMP"
+
 COL_SELU                BITMAP                  "RES\\COL_SELU.BMP"
+
 COL_SELF                BITMAP                  "RES\\COL_SELF.BMP"
+
 COL_SELD                BITMAP                  "RES\\COL_SELD.BMP"
+
 CRTPRCX                 BITMAP                  "res\\crtprcx.bmp"
+
 CRTPRCU                 BITMAP                  "res\\crtprcu.bmp"
+
 CRTPRCF                 BITMAP                  "res\\crtprcf.bmp"
+
 CRTPRCD                 BITMAP                  "res\\crtprcd.bmp"
+
 ACTPRCX                 BITMAP                  "res\\actprcx.bmp"
+
 ACTPRCU                 BITMAP                  "res\\actprcu.bmp"
+
 ACTPRCF                 BITMAP                  "res\\actprcf.bmp"
+
 ACTPRCD                 BITMAP                  "res\\actprcd.bmp"
+
 ACTMODX                 BITMAP                  "res\\actmodx.bmp"
+
 ACTMODU                 BITMAP                  "res\\actmodu.bmp"
+
 ACTMODF                 BITMAP                  "res\\actmodf.bmp"
+
 ACTMODD                 BITMAP                  "res\\actmodd.bmp"
+
 ACTDLTX                 BITMAP                  "res\\actdltx.bmp"
+
 ACTDLTU                 BITMAP                  "res\\actdltu.bmp"
+
 ACTDLTF                 BITMAP                  "res\\actdltf.bmp"
+
 ACTDLTD                 BITMAP                  "res\\actdltd.bmp"
+
 ACTRENX                 BITMAP                  "res\\actrenx.bmp"
+
 ACTRENU                 BITMAP                  "res\\actrenu.bmp"
+
 ACTRENF                 BITMAP                  "res\\actrenf.bmp"
+
 ACTREND                 BITMAP                  "res\\actrend.bmp"
+
 PRCBLDX                 BITMAP                  "res\\prcbldx.bmp"
+
 PRCBLDU                 BITMAP                  "res\\prcbldu.bmp"
+
 PRCBLDF                 BITMAP                  "res\\prcbldf.bmp"
+
 PRCBLDD                 BITMAP                  "res\\prcbldd.bmp"
+
 IDB_IL_WORKSPACE        BITMAP                  "res\\il_works.bmp"
+
 IDB_CMN_DOWNARROW       BITMAP                  "RES\\DARROW.BMP"
+
 IDB_CMN_RIGHTARROW      BITMAP                  "RES\\RARROW.BMP"
+
 IDB_OD_DOWN_ARROW       BITMAP                  "res\\OdDownArrow.bmp"
+
 IDB_OD_LABELOFFSET      BITMAP                  "res\\OdLabelOffset.bmp"
+
 IDB_OD_LBICON_CLOSEDCURVE BITMAP                  "res\\OdCompLbClosedCurve.bmp"
+
 IDB_OD_LBICON_CURVE     BITMAP                  "res\\OdCompLbCurve.bmp"
+
 IDB_OD_LBICON_ELLIPSE   BITMAP                  "res\\OdCompLbEllipse.bmp"
+
 IDB_OD_LBICON_IMAGE     BITMAP                  "res\\OdCompLbImage.bmp"
+
 IDB_OD_LBICON_LINE      BITMAP                  "res\\OdCompLbLine.bmp"
+
 IDB_OD_LBICON_LINK      BITMAP                  "res\\OdCompLbLink.bmp"
+
 IDB_OD_LBICON_POLYGON   BITMAP                  "res\\OdCompLbPolygon.bmp"
+
 IDB_OD_LBICON_PORT      BITMAP                  "res\\OdCompLbPort.bmp"
+
 IDB_OD_LBICON_RECT      BITMAP                  "res\\OdCompLbRect.bmp"
+
 IDB_OD_LBICON_SYMBOL    BITMAP                  "res\\OdCompLbSymbol.bmp"
+
 IDB_OD_LBICON_TEXT      BITMAP                  "res\\OdCompLbText.bmp"
+
 IDB_OD_RIGHT_ARROW      BITMAP                  "res\\OdRightArrow.bmp"
+
 IDB_OD_TRUETYPE         BITMAP                  "res\\OdTrueType.bmp"
+
 IDB_KEY_FLAG            BITMAP                  "res\\key_flag.bmp"
+
 IDR_ABC_MODELISATION    BITMAP                  "res\\toolbar1.bmp"
+
 IDB_FULLSCREEN          BITMAP                  "res\\fullscre.bmp"
+
 IDR_PROCESS             BITMAP                  "res\\process.bmp"
+
 IDB_WZBMP1              BITMAP                  "res\\wz1.bmp"
+
 IDR_FULLTOOLBAR         BITMAP                  "res\\fulltool.bmp"
+
 IDR_OD_DRAWING          BITMAP                  "res\\OdDrawing.bmp"
+
 IDR_OD_LAYOUT           BITMAP                  "res\\OdLayout.bmp"
+
 IDR_OD_LINK             BITMAP                  "res\\OdLink.bmp"
+
 IDR_OD_STRUCTURE        BITMAP                  "res\\OdStructure.bmp"
+
 IDB_IL_OUTPUTWORKSPACE  BITMAP                  "res\\il_outpu.bmp"
+
 IDR_ABC_MAINFRAME       BITMAP                  "res\\mainfram.bmp"
+
 IDR_ABC_MODELGENERATION BITMAP                  "res\\symbol1.bmp"
+
 IDR_NAVIGATION          BITMAP                  "res\\model1.bmp"
+
 IDR_PROCESS_2000        BITMAP                  "res\\process2.bmp"
+
 IDR_BP_MAINFRAME        BITMAP                  "res\\abc_main.bmp"
+
 IDB_IL_PROPERTIESWORKSPACE BITMAP                  "res\\il_prope.bmp"
+
 IDR_MAINFRAME           BITMAP                  "res\\bmp00001.bmp"
+
 IDB_UGP_FLATTOOLBAR     BITMAP                  "res\\prop_fla.bmp"
+
 IDB_WELCOME_P           BITMAP                  "Res\\welcome.bmp"
+
 IDB_LOGICALSYSTEM_FLATTOOLBAR BITMAP                  "res\\ugp_flat.bmp"
+
 IDB_RULES_FLATTOOLBAR   BITMAP                  "res\\RulesFlatToolbar.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Accelerator
 //
 
-IDR_MAINFRAME ACCELERATORS 
+IDR_MAINFRAME ACCELERATORS
 BEGIN
     "A",            ID_SELECT_ALL,          VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
@@ -1528,7 +1429,7 @@ BEGIN
     "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
 END
 
-IDR_MODEL ACCELERATORS 
+IDR_MODEL ACCELERATORS
 BEGIN
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
     "D",            ID_EDIT_DUPLICATE,      VIRTKEY, CONTROL, NOINVERT
@@ -1569,17 +1470,29 @@ END
 //
 
 IDC_MOVE_SAVE           CURSOR                  "RES\\3DSMOVE.CUR"
+
 IDC_NOMOVE_SAVE         CURSOR                  "RES\\3DGNO.CUR"
+
 IDC_DURINGMOVE_SAVE     CURSOR                  "RES\\HCROSS.CUR"
+
 IDC_WIZARD_SAVE         CURSOR                  "RES\\WIZARD.CUR"
+
 IDC_DURINGMOVE          CURSOR                  "RES\\CURSOR1.CUR"
+
 IDC_MOVE                CURSOR                  "RES\\CUR00001.CUR"
+
 IDC_NOMOVE              CURSOR                  "RES\\CUR00002.CUR"
+
 IDC_CURSOR1             CURSOR                  "RES\\DANGER~3.CUR"
+
 IDC_NEWOBJECT           CURSOR                  "RES\\NEWOBJEC.CUR"
+
 IDC_CURSOR2             CURSOR                  "RES\\DANGE~10.CUR"
+
 IDC_DIALOGSAVE_ICON     CURSOR                  "RES\\DESIGN.CUR"
+
 IDC_SELECTOROBJECT      CURSOR                  "RES\\SELECTOR.CUR"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1587,7 +1500,7 @@ IDC_SELECTOROBJECT      CURSOR                  "RES\\SELECTOR.CUR"
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_PROCESSWINDOWDESIGN, DIALOG
     BEGIN
@@ -1844,20 +1757,28 @@ END
 //
 
 IDR_HELPCONTEXT_FILE    HTML                    "res\\helpcont.htm"
+
 IDR_TESTTIP_FILE        HTML                    "res\\tips.htm"
+
 QUESTIONMARK.GIF        HTML                    "res\\QuestionMark.gif"
+
 TIPS.GIF                HTML                    "res\\tips.gif"
+
 IDR_SUPPORT_CONCEPTOR_02 HTML                    "res\\support_conceptor_02.htm"
+
 IDR_ABOUT_CONCEPTOR_02  HTML                    "res\\about_conceptor_02.htm"
+
 CONCEPTOR.JPG           HTML                    "res\\conceptor.jpg"
+
 PROCESSOFT.JPG          HTML                    "res\\processsoft.jpg"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Menu
 //
 
-IDR_OD_MENU MENU 
+IDR_OD_MENU MENU
 BEGIN
     POPUP "&Edit"
     BEGIN
@@ -1947,7 +1868,7 @@ BEGIN
     END
 END
 
-IDR_OD_POPUP MENU 
+IDR_OD_POPUP MENU
 BEGIN
     POPUP "&Viewport"
     BEGIN
@@ -1984,11 +1905,8 @@ BEGIN
         MENUITEM "Zoom pour &Englober le diagramme", ID_OD_ZOOM_FIT
         MENUITEM SEPARATOR
         MENUITEM "Contrôler la cohérence",      ID_CHECK_MODEL
-        MENUITEM "Recalculer paramètres Sesterces", 
-                                                ID_RECALCULATE_MODEL_PARAM
-        MENUITEM "Recalculer paramètres Sesterces (modèle sél.)", 
-                                                ID_RECALCULATE_SELECTEDMODEL_PARAM
-
+        MENUITEM "Recalculer paramètres Sesterces", ID_RECALCULATE_MODEL_PARAM
+        MENUITEM "Recalculer paramètres Sesterces (modèle sél.)", ID_RECALCULATE_SELECTEDMODEL_PARAM
     END
     POPUP "&Component"
     BEGIN
@@ -2029,15 +1947,14 @@ BEGIN
     END
 END
 
-IDR_CONTEXT1 MENU 
+IDR_CONTEXT1 MENU
 BEGIN
     POPUP "Object"
     BEGIN
         POPUP "Magicien"
         BEGIN
             MENUITEM "Magicien de formattage",      ID_WIZARD_FORMATFIELD
-            MENUITEM "Magicien de création de formules", 
-                                                    ID_WIZARD_CREATEFORMULA
+            MENUITEM "Magicien de création de formules", ID_WIZARD_CREATEFORMULA
             MENUITEM "Magicien pour changer de type", ID_EDITION_CHANGETYPE
         END
         POPUP "Formattage"
@@ -2046,12 +1963,9 @@ BEGIN
             MENUITEM SEPARATOR
             MENUITEM "Changer de format\tCtrl+F",   ID_SUBMENU_FORMAT
             MENUITEM "Changer le style",            ID_CHANGE_STYLE
-            MENUITEM "Changer la fonte pour ce champ", 
-                                                    ID_SUBMENU1_FONTCHANGE
+            MENUITEM "Changer la fonte pour ce champ", ID_SUBMENU1_FONTCHANGE
             MENUITEM "Changer la couleur du texte", ID_SUBMENU1_CHANGECOLOR
-            MENUITEM "Changer la couleur de remplissage", 
-                                                    ID_SUBMENU1_CHANGEFILLCOLOR
-
+            MENUITEM "Changer la couleur de remplissage", ID_SUBMENU1_CHANGEFILLCOLOR
             MENUITEM "Changer la bordure",          ID_CHANGE_BORDER
             MENUITEM "Aligner\tCtrl+A",             ID_SUBMENU1_ALIGN
         END
@@ -2108,12 +2022,9 @@ BEGIN
             MENUITEM SEPARATOR
             MENUITEM "Changer de format\tCtrl+F",   ID_SUBMENU_FORMAT
             MENUITEM "Changer le style",            ID_CHANGE_STYLE
-            MENUITEM "Changer la fonte pour ce champ", 
-                                                    ID_SUBMENU1_FONTCHANGE
+            MENUITEM "Changer la fonte pour ce champ", ID_SUBMENU1_FONTCHANGE
             MENUITEM "Changer la couleur du texte", ID_SUBMENU1_CHANGECOLOR
-            MENUITEM "Changer la couleur de remplissage", 
-                                                    ID_SUBMENU1_CHANGEFILLCOLOR
-
+            MENUITEM "Changer la couleur de remplissage", ID_SUBMENU1_CHANGEFILLCOLOR
             MENUITEM "Changer la bordure",          ID_CHANGE_BORDER
             MENUITEM "Aligner\tCtrl+A",             ID_SUBMENU1_ALIGN
         END
@@ -2122,9 +2033,7 @@ BEGIN
             MENUITEM "Changer le style",            ID_SECTION_CHANGE_STYLE
             MENUITEM "Changer la fonte",            ID_SECTION_FONTCHANGE
             MENUITEM "Changer la couleur du texte", ID_SECTION_CHANGECOLOR
-            MENUITEM "Changer la couleur de remplissage", 
-                                                    ID_SECTION_CHANGEFILLCOLOR
-
+            MENUITEM "Changer la couleur de remplissage", ID_SECTION_CHANGEFILLCOLOR
             MENUITEM "Aligner",                     ID_SECTION_ALIGN
         END
         MENUITEM SEPARATOR
@@ -2153,8 +2062,7 @@ BEGIN
         POPUP "Magicien"
         BEGIN
             MENUITEM "Magicien de formattage",      ID_WIZARD_FORMATFIELD
-            MENUITEM "Magicien d'édition de champs calculés", 
-                                                    ID_WIZARD_CALCULATED
+            MENUITEM "Magicien d'édition de champs calculés", ID_WIZARD_CALCULATED
             MENUITEM "Magicien pour changer de type", ID_EDITION_CHANGETYPE
         END
         POPUP "Formattage"
@@ -2163,12 +2071,9 @@ BEGIN
             MENUITEM SEPARATOR
             MENUITEM "Changer de format\tCtrl+F",   ID_SUBMENU_FORMAT
             MENUITEM "Changer le style",            ID_CHANGE_STYLE
-            MENUITEM "Changer la fonte pour ce champ", 
-                                                    ID_SUBMENU1_FONTCHANGE
+            MENUITEM "Changer la fonte pour ce champ", ID_SUBMENU1_FONTCHANGE
             MENUITEM "Changer la couleur du texte", ID_SUBMENU1_CHANGECOLOR
-            MENUITEM "Changer la couleur de remplissage", 
-                                                    ID_SUBMENU1_CHANGEFILLCOLOR
-
+            MENUITEM "Changer la couleur de remplissage", ID_SUBMENU1_CHANGEFILLCOLOR
             MENUITEM "Changer la bordure",          ID_CHANGE_BORDER
             MENUITEM "Aligner\tCtrl+A",             ID_SUBMENU1_ALIGN
         END
@@ -2177,12 +2082,10 @@ BEGIN
             MENUITEM "Magicien de formules",        ID_WIZARD_CALCULATED
             MENUITEM SEPARATOR
             MENUITEM "Appliquer l'arrondi",         ID_FIELD_APPLYROUNDED
-            MENUITEM "Bloquer le champ pour édition\tCtrl+B", 
-                                                    ID_EDITION_PROTECTOBJECT
+            MENUITEM "Bloquer le champ pour édition\tCtrl+B", ID_EDITION_PROTECTOBJECT
             MENUITEM "Modifier la formule",         ID_WIZARD_MODIFYfORMULA
         END
         MENUITEM "Associer formule(s)",         ID_FORMULA_SCENARIO_ASSOCIATE
-
         MENUITEM SEPARATOR
         MENUITEM "Propriétés de base\tAlt+Enter", ID_FIELD_PROPERTY
         MENUITEM "Changer position et taille",  ID_FIELD_POSITION_SIZE
@@ -2206,8 +2109,7 @@ BEGIN
         POPUP "Magicien"
         BEGIN
             MENUITEM "Magicien de formattage",      ID_WIZARD_FORMATFIELD
-            MENUITEM "Magicien de création de formules", 
-                                                    ID_WIZARD_CREATEFORMULA
+            MENUITEM "Magicien de création de formules", ID_WIZARD_CREATEFORMULA
             MENUITEM "Magicien pour changer de type", ID_EDITION_CHANGETYPE
         END
         POPUP "Formattage"
@@ -2216,12 +2118,9 @@ BEGIN
             MENUITEM SEPARATOR
             MENUITEM "Changer de format\tCtrl+F",   ID_SUBMENU_FORMAT
             MENUITEM "Changer le style",            ID_CHANGE_STYLE
-            MENUITEM "Changer la fonte pour ce champ", 
-                                                    ID_SUBMENU1_FONTCHANGE
+            MENUITEM "Changer la fonte pour ce champ", ID_SUBMENU1_FONTCHANGE
             MENUITEM "Changer la couleur du texte", ID_SUBMENU1_CHANGECOLOR
-            MENUITEM "Changer la couleur de remplissage", 
-                                                    ID_SUBMENU1_CHANGEFILLCOLOR
-
+            MENUITEM "Changer la couleur de remplissage", ID_SUBMENU1_CHANGEFILLCOLOR
             MENUITEM "Changer la bordure",          ID_CHANGE_BORDER
             MENUITEM "Aligner\tCtrl+A",             ID_SUBMENU1_ALIGN
         END
@@ -2269,8 +2168,7 @@ BEGIN
         POPUP "Magicien"
         BEGIN
             MENUITEM "Magicien de formattage",      ID_WIZARD_FORMATFIELD
-            MENUITEM "Magicien de création de formules", 
-                                                    ID_WIZARD_CREATEFORMULA
+            MENUITEM "Magicien de création de formules", ID_WIZARD_CREATEFORMULA
             MENUITEM "Magicien pour changer de type", ID_EDITION_CHANGETYPE
         END
         POPUP "Formattage"
@@ -2279,12 +2177,9 @@ BEGIN
             MENUITEM SEPARATOR
             MENUITEM "Changer de format\tCtrl+F",   ID_SUBMENU_FORMAT
             MENUITEM "Changer le style",            ID_CHANGE_STYLE
-            MENUITEM "Changer la fonte pour ce champ", 
-                                                    ID_SUBMENU1_FONTCHANGE
+            MENUITEM "Changer la fonte pour ce champ", ID_SUBMENU1_FONTCHANGE
             MENUITEM "Changer la couleur du texte", ID_SUBMENU1_CHANGECOLOR
-            MENUITEM "Changer la couleur de remplissage", 
-                                                    ID_SUBMENU1_CHANGEFILLCOLOR
-
+            MENUITEM "Changer la couleur de remplissage", ID_SUBMENU1_CHANGEFILLCOLOR
             MENUITEM "Changer la bordure",          ID_CHANGE_BORDER
             MENUITEM "Aligner\tCtrl+A",             ID_SUBMENU1_ALIGN
         END
@@ -2319,12 +2214,9 @@ BEGIN
             MENUITEM SEPARATOR
             MENUITEM "Changer de format\tCtrl+F",   ID_SUBMENU_FORMAT
             MENUITEM "Changer le style",            ID_CHANGE_STYLE
-            MENUITEM "Changer la fonte pour ce champ", 
-                                                    ID_SUBMENU1_FONTCHANGE
+            MENUITEM "Changer la fonte pour ce champ", ID_SUBMENU1_FONTCHANGE
             MENUITEM "Changer la couleur du texte", ID_SUBMENU1_CHANGECOLOR
-            MENUITEM "Changer la couleur de remplissage", 
-                                                    ID_SUBMENU1_CHANGEFILLCOLOR
-
+            MENUITEM "Changer la couleur de remplissage", ID_SUBMENU1_CHANGEFILLCOLOR
             MENUITEM "Changer la bordure",          ID_CHANGE_BORDER
             MENUITEM "Aligner\tCtrl+A",             ID_SUBMENU1_ALIGN
         END
@@ -2353,8 +2245,7 @@ BEGIN
         POPUP "Magicien"
         BEGIN
             MENUITEM "Magicien de formattage",      ID_WIZARD_FORMATFIELD
-            MENUITEM "Magicien de création de formules", 
-                                                    ID_WIZARD_CREATEFORMULA
+            MENUITEM "Magicien de création de formules", ID_WIZARD_CREATEFORMULA
             MENUITEM "Magicien pour changer de type", ID_EDITION_CHANGETYPE
         END
         POPUP "Formattage"
@@ -2363,12 +2254,9 @@ BEGIN
             MENUITEM SEPARATOR
             MENUITEM "Changer de format\tCtrl+F",   ID_SUBMENU_FORMAT
             MENUITEM "Changer le style",            ID_CHANGE_STYLE
-            MENUITEM "Changer la fonte pour ce champ", 
-                                                    ID_SUBMENU1_FONTCHANGE
+            MENUITEM "Changer la fonte pour ce champ", ID_SUBMENU1_FONTCHANGE
             MENUITEM "Changer la couleur du texte", ID_SUBMENU1_CHANGECOLOR
-            MENUITEM "Changer la couleur de remplissage", 
-                                                    ID_SUBMENU1_CHANGEFILLCOLOR
-
+            MENUITEM "Changer la couleur de remplissage", ID_SUBMENU1_CHANGEFILLCOLOR
             MENUITEM "Changer la bordure",          ID_CHANGE_BORDER
             MENUITEM "Aligner\tCtrl+A",             ID_SUBMENU1_ALIGN
         END
@@ -2418,7 +2306,7 @@ BEGIN
     END
 END
 
-IDR_MISC_MENU MENU 
+IDR_MISC_MENU MENU
 BEGIN
     POPUP "Misc"
     BEGIN
@@ -2480,7 +2368,7 @@ BEGIN
     END
 END
 
-IDR_WIZARDMENU MENU 
+IDR_WIZARDMENU MENU
 BEGIN
     POPUP "Calculated"
     BEGIN
@@ -2507,25 +2395,25 @@ BEGIN
     END
 END
 
-IDR_HISTORYFILEFIELD MENU 
+IDR_HISTORYFILEFIELD MENU
 BEGIN
     MENUITEM "Aide",                        ID_AIDE1309
     MENUITEM "A propos...",                 ID_APROPOS1310
 END
 
-IDR_DEFINITIONFILEFIELD MENU 
+IDR_DEFINITIONFILEFIELD MENU
 BEGIN
     MENUITEM "Aide",                        ID_AIDE1308
     MENUITEM "A propos...",                 ID_APROPOS1311
 END
 
-IDR_FEEDFILEFIELD MENU 
+IDR_FEEDFILEFIELD MENU
 BEGIN
     MENUITEM "Aide",                        ID_AIDE
     MENUITEM "A propos...",                 ID_APROPOS
 END
 
-IDR_PROCESS MENU 
+IDR_PROCESS MENU
 BEGIN
     POPUP "&Fichiers"
     BEGIN
@@ -2566,13 +2454,11 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "Modèles récents"
         BEGIN
-            MENUITEM "Modèles Récents",             ID_FILE_MRU_MODEL1
-            , GRAYED
+            MENUITEM "Modèles Récents",             ID_FILE_MRU_MODEL1, GRAYED
         END
         POPUP "Processus récents"
         BEGIN
-            MENUITEM "Processus Récents",           ID_FILE_MRU_PROCESS1
-            , GRAYED
+            MENUITEM "Processus Récents",           ID_FILE_MRU_PROCESS1, GRAYED
         END
         MENUITEM SEPARATOR
         MENUITEM "&Sortie",                     ID_APP_EXIT
@@ -2585,8 +2471,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Propriétés de base\tAlt+Enter", ID_FIELD_PROPERTY
         MENUITEM "Changer position et taille",  ID_FIELD_POSITION_SIZE
-        MENUITEM "Bloquer le champ pour édition\tCtrl+B", 
-                                                ID_EDITION_PROTECTOBJECT
+        MENUITEM "Bloquer le champ pour édition\tCtrl+B", ID_EDITION_PROTECTOBJECT
         MENUITEM "Cacher l'objet",              ID_SUBMENU1_OBJECTHIDE
         MENUITEM "Cacher l'objet à l'impression", ID_SUBMENU1_HIDEPRTOBJECT
         MENUITEM "Conserver l'historique",      ID_KEEP_HISTORY
@@ -2661,7 +2546,7 @@ BEGIN
     END
 END
 
-IDR_MDIPAGE MENU 
+IDR_MDIPAGE MENU
 BEGIN
     POPUP "&Fichiers"
     BEGIN
@@ -2680,13 +2565,12 @@ BEGIN
     BEGIN
         POPUP "Processus récents"
         BEGIN
-            MENUITEM "Processus Récents",           ID_WKF_CLEARUSEFORWORKFLOW
-            , GRAYED
+            MENUITEM "Processus Récents",           ID_WKF_CLEARUSEFORWORKFLOW, GRAYED
         END
     END
 END
 
-IDR_FILEDROPDOWN MENU 
+IDR_FILEDROPDOWN MENU
 BEGIN
     POPUP "&Fichiers"
     BEGIN
@@ -2694,7 +2578,7 @@ BEGIN
     END
 END
 
-IDR_MODELDROPDOWN MENU 
+IDR_MODELDROPDOWN MENU
 BEGIN
     POPUP "&Fichiers"
     BEGIN
@@ -2702,7 +2586,7 @@ BEGIN
     END
 END
 
-IDR_MODEL MENU 
+IDR_MODEL MENU
 BEGIN
     POPUP "&Fichiers"
     BEGIN
@@ -2755,7 +2639,7 @@ BEGIN
     END
 END
 
-IDR_POPUP MENU 
+IDR_POPUP MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
@@ -2765,7 +2649,7 @@ BEGIN
     END
 END
 
-IDR_MAINFRAME MENU 
+IDR_MAINFRAME MENU
 BEGIN
     POPUP "&Fichiers"
     BEGIN
@@ -2854,11 +2738,9 @@ BEGIN
         MENUITEM "Propriétés de la grille...",  ID_OD_GRID_PROPS
         MENUITEM SEPARATOR
         MENUITEM "Montrer la zone du Nom",      ID_SYM_SHOWNAMEAREA
-        MENUITEM "Montrer la zone de Description", 
-                                                ID_SYM_SHOWDESCRIPTIONAREA
+        MENUITEM "Montrer la zone de Description", ID_SYM_SHOWDESCRIPTIONAREA
         MENUITEM "Montrer la zone des Attributs", ID_SYM_SHOWATTRIBUTEAREA
-        MENUITEM "Sélectionner les attributs à afficher", 
-                                                ID_SYM_SELECTATTRIBUTES
+        MENUITEM "Sélectionner les attributs à afficher", ID_SYM_SELECTATTRIBUTES
         MENUITEM "Afficher label des attributs", ID_SYM_SHOWLABELATTRIBUTES
         MENUITEM SEPARATOR
         MENUITEM "Ajouter un attribut dynamique", ID_DYNATTR_ADD
@@ -2980,47 +2862,27 @@ BEGIN
     POPUP "&Outils"
     BEGIN
         MENUITEM "Contrôler la cohérence du modèle", ID_CHECK_MODEL
-        MENUITEM "Recalculer les paramètres Sesterces", 
-                                                ID_RECALCULATE_MODEL_PARAM
-        MENUITEM "Contrôler et Calculer les délais", 
-                                                ID_RECALCULATE_MODEL_DURATION
-
+        MENUITEM "Recalculer les paramètres Sesterces", ID_RECALCULATE_MODEL_PARAM
+        MENUITEM "Contrôler et Calculer les délais", ID_RECALCULATE_MODEL_DURATION
         MENUITEM "Calculer les risques",        ID_CALCULATE_RISKS
         MENUITEM SEPARATOR
-        MENUITEM "Assigner au modèle le fichier des groupes", 
-                                                ID_ASSIGN_CURRENTUSERDEF
-        MENUITEM "Assigner au modèle le fichier des systèmes logiques", 
-                                                ID_ASSIGN_CURRENTSYSTEMDEF
-        MENUITEM "Assigner au modèle le fichier des prestations", 
-                                                ID_ASSIGN_CURRENTPRESTATIONSDEF
-
-        MENUITEM "Assigner au modèle le fichier des règles", 
-                                                ID_ASSIGN_CURRENTRULESDEF
+        MENUITEM "Assigner au modèle le fichier des groupes", ID_ASSIGN_CURRENTUSERDEF
+        MENUITEM "Assigner au modèle le fichier des systèmes logiques", ID_ASSIGN_CURRENTSYSTEMDEF
+        MENUITEM "Assigner au modèle le fichier des prestations", ID_ASSIGN_CURRENTPRESTATIONSDEF
+        MENUITEM "Assigner au modèle le fichier des règles", ID_ASSIGN_CURRENTRULESDEF
         MENUITEM SEPARATOR
-        MENUITEM "Reassigner les groupes aux symboles", 
-                                                ID_SYMBOL_REASSIGN_USERGROUP
-        MENUITEM "Reassigner les systèmes logiques aux symboles", 
-                                                ID_SYMBOL_REASSIGN_LOGICALSYS
-
-        MENUITEM "Réassigner les prestations aux symboles", 
-                                                ID_SYMBOL_REASSIGN_PRESTATIONS
-
+        MENUITEM "Reassigner les groupes aux symboles", ID_SYMBOL_REASSIGN_USERGROUP
+        MENUITEM "Reassigner les systèmes logiques aux symboles", ID_SYMBOL_REASSIGN_LOGICALSYS
+        MENUITEM "Réassigner les prestations aux symboles", ID_SYMBOL_REASSIGN_PRESTATIONS
         MENUITEM "Réassigner les règles aux symboles", 1304
         MENUITEM SEPARATOR
         MENUITEM "Générer le rapport de contrôle", ID_GENERATE_REPORT_CHECK
         MENUITEM "Générer le rapport Mercutio", ID_GENERATE_REPORT_MERCUTIO
-        MENUITEM "Générer le rapport Conceptor", 
-                                                ID_GENERATE_REPORT_CONCEPTOR
+        MENUITEM "Générer le rapport Conceptor", ID_GENERATE_REPORT_CONCEPTOR
         MENUITEM "Générer le rapport Sesterces", ID_GENERATE_REPORT_SESTERCE
-        MENUITEM "Générer le rapport Sesterces Unités", 
-                                                ID_GENERATE_REPORT_SESTERCE_UNIT
-
-        MENUITEM "Générer le rapport Sesterces Consolidé", 
-                                                ID_GENERATE_REPORT_SESTERCE_CONSOLIDATED
-
-        MENUITEM "Générer le rapport Prestations", 
-                                                ID_GENERATE_REPORT_PRESTATIONS
-
+        MENUITEM "Générer le rapport Sesterces Unités", ID_GENERATE_REPORT_SESTERCE_UNIT
+        MENUITEM "Générer le rapport Sesterces Consolidé", ID_GENERATE_REPORT_SESTERCE_CONSOLIDATED
+        MENUITEM "Générer le rapport Prestations", ID_GENERATE_REPORT_PRESTATIONS
         MENUITEM SEPARATOR
         MENUITEM "Personnaliser les barres d'outils", IDC_CUSTOMIZE
         MENUITEM "Options...",                  ID_OPTIONS
@@ -3042,7 +2904,7 @@ BEGIN
     END
 END
 
-IDR_NAVSYMBOL_REF_POPUP MENU 
+IDR_NAVSYMBOL_REF_POPUP MENU
 BEGIN
     POPUP "PageModel"
     BEGIN
@@ -3066,8 +2928,7 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
-                                                ID_MBRS_OD_PROPERTIES
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
         MENUITEM SEPARATOR
@@ -3083,8 +2944,7 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
-                                                ID_MBRS_OD_PROPERTIES
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
     END
@@ -3097,8 +2957,7 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
-                                                ID_MBRS_OD_PROPERTIES
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
     END
@@ -3111,8 +2970,7 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
-                                                ID_MBRS_OD_PROPERTIES
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
     END
@@ -3125,8 +2983,7 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
-                                                ID_MBRS_OD_PROPERTIES
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
     END
@@ -3139,8 +2996,7 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
-                                                ID_MBRS_OD_PROPERTIES
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
         MENUITEM SEPARATOR
@@ -3156,8 +3012,7 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
-                                                ID_MBRS_OD_PROPERTIES
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
         MENUITEM SEPARATOR
@@ -3173,8 +3028,7 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
-                                                ID_MBRS_OD_PROPERTIES
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
     END
@@ -3187,14 +3041,13 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
-                                                ID_MBRS_OD_PROPERTIES
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
     END
 END
 
-IDR_NAVSYMBOL_POPUP MENU 
+IDR_NAVSYMBOL_POPUP MENU
 BEGIN
     POPUP "PageModel"
     BEGIN
@@ -3220,8 +3073,7 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
-                                                ID_MBRS_OD_PROPERTIES
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
         MENUITEM SEPARATOR
@@ -3240,8 +3092,7 @@ BEGIN
         MENUITEM "Ajouter une application",     ID_ADD_NEWEXTAPP
         MENUITEM "Ajouter un lien externe",     ID_ADD_NEWEXTFILE
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
-                                                ID_MBRS_OD_PROPERTIES
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
     END
@@ -3256,8 +3107,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Ajouter une référence",       ID_ADD_NEWEXTFILE
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
-                                                ID_MBRS_OD_PROPERTIES
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
     END
@@ -3270,8 +3120,7 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
-                                                ID_MBRS_OD_PROPERTIES
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
     END
@@ -3284,8 +3133,7 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
-                                                ID_MBRS_OD_PROPERTIES
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
     END
@@ -3298,8 +3146,7 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
-                                                ID_MBRS_OD_PROPERTIES
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
         MENUITEM SEPARATOR
@@ -3315,8 +3162,7 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
-                                                ID_MBRS_OD_PROPERTIES
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
         MENUITEM SEPARATOR
@@ -3332,8 +3178,7 @@ BEGIN
         MENUITEM "&Copier\tCtrl+C",             ID_MBRS_EDIT_COPY
         MENUITEM "&Détuire\tDel",               ID_MBRS_EDIT_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
-                                                ID_MBRS_OD_PROPERTIES
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
     END
@@ -3353,8 +3198,7 @@ BEGIN
         MENUITEM "Charger le paquet",           ID_LOAD_PACKAGE
         MENUITEM "Décharger le paquet",         ID_UNLOAD_PACKAGE
         MENUITEM SEPARATOR
-        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", 
-                                                ID_MBRS_OD_PROPERTIES
+        MENUITEM "Propriété&s de dessin...\tCtrl+Enter", ID_MBRS_OD_PROPERTIES
         MENUITEM SEPARATOR
         MENUITEM "Rafraîchir",                  ID_REFRESH
     END
@@ -3406,7 +3250,7 @@ END
 // Toolbar
 //
 
-IDR_ABC_MODELISATION TOOLBAR  18, 18
+IDR_ABC_MODELISATION TOOLBAR 18, 18
 BEGIN
     BUTTON      ID_OD_DRAW_SELECT
     SEPARATOR
@@ -3428,7 +3272,7 @@ BEGIN
     BUTTON      ID_INS_UML_END
 END
 
-IDB_FULLSCREEN TOOLBAR  18, 18
+IDB_FULLSCREEN TOOLBAR 18, 18
 BEGIN
     BUTTON      ID_PAGE_PREV
     BUTTON      ID_PAGE_NEXT
@@ -3445,7 +3289,7 @@ BEGIN
     BUTTON      ID_VIEW_BACKFULLSCREEN
 END
 
-IDR_PROCESS TOOLBAR  18, 18
+IDR_PROCESS TOOLBAR 18, 18
 BEGIN
     BUTTON      ID_PAGE_PREV
     BUTTON      ID_PAGE_NEXT
@@ -3467,7 +3311,7 @@ BEGIN
     BUTTON      ID_FILE_CLOSE
 END
 
-IDR_FULLTOOLBAR TOOLBAR  18, 18
+IDR_FULLTOOLBAR TOOLBAR 18, 18
 BEGIN
     BUTTON      ID_FILE_NEWMODEL
     BUTTON      ID_PROCESS_CREATE
@@ -3547,7 +3391,7 @@ BEGIN
     BUTTON      ID_EDIT_REDO
 END
 
-IDR_OD_DRAWING TOOLBAR  18, 18
+IDR_OD_DRAWING TOOLBAR 18, 18
 BEGIN
     BUTTON      ID_OD_EDIT_VERTICES
     BUTTON      ID_OD_PROPERTIES
@@ -3566,7 +3410,7 @@ BEGIN
     BUTTON      ID_OD_DRAW_PORT
 END
 
-IDR_OD_LAYOUT TOOLBAR  18, 18
+IDR_OD_LAYOUT TOOLBAR 18, 18
 BEGIN
     BUTTON      ID_OD_FREE_ROTATE
     BUTTON      ID_OD_ROTATE_LEFT
@@ -3593,12 +3437,12 @@ BEGIN
     BUTTON      ID_OD_NUDGE_RIGHT
 END
 
-IDR_OD_LINK TOOLBAR  18, 18
+IDR_OD_LINK TOOLBAR 18, 18
 BEGIN
     BUTTON      ID_OD_LINK_SYMBOLS
 END
 
-IDR_OD_STRUCTURE TOOLBAR  18, 18
+IDR_OD_STRUCTURE TOOLBAR 18, 18
 BEGIN
     BUTTON      ID_OD_GROUP
     BUTTON      ID_OD_UNGROUP
@@ -3609,7 +3453,7 @@ BEGIN
     BUTTON      ID_OD_BACKWARD
 END
 
-IDR_ABC_MAINFRAME TOOLBAR  18, 18
+IDR_ABC_MAINFRAME TOOLBAR 18, 18
 BEGIN
     BUTTON      ID_FILE_NEWMODEL
     BUTTON      ID_PROCESS_CREATE
@@ -3640,7 +3484,7 @@ BEGIN
     BUTTON      ID_APP_EXIT
 END
 
-IDR_ABC_MODELGENERATION TOOLBAR  18, 18
+IDR_ABC_MODELGENERATION TOOLBAR 18, 18
 BEGIN
     BUTTON      ID_WKF_USEFORWORKFLOW
     BUTTON      ID_WKF_CLEARUSEFORWORKFLOW
@@ -3649,7 +3493,7 @@ BEGIN
     BUTTON      ID_WKF_GENERATEMODEL
 END
 
-IDR_NAVIGATION TOOLBAR  18, 18
+IDR_NAVIGATION TOOLBAR 18, 18
 BEGIN
     BUTTON      ID_GO_PARENTMODEL
     BUTTON      ID_BROWSE_SOURCESYMBOL
@@ -3669,7 +3513,7 @@ BEGIN
     BUTTON      ID_EDIT_REDO
 END
 
-IDR_PROCESS_2000 TOOLBAR  18, 18
+IDR_PROCESS_2000 TOOLBAR 18, 18
 BEGIN
     BUTTON      ID_PAGE_PREV
     BUTTON      ID_PAGE_NEXT
@@ -3694,7 +3538,7 @@ BEGIN
     BUTTON      ID_FILE_CLOSE
 END
 
-IDR_BP_MAINFRAME TOOLBAR  18, 18
+IDR_BP_MAINFRAME TOOLBAR 18, 18
 BEGIN
     BUTTON      ID_FILE_NEWMODEL
     BUTTON      ID_FILE_OPENMODEL
@@ -3718,7 +3562,7 @@ BEGIN
     BUTTON      ID_APP_EXIT
 END
 
-IDR_MAINFRAME TOOLBAR  18, 18
+IDR_MAINFRAME TOOLBAR 18, 18
 BEGIN
     BUTTON      ID_FILE_NEWMODEL
     BUTTON      ID_FILE_OPENMODEL
@@ -3824,7 +3668,7 @@ END
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDR_MAINFRAME           "ProcessSoft Visual Mercutio 2007 SP1 Release 2"
     IDS_APPWKS_PRESTATIONS  "Prestations"
@@ -3846,7 +3690,7 @@ BEGIN
                             "Un problème s'est produit lors de l'ouverture de la définition des prestations."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_TB_BPSYMBOLSBUTTONS "Symboles"
     IDS_DIRECTORY_MISSING   "Un emplacement est requis."
@@ -3867,20 +3711,20 @@ BEGIN
                             "Un problème s'est produit lors de la sauvegarde d'un document ouvert."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_APP_TITLE       "ProcessSoft Conceptor 2007  - Sesterces 2007 - Messenger 2007"
     AFX_IDS_IDLEMESSAGE     "Pour obtenir de l'Aide, appuyer sur F1"
     AFX_IDS_HELPMODEMESSAGE "Selectionner un objet pour lequel vous voulez de l'Aide"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_PROCESS_FILEOPEN     "Ouvrir un processus.\nOuvrir un processus"
     IDS_ROUNDEDPROBLEM      "Les arrondis peuvent se faire par tranche de 0, 10, 100, 1000, 10000, 100000 et 1000000 uniquement."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
     ID_INDICATOR_CAPS       "CAP"
@@ -3890,7 +3734,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_FILE_NEW             "Créer un nouveau modèle"
     ID_FILE_OPEN            "Ouvrir un formulaire existant"
@@ -3903,7 +3747,7 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Aperçu du modèle avant l'impression définitive.\nAperçu avant impression"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_APP_ABOUT            "Afficher les informations sur l'application."
     ID_APP_EXIT             "Quitter l'application.\nQuitter l'application"
@@ -3913,7 +3757,7 @@ BEGIN
     ID_HELP                 "Afficher l'aide en fonction du contexte actuel."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_FILE_MRU_FILE1       "Ouvrir ce plan financier."
     ID_FILE_MRU_FILE2       "Ouvrir ce plan financier."
@@ -3921,13 +3765,13 @@ BEGIN
     ID_FILE_MRU_FILE4       "Ouvrir ce plan financier."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_NEXT_PANE            "Passer à la fenêtre suivante."
     ID_PREV_PANE            "Passer à la fenêtre précédente.."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_WINDOW_NEW           "Créer un nouveau plan financier vierge."
     ID_WINDOW_ARRANGE       "Arranger les icones au bas de l'application."
@@ -3937,7 +3781,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Séparer la fenêtre en deux zones."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_EDIT_CLEAR           "Supprimer l'objet sélectionné.\nSupprimer"
     ID_EDIT_CLEAR_ALL       "Tout effacer"
@@ -3952,20 +3796,20 @@ BEGIN
     ID_EDIT_REDO            "Refaire la dernière action effacée par Inversion.\nRefaire la dernière action effacée par Inversion"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_UNITEXIST_REPLACE   "Une librairie du même nom existe déjà. Voulez-vous la remplacer?"
     IDV_VERSION_NUMBER      "2.1 Build 200703"
     IDS_VERSION_NUMBER      "Version"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Séelectionner les barres d'outils standard"
     ID_VIEW_STATUS_BAR      "Montrer ou cacher la barre d'état"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_SCSIZE          "Changer la taille de la fenêtre."
     AFX_IDS_SCMOVE          "Change la position de la fenêtre."
@@ -3976,14 +3820,14 @@ BEGIN
     AFX_IDS_SCCLOSE         "Fermer le formulaire et demande de sauvegarde des formulaires modifié."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_SCRESTORE       "Remettre la fenêtre à sa taille originale."
     AFX_IDS_SCTASKLIST      "Activer la liste des tâches."
     AFX_IDS_MDICHILD        "Activer cette fenêtre."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_INS_BP_PROCEDURE     "Insérer une procédure.\nInsérer une procédure"
     ID_INS_BP_PROCESS       "Insérer un processus.\nInsérer un processus"
@@ -3998,7 +3842,7 @@ BEGIN
     ID_INSERT_MODELPAGE     "Insérer une nouvelle page.\nInsérer une nouvelle page"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_OPTIONS              "Definit les options du système."
     ID_CHECK_MODEL          "Contrôler la cohérence du modèle.\nContrôler la cohérence du modèle"
@@ -4013,12 +3857,12 @@ BEGIN
     ID_VIEW_DRAWINGTOOLBAR  "Montrer ou cacher la barre d'outils de dessin"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_PAGE_NEXT2           "Passer à la page suivante.\nPage suivante"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_SUBMENU1_MODIFIERLATAILLE "Modifier la taille de l'élément."
     ID_SUBMENU1_SIZEMODIFY  "Modifier la taille de l'élément."
@@ -4033,7 +3877,7 @@ BEGIN
     ID_SUBMENU1_FONTCHANGE  "Tracer un lien orthogonal (cercle).\nTracer un lien orthogonal (cercle)"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_OD_LINKARROW_SYMBOLS "Tracer un lien événement.\nTracer un lien événement"
     ID_OD_LINKCIRCLE_O_SYMBOLS 
@@ -4056,7 +3900,7 @@ BEGIN
     ID_WKF_PROCESS_PROPERTY "Modifier les paramètres du processus.\nParamètres du processus"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_WKF_USEFORWORKFLOW   "Définir le modèle comme référence pour le workflow.\nDéfinir comme workflow"
     ID_PAGE_RECALCULATE     "Insérer un commentaire.\nInsérer un commentaire"
@@ -4067,7 +3911,7 @@ BEGIN
     ID_FILE_PREV            "Passer au formulaire précédent"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_VIEW_NAVIGATIONTOOLBAR 
                             "Montrer ou cacher la barre d'outils de navigation"
@@ -4095,7 +3939,7 @@ BEGIN
                             "Utilise des ressources de remplacement.\nUtilise ressources remplacement"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_WKF_DEFINE_FORM      "Définir les formulaires.\nDéfinir les formulaires"
     ID_RENAME_MODELPAGE     "Renommer une page.\nRenommer une page"
@@ -4107,7 +3951,7 @@ BEGIN
     ID_WKS_RENAMEGROUP      "Renommer le dossier.\nRenommer le dossier"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_OD_ZOOM_FIT          "Zoomer pour que tous les composants soient visibles.\nZoomer pour voir tous les composants"
     ID_OD_ZOOM_NORMAL       "Zoom to Normal Scale (100%)\nZoom Normal"
@@ -4120,7 +3964,7 @@ BEGIN
     ID_OD_SAME_SIZE         "Make components the same size\nSame size"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_DISPLAYCALCULATEDCODE 
                             "Insérer un point d'entrée du processus.\nPoint d'entrée"
@@ -4138,7 +3982,7 @@ BEGIN
                             "Imprimer la page contenant les noms des champs."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_SUBMENU1_DISPLAYCALCNUMCODE "Afficher les codes des champs numériques."
     ID_PALETTESELECT        "Passer en mode sélection."
@@ -4147,7 +3991,7 @@ BEGIN
                             "Voulez-vous également supprimer tous les paramètres liés à la génération du workflow?"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_GOIN_SYMBOL          "Ouvrir le contenu.\nOuvrir le contenu"
     ID_CREATEMETAFILE       "Exporter vers un fichier JPEG, TIFF, GIF, PCX, TGA ou DIB.\nExporter vers un fichier JPEG, TIFF, GIF, PCX, TGA ou DIB"
@@ -4164,7 +4008,7 @@ BEGIN
                             "Tracer un lien événement.\nTracer un lien événement"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_SUBMENU_FORMAT       "Changer le format du champ que vous êtes en train de modifier."
     ID_SUBMENU2_AIDE        "Obtenir de l'aide sur ce champ."
@@ -4183,7 +4027,7 @@ BEGIN
     ID_SUBMENU1_ALIGN       "Changer l'alignement du texte"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_VIEW_POINTER         "Afficher le pointeur de champs."
     ID_VIEW_ZOOMIN          "Zoomer le document (Agrandir).\nZoom agrandir"
@@ -4194,7 +4038,7 @@ BEGIN
     ID_VIEW_FULLSCREEN      "Mettre en plein écran.\nPlein écran"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_FILE_ARG             "Ajouter un fichier"
     ID_DIR_ARG              "Sélectionner un répertoire"
@@ -4212,7 +4056,7 @@ BEGIN
     ID_BROWSE_SOURCESYMBOL  "Se positionner sur le symbole source.\nAller au symbole source"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_FORMULAIRE_SCNARIOS_CRER "Créer un nouveau scénario de calcul"
     ID_FORMUL_SCENARIO_CREATION "Créer un nouveau scénario de calcul."
@@ -4233,7 +4077,7 @@ BEGIN
     ID_PALETTENUMBER        "Créer un champ du type nombre"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CONFIRMPROPAGATE    "Vous avez sélectionné l'option pour changer le type sur tous les champs qui ont le même nom et non uniquement le champ que vous avez sélectionné. Voulez-vous continuer?"
     IDS_CANNOTDELETE_ORIGINALSCENARIO 
@@ -4261,12 +4105,12 @@ BEGIN
                             "Un problèmes s'est produit lors de l'ouverture des définitions des systèmes logiques."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_STYLE               "Changer le style"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_TB_BROWSEBUTTONS    "Navigation"
     IDS_CHECKREPORT_FILENAME "Control - "
@@ -4286,7 +4130,7 @@ BEGIN
     IDS_OUTPUTWKS_WORKFLOW  "Messenger"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_APPWKS_PROJECT      "Projet"
     IDS_TB_MOVEBUTTONS      "Déplacement"
@@ -4306,7 +4150,7 @@ BEGIN
     IDS_WZ_WORKSPACE_ST_T   "Lors de la création d'un nouveau projet, vous devez spécifier un nom et un répertoire. Il n'est pas obligatoire de créer un répertoire par projet."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_PAGE_DELETE          "Détruire la page courante"
     ID_FORM_MANAGE          "Gérer les différentes pages des formes"
@@ -4328,7 +4172,7 @@ BEGIN
     ID_EDITION_ALIGNCENTERV "Aligner les objets au centre verticalement par rapport à l'objet de référence."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CONFIRMCURRENTPAGEDELETION 
                             "Cette action détruit la page courante d'une manière définitive. Voulez-vous détruire la page courante ?"
@@ -4352,7 +4196,7 @@ BEGIN
                             "Le répertoire spécifié ne peut pas être créé. Veuillez vérifier que le répertoire mentionné ne contient pas de caractères spéciaux."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_INVALIDPAGENUMBER   "Le numéro de page que vous avez spécifié n'existe pas."
     IDS_WARNING_GROUP_FIELDS 
@@ -4379,12 +4223,12 @@ BEGIN
                             "Voulez-vous fermer tous les documents ouverts?"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_PRODUCT_KEY         "XXXXXXXXXXXXXXXXXXXX"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_VIEW_FIELDNAME       "Voir les noms des champs"
     ID_HIDE_FIELDNAME       "Cacher la fenêtre qui montre les noms des champs"
@@ -4402,7 +4246,7 @@ BEGIN
     ID_EDITION_INSERTFIELD  "Insérer un champ existant."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_UGP_ADDGROUP        "Ajouter un groupe"
     IDS_UGP_RENAMEGROUP     "Renommer le groupe sélectionné"
@@ -4424,7 +4268,7 @@ BEGIN
     IDS_ASSOCIATIONFIELDCREATION "Création de formule pour une assocation"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_DEFINE_STYLE         "Définir les styles pour le document sélectionné."
     ID_CHANGE_STYLE         "Changer le style du champ."
@@ -4444,7 +4288,7 @@ BEGIN
     IDS_LGS_DELETESYSTEM    "Supprimer le système logique sélectionné"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_ASSOCIATIONCREATION "Choix du champ pour une assocation"
     IDS_UGP_PROPERTIES      "Afficher les propriétés du groupe ou de l'équipe sélectionné"
@@ -4468,7 +4312,7 @@ BEGIN
     IDS_CONCEPTORREPORT_FILENAME "Conceptor - "
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_WIZARD_CREATIONFIELD "Magicien d'aide à la création de nouveaux champs"
     ID_WIZARD_MODIFYfORMULA "Modifier la formule existante"
@@ -4485,7 +4329,7 @@ BEGIN
     ID_FILE_IMPORT_SVM      "Importer les données venant d'un fichier provenant de l'application O.C.L. 97"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_EDITION_SAME_HSPACE  "Appliquer le même écartement horizontal"
     ID_EDITION_SAME_VSPACE  "Appliquer le même écartement vertical"
@@ -4504,7 +4348,7 @@ BEGIN
     ID_SECTION_CHANGE_STYLE "Changer le style du champ."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_KEEP_HISTORY         "Conserver l'historique des valeures introduites."
     ID_DEFINE_BORDER        "Définir une bordure."
@@ -4521,7 +4365,7 @@ BEGIN
     IDS_EXPORTPROCESS_TITLE "Export la définition du processus"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_DISPLAYSTATICCODE    "Afficher les codes des champs textes qui sont statiques."
     ID_DISPLAYGRAPHICCODE   "Afficher les champs graphiques."
@@ -4529,12 +4373,12 @@ BEGIN
                             "Aperçu des codes avant l'impression définitive."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_INIFILE             "PLANFIN.INI"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_FILE_NEXT2           "Passer au formulaire suivant.\nFormulaire suivant"
     ID_FILE_PREV2           "Passer au formulaire précédent.\nFormulaire précédent"
@@ -4550,7 +4394,7 @@ BEGIN
     ID_CLOSE_WORKSPACE      "Fermer le projet courant.\nFermer le projet"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_VIEW_PROPERTIES      "Fenêtre des propriétés.\nPropriétés"
     ID_CREATE_SERVER        "Vous permet de créer un nouveau référentiel local."
@@ -4567,7 +4411,7 @@ BEGIN
     ID_EDIT_FORMATPAINTER   "La reproduction de mise en forme.\nReproduction de mise en forme"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_UNABLETOSAVE_USERGROUP 
                             "Le fichier de définition des groupes <%s> ne peut pas être sauvegardé. Veuillez vérifier que le fichier n'est pas en lecture seule."
@@ -4576,7 +4420,7 @@ BEGIN
     IDS_ONEOPTIONREQUIRED   "Veuillez cocher au moins une option."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_EDIT_DUPLICATE       "Dupliquer l'objet.\nDupliquer l'objet"
     ID_COLLAPSE_BRANCH      "Refermer complètement l'arbre depuis cette branche.\nRefermer"
@@ -4591,7 +4435,7 @@ BEGIN
     ID_WKS_ADD_CURRENTFILE  "Ajouter le fichier au projet.\nAjouter le fichier au projet"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_WKS_ADDFILE          "Insérer un fichier.\nInsérer un fichier"
     ID_WKS_DELETEFILE       "Supprimer le fichier.\nSupprimer le fichier"
@@ -4600,7 +4444,7 @@ BEGIN
     ID_WKS_PROPERTIES       "Propriétés.\nPropriétés"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_WORKFLOWMODEREQUIRED_DROP 
                             "Le mode flux d'activité est obligatoire pour pouvoir ajouter des resources ou des formes formulaires. Veuillez déclencher le mode flux d'activité depuis le menu Modèle."
@@ -4610,7 +4454,7 @@ BEGIN
     IDR_MERCUTIOREPORT      "\nRLF\nRapport\nRapports (*.rlf)\n.rlf\nRLF.Document\nRapport ProcessSoft Conceptor\n1\n12"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_OD_ALIGN            "Alignement"
     IDS_OD_BOLD             "Gras"
@@ -4626,7 +4470,7 @@ BEGIN
     IDS_OD_DRAWING          "Dessin"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_OD_ELLIPSE          "Ellipse"
     IDS_OD_FONTSAMPLETEXT   "AaBbCcDd"
@@ -4646,7 +4490,7 @@ BEGIN
     IDS_OD_LINESTYLELB_DASHDOTDOT "Trait-Point-Point"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_OD_LINESTYLELB_DOT  "Pointillé"
     IDS_OD_LINESTYLELB_SOLID "Solide"
@@ -4666,7 +4510,7 @@ BEGIN
     IDS_OD_SYMBOL           "Symbole"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_OD_TEXT             "Texte"
     IDS_OD_ZOOM_PAN         "Zoom/Pan"
@@ -4689,7 +4533,7 @@ BEGIN
     IDS_OD_CLIP_FORMAT      "Objective Views"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_OD_MEASUREMENTS     "Taille et unités de mesures"
     IDS_OD_IMAGE_EXT        "bmp"
@@ -4709,7 +4553,7 @@ BEGIN
     IDS_OD_EXPORT_FILTER    "Bitmap Files (*.bmp;*.dib)|*.bmp;*.dib|Enhanced Metafiles (*.emf)|*.emf||"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_OD_PROPTYPE_ERROR   "Type de données invalide pour l'assignement des propriétés"
     IDS_OD_WNDCOMP          "Fenêtre"
@@ -4718,13 +4562,13 @@ BEGIN
     IDS_OD_CANVAS           "Modèle"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CMN_OTHERBUTTON     "&Autres..."
     IDS_CMN_SECIMAGE_MSG1   "Rotation90: Erreur, format non-supporté."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_OD_ALIGN_BOTTOM      "Aligner Bas\nAligner Bas"
     ID_OD_ALIGN_CENTER      "Aligner Centre\nAligner Centre"
@@ -4738,7 +4582,7 @@ BEGIN
     ID_OD_DEFAULT_PROPS     "Propriétés de la forme.\nPropriétés de la forme"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_OD_DRAW_CLOSEDCURVE  "Dessiner plusieurs courbes dont le point de départ et d'arrivée se rejoint\nCourbe Fermée"
     ID_OD_DRAW_CURVE        "Draw a curve\nCurve"
@@ -4756,7 +4600,7 @@ BEGIN
     ID_OD_DRAW_TEXT_BOX     "Insert a text box\nText Box"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_OD_EDIT_VERTICES     "Editer individuellement les points\nEditer Points"
     ID_OD_FLIP_HORIZONTAL   "Inverser le composant autour de son axe horizontal\nInverser Horizontalement"
@@ -4774,7 +4618,7 @@ BEGIN
     ID_OD_NUDGE_UP          "Déplacer Haut\nDéplacer Haut"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_OD_PAGE_BOUNDS       "Montrer ou Cacher les limites de pages\nMontrer ou Cacher les limites de pages"
     ID_OD_PAN               "Outil de déplacement.\nOutil de déplacement"
@@ -4792,13 +4636,13 @@ BEGIN
     ID_OD_ZOOM_CUSTOM       "Set Custom Zoom Factors\nZoom Custom"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_SAVE_WORKSPACE       "Sauvegarder le projet.\nSauvegarder le projet"
     ID_OPEN_WORKSPACE       "Ouvrir un projet existant.\nOuvrir un projet existant"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_MBRS_SELECT_SYMBOL   "Sélectionner le symbole sur le modèle."
     ID_RENAME_CURRENTMODELPAGE "Renommer la page.\nRenommer la page"
@@ -4813,13 +4657,13 @@ BEGIN
     ID_ADD_NEWEXTAPP        "Ajouter une application.\nAjouter une application"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_RECALCULATE_MODEL_PARAM 
                             "Recalculer les paramètres Sesterces.\nRecalculer les paramètres Sesterces"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_SET_MODELBKIMAGE     "Définir le fond de page.\nDéfinir le fond de page"
     ID_SHOWMODELBORDER      "Montrer ou Cacher les bords de pages\nMontrer ou Cacher bords de pages"
@@ -4842,7 +4686,7 @@ BEGIN
     ID_EXPORTHTML           "Enregistrer en tant que page Web.\nEnregister en HTML"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_CLEAR_WINDOW         "Effacer le contenu de la fenêtre de log"
     ID_SETDEBUGMODE_WINDOW  "Passer en mode de messages détaillés"
@@ -4855,7 +4699,7 @@ BEGIN
                             "Assigner au modèle courant le fichier des groupes ouvert du référentiel local"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_SYMBOL_REASSIGN_USERGROUP 
                             "Utiliser cette commande pour réassigner le nom des groupes et les coûts à tous les symboles du modèle.\nReassigner les groupes aux symboles"
@@ -4864,19 +4708,19 @@ BEGIN
     ID_PUBLISH_TOMESSENGER  "Publier le modèle vers Messenger.\nPublier vers Messenger"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_INS_BP_ALERT         "Insérer un symbole d'alerte\nInsérer un symbole d'alerte"
     ID_INS_BP_INDICATOR     "Insérer un indicateur\nInsérer un indicateur"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_GENERATE_REPORT_CONCEPTOR 
                             "Générer le rapport Conceptor.\nRapport Conceptor"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_INS_BP_TEXTZONE      "Insérer une zone de texte\nInsérer une zone de texte"
     ID_INS_BP_DOCUMENT      "Insérer un symbole indiquant que le document est important\nInsérer un symbole indiquant que le document est important"
@@ -4897,18 +4741,18 @@ BEGIN
     ID_INS_BP_CRI           "Insérer un symbole indiquant un compte rendu d’Incident sur cette procédure\nInsérer un symbole indiquant un compte rendu d’Incident sur cette procédure"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_PRS_MOVEPRESTATION  "Déplacer une prestation"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_LGS_MOVESYSTEM      "Déplacer un système"
     IDS_PRESTATIONSREPORT_FILENAME "Prestations - "
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_FILE_READONLY       "Vous ne pouvez modifier ce modèle qui est probablement ouvert par un autre utilisateur. Voulez-vous continuer en lecture seule ?"
     IDS_FILE_WARN_UNLOCK    "Vous avez choisi de déverrouiller ce modèle. Veuillez vous assurer qu'aucun autre utilisateur ne travaille sur ce modèle avant d'achever cette opération. Si deux utilisateurs utilisent simultanément le même modèle, CELA PEUT PROVOQUER DES PERTES DE DONNEES IRREVERSIBLES. Voulez-vous continuer ?"
@@ -4926,23 +4770,29 @@ BEGIN
                             "Un problème s'est produit lors de l'ouverture du fichier contenant les types de risques."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_CALCULATE_RISKS      "Calculer les risques.\nCalculer les risques."
 END
 
-#endif    // Français (France) resources
+STRINGTABLE
+BEGIN
+    IDS_FAILOPEN_RISKIMPACTFILE 
+                            "Un problème s'est produit lors de l'ouverture du fichier contenant les impacts."
+    IDS_FAILOPEN_RISKPROBABILITYFILE 
+                            "Un problème s'est produit lors de l'ouverture du fichier contenant les probabilités."
+END
+
+#endif    // French (France) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Français (Suisse) resources
+// French (Switzerland) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRS)
-#ifdef _WIN32
 LANGUAGE LANG_FRENCH, SUBLANG_FRENCH_SWISS
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -4950,7 +4800,8 @@ LANGUAGE LANG_FRENCH, SUBLANG_FRENCH_SWISS
 //
 
 IDB_PRESTATIONS_FLATTOOLBAR BITMAP                  "res\\PrestationsFlatToolbar.bmp"
-#endif    // Français (Suisse) resources
+
+#endif    // French (Switzerland) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -4960,8 +4811,8 @@ IDB_PRESTATIONS_FLATTOOLBAR BITMAP                  "res\\PrestationsFlatToolbar
 //
 // Generated from the TEXTINCLUDE 3 resource.
 //
-#include "afxres.rc"      // Standard components
-#include "afxprint.rc"    // printing/print preview resources
+#include "afxres.rc"  	// Standard components
+#include "afxprint.rc"	// printing/print preview resources
 #include "..\zformsres\zFormsRes.rc"
 
 /////////////////////////////////////////////////////////////////////////////

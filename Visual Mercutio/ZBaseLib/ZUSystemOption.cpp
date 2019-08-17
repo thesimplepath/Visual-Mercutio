@@ -29,8 +29,8 @@ ZUSystemOption::~ZUSystemOption()
 
 BOOL ZUSystemOption::Create( CString IniFile, CString SectionName )
 {
-    m_IniFile        = IniFile;
-    m_SectionName    = SectionName;
+    m_IniFile     = IniFile;
+    m_SectionName = SectionName;
 
     return TRUE;
 }

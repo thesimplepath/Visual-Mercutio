@@ -13,7 +13,7 @@
 #include "PSS_FileDialog.h"
 
 #include "zBaseLibRes.h"
-#include "MsgBox.h"
+#include "PSS_MsgBox.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -57,9 +57,9 @@ bool ZBWorkspaceFileEntity::OpenFile()
 {
     if ( !m_File.Exist() )
     {
-        MsgBox mbox;
+        PSS_MsgBox mBox;
 
-        if ( mbox.DisplayMsgBox( IDS_WKS_FILENAME_DEXIST, MB_YESNO ) == IDYES )
+        if ( mBox.ShowMsgBox( IDS_WKS_FILENAME_DEXIST, MB_YESNO ) == IDYES )
         {
             CString title;
             VERIFY( title.LoadString( IDS_WORKSPACE_FILESELECT_T ) );

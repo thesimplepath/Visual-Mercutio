@@ -22,7 +22,7 @@
 
 //## begin module%35CC454D007B.additionalDeclarations preserve=yes
 #include "ZAApp.h"
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_DocumentExport.h"
 #include "zBaseLib\PSS_DocumentData.h"
 
@@ -126,8 +126,8 @@ BOOL ZDDocumentReadWrite::OnNewDocument()
     if ( !StartRealTimeExport() )
     {
         // In write mode no chance, file corruption
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_RTEXPORT_CREATIONFAILED );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_RTEXPORT_CREATIONFAILED );
     }
 
     return TRUE;
@@ -159,8 +159,8 @@ BOOL ZDDocumentReadWrite::OnSaveDocument( const char* pszPathName )
     if ( !StartRealTimeExport( TRUE ) )
     {
         // In write mode no chance, file corruption
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_RTEXPORT_CREATIONFAILED );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_RTEXPORT_CREATIONFAILED );
     }
 
     return bRetValue;
@@ -208,9 +208,9 @@ BOOL ZDDocumentReadWrite::SaveModified()
         AfxFormatString1( prompt, IDP_ASK_TO_SAVE, name );
     }
 
-    MsgBox mbox;
+    PSS_MsgBox mBox;
 
-    switch( mbox.DisplayMsgBox( prompt ) )
+    switch( mBox.ShowMsgBox( prompt ) )
     {
         case IDYES:
         {
@@ -372,8 +372,8 @@ void ZDDocumentReadWrite::OnFileSave()
         if ( !StartRealTimeExport( TRUE ) )
         {
             // In write mode no chance, file corruption
-            MsgBox mbox;
-            mbox.DisplayMsgBox( IDS_RTEXPORT_CREATIONFAILED );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_RTEXPORT_CREATIONFAILED );
         }
 
         return;
@@ -541,17 +541,17 @@ void ZDDocumentReadWrite::OnFormulaScenarioDelete()
 {
     if ( GetCurrentSchema() == g_OriginalSchema )
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_CANNOTDELETE_ORIGINALSCENARIO, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_CANNOTDELETE_ORIGINALSCENARIO, MB_OK );
     }
     else
     {
-        MsgBox        mbox;
+        PSS_MsgBox        mBox;
         CString     prompt;
 
         AfxFormatString1( prompt, IDS_CONFIRMDELETION_CURRENTSCENARIO, GetCurrentSchema() );
 
-        if ( mbox.DisplayMsgBox( prompt ) == IDYES )
+        if ( mBox.ShowMsgBox( prompt ) == IDYES )
         {
             GetActiveDocumentData()->GetSchema().DeleteFormulaList( GetActiveDocumentData()->GetCurrentSchema() );
 
@@ -591,9 +591,9 @@ void ZDDocumentReadWrite::OnChangeStyle()
 
 void ZDDocumentReadWrite::OnPageDelete()
 {
-    MsgBox mbox;
+    PSS_MsgBox mBox;
 
-    switch( mbox.DisplayMsgBox( IDS_CONFIRMCURRENTPAGEDELETION, MB_YESNO ) )
+    switch( mBox.ShowMsgBox( IDS_CONFIRMCURRENTPAGEDELETION, MB_YESNO ) )
     {
         case IDYES:
         {
@@ -616,7 +616,7 @@ void ZDDocumentReadWrite::OnPageDelete()
 
     if ( !DeletePage( GetCurrentPage() ) )
     {
-        mbox.DisplayMsgBox( IDS_DELETEPAGE_ERROR );
+        mBox.ShowMsgBox( IDS_DELETEPAGE_ERROR );
     }
 }
 

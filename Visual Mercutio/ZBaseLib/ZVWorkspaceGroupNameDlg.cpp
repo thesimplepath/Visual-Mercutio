@@ -6,7 +6,7 @@
 
 #include "ZBWorkspaceGroupEntity.h"
 
-#include "MsgBox.h"
+#include "PSS_MsgBox.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -60,16 +60,16 @@ void ZVWorkspaceGroupNameDlg::OnOK()
         m_pRootGroup->GroupExist( m_GroupName ))
     {
         // Already exists
-        MsgBox        mbox;
-        mbox.DisplayMsgBox( IDS_WKS_GROUP_ALREADYEXIST, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_WKS_GROUP_ALREADYEXIST, MB_OK );
         return;
     }
     
     if (m_Extensions.FindOneOf(",.-/") != -1)
     {
         // Illegal char in extension set
-        MsgBox        mbox;
-        mbox.DisplayMsgBox( IDS_WKS_ILLEGAL_EXTENSION_LIST, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_WKS_ILLEGAL_EXTENSION_LIST, MB_OK );
         return;
     }
 

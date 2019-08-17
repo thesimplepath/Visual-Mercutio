@@ -9,7 +9,7 @@
 #include "PSS_PublishModelBannerDialog.h"
 
 // processsoft
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_File.h"
 
 #ifdef _DEBUG
@@ -73,8 +73,8 @@ void PSS_PublishModelBannerDialog::OnOK()
 
     if (!m_ImageFilename.IsEmpty() && !PSS_File::Exist(m_ImageFilename))
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox(IDS_IMAGEFILENAME_NOTFOUND, MB_OK);
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_IMAGEFILENAME_NOTFOUND, MB_OK);
         return;
     }
 

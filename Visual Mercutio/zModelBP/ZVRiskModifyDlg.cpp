@@ -15,7 +15,7 @@
 #include "zBaseLib\ZDTextFile.h"
 #include "zBaseLib\PSS_File.h"
 
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -102,8 +102,8 @@ BOOL ZVRiskModifyDlg::OnInitDialog()
     }
     else
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_CANNOT_OPEN_RISK_FILE, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_CANNOT_OPEN_RISK_FILE, MB_OK );
 
         m_ElementsListCtrl.EnableWindow( FALSE );
         m_ElementCtrl.EnableWindow( FALSE );

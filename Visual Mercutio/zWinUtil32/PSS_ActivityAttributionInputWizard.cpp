@@ -9,7 +9,7 @@
 #include "PSS_ActivityAttributionInputWizard.h"
 
 // processsoft
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\InpVal.h"
 #include "PSS_ActivityAttributionInputBackupDialog.h"
 #include "PSS_ActivityAttributionInputValueDialog.h"

@@ -9,7 +9,7 @@
 #include "zProperty\ZBDynamicPropertiesManager.h"
 #include "zModel\ZUDynamicAttributesManipulator.h"
 
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\InpVal.h"
 #include "zPtyMgrRes.h"
 #include "zRes32\zRes.h"
@@ -121,8 +121,8 @@ void ZVChoosePropertyDlg::OnOK()
         if (!Enable)
         {
             // Error message
-            MsgBox        mbox;
-            mbox.DisplayMsgBox( IDS_MUSTSELECT_ATTRIBUTE, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_MUSTSELECT_ATTRIBUTE, MB_OK );
             return;
         }
         m_pSelectedProperty = m_PropertyList.GetPropertyItem( CurSel );
@@ -179,8 +179,8 @@ void ZVChoosePropertyDlg::OnProptype()
 
 void ZVChoosePropertyDlg::OnDeleteAttribute() 
 {
-    MsgBox    mbox;
-    if (mbox.DisplayMsgBox( IDS_CONFIRMDELATTRIB, MB_YESNO ) == IDNO)
+    PSS_MsgBox mBox;
+    if (mBox.ShowMsgBox( IDS_CONFIRMDELATTRIB, MB_YESNO ) == IDNO)
         return;
 
     ZBPropertyItem* pItem = m_PropertyList.GetCurrentPropertyItem();

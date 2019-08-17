@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\ZBTokenizer.h"
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\InpVal.h"
 #include "PSS_SelectResourcesDialog.h"
 
@@ -255,8 +255,8 @@ BOOL PSS_ActivityAttributionInputValueDialog::CheckData()
     // user must sets the visibility
     if (m_VisibilityAttribution && m_VisibilityType == -1)
     {
-        MsgBox mBox;
-        mBox.DisplayMsgBox(IDS_VISIBILITY_REQUIRED, MB_OK);
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_VISIBILITY_REQUIRED, MB_OK);
         return FALSE;
     }
 
@@ -268,16 +268,16 @@ BOOL PSS_ActivityAttributionInputValueDialog::CheckData()
     // time must be defined
     if (m_TimeAttribution && m_TimeOutDays <= 0)
     {
-        MsgBox mBox;
-        mBox.DisplayMsgBox(IDS_TIMEOUT_REQUIRED, MB_OK);
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_TIMEOUT_REQUIRED, MB_OK);
         return FALSE;
     }
 
     // user must be in the list
     if (m_UserAttribution && m_UserList.GetCount() <= 0)
     {
-        MsgBox mBox;
-        mBox.DisplayMsgBox(IDS_ONEPERSON_REQUIRED, MB_OK);
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_ONEPERSON_REQUIRED, MB_OK);
         return FALSE;
     }
 

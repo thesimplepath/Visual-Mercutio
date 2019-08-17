@@ -11,7 +11,7 @@
 #include "zBaseLib\ZILog.h"
 #include "zBaseLib\ZUFloatingToolbar.h"
 #include "zBaseLib\ZUGUID.h"
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "ProcGraphModelView.h"
 #include "ProcGraphChildFrm.h"
 #include "ProcGraphModelCtlr.h"
@@ -1146,9 +1146,9 @@ BOOL ZDProcessGraphModelDoc::OnSaveDocument( const char* pszPathName )
     if ( b_IsReadOnly == TRUE && GetPathName() == pszPathName )
     {
         // L'utilisateur tente d'écraser un fichier ouvert en lecture seule.
-        MsgBox mbox;
+        PSS_MsgBox mBox;
 
-        mbox.DisplayMsgBox( IDS_FILE_READONLY_DONOTSAVE, MB_OK );
+        mBox.ShowMsgBox( IDS_FILE_READONLY_DONOTSAVE, MB_OK );
         return FALSE;
     }
     else if ( b_IsReadOnly == TRUE && GetPathName() != pszPathName )

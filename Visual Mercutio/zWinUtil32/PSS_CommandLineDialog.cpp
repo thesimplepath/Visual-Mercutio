@@ -12,7 +12,7 @@
 #include "zBaseLib\PSS_FileDialog.h"
 #include "zBaseLib\ZAGlobal.h"
 #include "zBaseLib\PSS_File.h"
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "PSS_OpenDirDialog.h"
 #include "PSS_SysVarDialog.h"
 
@@ -213,8 +213,8 @@ BOOL PSS_CommandLineDialog::IsOK()
 
     if (text.IsEmpty())
     {
-        MsgBox mBox;
-        mBox.DisplayMsgBox(IDS_APPLICATIONMISSING, MB_OK);
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_APPLICATIONMISSING, MB_OK);
 
         return FALSE;
     }

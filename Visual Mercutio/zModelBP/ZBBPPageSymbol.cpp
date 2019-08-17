@@ -18,7 +18,7 @@
 // JMR-MODIF - Le 30 août 2006 - Ajout de l'en-tête ZUODSymbolManipulator.
 #include "zModel\ZUODSymbolManipulator.h"
 
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "zModelBPRes.h"
 #include "zBaseLib\PSS_DrawFunctions.h"
 
@@ -597,9 +597,9 @@ bool ZBBPPageSymbol::OnPreDelete( CODModel* pModel /*= NULL*/, CODController* pC
 {
     if ( GetTwinPageSymbol() )
     {
-        MsgBox mbox;
+        PSS_MsgBox mBox;
 
-        if ( mbox.DisplayMsgBox( IDS_DELETEPAGESYM_CONF, MB_YESNO ) == IDYES )
+        if ( mBox.ShowMsgBox( IDS_DELETEPAGESYM_CONF, MB_YESNO ) == IDYES )
         {
             // Request the symbol deletion
             if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) )

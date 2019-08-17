@@ -12,7 +12,7 @@
 
 #include "ZBLogicalPrestationsEntity.h"
 
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #include "zBaseLib\zBaseLibRes.h"
 
@@ -78,8 +78,8 @@ void ZVPrestationsInfoDlg::OnOK()
         if ( m_pPrestation && m_pPrestation->PrestationExist( m_Name ) )
         {
             // Already exists
-            MsgBox mbox;
-            mbox.DisplayMsgBox( IDS_PRESTATION_ALREADYEXIST, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_PRESTATION_ALREADYEXIST, MB_OK );
             return;
         }
     }

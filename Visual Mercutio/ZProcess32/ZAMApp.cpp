@@ -29,7 +29,7 @@
 #include "zBaseLib\ZANumbrd.h"
 #include "zBaseLib\ZABitmap.h"
 #include "zBaseLib\ZABnText.h"
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_Edit.h"
 
 #include "Resource.h"
@@ -46,8 +46,8 @@
 //#define _EVALUATION_VERSION
 
 #ifdef _EVALUATION_VERSION
-    #include "zScty\security.h"
-    #include "zScty\secuchk.h"
+#include "zScty\security.h"
+#include "zScty\secuchk.h"
 #endif // _EVALUATION_VERSION
 
 // FileDlg
@@ -70,7 +70,7 @@
 
 // Used to access predefined registry keys
 #include "RegistryDef.h"
-#include "zBaseLib\ZBRegisterSetup.h"
+#include "zBaseLib\PSS_RegisterSetup.h"
 
 // Contains obsolete class for PLFN hierarchy
 #include "zBaseLib\Obsolete.h"
@@ -122,45 +122,45 @@ static const DWORD aMenuHelpIDs[] =
 
 #define DEFAULT_ICON_INDEX        0
 
-static char BASED_CODE            szDefaultIcon[]            = _T( "%s\\DefaultIcon" );
+static char BASED_CODE            szDefaultIcon[] = _T("%s\\DefaultIcon");
 
-AFX_STATIC_DATA const TCHAR        _afxShellOpenFmt[]        = _T( "%s\\shell\\open\\%s" );
-AFX_STATIC_DATA const TCHAR        _afxShellPrintFmt[]        = _T( "%s\\shell\\print\\%s" );
-AFX_STATIC_DATA const TCHAR        _afxShellPrintToFmt[]    = _T( "%s\\shell\\printto\\%s" );
-AFX_STATIC_DATA const TCHAR        _afxDefaultIconFmt[]    = _T( "%s\\DefaultIcon" );
-AFX_STATIC_DATA const TCHAR        _afxShellNewFmt[]        = _T( "%s\\ShellNew" );
+AFX_STATIC_DATA const TCHAR        _afxShellOpenFmt[] = _T("%s\\shell\\open\\%s");
+AFX_STATIC_DATA const TCHAR        _afxShellPrintFmt[] = _T("%s\\shell\\print\\%s");
+AFX_STATIC_DATA const TCHAR        _afxShellPrintToFmt[] = _T("%s\\shell\\printto\\%s");
+AFX_STATIC_DATA const TCHAR        _afxDefaultIconFmt[] = _T("%s\\DefaultIcon");
+AFX_STATIC_DATA const TCHAR        _afxShellNewFmt[] = _T("%s\\ShellNew");
 
-AFX_STATIC_DATA const TCHAR        _afxIconIndexFmt[]        = _T( ",%d" );
-AFX_STATIC_DATA const TCHAR        _afxCommand[]            = _T( "command" );
-AFX_STATIC_DATA const TCHAR        _afxOpenArg[]            = _T( " \"%1\"" );
-AFX_STATIC_DATA const TCHAR        _afxPrintArg[]            = _T( " /p \"%1\"" );
-AFX_STATIC_DATA const TCHAR        _afxPrintToArg[]        = _T( " /pt \"%1\" \"%2\" \"%3\" \"%4\"" );
-AFX_STATIC_DATA const TCHAR        _afxDDEArg[]            = _T( " /dde" );
+AFX_STATIC_DATA const TCHAR        _afxIconIndexFmt[] = _T(",%d");
+AFX_STATIC_DATA const TCHAR        _afxCommand[] = _T("command");
+AFX_STATIC_DATA const TCHAR        _afxOpenArg[] = _T(" \"%1\"");
+AFX_STATIC_DATA const TCHAR        _afxPrintArg[] = _T(" /p \"%1\"");
+AFX_STATIC_DATA const TCHAR        _afxPrintToArg[] = _T(" /pt \"%1\" \"%2\" \"%3\" \"%4\"");
+AFX_STATIC_DATA const TCHAR        _afxDDEArg[] = _T(" /dde");
 
-AFX_STATIC_DATA const TCHAR        _afxDDEExec[]            = _T( "ddeexec" );
-AFX_STATIC_DATA const TCHAR        _afxDDEOpen[]            = _T( "[open(\"%1\")]" );
-AFX_STATIC_DATA const TCHAR        _afxDDEPrint[]            = _T( "[print(\"%1\")]" );
-AFX_STATIC_DATA const TCHAR        _afxDDEPrintTo[]        = _T( "[printto(\"%1\",\"%2\",\"%3\",\"%4\")]" );
+AFX_STATIC_DATA const TCHAR        _afxDDEExec[] = _T("ddeexec");
+AFX_STATIC_DATA const TCHAR        _afxDDEOpen[] = _T("[open(\"%1\")]");
+AFX_STATIC_DATA const TCHAR        _afxDDEPrint[] = _T("[print(\"%1\")]");
+AFX_STATIC_DATA const TCHAR        _afxDDEPrintTo[] = _T("[printto(\"%1\",\"%2\",\"%3\",\"%4\")]");
 
-AFX_STATIC_DATA const TCHAR        _afxShellNewValueName[]    = _T( "NullFile" );
-AFX_STATIC_DATA const TCHAR        _afxShellNewValue[]        = _T( "" );
+AFX_STATIC_DATA const TCHAR        _afxShellNewValueName[] = _T("NullFile");
+AFX_STATIC_DATA const TCHAR        _afxShellNewValue[] = _T("");
 
 // **************************************************************************************************************
 // *                                   Fonctions de gestion de la base de registres                                *
 // **************************************************************************************************************
 
 // Cette fonction inscrit ou mets à jour une paire clé-valeur dans le registre au démarrage de l'application.
-AFX_STATIC BOOL AFXAPI _zSetRegKey( LPCTSTR lpszKey, LPCTSTR lpszValue, LPCTSTR lpszValueName = NULL )
+AFX_STATIC BOOL AFXAPI _zSetRegKey(LPCTSTR lpszKey, LPCTSTR lpszValue, LPCTSTR lpszValueName = NULL)
 {
-    if ( lpszValueName == NULL )
+    if (lpszValueName == NULL)
     {
-        if ( ::RegSetValue( HKEY_CLASSES_ROOT,
-                            lpszKey,
-                            REG_SZ,
-                            lpszValue,
-                            lstrlen( lpszValue ) * sizeof( TCHAR ) ) != ERROR_SUCCESS )
+        if (::RegSetValue(HKEY_CLASSES_ROOT,
+                          lpszKey,
+                          REG_SZ,
+                          lpszValue,
+                          lstrlen(lpszValue) * sizeof(TCHAR)) != ERROR_SUCCESS)
         {
-            TRACE1( _T( "Warning: registration database update failed for key '%s'.\n" ), lpszKey );
+            TRACE1(_T("Warning: registration database update failed for key '%s'.\n"), lpszKey);
             return FALSE;
         }
 
@@ -170,22 +170,22 @@ AFX_STATIC BOOL AFXAPI _zSetRegKey( LPCTSTR lpszKey, LPCTSTR lpszValue, LPCTSTR 
     {
         HKEY hKey;
 
-        if( ::RegCreateKey( HKEY_CLASSES_ROOT, lpszKey, &hKey ) == ERROR_SUCCESS )
+        if (::RegCreateKey(HKEY_CLASSES_ROOT, lpszKey, &hKey) == ERROR_SUCCESS)
         {
-            LONG lResult = ::RegSetValueEx( hKey,
-                                            lpszValueName,
-                                            0,
-                                            REG_SZ,
-                                            (CONST BYTE*)lpszValue,
-                                            ( lstrlen( lpszValue ) + 1 ) * sizeof( TCHAR ) );
+            LONG lResult = ::RegSetValueEx(hKey,
+                                           lpszValueName,
+                                           0,
+                                           REG_SZ,
+                                           (CONST BYTE*)lpszValue,
+                                           (lstrlen(lpszValue) + 1) * sizeof(TCHAR));
 
-            if( ::RegCloseKey( hKey ) == ERROR_SUCCESS && lResult == ERROR_SUCCESS )
+            if (::RegCloseKey(hKey) == ERROR_SUCCESS && lResult == ERROR_SUCCESS)
             {
                 return TRUE;
             }
         }
 
-        TRACE1( _T( "Warning: registration database update failed for key '%s'.\n" ), lpszKey );
+        TRACE1(_T("Warning: registration database update failed for key '%s'.\n"), lpszKey);
         return FALSE;
     }
 }
@@ -194,9 +194,9 @@ AFX_STATIC BOOL AFXAPI _zSetRegKey( LPCTSTR lpszKey, LPCTSTR lpszValue, LPCTSTR 
 // *                                                Classe ZAMainApp                                            *
 // **************************************************************************************************************
 
-IMPLEMENT_DYNAMIC( ZAMainApp, CWinApp )
+IMPLEMENT_DYNAMIC(ZAMainApp, CWinApp)
 
-BEGIN_MESSAGE_MAP( ZAMainApp, ZASingleInstanceApplication )
+BEGIN_MESSAGE_MAP(ZAMainApp, ZASingleInstanceApplication)
     //{{AFX_MSG_MAP(ZAApp)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -206,56 +206,55 @@ END_MESSAGE_MAP()
 // **************************************************************************************************************
 
 ZAMainApp::ZAMainApp()
-    : m_pOldSelectedObj        ( NULL ),
-      m_pCurrentDocument    ( NULL ),
-      m_FieldRepository        ( NULL )
+    : m_pOldSelectedObj(NULL),
+    m_pCurrentDocument(NULL),
+    m_FieldRepository(NULL)
 #ifdef _ZCHECKINFO
-    , m_ApplicationInfoType    ( ZBCriptedFileApplicationTypeInfo::Unknown )
+    , m_ApplicationInfoType(ZBCriptedFileApplicationTypeInfo::Unknown)
 #endif
 {
     ZAGlobal::StartInitialization();
 
-    m_pCurrentDocument    = NULL;
-    m_IDD_Splash        = 0;
-    m_IDD_About            = 0;
-    m_IDD_Support        = 0;
+    m_pCurrentDocument = NULL;
+    m_IDD_Splash = 0;
+    m_IDD_About = 0;
+    m_IDD_Support = 0;
 
     // JMR-MODIF - Le 23 août 2005 - Gestion dynamique des objets.
-    m_FieldRepository    = new PSS_FieldRepository();
+    m_FieldRepository = new PSS_FieldRepository();
 }
 
 ZAMainApp::~ZAMainApp()
-{
-}
+{}
 
 // **************************************************************************************************************
 // *                                Gestionnaires des messages de la classe ZAMAinApp                            *
 // **************************************************************************************************************
 
-BOOL ZAMainApp::OnCmdMsg( UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo )
+BOOL ZAMainApp::OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo)
 {
-    BOOL bResult = CWinApp::OnCmdMsg( nID, nCode, pExtra, pHandlerInfo );
+    BOOL bResult = CWinApp::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
 
-    if ( bResult )
+    if (bResult)
     {
         return TRUE;
     }
-    
-    if ( m_pDocManager )
+
+    if (m_pDocManager)
     {
         POSITION pos = m_pDocManager->GetFirstDocTemplatePosition();
 
-        while ( pos != NULL )
+        while (pos != NULL)
         {
             CDocTemplate* pTemplate = m_pDocManager->GetNextDocTemplate(pos);
-            ASSERT_KINDOF( CDocTemplate, pTemplate );
+            ASSERT_KINDOF(CDocTemplate, pTemplate);
 
-            if ( pTemplate->IsKindOf( RUNTIME_CLASS( PSS_DocTemplateEx ) ) )        
+            if (pTemplate->IsKindOf(RUNTIME_CLASS(PSS_DocTemplateEx)))
             {
-                if ( ( nID >= ( (PSS_DocTemplateEx*)pTemplate )->GetMenuID() ) &&
-                     ( nID <= ( (PSS_DocTemplateEx*)pTemplate )->GetMenuID() + M_MRU_RANGE ) )
+                if ((nID >= ((PSS_DocTemplateEx*)pTemplate)->GetMenuID()) &&
+                    (nID <= ((PSS_DocTemplateEx*)pTemplate)->GetMenuID() + M_MRU_RANGE))
                 {
-                    bResult |= pTemplate->OnCmdMsg( nID, nCode, pExtra, pHandlerInfo );
+                    bResult |= pTemplate->OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
                 }
             }
         }
@@ -287,7 +286,7 @@ void ZAMainApp::OnServerChanged()
 BOOL ZAMainApp::InitAppl()
 {
     // No errors
-    return( TRUE );
+    return(TRUE);
 }
 
 // Cette fonction est appelée lorsque l'initialisation a été effectuée, mais avant que le programme débute.
@@ -301,14 +300,14 @@ BOOL ZAMainApp::PostInitAppl()
 // Cette fonction est appelée lorsqu'une instance de l'application doit être initialisée.
 BOOL ZAMainApp::InitInstance()
 {
-    if( !AfxOleInit() )
+    if (!AfxOleInit())
     {
-        AfxMessageBox( _T( "Ole Initialization failed" ) );
+        AfxMessageBox(_T("Ole Initialization failed"));
         return FALSE;
     }
 
     // Check DDE
-    if ( !ZASingleInstanceApplication::InitInstance() )
+    if (!ZASingleInstanceApplication::InitInstance())
     {
         return false;
     }
@@ -331,9 +330,9 @@ BOOL ZAMainApp::InitInstance()
     // Start Splash
     PSS_SplashController Splash;
 
-    if ( m_IDD_Splash != 0 )
+    if (m_IDD_Splash != 0)
     {
-        Splash.Show( m_IDD_Splash, 5 );
+        Splash.Show(m_IDD_Splash, 5);
     }
 #endif
 
@@ -344,89 +343,87 @@ BOOL ZAMainApp::InitInstance()
     // of your final executable, you should remove from the following
     // the specific initialization routines you do not need.
 
-    #ifdef _AFXDLL
-        Enable3dControls();            // Call this when using MFC in a shared DLL
-    #else
-        Enable3dControlsStatic();    // Call this when linking to MFC statically
-    #endif
+#ifdef _AFXDLL
+    Enable3dControls();            // Call this when using MFC in a shared DLL
+#else
+    Enable3dControlsStatic();    // Call this when linking to MFC statically
+#endif
 
-    // Standard initialization
-    // If you are not using these features and wish to reduce the size
-    // of your final executable, you should remove from the following
-    // the specific initialization routines you do not need.
+// Standard initialization
+// If you are not using these features and wish to reduce the size
+// of your final executable, you should remove from the following
+// the specific initialization routines you do not need.
 
-    // JMR-MODIF - Le 20 octobre 2005 - Fonction obsolète, remplacée par un traitement de l'évenement CTLCOLOR
-    // directement dans les boîtes de dialogues.
+// JMR-MODIF - Le 20 octobre 2005 - Fonction obsolète, remplacée par un traitement de l'évenement CTLCOLOR
+// directement dans les boîtes de dialogues.
 //    SetDialogBkColor();                // Set dialog background color to gray
-    LoadStdProfileSettings( 0 );    // Load standard INI file options (including MRU)
+    LoadStdProfileSettings(0);    // Load standard INI file options (including MRU)
 
 #ifdef _ZCHECKINFO
     // Load the application type
     LoadApplicationInfoType();
 
-    if ( GetApplicationInfoType() == ZBCriptedFileApplicationTypeInfo::Unknown )
+    if (GetApplicationInfoType() == ZBCriptedFileApplicationTypeInfo::Unknown)
     {
-#ifndef _ZNOSPLASH
-        if ( m_IDD_Splash != 0 )
+    #ifndef _ZNOSPLASH
+        if (m_IDD_Splash != 0)
         {
             // End the splash display
             Splash.EndDisplay();
         }
-#endif
+    #endif
 
         ZIMessage Message;
-        Message.DisplayMessage( IDS_APPINFO_MISSING, IDS_APPINFO_MISSING_TITLE );
+        Message.DisplayMessage(IDS_APPINFO_MISSING, IDS_APPINFO_MISSING_TITLE);
 
         return FALSE;
     }
 
 #ifndef _ZNOSPLASH
-    if ( m_IDD_Splash != 0 )
+    if (m_IDD_Splash != 0)
     {
         // Set the progress
-        Splash.SetProgress( 10 );
-        Splash.SetText( IDS_SPL_LOADOPTIONS );
+        Splash.SetProgress(10);
+        Splash.SetText(IDS_SPL_LOADOPTIONS);
     }
 #endif
 
-#endif // _ZCHECKINFO
+#endif
 
     // JMR-MODIF - Le 15 avril 2007 - Ajouté GetApplicationDirectory() dans la variable Create.
-    // Initialize the Application Options
+    // initialize the application options
     GetApplicationOptions().Create(m_pszProfileName, GetApplicationDir());
 
-    if ( !GetApplicationOptions().LoadOption() )
-    {
+    if (!GetApplicationOptions().LoadOption())
         return FALSE;
-    }
 
-    if ( !LoadApplicationOptions() )
+    if (!LoadApplicationOptions())
     {
-#ifndef _ZNOSPLASH
-        if ( m_IDD_Splash != 0 )
+    #ifndef _ZNOSPLASH
+        if (m_IDD_Splash != 0)
         {
             // End the splash display
             Splash.Hide();
         }
-#endif
+    #endif
 
         return FALSE;
     }
 
 #ifdef _ZCHECKINFO
     // Check the product key
-    if ( GetProductKeyFileInfo() != GetRegisteredProductKey() )
+    if (GetProductKeyFileInfo() != GetRegisteredProductKey())
     {
-#ifndef _ZNOSPLASH
-        if ( m_IDD_Splash != 0 )
+    #ifndef _ZNOSPLASH
+        if (m_IDD_Splash != 0)
         {
             // End the splash display
             Splash.EndDisplay();
         }
-#endif
+    #endif
 
         ZIMessage Message;
-        Message.DisplayMessage( IDS_APPINFO_WRONGKEY, IDS_APPINFO_WRONGKEY_TITLE );
+        Message.DisplayMessage(IDS_APPINFO_WRONGKEY, IDS_APPINFO_WRONGKEY_TITLE);
 
         return FALSE;
     }
@@ -434,39 +431,39 @@ BOOL ZAMainApp::InitInstance()
 #endif // _ZCHECKINFO
 
     // Call the initializer for the application
-    if ( !InitAppl() )
+    if (!InitAppl())
     {
-#ifndef _ZNOSPLASH
-        if ( m_IDD_Splash != 0 )
+    #ifndef _ZNOSPLASH
+        if (m_IDD_Splash != 0)
         {
             // End the splash display
             Splash.Hide();
         }
-#endif
+    #endif
         return FALSE;
     }
 
     // The main window has been initialized, so show and update it.
-    m_pMainWnd->ShowWindow( m_nCmdShow );
+    m_pMainWnd->ShowWindow(m_nCmdShow);
     m_pMainWnd->UpdateWindow();
 
     // Check if first use
-    CString FirstLoad = AfxGetApp()->GetProfileString( ApplicationConfigSectionName, szFirstUseEntry, _T( "0" ) );
+    CString FirstLoad = AfxGetApp()->GetProfileString(ApplicationConfigSectionName, szFirstUseEntry, _T("0"));
 
-    if ( FirstLoad == _T( "1" ) )
+    if (FirstLoad == _T("1"))
     {
         const CString subDirectory = AfxGetApp()->GetProfileString(ApplicationConfigSectionName,
                                                                    szSubDirectoryNameEntry,
                                                                    _T(""));
 
         const CString serverDirectory = ZDirectory::NormalizeDirectory(GetApplicationDir()) + _T("\\") + subDirectory;
-        const CString serverIniFile   = GetServer().CreateInitialEnvironment(serverDirectory);
+        const CString serverIniFile = GetServer().CreateInitialEnvironment(serverDirectory);
 
         // then asks the server to create an initial environement
         if (serverIniFile.IsEmpty())
         {
             ZIMessage Message;
-            Message.DisplayMessage( IDS_ONFIRSTUSE_FAIL, IDS_ONFIRSTUSE_FAIL_TITLE );
+            Message.DisplayMessage(IDS_ONFIRSTUSE_FAIL, IDS_ONFIRSTUSE_FAIL_TITLE);
 
             return FALSE;
         }
@@ -474,142 +471,142 @@ BOOL ZAMainApp::InitInstance()
         SetServerIniFile(serverIniFile);
     }
 
-    if ( GetServerIniFile().IsEmpty() )
+    if (GetServerIniFile().IsEmpty())
     {
-        MsgBox mbox;
+        PSS_MsgBox mBox;
 
-        if ( mbox.DisplayMsgBox( IDS_NOSERVERDEFINED, MB_YESNO ) == IDNO )
+        if (mBox.ShowMsgBox(IDS_NOSERVERDEFINED, MB_YESNO) == IDNO)
         {
             ZIMessage Message;
-            Message.DisplayMessage( IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE );
+            Message.DisplayMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
 
             return FALSE;
         }
 
-        if ( !ChooseServer() )
+        if (!ChooseServer())
         {
             ZIMessage Message;
-            Message.DisplayMessage( IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE );
+            Message.DisplayMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
 
             return FALSE;
         }
     }
 
 #ifndef _ZNOSPLASH
-    if ( m_IDD_Splash != 0 )
+    if (m_IDD_Splash != 0)
     {
         // Set the progress
-        Splash.SetProgress( 20 );
-        Splash.SetText( IDS_SPL_OPENSERVER );
+        Splash.SetProgress(20);
+        Splash.SetText(IDS_SPL_OPENSERVER);
     }
 #endif
 
     // If we can't open a server session, then
     // quit the application
-    if ( !OpenServerSession() )
+    if (!OpenServerSession())
     {
         return FALSE;
     }
 
 #ifndef _ZNOSPLASH
-    if ( m_IDD_Splash != 0 )
+    if (m_IDD_Splash != 0)
     {
         // Set the progress
-        Splash.SetProgress( 40 );
-        Splash.SetText( IDS_SPL_LOADUSERS );
+        Splash.SetProgress(40);
+        Splash.SetText(IDS_SPL_LOADUSERS);
     }
 #endif
 
 #ifdef _ZCHECKINFO
     // Load users only for EntrepriseEdition
-    if ( GetApplicationInfoType() == ZBCriptedFileApplicationTypeInfo::EntrepriseEdition )
+    if (GetApplicationInfoType() == ZBCriptedFileApplicationTypeInfo::EntrepriseEdition)
     {
-#endif // _ZCHECKINFO
+    #endif // _ZCHECKINFO
 
         // Check if required to load the user file
-        if ( LoadUserFile() )
+        if (LoadUserFile())
         {
-            if ( !LoadAllUsers() )
+            if (!LoadAllUsers())
             {
                 ZIMessage Message;
-                Message.DisplayMessage( IDS_LOADUSERSFAIL_T, IDS_LOADUSERSFAIL_WT );
+                Message.DisplayMessage(IDS_LOADUSERSFAIL_T, IDS_LOADUSERSFAIL_WT);
                 return FALSE;
             }
 
             // Check if required to authenticate the user
-            if ( UserAuthenticationRequired() )
+            if (UserAuthenticationRequired())
             {
                 ZAGlobal::InitializeNetwork();
 
                 // Not a registered user
-                if ( ZAGlobal::GetConnectedUser() == NULL )
+                if (ZAGlobal::GetConnectedUser() == NULL)
                 {
                     ZIMessage Message;
-                    Message.DisplayMessage( IDS_USERNOTREGISTERED_T, IDS_USERNOTREGISTERED_WT );
+                    Message.DisplayMessage(IDS_USERNOTREGISTERED_T, IDS_USERNOTREGISTERED_WT);
 
                     return FALSE;
                 }
             }
 
             // Advise for user manager loaded
-            AfxGetMainWnd()->SendMessageToDescendants( UM_INITIALIZE_USERMANAGER,
-                                                       0, // Nothing
-                                                       (LPARAM)&ZAGlobal::GetUserManager() );
+            AfxGetMainWnd()->SendMessageToDescendants(UM_INITIALIZE_USERMANAGER,
+                                                      0, // Nothing
+                                                      (LPARAM)&ZAGlobal::GetUserManager());
         }
 
-#ifdef _ZCHECKINFO
+    #ifdef _ZCHECKINFO
     }
 #endif // _ZCHECKINFO
 
 #ifndef _ZNOSPLASH
-    if ( m_IDD_Splash != 0 )
+    if (m_IDD_Splash != 0)
     {
         // Set the progress
-        Splash.SetProgress( 60 );
-        Splash.SetText( IDS_SPL_LOADTMPL );
+        Splash.SetProgress(60);
+        Splash.SetText(IDS_SPL_LOADTMPL);
     }
 #endif
 
     // Create the template manager
-    ZAGlobal::GetTemplateManager().Create( GetTemplateDirectory(), ZAGlobal::GetFileExtension() );
+    ZAGlobal::GetTemplateManager().Create(GetTemplateDirectory(), ZAGlobal::GetFileExtension());
 
-    AfxGetMainWnd()->SendMessageToDescendants( UM_INITIALIZE_TEMPLATEMANAGER,
-                                               1, // Show file
-                                               (LPARAM)&ZAGlobal::GetTemplateManager() );
+    AfxGetMainWnd()->SendMessageToDescendants(UM_INITIALIZE_TEMPLATEMANAGER,
+                                              1, // Show file
+                                              (LPARAM)&ZAGlobal::GetTemplateManager());
 
 #ifndef _ZNOSPLASH
-    if ( m_IDD_Splash != 0 )
+    if (m_IDD_Splash != 0)
     {
         // Set the progress
-        Splash.SetProgress( 70 );
-        Splash.SetText( IDS_SPL_LOADPROCTMPL );
+        Splash.SetProgress(70);
+        Splash.SetText(IDS_SPL_LOADPROCTMPL);
     }
 #endif
 
     // Create the process template manager
-    ZAGlobal::GetProcessTemplateManager().Create( GetProcessTemplateDirectory(),
-                                                  ZAGlobal::GetProcessFileExtension() );
+    ZAGlobal::GetProcessTemplateManager().Create(GetProcessTemplateDirectory(),
+                                                 ZAGlobal::GetProcessFileExtension());
 
-    AfxGetMainWnd()->SendMessageToDescendants( UM_INITIALIZE_PROCESSTEMPLATEMANAGER,
-                                               1, // Show file
-                                               (LPARAM)&ZAGlobal::GetTemplateManager() );
+    AfxGetMainWnd()->SendMessageToDescendants(UM_INITIALIZE_PROCESSTEMPLATEMANAGER,
+                                              1, // Show file
+                                              (LPARAM)&ZAGlobal::GetTemplateManager());
 
 #ifndef _ZNOSPLASH
-    if ( m_IDD_Splash != 0 )
+    if (m_IDD_Splash != 0)
     {
         // Set the progress
-        Splash.SetProgress( 80 );
-        Splash.SetText( IDS_SPL_LOADMODELTMPL );
+        Splash.SetProgress(80);
+        Splash.SetText(IDS_SPL_LOADMODELTMPL);
     }
 #endif
 
     // Create the model template manager
-    ZAGlobal::GetModelTemplateManager().Create( GetModelTemplateDirectory(), ZAGlobal::GetModelFileExtension() );
+    ZAGlobal::GetModelTemplateManager().Create(GetModelTemplateDirectory(), ZAGlobal::GetModelFileExtension());
 
-    AfxGetMainWnd()->SendMessageToDescendants( UM_INITIALIZE_MODELTEMPLATEMANAGER,
-                                               1, // Show file
-                                               (LPARAM)&ZAGlobal::GetModelTemplateManager() );
-    
+    AfxGetMainWnd()->SendMessageToDescendants(UM_INITIALIZE_MODELTEMPLATEMANAGER,
+                                              1, // Show file
+                                              (LPARAM)&ZAGlobal::GetModelTemplateManager());
+
     // enable file manager drag/drop and DDE Execute open
     ZAMainApp::EnableShellOpen();
 
@@ -618,30 +615,30 @@ BOOL ZAMainApp::InitInstance()
     OnRegisterAdditionalTemplate();
 
     // Now register all the templates
-    ZAMainApp::RegisterShellFileTypes( TRUE );
+    ZAMainApp::RegisterShellFileTypes(TRUE);
 
     m_pMainWnd->DragAcceptFiles();
 
 #if defined( _ZDESIGNER ) || defined( _ZSCRIPTOR ) || defined( _ZWRITER ) || defined( _ZPROCESS )
 
 #ifndef _ZNOSPLASH
-    if ( m_IDD_Splash != 0 )
+    if (m_IDD_Splash != 0)
     {
         // Set the progress
-        Splash.SetProgress( 90 );
-        Splash.SetText( IDS_SPL_LOADFIELD );
+        Splash.SetProgress(90);
+        Splash.SetText(IDS_SPL_LOADFIELD);
     }
 #endif
 
-    if ( !LoadGlobalFieldRepository() )
+    if (!LoadGlobalFieldRepository())
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_NOGFIELDFILEVALUE, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_NOGFIELDFILEVALUE, MB_OK);
     }
 
-    AfxGetMainWnd()->SendMessageToDescendants( UM_INITIALIZE_FIELDREPOSITORY,
-                                               0,
-                                               (LPARAM)GetFieldRepository() );
+    AfxGetMainWnd()->SendMessageToDescendants(UM_INITIALIZE_FIELDREPOSITORY,
+                                              0,
+                                              (LPARAM)GetFieldRepository());
 
     // Initialize object definition
     PSS_ObjectUtility::InitializeDefinition(GetServer().GetFieldDefinitionIniFile());
@@ -650,13 +647,13 @@ BOOL ZAMainApp::InitInstance()
     ZBPaintResources::Initialize();
 
     // Initialize the global definitions
-    ZAGlobal::Initialize( &GetServer(),
-                          GetApplicationType(),
-                          FALSE,
-                          ShowAnimation(),
-                          MaximizeFormOnOpen(),
-                          GetFileDirectory(),
-                          GetEventDirectory() );
+    ZAGlobal::Initialize(&GetServer(),
+                         GetApplicationType(),
+                         FALSE,
+                         ShowAnimation(),
+                         MaximizeFormOnOpen(),
+                         GetFileDirectory(),
+                         GetEventDirectory());
 #endif // _ZDESIGNER // _ZWRITER  // _ZPROCESS
 
     // Because ZAStyle is in ZUtil and if not defined here, the linker does not include this class
@@ -670,8 +667,8 @@ BOOL ZAMainApp::InitInstance()
     // the logo. If problem with the installation
     // the message can appears and he is not
     // hidden by the startup logo.
-    Ctl3dRegister( AfxGetInstanceHandle() ) ;
-    Ctl3dAutoSubclass( AfxGetInstanceHandle() ) ;
+    Ctl3dRegister(AfxGetInstanceHandle());
+    Ctl3dAutoSubclass(AfxGetInstanceHandle());
 #endif // Only in 16bit
 
 #ifndef _WIN32
@@ -679,10 +676,10 @@ BOOL ZAMainApp::InitInstance()
 #endif
 
 #ifndef _ZNOSPLASH
-    if ( m_IDD_Splash != 0 )
+    if (m_IDD_Splash != 0)
     {
         // Set the progress
-        Splash.SetProgress( 100 );
+        Splash.SetProgress(100);
     }
 #endif
 
@@ -691,12 +688,12 @@ BOOL ZAMainApp::InitInstance()
     // Create the class for the security
     ZASecurityCheck SecurityCheck;
 
-    SecurityCheck.Create( szSecurityFilename,
-                          100,                                        // Day max
-                          2000,                                        // Counter max
-                          2,                                        // Counter min
-                          GetApplicationRegistryKey(),
-                          GetApplicationRegistryProductEntryKey() );
+    SecurityCheck.Create(szSecurityFilename,
+                         100,                                        // Day max
+                         2000,                                        // Counter max
+                         2,                                        // Counter min
+                         GetApplicationRegistryKey(),
+                         GetApplicationRegistryProductEntryKey());
 
     // ********************************************************
     // Uncomment this line if you would like to create a new
@@ -708,24 +705,24 @@ BOOL ZAMainApp::InitInstance()
     BOOL bStop = FALSE;
 
     // Save the new date
-    if ( !bStop && !SecurityCheck.SetLastUseDate( CTime::GetCurrentTime() ) )
+    if (!bStop && !SecurityCheck.SetLastUseDate(CTime::GetCurrentTime()))
     {
         bStop = TRUE;
     }
 
     // Increment the use counter
-    if ( !bStop && !SecurityCheck.IncrementCounter() )
+    if (!bStop && !SecurityCheck.IncrementCounter())
     {
         bStop = TRUE;
     }
 
     // Check if the user can continue to use the program
-    if ( !bStop && !SecurityCheck.Check() )
+    if (!bStop && !SecurityCheck.Check())
     {
         bStop = TRUE;
     }
 
-    if ( bStop )
+    if (bStop)
     {
         SecurityCheck.DisplayStopWnd();
 
@@ -738,7 +735,7 @@ BOOL ZAMainApp::InitInstance()
 
 #ifndef _ZNOSPLASH
     // End the splash
-    if ( m_IDD_Splash != 0 )
+    if (m_IDD_Splash != 0)
     {
         Splash.Hide();
     }
@@ -750,21 +747,21 @@ BOOL ZAMainApp::InitInstance()
 
     // If we did correctly the first use initialization,
     // advise the user and reset the flag
-    if ( FirstLoad == _T( "1" ) )
+    if (FirstLoad == _T("1"))
     {
         // Reset parameters in the application's ini file
-        AfxGetApp()->WriteProfileString( ApplicationConfigSectionName, szFirstUseEntry, _T( "0" ) );
-        AfxGetApp()->WriteProfileString( ApplicationConfigSectionName, szSubDirectoryNameEntry, _T( "" ) );
+        AfxGetApp()->WriteProfileString(ApplicationConfigSectionName, szFirstUseEntry, _T("0"));
+        AfxGetApp()->WriteProfileString(ApplicationConfigSectionName, szSubDirectoryNameEntry, _T(""));
 
         ZIMessage Message;
-        Message.DisplayMessage( IDS_ONFIRSTUSE_SUCCESS, IDS_ONFIRSTUSE_SUCCESS_TITLE );
+        Message.DisplayMessage(IDS_ONFIRSTUSE_SUCCESS, IDS_ONFIRSTUSE_SUCCESS_TITLE);
 
         // Saves all new modifed parameters
         GetApplicationOptions().SaveOption();
         SaveApplicationOptions();
     }
 
-    if ( !PostInitAppl() )
+    if (!PostInitAppl())
     {
         return FALSE;
     }
@@ -779,11 +776,11 @@ BOOL ZAMainApp::InitInstance()
 int ZAMainApp::ExitInstance()
 {
 #ifndef _WIN32
-    Ctl3dUnregister( AfxGetInstanceHandle() ) ;
+    Ctl3dUnregister(AfxGetInstanceHandle());
 #endif // Only in 16bit
 
     // No errors
-    return( 0 );
+    return(0);
 }
 
 // Cette fonction est appelée lorsque le programme est quitté.
@@ -791,7 +788,7 @@ BOOL ZAMainApp::ExitAppl()
 {
     //## begin ZAMainApp::ExitAppl%912537580.body preserve=yes
     // If the field repository exists, close session properly
-    if ( GetFieldRepository() != NULL )
+    if (GetFieldRepository() != NULL)
     {
         GetFieldRepository()->CloseRepository();
     }
@@ -806,7 +803,7 @@ BOOL ZAMainApp::ExitAppl()
 // JMR-MODIF - Le 23 août 2005 - Ajout de la fonction Release pour permettre le nettoyage de la mémoire.
 void ZAMainApp::Release()
 {
-    if ( m_FieldRepository != NULL )
+    if (m_FieldRepository != NULL)
     {
         delete m_FieldRepository;
         m_FieldRepository = NULL;
@@ -820,17 +817,17 @@ CString ZAMainApp::GetApplicationDir() const
     HINSTANCE hInstance = AfxGetInstanceHandle();
     CString   appDir;
 
-    if ( hInstance != NULL )
+    if (hInstance != NULL)
     {
         LPTSTR lpszModule = new TCHAR[_MAX_PATH];
 
-        if ( GetModuleFileName( hInstance, lpszModule, _MAX_PATH ) )
+        if (GetModuleFileName(hInstance, lpszModule, _MAX_PATH))
         {
-            PSS_File File( lpszModule );
-            appDir = ZDirectory::NormalizeDirectory( File.GetFilePath() );
+            PSS_File File(lpszModule);
+            appDir = ZDirectory::NormalizeDirectory(File.GetFilePath());
         }
 
-        delete []lpszModule;
+        delete[]lpszModule;
     }
 
     return appDir;
@@ -841,16 +838,16 @@ void ZAMainApp::LoadApplicationInfoType()
 {
     CString    AppDir = GetApplicationDirectory();
 
-    if ( AppDir.IsEmpty() )
+    if (AppDir.IsEmpty())
     {
         return;
     }
 
-    CString    AppInfoFile        = AppDir + _T( "\\zAppInfo.inf" );
-    ZBCriptedFileApplicationTypeInfo AppInfo( AppInfoFile );
+    CString    AppInfoFile = AppDir + _T("\\zAppInfo.inf");
+    ZBCriptedFileApplicationTypeInfo AppInfo(AppInfoFile);
 
-    m_ApplicationInfoType    = AppInfo.LoadApplicationType();
-    m_ProductKeyFileInfo    = AppInfo.LoadProductKey();
+    m_ApplicationInfoType = AppInfo.LoadApplicationType();
+    m_ProductKeyFileInfo = AppInfo.LoadProductKey();
 }
 #endif
 
@@ -859,9 +856,9 @@ BOOL ZAMainApp::LoadGlobalFieldRepository()
     //## begin ZAMainApp::LoadGlobalFieldRepository%910019984.body preserve=yes
     CString CompleteFile = GetGlobalFieldNameRepository();
 
-    if ( m_FieldRepository != NULL )
+    if (m_FieldRepository != NULL)
     {
-        return m_FieldRepository->OpenRepository( CompleteFile, OpenFieldRepositoryReadOnly() );
+        return m_FieldRepository->OpenRepository(CompleteFile, OpenFieldRepositoryReadOnly());
     }
     else return FALSE;
     //## end ZAMainApp::LoadGlobalFieldRepository%910019984.body
@@ -869,13 +866,13 @@ BOOL ZAMainApp::LoadGlobalFieldRepository()
 
 void ZAMainApp::EnableShellOpen()
 {
-    ASSERT( m_atomApp == NULL && m_atomSystemTopic == NULL ); // do once
+    ASSERT(m_atomApp == NULL && m_atomSystemTopic == NULL); // do once
 
     CString strShortName;
     TCHAR szLongPathName[_MAX_PATH];
-    ::GetModuleFileName( m_hInstance, szLongPathName, _MAX_PATH );
+    ::GetModuleFileName(m_hInstance, szLongPathName, _MAX_PATH);
 
-    if ( ::GetShortPathName( szLongPathName, strShortName.GetBuffer( _MAX_PATH ), _MAX_PATH ) == 0 )
+    if (::GetShortPathName(szLongPathName, strShortName.GetBuffer(_MAX_PATH), _MAX_PATH) == 0)
     {
         // Rare failure case (especially on not-so-modern file systems)
         strShortName = szLongPathName;
@@ -885,31 +882,31 @@ void ZAMainApp::EnableShellOpen()
 
     int nPos = strShortName.ReverseFind('\\');
 
-    if ( nPos != -1 )
+    if (nPos != -1)
     {
-        strShortName = strShortName.Right( strShortName.GetLength() - nPos-1 );
+        strShortName = strShortName.Right(strShortName.GetLength() - nPos - 1);
     }
 
-    nPos = strShortName.ReverseFind( '.' );
+    nPos = strShortName.ReverseFind('.');
 
-    if ( nPos != -1 )
+    if (nPos != -1)
     {
-        strShortName = strShortName.Left( nPos );
+        strShortName = strShortName.Left(nPos);
     }
 
-    m_atomApp            = ::GlobalAddAtom( strShortName );
-    m_atomSystemTopic    = ::GlobalAddAtom( _T( "system" ) );
+    m_atomApp = ::GlobalAddAtom(strShortName);
+    m_atomSystemTopic = ::GlobalAddAtom(_T("system"));
 }
 
-void ZAMainApp::RegisterShellFileTypes( BOOL bCompat /*= FALSE*/ )
+void ZAMainApp::RegisterShellFileTypes(BOOL bCompat /*= FALSE*/)
 {
     // bCompat is TRUE for print and drag/drop to printer
 
     // Register additional template
-    RegisterAdditionalTemplateShellFileTypes( bCompat );
+    RegisterAdditionalTemplateShellFileTypes(bCompat);
 
     CString strPathName, strTemp;
-    AfxGetModuleShortFileName( AfxGetInstanceHandle(), strPathName );
+    AfxGetModuleShortFileName(AfxGetInstanceHandle(), strPathName);
 
     CString strMustBeRegistered;
     CString strIconIndex;
@@ -919,46 +916,46 @@ void ZAMainApp::RegisterShellFileTypes( BOOL bCompat /*= FALSE*/ )
 
     POSITION pos = GetFirstDocTemplatePosition();
 
-    while ( pos != NULL )
+    while (pos != NULL)
     {
-        CDocTemplate*    pTemplate = GetNextDocTemplate( pos );
-        CString            strOpenCommandLine            = strPathName;
-        CString            strPrintCommandLine            = strPathName;
-        CString            strPrintToCommandLine        = strPathName;
-        CString            strDefaultIconCommandLine    = strPathName;
+        CDocTemplate*    pTemplate = GetNextDocTemplate(pos);
+        CString            strOpenCommandLine = strPathName;
+        CString            strPrintCommandLine = strPathName;
+        CString            strPrintToCommandLine = strPathName;
+        CString            strDefaultIconCommandLine = strPathName;
 
         // Check if the template must be registered
-        if ( pTemplate->GetDocString( strMustBeRegistered,
-                                      (CDocTemplate::DocStringIndex)_ThisClass::TemplateMustBeRegisteredPosition ) &&
-             !strMustBeRegistered.IsEmpty())
+        if (pTemplate->GetDocString(strMustBeRegistered,
+            (CDocTemplate::DocStringIndex)_ThisClass::TemplateMustBeRegisteredPosition) &&
+            !strMustBeRegistered.IsEmpty())
         {
             // If equal to zero, do not register
-            if ( atoi( strMustBeRegistered ) == 0 )
+            if (atoi(strMustBeRegistered) == 0)
             {
                 continue;
             }
         }
 
-        if ( pTemplate->GetDocString( strFileTypeId, CDocTemplate::regFileTypeId ) && !strFileTypeId.IsEmpty() )
+        if (pTemplate->GetDocString(strFileTypeId, CDocTemplate::regFileTypeId) && !strFileTypeId.IsEmpty())
         {
-            if ( bCompat )
+            if (bCompat)
             {
-                if ( pTemplate->GetDocString( strIconIndex,
-                                              (CDocTemplate::DocStringIndex)_ThisClass::DefaultIconPosition ) &&
-                     !strIconIndex.IsEmpty() )
+                if (pTemplate->GetDocString(strIconIndex,
+                    (CDocTemplate::DocStringIndex)_ThisClass::DefaultIconPosition) &&
+                    !strIconIndex.IsEmpty())
                 {
                     CString strIcon;
-                    HICON hIcon = ::ExtractIcon( AfxGetInstanceHandle(), strPathName, atoi( strIconIndex ) );
+                    HICON hIcon = ::ExtractIcon(AfxGetInstanceHandle(), strPathName, atoi(strIconIndex));
 
-                    if ( hIcon != NULL )
+                    if (hIcon != NULL)
                     {
-                        strIcon.Format( _afxIconIndexFmt, atoi( strIconIndex ) );
+                        strIcon.Format(_afxIconIndexFmt, atoi(strIconIndex));
                         DestroyIcon(hIcon);
                     }
                     else
                     {
                         // Otherwise, register with the first icon
-                        strIcon.Format( _afxIconIndexFmt, DEFAULT_ICON_INDEX );
+                        strIcon.Format(_afxIconIndexFmt, DEFAULT_ICON_INDEX);
                     }
 
                     strDefaultIconCommandLine += strIcon;
@@ -966,28 +963,28 @@ void ZAMainApp::RegisterShellFileTypes( BOOL bCompat /*= FALSE*/ )
             }
 
             // enough info to register it
-            if ( !pTemplate->GetDocString( strFileTypeName, CDocTemplate::regFileTypeName ) )
+            if (!pTemplate->GetDocString(strFileTypeName, CDocTemplate::regFileTypeName))
             {
                 // Use id name
                 strFileTypeName = strFileTypeId;
             }
 
             // No spaces allowed
-            ASSERT( strFileTypeId.Find( ' ' ) == -1 );
+            ASSERT(strFileTypeId.Find(' ') == -1);
 
             // first register the type ID of our server
-            if ( !_zSetRegKey( strFileTypeId, strFileTypeName ) )
+            if (!_zSetRegKey(strFileTypeId, strFileTypeName))
             {
                 // Just skip it
                 continue;
             }
 
-            if ( bCompat )
+            if (bCompat)
             {
                 // path\DefaultIcon = path,1
-                strTemp.Format( _afxDefaultIconFmt, (LPCTSTR)strFileTypeId );
+                strTemp.Format(_afxDefaultIconFmt, (LPCTSTR)strFileTypeId);
 
-                if ( !_zSetRegKey( strTemp, strDefaultIconCommandLine ) )
+                if (!_zSetRegKey(strTemp, strDefaultIconCommandLine))
                 {
                     // Just skip it
                     continue;
@@ -995,32 +992,32 @@ void ZAMainApp::RegisterShellFileTypes( BOOL bCompat /*= FALSE*/ )
             }
 
             // If MDI Application
-            if ( !pTemplate->GetDocString( strTemp, CDocTemplate::windowTitle ) || strTemp.IsEmpty() )
+            if (!pTemplate->GetDocString(strTemp, CDocTemplate::windowTitle) || strTemp.IsEmpty())
             {
                 // path\shell\open\ddeexec = [open("%1")]
-                strTemp.Format( _afxShellOpenFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxDDEExec );
+                strTemp.Format(_afxShellOpenFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxDDEExec);
 
-                if ( !_zSetRegKey( strTemp, _afxDDEOpen ) )
+                if (!_zSetRegKey(strTemp, _afxDDEOpen))
                 {
                     // Just skip it
                     continue;
                 }
 
-                if ( bCompat )
+                if (bCompat)
                 {
                     // path\shell\print\ddeexec = [print("%1")]
-                    strTemp.Format( _afxShellPrintFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxDDEExec );
+                    strTemp.Format(_afxShellPrintFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxDDEExec);
 
-                    if ( !_zSetRegKey( strTemp, _afxDDEPrint ) )
+                    if (!_zSetRegKey(strTemp, _afxDDEPrint))
                     {
                         // Just skip it
                         continue;
                     }
 
                     // path\shell\printto\ddeexec = [printto("%1","%2","%3","%4")]
-                    strTemp.Format( _afxShellPrintToFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxDDEExec );
+                    strTemp.Format(_afxShellPrintToFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxDDEExec);
 
-                    if ( !_zSetRegKey( strTemp, _afxDDEPrintTo ) )
+                    if (!_zSetRegKey(strTemp, _afxDDEPrintTo))
                     {
                         // just skip it
                         continue;
@@ -1029,13 +1026,13 @@ void ZAMainApp::RegisterShellFileTypes( BOOL bCompat /*= FALSE*/ )
                     // path\shell\open\command = path /dde
                     // path\shell\print\command = path /dde
                     // path\shell\printto\command = path /dde
-                    strOpenCommandLine        += _afxDDEArg;
-                    strPrintCommandLine        += _afxDDEArg;
-                    strPrintToCommandLine    += _afxDDEArg;
+                    strOpenCommandLine += _afxDDEArg;
+                    strPrintCommandLine += _afxDDEArg;
+                    strPrintToCommandLine += _afxDDEArg;
                 }
                 else
                 {
-                    strOpenCommandLine        += _afxOpenArg;
+                    strOpenCommandLine += _afxOpenArg;
                 }
             }
             else
@@ -1043,72 +1040,72 @@ void ZAMainApp::RegisterShellFileTypes( BOOL bCompat /*= FALSE*/ )
                 // path\shell\open\command = path filename
                 // path\shell\print\command = path /p filename
                 // path\shell\printto\command = path /pt filename printer driver port
-                strOpenCommandLine            += _afxOpenArg;
+                strOpenCommandLine += _afxOpenArg;
 
-                if ( bCompat )
+                if (bCompat)
                 {
-                    strPrintCommandLine        += _afxPrintArg;
-                    strPrintToCommandLine    += _afxPrintToArg;
+                    strPrintCommandLine += _afxPrintArg;
+                    strPrintToCommandLine += _afxPrintToArg;
                 }
             }
 
             // path\shell\open\command = path filename
-            strTemp.Format( _afxShellOpenFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxCommand );
+            strTemp.Format(_afxShellOpenFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxCommand);
 
-            if ( !_zSetRegKey( strTemp, strOpenCommandLine ) )
+            if (!_zSetRegKey(strTemp, strOpenCommandLine))
             {
                 // Just skip it
                 continue;
             }
 
-            if ( bCompat )
+            if (bCompat)
             {
                 // path\shell\print\command = path /p filename
-                strTemp.Format( _afxShellPrintFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxCommand );
+                strTemp.Format(_afxShellPrintFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxCommand);
 
-                if ( !_zSetRegKey( strTemp, strPrintCommandLine ) )
+                if (!_zSetRegKey(strTemp, strPrintCommandLine))
                 {
                     // Just skip it
                     continue;
                 }
 
                 // path\shell\printto\command = path /pt filename printer driver port
-                strTemp.Format( _afxShellPrintToFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxCommand );
+                strTemp.Format(_afxShellPrintToFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxCommand);
 
-                if ( !_zSetRegKey( strTemp, strPrintToCommandLine ) )
+                if (!_zSetRegKey(strTemp, strPrintToCommandLine))
                 {
                     // Just skip it
                     continue;
                 }
             }
 
-            pTemplate->GetDocString( strFilterExt, CDocTemplate::filterExt );
+            pTemplate->GetDocString(strFilterExt, CDocTemplate::filterExt);
 
-            if ( !strFilterExt.IsEmpty() )
+            if (!strFilterExt.IsEmpty())
             {
-                ASSERT( strFilterExt[0] == '.' );
+                ASSERT(strFilterExt[0] == '.');
 
                 LONG lSize = _MAX_PATH * 2;
 
-                LONG lResult = ::RegQueryValue( HKEY_CLASSES_ROOT,
-                                                strFilterExt,
-                                                strTemp.GetBuffer( lSize ),
-                                                &lSize );
+                LONG lResult = ::RegQueryValue(HKEY_CLASSES_ROOT,
+                                               strFilterExt,
+                                               strTemp.GetBuffer(lSize),
+                                               &lSize);
 
                 strTemp.ReleaseBuffer();
 
-                if ( lResult != ERROR_SUCCESS || strTemp.IsEmpty() || strTemp == strFileTypeId )
+                if (lResult != ERROR_SUCCESS || strTemp.IsEmpty() || strTemp == strFileTypeId)
                 {
                     // no association for that suffix
-                    if ( !_zSetRegKey( strFilterExt, strFileTypeId ) )
+                    if (!_zSetRegKey(strFilterExt, strFileTypeId))
                     {
                         continue;
                     }
 
-                    if ( bCompat )
+                    if (bCompat)
                     {
-                        strTemp.Format( _afxShellNewFmt, (LPCTSTR)strFilterExt );
-                        (void)_zSetRegKey( strTemp, _afxShellNewValue, _afxShellNewValueName );
+                        strTemp.Format(_afxShellNewFmt, (LPCTSTR)strFilterExt);
+                        (void)_zSetRegKey(strTemp, _afxShellNewValue, _afxShellNewValueName);
                     }
                 }
             }
@@ -1116,12 +1113,12 @@ void ZAMainApp::RegisterShellFileTypes( BOOL bCompat /*= FALSE*/ )
     }
 }
 
-void ZAMainApp::RegisterAdditionalTemplateShellFileTypes( BOOL bCompat /*= FALSE*/ )
+void ZAMainApp::RegisterAdditionalTemplateShellFileTypes(BOOL bCompat /*= FALSE*/)
 {
     CString strPathName;
     CString strTemp;
 
-    AfxGetModuleShortFileName( AfxGetInstanceHandle(), strPathName );
+    AfxGetModuleShortFileName(AfxGetInstanceHandle(), strPathName);
 
     CString strMustBeRegistered;
     CString strIconIndex;
@@ -1131,50 +1128,50 @@ void ZAMainApp::RegisterAdditionalTemplateShellFileTypes( BOOL bCompat /*= FALSE
 
     int Count = GetTemplateNumEntries();
 
-    for ( int i = 0; i < Count; ++i )
+    for (int i = 0; i < Count; ++i)
     {
-        _ThisClass::_TemplateMapCollection::_TemplateEntry* pEntry = GetTemplateAt( i );
+        _ThisClass::_TemplateMapCollection::_TemplateEntry* pEntry = GetTemplateAt(i);
 
-        if ( !pEntry )
+        if (!pEntry)
         {
             continue;
         }
 
-        CString strOpenCommandLine            = strPathName;
-        CString strPrintCommandLine            = strPathName;
-        CString strPrintToCommandLine        = strPathName;
-        CString strDefaultIconCommandLine    = strPathName;
+        CString strOpenCommandLine = strPathName;
+        CString strPrintCommandLine = strPathName;
+        CString strPrintToCommandLine = strPathName;
+        CString strDefaultIconCommandLine = strPathName;
 
         // Check if the template must be registered
-        if ( pEntry->GetTemplateString( strMustBeRegistered, _ThisClass::TemplateMustBeRegisteredPosition ) &&
-            !strMustBeRegistered.IsEmpty() )
+        if (pEntry->GetTemplateString(strMustBeRegistered, _ThisClass::TemplateMustBeRegisteredPosition) &&
+            !strMustBeRegistered.IsEmpty())
         {
             // If equal to zero, do not register
-            if ( atoi( strMustBeRegistered ) == 0 )
+            if (atoi(strMustBeRegistered) == 0)
             {
                 continue;
             }
         }
-        
-        if ( pEntry->GetTemplateString( strFileTypeId, _ThisClass::regFileTypeId ) && !strFileTypeId.IsEmpty() )
+
+        if (pEntry->GetTemplateString(strFileTypeId, _ThisClass::regFileTypeId) && !strFileTypeId.IsEmpty())
         {
-            if ( bCompat )
+            if (bCompat)
             {
-                if ( pEntry->GetTemplateString( strIconIndex, _ThisClass::DefaultIconPosition ) &&
-                     !strIconIndex.IsEmpty() )
+                if (pEntry->GetTemplateString(strIconIndex, _ThisClass::DefaultIconPosition) &&
+                    !strIconIndex.IsEmpty())
                 {
                     CString strIcon;
-                    HICON hIcon = ::ExtractIcon( AfxGetInstanceHandle(), strPathName, atoi( strIconIndex ) );
+                    HICON hIcon = ::ExtractIcon(AfxGetInstanceHandle(), strPathName, atoi(strIconIndex));
 
-                    if ( hIcon != NULL )
+                    if (hIcon != NULL)
                     {
-                        strIcon.Format( _afxIconIndexFmt, atoi( strIconIndex ) );
-                        DestroyIcon( hIcon );
+                        strIcon.Format(_afxIconIndexFmt, atoi(strIconIndex));
+                        DestroyIcon(hIcon);
                     }
                     else
                     {
                         // Otherwise, register with the first icon
-                        strIcon.Format( _afxIconIndexFmt, DEFAULT_ICON_INDEX );
+                        strIcon.Format(_afxIconIndexFmt, DEFAULT_ICON_INDEX);
                     }
 
                     strDefaultIconCommandLine += strIcon;
@@ -1182,28 +1179,28 @@ void ZAMainApp::RegisterAdditionalTemplateShellFileTypes( BOOL bCompat /*= FALSE
             }
 
             // enough info to register it
-            if ( !pEntry->GetTemplateString( strFileTypeName, _ThisClass::regFileTypeName ) )
+            if (!pEntry->GetTemplateString(strFileTypeName, _ThisClass::regFileTypeName))
             {
                 // Use id name
                 strFileTypeName = strFileTypeId;
             }
 
             // No spaces allowed
-            ASSERT( strFileTypeId.Find( ' ' ) == -1 );
+            ASSERT(strFileTypeId.Find(' ') == -1);
 
             // first register the type ID of our server
-            if ( !_zSetRegKey( strFileTypeId, strFileTypeName ) )
+            if (!_zSetRegKey(strFileTypeId, strFileTypeName))
             {
                 // Just skip it
                 continue;
             }
 
-            if ( bCompat )
+            if (bCompat)
             {
                 // path\DefaultIcon = path,1
-                strTemp.Format( _afxDefaultIconFmt, (LPCTSTR)strFileTypeId );
+                strTemp.Format(_afxDefaultIconFmt, (LPCTSTR)strFileTypeId);
 
-                if ( !_zSetRegKey( strTemp, strDefaultIconCommandLine ) )
+                if (!_zSetRegKey(strTemp, strDefaultIconCommandLine))
                 {
                     // Just skip it
                     continue;
@@ -1211,32 +1208,32 @@ void ZAMainApp::RegisterAdditionalTemplateShellFileTypes( BOOL bCompat /*= FALSE
             }
 
             // If MDI Application
-            if ( !pEntry->GetTemplateString( strTemp, _ThisClass::windowTitle ) || strTemp.IsEmpty() )
+            if (!pEntry->GetTemplateString(strTemp, _ThisClass::windowTitle) || strTemp.IsEmpty())
             {
                 // path\shell\open\ddeexec = [open("%1")]
-                strTemp.Format( _afxShellOpenFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxDDEExec );
+                strTemp.Format(_afxShellOpenFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxDDEExec);
 
-                if ( !_zSetRegKey( strTemp, _afxDDEOpen ) )
+                if (!_zSetRegKey(strTemp, _afxDDEOpen))
                 {
                     // Just skip it
                     continue;
                 }
 
-                if ( bCompat )
+                if (bCompat)
                 {
                     // path\shell\print\ddeexec = [print("%1")]
-                    strTemp.Format( _afxShellPrintFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxDDEExec );
+                    strTemp.Format(_afxShellPrintFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxDDEExec);
 
-                    if ( !_zSetRegKey( strTemp, _afxDDEPrint ) )
+                    if (!_zSetRegKey(strTemp, _afxDDEPrint))
                     {
                         // Just skip it
                         continue;
                     }
 
                     // path\shell\printto\ddeexec = [printto("%1","%2","%3","%4")]
-                    strTemp.Format( _afxShellPrintToFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxDDEExec );
+                    strTemp.Format(_afxShellPrintToFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxDDEExec);
 
-                    if ( !_zSetRegKey( strTemp, _afxDDEPrintTo ) )
+                    if (!_zSetRegKey(strTemp, _afxDDEPrintTo))
                     {
                         // Just skip it
                         continue;
@@ -1245,13 +1242,13 @@ void ZAMainApp::RegisterAdditionalTemplateShellFileTypes( BOOL bCompat /*= FALSE
                     // path\shell\open\command = path /dde
                     // path\shell\print\command = path /dde
                     // path\shell\printto\command = path /dde
-                    strOpenCommandLine        += _afxDDEArg;
-                    strPrintCommandLine        += _afxDDEArg;
-                    strPrintToCommandLine    += _afxDDEArg;
+                    strOpenCommandLine += _afxDDEArg;
+                    strPrintCommandLine += _afxDDEArg;
+                    strPrintToCommandLine += _afxDDEArg;
                 }
                 else
                 {
-                    strOpenCommandLine        += _afxOpenArg;
+                    strOpenCommandLine += _afxOpenArg;
                 }
             }
             else
@@ -1259,72 +1256,72 @@ void ZAMainApp::RegisterAdditionalTemplateShellFileTypes( BOOL bCompat /*= FALSE
                 // path\shell\open\command = path filename
                 // path\shell\print\command = path /p filename
                 // path\shell\printto\command = path /pt filename printer driver port
-                strOpenCommandLine            += _afxOpenArg;
+                strOpenCommandLine += _afxOpenArg;
 
-                if ( bCompat )
+                if (bCompat)
                 {
-                    strPrintCommandLine        += _afxPrintArg;
-                    strPrintToCommandLine    += _afxPrintToArg;
+                    strPrintCommandLine += _afxPrintArg;
+                    strPrintToCommandLine += _afxPrintToArg;
                 }
             }
 
             // path\shell\open\command = path filename
-            strTemp.Format( _afxShellOpenFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxCommand );
+            strTemp.Format(_afxShellOpenFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxCommand);
 
-            if ( !_zSetRegKey( strTemp, strOpenCommandLine ) )
+            if (!_zSetRegKey(strTemp, strOpenCommandLine))
             {
                 // Just skip it
                 continue;
             }
 
-            if ( bCompat )
+            if (bCompat)
             {
                 // path\shell\print\command = path /p filename
-                strTemp.Format( _afxShellPrintFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxCommand );
+                strTemp.Format(_afxShellPrintFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxCommand);
 
-                if ( !_zSetRegKey( strTemp, strPrintCommandLine ) )
+                if (!_zSetRegKey(strTemp, strPrintCommandLine))
                 {
                     // Just skip it
                     continue;
                 }
 
                 // path\shell\printto\command = path /pt filename printer driver port
-                strTemp.Format( _afxShellPrintToFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxCommand );
+                strTemp.Format(_afxShellPrintToFmt, (LPCTSTR)strFileTypeId, (LPCTSTR)_afxCommand);
 
-                if ( !_zSetRegKey( strTemp, strPrintToCommandLine ) )
+                if (!_zSetRegKey(strTemp, strPrintToCommandLine))
                 {
                     // Just skip it
                     continue;
                 }
             }
 
-            pEntry->GetTemplateString( strFilterExt, _ThisClass::filterExt );
+            pEntry->GetTemplateString(strFilterExt, _ThisClass::filterExt);
 
-            if ( !strFilterExt.IsEmpty() )
+            if (!strFilterExt.IsEmpty())
             {
-                ASSERT( strFilterExt[0] == '.' );
+                ASSERT(strFilterExt[0] == '.');
 
                 LONG lSize = _MAX_PATH * 2;
 
-                LONG lResult = ::RegQueryValue( HKEY_CLASSES_ROOT,
-                                                strFilterExt,
-                                                strTemp.GetBuffer( lSize ),
-                                                &lSize );
+                LONG lResult = ::RegQueryValue(HKEY_CLASSES_ROOT,
+                                               strFilterExt,
+                                               strTemp.GetBuffer(lSize),
+                                               &lSize);
 
                 strTemp.ReleaseBuffer();
 
-                if ( lResult != ERROR_SUCCESS || strTemp.IsEmpty() || strTemp == strFileTypeId )
+                if (lResult != ERROR_SUCCESS || strTemp.IsEmpty() || strTemp == strFileTypeId)
                 {
                     // no association for that suffix
-                    if ( !_zSetRegKey( strFilterExt, strFileTypeId ) )
+                    if (!_zSetRegKey(strFilterExt, strFileTypeId))
                     {
                         continue;
                     }
 
-                    if ( bCompat )
+                    if (bCompat)
                     {
-                        strTemp.Format( _afxShellNewFmt, (LPCTSTR)strFilterExt );
-                        (void)_zSetRegKey( strTemp, _afxShellNewValue, _afxShellNewValueName );
+                        strTemp.Format(_afxShellNewFmt, (LPCTSTR)strFilterExt);
+                        (void)_zSetRegKey(strTemp, _afxShellNewValue, _afxShellNewValueName);
                     }
                 }
             }
@@ -1334,76 +1331,76 @@ void ZAMainApp::RegisterAdditionalTemplateShellFileTypes( BOOL bCompat /*= FALSE
 
 // prompt for file name - used for open and save as has been rewritten due to the fact I need an initial
 // directory for templates.
-BOOL ZAMainApp::DoPromptFileName( CString&            fileName,
-                                  const CString&    initialDir,
-                                  UINT                nIDSTitle,
-                                  DWORD                lFlags,
-                                  BOOL                bOpenFileDialog,
-                                  CDocTemplate*        pTemplate )
+BOOL ZAMainApp::DoPromptFileName(CString&            fileName,
+                                 const CString&    initialDir,
+                                 UINT                nIDSTitle,
+                                 DWORD                lFlags,
+                                 BOOL                bOpenFileDialog,
+                                 CDocTemplate*        pTemplate)
 {
     // if pTemplate==NULL => all document templates
 
-    CFileDialog dlgFile( bOpenFileDialog );
+    CFileDialog dlgFile(bOpenFileDialog);
 
     CString title;
-    VERIFY( title.LoadString( nIDSTitle ) );
+    VERIFY(title.LoadString(nIDSTitle));
 
     dlgFile.m_ofn.Flags |= lFlags;
 
     CString strFilter;
     CString strDefault;
 
-    if ( pTemplate != NULL )
+    if (pTemplate != NULL)
     {
-        ASSERT_VALID( pTemplate );
-        AppendFilterSuffix( strFilter, dlgFile.m_ofn, pTemplate, &strDefault );
+        ASSERT_VALID(pTemplate);
+        AppendFilterSuffix(strFilter, dlgFile.m_ofn, pTemplate, &strDefault);
     }
     else
     {
         // do for all doc template
-#ifndef _WIN32
+    #ifndef _WIN32
         POSITION pos = m_templateList.GetHeadPosition();
-#else
+    #else
         POSITION pos = GetFirstDocTemplatePosition();
-#endif
-        while ( pos != NULL )
+    #endif
+        while (pos != NULL)
         {
-#ifndef _WIN32
-            AppendFilterSuffix( strFilter,
-                                dlgFile.m_ofn,
-                                (CDocTemplate*)m_templateList.GetNext( pos ),
-                                NULL );
-#else
-            AppendFilterSuffix( strFilter,
-                                dlgFile.m_ofn,
-                                GetNextDocTemplate( pos ),
-                                NULL );
-#endif
+        #ifndef _WIN32
+            AppendFilterSuffix(strFilter,
+                               dlgFile.m_ofn,
+                               (CDocTemplate*)m_templateList.GetNext(pos),
+                               NULL);
+        #else
+            AppendFilterSuffix(strFilter,
+                               dlgFile.m_ofn,
+                               GetNextDocTemplate(pos),
+                               NULL);
+        #endif
         }
     }
 
     // Append the "*.*" all files filter
     CString allFilter;
-    VERIFY( allFilter.LoadString( AFX_IDS_ALLFILTER ) );
+    VERIFY(allFilter.LoadString(AFX_IDS_ALLFILTER));
     strFilter += allFilter;
     strFilter += (char)'\0';        // Next string please
-    strFilter += _T( "*.*" );
+    strFilter += _T("*.*");
     strFilter += (char)'\0';        // Last string
     dlgFile.m_ofn.nMaxCustFilter++;
 
-    dlgFile.m_ofn.lpstrFilter        = strFilter;
-    dlgFile.m_ofn.hwndOwner            = AfxGetMainWnd()->GetSafeHwnd();
-    dlgFile.m_ofn.lpstrTitle        = title;
+    dlgFile.m_ofn.lpstrFilter = strFilter;
+    dlgFile.m_ofn.hwndOwner = AfxGetMainWnd()->GetSafeHwnd();
+    dlgFile.m_ofn.lpstrTitle = title;
 
     // Set the initial directory
-    dlgFile.m_ofn.nMaxFile            = _MAX_PATH;
-    dlgFile.m_ofn.lpstrFile            = fileName.GetBuffer( _MAX_PATH );
-    dlgFile.m_ofn.lpstrInitialDir    = initialDir;
+    dlgFile.m_ofn.nMaxFile = _MAX_PATH;
+    dlgFile.m_ofn.lpstrFile = fileName.GetBuffer(_MAX_PATH);
+    dlgFile.m_ofn.lpstrInitialDir = initialDir;
 
     BOOL bRet = dlgFile.DoModal() == IDOK ? TRUE : FALSE;
 
 #ifdef _DEBUG
-    if ( bRet == FALSE )
+    if (bRet == FALSE)
     {
         DWORD err = CommDlgExtendedError();
     }
@@ -1414,38 +1411,38 @@ BOOL ZAMainApp::DoPromptFileName( CString&            fileName,
     return bRet;
 }
 
-void ZAMainApp::AppendFilterSuffix( CString&        filter,
-                                    OPENFILENAME&    ofn,
-                                    CDocTemplate*    pTemplate,
-                                    CString*        pstrDefaultExt )
+void ZAMainApp::AppendFilterSuffix(CString&        filter,
+                                   OPENFILENAME&    ofn,
+                                   CDocTemplate*    pTemplate,
+                                   CString*        pstrDefaultExt)
 {
-    ASSERT_VALID( pTemplate );
-    ASSERT( pTemplate->IsKindOf( RUNTIME_CLASS( CDocTemplate ) ) );
+    ASSERT_VALID(pTemplate);
+    ASSERT(pTemplate->IsKindOf(RUNTIME_CLASS(CDocTemplate)));
 
     CString strFilterExt;
     CString strFilterName;
 
-    if ( pTemplate->GetDocString( strFilterExt, CDocTemplate::filterExt ) &&
-         !strFilterExt.IsEmpty() &&
-         pTemplate->GetDocString( strFilterName, CDocTemplate::filterName ) &&
-         !strFilterName.IsEmpty() )
+    if (pTemplate->GetDocString(strFilterExt, CDocTemplate::filterExt) &&
+        !strFilterExt.IsEmpty() &&
+        pTemplate->GetDocString(strFilterName, CDocTemplate::filterName) &&
+        !strFilterName.IsEmpty())
     {
         // A file based document template - add to filter list
-        ASSERT( strFilterExt[0] == '.' );
+        ASSERT(strFilterExt[0] == '.');
 
-        if ( pstrDefaultExt != NULL )
+        if (pstrDefaultExt != NULL)
         {
             // set the default extension
-            *pstrDefaultExt = ( (const char*)strFilterExt ) + 1;    // skip the '.'
+            *pstrDefaultExt = ((const char*)strFilterExt) + 1;    // skip the '.'
             ofn.lpstrDefExt = (LPSTR)(const char*)(*pstrDefaultExt);
             ofn.nFilterIndex = ofn.nMaxCustFilter + 1;                // 1 based number
         }
 
         // Add to filter
         filter += strFilterName;
-        ASSERT( !filter.IsEmpty() );    // must have a file type name
+        ASSERT(!filter.IsEmpty());    // must have a file type name
         filter += (char)'\0';            // next string please
-        filter += _T( "*" ) + strFilterExt;
+        filter += _T("*") + strFilterExt;
         filter += (char)'\0';            // next string please
         ofn.nMaxCustFilter++;
     }
@@ -1453,38 +1450,38 @@ void ZAMainApp::AppendFilterSuffix( CString&        filter,
 
 void ZAMainApp::TemplateDirectoryHasChanged()
 {
-    AfxGetMainWnd()->SendMessageToDescendants( UM_INITIALIZE_TEMPLATEMANAGER,
-                                               1, // Show file
-                                               (LPARAM)&ZAGlobal::GetTemplateManager() );
+    AfxGetMainWnd()->SendMessageToDescendants(UM_INITIALIZE_TEMPLATEMANAGER,
+                                              1, // Show file
+                                              (LPARAM)&ZAGlobal::GetTemplateManager());
 
-    AfxGetMainWnd()->SendMessageToDescendants( UM_INITIALIZE_FIELDREPOSITORY,
-                                               0,
-                                               (LPARAM)GetFieldRepository() );
+    AfxGetMainWnd()->SendMessageToDescendants(UM_INITIALIZE_FIELDREPOSITORY,
+                                              0,
+                                              (LPARAM)GetFieldRepository());
 }
 
 void ZAMainApp::ProcessTemplateDirectoryHasChanged()
 {
-    AfxGetMainWnd()->SendMessageToDescendants( UM_INITIALIZE_PROCESSTEMPLATEMANAGER,
-                                               1, // Show file
-                                               (LPARAM)&ZAGlobal::GetTemplateManager() );
+    AfxGetMainWnd()->SendMessageToDescendants(UM_INITIALIZE_PROCESSTEMPLATEMANAGER,
+                                              1, // Show file
+                                              (LPARAM)&ZAGlobal::GetTemplateManager());
 }
 
 void ZAMainApp::ModelTemplateDirectoryHasChanged()
 {
-    AfxGetMainWnd()->SendMessageToDescendants( UM_INITIALIZE_MODELTEMPLATEMANAGER,
-                                               1, // Show file
-                                               (LPARAM)&ZAGlobal::GetModelTemplateManager() );
+    AfxGetMainWnd()->SendMessageToDescendants(UM_INITIALIZE_MODELTEMPLATEMANAGER,
+                                              1, // Show file
+                                              (LPARAM)&ZAGlobal::GetModelTemplateManager());
 }
 
 // ********************************************* Documents et modèles *******************************************
 
-BOOL ZAMainApp::BuildTemplateName( CString& str, ZDStamp& Stamp )
+BOOL ZAMainApp::BuildTemplateName(CString& str, ZDStamp& Stamp)
 {
     BOOL bCorrectTemplate = FALSE;
 
     // Check if the template directory is the
     // same that the template file
-    if ( Stamp.GetTemplate().Left( GetTemplateDirectory().GetLength() ) != GetTemplateDirectory() )
+    if (Stamp.GetTemplate().Left(GetTemplateDirectory().GetLength()) != GetTemplateDirectory())
     {
         bCorrectTemplate = TRUE;
 
@@ -1494,57 +1491,57 @@ BOOL ZAMainApp::BuildTemplateName( CString& str, ZDStamp& Stamp )
         char szFname[_MAX_FNAME];
         char szExt[_MAX_EXT];
 
-        _splitpath( Stamp.GetTemplate(), szDrive, szDir, szFname, szExt );
-        str = GetTemplateDirectory() + _T( "\\" ) + szFname + szExt;
+        _splitpath(Stamp.GetTemplate(), szDrive, szDir, szFname, szExt);
+        str = GetTemplateDirectory() + _T("\\") + szFname + szExt;
     }
     else str = Stamp.GetTemplate();
 
     return bCorrectTemplate;
 }
 
-void ZAMainApp::RegisterAdditionalTemplate( UINT nIDRes )
+void ZAMainApp::RegisterAdditionalTemplate(UINT nIDRes)
 {
-    RegisterTemplate( nIDRes );
+    RegisterTemplate(nIDRes);
 }
 
-CDocument* ZAMainApp::OpenDocumentFile( LPCTSTR lpszFileName )
+CDocument* ZAMainApp::OpenDocumentFile(LPCTSTR lpszFileName)
 {
-    _TemplateMapCollection::_TemplateEntry* pEntry = GetTemplateEntryByFilename( lpszFileName );
+    _TemplateMapCollection::_TemplateEntry* pEntry = GetTemplateEntryByFilename(lpszFileName);
     CDocument* pDoc = NULL;
 
-    if ( pEntry )
+    if (pEntry)
     {
-        pDoc = OnOpenAdditionalTemplateFile( lpszFileName );
+        pDoc = OnOpenAdditionalTemplateFile(lpszFileName);
     }
     else
     {
-        pDoc = CWinApp::OpenDocumentFile( lpszFileName );
+        pDoc = CWinApp::OpenDocumentFile(lpszFileName);
     }
 
-    if ( pDoc )
+    if (pDoc)
     {
         // JMR-MODIF - Le 24 avril 2006 - Ajout du nom du fichier dans la fonction pour le test de la lecture seule.
-        OnAfterOpenDocument( pDoc, lpszFileName );
+        OnAfterOpenDocument(pDoc, lpszFileName);
     }
 
     return pDoc;
 }
 
-BOOL ZAMainApp::IsDocumentOpen( const CString Filename )
+BOOL ZAMainApp::IsDocumentOpen(const CString Filename)
 {
     //## begin ZAMainApp::IsDocumentOpen%928442321.body preserve=yes
     CObList DocList;
-    GetDocumentList( DocList );
+    GetDocumentList(DocList);
 
     // Iterate through the list in head-to-tail order.
     POSITION    pos;
     CDocument*    pDocument;
 
-    for ( pos = DocList.GetHeadPosition(); pos != NULL; )
+    for (pos = DocList.GetHeadPosition(); pos != NULL; )
     {
-        pDocument = (CDocument*)DocList.GetNext( pos );
+        pDocument = (CDocument*)DocList.GetNext(pos);
 
-        if ( pDocument && pDocument->GetPathName() == Filename )
+        if (pDocument && pDocument->GetPathName() == Filename)
         {
             return TRUE;
         }
@@ -1554,25 +1551,25 @@ BOOL ZAMainApp::IsDocumentOpen( const CString Filename )
     //## end ZAMainApp::IsDocumentOpen%928442321.body
 }
 
-void ZAMainApp::GetDocumentList( CObList& DocList )
+void ZAMainApp::GetDocumentList(CObList& DocList)
 {
     //## begin ZAMainApp::GetDocumentList%928442320.body preserve=yes
 #ifdef _WIN32
-    ASSERT( DocList.IsEmpty() );
+    ASSERT(DocList.IsEmpty());
     POSITION pos = GetFirstDocTemplatePosition();
 
-    while ( pos )
+    while (pos)
     {
-        CDocTemplate*    pTemplate    = (CDocTemplate*)GetNextDocTemplate( pos );
-        POSITION        pos2        = pTemplate->GetFirstDocPosition();
+        CDocTemplate*    pTemplate = (CDocTemplate*)GetNextDocTemplate(pos);
+        POSITION        pos2 = pTemplate->GetFirstDocPosition();
 
-        while ( pos2 )
+        while (pos2)
         {
             CDocument* pDocument;
 
-            if ( ( pDocument=pTemplate->GetNextDoc( pos2 ) ) != NULL )
+            if ((pDocument = pTemplate->GetNextDoc(pos2)) != NULL)
             {
-                DocList.AddHead( pDocument );
+                DocList.AddHead(pDocument);
             }
         }
     }
@@ -1580,7 +1577,7 @@ void ZAMainApp::GetDocumentList( CObList& DocList )
     //## end ZAMainApp::GetDocumentList%928442320.body
 }
 
-void ZAMainApp::GetDocumentArrayName( CStringArray& FileArray )
+void ZAMainApp::GetDocumentArrayName(CStringArray& FileArray)
 {
 #ifdef _WIN32
     // Empty the file array
@@ -1588,17 +1585,17 @@ void ZAMainApp::GetDocumentArrayName( CStringArray& FileArray )
 
     POSITION pos = GetFirstDocTemplatePosition();
 
-    while ( pos )
+    while (pos)
     {
-        CDocTemplate*    pTemplate    = (CDocTemplate*)GetNextDocTemplate(pos);
-        POSITION        pos2        = pTemplate->GetFirstDocPosition();
+        CDocTemplate*    pTemplate = (CDocTemplate*)GetNextDocTemplate(pos);
+        POSITION        pos2 = pTemplate->GetFirstDocPosition();
 
-        while ( pos2 )
+        while (pos2)
         {
             CDocument*    pDocument;
 
-            if ( ( pDocument=pTemplate->GetNextDoc( pos2 ) ) != NULL )
-                FileArray.Add( pDocument->GetPathName() );
+            if ((pDocument = pTemplate->GetNextDoc(pos2)) != NULL)
+                FileArray.Add(pDocument->GetPathName());
         }
     }
 #endif
@@ -1609,19 +1606,19 @@ bool ZAMainApp::SaveAllModifiedNoPrompt()
     bool bRetValue = true;
 
     CObList DocList;
-    GetDocumentList( DocList );
+    GetDocumentList(DocList);
 
     // Iterate through the list in head-to-tail order.
     POSITION    pos;
     CDocument*    pDocument;
 
-    for ( pos = DocList.GetHeadPosition(); pos != NULL; )
+    for (pos = DocList.GetHeadPosition(); pos != NULL; )
     {
-        pDocument = (CDocument*)DocList.GetNext( pos );
+        pDocument = (CDocument*)DocList.GetNext(pos);
 
-        if ( pDocument && pDocument->IsModified() == TRUE )
+        if (pDocument && pDocument->IsModified() == TRUE)
         {
-            if ( !pDocument->DoFileSave() )
+            if (!pDocument->DoFileSave())
             {
                 bRetValue = false;
             }
@@ -1639,7 +1636,7 @@ BOOL ZAMainApp::LoadAllUsers()
     ZDUserLoader UserLoader;
 
     // Load all users
-    UserLoader.Create( &ZAGlobal::GetUserManager(), GetUserDefinitionFile() );
+    UserLoader.Create(&ZAGlobal::GetUserManager(), GetUserDefinitionFile());
 
     return UserLoader.LoadAllUsers();
 }
@@ -1650,117 +1647,117 @@ void ZAMainApp::DisplayWarningOnCommand()
 {
 #ifdef _EVALUATION_VERSION
     CString sTitle;
-    sTitle.LoadString( IDS_WARNINGEVALVER );
+    sTitle.LoadString(IDS_WARNINGEVALVER);
 
     CString sText;
-    sText.LoadString( IDS_UNABLECOMMANDEVALVER );
+    sText.LoadString(IDS_UNABLECOMMANDEVALVER);
 
-    AfxGetMainWnd( )->MessageBox( sText, sTitle );
+    AfxGetMainWnd()->MessageBox(sText, sTitle);
 #endif
 }
 
-void ZAMainApp::DisplaySampleText( CDC*                pDC,
-                                   const CString&    sValue,
-                                   CRect            Rect,
-                                   HandleFont        hFont,
-                                   HandleStyle        hStyle )
+void ZAMainApp::DisplaySampleText(CDC*                pDC,
+                                  const CString&    sValue,
+                                  CRect            Rect,
+                                  HandleFont        hFont,
+                                  HandleStyle        hStyle)
 {
     //## begin ZAMainApp::DisplaySampleText%870643929.body preserve=yes
     ZAFont* pFont = NULL;
 
-    if ( hFont != NoFontDefined )
+    if (hFont != NoFontDefined)
     {
-        pFont = GetFontManager().GetFont( hFont );
+        pFont = GetFontManager().GetFont(hFont);
     }
 
     ZAStyle* pStyle = NULL;
 
-    if ( hStyle != NoStyleDefined )
+    if (hStyle != NoStyleDefined)
     {
-        pStyle = GetStyleManager().GetStyle( hStyle );
+        pStyle = GetStyleManager().GetStyle(hStyle);
     }
 
-    DisplaySampleText( pDC, sValue, Rect, pFont, pStyle );
+    DisplaySampleText(pDC, sValue, Rect, pFont, pStyle);
     //## end ZAMainApp::DisplaySampleText%870643929.body
 }
 
-void ZAMainApp::DisplaySampleText( CDC* pDC, const CString& sValue, CRect Rect, ZAFont* pFont, ZAStyle* pStyle )
+void ZAMainApp::DisplaySampleText(CDC* pDC, const CString& sValue, CRect Rect, ZAFont* pFont, ZAStyle* pStyle)
 {
     //## begin ZAMainApp::DisplaySampleText%870643928.body preserve=yes
     // Display the appearance of text
     CFont*        OldFont;
     CPen*        OldPen;
-    CPen        NewPen( PS_SOLID, 1, defCOLOR_BLACK );
-    CPen        ShadowPen( PS_SOLID, 1, defCOLOR_GRAY );
+    CPen        NewPen(PS_SOLID, 1, defCOLOR_BLACK);
+    CPen        ShadowPen(PS_SOLID, 1, defCOLOR_GRAY);
     CBrush*        OldBrush;
     CBrush        NewBrush;
     COLORREF    col;
     UINT        Justify = DT_CENTER | DT_VCENTER | DT_NOPREFIX | DT_SINGLELINE;
-    
-    if ( pFont )
-    {
-        OldFont = pDC->SelectObject( pFont );
-        col = pFont->GetFontColor();
-        NewBrush.CreateSolidBrush( defCOLOR_WHITE ); 
-    }
-    else if ( pStyle )
-    {
-        NewBrush.CreateSolidBrush( ( pStyle->GetBackColor() != -1 ) ? pStyle->GetBackColor() : defCOLOR_WHITE );
-        ZAFont* pStyleFont = GetFontManager().GetFont( pStyle->GethFont() );
 
-        if ( !pStyleFont )
+    if (pFont)
+    {
+        OldFont = pDC->SelectObject(pFont);
+        col = pFont->GetFontColor();
+        NewBrush.CreateSolidBrush(defCOLOR_WHITE);
+    }
+    else if (pStyle)
+    {
+        NewBrush.CreateSolidBrush((pStyle->GetBackColor() != -1) ? pStyle->GetBackColor() : defCOLOR_WHITE);
+        ZAFont* pStyleFont = GetFontManager().GetFont(pStyle->GethFont());
+
+        if (!pStyleFont)
         {
             return;
         }
 
-        OldFont    = pDC->SelectObject( pStyleFont );
-        col        = pStyleFont->GetFontColor();
-        Justify    = pStyle->GetJustify();
+        OldFont = pDC->SelectObject(pStyleFont);
+        col = pStyleFont->GetFontColor();
+        Justify = pStyle->GetJustify();
     }
     else return;
 
-    OldPen        = pDC->SelectObject( &NewPen );
-    OldBrush    = pDC->SelectObject( &NewBrush );
+    OldPen = pDC->SelectObject(&NewPen);
+    OldBrush = pDC->SelectObject(&NewBrush);
 
-    pDC->Rectangle( Rect );
-    pDC->MoveTo( Rect.left + 1, Rect.bottom);
-    pDC->LineTo( Rect.right + 1, Rect.bottom);
-    pDC->MoveTo( Rect.right, Rect.top + 1);
-    pDC->LineTo( Rect.right, Rect.bottom + 1);
-    pDC->SelectObject( &ShadowPen );
-    pDC->MoveTo( Rect.left + 2, Rect.bottom + 1);
-    pDC->LineTo( Rect.right + 2, Rect.bottom + 1);
-    pDC->MoveTo( Rect.right + 1, Rect.top + 2);
-    pDC->LineTo( Rect.right + 1, Rect.bottom + 2);
-    pDC->SetTextColor( col );
-    pDC->SetBkColor( defCOLOR_WHITE );
-    Rect.InflateRect( -2, -2 );
-    pDC->SetTextAlign( 0 );
-    pDC->SetBkMode( TRANSPARENT );
-    pDC->DrawText( sValue, -1, &Rect, Justify );
-    pDC->SelectObject( OldFont );
-    pDC->SelectObject( OldPen );
-    pDC->SelectObject( OldBrush );
+    pDC->Rectangle(Rect);
+    pDC->MoveTo(Rect.left + 1, Rect.bottom);
+    pDC->LineTo(Rect.right + 1, Rect.bottom);
+    pDC->MoveTo(Rect.right, Rect.top + 1);
+    pDC->LineTo(Rect.right, Rect.bottom + 1);
+    pDC->SelectObject(&ShadowPen);
+    pDC->MoveTo(Rect.left + 2, Rect.bottom + 1);
+    pDC->LineTo(Rect.right + 2, Rect.bottom + 1);
+    pDC->MoveTo(Rect.right + 1, Rect.top + 2);
+    pDC->LineTo(Rect.right + 1, Rect.bottom + 2);
+    pDC->SetTextColor(col);
+    pDC->SetBkColor(defCOLOR_WHITE);
+    Rect.InflateRect(-2, -2);
+    pDC->SetTextAlign(0);
+    pDC->SetBkMode(TRANSPARENT);
+    pDC->DrawText(sValue, -1, &Rect, Justify);
+    pDC->SelectObject(OldFont);
+    pDC->SelectObject(OldPen);
+    pDC->SelectObject(OldBrush);
     //## end ZAMainApp::DisplaySampleText%870643928.body
 }
 
-BOOL ZAMainApp::ProcessMessageFilter( int code, LPMSG lpMsg )
+BOOL ZAMainApp::ProcessMessageFilter(int code, LPMSG lpMsg)
 {
     // Check to see if the modal dialog box is up
-    if ( ZAGlobal::GetModalDialogCWnd() != NULL )
+    if (ZAGlobal::GetModalDialogCWnd() != NULL)
     {
-        if ( lpMsg->hwnd == ZAGlobal::GetModalDialogCWnd()->GetSafeHwnd() ||
-             ::IsChild( ZAGlobal::GetModalDialogCWnd()->GetSafeHwnd(), lpMsg->hwnd ) )
+        if (lpMsg->hwnd == ZAGlobal::GetModalDialogCWnd()->GetSafeHwnd() ||
+            ::IsChild(ZAGlobal::GetModalDialogCWnd()->GetSafeHwnd(), lpMsg->hwnd))
         {
             // Use the global IsChild() function to get
             // messages destined for the dialog's controls
             // Perform customized message processing here
-            if ( code == MSGF_DIALOGBOX )
+            if (code == MSGF_DIALOGBOX)
             {
                 MSG msg = *lpMsg;
 
-                if ( ZAGlobal::GetModalDialogCWnd()->IsWindowEnabled() &&
-                     ZAGlobal::GetModalDialogCWnd()->PreTranslateMessage( &msg ) )
+                if (ZAGlobal::GetModalDialogCWnd()->IsWindowEnabled() &&
+                    ZAGlobal::GetModalDialogCWnd()->PreTranslateMessage(&msg))
                 {
                     return TRUE;
                 }
@@ -1768,24 +1765,24 @@ BOOL ZAMainApp::ProcessMessageFilter( int code, LPMSG lpMsg )
         }
     }
 
-    return CWinApp::ProcessMessageFilter( code, lpMsg );
+    return CWinApp::ProcessMessageFilter(code, lpMsg);
 }
 
 // *************************************************** Curseur **************************************************
 
-BOOL ZAMainApp::IsCursorCapturedValid( const CPoint& point, ZIView* pView )
+BOOL ZAMainApp::IsCursorCapturedValid(const CPoint& point, ZIView* pView)
 {
     //## begin ZAMainApp::IsCursorCapturedValid%908554843.body preserve=yes
-    if ( !pView )
+    if (!pView)
     {
         return FALSE;
     }
 
-    BOOL        bCaptureValid    = TRUE;
-    ZDDocument*    pDoc            = pView->GetDocument();
+    BOOL        bCaptureValid = TRUE;
+    ZDDocument*    pDoc = pView->GetDocument();
 
     // No document, not a valid capture
-    if ( !pDoc )
+    if (!pDoc)
     {
         return FALSE;
     }
@@ -1794,15 +1791,15 @@ BOOL ZAMainApp::IsCursorCapturedValid( const CPoint& point, ZIView* pView )
     // to check if the cursor is on the window
     PSS_Edit* pEdit = pDoc->GetEditControl();
 
-    if ( pEdit )
+    if (pEdit)
     {
-        if ( pEdit->IsWindowVisible() )
+        if (pEdit->IsWindowVisible())
         {
             CRect EditRect;
-            pEdit->GetClientRect( EditRect );
-            pView->ClientToDoc( EditRect );
+            pEdit->GetClientRect(EditRect);
+            pView->ClientToDoc(EditRect);
 
-            if ( EditRect.PtInRect( point ) )
+            if (EditRect.PtInRect(point))
             {
                 bCaptureValid = FALSE;
             }
@@ -1810,14 +1807,14 @@ BOOL ZAMainApp::IsCursorCapturedValid( const CPoint& point, ZIView* pView )
 
         SpecialHelp* pWnd = pEdit->GetSpecialHelp();
 
-        if ( bCaptureValid && pWnd && pWnd->IsWindowVisible() )
+        if (bCaptureValid && pWnd && pWnd->IsWindowVisible())
         {
             CRect HelperRect;
-            pWnd->GetClientRect( &HelperRect );
-            pWnd->MapWindowPoints( pView, &HelperRect );
-            pView->ClientToDoc( HelperRect );
+            pWnd->GetClientRect(&HelperRect);
+            pWnd->MapWindowPoints(pView, &HelperRect);
+            pView->ClientToDoc(HelperRect);
 
-            if ( HelperRect.PtInRect( point ) )
+            if (HelperRect.PtInRect(point))
             {
                 bCaptureValid = FALSE;
             }
@@ -1826,10 +1823,10 @@ BOOL ZAMainApp::IsCursorCapturedValid( const CPoint& point, ZIView* pView )
 
     // Check the cursor is inside the client area
     CRect rect;
-    pView->GetClientRect( &rect );
-    pView->ClientToDoc( rect );
+    pView->GetClientRect(&rect);
+    pView->ClientToDoc(rect);
 
-    if ( !rect.PtInRect( point ) )
+    if (!rect.PtInRect(point))
     {
         bCaptureValid = FALSE;
     }
@@ -1980,7 +1977,7 @@ BOOL ZAMainApp::ChooseServer()
 {
     // save the previous server directory
     const CString prevServerDir = GetServerIniFile();
-    const CString iniFile       = (IsWorkingLocaly() ? g_LocalIniFileName : g_GlobalIniFileName);
+    const CString iniFile = (IsWorkingLocaly() ? g_LocalIniFileName : g_GlobalIniFileName);
 
     PSS_SelectServerWizard selectLocalServer(iniFile, IsWorkingLocaly());
 
@@ -2018,16 +2015,17 @@ BOOL ZAMainApp::ChooseServer()
         GetApplicationOptions().SaveOption();
         SaveApplicationOptions();
 
-        #ifndef _ZDESIGNER
-            // set the server directory to the registry
-            ZBRegisterSetup registry;
+    #ifndef _ZDESIGNER
+        // set the server directory to the registry
+        PSS_RegisterSetup registry;
 
-            registry.CreateEntry(REGKEY_SCRIPTORROOT,
-                                 REGKEY_SERVERPATH,
-                                 ZDirectory::NormalizeDirectory(selectLocalServer.GetServerDirectory()));
+        registry.CreateEntry(HKEY_LOCAL_MACHINE,
+                             REGKEY_SCRIPTORROOT,
+                             REGKEY_SERVERPATH,
+                             ZDirectory::NormalizeDirectory(selectLocalServer.GetServerDirectory()));
 
-            registry.CreateEntry(REGKEY_SCRIPTORROOT, REGKEY_SERVERINI, GetServerIniFile());
-        #endif
+        registry.CreateEntry(HKEY_LOCAL_MACHINE, REGKEY_SCRIPTORROOT, REGKEY_SERVERINI, GetServerIniFile());
+    #endif
 
         return TRUE;
     }
@@ -2038,26 +2036,26 @@ BOOL ZAMainApp::ChooseServer()
 BOOL ZAMainApp::OpenServerSession()
 {
     // Open the server session
-    switch ( GetServer().OpenSession( GetServerIniFile() ) )
+    switch (GetServer().OpenSession(GetServerIniFile()))
     {
         case _SRV_NOTFOUND:
         {
             // The server cannot be found,
             // asks the user to select another one
-            MsgBox mbox;
+            PSS_MsgBox mBox;
 
-            if ( mbox.DisplayMsgBox( IDS_DEFAULTSERVERCANNOTBEOPEN, MB_YESNO ) == IDNO )
+            if (mBox.ShowMsgBox(IDS_DEFAULTSERVERCANNOTBEOPEN, MB_YESNO) == IDNO)
             {
                 ZIMessage Message;
-                Message.DisplayMessage( IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE );
+                Message.DisplayMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
 
                 return FALSE;
             }
 
-            if ( !ChooseServer() )
+            if (!ChooseServer())
             {
                 ZIMessage Message;
-                Message.DisplayMessage( IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE );
+                Message.DisplayMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
 
                 return FALSE;
             }
@@ -2071,61 +2069,61 @@ BOOL ZAMainApp::OpenServerSession()
         {
             // Check if we need to force the network connection and
             // if the selection of the server succeed.
-            if ( ForceNetworkConnection() &&
-                 GetServer().OpenSessionForceNetwork( GetServerIniFile() ) == _SRV_SUCCESS )
+            if (ForceNetworkConnection() &&
+                GetServer().OpenSessionForceNetwork(GetServerIniFile()) == _SRV_SUCCESS)
             {
                 break;
             }
 
             // JMR-MODIF - Le 15 avril 2007 - Lors de la première utilisation, la boîte de dialogue signalant la
             // modification du référentiel ne doit pas apparaître.
-            if ( GetApplicationOptions().GetFirstUse() == FALSE )
+            if (GetApplicationOptions().GetFirstUse() == FALSE)
             {
-                MsgBox mbox;
+                PSS_MsgBox mBox;
 
-                if ( mbox.DisplayMsgBox( IDS_SERVERISEMPTYORMOVED_INIT, MB_YESNO ) == IDNO )
+                if (mBox.ShowMsgBox(IDS_SERVERISEMPTYORMOVED_INIT, MB_YESNO) == IDNO)
                 {
                     ZIMessage Message;
-                    Message.DisplayMessage( IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE );
+                    Message.DisplayMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
 
                     return FALSE;
                 }
             }
 
             // Initialize the server with default values
-            PSS_File file( GetServerIniFile() );
-            CString ServerIniFile = GetServer().CreateInitialEnvironment( file.GetFilePath() );
+            PSS_File file(GetServerIniFile());
+            CString ServerIniFile = GetServer().CreateInitialEnvironment(file.GetFilePath());
 
             // Then asks the server to create an initial environement
-            if ( ServerIniFile.IsEmpty() )
+            if (ServerIniFile.IsEmpty())
             {
                 ZIMessage Message;
-                Message.DisplayMessage( IDS_ONSERVEREMPTYINIT_FAIL, IDS_ONSERVEREMPTYINIT_FAIL_TITLE );
+                Message.DisplayMessage(IDS_ONSERVEREMPTYINIT_FAIL, IDS_ONSERVEREMPTYINIT_FAIL_TITLE);
 
                 return FALSE;
             }
 
             // Check if can be opened
-            if ( GetServer().OpenSession( GetServerIniFile() ) != _SRV_SUCCESS )
+            if (GetServer().OpenSession(GetServerIniFile()) != _SRV_SUCCESS)
             {
                 // The server cannot be reached
                 ZIMessage Message;
-                Message.DisplayMessage( IDS_SERVERCANNOTBEOPEN, IDS_NOSERVER_SELECTED_TITLE );
+                Message.DisplayMessage(IDS_SERVERCANNOTBEOPEN, IDS_NOSERVER_SELECTED_TITLE);
 
-                MsgBox mbox;
+                PSS_MsgBox mBox;
 
-                if ( mbox.DisplayMsgBox( IDS_DEFAULTSERVERCANNOTBEOPEN, MB_YESNO ) == IDNO )
+                if (mBox.ShowMsgBox(IDS_DEFAULTSERVERCANNOTBEOPEN, MB_YESNO) == IDNO)
                 {
                     ZIMessage Message;
-                    Message.DisplayMessage( IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE );
+                    Message.DisplayMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
 
                     return FALSE;
                 }
 
-                if ( !ChooseServer() )
+                if (!ChooseServer())
                 {
                     ZIMessage Message;
-                    Message.DisplayMessage( IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE );
+                    Message.DisplayMessage(IDS_NOSERVER_SELECTED, IDS_NOSERVER_SELECTED_TITLE);
 
                     return FALSE;
                 }
@@ -2148,22 +2146,22 @@ BOOL ZAMainApp::OpenServerSession()
 
 // ***************************************************** Aide ***************************************************
 
-void ZAMainApp::WinHelp( DWORD dwData, UINT nCmd )
+void ZAMainApp::WinHelp(DWORD dwData, UINT nCmd)
 {
-    if ( m_HelpFile.IsEmpty() )
+    if (m_HelpFile.IsEmpty())
     {
         return;
     }
 
-    switch ( nCmd )
+    switch (nCmd)
     {
         case HELP_CONTEXT:
         {
             // If it is a help context command, search for the
             // control ID in the array.
-            for ( DWORD i = 0; i < m_numHelpIDs * 2; i += 2 )
+            for (DWORD i = 0; i < m_numHelpIDs * 2; i += 2)
             {
-                if ( aMenuHelpIDs[i] == LOWORD ( dwData ) )
+                if (aMenuHelpIDs[i] == LOWORD(dwData))
                 {
                     i++;  // pass the help context id to HTMLHelp
                     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

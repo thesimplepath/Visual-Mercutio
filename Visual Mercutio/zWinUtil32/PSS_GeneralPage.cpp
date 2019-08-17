@@ -9,7 +9,7 @@
 #include "PSS_GeneralPage.h"
 
 // processsoft
-#include "zBaseLib\msgbox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE

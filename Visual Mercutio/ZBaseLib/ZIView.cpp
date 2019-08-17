@@ -30,7 +30,7 @@
 //## begin module%334FC46302F9.additionalDeclarations preserve=yes
 #include "ZACheck.h"
 #include "ZARadio.h"
-#include "msgbox.h"
+#include "PSS_MsgBox.h"
 #include "ZDDoc.h"
 
 // PaintRes

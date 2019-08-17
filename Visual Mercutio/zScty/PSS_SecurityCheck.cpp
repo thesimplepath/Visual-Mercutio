@@ -15,7 +15,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_File.h"
-#include "zBaseLib\ZBRegisterSetup.h"
+#include "zBaseLib\PSS_RegisterSetup.h"
 #include "PSS_KeyFile.h"
 
 // resources
@@ -45,11 +45,11 @@ PSS_SecurityCheck::~PSS_SecurityCheck()
 //---------------------------------------------------------------------------
 BOOL PSS_SecurityCheck::Check()
 {
-    CString         pid;
-    ZBRegisterSetup registry;
+    CString           pid;
+    PSS_RegisterSetup registry;
 
     //  check if the product was registered
-    if (registry.GetRegValue(m_Key, m_PID, pid))
+    if (registry.GetRegValue(HKEY_LOCAL_MACHINE, m_Key, m_PID, pid))
         if (!pid.IsEmpty())
         {
             CString winDir;

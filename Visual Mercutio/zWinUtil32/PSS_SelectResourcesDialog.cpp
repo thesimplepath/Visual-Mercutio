@@ -9,7 +9,7 @@
 #include "PSS_SelectResourcesDialog.h"
 
 // processsoft
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\ZBTokenizer.h"
 
 #ifdef _DEBUG
@@ -97,10 +97,10 @@ void PSS_SelectResourcesDialog::OnOK()
 
     if (count <= 0)
     {
-        MsgBox mBox;
+        PSS_MsgBox mBox;
 
         // show warning message
-        if (mBox.DisplayMsgBox(IDS_LISTOFUSEREMPTY_CONTINUE, MB_YESNO) == IDNO)
+        if (mBox.ShowMsgBox(IDS_LISTOFUSEREMPTY_CONTINUE, MB_YESNO) == IDNO)
             return;
     }
 

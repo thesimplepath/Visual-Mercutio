@@ -10,7 +10,7 @@
 #include "PSS_PublishModelAttributesDialog.h"
 
 // processsoft
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "zProperty\ZBPropertyAttributes.h"
 
 #ifdef _DEBUG

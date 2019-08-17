@@ -7,7 +7,7 @@
 // processsoft
 #include "zBaseLib\ZILog.h"
 #include "zBaseLib\ZUSystemOption.h"
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\ZAGlobal.h"
 #include "zModel\ProcGraphModelDoc.h"
 #define _ZMODELEXPORT
@@ -631,8 +631,8 @@ void ZVPublishToMessengerStart::OnNext()
     // JMR-MODIF - Le 21 juin 2006 - Teste que l'adresse et l'alias ne soient pas vides.
     if ( m_MessengerAddress == _T( "" ) || m_MessengerAlias == _T( "" ) )
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_ADRESS_ALIAS_IS_EMPTY, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_ADRESS_ALIAS_IS_EMPTY, MB_OK );
         return;
     }
 
@@ -786,8 +786,8 @@ void ZVPublishToMessengerLogon::OnOK()
     if (info.Authenticate((const char*)m_Username, (const char*)m_Password) < 0)
     {
         // error message
-        MsgBox mbox;
-        mbox.DisplayMsgBox(IDS_INVALID_MESSENGER_USERPSWD, MB_OK);
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_INVALID_MESSENGER_USERPSWD, MB_OK);
         return;
     }
 

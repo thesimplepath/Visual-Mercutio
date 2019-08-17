@@ -9,7 +9,7 @@
 #include "PSS_CreateFolderWizardStartDialog.h"
 
 // processsoft
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "zRes32\Zres.h"
 
 #ifdef _DEBUG
@@ -129,8 +129,8 @@ void PSS_CreateFolderWizardStartDialog::OnOK()
     // folder name required
     if (m_FolderName.IsEmpty())
     {
-        ::MsgBox mbox;
-        mbox.DisplayMsgBox(IDS_NO_FOLDERNAME, MB_OK);
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_NO_FOLDERNAME, MB_OK);
         return;
     }
 
@@ -141,8 +141,8 @@ void PSS_CreateFolderWizardStartDialog::OnOK()
 
         if (m_FileName.IsEmpty())
         {
-            ::MsgBox mbox;
-            mbox.DisplayMsgBox(IDS_FILENAMEMISSING, MB_OK);
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox(IDS_FILENAMEMISSING, MB_OK);
             return;
         }
     }

@@ -16,7 +16,7 @@
 #include "zBaseLib\TmplFile.h"
 #include "zBaseLib\PSS_File.h"
 
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #include "ZBSystemEntity.h"
 #include "ZBLogicalSystemEntity.h"
@@ -682,8 +682,8 @@ bool ZBExtAppPropertyMgr::DropItem( CObject* pObj, CPoint pt )
                      !dynamic_cast<ZDProcessGraphModelMdl*>( pModel )->MainUserGroupIsValid() )
                 {
                     // Cannot delete all combinations
-                    MsgBox mbox;
-                    mbox.DisplayMsgBox( IDS_CANNOTDROP_SYSTEMDEFNOTINLINE, MB_OK );
+                    PSS_MsgBox mBox;
+                    mBox.ShowMsgBox( IDS_CANNOTDROP_SYSTEMDEFNOTINLINE, MB_OK );
                     return false;
                 }
             }

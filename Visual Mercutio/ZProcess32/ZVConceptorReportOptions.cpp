@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "ZVConceptorReportOptions.h"
 
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include ".\zvconceptorreportoptions.h"
 
 #ifdef _DEBUG
@@ -59,8 +59,8 @@ void ZVConceptorReportOptions::OnOK()
     if ( m_Deliverables == FALSE && m_Detail == FALSE )
     {
         // Warm the user
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_ONEOPTIONREQUIRED, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_ONEOPTIONREQUIRED, MB_OK );
         return;
     }
 

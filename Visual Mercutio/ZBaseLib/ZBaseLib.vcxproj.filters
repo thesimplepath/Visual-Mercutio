@@ -56,9 +56,6 @@
     <ClCompile Include="mfiledsc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MSGBOX.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MskEdit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -84,12 +81,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PLANFOBJ.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PLFNBackImage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProcOpt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RSETACT.CPP">
@@ -291,9 +282,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZBRect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZBRegisterSetup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZBServer.cpp">
@@ -602,6 +590,18 @@
     <ClCompile Include="PSS_FolderStamp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_ProcessDocumentOptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_PLFNBackImage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_RegisterSetup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_MsgBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -750,9 +750,6 @@
     <ClInclude Include="MFileDsc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MSGBOX.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MskEdit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -778,12 +775,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PLANFOBJ.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PLFNBackImage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ProcOpt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RSETACT.H">
@@ -988,9 +979,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBRect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBRegisterSetup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBServer.h">
@@ -1300,6 +1288,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_FolderStamp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ProcessDocumentOptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_PLFNBackImage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_RegisterSetup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_MsgBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -22,7 +22,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 #include "zBaseLib\ZBTokenizer.h"
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\ZWizard.h"
 
 #include "zModel\ProcGraphModelDoc.h"

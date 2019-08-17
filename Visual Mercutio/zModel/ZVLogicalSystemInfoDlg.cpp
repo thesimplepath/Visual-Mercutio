@@ -6,7 +6,7 @@
 
 #include "ZBLogicalSystemEntity.h"
 
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -66,8 +66,8 @@ void ZVLogicalSystemInfoDlg::OnOK()
         if ( m_pLogicalSystem && m_pLogicalSystem->SystemExist( m_Name ) )
         {
             // Already exists
-            MsgBox mbox;
-            mbox.DisplayMsgBox( IDS_LOGICALSYSTEM_ALREADYEXIST, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_LOGICALSYSTEM_ALREADYEXIST, MB_OK );
             return;
         }
     }

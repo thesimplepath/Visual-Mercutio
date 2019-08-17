@@ -2,7 +2,7 @@
 
 #include "stdafx.h"
 #include "MdlTmplSav.h"
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #include "zBaseLib\ZDirectory.h"
 #include "zBaseLib\PSS_File.h"
@@ -91,30 +91,30 @@ void ZIModelTemplateCopyDlg::OnOK()
 
     if ( m_Directory.IsEmpty() )
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_DIRECTORY_MISSING, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_DIRECTORY_MISSING, MB_OK );
         return;
     }
 
     if ( m_sFilename.IsEmpty() )
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_FILENAMEMISSING, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_FILENAMEMISSING, MB_OK );
         return;
     }
 
     if ( m_sTitle.IsEmpty() )
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_TITLEMISSING, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_TITLEMISSING, MB_OK );
         return;
     }
 
     // Check if normal template is specified
     if ( m_sFilename + _T( "." ) + m_FileExtension == g_NormalModelTemplateFileName )
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_NORMALTMPL_CANNOTBEUSED, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_NORMALTMPL_CANNOTBEUSED, MB_OK );
         return;
     }
 
@@ -125,8 +125,8 @@ void ZIModelTemplateCopyDlg::OnOK()
     if ( m_sFilename.Find( '.' ) != -1 )
 #endif
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_TEMPLATEFILENAMEERROR, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_TEMPLATEFILENAMEERROR, MB_OK );
         return;
     }
 
@@ -138,15 +138,15 @@ void ZIModelTemplateCopyDlg::OnOK()
     {
         // If does not allow replacement of file
         // error message and return
-        MsgBox mbox;
+        PSS_MsgBox mBox;
 
         if ( !m_AllowReplace )
         {
-            mbox.DisplayMsgBox( IDS_FORMALREADYEXIST, MB_OK );
+            mBox.ShowMsgBox( IDS_FORMALREADYEXIST, MB_OK );
             return;
         }
 
-        if ( mbox.DisplayMsgBox( IDS_FORMALREADYEXIST_CONTREPLACE, MB_YESNO ) == IDNO )
+        if ( mBox.ShowMsgBox( IDS_FORMALREADYEXIST_CONTREPLACE, MB_YESNO ) == IDNO )
         {
             return;
         }

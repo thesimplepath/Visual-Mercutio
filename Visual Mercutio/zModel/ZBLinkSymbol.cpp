@@ -26,7 +26,7 @@
 #include "zModelRes.h"
 #include "zRBProp.h"
 
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -803,8 +803,8 @@ bool ZBLinkSymbol::CheckPropertyValue( ZBProperty& Property, CString& value, ZBP
                 if ( value != GetSymbolReferenceNumberStr() &&
                      dynamic_cast<ZDProcessGraphModelMdl*>( pComp )->GetRoot()->ReferenceNumberAlreadyAllocated( value ) )
                 {
-                    MsgBox mbox;
-                    mbox.DisplayMsgBox( IDS_REFERENCENUMBER_ALREADYEXIST, MB_OK );
+                    PSS_MsgBox mBox;
+                    mBox.ShowMsgBox( IDS_REFERENCENUMBER_ALREADYEXIST, MB_OK );
                     value = GetSymbolReferenceNumberStr();
                     return false;
                 }
@@ -841,8 +841,8 @@ bool ZBLinkSymbol::IsNewNameValid( const CString value ) const
 {
     if ( value.IsEmpty() )
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_SYMBOLNAME_EMPTY, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_SYMBOLNAME_EMPTY, MB_OK );
         return false;
     }
 
@@ -857,14 +857,14 @@ bool ZBLinkSymbol::IsNewNameValid( const CString value ) const
         if ( value != const_cast<ZBLinkSymbol*>( this )->GetSymbolName() &&
              dynamic_cast<ZDProcessGraphModelMdl*>( pComp )->GetRoot()->SymbolNameAlreadyAllocated( value ) )
         {
-            MsgBox mbox;
-            mbox.DisplayMsgBox( IDS_SYMBOLNAME_ALREADYEXIST, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_SYMBOLNAME_ALREADYEXIST, MB_OK );
             return false;
         }
         else if ( value.FindOneOf( _T( ";:\\/" ) ) != -1 )
         {
-            MsgBox mbox;
-            mbox.DisplayMsgBox( IDS_SYMBOLNAME_INVALIDCHAR, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_SYMBOLNAME_INVALIDCHAR, MB_OK );
             return false;
         }
     }

@@ -9,7 +9,7 @@
 #include "PSS_DocOptionDialog.h"
 
 // processsoft
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_FileDialog.h"
 #ifdef _WIN32
     #include "PSS_OpenDirDialog.h"
@@ -256,8 +256,8 @@ void PSS_DocOptionDialog::OnOK()
     if (m_SynchronizationTime < 0 || m_SynchronizationTime > 9999)
     {
         // do not accept this range
-        ::MsgBox mbox;
-        mbox.DisplayMsgBox(IDS_SYNCHRO_TIMERANGE, MB_OK);
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox(IDS_SYNCHRO_TIMERANGE, MB_OK);
         return;
     }
 

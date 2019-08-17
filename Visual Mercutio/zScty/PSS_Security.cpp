@@ -9,7 +9,7 @@
 #include "PSS_Security.h"
 
 // processsoft
-#include "zBaseLib\ZBRegisterSetup.h"
+#include "zBaseLib\PSS_RegisterSetup.h"
 #include "PSS_StopPrintDialog.h"
 #include "PSS_EvaluationWarnDialog.h"
 
@@ -308,8 +308,8 @@ void PSS_Security::ShowStopWnd()
         return;
 
     // set the product code to the registry
-    ZBRegisterSetup Registry;
-    Registry.CreateEntry(m_Key, m_PID, dialog.GetCode());
+    PSS_RegisterSetup registry;
+    registry.CreateEntry(HKEY_LOCAL_MACHINE, m_Key, m_PID, dialog.GetCode());
 }
 //---------------------------------------------------------------------------
 BOOL PSS_Security::Create()

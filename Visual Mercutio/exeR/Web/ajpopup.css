@@ -1,0 +1,24 @@
+.ajpopuphdr{
+ font : bold 9pt Arial;
+ text-decoration : none;
+ color : #FFFFFF;
+ background-color: #455DC4;
+}
+
+.ajpopuptxt{
+ font : bold 9pt Arial;
+ text-decoration : none;
+ color : #000000;
+ background-color: #B5BFE8;
+}
+
+.ajpopuplnk{
+ font : bold 9pt Arial;
+ text-decoration : none;
+ color : #00000;
+ background-color: #D0D6F0;
+}
+
+.ajpopuplnk:LINK{
+ color : #000000;
+}

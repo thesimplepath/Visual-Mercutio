@@ -16,7 +16,7 @@
 
 #include "zBaseLib\ZBTokenizer.h"
 
-#include "zBaseLib\MsgBox.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -122,8 +122,8 @@ bool ZVDynamicAttributesCreationS1::CheckData()
 
     if ( m_CategoryName.IsEmpty() )
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_PROPCATEGORYNAME_MISSING, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_PROPCATEGORYNAME_MISSING, MB_OK );
         return false;
     }
 
@@ -131,8 +131,8 @@ bool ZVDynamicAttributesCreationS1::CheckData()
     {
         if ( m_StaticAttribArray.GetAt(i) == m_CategoryName )
         {
-            MsgBox mbox;
-            mbox.DisplayMsgBox( IDS_PROPCATEGORYNAME_EXIST, MB_OK );
+            PSS_MsgBox mBox;
+            mBox.ShowMsgBox( IDS_PROPCATEGORYNAME_EXIST, MB_OK );
             return false;
         }
     }
@@ -267,22 +267,22 @@ bool ZVDynamicAttributesCreationS2::CheckData()
 
     if ( m_AttributeName.IsEmpty() )
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_PROPATTRIBNAME_MISSING, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_PROPATTRIBNAME_MISSING, MB_OK );
         return false;
     }
 
     if ( !m_pModelDoc || !m_pModelDoc->GetDynamicPropertiesManager() )
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_PROP_INITIALIZATIONPRB, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_PROP_INITIALIZATIONPRB, MB_OK );
         return false;
     }
 
     if ( m_pModelDoc->GetDynamicPropertiesManager()->PropertyItemExist( m_Category, m_AttributeName ) )
     {
-        MsgBox mbox;
-        mbox.DisplayMsgBox( IDS_PROPATTRIBNAME_EXIST, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_PROPATTRIBNAME_EXIST, MB_OK );
         return false;
     }
 

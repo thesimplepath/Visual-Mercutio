@@ -4,9 +4,9 @@
 #include "stdafx.h"
 #include "ZVWorkspaceRenameGroupNameDlg.h"
 
+// processsoft
 #include "ZBWorkspaceGroupEntity.h"
-
-#include "MsgBox.h"
+#include "PSS_MsgBox.h"
 
 
 #ifdef _DEBUG
@@ -52,8 +52,8 @@ void ZVWorkspaceRenameGroupNameDlg::OnOK()
     if (m_pParentGroup && m_pParentGroup->GroupExist( m_GroupName ))
     {
         // Already exists
-        MsgBox        mbox;
-        mbox.DisplayMsgBox( IDS_WKS_GROUP_ALREADYEXIST, MB_OK );
+        PSS_MsgBox mBox;
+        mBox.ShowMsgBox( IDS_WKS_GROUP_ALREADYEXIST, MB_OK );
         return;
     }
     

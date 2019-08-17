@@ -7,7 +7,7 @@
 #include "PSS_File.h"
 
 #include "zBaseLibRes.h"
-#include "MsgBox.h"
+#include "PSS_MsgBox.h"
 #include "PSS_FileDialog.h"
 
 #ifdef _DEBUG
@@ -59,8 +59,8 @@ void ZVWorkspaceFileProperties::OnOK()
     if (!PSS_File::Exist( m_Filename ))
     {
         // Error message
-        MsgBox        mbox;
-        if (mbox.DisplayMsgBox( IDS_WKS_FILENAME_DEXIST, MB_YESNO ) == IDYES)
+        PSS_MsgBox mBox;
+        if (mBox.ShowMsgBox( IDS_WKS_FILENAME_DEXIST, MB_YESNO ) == IDYES)
         {
             CString title;
             VERIFY(title.LoadString(IDS_WORKSPACE_FILESELECT_T));

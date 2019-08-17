@@ -8,7 +8,8 @@
 #include "stdafx.h"
 #include "PSS_NewFormDialog.h"
 
-#include "zBaseLib\msgbox.h"
+// processsoft
+#include "zBaseLib\PSS_MsgBox.h"
 #include "planfin.hdf"
 
 // resources
