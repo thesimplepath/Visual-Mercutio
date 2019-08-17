@@ -199,7 +199,7 @@ public:
     //## Operation: GetFormula%902943940
     //    Get the formula pointed by the object name passed in
     //    parameter.
-    ZAFormula* GetFormula(const CString& sName, int DocumentIndex = -1);
+    PSS_Formula* GetFormula(const CString& sName, int DocumentIndex = -1);
 
     //## Operation: GetObjectPtr%902943941
     //    This function run the list of objects and try to find

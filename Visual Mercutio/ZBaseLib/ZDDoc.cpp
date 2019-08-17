@@ -178,7 +178,7 @@ BOOL ZDDocument::OpenDocument(const char* pszPathName, BOOL bSetLastLoaded)
 }
 
 //## Other Operations (implementation)
-ZAFormula* ZDDocument::GetFormula(const CString& sName, int DocumentIndex)
+PSS_Formula* ZDDocument::GetFormula(const CString& sName, int DocumentIndex)
 {
     //## begin ZDDocument::GetFormula%902943940.body preserve=yes
     if (DocumentIndex == -1)

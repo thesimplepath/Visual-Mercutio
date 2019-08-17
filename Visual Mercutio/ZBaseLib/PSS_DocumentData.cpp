@@ -308,16 +308,16 @@ void PSS_DocumentData::CheckFontValidity()
     }
 }
 //---------------------------------------------------------------------------
-ZAFormula* PSS_DocumentData::GetFormula(const CString& name)
+PSS_Formula* PSS_DocumentData::GetFormula(const CString& name)
 {
-    POSITION   pPosition = m_Schema.GetFormulaList(GetCurrentSchema())->GetHeadPosition();
-    ZAFormula* pObj;
+    POSITION     pPosition = m_Schema.GetFormulaList(GetCurrentSchema())->GetHeadPosition();
+    PSS_Formula* pObj;
 
     while (pPosition)
     {
-        pObj = (ZAFormula*)m_Schema.GetFormulaList(GetCurrentSchema())->GetNext(pPosition);
+        pObj = (PSS_Formula*)m_Schema.GetFormulaList(GetCurrentSchema())->GetNext(pPosition);
 
-        if (pObj && pObj->m_sObjectName == name)
+        if (pObj && pObj->GetObjectName() == name)
             return pObj;
     }
 
@@ -368,15 +368,15 @@ void PSS_DocumentData::CheckFormulaObject(PlanFinObject* pOld, PlanFinObject* pN
     if (!pOld || !pNew)
         return;
 
-    POSITION   pPosition = m_Schema.GetFormulaList(GetCurrentSchema())->GetHeadPosition();
-    ZAFormula* pObj;
+    POSITION     pPosition = m_Schema.GetFormulaList(GetCurrentSchema())->GetHeadPosition();
+    PSS_Formula* pObj;
 
     while (pPosition)
     {
-        pObj = (ZAFormula*)m_Schema.GetFormulaList(GetCurrentSchema())->GetNext(pPosition);
+        pObj = (PSS_Formula*)m_Schema.GetFormulaList(GetCurrentSchema())->GetNext(pPosition);
 
-        if (pObj && pObj->m_ResultObject == pOld)
-            pObj->m_ResultObject = pNew;
+        if (pObj && pObj->GetResultObject() == pOld)
+            pObj->SetResultObject(pNew);
     }
 }
 //---------------------------------------------------------------------------
@@ -429,17 +429,17 @@ void PSS_DocumentData::CalculateAllFormula(CView* pView, BOOL allPages)
             pView->OnPrepareDC(pDC);
     }
 
-    POSITION   pPosition = m_Schema.GetFormulaList(GetCurrentSchema())->GetHeadPosition();
-    ZAFormula* pFormula;
+    POSITION     pPosition = m_Schema.GetFormulaList(GetCurrentSchema())->GetHeadPosition();
+    PSS_Formula* pFormula;
 
     while (pPosition)
     {
-        pFormula = (ZAFormula*)m_Schema.GetFormulaList(GetCurrentSchema())->GetNext(pPosition);
+        pFormula = (PSS_Formula*)m_Schema.GetFormulaList(GetCurrentSchema())->GetNext(pPosition);
 
         // only if the formula is on the same page, it's necessary to recalculate
         if (allPages || pFormula->GetPage() == GetCurrentPage())
         {
-            PLFNLong* pResultObj = dynamic_cast<PLFNLong*>(pFormula->m_ResultObject);
+            PLFNLong* pResultObj = dynamic_cast<PLFNLong*>(pFormula->GetResultObject());
 
             // check if the field has an association
             if (pResultObj && pResultObj->GetCurrentAssociation())
@@ -449,7 +449,7 @@ void PSS_DocumentData::CalculateAllFormula(CView* pView, BOOL allPages)
                 // iterate through out the list
                 for (register int i = 0; i < pResultObj->GetCurrentAssociation()->GetCount(); ++i)
                 {
-                    ZAFormula* pAssociationFormula = pResultObj->GetCurrentAssociation()->GetFormulaAt(i);
+                    PSS_Formula* pAssociationFormula = pResultObj->GetCurrentAssociation()->GetFormulaAt(i);
 
                     if (pAssociationFormula)
                         CalculateFormula(pAssociationFormula, pView, pDC);
@@ -626,15 +626,15 @@ BOOL PSS_DocumentData::IsCalculatedFieldInSchema(PlanFinObject* pObj)
     if (!pObj)
         return FALSE;
 
-    POSITION   pPosition = m_Schema.GetFormulaList(GetCurrentSchema())->GetHeadPosition();
-    ZAFormula* pFormula;
+    POSITION     pPosition = m_Schema.GetFormulaList(GetCurrentSchema())->GetHeadPosition();
+    PSS_Formula* pFormula;
 
     // iterate through formula list and try to find if the object is a result object
     while (pPosition)
     {
-        pFormula = (ZAFormula*)m_Schema.GetFormulaList(GetCurrentSchema())->GetNext(pPosition);
+        pFormula = (PSS_Formula*)m_Schema.GetFormulaList(GetCurrentSchema())->GetNext(pPosition);
 
-        if (pFormula && pFormula->GetResultObjectPointer() == pObj)
+        if (pFormula && pFormula->GetResultObject() == pObj)
             return TRUE;
     }
 
@@ -658,11 +658,11 @@ void PSS_DocumentData::ChangeCalculatedFieldInAssociation(ZAFormulaAssociation* 
     // iterate through the association list
     for (register int i = 0; i < associationCount; ++i)
     {
-        ZAFormula* pAssociationFormula = pAssociation->GetFormulaAt(i);
+        PSS_Formula* pAssociationFormula = pAssociation->GetFormulaAt(i);
 
         if (pAssociationFormula)
         {
-            PLFNLong* pValue = dynamic_cast<PLFNLong*>(pAssociationFormula->GetResultObjectPointer());
+            PLFNLong* pValue = dynamic_cast<PLFNLong*>(pAssociationFormula->GetResultObject());
 
             if (pValue)
             {
@@ -1824,13 +1824,13 @@ void PSS_DocumentData::Serialize(CArchive& ar)
     }
 }
 //---------------------------------------------------------------------------
-BOOL PSS_DocumentData::CalculateFormula(ZAFormula* pFormula, CWnd* pWnd, CDC* pDC)
+BOOL PSS_DocumentData::CalculateFormula(PSS_Formula* pFormula, CWnd* pWnd, CDC* pDC)
 {
     if (!pFormula)
         return FALSE;
 
     Parser    parser;
-    PLFNLong* pField = dynamic_cast<PLFNLong*>(pFormula->m_ResultObject);
+    PLFNLong* pField = dynamic_cast<PLFNLong*>(pFormula->GetResultObject());
 
     // check if the field is a PLFNLong. The only way to calculate is on calculated fields. Because
     // the user can change the type, it is necessary to test if the keep value is set. If it is set,
@@ -1841,7 +1841,7 @@ BOOL PSS_DocumentData::CalculateFormula(ZAFormula* pFormula, CWnd* pWnd, CDC* pD
     // get the previous value to compare with the new one. If the value has changed, then notify the
     // controler about the change of the field
     const double previousValue = pField->GetValue();
-          double newValue      = parser.StringParser((const char*)pFormula->m_sExtractedFormula, &m_ObjElements);
+          double newValue      = parser.StringParser((const char*)pFormula->GetExtractedFormula(), &m_ObjElements);
 
     // to notify the view that on field change, pass the adress of the object, then the routine that
     // proceed the message can know wich object has changed

@@ -1,13 +1,12 @@
-// formula.cpp : implementation of the ZAFormula class
-//
-
+/****************************************************************************
+ * ==> PSS_Formula ---------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a formula and its associated manager and schema   *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
 #include "formula.h"
-
-// std
-#include <Math.h>
-#include <IO.h>
 
 // processsoft
 #include "ZAObject.h"
@@ -15,142 +14,149 @@
 #include "PSS_DocumentData.h"
 #include "PSS_MsgBox.h"
 
+// Windows
+#include <Math.h>
+#include <IO.h>
+
 #ifdef _DEBUG
-#undef THIS_FILE
-static char BASED_CODE THIS_FILE[] = __FILE__;
+    #undef THIS_FILE
+    static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-void ZAFormula::ConstructObjectPointer(PSS_DocumentData& doc, CObList& lstFormula)
+//---------------------------------------------------------------------------
+// Serialization
+//---------------------------------------------------------------------------
+IMPLEMENT_SERIAL(PSS_Formula, CObject, g_DefVersion)
+//---------------------------------------------------------------------------
+// PSS_Formula
+//---------------------------------------------------------------------------
+PSS_Formula::PSS_Formula() :
+    m_pResultObject(NULL),
+    m_Page(0)
+{}
+//---------------------------------------------------------------------------
+PSS_Formula::PSS_Formula(ZDDocument& doc, const CString& formula)
 {
-    ZAFormula*  obj;
-    POSITION    Position = lstFormula.GetHeadPosition();
+    const CString  temp = formula;
+    int            sep;
+    VERIFY((sep = temp.Find(',')) != -1);
 
-    while (Position)
+    const CString page = temp.Left(sep);
+    m_Page             = std::atoi(page);
+    m_Formula          = temp.Right(temp.GetLength() - sep - 1);
+
+    char* pFind;
+
+    // extract the object name
+    VERIFY(pFind = const_cast<char*>(std::strchr(m_Formula, '=')));
+
+    m_ObjectName       = m_Formula.Left(int(pFind - m_Formula - 1));
+    m_ExtractedFormula = pFind + 1;
+
+    // get the pointer to the object
+    m_pResultObject = doc.GetObjectPtr(m_ObjectName);
+    ASSERT(m_pResultObject);
+}
+//---------------------------------------------------------------------------
+PSS_Formula::PSS_Formula(const PSS_Formula& other)
+{
+    *this = other;
+}
+//---------------------------------------------------------------------------
+PSS_Formula::~PSS_Formula()
+{}
+//---------------------------------------------------------------------------
+const PSS_Formula& PSS_Formula::operator = (const PSS_Formula& other)
+{
+    m_Formula          = other.m_Formula;
+    m_ExtractedFormula = other.m_ExtractedFormula;
+    m_ObjectName       = other.m_ObjectName;
+    m_Page             = other.m_Page;
+
+    // not a deep copy
+    m_pResultObject = other.m_pResultObject;
+
+    return *this;
+}
+//---------------------------------------------------------------------------
+PSS_Formula* PSS_Formula::Clone() const
+{
+    std::unique_ptr<PSS_Formula> pFormula(new PSS_Formula(*this));
+    return pFormula.release();
+}
+//---------------------------------------------------------------------------
+void PSS_Formula::Serialize(CArchive& ar)
+{
+    if (ar.IsStoring())
     {
-        obj = (ZAFormula*)lstFormula.GetNext(Position);
-        // Get the pointer to the object
-        obj->m_ResultObject = doc.GetObject(obj->m_sObjectName);
+        // write informations
+        ar << WORD(m_Page);
+        ar << m_Formula;
+        ar << m_ExtractedFormula;
+        ar << m_ObjectName;
+    }
+    else
+    {
+        // read informations
+        WORD temp;
+        ar >> temp;
+        m_Page = int(temp);
 
-        if (!obj->m_ResultObject)
+        ar >> m_Formula;
+        ar >> m_ExtractedFormula;
+        ar >> m_ObjectName;
+
+        // assign the result object pointer to NULL
+        m_pResultObject = NULL;
+    }
+}
+//---------------------------------------------------------------------------
+#ifdef _DEBUG
+    void PSS_Formula::AssertValid() const
+    {
+        CObject::AssertValid();
+    }
+#endif
+//---------------------------------------------------------------------------
+#ifdef _DEBUG
+    void PSS_Formula::Dump(CDumpContext& dc) const
+    {
+        CObject::Dump(dc);
+    }
+#endif
+//---------------------------------------------------------------------------
+void PSS_Formula::ConstructObjectPointer(PSS_DocumentData& doc, CObList& formulas)
+{
+    PSS_Formula* pObj;
+    POSITION     pPosition = formulas.GetHeadPosition();
+
+    while (pPosition)
+    {
+        pObj = (PSS_Formula*)formulas.GetNext(pPosition);
+        ASSERT(pObj);
+
+        // get the object
+        pObj->m_pResultObject = doc.GetObject(pObj->m_ObjectName);
+
+        if (!pObj->m_pResultObject)
         {
             CString prompt;
-            AfxFormatString1(prompt, IDS_OBJECTMISSING, obj->m_sObjectName);
+            AfxFormatString1(prompt, IDS_OBJECTMISSING, pObj->m_ObjectName);
+
             PSS_MsgBox mBox;
             mBox.Show(prompt, MB_OK);
         }
     }
 }
-
-/////////////////////////////////////////////////////////////////////////////
-// ZAFormula
-IMPLEMENT_SERIAL(ZAFormula, CObject, g_DefVersion)
-
-ZAFormula::ZAFormula()
-    : m_ResultObject(NULL)
-{}
-
-ZAFormula::ZAFormula(ZDDocument& Doc, const CString& str)
-{
-    //                char    szBuf[300];
-    //                sprintf( szBuf, "%s"    , (const char*)str );
-    //                AfxMessageBox( szBuf );
-    char*        cpFind;
-
-    CString        sTemp = str;
-    int            iSep;
-    VERIFY((iSep = sTemp.Find(',')) != -1);
-    CString        sPage = sTemp.Left(iSep);
-    m_iPage = atoi(sPage);
-    m_sFormula = sTemp.Right(sTemp.GetLength() - iSep - 1);
-
-    // extract object Name
-    VERIFY(cpFind = const_cast<char*>(std::strchr(m_sFormula, '=')));
-
-    m_sObjectName = m_sFormula.Left((int)(cpFind - m_sFormula - 1));
-    m_sExtractedFormula = cpFind + 1;
-    // Get the pointer to the object
-    m_ResultObject = Doc.GetObjectPtr(m_sObjectName);
-    ASSERT(m_ResultObject);
-}
-
-ZAFormula* ZAFormula::Clone()
-{
-    ZAFormula*    pObject = new ZAFormula(*this);
-    return pObject;
-}
-
-ZAFormula::~ZAFormula()
-{}
-
-ZAFormula::ZAFormula(const ZAFormula &right)
-{
-    *this = right;
-}
-
-const ZAFormula & ZAFormula::operator=(const ZAFormula &right)
-{
-    m_sFormula = right.m_sFormula;
-    m_sExtractedFormula = right.m_sExtractedFormula;
-    m_sObjectName = right.m_sObjectName;
-    // Not a deep copy
-    m_ResultObject = right.m_ResultObject;
-    m_iPage = right.m_iPage;
-    return *this;
-}
-
-
-/////////////////////////////////////////////////////////////////////////////
-// ZAFormula serialization
-
-void ZAFormula::Serialize(CArchive& ar)
-{
-    if (ar.IsStoring())
-    {    // Write informations
-        ar << (WORD)m_iPage;
-        ar << m_sFormula;
-        ar << m_sExtractedFormula;
-        ar << m_sObjectName;
-        //        ar << m_ResultObject;
-    }
-    else
-    {    // Read informations
-        WORD    wTemp;
-        ar >> wTemp;
-        m_iPage = (int)wTemp;
-        ar >> m_sFormula;
-        ar >> m_sExtractedFormula;
-        ar >> m_sObjectName;
-        // Assigns pointer to NULL
-        m_ResultObject = NULL;
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-// ZAFormula diagnostics
-
-#ifdef _DEBUG
-void ZAFormula::AssertValid() const
-{
-    CObject::AssertValid();
-}
-
-void ZAFormula::Dump(CDumpContext& dc) const
-{
-    CObject::Dump(dc);
-}
-#endif //_DEBUG
-
-
-
-
-/////////////////////////////////////////////////////////////////////////////
-// ZAFormulaAssociation
+//---------------------------------------------------------------------------
+// Serialization
+//---------------------------------------------------------------------------
 IMPLEMENT_SERIAL(ZAFormulaAssociation, CObject, g_DefVersion)
 
 ZAFormulaAssociation::ZAFormulaAssociation()
 {}
 
-ZAFormulaAssociation::ZAFormulaAssociation(const CString Name, const CString ObjectNameInitiator)
+ZAFormulaAssociation::ZAFormulaAssociation(const CString& Name, const CString& ObjectNameInitiator)
     : m_AssociationName(Name), m_ObjectNameInitiator(ObjectNameInitiator)
 {}
 
@@ -169,12 +175,12 @@ ZAFormulaAssociation*    ZAFormulaAssociation::Clone()
 {
     ZAFormulaAssociation*    pNewAssociation = new ZAFormulaAssociation;
 
-    ZAFormula*              obj;
+    PSS_Formula*              obj;
     POSITION                Position = m_lstFormula.GetHeadPosition();
 
     while (Position)
     {
-        obj = (ZAFormula*)m_lstFormula.GetNext(Position);
+        obj = (PSS_Formula*)m_lstFormula.GetNext(Position);
         pNewAssociation->m_lstFormula.AddTail(obj->Clone());
     }
     // Copy members
@@ -183,19 +189,19 @@ ZAFormulaAssociation*    ZAFormulaAssociation::Clone()
     return pNewAssociation;
 }
 
-void ZAFormulaAssociation::AddFormula(ZAFormula* pFormula)
+void ZAFormulaAssociation::AddFormula(PSS_Formula* pFormula)
 {
     m_lstFormula.AddTail(pFormula);
 }
 
 void ZAFormulaAssociation::DeleteFormula(const CString& Name)
 {
-    ZAFormula*  obj;
+    PSS_Formula*  obj;
     POSITION    Position = m_lstFormula.GetHeadPosition();
 
     while (Position)
     {
-        obj = (ZAFormula*)m_lstFormula.GetNext(Position);
+        obj = (PSS_Formula*)m_lstFormula.GetNext(Position);
         if (obj->GetObjectName() == Name)
         {
             DeleteFormula(obj);
@@ -204,49 +210,49 @@ void ZAFormulaAssociation::DeleteFormula(const CString& Name)
     }
 }
 
-void ZAFormulaAssociation::DeleteFormula(ZAFormula* pFormula)
+void ZAFormulaAssociation::DeleteFormula(PSS_Formula* pFormula)
 {
     POSITION    Position = m_lstFormula.Find(pFormula);
 
     if (Position)
     {
-        delete (ZAFormula*)pFormula;
+        delete (PSS_Formula*)pFormula;
         // Destroy the object in the list
         m_lstFormula.RemoveAt(Position);
     }
 }
 
-ZAFormula*    ZAFormulaAssociation::GetFormulaAt(int Index)
+PSS_Formula*    ZAFormulaAssociation::GetFormulaAt(int Index)
 {
     POSITION    Position = m_lstFormula.FindIndex(Index);
     if (Position)
-        return (ZAFormula*)m_lstFormula.GetAt(Position);
+        return (PSS_Formula*)m_lstFormula.GetAt(Position);
     return NULL;
 }
 
 
-ZAFormula* ZAFormulaAssociation::FindFormula(const CString& Name)
+PSS_Formula* ZAFormulaAssociation::FindFormula(const CString& Name)
 {
-    ZAFormula*  obj;
+    PSS_Formula*  obj;
     POSITION    Position = m_lstFormula.GetHeadPosition();
 
     while (Position)
     {
-        obj = (ZAFormula*)m_lstFormula.GetNext(Position);
+        obj = (PSS_Formula*)m_lstFormula.GetNext(Position);
         if (obj->GetObjectName() == Name)
             return obj;
     }
     return NULL;
 }
 
-ZAFormula* ZAFormulaAssociation::FindFormulaFullString(const CString& Formula)
+PSS_Formula* ZAFormulaAssociation::FindFormulaFullString(const CString& Formula)
 {
-    ZAFormula*  obj;
+    PSS_Formula*  obj;
     POSITION    Position = m_lstFormula.GetHeadPosition();
 
     while (Position)
     {
-        obj = (ZAFormula*)m_lstFormula.GetNext(Position);
+        obj = (PSS_Formula*)m_lstFormula.GetNext(Position);
         if (obj->GetFormula() == Formula)
             return obj;
     }
@@ -256,13 +262,13 @@ ZAFormula* ZAFormulaAssociation::FindFormulaFullString(const CString& Formula)
 
 size_t ZAFormulaAssociation::GetFormulaArray(CStringArray& Array)
 {
-    ZAFormula*  obj;
+    PSS_Formula*  obj;
     POSITION    Position = m_lstFormula.GetHeadPosition();
 
     Array.RemoveAll();
     while (Position)
     {
-        obj = (ZAFormula*)m_lstFormula.GetNext(Position);
+        obj = (PSS_Formula*)m_lstFormula.GetNext(Position);
         Array.Add(obj->GetFormula());
     }
     // Return the number of element
@@ -445,7 +451,7 @@ void ZAFormulaAssociationManager::InitializeFormulaAssociations(PSS_DocumentData
     while (Position)
     {
         obj = (ZAFormulaAssociation*)m_lstAssociation.GetNext(Position);
-        ZAFormula::ConstructObjectPointer(doc, obj->GetFormulaList());
+        PSS_Formula::ConstructObjectPointer(doc, obj->GetFormulaList());
     }
 }
 
@@ -502,14 +508,14 @@ ZAFormulaSchema*    ZAFormulaSchema::Clone()
 {
     ZAFormulaSchema*    pNewFormulaSchema = new ZAFormulaSchema;
 
-    ZAFormula*          obj;
+    PSS_Formula*          obj;
     POSITION            Position = m_lstFormula.GetHeadPosition();
 
     while (Position)
     {
-        obj = (ZAFormula*)m_lstFormula.GetNext(Position);
-        ZAFormula*    pNewFormula = new ZAFormula;
-        (ZAFormula&)*pNewFormula = (ZAFormula&)*obj;
+        obj = (PSS_Formula*)m_lstFormula.GetNext(Position);
+        PSS_Formula*    pNewFormula = new PSS_Formula;
+        (PSS_Formula&)*pNewFormula = (PSS_Formula&)*obj;
         pNewFormulaSchema->m_lstFormula.AddTail(pNewFormula);
     }
     // Copy the name
@@ -522,12 +528,12 @@ ZAFormulaSchema*    ZAFormulaSchema::Clone()
 
 BOOL        ZAFormulaSchema::DeletePageFormulas(int iPage, BOOL bRedistribute)
 {
-    ZAFormula*          obj;
+    PSS_Formula*          obj;
     POSITION            Position = m_lstFormula.GetHeadPosition();
 
     while (Position)
     {
-        obj = (ZAFormula*)m_lstFormula.GetNext(Position);
+        obj = (PSS_Formula*)m_lstFormula.GetNext(Position);
         if (obj->GetPage() == iPage)
         {
             // Save the position within the list
@@ -535,7 +541,7 @@ BOOL        ZAFormulaSchema::DeletePageFormulas(int iPage, BOOL bRedistribute)
             if (!ElementPosition)
                 return FALSE;
             // Destroy the object
-            delete (ZAFormula*)obj;
+            delete (PSS_Formula*)obj;
             // Destroy the object in the list
             m_lstFormula.RemoveAt(ElementPosition);
         }
@@ -548,7 +554,7 @@ BOOL        ZAFormulaSchema::DeletePageFormulas(int iPage, BOOL bRedistribute)
 
         while (Position)
         {
-            obj = (ZAFormula*)m_lstFormula.GetPrev(Position);
+            obj = (PSS_Formula*)m_lstFormula.GetPrev(Position);
             // Test the object's page, if before the deleted page
             // continue the loop
             // For formula it impossible to stop the loop
@@ -564,7 +570,7 @@ BOOL        ZAFormulaSchema::DeletePageFormulas(int iPage, BOOL bRedistribute)
 
 BOOL        ZAFormulaSchema::CopyPageFormulas(ZAFormulaSchema*    pFormulaDst, int iPage)
 {
-    ZAFormula*          obj;
+    PSS_Formula*          obj;
     POSITION            Position;
     POSITION            InsertedPosition = NULL;
     // Count in the source formula the
@@ -574,7 +580,7 @@ BOOL        ZAFormulaSchema::CopyPageFormulas(ZAFormulaSchema*    pFormulaDst, i
     BOOL    bFoundOne = FALSE;
     for (Position = m_lstFormula.GetHeadPosition(), iPos = 0; Position; ++iPos)
     {
-        obj = (ZAFormula*)m_lstFormula.GetNext(Position);
+        obj = (PSS_Formula*)m_lstFormula.GetNext(Position);
         if (obj->GetPage() == iPage)
         {
             bFoundOne = TRUE;
@@ -588,7 +594,7 @@ BOOL        ZAFormulaSchema::CopyPageFormulas(ZAFormulaSchema*    pFormulaDst, i
     Position = m_lstFormula.GetHeadPosition();
     while (Position)
     {
-        obj = (ZAFormula*)m_lstFormula.GetNext(Position);
+        obj = (PSS_Formula*)m_lstFormula.GetNext(Position);
         if (obj->GetPage() == iPage)
         {
             // If it is the first element to be inserted,
@@ -722,7 +728,7 @@ void ZASchemaManager::InitializeSchemaObjectPointer(PSS_DocumentData& Doc)
     while (Position)
     {
         obj = (ZAFormulaSchema*)m_lstSchema.GetNext(Position);
-        ZAFormula::ConstructObjectPointer(Doc, obj->GetFormulaList());
+        PSS_Formula::ConstructObjectPointer(Doc, obj->GetFormulaList());
     }
 }
 

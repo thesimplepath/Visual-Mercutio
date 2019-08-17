@@ -559,11 +559,11 @@ void     PLFNCalculated::Recalculate(ZDDocument* pDoc)
     if (pDoc)
     {
 
-        ZAFormula*    Formula = pDoc->GetFormula( GetObjectName() );
+        PSS_Formula*    Formula = pDoc->GetFormula( GetObjectName() );
         if (Formula)
         {    
             Parser            prs;
-            m_Long = prs.StringParser( (const char *)Formula->m_sExtractedFormula, &(pDoc->GetObjectList()) );
+            m_Long = prs.StringParser( (const char *)Formula->GetExtractedFormula(), &(pDoc->GetObjectList()) );
     //        if( ZAApp::ZAGetApp()->GetiRounded() && ApplyRounded() )
             // Function floor first integer less than
             // Function ceil first integer greater than

@@ -186,7 +186,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         * Gets the formula pointed by the object name passed in parameter
         *@return the formula, NULL if not found or on error
         */
-        virtual ZAFormula* GetFormula(const CString& name);
+        virtual PSS_Formula* GetFormula(const CString& name);
 
         /**
         * Search the object matching with the name
@@ -774,7 +774,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         *@param pDC - device context
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL CalculateFormula(ZAFormula* pFormula, CWnd* pWnd = NULL, CDC* pDC = NULL);
+        virtual BOOL CalculateFormula(PSS_Formula* pFormula, CWnd* pWnd = NULL, CDC* pDC = NULL);
 
         /**
         * Draws the binary file
