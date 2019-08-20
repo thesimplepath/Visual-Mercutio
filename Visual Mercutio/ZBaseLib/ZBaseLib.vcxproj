@@ -316,7 +316,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="formula.cpp">
+    <ClCompile Include="PSS_Formula.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1374,7 +1374,7 @@
     <ClInclude Include="PSS_GlobalFieldManager.h" />
     <ClInclude Include="PSS_FolderStamp.h" />
     <ClInclude Include="PSS_FLFDataFeed.h" />
-    <ClInclude Include="formula.h" />
+    <ClInclude Include="PSS_Formula.h" />
     <ClInclude Include="GFDataF.h" />
     <ClInclude Include="GFldDoc.h" />
     <ClInclude Include="GFValueF.h" />

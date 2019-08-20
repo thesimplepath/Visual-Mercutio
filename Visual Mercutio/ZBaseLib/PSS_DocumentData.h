@@ -22,7 +22,7 @@
 #endif
 
 // processsoft
-#include "Formula.h"
+#include "PSS_Formula.h"
 #include "Stamp.h"
 #include "ZAStylMg.h"
 #include "ZAFontMg.h"
@@ -325,7 +325,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         *@note When you change the schema, it is necessary to remove the switch for calculation of all
         *      number fields and to add it for result fields
         */
-        virtual void ChangeCalculatedFieldInAssociation(ZAFormulaAssociation* pAssociation);
+        virtual void ChangeCalculatedFieldInAssociation(PSS_FormulaAssociation* pAssociation);
 
         /**
         * Replaces the calculated fields
@@ -678,7 +678,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         * Gets the schema manager
         *@return the schema manager
         */
-        virtual inline ZASchemaManager& GetSchema();
+        virtual inline PSS_SchemaManager& GetSchema();
 
         /**
         * Gets the document
@@ -848,25 +848,25 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         virtual bool FieldNameExistInObjectArray(const CString& fieldName);
 
     private:
-        ZDDocument*     m_pDocument;
-        PSS_FileBuffer* m_pFileBuffer;
-        ZDStamp         m_Stamp;
-        ZASchemaManager m_Schema;
-        ZAFontManager   m_FontManager;
-        ZAStyleManager  m_StyleManager;
-        PlanFinObject*  m_pCurrentEditedObject;
-        ZUFileLauncher  m_FileLauncher;
-        CObList         m_ObjElements;
-        POSITION        m_pPosition;
-        CStringArray    m_FieldNameArray;
-        CString         m_CurrentSchema;
-        CString         m_FileBufferTemporaryFile;
-        CString         m_BinaryDrawMessage;
-        double          m_LastTabOrder;
-        int             m_PageMax;
-        BOOL            m_FlagElapsedTime;
-        BOOL            m_IsVisible;
-        BOOL            m_ReadOnlyAtRuntime;
+        ZDDocument*       m_pDocument;
+        PSS_FileBuffer*   m_pFileBuffer;
+        ZDStamp           m_Stamp;
+        PSS_SchemaManager m_Schema;
+        ZAFontManager     m_FontManager;
+        ZAStyleManager    m_StyleManager;
+        PlanFinObject*    m_pCurrentEditedObject;
+        ZUFileLauncher    m_FileLauncher;
+        CObList           m_ObjElements;
+        POSITION          m_pPosition;
+        CStringArray      m_FieldNameArray;
+        CString           m_CurrentSchema;
+        CString           m_FileBufferTemporaryFile;
+        CString           m_BinaryDrawMessage;
+        double            m_LastTabOrder;
+        int               m_PageMax;
+        BOOL              m_FlagElapsedTime;
+        BOOL              m_IsVisible;
+        BOOL              m_ReadOnlyAtRuntime;
 
         /**
         * Deletes the page objects
@@ -1082,7 +1082,7 @@ ZDStamp& PSS_DocumentData::GetStamp()
     return m_Stamp;
 }
 //---------------------------------------------------------------------------
-ZASchemaManager& PSS_DocumentData::GetSchema()
+PSS_SchemaManager& PSS_DocumentData::GetSchema()
 {
     return m_Schema;
 }

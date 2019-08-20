@@ -33,7 +33,7 @@
 #include "ZAText.h"
 #include "ZAString.h"
 #include "ZAGraphc.h"
-#include "Formula.h"
+#include "PSS_Formula.h"
 #include "ZBPoint.h"
 #include "ZBDate.h"
 
@@ -379,10 +379,10 @@ public:
     void            SetIconDisplayType( IconDisplayType Type = NoIcon ) { m_IconDisplayType = Type; };
     
     // Associations
-    ZAFormulaAssociationManager&    GetAssociations() { return m_Associations; };
-    ZAFormulaAssociation*    GetCurrentAssociation() { return m_Associations.GetCurrentAssociation(); };
+    PSS_FormulaAssociationManager&    GetAssociations() { return m_Associations; };
+    PSS_FormulaAssociation*    GetCurrentAssociation() { return m_Associations.GetCurrentAssociation(); };
     void                    ClearCurrentAssociation() { m_Associations.ClearCurrentAssociation(); };
-    void                    SetCurrentAssociation( ZAFormulaAssociation* pAssociation ) { m_Associations.SetCurrentAssociation(pAssociation); };
+    void                    SetCurrentAssociation( PSS_FormulaAssociation* pAssociation ) { m_Associations.SetCurrentAssociation(pAssociation); };
     void                    SetCurrentAssociation( const CString Name ) { m_Associations.SetCurrentAssociation(Name); };
 
     // Draw the calculated symbol for the object.
@@ -400,7 +400,7 @@ private:
     IconDisplayType    m_IconDisplayType;    // Defines the icon display type
     
     // Since file version 5
-    ZAFormulaAssociationManager    m_Associations;    // The Associations
+    PSS_FormulaAssociationManager    m_Associations;    // The Associations
     
 // Implementation
 protected:

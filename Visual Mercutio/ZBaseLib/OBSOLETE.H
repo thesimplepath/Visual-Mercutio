@@ -36,7 +36,7 @@
 #include "ZAText.h"
 #include "ZAString.h"
 #include "ZAGraphc.h"
-#include "Formula.h"
+#include "PSS_Formula.h"
 
 #ifdef _ZBASELIBEXPORT
 //put the values back to make AFX_EXT_CLASS export again

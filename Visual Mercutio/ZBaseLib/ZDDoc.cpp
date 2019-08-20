@@ -2433,7 +2433,7 @@ void ZDDocument::SetCurrentPage(int iPage, int DocumentIndex)
     //## end ZDDocument::SetCurrentPage%908460233.body
 }
 
-ZASchemaManager& ZDDocument::GetSchema(int DocumentIndex)
+PSS_SchemaManager& ZDDocument::GetSchema(int DocumentIndex)
 {
     //## begin ZDDocument::GetSchema%913970076.body preserve=yes
     if (DocumentIndex == -1)

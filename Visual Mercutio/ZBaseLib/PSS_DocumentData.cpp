@@ -648,7 +648,7 @@ void PSS_DocumentData::RefreshCurrentSchema()
     m_pDocument->UpdateAllViews(NULL);
 }
 //---------------------------------------------------------------------------
-void PSS_DocumentData::ChangeCalculatedFieldInAssociation(ZAFormulaAssociation* pAssociation)
+void PSS_DocumentData::ChangeCalculatedFieldInAssociation(PSS_FormulaAssociation* pAssociation)
 {
     if (!pAssociation)
         return;

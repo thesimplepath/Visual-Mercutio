@@ -26,7 +26,7 @@
 #include "PSS_DocumentOptions.h"
 #include "HistFMng.h"
 #include "PSS_BaseDocument.h"
-#include "Formula.h"
+#include "PSS_Formula.h"
 #include "ZAFontMg.h"
 #include "ZAStylMg.h"
 
@@ -289,7 +289,7 @@ public:
 
     //## Operation: GetSchema%913970076
     //    Return the schema manager reference.
-    ZASchemaManager& GetSchema(int DocumentIndex = -1);
+    PSS_SchemaManager& GetSchema(int DocumentIndex = -1);
 
     //## Operation: GetForecastedObjectCount%914146141
     //    Returns the forecasted object count.
