@@ -61,105 +61,105 @@
 
 class AFX_EXT_CLASS ZUFieldValueDataFeed : public PSS_Export
 {
-  //## begin ZUFieldValueDataFeed%38212538024B.initialDeclarations preserve=yes
-  //## end ZUFieldValueDataFeed%38212538024B.initialDeclarations
+    //## begin ZUFieldValueDataFeed%38212538024B.initialDeclarations preserve=yes
+    //## end ZUFieldValueDataFeed%38212538024B.initialDeclarations
 
-  public:
+public:
     //## Constructors (specified)
       //## Operation: ZUFieldValueDataFeed%941696498
       //    Constructs an export class with the filename and the
       //    field definition manager.
-      ZUFieldValueDataFeed (CString Filename = "", PSS_FieldRepository* pFieldRepository = NULL, PSS_FieldObjectDefinition* pObjectDefinition = NULL, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, PSS_StatusBar* pStatusBar = NULL);
+    ZUFieldValueDataFeed(CString Filename = "", PSS_FieldRepository* pFieldRepository = NULL, PSS_FieldObjectDefinition* pObjectDefinition = NULL, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, PSS_StatusBar* pStatusBar = NULL);
 
-      //## Operation: ZUFieldValueDataFeed%941696510
-      //    Constructs an import class with the filename and a
-      //    string array.
-      ZUFieldValueDataFeed (CString Filename, CStringArray* pValueArray, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, PSS_StatusBar* pStatusBar = NULL);
+    //## Operation: ZUFieldValueDataFeed%941696510
+    //    Constructs an import class with the filename and a
+    //    string array.
+    ZUFieldValueDataFeed(CString Filename, CStringArray* pValueArray, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, PSS_StatusBar* pStatusBar = NULL);
 
     //## Destructor (generated)
-      ~ZUFieldValueDataFeed();
+    ~ZUFieldValueDataFeed();
 
 
     //## Other Operations (specified)
       //## Operation: GetExportedLine%941696500
       //    Build the export line and return it.
-      virtual CString GetExportedLine (CObject* pObj);
+    virtual CString GetExportedLine(CObject* pObj);
 
-      //## Operation: ProcessLine%941696501
-      //    Process the line and updates the document.
-      virtual BOOL ProcessLine (CString Line);
+    //## Operation: ProcessLine%941696501
+    //    Process the line and updates the document.
+    virtual BOOL ProcessLine(CString Line);
 
-      //## Operation: GetHeaderLine%941696502
-      //    This function builds the header line.
-      virtual CString GetHeaderLine ();
+    //## Operation: GetHeaderLine%941696502
+    //    This function builds the header line.
+    virtual CString GetHeaderLine();
 
-      //## Operation: Create%941696503
-      //    Create the export class.
-      virtual void Create (CString Filename, PSS_FieldRepository* pFieldRepository = NULL, PSS_FieldObjectDefinition* pObjectDefinition = NULL, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, PSS_StatusBar* pStatusBar = NULL);
+    //## Operation: Create%941696503
+    //    Create the export class.
+    virtual void Create(CString Filename, PSS_FieldRepository* pFieldRepository = NULL, PSS_FieldObjectDefinition* pObjectDefinition = NULL, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, PSS_StatusBar* pStatusBar = NULL);
 
-      //## Operation: Create%941696511
-      //    Create the export class.
-      virtual void Create (CString Filename, CStringArray* pValueArray = NULL, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, PSS_StatusBar* pStatusBar = NULL);
+    //## Operation: Create%941696511
+    //    Create the export class.
+    virtual void Create(CString Filename, CStringArray* pValueArray = NULL, BOOL GenerateHeader = FALSE, ESynchronizationSeparatorType SeparatorType = E_SS_Automatic, CString Schema = g_OriginalSchema, int PropagationMode = g_LocatePageOnly, BOOL EmptyWhenZero = FALSE, PSS_StatusBar* pStatusBar = NULL);
 
-      //## Operation: ForecastedTotalObject%941696505
-      //    This function should return the forecasted total object.
-      virtual double ForecastedTotalObject ();
+    //## Operation: ForecastedTotalObject%941696505
+    //    This function should return the forecasted total object.
+    virtual double GetForecastedTotalObject() const;
 
-      //## Operation: DoExportLoop%941696506
-      //    This function do the loop for export.
-      virtual BOOL DoExportLoop ();
+    //## Operation: DoExportLoop%941696506
+    //    This function do the loop for export.
+    virtual BOOL DoExportLoop();
 
     // Additional Public Declarations
       //## begin ZUFieldValueDataFeed%38212538024B.public preserve=yes
       //## end ZUFieldValueDataFeed%38212538024B.public
 
-  protected:
+protected:
     // Additional Protected Declarations
       //## begin ZUFieldValueDataFeed%38212538024B.protected preserve=yes
       //## end ZUFieldValueDataFeed%38212538024B.protected
 
-  private:
+private:
     //## Constructors (generated)
-      ZUFieldValueDataFeed(const ZUFieldValueDataFeed &right);
+    ZUFieldValueDataFeed(const ZUFieldValueDataFeed &right);
 
     //## Assignment Operation (generated)
-      const ZUFieldValueDataFeed & operator=(const ZUFieldValueDataFeed &right);
+    const ZUFieldValueDataFeed & operator=(const ZUFieldValueDataFeed &right);
 
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: pSourceFieldRepository%382129F7011C
       //    Points to the field repository.
-      const PSS_FieldRepository* GetpSourceFieldRepository () const;
-      void SetpSourceFieldRepository (PSS_FieldRepository* value);
+    const PSS_FieldRepository* GetpSourceFieldRepository() const;
+    void SetpSourceFieldRepository(PSS_FieldRepository* value);
 
     // Data Members for Class Attributes
 
       //## Attribute: pObjectDefinition%38212538027F
       //    Containe the object to export.
       //## begin ZUFieldValueDataFeed::pObjectDefinition%38212538027F.attr preserve=no  private: ZAObjectDefinition* {U} 
-      PSS_FieldObjectDefinition* m_pObjectDefinition;
-      //## end ZUFieldValueDataFeed::pObjectDefinition%38212538027F.attr
+    PSS_FieldObjectDefinition* m_pObjectDefinition;
+    //## end ZUFieldValueDataFeed::pObjectDefinition%38212538027F.attr
 
-      //## Attribute: pValueArray%3821408B014F
-      //    The value array that will contain values imported.
-      //## begin ZUFieldValueDataFeed::pValueArray%3821408B014F.attr preserve=no  private: CStringArray* {U} 
-      CStringArray* m_pValueArray;
-      //## end ZUFieldValueDataFeed::pValueArray%3821408B014F.attr
+    //## Attribute: pValueArray%3821408B014F
+    //    The value array that will contain values imported.
+    //## begin ZUFieldValueDataFeed::pValueArray%3821408B014F.attr preserve=no  private: CStringArray* {U} 
+    CStringArray* m_pValueArray;
+    //## end ZUFieldValueDataFeed::pValueArray%3821408B014F.attr
 
-    // Additional Private Declarations
-      //## begin ZUFieldValueDataFeed%38212538024B.private preserve=yes
-      //## end ZUFieldValueDataFeed%38212538024B.private
+  // Additional Private Declarations
+    //## begin ZUFieldValueDataFeed%38212538024B.private preserve=yes
+    //## end ZUFieldValueDataFeed%38212538024B.private
 
-  private:  //## implementation
-    // Data Members for Class Attributes
+private:  //## implementation
+  // Data Members for Class Attributes
 
-      //## begin ZUFieldValueDataFeed::pSourceFieldRepository%382129F7011C.attr preserve=no  private: ZBFieldRepository* {U} 
-      PSS_FieldRepository* m_pSourceFieldRepository;
-      //## end ZUFieldValueDataFeed::pSourceFieldRepository%382129F7011C.attr
+    //## begin ZUFieldValueDataFeed::pSourceFieldRepository%382129F7011C.attr preserve=no  private: ZBFieldRepository* {U} 
+    PSS_FieldRepository* m_pSourceFieldRepository;
+    //## end ZUFieldValueDataFeed::pSourceFieldRepository%382129F7011C.attr
 
-    // Additional Implementation Declarations
-      //## begin ZUFieldValueDataFeed%38212538024B.implementation preserve=yes
-      //## end ZUFieldValueDataFeed%38212538024B.implementation
+  // Additional Implementation Declarations
+    //## begin ZUFieldValueDataFeed%38212538024B.implementation preserve=yes
+    //## end ZUFieldValueDataFeed%38212538024B.implementation
 
 };
 
@@ -170,37 +170,37 @@ class AFX_EXT_CLASS ZUFieldValueDataFeed : public PSS_Export
 
 
 //## Other Operations (inline)
-inline void ZUFieldValueDataFeed::Create (CString Filename, PSS_FieldRepository* pFieldRepository, PSS_FieldObjectDefinition* pObjectDefinition, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
+inline void ZUFieldValueDataFeed::Create(CString Filename, PSS_FieldRepository* pFieldRepository, PSS_FieldObjectDefinition* pObjectDefinition, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
 {
-  //## begin ZUFieldValueDataFeed::Create%941696503.body preserve=yes
+    //## begin ZUFieldValueDataFeed::Create%941696503.body preserve=yes
     m_pSourceFieldRepository = pFieldRepository;
     m_pObjectDefinition = pObjectDefinition;
-    PSS_Export::Create (Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar);
-  //## end ZUFieldValueDataFeed::Create%941696503.body
+    PSS_Export::Create(Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar);
+    //## end ZUFieldValueDataFeed::Create%941696503.body
 }
 
-inline void ZUFieldValueDataFeed::Create (CString Filename, CStringArray* pValueArray, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
+inline void ZUFieldValueDataFeed::Create(CString Filename, CStringArray* pValueArray, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
 {
-  //## begin ZUFieldValueDataFeed::Create%941696511.body preserve=yes
+    //## begin ZUFieldValueDataFeed::Create%941696511.body preserve=yes
     m_pValueArray = pValueArray;
-    PSS_Export::Create (Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar);
-  //## end ZUFieldValueDataFeed::Create%941696511.body
+    PSS_Export::Create(Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar);
+    //## end ZUFieldValueDataFeed::Create%941696511.body
 }
 
 //## Get and Set Operations for Class Attributes (inline)
 
-inline const PSS_FieldRepository* ZUFieldValueDataFeed::GetpSourceFieldRepository () const
+inline const PSS_FieldRepository* ZUFieldValueDataFeed::GetpSourceFieldRepository() const
 {
-  //## begin ZUFieldValueDataFeed::GetpSourceFieldRepository%382129F7011C.get preserve=no
-  return m_pSourceFieldRepository;
-  //## end ZUFieldValueDataFeed::GetpSourceFieldRepository%382129F7011C.get
+    //## begin ZUFieldValueDataFeed::GetpSourceFieldRepository%382129F7011C.get preserve=no
+    return m_pSourceFieldRepository;
+    //## end ZUFieldValueDataFeed::GetpSourceFieldRepository%382129F7011C.get
 }
 
-inline void ZUFieldValueDataFeed::SetpSourceFieldRepository (PSS_FieldRepository* value)
+inline void ZUFieldValueDataFeed::SetpSourceFieldRepository(PSS_FieldRepository* value)
 {
-  //## begin ZUFieldValueDataFeed::SetpSourceFieldRepository%382129F7011C.set preserve=no
-  m_pSourceFieldRepository = value;
-  //## end ZUFieldValueDataFeed::SetpSourceFieldRepository%382129F7011C.set
+    //## begin ZUFieldValueDataFeed::SetpSourceFieldRepository%382129F7011C.set preserve=no
+    m_pSourceFieldRepository = value;
+    //## end ZUFieldValueDataFeed::SetpSourceFieldRepository%382129F7011C.set
 }
 
 //## begin module%382125B00190.epilog preserve=yes

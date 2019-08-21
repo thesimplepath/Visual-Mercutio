@@ -86,7 +86,7 @@
 #include "zBaseLib\PSS_FieldRepository.h"
 
 // GFldDoc
-#include "zBaseLib\GFldDoc.h"
+#include "zBaseLib\PSS_GlobalFieldDocument.h"
 #include "zBaseLib\ZAGlobal.h"
 #include "ZTTemplateDocument.h"
 

@@ -252,7 +252,7 @@ BOOL PSS_DocumentExport::PostImport()
     return TRUE;
 }
 //---------------------------------------------------------------------------
-double PSS_DocumentExport::ForecastedTotalObject()
+double PSS_DocumentExport::GetForecastedTotalObject() const
 {
     return double(m_pDoc->GetObjectCount());
 }

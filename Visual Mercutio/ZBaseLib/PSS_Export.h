@@ -166,7 +166,7 @@ class AFX_EXT_CLASS PSS_Export : public CWnd
         * Gets the forecasted total object
         *@return the forecasted total object
         */
-        virtual double ForecastedTotalObject();
+        virtual double GetForecastedTotalObject() const;
 
         /**
         * Processes the export loop

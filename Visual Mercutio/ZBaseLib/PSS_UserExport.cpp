@@ -168,7 +168,7 @@ BOOL PSS_UserExport::Import()
     return PSS_Export::Import();
 }
 //---------------------------------------------------------------------------
-double PSS_UserExport::ForecastedTotalObject()
+double PSS_UserExport::GetForecastedTotalObject() const
 {
     // call the user manager
     if (m_pUserManager)

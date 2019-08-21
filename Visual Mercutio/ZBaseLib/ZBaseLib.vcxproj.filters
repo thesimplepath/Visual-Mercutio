@@ -23,12 +23,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GFDataF.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GFldDoc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GFValueF.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -602,6 +596,12 @@
     <ClCompile Include="PSS_Formula.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_FieldDefinitionDataFeed.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_GlobalFieldDocument.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -717,12 +717,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GFDataF.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GFldDoc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GFValueF.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1300,6 +1294,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_Formula.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FieldDefinitionDataFeed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_GlobalFieldDocument.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -18,19 +18,19 @@
 
 // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
 #ifndef PSS_Formula
-    //#define PSS_Formula ZAFormula
+    #define PSS_Formula ZAFormula
 #endif
 #ifndef PSS_FormulaAssociation
-    //#define PSS_FormulaAssociation ZAFormulaAssociation
+    #define PSS_FormulaAssociation ZAFormulaAssociation
 #endif
 #ifndef PSS_FormulaAssociationManager
-    //#define PSS_FormulaAssociationManager ZAFormulaAssociationManager
+    #define PSS_FormulaAssociationManager ZAFormulaAssociationManager
 #endif
 #ifndef PSS_FormulaSchema
-    //#define PSS_FormulaSchema ZAFormulaSchema
+    #define PSS_FormulaSchema ZAFormulaSchema
 #endif
 #ifndef PSS_SchemaManager
-    //#define PSS_SchemaManager ZASchemaManager
+    #define PSS_SchemaManager ZASchemaManager
 #endif
 
 // class name mapping

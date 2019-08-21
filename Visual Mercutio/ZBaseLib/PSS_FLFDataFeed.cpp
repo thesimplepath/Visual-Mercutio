@@ -26,7 +26,7 @@ BOOL PSS_FLFDataFeed::ProcessLine(const CString& line)
 {
     ZBTokenizer tokenizer;
 
-    // the received line is exactly the same as exported
+    // the received line is exactly the same as the exported one
     switch (GetSeparatorType())
     {
         case E_SS_Comma:      tokenizer.SetSeparator(',');  break;

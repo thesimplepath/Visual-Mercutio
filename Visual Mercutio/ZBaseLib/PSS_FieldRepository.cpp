@@ -23,7 +23,7 @@ PSS_FieldRepository::PSS_FieldRepository() :
 {
     m_GlobalFieldManager  = new PSS_GlobalFieldManager();
     m_HistoryValueManager = new ZAHistoryFieldManager();
-    m_Document            = new ZDGlobalFieldDocument();
+    m_Document            = new PSS_GlobalFieldDocument();
 }
 //---------------------------------------------------------------------------
 PSS_FieldRepository::PSS_FieldRepository(const PSS_FieldRepository& other)

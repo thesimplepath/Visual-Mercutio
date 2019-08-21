@@ -859,12 +859,16 @@ BOOL PSS_SchemaManager::CopyPageFormulas(const CString& name, PSS_SchemaManager&
     PSS_FormulaSchema* pFormula    = (PSS_FormulaSchema*)GetFormulaSchema(name);
     PSS_FormulaSchema* pFormulaDst = (PSS_FormulaSchema*)schemaDst.GetFormulaSchema(name);
 
-    // delete the previous formula without redistributing the pages.
+    if (!pFormula)
+        return FALSE;
+
     if (pFormulaDst)
+    {
+        // delete the previous formula without redistributing the pages
         if (!pFormulaDst->DeletePageFormulas(page, FALSE))
             return FALSE;
-
-    if (!pFormulaDst)
+    }
+    else
     {
         // if the association does not exist, create it before
         schemaDst.Create(name);

@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "GFldDoc.h"
+#include "PSS_GlobalFieldDocument.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -198,12 +198,12 @@ class AFX_EXT_CLASS PSS_FieldRepository
         virtual BOOL Import(PSS_FieldRepository& fieldRepository, BOOL replaceExisting = FALSE);
 
     private:
-        PSS_GlobalFieldManager* m_GlobalFieldManager;
-        ZAHistoryFieldManager*  m_HistoryValueManager;
-        ZDGlobalFieldDocument*  m_Document;
-        CString                 m_FileName;
-        BOOL                    m_ReadOnly;
-        BOOL                    m_IsValid;
+        PSS_GlobalFieldManager*  m_GlobalFieldManager;
+        ZAHistoryFieldManager*   m_HistoryValueManager;
+        PSS_GlobalFieldDocument* m_Document;
+        CString                  m_FileName;
+        BOOL                     m_ReadOnly;
+        BOOL                     m_IsValid;
 
         /**
         * Copy constructor

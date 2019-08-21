@@ -134,7 +134,7 @@ BOOL PSS_Export::Import()
         return FALSE;
 
     // get the object count
-    const double forecastedTotalObject = __max(1, ForecastedTotalObject());
+    const double forecastedTotalObject = __max(1, GetForecastedTotalObject());
 
     while (result && ReadLine(line))
     {
@@ -253,7 +253,7 @@ BOOL PSS_Export::PostImport()
     return TRUE;
 }
 //---------------------------------------------------------------------------
-double PSS_Export::ForecastedTotalObject()
+double PSS_Export::GetForecastedTotalObject() const
 {
     return 1.0;
 }

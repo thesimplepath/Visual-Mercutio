@@ -35,49 +35,49 @@
 
 
 
-ZUFieldValueDataFeed::ZUFieldValueDataFeed (CString Filename, PSS_FieldRepository* pFieldRepository, PSS_FieldObjectDefinition* pObjectDefinition, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
-  //## begin ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696498.hasinit preserve=no
-  //## end ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696498.hasinit
-  //## begin ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696498.initialization preserve=yes
-  : PSS_Export( Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar ),
+ZUFieldValueDataFeed::ZUFieldValueDataFeed(CString Filename, PSS_FieldRepository* pFieldRepository, PSS_FieldObjectDefinition* pObjectDefinition, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
+//## begin ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696498.hasinit preserve=no
+//## end ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696498.hasinit
+//## begin ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696498.initialization preserve=yes
+    : PSS_Export(Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar),
     m_pSourceFieldRepository(pFieldRepository),
     m_pObjectDefinition(pObjectDefinition)
-  //## end ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696498.initialization
+    //## end ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696498.initialization
 {
-  //## begin ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696498.body preserve=yes
-  //## end ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696498.body
+    //## begin ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696498.body preserve=yes
+    //## end ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696498.body
 }
 
-ZUFieldValueDataFeed::ZUFieldValueDataFeed (CString Filename, CStringArray* pValueArray, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
-  //## begin ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696510.hasinit preserve=no
-  //## end ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696510.hasinit
-  //## begin ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696510.initialization preserve=yes
-  : PSS_Export( Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar ),
+ZUFieldValueDataFeed::ZUFieldValueDataFeed(CString Filename, CStringArray* pValueArray, BOOL GenerateHeader, ESynchronizationSeparatorType SeparatorType, CString Schema, int PropagationMode, BOOL EmptyWhenZero, PSS_StatusBar* pStatusBar)
+//## begin ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696510.hasinit preserve=no
+//## end ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696510.hasinit
+//## begin ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696510.initialization preserve=yes
+    : PSS_Export(Filename, GenerateHeader, SeparatorType, Schema, PropagationMode, EmptyWhenZero, pStatusBar),
     m_pValueArray(pValueArray)
-  //## end ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696510.initialization
+    //## end ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696510.initialization
 {
-  //## begin ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696510.body preserve=yes
-  //## end ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696510.body
+    //## begin ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696510.body preserve=yes
+    //## end ZUFieldValueDataFeed::ZUFieldValueDataFeed%941696510.body
 }
 
 
 ZUFieldValueDataFeed::~ZUFieldValueDataFeed()
 {
-  //## begin ZUFieldValueDataFeed::~ZUFieldValueDataFeed%.body preserve=yes
-  //## end ZUFieldValueDataFeed::~ZUFieldValueDataFeed%.body
+    //## begin ZUFieldValueDataFeed::~ZUFieldValueDataFeed%.body preserve=yes
+    //## end ZUFieldValueDataFeed::~ZUFieldValueDataFeed%.body
 }
 
 
 
 //## Other Operations (implementation)
-CString ZUFieldValueDataFeed::GetExportedLine (CObject* pObj)
+CString ZUFieldValueDataFeed::GetExportedLine(CObject* pObj)
 {
-  //## begin ZUFieldValueDataFeed::GetExportedLine%941696500.body preserve=yes
+    //## begin ZUFieldValueDataFeed::GetExportedLine%941696500.body preserve=yes
     PSS_FieldObjectDefinition* pObjectDefinition = (PSS_FieldObjectDefinition*)pObj;
     if (!pObjectDefinition || !m_pSourceFieldRepository)
         return "";
 
-    ZAHistoryField*            pObjectHistory = m_pSourceFieldRepository->FindFieldHistory( pObjectDefinition->GetFieldName() );
+    ZAHistoryField*            pObjectHistory = m_pSourceFieldRepository->FindFieldHistory(pObjectDefinition->GetFieldName());
 
     ZBTokenizer    Tokenizer;
     CString        Line;
@@ -86,13 +86,13 @@ CString ZUFieldValueDataFeed::GetExportedLine (CObject* pObj)
     {
         case E_SS_Comma:
         {
-            Tokenizer.SetSeparator( ',' );
+            Tokenizer.SetSeparator(',');
             break;
         }
 
         case E_SS_SemiColumn:
         {
-            Tokenizer.SetSeparator( ';' );
+            Tokenizer.SetSeparator(';');
             break;
         }
 
@@ -100,7 +100,7 @@ CString ZUFieldValueDataFeed::GetExportedLine (CObject* pObj)
         case E_SS_Tab:
         default:
         {
-            Tokenizer.SetSeparator( '\t' );
+            Tokenizer.SetSeparator('\t');
             break;
         }
     }
@@ -108,55 +108,53 @@ CString ZUFieldValueDataFeed::GetExportedLine (CObject* pObj)
     for (size_t i = 0; pObjectHistory && i < pObjectHistory->GetCount(); ++i)
     {
         // Add the field history value
-        Tokenizer.AddToken( pObjectHistory->GetValueArray().GetAt(i) );
+        Tokenizer.AddToken(pObjectHistory->GetValueArray().GetAt(i));
         Line += Tokenizer.GetString();
         Line += "\r\n";
         Tokenizer.ClearAllTokens();
     }
     return Line;
-  //## end ZUFieldValueDataFeed::GetExportedLine%941696500.body
+    //## end ZUFieldValueDataFeed::GetExportedLine%941696500.body
 }
 
-BOOL ZUFieldValueDataFeed::ProcessLine (CString Line)
+BOOL ZUFieldValueDataFeed::ProcessLine(CString Line)
 {
-  //## begin ZUFieldValueDataFeed::ProcessLine%941696501.body preserve=yes
+    //## begin ZUFieldValueDataFeed::ProcessLine%941696501.body preserve=yes
 
-    // If no value array, do nothing
+      // If no value array, do nothing
     if (!m_pValueArray)
         return FALSE;
 
     // The line we receive is one history value
-    m_pValueArray->Add( Line );
+    m_pValueArray->Add(Line);
     return TRUE;
-  //## end ZUFieldValueDataFeed::ProcessLine%941696501.body
+    //## end ZUFieldValueDataFeed::ProcessLine%941696501.body
 }
 
-CString ZUFieldValueDataFeed::GetHeaderLine ()
+CString ZUFieldValueDataFeed::GetHeaderLine()
 {
-  //## begin ZUFieldValueDataFeed::GetHeaderLine%941696502.body preserve=yes
+    //## begin ZUFieldValueDataFeed::GetHeaderLine%941696502.body preserve=yes
     return "";
-  //## end ZUFieldValueDataFeed::GetHeaderLine%941696502.body
+    //## end ZUFieldValueDataFeed::GetHeaderLine%941696502.body
 }
 
-double ZUFieldValueDataFeed::ForecastedTotalObject ()
+double ZUFieldValueDataFeed::GetForecastedTotalObject() const
 {
-  //## begin ZUFieldValueDataFeed::ForecastedTotalObject%941696505.body preserve=yes
     return 0;
-  //## end ZUFieldValueDataFeed::ForecastedTotalObject%941696505.body
 }
 
-BOOL ZUFieldValueDataFeed::DoExportLoop ()
+BOOL ZUFieldValueDataFeed::DoExportLoop()
 {
-  //## begin ZUFieldValueDataFeed::DoExportLoop%941696506.body preserve=yes
-    // If not object to export, do nothing
+    //## begin ZUFieldValueDataFeed::DoExportLoop%941696506.body preserve=yes
+      // If not object to export, do nothing
     if (!m_pObjectDefinition || !m_pSourceFieldRepository)
         return FALSE;
     // Only one object to export
     CString Line;
-    Line = GetExportedLine( (CObject*)m_pObjectDefinition );
-    WriteLine ( Line );
-      return TRUE;
-  //## end ZUFieldValueDataFeed::DoExportLoop%941696506.body
+    Line = GetExportedLine((CObject*)m_pObjectDefinition);
+    WriteLine(Line);
+    return TRUE;
+    //## end ZUFieldValueDataFeed::DoExportLoop%941696506.body
 }
 
 // Additional Declarations

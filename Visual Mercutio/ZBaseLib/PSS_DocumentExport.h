@@ -148,7 +148,7 @@ class AFX_EXT_CLASS PSS_DocumentExport : public PSS_Export
         * Gets the forecasted total object
         *@return the forecasted total object
         */
-        virtual double ForecastedTotalObject();
+        virtual double GetForecastedTotalObject() const;
 
         /**
         * Processes the export loop
