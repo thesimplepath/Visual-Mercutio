@@ -1,7 +1,12 @@
-// ZWizard.h : header file
+/****************************************************************************
+ * ==> PSS_WizardDialog ----------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a generic Wizard dialog box                       *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#ifndef ZWizard_h
-#define ZWizard_h 1
+#ifndef PSS_WizardDialogH
+#define PSS_WizardDialogH
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -27,172 +32,314 @@
     #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 6 mars 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-/////////////////////////////////////////////////////////////////////////////
-// ZIWizardDialog dialog
-
-class AFX_EXT_CLASS ZIWizardDialog : public ZIDialog
+/**
+* Wizard dialog box
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_WizardDialog : public ZIDialog
 {
-// Construction
-public:
+    public:
+        /**
+        * Constructor
+        *@param id - resource identifier
+        *@param bitmapID - bitmap resource identifier
+        *@param iconID - icon resource identifier
+        *@param titleWindow - window title
+        *@param titleWizard - wizard title
+        *@param textWizard - text wizard
+        *@param autoCenter - if TRUE, the wizard will be auto-centered in parent
+        *@param standalone - if TRUE, the wizard is a standalone wizard
+        *@param pParent - parent window, can be NULL
+        */
+        PSS_WizardDialog(UINT           id          = 0,
+                         UINT           bitmapID    = 0,
+                         UINT           iconID      = 0,
+                         const CString& titleWindow = _T(""),
+                         const CString& titleWizard = _T(""),
+                         const CString& textWizard  = _T(""),
+                         BOOL           autoCenter  = TRUE,
+                         BOOL           standalone  = FALSE,
+                         CWnd*          pParent     = NULL);
 
-    // Standard constructor
-    ZIWizardDialog( UINT    nID                = 0,
-                    UINT    nBitmapID        = 0,
-                    UINT    nIconID            = 0,
-                    CString    sTitleWindow    = _T( "" ),
-                    CString    sTitleWizard    = _T( "" ),
-                    CString    sTextWizard        = _T( "" ),
-                    BOOL    bAutoCenter        = TRUE,
-                    BOOL    bStandAlone        = FALSE,
-                    CWnd*    pParent            = NULL );
+        /**
+        * Constructor
+        *@param id - resource identifier
+        *@param bitmapID - bitmap resource identifier
+        *@param iconID - icon resource identifier
+        *@param titleWindowID - window title resource identifier
+        *@param titleWizardID - wizard title resource identifier
+        *@param textWizardID - text wizard resource identifier
+        *@param autoCenter - if TRUE, the wizard will be auto-centered in parent
+        *@param standalone - if TRUE, the wizard is a standalone wizard
+        *@param pParent - parent window, can be NULL
+        */
+        PSS_WizardDialog(UINT  id,
+                         UINT  bitmapID,
+                         UINT  iconID,
+                         UINT  titleWindowID,
+                         UINT  titleWizardID,
+                         UINT  textWizardID,
+                         BOOL  autoCenter = TRUE,
+                         BOOL  standalone = FALSE,
+                         CWnd* pParent    = NULL);
 
-    ZIWizardDialog( UINT    nID,
-                    UINT    nBitmapID,
-                    UINT    nIconID,
-                    UINT    nTitleWindowID,
-                    UINT    nTitleWizardID,
-                    UINT    nTextWizardID,
-                    BOOL    bAutoCenter        = TRUE,
-                    BOOL    bStandAlone        = FALSE,
-                    CWnd*    pParent            = NULL );
+        /**
+        * Constructor
+        *@param id - resource identifier
+        *@param bitmapID - bitmap resource identifier
+        *@param iconID - icon resource identifier
+        *@param titleWindow - window title
+        *@param titleWizard - wizard title
+        *@param textWizard - text wizard
+        *@param backCol - back color
+        *@param staticCol - static color
+        *@param editCol - edit color
+        *@param autoCenter - if TRUE, the wizard will be auto-centered in parent
+        *@param standalone - if TRUE, the wizard is a standalone wizard
+        *@param pParent - parent window, can be NULL
+        */
+        PSS_WizardDialog(UINT           id,
+                         UINT           bitmapID,
+                         UINT           iconID,
+                         const CString& titleWindow,
+                         const CString& titleWizard,
+                         const CString& textWizard,
+                         COLORREF       backCol,
+                         COLORREF       staticCol,
+                         COLORREF       editCol,
+                         BOOL           autoCenter = TRUE,
+                         BOOL           standalone = FALSE,
+                         CWnd*          pParent    = NULL);
 
-    ZIWizardDialog( UINT        nID,
-                    UINT        nBitmapID,
-                    UINT        nIconID,
-                    CString        sTitleWindow,
-                    CString        sTitleWizard,
-                    CString        sTextWizard,
-                    COLORREF    BackCol,
-                    COLORREF    StaticCol,
-                    COLORREF    EditCol,
-                    BOOL        bAutoCenter    = TRUE,
-                    BOOL        bStandAlone    = FALSE,
-                    CWnd*        pParent        = NULL );
+        /**
+        * Constructor
+        *@param id - resource identifier
+        *@param bitmapID - bitmap resource identifier
+        *@param iconID - icon resource identifier
+        *@param titleWindowID - window title resource identifier
+        *@param titleWizardID - wizard title resource identifier
+        *@param textWizardID - text wizard resource identifier
+        *@param backCol - back color
+        *@param staticCol - static color
+        *@param editCol - edit color
+        *@param autoCenter - if TRUE, the wizard will be auto-centered in parent
+        *@param standalone - if TRUE, the wizard is a standalone wizard
+        *@param pParent - parent window, can be NULL
+        */
+        PSS_WizardDialog(UINT     id,
+                         UINT     bitmapID,
+                         UINT     iconID,
+                         UINT     titleWindowID,
+                         UINT     titleWizardID,
+                         UINT     textWizardID,
+                         COLORREF backCol,
+                         COLORREF staticCol,
+                         COLORREF editCol,
+                         BOOL     autoCenter = TRUE,
+                         BOOL     standalone = FALSE,
+                         CWnd*    pParent = NULL);
 
-    ZIWizardDialog( UINT        nID,
-                    UINT        nBitmapID,
-                    UINT        nIconID,
-                    UINT        nTitleWindowID,
-                    UINT        nTitleWizardID,
-                    UINT        nTextWizardID,
-                    COLORREF    BackCol,
-                    COLORREF    StaticCol,
-                    COLORREF    EditCol,
-                    BOOL        bAutoCenter    = TRUE,
-                    BOOL        bStandAlone    = FALSE,
-                    CWnd*        pParent        = NULL);
+        /**
+        * Creates the Wizard dialog box
+        *@param id - resource identifier
+        *@param bitmapID - bitmap resource identifier
+        *@param iconID - icon resource identifier
+        *@param titleWindow - window title
+        *@param titleWizard - wizard title
+        *@param textWizard - text wizard
+        *@param autoCenter - if TRUE, the wizard will be auto-centered in parent
+        *@param standalone - if TRUE, the wizard is a standalone wizard
+        *@param pParent - parent window, can be NULL
+        *@return TRUE on success, otherwise FALSE
+        */
+        BOOL Create(UINT           id          = 0,
+                    UINT           bitmapID    = 0,
+                    UINT           iconID      = 0,
+                    const CString& titleWindow = _T(""),
+                    const CString& titleWizard = _T(""),
+                    const CString& textWizard  = _T(""),
+                    BOOL           autoCenter  = TRUE,
+                    BOOL           standalone  = FALSE,
+                    CWnd*          pParent     = NULL);
 
-    BOOL Create( UINT        nID                = 0,
-                 UINT        nBitmapID        = 0,
-                 UINT        nIconID            = 0,
-                 CString    sTitleWindow    = _T( "" ),
-                 CString    sTitleWizard    = _T( "" ),
-                 CString    sTextWizard        = _T( "" ),
-                 BOOL        bAutoCenter        = TRUE,
-                 BOOL        bStandAlone        = FALSE,
-                 CWnd*        pParent            = NULL );
+        /**
+        * Creates the Wizard dialog box
+        *@param id - resource identifier
+        *@param bitmapID - bitmap resource identifier
+        *@param iconID - icon resource identifier
+        *@param titleWindowID - window title resource identifier
+        *@param titleWizardID - wizard title resource identifier
+        *@param textWizardID - text wizard resource identifier
+        *@param autoCenter - if TRUE, the wizard will be auto-centered in parent
+        *@param standalone - if TRUE, the wizard is a standalone wizard
+        *@param pParent - parent window, can be NULL
+        *@return TRUE on success, otherwise FALSE
+        */
+        BOOL Create(UINT  id,
+                    UINT  bitmapID,
+                    UINT  iconID,
+                    UINT  titleWindowID,
+                    UINT  titleWizardID,
+                    UINT  textWizardID,
+                    BOOL  autoCenter = TRUE,
+                    BOOL  standalone = FALSE,
+                    CWnd* pParent    = NULL);
 
-    BOOL Create( UINT        nID,
-                 UINT        nBitmapID,
-                 UINT        nIconID,
-                 UINT        nTitleWindowID,
-                 UINT        nTitleWizardID,
-                 UINT        nTextWizardID,
-                 BOOL        bAutoCenter        = TRUE,
-                 BOOL        bStandAlone        = FALSE,
-                 CWnd*        pParent            = NULL );
+        /**
+        * Creates the Wizard dialog box
+        *@param id - resource identifier
+        *@param bitmapID - bitmap resource identifier
+        *@param iconID - icon resource identifier
+        *@param titleWindow - window title
+        *@param titleWizard - wizard title
+        *@param textWizard - text wizard
+        *@param backCol - back color
+        *@param staticCol - static color
+        *@param editCol - edit color
+        *@param autoCenter - if TRUE, the wizard will be auto-centered in parent
+        *@param standalone - if TRUE, the wizard is a standalone wizard
+        *@param pParent - parent window, can be NULL
+        *@return TRUE on success, otherwise FALSE
+        */
+        BOOL Create(UINT           id,
+                    UINT           bitmapID,
+                    UINT           iconID,
+                    const CString& titleWindow,
+                    const CString& titleWizard,
+                    const CString& textWizard,
+                    COLORREF       backCol,
+                    COLORREF       staticCol,
+                    COLORREF       editCol,
+                    BOOL           autoCenter = TRUE,
+                    BOOL           standalone = FALSE,
+                    CWnd*          pParent    = NULL);
 
-    BOOL Create( UINT        nID,
-                 UINT        nBitmapID,
-                 UINT        nIconID,
-                 CString    sTitleWindow,
-                 CString    sTitleWizard,
-                 CString    sTextWizard,
-                 COLORREF    BackCol,
-                 COLORREF    StaticCol,
-                 COLORREF    EditCol,
-                 BOOL        bAutoCenter        = TRUE,
-                 BOOL        bStandAlone        = FALSE,
-                 CWnd*        pParent            = NULL );
+        /**
+        * Creates the Wizard dialog box
+        *@param id - resource identifier
+        *@param bitmapID - bitmap resource identifier
+        *@param iconID - icon resource identifier
+        *@param titleWindowID - window title resource identifier
+        *@param titleWizardID - wizard title resource identifier
+        *@param textWizardID - text wizard resource identifier
+        *@param backCol - back color
+        *@param staticCol - static color
+        *@param editCol - edit color
+        *@param autoCenter - if TRUE, the wizard will be auto-centered in parent
+        *@param standalone - if TRUE, the wizard is a standalone wizard
+        *@param pParent - parent window, can be NULL
+        *@return TRUE on success, otherwise FALSE
+        */
+        BOOL Create(UINT     id,
+                    UINT     bitmapID,
+                    UINT     iconID,
+                    UINT     titleWindowID,
+                    UINT     titleWizardID,
+                    UINT     textWizardID,
+                    COLORREF backCol,
+                    COLORREF staticCol,
+                    COLORREF editCol,
+                    BOOL     autoCenter = TRUE,
+                    BOOL     standalone = FALSE,
+                    CWnd*    pParent    = NULL);
 
-    BOOL Create( UINT        nID,
-                 UINT        nBitmapID,
-                 UINT        nIconID,
-                 UINT        nTitleWindowID,
-                 UINT        nTitleWizardID,
-                 UINT        nTextWizardID,
-                 COLORREF    BackCol,
-                 COLORREF    StaticCol,
-                 COLORREF    EditCol,
-                 BOOL        bAutoCenter        = TRUE,
-                 BOOL        bStandAlone        = FALSE,
-                 CWnd*        pParent            = NULL );
+        /**
+        * Sets the wizard window title
+        *@param id - title resource identifier
+        */
+        virtual void SetWizardWindowTitle(UINT id);
 
-    // Dialog Data
-    //{{AFX_DATA(ZIWizardDialog)
-        CBitmapButton    m_btnHelp;
-    //}}AFX_DATA
+        /**
+        * Sets the wizard subject text
+        *@param id - subject text resource identifier
+        */
+        virtual void SetWizardSubjectText(UINT id);
 
-    void    SetWizardWindowTitle( UINT nID );
-    void    SetWizardSubjectText( UINT nID );
-    void    SetWizardBodyText( UINT nID );
-    void    SetWizardWindowTitle( const CString value );
-    void    SetWizardSubjectText( const CString value );
-    void    SetWizardBodyText( const CString value );
+        /**
+        * Sets the wizard body text
+        *@param id - body text resource identifier
+        */
+        virtual void SetWizardBodyText(UINT id);
 
-// Implementation
-protected:
+        /**
+        * Sets the wizard window title
+        *@param value - title
+        */
+        virtual inline void SetWizardWindowTitle(const CString& value);
 
-    void Paint( CDC& dc );
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+        /**
+        * Sets the wizard subject text
+        *@param id - subject text
+        */
+        virtual inline void SetWizardSubjectText(const CString& value);
 
-    // Generated message map functions
-    //{{AFX_MSG(ZIWizardDialog)
-    afx_msg void OnNext();
-    afx_msg void OnPaint();
-    virtual BOOL OnInitDialog();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+        /**
+        * Sets the wizard body text
+        *@param id - body text
+        */
+        virtual inline void SetWizardBodyText(const CString& value);
 
-private:
+    protected:
+        CBitmapButton m_BtnHelp;
+        HINSTANCE     m_hInst;
+        HICON         m_hIcon;
+        CRect         m_DialogRect;
+        CString       m_TitleWindow;
+        CString       m_TitleWizard;
+        CString       m_TextWizard;
+        UINT          m_ID;
+        UINT          m_BitmapID;
+        UINT          m_IconID;
+        BOOL          m_Standalone;
 
-    void CreateFont();
+        /**
+        * DDX/DDV support
+        *@param pDX - DDX/DDV data
+        */
+        virtual void DoDataExchange(CDataExchange* pDX);
 
-protected:
+        /**
+        * Paints the wizard
+        *@param dc - device context to paint to
+        */
+        virtual void Paint(CDC& dc);
 
-    UINT            m_nID;
-    UINT            m_nBitmapID;
-    UINT            m_nIconID;
-    BOOL            m_bStandAlone;
-    CString            m_sTitleWindow;
-    CString            m_sTitleWizard;
-    CString            m_sTextWizard;
-    CRect            m_DialogRect;
-    HINSTANCE        m_hInst;
-    HICON            m_hIcon;
+        /// Generated message map functions
+        //{{AFX_MSG(PSS_WizardDialog)
+        afx_msg void OnNext();
+        afx_msg void OnPaint();
+        virtual BOOL OnInitDialog();
+        //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
 
-private:
+    private:
+        CFont m_TitleFont;
+        CFont m_TextFont;
 
-    CFont            m_TextFont;
-    CFont            m_TitleFont;
+        /**
+        * Creates the font
+        */
+        void CreateFont();
 };
 
-inline void ZIWizardDialog::SetWizardWindowTitle( const CString value )
+//---------------------------------------------------------------------------
+// PSS_WizardDialog
+//---------------------------------------------------------------------------
+void PSS_WizardDialog::SetWizardWindowTitle(const CString& value)
 {
-    m_sTitleWindow = value;
-    SetWindowText( m_sTitleWindow );
+    m_TitleWindow = value;
+    ::SetWindowText(m_TitleWindow);
 }
-
-inline void ZIWizardDialog::SetWizardSubjectText( const CString value )
+//---------------------------------------------------------------------------
+void PSS_WizardDialog::SetWizardSubjectText(const CString& value)
 {
-    m_sTitleWizard = value;
+    m_TitleWizard = value;
 }
-
-inline void ZIWizardDialog::SetWizardBodyText( const CString value )
+//---------------------------------------------------------------------------
+void PSS_WizardDialog::SetWizardBodyText(const CString& value)
 {
-    m_sTextWizard = value;
+    m_TextWizard = value;
 }
+//---------------------------------------------------------------------------
 
-#endif    // ZIWizardDialog_h
+#endif

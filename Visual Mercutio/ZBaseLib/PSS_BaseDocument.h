@@ -262,7 +262,7 @@ class AFX_EXT_CLASS PSS_BaseDocument : public CDocument
 };
 
 //---------------------------------------------------------------------------
-// PSS_FolderStamp
+// PSS_BaseDocument
 //---------------------------------------------------------------------------
 PSS_FolderStamp& PSS_BaseDocument::GetDocumentStamp()
 {

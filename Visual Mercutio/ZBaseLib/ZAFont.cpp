@@ -181,13 +181,10 @@ void ZAFont::AssertValid() const
 {
     CObject::AssertValid();
 }
-
+#endif
+#ifdef _DEBUG
 void ZAFont::Dump(CDumpContext& dc) const
 {
     CObject::Dump(dc);
 }
-#endif //_DEBUG
-
-  //## end ZAFont%33CA554D0078.declarations
-//## begin module%33CA55B500C8.epilog preserve=yes
-//## end module%33CA55B500C8.epilog
+#endif
