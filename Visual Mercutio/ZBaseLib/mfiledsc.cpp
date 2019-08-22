@@ -85,9 +85,3 @@ const CString& ZUMailFileDescription::GetHyperLinkText()
     return m_HyperLinkText;
 }
 //---------------------------------------------------------------------------
-// Additional Declarations
-  //## begin ZUMailFileDescription%366EBAA60269.declarations preserve=yes
-  //## end ZUMailFileDescription%366EBAA60269.declarations
-
-//## begin module%366EBC140324.epilog preserve=yes
-//## end module%366EBC140324.epilog

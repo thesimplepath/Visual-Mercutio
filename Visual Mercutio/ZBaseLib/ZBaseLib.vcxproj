@@ -334,37 +334,37 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="GFValueF.cpp">
+    <ClCompile Include="PSS_FieldValueDataFeed.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="HistFld.cpp">
+    <ClCompile Include="PSS_HistoryField.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="HistFMng.cpp">
+    <ClCompile Include="PSS_HistoryFieldManager.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="INPVAL.CPP">
+    <ClCompile Include="PSS_InputValue.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="mailmsg.cpp">
+    <ClCompile Include="PSS_MailMessage.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="MemDC.cpp">
+    <ClCompile Include="PSS_MemoryDC.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1377,12 +1377,12 @@
     <ClInclude Include="PSS_Formula.h" />
     <ClInclude Include="PSS_FieldDefinitionDataFeed.h" />
     <ClInclude Include="PSS_GlobalFieldDocument.h" />
-    <ClInclude Include="GFValueF.h" />
-    <ClInclude Include="HistFld.h" />
-    <ClInclude Include="HistFMng.h" />
-    <ClInclude Include="INPVAL.H" />
-    <ClInclude Include="mailmsg.h" />
-    <ClInclude Include="MemDC.h" />
+    <ClInclude Include="PSS_FieldValueDataFeed.h" />
+    <ClInclude Include="PSS_HistoryField.h" />
+    <ClInclude Include="PSS_HistoryFieldManager.h" />
+    <ClInclude Include="PSS_InputValue.h" />
+    <ClInclude Include="PSS_MailMessage.h" />
+    <ClInclude Include="PSS_MemoryDC.h" />
     <ClInclude Include="MFileDsc.h" />
     <ClInclude Include="PSS_MsgBox.h" />
     <ClInclude Include="MskEdit.h" />

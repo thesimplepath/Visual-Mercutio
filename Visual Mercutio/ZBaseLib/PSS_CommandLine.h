@@ -16,6 +16,11 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
+#ifndef PSS_CommandLine
+    #define PSS_CommandLine ZUCommandLine
+#endif
+
 // mfc
 #include "Mfc.h"
 
@@ -28,9 +33,6 @@
     #define AFX_EXT_API AFX_API_EXPORT
     #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
-
-// old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
-#define PSS_CommandLine ZUCommandLine
 
 /**
 * Encapsulated command line console

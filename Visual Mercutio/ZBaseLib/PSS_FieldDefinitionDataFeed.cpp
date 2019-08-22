@@ -118,13 +118,12 @@ CString PSS_FieldDefinitionDataFeed::GetExportedLine(CObject* pObj) const
     if (!pObjectDefinition)
         return "";
 
-    ZAHistoryField* pObjectHistory = NULL;
+    PSS_HistoryField* pObjectHistory = NULL;
 
     if (m_pSourceFieldRepository)
         pObjectHistory = m_pSourceFieldRepository->FindFieldHistory(pObjectDefinition->GetFieldName());
 
     ZBTokenizer tokenizer;
-    CString     line;
 
     switch (GetSeparatorType())
     {
@@ -132,6 +131,8 @@ CString PSS_FieldDefinitionDataFeed::GetExportedLine(CObject* pObj) const
         case E_SS_SemiColumn: tokenizer.SetSeparator(';');  break;
         default:              tokenizer.SetSeparator('\t'); break;
     }
+
+    CString line;
 
     // add the field name
     tokenizer.AddToken(g_FieldNameKey);
@@ -175,8 +176,10 @@ CString PSS_FieldDefinitionDataFeed::GetExportedLine(CObject* pObj) const
     line += "\r\n";
     tokenizer.ClearAllTokens();
 
+    const std::size_t objectCount = pObjectHistory->GetCount();
+
     // export the field history
-    for (std::size_t i = 0; pObjectHistory && i < pObjectHistory->GetCount(); ++i)
+    for (std::size_t i = 0; pObjectHistory && i < objectCount; ++i)
     {
         // add the field history value
         tokenizer.AddToken(pObjectHistory->GetValueArray().GetAt(i));
@@ -339,7 +342,7 @@ BOOL PSS_FieldDefinitionDataFeed::PostImport()
             if (m_LineArray.GetAt(i))
                 m_pSourceFieldRepository->AddFieldHistoryValue(fieldName, ((IFieldExport*)m_LineArray.GetAt(i))->m_Key);
 
-        ZAHistoryField* pObjectHistory = m_pSourceFieldRepository->FindFieldHistory(fieldName);
+        PSS_HistoryField* pObjectHistory = m_pSourceFieldRepository->FindFieldHistory(fieldName);
 
         if (pObjectHistory)
             pObjectHistory->SetReadOnly(readOnly);

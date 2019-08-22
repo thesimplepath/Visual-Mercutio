@@ -10,7 +10,7 @@
 #include "zModel\ZUDynamicAttributesManipulator.h"
 
 #include "zBaseLib\PSS_MsgBox.h"
-#include "zBaseLib\InpVal.h"
+#include "zBaseLib\PSS_InputValue.h"
 #include "zPtyMgrRes.h"
 #include "zRes32\zRes.h"
 
@@ -219,7 +219,7 @@ void ZVChoosePropertyDlg::OnRenameAttribute()
     if (!pItem)
         return;
     // Call the dialog to input the new name
-    ZIInputValue InputValue(IDS_RENAMEATTRIB, pItem->GetName());
+    PSS_InputValue InputValue(IDS_RENAMEATTRIB, pItem->GetName());
 
     if (InputValue.DoModal() == IDOK)
     {

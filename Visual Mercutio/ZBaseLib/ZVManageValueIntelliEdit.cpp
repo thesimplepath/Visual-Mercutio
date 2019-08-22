@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ZVManageValueIntelliEdit.h"
 
-#include "InpVal.h"
+#include "PSS_InputValue.h"
 
 #include "zBaseLib\zBaseLibRes.h"
 #include "zRes32\zRes.h"
@@ -14,6 +14,14 @@
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
+
+BEGIN_MESSAGE_MAP(ZVManageValueIntelliEdit, CDialog)
+    //{{AFX_MSG_MAP(ZVManageValueIntelliEdit)
+    ON_BN_CLICKED(IDC_ADDVALUE, OnAddvalue)
+    ON_BN_CLICKED(IDC_DELVALUE, OnDelvalue)
+    ON_LBN_SELCHANGE(IDC_VALUES, OnSelchangeValues)
+    //}}AFX_MSG_MAP
+END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // ZVManageValueIntelliEdit dialog
@@ -37,29 +45,17 @@ void ZVManageValueIntelliEdit::DoDataExchange(CDataExchange* pDX)
     //}}AFX_DATA_MAP
 }
 
-
-BEGIN_MESSAGE_MAP(ZVManageValueIntelliEdit, CDialog)
-    //{{AFX_MSG_MAP(ZVManageValueIntelliEdit)
-    ON_BN_CLICKED(IDC_ADDVALUE, OnAddvalue)
-    ON_BN_CLICKED(IDC_DELVALUE, OnDelvalue)
-    ON_LBN_SELCHANGE(IDC_VALUES, OnSelchangeValues)
-    //}}AFX_MSG_MAP
-END_MESSAGE_MAP()
-
 /////////////////////////////////////////////////////////////////////////////
 // ZVManageValueIntelliEdit message handlers
 
 void ZVManageValueIntelliEdit::OnAddvalue() 
 {
-    ZIInputValue    Dlg(IDS_INSERTVALUE_INTELLI);
+    PSS_InputValue inputValue(IDS_INSERTVALUE_INTELLI);
 
-    if (Dlg.DoModal() == IDOK)
-    {
-        m_Values.AddString( Dlg.GetValue() );
-    }
+    if (inputValue.DoModal() == IDOK)
+        m_Values.AddString(inputValue.GetValue());
 
     OnSelchangeValues();
-    
 }
 
 void ZVManageValueIntelliEdit::OnDelvalue() 

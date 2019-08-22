@@ -18,12 +18,12 @@
 
 // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
 #ifndef PSS_GlobalFieldDocument
-    //#define PSS_GlobalFieldDocument ZDGlobalFieldDocument
+    #define PSS_GlobalFieldDocument ZDGlobalFieldDocument
 #endif
 
 // processsoft
 #include "PSS_GlobalFieldManager.h"
-#include "HistFMng.h"
+#include "PSS_HistoryFieldManager.h"
 #include "Stamp.h"
 #include "PSS_BaseDocument.h"
 
@@ -57,16 +57,16 @@ class AFX_EXT_CLASS PSS_GlobalFieldDocument : public PSS_BaseDocument
         *@param pGlobalFieldManager - global field manager
         *@param pHistoryValueManager - history value manager
         */
-        virtual void Initialize(const CString&          fileName,
-                                PSS_GlobalFieldManager* pGlobalFieldManager,
-                                ZAHistoryFieldManager*  pHistoryValueManager);
+        virtual void Initialize(const CString&           fileName,
+                                PSS_GlobalFieldManager*  pGlobalFieldManager,
+                                PSS_HistoryFieldManager* pHistoryValueManager);
 
         /**
         * Initializes the class
         *@param pGlobalFieldManager - global field manager
         *@param pHistoryValueManager - history value manager
         */
-        virtual void Initialize(PSS_GlobalFieldManager* pGlobalFieldManager, ZAHistoryFieldManager* pHistoryValueManager);
+        virtual void Initialize(PSS_GlobalFieldManager* pGlobalFieldManager, PSS_HistoryFieldManager* pHistoryValueManager);
 
         /**
         * Reads the document
@@ -75,9 +75,9 @@ class AFX_EXT_CLASS PSS_GlobalFieldDocument : public PSS_BaseDocument
         *@param pHistoryValueManager - history value manager
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL ReadDocument(const CString&          fileName,
-                                  PSS_GlobalFieldManager* pGlobalFieldManager,
-                                  ZAHistoryFieldManager*  pHistoryValueManager);
+        virtual BOOL ReadDocument(const CString&           fileName,
+                                  PSS_GlobalFieldManager*  pGlobalFieldManager,
+                                  PSS_HistoryFieldManager* pHistoryValueManager);
 
         /**
         * Reads the document
@@ -111,13 +111,13 @@ class AFX_EXT_CLASS PSS_GlobalFieldDocument : public PSS_BaseDocument
 
     protected:
         /// Additional Protected Declarations
-        //{{AFX_MSG(ZDGlobalFieldDocument)
+        //{{AFX_MSG(PSS_GlobalFieldDocument)
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
 
     private:
-        PSS_GlobalFieldManager* m_pGlobalFieldManager;
-        ZAHistoryFieldManager*  m_pHistoryValueManager;
+        PSS_GlobalFieldManager*  m_pGlobalFieldManager;
+        PSS_HistoryFieldManager* m_pHistoryValueManager;
 
         /**
         * Copy constructor

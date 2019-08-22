@@ -26,7 +26,7 @@
 
 // processsoft
 #include "PSS_FieldObjectDefinition.h"
-#include "HistFld.h"
+#include "PSS_HistoryField.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again

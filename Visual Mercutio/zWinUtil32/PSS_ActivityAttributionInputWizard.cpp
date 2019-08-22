@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_MsgBox.h"
-#include "zBaseLib\InpVal.h"
+#include "zBaseLib\PSS_InputValue.h"
 #include "PSS_ActivityAttributionInputBackupDialog.h"
 #include "PSS_ActivityAttributionInputValueDialog.h"
 #include "PSS_UserListDialog.h"

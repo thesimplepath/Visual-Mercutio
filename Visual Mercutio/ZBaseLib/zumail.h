@@ -131,7 +131,7 @@ extern LPMAPIRESOLVENAME lpfnMAPIResolveName;
 // MFileDsc
 #include "MFileDsc.h"
 // MailMsg
-#include "MailMsg.h"
+#include "PSS_MailMessage.h"
 //## begin module%366D7F640200.declarations preserve=no
 //## end module%366D7F640200.declarations
 
@@ -183,7 +183,7 @@ class AFX_EXT_CLASS ZUMail
       BOOL SendMail (CString Subject = "", CString MessageHeader = "", CString MessageFooter = "", ZUMailUserList* PersonList = NULL);
 
       //## Operation: SendMail%927831783
-      BOOL SendMail (ZBMailMessage& MailMessage);
+      BOOL SendMail (PSS_MailMessage& MailMessage);
 
       //## Operation: SendDocument%913223369
       //    Sends a CDocument.
@@ -203,15 +203,6 @@ class AFX_EXT_CLASS ZUMail
       //## Operation: Address%921594740
       BOOL Address (ZUMailUserList& PersonList);
 
-    // Additional Public Declarations
-      //## begin ZUMail%366D7F74031C.public preserve=yes
-      //## end ZUMail%366D7F74031C.public
-
-  protected:
-    // Additional Protected Declarations
-      //## begin ZUMail%366D7F74031C.protected preserve=yes
-      //## end ZUMail%366D7F74031C.protected
-
   private:
     //## Constructors (generated)
       ZUMail(const ZUMail &right);
@@ -226,25 +217,6 @@ class AFX_EXT_CLASS ZUMail
       //## begin ZUMail::InstMail%366EAE9F0013.attr preserve=no  public: static HINSTANCE {V} NULL
       static HINSTANCE m_InstMail;
       //## end ZUMail::InstMail%366EAE9F0013.attr
-
-    // Additional Private Declarations
-      //## begin ZUMail%366D7F74031C.private preserve=yes
-      //## end ZUMail%366D7F74031C.private
-
-  private: //## implementation
-    // Additional Implementation Declarations
-      //## begin ZUMail%366D7F74031C.implementation preserve=yes
-      //## end ZUMail%366D7F74031C.implementation
-
 };
-
-//## begin ZUMail%366D7F74031C.postscript preserve=yes
-//## end ZUMail%366D7F74031C.postscript
-
-// Class ZUMail 
-
-//## begin module%366D7F640200.epilog preserve=yes
-//## end module%366D7F640200.epilog
-
 
 #endif

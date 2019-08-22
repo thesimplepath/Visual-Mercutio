@@ -100,7 +100,7 @@ class AFX_EXT_CLASS PSS_FieldRepository
         *@param fieldName - field name
         *@return history field, NULL if not found or on error
         */
-        virtual inline ZAHistoryField* FindFieldHistory(const CString& fieldName);
+        virtual inline PSS_HistoryField* FindFieldHistory(const CString& fieldName);
 
         /**
         * Gets the field history
@@ -199,7 +199,7 @@ class AFX_EXT_CLASS PSS_FieldRepository
 
     private:
         PSS_GlobalFieldManager*  m_GlobalFieldManager;
-        ZAHistoryFieldManager*   m_HistoryValueManager;
+        PSS_HistoryFieldManager* m_HistoryValueManager;
         PSS_GlobalFieldDocument* m_Document;
         CString                  m_FileName;
         BOOL                     m_ReadOnly;
@@ -244,7 +244,7 @@ BOOL PSS_FieldRepository::RemoveFieldHistoryValue(const CString& fieldName, cons
     return FALSE;
 }
 //---------------------------------------------------------------------------
-ZAHistoryField* PSS_FieldRepository::FindFieldHistory(const CString& fieldName)
+PSS_HistoryField* PSS_FieldRepository::FindFieldHistory(const CString& fieldName)
 {
     if (m_HistoryValueManager)
         return m_HistoryValueManager->FindField(fieldName);

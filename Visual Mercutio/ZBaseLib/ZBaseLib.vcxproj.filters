@@ -23,24 +23,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GFValueF.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HistFld.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HistFMng.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="INPVAL.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mailmsg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MemDC.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="mfiledsc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -602,6 +584,24 @@
     <ClCompile Include="PSS_GlobalFieldDocument.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_FieldValueDataFeed.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_HistoryField.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_HistoryFieldManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_InputValue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_MailMessage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_MemoryDC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -717,24 +717,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GFValueF.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HistFld.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HistFMng.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="INPVAL.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="mailmsg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MemDC.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MFileDsc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1300,6 +1282,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_GlobalFieldDocument.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FieldValueDataFeed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_HistoryField.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_HistoryFieldManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_InputValue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_MailMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_MemoryDC.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

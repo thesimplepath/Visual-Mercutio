@@ -11,7 +11,7 @@
 // processsoft
 #include "zBaseLib\ZBTokenizer.h"
 #include "zBaseLib\PSS_MsgBox.h"
-#include "zBaseLib\InpVal.h"
+#include "zBaseLib\PSS_InputValue.h"
 #include "PSS_SelectResourcesDialog.h"
 
 #ifdef _DEBUG
@@ -185,7 +185,7 @@ void PSS_ActivityAttributionInputValueDialog::OnAddEmail()
     CString title;
     title.LoadString(IDS_ENTER_EMAILADRESS);
 
-    ZIInputValue inputValue(title);
+    PSS_InputValue inputValue(title);
 
     if (inputValue.DoModal() == IDOK)
     {

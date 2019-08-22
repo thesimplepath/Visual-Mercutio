@@ -82,7 +82,7 @@ class AFX_EXT_CLASS PSS_FieldDefinitionDataFeed : public PSS_Export
         virtual ~PSS_FieldDefinitionDataFeed();
 
         /**
-        * Creates the export class
+        * Creates the class content
         *@param fileName - file name
         *@param pFieldRepository - field repository
         *@param pObjectDefinition - object definition
@@ -104,7 +104,7 @@ class AFX_EXT_CLASS PSS_FieldDefinitionDataFeed : public PSS_Export
                                    PSS_StatusBar*                pStatusBar = NULL);
 
         /**
-        * Creates the export class
+        * Creates the class content
         *@param fileName - file name
         *@param pFieldRepository - field repository
         *@param generateHeader - if TRUE, a header will be generated

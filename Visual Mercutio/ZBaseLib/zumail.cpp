@@ -190,7 +190,7 @@ BOOL ZUMail::SendMail (CString Subject, CString MessageHeader, CString MessageFo
   //## end ZUMail::SendMail%913142858.body
 }
 
-BOOL ZUMail::SendMail (ZBMailMessage& MailMessage)
+BOOL ZUMail::SendMail (PSS_MailMessage& MailMessage)
 {
   //## begin ZUMail::SendMail%927831783.body preserve=yes
     if (m_InstMail == NULL)
@@ -221,7 +221,7 @@ BOOL ZUMail::SendMail (ZBMailMessage& MailMessage)
         if (MailMessage.GetAttachementType() == PSS_File::IE_AT_InsertedFile)
         {
             message.nFileCount = MailMessage.GetFileCount();
-            message.lpFiles = MailMessage.GetMapiFileDescPtr();
+            message.lpFiles = MailMessage.GetMapiFileDesc();
         }
         else
         {
@@ -233,7 +233,7 @@ BOOL ZUMail::SendMail (ZBMailMessage& MailMessage)
     if (MailMessage.GetMailUserCount() > 0)
     {
         message.nRecipCount = MailMessage.GetMailUserCount();
-        message.lpRecips = MailMessage.GetMapiRecipDescPtr();
+        message.lpRecips = MailMessage.GetMapiRecipDesc();
     }
 
 #ifndef _WIN32

@@ -22,7 +22,7 @@ PSS_FieldRepository::PSS_FieldRepository() :
     m_IsValid(FALSE)
 {
     m_GlobalFieldManager  = new PSS_GlobalFieldManager();
-    m_HistoryValueManager = new ZAHistoryFieldManager();
+    m_HistoryValueManager = new PSS_HistoryFieldManager();
     m_Document            = new PSS_GlobalFieldDocument();
 }
 //---------------------------------------------------------------------------
@@ -149,7 +149,7 @@ BOOL PSS_FieldRepository::Import(PSS_FieldRepository& fieldRepository, BOOL repl
             }
 
             // process the history
-            ZAHistoryField* pObjectHistory = fieldRepository.FindFieldHistory(pObjectDefinition->GetFieldName());
+            PSS_HistoryField* pObjectHistory = fieldRepository.FindFieldHistory(pObjectDefinition->GetFieldName());
 
             if (pObjectHistory)
             {
@@ -161,7 +161,7 @@ BOOL PSS_FieldRepository::Import(PSS_FieldRepository& fieldRepository, BOOL repl
             }
 
             // set the read-only flag
-            ZAHistoryField* pHistory = FindFieldHistory(pObjectDefinition->GetFieldName());
+            PSS_HistoryField* pHistory = FindFieldHistory(pObjectDefinition->GetFieldName());
 
             if (pHistory)
                 pHistory->SetReadOnly(pObjectHistory->IsReadOnly());

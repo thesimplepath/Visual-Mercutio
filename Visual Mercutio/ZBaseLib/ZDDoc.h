@@ -24,7 +24,7 @@
 
 // processsoft
 #include "PSS_DocumentOptions.h"
-#include "HistFMng.h"
+#include "PSS_HistoryFieldManager.h"
 #include "PSS_BaseDocument.h"
 #include "PSS_Formula.h"
 #include "ZAFontMg.h"
@@ -599,7 +599,7 @@ public:
 
     //## Attribute: HistoryValueManager%36348F570175
     //    This is the manager of history field values.
-    ZAHistoryFieldManager& GetHistoryValueManager();
+    PSS_HistoryFieldManager& GetHistoryValueManager();
 
     //## Attribute: SynchronizationFileName%365171060273
     //    Sets the synchronization filename.
@@ -780,7 +780,7 @@ private:
     // Data Members for Class Attributes
 
       //## begin ZDDocument::HistoryValueManager%36348F570175.attr preserve=no  public: ZAHistoryFieldManager {U} 
-    ZAHistoryFieldManager m_HistoryValueManager;
+    PSS_HistoryFieldManager m_HistoryValueManager;
     //## end ZDDocument::HistoryValueManager%36348F570175.attr
 
     //## begin ZDDocument::CurrentElement%367CC3DF01CE.attr preserve=no  public: int {U} 
@@ -925,11 +925,9 @@ inline PSS_DocumentOptions& ZDDocument::GetDocOptions()
     //## end ZDDocument::GetDocOptions%35CC4CD303BA.get
 }
 
-inline ZAHistoryFieldManager& ZDDocument::GetHistoryValueManager()
+inline PSS_HistoryFieldManager& ZDDocument::GetHistoryValueManager()
 {
-    //## begin ZDDocument::GetHistoryValueManager%36348F570175.get preserve=no
     return m_HistoryValueManager;
-    //## end ZDDocument::GetHistoryValueManager%36348F570175.get
 }
 
 inline const CString ZDDocument::GetSynchronizationFileName() const

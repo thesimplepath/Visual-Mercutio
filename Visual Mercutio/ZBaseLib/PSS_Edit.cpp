@@ -64,7 +64,7 @@ void PSS_Edit::PreCreateEdit(BOOL                 designerMode,
     m_AutoCalculateOption = autoCalculateOption;
     m_GoNextEditOption    = goNextEditOption;
 
-    ZAHistoryField* pField = NULL;
+    PSS_HistoryField* pField = NULL;
 
     if (m_pFieldRepository && (pField = m_pFieldRepository->FindFieldHistory(m_pEditedObj->GetObjectName())))
         m_ReadOnly = pField->IsReadOnly();

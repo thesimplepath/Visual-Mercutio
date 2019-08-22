@@ -88,7 +88,7 @@ class AFX_EXT_CLASS ZUMailFileDescription
 
       //## Operation: AddFile%913223372
       //    Returns true of done.
-      BOOL AddFile (CString& File, PSS_File::IEAttachementType AttachType = PSS_File::IE_AT_InsertedFile);
+      BOOL AddFile (const CString& File, PSS_File::IEAttachementType AttachType = PSS_File::IE_AT_InsertedFile);
 
       //## Operation: AddFile%913659109
       //    Returns true of done.
@@ -169,7 +169,7 @@ class AFX_EXT_CLASS ZUMailFileDescription
 
 
 //## Other Operations (inline)
-inline BOOL ZUMailFileDescription::AddFile (CString& File, PSS_File::IEAttachementType AttachType)
+inline BOOL ZUMailFileDescription::AddFile (const CString& File, PSS_File::IEAttachementType AttachType)
 {
   //## begin ZUMailFileDescription::AddFile%913223372.body preserve=yes
       m_AttachementType = AttachType;

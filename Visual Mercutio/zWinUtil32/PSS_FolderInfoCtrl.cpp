@@ -9,7 +9,7 @@
 #include "PSS_FolderInfoCtrl.h"
 
 // processsoft
-#include "zBaseLib\InpVal.h"
+#include "zBaseLib\PSS_InputValue.h"
 
 // resources
 #ifndef _WIN32
@@ -189,7 +189,7 @@ BOOL PSS_FolderInfoCtrl::OnDoubleClick(NMHDR* pNMHDR, LRESULT* pResult)
     CString title;
 
     // ask to edit the value
-    ZIInputValue inputValue(title, value);
+    PSS_InputValue inputValue(title, value);
 
     if (inputValue.DoModal() == IDOK)
     {

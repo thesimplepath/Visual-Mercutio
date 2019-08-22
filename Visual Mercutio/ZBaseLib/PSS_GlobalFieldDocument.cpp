@@ -46,9 +46,9 @@ const PSS_GlobalFieldDocument& PSS_GlobalFieldDocument::operator = (const PSS_Gl
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-void PSS_GlobalFieldDocument::Initialize(const CString&          fileName,
-                                         PSS_GlobalFieldManager* pGlobalFieldManager,
-                                         ZAHistoryFieldManager*  pHistoryValueManager)
+void PSS_GlobalFieldDocument::Initialize(const CString&           fileName,
+                                         PSS_GlobalFieldManager*  pGlobalFieldManager,
+                                         PSS_HistoryFieldManager* pHistoryValueManager)
 {
     SetPathName(fileName, FALSE);
 
@@ -57,17 +57,17 @@ void PSS_GlobalFieldDocument::Initialize(const CString&          fileName,
     m_pGlobalFieldManager  = pGlobalFieldManager;
 }
 //---------------------------------------------------------------------------
-void PSS_GlobalFieldDocument::Initialize(PSS_GlobalFieldManager* pGlobalFieldManager,
-                                         ZAHistoryFieldManager*  pHistoryValueManager)
+void PSS_GlobalFieldDocument::Initialize(PSS_GlobalFieldManager*  pGlobalFieldManager,
+                                         PSS_HistoryFieldManager* pHistoryValueManager)
 {
     // assign the manager pointers
     m_pHistoryValueManager = pHistoryValueManager;
     m_pGlobalFieldManager  = pGlobalFieldManager;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_GlobalFieldDocument::ReadDocument(const CString&          fileName,
-                                           PSS_GlobalFieldManager* pGlobalFieldManager,
-                                           ZAHistoryFieldManager*  pHistoryValueManager)
+BOOL PSS_GlobalFieldDocument::ReadDocument(const CString&           fileName,
+                                           PSS_GlobalFieldManager*  pGlobalFieldManager,
+                                           PSS_HistoryFieldManager* pHistoryValueManager)
 {
     if (!pGlobalFieldManager || !pHistoryValueManager)
         return FALSE;

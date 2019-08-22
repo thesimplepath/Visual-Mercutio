@@ -29,7 +29,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_FileManager.h"
-#include "zBaseLib\MailMsg.h"
+#include "zBaseLib\PSS_MailMessage.h"
 #include "zBaseLib\PSS_CommandLine.h"
 #include "BActvt.h"
 
@@ -242,8 +242,8 @@ public:
 
       //## Attribute: pMailMessage%37500DB1008C
       //    Contains the pointer to mail message.
-      ZBMailMessage* GetpMailMessage ();
-      void SetpMailMessage (ZBMailMessage* value);
+      PSS_MailMessage* GetpMailMessage ();
+      void SetpMailMessage (PSS_MailMessage* value);
 
       //## Attribute: pCommandLine%3751A33D032F
       //    A pointer to the command line.
@@ -363,7 +363,7 @@ public:
       //## end ZActivity::AttributedByActivity%374687E20108.attr
 
       //## begin ZActivity::pMailMessage%37500DB1008C.attr preserve=no  public: ZBMailMessage* {U} 
-      ZBMailMessage* m_pMailMessage;
+      PSS_MailMessage* m_pMailMessage;
       //## end ZActivity::pMailMessage%37500DB1008C.attr
 
       //## begin ZActivity::pCommandLine%3751A33D032F.attr preserve=no  public: ZUCommandLine* {U} 
@@ -575,14 +575,14 @@ inline void ZActivity::SetRejectedToActivity (CString value)
   //## end ZActivity::SetRejectedToActivity%369A28FD01B8.set
 }
 
-inline ZBMailMessage* ZActivity::GetpMailMessage ()
+inline PSS_MailMessage* ZActivity::GetpMailMessage ()
 {
   //## begin ZActivity::GetpMailMessage%37500DB1008C.get preserve=no
   return m_pMailMessage;
   //## end ZActivity::GetpMailMessage%37500DB1008C.get
 }
 
-inline void ZActivity::SetpMailMessage (ZBMailMessage* value)
+inline void ZActivity::SetpMailMessage (PSS_MailMessage* value)
 {
   //## begin ZActivity::SetpMailMessage%37500DB1008C.set preserve=no
   m_pMailMessage = value;

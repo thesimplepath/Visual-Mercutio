@@ -112,7 +112,7 @@ class AFX_EXT_CLASS PSS_CommonFieldTreeCtrl : public ZITreeCtrl
         *@param pHistory - field history item to add
         *@param hParentTreeItem - parent item in which the history item will be added, if NULL will be added in root
         */
-        void AddFieldHistoryItem(ZAHistoryField* pHistory, HTREEITEM hParentTreeItem);
+        void AddFieldHistoryItem(PSS_HistoryField* pHistory, HTREEITEM hParentTreeItem);
 };
 
 #endif

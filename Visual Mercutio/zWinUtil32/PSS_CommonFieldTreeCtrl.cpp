@@ -167,7 +167,7 @@ void PSS_CommonFieldTreeCtrl::AddFieldItem(PSS_FieldObjectDefinition* pField)
     curTreeItem.item.mask           = TVIF_IMAGE | TVIF_TEXT | TVIF_SELECTEDIMAGE | TVIF_PARAM;
     InsertItem(&curTreeItem);
 
-    ZAHistoryField* pHistory = m_pFieldRepository->FindFieldHistory(pField->GetFieldName());
+    PSS_HistoryField* pHistory = m_pFieldRepository->FindFieldHistory(pField->GetFieldName());
 
     if (pHistory)
     {
@@ -186,7 +186,7 @@ void PSS_CommonFieldTreeCtrl::AddFieldItem(PSS_FieldObjectDefinition* pField)
     }
 }
 //---------------------------------------------------------------------------
-void PSS_CommonFieldTreeCtrl::AddFieldHistoryItem(ZAHistoryField* pHistory, HTREEITEM hParentTreeItem)
+void PSS_CommonFieldTreeCtrl::AddFieldHistoryItem(PSS_HistoryField* pHistory, HTREEITEM hParentTreeItem)
 {
     if (!pHistory)
         return;
