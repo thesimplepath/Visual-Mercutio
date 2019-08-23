@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZWizard.h"
+#include "zBaseLib\PSS_WizardDialog.h"
 #include "zBaseLib\ZUMail.h"
 #include "zBaseLib\UserMng.h"
 #include "zEvent\Activity.h"
@@ -43,7 +43,7 @@
 * Activity attribution input backup dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_ActivityAttributionInputBackupDialog : public ZIWizardDialog
+class PSS_ActivityAttributionInputBackupDialog : public PSS_WizardDialog
 {
     public:
         /**

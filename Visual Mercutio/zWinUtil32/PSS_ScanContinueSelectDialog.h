@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZWizard.h"
+#include "zBaseLib\PSS_WizardDialog.h"
 #include "PSS_SearchEdit.h"
 
 // resources
@@ -45,7 +45,7 @@
 * Scan continue select dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_ScanContinueSelectDialog : public ZIWizardDialog
+class PSS_ScanContinueSelectDialog : public PSS_WizardDialog
 {
     public:
         /**

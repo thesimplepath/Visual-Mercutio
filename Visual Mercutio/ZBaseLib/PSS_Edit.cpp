@@ -1101,7 +1101,7 @@ void PSS_FieldNameEdit::OnKillFocus(CWnd* pNewWnd)
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_MaskEdit, ZMaskEdit)
+BEGIN_MESSAGE_MAP(PSS_MaskEdit, PSS_MaskEditBase)
     //{{AFX_MSG_MAP(PSS_MaskEdit)
     ON_WM_KILLFOCUS()
     ON_WM_CHAR()
@@ -1112,7 +1112,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 PSS_MaskEdit::PSS_MaskEdit() :
     PSS_Edit(),
-    ZMaskEdit()
+    PSS_MaskEditBase()
 {}
 //---------------------------------------------------------------------------
 PSS_MaskEdit::~PSS_MaskEdit()
@@ -1151,10 +1151,10 @@ void PSS_MaskEdit::Create(BOOL                 designerMode,
     if (m_ReadOnly)
         style |= ES_READONLY;
 
-    if (!ZMaskEdit::Create(style, m_Rect, pParentWnd, 0))
+    if (!PSS_MaskEditBase::Create(style, m_Rect, pParentWnd, 0))
         return;
 
-    ZMaskEdit::Init(pMaskString->GetMask(), m_pEditedObj->GetUnformatedObject());
+    PSS_MaskEditBase::Init(pMaskString->GetMask(), m_pEditedObj->GetUnformatedObject());
     SetSel(0, -1);
     ShowWindow(SW_SHOW);
     SetFocus();
@@ -1213,12 +1213,12 @@ void PSS_MaskEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
             return;
     }
 
-    ZMaskEdit::OnChar(nChar, nRepCnt, nFlags);
+    PSS_MaskEditBase::OnChar(nChar, nRepCnt, nFlags);
 }
 //---------------------------------------------------------------------------
 void PSS_MaskEdit::OnKillFocus(CWnd* pNewWnd)
 {
-    ZMaskEdit::OnKillFocus(pNewWnd);
+    PSS_MaskEditBase::OnKillFocus(pNewWnd);
     DestroyEdit();
 }
 //---------------------------------------------------------------------------

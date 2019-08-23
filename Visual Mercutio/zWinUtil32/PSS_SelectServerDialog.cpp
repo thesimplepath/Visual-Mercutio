@@ -17,7 +17,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_SelectServerDialog, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(PSS_SelectServerDialog, PSS_WizardDialog)
     //{{AFX_MSG_MAP(PSS_SelectServerDialog)
     ON_NOTIFY(TVN_SELCHANGED, IDC_SERVERDIRECTORY, OnSelchangedDirectory)
     ON_NOTIFY(NM_DBLCLK, IDC_SERVERDIRECTORY, OnDblclkDirectory)
@@ -29,12 +29,12 @@ END_MESSAGE_MAP()
 // PSS_SelectServerDialog
 //---------------------------------------------------------------------------
 PSS_SelectServerDialog::PSS_SelectServerDialog(BOOL local, CWnd* pParent) :
-    ZIWizardDialog(PSS_SelectServerDialog::IDD,
-                   IDB_WZBMP3,
-                   0,
-                   0,
-                   IDS_SELECTIONSERVERWLC_SL,
-                   IDS_SELECTIONSERVERWLC_TL),
+    PSS_WizardDialog(PSS_SelectServerDialog::IDD,
+                     IDB_WZBMP3,
+                     0,
+                     0,
+                     IDS_SELECTIONSERVERWLC_SL,
+                     IDS_SELECTIONSERVERWLC_TL),
     m_Local(local)
 {
     if (!m_Local)
@@ -44,9 +44,9 @@ PSS_SelectServerDialog::PSS_SelectServerDialog(BOOL local, CWnd* pParent) :
     }
 }
 //---------------------------------------------------------------------------
-void PSS_SelectServerDialog::DoDataExchange( CDataExchange* pDX )
+void PSS_SelectServerDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange( pDX );
+    PSS_WizardDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_SelectServerDialog)
     DDX_Control(pDX, IDC_SERVERDIRECTORY, m_DirTreeCtrl);
@@ -56,7 +56,7 @@ void PSS_SelectServerDialog::DoDataExchange( CDataExchange* pDX )
 //---------------------------------------------------------------------------
 BOOL PSS_SelectServerDialog::OnInitDialog()
 {
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
 
     m_DirTreeCtrl.Initialize();
     CheckControlStates();
@@ -94,7 +94,7 @@ void PSS_SelectServerDialog::OnServerSelected()
 void PSS_SelectServerDialog::OnOK()
 {
     m_Directory = m_DirTreeCtrl.GetSelectedDirectory();
-    ZIWizardDialog::OnOK();
+    PSS_WizardDialog::OnOK();
 }
 //---------------------------------------------------------------------------
 void PSS_SelectServerDialog::CheckControlStates()

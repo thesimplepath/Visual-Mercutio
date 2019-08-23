@@ -26,28 +26,28 @@
 //## begin module%366D7F590006.additionalDeclarations preserve=yes
 #ifndef _WIN32
     // Special mode helpers
-    HWND PASCAL _AfxGetSafeOwner(CWnd* pParent);
+HWND PASCAL _AfxGetSafeOwner(CWnd* pParent);
 #endif // only if in 16bit
 
 #ifdef _WIN32 
-    #define szMAPIDLL       "MAPI32.DLL" 
+#define szMAPIDLL       "MAPI32.DLL" 
 #endif 
 #ifndef _WIN32 
-    #define szMAPIDLL       "MAPI.DLL" 
+#define szMAPIDLL       "MAPI.DLL" 
 #endif 
 
-LPMAPILOGON lpfnMAPILogon = NULL; 
-LPMAPILOGOFF lpfnMAPILogoff = NULL; 
-LPMAPISENDMAIL lpfnMAPISendMail = NULL; 
-LPMAPISENDDOCUMENTS lpfnMAPISendDocuments = NULL; 
-LPMAPIFINDNEXT lpfnMAPIFindNext = NULL; 
-LPMAPIREADMAIL lpfnMAPIReadMail = NULL; 
-LPMAPISAVEMAIL lpfnMAPISaveMail = NULL; 
-LPMAPIDELETEMAIL lpfnMAPIDeleteMail = NULL; 
-LPMAPIFREEBUFFER lpfnMAPIFreeBuffer = NULL; 
-LPMAPIADDRESS lpfnMAPIAddress = NULL; 
-LPMAPIDETAILS lpfnMAPIDetails = NULL; 
-LPMAPIRESOLVENAME lpfnMAPIResolveName = NULL; 
+LPMAPILOGON lpfnMAPILogon = NULL;
+LPMAPILOGOFF lpfnMAPILogoff = NULL;
+LPMAPISENDMAIL lpfnMAPISendMail = NULL;
+LPMAPISENDDOCUMENTS lpfnMAPISendDocuments = NULL;
+LPMAPIFINDNEXT lpfnMAPIFindNext = NULL;
+LPMAPIREADMAIL lpfnMAPIReadMail = NULL;
+LPMAPISAVEMAIL lpfnMAPISaveMail = NULL;
+LPMAPIDELETEMAIL lpfnMAPIDeleteMail = NULL;
+LPMAPIFREEBUFFER lpfnMAPIFreeBuffer = NULL;
+LPMAPIADDRESS lpfnMAPIAddress = NULL;
+LPMAPIDETAILS lpfnMAPIDetails = NULL;
+LPMAPIRESOLVENAME lpfnMAPIResolveName = NULL;
 
 //## end module%366D7F590006.additionalDeclarations
 
@@ -59,57 +59,57 @@ HINSTANCE ZUMail::m_InstMail = NULL;
 //## end ZUMail::InstMail%366EAE9F0013.attr
 
 ZUMail::ZUMail()
-  //## begin ZUMail::ZUMail%.hasinit preserve=no
-  //## end ZUMail::ZUMail%.hasinit
-  //## begin ZUMail::ZUMail%.initialization preserve=yes
-  //## end ZUMail::ZUMail%.initialization
+//## begin ZUMail::ZUMail%.hasinit preserve=no
+//## end ZUMail::ZUMail%.hasinit
+//## begin ZUMail::ZUMail%.initialization preserve=yes
+//## end ZUMail::ZUMail%.initialization
 {
-  //## begin ZUMail::ZUMail%.body preserve=yes
+    //## begin ZUMail::ZUMail%.body preserve=yes
     m_InstMail = ::LoadLibrary(szMAPIDLL);
 
-    lpfnMAPILogon = (LPMAPILOGON) GetProcAddress (m_InstMail, "MAPILogon");
-    lpfnMAPILogoff = (LPMAPILOGOFF) GetProcAddress (m_InstMail, "MAPILogoff");
-    lpfnMAPISendMail = (LPMAPISENDMAIL) GetProcAddress (m_InstMail, "MAPISendMail");
-    lpfnMAPISendDocuments = (LPMAPISENDDOCUMENTS) GetProcAddress (m_InstMail, "MAPISendDocuments");
-    lpfnMAPIFindNext = (LPMAPIFINDNEXT) GetProcAddress (m_InstMail, "MAPIFindNext");
-    lpfnMAPIReadMail = (LPMAPIREADMAIL) GetProcAddress (m_InstMail, "MAPIReadMail");
-    lpfnMAPISaveMail = (LPMAPISAVEMAIL) GetProcAddress (m_InstMail, "MAPISaveMail");
-    lpfnMAPIDeleteMail = (LPMAPIDELETEMAIL) GetProcAddress (m_InstMail, "MAPIDeleteMail");
-    lpfnMAPIFreeBuffer = (LPMAPIFREEBUFFER) GetProcAddress (m_InstMail, "MAPIFreeBuffer");
-    lpfnMAPIAddress = (LPMAPIADDRESS) GetProcAddress (m_InstMail, "MAPIAddress");
-    lpfnMAPIDetails = (LPMAPIDETAILS) GetProcAddress (m_InstMail, "MAPIDetails");
-    lpfnMAPIResolveName = (LPMAPIRESOLVENAME) GetProcAddress (m_InstMail, "MAPIResolveName");
-  //## end ZUMail::ZUMail%.body
+    lpfnMAPILogon = (LPMAPILOGON)GetProcAddress(m_InstMail, "MAPILogon");
+    lpfnMAPILogoff = (LPMAPILOGOFF)GetProcAddress(m_InstMail, "MAPILogoff");
+    lpfnMAPISendMail = (LPMAPISENDMAIL)GetProcAddress(m_InstMail, "MAPISendMail");
+    lpfnMAPISendDocuments = (LPMAPISENDDOCUMENTS)GetProcAddress(m_InstMail, "MAPISendDocuments");
+    lpfnMAPIFindNext = (LPMAPIFINDNEXT)GetProcAddress(m_InstMail, "MAPIFindNext");
+    lpfnMAPIReadMail = (LPMAPIREADMAIL)GetProcAddress(m_InstMail, "MAPIReadMail");
+    lpfnMAPISaveMail = (LPMAPISAVEMAIL)GetProcAddress(m_InstMail, "MAPISaveMail");
+    lpfnMAPIDeleteMail = (LPMAPIDELETEMAIL)GetProcAddress(m_InstMail, "MAPIDeleteMail");
+    lpfnMAPIFreeBuffer = (LPMAPIFREEBUFFER)GetProcAddress(m_InstMail, "MAPIFreeBuffer");
+    lpfnMAPIAddress = (LPMAPIADDRESS)GetProcAddress(m_InstMail, "MAPIAddress");
+    lpfnMAPIDetails = (LPMAPIDETAILS)GetProcAddress(m_InstMail, "MAPIDetails");
+    lpfnMAPIResolveName = (LPMAPIRESOLVENAME)GetProcAddress(m_InstMail, "MAPIResolveName");
+    //## end ZUMail::ZUMail%.body
 }
 
 
 ZUMail::~ZUMail()
 {
-  //## begin ZUMail::~ZUMail%.body preserve=yes
-    lpfnMAPILogon = NULL; 
-    lpfnMAPILogoff = NULL; 
-    lpfnMAPISendMail = NULL; 
-    lpfnMAPISendDocuments = NULL; 
-    lpfnMAPIFindNext = NULL; 
-    lpfnMAPIReadMail = NULL; 
-    lpfnMAPISaveMail = NULL; 
-    lpfnMAPIDeleteMail = NULL; 
-    lpfnMAPIFreeBuffer = NULL; 
-    lpfnMAPIAddress = NULL; 
-    lpfnMAPIDetails = NULL; 
-    lpfnMAPIResolveName = NULL; 
-    
-    ::FreeLibrary( m_InstMail );
+    //## begin ZUMail::~ZUMail%.body preserve=yes
+    lpfnMAPILogon = NULL;
+    lpfnMAPILogoff = NULL;
+    lpfnMAPISendMail = NULL;
+    lpfnMAPISendDocuments = NULL;
+    lpfnMAPIFindNext = NULL;
+    lpfnMAPIReadMail = NULL;
+    lpfnMAPISaveMail = NULL;
+    lpfnMAPIDeleteMail = NULL;
+    lpfnMAPIFreeBuffer = NULL;
+    lpfnMAPIAddress = NULL;
+    lpfnMAPIDetails = NULL;
+    lpfnMAPIResolveName = NULL;
+
+    ::FreeLibrary(m_InstMail);
     m_InstMail = NULL;
-  //## end ZUMail::~ZUMail%.body
+    //## end ZUMail::~ZUMail%.body
 }
 
 
 
 //## Other Operations (implementation)
-BOOL ZUMail::SendMail (CString Subject, CString MessageHeader, CString MessageFooter, ZUMailUserList* PersonList)
+BOOL ZUMail::SendMail(CString Subject, CString MessageHeader, CString MessageFooter, ZUMailUserList* PersonList)
 {
-  //## begin ZUMail::SendMail%913142858.body preserve=yes
+    //## begin ZUMail::SendMail%913142858.body preserve=yes
     if (m_InstMail == NULL)
     {
         AfxMessageBox(AFX_IDP_FAILED_MAPI_LOAD);
@@ -143,11 +143,11 @@ BOOL ZUMail::SendMail (CString Subject, CString MessageHeader, CString MessageFo
     HWND hWndParent = _AfxGetSafeOwner(NULL);
 #else
     // allow MAPI to send the mail message
-    HWND hWndTop;       
+    HWND hWndTop;
     CWnd* pWnd = CWnd::GetSafeOwner(NULL, &hWndTop);
-    if (pWnd == NULL)         
-       pWnd = CWnd::GetDesktopWindow();
-    ASSERT_VALID(pWnd);    
+    if (pWnd == NULL)
+        pWnd = CWnd::GetDesktopWindow();
+    ASSERT_VALID(pWnd);
     HWND hWndParent = pWnd->GetSafeHwnd();
 #endif
 
@@ -159,13 +159,13 @@ BOOL ZUMail::SendMail (CString Subject, CString MessageHeader, CString MessageFo
     ::SetProp(hWndParent, "StayDisabled", (HANDLE)1);
 
     ULONG nError = lpfnMAPISendMail(NULL, MAKELONG(hWndParent, 0), &message,
-        (PersonList && PersonList->GetCount() > 0) ? MAPI_LOGON_UI : MAPI_LOGON_UI|MAPI_DIALOG, 0);
+        (PersonList && PersonList->GetCount() > 0) ? MAPI_LOGON_UI : MAPI_LOGON_UI | MAPI_DIALOG, 0);
 
     // If problem with recipient, send the message again by displaying the email dialog
     if (nError == MAPI_E_UNKNOWN_RECIPIENT ||
         nError == MAPI_E_AMBIGUOUS_RECIPIENT)
     {
-        nError = lpfnMAPISendMail(NULL, MAKELONG(hWndParent, 0), &message, MAPI_LOGON_UI|MAPI_DIALOG, 0);
+        nError = lpfnMAPISendMail(NULL, MAKELONG(hWndParent, 0), &message, MAPI_LOGON_UI | MAPI_DIALOG, 0);
     }
 
     // after returning from the MAPISendMail call, the window must
@@ -178,8 +178,8 @@ BOOL ZUMail::SendMail (CString Subject, CString MessageHeader, CString MessageFo
     ::SetFocus(hWndParent);
 
     BOOL    bRetValue = TRUE;
-    
-    if (nError != SUCCESS_SUCCESS && 
+
+    if (nError != SUCCESS_SUCCESS &&
         nError != MAPI_USER_ABORT && nError != MAPI_E_LOGIN_FAILURE)
     {
         AfxMessageBox(AFX_IDP_FAILED_MAPI_SEND);
@@ -187,12 +187,12 @@ BOOL ZUMail::SendMail (CString Subject, CString MessageHeader, CString MessageFo
     }
 
     return bRetValue;
-  //## end ZUMail::SendMail%913142858.body
+    //## end ZUMail::SendMail%913142858.body
 }
 
-BOOL ZUMail::SendMail (PSS_MailMessage& MailMessage)
+BOOL ZUMail::SendMail(PSS_MailMessage& MailMessage)
 {
-  //## begin ZUMail::SendMail%927831783.body preserve=yes
+    //## begin ZUMail::SendMail%927831783.body preserve=yes
     if (m_InstMail == NULL)
     {
         AfxMessageBox(AFX_IDP_FAILED_MAPI_LOAD);
@@ -241,11 +241,11 @@ BOOL ZUMail::SendMail (PSS_MailMessage& MailMessage)
     HWND hWndParent = _AfxGetSafeOwner(NULL);
 #else
     // allow MAPI to send the mail message
-    HWND hWndTop;       
+    HWND hWndTop;
     CWnd* pWnd = CWnd::GetSafeOwner(NULL, &hWndTop);
-    if (pWnd == NULL)         
-       pWnd = CWnd::GetDesktopWindow();
-    ASSERT_VALID(pWnd);    
+    if (pWnd == NULL)
+        pWnd = CWnd::GetDesktopWindow();
+    ASSERT_VALID(pWnd);
     HWND hWndParent = pWnd->GetSafeHwnd();
 #endif
 
@@ -257,13 +257,13 @@ BOOL ZUMail::SendMail (PSS_MailMessage& MailMessage)
     ::SetProp(hWndParent, "StayDisabled", (HANDLE)1);
 
     ULONG nError = lpfnMAPISendMail(NULL, MAKELONG(hWndParent, 0), &message,
-        (MailMessage.GetMailUserCount() > 0) ? MAPI_LOGON_UI : MAPI_LOGON_UI|MAPI_DIALOG, 0);
+        (MailMessage.GetMailUserCount() > 0) ? MAPI_LOGON_UI : MAPI_LOGON_UI | MAPI_DIALOG, 0);
 
     // If problem with recipient, send the message again by displaying the email dialog
     if (nError == MAPI_E_UNKNOWN_RECIPIENT ||
         nError == MAPI_E_AMBIGUOUS_RECIPIENT)
     {
-        nError = lpfnMAPISendMail(NULL, MAKELONG(hWndParent, 0), &message, MAPI_LOGON_UI|MAPI_DIALOG, 0);
+        nError = lpfnMAPISendMail(NULL, MAKELONG(hWndParent, 0), &message, MAPI_LOGON_UI | MAPI_DIALOG, 0);
     }
 
     // after returning from the MAPISendMail call, the window must
@@ -276,8 +276,8 @@ BOOL ZUMail::SendMail (PSS_MailMessage& MailMessage)
     ::SetFocus(hWndParent);
 
     BOOL    bRetValue = TRUE;
-    
-    if (nError != SUCCESS_SUCCESS && 
+
+    if (nError != SUCCESS_SUCCESS &&
         nError != MAPI_USER_ABORT && nError != MAPI_E_LOGIN_FAILURE)
     {
         AfxMessageBox(AFX_IDP_FAILED_MAPI_SEND);
@@ -285,12 +285,12 @@ BOOL ZUMail::SendMail (PSS_MailMessage& MailMessage)
     }
 
     return bRetValue;
-  //## end ZUMail::SendMail%927831783.body
+    //## end ZUMail::SendMail%927831783.body
 }
 
-BOOL ZUMail::SendDocument (CDocument& Doc, CString Subject, CString MessageHeader, CString MessageFooter, ZUMailUserList* PersonList)
+BOOL ZUMail::SendDocument(CDocument& Doc, CString Subject, CString MessageHeader, CString MessageFooter, ZUMailUserList* PersonList)
 {
-  //## begin ZUMail::SendDocument%913223369.body preserve=yes
+    //## begin ZUMail::SendDocument%913223369.body preserve=yes
     if (m_InstMail == NULL)
     {
         AfxMessageBox(AFX_IDP_FAILED_MAPI_LOAD);
@@ -310,14 +310,14 @@ BOOL ZUMail::SendDocument (CDocument& Doc, CString Subject, CString MessageHeade
     BOOL bRemoveTemp = FALSE;
     if (Doc.GetPathName().IsEmpty() || Doc.IsModified())
     {
-#ifndef _WIN32
+    #ifndef _WIN32
         // save to temporary path
-        VERIFY(GetTempFileName( GetTempDrive(0), _T("afx"), 0, szTempName ) != 0);
-#else
+        VERIFY(GetTempFileName(GetTempDrive(0), _T("afx"), 0, szTempName) != 0);
+    #else
         char    szPath[100];
-        VERIFY(GetTempPath( sizeof(szPath), szPath ) != 0);
-        VERIFY(GetTempFileName( szPath, _T("afx"), 0, szTempName ) != 0);
-#endif
+        VERIFY(GetTempPath(sizeof(szPath), szPath) != 0);
+        VERIFY(GetTempFileName(szPath, _T("afx"), 0, szTempName) != 0);
+    #endif
         BOOL bModified = Doc.IsModified();
         BOOL bResult = Doc.DoSave(szTempName, FALSE);
         Doc.SetModifiedFlag(bModified);
@@ -343,13 +343,13 @@ BOOL ZUMail::SendDocument (CDocument& Doc, CString Subject, CString MessageHeade
         // append the default suffix if there is one
         CString strExt;
         CDocTemplate* pTemplate = Doc.GetDocTemplate();
-        if (pTemplate != NULL && 
+        if (pTemplate != NULL &&
             pTemplate->GetDocString(strExt, CDocTemplate::filterExt) &&
-              !strExt.IsEmpty())
+            !strExt.IsEmpty())
         {
             ASSERT(strExt[0] == '.');
             int nLen = lstrlen(szTitle);
-            lstrcpyn(szTitle+nLen, strExt, sizeof(szTitle)-nLen);
+            lstrcpyn(szTitle + nLen, strExt, sizeof(szTitle) - nLen);
         }
     }
 
@@ -374,17 +374,17 @@ BOOL ZUMail::SendDocument (CDocument& Doc, CString Subject, CString MessageHeade
     CString    Message = MessageHeader;
     Message += MessageFooter;
     message.lpszNoteText = (char*)((const char*)Message);
-    
+
 #ifndef _WIN32
     // allow MAPI to send the mail message
     HWND hWndParent = _AfxGetSafeOwner(NULL);
 #else
     // allow MAPI to send the mail message
-    HWND hWndTop;       
+    HWND hWndTop;
     CWnd* pWnd = CWnd::GetSafeOwner(NULL, &hWndTop);
-    if (pWnd == NULL)         
-       pWnd = CWnd::GetDesktopWindow();
-    ASSERT_VALID(pWnd);    
+    if (pWnd == NULL)
+        pWnd = CWnd::GetDesktopWindow();
+    ASSERT_VALID(pWnd);
     HWND hWndParent = pWnd->GetSafeHwnd();
 #endif
 
@@ -396,13 +396,13 @@ BOOL ZUMail::SendDocument (CDocument& Doc, CString Subject, CString MessageHeade
     ::SetProp(hWndParent, "StayDisabled", (HANDLE)1);
 
     ULONG nError = lpfnMAPISendMail(NULL, MAKELONG(hWndParent, 0), &message,
-        (PersonList && PersonList->GetCount() > 0) ? MAPI_LOGON_UI : MAPI_LOGON_UI|MAPI_DIALOG, 0);
+        (PersonList && PersonList->GetCount() > 0) ? MAPI_LOGON_UI : MAPI_LOGON_UI | MAPI_DIALOG, 0);
 
     // If problem with recipient, send the message again by displaying the email dialog
     if (nError == MAPI_E_UNKNOWN_RECIPIENT ||
         nError == MAPI_E_AMBIGUOUS_RECIPIENT)
     {
-        nError = lpfnMAPISendMail(NULL, MAKELONG(hWndParent, 0), &message, MAPI_LOGON_UI|MAPI_DIALOG, 0);
+        nError = lpfnMAPISendMail(NULL, MAKELONG(hWndParent, 0), &message, MAPI_LOGON_UI | MAPI_DIALOG, 0);
     }
 
     // after returning from the MAPISendMail call, the window must
@@ -415,8 +415,8 @@ BOOL ZUMail::SendDocument (CDocument& Doc, CString Subject, CString MessageHeade
     ::SetFocus(hWndParent);
 
     BOOL    bRetValue = TRUE;
-    
-    if (nError != SUCCESS_SUCCESS && 
+
+    if (nError != SUCCESS_SUCCESS &&
         nError != MAPI_USER_ABORT && nError != MAPI_E_LOGIN_FAILURE)
     {
         AfxMessageBox(AFX_IDP_FAILED_MAPI_SEND);
@@ -426,14 +426,14 @@ BOOL ZUMail::SendDocument (CDocument& Doc, CString Subject, CString MessageHeade
     // remove temporary file, if temporary file was used
     if (bRemoveTemp)
         CFile::Remove(szTempName);
-    
+
     return bRetValue;
-  //## end ZUMail::SendDocument%913223369.body
+    //## end ZUMail::SendDocument%913223369.body
 }
 
-BOOL ZUMail::SendDocuments (ZUMailFileDescription& FileList, CString Subject, CString MessageHeader, CString MessageFooter, ZUMailUserList* PersonList)
+BOOL ZUMail::SendDocuments(PSS_MailFileDescription& FileList, CString Subject, CString MessageHeader, CString MessageFooter, ZUMailUserList* PersonList)
 {
-  //## begin ZUMail::SendDocuments%913223376.body preserve=yes
+    //## begin ZUMail::SendDocuments%913223376.body preserve=yes
     if (m_InstMail == NULL)
     {
         AfxMessageBox(AFX_IDP_FAILED_MAPI_LOAD);
@@ -457,7 +457,7 @@ BOOL ZUMail::SendDocuments (ZUMailFileDescription& FileList, CString Subject, CS
     if (FileList.GetAttachementType() == PSS_File::IE_AT_InsertedFile)
     {
         message.nFileCount = FileList.GetCount();
-        message.lpFiles = FileList.GetMapiFileDescPtr();
+        message.lpFiles = FileList.GetMapiFileDesc();
     }
     else
     {
@@ -476,11 +476,11 @@ BOOL ZUMail::SendDocuments (ZUMailFileDescription& FileList, CString Subject, CS
     HWND hWndParent = _AfxGetSafeOwner(NULL);
 #else
     // allow MAPI to send the mail message
-    HWND hWndTop;       
+    HWND hWndTop;
     CWnd* pWnd = CWnd::GetSafeOwner(NULL, &hWndTop);
-    if (pWnd == NULL)         
-       pWnd = CWnd::GetDesktopWindow();
-    ASSERT_VALID(pWnd);    
+    if (pWnd == NULL)
+        pWnd = CWnd::GetDesktopWindow();
+    ASSERT_VALID(pWnd);
     HWND hWndParent = pWnd->GetSafeHwnd();
 #endif
 
@@ -492,13 +492,13 @@ BOOL ZUMail::SendDocuments (ZUMailFileDescription& FileList, CString Subject, CS
     ::SetProp(hWndParent, "StayDisabled", (HANDLE)1);
 
     ULONG nError = lpfnMAPISendMail(NULL, MAKELONG(hWndParent, 0), &message,
-        (PersonList && PersonList->GetCount() > 0) ? MAPI_LOGON_UI : MAPI_LOGON_UI|MAPI_DIALOG, 0);
+        (PersonList && PersonList->GetCount() > 0) ? MAPI_LOGON_UI : MAPI_LOGON_UI | MAPI_DIALOG, 0);
 
     // If problem with recipient, send the message again by displaying the email dialog
     if (nError == MAPI_E_UNKNOWN_RECIPIENT ||
         nError == MAPI_E_AMBIGUOUS_RECIPIENT)
     {
-        nError = lpfnMAPISendMail(NULL, MAKELONG(hWndParent, 0), &message, MAPI_LOGON_UI|MAPI_DIALOG, 0);
+        nError = lpfnMAPISendMail(NULL, MAKELONG(hWndParent, 0), &message, MAPI_LOGON_UI | MAPI_DIALOG, 0);
     }
 
     // after returning from the MAPISendMail call, the window must
@@ -511,8 +511,8 @@ BOOL ZUMail::SendDocuments (ZUMailFileDescription& FileList, CString Subject, CS
     ::SetFocus(hWndParent);
 
     BOOL    bRetValue = TRUE;
-    
-    if (nError != SUCCESS_SUCCESS && 
+
+    if (nError != SUCCESS_SUCCESS &&
         nError != MAPI_USER_ABORT && nError != MAPI_E_LOGIN_FAILURE)
     {
         AfxMessageBox(AFX_IDP_FAILED_MAPI_SEND);
@@ -520,19 +520,19 @@ BOOL ZUMail::SendDocuments (ZUMailFileDescription& FileList, CString Subject, CS
     }
 
     return bRetValue;
-  //## end ZUMail::SendDocuments%913223376.body
+    //## end ZUMail::SendDocuments%913223376.body
 }
 
-BOOL ZUMail::SendDocuments (CStringArray& FileList, CString Subject, CString MessageHeader, CString MessageFooter, ZUMailUserList* PersonList)
+BOOL ZUMail::SendDocuments(CStringArray& FileList, CString Subject, CString MessageHeader, CString MessageFooter, ZUMailUserList* PersonList)
 {
-  //## begin ZUMail::SendDocuments%913223377.body preserve=yes
-      return SendDocuments( ZUMailFileDescription( FileList ), MessageHeader, MessageFooter, Subject, PersonList );
-  //## end ZUMail::SendDocuments%913223377.body
+    //## begin ZUMail::SendDocuments%913223377.body preserve=yes
+    return SendDocuments(PSS_MailFileDescription(FileList), MessageHeader, MessageFooter, Subject, PersonList);
+    //## end ZUMail::SendDocuments%913223377.body
 }
 
-BOOL ZUMail::ResolveName (const CString Name, ZUMailUserList& PersonList, BOOL ShowDialog)
+BOOL ZUMail::ResolveName(const CString Name, ZUMailUserList& PersonList, BOOL ShowDialog)
 {
-  //## begin ZUMail::ResolveName%921575858.body preserve=yes
+    //## begin ZUMail::ResolveName%921575858.body preserve=yes
     if (lpfnMAPIFreeBuffer == NULL || lpfnMAPIResolveName == NULL)
     {
         AfxMessageBox(AFX_IDP_INVALID_MAPI_DLL);
@@ -545,11 +545,11 @@ BOOL ZUMail::ResolveName (const CString Name, ZUMailUserList& PersonList, BOOL S
     HWND hWndParent = _AfxGetSafeOwner(NULL);
 #else
     // allow MAPI to send the mail message
-    HWND hWndTop;       
+    HWND hWndTop;
     CWnd* pWnd = CWnd::GetSafeOwner(NULL, &hWndTop);
-    if (pWnd == NULL)         
-       pWnd = CWnd::GetDesktopWindow();
-    ASSERT_VALID(pWnd);    
+    if (pWnd == NULL)
+        pWnd = CWnd::GetDesktopWindow();
+    ASSERT_VALID(pWnd);
     HWND hWndParent = pWnd->GetSafeHwnd();
 #endif
 
@@ -561,9 +561,9 @@ BOOL ZUMail::ResolveName (const CString Name, ZUMailUserList& PersonList, BOOL S
     ::SetProp(hWndParent, "StayDisabled", (HANDLE)1);
 
     MapiRecipDesc*     lppRecip[2];
-    
-    ULONG nError = lpfnMAPIResolveName(    NULL, MAKELONG(hWndParent, 0), (LPTSTR)((const char*)Name),
-                                        (ShowDialog == TRUE) ? MAPI_LOGON_UI|MAPI_DIALOG : MAPI_LOGON_UI, 0, &lppRecip[0]);
+
+    ULONG nError = lpfnMAPIResolveName(NULL, MAKELONG(hWndParent, 0), (LPTSTR)((const char*)Name),
+        (ShowDialog == TRUE) ? MAPI_LOGON_UI | MAPI_DIALOG : MAPI_LOGON_UI, 0, &lppRecip[0]);
 
     // after returning from the MAPISendMail call, the window must
     // be re-enabled and focus returned to the frame to undo the workaround
@@ -575,27 +575,27 @@ BOOL ZUMail::ResolveName (const CString Name, ZUMailUserList& PersonList, BOOL S
     ::SetFocus(hWndParent);
 
     BOOL    bRetValue = TRUE;
-    
-    if (nError != SUCCESS_SUCCESS && 
+
+    if (nError != SUCCESS_SUCCESS &&
         nError != MAPI_USER_ABORT && nError != MAPI_E_LOGIN_FAILURE)
     {
         AfxMessageBox(AFX_IDP_FAILED_MAPI_SEND);
         bRetValue = FALSE;
     }
 
-      if (lppRecip)
-      {
-          PersonList.AddPerson( lppRecip[0] );
-          lpfnMAPIFreeBuffer( lppRecip );
-      }
+    if (lppRecip)
+    {
+        PersonList.AddPerson(lppRecip[0]);
+        lpfnMAPIFreeBuffer(lppRecip);
+    }
 
     return bRetValue;
-  //## end ZUMail::ResolveName%921575858.body
+    //## end ZUMail::ResolveName%921575858.body
 }
 
-BOOL ZUMail::Address (ZUMailUserList& PersonList)
+BOOL ZUMail::Address(ZUMailUserList& PersonList)
 {
-  //## begin ZUMail::Address%921594740.body preserve=yes
+    //## begin ZUMail::Address%921594740.body preserve=yes
     if (lpfnMAPIFreeBuffer == NULL || lpfnMAPIAddress == NULL)
     {
         AfxMessageBox(AFX_IDP_INVALID_MAPI_DLL);
@@ -608,11 +608,11 @@ BOOL ZUMail::Address (ZUMailUserList& PersonList)
     HWND hWndParent = _AfxGetSafeOwner(NULL);
 #else
     // allow MAPI to send the mail message
-    HWND hWndTop;       
+    HWND hWndTop;
     CWnd* pWnd = CWnd::GetSafeOwner(NULL, &hWndTop);
-    if (pWnd == NULL)         
-       pWnd = CWnd::GetDesktopWindow();
-    ASSERT_VALID(pWnd);    
+    if (pWnd == NULL)
+        pWnd = CWnd::GetDesktopWindow();
+    ASSERT_VALID(pWnd);
     HWND hWndParent = pWnd->GetSafeHwnd();
 #endif
 
@@ -623,16 +623,16 @@ BOOL ZUMail::Address (ZUMailUserList& PersonList)
     ::SetFocus(NULL);
     ::SetProp(hWndParent, "StayDisabled", (HANDLE)1);
 
-    ULONG                    NbAddress=2;
+    ULONG                    NbAddress = 2;
     MapiRecipDesc*            lppNewRecips[2];
-    
-    ULONG nError = lpfnMAPIAddress(    NULL, MAKELONG(hWndParent, 0), NULL, 1, "",
-                                    PersonList.GetCount(), (PersonList.GetCount() > 0) ? PersonList.GetMapiRecipDescPtr() : NULL,
-                                    MAPI_LOGON_UI|MAPI_DIALOG, 0,
-                                    &NbAddress, &lppNewRecips[0]);
+
+    ULONG nError = lpfnMAPIAddress(NULL, MAKELONG(hWndParent, 0), NULL, 1, "",
+                                   PersonList.GetCount(), (PersonList.GetCount() > 0) ? PersonList.GetMapiRecipDescPtr() : NULL,
+                                   MAPI_LOGON_UI | MAPI_DIALOG, 0,
+                                   &NbAddress, &lppNewRecips[0]);
 
     // Because supports only one address
-    NbAddress = __max( 1, NbAddress );
+    NbAddress = __max(1, NbAddress);
     // after returning from the MAPIAddress call, the window must
     // be re-enabled and focus returned to the frame to undo the workaround
     // done before the MAPI call.
@@ -643,23 +643,23 @@ BOOL ZUMail::Address (ZUMailUserList& PersonList)
     ::SetFocus(hWndParent);
 
     BOOL    bRetValue = TRUE;
-    
-    if (nError != SUCCESS_SUCCESS && 
+
+    if (nError != SUCCESS_SUCCESS &&
         nError != MAPI_USER_ABORT && nError != MAPI_E_LOGIN_FAILURE)
     {
         AfxMessageBox(AFX_IDP_FAILED_MAPI_SEND);
         bRetValue = FALSE;
     }
-    
-      if (lppNewRecips && nError != MAPI_USER_ABORT)
-      {
-          PersonList.RemoveAllPersons();
-          PersonList.Fill( lppNewRecips, NbAddress );
-          lpfnMAPIFreeBuffer( lppNewRecips );
-      }
+
+    if (lppNewRecips && nError != MAPI_USER_ABORT)
+    {
+        PersonList.RemoveAllPersons();
+        PersonList.Fill(lppNewRecips, NbAddress);
+        lpfnMAPIFreeBuffer(lppNewRecips);
+    }
 
     return bRetValue;
-  //## end ZUMail::Address%921594740.body
+    //## end ZUMail::Address%921594740.body
 }
 
 // Additional Declarations

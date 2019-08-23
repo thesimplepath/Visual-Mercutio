@@ -22,7 +22,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_ActivityAttributionInputBackupDialog, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(PSS_ActivityAttributionInputBackupDialog, PSS_WizardDialog)
     //{{AFX_MSG_MAP(PSS_ActivityAttributionInputBackupDialog)
     ON_BN_CLICKED(IDNEXT, OnNext)
     ON_BN_CLICKED(IDC_ADDUSER, OnAddUser)
@@ -39,12 +39,12 @@ PSS_ActivityAttributionInputBackupDialog::PSS_ActivityAttributionInputBackupDial
                                                                                    ZActivity*     pActivity,
                                                                                    BOOL           lastActivity,
                                                                                    CWnd*          pParent) :
-    ZIWizardDialog(PSS_ActivityAttributionInputBackupDialog::IDD,
-                   IDB_WZBMP1,
-                   0,
-                   0,
-                   IDS_ATTRIBUTIONTITLE_WZ,
-                   IDS_ATTRIBUTIONBACKUPTEXTE_WZ),
+    PSS_WizardDialog(PSS_ActivityAttributionInputBackupDialog::IDD,
+                     IDB_WZBMP1,
+                     0,
+                     0,
+                     IDS_ATTRIBUTIONTITLE_WZ,
+                     IDS_ATTRIBUTIONBACKUPTEXTE_WZ),
     m_UserManager(userManager),
     m_Mail(mail),
     m_pActivity(pActivity),
@@ -55,7 +55,7 @@ PSS_ActivityAttributionInputBackupDialog::PSS_ActivityAttributionInputBackupDial
 //---------------------------------------------------------------------------
 void PSS_ActivityAttributionInputBackupDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_ActivityAttributionInputBackupDialog)
     DDX_Control(pDX, IDC_USERLIST,     m_UserList);
@@ -68,7 +68,7 @@ BOOL PSS_ActivityAttributionInputBackupDialog::OnInitDialog()
     ASSERT(m_pActivity);
     m_ActivityName = m_pActivity->GetName();
 
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
 
     const std::size_t count = m_pActivity->GetBackupUserCount();
 
@@ -149,7 +149,7 @@ void PSS_ActivityAttributionInputBackupDialog::OnOK()
 
     SaveState();
 
-    ZIWizardDialog::OnOK();
+    PSS_WizardDialog::OnOK();
 }
 //---------------------------------------------------------------------------
 void PSS_ActivityAttributionInputBackupDialog::OnNext()

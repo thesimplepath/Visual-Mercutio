@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZWizard.h"
+#include "zBaseLib\PSS_WizardDialog.h"
 #include "PSS_DirTreeCtrl.h"
 
 // resources
@@ -41,7 +41,7 @@
 * Select a server welcome dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_SelectServerWelcomeDialog : public ZIWizardDialog
+class PSS_SelectServerWelcomeDialog : public PSS_WizardDialog
 {
     public:
         /**

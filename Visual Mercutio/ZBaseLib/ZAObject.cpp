@@ -21,7 +21,7 @@
 #include "PSS_DrawFunctions.h"
 
 // PaintRes
-#include "PaintRes.h"
+#include "PSS_PaintResources.h"
 //## end module%334FC46302E7.includes
 
 // ZAObject
@@ -740,7 +740,7 @@ void PlanFinObject::DrawTabOrder( CDC* pDC )
     //## begin PlanFinObject::DrawTabOrder%947360848.body preserve=yes
     // First display the object
     CFont *OldFont;
-    OldFont = pDC->SelectObject( &ZBPaintResources::GetSmallSystemFont() );
+    OldFont = pDC->SelectObject( &PSS_PaintResources::GetSmallSystemFont() );
 
     CString Buffer;
     sprintf( Buffer.GetBufferSetLength( 7 ), _T( "%g" ), GetTabOrder() );
@@ -762,7 +762,7 @@ void PlanFinObject::DrawTabOrder( CDC* pDC )
 
     // Draw the object rectangle in blue
     CPen* pOldPen;
-    pOldPen = pDC->SelectObject( &ZBPaintResources::GetGrayPen() );
+    pOldPen = pDC->SelectObject( &PSS_PaintResources::GetGrayPen() );
 
     pDC->MoveTo( m_rctObject.left, m_rctObject.top );
     pDC->LineTo( m_rctObject.left, m_rctObject.bottom );
@@ -772,7 +772,7 @@ void PlanFinObject::DrawTabOrder( CDC* pDC )
 
     // After display the bubble with the name
     CBrush* pOldBrush;
-    pOldBrush = pDC->SelectObject( &ZBPaintResources::GetGrayBrush() );
+    pOldBrush = pDC->SelectObject( &PSS_PaintResources::GetGrayBrush() );
 
     pDC->SetBkMode( TRANSPARENT );
     pDC->SetTextColor( defCOLOR_BLACK );
@@ -781,7 +781,7 @@ void PlanFinObject::DrawTabOrder( CDC* pDC )
     pDC->DrawText( Buffer, -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE );
 
     // Draw Shadow
-    pDC->SelectObject( &ZBPaintResources::GetBlackPen() );
+    pDC->SelectObject( &PSS_PaintResources::GetBlackPen() );
     pDC->MoveTo( m_rctObject.right + 1, m_rctObject.top + 1 );
     pDC->LineTo( m_rctObject.right + 1, m_rctObject.bottom + 1 );
     pDC->LineTo( m_rctObject.left + 1, m_rctObject.bottom + 1 );
@@ -800,7 +800,7 @@ void PlanFinObject::DisplayCodeName( CDC* pDC, ZIView* pView, BOOL bDisplay, CWn
     //## begin PlanFinObject::DisplayCodeName%829516178.body preserve=yes
     // First display the object
     CFont *OldFont;
-    OldFont = pDC->SelectObject( &ZBPaintResources::GetSmallSystemFont() );
+    OldFont = pDC->SelectObject( &PSS_PaintResources::GetSmallSystemFont() );
 
     CSize sizeText;
     sizeText = pDC->GetTextExtent( GetObjectName(), GetObjectName().GetLength() );
@@ -823,7 +823,7 @@ void PlanFinObject::DisplayCodeName( CDC* pDC, ZIView* pView, BOOL bDisplay, CWn
 
         // Draw the object rectangle in blue
         CPen* pOldPen;
-        pOldPen = pDC->SelectObject( &ZBPaintResources::GetBluePen() );
+        pOldPen = pDC->SelectObject( &PSS_PaintResources::GetBluePen() );
 
         pDC->MoveTo( m_rctObject.left, m_rctObject.top );
         pDC->LineTo( m_rctObject.left, m_rctObject.bottom );
@@ -833,7 +833,7 @@ void PlanFinObject::DisplayCodeName( CDC* pDC, ZIView* pView, BOOL bDisplay, CWn
 
         // After display the bubble with the name
         CBrush* pOldBrush;
-        pOldBrush = pDC->SelectObject( &ZBPaintResources::GetLtBlueBrush() );
+        pOldBrush = pDC->SelectObject( &PSS_PaintResources::GetLtBlueBrush() );
 
         pDC->SetBkMode(TRANSPARENT);
         pDC->SetTextColor( GetFont( pView )->GetFontColor() );
@@ -852,7 +852,7 @@ void PlanFinObject::DisplayCodeName( CDC* pDC, ZIView* pView, BOOL bDisplay, CWn
         pDC->Ellipse( &SmallElipseRect );
 
         // Draw Shadow
-        pDC->SelectObject( &ZBPaintResources::GetBlackPen() );
+        pDC->SelectObject( &PSS_PaintResources::GetBlackPen() );
         pDC->MoveTo( m_rctObject.right + 1, m_rctObject.top + 1 );
         pDC->LineTo( m_rctObject.right + 1, m_rctObject.bottom + 1 );
         pDC->LineTo( m_rctObject.left + 1, m_rctObject.bottom + 1 );
@@ -950,7 +950,7 @@ void PlanFinObject::DisplayColorForNumber( CDC* pDC, ZIView* pView )
 
     // Draw the object rectangle in blue
     CPen* pOldPen;
-    pOldPen = pDC->SelectObject( &ZBPaintResources::GetRedPen() );
+    pOldPen = pDC->SelectObject( &PSS_PaintResources::GetRedPen() );
 
     pDC->MoveTo( m_rctObject.left, m_rctObject.top );
     pDC->LineTo( m_rctObject.left, m_rctObject.bottom );
@@ -959,7 +959,7 @@ void PlanFinObject::DisplayColorForNumber( CDC* pDC, ZIView* pView )
     pDC->LineTo( m_rctObject.left, m_rctObject.top );
 
     // Draw Shadow
-    pDC->SelectObject( &ZBPaintResources::GetBlackPen() );
+    pDC->SelectObject( &PSS_PaintResources::GetBlackPen() );
     pDC->MoveTo( m_rctObject.right + 1, m_rctObject.top + 1 );
     pDC->LineTo( m_rctObject.right + 1, m_rctObject.bottom + 1 );
     pDC->LineTo( m_rctObject.left + 1, m_rctObject.bottom + 1 );
@@ -1016,7 +1016,7 @@ void PlanFinObject::DrawFillObject( CDC* pDC, ZIView* pView )
 void PlanFinObject::DisplayObjectName( CDC* pDC )
 {
     //## begin PlanFinObject::DisplayObjectName%862512873.body preserve=yes
-    CFont *OldFont = pDC->SelectObject( &ZBPaintResources::GetSmallSystemFont() );
+    CFont *OldFont = pDC->SelectObject( &PSS_PaintResources::GetSmallSystemFont() );
 
     pDC->SetBkMode( TRANSPARENT );
     pDC->SetTextColor( defCOLOR_BLACK );
@@ -1309,7 +1309,7 @@ void PlanFinObject::DeleteNotes()
 void PlanFinObject::DrawRightCorner( CDC* pDC )
 {
     CPen* pOldPen = NULL;
-    pOldPen = pDC->SelectObject( &ZBPaintResources::GetBlackPen() );
+    pOldPen = pDC->SelectObject( &PSS_PaintResources::GetBlackPen() );
 
     // Draw Small Shadow
     pDC->MoveTo( m_rctObject.right + 1, m_rctObject.bottom - 4 );

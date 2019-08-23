@@ -62,7 +62,7 @@ int ZVWorkspaceCreationWizard::DoModal()
 /////////////////////////////////////////////////////////////////////////////
 // ZVWorkspaceStart dialog
 
-BEGIN_MESSAGE_MAP(ZVWorkspaceStart, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(ZVWorkspaceStart, PSS_WizardDialog)
     //{{AFX_MSG_MAP(ZVWorkspaceStart)
     ON_BN_CLICKED(IDNEXT, OnNext)
     ON_EN_CHANGE(IDC_WORKSPACE_NAME, OnChangeWorkspaceName)
@@ -74,12 +74,12 @@ ZVWorkspaceStart::ZVWorkspaceStart(const CString    InitialDirectory    /*= ""*/
                                    const CString    WorkspaceExtension    /*= ""*/,
                                    bool            Modify                /*= false*/,
                                    CWnd*            pParent                /*= NULL*/)
-    : ZIWizardDialog(ZVWorkspaceStart::IDD,
-                     IDB_WZBMP1,
-                     0,
-                     0,
-                     IDS_WZ_WORKSPACE_ST_S,
-                     IDS_WZ_WORKSPACE_ST_T),
+    : PSS_WizardDialog(ZVWorkspaceStart::IDD,
+                       IDB_WZBMP1,
+                       0,
+                       0,
+                       IDS_WZ_WORKSPACE_ST_S,
+                       IDS_WZ_WORKSPACE_ST_T),
     m_InitialDirectory(InitialDirectory),
     m_WorkspaceExtension(WorkspaceExtension),
     m_Modify(Modify)
@@ -151,7 +151,7 @@ bool ZVWorkspaceStart::Validate()
 
 void ZVWorkspaceStart::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(ZVWorkspaceStart)
     DDX_Control(pDX, IDC_WORKSPACE_FOLDER, m_Directory);
@@ -164,7 +164,7 @@ void ZVWorkspaceStart::DoDataExchange(CDataExchange* pDX)
 
 BOOL ZVWorkspaceStart::OnInitDialog()
 {
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
 
     ZDirectory::NormalizeDirectory(m_InitialDirectory);
     m_InitialDirectory += _T("\\");
@@ -219,7 +219,7 @@ void ZVWorkspaceStart::OnOK()
         return;
     }
 
-    ZIWizardDialog::OnOK();
+    PSS_WizardDialog::OnOK();
 }
 
 void ZVWorkspaceStart::OnNext()
@@ -235,7 +235,7 @@ void ZVWorkspaceStart::OnNext()
 /////////////////////////////////////////////////////////////////////////////
 // ZVWorkspaceTemplate dialog
 
-BEGIN_MESSAGE_MAP(ZVWorkspaceTemplate, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(ZVWorkspaceTemplate, PSS_WizardDialog)
     //{{AFX_MSG_MAP(ZVWorkspaceTemplate)
     ON_NOTIFY(NM_CLICK, IDC_WKS_TEMPLATELIST, OnClickWksTemplatelist)
     ON_NOTIFY(NM_DBLCLK, IDC_WKS_TEMPLATELIST, OnDblclkWksTemplatelist)
@@ -245,8 +245,8 @@ BEGIN_MESSAGE_MAP(ZVWorkspaceTemplate, ZIWizardDialog)
 END_MESSAGE_MAP()
 
 ZVWorkspaceTemplate::ZVWorkspaceTemplate(ZBWorkspaceWizardTemplateMg*    pWorkspaceTemplateManager    /*= NULL*/,
-                                         CWnd*                            pParent                        /*= NULL*/)
-    : ZIWizardDialog(ZVWorkspaceTemplate::IDD,
+                                         CWnd*                            pParent                        /*= NULL*/) :
+    PSS_WizardDialog(ZVWorkspaceTemplate::IDD,
                      IDB_WZBMP1,
                      0,
                      0,
@@ -261,7 +261,7 @@ ZVWorkspaceTemplate::ZVWorkspaceTemplate(ZBWorkspaceWizardTemplateMg*    pWorksp
 
 void ZVWorkspaceTemplate::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(ZVWorkspaceTemplate)
     DDX_Control(pDX, IDC_WKS_TEMPLATELIST, m_TemplateList);
@@ -274,12 +274,12 @@ void ZVWorkspaceTemplate::DoDataExchange(CDataExchange* pDX)
 
 void ZVWorkspaceTemplate::OnOK()
 {
-    ZIWizardDialog::OnOK();
+    PSS_WizardDialog::OnOK();
 }
 
 BOOL ZVWorkspaceTemplate::OnInitDialog()
 {
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
 
     m_TemplateList.Initialize(m_pWorkspaceTemplateManager);
     m_TemplateList.SetCurSel(0);

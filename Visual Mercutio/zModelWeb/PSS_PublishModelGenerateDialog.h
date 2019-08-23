@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZWizard.h"
+#include "zBaseLib\PSS_WizardDialog.h"
 
 // resources
 #include "zModelWebRes.h"
@@ -40,7 +40,7 @@
 * Dialog box showing the model publication progression
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PublishModelGenerateDialog : public ZIWizardDialog
+class AFX_EXT_CLASS PSS_PublishModelGenerateDialog : public PSS_WizardDialog
 {
     public:
         /**

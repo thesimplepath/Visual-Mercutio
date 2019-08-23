@@ -10,8 +10,8 @@
 #include "zModel\ProcGraphModelDoc.h"
 
 #ifdef _DEBUG
-    #undef THIS_FILE
-    static char BASED_CODE THIS_FILE[] = __FILE__;
+#undef THIS_FILE
+static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
@@ -19,19 +19,19 @@
 
 ZVModelWorkflowParameters::ZVModelWorkflowParameters(BOOL Modify, ZDProcessGraphModelDoc* pDoc, ZDTemplateManager* pTemplateManager, CString FileExtension, CWnd* pParent /*=NULL*/)
     : m_Modify(Modify),
-      m_pDoc(pDoc),
-      m_pTemplateManager(pTemplateManager), 
-      m_FileExtension(FileExtension),
-      m_CheckConsistency(false),
-      m_SaveModelInWkfFile(false),
-      m_FileExist(false)
+    m_pDoc(pDoc),
+    m_pTemplateManager(pTemplateManager),
+    m_FileExtension(FileExtension),
+    m_CheckConsistency(false),
+    m_SaveModelInWkfFile(false),
+    m_FileExist(false)
 {}
 
 int ZVModelWorkflowParameters::DoModal()
 {
 
     ZVModelWorkflowParametersWelcome    Welcome;
-    
+
     if (Welcome.DoModal() == IDCANCEL)
         return IDCANCEL;
 
@@ -41,17 +41,17 @@ int ZVModelWorkflowParameters::DoModal()
     if (templateCopyDialog.DoModal() == IDCANCEL)
         return IDCANCEL;
 
-    ZVModelWorkflowParametersOptions    Options( m_Modify, *m_pDoc );
-    
+    ZVModelWorkflowParametersOptions    Options(m_Modify, *m_pDoc);
+
     if (Options.DoModal() == IDCANCEL)
         return IDCANCEL;
-            
+
     // save options
-    m_CheckConsistency   = Options.GetCheckConsistency();
+    m_CheckConsistency = Options.GetCheckConsistency();
     m_SaveModelInWkfFile = Options.GetSaveModelInWorkflow();
 
     // save template information 
-    m_FolderStamp.SetTemplate (templateCopyDialog.GetFileName());
+    m_FolderStamp.SetTemplate(templateCopyDialog.GetFileName());
     m_FolderStamp.SetTemplate(templateCopyDialog.GetFileName());
     m_FolderStamp.SetExplanation(templateCopyDialog.GetDescription());
     m_FolderStamp.SetTitle(templateCopyDialog.GetTitle());
@@ -69,26 +69,30 @@ int ZVModelWorkflowParameters::DoModal()
 // ZVModelWorkflowParametersWelcome dialog
 
 
-ZVModelWorkflowParametersWelcome::ZVModelWorkflowParametersWelcome(CWnd* pParent /*=NULL*/)
-    : ZIWizardDialog(ZVModelWorkflowParametersWelcome::IDD, IDB_WZBMP1, 0, 0, IDS_WIZARDACTIVITYATTRIBUTION_WT, IDS_WIZARDACTIVITYATTRIBUTION_T )
+ZVModelWorkflowParametersWelcome::ZVModelWorkflowParametersWelcome(CWnd* pParent /*=NULL*/) :
+    PSS_WizardDialog(ZVModelWorkflowParametersWelcome::IDD,
+                     IDB_WZBMP1,
+                     0,
+                     0,
+                     IDS_WIZARDACTIVITYATTRIBUTION_WT,
+                     IDS_WIZARDACTIVITYATTRIBUTION_T)
 {
     //{{AFX_DATA_INIT(ZVModelWorkflowParametersWelcome)
     //}}AFX_DATA_INIT
 }
 
 ZVModelWorkflowParametersWelcome::~ZVModelWorkflowParametersWelcome()
-{
-}
+{}
 
 
 void ZVModelWorkflowParametersWelcome::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(ZVModelWorkflowParametersWelcome)
     //}}AFX_DATA_MAP
 }
 
-BEGIN_MESSAGE_MAP(ZVModelWorkflowParametersWelcome, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(ZVModelWorkflowParametersWelcome, PSS_WizardDialog)
     //{{AFX_MSG_MAP(ZVModelWorkflowParametersWelcome)
     ON_BN_CLICKED(IDNEXT, OnNext)
     //}}AFX_MSG_MAP
@@ -101,18 +105,18 @@ END_MESSAGE_MAP()
 
 BOOL ZVModelWorkflowParametersWelcome::OnInitDialog()
 {
-    return ZIWizardDialog::OnInitDialog();
+    return PSS_WizardDialog::OnInitDialog();
 }
 
 
 void ZVModelWorkflowParametersWelcome::OnOK()
 {
-    ZIWizardDialog::OnOK();
+    PSS_WizardDialog::OnOK();
 }
 
 void ZVModelWorkflowParametersWelcome::OnNext()
 {
-    EndDialog( IDNEXT );
+    EndDialog(IDNEXT);
 }
 
 
@@ -122,10 +126,15 @@ void ZVModelWorkflowParametersWelcome::OnNext()
 // ZVModelWorkflowParametersOptions dialog
 
 
-ZVModelWorkflowParametersOptions::ZVModelWorkflowParametersOptions(BOOL Modify, ZDProcessGraphModelDoc& Doc, CWnd* pParent /*=NULL*/)
-    : ZIWizardDialog(ZVModelWorkflowParametersOptions::IDD, IDB_WZBMP1, 0, 0, IDS_WIZARDACTIVITYATTRIBUTION_WT, IDS_WIZARDACTIVITYATTRIBUTION_T ),
-      m_Modify(Modify),
-      m_Doc(Doc)
+ZVModelWorkflowParametersOptions::ZVModelWorkflowParametersOptions(BOOL Modify, ZDProcessGraphModelDoc& Doc, CWnd* pParent /*=NULL*/) :
+    PSS_WizardDialog(ZVModelWorkflowParametersOptions::IDD,
+                     IDB_WZBMP1,
+                     0,
+                     0,
+                     IDS_WIZARDACTIVITYATTRIBUTION_WT,
+                     IDS_WIZARDACTIVITYATTRIBUTION_T),
+    m_Modify(Modify),
+    m_Doc(Doc)
 {
     //{{AFX_DATA_INIT(ZVModelWorkflowParametersOptions)
     m_CheckConsistency = m_Doc.GetCheckConsistency();
@@ -134,20 +143,19 @@ ZVModelWorkflowParametersOptions::ZVModelWorkflowParametersOptions(BOOL Modify, 
 }
 
 ZVModelWorkflowParametersOptions::~ZVModelWorkflowParametersOptions()
-{
-}
+{}
 
 
 void ZVModelWorkflowParametersOptions::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(ZVModelWorkflowParametersOptions)
     DDX_Check(pDX, IDC_CHECK_CONSISTENCY, m_CheckConsistency);
     DDX_Check(pDX, IDC_SAVEWKF_INFILE, m_SaveModelInWkfFile);
     //}}AFX_DATA_MAP
 }
 
-BEGIN_MESSAGE_MAP(ZVModelWorkflowParametersOptions, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(ZVModelWorkflowParametersOptions, PSS_WizardDialog)
     //{{AFX_MSG_MAP(ZVModelWorkflowParametersOptions)
     ON_BN_CLICKED(IDNEXT, OnNext)
     //}}AFX_MSG_MAP
@@ -160,18 +168,18 @@ END_MESSAGE_MAP()
 
 BOOL ZVModelWorkflowParametersOptions::OnInitDialog()
 {
-    return ZIWizardDialog::OnInitDialog();
+    return PSS_WizardDialog::OnInitDialog();
 }
 
 
 void ZVModelWorkflowParametersOptions::OnOK()
 {
-    UpdateData( TRUE );
-    ZIWizardDialog::OnOK();
+    UpdateData(TRUE);
+    PSS_WizardDialog::OnOK();
 }
 
 void ZVModelWorkflowParametersOptions::OnNext()
 {
-    UpdateData( TRUE );
-    EndDialog( IDNEXT );
+    UpdateData(TRUE);
+    EndDialog(IDNEXT);
 }

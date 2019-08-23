@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZWizard.h"
+#include "zBaseLib\PSS_WizardDialog.h"
 #include "PSS_SearchEdit.h"
 
 // resources
@@ -41,7 +41,7 @@
 * Select process Wizard start dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_SelectProcessWizardStartDialog : public ZIWizardDialog
+class PSS_SelectProcessWizardStartDialog : public PSS_WizardDialog
 {
     public:
         /**

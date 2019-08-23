@@ -13,7 +13,7 @@
 #endif
 
 // processsoft
-#include "zBaseLib\ZWizard.h"
+#include "zBaseLib\PSS_WizardDialog.h"
 #include "zWinUtil32\PSS_LanguageComboBox.h"
 
 // resources
@@ -23,7 +23,7 @@
 * Dialog box allowing to select the model options to publish
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_PublishModelOptionsDialog : public ZIWizardDialog
+class PSS_PublishModelOptionsDialog : public PSS_WizardDialog
 {
     public:
         /**

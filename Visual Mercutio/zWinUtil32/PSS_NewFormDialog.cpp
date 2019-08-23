@@ -112,7 +112,7 @@ void PSS_NewFormPropertySheet::ClearContents()
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_NewFormDialog, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(PSS_NewFormDialog, PSS_WizardDialog)
     //{{AFX_MSG_MAP(PSS_NewFormDialog)
     ON_BN_CLICKED(IDC_MOVE_TOGENERAL, OnMoveToGeneralTab)
     ON_MESSAGE(UM_SETCOMMENT, OnCommentChange)
@@ -126,12 +126,12 @@ END_MESSAGE_MAP()
 PSS_NewFormDialog::PSS_NewFormDialog(ZDTemplateManager*        pTemplateManager,
                                      IEDialogFormType          type,
                                      IEDialogFormExtensionType extensionType) :
-    ZIWizardDialog(PSS_NewFormDialog::IDD,
-                   IDB_WZBMP2,
-                   0,
-                   0,
-                   0,
-                   0),
+    PSS_WizardDialog(PSS_NewFormDialog::IDD,
+                     IDB_WZBMP2,
+                     0,
+                     0,
+                     0,
+                     0),
     m_CopyFormat(TRUE),
     m_pTemplateManager(pTemplateManager),
     m_pSystemPropertySheet(NULL),
@@ -152,7 +152,7 @@ PSS_NewFormDialog::~PSS_NewFormDialog()
 //---------------------------------------------------------------------------
 void PSS_NewFormDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_NewFormDialog)
     DDX_Control(pDX, IDC_COPYFORMAT, m_CopyFormatWnd);
@@ -164,7 +164,7 @@ void PSS_NewFormDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_NewFormDialog::OnInitDialog()
 {
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
 
     m_MoveToGeneralTabBtn.AutoLoad(IDC_MOVE_TOGENERAL, this);
     m_MoveToGeneralTabBtn.EnableWindow(FALSE);
@@ -402,6 +402,6 @@ void PSS_NewFormDialog::OnMoveToGeneralTab()
 //---------------------------------------------------------------------------
 void PSS_NewFormDialog::OnOK()
 {
-    ZIWizardDialog::OnOK();
+    PSS_WizardDialog::OnOK();
 }
 //---------------------------------------------------------------------------

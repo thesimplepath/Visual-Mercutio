@@ -26,7 +26,7 @@
 
 // processsoft
 #include "PSS_FileManager.h"
-#include "MFileDsc.h"
+#include "PSS_MailFileDescription.h"
 #include "PersonLs.h"
 
 #ifdef _ZBASELIBEXPORT
@@ -184,7 +184,7 @@ class AFX_EXT_CLASS PSS_MailMessage : public CObject
         virtual inline void RemoveAllFiles();
 
         /**
-        * Builds and gets the file text hyperlink
+        * Gets the file text hyperlink
         *@return the file text hyperlink
         */
         virtual inline const CString GetHyperLinkText();
@@ -223,7 +223,7 @@ class AFX_EXT_CLASS PSS_MailMessage : public CObject
         * Gets the mapi file list
         *@return the mapi file list
         */
-        virtual inline const ZUMailFileDescription* GetMailFileList() const;
+        virtual inline const PSS_MailFileDescription* GetMailFileList() const;
 
         /**
         * Serializes the class content to an archive
@@ -232,10 +232,10 @@ class AFX_EXT_CLASS PSS_MailMessage : public CObject
         virtual void Serialize(CArchive& ar);
 
     private:
-        ZUMailUserList*        m_pMailUserList;
-        ZUMailFileDescription* m_pMailFileList;
-        CString                m_Subject;
-        CString                m_Text;
+        ZUMailUserList*          m_pMailUserList;
+        PSS_MailFileDescription* m_pMailFileList;
+        CString                  m_Subject;
+        CString                  m_Text;
 
         /**
         * Copy constructor
@@ -311,7 +311,7 @@ void PSS_MailMessage::RemoveAllMailUser()
 BOOL PSS_MailMessage::AddFile(const CString& fileName, PSS_File::IEAttachementType attachType)
 {
     if (!m_pMailFileList)
-        m_pMailFileList = new ZUMailFileDescription;
+        m_pMailFileList = new PSS_MailFileDescription;
 
     if (m_pMailFileList)
         return m_pMailFileList->AddFile(fileName, attachType);
@@ -322,7 +322,7 @@ BOOL PSS_MailMessage::AddFile(const CString& fileName, PSS_File::IEAttachementTy
 BOOL PSS_MailMessage::AddFile(PSS_File& file, PSS_File::IEAttachementType attachType)
 {
     if (!m_pMailFileList)
-        m_pMailFileList = new ZUMailFileDescription;
+        m_pMailFileList = new PSS_MailFileDescription;
 
     if (m_pMailFileList)
         return m_pMailFileList->AddFile(file, attachType);
@@ -333,7 +333,7 @@ BOOL PSS_MailMessage::AddFile(PSS_File& file, PSS_File::IEAttachementType attach
 void PSS_MailMessage::FillFile(CStringArray& fileList, PSS_File::IEAttachementType attachType)
 {
     if (!m_pMailFileList)
-        m_pMailFileList = new ZUMailFileDescription;
+        m_pMailFileList = new PSS_MailFileDescription;
 
     if (m_pMailFileList)
         m_pMailFileList->Fill(fileList, attachType);
@@ -342,7 +342,7 @@ void PSS_MailMessage::FillFile(CStringArray& fileList, PSS_File::IEAttachementTy
 void PSS_MailMessage::FillFile(PSS_FileManager& fileList, PSS_File::IEAttachementType attachType)
 {
     if (!m_pMailFileList)
-        m_pMailFileList = new ZUMailFileDescription;
+        m_pMailFileList = new PSS_MailFileDescription;
 
     if (m_pMailFileList)
         m_pMailFileList->Fill(fileList, attachType);
@@ -359,7 +359,7 @@ int PSS_MailMessage::GetFileCount() const
 MapiFileDesc* PSS_MailMessage::GetMapiFileDesc()
 {
     if (m_pMailFileList)
-        return m_pMailFileList->GetMapiFileDescPtr();
+        return m_pMailFileList->GetMapiFileDesc();
 
     return NULL;
 }
@@ -406,7 +406,7 @@ void PSS_MailMessage::SetText(const CString& value)
     m_Text = value;
 }
 //---------------------------------------------------------------------------
-const ZUMailFileDescription* PSS_MailMessage::GetMailFileList() const
+const PSS_MailFileDescription* PSS_MailMessage::GetMailFileList() const
 {
     return m_pMailFileList;
 }

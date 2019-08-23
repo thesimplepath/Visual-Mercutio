@@ -22,7 +22,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_ActivityAttributionInputValueDialog, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(PSS_ActivityAttributionInputValueDialog, PSS_WizardDialog)
     //{{AFX_MSG_MAP(PSS_ActivityAttributionInputValueDialog)
     ON_BN_CLICKED(IDNEXT, OnNext)
     ON_BN_CLICKED(IDC_ADDUSER, OnAddUser)
@@ -44,12 +44,12 @@ PSS_ActivityAttributionInputValueDialog::PSS_ActivityAttributionInputValueDialog
                                                                                  BOOL           timeAttribution,
                                                                                  BOOL           visibilityAttribution,
                                                                                  CWnd*          pParent) :
-    ZIWizardDialog(PSS_ActivityAttributionInputValueDialog::IDD,
-                   IDB_WZBMP1,
-                   0,
-                   0,
-                   IDS_ATTRIBUTIONTITLE_WZ,
-                   IDS_ATTRIBUTIONTEXTE_WZ),
+    PSS_WizardDialog(PSS_ActivityAttributionInputValueDialog::IDD,
+                     IDB_WZBMP1,
+                     0,
+                     0,
+                     IDS_ATTRIBUTIONTITLE_WZ,
+                     IDS_ATTRIBUTIONTEXTE_WZ),
     m_ActivityName(""),
     m_TimeOutDays(0),
     m_VisibilityType(-1),
@@ -66,7 +66,7 @@ PSS_ActivityAttributionInputValueDialog::PSS_ActivityAttributionInputValueDialog
 //---------------------------------------------------------------------------
 void PSS_ActivityAttributionInputValueDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_ActivityAttributionValueInputDialog)
     DDX_Control(pDX, IDC_USERLIST,       m_UserList);
@@ -78,7 +78,7 @@ void PSS_ActivityAttributionInputValueDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_ActivityAttributionInputValueDialog::OnInitDialog()
 {
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
 
     ASSERT(m_pActivity);
     m_ActivityName = m_pActivity->GetName();
@@ -168,7 +168,7 @@ void PSS_ActivityAttributionInputValueDialog::OnOK()
 
     SaveState();
 
-    ZIWizardDialog::OnOK();
+    PSS_WizardDialog::OnOK();
 }
 //---------------------------------------------------------------------------
 void PSS_ActivityAttributionInputValueDialog::OnNext()

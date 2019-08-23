@@ -13,7 +13,7 @@
     #pragma once
 #endif
 
-#include "zBaseLib\ZWizard.h"
+#include "zBaseLib\PSS_WizardDialog.h"
 #include "zModel\ZCSymbolAttributesTreeCtrl.h"
 
 // resources
@@ -26,7 +26,7 @@ class ZBPropertyAttributes;
 * Dialog box to select the model attributes to publish
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_PublishModelAttributesDialog : public ZIWizardDialog
+class PSS_PublishModelAttributesDialog : public PSS_WizardDialog
 {
     public:
         /**

@@ -20,13 +20,13 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZVConceptorReportOptions dialog
 
-BEGIN_MESSAGE_MAP(ZVConceptorReportOptions, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(ZVConceptorReportOptions, PSS_WizardDialog)
     //{{AFX_MSG_MAP(ZVConceptorReportOptions)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZVConceptorReportOptions::ZVConceptorReportOptions(CWnd* pParent /*=NULL*/)
-    : ZIWizardDialog(ZVConceptorReportOptions::IDD,
+ZVConceptorReportOptions::ZVConceptorReportOptions(CWnd* pParent /*=NULL*/) :
+    PSS_WizardDialog(ZVConceptorReportOptions::IDD,
                      IDB_WIZ_REPORT,
                      0,
                      0,
@@ -42,7 +42,7 @@ ZVConceptorReportOptions::ZVConceptorReportOptions(CWnd* pParent /*=NULL*/)
 
 void ZVConceptorReportOptions::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(ZVConceptorReportOptions)
     DDX_Check(pDX, IDC_DELIVERABLE, m_Deliverables);
     DDX_Check(pDX, IDC_DETAIL, m_Detail);
@@ -64,5 +64,5 @@ void ZVConceptorReportOptions::OnOK()
         return;
     }
 
-    ZIWizardDialog::OnOK();
+    PSS_WizardDialog::OnOK();
 }

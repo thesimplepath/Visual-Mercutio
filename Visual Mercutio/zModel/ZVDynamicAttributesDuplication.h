@@ -23,7 +23,7 @@
 
 #include "zBaseLib\ZBTokenizer.h"
 #include "zBaseLib\PSS_MsgBox.h"
-#include "zBaseLib\ZWizard.h"
+#include "zBaseLib\PSS_WizardDialog.h"
 
 #include "zModel\ProcGraphModelDoc.h"
 #include "zModel\zModelRes.h"
@@ -47,7 +47,7 @@
 // **************************************************************************************************************
 // *                                      Classe ZVDynamicAttributesDuplication                                    *
 // **************************************************************************************************************
-class ZVDynamicAttributesDuplication : public ZIWizardDialog
+class ZVDynamicAttributesDuplication : public PSS_WizardDialog
 {
     DECLARE_DYNAMIC( ZVDynamicAttributesDuplication )
 

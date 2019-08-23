@@ -17,7 +17,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseLib\ZWizard.h"
+#include "zBaseLib\PSS_WizardDialog.h"
 #include "zModelBP\zModelBPRes.h"
 #include "zBaseLib\ZCIntelliEdit.h"
 
@@ -65,7 +65,7 @@ private:
 // JMR-MODIF - Le 21 juin 2006 - Suppression des groupes "inclure modèle HTML" et "Inclure les attributs",
 // ajout de la propriété permettant de spécifier un alias.
 
-class ZVPublishToMessengerStart : public ZIWizardDialog
+class ZVPublishToMessengerStart : public PSS_WizardDialog
 {
 public:
 
@@ -151,7 +151,7 @@ private:
 
 /////////////////////////////////////////////////////////////////////////////
 // ZVPublishToMessengerLogon dialog.
-class ZVPublishToMessengerLogon : public ZIWizardDialog
+class ZVPublishToMessengerLogon : public PSS_WizardDialog
 {
 public:
 

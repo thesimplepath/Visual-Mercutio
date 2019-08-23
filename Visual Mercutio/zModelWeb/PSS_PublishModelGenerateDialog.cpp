@@ -17,7 +17,7 @@
 //---------------------------------------------------------------------------
 // Message loop
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_PublishModelGenerateDialog, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(PSS_PublishModelGenerateDialog, PSS_WizardDialog)
     //{{AFX_MSG_MAP(PSS_PublishModelGenerateDialog)
     ON_WM_CTLCOLOR()
     //}}AFX_MSG_MAP
@@ -26,27 +26,27 @@ END_MESSAGE_MAP()
 // PSS_PublishModelGenerate
 //---------------------------------------------------------------------------
 PSS_PublishModelGenerateDialog::PSS_PublishModelGenerateDialog() :
-    ZIWizardDialog(),
+    PSS_WizardDialog(),
     m_CancelRequested(false),
     m_Destination(_T(""))
 {}
 //---------------------------------------------------------------------------
 bool PSS_PublishModelGenerateDialog::Create(CWnd* pParent)
 {
-    return ZIWizardDialog::Create(PSS_PublishModelGenerateDialog::IDD,
-                                  IDB_WZBMP1,
-                                  0,
-                                  0,
-                                  IDS_PUBLISHMODELGENERATE_S,
-                                  IDS_PUBLISHMODELGENERATE_T,
-                                  TRUE,
-                                  FALSE,
-                                  pParent);
+    return PSS_WizardDialog::Create(PSS_PublishModelGenerateDialog::IDD,
+                                    IDB_WZBMP1,
+                                    0,
+                                    0,
+                                    IDS_PUBLISHMODELGENERATE_S,
+                                    IDS_PUBLISHMODELGENERATE_T,
+                                    TRUE,
+                                    FALSE,
+                                    pParent);
 }
 //---------------------------------------------------------------------------
 void PSS_PublishModelGenerateDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_PublishModelGenerateDialog)
     DDX_Control(pDX, IDC_AVIFILEMOVE, m_FileMoveAnimation);
@@ -71,7 +71,7 @@ void PSS_PublishModelGenerateDialog::SetDestination(const CString& destination)
 //---------------------------------------------------------------------------
 BOOL PSS_PublishModelGenerateDialog::OnInitDialog()
 {
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
 
     m_FileMoveAnimation.Open(IDR_FILEMOVE);
     m_FileMoveAnimation.ShowWindow(SW_SHOW);
@@ -84,7 +84,7 @@ BOOL PSS_PublishModelGenerateDialog::OnInitDialog()
 void PSS_PublishModelGenerateDialog::OnCancel()
 {
     m_CancelRequested = true;
-    ZIWizardDialog::OnCancel();
+    PSS_WizardDialog::OnCancel();
 }
 //---------------------------------------------------------------------------
 HBRUSH PSS_PublishModelGenerateDialog::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT ctlColor)
@@ -96,6 +96,6 @@ HBRUSH PSS_PublishModelGenerateDialog::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT ctl
         return HBRUSH(GetStockObject(NULL_BRUSH));
     }
 
-    return ZIWizardDialog::OnCtlColor(pDC, pWnd, ctlColor);
+    return PSS_WizardDialog::OnCtlColor(pDC, pWnd, ctlColor);
 }
 //---------------------------------------------------------------------------

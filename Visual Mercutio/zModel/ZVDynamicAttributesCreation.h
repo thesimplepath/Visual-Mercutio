@@ -21,7 +21,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseLib\ZWizard.h"
+#include "zBaseLib\PSS_WizardDialog.h"
 #include "zModel\zModelRes.h"
 
 #include "zProperty\ZBProperty.h"
@@ -96,7 +96,7 @@ private:
 // **************************************************************************************************************
 // *                                      ZVDynamicAttributesCreationS1 dialog                                    *
 // **************************************************************************************************************
-class ZVDynamicAttributesCreationS1 : public ZIWizardDialog
+class ZVDynamicAttributesCreationS1 : public PSS_WizardDialog
 {
 // Construction
 public:
@@ -154,7 +154,7 @@ private:
 // **************************************************************************************************************
 // *                                     ZVDynamicAttributesCreationS2 dialog                                    *
 // **************************************************************************************************************
-class ZVDynamicAttributesCreationS2 : public ZIWizardDialog
+class ZVDynamicAttributesCreationS2 : public PSS_WizardDialog
 {
 // Construction
 public:

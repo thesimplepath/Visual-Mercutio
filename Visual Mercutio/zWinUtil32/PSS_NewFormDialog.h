@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZWizard.h"
+#include "zBaseLib\PSS_WizardDialog.h"
 #include "zBaseLib\TmplMng.h"
 #include "PSS_BasePropSheet.h"
 #include "PSS_GenericFormPage.h"
@@ -106,7 +106,7 @@ const CString PSS_NewFormPropertySheet::GetRootCaption() const
 * New form wizard dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_NewFormDialog : public ZIWizardDialog
+class AFX_EXT_CLASS PSS_NewFormDialog : public PSS_WizardDialog
 {
     public:
         /**

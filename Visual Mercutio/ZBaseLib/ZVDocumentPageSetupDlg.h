@@ -21,7 +21,7 @@
 
 #include "Define.h"
 #include "zBaseLibRes.h"
-#include "ZWizard.h"
+#include "PSS_WizardDialog.h"
 
 #ifdef _ZBASELIBEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -33,7 +33,7 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-class AFX_EXT_CLASS ZVDocumentPageSetupDlg : public ZIWizardDialog
+class AFX_EXT_CLASS ZVDocumentPageSetupDlg : public PSS_WizardDialog
 {
     DECLARE_DYNAMIC( ZVDocumentPageSetupDlg )
 

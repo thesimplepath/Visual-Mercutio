@@ -6,7 +6,7 @@
 
 
 #include "zBaseLib\PSS_FolderStamp.h"
-#include "zBaseLib\ZWizard.h"
+#include "zBaseLib\PSS_WizardDialog.h"
 
 #include "Resource.h"
 
@@ -50,7 +50,7 @@ private:
 /////////////////////////////////////////////////////////////////////////////
 // ZVModelWorkflowParametersWelcome dialog
 
-class ZVModelWorkflowParametersWelcome : public ZIWizardDialog
+class ZVModelWorkflowParametersWelcome : public PSS_WizardDialog
 {
 // Construction
 public:
@@ -84,7 +84,7 @@ private:
 /////////////////////////////////////////////////////////////////////////////
 // ZVModelWorkflowParametersOptions dialog
 
-class ZVModelWorkflowParametersOptions : public ZIWizardDialog
+class ZVModelWorkflowParametersOptions : public PSS_WizardDialog
 {
 // Construction
 public:

@@ -17,7 +17,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_ActivityAttributionWelcomeDialog, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(PSS_ActivityAttributionWelcomeDialog, PSS_WizardDialog)
     //{{AFX_MSG_MAP(PSS_ActivityAttributionWelcomeDialog)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -25,23 +25,23 @@ END_MESSAGE_MAP()
 // PSS_ActivityAttributionWelcomeDialog
 //---------------------------------------------------------------------------
 PSS_ActivityAttributionWelcomeDialog::PSS_ActivityAttributionWelcomeDialog(ZActivity* pActivity, CWnd* pParent) :
-    ZIWizardDialog(PSS_ActivityAttributionWelcomeDialog::IDD,
-                   IDB_WZBMP1,
-                   0,
-                   0,
-                   IDS_ATTRIBUTIONTITLEST_WZ,
-                   IDS_ATTRIBUTIONSTTEXTE_WZ),
+    PSS_WizardDialog(PSS_ActivityAttributionWelcomeDialog::IDD,
+                     IDB_WZBMP1,
+                     0,
+                     0,
+                     IDS_ATTRIBUTIONTITLEST_WZ,
+                     IDS_ATTRIBUTIONSTTEXTE_WZ),
     m_pActivity(pActivity)
 {}
 //---------------------------------------------------------------------------
 void PSS_ActivityAttributionWelcomeDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_ActivityAttributionWelcomeDialog::OnInitDialog()
 {
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
 
     CString prompt;
     AfxFormatString1(prompt, IDS_ATTRIBUTIONACTIVITY_WTEXT, m_pActivity->GetName());

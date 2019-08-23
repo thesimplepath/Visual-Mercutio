@@ -9,7 +9,7 @@
 #endif
 
 // processsoft
-#include "zBaseLib\ZWizard.h"
+#include "zBaseLib\PSS_WizardDialog.h"
 #include "zWinUtil32\PSS_SearchEdit.h"
 #include "zWinUtil32\PSS_WorkspaceTemplateListCtrl.h"
 
@@ -61,7 +61,7 @@ private:
 /////////////////////////////////////////////////////////////////////////////
 // ZVWorkspaceStart dialog
 
-class ZVWorkspaceStart : public ZIWizardDialog
+class ZVWorkspaceStart : public PSS_WizardDialog
 {
 // Construction
 public:
@@ -133,7 +133,7 @@ private:
 /////////////////////////////////////////////////////////////////////////////
 // ZVWorkspaceTemplate dialog
 
-class ZVWorkspaceTemplate : public ZIWizardDialog
+class ZVWorkspaceTemplate : public PSS_WizardDialog
 {
 // Construction
 public:

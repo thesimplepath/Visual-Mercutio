@@ -14,10 +14,10 @@
  // *                                                  Implémentation                                            *
  // **************************************************************************************************************
 
-IMPLEMENT_DYNAMIC(ZVDynamicAttributesDuplication, ZIWizardDialog)
+IMPLEMENT_DYNAMIC(ZVDynamicAttributesDuplication, PSS_WizardDialog)
 
 // Gestionnaires de messages ZVDynamicAttributesDuplication
-BEGIN_MESSAGE_MAP(ZVDynamicAttributesDuplication, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(ZVDynamicAttributesDuplication, PSS_WizardDialog)
     ON_LBN_SELCHANGE(IDC_ATTRIB_CATEGORY_LIST, OnLbnSelchangeAttribCategoryList)
     ON_BN_CLICKED(IDOK, OnBnClickedOk)
 END_MESSAGE_MAP()
@@ -28,8 +28,8 @@ END_MESSAGE_MAP()
 
 // Constructeur par défaut de la classe ZVDynamicAttributesDuplication.
 ZVDynamicAttributesDuplication::ZVDynamicAttributesDuplication(ZDProcessGraphModelDoc*    pModelDoc,
-                                                               bool                    SymbolSelected)
-    : ZIWizardDialog(ZVDynamicAttributesDuplication::IDD,
+                                                               bool                    SymbolSelected) :
+    PSS_WizardDialog(ZVDynamicAttributesDuplication::IDD,
                      IDB_WZBMP1,
                      0,
                      0,
@@ -64,7 +64,7 @@ void ZVDynamicAttributesDuplication::DoDataExchange(CDataExchange* pDX)
 // Cette fonction est appelée lorsque la classe s'initialise.
 BOOL ZVDynamicAttributesDuplication::OnInitDialog()
 {
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
 
     if (m_pModelDoc &&
         m_pModelDoc->GetModel() &&
@@ -137,5 +137,5 @@ void ZVDynamicAttributesDuplication::OnBnClickedOk()
         }
     }
 
-    ZIWizardDialog::OnOK();
+    PSS_WizardDialog::OnOK();
 }

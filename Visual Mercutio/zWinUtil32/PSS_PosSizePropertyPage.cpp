@@ -9,7 +9,7 @@
 #include "PSS_PosSizePropertyPage.h"
 
 // processsoft
-#include "zBaseLib\PaintOp.h"
+#include "zBaseLib\PSS_PaintOperations.h"
 #include "zBaseLib\ZAObject.h"
 
 #ifdef _DEBUG
@@ -36,13 +36,13 @@ PSS_PosSizePropertyPage::PSS_PosSizePropertyPage(PlanFinObject* pObj) :
 {
     ASSERT(pObj);
 
-    const CSize pos = ZBPaintOperations::ConvertLogicalUnitsMillimeters(CSize(pObj->GetClientRect().left, 
-                                                                              pObj->GetClientRect().bottom));
+    const CSize pos = PSS_PaintOperations::ConvertLogicalUnitsMillimeters(CSize(pObj->GetClientRect().left, 
+                                                                                pObj->GetClientRect().bottom));
     m_PositionX = double(pos.cx) / 100.0;
     m_PositionY = double(pos.cy) / 100.0;
 
-    const CSize size = ZBPaintOperations::ConvertLogicalUnitsMillimeters(CSize(pObj->GetClientRect().Width(),
-                                                                               pObj->GetClientRect().Height()));
+    const CSize size = PSS_PaintOperations::ConvertLogicalUnitsMillimeters(CSize(pObj->GetClientRect().Width(),
+                                                                                 pObj->GetClientRect().Height()));
     m_Width  = double(size.cx) / 100.0;
     m_Height = double(size.cy) / 100.0;
 }
@@ -51,14 +51,18 @@ void PSS_PosSizePropertyPage::SaveValuesToObject()
 {
     UpdateData(TRUE);
 
-    const CSize pos = ZBPaintOperations::ConvertMillimetersLogicalUnits(CSize(int(m_PositionX * 100.0), int(m_PositionY * 100.0)));
-    ((PlanFinObject&)GetObject()).GetClientRect().left   = pos.cx;
-    ((PlanFinObject&)GetObject()).GetClientRect().bottom = pos.cy;
+    PlanFinObject& object = (PlanFinObject&)GetObject();
+    CRect&         rect   = object.GetClientRect();
 
-    const CSize size = ZBPaintOperations::ConvertMillimetersLogicalUnits(CSize(int(m_Width * 100.0), int(m_Height * 100.0)));
-    ((PlanFinObject&)GetObject()).GetClientRect().right = pos.cx + size.cx;
-    ((PlanFinObject&)GetObject()).GetClientRect().top   = pos.cy - size.cy;
-    ((PlanFinObject&)GetObject()).SizePositionHasChanged();
+    const CSize pos = PSS_PaintOperations::ConvertMillimetersLogicalUnits(CSize(int(m_PositionX * 100.0), int(m_PositionY * 100.0)));
+    rect.left   = pos.cx;
+    rect.bottom = pos.cy;
+
+    const CSize size = PSS_PaintOperations::ConvertMillimetersLogicalUnits(CSize(int(m_Width * 100.0), int(m_Height * 100.0)));
+    rect.right = pos.cx + size.cx;
+    rect.top   = pos.cy - size.cy;
+
+    object.SizePositionHasChanged();
 }
 //---------------------------------------------------------------------------
 void PSS_PosSizePropertyPage::DoDataExchange(CDataExchange* pDX)

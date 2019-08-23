@@ -23,7 +23,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_SelectProcessWizardDialog, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(PSS_SelectProcessWizardDialog, PSS_WizardDialog)
     //{{AFX_MSG_MAP(PSS_SelectProcessWizardDialog)
     ON_NOTIFY(NM_CLICK, IDC_ACTIVITYPROC_LIST, OnClickActivityProcList)
     //}}AFX_MSG_MAP
@@ -32,12 +32,12 @@ END_MESSAGE_MAP()
 // PSS_SelectProcessWizardDialog
 //---------------------------------------------------------------------------
 PSS_SelectProcessWizardDialog::PSS_SelectProcessWizardDialog(ZProcess& process, CWnd* pParent) :
-    ZIWizardDialog(PSS_SelectProcessWizardDialog::IDD,
-                   IDB_WZBMP1,
-                   0,
-                   0,
-                   IDS_SELECTIONPROCESSCS_S,
-                   IDS_SELECTIONPROCESSCS_T),
+    PSS_WizardDialog(PSS_SelectProcessWizardDialog::IDD,
+                     IDB_WZBMP1,
+                     0,
+                     0,
+                     IDS_SELECTIONPROCESSCS_S,
+                     IDS_SELECTIONPROCESSCS_T),
       m_Process(process)
 {
     m_ProcessName = _T(m_Process.GetName());
@@ -45,7 +45,7 @@ PSS_SelectProcessWizardDialog::PSS_SelectProcessWizardDialog(ZProcess& process, 
 //---------------------------------------------------------------------------
 void PSS_SelectProcessWizardDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_SelectProcessWizardDialog)
     DDX_Control(pDX, IDC_ACTIVITYPROC_LIST, m_ActivityProcList);
@@ -55,7 +55,7 @@ void PSS_SelectProcessWizardDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_SelectProcessWizardDialog::OnInitDialog()
 {
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
 
     m_ActivityProcList.Initialize(&m_Process);
 
@@ -79,7 +79,7 @@ void PSS_SelectProcessWizardDialog::OnOK()
     // assign the selected activity name
     m_BaseActivityName = m_ActivityProcList.GetSelectedActivity();
 
-    ZIWizardDialog::OnOK();
+    PSS_WizardDialog::OnOK();
 }
 //---------------------------------------------------------------------------
 void PSS_SelectProcessWizardDialog::CheckControlStates()

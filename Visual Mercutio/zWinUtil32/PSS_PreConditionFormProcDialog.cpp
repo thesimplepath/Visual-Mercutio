@@ -24,7 +24,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_PreConditionFormProcDialog, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(PSS_PreConditionFormProcDialog, PSS_WizardDialog)
     //{{AFX_MSG_MAP(PSS_PreConditionFormProcDialog)
     ON_BN_CLICKED(IDNEXT, OnNext)
     //}}AFX_MSG_MAP
@@ -39,12 +39,12 @@ PSS_PreConditionFormProcDialog::PSS_PreConditionFormProcDialog(const CString& ac
                                                                BOOL           isProcess,
                                                                CStringArray&  fileArray,
                                                                CWnd*          pParent) :
-    ZIWizardDialog(PSS_PreConditionFormProcDialog::IDD,
-                   IDB_WZBMP1,
-                   0,
-                   0,
-                   IDS_WZPREACTIVITYTITLE_WZ,
-                   IDS_WZPREACTIVITYTITLEFORM_T),
+    PSS_WizardDialog(PSS_PreConditionFormProcDialog::IDD,
+                     IDB_WZBMP1,
+                     0,
+                     0,
+                     IDS_WZPREACTIVITYTITLE_WZ,
+                     IDS_WZPREACTIVITYTITLEFORM_T),
     m_ActivityName(_T(activityName)),
     m_FormNameArray(formNameArray),
     m_FileArray(fileArray),
@@ -94,7 +94,7 @@ PSS_PreConditionFormProcDialog::PSS_PreConditionFormProcDialog(const CString& ac
 //---------------------------------------------------------------------------
 void PSS_PreConditionFormProcDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_PreConditionFormProcDialog)
     DDX_Control(pDX, IDC_PROCFORMFILENAME, m_FileName);
@@ -109,7 +109,7 @@ BOOL PSS_PreConditionFormProcDialog::OnInitDialog()
     if (m_FormNameArray.GetSize() > 0)
         m_FormName = m_FormNameArray.GetAt(0);
 
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
 
     if (m_IsProcess)
         SetWizardBodyText(IDS_WZPREACTIVITYTITLEPROC_T);
@@ -139,7 +139,7 @@ void PSS_PreConditionFormProcDialog::OnOK()
     // save filename
     m_FileArray.Add(fileName);
 
-    ZIWizardDialog::OnOK();
+    PSS_WizardDialog::OnOK();
 }
 //---------------------------------------------------------------------------
 void PSS_PreConditionFormProcDialog::OnNext()

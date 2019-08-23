@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZWizard.h"
+#include "zBaseLib\PSS_WizardDialog.h"
 #include "PSS_SearchEdit.h"
 
 // resources
@@ -45,7 +45,7 @@
 * Pre-condition form process dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PreConditionFormProcDialog : public ZIWizardDialog
+class AFX_EXT_CLASS PSS_PreConditionFormProcDialog : public PSS_WizardDialog
 {
     public:
         /**

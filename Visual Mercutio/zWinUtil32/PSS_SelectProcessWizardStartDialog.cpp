@@ -23,7 +23,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_SelectProcessWizardStartDialog, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(PSS_SelectProcessWizardStartDialog, PSS_WizardDialog)
     //{{AFX_MSG_MAP(PSS_SelectProcessWizardStartDialog)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -31,18 +31,18 @@ END_MESSAGE_MAP()
 // PSS_SelectProcessWizardStartDialog
 //---------------------------------------------------------------------------
 PSS_SelectProcessWizardStartDialog::PSS_SelectProcessWizardStartDialog(const CString& processName, CWnd* pParent) :
-    ZIWizardDialog(PSS_SelectProcessWizardStartDialog::IDD,
-                   IDB_WZBMP1,
-                   0,
-                   0,
-                   IDS_SELECTIONPROCESSST_S,
-                   IDS_SELECTIONPROCESSST_T),
+    PSS_WizardDialog(PSS_SelectProcessWizardStartDialog::IDD,
+                     IDB_WZBMP1,
+                     0,
+                     0,
+                     IDS_SELECTIONPROCESSST_S,
+                     IDS_SELECTIONPROCESSST_T),
     m_ProcessName(_T(processName))
 {}
 //---------------------------------------------------------------------------
 void PSS_SelectProcessWizardStartDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_SelectProcessWizardStartDialog)
     DDX_Text(pDX, IDC_PROCESSNAME, m_ProcessName);

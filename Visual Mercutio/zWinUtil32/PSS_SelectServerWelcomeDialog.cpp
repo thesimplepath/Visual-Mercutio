@@ -17,7 +17,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_SelectServerWelcomeDialog, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(PSS_SelectServerWelcomeDialog, PSS_WizardDialog)
     //{{AFX_MSG_MAP(PSS_SelectServerWelcomeDialog)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -25,12 +25,12 @@ END_MESSAGE_MAP()
 // PSS_SelectServerWelcomeDialog
 //---------------------------------------------------------------------------
 PSS_SelectServerWelcomeDialog::PSS_SelectServerWelcomeDialog(BOOL local, CWnd* pParent) :
-    ZIWizardDialog(PSS_SelectServerWelcomeDialog::IDD,
-                   IDB_WZBMP3,
-                   0,
-                   0,
-                   IDS_SELECTIONSERVERWLC_SL,
-                   IDS_SELECTIONSERVERWLC_TL),
+    PSS_WizardDialog(PSS_SelectServerWelcomeDialog::IDD,
+                     IDB_WZBMP3,
+                     0,
+                     0,
+                     IDS_SELECTIONSERVERWLC_SL,
+                     IDS_SELECTIONSERVERWLC_TL),
     m_Local(local)
 {
     if (!m_Local)
@@ -42,7 +42,7 @@ PSS_SelectServerWelcomeDialog::PSS_SelectServerWelcomeDialog(BOOL local, CWnd* p
 //---------------------------------------------------------------------------
 void PSS_SelectServerWelcomeDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_SelectServerWelcomeDialog)
         // NOTE: the ClassWizard will add DDX and DDV calls here
@@ -51,7 +51,7 @@ void PSS_SelectServerWelcomeDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_SelectServerWelcomeDialog::OnInitDialog()
 {
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
 
     if (GetDlgItem(IDC_STATIC_LOCAL))
         GetDlgItem(IDC_STATIC_LOCAL)->ShowWindow(m_Local ? SW_SHOW : SW_HIDE);

@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZWizard.h"
+#include "zBaseLib\PSS_WizardDialog.h"
 #include "zEvent\Activity.h"
 
 #ifndef _WIN32
@@ -44,7 +44,7 @@
 * Activity attribution welcome dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_ActivityAttributionWelcomeDialog : public ZIWizardDialog
+class AFX_EXT_CLASS PSS_ActivityAttributionWelcomeDialog : public PSS_WizardDialog
 {
     public:
         /**

@@ -26,7 +26,7 @@
 //## begin module%38722BAE018E.additionalDeclarations preserve=yes
 #include "ZDDoc.h"
 #include "ZIView.h"
-#include "MskEdit.h"
+#include "PSS_MaskEditBase.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -154,7 +154,7 @@ void PLFNMaskString::CopyObject (PlanFinObject* pSrc)
 CString PLFNMaskString::GetFormatedObject ()
 {
   //## begin PLFNMaskString::GetFormatedObject%947341238.body preserve=yes
-    ZMaskEdit    MaskEdit;
+    PSS_MaskEditBase    MaskEdit;
     return MaskEdit.GetFormatedBuffer( m_Mask, m_Str );
   //## end PLFNMaskString::GetFormatedObject%947341238.body
 }

@@ -17,7 +17,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_ScanContinueSelectDialog, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(PSS_ScanContinueSelectDialog, PSS_WizardDialog)
     //{{AFX_MSG_MAP(PSS_ScanContinueSelectDialog)
     ON_BN_CLICKED(IDCONTINUE, OnContinue)
     //}}AFX_MSG_MAP
@@ -26,12 +26,12 @@ END_MESSAGE_MAP()
 // PSS_ScanContinueSelectDialog
 //---------------------------------------------------------------------------
 PSS_ScanContinueSelectDialog::PSS_ScanContinueSelectDialog(bool firstTime, CWnd* pParent) :
-    ZIWizardDialog(PSS_ScanContinueSelectDialog::IDD,
-                   IDB_WZBMP3,
-                   0,
-                   0,
-                   IDS_SCANNINGSELECT_S,
-                   IDS_SCANNINGSELECT_T),
+    PSS_WizardDialog(PSS_ScanContinueSelectDialog::IDD,
+                     IDB_WZBMP3,
+                     0,
+                     0,
+                     IDS_SCANNINGSELECT_S,
+                     IDS_SCANNINGSELECT_T),
     m_ScanType(1),
     m_FirstTime(firstTime)
 {
@@ -40,7 +40,7 @@ PSS_ScanContinueSelectDialog::PSS_ScanContinueSelectDialog(bool firstTime, CWnd*
 //---------------------------------------------------------------------------
 void PSS_ScanContinueSelectDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_ScanContinueSelectDialog)
     DDX_Control(pDX, IDC_FILE_SCAN, m_File);
@@ -50,7 +50,7 @@ void PSS_ScanContinueSelectDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_ScanContinueSelectDialog::OnInitDialog()
 {
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
     
     if (m_FirstTime && GetDlgItem(IDOK))
         GetDlgItem(IDOK)->ShowWindow(SW_HIDE);

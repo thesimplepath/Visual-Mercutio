@@ -13,7 +13,7 @@
 #endif
 
 // processsoft
-#include "zBaseLib\ZWizard.h"
+#include "zBaseLib\PSS_WizardDialog.h"
 
 // resources
 #ifndef _WIN32
@@ -26,7 +26,7 @@
 * Scan welcome dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_ScanWelcomeDialog : public ZIWizardDialog
+class PSS_ScanWelcomeDialog : public PSS_WizardDialog
 {
     public:
         /**

@@ -17,7 +17,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_PreConditionFormProcWelcomeDialog, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(PSS_PreConditionFormProcWelcomeDialog, PSS_WizardDialog)
     //{{AFX_MSG_MAP(PSS_PreConditionFormProcWelcomeDialog)
     ON_BN_CLICKED(IDNEXT, OnNext)
     //}}AFX_MSG_MAP
@@ -26,18 +26,18 @@ END_MESSAGE_MAP()
 // PSS_PreConditionFormProcWelcomeDialog
 //---------------------------------------------------------------------------
 PSS_PreConditionFormProcWelcomeDialog::PSS_PreConditionFormProcWelcomeDialog(const CString& activityName, CWnd* pParent) :
-    ZIWizardDialog(PSS_PreConditionFormProcWelcomeDialog::IDD,
-                   IDB_WZBMP1,
-                   0,
-                   0,
-                   IDS_WZPREACTIVITYTITLE_WZ,
-                   IDS_WZPREACTIVITYTITLE_T),
+    PSS_WizardDialog(PSS_PreConditionFormProcWelcomeDialog::IDD,
+                     IDB_WZBMP1,
+                     0,
+                     0,
+                     IDS_WZPREACTIVITYTITLE_WZ,
+                     IDS_WZPREACTIVITYTITLE_T),
     m_ActivityName(_T(activityName))
 {}
 //---------------------------------------------------------------------------
 void PSS_PreConditionFormProcWelcomeDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_PreConditionFormProcWelcomeDialog)
     DDX_Text(pDX, IDC_ACTIVITYNAME, m_ActivityName);

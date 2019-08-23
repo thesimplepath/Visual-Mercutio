@@ -26,7 +26,7 @@
 //## begin module%336D05240276.additionalDeclarations preserve=yes
 #include "ZDDoc.h"
 // PaintRes
-#include "PaintRes.h"
+#include "PSS_PaintResources.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -240,7 +240,7 @@ void PLFNSquare::DrawSquares (CDC* pDC)
           return;
       CString    Str = m_pObject->GetFormatedObject();
 
-      CPen*    pOldPen = pDC->SelectObject( &ZBPaintResources::GetBlackPen() );
+      CPen*    pOldPen = pDC->SelectObject( &PSS_PaintResources::GetBlackPen() );
     // Draw squares only if the length is defined
     int        iNbSquare = GetSquareMaxLength();
     if (GetSquareMaxLength() == -1)

@@ -22,7 +22,7 @@
 //---------------------------------------------------------------------------
 // Message loop
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_PublishModelAttributesDialog, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(PSS_PublishModelAttributesDialog, PSS_WizardDialog)
     //{{AFX_MSG_MAP(PSS_PublishModelAttributesDialog)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -32,19 +32,19 @@ END_MESSAGE_MAP()
 PSS_PublishModelAttributesDialog::PSS_PublishModelAttributesDialog(ZBPropertyAttributes* pPropAttributes,
                                                                    ZBPropertySet*        pPropSet,
                                                                    CWnd*                 pParent) :
-    ZIWizardDialog(PSS_PublishModelAttributesDialog::IDD,
-                   IDB_WZBMP1,
-                   0,
-                   0,
-                   IDS_PUBLISHMODELATTRIBUTES_S,
-                   IDS_PUBLISHMODELATTRIBUTES_T),
+    PSS_WizardDialog(PSS_PublishModelAttributesDialog::IDD,
+                     IDB_WZBMP1,
+                     0,
+                     0,
+                     IDS_PUBLISHMODELATTRIBUTES_S,
+                     IDS_PUBLISHMODELATTRIBUTES_T),
       m_pPropAttributes(pPropAttributes),
       m_pPropSet(pPropSet)
 {}
 //---------------------------------------------------------------------------
 void PSS_PublishModelAttributesDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange( pDX );
+    PSS_WizardDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_PublishModelAttributesDialog)
     DDX_Control(pDX, IDC_HTMLATTRIBUTE_TREE, m_Attributes);
@@ -53,7 +53,7 @@ void PSS_PublishModelAttributesDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_PublishModelAttributesDialog::OnInitDialog()
 {
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
 
     // initialize the attribute tree control
     m_Attributes.Initialize(m_pPropAttributes,m_pPropSet);
@@ -67,6 +67,6 @@ void PSS_PublishModelAttributesDialog::OnOK()
     UpdateData();
     m_Attributes.FillCorrespondingCheckedItems();
 
-    ZIWizardDialog::OnOK();
+    PSS_WizardDialog::OnOK();
 }
 //---------------------------------------------------------------------------

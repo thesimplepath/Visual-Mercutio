@@ -58,7 +58,7 @@
 #include "ZEvent.h"
 
 // PaintRes
-#include "zBaseLib\PaintRes.h"
+#include "zBaseLib\PSS_PaintResources.h"
 
 #ifdef _WIN32
 #include <WinSpool.h>
@@ -643,8 +643,8 @@ BOOL ZAMainApp::InitInstance()
     // Initialize object definition
     PSS_ObjectUtility::InitializeDefinition(GetServer().GetFieldDefinitionIniFile());
 
-    // Initialize painting resources
-    ZBPaintResources::Initialize();
+    // initialize the painting resources
+    PSS_PaintResources::Initialize();
 
     // Initialize the global definitions
     ZAGlobal::Initialize(&GetServer(),

@@ -21,7 +21,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_CreateFolderWizardStartDialog, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(PSS_CreateFolderWizardStartDialog, PSS_WizardDialog)
     //{{AFX_MSG_MAP(PSS_CreateFolderWizardStartDialog)
     ON_EN_CHANGE(IDC_FOLDERFILENAME, OnChangeFolderName)
     //}}AFX_MSG_MAP
@@ -36,12 +36,12 @@ PSS_CreateFolderWizardStartDialog::PSS_CreateFolderWizardStartDialog(BOOL       
                                                                      const CString& initialFileName,
                                                                      const CString& fileExtension,
                                                                      CWnd*          pParent) :
-    ZIWizardDialog(PSS_CreateFolderWizardStartDialog::IDD,
-                   IDB_WZBMP1,
-                   0,
-                   0,
-                   IDS_CREATEFOLDERST_S,
-                   IDS_CREATEFOLDERST_T),
+    PSS_WizardDialog(PSS_CreateFolderWizardStartDialog::IDD,
+                     IDB_WZBMP1,
+                     0,
+                     0,
+                     IDS_CREATEFOLDERST_S,
+                     IDS_CREATEFOLDERST_T),
     m_FolderComment(_T(folderDescription)),
     m_FolderName(_T(folderName)),
     m_FolderDirectory(folderDirectory),
@@ -59,7 +59,7 @@ PSS_CreateFolderWizardStartDialog::PSS_CreateFolderWizardStartDialog(BOOL       
 //---------------------------------------------------------------------------
 void PSS_CreateFolderWizardStartDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_CreateFolderWizardStartDialog)
     DDX_Control(pDX, IDC_COMPLETEFILENAME, m_CompleteFileName);
@@ -70,8 +70,8 @@ void PSS_CreateFolderWizardStartDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_CreateFolderWizardStartDialog::OnInitDialog()
 {
-    ZIWizardDialog::OnInitDialog();
-    
+    PSS_WizardDialog::OnInitDialog();
+
     // show or hide file control. Depends on use foldername as file
     m_CompleteFileName.ShowWindow((m_UseFolderNameAsFileName) ? SW_HIDE : SW_SHOW);
 
@@ -147,6 +147,6 @@ void PSS_CreateFolderWizardStartDialog::OnOK()
         }
     }
 
-    ZIWizardDialog::OnOK();
+    PSS_WizardDialog::OnOK();
 }
 //---------------------------------------------------------------------------

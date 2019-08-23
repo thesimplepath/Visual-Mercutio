@@ -3,7 +3,7 @@
 #ifndef MdlWkfOpt_h
 #define MdlWkfOpt_h 1
 
-#include "zBaseLib\ZWizard.h"
+#include "zBaseLib\PSS_WizardDialog.h"
 #include "zWinUtil32\PSS_LanguageComboBox.h"
 #include "Resource.h"
 
@@ -58,7 +58,7 @@ private:
 /////////////////////////////////////////////////////////////////////////////
 // ZVModelWorkflowOptionsNotation dialog
 
-class ZVModelWorkflowOptionsNotation : public ZIWizardDialog
+class ZVModelWorkflowOptionsNotation : public PSS_WizardDialog
 {
 // Construction
 public:
@@ -99,7 +99,7 @@ private:
 /////////////////////////////////////////////////////////////////////////////
 // ZVModelWorkflowOptionsOptions dialog
 
-class ZVModelWorkflowOptionsOptions : public ZIWizardDialog
+class ZVModelWorkflowOptionsOptions : public PSS_WizardDialog
 {
 // Construction
 public:
@@ -148,7 +148,7 @@ private:
 /////////////////////////////////////////////////////////////////////////////
 // ZVModelWorkflowOptionsCosts dialog
 
-class ZVModelWorkflowOptionsCosts : public ZIWizardDialog
+class ZVModelWorkflowOptionsCosts : public PSS_WizardDialog
 {
 // Construction
 public:

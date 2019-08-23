@@ -18,7 +18,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_CreateFolderWizardExistDialog, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(PSS_CreateFolderWizardExistDialog, PSS_WizardDialog)
     //{{AFX_MSG_MAP(PSS_CreateFolderWizardExistDialog)
     ON_BN_CLICKED(IDC_FOLDERCHOICE, OnFolderChoice)
     ON_BN_CLICKED(IDC_FOLDERCHOICE2, OnFolderChoice)
@@ -34,12 +34,12 @@ PSS_CreateFolderWizardExistDialog::PSS_CreateFolderWizardExistDialog(const CStri
                                                                      const CString&             initialFileName,
                                                                      IEFolderExistInitialChoice initialChoice,
                                                                      CWnd*                      pParent) :
-    ZIWizardDialog(PSS_CreateFolderWizardExistDialog::IDD,
-                   IDB_WZBMP1,
-                   0,
-                   0,
-                   IDS_CREATEFOLDEREXIST_S,
-                   IDS_CREATEFOLDEREXIST_T),
+    PSS_WizardDialog(PSS_CreateFolderWizardExistDialog::IDD,
+                     IDB_WZBMP1,
+                     0,
+                     0,
+                     IDS_CREATEFOLDEREXIST_S,
+                     IDS_CREATEFOLDEREXIST_T),
     m_Folder(_T(folderName)),
     m_FileDirectory(fileDirectory),
     m_InitialFileName(initialFileName),
@@ -59,7 +59,7 @@ PSS_CreateFolderWizardExistDialog::PSS_CreateFolderWizardExistDialog(const CStri
 //---------------------------------------------------------------------------
 void PSS_CreateFolderWizardExistDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_CreateFolderWizardExistDialog)
     DDX_Control(pDX, IDC_OTHERFILENAME,   m_FileName);
@@ -71,7 +71,7 @@ void PSS_CreateFolderWizardExistDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_CreateFolderWizardExistDialog::OnInitDialog()
 {
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
 
     m_Directory.SetWindowText(m_FileDirectory);
     m_FileName.SetWindowText(m_InitialFileName);
@@ -133,7 +133,7 @@ void PSS_CreateFolderWizardExistDialog::OnOK()
             break;
     }
 
-    ZIWizardDialog::OnOK();
+    PSS_WizardDialog::OnOK();
 }
 //---------------------------------------------------------------------------
 void PSS_CreateFolderWizardExistDialog::CheckControlStates()

@@ -370,7 +370,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="mfiledsc.cpp">
+    <ClCompile Include="PSS_MailFileDescription.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -382,7 +382,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="MskEdit.cpp">
+    <ClCompile Include="PSS_MaskEditBase.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -406,13 +406,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="PaintOp.cpp">
+    <ClCompile Include="PSS_PaintOperations.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="PaintRes.cpp">
+    <ClCompile Include="PSS_PaintResources.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1291,7 +1291,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="zwizard.cpp">
+    <ClCompile Include="PSS_WizardDialog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1383,14 +1383,14 @@
     <ClInclude Include="PSS_InputValue.h" />
     <ClInclude Include="PSS_MailMessage.h" />
     <ClInclude Include="PSS_MemoryDC.h" />
-    <ClInclude Include="MFileDsc.h" />
+    <ClInclude Include="PSS_MailFileDescription.h" />
     <ClInclude Include="PSS_MsgBox.h" />
-    <ClInclude Include="MskEdit.h" />
+    <ClInclude Include="PSS_MaskEditBase.h" />
     <ClInclude Include="OBSOLETE.H" />
     <ClInclude Include="OutlookBarView.h" />
     <ClInclude Include="OutlookSplitterWnd.h" />
-    <ClInclude Include="PaintOp.h" />
-    <ClInclude Include="PaintRes.h" />
+    <ClInclude Include="PSS_PaintOperations.h" />
+    <ClInclude Include="PSS_PaintResources.h" />
     <ClInclude Include="PSS_PaletteBar.h" />
     <ClInclude Include="PersonDs.h" />
     <ClInclude Include="personls.h" />
@@ -1540,7 +1540,7 @@
     <ClInclude Include="ZVWorkspaceFileProperties.h" />
     <ClInclude Include="ZVWorkspaceGroupNameDlg.h" />
     <ClInclude Include="ZVWorkspaceRenameGroupNameDlg.h" />
-    <ClInclude Include="zwizard.h" />
+    <ClInclude Include="PSS_WizardDialog.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\ANILOADB.BMP" />

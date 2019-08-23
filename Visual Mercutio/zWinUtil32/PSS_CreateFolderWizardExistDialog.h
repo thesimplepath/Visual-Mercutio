@@ -22,7 +22,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZWizard.h"
+#include "zBaseLib\PSS_WizardDialog.h"
 #include "PSS_SearchEdit.h"
 
 // resources
@@ -42,7 +42,7 @@
 * Check if folder exists and create folder Wizard dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_CreateFolderWizardExistDialog : public ZIWizardDialog
+class PSS_CreateFolderWizardExistDialog : public PSS_WizardDialog
 {
     public:
         /**

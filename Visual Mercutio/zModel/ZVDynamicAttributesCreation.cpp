@@ -73,7 +73,7 @@ int    ZVDynamicAttributesCreation::DoModal()
 // *                               Classe ZVDynamicAttributesCreationS1 : Message map                            *
 // **************************************************************************************************************
 
-BEGIN_MESSAGE_MAP(ZVDynamicAttributesCreationS1, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(ZVDynamicAttributesCreationS1, PSS_WizardDialog)
     //{{AFX_MSG_MAP(ZVDynamicAttributesCreationS1)
     ON_BN_CLICKED(IDNEXT, OnNext)
     ON_EN_CHANGE(IDC_CATEGORYNAME, OnChangeCategoryName)
@@ -86,8 +86,8 @@ END_MESSAGE_MAP()
 // **************************************************************************************************************
 
 // Constructeur par défaut de la classe ZVDynamicAttributesCreationS1.
-ZVDynamicAttributesCreationS1::ZVDynamicAttributesCreationS1(ZDProcessGraphModelDoc* pModelDoc, CWnd* pParent /*=NULL*/)
-    : ZIWizardDialog(ZVDynamicAttributesCreationS1::IDD,
+ZVDynamicAttributesCreationS1::ZVDynamicAttributesCreationS1(ZDProcessGraphModelDoc* pModelDoc, CWnd* pParent /*=NULL*/) :
+    PSS_WizardDialog(ZVDynamicAttributesCreationS1::IDD,
                      IDB_WZBMP1,
                      0,
                      0,
@@ -107,7 +107,7 @@ ZVDynamicAttributesCreationS1::ZVDynamicAttributesCreationS1(ZDProcessGraphModel
 
 void ZVDynamicAttributesCreationS1::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(ZVDynamicAttributesCreationS1)
     DDX_Control(pDX, IDC_CATEGORY_LIST, m_CategoryList);
     DDX_Text(pDX, IDC_CATEGORYNAME, m_CategoryName);
@@ -144,7 +144,7 @@ bool ZVDynamicAttributesCreationS1::CheckData()
 
 BOOL ZVDynamicAttributesCreationS1::OnInitDialog()
 {
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
 
     if (m_pModelDoc &&
         m_pModelDoc->GetModel() &&
@@ -169,7 +169,7 @@ void ZVDynamicAttributesCreationS1::OnOK()
     if (!CheckData())
         return;
 
-    ZIWizardDialog::OnOK();
+    PSS_WizardDialog::OnOK();
 }
 
 void ZVDynamicAttributesCreationS1::OnNext()
@@ -213,7 +213,7 @@ void ZVDynamicAttributesCreationS1::OnSelchangeCategoryList()
 // *                               Classe ZVDynamicAttributesCreationS2 : Message map                            *
 // **************************************************************************************************************
 
-BEGIN_MESSAGE_MAP(ZVDynamicAttributesCreationS2, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(ZVDynamicAttributesCreationS2, PSS_WizardDialog)
     //{{AFX_MSG_MAP(ZVDynamicAttributesCreationS2)
     ON_BN_CLICKED(IDNEXT, OnNext)
     //}}AFX_MSG_MAP
@@ -227,8 +227,8 @@ END_MESSAGE_MAP()
 ZVDynamicAttributesCreationS2::ZVDynamicAttributesCreationS2(ZDProcessGraphModelDoc*    pModelDoc,
                                                              const CString                Category,
                                                              bool                        SymbolSelected,
-                                                             CWnd*                        pParent /*=NULL*/)
-    : ZIWizardDialog(ZVDynamicAttributesCreationS2::IDD,
+                                                             CWnd*                        pParent /*=NULL*/) :
+    PSS_WizardDialog(ZVDynamicAttributesCreationS2::IDD,
                      IDB_WZBMP1,
                      0,
                      0,
@@ -250,7 +250,7 @@ ZVDynamicAttributesCreationS2::ZVDynamicAttributesCreationS2(ZDProcessGraphModel
 
 void ZVDynamicAttributesCreationS2::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(ZVDynamicAttributesCreationS2)
     DDX_Control(pDX, IDC_ATTRIB_VISIBILITY, m_AttributeVisibility);
     DDX_Control(pDX, IDC_ATTRIB_TYPE, m_AttributeType);
@@ -337,7 +337,7 @@ bool ZVDynamicAttributesCreationS2::CheckData()
 
 BOOL ZVDynamicAttributesCreationS2::OnInitDialog()
 {
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
 
     CString strValues;
 
@@ -395,7 +395,7 @@ void ZVDynamicAttributesCreationS2::OnOK()
     if (!CheckData())
         return;
 
-    ZIWizardDialog::OnOK();
+    PSS_WizardDialog::OnOK();
 }
 
 void ZVDynamicAttributesCreationS2::OnNext()

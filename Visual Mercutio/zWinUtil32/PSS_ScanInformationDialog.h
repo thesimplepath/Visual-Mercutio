@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZWizard.h"
+#include "zBaseLib\PSS_WizardDialog.h"
 
 // resources
 #ifndef _WIN32
@@ -44,7 +44,7 @@
 * Scan information dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_ScanInformationDialog : public ZIWizardDialog
+class PSS_ScanInformationDialog : public PSS_WizardDialog
 {
     public:
         /**

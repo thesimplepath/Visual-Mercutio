@@ -17,7 +17,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseLib\ZWizard.h"
+#include "zBaseLib\PSS_WizardDialog.h"
 #include "zReportBP\zReportBPRes.h"
 
 #ifdef _ZREPORTBPEXPORT
@@ -64,7 +64,7 @@ private:
 /////////////////////////////////////////////////////////////////////////////
 // ZVReportCreationStart dialog
 
-class ZVReportCreationStart : public ZIWizardDialog
+class ZVReportCreationStart : public PSS_WizardDialog
 {
 // Construction
 public:

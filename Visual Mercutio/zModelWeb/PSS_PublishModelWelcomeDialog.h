@@ -13,7 +13,7 @@
 #endif
 
 // processsoft
-#include "zBaseLib\ZWizard.h"
+#include "zBaseLib\PSS_WizardDialog.h"
 
 // resources
 #include "zModelWebRes.h"
@@ -22,7 +22,7 @@
  * Dialog box showing the publication process welcome page
  *@author Dominique Aigroz, Jean-Milost Reymond
  */
-class PSS_PublishModelWelcomeDialog : public ZIWizardDialog
+class PSS_PublishModelWelcomeDialog : public PSS_WizardDialog
 {
     public:
         /**

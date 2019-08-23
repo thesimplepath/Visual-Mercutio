@@ -13,7 +13,7 @@
 #endif
 
 // processsoft
-#include "zBaseLib\ZWizard.h"
+#include "zBaseLib\PSS_WizardDialog.h"
 #include "zBaseLib\ZCIntelliEdit.h"
 #include "zWinUtil32\PSS_DirTreeCtrl.h"
 
@@ -24,7 +24,7 @@
 * Dialog box allowing to select the model publication dir
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_PublishModelSelDirDialog : public ZIWizardDialog
+class PSS_PublishModelSelDirDialog : public PSS_WizardDialog
 {
     public:
         /**

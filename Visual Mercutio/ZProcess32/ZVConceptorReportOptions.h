@@ -8,7 +8,7 @@
 #endif // _MSC_VER > 1000
 
 // JMR-MODIF - Le 6 mars 2006 - Ajout de l'en-tête ZWizard.h.
-#include "zBaseLib\ZWizard.h"
+#include "zBaseLib\PSS_WizardDialog.h"
 
 #include "Resource.h"
 
@@ -20,7 +20,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // ZVConceptorReportOptions dialog
 
-class ZVConceptorReportOptions : public ZIWizardDialog
+class ZVConceptorReportOptions : public PSS_WizardDialog
 {
 // Construction
 public:

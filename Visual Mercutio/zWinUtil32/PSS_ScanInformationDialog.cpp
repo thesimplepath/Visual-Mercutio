@@ -17,7 +17,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_ScanInformationDialog, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(PSS_ScanInformationDialog, PSS_WizardDialog)
     //{{AFX_MSG_MAP(PSS_ScanInformationDialog)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -25,19 +25,19 @@ END_MESSAGE_MAP()
 // PSS_ScanInformationDialog
 //---------------------------------------------------------------------------
 PSS_ScanInformationDialog::PSS_ScanInformationDialog(const CString& name, const CString& description, CWnd* pParent) :
-    ZIWizardDialog(PSS_ScanInformationDialog::IDD,
-                   IDB_WZBMP3,
-                   0,
-                   0,
-                   IDS_SCANNINGINFO_S,
-                   IDS_SCANNINGINFO_T),
+    PSS_WizardDialog(PSS_ScanInformationDialog::IDD,
+                     IDB_WZBMP3,
+                     0,
+                     0,
+                     IDS_SCANNINGINFO_S,
+                     IDS_SCANNINGINFO_T),
     m_Name(name),
     m_Description(description)
 {}
 //---------------------------------------------------------------------------
 void PSS_ScanInformationDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_ScanInformationDialog)
     DDX_Text(pDX, IDC_SCAN_DESCRIPTION, m_Description);
@@ -47,7 +47,7 @@ void PSS_ScanInformationDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_ScanInformationDialog::OnInitDialog()
 {
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
 
     // return TRUE unless the focus is set to a control. NOTE OCX property pages should return FALSE
     return TRUE;
@@ -58,6 +58,6 @@ void PSS_ScanInformationDialog::OnOK()
     if (m_Name.IsEmpty())
         return;
     
-    ZIWizardDialog::OnOK();
+    PSS_WizardDialog::OnOK();
 }
 //---------------------------------------------------------------------------

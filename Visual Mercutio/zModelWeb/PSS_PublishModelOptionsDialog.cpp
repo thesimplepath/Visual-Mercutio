@@ -17,7 +17,7 @@
 //---------------------------------------------------------------------------
 // Message loop
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_PublishModelOptionsDialog, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(PSS_PublishModelOptionsDialog, PSS_WizardDialog)
     //{{AFX_MSG_MAP(PSS_PublishModelOptionsDialog)
     //}}AFX_MSG_MAP
     ON_BN_CLICKED(IDC_PUBLISH_CONCEPTOR, OnBnClickedPublishConceptor)
@@ -33,12 +33,12 @@ PSS_PublishModelOptionsDialog::PSS_PublishModelOptionsDialog(BOOL      visualize
                                                              BOOL      publishRuleBookIsChecked,
                                                              ELanguage initialLanguage,
                                                              CWnd*     pParent) :
-    ZIWizardDialog(PSS_PublishModelOptionsDialog::IDD,
-                      IDB_WZBMP1,
-                      0,
-                      0,
-                      IDS_PUBLISHMODELOPTIONS_S,
-                      IDS_PUBLISHMODELOPTIONS_T),
+    PSS_WizardDialog(PSS_PublishModelOptionsDialog::IDD,
+                     IDB_WZBMP1,
+                     0,
+                     0,
+                     IDS_PUBLISHMODELOPTIONS_S,
+                     IDS_PUBLISHMODELOPTIONS_T),
     m_Language(initialLanguage),
     m_Visualize(visualize),
     m_PublishConceptorIsChecked(publishConceptorIsChecked),
@@ -50,7 +50,7 @@ PSS_PublishModelOptionsDialog::PSS_PublishModelOptionsDialog(BOOL      visualize
 //---------------------------------------------------------------------------
 void PSS_PublishModelOptionsDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_PublishModelOptionsDialog)
     DDX_Control(pDX, IDC_LANGUAGE,               m_CbLanguage);
@@ -65,7 +65,7 @@ void PSS_PublishModelOptionsDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_PublishModelOptionsDialog::OnInitDialog()
 {
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
 
     // initialize the language combo box
     m_CbLanguage.Initialize(m_Language);
@@ -84,7 +84,7 @@ void PSS_PublishModelOptionsDialog::OnOK()
     // save the selected language
     m_Language = m_CbLanguage.GetLanguage();
 
-    ZIWizardDialog::OnOK();
+    PSS_WizardDialog::OnOK();
 }
 //---------------------------------------------------------------------------
 void PSS_PublishModelOptionsDialog::OnBnClickedPublishConceptor()

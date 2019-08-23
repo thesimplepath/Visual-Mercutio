@@ -17,7 +17,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_ScanWelcomeDialog, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(PSS_ScanWelcomeDialog, PSS_WizardDialog)
     //{{AFX_MSG_MAP(PSS_ScanWelcomeDialog)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -25,17 +25,17 @@ END_MESSAGE_MAP()
 // PSS_ScanWelcomeDialog
 //---------------------------------------------------------------------------
 PSS_ScanWelcomeDialog::PSS_ScanWelcomeDialog(CWnd* pParent) :
-    ZIWizardDialog(PSS_ScanWelcomeDialog::IDD,
-                   IDB_WZBMP3,
-                   0,
-                   0,
-                   IDS_SCANNINGWLC_S,
-                   IDS_SCANNINGWLC_T)
+    PSS_WizardDialog(PSS_ScanWelcomeDialog::IDD,
+                     IDB_WZBMP3,
+                     0,
+                     0,
+                     IDS_SCANNINGWLC_S,
+                     IDS_SCANNINGWLC_T)
 {}
 //---------------------------------------------------------------------------
 void PSS_ScanWelcomeDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_ScanWelcomeDialog)
         // NOTE: the ClassWizard will add DDX and DDV calls here
@@ -44,7 +44,7 @@ void PSS_ScanWelcomeDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_ScanWelcomeDialog::OnInitDialog()
 {
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
 
     // return TRUE unless the focus is set to a control. NOTE OCX property pages should return FALSE
     return TRUE;

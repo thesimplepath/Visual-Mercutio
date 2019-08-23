@@ -18,7 +18,7 @@
 
 // processsoft
 #include "PSS_FieldRepository.h"
-#include "MskEdit.h"
+#include "PSS_MaskEditBase.h"
 #include "ZCGridCtrl.h"
 #include "ZBDragEdit.h"
 #include "ZCIntelliEdit.h"
@@ -744,7 +744,7 @@ void PSS_FieldNameEdit::MapWindowPoints(CWnd* pWndTo, LPRECT pRect)
 * Mask edit component
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_MaskEdit : public ZMaskEdit, public PSS_Edit
+class AFX_EXT_CLASS PSS_MaskEdit : public PSS_MaskEditBase, public PSS_Edit
 {
     public:
         PSS_MaskEdit();
@@ -802,12 +802,12 @@ class AFX_EXT_CLASS PSS_MaskEdit : public ZMaskEdit, public PSS_Edit
 //---------------------------------------------------------------------------
 BOOL PSS_MaskEdit::IsWindowVisible()
 {
-    return (::IsWindow(GetSafeHwnd()) && ZMaskEdit::IsWindowVisible());
+    return (::IsWindow(GetSafeHwnd()) && PSS_MaskEditBase::IsWindowVisible());
 }
 //---------------------------------------------------------------------------
 void PSS_MaskEdit::MapWindowPoints(CWnd* pWndTo, LPRECT pRect)
 {
-    ZMaskEdit::MapWindowPoints(pWndTo, pRect);
+    PSS_MaskEditBase::MapWindowPoints(pWndTo, pRect);
 }
 //---------------------------------------------------------------------------
 

@@ -17,7 +17,7 @@
 //---------------------------------------------------------------------------
 // Message loop
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_PublishModelWelcomeDialog, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(PSS_PublishModelWelcomeDialog, PSS_WizardDialog)
     //{{AFX_MSG_MAP(PSS_PublishModelWelcomeDialog)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -25,22 +25,22 @@ END_MESSAGE_MAP()
 // PSS_PublishModelWelcomeDialog
 //---------------------------------------------------------------------------
 PSS_PublishModelWelcomeDialog::PSS_PublishModelWelcomeDialog(CWnd* pParent) :
-    ZIWizardDialog(PSS_PublishModelWelcomeDialog::IDD,
-                   IDB_WZBMP1,
-                   0,
-                   0,
-                   IDS_PUBLISHMODELWELCOME_S,
-                   IDS_PUBLISHMODELWELCOME_T)
+    PSS_WizardDialog(PSS_PublishModelWelcomeDialog::IDD,
+                     IDB_WZBMP1,
+                     0,
+                     0,
+                     IDS_PUBLISHMODELWELCOME_S,
+                     IDS_PUBLISHMODELWELCOME_T)
 {}
 //---------------------------------------------------------------------------
 void PSS_PublishModelWelcomeDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_PublishModelWelcomeDialog::OnInitDialog()
 {
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
 
     // return TRUE unless the focus is set to a control. NOTE OCX Property Pages should return FALSE
     return TRUE;

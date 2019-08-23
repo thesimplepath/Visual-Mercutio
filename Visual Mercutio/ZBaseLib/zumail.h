@@ -129,7 +129,7 @@ extern LPMAPIRESOLVENAME lpfnMAPIResolveName;
 // PersonLs
 #include "PersonLs.h"
 // MFileDsc
-#include "MFileDsc.h"
+#include "PSS_MailFileDescription.h"
 // MailMsg
 #include "PSS_MailMessage.h"
 //## begin module%366D7F640200.declarations preserve=no
@@ -191,7 +191,7 @@ class AFX_EXT_CLASS ZUMail
 
       //## Operation: SendDocuments%913223376
       //    Sends documents.
-      BOOL SendDocuments (ZUMailFileDescription& FileList, CString Subject = "", CString MessageHeader = "", CString MessageFooter = "", ZUMailUserList* PersonList = NULL);
+      BOOL SendDocuments (PSS_MailFileDescription& FileList, CString Subject = "", CString MessageHeader = "", CString MessageFooter = "", ZUMailUserList* PersonList = NULL);
 
       //## Operation: SendDocuments%913223377
       //    Sends documents.

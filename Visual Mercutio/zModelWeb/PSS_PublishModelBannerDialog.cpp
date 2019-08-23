@@ -21,7 +21,7 @@
 //---------------------------------------------------------------------------
 // Message loop
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_PublishModelBannerDialog, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(PSS_PublishModelBannerDialog, PSS_WizardDialog)
     //{{AFX_MSG_MAP(PSS_PublishModelBannerDialog)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -31,12 +31,12 @@ END_MESSAGE_MAP()
 PSS_PublishModelBannerDialog::PSS_PublishModelBannerDialog(const CString& hyperLink,
                                                            const CString& imageFileName,
                                                            CWnd*          pParent) :
-    ZIWizardDialog(PSS_PublishModelBannerDialog::IDD,
-                   IDB_WZBMP1,
-                   0,
-                   0,
-                   IDS_PUBLISHMODELBANNER_S,
-                   IDS_PUBLISHMODELBANNER_T),
+    PSS_WizardDialog(PSS_PublishModelBannerDialog::IDD,
+                     IDB_WZBMP1,
+                     0,
+                     0,
+                     IDS_PUBLISHMODELBANNER_S,
+                     IDS_PUBLISHMODELBANNER_T),
     m_HyperLink(hyperLink),
     m_ImageFilename(imageFileName)
 {
@@ -45,7 +45,7 @@ PSS_PublishModelBannerDialog::PSS_PublishModelBannerDialog(const CString& hyperL
 //---------------------------------------------------------------------------
 void PSS_PublishModelBannerDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_PublishModelBannerDialog)
     DDX_Control(pDX, IDC_BANNERIMAGE,     m_Image);
@@ -55,7 +55,7 @@ void PSS_PublishModelBannerDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_PublishModelBannerDialog::OnInitDialog()
 {
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
 
     // initialize the logo filename
     m_Image.SetWindowText(m_ImageFilename);
@@ -78,6 +78,6 @@ void PSS_PublishModelBannerDialog::OnOK()
         return;
     }
 
-    ZIWizardDialog::OnOK();
+    PSS_WizardDialog::OnOK();
 }
 //---------------------------------------------------------------------------

@@ -559,14 +559,14 @@ int ZVPublishToMessengerWizard::DoModal()
 /////////////////////////////////////////////////////////////////////////////
 // ZVPublishToMessengerStart dialog
 
-BEGIN_MESSAGE_MAP(ZVPublishToMessengerStart, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(ZVPublishToMessengerStart, PSS_WizardDialog)
     //{{AFX_MSG_MAP(ZVPublishToMessengerStart)
     ON_BN_CLICKED(IDNEXT, OnNext)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZVPublishToMessengerStart::ZVPublishToMessengerStart(const CString IniFile /*= ""*/, CWnd* pParent /*=NULL*/)
-    : ZIWizardDialog(ZVPublishToMessengerStart::IDD,
+ZVPublishToMessengerStart::ZVPublishToMessengerStart(const CString IniFile /*= ""*/, CWnd* pParent /*=NULL*/) :
+    PSS_WizardDialog(ZVPublishToMessengerStart::IDD,
                      IDB_WZBMP1,
                      0,
                      0,
@@ -586,7 +586,7 @@ ZVPublishToMessengerStart::ZVPublishToMessengerStart(const CString IniFile /*= "
 
 void ZVPublishToMessengerStart::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(ZVPublishToMessengerStart)
     DDX_Control(pDX, IDC_MESSENGER_ADR, m_MessengerAddressEdit);
     DDX_Control(pDX, IDC_MESSENGER_ALIAS, m_MessengerAliasEdit);
@@ -605,7 +605,7 @@ BOOL ZVPublishToMessengerStart::OnInitDialog()
     // Load all the values
     LoadStateFromIniFile();
 
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
 
     // Load the address edit
     m_MessengerAddressEdit.Initialize(&m_ArrayOfAddress);
@@ -723,15 +723,15 @@ bool ZVPublishToMessengerStart::SaveStateToIniFile()
 /////////////////////////////////////////////////////////////////////////////
 // ZVPublishToMessengerLogon dialog
 
-BEGIN_MESSAGE_MAP(ZVPublishToMessengerLogon, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(ZVPublishToMessengerLogon, PSS_WizardDialog)
     //{{AFX_MSG_MAP(ZVPublishToMessengerLogon)
     ON_BN_CLICKED(IDOK, OnOK)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 ZVPublishToMessengerLogon::ZVPublishToMessengerLogon(ZBPublishMessengerModelInformation*    pInfo,
-                                                     CWnd*                                    pParent /*=NULL*/)
-    : ZIWizardDialog(ZVPublishToMessengerLogon::IDD,
+                                                     CWnd*                                    pParent /*=NULL*/) :
+    PSS_WizardDialog(ZVPublishToMessengerLogon::IDD,
                      IDB_WZBMP1,
                      0,
                      0,
@@ -751,7 +751,7 @@ ZVPublishToMessengerLogon::ZVPublishToMessengerLogon(ZBPublishMessengerModelInfo
 
 void ZVPublishToMessengerLogon::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(ZVPublishToMessengerLogon)
     DDX_Text(pDX, IDC_MESSENGER_PASSWORD, m_Password);
     DDX_Text(pDX, IDC_MESSENGER_USERNAME, m_Username);
@@ -763,7 +763,7 @@ void ZVPublishToMessengerLogon::DoDataExchange(CDataExchange* pDX)
 
 BOOL ZVPublishToMessengerLogon::OnInitDialog()
 {
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
 
     // Sets the correct address
     if (m_pInfo)
@@ -796,5 +796,5 @@ void ZVPublishToMessengerLogon::OnOK()
 
     m_Date_End = _T("null");
 
-    ZIWizardDialog::OnOK();
+    PSS_WizardDialog::OnOK();
 }

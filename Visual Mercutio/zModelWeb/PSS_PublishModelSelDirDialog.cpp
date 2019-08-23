@@ -24,7 +24,7 @@
 //---------------------------------------------------------------------------
 // Message loop
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_PublishModelSelDirDialog, ZIWizardDialog)
+BEGIN_MESSAGE_MAP(PSS_PublishModelSelDirDialog, PSS_WizardDialog)
     //{{AFX_MSG_MAP(ZVPublishModelSelectDirectory)
     ON_NOTIFY(TVN_SELCHANGED, IDC_TREEOFDIRECTORY, OnSelchangedDirectory)
     ON_NOTIFY(NM_DBLCLK, IDC_TREEOFDIRECTORY, OnDblclkDirectory)
@@ -38,19 +38,19 @@ END_MESSAGE_MAP()
 PSS_PublishModelSelDirDialog::PSS_PublishModelSelDirDialog(const CString& lastPathName,
                                                            CStringArray*  pArrayOfAddress,
                                                            CWnd*          pParent) :
-    ZIWizardDialog(PSS_PublishModelSelDirDialog::IDD,
-                   IDB_WZBMP1,
-                   0,
-                   0,
-                   IDS_PUBLISHMODELSELDIR_S,
-                   IDS_PUBLISHMODELSELDIR_T),
+    PSS_WizardDialog(PSS_PublishModelSelDirDialog::IDD,
+                     IDB_WZBMP1,
+                     0,
+                     0,
+                     IDS_PUBLISHMODELSELDIR_S,
+                     IDS_PUBLISHMODELSELDIR_T),
     m_Directory(lastPathName),
     m_pArrayOfAddress(pArrayOfAddress)
 {}
 //---------------------------------------------------------------------------
 void PSS_PublishModelSelDirDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIWizardDialog::DoDataExchange(pDX);
+    PSS_WizardDialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_PublishModelSelDirDialog)
     DDX_Control(pDX, IDC_TREEOFDIRECTORY,  m_DirTreeCtrl);
@@ -82,7 +82,7 @@ void PSS_PublishModelSelDirDialog::ReflectChangedDirectory()
 //---------------------------------------------------------------------------
 BOOL PSS_PublishModelSelDirDialog::OnInitDialog()
 {
-    ZIWizardDialog::OnInitDialog();
+    PSS_WizardDialog::OnInitDialog();
     
     // initialize the directory tree control
     m_DirTreeCtrl.Initialize();
@@ -145,6 +145,6 @@ void PSS_PublishModelSelDirDialog::OnOK()
         }
     }
 
-    ZIWizardDialog::OnOK();
+    PSS_WizardDialog::OnOK();
 }
 //---------------------------------------------------------------------------
