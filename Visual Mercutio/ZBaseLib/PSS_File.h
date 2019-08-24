@@ -169,7 +169,7 @@ class AFX_EXT_CLASS PSS_File : public CObject
         void SetFileDrive(const char fileName);
 
         /**
-        * Clones the file object
+        * Clones the object
         *@return the cloned object, NULL on error
         */
         virtual inline PSS_File* Clone() const;

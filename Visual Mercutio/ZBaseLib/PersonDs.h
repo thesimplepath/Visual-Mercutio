@@ -5,8 +5,8 @@
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PersonDs_h
-#define PersonDs_h 1
+#ifndef PSS_MailUserH
+#define PSS_MailUserH
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -15,6 +15,11 @@
 #define AFX_EXT_CLASS AFX_CLASS_IMPORT
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
+
+// old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
+#ifndef PSS_MailUser
+    //#define PSS_MailUser ZBMailUser
+#endif
 
 // mfc
 #include "mfc.h"
@@ -40,85 +45,123 @@
     #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-class AFX_EXT_CLASS ZBMailUser : public CObject
+/**
+* Mail user
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_MailUser : public CObject
 {
-    DECLARE_SERIAL(ZBMailUser)
+    DECLARE_SERIAL(PSS_MailUser)
 
-public:
-    //## Constructors (generated)
-    ZBMailUser(const ZBMailUser &right);
+    public:
+        /**
+        * Constructor
+        *@param personName - person name
+        *@param recipClass - recipient class
+        */
+        PSS_MailUser(const CString& personName = "", ULONG recipClass = MAPI_TO);
 
-    //## Constructors (specified)
-      //## Operation: ZBMailUser%913452742
-    ZBMailUser(CString PersonName = "", ULONG RecipClass = MAPI_TO);
+        /**
+        * Constructor
+        *@param personName - person name
+        *@param recipClass - recipient class
+        */
+        PSS_MailUser(ZUser& personName, ULONG recipClass = MAPI_TO);
 
-    //## Operation: ZBMailUser%913659111
-    ZBMailUser(ZUser& PersonName, ULONG RecipClass = MAPI_TO);
+        /**
+        * Copy constructor
+        *@param other - other object to copy from
+        */
+        PSS_MailUser(const PSS_MailUser& other);
 
-    //## Destructor (generated)
-    virtual ~ZBMailUser();
+        virtual ~PSS_MailUser();
 
-    //## Assignment Operation (generated)
-    const ZBMailUser & operator=(const ZBMailUser &right);
+        /**
+        * Copy operator
+        *@param other - other object to copy from
+        *@return copy of itself
+        */
+        const PSS_MailUser& operator = (const PSS_MailUser& other);
 
-    /**
-    * Stores from the archive to the object stamp
-    *@param ar - archive
-    *@param user - mail user
-    *@return archive, to allow operator to be chained with other items, e.g a >> b >> c
-    */
-    friend CArchive& operator >> (CArchive& ar, ZBMailUser& user);
+        /**
+        * Stores from the archive to the object stamp
+        *@param ar - archive
+        *@param user - mail user
+        *@return archive, to allow operator to be chained with other items, e.g a >> b >> c
+        */
+        friend CArchive& operator >> (CArchive& ar, PSS_MailUser& user);
 
-    /**
-    * Stores the object stamp to the archive
-    *@param ar - archive
-    *@param user - mail user
-    *@return archive, to allow operator to be chained with other items, e.g a << b << c
-    */
-    friend CArchive& operator << (CArchive& ar, ZBMailUser& user);
+        /**
+        * Stores the object stamp to the archive
+        *@param ar - archive
+        *@param user - mail user
+        *@return archive, to allow operator to be chained with other items, e.g a << b << c
+        */
+        friend CArchive& operator << (CArchive& ar, PSS_MailUser& user);
 
-    //## Other Operations (specified)
-      //## Operation: Clone%913452743
-    ZBMailUser* Clone();
+        /**
+        * Clones the object
+        *@return the cloned object, NULL on error
+        */
+        virtual PSS_MailUser* Clone() const;
 
-    //## Operation: Serialize%928263998
-    //    Serialization function required for MFC mecanism.
-    virtual void Serialize(CArchive& ar);
+        /**
+        * Serializes the class content to an archive
+        *@param ar - archive
+        */
+        virtual void Serialize(CArchive& ar);
 
-    //## Get and Set Operations for Class Attributes (generated)
+        /**
+        * Gets the person name
+        *@return the person name
+        */
+        virtual inline const CString& GetPersonName() const;
 
-      //## Attribute: PersonName%36722D2D00E8
-    const CString& GetPersonName() const;
-    void SetPersonName(const CString& value);
+        /**
+        * Sets the person name
+        *@param value - the person name
+        */
+        virtual inline void SetPersonName(const CString& value);
 
-    //## Attribute: RecipClass%36722D45033C
-    //    Define the recipicient class.
-    const ULONG GetRecipClass() const;
-    void SetRecipClass(ULONG value);
+        /**
+        * Gets the recipicient class
+        *@return the recipicient class
+        */
+        virtual inline const ULONG GetRecipClass() const;
 
-private:
-    CString m_PersonName;
-    ULONG m_RecipClass;
+        /**
+        * Sets the recipicient class
+        *@param value - the recipicient class
+        */
+        virtual inline void SetRecipClass(ULONG value);
+
+    private:
+        CString m_PersonName;
+        ULONG   m_RecipClass;
 };
 
-inline const CString& ZBMailUser::GetPersonName() const
+//---------------------------------------------------------------------------
+// PSS_MailUser
+//---------------------------------------------------------------------------
+const CString& PSS_MailUser::GetPersonName() const
 {
     return m_PersonName;
 }
-
-inline void ZBMailUser::SetPersonName(const CString& value)
+//---------------------------------------------------------------------------
+void PSS_MailUser::SetPersonName(const CString& value)
 {
     m_PersonName = value;
 }
-
-inline const ULONG ZBMailUser::GetRecipClass() const
+//---------------------------------------------------------------------------
+const ULONG PSS_MailUser::GetRecipClass() const
 {
     return m_RecipClass;
 }
-
-inline void ZBMailUser::SetRecipClass(ULONG value)
+//---------------------------------------------------------------------------
+void PSS_MailUser::SetRecipClass(ULONG value)
 {
     m_RecipClass = value;
 }
+//---------------------------------------------------------------------------
 
 #endif

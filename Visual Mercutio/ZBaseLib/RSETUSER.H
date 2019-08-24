@@ -1,7 +1,14 @@
-// rsetuser.h : header file
-//
+/****************************************************************************
+ * ==> PSS_UserRecordSet ---------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides an user record set                                *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-//change the definition of AFX_EXT... to make it import
+#ifndef PSS_UserRecordSetH
+#define PSS_UserRecordSetH
+
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -9,46 +16,60 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-
-
 #ifdef _ZBASELIBEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-
-
-/////////////////////////////////////////////////////////////////////////////
-// ZDUserRecordSet recordset
-
+/**
+* User record set
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
 class AFX_EXT_CLASS ZDUserRecordSet : public CRecordset
 {
-public:
-    ZDUserRecordSet(CDatabase* pDatabase = NULL);
-    CString GetUserDBTableName();
-
-// Field/Param Data
-    //{{AFX_FIELD(ZDUserRecordSet, CRecordset)
-    CString    m_UserName;
-    CString    m_Email;
-    CString    m_Responsible;
-    CString    m_Description;
-    //}}AFX_FIELD
-
-
-// Implementation
-protected:
-    virtual CString GetDefaultConnect();    // Default connection string
-    virtual CString GetDefaultSQL();     // Default SQL for Recordset
-    virtual void DoFieldExchange(CFieldExchange* pFX);    // RFX support
     DECLARE_DYNAMIC(ZDUserRecordSet)
+
+    public:
+        CString m_UserName;
+        CString m_Email;
+        CString m_Responsible;
+        CString m_Description;
+
+        /**
+        * Constructor
+        *@param pDatabase - database, can be NULL
+        */
+        ZDUserRecordSet(CDatabase* pDatabase = NULL);
+
+        /**
+        * Gets the user database table name
+        *@return the user database table name
+        */
+        CString GetUserDBTableName() const;
+
+    protected:
+        /**
+        * Gets the default connection string
+        *@return the default connection string
+        */
+        virtual CString GetDefaultConnect() const;
+
+        /**
+        * Gets the default SQL for recordset
+        *@return the default SQL for recordset
+        */
+        virtual CString GetDefaultSQL() const;
+
+        /**
+        * RFX support
+        *@param pFX - RFX data
+        */
+        virtual void DoFieldExchange(CFieldExchange* pFX);
 };
 
+#endif

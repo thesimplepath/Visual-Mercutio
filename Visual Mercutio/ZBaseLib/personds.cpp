@@ -13,84 +13,65 @@
     static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(ZBMailUser, CObject, g_DefVersion)
-
-ZBMailUser::ZBMailUser(const ZBMailUser &right)
-{
-    *this = right;
-}
-
-ZBMailUser::ZBMailUser(CString PersonName, ULONG RecipClass) :
-    m_PersonName(PersonName), m_RecipClass(RecipClass)
+//---------------------------------------------------------------------------
+// Serialization
+//---------------------------------------------------------------------------
+IMPLEMENT_SERIAL(PSS_MailUser, CObject, g_DefVersion)
+//---------------------------------------------------------------------------
+// PSS_MailUser
+//---------------------------------------------------------------------------
+PSS_MailUser::PSS_MailUser(const CString& personName, ULONG RecipClass) :
+    m_PersonName(personName),
+    m_RecipClass(recipClass)
 {}
-
-ZBMailUser::ZBMailUser(ZUser& PersonName, ULONG RecipClass)
-//## begin ZBMailUser::ZBMailUser%913659111.hasinit preserve=no
-//## end ZBMailUser::ZBMailUser%913659111.hasinit
-//## begin ZBMailUser::ZBMailUser%913659111.initialization preserve=yes
-    : m_PersonName(PersonName.GetMailAddress()), m_RecipClass(RecipClass)
-    //## end ZBMailUser::ZBMailUser%913659111.initialization
+//---------------------------------------------------------------------------
+PSS_MailUser::PSS_MailUser(ZUser& personName, ULONG recipClass) :
+    m_PersonName(personName.GetMailAddress()),
+    m_RecipClass(recipClass)
+{}
+//---------------------------------------------------------------------------
+PSS_MailUser::PSS_MailUser(const PSS_MailUser& other)
 {
-    //## begin ZBMailUser::ZBMailUser%913659111.body preserve=yes
-    //## end ZBMailUser::ZBMailUser%913659111.body
+    *this = other;
 }
-
-
-ZBMailUser::~ZBMailUser()
+//---------------------------------------------------------------------------
+PSS_MailUser::~PSS_MailUser()
+{}
+//---------------------------------------------------------------------------
+const PSS_MailUser& PSS_MailUser::operator = (const PSS_MailUser& other)
 {
-    //## begin ZBMailUser::~ZBMailUser%.body preserve=yes
-    //## end ZBMailUser::~ZBMailUser%.body
-}
-
-
-const ZBMailUser & ZBMailUser::operator=(const ZBMailUser &right)
-{
-    //## begin ZBMailUser::operator=%.body preserve=yes
-    m_PersonName = right.m_PersonName;
-    m_RecipClass = right.m_RecipClass;
+    m_PersonName = other.m_PersonName;
+    m_RecipClass = other.m_RecipClass;
     return *this;
-    //## end ZBMailUser::operator=%.body
 }
-
-
-
-//## Other Operations (implementation)
-ZBMailUser* ZBMailUser::Clone()
+//---------------------------------------------------------------------------
+CArchive& operator >> (CArchive& ar, PSS_MailUser& user)
 {
-    //## begin ZBMailUser::Clone%913452743.body preserve=yes
-    ZBMailUser*    pNewPerson = new ZBMailUser(*this);
-    return pNewPerson;
-    //## end ZBMailUser::Clone%913452743.body
-}
-
-CArchive& operator >> (CArchive& ar, ZBMailUser& User)
-{
-    //## begin ZBMailUser::operator >>%928176921.body preserve=yes
-    ar >> User.m_PersonName;
-    ar >> User.m_RecipClass;
+    ar >> user.m_PersonName;
+    ar >> user.m_RecipClass;
     return ar;
-    //## end ZBMailUser::operator >>%928176921.body
 }
-
-CArchive& operator << (CArchive& ar, ZBMailUser& User)
+//---------------------------------------------------------------------------
+CArchive& operator << (CArchive& ar, PSS_MailUser& user)
 {
-    //## begin ZBMailUser::operator <<%928176922.body preserve=yes
-    ar << User.m_PersonName;
-    ar << User.m_RecipClass;
+    ar << user.m_PersonName;
+    ar << user.m_RecipClass;
     return ar;
-    //## end ZBMailUser::operator <<%928176922.body
 }
-
-void ZBMailUser::Serialize(CArchive& ar)
+//---------------------------------------------------------------------------
+PSS_MailUser* PSS_MailUser::Clone() const
 {
-    //## begin ZBMailUser::Serialize%928263998.body preserve=yes
+    std::unique_ptr<PSS_MailUser> pNewPerson(new PSS_MailUser(*this));
+    return pNewPerson.release();
+}
+//---------------------------------------------------------------------------
+void PSS_MailUser::Serialize(CArchive& ar)
+{
     if (ar.IsStoring())
-    {    // Write the elements
+        // write the elements
         ar << *this;
-    }
     else
-    {
+        // read the elements
         ar >> *this;
-    }
-    //## end ZBMailUser::Serialize%928263998.body
 }
+//---------------------------------------------------------------------------
