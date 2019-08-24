@@ -12,17 +12,16 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZISplitter
 
-ZISplitter::ZISplitter()
-{
-}
+ZISplitter::ZISplitter() :
+    PSS_OutlookSplitterWnd()
+{}
 
 ZISplitter::~ZISplitter()
-{
-}
+{}
 
 
 #ifdef _WIN32
-BEGIN_MESSAGE_MAP(ZISplitter, ZIOutlookSplitterWnd)
+BEGIN_MESSAGE_MAP(ZISplitter, PSS_OutlookSplitterWnd)
 #endif
 
 #ifndef _WIN32    // In 16bit there is a bug, therefore do not accept moving splitter

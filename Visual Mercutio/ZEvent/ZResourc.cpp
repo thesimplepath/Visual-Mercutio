@@ -140,7 +140,7 @@ BOOL ZBResources::UserExist (const CString& UserName)
   //## end ZBResources::UserExist%927742727.body
 }
 
-ZUMailUserList* ZBResources::CreatePersonList (ZProcess* pMainProcess, ZUUserManager& UserManager, CString ConnectedUser)
+PSS_MailUserList* ZBResources::CreatePersonList (ZProcess* pMainProcess, ZUUserManager& UserManager, CString ConnectedUser)
 {
   //## begin ZBResources::CreatePersonList%927742730.body preserve=yes
     // If responsible requested
@@ -150,7 +150,7 @@ ZUMailUserList* ZBResources::CreatePersonList (ZProcess* pMainProcess, ZUUserMan
         ZUser* pUser = UserManager.FindUser ( ConnectedUser );
         if (pUser)
         {
-              ZUMailUserList*    pPersonList = new ZUMailUserList;
+            PSS_MailUserList*    pPersonList = new PSS_MailUserList;
             // Search the corresponding responsible user ptr
             pUser = UserManager.FindUser ( pUser->GetResponsible() );
             if (pUser)
@@ -175,7 +175,7 @@ ZUMailUserList* ZBResources::CreatePersonList (ZProcess* pMainProcess, ZUUserMan
                 // Return the initiator if the activity has been done.
                 if (!pActivity->GetInitiator().IsEmpty())
                 {
-                      ZUMailUserList*    pPersonList = new ZUMailUserList;
+                    PSS_MailUserList*    pPersonList = new PSS_MailUserList;
                     pPersonList->AddPerson( pActivity->GetInitiator() );
                     return pPersonList;
                 }
@@ -189,7 +189,7 @@ ZUMailUserList* ZBResources::CreatePersonList (ZProcess* pMainProcess, ZUUserMan
         else
             if (GetUserCount())
             {
-                  ZUMailUserList*    pPersonList = new ZUMailUserList;
+                PSS_MailUserList*    pPersonList = new PSS_MailUserList;
                 // Run through the user list and build the person
                 for (size_t i = 0; i < GetUserCount(); ++i)
                 {

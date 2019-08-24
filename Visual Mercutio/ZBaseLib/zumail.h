@@ -126,11 +126,9 @@ extern LPMAPIRESOLVENAME lpfnMAPIResolveName;
  
 //## end module%366D7F640200.includes
 
-// PersonLs
-#include "PersonLs.h"
-// MFileDsc
+// processsoft
+#include "PSS_MailUserList.h"
 #include "PSS_MailFileDescription.h"
-// MailMsg
 #include "PSS_MailMessage.h"
 //## begin module%366D7F640200.declarations preserve=no
 //## end module%366D7F640200.declarations
@@ -180,28 +178,28 @@ class AFX_EXT_CLASS ZUMail
 
     //## Other Operations (specified)
       //## Operation: SendMail%913142858
-      BOOL SendMail (CString Subject = "", CString MessageHeader = "", CString MessageFooter = "", ZUMailUserList* PersonList = NULL);
+      BOOL SendMail (CString Subject = "", CString MessageHeader = "", CString MessageFooter = "", PSS_MailUserList* PersonList = NULL);
 
       //## Operation: SendMail%927831783
       BOOL SendMail (PSS_MailMessage& MailMessage);
 
       //## Operation: SendDocument%913223369
       //    Sends a CDocument.
-      BOOL SendDocument (CDocument& Doc, CString Subject = "", CString MessageHeader = "", CString MessageFooter = "", ZUMailUserList* PersonList = NULL);
+      BOOL SendDocument (CDocument& Doc, CString Subject = "", CString MessageHeader = "", CString MessageFooter = "", PSS_MailUserList* PersonList = NULL);
 
       //## Operation: SendDocuments%913223376
       //    Sends documents.
-      BOOL SendDocuments (PSS_MailFileDescription& FileList, CString Subject = "", CString MessageHeader = "", CString MessageFooter = "", ZUMailUserList* PersonList = NULL);
+      BOOL SendDocuments (PSS_MailFileDescription& FileList, CString Subject = "", CString MessageHeader = "", CString MessageFooter = "", PSS_MailUserList* PersonList = NULL);
 
       //## Operation: SendDocuments%913223377
       //    Sends documents.
-      BOOL SendDocuments (CStringArray& FileList, CString Subject = "", CString MessageHeader = "", CString MessageFooter = "", ZUMailUserList* PersonList = NULL);
+      BOOL SendDocuments (CStringArray& FileList, CString Subject = "", CString MessageHeader = "", CString MessageFooter = "", PSS_MailUserList* PersonList = NULL);
 
       //## Operation: ResolveName%921575858
-      BOOL ResolveName (const CString Name, ZUMailUserList& PersonList, BOOL ShowDialog = FALSE);
+      BOOL ResolveName (const CString Name, PSS_MailUserList& PersonList, BOOL ShowDialog = FALSE);
 
       //## Operation: Address%921594740
-      BOOL Address (ZUMailUserList& PersonList);
+      BOOL Address (PSS_MailUserList& PersonList);
 
   private:
     //## Constructors (generated)

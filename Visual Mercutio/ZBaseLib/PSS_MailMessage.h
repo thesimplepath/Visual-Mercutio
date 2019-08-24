@@ -27,7 +27,7 @@
 // processsoft
 #include "PSS_FileManager.h"
 #include "PSS_MailFileDescription.h"
-#include "PersonLs.h"
+#include "PSS_MailUserList.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -54,7 +54,7 @@ class AFX_EXT_CLASS PSS_MailMessage : public CObject
         *@param subject - subject
         *@param text - text
         */
-        PSS_MailMessage(ZUMailUserList* pUserList = NULL, const CString& subject = "", const CString& text = "");
+        PSS_MailMessage(PSS_MailUserList* pUserList = NULL, const CString& subject = "", const CString& text = "");
 
         virtual ~PSS_MailMessage();
 
@@ -72,7 +72,7 @@ class AFX_EXT_CLASS PSS_MailMessage : public CObject
         *@param recipClass - recipient class
         *@return TRUE on success, otherwise FALSE
         */
-        virtual inline BOOL AddPerson(ZBMailUser& person, ULONG recipClass = MAPI_TO);
+        virtual inline BOOL AddPerson(PSS_MailUser& person, ULONG recipClass = MAPI_TO);
 
         /**
         * Adds a new person
@@ -129,7 +129,7 @@ class AFX_EXT_CLASS PSS_MailMessage : public CObject
         *@param index - index
         *@return the person at index, NULL if not found or on error
         */
-        virtual inline ZBMailUser* GetMailUserAt(int index);
+        virtual inline PSS_MailUser* GetMailUserAt(int index);
 
         /**
         * Removes all the mail users
@@ -232,7 +232,7 @@ class AFX_EXT_CLASS PSS_MailMessage : public CObject
         virtual void Serialize(CArchive& ar);
 
     private:
-        ZUMailUserList*          m_pMailUserList;
+        PSS_MailUserList*        m_pMailUserList;
         PSS_MailFileDescription* m_pMailFileList;
         CString                  m_Subject;
         CString                  m_Text;
@@ -257,15 +257,15 @@ class AFX_EXT_CLASS PSS_MailMessage : public CObject
 BOOL PSS_MailMessage::AddPerson(const CString& personName, ULONG recipClass)
 {
     if (!m_pMailUserList)
-        m_pMailUserList = new ZUMailUserList;
+        m_pMailUserList = new PSS_MailUserList;
 
     return m_pMailUserList->AddPerson(personName, recipClass);
 }
 //---------------------------------------------------------------------------
-BOOL PSS_MailMessage::AddPerson(ZBMailUser& person, ULONG recipClass)
+BOOL PSS_MailMessage::AddPerson(PSS_MailUser& person, ULONG recipClass)
 {
     if (!m_pMailUserList)
-        m_pMailUserList = new ZUMailUserList;
+        m_pMailUserList = new PSS_MailUserList;
 
     return m_pMailUserList->AddPerson(person, recipClass);
 }
@@ -273,7 +273,7 @@ BOOL PSS_MailMessage::AddPerson(ZBMailUser& person, ULONG recipClass)
 BOOL PSS_MailMessage::AddPerson(ZUser& person, ULONG recipClass)
 {
     if (!m_pMailUserList)
-        m_pMailUserList = new ZUMailUserList;
+        m_pMailUserList = new PSS_MailUserList;
 
     return m_pMailUserList->AddPerson(person, recipClass);
 }
@@ -281,7 +281,7 @@ BOOL PSS_MailMessage::AddPerson(ZUser& person, ULONG recipClass)
 BOOL PSS_MailMessage::AddPerson(MapiRecipDesc* pMapiDesc)
 {
     if (!m_pMailUserList)
-        m_pMailUserList = new ZUMailUserList;
+        m_pMailUserList = new PSS_MailUserList;
 
     return m_pMailUserList->AddPerson(pMapiDesc);
 }
@@ -294,7 +294,7 @@ int PSS_MailMessage::GetMailUserCount() const
     return 0;
 }
 //---------------------------------------------------------------------------
-ZBMailUser* PSS_MailMessage::GetMailUserAt(int index)
+PSS_MailUser* PSS_MailMessage::GetMailUserAt(int index)
 {
     if (m_pMailUserList)
         return m_pMailUserList->GetAt(index);

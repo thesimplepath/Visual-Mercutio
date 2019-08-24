@@ -41,7 +41,7 @@ class ZProcess;
 //## begin module%3786DB7B0055.additionalDeclarations preserve=yes
 #include "zBaseLib\SmartPtr.h"
 #include "zBaseLib\ZBDate.h"
-#include "zBaseLib\PersonLs.h"
+#include "zBaseLib\PSS_MailUserList.h"
 #include "Zresourc.h"
 
 
@@ -203,17 +203,17 @@ public:
       //## Operation: ActivityCreatePersonList%931585003
       //    Take the activity and build the person list for the
       //    email.
-      virtual ZUMailUserList* ActivityCreatePersonList (ZUUserManager& UserManager, CString ConnectedUser);
+      virtual PSS_MailUserList* ActivityCreatePersonList (ZUUserManager& UserManager, CString ConnectedUser);
 
       //## Operation: CreatePersonList%931584999
       //    Take the activity and build the person list for the
       //    email.
-      virtual ZUMailUserList* CreatePersonList (ZBaseActivity& Activity, ZUUserManager& UserManager);
+      virtual PSS_MailUserList* CreatePersonList (ZBaseActivity& Activity, ZUUserManager& UserManager);
 
       //## Operation: CreatePersonList%931585000
       //    Take the activity and build the person list for the
       //    email.
-      virtual ZUMailUserList* CreatePersonList (int Index, ZUUserManager& UserManager);
+      virtual PSS_MailUserList* CreatePersonList (int Index, ZUUserManager& UserManager);
 
       //## Operation: CreatePersonDelimStr%931585001
       //    Take the activity and build a delimited string
@@ -244,11 +244,11 @@ public:
 
 
       virtual BOOL PrincipalResourceActivityFillPersonArray (ZUUserManager& UserManager, CStringArray& UserArray, CString ConnectedUser);
-      virtual ZUMailUserList* PrincipalResourceActivityCreatePersonList (ZUUserManager& UserManager, CString ConnectedUser);
+      virtual PSS_MailUserList* PrincipalResourceActivityCreatePersonList (ZUUserManager& UserManager, CString ConnectedUser);
       virtual CString PrincipalResourceActivityCreatePersonDelimStr (ZUUserManager& UserManager, CString ConnectedUser, CString Delimiter = ";");
 
       virtual BOOL BackupResourceActivityFillPersonArray (ZUUserManager& UserManager, CStringArray& UserArray, CString ConnectedUser);
-      virtual ZUMailUserList* BackupResourceActivityCreatePersonList (ZUUserManager& UserManager, CString ConnectedUser);
+      virtual PSS_MailUserList* BackupResourceActivityCreatePersonList (ZUUserManager& UserManager, CString ConnectedUser);
       virtual CString BackupResourceActivityCreatePersonDelimStr (ZUUserManager& UserManager, CString ConnectedUser, CString Delimiter = ";");
 
 

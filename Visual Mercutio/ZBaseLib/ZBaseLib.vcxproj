@@ -400,7 +400,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="OutlookSplitterWnd.cpp">
+    <ClCompile Include="PSS_OutlookSplitterWnd.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -424,13 +424,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="personds.cpp">
+    <ClCompile Include="PSS_MailUser.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="personls.cpp">
+    <ClCompile Include="PSS_MailUserList.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -460,13 +460,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="RSETACT.CPP">
+    <ClCompile Include="PSS_ActivityLogRecordSet.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="RSETUSER.CPP">
+    <ClCompile Include="PSS_UserRecordSet.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1388,18 +1388,18 @@
     <ClInclude Include="PSS_MaskEditBase.h" />
     <ClInclude Include="PSS_ObsoletePLFNObj.h" />
     <ClInclude Include="PSS_OutlookBarView.h" />
-    <ClInclude Include="OutlookSplitterWnd.h" />
+    <ClInclude Include="PSS_OutlookSplitterWnd.h" />
     <ClInclude Include="PSS_PaintOperations.h" />
     <ClInclude Include="PSS_PaintResources.h" />
     <ClInclude Include="PSS_PaletteBar.h" />
-    <ClInclude Include="PersonDs.h" />
-    <ClInclude Include="personls.h" />
+    <ClInclude Include="PSS_MailUser.h" />
+    <ClInclude Include="PSS_MailUserList.h" />
     <ClInclude Include="PLANFOBJ.H" />
     <ClInclude Include="PSS_PLFNBackImage.h" />
     <ClInclude Include="PSS_ProcessModelDocTmpl.h" />
     <ClInclude Include="PSS_ProcessDocumentOptions.h" />
-    <ClInclude Include="RSETACT.H" />
-    <ClInclude Include="RSETUSER.H" />
+    <ClInclude Include="PSS_ActivityLogRecordSet.h" />
+    <ClInclude Include="PSS_UserRecordSet.h" />
     <ClInclude Include="SingleInstanceApp.h" />
     <ClInclude Include="SmartPtr.h" />
     <ClInclude Include="SPHELP.H" />

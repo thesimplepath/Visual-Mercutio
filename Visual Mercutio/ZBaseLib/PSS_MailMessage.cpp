@@ -20,7 +20,7 @@ IMPLEMENT_SERIAL(PSS_MailMessage, CObject, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_MailMessage
 //---------------------------------------------------------------------------
-PSS_MailMessage::PSS_MailMessage(ZUMailUserList* pUserList, const CString& subject, const CString& text) :
+PSS_MailMessage::PSS_MailMessage(PSS_MailUserList* pUserList, const CString& subject, const CString& text) :
     CObject(),
     m_pMailUserList(pUserList),
     m_pMailFileList(NULL),
@@ -49,7 +49,7 @@ const PSS_MailMessage& PSS_MailMessage::operator = (const PSS_MailMessage& other
 void PSS_MailMessage::FillPerson(CStringArray& personList, ULONG recipClass)
 {
     if (!m_pMailUserList)
-        m_pMailUserList = new ZUMailUserList;
+        m_pMailUserList = new PSS_MailUserList;
 
     m_pMailUserList->Fill(personList, recipClass);
 }
@@ -57,7 +57,7 @@ void PSS_MailMessage::FillPerson(CStringArray& personList, ULONG recipClass)
 void PSS_MailMessage::FillPerson(ZUUserManager& personList, ULONG recipClass)
 {
     if (!m_pMailUserList)
-        m_pMailUserList = new ZUMailUserList;
+        m_pMailUserList = new PSS_MailUserList;
 
     m_pMailUserList->Fill(personList, recipClass);
 }
@@ -65,7 +65,7 @@ void PSS_MailMessage::FillPerson(ZUUserManager& personList, ULONG recipClass)
 void PSS_MailMessage::FillPerson(lpMapiRecipDesc* pMapiDesc, ULONG count)
 {
     if (!m_pMailUserList)
-        m_pMailUserList = new ZUMailUserList;
+        m_pMailUserList = new PSS_MailUserList;
 
     m_pMailUserList->Fill(pMapiDesc, count);
 }
@@ -73,7 +73,7 @@ void PSS_MailMessage::FillPerson(lpMapiRecipDesc* pMapiDesc, ULONG count)
 MapiRecipDesc* PSS_MailMessage::GetMapiRecipDesc()
 {
     if (m_pMailUserList)
-        return m_pMailUserList->GetMapiRecipDescPtr();
+        return m_pMailUserList->GetMapiRecipDesc();
 
     return NULL;
 }

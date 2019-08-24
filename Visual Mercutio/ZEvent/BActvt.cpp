@@ -369,21 +369,21 @@ CString ZBaseActivity::ActivityCreatePersonDelimStr( ZUUserManager&    UserManag
     //## end ZBaseActivity::ActivityCreatePersonDelimStr%931584998.body
 }
 
-ZUMailUserList* ZBaseActivity::ActivityCreatePersonList( ZUUserManager& UserManager, CString ConnectedUser )
+PSS_MailUserList* ZBaseActivity::ActivityCreatePersonList( ZUUserManager& UserManager, CString ConnectedUser )
 {
     //## begin ZBaseActivity::ActivityCreatePersonList%931585003.body preserve=yes
     return GetCurrentResources().CreatePersonList( GetMainProcess(), UserManager, ConnectedUser );
     //## end ZBaseActivity::ActivityCreatePersonList%931585003.body
 }
 
-ZUMailUserList* ZBaseActivity::CreatePersonList( ZBaseActivity& Activity, ZUUserManager& UserManager )
+PSS_MailUserList* ZBaseActivity::CreatePersonList( ZBaseActivity& Activity, ZUUserManager& UserManager )
 {
     //## begin ZBaseActivity::CreatePersonList%931584999.body preserve=yes
     return NULL;
     //## end ZBaseActivity::CreatePersonList%931584999.body
 }
 
-ZUMailUserList* ZBaseActivity::CreatePersonList( int Index, ZUUserManager& UserManager )
+PSS_MailUserList* ZBaseActivity::CreatePersonList( int Index, ZUUserManager& UserManager )
 {
     //## begin ZBaseActivity::CreatePersonList%931585000.body preserve=yes
     return NULL;
@@ -408,7 +408,7 @@ CString ZBaseActivity::CreatePersonDelimStr( int            Index,
     //## end ZBaseActivity::CreatePersonDelimStr%931585002.body
 }
 
-ZUMailUserList* ZBaseActivity::PrincipalResourceActivityCreatePersonList( ZUUserManager&    UserManager,
+PSS_MailUserList* ZBaseActivity::PrincipalResourceActivityCreatePersonList( ZUUserManager&    UserManager,
                                                                           CString            ConnectedUser )
 {
     return m_PrincipalResources.CreatePersonList( GetMainProcess(), UserManager, ConnectedUser );
@@ -421,7 +421,7 @@ CString ZBaseActivity::PrincipalResourceActivityCreatePersonDelimStr( ZUUserMana
     return m_PrincipalResources.CreatePersonDelimStr( GetMainProcess(), UserManager, ConnectedUser, Delimiter );
 }
 
-ZUMailUserList* ZBaseActivity::BackupResourceActivityCreatePersonList( ZUUserManager&    UserManager,
+PSS_MailUserList* ZBaseActivity::BackupResourceActivityCreatePersonList( ZUUserManager&    UserManager,
                                                                        CString            ConnectedUser )
 {
     return m_BackupResources.CreatePersonList( GetMainProcess(), UserManager, ConnectedUser );

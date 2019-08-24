@@ -107,7 +107,7 @@ ZUMail::~ZUMail()
 
 
 //## Other Operations (implementation)
-BOOL ZUMail::SendMail(CString Subject, CString MessageHeader, CString MessageFooter, ZUMailUserList* PersonList)
+BOOL ZUMail::SendMail(CString Subject, CString MessageHeader, CString MessageFooter, PSS_MailUserList* PersonList)
 {
     //## begin ZUMail::SendMail%913142858.body preserve=yes
     if (m_InstMail == NULL)
@@ -135,7 +135,7 @@ BOOL ZUMail::SendMail(CString Subject, CString MessageHeader, CString MessageFoo
     if (PersonList && PersonList->GetCount() > 0)
     {
         message.nRecipCount = PersonList->GetCount();
-        message.lpRecips = PersonList->GetMapiRecipDescPtr();
+        message.lpRecips = PersonList->GetMapiRecipDesc();
     }
 
 #ifndef _WIN32
@@ -288,7 +288,7 @@ BOOL ZUMail::SendMail(PSS_MailMessage& MailMessage)
     //## end ZUMail::SendMail%927831783.body
 }
 
-BOOL ZUMail::SendDocument(CDocument& Doc, CString Subject, CString MessageHeader, CString MessageFooter, ZUMailUserList* PersonList)
+BOOL ZUMail::SendDocument(CDocument& Doc, CString Subject, CString MessageHeader, CString MessageFooter, PSS_MailUserList* PersonList)
 {
     //## begin ZUMail::SendDocument%913223369.body preserve=yes
     if (m_InstMail == NULL)
@@ -368,7 +368,7 @@ BOOL ZUMail::SendDocument(CDocument& Doc, CString Subject, CString MessageHeader
     if (PersonList && PersonList->GetCount() > 0)
     {
         message.nRecipCount = PersonList->GetCount();
-        message.lpRecips = PersonList->GetMapiRecipDescPtr();
+        message.lpRecips = PersonList->GetMapiRecipDesc();
     }
     // Build the message
     CString    Message = MessageHeader;
@@ -431,7 +431,7 @@ BOOL ZUMail::SendDocument(CDocument& Doc, CString Subject, CString MessageHeader
     //## end ZUMail::SendDocument%913223369.body
 }
 
-BOOL ZUMail::SendDocuments(PSS_MailFileDescription& FileList, CString Subject, CString MessageHeader, CString MessageFooter, ZUMailUserList* PersonList)
+BOOL ZUMail::SendDocuments(PSS_MailFileDescription& FileList, CString Subject, CString MessageHeader, CString MessageFooter, PSS_MailUserList* PersonList)
 {
     //## begin ZUMail::SendDocuments%913223376.body preserve=yes
     if (m_InstMail == NULL)
@@ -468,7 +468,7 @@ BOOL ZUMail::SendDocuments(PSS_MailFileDescription& FileList, CString Subject, C
     if (PersonList && PersonList->GetCount() > 0)
     {
         message.nRecipCount = PersonList->GetCount();
-        message.lpRecips = PersonList->GetMapiRecipDescPtr();
+        message.lpRecips = PersonList->GetMapiRecipDesc();
     }
 
 #ifndef _WIN32
@@ -523,14 +523,14 @@ BOOL ZUMail::SendDocuments(PSS_MailFileDescription& FileList, CString Subject, C
     //## end ZUMail::SendDocuments%913223376.body
 }
 
-BOOL ZUMail::SendDocuments(CStringArray& FileList, CString Subject, CString MessageHeader, CString MessageFooter, ZUMailUserList* PersonList)
+BOOL ZUMail::SendDocuments(CStringArray& FileList, CString Subject, CString MessageHeader, CString MessageFooter, PSS_MailUserList* PersonList)
 {
     //## begin ZUMail::SendDocuments%913223377.body preserve=yes
     return SendDocuments(PSS_MailFileDescription(FileList), MessageHeader, MessageFooter, Subject, PersonList);
     //## end ZUMail::SendDocuments%913223377.body
 }
 
-BOOL ZUMail::ResolveName(const CString Name, ZUMailUserList& PersonList, BOOL ShowDialog)
+BOOL ZUMail::ResolveName(const CString Name, PSS_MailUserList& PersonList, BOOL ShowDialog)
 {
     //## begin ZUMail::ResolveName%921575858.body preserve=yes
     if (lpfnMAPIFreeBuffer == NULL || lpfnMAPIResolveName == NULL)
@@ -593,7 +593,7 @@ BOOL ZUMail::ResolveName(const CString Name, ZUMailUserList& PersonList, BOOL Sh
     //## end ZUMail::ResolveName%921575858.body
 }
 
-BOOL ZUMail::Address(ZUMailUserList& PersonList)
+BOOL ZUMail::Address(PSS_MailUserList& PersonList)
 {
     //## begin ZUMail::Address%921594740.body preserve=yes
     if (lpfnMAPIFreeBuffer == NULL || lpfnMAPIAddress == NULL)
@@ -627,7 +627,7 @@ BOOL ZUMail::Address(ZUMailUserList& PersonList)
     MapiRecipDesc*            lppNewRecips[2];
 
     ULONG nError = lpfnMAPIAddress(NULL, MAKELONG(hWndParent, 0), NULL, 1, "",
-                                   PersonList.GetCount(), (PersonList.GetCount() > 0) ? PersonList.GetMapiRecipDescPtr() : NULL,
+                                   PersonList.GetCount(), (PersonList.GetCount() > 0) ? PersonList.GetMapiRecipDesc() : NULL,
                                    MAPI_LOGON_UI | MAPI_DIALOG, 0,
                                    &NbAddress, &lppNewRecips[0]);
 

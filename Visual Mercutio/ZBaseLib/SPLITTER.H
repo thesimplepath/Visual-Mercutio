@@ -13,7 +13,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 
-#include "OutlookSplitterWnd.h"
+#include "PSS_OutlookSplitterWnd.h"
 
 #ifdef _ZBASELIBEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -31,7 +31,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // ZISplitter window
 
-class AFX_EXT_CLASS ZISplitter : public ZIOutlookSplitterWnd
+class AFX_EXT_CLASS ZISplitter : public PSS_OutlookSplitterWnd
 {
 // Construction
 public:

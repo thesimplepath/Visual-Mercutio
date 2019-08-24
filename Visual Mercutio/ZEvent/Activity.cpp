@@ -252,7 +252,7 @@ BOOL ZActivity::ActivityFillPersonArray (ZUUserManager& UserManager, CStringArra
   //## end ZActivity::ActivityFillPersonArray%927439013.body
 }
 
-ZUMailUserList* ZActivity::ActivityCreatePersonList (ZUUserManager& UserManager, CString ConnectedUser)
+PSS_MailUserList* ZActivity::ActivityCreatePersonList (ZUUserManager& UserManager, CString ConnectedUser)
 {
   //## begin ZActivity::ActivityCreatePersonList%927439012.body preserve=yes
     return GetCurrentResources().CreatePersonList( GetMainProcess(), UserManager, ConnectedUser );

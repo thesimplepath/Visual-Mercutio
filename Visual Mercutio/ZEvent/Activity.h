@@ -156,7 +156,7 @@ public:
       //## Operation: ActivityCreatePersonList%927439012
       //    Take the activity and build the person list for the
       //    email.
-      virtual ZUMailUserList* ActivityCreatePersonList (ZUUserManager& UserManager, CString ConnectedUser);
+      virtual PSS_MailUserList* ActivityCreatePersonList (ZUUserManager& UserManager, CString ConnectedUser);
 
       //## Operation: ActivityCreatePersonDelimStr%927439014
       //    Take the activity and build a delimited string

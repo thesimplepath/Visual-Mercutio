@@ -34,7 +34,7 @@ enum     ActivityUserType { Users, ResponsibleOfUser, AttributionOfUsers, UserFr
 //## end module%374C3AB50066.includes
 
 // PersonLs
-#include "zBaseLib\PersonLs.h"
+#include "zBaseLib\PSS_MailUserList.h"
 // UserMng
 #include "zBaseLib\UserMng.h"
 // Mfc
@@ -131,7 +131,7 @@ public:
       //## Operation: CreatePersonList%927742730
       //    Take the activity and build the person list for the
       //    email.
-      ZUMailUserList* CreatePersonList (ZProcess* pMainProcess, ZUUserManager& UserManager, CString ConnectedUser);
+      PSS_MailUserList* CreatePersonList (ZProcess* pMainProcess, ZUUserManager& UserManager, CString ConnectedUser);
 
       //## Operation: FillPersonArray%927742731
       //    Take the activity and fill a person array.

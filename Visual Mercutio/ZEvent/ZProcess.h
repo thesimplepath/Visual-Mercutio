@@ -131,12 +131,12 @@ public:
       //## Operation: CreatePersonList%927439016
       //    Take the activity and build the person list for the
       //    email.
-      virtual ZUMailUserList* CreatePersonList (ZBaseActivity& Activity, ZUUserManager& UserManager);
+      virtual PSS_MailUserList* CreatePersonList (ZBaseActivity& Activity, ZUUserManager& UserManager);
 
       //## Operation: CreatePersonList%927439017
       //    Take the activity and build the person list for the
       //    email.
-      virtual ZUMailUserList* CreatePersonList (int Index, ZUUserManager& UserManager);
+      virtual PSS_MailUserList* CreatePersonList (int Index, ZUUserManager& UserManager);
 
       //## Operation: FillPersonArray%927439018
       //    Take the activity and fill a person array.

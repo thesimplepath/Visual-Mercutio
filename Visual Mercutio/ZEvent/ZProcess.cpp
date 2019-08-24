@@ -225,14 +225,14 @@ BOOL ZProcess::TemplateExist (const CString& TemplateName)
   //## end ZProcess::TemplateExist%916261170.body
 }
 
-ZUMailUserList* ZProcess::CreatePersonList (ZBaseActivity& Activity, ZUUserManager& UserManager)
+PSS_MailUserList* ZProcess::CreatePersonList (ZBaseActivity& Activity, ZUUserManager& UserManager)
 {
   //## begin ZProcess::CreatePersonList%927439016.body preserve=yes
     return Activity.ActivityCreatePersonList( UserManager, GetConnectedUser() );
   //## end ZProcess::CreatePersonList%927439016.body
 }
 
-ZUMailUserList* ZProcess::CreatePersonList (int Index, ZUUserManager& UserManager)
+PSS_MailUserList* ZProcess::CreatePersonList (int Index, ZUUserManager& UserManager)
 {
   //## begin ZProcess::CreatePersonList%927439017.body preserve=yes
     ZBaseActivity*    pActivity = GetActivityAt( Index );

@@ -23,22 +23,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="OutlookSplitterWnd.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="personds.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="personls.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PLANFOBJ.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RSETACT.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RSETUSER.CPP">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SingleInstanceApp.cpp">
@@ -602,6 +587,21 @@
     <ClCompile Include="PSS_OutlookBarView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_OutlookSplitterWnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_MailUser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ActivityLogRecordSet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_UserRecordSet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_MailUserList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -717,22 +717,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="OutlookSplitterWnd.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PersonDs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="personls.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PLANFOBJ.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RSETACT.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RSETUSER.H">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SingleInstanceApp.h">
@@ -1300,6 +1285,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_OutlookBarView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_OutlookSplitterWnd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_MailUser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ActivityLogRecordSet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_UserRecordSet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_MailUserList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
