@@ -29,7 +29,7 @@
 #include "zEvent\ActLog.h"
 
 // Contains obsolete class for PLFN hierarchy
-#include "zBaseLib\Obsolete.h"
+#include "zBaseLib\PSS_ObsoletePLFNObj.h"
 
 #include <CTYPE.H>
 #include <locale.h>

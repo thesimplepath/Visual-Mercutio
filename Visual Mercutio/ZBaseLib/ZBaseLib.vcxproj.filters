@@ -23,12 +23,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="OBSOLETE.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="OutlookBarView.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="OutlookSplitterWnd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -602,6 +596,12 @@
     <ClCompile Include="PSS_MaskEditBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_ObsoletePLFNObj.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_OutlookBarView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -717,12 +717,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="OBSOLETE.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OutlookBarView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="OutlookSplitterWnd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1300,6 +1294,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_MaskEditBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ObsoletePLFNObj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_OutlookBarView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

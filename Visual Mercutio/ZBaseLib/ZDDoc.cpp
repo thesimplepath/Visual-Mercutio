@@ -33,7 +33,7 @@
 #include "ZAMStr.h"
 #include "ZAMultiC.h"
 #include "ZANumbrd.h"
-#include "Obsolete.h"
+#include "PSS_ObsoletePLFNObj.h"
 #include "PSS_MsgBox.h"
 
 #include "ZIView.h"
@@ -2821,7 +2821,7 @@ CString ZDDocument::GetAutomaticNewName(PlanFinObject* pObj, int DocumentIndex)
     {
         return pDocData->BuildAutomaticNewName(_T("Rct"));
     }
-    else if (pObj->IsKindOf(RUNTIME_CLASS(PLFNNumbered)))
+    else if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNNumbered)))
     {
         ASSERT(FALSE);
         return pDocData->BuildAutomaticNewName(_T("Numb"));
@@ -2834,7 +2834,7 @@ CString ZDDocument::GetAutomaticNewName(PlanFinObject* pObj, int DocumentIndex)
     {
         return pDocData->BuildAutomaticNewName(_T("Tm"));
     }
-    else if (pObj->IsKindOf(RUNTIME_CLASS(PLFNNumbEdit)))
+    else if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNNumbEdit)))
     {
         ASSERT(FALSE);
         return pDocData->BuildAutomaticNewName(_T("NumbEdt"));
@@ -2852,7 +2852,7 @@ CString ZDDocument::GetAutomaticNewName(PlanFinObject* pObj, int DocumentIndex)
     {
         return pDocData->BuildAutomaticNewName(_T("BndTxt"));
     }
-    else if (pObj->IsKindOf(RUNTIME_CLASS(PLFNStringHistory)))
+    else if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNStringHistory)))
     {
         ASSERT(FALSE);
         return pDocData->BuildAutomaticNewName(_T("StrHist"));
@@ -2861,12 +2861,12 @@ CString ZDDocument::GetAutomaticNewName(PlanFinObject* pObj, int DocumentIndex)
     {
         return pDocData->BuildAutomaticNewName(_T("Str"));
     }
-    else if (pObj->IsKindOf(RUNTIME_CLASS(PLFNNumHistory)))
+    else if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNNumHistory)))
     {
         ASSERT(FALSE);
         return pDocData->BuildAutomaticNewName(_T("$NumHist"));
     }
-    else if (pObj->IsKindOf(RUNTIME_CLASS(PLFNNumbNumEdit)))
+    else if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNNumbNumEdit)))
     {
         ASSERT(FALSE);
         return pDocData->BuildAutomaticNewName(_T("$NumbNumEdt"));

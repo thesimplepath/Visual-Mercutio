@@ -72,9 +72,6 @@
 #include "RegistryDef.h"
 #include "zBaseLib\PSS_RegisterSetup.h"
 
-// Contains obsolete class for PLFN hierarchy
-#include "zBaseLib\Obsolete.h"
-
 #include <CTYPE.H>
 #include <locale.h>
 

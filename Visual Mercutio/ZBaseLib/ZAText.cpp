@@ -151,19 +151,19 @@ void PLFNText::Serialize (CArchive& ar)
   //## end PLFNText::Serialize%829516183.body
 }
 
-void PLFNText::GetContains (CString& strLine)
+void PLFNText::GetContains (const CString& line)
 {
   //## begin PLFNText::GetContains%831692953.body preserve=yes
     int            iIndex;
     
     // Extract object Name    
-    if( (iIndex=strLine.ReverseFind(',')) == -1 )
+    if( (iIndex=line.ReverseFind(',')) == -1 )
         return;
 
     // Extract the iX
-    int        iPos = strLine.GetLength()-iIndex-2;
+    int        iPos = line.GetLength()-iIndex-2;
     if( iPos > 0 )
-        m_Str = strLine.Right( iPos );
+        m_Str = line.Right( iPos );
   //## end PLFNText::GetContains%831692953.body
 }
 

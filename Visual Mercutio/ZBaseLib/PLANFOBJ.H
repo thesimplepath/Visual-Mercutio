@@ -344,7 +344,7 @@ public:
     //    the user asks for object properties.
     virtual UINT GetPropertyTabs() const;
 
-    void    GetContains( CString& strLine );
+    void    GetContains(const CString& line);
     virtual BOOL     IsSelected( const CPoint& point ) const;
 
     virtual void   *GetObjectAdress() const {return ((void*)&m_Long);};

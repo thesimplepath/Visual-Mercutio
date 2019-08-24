@@ -1238,20 +1238,20 @@ void     PLFNLong::Recalculate(ZDDocument*    pDoc)
 // Return        :    Nothing.
 //
 //----------------------------------------------------------------------------
-void    PLFNLong::GetContains( CString& strLine )
+void    PLFNLong::GetContains(const CString& line)
 {
     int            iIndex;
     
     // Extract object Name    
-    if( (iIndex=strLine.ReverseFind(',')) == -1 )
+    if( (iIndex = line.ReverseFind(',')) == -1 )
         return;
 
     // Extract the string of the value
     CString        str;
-    int        iPos = strLine.GetLength()-iIndex-2;
+    int        iPos = line.GetLength()-iIndex-2;
     if( iPos > 0 )
-        str = strLine.Right( iPos );
-    m_Long = atof( str );
+        str = line.Right( iPos );
+    m_Long = std::atof( str );
 }
 
 /////////////////////////////////////////////////////////////////////////////

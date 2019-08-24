@@ -113,7 +113,7 @@ class AFX_EXT_CLASS PLFNText : public PLFNAscii  //## Inherits: <unnamed>%334FC4
       //    Return the contains of the text. The parameter strLine
       //    contains the definition of the object and the function
       //    retreive the contains from this line.
-      void GetContains (CString& strLine);
+      void GetContains (const CString& line);
 
       //## Operation: Clone%849755977
       //    Make a clone of the object.

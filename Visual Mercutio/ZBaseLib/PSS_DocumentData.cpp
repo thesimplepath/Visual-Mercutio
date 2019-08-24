@@ -18,7 +18,7 @@
 #include "ZASquare.h"
 #include "ZANumbrd.h"
 #include "ZAMultiC.h"
-#include "Obsolete.h"
+#include "PSS_ObsoletePLFNObj.h"
 #include "PSS_PLFNBackImage.h"
 #include "ZBFldCol.h"
 #include "PSS_FileBuffer.h"
@@ -686,7 +686,7 @@ void PSS_DocumentData::ReplaceCalculatedFields()
     {
         do
         {
-            PLFNCalculated* pCalculated = dynamic_cast<PLFNCalculated*>(pObjTemp);
+            PSS_PLFNCalculated* pCalculated = dynamic_cast<PSS_PLFNCalculated*>(pObjTemp);
 
             // if the object was calculated, convert it in number
             if (pCalculated)
