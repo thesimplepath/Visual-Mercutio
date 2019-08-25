@@ -33,10 +33,10 @@
 * Folder stamp
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_FolderStamp : public ZDStamp
+class AFX_EXT_CLASS PSS_FolderStamp : public PSS_Stamp
 {
     public:
-        typedef ZDStamp inherited;
+        typedef PSS_Stamp inherited;
 
         PSS_FolderStamp();
 

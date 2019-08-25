@@ -1,10 +1,14 @@
-// splitter.h : header file
-//
+/****************************************************************************
+ * ==> PSS_Splitter --------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a splitter                                        *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#ifndef Splitter_h
-#define Splitter_h 1
+#ifndef PSS_SplitterH
+#define PSS_SplitterH
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -12,49 +16,34 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
+// processsoft
 #include "PSS_OutlookSplitterWnd.h"
 
 #ifdef _ZBASELIBEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-
-/////////////////////////////////////////////////////////////////////////////
-// ZISplitter window
-
-class AFX_EXT_CLASS ZISplitter : public PSS_OutlookSplitterWnd
+/**
+* Splitter
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_Splitter : public PSS_OutlookSplitterWnd
 {
-// Construction
-public:
-    ZISplitter();
+    public:
+        PSS_Splitter();
+        virtual ~PSS_Splitter();
 
-// Attributes
-public:
-
-// Operations
-public:
-
-// Implementation
-public:
-    virtual ~ZISplitter();
-
-protected:
-    // Generated message map functions
-    //{{AFX_MSG(ZISplitter)
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+    protected:
+        /// Generated message map functions
+        //{{AFX_MSG(PSS_Splitter)
+        //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
 };
 
-/////////////////////////////////////////////////////////////////////////////
-
-
-#endif // Splitter_h
+#endif
