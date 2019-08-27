@@ -120,7 +120,8 @@ void PLFNText::Serialize (CArchive& ar)
     {    // Write the elements
         // Check if template file but not static element.
         // If static, serialize it.
-        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetFileType() == E_FD_TemplateType && !GetIsStatic()  && !GetDefaultValue())
+        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetFileType() == PSS_Stamp::IE_FD_TemplateType &&
+            !GetIsStatic() && !GetDefaultValue())
         {
             CString str(m_Str);
             m_Str = "";

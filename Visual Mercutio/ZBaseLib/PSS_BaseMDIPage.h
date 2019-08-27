@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "Splitter.h"
+#include "PSS_Splitter.h"
 #include "PSS_BaseTitleMDIPage.h"
 #include "ZIHtmlView.h"
 
@@ -96,7 +96,7 @@ class AFX_EXT_CLASS PSS_BaseMDIPage : public PSS_BaseTitleMDIPage
         CCJFlatComboBox m_Percentage;
         CCJFlatComboBox m_FileList;
         CCJFlatComboBox m_Schema;
-        ZISplitter      m_Splitter;
+        PSS_Splitter    m_Splitter;
         std::size_t     m_CurrentContext;
         int             m_BaseOffset;
         int             m_IndexDropList;

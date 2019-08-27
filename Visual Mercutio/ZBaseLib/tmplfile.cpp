@@ -90,7 +90,8 @@ BOOL ZDTemplateFile::Create (CString Filename)
     if (!m_Stamp.ReadFromFile( m_Filename ))
         return FALSE;
 
-    return m_Persistent = (m_Stamp.GetInternalVersion() != -1 && m_Stamp.GetFileType() == E_FD_TemplateType) ? TRUE : FALSE;
+    return m_Persistent =
+            (m_Stamp.GetInternalVersion() != -1 && m_Stamp.GetFileType() == PSS_Stamp::IE_FD_TemplateType) ? TRUE : FALSE;
 }
 
 CArchive& operator >> (CArchive& ar, ZDTemplateFile& TemplateFile)

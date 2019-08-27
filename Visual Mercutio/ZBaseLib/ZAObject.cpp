@@ -1439,8 +1439,8 @@ void PlanFinObject::Serialize (CArchive& ar)
         ar << (WORD)m_DefaultValue;
 
         // Test if template
-        if (((ZDDocument*)ar.m_pDocument )->GetDocumentStamp().GetFileType() == E_FD_TemplateType &&
-            !GetDefaultValue()                                                                    &&
+        if (((ZDDocument*)ar.m_pDocument )->GetDocumentStamp().GetFileType() == PSS_Stamp::IE_FD_TemplateType &&
+            !GetDefaultValue()                                                                                &&
             !GetIsStatic() )
         {
             m_IsEmpty = TRUE;

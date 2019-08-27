@@ -192,7 +192,7 @@ BOOL PSS_DocumentExport::ExportAdditionalInfo()
     if (!m_pDoc)
         return FALSE;
 
-    if (m_pDoc->GetDocumentStamp().GetDocumentFileType() == ProcessDocumentFileType)
+    if (m_pDoc->GetDocumentStamp().GetDocumentFileType() == PSS_Stamp::IE_FT_ProcessDocument)
     {
         WriteLine(BuildLine(g_ExportProcessNameKey, m_pDoc->GetDocumentStamp().GetTitle()));
         WriteLine(BuildLine(g_ExportTemplateNameKey, ""));

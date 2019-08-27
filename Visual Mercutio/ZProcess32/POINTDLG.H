@@ -7,7 +7,7 @@
 
 #include "zWinUtil32\PSS_NewFormDialog.h"
 #include "zWinUtil32\PSS_PointerWnd.h"
-#include "zBaseLib\PlanfObj.h"
+#include "zBaseLib\PSS_PlanFinObj.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // ZDPointerDlg dialog
@@ -49,6 +49,4 @@ protected:
     DECLARE_MESSAGE_MAP()
 };
 
-
-
-#endif    // PointDlg_h
+#endif

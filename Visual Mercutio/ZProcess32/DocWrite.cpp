@@ -107,7 +107,7 @@ BOOL ZDDocumentReadWrite::OnNewDocument()
         return FALSE;
 
     // Set the type for Document
-    GetDocumentStamp().SetFileType(E_FD_DocumentType);
+    GetDocumentStamp().SetFileType(PSS_Stamp::IE_FD_DocumentType);
     AssignPredefinedField();
 
     // Set the path name to empty

@@ -48,7 +48,7 @@ PSS_TemplateCopyDialog::PSS_TemplateCopyDialog(ZDTemplateManager* pTemplateManag
             // in 16 bit, only 8 character for the file name
             m_FileName = m_pFolderStamp->GetTitle().Left(8);
         #endif
-        m_Description = m_pFolderStamp->GetExplanation();
+        m_Description = m_pFolderStamp->GetDescription();
     }
 }
 //---------------------------------------------------------------------------

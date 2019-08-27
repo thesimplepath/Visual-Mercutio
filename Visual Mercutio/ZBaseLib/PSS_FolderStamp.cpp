@@ -12,11 +12,11 @@
  // PSS_FolderStamp
  //---------------------------------------------------------------------------
 PSS_FolderStamp::PSS_FolderStamp() :
-    ZDStamp()
+    PSS_Stamp()
 {}
 //---------------------------------------------------------------------------
 PSS_FolderStamp::PSS_FolderStamp(const PSS_FolderStamp& other) :
-    ZDStamp()
+    PSS_Stamp()
 {
     *this = other;
 }
@@ -26,7 +26,7 @@ PSS_FolderStamp::~PSS_FolderStamp()
 //---------------------------------------------------------------------------
 const PSS_FolderStamp& PSS_FolderStamp::operator = (const PSS_FolderStamp& other)
 {
-    ZDStamp::operator = ((inherited&)other);
+    PSS_Stamp::operator = ((inherited&)other);
 
     m_FolderName           = other.m_FolderName;
     m_FolderDescription    = other.m_FolderDescription;
@@ -42,7 +42,7 @@ const PSS_FolderStamp& PSS_FolderStamp::operator = (const PSS_FolderStamp& other
 //---------------------------------------------------------------------------
 CArchive& operator >> (CArchive& ar, PSS_FolderStamp& stamp)
 {
-    ar >> (ZDStamp&)stamp;
+    ar >> (PSS_Stamp&)stamp;
 
     if (stamp.GetInternalVersion() >= 11)
     {
@@ -105,7 +105,7 @@ CArchive& operator >> (CArchive& ar, PSS_FolderStamp& stamp)
 //---------------------------------------------------------------------------
 CArchive& operator << (CArchive& ar, const PSS_FolderStamp& stamp)
 {
-    ar << (ZDStamp&)stamp;
+    ar << (PSS_Stamp&)stamp;
     ar << stamp.m_FolderName;
     ar << stamp.m_FolderDescription;
     ar << stamp.m_CreationUserName;

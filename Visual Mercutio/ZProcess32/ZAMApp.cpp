@@ -25,7 +25,7 @@
 //## begin module%334FC4630327.includes preserve=yes
 #include "planfin.hdf"
 #include "mainfrm.h"
-#include "zBaseLib\planfobj.h"
+#include "zBaseLib\PSS_PlanFinObj.h"
 #include "zBaseLib\ZANumbrd.h"
 #include "zBaseLib\ZABitmap.h"
 #include "zBaseLib\ZABnText.h"
@@ -193,7 +193,7 @@ AFX_STATIC BOOL AFXAPI _zSetRegKey(LPCTSTR lpszKey, LPCTSTR lpszValue, LPCTSTR l
 
 IMPLEMENT_DYNAMIC(ZAMainApp, CWinApp)
 
-BEGIN_MESSAGE_MAP(ZAMainApp, ZASingleInstanceApplication)
+BEGIN_MESSAGE_MAP(ZAMainApp, PSS_SingleInstanceApplication)
     //{{AFX_MSG_MAP(ZAApp)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -304,7 +304,7 @@ BOOL ZAMainApp::InitInstance()
     }
 
     // Check DDE
-    if (!ZASingleInstanceApplication::InitInstance())
+    if (!PSS_SingleInstanceApplication::InitInstance())
     {
         return false;
     }
@@ -1472,7 +1472,7 @@ void ZAMainApp::ModelTemplateDirectoryHasChanged()
 
 // ********************************************* Documents et modèles *******************************************
 
-BOOL ZAMainApp::BuildTemplateName(CString& str, ZDStamp& Stamp)
+BOOL ZAMainApp::BuildTemplateName(CString& str, PSS_Stamp& Stamp)
 {
     BOOL bCorrectTemplate = FALSE;
 

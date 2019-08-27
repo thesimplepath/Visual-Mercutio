@@ -69,7 +69,7 @@ PlanFinObject* PSS_PLFNStringHistory::Clone() const
 //---------------------------------------------------------------------------
 void PSS_PLFNStringHistory::CopyObject(PlanFinObject* pSrc)
 {
-    PSS_PLFNStringHistory::operator = (dynamic_cast<PSS_PLFNStringHistory*>(pSrc));
+    operator = (dynamic_cast<PSS_PLFNStringHistory*>(pSrc));
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNStringHistory::GetContains(const CString& line)
@@ -103,16 +103,16 @@ void PSS_PLFNStringHistory::Serialize(CArchive& ar)
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_PLFNNumbered, PLFNStatic, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_PLFNNumbered, PSS_PLFNStatic, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_PLFNNumbered
 //---------------------------------------------------------------------------
 PSS_PLFNNumbered::PSS_PLFNNumbered() :
-    PLFNStatic()
+    PSS_PLFNStatic()
 {}
 //---------------------------------------------------------------------------
 PSS_PLFNNumbered::PSS_PLFNNumbered(const PSS_PLFNNumbered& other) :
-    PLFNStatic()
+    PSS_PLFNStatic()
 {
     *this = other;
 }
@@ -122,7 +122,7 @@ PSS_PLFNNumbered::~PSS_PLFNNumbered()
 //---------------------------------------------------------------------------
 const PSS_PLFNNumbered& PSS_PLFNNumbered::operator = (const PSS_PLFNNumbered* pOther)
 {
-    PLFNStatic::operator = ((inherited*)pOther);
+    PSS_PLFNStatic::operator = ((inherited*)pOther);
 
     if (!pOther)
     {
@@ -140,7 +140,7 @@ const PSS_PLFNNumbered& PSS_PLFNNumbered::operator = (const PSS_PLFNNumbered* pO
 //---------------------------------------------------------------------------
 const PSS_PLFNNumbered& PSS_PLFNNumbered::operator = (const PSS_PLFNNumbered& other)
 {
-    PLFNStatic::operator = ((inherited&)other);
+    PSS_PLFNStatic::operator = ((inherited&)other);
     m_Chapter   = other.m_Chapter;
     m_Paragraph = other.m_Paragraph;
     return *this;
@@ -154,12 +154,12 @@ PlanFinObject* PSS_PLFNNumbered::Clone() const
 //---------------------------------------------------------------------------
 void PSS_PLFNNumbered::CopyObject(PlanFinObject* pSrc)
 {
-    PSS_PLFNNumbered::operator = (dynamic_cast<PSS_PLFNNumbered*>(pSrc));
+    operator = (dynamic_cast<PSS_PLFNNumbered*>(pSrc));
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNNumbered::Serialize(CArchive& ar)
 {
-    PLFNStatic::Serialize(ar);
+    PSS_PLFNStatic::Serialize(ar);
 
     if (ar.IsStoring())
     {
@@ -284,7 +284,7 @@ PlanFinObject* PSS_PLFNNumbEdit::Clone() const
 //---------------------------------------------------------------------------
 void PSS_PLFNNumbEdit::CopyObject(PlanFinObject* pSrc)
 {
-    PSS_PLFNNumbEdit::operator = (dynamic_cast<PSS_PLFNNumbEdit*>(pSrc));
+    operator = (dynamic_cast<PSS_PLFNNumbEdit*>(pSrc));
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNNumbEdit::Serialize(CArchive& ar)
@@ -361,16 +361,16 @@ void PSS_PLFNNumbEdit::DrawObject(CDC* pDC, ZIView* pView)
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_PLFNCalculated, PLFNLong, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_PLFNCalculated, PSS_PLFNLong, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_PLFNCalculated
 //---------------------------------------------------------------------------
 PSS_PLFNCalculated::PSS_PLFNCalculated() :
-    PLFNLong()
+    PSS_PLFNLong()
 {}
 //---------------------------------------------------------------------------
 PSS_PLFNCalculated::PSS_PLFNCalculated(const PSS_PLFNCalculated& other) :
-    PLFNLong()
+    PSS_PLFNLong()
 {
     *this = other;
 }
@@ -380,7 +380,7 @@ PSS_PLFNCalculated::~PSS_PLFNCalculated()
 //---------------------------------------------------------------------------
 const PSS_PLFNCalculated& PSS_PLFNCalculated::operator = (const PSS_PLFNCalculated* pOther)
 {
-    this->PLFNLong::operator = ((inherited*)pOther);
+    PSS_PLFNLong::operator = ((inherited*)pOther);
 
     if (!pOther)
         m_Long = 0.0;
@@ -392,7 +392,7 @@ const PSS_PLFNCalculated& PSS_PLFNCalculated::operator = (const PSS_PLFNCalculat
 //---------------------------------------------------------------------------
 const PSS_PLFNCalculated& PSS_PLFNCalculated::operator = (const PSS_PLFNCalculated& other)
 {
-    PLFNLong::operator = ((inherited&)other);
+    PSS_PLFNLong::operator = ((inherited&)other);
     m_Long = other.m_Long;
     return *this;
 }
@@ -405,7 +405,7 @@ PlanFinObject* PSS_PLFNCalculated::Clone() const
 //---------------------------------------------------------------------------
 void PSS_PLFNCalculated::CopyObject(PlanFinObject* pSrc)
 {
-    PSS_PLFNCalculated::operator = (dynamic_cast<PSS_PLFNCalculated*>(pSrc));
+    operator = (dynamic_cast<PSS_PLFNCalculated*>(pSrc));
 }
 //---------------------------------------------------------------------------
 CString PSS_PLFNCalculated::GetFormattedObject()
@@ -436,7 +436,7 @@ void PSS_PLFNCalculated::Recalculate(ZDDocument* pDoc)
 //---------------------------------------------------------------------------
 void PSS_PLFNCalculated::Serialize(CArchive& ar)
 {
-    PLFNLong::Serialize(ar);
+    PSS_PLFNLong::Serialize(ar);
 }
 //---------------------------------------------------------------------------
 #ifdef _DEBUG
@@ -455,16 +455,16 @@ void PSS_PLFNCalculated::Serialize(CArchive& ar)
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_PLFNNumHistory, PLFNLong, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_PLFNNumHistory, PSS_PLFNLong, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_PLFNNumHistory
 //---------------------------------------------------------------------------
 PSS_PLFNNumHistory::PSS_PLFNNumHistory() :
-    PLFNLong()
+    PSS_PLFNLong()
 {}
 //---------------------------------------------------------------------------
 PSS_PLFNNumHistory::PSS_PLFNNumHistory(const PSS_PLFNNumHistory& other) :
-    PLFNLong()
+    PSS_PLFNLong()
 {
     *this = other;
 }
@@ -474,13 +474,13 @@ PSS_PLFNNumHistory::~PSS_PLFNNumHistory()
 //---------------------------------------------------------------------------
 const PSS_PLFNNumHistory& PSS_PLFNNumHistory::operator = (const PSS_PLFNNumHistory* pOther)
 {
-    PLFNLong::operator = ((inherited*)pOther);
+    PSS_PLFNLong::operator = ((inherited*)pOther);
     return *this;
 }
 //---------------------------------------------------------------------------
 const PSS_PLFNNumHistory& PSS_PLFNNumHistory::operator = (const PSS_PLFNNumHistory& other)
 {
-    PLFNLong::operator = ((inherited&)other);
+    PSS_PLFNLong::operator = ((inherited&)other);
     return *this;
 }
 //---------------------------------------------------------------------------
@@ -492,12 +492,12 @@ PlanFinObject* PSS_PLFNNumHistory::Clone() const
 //---------------------------------------------------------------------------
 void PSS_PLFNNumHistory::CopyObject(PlanFinObject* pSrc)
 {
-    PSS_PLFNNumHistory::operator = (dynamic_cast<PSS_PLFNNumHistory*>(pSrc));
+    operator = (dynamic_cast<PSS_PLFNNumHistory*>(pSrc));
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNNumHistory::GetContains(const CString& line)
 {
-    PLFNLong::GetContains(line);
+    PSS_PLFNLong::GetContains(line);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_PLFNNumHistory::IsSelected(const CPoint& point) const
@@ -507,7 +507,7 @@ BOOL PSS_PLFNNumHistory::IsSelected(const CPoint& point) const
 //---------------------------------------------------------------------------
 void PSS_PLFNNumHistory::Serialize(CArchive& ar)
 {
-    PLFNLong::Serialize(ar);
+    PSS_PLFNLong::Serialize(ar);
 }
 //---------------------------------------------------------------------------
 #ifdef _DEBUG
@@ -526,16 +526,16 @@ void PSS_PLFNNumHistory::Serialize(CArchive& ar)
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_PLFNNumbNumEdit, PLFNLong, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_PLFNNumbNumEdit, PSS_PLFNLong, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_PLFNNumbNumEdit
 //---------------------------------------------------------------------------
 PSS_PLFNNumbNumEdit::PSS_PLFNNumbNumEdit() :
-    PLFNLong()
+    PSS_PLFNLong()
 {}
 //---------------------------------------------------------------------------
 PSS_PLFNNumbNumEdit::PSS_PLFNNumbNumEdit(const PSS_PLFNNumbNumEdit& other) :
-    PLFNLong()
+    PSS_PLFNLong()
 {
     *this = other;
 }
@@ -545,7 +545,7 @@ PSS_PLFNNumbNumEdit::~PSS_PLFNNumbNumEdit()
 //---------------------------------------------------------------------------
 const PSS_PLFNNumbNumEdit& PSS_PLFNNumbNumEdit::operator = (const PSS_PLFNNumbNumEdit* pOther)
 {
-    PLFNLong::operator = ((inherited*)pOther);
+    PSS_PLFNLong::operator = ((inherited*)pOther);
 
     if (!pOther)
     {
@@ -563,7 +563,7 @@ const PSS_PLFNNumbNumEdit& PSS_PLFNNumbNumEdit::operator = (const PSS_PLFNNumbNu
 //---------------------------------------------------------------------------
 const PSS_PLFNNumbNumEdit& PSS_PLFNNumbNumEdit::operator = (const PSS_PLFNNumbNumEdit& other)
 {
-    PLFNLong::operator = ((inherited&)other);
+    PSS_PLFNLong::operator = ((inherited&)other);
     m_Chapter   = other.m_Chapter;
     m_Paragraph = other.m_Paragraph;
     return *this;
@@ -577,12 +577,12 @@ PlanFinObject* PSS_PLFNNumbNumEdit::Clone() const
 //---------------------------------------------------------------------------
 void PSS_PLFNNumbNumEdit::CopyObject(PlanFinObject* pSrc)
 {
-    PSS_PLFNNumbNumEdit::operator = (dynamic_cast<PSS_PLFNNumbNumEdit*>(pSrc));
+    operator = (dynamic_cast<PSS_PLFNNumbNumEdit*>(pSrc));
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNNumbNumEdit::Serialize(CArchive& ar)
 {
-    PLFNLong::Serialize(ar);
+    PSS_PLFNLong::Serialize(ar);
 
     if (ar.IsStoring())
     {

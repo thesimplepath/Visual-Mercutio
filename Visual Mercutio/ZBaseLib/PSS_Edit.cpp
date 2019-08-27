@@ -9,7 +9,7 @@
 #include "PSS_Edit.h"
 
 // processsoft
-#include "planfobj.h"
+#include "PSS_PlanFinObj.h"
 #include "ZDDoc.h"
 #include "ZAMStr.h"
 #include "ZAMultiC.h"
@@ -167,7 +167,7 @@ void PSS_Edit::CreateSpecialHelp(BOOL designer)
 {
     ASSERT(m_pEditedObj);
 
-    if (m_pEditedObj->IsKindOf(RUNTIME_CLASS(PLFNTime)))
+    if (m_pEditedObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNTime)))
     {
         if (designer)
             m_pSpecialHelp = new SpecialHelpDateDesigner;
@@ -176,7 +176,7 @@ void PSS_Edit::CreateSpecialHelp(BOOL designer)
     }
     else
     {
-        PLFNLong* pLong = dynamic_cast<PLFNLong*>(m_pEditedObj);
+        PSS_PLFNLong* pLong = dynamic_cast<PSS_PLFNLong*>(m_pEditedObj);
 
         if (pLong)
         {
@@ -612,15 +612,15 @@ void PSS_TimeEdit::Create(BOOL                 designerMode,
 
     CString strFormat(_T(" "));
 
-    PLFNTime* pTime = dynamic_cast<PLFNTime*>(m_pEditedObj);
+    PSS_PLFNTime* pTime = dynamic_cast<PSS_PLFNTime*>(m_pEditedObj);
 
     if (pTime && !pTime->IsEmpty())
     {
         std::sprintf(strFormat.GetBuffer(100),
                      _T("%d.%d.%04d"),
-                     pTime->m_Time.GetDay(),
-                     pTime->m_Time.GetMonth(),
-                     pTime->m_Time.GetYear());
+                     pTime->GetTime().GetDay(),
+                     pTime->GetTime().GetMonth(),
+                     pTime->GetTime().GetYear());
 
         strFormat.ReleaseBuffer();
     }

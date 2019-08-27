@@ -172,7 +172,7 @@ class AFX_EXT_CLASS ZDTemplateFile : public CObject
 inline CString ZDTemplateFile::GetDescription () const
 {
   //## begin ZDTemplateFile::GetDescription%878377695.body preserve=yes
-      return m_Stamp.GetExplanation();
+      return m_Stamp.GetDescription();
   //## end ZDTemplateFile::GetDescription%878377695.body
 }
 

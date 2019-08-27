@@ -53,7 +53,7 @@ int ZVModelWorkflowParameters::DoModal()
     // save template information 
     m_FolderStamp.SetTemplate(templateCopyDialog.GetFileName());
     m_FolderStamp.SetTemplate(templateCopyDialog.GetFileName());
-    m_FolderStamp.SetExplanation(templateCopyDialog.GetDescription());
+    m_FolderStamp.SetDescription(templateCopyDialog.GetDescription());
     m_FolderStamp.SetTitle(templateCopyDialog.GetTitle());
 
     // set the file exist flag

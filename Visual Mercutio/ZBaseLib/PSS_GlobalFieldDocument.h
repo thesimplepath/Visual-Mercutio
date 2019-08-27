@@ -24,7 +24,7 @@
 // processsoft
 #include "PSS_GlobalFieldManager.h"
 #include "PSS_HistoryFieldManager.h"
-#include "Stamp.h"
+#include "PSS_Stamp.h"
 #include "PSS_BaseDocument.h"
 
 #ifdef _ZBASELIBEXPORT

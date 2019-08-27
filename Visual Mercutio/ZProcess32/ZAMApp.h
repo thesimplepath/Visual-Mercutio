@@ -41,7 +41,7 @@
 #include "zBaseLib\ZBCriptedFileApplicationTypeInfo.h"
 #endif
 
-#include "zBaseLib\SingleInstanceApp.h"
+#include "zBaseLib\PSS_SingleInstanceApplication.h"
 
 #include "stbox.h"
 
@@ -97,7 +97,7 @@
 using namespace sfl;
 
 // JMR-MODIF - Le 31 décembre 2006 - Modification de la hiérarchie de classes pour la prise en charge par le médiateur.
-class ZAMainApp : public ZASingleInstanceApplication,
+class ZAMainApp : public PSS_SingleInstanceApplication,
                   public ZISubject,
                   public ZTTemplateDocument<_TemplateFunctionNoopAccessor>
 {
@@ -107,7 +107,7 @@ class ZAMainApp : public ZASingleInstanceApplication,
 public:
 
     // Inherited feature
-    typedef ZASingleInstanceApplication inherited;
+    typedef PSS_SingleInstanceApplication inherited;
 
     // Component windows
     PSS_StatusBar& GetStatusBar()
@@ -146,7 +146,7 @@ public:
     virtual bool SaveAllModifiedNoPrompt();
 
     BOOL ChooseServer();
-    BOOL BuildTemplateName( CString& str, ZDStamp& Stamp );
+    BOOL BuildTemplateName( CString& str, PSS_Stamp& Stamp );
 
     // JMR-MODIF - Le 14 juillet 2005 - Supprimé les fonctions de modification des paramètres de l'imprimante,
     // car ces fonctions sont maintenant gérées ailleurs dans le programme.

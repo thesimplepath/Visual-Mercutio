@@ -41,7 +41,7 @@
 
 // processsoft
 #include "zamath.h"
-#include "planfobj.h"
+#include "PSS_PlanFinObj.h"
 #include "ZAObject.h"
 #include "ZAText.h"
 #include "ZAString.h"
@@ -144,7 +144,7 @@ class AFX_EXT_CLASS PSS_PLFNStringHistory : public PLFNString
 * Financial plan containing a number
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PLFNNumbered : public PLFNStatic
+class AFX_EXT_CLASS PSS_PLFNNumbered : public PSS_PLFNStatic
 {
     DECLARE_SERIAL(PSS_PLFNNumbered)
 
@@ -152,7 +152,7 @@ class AFX_EXT_CLASS PSS_PLFNNumbered : public PLFNStatic
         int m_Chapter;
         int m_Paragraph;
 
-        typedef PLFNStatic inherited;
+        typedef PSS_PLFNStatic inherited;
 
         PSS_PLFNNumbered();
 
@@ -337,12 +337,12 @@ UINT PSS_PLFNNumbEdit::GetPropertyTabs() const
 *@note Valid only in version -1 and 0, Replaced by the PLFNLong with a flag after the version 1
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PLFNCalculated : public PLFNLong
+class AFX_EXT_CLASS PSS_PLFNCalculated : public PSS_PLFNLong
 {
     DECLARE_SERIAL(PSS_PLFNCalculated)
 
     public:
-        typedef PLFNLong inherited;
+        typedef PSS_PLFNLong inherited;
 
         PSS_PLFNCalculated();
 
@@ -418,12 +418,12 @@ class AFX_EXT_CLASS PSS_PLFNCalculated : public PLFNLong
 * Financial plan containing a numerical history
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PLFNNumHistory : public PLFNLong
+class AFX_EXT_CLASS PSS_PLFNNumHistory : public PSS_PLFNLong
 {
     DECLARE_SERIAL(PSS_PLFNNumHistory)
 
     public:
-        typedef PLFNLong inherited;
+        typedef PSS_PLFNLong inherited;
 
         PSS_PLFNNumHistory();
 
@@ -515,7 +515,7 @@ UINT PSS_PLFNNumHistory::GetPropertyTabs() const
 * Financial plan containing a numerical edit
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PLFNNumbNumEdit : public PLFNLong
+class AFX_EXT_CLASS PSS_PLFNNumbNumEdit : public PSS_PLFNLong
 {
     friend class PSS_PLFNNumbered;
 
@@ -525,7 +525,7 @@ class AFX_EXT_CLASS PSS_PLFNNumbNumEdit : public PLFNLong
         int m_Chapter;
         int m_Paragraph;
 
-        typedef PLFNLong inherited;
+        typedef PSS_PLFNLong inherited;
 
         PSS_PLFNNumbNumEdit();
 

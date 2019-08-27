@@ -1615,7 +1615,7 @@ ZDProcessGraphModelDoc* ZAApp::FileNewModel()
     }
 
     // Set the type for Template
-    pNewFile->SetFileType(E_FD_TemplateType);
+    pNewFile->SetFileType(PSS_Stamp::IE_FD_TemplateType);
 
     // Set the path name to empty
     pNewFile->ClearPathName();    // no path name yet

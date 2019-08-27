@@ -155,13 +155,13 @@ class AFX_EXT_CLASS PSS_BaseDocument : public CDocument
         * Sets the document type
         *@param value - new document type to set
         */
-        virtual inline void SetDocumentType( const DocumentFileType value );
+        virtual inline void SetDocumentType(const PSS_Stamp::IEDocumentFileType value);
 
         /**
         * Sets the file type
         *@param value - new file type to set
         */
-        virtual inline void SetFileType(const EFileTypeDefinition value);
+        virtual inline void SetFileType(const PSS_Stamp::IEFileTypeDefinition value);
 
         /**
         * Fills the document information stamp during the document creation
@@ -269,12 +269,12 @@ PSS_FolderStamp& PSS_BaseDocument::GetDocumentStamp()
     return m_DocumentStamp;
 }
 //---------------------------------------------------------------------------
-void PSS_BaseDocument::SetDocumentType(const DocumentFileType value)
+void PSS_BaseDocument::SetDocumentType(const PSS_Stamp::IEDocumentFileType value)
 {
     GetDocumentStamp().SetDocumentFileType(value);
 }
 //---------------------------------------------------------------------------
-void PSS_BaseDocument::SetFileType(const EFileTypeDefinition value)
+void PSS_BaseDocument::SetFileType(const PSS_Stamp::IEFileTypeDefinition value)
 {
     GetDocumentStamp().SetFileType(value);
 }
@@ -286,32 +286,32 @@ void PSS_BaseDocument::ClearPathName()
 //---------------------------------------------------------------------------
 BOOL PSS_BaseDocument::DocumentTypeIsForm() const
 {
-    return m_DocumentStamp.GetDocumentFileType() == FormDocumentFileType;
+    return m_DocumentStamp.GetDocumentFileType() == PSS_Stamp::IE_FT_FormDocument;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_BaseDocument::DocumentTypeIsProcess() const
 {
-    return m_DocumentStamp.GetDocumentFileType() == ProcessDocumentFileType;
+    return m_DocumentStamp.GetDocumentFileType() == PSS_Stamp::IE_FT_ProcessDocument;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_BaseDocument::DocumentTypeIsModel() const
 {
-    return m_DocumentStamp.GetDocumentFileType() == ModelDocumentFileType;
+    return m_DocumentStamp.GetDocumentFileType() == PSS_Stamp::IE_FT_ModelDocument;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_BaseDocument::DocumentIsDocument() const
 {
-    return m_DocumentStamp.GetFileType() == E_FD_DocumentType;
+    return m_DocumentStamp.GetFileType() == PSS_Stamp::IE_FD_DocumentType;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_BaseDocument::DocumentIsTemplate() const
 {
-    return m_DocumentStamp.GetFileType() == E_FD_TemplateType;
+    return m_DocumentStamp.GetFileType() == PSS_Stamp::IE_FD_TemplateType;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_BaseDocument::DocumentIsLibrary() const
 {
-    return m_DocumentStamp.GetFileType() == E_FD_LibraryType;
+    return m_DocumentStamp.GetFileType() == PSS_Stamp::IE_FD_LibraryType;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_BaseDocument::IsReadOnly()

@@ -208,21 +208,21 @@ PlanFinObject* PSS_ObjectUtility::BuildObject(const CString& className)
     switch (index)
     {
         case 0:
-            pObj.reset(new PLFNLong);
+            pObj.reset(new PSS_PLFNLong);
             break;
 
         case 1:
-            pObj.reset(new PLFNLong);
-            ((PLFNLong*)pObj.get())->SetKeepHistory(TRUE);
+            pObj.reset(new PSS_PLFNLong);
+            ((PSS_PLFNLong*)pObj.get())->SetKeepHistory(TRUE);
             break;
 
         case 2:
-            pObj.reset(new PLFNLong);
-            ((PLFNLong*)pObj.get())->SetCalculatedField();
+            pObj.reset(new PSS_PLFNLong);
+            ((PSS_PLFNLong*)pObj.get())->SetCalculatedField();
             break;
 
         case 3:
-            pObj.reset(new PLFNTime);
+            pObj.reset(new PSS_PLFNTime);
             break;
 
         case 4:
@@ -235,7 +235,7 @@ PlanFinObject* PSS_ObjectUtility::BuildObject(const CString& className)
             break;
 
         case 6:
-            pObj.reset(new PLFNStatic);
+            pObj.reset(new PSS_PLFNStatic);
             break;
 
         case 7:
@@ -256,15 +256,15 @@ PlanFinObject* PSS_ObjectUtility::BuildObject(const CString& className)
             break;
 
         case 11:
-            pObj.reset(new PLFNLine);
+            pObj.reset(new PSS_PLFNLine);
             break;
 
         case 12:
-            pObj.reset(new PLFNRect);
+            pObj.reset(new PSS_PLFNRect);
             break;
 
         case 13:
-            pObj.reset(new PLFNRect(TRUE));
+            pObj.reset(new PSS_PLFNRect(TRUE));
             break;
 
         case 14:
@@ -366,18 +366,18 @@ std::size_t PSS_ObjectUtility::GetClassNameID(PlanFinObject* pObj)
 {
     std::size_t resourceID = IDS_UNMODIFIED_CLASS;
 
-    if (pObj->IsKindOf(RUNTIME_CLASS(PLFNStatic)))
+    if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNStatic)))
         resourceID = IDS_STATICTEXT_CLASS;
     else
-    if (pObj->IsKindOf(RUNTIME_CLASS(PLFNTime)))
+    if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNTime)))
         resourceID = IDS_DATE_CLASS;
     else
-    if (pObj->IsKindOf(RUNTIME_CLASS(PLFNLong)))
+    if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNLong)))
     {
-        if (((PLFNLong*)pObj)->IsCalculatedField())
+        if (((PSS_PLFNLong*)pObj)->IsCalculatedField())
             resourceID = IDS_CALCULATED_CLASS;
         else
-        if (((PLFNLong*)pObj)->GetKeepHistory())
+        if (((PSS_PLFNLong*)pObj)->GetKeepHistory())
             resourceID = IDS_HISTOAMOUNT_CLASS;
         else
             resourceID = IDS_AMOUNT_CLASS;
@@ -413,12 +413,12 @@ std::size_t PSS_ObjectUtility::GetClassNameID(PlanFinObject* pObj)
     if (pObj->IsKindOf(RUNTIME_CLASS(PLFNAutoNumbered)))
         resourceID = IDS_NUMBEREDSECTION_CLASS;
     else
-    if (pObj->IsKindOf(RUNTIME_CLASS(PLFNLine)))
+    if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNLine)))
         resourceID = IDS_LINE_CLASS;
     else
-    if (pObj->IsKindOf(RUNTIME_CLASS(PLFNRect)))
+    if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNRect)))
     {
-        if (((PLFNRect*)pObj)->IsRounded())
+        if (((PSS_PLFNRect*)pObj)->IsRounded())
             resourceID = IDS_RECTANGLEROUNDED_CLASS;
         else
             resourceID = IDS_RECTANGLE_CLASS;

@@ -24,7 +24,7 @@
 // DocData
 #include "PSS_DocumentData.h"
 
-#include "PlanfObj.h"
+#include "PSS_PlanFinObj.h"
 #include "ZABnText.h"
 #include "ZARadio.h"
 #include "ZACheck.h"
@@ -359,7 +359,7 @@ void ZDDocument::RemoveAllDocumentData()
     //## end ZDDocument::RemoveAllDocumentData%913885112.body
 }
 
-ZDStamp& ZDDocument::GetStamp(int DocumentIndex)
+PSS_Stamp& ZDDocument::GetStamp(int DocumentIndex)
 {
     //## begin ZDDocument::GetStamp%913885114.body preserve=yes
     if (DocumentIndex == -1)
@@ -1567,7 +1567,7 @@ BOOL ZDDocument::InsertDocumentAfter(const CString    FileName,
 
     // Only if the document is correct
     // Set the type for Document
-    p_NewDocument->GetStamp().SetFileType(E_FD_DocumentType);
+    p_NewDocument->GetStamp().SetFileType(PSS_Stamp::IE_FD_DocumentType);
 
     // Check if all fonts still available
     CheckDocumentFontAndStyle();
@@ -1643,10 +1643,10 @@ BOOL ZDDocument::InsertExternalDocumentAfter(const CString    FileName,
     }
 
     // Set the type for Document
-    pNewDocData->GetStamp().SetFileType(E_FD_DocumentType);
+    pNewDocData->GetStamp().SetFileType(PSS_Stamp::IE_FD_DocumentType);
 
     // Set the right type for the document
-    pNewDocData->GetStamp().SetDocumentDataType(ExternalFormDataType);
+    pNewDocData->GetStamp().SetDocumentDataType(PSS_Stamp::IE_DT_ExternalForm);
     pNewDocData->GetStamp().SetTemplate(FileName);
 
     int NewIndex = 0;
@@ -1706,13 +1706,13 @@ BOOL ZDDocument::InsertBinaryDocumentAfter(const CString    FileName,
     }
 
     // Set the type for Document
-    pNewDocData->GetStamp().SetFileType(E_FD_DocumentType);
+    pNewDocData->GetStamp().SetFileType(PSS_Stamp::IE_FD_DocumentType);
 
     // Set the document name
     pNewDocData->GetStamp().SetTitle(InfoName);
 
     // Set the document description
-    pNewDocData->GetStamp().SetExplanation(InfoDescription);
+    pNewDocData->GetStamp().SetDescription(InfoDescription);
 
     // Create the binary buffer from file
     if (!pNewDocData->CreateBufferFromFile(FileName))
@@ -1792,16 +1792,16 @@ BOOL ZDDocument::InsertExternalBinaryDocumentAfter(const CString    FileName,
     }
 
     // Set the type for Document
-    pNewDocData->GetStamp().SetFileType(E_FD_DocumentType);
+    pNewDocData->GetStamp().SetFileType(PSS_Stamp::IE_FD_DocumentType);
 
     // Set the document name
     pNewDocData->GetStamp().SetTitle(InfoName);
 
     // Set the document description
-    pNewDocData->GetStamp().SetExplanation(InfoDescription);
+    pNewDocData->GetStamp().SetDescription(InfoDescription);
 
     // Set the right type for the document
-    pNewDocData->GetStamp().SetDocumentDataType(ExternalBinaryDataType);
+    pNewDocData->GetStamp().SetDocumentDataType(PSS_Stamp::IE_DT_ExternalBinary);
     pNewDocData->GetStamp().SetTemplate(FileName);
 
     int NewIndex = 0;
@@ -1856,13 +1856,13 @@ BOOL ZDDocument::InsertURLAfter(const CString URL, int IndexAfter)
     }
 
     // Set the type for Document
-    pNewDocData->GetStamp().SetFileType(E_FD_DocumentType);
+    pNewDocData->GetStamp().SetFileType(PSS_Stamp::IE_FD_DocumentType);
 
     // Set the document name
     pNewDocData->GetStamp().SetTitle(URL);
 
     // Set the right type for the document
-    pNewDocData->GetStamp().SetDocumentDataType(URLDataType);
+    pNewDocData->GetStamp().SetDocumentDataType(PSS_Stamp::IE_DT_URL);
     pNewDocData->GetStamp().SetTemplate(URL);
 
     int NewIndex = 0;
@@ -2813,11 +2813,11 @@ CString ZDDocument::GetAutomaticNewName(PlanFinObject* pObj, int DocumentIndex)
     {
         return pDocData->BuildAutomaticNewName(_T("ANumbered"));
     }
-    else if (pObj->IsKindOf(RUNTIME_CLASS(PLFNLine)))
+    else if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNLine)))
     {
         return pDocData->BuildAutomaticNewName(_T("Ln"));
     }
-    else if (pObj->IsKindOf(RUNTIME_CLASS(PLFNRect)))
+    else if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNRect)))
     {
         return pDocData->BuildAutomaticNewName(_T("Rct"));
     }
@@ -2826,11 +2826,11 @@ CString ZDDocument::GetAutomaticNewName(PlanFinObject* pObj, int DocumentIndex)
         ASSERT(FALSE);
         return pDocData->BuildAutomaticNewName(_T("Numb"));
     }
-    else if (pObj->IsKindOf(RUNTIME_CLASS(PLFNStatic)))
+    else if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNStatic)))
     {
         return pDocData->BuildAutomaticNewName(_T("Stc"));
     }
-    else if (pObj->IsKindOf(RUNTIME_CLASS(PLFNTime)))
+    else if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNTime)))
     {
         return pDocData->BuildAutomaticNewName(_T("Tm"));
     }
@@ -2871,7 +2871,7 @@ CString ZDDocument::GetAutomaticNewName(PlanFinObject* pObj, int DocumentIndex)
         ASSERT(FALSE);
         return pDocData->BuildAutomaticNewName(_T("$NumbNumEdt"));
     }
-    else if (pObj->IsKindOf(RUNTIME_CLASS(PLFNLong)))
+    else if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNLong)))
     {
         return pDocData->BuildAutomaticNewName(_T("$Number"));
     }
@@ -3110,7 +3110,7 @@ void ZDDocument::SerializeRead(CArchive& ar)
             ar >> SchemaName;
         }
     }
-        CATCH(CArchiveException, e)
+    CATCH(CArchiveException, e)
     {
         // Set for more recent file
         if (e->m_cause == CArchiveException::badSchema)
@@ -3128,23 +3128,23 @@ void ZDDocument::SerializeRead(CArchive& ar)
     }
     END_CATCH
 
-        if (GetDocumentStamp().GetInternalVersion() < 11)
+    if (GetDocumentStamp().GetInternalVersion() < 11)
+    {
+        pNewDocument = new PSS_DocumentData(this);
+
+        // Copy the file stamp.
+        pNewDocument->GetStamp() = (PSS_Stamp&)GetDocumentStamp();
+        pNewDocument->SetCurrentSchema(SchemaName);
+
+        // Finally, add the document data pointer
+        if (!AddDocumentData(pNewDocument))
         {
-            pNewDocument = new PSS_DocumentData(this);
-
-            // Copy the file stamp.
-            pNewDocument->GetStamp() = (ZDStamp&)GetDocumentStamp();
-            pNewDocument->SetCurrentSchema(SchemaName);
-
-            // Finally, add the document data pointer
-            if (!AddDocumentData(pNewDocument))
-            {
-                PSS_MsgBox mBox;
-                mBox.Show(IDS_FILECORRUPTED, MB_OK);
-            }
-
-            SetActiveDocumentIndex(0);
+            PSS_MsgBox mBox;
+            mBox.Show(IDS_FILECORRUPTED, MB_OK);
         }
+
+        SetActiveDocumentIndex(0);
+    }
 
     if (GetDocumentStamp().GetInternalVersion() >= 11)
     {

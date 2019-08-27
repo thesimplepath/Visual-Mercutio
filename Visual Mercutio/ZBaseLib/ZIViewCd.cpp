@@ -16,7 +16,7 @@
 //## end module%3365108E0302.additionalIncludes
 
 //## begin module%3365108E0302.includes preserve=yes
-#include "PlanfObj.h"
+#include "PSS_PlanFinObj.h"
 #include "ZANumbrd.h"
 #include "ZABitmap.h"
 //## end module%3365108E0302.includes
@@ -70,139 +70,139 @@ END_MESSAGE_MAP()
 
 
 ZIViewCode::ZIViewCode()
-  //## begin ZIViewCode::ZIViewCode%.hasinit preserve=no
-  //## end ZIViewCode::ZIViewCode%.hasinit
-  //## begin ZIViewCode::ZIViewCode%.initialization preserve=yes
-  //## end ZIViewCode::ZIViewCode%.initialization
+//## begin ZIViewCode::ZIViewCode%.hasinit preserve=no
+//## end ZIViewCode::ZIViewCode%.hasinit
+//## begin ZIViewCode::ZIViewCode%.initialization preserve=yes
+//## end ZIViewCode::ZIViewCode%.initialization
 {
-  //## begin ZIViewCode::ZIViewCode%.body preserve=yes
+    //## begin ZIViewCode::ZIViewCode%.body preserve=yes
     m_iCodeType = E_CT_AllObjects;
     m_ViewType = FormFieldCodeView;
-  //## end ZIViewCode::ZIViewCode%.body
+    //## end ZIViewCode::ZIViewCode%.body
 }
 
 
 ZIViewCode::~ZIViewCode()
 {
-  //## begin ZIViewCode::~ZIViewCode%.body preserve=yes
-  //## end ZIViewCode::~ZIViewCode%.body
+    //## begin ZIViewCode::~ZIViewCode%.body preserve=yes
+    //## end ZIViewCode::~ZIViewCode%.body
 }
 
 
 
 //## Other Operations (implementation)
-void ZIViewCode::OnDraw (CDC* pDC)
+void ZIViewCode::OnDraw(CDC* pDC)
 {
-  //## begin ZIViewCode::OnDraw%862261465.body preserve=yes
+    //## begin ZIViewCode::OnDraw%862261465.body preserve=yes
     ZDDocument*    pDoc = GetDocument();
-    ASSERT( pDoc );
+    ASSERT(pDoc);
     int                iPage;
     PlanFinObject  *obj;
     POSITION        Position;
     // Translate to absolute coordinates
-    OnPrepareDC( pDC );
+    OnPrepareDC(pDC);
     // Retreive the current page
     iPage = pDoc->GetCurrentPage();
 
-    DrawPageRect( pDC );
+    DrawPageRect(pDC);
     // Optimisation first step
     // call directly the list functions
-    Position = (pDoc->GetObjectList()).GetHeadPosition( );
-    while( Position )
+    Position = (pDoc->GetObjectList()).GetHeadPosition();
+    while (Position)
     {
-        obj = (PlanFinObject *)(pDoc->GetObjectList()).GetNext( Position );
+        obj = (PlanFinObject *)(pDoc->GetObjectList()).GetNext(Position);
         // If the page of the next object is greater than
         // the actual page, it is not necessary to continue.
-        if( obj->GetObjectPage() > iPage )
+        if (obj->GetObjectPage() > iPage)
             break;
         if (iPage != obj->GetObjectPage())
             continue;
         switch (GetDisplayCode())
         {
-            case E_CT_AllObjects :
+            case E_CT_AllObjects:
             {
                 // Display object on the right page
                 // and if he is visible into the viewport
-                obj->DisplayObjectName( pDC );
+                obj->DisplayObjectName(pDC);
                 break;
             }
-            case E_CT_Long :
+            case E_CT_Long:
             {
-                if(    obj->IsKindOf(RUNTIME_CLASS(PLFNLong)) )
-                    obj->DisplayObjectName( pDC );
+                if (obj->IsKindOf(RUNTIME_CLASS(PSS_PLFNLong)))
+                    obj->DisplayObjectName(pDC);
                 break;
             }
-            case E_CT_Calculated :
+            case E_CT_Calculated:
             {
-                if (obj->IsKindOf(RUNTIME_CLASS(PLFNLong)) && ((PLFNLong*)obj)->IsCalculatedField())
-                    obj->DisplayObjectName( pDC );
+                if (obj->IsKindOf(RUNTIME_CLASS(PSS_PLFNLong)) && ((PSS_PLFNLong*)obj)->IsCalculatedField())
+                    obj->DisplayObjectName(pDC);
                 break;
             }
             case E_CT_Static:
             {
                 if (obj->IsKindOf(RUNTIME_CLASS(PLFNText)) && ((PLFNText*)obj)->GetIsStatic())
-                    obj->DisplayObjectName( pDC );
+                    obj->DisplayObjectName(pDC);
                 break;
             }
             case E_CT_Text:
             {
-                if ( (obj->IsKindOf(RUNTIME_CLASS(PLFNText)) && !((PLFNText*)obj)->GetIsStatic()) || obj->IsKindOf(RUNTIME_CLASS(PLFNAutoNumbered)))
-                    obj->DisplayObjectName( pDC );
+                if ((obj->IsKindOf(RUNTIME_CLASS(PLFNText)) && !((PLFNText*)obj)->GetIsStatic()) || obj->IsKindOf(RUNTIME_CLASS(PLFNAutoNumbered)))
+                    obj->DisplayObjectName(pDC);
                 break;
             }
             case E_CT_Graphic:
             {
                 if (obj->IsKindOf(RUNTIME_CLASS(PLFNGraphic)) && obj->IsKindOf(RUNTIME_CLASS(PLFNBitmap)))
-                    obj->DisplayObjectName( pDC );
+                    obj->DisplayObjectName(pDC);
                 break;
             }
         }
     }
-  //## end ZIViewCode::OnDraw%862261465.body
+    //## end ZIViewCode::OnDraw%862261465.body
 }
 
-void ZIViewCode::OnInitialUpdate ()
+void ZIViewCode::OnInitialUpdate()
 {
-  //## begin ZIViewCode::OnInitialUpdate%862261466.body preserve=yes
+    //## begin ZIViewCode::OnInitialUpdate%862261466.body preserve=yes
     ZIView::OnInitialUpdate();
-  //## end ZIViewCode::OnInitialUpdate%862261466.body
+    //## end ZIViewCode::OnInitialUpdate%862261466.body
 }
 
-void ZIViewCode::OnPrint (CDC* pDC, CPrintInfo* pInfo)
+void ZIViewCode::OnPrint(CDC* pDC, CPrintInfo* pInfo)
 {
-  //## begin ZIViewCode::OnPrint%901710585.body preserve=yes
-    // Assign the current page
-    GetDocument()->SetCurrentPage( pInfo->m_nCurPage );
+    //## begin ZIViewCode::OnPrint%901710585.body preserve=yes
+      // Assign the current page
+    GetDocument()->SetCurrentPage(pInfo->m_nCurPage);
     // Now print the page
     OnDraw(pDC);
-  //## end ZIViewCode::OnPrint%901710585.body
+    //## end ZIViewCode::OnPrint%901710585.body
 }
 
-BOOL ZIViewCode::OnPreparePrinting (CPrintInfo* pInfo)
+BOOL ZIViewCode::OnPreparePrinting(CPrintInfo* pInfo)
 {
-  //## begin ZIViewCode::OnPreparePrinting%901710586.body preserve=yes
-      // Do not check for evaluation version
-    pInfo->SetMaxPage( GetDocument()->GetMaxPage() );
-    return( DoPreparePrinting(pInfo) );
-  //## end ZIViewCode::OnPreparePrinting%901710586.body
+    //## begin ZIViewCode::OnPreparePrinting%901710586.body preserve=yes
+        // Do not check for evaluation version
+    pInfo->SetMaxPage(GetDocument()->GetMaxPage());
+    return(DoPreparePrinting(pInfo));
+    //## end ZIViewCode::OnPreparePrinting%901710586.body
 }
 
-void ZIViewCode::OnBeginPrinting (CDC* pDC, CPrintInfo* pInfo)
+void ZIViewCode::OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo)
 {
-  //## begin ZIViewCode::OnBeginPrinting%901710587.body preserve=yes
-    // Save the current page before printing
+    //## begin ZIViewCode::OnBeginPrinting%901710587.body preserve=yes
+      // Save the current page before printing
     m_iSavePageForPrinting = GetDocument()->GetCurrentPage();
-    SetLogicalCoordinates( pDC );
-  //## end ZIViewCode::OnBeginPrinting%901710587.body
+    SetLogicalCoordinates(pDC);
+    //## end ZIViewCode::OnBeginPrinting%901710587.body
 }
 
-void ZIViewCode::OnEndPrinting (CDC* pDC, CPrintInfo* pInfo)
+void ZIViewCode::OnEndPrinting(CDC* pDC, CPrintInfo* pInfo)
 {
-  //## begin ZIViewCode::OnEndPrinting%901710588.body preserve=yes
-      // Do not check for evaluation version
-    // Put back the current page
-    GetDocument()->SetCurrentPage( m_iSavePageForPrinting );
-  //## end ZIViewCode::OnEndPrinting%901710588.body
+    //## begin ZIViewCode::OnEndPrinting%901710588.body preserve=yes
+        // Do not check for evaluation version
+      // Put back the current page
+    GetDocument()->SetCurrentPage(m_iSavePageForPrinting);
+    //## end ZIViewCode::OnEndPrinting%901710588.body
 }
 
 // Additional Declarations
@@ -211,15 +211,15 @@ void ZIViewCode::OnRButtonDown(UINT nFlags, CPoint point)
 {
     CPoint    pt(point);
     ReleaseCapture();
-    
+
     // Display the context menu
     CMenu   *pMenu, DummyMenu;
-    DummyMenu.LoadMenu( IDR_CONTEXT_VIEWCODE );
+    DummyMenu.LoadMenu(IDR_CONTEXT_VIEWCODE);
 
-    pMenu = DummyMenu.GetSubMenu( 0 );
-       ASSERT( pMenu );
-    ClientToScreen( &pt );
-    pMenu->TrackPopupMenu( TPM_LEFTALIGN | TPM_RIGHTBUTTON, pt.x, pt.y, AfxGetMainWnd() );
+    pMenu = DummyMenu.GetSubMenu(0);
+    ASSERT(pMenu);
+    ClientToScreen(&pt);
+    pMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, pt.x, pt.y, AfxGetMainWnd());
     CScrollView::OnRButtonDown(nFlags, point);
 }
 
@@ -296,22 +296,16 @@ afx_msg LONG ZIViewCode::OnDisplayFieldType(UINT message, LONG lParam)
 {
     m_iCodeType = EClassType(lParam);
     RedrawWindow();
-    return( 1 );
+    return(1);
 }
-                         
+
 afx_msg LONG ZIViewCode::OnSynchronizeVScroll(UINT message, LONG lParam)
 {
-    ScrollToPosition( *(POINT*)lParam );
-    return( 1 );
+    ScrollToPosition(*(POINT*)lParam);
+    return(1);
 }
 afx_msg LONG ZIViewCode::OnSynchronizeHScroll(UINT message, LONG lParam)
 {
-    ScrollToPosition( *(POINT*)lParam );
-    return( 1 );
+    ScrollToPosition(*(POINT*)lParam);
+    return(1);
 }
-
-
-                         
-  //## end ZIViewCode%3365104501F4.declarations
-//## begin module%3365108E0302.epilog preserve=yes
-//## end module%3365108E0302.epilog

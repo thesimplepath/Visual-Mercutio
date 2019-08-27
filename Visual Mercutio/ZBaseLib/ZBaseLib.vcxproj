@@ -436,7 +436,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="PLANFOBJ.CPP">
+    <ClCompile Include="PSS_PlanFinObj.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -472,7 +472,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="SingleInstanceApp.cpp">
+    <ClCompile Include="PSS_SingleInstanceApplication.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -490,13 +490,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="SPLITTER.CPP">
+    <ClCompile Include="PSS_Splitter.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="stamp.cpp">
+    <ClCompile Include="PSS_Stamp.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1394,17 +1394,17 @@
     <ClInclude Include="PSS_PaletteBar.h" />
     <ClInclude Include="PSS_MailUser.h" />
     <ClInclude Include="PSS_MailUserList.h" />
-    <ClInclude Include="PLANFOBJ.H" />
+    <ClInclude Include="PSS_PlanFinObj.h" />
     <ClInclude Include="PSS_PLFNBackImage.h" />
     <ClInclude Include="PSS_ProcessModelDocTmpl.h" />
     <ClInclude Include="PSS_ProcessDocumentOptions.h" />
     <ClInclude Include="PSS_ActivityLogRecordSet.h" />
     <ClInclude Include="PSS_UserRecordSet.h" />
-    <ClInclude Include="SingleInstanceApp.h" />
+    <ClInclude Include="PSS_SingleInstanceApplication.h" />
     <ClInclude Include="SmartPtr.h" />
     <ClInclude Include="SPHELP.H" />
-    <ClInclude Include="SPLITTER.H" />
-    <ClInclude Include="stamp.h" />
+    <ClInclude Include="PSS_Splitter.h" />
+    <ClInclude Include="PSS_Stamp.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="systemtray.h" />
     <ClInclude Include="tmpldir.h" />

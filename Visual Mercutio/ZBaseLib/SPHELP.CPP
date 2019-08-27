@@ -2,7 +2,7 @@
 //
 
 #include "stdafx.h"
-#include "PlanfObj.h"
+#include "PSS_PlanFinObj.h"
 #include "sphelp.h"
 #include "PSS_DrawFunctions.h"
 

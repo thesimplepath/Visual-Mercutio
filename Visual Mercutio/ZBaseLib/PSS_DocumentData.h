@@ -23,7 +23,7 @@
 
 // processsoft
 #include "PSS_Formula.h"
-#include "Stamp.h"
+#include "PSS_Stamp.h"
 #include "ZAStylMg.h"
 #include "ZAFontMg.h"
 #include "ZUFileLauncher.h"
@@ -672,7 +672,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         * Gets the file stamp
         *@return the file stamp
         */
-        virtual inline ZDStamp& GetStamp();
+        virtual inline PSS_Stamp& GetStamp();
 
         /**
         * Gets the schema manager
@@ -736,7 +736,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         *@param[out] stamp - read stamp
         *@return the file stamp
         */
-        static int SerializeStampRead(CArchive& ar, ZDStamp& stamp);
+        static int SerializeStampRead(CArchive& ar, PSS_Stamp& stamp);
 
         /**
         * Serializes the document information in read mode
@@ -749,7 +749,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         *@param ar - archive in which the file stamp should be written
         *@param stamp - stamp to write
         */
-        static void SerializeStampWrite(CArchive& ar, ZDStamp& stamp);
+        static void SerializeStampWrite(CArchive& ar, PSS_Stamp& stamp);
 
         /**
         * Serializes the document information in write mode
@@ -850,7 +850,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
     private:
         ZDDocument*       m_pDocument;
         PSS_FileBuffer*   m_pFileBuffer;
-        ZDStamp           m_Stamp;
+        PSS_Stamp         m_Stamp;
         PSS_SchemaManager m_Schema;
         ZAFontManager     m_FontManager;
         ZAStyleManager    m_StyleManager;
@@ -1044,32 +1044,32 @@ PSS_FileBuffer* PSS_DocumentData::GetFileBuffer()
 //---------------------------------------------------------------------------
 BOOL PSS_DocumentData::IsFormData() const
 {
-    return m_Stamp.GetDocumentDataType() == FormDataType;
+    return m_Stamp.GetDocumentDataType() == PSS_Stamp::IE_DT_Form;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_DocumentData::IsBinaryData() const
 {
-    return m_Stamp.GetDocumentDataType() == BinaryDataType;
+    return m_Stamp.GetDocumentDataType() == PSS_Stamp::IE_DT_Binary;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_DocumentData::IsExternalFormData() const
 {
-    return m_Stamp.GetDocumentDataType() == ExternalFormDataType;
+    return m_Stamp.GetDocumentDataType() == PSS_Stamp::IE_DT_ExternalForm;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_DocumentData::IsExternalBinaryData() const
 {
-    return m_Stamp.GetDocumentDataType() == ExternalBinaryDataType;
+    return m_Stamp.GetDocumentDataType() == PSS_Stamp::IE_DT_ExternalBinary;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_DocumentData::IsURLData() const
 {
-    return m_Stamp.GetDocumentDataType() == URLDataType;
+    return m_Stamp.GetDocumentDataType() == PSS_Stamp::IE_DT_URL;
 }
 //---------------------------------------------------------------------------
 BOOL PSS_DocumentData::IsBinaryDataValid() const
 {
-    return m_Stamp.GetDocumentDataType() == BinaryDataType && m_pFileBuffer != NULL;
+    return m_Stamp.GetDocumentDataType() == PSS_Stamp::IE_DT_Binary && m_pFileBuffer != NULL;
 }
 //---------------------------------------------------------------------------
 CStringArray* PSS_DocumentData::GetObjectFieldNameArray() const
@@ -1077,7 +1077,7 @@ CStringArray* PSS_DocumentData::GetObjectFieldNameArray() const
     return (CStringArray*)&m_FieldNameArray;
 }
 //---------------------------------------------------------------------------
-ZDStamp& PSS_DocumentData::GetStamp()
+PSS_Stamp& PSS_DocumentData::GetStamp()
 {
     return m_Stamp;
 }

@@ -23,22 +23,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="PLANFOBJ.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SingleInstanceApp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SmartPtr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SPHELP.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SPLITTER.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="stamp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="StdAfx.cpp">
@@ -602,6 +590,18 @@
     <ClCompile Include="PSS_MailUserList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_Splitter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_Stamp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_PlanFinObj.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_SingleInstanceApplication.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -717,22 +717,10 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PLANFOBJ.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SingleInstanceApp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SmartPtr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SPHELP.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SPLITTER.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="stamp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StdAfx.h">
@@ -1300,6 +1288,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_MailUserList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_Splitter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_Stamp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_PlanFinObj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SingleInstanceApplication.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

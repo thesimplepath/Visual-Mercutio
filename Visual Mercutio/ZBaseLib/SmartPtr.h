@@ -1,10 +1,18 @@
-#if !defined(AFX_SMARTPOINTER_H__714480E6_B09B_11D2_A8B1_0000E8D38C7A__INCLUDED_)
-#define AFX_SMARTPOINTER_H__714480E6_B09B_11D2_A8B1_0000E8D38C7A__INCLUDED_
+/****************************************************************************
+ * ==> PSS_SmartPtr --------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides several smart pointer implementations             *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
+
+#ifndef PSS_SmartPtrH
+#define PSS_SmartPtrH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
+ // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -12,85 +20,185 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
+// disable the warning nb 4284 (return type for 'identifier::operator ->' isn't a UDT or reference to a UDT)
 #pragma warning(disable : 4284)
 
-
 #ifdef _ZBASELIBEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-
-
-/////////////////////////////////////////////////////////////////////////////
-// class ZSmartPtr
-template<class TYPE>
-class ZSmartPtr
+/**
+* Generic smart pointer
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+template<class T>
+class PSS_SmartPtr
 {
-public:
-// Constructor:
-    ZSmartPtr (TYPE *ptr = NULL)
-        : m_ptr (ptr) {}
-    ZSmartPtr (const ZSmartPtr& T)
-        : m_ptr (T.m_ptr) { }
-public:
-// Operations:
-    // Access to pointer to actual data:
-    // Non-const access
-    TYPE* const            GetPtr()             { return m_ptr; }
-    TYPE* const            operator->()        { return m_ptr; }
-    TYPE&                 operator*()         { return *m_ptr;}
+    public:
+        /**
+        * Constructor
+        *@param pPtr - pointer to own, can be NULL
+        */
+        inline PSS_SmartPtr(T* pPtr = NULL);
 
-    // Const access
-    const TYPE*    const    GetPtr()    const     { return m_ptr;    }
-    const TYPE*    const    operator->()const    { return m_ptr;    }
-    const TYPE&         operator*()    const    { return *m_ptr;}
+        /**
+        * Copy constructor
+        *@param other - other object to copy from
+        */
+        inline PSS_SmartPtr(const PSS_SmartPtr& other);
 
-    BOOL IsNull()                    const   { return (m_ptr == NULL); }
-    void ThrowMemoryExceptionIfNull() const { if (IsNull()) AfxThrowMemoryException(); }
+        /**
+        * Copy operator
+        *@param other - other object to copy from
+        *@return copy of itself
+        */
+        inline void operator = (const PSS_SmartPtr& other);
 
-    // Swap between two pointers (for sorting etc)
-    void    Swap(ZSmartPtr& T)
-        {
-        TYPE*    ptr = T.m_ptr;
-        T.m_ptr        = m_ptr;
-        m_ptr        = ptr;
-        }
-    void operator=(const ZSmartPtr& T)
-        { m_ptr  = T.m_ptr; }
+        /**
+        * Access operator 
+        *@return owned pointer
+        */
+        inline       T* const operator -> ();
+        inline const T* const operator -> () const;
 
-protected:
-// Members:
-    TYPE*    m_ptr;
+        /**
+        * Access operator
+        *@return owned pointer
+        */
+        inline       T& operator * ();
+        inline const T& operator * () const;
+
+        /**
+        * Gets the owned pointer
+        *@returnt he owned pointer
+        */
+        virtual inline       T* const GetPtr();
+        virtual inline const T* const GetPtr() const;
+
+        /**
+        * Checks if owned pointer is NULL
+        *@return TRUE if owned pointer is NULL, otherwise FALSE
+        */
+        virtual inline BOOL IsNull() const;
+
+        /**
+        * Throws a  memory exception if owned pointer is NULL
+        */
+        virtual inline void ThrowMemoryExceptionIfNull() const;
+
+        /**
+        * Swaps the content of two pointers (for sorting etc)
+        *@param other - other pointer to swap with
+        */
+        virtual inline void Swap(PSS_SmartPtr& other);
+
+    protected:
+        T* m_pPtr;
 };
-//*****************************************************************
-template<class TYPE>
-inline BOOL IsNull(const ZSmartPtr<TYPE>& p)
+
+//---------------------------------------------------------------------------
+// PSS_SmartPtr
+//---------------------------------------------------------------------------
+template<class T>
+PSS_SmartPtr<T>::PSS_SmartPtr(T* pPtr) :
+    m_pPtr(pPtr)
+{}
+//---------------------------------------------------------------------------
+template<class T>
+PSS_SmartPtr<T>::PSS_SmartPtr(const PSS_SmartPtr<T>& other) :
+    m_pPtr(other.m_pPtr)
+{}
+//---------------------------------------------------------------------------
+template<class T>
+void PSS_SmartPtr<T>::operator = (const PSS_SmartPtr<T>& other)
+{
+    m_pPtr = other.m_pPtr;
+}
+//---------------------------------------------------------------------------
+template<class T>
+T* const PSS_SmartPtr<T>::operator -> ()
+{
+    return m_pPtr;
+}
+//---------------------------------------------------------------------------
+template<class T>
+const T* const PSS_SmartPtr<T>::operator -> () const
+{
+    return m_pPtr;
+}
+//---------------------------------------------------------------------------
+template<class T>
+T& PSS_SmartPtr<T>::operator * ()
+{
+    return *m_pPtr;
+}
+//---------------------------------------------------------------------------
+template<class T>
+const T& PSS_SmartPtr<T>::operator * () const
+{
+    return *m_pPtr;
+}
+//---------------------------------------------------------------------------
+template<class T>
+T* const PSS_SmartPtr<T>::GetPtr()
+{
+    return m_pPtr;
+}
+//---------------------------------------------------------------------------
+template<class T>
+const T* const PSS_SmartPtr<T>::GetPtr() const
+{
+    return m_pPtr;
+}
+//---------------------------------------------------------------------------
+template<class T>
+BOOL PSS_SmartPtr<T>::IsNull() const
+{
+    return (!m_pPtr);
+}
+//---------------------------------------------------------------------------
+template<class T>
+inline BOOL IsNull(const PSS_SmartPtr<T>& p)
 {
     return (p.GetPtr() == NULL);
 }
-//*****************************************************************
-template<class TYPE>
-inline void ThrowMemoryExceptionIfNull(const ZSmartPtr<TYPE>& p)
+//---------------------------------------------------------------------------
+template<class T>
+void PSS_SmartPtr<T>::ThrowMemoryExceptionIfNull() const
+{
+    if (IsNull())
+        AfxThrowMemoryException();
+}
+//---------------------------------------------------------------------------
+template<class T>
+inline void ThrowMemoryExceptionIfNull(const PSS_SmartPtr<T>& p)
 {
     if (IsNull(p))
         AfxThrowMemoryException();
 }
-//*****************************************************************
-template<class TYPE>
-inline void ThrowMemoryExceptionIfNull(TYPE *p)
+//---------------------------------------------------------------------------
+template<class T>
+inline void ThrowMemoryExceptionIfNull(T* pP)
 {
-    if (p == NULL)
+    if (!pP)
         AfxThrowMemoryException();
 }
+//---------------------------------------------------------------------------
+template<class T>
+void PSS_SmartPtr<T>::Swap(PSS_SmartPtr<T>& other)
+{
+    T* pPtr      = other.m_pPtr;
+    other.m_pPtr = m_pPtr;
+    m_pPtr       = pPtr;
+}
+//---------------------------------------------------------------------------
+
 //*****************************************************************
 /////////////////////////////////////////////////////////////////////////////
 // Class ZSafeSmartPtr - knows to delete pointer at destructor
@@ -98,15 +206,15 @@ inline void ThrowMemoryExceptionIfNull(TYPE *p)
 // operand (makes it NULL actually.
 /////////////////////////////////////////////////////////////////////////////
 template<class TYPE>
-class ZSafeSmartPtr : public ZSmartPtr<TYPE>
+class ZSafeSmartPtr : public PSS_SmartPtr<TYPE>
 {
 public:
 // Constructor:
     ZSafeSmartPtr (TYPE *ptr = NULL)
-        : ZSmartPtr<TYPE> (ptr) {}
+        : PSS_SmartPtr<TYPE> (ptr) {}
 // Copy Constructor:
     ZSafeSmartPtr(ZSafeSmartPtr& T)
-        : ZSmartPtr<TYPE> (T) 
+        : PSS_SmartPtr<TYPE> (T)
         {
         if (&T != this)
             T.m_ptr = NULL;
@@ -137,14 +245,14 @@ public:
 // Class ZSafeArray - array of objects
 /////////////////////////////////////////////////////////////////////////////
 template<class TYPE>
-class ZSafeArray : public ZSmartPtr<TYPE>
+class ZSafeArray : public PSS_SmartPtr<TYPE>
 {
 public:
 // Constructors:
     ZSafeArray (TYPE *ptr = NULL)
-        : ZSmartPtr<TYPE> (ptr) {}
+        : PSS_SmartPtr<TYPE> (ptr) {}
     ZSafeArray (int nCount)
-        : ZSmartPtr<TYPE> (new TYPE [nCount]) {}
+        : PSS_SmartPtr<TYPE> (new TYPE [nCount]) {}
 
 // Destructor:
     ~ZSafeArray() { delete[] m_ptr; }
@@ -286,7 +394,7 @@ class ZClonable
 // allocations class.
 ///////////////////////////////////////////////////////////////////
 template<class TYPE,class COUNT>
-class ZBaseMultiRefSmartPtr : public ZSmartPtr<TYPE>
+class ZBaseMultiRefSmartPtr : public PSS_SmartPtr<TYPE>
 {
 public:
     // Copy Constructor:
@@ -311,7 +419,7 @@ public:
     // Swap between two pointers (for sorting etc)
     void    Swap(ZBaseMultiRefSmartPtr& T)
         {
-        ZSmartPtr<TYPE>::Swap(T);
+        PSS_SmartPtr<TYPE>::Swap(T);
         COUNT* pRefCount = T.m_pRefCount;
         T.m_pRefCount     = m_pRefCount;
         m_pRefCount         = pRefCount;
@@ -417,7 +525,7 @@ private:
 
 
 template<class TYPE>
-class ZCounterMultiRefPtr : public ZSmartPtr<TYPE>
+class ZCounterMultiRefPtr : public PSS_SmartPtr<TYPE>
 {
 public:
     // Copy Constructor:
@@ -441,7 +549,8 @@ public:
         }
     // Swap between two pointers (for sorting etc)
     void    Swap(ZCounterMultiRefPtr& T)
-        { ZSmartPtr<TYPE>::Swap(T); }
+        {
+        PSS_SmartPtr<TYPE>::Swap(T); }
     bool operator==(const     ZCounterMultiRefPtr& t) const
         { return (m_ptr == t.m_ptr); }
     bool operator!=(const     ZCounterMultiRefPtr& t) const
@@ -592,7 +701,7 @@ public:
 ///////////////////////////////////////////////////////////////////
 template<class TYPE>
 class ZSmartPtrArray : 
-    public ZGenSmartPtrArray<ZSmartPtr<TYPE> , TYPE >
+    public ZGenSmartPtrArray<PSS_SmartPtr<TYPE> , TYPE >
 {};
 ///////////////////////////////////////////////////////////////////
 template<class TYPE>

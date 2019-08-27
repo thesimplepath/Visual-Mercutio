@@ -10,7 +10,7 @@
 
 // processsoft
 #include "ZAObject.h"
-#include "PlanFObj.h"
+#include "PSS_PlanFinObj.h"
 #include "ZABnText.h"
 #include "ZARadio.h"
 #include "ZACheck.h"
@@ -405,7 +405,7 @@ void PSS_DocumentData::InitializeAllAssociations()
 
     while (pPosition)
     {
-        PLFNLong* pObjTemp = dynamic_cast<PLFNLong*>(m_ObjElements.GetNext(pPosition));
+        PSS_PLFNLong* pObjTemp = dynamic_cast<PSS_PLFNLong*>(m_ObjElements.GetNext(pPosition));
 
         // if the object is a number + has an association
         if (pObjTemp)
@@ -439,7 +439,7 @@ void PSS_DocumentData::CalculateAllFormula(CView* pView, BOOL allPages)
         // only if the formula is on the same page, it's necessary to recalculate
         if (allPages || pFormula->GetPage() == GetCurrentPage())
         {
-            PLFNLong* pResultObj = dynamic_cast<PLFNLong*>(pFormula->GetResultObject());
+            PSS_PLFNLong* pResultObj = dynamic_cast<PSS_PLFNLong*>(pFormula->GetResultObject());
 
             // check if the field has an association
             if (pResultObj && pResultObj->GetCurrentAssociation())
@@ -547,7 +547,7 @@ void PSS_DocumentData::ClearCurrentAssociation()
     if ((pObjTemp = GetHead()) != NULL)
         do
         {
-            PLFNLong* pNumber = dynamic_cast<PLFNLong*>(pObjTemp);
+            PSS_PLFNLong* pNumber = dynamic_cast<PSS_PLFNLong*>(pObjTemp);
 
             // is the object a number?
             if (pNumber)
@@ -571,7 +571,7 @@ void PSS_DocumentData::ChangeFieldForCalculation()
     if ((pObjTemp = GetHead()) != NULL)
         do
         {
-            PLFNLong* pNumber = dynamic_cast<PLFNLong*>(pObjTemp);
+            PSS_PLFNLong* pNumber = dynamic_cast<PSS_PLFNLong*>(pObjTemp);
 
             // if the object is a number
             if (pNumber)
@@ -601,7 +601,7 @@ void PSS_DocumentData::ChangeFieldForCalculation()
     if ((pObjTemp = GetHead()) != NULL)
         do
         {
-            PLFNLong* pNumber = dynamic_cast<PLFNLong*>(pObjTemp);
+            PSS_PLFNLong* pNumber = dynamic_cast<PSS_PLFNLong*>(pObjTemp);
 
             // if the object is a number
             if (pNumber)
@@ -662,14 +662,14 @@ void PSS_DocumentData::ChangeCalculatedFieldInAssociation(PSS_FormulaAssociation
 
         if (pAssociationFormula)
         {
-            PLFNLong* pValue = dynamic_cast<PLFNLong*>(pAssociationFormula->GetResultObject());
+            PSS_PLFNLong* pValue = dynamic_cast<PSS_PLFNLong*>(pAssociationFormula->GetResultObject());
 
             if (pValue)
             {
                 pValue->SetCalculatedField();
 
                 // set association icon.
-                pValue->SetIconDisplayType(AssociationIcon);
+                pValue->SetIconDisplayType(PSS_PLFNLong::IE_DT_AssociationIcon);
             }
         }
     }
@@ -696,11 +696,12 @@ void PSS_DocumentData::ReplaceCalculatedFields()
                 if (!pNewObjTemp)
                     return;
 
-                (PLFNLong&)*pNewObjTemp = pCalculated;
+                (PSS_PLFNLong&)* pNewObjTemp     = pCalculated;
+                PSS_PLFNLong*    pNewLongObjTemp = (PSS_PLFNLong*)pNewObjTemp;
 
                 // copy all the information not contained in PlanFinObject
-                ((PLFNLong*)pNewObjTemp)->SetHasBeenChanged(FALSE);
-                ((PLFNLong*)pNewObjTemp)->SetCalculatedField(TRUE);
+                pNewLongObjTemp->SetHasBeenChanged(FALSE);
+                pNewLongObjTemp->SetCalculatedField(TRUE);
 
                 // if this object was stored as a formula list object pointer, change it
                 CheckFormulaObject(pObjTemp, pNewObjTemp);
@@ -734,7 +735,7 @@ void PSS_DocumentData::AssignPredefinedField()
         // assign the date field
         if (pObj->GetObjectName() == g_pPredefinedField[g_PredefinedFieldDate])
         {
-            PLFNTime* pTime = dynamic_cast<PLFNTime*>(pObj);
+            PSS_PLFNTime* pTime = dynamic_cast<PSS_PLFNTime*>(pObj);
 
             if (pTime)
                 pTime->SetToday();
@@ -1225,7 +1226,7 @@ BOOL PSS_DocumentData::IsCalculatedFieldInAssociation(PlanFinObject* pObj)
     if (!pObj)
         return FALSE;
 
-    PLFNLong* pLong = dynamic_cast<PLFNLong*>(pObj);
+    PSS_PLFNLong* pLong = dynamic_cast<PSS_PLFNLong*>(pObj);
 
     if (pLong && pLong->GetCurrentAssociation()->FindFormula(pLong->GetObjectName()))
         return TRUE;
@@ -1395,7 +1396,7 @@ BOOL PSS_DocumentData::CreateBufferFromFile(const CString& fileName)
     if (!m_pFileBuffer)
         return FALSE;
 
-    m_Stamp.SetDocumentDataType(BinaryDataType);
+    m_Stamp.SetDocumentDataType(PSS_Stamp::IE_DT_Binary);
     m_Stamp.SetTemplate(fileName);
 
     return m_pFileBuffer->CreateBufferFromFile(fileName);
@@ -1611,7 +1612,7 @@ bool PSS_DocumentData::BuildObjectFieldNameArray()
     return m_FieldNameArray.GetSize() > 0;
 }
 //---------------------------------------------------------------------------
-int PSS_DocumentData::SerializeStampRead(CArchive& ar, ZDStamp& stamp)
+int PSS_DocumentData::SerializeStampRead(CArchive& ar, PSS_Stamp& stamp)
 {
     WORD archiveStamp = 0;
 
@@ -1647,7 +1648,7 @@ void PSS_DocumentData::SerializeRead(CArchive& ar)
 
     SetCurrentSchema(schemaName);
 
-    if (m_Stamp.GetInternalVersion() >= 14 && m_Stamp.GetDocumentDataType() == BinaryDataType)
+    if (m_Stamp.GetInternalVersion() >= 14 && m_Stamp.GetDocumentDataType() == PSS_Stamp::IE_DT_Binary)
         ar >> m_pFileBuffer;
     else
     {
@@ -1660,7 +1661,7 @@ void PSS_DocumentData::SerializeRead(CArchive& ar)
             m_StyleManager.Serialize(ar);
         }
 
-        if (m_Stamp.GetDocumentDataType() != BinaryDataType)
+        if (m_Stamp.GetDocumentDataType() != PSS_Stamp::IE_DT_Binary)
         {
             TRY
             {
@@ -1748,10 +1749,10 @@ void PSS_DocumentData::SerializeRead(CArchive& ar)
     }
 }
 //---------------------------------------------------------------------------
-void PSS_DocumentData::SerializeStampWrite(CArchive& ar, ZDStamp& stamp)
+void PSS_DocumentData::SerializeStampWrite(CArchive& ar, PSS_Stamp& stamp)
 {
     // set the document type
-    stamp.SetDocumentFileType(FormDocumentFileType);
+    stamp.SetDocumentFileType(PSS_Stamp::IE_FT_FormDocument);
     stamp.SetInternalVersion(g_VersionFile);
 
     const WORD archiveStamp = 0xFFFF;
@@ -1769,7 +1770,7 @@ void PSS_DocumentData::SerializeWrite(CArchive& ar)
     // save the current schema
     ar << GetCurrentSchema();
 
-    if (m_Stamp.GetDocumentDataType() == BinaryDataType)
+    if (m_Stamp.GetDocumentDataType() == PSS_Stamp::IE_DT_Binary)
         // the file buffer pointer
         ar << m_pFileBuffer;
     else
@@ -1829,8 +1830,8 @@ BOOL PSS_DocumentData::CalculateFormula(PSS_Formula* pFormula, CWnd* pWnd, CDC* 
     if (!pFormula)
         return FALSE;
 
-    Parser    parser;
-    PLFNLong* pField = dynamic_cast<PLFNLong*>(pFormula->GetResultObject());
+    Parser        parser;
+    PSS_PLFNLong* pField = dynamic_cast<PSS_PLFNLong*>(pFormula->GetResultObject());
 
     // check if the field is a PLFNLong. The only way to calculate is on calculated fields. Because
     // the user can change the type, it is necessary to test if the keep value is set. If it is set,

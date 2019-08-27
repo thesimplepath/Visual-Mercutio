@@ -131,7 +131,7 @@ void PSS_FolderInfoCtrl::Refresh()
 
     // add the document type
     InsertItem(index, m_TypeTitle);
-    if (m_pFolderStamp->GetFileType() == E_FD_DocumentType)
+    if (m_pFolderStamp->GetFileType() == PSS_Stamp::IE_FD_DocumentType)
         title.LoadString(IDS_DOCUMENT);
     else
         title.LoadString(IDS_TEMPLATE);

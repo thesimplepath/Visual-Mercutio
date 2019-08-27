@@ -45,7 +45,7 @@ ZIModelTemplateCopyDlg::ZIModelTemplateCopyDlg(CString            FileExtension,
 
     if (m_pFolderStamp)
     {
-        m_sDescription = m_pFolderStamp->GetExplanation();
+        m_sDescription = m_pFolderStamp->GetDescription();
 
     #ifdef _WIN32
         m_sFilename = m_pFolderStamp->GetTitle();

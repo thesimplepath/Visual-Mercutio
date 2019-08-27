@@ -26,14 +26,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-#include "PlanfObj.h"
-//## end module%33798B9A02E4.includes
-
-// ZAObject
+// processsoft
+#include "PSS_PlanFinObj.h"
 #include "ZAObject.h"
-//## begin module%33798B9A02E4.declarations preserve=no
-//## end module%33798B9A02E4.declarations
 
 //## begin module%33798B9A02E4.additionalDeclarations preserve=yes
 #ifdef _ZBASELIBEXPORT
@@ -59,153 +54,153 @@
 //## Persistence: Transient
 //## Cardinality/Multiplicity: n
 
-class AFX_EXT_CLASS PLFNAutoNumbered : public PlanFinObject  //## Inherits: <unnamed>%33798B3703D5
+class AFX_EXT_CLASS PLFNAutoNumbered : public PlanFinObject
 {
-  //## begin PLFNAutoNumbered%33798B3703D4.initialDeclarations preserve=yes
-    public:
+    //## begin PLFNAutoNumbered%33798B3703D4.initialDeclarations preserve=yes
+public:
     // Inherited feature
-        typedef PlanFinObject inherited;
+    typedef PlanFinObject inherited;
 
-      //    Represents the fill color for the object.
-      virtual const COLORREF GetFillColor () const;
-      virtual void SetFillColor (COLORREF value);
-      //    The handle of the font used to display the font.
-      virtual const HandleFont GethFont () const;
-      virtual void SethFont (HandleFont value);
+    //    Represents the fill color for the object.
+    virtual const COLORREF GetFillColor() const;
+    virtual void SetFillColor(COLORREF value);
+    //    The handle of the font used to display the font.
+    virtual const HandleFont GethFont() const;
+    virtual void SethFont(HandleFont value);
 
-      virtual const HandleStyle GethStyle () const;
-  //## end PLFNAutoNumbered%33798B3703D4.initialDeclarations
+    virtual const HandleStyle GethStyle() const;
+    //## end PLFNAutoNumbered%33798B3703D4.initialDeclarations
 
-  public:
+public:
     //## Constructors (generated)
-      PLFNAutoNumbered();
+    PLFNAutoNumbered();
 
-      PLFNAutoNumbered(const PLFNAutoNumbered &right);
+    PLFNAutoNumbered(const PLFNAutoNumbered &right);
 
     //## Destructor (generated)
-      virtual ~PLFNAutoNumbered();
+    virtual ~PLFNAutoNumbered();
 
     //## Assignment Operation (generated)
-      const PLFNAutoNumbered & operator=(const PLFNAutoNumbered &right);
+    const PLFNAutoNumbered & operator=(const PLFNAutoNumbered &right);
 
 
     //## Other Operations (specified)
       //## Operation: operator =%863604533
       //    A copy constructor with a pointer.
-      const PLFNAutoNumbered& operator = (const PLFNAutoNumbered* right);
+    const PLFNAutoNumbered& operator = (const PLFNAutoNumbered* right);
 
-      //## Operation: IsEmpty%863604534
-      //    Is it an empty field.
-      virtual BOOL IsEmpty () const;
+    //## Operation: IsEmpty%863604534
+    //    Is it an empty field.
+    virtual BOOL IsEmpty() const;
 
-      //## Operation: GetFormatedObject%863604535
-      //    Format the object with the current object's attributes.
-      //## Semantics:
-      //    This function return the string
-      //    represented the object formated
-      //    with the current format type
-      //    this function is virtual
-      //    The base function returns an empty string
-      virtual CString GetFormatedObject ();
+    //## Operation: GetFormatedObject%863604535
+    //    Format the object with the current object's attributes.
+    //## Semantics:
+    //    This function return the string
+    //    represented the object formated
+    //    with the current format type
+    //    this function is virtual
+    //    The base function returns an empty string
+    virtual CString GetFormatedObject();
 
-      //## Operation: ConvertFormatedObject%863604536
-      //    Convert a formatted object to numeric, date, string, etc.
-      //    Returns true if the value has changed.
-      //## Semantics:
-      //    This function convert the string
-      //    and set the object with the right value
-      //    For the base class nothing to do
-      virtual BOOL ConvertFormatedObject (const CString& sValue, BOOL bLocateFormat = TRUE, BOOL EmptyWhenZero = FALSE);
+    //## Operation: ConvertFormatedObject%863604536
+    //    Convert a formatted object to numeric, date, string, etc.
+    //    Returns true if the value has changed.
+    //## Semantics:
+    //    This function convert the string
+    //    and set the object with the right value
+    //    For the base class nothing to do
+    virtual BOOL ConvertFormatedObject(const CString& sValue, BOOL bLocateFormat = TRUE, BOOL EmptyWhenZero = FALSE);
 
-      //## Operation: IsSelected%863604537
-      //    Is this object selected.
-      virtual BOOL IsSelected (const CPoint& point) const;
+    //## Operation: IsSelected%863604537
+    //    Is this object selected.
+    virtual BOOL IsSelected(const CPoint& point) const;
 
-      //## Operation: Serialize%863604538
-      //    Serialization function required for MFC mecanism.
-      virtual void Serialize (CArchive& ar);
+    //## Operation: Serialize%863604538
+    //    Serialization function required for MFC mecanism.
+    virtual void Serialize(CArchive& ar);
 
-      //## Operation: Clone%863604539
-      //    Make a clone of the object.
-      virtual PlanFinObject* Clone ();
+    //## Operation: Clone%863604539
+    //    Make a clone of the object.
+    virtual PlanFinObject* Clone();
 
-      //## Operation: CopyObject%863615080
-      virtual void CopyObject (PlanFinObject* pSrc);
+    //## Operation: CopyObject%863615080
+    virtual void CopyObject(PlanFinObject* pSrc);
 
-      //## Operation: DrawObject%863615085
-      //    Draw the object with the current DC.
-      virtual void DrawObject (CDC* pDC, ZIView* pView);
+    //## Operation: DrawObject%863615085
+    //    Draw the object with the current DC.
+    virtual void DrawObject(CDC* pDC, ZIView* pView);
 
-      //## Operation: SetStringTextLevel%863711322
-      //    Set the text level by taking a string.
-      void SetStringTextLevel (const CString sText);
+    //## Operation: SetStringTextLevel%863711322
+    //    Set the text level by taking a string.
+    void SetStringTextLevel(const CString sText);
 
-      //## Operation: GetStringTextLevel%863711323
-      //    Return the TextLevel as a string.
-      const CString& GetStringTextLevel () const;
+    //## Operation: GetStringTextLevel%863711323
+    //    Return the TextLevel as a string.
+    const CString& GetStringTextLevel() const;
 
-      //## Operation: SizePositionHasChanged%863883949
-      //    Notify when the object size and/or position has changed.
-      virtual void SizePositionHasChanged ();
+    //## Operation: SizePositionHasChanged%863883949
+    //    Notify when the object size and/or position has changed.
+    virtual void SizePositionHasChanged();
 
-      //## Operation: GetRightSubMenu%864330569
-      //    Return the number of the submenu when the user click the
-      //    right mouse button.
-      virtual UINT GetRightSubMenu () const;
+    //## Operation: GetRightSubMenu%864330569
+    //    Return the number of the submenu when the user click the
+    //    right mouse button.
+    virtual UINT GetRightSubMenu() const;
 
-      //## Operation: GetPropertyTabs%885128490
-      //    Return the list of tabs that should be displayed when
-      //    the user asks for object properties.
-      virtual UINT GetPropertyTabs () const;
+    //## Operation: GetPropertyTabs%885128490
+    //    Return the list of tabs that should be displayed when
+    //    the user asks for object properties.
+    virtual UINT GetPropertyTabs() const;
 
-      //## Operation: GetUnformatedObject%901298462
-      //    Return an unformated string of the object image.
-      virtual CString GetUnformatedObject ();
+    //## Operation: GetUnformatedObject%901298462
+    //    Return an unformated string of the object image.
+    virtual CString GetUnformatedObject();
 
-      //## Operation: GetJustify%907408179
-      virtual UINT GetJustify (ZDDocument* pDoc) const;
+    //## Operation: GetJustify%907408179
+    virtual UINT GetJustify(ZDDocument* pDoc) const;
 
-      //## Operation: SetJustify%907408180
-      virtual void SetJustify (UINT nValue);
+    //## Operation: SetJustify%907408180
+    virtual void SetJustify(UINT nValue);
 
-      //## Operation: SethStyle%907428568
-      //    Assign a new style handle
-      //## Postconditions:
-      //    After having assigned the handle, remove the font
-      //    handle, the object color and the object alignement.
-      virtual void SethStyle (HandleStyle value);
+    //## Operation: SethStyle%907428568
+    //    Assign a new style handle
+    //## Postconditions:
+    //    After having assigned the handle, remove the font
+    //    handle, the object color and the object alignement.
+    virtual void SethStyle(HandleStyle value);
 
     //## Get and Set Operations for Class Attributes (generated)
 
       //## Attribute: TextLevel%33798C8B03CA
       //    Used to contains the section and paragraph number.
-      PLFNStatic& GetTextLevel ();
+    PSS_PLFNStatic& GetTextLevel();
 
-      //## Attribute: pObject%33798CAF030C
-      const PlanFinObject* GetpObject () const;
-      void SetpObject (PlanFinObject* value);
+    //## Attribute: pObject%33798CAF030C
+    const PlanFinObject* GetpObject() const;
+    void SetpObject(PlanFinObject* value);
 
-      //## Attribute: iTextOffset%33798CEC01D6
-      //    Used to specify the text offset from the Section and
-      //    Paragraph number.
-      const int GetiTextOffset () const;
-      void SetiTextOffset (int value);
+    //## Attribute: iTextOffset%33798CEC01D6
+    //    Used to specify the text offset from the Section and
+    //    Paragraph number.
+    const int GetiTextOffset() const;
+    void SetiTextOffset(int value);
 
-      //## Attribute: bAutoCalculate%33798E750168
-      //    Define if the section and paragraph must be
-      //    automatically calculated.
-      const BOOL GetbAutoCalculate () const;
-      void SetbAutoCalculate (BOOL value);
+    //## Attribute: bAutoCalculate%33798E750168
+    //    Define if the section and paragraph must be
+    //    automatically calculated.
+    const BOOL GetbAutoCalculate() const;
+    void SetbAutoCalculate(BOOL value);
 
-      //## Attribute: iSectionNumber%33798D34028A
-      //    Describe the section number.
-      const int GetiSectionNumber () const;
-      void SetiSectionNumber (int value);
+    //## Attribute: iSectionNumber%33798D34028A
+    //    Describe the section number.
+    const int GetiSectionNumber() const;
+    void SetiSectionNumber(int value);
 
-      //## Attribute: iLevel%33798EB4019A
-      //    Define the level.
-      const int GetiLevel () const;
-      void SetiLevel (int value);
+    //## Attribute: iLevel%33798EB4019A
+    //    Define the level.
+    const int GetiLevel() const;
+    void SetiLevel(int value);
 
     // Additional Public Declarations
       //## begin PLFNAutoNumbered%33798B3703D4.public preserve=yes
@@ -213,220 +208,201 @@ class AFX_EXT_CLASS PLFNAutoNumbered : public PlanFinObject  //## Inherits: <unn
     virtual void AssertValid() const;
     virtual void Dump(CDumpContext& dc) const;
 #endif
-      //## end PLFNAutoNumbered%33798B3703D4.public
-  protected:
+    //## end PLFNAutoNumbered%33798B3703D4.public
+protected:
     // Additional Protected Declarations
       //## begin PLFNAutoNumbered%33798B3703D4.protected preserve=yes
     DECLARE_SERIAL(PLFNAutoNumbered)
-      //## end PLFNAutoNumbered%33798B3703D4.protected
-  private:
+    //## end PLFNAutoNumbered%33798B3703D4.protected
+private:
     // Data Members for Class Attributes
 
       //## begin PLFNAutoNumbered::TextLevel%33798C8B03CA.attr preserve=no  public: PLFNStatic {U} 
-      PLFNStatic m_TextLevel;
-      //## end PLFNAutoNumbered::TextLevel%33798C8B03CA.attr
+    PSS_PLFNStatic m_TextLevel;
+    //## end PLFNAutoNumbered::TextLevel%33798C8B03CA.attr
 
-      //## begin PLFNAutoNumbered::pObject%33798CAF030C.attr preserve=no  public: PlanFinObject* {U} NULL
-      PlanFinObject* m_pObject;
-      //## end PLFNAutoNumbered::pObject%33798CAF030C.attr
+    //## begin PLFNAutoNumbered::pObject%33798CAF030C.attr preserve=no  public: PlanFinObject* {U} NULL
+    PlanFinObject* m_pObject;
+    //## end PLFNAutoNumbered::pObject%33798CAF030C.attr
 
-      //## begin PLFNAutoNumbered::iTextOffset%33798CEC01D6.attr preserve=no  public: int {U} 20
-      int m_iTextOffset;
-      //## end PLFNAutoNumbered::iTextOffset%33798CEC01D6.attr
+    //## begin PLFNAutoNumbered::iTextOffset%33798CEC01D6.attr preserve=no  public: int {U} 20
+    int m_iTextOffset;
+    //## end PLFNAutoNumbered::iTextOffset%33798CEC01D6.attr
 
-      //## begin PLFNAutoNumbered::bAutoCalculate%33798E750168.attr preserve=no  public: BOOL {U} TRUE
-      BOOL m_bAutoCalculate;
-      //## end PLFNAutoNumbered::bAutoCalculate%33798E750168.attr
+    //## begin PLFNAutoNumbered::bAutoCalculate%33798E750168.attr preserve=no  public: BOOL {U} TRUE
+    BOOL m_bAutoCalculate;
+    //## end PLFNAutoNumbered::bAutoCalculate%33798E750168.attr
 
-      //## begin PLFNAutoNumbered::iSectionNumber%33798D34028A.attr preserve=no  public: int {U} 
-      int m_iSectionNumber;
-      //## end PLFNAutoNumbered::iSectionNumber%33798D34028A.attr
+    //## begin PLFNAutoNumbered::iSectionNumber%33798D34028A.attr preserve=no  public: int {U} 
+    int m_iSectionNumber;
+    //## end PLFNAutoNumbered::iSectionNumber%33798D34028A.attr
 
-      //## begin PLFNAutoNumbered::iLevel%33798EB4019A.attr preserve=no  public: int {U} 0
-      int m_iLevel;
-      //## end PLFNAutoNumbered::iLevel%33798EB4019A.attr
-
-    // Additional Private Declarations
-      //## begin PLFNAutoNumbered%33798B3703D4.private preserve=yes
-      //## end PLFNAutoNumbered%33798B3703D4.private
-
-  private:  //## implementation
-    // Additional Implementation Declarations
-      //## begin PLFNAutoNumbered%33798B3703D4.implementation preserve=yes
-      //## end PLFNAutoNumbered%33798B3703D4.implementation
-
+    //## begin PLFNAutoNumbered::iLevel%33798EB4019A.attr preserve=no  public: int {U} 0
+    int m_iLevel;
+    //## end PLFNAutoNumbered::iLevel%33798EB4019A.attr
 };
 
-//## begin PLFNAutoNumbered%33798B3703D4.postscript preserve=yes
-//## end PLFNAutoNumbered%33798B3703D4.postscript
-
-// Class PLFNAutoNumbered 
-
-
 //## Other Operations (inline)
-inline BOOL PLFNAutoNumbered::IsEmpty () const
+inline BOOL PLFNAutoNumbered::IsEmpty() const
 {
-  //## begin PLFNAutoNumbered::IsEmpty%863604534.body preserve=yes
-      if (m_pObject)
-          return m_pObject->IsEmpty();
+    //## begin PLFNAutoNumbered::IsEmpty%863604534.body preserve=yes
+    if (m_pObject)
+        return m_pObject->IsEmpty();
     return TRUE;
-  //## end PLFNAutoNumbered::IsEmpty%863604534.body
+    //## end PLFNAutoNumbered::IsEmpty%863604534.body
 }
 
-inline BOOL PLFNAutoNumbered::IsSelected (const CPoint& point) const
+inline BOOL PLFNAutoNumbered::IsSelected(const CPoint& point) const
 {
-  //## begin PLFNAutoNumbered::IsSelected%863604537.body preserve=yes
-    return( m_rctObject.PtInRect( point ) );
-  //## end PLFNAutoNumbered::IsSelected%863604537.body
+    //## begin PLFNAutoNumbered::IsSelected%863604537.body preserve=yes
+    return(m_rctObject.PtInRect(point));
+    //## end PLFNAutoNumbered::IsSelected%863604537.body
 }
 
-inline void PLFNAutoNumbered::SetStringTextLevel (const CString sText)
+inline void PLFNAutoNumbered::SetStringTextLevel(const CString sText)
 {
-  //## begin PLFNAutoNumbered::SetStringTextLevel%863711322.body preserve=yes
-      m_TextLevel.SetStr( sText );
-  //## end PLFNAutoNumbered::SetStringTextLevel%863711322.body
+    //## begin PLFNAutoNumbered::SetStringTextLevel%863711322.body preserve=yes
+    m_TextLevel.SetStr(sText);
+    //## end PLFNAutoNumbered::SetStringTextLevel%863711322.body
 }
 
-inline const CString& PLFNAutoNumbered::GetStringTextLevel () const
+inline const CString& PLFNAutoNumbered::GetStringTextLevel() const
 {
-  //## begin PLFNAutoNumbered::GetStringTextLevel%863711323.body preserve=yes
-      return m_TextLevel.GetStr();
-  //## end PLFNAutoNumbered::GetStringTextLevel%863711323.body
+    //## begin PLFNAutoNumbered::GetStringTextLevel%863711323.body preserve=yes
+    return m_TextLevel.GetStr();
+    //## end PLFNAutoNumbered::GetStringTextLevel%863711323.body
 }
 
-inline UINT PLFNAutoNumbered::GetRightSubMenu () const
+inline UINT PLFNAutoNumbered::GetRightSubMenu() const
 {
-  //## begin PLFNAutoNumbered::GetRightSubMenu%864330569.body preserve=yes
-      return g_AutoNumberedRightSubMenu;
-  //## end PLFNAutoNumbered::GetRightSubMenu%864330569.body
+    //## begin PLFNAutoNumbered::GetRightSubMenu%864330569.body preserve=yes
+    return g_AutoNumberedRightSubMenu;
+    //## end PLFNAutoNumbered::GetRightSubMenu%864330569.body
 }
 
-inline UINT PLFNAutoNumbered::GetPropertyTabs () const
+inline UINT PLFNAutoNumbered::GetPropertyTabs() const
 {
-  //## begin PLFNAutoNumbered::GetPropertyTabs%885128490.body preserve=yes
-      return PropertyGeneralPage | PropertySizePage | PropertyNumberedPage;
-  //## end PLFNAutoNumbered::GetPropertyTabs%885128490.body
+    //## begin PLFNAutoNumbered::GetPropertyTabs%885128490.body preserve=yes
+    return PropertyGeneralPage | PropertySizePage | PropertyNumberedPage;
+    //## end PLFNAutoNumbered::GetPropertyTabs%885128490.body
 }
 
-inline UINT PLFNAutoNumbered::GetJustify (ZDDocument* pDoc) const
+inline UINT PLFNAutoNumbered::GetJustify(ZDDocument* pDoc) const
 {
-  //## begin PLFNAutoNumbered::GetJustify%907408179.body preserve=yes
-      if (m_pObject)
-          return m_pObject->GetJustify(pDoc);
+    //## begin PLFNAutoNumbered::GetJustify%907408179.body preserve=yes
+    if (m_pObject)
+        return m_pObject->GetJustify(pDoc);
     return 0;
-  //## end PLFNAutoNumbered::GetJustify%907408179.body
+    //## end PLFNAutoNumbered::GetJustify%907408179.body
 }
 
-inline void PLFNAutoNumbered::SetJustify (UINT nValue)
+inline void PLFNAutoNumbered::SetJustify(UINT nValue)
 {
-  //## begin PLFNAutoNumbered::SetJustify%907408180.body preserve=yes
-      if (m_pObject)
-          m_pObject->SetJustify( nValue );
-  //## end PLFNAutoNumbered::SetJustify%907408180.body
+    //## begin PLFNAutoNumbered::SetJustify%907408180.body preserve=yes
+    if (m_pObject)
+        m_pObject->SetJustify(nValue);
+    //## end PLFNAutoNumbered::SetJustify%907408180.body
 }
 
 //## Get and Set Operations for Class Attributes (inline)
 
-inline PLFNStatic& PLFNAutoNumbered::GetTextLevel ()
+inline PSS_PLFNStatic& PLFNAutoNumbered::GetTextLevel()
 {
-  //## begin PLFNAutoNumbered::GetTextLevel%33798C8B03CA.get preserve=no
-  return m_TextLevel;
-  //## end PLFNAutoNumbered::GetTextLevel%33798C8B03CA.get
+    //## begin PLFNAutoNumbered::GetTextLevel%33798C8B03CA.get preserve=no
+    return m_TextLevel;
+    //## end PLFNAutoNumbered::GetTextLevel%33798C8B03CA.get
 }
 
-inline const PlanFinObject* PLFNAutoNumbered::GetpObject () const
+inline const PlanFinObject* PLFNAutoNumbered::GetpObject() const
 {
-  //## begin PLFNAutoNumbered::GetpObject%33798CAF030C.get preserve=no
-  return m_pObject;
-  //## end PLFNAutoNumbered::GetpObject%33798CAF030C.get
+    //## begin PLFNAutoNumbered::GetpObject%33798CAF030C.get preserve=no
+    return m_pObject;
+    //## end PLFNAutoNumbered::GetpObject%33798CAF030C.get
 }
 
-inline void PLFNAutoNumbered::SetpObject (PlanFinObject* value)
+inline void PLFNAutoNumbered::SetpObject(PlanFinObject* value)
 {
-  //## begin PLFNAutoNumbered::SetpObject%33798CAF030C.set preserve=no
-  m_pObject = value;
-  //## end PLFNAutoNumbered::SetpObject%33798CAF030C.set
+    //## begin PLFNAutoNumbered::SetpObject%33798CAF030C.set preserve=no
+    m_pObject = value;
+    //## end PLFNAutoNumbered::SetpObject%33798CAF030C.set
 }
 
-inline const int PLFNAutoNumbered::GetiTextOffset () const
+inline const int PLFNAutoNumbered::GetiTextOffset() const
 {
-  //## begin PLFNAutoNumbered::GetiTextOffset%33798CEC01D6.get preserve=no
-  return m_iTextOffset;
-  //## end PLFNAutoNumbered::GetiTextOffset%33798CEC01D6.get
+    //## begin PLFNAutoNumbered::GetiTextOffset%33798CEC01D6.get preserve=no
+    return m_iTextOffset;
+    //## end PLFNAutoNumbered::GetiTextOffset%33798CEC01D6.get
 }
 
-inline void PLFNAutoNumbered::SetiTextOffset (int value)
+inline void PLFNAutoNumbered::SetiTextOffset(int value)
 {
-  //## begin PLFNAutoNumbered::SetiTextOffset%33798CEC01D6.set preserve=no
-  m_iTextOffset = value;
-  //## end PLFNAutoNumbered::SetiTextOffset%33798CEC01D6.set
+    //## begin PLFNAutoNumbered::SetiTextOffset%33798CEC01D6.set preserve=no
+    m_iTextOffset = value;
+    //## end PLFNAutoNumbered::SetiTextOffset%33798CEC01D6.set
 }
 
-inline const BOOL PLFNAutoNumbered::GetbAutoCalculate () const
+inline const BOOL PLFNAutoNumbered::GetbAutoCalculate() const
 {
-  //## begin PLFNAutoNumbered::GetbAutoCalculate%33798E750168.get preserve=no
-  return m_bAutoCalculate;
-  //## end PLFNAutoNumbered::GetbAutoCalculate%33798E750168.get
+    //## begin PLFNAutoNumbered::GetbAutoCalculate%33798E750168.get preserve=no
+    return m_bAutoCalculate;
+    //## end PLFNAutoNumbered::GetbAutoCalculate%33798E750168.get
 }
 
-inline void PLFNAutoNumbered::SetbAutoCalculate (BOOL value)
+inline void PLFNAutoNumbered::SetbAutoCalculate(BOOL value)
 {
-  //## begin PLFNAutoNumbered::SetbAutoCalculate%33798E750168.set preserve=no
-  m_bAutoCalculate = value;
-  //## end PLFNAutoNumbered::SetbAutoCalculate%33798E750168.set
+    //## begin PLFNAutoNumbered::SetbAutoCalculate%33798E750168.set preserve=no
+    m_bAutoCalculate = value;
+    //## end PLFNAutoNumbered::SetbAutoCalculate%33798E750168.set
 }
 
-inline const int PLFNAutoNumbered::GetiSectionNumber () const
+inline const int PLFNAutoNumbered::GetiSectionNumber() const
 {
-  //## begin PLFNAutoNumbered::GetiSectionNumber%33798D34028A.get preserve=no
-  return m_iSectionNumber;
-  //## end PLFNAutoNumbered::GetiSectionNumber%33798D34028A.get
+    //## begin PLFNAutoNumbered::GetiSectionNumber%33798D34028A.get preserve=no
+    return m_iSectionNumber;
+    //## end PLFNAutoNumbered::GetiSectionNumber%33798D34028A.get
 }
 
-inline void PLFNAutoNumbered::SetiSectionNumber (int value)
+inline void PLFNAutoNumbered::SetiSectionNumber(int value)
 {
-  //## begin PLFNAutoNumbered::SetiSectionNumber%33798D34028A.set preserve=no
-  m_iSectionNumber = value;
-  //## end PLFNAutoNumbered::SetiSectionNumber%33798D34028A.set
+    //## begin PLFNAutoNumbered::SetiSectionNumber%33798D34028A.set preserve=no
+    m_iSectionNumber = value;
+    //## end PLFNAutoNumbered::SetiSectionNumber%33798D34028A.set
 }
 
-inline const int PLFNAutoNumbered::GetiLevel () const
+inline const int PLFNAutoNumbered::GetiLevel() const
 {
-  //## begin PLFNAutoNumbered::GetiLevel%33798EB4019A.get preserve=no
-  return m_iLevel;
-  //## end PLFNAutoNumbered::GetiLevel%33798EB4019A.get
+    //## begin PLFNAutoNumbered::GetiLevel%33798EB4019A.get preserve=no
+    return m_iLevel;
+    //## end PLFNAutoNumbered::GetiLevel%33798EB4019A.get
 }
 
-inline void PLFNAutoNumbered::SetiLevel (int value)
+inline void PLFNAutoNumbered::SetiLevel(int value)
 {
-  //## begin PLFNAutoNumbered::SetiLevel%33798EB4019A.set preserve=no
-  m_iLevel = value;
-  //## end PLFNAutoNumbered::SetiLevel%33798EB4019A.set
+    //## begin PLFNAutoNumbered::SetiLevel%33798EB4019A.set preserve=no
+    m_iLevel = value;
+    //## end PLFNAutoNumbered::SetiLevel%33798EB4019A.set
 }
 
 //## begin module%33798B9A02E4.epilog preserve=yes
 
-inline const HandleFont PLFNAutoNumbered::GethFont () const
+inline const HandleFont PLFNAutoNumbered::GethFont() const
 {
-      if (m_pObject)
-          return m_pObject->GethFont();
+    if (m_pObject)
+        return m_pObject->GethFont();
     return GethFont();
 }
 
-inline void PLFNAutoNumbered::SethFont (HandleFont value)
+inline void PLFNAutoNumbered::SethFont(HandleFont value)
 {
-      if (m_pObject)
-          m_pObject->SethFont( value );
+    if (m_pObject)
+        m_pObject->SethFont(value);
 }
 
-inline const HandleStyle PLFNAutoNumbered::GethStyle () const
+inline const HandleStyle PLFNAutoNumbered::GethStyle() const
 {
-      if (m_pObject)
-          return m_pObject->GethStyle();
+    if (m_pObject)
+        return m_pObject->GethStyle();
     return GethStyle();
 }
-
-//## end module%33798B9A02E4.epilog
-
 
 #endif

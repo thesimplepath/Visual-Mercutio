@@ -121,7 +121,8 @@ void PLFNTwoStates::Serialize (CArchive& ar)
         ar << (DWORD)m_CheckType;
         ar << (WORD)m_uSize;
         // Serialize the status if not a template or a default value is required
-        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetFileType() == E_FD_TemplateType && !GetDefaultValue())
+        if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetFileType() == PSS_Stamp::IE_FD_TemplateType &&
+            !GetDefaultValue())
         {
             BOOL    bValue = FALSE;
             ar << (WORD)bValue;

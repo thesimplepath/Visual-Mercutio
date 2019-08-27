@@ -285,7 +285,7 @@ public:
     //## Operation: GetStamp%913885114
     //    Returns the stamp of the document data specified by the
     //    DocumentIndex.
-    ZDStamp& GetStamp(int DocumentIndex = -1);
+    PSS_Stamp& GetStamp(int DocumentIndex = -1);
 
     //## Operation: GetSchema%913970076
     //    Return the schema manager reference.

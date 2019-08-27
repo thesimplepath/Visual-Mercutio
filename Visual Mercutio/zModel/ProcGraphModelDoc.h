@@ -169,7 +169,7 @@ public:
 
     bool IsUnit()
     {
-        return GetDocumentStamp().GetFileType() == E_FD_LibraryType;
+        return GetDocumentStamp().GetFileType() == PSS_Stamp::IE_FD_LibraryType;
     }
 
     bool HasUnit() const
