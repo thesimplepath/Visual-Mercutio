@@ -39,7 +39,7 @@ class ZProcess;
 //## end module%3786DB7B0055.declarations
 
 //## begin module%3786DB7B0055.additionalDeclarations preserve=yes
-#include "zBaseLib\SmartPtr.h"
+#include "zBaseLib\PSS_SmartPtr.h"
 #include "zBaseLib\ZBDate.h"
 #include "zBaseLib\PSS_MailUserList.h"
 #include "Zresourc.h"

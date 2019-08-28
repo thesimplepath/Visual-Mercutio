@@ -478,7 +478,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="SmartPtr.cpp">
+    <ClCompile Include="PSS_SmartPtr.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1401,7 +1401,7 @@
     <ClInclude Include="PSS_ActivityLogRecordSet.h" />
     <ClInclude Include="PSS_UserRecordSet.h" />
     <ClInclude Include="PSS_SingleInstanceApplication.h" />
-    <ClInclude Include="SmartPtr.h" />
+    <ClInclude Include="PSS_SmartPtr.h" />
     <ClInclude Include="SPHELP.H" />
     <ClInclude Include="PSS_Splitter.h" />
     <ClInclude Include="PSS_Stamp.h" />
