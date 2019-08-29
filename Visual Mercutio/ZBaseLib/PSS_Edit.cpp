@@ -170,9 +170,9 @@ void PSS_Edit::CreateSpecialHelp(BOOL designer)
     if (m_pEditedObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNTime)))
     {
         if (designer)
-            m_pSpecialHelp = new SpecialHelpDateDesigner;
+            m_pSpecialHelp = new PSS_SpecialHelpDateDesignerWnd;
         else
-            m_pSpecialHelp = new SpecialHelpDate;
+            m_pSpecialHelp = new PSS_SpecialHelpDateWnd;
     }
     else
     {
@@ -183,21 +183,21 @@ void PSS_Edit::CreateSpecialHelp(BOOL designer)
             if (pLong->GetAssociations().GetCount())
             {
                 if (designer)
-                    m_pSpecialHelp = new SpecialHelpNumberScenarioDesigner;
+                    m_pSpecialHelp = new PSS_SpecialHelpNumberScenarioDesignerWnd;
                 else
-                    m_pSpecialHelp = new SpecialHelpNumberScenario;
+                    m_pSpecialHelp = new PSS_SpecialHelpNumberScenarioWnd;
             }
             else
             if (designer)
-                m_pSpecialHelp = new SpecialHelpNumberDesigner;
+                m_pSpecialHelp = new PSS_SpecialHelpNumberDesignerWnd;
             else
-                m_pSpecialHelp = new SpecialHelpNumber;
+                m_pSpecialHelp = new PSS_SpecialHelpNumberWnd;
         }
         else
         if (designer)
-            m_pSpecialHelp = new SpecialHelpDefaultDesigner;
+            m_pSpecialHelp = new PSS_SpecialHelpDefaultDesignerWnd;
         else
-            m_pSpecialHelp = new SpecialHelpDefault;
+            m_pSpecialHelp = new PSS_SpecialHelpDefaultWnd;
     }
 
     // create the special helper

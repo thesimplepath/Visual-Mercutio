@@ -118,7 +118,7 @@ BOOL ZDTemplateManager::Scan ()
     // Add the title to the template dir list
     m_TemplateDirList.Add( sRootTitle );
     // Add the TemplateDir
-    ZDTemplateDir*    pDir = new ZDTemplateDir( m_RootDirectory, sRootTitle, m_FileExtension );
+    PSS_TemplateDir*    pDir = new PSS_TemplateDir( m_RootDirectory, sRootTitle, m_FileExtension );
       m_TemplateList.Add( pDir );
 
 #ifndef _WIN32
@@ -161,7 +161,7 @@ BOOL ZDTemplateManager::Scan ()
                     // Add the title to the template dir list
                     m_TemplateDirList.Add( FileInfo.cFileName );
                     // Add the TemplateDir
-                    ZDTemplateDir*    pDir = new ZDTemplateDir( m_RootDirectory + "\\" + FileInfo.cFileName, FileInfo.cFileName, m_FileExtension );
+                    PSS_TemplateDir*    pDir = new PSS_TemplateDir( m_RootDirectory + "\\" + FileInfo.cFileName, FileInfo.cFileName, m_FileExtension );
                       m_TemplateList.Add( pDir );
                 }
             }
@@ -182,29 +182,29 @@ void ZDTemplateManager::FreeList ()
   //## begin ZDTemplateManager::FreeList%878377702.body preserve=yes
     // Free all file objects allocated 
       for (int i = 0; i < m_TemplateList.GetSize(); ++i)
-          delete ((ZDTemplateDir*)(m_TemplateList[i]));
+          delete ((PSS_TemplateDir*)(m_TemplateList[i]));
       m_TemplateList.RemoveAll();
   //## end ZDTemplateManager::FreeList%878377702.body
 }
 
-ZDTemplateDir* ZDTemplateManager::FindTemplateDir (CString TemplateDir)
+PSS_TemplateDir* ZDTemplateManager::FindTemplateDir (CString TemplateDir)
 {
   //## begin ZDTemplateManager::FindTemplateDir%878492724.body preserve=yes
     // Run through the list and find the right templatedir
       for (int i = 0; i < m_TemplateList.GetSize(); ++i)
-          if (((ZDTemplateDir*)(m_TemplateList[i]))->GetTitle().CompareNoCase(TemplateDir) == 0)
-              return ((ZDTemplateDir*)(m_TemplateList[i]));
+          if (((PSS_TemplateDir*)(m_TemplateList[i]))->GetTitle().CompareNoCase(TemplateDir) == 0)
+              return ((PSS_TemplateDir*)(m_TemplateList[i]));
       return NULL;
   //## end ZDTemplateManager::FindTemplateDir%878492724.body
 }
 
-ZDTemplateFile* ZDTemplateManager::FindTemplate (CString TemplateName)
+PSS_TemplateFile* ZDTemplateManager::FindTemplate (CString TemplateName)
 {
   //## begin ZDTemplateManager::FindTemplate%915657290.body preserve=yes
     // Run through the list and find the right template name
-    ZDTemplateFile*    pTmplFile;
+    PSS_TemplateFile*    pTmplFile;
       for (int i = 0; i < m_TemplateList.GetSize(); ++i)
-          if ((pTmplFile=((ZDTemplateDir*)(m_TemplateList[i]))->FindTitle( TemplateName )) != NULL)
+          if ((pTmplFile=((PSS_TemplateDir*)(m_TemplateList[i]))->FindTitle( TemplateName )) != NULL)
               return pTmplFile;
       return NULL;
   //## end ZDTemplateManager::FindTemplate%915657290.body
@@ -223,15 +223,15 @@ BOOL ZDTemplateManager::MoveTemplateFile (CString Filename, CString SourceTempla
 {
   //## begin ZDTemplateManager::MoveTemplateFile%902335799.body preserve=yes
       // Search the source template
-    ZDTemplateDir* pSource = FindTemplateDir( SourceTemplateDir );
+    PSS_TemplateDir* pSource = FindTemplateDir( SourceTemplateDir );
     if (!pSource)
         return FALSE;
       // Search the file in the source template
-    ZDTemplateFile* pFile = pSource->FindFile( Filename );
+    PSS_TemplateFile* pFile = pSource->FindFile( Filename );
     if (!pFile)
         return FALSE;
       // Search the destination template
-    ZDTemplateDir* pDestination = FindTemplateDir( DestinationTemplateDir );
+    PSS_TemplateDir* pDestination = FindTemplateDir( DestinationTemplateDir );
     if (!pDestination)
         return FALSE;
     // Call the basic fonction
@@ -239,7 +239,7 @@ BOOL ZDTemplateManager::MoveTemplateFile (CString Filename, CString SourceTempla
   //## end ZDTemplateManager::MoveTemplateFile%902335799.body
 }
 
-BOOL ZDTemplateManager::MoveTemplateFile (ZDTemplateFile& Filename, ZDTemplateDir& SourceTemplateDir, ZDTemplateDir& DestinationTemplateDir)
+BOOL ZDTemplateManager::MoveTemplateFile (PSS_TemplateFile& Filename, PSS_TemplateDir& SourceTemplateDir, PSS_TemplateDir& DestinationTemplateDir)
 {
   //## begin ZDTemplateManager::MoveTemplateFile%902335800.body preserve=yes
     CString        sTemp;
@@ -250,7 +250,7 @@ BOOL ZDTemplateManager::MoveTemplateFile (ZDTemplateFile& Filename, ZDTemplateDi
     char         dir[_MAX_DIR];
     char         fname[_MAX_FNAME];
     char         ext[_MAX_EXT];
-    _splitpath( (const char*)Filename.GetFilename(), drive, dir, fname, ext );
+    _splitpath( (const char*)Filename.GetFileName(), drive, dir, fname, ext );
     File = fname;
     File += ext;
 
@@ -368,7 +368,7 @@ BOOL ZDTemplateManager::MoveTemplateFile (ZDTemplateFile& Filename, ZDTemplateDi
     }
       // Once the file is moved,
       // delete it
-      CFile::Remove( Filename.GetFilename() );
+      CFile::Remove( Filename.GetFileName() );
       // Refresh the complete list
       return Scan();
   //## end ZDTemplateManager::MoveTemplateFile%902335800.body

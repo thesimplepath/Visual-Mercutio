@@ -78,7 +78,7 @@ class AFX_EXT_CLASS PSS_TemplateTree
         *@param iconIndex - icon index
         *@return newly added item handle, NULL on error
         */
-        HTREEITEM AddRootItem(ZDTemplateDir* pData, int iconIndex = 0);
+        HTREEITEM AddRootItem(PSS_TemplateDir* pData, int iconIndex = 0);
 
         /**
         * Adds a sub item
@@ -87,7 +87,7 @@ class AFX_EXT_CLASS PSS_TemplateTree
         *@param iconIndex - icon index
         *@return newly added item handle, NULL on error
         */
-        HTREEITEM AddSubItem(ZDTemplateDir* pData, HTREEITEM hParentTreeItem, int iconIndex = 0);
+        HTREEITEM AddSubItem(PSS_TemplateDir* pData, HTREEITEM hParentTreeItem, int iconIndex = 0);
 
         /**
         * Adds a sub item
@@ -96,7 +96,7 @@ class AFX_EXT_CLASS PSS_TemplateTree
         *@param iconIndex - icon index
         *@return newly added item handle, NULL on error
         */
-        HTREEITEM AddSubItem(ZDTemplateFile* pData, HTREEITEM hParentTreeItem, int iconIndex = 0);
+        HTREEITEM AddSubItem(PSS_TemplateFile* pData, HTREEITEM hParentTreeItem, int iconIndex = 0);
 
         /**
         * Adds file items
@@ -104,7 +104,7 @@ class AFX_EXT_CLASS PSS_TemplateTree
         *@param hParentTreeItem - parent item handle to add to
         *@param iconIndex - icon index
         */
-        void AddFileItems(ZDTemplateDir* pTemplateDir, HTREEITEM hParentTreeItem, int iconIndex = 0);
+        void AddFileItems(PSS_TemplateDir* pTemplateDir, HTREEITEM hParentTreeItem, int iconIndex = 0);
 
         /**
         * Gets the selected item name
@@ -116,13 +116,13 @@ class AFX_EXT_CLASS PSS_TemplateTree
         * Gets the selected template directory
         *@return the selected template directory, NULL if no selection or on error
         */
-        ZDTemplateDir* GetSelectedItemFolder();
+        PSS_TemplateDir* GetSelectedItemFolder();
 
         /**
         * Gets the selected item file
         *@return the selected item file, NULL if no selection or on error
         */
-        ZDTemplateFile* GetSelectedItemFile();
+        PSS_TemplateFile* GetSelectedItemFile();
 
         /**
         * Select an item

@@ -79,13 +79,13 @@ class AFX_EXT_CLASS PSS_TemplateView : public ZITreeView
         * Gets the selected item folder
         *@return the selected item folder
         */
-        virtual ZDTemplateDir* GetSelectedItemFolder();
+        virtual PSS_TemplateDir* GetSelectedItemFolder();
 
         /**
         * Gets the selected item file
         *@return the selected item file
         */
-        virtual ZDTemplateFile* GetSelectedItemFile();
+        virtual PSS_TemplateFile* GetSelectedItemFile();
 
         /**
         * Selects the item name

@@ -73,12 +73,12 @@ CString PSS_TemplateView::GetSelectedItemName()
     return m_TemplateTree.GetSelectedItemName();
 }
 //---------------------------------------------------------------------------
-ZDTemplateDir* PSS_TemplateView::GetSelectedItemFolder()
+PSS_TemplateDir* PSS_TemplateView::GetSelectedItemFolder()
 {
     return m_TemplateTree.GetSelectedItemFolder();
 }
 //---------------------------------------------------------------------------
-ZDTemplateFile* PSS_TemplateView::GetSelectedItemFile()
+PSS_TemplateFile* PSS_TemplateView::GetSelectedItemFile()
 {
     return m_TemplateTree.GetSelectedItemFile();
 }
@@ -172,7 +172,7 @@ void PSS_TemplateView::OnDblClick(NMHDR* pNMHDR, LRESULT* pResult)
 
     // something selected?
     if (GetSelectedItemFile())
-        AfxGetMainWnd()->SendMessage(UM_FORM_OPEN, 1, LPARAM((const char*)GetSelectedItemFile()->GetFilename()));
+        AfxGetMainWnd()->SendMessage(UM_FORM_OPEN, 1, LPARAM((const char*)GetSelectedItemFile()->GetFileName()));
 
     // call the virtual method
     OnDblClickEvent();

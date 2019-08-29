@@ -484,7 +484,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="SPHELP.CPP">
+    <ClCompile Include="PSS_SpecialHelpWnd.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -510,19 +510,19 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="systemtray.cpp">
+    <ClCompile Include="PSS_SystemTrayWnd.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="tmpldir.cpp">
+    <ClCompile Include="PSS_TemplateDir.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="tmplfile.cpp">
+    <ClCompile Include="PSS_TemplateFile.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1402,13 +1402,13 @@
     <ClInclude Include="PSS_UserRecordSet.h" />
     <ClInclude Include="PSS_SingleInstanceApplication.h" />
     <ClInclude Include="PSS_SmartPtr.h" />
-    <ClInclude Include="SPHELP.H" />
+    <ClInclude Include="PSS_SpecialHelpWnd.h" />
     <ClInclude Include="PSS_Splitter.h" />
     <ClInclude Include="PSS_Stamp.h" />
     <ClInclude Include="StdAfx.h" />
-    <ClInclude Include="systemtray.h" />
-    <ClInclude Include="tmpldir.h" />
-    <ClInclude Include="tmplfile.h" />
+    <ClInclude Include="PSS_SystemTrayWnd.h" />
+    <ClInclude Include="PSS_TemplateDir.h" />
+    <ClInclude Include="PSS_TemplateFile.h" />
     <ClInclude Include="tmplmng.h" />
     <ClInclude Include="UserLd.h" />
     <ClInclude Include="UserMng.h" />

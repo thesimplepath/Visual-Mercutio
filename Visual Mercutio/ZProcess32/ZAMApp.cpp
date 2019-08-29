@@ -1802,7 +1802,7 @@ BOOL ZAMainApp::IsCursorCapturedValid(const CPoint& point, ZIView* pView)
             }
         }
 
-        SpecialHelp* pWnd = pEdit->GetSpecialHelp();
+        PSS_SpecialHelpWnd* pWnd = pEdit->GetSpecialHelp();
 
         if (bCaptureValid && pWnd && pWnd->IsWindowVisible())
         {

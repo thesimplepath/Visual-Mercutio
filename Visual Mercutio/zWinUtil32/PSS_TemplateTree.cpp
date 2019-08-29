@@ -82,8 +82,8 @@ void PSS_TemplateTree::Refresh()
         return;
 
     // the first template directory is the root
-    ZDTemplateDir* pTemplateDir;
-    HTREEITEM      hRootItem;
+    PSS_TemplateDir* pTemplateDir;
+    HTREEITEM        hRootItem;
 
     // iterate through all template directories
     for (std::size_t i = 0; i < templateCount; ++i)
@@ -107,7 +107,7 @@ void PSS_TemplateTree::Refresh()
     }
 }
 //---------------------------------------------------------------------------
-HTREEITEM PSS_TemplateTree::AddRootItem(ZDTemplateDir* pData, int iconIndex)
+HTREEITEM PSS_TemplateTree::AddRootItem(PSS_TemplateDir* pData, int iconIndex)
 {
     TV_INSERTSTRUCT curTreeItem;
     curTreeItem.hParent             = NULL;
@@ -120,7 +120,7 @@ HTREEITEM PSS_TemplateTree::AddRootItem(ZDTemplateDir* pData, int iconIndex)
     return m_pTreeCtrl->InsertItem(&curTreeItem);
 }
 //---------------------------------------------------------------------------
-HTREEITEM PSS_TemplateTree::AddSubItem(ZDTemplateDir* pData, HTREEITEM hParentTreeItem, int iconIndex)
+HTREEITEM PSS_TemplateTree::AddSubItem(PSS_TemplateDir* pData, HTREEITEM hParentTreeItem, int iconIndex)
 {
     TV_INSERTSTRUCT curTreeItem;
     curTreeItem.hParent             = hParentTreeItem;
@@ -133,7 +133,7 @@ HTREEITEM PSS_TemplateTree::AddSubItem(ZDTemplateDir* pData, HTREEITEM hParentTr
     return m_pTreeCtrl->InsertItem(&curTreeItem);
 }
 //---------------------------------------------------------------------------
-HTREEITEM PSS_TemplateTree::AddSubItem(ZDTemplateFile* pData, HTREEITEM hParentTreeItem, int iconIndex)
+HTREEITEM PSS_TemplateTree::AddSubItem(PSS_TemplateFile* pData, HTREEITEM hParentTreeItem, int iconIndex)
 {
     TV_INSERTSTRUCT curTreeItem;
     curTreeItem.hParent             = hParentTreeItem;
@@ -146,9 +146,9 @@ HTREEITEM PSS_TemplateTree::AddSubItem(ZDTemplateFile* pData, HTREEITEM hParentT
     return m_pTreeCtrl->InsertItem(&curTreeItem);
 }
 //---------------------------------------------------------------------------
-void PSS_TemplateTree::AddFileItems(ZDTemplateDir* pTemplateDir, HTREEITEM hParentTreeItem, int iconIndex)
+void PSS_TemplateTree::AddFileItems(PSS_TemplateDir* pTemplateDir, HTREEITEM hParentTreeItem, int iconIndex)
 {
-    ZDTemplateFile* pTemplateFile;
+    PSS_TemplateFile* pTemplateFile;
 
     const std::size_t templateCount = pTemplateDir->GetSize();
 
@@ -176,7 +176,7 @@ CString PSS_TemplateTree::GetSelectedItemName()
     return "";
 }
 //---------------------------------------------------------------------------
-ZDTemplateDir* PSS_TemplateTree::GetSelectedItemFolder()
+PSS_TemplateDir* PSS_TemplateTree::GetSelectedItemFolder()
 {
     if (m_Invalid || !m_pTreeCtrl)
         return NULL;
@@ -188,13 +188,13 @@ ZDTemplateDir* PSS_TemplateTree::GetSelectedItemFolder()
         if (!m_pTreeCtrl->GetRootItem())
             return NULL;
 
-        return dynamic_cast<ZDTemplateDir*>((CObject*)m_pTreeCtrl->GetItemData(hSelected));
+        return dynamic_cast<PSS_TemplateDir*>((CObject*)m_pTreeCtrl->GetItemData(hSelected));
     }
 
     return NULL;
 }
 //---------------------------------------------------------------------------
-ZDTemplateFile* PSS_TemplateTree::GetSelectedItemFile()
+PSS_TemplateFile* PSS_TemplateTree::GetSelectedItemFile()
 {
     if (m_Invalid || !m_pTreeCtrl)
         return NULL;
@@ -206,7 +206,7 @@ ZDTemplateFile* PSS_TemplateTree::GetSelectedItemFile()
         if (!m_pTreeCtrl->GetRootItem())
             return NULL;
 
-        return DYNAMIC_DOWNCAST(ZDTemplateFile , (CObject*)m_pTreeCtrl->GetItemData(hSelected));
+        return DYNAMIC_DOWNCAST(PSS_TemplateFile, (CObject*)m_pTreeCtrl->GetItemData(hSelected));
     }
 
     return NULL;

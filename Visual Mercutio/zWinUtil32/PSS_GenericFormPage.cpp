@@ -60,13 +60,13 @@ BOOL PSS_GenericFormPage::OnSetActive()
     // copy values to the CListBox
     m_CtlListOfPlan.ResetContent();
 
-          ZDTemplateDir* pTemplateDir  = m_pTemplateManager->FindTemplateDir(m_strCaption);
-    const std::size_t    templateCount = pTemplateDir->GetSize();
+          PSS_TemplateDir* pTemplateDir  = m_pTemplateManager->FindTemplateDir(m_strCaption);
+    const std::size_t      templateCount = pTemplateDir->GetSize();
 
     // iterate through all template directory
     for (std::size_t i = 0; i < templateCount; ++i)
     {
-        ZDTemplateFile* pTemplateFile = pTemplateDir->GetTemplateFileAt(i);
+        PSS_TemplateFile* pTemplateFile = pTemplateDir->GetTemplateFileAt(i);
 
         if (pTemplateFile)
             m_CtlListOfPlan.AddString(pTemplateFile->GetTitle());

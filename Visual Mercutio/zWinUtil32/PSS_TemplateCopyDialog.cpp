@@ -117,7 +117,7 @@ void PSS_TemplateCopyDialog::OnOK()
     // get the template directory
     #ifdef _WIN32
         // insert all pages from the template manager
-        ZDTemplateDir* pTemplateDir = m_TemplateDirList.GetSelectedFolderItem();
+        PSS_TemplateDir* pTemplateDir = m_TemplateDirList.GetSelectedFolderItem();
     #else
         const int currentSelection = m_TemplateDirList.GetCurSel();
 
@@ -125,7 +125,7 @@ void PSS_TemplateCopyDialog::OnOK()
             return;
 
         // insert all pages from the template manager
-        ZDTemplateDir* pTemplateDir = m_pTemplateManager->GetTemplateDirAt(currentSelection);
+        PSS_TemplateDir* pTemplateDir = m_pTemplateManager->GetTemplateDirAt(currentSelection);
     #endif
 
     if (!pTemplateDir)

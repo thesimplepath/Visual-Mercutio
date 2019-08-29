@@ -8,7 +8,7 @@
 #include "zBaseLib\ZAGlobal.h"
 #include "zBaseLib\ZBTokenizer.h"
 #include "zBaseLib\ZNetResourceWrapper.h"
-#include "zBaseLib\TmplFile.h"
+#include "zBaseLib\PSS_TemplateFile.h"
 #include "zBaseLib\PSS_File.h"
 #include "zWinUtil32\PSS_ReferenceFileDialog.h"
 #include "ProcGraphModelMdl.h"
@@ -436,12 +436,12 @@ bool ZBExtFilePropertyMgr::DoInsertExtFile( bool DisplayDialog /*= true*/ )
 bool ZBExtFilePropertyMgr::AcceptDropItem( CObject* pObj, CPoint pt )
 {
     // Accept drop of file, scriptor template file and URL only
-    if ( pObj && ISA( pObj, ZDTemplateFile ) ||
+    if ( pObj && ISA( pObj, PSS_TemplateFile) ||
          ( ISA( pObj, ZNetResourceWrapper ) && !( (ZNetResourceWrapper*)pObj )->GetFilename().IsEmpty() &&
          ( (ZNetResourceWrapper*)pObj )->IsFile() ) )
     {
         // If is a template, check if we accept external file
-        if ( ISA( pObj, ZDTemplateFile ) )
+        if ( ISA( pObj, PSS_TemplateFile) )
         {
             return true;
         }
@@ -469,7 +469,7 @@ bool ZBExtFilePropertyMgr::AcceptDropItem( CObject* pObj, CPoint pt )
 
 bool ZBExtFilePropertyMgr::DropItem( CObject* pObj, CPoint pt )
 {
-    if ( pObj && ISA( pObj, ZDTemplateFile ) ||
+    if ( pObj && ISA( pObj, PSS_TemplateFile) ||
          ( ISA( pObj, ZNetResourceWrapper ) && !( (ZNetResourceWrapper*)pObj )->GetFilename().IsEmpty() &&
          ( (ZNetResourceWrapper*)pObj )->IsFile() ) )
     {
@@ -484,10 +484,10 @@ bool ZBExtFilePropertyMgr::DropItem( CObject* pObj, CPoint pt )
         }
 
         // If is a template, add it
-        if ( Idx >= 0 && ISA( pObj, ZDTemplateFile ) )
+        if ( Idx >= 0 && ISA( pObj, PSS_TemplateFile) )
         {
-            SetFileTitle( Idx, ( (ZDTemplateFile*)pObj )->GetTitle() );
-            SetFilename( Idx, ( (ZDTemplateFile*)pObj )->GetFilename() );
+            SetFileTitle( Idx, ( (PSS_TemplateFile*)pObj )->GetTitle() );
+            SetFilename( Idx, ( (PSS_TemplateFile*)pObj )->GetFileName() );
             SetInsertionType( Idx, 0 );
             SetActivationType( Idx, 0 );
 

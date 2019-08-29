@@ -173,7 +173,7 @@ class AFX_EXT_CLASS PSS_NewFormDialog : public PSS_WizardDialog
         * Gets the template file
         *@return the template file
         */
-        virtual inline ZDTemplateFile* GetTemplateFile() const;
+        virtual inline PSS_TemplateFile* GetTemplateFile() const;
 
         /**
         * Gets if format should be copied
@@ -202,8 +202,8 @@ class AFX_EXT_CLASS PSS_NewFormDialog : public PSS_WizardDialog
     private:
         ZDTemplateManager*         m_pTemplateManager;
         PSS_NewFormPropertySheet*  m_pSystemPropertySheet;
-        ZDTemplateDir*             m_pCurrentTemplateDir;
-        ZDTemplateFile*            m_pCurrentTemplateFile;
+        PSS_TemplateDir*           m_pCurrentTemplateDir;
+        PSS_TemplateFile*          m_pCurrentTemplateFile;
         IEDialogFormType           m_Type;
         IEDialogFormExtensionType  m_ExtensionType;
         CString                    m_SelectedFormName;
@@ -223,7 +223,7 @@ CString PSS_NewFormDialog::GetFileName() const
     return m_SelectedFileName;
 }
 //---------------------------------------------------------------------------
-ZDTemplateFile* PSS_NewFormDialog::GetTemplateFile() const
+PSS_TemplateFile* PSS_NewFormDialog::GetTemplateFile() const
 {
     return m_pCurrentTemplateFile;
 }

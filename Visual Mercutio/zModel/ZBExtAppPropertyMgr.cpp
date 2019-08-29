@@ -13,7 +13,7 @@
 #include "zBaseLib\ZBTokenizer.h"
 
 #include "zBaseLib\ZNetResourceWrapper.h"
-#include "zBaseLib\TmplFile.h"
+#include "zBaseLib\PSS_TemplateFile.h"
 #include "zBaseLib\PSS_File.h"
 
 #include "zBaseLib\PSS_MsgBox.h"

@@ -22,7 +22,7 @@
 #include "ZCGridCtrl.h"
 #include "ZBDragEdit.h"
 #include "ZCIntelliEdit.h"
-#include "sphelp.h"
+#include "PSS_SpecialHelpWnd.h"
 
 // forward classes declaration
 class ZDDocument;
@@ -100,7 +100,7 @@ class AFX_EXT_CLASS PSS_Edit
         * Gets the specialized help functions
         *@return the specialized help functions
         */
-        virtual inline SpecialHelp* GetSpecialHelp() const;
+        virtual inline PSS_SpecialHelpWnd* GetSpecialHelp() const;
 
         /**
         * Gets the client rect
@@ -140,7 +140,7 @@ class AFX_EXT_CLASS PSS_Edit
 
     protected:
         CWnd*                m_pParentWnd;
-        SpecialHelp*         m_pSpecialHelp;
+        PSS_SpecialHelpWnd*  m_pSpecialHelp;
         PlanFinObject*       m_pEditedObj;
         ZDDocument*          m_pDoc;
         PSS_FieldRepository* m_pFieldRepository;
@@ -181,7 +181,7 @@ class AFX_EXT_CLASS PSS_Edit
 //---------------------------------------------------------------------------
 // PSS_Edit
 //---------------------------------------------------------------------------
-SpecialHelp* PSS_Edit::GetSpecialHelp() const
+PSS_SpecialHelpWnd* PSS_Edit::GetSpecialHelp() const
 {
     return m_pSpecialHelp;
 }

@@ -71,7 +71,7 @@ void PSS_NewFormPropertySheet::Initialize()
     // iterate through all template directory
     for (std::size_t i = 0; i < templateCount; ++i)
     {
-        ZDTemplateDir* pTemplateDir = m_pTemplateManager->GetTemplateDirAt(i);
+        PSS_TemplateDir* pTemplateDir = m_pTemplateManager->GetTemplateDirAt(i);
 
         if (!pTemplateDir)
             continue;
@@ -356,7 +356,7 @@ afx_msg LONG PSS_NewFormDialog::OnCommentChange(UINT message, LONG lParam)
     if (m_pCurrentTemplateFile)
     {
         m_SelectedFormName = m_pCurrentTemplateFile->GetTitle();
-        m_SelectedFileName = m_pCurrentTemplateFile->GetFilename();
+        m_SelectedFileName = m_pCurrentTemplateFile->GetFileName();
         m_Comment          = m_pCurrentTemplateFile->GetDescription();
 
         UpdateData(FALSE);
@@ -389,7 +389,7 @@ void PSS_NewFormDialog::OnMoveToGeneralTab()
     ASSERT(m_pTemplateManager);
 
     // find the right template directory
-    if (m_pTemplateManager->MoveTemplateFile(m_pCurrentTemplateFile->GetFilename(),
+    if (m_pTemplateManager->MoveTemplateFile(m_pCurrentTemplateFile->GetFileName(),
                                              m_pCurrentTemplateDir->GetTitle(),
                                              m_pSystemPropertySheet->GetRootCaption()))
     {

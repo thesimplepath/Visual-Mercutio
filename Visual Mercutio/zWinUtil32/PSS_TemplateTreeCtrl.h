@@ -83,13 +83,13 @@ class AFX_EXT_CLASS PSS_TemplateTreeCtrl : public ZITreeCtrl
         * Gets the selected template directory
         *@return Gets the selected template directory, NULL if no selection or on error
         */
-        virtual ZDTemplateDir* GetSelectedFolderItem();
+        virtual PSS_TemplateDir* GetSelectedFolderItem();
 
         /**
         * Gets the selected template file
         *@return the selected template file, NULL if no selection or on error
         */
-        virtual ZDTemplateFile* GetSelectedFileItem();
+        virtual PSS_TemplateFile* GetSelectedFileItem();
 
         /**
         * Selects an item
