@@ -123,8 +123,8 @@ BOOL PSS_TemplateDir::Create(const CString& directory, const CString& title)
     #ifndef _WIN32
         struct find_t fileInfo;
 
+        // search for files
         if (!::_dos_findfirst(files, _A_NORMAL | _A_RDONLY | _A_HIDDEN, &fileInfo))
-            // search for additional files
             do
             {
                 // build the complete file
@@ -143,7 +143,7 @@ BOOL PSS_TemplateDir::Create(const CString& directory, const CString& title)
 
                 pFile.release();
             }
-            while (!::_dos_findnext(&FileInfo));
+            while (!::_dos_findnext(&fileInfo));
 
         // restore the previous drive
         ::_dos_setdrive(oldDrive, &numberOfDrives);
@@ -151,8 +151,8 @@ BOOL PSS_TemplateDir::Create(const CString& directory, const CString& title)
         WIN32_FIND_DATA fileInfo;
         HANDLE          hFile;
 
+        // search for files
         if ((hFile = ::FindFirstFile(files, &fileInfo)) != INVALID_HANDLE_VALUE)
-            // search for additional files
             do
             {
                 if (fileInfo.dwFileAttributes & FILE_ATTRIBUTE_NORMAL   ||

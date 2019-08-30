@@ -42,7 +42,7 @@ afx_msg LRESULT PSS_FormTemplateTreeCtrl::OnInitializeTemplateManager(WPARAM wPa
     if (!::IsWindow(GetSafeHwnd()))
         return 1;
 
-    m_pTemplateManager = (ZDTemplateManager*)lParam;
+    m_pTemplateManager = (PSS_TemplateManager*)lParam;
     m_IncludeFiles     = BOOL(wParam);
 
     if (m_pTemplateManager)
@@ -56,7 +56,7 @@ afx_msg LRESULT PSS_FormTemplateTreeCtrl::OnReloadTemplateManager(WPARAM wParam,
     if (!::IsWindow(GetSafeHwnd()))
         return 1;
 
-    m_pTemplateManager = (ZDTemplateManager*)lParam;
+    m_pTemplateManager = (PSS_TemplateManager*)lParam;
 
     if (m_pTemplateManager)
         ReInitialize( m_pTemplateManager, m_IncludeFiles );

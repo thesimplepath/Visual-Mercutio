@@ -99,9 +99,9 @@ PSS_DocTemplateEx*        ZAGlobal::m_pProcessDocTemplate                    = N
 PSS_ProcessModelDocTmpl*    ZAGlobal::m_pProcessModelDocumentTemplate        = NULL;
 CMultiDocTemplate*        ZAGlobal::m_pReportDocTemplate                    = NULL;
 
-ZDTemplateManager        ZAGlobal::m_TemplateManager;
-ZDTemplateManager        ZAGlobal::m_ProcessTemplateManager;
-ZDTemplateManager        ZAGlobal::m_ModelTemplateManager;
+PSS_TemplateManager        ZAGlobal::m_TemplateManager;
+PSS_TemplateManager        ZAGlobal::m_ProcessTemplateManager;
+PSS_TemplateManager        ZAGlobal::m_ModelTemplateManager;
 ZUUserManager            ZAGlobal::m_UserManager;
 ZUNetwork                ZAGlobal::m_NetWork;
 ZUMail                    ZAGlobal::m_Mail;

@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------
 // PSS_TemplateTree
 //---------------------------------------------------------------------------
-PSS_TemplateTree::PSS_TemplateTree(ZITreeCtrl* pTreeCtrl, ZDTemplateManager* pTemplateManager, BOOL includeFiles) :
+PSS_TemplateTree::PSS_TemplateTree(ZITreeCtrl* pTreeCtrl, PSS_TemplateManager* pTemplateManager, BOOL includeFiles) :
     m_pTreeCtrl(pTreeCtrl),
     m_pTemplateManager(pTemplateManager),
     m_IncludeFiles(includeFiles),
@@ -45,7 +45,7 @@ const PSS_TemplateTree& PSS_TemplateTree::operator = (const PSS_TemplateTree& ot
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-void PSS_TemplateTree::Initialize(ZITreeCtrl* pTreeCtrl, ZDTemplateManager* pTemplateManager, BOOL includeFiles)
+void PSS_TemplateTree::Initialize(ZITreeCtrl* pTreeCtrl, PSS_TemplateManager* pTemplateManager, BOOL includeFiles)
 {
     m_pTreeCtrl        = pTreeCtrl;
     m_pTemplateManager = pTemplateManager;
@@ -58,7 +58,7 @@ void PSS_TemplateTree::Initialize(ZITreeCtrl* pTreeCtrl, ZDTemplateManager* pTem
     }
 }
 //---------------------------------------------------------------------------
-void PSS_TemplateTree::ReInitialize(ZDTemplateManager* pTemplateManager, BOOL includeFiles)
+void PSS_TemplateTree::ReInitialize(PSS_TemplateManager* pTemplateManager, BOOL includeFiles)
 {
     m_pTemplateManager = pTemplateManager;
     m_IncludeFiles     = includeFiles;

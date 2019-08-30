@@ -34,7 +34,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_NewFormPropertySheet
 //---------------------------------------------------------------------------
-PSS_NewFormPropertySheet::PSS_NewFormPropertySheet(ZDTemplateManager* pTemplateManager) :
+PSS_NewFormPropertySheet::PSS_NewFormPropertySheet(PSS_TemplateManager* pTemplateManager) :
     PSS_BasePropSheet(),
     m_pTemplateManager(pTemplateManager),
     m_FirstInitialization(TRUE)
@@ -123,7 +123,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_NewFormDialog
 //---------------------------------------------------------------------------
-PSS_NewFormDialog::PSS_NewFormDialog(ZDTemplateManager*        pTemplateManager,
+PSS_NewFormDialog::PSS_NewFormDialog(PSS_TemplateManager*      pTemplateManager,
                                      IEDialogFormType          type,
                                      IEDialogFormExtensionType extensionType) :
     PSS_WizardDialog(PSS_NewFormDialog::IDD,

@@ -17,7 +17,7 @@
 #include "ZNetWork.h"
 
 // TmplMng
-#include "TmplMng.h"
+#include "PSS_TemplateManager.h"
 
 // ZUMail
 #include "ZUMail.h"
@@ -211,11 +211,11 @@ public:
     static CString GetModelFileExtension();
 
     //    The application has a template manager.
-    static ZDTemplateManager& GetTemplateManager();
+    static PSS_TemplateManager& GetTemplateManager();
 
-    static ZDTemplateManager& GetProcessTemplateManager();
+    static PSS_TemplateManager& GetProcessTemplateManager();
 
-    static ZDTemplateManager& GetModelTemplateManager();
+    static PSS_TemplateManager& GetModelTemplateManager();
 
     //    Keep the pointer on the multi doc template.
     static PSS_DocTemplateEx* GetpDocTemplate()
@@ -439,9 +439,9 @@ private:
 
     static ZBHistoricValueManager    m_HistoricValueManager;
 
-    static ZDTemplateManager        m_TemplateManager;
-    static ZDTemplateManager        m_ProcessTemplateManager;
-    static ZDTemplateManager        m_ModelTemplateManager;
+    static PSS_TemplateManager        m_TemplateManager;
+    static PSS_TemplateManager        m_ProcessTemplateManager;
+    static PSS_TemplateManager        m_ModelTemplateManager;
 
     static ZUUserManager            m_UserManager;
 
@@ -511,17 +511,17 @@ inline const BOOL ZAGlobal::IsDuringInitialization()
     return m_DuringInitialization;
 }
 
-inline ZDTemplateManager& ZAGlobal::GetTemplateManager()
+inline PSS_TemplateManager& ZAGlobal::GetTemplateManager()
 {
     return m_TemplateManager;
 }
 
-inline ZDTemplateManager& ZAGlobal::GetProcessTemplateManager()
+inline PSS_TemplateManager& ZAGlobal::GetProcessTemplateManager()
 {
     return m_ProcessTemplateManager;
 }
 
-inline ZDTemplateManager& ZAGlobal::GetModelTemplateManager()
+inline PSS_TemplateManager& ZAGlobal::GetModelTemplateManager()
 {
     return m_ModelTemplateManager;
 }

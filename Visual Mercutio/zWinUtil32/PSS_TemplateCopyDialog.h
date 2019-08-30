@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\TmplMng.h"
+#include "zBaseLib\PSS_TemplateManager.h"
 #include "zBaseLib\ZIDialog.h"
 #include "PSS_TemplateTreeCtrl.h"
 
@@ -49,11 +49,11 @@ public:
     *@param allowReplace - if TRUE, replace is allowed
     *@param pParent - parent window, can be NULL
     */
-    PSS_TemplateCopyDialog(ZDTemplateManager* pTemplateManager,
-                           const CString&     fileExtension,
-                           PSS_FolderStamp*   pFolderStamp = NULL,
-                           BOOL               allowReplace = FALSE,
-                           CWnd*              pParent      = NULL);
+    PSS_TemplateCopyDialog(PSS_TemplateManager* pTemplateManager,
+                           const CString&       fileExtension,
+                           PSS_FolderStamp*     pFolderStamp = NULL,
+                           BOOL                 allowReplace = FALSE,
+                           CWnd*                pParent      = NULL);
 
     /**
     * Gets the title
@@ -108,7 +108,7 @@ private:
     #else
         CListBox         m_TemplateDirList;
     #endif
-    ZDTemplateManager*   m_pTemplateManager;
+    PSS_TemplateManager* m_pTemplateManager;
     PSS_FolderStamp*     m_pFolderStamp;
     CString              m_Title;
     CString              m_Description;

@@ -34,7 +34,7 @@ PSS_GenericFormPage::PSS_GenericFormPage() :
     m_pTemplateManager(NULL)
 {}
 //---------------------------------------------------------------------------
-PSS_GenericFormPage::PSS_GenericFormPage(CWnd* pMain, const CString& title, ZDTemplateManager* pTemplateManager) :
+PSS_GenericFormPage::PSS_GenericFormPage(CWnd* pMain, const CString& title, PSS_TemplateManager* pTemplateManager) :
     CPropertyPage(PSS_GenericFormPage::IDD),
     m_pTemplateManager(pTemplateManager)
 {

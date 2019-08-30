@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\TmplMng.h"
+#include "zBaseLib\PSS_TemplateManager.h"
 
 // resources
 #ifndef _WIN32
@@ -61,7 +61,7 @@ class AFX_EXT_CLASS PSS_GenericFormPage : public CPropertyPage
         *@param title - title
         *@param pTemplateManager - template manager
         */
-        PSS_GenericFormPage(CWnd* pMain, const CString& title, ZDTemplateManager* pTemplateManager);
+        PSS_GenericFormPage(CWnd* pMain, const CString& title, PSS_TemplateManager* pTemplateManager);
 
         virtual ~PSS_GenericFormPage();
 
@@ -92,7 +92,7 @@ class AFX_EXT_CLASS PSS_GenericFormPage : public CPropertyPage
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZDTemplateManager* m_pTemplateManager;
+        PSS_TemplateManager* m_pTemplateManager;
 };
 
 //---------------------------------------------------------------------------

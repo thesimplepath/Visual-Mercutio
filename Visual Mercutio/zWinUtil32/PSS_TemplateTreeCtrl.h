@@ -22,7 +22,7 @@
 
 // processsoft
 #include "zBaseLib\ZITreeCtl.h"
-#include "zBaseLib\TmplMng.h"
+#include "zBaseLib\PSS_TemplateManager.h"
 #include "PSS_TemplateTree.h"
 
 #ifdef _ZWINUTIL32EXPORT
@@ -49,7 +49,7 @@ class AFX_EXT_CLASS PSS_TemplateTreeCtrl : public ZITreeCtrl
         *@param pTemplateManager - template manager
         *@param includeFiles - if TRUE, files will be included
         */
-        PSS_TemplateTreeCtrl(ZDTemplateManager* pTemplateManager = NULL, BOOL includeFiles = FALSE);
+        PSS_TemplateTreeCtrl(PSS_TemplateManager* pTemplateManager = NULL, BOOL includeFiles = FALSE);
 
         virtual ~PSS_TemplateTreeCtrl();
 
@@ -58,7 +58,7 @@ class AFX_EXT_CLASS PSS_TemplateTreeCtrl : public ZITreeCtrl
         *@param pTemplateManager - template manager
         *@param includeFiles - if TRUE, files will be included
         */
-        virtual void Initialize(ZDTemplateManager* pTemplateManager, BOOL includeFiles = FALSE);
+        virtual void Initialize(PSS_TemplateManager* pTemplateManager, BOOL includeFiles = FALSE);
 
         /**
         * Re-initializes the tree
@@ -66,7 +66,7 @@ class AFX_EXT_CLASS PSS_TemplateTreeCtrl : public ZITreeCtrl
         *@param includeFiles - if TRUE, files will be included
         *@note This function will not work if the tree has never been initialized
         */
-        virtual void ReInitialize(ZDTemplateManager* pTemplateManager, BOOL includeFiles = FALSE);
+        virtual void ReInitialize(PSS_TemplateManager* pTemplateManager, BOOL includeFiles = FALSE);
 
         /**
         * Refreshes the current tree
@@ -124,9 +124,9 @@ class AFX_EXT_CLASS PSS_TemplateTreeCtrl : public ZITreeCtrl
         virtual void OnRightDblClickEvent();
 
     protected:
-        ZDTemplateManager* m_pTemplateManager;
-        PSS_TemplateTree   m_TemplateTree;
-        BOOL               m_IncludeFiles;
+        PSS_TemplateManager* m_pTemplateManager;
+        PSS_TemplateTree     m_TemplateTree;
+        BOOL                 m_IncludeFiles;
 
         /// Additional Protected Declarations
         //{{AFX_MSG(PSS_TemplateTreeCtrl)

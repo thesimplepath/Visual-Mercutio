@@ -45,7 +45,7 @@ PSS_TemplateView::PSS_TemplateView() :
 PSS_TemplateView::~PSS_TemplateView()
 {}
 //---------------------------------------------------------------------------
-void PSS_TemplateView::Initialize(ZDTemplateManager* pTemplateManager, BOOL includeFiles)
+void PSS_TemplateView::Initialize(PSS_TemplateManager* pTemplateManager, BOOL includeFiles)
 {
     m_pTemplateManager = pTemplateManager;
     m_IncludeFiles     = includeFiles;
@@ -56,7 +56,7 @@ void PSS_TemplateView::Initialize(ZDTemplateManager* pTemplateManager, BOOL incl
     m_TemplateTree.Initialize((ZITreeCtrl*)&GetTreeCtrl(), m_pTemplateManager, m_IncludeFiles);
 }
 //---------------------------------------------------------------------------
-void PSS_TemplateView::ReInitialize(ZDTemplateManager* pTemplateManager, BOOL includeFiles)
+void PSS_TemplateView::ReInitialize(PSS_TemplateManager* pTemplateManager, BOOL includeFiles)
 {
     m_pTemplateManager = pTemplateManager;
     m_IncludeFiles     = includeFiles;
@@ -115,7 +115,7 @@ afx_msg LRESULT PSS_TemplateView::OnInitializeTemplateManager(WPARAM wParam, LPA
     if (!::IsWindow(GetSafeHwnd()))
         return 1;
 
-    m_pTemplateManager = (ZDTemplateManager*)lParam;
+    m_pTemplateManager = (PSS_TemplateManager*)lParam;
     m_IncludeFiles     = BOOL(wParam);
 
     if (m_pTemplateManager)
@@ -129,7 +129,7 @@ afx_msg LRESULT PSS_TemplateView::OnReloadTemplateManager(WPARAM wParam, LPARAM 
     if (!::IsWindow(GetSafeHwnd()))
         return 1;
 
-    m_pTemplateManager = (ZDTemplateManager*)lParam;
+    m_pTemplateManager = (PSS_TemplateManager*)lParam;
 
     if (m_pTemplateManager)
         ReInitialize(m_pTemplateManager, m_IncludeFiles);

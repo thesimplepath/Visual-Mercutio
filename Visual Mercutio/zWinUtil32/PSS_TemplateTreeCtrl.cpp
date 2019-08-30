@@ -45,7 +45,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_TemplateTreeCtrl
 //---------------------------------------------------------------------------
-PSS_TemplateTreeCtrl::PSS_TemplateTreeCtrl(ZDTemplateManager* pTemplateManager, BOOL includeFiles) :
+PSS_TemplateTreeCtrl::PSS_TemplateTreeCtrl(PSS_TemplateManager* pTemplateManager, BOOL includeFiles) :
     m_pTemplateManager(pTemplateManager),
     m_IncludeFiles(includeFiles)
 {}
@@ -63,7 +63,7 @@ const PSS_TemplateTreeCtrl& PSS_TemplateTreeCtrl::operator = (const PSS_Template
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-void PSS_TemplateTreeCtrl::Initialize(ZDTemplateManager* pTemplateManager, BOOL includeFiles)
+void PSS_TemplateTreeCtrl::Initialize(PSS_TemplateManager* pTemplateManager, BOOL includeFiles)
 {
     m_pTemplateManager = pTemplateManager;
     m_IncludeFiles     = includeFiles;
@@ -71,7 +71,7 @@ void PSS_TemplateTreeCtrl::Initialize(ZDTemplateManager* pTemplateManager, BOOL 
     m_TemplateTree.Initialize(this, m_pTemplateManager, m_IncludeFiles);
 }
 //---------------------------------------------------------------------------
-void PSS_TemplateTreeCtrl::ReInitialize(ZDTemplateManager* pTemplateManager, BOOL includeFiles)
+void PSS_TemplateTreeCtrl::ReInitialize(PSS_TemplateManager* pTemplateManager, BOOL includeFiles)
 {
     m_pTemplateManager = pTemplateManager;
     m_IncludeFiles     = includeFiles;
@@ -124,7 +124,7 @@ afx_msg LRESULT PSS_TemplateTreeCtrl::OnInitializeTemplateManager(WPARAM wParam,
     if (!::IsWindow(GetSafeHwnd()))
         return 1;
 
-    m_pTemplateManager = (ZDTemplateManager*)lParam;
+    m_pTemplateManager = (PSS_TemplateManager*)lParam;
     m_IncludeFiles     = BOOL(wParam);
 
     if (m_pTemplateManager)
@@ -138,7 +138,7 @@ afx_msg LRESULT PSS_TemplateTreeCtrl::OnReloadTemplateManager(WPARAM wParam, LPA
     if (!::IsWindow(GetSafeHwnd()))
         return 1;
 
-    m_pTemplateManager = (ZDTemplateManager*)lParam;
+    m_pTemplateManager = (PSS_TemplateManager*)lParam;
 
     if (m_pTemplateManager)
         ReInitialize(m_pTemplateManager, m_IncludeFiles);

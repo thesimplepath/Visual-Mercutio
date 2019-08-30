@@ -18,7 +18,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_WizardDialog.h"
-#include "zBaseLib\TmplMng.h"
+#include "zBaseLib\PSS_TemplateManager.h"
 #include "PSS_BasePropSheet.h"
 #include "PSS_GenericFormPage.h"
 
@@ -48,7 +48,7 @@ class AFX_EXT_CLASS PSS_NewFormPropertySheet : public PSS_BasePropSheet
         * Constructor
         *@param pTemplateManager - template manager
         */
-        PSS_NewFormPropertySheet(ZDTemplateManager* pTemplateManager);
+        PSS_NewFormPropertySheet(PSS_TemplateManager* pTemplateManager);
 
         virtual ~PSS_NewFormPropertySheet();
 
@@ -75,9 +75,9 @@ class AFX_EXT_CLASS PSS_NewFormPropertySheet : public PSS_BasePropSheet
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZDTemplateManager* m_pTemplateManager;
-        CString            m_RootCaption;
-        BOOL               m_FirstInitialization;
+        PSS_TemplateManager* m_pTemplateManager;
+        CString              m_RootCaption;
+        BOOL                 m_FirstInitialization;
 
         /**
         * Copy constructor
@@ -151,7 +151,7 @@ class AFX_EXT_CLASS PSS_NewFormDialog : public PSS_WizardDialog
         *@param type - form type
         *@param extensionType - form extension type
         */
-        PSS_NewFormDialog(ZDTemplateManager*        pTemplateManager,
+        PSS_NewFormDialog(PSS_TemplateManager*      pTemplateManager,
                           IEDialogFormType          type,
                           IEDialogFormExtensionType extensionType);
 
@@ -200,7 +200,7 @@ class AFX_EXT_CLASS PSS_NewFormDialog : public PSS_WizardDialog
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZDTemplateManager*         m_pTemplateManager;
+        PSS_TemplateManager*       m_pTemplateManager;
         PSS_NewFormPropertySheet*  m_pSystemPropertySheet;
         PSS_TemplateDir*           m_pCurrentTemplateDir;
         PSS_TemplateFile*          m_pCurrentTemplateFile;

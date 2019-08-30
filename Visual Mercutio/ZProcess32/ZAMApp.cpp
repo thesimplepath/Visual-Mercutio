@@ -36,7 +36,7 @@
 #include "zRes32\zRes.h"
 
 // UserLd
-#include "zBaseLib\UserLd.h"
+#include "zBaseLib\PSS_UserLoader.h"
 
 #include "zWinUtil32\PSS_SelectServerWizard.h"
 #include "zBaseLib\ZMessage.h"
@@ -1630,7 +1630,7 @@ bool ZAMainApp::SaveAllModifiedNoPrompt()
 BOOL ZAMainApp::LoadAllUsers()
 {
     // Load all users
-    ZDUserLoader UserLoader;
+    PSS_UserLoader UserLoader;
 
     // Load all users
     UserLoader.Create(&ZAGlobal::GetUserManager(), GetUserDefinitionFile());

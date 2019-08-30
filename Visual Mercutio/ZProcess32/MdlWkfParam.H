@@ -12,7 +12,7 @@
 
 // Forward declaration
 class ZDProcessGraphModelDoc;
-class ZDTemplateManager;
+class PSS_TemplateManager;
 
 /////////////////////////////////////////////////////////////////////////////
 // ZVModelWorkflowParameters class
@@ -21,7 +21,7 @@ class ZVModelWorkflowParameters
 {
 // Construction
 public:
-    ZVModelWorkflowParameters(BOOL Modify, ZDProcessGraphModelDoc* pDoc, ZDTemplateManager* pTemplateManager, CString FileExtension, CWnd* pParent = NULL);    // standard constructor
+    ZVModelWorkflowParameters(BOOL Modify, ZDProcessGraphModelDoc* pDoc, PSS_TemplateManager* pTemplateManager, CString FileExtension, CWnd* pParent = NULL);    // standard constructor
 
     // Get methods
     PSS_FolderStamp&    GetFolderStamp() { return m_FolderStamp; };
@@ -34,7 +34,7 @@ public:
 private:
     ZDProcessGraphModelDoc* m_pDoc;
     BOOL                    m_Modify;
-    ZDTemplateManager*        m_pTemplateManager;
+    PSS_TemplateManager*        m_pTemplateManager;
     CString                    m_FileExtension;
 // the folder stamp used to save information
     PSS_FolderStamp            m_FolderStamp;

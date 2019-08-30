@@ -21,7 +21,7 @@
 
 // processsoft
 #include "zBaseLib\ZITreeCtl.h"
-#include "zBaseLib\TmplMng.h"
+#include "zBaseLib\PSS_TemplateManager.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -46,7 +46,7 @@ class AFX_EXT_CLASS PSS_TemplateTree
         *@param pTemplateManager - template manager, can be NULL
         *@param includeFiles - if TRUE, files will be included
         */
-        PSS_TemplateTree(ZITreeCtrl* pTreeCtrl = NULL, ZDTemplateManager* pTemplateManager = NULL, BOOL includeFiles = FALSE);
+        PSS_TemplateTree(ZITreeCtrl* pTreeCtrl = NULL, PSS_TemplateManager* pTemplateManager = NULL, BOOL includeFiles = FALSE);
 
         virtual ~PSS_TemplateTree();
 
@@ -56,7 +56,7 @@ class AFX_EXT_CLASS PSS_TemplateTree
         *@param pTemplateManager - template manager, can be NULL
         *@param includeFiles - if TRUE, files will be included
         */
-        void Initialize(ZITreeCtrl* pTreeCtrl, ZDTemplateManager* pTemplateManager, BOOL IncludeFiles = FALSE);
+        void Initialize(ZITreeCtrl* pTreeCtrl, PSS_TemplateManager* pTemplateManager, BOOL IncludeFiles = FALSE);
 
         /**
         * Re-initializes the template tree
@@ -65,7 +65,7 @@ class AFX_EXT_CLASS PSS_TemplateTree
         *@param includeFiles - if TRUE, files will be included
         *@note This function will not work if the tree has never been initialized
         */
-        void ReInitialize(ZDTemplateManager* pTemplateManager, BOOL IncludeFiles = FALSE);
+        void ReInitialize(PSS_TemplateManager* pTemplateManager, BOOL IncludeFiles = FALSE);
 
         /**
         * Refreshes the tree
@@ -132,10 +132,10 @@ class AFX_EXT_CLASS PSS_TemplateTree
         BOOL SelectItemName(const CString& name);
 
     private:
-        ZDTemplateManager* m_pTemplateManager;
-        ZITreeCtrl*        m_pTreeCtrl;
-        BOOL               m_IncludeFiles;
-        bool               m_Invalid;
+        PSS_TemplateManager* m_pTemplateManager;
+        ZITreeCtrl*          m_pTreeCtrl;
+        BOOL                 m_IncludeFiles;
+        bool                 m_Invalid;
 
         /**
         * Copy constructor

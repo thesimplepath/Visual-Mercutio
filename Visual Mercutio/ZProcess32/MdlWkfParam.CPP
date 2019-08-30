@@ -17,7 +17,7 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZVModelWorkflowParameters class
 
-ZVModelWorkflowParameters::ZVModelWorkflowParameters(BOOL Modify, ZDProcessGraphModelDoc* pDoc, ZDTemplateManager* pTemplateManager, CString FileExtension, CWnd* pParent /*=NULL*/)
+ZVModelWorkflowParameters::ZVModelWorkflowParameters(BOOL Modify, ZDProcessGraphModelDoc* pDoc, PSS_TemplateManager* pTemplateManager, CString FileExtension, CWnd* pParent /*=NULL*/)
     : m_Modify(Modify),
     m_pDoc(pDoc),
     m_pTemplateManager(pTemplateManager),

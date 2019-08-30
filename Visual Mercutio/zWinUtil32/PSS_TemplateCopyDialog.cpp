@@ -27,11 +27,11 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_TemplateCopyDialog
 //---------------------------------------------------------------------------
-PSS_TemplateCopyDialog::PSS_TemplateCopyDialog(ZDTemplateManager* pTemplateManager,
-                                               const CString&     fileExtension,
-                                               PSS_FolderStamp*   pFolderStamp,
-                                               BOOL               allowReplace,
-                                               CWnd*              pParent) :
+PSS_TemplateCopyDialog::PSS_TemplateCopyDialog(PSS_TemplateManager* pTemplateManager,
+                                               const CString&       fileExtension,
+                                               PSS_FolderStamp*     pFolderStamp,
+                                               BOOL                 allowReplace,
+                                               CWnd*                pParent) :
     ZIDialog(PSS_TemplateCopyDialog::IDD, TRUE, pParent),
     m_pTemplateManager(pTemplateManager), 
     m_pFolderStamp(pFolderStamp),

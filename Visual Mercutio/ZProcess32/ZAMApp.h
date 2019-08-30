@@ -77,7 +77,7 @@
 #include "zBaseLib\ZAStylMg.h"
 
 // TmplMng
-#include "zBaseLib\TmplMng.h"
+#include "zBaseLib\PSS_TemplateManager.h"
 
 // AppOpt
 #include "zBaseLib\PSS_ApplicationOption.h"

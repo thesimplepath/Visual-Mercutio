@@ -55,14 +55,14 @@ class AFX_EXT_CLASS PSS_TemplateView : public ZITreeView
         *@param pTemplateManager - template manager
         *@param includeFiles - if TRUE, files will be included
         */
-        virtual void Initialize(ZDTemplateManager* pTemplateManager, BOOL includeFiles);
+        virtual void Initialize(PSS_TemplateManager* pTemplateManager, BOOL includeFiles);
 
         /**
         * Re-initializes the template view
         *@param pTemplateManager - template manager
         *@param includeFiles - if TRUE, files will be included
         */
-        virtual void ReInitialize(ZDTemplateManager* pTemplateManager, BOOL includeFiles);
+        virtual void ReInitialize(PSS_TemplateManager* pTemplateManager, BOOL includeFiles);
 
         /**
         * Refreshes the template view
@@ -120,9 +120,9 @@ class AFX_EXT_CLASS PSS_TemplateView : public ZITreeView
         virtual void OnRightDblClickEvent();
 
     protected:
-        PSS_TemplateTree   m_TemplateTree;
-        ZDTemplateManager* m_pTemplateManager;
-        BOOL               m_IncludeFiles;
+        PSS_TemplateTree     m_TemplateTree;
+        PSS_TemplateManager* m_pTemplateManager;
+        BOOL                 m_IncludeFiles;
 
         PSS_TemplateView();
         virtual ~PSS_TemplateView();
