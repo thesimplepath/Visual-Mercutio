@@ -10,7 +10,7 @@
 
 // processsoft
 #include "PSS_DrawFunctions.h"
-#include "VTools.h"
+#include "PSS_VisualTool.h"
 #include "Message.h"
 #include "PSS_BaseMDIPage.h"
 #include "ZUFloatingToolbar.h"
@@ -327,7 +327,7 @@ int PSS_BaseMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
     OnReloadBarState();
 
     // set by default the edition tool
-    ZIVisualTool::m_CurrentToolType = VToolEdit;
+    PSS_VisualTool::m_CurrentToolType = PSS_VisualTool::IE_TT_VToolEdit;
 
     return 0;
 }

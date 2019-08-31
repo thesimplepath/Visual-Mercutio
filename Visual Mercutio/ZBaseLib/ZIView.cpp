@@ -19,7 +19,7 @@
 //## end module%334FC46302F9.includes
 
 // VTools
-#include "VTools.h"
+#include "PSS_VisualTool.h"
 
 // ZIView
 #include "ZIView.h"
@@ -629,7 +629,7 @@ void ZIView::OnLButtonDown(UINT nFlags, CPoint point)
     // and keep its pointer.
     // But if control key pressed
     // Take the selection tool directly
-    ZIVisualTool* pTool = ZIVisualTool::FindTool(ZIVisualTool::m_CurrentToolType);
+    PSS_VisualTool* pTool = PSS_VisualTool::FindTool(PSS_VisualTool::m_CurrentToolType);
 
     if (pTool != NULL)
         pTool->OnLButtonDown(this, nFlags, point);
@@ -646,7 +646,7 @@ void ZIView::OnLButtonUp(UINT nFlags, CPoint point)
     // and keep its pointer.
     // But if control key pressed
     // Take the selection tool directly
-    ZIVisualTool* pTool = ZIVisualTool::FindTool(ZIVisualTool::m_CurrentToolType);
+    PSS_VisualTool* pTool = PSS_VisualTool::FindTool(PSS_VisualTool::m_CurrentToolType);
 
     if (pTool != NULL)
         pTool->OnLButtonUp(this, nFlags, point);

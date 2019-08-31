@@ -552,7 +552,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="VTools.cpp">
+    <ClCompile Include="PSS_VisualTool.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1413,7 +1413,7 @@
     <ClInclude Include="PSS_UserLoader.h" />
     <ClInclude Include="PSS_UserManager.h" />
     <ClInclude Include="PSS_ReadView.h" />
-    <ClInclude Include="VTools.h" />
+    <ClInclude Include="PSS_VisualTool.h" />
     <ClInclude Include="WatchDir.h" />
     <ClInclude Include="ZAAscii.h" />
     <ClInclude Include="ZABitmap.h" />

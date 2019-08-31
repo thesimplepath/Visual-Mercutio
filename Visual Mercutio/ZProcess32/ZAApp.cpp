@@ -5,7 +5,7 @@
 #include "zMediator\PSS_Application.h"
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\ZMessage.h"
-#include "zBaseLib\VTools.h"
+#include "zBaseLib\PSS_VisualTool.h"
 #include "zBaseLib\ZDirectory.h"
 #include "zBaseLib\PSS_ObjectUtility.h"
 #include "zBaseLib\PSS_FileDialog.h"
@@ -476,7 +476,7 @@ BOOL ZAApp::InitAppl()
     ZAGlobal::SetpProcessModelDocumentTemplate(pProcessModelDocumentTemplate);
 
     // Creation of Visual Tools
-    static ZIVisualToolEdit VisualToolEdit;
+    static PSS_VisualToolEdit VisualToolEdit;
 
     PSS_ResourceManager::LoadFromDirectory(ZDirectory::NormalizeDirectory(GetApplicationDir()) + _T("\\resdll"));
     PSS_ResourceManager::ChangeLanguage(E_LN_French);
@@ -1546,8 +1546,8 @@ void ZAApp::SetVisualToolObject(const CString& sClassName)
     // set the appropriate tool
     switch (index)
     {
-        case 0:  ZIVisualTool::m_CurrentToolType = VToolSelect; break;
-        default: ZIVisualTool::m_CurrentToolType = VToolEdit;   break;
+        case 0:  PSS_VisualTool::m_CurrentToolType = PSS_VisualTool::IE_TT_VToolSelect; break;
+        default: PSS_VisualTool::m_CurrentToolType = PSS_VisualTool::IE_TT_VToolEdit;   break;
     }
 }
 

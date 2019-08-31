@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\ZIViewCd.h"
-#include "zBaseLib\VTools.h"
+#include "zBaseLib\PSS_VisualTool.h"
 #include "zBaseLib\ZACheck.h"
 #include "zBaseLib\ZARadio.h"
 #include "zBaseLib\ZANumbrd.h"
@@ -299,7 +299,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 
     // find the current select tool and keep its pointer, but if control key pressed,
     // take the selection tool directly
-    ZIVisualTool* pTool = ZIVisualTool::FindTool(ZIVisualTool::m_CurrentToolType);
+    PSS_VisualTool* pTool = PSS_VisualTool::FindTool(PSS_VisualTool::m_CurrentToolType);
 
     if (pTool != NULL)
         pTool->OnMouseMove(this, nFlags, point);
