@@ -1,8 +1,8 @@
 /****************************************************************************
  * ==> PSS_VisualTool ------------------------------------------------------*
  ****************************************************************************
- * Description : Visual tools base class. These tools can be selected,      *
- *               edited, add a new rectangle, line, text, etc...            *
+ * Description : Provides a visual tools base class. These tools can be     *
+ *               selected, edited, add a new rectangle, line, text, etc...  *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 

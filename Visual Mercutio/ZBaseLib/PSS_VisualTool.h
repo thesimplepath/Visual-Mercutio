@@ -1,8 +1,8 @@
 /****************************************************************************
  * ==> PSS_VisualTool ------------------------------------------------------*
  ****************************************************************************
- * Description : Visual tools base class. These tools can be selected,      *
- *               edited, add a new rectangle, line, text, etc...            *
+ * Description : Provides a visual tools base class. These tools can be     *
+ *               selected, edited, add a new rectangle, line, text, etc...  *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
@@ -25,13 +25,13 @@
 #endif
 
 #ifdef _ZBASELIBEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 /**

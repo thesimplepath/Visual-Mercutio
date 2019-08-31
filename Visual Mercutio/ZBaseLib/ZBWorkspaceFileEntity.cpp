@@ -6,7 +6,7 @@
 #include "ZBWorkspaceFileEntity.h"
 
 #include "ZBWorkspaceGroupEntity.h"
-#include "ZVWorkspaceFileProperties.h"
+#include "PSS_WorkspaceFilePropertiesDlg.h"
 
 #include "ZUFileLauncher.h"
 
@@ -97,14 +97,14 @@ bool ZBWorkspaceFileEntity::OpenFile()
 
 bool ZBWorkspaceFileEntity::DisplayProperties()
 {
-    ZVWorkspaceFileProperties dlg((GetParent() && ISA(GetParent(), ZBWorkspaceGroupEntity)) ? dynamic_cast<ZBWorkspaceGroupEntity*>(GetParent()) : NULL,
+    PSS_WorkspaceFilePropertiesDlg dlg((GetParent() && ISA(GetParent(), ZBWorkspaceGroupEntity)) ? dynamic_cast<ZBWorkspaceGroupEntity*>(GetParent()) : NULL,
                                   GetEntityName(),
                                   GetFilename());
 
     if (dlg.DoModal() == IDOK)
     {
         SetEntityName(dlg.GetFileTitle());
-        SetFilename(dlg.GetFilename());
+        SetFilename(dlg.GetFileName());
         return true;
     }
 

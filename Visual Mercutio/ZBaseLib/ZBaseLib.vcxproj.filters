@@ -386,15 +386,6 @@
     <ClCompile Include="ZVTreeListCtrl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZVWorkspaceFileProperties.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVWorkspaceGroupNameDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVWorkspaceRenameGroupNameDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PSS_StatusBar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -600,6 +591,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PSS_VisualTool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_WorkspaceRenameGroupNameDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_WorkspaceGroupNameDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_WorkspaceFilePropertiesDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1086,15 +1086,6 @@
     <ClInclude Include="ZVTreeListCtrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZVWorkspaceFileProperties.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVWorkspaceGroupNameDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVWorkspaceRenameGroupNameDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PSS_StatusBar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1300,6 +1291,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_VisualTool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_WorkspaceRenameGroupNameDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_WorkspaceGroupNameDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_WorkspaceFilePropertiesDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

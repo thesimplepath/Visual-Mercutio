@@ -1273,19 +1273,19 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVWorkspaceFileProperties.cpp">
+    <ClCompile Include="PSS_WorkspaceFilePropertiesDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVWorkspaceGroupNameDlg.cpp">
+    <ClCompile Include="PSS_WorkspaceGroupNameDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVWorkspaceRenameGroupNameDlg.cpp">
+    <ClCompile Include="PSS_WorkspaceRenameGroupNameDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1537,9 +1537,9 @@
     <ClInclude Include="ZVSpanView.h" />
     <ClInclude Include="ZVSpanWnd.h" />
     <ClInclude Include="ZVTreeListCtrl.h" />
-    <ClInclude Include="ZVWorkspaceFileProperties.h" />
-    <ClInclude Include="ZVWorkspaceGroupNameDlg.h" />
-    <ClInclude Include="ZVWorkspaceRenameGroupNameDlg.h" />
+    <ClInclude Include="PSS_WorkspaceFilePropertiesDlg.h" />
+    <ClInclude Include="PSS_WorkspaceGroupNameDlg.h" />
+    <ClInclude Include="PSS_WorkspaceRenameGroupNameDlg.h" />
     <ClInclude Include="PSS_WizardDialog.h" />
   </ItemGroup>
   <ItemGroup>
