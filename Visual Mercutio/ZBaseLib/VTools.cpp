@@ -1,62 +1,25 @@
-//## begin module%334FC46302F6.cm preserve=no
-//      %X% %Q% %Z% %W%
-//## end module%334FC46302F6.cm
+/****************************************************************************
+ * ==> PSS_VisualTool ------------------------------------------------------*
+ ****************************************************************************
+ * Description : Visual tools base class. These tools can be selected,      *
+ *               edited, add a new rectangle, line, text, etc...            *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-//## begin module%334FC46302F6.cp preserve=no
-//    ADSoft / Advanced Dedicated Software
-//    Dominique AIGROZ
-//## end module%334FC46302F6.cp
-
-//## Module: VTools%334FC46302F6; Package body
-//## Subsystem: ZBaseLib%37A08E0C019D
-//## Source file: z:\adsoft~1\ZBaseLib\VTools.cpp
-
-//## begin module%334FC46302F6.additionalIncludes preserve=no
 #include <StdAfx.h>
-//## end module%334FC46302F6.additionalIncludes
-
-//## begin module%334FC46302F6.includes preserve=yes
-//## end module%334FC46302F6.includes
-
-// VTools
 #include "VTools.h"
-//## begin module%334FC46302F6.declarations preserve=no
-//## end module%334FC46302F6.declarations
 
-//## begin module%334FC46302F6.additionalDeclarations preserve=yes
+// processsoft
 #include "ZDDoc.h"
 #include "ZAGlobal.h"
-//## end module%334FC46302F6.additionalDeclarations
 
-// Class ZIVisualTool 
-
-//## begin ZIVisualTool::CurrentToolType%334FC4620032.attr preserve=no  public: static ToolType {V} VToolEdit
-ToolType ZIVisualTool::m_CurrentToolType = VToolEdit;
-//## end ZIVisualTool::CurrentToolType%334FC4620032.attr
-
-//## begin ZIVisualTool::ToolsList%334FC4620033.attr preserve=no  public: static CPtrList {V} 
-CPtrList ZIVisualTool::m_ToolsList;
-//## end ZIVisualTool::ToolsList%334FC4620033.attr
-
-//## begin ZIVisualTool::DownPoint%334FC4620034.attr preserve=no  public: static CPoint {V} 
-CPoint ZIVisualTool::m_DownPoint;
-//## end ZIVisualTool::DownPoint%334FC4620034.attr
-
-//## begin ZIVisualTool::LastPoint%334FC4620035.attr preserve=no  public: static CPoint {V} 
-CPoint ZIVisualTool::m_LastPoint;
-//## end ZIVisualTool::LastPoint%334FC4620035.attr
-
-//## begin ZIVisualTool::nDownFlags%334FC4620036.attr preserve=no  public: static UINT {V} 
-UINT ZIVisualTool::m_nDownFlags;
-//## end ZIVisualTool::nDownFlags%334FC4620036.attr
-
-//## begin ZIVisualTool::ToolMode%3546151F00B6.attr preserve=no  public: static VisualToolModes {U} NormalMode
+ToolType        ZIVisualTool::m_CurrentToolType = VToolEdit;
 VisualToolModes ZIVisualTool::m_ToolMode = NormalMode;
-//## end ZIVisualTool::ToolMode%3546151F00B6.attr
-
-//## begin ZIVisualTool::Rect%35461F590396.attr preserve=no  public: static CRect {U} 
-CRect ZIVisualTool::m_Rect;
-//## end ZIVisualTool::Rect%35461F590396.attr
+CPtrList        ZIVisualTool::m_ToolsList;
+CRect           ZIVisualTool::m_Rect;
+CPoint          ZIVisualTool::m_DownPoint;
+CPoint          ZIVisualTool::m_LastPoint;
+UINT            ZIVisualTool::m_nDownFlags;
 
 ZIVisualTool::ZIVisualTool ( ToolType ObjectToolType )
     //## begin ZIVisualTool::ZIVisualTool%832040471.hasinit preserve=no

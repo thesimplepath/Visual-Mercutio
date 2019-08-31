@@ -318,7 +318,7 @@ BOOL PSS_FileFormPreviewDialog::OnInitDialog()
 
     m_pFrameWindow->ScreenToClient(&viewRect);
 
-    m_Context.m_pNewViewClass = RUNTIME_CLASS(ZIViewRead);
+    m_Context.m_pNewViewClass = RUNTIME_CLASS(PSS_ReadView);
 
     // this is the view's document
     m_Context.m_pCurrentDoc = m_pDocument;
@@ -327,7 +327,7 @@ BOOL PSS_FileFormPreviewDialog::OnInitDialog()
     m_Context.m_pLastView       = NULL;
     m_Context.m_pCurrentFrame   = m_pFrameWindow;
 
-    m_pView = new ZIViewRead;
+    m_pView = new PSS_ReadView;
 
     if (!m_pView->Create(NULL, NULL, AFX_WS_DEFAULT_VIEW, viewRect, m_pFrameWindow, AFX_IDW_PANE_FIRST, &m_Context))
     {

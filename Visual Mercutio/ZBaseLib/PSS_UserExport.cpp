@@ -15,7 +15,7 @@
 // PSS_UserExport
 //---------------------------------------------------------------------------
 PSS_UserExport::PSS_UserExport(const CString&                fileName,
-                               ZUUserManager*                pUserManager,
+                               PSS_UserManager*              pUserManager,
                                BOOL                          generateHeader,
                                ESynchronizationSeparatorType separatorType,
                                const CString&                schema,

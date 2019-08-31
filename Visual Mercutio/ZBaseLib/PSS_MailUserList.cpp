@@ -36,7 +36,7 @@ PSS_MailUserList::PSS_MailUserList(CStringArray& personListName, ULONG recipClas
     Fill(personListName, recipClass);
 }
 //---------------------------------------------------------------------------
-PSS_MailUserList::PSS_MailUserList(ZUUserManager& personListName, ULONG recipClass) :
+PSS_MailUserList::PSS_MailUserList(PSS_UserManager& personListName, ULONG recipClass) :
     m_MapiRecipDesc(NULL)
 {
     Fill(personListName, recipClass);
@@ -107,7 +107,7 @@ void PSS_MailUserList::Fill(CStringArray& personList, ULONG recipClass)
         AddPerson(personList[i], recipClass);
 }
 //---------------------------------------------------------------------------
-void PSS_MailUserList::Fill(ZUUserManager& personList, ULONG recipClass)
+void PSS_MailUserList::Fill(PSS_UserManager& personList, ULONG recipClass)
 {
     RemoveAllPersons();
 

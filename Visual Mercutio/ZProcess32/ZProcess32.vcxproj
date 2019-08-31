@@ -206,7 +206,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="ViewMod.cpp">
+    <ClCompile Include="PSS_ModifyView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -312,7 +312,7 @@
     <ClInclude Include="ProcessNameDialog.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="STDAFX.H" />
-    <ClInclude Include="ViewMod.h" />
+    <ClInclude Include="PSS_ModifyView.h" />
     <ClInclude Include="WelcomP.h" />
     <ClInclude Include="ZAApp.h" />
     <ClInclude Include="ZAMApp.h" />

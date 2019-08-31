@@ -64,7 +64,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_UserListCtrl
 //---------------------------------------------------------------------------
-PSS_UserListCtrl::PSS_UserListCtrl(ZUUserManager* pUserManager, const CString& departement) :
+PSS_UserListCtrl::PSS_UserListCtrl(PSS_UserManager* pUserManager, const CString& departement) :
     m_pUserManager(pUserManager),
     m_Departement(departement),
     m_AdminOnly(FALSE),
@@ -85,7 +85,7 @@ const PSS_UserListCtrl& PSS_UserListCtrl::operator = (const PSS_UserListCtrl& ot
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-int PSS_UserListCtrl::Initialize(ZUUserManager* pUserManager, const CString& departement)
+int PSS_UserListCtrl::Initialize(PSS_UserManager* pUserManager, const CString& departement)
 {
     m_pUserManager = pUserManager;
     m_Departement  = departement;

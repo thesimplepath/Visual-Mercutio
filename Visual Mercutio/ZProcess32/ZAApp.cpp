@@ -64,7 +64,7 @@
 #include "zReportWeb\ZUPublishReportToHTML.h"
 #include "zWeb\PSS_HtmlDialog.h"
 #include "WelcomP.h"
-#include "ViewMod.h"
+#include "PSS_ModifyView.h"
 #include "MdlWkfOpt.h"
 #include "ZVConceptorReportOptions.h"
 #include "ZVProcessWorkspace.h"
@@ -445,7 +445,7 @@ BOOL ZAApp::InitAppl()
     PSS_DocTemplateEx* pDocTemplate = new PSS_DocTemplateEx(IDR_MDIPAGE,
                                                             RUNTIME_CLASS(ZDDocumentReadWrite),
                                                             RUNTIME_CLASS(PSS_BaseMDIPage),
-                                                            RUNTIME_CLASS(ZIViewModify),
+                                                            RUNTIME_CLASS(PSS_ModifyView),
                                                             ID_FILE_MRU_FORMS1);
 
     AddDocTemplate(pDocTemplate);

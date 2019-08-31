@@ -41,7 +41,7 @@ class AFX_EXT_CLASS PSS_UserTreeCtrl : public ZITreeCtrl
         * Constructor
         *@param pUserManager - user manager, can be NULL
         */
-        PSS_UserTreeCtrl(ZUUserManager* pUserManager = NULL);
+        PSS_UserTreeCtrl(PSS_UserManager* pUserManager = NULL);
 
         virtual ~PSS_UserTreeCtrl();
 
@@ -49,13 +49,13 @@ class AFX_EXT_CLASS PSS_UserTreeCtrl : public ZITreeCtrl
         * Initializes the user tree control
         *@param pUserManager - user manager
         */
-        void Initialize(ZUUserManager* pUserManager);
+        void Initialize(PSS_UserManager* pUserManager);
 
         /**
         * Re-initializes the user tree control
         *@param pUserManager - user manager
         */
-        void ReInitialize(ZUUserManager* pUserManager);
+        void ReInitialize(PSS_UserManager* pUserManager);
 
         /**
         * Refreshes the user tree control
@@ -80,9 +80,9 @@ class AFX_EXT_CLASS PSS_UserTreeCtrl : public ZITreeCtrl
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZUUserManager* m_pUserManager;
-        PSS_UserTree   m_UserTree;
-        bool           m_Invalid;
+        PSS_UserManager* m_pUserManager;
+        PSS_UserTree     m_UserTree;
+        bool             m_Invalid;
 
         /**
         * Copy constructor

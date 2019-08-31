@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ViewRead.h"
+#include "zBaseLib\PSS_ReadView.h"
 #include "zBaseLib\ZDDoc.h"
 #include "zBaseLib\PSS_DocTemplateEx.h"
 
@@ -135,7 +135,7 @@ class AFX_EXT_CLASS PSS_FileFormPreviewDialog : public CDialog
 
     private:
         CCreateContext     m_Context;
-        ZIViewRead*        m_pView;
+        PSS_ReadView*      m_pView;
         CFrameWnd*         m_pFrameWindow;
         ZDDocument*        m_pDocument;
         PSS_DocTemplateEx* m_pDocTemplate;

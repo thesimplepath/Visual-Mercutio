@@ -18,7 +18,7 @@
 
 // processsoft
 #include "zBaseLib\ZUMail.h"
-#include "zBaseLib\UserMng.h"
+#include "zBaseLib\PSS_UserManager.h"
 #include "zEvent\Activity.h"
 
 #ifdef _ZWINUTIL32EXPORT
@@ -50,15 +50,15 @@ class AFX_EXT_CLASS PSS_ActivityAttributionInputWizard
         *@param visibilityAttribution - if TRUE, is a visibility attribution
         *@param pParent - parent window, can be NULL
         */
-        PSS_ActivityAttributionInputWizard(ZUUserManager& userManager,
-                                           ZUMail&        mail,
-                                           ZActivity*     pActivity,
-                                           BOOL           lastActivity,
-                                           BOOL           userAttribution       = TRUE,
-                                           BOOL           backupUserAttribution = TRUE,
-                                           BOOL           timeAttribution       = TRUE,
-                                           BOOL           visibilityAttribution = TRUE,
-                                           CWnd*          pParent               = NULL);
+        PSS_ActivityAttributionInputWizard(PSS_UserManager& userManager,
+                                           ZUMail&          mail,
+                                           ZActivity*       pActivity,
+                                           BOOL             lastActivity,
+                                           BOOL             userAttribution       = TRUE,
+                                           BOOL             backupUserAttribution = TRUE,
+                                           BOOL             timeAttribution       = TRUE,
+                                           BOOL             visibilityAttribution = TRUE,
+                                           CWnd*            pParent               = NULL);
 
         /**
         * Gets the activity
@@ -73,14 +73,14 @@ class AFX_EXT_CLASS PSS_ActivityAttributionInputWizard
         virtual int Execute();
 
     private:
-        ZUUserManager& m_UserManager;
-        ZUMail&        m_Mail;
-        ZActivity*     m_pActivity;
-        BOOL           m_LastActivity;
-        BOOL           m_UserAttribution;
-        BOOL           m_BackupUserAttribution;
-        BOOL           m_TimeAttribution;
-        BOOL           m_VisibilityAttribution;
+        PSS_UserManager& m_UserManager;
+        ZUMail&          m_Mail;
+        ZActivity*       m_pActivity;
+        BOOL             m_LastActivity;
+        BOOL             m_UserAttribution;
+        BOOL             m_BackupUserAttribution;
+        BOOL             m_TimeAttribution;
+        BOOL             m_VisibilityAttribution;
 
         /**
         * Processes the user backup

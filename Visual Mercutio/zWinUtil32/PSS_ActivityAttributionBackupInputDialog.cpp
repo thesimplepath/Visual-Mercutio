@@ -34,11 +34,11 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_ActivityAttributionInputBackupDialog
 //---------------------------------------------------------------------------
-PSS_ActivityAttributionInputBackupDialog::PSS_ActivityAttributionInputBackupDialog(ZUUserManager& userManager,
-                                                                                   ZUMail&        mail,
-                                                                                   ZActivity*     pActivity,
-                                                                                   BOOL           lastActivity,
-                                                                                   CWnd*          pParent) :
+PSS_ActivityAttributionInputBackupDialog::PSS_ActivityAttributionInputBackupDialog(PSS_UserManager& userManager,
+                                                                                   ZUMail&          mail,
+                                                                                   ZActivity*       pActivity,
+                                                                                   BOOL             lastActivity,
+                                                                                   CWnd*            pParent) :
     PSS_WizardDialog(PSS_ActivityAttributionInputBackupDialog::IDD,
                      IDB_WZBMP1,
                      0,

@@ -54,7 +54,7 @@ void PSS_MailMessage::FillPerson(CStringArray& personList, ULONG recipClass)
     m_pMailUserList->Fill(personList, recipClass);
 }
 //---------------------------------------------------------------------------
-void PSS_MailMessage::FillPerson(ZUUserManager& personList, ULONG recipClass)
+void PSS_MailMessage::FillPerson(PSS_UserManager& personList, ULONG recipClass)
 {
     if (!m_pMailUserList)
         m_pMailUserList = new PSS_MailUserList;

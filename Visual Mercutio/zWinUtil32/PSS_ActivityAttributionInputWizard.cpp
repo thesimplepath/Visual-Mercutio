@@ -23,15 +23,15 @@
 //---------------------------------------------------------------------------
 // PSS_ActivityAttributionInputWizard
 //---------------------------------------------------------------------------
-PSS_ActivityAttributionInputWizard::PSS_ActivityAttributionInputWizard(ZUUserManager& userManager,
-                                                                       ZUMail&        mail,
-                                                                       ZActivity*     pActivity,
-                                                                       BOOL           lastActivity,
-                                                                       BOOL           userAttribution,
-                                                                       BOOL           backupUserAttribution,
-                                                                       BOOL           timeAttribution,
-                                                                       BOOL           visibilityAttribution,
-                                                                       CWnd*          pParent) :
+PSS_ActivityAttributionInputWizard::PSS_ActivityAttributionInputWizard(PSS_UserManager& userManager,
+                                                                       ZUMail&          mail,
+                                                                       ZActivity*       pActivity,
+                                                                       BOOL             lastActivity,
+                                                                       BOOL             userAttribution,
+                                                                       BOOL             backupUserAttribution,
+                                                                       BOOL             timeAttribution,
+                                                                       BOOL             visibilityAttribution,
+                                                                       CWnd*            pParent) :
     m_UserManager(userManager),
     m_Mail(mail),
     m_pActivity(pActivity),

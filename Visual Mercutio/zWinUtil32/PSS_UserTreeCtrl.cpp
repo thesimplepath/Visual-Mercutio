@@ -33,7 +33,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_UserTreeCtrl
 //---------------------------------------------------------------------------
-PSS_UserTreeCtrl::PSS_UserTreeCtrl(ZUUserManager* pUserManager) :
+PSS_UserTreeCtrl::PSS_UserTreeCtrl(PSS_UserManager* pUserManager) :
     m_pUserManager(pUserManager),
     m_Invalid(false)
 {
@@ -54,13 +54,13 @@ const PSS_UserTreeCtrl& PSS_UserTreeCtrl::operator = (const PSS_UserTreeCtrl& ot
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-void PSS_UserTreeCtrl::Initialize(ZUUserManager* pUserManager)
+void PSS_UserTreeCtrl::Initialize(PSS_UserManager* pUserManager)
 {
     m_pUserManager = pUserManager;
     m_UserTree.Initialize(this, pUserManager);
 }
 //---------------------------------------------------------------------------
-void PSS_UserTreeCtrl::ReInitialize(ZUUserManager* pUserManager)
+void PSS_UserTreeCtrl::ReInitialize(PSS_UserManager* pUserManager)
 {
     m_pUserManager = pUserManager;
     m_UserTree.ReInitialize(pUserManager);

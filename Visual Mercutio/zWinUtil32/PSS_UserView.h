@@ -57,13 +57,13 @@ class AFX_EXT_CLASS PSS_UserView : public ZITreeView
         * Initializes the user view
         *@param pUserManager - user manager
         */
-        virtual void Initialize(ZUUserManager* pUserManager);
+        virtual void Initialize(PSS_UserManager* pUserManager);
 
         /**
         * Re-initializes the user view
         *@param pUserManager - user manager
         */
-        virtual void ReInitialize(ZUUserManager* pUserManager);
+        virtual void ReInitialize(PSS_UserManager* pUserManager);
 
         /**
         * Refreshes the user view
@@ -108,8 +108,8 @@ class AFX_EXT_CLASS PSS_UserView : public ZITreeView
         virtual void OnRightDblClickEvent();
 
     protected:
-        ZUUserManager* m_pUserManager;
-        PSS_UserTree   m_UserTree;
+        PSS_UserManager* m_pUserManager;
+        PSS_UserTree     m_UserTree;
 
         /**
         * Gets the no-drop image index

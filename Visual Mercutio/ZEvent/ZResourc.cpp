@@ -140,7 +140,7 @@ BOOL ZBResources::UserExist (const CString& UserName)
   //## end ZBResources::UserExist%927742727.body
 }
 
-PSS_MailUserList* ZBResources::CreatePersonList (ZProcess* pMainProcess, ZUUserManager& UserManager, CString ConnectedUser)
+PSS_MailUserList* ZBResources::CreatePersonList (ZProcess* pMainProcess, PSS_UserManager& UserManager, CString ConnectedUser)
 {
   //## begin ZBResources::CreatePersonList%927742730.body preserve=yes
     // If responsible requested
@@ -208,7 +208,7 @@ PSS_MailUserList* ZBResources::CreatePersonList (ZProcess* pMainProcess, ZUUserM
   //## end ZBResources::CreatePersonList%927742730.body
 }
 
-BOOL ZBResources::FillPersonArray (ZProcess* pMainProcess, ZUUserManager& UserManager, CStringArray& UserArray, CString ConnectedUser)
+BOOL ZBResources::FillPersonArray (ZProcess* pMainProcess, PSS_UserManager& UserManager, CStringArray& UserArray, CString ConnectedUser)
 {
   //## begin ZBResources::FillPersonArray%927742731.body preserve=yes
     // If responsible requested
@@ -288,7 +288,7 @@ BOOL ZBResources::AddUsers (CString DelimiterString)
     return TRUE;
 }
 
-CString ZBResources::CreatePersonDelimStr (ZProcess* pMainProcess, ZUUserManager& UserManager, CString ConnectedUser, CString Delimiter)
+CString ZBResources::CreatePersonDelimStr (ZProcess* pMainProcess, PSS_UserManager& UserManager, CString ConnectedUser, CString Delimiter)
 {
   //## begin ZBResources::CreatePersonDelimStr%927742732.body preserve=yes
     // If responsible requested

@@ -23,7 +23,7 @@
 // processsoft
 #include "zBaseLib\PSS_WizardDialog.h"
 #include "zBaseLib\ZUMail.h"
-#include "zBaseLib\UserMng.h"
+#include "zBaseLib\PSS_UserManager.h"
 #include "zEvent\Activity.h"
 
 // resources
@@ -68,14 +68,14 @@ class PSS_ActivityAttributionInputValueDialog : public PSS_WizardDialog
         *@param userManager - user manager
         *@param pParent - parent window, can be NULL
         */
-        PSS_ActivityAttributionInputValueDialog(ZUUserManager& userManager,
-                                                ZUMail&        mail,
-                                                ZActivity*     pActivity,
-                                                BOOL           lastActivity,
-                                                BOOL           userAttribution       = TRUE,
-                                                BOOL           timeAttribution       = TRUE,
-                                                BOOL           visibilityAttribution = TRUE,
-                                                CWnd*          pParent               = NULL);
+        PSS_ActivityAttributionInputValueDialog(PSS_UserManager& userManager,
+                                                ZUMail&          mail,
+                                                ZActivity*       pActivity,
+                                                BOOL             lastActivity,
+                                                BOOL             userAttribution       = TRUE,
+                                                BOOL             timeAttribution       = TRUE,
+                                                BOOL             visibilityAttribution = TRUE,
+                                                CWnd*            pParent               = NULL);
 
         virtual inline ZActivity* GetActivity() const;
 
@@ -100,13 +100,13 @@ class PSS_ActivityAttributionInputValueDialog : public PSS_WizardDialog
         DECLARE_MESSAGE_MAP()
     
     private:
-        ZUUserManager& m_UserManager;
-        ZUMail&        m_Mail;
-        ZActivity*     m_pActivity;
-        BOOL           m_LastActivity;
-        BOOL           m_UserAttribution;
-        BOOL           m_TimeAttribution;
-        BOOL           m_VisibilityAttribution;
+        PSS_UserManager& m_UserManager;
+        ZUMail&          m_Mail;
+        ZActivity*       m_pActivity;
+        BOOL             m_LastActivity;
+        BOOL             m_UserAttribution;
+        BOOL             m_TimeAttribution;
+        BOOL             m_VisibilityAttribution;
 
         /**
         * Checks the control state

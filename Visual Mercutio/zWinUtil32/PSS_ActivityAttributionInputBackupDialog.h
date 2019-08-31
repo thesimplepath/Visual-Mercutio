@@ -19,7 +19,7 @@
 // processsoft
 #include "zBaseLib\PSS_WizardDialog.h"
 #include "zBaseLib\ZUMail.h"
-#include "zBaseLib\UserMng.h"
+#include "zBaseLib\PSS_UserManager.h"
 #include "zEvent\Activity.h"
 
 #ifdef _ZWINUTIL32EXPORT
@@ -62,11 +62,11 @@ class PSS_ActivityAttributionInputBackupDialog : public PSS_WizardDialog
         *@param lastActivity - if TRUE, activity is the last activity
         *@param pParent - parent window, can be NULL
         */
-        PSS_ActivityAttributionInputBackupDialog(ZUUserManager& userManager,
-                                                 ZUMail&        mail,
-                                                 ZActivity*     pActivity,
-                                                 BOOL           lastActivity,
-                                                 CWnd*          pParent = NULL);
+        PSS_ActivityAttributionInputBackupDialog(PSS_UserManager& userManager,
+                                                 ZUMail&          mail,
+                                                 ZActivity*       pActivity,
+                                                 BOOL             lastActivity,
+                                                 CWnd*            pParent = NULL);
 
         /**
         * Gets the activity
@@ -94,12 +94,12 @@ class PSS_ActivityAttributionInputBackupDialog : public PSS_WizardDialog
         DECLARE_MESSAGE_MAP()
     
     private:
-        ZUUserManager& m_UserManager;
-        ZUMail&        m_Mail;
-        ZActivity*     m_pActivity;
-        CListBox       m_UserList;
-        CString        m_ActivityName;
-        BOOL           m_LastActivity;
+        PSS_UserManager& m_UserManager;
+        ZUMail&          m_Mail;
+        ZActivity*       m_pActivity;
+        CListBox         m_UserList;
+        CString          m_ActivityName;
+        BOOL             m_LastActivity;
 
         /**
         * Checks the control state

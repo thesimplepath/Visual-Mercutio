@@ -9,7 +9,7 @@
 #define PSS_UserLoaderH
 
 #include "PSS_UserExport.h"
-#include "UserMng.h"
+#include "PSS_UserManager.h"
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -41,7 +41,7 @@ class AFX_EXT_CLASS PSS_UserLoader
         *@param pUserManager - the user manager
         *@param fileName - file name
         */
-        inline PSS_UserLoader(ZUUserManager* pUserManager = NULL, const CString& fileName = "");
+        inline PSS_UserLoader(PSS_UserManager* pUserManager = NULL, const CString& fileName = "");
 
         virtual ~PSS_UserLoader();
 
@@ -50,7 +50,7 @@ class AFX_EXT_CLASS PSS_UserLoader
         *@param pUserManager - the user manager
         *@param fileName - file name
         */
-        virtual inline void Create(ZUUserManager* pUserManager, const CString& fileName);
+        virtual inline void Create(PSS_UserManager* pUserManager, const CString& fileName);
 
         /**
         * Loads all users in memory from a database or a file
@@ -68,7 +68,7 @@ class AFX_EXT_CLASS PSS_UserLoader
         * Assigns the user manager to work with
         *@param pUserManager - user manager
         */
-        virtual void AssignUserManager(ZUUserManager* pUserManager);
+        virtual void AssignUserManager(PSS_UserManager* pUserManager);
 
         /**
         * Assigns the file name
@@ -77,9 +77,9 @@ class AFX_EXT_CLASS PSS_UserLoader
         virtual void AssignFileName(CString FileName);
 
     private:
-        ZUUserManager* m_pUserManager;
-        PSS_UserExport m_UserImport;
-        CString        m_FileName;
+        PSS_UserManager* m_pUserManager;
+        PSS_UserExport   m_UserImport;
+        CString          m_FileName;
 
         /**
         * Copy constructor
@@ -98,12 +98,12 @@ class AFX_EXT_CLASS PSS_UserLoader
 //---------------------------------------------------------------------------
 // PSS_UserLoader
 //---------------------------------------------------------------------------
-PSS_UserLoader::PSS_UserLoader(ZUUserManager* pUserManager, const CString& fileName) :
+PSS_UserLoader::PSS_UserLoader(PSS_UserManager* pUserManager, const CString& fileName) :
     m_pUserManager(pUserManager),
     m_FileName(fileName)
 {}
 //---------------------------------------------------------------------------
-void PSS_UserLoader::Create(ZUUserManager* pUserManager, const CString& fileName)
+void PSS_UserLoader::Create(PSS_UserManager* pUserManager, const CString& fileName)
 {
     m_pUserManager = pUserManager;
     m_FileName     = fileName;

@@ -22,7 +22,7 @@
 
 // processsoft
 #include "zBaseLib\ZIDialog.h"
-#include "zBaseLib\UserMng.h"
+#include "zBaseLib\PSS_UserManager.h"
 
 // resources
 #ifndef _WIN32
@@ -69,7 +69,7 @@ class AFX_EXT_CLASS PSS_UserListDialog : public ZIDialog
         *@param userManager - user manager
         *@param pParent - parent window, can be NULL
         */
-        PSS_UserListDialog(ZUUserManager& userManager, CWnd* pParent = NULL);
+        PSS_UserListDialog(PSS_UserManager& userManager, CWnd* pParent = NULL);
 
         /**
         * Gets the selected user
@@ -94,8 +94,8 @@ class AFX_EXT_CLASS PSS_UserListDialog : public ZIDialog
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZUUserManager& m_UserManager;
-        ZUser*         m_pUser;
+        PSS_UserManager& m_UserManager;
+        ZUser*           m_pUser;
 
         /**
         * Loads the source

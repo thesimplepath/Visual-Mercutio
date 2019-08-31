@@ -143,7 +143,7 @@ void ZProcess::Serialize (CArchive& ar)
 
 
 
-void ZProcess::FillAuthUser (ZBaseActivity& Activity, ZUUserManager& UserManager)
+void ZProcess::FillAuthUser (ZBaseActivity& Activity, PSS_UserManager& UserManager)
 {
   //## begin ZProcess::FillAuthUser%915992439.body preserve=yes
       // First remove all users
@@ -225,14 +225,14 @@ BOOL ZProcess::TemplateExist (const CString& TemplateName)
   //## end ZProcess::TemplateExist%916261170.body
 }
 
-PSS_MailUserList* ZProcess::CreatePersonList (ZBaseActivity& Activity, ZUUserManager& UserManager)
+PSS_MailUserList* ZProcess::CreatePersonList (ZBaseActivity& Activity, PSS_UserManager& UserManager)
 {
   //## begin ZProcess::CreatePersonList%927439016.body preserve=yes
     return Activity.ActivityCreatePersonList( UserManager, GetConnectedUser() );
   //## end ZProcess::CreatePersonList%927439016.body
 }
 
-PSS_MailUserList* ZProcess::CreatePersonList (int Index, ZUUserManager& UserManager)
+PSS_MailUserList* ZProcess::CreatePersonList (int Index, PSS_UserManager& UserManager)
 {
   //## begin ZProcess::CreatePersonList%927439017.body preserve=yes
     ZBaseActivity*    pActivity = GetActivityAt( Index );
@@ -242,14 +242,14 @@ PSS_MailUserList* ZProcess::CreatePersonList (int Index, ZUUserManager& UserMana
   //## end ZProcess::CreatePersonList%927439017.body
 }
 
-BOOL ZProcess::FillPersonArray (ZBaseActivity& Activity, ZUUserManager& UserManager, CStringArray& UserArray)
+BOOL ZProcess::FillPersonArray (ZBaseActivity& Activity, PSS_UserManager& UserManager, CStringArray& UserArray)
 {
   //## begin ZProcess::FillPersonArray%927439018.body preserve=yes
     return Activity.ActivityFillPersonArray( UserManager, UserArray, m_ConnectedUser );
   //## end ZProcess::FillPersonArray%927439018.body
 }
 
-BOOL ZProcess::FillPersonArray (int Index, ZUUserManager& UserManager, CStringArray& UserArray)
+BOOL ZProcess::FillPersonArray (int Index, PSS_UserManager& UserManager, CStringArray& UserArray)
 {
   //## begin ZProcess::FillPersonArray%927439019.body preserve=yes
     ZBaseActivity*    pActivity = GetActivityAt( Index );
@@ -259,14 +259,14 @@ BOOL ZProcess::FillPersonArray (int Index, ZUUserManager& UserManager, CStringAr
   //## end ZProcess::FillPersonArray%927439019.body
 }
 
-CString ZProcess::CreatePersonDelimStr (ZBaseActivity& Activity, ZUUserManager& UserManager, CString Delimiter)
+CString ZProcess::CreatePersonDelimStr (ZBaseActivity& Activity, PSS_UserManager& UserManager, CString Delimiter)
 {
   //## begin ZProcess::CreatePersonDelimStr%927439020.body preserve=yes
     return Activity.ActivityCreatePersonDelimStr( UserManager, m_ConnectedUser, Delimiter );
   //## end ZProcess::CreatePersonDelimStr%927439020.body
 }
 
-CString ZProcess::CreatePersonDelimStr (int Index, ZUUserManager& UserManager, CString Delimiter)
+CString ZProcess::CreatePersonDelimStr (int Index, PSS_UserManager& UserManager, CString Delimiter)
 {
   //## begin ZProcess::CreatePersonDelimStr%927439021.body preserve=yes
     if (GetActivityAt(Index)->IsKindOf(RUNTIME_CLASS(ZActivity)))

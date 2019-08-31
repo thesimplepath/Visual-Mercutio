@@ -64,7 +64,7 @@ class AFX_EXT_CLASS PSS_SelectResourcesDialog : public ZIDialog
         *@param userManager - user manager
         *@param pParent - parent window, can be NULL
         */
-        PSS_SelectResourcesDialog(ZUUserManager& userManager, CWnd* pParent = NULL);
+        PSS_SelectResourcesDialog(PSS_UserManager& userManager, CWnd* pParent = NULL);
 
         /**
         * Gets the user list string
@@ -90,8 +90,8 @@ class AFX_EXT_CLASS PSS_SelectResourcesDialog : public ZIDialog
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZUUserManager& m_UserManager;
-        CString        m_UserListString;
+        PSS_UserManager& m_UserManager;
+        CString          m_UserListString;
 
         /**
         * Checks the control states

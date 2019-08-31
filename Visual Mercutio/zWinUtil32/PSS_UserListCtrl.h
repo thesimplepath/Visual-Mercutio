@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\UserMng.h"
+#include "zBaseLib\PSS_UserManager.h"
 #include "zBaseLib\ZIListCtrl.h"
 
 #ifdef _ZWINUTIL32EXPORT
@@ -48,7 +48,7 @@
         *@param pUserManager - user manager
         *@param department - department
         */
-        PSS_UserListCtrl(ZUUserManager* pUserManager = NULL, const CString& departement = "");
+        PSS_UserListCtrl(PSS_UserManager* pUserManager = NULL, const CString& departement = "");
 
         virtual ~PSS_UserListCtrl();
 
@@ -58,7 +58,7 @@
         *@param department - department
         *@return user count
         */
-        virtual int Initialize(ZUUserManager* pUserManager, const CString& departement = "");
+        virtual int Initialize(PSS_UserManager* pUserManager, const CString& departement = "");
 
         /**
         * Gets the selected user name
@@ -96,11 +96,11 @@
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZUUserManager* m_pUserManager;
-        CString        m_Departement;
-        BOOL           m_AdminOnly;
-        BOOL           m_NonAdminOnly;
-        BOOL           m_ColumnsBuilt;
+        PSS_UserManager* m_pUserManager;
+        CString          m_Departement;
+        BOOL             m_AdminOnly;
+        BOOL             m_NonAdminOnly;
+        BOOL             m_ColumnsBuilt;
 
         /**
         * Copy constructor

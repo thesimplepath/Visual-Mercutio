@@ -32,7 +32,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_SelectResourcesDialog
 //---------------------------------------------------------------------------
-PSS_SelectResourcesDialog::PSS_SelectResourcesDialog(ZUUserManager& userManager, CWnd* pParent) :
+PSS_SelectResourcesDialog::PSS_SelectResourcesDialog(PSS_UserManager& userManager, CWnd* pParent) :
     ZIDialog(PSS_SelectResourcesDialog::IDD, TRUE, pParent),
     m_UserManager(userManager)
 {}

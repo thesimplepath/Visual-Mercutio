@@ -26,12 +26,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UserMng.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ViewRead.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="VTools.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -602,6 +596,12 @@
     <ClCompile Include="PSS_UserLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_UserManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ReadView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -718,12 +718,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UserMng.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ViewRead.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VTools.h">
@@ -1300,6 +1294,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_UserLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_UserManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ReadView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

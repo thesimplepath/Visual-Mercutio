@@ -38,7 +38,7 @@ BOOL PSS_UserLoader::SaveAllUsers()
     return TRUE;
 }
 //---------------------------------------------------------------------------
-void PSS_UserLoader::AssignUserManager(ZUUserManager* pUserManager)
+void PSS_UserLoader::AssignUserManager(PSS_UserManager* pUserManager)
 {
     ASSERT(pUserManager);
     m_pUserManager = pUserManager;

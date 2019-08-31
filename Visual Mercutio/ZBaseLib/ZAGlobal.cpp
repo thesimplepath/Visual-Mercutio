@@ -102,7 +102,7 @@ CMultiDocTemplate*        ZAGlobal::m_pReportDocTemplate                    = NU
 PSS_TemplateManager        ZAGlobal::m_TemplateManager;
 PSS_TemplateManager        ZAGlobal::m_ProcessTemplateManager;
 PSS_TemplateManager        ZAGlobal::m_ModelTemplateManager;
-ZUUserManager            ZAGlobal::m_UserManager;
+PSS_UserManager            ZAGlobal::m_UserManager;
 ZUNetwork                ZAGlobal::m_NetWork;
 ZUMail                    ZAGlobal::m_Mail;
 

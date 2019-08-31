@@ -24,7 +24,7 @@
 
 #include "zBaseLib\ZDDoc.h"
 #include "mainfrm.h"
-#include "ViewMod.h"
+#include "PSS_ModifyView.h"
 #include "planfin.hdf"
 #include "zEvent\ActLog.h"
 

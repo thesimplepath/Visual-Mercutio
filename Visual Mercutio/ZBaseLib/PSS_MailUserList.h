@@ -29,7 +29,7 @@
 
 // processsoft
 #include "PSS_MailUser.h"
-#include "UserMng.h"
+#include "PSS_UserManager.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -64,7 +64,7 @@ class AFX_EXT_CLASS PSS_MailUserList : public CObject
         *@param personNameList - person name list
         *@param recipClass - recipient class
         */
-        PSS_MailUserList(ZUUserManager& personNameList, ULONG recipClass = MAPI_TO);
+        PSS_MailUserList(PSS_UserManager& personNameList, ULONG recipClass = MAPI_TO);
 
         /**
         * Constructor
@@ -142,7 +142,7 @@ class AFX_EXT_CLASS PSS_MailUserList : public CObject
         *@param personArray - person array to fill with content
         *@param recipClass - recipient class matching with person to fill
         */
-        virtual void Fill(ZUUserManager& personList, ULONG recipClass = MAPI_TO);
+        virtual void Fill(PSS_UserManager& personList, ULONG recipClass = MAPI_TO);
 
         /**
         * Fills a person array

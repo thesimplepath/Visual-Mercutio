@@ -103,7 +103,7 @@ class AFX_EXT_CLASS PSS_MailMessage : public CObject
         *@param recipClass - recipient class
         *@return TRUE on success, otherwise FALSE
         */
-        virtual void FillPerson(ZUUserManager& personList, ULONG recipClass = MAPI_TO);
+        virtual void FillPerson(PSS_UserManager& personList, ULONG recipClass = MAPI_TO);
 
         /**
         * Fills from a person list

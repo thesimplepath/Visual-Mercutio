@@ -36,14 +36,14 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_ActivityAttributionInputValueDialog
 //---------------------------------------------------------------------------
-PSS_ActivityAttributionInputValueDialog::PSS_ActivityAttributionInputValueDialog(ZUUserManager& userManager,
-                                                                                 ZUMail&        mail,
-                                                                                 ZActivity*     pActivity,
-                                                                                 BOOL           lastActivity,
-                                                                                 BOOL           userAttribution,
-                                                                                 BOOL           timeAttribution,
-                                                                                 BOOL           visibilityAttribution,
-                                                                                 CWnd*          pParent) :
+PSS_ActivityAttributionInputValueDialog::PSS_ActivityAttributionInputValueDialog(PSS_UserManager& userManager,
+                                                                                 ZUMail&          mail,
+                                                                                 ZActivity*       pActivity,
+                                                                                 BOOL             lastActivity,
+                                                                                 BOOL             userAttribution,
+                                                                                 BOOL             timeAttribution,
+                                                                                 BOOL             visibilityAttribution,
+                                                                                 CWnd*            pParent) :
     PSS_WizardDialog(PSS_ActivityAttributionInputValueDialog::IDD,
                      IDB_WZBMP1,
                      0,

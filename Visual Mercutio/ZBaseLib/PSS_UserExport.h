@@ -18,7 +18,7 @@
 
 // processsoft
 #include "PSS_Export.h"
-#include "UserMng.h"
+#include "PSS_UserManager.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -49,7 +49,7 @@ class AFX_EXT_CLASS PSS_UserExport : public PSS_Export
         *@param pStatusBar - status bar, can be NULL
         */
         PSS_UserExport(const CString&                fileName        = "",
-                       ZUUserManager*                pUserManager    = NULL,
+                       PSS_UserManager*              pUserManager    = NULL,
                        BOOL                          generateHeader  = FALSE,
                        ESynchronizationSeparatorType separatorType   = E_SS_Automatic,
                        const CString&                schema          = g_OriginalSchema,
@@ -71,7 +71,7 @@ class AFX_EXT_CLASS PSS_UserExport : public PSS_Export
         *@param pStatusBar - status bar, can be NULL
         */
         virtual inline void Create(const CString&                fileName,
-                                   ZUUserManager*                pUserManager    = NULL,
+                                   PSS_UserManager*              pUserManager    = NULL,
                                    BOOL                          generateHeader  = FALSE,
                                    ESynchronizationSeparatorType separatorType   = E_SS_Automatic,
                                    const CString&                schema          = g_OriginalSchema,
@@ -130,7 +130,7 @@ class AFX_EXT_CLASS PSS_UserExport : public PSS_Export
         virtual BOOL PreImport();
 
     private:
-        ZUUserManager* m_pUserManager;
+        PSS_UserManager* m_pUserManager;
 
         /**
         * Copy constructor
@@ -150,7 +150,7 @@ class AFX_EXT_CLASS PSS_UserExport : public PSS_Export
 // PSS_UserExport
 //---------------------------------------------------------------------------
 void PSS_UserExport::Create(const CString&                fileName,
-                            ZUUserManager*                pUserManager,
+                            PSS_UserManager*              pUserManager,
                             BOOL                          generateHeader,
                             ESynchronizationSeparatorType separatorType,
                             const CString&                schema,

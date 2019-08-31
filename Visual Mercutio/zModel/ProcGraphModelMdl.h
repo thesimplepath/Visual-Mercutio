@@ -53,8 +53,9 @@ class ZBPrestationsEntity;
 class ZBLogicalRulesEntity;
 class ZBRulesEntity;
 
+// processsoft
 #include "zEvent\ZResourc.h"
-#include "zBaseLib\UserMng.h"
+#include "zBaseLib\PSS_UserManager.h"
 
 #ifdef _ZMODELEXPORT
 // Put the values back to make AFX_EXT_CLASS export again

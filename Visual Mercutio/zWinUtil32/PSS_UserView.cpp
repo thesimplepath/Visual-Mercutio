@@ -43,7 +43,7 @@ PSS_UserView::PSS_UserView() :
 PSS_UserView::~PSS_UserView()
 {}
 //---------------------------------------------------------------------------
-void PSS_UserView::Initialize(ZUUserManager* pUserManager)
+void PSS_UserView::Initialize(PSS_UserManager* pUserManager)
 {
     m_pUserManager = pUserManager;
 
@@ -53,7 +53,7 @@ void PSS_UserView::Initialize(ZUUserManager* pUserManager)
     m_UserTree.Initialize((ZITreeCtrl*)&GetTreeCtrl(), m_pUserManager);
 }
 //---------------------------------------------------------------------------
-void PSS_UserView::ReInitialize(ZUUserManager* pUserManager)
+void PSS_UserView::ReInitialize(PSS_UserManager* pUserManager)
 {
     m_pUserManager = pUserManager;
     m_UserTree.ReInitialize(m_pUserManager);
@@ -101,7 +101,7 @@ afx_msg LRESULT PSS_UserView::OnInitializeUserManager(WPARAM wParam, LPARAM lPar
     if (!::IsWindow(GetSafeHwnd()))
         return 1;
 
-    m_pUserManager = (ZUUserManager*)lParam;
+    m_pUserManager = (PSS_UserManager*)lParam;
 
     if (m_pUserManager)
         Initialize(m_pUserManager);
@@ -114,7 +114,7 @@ afx_msg LRESULT PSS_UserView::OnReloadUserManager(WPARAM wParam, LPARAM lParam)
     if (!::IsWindow(GetSafeHwnd()))
         return 1;
 
-    m_pUserManager = (ZUUserManager*)lParam;
+    m_pUserManager = (PSS_UserManager*)lParam;
 
     if (m_pUserManager)
         ReInitialize(m_pUserManager);

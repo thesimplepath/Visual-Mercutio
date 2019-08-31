@@ -267,7 +267,7 @@ public:
     static ZUMail& GetMail();
 
     //    The user manager.
-    static ZUUserManager& GetUserManager();
+    static PSS_UserManager& GetUserManager();
 
     static const CString& GetResponsibleUserNameKeyString();
 
@@ -443,7 +443,7 @@ private:
     static PSS_TemplateManager        m_ProcessTemplateManager;
     static PSS_TemplateManager        m_ModelTemplateManager;
 
-    static ZUUserManager            m_UserManager;
+    static PSS_UserManager            m_UserManager;
 
     static ZUNetwork                m_NetWork;
 
@@ -536,7 +536,7 @@ inline ZUMail& ZAGlobal::GetMail()
     return m_Mail;
 }
 
-inline ZUUserManager& ZAGlobal::GetUserManager()
+inline PSS_UserManager& ZAGlobal::GetUserManager()
 {
     return m_UserManager;
 }

@@ -1,40 +1,27 @@
-//## begin module%334FC46302F8.cm preserve=no
-//      %X% %Q% %Z% %W%
-//## end module%334FC46302F8.cm
+/****************************************************************************
+ * ==> PSS_VisualTool ------------------------------------------------------*
+ ****************************************************************************
+ * Description : Visual tools base class. These tools can be selected,      *
+ *               edited, add a new rectangle, line, text, etc...            *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-//## begin module%334FC46302F8.cp preserve=no
-//    ADSoft Copyright 1994-1995
-//    Dominique Aigroz
-//## end module%334FC46302F8.cp
+#ifndef PSS_VisualToolH
+#define PSS_VisualToolH
 
-//## Module: VTools%334FC46302F8; Package specification
-//## Subsystem: ZBaseLib%37A08E0C019D
-//## Source file: z:\adsoft~1\ZBaseLib\VTools.h
-
-#ifndef VTools_h
-#define VTools_h 1
-
-//## begin module%334FC46302F8.additionalIncludes preserve=no
-//## end module%334FC46302F8.additionalIncludes
-
-//## begin module%334FC46302F8.includes preserve=yes
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
 #define AFX_EXT_CLASS AFX_CLASS_IMPORT
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
-//## end module%334FC46302F8.includes
 
-// ZIView
+// processsoft
 #include "ZIView.h"
-//## begin module%334FC46302F8.declarations preserve=no
-//## end module%334FC46302F8.declarations
 
-//## begin module%334FC46302F8.additionalDeclarations preserve=yes
 #ifndef _WIN32
-#include "ToolBarx.h"
+    #include "ToolBarx.h"
 #endif
 
 enum ToolType
@@ -78,33 +65,17 @@ enum VisualToolModes
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-
-//## end module%334FC46302F8.additionalDeclarations
-
-//## Class: ZIVisualTool%334FC46103DF; Abstract
-//    Base class for visual tool. These tools can be select,
-//    edit, add new rectangle, line, text, etc.
-//## Category: ZBaseLib::Visual Tools%334FC46103DE
-//## Subsystem: ZBaseLib%37A08E0C019D
-//## Persistence: Transient
-//## Cardinality/Multiplicity: n
-
-//## Uses: <unnamed>%334FC46103E0;ZIView { -> }
-
-class AFX_EXT_CLASS ZIVisualTool 
+/**
+* Visual tools
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS ZIVisualTool
 {
-//## begin ZIVisualTool%334FC46103DF.initialDeclarations preserve=yes
-//## end ZIVisualTool%334FC46103DF.initialDeclarations
 public:
-
-    //## Constructors (specified)
-    //## Operation: ZIVisualTool%832040471
     //    The constructor of the VisualToolDesignEdit. It is
     //    necessary to specifiy wich tool type it is necessary to
     //    create.
-    ZIVisualTool ( ToolType ObjectToolType );
+    ZIVisualTool(ToolType ObjectToolType);
 
     //## Destructor (generated)
     ~ZIVisualTool();
@@ -112,35 +83,35 @@ public:
     //## Other Operations (specified)
     //## Operation: OnLButtonDown%832038253
     //    On left button down.
-    virtual void OnLButtonDown ( ZIView* pView, UINT nFlags, const CPoint& point );
+    virtual void OnLButtonDown(ZIView* pView, UINT nFlags, const CPoint& point);
 
     //## Operation: OnLButtonDblClk%832038254
     //    On left button double click.
-    virtual void OnLButtonDblClk ( ZIView* pView, UINT nFlags, const CPoint& point );
+    virtual void OnLButtonDblClk(ZIView* pView, UINT nFlags, const CPoint& point);
 
     //## Operation: OnLButtonUp%832038255
     //    On left button up.
-    virtual void OnLButtonUp ( ZIView* pView, UINT nFlags, const CPoint& point );
+    virtual void OnLButtonUp(ZIView* pView, UINT nFlags, const CPoint& point);
 
     //## Operation: OnMouseMove%832038256
     //    On mouse move.
-    virtual void OnMouseMove ( ZIView* pView, UINT nFlags, const CPoint& point );
+    virtual void OnMouseMove(ZIView* pView, UINT nFlags, const CPoint& point);
 
     //## Operation: OnCancel%832038257
     //    When cancel the current action.
-    virtual void OnCancel ();
+    virtual void OnCancel();
 
     //## Operation: FindTool%832040472
     //    Return a pointer to a class that correspond the Object
     //    ToolType.
-    static ZIVisualTool* FindTool ( ToolType ObjectToolType );
+    static ZIVisualTool* FindTool(ToolType ObjectToolType);
 
     //## Get and Set Operations for Class Attributes (generated)
 
     //## Attribute: ObjectToolType%334FC4620031
     //    Defines the tool type. Can be Select, Edit, BoundText,
     //    etc.
-    const ToolType& GetObjectToolType () const;
+    const ToolType& GetObjectToolType() const;
 
     // Data Members for Class Attributes
 
@@ -193,10 +164,10 @@ protected:
 private:
 
     //## Constructors (generated)
-    ZIVisualTool( const ZIVisualTool &right );
+    ZIVisualTool(const ZIVisualTool &right);
 
     //## Assignment Operation (generated)
-    const ZIVisualTool & operator=( const ZIVisualTool &right );
+    const ZIVisualTool & operator=(const ZIVisualTool &right);
 
     // Data Members for Class Attributes
 
@@ -240,7 +211,7 @@ private:  //## implementation
 
 class AFX_EXT_CLASS ZIVisualToolEdit : public ZIVisualTool  //## Inherits: <unnamed>%334FC4620039
 {
-//## begin ZIVisualToolEdit%334FC4620038.initialDeclarations preserve=yes
+    //## begin ZIVisualToolEdit%334FC4620038.initialDeclarations preserve=yes
 public:
 
     // Inherited feature
@@ -258,15 +229,15 @@ public:
     //## Other Operations (specified)
     //## Operation: OnLButtonDown%832038253
     //    On left button down.
-    virtual void OnLButtonDown ( ZIView* pView, UINT nFlags, const CPoint& point );
+    virtual void OnLButtonDown(ZIView* pView, UINT nFlags, const CPoint& point);
 
     //## Operation: OnLButtonUp%832038255
     //    On left button up.
-    virtual void OnLButtonUp ( ZIView* pView, UINT nFlags, const CPoint& point );
+    virtual void OnLButtonUp(ZIView* pView, UINT nFlags, const CPoint& point);
 
     //## Operation: OnMouseMove%832038256
     //    On mouse move.
-    virtual void OnMouseMove ( ZIView* pView, UINT nFlags, const CPoint& point );
+    virtual void OnMouseMove(ZIView* pView, UINT nFlags, const CPoint& point);
 
     // Additional Public Declarations
     //## begin ZIVisualToolEdit%334FC4620038.public preserve=yes
@@ -281,7 +252,7 @@ protected:
 private:
 
     //## Constructors (generated)
-    ZIVisualToolEdit( const ZIVisualToolEdit &right );
+    ZIVisualToolEdit(const ZIVisualToolEdit &right);
 
     //## Assignment Operation (generated)
     const ZIVisualToolEdit & operator=(const ZIVisualToolEdit &right);
@@ -317,7 +288,7 @@ private:  //## implementation
 
 class AFX_EXT_CLASS ZIVisualToolObjectCreator : public ZIVisualTool  //## Inherits: <unnamed>%334FC4620096
 {
-//## begin ZIVisualToolObjectCreator%334FC462007F.initialDeclarations preserve=yes
+    //## begin ZIVisualToolObjectCreator%334FC462007F.initialDeclarations preserve=yes
 public:
 
     // Inherited feature
@@ -328,7 +299,7 @@ public:
 
     //## Constructors (specified)
     //## Operation: ZIVisualToolObjectCreator%833838851
-    ZIVisualToolObjectCreator ( ToolType ObjectToolType );
+    ZIVisualToolObjectCreator(ToolType ObjectToolType);
 
     //## Destructor (generated)
     ~ZIVisualToolObjectCreator();
@@ -336,15 +307,15 @@ public:
     //## Other Operations (specified)
     //## Operation: OnLButtonDown%832038253
     //    On left button down.
-    virtual void OnLButtonDown ( ZIView* pView, UINT nFlags, const CPoint& point );
+    virtual void OnLButtonDown(ZIView* pView, UINT nFlags, const CPoint& point);
 
     //## Operation: OnLButtonUp%832038255
     //    On left button up.
-    virtual void OnLButtonUp ( ZIView* pView, UINT nFlags, const CPoint& point );
+    virtual void OnLButtonUp(ZIView* pView, UINT nFlags, const CPoint& point);
 
     //## Operation: OnMouseMove%832038256
     //    On mouse move.
-    virtual void OnMouseMove ( ZIView* pView, UINT nFlags, const CPoint& point );
+    virtual void OnMouseMove(ZIView* pView, UINT nFlags, const CPoint& point);
 
     // Additional Public Declarations
     //## begin ZIVisualToolObjectCreator%334FC462007F.public preserve=yes
@@ -356,7 +327,7 @@ protected:
     //## Operation: CreateObject%833838850
     //    After using this tool. When the left mouse button is up,
     //    this tool is called. This function is pure abstract.
-    virtual void CreateObject ( CRect& rect ) = 0;
+    virtual void CreateObject(CRect& rect) = 0;
 
     // Data Members for Class Attributes
 
@@ -380,10 +351,10 @@ protected:
 private:
 
     //## Constructors (generated)
-    ZIVisualToolObjectCreator( const ZIVisualToolObjectCreator &right );
+    ZIVisualToolObjectCreator(const ZIVisualToolObjectCreator &right);
 
     //## Assignment Operation (generated)
-    const ZIVisualToolObjectCreator & operator=( const ZIVisualToolObjectCreator &right );
+    const ZIVisualToolObjectCreator & operator=(const ZIVisualToolObjectCreator &right);
 
     // Additional Private Declarations
     //## begin ZIVisualToolObjectCreator%334FC462007F.private preserve=yes
@@ -403,44 +374,11 @@ private:  //## implementation
 
 //## Get and Set Operations for Class Attributes (inline)
 
-inline const ToolType& ZIVisualTool::GetObjectToolType () const
+inline const ToolType& ZIVisualTool::GetObjectToolType() const
 {
     //## begin ZIVisualTool::GetObjectToolType%334FC4620031.get preserve=no
     return m_ObjectToolType;
     //## end ZIVisualTool::GetObjectToolType%334FC4620031.get
 }
-
-// Class ZIVisualToolEdit 
-
-// Class ZIVisualToolObjectCreator 
-
-//## begin module%334FC46302F8.epilog preserve=yes
-//## end module%334FC46302F8.epilog
-
-#endif
-
-// Detached code regions:
-// WARNING: this code will be lost if code is regenerated.
-#if 0
-//## begin ZIVisualToolSelection%334FC462006B.initialDeclarations preserve=no
-//## end ZIVisualToolSelection%334FC462006B.initialDeclarations
-
-//## begin ZIVisualToolDesignEdit%38227BF102FB.initialDeclarations preserve=no
-    public:
-    // Inherited feature
-        typedef ZIVisualTool inherited;
-//## end ZIVisualToolDesignEdit%38227BF102FB.initialDeclarations
-
-//## begin ZIVisualToolFieldNameEdit%38228AD30083.initialDeclarations preserve=no
-    public:
-    // Inherited feature
-        typedef ZIVisualTool inherited;
-//## end ZIVisualToolFieldNameEdit%38228AD30083.initialDeclarations
-
-//## begin ZIVisualToolTabOrder%3877524502B4.initialDeclarations preserve=no
-    public:
-    // Inherited feature
-        typedef ZIVisualTool inherited;
-//## end ZIVisualToolTabOrder%3877524502B4.initialDeclarations
 
 #endif

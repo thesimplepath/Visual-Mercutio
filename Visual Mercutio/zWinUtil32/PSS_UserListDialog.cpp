@@ -25,7 +25,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_UserListDialog
 //---------------------------------------------------------------------------
-PSS_UserListDialog::PSS_UserListDialog(ZUUserManager& userManager, CWnd* pParent) :
+PSS_UserListDialog::PSS_UserListDialog(PSS_UserManager& userManager, CWnd* pParent) :
     ZIDialog(PSS_UserListDialog::IDD, TRUE, pParent),
     m_IsAdministrator(FALSE),
     m_UserManager(userManager),

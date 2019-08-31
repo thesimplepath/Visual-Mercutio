@@ -28,9 +28,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ViewMod.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="WelcomP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -73,6 +70,9 @@
     <ClCompile Include="ZVWorkspaceCreationWizard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_ModifyView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DocWrite.h">
@@ -103,9 +103,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="STDAFX.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ViewMod.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WelcomP.h">
@@ -157,6 +154,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZVWorkspaceCreationWizard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ModifyView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

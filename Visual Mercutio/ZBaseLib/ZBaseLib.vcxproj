@@ -540,13 +540,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="UserMng.cpp">
+    <ClCompile Include="PSS_UserManager.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ViewRead.cpp">
+    <ClCompile Include="PSS_ReadView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1411,8 +1411,8 @@
     <ClInclude Include="PSS_TemplateFile.h" />
     <ClInclude Include="PSS_TemplateManager.h" />
     <ClInclude Include="PSS_UserLoader.h" />
-    <ClInclude Include="UserMng.h" />
-    <ClInclude Include="ViewRead.h" />
+    <ClInclude Include="PSS_UserManager.h" />
+    <ClInclude Include="PSS_ReadView.h" />
     <ClInclude Include="VTools.h" />
     <ClInclude Include="WatchDir.h" />
     <ClInclude Include="ZAAscii.h" />
