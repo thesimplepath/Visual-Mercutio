@@ -67,7 +67,7 @@ BOOL PSS_DocumentExport::IsExportedField(CObject* pObj) const
     ASSERT(pPlanFinObj);
     
     // is the object exportable?
-    if (!pPlanFinObj->IsKindOf(RUNTIME_CLASS(PLFNAscii))        &&
+    if (!pPlanFinObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii))    &&
         !pPlanFinObj->IsKindOf(RUNTIME_CLASS(PLFNAutoNumbered)) &&
         !pPlanFinObj->IsKindOf(RUNTIME_CLASS(PLFNTwoStates)))
         return FALSE;

@@ -415,17 +415,17 @@ void PSS_PLFNStatic::OnAngleChanged(ZDDocument* pDoc)
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_PLFNTime, PLFNAscii, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_PLFNTime, PSS_PLFNAscii, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_PLFNTime
 //---------------------------------------------------------------------------
 PSS_PLFNTime::PSS_PLFNTime() :
-    PLFNAscii(),
+    PSS_PLFNAscii(),
     m_Time(g_ZeroTime)
 {}
 //---------------------------------------------------------------------------
 PSS_PLFNTime::PSS_PLFNTime(const PSS_PLFNTime& other) :
-    PLFNAscii()
+    PSS_PLFNAscii()
 {
     *this = other;
 }
@@ -435,7 +435,7 @@ PSS_PLFNTime::~PSS_PLFNTime()
 //---------------------------------------------------------------------------
 const PSS_PLFNTime& PSS_PLFNTime::operator = (const PSS_PLFNTime* pOther)
 {
-    PLFNAscii::operator = ((inherited*)pOther);
+    PSS_PLFNAscii::operator = ((inherited*)pOther);
 
     if (!pOther)
         m_Time = g_ZeroTime;
@@ -447,7 +447,7 @@ const PSS_PLFNTime& PSS_PLFNTime::operator = (const PSS_PLFNTime* pOther)
 //---------------------------------------------------------------------------
 const PSS_PLFNTime& PSS_PLFNTime::operator = (const PSS_PLFNTime& other)
 {
-    PLFNAscii::operator = ((inherited&)other);
+    PSS_PLFNAscii::operator = ((inherited&)other);
     m_Time = other.m_Time;
     return *this;
 }
@@ -691,12 +691,12 @@ void PSS_PLFNTime::DrawObject(CDC* pDC, ZIView* pView)
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_PLFNLong, PLFNAscii, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_PLFNLong, PSS_PLFNAscii, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_PLFNLong
 //---------------------------------------------------------------------------
 PSS_PLFNLong::PSS_PLFNLong() :
-    PLFNAscii(),
+    PSS_PLFNAscii(),
     m_Long(0.0),
     m_IconDisplayType(IE_DT_NoIcon),
     m_Rounded(0.0),
@@ -706,7 +706,7 @@ PSS_PLFNLong::PSS_PLFNLong() :
 {}
 //---------------------------------------------------------------------------
 PSS_PLFNLong::PSS_PLFNLong(const PSS_PLFNLong& other) :
-    PLFNAscii()
+    PSS_PLFNAscii()
 {
     *this = other;
 }
@@ -716,7 +716,7 @@ PSS_PLFNLong::~PSS_PLFNLong()
 //---------------------------------------------------------------------------
 const PSS_PLFNLong& PSS_PLFNLong::operator = (const PSS_PLFNLong* pOther)
 {
-    PLFNAscii::operator = ((inherited*)pOther);
+    PSS_PLFNAscii::operator = ((inherited*)pOther);
 
     if (!pOther)
     {
@@ -745,7 +745,7 @@ const PSS_PLFNLong& PSS_PLFNLong::operator = (const PSS_PLFNLong* pOther)
 //---------------------------------------------------------------------------
 const PSS_PLFNLong& PSS_PLFNLong::operator = (const PSS_PLFNLong& other)
 {
-    PLFNAscii::operator = ((inherited&)other);
+    PSS_PLFNAscii::operator = ((inherited&)other);
     m_Long              = other.m_Long;
     m_IconDisplayType   = other.m_IconDisplayType;
     m_Rounded           = other.m_Rounded;
@@ -1118,7 +1118,7 @@ void PSS_PLFNLong::DrawCalculatedSymbol(CDC* pDC)
 //---------------------------------------------------------------------------
 void PSS_PLFNLong::Serialize(CArchive& ar)
 {
-    PLFNAscii::Serialize(ar);
+    PSS_PLFNAscii::Serialize(ar);
 
     if (ar.IsStoring())
     {

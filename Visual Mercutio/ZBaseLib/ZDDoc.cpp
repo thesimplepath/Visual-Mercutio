@@ -2089,7 +2089,7 @@ BOOL ZDDocument::PropagateExternDocumentAllValues(ZDDocument*    pDoc,
             do
             {
                 // If the object is exportable
-                if (!((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNAscii)) &&
+                if (!((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii)) &&
                     !((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNAutoNumbered)) &&
                     !((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNTwoStates)))
                 {
@@ -2150,7 +2150,7 @@ BOOL ZDDocument::PropagateInternalDocumentAllValues(int    IndexFrom,
             do
             {
                 // If the object is exportable
-                if (!((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNAscii)) &&
+                if (!((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii)) &&
                     !((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNAutoNumbered)) &&
                     !((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNTwoStates)))
                 {
@@ -2211,7 +2211,7 @@ BOOL ZDDocument::PropagateInternalDocumentOnDocumentValues(int        InIndexFro
             do
             {
                 // If the object is exportable
-                if (!((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNAscii)) &&
+                if (!((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii)) &&
                     !((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNAutoNumbered)) &&
                     !((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNTwoStates)))
                 {
@@ -2883,7 +2883,7 @@ CString ZDDocument::GetAutomaticNewName(PlanFinObject* pObj, int DocumentIndex)
     {
         return pDocData->BuildAutomaticNewName(_T("Text"));
     }
-    else if (pObj->IsKindOf(RUNTIME_CLASS(PLFNAscii)))
+    else if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii)))
     {
         return pDocData->BuildAutomaticNewName(_T("Ascii"));
     }

@@ -558,13 +558,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="WatchDir.cpp">
+    <ClCompile Include="PSS_WatchDirectory.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZAAscii.cpp">
+    <ClCompile Include="PSS_PLFNAscii.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1414,8 +1414,8 @@
     <ClInclude Include="PSS_UserManager.h" />
     <ClInclude Include="PSS_ReadView.h" />
     <ClInclude Include="PSS_VisualTool.h" />
-    <ClInclude Include="WatchDir.h" />
-    <ClInclude Include="ZAAscii.h" />
+    <ClInclude Include="PSS_WatchDirectory.h" />
+    <ClInclude Include="PSS_PLFNAscii.h" />
     <ClInclude Include="ZABitmap.h" />
     <ClInclude Include="ZABnText.h" />
     <ClInclude Include="ZABorder.h" />

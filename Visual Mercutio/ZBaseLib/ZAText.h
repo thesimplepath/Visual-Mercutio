@@ -26,7 +26,7 @@
 //## end module%334FC46302EF.includes
 
 // ZAAscii
-#include "ZAAscii.h"
+#include "PSS_PLFNAscii.h"
 //## begin module%334FC46302EF.declarations preserve=no
 //## end module%334FC46302EF.declarations
 
@@ -56,12 +56,12 @@
 //## Persistence: Transient
 //## Cardinality/Multiplicity: n
 
-class AFX_EXT_CLASS PLFNText : public PLFNAscii  //## Inherits: <unnamed>%334FC46102A5
+class AFX_EXT_CLASS PLFNText : public PSS_PLFNAscii
 {
   //## begin PLFNText%334FC46102A4.initialDeclarations preserve=yes
     public:
     // Inherited feature
-        typedef PLFNAscii inherited;
+        typedef PSS_PLFNAscii inherited;
   //## end PLFNText%334FC46102A4.initialDeclarations
 
   public:

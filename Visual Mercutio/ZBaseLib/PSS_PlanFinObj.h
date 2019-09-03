@@ -41,6 +41,7 @@
 #include "zaconst.h"
 #include "zamath.h"
 #include "ZAObject.h"
+#include "PSS_PLFNAscii.h"
 #include "ZAText.h"
 #include "ZAString.h"
 #include "ZAGraphc.h"
@@ -464,12 +465,12 @@ inline UINT PSS_PLFNStatic::GetPropertyTabs() const
 * Financial plan containing a time
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PLFNTime : public PLFNAscii
+class AFX_EXT_CLASS PSS_PLFNTime : public PSS_PLFNAscii
 {
     DECLARE_SERIAL(PSS_PLFNTime)
 
     public:
-        typedef PLFNAscii inherited;
+        typedef PSS_PLFNAscii inherited;
 
         PSS_PLFNTime();
 
@@ -682,7 +683,7 @@ const ZBDate& PSS_PLFNTime::GetTime() const
 * Financial plan containing a long value
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PLFNLong : public PLFNAscii
+class AFX_EXT_CLASS PSS_PLFNLong : public PSS_PLFNAscii
 {
     DECLARE_SERIAL(PSS_PLFNLong)
 
@@ -696,7 +697,7 @@ class AFX_EXT_CLASS PSS_PLFNLong : public PLFNAscii
             IE_DT_AssociationIcon,
         };
 
-        typedef PLFNAscii inherited;
+        typedef PSS_PLFNAscii inherited;
 
         PSS_PLFNLong();
 

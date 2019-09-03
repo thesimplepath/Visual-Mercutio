@@ -31,7 +31,7 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(PLFNText, PLFNAscii, g_DefVersion)
+IMPLEMENT_SERIAL(PLFNText, PSS_PLFNAscii, g_DefVersion)
 //## end module%334FC46302ED.additionalDeclarations
 
 
@@ -73,7 +73,7 @@ PLFNText::~PLFNText()
 const PLFNText & PLFNText::operator=(const PLFNText &right)
 {
   //## begin PLFNText::operator=%.body preserve=yes
-    this->PLFNAscii::operator=( (inherited&)right );
+    this->PSS_PLFNAscii::operator=( (inherited&)right );
     m_Str = right.m_Str;
       m_IsStatic = right.m_IsStatic;
     return *this;
@@ -86,7 +86,7 @@ const PLFNText & PLFNText::operator=(const PLFNText &right)
 const PLFNText& PLFNText::operator = (const PLFNText* right)
 {
   //## begin PLFNText::operator =%829516133.body preserve=yes
-    this->PLFNAscii::operator=( (inherited*)right );
+    this->PSS_PLFNAscii::operator=( (inherited*)right );
     m_Str = right->m_Str;
       m_IsStatic = right->m_IsStatic;
     return *this;
@@ -115,7 +115,7 @@ BOOL PLFNText::ConvertFormatedObject (const CString& sValue, BOOL bLocateFormat,
 void PLFNText::Serialize (CArchive& ar)
 {
   //## begin PLFNText::Serialize%829516183.body preserve=yes
-    PLFNAscii::Serialize(ar);
+    PSS_PLFNAscii::Serialize(ar);
     if (ar.IsStoring())
     {    // Write the elements
         // Check if template file but not static element.
