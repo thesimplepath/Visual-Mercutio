@@ -25,10 +25,10 @@
 #include "PSS_DocumentData.h"
 
 #include "PSS_PlanFinObj.h"
-#include "ZABnText.h"
+#include "PSS_PLFNBoundText.h"
 #include "ZARadio.h"
-#include "ZACheck.h"
-#include "ZABitmap.h"
+#include "PSS_PLFNCheckBtn.h"
+#include "PSS_PLFNBitmap.h"
 #include "ZASquare.h"
 #include "ZAMStr.h"
 #include "ZAMultiC.h"
@@ -2848,7 +2848,7 @@ CString ZDDocument::GetAutomaticNewName(PlanFinObject* pObj, int DocumentIndex)
 
         return pDocData->BuildAutomaticNewName(_T("MskTxtHist"));
     }
-    else if (pObj->IsKindOf(RUNTIME_CLASS(PLFNBoundText)))
+    else if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNBoundText)))
     {
         return pDocData->BuildAutomaticNewName(_T("BndTxt"));
     }
@@ -2891,11 +2891,11 @@ CString ZDDocument::GetAutomaticNewName(PlanFinObject* pObj, int DocumentIndex)
     {
         return pDocData->BuildAutomaticNewName(_T("Radio"));
     }
-    else if (pObj->IsKindOf(RUNTIME_CLASS(PLFNCheck)))
+    else if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNCheckBtn)))
     {
         return pDocData->BuildAutomaticNewName(_T("Chk"));
     }
-    else if (pObj->IsKindOf(RUNTIME_CLASS(PLFNBitmap)))
+    else if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNBitmap)))
     {
         return pDocData->BuildAutomaticNewName(_T("Bmp"));
     }

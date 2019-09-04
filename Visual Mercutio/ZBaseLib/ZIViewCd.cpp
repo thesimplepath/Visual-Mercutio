@@ -18,7 +18,7 @@
 //## begin module%3365108E0302.includes preserve=yes
 #include "PSS_PlanFinObj.h"
 #include "ZANumbrd.h"
-#include "ZABitmap.h"
+#include "PSS_PLFNBitmap.h"
 //## end module%3365108E0302.includes
 
 // ZIViewCd
@@ -152,7 +152,7 @@ void ZIViewCode::OnDraw(CDC* pDC)
             }
             case E_CT_Graphic:
             {
-                if (obj->IsKindOf(RUNTIME_CLASS(PLFNGraphic)) && obj->IsKindOf(RUNTIME_CLASS(PLFNBitmap)))
+                if (obj->IsKindOf(RUNTIME_CLASS(PLFNGraphic)) && obj->IsKindOf(RUNTIME_CLASS(PSS_PLFNBitmap)))
                     obj->DisplayObjectName(pDC);
                 break;
             }

@@ -17,12 +17,12 @@
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_PLFNBackImage, PLFNBitmap, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_PLFNBackImage, PSS_PLFNBitmap, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_PLFNBackImage
 //---------------------------------------------------------------------------
 PSS_PLFNBackImage::PSS_PLFNBackImage() :
-    PLFNBitmap()
+    PSS_PLFNBitmap()
 {}
 //---------------------------------------------------------------------------
 PSS_PLFNBackImage::~PSS_PLFNBackImage()
@@ -35,13 +35,13 @@ PSS_PLFNBackImage::PSS_PLFNBackImage(const PSS_PLFNBackImage& other)
 //---------------------------------------------------------------------------
 const PSS_PLFNBackImage& PSS_PLFNBackImage::operator = (const PSS_PLFNBackImage& other)
 {
-    PLFNBitmap::operator = ((inherited&)other);
+    PSS_PLFNBitmap::operator = ((inherited&)other);
     return *this;
 }
 //---------------------------------------------------------------------------
 const PSS_PLFNBackImage& PSS_PLFNBackImage::operator = (const PSS_PLFNBackImage* pOther)
 {
-    PLFNBitmap::operator = ((inherited*)pOther);
+    PSS_PLFNBitmap::operator = ((inherited*)pOther);
     return *this;
 }
 //---------------------------------------------------------------------------

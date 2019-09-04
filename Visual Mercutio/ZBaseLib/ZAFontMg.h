@@ -26,7 +26,7 @@
 //## end module%33CA790C035C.includes
 
 // ZAFont
-#include "ZAFont.h"
+#include "PSS_Font.h"
 
 
 
@@ -83,26 +83,26 @@ class AFX_EXT_CLASS ZAFontManager : public CObject  //## Inherits: <unnamed>%33D
     //## Other Operations (specified)
       //## Operation: AddFont%868907715
       //    Add a new font into the FontArray.
-      HandleFont AddFont (ZAFont* pFont);
+      PSS_Font::FontHandle AddFont (PSS_Font* pFont);
 
       //## Operation: RemoveFont%868907716
       //    Remove a specific font from the manager.
-      BOOL RemoveFont (HandleFont hFont);
+      BOOL RemoveFont (PSS_Font::FontHandle hFont);
 
       //## Operation: FindFont%868907717
       //    Search a specific font with the LogFont and the color
       //    .
-      HandleFont FindFont (LOGFONT* pLogFont, COLORREF Col);
+      PSS_Font::FontHandle FindFont (LOGFONT* pLogFont, COLORREF Col);
 
       //## Operation: FindFont%869402481
       //    Search a specific font with a ZAFont pointer.
       //    .
-      HandleFont FindFont (ZAFont* pFont);
+      PSS_Font::FontHandle FindFont (PSS_Font* pFont);
 
       //## Operation: GetFont%869402482
       //    Get the pointer of a font by passing the handle of the
       //    font.
-      ZAFont* GetFont (HandleFont hFont);
+      PSS_Font* GetFont (PSS_Font::FontHandle hFont);
 
       //## Operation: Serialize%869764511
       //    Serialization function required for MFC mecanism.
@@ -115,7 +115,7 @@ class AFX_EXT_CLASS ZAFontManager : public CObject  //## Inherits: <unnamed>%33D
       //## Operation: RotateFont%880893867
       //    Takes an initial font and rotate it by the specified
       //    angle.
-      HandleFont RotateFont (HandleFont hFont, int iAngle);
+      PSS_Font::FontHandle RotateFont (PSS_Font::FontHandle hFont, int iAngle);
 
     // Additional Public Declarations
       //## begin ZAFontManager%33CA5F860104.public preserve=yes
@@ -156,19 +156,19 @@ class AFX_EXT_CLASS ZAFontManager : public CObject  //## Inherits: <unnamed>%33D
 
 
 //## Other Operations (inline)
-inline HandleFont ZAFontManager::AddFont (ZAFont* pFont)
+inline PSS_Font::FontHandle ZAFontManager::AddFont (PSS_Font* pFont)
 {
   //## begin ZAFontManager::AddFont%868907715.body preserve=yes
-      pFont->SethFontNumber( m_FontArray.Add( pFont ) );
-      return pFont->GethFontNumber();
+      pFont->SetFontHandle( m_FontArray.Add( pFont ) );
+      return pFont->GetFontHandle();
   //## end ZAFontManager::AddFont%868907715.body
 }
 
-inline ZAFont* ZAFontManager::GetFont (HandleFont hFont)
+inline PSS_Font* ZAFontManager::GetFont (PSS_Font::FontHandle hFont)
 {
   //## begin ZAFontManager::GetFont%869402482.body preserve=yes
     // Return the pointer
-    return (hFont == NoFontDefined || hFont >= m_FontArray.GetSize()) ? NULL : ((ZAFont*)(m_FontArray[(int)hFont]));
+    return (hFont == g_NoFontDefined || hFont >= m_FontArray.GetSize()) ? NULL : ((PSS_Font*)(m_FontArray[(int)hFont]));
   //## end ZAFontManager::GetFont%869402482.body
 }
 

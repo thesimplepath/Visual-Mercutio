@@ -545,7 +545,7 @@ public:
     void DisplaySampleText( CDC*            pDC,
                             const CString&    sValue,
                             CRect            Rect,
-                            HandleFont        hFont    = NoFontDefined,
+                           PSS_Font::FontHandle        hFont    = g_NoFontDefined,
                             HandleStyle        hStyle    = NoStyleDefined );
 
     //## Operation: DisplaySampleText%870643928
@@ -554,7 +554,7 @@ public:
     void DisplaySampleText( CDC*            pDC,
                             const CString&    sValue,
                             CRect            Rect,
-                            ZAFont*            pFont    = NULL,
+                           PSS_Font*            pFont    = NULL,
                             ZAStyle*        pStyle    = NULL );
 
     //## Operation: IsCursorCapturedValid%908554843

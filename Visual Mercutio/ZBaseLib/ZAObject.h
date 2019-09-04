@@ -47,12 +47,12 @@ class ZBFieldColumn;
 #include "ZAStyle.h"
 
 // ZAFont
-#include "ZAFont.h"
+#include "PSS_Font.h"
 
 //## begin module%334FC46302E9.declarations preserve=no
 //## end module%334FC46302E9.declarations
 
-#include "ZABorder.h"
+#include "PSS_Border.h"
 
 #ifdef _ZBASELIBEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -411,7 +411,7 @@ public:
     //## Operation: GetFont%870032842
     // Return the right font for the object. Depends on the
     // Style or the defined Font.
-    ZAFont* GetFont( ZIView* pView );
+    PSS_Font* GetFont( ZIView* pView );
 
     //## Operation: GetColor%873634803
     // Return the color that should be used to draw the object.
@@ -464,7 +464,7 @@ public:
 
     //## Operation: GetBorder%908815225
     // Returns the pointer to the border.
-    const ZABorder* GetBorder( ZIView* pView ) const;
+    const PSS_Border* GetBorder( ZIView* pView ) const;
 
     //## Operation: HasBeenChanged%917889604
     BOOL HasBeenChanged() const;
@@ -538,8 +538,8 @@ public:
 
     //## Attribute: hFont%33D79AA702B2
     // The handle of the font used to display the font.
-    virtual const HandleFont GethFont() const;
-    virtual void SethFont( HandleFont value );
+    virtual const PSS_Font::FontHandle GethFont() const;
+    virtual void SethFont(PSS_Font::FontHandle value );
 
     //## Attribute: hStyle%33D9DF7F032A
     virtual const HandleStyle GethStyle() const;
@@ -570,8 +570,8 @@ public:
 
     //## Attribute: pBorder%362B6ADB0248
     // It points to the border class, if one is defined.
-    ZABorder* GetpBorder();
-    void SetpBorder( ZABorder* value );
+    PSS_Border* GetpBorder();
+    void SetpBorder(PSS_Border* value );
 
     //## Attribute: DefaultValue%36331C3D0323
     // If there is a default value.
@@ -719,7 +719,7 @@ private:
     //## end PlanFinObject::uGroupNumber%3378863002E4.attr
 
     //## begin PlanFinObject::hFont%33D79AA702B2.attr preserve=no  public: HandleFont {U} -1
-    HandleFont m_hFont;
+    PSS_Font::FontHandle m_hFont;
     //## end PlanFinObject::hFont%33D79AA702B2.attr
 
     //## begin PlanFinObject::hStyle%33D9DF7F032A.attr preserve=no  public: HandleStyle {U} 
@@ -743,7 +743,7 @@ private:
     //## end PlanFinObject::LineNumber%35B8BE2700A4.attr
 
     //## begin PlanFinObject::pBorder%362B6ADB0248.attr preserve=no  public: ZABorder* {U} NULL
-    ZABorder* m_pBorder;
+    PSS_Border* m_pBorder;
     //## end PlanFinObject::pBorder%362B6ADB0248.attr
 
     //## begin PlanFinObject::DefaultValue%36331C3D0323.attr preserve=no  public: BOOL {U} FALSE
@@ -1195,14 +1195,14 @@ inline void PlanFinObject::SetuGroupNumber (unsigned long value)
   //## end PlanFinObject::SetuGroupNumber%3378863002E4.set
 }
 
-inline const HandleFont PlanFinObject::GethFont () const
+inline const PSS_Font::FontHandle PlanFinObject::GethFont () const
 {
   //## begin PlanFinObject::GethFont%33D79AA702B2.get preserve=no
   return m_hFont;
   //## end PlanFinObject::GethFont%33D79AA702B2.get
 }
 
-inline void PlanFinObject::SethFont (HandleFont value)
+inline void PlanFinObject::SethFont (PSS_Font::FontHandle value)
 {
   //## begin PlanFinObject::SethFont%33D79AA702B2.set preserve=no
   m_hFont = value;
@@ -1265,14 +1265,14 @@ inline void PlanFinObject::SetLineNumber (DWORD value)
   //## end PlanFinObject::SetLineNumber%35B8BE2700A4.set
 }
 
-inline ZABorder* PlanFinObject::GetpBorder ()
+inline PSS_Border* PlanFinObject::GetpBorder ()
 {
   //## begin PlanFinObject::GetpBorder%362B6ADB0248.get preserve=no
   return m_pBorder;
   //## end PlanFinObject::GetpBorder%362B6ADB0248.get
 }
 
-inline void PlanFinObject::SetpBorder (ZABorder* value)
+inline void PlanFinObject::SetpBorder (PSS_Border* value)
 {
   //## begin PlanFinObject::SetpBorder%362B6ADB0248.set preserve=no
   m_pBorder = value;

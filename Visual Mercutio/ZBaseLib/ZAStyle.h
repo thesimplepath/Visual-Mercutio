@@ -26,9 +26,9 @@
 //## end module%33D8F933017C.includes
 
 // ZABorder
-#include "ZABorder.h"
+#include "PSS_Border.h"
 // ZAFont
-#include "ZAFont.h"
+#include "PSS_Font.h"
 // Mfc
 #include "Mfc.h"
 //## begin module%33D8F933017C.declarations preserve=no
@@ -69,7 +69,7 @@ const        int        NoStyleDefined = -1;
 //## Uses: <unnamed>%33D8FC5D035C;ZAFont { -> }
 //## Uses: <unnamed>%33EC6F3A035C;ZABorder { -> }
 
-class AFX_EXT_CLASS ZAStyle : public CObject  //## Inherits: <unnamed>%33D8F81100A0
+class AFX_EXT_CLASS ZAStyle : public CObject
 {
   //## begin ZAStyle%33D8F8010118.initialDeclarations preserve=yes
     public:
@@ -107,8 +107,8 @@ class AFX_EXT_CLASS ZAStyle : public CObject  //## Inherits: <unnamed>%33D8F8110
 
       //## Attribute: hFont%33D8F81F0334
       //    Points to the handle of a font.
-      const HandleFont GethFont () const;
-      void SethFont (HandleFont value);
+      const PSS_Font::FontHandle GethFont () const;
+      void SethFont (PSS_Font::FontHandle value);
 
       //## Attribute: BackColor%33D8F86902BC
       //    Define the back color. -1 for none.
@@ -127,8 +127,8 @@ class AFX_EXT_CLASS ZAStyle : public CObject  //## Inherits: <unnamed>%33D8F8110
 
       //## Attribute: pBorder%33EC67B30136
       //    Define border for fields.
-      ZABorder* GetpBorder ();
-      void SetpBorder (ZABorder* value);
+      PSS_Border* GetpBorder ();
+      void SetpBorder (PSS_Border* value);
 
       //## Attribute: Justify%34118F2200B4
       //    Define the justification such as
@@ -155,7 +155,7 @@ class AFX_EXT_CLASS ZAStyle : public CObject  //## Inherits: <unnamed>%33D8F8110
     // Data Members for Class Attributes
 
       //## begin ZAStyle::hFont%33D8F81F0334.attr preserve=no  public: HandleFont {U} 0
-      HandleFont m_hFont;
+      PSS_Font::FontHandle m_hFont;
       //## end ZAStyle::hFont%33D8F81F0334.attr
 
       //## begin ZAStyle::BackColor%33D8F86902BC.attr preserve=no  public: COLORREF {U} -1
@@ -182,7 +182,7 @@ class AFX_EXT_CLASS ZAStyle : public CObject  //## Inherits: <unnamed>%33D8F8110
     // Data Members for Class Attributes
 
       //## begin ZAStyle::pBorder%33EC67B30136.attr preserve=no  public: ZABorder* {U} NULL
-      ZABorder* m_pBorder;
+      PSS_Border* m_pBorder;
       //## end ZAStyle::pBorder%33EC67B30136.attr
 
     // Additional Implementation Declarations
@@ -207,14 +207,14 @@ inline BOOL ZAStyle::HasBorder () const
 
 //## Get and Set Operations for Class Attributes (inline)
 
-inline const HandleFont ZAStyle::GethFont () const
+inline const PSS_Font::FontHandle ZAStyle::GethFont () const
 {
   //## begin ZAStyle::GethFont%33D8F81F0334.get preserve=no
   return m_hFont;
   //## end ZAStyle::GethFont%33D8F81F0334.get
 }
 
-inline void ZAStyle::SethFont (HandleFont value)
+inline void ZAStyle::SethFont (PSS_Font::FontHandle value)
 {
   //## begin ZAStyle::SethFont%33D8F81F0334.set preserve=no
   m_hFont = value;
@@ -263,14 +263,14 @@ inline void ZAStyle::SetStyleName (CString value)
   //## end ZAStyle::SetStyleName%33D8F9E803CA.set
 }
 
-inline ZABorder* ZAStyle::GetpBorder ()
+inline PSS_Border* ZAStyle::GetpBorder ()
 {
   //## begin ZAStyle::GetpBorder%33EC67B30136.get preserve=no
   return m_pBorder;
   //## end ZAStyle::GetpBorder%33EC67B30136.get
 }
 
-inline void ZAStyle::SetpBorder (ZABorder* value)
+inline void ZAStyle::SetpBorder (PSS_Border* value)
 {
   //## begin ZAStyle::SetpBorder%33EC67B30136.set preserve=no
   m_pBorder = value;

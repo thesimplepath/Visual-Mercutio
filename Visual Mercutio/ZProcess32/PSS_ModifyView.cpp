@@ -11,12 +11,12 @@
 // processsoft
 #include "zBaseLib\ZIViewCd.h"
 #include "zBaseLib\PSS_VisualTool.h"
-#include "zBaseLib\ZACheck.h"
+#include "zBaseLib\PSS_PLFNCheckBtn.h"
 #include "zBaseLib\ZARadio.h"
 #include "zBaseLib\ZANumbrd.h"
 #include "zBaseLib\ZASquare.h"
-#include "zBaseLib\zabntext.h"
-#include "zBaseLib\zaBitmap.h"
+#include "zBaseLib\PSS_PLFNBoundText.h"
+#include "zBaseLib\PSS_PLFNBitmap.h"
 #include "zBaseLib\ZAMultiC.h"
 #include "zBaseLib\ZAMStr.h"
 #include "zBaseLib\PSS_Edit.h"
@@ -227,7 +227,7 @@ PSS_Edit* PSS_ModifyView::CreateEditControl(PlanFinObject* pObj, CDC* pDC)
 
         case IDS_CHECK_CLASS:
         {
-            PLFNCheck* pCheck = dynamic_cast<PLFNCheck*>(pObj);
+            PSS_PLFNCheckBtn* pCheck = dynamic_cast<PSS_PLFNCheckBtn*>(pObj);
 
             if (pCheck)
             {

@@ -27,8 +27,8 @@
 #include "mainfrm.h"
 #include "zBaseLib\PSS_PlanFinObj.h"
 #include "zBaseLib\ZANumbrd.h"
-#include "zBaseLib\ZABitmap.h"
-#include "zBaseLib\ZABnText.h"
+#include "zBaseLib\PSS_PLFNBitmap.h"
+#include "zBaseLib\PSS_PLFNBoundText.h"
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_Edit.h"
 
@@ -1656,13 +1656,13 @@ void ZAMainApp::DisplayWarningOnCommand()
 void ZAMainApp::DisplaySampleText(CDC*                pDC,
                                   const CString&    sValue,
                                   CRect            Rect,
-                                  HandleFont        hFont,
+                                  PSS_Font::FontHandle        hFont,
                                   HandleStyle        hStyle)
 {
     //## begin ZAMainApp::DisplaySampleText%870643929.body preserve=yes
-    ZAFont* pFont = NULL;
+    PSS_Font* pFont = NULL;
 
-    if (hFont != NoFontDefined)
+    if (hFont != g_NoFontDefined)
     {
         pFont = GetFontManager().GetFont(hFont);
     }
@@ -1678,7 +1678,7 @@ void ZAMainApp::DisplaySampleText(CDC*                pDC,
     //## end ZAMainApp::DisplaySampleText%870643929.body
 }
 
-void ZAMainApp::DisplaySampleText(CDC* pDC, const CString& sValue, CRect Rect, ZAFont* pFont, ZAStyle* pStyle)
+void ZAMainApp::DisplaySampleText(CDC* pDC, const CString& sValue, CRect Rect, PSS_Font* pFont, ZAStyle* pStyle)
 {
     //## begin ZAMainApp::DisplaySampleText%870643928.body preserve=yes
     // Display the appearance of text
@@ -1700,7 +1700,7 @@ void ZAMainApp::DisplaySampleText(CDC* pDC, const CString& sValue, CRect Rect, Z
     else if (pStyle)
     {
         NewBrush.CreateSolidBrush((pStyle->GetBackColor() != -1) ? pStyle->GetBackColor() : defCOLOR_WHITE);
-        ZAFont* pStyleFont = GetFontManager().GetFont(pStyle->GethFont());
+        PSS_Font* pStyleFont = GetFontManager().GetFont(pStyle->GethFont());
 
         if (!pStyleFont)
         {

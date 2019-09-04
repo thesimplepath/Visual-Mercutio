@@ -28,7 +28,7 @@
 //## end module%334FC46302F9.declarations
 
 //## begin module%334FC46302F9.additionalDeclarations preserve=yes
-#include "ZACheck.h"
+#include "PSS_PLFNCheckBtn.h"
 #include "ZARadio.h"
 #include "PSS_MsgBox.h"
 #include "ZDDoc.h"

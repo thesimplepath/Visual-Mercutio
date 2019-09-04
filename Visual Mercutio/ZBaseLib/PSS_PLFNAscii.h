@@ -18,7 +18,7 @@
 
 // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
 #ifndef PSS_PLFNAscii
-    //#define PSS_PLFNAscii PLFNAscii
+    #define PSS_PLFNAscii PLFNAscii
 #endif
 
 // processsoft
@@ -44,7 +44,7 @@ class AFX_EXT_CLASS PSS_PLFNAscii : public PlanFinObject
 
     public:
         /**
-        * Enumerates different type of strikes
+        * Strike styles
         */
         enum IEStrikeStyles
         {

@@ -25,7 +25,7 @@
 #endif
 
 // processsoft
-#include "ZABitmap.h"
+#include "PSS_PLFNBitmap.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -41,12 +41,12 @@
 * Financial plan background image
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PLFNBackImage : public PLFNBitmap
+class AFX_EXT_CLASS PSS_PLFNBackImage : public PSS_PLFNBitmap
 {
     DECLARE_SERIAL(PSS_PLFNBackImage)
 
     public:
-        typedef PLFNBitmap inherited;
+        typedef PSS_PLFNBitmap inherited;
 
         PSS_PLFNBackImage();
 

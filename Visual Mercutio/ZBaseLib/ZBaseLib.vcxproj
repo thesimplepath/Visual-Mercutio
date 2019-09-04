@@ -570,31 +570,31 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZABitmap.cpp">
+    <ClCompile Include="PSS_PLFNBitmap.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZABnText.cpp">
+    <ClCompile Include="PSS_PLFNBoundText.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZABorder.cpp">
+    <ClCompile Include="PSS_Border.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZACheck.cpp">
+    <ClCompile Include="PSS_PLFNCheckBtn.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZAFont.cpp">
+    <ClCompile Include="PSS_Font.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1416,11 +1416,11 @@
     <ClInclude Include="PSS_VisualTool.h" />
     <ClInclude Include="PSS_WatchDirectory.h" />
     <ClInclude Include="PSS_PLFNAscii.h" />
-    <ClInclude Include="ZABitmap.h" />
-    <ClInclude Include="ZABnText.h" />
-    <ClInclude Include="ZABorder.h" />
-    <ClInclude Include="ZACheck.h" />
-    <ClInclude Include="ZAFont.h" />
+    <ClInclude Include="PSS_PLFNBitmap.h" />
+    <ClInclude Include="PSS_PLFNBoundText.h" />
+    <ClInclude Include="PSS_Border.h" />
+    <ClInclude Include="PSS_PLFNCheckBtn.h" />
+    <ClInclude Include="PSS_Font.h" />
     <ClInclude Include="ZAFontMg.h" />
     <ClInclude Include="ZAGlobal.h" />
     <ClInclude Include="ZAGraphc.h" />

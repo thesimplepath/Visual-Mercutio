@@ -11,10 +11,10 @@
 // processsoft
 #include "ZAObject.h"
 #include "PSS_PlanFinObj.h"
-#include "ZABnText.h"
+#include "PSS_PLFNBoundText.h"
 #include "ZARadio.h"
-#include "ZACheck.h"
-#include "ZABitmap.h"
+#include "PSS_PLFNCheckBtn.h"
+#include "PSS_PLFNBitmap.h"
 #include "ZASquare.h"
 #include "ZANumbrd.h"
 #include "ZAMultiC.h"
@@ -304,7 +304,7 @@ void PSS_DocumentData::CheckFontValidity()
         // if the object points to an undefined font
         if (pObj->GethFont() >= LONG(m_FontManager.GetElements()))
             // assigns it to no font, therefore to the style
-            pObj->SethFont(NoFontDefined);
+            pObj->SethFont(g_NoFontDefined);
     }
 }
 //---------------------------------------------------------------------------

@@ -13,10 +13,10 @@
 #include "PSS_File.h"
 #include "ZARadio.h"
 #include "ZASquare.h"
-#include "ZABnText.h"
+#include "PSS_PLFNBoundText.h"
 #include "ZANumbrd.h"
-#include "ZABitmap.h"
-#include "ZACheck.h"
+#include "PSS_PLFNBitmap.h"
+#include "PSS_PLFNCheckBtn.h"
 #include "ZAMStr.h"
 #include "ZAMultiC.h"
 
@@ -239,12 +239,12 @@ PlanFinObject* PSS_ObjectUtility::BuildObject(const CString& className)
             break;
 
         case 7:
-            pObj.reset(new PLFNBoundText);
+            pObj.reset(new PSS_PLFNBoundText);
             break;
 
         case 8:
             // TRUE is for static bound text
-            pObj.reset(new PLFNBoundText(TRUE));
+            pObj.reset(new PSS_PLFNBoundText(TRUE));
             break;
 
         case 9:
@@ -268,11 +268,11 @@ PlanFinObject* PSS_ObjectUtility::BuildObject(const CString& className)
             break;
 
         case 14:
-            pObj.reset(new PLFNBitmap);
+            pObj.reset(new PSS_PLFNBitmap);
             break;
 
         case 15:
-            pObj.reset(new PLFNCheck);
+            pObj.reset(new PSS_PLFNCheckBtn);
             break;
 
         case 16:
@@ -383,9 +383,9 @@ std::size_t PSS_ObjectUtility::GetClassNameID(PlanFinObject* pObj)
             resourceID = IDS_AMOUNT_CLASS;
     }
     else
-    if (pObj->IsKindOf(RUNTIME_CLASS(PLFNBoundText)))
+    if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNBoundText)))
     {
-        if (((PLFNBoundText*)pObj)->GetIsStatic())
+        if (((PSS_PLFNBoundText*)pObj)->GetIsStatic())
             resourceID = IDS_MULTITEXTSTATIC_CLASS;
         else
             resourceID = IDS_MULTITEXT_CLASS;
@@ -424,10 +424,10 @@ std::size_t PSS_ObjectUtility::GetClassNameID(PlanFinObject* pObj)
             resourceID = IDS_RECTANGLE_CLASS;
     }
     else
-    if (pObj->IsKindOf(RUNTIME_CLASS(PLFNBitmap)))
+    if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNBitmap)))
         resourceID = IDS_BITMAP_CLASS;
     else
-    if (pObj->IsKindOf(RUNTIME_CLASS(PLFNCheck)))
+    if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNCheckBtn)))
         resourceID = IDS_CHECK_CLASS;
     else
     if (pObj->IsKindOf(RUNTIME_CLASS(PLFNRadio)))

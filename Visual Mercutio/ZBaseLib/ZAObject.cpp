@@ -206,7 +206,7 @@ const PlanFinObject & PlanFinObject::operator=( const PlanFinObject &right )
 
     if ( right.m_pBorder )
     {
-        m_pBorder = new ZABorder( *right.m_pBorder );
+        m_pBorder = new PSS_Border( *right.m_pBorder );
     }
     else
     {
@@ -598,7 +598,7 @@ void PlanFinObject::DrawObject( CDC* pDC, ZIView* pView )
     }
 
     // Draw the border if exists
-    ZABorder* pBorder = (ZABorder*)GetBorder( pView );
+    PSS_Border* pBorder = (PSS_Border*)GetBorder( pView );
 
     if ( pBorder )
     {
@@ -1033,7 +1033,7 @@ void PlanFinObject::SizePositionHasChanged()
     //## end PlanFinObject::SizePositionHasChanged%863883948.body
 }
 
-ZAFont* PlanFinObject::GetFont( ZIView* pView )
+PSS_Font* PlanFinObject::GetFont( ZIView* pView )
 {
     //## begin PlanFinObject::GetFont%870032842.body preserve=yes
     ZDDocument* pDoc = pView->GetDocument();
@@ -1042,7 +1042,7 @@ ZAFont* PlanFinObject::GetFont( ZIView* pView )
     {
         // Return the specific Font assigned directly
 
-        if ( m_hFont != NoFontDefined )
+        if ( m_hFont != g_NoFontDefined )
         {
             return pDoc->GetFontManager().GetFont( m_hFont );
         }
@@ -1096,7 +1096,7 @@ void PlanFinObject::SethStyle( HandleStyle value )
 
     // Remove the object format attributes
     // No Font
-    SethFont( NoFontDefined );
+    SethFont( g_NoFontDefined );
 
     // No Color
     SetColor( -1 );
@@ -1124,9 +1124,9 @@ void PlanFinObject::RotateFont( ZDDocument* pDoc )
     //## begin PlanFinObject::RotateFont%880893868.body preserve=yes
     if ( pDoc )
     {
-        HandleFont hFont;
+        PSS_Font::FontHandle hFont;
 
-        if ( GethFont() != NoFontDefined )
+        if ( GethFont() != g_NoFontDefined )
         {
             hFont = GethFont();
         }
@@ -1262,7 +1262,7 @@ void PlanFinObject::MoveObject( CPoint& MovePt, BOOL RelativeMove )
     //## end PlanFinObject::MoveObject%901975364.body
 }
 
-const ZABorder* PlanFinObject::GetBorder( ZIView* pView ) const
+const PSS_Border* PlanFinObject::GetBorder( ZIView* pView ) const
 {
     //## begin PlanFinObject::GetBorder%908815225.body preserve=yes
     if ( m_pBorder )

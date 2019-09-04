@@ -65,8 +65,8 @@ public:
     virtual const COLORREF GetFillColor() const;
     virtual void SetFillColor(COLORREF value);
     //    The handle of the font used to display the font.
-    virtual const HandleFont GethFont() const;
-    virtual void SethFont(HandleFont value);
+    virtual const PSS_Font::FontHandle GethFont() const;
+    virtual void SethFont(PSS_Font::FontHandle value);
 
     virtual const HandleStyle GethStyle() const;
     //## end PLFNAutoNumbered%33798B3703D4.initialDeclarations
@@ -385,14 +385,14 @@ inline void PLFNAutoNumbered::SetiLevel(int value)
 
 //## begin module%33798B9A02E4.epilog preserve=yes
 
-inline const HandleFont PLFNAutoNumbered::GethFont() const
+inline const PSS_Font::FontHandle PLFNAutoNumbered::GethFont() const
 {
     if (m_pObject)
         return m_pObject->GethFont();
     return GethFont();
 }
 
-inline void PLFNAutoNumbered::SethFont(HandleFont value)
+inline void PLFNAutoNumbered::SethFont(PSS_Font::FontHandle value)
 {
     if (m_pObject)
         m_pObject->SethFont(value);
