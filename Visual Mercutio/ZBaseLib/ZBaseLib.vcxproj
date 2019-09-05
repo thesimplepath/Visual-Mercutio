@@ -600,7 +600,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZAFontMg.cpp">
+    <ClCompile Include="PSS_FontManager.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1421,7 +1421,7 @@
     <ClInclude Include="PSS_Border.h" />
     <ClInclude Include="PSS_PLFNCheckBtn.h" />
     <ClInclude Include="PSS_Font.h" />
-    <ClInclude Include="ZAFontMg.h" />
+    <ClInclude Include="PSS_FontManager.h" />
     <ClInclude Include="ZAGlobal.h" />
     <ClInclude Include="ZAGraphc.h" />
     <ClInclude Include="ZAMATH.H" />

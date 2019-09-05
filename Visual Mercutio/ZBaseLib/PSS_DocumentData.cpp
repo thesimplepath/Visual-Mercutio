@@ -302,7 +302,7 @@ void PSS_DocumentData::CheckFontValidity()
         pObj = (PlanFinObject*)m_ObjElements.GetNext(pPosition);
 
         // if the object points to an undefined font
-        if (pObj->GethFont() >= LONG(m_FontManager.GetElements()))
+        if (pObj->GethFont() >= LONG(m_FontManager.GetCount()))
             // assigns it to no font, therefore to the style
             pObj->SethFont(g_NoFontDefined);
     }

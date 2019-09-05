@@ -71,7 +71,7 @@
 //## end module%334FC4630329.includes
 
 // ZAFontMg
-#include "zBaseLib\ZAFontMg.h"
+#include "zBaseLib\PSS_FontManager.h"
 
 // ZAStylMg
 #include "zBaseLib\ZAStylMg.h"
@@ -538,7 +538,7 @@ public:
 
     //## Operation: GetFontManager%870446011
     // Return the Font Manager of the current document.
-    ZAFontManager& GetFontManager();
+    PSS_FontManager& GetFontManager();
 
     //## Operation: DisplaySampleText%870643929
     // Display a text using the font or the style passed in parameter.
@@ -838,7 +838,7 @@ inline ZAStyleManager& ZAMainApp::GetStyleManager()
     //## end ZAMainApp::GetStyleManager%870446010.body
 }
 
-inline ZAFontManager& ZAMainApp::GetFontManager()
+inline PSS_FontManager& ZAMainApp::GetFontManager()
 {
     //## begin ZAMainApp::GetFontManager%870446011.body preserve=yes
     // Must have a current document

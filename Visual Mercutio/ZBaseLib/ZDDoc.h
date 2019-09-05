@@ -27,7 +27,7 @@
 #include "PSS_HistoryFieldManager.h"
 #include "PSS_BaseDocument.h"
 #include "PSS_Formula.h"
-#include "ZAFontMg.h"
+#include "PSS_FontManager.h"
 #include "ZAStylMg.h"
 
 // class name mapping
@@ -341,7 +341,7 @@ public:
     BOOL CopyDocumentDataArrayAfter(CObArray& ArraySrc, int Index, BOOL InsertAsReadOnly = FALSE);
 
     //## Operation: GetFontManager%914353652
-    ZAFontManager& GetFontManager(int DocumentIndex = -1);
+    PSS_FontManager& GetFontManager(int DocumentIndex = -1);
 
     //## Operation: GetStyleManager%914353653
     ZAStyleManager& GetStyleManager(int DocumentIndex = -1);

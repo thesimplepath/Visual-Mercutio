@@ -2509,7 +2509,7 @@ BOOL ZDDocument::DocumentDataIsVisible(int DocumentIndex)
     //## end ZDDocument::DocumentDataIsVisible%914146151.body
 }
 
-ZAFontManager& ZDDocument::GetFontManager(int DocumentIndex)
+PSS_FontManager& ZDDocument::GetFontManager(int DocumentIndex)
 {
     //## begin ZDDocument::GetFontManager%914353652.body preserve=yes
     if (DocumentIndex == -1)

@@ -25,7 +25,7 @@
 #include "PSS_Formula.h"
 #include "PSS_Stamp.h"
 #include "ZAStylMg.h"
-#include "ZAFontMg.h"
+#include "PSS_FontManager.h"
 #include "ZUFileLauncher.h"
 
 // class name mapping
@@ -696,7 +696,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         * Gets the font manager
         *@return the font manager
         */
-        virtual inline ZAFontManager& GetFontManager();
+        virtual inline PSS_FontManager& GetFontManager();
 
         /**
         * Gets the style manager
@@ -852,7 +852,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         PSS_FileBuffer*   m_pFileBuffer;
         PSS_Stamp         m_Stamp;
         PSS_SchemaManager m_Schema;
-        ZAFontManager     m_FontManager;
+        PSS_FontManager   m_FontManager;
         ZAStyleManager    m_StyleManager;
         PlanFinObject*    m_pCurrentEditedObject;
         ZUFileLauncher    m_FileLauncher;
@@ -1097,7 +1097,7 @@ void PSS_DocumentData::SetDocument(ZDDocument* pDocument)
     m_pDocument = pDocument;
 }
 //---------------------------------------------------------------------------
-ZAFontManager& PSS_DocumentData::GetFontManager()
+PSS_FontManager& PSS_DocumentData::GetFontManager()
 {
     return m_FontManager;
 }
