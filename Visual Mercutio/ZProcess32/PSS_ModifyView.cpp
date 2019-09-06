@@ -174,7 +174,7 @@ void PSS_ModifyView::EditObject(PlanFinObject* pObj)
     // control was successfully created?
     if (GetDocument()->GetEditControl())
     {
-        GetDocument()->GetEditControl()->Create(ZAGlobal::IsFormDesigner(),
+        GetDocument()->GetEditControl()->Create(PSS_Global::IsFormDesigner(),
                                                 this,
                                                 pDC,
                                                 GetDocument(),
@@ -277,7 +277,7 @@ void PSS_ModifyView::AddObjectNotes(PlanFinObject* pObj)
     {
         case IDOK:
             // save the notes
-            pObj->AddNotes(objectNotesDialog.GetComment(), ZAGlobal::GetConnectedUserName());
+            pObj->AddNotes(objectNotesDialog.GetComment(), PSS_Global::GetConnectedUserName());
             break;
 
         case IDC_DELETENOTES:

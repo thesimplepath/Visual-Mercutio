@@ -11,7 +11,7 @@
 
 // processsoft
 #include "ZDDoc.h"
-#include "ZAGlobal.h"
+#include "PSS_Global.h"
 
 //---------------------------------------------------------------------------
 // Global variables
@@ -210,7 +210,7 @@ void PSS_VisualToolEdit::OnMouseMove(ZIView* pView, UINT flags, const CPoint& po
     {
         BOOL releaseCapture = FALSE;
 
-        if (ZAGlobal::ShowAnimation())
+        if (PSS_Global::ShowAnimation())
         {
             ZDDocument* pDoc = pView->GetDocument();
             ASSERT(pDoc);

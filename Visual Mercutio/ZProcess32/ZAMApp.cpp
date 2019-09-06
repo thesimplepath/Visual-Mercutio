@@ -210,7 +210,7 @@ ZAMainApp::ZAMainApp()
     , m_ApplicationInfoType(ZBCriptedFileApplicationTypeInfo::Unknown)
 #endif
 {
-    ZAGlobal::StartInitialization();
+    PSS_Global::StartInitialization();
 
     m_pCurrentDocument = NULL;
     m_IDD_Splash = 0;
@@ -321,7 +321,7 @@ BOOL ZAMainApp::InitInstance()
     m_HelpFile = OnBuildHelpFilename();
 
     // Assigns globally the application directory
-    ZAGlobal::SetApplicationDirectory(GetApplicationDir());
+    PSS_Global::SetApplicationDirectory(GetApplicationDir());
 
 #ifndef _ZNOSPLASH
     // Start Splash
@@ -533,10 +533,10 @@ BOOL ZAMainApp::InitInstance()
             // Check if required to authenticate the user
             if (UserAuthenticationRequired())
             {
-                ZAGlobal::InitializeNetwork();
+                PSS_Global::InitializeNetwork();
 
                 // Not a registered user
-                if (ZAGlobal::GetConnectedUser() == NULL)
+                if (PSS_Global::GetConnectedUser() == NULL)
                 {
                     ZIMessage Message;
                     Message.DisplayMessage(IDS_USERNOTREGISTERED_T, IDS_USERNOTREGISTERED_WT);
@@ -548,7 +548,7 @@ BOOL ZAMainApp::InitInstance()
             // Advise for user manager loaded
             AfxGetMainWnd()->SendMessageToDescendants(UM_INITIALIZE_USERMANAGER,
                                                       0, // Nothing
-                                                      (LPARAM)&ZAGlobal::GetUserManager());
+                                                      (LPARAM)&PSS_Global::GetUserManager());
         }
 
     #ifdef _ZCHECKINFO
@@ -565,11 +565,11 @@ BOOL ZAMainApp::InitInstance()
 #endif
 
     // Create the template manager
-    ZAGlobal::GetTemplateManager().Create(GetTemplateDirectory(), ZAGlobal::GetFileExtension());
+    PSS_Global::GetTemplateManager().Create(GetTemplateDirectory(), PSS_Global::GetFileExtension());
 
     AfxGetMainWnd()->SendMessageToDescendants(UM_INITIALIZE_TEMPLATEMANAGER,
                                               1, // Show file
-                                              (LPARAM)&ZAGlobal::GetTemplateManager());
+                                              (LPARAM)&PSS_Global::GetTemplateManager());
 
 #ifndef _ZNOSPLASH
     if (m_IDD_Splash != 0)
@@ -581,12 +581,12 @@ BOOL ZAMainApp::InitInstance()
 #endif
 
     // Create the process template manager
-    ZAGlobal::GetProcessTemplateManager().Create(GetProcessTemplateDirectory(),
-                                                 ZAGlobal::GetProcessFileExtension());
+    PSS_Global::GetProcessTemplateManager().Create(GetProcessTemplateDirectory(),
+                                                 PSS_Global::GetProcessFileExtension());
 
     AfxGetMainWnd()->SendMessageToDescendants(UM_INITIALIZE_PROCESSTEMPLATEMANAGER,
                                               1, // Show file
-                                              (LPARAM)&ZAGlobal::GetTemplateManager());
+                                              (LPARAM)&PSS_Global::GetTemplateManager());
 
 #ifndef _ZNOSPLASH
     if (m_IDD_Splash != 0)
@@ -598,11 +598,11 @@ BOOL ZAMainApp::InitInstance()
 #endif
 
     // Create the model template manager
-    ZAGlobal::GetModelTemplateManager().Create(GetModelTemplateDirectory(), ZAGlobal::GetModelFileExtension());
+    PSS_Global::GetModelTemplateManager().Create(GetModelTemplateDirectory(), PSS_Global::GetModelFileExtension());
 
     AfxGetMainWnd()->SendMessageToDescendants(UM_INITIALIZE_MODELTEMPLATEMANAGER,
                                               1, // Show file
-                                              (LPARAM)&ZAGlobal::GetModelTemplateManager());
+                                              (LPARAM)&PSS_Global::GetModelTemplateManager());
 
     // enable file manager drag/drop and DDE Execute open
     ZAMainApp::EnableShellOpen();
@@ -644,7 +644,7 @@ BOOL ZAMainApp::InitInstance()
     PSS_PaintResources::Initialize();
 
     // Initialize the global definitions
-    ZAGlobal::Initialize(&GetServer(),
+    PSS_Global::Initialize(&GetServer(),
                          GetApplicationType(),
                          FALSE,
                          ShowAnimation(),
@@ -764,7 +764,7 @@ BOOL ZAMainApp::InitInstance()
     }
 
     // Initialization process is finished
-    ZAGlobal::EndInitialization();
+    PSS_Global::EndInitialization();
 
     return TRUE;
 }
@@ -1449,7 +1449,7 @@ void ZAMainApp::TemplateDirectoryHasChanged()
 {
     AfxGetMainWnd()->SendMessageToDescendants(UM_INITIALIZE_TEMPLATEMANAGER,
                                               1, // Show file
-                                              (LPARAM)&ZAGlobal::GetTemplateManager());
+                                              (LPARAM)&PSS_Global::GetTemplateManager());
 
     AfxGetMainWnd()->SendMessageToDescendants(UM_INITIALIZE_FIELDREPOSITORY,
                                               0,
@@ -1460,14 +1460,14 @@ void ZAMainApp::ProcessTemplateDirectoryHasChanged()
 {
     AfxGetMainWnd()->SendMessageToDescendants(UM_INITIALIZE_PROCESSTEMPLATEMANAGER,
                                               1, // Show file
-                                              (LPARAM)&ZAGlobal::GetTemplateManager());
+                                              (LPARAM)&PSS_Global::GetTemplateManager());
 }
 
 void ZAMainApp::ModelTemplateDirectoryHasChanged()
 {
     AfxGetMainWnd()->SendMessageToDescendants(UM_INITIALIZE_MODELTEMPLATEMANAGER,
                                               1, // Show file
-                                              (LPARAM)&ZAGlobal::GetModelTemplateManager());
+                                              (LPARAM)&PSS_Global::GetModelTemplateManager());
 }
 
 // ********************************************* Documents et modèles *******************************************
@@ -1633,7 +1633,7 @@ BOOL ZAMainApp::LoadAllUsers()
     PSS_UserLoader UserLoader;
 
     // Load all users
-    UserLoader.Create(&ZAGlobal::GetUserManager(), GetUserDefinitionFile());
+    UserLoader.Create(&PSS_Global::GetUserManager(), GetUserDefinitionFile());
 
     return UserLoader.LoadAllUsers();
 }
@@ -1741,10 +1741,10 @@ void ZAMainApp::DisplaySampleText(CDC* pDC, const CString& sValue, CRect Rect, P
 BOOL ZAMainApp::ProcessMessageFilter(int code, LPMSG lpMsg)
 {
     // Check to see if the modal dialog box is up
-    if (ZAGlobal::GetModalDialogCWnd() != NULL)
+    if (PSS_Global::GetModalDialogCWnd() != NULL)
     {
-        if (lpMsg->hwnd == ZAGlobal::GetModalDialogCWnd()->GetSafeHwnd() ||
-            ::IsChild(ZAGlobal::GetModalDialogCWnd()->GetSafeHwnd(), lpMsg->hwnd))
+        if (lpMsg->hwnd == PSS_Global::GetModalDialogCWnd()->GetSafeHwnd() ||
+            ::IsChild(PSS_Global::GetModalDialogCWnd()->GetSafeHwnd(), lpMsg->hwnd))
         {
             // Use the global IsChild() function to get
             // messages destined for the dialog's controls
@@ -1753,8 +1753,8 @@ BOOL ZAMainApp::ProcessMessageFilter(int code, LPMSG lpMsg)
             {
                 MSG msg = *lpMsg;
 
-                if (ZAGlobal::GetModalDialogCWnd()->IsWindowEnabled() &&
-                    ZAGlobal::GetModalDialogCWnd()->PreTranslateMessage(&msg))
+                if (PSS_Global::GetModalDialogCWnd()->IsWindowEnabled() &&
+                    PSS_Global::GetModalDialogCWnd()->PreTranslateMessage(&msg))
                 {
                     return TRUE;
                 }

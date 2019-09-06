@@ -27,7 +27,7 @@
 #include "zReport\ZDGridDoc.h"
 #include "zReport\zReportRes.h"
 
-#include "zBaseLib\ZAGlobal.h"
+#include "zBaseLib\PSS_Global.h"
 #include "zBaseLib\ZBTokenizer.h"
 
 #include "zModel\ProcGraphModelDoc.h"

@@ -14,7 +14,7 @@
 #include "zModel\ZAModelGlobal.h"
 
 // JMR-MODIF - Le 29 juillet 2007 - Ajout de l'en-tête ZAGlobal.h
-#include "zBaseLib\ZAGlobal.h"
+#include "zBaseLib\PSS_Global.h"
 
 #include "ZBBPUnitProp.h"
 #include "zModel\ZBUserGroupEntity.h"
@@ -407,7 +407,7 @@ bool ZBBPStopSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /*
 
     // Initialize the Currency symbol with the user local currency symbol
     // defined in the Control Panel
-    CString CurrencySymbol = ZAGlobal::GetLocaleCurrency();
+    CString CurrencySymbol = PSS_Global::GetLocaleCurrency();
 
     // JMR-MODIF - Le 30 juillet 2007 - Mets à jour le symbole monétaire en fonction de la sélection utilisateur.
     if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
@@ -669,11 +669,11 @@ bool ZBBPStopSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /*
                                RiskName,
                                (GroupValue == true) ? Z_RISK_ACTION : (Z_RISK_ACTION + (i * _MaxRisksSize)),
                                RiskDesc,
-                               (GetRiskAction(i) == true) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo(),
+                               (GetRiskAction(i) == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo(),
                                ZBProperty::PT_COMBO_STRING_READONLY,
                                TRUE,
                                ZBStringFormat(ZBStringFormat::General),
-                               ZAGlobal::GetArrayYesNo());
+                               PSS_Global::GetArrayYesNo());
 
         PropSet.Add(pRisk);
     }
@@ -776,7 +776,7 @@ bool ZBBPStopSymbol::SaveProperties(ZBPropertySet& PropSet)
 
             if (pProp->GetItemID() == Z_RISK_ACTION + (i * _MaxRisksSize))
             {
-                SetRiskAction(i, (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo() ? 1 : 0));
+                SetRiskAction(i, (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo() ? 1 : 0));
             }
         }
     }
@@ -860,7 +860,7 @@ bool ZBBPStopSymbol::SaveProperty(ZBProperty& Property)
 
         if (Property.GetItemID() == Z_RISK_ACTION + (i * _MaxRisksSize))
         {
-            SetRiskAction(i, (Property.GetValueString() == ZAGlobal::GetYesFromArrayYesNo() ? 1 : 0));
+            SetRiskAction(i, (Property.GetValueString() == PSS_Global::GetYesFromArrayYesNo() ? 1 : 0));
         }
     }
     // ************************************************************************************************
@@ -899,7 +899,7 @@ bool ZBBPStopSymbol::ProcessExtendedInput(ZBProperty& Property, CString& value, 
     {
         int            i = Property.GetCategoryID() - ZS_BP_PROP_RISK;
         CODModel*    pModel = GetRootModel();
-        CString        CurrencySymbol = ZAGlobal::GetLocaleCurrency();
+        CString        CurrencySymbol = PSS_Global::GetLocaleCurrency();
 
         if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
         {

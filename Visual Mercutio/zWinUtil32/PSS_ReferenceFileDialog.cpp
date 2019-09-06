@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_FileDialog.h"
-#include "zBaseLib\ZAGlobal.h"
+#include "zBaseLib\PSS_Global.h"
 #include "PSS_NewFormDialog.h"
 #include "PSS_UrlInputDialog.h"
 
@@ -59,22 +59,22 @@ BOOL PSS_ReferenceFileDialog::OnInitDialog()
     CDialog::OnInitDialog();
 
     // fill the activation type list box
-    std::size_t count = (ZAGlobal::GetArrayActivationType() ? ZAGlobal::GetArrayActivationType()->GetSize() : 0);
+    std::size_t count = (PSS_Global::GetArrayActivationType() ? PSS_Global::GetArrayActivationType()->GetSize() : 0);
 
     for (std::size_t i = 0; i < count; ++i)
-        m_ActivationTypeCtrl.AddString(ZAGlobal::GetArrayActivationType()->GetAt(i));
+        m_ActivationTypeCtrl.AddString(PSS_Global::GetArrayActivationType()->GetAt(i));
 
     // fill the insertion type list box
-    count = (ZAGlobal::GetArrayInsertionType()) ? ZAGlobal::GetArrayInsertionType()->GetSize() : 0;
+    count = (PSS_Global::GetArrayInsertionType()) ? PSS_Global::GetArrayInsertionType()->GetSize() : 0;
 
     for (std::size_t i = 0; i < count; ++i)
-        m_InsertionTypeCtrl.AddString(ZAGlobal::GetArrayInsertionType()->GetAt(i));
+        m_InsertionTypeCtrl.AddString(PSS_Global::GetArrayInsertionType()->GetAt(i));
 
     // set the right activation type
-    m_ActivationTypeCtrl.SelectString(-1, ZAGlobal::GetActivationTypeString(m_ActivationType));
+    m_ActivationTypeCtrl.SelectString(-1, PSS_Global::GetActivationTypeString(m_ActivationType));
 
     // set the right insertion type
-    m_InsertionTypeCtrl.SelectString(-1, ZAGlobal::GetInsertionTypeString(m_InsertionType));
+    m_InsertionTypeCtrl.SelectString(-1, PSS_Global::GetInsertionTypeString(m_InsertionType));
 
     CheckControlState();
 
@@ -138,7 +138,7 @@ void PSS_ReferenceFileDialog::OnAddurl()
 //---------------------------------------------------------------------------
 void PSS_ReferenceFileDialog::OnScriptor()
 {
-    PSS_NewFormDialog newFormDialog(&ZAGlobal::GetTemplateManager(),
+    PSS_NewFormDialog newFormDialog(&PSS_Global::GetTemplateManager(),
                                     PSS_NewFormDialog::IE_T_SelectForm,
                                     PSS_NewFormDialog::IE_ET_Form);
 
@@ -169,7 +169,7 @@ void PSS_ReferenceFileDialog::SaveValuesToObject()
         CString text;
         m_ActivationTypeCtrl.GetLBText(curSel, text);
 
-        m_ActivationType = ZAGlobal::GetActivationType(text);
+        m_ActivationType = PSS_Global::GetActivationType(text);
     }
 
     // get the insertion type
@@ -180,7 +180,7 @@ void PSS_ReferenceFileDialog::SaveValuesToObject()
         CString text;
         m_InsertionTypeCtrl.GetLBText(curSel, text);
 
-        m_InsertionType = ZAGlobal::GetInsertionType(text);
+        m_InsertionType = PSS_Global::GetInsertionType(text);
     }
 }
 //---------------------------------------------------------------------------

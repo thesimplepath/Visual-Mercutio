@@ -9,7 +9,7 @@
 #include "zModelBP\ProcGraphModelMdlBP.h"
 #include "zReport\ZDGridDoc.h"
 
-#include "zBaseLib\ZAGlobal.h"
+#include "zBaseLib\PSS_Global.h"
 
 #include "zReport\zReportRes.h"
 #include "zReportBPRes.h"

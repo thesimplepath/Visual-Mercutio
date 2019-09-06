@@ -3,7 +3,7 @@
 #include "stdafx.h"
 
 // RS-MODIF 14.12.04
-#include "ZBaseLib\ZAGlobal.h"
+#include "ZBaseLib\PSS_Global.h"
 
 #include "ZDGridReportDoc.h"
 #include "ZVGridView.h"

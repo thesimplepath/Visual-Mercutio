@@ -4,7 +4,7 @@
 #include "MdlWkfOpt.h"
 
 // processsoft
-#include "zBaseLib\ZAGlobal.h"
+#include "zBaseLib\PSS_Global.h"
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zModel\ProcGraphModelDoc.h"
 
@@ -87,7 +87,7 @@ int ZVModelWorkflowOptions::DoModal()
         m_Data.m_DayPerWeek = 5;
         m_Data.m_DayPerMonth = 22;
         m_Data.m_DayPerYear = 220;
-        m_Data.m_CurrencySymbol = ZAGlobal::GetLocaleCurrency();
+        m_Data.m_CurrencySymbol = PSS_Global::GetLocaleCurrency();
 
         // set the French language as default
         m_Data.m_Language = E_LN_French;

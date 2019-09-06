@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_FileDialog.h"
-#include "zBaseLib\ZAGlobal.h"
+#include "zBaseLib\PSS_Global.h"
 #include "zBaseLib\PSS_File.h"
 #include "zBaseLib\PSS_MsgBox.h"
 #include "PSS_OpenDirDialog.h"
@@ -79,23 +79,23 @@ BOOL PSS_CommandLineDialog::OnInitDialog()
     m_StartupDirectory.SetWindowText(m_StartupDir);
     m_Arguments.SetWindowText(m_Parameters);
 
-    std::size_t count = (ZAGlobal::GetArrayJobPriority()) ? ZAGlobal::GetArrayJobPriority()->GetSize() : 0;
+    std::size_t count = (PSS_Global::GetArrayJobPriority()) ? PSS_Global::GetArrayJobPriority()->GetSize() : 0;
 
     // fill the priority list box
     for (std::size_t i = 0; i < count; ++i)
-        m_PriorityList.AddString(ZAGlobal::GetArrayJobPriority()->GetAt(i));
+        m_PriorityList.AddString(PSS_Global::GetArrayJobPriority()->GetAt(i));
 
-    count = (ZAGlobal::GetArrayWindowMode() ? ZAGlobal::GetArrayWindowMode()->GetSize() : 0);
+    count = (PSS_Global::GetArrayWindowMode() ? PSS_Global::GetArrayWindowMode()->GetSize() : 0);
 
     // fill the window mode list box
     for (std::size_t i = 0; i < count; ++i)
-        m_WindowModeList.AddString(ZAGlobal::GetArrayWindowMode()->GetAt(i));
+        m_WindowModeList.AddString(PSS_Global::GetArrayWindowMode()->GetAt(i));
 
     // set the right job priority
-    m_PriorityList.SelectString(-1, ZAGlobal::GetJobPriorityString(m_Priority));
+    m_PriorityList.SelectString(-1, PSS_Global::GetJobPriorityString(m_Priority));
 
     // set the right window mode
-    m_WindowModeList.SelectString(-1, ZAGlobal::GetWindowModeString(m_WindowMode));
+    m_WindowModeList.SelectString(-1, PSS_Global::GetWindowModeString(m_WindowMode));
 
     UpdateData(FALSE);
     CheckControlState();
@@ -237,7 +237,7 @@ void PSS_CommandLineDialog::SaveValuesToObject()
         CString text;
         m_PriorityList.GetLBText(curSel, text);
 
-        m_Priority = ZAGlobal::GetJobPriority(text);
+        m_Priority = PSS_Global::GetJobPriority(text);
     }
 
     // get the window mode
@@ -248,7 +248,7 @@ void PSS_CommandLineDialog::SaveValuesToObject()
         CString text;
         m_WindowModeList.GetLBText(curSel, text);
 
-        m_WindowMode = ZAGlobal::GetWindowMode(text);
+        m_WindowMode = PSS_Global::GetWindowMode(text);
     }
 }
 //---------------------------------------------------------------------------

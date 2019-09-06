@@ -13,7 +13,7 @@
 #include "zBaseLib\ZBServer.h"
 #include "zBaseLib\PSS_File.h"
 #include "zBaseLib\ZUStringFormater.h"
-#include "zBaseLib\ZAGlobal.h"
+#include "zBaseLib\PSS_Global.h"
 #include "zModel\ProcGraphModelMdl.h"
 #include "zModel\ProcGraphModelVp.h"
 #include "zModel\ProcGraphModelCtlr.h"
@@ -108,7 +108,7 @@ bool PSS_ModelGenerateImageFiles::OnStart()
         return false;
     
     // get the web directory
-    const CString webDir = ZAGlobal::GetApplicationDirectory() + _T("\\Web");
+    const CString webDir = PSS_Global::GetApplicationDirectory() + _T("\\Web");
 
     // copy images from the system root directory
     if (m_pInfo->GetpServer())

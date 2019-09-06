@@ -24,7 +24,7 @@
 
 // Global for zBaseLib
 #include "zBaseLib\ZBTokenizer.h"
-#include "zBaseLib\ZAGlobal.h"
+#include "zBaseLib\PSS_Global.h"
 #include "zBaseLib\ZBToolbarObserverMsg.h"
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_DrawFunctions.h"
@@ -234,7 +234,7 @@ void ZBBPProcedureSymbol::AddRule(const CString Value)
         // Add the value to the history
         CString Key;
         Key.LoadString(IDS_ZS_BP_PROP_RULELST_TITLE);
-        ZAGlobal::GetHistoricValueManager().AddHistoryValue(Key, Value);
+        PSS_Global::GetHistoricValueManager().AddHistoryValue(Key, Value);
 
         // Set the new task string 
         SetRuleList(token.GetString());
@@ -321,7 +321,7 @@ void ZBBPProcedureSymbol::AddTask(const CString Value)
         // Add the value to the history
         CString Key;
         Key.LoadString(IDS_ZS_BP_PROP_PROCEDURE_TSKLST_TITLE);
-        ZAGlobal::GetHistoricValueManager().AddHistoryValue(Key, Value);
+        PSS_Global::GetHistoricValueManager().AddHistoryValue(Key, Value);
 
         // Set the new task string 
         SetTaskList(token.GetString());
@@ -409,7 +409,7 @@ void ZBBPProcedureSymbol::AddDecision(const CString Value)
         // Add the value to the history
         CString Key;
         Key.LoadString(IDS_ZS_BP_PROP_PROCEDURE_DECLST_TITLE);
-        ZAGlobal::GetHistoricValueManager().AddHistoryValue(Key, Value);
+        PSS_Global::GetHistoricValueManager().AddHistoryValue(Key, Value);
 
         // Set the new decision string 
         SetDecisionList(token.GetString());
@@ -783,7 +783,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
         return true;
 
     // initialize the Currency symbol with the user local currency symbol defined in the Control Panel
-    CString currencySymbol = ZAGlobal::GetLocaleCurrency();
+    CString currencySymbol = PSS_Global::GetLocaleCurrency();
 
     // FIXME translate comment
     // JMR-MODIF - Le 30 juillet 2007 - Mets à jour le symbole monétaire en fonction de la sélection utilisateur.
@@ -929,7 +929,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
     // run through all tasks properties, add one to the counter to have always one empty task
     count = GetRuleCount() + 1;
     propTitle.LoadString(IDS_ZS_BP_PROP_RULELST_TITLE);
-    CStringArray* pArrayOfValues = ZAGlobal::GetHistoricValueManager().GetFieldHistory(propTitle);
+    CStringArray* pArrayOfValues = PSS_Global::GetHistoricValueManager().GetFieldHistory(propTitle);
 
     propName.LoadString(IDS_Z_RULE_LIST_NAME);
     propDesc.LoadString(IDS_Z_RULE_LIST_DESC);
@@ -1140,11 +1140,11 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                riskName,
                                (groupValue ? Z_RISK_ACTION : (Z_RISK_ACTION + (i * _MaxRisksSize))),
                                riskDesc,
-                               (GetRiskAction(i) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo()),
+                               (GetRiskAction(i) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo()),
                                ZBProperty::PT_COMBO_STRING_READONLY,
                                TRUE,
                                ZBStringFormat(ZBStringFormat::General),
-                               ZAGlobal::GetArrayYesNo());
+                               PSS_Global::GetArrayYesNo());
 
         propSet.Add(pRisk);
     }
@@ -1159,7 +1159,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
     // run through all tasks properties, add one to the counter to have always one empty task
     count = GetTaskCount() + 1;
     propTitle.LoadString(IDS_ZS_BP_PROP_PROCEDURE_TSKLST_TITLE);
-    pArrayOfValues = ZAGlobal::GetHistoricValueManager().GetFieldHistory(propTitle);
+    pArrayOfValues = PSS_Global::GetHistoricValueManager().GetFieldHistory(propTitle);
 
     propName.LoadString(IDS_Z_TASK_LIST_NAME);
     propDesc.LoadString(IDS_Z_TASK_LIST_DESC);
@@ -1220,7 +1220,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
     // run through all tasks properties, add one to the counter to have always one empty decision
     count = GetDecisionCount() + 1;
     propTitle.LoadString(IDS_ZS_BP_PROP_PROCEDURE_DECLST_TITLE);
-    pArrayOfValues = ZAGlobal::GetHistoricValueManager().GetFieldHistory(propTitle);
+    pArrayOfValues = PSS_Global::GetHistoricValueManager().GetFieldHistory(propTitle);
 
     propName.LoadString(IDS_Z_DECISION_LIST_NAME);
     propDesc.LoadString(IDS_Z_DECISION_LIST_DESC);
@@ -1796,7 +1796,7 @@ bool ZBBPProcedureSymbol::SaveProperties(ZBPropertySet& PropSet)
 
             if (pProp->GetItemID() == Z_RISK_ACTION + (i * _MaxRisksSize))
             {
-                SetRiskAction(i, (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo() ? 1 : 0));
+                SetRiskAction(i, (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo() ? 1 : 0));
             }
         }
     }
@@ -2121,7 +2121,7 @@ bool ZBBPProcedureSymbol::SaveProperty(ZBProperty& Property)
 
         if (Property.GetItemID() == Z_RISK_ACTION + (i * _MaxRisksSize))
         {
-            SetRiskAction(i, (Property.GetValueString() == ZAGlobal::GetYesFromArrayYesNo() ? 1 : 0));
+            SetRiskAction(i, (Property.GetValueString() == PSS_Global::GetYesFromArrayYesNo() ? 1 : 0));
         }
     }
     // ************************************************************************************************
@@ -2227,7 +2227,7 @@ bool ZBBPProcedureSymbol::ProcessExtendedInput(ZBProperty&        Property,
     {
         int            i = Property.GetCategoryID() - ZS_BP_PROP_RISK;
         CODModel*    pModel = GetRootModel();
-        CString        CurrencySymbol = ZAGlobal::GetLocaleCurrency();
+        CString        CurrencySymbol = PSS_Global::GetLocaleCurrency();
 
         if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
         {

@@ -45,7 +45,7 @@
 #include "ZAObject.h"
 #include "ZAText.h"
 #include "ZAString.h"
-#include "ZAGraphc.h"
+#include "PSS_PLFNGraphic.h"
 #include "PSS_Formula.h"
 
 #ifdef _ZBASELIBEXPORT

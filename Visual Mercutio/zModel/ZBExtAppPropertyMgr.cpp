@@ -9,7 +9,7 @@
 
 #include "zWinUtil32\PSS_CommandLineDialog.h"
 
-#include "zBaseLib\ZAGlobal.h"
+#include "zBaseLib\PSS_Global.h"
 #include "zBaseLib\ZBTokenizer.h"
 
 #include "zBaseLib\ZNetResourceWrapper.h"
@@ -381,11 +381,11 @@ bool ZBExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet&    PropSet,
                                      PropName,
                                      (GroupValue == true) ? Z_PRIORITY_LEVEL : (Z_PRIORITY_LEVEL + (i * 40)),
                                      PropDesc,
-                                     ZAGlobal::GetJobPriorityString(GetPriorityLevel(i)),
+                                     PSS_Global::GetJobPriorityString(GetPriorityLevel(i)),
                                      ZBProperty::PT_COMBO_STRING_READONLY,
                                      SystemIsEnabled,
                                      ZBStringFormat(ZBStringFormat::General),
-                                     ZAGlobal::GetArrayJobPriority());
+                                     PSS_Global::GetArrayJobPriority());
         }
 
         PropSet.Add(pExtApp);
@@ -411,11 +411,11 @@ bool ZBExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet&    PropSet,
                                      PropName,
                                      (GroupValue == true) ? Z_WINDOW_STARTMODE : (Z_WINDOW_STARTMODE + (i * 40)),
                                      PropDesc,
-                                     ZAGlobal::GetWindowModeString(GetWindowStartMode(i)),
+                                     PSS_Global::GetWindowModeString(GetWindowStartMode(i)),
                                      ZBProperty::PT_COMBO_STRING_READONLY,
                                      SystemIsEnabled,
                                      ZBStringFormat(ZBStringFormat::General),
-                                     ZAGlobal::GetArrayWindowMode());
+                                     PSS_Global::GetArrayWindowMode());
         }
 
         PropSet.Add(pExtApp);
@@ -477,13 +477,13 @@ bool ZBExtAppPropertyMgr::SaveProperty(ZBProperty& Property)
 
             case Z_PRIORITY_LEVEL:
             {
-                SetPriorityLevel(i, ZAGlobal::GetJobPriority(Property.GetValueString()));
+                SetPriorityLevel(i, PSS_Global::GetJobPriority(Property.GetValueString()));
                 break;
             }
 
             case Z_WINDOW_STARTMODE:
             {
-                SetWindowStartMode(i, ZAGlobal::GetWindowMode(Property.GetValueString()));
+                SetWindowStartMode(i, PSS_Global::GetWindowMode(Property.GetValueString()));
                 break;
             }
         }

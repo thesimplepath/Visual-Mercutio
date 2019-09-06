@@ -95,8 +95,8 @@ ZDDocumentReadWrite::~ZDDocumentReadWrite()
 
 BOOL ZDDocumentReadWrite::OnNewDocument()
 {
-    ZAGlobal::SetpCurrentDocumentForSerialization(this);
-    PSS_NewFormDialog newFormDialog(&ZAGlobal::GetTemplateManager(),
+    PSS_Global::SetCurrentDocumentForSerialization(this);
+    PSS_NewFormDialog newFormDialog(&PSS_Global::GetTemplateManager(),
                                     PSS_NewFormDialog::IE_T_StartForm,
                                     PSS_NewFormDialog::IE_ET_Form);
 
@@ -121,7 +121,7 @@ BOOL ZDDocumentReadWrite::OnNewDocument()
     FileListHasChanged();
 
     // Set to the previous file directory
-    ZAGlobal::SetToFileDirectory();
+    PSS_Global::SetToFileDirectory();
 
     if (!StartRealTimeExport())
     {

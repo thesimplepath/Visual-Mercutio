@@ -12,7 +12,7 @@
 #include "ZUGridMercutioRepProcedureNavigation.h"
 #include "ZUGridMercutioRepDeliverableNavigation.h"
 
-#include "zBaseLib\ZAGlobal.h"
+#include "zBaseLib\PSS_Global.h"
 
 #include "zReport\zReportRes.h"
 #include "zReportBPRes.h"

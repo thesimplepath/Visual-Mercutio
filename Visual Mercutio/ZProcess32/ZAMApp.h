@@ -87,7 +87,7 @@
 
 // GFldDoc
 #include "zBaseLib\PSS_GlobalFieldDocument.h"
-#include "zBaseLib\ZAGlobal.h"
+#include "zBaseLib\PSS_Global.h"
 #include "ZTTemplateDocument.h"
 
 // JMR-MODIF - Le 24 avril 2006 - Ajout des déclarations unicode _T( ), nettoyage du code inutile. (En commentaires)
@@ -117,7 +117,7 @@ public:
 
     virtual void SetVisualToolObject ( const CString& sClassName ) = 0;
     virtual BOOL OpenFieldRepositoryReadOnly() const = 0;
-    virtual eApplicationType GetApplicationType() const = 0;
+    virtual PSS_Global::IEApplicationType GetApplicationType() const = 0;
 
     // Return true if the system needs to authenticate the user before
     // starting the application

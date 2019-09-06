@@ -17,7 +17,7 @@
 #include "zRes32\zRes.h"
 #include "zBaseLib\PSS_MsgBox.h"
 
-#include "zBaseLib\ZAGlobal.h"
+#include "zBaseLib\PSS_Global.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -873,7 +873,7 @@ BOOL ZIProcessGraphModelView::OnToolTipNeedText(UINT id, NMHDR * pNMHDR, LRESULT
         if (ZIProcessGraphModelViewport::GetModelController() &&
             ZIProcessGraphModelViewport::GetModelController()->OnToolTip(m_StrToolTip,
                                                                          CursorPos,
-                                                                         (ZAGlobal::GetpType() == zProcess) ? ZBSymbol::DesignToolTip : ZBSymbol::NormalToolTip))
+                                                                         (PSS_Global::GetType() == PSS_Global::IE_AT_Process) ? ZBSymbol::DesignToolTip : ZBSymbol::NormalToolTip))
         {
             pTTT->hinst = NULL;
             pTTT->lpszText = m_StrToolTip.GetBuffer(m_StrToolTip.GetLength() + 1);

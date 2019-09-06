@@ -9,7 +9,7 @@
 #include "PSS_FileFormPreviewDialog.h"
 
 // processsoft
-#include "zBaseLib\ZAGlobal.h"
+#include "zBaseLib\PSS_Global.h"
 #include "zBaseLib\PSS_File.h"
 
 #ifdef _DEBUG
@@ -270,7 +270,7 @@ BOOL PSS_FileFormPreviewDialog::OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_
 void PSS_FileFormPreviewDialog::PostNcDestroy()
 {
     // clear window for pump message
-    ZAGlobal::ClearModalDialogCWnd();
+    PSS_Global::ClearModalDialogCWnd();
 
     CDialog::PostNcDestroy();
 }
@@ -294,11 +294,11 @@ BOOL PSS_FileFormPreviewDialog::OnInitDialog()
         return FALSE;
 
     // set silent mode before opening the file
-    ZAGlobal::SetOpenFileInSilentMode();
+    PSS_Global::SetOpenFileInSilentMode();
     m_pDocument = (ZDDocument*)m_pDocTemplate->OpenDocumentFile((const char*)m_FileName, FALSE);
 
     // set back silent mode after having opened the file
-    ZAGlobal::SetOpenFileInSilentMode(FALSE);
+    PSS_Global::SetOpenFileInSilentMode(FALSE);
 
     if (!m_pDocument)
         return FALSE;
@@ -344,7 +344,7 @@ BOOL PSS_FileFormPreviewDialog::OnInitDialog()
     m_FlatToolBar.SetParent(this);
 
     // set window for pump message
-    ZAGlobal::SetModalDialogCWnd(this);
+    PSS_Global::SetModalDialogCWnd(this);
 
     // return TRUE unless the focus is set to a control. NOTE OCX property pages should return FALSE
     return TRUE;
@@ -397,7 +397,7 @@ void PSS_FileFormPreviewDialog::SizeControl()
 void PSS_FileFormPreviewDialog::CloseDocument()
 {
     // set silent mode before closing the file
-    ZAGlobal::SetOpenFileInSilentMode();
+    PSS_Global::SetOpenFileInSilentMode();
 
     // if the document exists, close it
     if (m_pDocument)
@@ -408,6 +408,6 @@ void PSS_FileFormPreviewDialog::CloseDocument()
     m_pView        = NULL;
 
     // set back silent mode after having closed the file
-    ZAGlobal::SetOpenFileInSilentMode(FALSE);
+    PSS_Global::SetOpenFileInSilentMode(FALSE);
 }
 //---------------------------------------------------------------------------

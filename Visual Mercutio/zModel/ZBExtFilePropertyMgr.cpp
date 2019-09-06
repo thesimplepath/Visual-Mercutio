@@ -5,7 +5,7 @@
 #include "ZBExtFilePropertyMgr.h"
 
 // processsoft
-#include "zBaseLib\ZAGlobal.h"
+#include "zBaseLib\PSS_Global.h"
 #include "zBaseLib\ZBTokenizer.h"
 #include "zBaseLib\ZNetResourceWrapper.h"
 #include "zBaseLib\PSS_TemplateFile.h"
@@ -220,11 +220,11 @@ bool ZBExtFilePropertyMgr::FillPropertiesMessenger( ZBPropertySet&    PropSet,
                                            PropName,
                                            ( GroupValue == true ) ? Z_INSERTION_TYPE : ( Z_INSERTION_TYPE + ( i * 40 ) ),
                                            PropDesc,
-                                           ZAGlobal::GetInsertionTypeString( GetInsertionType( i ) ),
+                                          PSS_Global::GetInsertionTypeString( GetInsertionType( i ) ),
                                            ZBProperty::PT_COMBO_STRING_READONLY,
                                            true,
                                            ZBStringFormat( ZBStringFormat::General ),
-                                           ZAGlobal::GetArrayInsertionType() );
+                                          PSS_Global::GetArrayInsertionType() );
         }
 
         PropSet.Add( pCombination );
@@ -250,11 +250,11 @@ bool ZBExtFilePropertyMgr::FillPropertiesMessenger( ZBPropertySet&    PropSet,
                                                PropName,
                                                ( GroupValue == true ) ? Z_ACTIVATION_TYPE : ( Z_ACTIVATION_TYPE + ( i * 40 ) ),
                                                PropDesc,
-                                               ZAGlobal::GetActivationTypeString( GetActivationType( i ) ),
+                                              PSS_Global::GetActivationTypeString( GetActivationType( i ) ),
                                                ZBProperty::PT_COMBO_STRING_READONLY,
                                                true,
                                                ZBStringFormat( ZBStringFormat::General ),
-                                               ZAGlobal::GetArrayActivationType() );
+                                              PSS_Global::GetArrayActivationType() );
         }
 
         PropSet.Add( pCombination );
@@ -304,13 +304,13 @@ bool ZBExtFilePropertyMgr::SaveProperty( ZBProperty& Property )
 
             case Z_INSERTION_TYPE:
             {
-                SetInsertionType( i,  ZAGlobal::GetInsertionType( Property.GetValueString() ) );
+                SetInsertionType( i, PSS_Global::GetInsertionType( Property.GetValueString() ) );
                 break;
             }
 
             case Z_ACTIVATION_TYPE:
             {
-                SetActivationType( i,  ZAGlobal::GetActivationType( Property.GetValueString() ) );
+                SetActivationType( i, PSS_Global::GetActivationType( Property.GetValueString() ) );
                 break;
             }
         }

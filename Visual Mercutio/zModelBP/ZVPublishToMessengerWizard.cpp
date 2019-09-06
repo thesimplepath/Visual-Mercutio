@@ -8,7 +8,7 @@
 #include "zBaseLib\ZILog.h"
 #include "zBaseLib\ZUSystemOption.h"
 #include "zBaseLib\PSS_MsgBox.h"
-#include "zBaseLib\ZAGlobal.h"
+#include "zBaseLib\PSS_Global.h"
 #include "zModel\ProcGraphModelDoc.h"
 #define _ZMODELEXPORT
 #include "zModel\ProcGraphModelView.h"
@@ -491,7 +491,7 @@ int ZVPublishToMessengerWizard::DoModal()
                                                    _T(""),
                                                    _T(""),
                                                    pDC,
-                                                   ZAGlobal::GetServer());
+                                                   PSS_Global::GetServer());
 
             PSS_SoapPublishModelGenerateFiles ModelGen(m_pModelDoc->GetModel(), &ModelInfo, &Info);
 

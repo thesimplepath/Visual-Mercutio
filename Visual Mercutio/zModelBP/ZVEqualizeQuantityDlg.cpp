@@ -6,7 +6,7 @@
 
 #include "ZBBPAnnualNumberProp.h"
 // Global resources
-#include "zBaseLib\ZAGlobal.h"
+#include "zBaseLib\PSS_Global.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -263,85 +263,85 @@ void ZVEqualizeQuantityDlg::InitializeVariables()
             }
             case Z_LOCKED_YEAR:
             {
-                m_LockYear = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
+                m_LockYear = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedTotal(m_LockYear);
                 break;
             }
             case Z_LOCKED_JANUARY:
             {
-                m_LockJanuary = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
+                m_LockJanuary = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexJanuary, m_LockJanuary);
                 break;
             }
             case Z_LOCKED_FEBRUARY:
             {
-                m_LockFebruary = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
+                m_LockFebruary = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexFebruary, m_LockFebruary);
                 break;
             }
             case Z_LOCKED_MARCH:
             {
-                m_LockMarch = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
+                m_LockMarch = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexMarch, m_LockMarch);
                 break;
             }
             case Z_LOCKED_APRIL:
             {
-                m_LockApril = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
+                m_LockApril = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexApril, m_LockApril);
                 break;
             }
             case Z_LOCKED_MAY:
             {
-                m_LockMay = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
+                m_LockMay = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexMay, m_LockMay);
                 break;
             }
             case Z_LOCKED_JUNE:
             {
-                m_LockJune = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
+                m_LockJune = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexJune, m_LockJune);
                 break;
             }
             case Z_LOCKED_JULY:
             {
-                m_LockJuly = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
+                m_LockJuly = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexJuly, m_LockJuly);
                 break;
             }
             case Z_LOCKED_AUGUST:
             {
-                m_LockAugust = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
+                m_LockAugust = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexAugust, m_LockAugust);
                 break;
             }
             case Z_LOCKED_SEPTEMBER:
             {
-                m_LockSeptember = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
+                m_LockSeptember = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexSeptember, m_LockSeptember);
                 break;
             }
             case Z_LOCKED_OCTOBER:
             {
-                m_LockOctober = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
+                m_LockOctober = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexOctober, m_LockOctober);
                 break;
             }
             case Z_LOCKED_NOVEMBER:
             {
-                m_LockNovember = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
+                m_LockNovember = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexNovember, m_LockNovember);
                 break;
             }
             case Z_LOCKED_DECEMBER:
             {
-                m_LockDecember = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
+                m_LockDecember = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 m_Equalizer.SetLockedFlagAt(g_IndexDecember, m_LockDecember);
                 break;
             }
             case Z_FORCE_EQUALIZER:
             {
-                m_ForceEqualizer = (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? TRUE : FALSE;
+                m_ForceEqualizer = (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? TRUE : FALSE;
                 break;
             }
         }
@@ -484,72 +484,72 @@ void ZVEqualizeQuantityDlg::SaveVariables()
             }
             case Z_LOCKED_YEAR:
             {
-                pProp->SetValueString(m_LockYear ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString(m_LockYear ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_JANUARY:
             {
-                pProp->SetValueString(m_LockJanuary ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString(m_LockJanuary ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_FEBRUARY:
             {
-                pProp->SetValueString(m_LockFebruary ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString(m_LockFebruary ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_MARCH:
             {
-                pProp->SetValueString(m_LockMarch ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString(m_LockMarch ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_APRIL:
             {
-                pProp->SetValueString(m_LockApril ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString(m_LockApril ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_MAY:
             {
-                pProp->SetValueString(m_LockMay ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString(m_LockMay ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_JUNE:
             {
-                pProp->SetValueString(m_LockJune ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString(m_LockJune ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_JULY:
             {
-                pProp->SetValueString(m_LockJuly ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString(m_LockJuly ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_AUGUST:
             {
-                pProp->SetValueString(m_LockAugust ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString(m_LockAugust ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_SEPTEMBER:
             {
-                pProp->SetValueString(m_LockSeptember ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString(m_LockSeptember ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_OCTOBER:
             {
-                pProp->SetValueString(m_LockOctober ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString(m_LockOctober ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_NOVEMBER:
             {
-                pProp->SetValueString(m_LockNovember ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString(m_LockNovember ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
             case Z_LOCKED_DECEMBER:
             {
-                pProp->SetValueString(m_LockDecember ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString(m_LockDecember ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
             case Z_FORCE_EQUALIZER:
             {
-                pProp->SetValueString(m_ForceEqualizer ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString(m_ForceEqualizer ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
         }

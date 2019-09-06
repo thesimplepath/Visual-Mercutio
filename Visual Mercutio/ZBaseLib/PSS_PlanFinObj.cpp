@@ -25,18 +25,18 @@
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_PLFNRect, PLFNGraphic, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_PLFNRect, PSS_PLFNGraphic, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_PLFNRect
 //---------------------------------------------------------------------------
 PSS_PLFNRect::PSS_PLFNRect(BOOL round) :
-    PLFNGraphic(),
+    PSS_PLFNGraphic(),
     m_Round(round),
     m_ArcOffset(5)
 {}
 //---------------------------------------------------------------------------
 PSS_PLFNRect::PSS_PLFNRect(const PSS_PLFNRect& other) :
-    PLFNGraphic()
+    PSS_PLFNGraphic()
 {
     *this = other;
 }
@@ -46,7 +46,7 @@ PSS_PLFNRect::~PSS_PLFNRect()
 //---------------------------------------------------------------------------
 const PSS_PLFNRect& PSS_PLFNRect::operator = (const PSS_PLFNRect* pOther)
 {
-    PLFNGraphic::operator = ((inherited*)pOther);
+    PSS_PLFNGraphic::operator = ((inherited*)pOther);
 
     if (!pOther)
     {
@@ -65,7 +65,7 @@ const PSS_PLFNRect& PSS_PLFNRect::operator = (const PSS_PLFNRect* pOther)
 //---------------------------------------------------------------------------
 const PSS_PLFNRect& PSS_PLFNRect::operator = (const PSS_PLFNRect& other)
 {
-    PLFNGraphic::operator = ((inherited&)other);
+    PSS_PLFNGraphic::operator = ((inherited&)other);
 
     m_Round     = other.m_Round;
     m_ArcOffset = other.m_ArcOffset;
@@ -87,7 +87,7 @@ void PSS_PLFNRect::CopyObject(PlanFinObject* pSrc)
 void PSS_PLFNRect::Serialize(CArchive& ar)
 {
     if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
-        PLFNGraphic::Serialize(ar);
+        PSS_PLFNGraphic::Serialize(ar);
     else
         PlanFinObject::Serialize(ar);
 
@@ -196,18 +196,18 @@ void PSS_PLFNRect::DrawObject(CDC* pDC, ZIView* pView)
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_PLFNLine, PLFNGraphic, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_PLFNLine, PSS_PLFNGraphic, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_PLFNLine
 //---------------------------------------------------------------------------
 PSS_PLFNLine::PSS_PLFNLine() :
-    PLFNGraphic(),
+    PSS_PLFNGraphic(),
     m_StartPoint(0, 0),
     m_EndPoint(0, 0)
 {}
 //---------------------------------------------------------------------------
 PSS_PLFNLine::PSS_PLFNLine(const PSS_PLFNLine& other) :
-    PLFNGraphic()
+    PSS_PLFNGraphic()
 {
     *this = other;
 }
@@ -217,7 +217,7 @@ PSS_PLFNLine::~PSS_PLFNLine()
 //---------------------------------------------------------------------------
 const PSS_PLFNLine& PSS_PLFNLine::operator = (const PSS_PLFNLine* pOther)
 {
-    PLFNGraphic::operator = ((inherited*)pOther);
+    PSS_PLFNGraphic::operator = ((inherited*)pOther);
 
     if (!pOther)
     {
@@ -235,7 +235,7 @@ const PSS_PLFNLine& PSS_PLFNLine::operator = (const PSS_PLFNLine* pOther)
 //---------------------------------------------------------------------------
 const PSS_PLFNLine& PSS_PLFNLine::operator = (const PSS_PLFNLine& other)
 {
-    PLFNGraphic::operator = ((inherited&)other);
+    PSS_PLFNGraphic::operator = ((inherited&)other);
 
     m_StartPoint = other.m_StartPoint;
     m_EndPoint   = other.m_EndPoint;
@@ -268,7 +268,7 @@ void PSS_PLFNLine::SizePositionHasChanged()
 void PSS_PLFNLine::Serialize(CArchive& ar)
 {
     if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
-        PLFNGraphic::Serialize(ar);
+        PSS_PLFNGraphic::Serialize(ar);
     else
         PlanFinObject::Serialize(ar);
 

@@ -389,7 +389,7 @@ void ZAApp::Release()
     m_GlobalHistoricValueFilename.Empty();
 
     // Désallocation des objets statiques.
-    ZAGlobal::Release();
+    PSS_Global::Release();
     ZAModelGlobal::Release();
     PSS_ObjectUtility::Release();
     PSS_ResourceManager::Release();
@@ -449,7 +449,7 @@ BOOL ZAApp::InitAppl()
                                                             ID_FILE_MRU_FORMS1);
 
     AddDocTemplate(pDocTemplate);
-    ZAGlobal::SetpDocTemplate(pDocTemplate);
+    PSS_Global::SetDocTemplate(pDocTemplate);
 
     // Register the report application's document templates. Document templates
     // serve as the connection between documents, frame windows and views.
@@ -460,7 +460,7 @@ BOOL ZAApp::InitAppl()
                                                  RUNTIME_CLASS(ZVGridReportView));
 
     AddDocTemplate(pReportDocTemplate);
-    ZAGlobal::SetpReportDocumentTemplate(pReportDocTemplate);
+    PSS_Global::SetReportDocumentTemplate(pReportDocTemplate);
 
     // Register the application's document templates. Document templates
     //  serve as the connection between documents, frame windows and views.
@@ -473,7 +473,7 @@ BOOL ZAApp::InitAppl()
 
     AddDocTemplate(pProcessModelDocumentTemplate);
 
-    ZAGlobal::SetpProcessModelDocumentTemplate(pProcessModelDocumentTemplate);
+    PSS_Global::SetProcessModelDocumentTemplate(pProcessModelDocumentTemplate);
 
     // Creation of Visual Tools
     static PSS_VisualToolEdit VisualToolEdit;
@@ -496,7 +496,7 @@ BOOL ZAApp::PostInitAppl()
     m_GlobalHistoricValueFilename = GetSystemDirectory() + _T("\\global.xml");
 
     // Read it
-    if (!ZAGlobal::ReadFromFileHistoricValue(m_GlobalHistoricValueFilename))
+    if (!PSS_Global::ReadFromFileHistoricValue(m_GlobalHistoricValueFilename))
     {
         // Warn the user
     }
@@ -682,7 +682,7 @@ int ZAApp::ExitInstance()
 
 BOOL ZAApp::ExitAppl()
 {
-    if (!ZAGlobal::SaveToFileHistoricValue(m_GlobalHistoricValueFilename))
+    if (!PSS_Global::SaveToFileHistoricValue(m_GlobalHistoricValueFilename))
     {
         // Warn the user
     }
@@ -770,7 +770,7 @@ BOOL ZAApp::SaveApplicationOptions()
 // JMR-MODIF - Le 28 décembre 2006 - Cette fonction ordonne le rafraîchissement des symboles et des propriétés.
 void ZAApp::DoRefreshSymbolsAndProperties()
 {
-    PSS_ProcessModelDocTmpl* m_pDocTmpl = ZAGlobal::GetpProcessModelDocumentTemplate();
+    PSS_ProcessModelDocTmpl* m_pDocTmpl = PSS_Global::GetProcessModelDocumentTemplate();
     POSITION myPosition = m_pDocTmpl->GetFirstDocPosition();
 
     while (myPosition != NULL)
@@ -788,7 +788,7 @@ void ZAApp::DoRefreshSymbolsAndProperties()
 // JMR-MODIF - Le 28 décembre 2006 - Cette fonction ordonne le rafraîchissement des propriétés.
 void ZAApp::DoRefreshProperties()
 {
-    PSS_ProcessModelDocTmpl* m_pDocTmpl = ZAGlobal::GetpProcessModelDocumentTemplate();
+    PSS_ProcessModelDocTmpl* m_pDocTmpl = PSS_Global::GetProcessModelDocumentTemplate();
     POSITION myPosition = m_pDocTmpl->GetFirstDocPosition();
 
     while (myPosition != NULL)
@@ -1554,12 +1554,12 @@ void ZAApp::SetVisualToolObject(const CString& sClassName)
 // Cette fonction effectue les opérations nécessaires à  la création d'un nouveau modèle
 ZDProcessGraphModelDoc* ZAApp::FileNewModel()
 {
-    ASSERT(ZAGlobal::GetpProcessModelDocumentTemplate() != NULL);
+    ASSERT(PSS_Global::GetpProcessModelDocumentTemplate() != NULL);
 
     CWaitCursor Cursor;
 
     ZDProcessGraphModelDoc* pNewFile =
-        (ZDProcessGraphModelDoc*)ZAGlobal::GetpProcessModelDocumentTemplate()->OpenDocumentFile(NULL);
+        (ZDProcessGraphModelDoc*)PSS_Global::GetProcessModelDocumentTemplate()->OpenDocumentFile(NULL);
 
     if (!pNewFile)
     {
@@ -2508,7 +2508,7 @@ void ZAApp::OnFileNewModel()
     FileNewModel();
 
     // Set to the previous file directory
-    ZAGlobal::SetToFileDirectory();
+    PSS_Global::SetToFileDirectory();
 }
 
 // Cette fonction est appelée lorsque l'entrée "Nouveau modèle" doit être mise à jour.
@@ -2520,7 +2520,7 @@ void ZAApp::OnUpdateFileNewModel(CCmdUI* pCmdUI)
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Ouvrir un modèle".
 void ZAApp::OnFileOpenModel()
 {
-    ASSERT(ZAGlobal::GetpProcessModelDocumentTemplate() != NULL);
+    ASSERT(PSS_Global::GetpProcessModelDocumentTemplate() != NULL);
 
     // Prompt the user (with all document templates)
     CString newName;
@@ -2531,7 +2531,7 @@ void ZAApp::OnFileOpenModel()
                           AFX_IDS_OPENFILE,
                           OFN_HIDEREADONLY | OFN_FILEMUSTEXIST,
                           TRUE,
-                          ZAGlobal::GetpProcessModelDocumentTemplate()))
+                          PSS_Global::GetProcessModelDocumentTemplate()))
     {
         // Open cancelled
         return;
@@ -2544,7 +2544,7 @@ void ZAApp::OnFileOpenModel()
     if (pOpenFile != NULL)
     {
         // Add the opened file to recent file list
-        ZAGlobal::GetpProcessModelDocumentTemplate()->AddToRecentFileList(newName);
+        PSS_Global::GetProcessModelDocumentTemplate()->AddToRecentFileList(newName);
 
         // Set the last loaded file
         SetLastLoadedFile(newName);
@@ -2641,7 +2641,7 @@ void ZAApp::OnFileSaveAll()
     if (m_GlobalHistoricValueFilename.IsEmpty() == false)
     {
         // Saves all historic values
-        if (!ZAGlobal::SaveToFileHistoricValue(m_GlobalHistoricValueFilename))
+        if (!PSS_Global::SaveToFileHistoricValue(m_GlobalHistoricValueFilename))
         {
             // Warm the user
             PSS_MsgBox mBox;
@@ -3252,7 +3252,7 @@ void ZAApp::OnUpdateSymbolReassignRules(CCmdUI* pCmdUI)
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport de contrôle".
 void ZAApp::OnGenerateCheckReport()
 {
-    ASSERT(ZAGlobal::GetpReportDocumentTemplate() != NULL);
+    ASSERT(PSS_Global::GetpReportDocumentTemplate() != NULL);
 
 #ifdef _DEBUG
     COleDateTime start = COleDateTime::GetCurrentTime();
@@ -3276,7 +3276,7 @@ void ZAApp::OnGenerateCheckReport()
 
     // Create an empty report document file
     ZDGridReportDocument* pNewFile =
-        (ZDGridReportDocument*)ZAGlobal::GetpReportDocumentTemplate()->OpenDocumentFile(NULL);
+        (ZDGridReportDocument*)PSS_Global::GetReportDocumentTemplate()->OpenDocumentFile(NULL);
 
     if (pNewFile)
     {
@@ -3291,7 +3291,7 @@ void ZAApp::OnGenerateCheckReport()
         s.LoadString(IDS_CHECKREPORT_FILENAME);
         CString fn = file.GetFilePath() + s + file.GetFileTitle();
         CString strFilterExt;
-        ZAGlobal::GetpReportDocumentTemplate()->GetDocString(strFilterExt, CDocTemplate::filterExt);
+        PSS_Global::GetReportDocumentTemplate()->GetDocString(strFilterExt, CDocTemplate::filterExt);
         fn += strFilterExt;
         pNewFile->SetPathName(fn);
 
@@ -3321,7 +3321,7 @@ void ZAApp::OnUpdateGenerateCheckReport(CCmdUI* pCmdUI)
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Mercutio".
 void ZAApp::OnGenerateMercutioReport()
 {
-    ASSERT(ZAGlobal::GetpReportDocumentTemplate() != NULL);
+    ASSERT(PSS_Global::GetpReportDocumentTemplate() != NULL);
 
 #ifdef _DEBUG
     COleDateTime start = COleDateTime::GetCurrentTime();
@@ -3345,7 +3345,7 @@ void ZAApp::OnGenerateMercutioReport()
 
     // Create an empty report document file
     ZDGridReportDocument* pNewFile =
-        (ZDGridReportDocument*)ZAGlobal::GetpReportDocumentTemplate()->OpenDocumentFile(NULL);
+        (ZDGridReportDocument*)PSS_Global::GetReportDocumentTemplate()->OpenDocumentFile(NULL);
 
     if (pNewFile)
     {
@@ -3379,7 +3379,7 @@ void ZAApp::OnGenerateMercutioReport()
                     file.GetFileTitle();
 
                 CString strFilterExt;
-                ZAGlobal::GetpReportDocumentTemplate()->GetDocString(strFilterExt, CDocTemplate::filterExt);
+                PSS_Global::GetReportDocumentTemplate()->GetDocString(strFilterExt, CDocTemplate::filterExt);
                 fn += strFilterExt;
                 pNewFile->SetPathName(fn);
 
@@ -3417,7 +3417,7 @@ void ZAApp::OnUpdateGenerateMercutioReport(CCmdUI* pCmdUI)
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Conceptor".
 void ZAApp::OnGenerateConceptorReport()
 {
-    ASSERT(ZAGlobal::GetpReportDocumentTemplate() != NULL);
+    ASSERT(PSS_Global::GetpReportDocumentTemplate() != NULL);
 
 #ifdef _DEBUG
     COleDateTime start = COleDateTime::GetCurrentTime();
@@ -3441,7 +3441,7 @@ void ZAApp::OnGenerateConceptorReport()
 
     // Create an empty report document file
     ZDGridReportDocument* pNewFile =
-        (ZDGridReportDocument*)ZAGlobal::GetpReportDocumentTemplate()->OpenDocumentFile(NULL);
+        (ZDGridReportDocument*)PSS_Global::GetReportDocumentTemplate()->OpenDocumentFile(NULL);
 
     if (pNewFile)
     {
@@ -3464,7 +3464,7 @@ void ZAApp::OnGenerateConceptorReport()
             s.LoadString(IDS_CONCEPTORREPORT_FILENAME);
             CString fn = file.GetFilePath() + s + file.GetFileTitle();
             CString strFilterExt;
-            ZAGlobal::GetpReportDocumentTemplate()->GetDocString(strFilterExt, CDocTemplate::filterExt);
+            PSS_Global::GetReportDocumentTemplate()->GetDocString(strFilterExt, CDocTemplate::filterExt);
             fn += strFilterExt;
             pNewFile->SetPathName(fn);
 
@@ -3501,7 +3501,7 @@ void ZAApp::OnUpdateGenerateConceptorReport(CCmdUI* pCmdUI)
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Sesterces".
 void ZAApp::OnGenerateSesterceReport()
 {
-    ASSERT(ZAGlobal::GetpReportDocumentTemplate() != NULL);
+    ASSERT(PSS_Global::GetpReportDocumentTemplate() != NULL);
 
 #ifdef _DEBUG
     COleDateTime start = COleDateTime::GetCurrentTime();
@@ -3520,7 +3520,7 @@ void ZAApp::OnGenerateSesterceReport()
 
     // Create an empty report document file
     ZDGridReportDocument* pNewFile =
-        (ZDGridReportDocument*)ZAGlobal::GetpReportDocumentTemplate()->OpenDocumentFile(NULL);
+        (ZDGridReportDocument*)PSS_Global::GetReportDocumentTemplate()->OpenDocumentFile(NULL);
 
     if (pNewFile)
     {
@@ -3534,7 +3534,7 @@ void ZAApp::OnGenerateSesterceReport()
         s.LoadString(IDS_SESTERCES_FILENAME);
         CString fn = file.GetFilePath() + s + file.GetFileTitle();
         CString strFilterExt;
-        ZAGlobal::GetpReportDocumentTemplate()->GetDocString(strFilterExt, CDocTemplate::filterExt);
+        PSS_Global::GetReportDocumentTemplate()->GetDocString(strFilterExt, CDocTemplate::filterExt);
         fn += strFilterExt;
         pNewFile->SetPathName(fn);
 
@@ -3569,7 +3569,7 @@ void ZAApp::OnUpdateGenerateSesterceReport(CCmdUI* pCmdUI)
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Sesterces Unités".
 void ZAApp::OnGenerateSesterceUnitReport()
 {
-    ASSERT(ZAGlobal::GetpReportDocumentTemplate() != NULL);
+    ASSERT(PSS_Global::GetpReportDocumentTemplate() != NULL);
 
 #ifdef _DEBUG
     COleDateTime start = COleDateTime::GetCurrentTime();
@@ -3596,7 +3596,7 @@ void ZAApp::OnGenerateSesterceUnitReport()
 
     // Create an empty report document file
     ZDGridReportDocument* pNewFile =
-        (ZDGridReportDocument*)ZAGlobal::GetpReportDocumentTemplate()->OpenDocumentFile(NULL);
+        (ZDGridReportDocument*)PSS_Global::GetReportDocumentTemplate()->OpenDocumentFile(NULL);
 
     if (pNewFile)
     {
@@ -3611,7 +3611,7 @@ void ZAApp::OnGenerateSesterceUnitReport()
         s.LoadString(IDS_SESTERCESUNIT_FILENAME);
         CString fn = file.GetFilePath() + s + file.GetFileTitle();
         CString strFilterExt;
-        ZAGlobal::GetpReportDocumentTemplate()->GetDocString(strFilterExt, CDocTemplate::filterExt);
+        PSS_Global::GetReportDocumentTemplate()->GetDocString(strFilterExt, CDocTemplate::filterExt);
         fn += strFilterExt;
         pNewFile->SetPathName(fn);
 
@@ -3633,7 +3633,7 @@ void ZAApp::OnGenerateSesterceUnitReport()
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Sesterces Consolidé".
 void ZAApp::OnGenerateSesterceConsolidatedReport()
 {
-    ASSERT(ZAGlobal::GetpReportDocumentTemplate() != NULL);
+    ASSERT(PSS_Global::GetpReportDocumentTemplate() != NULL);
 
 #ifdef _DEBUG
     COleDateTime start = COleDateTime::GetCurrentTime();
@@ -3660,7 +3660,7 @@ void ZAApp::OnGenerateSesterceConsolidatedReport()
 
     // Create an empty report document file
     ZDGridReportDocument* pNewFile =
-        (ZDGridReportDocument*)ZAGlobal::GetpReportDocumentTemplate()->OpenDocumentFile(NULL);
+        (ZDGridReportDocument*)PSS_Global::GetReportDocumentTemplate()->OpenDocumentFile(NULL);
 
     if (pNewFile)
     {
@@ -3675,7 +3675,7 @@ void ZAApp::OnGenerateSesterceConsolidatedReport()
         s.LoadString(IDS_SESTERCESCONSOLIDATED_FILENAME);
         CString fn = file.GetFilePath() + s + file.GetFileTitle();
         CString strFilterExt;
-        ZAGlobal::GetpReportDocumentTemplate()->GetDocString(strFilterExt, CDocTemplate::filterExt);
+        PSS_Global::GetReportDocumentTemplate()->GetDocString(strFilterExt, CDocTemplate::filterExt);
         fn += strFilterExt;
         pNewFile->SetPathName(fn);
 
@@ -3698,7 +3698,7 @@ void ZAApp::OnGenerateSesterceConsolidatedReport()
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Prestations".
 void ZAApp::OnGeneratePrestationsReport()
 {
-    ASSERT(ZAGlobal::GetpReportDocumentTemplate() != NULL);
+    ASSERT(PSS_Global::GetpReportDocumentTemplate() != NULL);
 
 #ifdef _DEBUG
     COleDateTime start = COleDateTime::GetCurrentTime();
@@ -3725,7 +3725,7 @@ void ZAApp::OnGeneratePrestationsReport()
 
     // Create an empty report document file
     ZDGridReportDocument* pNewFile =
-        (ZDGridReportDocument*)ZAGlobal::GetpReportDocumentTemplate()->OpenDocumentFile(NULL);
+        (ZDGridReportDocument*)PSS_Global::GetReportDocumentTemplate()->OpenDocumentFile(NULL);
 
     if (pNewFile)
     {
@@ -3743,7 +3743,7 @@ void ZAApp::OnGeneratePrestationsReport()
 
         CString fn = file.GetFilePath() + s + file.GetFileTitle();
 
-        ZAGlobal::GetpReportDocumentTemplate()->GetDocString(strFilterExt, CDocTemplate::filterExt);
+        PSS_Global::GetReportDocumentTemplate()->GetDocString(strFilterExt, CDocTemplate::filterExt);
 
         fn += strFilterExt;
 

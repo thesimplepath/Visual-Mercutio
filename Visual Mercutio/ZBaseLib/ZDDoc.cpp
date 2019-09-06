@@ -40,8 +40,7 @@
 #include "ZIHtmlView.h"
 #include "PSS_Edit.h"
 #include "PSS_DocumentExport.h"
-
-#include "ZAGlobal.h"
+#include "PSS_Global.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -113,7 +112,7 @@ ZDDocument::~ZDDocument()
 
 BOOL ZDDocument::OpenDocument(const char* pszPathName, BOOL bSetLastLoaded)
 {
-    ZAGlobal::SetpCurrentDocumentForSerialization(this);
+    PSS_Global::SetCurrentDocumentForSerialization(this);
 
     CWaitCursor Cursor;
 
@@ -143,7 +142,7 @@ BOOL ZDDocument::OpenDocument(const char* pszPathName, BOOL bSetLastLoaded)
         ReplaceCalculatedFields();
     }
 
-    if (!ZAGlobal::OpenFileInSilentMode())
+    if (!PSS_Global::OpenFileInSilentMode())
     {
         CalculateAllFormula(GetMainView(), TRUE);
 
@@ -1228,7 +1227,7 @@ void ZDDocument::OnCloseDocument()
 {
     PSS_BaseDocument::OnCloseDocument();
 
-    if (!ZAGlobal::OpenFileInSilentMode())
+    if (!PSS_Global::OpenFileInSilentMode())
     {
         // Notify the framework, that this file is closed
         AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTHASBEENSELECTED, 0, (LPARAM)NULL);
@@ -1556,9 +1555,9 @@ BOOL ZDDocument::InsertDocumentAfter(const CString    FileName,
                                      int            PropagateValue)
 {
     // Set silent mode before opening the file
-    ZAGlobal::SetOpenFileInSilentMode();
+    PSS_Global::SetOpenFileInSilentMode();
 
-    ZDDocument* p_NewDocument = (ZDDocument*)ZAGlobal::GetpDocTemplate()->OpenDocumentFile((const char*)FileName);
+    ZDDocument* p_NewDocument = (ZDDocument*)PSS_Global::GetDocTemplate()->OpenDocumentFile((const char*)FileName);
 
     if (!p_NewDocument)
     {
@@ -1590,7 +1589,7 @@ BOOL ZDDocument::InsertDocumentAfter(const CString    FileName,
     p_NewDocument->OnCloseDocument();
 
     // Set back silent mode after having opened the file
-    ZAGlobal::SetOpenFileInSilentMode(FALSE);
+    PSS_Global::SetOpenFileInSilentMode(FALSE);
 
     // It is important to initialize all object pointers again.
     InitializeAllObjectPointers();
@@ -1601,7 +1600,7 @@ BOOL ZDDocument::InsertDocumentAfter(const CString    FileName,
     SetModifiedFlag(TRUE);
 
     // Set to the previous file directory
-    ZAGlobal::SetToFileDirectory();
+    PSS_Global::SetToFileDirectory();
 
     // Advise the frame that the file list has changed
     FileListHasChanged();
@@ -1665,7 +1664,7 @@ BOOL ZDDocument::InsertExternalDocumentAfter(const CString    FileName,
     SetModifiedFlag(TRUE);
 
     // Set to the previous file directory
-    ZAGlobal::SetToFileDirectory();
+    PSS_Global::SetToFileDirectory();
 
     // Advise the frame that the file list has changed
     FileListHasChanged();
@@ -1740,7 +1739,7 @@ BOOL ZDDocument::InsertBinaryDocumentAfter(const CString    FileName,
     SetModifiedFlag(TRUE);
 
     // Set to the previous file directory
-    ZAGlobal::SetToFileDirectory();
+    PSS_Global::SetToFileDirectory();
 
     // Create all file for all file buffered
     CreateAllTemporaryFileFromBuffer();
@@ -1820,7 +1819,7 @@ BOOL ZDDocument::InsertExternalBinaryDocumentAfter(const CString    FileName,
     SetModifiedFlag(TRUE);
 
     // Set to the previous file directory
-    ZAGlobal::SetToFileDirectory();
+    PSS_Global::SetToFileDirectory();
 
     // Advise the frame that the file list has changed
     FileListHasChanged();
@@ -1881,7 +1880,7 @@ BOOL ZDDocument::InsertURLAfter(const CString URL, int IndexAfter)
     SetModifiedFlag(TRUE);
 
     // Set to the previous file directory
-    ZAGlobal::SetToFileDirectory();
+    PSS_Global::SetToFileDirectory();
 
     // Advise the frame that the file list has changed
     FileListHasChanged();
@@ -2899,7 +2898,7 @@ CString ZDDocument::GetAutomaticNewName(PlanFinObject* pObj, int DocumentIndex)
     {
         return pDocData->BuildAutomaticNewName(_T("Bmp"));
     }
-    else if (pObj->IsKindOf(RUNTIME_CLASS(PLFNGraphic)))
+    else if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNGraphic)))
     {
         return pDocData->BuildAutomaticNewName(_T("Ascii"));
     }

@@ -9,7 +9,7 @@
 #include "PSS_PublishModelToHTML.h"
 
 // processsoft
-#include "zBaseLib\ZAGlobal.h"
+#include "zBaseLib\PSS_Global.h"
 #include "zBaseLib\ZUFileLauncher.h"
 #include "zResMgr\PSS_ResourceManager.h"
 #include "zProperty\ZBPropertyAttributes.h"
@@ -78,7 +78,7 @@ bool PSS_PublishModelToHTML::ExportModelToHTMLFile(ZDProcessGraphModelDoc*  pDoc
                                                publishModel.GetImageFilename(),
                                                publishModel.GetHyperLink(),
                                                pDC,
-                                               ZAGlobal::GetServer());
+                                               PSS_Global::GetServer());
 
         // set the new language for generation
         PSS_ResourceManager::ChangeLanguage(publishModel.GetLanguage());

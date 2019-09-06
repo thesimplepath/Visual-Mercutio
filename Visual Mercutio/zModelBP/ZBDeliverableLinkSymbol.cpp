@@ -46,7 +46,7 @@
 #include "zModelBPRes.h"
 
 // Global resources
-#include "zBaseLib\ZAGlobal.h"
+#include "zBaseLib\PSS_Global.h"
 
 #include "zModel\ZVSelectModelSymbolDlg.h"
 
@@ -1800,7 +1800,7 @@ bool ZBDeliverableLinkSymbol::ProcessExtendedInput(ZBProperty&        Property,
     {
         int            i = Property.GetCategoryID() - ZS_BP_PROP_RISK;
         CODModel*    pModel = GetRootModel();
-        CString        CurrencySymbol = ZAGlobal::GetLocaleCurrency();
+        CString        CurrencySymbol = PSS_Global::GetLocaleCurrency();
 
         if (pModel && ISA(pModel, ZDProcessGraphModelMdl))
         {
@@ -2034,7 +2034,7 @@ void ZBDeliverableLinkSymbol::AddRule(const CString Value)
         // Add the value to the history
         CString Key;
         Key.LoadString(IDS_ZS_BP_PROP_RULELST_TITLE);
-        ZAGlobal::GetHistoricValueManager().AddHistoryValue(Key, Value);
+        PSS_Global::GetHistoricValueManager().AddHistoryValue(Key, Value);
 
         // Set the new task string
         SetRuleList(token.GetString());
@@ -2076,7 +2076,7 @@ void ZBDeliverableLinkSymbol::AddTextItem(const CString Value)
         // Add the value to the history
         CString Key;
         Key.LoadString(IDS_ZS_BP_PROP_PROCEDURE_ITMTXTLST_TITLE);
-        ZAGlobal::GetHistoricValueManager().AddHistoryValue(Key, Value);
+        PSS_Global::GetHistoricValueManager().AddHistoryValue(Key, Value);
 
         // Set the new list string
         SetTextItemList(token.GetString());
@@ -2196,7 +2196,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
         return true;
 
     // initialize the Currency symbol with the user local currency symbol defined in the Control Panel
-    CString currencySymbol = ZAGlobal::GetLocaleCurrency();
+    CString currencySymbol = PSS_Global::GetLocaleCurrency();
 
     // FIXME translate comments
     // JMR-MODIF - Le 30 juillet 2007 - Mets à jour le symbole monétaire en fonction de la sélection utilisateur.
@@ -2345,7 +2345,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     // run through all tasks properties, add one to the counter to have always one empty task
     count = GetRuleCount() + 1;
     propTitle.LoadString(IDS_ZS_BP_PROP_RULELST_TITLE);
-    CStringArray* pArrayOfValues = ZAGlobal::GetHistoricValueManager().GetFieldHistory(propTitle);
+    CStringArray* pArrayOfValues = PSS_Global::GetHistoricValueManager().GetFieldHistory(propTitle);
 
     propName.LoadString(IDS_Z_RULE_LIST_NAME);
     propDesc.LoadString(IDS_Z_RULE_LIST_DESC);
@@ -2562,11 +2562,11 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                riskName,
                                (groupValue ? Z_RISK_ACTION : (Z_RISK_ACTION + (i * _MaxRisksSize))),
                                riskDesc,
-                               (GetRiskAction(i) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo()),
+                               (GetRiskAction(i) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo()),
                                ZBProperty::PT_COMBO_STRING_READONLY,
                                TRUE,
                                ZBStringFormat(ZBStringFormat::General),
-                               ZAGlobal::GetArrayYesNo());
+                               PSS_Global::GetArrayYesNo());
 
         propSet.Add(pRisk);
     }
@@ -2581,7 +2581,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     // run through all text items property, add one to the counter to have always one empty item
     count = GetTextItemCount() + 1;
     propTitle.LoadString(IDS_ZS_BP_PROP_PROCEDURE_ITMTXTLST_TITLE);
-    pArrayOfValues = ZAGlobal::GetHistoricValueManager().GetFieldHistory(propTitle);
+    pArrayOfValues = PSS_Global::GetHistoricValueManager().GetFieldHistory(propTitle);
 
     propName.LoadString(IDS_Z_TEXTITEM_LIST_NAME);
     propDesc.LoadString(IDS_Z_TEXTITEM_LIST_DESC);
@@ -2864,7 +2864,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
 
     propSet.Add(pPropQty);
 
-    sValue = GetLockQuantityYear() ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+    sValue = GetLockQuantityYear() ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo();
 
     if (numericValue)
         // FIXME translate comments
@@ -2887,11 +2887,11 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   true, // Enable
                                   ZBStringFormat(ZBStringFormat::General),
-                                  ZAGlobal::GetArrayYesNo());
+                                  PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
 
-    sValue = GetForceEqualizer() ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+    sValue = GetForceEqualizer() ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo();
 
     if (numericValue)
         // FIXME translate comments
@@ -2914,7 +2914,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   true, // Enable
                                   ZBStringFormat(ZBStringFormat::General),
-                                  ZAGlobal::GetArrayYesNo());
+                                  PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
 
@@ -2932,7 +2932,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
     propSet.Add(pPropQty);
 
     // todo FIXME -cImprovement -oJean: 12x the same code for each month of the year... Please create a function!
-    sValue = GetLockQuantityJanuary() ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+    sValue = GetLockQuantityJanuary() ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo();
 
     if (numericValue)
         // FIXME translate comments
@@ -2955,7 +2955,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
                                   ZBStringFormat(ZBStringFormat::General),
-                                  ZAGlobal::GetArrayYesNo());
+                                  PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
 
@@ -2972,7 +2972,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
 
     propSet.Add(pPropQty);
 
-    sValue = GetLockQuantityFebruary() ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+    sValue = GetLockQuantityFebruary() ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo();
 
     if (numericValue)
         // FIXME translate comments
@@ -2995,7 +2995,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
                                   ZBStringFormat(ZBStringFormat::General),
-                                  ZAGlobal::GetArrayYesNo());
+                                  PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
 
@@ -3012,7 +3012,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
 
     propSet.Add(pPropQty);
 
-    sValue = GetLockQuantityMarch() ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+    sValue = GetLockQuantityMarch() ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo();
 
     if (numericValue)
         // FIXME translate comments
@@ -3035,7 +3035,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
                                   ZBStringFormat(ZBStringFormat::General),
-                                  ZAGlobal::GetArrayYesNo());
+                                  PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
 
@@ -3052,7 +3052,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
 
     propSet.Add(pPropQty);
 
-    sValue = GetLockQuantityApril() ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+    sValue = GetLockQuantityApril() ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo();
 
     if (numericValue)
         // FIXME translate comments
@@ -3075,7 +3075,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
                                   ZBStringFormat(ZBStringFormat::General),
-                                  ZAGlobal::GetArrayYesNo());
+                                  PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
 
@@ -3092,7 +3092,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
 
     propSet.Add(pPropQty);
 
-    sValue = GetLockQuantityMay() ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+    sValue = GetLockQuantityMay() ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo();
 
     if (numericValue)
         // FIXME translate comments
@@ -3115,7 +3115,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
                                   ZBStringFormat(ZBStringFormat::General),
-                                  ZAGlobal::GetArrayYesNo());
+                                  PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
 
@@ -3132,7 +3132,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
 
     propSet.Add(pPropQty);
 
-    sValue = GetLockQuantityJune() ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+    sValue = GetLockQuantityJune() ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo();
 
     if (numericValue)
         // FIXME translate comments
@@ -3155,7 +3155,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
                                   ZBStringFormat(ZBStringFormat::General),
-                                  ZAGlobal::GetArrayYesNo());
+                                  PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
 
@@ -3172,7 +3172,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
 
     propSet.Add(pPropQty);
 
-    sValue = GetLockQuantityJuly() ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+    sValue = GetLockQuantityJuly() ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo();
 
     if (numericValue)
         // FIXME translate comments
@@ -3195,7 +3195,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
                                   ZBStringFormat(ZBStringFormat::General),
-                                  ZAGlobal::GetArrayYesNo());
+                                  PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
 
@@ -3212,7 +3212,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
 
     propSet.Add(pPropQty);
 
-    sValue = GetLockQuantityAugust() ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+    sValue = GetLockQuantityAugust() ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo();
 
     if (numericValue)
         // FIXME translate comments
@@ -3235,7 +3235,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
                                   ZBStringFormat(ZBStringFormat::General),
-                                  ZAGlobal::GetArrayYesNo());
+                                  PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
 
@@ -3252,7 +3252,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
 
     propSet.Add(pPropQty);
 
-    sValue = GetLockQuantitySeptember() ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+    sValue = GetLockQuantitySeptember() ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo();
 
     if (numericValue)
         // FIXME translate comments
@@ -3275,7 +3275,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
                                   ZBStringFormat(ZBStringFormat::General),
-                                  ZAGlobal::GetArrayYesNo());
+                                  PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
 
@@ -3292,7 +3292,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
 
     propSet.Add(pPropQty);
 
-    sValue = GetLockQuantityOctober() ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+    sValue = GetLockQuantityOctober() ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo();
 
     if (numericValue)
         // FIXME translate comments
@@ -3315,7 +3315,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
                                   ZBStringFormat(ZBStringFormat::General),
-                                  ZAGlobal::GetArrayYesNo());
+                                  PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
 
@@ -3332,7 +3332,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
 
     propSet.Add(pPropQty);
 
-    sValue = GetLockQuantityNovember() ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+    sValue = GetLockQuantityNovember() ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo();
 
     if (numericValue)
         // FIXME translate comments
@@ -3355,7 +3355,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
                                   ZBStringFormat(ZBStringFormat::General),
-                                  ZAGlobal::GetArrayYesNo());
+                                  PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
 
@@ -3372,7 +3372,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
 
     propSet.Add(pPropQty);
 
-    sValue = GetLockQuantityDecember() ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo();
+    sValue = GetLockQuantityDecember() ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo();
 
     if (numericValue)
         // FIXME translate comments
@@ -3395,7 +3395,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
                                   ZBStringFormat(ZBStringFormat::General),
-                                  ZAGlobal::GetArrayYesNo());
+                                  PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
 
@@ -3648,7 +3648,7 @@ bool ZBDeliverableLinkSymbol::SaveProperties(ZBPropertySet& PropSet)
 
             if (pProp->GetItemID() == Z_RISK_ACTION + (i * _MaxRisksSize))
             {
-                SetRiskAction(i, (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo() ? 1 : 0));
+                SetRiskAction(i, (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo() ? 1 : 0));
             }
         }
     }
@@ -3825,7 +3825,7 @@ bool ZBDeliverableLinkSymbol::SaveProperty(ZBProperty& Property)
 
         if (Property.GetItemID() == Z_RISK_ACTION + (i * _MaxRisksSize))
         {
-            SetRiskAction(i, (Property.GetValueString() == ZAGlobal::GetYesFromArrayYesNo() ? 1 : 0));
+            SetRiskAction(i, (Property.GetValueString() == PSS_Global::GetYesFromArrayYesNo() ? 1 : 0));
         }
     }
     // ************************************************************************************************
@@ -3892,7 +3892,7 @@ void ZBDeliverableLinkSymbol::SavePropertiesToQuantity(ZBPropertySet& Properties
                 pProp->GetItemID() == Z_FORCE_EQUALIZER)
             {
                 m_Quantity.SetValue(pProp->GetItemID(),
-                    (pProp->GetValueString() == ZAGlobal::GetYesFromArrayYesNo()) ? 1 : 0);
+                    (pProp->GetValueString() == PSS_Global::GetYesFromArrayYesNo()) ? 1 : 0);
             }
             else
             {
@@ -4041,79 +4041,79 @@ void ZBDeliverableLinkSymbol::SaveEqualizerToProperties(ZBPropertySet& Propertie
 
             case Z_LOCKED_JANUARY:
             {
-                pProp->SetValueString((m_Quantity.GetLockNumberJanuary() == true) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString((m_Quantity.GetLockNumberJanuary() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
             case Z_LOCKED_FEBRUARY:
             {
-                pProp->SetValueString((m_Quantity.GetLockNumberFebruary() == true) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString((m_Quantity.GetLockNumberFebruary() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
             case Z_LOCKED_MARCH:
             {
-                pProp->SetValueString((m_Quantity.GetLockNumberMarch() == true) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString((m_Quantity.GetLockNumberMarch() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
             case Z_LOCKED_APRIL:
             {
-                pProp->SetValueString((m_Quantity.GetLockNumberApril() == true) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString((m_Quantity.GetLockNumberApril() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
             case Z_LOCKED_MAY:
             {
-                pProp->SetValueString((m_Quantity.GetLockNumberMay() == true) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString((m_Quantity.GetLockNumberMay() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
             case Z_LOCKED_JUNE:
             {
-                pProp->SetValueString((m_Quantity.GetLockNumberJune() == true) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString((m_Quantity.GetLockNumberJune() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
             case Z_LOCKED_JULY:
             {
-                pProp->SetValueString((m_Quantity.GetLockNumberJuly() == true) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString((m_Quantity.GetLockNumberJuly() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
             case Z_LOCKED_AUGUST:
             {
-                pProp->SetValueString((m_Quantity.GetLockNumberAugust() == true) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString((m_Quantity.GetLockNumberAugust() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
             case Z_LOCKED_SEPTEMBER:
             {
-                pProp->SetValueString((m_Quantity.GetLockNumberSeptember() == true) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString((m_Quantity.GetLockNumberSeptember() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
             case Z_LOCKED_OCTOBER:
             {
-                pProp->SetValueString((m_Quantity.GetLockNumberOctober() == true) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString((m_Quantity.GetLockNumberOctober() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
             case Z_LOCKED_NOVEMBER:
             {
-                pProp->SetValueString((m_Quantity.GetLockNumberNovember() == true) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString((m_Quantity.GetLockNumberNovember() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
             case Z_LOCKED_DECEMBER:
             {
-                pProp->SetValueString((m_Quantity.GetLockNumberDecember() == true) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString((m_Quantity.GetLockNumberDecember() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
 
             case Z_FORCE_EQUALIZER:
             {
-                pProp->SetValueString((m_Quantity.GetForceEqualizer() == true) ? ZAGlobal::GetYesFromArrayYesNo() : ZAGlobal::GetNoFromArrayYesNo());
+                pProp->SetValueString((m_Quantity.GetForceEqualizer() == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo());
                 break;
             }
         }

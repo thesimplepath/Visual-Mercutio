@@ -185,9 +185,9 @@ class ZAApp : public ZAMainApp, public ZBGridAppAdapter
         return TRUE;
     }
 
-    virtual eApplicationType GetApplicationType() const
+    virtual PSS_Global::IEApplicationType GetApplicationType() const
     {
-        return zProcess;
+        return PSS_Global::IE_AT_Process;
     }
 
     // Return true if the system needs to authenticate the user before

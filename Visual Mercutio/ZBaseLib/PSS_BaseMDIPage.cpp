@@ -13,7 +13,7 @@
 #include "ZDDoc.h"
 #include "PSS_DocumentData.h"
 #include "ZIView.h"
-#include "ZAGlobal.h"
+#include "PSS_Global.h"
 #include "ZBCommandObserverMsg.h"
 
 #ifdef _DEBUG
@@ -414,7 +414,7 @@ afx_msg LONG PSS_BaseMDIPage::OnFileListChanged(UINT message, LONG lParam)
     ZDDocument* pDocument = dynamic_cast<ZDDocument*>(GetActiveDocument());
 
     if (!pDocument)
-        pDocument = ZAGlobal::GetpCurrentDocumentForSerialization();
+        pDocument = PSS_Global::GetCurrentDocumentForSerialization();
 
     if (pDocument)
     {
@@ -512,7 +512,7 @@ afx_msg LONG PSS_BaseMDIPage::OnSchemaHasChanged(UINT message, LONG wParam)
     ZDDocument* pDocument = dynamic_cast<ZDDocument*>(GetActiveDocument());
 
     if (!pDocument)
-        pDocument = ZAGlobal::GetpCurrentDocumentForSerialization();
+        pDocument = PSS_Global::GetCurrentDocumentForSerialization();
 
     if (pDocument)
     {

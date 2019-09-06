@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include "ZUStringFormater.h"
 
-#include "ZAGlobal.h"
+#include "PSS_Global.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -178,9 +178,9 @@ CString    ZUStringFormatter::GetFormattedBuffer( double value, ZBStringFormat::
 
 CString    ZUStringFormatter::GetFormattedBuffer( ZBDate& value, ZBStringFormat::FormatType sf /*= ZBStringFormat::Date*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
 {
-    CString DateStr = ZAGlobal::GetDateSeparator( lcid );
+    CString DateStr = PSS_Global::GetDateSeparator( lcid );
     char DateSep = (DateStr.IsEmpty()) ? '/' : DateStr.GetAt(0);
-    CString TimeStr = ZAGlobal::GetTimeSeparator( lcid );
+    CString TimeStr = PSS_Global::GetTimeSeparator( lcid );
     char TimeSep = (TimeStr.IsEmpty()) ? ':' : TimeStr.GetAt(0);
 
     CString s;
@@ -213,7 +213,7 @@ CString    ZUStringFormatter::GetFormattedBuffer( ZBDate& value, ZBStringFormat:
         {
             s.Format( "%d%c%s%c%d %d%c%d", 
                         value.GetDay(), DateSep,
-                        (const char*)ZAGlobal::GetShortMonth( value.GetMonth(), lcid ), DateSep,
+                        (const char*)PSS_Global::GetShortMonth( value.GetMonth(), lcid ), DateSep,
                         value.GetYear(), 
                         value.GetHour(), TimeSep,
                         value.GetMinute() 
@@ -224,7 +224,7 @@ CString    ZUStringFormatter::GetFormattedBuffer( ZBDate& value, ZBStringFormat:
         {
             s.Format( "%d%c%s%c%d %d%c%d%c%d", 
                         value.GetDay(), DateSep,
-                        (const char*)ZAGlobal::GetShortMonth( value.GetMonth(), lcid ), DateSep,
+                        (const char*)PSS_Global::GetShortMonth( value.GetMonth(), lcid ), DateSep,
                         value.GetYear(), 
                         value.GetHour(), TimeSep,
                         value.GetMinute(), TimeSep,
@@ -236,7 +236,7 @@ CString    ZUStringFormatter::GetFormattedBuffer( ZBDate& value, ZBStringFormat:
         {
             s.Format( "%d-%s-%d %d%c%d", 
                         value.GetDay(), 
-                        (const char*)ZAGlobal::GetShortMonth( value.GetMonth(), lcid ),
+                        (const char*)PSS_Global::GetShortMonth( value.GetMonth(), lcid ),
                         value.GetYear(), 
                         value.GetHour(), TimeSep,
                         value.GetMinute() 
@@ -247,7 +247,7 @@ CString    ZUStringFormatter::GetFormattedBuffer( ZBDate& value, ZBStringFormat:
         {
             s.Format( "%d-%s-%d %d%c%d%c%d", 
                         value.GetDay(), 
-                        (const char*)ZAGlobal::GetShortMonth( value.GetMonth(), lcid ),
+                        (const char*)PSS_Global::GetShortMonth( value.GetMonth(), lcid ),
                         value.GetYear(), 
                         value.GetHour(), TimeSep,
                         value.GetMinute(), TimeSep,
@@ -268,7 +268,7 @@ CString    ZUStringFormatter::GetFormattedBuffer( ZBDate& value, ZBStringFormat:
         {
             s.Format( "%d%c%s%c%d", 
                         value.GetDay(), DateSep,
-                        (const char*)ZAGlobal::GetShortMonth( value.GetMonth(), lcid ), DateSep,
+                        (const char*)PSS_Global::GetShortMonth( value.GetMonth(), lcid ), DateSep,
                         value.GetYear()
                     );
             break;
@@ -276,7 +276,7 @@ CString    ZUStringFormatter::GetFormattedBuffer( ZBDate& value, ZBStringFormat:
         case ZBStringFormat::Date2:        // mth-yy
         {
             s.Format( "%s-%d", 
-                        (const char*)ZAGlobal::GetShortMonth( value.GetMonth(), lcid ),
+                        (const char*)PSS_Global::GetShortMonth( value.GetMonth(), lcid ),
                         value.GetYear()
                     );
             break;
@@ -284,7 +284,7 @@ CString    ZUStringFormatter::GetFormattedBuffer( ZBDate& value, ZBStringFormat:
         case ZBStringFormat::Date3:        // month-yy
         {
             s.Format( "%s-%d", 
-                        (const char*)ZAGlobal::GetFullMonth( value.GetMonth(), lcid ),
+                        (const char*)PSS_Global::GetFullMonth( value.GetMonth(), lcid ),
                         value.GetYear()
                     );
             break;
@@ -292,7 +292,7 @@ CString    ZUStringFormatter::GetFormattedBuffer( ZBDate& value, ZBStringFormat:
         case ZBStringFormat::Date4:        // month dd, yy
         {
             s.Format( "%s %d, %d", 
-                        (const char*)ZAGlobal::GetFullMonth( value.GetMonth(), lcid ),
+                        (const char*)PSS_Global::GetFullMonth( value.GetMonth(), lcid ),
                         value.GetDay(),
                         value.GetYear()
                     );
@@ -323,7 +323,7 @@ CString    ZUStringFormatter::GetFormattedBuffer( ZBDate& value, ZBStringFormat:
 
 CString    ZUStringFormatter::GetFormattedBuffer( ZBTimeSpan& value, ZBStringFormat::FormatType sf /*= ZBStringFormat::Time*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
 {
-    CString TimeStr = ZAGlobal::GetTimeSeparator( lcid );
+    CString TimeStr = PSS_Global::GetTimeSeparator( lcid );
     char TimeSep = (TimeStr.IsEmpty()) ? ':' : TimeStr.GetAt(0);
 
     CString s;
@@ -374,7 +374,7 @@ CString    ZUStringFormatter::GetFormattedBuffer( ZBTimeSpan& value, ZBStringFor
 
 CString    ZUStringFormatter::GetFormattedBuffer( ZBDuration& value, ZBStringFormat::FormatType sf /*= ZBStringFormat::Duration*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
 {
-    CString TimeStr = ZAGlobal::GetTimeSeparator( lcid );
+    CString TimeStr = PSS_Global::GetTimeSeparator( lcid );
     char TimeSep = (TimeStr.IsEmpty()) ? ':' : TimeStr.GetAt(0);
 
     CString s;
@@ -403,7 +403,7 @@ CString    ZUStringFormatter::GetFormattedBuffer( ZBDuration& value, ZBStringFor
         {
             s.Format( "%d%s %02d%c%02d%c%02d", 
                         value.GetDays(), 
-                        (const char*)ZAGlobal::GetDayShortPrefix( lcid ),
+                        (const char*)PSS_Global::GetDayShortPrefix( lcid ),
                         value.GetHours(), TimeSep,
                         value.GetMinutes(), TimeSep,
                         value.GetSeconds()
@@ -414,7 +414,7 @@ CString    ZUStringFormatter::GetFormattedBuffer( ZBDuration& value, ZBStringFor
         {
             s.Format( "%d%s %02d%c%02d%c%02d", 
                         value.GetDays(), 
-                        (const char*)ZAGlobal::GetDayShortPrefix( lcid ),
+                        (const char*)PSS_Global::GetDayShortPrefix( lcid ),
                         value.GetHours(), TimeSep,
                         value.GetMinutes(), TimeSep,
                         value.GetSeconds()
@@ -425,7 +425,7 @@ CString    ZUStringFormatter::GetFormattedBuffer( ZBDuration& value, ZBStringFor
         {
             s.Format( "%d %s %02d%c%02d%c%02d", 
                         value.GetDays(), 
-                        (const char*)ZAGlobal::GetDayPrefix( lcid ),
+                        (const char*)PSS_Global::GetDayPrefix( lcid ),
                         value.GetHours(), TimeSep,
                         value.GetMinutes(), TimeSep,
                         value.GetSeconds()
@@ -436,7 +436,7 @@ CString    ZUStringFormatter::GetFormattedBuffer( ZBDuration& value, ZBStringFor
         {
             s.Format( "%d%s %02d%c%02d%c%02d", 
                         value.GetDays(),
-                        (const char*)ZAGlobal::GetDayShortPrefix( lcid ),
+                        (const char*)PSS_Global::GetDayShortPrefix( lcid ),
                         value.GetHours(), TimeSep,
                         value.GetMinutes(), TimeSep,
                         value.GetSeconds()
@@ -449,7 +449,7 @@ CString    ZUStringFormatter::GetFormattedBuffer( ZBDuration& value, ZBStringFor
             {
                 s.Format( "%d%s %02d%c%02d%c%02d", 
                             value.GetDays(),
-                            (const char*)ZAGlobal::GetDayShortPrefix( lcid ),
+                            (const char*)PSS_Global::GetDayShortPrefix( lcid ),
                             value.GetHours(), TimeSep,
                             value.GetMinutes(), TimeSep,
                             value.GetSeconds()
@@ -460,7 +460,7 @@ CString    ZUStringFormatter::GetFormattedBuffer( ZBDuration& value, ZBStringFor
             {
                 s.Format( "%d%s %02d%c%02d", 
                             value.GetDays(),
-                            (const char*)ZAGlobal::GetDayShortPrefix( lcid ),
+                            (const char*)PSS_Global::GetDayShortPrefix( lcid ),
                             value.GetHours(), TimeSep,
                             value.GetMinutes()
                         );
@@ -470,16 +470,16 @@ CString    ZUStringFormatter::GetFormattedBuffer( ZBDuration& value, ZBStringFor
             {
                 s.Format( "%d%s %02d%s", 
                             value.GetDays(),
-                            (const char*)ZAGlobal::GetDayShortPrefix( lcid ),
+                            (const char*)PSS_Global::GetDayShortPrefix( lcid ),
                             value.GetHours(),
-                            (const char*)ZAGlobal::GetHourShortPrefix( lcid )
+                            (const char*)PSS_Global::GetHourShortPrefix( lcid )
                         );
             }
             else
             {
                 s.Format( "%d%s", 
                             value.GetDays(),
-                            (const char*)ZAGlobal::GetDayShortPrefix( lcid )
+                            (const char*)PSS_Global::GetDayShortPrefix( lcid )
                         );
             }
             break;
@@ -490,7 +490,7 @@ CString    ZUStringFormatter::GetFormattedBuffer( ZBDuration& value, ZBStringFor
             {
                 s.Format( "%d %s %02d%c%02d%c%02d", 
                             value.GetDays(),
-                            (const char*)ZAGlobal::GetDayPrefix( lcid ),
+                            (const char*)PSS_Global::GetDayPrefix( lcid ),
                             value.GetHours(), TimeSep,
                             value.GetMinutes(), TimeSep,
                             value.GetSeconds()
@@ -501,7 +501,7 @@ CString    ZUStringFormatter::GetFormattedBuffer( ZBDuration& value, ZBStringFor
             {
                 s.Format( "%d %s %02d%c%02d", 
                             value.GetDays(),
-                            (const char*)ZAGlobal::GetDayPrefix( lcid ),
+                            (const char*)PSS_Global::GetDayPrefix( lcid ),
                             value.GetHours(), TimeSep,
                             value.GetMinutes()
                         );
@@ -511,16 +511,16 @@ CString    ZUStringFormatter::GetFormattedBuffer( ZBDuration& value, ZBStringFor
             {
                 s.Format( "%d %s %02d %s", 
                             value.GetDays(),
-                            (const char*)ZAGlobal::GetDayPrefix( lcid ),
+                            (const char*)PSS_Global::GetDayPrefix( lcid ),
                             value.GetHours(),
-                            (const char*)ZAGlobal::GetHourPrefix( lcid )
+                            (const char*)PSS_Global::GetHourPrefix( lcid )
                         );
             }
             else
             {
                 s.Format( "%d %s", 
                             value.GetDays(),
-                            (const char*)ZAGlobal::GetDayPrefix( lcid )
+                            (const char*)PSS_Global::GetDayPrefix( lcid )
                         );
             }
         }
@@ -683,9 +683,9 @@ bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, ZBDate& va
     // Convert a date
 
     // Retreive the separators
-    CString DecimalStr = ZAGlobal::GetDecimalSeparator( lcid );
+    CString DecimalStr = PSS_Global::GetDecimalSeparator( lcid );
     char DecimalSep = (DecimalStr.IsEmpty()) ? '.' : DecimalStr.GetAt(0);
-    CString TimeStr = ZAGlobal::GetTimeSeparator( lcid );
+    CString TimeStr = PSS_Global::GetTimeSeparator( lcid );
     char TimeSep = (TimeStr.IsEmpty()) ? '.' : TimeStr.GetAt(0);
 
     // Now parse the string
@@ -723,9 +723,9 @@ bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, ZBTimeSpan
     // RS-MODIF 16.08.2005 prise en charge des secondes
 
     // Retreive the separators
-    //CString DecimalStr = ZAGlobal::GetDecimalSeparator( lcid );
+    //CString DecimalStr = PSS_Global::GetDecimalSeparator( lcid );
     //char DecimalSep = (DecimalStr.IsEmpty()) ? '.' : DecimalStr.GetAt(0);
-    CString TimeStr = ZAGlobal::GetTimeSeparator( lcid );
+    CString TimeStr = PSS_Global::GetTimeSeparator( lcid );
     char TimeSep = (TimeStr.IsEmpty()) ? '.' : TimeStr.GetAt(0);
 
     // Now parse the string
@@ -772,9 +772,9 @@ bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, ZBDuration
     // Convert a duration
 
     // Retreive the separators
-    CString DecimalStr = ZAGlobal::GetDecimalSeparator( lcid );
+    CString DecimalStr = PSS_Global::GetDecimalSeparator( lcid );
     char DecimalSep = (DecimalStr.IsEmpty()) ? '.' : DecimalStr.GetAt(0);
-    CString TimeStr = ZAGlobal::GetTimeSeparator( lcid );
+    CString TimeStr = PSS_Global::GetTimeSeparator( lcid );
     char TimeSep = (TimeStr.IsEmpty()) ? '.' : TimeStr.GetAt(0);
 
     // Now parse the string
@@ -811,14 +811,14 @@ bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, ZBDuration
     // Otherwise, we have prefix to process
 
     // Retreive all prefixes function of the lang id
-    CString MonthPrefix = ZAGlobal::GetMonthPrefix( lcid );
-    CString MonthShortPrefix = ZAGlobal::GetMonthShortPrefix( lcid );
-    CString WeekPrefix = ZAGlobal::GetWeekPrefix( lcid );
-    CString WeekShortPrefix = ZAGlobal::GetWeekShortPrefix( lcid );
-    CString DayPrefix = ZAGlobal::GetDayPrefix( lcid );
-    CString DayShortPrefix = ZAGlobal::GetDayShortPrefix( lcid );
-    CString HourPrefix = ZAGlobal::GetHourPrefix( lcid );
-    CString HourShortPrefix = ZAGlobal::GetHourShortPrefix( lcid );
+    CString MonthPrefix = PSS_Global::GetMonthPrefix( lcid );
+    CString MonthShortPrefix = PSS_Global::GetMonthShortPrefix( lcid );
+    CString WeekPrefix = PSS_Global::GetWeekPrefix( lcid );
+    CString WeekShortPrefix = PSS_Global::GetWeekShortPrefix( lcid );
+    CString DayPrefix = PSS_Global::GetDayPrefix( lcid );
+    CString DayShortPrefix = PSS_Global::GetDayShortPrefix( lcid );
+    CString HourPrefix = PSS_Global::GetHourPrefix( lcid );
+    CString HourShortPrefix = PSS_Global::GetHourShortPrefix( lcid );
 
     // Alpha buffer used to save prefixes
     char szTempAlpha[100];
@@ -1293,7 +1293,7 @@ void ZUStringFormatter::ReplaceDecimalPoint( CString& Buffer, LCID lcid )
         return;
 
     // Retreive decimal separator
-    CString DecimalStr = ZAGlobal::GetDecimalSeparator( lcid );
+    CString DecimalStr = PSS_Global::GetDecimalSeparator( lcid );
     char DecimalSep = (DecimalStr.IsEmpty()) ? '.' : DecimalStr.GetAt(0);
     // Nothing to replace
     if (DecimalSep == '.')
@@ -1314,7 +1314,7 @@ CString ZUStringFormatter::RemoveTrailingZero( CString Buffer, LCID lcid, LPCTST
     char* pFinal = szBuffer;
 
     // Retreive decimal separator
-    CString DecimalStr = ZAGlobal::GetDecimalSeparator( lcid );
+    CString DecimalStr = PSS_Global::GetDecimalSeparator( lcid );
     char DecimalSep = (DecimalStr.IsEmpty()) ? '.' : DecimalStr.GetAt(0);
 
 
@@ -1400,9 +1400,9 @@ CString ZUStringFormatter::ConvertBufferToAmountBuffer( CString Buffer, ZBString
         return _T("#too long");
     }
 
-    CString ThousandStr = ZAGlobal::GetThousandSeparator( lcid );
+    CString ThousandStr = PSS_Global::GetThousandSeparator( lcid );
     char ThousandSep = (ThousandStr.IsEmpty()) ? '\'' : ThousandStr.GetAt(0);
-    CString DecimalStr = ZAGlobal::GetDecimalSeparator( lcid );
+    CString DecimalStr = PSS_Global::GetDecimalSeparator( lcid );
     char DecimalSep = (DecimalStr.IsEmpty()) ? '.' : DecimalStr.GetAt(0);
 
     // If negative sign, copy it and move forward
@@ -1460,9 +1460,9 @@ bool ZUStringFormatter::ConvertBufferToNumber( CString sValue, double& value, ZB
         return true;
     }
     // Retreive the separators
-    CString ThousandStr = ZAGlobal::GetThousandSeparator( lcid );
+    CString ThousandStr = PSS_Global::GetThousandSeparator( lcid );
     char ThousandSep = (ThousandStr.IsEmpty()) ? '\'' : ThousandStr.GetAt(0);
-    CString DecimalStr = ZAGlobal::GetDecimalSeparator( lcid );
+    CString DecimalStr = PSS_Global::GetDecimalSeparator( lcid );
     char DecimalSep = (DecimalStr.IsEmpty()) ? '.' : DecimalStr.GetAt(0);
 
 

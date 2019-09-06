@@ -152,7 +152,7 @@ void ZIViewCode::OnDraw(CDC* pDC)
             }
             case E_CT_Graphic:
             {
-                if (obj->IsKindOf(RUNTIME_CLASS(PLFNGraphic)) && obj->IsKindOf(RUNTIME_CLASS(PSS_PLFNBitmap)))
+                if (obj->IsKindOf(RUNTIME_CLASS(PSS_PLFNGraphic)) && obj->IsKindOf(RUNTIME_CLASS(PSS_PLFNBitmap)))
                     obj->DisplayObjectName(pDC);
                 break;
             }

@@ -23,7 +23,7 @@
 #include "zReport\ZVGridView.h"
 #include "zReport\ZCGridGroup.h"
 
-#include "zBaseLib\ZAGlobal.h"
+#include "zBaseLib\PSS_Global.h"
 
 #include "ColorRefDefinition.h"
 

@@ -31,7 +31,7 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(PLFNTwoStates, PLFNGraphic, g_DefVersion)
+IMPLEMENT_SERIAL(PLFNTwoStates, PSS_PLFNGraphic, g_DefVersion)
 //## end module%351388810028.additionalDeclarations
 
 
@@ -80,7 +80,7 @@ PLFNTwoStates::~PLFNTwoStates()
 const PLFNTwoStates & PLFNTwoStates::operator=(const PLFNTwoStates &right)
 {
   //## begin PLFNTwoStates::operator=%.body preserve=yes
-    this->PLFNGraphic::operator=( (inherited&)right );
+    this->PSS_PLFNGraphic::operator=( (inherited&)right );
     m_CheckType = right.m_CheckType;
     m_uSize = right.m_uSize;
     m_bCheckState = right.m_bCheckState;
@@ -99,7 +99,7 @@ const PLFNTwoStates & PLFNTwoStates::operator=(const PLFNTwoStates &right)
 const PLFNTwoStates& PLFNTwoStates::operator = (const PLFNTwoStates* right)
 {
   //## begin PLFNTwoStates::operator =%890472640.body preserve=yes
-    this->PLFNGraphic::operator=( (inherited*)right );
+    this->PSS_PLFNGraphic::operator=( (inherited*)right );
     m_CheckType = right->m_CheckType;
     m_uSize = right->m_uSize;
     m_bCheckState = right->m_bCheckState;
@@ -115,7 +115,7 @@ const PLFNTwoStates& PLFNTwoStates::operator = (const PLFNTwoStates* right)
 void PLFNTwoStates::Serialize (CArchive& ar)
 {
   //## begin PLFNTwoStates::Serialize%890472641.body preserve=yes
-    PLFNGraphic::Serialize(ar);
+    PSS_PLFNGraphic::Serialize(ar);
     if (ar.IsStoring())
     {    // Write the elements
         ar << (DWORD)m_CheckType;

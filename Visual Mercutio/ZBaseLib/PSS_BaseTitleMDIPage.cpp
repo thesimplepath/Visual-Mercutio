@@ -14,7 +14,7 @@
 // processsoft
 #include "ZDDoc.h"
 #include "PSS_DocumentData.h"
-#include "ZAGlobal.h"
+#include "PSS_Global.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -51,7 +51,7 @@ void PSS_BaseTitleMDIPage::ActivateFrame(int cmdShow)
         SECMDIChildWnd::ActivateFrame(cmdShow);
     else
     // the application require to create maximized window?
-    if (ZAGlobal::MaximizeFormOnOpen() && ZAGlobal::IsDuringInitialization())
+    if (PSS_Global::MaximizeFormOnOpen() && PSS_Global::IsDuringInitialization())
         // open maximized
         SECMDIChildWnd::ActivateFrame(SW_SHOWMAXIMIZED);
     else

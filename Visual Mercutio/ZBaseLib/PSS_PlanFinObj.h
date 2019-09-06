@@ -44,7 +44,7 @@
 #include "PSS_PLFNAscii.h"
 #include "ZAText.h"
 #include "ZAString.h"
-#include "ZAGraphc.h"
+#include "PSS_PLFNGraphic.h"
 #include "PSS_Formula.h"
 #include "ZBPoint.h"
 #include "ZBDate.h"
@@ -63,12 +63,12 @@
 * Financial plan containing a rectangle
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PLFNRect : public PLFNGraphic
+class AFX_EXT_CLASS PSS_PLFNRect : public PSS_PLFNGraphic
 {
     DECLARE_SERIAL(PSS_PLFNRect)
 
     public:
-        typedef PLFNGraphic inherited;
+        typedef PSS_PLFNGraphic inherited;
 
         /**
         * Constructor
@@ -226,12 +226,12 @@ inline UINT PSS_PLFNRect::GetPropertyTabs() const
 * Financial plan containing a line
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PLFNLine : public PLFNGraphic
+class AFX_EXT_CLASS PSS_PLFNLine : public PSS_PLFNGraphic
 {
     DECLARE_SERIAL(PSS_PLFNLine)
 
     public:
-        typedef PLFNGraphic inherited;
+        typedef PSS_PLFNGraphic inherited;
 
         PSS_PLFNLine();
 

@@ -39,10 +39,9 @@
 #include "ZVInputAttributesSelectionDlg.h"
 #include "ZVRiskCalculateParametersDlg.h"
 #include "ZUCalculateRisks.h"
+#include "zBaseLib\PSS_Global.h"
 
-// JMR-MODIF - Le 30 juillet 2007 - Ajout de l'en-tête ZAGlobal.h
-#include "zBaseLib\ZAGlobal.h"
-
+// resources
 #include "zModelBPRes.h"
 #include "zModel\zModelRes.h"
 
@@ -1401,7 +1400,7 @@ void ZDProcessGraphModelControllerBP::OnUpdateRecalculateModelDurations( CCmdUI*
 void ZDProcessGraphModelControllerBP::OnCalculateRisks()
 {
     CODModel*    pModel            = GetRootModel();
-    CString        CurrencySymbol    = ZAGlobal::GetLocaleCurrency();
+    CString        CurrencySymbol    = PSS_Global::GetLocaleCurrency();
 
     if ( pModel && ISA( pModel, ZDProcessGraphModelMdl ) )
     {

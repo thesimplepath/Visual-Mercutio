@@ -10,7 +10,7 @@
 #include "ZVRiskOptionsDlg.h"
 
 // processsoft
-#include "zBaseLib\ZAGlobal.h"
+#include "zBaseLib\PSS_Global.h"
 #include "zMediator\PSS_Application.h"
 #include "ZVRiskModifyDlg.h"
 #include "ZVRiskModifyStaticDlg.h"
