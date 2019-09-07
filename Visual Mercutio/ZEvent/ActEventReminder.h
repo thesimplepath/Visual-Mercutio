@@ -78,8 +78,8 @@ public:
     void            SetActivityDueDate(const COleDateTime time) { m_ActivityDueDate = time; };
     int                SetActivityDueDate(int Y, int Mt, int D, int H, int Mn, int S) { return m_ActivityDueDate.SetDateTime(Y, Mt, D, H, Mn, S); };
     BOOL            SetActivityDueDate(CString value) { return ParseDateTime(m_ActivityDueDate, value); };
-    CString            GetFormatedActivityDueDate() { return m_ActivityDueDate.Format( EventDateFormatString ); };
-    CString            GetFormatedActivityDueDateTime() { return m_ActivityDueDate.Format( EventDateTimeFormatString ); };
+    CString            GetFormattedActivityDueDate() { return m_ActivityDueDate.Format( EventDateFormatString ); };
+    CString            GetFormattedActivityDueDateTime() { return m_ActivityDueDate.Format( EventDateTimeFormatString ); };
 
     // The Process Filename
     CString            GetProcessFilename() const { return m_ProcessFilename; };

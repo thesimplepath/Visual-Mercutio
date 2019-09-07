@@ -110,24 +110,24 @@ class AFX_EXT_CLASS PLFNSquare : public PlanFinObject  //## Inherits: <unnamed>%
       //    Is it an empty field.
       virtual BOOL IsEmpty () const;
 
-      //## Operation: GetFormatedObject%909073221
+      //## Operation: GetFormattedObject%909073221
       //    Format the object with the current object's attributes.
       //## Semantics:
       //    This function return the string
-      //    represented the object formated
+      //    represented the object formatted
       //    with the current format type
       //    this function is virtual
       //    The base function returns an empty string
-      virtual CString GetFormatedObject ();
+      virtual CString GetFormattedObject ();
 
-      //## Operation: ConvertFormatedObject%909073222
+      //## Operation: ConvertFormattedObject%909073222
       //    Convert a formatted object to numeric, date, string, etc.
       //    Returns true if the value has changed.
       //## Semantics:
       //    This function convert the string
       //    and set the object with the right value
       //    For the base class nothing to do
-      virtual BOOL ConvertFormatedObject (const CString& sValue, BOOL bLocateFormat = TRUE, BOOL EmptyWhenZero = FALSE);
+      virtual BOOL ConvertFormattedObject (const CString& sValue, BOOL bLocateFormat = TRUE, BOOL EmptyWhenZero = FALSE);
 
       //## Operation: IsSelected%909073223
       //    Is this object selected.
@@ -138,9 +138,9 @@ class AFX_EXT_CLASS PLFNSquare : public PlanFinObject  //## Inherits: <unnamed>%
       //    right mouse button.
       virtual UINT GetRightSubMenu () const;
 
-      //## Operation: GetUnformatedObject%909073225
-      //    Return an unformated string of the object image.
-      virtual CString GetUnformatedObject ();
+      //## Operation: GetUnformattedObject%909073225
+      //    Return an unformatted string of the object image.
+      virtual CString GetUnformattedObject ();
 
     //## Get and Set Operations for Class Attributes (generated)
 

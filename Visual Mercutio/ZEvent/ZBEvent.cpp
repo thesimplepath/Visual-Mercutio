@@ -122,7 +122,7 @@ ZBEvent&    operator>>( ZBEvent& left, ZIListCtrl& listCtrl )
 {
     int    Index = listCtrl.GetItemCount();
     // Add the event Date
-    listCtrl.InsertItem( Index, left.GetFormatedTimeStamp() );
+    listCtrl.InsertItem( Index, left.GetFormattedTimeStamp() );
     // Add the event type
     listCtrl.SetItem( Index, 1, LVIF_TEXT,
                       left.GetEventIDStr(),

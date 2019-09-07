@@ -195,23 +195,23 @@ class AFX_EXT_CLASS ZBFieldColumnManager : public CObject  //## Inherits: <unnam
       //## Operation: CreateColumnWithHeaderNames%948222394
       //    Create new columns with the header names filled in a
       //    string value array.
-      bool CreateColumnWithHeaderNames (CStringArray& HeaderNames);
+      bool CreateColumnWithHeaderNames (const CStringArray& HeaderNames);
 
       //## Operation: AddRowValues%948222395
       //    Add a complete row values with a string value array.
-      bool AddRowValues (CStringArray& RowValues);
+      bool AddRowValues (const CStringArray& RowValues);
 
       //## Operation: InsertRowValuesAt%948222396
       //    Insert a complete row values at a specific index with a
       //    string value array. If the row already exists, replace
       //    values.
-      bool InsertRowValuesAt (CStringArray& RowValues, size_t RowIndex);
+      bool InsertRowValuesAt (const CStringArray& RowValues, size_t RowIndex);
 
       //## Operation: SetRowValuesAt%948222402
       //    Set a complete row values at a specific index with a
       //    string value array. If the row already exists, replace
       //    values.
-      bool SetRowValuesAt (CStringArray& RowValues, size_t RowIndex);
+      bool SetRowValuesAt (const CStringArray& RowValues, size_t RowIndex);
 
       //## Operation: RemoveColumnValues%948222403
       //    Remove all values of a specific column from the manager.

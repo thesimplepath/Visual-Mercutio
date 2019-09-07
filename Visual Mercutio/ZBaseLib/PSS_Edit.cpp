@@ -11,8 +11,8 @@
 // processsoft
 #include "PSS_PlanFinObj.h"
 #include "ZDDoc.h"
-#include "ZAMStr.h"
-#include "ZAMultiC.h"
+#include "PSS_PLFNMaskString.h"
+#include "PSS_PLFNMultiColumn.h"
 #include "ToolBarx.h"
 
 #ifdef _DEBUG
@@ -265,7 +265,7 @@ void PSS_StrEdit::Create(BOOL                 designerMode,
     // initialize drag & drop facilities
     ZBDragEdit::Init();
 
-    SetWindowText(m_pEditedObj->GetFormatedObject());
+    SetWindowText(m_pEditedObj->GetFormattedObject());
     SetSel(0, -1);
     ShowWindow(SW_SHOW);
     SetFocus();
@@ -280,7 +280,7 @@ void PSS_StrEdit::DestroyEdit()
         CString strTemp;
 
         GetWindowText(strTemp);
-        m_pEditedObj->ConvertFormatedObject(strTemp, FALSE);
+        m_pEditedObj->ConvertFormattedObject(strTemp, FALSE);
 
         // to notify the view that the field changed, pass the adress of the object,
         // thus the routine that proceed the message can know which object has changed
@@ -399,7 +399,7 @@ void PSS_NumEdit::Create(BOOL                 designerMode,
     if (!ZBDragEdit::Create(style, m_Rect, pParentWnd, 0))
         return;
 
-    SetWindowText(m_pEditedObj->GetFormatedObject());
+    SetWindowText(m_pEditedObj->GetFormattedObject());
 
     // initialize drag & drop facilities
     ZBDragEdit::Init();
@@ -421,7 +421,7 @@ void PSS_NumEdit::DestroyEdit()
         if (strTemp.IsEmpty())
             m_pEditedObj->EmptyObject();
         else
-            m_pEditedObj->ConvertFormatedObject(strTemp, FALSE);
+            m_pEditedObj->ConvertFormattedObject(strTemp, FALSE);
 
         if (m_AutoCalculateOption)
             AfxGetMainWnd()->SendMessageToDescendants(ID_CALCULATE_MESSAGE, 0, 0);
@@ -647,7 +647,7 @@ void PSS_TimeEdit::DestroyEdit()
         if (strTemp.IsEmpty())
             m_pEditedObj->EmptyObject();
         else
-            m_pEditedObj->ConvertFormatedObject(strTemp, FALSE);
+            m_pEditedObj->ConvertFormattedObject(strTemp, FALSE);
 
         // to notify the view that the field changed, pass the adress of the object,
         // thus the routine that proceed the message can know which object has changed
@@ -758,7 +758,7 @@ void PSS_StrEditHistoric::Create(BOOL                 designerMode,
 
     ZCIntelliEdit::Initialize(GetArrayOfValues());
 
-    CString str = m_pEditedObj->GetFormatedObject();
+    CString str = m_pEditedObj->GetFormattedObject();
     SetWindowText(str);
 
     SetFocus();
@@ -772,7 +772,7 @@ void PSS_StrEditHistoric::DestroyEdit()
     {
         CString strTemp;
         GetWindowText(strTemp);
-        m_pEditedObj->ConvertFormatedObject(strTemp, FALSE);
+        m_pEditedObj->ConvertFormattedObject(strTemp, FALSE);
 
         // keep the historical changes
         AddToHistoric(strTemp);
@@ -894,7 +894,7 @@ void PSS_NumEditHistoric::Create(BOOL                 designerMode,
 
     ZCIntelliEdit::Initialize(GetArrayOfValues());
 
-    CString str = m_pEditedObj->GetFormatedObject();
+    CString str = m_pEditedObj->GetFormattedObject();
     SetWindowText(str);
 
     SetFocus();
@@ -915,7 +915,7 @@ void PSS_NumEditHistoric::DestroyEdit()
         {
             // keep the historical changes
             AddToHistoric(strTemp);
-            m_pEditedObj->ConvertFormatedObject(strTemp, FALSE);
+            m_pEditedObj->ConvertFormattedObject(strTemp, FALSE);
         }
 
         // notify the application that a number changed
@@ -1132,7 +1132,7 @@ void PSS_MaskEdit::Create(BOOL                 designerMode,
                           BOOL                 autoCalculateOption,
                           BOOL                 goNextEditOption)
 {
-    PLFNMaskString* pMaskString = dynamic_cast<PLFNMaskString*>(m_pEditedObj);
+    PSS_PLFNMaskString* pMaskString = dynamic_cast<PSS_PLFNMaskString*>(m_pEditedObj);
 
     if (!pMaskString)
         return;
@@ -1154,7 +1154,7 @@ void PSS_MaskEdit::Create(BOOL                 designerMode,
     if (!PSS_MaskEditBase::Create(style, m_Rect, pParentWnd, 0))
         return;
 
-    PSS_MaskEditBase::Init(pMaskString->GetMask(), m_pEditedObj->GetUnformatedObject());
+    PSS_MaskEditBase::Init(pMaskString->GetMask(), m_pEditedObj->GetUnformattedObject());
     SetSel(0, -1);
     ShowWindow(SW_SHOW);
     SetFocus();
@@ -1167,7 +1167,7 @@ void PSS_MaskEdit::DestroyEdit()
     if (m_Save)
     {
         CString strTemp = GetData();
-        m_pEditedObj->ConvertFormatedObject(strTemp, FALSE);
+        m_pEditedObj->ConvertFormattedObject(strTemp, FALSE);
 
         // to notify the view that the field changed, pass the adress of the object,
         // thus the routine that proceed the message can know which object has changed
@@ -1259,7 +1259,7 @@ void PSS_MultiColumnEdit::Create(BOOL                 designerMode,
                                  BOOL                 autoCalculateOption,
                                  BOOL                 goNextEditOption)
 {
-    if (!pEditedObj->IsKindOf(RUNTIME_CLASS(PLFNMultiColumn)))
+    if (!pEditedObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNMultiColumn)))
         return;
 
     PreCreateEdit(designerMode,
@@ -1303,7 +1303,7 @@ void PSS_MultiColumnEdit::DestroyEdit()
         CHeaderCtrl* pHeader = GetHeaderCtrl();
         ASSERT(pHeader);
 
-        PLFNMultiColumn* pMultiColumn = dynamic_cast<PLFNMultiColumn*>(m_pEditedObj);
+        PSS_PLFNMultiColumn* pMultiColumn = dynamic_cast<PSS_PLFNMultiColumn*>(m_pEditedObj);
         ASSERT(pMultiColumn);
 
         const int colCount = pHeader->GetItemCount();
@@ -1343,7 +1343,7 @@ void PSS_MultiColumnEdit::OnBeginLabelEdit(int item, int subItem)
 void PSS_MultiColumnEdit::OnEndLabelEdit(LPCSTR pText, int item, int subItem)
 {
     // Set the object value
-    ((PLFNMultiColumn*)m_pEditedObj)->SetColumnRowValue(subItem, item, pText);
+    ((PSS_PLFNMultiColumn*)m_pEditedObj)->SetColumnRowValue(subItem, item, pText);
     m_StartEditCell = false;
 }
 //---------------------------------------------------------------------------
@@ -1390,7 +1390,7 @@ void PSS_MultiColumnEdit::BuildColumns()
     if (m_ColumnsBuilt)
         return;
 
-    PLFNMultiColumn* pMultiColumn = dynamic_cast<PLFNMultiColumn*>(m_pEditedObj);
+    PSS_PLFNMultiColumn* pMultiColumn = dynamic_cast<PSS_PLFNMultiColumn*>(m_pEditedObj);
     ASSERT(pMultiColumn);
 
     if (pMultiColumn->GetColumnCount() > 0)
@@ -1445,7 +1445,7 @@ void PSS_MultiColumnEdit::BuildColumns()
 //---------------------------------------------------------------------------
 void PSS_MultiColumnEdit::FillControl()
 {
-    PLFNMultiColumn* pMultiColumn = dynamic_cast<PLFNMultiColumn*>(m_pEditedObj);
+    PSS_PLFNMultiColumn* pMultiColumn = dynamic_cast<PSS_PLFNMultiColumn*>(m_pEditedObj);
     ASSERT(pMultiColumn);
 
     if (pMultiColumn->GetColumnCount() <= 0)

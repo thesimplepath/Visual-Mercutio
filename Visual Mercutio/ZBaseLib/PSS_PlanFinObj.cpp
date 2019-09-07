@@ -14,7 +14,7 @@
 // processsoft
 #include "ZDDoc.h"
 #include "ZIView.h"
-#include "zamath.h"
+#include "PSS_MathParser.h"
 #include "PSS_DrawFunctions.h"
 
 #ifdef _DEBUG
@@ -471,7 +471,7 @@ BOOL PSS_PLFNTime::IsSelected(const CPoint& point) const
 CString PSS_PLFNTime::GetFormattedObject()
 {
     FormatObject(&m_Time);
-    return GetFormatedBuffer();
+    return GetFormattedBuffer();
 }
 //---------------------------------------------------------------------------
 CString PSS_PLFNTime::GetUnformattedObject()
@@ -482,7 +482,7 @@ CString PSS_PLFNTime::GetUnformattedObject()
     else
         std::sprintf(m_szFormatBuffer, "%d.%d.%04d", m_Time.GetDay(), m_Time.GetMonth(), m_Time.GetYear());
 
-    return GetFormatedBuffer();
+    return GetFormattedBuffer();
 }
 //---------------------------------------------------------------------------
 BOOL PSS_PLFNTime::ConvertFormattedObject(const CString& value, BOOL locateFormat, BOOL emptyWhenZero)
@@ -564,19 +564,19 @@ CStringArray& PSS_PLFNTime::GetFormatChoice() const
 
     tmpTime.SetFormatType(E_FT_Standard);
     tmpTime.FormatObject(&tmpTime.m_Time);
-    m_FormatChoice.Add(CString(tmpTime.GetFormatedBuffer()));
+    m_FormatChoice.Add(CString(tmpTime.GetFormattedBuffer()));
 
     tmpTime.SetFormatType(E_FT_Date);
     tmpTime.FormatObject(&tmpTime.m_Time);
-    m_FormatChoice.Add(CString(tmpTime.GetFormatedBuffer()));
+    m_FormatChoice.Add(CString(tmpTime.GetFormattedBuffer()));
 
     tmpTime.SetFormatType(E_FT_Date1);
     tmpTime.FormatObject(&tmpTime.m_Time);
-    m_FormatChoice.Add(CString(tmpTime.GetFormatedBuffer()));
+    m_FormatChoice.Add(CString(tmpTime.GetFormattedBuffer()));
 
     tmpTime.SetFormatType(E_FT_Date2);
     tmpTime.FormatObject(&tmpTime.m_Time);
-    m_FormatChoice.Add(CString(tmpTime.GetFormatedBuffer()));
+    m_FormatChoice.Add(CString(tmpTime.GetFormattedBuffer()));
 
     return m_FormatChoice;
 }
@@ -681,7 +681,7 @@ void PSS_PLFNTime::DrawObject(CDC* pDC, ZIView* pView)
         // before drawing the object, format it
         FormatObject(&m_Time);
         pDC->SetTextAlign(0);
-        pDC->DrawText(GetFormatedBuffer(), -1, &m_rctObject, GetJustify(pView->GetDocument()));
+        pDC->DrawText(GetFormattedBuffer(), -1, &m_rctObject, GetJustify(pView->GetDocument()));
     }
 
     pDC->SelectObject(pOldFont);
@@ -792,7 +792,7 @@ CString PSS_PLFNLong::GetFormattedObject()
 
     FormatObject(m_Long);
 
-    return GetFormatedBuffer();
+    return GetFormattedBuffer();
 }
 //---------------------------------------------------------------------------
 CString PSS_PLFNLong::GetUnformattedObject()
@@ -802,10 +802,10 @@ CString PSS_PLFNLong::GetUnformattedObject()
 
     std::sprintf(m_szFormatBuffer, "%lf", m_Long);
 
-    return GetFormatedBuffer();
+    return GetFormattedBuffer();
 }
 //---------------------------------------------------------------------------
-BOOL PSS_PLFNLong::ConvertFormatedObject(const CString& value, BOOL locateFormat, BOOL emptyWhenZero)
+BOOL PSS_PLFNLong::ConvertFormattedObject(const CString& value, BOOL locateFormat, BOOL emptyWhenZero)
 {
     if (value.IsEmpty())
     {
@@ -953,42 +953,42 @@ CStringArray& PSS_PLFNLong::GetFormatChoice()
 
     tmpLong.SetFormatType(E_FT_Standard);
     tmpLong.FormatObject(tmpLong.m_Long);
-    m_FormatChoice.Add(CString(tmpLong.GetFormatedBuffer()));
+    m_FormatChoice.Add(CString(tmpLong.GetFormattedBuffer()));
 
     tmpLong.SetFormatType(E_FT_Amount);
     tmpLong.FormatObject(tmpLong.m_Long);
-    m_FormatChoice.Add(CString(tmpLong.GetFormatedBuffer()));
+    m_FormatChoice.Add(CString(tmpLong.GetFormattedBuffer()));
 
     tmpLong.SetFormatType(E_FT_Amount1);
     tmpLong.FormatObject(tmpLong.m_Long);
-    m_FormatChoice.Add(CString(tmpLong.GetFormatedBuffer()));
+    m_FormatChoice.Add(CString(tmpLong.GetFormattedBuffer()));
 
     tmpLong.SetFormatType(E_FT_Amount2);
     tmpLong.FormatObject(tmpLong.m_Long);
-    m_FormatChoice.Add(CString(tmpLong.GetFormatedBuffer()));
+    m_FormatChoice.Add(CString(tmpLong.GetFormattedBuffer()));
 
     tmpLong.SetFormatType(E_FT_Amount1Dash);
     tmpLong.FormatObject(tmpLong.m_Long);
-    m_FormatChoice.Add(CString(tmpLong.GetFormatedBuffer()));
+    m_FormatChoice.Add(CString(tmpLong.GetFormattedBuffer()));
 
     tmpLong.SetFormatType(E_FT_Amount2Dash);
     tmpLong.FormatObject(tmpLong.m_Long);
-    m_FormatChoice.Add(CString(tmpLong.GetFormatedBuffer()));
+    m_FormatChoice.Add(CString(tmpLong.GetFormattedBuffer()));
 
     tmpLong.SetFormatType(E_FT_Amount1DashTrail);
     tmpLong.FormatObject(tmpLong.m_Long);
-    m_FormatChoice.Add(CString(tmpLong.GetFormatedBuffer()));
+    m_FormatChoice.Add(CString(tmpLong.GetFormattedBuffer()));
 
     tmpLong.SetFormatType(E_FT_Amount2DashTrail);
     tmpLong.FormatObject(tmpLong.m_Long);
-    m_FormatChoice.Add(CString(tmpLong.GetFormatedBuffer()));
+    m_FormatChoice.Add(CString(tmpLong.GetFormattedBuffer()));
 
     if (wasEmpty)
         tmpLong.SetValue(0.5845);
 
     tmpLong.SetFormatType(E_FT_Percentage);
     tmpLong.FormatObject(tmpLong.m_Long);
-    m_FormatChoice.Add(CString(tmpLong.GetFormatedBuffer()));
+    m_FormatChoice.Add(CString(tmpLong.GetFormattedBuffer()));
 
     return m_FormatChoice;
 }
@@ -1032,7 +1032,7 @@ void PSS_PLFNLong::Recalculate(ZDDocument* pDoc)
     if (!pFormula)
         return;
 
-    Parser parser;
+    PSS_FormulaParser parser;
     m_Long = parser.StringParser((const char*)pFormula->GetExtractedFormula(), &(pDoc->GetObjectList()));
 
     if (GetRoundedValue() && IsRounded())
@@ -1222,7 +1222,7 @@ void PSS_PLFNLong::DrawObject(CDC* pDC, ZIView* pView)
         FormatObject(m_Long);
 
         pDC->SetTextAlign(0);
-        pDC->DrawText(GetFormatedBuffer(), -1, &m_rctObject, GetJustify(pView->GetDocument()));
+        pDC->DrawText(GetFormattedBuffer(), -1, &m_rctObject, GetJustify(pView->GetDocument()));
     }
 
     pDC->SelectObject(pOldFont);

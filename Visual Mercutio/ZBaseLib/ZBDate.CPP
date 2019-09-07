@@ -90,7 +90,7 @@ ZBDate::~ZBDate()
 {
 }
 
-CString    ZBDate::GetStandardFormatedDate()
+CString    ZBDate::GetStandardFormattedDate()
 {
     if ( IsEmpty() )
     {
@@ -104,7 +104,7 @@ CString    ZBDate::GetStandardFormatedDate()
 #endif
 }
 
-CString ZBDate::GetStandardFormatedDateTime()
+CString ZBDate::GetStandardFormattedDateTime()
 {
     if ( IsEmpty() )
     {
@@ -118,7 +118,7 @@ CString ZBDate::GetStandardFormatedDateTime()
 #endif
 }
 
-CString    ZBDate::GetFormatedDate( UINT nFormatID )
+CString    ZBDate::GetFormattedDate( UINT nFormatID )
 {
     if ( IsEmpty() )
     {
@@ -132,7 +132,7 @@ CString    ZBDate::GetFormatedDate( UINT nFormatID )
 #endif
 }
 
-CString    ZBDate::GetFormatedDate( CString Format )
+CString    ZBDate::GetFormattedDate( CString Format )
 {
     if ( IsEmpty() )
     {

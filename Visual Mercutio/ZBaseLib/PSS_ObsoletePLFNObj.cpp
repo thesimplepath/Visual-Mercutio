@@ -224,7 +224,7 @@ void PSS_PLFNNumbered::DrawObject(CDC* pDC, ZIView* pView)
 
     FormatObject(m_Str);
     pDC->SetTextAlign(0);
-    pDC->DrawText(GetFormatedBuffer(), -1, &m_rctObject, GetJustify(pView->GetDocument()));
+    pDC->DrawText(GetFormattedBuffer(), -1, &m_rctObject, GetJustify(pView->GetDocument()));
 
     pDC->SelectObject(pOldFont);
 
@@ -351,7 +351,7 @@ void PSS_PLFNNumbEdit::DrawObject(CDC* pDC, ZIView* pView)
     {
         FormatObject(m_Str);
         pDC->SetTextAlign(0);
-        pDC->DrawText(GetFormatedBuffer(), -1, &m_rctObject, GetJustify(pView->GetDocument()));
+        pDC->DrawText(GetFormattedBuffer(), -1, &m_rctObject, GetJustify(pView->GetDocument()));
     }
 
     pDC->SelectObject(pOldFont);
@@ -415,7 +415,7 @@ CString PSS_PLFNCalculated::GetFormattedObject()
     else
         FormatObject(m_Long);
 
-    return GetFormatedBuffer();
+    return GetFormattedBuffer();
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNCalculated::Recalculate(ZDDocument* pDoc)
@@ -429,7 +429,7 @@ void PSS_PLFNCalculated::Recalculate(ZDDocument* pDoc)
     if (!pFormula)
         return;
 
-    Parser parser;
+    PSS_FormulaParser parser;
 
     m_Long = parser.StringParser((const char *)pFormula->GetExtractedFormula(), &(pDoc->GetObjectList()));
 }
@@ -646,7 +646,7 @@ void PSS_PLFNNumbNumEdit::DrawObject(CDC* pDC, ZIView* pView)
         FormatObject(m_Long);
 
         pDC->SetTextAlign(0);
-        pDC->DrawText(GetFormatedBuffer(), -1, &m_rctObject, GetJustify(pView->GetDocument()));
+        pDC->DrawText(GetFormattedBuffer(), -1, &m_rctObject, GetJustify(pView->GetDocument()));
     }
 
     pDC->SelectObject(pOldFont);

@@ -623,13 +623,13 @@
                       </Object>
                     </MmPtr>
                     <MmPtr>
-                      <Name>ConvertFormatedObject</Name>
+                      <Name>ConvertFormattedObject</Name>
                       <Object>
                         <MmOperation>
                           <TaggedValues>
                             <Tag>
                               <Key>cpp.signature</Key>
-                              <Value>BOOL ConvertFormatedObject(const CString &amp;sValue, BOOL bLocateFormat = TRUE, BOOL EmptyWhenZero = FALSE)</Value>
+                              <Value>BOOL ConvertFormattedObject(const CString &amp;sValue, BOOL bLocateFormat = TRUE, BOOL EmptyWhenZero = FALSE)</Value>
                             </Tag>
                           </TaggedValues>
                           <IsPolymorphic>1</IsPolymorphic>
@@ -693,13 +693,13 @@
                       </Object>
                     </MmPtr>
                     <MmPtr>
-                      <Name>GetFormatedObject</Name>
+                      <Name>GetFormattedObject</Name>
                       <Object>
                         <MmOperation>
                           <TaggedValues>
                             <Tag>
                               <Key>cpp.signature</Key>
-                              <Value>CString GetFormatedObject()</Value>
+                              <Value>CString GetFormattedObject()</Value>
                             </Tag>
                           </TaggedValues>
                           <IsPolymorphic>1</IsPolymorphic>
@@ -775,13 +775,13 @@
                       </Object>
                     </MmPtr>
                     <MmPtr>
-                      <Name>GetUnformatedObject</Name>
+                      <Name>GetUnformattedObject</Name>
                       <Object>
                         <MmOperation>
                           <TaggedValues>
                             <Tag>
                               <Key>cpp.signature</Key>
-                              <Value>CString GetUnformatedObject()</Value>
+                              <Value>CString GetUnformattedObject()</Value>
                             </Tag>
                           </TaggedValues>
                           <IsPolymorphic>1</IsPolymorphic>
@@ -2425,13 +2425,13 @@
                       </Object>
                     </MmPtr>
                     <MmPtr>
-                      <Name>GetFormatedObject</Name>
+                      <Name>GetFormattedObject</Name>
                       <Object>
                         <MmOperation>
                           <TaggedValues>
                             <Tag>
                               <Key>cpp.signature</Key>
-                              <Value>CString GetFormatedObject()</Value>
+                              <Value>CString GetFormattedObject()</Value>
                             </Tag>
                           </TaggedValues>
                           <IsPolymorphic>1</IsPolymorphic>
@@ -3863,13 +3863,13 @@
                       </Object>
                     </MmPtr>
                     <MmPtr>
-                      <Name>ConvertFormatedObject</Name>
+                      <Name>ConvertFormattedObject</Name>
                       <Object>
                         <MmOperation>
                           <TaggedValues>
                             <Tag>
                               <Key>cpp.signature</Key>
-                              <Value>BOOL ConvertFormatedObject(const CString &amp;sValue, BOOL bLocateFormat = TRUE, BOOL EmptyWhenZero = FALSE )</Value>
+                              <Value>BOOL ConvertFormattedObject(const CString &amp;sValue, BOOL bLocateFormat = TRUE, BOOL EmptyWhenZero = FALSE )</Value>
                             </Tag>
                           </TaggedValues>
                           <IsPolymorphic>1</IsPolymorphic>
@@ -3987,13 +3987,13 @@
                       </Object>
                     </MmPtr>
                     <MmPtr>
-                      <Name>GetFormatedObject</Name>
+                      <Name>GetFormattedObject</Name>
                       <Object>
                         <MmOperation>
                           <TaggedValues>
                             <Tag>
                               <Key>cpp.signature</Key>
-                              <Value>CString GetFormatedObject()</Value>
+                              <Value>CString GetFormattedObject()</Value>
                             </Tag>
                           </TaggedValues>
                           <IsPolymorphic>1</IsPolymorphic>
@@ -4084,13 +4084,13 @@
                       </Object>
                     </MmPtr>
                     <MmPtr>
-                      <Name>GetUnformatedObject</Name>
+                      <Name>GetUnformattedObject</Name>
                       <Object>
                         <MmOperation>
                           <TaggedValues>
                             <Tag>
                               <Key>cpp.signature</Key>
-                              <Value>CString GetUnformatedObject()</Value>
+                              <Value>CString GetUnformattedObject()</Value>
                             </Tag>
                           </TaggedValues>
                           <IsPolymorphic>1</IsPolymorphic>
@@ -4606,13 +4606,13 @@
                       </Object>
                     </MmPtr>
                     <MmPtr>
-                      <Name>GetFormatedObject</Name>
+                      <Name>GetFormattedObject</Name>
                       <Object>
                         <MmOperation>
                           <TaggedValues>
                             <Tag>
                               <Key>cpp.signature</Key>
-                              <Value>CString GetFormatedObject()</Value>
+                              <Value>CString GetFormattedObject()</Value>
                             </Tag>
                           </TaggedValues>
                           <IsPolymorphic>1</IsPolymorphic>
@@ -7504,13 +7504,13 @@
                       </Object>
                     </MmPtr>
                     <MmPtr>
-                      <Name>GetFormatedBuffer</Name>
+                      <Name>GetFormattedBuffer</Name>
                       <Object>
                         <MmOperation>
                           <TaggedValues>
                             <Tag>
                               <Key>cpp.signature</Key>
-                              <Value>const char * GetFormatedBuffer()</Value>
+                              <Value>const char * GetFormattedBuffer()</Value>
                             </Tag>
                           </TaggedValues>
                         </MmOperation>
@@ -7811,13 +7811,13 @@
                       </Object>
                     </MmPtr>
                     <MmPtr>
-                      <Name>ConvertFormatedObject</Name>
+                      <Name>ConvertFormattedObject</Name>
                       <Object>
                         <MmOperation>
                           <TaggedValues>
                             <Tag>
                               <Key>cpp.signature</Key>
-                              <Value>BOOL ConvertFormatedObject(const CString &amp;sValue, BOOL bLocateFormat = TRUE, BOOL EmptyWhenZero = FALSE)</Value>
+                              <Value>BOOL ConvertFormattedObject(const CString &amp;sValue, BOOL bLocateFormat = TRUE, BOOL EmptyWhenZero = FALSE)</Value>
                             </Tag>
                           </TaggedValues>
                           <IsPolymorphic>1</IsPolymorphic>
@@ -7825,13 +7825,13 @@
                       </Object>
                     </MmPtr>
                     <MmPtr>
-                      <Name>GetUnformatedObject</Name>
+                      <Name>GetUnformattedObject</Name>
                       <Object>
                         <MmOperation>
                           <TaggedValues>
                             <Tag>
                               <Key>cpp.signature</Key>
-                              <Value>CString GetUnformatedObject()</Value>
+                              <Value>CString GetUnformattedObject()</Value>
                             </Tag>
                           </TaggedValues>
                           <IsPolymorphic>1</IsPolymorphic>
@@ -7839,13 +7839,13 @@
                       </Object>
                     </MmPtr>
                     <MmPtr>
-                      <Name>GetFormatedObject</Name>
+                      <Name>GetFormattedObject</Name>
                       <Object>
                         <MmOperation>
                           <TaggedValues>
                             <Tag>
                               <Key>cpp.signature</Key>
-                              <Value>CString GetFormatedObject()</Value>
+                              <Value>CString GetFormattedObject()</Value>
                             </Tag>
                           </TaggedValues>
                           <IsPolymorphic>1</IsPolymorphic>

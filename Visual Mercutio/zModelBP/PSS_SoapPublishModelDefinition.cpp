@@ -639,8 +639,8 @@ void PSS_SoapPublishModelDefinition::Publish(int ref, ZBProperty* pProp)
     {
         case ZBProperty::PT_DOUBLE:   s.Format(_T("%g"), pProp->GetValueDouble());                 break;
         case ZBProperty::PT_FLOAT:    s.Format(_T("%f"), pProp->GetValueFloat());                  break;
-        case ZBProperty::PT_DATE:     s = pProp->GetValueDate().GetStandardFormatedDate();         break;
-        case ZBProperty::PT_TIMESPAN: s = pProp->GetValueTimeSpan().GetStandardFormatedTimeSpan(); break;
+        case ZBProperty::PT_DATE:     s = pProp->GetValueDate().GetStandardFormattedDate();         break;
+        case ZBProperty::PT_TIMESPAN: s = pProp->GetValueTimeSpan().GetStandardFormattedTimeSpan(); break;
         case ZBProperty::PT_DURATION: s.Format(_T("%f"), double(pProp->GetValueDuration()));       break;
         default:                      s = pProp->GetValueString();                                 break;
     }

@@ -17,7 +17,7 @@
 #include "PSS_PLFNBitmap.h"
 #include "ZASquare.h"
 #include "ZANumbrd.h"
-#include "ZAMultiC.h"
+#include "PSS_PLFNMultiColumn.h"
 #include "PSS_ObsoletePLFNObj.h"
 #include "PSS_PLFNBackImage.h"
 #include "ZBFldCol.h"
@@ -116,7 +116,7 @@ double PSS_DocumentData::GetObjectValue(char* pName)
     {
         pObj = (PlanFinObject*)m_ObjElements.GetNext(pPosition);
 
-        if (!std::strcmp((const char*)pObj->m_strObjName, pName))
+        if (pObj->CompareByName(pName))
             return(pObj->GetValue());
     }
 
@@ -216,7 +216,7 @@ BOOL PSS_DocumentData::CheckMultiColumnMemberField(PlanFinObject* pObj)
         return FALSE;
 
     // locate the field name
-    PLFNMultiColumn* pMultiColumn = dynamic_cast<PLFNMultiColumn*>(GetObject(fieldName));
+    PSS_PLFNMultiColumn* pMultiColumn = dynamic_cast<PSS_PLFNMultiColumn*>(GetObject(fieldName));
 
     // no object or not a multi-column field, do nothing
     if (!pMultiColumn)
@@ -262,7 +262,7 @@ void PSS_DocumentData::MoveContents(PSS_DocumentData* pDocument, BOOL copyFormat
                     if (copyFormat)
                         pObjDst->SetFormatType(pObjSrc->GetFormatType());
 
-                    pObjDst->ConvertFormatedObject(pObjSrc->GetFormatedObject());
+                    pObjDst->ConvertFormattedObject(pObjSrc->GetFormattedObject());
                 }
 
                 break;
@@ -333,7 +333,7 @@ PlanFinObject* PSS_DocumentData::GetObject(const CString& name)
     {
         pObj = (PlanFinObject*)m_ObjElements.GetNext(pPosition);
 
-        if (pObj && pObj->m_strObjName == name)
+        if (pObj && pObj->GetObjectName() == name)
             return pObj;
     }
 
@@ -391,7 +391,7 @@ BOOL PSS_DocumentData::ObjectExist(const CString& name)
             pObjTemp = (PlanFinObject*)m_ObjElements.GetNext(pPosition);
 
             // if the element has the same, then extract the number
-            if (pObjTemp->m_strObjName == name)
+            if (pObjTemp->GetObjectName() == name)
                 return TRUE;
         }
 
@@ -776,7 +776,7 @@ BOOL PSS_DocumentData::ChangeObjectType(PlanFinObject* pObj,
 
                     // if this object was stored in the formula object list, change it
                     CheckFormulaObject(pObjTemp, pNewObjTemp);
-                    pNewObjTemp->ConvertFormatedObject(finalValue);
+                    pNewObjTemp->ConvertFormattedObject(finalValue);
 
                     // delete the old object
                     if (!DeleteObject(pObjTemp))
@@ -803,7 +803,7 @@ BOOL PSS_DocumentData::ChangeObjectType(PlanFinObject* pObj,
 
     // if this object was stored in the formula object list, change it
     CheckFormulaObject(pObj, pNewObj);
-    pNewObj->ConvertFormatedObject(finalValue);
+    pNewObj->ConvertFormattedObject(finalValue);
 
     // delete the old object
     if (!DeleteObject(pObj))
@@ -824,11 +824,12 @@ CString PSS_DocumentData::BuildAutomaticNewName(const CString& prefix)
     if ((pPosition = m_ObjElements.GetHeadPosition()) != NULL)
         while (pPosition)
         {
-            pObjTemp = (PlanFinObject*)m_ObjElements.GetNext(pPosition);
+            pObjTemp             = (PlanFinObject*)m_ObjElements.GetNext(pPosition);
+            const char* pObjName = pObjTemp->GetObjectName();
 
             // if the same element, extract the number
-            if (!std::strncmp(pObjTemp->m_strObjName, prefix, prefixLength))
-                counter = __max(std::atol((const char*)pObjTemp->m_strObjName + prefixLength), counter);
+            if (!std::strncmp(pObjName, prefix, prefixLength))
+                counter = __max(std::atol(pObjName + prefixLength), counter);
         }
 
     std::sprintf(name, _T("%s%ld"), (const char*)prefix, counter + 1L);
@@ -1068,7 +1069,7 @@ BOOL PSS_DocumentData::AssignObjectValue(const CString& name,
                 }
 
                 // convert the object without changing its format
-                if (pObj->ConvertFormatedObject(value, FALSE, emptyWhenZero))
+                if (pObj->ConvertFormattedObject(value, FALSE, emptyWhenZero))
                 {
                     // send message to notify the change for this object
                     pObj->SetHasBeenChanged(TRUE);
@@ -1271,7 +1272,7 @@ void PSS_DocumentData::PropagateFieldValue(PlanFinObject* pObj)
         member = tokenizer.GetNextToken();
 
         // get row value
-        rowValue = ((ZBFieldColumn*)pObj->GetpColumn())->GetValueRow(pObj->GetUnformatedObject());
+        rowValue = ((ZBFieldColumn*)pObj->GetpColumn())->GetValueRow(pObj->GetUnformattedObject());
     }
 
     PlanFinObject* pTempObj;
@@ -1307,7 +1308,7 @@ void PSS_DocumentData::PropagateFieldValue(PlanFinObject* pObj)
                 if (pTempObj->GetObjectName() == pObj->GetObjectName())
                 {
                     // copy its content
-                    if (pTempObj->ConvertFormatedObject(pObj->GetUnformatedObject(), FALSE))
+                    if (pTempObj->ConvertFormattedObject(pObj->GetUnformattedObject(), FALSE))
                         // if the field contents changed, refresh it
                         if (page == pTempObj->GetObjectPage())
                             if (pView->IsWindowVisible())
@@ -1327,7 +1328,7 @@ void PSS_DocumentData::PropagateFieldValue(PlanFinObject* pObj)
                             const CString currentFieldMember = tokenizer.GetNextToken();
 
                             // locate the multicolumn fieldname
-                            PLFNMultiColumn* pMultiColumn = dynamic_cast<PLFNMultiColumn*>(GetObject(currentFieldName));
+                            PSS_PLFNMultiColumn* pMultiColumn = dynamic_cast<PSS_PLFNMultiColumn*>(GetObject(currentFieldName));
 
                             // no object or not a multi-column field, do nothing
                             if (pMultiColumn)
@@ -1336,7 +1337,7 @@ void PSS_DocumentData::PropagateFieldValue(PlanFinObject* pObj)
                                 ZBFieldColumn* pColumn = pMultiColumn->FindColumn(currentFieldMember);
 
                                 // if the column was found, copy its content
-                                if (pColumn && pTempObj->ConvertFormatedObject(pColumn->GetValueAt(rowValue), FALSE))
+                                if (pColumn && pTempObj->ConvertFormattedObject(pColumn->GetValueAt(rowValue), FALSE))
                                     // if the field contents changed, refresh it
                                     if (page == pTempObj->GetObjectPage())
                                         if (pView->IsWindowVisible())
@@ -1586,7 +1587,7 @@ bool PSS_DocumentData::BuildObjectFieldNameArray()
         if (pObj && !FieldNameExistInObjectArray(pObj->GetObjectName()))
             m_FieldNameArray.Add(pObj->GetObjectName());
 
-        PLFNMultiColumn* pMultiColumn = dynamic_cast<PLFNMultiColumn*>(pObj);
+        PSS_PLFNMultiColumn* pMultiColumn = dynamic_cast<PSS_PLFNMultiColumn*>(pObj);
 
         if (pMultiColumn)
         {
@@ -1830,8 +1831,8 @@ BOOL PSS_DocumentData::CalculateFormula(PSS_Formula* pFormula, CWnd* pWnd, CDC* 
     if (!pFormula)
         return FALSE;
 
-    Parser        parser;
-    PSS_PLFNLong* pField = dynamic_cast<PSS_PLFNLong*>(pFormula->GetResultObject());
+    PSS_FormulaParser parser;
+    PSS_PLFNLong*     pField = dynamic_cast<PSS_PLFNLong*>(pFormula->GetResultObject());
 
     // check if the field is a PLFNLong. The only way to calculate is on calculated fields. Because
     // the user can change the type, it is necessary to test if the keep value is set. If it is set,

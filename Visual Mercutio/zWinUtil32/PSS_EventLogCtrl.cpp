@@ -62,7 +62,7 @@ PSS_EventLogCtrl::~PSS_EventLogCtrl()
         const int index = listCtrl.GetItemCount();
 
         // add the event date
-        listCtrl.InsertItem(index, left.GetFormatedTimeStamp());
+        listCtrl.InsertItem(index, left.GetFormattedTimeStamp());
 
         // add the filename
         listCtrl.SetItem(index, 1, LVIF_TEXT, left.GetFilename(), 0, LVIF_TEXT, LVIF_TEXT, 0);

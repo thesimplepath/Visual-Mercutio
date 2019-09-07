@@ -431,7 +431,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(ZDProcessGraphModelMdl* pModel,
         CString s;
         s.Format(IDS_MODELGENHTML_1,
                  (const char*)pModel->GetAbsolutePath(),
-                 (const char*)ZBDate::GetToday().GetStandardFormatedDate());
+                 (const char*)ZBDate::GetToday().GetStandardFormattedDate());
         htmlFile << s;
 
         // build the CSS file name
@@ -910,7 +910,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(ZDProcessGraphModelMdl* pModel,
         // write header
         s.Format(IDS_MODELGENHTML_1,
                  (const char*)pModel->GetAbsolutePath(),
-                 (const char*)ZBDate::GetToday().GetStandardFormatedDate());
+                 (const char*)ZBDate::GetToday().GetStandardFormattedDate());
         printableHtmlFile << s;
 
         s.Format(IDS_MODELGENHTML_16, (const char*)BuildFileNameAndPath(imageFileName, htmlFileName));
@@ -996,7 +996,7 @@ bool PSS_ModelGenerateImageFiles::GenerateIndexPage(ZDProcessGraphModelMdl* pMod
         // write header
         s.Format(IDS_MODELGENHTML_1,
                  (const char*)pModel->GetAbsolutePath(),
-                 (const char*)ZBDate::GetToday().GetStandardFormatedDate());
+                 (const char*)ZBDate::GetToday().GetStandardFormattedDate());
         htmlFile << s;
 
         s.Format(IDS_MODELGENHTML_68, (const char*)g_White);
@@ -1576,7 +1576,7 @@ bool PSS_ModelGenerateImageFiles::GenerateBannerPage(ZDProcessGraphModelMdl* pMo
         // write header
         s.Format(IDS_MODELGENHTML_1,
                  (const char*)pModel->GetAbsolutePath(),
-                 (const char*)ZBDate::GetToday().GetStandardFormatedDate());
+                 (const char*)ZBDate::GetToday().GetStandardFormattedDate());
         htmlFile << s;
 
         s.Format(IDS_MODELGENHTML_68, (const char*)g_White);

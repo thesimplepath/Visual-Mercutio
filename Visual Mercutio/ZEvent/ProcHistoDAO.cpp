@@ -420,7 +420,7 @@ long ZDProcessHistoryDAO::FindActivity( long ProcessID, ZBDate& CurrentDate, ZBE
     FindKey += _T( " AND " );
     FindKey += m_pHistoryActivityRecordset->GetDateFieldName();
     FindKey += _T( " = #" );
-    FindKey += CurrentDate.GetFormatedDate( _T( "%m/%d/%Y %H:%M:%S" ) );
+    FindKey += CurrentDate.GetFormattedDate( _T( "%m/%d/%Y %H:%M:%S" ) );
     FindKey += _T( "#" );
 
     FindKey += _T( " AND " );

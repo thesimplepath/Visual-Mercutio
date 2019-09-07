@@ -82,24 +82,24 @@ class AFX_EXT_CLASS PLFNText : public PSS_PLFNAscii
       //    A copy constructor with a pointer.
       const PLFNText& operator = (const PLFNText* right);
 
-      //## Operation: GetFormatedObject%829516158
+      //## Operation: GetFormattedObject%829516158
       //    Format the object with the current object's attributes.
       //## Semantics:
       //    This function return the string
-      //    represented the object formated
+      //    represented the object formatted
       //    with the current format type
       //    this function is virtual
       //    The base function returns an empty string
-      virtual CString GetFormatedObject ();
+      virtual CString GetFormattedObject ();
 
-      //## Operation: ConvertFormatedObject%829516157
+      //## Operation: ConvertFormattedObject%829516157
       //    Convert a formatted object to numeric, date, string, etc.
       //    Returns true if the value has changed.
       //## Semantics:
       //    This function convert the string
       //    and set the object with the right value
       //    For the base class nothing to do
-      virtual BOOL ConvertFormatedObject (const CString& sValue, BOOL bLocateFormat = TRUE, BOOL EmptyWhenZero = FALSE);
+      virtual BOOL ConvertFormattedObject (const CString& sValue, BOOL bLocateFormat = TRUE, BOOL EmptyWhenZero = FALSE);
 
       //## Operation: IsSelected%829516175
       //    Is this object selected.
@@ -122,9 +122,9 @@ class AFX_EXT_CLASS PLFNText : public PSS_PLFNAscii
       //## Operation: CopyObject%863615082
       virtual void CopyObject (PlanFinObject* pSrc);
 
-      //## Operation: GetUnformatedObject%901298463
-      //    Return an unformated string of the object image.
-      virtual CString GetUnformatedObject ();
+      //## Operation: GetUnformattedObject%901298463
+      //    Return an unformatted string of the object image.
+      virtual CString GetUnformattedObject ();
 
     //## Get and Set Operations for Class Attributes (generated)
 

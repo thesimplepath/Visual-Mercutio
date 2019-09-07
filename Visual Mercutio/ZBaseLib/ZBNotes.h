@@ -95,9 +95,9 @@ class AFX_EXT_CLASS ZBNotes : public CObject  //## Inherits: <unnamed>%37E4CC9F0
       //    Clear the note's username.
       void ClearUsername ();
 
-      //## Operation: GetFormatedNotes%937741725
+      //## Operation: GetFormattedNotes%937741725
       //    Return the notes with \r\n char.
-      CString GetFormatedNotes (CRect* pRect = NULL);
+      CString GetFormattedNotes (CRect* pRect = NULL);
 
       //## Operation: operator >>%937741719
       //    Store from the archive to the object Notes.

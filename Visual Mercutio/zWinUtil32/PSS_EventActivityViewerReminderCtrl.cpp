@@ -107,7 +107,7 @@ const PSS_EventActivityViewerReminderCtrl& PSS_EventActivityViewerReminderCtrl::
         listCtrl.SetItem(index, 4, LVIF_TEXT, left.GetRemainingDaysString(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the activity due date
-        listCtrl.SetItem(index, 5, LVIF_TEXT, left.GetFormatedActivityDueDate(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        listCtrl.SetItem(index, 5, LVIF_TEXT, left.GetFormattedActivityDueDate(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the activity status
         listCtrl.SetItem(index, 6, LVIF_TEXT, ZProcess::GetStatusString(left.GetActivityStatus()), 0, LVIF_TEXT, LVIF_TEXT, 0);

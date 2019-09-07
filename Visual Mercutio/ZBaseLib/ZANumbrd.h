@@ -93,24 +93,24 @@ public:
     //    Is it an empty field.
     virtual BOOL IsEmpty() const;
 
-    //## Operation: GetFormatedObject%863604535
+    //## Operation: GetFormattedObject%863604535
     //    Format the object with the current object's attributes.
     //## Semantics:
     //    This function return the string
-    //    represented the object formated
+    //    represented the object formatted
     //    with the current format type
     //    this function is virtual
     //    The base function returns an empty string
-    virtual CString GetFormatedObject();
+    virtual CString GetFormattedObject();
 
-    //## Operation: ConvertFormatedObject%863604536
+    //## Operation: ConvertFormattedObject%863604536
     //    Convert a formatted object to numeric, date, string, etc.
     //    Returns true if the value has changed.
     //## Semantics:
     //    This function convert the string
     //    and set the object with the right value
     //    For the base class nothing to do
-    virtual BOOL ConvertFormatedObject(const CString& sValue, BOOL bLocateFormat = TRUE, BOOL EmptyWhenZero = FALSE);
+    virtual BOOL ConvertFormattedObject(const CString& sValue, BOOL bLocateFormat = TRUE, BOOL EmptyWhenZero = FALSE);
 
     //## Operation: IsSelected%863604537
     //    Is this object selected.
@@ -153,9 +153,9 @@ public:
     //    the user asks for object properties.
     virtual UINT GetPropertyTabs() const;
 
-    //## Operation: GetUnformatedObject%901298462
-    //    Return an unformated string of the object image.
-    virtual CString GetUnformatedObject();
+    //## Operation: GetUnformattedObject%901298462
+    //    Return an unformatted string of the object image.
+    virtual CString GetUnformattedObject();
 
     //## Operation: GetJustify%907408179
     virtual UINT GetJustify(ZDDocument* pDoc) const;

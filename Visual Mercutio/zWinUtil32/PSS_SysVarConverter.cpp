@@ -82,7 +82,7 @@ CString PSS_SysVarConverter::GetVariableContent(const CString& variable)
     {
         ZBDate today;
         today.SetToday();
-        return today.GetStandardFormatedDate();
+        return today.GetStandardFormattedDate();
     }
     else
     if (variable == g_FileName)
@@ -112,19 +112,19 @@ CString PSS_SysVarConverter::GetVariableContent(const CString& variable)
     if (variable == g_CreationDate)
     {
         if (m_pDoc)
-            return ((ZBDate&)m_pDoc->GetDocumentStamp().GetCreationDate()).GetStandardFormatedDate();
+            return ((ZBDate&)m_pDoc->GetDocumentStamp().GetCreationDate()).GetStandardFormattedDate();
     }
     else
     if (variable == g_ModificationDate)
     {
         if (m_pDoc)
-            return ((ZBDate&)m_pDoc->GetDocumentStamp().GetModificationDate()).GetStandardFormatedDate();
+            return ((ZBDate&)m_pDoc->GetDocumentStamp().GetModificationDate()).GetStandardFormattedDate();
     }
     else
     if (variable == g_PublishDate)
     {
         if (m_pDoc)
-            return ((ZBDate&)m_pDoc->GetDocumentStamp().GetPublishDate()).GetStandardFormatedDate();
+            return ((ZBDate&)m_pDoc->GetDocumentStamp().GetPublishDate()).GetStandardFormattedDate();
     }
     else
     if (variable == g_FileVer)

@@ -139,7 +139,7 @@ void PSS_GlobalFieldManager::CopyFieldDefinition(const CString& name, PlanFinObj
         pObj->SethStyle        (pObjectDef->GetObject()->GethStyle());
         pObj->SetEmptyStyle    (pObjectDef->GetObject()->GetEmptyStyle());
         pObj->SetDefaultValue  (pObjectDef->GetObject()->GetDefaultValue());
-        pObj->ConvertFormatedObject(((PlanFinObject*)pObjectDef->GetObject())->GetUnformatedObject());
+        pObj->ConvertFormattedObject(((PlanFinObject*)pObjectDef->GetObject())->GetUnformattedObject());
     }
 }
 //---------------------------------------------------------------------------

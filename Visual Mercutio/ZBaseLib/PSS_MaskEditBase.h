@@ -106,7 +106,7 @@ class AFX_EXT_CLASS PSS_MaskEditBase : public CEdit
         *@param initialData - initial data
         *@return the formatted buffer
         */
-        virtual CString GetFormatedBuffer(const CString& mask, const CString& initialData = "");
+        virtual CString GetFormattedBuffer(const CString& mask, const CString& initialData = "");
 
         /**
         * Sets the prompt char
@@ -170,7 +170,7 @@ class AFX_EXT_CLASS PSS_MaskEditBase : public CEdit
         *@param data - data
         *@return the formatted buffer
         */
-        virtual CString FormatedBuffer(const CString& data) const;
+        virtual CString FormattedBuffer(const CString& data) const;
 
         /**
         * Finds the next char

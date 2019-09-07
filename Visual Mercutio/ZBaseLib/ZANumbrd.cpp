@@ -112,23 +112,23 @@ const PLFNAutoNumbered& PLFNAutoNumbered::operator = (const PLFNAutoNumbered* ri
   //## end PLFNAutoNumbered::operator =%863604533.body
 }
 
-CString PLFNAutoNumbered::GetFormatedObject ()
+CString PLFNAutoNumbered::GetFormattedObject ()
 {
-  //## begin PLFNAutoNumbered::GetFormatedObject%863604535.body preserve=yes
+  //## begin PLFNAutoNumbered::GetFormattedObject%863604535.body preserve=yes
       if (m_pObject)
-          return m_pObject->GetFormatedObject();
+          return m_pObject->GetFormattedObject();
     return "";
-  //## end PLFNAutoNumbered::GetFormatedObject%863604535.body
+  //## end PLFNAutoNumbered::GetFormattedObject%863604535.body
 }
 
-BOOL PLFNAutoNumbered::ConvertFormatedObject (const CString& sValue, BOOL bLocateFormat, BOOL EmptyWhenZero)
+BOOL PLFNAutoNumbered::ConvertFormattedObject (const CString& sValue, BOOL bLocateFormat, BOOL EmptyWhenZero)
 {
-  //## begin PLFNAutoNumbered::ConvertFormatedObject%863604536.body preserve=yes
+  //## begin PLFNAutoNumbered::ConvertFormattedObject%863604536.body preserve=yes
       if (m_pObject)
-          return m_pObject->ConvertFormatedObject( sValue, bLocateFormat, EmptyWhenZero );
+          return m_pObject->ConvertFormattedObject( sValue, bLocateFormat, EmptyWhenZero );
     // Hasn't changed
     return FALSE;
-  //## end PLFNAutoNumbered::ConvertFormatedObject%863604536.body
+  //## end PLFNAutoNumbered::ConvertFormattedObject%863604536.body
 }
 
 void PLFNAutoNumbered::Serialize (CArchive& ar)
@@ -208,13 +208,13 @@ void PLFNAutoNumbered::SizePositionHasChanged ()
   //## end PLFNAutoNumbered::SizePositionHasChanged%863883949.body
 }
 
-CString PLFNAutoNumbered::GetUnformatedObject ()
+CString PLFNAutoNumbered::GetUnformattedObject ()
 {
-  //## begin PLFNAutoNumbered::GetUnformatedObject%901298462.body preserve=yes
+  //## begin PLFNAutoNumbered::GetUnformattedObject%901298462.body preserve=yes
       if (m_pObject)
-          return m_pObject->GetUnformatedObject();
+          return m_pObject->GetUnformattedObject();
     return "";
-  //## end PLFNAutoNumbered::GetUnformatedObject%901298462.body
+  //## end PLFNAutoNumbered::GetUnformattedObject%901298462.body
 }
 
 void PLFNAutoNumbered::SethStyle (HandleStyle value)

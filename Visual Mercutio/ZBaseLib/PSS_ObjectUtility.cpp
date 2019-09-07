@@ -17,8 +17,8 @@
 #include "ZANumbrd.h"
 #include "PSS_PLFNBitmap.h"
 #include "PSS_PLFNCheckBtn.h"
-#include "ZAMStr.h"
-#include "ZAMultiC.h"
+#include "PSS_PLFNMaskString.h"
+#include "PSS_PLFNMultiColumn.h"
 
 //---------------------------------------------------------------------------
 // Global variables
@@ -280,16 +280,16 @@ PlanFinObject* PSS_ObjectUtility::BuildObject(const CString& className)
             break;
 
         case 17:
-            pObj.reset(new PLFNMaskString);
+            pObj.reset(new PSS_PLFNMaskString);
             break;
 
         case 18:
-            pObj.reset(new PLFNMaskString);
-            ((PLFNMaskString*)pObj.get())->SetKeepHistory(TRUE);
+            pObj.reset(new PSS_PLFNMaskString);
+            ((PSS_PLFNMaskString*)pObj.get())->SetKeepHistory(TRUE);
             break;
 
         case 19:
-            pObj.reset(new PLFNMultiColumn);
+            pObj.reset(new PSS_PLFNMultiColumn);
             break;
 
         default:
@@ -391,7 +391,7 @@ std::size_t PSS_ObjectUtility::GetClassNameID(PlanFinObject* pObj)
             resourceID = IDS_MULTITEXT_CLASS;
     }
     else
-    if (pObj->IsKindOf(RUNTIME_CLASS(PLFNMaskString)))
+    if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNMaskString)))
     {
         if (((PLFNString*)pObj)->GetKeepHistory())
             resourceID = IDS_MASKSTRINGHISTO_CLASS;
@@ -433,7 +433,7 @@ std::size_t PSS_ObjectUtility::GetClassNameID(PlanFinObject* pObj)
     if (pObj->IsKindOf(RUNTIME_CLASS(PLFNRadio)))
         resourceID = IDS_RADIO_CLASS;
     else
-    if (pObj->IsKindOf(RUNTIME_CLASS(PLFNMultiColumn)))
+    if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNMultiColumn)))
         resourceID = IDS_MULTICOLUMN_CLASS;
 
     return resourceID;

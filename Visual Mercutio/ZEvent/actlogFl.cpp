@@ -150,7 +150,7 @@ BOOL ZUActivityLogFile::AppendToLog (ZBEventActivity& EventActivity)
     ZBTokenizer    Tokenizer( '\t' );
 
     // The current date
-    Tokenizer.AddToken( CurrentDate.GetStandardFormatedDate() );
+    Tokenizer.AddToken( CurrentDate.GetStandardFormattedDate() );
 
     // The Event type
     Tokenizer.AddToken( EventActivity.GetActivityEventTypeString() );
@@ -171,10 +171,10 @@ BOOL ZUActivityLogFile::AppendToLog (ZBEventActivity& EventActivity)
     Tokenizer.AddToken( EventActivity.GetProcessName() );
 
     // The process start date
-    Tokenizer.AddToken( EventActivity.GetFormatedProcessCreationDate() );
+    Tokenizer.AddToken( EventActivity.GetFormattedProcessCreationDate() );
 
     // The process end date
-    Tokenizer.AddToken( EventActivity.GetFormatedProcessDueDate() );
+    Tokenizer.AddToken( EventActivity.GetFormattedProcessDueDate() );
 
     // The activity type
     Tokenizer.AddToken( EventActivity.GetActivityType() );
@@ -183,10 +183,10 @@ BOOL ZUActivityLogFile::AppendToLog (ZBEventActivity& EventActivity)
     Tokenizer.AddToken( EventActivity.GetActivityName() );
 
     // The activity start date
-    Tokenizer.AddToken( EventActivity.GetFormatedActivityCreationDate() );
+    Tokenizer.AddToken( EventActivity.GetFormattedActivityCreationDate() );
 
     // The activity end date
-    Tokenizer.AddToken( EventActivity.GetFormatedActivityDueDate() );
+    Tokenizer.AddToken( EventActivity.GetFormattedActivityDueDate() );
 
     // The status
       Tokenizer.AddToken( EventActivity.GetActivityStatus() );

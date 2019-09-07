@@ -35,7 +35,7 @@ class ZBFieldColumn;
 //## end module%334FC46302E9.includes
 
 // ZAMath
-#include "ZAMath.h"
+#include "PSS_MathParser.h"
 
 // ZBNotes
 #include "ZBNotes.h"
@@ -113,7 +113,7 @@ const    size_t    PropertyMultiColumn = 3;
 //## Uses: <unnamed>%371399600163;ZBRect { -> }
 //## Uses: <unnamed>%37E4D0E300B2;ZBNotes { -> }
 
-class AFX_EXT_CLASS PlanFinObject : public ObjectParser  //## Inherits: <unnamed>%334FC4610181
+class AFX_EXT_CLASS PlanFinObject : public PSS_FormulaObjectParser
 {
 //## begin PlanFinObject%334FC4610180.initialDeclarations preserve=yes
 protected:
@@ -123,7 +123,7 @@ protected:
 public:
 
     // Inherited feature
-    typedef ObjectParser inherited;
+    typedef PSS_FormulaObjectParser inherited;
 
     //## Constructors (generated)
     PlanFinObject();
@@ -223,28 +223,28 @@ public:
     // Return the value of the object. By default return 0.
     virtual double GetValue() const;
 
-    //## Operation: GetFormatedObject%829516158
+    //## Operation: GetFormattedObject%829516158
     // Format the object with the current object's attributes.
     //## Semantics:
     // This function return the string
-    // represented the object formated
+    // represented the object formatted
     // with the current format type
     // this function is virtual
     // The base function returns an empty string
-    virtual CString GetFormatedObject();
+    virtual CString GetFormattedObject();
 
-    //## Operation: GetUnformatedObject%901298461
-    // Return an unformated string of the object image.
-    virtual CString GetUnformatedObject();
+    //## Operation: GetUnformattedObject%901298461
+    // Return an unformatted string of the object image.
+    virtual CString GetUnformattedObject();
 
-    //## Operation: ConvertFormatedObject%829516157
+    //## Operation: ConvertFormattedObject%829516157
     // Convert a formatted object to numeric, date, string, etc.
     // Returns true if the value has changed.
     //## Semantics:
     // This function convert the string
     // and set the object with the right value
     // For the base class nothing to d
-    virtual BOOL ConvertFormatedObject( const CString&    sValue,
+    virtual BOOL ConvertFormattedObject( const CString&    sValue,
                                         BOOL            bLocateFormat = TRUE,
                                         BOOL            EmptyWhenZero = FALSE );
 
@@ -345,10 +345,10 @@ public:
     // edited.
     virtual BOOL IsHint( CPoint& point ) const;
 
-    //## Operation: GetFormatedBuffer%829516180
-    // Return the formated buffer where operations for
+    //## Operation: GetFormattedBuffer%829516180
+    // Return the Formatted buffer where operations for
     // displayed have been made.
-    const char* GetFormatedBuffer() const;
+    const char* GetFormattedBuffer() const;
 
     //## Operation: DisplayCodeName%829516178
     // Display the code name of the field.
@@ -974,11 +974,11 @@ inline BOOL PlanFinObject::IsHint (CPoint& point) const
   //## end PlanFinObject::IsHint%829516177.body
 }
 
-inline const char* PlanFinObject::GetFormatedBuffer () const
+inline const char* PlanFinObject::GetFormattedBuffer () const
 {
-  //## begin PlanFinObject::GetFormatedBuffer%829516180.body preserve=yes
+  //## begin PlanFinObject::GetFormattedBuffer%829516180.body preserve=yes
       return m_szFormatBuffer;
-  //## end PlanFinObject::GetFormatedBuffer%829516180.body
+  //## end PlanFinObject::GetFormattedBuffer%829516180.body
 }
 
 inline UINT PlanFinObject::GetJustify (ZDDocument* pDoc) const

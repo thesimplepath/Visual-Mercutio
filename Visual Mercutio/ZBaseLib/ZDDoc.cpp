@@ -30,8 +30,8 @@
 #include "PSS_PLFNCheckBtn.h"
 #include "PSS_PLFNBitmap.h"
 #include "ZASquare.h"
-#include "ZAMStr.h"
-#include "ZAMultiC.h"
+#include "PSS_PLFNMaskString.h"
+#include "PSS_PLFNMultiColumn.h"
 #include "ZANumbrd.h"
 #include "PSS_ObsoletePLFNObj.h"
 #include "PSS_MsgBox.h"
@@ -2101,7 +2101,7 @@ BOOL ZDDocument::PropagateExternDocumentAllValues(ZDDocument*    pDoc,
                 }
 
                 if (!PropagateDocumentValue(pObj->GetObjectName(),
-                                            pObj->GetUnformatedObject(),
+                                            pObj->GetUnformattedObject(),
                                             PropagationMode,
                                             EmptyWhenZero,
                                             DocumentIndex,
@@ -2162,7 +2162,7 @@ BOOL ZDDocument::PropagateInternalDocumentAllValues(int    IndexFrom,
                 }
 
                 if (!PropagateDocumentValue(pObj->GetObjectName(),
-                                            pObj->GetUnformatedObject(),
+                                            pObj->GetUnformattedObject(),
                                             PropagationMode,
                                             EmptyWhenZero,
                                             DocumentIndex,
@@ -2223,7 +2223,7 @@ BOOL ZDDocument::PropagateInternalDocumentOnDocumentValues(int        InIndexFro
                 }
 
                 if (!PropagateDocumentValueFromTo(pObj->GetObjectName(),
-                                                  pObj->GetUnformatedObject(),
+                                                  pObj->GetUnformattedObject(),
                                                   PropagationMode,
                                                   EmptyWhenZero,
                                                   ToIndexFrom,
@@ -2779,7 +2779,7 @@ PlanFinObject* ZDDocument::GetEditedObject(BOOL bCheckPage, int DocumentIndex)
 
 void ZDDocument::CreateAutomaticNewName(PlanFinObject* pObj)
 {
-    pObj->m_strObjName = GetAutomaticNewName(pObj);
+    pObj->SetObjectName(GetAutomaticNewName(pObj));
 }
 
 void ZDDocument::CopyObjectToClipBoard(PlanFinObject* pObj)
@@ -2838,7 +2838,7 @@ CString ZDDocument::GetAutomaticNewName(PlanFinObject* pObj, int DocumentIndex)
         ASSERT(FALSE);
         return pDocData->BuildAutomaticNewName(_T("NumbEdt"));
     }
-    else if (pObj->IsKindOf(RUNTIME_CLASS(PLFNMaskString)))
+    else if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNMaskString)))
     {
         if (((PLFNString*)pObj)->GetKeepHistory())
         {
@@ -2902,7 +2902,7 @@ CString ZDDocument::GetAutomaticNewName(PlanFinObject* pObj, int DocumentIndex)
     {
         return pDocData->BuildAutomaticNewName(_T("Ascii"));
     }
-    else if (pObj->IsKindOf(RUNTIME_CLASS(PLFNMultiColumn)))
+    else if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNMultiColumn)))
     {
         return pDocData->BuildAutomaticNewName(_T("MultiC"));
     }

@@ -303,11 +303,11 @@ void PSS_ActivityTaskListCtrl::InsertActivity(ZBaseActivity& activity, bool isCu
         CString text;
 
         // the creation date
-        text = (activity.GetActivityStatus() == ActivityNotStarted ? " - " : ((ZBDate&)activity.GetStartDate()).GetStandardFormatedDate());
+        text = (activity.GetActivityStatus() == ActivityNotStarted ? " - " : ((ZBDate&)activity.GetStartDate()).GetStandardFormattedDate());
         SetItem(index, 4, LVIF_TEXT, text, 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // the due date
-        text = (activity.GetActivityStatus() == ActivityNotStarted ? " - " : ((ZBDate&)activity.GetForecastedEndDate()).GetStandardFormatedDate());
+        text = (activity.GetActivityStatus() == ActivityNotStarted ? " - " : ((ZBDate&)activity.GetForecastedEndDate()).GetStandardFormattedDate());
         SetItem(index, 5, LVIF_TEXT, text, 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         char buffer[50];

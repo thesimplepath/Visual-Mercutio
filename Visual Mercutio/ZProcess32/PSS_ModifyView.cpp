@@ -17,8 +17,8 @@
 #include "zBaseLib\ZASquare.h"
 #include "zBaseLib\PSS_PLFNBoundText.h"
 #include "zBaseLib\PSS_PLFNBitmap.h"
-#include "zBaseLib\ZAMultiC.h"
-#include "zBaseLib\ZAMStr.h"
+#include "zBaseLib\PSS_PLFNMultiColumn.h"
+#include "zBaseLib\PSS_PLFNMaskString.h"
 #include "zBaseLib\PSS_Edit.h"
 #include "zBaseLib\PSS_ObjectUtility.h"
 #include "zBaseLib\PSS_FileDialog.h"
@@ -1280,7 +1280,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         ZIWZFormat dlgWizard(pTemporaryObject, NULL, TRUE);
 
         // initialize variable
-        dlgWizard.SetFieldValue(pTemporaryObject->GetFormatedObject());
+        dlgWizard.SetFieldValue(pTemporaryObject->GetFormattedObject());
 
         if ((result = dlgWizard.DoModal()) == IDCANCEL)
         {
@@ -1292,7 +1292,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         }
 
         // set the changed variable
-        pTemporaryObject->ConvertFormatedObject(dlgWizard.GetFieldValue());
+        pTemporaryObject->ConvertFormattedObject(dlgWizard.GetFieldValue());
 
         // if auto-numbered, pass the pointed object
         if (pAutoNumbered)

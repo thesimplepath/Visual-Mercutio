@@ -90,10 +90,10 @@ public:
     static ZBDate    GetToday() { return  CTime::GetCurrentTime(); };
 #endif
 
-    CString    GetStandardFormatedDate();
-    CString    GetStandardFormatedDateTime();
-    CString    GetFormatedDate( CString Format );
-    CString    GetFormatedDate( UINT nFormatID );
+    CString    GetStandardFormattedDate();
+    CString    GetStandardFormattedDateTime();
+    CString    GetFormattedDate( CString Format );
+    CString    GetFormattedDate( UINT nFormatID );
     void    ClearTime();
 
 #ifdef _WIN32

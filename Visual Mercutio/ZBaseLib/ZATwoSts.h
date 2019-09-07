@@ -98,18 +98,18 @@ public:
     //## Operation: CopyObject%890472643
     virtual void CopyObject(PlanFinObject* pSrc);
 
-    //## Operation: GetUnformatedObject%917858762
-    //    Return an unformated string of the object image.
-    virtual CString GetUnformatedObject();
+    //## Operation: GetUnformattedObject%917858762
+    //    Return an unformatted string of the object image.
+    virtual CString GetUnformattedObject();
 
-    //## Operation: ConvertFormatedObject%917889603
+    //## Operation: ConvertFormattedObject%917889603
     //    Convert a formatted object to numeric, date, string, etc.
     //    Returns true if the value has changed.
     //## Semantics:
     //    This function convert the string
     //    and set the object with the right value
     //    For the base class nothing to d
-    virtual BOOL ConvertFormatedObject(const CString& sValue, BOOL bLocateFormat = TRUE, BOOL EmptyWhenZero = FALSE);
+    virtual BOOL ConvertFormattedObject(const CString& sValue, BOOL bLocateFormat = TRUE, BOOL EmptyWhenZero = FALSE);
 
     //## Get and Set Operations for Class Attributes (generated)
 

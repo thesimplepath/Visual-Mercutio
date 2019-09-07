@@ -153,7 +153,7 @@ const PSS_EventActivityLogCtrl& PSS_EventActivityLogCtrl::operator = (const PSS_
         listCtrl.SetItem(index, 2, LVIF_TEXT, left.GetActivityType(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the event Date
-        listCtrl.SetItem(index, 3, LVIF_TEXT, left.GetFormatedTimeStamp(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        listCtrl.SetItem(index, 3, LVIF_TEXT, left.GetFormattedTimeStamp(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the folder name
         listCtrl.SetItem(index, 4, LVIF_TEXT, left.GetFolderName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
@@ -162,19 +162,19 @@ const PSS_EventActivityLogCtrl& PSS_EventActivityLogCtrl::operator = (const PSS_
         listCtrl.SetItem(index, 5, LVIF_TEXT, left.GetProcessName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the process creation date
-        listCtrl.SetItem(index, 6, LVIF_TEXT, left.GetFormatedProcessCreationDate(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        listCtrl.SetItem(index, 6, LVIF_TEXT, left.GetFormattedProcessCreationDate(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the process due date
-        listCtrl.SetItem(index, 7, LVIF_TEXT, left.GetFormatedProcessDueDate(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        listCtrl.SetItem(index, 7, LVIF_TEXT, left.GetFormattedProcessDueDate(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the activity name
         listCtrl.SetItem(index, 8, LVIF_TEXT, left.GetActivityName(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the activity creation date
-        listCtrl.SetItem(index, 9, LVIF_TEXT, left.GetFormatedActivityCreationDate(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        listCtrl.SetItem(index, 9, LVIF_TEXT, left.GetFormattedActivityCreationDate(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the activity due date
-        listCtrl.SetItem(index, 10, LVIF_TEXT, left.GetFormatedActivityDueDate(), 0, LVIF_TEXT, LVIF_TEXT, 0);
+        listCtrl.SetItem(index, 10, LVIF_TEXT, left.GetFormattedActivityDueDate(), 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // add the sender name
         listCtrl.SetItem(index, 11, LVIF_TEXT, left.GetSender(), 0, LVIF_TEXT, LVIF_TEXT, 0);

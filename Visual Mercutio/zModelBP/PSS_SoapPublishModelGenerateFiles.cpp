@@ -271,7 +271,7 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(ZDProcessGraphModelMdl* p
     // write header
     s.Format(IDS_SOAPMODELGENHTML_1,
              (const char*)pModel->GetAbsolutePath(),                     // model path
-             (const char*)ZBDate::GetToday().GetStandardFormatedDate()); // current date
+             (const char*)ZBDate::GetToday().GetStandardFormattedDate()); // current date
 
     htmlFile << s;
 

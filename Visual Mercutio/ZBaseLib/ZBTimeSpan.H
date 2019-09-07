@@ -63,9 +63,9 @@ public:
     //    Make a clone of the object.
     virtual ZBTimeSpan* Clone();
 
-    CString GetStandardFormatedTimeSpan();
-    CString GetFormatedTimeSpan( CString Format );
-    CString GetFormatedTimeSpan( UINT nFormatID );
+    CString GetStandardFormattedTimeSpan();
+    CString GetFormattedTimeSpan( CString Format );
+    CString GetFormattedTimeSpan( UINT nFormatID );
 
     void    ClearTime();
 };

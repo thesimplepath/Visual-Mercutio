@@ -177,7 +177,7 @@ void PLFNSquare::DrawObject (CDC* pDC, ZIView* pView)
     // If no object defined, nothing to do
       if (!m_pObject)
           return;
-      CString    Str = m_pObject->GetFormatedObject();
+      CString    Str = m_pObject->GetFormattedObject();
     CFont*    pOldFont = pDC->SelectObject( GetFont(pView) );
 
     if (Str.GetLength())
@@ -238,7 +238,7 @@ void PLFNSquare::DrawSquares (CDC* pDC)
     // If no object defined, nothing to do
       if (!m_pObject)
           return;
-      CString    Str = m_pObject->GetFormatedObject();
+      CString    Str = m_pObject->GetFormattedObject();
 
       CPen*    pOldPen = pDC->SelectObject( &PSS_PaintResources::GetBlackPen() );
     // Draw squares only if the length is defined
@@ -275,32 +275,32 @@ void PLFNSquare::CopyObject (PlanFinObject* pSrc)
   //## end PLFNSquare::CopyObject%863615081.body
 }
 
-CString PLFNSquare::GetFormatedObject ()
+CString PLFNSquare::GetFormattedObject ()
 {
-  //## begin PLFNSquare::GetFormatedObject%909073221.body preserve=yes
+  //## begin PLFNSquare::GetFormattedObject%909073221.body preserve=yes
       if (m_pObject)
-          return m_pObject->GetFormatedObject();
+          return m_pObject->GetFormattedObject();
     return "";
-  //## end PLFNSquare::GetFormatedObject%909073221.body
+  //## end PLFNSquare::GetFormattedObject%909073221.body
 }
 
-BOOL PLFNSquare::ConvertFormatedObject (const CString& sValue, BOOL bLocateFormat, BOOL EmptyWhenZero)
+BOOL PLFNSquare::ConvertFormattedObject (const CString& sValue, BOOL bLocateFormat, BOOL EmptyWhenZero)
 {
-  //## begin PLFNSquare::ConvertFormatedObject%909073222.body preserve=yes
+  //## begin PLFNSquare::ConvertFormattedObject%909073222.body preserve=yes
       if (m_pObject)
-          return m_pObject->ConvertFormatedObject( sValue, bLocateFormat, EmptyWhenZero );
+          return m_pObject->ConvertFormattedObject( sValue, bLocateFormat, EmptyWhenZero );
     // Hasn't changed
     return FALSE;
-  //## end PLFNSquare::ConvertFormatedObject%909073222.body
+  //## end PLFNSquare::ConvertFormattedObject%909073222.body
 }
 
-CString PLFNSquare::GetUnformatedObject ()
+CString PLFNSquare::GetUnformattedObject ()
 {
-  //## begin PLFNSquare::GetUnformatedObject%909073225.body preserve=yes
+  //## begin PLFNSquare::GetUnformattedObject%909073225.body preserve=yes
       if (m_pObject)
-          return m_pObject->GetUnformatedObject();
+          return m_pObject->GetUnformattedObject();
     return "";
-  //## end PLFNSquare::GetUnformatedObject%909073225.body
+  //## end PLFNSquare::GetUnformattedObject%909073225.body
 }
 
 // Additional Declarations

@@ -52,10 +52,10 @@ CString PSS_DocumentExport::GetExportedLine(CObject* pObj)
 
     switch (GetSeparatorType())
     {
-        case E_SS_Comma:      lineBuffer.Format("%s,%s\r\n",         (const char*)pPlanFinObj->GetObjectName(), (const char*)pPlanFinObj->GetUnformatedObject()); break;
-        case E_SS_SemiColumn: lineBuffer.Format("%s;%s\r\n",         (const char*)pPlanFinObj->GetObjectName(), (const char*)pPlanFinObj->GetUnformatedObject()); break;
-        case E_SS_Quote:      lineBuffer.Format("\"%s\" \"%s\"\r\n", (const char*)pPlanFinObj->GetObjectName(), (const char*)pPlanFinObj->GetUnformatedObject()); break;
-        default:              lineBuffer.Format("%s\t%s\r\n",        (const char*)pPlanFinObj->GetObjectName(), (const char*)pPlanFinObj->GetUnformatedObject()); break;
+        case E_SS_Comma:      lineBuffer.Format("%s,%s\r\n",         (const char*)pPlanFinObj->GetObjectName(), (const char*)pPlanFinObj->GetUnformattedObject()); break;
+        case E_SS_SemiColumn: lineBuffer.Format("%s;%s\r\n",         (const char*)pPlanFinObj->GetObjectName(), (const char*)pPlanFinObj->GetUnformattedObject()); break;
+        case E_SS_Quote:      lineBuffer.Format("\"%s\" \"%s\"\r\n", (const char*)pPlanFinObj->GetObjectName(), (const char*)pPlanFinObj->GetUnformattedObject()); break;
+        default:              lineBuffer.Format("%s\t%s\r\n",        (const char*)pPlanFinObj->GetObjectName(), (const char*)pPlanFinObj->GetUnformattedObject()); break;
     }
 
     return lineBuffer;

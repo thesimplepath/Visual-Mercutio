@@ -618,19 +618,19 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZAMATH.CPP">
+    <ClCompile Include="PSS_MathParser.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZAMStr.cpp">
+    <ClCompile Include="PSS_PLFNMaskString.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZAMultiC.cpp">
+    <ClCompile Include="PSS_PLFNMultiColumn.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1424,9 +1424,9 @@
     <ClInclude Include="PSS_FontManager.h" />
     <ClInclude Include="PSS_Global.h" />
     <ClInclude Include="PSS_PLFNGraphic.h" />
-    <ClInclude Include="ZAMATH.H" />
-    <ClInclude Include="ZAMStr.h" />
-    <ClInclude Include="ZAMultiC.h" />
+    <ClInclude Include="PSS_MathParser.h" />
+    <ClInclude Include="PSS_PLFNMaskString.h" />
+    <ClInclude Include="PSS_PLFNMultiColumn.h" />
     <ClInclude Include="ZANumbrd.h" />
     <ClInclude Include="ZAObject.h" />
     <ClInclude Include="ZARadio.h" />

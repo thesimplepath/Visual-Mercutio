@@ -97,7 +97,7 @@ bool PSS_MaskEditBase::Init(const CString& mask, const CString& initialData)
     return true;
 }
 //---------------------------------------------------------------------------
-CString PSS_MaskEditBase::GetFormatedBuffer(const CString& mask, const CString& initialData)
+CString PSS_MaskEditBase::GetFormattedBuffer(const CString& mask, const CString& initialData)
 {
     if (!Parse(mask))
         return "";
@@ -105,7 +105,7 @@ CString PSS_MaskEditBase::GetFormatedBuffer(const CString& mask, const CString& 
     if (!SetValidChars(mask, false))
         return "";
 
-    return FormatedBuffer(initialData);
+    return FormattedBuffer(initialData);
 }
 //---------------------------------------------------------------------------
 bool PSS_MaskEditBase::SetPromptChar(const CString& promptChar)
@@ -139,7 +139,7 @@ CString PSS_MaskEditBase::GetData() const
 //---------------------------------------------------------------------------
 void PSS_MaskEditBase::SetData(const CString& data)
 {
-    SetWindowText(FormatedBuffer(data));
+    SetWindowText(FormattedBuffer(data));
 }
 //---------------------------------------------------------------------------
 BOOL PSS_MaskEditBase::PreCreateWindow(CREATESTRUCT& cs)
@@ -307,7 +307,7 @@ CString PSS_MaskEditBase::GetRange(const CString& low, const CString& high) cons
     return result;
 }
 //---------------------------------------------------------------------------
-CString PSS_MaskEditBase::FormatedBuffer(const CString& data) const
+CString PSS_MaskEditBase::FormattedBuffer(const CString& data) const
 {
     CString windowText;
     CString nextData;

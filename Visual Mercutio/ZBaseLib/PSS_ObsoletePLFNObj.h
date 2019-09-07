@@ -40,7 +40,7 @@
 #endif
 
 // processsoft
-#include "zamath.h"
+#include "PSS_MathParser.h"
 #include "PSS_PlanFinObj.h"
 #include "ZAObject.h"
 #include "ZAText.h"

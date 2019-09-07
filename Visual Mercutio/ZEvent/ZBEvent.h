@@ -59,7 +59,7 @@ public:
     ZBEvent(const ZBEvent &right);
     const ZBEvent & operator=(const ZBEvent &right);
     ZBDate            GetTimeStamp() const { return m_TimeStamp; };
-    CString            GetFormatedTimeStamp() { return m_TimeStamp.Format( EventDateTimeFormatString ); };
+    CString            GetFormattedTimeStamp() { return m_TimeStamp.Format( EventDateTimeFormatString ); };
     int                GetEventID() const { return m_EventID; };
     CString            GetEventIDStr() const;
 

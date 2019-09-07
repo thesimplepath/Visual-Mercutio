@@ -163,7 +163,7 @@ PlanFinObject::~PlanFinObject()
 const PlanFinObject & PlanFinObject::operator=( const PlanFinObject &right )
 {
     //## begin PlanFinObject::operator=%.body preserve=yes
-    this->ObjectParser::operator=( (inherited&)right );
+    this->PSS_FormulaObjectParser::operator=( (inherited&)right );
     m_rctObject = right.m_rctObject;
 
     m_iPage                = right.m_iPage;
@@ -561,26 +561,26 @@ void PlanFinObject::FormatObject( DOUBLE dValue )
     //## end PlanFinObject::FormatObject%829516142.body
 }
 
-CString PlanFinObject::GetFormatedObject()
+CString PlanFinObject::GetFormattedObject()
 {
-    //## begin PlanFinObject::GetFormatedObject%829516158.body preserve=yes
+    //## begin PlanFinObject::GetFormattedObject%829516158.body preserve=yes
     return _T( "" );
-    //## end PlanFinObject::GetFormatedObject%829516158.body
+    //## end PlanFinObject::GetFormattedObject%829516158.body
 }
 
-CString PlanFinObject::GetUnformatedObject()
+CString PlanFinObject::GetUnformattedObject()
 {
-    //## begin PlanFinObject::GetUnformatedObject%901298461.body preserve=yes
+    //## begin PlanFinObject::GetUnformattedObject%901298461.body preserve=yes
     return _T( "" );
-    //## end PlanFinObject::GetUnformatedObject%901298461.body
+    //## end PlanFinObject::GetUnformattedObject%901298461.body
 }
 
-BOOL PlanFinObject::ConvertFormatedObject( const CString& sValue, BOOL bLocateFormat, BOOL EmptyWhenZero )
+BOOL PlanFinObject::ConvertFormattedObject( const CString& sValue, BOOL bLocateFormat, BOOL EmptyWhenZero )
 {
-    //## begin PlanFinObject::ConvertFormatedObject%829516157.body preserve=yes
+    //## begin PlanFinObject::ConvertFormattedObject%829516157.body preserve=yes
     // Hasn't changed
     return FALSE;
-    //## end PlanFinObject::ConvertFormatedObject%829516157.body
+    //## end PlanFinObject::ConvertFormattedObject%829516157.body
 }
 
 void PlanFinObject::DrawObject( CDC* pDC, ZIView* pView )
@@ -1405,7 +1405,7 @@ void PlanFinObject::Serialize (CArchive& ar)
     {
         // Write the elements
         ar << m_rctObject;
-        ar << m_strObjName;
+        ar << CString(GetObjectName());
 
         // In version 4 do not write the FontType
 //        ar << (WORD)m_fntType;        
@@ -1455,7 +1455,11 @@ void PlanFinObject::Serialize (CArchive& ar)
     {
         // Read the elements
         ar >> m_rctObject;
-        ar >> m_strObjName;
+
+        CString str;
+        ar >> str;
+        SetObjectName(str);
+
         ASSERT( !m_strObjName.IsEmpty() );
 
         WORD wTemp;

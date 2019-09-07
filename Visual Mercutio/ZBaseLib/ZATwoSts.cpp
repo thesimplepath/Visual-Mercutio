@@ -182,16 +182,16 @@ void PLFNTwoStates::CopyObject (PlanFinObject* pSrc)
   //## end PLFNTwoStates::CopyObject%890472643.body
 }
 
-CString PLFNTwoStates::GetUnformatedObject ()
+CString PLFNTwoStates::GetUnformattedObject ()
 {
-  //## begin PLFNTwoStates::GetUnformatedObject%917858762.body preserve=yes
+  //## begin PLFNTwoStates::GetUnformattedObject%917858762.body preserve=yes
       return (GetbCheckState()) ? "1" : "0";
-  //## end PLFNTwoStates::GetUnformatedObject%917858762.body
+  //## end PLFNTwoStates::GetUnformattedObject%917858762.body
 }
 
-BOOL PLFNTwoStates::ConvertFormatedObject (const CString& sValue, BOOL bLocateFormat, BOOL EmptyWhenZero)
+BOOL PLFNTwoStates::ConvertFormattedObject (const CString& sValue, BOOL bLocateFormat, BOOL EmptyWhenZero)
 {
-  //## begin PLFNTwoStates::ConvertFormatedObject%917889603.body preserve=yes
+  //## begin PLFNTwoStates::ConvertFormattedObject%917889603.body preserve=yes
     if (!(sValue.GetLength() > 0))
         return FALSE;
     // Saves the oldvalue to make comparison
@@ -199,7 +199,7 @@ BOOL PLFNTwoStates::ConvertFormatedObject (const CString& sValue, BOOL bLocateFo
     m_bCheckState = (sValue[0] == '0') ? FALSE : TRUE;
     // Has changed ???
     return (OldValue != m_bCheckState) ? TRUE : FALSE;
-  //## end PLFNTwoStates::ConvertFormatedObject%917889603.body
+  //## end PLFNTwoStates::ConvertFormattedObject%917889603.body
 }
 
 // Additional Declarations

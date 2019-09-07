@@ -93,23 +93,23 @@ const PLFNText& PLFNText::operator = (const PLFNText* right)
   //## end PLFNText::operator =%829516133.body
 }
 
-CString PLFNText::GetFormatedObject ()
+CString PLFNText::GetFormattedObject ()
 {
-  //## begin PLFNText::GetFormatedObject%829516158.body preserve=yes
+  //## begin PLFNText::GetFormattedObject%829516158.body preserve=yes
     return m_Str;
-  //## end PLFNText::GetFormatedObject%829516158.body
+  //## end PLFNText::GetFormattedObject%829516158.body
 }
 
-BOOL PLFNText::ConvertFormatedObject (const CString& sValue, BOOL bLocateFormat, BOOL EmptyWhenZero)
+BOOL PLFNText::ConvertFormattedObject (const CString& sValue, BOOL bLocateFormat, BOOL EmptyWhenZero)
 {
-  //## begin PLFNText::ConvertFormatedObject%829516157.body preserve=yes
+  //## begin PLFNText::ConvertFormattedObject%829516157.body preserve=yes
     // Has changed ???
       BOOL    RetValue = (m_Str != sValue) ? TRUE : FALSE;
     // Assign the new string
       m_Str = sValue;
     (m_Str.IsEmpty() == TRUE) ?    EmptyObject() : ClearEmptyObjectFlag();
     return RetValue;
-  //## end PLFNText::ConvertFormatedObject%829516157.body
+  //## end PLFNText::ConvertFormattedObject%829516157.body
 }
 
 void PLFNText::Serialize (CArchive& ar)
@@ -183,11 +183,11 @@ void PLFNText::CopyObject (PlanFinObject* pSrc)
   //## end PLFNText::CopyObject%863615082.body
 }
 
-CString PLFNText::GetUnformatedObject ()
+CString PLFNText::GetUnformattedObject ()
 {
-  //## begin PLFNText::GetUnformatedObject%901298463.body preserve=yes
+  //## begin PLFNText::GetUnformattedObject%901298463.body preserve=yes
     return m_Str;
-  //## end PLFNText::GetUnformatedObject%901298463.body
+  //## end PLFNText::GetUnformattedObject%901298463.body
 }
 
 // Additional Declarations

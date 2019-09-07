@@ -39,7 +39,7 @@
 
 // processsoft
 #include "zaconst.h"
-#include "zamath.h"
+#include "PSS_MathParser.h"
 #include "ZAObject.h"
 #include "PSS_PLFNAscii.h"
 #include "ZAText.h"
@@ -557,8 +557,8 @@ class AFX_EXT_CLASS PSS_PLFNTime : public PSS_PLFNAscii
         virtual CString GetFormattedObject();
 
         /**
-        * Gets the unformated string of the object image
-        *@return the unformated string of the object image
+        * Gets the unformatted string of the object image
+        *@return the unformatted string of the object image
         */
         virtual CString GetUnformattedObject();
 
@@ -797,8 +797,8 @@ class AFX_EXT_CLASS PSS_PLFNLong : public PSS_PLFNAscii
         virtual CString GetFormattedObject();
 
         /**
-        * Gets the unformated string of the object image
-        *@return the unformated string of the object image
+        * Gets the unformatted string of the object image
+        *@return the unformatted string of the object image
         */
         virtual CString GetUnformattedObject();
 
@@ -809,7 +809,7 @@ class AFX_EXT_CLASS PSS_PLFNLong : public PSS_PLFNAscii
         *@param emptyWhenZero - if TRUE, the object will be emptied if set to zero
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL ConvertFormatedObject(const CString& value, BOOL locateFormat = TRUE, BOOL emptyWhenZero = FALSE);
+        virtual BOOL ConvertFormattedObject(const CString& value, BOOL locateFormat = TRUE, BOOL emptyWhenZero = FALSE);
 
         /**
         * Gets the format choice

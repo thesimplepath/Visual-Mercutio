@@ -51,7 +51,7 @@ ZBTimeSpan* ZBTimeSpan::Clone()
     return pObject;
 }
 
-CString ZBTimeSpan::GetStandardFormatedTimeSpan()
+CString ZBTimeSpan::GetStandardFormattedTimeSpan()
 {
     if ( IsEmpty() )
     {
@@ -61,7 +61,7 @@ CString ZBTimeSpan::GetStandardFormatedTimeSpan()
     return COleDateTimeSpan::Format( _T( "%H:%M:%S" ) );
 }
 
-CString ZBTimeSpan::GetFormatedTimeSpan( UINT nFormatID )
+CString ZBTimeSpan::GetFormattedTimeSpan( UINT nFormatID )
 {
     if ( IsEmpty() )
     {
@@ -71,7 +71,7 @@ CString ZBTimeSpan::GetFormatedTimeSpan( UINT nFormatID )
     return COleDateTimeSpan::Format( nFormatID );
 }
 
-CString ZBTimeSpan::GetFormatedTimeSpan( CString Format )
+CString ZBTimeSpan::GetFormattedTimeSpan( CString Format )
 {
     if ( IsEmpty() )
     {

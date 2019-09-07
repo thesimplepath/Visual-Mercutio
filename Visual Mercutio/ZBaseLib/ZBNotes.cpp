@@ -111,11 +111,11 @@ void ZBNotes::ClearUsername ()
   //## end ZBNotes::ClearUsername%937741724.body
 }
 
-CString ZBNotes::GetFormatedNotes (CRect* pRect)
+CString ZBNotes::GetFormattedNotes (CRect* pRect)
 {
-  //## begin ZBNotes::GetFormatedNotes%937741725.body preserve=yes
+  //## begin ZBNotes::GetFormattedNotes%937741725.body preserve=yes
     return m_Username + "\r\n" + m_Comment;
-  //## end ZBNotes::GetFormatedNotes%937741725.body
+  //## end ZBNotes::GetFormattedNotes%937741725.body
 }
 
 CArchive& operator >> (CArchive& ar, ZBNotes& Notes)

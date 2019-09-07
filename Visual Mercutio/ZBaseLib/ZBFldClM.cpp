@@ -395,7 +395,7 @@ bool ZBFieldColumnManager::GetHeaderNames (CStringArray& HeaderNames)
   //## end ZBFieldColumnManager::GetHeaderNames%948017546.body
 }
 
-bool ZBFieldColumnManager::CreateColumnWithHeaderNames (CStringArray& HeaderNames)
+bool ZBFieldColumnManager::CreateColumnWithHeaderNames (const CStringArray& HeaderNames)
 {
   //## begin ZBFieldColumnManager::CreateColumnWithHeaderNames%948222394.body preserve=yes
     for (size_t i = 0; i < (size_t)HeaderNames.GetSize(); ++i)
@@ -409,7 +409,7 @@ bool ZBFieldColumnManager::CreateColumnWithHeaderNames (CStringArray& HeaderName
   //## end ZBFieldColumnManager::CreateColumnWithHeaderNames%948222394.body
 }
 
-bool ZBFieldColumnManager::AddRowValues (CStringArray& RowValues)
+bool ZBFieldColumnManager::AddRowValues (const CStringArray& RowValues)
 {
   //## begin ZBFieldColumnManager::AddRowValues%948222395.body preserve=yes
     if (GetCount() == 0)
@@ -424,7 +424,7 @@ bool ZBFieldColumnManager::AddRowValues (CStringArray& RowValues)
   //## end ZBFieldColumnManager::AddRowValues%948222395.body
 }
 
-bool ZBFieldColumnManager::InsertRowValuesAt (CStringArray& RowValues, size_t RowIndex)
+bool ZBFieldColumnManager::InsertRowValuesAt (const CStringArray& RowValues, size_t RowIndex)
 {
   //## begin ZBFieldColumnManager::InsertRowValuesAt%948222396.body preserve=yes
     if (!(RowIndex < GetCount()))
@@ -438,7 +438,7 @@ bool ZBFieldColumnManager::InsertRowValuesAt (CStringArray& RowValues, size_t Ro
   //## end ZBFieldColumnManager::InsertRowValuesAt%948222396.body
 }
 
-bool ZBFieldColumnManager::SetRowValuesAt (CStringArray& RowValues, size_t RowIndex)
+bool ZBFieldColumnManager::SetRowValuesAt (const CStringArray& RowValues, size_t RowIndex)
 {
   //## begin ZBFieldColumnManager::SetRowValuesAt%948222402.body preserve=yes
     if (!(RowIndex < GetCount()))
