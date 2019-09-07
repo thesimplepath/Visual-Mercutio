@@ -32,7 +32,7 @@
 #include "ZASquare.h"
 #include "PSS_PLFNMaskString.h"
 #include "PSS_PLFNMultiColumn.h"
-#include "ZANumbrd.h"
+#include "PSS_PLFNAutoNumbered.h"
 #include "PSS_ObsoletePLFNObj.h"
 #include "PSS_MsgBox.h"
 
@@ -2089,7 +2089,7 @@ BOOL ZDDocument::PropagateExternDocumentAllValues(ZDDocument*    pDoc,
             {
                 // If the object is exportable
                 if (!((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii)) &&
-                    !((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNAutoNumbered)) &&
+                    !((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)) &&
                     !((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNTwoStates)))
                 {
                     continue;
@@ -2150,7 +2150,7 @@ BOOL ZDDocument::PropagateInternalDocumentAllValues(int    IndexFrom,
             {
                 // If the object is exportable
                 if (!((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii)) &&
-                    !((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNAutoNumbered)) &&
+                    !((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)) &&
                     !((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNTwoStates)))
                 {
                     continue;
@@ -2211,7 +2211,7 @@ BOOL ZDDocument::PropagateInternalDocumentOnDocumentValues(int        InIndexFro
             {
                 // If the object is exportable
                 if (!((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii)) &&
-                    !((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNAutoNumbered)) &&
+                    !((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)) &&
                     !((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNTwoStates)))
                 {
                     continue;
@@ -2808,7 +2808,7 @@ CString ZDDocument::GetAutomaticNewName(PlanFinObject* pObj, int DocumentIndex)
     ASSERT(pDocData);
 
     // Test the class type
-    if (pObj->IsKindOf(RUNTIME_CLASS(PLFNAutoNumbered)))
+    if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)))
     {
         return pDocData->BuildAutomaticNewName(_T("ANumbered"));
     }

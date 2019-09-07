@@ -9,7 +9,7 @@
 #include "PSS_DocumentExport.h"
 
  // processsoft
-#include "ZANumbrd.h"
+#include "PSS_PLFNAutoNumbered.h"
 #include "ZATwoSts.h"
 #include "ZDDoc.h"
 #include "PSS_DocumentData.h"
@@ -67,8 +67,8 @@ BOOL PSS_DocumentExport::IsExportedField(CObject* pObj) const
     ASSERT(pPlanFinObj);
     
     // is the object exportable?
-    if (!pPlanFinObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii))    &&
-        !pPlanFinObj->IsKindOf(RUNTIME_CLASS(PLFNAutoNumbered)) &&
+    if (!pPlanFinObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii))        &&
+        !pPlanFinObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)) &&
         !pPlanFinObj->IsKindOf(RUNTIME_CLASS(PLFNTwoStates)))
         return FALSE;
 

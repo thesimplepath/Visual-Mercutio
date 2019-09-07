@@ -14,7 +14,7 @@
 #include "ZARadio.h"
 #include "ZASquare.h"
 #include "PSS_PLFNBoundText.h"
-#include "ZANumbrd.h"
+#include "PSS_PLFNAutoNumbered.h"
 #include "PSS_PLFNBitmap.h"
 #include "PSS_PLFNCheckBtn.h"
 #include "PSS_PLFNMaskString.h"
@@ -248,7 +248,7 @@ PlanFinObject* PSS_ObjectUtility::BuildObject(const CString& className)
             break;
 
         case 9:
-            pObj.reset(new PLFNAutoNumbered);
+            pObj.reset(new PSS_PLFNAutoNumbered);
             break;
 
         case 10:
@@ -410,7 +410,7 @@ std::size_t PSS_ObjectUtility::GetClassNameID(PlanFinObject* pObj)
     if (pObj->IsKindOf(RUNTIME_CLASS(PLFNSquare)))
         resourceID = IDS_SQUARETEXT_CLASS;
     else
-    if (pObj->IsKindOf(RUNTIME_CLASS(PLFNAutoNumbered)))
+    if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)))
         resourceID = IDS_NUMBEREDSECTION_CLASS;
     else
     if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNLine)))

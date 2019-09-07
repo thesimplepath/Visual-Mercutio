@@ -26,7 +26,7 @@
 #include "planfin.hdf"
 #include "mainfrm.h"
 #include "zBaseLib\PSS_PlanFinObj.h"
-#include "zBaseLib\ZANumbrd.h"
+#include "zBaseLib\PSS_PLFNAutoNumbered.h"
 #include "zBaseLib\PSS_PLFNBitmap.h"
 #include "zBaseLib\PSS_PLFNBoundText.h"
 #include "zBaseLib\PSS_MsgBox.h"

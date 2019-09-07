@@ -13,7 +13,7 @@
 #include "zBaseLib\PSS_VisualTool.h"
 #include "zBaseLib\PSS_PLFNCheckBtn.h"
 #include "zBaseLib\ZARadio.h"
-#include "zBaseLib\ZANumbrd.h"
+#include "zBaseLib\PSS_PLFNAutoNumbered.h"
 #include "zBaseLib\ZASquare.h"
 #include "zBaseLib\PSS_PLFNBoundText.h"
 #include "zBaseLib\PSS_PLFNBitmap.h"
@@ -217,10 +217,10 @@ PSS_Edit* PSS_ModifyView::CreateEditControl(PlanFinObject* pObj, CDC* pDC)
 
         case IDS_NUMBEREDSECTION_CLASS:
         {
-            PLFNAutoNumbered* pAutoNumbered = dynamic_cast<PLFNAutoNumbered*>(pObj);
+            PSS_PLFNAutoNumbered* pAutoNumbered = dynamic_cast<PSS_PLFNAutoNumbered*>(pObj);
 
-            if (pAutoNumbered && pAutoNumbered->GetpObject())
-                return CreateEditControl(const_cast<PlanFinObject*>(pAutoNumbered->GetpObject()), pDC);
+            if (pAutoNumbered && pAutoNumbered->GetObject())
+                return CreateEditControl(const_cast<PlanFinObject*>(pAutoNumbered->GetObject()), pDC);
 
             return NULL;
         }

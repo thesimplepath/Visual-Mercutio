@@ -636,7 +636,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZANumbrd.cpp">
+    <ClCompile Include="PSS_PLFNAutoNumbered.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1427,7 +1427,7 @@
     <ClInclude Include="PSS_MathParser.h" />
     <ClInclude Include="PSS_PLFNMaskString.h" />
     <ClInclude Include="PSS_PLFNMultiColumn.h" />
-    <ClInclude Include="ZANumbrd.h" />
+    <ClInclude Include="PSS_PLFNAutoNumbered.h" />
     <ClInclude Include="ZAObject.h" />
     <ClInclude Include="ZARadio.h" />
     <ClInclude Include="ZAServerOptions.h" />

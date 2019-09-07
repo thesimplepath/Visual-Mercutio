@@ -16,7 +16,7 @@
 #include "PSS_PLFNCheckBtn.h"
 #include "PSS_PLFNBitmap.h"
 #include "ZASquare.h"
-#include "ZANumbrd.h"
+#include "PSS_PLFNAutoNumbered.h"
 #include "PSS_PLFNMultiColumn.h"
 #include "PSS_ObsoletePLFNObj.h"
 #include "PSS_PLFNBackImage.h"
@@ -1143,14 +1143,14 @@ void PSS_DocumentData::RebuildAllAutomaticNumbered()
     {
         do
         {
-            PLFNAutoNumbered* pAutoNum = dynamic_cast<PLFNAutoNumbered*>(pObj);
+            PSS_PLFNAutoNumbered* pAutoNum = dynamic_cast<PSS_PLFNAutoNumbered*>(pObj);
 
             // search all auto numbered objects
             if (pAutoNum)
                 // count only if the element is auto numbered
-                if (pAutoNum->GetbAutoCalculate())
+                if (pAutoNum->GetAutoCalculate())
                 {
-                    levelArray[pAutoNum->GetiLevel()] = levelArray[pAutoNum->GetiLevel()] + 1;
+                    levelArray[pAutoNum->GetLevel()] = levelArray[pAutoNum->GetLevel()] + 1;
 
                     CString level;
                     char*   pBuffer = NULL;
@@ -1172,7 +1172,7 @@ void PSS_DocumentData::RebuildAllAutomaticNumbered()
                         delete[] pBuffer;
 
                           CString text       = level + '0';
-                    const int     levelCount = pAutoNum->GetiLevel();
+                    const int     levelCount = pAutoNum->GetLevel();
 
                     for (int i = 0; i < levelCount; ++i)
                     {

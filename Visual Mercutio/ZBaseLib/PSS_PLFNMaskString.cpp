@@ -46,11 +46,10 @@ const PSS_PLFNMaskString& PSS_PLFNMaskString::operator = (const PSS_PLFNMaskStri
 //---------------------------------------------------------------------------
 const PSS_PLFNMaskString& PSS_PLFNMaskString::operator = (const PSS_PLFNMaskString* pOther)
 {
+    PLFNString::operator = ((inherited*)pOther);
+
     if (!pOther)
-    {
-        PLFNString::operator = ((inherited*)pOther);
         m_Mask.Empty();
-    }
     else
         *this = *pOther;
 

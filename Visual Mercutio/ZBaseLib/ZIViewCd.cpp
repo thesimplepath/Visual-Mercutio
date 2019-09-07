@@ -17,7 +17,7 @@
 
 //## begin module%3365108E0302.includes preserve=yes
 #include "PSS_PlanFinObj.h"
-#include "ZANumbrd.h"
+#include "PSS_PLFNAutoNumbered.h"
 #include "PSS_PLFNBitmap.h"
 //## end module%3365108E0302.includes
 
@@ -146,7 +146,7 @@ void ZIViewCode::OnDraw(CDC* pDC)
             }
             case E_CT_Text:
             {
-                if ((obj->IsKindOf(RUNTIME_CLASS(PLFNText)) && !((PLFNText*)obj)->GetIsStatic()) || obj->IsKindOf(RUNTIME_CLASS(PLFNAutoNumbered)))
+                if ((obj->IsKindOf(RUNTIME_CLASS(PLFNText)) && !((PLFNText*)obj)->GetIsStatic()) || obj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)))
                     obj->DisplayObjectName(pDC);
                 break;
             }

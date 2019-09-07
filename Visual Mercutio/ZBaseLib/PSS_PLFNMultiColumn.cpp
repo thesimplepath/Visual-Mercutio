@@ -50,10 +50,10 @@ const PSS_PLFNMultiColumn& PSS_PLFNMultiColumn::operator = (const PSS_PLFNMultiC
 //---------------------------------------------------------------------------
 const PSS_PLFNMultiColumn& PSS_PLFNMultiColumn::operator = (const PSS_PLFNMultiColumn* pOther)
 {
+    PlanFinObject::operator = ((inherited*)pOther);
+
     if (!pOther)
     {
-        PlanFinObject::operator = ((inherited*)pOther);
-
         // reset the content to default
         m_ShowHeader = FALSE;
         SetbIsVisible(FALSE);
