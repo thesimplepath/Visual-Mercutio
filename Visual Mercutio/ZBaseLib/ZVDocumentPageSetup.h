@@ -1,19 +1,18 @@
-// **********************************************************************************************************
-// *                                          Classe ZVDocumentPageSetup                                    *
-// **********************************************************************************************************
-// * Cette classe permet la gestion du format de page du document. Elle permet de paramétrer une page,        *
-// * et elle prend également en charge le contrôle de la validité de cette page par rapport au device        *
-// * d'impression.                                                                                            *
-// **********************************************************************************************************
+/****************************************************************************
+ * ==> PSS_DocumentPageSetup -----------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a printer document page setup                     *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_ZVDOCUMENTPAGESETUP_H__12BA3983_74D2_4165_9560_7CAC5F01222B__INCLUDED_)
-#define AFX_ZVDOCUMENTPAGESETUP_H__12BA3983_74D2_4165_9560_7CAC5F01222B__INCLUDED_
+#ifndef PSS_DocumentPageSetupH
+#define PSS_DocumentPageSetupH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -21,66 +20,141 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
 #include "Define.h"
 #include "ZVDocumentPageSetupDlg.h"
 
 #ifdef _ZBASELIBEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 23 février 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-class AFX_EXT_CLASS ZVDocumentPageSetup
+/**
+* Printer document page setup
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_DocumentPageSetup
 {
-private:
+    public:
+        PSS_DocumentPageSetup();
+        virtual ~PSS_DocumentPageSetup();
 
-    CString                                sBkGndName;
+        /**
+        * Gets the background file name
+        *@return the background file name
+        */
+        virtual CString GetBackgroundFileName() const;
 
-    BOOL                                bIsFormatDefined;
-    BOOL                                bIsCancelled;
-    BOOL                                bCanPrint;
-    BOOL                                bIsChecked;
+        /**
+        * Gets the default page size
+        *@param margins - margins
+        *@return the default page size
+        */
+        virtual CSize GetDefaultPageSize(const CRect& margins) const;
 
-    CSize                                m_PaperSize;
+        /**
+        * Gets the paper size
+        *@return the paper size
+        */
+        virtual CSize GetPaperSize() const;
 
-    short                                m_StandardSize;
-    short                                m_Orientation;
+        /**
+        * Sets the paper size
+        *@param paperSize - the paper size
+        */
+        virtual void SetPaperSize(const CSize& paperSize);
 
-    ZVDocumentPageSetupDlg                m_PageSetupDlg;
+        /**
+        * Gets the standard size
+        *@return the standard size
+        */
+        virtual short GetStandardSize();
 
-    BOOL        GetPrinterSettings        ( CSize& PaperSize, short& StandardSize, short& Orientation );
+        /**
+        * Sets the standard size
+        *@param standardSize - the standard size
+        */
+        virtual void SetStandardSize(short standardSize);
 
-    void        ChangePrinterSettings    ( short StandardSize, short Orientation );
+        /**
+        * Gets the orientation
+        *@return the orientation
+        */
+        virtual short GetOrientation();
 
-public:
+        /**
+        * Sets the orientation
+        *@param orientation - the orientation
+        */
+        virtual void SetOrientation(short orientation);
 
-    ZVDocumentPageSetup();
-    ~ZVDocumentPageSetup();
+        /**
+        * Called when the user defines the page format
+        */
+        virtual void OnUserDefinePageFormat();
 
-    CString        GetBackGroundFilename    ();
+        /**
+        * Called when the printer settings are updated
+        */
+        virtual void OnUpdatePrinterSettings();
 
-    CSize        GetDefaultPageDim        ( CRect Margins );
-    CSize        GetPaperSize            ();
+        /**
+        * Checks if standard size is supported
+        *@param standardSize - standard size
+        *@return TRUE if standard size is supported, otherwise FALSE
+        */
+        virtual BOOL IsSupported(short StandardSize);
 
-    short        GetStandardSize            ();
-    short        GetOrientation            ();
+        /**
+        * Checks if the format is defined
+        *@return TRUE if the format is defined, otherwise FALSE
+        */
+        virtual BOOL IsFormatDefined();
 
-    void        SetPaperSize            ( CSize PaperSize );
-    void        SetStandardSize            ( short StandardSize );
-    void        SetOrientation            ( short Orientation );
-    void        OnUserDefinePageFormat    ();
-    void        OnUpdatePrinterSettings    ();
+        /**
+        * Checks if canceled
+        *@return TRUE if canceled, otherwise FALSE
+        */
+        virtual BOOL IsCancelled();
 
-    BOOL        IsSupported                ( short StandardSize );
-    BOOL        IsFormatDefined            ();
-    BOOL        IsCancelled                ();
-    BOOL        CanPrint                ();
+        /**
+        * Checks if can print
+        *@return TRUE if can print, otherwise FALSE
+        */
+        virtual BOOL CanPrint();
+
+    private:
+        ZVDocumentPageSetupDlg m_PageSetupDlg;
+        CSize                  m_PaperSize;
+        CString                m_BkGndName;
+        short                  m_StandardSize;
+        short                  m_Orientation;
+        BOOL                   m_IsFormatDefined;
+        BOOL                   m_IsCancelled;
+        BOOL                   m_CanPrint;
+        BOOL                   m_IsChecked;
+
+        /**
+        * Gets the printer page size
+        *@param[out] paperSize - paper size
+        *@param[out] standardSize - standard size
+        *@param[out] orientation - orientation
+        *@return TRUE on success, otherwise FALSE
+        */
+        BOOL GetPrinterSettings(CSize& paperSize, short& standardSize, short& orientation);
+
+        /**
+        * Changes the printer page size
+        *@param standardSize - standard size
+        *@param orientation - orientation
+        *@return TRUE on success, otherwise FALSE
+        */
+        void ChangePrinterSettings(short standardSize, short orientation);
 };
 
-#endif // !defined(AFX_ZVDOCUMENTPAGESETUP_H__12BA3983_74D2_4165_9560_7CAC5F01222B__INCLUDED_)
+#endif

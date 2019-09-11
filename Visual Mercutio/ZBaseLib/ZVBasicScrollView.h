@@ -1,13 +1,18 @@
-// ZVBasicScrollView.h : header file
+/****************************************************************************
+ * ==> PSS_BasicScrollView -------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a basic scroll view                               *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_ZVBASICSCROLLVIEW_H__12BA3983_74D2_4165_9560_7CAC5F01222B__INCLUDED_)
-#define AFX_ZVBASICSCROLLVIEW_H__12BA3983_74D2_4165_9560_7CAC5F01222B__INCLUDED_
+#ifndef PSS_BasicScrollViewH
+#define PSS_BasicScrollViewH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -15,81 +20,87 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
 #include "ZVSpanView.h"
 #include "ZVDocumentPageSetup.h"
 
 #ifdef _ZBASELIBEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 23 février 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-/////////////////////////////////////////////////////////////////////////////
-// ZVBasicScrollView view
-
-class AFX_EXT_CLASS ZVBasicScrollView : public ZVSpanView
+/**
+* Basic scroll view
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_BasicScrollView : public ZVSpanView
 {
-protected:
+    DECLARE_DYNCREATE(PSS_BasicScrollView)
 
-    DECLARE_DYNCREATE( ZVBasicScrollView )
+    public:
+        /**
+        * Gets the printer page size
+        *@return the printer page size
+        */
+        virtual ZVDocumentPageSetup* GetPrinterPageSize();
 
-    // Protected constructor used by dynamic creation
-    ZVBasicScrollView();
+        /**
+        * Sets the printer page size
+        *@param paperSize - the paper size
+        *@param standardSize - the standard size
+        *@param orientation - the page orientation
+        */
+        virtual void SetPrinterPageSize(const CSize& paperSize, short standardSize, short orientation);
 
-// Operations
-public:
+        /**
+        * Zooms in the view
+        */
+        virtual void ViewZoomIn();
 
-    // Return the printer page size
-//    BOOL GetPrinterPageSize( CSize &PaperSize, short& StandardSize, short& Orientation );
-    ZVDocumentPageSetup*    GetPrinterPageSize();
-    void                    SetPrinterPageSize( CSize PaperSize, short StandardSize, short Orientation );
+        /**
+        * Zooms out the view
+        */
+        virtual void ViewZoomOut();
 
-    //    Set the printer orientation. It is function of the
-    //    printer definition.
-//    void SetPrinterOrientation ( short Orientation = DMORIENT_PORTRAIT );
-
-    // Call back for Zoom In&Out
-    virtual void ViewZoomIn();
-    virtual void ViewZoomOut();
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(ZVBasicScrollView)
     protected:
-    virtual void OnDraw(CDC* pDC);    // overridden to draw this view
-    virtual void OnInitialUpdate();    // first time after construct
-    //}}AFX_VIRTUAL
+        PSS_BasicScrollView();
+        virtual ~PSS_BasicScrollView();
 
-// Implementation
-protected:
+        /// ClassWizard generated virtual function overrides
+        //{{AFX_VIRTUAL(PSS_BasicScrollView)
+        virtual void OnInitialUpdate();
+        virtual void OnDraw(CDC* pDC);
+        //}}AFX_VIRTUAL
 
-    // Generated message map functions
-    //{{AFX_MSG(ZVBasicScrollView)
-    afx_msg void OnViewZoomIn();
-    afx_msg void OnViewZoomOut();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+        /// Generated message map functions
+        //{{AFX_MSG(PSS_BasicScrollView)
+        afx_msg void OnViewZoomIn();
+        afx_msg void OnViewZoomOut();
+        //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
 
-    virtual ~ZVBasicScrollView();
+        /**
+        * Asserts the class validity
+        */
+        #ifdef _DEBUG
+            virtual void AssertValid() const;
+        #endif
 
-#ifdef _DEBUG
-    virtual void AssertValid() const;
-    virtual void Dump( CDumpContext& dc ) const;
-#endif
+        /**
+        * Dumps the class content
+        *@param dc - dump context
+        */
+        #ifdef _DEBUG
+            virtual void Dump(CDumpContext& dc) const;
+        #endif
 
-private:
-
-    ZVDocumentPageSetup        m_PageSetup;
+    private:
+        ZVDocumentPageSetup m_PageSetup;
 };
 
-/////////////////////////////////////////////////////////////////////////////
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVBASICSCROLLVIEW_H__12BA3983_74D2_4165_9560_7CAC5F01222B__INCLUDED_)
+#endif

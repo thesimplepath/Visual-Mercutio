@@ -1,126 +1,121 @@
-// ZVBasicView.cpp : implementation file
-//
+/****************************************************************************
+ * ==> PSS_BasicView -------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a basic view                                      *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
 #include "ZVBasicView.h"
 
+// std
+#include <Memory>
+
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// ZVBasicView
-
-IMPLEMENT_DYNCREATE(ZVBasicView, CView)
-
-ZVBasicView::ZVBasicView()
+//---------------------------------------------------------------------------
+// Dynamic creation
+//---------------------------------------------------------------------------
+IMPLEMENT_DYNCREATE(PSS_BasicView, CView)
+//---------------------------------------------------------------------------
+// Message map
+//---------------------------------------------------------------------------
+BEGIN_MESSAGE_MAP(PSS_BasicView, CView)
+    //{{AFX_MSG_MAP(PSS_BasicView)
+    //}}AFX_MSG_MAP
+END_MESSAGE_MAP()
+//---------------------------------------------------------------------------
+// PSS_BasicView
+//---------------------------------------------------------------------------
+PSS_BasicView::PSS_BasicView() :
+    CView()
+{}
+//---------------------------------------------------------------------------
+PSS_BasicView::~PSS_BasicView()
+{}
+//---------------------------------------------------------------------------
+BOOL PSS_BasicView::GetPrinterPageSize(CSize& paperSize, short& standardSize, short& orientation)
 {
-}
+    BOOL result = FALSE;
 
-ZVBasicView::~ZVBasicView()
-{
-}
+    std::unique_ptr<::PRINTDLG> pPrintDlg(new ::PRINTDLG());
 
-
-BOOL ZVBasicView::GetPrinterPageSize(CSize &PaperSize, short& StandardSize, short& Orientation)
-{
-    BOOL bRet = FALSE;
-
-    PRINTDLG FAR * pPrintDlg = new PRINTDLG;
-
-    // Get the current printer's settings.
-
-    if (AfxGetApp()->GetPrinterDeviceDefaults(pPrintDlg))
+    // get the current printer settings
+    if (AfxGetApp()->GetPrinterDeviceDefaults(pPrintDlg.get()))
     {
-
-  // Get pointers to the two setting structures.
-
-        DEVNAMES FAR *lpDevNames =
-        (DEVNAMES FAR *)::GlobalLock(pPrintDlg->hDevNames);
-
-        DEVMODE FAR *lpDevMode =
-        (DEVMODE FAR *)::GlobalLock(pPrintDlg->hDevMode);
-
-  // Get the specific driver information.
-
-        CString szDriver((LPTSTR)lpDevNames +
-                             lpDevNames->wDriverOffset);
-        CString szDevice((LPTSTR)lpDevNames +
-                             lpDevNames->wDeviceOffset);
-        CString szOutput((LPTSTR)lpDevNames +
-                             lpDevNames->wOutputOffset);
-
-        // Create a CDC object according to the current settings.
-
         CDC pDC;
-        pDC.CreateDC(szDriver, szDevice, szOutput, lpDevMode);
 
-        // Query this CDC object for the width and height of the current
-        // page.
+        try
+        {
+            // get pointers to the two setting structures
+            ::DEVNAMES FAR* pDevNames = (DEVNAMES FAR*)::GlobalLock(pPrintDlg->hDevNames);
+            ::DEVMODE  FAR* pDevMode  = (DEVMODE  FAR*)::GlobalLock(pPrintDlg->hDevMode);
 
-        PaperSize.cx = pDC.GetDeviceCaps(HORZSIZE);
-        PaperSize.cy = pDC.GetDeviceCaps(VERTSIZE);
+            // get the specific driver information
+            const CString driver(LPTSTR(pDevNames) + pDevNames->wDriverOffset);
+            const CString device(LPTSTR(pDevNames) + pDevNames->wDeviceOffset);
+            const CString output(LPTSTR(pDevNames) + pDevNames->wOutputOffset);
 
-        // Return the orientation
-        Orientation = lpDevMode->dmOrientation;
+            // create a CDC object according to the current settings.
+            pDC.CreateDC(driver, device, output, pDevMode);
 
-        // Return the standard size
-        StandardSize = lpDevMode->dmPaperSize;
+            // query this CDC object for the width and height of the current page
+            paperSize.cx = pDC.GetDeviceCaps(HORZSIZE);
+            paperSize.cy = pDC.GetDeviceCaps(VERTSIZE);
 
-        // Get rid of the CDC object.
+            // get the orientation
+            orientation = pDevMode->dmOrientation;
 
-        pDC.DeleteDC();
+            // get the standard size
+            standardSize = pDevMode->dmPaperSize;
 
-        // Unlock the pointers to the setting structures.
+            // get rid of the CDC object
+            pDC.DeleteDC();
+        }
+        catch (...)
+        {
+            // unlock the pointers to the settings structures
+            ::GlobalUnlock(pPrintDlg->hDevNames);
+            ::GlobalUnlock(pPrintDlg->hDevMode);
 
+            throw;
+        }
+
+        // unlock the pointers to the settings structures
         ::GlobalUnlock(pPrintDlg->hDevNames);
         ::GlobalUnlock(pPrintDlg->hDevMode);
 
-      bRet = TRUE;
+        result = TRUE;
     }
-    delete pPrintDlg;
 
-    return bRet;
+    return result;
 }
-
-
-void ZVBasicView::SetPrinterOrientation (short Orientation /*= DMORIENT_PORTRAIT*/)
-{
-//    ZAApp:ZAGetApp()->SetPrinterOrientation( GetPageOrientation() == portrait );
-}
-
-
-BEGIN_MESSAGE_MAP(ZVBasicView, CView)
-    //{{AFX_MSG_MAP(ZVBasicView)
-        // NOTE - the ClassWizard will add and remove mapping macros here.
-    //}}AFX_MSG_MAP
-END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// ZVBasicView drawing
-
-void ZVBasicView::OnDraw(CDC* pDC)
+//---------------------------------------------------------------------------
+void PSS_BasicView::SetPrinterOrientation(short orientation)
+{}
+//---------------------------------------------------------------------------
+void PSS_BasicView::OnDraw(CDC* pDC)
 {
     CDocument* pDoc = GetDocument();
-    // TODO: add draw code here
+
+    // todo -cFeature -oJean: add draw code here
 }
-
-/////////////////////////////////////////////////////////////////////////////
-// ZVBasicView diagnostics
-
+//---------------------------------------------------------------------------
 #ifdef _DEBUG
-void ZVBasicView::AssertValid() const
-{
-    CView::AssertValid();
-}
-
-void ZVBasicView::Dump(CDumpContext& dc) const
-{
-    CView::Dump(dc);
-}
-#endif //_DEBUG
-
-/////////////////////////////////////////////////////////////////////////////
-// ZVBasicView message handlers
+    void PSS_BasicView::AssertValid() const
+    {
+        CView::AssertValid();
+    }
+#endif
+//---------------------------------------------------------------------------
+#ifdef _DEBUG
+void PSS_BasicView::Dump(CDumpContext& dc) const
+    {
+        CView::Dump(dc);
+    }
+#endif
+//---------------------------------------------------------------------------
