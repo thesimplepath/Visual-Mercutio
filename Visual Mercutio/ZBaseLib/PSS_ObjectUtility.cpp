@@ -11,7 +11,7 @@
 // processsoft
 #include "zBaseLib\ZUSystemOption.h"
 #include "PSS_File.h"
-#include "ZARadio.h"
+#include "PSS_PLFNRadioBtn.h"
 #include "ZASquare.h"
 #include "PSS_PLFNBoundText.h"
 #include "PSS_PLFNAutoNumbered.h"
@@ -276,7 +276,7 @@ PSS_PlanFinObject* PSS_ObjectUtility::BuildObject(const CString& className)
             break;
 
         case 16:
-            pObj.reset(new PLFNRadio);
+            pObj.reset(new PSS_PLFNRadioBtn);
             break;
 
         case 17:
@@ -430,7 +430,7 @@ std::size_t PSS_ObjectUtility::GetClassNameID(PSS_PlanFinObject* pObj)
     if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNCheckBtn)))
         resourceID = IDS_CHECK_CLASS;
     else
-    if (pObj->IsKindOf(RUNTIME_CLASS(PLFNRadio)))
+    if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNRadioBtn)))
         resourceID = IDS_RADIO_CLASS;
     else
     if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNMultiColumn)))

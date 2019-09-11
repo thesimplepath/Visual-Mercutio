@@ -163,7 +163,8 @@ void PSS_VisualToolEdit::OnLButtonDown(ZIView* pView, UINT flags, const CPoint& 
 
                     break;
 
-                default: break;
+                default:
+                    break;
             }
 
             break;

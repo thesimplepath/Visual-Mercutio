@@ -200,7 +200,7 @@ void ZDProcessGraphModelDoc::SetNewModel(ZDProcessGraphModelMdl* pModel)
 
 // JMR-MODIF - Le 14 juillet 2005 - Nouvelle implémentation de la fonction.
 // Cette fonction permet d'obtenir les paramètres de la page du document.
-ZVDocumentPageSetup* ZDProcessGraphModelDoc::GetPrinterPageSize()
+PSS_DocumentPageSetup* ZDProcessGraphModelDoc::GetPrinterPageSize()
 {
     ZIProcessGraphModelView* pView = GetFirstModelView();
 
@@ -1425,7 +1425,7 @@ void ZDProcessGraphModelDoc::Serialize(CArchive& ar)
 
             if (pView != NULL)
             {
-                ZVDocumentPageSetup* m_pPageSetup = pView->GetPrinterPageSize();
+                PSS_DocumentPageSetup* m_pPageSetup = pView->GetPrinterPageSize();
 
                 ar << m_pPageSetup->GetPaperSize();
                 ar << m_pPageSetup->GetStandardSize();

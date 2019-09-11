@@ -724,7 +724,7 @@ void ZIProcessGraphModelView::SizeVpToModel()
 
     if (GetDocument() && ISA(GetDocument(), ZDProcessGraphModelDoc))
     {
-        ZVDocumentPageSetup* m_pPageSetup = ((ZDProcessGraphModelDoc*)GetDocument())->GetPrinterPageSize();
+        PSS_DocumentPageSetup* m_pPageSetup = ((ZDProcessGraphModelDoc*)GetDocument())->GetPrinterPageSize();
 
         ZIProcessGraphModelViewport::SizeVp(m_pPageSetup);
     }
@@ -798,7 +798,7 @@ BOOL ZIProcessGraphModelView::OnPreparePrinting(CPrintInfo* pInfo)
 
     // JMR-MODIF - Le 20 juillet 2005 - Ajout du code pour la reconfiguration de l'imprimante en fonction des
     // données en provenance du modèle.
-    ZVDocumentPageSetup* m_pPageSetup = GetPrinterPageSize();
+    PSS_DocumentPageSetup* m_pPageSetup = GetPrinterPageSize();
 
     if (m_pPageSetup != NULL)
     {

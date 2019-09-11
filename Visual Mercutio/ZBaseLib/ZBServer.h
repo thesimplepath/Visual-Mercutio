@@ -14,7 +14,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // ZAServerOptions
-#include "ZAServerOptions.h"
+#include "PSS_ServerOptions.h"
 
 #ifdef _ZBASELIBEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -179,7 +179,7 @@ private:
 
 protected:
 
-    ZAServerOptions        m_ServerOptions;
+    PSS_ServerOptions        m_ServerOptions;
     CString                m_IniFile;
 };
 

@@ -27,7 +27,7 @@
 #include "PSS_PlanFinObjects.h"
 #include "PSS_PlanFinObsoleteObjects.h"
 #include "PSS_PLFNBoundText.h"
-#include "ZARadio.h"
+#include "PSS_PLFNRadioBtn.h"
 #include "PSS_PLFNCheckBtn.h"
 #include "PSS_PLFNBitmap.h"
 #include "ZASquare.h"
@@ -2886,7 +2886,7 @@ CString ZDDocument::GetAutomaticNewName(PSS_PlanFinObject* pObj, int DocumentInd
     {
         return pDocData->BuildAutomaticNewName(_T("Ascii"));
     }
-    else if (pObj->IsKindOf(RUNTIME_CLASS(PLFNRadio)))
+    else if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNRadioBtn)))
     {
         return pDocData->BuildAutomaticNewName(_T("Radio"));
     }

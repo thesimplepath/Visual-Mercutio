@@ -29,7 +29,7 @@
 
 //## begin module%334FC46302F9.additionalDeclarations preserve=yes
 #include "PSS_PLFNCheckBtn.h"
-#include "ZARadio.h"
+#include "PSS_PLFNRadioBtn.h"
 #include "PSS_MsgBox.h"
 #include "ZDDoc.h"
 

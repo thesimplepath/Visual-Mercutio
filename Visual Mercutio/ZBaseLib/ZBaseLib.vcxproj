@@ -648,13 +648,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZARadio.cpp">
+    <ClCompile Include="PSS_PLFNRadioBtn.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZAServerOptions.cpp">
+    <ClCompile Include="PSS_ServerOptions.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1229,19 +1229,19 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVBasicScrollView.cpp">
+    <ClCompile Include="PSS_BasicScrollView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVBasicView.cpp">
+    <ClCompile Include="PSS_BasicView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVDocumentPageSetup.cpp" />
+    <ClCompile Include="PSS_DocumentPageSetup.cpp" />
     <ClCompile Include="ZVDocumentPageSetupDlg.cpp" />
     <ClCompile Include="ZVManageValueIntelliEdit.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
@@ -1429,8 +1429,8 @@
     <ClInclude Include="PSS_PLFNMultiColumn.h" />
     <ClInclude Include="PSS_PLFNAutoNumbered.h" />
     <ClInclude Include="PSS_PlanFinObject.h" />
-    <ClInclude Include="ZARadio.h" />
-    <ClInclude Include="ZAServerOptions.h" />
+    <ClInclude Include="PSS_PLFNRadioBtn.h" />
+    <ClInclude Include="PSS_ServerOptions.h" />
     <ClInclude Include="ZASquare.h" />
     <ClInclude Include="ZAString.h" />
     <ClInclude Include="ZAStyle.h" />
@@ -1528,9 +1528,9 @@
     <ClInclude Include="ZUser.h" />
     <ClInclude Include="ZUStringFormater.h" />
     <ClInclude Include="ZUSystemOption.h" />
-    <ClInclude Include="ZVBasicScrollView.h" />
-    <ClInclude Include="ZVBasicView.h" />
-    <ClInclude Include="ZVDocumentPageSetup.h" />
+    <ClInclude Include="PSS_BasicScrollView.h" />
+    <ClInclude Include="PSS_BasicView.h" />
+    <ClInclude Include="PSS_DocumentPageSetup.h" />
     <ClInclude Include="ZVDocumentPageSetupDlg.h" />
     <ClInclude Include="ZVManageValueIntelliEdit.h" />
     <ClInclude Include="ZVOutputView.h" />

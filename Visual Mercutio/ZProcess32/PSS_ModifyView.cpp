@@ -12,7 +12,7 @@
 #include "zBaseLib\ZIViewCd.h"
 #include "zBaseLib\PSS_VisualTool.h"
 #include "zBaseLib\PSS_PLFNCheckBtn.h"
-#include "zBaseLib\ZARadio.h"
+#include "zBaseLib\PSS_PLFNRadioBtn.h"
 #include "zBaseLib\PSS_PLFNAutoNumbered.h"
 #include "zBaseLib\ZASquare.h"
 #include "zBaseLib\PSS_PLFNBoundText.h"
@@ -240,7 +240,7 @@ PSS_Edit* PSS_ModifyView::CreateEditControl(PSS_PlanFinObject* pObj, CDC* pDC)
 
         case IDS_RADIO_CLASS:
         {
-            PLFNRadio* pRadio = dynamic_cast<PLFNRadio*>(pObj);
+            PSS_PLFNRadioBtn* pRadio = dynamic_cast<PSS_PLFNRadioBtn*>(pObj);
 
             if (pRadio)
             {
@@ -471,14 +471,14 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
             if (page == pObjTemp->GetObjectPage())
             {
                 // skip non editable object
-                if (pObjTemp->IsReadOnlyAtRuntime()               ||
-                    pObjTemp->GetIsStatic()                       ||
-                    pObjTemp->IsKindOf(RUNTIME_CLASS(PLFNStatic)) ||
-                    pObjTemp->IsKindOf(RUNTIME_CLASS(PLFNCheck))  ||
-                    pObjTemp->IsKindOf(RUNTIME_CLASS(PLFNRadio))  ||
-                    pObjTemp->IsKindOf(RUNTIME_CLASS(PLFNLine))   ||
-                    pObjTemp->IsKindOf(RUNTIME_CLASS(PLFNRect))   ||
-                    pObjTemp->IsKindOf(RUNTIME_CLASS(PLFNNumbered)))
+                if (pObjTemp->IsReadOnlyAtRuntime()                     ||
+                    pObjTemp->GetIsStatic()                             ||
+                    pObjTemp->IsKindOf(RUNTIME_CLASS(PSS_PLFNStatic))   ||
+                    pObjTemp->IsKindOf(RUNTIME_CLASS(PSS_PLFNCheckBtn)) ||
+                    pObjTemp->IsKindOf(RUNTIME_CLASS(PSS_PLFNRadioBtn)) ||
+                    pObjTemp->IsKindOf(RUNTIME_CLASS(PSS_PLFNLine))     ||
+                    pObjTemp->IsKindOf(RUNTIME_CLASS(PSS_PLFNRect))     ||
+                    pObjTemp->IsKindOf(RUNTIME_CLASS(PSS_PLFNNumbered)))
                     continue;
 
                 PLFNLong* pLong = dynamic_cast<PLFNLong*>(pObjTemp);

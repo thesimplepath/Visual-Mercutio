@@ -1569,7 +1569,7 @@ ZDProcessGraphModelDoc* ZAApp::FileNewModel()
     }
 
     // JMR-MODIF - Le 14 juillet 2005 - Teste si l'utiliateur a abandonné le processus.
-    ZVDocumentPageSetup* m_pPageSetup = pNewFile->GetPrinterPageSize();
+    PSS_DocumentPageSetup* m_pPageSetup = pNewFile->GetPrinterPageSize();
 
     if (m_pPageSetup != NULL)
     {
@@ -1643,10 +1643,10 @@ ZDProcessGraphModelDoc* ZAApp::FileNewModel()
     // JMR-MODIF - Le 20 juillet 2005 - Attribue la trame de fond à la nouvelle page.
     if (m_pPageSetup != NULL)
     {
-        if (m_pPageSetup->GetBackGroundFilename() != _T(""))
+        if (m_pPageSetup->GetBackgroundFileName() != _T(""))
         {
             pNewFile->GetFirstModelView()->GetViewport()->
-                GetModelController()->SetImage(m_pPageSetup->GetBackGroundFilename(), FALSE);
+                GetModelController()->SetImage(m_pPageSetup->GetBackgroundFileName(), FALSE);
         }
     }
 

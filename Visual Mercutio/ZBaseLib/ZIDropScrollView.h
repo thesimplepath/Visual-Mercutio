@@ -15,11 +15,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
+// processsoft
 #include "ZIDrop.h"
-#include "ZVBasicScrollView.h"
-
-
+#include "PSS_BasicScrollView.h"
 
 #ifdef _ZBASELIBEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -37,50 +35,36 @@
 /////////////////////////////////////////////////////////////////////////////
 // ZIDropScrollView view
 
-class AFX_EXT_CLASS ZIDropScrollView : public ZVBasicScrollView, public ZIDrop
+class AFX_EXT_CLASS ZIDropScrollView : public PSS_BasicScrollView, public ZIDrop
 {
-protected:
-    ZIDropScrollView();           // protected constructor used by dynamic creation
     DECLARE_DYNCREATE(ZIDropScrollView)
 
-// Attributes
 public:
-
-// Operations
-public:
-
     virtual bool AcceptDrop() const { return false; };
 
     virtual bool DropItem( CObject* pObj, CPoint pt ) { return false; };
 
     virtual bool AcceptDropItem( CObject* pObj, CPoint pt ) { return false; };
 
-// Overrides
-    // ClassWizard generated virtual function overrides
+protected:
+    ZIDropScrollView();
+    virtual ~ZIDropScrollView();
+
+    /// ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZIDropScrollView)
-    protected:
-    virtual void OnDraw(CDC* pDC);      // overridden to draw this view
+    virtual void OnDraw(CDC* pDC);
     //}}AFX_VIRTUAL
 
-// Implementation
-protected:
-    virtual ~ZIDropScrollView();
-#ifdef _DEBUG
-    virtual void AssertValid() const;
-    virtual void Dump(CDumpContext& dc) const;
-#endif
-
-    // Generated message map functions
-protected:
+    /// Generated message map functions
     //{{AFX_MSG(ZIDropScrollView)
         // NOTE - the ClassWizard will add and remove member functions here.
     //}}AFX_MSG
     DECLARE_MESSAGE_MAP()
+
+#ifdef _DEBUG
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
+#endif
 };
 
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZIDropScrollView_H__96365A05_C418_4569_836C_1CC5162A7DCA__INCLUDED_)
+#endif

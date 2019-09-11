@@ -34,7 +34,7 @@
 
 #include "zLanguageDef.h"
 
-#include "zBaseLib\ZVDocumentPageSetup.h"
+#include "zBaseLib\PSS_DocumentPageSetup.h"
 
 // Forward declaration
 class ZILog;
@@ -367,7 +367,7 @@ public:
     virtual void SetModifiedFlag( BOOL bModified = TRUE );
 
     // Printer functions
-    ZVDocumentPageSetup* GetPrinterPageSize();
+    PSS_DocumentPageSetup* GetPrinterPageSize();
 
     // View functions
     ZIProcessGraphModelView* GetFirstModelView();

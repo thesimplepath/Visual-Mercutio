@@ -15,11 +15,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
+// processsoft
 #include "ZIDrop.h"
-#include "ZVBasicView.h"
-
-
+#include "PSS_BasicView.h"
 
 #ifdef _ZBASELIBEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -37,7 +35,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // ZIDropView view
 
-class AFX_EXT_CLASS ZIDropView : public ZVBasicView, public ZIDrop
+class AFX_EXT_CLASS ZIDropView : public PSS_BasicView, public ZIDrop
 {
 protected:
     ZIDropView();           // protected constructor used by dynamic creation
@@ -78,9 +76,4 @@ protected:
     DECLARE_MESSAGE_MAP()
 };
 
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZIDROPVIEW_H__96365A05_C418_4569_836C_1CC5162A7DCA__INCLUDED_)
+#endif

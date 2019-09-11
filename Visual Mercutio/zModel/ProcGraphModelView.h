@@ -22,7 +22,7 @@
 
 // processsoft
 #include "zBaseLib\ZIDropScrollView.h"
-#include "zBaseLib\ZVDocumentPageSetup.h"
+#include "zBaseLib\PSS_DocumentPageSetup.h"
 #include "ProcGraphModelVp.h"
 
 // forward class declarations

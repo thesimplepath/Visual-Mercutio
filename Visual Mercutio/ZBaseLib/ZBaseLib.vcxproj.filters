@@ -26,12 +26,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZARadio.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZAServerOptions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZASquare.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -309,15 +303,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZUSystemOption.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVBasicScrollView.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVBasicView.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVDocumentPageSetup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZVDocumentPageSetupDlg.cpp">
@@ -602,6 +587,21 @@
     <ClCompile Include="PSS_FieldObserverMsg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_PLFNRadioBtn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_BasicScrollView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_BasicView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_DocumentPageSetup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ServerOptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -718,12 +718,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZARadio.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZAServerOptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZASquare.h">
@@ -1011,15 +1005,6 @@
     <ClInclude Include="ZUSystemOption.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZVBasicScrollView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVBasicView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVDocumentPageSetup.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZVDocumentPageSetupDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1300,6 +1285,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_FieldObserverMsg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_PLFNRadioBtn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_DocumentPageSetup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_BasicView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_BasicScrollView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ServerOptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

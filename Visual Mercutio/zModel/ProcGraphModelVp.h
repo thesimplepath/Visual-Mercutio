@@ -20,7 +20,7 @@
 #include "Views/OdRulerWrapper.h"
 
 // processsoft
-#include "zBaseLib\ZVDocumentPageSetup.h"
+#include "zBaseLib\PSS_DocumentPageSetup.h"
 #include "ZBPageUnits.h"
 
 // forward class declaration
@@ -63,10 +63,10 @@ public:
     virtual void OnUpdate( IMvcSubject* pSubject, IMvcMessage* pMsg );
 
     // Resize the model
-    void SizeVp( ZVDocumentPageSetup* PageSetup );
+    void SizeVp( PSS_DocumentPageSetup* PageSetup );
 
     // Update the page look according to model settings
-    void UpdatePageLook( ZVDocumentPageSetup* PageSetup );
+    void UpdatePageLook( PSS_DocumentPageSetup* PageSetup );
 
     ZDProcessGraphModelController*    GetModelController();
     ZDProcessGraphModelMdl*            GetModel();

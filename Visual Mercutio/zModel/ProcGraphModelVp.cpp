@@ -56,7 +56,7 @@ void ZIProcessGraphModelViewport::OnInitialUpdate()
 
 // JMR-MODIF - le 14 juillet 2005 - Supprimé les variables m_PageSize, m_StandardSize et m_Orientation de la fonction,
 // remplacé par la classe PageSetup.
-void ZIProcessGraphModelViewport::SizeVp( ZVDocumentPageSetup* PageSetup )
+void ZIProcessGraphModelViewport::SizeVp( PSS_DocumentPageSetup* PageSetup )
 {
     if ( PageSetup == NULL )
     {
@@ -87,7 +87,7 @@ void ZIProcessGraphModelViewport::SizeVp( ZVDocumentPageSetup* PageSetup )
 }
 
 // JMR-MODIF - le 18 juillet 2005 - Ajouté la variable PageSetup à la fonction.
-void ZIProcessGraphModelViewport::UpdatePageLook( ZVDocumentPageSetup* PageSetup )
+void ZIProcessGraphModelViewport::UpdatePageLook( PSS_DocumentPageSetup* PageSetup )
 {
     // Retreive the model pointer
     ZDProcessGraphModelMdl* pModel = GetModel();
@@ -103,7 +103,7 @@ void ZIProcessGraphModelViewport::UpdatePageLook( ZVDocumentPageSetup* PageSetup
 
         // JMR-MODIF - Le 18 juillet 2005 - S'il n'y a pas d'imprimante installée, ou si le format de papier
         // n'est pas reconnu, configure les dimensions de la page avec les valeurs par défaut.
-        if ( PageSetup->CanPrint() == FALSE ) pg = PageSetup->GetDefaultPageDim( CRect( 11, 32, 11, 32 ) );
+        if ( PageSetup->CanPrint() == FALSE ) pg = PageSetup->GetDefaultPageSize( CRect( 11, 32, 11, 32 ) );
 
         // Now sets the model size according to the page dimension
         pModel->SetSize( pg.cx, pg.cy );

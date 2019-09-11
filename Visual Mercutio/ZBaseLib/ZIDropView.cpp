@@ -13,7 +13,7 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZIDropView
 
-IMPLEMENT_DYNCREATE(ZIDropView, ZVBasicView)
+IMPLEMENT_DYNCREATE(ZIDropView, PSS_BasicView)
 
 ZIDropView::ZIDropView()
 {
@@ -24,7 +24,7 @@ ZIDropView::~ZIDropView()
 }
 
 
-BEGIN_MESSAGE_MAP(ZIDropView, ZVBasicView)
+BEGIN_MESSAGE_MAP(ZIDropView, PSS_BasicView)
     //{{AFX_MSG_MAP(ZIDropView)
         // NOTE - the ClassWizard will add and remove mapping macros here.
     //}}AFX_MSG_MAP
