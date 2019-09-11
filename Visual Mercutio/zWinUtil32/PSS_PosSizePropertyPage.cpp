@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_PaintOperations.h"
-#include "zBaseLib\ZAObject.h"
+#include "zBaseLib\PSS_PlanFinObject.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -27,7 +27,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_PosSizePropertyPage
 //---------------------------------------------------------------------------
-PSS_PosSizePropertyPage::PSS_PosSizePropertyPage(PlanFinObject* pObj) :
+PSS_PosSizePropertyPage::PSS_PosSizePropertyPage(PSS_PlanFinObject* pObj) :
     PSS_GenericPropPage(PSS_PosSizePropertyPage::IDD, pObj),
     m_PositionX(0.0),
     m_PositionY(0.0),
@@ -51,8 +51,8 @@ void PSS_PosSizePropertyPage::SaveValuesToObject()
 {
     UpdateData(TRUE);
 
-    PlanFinObject& object = (PlanFinObject&)GetObject();
-    CRect&         rect   = object.GetClientRect();
+    PSS_PlanFinObject& object = (PSS_PlanFinObject&)GetObject();
+    CRect&             rect   = object.GetClientRect();
 
     const CSize pos = PSS_PaintOperations::ConvertMillimetersLogicalUnits(CSize(int(m_PositionX * 100.0), int(m_PositionY * 100.0)));
     rect.left   = pos.cx;

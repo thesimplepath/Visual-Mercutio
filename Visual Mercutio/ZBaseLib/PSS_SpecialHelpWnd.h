@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZAObject.h"
+#include "PSS_PlanFinObject.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -47,10 +47,10 @@ class PSS_SpecialHelpWnd : public CWnd
         *@param autoCalculateOption - if TRUE, options will be auto-calculated
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL Create(CWnd*          pParentWnd,
-                            CRect*         pRect,
-                            PlanFinObject* pObj,
-                            BOOL           autoCalculateOption = FALSE) = 0;
+        virtual BOOL Create(CWnd*              pParentWnd,
+                            CRect*             pRect,
+                            PSS_PlanFinObject* pObj,
+                            BOOL               autoCalculateOption = FALSE) = 0;
 
         /**
         * Creates the special help window
@@ -62,12 +62,12 @@ class PSS_SpecialHelpWnd : public CWnd
         *@param autoCalculateOption - if TRUE, options will be auto-calculated
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL CreateSpecialHelp(CWnd*          pParentWnd,
-                                       CRect*         pRect,
-                                       PlanFinObject* pObj,
-                                       UINT           bitmapRes,
-                                       std::size_t    numberOfButton,
-                                       BOOL           autoCalculateOption = FALSE);
+        virtual BOOL CreateSpecialHelp(CWnd*              pParentWnd,
+                                       CRect*             pRect,
+                                       PSS_PlanFinObject* pObj,
+                                       UINT               bitmapRes,
+                                       std::size_t        numberOfButton,
+                                       BOOL               autoCalculateOption = FALSE);
 
         /**
         * Destroys the window
@@ -114,7 +114,7 @@ class PSS_SpecialHelpWnd : public CWnd
         * Gets the financial plan object
         *@return the financial plan object
         */
-        virtual inline PlanFinObject* GetObject() const;
+        virtual inline PSS_PlanFinObject* GetObject() const;
 
         /**
         * Gets the number of buttons
@@ -194,7 +194,7 @@ class PSS_SpecialHelpWnd : public CWnd
 
     private:
         static CString near m_ClassName;
-        PlanFinObject*      m_pObj;
+        PSS_PlanFinObject*  m_pObj;
         HCURSOR             m_hCurWizard;
         HCURSOR             m_hCurEmpty;
         HCURSOR             m_hCurProperty;
@@ -246,7 +246,7 @@ void PSS_SpecialHelpWnd::SetNoteCursor()
     SetCursor(m_hCurNote);
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_SpecialHelpWnd::GetObject() const
+PSS_PlanFinObject* PSS_SpecialHelpWnd::GetObject() const
 {
     return m_pObj;
 }
@@ -279,7 +279,7 @@ class AFX_EXT_CLASS PSS_SpecialHelpNumberWnd : public PSS_SpecialHelpWnd
         *@param autoCalculateOption - if TRUE, options will be auto-calculated
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL Create(CWnd* pParentWnd, CRect* pRect, PlanFinObject* pObj, BOOL autoCalculateOption = FALSE);
+        virtual BOOL Create(CWnd* pParentWnd, CRect* pRect, PSS_PlanFinObject* pObj, BOOL autoCalculateOption = FALSE);
 
     protected:
         /**
@@ -319,7 +319,7 @@ class AFX_EXT_CLASS PSS_SpecialHelpNumberDesignerWnd : public PSS_SpecialHelpWnd
         *@param autoCalculateOption - if TRUE, options will be auto-calculated
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL Create(CWnd* pParentWnd, CRect* pRect, PlanFinObject* pObj, BOOL autoCalculateOption = FALSE);
+        virtual BOOL Create(CWnd* pParentWnd, CRect* pRect, PSS_PlanFinObject* pObj, BOOL autoCalculateOption = FALSE);
 
     protected:
         /**
@@ -360,7 +360,7 @@ class AFX_EXT_CLASS PSS_SpecialHelpNumberScenarioWnd : public PSS_SpecialHelpWnd
         *@param autoCalculateOption - if TRUE, options will be auto-calculated
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL Create(CWnd* pParentWnd, CRect* pRect, PlanFinObject* pObj, BOOL autoCalculateOption = FALSE);
+        virtual BOOL Create(CWnd* pParentWnd, CRect* pRect, PSS_PlanFinObject* pObj, BOOL autoCalculateOption = FALSE);
 
     protected:
         /**
@@ -401,7 +401,7 @@ class AFX_EXT_CLASS PSS_SpecialHelpNumberScenarioDesignerWnd : public PSS_Specia
         *@param autoCalculateOption - if TRUE, options will be auto-calculated
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL Create(CWnd* pParentWnd, CRect* pRect, PlanFinObject* pObj, BOOL autoCalculateOption = FALSE);
+        virtual BOOL Create(CWnd* pParentWnd, CRect* pRect, PSS_PlanFinObject* pObj, BOOL autoCalculateOption = FALSE);
 
     protected:
         /**
@@ -442,7 +442,7 @@ class AFX_EXT_CLASS PSS_SpecialHelpDateWnd : public PSS_SpecialHelpWnd
         *@param autoCalculateOption - if TRUE, options will be auto-calculated
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL Create(CWnd* pParentWnd, CRect* pRect, PlanFinObject* pObj, BOOL autoCalculateOption = FALSE);
+        virtual BOOL Create(CWnd* pParentWnd, CRect* pRect, PSS_PlanFinObject* pObj, BOOL autoCalculateOption = FALSE);
 
     protected:
         /**
@@ -483,7 +483,7 @@ class AFX_EXT_CLASS PSS_SpecialHelpDateDesignerWnd : public PSS_SpecialHelpWnd
         *@param autoCalculateOption - if TRUE, options will be auto-calculated
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL Create(CWnd* pParentWnd, CRect* pRect, PlanFinObject* pObj, BOOL autoCalculateOption = FALSE);
+        virtual BOOL Create(CWnd* pParentWnd, CRect* pRect, PSS_PlanFinObject* pObj, BOOL autoCalculateOption = FALSE);
 
     protected:
         /**
@@ -524,7 +524,7 @@ class AFX_EXT_CLASS PSS_SpecialHelpDefaultWnd : public PSS_SpecialHelpWnd
         *@param autoCalculateOption - if TRUE, options will be auto-calculated
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL Create(CWnd* pParentWnd, CRect* pRect, PlanFinObject* pObj, BOOL autoCalculateOption = FALSE);
+        virtual BOOL Create(CWnd* pParentWnd, CRect* pRect, PSS_PlanFinObject* pObj, BOOL autoCalculateOption = FALSE);
 
     protected:
         /**
@@ -565,7 +565,7 @@ class AFX_EXT_CLASS PSS_SpecialHelpDefaultDesignerWnd : public PSS_SpecialHelpWn
         *@param autoCalculateOption - if TRUE, options will be auto-calculated
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL Create(CWnd* pParentWnd, CRect* pRect, PlanFinObject* pObj, BOOL autoCalculateOption = FALSE);
+        virtual BOOL Create(CWnd* pParentWnd, CRect* pRect, PSS_PlanFinObject* pObj, BOOL autoCalculateOption = FALSE);
 
     protected:
         /**

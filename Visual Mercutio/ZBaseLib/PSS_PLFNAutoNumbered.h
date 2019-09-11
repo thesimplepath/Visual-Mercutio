@@ -22,8 +22,8 @@
 #endif
 
 // processsoft
-#include "PSS_PlanFinObj.h"
-#include "ZAObject.h"
+#include "PSS_PlanFinObject.h"
+#include "PSS_PlanFinObjects.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -39,7 +39,7 @@
 * Financial plan auto-numbered object, it's a header with automatic numeration
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PLFNAutoNumbered : public PlanFinObject
+class AFX_EXT_CLASS PSS_PLFNAutoNumbered : public PSS_PlanFinObject
 {
     DECLARE_SERIAL(PSS_PLFNAutoNumbered)
 
@@ -74,13 +74,13 @@ class AFX_EXT_CLASS PSS_PLFNAutoNumbered : public PlanFinObject
         * Clones the object
         *@return the cloned object, NULL on error
         */
-        virtual PlanFinObject* Clone() const;
+        virtual PSS_PlanFinObject* Clone() const;
 
         /**
         * Copies the object content
         *@param pSrc - source object to copy from
         */
-        virtual void CopyObject(PlanFinObject* pSrc);
+        virtual void CopyObject(PSS_PlanFinObject* pSrc);
 
         /**
         * Checks if a field is empty
@@ -190,13 +190,13 @@ class AFX_EXT_CLASS PSS_PLFNAutoNumbered : public PlanFinObject
         * Gets the object
         *@return the object
         */
-        virtual inline const PlanFinObject* GetObject() const;
+        virtual inline const PSS_PlanFinObject* GetObject() const;
 
         /**
         * Sets the object
         *@param pObject - the object
         */
-        virtual inline void SetObject(PlanFinObject* pObject);
+        virtual inline void SetObject(PSS_PlanFinObject* pObject);
 
         /**
         * Gets the text offset from the section and paragraph number
@@ -292,12 +292,12 @@ class AFX_EXT_CLASS PSS_PLFNAutoNumbered : public PlanFinObject
         #endif
 
     private:
-        PSS_PLFNStatic m_TextLevel;
-        PlanFinObject* m_pObject;
-        int            m_TextOffset;
-        int            m_SectionNumber;
-        int            m_Level;
-        BOOL           m_AutoCalculate;
+        PSS_PLFNStatic     m_TextLevel;
+        PSS_PlanFinObject* m_pObject;
+        int                m_TextOffset;
+        int                m_SectionNumber;
+        int                m_Level;
+        BOOL               m_AutoCalculate;
 };
 
 //---------------------------------------------------------------------------
@@ -313,7 +313,7 @@ BOOL PSS_PLFNAutoNumbered::IsEmpty() const
 //---------------------------------------------------------------------------
 BOOL PSS_PLFNAutoNumbered::IsSelected(const CPoint& point) const
 {
-    return(m_rctObject.PtInRect(point));
+    return(m_ObjectRect.PtInRect(point));
 }
 //---------------------------------------------------------------------------
 const CString& PSS_PLFNAutoNumbered::GetStringTextLevel() const
@@ -333,7 +333,7 @@ UINT PSS_PLFNAutoNumbered::GetRightSubMenu() const
 //---------------------------------------------------------------------------
 UINT PSS_PLFNAutoNumbered::GetPropertyTabs() const
 {
-    return (PropertyGeneralPage | PropertySizePage | PropertyNumberedPage);
+    return (g_PropertyGeneralPage | g_PropertySizePage | g_PropertyNumberedPage);
 }
 //---------------------------------------------------------------------------
 UINT PSS_PLFNAutoNumbered::GetJustify(ZDDocument* pDoc) const
@@ -353,9 +353,9 @@ void PSS_PLFNAutoNumbered::SetJustify(UINT value)
 const HandleStyle PSS_PLFNAutoNumbered::GetStyle() const
 {
     if (m_pObject)
-        return m_pObject->GethStyle();
+        return m_pObject->GetStyle();
 
-    return GethStyle();
+    return GetStyle();
 }
 //---------------------------------------------------------------------------
 PSS_PLFNStatic& PSS_PLFNAutoNumbered::GetTextLevel()
@@ -363,12 +363,12 @@ PSS_PLFNStatic& PSS_PLFNAutoNumbered::GetTextLevel()
     return m_TextLevel;
 }
 //---------------------------------------------------------------------------
-const PlanFinObject* PSS_PLFNAutoNumbered::GetObject() const
+const PSS_PlanFinObject* PSS_PLFNAutoNumbered::GetObject() const
 {
     return m_pObject;
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNAutoNumbered::SetObject(PlanFinObject* value)
+void PSS_PLFNAutoNumbered::SetObject(PSS_PlanFinObject* value)
 {
     m_pObject = value;
 }
@@ -416,15 +416,15 @@ void PSS_PLFNAutoNumbered::SetLevel(int value)
 const PSS_Font::FontHandle PSS_PLFNAutoNumbered::GetFont() const
 {
     if (m_pObject)
-        return m_pObject->GethFont();
+        return m_pObject->GetFont();
 
-    return GethFont();
+    return GetFont();
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNAutoNumbered::SetFont(PSS_Font::FontHandle hFont)
 {
     if (m_pObject)
-        m_pObject->SethFont(hFont);
+        m_pObject->SetFont(hFont);
 }
 //---------------------------------------------------------------------------
 

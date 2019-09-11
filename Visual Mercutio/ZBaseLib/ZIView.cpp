@@ -39,7 +39,7 @@
 // PaintOp
 #include "PSS_PaintOperations.h"
 
-#include "ZBFieldObserverMsg.h"
+#include "PSS_FieldObserverMsg.h"
 #include "ZISubject.h"
 
 #ifdef _DEBUG
@@ -69,7 +69,7 @@ END_MESSAGE_MAP()
 // Class ZIView 
 
 //## begin ZIView::pOldPointerSelectedObj%334FC460037D.attr preserve=no  protected: static PlanFinObject* {V} NULL
-PlanFinObject* ZIView::m_pOldPointerSelectedObj = NULL;
+PSS_PlanFinObject* ZIView::m_pOldPointerSelectedObj = NULL;
 //## end ZIView::pOldPointerSelectedObj%334FC460037D.attr
 
 ZIView::ZIView()
@@ -192,13 +192,13 @@ void ZIView::OnPrepareDC(CDC* pDC, CPrintInfo* pInfo)
     //## end ZIView::OnPrepareDC%832201965.body
 }
 
-PlanFinObject* ZIView::ActiveSelectedObject(CPoint& point, BOOL bAutoReset)
+PSS_PlanFinObject* ZIView::ActiveSelectedObject(CPoint& point, BOOL bAutoReset)
 {
     //## begin ZIView::ActiveSelectedObject%832201974.body preserve=yes
     ZDDocument*    pDoc = GetDocument();
     ASSERT(pDoc);
-    PlanFinObject*    obj;
-    PlanFinObject*    ReturnedObject = NULL;
+    PSS_PlanFinObject*    obj;
+    PSS_PlanFinObject*    ReturnedObject = NULL;
 
     // Retreive the current page
     int iPage;
@@ -232,13 +232,13 @@ PlanFinObject* ZIView::ActiveSelectedObject(CPoint& point, BOOL bAutoReset)
             {
                 // Notify observer about object selection
 
-                if (obj->IsSelectObject())
+                if (obj->IsObjectSelected())
                     obj->SelectObject(this, pDC, FALSE);
                 else
                 {
                     obj->SelectObject(this, pDC, TRUE);
-                    ZBFieldObserverMsg Msg(UM_NOTIFY_OBJECTSELECTED, obj);
-                    dynamic_cast<ZISubject*>(AfxGetMainWnd())->NotifyAllObservers(&Msg);
+                    PSS_FieldObserverMsg msg(UM_NOTIFY_OBJECTSELECTED, obj);
+                    dynamic_cast<ZISubject*>(AfxGetMainWnd())->NotifyAllObservers(&msg);
                 }
 
                 ReturnedObject = obj;            // Assign the current 
@@ -264,7 +264,7 @@ void ZIView::SelectObjectInRect(const CRect& rect, CWnd* pWnd, CDC* pDC)
     ZDDocument* pDoc = GetDocument();
     ASSERT(pDoc);
 
-    PlanFinObject *obj;
+    PSS_PlanFinObject *obj;
 
     // Retreive the current page
     int iPage = pDoc->GetCurrentPage();
@@ -307,7 +307,7 @@ BOOL ZIView::GetRectOfSelectedObject(CRect& rect)
     ZDDocument* pDoc = GetDocument();
     ASSERT(pDoc);
 
-    PlanFinObject  *obj;
+    PSS_PlanFinObject  *obj;
     BOOL            bRetValue = FALSE;
 
     // Retreive the current page
@@ -322,7 +322,7 @@ BOOL ZIView::GetRectOfSelectedObject(CRect& rect)
     {
         if (obj->GetObjectPage() == iPage)
         {
-            if (obj->IsSelectObject())
+            if (obj->IsObjectSelected())
             {
                 rect.UnionRect(&rect, obj->GetClientRect());
                 bRetValue = TRUE;
@@ -338,7 +338,7 @@ BOOL ZIView::GetRectOfSelectedObject(CRect& rect)
 void ZIView::DeselectAllObject(CWnd* pWnd, CDC* pDC, ZDDocument* pDoc)
 {
     //## begin ZIView::DeselectAllObject%832201976.body preserve=yes
-    PlanFinObject  *obj;
+    PSS_PlanFinObject  *obj;
 
     // Retreive the current page
     int iPage = pDoc->GetCurrentPage();
@@ -351,7 +351,7 @@ void ZIView::DeselectAllObject(CWnd* pWnd, CDC* pDC, ZDDocument* pDoc)
     {
         if (obj->GetObjectPage() == iPage)
         {
-            if (obj->IsSelectObject())
+            if (obj->IsObjectSelected())
                 obj->SelectObject(pWnd, pDC, FALSE);
         }
     }
@@ -397,13 +397,13 @@ void ZIView::DocToClient(CRect& rect)
     //## end ZIView::DocToClient%832637472.body
 }
 
-PlanFinObject* ZIView::FindHitObject(CPoint& point)
+PSS_PlanFinObject* ZIView::FindHitObject(CPoint& point)
 {
     //## begin ZIView::FindHitObject%837834739.body preserve=yes
     ZDDocument* pDoc = GetDocument();
     ASSERT(pDoc);
 
-    PlanFinObject *obj;
+    PSS_PlanFinObject *obj;
     // Retreive the current page
     int iPage;
     iPage = pDoc->GetCurrentPage();
@@ -424,7 +424,7 @@ PlanFinObject* ZIView::FindHitObject(CPoint& point)
     //## end ZIView::FindHitObject%837834739.body
 }
 
-PlanFinObject* ZIView::ChooseObject()
+PSS_PlanFinObject* ZIView::ChooseObject()
 {
     //## begin ZIView::ChooseObject%850768721.body preserve=yes
     m_bChooseObjectMode = TRUE;
@@ -466,14 +466,14 @@ CObArray& ZIView::GetArrayOfSelectedObject()
 
     // Remove all elements
     m_ArrayOfSelectedObject.RemoveAll();
-    PlanFinObject *obj;
+    PSS_PlanFinObject *obj;
 
     // Search wich element is selected
     if ((obj = pDoc->GetHead()) != NULL)
     {
         do
         {
-            if (obj->IsSelectObject())
+            if (obj->IsObjectSelected())
                 m_ArrayOfSelectedObject.Add(obj);
         }
         while ((obj = pDoc->GetNext()) != NULL);
@@ -483,7 +483,7 @@ CObArray& ZIView::GetArrayOfSelectedObject()
     //## end ZIView::GetArrayOfSelectedObject%863883947.body
 }
 
-void ZIView::KeepObjectInPage(PlanFinObject* pObj, CSize& ReportSize)
+void ZIView::KeepObjectInPage(PSS_PlanFinObject* pObj, CSize& ReportSize)
 {
     //## begin ZIView::KeepObjectInPage%901975365.body preserve=yes
     // Tests if the object stills in the page
@@ -602,7 +602,7 @@ void ZIView::SetZoomPercentage(int iZoom)
     //## end ZIView::SetZoomPercentage%938112086.body
 }
 
-void ZIView::EditObject(PlanFinObject* pObj)
+void ZIView::EditObject(PSS_PlanFinObject* pObj)
 {
     //## begin ZIView::EditObject%938177648.body preserve=yes
     //## end ZIView::EditObject%938177648.body
@@ -668,7 +668,7 @@ BOOL ZIView::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
         // Test all tracked objects
         CDocument *pDoc = GetDocument();
         ASSERT(pDoc);
-        PlanFinObject *obj;
+        PSS_PlanFinObject *obj;
 
         // Search wich element is selected
         if ((obj = ((ZDDocument*)pDoc)->GetHead()) == NULL)
@@ -676,11 +676,11 @@ BOOL ZIView::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
 
         do
         {
-            if (obj->IsSelectObject())
+            if (obj->IsObjectSelected())
             {
                 // If processed then go out
-                if (obj->GetpRectTracker())
-                    if (obj->GetpRectTracker()->SetCursor(this, nHitTest))
+                if (obj->GetRectTracker())
+                    if (obj->GetRectTracker()->SetCursor(this, nHitTest))
                         return TRUE;
             }
         }

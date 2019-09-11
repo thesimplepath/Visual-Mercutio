@@ -73,13 +73,13 @@ class AFX_EXT_CLASS PSS_PLFNCheckBtn : public PLFNTwoStates
         * Clones the object
         *@return the cloned object, NULL on error
         */
-        virtual PlanFinObject* Clone() const;
+        virtual PSS_PlanFinObject* Clone() const;
 
         /**
         * Copies the object content
         *@param pSrc - source object to copy from
         */
-        virtual void CopyObject(PlanFinObject* pSrc);
+        virtual void CopyObject(PSS_PlanFinObject* pSrc);
 
         /**
         * Draws the object with the current DC
@@ -136,12 +136,12 @@ class AFX_EXT_CLASS PSS_PLFNCheckBtn : public PLFNTwoStates
 //---------------------------------------------------------------------------
 BOOL PSS_PLFNCheckBtn::IsSelected(const CPoint& point) const
 {
-    return(m_rctObject.PtInRect(point));
+    return(m_ObjectRect.PtInRect(point));
 }
 //---------------------------------------------------------------------------
 UINT PSS_PLFNCheckBtn::GetPropertyTabs() const
 {
-    return (PropertyGeneralBasicPage | PropertySizePage | PropertyCheckBoxPage);
+    return (g_PropertyGeneralBasicPage | g_PropertySizePage | g_PropertyCheckBoxPage);
 }
 //---------------------------------------------------------------------------
 

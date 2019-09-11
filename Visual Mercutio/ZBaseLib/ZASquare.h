@@ -28,7 +28,7 @@
 //## end module%336D05320172.includes
 
 // ZAObject
-#include "ZAObject.h"
+#include "PSS_PlanFinObject.h"
 //## begin module%336D05320172.declarations preserve=no
 //## end module%336D05320172.declarations
 
@@ -56,12 +56,12 @@
 //## Persistence: Transient
 //## Cardinality/Multiplicity: n
 
-class AFX_EXT_CLASS PLFNSquare : public PlanFinObject  //## Inherits: <unnamed>%336D04EA0050
+class AFX_EXT_CLASS PLFNSquare : public PSS_PlanFinObject
 {
   //## begin PLFNSquare%336D04BA0208.initialDeclarations preserve=yes
     public:
     // Inherited feature
-        typedef PlanFinObject inherited;
+        typedef PSS_PlanFinObject inherited;
   //## end PLFNSquare%336D04BA0208.initialDeclarations
 
   public:
@@ -88,7 +88,7 @@ class AFX_EXT_CLASS PLFNSquare : public PlanFinObject  //## Inherits: <unnamed>%
 
       //## Operation: Clone%862783358
       //    Make a clone of the object.
-      virtual PlanFinObject* Clone ();
+      virtual PSS_PlanFinObject* Clone ();
 
       //## Operation: Serialize%862783359
       //    Serialization function required for MFC mecanism.
@@ -99,7 +99,7 @@ class AFX_EXT_CLASS PLFNSquare : public PlanFinObject  //## Inherits: <unnamed>%
       virtual void DrawObject (CDC* pDC, ZIView* pView);
 
       //## Operation: CopyObject%863615081
-      virtual void CopyObject (PlanFinObject* pSrc);
+      virtual void CopyObject (PSS_PlanFinObject* pSrc);
 
       //## Operation: GetPropertyTabs%885128492
       //    Return the list of tabs that should be displayed when
@@ -165,8 +165,8 @@ class AFX_EXT_CLASS PLFNSquare : public PlanFinObject  //## Inherits: <unnamed>%
       void SetnCharPerSquare (unsigned int value);
 
       //## Attribute: pObject%362DF9940391
-      const PlanFinObject* GetpObject () const;
-      void SetpObject (PlanFinObject* value);
+      const PSS_PlanFinObject* GetpObject () const;
+      void SetpObject (PSS_PlanFinObject* value);
 
       //## Attribute: TypeOfSquare%36305ABB03C1
       //    Defines the way the square should be represented.
@@ -212,7 +212,7 @@ class AFX_EXT_CLASS PLFNSquare : public PlanFinObject  //## Inherits: <unnamed>%
       //## end PLFNSquare::nCharPerSquare%3378676D00FA.attr
 
       //## begin PLFNSquare::pObject%362DF9940391.attr preserve=no  public: PlanFinObject* {U} NULL
-      PlanFinObject* m_pObject;
+      PSS_PlanFinObject* m_pObject;
       //## end PLFNSquare::pObject%362DF9940391.attr
 
       //## begin PLFNSquare::TypeOfSquare%36305ABB03C1.attr preserve=no  public: SquareType {U} NormalSquare
@@ -250,7 +250,7 @@ class AFX_EXT_CLASS PLFNSquare : public PlanFinObject  //## Inherits: <unnamed>%
 inline UINT PLFNSquare::GetPropertyTabs () const
 {
   //## begin PLFNSquare::GetPropertyTabs%885128492.body preserve=yes
-      return PropertyGeneralPage | PropertySizePage | PropertySquarePage;
+      return (g_PropertyGeneralPage | g_PropertySizePage | g_PropertySquarePage);
   //## end PLFNSquare::GetPropertyTabs%885128492.body
 }
 
@@ -339,14 +339,14 @@ inline void PLFNSquare::SetnCharPerSquare (unsigned int value)
   //## end PLFNSquare::SetnCharPerSquare%3378676D00FA.set
 }
 
-inline const PlanFinObject* PLFNSquare::GetpObject () const
+inline const PSS_PlanFinObject* PLFNSquare::GetpObject () const
 {
   //## begin PLFNSquare::GetpObject%362DF9940391.get preserve=no
   return m_pObject;
   //## end PLFNSquare::GetpObject%362DF9940391.get
 }
 
-inline void PLFNSquare::SetpObject (PlanFinObject* value)
+inline void PLFNSquare::SetpObject (PSS_PlanFinObject* value)
 {
   //## begin PLFNSquare::SetpObject%362DF9940391.set preserve=no
   m_pObject = value;

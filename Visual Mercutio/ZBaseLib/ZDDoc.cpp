@@ -24,7 +24,8 @@
 // DocData
 #include "PSS_DocumentData.h"
 
-#include "PSS_PlanFinObj.h"
+#include "PSS_PlanFinObjects.h"
+#include "PSS_PlanFinObsoleteObjects.h"
 #include "PSS_PLFNBoundText.h"
 #include "ZARadio.h"
 #include "PSS_PLFNCheckBtn.h"
@@ -33,7 +34,6 @@
 #include "PSS_PLFNMaskString.h"
 #include "PSS_PLFNMultiColumn.h"
 #include "PSS_PLFNAutoNumbered.h"
-#include "PSS_ObsoletePLFNObj.h"
 #include "PSS_MsgBox.h"
 
 #include "ZIView.h"
@@ -191,7 +191,7 @@ PSS_Formula* ZDDocument::GetFormula(const CString& sName, int DocumentIndex)
     //## end ZDDocument::GetFormula%902943940.body
 }
 
-PlanFinObject* ZDDocument::GetObjectPtr(CString& strName, int DocumentIndex)
+PSS_PlanFinObject* ZDDocument::GetObjectPtr(CString& strName, int DocumentIndex)
 {
     if (DocumentIndex == -1)
     {
@@ -203,7 +203,7 @@ PlanFinObject* ZDDocument::GetObjectPtr(CString& strName, int DocumentIndex)
     return GetDocumentDataAt(DocumentIndex)->GetObject(strName);
 }
 
-PlanFinObject* ZDDocument::GetSelectedObject(BOOL bCheckPage, int DocumentIndex)
+PSS_PlanFinObject* ZDDocument::GetSelectedObject(BOOL bCheckPage, int DocumentIndex)
 {
     //## begin ZDDocument::GetSelectedObject%908460235.body preserve=yes
     if (DocumentIndex == -1)
@@ -225,7 +225,7 @@ PlanFinObject* ZDDocument::GetSelectedObject(BOOL bCheckPage, int DocumentIndex)
     //## end ZDDocument::GetSelectedObject%908460235.body
 }
 
-void ZDDocument::CheckFormulaObject(PlanFinObject* pOld, PlanFinObject* pNew, int DocumentIndex)
+void ZDDocument::CheckFormulaObject(PSS_PlanFinObject* pOld, PSS_PlanFinObject* pNew, int DocumentIndex)
 {
     //## begin ZDDocument::CheckFormulaObject%908620919.body preserve=yes
     if (DocumentIndex == -1)
@@ -501,7 +501,7 @@ BOOL ZDDocument::CopyDocumentDataArrayAfter(CObArray& ArraySrc, int Index, BOOL 
     //## end ZDDocument::CopyDocumentDataArrayAfter%914146160.body
 }
 
-void ZDDocument::PropagateFieldValue(PlanFinObject* pObj, int DocumentIndex)
+void ZDDocument::PropagateFieldValue(PSS_PlanFinObject* pObj, int DocumentIndex)
 {
     //## begin ZDDocument::PropagateFieldValue%914754357.body preserve=yes
     switch (DocumentIndex)
@@ -715,7 +715,7 @@ void ZDDocument::OnDraw(CDC* pDC, ZIView* pView, int DocumentIndex)
     //## end ZDDocument::OnDraw%940782408.body
 }
 
-void ZDDocument::SwitchTabOrder(PlanFinObject* pObject, double TabOrder, int DocumentIndex)
+void ZDDocument::SwitchTabOrder(PSS_PlanFinObject* pObject, double TabOrder, int DocumentIndex)
 {
     //## begin ZDDocument::SwitchTabOrder%947360847.body preserve=yes
     if (DocumentIndex == -1)
@@ -979,7 +979,7 @@ void ZDDocument::ChangeFieldForCalculation(int DocumentIndex)
     //## end ZDDocumentRead::ChangeFieldForCalculation%907776827.body
 }
 
-BOOL ZDDocument::IsCalculatedFieldInSchema(PlanFinObject* pObj, int DocumentIndex)
+BOOL ZDDocument::IsCalculatedFieldInSchema(PSS_PlanFinObject* pObj, int DocumentIndex)
 {
     //## begin ZDDocumentRead::IsCalculatedFieldInSchema%907776829.body preserve=yes
     if (DocumentIndex == -1)
@@ -1327,7 +1327,7 @@ void ZDDocument::AssignPredefinedField(int DocumentIndex)
     //## end ZDDocumentReadWrite::AssignPredefinedField%913970066.body
 }
 
-BOOL ZDDocument::ChangeObjectType(PlanFinObject*    obj,
+BOOL ZDDocument::ChangeObjectType(PSS_PlanFinObject*    obj,
                                   const CString&    sName,
                                   const CString&    sFinalValue,
                                   BOOL                bPropagate,
@@ -1377,7 +1377,7 @@ CString ZDDocument::BuildAutomaticNewName(const CString& sPrefix, int DocumentIn
     //## end ZDDocumentReadWrite::BuildAutomaticNewName%913970074.body
 }
 
-BOOL ZDDocument::InsertObject(PlanFinObject*       obj,
+BOOL ZDDocument::InsertObject(PSS_PlanFinObject*       obj,
                               PSS_FieldRepository* pFieldRepository,
                               BOOL                 InsertInGlobalRepository,
                               int                  DocumentIndex,
@@ -1410,7 +1410,7 @@ BOOL ZDDocument::InsertObject(PlanFinObject*       obj,
     //## end ZDDocumentReadWrite::InsertObject%913970068.body
 }
 
-BOOL ZDDocument::InsertObjectAtHead(PlanFinObject*       obj,
+BOOL ZDDocument::InsertObjectAtHead(PSS_PlanFinObject*       obj,
                                     PSS_FieldRepository* pFieldRepository,
                                     BOOL                 InsertInGlobalRepository,
                                     int                  DocumentIndex,
@@ -1446,7 +1446,7 @@ BOOL ZDDocument::InsertObjectAtHead(PlanFinObject*       obj,
     //## end ZDDocumentReadWrite::InsertObject%913970068.body
 }
 
-BOOL ZDDocument::DeleteObject(PlanFinObject*    obj,
+BOOL ZDDocument::DeleteObject(PSS_PlanFinObject*    obj,
                               BOOL                DeleteFromMemory,
                               int                DocumentIndex,
                               BOOL                Refresh                /*= FALSE*/)
@@ -1473,7 +1473,7 @@ BOOL ZDDocument::DeleteObject(PlanFinObject*    obj,
     //## end ZDDocumentReadWrite::DeleteObject%913970069.body
 }
 
-BOOL ZDDocument::MoveObjectInOrder(PlanFinObject* obj, int DocumentIndex)
+BOOL ZDDocument::MoveObjectInOrder(PSS_PlanFinObject* obj, int DocumentIndex)
 {
     //## begin ZDDocumentReadWrite::MoveObjectInOrder%913970070.body preserve=yes
     if (DocumentIndex == -1)
@@ -1524,7 +1524,7 @@ void ZDDocument::AssignObjectValue(CString    Name,
     //## end ZDDocumentReadWrite::AssignObjectValue%913970071.body
 }
 
-void ZDDocument::SetCurrentPageToObject(PlanFinObject* obj, int DocumentIndex)
+void ZDDocument::SetCurrentPageToObject(PSS_PlanFinObject* obj, int DocumentIndex)
 {
     //## begin ZDDocumentReadWrite::SetCurrentPageToObject%913970072.body preserve=yes
     if (DocumentIndex == -1)
@@ -2079,7 +2079,7 @@ BOOL ZDDocument::PropagateExternDocumentAllValues(ZDDocument*    pDoc,
     // For all fields coming from the extern document, propagate all values.
     // Process only one time per field name
     // For each object, assign the new value
-    PlanFinObject *pObj;
+    PSS_PlanFinObject *pObj;
 
     for (size_t i = 0; i < pDoc->GetDocumentDataCount(); ++i)
     {
@@ -2088,9 +2088,9 @@ BOOL ZDDocument::PropagateExternDocumentAllValues(ZDDocument*    pDoc,
             do
             {
                 // If the object is exportable
-                if (!((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii)) &&
-                    !((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)) &&
-                    !((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNTwoStates)))
+                if (!((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii)) &&
+                    !((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)) &&
+                    !((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNTwoStates)))
                 {
                     continue;
                 }
@@ -2129,7 +2129,7 @@ BOOL ZDDocument::PropagateInternalDocumentAllValues(int    IndexFrom,
 {
     //## begin ZDDocumentReadWrite::PropagateInternalDocumentAllValues%945006730.body preserve=yes
     // For each object, assign the new value
-    PlanFinObject *pObj;
+    PSS_PlanFinObject *pObj;
 
     if (IndexTo == -1)
     {
@@ -2149,9 +2149,9 @@ BOOL ZDDocument::PropagateInternalDocumentAllValues(int    IndexFrom,
             do
             {
                 // If the object is exportable
-                if (!((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii)) &&
-                    !((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)) &&
-                    !((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNTwoStates)))
+                if (!((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii)) &&
+                    !((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)) &&
+                    !((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNTwoStates)))
                 {
                     continue;
                 }
@@ -2190,7 +2190,7 @@ BOOL ZDDocument::PropagateInternalDocumentOnDocumentValues(int        InIndexFro
 {
     //## begin ZDDocumentReadWrite::PropagateInternalDocumentOnDocumentValues%945006731.body preserve=yes
     // For each object, assign the new value
-    PlanFinObject  *pObj;
+    PSS_PlanFinObject  *pObj;
 
     if (InIndexTo == -1)
     {
@@ -2210,9 +2210,9 @@ BOOL ZDDocument::PropagateInternalDocumentOnDocumentValues(int        InIndexFro
             do
             {
                 // If the object is exportable
-                if (!((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii)) &&
-                    !((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)) &&
-                    !((PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNTwoStates)))
+                if (!((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii)) &&
+                    !((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)) &&
+                    !((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNTwoStates)))
                 {
                     continue;
                 }
@@ -2273,7 +2273,7 @@ int ZDDocument::GetObjectCount(int DocumentIndex)
     //## end ZDDocument::GetObjectCount%902579796.body
 }
 
-PlanFinObject* ZDDocument::GetHead(int DocumentIndex)
+PSS_PlanFinObject* ZDDocument::GetHead(int DocumentIndex)
 {
     //## begin ZDDocument::GetHead%902579797.body preserve=yes
     if (DocumentIndex == -1)
@@ -2290,7 +2290,7 @@ PlanFinObject* ZDDocument::GetHead(int DocumentIndex)
     //## end ZDDocument::GetHead%902579797.body
 }
 
-PlanFinObject* ZDDocument::GetNext(int DocumentIndex)
+PSS_PlanFinObject* ZDDocument::GetNext(int DocumentIndex)
 {
     //## begin ZDDocument::GetNext%902579798.body preserve=yes
     if (DocumentIndex == -1)
@@ -2666,7 +2666,7 @@ BOOL ZDDocument::DocumentDataIsInternalKeyEqualTo(const CString Key, int Documen
     //## end ZDDocument::DocumentDataIsInternalKeyEqualTo%936298278.body
 }
 
-inline BOOL ZDDocument::CheckMultiColumnMemberField(PlanFinObject* obj, int DocumentIndex)
+inline BOOL ZDDocument::CheckMultiColumnMemberField(PSS_PlanFinObject* obj, int DocumentIndex)
 {
     if (DocumentIndex == -1)
     {
@@ -2746,7 +2746,7 @@ void ZDDocument::SchemaListHasChanged(int DocumentIndex)
     //## end ZDDocumentRead::SchemaListHasChanged%907776828.body
 }
 
-void ZDDocument::SetEditedObject(PlanFinObject* pObj, int DocumentIndex)
+void ZDDocument::SetEditedObject(PSS_PlanFinObject* pObj, int DocumentIndex)
 {
     //## begin ZDDocumentReadWrite::SetEditedObject%907776834.body preserve=yes
     if (DocumentIndex == -1)
@@ -2764,7 +2764,7 @@ void ZDDocument::SetEditedObject(PlanFinObject* pObj, int DocumentIndex)
     //## end ZDDocumentReadWrite::SetEditedObject%907776834.body
 }
 
-PlanFinObject* ZDDocument::GetEditedObject(BOOL bCheckPage, int DocumentIndex)
+PSS_PlanFinObject* ZDDocument::GetEditedObject(BOOL bCheckPage, int DocumentIndex)
 {
     //## begin ZDDocumentReadWrite::GetEditedObject%907776835.body preserve=yes
     if (DocumentIndex == -1)
@@ -2777,12 +2777,12 @@ PlanFinObject* ZDDocument::GetEditedObject(BOOL bCheckPage, int DocumentIndex)
     //## end ZDDocumentReadWrite::GetEditedObject%907776835.body
 }
 
-void ZDDocument::CreateAutomaticNewName(PlanFinObject* pObj)
+void ZDDocument::CreateAutomaticNewName(PSS_PlanFinObject* pObj)
 {
     pObj->SetObjectName(GetAutomaticNewName(pObj));
 }
 
-void ZDDocument::CopyObjectToClipBoard(PlanFinObject* pObj)
+void ZDDocument::CopyObjectToClipBoard(PSS_PlanFinObject* pObj)
 {
     if (pObj)
     {
@@ -2790,7 +2790,7 @@ void ZDDocument::CopyObjectToClipBoard(PlanFinObject* pObj)
     }
 }
 
-CString ZDDocument::GetAutomaticNewName(PlanFinObject* pObj, int DocumentIndex)
+CString ZDDocument::GetAutomaticNewName(PSS_PlanFinObject* pObj, int DocumentIndex)
 {
     PSS_DocumentData* pDocData = NULL;
 

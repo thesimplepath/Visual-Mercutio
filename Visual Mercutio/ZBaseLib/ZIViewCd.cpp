@@ -16,7 +16,7 @@
 //## end module%3365108E0302.additionalIncludes
 
 //## begin module%3365108E0302.includes preserve=yes
-#include "PSS_PlanFinObj.h"
+#include "PSS_PlanFinObjects.h"
 #include "PSS_PLFNAutoNumbered.h"
 #include "PSS_PLFNBitmap.h"
 //## end module%3365108E0302.includes
@@ -97,7 +97,7 @@ void ZIViewCode::OnDraw(CDC* pDC)
     ZDDocument*    pDoc = GetDocument();
     ASSERT(pDoc);
     int                iPage;
-    PlanFinObject  *obj;
+    PSS_PlanFinObject  *obj;
     POSITION        Position;
     // Translate to absolute coordinates
     OnPrepareDC(pDC);
@@ -110,7 +110,7 @@ void ZIViewCode::OnDraw(CDC* pDC)
     Position = (pDoc->GetObjectList()).GetHeadPosition();
     while (Position)
     {
-        obj = (PlanFinObject *)(pDoc->GetObjectList()).GetNext(Position);
+        obj = (PSS_PlanFinObject *)(pDoc->GetObjectList()).GetNext(Position);
         // If the page of the next object is greater than
         // the actual page, it is not necessary to continue.
         if (obj->GetObjectPage() > iPage)
@@ -123,37 +123,37 @@ void ZIViewCode::OnDraw(CDC* pDC)
             {
                 // Display object on the right page
                 // and if he is visible into the viewport
-                obj->DisplayObjectName(pDC);
+                obj->ShowObjectName(pDC);
                 break;
             }
             case E_CT_Long:
             {
                 if (obj->IsKindOf(RUNTIME_CLASS(PSS_PLFNLong)))
-                    obj->DisplayObjectName(pDC);
+                    obj->ShowObjectName(pDC);
                 break;
             }
             case E_CT_Calculated:
             {
                 if (obj->IsKindOf(RUNTIME_CLASS(PSS_PLFNLong)) && ((PSS_PLFNLong*)obj)->IsCalculatedField())
-                    obj->DisplayObjectName(pDC);
+                    obj->ShowObjectName(pDC);
                 break;
             }
             case E_CT_Static:
             {
                 if (obj->IsKindOf(RUNTIME_CLASS(PLFNText)) && ((PLFNText*)obj)->GetIsStatic())
-                    obj->DisplayObjectName(pDC);
+                    obj->ShowObjectName(pDC);
                 break;
             }
             case E_CT_Text:
             {
                 if ((obj->IsKindOf(RUNTIME_CLASS(PLFNText)) && !((PLFNText*)obj)->GetIsStatic()) || obj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)))
-                    obj->DisplayObjectName(pDC);
+                    obj->ShowObjectName(pDC);
                 break;
             }
             case E_CT_Graphic:
             {
                 if (obj->IsKindOf(RUNTIME_CLASS(PSS_PLFNGraphic)) && obj->IsKindOf(RUNTIME_CLASS(PSS_PLFNBitmap)))
-                    obj->DisplayObjectName(pDC);
+                    obj->ShowObjectName(pDC);
                 break;
             }
         }

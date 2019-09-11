@@ -56,13 +56,13 @@ const PSS_PLFNMaskString& PSS_PLFNMaskString::operator = (const PSS_PLFNMaskStri
     return *this;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_PLFNMaskString::Clone() const
+PSS_PlanFinObject* PSS_PLFNMaskString::Clone() const
 {
     std::unique_ptr<PSS_PLFNMaskString> pObject(new PSS_PLFNMaskString(*this));
     return pObject.release();
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNMaskString::CopyObject(PlanFinObject* pSrc)
+void PSS_PLFNMaskString::CopyObject(PSS_PlanFinObject* pSrc)
 {
     operator = (dynamic_cast<PSS_PLFNMaskString*>(pSrc));
 }
@@ -84,12 +84,12 @@ void PSS_PLFNMaskString::DrawObject(CDC* pDC, ZIView* pView)
 
             // before drawing the object, format it, but for string it is not necessary in this version
             pDC->SetTextAlign(0);
-            pDC->DrawText(GetFormattedObject(), -1, &m_rctObject, GetJustify(pView->GetDocument()));
+            pDC->DrawText(GetFormattedObject(), -1, &m_ObjectRect, GetJustify(pView->GetDocument()));
             pDC->SelectObject(pOldFont);
         }
     }
 
-    PlanFinObject::DrawObject(pDC, pView);
+    PSS_PlanFinObject::DrawObject(pDC, pView);
 }
 //---------------------------------------------------------------------------
 CString PSS_PLFNMaskString::GetFormattedObject()

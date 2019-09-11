@@ -9,7 +9,7 @@
 #include "PSS_Edit.h"
 
 // processsoft
-#include "PSS_PlanFinObj.h"
+#include "PSS_PlanFinObjects.h"
 #include "ZDDoc.h"
 #include "PSS_PLFNMaskString.h"
 #include "PSS_PLFNMultiColumn.h"
@@ -52,7 +52,7 @@ void PSS_Edit::PreCreateEdit(BOOL                 designerMode,
                              CWnd*                pParentWnd,
                              CDC*                 pDC,
                              ZDDocument*          pDoc,
-                             PlanFinObject*       pEditedObj,
+                             PSS_PlanFinObject*   pEditedObj,
                              PSS_FieldRepository* pFieldRepository,
                              BOOL                 autoCalculateOption,
                              BOOL                 goNextEditOption)
@@ -122,7 +122,7 @@ CStringArray* PSS_Edit::GetArrayOfValues()
             // force the read only for member of multi-column field
             m_ReadOnly = TRUE;
 
-            return (CStringArray*)&(m_pEditedObj->GetpColumn()->GetValueArray());
+            return (CStringArray*)&(m_pEditedObj->GetColumn()->GetValueArray());
         }
         else
             // if not found nor does not exists
@@ -235,7 +235,7 @@ void PSS_StrEdit::Create(BOOL                 designerMode,
                          CWnd*                pParentWnd,
                          CDC*                 pDC,
                          ZDDocument*          pDoc,
-                         PlanFinObject*       pEditedObj,
+                         PSS_PlanFinObject*   pEditedObj,
                          PSS_FieldRepository* pFieldRepository,
                          BOOL                 autoCalculateOption,
                          BOOL                 goNextEditOption)
@@ -377,7 +377,7 @@ void PSS_NumEdit::Create(BOOL                 designerMode,
                          CWnd*                pParentWnd,
                          CDC*                 pDC,
                          ZDDocument*          pDoc,
-                         PlanFinObject*       pEditedObj,
+                         PSS_PlanFinObject*   pEditedObj,
                          PSS_FieldRepository* pFieldRepository,
                          BOOL                 autoCalculateOption,
                          BOOL                 goNextEditOption)
@@ -517,7 +517,7 @@ void PSS_CalcEdit::Create(BOOL                 designerMode,
                           CWnd*                pParentWnd,
                           CDC*                 pDC,
                           ZDDocument*          pDoc,
-                          PlanFinObject*       pEditedObj,
+                          PSS_PlanFinObject*   pEditedObj,
                           PSS_FieldRepository* pFieldRepository,
                           BOOL                 autoCalculateOption,
                           BOOL                 goNextEditOption)
@@ -588,7 +588,7 @@ void PSS_TimeEdit::Create(BOOL                 designerMode,
                           CWnd*                pParentWnd,
                           CDC*                 pDC,
                           ZDDocument*          pDoc,
-                          PlanFinObject*       pEditedObj,
+                          PSS_PlanFinObject*   pEditedObj,
                           PSS_FieldRepository* pFieldRepository,
                           BOOL                 autoCalculateOption,
                           BOOL                 goNextEditOption)
@@ -737,7 +737,7 @@ void PSS_StrEditHistoric::Create(BOOL                 designerMode,
                                  CWnd*                pParentWnd,
                                  CDC*                 pDC,
                                  ZDDocument*          pDoc,
-                                 PlanFinObject*       pEditedObj,
+                                 PSS_PlanFinObject*   pEditedObj,
                                  PSS_FieldRepository* pFieldRepository,
                                  BOOL                 autoCalculateOption,
                                  BOOL                 goNextEditOption)
@@ -873,7 +873,7 @@ void PSS_NumEditHistoric::Create(BOOL                 designerMode,
                                  CWnd*                pParentWnd,
                                  CDC*                 pDC,
                                  ZDDocument*          pDoc,
-                                 PlanFinObject*       pEditedObj,
+                                 PSS_PlanFinObject*   pEditedObj,
                                  PSS_FieldRepository* pFieldRepository,
                                  BOOL                 autoCalculateOption,
                                  BOOL                 goNextEditOption)
@@ -1009,7 +1009,7 @@ void PSS_FieldNameEdit::Create(BOOL                 designerMode,
                                CWnd*                pParentWnd,
                                CDC*                 pDC,
                                ZDDocument*          pDoc,
-                               PlanFinObject*       pEditedObj,
+                               PSS_PlanFinObject*   pEditedObj,
                                PSS_FieldRepository* pFieldRepository,
                                BOOL                 autoCalculateOption,
                                BOOL                 goNextEditOption)
@@ -1127,7 +1127,7 @@ void PSS_MaskEdit::Create(BOOL                 designerMode,
                           CWnd*                pParentWnd,
                           CDC*                 pDC,
                           ZDDocument*          pDoc,
-                          PlanFinObject*       pEditedObj,
+                          PSS_PlanFinObject*   pEditedObj,
                           PSS_FieldRepository* pFieldRepository,
                           BOOL                 autoCalculateOption,
                           BOOL                 goNextEditOption)
@@ -1254,7 +1254,7 @@ void PSS_MultiColumnEdit::Create(BOOL                 designerMode,
                                  CWnd*                pParentWnd,
                                  CDC*                 pDC,
                                  ZDDocument*          pDoc,
-                                 PlanFinObject*       pEditedObj,
+                                 PSS_PlanFinObject*   pEditedObj,
                                  PSS_FieldRepository* pFieldRepository,
                                  BOOL                 autoCalculateOption,
                                  BOOL                 goNextEditOption)

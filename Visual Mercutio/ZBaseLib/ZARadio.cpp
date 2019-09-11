@@ -85,7 +85,7 @@ const PLFNRadio& PLFNRadio::operator = (const PLFNRadio* right)
   //## end PLFNRadio::operator =%862783357.body
 }
 
-PlanFinObject* PLFNRadio::Clone ()
+PSS_PlanFinObject* PLFNRadio::Clone ()
 {
   //## begin PLFNRadio::Clone%862783361.body preserve=yes
     PLFNRadio*    pObject = new PLFNRadio( *this );
@@ -108,7 +108,7 @@ void PLFNRadio::DrawObject (CDC* pDC, ZIView* pView)
       CPen*    pOldPen = pDC->SelectObject( &GetGraphicPen( pen ) );
       if (!GetbTextIsCtrl())
       {
-          CRect    RectControl(m_rctObject);
+          CRect    RectControl(m_ObjectRect);
         // Test if the control is on the right
         if (GetbLeftText())
               RectControl.left = RectControl.right - GetuSize();
@@ -163,20 +163,20 @@ void PLFNRadio::DrawObject (CDC* pDC, ZIView* pView)
         pDC->SetTextAlign( TA_LEFT | TA_BASELINE );
         // If the text does not act as a control 
           if (!GetbTextIsCtrl() && !GetbLeftText())
-            pDC->TextOut( m_rctObject.left+GetuSize() + GetOffsetText(), m_rctObject.top+GetuSize(), GetsText() );
+            pDC->TextOut( m_ObjectRect.left+GetuSize() + GetOffsetText(), m_ObjectRect.top+GetuSize(), GetsText() );
         else
         {
-            pDC->TextOut( m_rctObject.left, m_rctObject.top+GetuSize(), GetsText() );
+            pDC->TextOut( m_ObjectRect.left, m_ObjectRect.top+GetuSize(), GetsText() );
               if (GetbCheckState() && GetbTextIsCtrl())
               {
-                pDC->MoveTo( m_rctObject.left+1, m_rctObject.top + (m_rctObject.Height()/2) );
-                pDC->LineTo( m_rctObject.right, m_rctObject.top + (m_rctObject.Height()/2) );
+                pDC->MoveTo( m_ObjectRect.left+1, m_ObjectRect.top + (m_ObjectRect.Height()/2) );
+                pDC->LineTo( m_ObjectRect.right, m_ObjectRect.top + (m_ObjectRect.Height()/2) );
               }
         }
         pDC->SelectObject( OldFont );
       }
     pDC->SelectObject( pOldPen );
-    PlanFinObject::DrawObject( pDC, pView );    
+    PSS_PlanFinObject::DrawObject( pDC, pView );
   //## end PLFNRadio::DrawObject%862783363.body
 }
 
@@ -187,16 +187,16 @@ void PLFNRadio::EditObject (CWnd* pParentWnd, CDC* pDC, ZDDocument* pDoc)
       // if greather than zero,
       // run through all elments and reset
       // all values of the same group.
-    if (GetuGroupNumber() > 0)
+    if (GetGroupNumber() > 0)
     {
-        PlanFinObject  *obj;
+        PSS_PlanFinObject  *obj;
         // Search wich element is selected
         if ((obj=((ZDDocument*)pDoc)->GetHead()) != NULL)
         {
             do
             {
                 // If in the same group
-                if (obj->GetuGroupNumber() == GetuGroupNumber() &&
+                if (obj->GetGroupNumber() == GetGroupNumber() &&
                     obj->IsKindOf(RUNTIME_CLASS(PLFNRadio)))
                 {
                     ((PLFNRadio*)obj)->SetbCheckState( FALSE );
@@ -216,7 +216,7 @@ void PLFNRadio::EditObject (CWnd* pParentWnd, CDC* pDC, ZDDocument* pDoc)
   //## end PLFNRadio::EditObject%862847762.body
 }
 
-void PLFNRadio::CopyObject (PlanFinObject* pSrc)
+void PLFNRadio::CopyObject (PSS_PlanFinObject* pSrc)
 {
   //## begin PLFNRadio::CopyObject%863615078.body preserve=yes
     ((PLFNRadio*)this)->PLFNRadio::operator=( (PLFNRadio*)pSrc );

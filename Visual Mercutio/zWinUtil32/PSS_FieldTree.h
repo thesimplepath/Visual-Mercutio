@@ -76,7 +76,7 @@ class AFX_EXT_CLASS PSS_FieldTree
         * Gets the selected document field
         *@return the selected document field, NULL if not found or on error
         */
-        virtual PlanFinObject* GetSelectedDocumentField();
+        virtual PSS_PlanFinObject* GetSelectedDocumentField();
 
         /**
         * Called when field changed
@@ -124,14 +124,14 @@ class AFX_EXT_CLASS PSS_FieldTree
         *@param hParentTreeItem - parent tree in which the item will be added
         *@return newly added item handle, NULL on error
         */
-        virtual HTREEITEM AddDocumentFieldItem(PlanFinObject* pObj, HTREEITEM hParentTreeItem);
+        virtual HTREEITEM AddDocumentFieldItem(PSS_PlanFinObject* pObj, HTREEITEM hParentTreeItem);
 
         /**
         * Gets the item index
         *@param pObj - object for which the item index should be found
         *@return item index, -1 if not found or on error
         */
-        virtual int GetItemIndex(PlanFinObject* pObj);
+        virtual int GetItemIndex(PSS_PlanFinObject* pObj);
 
     private:
         /**

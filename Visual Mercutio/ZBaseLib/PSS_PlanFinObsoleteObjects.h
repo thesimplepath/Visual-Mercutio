@@ -1,5 +1,5 @@
 /****************************************************************************
- * ==> PSS_ObsoletePLFNObj -------------------------------------------------*
+ * ==> PSS_PlanFinObsoleteObjects ------------------------------------------*
  ****************************************************************************
  * Description : Provides previous and obsolete versions of the financial   *
  *               plan objects                                               *
@@ -41,8 +41,8 @@
 
 // processsoft
 #include "PSS_MathParser.h"
-#include "PSS_PlanFinObj.h"
-#include "ZAObject.h"
+#include "PSS_PlanFinObject.h"
+#include "PSS_PlanFinObjects.h"
 #include "ZAText.h"
 #include "ZAString.h"
 #include "PSS_PLFNGraphic.h"
@@ -97,13 +97,13 @@ class AFX_EXT_CLASS PSS_PLFNStringHistory : public PLFNString
         * Clones the object
         *@return the cloned object, NULL on error
         */
-        virtual PlanFinObject* Clone() const;
+        virtual PSS_PlanFinObject* Clone() const;
 
         /**
         * Copies the object content
         *@param pSrc - source object to copy from
         */
-        virtual void CopyObject(PlanFinObject* pSrc);
+        virtual void CopyObject(PSS_PlanFinObject* pSrc);
 
         /**
         * Gets the contains from a line
@@ -182,13 +182,13 @@ class AFX_EXT_CLASS PSS_PLFNNumbered : public PSS_PLFNStatic
         * Clones the object
         *@return the cloned object, NULL on error
         */
-        virtual PlanFinObject* Clone() const;
+        virtual PSS_PlanFinObject* Clone() const;
 
         /**
         * Copies the object content
         *@param pSrc - source object to copy from
         */
-        virtual void CopyObject(PlanFinObject* pSrc);
+        virtual void CopyObject(PSS_PlanFinObject* pSrc);
 
         /**
         * Gets the tab list that should be shown when the user asks for object properties
@@ -231,7 +231,7 @@ class AFX_EXT_CLASS PSS_PLFNNumbered : public PSS_PLFNStatic
 //---------------------------------------------------------------------------
 UINT PSS_PLFNNumbered::GetPropertyTabs() const
 {
-    return PropertyGeneralStaticPage | PropertySizePage;
+    return (g_PropertyGeneralStaticPage | g_PropertySizePage);
 }
 //---------------------------------------------------------------------------
 
@@ -279,13 +279,13 @@ class AFX_EXT_CLASS PSS_PLFNNumbEdit : public PLFNString
         * Clones the object
         *@return the cloned object, NULL on error
         */
-        virtual PlanFinObject* Clone() const;
+        virtual PSS_PlanFinObject* Clone() const;
 
         /**
         * Copies the object content
         *@param pSrc - source object to copy from
         */
-        virtual void CopyObject(PlanFinObject* pSrc);
+        virtual void CopyObject(PSS_PlanFinObject* pSrc);
 
         /**
         * Gets the tab list that should be shown when the user asks for object properties
@@ -328,7 +328,7 @@ class AFX_EXT_CLASS PSS_PLFNNumbEdit : public PLFNString
 //---------------------------------------------------------------------------
 UINT PSS_PLFNNumbEdit::GetPropertyTabs() const
 {
-    return PropertyGeneralStaticPage | PropertySizePage;
+    return (g_PropertyGeneralStaticPage | g_PropertySizePage);
 }
 //---------------------------------------------------------------------------
 
@@ -372,13 +372,13 @@ class AFX_EXT_CLASS PSS_PLFNCalculated : public PSS_PLFNLong
         * Clones the object
         *@return the cloned object, NULL on error
         */
-        virtual PlanFinObject* Clone() const;
+        virtual PSS_PlanFinObject* Clone() const;
 
         /**
         * Copies the object content
         *@param pSrc - source object to copy from
         */
-        virtual void CopyObject(PlanFinObject* pSrc);
+        virtual void CopyObject(PSS_PlanFinObject* pSrc);
 
         /**
         * Gets the formatted object
@@ -453,13 +453,13 @@ class AFX_EXT_CLASS PSS_PLFNNumHistory : public PSS_PLFNLong
         * Clones the object
         *@return the cloned object, NULL on error
         */
-        virtual PlanFinObject* Clone() const;
+        virtual PSS_PlanFinObject* Clone() const;
 
         /**
         * Copies the object content
         *@param pSrc - source object to copy from
         */
-        virtual void CopyObject(PlanFinObject* pSrc);
+        virtual void CopyObject(PSS_PlanFinObject* pSrc);
 
         /**
         * Gets the contains from a line
@@ -507,7 +507,7 @@ class AFX_EXT_CLASS PSS_PLFNNumHistory : public PSS_PLFNLong
 //---------------------------------------------------------------------------
 UINT PSS_PLFNNumHistory::GetPropertyTabs() const
 {
-    return PropertyGeneralStaticPage | PropertySizePage;
+    return (g_PropertyGeneralStaticPage | g_PropertySizePage);
 }
 //---------------------------------------------------------------------------
 
@@ -555,13 +555,13 @@ class AFX_EXT_CLASS PSS_PLFNNumbNumEdit : public PSS_PLFNLong
         * Clones the object
         *@return the cloned object, NULL on error
         */
-        virtual PlanFinObject* Clone() const;
+        virtual PSS_PlanFinObject* Clone() const;
 
         /**
         * Copies the object content
         *@param pSrc - source object to copy from
         */
-        virtual void CopyObject(PlanFinObject* pSrc);
+        virtual void CopyObject(PSS_PlanFinObject* pSrc);
 
         /**
         * Gets the tab list that should be shown when the user asks for object properties
@@ -604,7 +604,7 @@ class AFX_EXT_CLASS PSS_PLFNNumbNumEdit : public PSS_PLFNLong
 //---------------------------------------------------------------------------
 UINT PSS_PLFNNumbNumEdit::GetPropertyTabs() const
 {
-    return PropertyGeneralStaticPage | PropertySizePage;
+    return (g_PropertyGeneralStaticPage | g_PropertySizePage);
 }
 //---------------------------------------------------------------------------
 

@@ -74,13 +74,13 @@ const PSS_PLFNBoundText& PSS_PLFNBoundText::operator = (const PSS_PLFNBoundText*
     return *this;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_PLFNBoundText::Clone() const
+PSS_PlanFinObject* PSS_PLFNBoundText::Clone() const
 {
     std::unique_ptr<PSS_PLFNBoundText> pObject(new PSS_PLFNBoundText(*this));
     return pObject.release();
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNBoundText::CopyObject(PlanFinObject* pSrc)
+void PSS_PLFNBoundText::CopyObject(PSS_PlanFinObject* pSrc)
 {
     operator = (dynamic_cast<PSS_PLFNBoundText*>(pSrc));
 }
@@ -108,16 +108,16 @@ void PSS_PLFNBoundText::DrawObject(CDC* pDC, ZIView* pView)
 
             pDC->DrawText("\t" + m_Str,
                           -1,
-                          &m_rctObject,
+                          &m_ObjectRect,
                           GetJustify(pView->GetDocument()) & ~DT_SINGLELINE | DT_WORDBREAK | DT_EXPANDTABS | DT_TABSTOP | (tabChar << 8));
         }
         else
-            pDC->DrawText(m_Str, -1, &m_rctObject, (GetJustify(pView->GetDocument()) & ~DT_SINGLELINE) | DT_WORDBREAK);
+            pDC->DrawText(m_Str, -1, &m_ObjectRect, (GetJustify(pView->GetDocument()) & ~DT_SINGLELINE) | DT_WORDBREAK);
 
         pDC->SelectObject(pOldFont);
     }
 
-    PlanFinObject::DrawObject(pDC, pView);
+    PSS_PlanFinObject::DrawObject(pDC, pView);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNBoundText::DrawEmpty(CDC* pDC, ZIView* pView)
@@ -135,7 +135,7 @@ void PSS_PLFNBoundText::DrawEmpty(CDC* pDC, ZIView* pView)
     // draw the doted line without the dotted line style (bugged on printing)
     CPen        pen(PS_SOLID, 1, GetColor(pView));
     CPen*       pOldPen     = pDC->SelectObject(&pen);
-    const int   line        = __max(1, m_rctObject.Height() / (textSize.cy + 2));
+    const int   line        = __max(1, m_ObjectRect.Height() / (textSize.cy + 2));
     const UINT  leftHanging = UINT(GetHanging());
 
     switch (pView->GetDocument()->GetDocOptions().GetEmptyStyle())
@@ -148,20 +148,20 @@ void PSS_PLFNBoundText::DrawEmpty(CDC* pDC, ZIView* pView)
             if (GetHanging())
             {
                 // calculate the start point
-                for (int i = m_rctObject.left + leftHanging; i < m_rctObject.right; i += 2)
+                for (int i = m_ObjectRect.left + leftHanging; i < m_ObjectRect.right; i += 2)
                 {
-                    pDC->MoveTo(i,     (m_rctObject.top + (y * (textSize.cy + 2))) + textSize.cy);
-                    pDC->LineTo(i + 1, (m_rctObject.top + (y * (textSize.cy + 2))) + textSize.cy);
+                    pDC->MoveTo(i,     (m_ObjectRect.top + (y * (textSize.cy + 2))) + textSize.cy);
+                    pDC->LineTo(i + 1, (m_ObjectRect.top + (y * (textSize.cy + 2))) + textSize.cy);
                 }
 
                 y = 1;
             }
 
             for (; y < line; ++y)
-                for (int i = m_rctObject.left; i < m_rctObject.right; i += 2)
+                for (int i = m_ObjectRect.left; i < m_ObjectRect.right; i += 2)
                 {
-                    pDC->MoveTo(i,     (m_rctObject.top + (y * (textSize.cy + 2))) + textSize.cy);
-                    pDC->LineTo(i + 1, (m_rctObject.top + (y * (textSize.cy + 2))) + textSize.cy);
+                    pDC->MoveTo(i,     (m_ObjectRect.top + (y * (textSize.cy + 2))) + textSize.cy);
+                    pDC->LineTo(i + 1, (m_ObjectRect.top + (y * (textSize.cy + 2))) + textSize.cy);
                 }
 
             break;
@@ -175,20 +175,20 @@ void PSS_PLFNBoundText::DrawEmpty(CDC* pDC, ZIView* pView)
             if (GetHanging())
             {
                 // calculate the start point
-                for (int i = m_rctObject.left + leftHanging; i < m_rctObject.right; i += 8)
+                for (int i = m_ObjectRect.left + leftHanging; i < m_ObjectRect.right; i += 8)
                 {
-                    pDC->MoveTo(i,     (m_rctObject.top + (y * (textSize.cy + 2))) + textSize.cy);
-                    pDC->LineTo(i + 4, (m_rctObject.top + (y * (textSize.cy + 2))) + textSize.cy);
+                    pDC->MoveTo(i,     (m_ObjectRect.top + (y * (textSize.cy + 2))) + textSize.cy);
+                    pDC->LineTo(i + 4, (m_ObjectRect.top + (y * (textSize.cy + 2))) + textSize.cy);
                 }
 
                 y = 1;
             }
 
             for (; y < line; ++y)
-                for (int i = m_rctObject.left; i < m_rctObject.right; i += 8)
+                for (int i = m_ObjectRect.left; i < m_ObjectRect.right; i += 8)
                 {
-                    pDC->MoveTo(i,     (m_rctObject.top + (y * (textSize.cy + 2))) + textSize.cy);
-                    pDC->LineTo(i + 4, (m_rctObject.top + (y * (textSize.cy + 2))) + textSize.cy);
+                    pDC->MoveTo(i,     (m_ObjectRect.top + (y * (textSize.cy + 2))) + textSize.cy);
+                    pDC->LineTo(i + 4, (m_ObjectRect.top + (y * (textSize.cy + 2))) + textSize.cy);
                 }
 
             break;
@@ -202,16 +202,16 @@ void PSS_PLFNBoundText::DrawEmpty(CDC* pDC, ZIView* pView)
             if (GetHanging())
             {
                 // calculate the start point
-                pDC->MoveTo(m_rctObject.left + leftHanging, (m_rctObject.top + (y * (textSize.cy + 2))) + textSize.cy);
-                pDC->LineTo(m_rctObject.right,              (m_rctObject.top + (y * (textSize.cy + 2))) + textSize.cy);
+                pDC->MoveTo(m_ObjectRect.left + leftHanging, (m_ObjectRect.top + (y * (textSize.cy + 2))) + textSize.cy);
+                pDC->LineTo(m_ObjectRect.right,              (m_ObjectRect.top + (y * (textSize.cy + 2))) + textSize.cy);
 
                 y = 1;
             }
 
             for (; y < line; ++y)
             {
-                pDC->MoveTo(m_rctObject.left,  (m_rctObject.top + (y * (textSize.cy + 2))) + textSize.cy);
-                pDC->LineTo(m_rctObject.right, (m_rctObject.top + (y * (textSize.cy + 2))) + textSize.cy);
+                pDC->MoveTo(m_ObjectRect.left,  (m_ObjectRect.top + (y * (textSize.cy + 2))) + textSize.cy);
+                pDC->LineTo(m_ObjectRect.right, (m_ObjectRect.top + (y * (textSize.cy + 2))) + textSize.cy);
             }
 
             break;
@@ -225,20 +225,20 @@ void PSS_PLFNBoundText::DrawEmpty(CDC* pDC, ZIView* pView)
             if (GetHanging())
             {
                 // calculate the start point
-                for (int i = m_rctObject.left + leftHanging; i < m_rctObject.right; i += 4)
+                for (int i = m_ObjectRect.left + leftHanging; i < m_ObjectRect.right; i += 4)
                 {
-                    pDC->MoveTo(i,     (m_rctObject.top + (y * (textSize.cy + 2))) + textSize.cy);
-                    pDC->LineTo(i + 2, (m_rctObject.top + (y * (textSize.cy + 2))) + textSize.cy);
+                    pDC->MoveTo(i,     (m_ObjectRect.top + (y * (textSize.cy + 2))) + textSize.cy);
+                    pDC->LineTo(i + 2, (m_ObjectRect.top + (y * (textSize.cy + 2))) + textSize.cy);
                 }
 
                 y = 1;
             }
 
             for (; y < line; ++y)
-                for (int i = m_rctObject.left; i < m_rctObject.right; i += 4)
+                for (int i = m_ObjectRect.left; i < m_ObjectRect.right; i += 4)
                 {
-                    pDC->MoveTo(i,     (m_rctObject.top + (y * (textSize.cy + 2))) + textSize.cy);
-                    pDC->LineTo(i + 2, (m_rctObject.top + (y * (textSize.cy + 2))) + textSize.cy);
+                    pDC->MoveTo(i,     (m_ObjectRect.top + (y * (textSize.cy + 2))) + textSize.cy);
+                    pDC->LineTo(i + 2, (m_ObjectRect.top + (y * (textSize.cy + 2))) + textSize.cy);
                 }
 
             break;

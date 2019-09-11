@@ -313,7 +313,7 @@ BOOL PSS_FieldDefinitionDataFeed::PostImport()
             pObjectDefinition->SetClassName(className);
 
             // create a new object with the class name
-            PlanFinObject* pObj = PSS_ObjectUtility::BuildObject(className);
+            PSS_PlanFinObject* pObj = PSS_ObjectUtility::BuildObject(className);
 
             // set the field name
             pObj->SetObjectName(fieldName);

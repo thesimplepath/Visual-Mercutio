@@ -19,12 +19,12 @@
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_PLFNAscii, PlanFinObject, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_PLFNAscii, PSS_PlanFinObject, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_PLFNAscii
 //---------------------------------------------------------------------------
 PSS_PLFNAscii::PSS_PLFNAscii() :
-    PlanFinObject(),
+    PSS_PlanFinObject(),
     m_StrikeStyle(IE_SS_NormalStrike),
     m_Justify(g_NoAlignement),
     m_IsStriked(FALSE),
@@ -32,7 +32,7 @@ PSS_PLFNAscii::PSS_PLFNAscii() :
 {}
 //---------------------------------------------------------------------------
 PSS_PLFNAscii::PSS_PLFNAscii(const PSS_PLFNAscii& other) :
-    PlanFinObject(),
+    PSS_PlanFinObject(),
     m_StrikeStyle(IE_SS_NormalStrike),
     m_Justify(g_NoAlignement),
     m_IsStriked(FALSE),
@@ -46,7 +46,7 @@ PSS_PLFNAscii::~PSS_PLFNAscii()
 //---------------------------------------------------------------------------
 const PSS_PLFNAscii& PSS_PLFNAscii::operator = (const PSS_PLFNAscii& other)
 {
-    PlanFinObject::operator = ((inherited&)other);
+    PSS_PlanFinObject::operator = ((inherited&)other);
 
     m_StrikeStyle = other.m_StrikeStyle;
     m_Justify     = other.m_Justify;
@@ -58,7 +58,7 @@ const PSS_PLFNAscii& PSS_PLFNAscii::operator = (const PSS_PLFNAscii& other)
 //---------------------------------------------------------------------------
 const PSS_PLFNAscii& PSS_PLFNAscii::operator = (const PSS_PLFNAscii* pOther)
 {
-    PlanFinObject::operator = ((inherited*)pOther);
+    PSS_PlanFinObject::operator = ((inherited*)pOther);
 
     if (!pOther)
     {
@@ -79,7 +79,7 @@ const PSS_PLFNAscii& PSS_PLFNAscii::operator = (const PSS_PLFNAscii* pOther)
     return *this;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_PLFNAscii::Clone() const
+PSS_PlanFinObject* PSS_PLFNAscii::Clone() const
 {
     std::unique_ptr<PSS_PLFNAscii> pObject(new PSS_PLFNAscii(*this));
     return pObject.release();
@@ -92,7 +92,7 @@ UINT PSS_PLFNAscii::GetJustify(ZDDocument* pDoc) const
 
     if (pDoc)
     {
-        ZAStyle* pStyle = pDoc->GetStyleManager().GetStyle(GethStyle());
+        ZAStyle* pStyle = pDoc->GetStyleManager().GetStyle(GetStyle());
 
         if (pStyle)
             return pStyle->GetJustify();
@@ -103,7 +103,7 @@ UINT PSS_PLFNAscii::GetJustify(ZDDocument* pDoc) const
 //---------------------------------------------------------------------------
 void PSS_PLFNAscii::Serialize(CArchive& ar)
 {
-    PlanFinObject::Serialize(ar);
+    PSS_PlanFinObject::Serialize(ar);
 
     if (ar.IsStoring())
     {

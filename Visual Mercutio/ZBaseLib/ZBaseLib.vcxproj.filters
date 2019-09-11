@@ -26,9 +26,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZAObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZARadio.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -90,9 +87,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZBFieldInputScenario.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZBFieldObserverMsg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZBFldClM.cpp">
@@ -488,9 +482,6 @@
     <ClCompile Include="PSS_MaskEditBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PSS_ObsoletePLFNObj.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PSS_OutlookBarView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -513,9 +504,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PSS_Stamp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PSS_PlanFinObj.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PSS_SingleInstanceApplication.cpp">
@@ -600,6 +588,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PSS_PLFNAutoNumbered.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_PlanFinObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_PlanFinObsoleteObjects.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_PlanFinObjects.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_FieldObserverMsg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -720,9 +720,6 @@
     <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZAObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZARadio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -787,9 +784,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBFieldInputScenario.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBFieldObserverMsg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBFldClM.h">
@@ -1188,9 +1182,6 @@
     <ClInclude Include="PSS_MaskEditBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PSS_ObsoletePLFNObj.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PSS_OutlookBarView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1213,9 +1204,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_Stamp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PSS_PlanFinObj.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_SingleInstanceApplication.h">
@@ -1300,6 +1288,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_PLFNAutoNumbered.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_PlanFinObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_PlanFinObjects.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_PlanFinObsoleteObjects.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_FieldObserverMsg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

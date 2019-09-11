@@ -78,13 +78,13 @@ class AFX_EXT_CLASS PSS_PLFNBoundText : public PLFNString
         * Clones the object
         *@return the cloned object, NULL on error
         */
-        virtual PlanFinObject* Clone() const;
+        virtual PSS_PlanFinObject* Clone() const;
 
         /**
         * Copies the object content
         *@param pSrc - source object to copy from
         */
-        virtual void CopyObject(PlanFinObject* pSrc);
+        virtual void CopyObject(PSS_PlanFinObject* pSrc);
 
         /**
         * Gets the right sub-menu
@@ -170,7 +170,7 @@ UINT PSS_PLFNBoundText::GetRightSubMenu() const
 //---------------------------------------------------------------------------
 UINT PSS_PLFNBoundText::GetPropertyTabs() const
 {
-    return (PropertyGeneralBoundTextPage | PropertySizePage | PropertyBoundTextPage);
+    return (g_PropertyGeneralBoundTextPage | g_PropertySizePage | g_PropertyBoundTextPage);
 }
 //---------------------------------------------------------------------------
 const double PSS_PLFNBoundText::GetHanging() const

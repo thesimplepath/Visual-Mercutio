@@ -21,12 +21,12 @@
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_PLFNBitmap, PlanFinObject, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_PLFNBitmap, PSS_PlanFinObject, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_PLFNBitmap
 //---------------------------------------------------------------------------
 PSS_PLFNBitmap::PSS_PLFNBitmap() :
-    PlanFinObject(),
+    PSS_PlanFinObject(),
     m_hBitmap(NULL),
     m_pBitmapInfoHeader(NULL),
     m_pBits(NULL),
@@ -36,7 +36,7 @@ PSS_PLFNBitmap::PSS_PLFNBitmap() :
 {}
 //---------------------------------------------------------------------------
 PSS_PLFNBitmap::PSS_PLFNBitmap(const PSS_PLFNBitmap& other) :
-    PlanFinObject(),
+    PSS_PlanFinObject(),
     m_DisplayStyle(IE_DS_InitialSize)
 {
     *this = other;
@@ -56,7 +56,7 @@ PSS_PLFNBitmap::~PSS_PLFNBitmap()
 //---------------------------------------------------------------------------
 const PSS_PLFNBitmap& PSS_PLFNBitmap::operator = (const PSS_PLFNBitmap& other)
 {
-    PlanFinObject::operator = ((inherited&)other);
+    PSS_PlanFinObject::operator = ((inherited&)other);
 
     if (m_pBits)
         delete m_pBits;
@@ -91,7 +91,7 @@ const PSS_PLFNBitmap& PSS_PLFNBitmap::operator = (const PSS_PLFNBitmap& other)
 //---------------------------------------------------------------------------
 const PSS_PLFNBitmap& PSS_PLFNBitmap::operator = (const PSS_PLFNBitmap* pOther)
 {
-    PlanFinObject::operator = ((inherited*)pOther);
+    PSS_PlanFinObject::operator = ((inherited*)pOther);
 
     if (m_pBits)
         delete m_pBits;
@@ -136,21 +136,21 @@ const PSS_PLFNBitmap& PSS_PLFNBitmap::operator = (const PSS_PLFNBitmap* pOther)
     return *this;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_PLFNBitmap::Clone() const
+PSS_PlanFinObject* PSS_PLFNBitmap::Clone() const
 {
     std::unique_ptr<PSS_PLFNBitmap> pObject(new PSS_PLFNBitmap(*this));
     return pObject.release();
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNBitmap::CopyObject(PlanFinObject* pSrc)
+void PSS_PLFNBitmap::CopyObject(PSS_PlanFinObject* pSrc)
 {
     operator = (dynamic_cast<PSS_PLFNBitmap*>(pSrc));
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNBitmap::DrawObject(CDC* pDC, ZIView* pView)
 {
-    m_Bitmap.DrawDIB(pDC, NULL, m_rctObject.left, m_rctObject.top);
-    PlanFinObject::DrawObject(pDC, pView);
+    m_Bitmap.DrawDIB(pDC, NULL, m_ObjectRect.left, m_ObjectRect.top);
+    PSS_PlanFinObject::DrawObject(pDC, pView);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_PLFNBitmap::SelectBitmapFile(CDC* pDC)
@@ -173,7 +173,7 @@ BOOL PSS_PLFNBitmap::AssignBitmapFile(const CString& fileName, CDC* pDC)
 //---------------------------------------------------------------------------
 void PSS_PLFNBitmap::Serialize(CArchive& ar)
 {
-    PlanFinObject::Serialize(ar);
+    PSS_PlanFinObject::Serialize(ar);
 
     if (ar.IsStoring())
     {
@@ -340,8 +340,8 @@ BOOL PSS_PLFNBitmap::GetBitmapFile(const CString& fileName, CDC* pDC)
         ::_lread(fileHandle, LPSTR(m_pBitmapInfoHeader), m_HeaderSize);
 
         // assign the new object size. Bitmap size becomes object size
-        m_rctObject.right = m_rctObject.left + m_pBitmapInfoHeader->biWidth;
-        m_rctObject.bottom = m_rctObject.top + m_pBitmapInfoHeader->biHeight;
+        m_ObjectRect.right  = m_ObjectRect.left + m_pBitmapInfoHeader->biWidth;
+        m_ObjectRect.bottom = m_ObjectRect.top  + m_pBitmapInfoHeader->biHeight;
 
         // read the data
         m_Bytes = bytes - offset;

@@ -388,7 +388,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="PSS_ObsoletePLFNObj.cpp">
+    <ClCompile Include="PSS_PlanFinObsoleteObjects.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -436,7 +436,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="PSS_PlanFinObj.cpp">
+    <ClCompile Include="PSS_PlanFinObjects.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -642,7 +642,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZAObject.cpp">
+    <ClCompile Include="PSS_PlanFinObject.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -774,7 +774,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBFieldObserverMsg.cpp">
+    <ClCompile Include="PSS_FieldObserverMsg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1386,7 +1386,7 @@
     <ClInclude Include="PSS_MailFileDescription.h" />
     <ClInclude Include="PSS_MsgBox.h" />
     <ClInclude Include="PSS_MaskEditBase.h" />
-    <ClInclude Include="PSS_ObsoletePLFNObj.h" />
+    <ClInclude Include="PSS_PlanFinObsoleteObjects.h" />
     <ClInclude Include="PSS_OutlookBarView.h" />
     <ClInclude Include="PSS_OutlookSplitterWnd.h" />
     <ClInclude Include="PSS_PaintOperations.h" />
@@ -1394,7 +1394,7 @@
     <ClInclude Include="PSS_PaletteBar.h" />
     <ClInclude Include="PSS_MailUser.h" />
     <ClInclude Include="PSS_MailUserList.h" />
-    <ClInclude Include="PSS_PlanFinObj.h" />
+    <ClInclude Include="PSS_PlanFinObjects.h" />
     <ClInclude Include="PSS_PLFNBackImage.h" />
     <ClInclude Include="PSS_ProcessModelDocTmpl.h" />
     <ClInclude Include="PSS_ProcessDocumentOptions.h" />
@@ -1428,7 +1428,7 @@
     <ClInclude Include="PSS_PLFNMaskString.h" />
     <ClInclude Include="PSS_PLFNMultiColumn.h" />
     <ClInclude Include="PSS_PLFNAutoNumbered.h" />
-    <ClInclude Include="ZAObject.h" />
+    <ClInclude Include="PSS_PlanFinObject.h" />
     <ClInclude Include="ZARadio.h" />
     <ClInclude Include="ZAServerOptions.h" />
     <ClInclude Include="ZASquare.h" />
@@ -1451,7 +1451,7 @@
     <ClInclude Include="ZBEqualizeNumbers.h" />
     <ClInclude Include="ZBErrorLog.h" />
     <ClInclude Include="ZBFieldInputScenario.h" />
-    <ClInclude Include="ZBFieldObserverMsg.h" />
+    <ClInclude Include="PSS_FieldObserverMsg.h" />
     <ClInclude Include="ZBFldClM.h" />
     <ClInclude Include="ZBFldCol.h" />
     <ClInclude Include="ZBGenericErrorLine.h" />

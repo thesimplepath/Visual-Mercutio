@@ -37,11 +37,14 @@
 #ifndef PSS_DocumentData
     #define PSS_DocumentData ZDDocumentData
 #endif
+#ifndef PSS_PlanFinObject
+    #define PSS_PlanFinObject PlanFinObject
+#endif
 
 // forward classes definition
 class ZDDocument;
 class PSS_DocumentData;
-class PlanFinObject;
+class PSS_PlanFinObject;
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -126,13 +129,13 @@ class AFX_EXT_CLASS PSS_Formula : public CObject
         * Gets the resulting object
         *@return the resulting object
         */
-        virtual inline PlanFinObject* GetResultObject() const;
+        virtual inline PSS_PlanFinObject* GetResultObject() const;
 
         /**
         * Sets the resulting object
         *@param pObject - the resulting object
         */
-        virtual inline void SetResultObject(PlanFinObject* pObject);
+        virtual inline void SetResultObject(PSS_PlanFinObject* pObject);
 
         /**
         * Serializes the class content to an archive
@@ -163,11 +166,11 @@ class AFX_EXT_CLASS PSS_Formula : public CObject
         static void ConstructObjectPointer(PSS_DocumentData& doc, CObList& formulas);
 
     private:
-        CString        m_Formula;
-        CString        m_ExtractedFormula;
-        CString        m_ObjectName;
-        PlanFinObject* m_pResultObject;
-        int            m_Page;
+        CString            m_Formula;
+        CString            m_ExtractedFormula;
+        CString            m_ObjectName;
+        PSS_PlanFinObject* m_pResultObject;
+        int                m_Page;
 };
 
 //---------------------------------------------------------------------------
@@ -198,12 +201,12 @@ const CString PSS_Formula::GetObjectName() const
     return m_ObjectName;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_Formula::GetResultObject() const
+PSS_PlanFinObject* PSS_Formula::GetResultObject() const
 {
     return m_pResultObject;
 }
 //---------------------------------------------------------------------------
-void PSS_Formula::SetResultObject(PlanFinObject* pObject)
+void PSS_Formula::SetResultObject(PSS_PlanFinObject* pObject)
 {
     m_pResultObject = pObject;
 }

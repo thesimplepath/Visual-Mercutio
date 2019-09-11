@@ -57,57 +57,52 @@
 
 class AFX_EXT_CLASS PLFNRadio : public PLFNTwoStates  //## Inherits: <unnamed>%336D05CE03C0
 {
-  //## begin PLFNRadio%336D05C30096.initialDeclarations preserve=yes
-    public:
-    // Inherited feature
-        typedef PLFNTwoStates inherited;
-  //## end PLFNRadio%336D05C30096.initialDeclarations
+    DECLARE_SERIAL(PLFNRadio)
 
-  public:
-    //## Constructors (generated)
-      PLFNRadio();
+public:
+    typedef PLFNTwoStates inherited;
 
-      PLFNRadio(const PLFNRadio &right);
+    PLFNRadio();
 
-    //## Destructor (generated)
-      virtual ~PLFNRadio();
+    PLFNRadio(const PLFNRadio &right);
+
+    virtual ~PLFNRadio();
 
     //## Assignment Operation (generated)
-      const PLFNRadio & operator=(const PLFNRadio &right);
-
+    const PLFNRadio & operator=(const PLFNRadio &right);
 
     //## Other Operations (specified)
       //## Operation: operator =%862783357
       //    A copy constructor with a pointer.
-      const PLFNRadio& operator = (const PLFNRadio* right);
+    const PLFNRadio& operator = (const PLFNRadio* right);
 
-      //## Operation: Clone%862783361
-      //    Make a clone of the object.
-      virtual PlanFinObject* Clone ();
+    //## Operation: Clone%862783361
+    //    Make a clone of the object.
+    virtual PSS_PlanFinObject* Clone() const ;
 
-      //## Operation: Serialize%862783362
-      //    Serialization function required for MFC mecanism.
-      virtual void Serialize (CArchive& ar);
+    //## Operation: DrawObject%862783363
+    //    Draw the object with the current DC.
+    virtual void DrawObject(CDC* pDC, ZIView* pView);
 
-      //## Operation: DrawObject%862783363
-      //    Draw the object with the current DC.
-      virtual void DrawObject (CDC* pDC, ZIView* pView);
+    //## Operation: EditObject%862847762
+    //    Edit the object.
+    void EditObject(CWnd* pParentWnd, CDC* pDC, ZDDocument* pDoc);
 
-      //## Operation: EditObject%862847762
-      //    Edit the object.
-      void EditObject (CWnd* pParentWnd, CDC* pDC, ZDDocument* pDoc);
+    //## Operation: IsSelected%863265785
+    //    Is this object selected.
+    virtual BOOL IsSelected(const CPoint& point) const;
 
-      //## Operation: IsSelected%863265785
-      //    Is this object selected.
-      virtual BOOL IsSelected (const CPoint& point) const;
+    //## Operation: CopyObject%863615078
+    virtual void CopyObject(PSS_PlanFinObject* pSrc);
 
-      //## Operation: CopyObject%863615078
-      virtual void CopyObject (PlanFinObject* pSrc);
+    //## Operation: GetPropertyTabs%885128489
+    //    Return the list of tabs that should be displayed when
+    //    the user asks for object properties.
+    virtual UINT GetPropertyTabs() const;
 
-      //## Operation: GetPropertyTabs%885128489
-      //    Return the list of tabs that should be displayed when
-      //    the user asks for object properties.
-      virtual UINT GetPropertyTabs () const;
+    //## Operation: Serialize%862783362
+    //    Serialization function required for MFC mecanism.
+    virtual void Serialize(CArchive& ar);
 
     // Additional Public Declarations
       //## begin PLFNRadio%336D05C30096.public preserve=yes
@@ -115,47 +110,15 @@ class AFX_EXT_CLASS PLFNRadio : public PLFNTwoStates  //## Inherits: <unnamed>%3
     virtual void AssertValid() const;
     virtual void Dump(CDumpContext& dc) const;
 #endif
-      //## end PLFNRadio%336D05C30096.public
-  protected:
-    // Additional Protected Declarations
-      //## begin PLFNRadio%336D05C30096.protected preserve=yes
-    DECLARE_SERIAL(PLFNRadio)
-      //## end PLFNRadio%336D05C30096.protected
-  private:
-    // Additional Private Declarations
-      //## begin PLFNRadio%336D05C30096.private preserve=yes
-      //## end PLFNRadio%336D05C30096.private
-
-  private:  //## implementation
-    // Additional Implementation Declarations
-      //## begin PLFNRadio%336D05C30096.implementation preserve=yes
-      //## end PLFNRadio%336D05C30096.implementation
-
 };
 
-//## begin PLFNRadio%336D05C30096.postscript preserve=yes
-//## end PLFNRadio%336D05C30096.postscript
-
-// Class PLFNRadio 
-
-
-//## Other Operations (inline)
-inline BOOL PLFNRadio::IsSelected (const CPoint& point) const
+inline BOOL PLFNRadio::IsSelected(const CPoint& point) const
 {
-  //## begin PLFNRadio::IsSelected%863265785.body preserve=yes
-    return( m_rctObject.PtInRect( point ) );
-  //## end PLFNRadio::IsSelected%863265785.body
+    return(m_ObjectRect.PtInRect(point));
 }
-
-inline UINT PLFNRadio::GetPropertyTabs () const
+inline UINT PLFNRadio::GetPropertyTabs() const
 {
-  //## begin PLFNRadio::GetPropertyTabs%885128489.body preserve=yes
-      return PropertyGeneralBasicPage | PropertySizePage | PropertyRadioPage;
-  //## end PLFNRadio::GetPropertyTabs%885128489.body
+    return (g_PropertyGeneralBasicPage | g_PropertySizePage | g_PropertyRadioPage);
 }
-
-//## begin module%336D05E0032A.epilog preserve=yes
-//## end module%336D05E0032A.epilog
-
 
 #endif

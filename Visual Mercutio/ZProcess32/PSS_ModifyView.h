@@ -44,7 +44,7 @@ class PSS_ModifyView : public PSS_ReadView
         * Processes the editable object
         *@param pObj - object
         */
-        virtual void EditObject(PlanFinObject* pObj = NULL);
+        virtual void EditObject(PSS_PlanFinObject* pObj = NULL);
 
     protected:
         CString m_ToolTipTypeObject;
@@ -59,13 +59,13 @@ class PSS_ModifyView : public PSS_ReadView
         *@param pDC - device context
         *@return the right edit control based on the object
         */
-        virtual PSS_Edit* CreateEditControl(PlanFinObject* pObj, CDC* pDC = NULL);
+        virtual PSS_Edit* CreateEditControl(PSS_PlanFinObject* pObj, CDC* pDC = NULL);
 
         /**
         * Adds a notes object
         *@param pObj - object
         */
-        void AddObjectNotes(PlanFinObject* pObj);
+        void AddObjectNotes(PSS_PlanFinObject* pObj);
 
         /**
         * Gets the right popup menu identifier

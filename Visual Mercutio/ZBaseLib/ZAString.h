@@ -101,10 +101,10 @@ class AFX_EXT_CLASS PLFNString : public PLFNText  //## Inherits: <unnamed>%334FC
 
       //## Operation: Clone%849755977
       //    Make a clone of the object.
-      virtual PlanFinObject* Clone ();
+      virtual PSS_PlanFinObject* Clone ();
 
       //## Operation: CopyObject%863615083
-      virtual void CopyObject (PlanFinObject* pSrc);
+      virtual void CopyObject (PSS_PlanFinObject* pSrc);
 
     // Additional Public Declarations
       //## begin PLFNString%334FC46102D5.public preserve=yes

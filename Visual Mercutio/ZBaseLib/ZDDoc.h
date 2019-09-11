@@ -34,6 +34,9 @@
 #ifndef PSS_DocumentData
     #define PSS_DocumentData ZDDocumentData
 #endif
+#ifndef PSS_PlanFinObject
+    #define PSS_PlanFinObject PlanFinObject
+#endif
 
 // forward class declaration
 class ZIHtmlView;
@@ -41,7 +44,7 @@ class ZIView;
 class PSS_Edit;
 class PSS_DocumentExport;
 class PSS_DocumentData;
-class PlanFinObject;
+class PSS_PlanFinObject;
 class PSS_FieldRepository;
 
 #ifdef _ZBASELIBEXPORT
@@ -101,7 +104,7 @@ public:
     size_t            GetVisibleDocumentDataCount() const;
     int                PreviousVisibleDocumentAvailable(size_t DocumentIndex) const;
     int                NextVisibleDocumentAvailable(size_t DocumentIndex) const;
-    BOOL            CheckMultiColumnMemberField(PlanFinObject* obj, int DocumentIndex = -1);
+    BOOL            CheckMultiColumnMemberField(PSS_PlanFinObject* obj, int DocumentIndex = -1);
 
     virtual ZIHtmlView*        GetHtmlView();
 
@@ -148,7 +151,7 @@ public:
 
     //    Run through the list of formula and try to find if the
     //    object is a result object
-    BOOL IsCalculatedFieldInSchema(PlanFinObject* pObj, int DocumentIndex = -1);
+    BOOL IsCalculatedFieldInSchema(PSS_PlanFinObject* pObj, int DocumentIndex = -1);
 
     //    Refresh the current schema.
     void RefreshCurrentSchema(int DocumentIndex = -1);
@@ -178,11 +181,11 @@ public:
 
     //## Operation: GetHead%902579797
     //    Return the head pointer of the object element list.
-    PlanFinObject* GetHead(int DocumentIndex = -1);
+    PSS_PlanFinObject* GetHead(int DocumentIndex = -1);
 
     //## Operation: GetNext%902579798
     //    Return the next pointer of the object element list.
-    PlanFinObject* GetNext(int DocumentIndex = -1);
+    PSS_PlanFinObject* GetNext(int DocumentIndex = -1);
 
     //## Operation: GetStandardSchema%902579800
     //    Returns the standard schema name.
@@ -204,7 +207,7 @@ public:
     //## Operation: GetObjectPtr%902943941
     //    This function run the list of objects and try to find
     //    the object defined by his name.
-    PlanFinObject* GetObjectPtr(CString& strName, int DocumentIndex = -1);
+    PSS_PlanFinObject* GetObjectPtr(CString& strName, int DocumentIndex = -1);
 
     //## Operation: GetMaxPage%907776831
     //    Returns the number of pages.
@@ -228,7 +231,7 @@ public:
 
     //## Operation: GetSelectedObject%908460235
     //    Returns the selected object.
-    PlanFinObject* GetSelectedObject(BOOL bCheckPage = TRUE, int DocumentIndex = -1);
+    PSS_PlanFinObject* GetSelectedObject(BOOL bCheckPage = TRUE, int DocumentIndex = -1);
 
     //## Operation: ObjectExist%908620921
     //    Tests if the object already exists.
@@ -349,7 +352,7 @@ public:
     //## Operation: PropagateFieldValue%914754357
     //    This function receives the field name and its value. Its
     //    role is to propagate the value to all document data.
-    void PropagateFieldValue(PlanFinObject* pObj, int DocumentIndex = -2);
+    void PropagateFieldValue(PSS_PlanFinObject* pObj, int DocumentIndex = -2);
 
     //## Operation: GetDocumentDataName%914788970
     //    Fill a string array with the document data name.
@@ -427,7 +430,7 @@ public:
     //    Take the tab order of the object and when found an
     //    object with the specified tab order, switch them
     //    together.
-    void SwitchTabOrder(PlanFinObject* pObject, double TabOrder, int DocumentIndex = -1);
+    void SwitchTabOrder(PSS_PlanFinObject* pObject, double TabOrder, int DocumentIndex = -1);
 
     //## Operation: AssignMultiColumnMemberFields%948318240
     //    Run through the object list and find if the object is a
@@ -463,11 +466,11 @@ public:
     //## Operation: SetFileType%902943943
     //## Operation: SetEditedObject%907776834
     //    Sets the current edited object.
-    virtual void SetEditedObject(PlanFinObject* pObj, int DocumentIndex = -1);
+    virtual void SetEditedObject(PSS_PlanFinObject* pObj, int DocumentIndex = -1);
 
     //## Operation: GetEditedObject%907776835
     //    Returns the current edited object.
-    virtual PlanFinObject* GetEditedObject(BOOL bCheckPage = TRUE, int DocumentIndex = -1);
+    virtual PSS_PlanFinObject* GetEditedObject(BOOL bCheckPage = TRUE, int DocumentIndex = -1);
 
     //## Operation: GetEditControl%907776836
     //    Returns the pointeur on the edit control.
@@ -479,15 +482,15 @@ public:
 
     //## Operation: CreateAutomaticNewName%908620920
     //    Create automatically a new name.
-    void CreateAutomaticNewName(PlanFinObject* pObj);
+    void CreateAutomaticNewName(PSS_PlanFinObject* pObj);
 
     //## Operation: GetClipBoardObject%910355405
     //    Returns the current clipped object.
-    PlanFinObject* GetClipBoardObject();
+    PSS_PlanFinObject* GetClipBoardObject();
 
     //## Operation: CopyObjectToClipBoard%910355406
     //    Take the object and clone it to keep it in the clipboard.
-    void CopyObjectToClipBoard(PlanFinObject* pObj);
+    void CopyObjectToClipBoard(PSS_PlanFinObject* pObj);
 
     //## Operation: IsClipBoardEmpty%910355407
     //    Tests if the clipboard is empty or not.
@@ -500,23 +503,23 @@ public:
 
     //## Operation: ChangeObjectType%913970067
     //    Change the object type.
-    BOOL ChangeObjectType(PlanFinObject* obj, const CString& sName, const CString& sFinalValue, BOOL bPropagate = FALSE, int DocumentIndex = -1);
+    BOOL ChangeObjectType(PSS_PlanFinObject* obj, const CString& sName, const CString& sFinalValue, BOOL bPropagate = FALSE, int DocumentIndex = -1);
 
     //## Operation: InsertObject%913970068
-    BOOL InsertObject(PlanFinObject* obj, PSS_FieldRepository* pFieldRepository = NULL, BOOL InsertInGlobalRepository = FALSE, int DocumentIndex = -1, BOOL Refresh = FALSE);
-    BOOL InsertObjectAtHead(PlanFinObject* obj, PSS_FieldRepository* pFieldRepository = NULL, BOOL InsertInGlobalRepository = FALSE, int DocumentIndex = -1, BOOL Refresh = FALSE);
+    BOOL InsertObject(PSS_PlanFinObject* obj, PSS_FieldRepository* pFieldRepository = NULL, BOOL InsertInGlobalRepository = FALSE, int DocumentIndex = -1, BOOL Refresh = FALSE);
+    BOOL InsertObjectAtHead(PSS_PlanFinObject* obj, PSS_FieldRepository* pFieldRepository = NULL, BOOL InsertInGlobalRepository = FALSE, int DocumentIndex = -1, BOOL Refresh = FALSE);
 
     //## Operation: DeleteObject%913970069
-    BOOL DeleteObject(PlanFinObject* obj, BOOL DeleteFromMemory = TRUE, int DocumentIndex = -1, BOOL Refresh = FALSE);
+    BOOL DeleteObject(PSS_PlanFinObject* obj, BOOL DeleteFromMemory = TRUE, int DocumentIndex = -1, BOOL Refresh = FALSE);
 
     //## Operation: MoveObjectInOrder%913970070
-    BOOL MoveObjectInOrder(PlanFinObject* obj, int DocumentIndex = -1);
+    BOOL MoveObjectInOrder(PSS_PlanFinObject* obj, int DocumentIndex = -1);
 
     //## Operation: AssignObjectValue%913970071
     void AssignObjectValue(CString Name, CString Value, int Page, int PropagationMode = g_LocateAllPagesEmptyOnly, BOOL EmptyWhenZero = FALSE, int DocumentIndex = -1);
 
     //## Operation: SetCurrentPageToObject%913970072
-    void SetCurrentPageToObject(PlanFinObject* obj, int DocumentIndex = -1);
+    void SetCurrentPageToObject(PSS_PlanFinObject* obj, int DocumentIndex = -1);
 
     //    Insert a document file at the end of the document data
     //    array.
@@ -634,7 +637,7 @@ public:
     //    reordering tabs.
     const double GetCurrentTabOrder() const;
 
-    CString GetAutomaticNewName(PlanFinObject* pObj, int DocumentIndex = 0);
+    CString GetAutomaticNewName(PSS_PlanFinObject* pObj, int DocumentIndex = 0);
 
     virtual void OnCloseDocument();
 
@@ -660,7 +663,7 @@ protected:
     virtual void SerializeDocumentDataArrayRead(CArchive& ar);
 
     //    Check the formula for the object.
-    void CheckFormulaObject(PlanFinObject* pOld, PlanFinObject* pNew, int DocumentIndex = -1);
+    void CheckFormulaObject(PSS_PlanFinObject* pOld, PSS_PlanFinObject* pNew, int DocumentIndex = -1);
 
     //## Operation: CreateRealTimeExport%911381913
     //    Functions of the document option, it is necessary to
@@ -693,7 +696,7 @@ protected:
     //## Operation: SerializeDocumentDataArrayWrite%914077265
     virtual void SerializeDocumentDataArrayWrite(CArchive& ar);
 
-    void    SetCurrentPageToObject(PlanFinObject *obj);
+    void    SetCurrentPageToObject(PSS_PlanFinObject *obj);
 
     //## Operation: CheckDocumentFontAndStyle%914161846
     void CheckDocumentFontAndStyle();
@@ -710,8 +713,8 @@ protected:
 
       //## Attribute: pClipBoardObject%3642EAD201CB
       //    Points to the current copied object.
-      //## begin ZDDocumentReadWrite::pClipBoardObject%3642EAD201CB.attr preserve=no  private: PlanFinObject* {U} NULL
-    PlanFinObject* m_pClipBoardObject;
+      //## begin ZDDocumentReadWrite::pClipBoardObject%3642EAD201CB.attr preserve=no  private: PSS_PlanFinObject* {U} NULL
+    PSS_PlanFinObject* m_pClipBoardObject;
     //## end ZDDocumentReadWrite::pClipBoardObject%3642EAD201CB.attr
 
   // Data Members for Class Attributes
@@ -1063,7 +1066,7 @@ inline void ZDDocument::AssignEditControl(PSS_Edit* pEdit)
     //## end ZDDocumentReadWrite::AssignEditControl%907776838.body
 }
 
-inline PlanFinObject* ZDDocument::GetClipBoardObject()
+inline PSS_PlanFinObject* ZDDocument::GetClipBoardObject()
 {
     //## begin ZDDocumentReadWrite::GetClipBoardObject%910355405.body preserve=yes
     return m_pClipBoardObject;

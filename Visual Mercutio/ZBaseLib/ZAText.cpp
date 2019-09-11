@@ -168,7 +168,7 @@ void PLFNText::GetContains (const CString& line)
   //## end PLFNText::GetContains%831692953.body
 }
 
-PlanFinObject* PLFNText::Clone ()
+PSS_PlanFinObject* PLFNText::Clone ()
 {
   //## begin PLFNText::Clone%849755977.body preserve=yes
     PLFNText*    pObject = new PLFNText( *this );
@@ -176,7 +176,7 @@ PlanFinObject* PLFNText::Clone ()
   //## end PLFNText::Clone%849755977.body
 }
 
-void PLFNText::CopyObject (PlanFinObject* pSrc)
+void PLFNText::CopyObject (PSS_PlanFinObject* pSrc)
 {
   //## begin PLFNText::CopyObject%863615082.body preserve=yes
     ((PLFNText*)this)->PLFNText::operator=( (PLFNText*)pSrc );

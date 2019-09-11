@@ -22,7 +22,7 @@
 #include "zBaseLib\PSS_Edit.h"
 #include "zBaseLib\PSS_ObjectUtility.h"
 #include "zBaseLib\PSS_FileDialog.h"
-#include "zBaseLib\ZBFieldObserverMsg.h"
+#include "zBaseLib\PSS_FieldObserverMsg.h"
 #include "zWinUtil32\PSS_CalendarWindowDialog.h"
 #include "zWinUtil32\PSS_ObjectNotesDialog.h"
 #include "DocWrite.h"
@@ -154,7 +154,7 @@ const PSS_ModifyView& PSS_ModifyView::operator = (const PSS_ModifyView& other)
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-void PSS_ModifyView::EditObject(PlanFinObject* pObj)
+void PSS_ModifyView::EditObject(PSS_PlanFinObject* pObj)
 {
     CDC* pDC = GetDC();
     ASSERT(pDC);
@@ -189,7 +189,7 @@ void PSS_ModifyView::EditObject(PlanFinObject* pObj)
     VERIFY(ReleaseDC(pDC));
 }
 //---------------------------------------------------------------------------
-PSS_Edit* PSS_ModifyView::CreateEditControl(PlanFinObject* pObj, CDC* pDC)
+PSS_Edit* PSS_ModifyView::CreateEditControl(PSS_PlanFinObject* pObj, CDC* pDC)
 {
     switch (PSS_ObjectUtility::GetClassNameID(pObj))
     {
@@ -210,7 +210,7 @@ PSS_Edit* PSS_ModifyView::CreateEditControl(PlanFinObject* pObj, CDC* pDC)
             PLFNSquare* pSquare = dynamic_cast<PLFNSquare*>(pObj);
 
             if (pSquare && pSquare->GetpObject())
-                return CreateEditControl(const_cast<PlanFinObject*>(pSquare->GetpObject()), pDC);
+                return CreateEditControl(const_cast<PSS_PlanFinObject*>(pSquare->GetpObject()), pDC);
 
             return NULL;
         }
@@ -220,7 +220,7 @@ PSS_Edit* PSS_ModifyView::CreateEditControl(PlanFinObject* pObj, CDC* pDC)
             PSS_PLFNAutoNumbered* pAutoNumbered = dynamic_cast<PSS_PLFNAutoNumbered*>(pObj);
 
             if (pAutoNumbered && pAutoNumbered->GetObject())
-                return CreateEditControl(const_cast<PlanFinObject*>(pAutoNumbered->GetObject()), pDC);
+                return CreateEditControl(const_cast<PSS_PlanFinObject*>(pAutoNumbered->GetObject()), pDC);
 
             return NULL;
         }
@@ -265,13 +265,13 @@ PSS_Edit* PSS_ModifyView::CreateEditControl(PlanFinObject* pObj, CDC* pDC)
     }
 }
 //---------------------------------------------------------------------------
-void PSS_ModifyView::AddObjectNotes(PlanFinObject* pObj)
+void PSS_ModifyView::AddObjectNotes(PSS_PlanFinObject* pObj)
 {
     if (!pObj)
         return;
 
-    PSS_ObjectNotesDialog objectNotesDialog(pObj->GetNotesPointer() ? pObj->GetNotesPointer()->GetComment()  : _T(""),
-                                            pObj->GetNotesPointer() ? pObj->GetNotesPointer()->GetUsername() : _T(""));
+    PSS_ObjectNotesDialog objectNotesDialog(pObj->GetNotes() ? pObj->GetNotes()->GetComment()  : _T(""),
+                                            pObj->GetNotes() ? pObj->GetNotes()->GetUsername() : _T(""));
 
     switch (objectNotesDialog.DoModal())
     {
@@ -334,7 +334,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         ZDDocumentReadWrite* pDoc = dynamic_cast<ZDDocumentReadWrite*>(GetDocument());
         ASSERT(pDoc);
 
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -372,7 +372,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         if (!GetDocument() || GetDocument()->IsReadOnlyAtRuntime())
             return;
 
-        PlanFinObject *pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject *pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -402,7 +402,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnUpdateEditionProtectObject(CCmdUI* pCmdUI)
     {
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -444,8 +444,8 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         if (!GetDocument() || GetDocument()->IsReadOnlyAtRuntime())
             return 1;
 
-        PlanFinObject*       pObj                  = (PlanFinObject*)lParam;
-        PlanFinObject*       pNextEditObj          = NULL;
+        PSS_PlanFinObject*   pObj                  = (PSS_PlanFinObject*)lParam;
+        PSS_PlanFinObject*   pNextEditObj          = NULL;
         double               currentEditedTabOrder = pObj->GetTabOrder();
         ZDDocumentReadWrite* pDoc                  = dynamic_cast<ZDDocumentReadWrite*>(GetDocument());
         ASSERT(pDoc);
@@ -456,12 +456,12 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         // get the current page
         const int page = pDoc->GetCurrentPage();
 
-        PlanFinObject* pObjTemp  = NULL;
-        POSITION       pPosition = pDoc->GetObjectList().GetHeadPosition();
+        PSS_PlanFinObject* pObjTemp  = NULL;
+        POSITION           pPosition = pDoc->GetObjectList().GetHeadPosition();
 
         while (!pPosition)
         {
-            pObjTemp = (PlanFinObject*)pDoc->GetObjectList().GetNext(pPosition);
+            pObjTemp = (PSS_PlanFinObject*)pDoc->GetObjectList().GetNext(pPosition);
 
             // if the same object, continue
             if (pObj == pObjTemp)
@@ -543,7 +543,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
     {
         // to all document data
         if (GetDocument() && lParam)
-            GetDocument()->PropagateFieldValue((PlanFinObject*)lParam, -2);
+            GetDocument()->PropagateFieldValue((PSS_PlanFinObject*)lParam, -2);
 
         return 1;
     }
@@ -570,7 +570,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         if (clientRect.PtInRect(cursorPos))
         {
             ClientToDoc(cursorPos);
-            PlanFinObject* pObject = FindHitObject(cursorPos);
+            PSS_PlanFinObject* pObject = FindHitObject(cursorPos);
 
             if (pObject)
             {
@@ -590,14 +590,14 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
                     }
                 }
 
-                if (pObject->GetNotesPointer())
+                if (pObject->GetNotes())
                 {
                     m_StrToolTip += _T("\n") + m_ToolTipNoteText;
 
-                    if (!pObject->GetNotesPointer()->GetUsername().IsEmpty())
-                        m_StrToolTip += _T("[") + pObject->GetNotesPointer()->GetUsername() + _T("]");
+                    if (!pObject->GetNotes()->GetUsername().IsEmpty())
+                        m_StrToolTip += _T("[") + pObject->GetNotes()->GetUsername() + _T("]");
 
-                    m_StrToolTip += _T("\n") + pObject->GetNotesPointer()->GetComment();
+                    m_StrToolTip += _T("\n") + pObject->GetNotes()->GetComment();
                 }
 
                 pTTT->hinst    = NULL;
@@ -627,7 +627,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         if (!GetDocument() || GetDocument()->IsReadOnlyAtRuntime())
             return;
 
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -652,9 +652,9 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         if (!GetDocument() || GetDocument()->IsReadOnlyAtRuntime())
             return;
 
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
-        if (!pObj || !pObj->GetNotesPointer())
+        if (!pObj || !pObj->GetNotes())
             return;
 
         pObj->DeleteNotes();
@@ -666,10 +666,10 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnUpdateDeleteObjectNotes(CCmdUI* pCmdUI)
     {
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (pObj)
-            pCmdUI->Enable(pObj->GetNotesPointer() != NULL);
+            pCmdUI->Enable(pObj->GetNotes() != NULL);
         else
             pCmdUI->Enable(FALSE);
     }
@@ -682,7 +682,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         if (!GetDocument() || GetDocument()->IsReadOnlyAtRuntime())
             return 1;
 
-        PlanFinObject* pObj = (PlanFinObject*)lParam;
+        PSS_PlanFinObject* pObj = (PSS_PlanFinObject*)lParam;
 
         if (pObj)
         {
@@ -702,7 +702,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         if (!GetDocument() || GetDocument()->IsReadOnlyAtRuntime())
             return 1;
 
-        PlanFinObject* pObj = (PlanFinObject*)lParam;
+        PSS_PlanFinObject* pObj = (PSS_PlanFinObject*)lParam;
 
         HINSTANCE hInst = AfxFindResourceHandle(MAKEINTRESOURCE(IDR_WIZARDMENU), RT_MENU);
 
@@ -752,7 +752,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         if (!GetDocument() || GetDocument()->IsReadOnlyAtRuntime())
             return 1;
 
-        PlanFinObject* pObj = (PlanFinObject*)lParam;
+        PSS_PlanFinObject* pObj = (PSS_PlanFinObject*)lParam;
 
         if (pObj)
         {
@@ -786,7 +786,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         if (!GetDocument() || GetDocument()->IsReadOnlyAtRuntime())
             return 1;
 
-        PlanFinObject* pObj = (PlanFinObject*)lParam;
+        PSS_PlanFinObject* pObj = (PSS_PlanFinObject*)lParam;
 
         if (pObj)
             AddObjectNotes(pObj);
@@ -802,7 +802,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         if (!GetDocument() || GetDocument()->IsReadOnlyAtRuntime())
             return 1;
 
-        PlanFinObject* pObj = (PlanFinObject*)lParam;
+        PSS_PlanFinObject* pObj = (PSS_PlanFinObject*)lParam;
 
         if (pObj)
         {
@@ -860,10 +860,10 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
     {
         SetFocus();
 
-        PlanFinObject*    pObj      = GetDocument()->GetSelectedObject();
-        CStringArray&     strArray  = ((PLFNLong*)pObj)->GetAssociations().GetAssociationArray();
-        const std::size_t arraySize = strArray.GetSize();
-        PLFNLong*         pLong     = dynamic_cast<PLFNLong*>(pObj);
+        PSS_PlanFinObject* pObj      = GetDocument()->GetSelectedObject();
+        CStringArray&      strArray  = ((PLFNLong*)pObj)->GetAssociations().GetAssociationArray();
+        const std::size_t  arraySize = strArray.GetSize();
+        PLFNLong*          pLong     = dynamic_cast<PLFNLong*>(pObj);
 
         // check if the standard schema is selected
         if (arraySize == wParam - MENU_COMMAND)
@@ -910,7 +910,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
     {
         ZDDocument* pDoc = GetDocument();
         ASSERT(pDoc);
-        PlanFinObject* pObj;
+        PSS_PlanFinObject* pObj;
 
         // search wich element is selected
         if ((pObj = pDoc->GetHead()) == NULL)
@@ -918,7 +918,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 
         do
         {
-            if (pObj->IsSelectObject())
+            if (pObj->IsObjectSelected())
             {
                 // translate the point in logical coordinates
                 CDC* pDC = GetDC();
@@ -966,7 +966,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         OnPrepareDC(pDC);
         pDC->DPtoLP(pPoint);
 
-        PlanFinObject* pObj = FindHitObject(*pPoint);
+        PSS_PlanFinObject* pObj = FindHitObject(*pPoint);
 
         if (m_pOldPointerSelectedObj && pObj != m_pOldPointerSelectedObj)
         {
@@ -999,7 +999,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         ASSERT(pDC);
         OnPrepareDC(pDC);
 
-        ZBFieldObserverMsg msg(UM_NOTIFY_POINTEROBJSELECTED, m_pOldPointerSelectedObj);
+        PSS_FieldObserverMsg msg(UM_NOTIFY_POINTEROBJSELECTED, m_pOldPointerSelectedObj);
 
         ZISubject* pSubject = dynamic_cast<ZISubject*>(AfxGetMainWnd());
 
@@ -1036,7 +1036,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         ZDDocument* pDoc = GetDocument();
         ASSERT(pDoc);
 
-        PlanFinObject* pObj;
+        PSS_PlanFinObject* pObj;
 
         // search wich element is selected
         if ((pObj = pDoc->GetHead()) == NULL)
@@ -1044,7 +1044,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 
         do
         {
-            if (pObj->IsSelectObject())
+            if (pObj->IsObjectSelected())
                 pObj->SelectObject(this, pDC, FALSE);
         }
         while ((pObj = pDoc->GetNext()) != NULL);
@@ -1089,7 +1089,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         if (!GetDocument() || GetDocument()->IsReadOnlyAtRuntime())
             return 1;
 
-        PlanFinObject* pObj = (PlanFinObject*)lParam;
+        PSS_PlanFinObject* pObj = (PSS_PlanFinObject*)lParam;
 
         if (pObj)
         {
@@ -1109,7 +1109,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnFieldPositionSize()
     {
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -1136,7 +1136,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnFieldProperty()
     {
-        PlanFinObject *pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject *pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -1166,7 +1166,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         ZDDocumentReadWrite* pDoc = dynamic_cast<ZDDocumentReadWrite*>(GetDocument());
         ASSERT(pDoc);
 
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         // todo FIXME -cFeature -oJean: This class seems to be no longer used. Check which class is matching now
         ZIWizardFormulaCreation dlgWizard(pObj);
@@ -1180,7 +1180,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnSubmenu1Fontchange()
     {
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -1197,9 +1197,9 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         ZAFont* pFont = NULL;
 
         // if a font is already defined
-        if (pObj->GethFont() != NoFontDefined)
+        if (pObj->GetFont() != g_NoFontDefined)
         {
-            pFont = GetDocument()->GetFontManager().GetFont(pObj->GethFont());
+            pFont = GetDocument()->GetFontManager().GetFont(pObj->GetFont());
             pFont->GetObject(sizeof(LOGFONT), &lf);
         }
 
@@ -1212,16 +1212,16 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         // show the dialog
         if (dlgFont.DoModal() == IDOK)
         {
-            HandleFont hFont = GetDocument()->GetFontManager().FindFont(&lf, dlgFont.GetColor());
+            PSS_Font::FontHandle hFont = GetDocument()->GetFontManager().SearchFont(&lf, dlgFont.GetColor());
 
-            if (hFont == NoFontDefined)
+            if (hFont == g_NoFontDefined)
             {
                 ZAFont* pNewFont = new ZAFont();
                 pNewFont->Create(&lf, dlgFont.GetColor());
                 hFont = GetDocument()->GetFontManager().AddFont(pNewFont);
             }
 
-            pObj->SethFont(hFont);
+            pObj->SetFont(hFont);
 
             // to notify the view about field change, pass the adress of the object, so the routine that proceed
             // the message can know which object has changed
@@ -1245,7 +1245,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnSubmenuFormat()
     {
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -1263,12 +1263,12 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         const BOOL calculated = (pLong && pLong->IsCalculatedField());
 
         // clone the object
-        PlanFinObject*    pTemporaryObject;
-        PLFNAutoNumbered* pAutoNumbered = dynamic_cast<PLFNAutoNumbered*>(pObj);
+        PSS_PlanFinObject* pTemporaryObject;
+        PLFNAutoNumbered*  pAutoNumbered = dynamic_cast<PLFNAutoNumbered*>(pObj);
 
         // if auto-numbered, pass the pointed object
         if (pAutoNumbered)
-            pTemporaryObject = ((PlanFinObject*)pAutoNumbered->GetpObject())->Clone();
+            pTemporaryObject = ((PSS_PlanFinObject*)pAutoNumbered->GetObject())->Clone();
         else
             pTemporaryObject = pObj->Clone();
 
@@ -1296,7 +1296,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 
         // if auto-numbered, pass the pointed object
         if (pAutoNumbered)
-            ((PlanFinObject*)pAutoNumbered->GetpObject())->CopyObject(pTemporaryObject);
+            ((PSS_PlanFinObject*)pAutoNumbered->GetObject())->CopyObject(pTemporaryObject);
         else
             // set the changed variable, copy the temporary object to the initial object
             pObj->CopyObject(pTemporaryObject);
@@ -1319,7 +1319,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnSubmenuModifyFormula()
     {
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -1339,7 +1339,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         if (!pLong || !pLong->IsCalculatedField())
             return;
 
-        PlanFinObject* pTemporaryObject = pObj->Clone();
+        PSS_PlanFinObject* pTemporaryObject = pObj->Clone();
 
         if (!pTemporaryObject)
             return;
@@ -1374,7 +1374,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnUpdateSubMenuFormat(CCmdUI* pCmdUI)
     {
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -1386,7 +1386,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 
         // if auto-numbered, replace the object by the pointed object
         if (pAutoNumbered)
-            pObj = (PlanFinObject*)pAutoNumbered->GetpObject();
+            pObj = (PSS_PlanFinObject*)pAutoNumbered->GetObject();
 
         // this wizard is available for long, time and auto numbered fields
         pCmdUI->Enable(pObj->IsKindOf(RUNTIME_CLASS(PLFNLong)) || pObj->IsKindOf(RUNTIME_CLASS(PLFNTime)));
@@ -1396,7 +1396,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnUpdateSubmenuAlign(CCmdUI* pCmdUI)
     {
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -1408,7 +1408,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 
         // if auto-numbered, replace the object by the pointed object
         if (pAutoNumbered)
-            pObj = (PlanFinObject*)pAutoNumbered->GetpObject();
+            pObj = (PSS_PlanFinObject*)pAutoNumbered->GetObject();
 
         // check the class type for the wizard, not all classes can be used for the wizard
         pCmdUI->Enable(pObj->IsKindOf(RUNTIME_CLASS(PLFNTime))        ||
@@ -1425,7 +1425,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnUpdateSubmenuModifyFormula(CCmdUI* pCmdUI)
     {
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -1442,7 +1442,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnSubmenuAlign()
     {
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -1454,12 +1454,12 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         }
 
         // clone the object
-        PlanFinObject*    pTemporaryObject;
-        PLFNAutoNumbered* pAutoNumbered = dynamic_cast<PLFNAutoNumbered*>(pObj);
+        PSS_PlanFinObject* pTemporaryObject;
+        PLFNAutoNumbered*  pAutoNumbered = dynamic_cast<PLFNAutoNumbered*>(pObj);
 
         // if auto-numbered, pass the pointed object
         if (pAutoNumbered)
-            pTemporaryObject = ((PlanFinObject*)pAutoNumbered->GetpObject())->Clone();
+            pTemporaryObject = ((PSS_PlanFinObject*)pAutoNumbered->GetObject())->Clone();
         else
             pTemporaryObject = pObj->Clone();
 
@@ -1482,7 +1482,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 
         // if auto-numbered, pass the pointed object
         if (pAutoNumbered)
-            ((PlanFinObject*)pAutoNumbered->GetpObject())->CopyObject(pTemporaryObject);
+            ((PSS_PlanFinObject*)pAutoNumbered->GetObject())->CopyObject(pTemporaryObject);
         else
             // set the changed variable, copy the temporary object to the initial object
             pObj->CopyObject(pTemporaryObject);
@@ -1505,7 +1505,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnSubmenuHidePrtObject()
     {
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -1516,7 +1516,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
                 return;
         }
 
-        pObj->SetbMustBePrinted(!pObj->GetbMustBePrinted());
+        pObj->SetMustBePrinted(!pObj->GetMustBePrinted());
         GetDocument()->UpdateAllViews(NULL);
         GetDocument()->SetModifiedFlag();
     }
@@ -1525,12 +1525,12 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnUpdateSubmenuHidePrtObject(CCmdUI* pCmdUI)
     {
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (pObj)
         {
-            pCmdUI->Enable(pObj->GetbIsVisible());
-            pCmdUI->SetCheck(!pObj->GetbMustBePrinted());
+            pCmdUI->Enable(pObj->GetIsVisible());
+            pCmdUI->SetCheck(!pObj->GetMustBePrinted());
         }
     }
 #endif
@@ -1538,7 +1538,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnSubmenuObjectHide()
     {
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -1549,7 +1549,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
                 return;
         }
 
-        pObj->SetbIsVisible(!pObj->GetbIsVisible());
+        pObj->SetIsVisible(!pObj->GetIsVisible());
         GetDocument()->UpdateAllViews(NULL);
         GetDocument()->SetModifiedFlag();
     }
@@ -1558,12 +1558,12 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnUpdateSubmenuObjectHide(CCmdUI* pCmdUI)
     {
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (pObj)
         {
-            pCmdUI->Enable(pObj->GetbMustBePrinted());
-            pCmdUI->SetCheck(!pObj->GetbIsVisible());
+            pCmdUI->Enable(pObj->GetMustBePrinted());
+            pCmdUI->SetCheck(!pObj->GetIsVisible());
         }
     }
 #endif
@@ -1571,7 +1571,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnSubmenuChangeColor()
     {
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -1604,7 +1604,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         ZDDocumentReadWrite* pDoc = dynamic_cast<ZDDocumentReadWrite*>(GetDocument());
         ASSERT(pDoc);
 
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -1630,7 +1630,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         ZDDocumentReadWrite* pDoc = dynamic_cast<ZDDocumentReadWrite*>(GetDocument());
         ASSERT(pDoc);
 
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -1658,7 +1658,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnFieldAlignCenter()
     {
-        PlanFinObject* pObj = GetDocument()->GetEditedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetEditedObject();
 
         if (!pObj)
             if (!(pObj = GetDocument()->GetSelectedObject()))
@@ -1679,7 +1679,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnFieldAlignLeft()
     {
-        PlanFinObject* pObj = GetDocument()->GetEditedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetEditedObject();
 
         if (!pObj)
             if (!(pObj = GetDocument()->GetSelectedObject()))
@@ -1700,7 +1700,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnFieldAlignRight()
     {
-        PlanFinObject* pObj = GetDocument()->GetEditedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetEditedObject();
 
         if (!pObj)
             if (!(pObj = GetDocument()->GetSelectedObject()))
@@ -1721,7 +1721,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnUpdateFieldAlignCenter(CCmdUI* pCmdUI)
     {
-        PlanFinObject* pObj = GetDocument()->GetEditedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetEditedObject();
 
         if (pObj)
             pCmdUI->SetCheck((pObj->GetJustify(GetDocument()) & DT_CENTER) > 0);
@@ -1733,7 +1733,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnUpdateFieldAlignLeft(CCmdUI* pCmdUI)
     {
-        PlanFinObject* pObj = GetDocument()->GetEditedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetEditedObject();
 
         if (pObj)
             pCmdUI->SetCheck((!(pObj->GetJustify(GetDocument()) & DT_CENTER) &&
@@ -1746,7 +1746,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnUpdateFieldAlignRight(CCmdUI* pCmdUI)
     {
-        PlanFinObject* pObj = GetDocument()->GetEditedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetEditedObject();
 
         if (pObj)
             pCmdUI->SetCheck((pObj->GetJustify(GetDocument()) & DT_RIGHT) > 0);
@@ -1758,7 +1758,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnFieldApplyRounded()
     {
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -1780,7 +1780,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         if (!pLong || !pLong->IsCalculatedField())
             return;
 
-        PlanFinObject* pTemporaryObject = pObj->Clone();
+        PSS_PlanFinObject* pTemporaryObject = pObj->Clone();
 
         if (!pTemporaryObject)
             return;
@@ -1815,7 +1815,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
 void PSS_ModifyView::OnSubmenuChangeFillcolor()
 {
-    PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+    PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
     if (!pObj)
     {
@@ -1845,7 +1845,7 @@ void PSS_ModifyView::OnSubmenuChangeFillcolor()
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnSectionAlign()
     {
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -1863,7 +1863,7 @@ void PSS_ModifyView::OnSubmenuChangeFillcolor()
             return;
 
         // Clone the object
-        PlanFinObject* pTemporaryObject = pAutoNumbered->GetTextLevel().Clone();
+        PSS_PlanFinObject* pTemporaryObject = pAutoNumbered->GetTextLevel().Clone();
 
         if (!pTemporaryObject)
             return;
@@ -1903,7 +1903,7 @@ void PSS_ModifyView::OnSubmenuChangeFillcolor()
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnSectionChangeStyle()
     {
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -1928,7 +1928,7 @@ void PSS_ModifyView::OnSubmenuChangeFillcolor()
 
         if (selectStyleDlg.DoModal() == IDOK)
         {
-            pObj->SethStyle(selectStyleDlg.GetSelectedStyle());
+            pObj->SetStyle(selectStyleDlg.GetSelectedStyle());
 
             GetDocument()->UpdateAllViews(NULL);
             GetDocument()->SetModifiedFlag();
@@ -1939,7 +1939,7 @@ void PSS_ModifyView::OnSubmenuChangeFillcolor()
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnSectionChangeColor()
     {
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -1979,7 +1979,7 @@ void PSS_ModifyView::OnSubmenuChangeFillcolor()
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnSectionChangeFillColor()
     {
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -2019,7 +2019,7 @@ void PSS_ModifyView::OnSubmenuChangeFillcolor()
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnSectionFontChange()
     {
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -2045,9 +2045,9 @@ void PSS_ModifyView::OnSubmenuChangeFillcolor()
         ZAFont* pFont = NULL;
 
         // if a font is already defined
-        if (pObj->GethFont() != NoFontDefined)
+        if (pObj->GetFont() != g_NoFontDefined)
         {
-            pFont = GetDocument()->GetFontManager().GetFont(pObj->GethFont());
+            pFont = GetDocument()->GetFontManager().GetFont(pObj->GetFont());
             pFont->GetObject(sizeof(LOGFONT), &lf);
         }
 
@@ -2060,9 +2060,9 @@ void PSS_ModifyView::OnSubmenuChangeFillcolor()
         // show the dialog
         if (dlgFont.DoModal() == IDOK)
         {
-            HandleFont hFont = GetDocument()->GetFontManager().FindFont(&lf, dlgFont.GetColor());
+            PSS_Font::FontHandle hFont = GetDocument()->GetFontManager().SearchFont(&lf, dlgFont.GetColor());
 
-            if (hFont == NoFontDefined)
+            if (hFont == g_NoFontDefined)
             {
                 ZAFont* pNewFont = new ZAFont();
 
@@ -2070,7 +2070,7 @@ void PSS_ModifyView::OnSubmenuChangeFillcolor()
                 hFont = GetDocument()->GetFontManager().AddFont(pNewFont);
             }
 
-            pObj->SethFont(hFont);
+            pObj->SetFont(hFont);
 
             // to notify the view about field change, pass the adress of the object, so the routine that proceed the message
             // can know which object has changed
@@ -2089,7 +2089,7 @@ void PSS_ModifyView::OnSubmenuChangeFillcolor()
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnChangeBorder()
     {
-        PlanFinObject* pObj = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj = GetDocument()->GetSelectedObject();
 
         if (!pObj)
         {
@@ -2100,7 +2100,7 @@ void PSS_ModifyView::OnSubmenuChangeFillcolor()
                 return;
         }
 
-        ZABorder* pBorder = pObj->GetpBorder();
+        ZABorder* pBorder = pObj->GetBorder();
         BOOL      newBorderHasBeenAllocated = FALSE;
 
         // no border defined for the object
@@ -2110,7 +2110,7 @@ void PSS_ModifyView::OnSubmenuChangeFillcolor()
             newBorderHasBeenAllocated = TRUE;
 
             std::unique_ptr<ZABorder> pNewBorder(new ZABorder());
-            pObj->SetpBorder(pNewBorder.get());
+            pObj->SetBorder(pNewBorder.get());
             pBorder = pNewBorder.release();
         }
 
@@ -2124,7 +2124,7 @@ void PSS_ModifyView::OnSubmenuChangeFillcolor()
             if (newBorderHasBeenAllocated)
             {
                 delete pBorder;
-                pObj->SetpBorder(NULL);
+                pObj->SetBorder(NULL);
             }
         }
         else
@@ -2138,7 +2138,7 @@ void PSS_ModifyView::OnSubmenuChangeFillcolor()
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnChangeLineColor()
     {
-        PlanFinObject* pObj     = GetDocument()->GetSelectedObject();
+        PSS_PlanFinObject* pObj     = GetDocument()->GetSelectedObject();
         PLFNGraphic*   pGraphic = dynamic_cast<PLFNGraphic*>(pObj);
 
         if (!pGraphic)

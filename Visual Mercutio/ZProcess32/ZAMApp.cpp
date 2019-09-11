@@ -25,7 +25,7 @@
 //## begin module%334FC4630327.includes preserve=yes
 #include "planfin.hdf"
 #include "mainfrm.h"
-#include "zBaseLib\PSS_PlanFinObj.h"
+#include "zBaseLib\PSS_PlanFinObjects.h"
 #include "zBaseLib\PSS_PLFNAutoNumbered.h"
 #include "zBaseLib\PSS_PLFNBitmap.h"
 #include "zBaseLib\PSS_PLFNBoundText.h"

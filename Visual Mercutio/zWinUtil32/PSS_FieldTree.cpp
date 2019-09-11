@@ -90,7 +90,7 @@ PSS_FieldObjectDefinition* PSS_FieldTree::GetSelectedRepositoryField()
     return NULL;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_FieldTree::GetSelectedDocumentField()
+PSS_PlanFinObject* PSS_FieldTree::GetSelectedDocumentField()
 {
     if (!m_pTreeCtrl)
         return NULL;
@@ -98,7 +98,7 @@ PlanFinObject* PSS_FieldTree::GetSelectedDocumentField()
     HTREEITEM hSelected = m_pTreeCtrl->GetSelectedItem();
 
     if (hSelected)
-        return dynamic_cast<PlanFinObject*>((CObject*)m_pTreeCtrl->GetItemData(hSelected));
+        return dynamic_cast<PSS_PlanFinObject*>((CObject*)m_pTreeCtrl->GetItemData(hSelected));
 
     return NULL;
 }
@@ -151,7 +151,7 @@ void PSS_FieldTree::AddRepositoryFieldItem(PSS_FieldObjectDefinition* pField, HT
 
 }
 //---------------------------------------------------------------------------
-HTREEITEM PSS_FieldTree::AddDocumentFieldItem(PlanFinObject* pObj, HTREEITEM hParentTreeItem)
+HTREEITEM PSS_FieldTree::AddDocumentFieldItem(PSS_PlanFinObject* pObj, HTREEITEM hParentTreeItem)
 {
     if (!pObj)
         return NULL;
@@ -167,7 +167,7 @@ HTREEITEM PSS_FieldTree::AddDocumentFieldItem(PlanFinObject* pObj, HTREEITEM hPa
     return m_pTreeCtrl->InsertItem(&curTreeItem);
 }
 //---------------------------------------------------------------------------
-int PSS_FieldTree::GetItemIndex(PlanFinObject* pObj)
+int PSS_FieldTree::GetItemIndex(PSS_PlanFinObject* pObj)
 {
     switch (PSS_ObjectUtility::GetClassNameID(pObj))
     {
@@ -218,14 +218,14 @@ void PSS_FieldTree::CreateTree()
             {
                 hDocument = AddDocumentItem(pDocData, hRootDocument, 2);
 
-                POSITION       pPosition;
-                PlanFinObject* pObjTemp = NULL;
+                POSITION           pPosition;
+                PSS_PlanFinObject* pObjTemp = NULL;
 
                 pPosition = pDocData->GetObjectList().GetHeadPosition();
 
                 while (pPosition)
                 {
-                    pObjTemp = (PlanFinObject*)pDocData->GetObjectList().GetNext(pPosition);
+                    pObjTemp = (PSS_PlanFinObject*)pDocData->GetObjectList().GetNext(pPosition);
                     AddDocumentFieldItem(pObjTemp, hDocument);
                 }
             }

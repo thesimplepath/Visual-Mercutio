@@ -9,7 +9,7 @@
 #include "PSS_Formula.h"
 
 // processsoft
-#include "ZAObject.h"
+#include "PSS_PlanFinObject.h"
 #include "ZDDoc.h"
 #include "PSS_DocumentData.h"
 #include "PSS_MsgBox.h"
@@ -36,7 +36,8 @@ PSS_Formula::PSS_Formula() :
     m_Page(0)
 {}
 //---------------------------------------------------------------------------
-PSS_Formula::PSS_Formula(ZDDocument& doc, const CString& formula)
+PSS_Formula::PSS_Formula(ZDDocument& doc, const CString& formula) :
+    CObject()
 {
     const CString  temp = formula;
     int            sep;
@@ -54,12 +55,13 @@ PSS_Formula::PSS_Formula(ZDDocument& doc, const CString& formula)
     m_ObjectName       = m_Formula.Left(int(pFind - m_Formula - 1));
     m_ExtractedFormula = pFind + 1;
 
-    // get the pointer to the object
+    // get the result object pointer
     m_pResultObject = doc.GetObjectPtr(m_ObjectName);
     ASSERT(m_pResultObject);
 }
 //---------------------------------------------------------------------------
-PSS_Formula::PSS_Formula(const PSS_Formula& other)
+PSS_Formula::PSS_Formula(const PSS_Formula& other) :
+    CObject()
 {
     *this = other;
 }

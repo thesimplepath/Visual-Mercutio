@@ -70,19 +70,19 @@ class AFX_EXT_CLASS PSS_PLFNBackImage : public PSS_PLFNBitmap
         * Clones the object
         *@return the cloned object, NULL on error
         */
-        virtual PlanFinObject* Clone() const;
+        virtual PSS_PlanFinObject* Clone() const;
+
+        /**
+        * Copies the object
+        *@param pSrc - source object to copy from
+        */
+        virtual void CopyObject(PSS_PlanFinObject* pSrc);
 
         /**
         * Gets the right sub-menu identifier
         *@return the right sub-menu identifier
         */
         virtual inline UINT GetRightSubMenu() const;
-
-        /**
-        * Copies the object
-        *@param pSrc - source object to copy from
-        */
-        virtual void CopyObject (PlanFinObject* pSrc);
 
         /**
         * Checks if a hint should be shown

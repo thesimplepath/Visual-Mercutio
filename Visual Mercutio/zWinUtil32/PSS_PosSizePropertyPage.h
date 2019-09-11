@@ -22,8 +22,13 @@
 // resources
 #include "zRes32\ZRes.h"
 
+// class name mapping
+#ifndef PSS_PlanFinObject
+    #define PSS_PlanFinObject PlanFinObject
+#endif
+
 // forward declaration
-class PlanFinObject;
+class PSS_PlanFinObject;
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -59,7 +64,7 @@ class AFX_EXT_CLASS PSS_PosSizePropertyPage : public PSS_GenericPropPage
         * Constructor
         *@param pObj - planfin object
         */
-        PSS_PosSizePropertyPage(PlanFinObject* pObj = NULL);
+        PSS_PosSizePropertyPage(PSS_PlanFinObject* pObj = NULL);
 
         /**
         * Saves the values to object

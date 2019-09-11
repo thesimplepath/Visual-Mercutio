@@ -93,10 +93,10 @@ public:
 
     //## Operation: Clone%890472642
     //    Make a clone of the object.
-    virtual PlanFinObject* Clone();
+    virtual PSS_PlanFinObject* Clone();
 
     //## Operation: CopyObject%890472643
-    virtual void CopyObject(PlanFinObject* pSrc);
+    virtual void CopyObject(PSS_PlanFinObject* pSrc);
 
     //## Operation: GetUnformattedObject%917858762
     //    Return an unformatted string of the object image.

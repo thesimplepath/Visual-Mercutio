@@ -45,13 +45,13 @@ const PSS_PLFNBackImage& PSS_PLFNBackImage::operator = (const PSS_PLFNBackImage*
     return *this;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_PLFNBackImage::Clone() const
+PSS_PlanFinObject* PSS_PLFNBackImage::Clone() const
 {
     std::unique_ptr<PSS_PLFNBackImage> pObject(new PSS_PLFNBackImage(*this));
     return pObject.release();
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNBackImage::CopyObject(PlanFinObject* pSrc)
+void PSS_PLFNBackImage::CopyObject(PSS_PlanFinObject* pSrc)
 {
     this->PSS_PLFNBackImage::operator = ((PSS_PLFNBackImage*)pSrc);
 }

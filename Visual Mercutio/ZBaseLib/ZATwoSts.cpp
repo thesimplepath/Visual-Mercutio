@@ -167,7 +167,7 @@ void PLFNTwoStates::Serialize (CArchive& ar)
   //## end PLFNTwoStates::Serialize%890472641.body
 }
 
-PlanFinObject* PLFNTwoStates::Clone ()
+PSS_PlanFinObject* PLFNTwoStates::Clone ()
 {
   //## begin PLFNTwoStates::Clone%890472642.body preserve=yes
     PLFNTwoStates*    pObject = new PLFNTwoStates( *this );
@@ -175,7 +175,7 @@ PlanFinObject* PLFNTwoStates::Clone ()
   //## end PLFNTwoStates::Clone%890472642.body
 }
 
-void PLFNTwoStates::CopyObject (PlanFinObject* pSrc)
+void PLFNTwoStates::CopyObject (PSS_PlanFinObject* pSrc)
 {
   //## begin PLFNTwoStates::CopyObject%890472643.body preserve=yes
     ((PLFNTwoStates*)this)->PLFNTwoStates::operator=( (PLFNTwoStates*)pSrc );

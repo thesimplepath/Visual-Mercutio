@@ -48,13 +48,13 @@ const PSS_PLFNCheckBtn& PSS_PLFNCheckBtn::operator = (const PSS_PLFNCheckBtn* pO
     return *this;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_PLFNCheckBtn::Clone() const
+PSS_PlanFinObject* PSS_PLFNCheckBtn::Clone() const
 {
     std::unique_ptr<PSS_PLFNCheckBtn> pObject(new PSS_PLFNCheckBtn(*this));
     return pObject.release();
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNCheckBtn::CopyObject(PlanFinObject* pSrc)
+void PSS_PLFNCheckBtn::CopyObject(PSS_PlanFinObject* pSrc)
 {
     operator = (dynamic_cast<PSS_PLFNCheckBtn*>(pSrc));
 }
@@ -68,7 +68,7 @@ void PSS_PLFNCheckBtn::DrawObject(CDC* pDC, ZIView* pView)
 
     if (!GetbTextIsCtrl())
     {
-        CRect rectControl(m_rctObject);
+        CRect rectControl(m_ObjectRect);
 
         // check if the control is on the right
         if (GetbLeftText())
@@ -131,17 +131,17 @@ void PSS_PLFNCheckBtn::DrawObject(CDC* pDC, ZIView* pView)
 
         // if the text does not act as a control 
         if (!GetbTextIsCtrl() && !GetbLeftText())
-            pDC->TextOut(m_rctObject.left + GetuSize() + GetOffsetText(), m_rctObject.top + GetuSize(), GetsText());
+            pDC->TextOut(m_ObjectRect.left + GetuSize() + GetOffsetText(), m_ObjectRect.top + GetuSize(), GetsText());
         else
         {
-            pDC->TextOut(m_rctObject.left, m_rctObject.top + GetuSize(), GetsText());
+            pDC->TextOut(m_ObjectRect.left, m_ObjectRect.top + GetuSize(), GetsText());
 
             if (GetbCheckState() && GetbTextIsCtrl())
             {
-                pDC->MoveTo(m_rctObject.left + 1, m_rctObject.top);
-                pDC->LineTo(m_rctObject.right,    m_rctObject.bottom - 1);
-                pDC->MoveTo(m_rctObject.right,    m_rctObject.top);
-                pDC->LineTo(m_rctObject.left + 1, m_rctObject.bottom - 1);
+                pDC->MoveTo(m_ObjectRect.left + 1, m_ObjectRect.top);
+                pDC->LineTo(m_ObjectRect.right,    m_ObjectRect.bottom - 1);
+                pDC->MoveTo(m_ObjectRect.right,    m_ObjectRect.top);
+                pDC->LineTo(m_ObjectRect.left + 1, m_ObjectRect.bottom - 1);
             }
         }
 
@@ -150,7 +150,7 @@ void PSS_PLFNCheckBtn::DrawObject(CDC* pDC, ZIView* pView)
 
     pDC->SelectObject(pOldPen);
 
-    PlanFinObject::DrawObject(pDC, pView);
+    PSS_PlanFinObject::DrawObject(pDC, pView);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNCheckBtn::EditObject(CWnd* pParentWnd, CDC* pDC, ZDDocument* pDoc)
@@ -159,7 +159,7 @@ void PSS_PLFNCheckBtn::EditObject(CWnd* pParentWnd, CDC* pDC, ZDDocument* pDoc)
 
     if (pParentWnd->IsWindowVisible())
     {
-        CRect rect(m_rctObject);
+        CRect rect(m_ObjectRect);
         rect.InflateRect(GetuSize(), GetuSize());
         InvalidateObjectRect(pDC, pParentWnd, &rect);
     }

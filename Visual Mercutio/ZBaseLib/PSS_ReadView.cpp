@@ -163,7 +163,7 @@ BOOL PSS_ReadView::PreTranslateMessage(MSG* pMsg)
 
                 for (int i = 0; i < arraySize; ++i)
                 {
-                    PlanFinObject* pObject = (PlanFinObject*)selectedObjectArray[i];
+                    PSS_PlanFinObject* pObject = (PSS_PlanFinObject*)selectedObjectArray[i];
 
                     // move all objects
                     pObject->MoveObject(movePointValue);
@@ -287,7 +287,7 @@ void PSS_ReadView::OnRButtonDown(UINT nFlags, CPoint point)
     dummyMenu.LoadMenu(GetRightPopupMenuID());
     ReleaseCapture();
 
-    PlanFinObject* pSelectedObject;
+    PSS_PlanFinObject* pSelectedObject;
 
     if ((pSelectedObject = ActiveSelectedObject(point)))
         pMenu = dummyMenu.GetSubMenu(pSelectedObject->GetRightSubMenu());

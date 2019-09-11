@@ -29,7 +29,7 @@
 #include "zEvent\ActLog.h"
 
 // Contains obsolete class for PLFN hierarchy
-#include "zBaseLib\PSS_ObsoletePLFNObj.h"
+#include "zBaseLib\PSS_PlanFinObsoleteObjects.h"
 
 #include <CTYPE.H>
 #include <locale.h>
@@ -712,7 +712,7 @@ protected:
 
     ZDDocument*            m_pCurrentDocument;
 
-    PlanFinObject*        m_pOldSelectedObj;
+    PSS_PlanFinObject*     m_pOldSelectedObj;
 
     PSS_ApplicationOption m_ApplicationOptions;
 

@@ -1,5 +1,5 @@
 /****************************************************************************
- * ==> PSS_PlanFinObj ------------------------------------------------------*
+ * ==> PSS_PlanFinObjects --------------------------------------------------*
  ****************************************************************************
  * Description : Provides financial plan objects                            *
  * Developer   : Processsoft                                                *
@@ -40,7 +40,7 @@
 // processsoft
 #include "zaconst.h"
 #include "PSS_MathParser.h"
-#include "ZAObject.h"
+#include "PSS_PlanFinObject.h"
 #include "PSS_PLFNAscii.h"
 #include "ZAText.h"
 #include "ZAString.h"
@@ -102,13 +102,13 @@ class AFX_EXT_CLASS PSS_PLFNRect : public PSS_PLFNGraphic
         * Clones the object
         *@return the cloned object, NULL on error
         */
-        virtual PlanFinObject* Clone() const;
+        virtual PSS_PlanFinObject* Clone() const;
 
         /**
         * Copies the object content
         *@param pSrc - source object to copy from
         */
-        virtual void CopyObject(PlanFinObject* pSrc);
+        virtual void CopyObject(PSS_PlanFinObject* pSrc);
 
         /**
         * Gets the arc offset
@@ -208,8 +208,8 @@ BOOL PSS_PLFNRect::IsHint(CPoint& point) const
 {
     // copy the rectangle object and inflate it by -3, -3. This operation is required to check
     // if the cursor is on the rectangle but not inside
-    CRect minRect = m_rctObject;
-    CRect maxRect = m_rctObject;
+    CRect minRect = m_ObjectRect;
+    CRect maxRect = m_ObjectRect;
     minRect.InflateRect(-3, -3);
     maxRect.InflateRect(3, 3);
 
@@ -218,7 +218,7 @@ BOOL PSS_PLFNRect::IsHint(CPoint& point) const
 //---------------------------------------------------------------------------
 inline UINT PSS_PLFNRect::GetPropertyTabs() const
 {
-    return (PropertyGeneralBasicPage | PropertySizePage | PropertyGraphicPage | PropertyRectPage);
+    return (g_PropertyGeneralBasicPage | g_PropertySizePage | g_PropertyGraphicPage | g_PropertyRectPage);
 }
 //---------------------------------------------------------------------------
 
@@ -261,13 +261,13 @@ class AFX_EXT_CLASS PSS_PLFNLine : public PSS_PLFNGraphic
         * Clones the object
         *@return the cloned object, NULL on error
         */
-        virtual PlanFinObject* Clone() const;
+        virtual PSS_PlanFinObject* Clone() const;
 
         /**
         * Copies the object content
         *@param pSrc - source object to copy from
         */
-        virtual void CopyObject(PlanFinObject* pSrc);
+        virtual void CopyObject(PSS_PlanFinObject* pSrc);
 
         /**
         * Gets the start point
@@ -372,7 +372,7 @@ BOOL PSS_PLFNLine::IsHint(CPoint& point) const
 {
     // copy the object rectangle and inflate it by 3, 3. This operation is required to check
     // if the cursor is on the line because lines are very small
-    CRect rect = m_rctObject;
+    CRect rect = m_ObjectRect;
     rect.InflateRect(3, 3);
 
     return (rect.PtInRect(point));
@@ -380,7 +380,7 @@ BOOL PSS_PLFNLine::IsHint(CPoint& point) const
 //---------------------------------------------------------------------------
 UINT PSS_PLFNLine::GetPropertyTabs() const
 {
-    return (PropertyGeneralBasicPage | PropertySizePage | PropertyGraphicPage);
+    return (g_PropertyGeneralBasicPage | g_PropertySizePage | g_PropertyGraphicPage);
 }
 //---------------------------------------------------------------------------
 
@@ -423,13 +423,13 @@ class AFX_EXT_CLASS PSS_PLFNStatic : public PLFNText
         * Clones the object
         *@return the cloned object, NULL on error
         */
-        virtual PlanFinObject* Clone() const;
+        virtual PSS_PlanFinObject* Clone() const;
 
         /**
         * Copies the object content
         *@param pSrc - source object to copy from
         */
-        virtual void CopyObject(PlanFinObject* pSrc);
+        virtual void CopyObject(PSS_PlanFinObject* pSrc);
 
         /**
         * Gets the tab list that should be shown when the user asks for object properties
@@ -457,7 +457,7 @@ class AFX_EXT_CLASS PSS_PLFNStatic : public PLFNText
 //---------------------------------------------------------------------------
 inline UINT PSS_PLFNStatic::GetPropertyTabs() const
 {
-    return (PropertyGeneralStaticPage | PropertySizePage);
+    return (g_PropertyGeneralStaticPage | g_PropertySizePage);
 }
 //---------------------------------------------------------------------------
 
@@ -500,13 +500,13 @@ class AFX_EXT_CLASS PSS_PLFNTime : public PSS_PLFNAscii
         * Clones the object
         *@return the cloned object, NULL on error
         */
-        virtual PlanFinObject* Clone() const;
+        virtual PSS_PlanFinObject* Clone() const;
 
         /**
         * Copies the object content
         *@param pSrc - source object to copy from
         */
-        virtual void CopyObject(PlanFinObject* pSrc);
+        virtual void CopyObject(PSS_PlanFinObject* pSrc);
 
         /**
         * Gets if the object is static
@@ -670,7 +670,7 @@ UINT PSS_PLFNTime::GetRightSubMenu() const
 //---------------------------------------------------------------------------
 UINT PSS_PLFNTime::GetPropertyTabs() const
 {
-    return PropertyGeneralDatePage | PropertySizePage;
+    return (g_PropertyGeneralDatePage | g_PropertySizePage);
 }
 //---------------------------------------------------------------------------
 const ZBDate& PSS_PLFNTime::GetTime() const
@@ -727,13 +727,13 @@ class AFX_EXT_CLASS PSS_PLFNLong : public PSS_PLFNAscii
         * Clones the object
         *@return the cloned object, NULL on error
         */
-        virtual PlanFinObject* Clone() const;
+        virtual PSS_PlanFinObject* Clone() const;
 
         /**
         * Copies the object content
         *@param pSrc - source object to copy from
         */
-        virtual void CopyObject(PlanFinObject* pSrc);
+        virtual void CopyObject(PSS_PlanFinObject* pSrc);
 
         /**
         * Gets if the object is static
@@ -976,13 +976,13 @@ UINT PSS_PLFNLong::GetRightSubMenu() const
 //---------------------------------------------------------------------------
 UINT PSS_PLFNLong::GetPropertyTabs() const
 {
-    return (IsCalculatedField() ? PropertyGeneralBasicPage | PropertySizePage | PropertyLongPage :
-            PropertyGeneralTextPage | PropertySizePage);
+    return (IsCalculatedField() ? g_PropertyGeneralBasicPage | g_PropertySizePage | g_PropertyLongPage :
+            g_PropertyGeneralTextPage | g_PropertySizePage);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_PLFNLong::IsSelected(const CPoint& point) const
 {
-    return(m_rctObject.PtInRect(point));
+    return(m_ObjectRect.PtInRect(point));
 }
 //---------------------------------------------------------------------------
 void* PSS_PLFNLong::GetObject() const

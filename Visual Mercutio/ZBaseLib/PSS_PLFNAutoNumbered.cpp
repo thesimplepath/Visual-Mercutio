@@ -19,12 +19,12 @@
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_PLFNAutoNumbered, PlanFinObject, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_PLFNAutoNumbered, PSS_PlanFinObject, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_PLFNAutoNumbered
 //---------------------------------------------------------------------------
 PSS_PLFNAutoNumbered::PSS_PLFNAutoNumbered() :
-    PlanFinObject(),
+    PSS_PlanFinObject(),
     m_pObject(NULL),
     m_TextOffset(20),
     m_SectionNumber(0),
@@ -33,7 +33,7 @@ PSS_PLFNAutoNumbered::PSS_PLFNAutoNumbered() :
 {}
 //---------------------------------------------------------------------------
 PSS_PLFNAutoNumbered::PSS_PLFNAutoNumbered(const PSS_PLFNAutoNumbered& other) :
-    PlanFinObject(),
+    PSS_PlanFinObject(),
     m_pObject(NULL),
     m_TextOffset(20),
     m_SectionNumber(0),
@@ -51,7 +51,7 @@ PSS_PLFNAutoNumbered::~PSS_PLFNAutoNumbered()
 //---------------------------------------------------------------------------
 const PSS_PLFNAutoNumbered& PSS_PLFNAutoNumbered::operator = (const PSS_PLFNAutoNumbered& other)
 {
-    PlanFinObject::operator = ((inherited&)other);
+    PSS_PlanFinObject::operator = ((inherited&)other);
     m_TextLevel     = other.m_TextLevel;
     m_pObject       = other.m_pObject->Clone();
     m_TextOffset    = other.m_TextOffset;
@@ -63,7 +63,7 @@ const PSS_PLFNAutoNumbered& PSS_PLFNAutoNumbered::operator = (const PSS_PLFNAuto
 //---------------------------------------------------------------------------
 const PSS_PLFNAutoNumbered& PSS_PLFNAutoNumbered::operator = (const PSS_PLFNAutoNumbered* pOther)
 {
-    PlanFinObject::operator = ((inherited*)pOther);
+    PSS_PlanFinObject::operator = ((inherited*)pOther);
 
     if (!pOther)
     {
@@ -86,13 +86,13 @@ const PSS_PLFNAutoNumbered& PSS_PLFNAutoNumbered::operator = (const PSS_PLFNAuto
     return *this;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_PLFNAutoNumbered::Clone() const
+PSS_PlanFinObject* PSS_PLFNAutoNumbered::Clone() const
 {
     std::unique_ptr<PSS_PLFNAutoNumbered> pObject(new PSS_PLFNAutoNumbered(*this));
     return pObject.release();
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNAutoNumbered::CopyObject(PlanFinObject* pSrc)
+void PSS_PLFNAutoNumbered::CopyObject(PSS_PlanFinObject* pSrc)
 {
     operator = (dynamic_cast<PSS_PLFNAutoNumbered*>(pSrc));
 }
@@ -123,7 +123,7 @@ void PSS_PLFNAutoNumbered::DrawObject(CDC* pDC, ZIView* pView)
     if (m_pObject)
         m_pObject->DrawObject(pDC, pView);
 
-    PlanFinObject::DrawObject(pDC, pView);
+    PSS_PlanFinObject::DrawObject(pDC, pView);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNAutoNumbered::SizePositionHasChanged()
@@ -132,11 +132,11 @@ void PSS_PLFNAutoNumbered::SizePositionHasChanged()
         return;
 
     // call the basic fonction
-    PlanFinObject::SizePositionHasChanged();
+    PSS_PlanFinObject::SizePositionHasChanged();
 
     // recalculate all element positions.
-    GetTextLevel().SetClientRect(m_rctObject);
-    m_pObject->SetClientRect(m_rctObject);
+    GetTextLevel().SetClientRect(m_ObjectRect);
+    m_pObject->SetClientRect(m_ObjectRect);
     m_pObject->GetClientRect().left += GetTextOffset();
 
     // if automatic recalculation of section
@@ -155,7 +155,7 @@ CString PSS_PLFNAutoNumbered::GetUnformattedObject()
 void PSS_PLFNAutoNumbered::SetStyle(HandleStyle hStyle)
 {
     if (m_pObject)
-        m_pObject->SethStyle(hStyle);
+        m_pObject->SetStyle(hStyle);
 }
 //---------------------------------------------------------------------------
 const COLORREF PSS_PLFNAutoNumbered::GetFillColor() const
@@ -174,7 +174,7 @@ void PSS_PLFNAutoNumbered::SetFillColor(COLORREF value)
 //---------------------------------------------------------------------------
 void PSS_PLFNAutoNumbered::Serialize(CArchive& ar)
 {
-    PlanFinObject::Serialize(ar);
+    PSS_PlanFinObject::Serialize(ar);
 
     if (ar.IsStoring())
     {

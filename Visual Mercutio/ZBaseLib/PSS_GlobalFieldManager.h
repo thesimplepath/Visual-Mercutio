@@ -118,7 +118,7 @@ class AFX_EXT_CLASS PSS_GlobalFieldManager : public CObject
         *@param pObj - field object to copy from
         *@param pDoc - document
         */
-        virtual void CopyFieldDefinition(const CString& name, PlanFinObject* pObj, ZDDocument* pDoc);
+        virtual void CopyFieldDefinition(const CString& name, PSS_PlanFinObject* pObj, ZDDocument* pDoc);
 
         /**
         * Serializes the object content

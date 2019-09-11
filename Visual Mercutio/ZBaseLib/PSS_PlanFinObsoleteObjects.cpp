@@ -1,5 +1,5 @@
 /****************************************************************************
- * ==> PSS_ObsoletePLFNObj -------------------------------------------------*
+ * ==> PSS_PlanFinObsoleteObjects ------------------------------------------*
  ****************************************************************************
  * Description : Provides previous and obsolete versions of the financial   *
  *               plan objects                                               *
@@ -7,7 +7,7 @@
  ****************************************************************************/
 
 #include "stdafx.h"
-#include "PSS_ObsoletePLFNObj.h"
+#include "PSS_PlanFinObsoleteObjects.h"
 
 // processsoft
 #include "PSS_DrawFunctions.h"
@@ -61,13 +61,13 @@ const PSS_PLFNStringHistory& PSS_PLFNStringHistory::operator = (const PSS_PLFNSt
     return *this;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_PLFNStringHistory::Clone() const
+PSS_PlanFinObject* PSS_PLFNStringHistory::Clone() const
 {
     std::unique_ptr<PSS_PLFNStringHistory> pObject(new PSS_PLFNStringHistory(*this));
     return pObject.release();
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNStringHistory::CopyObject(PlanFinObject* pSrc)
+void PSS_PLFNStringHistory::CopyObject(PSS_PlanFinObject* pSrc)
 {
     operator = (dynamic_cast<PSS_PLFNStringHistory*>(pSrc));
 }
@@ -79,7 +79,7 @@ void PSS_PLFNStringHistory::GetContains(const CString& line)
 //---------------------------------------------------------------------------
 BOOL PSS_PLFNStringHistory::IsSelected(const CPoint& point) const
 {
-    return(m_rctObject.PtInRect(point));
+    return(m_ObjectRect.PtInRect(point));
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNStringHistory::Serialize(CArchive& ar)
@@ -146,13 +146,13 @@ const PSS_PLFNNumbered& PSS_PLFNNumbered::operator = (const PSS_PLFNNumbered& ot
     return *this;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_PLFNNumbered::Clone() const
+PSS_PlanFinObject* PSS_PLFNNumbered::Clone() const
 {
     std::unique_ptr<PSS_PLFNNumbered> pObject(new PSS_PLFNNumbered(*this));
     return pObject.release();
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNNumbered::CopyObject(PlanFinObject* pSrc)
+void PSS_PLFNNumbered::CopyObject(PSS_PlanFinObject* pSrc)
 {
     operator = (dynamic_cast<PSS_PLFNNumbered*>(pSrc));
 }
@@ -204,12 +204,12 @@ void PSS_PLFNNumbered::DrawObject(CDC* pDC, ZIView* pView)
     pDC->SetTextColor(GetColor(pView));
     pDC->SetTextAlign(TA_LEFT | TA_BOTTOM);
 
-    CSize textSize    = pDC->GetTextExtent(m_Str, m_Str.GetLength());
-    m_rctObject.right = m_rctObject.left + textSize.cx;
+    CSize textSize     = pDC->GetTextExtent(m_Str, m_Str.GetLength());
+    m_ObjectRect.right = m_ObjectRect.left + textSize.cx;
 
     // the alignement is changed to bottom to remove the alignment issue with different fonts,
     // then the text area calculation should be changed
-    m_rctObject.top = m_rctObject.bottom - textSize.cy;
+    m_ObjectRect.top = m_ObjectRect.bottom - textSize.cy;
 
     char buffer[100];
 
@@ -220,15 +220,15 @@ void PSS_PLFNNumbered::DrawObject(CDC* pDC, ZIView* pView)
         std::sprintf(buffer, "%d ", m_Chapter);
 
     textSize = pDC->GetTextExtent(buffer, std::strlen(buffer));
-    pDC->TextOut(m_rctObject.left - textSize.cx, m_rctObject.bottom, buffer);
+    pDC->TextOut(m_ObjectRect.left - textSize.cx, m_ObjectRect.bottom, buffer);
 
     FormatObject(m_Str);
     pDC->SetTextAlign(0);
-    pDC->DrawText(GetFormattedBuffer(), -1, &m_rctObject, GetJustify(pView->GetDocument()));
+    pDC->DrawText(GetFormattedBuffer(), -1, &m_ObjectRect, GetJustify(pView->GetDocument()));
 
     pDC->SelectObject(pOldFont);
 
-    PlanFinObject::DrawObject(pDC, pView);
+    PSS_PlanFinObject::DrawObject(pDC, pView);
 }
 //---------------------------------------------------------------------------
 // Serialization
@@ -276,13 +276,13 @@ const PSS_PLFNNumbEdit& PSS_PLFNNumbEdit::operator = (const PSS_PLFNNumbEdit& ot
     return *this;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_PLFNNumbEdit::Clone() const
+PSS_PlanFinObject* PSS_PLFNNumbEdit::Clone() const
 {
     std::unique_ptr<PSS_PLFNNumbEdit> pObject(new PSS_PLFNNumbEdit(*this));
     return pObject.release();
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNNumbEdit::CopyObject(PlanFinObject* pSrc)
+void PSS_PLFNNumbEdit::CopyObject(PSS_PlanFinObject* pSrc)
 {
     operator = (dynamic_cast<PSS_PLFNNumbEdit*>(pSrc));
 }
@@ -343,7 +343,7 @@ void PSS_PLFNNumbEdit::DrawObject(CDC* pDC, ZIView* pView)
         std::sprintf(buffer, "%d ", m_Chapter);
 
     const CSize sizeText = pDC->GetTextExtent(buffer, std::strlen(buffer));
-    pDC->TextOut(m_rctObject.left - sizeText.cx, m_rctObject.bottom, buffer);
+    pDC->TextOut(m_ObjectRect.left - sizeText.cx, m_ObjectRect.bottom, buffer);
 
     if (IsEmpty())
         DrawEmpty(pDC, pView);
@@ -351,12 +351,12 @@ void PSS_PLFNNumbEdit::DrawObject(CDC* pDC, ZIView* pView)
     {
         FormatObject(m_Str);
         pDC->SetTextAlign(0);
-        pDC->DrawText(GetFormattedBuffer(), -1, &m_rctObject, GetJustify(pView->GetDocument()));
+        pDC->DrawText(GetFormattedBuffer(), -1, &m_ObjectRect, GetJustify(pView->GetDocument()));
     }
 
     pDC->SelectObject(pOldFont);
 
-    PlanFinObject::DrawObject(pDC, pView);
+    PSS_PlanFinObject::DrawObject(pDC, pView);
 }
 //---------------------------------------------------------------------------
 // Serialization
@@ -397,13 +397,13 @@ const PSS_PLFNCalculated& PSS_PLFNCalculated::operator = (const PSS_PLFNCalculat
     return *this;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_PLFNCalculated::Clone() const
+PSS_PlanFinObject* PSS_PLFNCalculated::Clone() const
 {
     std::unique_ptr< PSS_PLFNCalculated> pObject(new PSS_PLFNCalculated(*this));
     return pObject.release();
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNCalculated::CopyObject(PlanFinObject* pSrc)
+void PSS_PLFNCalculated::CopyObject(PSS_PlanFinObject* pSrc)
 {
     operator = (dynamic_cast<PSS_PLFNCalculated*>(pSrc));
 }
@@ -484,13 +484,13 @@ const PSS_PLFNNumHistory& PSS_PLFNNumHistory::operator = (const PSS_PLFNNumHisto
     return *this;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_PLFNNumHistory::Clone() const
+PSS_PlanFinObject* PSS_PLFNNumHistory::Clone() const
 {
     std::unique_ptr<PSS_PLFNNumHistory> pObject(new PSS_PLFNNumHistory(*this));
     return pObject.release();
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNNumHistory::CopyObject(PlanFinObject* pSrc)
+void PSS_PLFNNumHistory::CopyObject(PSS_PlanFinObject* pSrc)
 {
     operator = (dynamic_cast<PSS_PLFNNumHistory*>(pSrc));
 }
@@ -502,7 +502,7 @@ void PSS_PLFNNumHistory::GetContains(const CString& line)
 //---------------------------------------------------------------------------
 BOOL PSS_PLFNNumHistory::IsSelected(const CPoint& point) const
 {
-    return(m_rctObject.PtInRect(point));
+    return(m_ObjectRect.PtInRect(point));
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNNumHistory::Serialize(CArchive& ar)
@@ -569,13 +569,13 @@ const PSS_PLFNNumbNumEdit& PSS_PLFNNumbNumEdit::operator = (const PSS_PLFNNumbNu
     return *this;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_PLFNNumbNumEdit::Clone() const
+PSS_PlanFinObject* PSS_PLFNNumbNumEdit::Clone() const
 {
     std::unique_ptr<PSS_PLFNNumbNumEdit> pObject(new PSS_PLFNNumbNumEdit(*this));
     return pObject.release();
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNNumbNumEdit::CopyObject(PlanFinObject* pSrc)
+void PSS_PLFNNumbNumEdit::CopyObject(PSS_PlanFinObject* pSrc)
 {
     operator = (dynamic_cast<PSS_PLFNNumbNumEdit*>(pSrc));
 }
@@ -636,7 +636,7 @@ void PSS_PLFNNumbNumEdit::DrawObject(CDC* pDC, ZIView* pView)
         std::sprintf(buffer, "%d ", m_Chapter);
 
     CSize textSize = pDC->GetTextExtent(buffer, std::strlen(buffer));
-    pDC->TextOut(m_rctObject.left - textSize.cx, m_rctObject.bottom, buffer);
+    pDC->TextOut(m_ObjectRect.left - textSize.cx, m_ObjectRect.bottom, buffer);
 
     if (IsEmpty())
         DrawEmpty(pDC, pView);
@@ -646,11 +646,11 @@ void PSS_PLFNNumbNumEdit::DrawObject(CDC* pDC, ZIView* pView)
         FormatObject(m_Long);
 
         pDC->SetTextAlign(0);
-        pDC->DrawText(GetFormattedBuffer(), -1, &m_rctObject, GetJustify(pView->GetDocument()));
+        pDC->DrawText(GetFormattedBuffer(), -1, &m_ObjectRect, GetJustify(pView->GetDocument()));
     }
 
     pDC->SelectObject(pOldFont);
 
-    PlanFinObject::DrawObject(pDC, pView);
+    PSS_PlanFinObject::DrawObject(pDC, pView);
 }
 //---------------------------------------------------------------------------

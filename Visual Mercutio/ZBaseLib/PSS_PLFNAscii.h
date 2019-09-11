@@ -22,7 +22,7 @@
 #endif
 
 // processsoft
-#include "ZAObject.h"
+#include "PSS_PlanFinObject.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -38,7 +38,7 @@
 * Ascii based financial plan object
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PLFNAscii : public PlanFinObject
+class AFX_EXT_CLASS PSS_PLFNAscii : public PSS_PlanFinObject
 {
     DECLARE_SERIAL(PSS_PLFNAscii)
 
@@ -54,7 +54,7 @@ class AFX_EXT_CLASS PSS_PLFNAscii : public PlanFinObject
             IE_SS_WaveStrike
         };
 
-        typedef PlanFinObject inherited;
+        typedef PSS_PlanFinObject inherited;
 
         PSS_PLFNAscii();
 
@@ -84,7 +84,7 @@ class AFX_EXT_CLASS PSS_PLFNAscii : public PlanFinObject
         * Clones the object
         *@return the cloned object, NULL on error
         */
-        virtual PlanFinObject* Clone() const;
+        virtual PSS_PlanFinObject* Clone() const;
 
         /**
         * Gets the justify layout
@@ -179,7 +179,7 @@ void PSS_PLFNAscii::SetJustify(UINT nValue)
 //---------------------------------------------------------------------------
 UINT PSS_PLFNAscii::GetPropertyTabs() const
 {
-    return PropertyGeneralTextPage | PropertySizePage;
+    return (g_PropertyGeneralTextPage | g_PropertySizePage);
 }
 //---------------------------------------------------------------------------
 const BOOL PSS_PLFNAscii::GetIsStriked() const

@@ -121,25 +121,25 @@ const CStringArray& PSS_GlobalFieldManager::GetFieldNameArray()
     return m_FieldNameArray;
 }
 //---------------------------------------------------------------------------
-void PSS_GlobalFieldManager::CopyFieldDefinition(const CString& name, PlanFinObject* pObj, ZDDocument* pDoc)
+void PSS_GlobalFieldManager::CopyFieldDefinition(const CString& name, PSS_PlanFinObject* pObj, ZDDocument* pDoc)
 {
     PSS_FieldObjectDefinition* pObjectDef = FindField(name);
 
     if (pObjectDef)
     {
-        pObj->SetFormatType    (pObjectDef->GetObject()->GetFormatType());
-        pObj->SetJustify       (pObjectDef->GetObject()->GetJustify(NULL));
-        pObj->SethStyle        (pObjectDef->GetObject()->GethStyle());
-        pObj->SetiAngle        (pObjectDef->GetObject()->GetiAngle(), pDoc);
-        pObj->SetbIsVisible    (pObjectDef->GetObject()->GetbIsVisible());
-        pObj->SetbMustBePrinted(pObjectDef->GetObject()->GetbMustBePrinted());
-        pObj->SetColor         (pObjectDef->GetObject()->GetColor());
-        pObj->SetFillColor     (pObjectDef->GetObject()->GetFillColor());
-        pObj->SethFont         (pObjectDef->GetObject()->GethFont());
-        pObj->SethStyle        (pObjectDef->GetObject()->GethStyle());
-        pObj->SetEmptyStyle    (pObjectDef->GetObject()->GetEmptyStyle());
-        pObj->SetDefaultValue  (pObjectDef->GetObject()->GetDefaultValue());
-        pObj->ConvertFormattedObject(((PlanFinObject*)pObjectDef->GetObject())->GetUnformattedObject());
+        pObj->SetFormatType   (pObjectDef->GetObject()->GetFormatType());
+        pObj->SetJustify      (pObjectDef->GetObject()->GetJustify(NULL));
+        pObj->SetStyle        (pObjectDef->GetObject()->GetStyle());
+        pObj->SetAngle        (pObjectDef->GetObject()->GetAngle(), pDoc);
+        pObj->SetIsVisible    (pObjectDef->GetObject()->GetIsVisible());
+        pObj->SetMustBePrinted(pObjectDef->GetObject()->GetMustBePrinted());
+        pObj->SetColor        (pObjectDef->GetObject()->GetColor());
+        pObj->SetFillColor    (pObjectDef->GetObject()->GetFillColor());
+        pObj->SetFont         (pObjectDef->GetObject()->GetFont());
+        pObj->SetStyle        (pObjectDef->GetObject()->GetStyle());
+        pObj->SetEmptyStyle   (pObjectDef->GetObject()->GetEmptyStyle());
+        pObj->SetDefaultValue (pObjectDef->GetObject()->GetDefaultValue());
+        pObj->ConvertFormattedObject(((PSS_PlanFinObject*)pObjectDef->GetObject())->GetUnformattedObject());
     }
 }
 //---------------------------------------------------------------------------

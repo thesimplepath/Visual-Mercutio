@@ -125,7 +125,7 @@ const PSS_ObjectUtility& PSS_ObjectUtility::operator = (const PSS_ObjectUtility&
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-const CString PSS_ObjectUtility::GetFieldTypeDescription(PlanFinObject* pObj)
+const CString PSS_ObjectUtility::GetFieldTypeDescription(PSS_PlanFinObject* pObj)
 {
     switch (GetClassNameID(pObj))
     {
@@ -156,8 +156,8 @@ const CString PSS_ObjectUtility::GetFieldTypeDescription(PlanFinObject* pObj)
 //---------------------------------------------------------------------------
 const CString PSS_ObjectUtility::GetFieldTypeDescription(const CString& className)
 {
-    PlanFinObject* pTempObj = BuildObject(className);
-    CString        fieldExplanation;
+    PSS_PlanFinObject* pTempObj = BuildObject(className);
+    CString            fieldExplanation;
 
     if (pTempObj)
     {
@@ -168,7 +168,7 @@ const CString PSS_ObjectUtility::GetFieldTypeDescription(const CString& classNam
     return fieldExplanation;
 }
 //---------------------------------------------------------------------------
-const CString PSS_ObjectUtility::GetClassName(PlanFinObject* pObj)
+const CString PSS_ObjectUtility::GetClassName(PSS_PlanFinObject* pObj)
 {
     CString text;
     text.LoadString(GetClassNameID(pObj));
@@ -189,7 +189,7 @@ UINT PSS_ObjectUtility::GetBitmapClass(const CString& className)
     return 0;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_ObjectUtility::BuildObject(const CString& className)
+PSS_PlanFinObject* PSS_ObjectUtility::BuildObject(const CString& className)
 {
     // fill the list with all objects' type
     const CStringArray& stringArray = GetClassNameArray();
@@ -203,7 +203,7 @@ PlanFinObject* PSS_ObjectUtility::BuildObject(const CString& className)
             break;
         }
 
-    std::unique_ptr<PlanFinObject> pObj;
+    std::unique_ptr<PSS_PlanFinObject> pObj;
 
     switch (index)
     {
@@ -362,7 +362,7 @@ CString PSS_ObjectUtility::LoadFieldDefinition(const CString& iniFileName, const
     return description;
 }
 //---------------------------------------------------------------------------
-std::size_t PSS_ObjectUtility::GetClassNameID(PlanFinObject* pObj)
+std::size_t PSS_ObjectUtility::GetClassNameID(PSS_PlanFinObject* pObj)
 {
     std::size_t resourceID = IDS_UNMODIFIED_CLASS;
 

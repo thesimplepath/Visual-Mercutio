@@ -25,7 +25,7 @@
 #include "mfc.h"
 
 // processsoft
-#include "ZAObject.h"
+#include "PSS_PlanFinObject.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -99,13 +99,13 @@ class AFX_EXT_CLASS PSS_FieldObjectDefinition : public CObject
         * Gets the object
         *@return the object
         */
-        virtual inline PlanFinObject* GetObject();
+        virtual inline PSS_PlanFinObject* GetObject();
 
         /**
         * Sets the object
         *@param pObject - the object
         */
-        virtual inline void SetObject(PlanFinObject* pObject);
+        virtual inline void SetObject(PSS_PlanFinObject* pObject);
 
         /**
         * Gets the field name
@@ -165,12 +165,12 @@ class AFX_EXT_CLASS PSS_FieldObjectDefinition : public CObject
         #endif
 
     private:
-        PlanFinObject* m_pObject;
-        CString        m_Description;
-        CString        m_ClassName;
-        CString        m_FieldName;
-        CString        m_HelpUserDescription;
-        BOOL           m_Sorted;
+        PSS_PlanFinObject* m_pObject;
+        CString            m_Description;
+        CString            m_ClassName;
+        CString            m_FieldName;
+        CString            m_HelpUserDescription;
+        BOOL               m_Sorted;
 };
 
 //---------------------------------------------------------------------------
@@ -196,12 +196,12 @@ void PSS_FieldObjectDefinition::SetClassName(const CString& value)
     m_ClassName = value;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_FieldObjectDefinition::GetObject()
+PSS_PlanFinObject* PSS_FieldObjectDefinition::GetObject()
 {
     return m_pObject;
 }
 //---------------------------------------------------------------------------
-void PSS_FieldObjectDefinition::SetObject(PlanFinObject* value)
+void PSS_FieldObjectDefinition::SetObject(PSS_PlanFinObject* value)
 {
     m_pObject = value;
 }

@@ -113,7 +113,7 @@ afx_msg LONG ZDPointerDlg::OnNotifyPointerObjSelected(UINT message, LONG wParam)
     // Not for us
     if (!IsWindowVisible())
         return 0;
-    PlanFinObject* pObj = (PlanFinObject*)wParam;
+    PSS_PlanFinObject* pObj = (PSS_PlanFinObject*)wParam;
     // If no object, return
     if (!pObj)
         return 1;

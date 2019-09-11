@@ -62,7 +62,7 @@ class AFX_EXT_CLASS PSS_Edit
                                    CWnd*                pParentWnd,
                                    CDC*                 pDC,
                                    ZDDocument*          pDoc,
-                                   PlanFinObject*       pEditedObj,
+                                   PSS_PlanFinObject*   pEditedObj,
                                    PSS_FieldRepository* pFieldRepository    = NULL,
                                    BOOL                 autoCalculateOption = FALSE,
                                    BOOL                 goNextEditOption    = FALSE);
@@ -82,7 +82,7 @@ class AFX_EXT_CLASS PSS_Edit
                             CWnd*                pParentWnd,
                             CDC*                 pDC,
                             ZDDocument*          pDoc,
-                            PlanFinObject*       pEditedObj,
+                            PSS_PlanFinObject*   pEditedObj,
                             PSS_FieldRepository* pFieldRepository    = NULL,
                             BOOL                 autoCalculateOption = FALSE,
                             BOOL                 goNextEditOption    = FALSE) = 0;
@@ -141,7 +141,7 @@ class AFX_EXT_CLASS PSS_Edit
     protected:
         CWnd*                m_pParentWnd;
         PSS_SpecialHelpWnd*  m_pSpecialHelp;
-        PlanFinObject*       m_pEditedObj;
+        PSS_PlanFinObject*   m_pEditedObj;
         ZDDocument*          m_pDoc;
         PSS_FieldRepository* m_pFieldRepository;
         CRect                m_Rect;
@@ -238,7 +238,7 @@ class AFX_EXT_CLASS PSS_StrEdit : public ZBDragEdit, public PSS_Edit
                             CWnd*                pParentWnd,
                             CDC*                 pDC,
                             ZDDocument*          pDoc,
-                            PlanFinObject*       pEditedObj,
+                            PSS_PlanFinObject*   pEditedObj,
                             PSS_FieldRepository* pFieldRepository    = NULL,
                             BOOL                 autoCalculateOption = FALSE,
                             BOOL                 goNextEditOption    = FALSE);
@@ -313,7 +313,7 @@ class AFX_EXT_CLASS PSS_NumEdit : public ZBDragEdit, public PSS_Edit
                             CWnd*                pParentWnd,
                             CDC*                 pDC,
                             ZDDocument*          pDoc,
-                            PlanFinObject*       pEditedObj,
+                            PSS_PlanFinObject*   pEditedObj,
                             PSS_FieldRepository* pFieldRepository    = NULL,
                             BOOL                 autoCalculateOption = FALSE,
                             BOOL                 goNextEditOption    = FALSE);
@@ -384,7 +384,7 @@ class AFX_EXT_CLASS PSS_CalcEdit : public ZBDragEdit, public PSS_Edit
                             CWnd*                pParentWnd,
                             CDC*                 pDC,
                             ZDDocument*          pDoc,
-                            PlanFinObject*       pEditedObj,
+                            PSS_PlanFinObject*   pEditedObj,
                             PSS_FieldRepository* pFieldRepository    = NULL,
                             BOOL                 autoCalculateOption = FALSE,
                             BOOL                 goNextEditOption    = FALSE);
@@ -454,7 +454,7 @@ class AFX_EXT_CLASS PSS_TimeEdit : public ZBDragEdit, public PSS_Edit
                             CWnd*                pParentWnd,
                             CDC*                 pDC,
                             ZDDocument*          pDoc,
-                            PlanFinObject*       pEditedObj,
+                            PSS_PlanFinObject*   pEditedObj,
                             PSS_FieldRepository* pFieldRepository    = NULL,
                             BOOL                 autoCalculateOption = FALSE,
                             BOOL                 goNextEditOption    = FALSE);
@@ -530,7 +530,7 @@ class AFX_EXT_CLASS PSS_StrEditHistoric : public ZCIntelliEdit, public PSS_Edit
                             CWnd*                pParentWnd,
                             CDC*                 pDC,
                             ZDDocument*          pDoc,
-                            PlanFinObject*       pEditedObj,
+                            PSS_PlanFinObject*   pEditedObj,
                             PSS_FieldRepository* pFieldRepository    = NULL,
                             BOOL                 autoCalculateOption = FALSE,
                             BOOL                 goNextEditOption    = FALSE);
@@ -615,7 +615,7 @@ class AFX_EXT_CLASS PSS_NumEditHistoric : public ZCIntelliEdit, public PSS_Edit
                             CWnd*                pParentWnd,
                             CDC*                 pDC,
                             ZDDocument*          pDoc,
-                            PlanFinObject*       pEditedObj,
+                            PSS_PlanFinObject*   pEditedObj,
                             PSS_FieldRepository* pFieldRepository    = NULL,
                             BOOL                 autoCalculateOption = FALSE,
                             BOOL                 goNextEditOption    = FALSE);
@@ -691,7 +691,7 @@ class AFX_EXT_CLASS PSS_FieldNameEdit : public ZCIntelliEdit, public PSS_Edit
                             CWnd*                pParentWnd,
                             CDC*                 pDC,
                             ZDDocument*          pDoc,
-                            PlanFinObject*       pEditedObj,
+                            PSS_PlanFinObject*   pEditedObj,
                             PSS_FieldRepository* pFieldRepository    = NULL,
                             BOOL                 autoCalculateOption = FALSE,
                             BOOL                 goNextEditOption    = FALSE);
@@ -765,7 +765,7 @@ class AFX_EXT_CLASS PSS_MaskEdit : public PSS_MaskEditBase, public PSS_Edit
                             CWnd*                pParentWnd,
                             CDC*                 pDC,
                             ZDDocument*          pDoc,
-                            PlanFinObject*       pEditedObj,
+                            PSS_PlanFinObject*   pEditedObj,
                             PSS_FieldRepository* pFieldRepository    = NULL,
                             BOOL                 autoCalculateOption = FALSE,
                             BOOL                 goNextEditOption    = FALSE);
@@ -836,7 +836,7 @@ class AFX_EXT_CLASS PSS_MultiColumnEdit : public ZCGridCtrl, public PSS_Edit
                             CWnd*                pParentWnd,
                             CDC*                 pDC,
                             ZDDocument*          pDoc,
-                            PlanFinObject*       pEditedObj,
+                            PSS_PlanFinObject*   pEditedObj,
                             PSS_FieldRepository* pFieldRepository    = NULL,
                             BOOL                 autoCalculateOption = FALSE,
                             BOOL                 goNextEditOption    = FALSE);

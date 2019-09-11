@@ -5,9 +5,9 @@
 #define PointDlg_h 1
 
 
+#include "zBaseLib\PSS_PlanFinObjects.h"
 #include "zWinUtil32\PSS_NewFormDialog.h"
 #include "zWinUtil32\PSS_PointerWnd.h"
-#include "zBaseLib\PSS_PlanFinObj.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // ZDPointerDlg dialog
@@ -23,7 +23,7 @@ public:
     void         Close();
 
 
-    PlanFinObject*    GetSelectedObject() { return m_Obj; };
+    PSS_PlanFinObject*    GetSelectedObject() { return m_Obj; };
 
 // Dialog Data
     //{{AFX_DATA(ZDPointerDlg)
@@ -34,7 +34,7 @@ public:
 private:
     int            m_ID;
     PSS_PointerWnd m_PointerWindow;
-    PlanFinObject* m_Obj;
+    PSS_PlanFinObject* m_Obj;
 
 // Implementation
 protected:

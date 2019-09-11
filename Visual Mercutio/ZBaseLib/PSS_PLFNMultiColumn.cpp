@@ -19,20 +19,20 @@
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_PLFNMultiColumn, PlanFinObject, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_PLFNMultiColumn, PSS_PlanFinObject, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_PLFNMultiColumn
 //---------------------------------------------------------------------------
 PSS_PLFNMultiColumn::PSS_PLFNMultiColumn() :
-    PlanFinObject(),
+    PSS_PlanFinObject(),
     m_ShowHeader(TRUE)
 {
     // by default, the multi-column field is not visible
-    SetbIsVisible(FALSE);
+    SetIsVisible(FALSE);
 }
 //---------------------------------------------------------------------------
 PSS_PLFNMultiColumn::PSS_PLFNMultiColumn(const PSS_PLFNMultiColumn& other) :
-    PlanFinObject()
+    PSS_PlanFinObject()
 {
     *this = other;
 }
@@ -42,7 +42,7 @@ PSS_PLFNMultiColumn::~PSS_PLFNMultiColumn()
 //---------------------------------------------------------------------------
 const PSS_PLFNMultiColumn& PSS_PLFNMultiColumn::operator = (const PSS_PLFNMultiColumn& other)
 {
-    PlanFinObject::operator = ((inherited&)other);
+    PSS_PlanFinObject::operator = ((inherited&)other);
     m_MultiColumnManager = other.m_MultiColumnManager;
     m_ShowHeader         = other.m_ShowHeader;
     return *this;
@@ -50,13 +50,13 @@ const PSS_PLFNMultiColumn& PSS_PLFNMultiColumn::operator = (const PSS_PLFNMultiC
 //---------------------------------------------------------------------------
 const PSS_PLFNMultiColumn& PSS_PLFNMultiColumn::operator = (const PSS_PLFNMultiColumn* pOther)
 {
-    PlanFinObject::operator = ((inherited*)pOther);
+    PSS_PlanFinObject::operator = ((inherited*)pOther);
 
     if (!pOther)
     {
         // reset the content to default
         m_ShowHeader = FALSE;
-        SetbIsVisible(FALSE);
+        SetIsVisible(FALSE);
     }
     else
         *this = *pOther;
@@ -64,13 +64,13 @@ const PSS_PLFNMultiColumn& PSS_PLFNMultiColumn::operator = (const PSS_PLFNMultiC
     return *this;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_PLFNMultiColumn::Clone() const
+PSS_PlanFinObject* PSS_PLFNMultiColumn::Clone() const
 {
     std::unique_ptr<PSS_PLFNMultiColumn> pObject(new PSS_PLFNMultiColumn(*this));
     return pObject.release();
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNMultiColumn::CopyObject(PlanFinObject* pSrc)
+void PSS_PLFNMultiColumn::CopyObject(PSS_PlanFinObject* pSrc)
 {
     operator = (dynamic_cast<PSS_PLFNMultiColumn*>(pSrc));
 }
@@ -89,13 +89,13 @@ void PSS_PLFNMultiColumn::DrawObject(CDC* pDC, ZIView* pView)
     pDC->SelectObject(pOldFont);
 
     // base class draw object
-    PlanFinObject::DrawObject(pDC, pView);
-    PlanFinObject::DrawObjectRectangle(pDC);
+    PSS_PlanFinObject::DrawObject(pDC, pView);
+    PSS_PlanFinObject::DrawObjectRectangle(pDC);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNMultiColumn::Serialize(CArchive& ar)
 {
-    PlanFinObject::Serialize(ar);
+    PSS_PlanFinObject::Serialize(ar);
 
     m_MultiColumnManager.Serialize(ar);
 

@@ -19,11 +19,12 @@
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_PLFNGraphic, PlanFinObject, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_PLFNGraphic, PSS_PlanFinObject, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_PLFNGraphic
 //---------------------------------------------------------------------------
 PSS_PLFNGraphic::PSS_PLFNGraphic() :
+    PSS_PlanFinObject(),
     m_GraphicColor(defCOLOR_BLACK),
     m_GraphicStyle(PS_SOLID),
     m_GraphicWidth(1),
@@ -31,6 +32,7 @@ PSS_PLFNGraphic::PSS_PLFNGraphic() :
 {}
 //---------------------------------------------------------------------------
 PSS_PLFNGraphic::PSS_PLFNGraphic(const PSS_PLFNGraphic& other) :
+    PSS_PlanFinObject(),
     m_GraphicColor(defCOLOR_BLACK),
     m_GraphicStyle(PS_SOLID),
     m_GraphicWidth(1),
@@ -44,7 +46,7 @@ PSS_PLFNGraphic::~PSS_PLFNGraphic()
 //---------------------------------------------------------------------------
 const PSS_PLFNGraphic& PSS_PLFNGraphic::operator = (const PSS_PLFNGraphic& other)
 {
-    PlanFinObject::operator = ((inherited&)other);
+    PSS_PlanFinObject::operator = ((inherited&)other);
     m_GraphicColor = other.m_GraphicColor;
     m_GraphicStyle = other.m_GraphicStyle;
     m_GraphicWidth = other.m_GraphicWidth;
@@ -54,7 +56,7 @@ const PSS_PLFNGraphic& PSS_PLFNGraphic::operator = (const PSS_PLFNGraphic& other
 //---------------------------------------------------------------------------
 const PSS_PLFNGraphic& PSS_PLFNGraphic::operator = (const PSS_PLFNGraphic* pOther)
 {
-    PlanFinObject::operator = ((inherited*)pOther);
+    PSS_PlanFinObject::operator = ((inherited*)pOther);
 
     if (!pOther)
     {
@@ -74,13 +76,13 @@ const PSS_PLFNGraphic& PSS_PLFNGraphic::operator = (const PSS_PLFNGraphic* pOthe
     return *this;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_PLFNGraphic::Clone() const
+PSS_PlanFinObject* PSS_PLFNGraphic::Clone() const
 {
     std::unique_ptr<PSS_PLFNGraphic> pObject(new PSS_PLFNGraphic(*this));
     return pObject.release();
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNGraphic::CopyObject(PlanFinObject* pSrc)
+void PSS_PLFNGraphic::CopyObject(PSS_PlanFinObject* pSrc)
 {
     operator = (dynamic_cast<PSS_PLFNGraphic*>(pSrc));
 }
@@ -107,7 +109,7 @@ CPen& PSS_PLFNGraphic::GetGraphicPen(CPen& pen) const
 //---------------------------------------------------------------------------
 void PSS_PLFNGraphic::Serialize(CArchive& ar)
 {
-    PlanFinObject::Serialize(ar);
+    PSS_PlanFinObject::Serialize(ar);
 
     if (ar.IsStoring())
     {

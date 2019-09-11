@@ -45,7 +45,7 @@ const PSS_DocumentExport& PSS_DocumentExport::operator = (const PSS_DocumentExpo
 //---------------------------------------------------------------------------
 CString PSS_DocumentExport::GetExportedLine(CObject* pObj)
 {
-    PlanFinObject* pPlanFinObj = dynamic_cast<PlanFinObject*>(pObj);
+    PSS_PlanFinObject* pPlanFinObj = dynamic_cast<PSS_PlanFinObject*>(pObj);
     ASSERT(pPlanFinObj);
 
     CString lineBuffer;
@@ -63,7 +63,7 @@ CString PSS_DocumentExport::GetExportedLine(CObject* pObj)
 //---------------------------------------------------------------------------
 BOOL PSS_DocumentExport::IsExportedField(CObject* pObj) const
 {
-    PlanFinObject* pPlanFinObj = dynamic_cast<PlanFinObject*>(pObj);
+    PSS_PlanFinObject* pPlanFinObj = dynamic_cast<PSS_PlanFinObject*>(pObj);
     ASSERT(pPlanFinObj);
     
     // is the object exportable?
@@ -263,9 +263,9 @@ BOOL PSS_DocumentExport::DoExportLoop()
         return FALSE;
 
     // for each object, assign  the new matching font handle
-    PlanFinObject* pObj;
-    CString        line;
-    double         count = 0;
+    PSS_PlanFinObject* pObj;
+    CString            line;
+    double             count = 0;
 
     // initialize the object counter
     m_ObjectCounter = 1;

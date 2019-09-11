@@ -9,8 +9,8 @@
 #include "PSS_SpecialHelpWnd.h"
 
 // processsoft
-#include "PSS_PlanFinObj.h"
 #include "PSS_DrawFunctions.h"
+#include "PSS_PlanFinObjects.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -62,12 +62,12 @@ PSS_SpecialHelpWnd::~PSS_SpecialHelpWnd()
     DestroyWindow();
 }
 //---------------------------------------------------------------------------
-BOOL PSS_SpecialHelpWnd::CreateSpecialHelp(CWnd*          pParentWnd,
-                                           CRect*         pRect,
-                                           PlanFinObject* pObj,
-                                           UINT           bitmapRes,
-                                           std::size_t    numberOfButton,
-                                           BOOL           autoCalculateOption)
+BOOL PSS_SpecialHelpWnd::CreateSpecialHelp(CWnd*              pParentWnd,
+                                           CRect*             pRect,
+                                           PSS_PlanFinObject* pObj,
+                                           UINT               bitmapRes,
+                                           std::size_t        numberOfButton,
+                                           BOOL               autoCalculateOption)
 {
     if (!pRect)
         return FALSE;
@@ -203,7 +203,7 @@ PSS_SpecialHelpNumberWnd::PSS_SpecialHelpNumberWnd() :
     PSS_SpecialHelpWnd()
 {}
 //---------------------------------------------------------------------------
-BOOL PSS_SpecialHelpNumberWnd::Create(CWnd* pParentWnd, CRect* pRect, PlanFinObject* pObj, BOOL autoCalculateOption)
+BOOL PSS_SpecialHelpNumberWnd::Create(CWnd* pParentWnd, CRect* pRect, PSS_PlanFinObject* pObj, BOOL autoCalculateOption)
 {
     return PSS_SpecialHelpWnd::CreateSpecialHelp(pParentWnd,
                                                  pRect,
@@ -252,10 +252,10 @@ PSS_SpecialHelpNumberDesignerWnd::PSS_SpecialHelpNumberDesignerWnd() :
     PSS_SpecialHelpWnd()
 {}
 //---------------------------------------------------------------------------
-BOOL PSS_SpecialHelpNumberDesignerWnd::Create(CWnd*          pParentWnd,
-                                              CRect*         pRect,
-                                              PlanFinObject* pObj,
-                                              BOOL           autoCalculateOption)
+BOOL PSS_SpecialHelpNumberDesignerWnd::Create(CWnd*              pParentWnd,
+                                              CRect*             pRect,
+                                              PSS_PlanFinObject* pObj,
+                                              BOOL               autoCalculateOption)
 {
     return PSS_SpecialHelpWnd::CreateSpecialHelp(pParentWnd, pRect, pObj, IDB_SHHELP_NUMBER, 5, autoCalculateOption);
 }
@@ -301,10 +301,10 @@ PSS_SpecialHelpNumberScenarioWnd::PSS_SpecialHelpNumberScenarioWnd() :
     PSS_SpecialHelpWnd()
 {}
 //---------------------------------------------------------------------------
-BOOL PSS_SpecialHelpNumberScenarioWnd::Create(CWnd*          pParentWnd,
-                                              CRect*         pRect,
-                                              PlanFinObject* pObj,
-                                              BOOL           autoCalculateOption)
+BOOL PSS_SpecialHelpNumberScenarioWnd::Create(CWnd*              pParentWnd,
+                                              CRect*             pRect,
+                                              PSS_PlanFinObject* pObj,
+                                              BOOL               autoCalculateOption)
 {
     return PSS_SpecialHelpWnd::CreateSpecialHelp(pParentWnd,
                                                  pRect,
@@ -351,10 +351,10 @@ PSS_SpecialHelpNumberScenarioDesignerWnd::PSS_SpecialHelpNumberScenarioDesignerW
     PSS_SpecialHelpWnd()
 {}
 //---------------------------------------------------------------------------
-BOOL PSS_SpecialHelpNumberScenarioDesignerWnd::Create(CWnd*          pParentWnd,
-                                                      CRect*         pRect,
-                                                      PlanFinObject* pObj,
-                                                      BOOL           autoCalculateOption)
+BOOL PSS_SpecialHelpNumberScenarioDesignerWnd::Create(CWnd*              pParentWnd,
+                                                      CRect*             pRect,
+                                                      PSS_PlanFinObject* pObj,
+                                                      BOOL               autoCalculateOption)
 {
     return PSS_SpecialHelpWnd::CreateSpecialHelp(pParentWnd,
                                                  pRect,
@@ -405,7 +405,7 @@ PSS_SpecialHelpDateWnd::PSS_SpecialHelpDateWnd() :
     PSS_SpecialHelpWnd()
 {}
 //---------------------------------------------------------------------------
-BOOL PSS_SpecialHelpDateWnd::Create(CWnd* pParentWnd, CRect* pRect, PlanFinObject* pObj, BOOL autoCalculateOption)
+BOOL PSS_SpecialHelpDateWnd::Create(CWnd* pParentWnd, CRect* pRect, PSS_PlanFinObject* pObj, BOOL autoCalculateOption)
 {
     return PSS_SpecialHelpWnd::CreateSpecialHelp(pParentWnd, pRect, pObj, IDB_SHHELP_DATE_T1, 4, autoCalculateOption);
 }
@@ -447,10 +447,10 @@ PSS_SpecialHelpDateDesignerWnd::PSS_SpecialHelpDateDesignerWnd() :
     PSS_SpecialHelpWnd()
 {}
 //---------------------------------------------------------------------------
-BOOL PSS_SpecialHelpDateDesignerWnd::Create(CWnd*          pParentWnd,
-                                            CRect*         pRect,
-                                            PlanFinObject* pObj,
-                                            BOOL           autoCalculateOption)
+BOOL PSS_SpecialHelpDateDesignerWnd::Create(CWnd*              pParentWnd,
+                                            CRect*             pRect,
+                                            PSS_PlanFinObject* pObj,
+                                            BOOL               autoCalculateOption)
 {
     return PSS_SpecialHelpWnd::CreateSpecialHelp(pParentWnd, pRect, pObj, IDB_SHHELP_DATE, 5, autoCalculateOption);
 }
@@ -494,7 +494,7 @@ PSS_SpecialHelpDefaultWnd::PSS_SpecialHelpDefaultWnd() :
     PSS_SpecialHelpWnd()
 {}
 //---------------------------------------------------------------------------
-BOOL PSS_SpecialHelpDefaultWnd::Create(CWnd* pParentWnd, CRect* pRect, PlanFinObject* pObj, BOOL autoCalculateOption)
+BOOL PSS_SpecialHelpDefaultWnd::Create(CWnd* pParentWnd, CRect* pRect, PSS_PlanFinObject* pObj, BOOL autoCalculateOption)
 {
     return PSS_SpecialHelpWnd::CreateSpecialHelp(pParentWnd, pRect, pObj, IDB_SHHELP_T1, 3, autoCalculateOption);
 }
@@ -534,10 +534,10 @@ PSS_SpecialHelpDefaultDesignerWnd::PSS_SpecialHelpDefaultDesignerWnd() :
     PSS_SpecialHelpWnd()
 {}
 //---------------------------------------------------------------------------
-BOOL PSS_SpecialHelpDefaultDesignerWnd::Create(CWnd*          pParentWnd,
-                                               CRect*         pRect,
-                                               PlanFinObject* pObj,
-                                               BOOL           autoCalculateOption)
+BOOL PSS_SpecialHelpDefaultDesignerWnd::Create(CWnd*              pParentWnd,
+                                               CRect*             pRect,
+                                               PSS_PlanFinObject* pObj,
+                                               BOOL               autoCalculateOption)
 {
     return PSS_SpecialHelpWnd::CreateSpecialHelp(pParentWnd, pRect, pObj, IDB_SHHELP, 4, autoCalculateOption);
 }

@@ -111,12 +111,12 @@ void PLFNString::DrawObject (CDC* pDC, ZIView* pView)
         // version it is not necessary
 //        FormatObject( m_Str );
 //        pDC->SetTextAlign( TA_LEFT | TA_BOTTOM );
-//        pDC->TextOut( m_rctObject.left, m_rctObject.bottom, m_Str );
+//        pDC->TextOut( m_ObjectRect.left, m_ObjectRect.bottom, m_Str );
         pDC->SetTextAlign( 0 );
-        pDC->DrawText( m_Str, -1, &m_rctObject, GetJustify(pView->GetDocument()) );
+        pDC->DrawText( m_Str, -1, &m_ObjectRect, GetJustify(pView->GetDocument()) );
         pDC->SelectObject( OldFont );
     }
-    PlanFinObject::DrawObject( pDC, pView );
+    PSS_PlanFinObject::DrawObject( pDC, pView );
   //## end PLFNString::DrawObject%829516173.body
 }
 
@@ -127,7 +127,7 @@ void PLFNString::Serialize (CArchive& ar)
   //## end PLFNString::Serialize%829516183.body
 }
 
-PlanFinObject* PLFNString::Clone ()
+PSS_PlanFinObject* PLFNString::Clone ()
 {
   //## begin PLFNString::Clone%849755977.body preserve=yes
     PLFNString*    pObject = new PLFNString( *this );
@@ -135,7 +135,7 @@ PlanFinObject* PLFNString::Clone ()
   //## end PLFNString::Clone%849755977.body
 }
 
-void PLFNString::CopyObject (PlanFinObject* pSrc)
+void PLFNString::CopyObject (PSS_PlanFinObject* pSrc)
 {
   //## begin PLFNString::CopyObject%863615083.body preserve=yes
     ((PLFNString*)this)->PLFNString::operator=( (PLFNString*)pSrc );

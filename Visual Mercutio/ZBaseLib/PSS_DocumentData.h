@@ -32,11 +32,14 @@
 #ifndef PSS_FileBuffer
     #define PSS_FileBuffer ZBFileBuffer
 #endif
+#ifndef PSS_PlanFinObject
+    #define PSS_PlanFinObject PlanFinObject
+#endif
 
 // forward class declarations
 class ZDDocument;
 class PSS_FileBuffer;
-class PlanFinObject;
+class PSS_PlanFinObject;
 class PSS_FieldRepository;
 class ZIView;
 
@@ -126,7 +129,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         *@param pObj - object
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL CheckMultiColumnMemberField(PlanFinObject* pObj);
+        virtual BOOL CheckMultiColumnMemberField(PSS_PlanFinObject* pObj);
 
         /**
         * Moves the content of a document to the current one
@@ -162,13 +165,13 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         * Gets the object element list head pointer
         *@return the object element list head pointer
         */
-        virtual inline PlanFinObject* GetHead();
+        virtual inline PSS_PlanFinObject* GetHead();
 
         /**
         * Gets the next object element list pointer since the current one
         *@return the next object element list pointer, NULL if not found or on error
         */
-        virtual inline PlanFinObject* GetNext();
+        virtual inline PSS_PlanFinObject* GetNext();
 
         /**
         * Gets the currently assigned schema
@@ -193,7 +196,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         *@param name - the object name to search for
         *@return the object, NULL if not found or on error
         */
-        virtual PlanFinObject* GetObject(const CString& name);
+        virtual PSS_PlanFinObject* GetObject(const CString& name);
 
         /**
         * Gets the page count
@@ -224,26 +227,26 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         *@param checkPage - if TRUE, page will be checked
         *@return the selected object, NULL if no object selected or on error
         */
-        virtual PlanFinObject* GetSelectedObject(BOOL checkPage = TRUE);
+        virtual PSS_PlanFinObject* GetSelectedObject(BOOL checkPage = TRUE);
 
         /**
         * Gets the current edited object
         *@return the current edited object, NULL if no edited object or on error
         */
-        virtual inline PlanFinObject* GetEditedObject(BOOL bCheckPage = TRUE);
+        virtual inline PSS_PlanFinObject* GetEditedObject(BOOL bCheckPage = TRUE);
 
         /**
         * Sets the current edited object
         *@param pObj - object to select
         */
-        virtual inline void SetEditedObject(PlanFinObject* pObj);
+        virtual inline void SetEditedObject(PSS_PlanFinObject* pObj);
 
         /**
         * Checks the object formula
         *@param pOld - old object
         *@param pNew - new object
         */
-        virtual void CheckFormulaObject(PlanFinObject* pOld, PlanFinObject* pNew);
+        virtual void CheckFormulaObject(PSS_PlanFinObject* pOld, PSS_PlanFinObject* pNew);
 
         /**
         * Checks if the object already exists
@@ -312,7 +315,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         *@param pObj - object to check
         *@return TRUE if the object was found and is a result object, otherwise FALSE
         */
-        virtual BOOL IsCalculatedFieldInSchema(PlanFinObject* pObj);
+        virtual BOOL IsCalculatedFieldInSchema(PSS_PlanFinObject* pObj);
 
         /**
         * Refreshes the current schema
@@ -345,10 +348,10 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         *@param propagate - if TRUE, change will be propagated
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL ChangeObjectType(PlanFinObject* pObj,
-                                      const CString& name,
-                                      const CString& finalValue,
-                                      BOOL           propagate = FALSE);
+        virtual BOOL ChangeObjectType(PSS_PlanFinObject* pObj,
+                                      const CString&     name,
+                                      const CString&     finalValue,
+                                      BOOL               propagate = FALSE);
 
         /**
         * Builds the automatic new name
@@ -365,7 +368,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         *@param refresh - if TRUE, repository will be refreshed after inserted
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL InsertObject(PlanFinObject*       pObj,
+        virtual BOOL InsertObject(PSS_PlanFinObject*   pObj,
                                   PSS_FieldRepository* pFieldRepository         = NULL,
                                   BOOL                 insertInGlobalRepository = FALSE,
                                   BOOL                 refresh                  = FALSE);
@@ -378,7 +381,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         *@param refresh - if TRUE, repository will be refreshed after inserted
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL InsertObjectAtHead(PlanFinObject*       pObj,
+        virtual BOOL InsertObjectAtHead(PSS_PlanFinObject*   pObj,
                                         PSS_FieldRepository* pFieldRepository         = NULL,
                                         BOOL                 insertInGlobalRepository = FALSE,
                                         BOOL                 refresh                  = FALSE);
@@ -390,14 +393,14 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         *@param refresh - if TRUE, repository will be refreshed after deletion
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL DeleteObject(PlanFinObject* pObj, BOOL deleteFromMemory = TRUE, BOOL refresh = FALSE);
+        virtual BOOL DeleteObject(PSS_PlanFinObject* pObj, BOOL deleteFromMemory = TRUE, BOOL refresh = FALSE);
 
         /**
         * Moves the object in order
         *@param pObj - object
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL MoveObjectInOrder(PlanFinObject* pObj);
+        virtual BOOL MoveObjectInOrder(PSS_PlanFinObject* pObj);
 
         /**
         * Assigns an object value
@@ -418,7 +421,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         * Sets the current page to object
         *@param pObj - object
         */
-        virtual void SetCurrentPageToObject(PlanFinObject* pObj);
+        virtual void SetCurrentPageToObject(PSS_PlanFinObject* pObj);
 
         /**
         * Deletes all objects
@@ -435,7 +438,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         * Clones the selected object
         *@return the cloned object, NULL if no selection or on error
         */
-        virtual PlanFinObject* CloneSelectedObject();
+        virtual PSS_PlanFinObject* CloneSelectedObject();
 
         /**
         * Rebuilds all the automatic numbered
@@ -453,7 +456,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         *@param pObj - object
         *@return TRUE if the field in association is calculated, otherwise FALSE
         */
-        virtual BOOL IsCalculatedFieldInAssociation(PlanFinObject* pObj);
+        virtual BOOL IsCalculatedFieldInAssociation(PSS_PlanFinObject* pObj);
 
         /**
         * Shows the document
@@ -488,7 +491,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         *@note This function receives the field name and its value. Its role is to propagate
         *      the value within the document data
         */
-        virtual void PropagateFieldValue(PlanFinObject* pObj);
+        virtual void PropagateFieldValue(PSS_PlanFinObject* pObj);
 
         /**
         * Assigns a new style
@@ -631,7 +634,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         *@param pObject - object to switch with
         *@param tabOrder - tab order for which the matching object should be switched
         */
-        virtual void SwitchTabOrder(PlanFinObject* pObject, double tabOrder);
+        virtual void SwitchTabOrder(PSS_PlanFinObject* pObject, double tabOrder);
 
         /**
         * Automatically rebuilds the tab orders
@@ -848,25 +851,25 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         virtual bool FieldNameExistInObjectArray(const CString& fieldName);
 
     private:
-        ZDDocument*       m_pDocument;
-        PSS_FileBuffer*   m_pFileBuffer;
-        PSS_Stamp         m_Stamp;
-        PSS_SchemaManager m_Schema;
-        PSS_FontManager   m_FontManager;
-        ZAStyleManager    m_StyleManager;
-        PlanFinObject*    m_pCurrentEditedObject;
-        ZUFileLauncher    m_FileLauncher;
-        CObList           m_ObjElements;
-        POSITION          m_pPosition;
-        CStringArray      m_FieldNameArray;
-        CString           m_CurrentSchema;
-        CString           m_FileBufferTemporaryFile;
-        CString           m_BinaryDrawMessage;
-        double            m_LastTabOrder;
-        int               m_PageMax;
-        BOOL              m_FlagElapsedTime;
-        BOOL              m_IsVisible;
-        BOOL              m_ReadOnlyAtRuntime;
+        ZDDocument*        m_pDocument;
+        PSS_FileBuffer*    m_pFileBuffer;
+        PSS_Stamp          m_Stamp;
+        PSS_SchemaManager  m_Schema;
+        PSS_FontManager    m_FontManager;
+        ZAStyleManager     m_StyleManager;
+        PSS_PlanFinObject* m_pCurrentEditedObject;
+        ZUFileLauncher     m_FileLauncher;
+        CObList            m_ObjElements;
+        POSITION           m_pPosition;
+        CStringArray       m_FieldNameArray;
+        CString            m_CurrentSchema;
+        CString            m_FileBufferTemporaryFile;
+        CString            m_BinaryDrawMessage;
+        double             m_LastTabOrder;
+        int                m_PageMax;
+        BOOL               m_FlagElapsedTime;
+        BOOL               m_IsVisible;
+        BOOL               m_ReadOnlyAtRuntime;
 
         /**
         * Deletes the page objects
@@ -904,21 +907,21 @@ int PSS_DocumentData::GetObjectCount() const
     return m_ObjElements.GetCount();
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_DocumentData::GetHead()
+PSS_PlanFinObject* PSS_DocumentData::GetHead()
 {
     m_pPosition = m_ObjElements.GetHeadPosition();
 
-    return (m_pPosition ? (PlanFinObject*)m_ObjElements.GetHead() : NULL);
+    return (m_pPosition ? (PSS_PlanFinObject*)m_ObjElements.GetHead() : NULL);
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_DocumentData::GetNext()
+PSS_PlanFinObject* PSS_DocumentData::GetNext()
 {
     if (m_pPosition)
     {
         m_ObjElements.GetNext(m_pPosition);
 
         if (m_pPosition)
-            return (PlanFinObject*)m_ObjElements.GetAt(m_pPosition);
+            return (PSS_PlanFinObject*)m_ObjElements.GetAt(m_pPosition);
     }
 
     return NULL;
@@ -954,12 +957,12 @@ void PSS_DocumentData::SetCurrentPage(int page)
     m_CurrentPage = page;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_DocumentData::GetEditedObject(BOOL bCheckPage)
+PSS_PlanFinObject* PSS_DocumentData::GetEditedObject(BOOL bCheckPage)
 {
     return m_pCurrentEditedObject;
 }
 //---------------------------------------------------------------------------
-void PSS_DocumentData::SetEditedObject(PlanFinObject* pObj)
+void PSS_DocumentData::SetEditedObject(PSS_PlanFinObject* pObj)
 {
     m_pCurrentEditedObject = pObj;
 }

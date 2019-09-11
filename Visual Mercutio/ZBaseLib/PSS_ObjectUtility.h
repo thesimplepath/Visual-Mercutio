@@ -16,8 +16,13 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// class name mapping
+#ifndef PSS_PlanFinObject
+    #define PSS_PlanFinObject PlanFinObject
+#endif
+
 // forward class declaration
-class PlanFinObject;
+class PSS_PlanFinObject;
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -44,7 +49,7 @@ class AFX_EXT_CLASS PSS_ObjectUtility
         *@param pObj - class object
         *@return the field description
         */
-        static const CString GetFieldTypeDescription(PlanFinObject* pObj);
+        static const CString GetFieldTypeDescription(PSS_PlanFinObject* pObj);
 
         /**
         * Gets the field description
@@ -58,7 +63,7 @@ class AFX_EXT_CLASS PSS_ObjectUtility
         *@param pObj - class object
         *@return the class name
         */
-        static const CString GetClassName(PlanFinObject* pObj);
+        static const CString GetClassName(PSS_PlanFinObject* pObj);
 
         /**
         * Gets the bitmap class name
@@ -71,7 +76,7 @@ class AFX_EXT_CLASS PSS_ObjectUtility
         *@param className - class name
         *@return the built object
         */
-        static PlanFinObject* BuildObject(const CString& className);
+        static PSS_PlanFinObject* BuildObject(const CString& className);
 
         /**
         * Gets the class name array
@@ -104,7 +109,7 @@ class AFX_EXT_CLASS PSS_ObjectUtility
         * Gets the class name identifier
         *@return the class name identifier
         */
-        static std::size_t GetClassNameID(PlanFinObject* pObj);
+        static std::size_t GetClassNameID(PSS_PlanFinObject* pObj);
 
         /**
         * Releases the resources

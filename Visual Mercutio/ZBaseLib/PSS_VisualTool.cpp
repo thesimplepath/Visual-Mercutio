@@ -123,7 +123,7 @@ void PSS_VisualToolEdit::OnLButtonDown(ZIView* pView, UINT flags, const CPoint& 
     ZDDocument* pDoc = pView->GetDocument();
     ASSERT(pDoc);
 
-    PlanFinObject* pObj;
+    PSS_PlanFinObject* pObj;
 
     // get the current page
     const int page = pDoc->GetCurrentPage();
@@ -143,7 +143,7 @@ void PSS_VisualToolEdit::OnLButtonDown(ZIView* pView, UINT flags, const CPoint& 
                 case FormModifyView:
                     // is the cursor on the object?
                     if (!pObj->IsReadOnlyAtRuntime())
-                        if (!pObj->IsSelectObject() && !pObj->GetIsStatic())
+                        if (!pObj->IsObjectSelected() && !pObj->GetIsStatic())
                         {
                             // save the pointer to the object only to be able to remove the flag later
                             pDoc->SetEditedObject(pObj);
@@ -154,7 +154,7 @@ void PSS_VisualToolEdit::OnLButtonDown(ZIView* pView, UINT flags, const CPoint& 
 
                 case FormDesignView:
                     // is the cursor on the object?
-                    if (!pObj->IsSelectObject())
+                    if (!pObj->IsObjectSelected())
                     {
                         // save the pointer to the object only to be able to remove the flag later
                         pDoc->SetEditedObject(pObj);
@@ -215,7 +215,7 @@ void PSS_VisualToolEdit::OnMouseMove(ZIView* pView, UINT flags, const CPoint& po
             ZDDocument* pDoc = pView->GetDocument();
             ASSERT(pDoc);
 
-            PlanFinObject* pObj;
+            PSS_PlanFinObject* pObj;
 
             // get the current page
             const int page = pDoc->GetCurrentPage();
@@ -233,7 +233,7 @@ void PSS_VisualToolEdit::OnMouseMove(ZIView* pView, UINT flags, const CPoint& po
                                 // If the cursor is on the object
                                 if (!pObj->IsReadOnlyAtRuntime())
                                 {
-                                    if (!pObj->IsSelectObject() && !pObj->GetIsStatic())
+                                    if (!pObj->IsObjectSelected() && !pObj->GetIsStatic())
                                     {
                                         pView->SetCapture();
 
@@ -252,7 +252,7 @@ void PSS_VisualToolEdit::OnMouseMove(ZIView* pView, UINT flags, const CPoint& po
 
                             case FormDesignView:
                                 // If the cursor is on the object
-                                if (!pObj->IsSelectObject())
+                                if (!pObj->IsObjectSelected())
                                 {
                                     pView->SetCapture();
 

@@ -33,7 +33,7 @@
 //## end module%334FC4630320.declarations
 
 //## begin module%334FC4630320.additionalDeclarations preserve=yes
-#include "ZAObject.h"
+#include "PSS_PlanFinObject.h"
 #include "ZIDropScrollView.h"
 
 class ZDDocument;
@@ -69,7 +69,7 @@ enum    ViewType { UnknownView,
 //## Persistence: Transient
 //## Cardinality/Multiplicity: n
 
-class AFX_EXT_CLASS ZIView : public ZIDropScrollView  //## Inherits: <unnamed>%334FC46002A7
+class AFX_EXT_CLASS ZIView : public ZIDropScrollView
 {
   //## begin ZIView%334FC46002A6.initialDeclarations preserve=yes
     DECLARE_DYNCREATE(ZIView)
@@ -105,7 +105,7 @@ class AFX_EXT_CLASS ZIView : public ZIDropScrollView  //## Inherits: <unnamed>%3
       //
       //    This return the object selected by the righ-click. Null
       //    if no object selected.
-      PlanFinObject* ActiveSelectedObject (CPoint& point, BOOL bAutoReset = FALSE);
+      PSS_PlanFinObject* ActiveSelectedObject (CPoint& point, BOOL bAutoReset = FALSE);
 
       //## Operation: SelectObjectInRect%832201975
       void SelectObjectInRect (const CRect& rect, CWnd* pWnd, CDC* pDC);
@@ -139,10 +139,10 @@ class AFX_EXT_CLASS ZIView : public ZIDropScrollView  //## Inherits: <unnamed>%3
       //## Operation: FindHitObject%837834739
       //    Return the selected object pointed by the point
       //    argument. If nothing return FALSE.
-      PlanFinObject* FindHitObject (CPoint& point);
+      PSS_PlanFinObject* FindHitObject (CPoint& point);
 
       //## Operation: ChooseObject%850768721
-      PlanFinObject* ChooseObject ();
+      PSS_PlanFinObject* ChooseObject ();
 
       //## Operation: GetArrayOfSelectedObject%863883947
       //    Return a reference of the array of selected object
@@ -151,7 +151,7 @@ class AFX_EXT_CLASS ZIView : public ZIDropScrollView  //## Inherits: <unnamed>%3
       //## Operation: KeepObjectInPage%901975365
       //    This function tests if the object stills in the page
       //    report. If not, the object is moved.
-      void KeepObjectInPage (PlanFinObject* pObj, CSize& ReportSize);
+      void KeepObjectInPage (PSS_PlanFinObject* pObj, CSize& ReportSize);
 
       //## Operation: GetZoomPercentage%938112085
       //    Returns the current zoom percentage.
@@ -163,7 +163,7 @@ class AFX_EXT_CLASS ZIView : public ZIDropScrollView  //## Inherits: <unnamed>%3
 
       //## Operation: EditObject%938177648
       //    Process the edition of the object.
-      virtual void EditObject (PlanFinObject* pObj = NULL);
+      virtual void EditObject (PSS_PlanFinObject* pObj = NULL);
 
     //## Get and Set Operations for Class Attributes (generated)
 
@@ -224,7 +224,7 @@ class AFX_EXT_CLASS ZIView : public ZIDropScrollView  //## Inherits: <unnamed>%3
       //## Attribute: pOldPointerSelectedObj%334FC460037D
       //    To keep the old selected object when using pointer.
       //## begin ZIView::pOldPointerSelectedObj%334FC460037D.attr preserve=no  protected: static PlanFinObject* {V} NULL
-      static PlanFinObject* m_pOldPointerSelectedObj;
+      static PSS_PlanFinObject* m_pOldPointerSelectedObj;
       //## end ZIView::pOldPointerSelectedObj%334FC460037D.attr
 
       //## Attribute: LineSize%334FC460037E
@@ -304,7 +304,7 @@ class AFX_EXT_CLASS ZIView : public ZIDropScrollView  //## Inherits: <unnamed>%3
       //## Attribute: ChoosedObject%334FC4600380
       //    The return object choosed.
       //## begin ZIView::ChoosedObject%334FC4600380.attr preserve=no  public: PlanFinObject* {V} NULL
-      PlanFinObject* m_ChoosedObject;
+      PSS_PlanFinObject* m_ChoosedObject;
       //## end ZIView::ChoosedObject%334FC4600380.attr
 
       //## Attribute: iZoom%37EA8EB600C4

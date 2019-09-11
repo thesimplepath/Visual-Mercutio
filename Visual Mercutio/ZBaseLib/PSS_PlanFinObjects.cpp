@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_PlanFinObj ------------------------------------------------------*
+ * ==> PSS_PlanFinObjects --------------------------------------------------*
  ****************************************************************************
  * Description : Provides financial plan objects                            *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include "stdafx.h"
-#include "PSS_PlanFinObj.h"
+#include "PSS_PlanFinObjects.h"
 
 // std
 #include <float.h>
@@ -73,13 +73,13 @@ const PSS_PLFNRect& PSS_PLFNRect::operator = (const PSS_PLFNRect& other)
     return *this;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_PLFNRect::Clone() const
+PSS_PlanFinObject* PSS_PLFNRect::Clone() const
 {
     std::unique_ptr< PSS_PLFNRect> pObject(new PSS_PLFNRect(*this));
     return pObject.release();
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNRect::CopyObject(PlanFinObject* pSrc)
+void PSS_PLFNRect::CopyObject(PSS_PlanFinObject* pSrc)
 {
     operator = (dynamic_cast<PSS_PLFNRect*>(pSrc));
 }
@@ -89,7 +89,7 @@ void PSS_PLFNRect::Serialize(CArchive& ar)
     if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
         PSS_PLFNGraphic::Serialize(ar);
     else
-        PlanFinObject::Serialize(ar);
+        PSS_PlanFinObject::Serialize(ar);
 
     if (ar.IsStoring())
     {
@@ -137,42 +137,42 @@ void PSS_PLFNRect::DrawObject(CDC* pDC, ZIView* pView)
     if (m_Round)
     {
         // draw the square
-        pDC->MoveTo(m_rctObject.left  + GetArcOffset(),       m_rctObject.top);
-        pDC->LineTo(m_rctObject.right - GetArcOffset() + 1,   m_rctObject.top);
-        pDC->Arc   (m_rctObject.left,                         m_rctObject.top,
-                    m_rctObject.left  + (GetArcOffset() * 2), m_rctObject.top + (GetArcOffset() * 2),
-                    m_rctObject.left  + GetArcOffset(),       m_rctObject.top,
-                    m_rctObject.left,                         m_rctObject.top + GetArcOffset() + 1);
+        pDC->MoveTo(m_ObjectRect.left  + GetArcOffset(),       m_ObjectRect.top);
+        pDC->LineTo(m_ObjectRect.right - GetArcOffset() + 1,   m_ObjectRect.top);
+        pDC->Arc   (m_ObjectRect.left,                         m_ObjectRect.top,
+                    m_ObjectRect.left  + (GetArcOffset() * 2), m_ObjectRect.top + (GetArcOffset() * 2),
+                    m_ObjectRect.left  + GetArcOffset(),       m_ObjectRect.top,
+                    m_ObjectRect.left,                         m_ObjectRect.top +  GetArcOffset() + 1);
 
-        pDC->MoveTo(m_rctObject.right,                        m_rctObject.top    + GetArcOffset());
-        pDC->LineTo(m_rctObject.right,                        m_rctObject.bottom - GetArcOffset() + 1);
-        pDC->Arc   (m_rctObject.right - (GetArcOffset() * 2), m_rctObject.top,
-                    m_rctObject.right,                        m_rctObject.top    + (GetArcOffset() * 2),
-                    m_rctObject.right,                        m_rctObject.top    + GetArcOffset(),
-                    m_rctObject.right - GetArcOffset(),       m_rctObject.top);
+        pDC->MoveTo(m_ObjectRect.right,                        m_ObjectRect.top    + GetArcOffset());
+        pDC->LineTo(m_ObjectRect.right,                        m_ObjectRect.bottom - GetArcOffset() + 1);
+        pDC->Arc   (m_ObjectRect.right - (GetArcOffset() * 2), m_ObjectRect.top,
+                    m_ObjectRect.right,                        m_ObjectRect.top    + (GetArcOffset() * 2),
+                    m_ObjectRect.right,                        m_ObjectRect.top    +  GetArcOffset(),
+                    m_ObjectRect.right - GetArcOffset(),       m_ObjectRect.top);
 
-        pDC->MoveTo(m_rctObject.right -  GetArcOffset(),      m_rctObject.bottom);
-        pDC->LineTo(m_rctObject.left  +  GetArcOffset() - 1,  m_rctObject.bottom);
-        pDC->Arc   (m_rctObject.right - (GetArcOffset() * 2), m_rctObject.bottom - (GetArcOffset() * 2),
-                    m_rctObject.right,                        m_rctObject.bottom,
-                    m_rctObject.right -  GetArcOffset() - 1,  m_rctObject.bottom,
-                    m_rctObject.right,                        m_rctObject.bottom - GetArcOffset());
+        pDC->MoveTo(m_ObjectRect.right -  GetArcOffset(),      m_ObjectRect.bottom);
+        pDC->LineTo(m_ObjectRect.left  +  GetArcOffset() - 1,  m_ObjectRect.bottom);
+        pDC->Arc   (m_ObjectRect.right - (GetArcOffset() * 2), m_ObjectRect.bottom - (GetArcOffset() * 2),
+                    m_ObjectRect.right,                        m_ObjectRect.bottom,
+                    m_ObjectRect.right -  GetArcOffset() - 1,  m_ObjectRect.bottom,
+                    m_ObjectRect.right,                        m_ObjectRect.bottom - GetArcOffset());
 
-        pDC->MoveTo(m_rctObject.left,                        m_rctObject.bottom - GetArcOffset());
-        pDC->LineTo(m_rctObject.left,                        m_rctObject.top    + GetArcOffset() - 1);
-        pDC->Arc   (m_rctObject.left,                        m_rctObject.bottom - (GetArcOffset() * 2),
-                    m_rctObject.left + (GetArcOffset() * 2), m_rctObject.bottom,
-                    m_rctObject.left,                        m_rctObject.bottom - GetArcOffset(),
-                    m_rctObject.left + GetArcOffset() + 1,   m_rctObject.bottom);
+        pDC->MoveTo(m_ObjectRect.left,                        m_ObjectRect.bottom -  GetArcOffset());
+        pDC->LineTo(m_ObjectRect.left,                        m_ObjectRect.top    +  GetArcOffset() - 1);
+        pDC->Arc   (m_ObjectRect.left,                        m_ObjectRect.bottom - (GetArcOffset() * 2),
+                    m_ObjectRect.left + (GetArcOffset() * 2), m_ObjectRect.bottom,
+                    m_ObjectRect.left,                        m_ObjectRect.bottom -  GetArcOffset(),
+                    m_ObjectRect.left + GetArcOffset() + 1,   m_ObjectRect.bottom);
     }
     else
     {
         // draw the square
-        pDC->MoveTo(m_rctObject.left,  m_rctObject.top);
-        pDC->LineTo(m_rctObject.right, m_rctObject.top);
-        pDC->LineTo(m_rctObject.right, m_rctObject.bottom);
-        pDC->LineTo(m_rctObject.left,  m_rctObject.bottom);
-        pDC->LineTo(m_rctObject.left,  m_rctObject.top);
+        pDC->MoveTo(m_ObjectRect.left,  m_ObjectRect.top);
+        pDC->LineTo(m_ObjectRect.right, m_ObjectRect.top);
+        pDC->LineTo(m_ObjectRect.right, m_ObjectRect.bottom);
+        pDC->LineTo(m_ObjectRect.left,  m_ObjectRect.bottom);
+        pDC->LineTo(m_ObjectRect.left,  m_ObjectRect.top);
     }
 
     // draw the shadow only on the screen
@@ -183,15 +183,15 @@ void PSS_PLFNRect::DrawObject(CDC* pDC, ZIView* pView)
 
         if (!m_Round)
         {
-            pDC->MoveTo(m_rctObject.right + 1, m_rctObject.top    + 1);
-            pDC->LineTo(m_rctObject.right + 1, m_rctObject.bottom + 1);
-            pDC->LineTo(m_rctObject.left  - 1, m_rctObject.bottom + 1);
+            pDC->MoveTo(m_ObjectRect.right + 1, m_ObjectRect.top    + 1);
+            pDC->LineTo(m_ObjectRect.right + 1, m_ObjectRect.bottom + 1);
+            pDC->LineTo(m_ObjectRect.left  - 1, m_ObjectRect.bottom + 1);
         }
     }
 
     pDC->SelectObject(pOldPen);
 
-    PlanFinObject::DrawObject(pDC, pView);
+    PSS_PlanFinObject::DrawObject(pDC, pView);
 }
 //---------------------------------------------------------------------------
 // Serialization
@@ -243,26 +243,26 @@ const PSS_PLFNLine& PSS_PLFNLine::operator = (const PSS_PLFNLine& other)
     return *this;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_PLFNLine::Clone() const
+PSS_PlanFinObject* PSS_PLFNLine::Clone() const
 {
     std::unique_ptr< PSS_PLFNLine> pObject(new PSS_PLFNLine(*this));
     return pObject.release();
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNLine::CopyObject(PlanFinObject* pSrc)
+void PSS_PLFNLine::CopyObject(PSS_PlanFinObject* pSrc)
 {
     operator = (dynamic_cast<PSS_PLFNLine*>(pSrc));
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNLine::SizePositionHasChanged()
 {
-    PlanFinObject::SizePositionHasChanged();
+    PSS_PlanFinObject::SizePositionHasChanged();
 
     // recalculate all element positions
-    m_StartPoint.x = m_rctObject.left;
-    m_StartPoint.y = m_rctObject.top;
-    m_EndPoint.x   = m_rctObject.right;
-    m_EndPoint.y   = m_rctObject.bottom;
+    m_StartPoint.x = m_ObjectRect.left;
+    m_StartPoint.y = m_ObjectRect.top;
+    m_EndPoint.x   = m_ObjectRect.right;
+    m_EndPoint.y   = m_ObjectRect.bottom;
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNLine::Serialize(CArchive& ar)
@@ -270,7 +270,7 @@ void PSS_PLFNLine::Serialize(CArchive& ar)
     if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
         PSS_PLFNGraphic::Serialize(ar);
     else
-        PlanFinObject::Serialize(ar);
+        PSS_PlanFinObject::Serialize(ar);
 
     if (ar.IsStoring())
     {
@@ -282,7 +282,7 @@ void PSS_PLFNLine::Serialize(CArchive& ar)
     {
         // read the elements. If the version is before the version 0, then the line rect should be modified
         if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 0)
-            m_rctObject.bottom = m_rctObject.top;
+            m_ObjectRect.bottom = m_ObjectRect.top;
 
         if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 2)
         {
@@ -291,10 +291,10 @@ void PSS_PLFNLine::Serialize(CArchive& ar)
         }
         else
         {
-            m_StartPoint.x = m_rctObject.left;
-            m_StartPoint.y = m_rctObject.top;
-            m_EndPoint.x   = m_rctObject.right;
-            m_EndPoint.y   = m_rctObject.bottom;
+            m_StartPoint.x = m_ObjectRect.left;
+            m_StartPoint.y = m_ObjectRect.top;
+            m_EndPoint.x   = m_ObjectRect.right;
+            m_EndPoint.y   = m_ObjectRect.bottom;
         }
     }
 }
@@ -320,21 +320,21 @@ void PSS_PLFNLine::DrawObject(CDC* pDC, ZIView* pView)
     CPen  pen;
     CPen* pOldPen = pDC->SelectObject(&GetGraphicPen(pen));
 
-    pDC->MoveTo(m_rctObject.left, m_rctObject.top);
-    pDC->LineTo(m_rctObject.right, m_rctObject.bottom);
+    pDC->MoveTo(m_ObjectRect.left,  m_ObjectRect.top);
+    pDC->LineTo(m_ObjectRect.right, m_ObjectRect.bottom);
 
     // draw the shadow only on the screen
     if (!pDC->IsPrinting())
     {
         CPen lightGrayPen(PS_SOLID, 1, defCOLOR_LTLTGRAY);
         pDC->SelectObject(&lightGrayPen);
-        pDC->MoveTo(m_rctObject.left  + 1, m_rctObject.top    + 1);
-        pDC->LineTo(m_rctObject.right + 1, m_rctObject.bottom + 1);
+        pDC->MoveTo(m_ObjectRect.left  + 1, m_ObjectRect.top    + 1);
+        pDC->LineTo(m_ObjectRect.right + 1, m_ObjectRect.bottom + 1);
     }
 
     pDC->SelectObject(pOldPen);
 
-    PlanFinObject::DrawObject(pDC, pView);
+    PSS_PlanFinObject::DrawObject(pDC, pView);
 }
 //---------------------------------------------------------------------------
 // Serialization
@@ -371,13 +371,13 @@ const PSS_PLFNStatic& PSS_PLFNStatic::operator = (const PSS_PLFNStatic& other)
     return *this;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_PLFNStatic::Clone() const
+PSS_PlanFinObject* PSS_PLFNStatic::Clone() const
 {
     std::unique_ptr< PSS_PLFNStatic> pObject(new PSS_PLFNStatic(*this));
     return pObject.release();
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNStatic::CopyObject(PlanFinObject* pSrc)
+void PSS_PLFNStatic::CopyObject(PSS_PlanFinObject* pSrc)
 {
     operator = (dynamic_cast<PSS_PLFNStatic*>(pSrc));
 }
@@ -394,17 +394,17 @@ void PSS_PLFNStatic::DrawObject(CDC* pDC, ZIView* pView)
 
     // text color
     pDC->SetTextColor(GetColor(pView));
-    GetTextExtentOrg(pDC, m_Str, sizeText, orgText, GetiAngle());
-    m_rctObject.right = m_rctObject.left + sizeText.cx;
+    GetTextExtentOrg(pDC, m_Str, sizeText, orgText, GetAngle());
+    m_ObjectRect.right = m_ObjectRect.left + sizeText.cx;
 
     // the alignment to bottom should be changed to remove the alignement issue with different fonts,
     // then the calculation of the text area should be changed
-    m_rctObject.top = m_rctObject.bottom - sizeText.cy;
+    m_ObjectRect.top = m_ObjectRect.bottom - sizeText.cy;
     pDC->SetTextAlign(TA_LEFT | TA_BOTTOM);
-    pDC->TextOut(m_rctObject.left + orgText.x, m_rctObject.bottom - orgText.y, m_Str);
+    pDC->TextOut(m_ObjectRect.left + orgText.x, m_ObjectRect.bottom - orgText.y, m_Str);
     pDC->SelectObject(pOldFont);
 
-    PlanFinObject::DrawObject(pDC, pView);
+    PSS_PlanFinObject::DrawObject(pDC, pView);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNStatic::OnAngleChanged(ZDDocument* pDoc)
@@ -452,20 +452,20 @@ const PSS_PLFNTime& PSS_PLFNTime::operator = (const PSS_PLFNTime& other)
     return *this;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_PLFNTime::Clone() const
+PSS_PlanFinObject* PSS_PLFNTime::Clone() const
 {
     std::unique_ptr<PSS_PLFNTime> pObject(new PSS_PLFNTime(*this));
     return pObject.release();
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNTime::CopyObject(PlanFinObject* pSrc)
+void PSS_PLFNTime::CopyObject(PSS_PlanFinObject* pSrc)
 {
     operator = (dynamic_cast<PSS_PLFNTime*>(pSrc));
 }
 //---------------------------------------------------------------------------
 BOOL PSS_PLFNTime::IsSelected(const CPoint& point) const
 {
-    return(m_rctObject.PtInRect(point));
+    return(m_ObjectRect.PtInRect(point));
 }
 //---------------------------------------------------------------------------
 CString PSS_PLFNTime::GetFormattedObject()
@@ -478,9 +478,9 @@ CString PSS_PLFNTime::GetUnformattedObject()
 {
     if (IsEmpty())
         // empty the string
-        m_szFormatBuffer[0] = 0x00;
+        m_FormatBuffer[0] = 0x00;
     else
-        std::sprintf(m_szFormatBuffer, "%d.%d.%04d", m_Time.GetDay(), m_Time.GetMonth(), m_Time.GetYear());
+        std::sprintf(m_FormatBuffer, "%d.%d.%04d", m_Time.GetDay(), m_Time.GetMonth(), m_Time.GetYear());
 
     return GetFormattedBuffer();
 }
@@ -607,7 +607,7 @@ void PSS_PLFNTime::SetFormatWithChoice(const CString& value)
 //---------------------------------------------------------------------------
 void PSS_PLFNTime::Serialize(CArchive& ar)
 {
-    PlanFinObject::Serialize(ar);
+    PSS_PlanFinObject::Serialize(ar);
 
     if (ar.IsStoring())
         // write the elements
@@ -681,12 +681,12 @@ void PSS_PLFNTime::DrawObject(CDC* pDC, ZIView* pView)
         // before drawing the object, format it
         FormatObject(&m_Time);
         pDC->SetTextAlign(0);
-        pDC->DrawText(GetFormattedBuffer(), -1, &m_rctObject, GetJustify(pView->GetDocument()));
+        pDC->DrawText(GetFormattedBuffer(), -1, &m_ObjectRect, GetJustify(pView->GetDocument()));
     }
 
     pDC->SelectObject(pOldFont);
 
-    PlanFinObject::DrawObject(pDC, pView);
+    PSS_PlanFinObject::DrawObject(pDC, pView);
 }
 //---------------------------------------------------------------------------
 // Serialization
@@ -756,13 +756,13 @@ const PSS_PLFNLong& PSS_PLFNLong::operator = (const PSS_PLFNLong& other)
     return *this;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_PLFNLong::Clone() const
+PSS_PlanFinObject* PSS_PLFNLong::Clone() const
 {
     std::unique_ptr<PSS_PLFNLong> pObject(new PSS_PLFNLong(*this));
     return pObject.release();
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNLong::CopyObject(PlanFinObject* pSrc)
+void PSS_PLFNLong::CopyObject(PSS_PlanFinObject* pSrc)
 {
     operator = (dynamic_cast<PSS_PLFNLong*>(pSrc));
 }
@@ -800,7 +800,7 @@ CString PSS_PLFNLong::GetUnformattedObject()
     if (IsEmpty())
         return "";
 
-    std::sprintf(m_szFormatBuffer, "%lf", m_Long);
+    std::sprintf(m_FormatBuffer, "%lf", m_Long);
 
     return GetFormattedBuffer();
 }
@@ -1050,14 +1050,14 @@ void PSS_PLFNLong::DrawCalculatedSymbol(CDC* pDC)
     {
         if (IsCalculatedField())
         {
-            PlanFinObject::DrawBoundRect(pDC);
+            PSS_PlanFinObject::DrawBoundRect(pDC);
 
             // show calculator icon in association mode
             ShowBitmapFile(MAKEINTRESOURCE(IDB_CALCBACKASSC),
                            pDC->m_hDC,
                            hInst,
-                           m_rctObject.right,
-                           m_rctObject.bottom);
+                           m_ObjectRect.right,
+                           m_ObjectRect.bottom);
         }
         else
         {
@@ -1065,37 +1065,37 @@ void PSS_PLFNLong::DrawCalculatedSymbol(CDC* pDC)
             ShowBitmapFile(MAKEINTRESOURCE(IDB_BACKASSC),
                            pDC->m_hDC,
                            hInst,
-                           m_rctObject.right,
-                           m_rctObject.bottom);
+                           m_ObjectRect.right,
+                           m_ObjectRect.bottom);
 
-            PlanFinObject::DrawRightCorner(pDC);
+            PSS_PlanFinObject::DrawRightCorner(pDC);
         }
     }
     else
     {
         if (m_IconDisplayType == IE_DT_AssociationIcon)
         {
-            PlanFinObject::DrawBoundRect(pDC);
+            PSS_PlanFinObject::DrawBoundRect(pDC);
 
             // show the field as calculate with association
             ShowBitmapFile(MAKEINTRESOURCE(IDB_CALCWITHASSC),
                            pDC->m_hDC,
                            hInst,
-                           m_rctObject.right,
-                           m_rctObject.bottom);
+                           m_ObjectRect.right,
+                           m_ObjectRect.bottom);
         }
         else
         if (IsCalculatedField())
         {
-            PlanFinObject::DrawBoundRect(pDC);
+            PSS_PlanFinObject::DrawBoundRect(pDC);
 
             // show the field as protected
             if (KeepTheValue())
                 ShowBitmapFileExtent(MAKEINTRESOURCE(IDB_LOCKED),
                                      pDC->m_hDC,
                                      hInst,
-                                     m_rctObject.right,
-                                     m_rctObject.bottom,
+                                     m_ObjectRect.right,
+                                     m_ObjectRect.bottom,
                                      SRCAND);
             else
             if (GetAssociations().GetCount())
@@ -1103,15 +1103,15 @@ void PSS_PLFNLong::DrawCalculatedSymbol(CDC* pDC)
                 ShowBitmapFile(MAKEINTRESOURCE(IDB_CALCSHOWASSC),
                                pDC->m_hDC,
                                hInst,
-                               m_rctObject.right,
-                               m_rctObject.bottom);
+                               m_ObjectRect.right,
+                               m_ObjectRect.bottom);
             else
                 // show the field as calculate
                 ShowBitmapFile(MAKEINTRESOURCE(IDB_CALCULATOR),
                                pDC->m_hDC,
                                hInst,
-                               m_rctObject.right,
-                               m_rctObject.bottom);
+                               m_ObjectRect.right,
+                               m_ObjectRect.bottom);
         }
     }
 }
@@ -1140,7 +1140,7 @@ void PSS_PLFNLong::Serialize(CArchive& ar)
         if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 1)
         {
             m_IsCalculatedField = FALSE;
-            m_KeepTheValue = FALSE;
+            m_KeepTheValue      = FALSE;
         }
         else
         {
@@ -1222,11 +1222,11 @@ void PSS_PLFNLong::DrawObject(CDC* pDC, ZIView* pView)
         FormatObject(m_Long);
 
         pDC->SetTextAlign(0);
-        pDC->DrawText(GetFormattedBuffer(), -1, &m_rctObject, GetJustify(pView->GetDocument()));
+        pDC->DrawText(GetFormattedBuffer(), -1, &m_ObjectRect, GetJustify(pView->GetDocument()));
     }
 
     pDC->SelectObject(pOldFont);
 
-    PlanFinObject::DrawObject(pDC, pView);
+    PSS_PlanFinObject::DrawObject(pDC, pView);
 }
 //---------------------------------------------------------------------------

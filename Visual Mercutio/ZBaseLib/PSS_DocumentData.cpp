@@ -9,8 +9,8 @@
 #include "PSS_DocumentData.h"
 
 // processsoft
-#include "ZAObject.h"
-#include "PSS_PlanFinObj.h"
+#include "PSS_PlanFinObject.h"
+#include "PSS_PlanFinObjects.h"
 #include "PSS_PLFNBoundText.h"
 #include "ZARadio.h"
 #include "PSS_PLFNCheckBtn.h"
@@ -18,7 +18,7 @@
 #include "ZASquare.h"
 #include "PSS_PLFNAutoNumbered.h"
 #include "PSS_PLFNMultiColumn.h"
-#include "PSS_ObsoletePLFNObj.h"
+#include "PSS_PlanFinObsoleteObjects.h"
 #include "PSS_PLFNBackImage.h"
 #include "ZBFldCol.h"
 #include "PSS_FileBuffer.h"
@@ -91,13 +91,13 @@ const PSS_DocumentData& PSS_DocumentData::operator = (const PSS_DocumentData& ot
     else
         m_pFileBuffer = NULL;
 
-    POSITION       pPosition = ((PSS_DocumentData&)other).m_ObjElements.GetHeadPosition();
-    PlanFinObject* pObj;
+    POSITION           pPosition = ((PSS_DocumentData&)other).m_ObjElements.GetHeadPosition();
+    PSS_PlanFinObject* pObj;
 
     // copy elements
     while (pPosition)
     {
-        pObj = (PlanFinObject*)((PSS_DocumentData&)other).m_ObjElements.GetNext(pPosition);
+        pObj = (PSS_PlanFinObject*)((PSS_DocumentData&)other).m_ObjElements.GetNext(pPosition);
         m_ObjElements.AddTail(pObj->Clone());
     }
 
@@ -109,12 +109,12 @@ double PSS_DocumentData::GetObjectValue(char* pName)
     if (!pName)
         return 0.0;
 
-    POSITION       pPosition = m_ObjElements.GetHeadPosition();
-    PlanFinObject* pObj;
+    POSITION           pPosition = m_ObjElements.GetHeadPosition();
+    PSS_PlanFinObject* pObj;
 
     while (pPosition)
     {
-        pObj = (PlanFinObject*)m_ObjElements.GetNext(pPosition);
+        pObj = (PSS_PlanFinObject*)m_ObjElements.GetNext(pPosition);
 
         if (pObj->CompareByName(pName))
             return(pObj->GetValue());
@@ -202,7 +202,7 @@ BOOL PSS_DocumentData::CopyPageOnlyFormula(PSS_DocumentData* pDocumentDst, int p
     return TRUE;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_DocumentData::CheckMultiColumnMemberField(PlanFinObject* pObj)
+BOOL PSS_DocumentData::CheckMultiColumnMemberField(PSS_PlanFinObject* pObj)
 {
     if (!pObj)
         return FALSE;
@@ -228,7 +228,7 @@ BOOL PSS_DocumentData::CheckMultiColumnMemberField(PlanFinObject* pObj)
     // if the column is found, assign the pointer
     if (pColumn)
     {
-        pObj->SetpColumn(pColumn);
+        pObj->SetColumn(pColumn);
         return TRUE;
     }
 
@@ -244,14 +244,14 @@ void PSS_DocumentData::MoveContents(PSS_DocumentData* pDocument, BOOL copyFormat
 
     while (pPositionDst)
     {
-        PlanFinObject* pObjDst = (PlanFinObject*)pDocument->m_ObjElements.GetNext(pPositionDst);
+        PSS_PlanFinObject* pObjDst = (PSS_PlanFinObject*)pDocument->m_ObjElements.GetNext(pPositionDst);
 
         // for each element find the 
         POSITION pPositionSrc = m_ObjElements.GetHeadPosition();
 
         while (pPositionSrc)
         {
-            PlanFinObject* pObjSrc = (PlanFinObject*)m_ObjElements.GetNext(pPositionSrc);
+            PSS_PlanFinObject* pObjSrc = (PSS_PlanFinObject*)m_ObjElements.GetNext(pPositionSrc);
 
             // test if both objects are similar
             if (pObjSrc->GetObjectPage() == pObjDst->GetObjectPage() &&
@@ -276,35 +276,35 @@ void PSS_DocumentData::StyleHasBeenDeleted(HandleStyle hStyle)
     if (!hStyle)
         return;
 
-    POSITION       pPosition = m_ObjElements.GetHeadPosition();
-    PlanFinObject* pObj;
+    POSITION           pPosition = m_ObjElements.GetHeadPosition();
+    PSS_PlanFinObject* pObj;
 
     // iterate through all objects
     while (pPosition)
     {
-        pObj = (PlanFinObject*)m_ObjElements.GetNext(pPosition);
+        pObj = (PSS_PlanFinObject*)m_ObjElements.GetNext(pPosition);
 
         // if the object points to the deleted style
-        if (pObj->GethStyle() == hStyle)
+        if (pObj->GetStyle() == hStyle)
             // Assigns Normal style
-            pObj->SethStyle(NormalStyle);
+            pObj->SetStyle(NormalStyle);
     }
 }
 //---------------------------------------------------------------------------
 void PSS_DocumentData::CheckFontValidity()
 {
     POSITION       pPosition = m_ObjElements.GetHeadPosition();
-    PlanFinObject* pObj;
+    PSS_PlanFinObject* pObj;
 
     // iterate through all objects
     while (pPosition)
     {
-        pObj = (PlanFinObject*)m_ObjElements.GetNext(pPosition);
+        pObj = (PSS_PlanFinObject*)m_ObjElements.GetNext(pPosition);
 
         // if the object points to an undefined font
-        if (pObj->GethFont() >= LONG(m_FontManager.GetCount()))
+        if (pObj->GetFont() >= LONG(m_FontManager.GetCount()))
             // assigns it to no font, therefore to the style
-            pObj->SethFont(g_NoFontDefined);
+            pObj->SetFont(g_NoFontDefined);
     }
 }
 //---------------------------------------------------------------------------
@@ -324,14 +324,14 @@ PSS_Formula* PSS_DocumentData::GetFormula(const CString& name)
     return NULL;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_DocumentData::GetObject(const CString& name)
+PSS_PlanFinObject* PSS_DocumentData::GetObject(const CString& name)
 {
-    POSITION       pPosition = m_ObjElements.GetHeadPosition();
-    PlanFinObject* pObj;
+    POSITION           pPosition = m_ObjElements.GetHeadPosition();
+    PSS_PlanFinObject* pObj;
 
     while (pPosition)
     {
-        pObj = (PlanFinObject*)m_ObjElements.GetNext(pPosition);
+        pObj = (PSS_PlanFinObject*)m_ObjElements.GetNext(pPosition);
 
         if (pObj && pObj->GetObjectName() == name)
             return pObj;
@@ -340,11 +340,11 @@ PlanFinObject* PSS_DocumentData::GetObject(const CString& name)
     return NULL;
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_DocumentData::GetSelectedObject(BOOL checkPage)
+PSS_PlanFinObject* PSS_DocumentData::GetSelectedObject(BOOL checkPage)
 {
     // get the current page
-    const int            page = GetCurrentPage();
-          PlanFinObject* pObj;
+    const int          page = GetCurrentPage();
+    PSS_PlanFinObject* pObj;
 
     // search wich element is selected
     if ((pObj = GetHead()) == NULL)
@@ -355,7 +355,7 @@ PlanFinObject* PSS_DocumentData::GetSelectedObject(BOOL checkPage)
         if (checkPage && pObj->GetObjectPage() != page)
             continue;
 
-        if (pObj->IsSelectObject())
+        if (pObj->IsObjectSelected())
             return pObj;
     }
     while ((pObj = GetNext()) != NULL);
@@ -363,7 +363,7 @@ PlanFinObject* PSS_DocumentData::GetSelectedObject(BOOL checkPage)
     return GetEditedObject(checkPage);
 }
 //---------------------------------------------------------------------------
-void PSS_DocumentData::CheckFormulaObject(PlanFinObject* pOld, PlanFinObject* pNew)
+void PSS_DocumentData::CheckFormulaObject(PSS_PlanFinObject* pOld, PSS_PlanFinObject* pNew)
 {
     if (!pOld || !pNew)
         return;
@@ -382,13 +382,13 @@ void PSS_DocumentData::CheckFormulaObject(PlanFinObject* pOld, PlanFinObject* pN
 //---------------------------------------------------------------------------
 BOOL PSS_DocumentData::ObjectExist(const CString& name)
 {
-    PlanFinObject* pObjTemp = NULL;
+    PSS_PlanFinObject* pObjTemp = NULL;
     POSITION       pPosition;
 
     if ((pPosition = m_ObjElements.GetHeadPosition()) != NULL)
         while (pPosition != NULL)
         {
-            pObjTemp = (PlanFinObject*)m_ObjElements.GetNext(pPosition);
+            pObjTemp = (PSS_PlanFinObject*)m_ObjElements.GetNext(pPosition);
 
             // if the element has the same, then extract the number
             if (pObjTemp->GetObjectName() == name)
@@ -400,8 +400,8 @@ BOOL PSS_DocumentData::ObjectExist(const CString& name)
 //---------------------------------------------------------------------------
 void PSS_DocumentData::InitializeAllAssociations()
 {
-    PlanFinObject* pObjTemp  = NULL;
-    POSITION       pPosition = m_ObjElements.GetHeadPosition();
+    PSS_PlanFinObject* pObjTemp  = NULL;
+    POSITION           pPosition = m_ObjElements.GetHeadPosition();
 
     while (pPosition)
     {
@@ -481,7 +481,7 @@ void PSS_DocumentData::CheckForClearCalcField(CView* pView)
         if (elapsedTime.GetSeconds() > 5)
         {
             // clear all flags in the field
-            PlanFinObject* pObj;
+            PSS_PlanFinObject* pObj;
 
             // redraw only the that must be refreshed
             CDC* pDC = NULL;
@@ -499,7 +499,7 @@ void PSS_DocumentData::CheckForClearCalcField(CView* pView)
 
             while (pPosition)
             {
-                pObj = (PlanFinObject*)m_ObjElements.GetNext(pPosition);
+                pObj = (PSS_PlanFinObject*)m_ObjElements.GetNext(pPosition);
 
                 if (pObj->HasBeenChanged())
                 {
@@ -542,7 +542,7 @@ void PSS_DocumentData::ChangeCurrentSchema(const CString& name, BOOL notify)
 //---------------------------------------------------------------------------
 void PSS_DocumentData::ClearCurrentAssociation()
 {
-    PlanFinObject* pObjTemp;
+    PSS_PlanFinObject* pObjTemp;
 
     if ((pObjTemp = GetHead()) != NULL)
         do
@@ -565,7 +565,7 @@ void PSS_DocumentData::ClearCurrentAssociation()
 //---------------------------------------------------------------------------
 void PSS_DocumentData::ChangeFieldForCalculation()
 {
-    PlanFinObject* pObjTemp;
+    PSS_PlanFinObject* pObjTemp;
 
     // iterate through the list for long field with no current associations
     if ((pObjTemp = GetHead()) != NULL)
@@ -621,7 +621,7 @@ void PSS_DocumentData::ChangeFieldForCalculation()
         while ((pObjTemp = GetNext()) != NULL);
 }
 //---------------------------------------------------------------------------
-BOOL PSS_DocumentData::IsCalculatedFieldInSchema(PlanFinObject* pObj)
+BOOL PSS_DocumentData::IsCalculatedFieldInSchema(PSS_PlanFinObject* pObj)
 {
     if (!pObj)
         return FALSE;
@@ -680,7 +680,7 @@ void PSS_DocumentData::ReplaceCalculatedFields()
     CString label;
     label.LoadString(IDS_AMOUNT_CLASS);
 
-    PlanFinObject* pObjTemp;
+    PSS_PlanFinObject* pObjTemp;
 
     if ((pObjTemp = GetHead()) != NULL)
     {
@@ -691,7 +691,7 @@ void PSS_DocumentData::ReplaceCalculatedFields()
             // if the object was calculated, convert it in number
             if (pCalculated)
             {
-                PlanFinObject* pNewObjTemp = PSS_ObjectUtility::BuildObject(label);
+                PSS_PlanFinObject* pNewObjTemp = PSS_ObjectUtility::BuildObject(label);
 
                 if (!pNewObjTemp)
                     return;
@@ -699,7 +699,7 @@ void PSS_DocumentData::ReplaceCalculatedFields()
                 (PSS_PLFNLong&)* pNewObjTemp     = pCalculated;
                 PSS_PLFNLong*    pNewLongObjTemp = (PSS_PLFNLong*)pNewObjTemp;
 
-                // copy all the information not contained in PlanFinObject
+                // copy all the information not contained in financial plan object
                 pNewLongObjTemp->SetHasBeenChanged(FALSE);
                 pNewLongObjTemp->SetCalculatedField(TRUE);
 
@@ -721,7 +721,7 @@ void PSS_DocumentData::ReplaceCalculatedFields()
 //---------------------------------------------------------------------------
 void PSS_DocumentData::AssignPredefinedField()
 {
-    PlanFinObject* pObj = NULL;
+    PSS_PlanFinObject* pObj = NULL;
 
     if ((pObj = GetHead()) == NULL)
         return;
@@ -744,10 +744,10 @@ void PSS_DocumentData::AssignPredefinedField()
     while ((pObj = GetNext()) != NULL);
 }
 //---------------------------------------------------------------------------
-BOOL PSS_DocumentData::ChangeObjectType(PlanFinObject* pObj,
-                                        const CString& name,
-                                        const CString& finalValue,
-                                        BOOL           propagate)
+BOOL PSS_DocumentData::ChangeObjectType(PSS_PlanFinObject* pObj,
+                                        const CString&     name,
+                                        const CString&     finalValue,
+                                        BOOL               propagate)
 {
     if (!pObj)
         return FALSE;
@@ -755,7 +755,7 @@ BOOL PSS_DocumentData::ChangeObjectType(PlanFinObject* pObj,
     // if propagate, iterate through the object list and find all similar names
     if (propagate)
     {
-        PlanFinObject* pObjTemp;
+        PSS_PlanFinObject* pObjTemp;
 
         if ((pObjTemp = GetHead()) != NULL)
         {
@@ -764,12 +764,12 @@ BOOL PSS_DocumentData::ChangeObjectType(PlanFinObject* pObj,
                 // if the object contains the same name and is not the initial object, change it
                 if (pObjTemp != pObj && pObjTemp->GetObjectName() == pObj->GetObjectName())
                 {
-                    PlanFinObject* pNewObjTemp = PSS_ObjectUtility::BuildObject(name);
+                    PSS_PlanFinObject* pNewObjTemp = PSS_ObjectUtility::BuildObject(name);
 
                     if (!pNewObjTemp)
                         return FALSE;
 
-                    (PlanFinObject&)*pNewObjTemp = (PlanFinObject*)pObjTemp;
+                    (PSS_PlanFinObject&)*pNewObjTemp = (PSS_PlanFinObject*)pObjTemp;
 
                     // Initialize certain parameters
                     pNewObjTemp->SetFormatType(E_FT_Standard);
@@ -791,12 +791,12 @@ BOOL PSS_DocumentData::ChangeObjectType(PlanFinObject* pObj,
         }
     }
 
-    PlanFinObject* pNewObj = PSS_ObjectUtility::BuildObject(name);
+    PSS_PlanFinObject* pNewObj = PSS_ObjectUtility::BuildObject(name);
 
     if (!pNewObj)
         return FALSE;
 
-    (PlanFinObject&)*pNewObj = (PlanFinObject*)pObj;
+    (PSS_PlanFinObject&)*pNewObj = (PSS_PlanFinObject*)pObj;
 
     // initialize some parameters
     pNewObj->SetFormatType(E_FT_Standard);
@@ -815,16 +815,16 @@ BOOL PSS_DocumentData::ChangeObjectType(PlanFinObject* pObj,
 //---------------------------------------------------------------------------
 CString PSS_DocumentData::BuildAutomaticNewName(const CString& prefix)
 {
-          POSITION       pPosition;
-          char           name[100];
-          long           counter      = -1L;
-          PlanFinObject* pObjTemp     = NULL;
-    const std::size_t    prefixLength = prefix.GetLength();
+          POSITION           pPosition;
+          char               name[100];
+          long               counter      = -1L;
+          PSS_PlanFinObject* pObjTemp     = NULL;
+    const std::size_t        prefixLength = prefix.GetLength();
 
     if ((pPosition = m_ObjElements.GetHeadPosition()) != NULL)
         while (pPosition)
         {
-            pObjTemp             = (PlanFinObject*)m_ObjElements.GetNext(pPosition);
+            pObjTemp             = (PSS_PlanFinObject*)m_ObjElements.GetNext(pPosition);
             const char* pObjName = pObjTemp->GetObjectName();
 
             // if the same element, extract the number
@@ -837,7 +837,7 @@ CString PSS_DocumentData::BuildAutomaticNewName(const CString& prefix)
     return name;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_DocumentData::InsertObject(PlanFinObject*       pObj,
+BOOL PSS_DocumentData::InsertObject(PSS_PlanFinObject*   pObj,
                                     PSS_FieldRepository* pFieldRepository,
                                     BOOL                 insertInGlobalRepository,
                                     BOOL                 refresh)
@@ -854,7 +854,7 @@ BOOL PSS_DocumentData::InsertObject(PlanFinObject*       pObj,
         return TRUE;
     }
 
-    PlanFinObject* pObjTemp = NULL;
+    PSS_PlanFinObject* pObjTemp = NULL;
 
     // sort the element by page too, but by Y and X coordinates. This option is used for auto-edit,
     // to go to the next editable field
@@ -862,7 +862,7 @@ BOOL PSS_DocumentData::InsertObject(PlanFinObject*       pObj,
     {
         // save the current temp object position
         pElementPosition = pPosition;
-        pObjTemp         = (PlanFinObject*)m_ObjElements.GetNext(pPosition);
+        pObjTemp         = (PSS_PlanFinObject*)m_ObjElements.GetNext(pPosition);
 
         if (pObj->GetObjectPage() == pObjTemp->GetObjectPage())
         {
@@ -898,7 +898,7 @@ BOOL PSS_DocumentData::InsertObject(PlanFinObject*       pObj,
     return TRUE;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_DocumentData::InsertObjectAtHead(PlanFinObject*       pObj,
+BOOL PSS_DocumentData::InsertObjectAtHead(PSS_PlanFinObject*   pObj,
                                           PSS_FieldRepository* pFieldRepository,
                                           BOOL                 insertInGlobalRepository,
                                           BOOL                 refresh)
@@ -915,7 +915,7 @@ BOOL PSS_DocumentData::InsertObjectAtHead(PlanFinObject*       pObj,
         return TRUE;
     }
 
-    PlanFinObject* pObjTemp = NULL;
+    PSS_PlanFinObject* pObjTemp = NULL;
 
     // sort the element by page too, but by Y and X coordinates. This option is used for auto-edit,
     // to go to the next editable field
@@ -923,7 +923,7 @@ BOOL PSS_DocumentData::InsertObjectAtHead(PlanFinObject*       pObj,
     {
         // save the position of the current element objTemp
         pElementPosition = pPosition;
-        pObjTemp         = (PlanFinObject*)m_ObjElements.GetNext(pPosition);
+        pObjTemp         = (PSS_PlanFinObject*)m_ObjElements.GetNext(pPosition);
 
         if (pObj->GetObjectPage() == pObjTemp->GetObjectPage())
         {
@@ -959,7 +959,7 @@ BOOL PSS_DocumentData::InsertObjectAtHead(PlanFinObject*       pObj,
     return TRUE;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_DocumentData::DeleteObject(PlanFinObject* pObj, BOOL deleteFromMemory, BOOL refresh)
+BOOL PSS_DocumentData::DeleteObject(PSS_PlanFinObject* pObj, BOOL deleteFromMemory, BOOL refresh)
 {
     POSITION pPosition = m_ObjElements.Find(pObj);
 
@@ -981,7 +981,7 @@ BOOL PSS_DocumentData::DeleteObject(PlanFinObject* pObj, BOOL deleteFromMemory, 
     return FALSE;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_DocumentData::MoveObjectInOrder(PlanFinObject* pObj)
+BOOL PSS_DocumentData::MoveObjectInOrder(PSS_PlanFinObject* pObj)
 {
     // delete the object from the list only, not from the memory, and reinsert it at ordered position
     if (DeleteObject(pObj, FALSE))
@@ -999,7 +999,7 @@ BOOL PSS_DocumentData::AssignObjectValue(const CString& name,
     if (propagationMode == g_LocateAllDocuments || propagationMode == g_LocateAllDocumentsEmptyOnly)
         return FALSE;
 
-    PlanFinObject* pObj;
+    PSS_PlanFinObject* pObj;
 
     // locate the object
     if ((pObj = GetHead()) != NULL)
@@ -1083,7 +1083,7 @@ BOOL PSS_DocumentData::AssignObjectValue(const CString& name,
     return TRUE;
 }
 //---------------------------------------------------------------------------
-void PSS_DocumentData::SetCurrentPageToObject(PlanFinObject* pObj)
+void PSS_DocumentData::SetCurrentPageToObject(PSS_PlanFinObject* pObj)
 {
     if (!pObj)
         return;
@@ -1102,7 +1102,7 @@ void PSS_DocumentData::DeleteAllObjects()
 //---------------------------------------------------------------------------
 int PSS_DocumentData::CountAndSetPages()
 {
-    PlanFinObject* pObj;
+    PSS_PlanFinObject* pObj;
 
     // get the page number used to display the object on the right page.
     // The test here is to assign the greater number of pages
@@ -1122,9 +1122,9 @@ int PSS_DocumentData::CountAndSetPages()
     return GetMaxPage();
 }
 //---------------------------------------------------------------------------
-PlanFinObject* PSS_DocumentData::CloneSelectedObject()
+PSS_PlanFinObject* PSS_DocumentData::CloneSelectedObject()
 {
-    PlanFinObject* pObj = GetSelectedObject();
+    PSS_PlanFinObject* pObj = GetSelectedObject();
 
     if (!pObj)
         return NULL;
@@ -1137,7 +1137,7 @@ void PSS_DocumentData::RebuildAllAutomaticNumbered()
     int levelArray[20];
     std::memset(&levelArray, 0, sizeof(levelArray));
 
-    PlanFinObject* pObj;
+    PSS_PlanFinObject* pObj;
 
     if ((pObj = GetHead()) != NULL)
     {
@@ -1205,15 +1205,15 @@ void PSS_DocumentData::RebuildAllAutomaticNumbered()
 //---------------------------------------------------------------------------
 void PSS_DocumentData::SetCurrentStyle(const CString& name)
 {
-    PlanFinObject* pObjTemp = GetSelectedObject();
+    PSS_PlanFinObject* pObjTemp = GetSelectedObject();
 
     if (pObjTemp)
     {
         // when assign new style, clear a specific font assigned
-        pObjTemp->SethStyle(m_pDocument->GetStyleManager().FindStyle(name));
+        pObjTemp->SetStyle(m_pDocument->GetStyleManager().FindStyle(name));
 
         // remove the angle
-        pObjTemp->SetiAngle(0, m_pDocument);
+        pObjTemp->SetAngle(0, m_pDocument);
 
         // notify object about change in position and size
         pObjTemp->SizePositionHasChanged();
@@ -1222,7 +1222,7 @@ void PSS_DocumentData::SetCurrentStyle(const CString& name)
     }
 }
 //---------------------------------------------------------------------------
-BOOL PSS_DocumentData::IsCalculatedFieldInAssociation(PlanFinObject* pObj)
+BOOL PSS_DocumentData::IsCalculatedFieldInAssociation(PSS_PlanFinObject* pObj)
 {
     if (!pObj)
         return FALSE;
@@ -1241,7 +1241,7 @@ void PSS_DocumentData::InitializeAllObjectPointers()
     InitializeAllAssociations();
 }
 //---------------------------------------------------------------------------
-void PSS_DocumentData::PropagateFieldValue(PlanFinObject* pObj)
+void PSS_DocumentData::PropagateFieldValue(PSS_PlanFinObject* pObj)
 {
     if (!m_pDocument)
         return;
@@ -1272,11 +1272,11 @@ void PSS_DocumentData::PropagateFieldValue(PlanFinObject* pObj)
         member = tokenizer.GetNextToken();
 
         // get row value
-        rowValue = ((ZBFieldColumn*)pObj->GetpColumn())->GetValueRow(pObj->GetUnformattedObject());
+        rowValue = ((ZBFieldColumn*)pObj->GetColumn())->GetValueRow(pObj->GetUnformattedObject());
     }
 
-    PlanFinObject* pTempObj;
-    CDC*           pDC = pView->GetDC();
+    PSS_PlanFinObject* pTempObj;
+    CDC*               pDC = pView->GetDC();
 
     try
     {
@@ -1371,18 +1371,18 @@ void PSS_DocumentData::AssignNewStyle(HandleStyle hOldStyle, HandleStyle hNewSty
     if (!hOldStyle || !hNewStyle)
         return;
 
-    PlanFinObject* pObj;
-    POSITION       pPosition = m_ObjElements.GetHeadPosition();
+    PSS_PlanFinObject* pObj;
+    POSITION           pPosition = m_ObjElements.GetHeadPosition();
 
     // iterate through all objects    
     while (pPosition)
     {
-        pObj = (PlanFinObject*)m_ObjElements.GetNext(pPosition);
+        pObj = (PSS_PlanFinObject*)m_ObjElements.GetNext(pPosition);
 
         // if the object points to the deleted style
-        if (pObj->GethStyle() == hOldStyle)
+        if (pObj->GetStyle() == hOldStyle)
             // assign normal style
-            pObj->SethStyle(hNewStyle);
+            pObj->SetStyle(hNewStyle);
     }
 }
 //---------------------------------------------------------------------------
@@ -1489,17 +1489,17 @@ void PSS_DocumentData::OnDraw(CDC*    pDC,
         OnDrawURL(pDC, pView);
 }
 //---------------------------------------------------------------------------
-void PSS_DocumentData::SwitchTabOrder(PlanFinObject* pObject, double tabOrder)
+void PSS_DocumentData::SwitchTabOrder(PSS_PlanFinObject* pObject, double tabOrder)
 {
     if (!pObject)
         return;
 
-    PlanFinObject* pObj;
-    POSITION       pPosition = m_ObjElements.GetHeadPosition();
+    PSS_PlanFinObject* pObj;
+    POSITION           pPosition = m_ObjElements.GetHeadPosition();
 
     while (pPosition)
     {
-        pObj = (PlanFinObject*)(m_ObjElements).GetNext(pPosition);
+        pObj = (PSS_PlanFinObject*)(m_ObjElements).GetNext(pPosition);
 
         // if we found the tab order that we would like to switch
         if (pObj->GetTabOrder() == tabOrder)
@@ -1519,12 +1519,12 @@ void PSS_DocumentData::AutomaticRebuildTabOrder()
     // evaluate the last tab order
     EvaluateLastTabOrder();
 
-    PlanFinObject* pObj;
-    POSITION       pPosition = m_ObjElements.GetHeadPosition();
+    PSS_PlanFinObject* pObj;
+    POSITION           pPosition = m_ObjElements.GetHeadPosition();
 
     while (pPosition)
     {
-        pObj = (PlanFinObject*)(m_ObjElements).GetNext(pPosition);
+        pObj = (PSS_PlanFinObject*)(m_ObjElements).GetNext(pPosition);
 
         // found a tab order equal to zero?
         if (!pObj->GetTabOrder())
@@ -1538,12 +1538,12 @@ double PSS_DocumentData::EvaluateLastTabOrder()
     // initialize last tab order
     m_LastTabOrder = 0;
 
-    PlanFinObject* pObj;
-    POSITION       pPosition = m_ObjElements.GetHeadPosition();
+    PSS_PlanFinObject* pObj;
+    POSITION           pPosition = m_ObjElements.GetHeadPosition();
 
     while (pPosition)
     {
-        pObj = (PlanFinObject*)(m_ObjElements).GetNext(pPosition);
+        pObj = (PSS_PlanFinObject*)(m_ObjElements).GetNext(pPosition);
 
         // if we found a tab order equal to zero
         m_LastTabOrder = __max(pObj->GetTabOrder(), m_LastTabOrder);
@@ -1554,12 +1554,12 @@ double PSS_DocumentData::EvaluateLastTabOrder()
 //---------------------------------------------------------------------------
 void PSS_DocumentData::AssignMultiColumnMemberFields()
 {
-    PlanFinObject* pObj;
-    POSITION       pPosition = m_ObjElements.GetHeadPosition();
+    PSS_PlanFinObject* pObj;
+    POSITION           pPosition = m_ObjElements.GetHeadPosition();
 
     while (pPosition)
     {
-        pObj = (PlanFinObject*)(m_ObjElements).GetNext(pPosition);
+        pObj = (PSS_PlanFinObject*)(m_ObjElements).GetNext(pPosition);
         CheckMultiColumnMemberField(pObj);
     }
 }
@@ -1577,12 +1577,12 @@ bool PSS_DocumentData::BuildObjectFieldNameArray()
     // free the object field name array
     m_FieldNameArray.RemoveAll();
 
-    PlanFinObject* pObj;
-    POSITION       pPosition = m_ObjElements.GetHeadPosition();
+    PSS_PlanFinObject* pObj;
+    POSITION           pPosition = m_ObjElements.GetHeadPosition();
 
     while (pPosition)
     {
-        pObj = (PlanFinObject*)(m_ObjElements).GetNext(pPosition);
+        pObj = (PSS_PlanFinObject*)(m_ObjElements).GetNext(pPosition);
 
         if (pObj && !FieldNameExistInObjectArray(pObj->GetObjectName()))
             m_FieldNameArray.Add(pObj->GetObjectName());
@@ -1888,18 +1888,18 @@ void PSS_DocumentData::OnDrawBackgroundPicture(CDC* pDC, ZIView* pView, int page
     if (!pDC)
         return;
 
-    PlanFinObject* pObj;
-    POSITION       pPosition = m_ObjElements.GetHeadPosition();
+    PSS_PlanFinObject* pObj;
+    POSITION           pPosition = m_ObjElements.GetHeadPosition();
 
     while (pPosition)
     {
-        pObj = (PlanFinObject *)m_ObjElements.GetNext(pPosition);
+        pObj = (PSS_PlanFinObject*)m_ObjElements.GetNext(pPosition);
 
         if (page == pObj->GetObjectPage() && ISA(pObj, PSS_PLFNBackImage))
-            if (pObj->GetbIsVisible() || m_pDocument->ShouldShowHiddenField())
+            if (pObj->GetIsVisible() || m_pDocument->ShouldShowHiddenField())
                 if (pDC->IsPrinting())
                 {
-                    if (pObj->GetbMustBePrinted() && pObj->GetbIsVisible())
+                    if (pObj->GetMustBePrinted() && pObj->GetIsVisible())
                         pObj->DrawObject(pDC, pView);
                 }
                 else
@@ -1924,23 +1924,23 @@ void PSS_DocumentData::OnDrawForms(CDC*    pDC,
     // draw background picture
     OnDrawBackgroundPicture(pDC, pView, page);
 
-    PlanFinObject* pObj;
+    PSS_PlanFinObject* pObj;
 
     // optimisation first step, call directly the list functions
     POSITION pPosition = m_ObjElements.GetHeadPosition();
 
     while (pPosition)
     {
-        pObj = (PlanFinObject*)m_ObjElements.GetNext(pPosition);
+        pObj = (PSS_PlanFinObject*)m_ObjElements.GetNext(pPosition);
 
         // show object on the right page, and if visible in the viewport, and don't draw background images
         if (pObj && page == pObj->GetObjectPage() && !ISA(pObj, PSS_PLFNBackImage))
-            if (pObj->GetbIsVisible() || m_pDocument->ShouldShowHiddenField() || drawHiddenObject)
+            if (pObj->GetIsVisible() || m_pDocument->ShouldShowHiddenField() || drawHiddenObject)
                 if (pDC->IsPrinting())
                 {
                     // when printing test if the object is empty, and if must print empty line, and if the
                     // object must be printed
-                    if (( pObj->GetbMustBePrinted() && pObj->GetbIsVisible()) &&
+                    if (( pObj->GetMustBePrinted() && pObj->GetIsVisible()) &&
                         (!pObj->IsEmpty() || m_pDocument->ShouldPrintLine()))
                         pObj->DrawObject(pDC, pView);
                 }
@@ -1951,10 +1951,10 @@ void PSS_DocumentData::OnDrawForms(CDC*    pDC,
                     if (drawCalculatedSymbol)
                         pObj->DrawCalculatedSymbol(pDC);
 
-                    if (!pObj->GetbMustBePrinted())
+                    if (!pObj->GetMustBePrinted())
                         pObj->DrawHiddenOnPrintSymbol(pDC);
 
-                    if (drawHiddenObject && !pObj->GetbIsVisible())
+                    if (drawHiddenObject && !pObj->GetIsVisible())
                         pObj->DrawHiddenSymbol(pDC);
 
                     if (drawBoundRectObject)
@@ -1963,7 +1963,7 @@ void PSS_DocumentData::OnDrawForms(CDC*    pDC,
                     if (drawTabOrder)
                         pObj->DrawTabOrder(pDC);
 
-                    if (pObj->GetNotesPointer())
+                    if (pObj->GetNotes())
                         pObj->DrawNoteSymbol(pDC);
                 }
     }
@@ -2000,12 +2000,12 @@ bool PSS_DocumentData::FieldNameExistInObjectArray(const CString& fieldName)
 //---------------------------------------------------------------------------
 BOOL PSS_DocumentData::DeletePageObjects(int page, BOOL redistribute)
 {
-    PlanFinObject* pObj;
-    POSITION       pPosition = m_ObjElements.GetHeadPosition();
+    PSS_PlanFinObject* pObj;
+    POSITION           pPosition = m_ObjElements.GetHeadPosition();
 
     while (pPosition)
     {
-        pObj = (PlanFinObject*)m_ObjElements.GetNext(pPosition);
+        pObj = (PSS_PlanFinObject*)m_ObjElements.GetNext(pPosition);
 
         // check the object page
         if (pObj->GetObjectPage() == page)
@@ -2022,7 +2022,7 @@ BOOL PSS_DocumentData::DeletePageObjects(int page, BOOL redistribute)
 
             while (pPosition)
             {
-                pObj = (PlanFinObject*)m_ObjElements.GetPrev(pPosition);
+                pObj = (PSS_PlanFinObject*)m_ObjElements.GetPrev(pPosition);
 
                 // check if the object's page is before the deleted page
                 if (pObj->GetObjectPage() < page)
@@ -2044,17 +2044,17 @@ BOOL PSS_DocumentData::CopyPageObjects(PSS_DocumentData* pDocumentDst, int page)
     if (!pDocumentDst)
         return FALSE;
 
-    PlanFinObject* pObj;
-    POSITION       pPosition = m_ObjElements.GetHeadPosition();
+    PSS_PlanFinObject* pObj;
+    POSITION           pPosition = m_ObjElements.GetHeadPosition();
 
     while (pPosition)
     {
-        pObj = (PlanFinObject*)m_ObjElements.GetNext(pPosition);
+        pObj = (PSS_PlanFinObject*)m_ObjElements.GetNext(pPosition);
 
         // check the object page
         if (pObj->GetObjectPage() == page)
         {
-            PlanFinObject* pNewObjTemp = pObj->Clone();
+            PSS_PlanFinObject* pNewObjTemp = pObj->Clone();
             ASSERT(pNewObjTemp);
 
             // insert the object in the destination document
@@ -2068,15 +2068,15 @@ BOOL PSS_DocumentData::CopyPageObjects(PSS_DocumentData* pDocumentDst, int page)
 //---------------------------------------------------------------------------
 BOOL PSS_DocumentData::CheckObjectList()
 {
-    PlanFinObject* pObj;
-    PlanFinObject* pSimilarObject;
-    POSITION       pStartPosition;
-    POSITION       pSavedPosition;
-    POSITION       pPosition = m_ObjElements.GetHeadPosition();
+    PSS_PlanFinObject* pObj;
+    PSS_PlanFinObject* pSimilarObject;
+    POSITION           pStartPosition;
+    POSITION           pSavedPosition;
+    POSITION           pPosition = m_ObjElements.GetHeadPosition();
 
     while (pPosition)
     {
-        pObj           = (PlanFinObject*)m_ObjElements.GetNext(pPosition);
+        pObj           = (PSS_PlanFinObject*)m_ObjElements.GetNext(pPosition);
         pStartPosition = pPosition;
 
         // from this position, check if another object has the same adress
@@ -2084,7 +2084,7 @@ BOOL PSS_DocumentData::CheckObjectList()
         {
             // save the previous position for further deletion
             pSavedPosition = pStartPosition;
-            pSimilarObject = (PlanFinObject*)m_ObjElements.GetNext(pStartPosition);
+            pSimilarObject = (PSS_PlanFinObject*)m_ObjElements.GetNext(pStartPosition);
 
             if (pSimilarObject == pObj)
             {

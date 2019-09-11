@@ -18,11 +18,11 @@
 
 // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
 #ifndef PSS_PLFNMultiColumn
-    //#define PSS_PLFNMultiColumn PLFNMultiColumn
+    #define PSS_PLFNMultiColumn PLFNMultiColumn
 #endif
 
 // processsoft
-#include "ZAObject.h"
+#include "PSS_PlanFinObject.h"
 #include "ZBFldClM.h"
 
 #ifdef _ZBASELIBEXPORT
@@ -39,12 +39,12 @@
 * Financial plan multi-columns object
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PLFNMultiColumn : public PlanFinObject
+class AFX_EXT_CLASS PSS_PLFNMultiColumn : public PSS_PlanFinObject
 {
     DECLARE_SERIAL(PSS_PLFNMultiColumn)
 
     public:
-        typedef PlanFinObject inherited;
+        typedef PSS_PlanFinObject inherited;
 
         PSS_PLFNMultiColumn();
 
@@ -74,13 +74,13 @@ class AFX_EXT_CLASS PSS_PLFNMultiColumn : public PlanFinObject
         * Clones the object
         *@return the cloned object, NULL on error
         */
-        virtual PlanFinObject* Clone() const;
+        virtual PSS_PlanFinObject* Clone() const;
 
         /**
         * Copies the object content
         *@param pSrc - source object to copy from
         */
-        virtual void CopyObject(PlanFinObject* pSrc);
+        virtual void CopyObject(PSS_PlanFinObject* pSrc);
 
         /**
         * Gets the right sub-menu
@@ -396,7 +396,7 @@ UINT PSS_PLFNMultiColumn::GetRightSubMenu() const
 //---------------------------------------------------------------------------
 UINT PSS_PLFNMultiColumn::GetPropertyTabs() const
 {
-    return (PropertyGeneralBasicPage | PropertySizePage | PropertyMultiColumnPage);
+    return (g_PropertyGeneralBasicPage | g_PropertySizePage | g_PropertyMultiColumnPage);
 }
 //---------------------------------------------------------------------------
 std::size_t PSS_PLFNMultiColumn::GetColumnCount() const
@@ -481,7 +481,7 @@ bool PSS_PLFNMultiColumn::SetColumnRowValue(std::size_t columnIndex, std::size_t
 //---------------------------------------------------------------------------
 BOOL PSS_PLFNMultiColumn::IsSelected(const CPoint& point) const
 {
-    return m_rctObject.PtInRect(point);
+    return m_ObjectRect.PtInRect(point);
 }
 //---------------------------------------------------------------------------
 bool PSS_PLFNMultiColumn::AutoSizeColumn(const CString& headerName)

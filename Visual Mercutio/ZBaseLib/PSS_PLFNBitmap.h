@@ -23,7 +23,7 @@
 
 // processsoft
 #include "ZBitmap.h"
-#include "ZAObject.h"
+#include "PSS_PlanFinObject.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -39,7 +39,7 @@
 * Financial plan bitmap object
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PLFNBitmap : public PlanFinObject
+class AFX_EXT_CLASS PSS_PLFNBitmap : public PSS_PlanFinObject
 {
     DECLARE_SERIAL(PSS_PLFNBitmap)
 
@@ -54,7 +54,7 @@ class AFX_EXT_CLASS PSS_PLFNBitmap : public PlanFinObject
             IE_DS_FitToRectProp
         };
 
-        typedef PlanFinObject inherited;
+        typedef PSS_PlanFinObject inherited;
 
         PSS_PLFNBitmap();
 
@@ -84,13 +84,13 @@ class AFX_EXT_CLASS PSS_PLFNBitmap : public PlanFinObject
         * Clones the object
         *@return the cloned object, NULL on error
         */
-        virtual PlanFinObject* Clone() const;
+        virtual PSS_PlanFinObject* Clone() const;
 
         /**
         * Copies the object content
         *@param pSrc - source object to copy from
         */
-        virtual void CopyObject(PlanFinObject* pSrc);
+        virtual void CopyObject(PSS_PlanFinObject* pSrc);
 
         /**
         * Gets the right sub-menu
@@ -240,7 +240,7 @@ CString PSS_PLFNBitmap::SelectBitmapFileDialog()
 //---------------------------------------------------------------------------
 UINT PSS_PLFNBitmap::GetPropertyTabs() const
 {
-    return (PropertyGeneralBasicPage | PropertySizePage);
+    return (g_PropertyGeneralBasicPage | g_PropertySizePage);
 }
 //---------------------------------------------------------------------------
 const PSS_PLFNBitmap::IEDisplayStyles PSS_PLFNBitmap::GetDisplayStyle() const

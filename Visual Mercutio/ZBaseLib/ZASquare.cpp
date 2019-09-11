@@ -33,7 +33,7 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-IMPLEMENT_SERIAL(PLFNSquare, PlanFinObject, g_DefVersion)
+IMPLEMENT_SERIAL(PLFNSquare, PSS_PlanFinObject, g_DefVersion)
 //## end module%336D05240276.additionalDeclarations
 
 
@@ -48,7 +48,7 @@ IMPLEMENT_SERIAL(PLFNSquare, PlanFinObject, g_DefVersion)
 
 PLFNSquare::PLFNSquare()
   //## begin PLFNSquare::PLFNSquare%.hasinit preserve=no
-      : m_nCharPerSquare(1), m_pObject(NULL), m_TypeOfSquare(E_SQ_Normal), m_ParsingMode(E_PM_Normal)
+      : PSS_PlanFinObject(), m_nCharPerSquare(1), m_pObject(NULL), m_TypeOfSquare(E_SQ_Normal), m_ParsingMode(E_PM_Normal)
   //## end PLFNSquare::PLFNSquare%.hasinit
   //## begin PLFNSquare::PLFNSquare%.initialization preserve=yes
   , m_SizeSquare( CSize(15, 15) ), m_SquareMaxLength( -1 )
@@ -60,7 +60,7 @@ PLFNSquare::PLFNSquare()
 
 PLFNSquare::PLFNSquare(const PLFNSquare &right)
   //## begin PLFNSquare::PLFNSquare%copy.hasinit preserve=no
-      : m_nCharPerSquare(1), m_pObject(NULL), m_TypeOfSquare(E_SQ_Normal), m_ParsingMode(E_PM_Normal)
+      : PSS_PlanFinObject(), m_nCharPerSquare(1), m_pObject(NULL), m_TypeOfSquare(E_SQ_Normal), m_ParsingMode(E_PM_Normal)
   //## end PLFNSquare::PLFNSquare%copy.hasinit
   //## begin PLFNSquare::PLFNSquare%copy.initialization preserve=yes
   //## end PLFNSquare::PLFNSquare%copy.initialization
@@ -72,7 +72,7 @@ PLFNSquare::PLFNSquare(const PLFNSquare &right)
 
 PLFNSquare::PLFNSquare (CSize SquareSize, int iMaxLength)
   //## begin PLFNSquare::PLFNSquare%863099799.hasinit preserve=no
-      : m_nCharPerSquare(1), m_pObject(NULL), m_TypeOfSquare(E_SQ_Normal), m_ParsingMode(E_PM_Normal)
+      : PSS_PlanFinObject(), m_nCharPerSquare(1), m_pObject(NULL), m_TypeOfSquare(E_SQ_Normal), m_ParsingMode(E_PM_Normal)
   //## end PLFNSquare::PLFNSquare%863099799.hasinit
   //## begin PLFNSquare::PLFNSquare%863099799.initialization preserve=yes
   , m_SizeSquare( SquareSize ), m_SquareMaxLength( iMaxLength )
@@ -95,7 +95,7 @@ PLFNSquare::~PLFNSquare()
 const PLFNSquare & PLFNSquare::operator=(const PLFNSquare &right)
 {
   //## begin PLFNSquare::operator=%.body preserve=yes
-    this->PlanFinObject::operator=( (inherited&)right );
+    this->PSS_PlanFinObject::operator=( (inherited&)right );
     m_SizeSquare = right.m_SizeSquare;
     m_SquareMaxLength = right.m_SquareMaxLength;
     m_nCharPerSquare = right.m_nCharPerSquare;
@@ -112,7 +112,7 @@ const PLFNSquare & PLFNSquare::operator=(const PLFNSquare &right)
 const PLFNSquare& PLFNSquare::operator = (const PLFNSquare* right)
 {
   //## begin PLFNSquare::operator =%862783356.body preserve=yes
-    this->PlanFinObject::operator=( (inherited*)right );
+    this->PSS_PlanFinObject::operator=( (inherited*)right );
     m_SizeSquare = right->m_SizeSquare;
     m_SquareMaxLength = right->m_SquareMaxLength;
     m_nCharPerSquare = right->m_nCharPerSquare;
@@ -123,7 +123,7 @@ const PLFNSquare& PLFNSquare::operator = (const PLFNSquare* right)
   //## end PLFNSquare::operator =%862783356.body
 }
 
-PlanFinObject* PLFNSquare::Clone ()
+PSS_PlanFinObject* PLFNSquare::Clone ()
 {
   //## begin PLFNSquare::Clone%862783358.body preserve=yes
     PLFNSquare*    pObject = new PLFNSquare( *this );
@@ -134,7 +134,7 @@ PlanFinObject* PLFNSquare::Clone ()
 void PLFNSquare::Serialize (CArchive& ar)
 {
   //## begin PLFNSquare::Serialize%862783359.body preserve=yes
-    PlanFinObject::Serialize(ar);
+    PSS_PlanFinObject::Serialize(ar);
     if (ar.IsStoring())
     {    // Write the elements
         ar << m_SizeSquare;
@@ -199,7 +199,7 @@ void PLFNSquare::DrawObject (CDC* pDC, ZIView* pView)
     if (GetbAutoAdjustSize())
     {
         SetSizeSquare( CSize( SizeText.cx + 4, SizeText.cy + 4 ) );
-        m_rctObject.top = m_rctObject.bottom - GetSizeSquare().cy;
+        m_ObjectRect.top = m_ObjectRect.bottom - GetSizeSquare().cy;
 /*        
         // Invalidate the new rect
         if (::GetActiveWindow())
@@ -211,7 +211,7 @@ void PLFNSquare::DrawObject (CDC* pDC, ZIView* pView)
             ActiveWindow.Detach();
         }
 */        
-        CRect    Rect( m_rctObject );
+        CRect    Rect( m_ObjectRect );
         Rect.InflateRect( 5, 5 );
         ::InvalidateRect( ::GetActiveWindow(), &Rect, TRUE );
         // Generate a WM_PAINT message
@@ -219,16 +219,16 @@ void PLFNSquare::DrawObject (CDC* pDC, ZIView* pView)
     }
     
     DrawSquares( pDC );    
-    int        iBaseText = (m_rctObject.Height() - SizeText.cy) / 2;
+    int        iBaseText = (m_ObjectRect.Height() - SizeText.cy) / 2;
     pDC->SetTextAlign( TA_CENTER | TA_BOTTOM );
       for (int i=0; i < Str.GetLength(); ++i)
       {
-        pDC->TextOut(     m_rctObject.left + (GetSizeSquare().cx/2) + (i*GetSizeSquare().cx) + 1, 
-                        m_rctObject.bottom - iBaseText, 
+        pDC->TextOut(     m_ObjectRect.left + (GetSizeSquare().cx/2) + (i*GetSizeSquare().cx) + 1, 
+                        m_ObjectRect.bottom - iBaseText, 
                         Str[i] );
       }
     pDC->SelectObject( pOldFont );
-    PlanFinObject::DrawObject( pDC, pView );
+    PSS_PlanFinObject::DrawObject( pDC, pView );
   //## end PLFNSquare::DrawObject%862783360.body
 }
 
@@ -247,28 +247,28 @@ void PLFNSquare::DrawSquares (CDC* pDC)
     {
         iNbSquare = __max( 1, Str.GetLength() );
         // Adjust the right side
-        m_rctObject.right = m_rctObject.left + (iNbSquare*GetSizeSquare().cx);
+        m_ObjectRect.right = m_ObjectRect.left + (iNbSquare*GetSizeSquare().cx);
     }
     if (GetbAutoAdjustSize())
         // Adjust the right side
-        m_rctObject.right = m_rctObject.left + (iNbSquare*GetSizeSquare().cx);
+        m_ObjectRect.right = m_ObjectRect.left + (iNbSquare*GetSizeSquare().cx);
     // Draw the outside rect
-    pDC->MoveTo( m_rctObject.left, m_rctObject.top );
-    pDC->LineTo( m_rctObject.left, m_rctObject.bottom );
-    pDC->LineTo( m_rctObject.right, m_rctObject.bottom );
-    pDC->LineTo( m_rctObject.right, m_rctObject.top );
-    pDC->LineTo( m_rctObject.left, m_rctObject.top );
+    pDC->MoveTo( m_ObjectRect.left, m_ObjectRect.top );
+    pDC->LineTo( m_ObjectRect.left, m_ObjectRect.bottom );
+    pDC->LineTo( m_ObjectRect.right, m_ObjectRect.bottom );
+    pDC->LineTo( m_ObjectRect.right, m_ObjectRect.top );
+    pDC->LineTo( m_ObjectRect.left, m_ObjectRect.top );
       // Run through each squares and draw the vertical line
       for (int i=m_nCharPerSquare; i < iNbSquare; i += m_nCharPerSquare)
     {
-        pDC->MoveTo( m_rctObject.left+(i*GetSizeSquare().cx), m_rctObject.top );
-        pDC->LineTo( m_rctObject.left+(i*GetSizeSquare().cx), m_rctObject.bottom );
+        pDC->MoveTo( m_ObjectRect.left+(i*GetSizeSquare().cx), m_ObjectRect.top );
+        pDC->LineTo( m_ObjectRect.left+(i*GetSizeSquare().cx), m_ObjectRect.bottom );
     }
     pDC->SelectObject( pOldPen );
   //## end PLFNSquare::DrawSquares%863099801.body
 }
 
-void PLFNSquare::CopyObject (PlanFinObject* pSrc)
+void PLFNSquare::CopyObject (PSS_PlanFinObject* pSrc)
 {
   //## begin PLFNSquare::CopyObject%863615081.body preserve=yes
     ((PLFNSquare*)this)->PLFNSquare::operator=( (PLFNSquare*)pSrc );

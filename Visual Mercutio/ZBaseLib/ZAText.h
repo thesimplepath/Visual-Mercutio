@@ -117,10 +117,10 @@ class AFX_EXT_CLASS PLFNText : public PSS_PLFNAscii
 
       //## Operation: Clone%849755977
       //    Make a clone of the object.
-      virtual PlanFinObject* Clone ();
+      virtual PSS_PlanFinObject* Clone ();
 
       //## Operation: CopyObject%863615082
-      virtual void CopyObject (PlanFinObject* pSrc);
+      virtual void CopyObject (PSS_PlanFinObject* pSrc);
 
       //## Operation: GetUnformattedObject%901298463
       //    Return an unformatted string of the object image.
@@ -184,7 +184,7 @@ class AFX_EXT_CLASS PLFNText : public PSS_PLFNAscii
 inline BOOL PLFNText::IsSelected (const CPoint& point) const
 {
   //## begin PLFNText::IsSelected%829516175.body preserve=yes
-    return( m_rctObject.PtInRect( point ) );
+    return( m_ObjectRect.PtInRect( point ) );
   //## end PLFNText::IsSelected%829516175.body
 }
 
