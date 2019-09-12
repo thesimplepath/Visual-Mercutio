@@ -20,12 +20,12 @@
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_PLFNBoundText, PLFNString, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_PLFNBoundText, PSS_PLFNString, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_PLFNBoundText
 //---------------------------------------------------------------------------
 PSS_PLFNBoundText::PSS_PLFNBoundText(BOOL isStatic) :
-    PLFNString(),
+    PSS_PLFNString(),
     m_Hanging(0.0),
     m_InterLine(0.0),
     m_HangingLines(0)
@@ -35,7 +35,7 @@ PSS_PLFNBoundText::PSS_PLFNBoundText(BOOL isStatic) :
 }
 //---------------------------------------------------------------------------
 PSS_PLFNBoundText::PSS_PLFNBoundText(const PSS_PLFNBoundText& other) :
-    PLFNString(),
+    PSS_PLFNString(),
     m_Hanging(0.0),
     m_InterLine(0.0),
     m_HangingLines(0)
@@ -48,7 +48,7 @@ PSS_PLFNBoundText::~PSS_PLFNBoundText()
 //---------------------------------------------------------------------------
 const PSS_PLFNBoundText& PSS_PLFNBoundText::operator = (const PSS_PLFNBoundText& other)
 {
-    PLFNString::operator = ((inherited&)other);
+    PSS_PLFNString::operator = ((inherited&)other);
 
     m_Hanging      = other.m_Hanging;
     m_HangingLines = other.m_HangingLines;
@@ -59,10 +59,13 @@ const PSS_PLFNBoundText& PSS_PLFNBoundText::operator = (const PSS_PLFNBoundText&
 //---------------------------------------------------------------------------
 const PSS_PLFNBoundText& PSS_PLFNBoundText::operator = (const PSS_PLFNBoundText* pOther)
 {
-    PLFNString::operator = ((inherited*)pOther);
+    PSS_PLFNString::operator = ((inherited*)pOther);
 
     if (!pOther)
     {
+        m_Hanging      = 0.0;
+        m_InterLine    = 0.0;
+        m_HangingLines = 0;
     }
     else
     {
@@ -253,7 +256,7 @@ void PSS_PLFNBoundText::DrawEmpty(CDC* pDC, ZIView* pView)
 //---------------------------------------------------------------------------
 void PSS_PLFNBoundText::Serialize(CArchive& ar)
 {
-    PLFNString::Serialize(ar);
+    PSS_PLFNString::Serialize(ar);
 
     if (ar.IsStoring())
     {

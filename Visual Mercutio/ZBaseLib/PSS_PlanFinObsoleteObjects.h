@@ -44,7 +44,7 @@
 #include "PSS_PlanFinObject.h"
 #include "PSS_PlanFinObjects.h"
 #include "ZAText.h"
-#include "ZAString.h"
+#include "PSS_PLFNString.h"
 #include "PSS_PLFNGraphic.h"
 #include "PSS_Formula.h"
 
@@ -62,12 +62,12 @@
 * Financial plan containing an history string
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PLFNStringHistory : public PLFNString
+class AFX_EXT_CLASS PSS_PLFNStringHistory : public PSS_PLFNString
 {
     DECLARE_SERIAL(PSS_PLFNStringHistory)
 
     public:
-        typedef PLFNString inherited;
+        typedef PSS_PLFNString inherited;
 
         PSS_PLFNStringHistory();
 
@@ -239,7 +239,7 @@ UINT PSS_PLFNNumbered::GetPropertyTabs() const
 * Financial plan containing an editable number
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PLFNNumbEdit : public PLFNString
+class AFX_EXT_CLASS PSS_PLFNNumbEdit : public PSS_PLFNString
 {
     friend class PSS_PLFNNumbered;
 
@@ -249,7 +249,7 @@ class AFX_EXT_CLASS PSS_PLFNNumbEdit : public PLFNString
         int m_Chapter;
         int m_Paragraph;
 
-        typedef PLFNString inherited;
+        typedef PSS_PLFNString inherited;
 
         PSS_PLFNNumbEdit();
 

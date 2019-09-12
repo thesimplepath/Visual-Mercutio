@@ -12,7 +12,7 @@
 #include "zBaseLib\ZUSystemOption.h"
 #include "PSS_File.h"
 #include "PSS_PLFNRadioBtn.h"
-#include "ZASquare.h"
+#include "PSS_PLFNSquare.h"
 #include "PSS_PLFNBoundText.h"
 #include "PSS_PLFNAutoNumbered.h"
 #include "PSS_PLFNBitmap.h"
@@ -226,12 +226,12 @@ PSS_PlanFinObject* PSS_ObjectUtility::BuildObject(const CString& className)
             break;
 
         case 4:
-            pObj.reset(new PLFNString);
+            pObj.reset(new PSS_PLFNString);
             break;
 
         case 5:
-            pObj.reset(new PLFNString);
-            ((PLFNString*)pObj.get())->SetKeepHistory(TRUE);
+            pObj.reset(new PSS_PLFNString);
+            ((PSS_PLFNString*)pObj.get())->SetKeepHistory(TRUE);
             break;
 
         case 6:
@@ -252,7 +252,7 @@ PSS_PlanFinObject* PSS_ObjectUtility::BuildObject(const CString& className)
             break;
 
         case 10:
-            pObj.reset(new PLFNSquare);
+            pObj.reset(new PSS_PLFNSquare);
             break;
 
         case 11:
@@ -393,21 +393,21 @@ std::size_t PSS_ObjectUtility::GetClassNameID(PSS_PlanFinObject* pObj)
     else
     if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNMaskString)))
     {
-        if (((PLFNString*)pObj)->GetKeepHistory())
+        if (((PSS_PLFNString*)pObj)->GetKeepHistory())
             resourceID = IDS_MASKSTRINGHISTO_CLASS;
         else
             resourceID = IDS_MASKSTRING_CLASS;
     }
     else
-    if (pObj->IsKindOf(RUNTIME_CLASS(PLFNString)))
+    if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNString)))
     {
-        if (((PLFNString*)pObj)->GetKeepHistory())
+        if (((PSS_PLFNString*)pObj)->GetKeepHistory())
             resourceID = IDS_HISTOTEXT_CLASS;
         else
             resourceID = IDS_TEXT_CLASS;
     }
     else
-    if (pObj->IsKindOf(RUNTIME_CLASS(PLFNSquare)))
+    if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNSquare)))
         resourceID = IDS_SQUARETEXT_CLASS;
     else
     if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)))

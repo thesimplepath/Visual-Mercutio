@@ -14,7 +14,7 @@
 #include "zBaseLib\PSS_PLFNCheckBtn.h"
 #include "zBaseLib\PSS_PLFNRadioBtn.h"
 #include "zBaseLib\PSS_PLFNAutoNumbered.h"
-#include "zBaseLib\ZASquare.h"
+#include "zBaseLib\PSS_PLFNSquare.h"
 #include "zBaseLib\PSS_PLFNBoundText.h"
 #include "zBaseLib\PSS_PLFNBitmap.h"
 #include "zBaseLib\PSS_PLFNMultiColumn.h"
@@ -207,10 +207,10 @@ PSS_Edit* PSS_ModifyView::CreateEditControl(PSS_PlanFinObject* pObj, CDC* pDC)
 
         case IDS_SQUARETEXT_CLASS:
         {
-            PLFNSquare* pSquare = dynamic_cast<PLFNSquare*>(pObj);
+            PSS_PLFNSquare* pSquare = dynamic_cast<PSS_PLFNSquare*>(pObj);
 
-            if (pSquare && pSquare->GetpObject())
-                return CreateEditControl(const_cast<PSS_PlanFinObject*>(pSquare->GetpObject()), pDC);
+            if (pSquare && pSquare->GetObject())
+                return CreateEditControl(const_cast<PSS_PlanFinObject*>(pSquare->GetObject()), pDC);
 
             return NULL;
         }

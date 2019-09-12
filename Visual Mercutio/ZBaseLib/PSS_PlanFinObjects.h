@@ -43,7 +43,7 @@
 #include "PSS_PlanFinObject.h"
 #include "PSS_PLFNAscii.h"
 #include "ZAText.h"
-#include "ZAString.h"
+#include "PSS_PLFNString.h"
 #include "PSS_PLFNGraphic.h"
 #include "PSS_Formula.h"
 #include "ZBPoint.h"

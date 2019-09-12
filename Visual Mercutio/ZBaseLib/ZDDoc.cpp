@@ -30,7 +30,7 @@
 #include "PSS_PLFNRadioBtn.h"
 #include "PSS_PLFNCheckBtn.h"
 #include "PSS_PLFNBitmap.h"
-#include "ZASquare.h"
+#include "PSS_PLFNSquare.h"
 #include "PSS_PLFNMaskString.h"
 #include "PSS_PLFNMultiColumn.h"
 #include "PSS_PLFNAutoNumbered.h"
@@ -2840,7 +2840,7 @@ CString ZDDocument::GetAutomaticNewName(PSS_PlanFinObject* pObj, int DocumentInd
     }
     else if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNMaskString)))
     {
-        if (((PLFNString*)pObj)->GetKeepHistory())
+        if (((PSS_PLFNString*)pObj)->GetKeepHistory())
         {
             return pDocData->BuildAutomaticNewName(_T("MskTxt"));
         }
@@ -2856,7 +2856,7 @@ CString ZDDocument::GetAutomaticNewName(PSS_PlanFinObject* pObj, int DocumentInd
         ASSERT(FALSE);
         return pDocData->BuildAutomaticNewName(_T("StrHist"));
     }
-    else if (pObj->IsKindOf(RUNTIME_CLASS(PLFNString)))
+    else if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNString)))
     {
         return pDocData->BuildAutomaticNewName(_T("Str"));
     }
@@ -2874,7 +2874,7 @@ CString ZDDocument::GetAutomaticNewName(PSS_PlanFinObject* pObj, int DocumentInd
     {
         return pDocData->BuildAutomaticNewName(_T("$Number"));
     }
-    else if (pObj->IsKindOf(RUNTIME_CLASS(PLFNSquare)))
+    else if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNSquare)))
     {
         return pDocData->BuildAutomaticNewName(_T("Squ"));
     }
@@ -3109,7 +3109,7 @@ void ZDDocument::SerializeRead(CArchive& ar)
             ar >> SchemaName;
         }
     }
-    CATCH(CArchiveException, e)
+        CATCH(CArchiveException, e)
     {
         // Set for more recent file
         if (e->m_cause == CArchiveException::badSchema)
@@ -3127,23 +3127,23 @@ void ZDDocument::SerializeRead(CArchive& ar)
     }
     END_CATCH
 
-    if (GetDocumentStamp().GetInternalVersion() < 11)
-    {
-        pNewDocument = new PSS_DocumentData(this);
-
-        // Copy the file stamp.
-        pNewDocument->GetStamp() = (PSS_Stamp&)GetDocumentStamp();
-        pNewDocument->SetCurrentSchema(SchemaName);
-
-        // Finally, add the document data pointer
-        if (!AddDocumentData(pNewDocument))
+        if (GetDocumentStamp().GetInternalVersion() < 11)
         {
-            PSS_MsgBox mBox;
-            mBox.Show(IDS_FILECORRUPTED, MB_OK);
-        }
+            pNewDocument = new PSS_DocumentData(this);
 
-        SetActiveDocumentIndex(0);
-    }
+            // Copy the file stamp.
+            pNewDocument->GetStamp() = (PSS_Stamp&)GetDocumentStamp();
+            pNewDocument->SetCurrentSchema(SchemaName);
+
+            // Finally, add the document data pointer
+            if (!AddDocumentData(pNewDocument))
+            {
+                PSS_MsgBox mBox;
+                mBox.Show(IDS_FILECORRUPTED, MB_OK);
+            }
+
+            SetActiveDocumentIndex(0);
+        }
 
     if (GetDocumentStamp().GetInternalVersion() >= 11)
     {

@@ -660,13 +660,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZASquare.cpp">
+    <ClCompile Include="PSS_PLFNSquare.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZAString.cpp">
+    <ClCompile Include="PSS_PLFNString.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1431,8 +1431,8 @@
     <ClInclude Include="PSS_PlanFinObject.h" />
     <ClInclude Include="PSS_PLFNRadioBtn.h" />
     <ClInclude Include="PSS_ServerOptions.h" />
-    <ClInclude Include="ZASquare.h" />
-    <ClInclude Include="ZAString.h" />
+    <ClInclude Include="PSS_PLFNSquare.h" />
+    <ClInclude Include="PSS_PLFNString.h" />
     <ClInclude Include="ZAStyle.h" />
     <ClInclude Include="ZAStylMg.h" />
     <ClInclude Include="ZAText.h" />

@@ -22,7 +22,7 @@
 #endif
 
 // processsoft
-#include "ZAString.h"
+#include "PSS_PLFNString.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -39,12 +39,12 @@
 * but let the text be wrapped into a bound
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PLFNBoundText : public PLFNString
+class AFX_EXT_CLASS PSS_PLFNBoundText : public PSS_PLFNString
 {
     DECLARE_SERIAL(PSS_PLFNBoundText)
 
     public:
-        typedef PLFNString inherited;
+        typedef PSS_PLFNString inherited;
 
         /**
         * Constructor

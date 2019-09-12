@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_PLFNMaskString --------------------------------------------------*
+ * ==> PSS_PLFNString ------------------------------------------------------*
  ****************************************************************************
- * Description : Provides a financial plan mask string object               *
+ * Description : Provides a financial plan string object                    *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_PLFNMaskStringH
-#define PSS_PLFNMaskStringH
+#ifndef PSS_PLFNStringH
+#define PSS_PLFNStringH
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -17,12 +17,12 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
-#ifndef PSS_PLFNMaskString
-    #define PSS_PLFNMaskString PLFNMaskString
+#ifndef PSS_PLFNString
+    #define PSS_PLFNString PLFNString
 #endif
 
 // processsoft
-#include "PSS_PLFNString.h"
+#include "ZAText.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -35,39 +35,39 @@
 #endif
 
 /**
-* Financial plan mask string object
+* Financial plan string object
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PLFNMaskString : public PSS_PLFNString
+class AFX_EXT_CLASS PSS_PLFNString : public PLFNText
 {
-    DECLARE_SERIAL(PSS_PLFNMaskString)
+    DECLARE_SERIAL(PSS_PLFNString)
 
     public:
-        typedef PSS_PLFNString inherited;
+        typedef PLFNText inherited;
 
-        PSS_PLFNMaskString();
+        PSS_PLFNString();
 
         /**
         * Copy constructor
         *@param other - other object to copy from
         */
-        PSS_PLFNMaskString(const PSS_PLFNMaskString& other);
+        PSS_PLFNString(const PSS_PLFNString& other);
 
-        virtual ~PSS_PLFNMaskString();
+        virtual ~PSS_PLFNString();
 
         /**
         * Copy operator
         *@param other - other object to copy from
         *@return copy of itself
         */
-        const PSS_PLFNMaskString& operator = (const PSS_PLFNMaskString& other);
+        const PSS_PLFNString& operator = (const PSS_PLFNString& other);
 
         /**
         * Copy operator
         *@param pOther - other object to copy from
         *@return copy of itself
         */
-        const PSS_PLFNMaskString& operator = (const PSS_PLFNMaskString* pRight);
+        const PSS_PLFNString& operator = (const PSS_PLFNString* pOther);
 
         /**
         * Clones the object
@@ -82,10 +82,22 @@ class AFX_EXT_CLASS PSS_PLFNMaskString : public PSS_PLFNString
         virtual void CopyObject(PSS_PlanFinObject* pSrc);
 
         /**
-        * Gets the right sub-menu
-        *@return the right sub-menu identifier
+        * Gets the string value
+        *@return the string value
         */
-        virtual inline UINT GetRightSubMenu() const;
+        virtual inline CString GetStringValue();
+
+        /**
+        * Sets the string value
+        *@param value - the string value
+        */
+        virtual inline void SetStringValue(const CString& str);
+
+        /**
+        * Gets the object member address
+        *@return the object member address
+        */
+        virtual inline void* GetObjectAdress() const;
 
         /**
         * Draws the object with the current DC
@@ -93,36 +105,6 @@ class AFX_EXT_CLASS PSS_PLFNMaskString : public PSS_PLFNString
         *@param pView - view
         */
         virtual void DrawObject(CDC* pDC, ZIView* pView);
-
-        /**
-        * Gets the tab list that should be shown when the user asks for object properties
-        *@return the tab list identifier
-        */
-        virtual inline UINT GetPropertyTabs() const;
-
-        /**
-        * Gets the formatted object
-        *@return the formatted object
-        */
-        virtual CString GetFormattedObject();
-
-        /**
-        * Checks if it's an empty field
-        *@return TRUE if it's an empty field, otherwise FALSE
-        */
-        virtual inline BOOL IsEmpty() const;
-
-        /**
-        * Gets the string mask
-        *@return the string mask
-        */
-        virtual inline const CString GetMask() const;
-
-        /**
-        * Sets the string mask
-        *@param value - the string mask
-        */
-        virtual inline void SetMask(const CString& value);
 
         /**
         * Serializes the class content to an archive
@@ -144,37 +126,25 @@ class AFX_EXT_CLASS PSS_PLFNMaskString : public PSS_PLFNString
         #ifdef _DEBUG
             virtual void Dump(CDumpContext& dc) const;
         #endif
-
-    private:
-        CString m_Mask;
 };
 
 //---------------------------------------------------------------------------
-// PSS_PLFNMaskString
+// PSS_PLFNString
 //---------------------------------------------------------------------------
-UINT PSS_PLFNMaskString::GetRightSubMenu() const
+CString PSS_PLFNString::GetStringValue()
 {
-    return g_MaskEditRightSubMenu;
+    return(m_Str);
 }
 //---------------------------------------------------------------------------
-UINT PSS_PLFNMaskString::GetPropertyTabs() const
+void PSS_PLFNString::SetStringValue(const CString& str)
 {
-    return (g_PropertyGeneralTextPage | g_PropertySizePage | g_PropertyMaskTextPage);
+    m_Str = str;
+    ClearEmptyObjectFlag();
 }
 //---------------------------------------------------------------------------
-BOOL PSS_PLFNMaskString::IsEmpty() const
+void* PSS_PLFNString::GetObjectAdress() const
 {
-    return m_Mask.IsEmpty();
-}
-//---------------------------------------------------------------------------
-const CString PSS_PLFNMaskString::GetMask() const
-{
-    return m_Mask;
-}
-//---------------------------------------------------------------------------
-void PSS_PLFNMaskString::SetMask(const CString& value)
-{
-    m_Mask = value;
+    return ((void*)&m_Str);
 }
 //---------------------------------------------------------------------------
 

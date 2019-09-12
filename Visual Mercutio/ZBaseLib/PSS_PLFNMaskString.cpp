@@ -20,16 +20,16 @@
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_PLFNMaskString, PLFNString, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_PLFNMaskString, PSS_PLFNString, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_PLFNMaskString
 //---------------------------------------------------------------------------
 PSS_PLFNMaskString::PSS_PLFNMaskString() :
-    PLFNString()
+    PSS_PLFNString()
 {}
 //---------------------------------------------------------------------------
 PSS_PLFNMaskString::PSS_PLFNMaskString(const PSS_PLFNMaskString& other) :
-    PLFNString()
+    PSS_PLFNString()
 {
     *this = other;
 }
@@ -39,14 +39,14 @@ PSS_PLFNMaskString::~PSS_PLFNMaskString()
 //---------------------------------------------------------------------------
 const PSS_PLFNMaskString& PSS_PLFNMaskString::operator = (const PSS_PLFNMaskString& other)
 {
-    PLFNString::operator = ((inherited&)other);
+    PSS_PLFNString::operator = ((inherited&)other);
     m_Mask = other.m_Mask;
     return *this;
 }
 //---------------------------------------------------------------------------
 const PSS_PLFNMaskString& PSS_PLFNMaskString::operator = (const PSS_PLFNMaskString* pOther)
 {
-    PLFNString::operator = ((inherited*)pOther);
+    PSS_PLFNString::operator = ((inherited*)pOther);
 
     if (!pOther)
         m_Mask.Empty();
@@ -100,7 +100,7 @@ CString PSS_PLFNMaskString::GetFormattedObject()
 //---------------------------------------------------------------------------
 void PSS_PLFNMaskString::Serialize(CArchive& ar)
 {
-    PLFNString::Serialize(ar);
+    PSS_PLFNString::Serialize(ar);
 
     if (ar.IsStoring())
         // write the elements

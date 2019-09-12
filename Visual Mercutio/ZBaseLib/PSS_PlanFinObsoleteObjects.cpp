@@ -25,16 +25,16 @@
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_PLFNStringHistory, PLFNString, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_PLFNStringHistory, PSS_PLFNString, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_PLFNStringHistory
 //---------------------------------------------------------------------------
 PSS_PLFNStringHistory::PSS_PLFNStringHistory() :
-    PLFNString()
+    PSS_PLFNString()
 {}
 //---------------------------------------------------------------------------
 PSS_PLFNStringHistory::PSS_PLFNStringHistory(const PSS_PLFNStringHistory& other) :
-    PLFNString()
+    PSS_PLFNString()
 {
     *this = other;
 }
@@ -44,7 +44,7 @@ PSS_PLFNStringHistory::~PSS_PLFNStringHistory()
 //---------------------------------------------------------------------------
 const PSS_PLFNStringHistory& PSS_PLFNStringHistory::operator = (const PSS_PLFNStringHistory* pOther)
 {
-    PLFNString::operator = ((inherited*)pOther);
+    PSS_PLFNString::operator = ((inherited*)pOther);
 
     if (!pOther)
         m_Str.Empty();
@@ -56,7 +56,7 @@ const PSS_PLFNStringHistory& PSS_PLFNStringHistory::operator = (const PSS_PLFNSt
 //---------------------------------------------------------------------------
 const PSS_PLFNStringHistory& PSS_PLFNStringHistory::operator = (const PSS_PLFNStringHistory& other)
 {
-    PLFNString::operator = ((inherited&)other);
+    PSS_PLFNString::operator = ((inherited&)other);
     m_Str = other.m_Str;
     return *this;
 }
@@ -74,7 +74,7 @@ void PSS_PLFNStringHistory::CopyObject(PSS_PlanFinObject* pSrc)
 //---------------------------------------------------------------------------
 void PSS_PLFNStringHistory::GetContains(const CString& line)
 {
-    PLFNString::GetContains(line);
+    PSS_PLFNString::GetContains(line);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_PLFNStringHistory::IsSelected(const CPoint& point) const
@@ -84,7 +84,7 @@ BOOL PSS_PLFNStringHistory::IsSelected(const CPoint& point) const
 //---------------------------------------------------------------------------
 void PSS_PLFNStringHistory::Serialize(CArchive& ar)
 {
-    PLFNString::Serialize(ar);
+    PSS_PLFNString::Serialize(ar);
 }
 //---------------------------------------------------------------------------
 #ifdef _DEBUG
@@ -233,16 +233,16 @@ void PSS_PLFNNumbered::DrawObject(CDC* pDC, ZIView* pView)
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_PLFNNumbEdit, PLFNString, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_PLFNNumbEdit, PSS_PLFNString, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_PLFNNumbEdit
 //---------------------------------------------------------------------------
 PSS_PLFNNumbEdit::PSS_PLFNNumbEdit() :
-    PLFNString()
+    PSS_PLFNString()
 {}
 //---------------------------------------------------------------------------
 PSS_PLFNNumbEdit::PSS_PLFNNumbEdit(const PSS_PLFNNumbEdit& other) :
-    PLFNString()
+    PSS_PLFNString()
 {
     *this = other;
 }
@@ -252,7 +252,7 @@ PSS_PLFNNumbEdit::~PSS_PLFNNumbEdit()
 //---------------------------------------------------------------------------
 const PSS_PLFNNumbEdit& PSS_PLFNNumbEdit::operator = (const PSS_PLFNNumbEdit* pOther)
 {
-    PLFNString::operator = ((inherited*)pOther);
+    PSS_PLFNString::operator = ((inherited*)pOther);
 
     if (!pOther)
     {
@@ -270,7 +270,7 @@ const PSS_PLFNNumbEdit& PSS_PLFNNumbEdit::operator = (const PSS_PLFNNumbEdit* pO
 //---------------------------------------------------------------------------
 const PSS_PLFNNumbEdit& PSS_PLFNNumbEdit::operator = (const PSS_PLFNNumbEdit& other)
 {
-    PLFNString::operator = ((inherited&)other);
+    PSS_PLFNString::operator = ((inherited&)other);
     m_Chapter   = other.m_Chapter;
     m_Paragraph = other.m_Paragraph;
     return *this;
@@ -289,7 +289,7 @@ void PSS_PLFNNumbEdit::CopyObject(PSS_PlanFinObject* pSrc)
 //---------------------------------------------------------------------------
 void PSS_PLFNNumbEdit::Serialize(CArchive& ar)
 {
-    PLFNString::Serialize(ar);
+    PSS_PLFNString::Serialize(ar);
 
     if (ar.IsStoring())
     {

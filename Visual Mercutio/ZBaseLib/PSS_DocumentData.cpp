@@ -15,7 +15,7 @@
 #include "PSS_PLFNRadioBtn.h"
 #include "PSS_PLFNCheckBtn.h"
 #include "PSS_PLFNBitmap.h"
-#include "ZASquare.h"
+#include "PSS_PLFNSquare.h"
 #include "PSS_PLFNAutoNumbered.h"
 #include "PSS_PLFNMultiColumn.h"
 #include "PSS_PlanFinObsoleteObjects.h"
