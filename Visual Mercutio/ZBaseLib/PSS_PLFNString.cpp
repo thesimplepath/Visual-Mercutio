@@ -20,16 +20,16 @@
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_PLFNString, PLFNText, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_PLFNString, PSS_PLFNText, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_PLFNString
 //---------------------------------------------------------------------------
 PSS_PLFNString::PSS_PLFNString() :
-    PLFNText()
+    PSS_PLFNText()
 {}
 //---------------------------------------------------------------------------
 PSS_PLFNString::PSS_PLFNString(const PSS_PLFNString& other) :
-    PLFNText()
+    PSS_PLFNText()
 {
     *this = other;
 }
@@ -39,13 +39,13 @@ PSS_PLFNString::~PSS_PLFNString()
 //---------------------------------------------------------------------------
 const PSS_PLFNString& PSS_PLFNString::operator = (const PSS_PLFNString& other)
 {
-    PLFNText::operator = ((inherited&)other);
+    PSS_PLFNText::operator = ((inherited&)other);
     return *this;
 }
 //---------------------------------------------------------------------------
 const PSS_PLFNString& PSS_PLFNString::operator = (const PSS_PLFNString* pOther)
 {
-    PLFNText::operator = ((inherited*)pOther);
+    PSS_PLFNText::operator = ((inherited*)pOther);
     return *this;
 }
 //---------------------------------------------------------------------------
@@ -81,7 +81,7 @@ void PSS_PLFNString::DrawObject(CDC* pDC, ZIView* pView)
 //---------------------------------------------------------------------------
 void PSS_PLFNString::Serialize(CArchive& ar)
 {
-    PLFNText::Serialize(ar);
+    PSS_PLFNText::Serialize(ar);
 }
 //---------------------------------------------------------------------------
 #ifdef _DEBUG

@@ -116,33 +116,28 @@ void PSS_Font::Serialize(CArchive& ar)
     else
     {
         CString faceName;
-        short   height;
-        short   width;
-        short   escape;
-        short   orientation;
-        short   weight;
-        BYTE    italic;
-        BYTE    under;
-        BYTE    strikeOut;
-        BYTE    charSet;
-
         ar >> faceName;
 
-        WORD data;
-        ar >> data;
-        height = short(data);
+        WORD wValue;
+        ar >> wValue;
+        const short height = short(wValue);
 
-        ar >> data;
-        width = short(data);
+        ar >> wValue;
+        const short width = short(wValue);
 
-        ar >> data;
-        escape = short(data);
+        ar >> wValue;
+        const short escape = short(wValue);
 
-        ar >> data;
-        orientation = short(data);
+        ar >> wValue;
+        const short orientation = short(wValue);
 
-        ar >> data;
-        weight = short(data);
+        ar >> wValue;
+        const short weight = short(wValue);
+
+        BYTE italic;
+        BYTE under;
+        BYTE strikeOut;
+        BYTE charSet;
 
         ar >> italic;
         ar >> under;

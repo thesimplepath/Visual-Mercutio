@@ -19,7 +19,7 @@
 
 //## begin module%334FC4630329.includes preserve=yes
 #ifndef __AFXWIN_H__
-    #error include 'stdafx.h' before including this file for PCH
+#error include 'stdafx.h' before including this file for PCH
 #endif
 
 #include "zBaseLib\ZDDoc.h"
@@ -47,19 +47,19 @@
 
 #ifndef _WIN32
 
-    extern "C" extern void WINAPI InitZResDLL();
-    extern "C" extern void WINAPI InitZWinUtilDLL();
+extern "C" extern void WINAPI InitZResDLL();
+extern "C" extern void WINAPI InitZWinUtilDLL();
 
-    // Three external functions to enable 3d controls
-    #ifdef __cplusplus
-    extern "C" {
-    #endif
-        int FAR PASCAL Ctl3dRegister( HANDLE ) ;
-        int FAR PASCAL Ctl3dAutoSubclass( HANDLE ) ;
-        int FAR PASCAL Ctl3dUnregister( HANDLE ) ;
-    #ifdef __cplusplus
-    }
-    #endif
+// Three external functions to enable 3d controls
+#ifdef __cplusplus
+extern "C" {
+#endif
+    int FAR PASCAL Ctl3dRegister(HANDLE);
+    int FAR PASCAL Ctl3dAutoSubclass(HANDLE);
+    int FAR PASCAL Ctl3dUnregister(HANDLE);
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 
@@ -74,7 +74,7 @@
 #include "zBaseLib\PSS_FontManager.h"
 
 // ZAStylMg
-#include "zBaseLib\ZAStylMg.h"
+#include "zBaseLib\PSS_StyleManager.h"
 
 // TmplMng
 #include "zBaseLib\PSS_TemplateManager.h"
@@ -98,10 +98,10 @@ using namespace sfl;
 
 // JMR-MODIF - Le 31 décembre 2006 - Modification de la hiérarchie de classes pour la prise en charge par le médiateur.
 class ZAMainApp : public PSS_SingleInstanceApplication,
-                  public ZISubject,
-                  public ZTTemplateDocument<_TemplateFunctionNoopAccessor>
+    public ZISubject,
+    public ZTTemplateDocument<_TemplateFunctionNoopAccessor>
 {
-    DECLARE_DYNAMIC( ZAMainApp )
+    DECLARE_DYNAMIC(ZAMainApp)
     typedef ZTTemplateDocument<_TemplateFunctionNoopAccessor> _ThisClass;
 
 public:
@@ -112,10 +112,10 @@ public:
     // Component windows
     PSS_StatusBar& GetStatusBar()
     {
-        return( (ZIMainFrame*)AfxGetMainWnd() )->GetStatusBar();
+        return((ZIMainFrame*)AfxGetMainWnd())->GetStatusBar();
     }
 
-    virtual void SetVisualToolObject ( const CString& sClassName ) = 0;
+    virtual void SetVisualToolObject(const CString& sClassName) = 0;
     virtual BOOL OpenFieldRepositoryReadOnly() const = 0;
     virtual PSS_Global::IEApplicationType GetApplicationType() const = 0;
 
@@ -139,14 +139,14 @@ public:
 #endif
 
     // Open a document file, also called from the DDE
-    virtual CDocument* OpenDocumentFile( LPCTSTR lpszFileName );
+    virtual CDocument* OpenDocumentFile(LPCTSTR lpszFileName);
 
     // Saves all modified document without prompting for save
     // except for new document without names
     virtual bool SaveAllModifiedNoPrompt();
 
     BOOL ChooseServer();
-    BOOL BuildTemplateName( CString& str, PSS_Stamp& Stamp );
+    BOOL BuildTemplateName(CString& str, PSS_Stamp& Stamp);
 
     // JMR-MODIF - Le 14 juillet 2005 - Supprimé les fonctions de modification des paramètres de l'imprimante,
     // car ces fonctions sont maintenant gérées ailleurs dans le programme.
@@ -160,9 +160,9 @@ public:
         return GetApplicationOptions().GetShowWelcomeScreen();
     }
 
-    void SetShowWelcomeScreen( const BOOL value )
+    void SetShowWelcomeScreen(const BOOL value)
     {
-        GetApplicationOptions().SetShowWelcomeScreen( value );
+        GetApplicationOptions().SetShowWelcomeScreen(value);
     }
 
     BOOL MaximizeFormOnOpen()
@@ -220,7 +220,7 @@ public:
         return GetApplicationOptions().GetAutomaticFieldNameCreation();
     }
 
-    void SetLastLoadedFile( const CString value )
+    void SetLastLoadedFile(const CString value)
     {
         GetApplicationOptions().SetLastLoadedFileName(value);
     }
@@ -245,7 +245,7 @@ public:
         return GetApplicationOptions().GetForceNetworkConnection();
     }
 
-    void SetForceNetworkConnection( const BOOL value )
+    void SetForceNetworkConnection(const BOOL value)
     {
         GetApplicationOptions().SetForceNetworkConnection(value);
     }
@@ -255,7 +255,7 @@ public:
         return GetApplicationOptions().GetDontShowToolTip();
     }
 
-    void SetDontShowToolTip( const BOOL value )
+    void SetDontShowToolTip(const BOOL value)
     {
         GetApplicationOptions().SetDontShowToolTip(value);
     }
@@ -265,7 +265,7 @@ public:
         return GetApplicationOptions().GetDontShowTaskList();
     }
 
-    void SetDontShowTaskList( const BOOL value )
+    void SetDontShowTaskList(const BOOL value)
     {
         GetApplicationOptions().SetDontShowTaskList(value);
     }
@@ -275,9 +275,9 @@ public:
         return GetApplicationOptions().GetRegisteredUserName();
     }
 
-    void SetRegisteredUserName( CString value )
+    void SetRegisteredUserName(CString value)
     {
-        GetApplicationOptions().SetRegisteredUserName( value );
+        GetApplicationOptions().SetRegisteredUserName(value);
     }
 
     CString GetRegisteredCompanyName()
@@ -285,9 +285,9 @@ public:
         return GetApplicationOptions().GetRegisteredCompanyName();
     }
 
-    void SetRegisteredCompanyName( CString value )
+    void SetRegisteredCompanyName(CString value)
     {
-        GetApplicationOptions().SetRegisteredCompanyName( value );
+        GetApplicationOptions().SetRegisteredCompanyName(value);
     }
 
     CString GetRegisteredProductKey()
@@ -295,9 +295,9 @@ public:
         return GetApplicationOptions().GetRegisteredProductKey();
     }
 
-    void SetRegisteredProductKey( CString value )
+    void SetRegisteredProductKey(CString value)
     {
-        GetApplicationOptions().SetRegisteredProductKey( value );
+        GetApplicationOptions().SetRegisteredProductKey(value);
     }
 
     // Server Options
@@ -306,9 +306,9 @@ public:
         return GetServer().GetFileDirectory();
     }
 
-    void SetFileDirectory( const CString value )
+    void SetFileDirectory(const CString value)
     {
-        GetServer().SetFileDirectory( value );
+        GetServer().SetFileDirectory(value);
     }
 
     CString GetTemplateDirectory()
@@ -316,9 +316,9 @@ public:
         return GetServer().GetTemplateDirectory();
     }
 
-    void SetTemplateDirectory( const CString value )
+    void SetTemplateDirectory(const CString value)
     {
-        GetServer().SetTemplateDirectory( value );
+        GetServer().SetTemplateDirectory(value);
     }
 
     void TemplateDirectoryHasChanged();
@@ -334,9 +334,9 @@ public:
         return GetServer().GetProcessTemplateDirectory();
     }
 
-    void SetProcessTemplateDirectory( const CString value )
+    void SetProcessTemplateDirectory(const CString value)
     {
-        GetServer().SetProcessTemplateDirectory( value );
+        GetServer().SetProcessTemplateDirectory(value);
     }
 
     void ProcessTemplateDirectoryHasChanged();
@@ -352,9 +352,9 @@ public:
         return GetServer().GetModelTemplateDirectory();
     }
 
-    void SetModelTemplateDirectory( const CString value )
+    void SetModelTemplateDirectory(const CString value)
     {
-        GetServer().SetModelTemplateDirectory( value );
+        GetServer().SetModelTemplateDirectory(value);
     }
 
     void ModelTemplateDirectoryHasChanged();
@@ -370,9 +370,9 @@ public:
         return GetServer().GetModelUnitDirectory();
     }
 
-    void SetModelUnitDirectory( const CString value )
+    void SetModelUnitDirectory(const CString value)
     {
-        GetServer().SetModelUnitDirectory( value );
+        GetServer().SetModelUnitDirectory(value);
     }
 
     CString GetRootDirectory()
@@ -380,9 +380,9 @@ public:
         return GetServer().GetRootPath();
     }
 
-    void SetRootDirectory( const CString value )
+    void SetRootDirectory(const CString value)
     {
-        GetServer().SetRootPath( value );
+        GetServer().SetRootPath(value);
     }
 
     // Internal directories
@@ -421,9 +421,9 @@ public:
         return GetServer().GetGlobalFieldNameRepository();
     }
 
-    void SetGlobalFieldNameRepository( const CString value )
+    void SetGlobalFieldNameRepository(const CString value)
     {
-        GetServer().SetGlobalFieldNameRepository( value );
+        GetServer().SetGlobalFieldNameRepository(value);
     }
 
     CString GetLogFile()
@@ -441,9 +441,9 @@ public:
         return GetServer().GetUseLogTextFile();
     }
 
-    void SetUseLogTextFile( BOOL value )
+    void SetUseLogTextFile(BOOL value)
     {
-        GetServer().SetUseLogTextFile( value );
+        GetServer().SetUseLogTextFile(value);
     }
 
     BOOL GetUseLogDatabaseFile()
@@ -451,9 +451,9 @@ public:
         return GetServer().GetUseLogDatabaseFile();
     }
 
-    void SetUseLogDatabaseFile( BOOL value )
+    void SetUseLogDatabaseFile(BOOL value)
     {
-        GetServer().SetUseLogDatabaseFile( value );
+        GetServer().SetUseLogDatabaseFile(value);
     }
 
     const BOOL GetUseFolderNameAsFile()
@@ -461,9 +461,9 @@ public:
         return GetServer().GetUseFolderNameAsFile();
     }
 
-    void SetUseFolderNameAsFile( BOOL value )
+    void SetUseFolderNameAsFile(BOOL value)
     {
-        GetServer().SetUseFolderNameAsFile( value );
+        GetServer().SetUseFolderNameAsFile(value);
     }
 
     const BOOL GetStoreUserFileByUser()
@@ -471,14 +471,13 @@ public:
         return GetServer().GetStoreUserFileByUser();
     }
 
-    void SetStoreUserFileByUser( BOOL value )
+    void SetStoreUserFileByUser(BOOL value)
     {
-        GetServer().SetStoreUserFileByUser( value );
+        GetServer().SetStoreUserFileByUser(value);
     }
 
     virtual void RefreshCurrentSchema()
-    {
-    }
+    {}
 
     // Advanced: virtual access to m_pMainWnd
     virtual ZIMainFrame* GetMainWindow()
@@ -486,19 +485,18 @@ public:
         return (ZIMainFrame*)m_pMainWnd;
     }
 
-    virtual BOOL OnCmdMsg( UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo );
+    virtual BOOL OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo);
 
     // Virtual method which allows derived class to change the m_pszProfileName variable
     virtual void OnChangeWinIniFilename()
-    {
-    }
+    {}
 
 public:
 
     ZAMainApp();
     ~ZAMainApp();
 
-    virtual BOOL ProcessMessageFilter( int code, LPMSG lpMsg );
+    virtual BOOL ProcessMessageFilter(int code, LPMSG lpMsg);
 
     // Return the application name.
     virtual CString GetApplicationName() const;
@@ -506,13 +504,13 @@ public:
     // Return the application registry key
     virtual CString GetApplicationRegistryKey() const
     {
-        return _T( "" );
+        return _T("");
     }
 
     // Return the application registry key for the product ID
     virtual CString GetApplicationRegistryProductEntryKey() const
     {
-        return _T( "PID" );
+        return _T("PID");
     }
 
     BOOL ShouldSaveDesign() const;
@@ -534,7 +532,7 @@ public:
 
     //## Operation: GetStyleManager%870446010
     // Return the style manager of the current document.
-    ZAStyleManager& GetStyleManager();
+    PSS_StyleManager& GetStyleManager();
 
     //## Operation: GetFontManager%870446011
     // Return the Font Manager of the current document.
@@ -542,31 +540,31 @@ public:
 
     //## Operation: DisplaySampleText%870643929
     // Display a text using the font or the style passed in parameter.
-    void DisplaySampleText( CDC*            pDC,
-                            const CString&    sValue,
-                            CRect            Rect,
-                           PSS_Font::FontHandle        hFont    = g_NoFontDefined,
-                            HandleStyle        hStyle    = NoStyleDefined );
+    void DisplaySampleText(CDC*            pDC,
+                           const CString&    sValue,
+                           CRect            Rect,
+                           PSS_Font::Handle        hFont = g_NoFontDefined,
+                           PSS_Style::Handle        hStyle = g_NoStyleDefined);
 
     //## Operation: DisplaySampleText%870643928
     // Display a text using the font or the style passed in
     // parameter.
-    void DisplaySampleText( CDC*            pDC,
-                            const CString&    sValue,
-                            CRect            Rect,
-                           PSS_Font*            pFont    = NULL,
-                            ZAStyle*        pStyle    = NULL );
+    void DisplaySampleText(CDC*            pDC,
+                           const CString&    sValue,
+                           CRect            Rect,
+                           PSS_Font*            pFont = NULL,
+                           PSS_Style*        pStyle = NULL);
 
     //## Operation: IsCursorCapturedValid%908554843
     // Check if the cursor capture still valid.
-    virtual BOOL IsCursorCapturedValid( const CPoint& point, ZIView* pView );
+    virtual BOOL IsCursorCapturedValid(const CPoint& point, ZIView* pView);
 
     //## Operation: GetFieldRepository%910104706
     PSS_FieldRepository* GetFieldRepository();
 
     //## Operation: SetCurrentDocument%910434288
     // Sets the current document.
-    void SetCurrentDocument( ZDDocument* pDoc );
+    void SetCurrentDocument(ZDDocument* pDoc);
 
     //## Operation: GetCurrentDocument%910434289
     // Returns the current document pointer.
@@ -589,16 +587,16 @@ public:
 
     //## Operation: SetServerIniFile%912623195
     // Set the global ini file. This function is virtual.
-    virtual void SetServerIniFile(const CString& value );
+    virtual void SetServerIniFile(const CString& value);
 
     //## Operation: GetDocumentList%928442320
     // Fill the document list with open document.
-    void GetDocumentList( CObList& DocList );
-    void GetDocumentArrayName( CStringArray& FileArray );
+    void GetDocumentList(CObList& DocList);
+    void GetDocumentArrayName(CStringArray& FileArray);
 
     //## Operation: IsDocumentOpen%928442321
     // Returns true if the document is already open.
-    BOOL IsDocumentOpen( const CString Filename );
+    BOOL IsDocumentOpen(const CString Filename);
 
     //## Operation: ReadOnlyDocuments%934529054
     // return TRUE if the documents should be open in read-only mode.
@@ -622,7 +620,7 @@ public:
     // Is the application options class.
     PSS_ApplicationOption& GetApplicationOptions();
 
-    virtual void WinHelp( DWORD dwData, UINT nCmd = HELP_CONTEXT );
+    virtual void WinHelp(DWORD dwData, UINT nCmd = HELP_CONTEXT);
 
     void DisplayWarningOnCommand();
 
@@ -630,16 +628,15 @@ protected:
 
     /////////////////////////////////////////////////////////////////////////////
     // Additional Template operations
-    void RegisterAdditionalTemplate( UINT nIDRes );
+    void RegisterAdditionalTemplate(UINT nIDRes);
 
-    virtual CDocument* OnOpenAdditionalTemplateFile( LPCSTR Filename )
+    virtual CDocument* OnOpenAdditionalTemplateFile(LPCSTR Filename)
     {
         return NULL;
     }
 
-    virtual void OnSaveAdditionalTemplateFile( LPCSTR Filename )
-    {
-    }
+    virtual void OnSaveAdditionalTemplateFile(LPCSTR Filename)
+    {}
 
     // Register the additional template not covered by
     // CDocTemplate
@@ -648,18 +645,16 @@ protected:
     /////////////////////////////////////////////////////////////////////////////
     // Open Save call-back operations
     // JMR-MODIF - Le 24 avril 2006 - Ajout de la variable Filename dans la déclaration.
-    virtual void OnAfterOpenDocument( CDocument* pDoc, CString Filename )
-    {
-    }
+    virtual void OnAfterOpenDocument(CDocument* pDoc, CString Filename)
+    {}
 
-    virtual void OnAfterSaveDocument( CDocument* pDoc )
-    {
-    }
+    virtual void OnAfterSaveDocument(CDocument* pDoc)
+    {}
 
     // The derived application must return the right help filename
     virtual CString OnBuildHelpFilename()
     {
-        return _T( "" );
+        return _T("");
     }
 
     virtual BOOL InitAppl();
@@ -682,8 +677,8 @@ protected:
 
     // Register the standard extention files.
     // Add the icon facility.
-    void RegisterShellFileTypes( BOOL bCompat = FALSE );
-    void RegisterAdditionalTemplateShellFileTypes( BOOL bCompat = FALSE );
+    void RegisterShellFileTypes(BOOL bCompat = FALSE);
+    void RegisterAdditionalTemplateShellFileTypes(BOOL bCompat = FALSE);
 
     //## Operation: PostInitAppl%910716404
     virtual BOOL PostInitAppl();
@@ -692,14 +687,14 @@ protected:
     //    Load all users and initialize the connected user.
     BOOL LoadAllUsers();
 
-    BOOL DoPromptFileName( CString&            fileName,
-                           const CString&    initialDir,
-                           UINT                nIDSTitle,
-                           DWORD            lFlags,
-                           BOOL                bOpenFileDialog,
-                           CDocTemplate*    pTemplate );
+    BOOL DoPromptFileName(CString&            fileName,
+                          const CString&    initialDir,
+                          UINT                nIDSTitle,
+                          DWORD            lFlags,
+                          BOOL                bOpenFileDialog,
+                          CDocTemplate*    pTemplate);
 
-    void AppendFilterSuffix( CString& filter, OPENFILENAME& ofn,CDocTemplate* pTemplate, CString* pstrDefaultExt );
+    void AppendFilterSuffix(CString& filter, OPENFILENAME& ofn, CDocTemplate* pTemplate, CString* pstrDefaultExt);
 
     //{{AFX_MSG(ZAMainApp)
     //}}AFX_MSG
@@ -730,10 +725,10 @@ protected:
 private:
 
     //## Constructors (generated)
-    ZAMainApp( const ZAMainApp &right );
+    ZAMainApp(const ZAMainApp &right);
 
     //## Assignment Operation (generated)
-    const ZAMainApp & operator=( const ZAMainApp &right );
+    const ZAMainApp & operator=(const ZAMainApp &right);
 
 #ifdef _ZCHECKINFO
     // Load the application type doing anything
@@ -745,7 +740,7 @@ private:
     //    Load the global repository of fields.
     BOOL LoadGlobalFieldRepository();
 
-// Data Members for Class Attributes
+    // Data Members for Class Attributes
 private:
 
     //## begin ZAMainApp::Server%36643CEB0064.attr preserve=no  public: ZBCltServer {U}
@@ -755,7 +750,7 @@ private:
 
     //## begin ZAMainApp::ActivityLog%369BC5AC0258.attr preserve=no  public: ZUActivityLog {U}
     ZUActivityLog    m_ActivityLog;
-    
+
     //## end ZAMainApp::ActivityLog%369BC5AC0258.attr
 
 #ifdef _ZCHECKINFO
@@ -773,7 +768,7 @@ private:
 inline CString ZAMainApp::GetApplicationName() const
 {
     //## begin ZAMainApp::GetApplicationName%834216953.body preserve=yes
-    return( _T( "Plan Financier" ) );
+    return(_T("Plan Financier"));
     //## end ZAMainApp::GetApplicationName%834216953.body
 }
 
@@ -791,11 +786,11 @@ inline BOOL ZAMainApp::ShouldPrintLine() const
 
 inline CDocument* ZAMainApp::GetActiveCDocument()
 {
-    if ( AfxGetMainWnd() &&
-         ( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame() &&
-         ( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame()->GetActiveDocument() )
+    if (AfxGetMainWnd() &&
+        ((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame() &&
+        ((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument())
     {
-        return ( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame()->GetActiveDocument();
+        return ((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
     }
 
     return NULL;
@@ -804,12 +799,12 @@ inline CDocument* ZAMainApp::GetActiveCDocument()
 inline ZDDocument* ZAMainApp::GetActiveDocument()
 {
     //## begin ZAMainApp::GetActiveDocument%853735838.body preserve=yes
-    if ( AfxGetMainWnd() &&
-         ( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame() &&
-         ( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame()->GetActiveDocument() &&
-         ISA( ( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame()->GetActiveDocument(), ZDDocument ) )
+    if (AfxGetMainWnd() &&
+        ((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame() &&
+        ((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument() &&
+        ISA(((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument(), ZDDocument))
     {
-        return (ZDDocument*)( ( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame()->GetActiveDocument() );
+        return (ZDDocument*)(((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument());
     }
 
     return NULL;
@@ -818,22 +813,22 @@ inline ZDDocument* ZAMainApp::GetActiveDocument()
 
 inline PSS_BaseDocument* ZAMainApp::GetActiveBaseDocument()
 {
-    if ( AfxGetMainWnd() &&
-         ( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame() &&
-         ( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame()->GetActiveDocument() &&
-         ISA( ( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame()->GetActiveDocument(), PSS_BaseDocument) )
+    if (AfxGetMainWnd() &&
+        ((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame() &&
+        ((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument() &&
+        ISA(((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument(), PSS_BaseDocument))
     {
-        return (PSS_BaseDocument*)( ( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame()->GetActiveDocument() );
+        return (PSS_BaseDocument*)(((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument());
     }
 
     return NULL;
 }
 
-inline ZAStyleManager& ZAMainApp::GetStyleManager()
+inline PSS_StyleManager& ZAMainApp::GetStyleManager()
 {
     //## begin ZAMainApp::GetStyleManager%870446010.body preserve=yes
     // Must have a current document
-    ASSERT( GetActiveDocument() );
+    ASSERT(GetActiveDocument());
     return GetActiveDocument()->GetStyleManager();
     //## end ZAMainApp::GetStyleManager%870446010.body
 }
@@ -842,7 +837,7 @@ inline PSS_FontManager& ZAMainApp::GetFontManager()
 {
     //## begin ZAMainApp::GetFontManager%870446011.body preserve=yes
     // Must have a current document
-    ASSERT( GetActiveDocument() );
+    ASSERT(GetActiveDocument());
     return GetActiveDocument()->GetFontManager();
     //## end ZAMainApp::GetFontManager%870446011.body
 }
@@ -850,15 +845,15 @@ inline PSS_FontManager& ZAMainApp::GetFontManager()
 inline PSS_FieldRepository* ZAMainApp::GetFieldRepository()
 {
     //## begin ZAMainApp::GetFieldRepository%910104706.body preserve=yes
-    if ( m_FieldRepository != NULL )
+    if (m_FieldRepository != NULL)
     {
-        return ( ( m_FieldRepository->IsValid() ) ? m_FieldRepository : NULL );
+        return ((m_FieldRepository->IsValid()) ? m_FieldRepository : NULL);
     }
     else return NULL;
     //## end ZAMainApp::GetFieldRepository%910104706.body
 }
 
-inline void ZAMainApp::SetCurrentDocument( ZDDocument* pDoc )
+inline void ZAMainApp::SetCurrentDocument(ZDDocument* pDoc)
 {
     //## begin ZAMainApp::SetCurrentDocument%910434288.body preserve=yes
     m_pCurrentDocument = pDoc;
@@ -911,8 +906,5 @@ inline ZBCriptedFileApplicationTypeInfo::ApplicationInfoType ZAMainApp::GetAppli
     return m_ApplicationInfoType;
 }
 #endif
-
-//## begin module%334FC4630329.epilog preserve=yes
-//## end module%334FC4630329.epilog
 
 #endif

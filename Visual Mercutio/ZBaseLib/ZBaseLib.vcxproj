@@ -672,19 +672,19 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZAStyle.cpp">
+    <ClCompile Include="PSS_Style.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZAStylMg.cpp">
+    <ClCompile Include="PSS_StyleManager.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZAText.cpp">
+    <ClCompile Include="PSS_PLFNText.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1433,9 +1433,9 @@
     <ClInclude Include="PSS_ServerOptions.h" />
     <ClInclude Include="PSS_PLFNSquare.h" />
     <ClInclude Include="PSS_PLFNString.h" />
-    <ClInclude Include="ZAStyle.h" />
-    <ClInclude Include="ZAStylMg.h" />
-    <ClInclude Include="ZAText.h" />
+    <ClInclude Include="PSS_Style.h" />
+    <ClInclude Include="PSS_StyleManager.h" />
+    <ClInclude Include="PSS_PLFNText.h" />
     <ClInclude Include="ZATwoSts.h" />
     <ClInclude Include="zBaseLib.h" />
     <ClInclude Include="ZBaseLibRes.h" />

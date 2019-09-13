@@ -43,7 +43,7 @@
 #include "PSS_MathParser.h"
 #include "PSS_PlanFinObject.h"
 #include "PSS_PlanFinObjects.h"
-#include "ZAText.h"
+#include "PSS_PLFNText.h"
 #include "PSS_PLFNString.h"
 #include "PSS_PLFNGraphic.h"
 #include "PSS_Formula.h"

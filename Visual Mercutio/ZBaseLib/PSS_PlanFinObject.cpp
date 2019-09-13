@@ -69,7 +69,7 @@ PSS_PlanFinObject::PSS_PlanFinObject() :
     m_pRectTracker(NULL),
     m_pBorder(NULL),
     m_hFont(-1),
-    m_hStyle(NormalStyle),
+    m_hStyle(g_NormalStyle),
     m_EmptyStyle(E_LT_Automatic),
     m_Color(-1),
     m_FillColor(-1),
@@ -97,7 +97,7 @@ PSS_PlanFinObject::PSS_PlanFinObject(const PSS_PlanFinObject& other) :
     m_pRectTracker(NULL),
     m_pBorder(NULL),
     m_hFont(-1),
-    m_hStyle(NormalStyle),
+    m_hStyle(g_NormalStyle),
     m_EmptyStyle(E_LT_Automatic),
     m_Color(-1),
     m_FillColor(-1),
@@ -181,29 +181,29 @@ const PSS_PlanFinObject& PSS_PlanFinObject::operator = (const PSS_PlanFinObject*
 
     if (!pOther)
     {
-        m_pNotes         = NULL;
-        m_FormatType     = E_FT_Standard;
-        m_ObjectRect     = 0, 0, 0, 0;
-        m_IsEmpty        = TRUE;
-        m_pColumn        = NULL;
-        m_pRectTracker   = NULL;
-        m_pBorder        = NULL;
+        m_pNotes         =  NULL;
+        m_FormatType     =  E_FT_Standard;
+        m_ObjectRect     =  0, 0, 0, 0;
+        m_IsEmpty        =  TRUE;
+        m_pColumn        =  NULL;
+        m_pRectTracker   =  NULL;
+        m_pBorder        =  NULL;
         m_hFont          = -1;
-        m_hStyle         = NormalStyle;
-        m_EmptyStyle     = E_LT_Automatic;
+        m_hStyle         =  g_NormalStyle;
+        m_EmptyStyle     =  E_LT_Automatic;
         m_Color          = -1;
         m_FillColor      = -1;
-        m_LineNumber     = 0;
-        m_GroupNumber    = 0;
-        m_TabOrder       = 0.0;
-        m_Angle          = 0;
-        m_Page           = 0;
-        m_Selected       = FALSE;
-        m_IsVisible      = TRUE;
-        m_MustBePrinted  = TRUE;
-        m_DefaultValue   = FALSE;
-        m_HasBeenChanged = FALSE;
-        m_ReadOnly       = FALSE;
+        m_LineNumber     =  0;
+        m_GroupNumber    =  0;
+        m_TabOrder       =  0.0;
+        m_Angle          =  0;
+        m_Page           =  0;
+        m_Selected       =  FALSE;
+        m_IsVisible      =  TRUE;
+        m_MustBePrinted  =  TRUE;
+        m_DefaultValue   =  FALSE;
+        m_HasBeenChanged =  FALSE;
+        m_ReadOnly       =  FALSE;
     }
     else
     {
@@ -997,7 +997,7 @@ PSS_Font* PSS_PlanFinObject::GetFont(ZIView* pView)
             return NULL;
 
         // return the Font of the style
-        return pDoc->GetFontManager().GetFont(pDoc->GetStyleManager().GetStyle(m_hStyle)->GethFont());
+        return pDoc->GetFontManager().GetFont(pDoc->GetStyleManager().GetStyle(m_hStyle)->GetFontHandle());
     }
 
     return NULL;
@@ -1025,7 +1025,7 @@ COLORREF PSS_PlanFinObject::GetColor(ZIView* pView)
     return -1;
 }
 //---------------------------------------------------------------------------
-void PSS_PlanFinObject::SetStyle(HandleStyle value)
+void PSS_PlanFinObject::SetStyle(PSS_Style::Handle value)
 {
     m_hStyle = value;
 
@@ -1150,7 +1150,7 @@ const PSS_Border* PSS_PlanFinObject::GetBorder(ZIView* pView) const
 
     // get the style back color
     return (pView->GetDocument()->GetStyleManager().GetStyle(m_hStyle) ?
-            pView->GetDocument()->GetStyleManager().GetStyle(m_hStyle)->GetpBorder() : NULL);
+            pView->GetDocument()->GetStyleManager().GetStyle(m_hStyle)->GetBorder() : NULL);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_PlanFinObject::AddNotes(const CString& comment, const CString& userName)
@@ -1233,32 +1233,32 @@ void PSS_PlanFinObject::Serialize(CArchive& ar)
         ASSERT(!m_strObjName.IsEmpty());
 
         PSS_BaseDocument* pBaseDoc = dynamic_cast<PSS_BaseDocument*>(ar.m_pDocument);
-        WORD              temp;
+        WORD              wValue;
 
         // if before Version 4 read the FontType
         // And assign the font
         if (pBaseDoc && pBaseDoc->GetDocumentStamp().GetInternalVersion() < 4)
-            ar >> temp;
+            ar >> wValue;
 
-        ar >> temp;
-        m_Page = int(temp);
+        ar >> wValue;
+        m_Page = int(wValue);
         ASSERT(m_Page >= 0);
 
-        ar >> temp;
+        ar >> wValue;
 
         // to keep the serialization as before, do the following
-        m_FormatType = EFormatType(temp);
+        m_FormatType = EFormatType(wValue);
 
         if (!pBaseDoc)
             return;
 
         if (pBaseDoc->GetDocumentStamp().GetInternalVersion() >= 1)
         {
-            ar >> temp;
-            m_IsVisible = int(temp);
+            ar >> wValue;
+            m_IsVisible = int(wValue);
 
-            ar >> temp;
-            m_MustBePrinted = int(temp);
+            ar >> wValue;
+            m_MustBePrinted = int(wValue);
         }
 
         if (pBaseDoc->GetDocumentStamp().GetInternalVersion() >= 2)
@@ -1275,18 +1275,18 @@ void PSS_PlanFinObject::Serialize(CArchive& ar)
         {
             ar >> m_hFont;
 
-            ar >> temp;
-            m_hStyle = int(temp);
+            ar >> wValue;
+            m_hStyle = int(wValue);
 
-            ar >> temp;
-            m_Angle = int(temp);
+            ar >> wValue;
+            m_Angle = int(wValue);
         }
 
         // version 5
         if (pBaseDoc->GetDocumentStamp().GetInternalVersion() >= 5)
         {
-            ar >> temp;
-            m_EmptyStyle = ELineType(temp);
+            ar >> wValue;
+            m_EmptyStyle = ELineType(wValue);
             ar >> m_TabOrder;
         }
 
@@ -1299,24 +1299,24 @@ void PSS_PlanFinObject::Serialize(CArchive& ar)
         if (pBaseDoc->GetDocumentStamp().GetInternalVersion() >= 8)
         {
             // deserialize the default value
-            ar >> temp;
-            m_DefaultValue = BOOL(temp);
+            ar >> wValue;
+            m_DefaultValue = BOOL(wValue);
         }
 
         // version 12
         if (pBaseDoc->GetDocumentStamp().GetInternalVersion() >= 12)
         {
             // deserialize the empty value
-            ar >> temp;
-            m_IsEmpty = BOOL(temp);
+            ar >> wValue;
+            m_IsEmpty = BOOL(wValue);
         }
 
         // version 14
         if (pBaseDoc->GetDocumentStamp().GetInternalVersion() >= 14)
         {
             // deserialize the read-only value
-            ar >> temp;
-            m_ReadOnly = BOOL(temp);
+            ar >> wValue;
+            m_ReadOnly = BOOL(wValue);
             ar >> (CObject*&)m_pNotes;
         }
 
@@ -1349,12 +1349,12 @@ void PSS_PlanFinObject::RotateFont(ZDDocument* pDoc)
 {
     if (pDoc)
     {
-        PSS_Font::FontHandle hFont;
+        PSS_Font::Handle hFont;
 
         if (GetFont() != g_NoFontDefined)
             hFont = GetFont();
         else
-            hFont = (pDoc->GetStyleManager().GetStyle(m_hStyle) ? pDoc->GetStyleManager().GetStyle(m_hStyle)->GethFont() : NULL);
+            hFont = (pDoc->GetStyleManager().GetStyle(m_hStyle) ? pDoc->GetStyleManager().GetStyle(m_hStyle)->GetFontHandle() : NULL);
 
         if (hFont)
             SetFont(pDoc->GetFontManager().RotateFont(hFont, m_Angle));

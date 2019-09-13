@@ -104,9 +104,9 @@ void PSS_PLFNRect::Serialize(CArchive& ar)
         {
             ar >> m_ArcOffset;
 
-            WORD temp;
-            ar >> temp;
-            m_Round = BOOL(temp);
+            WORD wValue;
+            ar >> wValue;
+            m_Round = BOOL(wValue);
         }
         else
             m_Round = FALSE;
@@ -339,19 +339,19 @@ void PSS_PLFNLine::DrawObject(CDC* pDC, ZIView* pView)
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_PLFNStatic, PLFNText, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_PLFNStatic, PSS_PLFNText, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_PLFNStatic
 //---------------------------------------------------------------------------
 PSS_PLFNStatic::PSS_PLFNStatic() :
-    PLFNText()
+    PSS_PLFNText()
 {
     // set as static
     SetIsStatic(TRUE);
 }
 //---------------------------------------------------------------------------
 PSS_PLFNStatic::PSS_PLFNStatic(const PSS_PLFNStatic& other) :
-    PLFNText()
+    PSS_PLFNText()
 {
     *this = other;
 }
@@ -361,13 +361,13 @@ PSS_PLFNStatic::~PSS_PLFNStatic()
 //---------------------------------------------------------------------------
 const PSS_PLFNStatic& PSS_PLFNStatic::operator = (const PSS_PLFNStatic* pOther)
 {
-    PLFNText::operator = ((inherited*)pOther);
+    PSS_PLFNText::operator = ((inherited*)pOther);
     return *this;
 }
 //---------------------------------------------------------------------------
 const PSS_PLFNStatic& PSS_PLFNStatic::operator = (const PSS_PLFNStatic& other)
 {
-    PLFNText::operator = ((inherited&)other);
+    PSS_PLFNText::operator = ((inherited&)other);
     return *this;
 }
 //---------------------------------------------------------------------------
@@ -1135,7 +1135,7 @@ void PSS_PLFNLong::Serialize(CArchive& ar)
         // read the elements
         ar >> m_Long;
 
-        WORD value;
+        WORD wValue;
 
         if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() < 1)
         {
@@ -1144,11 +1144,11 @@ void PSS_PLFNLong::Serialize(CArchive& ar)
         }
         else
         {
-            ar >> value;
-            m_IsCalculatedField = value;
+            ar >> wValue;
+            m_IsCalculatedField = wValue;
 
-            ar >> value;
-            m_KeepTheValue = value;
+            ar >> wValue;
+            m_KeepTheValue = wValue;
         }
 
         // since version 2
@@ -1161,8 +1161,8 @@ void PSS_PLFNLong::Serialize(CArchive& ar)
         // since version 5
         if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
         {
-            ar >> value;
-            m_IsRounded = BOOL(value);
+            ar >> wValue;
+            m_IsRounded = BOOL(wValue);
 
             ar >> m_Rounded;
         }
@@ -1170,8 +1170,8 @@ void PSS_PLFNLong::Serialize(CArchive& ar)
         // since version 6
         if (((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 6)
         {
-            ar >> value;
-            m_IconDisplayType = IEIconDisplayType(value);
+            ar >> wValue;
+            m_IconDisplayType = IEIconDisplayType(wValue);
         }
 
         // until version 12

@@ -92,7 +92,7 @@ UINT PSS_PLFNAscii::GetJustify(ZDDocument* pDoc) const
 
     if (pDoc)
     {
-        ZAStyle* pStyle = pDoc->GetStyleManager().GetStyle(GetStyle());
+        PSS_Style* pStyle = pDoc->GetStyleManager().GetStyle(GetStyle());
 
         if (pStyle)
             return pStyle->GetJustify();
@@ -117,27 +117,27 @@ void PSS_PLFNAscii::Serialize(CArchive& ar)
     {
         // read the elements
         const long version = ((PSS_BaseDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion();
-        WORD       temp;
+        WORD       wValue;
 
         if (version >= 0)
         {
-            ar >> temp;
-            m_Justify = temp;
+            ar >> wValue;
+            m_Justify = wValue;
         }
 
         if (version >= 5)
         {
-            ar >> temp;
-            m_IsStriked = BOOL(temp);
+            ar >> wValue;
+            m_IsStriked = BOOL(wValue);
 
-            ar >> temp;
-            m_StrikeStyle = IEStrikeStyles(temp);
+            ar >> wValue;
+            m_StrikeStyle = IEStrikeStyles(wValue);
         }
 
         if (version >= 7)
         {
-            ar >> temp;
-            m_KeepHistory = BOOL(temp);
+            ar >> wValue;
+            m_KeepHistory = BOOL(wValue);
         }
     }
 }

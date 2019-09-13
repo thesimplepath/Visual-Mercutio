@@ -641,7 +641,7 @@ void ZDDocumentReadWrite::OnDefineStyle()
 }
 
 // Because one style has been deleted, all objects refering to this style must be redirected to Normal style
-void ZDDocumentReadWrite::StyleHasBeenDeleted(HandleStyle hStyle, int DocumentIndex)
+void ZDDocumentReadWrite::StyleHasBeenDeleted(PSS_Style::Handle hStyle, int DocumentIndex)
 {
     if (DocumentIndex == -1)
     {

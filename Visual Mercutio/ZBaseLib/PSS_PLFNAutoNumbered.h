@@ -44,7 +44,7 @@ class AFX_EXT_CLASS PSS_PLFNAutoNumbered : public PSS_PlanFinObject
     DECLARE_SERIAL(PSS_PLFNAutoNumbered)
 
     public:
-        typedef PSS_PLFNAutoNumbered inherited;
+        typedef PSS_PlanFinObject inherited;
 
         PSS_PLFNAutoNumbered();
 
@@ -169,7 +169,7 @@ class AFX_EXT_CLASS PSS_PLFNAutoNumbered : public PSS_PlanFinObject
         * Gets the style handle
         *@return the style handle
         */
-        virtual inline const HandleStyle GetStyle() const;
+        virtual inline const PSS_Style::Handle GetStyle() const;
 
         /**
         * Sets the style handle
@@ -177,7 +177,7 @@ class AFX_EXT_CLASS PSS_PLFNAutoNumbered : public PSS_PlanFinObject
         *@note After having assigned the handle, remove the font handle, the object color
         *      and the object alignement
         */
-        virtual void SetStyle(HandleStyle hStyle);
+        virtual void SetStyle(PSS_Style::Handle hStyle);
 
         /**
         * Gets the text level
@@ -262,13 +262,13 @@ class AFX_EXT_CLASS PSS_PLFNAutoNumbered : public PSS_PlanFinObject
         * Gets the font handle
         *@return the font handle
         */
-        virtual inline const PSS_Font::FontHandle GetFont() const;
+        virtual inline const PSS_Font::Handle GetFont() const;
 
         /**
         * Sets the font handle
         *@param hFont - the font handle
         */
-        virtual inline void SetFont(PSS_Font::FontHandle hFont);
+        virtual inline void SetFont(PSS_Font::Handle hFont);
 
         /**
         * Serializes the class content to an archive
@@ -350,7 +350,7 @@ void PSS_PLFNAutoNumbered::SetJustify(UINT value)
         m_pObject->SetJustify(value);
 }
 //---------------------------------------------------------------------------
-const HandleStyle PSS_PLFNAutoNumbered::GetStyle() const
+const PSS_Style::Handle PSS_PLFNAutoNumbered::GetStyle() const
 {
     if (m_pObject)
         return m_pObject->GetStyle();
@@ -413,7 +413,7 @@ void PSS_PLFNAutoNumbered::SetLevel(int value)
     m_Level = value;
 }
 //---------------------------------------------------------------------------
-const PSS_Font::FontHandle PSS_PLFNAutoNumbered::GetFont() const
+const PSS_Font::Handle PSS_PLFNAutoNumbered::GetFont() const
 {
     if (m_pObject)
         return m_pObject->GetFont();
@@ -421,7 +421,7 @@ const PSS_Font::FontHandle PSS_PLFNAutoNumbered::GetFont() const
     return GetFont();
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNAutoNumbered::SetFont(PSS_Font::FontHandle hFont)
+void PSS_PLFNAutoNumbered::SetFont(PSS_Font::Handle hFont)
 {
     if (m_pObject)
         m_pObject->SetFont(hFont);

@@ -26,15 +26,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZAStyle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZAStylMg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZAText.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZATwoSts.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -602,6 +593,15 @@
     <ClCompile Include="PSS_PLFNString.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_Style.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_StyleManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_PLFNText.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -718,15 +718,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZAStyle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZAStylMg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZAText.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZATwoSts.h">
@@ -1300,6 +1291,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_PLFNString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_Style.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_StyleManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_PLFNText.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

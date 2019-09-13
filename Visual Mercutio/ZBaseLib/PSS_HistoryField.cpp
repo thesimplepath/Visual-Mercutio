@@ -98,9 +98,9 @@ void PSS_HistoryField::Serialize(CArchive& ar)
     else
     {
         // read the elements
-        WORD temp;
-        ar >> temp;
-        m_ReadOnly = temp;
+        WORD wValue;
+        ar >> wValue;
+        m_ReadOnly = wValue;
 
         ar >> m_FieldName;
     }

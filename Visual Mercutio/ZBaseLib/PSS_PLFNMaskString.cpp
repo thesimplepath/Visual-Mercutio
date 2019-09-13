@@ -76,7 +76,7 @@ void PSS_PLFNMaskString::DrawObject(CDC* pDC, ZIView* pView)
     else
     {
         // if printing and the content is empty, and it is not necessary to print the empty style, just return
-        if (!(pDC->IsPrinting() && PLFNText::IsEmpty() && !pView->GetDocument()->GetDocOptions().GetPrintEmptyStyleWhenEmpty()))
+        if (!(pDC->IsPrinting() && PSS_PLFNText::IsEmpty() && !pView->GetDocument()->GetDocOptions().GetPrintEmptyStyleWhenEmpty()))
         {
             CFont* pOldFont = pDC->SelectObject(GetFont(pView));
             pDC->SetBkMode(TRANSPARENT);

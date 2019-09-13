@@ -80,9 +80,9 @@ void PSS_FieldObjectDefinition::Serialize(CArchive& ar)
         ar >> m_ClassName;
         ar >> m_HelpUserDescription;
 
-        WORD value;
-        ar >> value;
-        m_Sorted = BOOL(value);
+        WORD wValue;
+        ar >> wValue;
+        m_Sorted = BOOL(wValue);
 
         ar >> (CObject*&)m_pObject;
     }

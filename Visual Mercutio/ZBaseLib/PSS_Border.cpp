@@ -147,22 +147,22 @@ void PSS_Border::Serialize(CArchive& ar)
         ar >> m_RightWidth;
         ar >> m_BottomWidth;
 
-        WORD temp;
+        WORD wValue;
 
-        ar >> temp;
-        m_LeftType = ELineType(temp);
+        ar >> wValue;
+        m_LeftType = ELineType(wValue);
 
-        ar >> temp;
-        m_RightType = ELineType(temp);
+        ar >> wValue;
+        m_RightType = ELineType(wValue);
 
-        ar >> temp;
-        m_TopType = ELineType(temp);
+        ar >> wValue;
+        m_TopType = ELineType(wValue);
 
-        ar >> temp;
-        m_BottomType = ELineType(temp);
+        ar >> wValue;
+        m_BottomType = ELineType(wValue);
 
-        ar >> temp;
-        m_Shadow = ELineType(temp);
+        ar >> wValue;
+        m_Shadow = ELineType(wValue);
 
         ar >> m_TopColor;
         ar >> m_BottomColor;

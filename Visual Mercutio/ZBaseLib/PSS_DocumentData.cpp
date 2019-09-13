@@ -271,7 +271,7 @@ void PSS_DocumentData::MoveContents(PSS_DocumentData* pDocument, BOOL copyFormat
     }
 }
 //---------------------------------------------------------------------------
-void PSS_DocumentData::StyleHasBeenDeleted(HandleStyle hStyle)
+void PSS_DocumentData::StyleHasBeenDeleted(PSS_Style::Handle hStyle)
 {
     if (!hStyle)
         return;
@@ -287,7 +287,7 @@ void PSS_DocumentData::StyleHasBeenDeleted(HandleStyle hStyle)
         // if the object points to the deleted style
         if (pObj->GetStyle() == hStyle)
             // Assigns Normal style
-            pObj->SetStyle(NormalStyle);
+            pObj->SetStyle(g_NormalStyle);
     }
 }
 //---------------------------------------------------------------------------
@@ -1210,7 +1210,7 @@ void PSS_DocumentData::SetCurrentStyle(const CString& name)
     if (pObjTemp)
     {
         // when assign new style, clear a specific font assigned
-        pObjTemp->SetStyle(m_pDocument->GetStyleManager().FindStyle(name));
+        pObjTemp->SetStyle(m_pDocument->GetStyleManager().SearchStyle(name));
 
         // remove the angle
         pObjTemp->SetAngle(0, m_pDocument);
@@ -1366,7 +1366,7 @@ void PSS_DocumentData::PropagateFieldValue(PSS_PlanFinObject* pObj)
     pView->UpdateWindow();
 }
 //---------------------------------------------------------------------------
-void PSS_DocumentData::AssignNewStyle(HandleStyle hOldStyle, HandleStyle hNewStyle)
+void PSS_DocumentData::AssignNewStyle(PSS_Style::Handle hOldStyle, PSS_Style::Handle hNewStyle)
 {
     if (!hOldStyle || !hNewStyle)
         return;

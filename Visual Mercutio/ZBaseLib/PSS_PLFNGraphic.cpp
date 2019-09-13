@@ -124,15 +124,15 @@ void PSS_PLFNGraphic::Serialize(CArchive& ar)
         // read the elements
         ar >> m_GraphicColor;
 
-        WORD value;
-        ar >> value;
-        m_GraphicWidth = value;
+        WORD wValue;
+        ar >> wValue;
+        m_GraphicWidth = wValue;
 
-        ar >> value;
-        m_Shadow = value;
+        ar >> wValue;
+        m_Shadow = wValue;
 
-        ar >> value;
-        m_GraphicStyle = value;
+        ar >> wValue;
+        m_GraphicStyle = wValue;
     }
 }
 //---------------------------------------------------------------------------

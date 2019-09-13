@@ -193,11 +193,11 @@ void PSS_PLFNBitmap::Serialize(CArchive& ar)
     else
     {
         // read the elements
-        DWORD temp;
-        ar >> temp;
+        DWORD dwValue;
+        ar >> dwValue;
 
         // read the header
-        m_HeaderSize = std::size_t(temp);
+        m_HeaderSize = std::size_t(dwValue);
 
         if (m_pBitmapInfoHeader)
             delete m_pBitmapInfoHeader;
@@ -213,9 +213,9 @@ void PSS_PLFNBitmap::Serialize(CArchive& ar)
         }
 
         // read the bits
-        ar >> temp;
+        ar >> dwValue;
 
-        m_Bytes = std::size_t(temp);
+        m_Bytes = std::size_t(dwValue);
 
         if (m_pBits)
             delete m_pBits;
@@ -240,9 +240,9 @@ void PSS_PLFNBitmap::Serialize(CArchive& ar)
 
         if (((ZDDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
         {
-            WORD word;
-            ar >> word;
-            m_DisplayStyle = IEDisplayStyles(word);
+            WORD wValue;
+            ar >> wValue;
+            m_DisplayStyle = IEDisplayStyles(wValue);
         }
     }
 }

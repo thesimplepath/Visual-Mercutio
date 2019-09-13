@@ -28,7 +28,7 @@
 #include "PSS_BaseDocument.h"
 #include "PSS_Formula.h"
 #include "PSS_FontManager.h"
-#include "ZAStylMg.h"
+#include "PSS_StyleManager.h"
 
 // class name mapping
 #ifndef PSS_DocumentData
@@ -74,9 +74,8 @@ class PSS_FieldRepository;
 //## Uses: <unnamed>%36501B2200AE;ZUDocumentExport { -> }
 //## Uses: <unnamed>%3678EEE70284;ZDDocumentData { -> }
 
-class AFX_EXT_CLASS ZDDocument : public PSS_BaseDocument  //## Inherits: <unnamed>%35CC2E84011D
+class AFX_EXT_CLASS ZDDocument : public PSS_BaseDocument
 {
-    //## begin ZDDocument%35CC2E450326.initialDeclarations preserve=yes
 public:
     // Inherited feature
     typedef PSS_BaseDocument inherited;
@@ -347,7 +346,7 @@ public:
     PSS_FontManager& GetFontManager(int DocumentIndex = -1);
 
     //## Operation: GetStyleManager%914353653
-    ZAStyleManager& GetStyleManager(int DocumentIndex = -1);
+    PSS_StyleManager& GetStyleManager(int DocumentIndex = -1);
 
     //## Operation: PropagateFieldValue%914754357
     //    This function receives the field name and its value. Its

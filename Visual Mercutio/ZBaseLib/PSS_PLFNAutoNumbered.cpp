@@ -152,7 +152,7 @@ CString PSS_PLFNAutoNumbered::GetUnformattedObject()
     return "";
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNAutoNumbered::SetStyle(HandleStyle hStyle)
+void PSS_PLFNAutoNumbered::SetStyle(PSS_Style::Handle hStyle)
 {
     if (m_pObject)
         m_pObject->SetStyle(hStyle);
@@ -190,18 +190,18 @@ void PSS_PLFNAutoNumbered::Serialize(CArchive& ar)
     else
     {
         // read the elements
-        WORD temp;
-        ar >> temp;
-        m_TextOffset = temp;
+        WORD wValue;
+        ar >> wValue;
+        m_TextOffset = wValue;
 
-        ar >> temp;
-        m_AutoCalculate = temp;
+        ar >> wValue;
+        m_AutoCalculate = wValue;
 
-        ar >> temp;
-        m_SectionNumber = temp;
+        ar >> wValue;
+        m_SectionNumber = wValue;
 
-        ar >> temp;
-        m_Level = temp;
+        ar >> wValue;
+        m_Level = wValue;
 
         // serialize the defined object
         ar >> m_pObject;

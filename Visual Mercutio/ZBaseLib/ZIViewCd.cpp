@@ -140,13 +140,13 @@ void ZIViewCode::OnDraw(CDC* pDC)
             }
             case E_CT_Static:
             {
-                if (obj->IsKindOf(RUNTIME_CLASS(PLFNText)) && ((PLFNText*)obj)->GetIsStatic())
+                if (obj->IsKindOf(RUNTIME_CLASS(PSS_PLFNText)) && ((PSS_PLFNText*)obj)->GetIsStatic())
                     obj->ShowObjectName(pDC);
                 break;
             }
             case E_CT_Text:
             {
-                if ((obj->IsKindOf(RUNTIME_CLASS(PLFNText)) && !((PLFNText*)obj)->GetIsStatic()) || obj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)))
+                if ((obj->IsKindOf(RUNTIME_CLASS(PSS_PLFNText)) && !((PSS_PLFNText*)obj)->GetIsStatic()) || obj->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)))
                     obj->ShowObjectName(pDC);
                 break;
             }

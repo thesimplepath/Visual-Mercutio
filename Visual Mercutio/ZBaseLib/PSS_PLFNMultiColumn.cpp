@@ -105,9 +105,9 @@ void PSS_PLFNMultiColumn::Serialize(CArchive& ar)
     else
     {
         // read the elements
-        WORD value;
-        ar >> value;
-        m_ShowHeader = BOOL(value);
+        WORD wValue;
+        ar >> wValue;
+        m_ShowHeader = BOOL(wValue);
     }
 }
 //---------------------------------------------------------------------------

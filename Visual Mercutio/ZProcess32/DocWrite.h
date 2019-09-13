@@ -60,7 +60,7 @@ public:
                        int                    DocumentIndexDest    = -1 );
 
     void SetCurrentStyle( const CString& sName, int DocumentIndex = -1 );
-    void StyleHasBeenDeleted( HandleStyle hStyle, int DocumentIndex = -1 );
+    void StyleHasBeenDeleted( PSS_Style::Handle hStyle, int DocumentIndex = -1 );
 
 public:
 

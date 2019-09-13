@@ -1168,9 +1168,9 @@ void ZDDocument::ChangeCurrentFileOpen(size_t FileIndex, BOOL bNotify)
 
 void ZDDocument::GetStyleArrayName(CStringArray& StyleArray)
 {
-    ZAStyleManager& Styles = GetStyleManager();
+    PSS_StyleManager& Styles = GetStyleManager();
 
-    for (size_t i = 0; i < Styles.GetElements(); ++i)
+    for (std::size_t i = 0; i < Styles.GetCount(); ++i)
     {
         if (Styles.GetStyle(i))
         {
@@ -2095,7 +2095,7 @@ BOOL ZDDocument::PropagateExternDocumentAllValues(ZDDocument*    pDoc,
                     continue;
                 }
 
-                if (pObj->IsKindOf(RUNTIME_CLASS(PLFNText)) && ((PLFNText*)pObj)->GetIsStatic())
+                if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNText)) && ((PSS_PLFNText*)pObj)->GetIsStatic())
                 {
                     continue;
                 }
@@ -2156,7 +2156,7 @@ BOOL ZDDocument::PropagateInternalDocumentAllValues(int    IndexFrom,
                     continue;
                 }
 
-                if (pObj->IsKindOf(RUNTIME_CLASS(PLFNText)) && ((PLFNText*)pObj)->GetIsStatic())
+                if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNText)) && ((PSS_PLFNText*)pObj)->GetIsStatic())
                 {
                     continue;
                 }
@@ -2217,7 +2217,7 @@ BOOL ZDDocument::PropagateInternalDocumentOnDocumentValues(int        InIndexFro
                     continue;
                 }
 
-                if (pObj->IsKindOf(RUNTIME_CLASS(PLFNText)) && ((PLFNText*)pObj)->GetIsStatic())
+                if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNText)) && ((PSS_PLFNText*)pObj)->GetIsStatic())
                 {
                     continue;
                 }
@@ -2522,7 +2522,7 @@ PSS_FontManager& ZDDocument::GetFontManager(int DocumentIndex)
     //## end ZDDocument::GetFontManager%914353652.body
 }
 
-ZAStyleManager& ZDDocument::GetStyleManager(int DocumentIndex)
+PSS_StyleManager& ZDDocument::GetStyleManager(int DocumentIndex)
 {
     //## begin ZDDocument::GetStyleManager%914353653.body preserve=yes
     if (DocumentIndex == -1)
@@ -2878,7 +2878,7 @@ CString ZDDocument::GetAutomaticNewName(PSS_PlanFinObject* pObj, int DocumentInd
     {
         return pDocData->BuildAutomaticNewName(_T("Squ"));
     }
-    else if (pObj->IsKindOf(RUNTIME_CLASS(PLFNText)))
+    else if (pObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNText)))
     {
         return pDocData->BuildAutomaticNewName(_T("Text"));
     }

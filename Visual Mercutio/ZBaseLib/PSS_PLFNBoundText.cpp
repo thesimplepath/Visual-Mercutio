@@ -272,9 +272,9 @@ void PSS_PLFNBoundText::Serialize(CArchive& ar)
         {
             ar >> m_Hanging;
 
-            WORD temp;
-            ar >> temp;
-            m_HangingLines = UINT(temp);
+            WORD wValue;
+            ar >> wValue;
+            m_HangingLines = UINT(wValue);
 
             ar >> m_InterLine;
 

@@ -56,7 +56,7 @@ const PSS_FontManager & PSS_FontManager::operator = (const PSS_FontManager& othe
     return *this;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_FontManager::RemoveFont(PSS_Font::FontHandle hFont)
+BOOL PSS_FontManager::RemoveFont(PSS_Font::Handle hFont)
 {
     const int fontCount = m_FontArray.GetSize();
 
@@ -79,7 +79,7 @@ BOOL PSS_FontManager::RemoveFont(PSS_Font::FontHandle hFont)
     return FALSE;
 }
 //---------------------------------------------------------------------------
-PSS_Font::FontHandle PSS_FontManager::SearchFont(LOGFONT* pLogFont, COLORREF color)
+PSS_Font::Handle PSS_FontManager::SearchFont(LOGFONT* pLogFont, COLORREF color)
 {
     const int fontCount = m_FontArray.GetSize();
     LOGFONT   lf;
@@ -115,7 +115,7 @@ PSS_Font::FontHandle PSS_FontManager::SearchFont(LOGFONT* pLogFont, COLORREF col
     return g_NoFontDefined;
 }
 //---------------------------------------------------------------------------
-PSS_Font::FontHandle PSS_FontManager::SearchFont(PSS_Font* pFont)
+PSS_Font::Handle PSS_FontManager::SearchFont(PSS_Font* pFont)
 {
     const int fontCount = m_FontArray.GetSize();
 
@@ -130,7 +130,7 @@ PSS_Font::FontHandle PSS_FontManager::SearchFont(PSS_Font* pFont)
     return g_NoFontDefined;
 }
 //---------------------------------------------------------------------------
-PSS_Font::FontHandle PSS_FontManager::RotateFont(PSS_Font::FontHandle hFont, int angle)
+PSS_Font::Handle PSS_FontManager::RotateFont(PSS_Font::Handle hFont, int angle)
 {
     LOGFONT   lf;
     PSS_Font* pInitialFont = GetFont(hFont);
@@ -143,7 +143,7 @@ PSS_Font::FontHandle PSS_FontManager::RotateFont(PSS_Font::FontHandle hFont, int
     // set the new angle
     lf.lfEscapement = angle;
 
-    PSS_Font::FontHandle hRetFont;
+    PSS_Font::Handle hRetFont;
 
     // return the specific assigned font
     if ((hRetFont = SearchFont(&lf, pInitialFont->GetFontColor())) == g_NoFontDefined)

@@ -170,13 +170,13 @@ void PSS_PLFNNumbered::Serialize(CArchive& ar)
     else
     {
         // read the elements
-        WORD temp;
+        WORD wValue;
 
-        ar >> temp;
-        m_Paragraph = int(temp);
+        ar >> wValue;
+        m_Paragraph = int(wValue);
 
-        ar >> temp;
-        m_Chapter = int(temp);
+        ar >> wValue;
+        m_Chapter = int(wValue);
     }
 }
 //---------------------------------------------------------------------------
@@ -300,13 +300,13 @@ void PSS_PLFNNumbEdit::Serialize(CArchive& ar)
     else
     {
         // read the elements
-        WORD temp;
+        WORD wValue;
 
-        ar >> temp;
-        m_Paragraph = int(temp);
+        ar >> wValue;
+        m_Paragraph = int(wValue);
 
-        ar >> temp;
-        m_Chapter = int(temp);
+        ar >> wValue;
+        m_Chapter = int(wValue);
     }
 }
 //---------------------------------------------------------------------------
@@ -593,13 +593,13 @@ void PSS_PLFNNumbNumEdit::Serialize(CArchive& ar)
     else
     {
         // read the elements
-        WORD temp;
+        WORD wValue;
 
-        ar >> temp;
-        m_Paragraph = int(temp);
+        ar >> wValue;
+        m_Paragraph = int(wValue);
 
-        ar >> temp;
-        m_Chapter = int(temp);
+        ar >> wValue;
+        m_Chapter = int(wValue);
     }
 }
 //---------------------------------------------------------------------------

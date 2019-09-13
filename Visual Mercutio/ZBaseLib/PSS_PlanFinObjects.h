@@ -42,7 +42,7 @@
 #include "PSS_MathParser.h"
 #include "PSS_PlanFinObject.h"
 #include "PSS_PLFNAscii.h"
-#include "ZAText.h"
+#include "PSS_PLFNText.h"
 #include "PSS_PLFNString.h"
 #include "PSS_PLFNGraphic.h"
 #include "PSS_Formula.h"
@@ -388,12 +388,12 @@ UINT PSS_PLFNLine::GetPropertyTabs() const
 * Financial plan containing a static object
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PLFNStatic : public PLFNText
+class AFX_EXT_CLASS PSS_PLFNStatic : public PSS_PLFNText
 {
     DECLARE_SERIAL(PSS_PLFNStatic)
 
     public:
-        typedef PLFNText inherited;
+        typedef PSS_PLFNText inherited;
 
         PSS_PLFNStatic();
 

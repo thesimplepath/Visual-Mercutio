@@ -101,9 +101,9 @@ void PSS_Formula::Serialize(CArchive& ar)
     else
     {
         // read informations
-        WORD temp;
-        ar >> temp;
-        m_Page = int(temp);
+        WORD wValue;
+        ar >> wValue;
+        m_Page = int(wValue);
 
         ar >> m_Formula;
         ar >> m_ExtractedFormula;
@@ -668,9 +668,9 @@ void PSS_FormulaSchema::Serialize(CArchive& ar)
         {
             ar >> m_Description;
 
-            WORD temp;
-            ar >> temp;
-            m_FormulaSchemaType = IEType(temp);
+            WORD wValue;
+            ar >> wValue;
+            m_FormulaSchemaType = IEType(wValue);
         }
         else
         {

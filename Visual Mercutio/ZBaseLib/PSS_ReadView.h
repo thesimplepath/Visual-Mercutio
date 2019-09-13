@@ -39,7 +39,7 @@ class AFX_EXT_CLASS PSS_ReadView : public ZIView
     DECLARE_DYNCREATE(PSS_ReadView)
 
     public:
-        typedef CScrollView inherited;
+        typedef ZIView inherited;
 
         PSS_ReadView();
 

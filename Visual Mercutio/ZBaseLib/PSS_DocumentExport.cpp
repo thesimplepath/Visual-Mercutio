@@ -72,7 +72,7 @@ BOOL PSS_DocumentExport::IsExportedField(CObject* pObj) const
         !pPlanFinObj->IsKindOf(RUNTIME_CLASS(PLFNTwoStates)))
         return FALSE;
 
-    PLFNText* pText = dynamic_cast<PLFNText*>(pObj);
+    PSS_PLFNText* pText = dynamic_cast<PSS_PLFNText*>(pObj);
 
     if (pText && pText->GetIsStatic())
         return FALSE;

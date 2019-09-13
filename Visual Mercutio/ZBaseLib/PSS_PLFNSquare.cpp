@@ -212,22 +212,22 @@ void PSS_PLFNSquare::Serialize(CArchive& ar)
         // read the elements
         ar >> m_SquareSize;
 
-        DWORD value;
-        ar >> value;
-        m_SquareMaxLength = int(value);
+        DWORD dwValue;
+        ar >> dwValue;
+        m_SquareMaxLength = int(dwValue);
 
-        WORD temp;
-        ar >> temp;
-        m_AutoAdjustSize = temp;
+        WORD wValue;
+        ar >> wValue;
+        m_AutoAdjustSize = wValue;
 
-        ar >> value;
-        m_CharPerSquare = unsigned(value);
+        ar >> dwValue;
+        m_CharPerSquare = unsigned(dwValue);
 
-        ar >> temp;
-        m_SquareType = ESquareType(temp);
+        ar >> wValue;
+        m_SquareType = ESquareType(wValue);
 
-        ar >> temp;
-        m_ParsingMode = EParsingModeType(temp);
+        ar >> wValue;
+        m_ParsingMode = EParsingModeType(wValue);
 
         // serialize the oject defined
         ar >> m_pObject;

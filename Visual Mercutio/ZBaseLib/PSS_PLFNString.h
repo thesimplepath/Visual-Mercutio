@@ -22,7 +22,7 @@
 #endif
 
 // processsoft
-#include "ZAText.h"
+#include "PSS_PLFNText.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -38,12 +38,12 @@
 * Financial plan string object
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PLFNString : public PLFNText
+class AFX_EXT_CLASS PSS_PLFNString : public PSS_PLFNText
 {
     DECLARE_SERIAL(PSS_PLFNString)
 
     public:
-        typedef PLFNText inherited;
+        typedef PSS_PLFNText inherited;
 
         PSS_PLFNString();
 

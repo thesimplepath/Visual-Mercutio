@@ -24,7 +24,7 @@
 // processsoft
 #include "PSS_Formula.h"
 #include "PSS_Stamp.h"
-#include "ZAStylMg.h"
+#include "PSS_StyleManager.h"
 #include "PSS_FontManager.h"
 #include "ZUFileLauncher.h"
 
@@ -142,7 +142,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         * Checks if the style has been deleted
         *@param hStyle - style to check
         */
-        virtual void StyleHasBeenDeleted(HandleStyle hStyle);
+        virtual void StyleHasBeenDeleted(PSS_Style::Handle hStyle);
 
         /**
         * Checks the font validity
@@ -500,7 +500,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         *@note An old style must be replaced by a new one, all objects refering to this old style
         *      must be redirected to the new style
         */
-        virtual void AssignNewStyle(HandleStyle hOldStyle, HandleStyle hNewStyle);
+        virtual void AssignNewStyle(PSS_Style::Handle hOldStyle, PSS_Style::Handle hNewStyle);
 
         /**
         * Checks if the document is read-only
@@ -705,7 +705,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         * Gets the style manager
         *@return the style manager
         */
-        virtual inline ZAStyleManager& GetStyleManager();
+        virtual inline PSS_StyleManager& GetStyleManager();
 
         /**
         * Gets the buffer containing the temporary file created by the deserialized file buffer
@@ -856,7 +856,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         PSS_Stamp          m_Stamp;
         PSS_SchemaManager  m_Schema;
         PSS_FontManager    m_FontManager;
-        ZAStyleManager     m_StyleManager;
+        PSS_StyleManager   m_StyleManager;
         PSS_PlanFinObject* m_pCurrentEditedObject;
         ZUFileLauncher     m_FileLauncher;
         CObList            m_ObjElements;
@@ -1105,7 +1105,7 @@ PSS_FontManager& PSS_DocumentData::GetFontManager()
     return m_FontManager;
 }
 //---------------------------------------------------------------------------
-ZAStyleManager& PSS_DocumentData::GetStyleManager()
+PSS_StyleManager& PSS_DocumentData::GetStyleManager()
 {
     return m_StyleManager;
 }

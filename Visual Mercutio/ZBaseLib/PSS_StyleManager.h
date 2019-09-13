@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_FontManager -----------------------------------------------------*
+ * ==> PSS_StyleManager ----------------------------------------------------*
  ****************************************************************************
- * Description : Provides a font manager                                    *
+ * Description : Provides a style manager                                   *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_FontManagerH
-#define PSS_FontManagerH
+#ifndef ZAStylMg_h
+#define ZAStylMg_h 1
 
 // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
@@ -17,11 +17,12 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
-#ifndef PSS_FontManager
-    #define PSS_FontManager ZAFontManager
+#ifndef PSS_StyleManager
+    #define PSS_StyleManager ZAStyleManager
 #endif
 
 // processsoft
+#include "PSS_Style.h"
 #include "PSS_Font.h"
 
 #ifdef _ZBASELIBEXPORT
@@ -35,82 +36,73 @@
 #endif
 
 /**
-* User created font manager
+* Style manager
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_FontManager : public CObject
+class AFX_EXT_CLASS PSS_StyleManager : public CObject
 {
-    DECLARE_SERIAL(PSS_FontManager)
+    DECLARE_SERIAL(PSS_StyleManager)
 
     public:
         typedef CObject inherited;
 
-        PSS_FontManager();
+        PSS_StyleManager();
 
         /**
         * Copy constructor
         *@param other - other object to copy from
         */
-        PSS_FontManager(const PSS_FontManager& other);
+        PSS_StyleManager(const PSS_StyleManager& other);
 
-        virtual ~PSS_FontManager();
+        virtual ~PSS_StyleManager();
 
         /**
         * Copy operator
         *@param other - other object to copy from
         *@return copy of itself
         */
-        const PSS_FontManager& operator = (const PSS_FontManager& other);
+        const PSS_StyleManager& operator = (const PSS_StyleManager& other);
 
         /**
-        * Adds a font
-        *@param pFont - font to add
-        *@return the newly added font handle, g_NoFontDefined on error
+        * Adds a new style
+        *@param pStyle - the style to add
+        *@return the added style handle
         */
-        virtual inline PSS_Font::Handle AddFont(PSS_Font* pFont);
+        virtual PSS_Style::Handle AddStyle(PSS_Style* pStyle);
 
         /**
-        * Removes a font
-        *@param hFont - font handle to remove
+        * Removes a specific style from the manager
+        *@param hStyle - style handle to remove
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL RemoveFont(PSS_Font::Handle hFont);
+        virtual BOOL RemoveStyle(PSS_Style::Handle hStyle);
 
         /**
-        * Searches a font
-        *@param pLogFont - logical font
-        *@param color - color
-        *@return the font handle, g_NoFontDefined if not found or on error
+        * Searches a specific font from its name
+        *@param name - font name to search
+        *@return font handle, g_NoStyleDefined if not found or on error
         */
-        virtual PSS_Font::Handle SearchFont(LOGFONT* pLogFont, COLORREF color);
+        virtual PSS_Style::Handle SearchStyle(const CString& name);
 
         /**
-        * Searches a font
-        *@param pFont - font to search
-        *@return the font handle, g_NoFontDefined if not found or on error
+        * Get the style
+        *@param hStyle - style handle to search
+        *@return the style, NULL if not found or on error
         */
-        virtual PSS_Font::Handle SearchFont(PSS_Font* pFont);
+        virtual inline PSS_Style* GetStyle(PSS_Style::Handle hStyle);
 
         /**
-        * Gets a font matching with a handle
-        *@param hFont - font handle
-        *@return the font, NULL if not found or on error
+        * Get the style at index
+        *@param index - style index
+        *@return the style, NULL if not found or on error
         */
-        virtual inline PSS_Font* GetFont(PSS_Font::Handle hFont);
+        virtual inline PSS_Style* GetStyleAt(int index);
 
         /**
-        * Gets the font count
-        *@return the font count
+        * Gets the style count
+        *@return the style count
         */
         virtual inline std::size_t GetCount();
-
-        /**
-        * Takes an initial font and rotate it by the specified angle
-        *@param hFont - font handle
-        *@param angle - rotation angle in degrees
-        *@return the rotated font handle, g_NoFontDefined on error
-        */
-        virtual PSS_Font::Handle RotateFont(PSS_Font::Handle hFont, int angle);
 
         /**
         * Serializes the class content to an archive
@@ -134,30 +126,25 @@ class AFX_EXT_CLASS PSS_FontManager : public CObject
         #endif
 
     private:
-        CObArray m_FontArray;
+        CObArray m_StyleArray;
 };
 
 //---------------------------------------------------------------------------
-// PSS_FontManager
+// PSS_StyleManager
 //---------------------------------------------------------------------------
-PSS_Font::Handle PSS_FontManager::AddFont(PSS_Font* pFont)
+PSS_Style* PSS_StyleManager::GetStyle(PSS_Style::Handle hStyle)
 {
-    if (!pFont)
-        return g_NoFontDefined;
-
-    pFont->SetFontHandle(m_FontArray.Add(pFont));
-    
-    return pFont->GetFontHandle();
+    return (hStyle == g_NoStyleDefined || hStyle >= m_StyleArray.GetSize() ? NULL : (PSS_Style*)m_StyleArray[int(hStyle)]);
 }
 //---------------------------------------------------------------------------
-PSS_Font* PSS_FontManager::GetFont(PSS_Font::Handle hFont)
+PSS_Style* PSS_StyleManager::GetStyleAt(int index)
 {
-    return (hFont == g_NoFontDefined || hFont >= m_FontArray.GetSize() ? NULL : (PSS_Font*)(m_FontArray[int(hFont)]));
+    return (index == g_NoStyleDefined || index >= m_StyleArray.GetSize() ? NULL : (PSS_Style*)m_StyleArray[int(index)]);
 }
 //---------------------------------------------------------------------------
-std::size_t PSS_FontManager::GetCount()
+std::size_t PSS_StyleManager::GetCount()
 {
-    return m_FontArray.GetSize();
+    return m_StyleArray.GetSize();
 }
 //---------------------------------------------------------------------------
 

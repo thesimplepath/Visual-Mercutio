@@ -33,7 +33,7 @@ class ZBFieldColumn;
 #include "PSS_MathParser.h"
 #include "ZBNotes.h"
 #include "ZBRect.h"
-#include "ZAStyle.h"
+#include "PSS_Style.h"
 #include "PSS_Font.h"
 #include "PSS_Border.h"
 
@@ -514,7 +514,7 @@ class AFX_EXT_CLASS PSS_PlanFinObject : public PSS_FormulaObjectParser
         *@param hStyle - style handle
         *@not After having assigned the handle, remove the font handle, the object color and the object alignment
         */
-        virtual void SetStyle(HandleStyle hStyle);
+        virtual void SetStyle(PSS_Style::Handle hStyle);
 
         /**
         * Gets the angle, in tenths of degrees, between the object base line and the x-axis. The angle is measured
@@ -721,19 +721,19 @@ class AFX_EXT_CLASS PSS_PlanFinObject : public PSS_FormulaObjectParser
         * Gets the font handle
         *@return the font handle
         */
-        virtual inline const PSS_Font::FontHandle GetFont() const;
+        virtual inline const PSS_Font::Handle GetFont() const;
 
         /**
         * Sets the font handle
         *@param hFont - the font handle
         */
-        virtual inline void SetFont(PSS_Font::FontHandle hFont);
+        virtual inline void SetFont(PSS_Font::Handle hFont);
 
         /**
         * Gets the style handle
         *@return the style handle
         */
-        virtual inline const HandleStyle GetStyle() const;
+        virtual inline const PSS_Style::Handle GetStyle() const;
 
         /**
         * Gets the empty style
@@ -873,27 +873,27 @@ class AFX_EXT_CLASS PSS_PlanFinObject : public PSS_FormulaObjectParser
         virtual void DrawRightCorner(CDC* pDC);
 
     private:
-        ZBFieldColumn*       m_pColumn;
-        CRectTracker*        m_pRectTracker;
-        PSS_Border*          m_pBorder;
-        PSS_Font::FontHandle m_hFont;
-        HandleStyle          m_hStyle;
-        ELineType            m_EmptyStyle;
-        COLORREF             m_Color;
-        COLORREF             m_FillColor;
-        CString              m_UserHelp;
-        DWORD                m_LineNumber;
-        unsigned long        m_GroupNumber;
-        double               m_TabOrder;
-        int                  m_Angle;
-        int                  m_Page;
-        BOOL                 m_Selected;
-        BOOL                 m_IsVisible;
-        BOOL                 m_MustBePrinted;
-        BOOL                 m_DefaultValue;
-        BOOL                 m_HasBeenChanged;
-        BOOL                 m_ReadOnly;
-        BOOL                 m_ReadOnlyAtRuntime;
+        ZBFieldColumn*    m_pColumn;
+        CRectTracker*     m_pRectTracker;
+        PSS_Border*       m_pBorder;
+        PSS_Font::Handle  m_hFont;
+        PSS_Style::Handle m_hStyle;
+        ELineType         m_EmptyStyle;
+        COLORREF          m_Color;
+        COLORREF          m_FillColor;
+        CString           m_UserHelp;
+        DWORD             m_LineNumber;
+        unsigned long     m_GroupNumber;
+        double            m_TabOrder;
+        int               m_Angle;
+        int               m_Page;
+        BOOL              m_Selected;
+        BOOL              m_IsVisible;
+        BOOL              m_MustBePrinted;
+        BOOL              m_DefaultValue;
+        BOOL              m_HasBeenChanged;
+        BOOL              m_ReadOnly;
+        BOOL              m_ReadOnlyAtRuntime;
 
         /**
         * Assigns the font
@@ -1212,17 +1212,17 @@ void PSS_PlanFinObject::SetGroupNumber(unsigned long value)
     m_GroupNumber = value;
 }
 //---------------------------------------------------------------------------
-const PSS_Font::FontHandle PSS_PlanFinObject::GetFont() const
+const PSS_Font::Handle PSS_PlanFinObject::GetFont() const
 {
     return m_hFont;
 }
 //---------------------------------------------------------------------------
-void PSS_PlanFinObject::SetFont(PSS_Font::FontHandle value)
+void PSS_PlanFinObject::SetFont(PSS_Font::Handle value)
 {
     m_hFont = value;
 }
 //---------------------------------------------------------------------------
-const HandleStyle PSS_PlanFinObject::GetStyle() const
+const PSS_Style::Handle PSS_PlanFinObject::GetStyle() const
 {
     return m_hStyle;
 }

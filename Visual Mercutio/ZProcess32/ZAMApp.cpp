@@ -655,7 +655,7 @@ BOOL ZAMainApp::InitInstance()
 
     // Because ZAStyle is in ZUtil and if not defined here, the linker does not include this class
     // and the serialization does not run properly, because the class does not exists.
-    ZAStyle* pStyle = new ZAStyle;
+    PSS_Style* pStyle = new PSS_Style;
     delete pStyle;
 
 #ifndef _WIN32
@@ -1656,8 +1656,8 @@ void ZAMainApp::DisplayWarningOnCommand()
 void ZAMainApp::DisplaySampleText(CDC*                pDC,
                                   const CString&    sValue,
                                   CRect            Rect,
-                                  PSS_Font::FontHandle        hFont,
-                                  HandleStyle        hStyle)
+                                  PSS_Font::Handle        hFont,
+                                  PSS_Style::Handle        hStyle)
 {
     //## begin ZAMainApp::DisplaySampleText%870643929.body preserve=yes
     PSS_Font* pFont = NULL;
@@ -1667,9 +1667,9 @@ void ZAMainApp::DisplaySampleText(CDC*                pDC,
         pFont = GetFontManager().GetFont(hFont);
     }
 
-    ZAStyle* pStyle = NULL;
+    PSS_Style* pStyle = NULL;
 
-    if (hStyle != NoStyleDefined)
+    if (hStyle != g_NoStyleDefined)
     {
         pStyle = GetStyleManager().GetStyle(hStyle);
     }
@@ -1678,7 +1678,7 @@ void ZAMainApp::DisplaySampleText(CDC*                pDC,
     //## end ZAMainApp::DisplaySampleText%870643929.body
 }
 
-void ZAMainApp::DisplaySampleText(CDC* pDC, const CString& sValue, CRect Rect, PSS_Font* pFont, ZAStyle* pStyle)
+void ZAMainApp::DisplaySampleText(CDC* pDC, const CString& sValue, CRect Rect, PSS_Font* pFont, PSS_Style* pStyle)
 {
     //## begin ZAMainApp::DisplaySampleText%870643928.body preserve=yes
     // Display the appearance of text
@@ -1700,7 +1700,7 @@ void ZAMainApp::DisplaySampleText(CDC* pDC, const CString& sValue, CRect Rect, P
     else if (pStyle)
     {
         NewBrush.CreateSolidBrush((pStyle->GetBackColor() != -1) ? pStyle->GetBackColor() : defCOLOR_WHITE);
-        PSS_Font* pStyleFont = GetFontManager().GetFont(pStyle->GethFont());
+        PSS_Font* pStyleFont = GetFontManager().GetFont(pStyle->GetFontHandle());
 
         if (!pStyleFont)
         {

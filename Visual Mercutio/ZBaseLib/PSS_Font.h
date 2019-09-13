@@ -37,7 +37,7 @@
 //---------------------------------------------------------------------------
 // Global variables
 //---------------------------------------------------------------------------
-const LONG g_NoFontDefined = -1;
+const std::intptr_t g_NoFontDefined = -1;
 //---------------------------------------------------------------------------
 
 /**
@@ -49,8 +49,8 @@ class AFX_EXT_CLASS PSS_Font : public CFont
     DECLARE_SERIAL(PSS_Font)
 
     public:
-        typedef LONG  FontHandle;
-        typedef CFont inherited;
+        typedef std::intptr_t Handle;
+        typedef CFont         inherited;
 
         PSS_Font();
 
@@ -99,13 +99,13 @@ class AFX_EXT_CLASS PSS_Font : public CFont
         * Gets the font handle
         *@return the font handle
         */
-        virtual inline const FontHandle GetFontHandle() const;
+        virtual inline const Handle GetFontHandle() const;
 
         /**
         * Sets the font handle
         *@param value - the font handle
         */
-        virtual inline void SetFontHandle(FontHandle value);
+        virtual inline void SetFontHandle(Handle value);
 
         /**
         * Serializes the class content to an archive
@@ -129,8 +129,8 @@ class AFX_EXT_CLASS PSS_Font : public CFont
         #endif
 
     private:
-        FontHandle m_hFontNumber;
-        COLORREF   m_ColFont;
+        Handle   m_hFontNumber;
+        COLORREF m_ColFont;
 };
 
 //---------------------------------------------------------------------------
@@ -146,12 +146,12 @@ void PSS_Font::SetFontColor(COLORREF col)
     m_ColFont = col;
 }
 //---------------------------------------------------------------------------
-const PSS_Font::FontHandle PSS_Font::GetFontHandle() const
+const PSS_Font::Handle PSS_Font::GetFontHandle() const
 {
     return m_hFontNumber;
 }
 //---------------------------------------------------------------------------
-void PSS_Font::SetFontHandle(FontHandle value)
+void PSS_Font::SetFontHandle(Handle value)
 {
     m_hFontNumber = value;
 }
