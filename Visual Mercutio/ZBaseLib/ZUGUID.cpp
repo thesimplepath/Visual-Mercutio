@@ -1,53 +1,51 @@
-// ZUGUID.cpp: implementation of the ZUGUID class.
-//////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_GUID ------------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a global unique identifier helper                 *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
 #include "ZUGUID.h"
 
+// std
+#include <string>
+
 #ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
 #endif
 
-// JMR-MODIF - Le 11 octobre 2007 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-//////////////////////////////////////////////////////////////////////
-// Constant definition
-const char gGUIDcheck[] = _T( "_:[v0]" );
-
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
-
-ZUGUID::ZUGUID()
-{
-}
-
-ZUGUID::~ZUGUID()
-{
-}
-
-CString ZUGUID::CreateNewGUID()
+//---------------------------------------------------------------------------
+// Global variables
+//---------------------------------------------------------------------------
+const char g_GUIDcheck[] = _T("_:[v0]");
+//---------------------------------------------------------------------------
+// PSS_GUID
+//---------------------------------------------------------------------------
+PSS_GUID::PSS_GUID()
+{}
+//---------------------------------------------------------------------------
+PSS_GUID::~PSS_GUID()
+{}
+//---------------------------------------------------------------------------
+CString PSS_GUID::CreateNewGUID()
 {
     GUID    guid;
-    CString    sGUID;
+    CString str;
+    HRESULT hResult = ::CoCreateGuid(&guid);
 
-    HRESULT Result = CoCreateGuid( &guid );
-
-    if ( Result == S_OK )
-    {
-        sGUID.Format( _T( "%s%d-%d" ), gGUIDcheck, guid.Data1, guid.Data2 );
-    }
+    if (hResult == S_OK)
+        str.Format(_T("%s%d-%d"), g_GUIDcheck, guid.Data1, guid.Data2);
     else
-    {
-        sGUID.Empty();
-    }
+        str.Empty();
 
-    return sGUID;
+    return str;
 }
-
-bool ZUGUID::GUIDIsValid( const CString s )
+//---------------------------------------------------------------------------
+bool PSS_GUID::GUIDIsValid(const CString& guid)
 {
-    return ( s.Left( strlen( gGUIDcheck ) ) == gGUIDcheck ) ? true : false;
+    return (guid.Left(std::strlen(g_GUIDcheck)) == g_GUIDcheck);
 }
+//---------------------------------------------------------------------------

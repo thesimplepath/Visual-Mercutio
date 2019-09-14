@@ -1,14 +1,18 @@
-// ZUGUID.h: interface for the ZUGUID class.
-//////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_GUID ------------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a global unique identifier helper                 *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_ZUGUID_H__04FCF69B_C60A_4906_B330_4ECC3EAE4EB7__INCLUDED_)
-#define AFX_ZUGUID_H__04FCF69B_C60A_4906_B330_4ECC3EAE4EB7__INCLUDED_
+#ifndef PSS_GUIDH
+#define PSS_GUIDH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -17,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 #ifdef _ZBASELIBEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
+// put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -26,19 +30,28 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 11 octobre 2007 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-class AFX_EXT_CLASS ZUGUID
+/**
+* Global unique identifier helper
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_GUID
 {
-public:
-    ZUGUID();
-    virtual ~ZUGUID();
+    public:
+        PSS_GUID();
+        virtual ~PSS_GUID();
 
-    // Returns a new GUID 
-    static CString CreateNewGUID();
+        /**
+        * Creates a new GUID
+        *@return the new GUID, empty string on error
+        */
+        static CString CreateNewGUID();
 
-    // Returns true if the string contains a valid GUID
-    static bool GUIDIsValid( const CString s );
+        /**
+        * Checks if the GUID is valid
+        *@param guid - guid to check
+        *@return true if the GUID is valid, otherwise FALSE
+        */
+        static bool GUIDIsValid(const CString& guid);
 };
 
-#endif // !defined(AFX_ZUGUID_H__04FCF69B_C60A_4906_B330_4ECC3EAE4EB7__INCLUDED_)
+#endif

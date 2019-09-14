@@ -1,13 +1,18 @@
-#if !defined(_ZPTRLIST_H)
-#define _ZPTRLIST_H
+/****************************************************************************
+ * ==> PSS_TypedPtrList ----------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a typed pointer list                              *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
+
+#ifndef PSS_TypedPtrListH
+#define PSS_TypedPtrListH
+
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-// zPtrList.h
-//
-
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -15,53 +20,68 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-
+// mfc
 #include <afxtempl.h>
 
-
 #ifdef _ZBASELIBEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-
-//////////////////////////////////////////////////////////////////////
-// ZTTypedPtrList
-
-template<class BASE_CLASS, class TYPE>
-class AFX_EXT_CLASS ZTTypedPtrList : public CTypedPtrList<BASE_CLASS, TYPE>
+/**
+* Typed pointer list
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+template<class T, class U>
+class AFX_EXT_CLASS PSS_TypedPtrList : public CTypedPtrList<T, U>
 {
-public:
-    ZTTypedPtrList(int nBlockSize = 10) 
-        : CTypedPtrList<BASE_CLASS, TYPE>(nBlockSize) 
-    {
-    }
+    public:
+        /**
+        * Constructor
+        *@param blockSize - block size
+        */
+        PSS_TypedPtrList(int blockSize = 10);
 
-    ~ZTTypedPtrList()
-    {
-        Destroy();
-    }
+        virtual ~PSS_TypedPtrList();
 
-    void Destroy()
-    {
-        POSITION pos = GetHeadPosition();
-
-        while(pos != NULL)
-        {
-            TYPE node = GetNext(pos);
-            delete node;
-        }
-
-        RemoveAll();
-    }
+        /**
+        * Destroys the pointer list content
+        */
+        virtual void Destroy();
 };
 
-#endif //!defined(_ZPTRLIST_H)
+//---------------------------------------------------------------------------
+// PSS_TypedPtrList
+//---------------------------------------------------------------------------
+template<class T, class U>
+PSS_TypedPtrList<T, U>::PSS_TypedPtrList(int blockSize) :
+    CTypedPtrList<T, U>(blockSize)
+{}
+//---------------------------------------------------------------------------
+template<class T, class U>
+PSS_TypedPtrList<T, U>::~PSS_TypedPtrList()
+{
+    PSS_TypedPtrList::Destroy();
+}
+//---------------------------------------------------------------------------
+template<class T, class U>
+void PSS_TypedPtrList<T, U>::Destroy()
+{
+    POSITION pPos = GetHeadPosition();
+
+    while (pPos)
+    {
+        U pNode = GetNext(pPos);
+        delete pNode;
+    }
+
+    RemoveAll();
+}
+//---------------------------------------------------------------------------
+
+#endif
