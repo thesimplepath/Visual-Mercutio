@@ -22,7 +22,7 @@
 #endif
 
 // processsoft
-#include "ZATwoSts.h"
+#include "PSS_PLFNTwoStates.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -38,12 +38,12 @@
 * Financial plan radio button object
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_PLFNRadioBtn : public PLFNTwoStates
+class AFX_EXT_CLASS PSS_PLFNRadioBtn : public PSS_PLFNTwoStates
 {
     DECLARE_SERIAL(PSS_PLFNRadioBtn)
 
     public:
-        typedef PLFNTwoStates inherited;
+        typedef PSS_PLFNTwoStates inherited;
 
         PSS_PLFNRadioBtn();
 

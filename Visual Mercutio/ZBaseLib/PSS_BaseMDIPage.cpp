@@ -14,7 +14,7 @@
 #include "PSS_DocumentData.h"
 #include "ZIView.h"
 #include "PSS_Global.h"
-#include "ZBCommandObserverMsg.h"
+#include "PSS_CommandObserverMsg.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -298,7 +298,7 @@ void PSS_BaseMDIPage::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pD
     AfxGetMainWnd()->SendMessageToDescendants(UM_DOCUMENTHASBEENSELECTED, 0, LPARAM(GetActiveDocument()));
 
     // send a message to the shema view to specify that current schema has changed
-    ZBCommandObserverMsg msg(UM_DEFAULTSCHEMAHASCHANGED);
+    PSS_CommandObserverMsg msg(UM_DEFAULTSCHEMAHASCHANGED);
     dynamic_cast<ZISubject*>(AfxGetMainWnd())->NotifyAllObservers(&msg);
 }
 //---------------------------------------------------------------------------
@@ -379,7 +379,7 @@ afx_msg void PSS_BaseMDIPage::OnSchemaChange()
         pDocument->ChangeCurrentSchema(selection);
 
         // send a message to the shema view to specify that current schema has changed
-        ZBCommandObserverMsg msg(UM_DEFAULTSCHEMAHASCHANGED);
+        PSS_CommandObserverMsg msg(UM_DEFAULTSCHEMAHASCHANGED);
         dynamic_cast<ZISubject*>(AfxGetMainWnd())->NotifyAllObservers(&msg);
 
         // redraw all views

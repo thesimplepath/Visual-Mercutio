@@ -19,16 +19,16 @@
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_PLFNRadioBtn, PLFNTwoStates, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_PLFNRadioBtn, PSS_PLFNTwoStates, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_PLFNRadioBtn
 //---------------------------------------------------------------------------
 PSS_PLFNRadioBtn::PSS_PLFNRadioBtn() :
-    PLFNTwoStates()
+    PSS_PLFNTwoStates()
 {}
 //---------------------------------------------------------------------------
 PSS_PLFNRadioBtn::PSS_PLFNRadioBtn(const PSS_PLFNRadioBtn& other) :
-    PLFNTwoStates()
+    PSS_PLFNTwoStates()
 {
     *this = other;
 }
@@ -38,13 +38,13 @@ PSS_PLFNRadioBtn::~PSS_PLFNRadioBtn()
 //---------------------------------------------------------------------------
 const PSS_PLFNRadioBtn& PSS_PLFNRadioBtn::operator = (const PSS_PLFNRadioBtn& other)
 {
-    PLFNTwoStates::operator = ((inherited&)other);
+    PSS_PLFNTwoStates::operator = ((inherited&)other);
     return *this;
 }
 //---------------------------------------------------------------------------
 const PSS_PLFNRadioBtn& PSS_PLFNRadioBtn::operator = (const PSS_PLFNRadioBtn* pOther)
 {
-    PLFNTwoStates::operator = ((inherited*)pOther);
+    PSS_PLFNTwoStates::operator = ((inherited*)pOther);
     return *this;
 }
 //---------------------------------------------------------------------------
@@ -66,26 +66,26 @@ void PSS_PLFNRadioBtn::DrawObject(CDC* pDC, ZIView* pView)
     CPen  pen;
     CPen* pOldPen = pDC->SelectObject(&GetGraphicPen(pen));
 
-    if (!GetbTextIsCtrl())
+    if (!GetTextIsCtrl())
     {
         CRect rectControl(m_ObjectRect);
 
         // check if the control is on the right
-        if (GetbLeftText())
-            rectControl.left = rectControl.right - GetuSize();
+        if (GetLeftText())
+            rectControl.left = rectControl.right - GetSize();
 
         switch (GetCheckType())
         {
             case E_CB_Rounded:
             {
-                pDC->Ellipse(rectControl.left, rectControl.top, rectControl.left + GetuSize(), rectControl.top + GetuSize());
+                pDC->Ellipse(rectControl.left, rectControl.top, rectControl.left + GetSize(), rectControl.top + GetSize());
 
                 // draw the round
-                if (GetbCheckState())
+                if (GetCheckState())
                 {
                     CBrush    brush(defCOLOR_GRAY);
                     CBrush*   pOldBrush = pDC->SelectObject(&brush);
-                    CRect     pointRect(rectControl.left, rectControl.top, rectControl.left + GetuSize(), rectControl.top + GetuSize());
+                    CRect     pointRect(rectControl.left, rectControl.top, rectControl.left + GetSize(), rectControl.top + GetSize());
                     const int size = pointRect.Width();
 
                     pointRect.InflateRect(-size / 4, -size / 4);
@@ -100,19 +100,19 @@ void PSS_PLFNRadioBtn::DrawObject(CDC* pDC, ZIView* pView)
             case E_CB_Squared:
             {
                 // draw the square
-                pDC->MoveTo(rectControl.left,              rectControl.top);
-                pDC->LineTo(rectControl.left,              rectControl.top + GetuSize());
-                pDC->LineTo(rectControl.left + GetuSize(), rectControl.top + GetuSize());
-                pDC->LineTo(rectControl.left + GetuSize(), rectControl.top);
-                pDC->LineTo(rectControl.left,              rectControl.top);
+                pDC->MoveTo(rectControl.left,             rectControl.top);
+                pDC->LineTo(rectControl.left,             rectControl.top + GetSize());
+                pDC->LineTo(rectControl.left + GetSize(), rectControl.top + GetSize());
+                pDC->LineTo(rectControl.left + GetSize(), rectControl.top);
+                pDC->LineTo(rectControl.left,             rectControl.top);
 
                 // draw the cross
-                if (GetbCheckState())
+                if (GetCheckState())
                 {
-                    pDC->MoveTo(rectControl.left + 1,              rectControl.top + 1);
-                    pDC->LineTo(rectControl.left + GetuSize() - 1, rectControl.top + GetuSize() - 1);
-                    pDC->MoveTo(rectControl.left + GetuSize() - 1, rectControl.top + 1);
-                    pDC->LineTo(rectControl.left + 1,              rectControl.top + GetuSize() - 1);
+                    pDC->MoveTo(rectControl.left + 1,             rectControl.top + 1);
+                    pDC->LineTo(rectControl.left + GetSize() - 1, rectControl.top + GetSize() - 1);
+                    pDC->MoveTo(rectControl.left + GetSize() - 1, rectControl.top + 1);
+                    pDC->LineTo(rectControl.left + 1,             rectControl.top + GetSize() - 1);
                 }
 
                 break;
@@ -121,7 +121,7 @@ void PSS_PLFNRadioBtn::DrawObject(CDC* pDC, ZIView* pView)
     }
 
     // draw the text
-    if (GetbShowText())
+    if (GetShowText())
     {
         CFont* pOldFont = pDC->SelectObject(GetFont(pView));
 
@@ -130,13 +130,13 @@ void PSS_PLFNRadioBtn::DrawObject(CDC* pDC, ZIView* pView)
         pDC->SetTextAlign(TA_LEFT | TA_BASELINE);
 
         // if the text does not act as a control 
-        if (!GetbTextIsCtrl() && !GetbLeftText())
-            pDC->TextOut(m_ObjectRect.left + GetuSize() + GetOffsetText(), m_ObjectRect.top + GetuSize(), GetsText());
+        if (!GetTextIsCtrl() && !GetLeftText())
+            pDC->TextOut(m_ObjectRect.left + GetSize() + GetOffsetText(), m_ObjectRect.top + GetSize(), GetText());
         else
         {
-            pDC->TextOut(m_ObjectRect.left, m_ObjectRect.top + GetuSize(), GetsText());
+            pDC->TextOut(m_ObjectRect.left, m_ObjectRect.top + GetSize(), GetText());
 
-            if (GetbCheckState() && GetbTextIsCtrl())
+            if (GetCheckState() && GetTextIsCtrl())
             {
                 pDC->MoveTo(m_ObjectRect.left + 1, m_ObjectRect.top + (m_ObjectRect.Height() / 2));
                 pDC->LineTo(m_ObjectRect.right,    m_ObjectRect.top + (m_ObjectRect.Height() / 2));
@@ -170,7 +170,7 @@ void PSS_PLFNRadioBtn::EditObject(CWnd* pParentWnd, CDC* pDC, ZDDocument* pDoc)
 
                     if (pRadioBtn)
                     {
-                        pRadioBtn->SetbCheckState(FALSE);
+                        pRadioBtn->SetCheckState(FALSE);
 
                         if (pParentWnd->IsWindowVisible())
                             pObj->InvalidateObjectRect(pDC, pParentWnd);
@@ -180,7 +180,7 @@ void PSS_PLFNRadioBtn::EditObject(CWnd* pParentWnd, CDC* pDC, ZDDocument* pDoc)
             while ((pObj = ((ZDDocument*)pDoc)->GetNext()) != NULL);
     }
 
-    SetbCheckState(!GetbCheckState());
+    SetCheckState(!GetCheckState());
 
     if (pParentWnd->IsWindowVisible())
         InvalidateObjectRect(pDC, pParentWnd);
@@ -188,7 +188,7 @@ void PSS_PLFNRadioBtn::EditObject(CWnd* pParentWnd, CDC* pDC, ZDDocument* pDoc)
 //---------------------------------------------------------------------------
 void PSS_PLFNRadioBtn::Serialize(CArchive& ar)
 {
-    PLFNTwoStates::Serialize(ar);
+    PSS_PLFNTwoStates::Serialize(ar);
 }
 //---------------------------------------------------------------------------
 #ifdef _DEBUG

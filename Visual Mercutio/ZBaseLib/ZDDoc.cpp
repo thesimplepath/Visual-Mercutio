@@ -2090,7 +2090,7 @@ BOOL ZDDocument::PropagateExternDocumentAllValues(ZDDocument*    pDoc,
                 // If the object is exportable
                 if (!((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii)) &&
                     !((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)) &&
-                    !((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNTwoStates)))
+                    !((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNTwoStates)))
                 {
                     continue;
                 }
@@ -2151,7 +2151,7 @@ BOOL ZDDocument::PropagateInternalDocumentAllValues(int    IndexFrom,
                 // If the object is exportable
                 if (!((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii)) &&
                     !((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)) &&
-                    !((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNTwoStates)))
+                    !((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNTwoStates)))
                 {
                     continue;
                 }
@@ -2212,7 +2212,7 @@ BOOL ZDDocument::PropagateInternalDocumentOnDocumentValues(int        InIndexFro
                 // If the object is exportable
                 if (!((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAscii)) &&
                     !((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNAutoNumbered)) &&
-                    !((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PLFNTwoStates)))
+                    !((PSS_PlanFinObject*)pObj)->IsKindOf(RUNTIME_CLASS(PSS_PLFNTwoStates)))
                 {
                     continue;
                 }

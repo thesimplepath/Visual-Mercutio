@@ -1,12 +1,12 @@
-; ZBaseLib.def : Declares the module parameters for the DLL.
+; ZBaseLib.def: Declares the module parameters for the DLL
 
-LIBRARY      "ZBaseLib"
+LIBRARY "ZBaseLib"
 
-; JMR-MODIF - Le 25 mai 2005 - DESCRIPTION supprimé car non pris en charge par le compilateur.
+; NOTE deactivated because unsupported by the compiler
 ;DESCRIPTION  'ZBaseLib Windows Dynamic Link Library'
 
 EXPORTS
-    ; Explicit exports can go here
+    ; explicit exports can go here
     ;DisplayBitmap @2
     ;DisplayBitmapFileExtent @3
     ;DisplayBitmapFile @4

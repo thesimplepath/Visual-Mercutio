@@ -19,16 +19,16 @@
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_PLFNCheckBtn, PLFNTwoStates, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_PLFNCheckBtn, PSS_PLFNTwoStates, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_PLFNCheckBtn
 //---------------------------------------------------------------------------
 PSS_PLFNCheckBtn::PSS_PLFNCheckBtn() :
-    PLFNTwoStates()
+    PSS_PLFNTwoStates()
 {}
 //---------------------------------------------------------------------------
 PSS_PLFNCheckBtn::PSS_PLFNCheckBtn(const PSS_PLFNCheckBtn& other) :
-    PLFNTwoStates()
+    PSS_PLFNTwoStates()
 {
     *this = other;
 }
@@ -38,13 +38,13 @@ PSS_PLFNCheckBtn::~PSS_PLFNCheckBtn()
 //---------------------------------------------------------------------------
 const PSS_PLFNCheckBtn& PSS_PLFNCheckBtn::operator = (const PSS_PLFNCheckBtn& other)
 {
-    PLFNTwoStates::operator = ((inherited&)other);
+    PSS_PLFNTwoStates::operator = ((inherited&)other);
     return *this;
 }
 //---------------------------------------------------------------------------
 const PSS_PLFNCheckBtn& PSS_PLFNCheckBtn::operator = (const PSS_PLFNCheckBtn* pOther)
 {
-    PLFNTwoStates::operator = ((inherited*)pOther);
+    PSS_PLFNTwoStates::operator = ((inherited*)pOther);
     return *this;
 }
 //---------------------------------------------------------------------------
@@ -66,32 +66,32 @@ void PSS_PLFNCheckBtn::DrawObject(CDC* pDC, ZIView* pView)
     CPen  pen;
     CPen* pOldPen = pDC->SelectObject(&GetGraphicPen(pen));
 
-    if (!GetbTextIsCtrl())
+    if (!GetTextIsCtrl())
     {
         CRect rectControl(m_ObjectRect);
 
         // check if the control is on the right
-        if (GetbLeftText())
-            rectControl.left = rectControl.right - GetuSize();
+        if (GetLeftText())
+            rectControl.left = rectControl.right - GetSize();
 
         switch (GetCheckType())
         {
             case E_CB_Rounded:
-                pDC->Ellipse(rectControl.left, rectControl.top, rectControl.left + GetuSize(), rectControl.top + GetuSize());
+                pDC->Ellipse(rectControl.left, rectControl.top, rectControl.left + GetSize(), rectControl.top + GetSize());
 
                 // show a point
-                if (GetbCheckState())
+                if (GetCheckState())
                 {
                     // draw the hand check
-                    CPoint endPoint(rectControl.left + (GetuSize() / 2), rectControl.top + GetuSize() - (GetuSize() / 3));
+                    CPoint endPoint(rectControl.left + (GetSize() / 2), rectControl.top + GetSize() - (GetSize() / 3));
                     pDC->MoveTo(rectControl.left, rectControl.top);
                     pDC->LineTo(endPoint);
                     pDC->MoveTo(rectControl.left, rectControl.top + 1);
                     pDC->LineTo(endPoint);
 
-                    CRect rect(rectControl.left, rectControl.top, rectControl.left + GetuSize(), rectControl.top + GetuSize());
-                    rect.top   -= (GetuSize() / 3);
-                    rect.right += (GetuSize() / 6);
+                    CRect rect(rectControl.left, rectControl.top, rectControl.left + GetSize(), rectControl.top + GetSize());
+                    rect.top   -= (GetSize() / 3);
+                    rect.right += (GetSize() / 6);
                     pDC->MoveTo(rect.right,     rect.top);
                     pDC->LineTo(endPoint.x - 1, endPoint.y + 1);
                     pDC->MoveTo(rect.right,     rect.top   + 1);
@@ -102,19 +102,19 @@ void PSS_PLFNCheckBtn::DrawObject(CDC* pDC, ZIView* pView)
 
             case E_CB_Squared:
                 // draw the square
-                pDC->MoveTo(rectControl.left,              rectControl.top);
-                pDC->LineTo(rectControl.left,              rectControl.top + GetuSize());
-                pDC->LineTo(rectControl.left + GetuSize(), rectControl.top + GetuSize());
-                pDC->LineTo(rectControl.left + GetuSize(), rectControl.top);
-                pDC->LineTo(rectControl.left,              rectControl.top);
+                pDC->MoveTo(rectControl.left,             rectControl.top);
+                pDC->LineTo(rectControl.left,             rectControl.top + GetSize());
+                pDC->LineTo(rectControl.left + GetSize(), rectControl.top + GetSize());
+                pDC->LineTo(rectControl.left + GetSize(), rectControl.top);
+                pDC->LineTo(rectControl.left,             rectControl.top);
 
                 // show a cross
-                if (GetbCheckState())
+                if (GetCheckState())
                 {
-                    pDC->MoveTo(rectControl.left + 1,              rectControl.top + 1);
-                    pDC->LineTo(rectControl.left + GetuSize() - 1, rectControl.top + GetuSize() - 1);
-                    pDC->MoveTo(rectControl.left + GetuSize() - 1, rectControl.top + 1);
-                    pDC->LineTo(rectControl.left + 1,              rectControl.top + GetuSize() - 1);
+                    pDC->MoveTo(rectControl.left + 1,             rectControl.top + 1);
+                    pDC->LineTo(rectControl.left + GetSize() - 1, rectControl.top + GetSize() - 1);
+                    pDC->MoveTo(rectControl.left + GetSize() - 1, rectControl.top + 1);
+                    pDC->LineTo(rectControl.left + 1,             rectControl.top + GetSize() - 1);
                 }
 
                 break;
@@ -122,7 +122,7 @@ void PSS_PLFNCheckBtn::DrawObject(CDC* pDC, ZIView* pView)
     }
 
     // draw Text
-    if (GetbShowText())
+    if (GetShowText())
     {
         CFont* pOldFont = pDC->SelectObject(GetFont(pView));
         pDC->SetBkMode(TRANSPARENT);
@@ -130,13 +130,13 @@ void PSS_PLFNCheckBtn::DrawObject(CDC* pDC, ZIView* pView)
         pDC->SetTextAlign(TA_LEFT | TA_BASELINE);
 
         // if the text does not act as a control 
-        if (!GetbTextIsCtrl() && !GetbLeftText())
-            pDC->TextOut(m_ObjectRect.left + GetuSize() + GetOffsetText(), m_ObjectRect.top + GetuSize(), GetsText());
+        if (!GetTextIsCtrl() && !GetLeftText())
+            pDC->TextOut(m_ObjectRect.left + GetSize() + GetOffsetText(), m_ObjectRect.top + GetSize(), GetText());
         else
         {
-            pDC->TextOut(m_ObjectRect.left, m_ObjectRect.top + GetuSize(), GetsText());
+            pDC->TextOut(m_ObjectRect.left, m_ObjectRect.top + GetSize(), GetText());
 
-            if (GetbCheckState() && GetbTextIsCtrl())
+            if (GetCheckState() && GetTextIsCtrl())
             {
                 pDC->MoveTo(m_ObjectRect.left + 1, m_ObjectRect.top);
                 pDC->LineTo(m_ObjectRect.right,    m_ObjectRect.bottom - 1);
@@ -155,19 +155,19 @@ void PSS_PLFNCheckBtn::DrawObject(CDC* pDC, ZIView* pView)
 //---------------------------------------------------------------------------
 void PSS_PLFNCheckBtn::EditObject(CWnd* pParentWnd, CDC* pDC, ZDDocument* pDoc)
 {
-    SetbCheckState(!GetbCheckState());
+    SetCheckState(!GetCheckState());
 
     if (pParentWnd->IsWindowVisible())
     {
         CRect rect(m_ObjectRect);
-        rect.InflateRect(GetuSize(), GetuSize());
+        rect.InflateRect(GetSize(), GetSize());
         InvalidateObjectRect(pDC, pParentWnd, &rect);
     }
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNCheckBtn::Serialize(CArchive& ar)
 {
-    PLFNTwoStates::Serialize(ar);
+    PSS_PLFNTwoStates::Serialize(ar);
 }
 //---------------------------------------------------------------------------
 #ifdef _DEBUG
