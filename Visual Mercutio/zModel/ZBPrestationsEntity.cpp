@@ -12,7 +12,7 @@
 
 // BaseDoc
 #include "zBaseLib\PSS_BaseDocument.h"
-#include "zBaseLib\ZUGUID.h"
+#include "zBaseLib\PSS_GUID.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -42,7 +42,7 @@ ZBPrestationsEntity::~ZBPrestationsEntity()
 
 void ZBPrestationsEntity::CreateGUID()
 {
-    m_GUID = ZUGUID::CreateNewGUID();
+    m_GUID = PSS_GUID::CreateNewGUID();
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -16,7 +16,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZIDrop.h"
+#include "PSS_Drop.h"
 #include "PSS_BasicScrollView.h"
 
 #ifdef _ZBASELIBEXPORT
@@ -35,7 +35,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // ZIDropScrollView view
 
-class AFX_EXT_CLASS ZIDropScrollView : public PSS_BasicScrollView, public ZIDrop
+class AFX_EXT_CLASS ZIDropScrollView : public PSS_BasicScrollView, public PSS_Drop
 {
     DECLARE_DYNCREATE(ZIDropScrollView)
 

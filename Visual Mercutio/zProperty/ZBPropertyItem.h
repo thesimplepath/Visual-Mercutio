@@ -15,7 +15,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseLib\zPtrList.h"
+#include "zBaseLib\PSS_TypedPtrList.h"
 #include "zBaseLib\ZBSmartString.h"
 #include "zProperty\ZIInPlaceEdit.h"
 #include "zBaseLib\ZBStringFormat.h"

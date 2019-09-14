@@ -708,25 +708,25 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="PSS_CryptedApplicationTypeInfoFile.cpp">
+    <ClCompile Include="PSS_EncryptedApplicationTypeInfoFile.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="PSS_CryptedEvaluationAppInfoFile.cpp">
+    <ClCompile Include="PSS_EncryptedEvaluationAppInfoFile.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBCriptedFileInfo.CPP">
+    <ClCompile Include="PSS_EncryptedInfoFile.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBCriptedLine.CPP">
+    <ClCompile Include="PSS_EncryptedLine.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1037,7 +1037,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZIDrop.cpp">
+    <ClCompile Include="PSS_Drop.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1199,7 +1199,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUGUID.cpp">
+    <ClCompile Include="PSS_GUID.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1440,10 +1440,10 @@
     <ClInclude Include="zBaseLib.h" />
     <ClInclude Include="ZBaseLibRes.h" />
     <ClInclude Include="PSS_CommandObserverMsg.h" />
-    <ClInclude Include="PSS_CryptedApplicationTypeInfoFile.h" />
-    <ClInclude Include="PSS_CryptedEvaluationAppInfoFile.h" />
-    <ClInclude Include="ZBCriptedFileInfo.H" />
-    <ClInclude Include="ZBCriptedLine.H" />
+    <ClInclude Include="PSS_EncryptedApplicationTypeInfoFile.h" />
+    <ClInclude Include="PSS_EncryptedEvaluationAppInfoFile.h" />
+    <ClInclude Include="PSS_EncryptedInfoFile.h" />
+    <ClInclude Include="PSS_EncryptedLine.h" />
     <ClInclude Include="ZBDate.H" />
     <ClInclude Include="ZBDocumentObserverMsg.h" />
     <ClInclude Include="ZBDragEdit.h" />
@@ -1495,7 +1495,7 @@
     <ClInclude Include="ZDWorkspaceWizardTemplateDocument.h" />
     <ClInclude Include="ZGTrace.H" />
     <ClInclude Include="zidialog.h" />
-    <ClInclude Include="ZIDrop.h" />
+    <ClInclude Include="PSS_Drop.h" />
     <ClInclude Include="ZIDropScrollView.h" />
     <ClInclude Include="ZIDropView.h" />
     <ClInclude Include="ZIEmptyView.h" />
@@ -1520,10 +1520,10 @@
     <ClInclude Include="ZNetResourceManager.h" />
     <ClInclude Include="ZNetResourceWrapper.h" />
     <ClInclude Include="ZNetWork.h" />
-    <ClInclude Include="zPtrList.h" />
+    <ClInclude Include="PSS_TypedPtrList.h" />
     <ClInclude Include="ZUFileLauncher.h" />
     <ClInclude Include="ZUFloatingToolbar.h" />
-    <ClInclude Include="ZUGUID.h" />
+    <ClInclude Include="PSS_GUID.h" />
     <ClInclude Include="zumail.h" />
     <ClInclude Include="ZUser.h" />
     <ClInclude Include="ZUStringFormater.h" />

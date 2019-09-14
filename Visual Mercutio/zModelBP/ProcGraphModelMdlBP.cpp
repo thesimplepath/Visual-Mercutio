@@ -21,7 +21,7 @@
 
 #include "zModel\ZBUserEntity.h"
 
-#include "zBaseLib\ZUGUID.h"
+#include "zBaseLib\PSS_GUID.h"
 
 #include "ZUCheckSymbolConsistency.h"
 
@@ -306,7 +306,7 @@ void ZDProcessGraphModelMdlBP::MigrateUnitGUID()
         if ( pComp && ISA( pComp, ZBBPStartSymbol ) &&
              !dynamic_cast<ZBBPStartSymbol*>( pComp )->GetUnitName().IsEmpty() )
         {
-            if ( !ZUGUID::GUIDIsValid( dynamic_cast<ZBBPStartSymbol*>( pComp )->GetUnitGUID() ) )
+            if ( !PSS_GUID::GUIDIsValid( dynamic_cast<ZBBPStartSymbol*>( pComp )->GetUnitGUID() ) )
             {
                 bool bError;
                 dynamic_cast<ZBBPStartSymbol*>( pComp )->SetUnitGUID( dynamic_cast<ZBSymbol*>( pComp )->RetreiveUnitGUID( dynamic_cast<ZBBPStartSymbol*>( pComp )->GetUnitName(), bError ) );
@@ -315,7 +315,7 @@ void ZDProcessGraphModelMdlBP::MigrateUnitGUID()
         else if ( pComp && ISA( pComp, ZBBPStopSymbol ) &&
                   !dynamic_cast<ZBBPStopSymbol*>( pComp )->GetUnitName().IsEmpty() )
         {
-            if ( !ZUGUID::GUIDIsValid( dynamic_cast<ZBBPStopSymbol*>( pComp )->GetUnitGUID() ) )
+            if ( !PSS_GUID::GUIDIsValid( dynamic_cast<ZBBPStopSymbol*>( pComp )->GetUnitGUID() ) )
             {
                 bool bError;
                 dynamic_cast<ZBBPStopSymbol*>( pComp )->SetUnitGUID( dynamic_cast<ZBSymbol*>( pComp )->RetreiveUnitGUID( dynamic_cast<ZBBPStopSymbol*>( pComp )->GetUnitName(), bError ) );
@@ -324,7 +324,7 @@ void ZDProcessGraphModelMdlBP::MigrateUnitGUID()
         else if ( pComp && ISA( pComp, ZBBPProcedureSymbol ) &&
                   !dynamic_cast<ZBBPProcedureSymbol*>( pComp )->GetUnitName().IsEmpty() )
         {
-            if ( !ZUGUID::GUIDIsValid( dynamic_cast<ZBBPProcedureSymbol*>( pComp )->GetUnitGUID() ) )
+            if ( !PSS_GUID::GUIDIsValid( dynamic_cast<ZBBPProcedureSymbol*>( pComp )->GetUnitGUID() ) )
             {
                 bool bError;
                 dynamic_cast<ZBBPProcedureSymbol*>( pComp )->SetUnitGUID( dynamic_cast<ZBSymbol*>( pComp )->RetreiveUnitGUID( dynamic_cast<ZBBPProcedureSymbol*>( pComp )->GetUnitName(), bError ) );

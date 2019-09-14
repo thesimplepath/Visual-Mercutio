@@ -29,12 +29,6 @@
     <ClCompile Include="ZBaseLib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBCriptedFileInfo.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZBCriptedLine.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZBDate.CPP">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -182,9 +176,6 @@
     <ClCompile Include="zidialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZIDrop.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZIDropScrollView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -261,9 +252,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZUFloatingToolbar.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZUGUID.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="zumail.cpp">
@@ -596,10 +584,22 @@
     <ClCompile Include="PSS_CommandObserverMsg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PSS_CryptedApplicationTypeInfoFile.cpp">
+    <ClCompile Include="PSS_Drop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PSS_CryptedEvaluationAppInfoFile.cpp">
+    <ClCompile Include="PSS_GUID.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_EncryptedEvaluationAppInfoFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_EncryptedApplicationTypeInfoFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_EncryptedInfoFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_EncryptedLine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -724,12 +724,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBaseLibRes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBCriptedFileInfo.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBCriptedLine.H">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBDate.H">
@@ -879,9 +873,6 @@
     <ClInclude Include="zidialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZIDrop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZIDropScrollView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -954,16 +945,10 @@
     <ClInclude Include="ZNetWork.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="zPtrList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZUFileLauncher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZUFloatingToolbar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZUGUID.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="zumail.h">
@@ -1296,10 +1281,25 @@
     <ClInclude Include="PSS_CommandObserverMsg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PSS_CryptedApplicationTypeInfoFile.h">
+    <ClInclude Include="PSS_Drop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PSS_CryptedEvaluationAppInfoFile.h">
+    <ClInclude Include="PSS_GUID.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_TypedPtrList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_EncryptedEvaluationAppInfoFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_EncryptedApplicationTypeInfoFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_EncryptedInfoFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_EncryptedLine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

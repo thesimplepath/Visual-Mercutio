@@ -10,7 +10,7 @@
 #include "zBaseLib\PSS_File.h"
 #include "zBaseLib\ZILog.h"
 #include "zBaseLib\ZUFloatingToolbar.h"
-#include "zBaseLib\ZUGUID.h"
+#include "zBaseLib\PSS_GUID.h"
 #include "zBaseLib\PSS_MsgBox.h"
 #include "ProcGraphModelView.h"
 #include "ProcGraphChildFrm.h"
@@ -72,7 +72,7 @@ ZDProcessGraphModelDoc::ZDProcessGraphModelDoc()
     // JMR-MODIF - Le 25 avril 2006 - Initialisation de la variable b_IsReadOnly.
     b_IsReadOnly = FALSE;
 
-    m_GUID = ZUGUID::CreateNewGUID();
+    m_GUID = PSS_GUID::CreateNewGUID();
 }
 
 ZDProcessGraphModelDoc::~ZDProcessGraphModelDoc()

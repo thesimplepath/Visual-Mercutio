@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_CryptedApplicationTypeInfoFile ----------------------------------*
+ * ==> PSS_EncryptedApplicationTypeInfoFile --------------------------------*
  ****************************************************************************
- * Description : Provides a crypted application type info file              *
+ * Description : Provides an encrypted application type info file           *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_CryptedApplicationTypeInfoFileH
-#define PSS_CryptedApplicationTypeInfoFileH
+#ifndef PSS_EncryptedApplicationTypeInfoFileH
+#define PSS_EncryptedApplicationTypeInfoFileH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZBCriptedFileInfo.H"
+#include "PSS_EncryptedInfoFile.H"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -34,10 +34,10 @@
 #endif
 
 /**
-* Crypted application type info file
+* Encrypted application type info file
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_CryptedApplicationTypeInfoFile : public ZBCriptedFileInfo
+class AFX_EXT_CLASS PSS_EncryptedApplicationTypeInfoFile : public PSS_EncryptedInfoFile
 {
     public:
         /**
@@ -55,9 +55,9 @@ class AFX_EXT_CLASS PSS_CryptedApplicationTypeInfoFile : public ZBCriptedFileInf
         * Constructor
         *@param fileName - file name
         */
-        PSS_CryptedApplicationTypeInfoFile(const CString& fileName = "");
+        PSS_EncryptedApplicationTypeInfoFile(const CString& fileName = "");
 
-        virtual ~PSS_CryptedApplicationTypeInfoFile();
+        virtual ~PSS_EncryptedApplicationTypeInfoFile();
 
         /**
         * Initializes the class
@@ -148,24 +148,24 @@ class AFX_EXT_CLASS PSS_CryptedApplicationTypeInfoFile : public ZBCriptedFileInf
 };
 
 //---------------------------------------------------------------------------
-// PSS_CryptedApplicationTypeInfoFile
+// PSS_EncryptedApplicationTypeInfoFile
 //---------------------------------------------------------------------------
-PSS_CryptedApplicationTypeInfoFile::IEType PSS_CryptedApplicationTypeInfoFile::GetApplicationType() const
+PSS_EncryptedApplicationTypeInfoFile::IEType PSS_EncryptedApplicationTypeInfoFile::GetApplicationType() const
 {
     return m_ApplicationType;
 }
 //---------------------------------------------------------------------------
-void PSS_CryptedApplicationTypeInfoFile::SetApplicationType(IEType value)
+void PSS_EncryptedApplicationTypeInfoFile::SetApplicationType(IEType value)
 {
     m_ApplicationType = value;
 }
 //---------------------------------------------------------------------------
-CString PSS_CryptedApplicationTypeInfoFile::GetProductKey() const
+CString PSS_EncryptedApplicationTypeInfoFile::GetProductKey() const
 {
     return m_ProductKey;
 }
 //---------------------------------------------------------------------------
-void PSS_CryptedApplicationTypeInfoFile::SetProductKey(const CString& value)
+void PSS_EncryptedApplicationTypeInfoFile::SetProductKey(const CString& value)
 {
     m_ProductKey = value;
 }

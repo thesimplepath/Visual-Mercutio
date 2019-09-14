@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_CryptedEvaluationAppInfoFile ------------------------------------*
+ * ==> PSS_EncryptedEvaluationAppInfoFile ----------------------------------*
  ****************************************************************************
- * Description : Provides a crypted evaluation application info file        *
+ * Description : Provides an encrypted evaluation application info file     *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include "stdafx.h"
-#include "PSS_CryptedEvaluationAppInfoFile.h"
+#include "PSS_EncryptedEvaluationAppInfoFile.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -24,32 +24,32 @@ const std::size_t g_ValidDateIndexFile        = 18;
 const std::size_t g_DayCountIndexFile         = 22;
 const char        g_InvalidNoProductKey[]     = "xp0?";
 //---------------------------------------------------------------------------
-// PSS_CryptedEvaluationAppInfoFile
+// PSS_EncryptedEvaluationAppInfoFile
 //---------------------------------------------------------------------------
-PSS_CryptedEvaluationAppInfoFile::PSS_CryptedEvaluationAppInfoFile(const CString& fileName)
-    : ZBCriptedFileInfo(fileName),
+PSS_EncryptedEvaluationAppInfoFile::PSS_EncryptedEvaluationAppInfoFile(const CString& fileName) :
+    PSS_EncryptedInfoFile(fileName),
     m_DayCount(60)
 {}
 //---------------------------------------------------------------------------
-PSS_CryptedEvaluationAppInfoFile::~PSS_CryptedEvaluationAppInfoFile()
+PSS_EncryptedEvaluationAppInfoFile::~PSS_EncryptedEvaluationAppInfoFile()
 {}
 //---------------------------------------------------------------------------
-BOOL PSS_CryptedEvaluationAppInfoFile::Initialize(const CString& fileName)
+BOOL PSS_EncryptedEvaluationAppInfoFile::Initialize(const CString& fileName)
 {
-    ZBCriptedFileInfo::SetFilename(fileName);
+    SetFileName(fileName);
     return TRUE;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_CryptedEvaluationAppInfoFile::CreateEmpty(const CString& fileName)
+BOOL PSS_EncryptedEvaluationAppInfoFile::CreateEmpty(const CString& fileName)
 {
-    ZBCriptedFileInfo::CreateEmptyFile(fileName);
+    CreateEmptyFile(fileName);
     WriteProductKey(g_InvalidNoProductKey);
     WriteInstallationDate(ZBDate(time_t(0)));
     WriteDayCount(60);
-    return !ZBCriptedFileInfo::GetErrorStatus();
+    return !GetErrorStatus();
 }
 //---------------------------------------------------------------------------
-BOOL PSS_CryptedEvaluationAppInfoFile::InitializeFirstUse(int dayCount)
+BOOL PSS_EncryptedEvaluationAppInfoFile::InitializeFirstUse(int dayCount)
 {
     if (!WriteInstallationDate(ZBDate::GetToday()))
         return FALSE;
@@ -64,33 +64,33 @@ BOOL PSS_CryptedEvaluationAppInfoFile::InitializeFirstUse(int dayCount)
     return TRUE;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_CryptedEvaluationAppInfoFile::CheckProductKey(const CString& productKey)
+BOOL PSS_EncryptedEvaluationAppInfoFile::CheckProductKey(const CString& productKey)
 {
     const CString key = ReadProductKey();
 
-    if (ZBCriptedFileInfo::GetErrorStatus() == TRUE)
+    if (GetErrorStatus() == TRUE)
         return FALSE;
 
     return (key == productKey);
 }
 //---------------------------------------------------------------------------
-BOOL PSS_CryptedEvaluationAppInfoFile::CheckExpiration()
+BOOL PSS_EncryptedEvaluationAppInfoFile::CheckExpiration()
 {
     if (!ReadFileInfo())
         return FALSE;
 
-    if (ZBCriptedFileInfo::GetErrorStatus() == TRUE)
+    if (GetErrorStatus() == TRUE)
         return FALSE;
 
-    m_LastDateUsage = ZBCriptedFileInfo::GetDate(g_LastDateUsageIndexFile);
+    m_LastDateUsage = GetDate(g_LastDateUsageIndexFile);
     ZBDate today    = ZBDate::GetToday();
 
     // check if today is earlier than the last usage date
     if (today < m_LastDateUsage)
         return FALSE;
 
-    m_InstallationDate = ZBCriptedFileInfo::GetDate(g_InstallationDateIndexFile);
-    m_DayCount         = ZBCriptedFileInfo::GetInt(g_DayCountIndexFile);
+    m_InstallationDate = GetDate(g_InstallationDateIndexFile);
+    m_DayCount         = GetInt(g_DayCountIndexFile);
 
     ZBDate endDate = m_InstallationDate + COleDateTimeSpan(m_DayCount);
 
@@ -101,32 +101,32 @@ BOOL PSS_CryptedEvaluationAppInfoFile::CheckExpiration()
     return TRUE;
 }
 //---------------------------------------------------------------------------
-CString PSS_CryptedEvaluationAppInfoFile::ReadProductKey()
+CString PSS_EncryptedEvaluationAppInfoFile::ReadProductKey()
 {
     if (!ReadFileInfo())
         return m_ProductKey = g_InvalidNoProductKey;
 
-    m_ProductKey = ZBCriptedFileInfo::GetString(g_ProductKeyIndexFile);
+    m_ProductKey = GetString(g_ProductKeyIndexFile);
 
-    if (ZBCriptedFileInfo::GetErrorStatus())
+    if (GetErrorStatus())
         m_ProductKey = g_InvalidNoProductKey;
 
     return m_ProductKey;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_CryptedEvaluationAppInfoFile::WriteProductKey(const CString& value)
+BOOL PSS_EncryptedEvaluationAppInfoFile::WriteProductKey(const CString& value)
 {
-    ZBCriptedFileInfo::LoadEntityTable();
+    ReadEntityTable();
 
-    if (ZBCriptedFileInfo::GetErrorStatus())
+    if (GetErrorStatus())
     {
         m_ProductKey = g_InvalidNoProductKey;
         return FALSE;
     }
 
-    ZBCriptedFileInfo::SetString(value, g_ProductKeyIndexFile);
+    SetString(value, g_ProductKeyIndexFile);
 
-    if (ZBCriptedFileInfo::GetErrorStatus())
+    if (GetErrorStatus())
         return FALSE;
 
     if (!WriteFileInfo())
@@ -140,29 +140,29 @@ BOOL PSS_CryptedEvaluationAppInfoFile::WriteProductKey(const CString& value)
     return TRUE;
 }
 //---------------------------------------------------------------------------
-ZBDate PSS_CryptedEvaluationAppInfoFile::ReadInstallationDate()
+ZBDate PSS_EncryptedEvaluationAppInfoFile::ReadInstallationDate()
 {
     if (!ReadFileInfo())
         return m_InstallationDate = 0;
 
-    m_InstallationDate = ZBCriptedFileInfo::GetDate(g_InstallationDateIndexFile);
+    m_InstallationDate = GetDate(g_InstallationDateIndexFile);
 
-    if (ZBCriptedFileInfo::GetErrorStatus())
+    if (GetErrorStatus())
         m_InstallationDate = 0;
 
     return m_InstallationDate;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_CryptedEvaluationAppInfoFile::WriteInstallationDate(const ZBDate& value)
+BOOL PSS_EncryptedEvaluationAppInfoFile::WriteInstallationDate(const ZBDate& value)
 {
-    ZBCriptedFileInfo::LoadEntityTable();
+    ReadEntityTable();
 
-    if (ZBCriptedFileInfo::GetErrorStatus())
+    if (GetErrorStatus())
         return FALSE;
 
-    ZBCriptedFileInfo::SetDate(m_InstallationDate, g_InstallationDateIndexFile);
+    SetDate(m_InstallationDate, g_InstallationDateIndexFile);
 
-    if (ZBCriptedFileInfo::GetErrorStatus())
+    if (GetErrorStatus())
         return FALSE;
 
     if (!WriteFileInfo())
@@ -176,29 +176,29 @@ BOOL PSS_CryptedEvaluationAppInfoFile::WriteInstallationDate(const ZBDate& value
     return TRUE;
 }
 //---------------------------------------------------------------------------
-ZBDate PSS_CryptedEvaluationAppInfoFile::ReadLastDateUsage()
+ZBDate PSS_EncryptedEvaluationAppInfoFile::ReadLastDateUsage()
 {
     if (!ReadFileInfo())
         return m_LastDateUsage = 0;
 
-    m_LastDateUsage = ZBCriptedFileInfo::GetDate(g_LastDateUsageIndexFile);
+    m_LastDateUsage = GetDate(g_LastDateUsageIndexFile);
 
-    if (ZBCriptedFileInfo::GetErrorStatus())
+    if (GetErrorStatus())
         m_LastDateUsage = 0;
 
     return m_LastDateUsage;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_CryptedEvaluationAppInfoFile::WriteLastDateUsage(const ZBDate& value)
+BOOL PSS_EncryptedEvaluationAppInfoFile::WriteLastDateUsage(const ZBDate& value)
 {
-    ZBCriptedFileInfo::LoadEntityTable();
+    ReadEntityTable();
 
-    if (ZBCriptedFileInfo::GetErrorStatus())
+    if (GetErrorStatus())
         return FALSE;
 
-    ZBCriptedFileInfo::SetDate(m_LastDateUsage, g_LastDateUsageIndexFile);
+    SetDate(m_LastDateUsage, g_LastDateUsageIndexFile);
 
-    if (ZBCriptedFileInfo::GetErrorStatus())
+    if (GetErrorStatus())
         return FALSE;
 
     if (!WriteFileInfo())
@@ -212,29 +212,29 @@ BOOL PSS_CryptedEvaluationAppInfoFile::WriteLastDateUsage(const ZBDate& value)
     return TRUE;
 }
 //---------------------------------------------------------------------------
-ZBDate PSS_CryptedEvaluationAppInfoFile::ReadValidDate()
+ZBDate PSS_EncryptedEvaluationAppInfoFile::ReadValidDate()
 {
     if (!ReadFileInfo())
         return m_ValidDate = 0;
 
-    m_ValidDate = ZBCriptedFileInfo::GetDate(g_ValidDateIndexFile);
+    m_ValidDate = GetDate(g_ValidDateIndexFile);
 
-    if (ZBCriptedFileInfo::GetErrorStatus())
+    if (GetErrorStatus())
         m_ValidDate = 0;
 
     return m_ValidDate;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_CryptedEvaluationAppInfoFile::WriteValidDate(ZBDate value)
+BOOL PSS_EncryptedEvaluationAppInfoFile::WriteValidDate(ZBDate value)
 {
-    ZBCriptedFileInfo::LoadEntityTable();
+    ReadEntityTable();
 
-    if (ZBCriptedFileInfo::GetErrorStatus())
+    if (GetErrorStatus())
         return FALSE;
 
-    ZBCriptedFileInfo::SetDate(m_ValidDate, g_ValidDateIndexFile);
+    SetDate(m_ValidDate, g_ValidDateIndexFile);
 
-    if (ZBCriptedFileInfo::GetErrorStatus())
+    if (GetErrorStatus())
         return FALSE;
 
     if (!WriteFileInfo())
@@ -248,32 +248,32 @@ BOOL PSS_CryptedEvaluationAppInfoFile::WriteValidDate(ZBDate value)
     return TRUE;
 }
 //---------------------------------------------------------------------------
-int PSS_CryptedEvaluationAppInfoFile::ReadDayCount()
+int PSS_EncryptedEvaluationAppInfoFile::ReadDayCount()
 {
     if (!ReadFileInfo())
         return m_DayCount = -1;
 
-    m_DayCount = ZBCriptedFileInfo::GetInt(g_DayCountIndexFile);
+    m_DayCount = GetInt(g_DayCountIndexFile);
 
-    if (ZBCriptedFileInfo::GetErrorStatus())
+    if (GetErrorStatus())
         m_DayCount = -1;
 
     return m_DayCount;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_CryptedEvaluationAppInfoFile::WriteDayCount(int value)
+BOOL PSS_EncryptedEvaluationAppInfoFile::WriteDayCount(int value)
 {
-    ZBCriptedFileInfo::LoadEntityTable();
+    ReadEntityTable();
 
-    if (ZBCriptedFileInfo::GetErrorStatus())
+    if (GetErrorStatus())
     {
         m_DayCount = -1;
         return FALSE;
     }
 
-    ZBCriptedFileInfo::SetInt(value, g_DayCountIndexFile);
+    SetInt(value, g_DayCountIndexFile);
 
-    if (ZBCriptedFileInfo::GetErrorStatus())
+    if (GetErrorStatus())
     {
         m_DayCount = -1;
         return FALSE;
@@ -290,15 +290,15 @@ BOOL PSS_CryptedEvaluationAppInfoFile::WriteDayCount(int value)
     return TRUE;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_CryptedEvaluationAppInfoFile::ReadFileInfo()
+BOOL PSS_EncryptedEvaluationAppInfoFile::ReadFileInfo()
 {
-    ZBCriptedFileInfo::LoadEntityTable();
-    return !ZBCriptedFileInfo::GetErrorStatus();
+    ReadEntityTable();
+    return !GetErrorStatus();
 }
 //---------------------------------------------------------------------------
-BOOL PSS_CryptedEvaluationAppInfoFile::WriteFileInfo()
+BOOL PSS_EncryptedEvaluationAppInfoFile::WriteFileInfo()
 {
-    ZBCriptedFileInfo::WriteEntityTable();
-    return !ZBCriptedFileInfo::GetErrorStatus();
+    WriteEntityTable();
+    return !GetErrorStatus();
 }
 //---------------------------------------------------------------------------

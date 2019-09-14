@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "ZDUserEntityDocument.h"
 
-#include "zBaseLib\ZUGUID.h"
+#include "zBaseLib\PSS_GUID.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -27,7 +27,7 @@ ZDUserEntityDocument::ZDUserEntityDocument()
     : m_IsLoaded    ( false ),
       m_Beta1Format    ( false )
 {
-    m_GUID = ZUGUID::CreateNewGUID();
+    m_GUID = PSS_GUID::CreateNewGUID();
 }
 
 ZDUserEntityDocument::~ZDUserEntityDocument()

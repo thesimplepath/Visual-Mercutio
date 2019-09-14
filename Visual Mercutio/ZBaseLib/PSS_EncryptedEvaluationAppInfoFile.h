@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_CryptedEvaluationAppInfoFile ------------------------------------*
+ * ==> PSS_EncryptedEvaluationAppInfoFile ----------------------------------*
  ****************************************************************************
- * Description : Provides a crypted evaluation application info file        *
+ * Description : Provides an encrypted evaluation application info file     *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
-#ifndef PSS_CryptedEvaluationAppInfoFileH
-#define PSS_CryptedEvaluationAppInfoFileH
+#ifndef PSS_EncryptedEvaluationAppInfoFileH
+#define PSS_EncryptedEvaluationAppInfoFileH
 
 #if _MSC_VER > 1000
     #pragma once
@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZBCriptedFileInfo.H"
+#include "PSS_EncryptedInfoFile.H"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -34,19 +34,19 @@
 #endif
 
 /**
-* Crypted evaluation application info file
+* Encrypted evaluation application info file
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_CryptedEvaluationAppInfoFile : public ZBCriptedFileInfo
+class AFX_EXT_CLASS PSS_EncryptedEvaluationAppInfoFile : public PSS_EncryptedInfoFile
 {
     public:
         /**
         * Constructor
         *@param fileName - file name
         */
-        PSS_CryptedEvaluationAppInfoFile(const CString& fileName = "");
+        PSS_EncryptedEvaluationAppInfoFile(const CString& fileName = "");
 
-        virtual ~PSS_CryptedEvaluationAppInfoFile();
+        virtual ~PSS_EncryptedEvaluationAppInfoFile();
 
         /**
         * Initializes the class
@@ -132,7 +132,7 @@ class AFX_EXT_CLASS PSS_CryptedEvaluationAppInfoFile : public ZBCriptedFileInfo
         *@param value - the valid date
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL    WriteValidDate(ZBDate value);
+        virtual BOOL WriteValidDate(ZBDate value);
 
         /**
         * Reads the day count
@@ -170,91 +170,115 @@ class AFX_EXT_CLASS PSS_CryptedEvaluationAppInfoFile : public ZBCriptedFileInfo
         * Gets the product key
         *@return the product key
         */
-        inline CString GetProductKey() const
-        {
-            return m_ProductKey;
-        };
+        inline CString GetProductKey() const;
 
         /**
         * Sets the product key
         *@param value - the product key
         */
-        inline void SetProductKey(const CString& value)
-        {
-            m_ProductKey = value;
-        };
+        inline void SetProductKey(const CString& value);
 
         /**
         * Gets the installation date
         *@return the installation date
         */
-        inline ZBDate& GetInstallationDate()
-        {
-            return m_InstallationDate;
-        };
+        inline ZBDate& GetInstallationDate();
 
         /**
         * Sets the installation date
         *@param value - the installation date
         */
-        inline void SetInstallationDate(const ZBDate& value)
-        {
-            m_InstallationDate = value;
-        };
+        inline void SetInstallationDate(const ZBDate& value);
 
         /**
         * Gets the last date usage
         *@return the last date usage
         */
-        inline ZBDate& GetLastDateUsage()
-        {
-            return m_LastDateUsage;
-        };
+        inline ZBDate& GetLastDateUsage();
 
         /**
         * Sets the last date usage
         *@param value - the last date usage
         */
-        inline void SetLastDateUsage(const ZBDate& value)
-        {
-            m_LastDateUsage = value;
-        };
+        inline void SetLastDateUsage(const ZBDate& value);
 
         /**
         * Gets the valid date
         *@return the valid date
         */
-        inline ZBDate& GetValidDate()
-        {
-            return m_ValidDate;
-        };
+        inline ZBDate& GetValidDate();
 
         /**
         * Sets the valid date
         *@param value - the valid date
         */
-        inline void SetValidDate(const ZBDate& value)
-        {
-            m_ValidDate = value;
-        };
+        inline void SetValidDate(const ZBDate& value);
 
         /**
         * Gets the day count
         *@return the day count
         */
-        inline int GetTotalDays() const
-        {
-            return m_DayCount;
-        };
+        inline int GetTotalDays() const;
 
         /**
         * Sets the day count
         *@param value - the day count
         */
-        inline void SetTotalDays(int value)
-        {
-            m_DayCount = value;
-        };
+        inline void SetTotalDays(int value);
 };
+
+//---------------------------------------------------------------------------
+// PSS_EncryptedEvaluationAppInfoFile
+//---------------------------------------------------------------------------
+CString PSS_EncryptedEvaluationAppInfoFile::GetProductKey() const
+{
+    return m_ProductKey;
+}
+//---------------------------------------------------------------------------
+void PSS_EncryptedEvaluationAppInfoFile::SetProductKey(const CString& value)
+{
+    m_ProductKey = value;
+}
+//---------------------------------------------------------------------------
+ZBDate& PSS_EncryptedEvaluationAppInfoFile::GetInstallationDate()
+{
+    return m_InstallationDate;
+}
+//---------------------------------------------------------------------------
+void PSS_EncryptedEvaluationAppInfoFile::SetInstallationDate(const ZBDate& value)
+{
+    m_InstallationDate = value;
+}
+//---------------------------------------------------------------------------
+ZBDate& PSS_EncryptedEvaluationAppInfoFile::GetLastDateUsage()
+{
+    return m_LastDateUsage;
+}
+//---------------------------------------------------------------------------
+void PSS_EncryptedEvaluationAppInfoFile::SetLastDateUsage(const ZBDate& value)
+{
+    m_LastDateUsage = value;
+}
+//---------------------------------------------------------------------------
+ZBDate& PSS_EncryptedEvaluationAppInfoFile::GetValidDate()
+{
+    return m_ValidDate;
+}
+//---------------------------------------------------------------------------
+void PSS_EncryptedEvaluationAppInfoFile::SetValidDate(const ZBDate& value)
+{
+    m_ValidDate = value;
+}
+//---------------------------------------------------------------------------
+int PSS_EncryptedEvaluationAppInfoFile::GetTotalDays() const
+{
+    return m_DayCount;
+}
+//---------------------------------------------------------------------------
+void PSS_EncryptedEvaluationAppInfoFile::SetTotalDays(int value)
+{
+    m_DayCount = value;
+}
+//---------------------------------------------------------------------------
 
 #endif

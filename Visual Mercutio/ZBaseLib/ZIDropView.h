@@ -16,7 +16,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZIDrop.h"
+#include "PSS_Drop.h"
 #include "PSS_BasicView.h"
 
 #ifdef _ZBASELIBEXPORT
@@ -35,7 +35,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // ZIDropView view
 
-class AFX_EXT_CLASS ZIDropView : public PSS_BasicView, public ZIDrop
+class AFX_EXT_CLASS ZIDropView : public PSS_BasicView, public PSS_Drop
 {
 protected:
     ZIDropView();           // protected constructor used by dynamic creation

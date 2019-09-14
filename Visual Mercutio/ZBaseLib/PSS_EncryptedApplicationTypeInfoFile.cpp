@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_CryptedApplicationTypeInfoFile ----------------------------------*
+ * ==> PSS_EncryptedApplicationTypeInfoFile --------------------------------*
  ****************************************************************************
- * Description : Provides a crypted application type info file              *
+ * Description : Provides an encrypted application type info file           *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include "stdafx.h"
-#include "PSS_CryptedApplicationTypeInfoFile.h"
+#include "PSS_EncryptedApplicationTypeInfoFile.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -21,63 +21,63 @@ const std::size_t g_ApplicationTypeIndexFile = 5;
 const std::size_t g_ProductKeyIndexFile      = 7;
 const char        g_InvalidNoProductKey[]    = "xp0?ws5";
 //---------------------------------------------------------------------------
-// PSS_CryptedApplicationTypeInfoFile
+// PSS_EncryptedApplicationTypeInfoFile
 //---------------------------------------------------------------------------
-PSS_CryptedApplicationTypeInfoFile::PSS_CryptedApplicationTypeInfoFile(const CString& fileName) :
-    ZBCriptedFileInfo(fileName),
+PSS_EncryptedApplicationTypeInfoFile::PSS_EncryptedApplicationTypeInfoFile(const CString& fileName) :
+    PSS_EncryptedInfoFile(fileName),
     m_ApplicationType(IE_IT_Unknown)
 {}
 //---------------------------------------------------------------------------
-PSS_CryptedApplicationTypeInfoFile::~PSS_CryptedApplicationTypeInfoFile()
+PSS_EncryptedApplicationTypeInfoFile::~PSS_EncryptedApplicationTypeInfoFile()
 {}
 //---------------------------------------------------------------------------
-BOOL PSS_CryptedApplicationTypeInfoFile::Initialize(const CString& fileName)
+BOOL PSS_EncryptedApplicationTypeInfoFile::Initialize(const CString& fileName)
 {
-    ZBCriptedFileInfo::SetFilename(fileName);
+    SetFileName(fileName);
     return TRUE;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_CryptedApplicationTypeInfoFile::CreateEmpty(const CString& fileName)
+BOOL PSS_EncryptedApplicationTypeInfoFile::CreateEmpty(const CString& fileName)
 {
-    ZBCriptedFileInfo::CreateEmptyFile(fileName);
+    CreateEmptyFile(fileName);
     WriteApplicationType(IE_IT_Unknown);
     WriteProductKey(g_InvalidNoProductKey);
-    return !ZBCriptedFileInfo::GetErrorStatus();
+    return !GetErrorStatus();
 }
 //---------------------------------------------------------------------------
-BOOL PSS_CryptedApplicationTypeInfoFile::CheckProductKey(const CString& productKey)
+BOOL PSS_EncryptedApplicationTypeInfoFile::CheckProductKey(const CString& productKey)
 {
     const CString key = ReadProductKey();
 
-    if (ZBCriptedFileInfo::GetErrorStatus())
+    if (GetErrorStatus())
         return FALSE;
 
     return (key == productKey);
 }
 //---------------------------------------------------------------------------
-PSS_CryptedApplicationTypeInfoFile::IEType PSS_CryptedApplicationTypeInfoFile::ReadApplicationType()
+PSS_EncryptedApplicationTypeInfoFile::IEType PSS_EncryptedApplicationTypeInfoFile::ReadApplicationType()
 {
     if (!ReadFileInfo())
         return IE_IT_Unknown;
 
-    m_ApplicationType = IEType(ZBCriptedFileInfo::GetInt(g_ApplicationTypeIndexFile));
+    m_ApplicationType = IEType(GetInt(g_ApplicationTypeIndexFile));
 
-    if (ZBCriptedFileInfo::GetErrorStatus())
+    if (GetErrorStatus())
         m_ApplicationType = IE_IT_Unknown;
 
     return m_ApplicationType;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_CryptedApplicationTypeInfoFile::WriteApplicationType(IEType value)
+BOOL PSS_EncryptedApplicationTypeInfoFile::WriteApplicationType(IEType value)
 {
-    ZBCriptedFileInfo::LoadEntityTable();
+    ReadEntityTable();
 
-    if (ZBCriptedFileInfo::GetErrorStatus())
+    if (GetErrorStatus())
         return FALSE;
 
-    ZBCriptedFileInfo::SetInt(int(value), g_ApplicationTypeIndexFile);
+    SetInt(int(value), g_ApplicationTypeIndexFile);
 
-    if (ZBCriptedFileInfo::GetErrorStatus())
+    if (GetErrorStatus())
         return FALSE;
 
     if (!WriteFileInfo())
@@ -91,32 +91,32 @@ BOOL PSS_CryptedApplicationTypeInfoFile::WriteApplicationType(IEType value)
     return TRUE;
 }
 //---------------------------------------------------------------------------
-CString PSS_CryptedApplicationTypeInfoFile::ReadProductKey()
+CString PSS_EncryptedApplicationTypeInfoFile::ReadProductKey()
 {
     if (!ReadFileInfo())
         return m_ProductKey = g_InvalidNoProductKey;
 
-    m_ProductKey = ZBCriptedFileInfo::GetString(g_ProductKeyIndexFile);
+    m_ProductKey = GetString(g_ProductKeyIndexFile);
 
-    if (ZBCriptedFileInfo::GetErrorStatus())
+    if (GetErrorStatus())
         m_ProductKey = g_InvalidNoProductKey;
 
     return m_ProductKey;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_CryptedApplicationTypeInfoFile::WriteProductKey(const CString& value)
+BOOL PSS_EncryptedApplicationTypeInfoFile::WriteProductKey(const CString& value)
 {
-    ZBCriptedFileInfo::LoadEntityTable();
+    ReadEntityTable();
 
-    if (ZBCriptedFileInfo::GetErrorStatus())
+    if (GetErrorStatus())
     {
         m_ProductKey = g_InvalidNoProductKey;
         return FALSE;
     }
 
-    ZBCriptedFileInfo::SetString(value, g_ProductKeyIndexFile);
+    SetString(value, g_ProductKeyIndexFile);
 
-    if (ZBCriptedFileInfo::GetErrorStatus())
+    if (GetErrorStatus())
         return FALSE;
 
     if (!WriteFileInfo())
@@ -130,15 +130,15 @@ BOOL PSS_CryptedApplicationTypeInfoFile::WriteProductKey(const CString& value)
     return TRUE;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_CryptedApplicationTypeInfoFile::ReadFileInfo()
+BOOL PSS_EncryptedApplicationTypeInfoFile::ReadFileInfo()
 {
-    ZBCriptedFileInfo::LoadEntityTable();
-    return !ZBCriptedFileInfo::GetErrorStatus();
+    ReadEntityTable();
+    return !GetErrorStatus();
 }
 //---------------------------------------------------------------------------
-BOOL PSS_CryptedApplicationTypeInfoFile::WriteFileInfo()
+BOOL PSS_EncryptedApplicationTypeInfoFile::WriteFileInfo()
 {
-    ZBCriptedFileInfo::WriteEntityTable();
-    return !ZBCriptedFileInfo::GetErrorStatus();
+    WriteEntityTable();
+    return !GetErrorStatus();
 }
 //---------------------------------------------------------------------------
