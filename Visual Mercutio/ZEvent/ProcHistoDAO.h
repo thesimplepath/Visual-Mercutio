@@ -63,7 +63,7 @@ class AFX_EXT_CLASS ZDProcessHistoryDAO
         const ZDProcessHistoryDAO & operator=(const ZDProcessHistoryDAO &right);
 
         long    FindProcess( ZBEventActivity& EventActivity );
-        long    FindActivity( long ProcessID, ZBDate& CurrentDate, ZBEventActivity& EventActivity );
+        long    FindActivity( long ProcessID, PSS_Date& CurrentDate, ZBEventActivity& EventActivity );
         bool    AddNewProcessRecord( ZBEventActivity& EventActivity );
         bool    ModifyProcessStatusRecord( long ProcessID, ZBEventActivity& EventActivity );
         bool    AddProcessStatusRecord( long ProcessID, ZBEventActivity& EventActivity );

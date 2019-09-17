@@ -427,7 +427,7 @@ private:
 
     static COLORREF                            m_AnimatedColor;
 
-    static ZBDate                            m_StartTimeOfTimer;
+    static PSS_Date                            m_StartTimeOfTimer;
 
     static UINT                                m_nTimer;
 };

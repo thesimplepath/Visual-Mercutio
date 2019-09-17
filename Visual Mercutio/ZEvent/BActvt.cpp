@@ -584,11 +584,11 @@ void ZBaseActivity::FillActivityInformationWhenStart()
 {
     //## begin ZBaseActivity::FillActivityInformationWhenStart%931613230.body preserve=yes
     SetInitiator(GetConnectedUser());
-    SetStartDate(ZBDate::GetToday());
+    SetStartDate(PSS_Date::GetToday());
 
     // Set the forecasted start date to be able 
     // to calculate the forecasted end date
-    SetForecastedStartDate(ZBDate::GetToday());
+    SetForecastedStartDate(PSS_Date::GetToday());
 
     // Calculate the forecasted end date
     CalculateForecastedEndDate();
@@ -599,7 +599,7 @@ void ZBaseActivity::FillActivityInformationWhenStart()
 void ZBaseActivity::FillActivityInformationWhenEnd()
 {
     //## begin ZBaseActivity::FillActivityInformationWhenEnd%931613231.body preserve=yes
-    SetEndDate(ZBDate::GetToday());
+    SetEndDate(PSS_Date::GetToday());
     SetActivityStatus(ActivityCompleted);
     //## end ZBaseActivity::FillActivityInformationWhenEnd%931613231.body
 }
@@ -607,7 +607,7 @@ void ZBaseActivity::FillActivityInformationWhenEnd()
 void ZBaseActivity::FillActivityInformationWhenRefused()
 {
     //## begin ZBaseActivity::FillActivityInformationWhenRefused%931613232.body preserve=yes
-    SetLastUpdateDate(ZBDate::GetToday());
+    SetLastUpdateDate(PSS_Date::GetToday());
     SetActivityStatus(ActivityRejected);
     //## end ZBaseActivity::FillActivityInformationWhenRefused%931613232.body
 }
@@ -617,13 +617,13 @@ void ZBaseActivity::FillActivityInformationWhenSentForAccept()
     //## begin ZBaseActivity::FillActivityInformationWhenSentForAccept%931613233.body preserve=yes
     if (GetActivityStatus() == ActivityNotStarted)
     {
-        SetForecastedStartDate(ZBDate::GetToday());
+        SetForecastedStartDate(PSS_Date::GetToday());
 
         // Calculate the forecasted end date
         CalculateForecastedEndDate();
     }
 
-    SetLastUpdateDate(ZBDate::GetToday());
+    SetLastUpdateDate(PSS_Date::GetToday());
     SetActivityStatus(ActivitySentForAcceptation);
     //## end ZBaseActivity::FillActivityInformationWhenSentForAccept%931613233.body
 }
@@ -633,13 +633,13 @@ void ZBaseActivity::FillActivityInformationWhenSent()
     //## begin ZBaseActivity::FillActivityInformationWhenSent%931613244.body preserve=yes
     if (GetActivityStatus() == ActivityNotStarted)
     {
-        SetForecastedStartDate(ZBDate::GetToday());
+        SetForecastedStartDate(PSS_Date::GetToday());
 
         // Calculate the forecasted end date
         CalculateForecastedEndDate();
     }
 
-    SetLastUpdateDate(ZBDate::GetToday());
+    SetLastUpdateDate(PSS_Date::GetToday());
     SetActivityStatus(ActivitySent);
     //## end ZBaseActivity::FillActivityInformationWhenSent%931613244.body
 }

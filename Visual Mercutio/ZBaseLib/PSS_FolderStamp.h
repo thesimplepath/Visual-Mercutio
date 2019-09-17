@@ -143,13 +143,13 @@ class AFX_EXT_CLASS PSS_FolderStamp : public PSS_Stamp
         * Gets the creation date
         *@return the creation date
         */
-        virtual inline const ZBDate GetCreationDate() const;
+        virtual inline const PSS_Date GetCreationDate() const;
 
         /**
         * Sets the creation date
         *@param date - the creation date
         */
-        virtual inline void SetCreationDate(const ZBDate& date);
+        virtual inline void SetCreationDate(const PSS_Date& date);
 
         /**
         * Gets the user name for the last modification
@@ -167,13 +167,13 @@ class AFX_EXT_CLASS PSS_FolderStamp : public PSS_Stamp
         * Gets the last modification date
         *@return the last modification date
         */
-        virtual inline const ZBDate GetModificationDate() const;
+        virtual inline const PSS_Date GetModificationDate() const;
 
         /**
         * Sets the last modification date
         *@param date - the last modification date
         */
-        virtual inline void SetModificationDate(const ZBDate& date);
+        virtual inline void SetModificationDate(const PSS_Date& date);
 
         /**
         * Gets the private key
@@ -188,14 +188,14 @@ class AFX_EXT_CLASS PSS_FolderStamp : public PSS_Stamp
         virtual inline void SetKey1(const CString& key);
 
     private:
-        CString m_FolderName;
-        CString m_FolderDescription;
-        CString m_CreationUserName;
-        CString m_ModificationUserName;
-        CString m_Password;
-        CString m_Key1;
-        ZBDate  m_CreationDate;
-        ZBDate  m_ModificationDate;
+        CString  m_FolderName;
+        CString  m_FolderDescription;
+        CString  m_CreationUserName;
+        CString  m_ModificationUserName;
+        CString  m_Password;
+        CString  m_Key1;
+        PSS_Date m_CreationDate;
+        PSS_Date m_ModificationDate;
 };
 
 //---------------------------------------------------------------------------
@@ -203,7 +203,7 @@ class AFX_EXT_CLASS PSS_FolderStamp : public PSS_Stamp
 //---------------------------------------------------------------------------
 BOOL PSS_FolderStamp::HasPassword() const
 {
-    return m_Password.IsEmpty() == FALSE;
+    return (m_Password.IsEmpty() == FALSE);
 }
 //---------------------------------------------------------------------------
 const CString PSS_FolderStamp::GetFolderName() const
@@ -236,12 +236,12 @@ void PSS_FolderStamp::SetCreationUserName(const CString& name)
     m_CreationUserName = name;
 }
 //---------------------------------------------------------------------------
-const ZBDate PSS_FolderStamp::GetCreationDate() const
+const PSS_Date PSS_FolderStamp::GetCreationDate() const
 {
     return m_CreationDate;
 }
 //---------------------------------------------------------------------------
-void PSS_FolderStamp::SetCreationDate(const ZBDate& date)
+void PSS_FolderStamp::SetCreationDate(const PSS_Date& date)
 {
     m_CreationDate = date;
 }
@@ -256,12 +256,12 @@ void PSS_FolderStamp::SetModificationUserName(const CString& name)
     m_ModificationUserName = name;
 }
 //---------------------------------------------------------------------------
-const ZBDate PSS_FolderStamp::GetModificationDate() const
+const PSS_Date PSS_FolderStamp::GetModificationDate() const
 {
     return m_ModificationDate;
 }
 //---------------------------------------------------------------------------
-void PSS_FolderStamp::SetModificationDate(const ZBDate& date)
+void PSS_FolderStamp::SetModificationDate(const PSS_Date& date)
 {
     m_ModificationDate = date;
 }

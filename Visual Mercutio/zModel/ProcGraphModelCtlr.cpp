@@ -107,7 +107,7 @@ CPoint                    ZDProcessGraphModelController::m_savedEditPosition;
 
 COLORREF                ZDProcessGraphModelController::m_AnimatedColor = -1;
 
-ZBDate                    ZDProcessGraphModelController::m_StartTimeOfTimer;
+PSS_Date                    ZDProcessGraphModelController::m_StartTimeOfTimer;
 
 // **********************************************************************************************************
 // *                                     Message map for call back functions                                *
@@ -377,7 +377,7 @@ void ZDProcessGraphModelController::AnimateNode(IODNode&    Node,
         _EndAnimateTimer();
     }
 
-    m_StartTimeOfTimer = ZBDate::GetCurrentTime();
+    m_StartTimeOfTimer = PSS_Date::GetCurrentTime();
 
     // Add the component
     m_animateNodes.Add(&Node);
@@ -409,7 +409,7 @@ void ZDProcessGraphModelController::AnimateNodes(CODNodeArray&    Nodes,
         _EndAnimateTimer();
     }
 
-    m_StartTimeOfTimer = ZBDate::GetCurrentTime();
+    m_StartTimeOfTimer = PSS_Date::GetCurrentTime();
 
     // Add the components
     for (int nNodeIdx = 0; nNodeIdx < Nodes.GetSize(); ++nNodeIdx)
@@ -444,7 +444,7 @@ void ZDProcessGraphModelController::AnimateEdge(IODEdge&    Edge,
         _EndAnimateTimer();
     }
 
-    m_StartTimeOfTimer = ZBDate::GetCurrentTime();
+    m_StartTimeOfTimer = PSS_Date::GetCurrentTime();
 
     // Add the component
     m_animateEdges.Add(&Edge);
@@ -476,7 +476,7 @@ void ZDProcessGraphModelController::AnimateEdges(CODEdgeArray&    Edges,
         _EndAnimateTimer();
     }
 
-    m_StartTimeOfTimer = ZBDate::GetCurrentTime();
+    m_StartTimeOfTimer = PSS_Date::GetCurrentTime();
 
     // Add the components
     for (int nNodeIdx = 0; nNodeIdx < Edges.GetSize(); ++nNodeIdx)
@@ -511,7 +511,7 @@ void ZDProcessGraphModelController::AnimateSymbol(CODSymbolComponent&    Symbol,
         _EndAnimateTimer();
     }
 
-    m_StartTimeOfTimer = ZBDate::GetCurrentTime();
+    m_StartTimeOfTimer = PSS_Date::GetCurrentTime();
 
     // Add the component
     m_animateComponents.Add(&Symbol);
@@ -543,7 +543,7 @@ void ZDProcessGraphModelController::AnimateSymbols(CODComponentSet&    Set,
         _EndAnimateTimer();
     }
 
-    m_StartTimeOfTimer = ZBDate::GetCurrentTime();
+    m_StartTimeOfTimer = PSS_Date::GetCurrentTime();
 
     // Copy symbol to set
     CODComponentIterator    IterSelection(&Set);
@@ -581,7 +581,7 @@ void ZDProcessGraphModelController::AnimateLink(CODLinkComponent&    Link,
         _EndAnimateTimer();
     }
 
-    m_StartTimeOfTimer = ZBDate::GetCurrentTime();
+    m_StartTimeOfTimer = PSS_Date::GetCurrentTime();
 
     // Add the component
     m_animateComponents.Add(&Link);
@@ -613,7 +613,7 @@ void ZDProcessGraphModelController::AnimateLinks(CODComponentSet&    Set,
         _EndAnimateTimer();
     }
 
-    m_StartTimeOfTimer = ZBDate::GetCurrentTime();
+    m_StartTimeOfTimer = PSS_Date::GetCurrentTime();
 
     // Copy symbol to set
     CODComponentIterator    IterSelection(&Set);
@@ -4651,7 +4651,7 @@ void ZDProcessGraphModelController::OnTimer(SEC_UINT nIDEvent)
         if (m_AnimatedUseColor)
         {
             // It still time for animation
-            if ((m_StartTimeOfTimer + COleDateTimeSpan(0, 0, 0, m_nAnimateCounter)) >= ZBDate::GetCurrentTime())
+            if ((m_StartTimeOfTimer + COleDateTimeSpan(0, 0, 0, m_nAnimateCounter)) >= PSS_Date::GetCurrentTime())
             {
                 if (!m_TimerInitialized)
                 {

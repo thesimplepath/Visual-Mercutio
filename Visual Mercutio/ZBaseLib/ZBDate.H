@@ -1,20 +1,14 @@
-/****************************************************************************************************************
- *                                                     Classe ZBDate                                                *
- ****************************************************************************************************************
- * Cette classe permet de traiter les données des propriétés de date. Elle s'occupe également des conversions.    *
- *                                                                                                                *
- * Author    : Dominique Aigroz                                                                                    *
- * HeaderFile: ZBDate.h                                                                                            *
- * Created   : 14.12.1994                                                                                        *
- * Modify    :                                                                                                    *
- *                                                                                                                *
- * Call      :                                                                                                    *
- ****************************************************************************************************************/
+/****************************************************************************
+ * ==> PSS_Date ------------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a date                                            *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(__ZBDATE_H)
-#define __ZBDATE_H
+#ifndef PSS_DateH
+#define PSS_DateH
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -22,174 +16,324 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// mfc
+#ifndef _WIN32
+    #include <afx.h>
+#endif
+
 #ifdef _ZBASELIBEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 15 février 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
+/**
+* Date
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
 #ifdef _WIN32
-class AFX_EXT_CLASS ZBDate : public COleDateTime
-{
-public:
-
-    // Inherited feature
-    typedef COleDateTime inherited;
+    class AFX_EXT_CLASS PSS_Date : public COleDateTime
+    {
+        public:
+            typedef COleDateTime inherited;
 #else
-#include <afx.h>
-
-class AFX_EXT_CLASS ZBDate : public CTime
-{
-public:
-
-    // Inherited feature
-    typedef CTime inherited;
+    class AFX_EXT_CLASS PSS_Date : public CTime
+    {
+        public:
+            typedef CTime inherited;
 #endif
+        PSS_Date();
 
-public:
+        /**
+        * Constructor
+        *@param time - time
+        */
+        inline PSS_Date(time_t time);
 
-    ZBDate            ();
-    virtual ~ZBDate    ();
+        /**
+        * Constructor
+        *@param year - year
+        *@param month - month
+        *@param day - day
+        *@param hour - hour
+        *@param min - minutes
+        *@param sec - seconds
+        *@param dst - daylight saving time, ignored if -1
+        */
+        inline PSS_Date(int year, int month, int day, int hour, int min, int sec, int dst = -1);
 
-    ZBDate( const ZBDate &right );
-    ZBDate( time_t time );
-    ZBDate( int nYear, int nMonth, int nDay, int nHour, int nMin, int nSec, int nDST = -1 );
-    ZBDate( WORD wDosDate, WORD wDosTime, int nDST = -1 );
-    ZBDate( const SYSTEMTIME& sysTime, int nDST = -1 );
-    ZBDate( const FILETIME& fileTime, int nDST = -1 );
-    ZBDate( LPCTSTR lpszDate, DWORD dwFlags = 0, LCID lcid = LANG_USER_DEFAULT );
+        /**
+        * Constructor
+        *@param dosDate - dos date
+        *@param dosTime - dos time
+        *@param dst - daylight saving time, ignored if -1
+        */
+        inline PSS_Date(WORD dosDate, WORD dosTime, int dst = -1);
 
-    BOOL    IsEmpty();
-    void    Clear();
+        /**
+        * Constructor
+        *@param sysTime - system time
+        *@param dst - daylight saving time, ignored if -1
+        */
+        inline PSS_Date(const ::SYSTEMTIME& sysTime, int dst = -1);
 
-#ifdef _WIN32
-    ZBDate( DATE dt );
-    ZBDate( const CTime &right );
-    ZBDate( const COleDateTime &right );
+        /**
+        * Constructor
+        *@param fileTime - file time
+        *@param dst - daylight saving time, ignored if -1
+        */
+        inline PSS_Date(const ::FILETIME& fileTime, int dst = -1);
 
-    const ZBDate & operator=( const COleDateTime &right );
-    const ZBDate & operator=( const CTime &right );
-#else
-    const ZBDate & operator=( const CTime &right );
-#endif
+        /**
+        * Constructor
+        *@param pDate - date
+        *@param flags - flags
+        *@param lcid - language identifier
+        */
+        PSS_Date(LPCTSTR pDate, DWORD flags = 0, LCID lcid = LANG_USER_DEFAULT);
 
-    // Make a clone of the object.
-    virtual ZBDate* Clone();
+        /**
+        * Constructor
+        *@param date - date
+        */
+        #ifdef _WIN32
+            PSS_Date(DATE dt);
+        #endif
 
-#ifdef _WIN32
-    void            SetToday() { *this = COleDateTime::GetCurrentTime(); };
-    static ZBDate    GetToday() { return  COleDateTime::GetCurrentTime(); };
-#else
-    void            SetToday() { *this = CTime::GetCurrentTime(); };
-    static ZBDate    GetToday() { return  CTime::GetCurrentTime(); };
-#endif
+        /**
+        * Constructor
+        *@param time - time
+        */
+        #ifdef _WIN32
+            inline PSS_Date(const CTime& time);
+        #endif
 
-    CString    GetStandardFormattedDate();
-    CString    GetStandardFormattedDateTime();
-    CString    GetFormattedDate( CString Format );
-    CString    GetFormattedDate( UINT nFormatID );
-    void    ClearTime();
+        /**
+        * Constructor
+        *@param time - time
+        */
+        #ifdef _WIN32
+            inline PSS_Date(const COleDateTime& time);
+        #endif
 
-#ifdef _WIN32
-    friend CArchive& AFXAPI operator<<( CArchive& ar, COleDateTime time );
-    friend CArchive& AFXAPI operator>>( CArchive& ar, COleDateTime& rtime );
-#else
-    friend CArchive& AFXAPI operator<<( CArchive& ar, CTime time );
-    friend CArchive& AFXAPI operator>>( CArchive& ar, CTime& rtime );
-#endif
+        /**
+        * Copy constructor
+        *@param other - other object to copy from
+        */
+        inline PSS_Date(const PSS_Date& other);
+        
+        virtual ~PSS_Date();
+
+        /**
+        * Copy operator
+        *@param other - other object to copy from
+        *@return copy of itself
+        */
+        #ifdef _WIN32
+            const PSS_Date& operator = (const COleDateTime& other);
+        #endif
+
+        /**
+        * Copy operator
+        *@param other - other object to copy from
+        *@return copy of itself
+        */
+        const PSS_Date& operator = (const CTime& other);
+
+        /**
+        * Stores from the archive to the date
+        *@param ar - archive
+        *@param time - date and time
+        *@return archive, to allow operator to be chained with other items, e.g a >> b >> c
+        */
+        #ifdef _WIN32
+            friend CArchive& AFXAPI operator << (CArchive& ar, COleDateTime time);
+        #else
+            friend CArchive& AFXAPI operator << (CArchive& ar, CTime time);
+        #endif
+
+        /**
+        * Stores the date to the archive
+        *@param ar - archive
+        *@param time - date and time
+        *@return archive, to allow operator to be chained with other items, e.g a << b << c
+        */
+        #ifdef _WIN32
+            friend CArchive& AFXAPI operator >> (CArchive& ar, COleDateTime& time);
+        #else
+            friend CArchive& AFXAPI operator >> (CArchive& ar, CTime& time);
+        #endif
+
+        /**
+        * Clones the object
+        *@return the cloned object, NULL on error
+        */
+        virtual PSS_Date* Clone() const;
+            
+        /**
+        * Clears the date
+        */
+        virtual void Clear();
+
+        /**
+        * Checks if date is empty
+        *@return TRUE if the date is empty, otherwise FALSE
+        */
+        virtual inline BOOL IsEmpty() const;
+
+        /**
+        * Gets the today date
+        *@return the today date
+        */
+        static inline PSS_Date GetToday();
+
+        /**
+        * Sets the today date
+        */
+        virtual inline void SetToday();
+
+        /**
+        * Gets the standard formatted date
+        *@return the standard formatted date
+        */
+        virtual CString GetStandardFormattedDate() const;
+
+        /**
+        * Gets the standard formatted time
+        *@return the standard formatted time
+        */
+        virtual CString GetStandardFormattedDateTime() const;
+
+        /**
+        * Gets the formatted date
+        *@param format - date format
+        *@return the formatted date
+        */
+        virtual CString GetFormattedDate(const CString& format) const;
+
+        /**
+        * Gets the formatted date
+        *@param formatID - date format identifier
+        *@return the formatted date
+        */
+        virtual CString GetFormattedDate(UINT formatID) const;
+
+        /**
+        * Clears the time
+        */
+        virtual void ClearTime();
 };
 
-#ifndef _WIN32    // In 16bit
-inline ZBDate::ZBDate( const ZBDate &right )
-    : CTime( right )
+//---------------------------------------------------------------------------
+// PSS_Date
+//---------------------------------------------------------------------------
+PSS_Date::PSS_Date(time_t time) :
+    #ifndef _WIN32
+        // 16 bit version
+        CTime(time)
+    #else
+        // 32 bit version
+        COleDateTime(time)
+    #endif
+{}
+//---------------------------------------------------------------------------
+PSS_Date::PSS_Date(int year, int month, int day, int hour, int min, int sec, int dst) :
+    #ifndef _WIN32
+        // 16 bit version
+        CTime(year, month, day, hour, min, sec, dst)
+    #else
+        // 32 bit version
+        COleDateTime(year, month, day, hour, min, sec)
+    #endif
+{}
+//---------------------------------------------------------------------------
+PSS_Date::PSS_Date(WORD dosDate, WORD dosTime, int dst) :
+    #ifndef _WIN32
+        // 16 bit version
+        CTime(dosDate, dosTime, dst)
+    #else
+        // 32 bit version
+        COleDateTime(dosDate, dosTime)
+    #endif
+{}
+//---------------------------------------------------------------------------
+PSS_Date::PSS_Date(const ::SYSTEMTIME& sysTime, int dst) :
+    #ifndef _WIN32
+        // 16 bit version
+        CTime(sysTime, dst)
+    #else
+        // 32 bit version
+        COleDateTime(sysTime)
+    #endif
+{}
+//---------------------------------------------------------------------------
+PSS_Date::PSS_Date(const ::FILETIME& fileTime, int dst) :
+    #ifndef _WIN32
+        // 16 bit version
+        CTime(fileTime, dst)
+    #else
+        // 32 bit version
+        COleDateTime(fileTime)
+    #endif
+{}
+//---------------------------------------------------------------------------
+PSS_Date::PSS_Date(const PSS_Date& other) :
+    #ifndef _WIN32
+        // 16 bit version
+        CTime(other)
+    #else
+        // 32 bit version
+        COleDateTime(other)
+    #endif
+{}
+//---------------------------------------------------------------------------
+#ifdef _WIN32
+    PSS_Date::PSS_Date(const CTime& other) :
+        COleDateTime(other.GetYear(),
+                     other.GetMonth(),
+                     other.GetDay(),
+                     other.GetHour(),
+                     other.GetMinute(),
+                     other.GetSecond())
+    {}
+#endif
+//---------------------------------------------------------------------------
+#ifdef _WIN32
+    PSS_Date::PSS_Date(const COleDateTime& other) :
+        COleDateTime(other)
+    {}
+#endif
+//---------------------------------------------------------------------------
+PSS_Date PSS_Date::GetToday()
 {
+    #ifdef _WIN32
+        return  COleDateTime::GetCurrentTime();
+    #else
+        return  CTime::GetCurrentTime();
+    #endif
 }
-
-inline ZBDate::ZBDate( time_t time )
-    : CTime( time )
+//---------------------------------------------------------------------------
+void PSS_Date::SetToday()
 {
+    #ifdef _WIN32
+        *this = COleDateTime::GetCurrentTime();
+    #else
+        *this = CTime::GetCurrentTime();
+    #endif
 }
-
-inline ZBDate::ZBDate( int nYear, int nMonth, int nDay, int nHour, int nMin, int nSec, int nDST )
-    : CTime( nYear, nMonth, nDay, nHour, nMin, nSec, nDST )
+//---------------------------------------------------------------------------
+BOOL PSS_Date::IsEmpty() const
 {
+    #ifdef _WIN32
+        return (m_dt <= 0);
+    #else
+        return (GetTime() <= 0);
+    #endif
 }
-
-inline ZBDate::ZBDate( WORD wDosDate, WORD wDosTime, int nDST )
-    : CTime( wDosDate, wDosTime, nDST )
-{
-}
-
-inline ZBDate::ZBDate( const SYSTEMTIME& sysTime, int nDST )
-    : CTime( sysTime, nDST )
-{
-}
-
-inline ZBDate::ZBDate( const FILETIME& fileTime, int nDST )
-    : CTime( fileTime, nDST )
-{
-}
-#else            // In 32bit
-inline ZBDate::ZBDate( const ZBDate &right )
-    : COleDateTime( right )
-{
-}
-
-inline ZBDate::ZBDate( const CTime &right )
-    : COleDateTime( right.GetYear    (),
-                    right.GetMonth    (),
-                    right.GetDay    (),
-                    right.GetHour    (),
-                    right.GetMinute    (),
-                    right.GetSecond    () )
-{
-}
-
-inline ZBDate::ZBDate( const COleDateTime &right )
-    : COleDateTime( right )
-{
-}
-
-inline ZBDate::ZBDate( time_t time )
-    : COleDateTime( time )
-{
-}
-
-inline ZBDate::ZBDate( int nYear, int nMonth, int nDay, int nHour, int nMin, int nSec, int nDST )
-    : COleDateTime( nYear, nMonth, nDay, nHour, nMin, nSec )
-{
-}
-
-inline ZBDate::ZBDate( WORD wDosDate, WORD wDosTime, int nDST )
-    : COleDateTime( wDosDate, wDosTime )
-{
-}
-
-inline ZBDate::ZBDate( const SYSTEMTIME& sysTime, int nDST )
-    : COleDateTime( sysTime )
-{
-}
-
-inline ZBDate::ZBDate( const FILETIME& fileTime, int nDST )
-    : COleDateTime( fileTime )
-{
-}
+//---------------------------------------------------------------------------
 
 #endif
-
-inline BOOL ZBDate::IsEmpty()
-{
-#ifdef _WIN32    // In 32bit
-    return ( m_dt <= 0 ) ? TRUE : FALSE;
-#else            // In 16bit
-    return ( GetTime() <= 0 ) ? TRUE : FALSE;
-#endif
-}
-
-#endif // __ZBDATE_H

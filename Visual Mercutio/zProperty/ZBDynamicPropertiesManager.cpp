@@ -489,7 +489,7 @@ ZBProperty* ZBDynamicPropertiesManager::CreateProperty( const CString           
         //case ZBProperty::PT_EDIT_TIME:
         //case ZBProperty::PT_EDIT_TIME_READONLY:
         {
-            ZBDate dt;
+            PSS_Date dt;
             pProp = new ZBProperty( Category,
                                     CategoryID,
                                     Item,

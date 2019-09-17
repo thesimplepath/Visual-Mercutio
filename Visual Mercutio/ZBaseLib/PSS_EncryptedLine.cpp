@@ -76,7 +76,7 @@ CString PSS_EncryptedLine::GenerateLine(const CString& value)
     return m_Entity;
 }
 //---------------------------------------------------------------------------
-CString PSS_EncryptedLine::GenerateLine(const ZBDate& date)
+CString PSS_EncryptedLine::GenerateLine(const PSS_Date& date)
 {
     const int leftSize = (g_EncryptedLineLength - 8) / 2;
     m_Entity           = GenerateRandomLine(leftSize);
@@ -160,7 +160,7 @@ int PSS_EncryptedLine::GetInt()
     return std::atoi(sNum);
 }
 //---------------------------------------------------------------------------
-ZBDate PSS_EncryptedLine::GetDate()
+PSS_Date PSS_EncryptedLine::GetDate()
 {
     // decrypt the entity
     EncryptEntity(m_Entity);

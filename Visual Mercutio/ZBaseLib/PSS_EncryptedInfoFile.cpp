@@ -111,18 +111,18 @@ BOOL PSS_EncryptedInfoFile::SetTime(const CTime& value, std::size_t index)
     return TRUE;
 }
 //---------------------------------------------------------------------------
-ZBDate PSS_EncryptedInfoFile::GetDate(std::size_t index)
+PSS_Date PSS_EncryptedInfoFile::GetDate(std::size_t index)
 {
     if (index >= m_TableEntries)
     {
         SetErrorStatus(TRUE);
-        return ZBDate(time_t(0));
+        return PSS_Date(time_t(0));
     }
 
     return m_EntityTable[index].GetDate();
 }
 //---------------------------------------------------------------------------
-BOOL PSS_EncryptedInfoFile::SetDate(const ZBDate& value, std::size_t index)
+BOOL PSS_EncryptedInfoFile::SetDate(const PSS_Date& value, std::size_t index)
 {
     if (index >= m_TableEntries)
     {

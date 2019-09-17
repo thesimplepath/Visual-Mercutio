@@ -95,14 +95,14 @@ void ZCInPlaceDateEdit::SetEditText(const CString& strText)
         SetWindowText(strText);
 }
 
-void ZCInPlaceDateEdit::SetEditText(ZBDate& DateValue)
+void ZCInPlaceDateEdit::SetEditText(PSS_Date& DateValue)
 {
     // Sets the duration value
     m_DateValue = DateValue;
     // Build the string
     CString strInitText;
     // Format the value function of the string format specified
-    strInitText = ZUStringFormatter::GetFormattedBuffer( (ZBDate&)m_DateValue, m_pItem->GetStringFormat() );
+    strInitText = ZUStringFormatter::GetFormattedBuffer( (PSS_Date&)m_DateValue, m_pItem->GetStringFormat() );
     SetEditText( strInitText );
 }
 
@@ -132,12 +132,12 @@ BOOL ZCInPlaceDateEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, const C
     return rValue;
 }
 
-BOOL ZCInPlaceDateEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, ZBDate& DateInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle /*= 0"*/)
+BOOL ZCInPlaceDateEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, PSS_Date& DateInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle /*= 0"*/)
 {
     m_pItem = pItem;
 
     BOOL rValue = Create(WS_CHILD|WS_VISIBLE|ES_AUTOHSCROLL|ES_LEFT|exDwStyle, rect, pWndParent, 1);
-    SetEditText( (ZBDate&)DateInitValue );    
+    SetEditText( (PSS_Date&)DateInitValue );
     // Saves the initial value
     m_InitialDateValue = DateInitValue;
     // Reset the has changed value
@@ -185,9 +185,9 @@ void ZCInPlaceDateEdit::SaveValue()
                         // RS-MODIF 05.08.05 édition de date
                         //ZBDuration value;
 
-                        ZBDate value;
+                        PSS_Date value;
 
-                        ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer( ProposedValue, (ZBDate&)value, m_pItem->GetStringFormat() );
+                        ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer( ProposedValue, (PSS_Date&)value, m_pItem->GetStringFormat() );
                         if (!ConversionCorrect)
                             ZCInPlaceDateEdit::CancelEdit();
                         break;
@@ -231,7 +231,7 @@ void ZCInPlaceDateEdit::CancelEdit()
         case ZIInPlaceEdit::IPE_DATE:
         {
             // Set back the initial duration value
-            SetEditText( (ZBDate&)m_InitialDateValue );
+            SetEditText( (PSS_Date&)m_InitialDateValue );
             break;
         }
     }
@@ -278,13 +278,13 @@ void ZCInPlaceDateEdit::OnExtendedCommand()
             // Check the conversion
             // RS-MODIF 05.08.2005: édition de date
             //ZBDuration value;
-            ZBDate value;
-            bool ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer( ProposedValue, (ZBDate&)value, pItem->GetStringFormat() );
+            PSS_Date value;
+            bool ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer( ProposedValue, (PSS_Date&)value, pItem->GetStringFormat() );
             if (ConversionCorrect)
             {
 
                 // Format the value function of the string format specified
-                ProposedValue = ZUStringFormatter::GetFormattedBuffer( (ZBDate&)value, pItem->GetStringFormat() );
+                ProposedValue = ZUStringFormatter::GetFormattedBuffer( (PSS_Date&)value, pItem->GetStringFormat() );
                 SetEditText( ProposedValue );
                 // Set the has changed value
                 SetHasChanged( true );

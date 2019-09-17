@@ -128,7 +128,7 @@ BOOL ZUActivityLogDatabase::AppendToLog (ZBEventActivity& EventActivity)
         return (FALSE);
     }
 
-      ZBDate    CurrentDate = ZBDate::GetToday();
+    PSS_Date CurrentDate = PSS_Date::GetToday();
 
     // The current date
     m_pLogRecordset->SetDate( CurrentDate );

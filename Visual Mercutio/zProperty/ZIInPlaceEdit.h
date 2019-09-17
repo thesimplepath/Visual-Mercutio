@@ -63,7 +63,7 @@ public:
     ZIInPlaceEdit(double dInitValue, bool IsReadOnly = false);
     ZIInPlaceEdit(float fInitValue, bool IsReadOnly = false);
     ZIInPlaceEdit(ZBDuration& DurationInitValue, bool IsReadOnly = false);
-    ZIInPlaceEdit(ZBDate& DateInitValue, bool IsReadOnly = false);
+    ZIInPlaceEdit(PSS_Date& DateInitValue, bool IsReadOnly = false);
     //RS-MODIF 08.08.2005 ajout de l'attribut dynamique "temps"
     ZIInPlaceEdit(ZBTimeSpan& TimeInitValue, bool IsReadOnly = false);
     
@@ -93,7 +93,7 @@ public:
     {
         return FALSE;
     };
-    virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, ZBDate& DateInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0)
+    virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, PSS_Date& DateInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0)
     {
         return FALSE;
     };
@@ -119,7 +119,7 @@ public:
     virtual void SetEditText(ZBDuration& DurationValue)
     {
     };
-    virtual void SetEditText(ZBDate& DateValue)
+    virtual void SetEditText(PSS_Date& DateValue)
     {
     };
     //RS-MODIF 08.08.2005 ajout de l'attribut dynamique "temps"
@@ -189,8 +189,8 @@ protected:
     float            m_fInitialValue;
     ZBDuration        m_DurationValue;
     ZBDuration        m_InitialDurationValue;
-    ZBDate            m_DateValue;
-    ZBDate            m_InitialDateValue;
+    PSS_Date            m_DateValue;
+    PSS_Date            m_InitialDateValue;
     //RS-MODIF 08.08.2005 ajout de l'attribut dynamique "temps"
     ZBTimeSpan        m_TimeValue;
     ZBTimeSpan        m_InitialTimeValue;
@@ -242,7 +242,7 @@ inline ZIInPlaceEdit::ZIInPlaceEdit(ZBDuration& DurationInitValue, bool IsReadOn
     m_InitialDurationValue = DurationInitValue;
 }
 
-inline ZIInPlaceEdit::ZIInPlaceEdit(ZBDate& DateInitValue, bool IsReadOnly /*= false*/)
+inline ZIInPlaceEdit::ZIInPlaceEdit(PSS_Date& DateInitValue, bool IsReadOnly /*= false*/)
     : m_DateValue(DateInitValue), m_IsReadOnly(IsReadOnly), m_HasChanged(false)
 {
     // Sets the type

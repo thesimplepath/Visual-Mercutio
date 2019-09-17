@@ -129,8 +129,8 @@ public:
     virtual ZBDuration GetDataDuration() const;
 
     // Set and get data for date
-    virtual void SetData( ZBDate& Value );
-    virtual ZBDate GetDataDate() const;
+    virtual void SetData(PSS_Date& Value );
+    virtual PSS_Date GetDataDate() const;
 
     // RS-MODIF 08.08.2005 ajout de l'attribut dynamique "temps"
     // Set and get data for time
@@ -166,7 +166,7 @@ protected:
     double                    m_dValue;
     float                    m_fValue;
     ZBDuration                m_durationValue;
-    ZBDate                    m_dateValue;
+    PSS_Date                    m_dateValue;
     //RS-MODIF 08.08.2005 ajout de l'attribut dynamique "temps"
     ZBTimeSpan                m_timeValue;
 
@@ -306,9 +306,9 @@ inline void ZBPropertyItem::SetData( const CString sText )
 
         case PI_DATE:
         {
-            ZBDate value;
+            PSS_Date value;
 
-            if ( ZUStringFormatter::ConvertFormattedBuffer( sText, (ZBDate&)value, GetStringFormat() ) )
+            if ( ZUStringFormatter::ConvertFormattedBuffer( sText, (PSS_Date&)value, GetStringFormat() ) )
             {
                 m_dateValue = value;
             }
@@ -364,7 +364,7 @@ inline ZBDuration ZBPropertyItem::GetDataDuration() const
     return m_durationValue;
 };
 
-inline void ZBPropertyItem::SetData( ZBDate& Value )
+inline void ZBPropertyItem::SetData(PSS_Date& Value )
 {
     m_Type            = PI_DATE;
     m_dateValue        = Value;
@@ -378,7 +378,7 @@ inline void ZBPropertyItem::SetData( ZBTimeSpan& Value )
     m_timeValue        = Value;
 }
 
-inline ZBDate ZBPropertyItem::GetDataDate() const
+inline PSS_Date ZBPropertyItem::GetDataDate() const
 {
     return m_dateValue;
 };
@@ -424,7 +424,7 @@ inline CString ZBPropertyItem::GetData() const
         case PI_DATE:
         {
             // Format the value function of the string format specified
-            sText = ZUStringFormatter::GetFormattedBuffer( (ZBDate&)m_dateValue,
+            sText = ZUStringFormatter::GetFormattedBuffer( (PSS_Date&)m_dateValue,
                                                            const_cast<ZBPropertyItem*>(this)->GetStringFormat() );
             break;
         }

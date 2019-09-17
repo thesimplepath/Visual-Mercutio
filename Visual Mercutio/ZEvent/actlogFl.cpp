@@ -141,10 +141,10 @@ void ZUActivityLogFile::Create (CString LogFileName)
 
 BOOL ZUActivityLogFile::AppendToLog (ZBEventActivity& EventActivity)
 {
-      if (!OpenWrite())
-          OpenCreate();
+    if (!OpenWrite())
+        OpenCreate();
 
-    ZBDate    CurrentDate = ZBDate::GetToday();
+    PSS_Date    CurrentDate = PSS_Date::GetToday();
     CString    Line;
 
     ZBTokenizer    Tokenizer( '\t' );

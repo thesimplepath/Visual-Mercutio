@@ -240,25 +240,25 @@ class AFX_EXT_CLASS PSS_Stamp
         * Gets the creation date
         *@return the creation date
         */
-        virtual inline const ZBDate GetStampCreationDate() const;
+        virtual inline const PSS_Date GetStampCreationDate() const;
 
         /**
         * Sets the creation date
         *@param value - the creation date
         */
-        virtual inline void SetStampCreationDate(const ZBDate& value);
+        virtual inline void SetStampCreationDate(const PSS_Date& value);
 
         /**
         * Gets the last modification date
         *@return the last modification date
         */
-        virtual inline const ZBDate GetStampModificationDate() const;
+        virtual inline const PSS_Date GetStampModificationDate() const;
 
         /**
         * Sets the last modification date
         *@param value - the last modification date
         */
-        virtual inline void SetStampModificationDate(const ZBDate& value);
+        virtual inline void SetStampModificationDate(const PSS_Date& value);
 
         /**
         * Gets the application name which modified the file
@@ -300,13 +300,13 @@ class AFX_EXT_CLASS PSS_Stamp
         * Gets the publication date
         *@return the publication date
         */
-        virtual inline const ZBDate GetPublishDate() const;
+        virtual inline const PSS_Date GetPublishDate() const;
 
         /**
         * Sets the publication date
         *@param value - the publication date
         */
-        virtual inline void SetPublishDate(const ZBDate& value);
+        virtual inline void SetPublishDate(const PSS_Date& value);
 
         /**
         * Gets the user responsible for the publication
@@ -369,9 +369,9 @@ class AFX_EXT_CLASS PSS_Stamp
         CString              m_AppModifier;
         CString              m_PublishUser;
         CString              m_InternalKey;
-        ZBDate               m_StampCreationDate;
-        ZBDate               m_StampModificationDate;
-        ZBDate               m_PublishDate;
+        PSS_Date             m_StampCreationDate;
+        PSS_Date             m_StampModificationDate;
+        PSS_Date             m_PublishDate;
         LONG                 m_PublishVersion;
         long                 m_InternalVersion;
         BOOL                 m_ReadOnly;
@@ -445,22 +445,22 @@ void PSS_Stamp::SetTemplate(const CString& value)
     m_Template = value;
 }
 //---------------------------------------------------------------------------
-const ZBDate PSS_Stamp::GetStampCreationDate() const
+const PSS_Date PSS_Stamp::GetStampCreationDate() const
 {
     return m_StampCreationDate;
 }
 //---------------------------------------------------------------------------
-void PSS_Stamp::SetStampCreationDate(const ZBDate& value)
+void PSS_Stamp::SetStampCreationDate(const PSS_Date& value)
 {
     m_StampCreationDate = value;
 }
 //---------------------------------------------------------------------------
-const ZBDate PSS_Stamp::GetStampModificationDate() const
+const PSS_Date PSS_Stamp::GetStampModificationDate() const
 {
     return m_StampModificationDate;
 }
 //---------------------------------------------------------------------------
-void PSS_Stamp::SetStampModificationDate(const ZBDate& value)
+void PSS_Stamp::SetStampModificationDate(const PSS_Date& value)
 {
     m_StampModificationDate = value;
 }
@@ -495,12 +495,12 @@ void PSS_Stamp::SetPublishVersion(LONG value)
     m_PublishVersion = value;
 }
 //---------------------------------------------------------------------------
-const ZBDate PSS_Stamp::GetPublishDate() const
+const PSS_Date PSS_Stamp::GetPublishDate() const
 {
     return m_PublishDate;
 }
 //---------------------------------------------------------------------------
-void PSS_Stamp::SetPublishDate(const ZBDate& value)
+void PSS_Stamp::SetPublishDate(const PSS_Date& value)
 {
     m_PublishDate = value;
 }

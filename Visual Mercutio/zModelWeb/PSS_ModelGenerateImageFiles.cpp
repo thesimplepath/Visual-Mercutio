@@ -431,7 +431,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(ZDProcessGraphModelMdl* pModel,
         CString s;
         s.Format(IDS_MODELGENHTML_1,
                  (const char*)pModel->GetAbsolutePath(),
-                 (const char*)ZBDate::GetToday().GetStandardFormattedDate());
+                 (const char*)PSS_Date::GetToday().GetStandardFormattedDate());
         htmlFile << s;
 
         // build the CSS file name
@@ -910,7 +910,7 @@ bool PSS_ModelGenerateImageFiles::CreateHtmlPage(ZDProcessGraphModelMdl* pModel,
         // write header
         s.Format(IDS_MODELGENHTML_1,
                  (const char*)pModel->GetAbsolutePath(),
-                 (const char*)ZBDate::GetToday().GetStandardFormattedDate());
+                 (const char*)PSS_Date::GetToday().GetStandardFormattedDate());
         printableHtmlFile << s;
 
         s.Format(IDS_MODELGENHTML_16, (const char*)BuildFileNameAndPath(imageFileName, htmlFileName));
@@ -996,7 +996,7 @@ bool PSS_ModelGenerateImageFiles::GenerateIndexPage(ZDProcessGraphModelMdl* pMod
         // write header
         s.Format(IDS_MODELGENHTML_1,
                  (const char*)pModel->GetAbsolutePath(),
-                 (const char*)ZBDate::GetToday().GetStandardFormattedDate());
+                 (const char*)PSS_Date::GetToday().GetStandardFormattedDate());
         htmlFile << s;
 
         s.Format(IDS_MODELGENHTML_68, (const char*)g_White);
@@ -1576,7 +1576,7 @@ bool PSS_ModelGenerateImageFiles::GenerateBannerPage(ZDProcessGraphModelMdl* pMo
         // write header
         s.Format(IDS_MODELGENHTML_1,
                  (const char*)pModel->GetAbsolutePath(),
-                 (const char*)ZBDate::GetToday().GetStandardFormattedDate());
+                 (const char*)PSS_Date::GetToday().GetStandardFormattedDate());
         htmlFile << s;
 
         s.Format(IDS_MODELGENHTML_68, (const char*)g_White);
@@ -2500,7 +2500,7 @@ bool PSS_ModelGenerateImageFiles::GeneratePropertyPage(ZIProperties* pProperties
             {
                 case ZBProperty::PT_DOUBLE:   value = ZUStringFormatter::GetFormattedBuffer(pProp->GetValueDouble(),                pProp->GetStringFormat()); break;
                 case ZBProperty::PT_FLOAT:    value = ZUStringFormatter::GetFormattedBuffer(pProp->GetValueFloat(),                 pProp->GetStringFormat()); break;
-                case ZBProperty::PT_DATE:     value = ZUStringFormatter::GetFormattedBuffer((ZBDate&)pProp->GetValueDate(),         pProp->GetStringFormat()); break;
+                case ZBProperty::PT_DATE:     value = ZUStringFormatter::GetFormattedBuffer((PSS_Date&)pProp->GetValueDate(),         pProp->GetStringFormat()); break;
                 case ZBProperty::PT_TIMESPAN: value = ZUStringFormatter::GetFormattedBuffer((ZBTimeSpan&)pProp->GetValueTimeSpan(), pProp->GetStringFormat()); break;
                 case ZBProperty::PT_DURATION: value = ZUStringFormatter::GetFormattedBuffer((ZBDuration&)pProp->GetValueDuration(), pProp->GetStringFormat()); break;
                 case ZBProperty::PT_STRING:   value = pProp->GetValueString();                                                                                 break;

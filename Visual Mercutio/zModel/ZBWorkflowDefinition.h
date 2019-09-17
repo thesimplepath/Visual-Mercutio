@@ -54,8 +54,8 @@ public:
     void        ClearWorkflowFilename();
     void        SetWorkflowFilename( CString value ) { m_WorkflowFilename = value; };
 
-    ZBDate&        GetWorkflowLastUpdateDate() { return m_WorkflowLastUpdateDate; };
-    void        SetWorkflowLastUpdateDate( ZBDate value ) { m_WorkflowLastUpdateDate = value; };
+    PSS_Date&        GetWorkflowLastUpdateDate() { return m_WorkflowLastUpdateDate; };
+    void        SetWorkflowLastUpdateDate(PSS_Date value ) { m_WorkflowLastUpdateDate = value; };
 
     bool        GetCheckConsistency() const { return m_CheckConsistency; };
     void        SetCheckConsistency( bool value ) { m_CheckConsistency = value; };
@@ -69,7 +69,7 @@ public:
 
 private:
     CString            m_WorkflowFilename;
-    ZBDate            m_WorkflowLastUpdateDate;
+    PSS_Date            m_WorkflowLastUpdateDate;
     bool            m_CheckConsistency;
     bool            m_SaveModelInWorkflow;
 

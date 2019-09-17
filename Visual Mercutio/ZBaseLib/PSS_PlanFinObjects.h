@@ -533,7 +533,7 @@ class AFX_EXT_CLASS PSS_PLFNTime : public PSS_PLFNAscii
         *@return the time
         */
         #ifdef _WIN32
-            virtual inline ZBDate GetTimeValue() const;
+            virtual inline PSS_Date GetTimeValue() const;
         #endif
 
         /**
@@ -541,7 +541,7 @@ class AFX_EXT_CLASS PSS_PLFNTime : public PSS_PLFNAscii
         *@param time - time
         */
         #ifdef _WIN32
-            virtual inline void SetTimeValue(const ZBDate& time);
+            virtual inline void SetTimeValue(const PSS_Date& time);
         #endif
 
         /**
@@ -599,7 +599,7 @@ class AFX_EXT_CLASS PSS_PLFNTime : public PSS_PLFNAscii
         * Gets the time
         *@return the time
         */
-        virtual inline const ZBDate& GetTime() const;
+        virtual inline const PSS_Date& GetTime() const;
 
         /**
         * Serializes the class content to an archive
@@ -631,7 +631,7 @@ class AFX_EXT_CLASS PSS_PLFNTime : public PSS_PLFNAscii
         virtual void DrawObject(CDC* pDC, ZIView* pView);
 
     private:
-        ZBDate m_Time;
+        PSS_Date m_Time;
 };
 
 //---------------------------------------------------------------------------
@@ -644,15 +644,15 @@ const BOOL PSS_PLFNTime::GetIsStatic() const
 //---------------------------------------------------------------------------
 void PSS_PLFNTime::SetToday()
 {
-    m_Time = ZBDate::GetToday();
+    m_Time = PSS_Date::GetToday();
 }
 //---------------------------------------------------------------------------
-ZBDate PSS_PLFNTime::GetTimeValue() const
+PSS_Date PSS_PLFNTime::GetTimeValue() const
 {
     return m_Time;
 };
 //---------------------------------------------------------------------------
-void PSS_PLFNTime::SetTimeValue(const ZBDate& time)
+void PSS_PLFNTime::SetTimeValue(const PSS_Date& time)
 {
     m_Time = time;
     ClearEmptyObjectFlag();
@@ -673,7 +673,7 @@ UINT PSS_PLFNTime::GetPropertyTabs() const
     return (g_PropertyGeneralDatePage | g_PropertySizePage);
 }
 //---------------------------------------------------------------------------
-const ZBDate& PSS_PLFNTime::GetTime() const
+const PSS_Date& PSS_PLFNTime::GetTime() const
 {
     return m_Time;
 }

@@ -250,7 +250,7 @@ bool ZBPropertyAttributes::Match( ZBPropertySet&    PropSet,
             {
                 // RS-MODIF 15.08.05 cast implicite pour obtenir le bon lien objet
                 //Value = ZUStringFormatter::GetFormattedBuffer( pProp->GetValueDate(), pProp->GetStringFormat() );
-                Value = ZUStringFormatter::GetFormattedBuffer( (ZBDate&)pProp->GetValueDate(),
+                Value = ZUStringFormatter::GetFormattedBuffer( (PSS_Date&)pProp->GetValueDate(),
                                                                pProp->GetStringFormat() );
                 break;
             }
@@ -366,7 +366,7 @@ CString ZBPropertyAttributes::GetString( ZBPropertySet* pPropSet, bool KeepOnlyN
             {
                 // RS-MODIF 15.08.05 cast implicite pour obtenir le bon lien objet
                 //Value += ZUStringFormatter::GetFormattedBuffer( pProp->GetValueDate(), pProp->GetStringFormat() );
-                Value += ZUStringFormatter::GetFormattedBuffer( (ZBDate&)pProp->GetValueDate(),
+                Value += ZUStringFormatter::GetFormattedBuffer( (PSS_Date&)pProp->GetValueDate(),
                                                                 pProp->GetStringFormat() );
                 break;
             }

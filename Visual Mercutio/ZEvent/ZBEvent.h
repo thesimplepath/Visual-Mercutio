@@ -58,7 +58,7 @@ public:
     virtual ~ZBEvent();
     ZBEvent(const ZBEvent &right);
     const ZBEvent & operator=(const ZBEvent &right);
-    ZBDate            GetTimeStamp() const { return m_TimeStamp; };
+    PSS_Date            GetTimeStamp() const { return m_TimeStamp; };
     CString            GetFormattedTimeStamp() { return m_TimeStamp.Format( EventDateTimeFormatString ); };
     int                GetEventID() const { return m_EventID; };
     CString            GetEventIDStr() const;
@@ -73,7 +73,7 @@ public:
 #endif
 
 protected:
-    ZBDate            m_TimeStamp;
+    PSS_Date            m_TimeStamp;
     int                m_EventID;
     CString            m_UserQueue;
 };

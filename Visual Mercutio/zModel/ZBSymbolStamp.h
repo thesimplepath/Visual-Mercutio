@@ -73,11 +73,11 @@ public:
     CString GetAuthor() const;
     void SetAuthor( CString value );
 
-    ZBDate    GetCreationDate() const;
-    void SetCreationDate( ZBDate value );
+    PSS_Date    GetCreationDate() const;
+    void SetCreationDate(PSS_Date value );
 
-    ZBDate    GetModificationDate() const;
-    void SetModificationDate( ZBDate value );
+    PSS_Date    GetModificationDate() const;
+    void SetModificationDate(PSS_Date value );
 
     // Archiving operations ----------------------------------
 
@@ -112,8 +112,8 @@ private:
     CString m_Category;
     DWORD    m_SymbolVersion;
     CString m_Author;
-    ZBDate    m_CreationDate;
-    ZBDate    m_ModificationDate;
+    PSS_Date    m_CreationDate;
+    PSS_Date    m_ModificationDate;
 };
 
 inline DWORD    ZBSymbolStamp::GetInternalFileVersion() const
@@ -179,20 +179,20 @@ inline void ZBSymbolStamp::SetAuthor( CString value )
     m_Author = value;
 }
 
-inline ZBDate    ZBSymbolStamp::GetCreationDate() const
+inline PSS_Date    ZBSymbolStamp::GetCreationDate() const
 {
     return m_CreationDate;
 }
-inline void ZBSymbolStamp::SetCreationDate( ZBDate value )
+inline void ZBSymbolStamp::SetCreationDate(PSS_Date value )
 {
     m_CreationDate = value;
 }
 
-inline ZBDate    ZBSymbolStamp::GetModificationDate() const
+inline PSS_Date    ZBSymbolStamp::GetModificationDate() const
 {
     return m_ModificationDate;
 }
-inline void ZBSymbolStamp::SetModificationDate( ZBDate value )
+inline void ZBSymbolStamp::SetModificationDate(PSS_Date value )
 {
     m_ModificationDate = value;
 }

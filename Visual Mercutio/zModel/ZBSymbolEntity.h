@@ -92,11 +92,11 @@ public:
     CString GetAuthor() const;
     void SetAuthor( CString value );
 
-    ZBDate    GetCreationDate() const;
-    void SetCreationDate( ZBDate value );
+    PSS_Date    GetCreationDate() const;
+    void SetCreationDate(PSS_Date value );
 
-    ZBDate    GetModificationDate() const;
-    void SetModificationDate( ZBDate value );
+    PSS_Date    GetModificationDate() const;
+    void SetModificationDate(PSS_Date value );
 
     ZBSymbolStamp&    GetSymbolStamp();
     const ZBSymbolStamp&    GetSymbolStampConst() const;
@@ -178,20 +178,20 @@ inline void ZBSymbolEntity::SetAuthor( CString value )
     m_SymbolStamp.SetAuthor( value );
 }
 
-inline ZBDate    ZBSymbolEntity::GetCreationDate() const
+inline PSS_Date    ZBSymbolEntity::GetCreationDate() const
 {
     return m_SymbolStamp.GetCreationDate();
 }
-inline void ZBSymbolEntity::SetCreationDate( ZBDate value )
+inline void ZBSymbolEntity::SetCreationDate(PSS_Date value )
 {
     m_SymbolStamp.SetCreationDate( value );
 }
 
-inline ZBDate    ZBSymbolEntity::GetModificationDate() const
+inline PSS_Date    ZBSymbolEntity::GetModificationDate() const
 {
     return m_SymbolStamp.GetModificationDate();
 }
-inline void ZBSymbolEntity::SetModificationDate( ZBDate value )
+inline void ZBSymbolEntity::SetModificationDate(PSS_Date value )
 {
     m_SymbolStamp.SetModificationDate( value );
 }

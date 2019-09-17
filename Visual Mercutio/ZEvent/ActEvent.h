@@ -102,7 +102,7 @@ public:
     void            SetActivityName(const CString value) { m_ActivityName = value; };
 
     // Process Creation Date
-    ZBDate            GetProcessCreationDate() const { return m_ProcessCreationDate; };
+    PSS_Date            GetProcessCreationDate() const { return m_ProcessCreationDate; };
     void            SetProcessCreationDate(const COleDateTime time) { m_ProcessCreationDate = time; };
     int                SetProcessCreationDate(int Y, int Mt, int D, int H, int Mn, int S) { return m_ProcessCreationDate.SetDateTime(Y, Mt, D, H, Mn, S); };
     BOOL            SetProcessCreationDate(CString value) { return ParseDateTime(m_ProcessCreationDate, value); };
@@ -110,7 +110,7 @@ public:
     CString            GetFormattedProcessCreationDateTime() { return m_ProcessCreationDate.Format( EventDateTimeFormatString ); };
 
     // Process Due Date
-    ZBDate            GetProcessDueDate() const  { return m_ProcessDueDate; };
+    PSS_Date            GetProcessDueDate() const  { return m_ProcessDueDate; };
     void            SetProcessDueDate(const COleDateTime time) { m_ProcessDueDate = time; };
     int                SetProcessDueDate(int Y, int Mt, int D, int H, int Mn, int S) { return m_ProcessDueDate.SetDateTime(Y, Mt, D, H, Mn, S); };
     BOOL            SetProcessDueDate(CString value) { return ParseDateTime(m_ProcessDueDate, value); };
@@ -118,7 +118,7 @@ public:
     CString            GetFormattedProcessDueDateTime() { return m_ProcessDueDate.Format( EventDateTimeFormatString ); };
 
     // Activity Creation Date
-    ZBDate            GetActivityCreationDate() const { return m_ActivityCreationDate; };
+    PSS_Date            GetActivityCreationDate() const { return m_ActivityCreationDate; };
     void            SetActivityCreationDate(const COleDateTime time) { m_ActivityCreationDate = time; };
     int                SetActivityCreationDate(int Y, int Mt, int D, int H, int Mn, int S) { return m_ActivityCreationDate.SetDateTime(Y, Mt, D, H, Mn, S); };
     BOOL            SetActivityCreationDate(CString value) { return ParseDateTime(m_ActivityCreationDate, value); };
@@ -126,7 +126,7 @@ public:
     CString            GetFormattedActivityCreationDateTime() { return m_ActivityCreationDate.Format( EventDateTimeFormatString ); };
 
     // Activity Due Date
-    ZBDate            GetActivityDueDate() const { return m_ActivityDueDate; };
+    PSS_Date            GetActivityDueDate() const { return m_ActivityDueDate; };
     void            SetActivityDueDate(const COleDateTime time) { m_ActivityDueDate = time; };
     int                SetActivityDueDate(int Y, int Mt, int D, int H, int Mn, int S) { return m_ActivityDueDate.SetDateTime(Y, Mt, D, H, Mn, S); };
     BOOL            SetActivityDueDate(CString value) { return ParseDateTime(m_ActivityDueDate, value); };
@@ -180,11 +180,11 @@ protected:
     CString                m_FolderName;
     CString                m_Filename;
     CString                m_ProcessName;
-    ZBDate                m_ProcessCreationDate;
-    ZBDate                m_ProcessDueDate;
+    PSS_Date                m_ProcessCreationDate;
+    PSS_Date                m_ProcessDueDate;
     CString                m_ActivityName;
-    ZBDate                m_ActivityCreationDate;
-    ZBDate                m_ActivityDueDate;
+    PSS_Date                m_ActivityCreationDate;
+    PSS_Date                m_ActivityDueDate;
     CString                m_ActivityType;
     CString                m_Sender;
     CString                m_Receiver;

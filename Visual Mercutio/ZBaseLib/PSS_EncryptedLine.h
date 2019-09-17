@@ -73,7 +73,7 @@ class AFX_EXT_CLASS PSS_EncryptedLine : public CObject
         *@param value - value
         *@return the generated line
         */
-        virtual CString GenerateLine(const ZBDate& date);
+        virtual CString GenerateLine(const PSS_Date& date);
 
         /**
         * Generates a line from a time value
@@ -99,7 +99,7 @@ class AFX_EXT_CLASS PSS_EncryptedLine : public CObject
         * Decrypts the date value and gets it
         *@return the decrypted value
         */
-        virtual ZBDate GetDate();
+        virtual PSS_Date GetDate();
 
         /**
         * Decrypts the time value and gets it

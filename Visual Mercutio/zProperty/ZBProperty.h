@@ -183,7 +183,7 @@ public:
                 const CString    Label,
                 int                ItemID,
                 const CString    Description,
-                ZBDate&            Value,
+               PSS_Date&            Value,
                 PropertyType    PTType                    = PT_EDIT_DATE,
                 bool            Enable                    = true,
                 ZBStringFormat&    ft                        = ZBStringFormat( ZBStringFormat::Date ),
@@ -197,7 +197,7 @@ public:
                 const UINT        LabelResID,
                 int                ItemID,
                 const UINT        DescriptionResID,
-                ZBDate&            Value,
+               PSS_Date&            Value,
                 PropertyType    PTType                    = PT_EDIT_DATE,
                 bool            Enable                    = true,
                 ZBStringFormat&    ft                        = ZBStringFormat( ZBStringFormat::Date ),
@@ -311,8 +311,8 @@ public:
     float GetValueFloat() const;
     void SetValueFloat( float value );
 
-    ZBDate GetValueDate() const;
-    void SetValueDate( ZBDate& value );
+    PSS_Date GetValueDate() const;
+    void SetValueDate(PSS_Date& value );
 
     ZBTimeSpan GetValueTimeSpan() const;
     void SetValueTimeSpan( ZBTimeSpan& value );
@@ -368,7 +368,7 @@ private:
 
     PropertyType        m_PTType;
     PropertyValueType    m_ValueType;
-    ZBDate                m_dtValue;
+    PSS_Date                m_dtValue;
     ZBTimeSpan            m_tsValue;
     ZBDuration            m_durationValue;
     ZBStringFormat        m_ft;
@@ -492,12 +492,12 @@ inline void ZBProperty::SetValueFloat( float value )
     m_ValueType        = PT_FLOAT;
 }
 
-inline ZBDate ZBProperty::GetValueDate() const
+inline PSS_Date ZBProperty::GetValueDate() const
 {
     return m_dtValue;
 }
 
-inline void ZBProperty::SetValueDate( ZBDate& value )
+inline void ZBProperty::SetValueDate(PSS_Date& value )
 {
     m_dtValue        = value;
     m_ValueType        = PT_DATE;

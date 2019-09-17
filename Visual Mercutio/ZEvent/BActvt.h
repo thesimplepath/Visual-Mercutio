@@ -491,30 +491,30 @@ public:
 
     //## Attribute: StartDate%3786D98F02C5
     //    Contains the start date.
-    const ZBDate GetStartDate() const;
-    void SetStartDate(ZBDate value);
+    const PSS_Date GetStartDate() const;
+    void SetStartDate(PSS_Date value);
 
     //## Attribute: EndDate%3786D99402C2
     //    Contains the end date.
-    const ZBDate GetEndDate() const;
-    void SetEndDate(ZBDate value);
+    const PSS_Date GetEndDate() const;
+    void SetEndDate(PSS_Date value);
 
     //## Attribute: ForecastedEndDate%3786D99903AF
     //    Contains the end calculated forecasted date. This date
     //    is initialized once the process starts.
-    const ZBDate GetForecastedEndDate() const;
-    void SetForecastedEndDate(ZBDate value);
+    const PSS_Date GetForecastedEndDate() const;
+    void SetForecastedEndDate(PSS_Date value);
 
     //## Attribute: ForecastedStartDate%3786ECE40361
     //    Contains the start calculated forecasted date. This date
     //    is initialized once the process starts.
-    const ZBDate GetForecastedStartDate() const;
-    void SetForecastedStartDate(ZBDate value);
+    const PSS_Date GetForecastedStartDate() const;
+    void SetForecastedStartDate(PSS_Date value);
 
     //## Attribute: LastUpdateDate%3786D9A000AC
     //    Contains the last update date.
-    const ZBDate GetLastUpdateDate() const;
-    void SetLastUpdateDate(ZBDate value);
+    const PSS_Date GetLastUpdateDate() const;
+    void SetLastUpdateDate(PSS_Date value);
 
     //## Attribute: Name%3786D9C7031F
     //    The process name.
@@ -769,23 +769,23 @@ protected:
     WORD m_ActivityType;
 
     //## begin ZBaseActivity::StartDate%3786D98F02C5.attr preserve=no  public: ZBDate {U} 
-    ZBDate m_StartDate;
+    PSS_Date m_StartDate;
     //## end ZBaseActivity::StartDate%3786D98F02C5.attr
 
     //## begin ZBaseActivity::EndDate%3786D99402C2.attr preserve=no  public: ZBDate {U} 
-    ZBDate m_EndDate;
+    PSS_Date m_EndDate;
     //## end ZBaseActivity::EndDate%3786D99402C2.attr
 
     //## begin ZBaseActivity::ForecastedEndDate%3786D99903AF.attr preserve=no  public: ZBDate {U} 
-    ZBDate m_ForecastedEndDate;
+    PSS_Date m_ForecastedEndDate;
     //## end ZBaseActivity::ForecastedEndDate%3786D99903AF.attr
 
     //## begin ZBaseActivity::ForecastedStartDate%3786ECE40361.attr preserve=no  public: ZBDate {U} 
-    ZBDate m_ForecastedStartDate;
+    PSS_Date m_ForecastedStartDate;
     //## end ZBaseActivity::ForecastedStartDate%3786ECE40361.attr
 
     //## begin ZBaseActivity::LastUpdateDate%3786D9A000AC.attr preserve=no  public: ZBDate {U} 
-    ZBDate m_LastUpdateDate;
+    PSS_Date m_LastUpdateDate;
     //## end ZBaseActivity::LastUpdateDate%3786D9A000AC.attr
 
     //## Attribute: DurationDays%3786D9B500DF
@@ -1314,70 +1314,70 @@ inline const EThreeState& ZBaseActivity::GetIsVisible() const
     //## end ZBaseActivity::GetIsVisible%37B5237800C0.get
 }
 
-inline const ZBDate ZBaseActivity::GetStartDate() const
+inline const PSS_Date ZBaseActivity::GetStartDate() const
 {
     //## begin ZBaseActivity::GetStartDate%3786D98F02C5.get preserve=no
     return m_StartDate;
     //## end ZBaseActivity::GetStartDate%3786D98F02C5.get
 }
 
-inline void ZBaseActivity::SetStartDate(ZBDate value)
+inline void ZBaseActivity::SetStartDate(PSS_Date value)
 {
     //## begin ZBaseActivity::SetStartDate%3786D98F02C5.set preserve=no
     m_StartDate = value;
     //## end ZBaseActivity::SetStartDate%3786D98F02C5.set
 }
 
-inline const ZBDate ZBaseActivity::GetEndDate() const
+inline const PSS_Date ZBaseActivity::GetEndDate() const
 {
     //## begin ZBaseActivity::GetEndDate%3786D99402C2.get preserve=no
     return m_EndDate;
     //## end ZBaseActivity::GetEndDate%3786D99402C2.get
 }
 
-inline void ZBaseActivity::SetEndDate(ZBDate value)
+inline void ZBaseActivity::SetEndDate(PSS_Date value)
 {
     //## begin ZBaseActivity::SetEndDate%3786D99402C2.set preserve=no
     m_EndDate = value;
     //## end ZBaseActivity::SetEndDate%3786D99402C2.set
 }
 
-inline const ZBDate ZBaseActivity::GetForecastedEndDate() const
+inline const PSS_Date ZBaseActivity::GetForecastedEndDate() const
 {
     //## begin ZBaseActivity::GetForecastedEndDate%3786D99903AF.get preserve=no
     return m_ForecastedEndDate;
     //## end ZBaseActivity::GetForecastedEndDate%3786D99903AF.get
 }
 
-inline void ZBaseActivity::SetForecastedEndDate(ZBDate value)
+inline void ZBaseActivity::SetForecastedEndDate(PSS_Date value)
 {
     //## begin ZBaseActivity::SetForecastedEndDate%3786D99903AF.set preserve=no
     m_ForecastedEndDate = value;
     //## end ZBaseActivity::SetForecastedEndDate%3786D99903AF.set
 }
 
-inline const ZBDate ZBaseActivity::GetForecastedStartDate() const
+inline const PSS_Date ZBaseActivity::GetForecastedStartDate() const
 {
     //## begin ZBaseActivity::GetForecastedStartDate%3786ECE40361.get preserve=no
     return m_ForecastedStartDate;
     //## end ZBaseActivity::GetForecastedStartDate%3786ECE40361.get
 }
 
-inline void ZBaseActivity::SetForecastedStartDate(ZBDate value)
+inline void ZBaseActivity::SetForecastedStartDate(PSS_Date value)
 {
     //## begin ZBaseActivity::SetForecastedStartDate%3786ECE40361.set preserve=no
     m_ForecastedStartDate = value;
     //## end ZBaseActivity::SetForecastedStartDate%3786ECE40361.set
 }
 
-inline const ZBDate ZBaseActivity::GetLastUpdateDate() const
+inline const PSS_Date ZBaseActivity::GetLastUpdateDate() const
 {
     //## begin ZBaseActivity::GetLastUpdateDate%3786D9A000AC.get preserve=no
     return m_LastUpdateDate;
     //## end ZBaseActivity::GetLastUpdateDate%3786D9A000AC.get
 }
 
-inline void ZBaseActivity::SetLastUpdateDate(ZBDate value)
+inline void ZBaseActivity::SetLastUpdateDate(PSS_Date value)
 {
     //## begin ZBaseActivity::SetLastUpdateDate%3786D9A000AC.set preserve=no
     m_LastUpdateDate = value;

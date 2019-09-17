@@ -99,40 +99,40 @@ class AFX_EXT_CLASS PSS_EncryptedEvaluationAppInfoFile : public PSS_EncryptedInf
         * Reads the installation date
         *@return the installation date
         */
-        virtual ZBDate ReadInstallationDate();
+        virtual PSS_Date ReadInstallationDate();
 
         /**
         * Writes the installation date
         *@param value - the installation date
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL WriteInstallationDate(const ZBDate& value);
+        virtual BOOL WriteInstallationDate(const PSS_Date& value);
 
         /**
         * Reads the last date usage
         *@return the last date usage
         */
-        virtual ZBDate ReadLastDateUsage();
+        virtual PSS_Date ReadLastDateUsage();
 
         /**
         * Writes the last date usage
         *@param value - the last date usage
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL WriteLastDateUsage(const ZBDate& value);
+        virtual BOOL WriteLastDateUsage(const PSS_Date& value);
 
         /**
         * Reads the valid date
         *@return the valid date
         */
-        virtual ZBDate ReadValidDate();
+        virtual PSS_Date ReadValidDate();
 
         /**
         * Writes the valid date
         *@param value - the valid date
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL WriteValidDate(ZBDate value);
+        virtual BOOL WriteValidDate(const PSS_Date& value);
 
         /**
         * Reads the day count
@@ -148,11 +148,11 @@ class AFX_EXT_CLASS PSS_EncryptedEvaluationAppInfoFile : public PSS_EncryptedInf
         virtual BOOL WriteDayCount(int value);
 
     private:
-        CString m_ProductKey;
-        ZBDate  m_InstallationDate;
-        ZBDate  m_LastDateUsage;
-        ZBDate  m_ValidDate;
-        int     m_DayCount;
+        CString  m_ProductKey;
+        PSS_Date m_InstallationDate;
+        PSS_Date m_LastDateUsage;
+        PSS_Date m_ValidDate;
+        int      m_DayCount;
 
         /**
         * Reads the file info
@@ -182,37 +182,37 @@ class AFX_EXT_CLASS PSS_EncryptedEvaluationAppInfoFile : public PSS_EncryptedInf
         * Gets the installation date
         *@return the installation date
         */
-        inline ZBDate& GetInstallationDate();
+        inline PSS_Date& GetInstallationDate();
 
         /**
         * Sets the installation date
         *@param value - the installation date
         */
-        inline void SetInstallationDate(const ZBDate& value);
+        inline void SetInstallationDate(const PSS_Date& value);
 
         /**
         * Gets the last date usage
         *@return the last date usage
         */
-        inline ZBDate& GetLastDateUsage();
+        inline PSS_Date& GetLastDateUsage();
 
         /**
         * Sets the last date usage
         *@param value - the last date usage
         */
-        inline void SetLastDateUsage(const ZBDate& value);
+        inline void SetLastDateUsage(const PSS_Date& value);
 
         /**
         * Gets the valid date
         *@return the valid date
         */
-        inline ZBDate& GetValidDate();
+        inline PSS_Date& GetValidDate();
 
         /**
         * Sets the valid date
         *@param value - the valid date
         */
-        inline void SetValidDate(const ZBDate& value);
+        inline void SetValidDate(const PSS_Date& value);
 
         /**
         * Gets the day count
@@ -240,32 +240,32 @@ void PSS_EncryptedEvaluationAppInfoFile::SetProductKey(const CString& value)
     m_ProductKey = value;
 }
 //---------------------------------------------------------------------------
-ZBDate& PSS_EncryptedEvaluationAppInfoFile::GetInstallationDate()
+PSS_Date& PSS_EncryptedEvaluationAppInfoFile::GetInstallationDate()
 {
     return m_InstallationDate;
 }
 //---------------------------------------------------------------------------
-void PSS_EncryptedEvaluationAppInfoFile::SetInstallationDate(const ZBDate& value)
+void PSS_EncryptedEvaluationAppInfoFile::SetInstallationDate(const PSS_Date& value)
 {
     m_InstallationDate = value;
 }
 //---------------------------------------------------------------------------
-ZBDate& PSS_EncryptedEvaluationAppInfoFile::GetLastDateUsage()
+PSS_Date& PSS_EncryptedEvaluationAppInfoFile::GetLastDateUsage()
 {
     return m_LastDateUsage;
 }
 //---------------------------------------------------------------------------
-void PSS_EncryptedEvaluationAppInfoFile::SetLastDateUsage(const ZBDate& value)
+void PSS_EncryptedEvaluationAppInfoFile::SetLastDateUsage(const PSS_Date& value)
 {
     m_LastDateUsage = value;
 }
 //---------------------------------------------------------------------------
-ZBDate& PSS_EncryptedEvaluationAppInfoFile::GetValidDate()
+PSS_Date& PSS_EncryptedEvaluationAppInfoFile::GetValidDate()
 {
     return m_ValidDate;
 }
 //---------------------------------------------------------------------------
-void PSS_EncryptedEvaluationAppInfoFile::SetValidDate(const ZBDate& value)
+void PSS_EncryptedEvaluationAppInfoFile::SetValidDate(const PSS_Date& value)
 {
     m_ValidDate = value;
 }

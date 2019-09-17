@@ -303,11 +303,11 @@ void PSS_ActivityTaskListCtrl::InsertActivity(ZBaseActivity& activity, bool isCu
         CString text;
 
         // the creation date
-        text = (activity.GetActivityStatus() == ActivityNotStarted ? " - " : ((ZBDate&)activity.GetStartDate()).GetStandardFormattedDate());
+        text = (activity.GetActivityStatus() == ActivityNotStarted ? " - " : ((PSS_Date&)activity.GetStartDate()).GetStandardFormattedDate());
         SetItem(index, 4, LVIF_TEXT, text, 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         // the due date
-        text = (activity.GetActivityStatus() == ActivityNotStarted ? " - " : ((ZBDate&)activity.GetForecastedEndDate()).GetStandardFormattedDate());
+        text = (activity.GetActivityStatus() == ActivityNotStarted ? " - " : ((PSS_Date&)activity.GetForecastedEndDate()).GetStandardFormattedDate());
         SetItem(index, 5, LVIF_TEXT, text, 0, LVIF_TEXT, LVIF_TEXT, 0);
 
         char buffer[50];
@@ -317,10 +317,10 @@ void PSS_ActivityTaskListCtrl::InsertActivity(ZBaseActivity& activity, bool isCu
             strcpy_s(buffer, _tcslen(buffer), " - ");
         else
         {
-            ZBDate dateEnd = activity.GetForecastedEndDate();
+            PSS_Date dateEnd = activity.GetForecastedEndDate();
             dateEnd.ClearTime();
 
-            ZBDate dateToday = ZBDate::GetToday();
+            PSS_Date dateToday = PSS_Date::GetToday();
             dateToday.ClearTime();
 
             COleDateTimeSpan dateTimeSpan(dateEnd - dateToday);

@@ -100,15 +100,15 @@ CArchive& operator >> (CArchive& ar, PSS_FileBuffer& fileBuffer)
     return ar;
 }
 //---------------------------------------------------------------------------
-CArchive& operator << (CArchive& ar, PSS_FileBuffer& FileBuffer)
+CArchive& operator << (CArchive& ar, PSS_FileBuffer fileBuffer)
 {
-    ar << FileBuffer.m_File;
-    ar << FileBuffer.m_Size;
+    ar << fileBuffer.m_File;
+    ar << fileBuffer.m_Size;
 
     // do serialize binary information?
-    if (FileBuffer.m_Size > 0)
+    if (fileBuffer.m_Size > 0)
         // write binary information
-        ar.Write(FileBuffer.m_pBuffer, FileBuffer.m_Size);
+        ar.Write(fileBuffer.m_pBuffer, fileBuffer.m_Size);
 
     return ar;
 }

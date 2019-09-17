@@ -383,7 +383,7 @@ long ZDProcessHistoryDAO::FindProcess( ZBEventActivity& EventActivity )
     return m_pHistoryProcessRecordset->GetProcessID();
 }
 
-long ZDProcessHistoryDAO::FindActivity( long ProcessID, ZBDate& CurrentDate, ZBEventActivity& EventActivity )
+long ZDProcessHistoryDAO::FindActivity( long ProcessID, PSS_Date& CurrentDate, ZBEventActivity& EventActivity )
 {
     if ( !m_ProcessHistoryDatabase.IsOpen() )
     {
@@ -495,7 +495,7 @@ bool ZDProcessHistoryDAO::AddNewProcessRecord( ZBEventActivity& EventActivity )
     }
 
     // Assign information
-    ZBDate    CurrentDate = ZBDate::GetToday();
+    PSS_Date    CurrentDate = PSS_Date::GetToday();
 
     // The current date
     m_pHistoryProcessRecordset->SetDate( CurrentDate );
@@ -607,7 +607,7 @@ bool ZDProcessHistoryDAO::ModifyProcessStatusRecord( long ProcessID, ZBEventActi
     }
 
     // Assign information
-    ZBDate CurrentDate = ZBDate::GetToday();
+    PSS_Date CurrentDate = PSS_Date::GetToday();
 
     // The process ID
     m_pHistoryProcessStatusRecordset->SetProcessID( ProcessID );
@@ -670,7 +670,7 @@ bool ZDProcessHistoryDAO::AddProcessStatusRecord( long ProcessID, ZBEventActivit
         return false;
     }
 
-    ZBDate CurrentDate = ZBDate::GetToday();
+    PSS_Date CurrentDate = PSS_Date::GetToday();
 
     // The process ID
     m_pHistoryProcessStatusRecordset->SetProcessID( ProcessID );
@@ -814,7 +814,7 @@ bool ZDProcessHistoryDAO::ModifyActivityStatusRecord( long                Proces
     }
 
     // Assign information
-    ZBDate CurrentDate = ZBDate::GetToday();
+    PSS_Date CurrentDate = PSS_Date::GetToday();
 
     // The activity ID
     m_pHistoryActivityStatusRecordset->SetActivityID( ActivityID );
@@ -883,7 +883,7 @@ bool ZDProcessHistoryDAO::AddActivityStatusRecord( long ProcessID, long Activity
         return false;
     }
 
-    ZBDate CurrentDate = ZBDate::GetToday();
+    PSS_Date CurrentDate = PSS_Date::GetToday();
 
     // The activity ID
     m_pHistoryActivityStatusRecordset->SetActivityID( ActivityID );
@@ -1008,7 +1008,7 @@ bool ZDProcessHistoryDAO::ModifyFolderStatusRecord( long ProcessID, long Activit
     }
 
     // Assign information
-    ZBDate CurrentDate = ZBDate::GetToday();
+    PSS_Date CurrentDate = PSS_Date::GetToday();
 
     // The activity ID
     m_pHistoryFolderStatusRecordset->SetActivityID( ActivityID );
@@ -1077,7 +1077,7 @@ bool ZDProcessHistoryDAO::AddFolderStatusRecord( long ProcessID, long ActivityID
         return false;
     }
 
-    ZBDate CurrentDate = ZBDate::GetToday();
+    PSS_Date CurrentDate = PSS_Date::GetToday();
 
     // The activity ID
     m_pHistoryFolderStatusRecordset->SetActivityID( ActivityID );
@@ -1169,7 +1169,7 @@ BOOL ZDProcessHistoryDAO::AppendEventToHistoric( ZBEventActivity& EventActivity 
     }
 
     // Assign information
-    ZBDate CurrentDate = ZBDate::GetToday();
+    PSS_Date CurrentDate = PSS_Date::GetToday();
 
     // The current date
     m_pHistoryActivityRecordset->SetDate( CurrentDate );

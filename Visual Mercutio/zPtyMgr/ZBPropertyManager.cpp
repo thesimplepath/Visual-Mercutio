@@ -794,7 +794,7 @@ void ZBPropertyItemManager::SetDataToPropertyItem( ZBPropertyItem* pPropertyItem
                 case ZBProperty::PT_DATE:
                 {
                     // JMR-MODIF - Le 2 août 2005 - Conversion explicite permet de corriger bug sur attributs dynamiques.
-                    reinterpret_cast<ZBPropertyItemDate*>(pPropertyItem)->SetData( (ZBDate&)Prop.GetValueDate() );
+                    reinterpret_cast<ZBPropertyItemDate*>(pPropertyItem)->SetData( (PSS_Date&)Prop.GetValueDate() );
                     break;
                 }
             }

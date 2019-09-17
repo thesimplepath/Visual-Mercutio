@@ -105,7 +105,7 @@ class AFX_EXT_CLASS PSS_EncryptedInfoFile
         *@return the value, empty date if not found or on error
         *@note If an error occurred, the value returned by the GetErrorStatus() will be TRUE
         */
-        ZBDate GetDate(std::size_t index);
+        PSS_Date GetDate(std::size_t index);
 
         /**
         * Sets a date value at index
@@ -113,7 +113,7 @@ class AFX_EXT_CLASS PSS_EncryptedInfoFile
         *@param index - index
         *@return TRUE on success, otherwise FALSE
         */
-        BOOL SetDate(const ZBDate& value, std::size_t index);
+        BOOL SetDate(const PSS_Date& value, std::size_t index);
 
         /**
         * Gets an integer value from index

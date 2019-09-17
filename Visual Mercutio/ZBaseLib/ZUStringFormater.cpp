@@ -176,7 +176,7 @@ CString    ZUStringFormatter::GetFormattedBuffer( double value, ZBStringFormat::
             sf == ZBStringFormat::Accounting1) ? ConvertBufferToAmountBuffer( s, sf, pCurrency, lcid ) : s;
 }
 
-CString    ZUStringFormatter::GetFormattedBuffer( ZBDate& value, ZBStringFormat::FormatType sf /*= ZBStringFormat::Date*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+CString    ZUStringFormatter::GetFormattedBuffer(PSS_Date& value, ZBStringFormat::FormatType sf /*= ZBStringFormat::Date*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
 {
     CString DateStr = PSS_Global::GetDateSeparator( lcid );
     char DateSep = (DateStr.IsEmpty()) ? '/' : DateStr.GetAt(0);
@@ -560,7 +560,7 @@ CString    ZUStringFormatter::GetFormattedBuffer( double value, ZBStringFormat& 
     return ZUStringFormatter::GetFormattedBuffer( value, fmt.Getft(), fmt.GetDecimalPlace(), fmt.GetUseSeparator(), (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.Getlcid() );
 }
 
-CString    ZUStringFormatter::GetFormattedBuffer( ZBDate& value, ZBStringFormat& fmt )
+CString    ZUStringFormatter::GetFormattedBuffer(PSS_Date& value, ZBStringFormat& fmt )
 {
     return ZUStringFormatter::GetFormattedBuffer( value, fmt.Getft(), fmt.Getlcid() );
 }
@@ -606,7 +606,7 @@ CString    ZUStringFormatter::GetCustomFormattedBuffer( double value, LPCTSTR cu
     return _T("");
 }
 
-CString    ZUStringFormatter::GetCustomFormattedBuffer( ZBDate& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+CString    ZUStringFormatter::GetCustomFormattedBuffer(PSS_Date& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
 {
     return _T("");
 }
@@ -677,7 +677,7 @@ bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, double& va
     return ZUStringFormatter::ConvertBufferToNumber( buffer, value, sf, pCurrency, lcid );
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, ZBDate& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, PSS_Date& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
 {
     // RS-MODIF 05.08.2005 implémentation pour gestion de date
     // Convert a date
@@ -1136,7 +1136,7 @@ bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, double& va
     return ZUStringFormatter::ConvertFormattedBuffer( buffer, value, sf, pCurrency, lcid );
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, ZBDate& value, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, PSS_Date& value, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
 {
     ZBStringFormat::FormatType sf;
     return ZUStringFormatter::ConvertFormattedBuffer( buffer, value, sf, pCurrency, lcid );
@@ -1204,7 +1204,7 @@ bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, double& va
     return RetValue;
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, ZBDate& value, ZBStringFormat& fmt )
+bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, PSS_Date& value, ZBStringFormat& fmt )
 {
     ZBStringFormat::FormatType ft = fmt.Getft();
     bool RetValue = ZUStringFormatter::ConvertFormattedBuffer( buffer, value, ft, (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.Getlcid() );
@@ -1267,7 +1267,7 @@ bool ZUStringFormatter::ConvertCustomFormattedBuffer( const CString buffer, doub
     return false;
 }
 
-bool ZUStringFormatter::ConvertCustomFormattedBuffer( const CString buffer, ZBDate& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertCustomFormattedBuffer( const CString buffer, PSS_Date& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
 {
     // Not implemented
     return false;

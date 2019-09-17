@@ -108,7 +108,7 @@ public:
 
     virtual bool ReportDataMustBeReloaded() const
     {
-        return ( ZBDate::GetToday() > m_LastUpdateDateTime ) ? true : false;
+        return (PSS_Date::GetToday() > m_LastUpdateDateTime ) ? true : false;
     };
 
     virtual bool UseAutomaticReload() const
@@ -147,7 +147,7 @@ protected:
     ZDGridDocument*    m_pDoc;
     CString            m_Filename;
     int                m_TypeID;
-    ZBDate            m_LastUpdateDateTime;
+    PSS_Date           m_LastUpdateDateTime;
 };
 
 #endif // !defined(AFX_ZBGENERICGRIDREPORTGENERATOR_H__9F9F4F11_EC1C_46C8_9324_965098AC7702__INCLUDED_)

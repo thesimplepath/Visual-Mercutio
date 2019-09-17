@@ -44,17 +44,17 @@ BOOL PSS_EncryptedEvaluationAppInfoFile::CreateEmpty(const CString& fileName)
 {
     CreateEmptyFile(fileName);
     WriteProductKey(g_InvalidNoProductKey);
-    WriteInstallationDate(ZBDate(time_t(0)));
+    WriteInstallationDate(PSS_Date(time_t(0)));
     WriteDayCount(60);
     return !GetErrorStatus();
 }
 //---------------------------------------------------------------------------
 BOOL PSS_EncryptedEvaluationAppInfoFile::InitializeFirstUse(int dayCount)
 {
-    if (!WriteInstallationDate(ZBDate::GetToday()))
+    if (!WriteInstallationDate(PSS_Date::GetToday()))
         return FALSE;
 
-    if (!WriteLastDateUsage(ZBDate::GetToday()))
+    if (!WriteLastDateUsage(PSS_Date::GetToday()))
         return FALSE;
 
     if (dayCount != -1)
@@ -83,7 +83,7 @@ BOOL PSS_EncryptedEvaluationAppInfoFile::CheckExpiration()
         return FALSE;
 
     m_LastDateUsage = GetDate(g_LastDateUsageIndexFile);
-    ZBDate today    = ZBDate::GetToday();
+    PSS_Date today  = PSS_Date::GetToday();
 
     // check if today is earlier than the last usage date
     if (today < m_LastDateUsage)
@@ -92,7 +92,7 @@ BOOL PSS_EncryptedEvaluationAppInfoFile::CheckExpiration()
     m_InstallationDate = GetDate(g_InstallationDateIndexFile);
     m_DayCount         = GetInt(g_DayCountIndexFile);
 
-    ZBDate endDate = m_InstallationDate + COleDateTimeSpan(m_DayCount);
+    PSS_Date endDate = m_InstallationDate + COleDateTimeSpan(m_DayCount);
 
     // check if the expiration date has been reached
     if (endDate > today)
@@ -140,7 +140,7 @@ BOOL PSS_EncryptedEvaluationAppInfoFile::WriteProductKey(const CString& value)
     return TRUE;
 }
 //---------------------------------------------------------------------------
-ZBDate PSS_EncryptedEvaluationAppInfoFile::ReadInstallationDate()
+PSS_Date PSS_EncryptedEvaluationAppInfoFile::ReadInstallationDate()
 {
     if (!ReadFileInfo())
         return m_InstallationDate = 0;
@@ -153,7 +153,7 @@ ZBDate PSS_EncryptedEvaluationAppInfoFile::ReadInstallationDate()
     return m_InstallationDate;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_EncryptedEvaluationAppInfoFile::WriteInstallationDate(const ZBDate& value)
+BOOL PSS_EncryptedEvaluationAppInfoFile::WriteInstallationDate(const PSS_Date& value)
 {
     ReadEntityTable();
 
@@ -176,7 +176,7 @@ BOOL PSS_EncryptedEvaluationAppInfoFile::WriteInstallationDate(const ZBDate& val
     return TRUE;
 }
 //---------------------------------------------------------------------------
-ZBDate PSS_EncryptedEvaluationAppInfoFile::ReadLastDateUsage()
+PSS_Date PSS_EncryptedEvaluationAppInfoFile::ReadLastDateUsage()
 {
     if (!ReadFileInfo())
         return m_LastDateUsage = 0;
@@ -189,7 +189,7 @@ ZBDate PSS_EncryptedEvaluationAppInfoFile::ReadLastDateUsage()
     return m_LastDateUsage;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_EncryptedEvaluationAppInfoFile::WriteLastDateUsage(const ZBDate& value)
+BOOL PSS_EncryptedEvaluationAppInfoFile::WriteLastDateUsage(const PSS_Date& value)
 {
     ReadEntityTable();
 
@@ -212,7 +212,7 @@ BOOL PSS_EncryptedEvaluationAppInfoFile::WriteLastDateUsage(const ZBDate& value)
     return TRUE;
 }
 //---------------------------------------------------------------------------
-ZBDate PSS_EncryptedEvaluationAppInfoFile::ReadValidDate()
+PSS_Date PSS_EncryptedEvaluationAppInfoFile::ReadValidDate()
 {
     if (!ReadFileInfo())
         return m_ValidDate = 0;
@@ -225,7 +225,7 @@ ZBDate PSS_EncryptedEvaluationAppInfoFile::ReadValidDate()
     return m_ValidDate;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_EncryptedEvaluationAppInfoFile::WriteValidDate(ZBDate value)
+BOOL PSS_EncryptedEvaluationAppInfoFile::WriteValidDate(const PSS_Date& value)
 {
     ReadEntityTable();
 

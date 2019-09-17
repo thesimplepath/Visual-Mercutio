@@ -227,8 +227,8 @@ public:
     void        ClearWorkflowFilename();
     void        SetWorkflowFilename( CString value );
 
-    ZBDate*        GetWorkflowLastUpdateDate();
-    void        SetWorkflowLastUpdateDate( ZBDate value );
+    PSS_Date*        GetWorkflowLastUpdateDate();
+    void        SetWorkflowLastUpdateDate(PSS_Date value );
 
     bool        GetCheckConsistency() const;
     void        SetCheckConsistency( bool value );
@@ -574,12 +574,12 @@ inline void ZDProcessGraphModelDoc::SetWorkflowFilename( CString value )
     }
 }
 
-inline ZBDate* ZDProcessGraphModelDoc::GetWorkflowLastUpdateDate()
+inline PSS_Date* ZDProcessGraphModelDoc::GetWorkflowLastUpdateDate()
 {
     return ( m_pWorkflowDefinition ) ? &m_pWorkflowDefinition->GetWorkflowLastUpdateDate() : NULL;
 }
 
-inline void ZDProcessGraphModelDoc::SetWorkflowLastUpdateDate( ZBDate value )
+inline void ZDProcessGraphModelDoc::SetWorkflowLastUpdateDate(PSS_Date value )
 {
     if ( m_pWorkflowDefinition )
     {

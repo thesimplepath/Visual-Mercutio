@@ -44,17 +44,17 @@ protected:
 
 public:
     ZCInPlaceDateEdit( bool IsReadOnly = false );
-    ZCInPlaceDateEdit( ZBDate& DateInitValue, bool IsReadOnly = false );
+    ZCInPlaceDateEdit(PSS_Date& DateInitValue, bool IsReadOnly = false );
     virtual ~ZCInPlaceDateEdit();
 
     // Operations
 public:
     // Initialize the edit control
     virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0);
-    virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, ZBDate& DateInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0);
+    virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, PSS_Date& DateInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0);
     // Initialize the edit text value
     virtual void SetEditText(const CString& strText);
-    virtual void SetEditText(ZBDate& DateValue);
+    virtual void SetEditText(PSS_Date& DateValue);
     // Retreive the text entered
     virtual CString GetEditText() const;
 
@@ -99,7 +99,7 @@ inline ZCInPlaceDateEdit::ZCInPlaceDateEdit( bool IsReadOnly /*= false*/ )
 {
 }
 
-inline ZCInPlaceDateEdit::ZCInPlaceDateEdit( ZBDate& DateInitValue, bool IsReadOnly /*= false*/ )
+inline ZCInPlaceDateEdit::ZCInPlaceDateEdit(PSS_Date& DateInitValue, bool IsReadOnly /*= false*/ )
 : ZIInPlaceEdit(DateInitValue, IsReadOnly)
 {
 }

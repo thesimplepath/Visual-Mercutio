@@ -2036,7 +2036,7 @@ void ZVPublishProcessReport::GenerateSection( ZBPropertySet& PropSet )
 
             case ZBProperty::PT_DATE:
             {
-                Value = ZUStringFormatter::GetFormattedBuffer( (ZBDate&)pProp->GetValueDate(),
+                Value = ZUStringFormatter::GetFormattedBuffer( (PSS_Date&)pProp->GetValueDate(),
                                                                pProp->GetStringFormat() );
                 break;
             }
