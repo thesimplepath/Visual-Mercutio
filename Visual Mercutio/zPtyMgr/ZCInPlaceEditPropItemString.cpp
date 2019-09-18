@@ -109,7 +109,7 @@ BOOL ZCInPlaceEdit::PreTranslateMessage(MSG* pMsg)
         }
     }
     
-    return ZBDragEdit::PreTranslateMessage(pMsg);
+    return PSS_DragEdit::PreTranslateMessage(pMsg);
 }
 
 void ZCInPlaceEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) 
@@ -117,7 +117,7 @@ void ZCInPlaceEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
     // Sets the has changed flag
     m_HasChanged = true;    
     // Call the base function
-    ZBDragEdit::OnChar(nChar, nRepCnt, nFlags);
+    PSS_DragEdit::OnChar(nChar, nRepCnt, nFlags);
 }
 
 void ZCInPlaceEdit::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
@@ -213,7 +213,7 @@ void ZCInPlaceEdit::SaveValue()
     }
 }
 
-BEGIN_MESSAGE_MAP(ZCInPlaceEdit, ZBDragEdit)
+BEGIN_MESSAGE_MAP(ZCInPlaceEdit, PSS_DragEdit)
     //{{AFX_MSG_MAP(ZCInPlaceEdit)
     ON_WM_CREATE()
     ON_WM_ERASEBKGND()
@@ -226,7 +226,7 @@ END_MESSAGE_MAP()
 
 int ZCInPlaceEdit::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-    if (ZBDragEdit::OnCreate(lpCreateStruct) == -1) 
+    if (PSS_DragEdit::OnCreate(lpCreateStruct) == -1)
         return -1;
 
     CFont* pFont = GetParent()->GetFont();

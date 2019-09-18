@@ -205,13 +205,13 @@ BOOL _ZCExpandedMultiLineEdit::Create( ZCMultiLineEdit* pEditCtrl, CSize Size /*
     if (m_Size.cy == 0)
         m_Size.cy = m_MultiLineEditBoxHeight;
 
-    if (!ZBDragEdit::Create(WS_CHILD|WS_BORDER|ES_MULTILINE|ES_AUTOVSCROLL|WS_THICKFRAME|ES_LEFT, rect, pWndParent, 0))
+    if (!PSS_DragEdit::Create(WS_CHILD|WS_BORDER|ES_MULTILINE|ES_AUTOVSCROLL|WS_THICKFRAME|ES_LEFT, rect, pWndParent, 0))
     {
         TRACE0(_T("Failed to create the second edit box.\n"));
         return FALSE;
     }
     // Initialize drag & drop facilities
-    ZBDragEdit::Init();
+    PSS_DragEdit::Init();
 
     return TRUE;
 }
@@ -223,7 +223,7 @@ void _ZCExpandedMultiLineEdit::SetEditControl( ZCMultiLineEdit* pEditCtrl, CSize
         m_Size = Size;
 }
 
-BEGIN_MESSAGE_MAP(_ZCExpandedMultiLineEdit, ZBDragEdit)
+BEGIN_MESSAGE_MAP(_ZCExpandedMultiLineEdit, PSS_DragEdit)
     //{{AFX_MSG_MAP(_ZCExpandedMultiLineEdit)
     ON_WM_KILLFOCUS()
     ON_WM_SIZE()
@@ -235,12 +235,12 @@ END_MESSAGE_MAP()
 
 void _ZCExpandedMultiLineEdit::OnKillFocus(CWnd* pNewWnd)
 {
-    ZBDragEdit::OnKillFocus(pNewWnd);
+    PSS_DragEdit::OnKillFocus(pNewWnd);
 }
 
 void _ZCExpandedMultiLineEdit::OnSize(UINT nType, int cx, int cy) 
 {
-    ZBDragEdit::OnSize(nType, cx, cy);
+    PSS_DragEdit::OnSize(nType, cx, cy);
 
     if (m_pEditCtrl)
         m_pEditCtrl->OnExtendedSizeHasChanged( cx,cy );
@@ -276,7 +276,7 @@ BOOL _ZCExpandedMultiLineEdit::PreTranslateMessage(MSG* pMsg)
             }
         }
     }
-    return ZBDragEdit::PreTranslateMessage(pMsg);
+    return PSS_DragEdit::PreTranslateMessage(pMsg);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -375,7 +375,7 @@ void ZCMultiLineEdit::Initialize()
     }
     m_CollapsedButton.ShowWindow( SW_HIDE );
     // Initialize drag & drop facilities
-    ZBDragEdit::Init();
+    PSS_DragEdit::Init();
 
     // Clear the flag for creation process
     m_InCreationProcess = false;
@@ -404,7 +404,7 @@ void ZCMultiLineEdit::OnMultiLineEditBoxEscape()
     CollapseBaseEdit( false );
 }
 
-BEGIN_MESSAGE_MAP(ZCMultiLineEdit, ZBDragEdit)
+BEGIN_MESSAGE_MAP(ZCMultiLineEdit, PSS_DragEdit)
     //{{AFX_MSG_MAP(ZCMultiLineEdit)
     ON_WM_KILLFOCUS()
     ON_WM_CHAR()
@@ -419,7 +419,7 @@ END_MESSAGE_MAP()
 
 void ZCMultiLineEdit::OnKillFocus(CWnd* pNewWnd)
 {
-    ZBDragEdit::OnKillFocus(pNewWnd);
+    PSS_DragEdit::OnKillFocus(pNewWnd);
     if (GetFocus() == this ||
         GetFocus() == &m_ExpandedEditBox ||
         GetFocus() == &m_ExpandedButton ||
@@ -462,7 +462,7 @@ BOOL ZCMultiLineEdit::PreTranslateMessage(MSG* pMsg)
             }
         }
     }
-    return ZBDragEdit::PreTranslateMessage(pMsg);
+    return PSS_DragEdit::PreTranslateMessage(pMsg);
 }
 
 void ZCMultiLineEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) 
@@ -474,7 +474,7 @@ void ZCMultiLineEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
     if (ValidateChar(nChar, EditText))
     {
 
-        ZBDragEdit::OnChar(nChar, nRepCnt, nFlags);
+        PSS_DragEdit::OnChar(nChar, nRepCnt, nFlags);
 
     }
 }
@@ -615,7 +615,7 @@ void ZCMultiLineEdit::CalculateSizeAndPosition()
 
 void ZCMultiLineEdit::OnEnable(BOOL bEnable) 
 {
-    ZBDragEdit::OnEnable(bEnable);
+    PSS_DragEdit::OnEnable(bEnable);
     if (EditIsExpanded())
     {
         if (::IsWindow( m_CollapsedButton.GetSafeHwnd() ))
@@ -630,7 +630,7 @@ void ZCMultiLineEdit::OnEnable(BOOL bEnable)
 
 void ZCMultiLineEdit::OnShowWindow(BOOL bShow, UINT nStatus) 
 {
-    ZBDragEdit::OnShowWindow(bShow, nStatus);
+    PSS_DragEdit::OnShowWindow(bShow, nStatus);
 /*
     if (EditIsExpanded())
     {
@@ -647,7 +647,7 @@ void ZCMultiLineEdit::OnShowWindow(BOOL bShow, UINT nStatus)
 
 void ZCMultiLineEdit::PreSubclassWindow() 
 {
-    ZBDragEdit::PreSubclassWindow();
+    PSS_DragEdit::PreSubclassWindow();
 }
 
 
@@ -656,7 +656,7 @@ void ZCMultiLineEdit::OnSize(UINT nType, int cx, int cy)
     // To avoid recursion
     if (m_BeingResized)
         return;
-    ZBDragEdit::OnSize(nType, cx, cy);
+    PSS_DragEdit::OnSize(nType, cx, cy);
 
     if (EditIsExpanded())
     {

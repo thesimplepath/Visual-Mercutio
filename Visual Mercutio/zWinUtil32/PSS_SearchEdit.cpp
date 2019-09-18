@@ -298,7 +298,7 @@ void PSS_SearchEditButton::OnClicked()
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_SearchEdit, ZBDragEdit)
+BEGIN_MESSAGE_MAP(PSS_SearchEdit, PSS_DragEdit)
     //{{AFX_MSG_MAP(PSS_SearchEdit)
     ON_WM_ENABLE()
     ON_WM_SHOWWINDOW()
@@ -310,6 +310,7 @@ END_MESSAGE_MAP()
 // PSS_SearchEdit
 //---------------------------------------------------------------------------
 PSS_SearchEdit::PSS_SearchEdit() :
+    PSS_DragEdit(),
     m_pMenu(NULL),
     m_pParentWnd(NULL),
     m_Type(PSS_SearchEditButton::IE_T_Directory),
@@ -471,7 +472,7 @@ void PSS_SearchEdit::DoCreateButton(BOOL value)
 //---------------------------------------------------------------------------
 void PSS_SearchEdit::PreSubclassWindow()
 {
-    ZBDragEdit::PreSubclassWindow();
+    PSS_DragEdit::PreSubclassWindow();
 
     if (m_BeingCreated)
         return;
@@ -482,7 +483,7 @@ void PSS_SearchEdit::PreSubclassWindow()
 //---------------------------------------------------------------------------
 int PSS_SearchEdit::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-    if (ZBDragEdit::OnCreate(lpCreateStruct) == -1)
+    if (PSS_DragEdit::OnCreate(lpCreateStruct) == -1)
         return -1;
 
     if (m_BeingCreated && m_DoCreateButton)
@@ -493,7 +494,7 @@ int PSS_SearchEdit::OnCreate(LPCREATESTRUCT lpCreateStruct)
 //---------------------------------------------------------------------------
 void PSS_SearchEdit::OnEnable(BOOL bEnable)
 {
-    ZBDragEdit::OnEnable(bEnable);
+    PSS_DragEdit::OnEnable(bEnable);
 
     if (m_DoCreateButton)
         m_Button.EnableWindow(bEnable);
@@ -501,7 +502,7 @@ void PSS_SearchEdit::OnEnable(BOOL bEnable)
 //---------------------------------------------------------------------------
 void PSS_SearchEdit::OnShowWindow(BOOL bShow, UINT nStatus)
 {
-    ZBDragEdit::OnShowWindow(bShow, nStatus);
+    PSS_DragEdit::OnShowWindow(bShow, nStatus);
 
     if (m_DoCreateButton)
         m_Button.ShowWindow(bShow ? SW_SHOW : SW_HIDE);
@@ -513,7 +514,7 @@ void PSS_SearchEdit::OnSize(UINT nType, int cx, int cy)
     if (m_BeingResized)
         return;
 
-    ZBDragEdit::OnSize(nType, cx, cy);
+    PSS_DragEdit::OnSize(nType, cx, cy);
 
     if (!::IsWindow(m_Button.GetSafeHwnd()))
         return;

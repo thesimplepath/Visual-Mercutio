@@ -744,7 +744,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBDragEdit.cpp">
+    <ClCompile Include="PSS_DragEdit.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1446,7 +1446,7 @@
     <ClInclude Include="PSS_EncryptedLine.h" />
     <ClInclude Include="PSS_Date.h" />
     <ClInclude Include="PSS_DocumentObserverMsg.h" />
-    <ClInclude Include="ZBDragEdit.h" />
+    <ClInclude Include="PSS_DragEdit.h" />
     <ClInclude Include="ZBDuration.h" />
     <ClInclude Include="ZBEqualizeNumbers.h" />
     <ClInclude Include="ZBErrorLog.h" />

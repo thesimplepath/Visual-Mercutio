@@ -17,7 +17,7 @@
 
 
 #include "ZIntelliMultiLineBox.h"
-#include "ZBDragEdit.h"
+#include "PSS_DragEdit.h"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -85,7 +85,7 @@ protected:
 /////////////////////////////////////////////////////////////////////////////
 // _ZCExpandedMultiLineEdit window
 
-class _ZCExpandedMultiLineEdit : public ZBDragEdit
+class _ZCExpandedMultiLineEdit : public PSS_DragEdit
 {
 // Construction
 public:
@@ -141,7 +141,7 @@ private:
 /////////////////////////////////////////////////////////////////////////////
 // ZCMultiLineEdit window
 
-class AFX_EXT_CLASS ZCMultiLineEdit : public ZBDragEdit
+class AFX_EXT_CLASS ZCMultiLineEdit : public PSS_DragEdit
 {
 // Construction
 public:

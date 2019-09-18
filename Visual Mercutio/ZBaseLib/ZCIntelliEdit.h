@@ -17,7 +17,7 @@
 
 
 #include "ZIntelliListBox.h"
-#include "ZBDragEdit.h"
+#include "PSS_DragEdit.h"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -152,7 +152,7 @@ inline void    ZIntelliEditButton::HideListBox()
 /////////////////////////////////////////////////////////////////////////////
 // ZCIntelliEdit window
 
-class AFX_EXT_CLASS ZCIntelliEdit : public ZBDragEdit
+class AFX_EXT_CLASS ZCIntelliEdit : public PSS_DragEdit
 {
 // Construction
 public:

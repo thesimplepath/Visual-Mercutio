@@ -20,7 +20,7 @@
 #include "PSS_FieldRepository.h"
 #include "PSS_MaskEditBase.h"
 #include "ZCGridCtrl.h"
-#include "ZBDragEdit.h"
+#include "PSS_DragEdit.h"
 #include "ZCIntelliEdit.h"
 #include "PSS_SpecialHelpWnd.h"
 
@@ -211,7 +211,7 @@ void PSS_Edit::SetGoNext(BOOL next)
 * String edit component
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_StrEdit : public ZBDragEdit, public PSS_Edit
+class AFX_EXT_CLASS PSS_StrEdit : public PSS_DragEdit, public PSS_Edit
 {
     public:
         /**
@@ -279,12 +279,12 @@ class AFX_EXT_CLASS PSS_StrEdit : public ZBDragEdit, public PSS_Edit
 //---------------------------------------------------------------------------
 BOOL PSS_StrEdit::IsWindowVisible()
 {
-    return (::IsWindow(GetSafeHwnd()) && ZBDragEdit::IsWindowVisible());
+    return (::IsWindow(GetSafeHwnd()) && PSS_DragEdit::IsWindowVisible());
 }
 //---------------------------------------------------------------------------
 void PSS_StrEdit::MapWindowPoints(CWnd* pWndTo, LPRECT pRect)
 {
-    ZBDragEdit::MapWindowPoints(pWndTo, pRect);
+    PSS_DragEdit::MapWindowPoints(pWndTo, pRect);
 }
 //---------------------------------------------------------------------------
 
@@ -292,7 +292,7 @@ void PSS_StrEdit::MapWindowPoints(CWnd* pWndTo, LPRECT pRect)
 * Numeric edit component
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_NumEdit : public ZBDragEdit, public PSS_Edit
+class AFX_EXT_CLASS PSS_NumEdit : public PSS_DragEdit, public PSS_Edit
 {
     public:
         PSS_NumEdit();
@@ -350,12 +350,12 @@ class AFX_EXT_CLASS PSS_NumEdit : public ZBDragEdit, public PSS_Edit
 //---------------------------------------------------------------------------
 BOOL PSS_NumEdit::IsWindowVisible()
 {
-    return (::IsWindow(GetSafeHwnd()) && ZBDragEdit::IsWindowVisible());
+    return (::IsWindow(GetSafeHwnd()) && PSS_DragEdit::IsWindowVisible());
 }
 //---------------------------------------------------------------------------
 void PSS_NumEdit::MapWindowPoints(CWnd* pWndTo, LPRECT pRect)
 {
-    ZBDragEdit::MapWindowPoints(pWndTo, pRect);
+    PSS_DragEdit::MapWindowPoints(pWndTo, pRect);
 }
 //---------------------------------------------------------------------------
 
@@ -363,7 +363,7 @@ void PSS_NumEdit::MapWindowPoints(CWnd* pWndTo, LPRECT pRect)
 * Calculation edit component
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_CalcEdit : public ZBDragEdit, public PSS_Edit
+class AFX_EXT_CLASS PSS_CalcEdit : public PSS_DragEdit, public PSS_Edit
 {
     public:
         PSS_CalcEdit();
@@ -420,12 +420,12 @@ class AFX_EXT_CLASS PSS_CalcEdit : public ZBDragEdit, public PSS_Edit
 //---------------------------------------------------------------------------
 BOOL PSS_CalcEdit::IsWindowVisible()
 {
-    return (::IsWindow(GetSafeHwnd()) && ZBDragEdit::IsWindowVisible());
+    return (::IsWindow(GetSafeHwnd()) && PSS_DragEdit::IsWindowVisible());
 }
 //---------------------------------------------------------------------------
 void PSS_CalcEdit::MapWindowPoints(CWnd* pWndTo, LPRECT pRect)
 {
-    ZBDragEdit::MapWindowPoints(pWndTo, pRect);
+    PSS_DragEdit::MapWindowPoints(pWndTo, pRect);
 }
 //---------------------------------------------------------------------------
 
@@ -433,7 +433,7 @@ void PSS_CalcEdit::MapWindowPoints(CWnd* pWndTo, LPRECT pRect)
 * Time edit component
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_TimeEdit : public ZBDragEdit, public PSS_Edit
+class AFX_EXT_CLASS PSS_TimeEdit : public PSS_DragEdit, public PSS_Edit
 {
     public:
         PSS_TimeEdit();
@@ -491,12 +491,12 @@ class AFX_EXT_CLASS PSS_TimeEdit : public ZBDragEdit, public PSS_Edit
 //---------------------------------------------------------------------------
 BOOL PSS_TimeEdit::IsWindowVisible()
 {
-    return (::IsWindow(GetSafeHwnd()) && ZBDragEdit::IsWindowVisible());
+    return (::IsWindow(GetSafeHwnd()) && PSS_DragEdit::IsWindowVisible());
 }
 //---------------------------------------------------------------------------
 void PSS_TimeEdit::MapWindowPoints(CWnd* pwndTo, LPRECT lpRect)
 {
-    ZBDragEdit::MapWindowPoints(pwndTo, lpRect);
+    PSS_DragEdit::MapWindowPoints(pwndTo, lpRect);
 }
 //---------------------------------------------------------------------------
 

@@ -335,7 +335,7 @@ void ZCIntelliEdit::Initialize()
     }
     m_ListBoxOfValues.SetEditControl( this );
     // Initialize drag & drop facilities
-    ZBDragEdit::Init();
+    PSS_DragEdit::Init();
 }
 
 void ZCIntelliEdit::OnExtendedSizeHasChanged( int cx, int cy )
@@ -385,7 +385,7 @@ bool ZCIntelliEdit::CompareSimilar( CString PartialText, CString FullText )
 }
 
 
-BEGIN_MESSAGE_MAP(ZCIntelliEdit, ZBDragEdit)
+BEGIN_MESSAGE_MAP(ZCIntelliEdit, PSS_DragEdit)
     //{{AFX_MSG_MAP(ZCIntelliEdit)
     ON_WM_KILLFOCUS()
     ON_WM_CHAR()
@@ -400,7 +400,7 @@ END_MESSAGE_MAP()
 
 void ZCIntelliEdit::OnKillFocus(CWnd* pNewWnd)
 {
-    ZBDragEdit::OnKillFocus(pNewWnd);
+    PSS_DragEdit::OnKillFocus(pNewWnd);
     if (GetFocus() == this ||
         GetFocus() == &m_ListBoxOfValues ||
         GetFocus() == &m_Button ||
@@ -539,7 +539,7 @@ BOOL ZCIntelliEdit::PreTranslateMessage(MSG* pMsg)
             }
         }
     }
-    return ZBDragEdit::PreTranslateMessage(pMsg);
+    return PSS_DragEdit::PreTranslateMessage(pMsg);
 }
 
 void ZCIntelliEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) 
@@ -551,7 +551,7 @@ void ZCIntelliEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
     if (ValidateChar(nChar, EditText))
     {
 
-        ZBDragEdit::OnChar(nChar, nRepCnt, nFlags);
+        PSS_DragEdit::OnChar(nChar, nRepCnt, nFlags);
 
         // Get the edit text after the char is typed
         EditText;
@@ -615,7 +615,7 @@ void ZCIntelliEdit::CalculateSizeAndPosition()
 
 void ZCIntelliEdit::OnEnable(BOOL bEnable) 
 {
-    ZBDragEdit::OnEnable(bEnable);
+    PSS_DragEdit::OnEnable(bEnable);
     if (::IsWindow( m_Button.GetSafeHwnd() ))
         m_Button.EnableWindow(bEnable);
     if (::IsWindow( m_ListBoxOfValues.GetSafeHwnd() ))
@@ -624,7 +624,7 @@ void ZCIntelliEdit::OnEnable(BOOL bEnable)
 
 void ZCIntelliEdit::OnShowWindow(BOOL bShow, UINT nStatus) 
 {
-    ZBDragEdit::OnShowWindow(bShow, nStatus);
+    PSS_DragEdit::OnShowWindow(bShow, nStatus);
     if (::IsWindow( m_Button.GetSafeHwnd() ))
         m_Button.ShowWindow(bShow?SW_SHOW:SW_HIDE);
     if (::IsWindow( m_ListBoxOfValues.GetSafeHwnd() ))
@@ -633,7 +633,7 @@ void ZCIntelliEdit::OnShowWindow(BOOL bShow, UINT nStatus)
 
 void ZCIntelliEdit::PreSubclassWindow() 
 {
-    ZBDragEdit::PreSubclassWindow();
+    PSS_DragEdit::PreSubclassWindow();
 }
 
 
@@ -642,7 +642,7 @@ void ZCIntelliEdit::OnSize(UINT nType, int cx, int cy)
     // To avoid recursion
     if (m_BeingResized)
         return;
-    ZBDragEdit::OnSize(nType, cx, cy);
+    PSS_DragEdit::OnSize(nType, cx, cy);
 
     if (!::IsWindow( m_Button.GetSafeHwnd() ))
         return;

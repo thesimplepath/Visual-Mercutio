@@ -206,7 +206,7 @@ void PSS_Edit::CreateSpecialHelp(BOOL designer)
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_StrEdit, ZBDragEdit)
+BEGIN_MESSAGE_MAP(PSS_StrEdit, PSS_DragEdit)
     //{{AFX_MSG_MAP(PSS_StrEdit)
     ON_WM_CHAR()
     ON_WM_KILLFOCUS()
@@ -217,7 +217,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 PSS_StrEdit::PSS_StrEdit(BOOL multiLine, int maxChar) :
     PSS_Edit(),
-    ZBDragEdit(),
+    PSS_DragEdit(),
     m_MaxChar(maxChar),
     m_MultiLine(multiLine)
 {}
@@ -259,11 +259,11 @@ void PSS_StrEdit::Create(BOOL                 designerMode,
     if (m_ReadOnly)
         style |= ES_READONLY;
 
-    if (!ZBDragEdit::Create(style, m_Rect, pParentWnd, 0))
+    if (!PSS_DragEdit::Create(style, m_Rect, pParentWnd, 0))
         return;
 
     // initialize drag & drop facilities
-    ZBDragEdit::Init();
+    PSS_DragEdit::Init();
 
     SetWindowText(m_pEditedObj->GetFormattedObject());
     SetSel(0, -1);
@@ -340,18 +340,18 @@ void PSS_StrEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
         }
     }
 
-    ZBDragEdit::OnChar(nChar, nRepCnt, nFlags);
+    PSS_DragEdit::OnChar(nChar, nRepCnt, nFlags);
 }
 //---------------------------------------------------------------------------
 void PSS_StrEdit::OnKillFocus(CWnd* pNewWnd)
 {
-    ZBDragEdit::OnKillFocus(pNewWnd);
+    PSS_DragEdit::OnKillFocus(pNewWnd);
     DestroyEdit();
 }
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_NumEdit, ZBDragEdit)
+BEGIN_MESSAGE_MAP(PSS_NumEdit, PSS_DragEdit)
     //{{AFX_MSG_MAP(PSS_NumEdit)
     ON_WM_CHAR()
     ON_WM_KILLFOCUS()
@@ -362,7 +362,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 PSS_NumEdit::PSS_NumEdit() :
     PSS_Edit(),
-    ZBDragEdit()
+    PSS_DragEdit()
 {}
 //---------------------------------------------------------------------------
 PSS_NumEdit::~PSS_NumEdit()
@@ -396,13 +396,13 @@ void PSS_NumEdit::Create(BOOL                 designerMode,
     if (m_ReadOnly)
         style |= ES_READONLY;
 
-    if (!ZBDragEdit::Create(style, m_Rect, pParentWnd, 0))
+    if (!PSS_DragEdit::Create(style, m_Rect, pParentWnd, 0))
         return;
 
     SetWindowText(m_pEditedObj->GetFormattedObject());
 
     // initialize drag & drop facilities
-    ZBDragEdit::Init();
+    PSS_DragEdit::Init();
 
     SetSel(0, -1);
     ShowWindow(SW_SHOW);
@@ -481,18 +481,18 @@ void PSS_NumEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
         nChar != 0x08)
         return;
 
-    ZBDragEdit::OnChar(nChar, nRepCnt, nFlags);
+    PSS_DragEdit::OnChar(nChar, nRepCnt, nFlags);
 }
 //---------------------------------------------------------------------------
 void PSS_NumEdit::OnKillFocus(CWnd* pNewWnd)
 {
-    ZBDragEdit::OnKillFocus(pNewWnd);
+    PSS_DragEdit::OnKillFocus(pNewWnd);
     DestroyEdit();
 }
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_CalcEdit, ZBDragEdit)
+BEGIN_MESSAGE_MAP(PSS_CalcEdit, PSS_DragEdit)
     //{{AFX_MSG_MAP(PSS_CalcEdit)
     ON_WM_KILLFOCUS()
     //}}AFX_MSG_MAP
@@ -502,7 +502,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 PSS_CalcEdit::PSS_CalcEdit() :
     PSS_Edit(),
-    ZBDragEdit()
+    PSS_DragEdit()
 {}
 //---------------------------------------------------------------------------
 PSS_CalcEdit::~PSS_CalcEdit()
@@ -536,11 +536,11 @@ void PSS_CalcEdit::Create(BOOL                 designerMode,
     if (m_ReadOnly)
         style |= ES_READONLY;
 
-    if (!ZBDragEdit::Create(style, m_Rect, pParentWnd, 0))
+    if (!PSS_DragEdit::Create(style, m_Rect, pParentWnd, 0))
         return;
 
     // initialize drag & drop facilities
-    ZBDragEdit::Init();
+    PSS_DragEdit::Init();
 
     SetFocus();
 }
@@ -556,13 +556,13 @@ void PSS_CalcEdit::DestroyEdit()
 //---------------------------------------------------------------------------
 void PSS_CalcEdit::OnKillFocus(CWnd* pNewWnd)
 {
-    ZBDragEdit::OnKillFocus(pNewWnd);
+    PSS_DragEdit::OnKillFocus(pNewWnd);
     DestroyEdit();
 }
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_TimeEdit, ZBDragEdit)
+BEGIN_MESSAGE_MAP(PSS_TimeEdit, PSS_DragEdit)
     //{{AFX_MSG_MAP(PSS_TimeEdit)
     ON_WM_CHAR()
     ON_WM_KILLFOCUS()
@@ -573,7 +573,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 PSS_TimeEdit::PSS_TimeEdit() :
     PSS_Edit(),
-    ZBDragEdit()
+    PSS_DragEdit()
 {}
 //---------------------------------------------------------------------------
 PSS_TimeEdit::~PSS_TimeEdit()
@@ -607,7 +607,7 @@ void PSS_TimeEdit::Create(BOOL                 designerMode,
     if (m_ReadOnly)
         style |= ES_READONLY;
 
-    if (!ZBDragEdit::Create(style, m_Rect, pParentWnd, 0))
+    if (!PSS_DragEdit::Create(style, m_Rect, pParentWnd, 0))
         return;
 
     CString strFormat(_T(" "));
@@ -628,7 +628,7 @@ void PSS_TimeEdit::Create(BOOL                 designerMode,
     SetWindowText((const char*)strFormat);
 
     // initialize drag & drop facilities
-    ZBDragEdit::Init();
+    PSS_DragEdit::Init();
 
     SetSel(0, -1);
     ShowWindow(SW_SHOW);
@@ -699,12 +699,12 @@ void PSS_TimeEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
     if (!::isdigit(nChar) && nChar != '.' && nChar != '/' && nChar != 0x08)
         return;
 
-    ZBDragEdit::OnChar(nChar, nRepCnt, nFlags);
+    PSS_DragEdit::OnChar(nChar, nRepCnt, nFlags);
 }
 //---------------------------------------------------------------------------
 void PSS_TimeEdit::OnKillFocus(CWnd* pNewWnd)
 {
-    ZBDragEdit::OnKillFocus(pNewWnd);
+    PSS_DragEdit::OnKillFocus(pNewWnd);
     DestroyEdit();
 }
 //---------------------------------------------------------------------------

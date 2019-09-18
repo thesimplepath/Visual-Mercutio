@@ -17,7 +17,7 @@
 
 
 #include "zProperty\ZIInPlaceEdit.h"
-#include "zBaseLib\ZBDragEdit.h"
+#include "zBaseLib\PSS_DragEdit.h"
 
 
 #ifdef _ZPTYMGREXPORT
@@ -34,7 +34,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // ZCInPlaceEdit
 
-class AFX_EXT_CLASS ZCInPlaceEdit : public ZBDragEdit, public ZIInPlaceEdit
+class AFX_EXT_CLASS ZCInPlaceEdit : public PSS_DragEdit, public ZIInPlaceEdit
 {
     ZCInPlaceEdit(const ZCInPlaceEdit& d);
     ZCInPlaceEdit& operator=(const ZCInPlaceEdit& d);

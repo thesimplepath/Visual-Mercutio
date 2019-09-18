@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZBDragEdit.h"
+#include "zBaseLib\PSS_DragEdit.h"
 
 // forward class declaration
 class PSS_SearchEdit;
@@ -151,7 +151,7 @@ class PSS_SearchEditButton : public CButton
 * Search edit
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_SearchEdit : public ZBDragEdit
+class AFX_EXT_CLASS PSS_SearchEdit : public PSS_DragEdit
 {
     public:
         PSS_SearchEdit();
