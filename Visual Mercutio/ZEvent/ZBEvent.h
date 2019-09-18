@@ -6,10 +6,10 @@
 #define AFX_ZBEVENT_H__0F4A8AF0_0EAC_11D3_9810_00C04FB4D0D7__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -17,10 +17,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-
+// processsoft
 #include "zBaseLib\ZIListCtrl.h"
-#include "zBaseLib\ZBDate.h"
+#include "zBaseLib\PSS_Date.h"
 
 const    int    EVT_UNDEFINED = 0;
 const    int    EVT_SERVER = 1;
@@ -33,7 +32,7 @@ const    char    EventDateFormatString[] = "%d.%m.%Y";
 
 
 #ifdef _ZEVENTEXPORT
-//put the values back to make AFX_EXT_CLASS export again
+// put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA

@@ -2,20 +2,11 @@
 //    Dominique AIGROZ
 
 #include <StdAfx.h>
-// ActLog
 #include "ActLogFl.h"
-#include "zBaseLib\ZBDate.h"
 
+// processsoft
+#include "zBaseLib\PSS_Date.h"
 #include "zBaseLib\ZBTokenizer.h"
-
-
-
-
-
-
-// Class ZUActivityLogFile 
-
-
 
 ZUActivityLogFile::ZUActivityLogFile (CString LogFileName)
   : m_LogFileName(LogFileName), m_IsOpen(FALSE)

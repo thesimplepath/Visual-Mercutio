@@ -5,7 +5,7 @@
 
 #include "zResMgr\PSS_ResourceManager.h"
 #include "zBaseLib\ZUFloatingToolbar.h"
-#include "zBaseLib\ZBDocumentObserverMsg.h"
+#include "zBaseLib\PSS_DocumentObserverMsg.h"
 #include "ProcGraphModelDoc.h"
 #include "ProcGraphModelView.h"
 #include "ZDProcessGraphPage.h"
@@ -134,7 +134,7 @@ void ZIProcessGraphChildFrame::OnMDIActivate( BOOL bActivate, CWnd* pActivateWnd
         PSS_ResourceManager::ChangeLanguage( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetLanguage() );
 
         // Notify all document's observers about the frame activation
-        ZBDocumentObserverMsg Msg( UM_FRAMEHASBEENACTIVATED,
+        PSS_DocumentObserverMsg Msg( UM_FRAMEHASBEENACTIVATED,
                                    m_pLastDocumentActivated,
                                    GetActiveView() );
 
@@ -155,7 +155,7 @@ int ZIProcessGraphChildFrame::OnMouseActivate( CWnd* pDesktopWnd, UINT nHitTest,
         PSS_ResourceManager::ChangeLanguage( dynamic_cast<ZDProcessGraphModelDoc*>( m_pLastDocumentActivated )->GetLanguage() );
 
         // Notify all document's observers about the frame activation
-        ZBDocumentObserverMsg Msg( UM_FRAMEHASBEENACTIVATED,
+        PSS_DocumentObserverMsg Msg( UM_FRAMEHASBEENACTIVATED,
                                    m_pLastDocumentActivated,
                                    GetActiveView() );
 

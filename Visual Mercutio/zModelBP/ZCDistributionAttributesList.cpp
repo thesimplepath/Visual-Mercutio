@@ -13,7 +13,7 @@
 #include "ProcGraphModelMdlBP.h"
 
 #include "zModel\ZBUserGroupEntity.h"
-#include "zBaseLib\ZBDocumentObserverMsg.h"
+#include "zBaseLib\PSS_DocumentObserverMsg.h"
 #include "zModel\ZBSymbolObserverMsg.h"
 
 #include "zModelBPRes.h"
@@ -282,10 +282,10 @@ void ZCDistributionAttributesList::OnUpdate( ZISubject* pSubject, ZIObserverMsg*
     }
     else
     // Check about document close
-    if (pMsg && ISA(pMsg,ZBDocumentObserverMsg) &&
-        ISA(dynamic_cast<ZBDocumentObserverMsg*>(pMsg)->GetpDocument(),ZDProcessGraphModelDoc))
+    if (pMsg && ISA(pMsg, PSS_DocumentObserverMsg) &&
+        ISA(dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument(),ZDProcessGraphModelDoc))
     {
-        switch (dynamic_cast<ZBDocumentObserverMsg*>(pMsg)->GetMessageID())
+        switch (dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetMessageID())
         {
             case UM_REFRESHDOCUMENT:
             case UM_OPENDOCUMENT: break;
@@ -297,7 +297,7 @@ void ZCDistributionAttributesList::OnUpdate( ZISubject* pSubject, ZIObserverMsg*
             }
             case UM_FRAMEHASBEENACTIVATED:
             {
-                DocumentActivated( dynamic_cast<ZDProcessGraphModelDoc*>( dynamic_cast<ZBDocumentObserverMsg*>(pMsg)->GetpDocument() ) );
+                DocumentActivated( dynamic_cast<ZDProcessGraphModelDoc*>( dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument() ) );
             }
 
         }

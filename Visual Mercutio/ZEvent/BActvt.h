@@ -35,14 +35,14 @@ class ZProcess;
 
 // Mfc
 #include "Mfc.h"
-//## begin module%3786DB7B0055.declarations preserve=no
-//## end module%3786DB7B0055.declarations
 
-//## begin module%3786DB7B0055.additionalDeclarations preserve=yes
+// processsoft
 #include "zBaseLib\PSS_SmartPtr.h"
-#include "zBaseLib\ZBDate.h"
+#include "zBaseLib\PSS_Date.h"
 #include "zBaseLib\PSS_MailUserList.h"
-#include "Zresourc.h"
+
+// resources
+#include "zResourc.h"
 
 
 enum    ActivityRunMode

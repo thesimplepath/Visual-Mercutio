@@ -17,13 +17,12 @@
 
 #include "zBaseLib\PSS_TypedPtrList.h"
 #include "zBaseLib\ZBSmartString.h"
-#include "zProperty\ZIInPlaceEdit.h"
 #include "zBaseLib\ZBStringFormat.h"
 #include "zBaseLib\ZUStringFormater.h"
 #include "zBaseLib\ZBDuration.h"
-#include "zBaseLib\ZBDate.h"
-//RS-MODIF 08.08.2005 ajout de l'attribut dynamique "temps"
+#include "zBaseLib\PSS_Date.h"
 #include "zBaseLib\ZBTimeSpan.h"
+#include "zProperty\ZIInPlaceEdit.h"
 
 #ifdef _ZPROPERTYEXPORT
 //put the values back to make AFX_EXT_CLASS export again

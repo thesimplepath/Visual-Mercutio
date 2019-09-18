@@ -29,12 +29,6 @@
     <ClCompile Include="ZBaseLib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBDate.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZBDocumentObserverMsg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZBDragEdit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -602,6 +596,12 @@
     <ClCompile Include="PSS_EncryptedLine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_Date.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_DocumentObserverMsg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -724,12 +724,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBaseLibRes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBDate.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBDocumentObserverMsg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBDragEdit.h">
@@ -1300,6 +1294,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_EncryptedLine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_Date.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_DocumentObserverMsg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

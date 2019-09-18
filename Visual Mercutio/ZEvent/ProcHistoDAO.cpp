@@ -2,10 +2,10 @@
 //    Dominique AIGROZ
 
 #include <StdAfx.h>
-
-// ProcHistoDAO
 #include "ProcHistoDAO.h"
-#include "zBaseLib\ZBDate.h"
+
+// processoft
+#include "zBaseLib\PSS_Date.h"
 
 // JMR-MODIF - Le 2 mars 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (en commentaires)
 

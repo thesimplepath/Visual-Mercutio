@@ -6,7 +6,7 @@
 // processsoft
 #include "zMediator\PSS_Application.h"
 #include "zProperty\ZBDynamicPropertiesManager.h"
-#include "zBaseLib\ZBDocumentObserverMsg.h"
+#include "zBaseLib\PSS_DocumentObserverMsg.h"
 #include "zBaseLib\PSS_File.h"
 #include "zBaseLib\ZILog.h"
 #include "zBaseLib\ZUFloatingToolbar.h"
@@ -427,7 +427,7 @@ void ZDProcessGraphModelDoc::PreCloseFrame(CFrameWnd* pFrame)
         ZIProcessGraphModelView* pView = (ZIProcessGraphModelView*)pFrame->GetActiveView();
 
         // Notify all document observers about the close
-        ZBDocumentObserverMsg Msg(UM_CLOSEDOCUMENT, this);
+        PSS_DocumentObserverMsg Msg(UM_CLOSEDOCUMENT, this);
         NotifyAllObservers(&Msg);
 
         // And all model observers

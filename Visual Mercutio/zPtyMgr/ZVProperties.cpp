@@ -4,7 +4,7 @@
 #include "ZVProperties.h"
 
 #include "zBaseLib\ZBToolbarObserverMsg.h"
-#include "zBaseLib\ZBDocumentObserverMsg.h"
+#include "zBaseLib\PSS_DocumentObserverMsg.h"
 #include "zModel\ProcGraphModelDoc.h"
 
 #include "zPtyMgrRes.h"
@@ -239,10 +239,10 @@ void ZVProperties::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
     }
     // Check about document close
     else if ( pMsg                                    &&
-              ISA( pMsg, ZBDocumentObserverMsg )    &&
-              ISA( dynamic_cast<ZBDocumentObserverMsg*>( pMsg )->GetpDocument(), ZDProcessGraphModelDoc ) )
+              ISA( pMsg, PSS_DocumentObserverMsg )    &&
+              ISA( dynamic_cast<PSS_DocumentObserverMsg*>( pMsg )->GetDocument(), ZDProcessGraphModelDoc ) )
     {
-        switch ( dynamic_cast<ZBDocumentObserverMsg*>( pMsg )->GetMessageID() )
+        switch ( dynamic_cast<PSS_DocumentObserverMsg*>( pMsg )->GetMessageID() )
         {
             case UM_REFRESHDOCUMENT:
             case UM_OPENDOCUMENT:

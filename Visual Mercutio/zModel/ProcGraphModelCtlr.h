@@ -21,11 +21,12 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
+#include "zBaseLib\PSS_Date.h"
 #include "zBaseLib\ZISubject.h"
 #include "zBaseLib\ZIObserver.h"
 #include "ZBSymbol.h"
 #include "ZBLinkSymbol.h"
-#include "zBaseLib\ZBDate.h"
 #include "ZVDynamicAttributesDuplication.h"
 
 class ZIProcessGraphModelViewport;

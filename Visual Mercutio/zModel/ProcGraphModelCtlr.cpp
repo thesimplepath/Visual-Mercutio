@@ -17,7 +17,7 @@
 #include "zRes32\zRes.h"
 
 #include "zBaseLib\PSS_MsgBox.h"
-#include "zBaseLib\ZBDocumentObserverMsg.h"
+#include "zBaseLib\PSS_DocumentObserverMsg.h"
 #include "zBaseLib\ZBToolbarObserverMsg.h"
 
 // FileDlg
@@ -5276,12 +5276,12 @@ void ZDProcessGraphModelController::OnUpdate(ZISubject* pSubject, ZIObserverMsg*
             mBox.Show(IDS_SYMBOLNOTFOUND_USESEARCH, MB_OK);
         }
     }
-    else if (pMsg && ISA(pMsg, ZBDocumentObserverMsg) &&
-             dynamic_cast<ZBDocumentObserverMsg*>(pMsg)->GetpDocument() == GetDocument() &&
-             ISA(dynamic_cast<ZBDocumentObserverMsg*>(pMsg)->GetpDocument(), ZDProcessGraphModelDoc))
+    else if (pMsg && ISA(pMsg, PSS_DocumentObserverMsg) &&
+             dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument() == GetDocument() &&
+             ISA(dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument(), ZDProcessGraphModelDoc))
     {
         // Check about document close, detach observer
-        switch (dynamic_cast<ZBDocumentObserverMsg*>(pMsg)->GetMessageID())
+        switch (dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetMessageID())
         {
             case UM_FRAMEHASBEENACTIVATED:
             {

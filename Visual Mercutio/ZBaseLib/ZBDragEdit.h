@@ -1,17 +1,18 @@
-//////////////////////////////////////
-// ZBDragEdit.h : header file
-//
+/****************************************************************************
+ * ==> PSS_DragEdit --------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a base class for drag edit operations             *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_ZBDragEdit_H_INCLUDED_)
-#define AFX_ZBDragEdit_H_INCLUDED_
-
+#ifndef PSS_EditDropTargetH
+#define PSS_EditDropTargetH
 
 #if _MSC_VER >= 1000
-#pragma once
-#endif // _MSC_VER >= 1000
+    #pragma once
+#endif
 
-
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -19,31 +20,28 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-
-/////////////////////////////////////////////////////////////////////////////
-// ZBDragEdit window
+// mfc
 #ifndef __AFXOLE_H__
     #include <afxole.h>
 #endif
 
-
-#ifdef _ZBASELIBEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
-#endif
-
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-
-
+// forward class declarations
 class ZBDragEdit;
 
+#ifdef _ZBASELIBEXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
+#endif
+
+/**
+* Edit drop target
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
 class AFX_EXT_CLASS ZBEditDropTarget : public COleDropTarget
 {
 public:
@@ -64,6 +62,10 @@ private:
     ZBDragEdit*  m_pEditCtl;
 };
 
+/**
+* Edit data source
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
 class AFX_EXT_CLASS ZBEditDataSource : public COleDataSource
 {
 };
@@ -72,6 +74,10 @@ class AFX_EXT_CLASS ZBEditDataSource : public COleDataSource
 
 #define    ZBDragEditBase    CEdit
 
+/**
+* Drag edit
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
 class AFX_EXT_CLASS ZBDragEdit : public ZBDragEditBase
 {
 // Construction
@@ -173,9 +179,4 @@ private:
 
 };
 
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Developer Studio will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZBDragEdit_H_INCLUDED_)
+#endif

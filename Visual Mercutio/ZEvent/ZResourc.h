@@ -27,11 +27,10 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
+#include "zBaseLib\PSS_Date.h"
 
-#include "zBaseLib\ZBDate.h"
-
-enum     ActivityUserType { Users, ResponsibleOfUser, AttributionOfUsers, UserFromActivity };
-//## end module%374C3AB50066.includes
+enum ActivityUserType { Users, ResponsibleOfUser, AttributionOfUsers, UserFromActivity };
 
 // PersonLs
 #include "zBaseLib\PSS_MailUserList.h"

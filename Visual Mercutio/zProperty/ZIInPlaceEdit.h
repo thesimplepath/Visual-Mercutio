@@ -18,19 +18,15 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
+// processsoft
 #include "zBaseLib\ZISubject.h"
 #include "zBaseLib\ZIObserver.h"
-
 #include "zBaseLib\ZBDuration.h"
-#include "zBaseLib\ZBDate.h"
-//RS-MODIF 08.08.2005 ajout de l'attribut dynamique "temps"
+#include "zBaseLib\PSS_Date.h"
 #include "zBaseLib\ZBTimeSpan.h"
 
-// Forward class declaration
+// forward class declaration
 class ZBPropertyItem;
-
-
 
 #ifdef _ZPROPERTYEXPORT
 //put the values back to make AFX_EXT_CLASS export again

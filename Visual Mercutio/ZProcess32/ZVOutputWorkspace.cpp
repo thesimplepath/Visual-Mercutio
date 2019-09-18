@@ -6,7 +6,7 @@
 
 #include "Resource.h"
 
-#include "zBaseLib\ZBDocumentObserverMsg.h"
+#include "zBaseLib\PSS_DocumentObserverMsg.h"
 #include "zModel\ProcGraphModelDoc.h"
 
 #include "zBaseLib\ZBToolbarObserverMsg.h"
@@ -181,10 +181,10 @@ void ZVOutputWorkspace::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
 {
     // Check about document close
     // Detach observer
-    if ( pMsg && ISA( pMsg, ZBDocumentObserverMsg ) &&
-         ISA( dynamic_cast<ZBDocumentObserverMsg*>( pMsg )->GetpDocument(), ZDProcessGraphModelDoc ) )
+    if ( pMsg && ISA( pMsg, PSS_DocumentObserverMsg ) &&
+         ISA( dynamic_cast<PSS_DocumentObserverMsg*>( pMsg )->GetDocument(), ZDProcessGraphModelDoc ) )
     {
-        switch ( dynamic_cast<ZBDocumentObserverMsg*>( pMsg )->GetMessageID() )
+        switch ( dynamic_cast<PSS_DocumentObserverMsg*>( pMsg )->GetMessageID() )
         {
             case UM_REFRESHDOCUMENT:
             case UM_OPENDOCUMENT:
@@ -195,7 +195,7 @@ void ZVOutputWorkspace::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
             case UM_CLOSEDOCUMENT:
             {
                 ZDProcessGraphModelDoc* pDoc =
-                    dynamic_cast<ZDProcessGraphModelDoc*>( dynamic_cast<ZBDocumentObserverMsg*>( pMsg )->GetpDocument() );
+                    dynamic_cast<ZDProcessGraphModelDoc*>( dynamic_cast<PSS_DocumentObserverMsg*>( pMsg )->GetDocument() );
 
                 DetachObserver( pDoc );
                 break;

@@ -5,7 +5,7 @@
 #include "ZVPropertiesWorkspace.h"
 
 #include "zProperty\ZBPropertyObserverMsg.h"
-#include "zBaseLib\ZBDocumentObserverMsg.h"
+#include "zBaseLib\PSS_DocumentObserverMsg.h"
 
 #include "zModel\ProcGraphModelDoc.h"
 #include "zModel\ZBDocObserverMsg.h"
@@ -158,14 +158,14 @@ void ZVPropertiesWorkspace::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
 
     // Check about frame activated
     // Set the right view to the pan window
-    if ( pMsg && ISA( pMsg, ZBDocumentObserverMsg ) )
+    if ( pMsg && ISA( pMsg, PSS_DocumentObserverMsg ) )
     {
-        switch ( dynamic_cast<ZBDocumentObserverMsg*>( pMsg )->GetMessageID() )
+        switch ( dynamic_cast<PSS_DocumentObserverMsg*>( pMsg )->GetMessageID() )
         {
             case UM_FRAMEHASBEENACTIVATED:
             {
-                if ( dynamic_cast<ZBDocumentObserverMsg*>( pMsg )->GetpView() &&
-                     ISA( dynamic_cast<ZBDocumentObserverMsg*>( pMsg )->GetpView(), ZVSpanView ) )
+                if ( dynamic_cast<PSS_DocumentObserverMsg*>( pMsg )->GetView() &&
+                     ISA( dynamic_cast<PSS_DocumentObserverMsg*>( pMsg )->GetView(), ZVSpanView ) )
                 {
                     /* Don't add the pan view for the SR1
                     m_PanView.AssignPanView
@@ -220,7 +220,7 @@ afx_msg LRESULT ZVPropertiesWorkspace::OnInitializeModelDocument( WPARAM wParam,
         if ( pDocMsg->GetpDoc() )
         {
             // Notify all document's observers about the frame activation
-            ZBDocumentObserverMsg Msg( UM_FRAMEHASBEENACTIVATED,
+            PSS_DocumentObserverMsg Msg( UM_FRAMEHASBEENACTIVATED,
                                        pDocMsg->GetpDoc(),
                                        NULL );
 

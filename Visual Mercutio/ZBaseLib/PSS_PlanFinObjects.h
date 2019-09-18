@@ -47,7 +47,7 @@
 #include "PSS_PLFNGraphic.h"
 #include "PSS_Formula.h"
 #include "ZBPoint.h"
-#include "ZBDate.h"
+#include "PSS_Date.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again

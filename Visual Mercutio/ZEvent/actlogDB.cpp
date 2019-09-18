@@ -5,17 +5,12 @@
 
 // ActLogDB
 #include "ActLogDB.h"
-#include "zBaseLib\ZBDate.h"
+#include "zBaseLib\PSS_Date.h"
 
-
-
-
-
-
-ZUActivityLogDatabase::ZUActivityLogDatabase (CString LogFileName)
-  : m_LogFileName(LogFileName), m_pLogRecordset(NULL)
-{
-}
+ZUActivityLogDatabase::ZUActivityLogDatabase (CString LogFileName) :
+    m_LogFileName(LogFileName),
+    m_pLogRecordset(NULL)
+{}
 
 
 ZUActivityLogDatabase::~ZUActivityLogDatabase()

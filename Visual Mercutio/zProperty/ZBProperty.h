@@ -16,7 +16,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 #include "zBaseLib\ZBStringFormat.h"
-#include "zBaseLib\ZBDate.h"
+#include "zBaseLib\PSS_Date.h"
 #include "zBaseLib\ZBTimeSpan.h"
 #include "zBaseLib\ZBDuration.h"
 

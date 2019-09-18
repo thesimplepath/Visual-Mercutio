@@ -732,13 +732,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBDate.CPP">
+    <ClCompile Include="PSS_Date.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBDocumentObserverMsg.cpp">
+    <ClCompile Include="PSS_DocumentObserverMsg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1444,8 +1444,8 @@
     <ClInclude Include="PSS_EncryptedEvaluationAppInfoFile.h" />
     <ClInclude Include="PSS_EncryptedInfoFile.h" />
     <ClInclude Include="PSS_EncryptedLine.h" />
-    <ClInclude Include="ZBDate.H" />
-    <ClInclude Include="ZBDocumentObserverMsg.h" />
+    <ClInclude Include="PSS_Date.h" />
+    <ClInclude Include="PSS_DocumentObserverMsg.h" />
     <ClInclude Include="ZBDragEdit.h" />
     <ClInclude Include="ZBDuration.h" />
     <ClInclude Include="ZBEqualizeNumbers.h" />
