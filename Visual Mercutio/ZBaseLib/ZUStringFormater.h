@@ -20,7 +20,7 @@
 #include "ZBStringFormat.h"
 #include "PSS_Date.h"
 #include "ZBTimeSpan.h"
-#include "ZBDuration.h"
+#include "PSS_Duration.h"
 
 #ifdef _ZBASELIBEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -52,7 +52,7 @@ public:
     static CString    GetFormattedBuffer( double value, ZBStringFormat::FormatType sf = ZBStringFormat::General, size_t DecimalPlace = 0, bool UseSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
     static CString    GetFormattedBuffer( PSS_Date& value, ZBStringFormat::FormatType sf = ZBStringFormat::Date, LCID lcid = ::GetUserDefaultLCID() );
     static CString    GetFormattedBuffer( ZBTimeSpan& value, ZBStringFormat::FormatType sf = ZBStringFormat::Time, LCID lcid = ::GetUserDefaultLCID() );
-    static CString    GetFormattedBuffer( ZBDuration& value, ZBStringFormat::FormatType sf = ZBStringFormat::Duration, LCID lcid = ::GetUserDefaultLCID() );
+    static CString    GetFormattedBuffer(PSS_Duration& value, ZBStringFormat::FormatType sf = ZBStringFormat::Duration, LCID lcid = ::GetUserDefaultLCID() );
 
     static CString    GetFormattedBuffer( int value, ZBStringFormat& fmt );
     static CString    GetFormattedBuffer( unsigned int value, ZBStringFormat& fmt );
@@ -62,7 +62,7 @@ public:
     static CString    GetFormattedBuffer( double value, ZBStringFormat& fmt );
     static CString    GetFormattedBuffer(PSS_Date& value, ZBStringFormat& fmt );
     static CString    GetFormattedBuffer( ZBTimeSpan& value, ZBStringFormat& fmt );
-    static CString    GetFormattedBuffer( ZBDuration& value, ZBStringFormat& fmt );
+    static CString    GetFormattedBuffer(PSS_Duration& value, ZBStringFormat& fmt );
 
     // Convert value to custom string 
     static CString    GetCustomFormattedBuffer( int value, LPCTSTR custom, LCID lcid = ::GetUserDefaultLCID() );
@@ -73,7 +73,7 @@ public:
     static CString    GetCustomFormattedBuffer( double value, LPCTSTR custom, LCID lcid = ::GetUserDefaultLCID() );
     static CString    GetCustomFormattedBuffer(PSS_Date& value, LPCTSTR custom, LCID lcid = ::GetUserDefaultLCID() );
     static CString    GetCustomFormattedBuffer( ZBTimeSpan& value, LPCTSTR custom, LCID lcid = ::GetUserDefaultLCID() );
-    static CString    GetCustomFormattedBuffer( ZBDuration& value, LPCTSTR custom, LCID lcid = ::GetUserDefaultLCID() );
+    static CString    GetCustomFormattedBuffer(PSS_Duration& value, LPCTSTR custom, LCID lcid = ::GetUserDefaultLCID() );
 
     // Convert string to value
     static bool ConvertFormattedBuffer( const CString buffer, int& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
@@ -84,7 +84,7 @@ public:
     static bool    ConvertFormattedBuffer( const CString buffer, double& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
     static bool    ConvertFormattedBuffer( const CString buffer, PSS_Date& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
     static bool    ConvertFormattedBuffer( const CString buffer, ZBTimeSpan& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
-    static bool    ConvertFormattedBuffer( const CString buffer, ZBDuration& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
+    static bool    ConvertFormattedBuffer( const CString buffer, PSS_Duration& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
 
     static bool ConvertFormattedBuffer( const CString buffer, int& value, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
     static bool    ConvertFormattedBuffer( const CString buffer, unsigned int& value, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
@@ -94,7 +94,7 @@ public:
     static bool    ConvertFormattedBuffer( const CString buffer, double& value, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
     static bool    ConvertFormattedBuffer( const CString buffer, PSS_Date& value, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
     static bool    ConvertFormattedBuffer( const CString buffer, ZBTimeSpan& value, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
-    static bool    ConvertFormattedBuffer( const CString buffer, ZBDuration& value, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
+    static bool    ConvertFormattedBuffer( const CString buffer, PSS_Duration& value, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
 
     static bool ConvertFormattedBuffer( const CString buffer, int& value, ZBStringFormat& fmt );
     static bool    ConvertFormattedBuffer( const CString buffer, unsigned int& value, ZBStringFormat& fmt );
@@ -104,7 +104,7 @@ public:
     static bool    ConvertFormattedBuffer( const CString buffer, double& value, ZBStringFormat& fmt );
     static bool    ConvertFormattedBuffer( const CString buffer, PSS_Date& value, ZBStringFormat& fmt );
     static bool    ConvertFormattedBuffer( const CString buffer, ZBTimeSpan& value, ZBStringFormat& fmt );
-    static bool    ConvertFormattedBuffer( const CString buffer, ZBDuration& value, ZBStringFormat& fmt );
+    static bool    ConvertFormattedBuffer( const CString buffer, PSS_Duration& value, ZBStringFormat& fmt );
 
 
     // Convert custom string to value
@@ -116,7 +116,7 @@ public:
     static bool    ConvertCustomFormattedBuffer( const CString buffer, double& value, LPCTSTR custom, LCID lcid = ::GetUserDefaultLCID() );
     static bool    ConvertCustomFormattedBuffer( const CString buffer, PSS_Date& value, LPCTSTR custom, LCID lcid = ::GetUserDefaultLCID() );
     static bool    ConvertCustomFormattedBuffer( const CString buffer, ZBTimeSpan& value, LPCTSTR custom, LCID lcid = ::GetUserDefaultLCID() );
-    static bool    ConvertCustomFormattedBuffer( const CString buffer, ZBDuration& value, LPCTSTR custom, LCID lcid = ::GetUserDefaultLCID() );
+    static bool    ConvertCustomFormattedBuffer( const CString buffer, PSS_Duration& value, LPCTSTR custom, LCID lcid = ::GetUserDefaultLCID() );
 
 
 private:

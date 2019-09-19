@@ -2050,7 +2050,7 @@ void ZVPublishProcessReport::GenerateSection( ZBPropertySet& PropSet )
 
             case ZBProperty::PT_DURATION:
             {
-                Value = ZUStringFormatter::GetFormattedBuffer( (ZBDuration&)pProp->GetValueDuration(),
+                Value = ZUStringFormatter::GetFormattedBuffer( (PSS_Duration&)pProp->GetValueDuration(),
                                                                pProp->GetStringFormat() );
                 break;
             }

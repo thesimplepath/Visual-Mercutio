@@ -29,12 +29,6 @@
     <ClCompile Include="ZBaseLib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBDuration.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZBEqualizeNumbers.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZBErrorLog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -602,6 +596,12 @@
     <ClCompile Include="PSS_DragEdit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_Duration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_NumbersEqualizer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -724,12 +724,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBaseLibRes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBDuration.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBEqualizeNumbers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBErrorLog.h">
@@ -1300,6 +1294,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_DragEdit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_Duration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_NumbersEqualizer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

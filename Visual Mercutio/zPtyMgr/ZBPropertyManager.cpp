@@ -772,7 +772,7 @@ void ZBPropertyItemManager::SetDataToPropertyItem( ZBPropertyItem* pPropertyItem
                 case ZBProperty::PT_DURATION:
                 {
                     // JMR-MODIF - Le 2 août 2005 - Conversion explicite permet de corriger bug sur attributs dynamiques.
-                    reinterpret_cast<ZBPropertyItemDuration*>(pPropertyItem)->SetData( (ZBDuration&)Prop.GetValueDuration() );
+                    reinterpret_cast<ZBPropertyItemDuration*>(pPropertyItem)->SetData( (PSS_Duration&)Prop.GetValueDuration() );
                     break;
                 }
             }

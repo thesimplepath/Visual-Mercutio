@@ -98,14 +98,14 @@ void ZCInPlaceDurationEdit::SetEditText(const CString& strText)
         SetWindowText(strText);
 }
 
-void ZCInPlaceDurationEdit::SetEditText(ZBDuration& DurationValue)
+void ZCInPlaceDurationEdit::SetEditText(PSS_Duration& DurationValue)
 {
     // Sets the duration value
     m_DurationValue = DurationValue;
     // Build the string
     CString strInitText;
     // Format the value function of the string format specified
-    strInitText = ZUStringFormatter::GetFormattedBuffer( (ZBDuration&)m_DurationValue, m_pItem->GetStringFormat() );
+    strInitText = ZUStringFormatter::GetFormattedBuffer( (PSS_Duration&)m_DurationValue, m_pItem->GetStringFormat() );
     SetEditText( strInitText );
 }
 
@@ -135,12 +135,12 @@ BOOL ZCInPlaceDurationEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, con
     return rValue;
 }
 
-BOOL ZCInPlaceDurationEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, ZBDuration& DurationInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle /*= 0"*/)
+BOOL ZCInPlaceDurationEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, PSS_Duration& DurationInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle /*= 0"*/)
 {
     m_pItem = pItem;
 
     BOOL rValue = Create(WS_CHILD|WS_VISIBLE|ES_AUTOHSCROLL|ES_LEFT|exDwStyle, rect, pWndParent, 1);
-    SetEditText( (ZBDuration&)DurationInitValue );    
+    SetEditText( (PSS_Duration&)DurationInitValue );
     // Saves the initial value
     m_InitialDurationValue = DurationInitValue;
     // Reset the has changed value
@@ -185,8 +185,8 @@ void ZCInPlaceDurationEdit::SaveValue()
                     case ZIInPlaceEdit::IPE_DURATION:
                     {
                         // Check the conversion
-                        ZBDuration value;
-                        ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer( ProposedValue, (ZBDuration&)value, m_pItem->GetStringFormat() );
+                        PSS_Duration value;
+                        ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer( ProposedValue, (PSS_Duration&)value, m_pItem->GetStringFormat() );
                         if (!ConversionCorrect)
                             ZCInPlaceDurationEdit::CancelEdit();
                         break;
@@ -230,7 +230,7 @@ void ZCInPlaceDurationEdit::CancelEdit()
         case ZIInPlaceEdit::IPE_DURATION:
         {
             // Set back the initial duration value
-            SetEditText( (ZBDuration&)m_InitialDurationValue );
+            SetEditText( (PSS_Duration&)m_InitialDurationValue );
             break;
         }
     }
@@ -275,8 +275,8 @@ void ZCInPlaceDurationEdit::OnExtendedCommand()
             // Change the window text to the proposed value
 
             // Check the conversion
-            ZBDuration value;
-            bool ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer( ProposedValue, (ZBDuration&)value, pItem->GetStringFormat() );
+            PSS_Duration value;
+            bool ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer( ProposedValue, (PSS_Duration&)value, pItem->GetStringFormat() );
             if (ConversionCorrect)
             {
 
@@ -286,7 +286,7 @@ void ZCInPlaceDurationEdit::OnExtendedCommand()
                 // Sets the new duration
                 value.SetDuration( Dlg.GetDays(), Dlg.GetHours(), Dlg.GetMinutes(), Dlg.GetSeconds() );
                 // Format the value function of the string format specified
-                ProposedValue = ZUStringFormatter::GetFormattedBuffer( (ZBDuration&)value, pItem->GetStringFormat() );
+                ProposedValue = ZUStringFormatter::GetFormattedBuffer( (PSS_Duration&)value, pItem->GetStringFormat() );
                 SetEditText( ProposedValue );
                 // Set the has changed value
                 SetHasChanged( true );

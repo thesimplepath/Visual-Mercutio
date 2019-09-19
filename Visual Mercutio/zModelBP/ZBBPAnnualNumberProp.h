@@ -32,8 +32,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
+#include "zBaseLib\PSS_NumbersEqualizer.h"
 #include "zPropertyIds.h"
-#include "zBaseLib\ZBEqualizeNumbers.h"
 
 #ifdef _ZMODELBPEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -575,7 +576,7 @@ protected:
 
     //@cmember
     /* Equalizer member that keeps all values. */
-    ZBEqualizeNumbers    m_Equalizer;
+    PSS_NumbersEqualizer m_Equalizer;
     
     //@cmember
     /* flag for showing or not month details. */

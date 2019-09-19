@@ -7,8 +7,8 @@
 // ZVEqualizeQuantityDlg.h : header file
 //
 
+#include "zBaseLib\PSS_NumbersEqualizer.h"
 #include "zProperty\ZIProperties.h"
-#include "zBaseLib\ZBEqualizeNumbers.h"
 
 #include "zModelBPRes.h"
 
@@ -257,7 +257,7 @@ private:
 private:
     ZBPropertySet* m_pPropertySet;
 
-    ZBEqualizeNumbers m_Equalizer;
+    PSS_NumbersEqualizer m_Equalizer;
 
 };
 

@@ -19,7 +19,7 @@
 #include "zBaseLib\ZBSmartString.h"
 #include "zBaseLib\ZBStringFormat.h"
 #include "zBaseLib\ZUStringFormater.h"
-#include "zBaseLib\ZBDuration.h"
+#include "zBaseLib\PSS_Duration.h"
 #include "zBaseLib\PSS_Date.h"
 #include "zBaseLib\ZBTimeSpan.h"
 #include "zProperty\ZIInPlaceEdit.h"
@@ -124,8 +124,8 @@ public:
     virtual float GetDataFloat() const;
 
     // Set and get data for duration
-    virtual void SetData( ZBDuration& Value );
-    virtual ZBDuration GetDataDuration() const;
+    virtual void SetData(PSS_Duration& Value );
+    virtual PSS_Duration GetDataDuration() const;
 
     // Set and get data for date
     virtual void SetData(PSS_Date& Value );
@@ -164,7 +164,7 @@ protected:
     CString                    m_strText;
     double                    m_dValue;
     float                    m_fValue;
-    ZBDuration                m_durationValue;
+    PSS_Duration                m_durationValue;
     PSS_Date                    m_dateValue;
     //RS-MODIF 08.08.2005 ajout de l'attribut dynamique "temps"
     ZBTimeSpan                m_timeValue;
@@ -293,9 +293,9 @@ inline void ZBPropertyItem::SetData( const CString sText )
 
         case PI_DURATION:
         {
-            ZBDuration value;
+            PSS_Duration value;
 
-            if ( ZUStringFormatter::ConvertFormattedBuffer( sText, (ZBDuration&)value, GetStringFormat() ) )
+            if ( ZUStringFormatter::ConvertFormattedBuffer( sText, (PSS_Duration&)value, GetStringFormat() ) )
             {
                 m_durationValue = value;
             }
@@ -352,13 +352,13 @@ inline float ZBPropertyItem::GetDataFloat() const
     return m_fValue;
 };
 
-inline void ZBPropertyItem::SetData( ZBDuration& Value )
+inline void ZBPropertyItem::SetData(PSS_Duration& Value )
 {
     m_Type            = PI_DURATION;
     m_durationValue    = Value;
 }
 
-inline ZBDuration ZBPropertyItem::GetDataDuration() const
+inline PSS_Duration ZBPropertyItem::GetDataDuration() const
 {
     return m_durationValue;
 };
@@ -416,7 +416,7 @@ inline CString ZBPropertyItem::GetData() const
         case PI_DURATION:
         {
             // Format the value function of the string format specified
-            sText = ZUStringFormatter::GetFormattedBuffer( (ZBDuration&)m_durationValue,
+            sText = ZUStringFormatter::GetFormattedBuffer( (PSS_Duration&)m_durationValue,
                                                            const_cast<ZBPropertyItem*>(this)->GetStringFormat() );
             break;
         }

@@ -372,7 +372,7 @@ CString    ZUStringFormatter::GetFormattedBuffer( ZBTimeSpan& value, ZBStringFor
 }
 
 
-CString    ZUStringFormatter::GetFormattedBuffer( ZBDuration& value, ZBStringFormat::FormatType sf /*= ZBStringFormat::Duration*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+CString    ZUStringFormatter::GetFormattedBuffer(PSS_Duration& value, ZBStringFormat::FormatType sf /*= ZBStringFormat::Duration*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
 {
     CString TimeStr = PSS_Global::GetTimeSeparator( lcid );
     char TimeSep = (TimeStr.IsEmpty()) ? ':' : TimeStr.GetAt(0);
@@ -570,7 +570,7 @@ CString    ZUStringFormatter::GetFormattedBuffer( ZBTimeSpan& value, ZBStringFor
     return ZUStringFormatter::GetFormattedBuffer( value, fmt.Getft(), fmt.Getlcid() );
 }
 
-CString    ZUStringFormatter::GetFormattedBuffer( ZBDuration& value, ZBStringFormat& fmt )
+CString    ZUStringFormatter::GetFormattedBuffer(PSS_Duration& value, ZBStringFormat& fmt )
 {
     return ZUStringFormatter::GetFormattedBuffer( value, fmt.Getft(), fmt.Getlcid() );
 }
@@ -616,7 +616,7 @@ CString    ZUStringFormatter::GetCustomFormattedBuffer( ZBTimeSpan& value, LPCTS
     return _T("");
 }
 
-CString    ZUStringFormatter::GetCustomFormattedBuffer( ZBDuration& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+CString    ZUStringFormatter::GetCustomFormattedBuffer(PSS_Duration& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
 {
     return _T("");
 }
@@ -767,7 +767,7 @@ bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, ZBTimeSpan
 }
 
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, ZBDuration& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, PSS_Duration& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
 {
     // Convert a duration
 
@@ -1148,7 +1148,7 @@ bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, ZBTimeSpan
     return ZUStringFormatter::ConvertFormattedBuffer( buffer, value, sf, pCurrency, lcid );
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, ZBDuration& value, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, PSS_Duration& value, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
 {
     ZBStringFormat::FormatType sf;
     return ZUStringFormatter::ConvertFormattedBuffer( buffer, value, sf, pCurrency, lcid );
@@ -1220,7 +1220,7 @@ bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, ZBTimeSpan
     return RetValue;
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, ZBDuration& value, ZBStringFormat& fmt )
+bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, PSS_Duration& value, ZBStringFormat& fmt )
 {
     ZBStringFormat::FormatType ft = fmt.Getft();
     bool RetValue = ZUStringFormatter::ConvertFormattedBuffer( buffer, value, ft, (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.Getlcid() );
@@ -1279,7 +1279,7 @@ bool ZUStringFormatter::ConvertCustomFormattedBuffer( const CString buffer, ZBTi
     return false;
 }
 
-bool ZUStringFormatter::ConvertCustomFormattedBuffer( const CString buffer, ZBDuration& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertCustomFormattedBuffer( const CString buffer, PSS_Duration& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
 {
     // Not implemented
     return false;

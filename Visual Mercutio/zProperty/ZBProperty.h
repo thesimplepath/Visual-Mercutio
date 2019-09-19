@@ -18,7 +18,7 @@
 #include "zBaseLib\ZBStringFormat.h"
 #include "zBaseLib\PSS_Date.h"
 #include "zBaseLib\ZBTimeSpan.h"
-#include "zBaseLib\ZBDuration.h"
+#include "zBaseLib\PSS_Duration.h"
 
 #ifdef _ZPROPERTYEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -245,7 +245,7 @@ public:
                 const CString    Label,
                 int                ItemID,
                 const CString    Description,
-                ZBDuration&        Value,
+               PSS_Duration&        Value,
                 PropertyType    PTType                    = PT_EDIT_DURATION,
                 bool            Enable                    = true,
                 ZBStringFormat&    ft                        = ZBStringFormat( ZBStringFormat::Duration ),
@@ -259,7 +259,7 @@ public:
                 const UINT        LabelResID,
                 int                ItemID,
                 const UINT        DescriptionResID,
-                ZBDuration&        Value,
+               PSS_Duration&        Value,
                 PropertyType    PTType                    = PT_EDIT_DURATION,
                 bool            Enable                    = true,
                 ZBStringFormat&    ft                        = ZBStringFormat( ZBStringFormat::Duration ),
@@ -317,8 +317,8 @@ public:
     ZBTimeSpan GetValueTimeSpan() const;
     void SetValueTimeSpan( ZBTimeSpan& value );
 
-    ZBDuration GetValueDuration() const;
-    void SetValueDuration( ZBDuration& value );
+    PSS_Duration GetValueDuration() const;
+    void SetValueDuration(PSS_Duration& value );
 
     bool GetEnable() const;
     void SetEnable( bool value );
@@ -370,7 +370,7 @@ private:
     PropertyValueType    m_ValueType;
     PSS_Date                m_dtValue;
     ZBTimeSpan            m_tsValue;
-    ZBDuration            m_durationValue;
+    PSS_Duration            m_durationValue;
     ZBStringFormat        m_ft;
 
     CStringArray*        m_pArrayOfValues;
@@ -514,13 +514,13 @@ inline ZBTimeSpan ZBProperty::GetValueTimeSpan() const
     return m_tsValue;
 }
 
-inline void ZBProperty::SetValueDuration( ZBDuration& value )
+inline void ZBProperty::SetValueDuration(PSS_Duration& value )
 {
     m_durationValue    = value;
     m_ValueType        = PT_DURATION;
 }
 
-inline ZBDuration ZBProperty::GetValueDuration() const
+inline PSS_Duration ZBProperty::GetValueDuration() const
 {
     return m_durationValue;
 }

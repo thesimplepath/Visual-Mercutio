@@ -385,7 +385,7 @@ ZBProperty::ZBProperty( const CString    Category,
                         const CString    Label,
                         int                ItemID,
                         const CString    Description,
-                        ZBDuration&        Value,
+                       PSS_Duration&        Value,
                         PropertyType    PTType                    /*= PT_EDIT_DURATION*/,
                         bool            Enable                    /*= true*/,
                         ZBStringFormat& ft                        /*= ZBStringFormat(ZBStringFormat::Duration)*/,
@@ -420,7 +420,7 @@ ZBProperty::ZBProperty( const UINT        CategoryResID,
                         const UINT        LabelResID,
                         int                ItemID,
                         const UINT        DescriptionResID,
-                        ZBDuration&        Value,
+                       PSS_Duration&        Value,
                         PropertyType    PTType                    /*= PT_EDIT_DURATION*/,
                         bool            Enable                    /*= true*/,
                         ZBStringFormat& ft                        /*= ZBStringFormat(ZBStringFormat::Duration)*/,
@@ -528,7 +528,7 @@ void ZBProperty::Serialize( CArchive& ar )
 
         // Serialize the duration
         ar << (double)m_durationValue;
-        ar << (int)m_durationValue.m_status;
+        ar << (int)m_durationValue.GetStatus();
 
         ar << (int)m_PTType;
         ar << (int)m_Enable;
@@ -571,10 +571,10 @@ void ZBProperty::Serialize( CArchive& ar )
         // Deserialize the duration
         double dValue;
         ar >> dValue;
-        m_durationValue.m_span = dValue;
+        m_durationValue.SetSpan(dValue);
 
         ar >> value;
-        m_durationValue.m_status = (ZBDuration::DurationStatus)value;
+        m_durationValue.SetStatus(PSS_Duration::IEStatus(value));
 
         ar >> value;
         m_PTType = (PropertyType)value;

@@ -2502,7 +2502,7 @@ bool PSS_ModelGenerateImageFiles::GeneratePropertyPage(ZIProperties* pProperties
                 case ZBProperty::PT_FLOAT:    value = ZUStringFormatter::GetFormattedBuffer(pProp->GetValueFloat(),                 pProp->GetStringFormat()); break;
                 case ZBProperty::PT_DATE:     value = ZUStringFormatter::GetFormattedBuffer((PSS_Date&)pProp->GetValueDate(),         pProp->GetStringFormat()); break;
                 case ZBProperty::PT_TIMESPAN: value = ZUStringFormatter::GetFormattedBuffer((ZBTimeSpan&)pProp->GetValueTimeSpan(), pProp->GetStringFormat()); break;
-                case ZBProperty::PT_DURATION: value = ZUStringFormatter::GetFormattedBuffer((ZBDuration&)pProp->GetValueDuration(), pProp->GetStringFormat()); break;
+                case ZBProperty::PT_DURATION: value = ZUStringFormatter::GetFormattedBuffer((PSS_Duration&)pProp->GetValueDuration(), pProp->GetStringFormat()); break;
                 case ZBProperty::PT_STRING:   value = pProp->GetValueString();                                                                                 break;
                 default:                                                                                                                                       break;
             }

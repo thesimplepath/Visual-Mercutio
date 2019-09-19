@@ -21,7 +21,7 @@
 // processsoft
 #include "zBaseLib\ZISubject.h"
 #include "zBaseLib\ZIObserver.h"
-#include "zBaseLib\ZBDuration.h"
+#include "zBaseLib\PSS_Duration.h"
 #include "zBaseLib\PSS_Date.h"
 #include "zBaseLib\ZBTimeSpan.h"
 
@@ -58,7 +58,7 @@ public:
     ZIInPlaceEdit(const CString& srtInitText, bool IsReadOnly = false);
     ZIInPlaceEdit(double dInitValue, bool IsReadOnly = false);
     ZIInPlaceEdit(float fInitValue, bool IsReadOnly = false);
-    ZIInPlaceEdit(ZBDuration& DurationInitValue, bool IsReadOnly = false);
+    ZIInPlaceEdit(PSS_Duration& DurationInitValue, bool IsReadOnly = false);
     ZIInPlaceEdit(PSS_Date& DateInitValue, bool IsReadOnly = false);
     //RS-MODIF 08.08.2005 ajout de l'attribut dynamique "temps"
     ZIInPlaceEdit(ZBTimeSpan& TimeInitValue, bool IsReadOnly = false);
@@ -85,7 +85,7 @@ public:
     {
         return FALSE;
     };
-    virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, ZBDuration& DurationInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0)
+    virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, PSS_Duration& DurationInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0)
     {
         return FALSE;
     };
@@ -112,7 +112,7 @@ public:
     virtual void SetEditText(float fValue)
     {
     };
-    virtual void SetEditText(ZBDuration& DurationValue)
+    virtual void SetEditText(PSS_Duration& DurationValue)
     {
     };
     virtual void SetEditText(PSS_Date& DateValue)
@@ -183,8 +183,8 @@ protected:
     double            m_dInitialValue;
     float            m_fValue;
     float            m_fInitialValue;
-    ZBDuration        m_DurationValue;
-    ZBDuration        m_InitialDurationValue;
+    PSS_Duration        m_DurationValue;
+    PSS_Duration        m_InitialDurationValue;
     PSS_Date            m_DateValue;
     PSS_Date            m_InitialDateValue;
     //RS-MODIF 08.08.2005 ajout de l'attribut dynamique "temps"
@@ -230,7 +230,7 @@ inline ZIInPlaceEdit::ZIInPlaceEdit(float fInitValue, bool IsReadOnly /*= false*
     m_fInitialValue = fInitValue;
 }
 
-inline ZIInPlaceEdit::ZIInPlaceEdit(ZBDuration& DurationInitValue, bool IsReadOnly /*= false*/)
+inline ZIInPlaceEdit::ZIInPlaceEdit(PSS_Duration& DurationInitValue, bool IsReadOnly /*= false*/)
     : m_DurationValue(DurationInitValue), m_IsReadOnly(IsReadOnly), m_HasChanged(false)
 {
     // Sets the type

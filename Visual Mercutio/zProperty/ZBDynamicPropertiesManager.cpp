@@ -524,7 +524,7 @@ ZBProperty* ZBDynamicPropertiesManager::CreateProperty( const CString           
         case ZBProperty::PT_EDIT_DURATION:
         case ZBProperty::PT_EDIT_DURATION_READONLY:
         {
-            ZBDuration dr;
+            PSS_Duration dr;
 
             pProp = new ZBProperty( Category,
                                     CategoryID,

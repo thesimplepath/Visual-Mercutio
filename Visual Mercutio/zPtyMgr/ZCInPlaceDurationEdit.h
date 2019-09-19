@@ -44,17 +44,17 @@ protected:
 
 public:
     ZCInPlaceDurationEdit( bool IsReadOnly = false );
-    ZCInPlaceDurationEdit( ZBDuration& DurationInitValue, bool IsReadOnly = false );
+    ZCInPlaceDurationEdit(PSS_Duration& DurationInitValue, bool IsReadOnly = false );
     virtual ~ZCInPlaceDurationEdit();
 
     // Operations
 public:
     // Initialize the edit control
     virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0);
-    virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, ZBDuration& DurationInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0);
+    virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, PSS_Duration& DurationInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0);
     // Initialize the edit text value
     virtual void SetEditText(const CString& strText);
-    virtual void SetEditText(ZBDuration& DurationValue);
+    virtual void SetEditText(PSS_Duration& DurationValue);
     // Retreive the text entered
     virtual CString GetEditText() const;
 
@@ -99,7 +99,7 @@ inline ZCInPlaceDurationEdit::ZCInPlaceDurationEdit( bool IsReadOnly /*= false*/
 {
 }
 
-inline ZCInPlaceDurationEdit::ZCInPlaceDurationEdit( ZBDuration& DurationInitValue, bool IsReadOnly /*= false*/ )
+inline ZCInPlaceDurationEdit::ZCInPlaceDurationEdit(PSS_Duration& DurationInitValue, bool IsReadOnly /*= false*/ )
 : ZIInPlaceEdit(DurationInitValue, IsReadOnly)
 {
 }
