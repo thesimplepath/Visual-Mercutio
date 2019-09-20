@@ -88,8 +88,7 @@ const PSS_PLFNAutoNumbered& PSS_PLFNAutoNumbered::operator = (const PSS_PLFNAuto
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNAutoNumbered::Clone() const
 {
-    std::unique_ptr<PSS_PLFNAutoNumbered> pObject(new PSS_PLFNAutoNumbered(*this));
-    return pObject.release();
+    return new PSS_PLFNAutoNumbered(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNAutoNumbered::CopyObject(PSS_PlanFinObject* pSrc)

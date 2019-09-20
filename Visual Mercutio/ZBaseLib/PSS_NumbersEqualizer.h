@@ -390,7 +390,8 @@ PSS_NumbersEqualizer::PSS_NumbersEqualizer(const PSS_NumbersEqualizer& other)
 //---------------------------------------------------------------------------
 PSS_NumbersEqualizer::~PSS_NumbersEqualizer()
 {
-    Reset();
+    // NOTE use the fully qualified name to avoid to call pure virtual functions while destruction
+    PSS_NumbersEqualizer::Reset();
 }
 //---------------------------------------------------------------------------
 double PSS_NumbersEqualizer::GetTotal() const

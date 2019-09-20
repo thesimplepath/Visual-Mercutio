@@ -1311,7 +1311,7 @@ void PSS_MultiColumnEdit::DestroyEdit()
         // saves the column width
         for (int i = 0; i < colCount; ++i)
         {
-            ZBFieldColumn* pColumn = pMultiColumn->GetColumnAt(i);
+            PSS_FieldColumn* pColumn = pMultiColumn->GetColumnAt(i);
 
             if (pColumn)
                 pColumn->SetWidth(GetColumnWidth(i));
@@ -1343,7 +1343,7 @@ void PSS_MultiColumnEdit::OnBeginLabelEdit(int item, int subItem)
 void PSS_MultiColumnEdit::OnEndLabelEdit(LPCSTR pText, int item, int subItem)
 {
     // Set the object value
-    ((PSS_PLFNMultiColumn*)m_pEditedObj)->SetColumnRowValue(subItem, item, pText);
+    ((PSS_PLFNMultiColumn*)m_pEditedObj)->SetCellValue(subItem, item, pText);
     m_StartEditCell = false;
 }
 //---------------------------------------------------------------------------
@@ -1402,7 +1402,7 @@ void PSS_MultiColumnEdit::BuildColumns()
         // set up columns
         for (std::size_t i = 0; i < pMultiColumn->GetColumnCount(); i++)
         {
-            ZBFieldColumn* pColumn = pMultiColumn->GetColumnAt(i);
+            PSS_FieldColumn* pColumn = pMultiColumn->GetColumnAt(i);
 
             if (pColumn)
             {

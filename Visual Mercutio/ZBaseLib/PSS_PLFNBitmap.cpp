@@ -138,8 +138,7 @@ const PSS_PLFNBitmap& PSS_PLFNBitmap::operator = (const PSS_PLFNBitmap* pOther)
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNBitmap::Clone() const
 {
-    std::unique_ptr<PSS_PLFNBitmap> pObject(new PSS_PLFNBitmap(*this));
-    return pObject.release();
+    return new PSS_PLFNBitmap(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNBitmap::CopyObject(PSS_PlanFinObject* pSrc)

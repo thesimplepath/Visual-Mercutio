@@ -75,7 +75,7 @@ PSS_StateObject& PSS_StateObject::operator = (const PSS_StateObject& other)
 //---------------------------------------------------------------------------
 PSS_StateObject* PSS_StateObject::Clone() const
 {
-    return (new PSS_StateObject(*this));
+    return new PSS_StateObject(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_StateObject::AssignModel(ZDProcessGraphModelMdl* pModel)

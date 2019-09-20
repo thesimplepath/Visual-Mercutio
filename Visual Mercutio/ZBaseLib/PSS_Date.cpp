@@ -123,8 +123,7 @@ const PSS_Date& PSS_Date::operator = (const CTime& other)
 //---------------------------------------------------------------------------
 PSS_Date* PSS_Date::Clone() const
 {
-    std::unique_ptr<PSS_Date> pDate(new PSS_Date(*this));
-    return pDate.release();
+    return new PSS_Date(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_Date::Clear()

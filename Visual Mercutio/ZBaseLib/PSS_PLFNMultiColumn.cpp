@@ -66,8 +66,7 @@ const PSS_PLFNMultiColumn& PSS_PLFNMultiColumn::operator = (const PSS_PLFNMultiC
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNMultiColumn::Clone() const
 {
-    std::unique_ptr<PSS_PLFNMultiColumn> pObject(new PSS_PLFNMultiColumn(*this));
-    return pObject.release();
+    return new PSS_PLFNMultiColumn(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNMultiColumn::CopyObject(PSS_PlanFinObject* pSrc)

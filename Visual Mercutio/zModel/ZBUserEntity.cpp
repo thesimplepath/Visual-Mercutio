@@ -57,7 +57,7 @@ ZBUserEntity& ZBUserEntity::operator=( const ZBUserEntity& src )
 
 ZBUserEntity* ZBUserEntity::Clone() const
 {
-    return ( new ZBUserEntity( *this ) );
+    return new ZBUserEntity(*this);
 }
 
 void ZBUserEntity::CreateGUID()

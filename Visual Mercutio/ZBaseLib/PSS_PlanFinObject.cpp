@@ -253,8 +253,7 @@ const PSS_PlanFinObject& PSS_PlanFinObject::operator = (const PSS_PlanFinObject*
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PlanFinObject::Clone() const
 {
-    std::unique_ptr<PSS_PlanFinObject> pObject(new PSS_PlanFinObject(*this));
-    return pObject.release();
+    return new PSS_PlanFinObject(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PlanFinObject::CopyObject(PSS_PlanFinObject* pSrc)

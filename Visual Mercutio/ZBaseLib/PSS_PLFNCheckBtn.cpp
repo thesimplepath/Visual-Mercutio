@@ -50,8 +50,7 @@ const PSS_PLFNCheckBtn& PSS_PLFNCheckBtn::operator = (const PSS_PLFNCheckBtn* pO
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNCheckBtn::Clone() const
 {
-    std::unique_ptr<PSS_PLFNCheckBtn> pObject(new PSS_PLFNCheckBtn(*this));
-    return pObject.release();
+    return new PSS_PLFNCheckBtn(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNCheckBtn::CopyObject(PSS_PlanFinObject* pSrc)

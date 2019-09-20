@@ -66,8 +66,7 @@ const PSS_PLFNText& PSS_PLFNText::operator = (const PSS_PLFNText* pOther)
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNText::Clone() const
 {
-    std::unique_ptr<PSS_PLFNText> pObject(new PSS_PLFNText(*this));
-    return pObject.release();
+    return new PSS_PLFNText(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNText::CopyObject(PSS_PlanFinObject* pSrc)

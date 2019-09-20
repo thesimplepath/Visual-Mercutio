@@ -35,6 +35,9 @@
 #ifndef PSS_PlanFinObject
     #define PSS_PlanFinObject PlanFinObject
 #endif
+#ifndef PSS_FieldColumn
+    #define PSS_FieldColumn ZBFieldColumn
+#endif
 
 // forward class declarations
 class ZDDocument;
@@ -1006,8 +1009,7 @@ BOOL PSS_DocumentData::DocumentDataIsVisible() const
 //---------------------------------------------------------------------------
 PSS_DocumentData* PSS_DocumentData::Clone() const
 {
-    std::unique_ptr<PSS_DocumentData> pDocData(new PSS_DocumentData(*this));
-    return pDocData.release();
+    return new PSS_DocumentData(*this);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_DocumentData::IsReadOnly() const

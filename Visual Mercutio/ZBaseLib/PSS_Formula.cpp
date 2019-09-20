@@ -84,8 +84,7 @@ const PSS_Formula& PSS_Formula::operator = (const PSS_Formula& other)
 //---------------------------------------------------------------------------
 PSS_Formula* PSS_Formula::Clone() const
 {
-    std::unique_ptr<PSS_Formula> pFormula(new PSS_Formula(*this));
-    return pFormula.release();
+    return new PSS_Formula(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_Formula::Serialize(CArchive& ar)
@@ -742,8 +741,7 @@ const PSS_SchemaManager& PSS_SchemaManager::operator = (const PSS_SchemaManager&
 //---------------------------------------------------------------------------
 PSS_SchemaManager* PSS_SchemaManager::Clone() const
 {
-    std::unique_ptr<PSS_SchemaManager> pNewManager(new PSS_SchemaManager(*this));
-    return pNewManager.release();
+    return new PSS_SchemaManager(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_SchemaManager::Create(const CString& name)

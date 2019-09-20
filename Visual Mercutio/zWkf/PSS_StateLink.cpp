@@ -53,7 +53,7 @@ PSS_StateLink& PSS_StateLink::operator = (const PSS_StateLink& other)
 //---------------------------------------------------------------------------
 PSS_StateLink* PSS_StateLink::Clone() const
 {
-    return (new PSS_StateLink(*this));
+    return new PSS_StateLink(*this);
 }
 //---------------------------------------------------------------------------
 bool PSS_StateLink::IsEqual(const PSS_StateLink& other) const

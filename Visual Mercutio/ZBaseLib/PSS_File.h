@@ -293,8 +293,7 @@ class AFX_EXT_CLASS PSS_File : public CObject
 //---------------------------------------------------------------------------
 PSS_File* PSS_File::Clone() const
 {
-    std::unique_ptr<PSS_File> pFile(new PSS_File(*this));
-    return pFile.release();
+    return new PSS_File(*this);
 }
 //---------------------------------------------------------------------------
 const PSS_File::IEAttachementType PSS_File::GetAttachementType() const

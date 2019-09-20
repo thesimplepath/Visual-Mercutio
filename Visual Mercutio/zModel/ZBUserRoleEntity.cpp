@@ -44,7 +44,7 @@ ZBUserRoleEntity& ZBUserRoleEntity::operator=(const ZBUserRoleEntity& src)
 
 ZBUserEntity* ZBUserRoleEntity::Clone() const
 {
-    return (new ZBUserRoleEntity(*this));
+    return new ZBUserRoleEntity(*this);
 }
 
 bool ZBUserRoleEntity::DisplayProperties()

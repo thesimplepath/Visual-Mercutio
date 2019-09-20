@@ -162,8 +162,7 @@ CArchive& operator << (CArchive& ar, const PSS_Stamp& stamp)
 //---------------------------------------------------------------------------
 PSS_Stamp* PSS_Stamp::Clone() const
 {
-    std::unique_ptr<PSS_Stamp> pNewStamp(new PSS_Stamp(*this));
-    return pNewStamp.release();
+    return new PSS_Stamp(*this);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_Stamp::ReadFromFile(const CString& fileName)

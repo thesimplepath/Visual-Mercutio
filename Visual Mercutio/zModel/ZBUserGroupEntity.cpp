@@ -70,7 +70,7 @@ ZBUserGroupEntity& ZBUserGroupEntity::operator=( const ZBUserGroupEntity& src )
 
 ZBUserEntity* ZBUserGroupEntity::Clone() const
 {
-    return ( new ZBUserGroupEntity( *this ) );
+    return new ZBUserGroupEntity(*this);
 }
 
 void ZBUserGroupEntity::RemoveAllUserEntities()

@@ -75,8 +75,7 @@ const PSS_PLFNRect& PSS_PLFNRect::operator = (const PSS_PLFNRect& other)
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNRect::Clone() const
 {
-    std::unique_ptr< PSS_PLFNRect> pObject(new PSS_PLFNRect(*this));
-    return pObject.release();
+    return new PSS_PLFNRect(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNRect::CopyObject(PSS_PlanFinObject* pSrc)
@@ -245,8 +244,7 @@ const PSS_PLFNLine& PSS_PLFNLine::operator = (const PSS_PLFNLine& other)
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNLine::Clone() const
 {
-    std::unique_ptr< PSS_PLFNLine> pObject(new PSS_PLFNLine(*this));
-    return pObject.release();
+    return new PSS_PLFNLine(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNLine::CopyObject(PSS_PlanFinObject* pSrc)
@@ -373,8 +371,7 @@ const PSS_PLFNStatic& PSS_PLFNStatic::operator = (const PSS_PLFNStatic& other)
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNStatic::Clone() const
 {
-    std::unique_ptr< PSS_PLFNStatic> pObject(new PSS_PLFNStatic(*this));
-    return pObject.release();
+    return new PSS_PLFNStatic(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNStatic::CopyObject(PSS_PlanFinObject* pSrc)
@@ -454,8 +451,7 @@ const PSS_PLFNTime& PSS_PLFNTime::operator = (const PSS_PLFNTime& other)
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNTime::Clone() const
 {
-    std::unique_ptr<PSS_PLFNTime> pObject(new PSS_PLFNTime(*this));
-    return pObject.release();
+    return new PSS_PLFNTime(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNTime::CopyObject(PSS_PlanFinObject* pSrc)
@@ -758,8 +754,7 @@ const PSS_PLFNLong& PSS_PLFNLong::operator = (const PSS_PLFNLong& other)
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNLong::Clone() const
 {
-    std::unique_ptr<PSS_PLFNLong> pObject(new PSS_PLFNLong(*this));
-    return pObject.release();
+    return new PSS_PLFNLong(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNLong::CopyObject(PSS_PlanFinObject* pSrc)

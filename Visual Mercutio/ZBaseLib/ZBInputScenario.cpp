@@ -7,7 +7,7 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -19,18 +19,14 @@ IMPLEMENT_SERIAL(ZBInputScenario, CObject, g_DefVersion)
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBInputScenario::ZBInputScenario( const CString Name /*= ""*/ )
-: m_Name(Name)
-{
-
-}
+ZBInputScenario::ZBInputScenario(const CString Name /*= ""*/)
+    : m_Name(Name)
+{}
 
 ZBInputScenario::~ZBInputScenario()
-{
+{}
 
-}
-
-void ZBInputScenario::Initialize( const CString Name )
+void ZBInputScenario::Initialize(const CString Name)
 {
     m_Name = Name;
 }
@@ -38,16 +34,16 @@ void ZBInputScenario::Initialize( const CString Name )
 
 ZBInputScenario::ZBInputScenario(const ZBInputScenario &right)
 {
-  *this = right;
+    *this = right;
 }
 
 const ZBInputScenario & ZBInputScenario::operator=(const ZBInputScenario &right)
 {
     for (size_t i = 0; i < right.GetFieldCount(); ++i)
     {
-        ZBFieldInputScenario*    pElement = right.GetFieldAt(i);
+        PSS_FieldInputScenario*    pElement = right.GetFieldAt(i);
         if (pElement)
-            AddField( pElement->Clone() );
+            AddField(pElement->Clone());
     }
     return *this;
 }
@@ -55,40 +51,40 @@ const ZBInputScenario & ZBInputScenario::operator=(const ZBInputScenario &right)
 
 ZBInputScenario* ZBInputScenario::Clone()
 {
-    ZBInputScenario*    pNewObject = new ZBInputScenario( *this );
+    ZBInputScenario*    pNewObject = new ZBInputScenario(*this);
     return pNewObject;
 }
 
 inline void    ZBInputScenario::RemoveAllField()
 {
-      for (size_t i = 0; i < GetFieldCount(); ++i)
+    for (size_t i = 0; i < GetFieldCount(); ++i)
     {
-        ZBFieldInputScenario*    pElement = GetFieldAt(i);
+        PSS_FieldInputScenario*    pElement = GetFieldAt(i);
         if (pElement)
-              delete pElement;
+            delete pElement;
     }
-      m_InputFieldSet.RemoveAll();
+    m_InputFieldSet.RemoveAll();
 }
 
-size_t    ZBInputScenario::GetScenarioForUser( const CString Username, ZBInputScenario& Scenario )
+size_t    ZBInputScenario::GetScenarioForUser(const CString Username, ZBInputScenario& Scenario)
 {
     Scenario.RemoveAllField();
     for (size_t i = 0; i < GetFieldCount(); ++i)
     {
-        ZBFieldInputScenario*    pElement = GetFieldAt(i);
+        PSS_FieldInputScenario*    pElement = GetFieldAt(i);
         // If same user, add the element
-        if (pElement && pElement->GetUsername() == Username)
-            Scenario.AddField( pElement->Clone() );
+        if (pElement && pElement->GetUserName() == Username)
+            Scenario.AddField(pElement->Clone());
     }
     return Scenario.GetFieldCount();
 }
 
-bool    ZBInputScenario::AddField( const CString Fieldname, const CString Username /*= ""*/, int Order /*= -1*/ )
+bool    ZBInputScenario::AddField(const CString Fieldname, const CString Username /*= ""*/, int Order /*= -1*/)
 {
-    ZBFieldInputScenario*    pElement = new ZBFieldInputScenario( Fieldname, Username, Order );
+    PSS_FieldInputScenario*    pElement = new PSS_FieldInputScenario(Fieldname, Username, Order);
     if (pElement)
     {
-        if (AddField( pElement ))
+        if (AddField(pElement))
             return true;
         // Otherwise, delete the allocated element
         delete pElement;
@@ -97,56 +93,56 @@ bool    ZBInputScenario::AddField( const CString Fieldname, const CString Userna
     return false;
 }
 
-ZBFieldInputScenario*    ZBInputScenario::FindFieldname( const CString Fieldname ) const
+PSS_FieldInputScenario*    ZBInputScenario::FindFieldname(const CString Fieldname) const
 {
     for (size_t i = 0; i < GetFieldCount(); ++i)
     {
-        ZBFieldInputScenario*    pElement = GetFieldAt(i);
-        if (pElement && pElement->GetFieldname() == Fieldname)
+        PSS_FieldInputScenario*    pElement = GetFieldAt(i);
+        if (pElement && pElement->GetFieldName() == Fieldname)
             return pElement;
     }
     return NULL;
 }
 
-int ZBInputScenario::FindFieldnameIndex( const CString Fieldname ) const
+int ZBInputScenario::FindFieldnameIndex(const CString Fieldname) const
 {
     for (size_t i = 0; i < GetFieldCount(); ++i)
     {
-        ZBFieldInputScenario*    pElement = GetFieldAt(i);
-        if (pElement && pElement->GetFieldname() == Fieldname)
+        PSS_FieldInputScenario*    pElement = GetFieldAt(i);
+        if (pElement && pElement->GetFieldName() == Fieldname)
             return i;
     }
     return -1;
 }
 
-bool ZBInputScenario::DeleteFieldname( const CString Fieldname )
+bool ZBInputScenario::DeleteFieldname(const CString Fieldname)
 {
-    int    Index = FindFieldnameIndex( Fieldname );
+    int    Index = FindFieldnameIndex(Fieldname);
     if (Index == -1)
         return false;
-    return DeleteFieldnameAt( Index );
+    return DeleteFieldnameAt(Index);
 }
 
-bool ZBInputScenario::DeleteFieldnameAt( size_t Index )
+bool ZBInputScenario::DeleteFieldnameAt(size_t Index)
 {
     if (Index < GetFieldCount())
     {
-        ZBFieldInputScenario*    pElement = GetFieldAt( Index );
+        PSS_FieldInputScenario*    pElement = GetFieldAt(Index);
         if (pElement)
             delete pElement;
-        m_InputFieldSet.RemoveAt( Index );
+        m_InputFieldSet.RemoveAt(Index);
     }
     return false;
 }
 
 
-void ZBInputScenario::Serialize (CArchive& ar)
+void ZBInputScenario::Serialize(CArchive& ar)
 {
-    m_InputFieldSet.Serialize( ar );
+    m_InputFieldSet.Serialize(ar);
 
     if (ar.IsStoring())
     {    // Write the elements
-          ar << m_Name;
+        ar << m_Name;
     }
     else
     {    // Read the elements

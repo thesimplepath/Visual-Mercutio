@@ -58,8 +58,7 @@ const PSS_PLFNMaskString& PSS_PLFNMaskString::operator = (const PSS_PLFNMaskStri
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNMaskString::Clone() const
 {
-    std::unique_ptr<PSS_PLFNMaskString> pObject(new PSS_PLFNMaskString(*this));
-    return pObject.release();
+    return new PSS_PLFNMaskString(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNMaskString::CopyObject(PSS_PlanFinObject* pSrc)

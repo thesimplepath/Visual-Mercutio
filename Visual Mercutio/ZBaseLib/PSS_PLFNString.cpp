@@ -51,8 +51,7 @@ const PSS_PLFNString& PSS_PLFNString::operator = (const PSS_PLFNString* pOther)
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNString::Clone() const
 {
-    std::unique_ptr<PSS_PLFNString> pObject(new PSS_PLFNString(*this));
-    return pObject.release();
+    return new PSS_PLFNString(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNString::CopyObject(PSS_PlanFinObject* pSrc)

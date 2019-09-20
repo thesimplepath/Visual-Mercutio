@@ -62,8 +62,7 @@ const PSS_Style& PSS_Style::operator = (const PSS_Style& other)
 //---------------------------------------------------------------------------
 PSS_Style* PSS_Style::Clone() const
 {
-    std::unique_ptr<PSS_Style> pObject(new PSS_Style(*this));
-    return pObject.release();
+    return new PSS_Style(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_Style::Serialize(CArchive& ar)

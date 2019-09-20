@@ -108,8 +108,7 @@ const PSS_PLFNSquare& PSS_PLFNSquare::operator = (const PSS_PLFNSquare* pOther)
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNSquare::Clone() const
 {
-    std::unique_ptr<PSS_PLFNSquare> pObject(new PSS_PLFNSquare(*this));
-    return pObject.release();
+    return new PSS_PLFNSquare(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNSquare::CopyObject(PSS_PlanFinObject* pSrc)

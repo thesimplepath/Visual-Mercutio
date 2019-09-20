@@ -63,8 +63,7 @@ const PSS_PLFNStringHistory& PSS_PLFNStringHistory::operator = (const PSS_PLFNSt
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNStringHistory::Clone() const
 {
-    std::unique_ptr<PSS_PLFNStringHistory> pObject(new PSS_PLFNStringHistory(*this));
-    return pObject.release();
+    return new PSS_PLFNStringHistory(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNStringHistory::CopyObject(PSS_PlanFinObject* pSrc)
@@ -148,8 +147,7 @@ const PSS_PLFNNumbered& PSS_PLFNNumbered::operator = (const PSS_PLFNNumbered& ot
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNNumbered::Clone() const
 {
-    std::unique_ptr<PSS_PLFNNumbered> pObject(new PSS_PLFNNumbered(*this));
-    return pObject.release();
+    return new PSS_PLFNNumbered(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNNumbered::CopyObject(PSS_PlanFinObject* pSrc)
@@ -278,8 +276,7 @@ const PSS_PLFNNumbEdit& PSS_PLFNNumbEdit::operator = (const PSS_PLFNNumbEdit& ot
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNNumbEdit::Clone() const
 {
-    std::unique_ptr<PSS_PLFNNumbEdit> pObject(new PSS_PLFNNumbEdit(*this));
-    return pObject.release();
+    return new PSS_PLFNNumbEdit(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNNumbEdit::CopyObject(PSS_PlanFinObject* pSrc)
@@ -399,8 +396,7 @@ const PSS_PLFNCalculated& PSS_PLFNCalculated::operator = (const PSS_PLFNCalculat
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNCalculated::Clone() const
 {
-    std::unique_ptr< PSS_PLFNCalculated> pObject(new PSS_PLFNCalculated(*this));
-    return pObject.release();
+    return new PSS_PLFNCalculated(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNCalculated::CopyObject(PSS_PlanFinObject* pSrc)
@@ -486,8 +482,7 @@ const PSS_PLFNNumHistory& PSS_PLFNNumHistory::operator = (const PSS_PLFNNumHisto
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNNumHistory::Clone() const
 {
-    std::unique_ptr<PSS_PLFNNumHistory> pObject(new PSS_PLFNNumHistory(*this));
-    return pObject.release();
+    return new PSS_PLFNNumHistory(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNNumHistory::CopyObject(PSS_PlanFinObject* pSrc)
@@ -571,8 +566,7 @@ const PSS_PLFNNumbNumEdit& PSS_PLFNNumbNumEdit::operator = (const PSS_PLFNNumbNu
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNNumbNumEdit::Clone() const
 {
-    std::unique_ptr<PSS_PLFNNumbNumEdit> pObject(new PSS_PLFNNumbNumEdit(*this));
-    return pObject.release();
+    return new PSS_PLFNNumbNumEdit(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNNumbNumEdit::CopyObject(PSS_PlanFinObject* pSrc)

@@ -77,8 +77,7 @@ const PSS_Border& PSS_Border::operator = (const PSS_Border& other)
 //---------------------------------------------------------------------------
 PSS_Border* PSS_Border::Clone() const
 {
-    std::unique_ptr<PSS_Border> pObject(new PSS_Border(*this));
-    return pObject.release();
+    return new PSS_Border(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_Border::DrawBorderRect(CDC* pDC, const CRect& rect)

@@ -696,7 +696,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBaseLib.cpp">
+    <ClCompile Include="zBaseLib.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -762,13 +762,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBErrorLog.cpp">
+    <ClCompile Include="PSS_ErrorLog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBFieldInputScenario.cpp">
+    <ClCompile Include="PSS_FieldInputScenario.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -780,13 +780,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBFldClM.cpp">
+    <ClCompile Include="PSS_FieldColumnManager.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBFldCol.cpp">
+    <ClCompile Include="PSS_FieldColumn.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1335,15 +1335,15 @@
     <None Include="Uml\Workspace Package.vcx" />
     <None Include="Uml\ZBaseLib.vcp" />
     <None Include="Uml\ZBaseLib.vcw" />
-    <CustomBuild Include="ZBaseLib.def">
+    <CustomBuild Include="zBaseLib.def">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
-    <CustomBuild Include="ZBaseLibD.def">
+    <CustomBuild Include="zBaseLibD.def">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="ZBaseLib.rc" />
+    <ResourceCompile Include="zBaseLib.rc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PSS_StatusBar.h" />
@@ -1438,7 +1438,7 @@
     <ClInclude Include="PSS_PLFNText.h" />
     <ClInclude Include="PSS_PLFNTwoStates.h" />
     <ClInclude Include="zBaseLib.h" />
-    <ClInclude Include="ZBaseLibRes.h" />
+    <ClInclude Include="zBaseLibRes.h" />
     <ClInclude Include="PSS_CommandObserverMsg.h" />
     <ClInclude Include="PSS_EncryptedApplicationTypeInfoFile.h" />
     <ClInclude Include="PSS_EncryptedEvaluationAppInfoFile.h" />
@@ -1449,11 +1449,11 @@
     <ClInclude Include="PSS_DragEdit.h" />
     <ClInclude Include="PSS_Duration.h" />
     <ClInclude Include="PSS_NumbersEqualizer.h" />
-    <ClInclude Include="ZBErrorLog.h" />
-    <ClInclude Include="ZBFieldInputScenario.h" />
+    <ClInclude Include="PSS_ErrorLog.h" />
+    <ClInclude Include="PSS_FieldInputScenario.h" />
     <ClInclude Include="PSS_FieldObserverMsg.h" />
-    <ClInclude Include="ZBFldClM.h" />
-    <ClInclude Include="ZBFldCol.h" />
+    <ClInclude Include="PSS_FieldColumnManager.h" />
+    <ClInclude Include="PSS_FieldColumn.h" />
     <ClInclude Include="ZBGenericErrorLine.h" />
     <ClInclude Include="ZBHistoricValue.h" />
     <ClInclude Include="ZBHistoricValueManager.h" />

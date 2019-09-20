@@ -25,9 +25,14 @@
 #include <Float.h>
 #include <Math.h>
 
+// class name mapping
+#ifndef PSS_FieldColumn
+    #define PSS_FieldColumn ZBFieldColumn
+#endif
+
 class ZIView;
 class ZDDocument;
-class ZBFieldColumn;
+class PSS_FieldColumn;
 
 // processsoft
 #include "PSS_MathParser.h"
@@ -805,13 +810,13 @@ class AFX_EXT_CLASS PSS_PlanFinObject : public PSS_FormulaObjectParser
         * Gets the owning multi-column field
         *@return the owning multi-columns field, NULL if object isn't a member of a multi-columns field
         */
-        virtual inline const ZBFieldColumn* GetColumn() const;
+        virtual inline const PSS_FieldColumn* GetColumn() const;
 
         /**
         * Sets the owning multi-column field
         *@param pColumn - the owning multi-columns field
         */
-        virtual inline void SetColumn(ZBFieldColumn* pColumn);
+        virtual inline void SetColumn(PSS_FieldColumn* pColumn);
 
         /**
         * Gets the user help
@@ -873,7 +878,7 @@ class AFX_EXT_CLASS PSS_PlanFinObject : public PSS_FormulaObjectParser
         virtual void DrawRightCorner(CDC* pDC);
 
     private:
-        ZBFieldColumn*    m_pColumn;
+        PSS_FieldColumn*  m_pColumn;
         CRectTracker*     m_pRectTracker;
         PSS_Border*       m_pBorder;
         PSS_Font::Handle  m_hFont;
@@ -1282,14 +1287,14 @@ void PSS_PlanFinObject::SetHasBeenChanged(BOOL value)
     m_HasBeenChanged = value;
 }
 //---------------------------------------------------------------------------
-const ZBFieldColumn* PSS_PlanFinObject::GetColumn() const
+const PSS_FieldColumn* PSS_PlanFinObject::GetColumn() const
 {
     return m_pColumn;
 }
 //---------------------------------------------------------------------------
-void PSS_PlanFinObject::SetColumn(ZBFieldColumn* value)
+void PSS_PlanFinObject::SetColumn(PSS_FieldColumn* pColumn)
 {
-    m_pColumn = value;
+    m_pColumn = pColumn;
 }
 //---------------------------------------------------------------------------
 CString PSS_PlanFinObject::GetUserHelp() const

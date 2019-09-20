@@ -47,8 +47,7 @@ const PSS_PLFNBackImage& PSS_PLFNBackImage::operator = (const PSS_PLFNBackImage*
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNBackImage::Clone() const
 {
-    std::unique_ptr<PSS_PLFNBackImage> pObject(new PSS_PLFNBackImage(*this));
-    return pObject.release();
+    return new PSS_PLFNBackImage(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNBackImage::CopyObject(PSS_PlanFinObject* pSrc)

@@ -78,8 +78,7 @@ const PSS_PLFNGraphic& PSS_PLFNGraphic::operator = (const PSS_PLFNGraphic* pOthe
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNGraphic::Clone() const
 {
-    std::unique_ptr<PSS_PLFNGraphic> pObject(new PSS_PLFNGraphic(*this));
-    return pObject.release();
+    return new PSS_PLFNGraphic(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNGraphic::CopyObject(PSS_PlanFinObject* pSrc)

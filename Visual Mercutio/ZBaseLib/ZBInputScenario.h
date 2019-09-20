@@ -9,7 +9,8 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "ZBFieldInputScenario.h"
+// processsoft
+#include "PSS_FieldInputScenario.h"
 
 class ZBInputScenario : public CObject  
 {
@@ -34,10 +35,10 @@ public:
 
     void    RemoveAllField();
     size_t    GetFieldCount() const { return m_InputFieldSet.GetSize(); };
-    ZBFieldInputScenario*    GetFieldAt( size_t Index ) const;
-    ZBFieldInputScenario*    FindFieldname( const CString Fieldname ) const;
+    PSS_FieldInputScenario*    GetFieldAt( size_t Index ) const;
+    PSS_FieldInputScenario*    FindFieldname( const CString Fieldname ) const;
     int        FindFieldnameIndex( const CString Fieldname ) const;
-    bool    AddField( ZBFieldInputScenario* pField );
+    bool    AddField(PSS_FieldInputScenario* pField );
     bool    AddField( const CString Fieldname, const CString Username = "", int Order = -1 );
     bool    DeleteFieldname( const CString Fieldname );
     bool    DeleteFieldnameAt( size_t Index );
@@ -57,14 +58,14 @@ private:
 };
 
 
-inline ZBFieldInputScenario*    ZBInputScenario::GetFieldAt( size_t Index )    const
+inline PSS_FieldInputScenario*    ZBInputScenario::GetFieldAt( size_t Index )    const
 {
     if (Index < GetFieldCount())
-        return static_cast<ZBFieldInputScenario*>(m_InputFieldSet.GetAt(Index));
+        return static_cast<PSS_FieldInputScenario*>(m_InputFieldSet.GetAt(Index));
     return NULL;
 }
 
-inline bool ZBInputScenario::AddField( ZBFieldInputScenario* pField )
+inline bool ZBInputScenario::AddField(PSS_FieldInputScenario* pField )
 {
     try
     {

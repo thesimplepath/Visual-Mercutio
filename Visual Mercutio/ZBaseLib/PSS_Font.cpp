@@ -84,8 +84,7 @@ BOOL PSS_Font::Create(LOGFONT* pLogFont, COLORREF col)
 //---------------------------------------------------------------------------
 PSS_Font* PSS_Font::Clone() const
 {
-    std::unique_ptr< PSS_Font> pObject(new PSS_Font(*this));
-    return pObject.release();
+    return new PSS_Font(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_Font::Serialize(CArchive& ar)

@@ -56,8 +56,7 @@ const PSS_FieldObjectDefinition& PSS_FieldObjectDefinition::operator = (const PS
 //---------------------------------------------------------------------------
 PSS_FieldObjectDefinition* PSS_FieldObjectDefinition::Clone() const
 {
-    std::unique_ptr<PSS_FieldObjectDefinition> pObject(new PSS_FieldObjectDefinition(*this));
-    return pObject.release();
+    return new PSS_FieldObjectDefinition(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_FieldObjectDefinition::Serialize(CArchive& ar)

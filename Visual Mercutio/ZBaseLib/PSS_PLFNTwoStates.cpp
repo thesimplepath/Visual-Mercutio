@@ -98,8 +98,7 @@ const PSS_PLFNTwoStates& PSS_PLFNTwoStates::operator = (const PSS_PLFNTwoStates*
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNTwoStates::Clone() const
 {
-    std::unique_ptr<PSS_PLFNTwoStates> pObject(new PSS_PLFNTwoStates(*this));
-    return pObject.release();
+    return new PSS_PLFNTwoStates(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNTwoStates::CopyObject(PSS_PlanFinObject* pSrc)

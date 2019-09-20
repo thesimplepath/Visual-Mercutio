@@ -79,8 +79,7 @@ const PSS_PLFNBoundText& PSS_PLFNBoundText::operator = (const PSS_PLFNBoundText*
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNBoundText::Clone() const
 {
-    std::unique_ptr<PSS_PLFNBoundText> pObject(new PSS_PLFNBoundText(*this));
-    return pObject.release();
+    return new PSS_PLFNBoundText(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNBoundText::CopyObject(PSS_PlanFinObject* pSrc)

@@ -20,7 +20,7 @@
 #include "PSS_PLFNMultiColumn.h"
 #include "PSS_PlanFinObsoleteObjects.h"
 #include "PSS_PLFNBackImage.h"
-#include "ZBFldCol.h"
+#include "PSS_FieldColumn.h"
 #include "PSS_FileBuffer.h"
 #include "PSS_FieldRepository.h"
 #include "ZBTokenizer.h"
@@ -223,7 +223,7 @@ BOOL PSS_DocumentData::CheckMultiColumnMemberField(PSS_PlanFinObject* pObj)
         return FALSE;
 
     // Locate the column name
-    ZBFieldColumn* pColumn = pMultiColumn->FindColumn(member);
+    PSS_FieldColumn* pColumn = pMultiColumn->SearchColumn(member);
 
     // if the column is found, assign the pointer
     if (pColumn)
@@ -1272,7 +1272,7 @@ void PSS_DocumentData::PropagateFieldValue(PSS_PlanFinObject* pObj)
         member = tokenizer.GetNextToken();
 
         // get row value
-        rowValue = ((ZBFieldColumn*)pObj->GetColumn())->GetValueRow(pObj->GetUnformattedObject());
+        rowValue = ((PSS_FieldColumn*)pObj->GetColumn())->GetValueRow(pObj->GetUnformattedObject());
     }
 
     PSS_PlanFinObject* pTempObj;
@@ -1334,7 +1334,7 @@ void PSS_DocumentData::PropagateFieldValue(PSS_PlanFinObject* pObj)
                             if (pMultiColumn)
                             {
                                 // locate the column name
-                                ZBFieldColumn* pColumn = pMultiColumn->FindColumn(currentFieldMember);
+                                PSS_FieldColumn* pColumn = pMultiColumn->SearchColumn(currentFieldMember);
 
                                 // if the column was found, copy its content
                                 if (pColumn && pTempObj->ConvertFormattedObject(pColumn->GetValueAt(rowValue), FALSE))
@@ -1596,8 +1596,8 @@ bool PSS_DocumentData::BuildObjectFieldNameArray()
             // add member field name
             for (std::size_t i = 0; i < columnCount; ++i)
             {
-                CString        fullName = pObj->GetObjectName() + _T(".");
-                ZBFieldColumn* pColumn  = pMultiColumn->GetColumnAt(i);
+                CString          fullName = pObj->GetObjectName() + _T(".");
+                PSS_FieldColumn* pColumn  = pMultiColumn->GetColumnAt(i);
 
                 if (pColumn)
                 {

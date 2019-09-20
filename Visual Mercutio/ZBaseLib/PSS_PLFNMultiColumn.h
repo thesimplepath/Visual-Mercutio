@@ -23,7 +23,7 @@
 
 // processsoft
 #include "PSS_PlanFinObject.h"
-#include "ZBFldClM.h"
+#include "PSS_FieldColumnManager.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -111,7 +111,7 @@ class AFX_EXT_CLASS PSS_PLFNMultiColumn : public PSS_PlanFinObject
         * Adds a new column in the column array
         *@param pColumn - column to add
         */
-        virtual inline void AddColumn(ZBFieldColumn* pColumn);
+        virtual inline void AddColumn(PSS_FieldColumn* pColumn);
 
         /**
         * Adds a new column in the column array
@@ -132,7 +132,7 @@ class AFX_EXT_CLASS PSS_PLFNMultiColumn : public PSS_PlanFinObject
         *@param pColumn - column
         *@return true on success, otherwise false
         */
-        virtual inline bool RemoveColumn(ZBFieldColumn* pColumn);
+        virtual inline bool RemoveColumn(PSS_FieldColumn* pColumn);
 
         /**
         * Removes all the columns
@@ -140,32 +140,32 @@ class AFX_EXT_CLASS PSS_PLFNMultiColumn : public PSS_PlanFinObject
         virtual inline void RemoveAllColumns();
 
         /**
-        * Finds a column by its header name
+        * Searches a column by its header name
         *@param headerName - header name
         *@return the column, NULL if not found on error
         */
-        virtual inline ZBFieldColumn* FindColumn(const CString& headerName);
+        virtual inline PSS_FieldColumn* SearchColumn(const CString& headerName);
 
         /**
-        * Finds a column by its column pointer
-        *@param pColumn - column
-        *@return true if the column was found, otherwise false
+        * Checks if a column exists
+        *@param pColumn - column to check
+        *@return true if the column exists, otherwise false
         */
-        virtual inline bool FindColumn(ZBFieldColumn* pColumn);
+        virtual inline bool ColumnExists(PSS_FieldColumn* pColumn);
 
         /**
         * Gets a column at a specific position
         *@param index - index
         *@return the column, NULL if not found or on error
         */
-        virtual inline ZBFieldColumn* GetColumnAt(std::size_t index) const;
+        virtual inline PSS_FieldColumn* GetColumnAt(std::size_t index) const;
 
         /**
         * Inserts a new column at a specific position
         *@param pColumn - column to insert
         *@param index - index
         */
-        virtual inline void InsertColumnAt(ZBFieldColumn* pColumn, std::size_t index);
+        virtual inline void InsertColumnAt(PSS_FieldColumn* pColumn, std::size_t index);
 
         /**
         * Removes a column at a specific position
@@ -183,40 +183,40 @@ class AFX_EXT_CLASS PSS_PLFNMultiColumn : public PSS_PlanFinObject
         virtual inline bool GetRowValues(CStringArray& rowValues, std::size_t rowIndex);
 
         /**
-        * Gets the value of a specific column and row
+        * Gets a cell value
         *@param columnName - column name
         *@param rowIndex - row index
         *@param[out] value - value
         *@return true on success, otherwise false
         */
-        virtual inline bool GetColumnRowValue(const CString& columnName, std::size_t rowIndex, CString& value);
+        virtual inline bool GetCellValue(const CString& columnName, std::size_t rowIndex, CString& value);
 
         /**
-        * Gets the value of a specific column and row
+        * Gets a cell value
         *@param columnIndex - column index
         *@param rowIndex - row index
         *@param[out] value - value
         *@return true on success, otherwise false
         */
-        virtual inline bool GetColumnRowValue(std::size_t columnIndex, std::size_t rowIndex, CString& value);
+        virtual inline bool GetCellValue(std::size_t columnIndex, std::size_t rowIndex, CString& value);
 
         /**
-        * Sets a value to a specific column and row
+        * Sets a cell value
         *@param columnName - column name
         *@param rowIndex - row index
         *@param[out] value - value
         *@return true on success, otherwise false
         */
-        virtual inline bool SetColumnRowValue(const CString& columnName, std::size_t rowIndex, const CString& value);
+        virtual inline bool SetCellValue(const CString& columnName, std::size_t rowIndex, const CString& value);
 
         /**
-        * Sets a value to a specific column and row
+        * Sets a cell value
         *@param columnIndex - column index
         *@param rowIndex - row index
         *@param[out] value - value
         *@return true on success, otherwise false
         */
-        virtual inline bool SetColumnRowValue(std::size_t columnIndex, std::size_t rowIndex, const CString& value);
+        virtual inline bool SetCellValue(std::size_t columnIndex, std::size_t rowIndex, const CString& value);
 
         /**
         * Checks if the object is selected
@@ -237,7 +237,7 @@ class AFX_EXT_CLASS PSS_PLFNMultiColumn : public PSS_PlanFinObject
         *@param pColumn - column
         *@return true on success, otherwise false
         */
-        virtual inline bool AutoSizeColumn(ZBFieldColumn* pColumn);
+        virtual inline bool AutoSizeColumn(PSS_FieldColumn* pColumn);
 
         /**
         * Auto-sizes a specific column from the manager
@@ -266,7 +266,7 @@ class AFX_EXT_CLASS PSS_PLFNMultiColumn : public PSS_PlanFinObject
         *@param width - column width in pixels
         *@return true on success, otherwise false
         */
-        virtual inline bool SizeColumn(ZBFieldColumn* pColumn, std::size_t width);
+        virtual inline bool SizeColumn(PSS_FieldColumn* pColumn, std::size_t width);
 
         /**
         * Sizes a specific column from the manager
@@ -334,7 +334,7 @@ class AFX_EXT_CLASS PSS_PLFNMultiColumn : public PSS_PlanFinObject
         *@param pColumn - column
         *@return true on success, otherwise false
         */
-        virtual inline bool RemoveColumnValues(ZBFieldColumn* pColumn);
+        virtual inline bool RemoveColumnValues(PSS_FieldColumn* pColumn);
 
         /**
         * Removes all the values of all columns
@@ -382,8 +382,8 @@ class AFX_EXT_CLASS PSS_PLFNMultiColumn : public PSS_PlanFinObject
         #endif
 
     private:
-        ZBFieldColumnManager m_MultiColumnManager;
-        BOOL                 m_ShowHeader;
+        PSS_FieldColumnManager m_MultiColumnManager;
+        BOOL                   m_ShowHeader;
 };
 
 //---------------------------------------------------------------------------
@@ -404,7 +404,7 @@ std::size_t PSS_PLFNMultiColumn::GetColumnCount() const
     return m_MultiColumnManager.GetCount();
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNMultiColumn::AddColumn(ZBFieldColumn* pColumn)
+void PSS_PLFNMultiColumn::AddColumn(PSS_FieldColumn* pColumn)
 {
     m_MultiColumnManager.AddColumn(pColumn);
 }
@@ -419,7 +419,7 @@ bool PSS_PLFNMultiColumn::RemoveColumn(const CString& headerName)
     return m_MultiColumnManager.RemoveColumn(headerName);
 }
 //---------------------------------------------------------------------------
-bool PSS_PLFNMultiColumn::RemoveColumn(ZBFieldColumn* pColumn)
+bool PSS_PLFNMultiColumn::RemoveColumn(PSS_FieldColumn* pColumn)
 {
     return m_MultiColumnManager.RemoveColumn(pColumn);
 }
@@ -429,22 +429,22 @@ void PSS_PLFNMultiColumn::RemoveAllColumns()
     m_MultiColumnManager.RemoveAll();
 }
 //---------------------------------------------------------------------------
-ZBFieldColumn* PSS_PLFNMultiColumn::FindColumn(const CString& headerName)
+PSS_FieldColumn* PSS_PLFNMultiColumn::SearchColumn(const CString& headerName)
 {
-    return m_MultiColumnManager.FindColumn(headerName);
+    return m_MultiColumnManager.SearchColumn(headerName);
 }
 //---------------------------------------------------------------------------
-bool PSS_PLFNMultiColumn::FindColumn(ZBFieldColumn* pColumn)
+bool PSS_PLFNMultiColumn::ColumnExists(PSS_FieldColumn* pColumn)
 {
-    return m_MultiColumnManager.FindColumn(pColumn);
+    return m_MultiColumnManager.ColumnExists(pColumn);
 }
 //---------------------------------------------------------------------------
-ZBFieldColumn* PSS_PLFNMultiColumn::GetColumnAt(std::size_t index) const
+PSS_FieldColumn* PSS_PLFNMultiColumn::GetColumnAt(std::size_t index) const
 {
     return m_MultiColumnManager.GetColumnAt(index);
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNMultiColumn::InsertColumnAt(ZBFieldColumn* pColumn, std::size_t index)
+void PSS_PLFNMultiColumn::InsertColumnAt(PSS_FieldColumn* pColumn, std::size_t index)
 {
     m_MultiColumnManager.InsertColumnAt(pColumn, index);
 }
@@ -459,24 +459,24 @@ bool PSS_PLFNMultiColumn::GetRowValues(CStringArray& rowValues, std::size_t rowI
     return m_MultiColumnManager.GetRowValues(rowValues, rowIndex);
 }
 //---------------------------------------------------------------------------
-bool PSS_PLFNMultiColumn::GetColumnRowValue(const CString& columnName, std::size_t rowIndex, CString& value)
+bool PSS_PLFNMultiColumn::GetCellValue(const CString& columnName, std::size_t rowIndex, CString& value)
 {
-    return m_MultiColumnManager.GetColumnRowValue(columnName, rowIndex, value);
+    return m_MultiColumnManager.GetCellValue(columnName, rowIndex, value);
 }
 //---------------------------------------------------------------------------
-bool PSS_PLFNMultiColumn::GetColumnRowValue(std::size_t columnIndex, std::size_t rowIndex, CString& value)
+bool PSS_PLFNMultiColumn::GetCellValue(std::size_t columnIndex, std::size_t rowIndex, CString& value)
 {
-    return m_MultiColumnManager.GetColumnRowValue(columnIndex, rowIndex, value);
+    return m_MultiColumnManager.GetCellValue(columnIndex, rowIndex, value);
 }
 //---------------------------------------------------------------------------
-bool PSS_PLFNMultiColumn::SetColumnRowValue(const CString& columnName, std::size_t rowIndex, const CString& value)
+bool PSS_PLFNMultiColumn::SetCellValue(const CString& columnName, std::size_t rowIndex, const CString& value)
 {
-    return m_MultiColumnManager.SetColumnRowValue(columnName, rowIndex, value);
+    return m_MultiColumnManager.SetCellValue(columnName, rowIndex, value);
 }
 //---------------------------------------------------------------------------
-bool PSS_PLFNMultiColumn::SetColumnRowValue(std::size_t columnIndex, std::size_t rowIndex, const CString& value)
+bool PSS_PLFNMultiColumn::SetCellValue(std::size_t columnIndex, std::size_t rowIndex, const CString& value)
 {
-    return m_MultiColumnManager.SetColumnRowValue(columnIndex, rowIndex, value);
+    return m_MultiColumnManager.SetCellValue(columnIndex, rowIndex, value);
 }
 //---------------------------------------------------------------------------
 BOOL PSS_PLFNMultiColumn::IsSelected(const CPoint& point) const
@@ -489,7 +489,7 @@ bool PSS_PLFNMultiColumn::AutoSizeColumn(const CString& headerName)
     return m_MultiColumnManager.AutoSizeColumn(headerName);
 }
 //---------------------------------------------------------------------------
-bool PSS_PLFNMultiColumn::AutoSizeColumn(ZBFieldColumn* pColumn)
+bool PSS_PLFNMultiColumn::AutoSizeColumn(PSS_FieldColumn* pColumn)
 {
     return m_MultiColumnManager.AutoSizeColumn(pColumn);
 }
@@ -509,7 +509,7 @@ bool PSS_PLFNMultiColumn::SizeColumn(const CString& headerName, std::size_t widt
     return m_MultiColumnManager.SizeColumn(headerName, width);
 }
 //---------------------------------------------------------------------------
-bool PSS_PLFNMultiColumn::SizeColumn(ZBFieldColumn* pColumn, std::size_t width)
+bool PSS_PLFNMultiColumn::SizeColumn(PSS_FieldColumn* pColumn, std::size_t width)
 {
     return m_MultiColumnManager.SizeColumn(pColumn, width);
 }
@@ -554,7 +554,7 @@ bool PSS_PLFNMultiColumn::RemoveColumnValues(const CString& headerName)
     return m_MultiColumnManager.RemoveColumnValues(headerName);
 }
 //---------------------------------------------------------------------------
-bool PSS_PLFNMultiColumn::RemoveColumnValues(ZBFieldColumn* pColumn)
+bool PSS_PLFNMultiColumn::RemoveColumnValues(PSS_FieldColumn* pColumn)
 {
     return m_MultiColumnManager.RemoveColumnValues(pColumn);
 }

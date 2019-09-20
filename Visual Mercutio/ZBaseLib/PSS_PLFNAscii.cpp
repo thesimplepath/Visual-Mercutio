@@ -81,8 +81,7 @@ const PSS_PLFNAscii& PSS_PLFNAscii::operator = (const PSS_PLFNAscii* pOther)
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNAscii::Clone() const
 {
-    std::unique_ptr<PSS_PLFNAscii> pObject(new PSS_PLFNAscii(*this));
-    return pObject.release();
+    return new PSS_PLFNAscii(*this);
 }
 //---------------------------------------------------------------------------
 UINT PSS_PLFNAscii::GetJustify(ZDDocument* pDoc) const

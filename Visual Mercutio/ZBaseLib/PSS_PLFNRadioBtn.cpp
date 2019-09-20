@@ -50,8 +50,7 @@ const PSS_PLFNRadioBtn& PSS_PLFNRadioBtn::operator = (const PSS_PLFNRadioBtn* pO
 //---------------------------------------------------------------------------
 PSS_PlanFinObject* PSS_PLFNRadioBtn::Clone() const
 {
-    std::unique_ptr<PSS_PLFNRadioBtn> pObject(new PSS_PLFNRadioBtn(*this));
-    return pObject.release();
+    return new PSS_PLFNRadioBtn(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_PLFNRadioBtn::CopyObject(PSS_PlanFinObject* pSrc)

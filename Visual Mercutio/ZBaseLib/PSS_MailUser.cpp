@@ -61,8 +61,7 @@ CArchive& operator << (CArchive& ar, PSS_MailUser& user)
 //---------------------------------------------------------------------------
 PSS_MailUser* PSS_MailUser::Clone() const
 {
-    std::unique_ptr<PSS_MailUser> pNewPerson(new PSS_MailUser(*this));
-    return pNewPerson.release();
+    return new PSS_MailUser(*this);
 }
 //---------------------------------------------------------------------------
 void PSS_MailUser::Serialize(CArchive& ar)
