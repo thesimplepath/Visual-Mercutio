@@ -13,7 +13,7 @@
 #endif
 
 // processsoft
-#include "zBaseLib\ZBitmap.h"
+#include "zBaseLib\PSS_Bitmap.h"
 
 /**
 * Splash screen window
@@ -95,7 +95,7 @@ class PSS_SplashWnd : public CWnd
 
     private:
         CProgressCtrl m_ProgressControl;
-        ZBitmap       m_Bitmap;
+        PSS_Bitmap    m_Bitmap;
         CFont         m_Font;
         COLORREF      m_FontColor;
         COLORREF      m_BackgroundColor;

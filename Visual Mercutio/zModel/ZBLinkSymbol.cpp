@@ -36,7 +36,7 @@ static char THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 21 septembre 2005 - Ajout de la décoration unicode _T( ), nettoyage du code inutilisé.
 
-ZBitmap ZBLinkSymbol::m_ShortCutBitmap;
+PSS_Bitmap ZBLinkSymbol::m_ShortCutBitmap;
 
 // **********************************************************************************************************
 // * Dom November 2002                                                                                        *

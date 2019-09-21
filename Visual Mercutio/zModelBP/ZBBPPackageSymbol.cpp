@@ -18,7 +18,7 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
-ZBitmap            ZBBPPackageSymbol::m_LinkedToFileBitmap;
+PSS_Bitmap ZBBPPackageSymbol::m_LinkedToFileBitmap;
 
 IMPLEMENT_SERIAL(ZBBPPackageSymbol, ZBSymbol, g_DefVersion)
 

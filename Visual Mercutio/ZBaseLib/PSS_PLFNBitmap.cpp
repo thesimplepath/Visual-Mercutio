@@ -10,8 +10,8 @@
 
  // processsoft
 #include "PSS_DrawFunctions.h"
+#include "PSS_Bitmap.h"
 #include "ZDDoc.h"
-#include "ZBitmap.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE

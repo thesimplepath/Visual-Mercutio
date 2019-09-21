@@ -32,7 +32,7 @@
 #include "zModel\ZBExtFilePropertyMgr.h"
 #include "zModel\ZVSymbolAttributes.h"
 
-#include "zBaseLib\ZBitmap.h"
+#include "zBaseLib\PSS_Bitmap.h"
 
 #include "zModel\Maths.h"
 
@@ -725,7 +725,7 @@ private:
     CPoint                    m_ShortCutBitmapPosition;
 
     // Bitmap resource
-    static    ZBitmap            m_ShortCutBitmap;
+    static    PSS_Bitmap      m_ShortCutBitmap;
 
     // JMR-MODIF - Le 7 février 2006 - Ajout d'un flag permettant de déterminer si l'objet crée est une copie.
     BOOL                    m_IsCopy;

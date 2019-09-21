@@ -816,13 +816,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBInputScenarioSet.cpp">
+    <ClCompile Include="PSS_InputScenarioSet.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBitmap.cpp">
+    <ClCompile Include="PSS_Bitmap.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1458,8 +1458,8 @@
     <ClInclude Include="PSS_HistoricValue.h" />
     <ClInclude Include="PSS_HistoricValueManager.h" />
     <ClInclude Include="PSS_InputScenario.h" />
-    <ClInclude Include="ZBInputScenarioSet.h" />
-    <ClInclude Include="ZBitmap.h" />
+    <ClInclude Include="PSS_InputScenarioSet.h" />
+    <ClInclude Include="PSS_Bitmap.h" />
     <ClInclude Include="ZBKeepStringUsage.h" />
     <ClInclude Include="ZBKeyboardObserverMsg.h" />
     <ClInclude Include="ZBMenuObserverMsg.h" />

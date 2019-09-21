@@ -27,7 +27,7 @@
 
 //////////////////////////////////////////////////////////////////////
 // Static members definition
-ZBitmap ZBSymbol::m_ShortCutBitmap;
+PSS_Bitmap ZBSymbol::m_ShortCutBitmap;
 
 #ifdef _DEBUG
 #undef THIS_FILE

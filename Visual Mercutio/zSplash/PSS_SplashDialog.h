@@ -13,8 +13,10 @@
 #endif
 
 // processsoft
-#include "zBaseLib\ZBitmap.h"
-#include "ZSplashRes.h"
+#include "zBaseLib\PSS_Bitmap.h"
+
+// resources
+#include "zSplashRes.h"
 
 /**
 * Splash screen dialog
@@ -71,14 +73,14 @@ class PSS_SplashDialog : public CDialog
         virtual void DoDataExchange(CDataExchange* pDX);
 
     private:
-        ZBitmap  m_Bitmap;
-        CString  m_BitmapFileName;
-        CString  m_Info;
-        CFont    m_Font;
-        CRect    m_InfoRect;
-        COLORREF m_FontColor;
-        COLORREF m_BackgroundColor;
-        UINT     m_BitmapResID;
+        PSS_Bitmap m_Bitmap;
+        CString    m_BitmapFileName;
+        CString    m_Info;
+        CFont      m_Font;
+        CRect      m_InfoRect;
+        COLORREF   m_FontColor;
+        COLORREF   m_BackgroundColor;
+        UINT       m_BitmapResID;
 };
 
 #endif

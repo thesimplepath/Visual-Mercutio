@@ -22,7 +22,7 @@
 #endif
 
 // processsoft
-#include "ZBitmap.h"
+#include "PSS_Bitmap.h"
 #include "PSS_PlanFinObject.h"
 
 #ifdef _ZBASELIBEXPORT
@@ -166,7 +166,7 @@ class AFX_EXT_CLASS PSS_PLFNBitmap : public PSS_PlanFinObject
         #endif
 
     private:
-        ZBitmap           m_Bitmap;
+        PSS_Bitmap        m_Bitmap;
         HBITMAP           m_hBitmap;
         BITMAPINFOHEADER* m_pBitmapInfoHeader;
         BYTE*             m_pBits;
