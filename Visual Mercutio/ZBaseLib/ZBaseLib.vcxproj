@@ -810,7 +810,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBInputScenario.cpp">
+    <ClCompile Include="PSS_InputScenario.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1457,7 +1457,7 @@
     <ClInclude Include="PSS_GenericErrorLine.h" />
     <ClInclude Include="PSS_HistoricValue.h" />
     <ClInclude Include="PSS_HistoricValueManager.h" />
-    <ClInclude Include="ZBInputScenario.h" />
+    <ClInclude Include="PSS_InputScenario.h" />
     <ClInclude Include="ZBInputScenarioSet.h" />
     <ClInclude Include="ZBitmap.h" />
     <ClInclude Include="ZBKeepStringUsage.h" />
