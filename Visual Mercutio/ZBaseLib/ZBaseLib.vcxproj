@@ -792,19 +792,19 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBGenericErrorLine.cpp">
+    <ClCompile Include="PSS_GenericErrorLine.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBHistoricValue.cpp">
+    <ClCompile Include="PSS_HistoricValue.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBHistoricValueManager.cpp">
+    <ClCompile Include="PSS_HistoricValueManager.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1454,9 +1454,9 @@
     <ClInclude Include="PSS_FieldObserverMsg.h" />
     <ClInclude Include="PSS_FieldColumnManager.h" />
     <ClInclude Include="PSS_FieldColumn.h" />
-    <ClInclude Include="ZBGenericErrorLine.h" />
-    <ClInclude Include="ZBHistoricValue.h" />
-    <ClInclude Include="ZBHistoricValueManager.h" />
+    <ClInclude Include="PSS_GenericErrorLine.h" />
+    <ClInclude Include="PSS_HistoricValue.h" />
+    <ClInclude Include="PSS_HistoricValueManager.h" />
     <ClInclude Include="ZBInputScenario.h" />
     <ClInclude Include="ZBInputScenarioSet.h" />
     <ClInclude Include="ZBitmap.h" />

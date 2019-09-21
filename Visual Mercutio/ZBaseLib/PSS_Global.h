@@ -21,7 +21,7 @@
 #include "PSS_TemplateManager.h"
 #include "ZUMail.h"
 #include "PSS_DocTemplateEx.h"
-#include "ZBHistoricValueManager.h"
+#include "PSS_HistoricValueManager.h"
 
 // forward class declarations
 class ZDDocument;
@@ -142,7 +142,7 @@ class AFX_EXT_CLASS PSS_Global
         * Gets the historic value manager
         *@return the historic value manager
         */
-        static inline ZBHistoricValueManager& GetHistoricValueManager();
+        static inline PSS_HistoricValueManager& GetHistoricValueManager();
 
         /**
         * Gets if the application is in initialization process
@@ -783,7 +783,7 @@ class AFX_EXT_CLASS PSS_Global
         static PSS_ProcessModelDocTmpl* m_pProcessModelDocumentTemplate;
         static ZUser*                   m_ConnectedUser;
         static ZBServer*                m_pServer;
-        static ZBHistoricValueManager   m_HistoricValueManager;
+        static PSS_HistoricValueManager m_HistoricValueManager;
         static PSS_TemplateManager      m_TemplateManager;
         static PSS_TemplateManager      m_ProcessTemplateManager;
         static PSS_TemplateManager      m_ModelTemplateManager;
@@ -864,7 +864,7 @@ ZBServer* PSS_Global::GetServer()
     return m_pServer;
 }
 //---------------------------------------------------------------------------
-ZBHistoricValueManager& PSS_Global::GetHistoricValueManager()
+PSS_HistoricValueManager& PSS_Global::GetHistoricValueManager()
 {
     return m_HistoricValueManager;
 }

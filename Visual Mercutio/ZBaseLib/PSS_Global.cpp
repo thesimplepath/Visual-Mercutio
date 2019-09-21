@@ -87,7 +87,7 @@ CMultiDocTemplate*            PSS_Global::m_pReportDocTemplate               = N
 PSS_ProcessModelDocTmpl*      PSS_Global::m_pProcessModelDocumentTemplate    = NULL;
 ZUser*                        PSS_Global::m_ConnectedUser                    = NULL;
 ZBServer*                     PSS_Global::m_pServer                          = NULL;
-ZBHistoricValueManager        PSS_Global::m_HistoricValueManager;
+PSS_HistoricValueManager      PSS_Global::m_HistoricValueManager;
 PSS_TemplateManager           PSS_Global::m_TemplateManager;
 PSS_TemplateManager           PSS_Global::m_ProcessTemplateManager;
 PSS_TemplateManager           PSS_Global::m_ModelTemplateManager;

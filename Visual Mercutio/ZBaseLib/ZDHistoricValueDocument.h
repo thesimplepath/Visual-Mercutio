@@ -8,7 +8,7 @@
 //
 
 // ZBHistoricValueManager
-#include "ZBHistoricValueManager.h"
+#include "PSS_HistoricValueManager.h"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -26,7 +26,7 @@ public:
     bool ReadFromFile( const CString Filename );
     bool SaveToFile( const CString Filename );
 
-    ZBHistoricValueManager& GetHistoricValueManager()
+    PSS_HistoricValueManager& GetHistoricValueManager()
     {
         return m_HistoricValueManager;
     };
@@ -66,8 +66,8 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-    ZBHistoricValueManager    m_HistoricValueManager;
-    bool                    m_IsLoaded;
+    PSS_HistoricValueManager m_HistoricValueManager;
+    bool                     m_IsLoaded;
 };
 
 //{{AFX_INSERT_LOCATION}}
