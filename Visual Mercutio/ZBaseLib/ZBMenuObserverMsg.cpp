@@ -1,27 +1,30 @@
-// ZBMenuObserverMsg.cpp: implementation of the ZBMenuObserverMsg class.
-//
-//////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_MenuObserverMsg -------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a menu observer message                           *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
 #include "ZBMenuObserverMsg.h"
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
 #endif
 
-IMPLEMENT_DYNAMIC( ZBMenuObserverMsg, ZIObserverMsg )
-
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
-
-ZBMenuObserverMsg::ZBMenuObserverMsg( int CommandID /*= 0*/ )
-    : m_CommandID( CommandID )
-{
-}
-
-ZBMenuObserverMsg::~ZBMenuObserverMsg()
-{
-}
+//---------------------------------------------------------------------------
+// Dynamic construction
+//---------------------------------------------------------------------------
+IMPLEMENT_DYNAMIC(PSS_MenuObserverMsg, ZIObserverMsg)
+//---------------------------------------------------------------------------
+// PSS_MenuObserverMsg
+//---------------------------------------------------------------------------
+PSS_MenuObserverMsg::PSS_MenuObserverMsg(int commandID) :
+    m_CommandID(commandID)
+{}
+//---------------------------------------------------------------------------
+PSS_MenuObserverMsg::~PSS_MenuObserverMsg()
+{}
+//---------------------------------------------------------------------------

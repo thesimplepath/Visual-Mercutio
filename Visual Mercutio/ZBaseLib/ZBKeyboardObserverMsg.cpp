@@ -1,28 +1,31 @@
-// ZBKeyboardObserverMsg.cpp: implementation of the ZBKeyboardObserverMsg class.
-//
-//////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_KeyboardObserverMsg ---------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a keyboard observer message                       *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
 #include "ZBKeyboardObserverMsg.h"
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
 #endif
 
-IMPLEMENT_DYNAMIC( ZBKeyboardObserverMsg, ZIObserverMsg )
-
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
-
-ZBKeyboardObserverMsg::ZBKeyboardObserverMsg( UINT MessageID /*= 0*/, UINT Key /*= 0*/ )
-    : m_MessageID    ( MessageID ),
-      m_Key            ( Key )
-{
-}
-
-ZBKeyboardObserverMsg::~ZBKeyboardObserverMsg()
-{
-}
+//---------------------------------------------------------------------------
+// Dynamic construction
+//---------------------------------------------------------------------------
+IMPLEMENT_DYNAMIC(PSS_KeyboardObserverMsg, ZIObserverMsg)
+//---------------------------------------------------------------------------
+// PSS_KeyboardObserverMsg
+//---------------------------------------------------------------------------
+PSS_KeyboardObserverMsg::PSS_KeyboardObserverMsg(UINT messageID, UINT key) :
+    m_MessageID(messageID),
+    m_Key(key)
+{}
+//---------------------------------------------------------------------------
+PSS_KeyboardObserverMsg::~PSS_KeyboardObserverMsg()
+{}
+//---------------------------------------------------------------------------
