@@ -1,7 +1,7 @@
 /****************************************************************************
  * ==> PSS_Notes -----------------------------------------------------------*
  ****************************************************************************
- * Description : Provides a notes class                                     *
+ * Description : Provides the notes                                         *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
@@ -36,92 +36,134 @@
 * Notes
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS ZBNotes : public CObject
+class AFX_EXT_CLASS PSS_Notes : public CObject
 {
-    DECLARE_SERIAL(ZBNotes)
+    DECLARE_SERIAL(PSS_Notes)
 
-public:
-    //## Constructors (generated)
-    ZBNotes(const ZBNotes &right);
+    public:
+        /**
+        * Constructor
+        *@param comment - comment
+        *@param userName - user name
+        */
+        PSS_Notes(const CString& comment = "", const CString& userName = "");
 
-    //## Constructors (specified)
-      //## Operation: ZBNotes%937741717
-    ZBNotes(CString Comment = "", CString Username = "");
+        /**
+        * Copy constructor
+        *@param other - other object to copy from
+        */
+        PSS_Notes(const PSS_Notes& other);
 
-    //## Destructor (generated)
-    virtual ~ZBNotes();
+        virtual ~PSS_Notes();
 
-    //## Assignment Operation (generated)
-    const ZBNotes & operator=(const ZBNotes &right);
+        /**
+        * Copy operator
+        *@param other - other object to copy from
+        *@return copy of itself
+        */
+        const PSS_Notes& operator = (const PSS_Notes& other);
 
+        /**
+        * Stores from the archive to the notes
+        *@param ar - archive
+        *@param notes - notes
+        *@return archive, to allow operator to be chained with other items, e.g a >> b >> c
+        */
+        AFX_EXT_API friend CArchive& operator >> (CArchive& ar, PSS_Notes& notes);
 
-    //## Other Operations (specified)
-      //## Operation: Clone%937741718
-    ZBNotes* Clone();
+        /**
+        * Stores the file to the archive
+        *@param ar - archive
+        *@param notes - notes
+        *@return archive, to allow operator to be chained with other items, e.g a << b << c
+        */
+        AFX_EXT_API friend CArchive& operator << (CArchive& ar, PSS_Notes& Notes);
 
-    //## Operation: ClearNotes%937741722
-    //    Clear the notes
-    void ClearNotes();
+        /**
+        * Clones the object
+        *@return the cloned object, NULL on error
+        */
+        virtual PSS_Notes* Clone() const;
 
-    //## Operation: ClearComment%937741723
-    //    Clear the note's comment
-    void ClearComment();
+        /**
+        * Clears the notes
+        */
+        virtual void ClearNotes();
 
-    //## Operation: ClearUsername%937741724
-    //    Clear the note's username.
-    void ClearUsername();
+        /**
+        * Clears the notes user name
+        */
+        virtual void ClearUserName();
 
-    //## Operation: GetFormattedNotes%937741725
-    //    Return the notes with \r\n char.
-    CString GetFormattedNotes(CRect* pRect = NULL);
+        /**
+        * Clears the notes comments
+        */
+        virtual void ClearComment();
 
-    //## Operation: operator >>%937741719
-    //    Store from the archive to the object Notes.
-    AFX_EXT_API friend CArchive& operator >> (CArchive& ar, ZBNotes& Notes);
+        /**
+        * Gets the formatted notes (i.e with \r\n char)
+        *@param pRect - rectangle in which the notes should fit
+        *@return the formatted notes
+        */
+        virtual CString GetFormattedNotes(CRect* pRect = NULL);
 
-    //## Operation: operator <<%937741720
-    //    Store the object Notes to the archive.
-    AFX_EXT_API friend CArchive& operator << (CArchive& ar, ZBNotes& Notes);
+        /**
+        * Gets the notes user name
+        *@return the notes user name
+        */
+        virtual inline const CString GetUserName() const;
 
-    //## Operation: Serialize%937741721
-    //    Serialization function required for MFC mecanism.
-    virtual void Serialize(CArchive& ar);
+        /**
+        * Sets the notes user name
+        *@param value - the notes user name
+        */
+        virtual inline void SetUserName(const CString& value);
 
-    //## Get and Set Operations for Class Attributes (generated)
+        /**
+        * Gets the notes comment
+        *@return the notes comment
+        */
+        virtual inline const CString& GetComment() const;
 
-      //## Attribute: Comment%37E4CC9F025F
-      //    Contains the comment
-    const CString& GetComment() const;
-    void SetComment(const CString& value);
+        /**
+        * Sets the notes comment
+        *@param value - the notes comment
+        */
+        virtual inline void SetComment(const CString& value);
 
-    //## Attribute: Username%37E4CC9F0260
-    //    Contains the username of the note.
-    const CString GetUsername() const;
-    void SetUsername(CString value);
+        /**
+        * Serializes the class content to an archive
+        *@param ar - archive
+        */
+        virtual void Serialize(CArchive& ar);
 
-private:
-    CString m_Username;
-    CString m_Comment;
+    private:
+        CString m_UserName;
+        CString m_Comment;
 };
 
-inline const CString& ZBNotes::GetComment() const
+//---------------------------------------------------------------------------
+// PSS_Notes
+//---------------------------------------------------------------------------
+const CString PSS_Notes::GetUserName() const
+{
+    return m_UserName;
+}
+//---------------------------------------------------------------------------
+void PSS_Notes::SetUserName(const CString& value)
+{
+    m_UserName = value;
+}
+//---------------------------------------------------------------------------
+const CString& PSS_Notes::GetComment() const
 {
     return m_Comment;
 }
-
-inline void ZBNotes::SetComment(const CString& value)
+//---------------------------------------------------------------------------
+void PSS_Notes::SetComment(const CString& value)
 {
     m_Comment = value;
 }
-
-inline const CString ZBNotes::GetUsername() const
-{
-    return m_Username;
-}
-
-inline void ZBNotes::SetUsername(CString value)
-{
-    m_Username = value;
-}
+//---------------------------------------------------------------------------
 
 #endif

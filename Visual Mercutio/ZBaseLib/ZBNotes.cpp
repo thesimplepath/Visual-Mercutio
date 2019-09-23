@@ -1,158 +1,94 @@
-//## begin module%37E4CD2600F2.cm preserve=no
-//      %X% %Q% %Z% %W%
-//## end module%37E4CD2600F2.cm
+/****************************************************************************
+ * ==> PSS_Notes -----------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides the notes                                         *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-//## begin module%37E4CD2600F2.cp preserve=no
-//    ADSoft / Advanced Dedicated Software
-//    Dominique AIGROZ
-//## end module%37E4CD2600F2.cp
-
-//## Module: ZBNotes%37E4CD2600F2; Package body
-//## Subsystem: ZBaseLib%37A08E0C019D
-//## Source file: z:\adsoft~1\ZBaseLib\ZBNotes.cpp
-
-//## begin module%37E4CD2600F2.additionalIncludes preserve=no
 #include <StdAfx.h>
-//## end module%37E4CD2600F2.additionalIncludes
-
-//## begin module%37E4CD2600F2.includes preserve=yes
-//## end module%37E4CD2600F2.includes
-
-// ZBNotes
 #include "ZBNotes.h"
-//## begin module%37E4CD2600F2.declarations preserve=no
-//## end module%37E4CD2600F2.declarations
-
-//## begin module%37E4CD2600F2.additionalDeclarations preserve=yes
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char BASED_CODE THIS_FILE[] = __FILE__;
+    #undef THIS_FILE
+    static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-
-IMPLEMENT_SERIAL(ZBNotes, CObject, g_DefVersion)
-//## end module%37E4CD2600F2.additionalDeclarations
-
-
-// Class ZBNotes 
-
-
-
-ZBNotes::ZBNotes(const ZBNotes &right)
-  //## begin ZBNotes::ZBNotes%copy.hasinit preserve=no
-  //## end ZBNotes::ZBNotes%copy.hasinit
-  //## begin ZBNotes::ZBNotes%copy.initialization preserve=yes
-  //## end ZBNotes::ZBNotes%copy.initialization
+//---------------------------------------------------------------------------
+// Serialization
+//---------------------------------------------------------------------------
+IMPLEMENT_SERIAL(PSS_Notes, CObject, g_DefVersion)
+//---------------------------------------------------------------------------
+// PSS_Notes
+//---------------------------------------------------------------------------
+PSS_Notes::PSS_Notes(const CString& comment, const CString& userName) :
+    CObject(),
+    m_UserName(userName),
+    m_Comment(comment)
+{}
+//---------------------------------------------------------------------------
+PSS_Notes::PSS_Notes(const PSS_Notes& other) :
+    CObject()
 {
-  //## begin ZBNotes::ZBNotes%copy.body preserve=yes
-      *this = right;
-  //## end ZBNotes::ZBNotes%copy.body
+    *this = other;
 }
-
-ZBNotes::ZBNotes (CString Comment, CString Username)
-  //## begin ZBNotes::ZBNotes%937741717.hasinit preserve=no
-  //## end ZBNotes::ZBNotes%937741717.hasinit
-  //## begin ZBNotes::ZBNotes%937741717.initialization preserve=yes
-    : m_Comment( Comment ), m_Username( Username )
-  //## end ZBNotes::ZBNotes%937741717.initialization
+//---------------------------------------------------------------------------
+PSS_Notes::~PSS_Notes()
+{}
+//---------------------------------------------------------------------------
+const PSS_Notes& PSS_Notes::operator = (const PSS_Notes& other)
 {
-  //## begin ZBNotes::ZBNotes%937741717.body preserve=yes
-  //## end ZBNotes::ZBNotes%937741717.body
+    m_UserName = right.m_UserName;
+    m_Comment  = right.m_Comment;
+
+    return *this;
 }
-
-
-ZBNotes::~ZBNotes()
+//---------------------------------------------------------------------------
+CArchive& operator >> (CArchive& ar, PSS_Notes& notes)
 {
-  //## begin ZBNotes::~ZBNotes%.body preserve=yes
-  //## end ZBNotes::~ZBNotes%.body
+    ar >> notes.m_UserName;
+    ar >> notes.m_Comment;
+    return ar;
 }
-
-
-const ZBNotes & ZBNotes::operator=(const ZBNotes &right)
+//---------------------------------------------------------------------------
+CArchive& operator << (CArchive& ar, PSS_Notes& notes)
 {
-  //## begin ZBNotes::operator=%.body preserve=yes
-      m_Comment = right.m_Comment;
-      m_Username = right.m_Username;
-      return *this;
-  //## end ZBNotes::operator=%.body
+    ar << notes.m_UserName;
+    ar << notes.m_Comment;
+    return ar;
 }
-
-
-
-//## Other Operations (implementation)
-ZBNotes* ZBNotes::Clone ()
+//---------------------------------------------------------------------------
+PSS_Notes* PSS_Notes::Clone() const
 {
-  //## begin ZBNotes::Clone%937741718.body preserve=yes
-      ZBNotes*    pNotes = new ZBNotes(*this);
-      return pNotes;
-  //## end ZBNotes::Clone%937741718.body
+    return new PSS_Notes(*this);
 }
-
-void ZBNotes::ClearNotes ()
+//---------------------------------------------------------------------------
+void PSS_Notes::ClearNotes()
 {
-  //## begin ZBNotes::ClearNotes%937741722.body preserve=yes
+    ClearUserName();
     ClearComment();
-    ClearUsername();
-  //## end ZBNotes::ClearNotes%937741722.body
 }
-
-void ZBNotes::ClearComment ()
+//---------------------------------------------------------------------------
+void PSS_Notes::ClearUserName()
 {
-  //## begin ZBNotes::ClearComment%937741723.body preserve=yes
+    m_UserName.Empty();
+}
+//---------------------------------------------------------------------------
+void PSS_Notes::ClearComment()
+{
     m_Comment.Empty();
-  //## end ZBNotes::ClearComment%937741723.body
 }
-
-void ZBNotes::ClearUsername ()
+//---------------------------------------------------------------------------
+CString PSS_Notes::GetFormattedNotes(CRect* pRect)
 {
-  //## begin ZBNotes::ClearUsername%937741724.body preserve=yes
-    m_Username.Empty();
-  //## end ZBNotes::ClearUsername%937741724.body
+    return m_UserName + "\r\n" + m_Comment;
 }
-
-CString ZBNotes::GetFormattedNotes (CRect* pRect)
+//---------------------------------------------------------------------------
+void PSS_Notes::Serialize(CArchive& ar)
 {
-  //## begin ZBNotes::GetFormattedNotes%937741725.body preserve=yes
-    return m_Username + "\r\n" + m_Comment;
-  //## end ZBNotes::GetFormattedNotes%937741725.body
-}
-
-CArchive& operator >> (CArchive& ar, ZBNotes& Notes)
-{
-  //## begin ZBNotes::operator >>%937741719.body preserve=yes
-    ar >> Notes.m_Username;
-      ar >> Notes.m_Comment;
-    return ar;
-  //## end ZBNotes::operator >>%937741719.body
-}
-
-CArchive& operator << (CArchive& ar, ZBNotes& Notes)
-{
-  //## begin ZBNotes::operator <<%937741720.body preserve=yes
-    ar << Notes.m_Username;
-      ar << Notes.m_Comment;
-    return ar;
-  //## end ZBNotes::operator <<%937741720.body
-}
-
-void ZBNotes::Serialize (CArchive& ar)
-{
-  //## begin ZBNotes::Serialize%937741721.body preserve=yes
     if (ar.IsStoring())
-    {    // Write the elements
+        // write the elements
         ar << *this;
-    }
     else
-    {
         ar >> *this;
-    }
-  //## end ZBNotes::Serialize%937741721.body
 }
-
-// Additional Declarations
-  //## begin ZBNotes%37E4CC9F024D.declarations preserve=yes
-  //## end ZBNotes%37E4CC9F024D.declarations
-
-//## begin module%37E4CD2600F2.epilog preserve=yes
-//## end module%37E4CD2600F2.epilog
+//---------------------------------------------------------------------------
