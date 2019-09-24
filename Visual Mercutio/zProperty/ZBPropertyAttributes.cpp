@@ -56,7 +56,7 @@ CArchive& operator >> ( CArchive& ar, _ZBPropertyAttribute& src )
     return ar;
 }
 
-CArchive& operator << ( CArchive& ar, _ZBPropertyAttribute& src )
+CArchive& operator << ( CArchive& ar, const _ZBPropertyAttribute& src )
 {
     ar << src.m_CategoryID;
     ar << src.m_ItemID;
@@ -429,7 +429,7 @@ CArchive& operator >> ( CArchive& ar, ZBPropertyAttributes& src )
     return ar;
 }
 
-CArchive& operator << ( CArchive& ar, ZBPropertyAttributes& src )
+CArchive& operator << ( CArchive& ar, const ZBPropertyAttributes& src )
 {
     ar << (WORD)src.GetDisplayTitleText();
     ar << (int)src.GetAttributeCount();

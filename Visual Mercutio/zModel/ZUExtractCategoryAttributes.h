@@ -23,11 +23,10 @@
 #define AFX_ZUExtractCategoryAttributes_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -40,11 +39,11 @@
 
 #include "zProperty\ZIProperties.h"
 #include "zProperty\ZBProperty.h"
-#include "zBaseLib\ZBKeepStringUsage.h"
+#include "zBaseLib\PSS_KeepStringUsage.h"
 
 
 #ifdef _ZMODELEXPORT
-//put the values back to make AFX_EXT_CLASS export again
+// put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -53,25 +52,14 @@
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-
-
-/////////////////////////////////////////////////////////////////////////////
-// ZUExtractCategoryAttributes
-//
-
-
-
-
-
-class AFX_EXT_CLASS ZUExtractCategoryAttributes : public ZUModelNavigation, public ZBKeepStringUsage  
+class AFX_EXT_CLASS ZUExtractCategoryAttributes : public ZUModelNavigation, public PSS_KeepStringUsage
 {
 public:
-    ZUExtractCategoryAttributes(ZDProcessGraphModelMdl* pModel = NULL, 
-                                CStringArray* pStaticArray = NULL, 
-                                CStringArray* pDynamicArray = NULL, 
+    ZUExtractCategoryAttributes(ZDProcessGraphModelMdl* pModel = NULL,
+                                CStringArray* pStaticArray = NULL,
+                                CStringArray* pDynamicArray = NULL,
                                 void* pClass = NULL);
+
     virtual ~ZUExtractCategoryAttributes();
 
 
@@ -79,16 +67,14 @@ public:
     virtual bool OnStart();
     virtual bool OnFinish();
 
-    virtual bool OnSymbol( ZBSymbol* pSymbol );
-    virtual bool OnLink( ZBLinkSymbol* pLink );
-
-private:
-    void FillAttribCategory( ZBPropertySet& PropSet );
+    virtual bool OnSymbol(ZBSymbol* pSymbol);
+    virtual bool OnLink(ZBLinkSymbol* pLink);
 
 private:
     CStringArray* m_pDynamicArray;
     CStringArray* m_pStaticArray;
 
+    void FillAttribCategory(ZBPropertySet& PropSet);
 };
 
-#endif // !defined(AFX_ZUExtractCategoryAttributes_H__1B1E078D_B371_4C96_8A00_A81D926A19E6__INCLUDED_)
+#endif

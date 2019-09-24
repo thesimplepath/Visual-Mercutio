@@ -52,7 +52,7 @@ CArchive& operator >> (CArchive& ar, PSS_MailUser& user)
     return ar;
 }
 //---------------------------------------------------------------------------
-CArchive& operator << (CArchive& ar, PSS_MailUser& user)
+CArchive& operator << (CArchive& ar, const PSS_MailUser& user)
 {
     ar << user.m_PersonName;
     ar << user.m_RecipClass;

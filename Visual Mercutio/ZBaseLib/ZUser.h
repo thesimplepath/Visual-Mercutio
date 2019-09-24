@@ -98,7 +98,7 @@ class AFX_EXT_CLASS ZUser : public CObject
 
       //## Operation: operator <<%913659097
       //    Store the object Stamp to the archive.
-      AFX_EXT_API friend CArchive& operator << (CArchive& ar, ZUser& User);
+      AFX_EXT_API friend CArchive& operator << (CArchive& ar, const ZUser& User);
 
       //## Operation: IsAdministrator%933697289
       //    Return TRUE if the user has administrator rights.

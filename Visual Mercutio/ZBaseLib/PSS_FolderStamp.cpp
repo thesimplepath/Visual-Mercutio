@@ -50,9 +50,9 @@ CArchive& operator >> (CArchive& ar, PSS_FolderStamp& stamp)
         ar >> stamp.m_FolderDescription;
         ar >> stamp.m_CreationUserName;
 
-        // not yet in PSS_Date
         CTime time;
 
+        // not yet in PSS_Date
         if (stamp.GetInternalVersion() < 14)
         {
             ar >> time;

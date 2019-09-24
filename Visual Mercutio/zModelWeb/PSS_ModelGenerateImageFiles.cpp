@@ -10,7 +10,7 @@
 #include "PSS_ModelGenerateImageFiles.h"
 
 // processsoft
-#include "zBaseLib\ZBServer.h"
+#include "zBaseLib\PSS_Server.h"
 #include "zBaseLib\PSS_File.h"
 #include "zBaseLib\ZUStringFormater.h"
 #include "zBaseLib\PSS_Global.h"
@@ -111,7 +111,7 @@ bool PSS_ModelGenerateImageFiles::OnStart()
     const CString webDir = PSS_Global::GetApplicationDirectory() + _T("\\Web");
 
     // copy images from the system root directory
-    if (m_pInfo->GetpServer())
+    if (m_pInfo->GetServer())
     {
         if (m_pInfo->GetImageFilename().IsEmpty())
         {

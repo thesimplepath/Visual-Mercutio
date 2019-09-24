@@ -1155,10 +1155,10 @@ const PSS_Border* PSS_PlanFinObject::GetBorder(ZIView* pView) const
 BOOL PSS_PlanFinObject::AddNotes(const CString& comment, const CString& userName)
 {
     if (!m_pNotes)
-        m_pNotes = new ZBNotes;
+        m_pNotes = new PSS_Notes();
 
+    m_pNotes->SetUserName(userName);
     m_pNotes->SetComment (comment);
-    m_pNotes->SetUsername(userName);
 
     return TRUE;
 }

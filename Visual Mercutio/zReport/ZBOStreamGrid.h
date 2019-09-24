@@ -54,20 +54,20 @@ public:
 
     //////////////////////////////////////////////////////////////////////
     // Cell position and selection
-    ZBOStreamGrid& operator<<( CPoint& pt );
-    ZBOStreamGrid& operator<<( CRect& rc );
+    ZBOStreamGrid& operator<<(const CPoint& pt );
+    ZBOStreamGrid& operator<<(const CRect& rc );
 
     //////////////////////////////////////////////////////////////////////
     // Cell size
-    ZBOStreamGrid& operator<<( CSize& sz );
+    ZBOStreamGrid& operator<<(const CSize& sz );
 
     void SetCurSelRowHeight( int Height );
     void SetCurSelColWidth( int Width );
 
     //////////////////////////////////////////////////////////////////////
     // Cell formatting
-    ZBOStreamGrid& operator<<( CGXStyle& style );
-    ZBOStreamGrid& operator<<( CGXFont& font );
+    ZBOStreamGrid& operator<<(const CGXStyle& style );
+    ZBOStreamGrid& operator<<(const CGXFont& font );
 
 private:
 
@@ -404,22 +404,22 @@ inline ZBOStreamGrid& ZBOStreamGrid::operator<<( LONG value )
 }
 
 // Set the current selection
-inline ZBOStreamGrid& ZBOStreamGrid::operator<<( CPoint& pt )
+inline ZBOStreamGrid& ZBOStreamGrid::operator<<(const CPoint& pt )
 {
-    SetCurSel( pt );
+    SetCurSel(const_cast<CPoint&>(pt));
     
     return *this;
 }
 
-inline ZBOStreamGrid& ZBOStreamGrid::operator<<( CRect& rc )
+inline ZBOStreamGrid& ZBOStreamGrid::operator<<(const CRect& rc )
 {
-    SetCurSel( rc );
+    SetCurSel(const_cast<CRect&>(rc));
 
     return *this;
 }
 
 // Set the new size for the current selection
-inline ZBOStreamGrid& ZBOStreamGrid::operator<<( CSize& sz )
+inline ZBOStreamGrid& ZBOStreamGrid::operator<<(const CSize& sz )
 {
     if ( m_pGridCore )
     {
@@ -447,7 +447,7 @@ inline ZBOStreamGrid& ZBOStreamGrid::operator<<( CSize& sz )
 }
 
 // Formatting cell
-inline ZBOStreamGrid& ZBOStreamGrid::operator<<( CGXStyle& style )
+inline ZBOStreamGrid& ZBOStreamGrid::operator<<(const CGXStyle& style )
 {
     if ( m_pGridCore )
     {
@@ -459,7 +459,7 @@ inline ZBOStreamGrid& ZBOStreamGrid::operator<<( CGXStyle& style )
     return *this;
 }
 
-inline ZBOStreamGrid& ZBOStreamGrid::operator<<( CGXFont& font )
+inline ZBOStreamGrid& ZBOStreamGrid::operator<<(const CGXFont& font )
 {
     if ( m_pGridCore )
     {

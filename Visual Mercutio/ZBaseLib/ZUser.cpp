@@ -144,7 +144,7 @@ CArchive& operator >> (CArchive& ar, ZUser& User)
   //## end ZUser::operator >>%913659096.body
 }
 
-CArchive& operator << (CArchive& ar, ZUser& User)
+CArchive& operator << (CArchive& ar, const ZUser& User)
 {
   //## begin ZUser::operator <<%913659097.body preserve=yes
       ar << User.m_UserName;

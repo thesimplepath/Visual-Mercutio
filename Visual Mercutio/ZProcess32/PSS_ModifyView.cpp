@@ -271,7 +271,7 @@ void PSS_ModifyView::AddObjectNotes(PSS_PlanFinObject* pObj)
         return;
 
     PSS_ObjectNotesDialog objectNotesDialog(pObj->GetNotes() ? pObj->GetNotes()->GetComment()  : _T(""),
-                                            pObj->GetNotes() ? pObj->GetNotes()->GetUsername() : _T(""));
+                                            pObj->GetNotes() ? pObj->GetNotes()->GetUserName() : _T(""));
 
     switch (objectNotesDialog.DoModal())
     {

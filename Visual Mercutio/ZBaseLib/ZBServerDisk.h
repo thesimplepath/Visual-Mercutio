@@ -14,8 +14,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 
-// ZBServer
-#include "ZBServer.h"
+// processsoft
+#include "PSS_Server.h"
 
 #ifdef _ZBASELIBEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -33,25 +33,25 @@
 class AFX_EXT_CLASS ZBServerDisk 
 {
   public:
-      ZBServerDisk ( ZBServer* pServer = NULL, const CString EmptyImageServerIniFile = "" );
-      void    Initialize( ZBServer* pServer, const CString EmptyImageServerIniFile = "" );
+      ZBServerDisk (PSS_Server* pServer = NULL, const CString EmptyImageServerIniFile = "" );
+      void    Initialize(PSS_Server* pServer, const CString EmptyImageServerIniFile = "" );
       bool    DeleteServer(bool CheckStructure = true);
       bool    CreateServer();
-      bool    CopyServer( ZBServer& SourceServer );
+      bool    CopyServer(PSS_Server& SourceServer );
       CString    GetLog() { return m_Log; };
 
       ~ZBServerDisk();
 
   private:
-      bool CopyServerDirectory( ZBServer& SourceServer );
+      bool CopyServerDirectory(PSS_Server& SourceServer );
       bool CreateServerDirectoryStructure();
 
   private:
       ZBServerDisk(const ZBServerDisk &right);
       const ZBServerDisk & operator=(const ZBServerDisk &right);
 
-      ZBServer            m_EmptyImageServer;
-      ZBServer*            m_pServer;
+      PSS_Server         m_EmptyImageServer;
+      PSS_Server*        m_pServer;
       CString            m_EmptyImageServerIniFile;
       CString            m_Log;
 

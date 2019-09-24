@@ -98,7 +98,7 @@ public:
 
       //## Operation: operator <<%927742724
       //    Store the object Stamp to the archive.
-      friend CArchive& operator << (CArchive& ar, ZBResources& ActivityResource);
+      friend CArchive& operator << (CArchive& ar, const ZBResources& ActivityResource);
 
       //## Operation: AddUser%927742725
       //    Add a new user.

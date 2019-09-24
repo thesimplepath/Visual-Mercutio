@@ -66,7 +66,7 @@ extern "C" {
 #include "zBaseLib\ZISubject.h"
 
 // ZBServer
-#include "zBaseLib\ZBServer.h"
+#include "zBaseLib\PSS_Server.h"
 
 //## end module%334FC4630329.includes
 
@@ -610,7 +610,7 @@ public:
 
     //## Attribute: Server%36643CEB0064
     // Implements the Global Options.
-    ZBCltServer& GetServer();
+    PSS_CltServer& GetServer();
 
     //## Attribute: ActivityLog%369BC5AC0258
     // Has an activity log utility class.
@@ -744,7 +744,7 @@ private:
 private:
 
     //## begin ZAMainApp::Server%36643CEB0064.attr preserve=no  public: ZBCltServer {U}
-    ZBCltServer        m_Server;
+    PSS_CltServer        m_Server;
 
     //## end ZAMainApp::Server%36643CEB0064.attr
 
@@ -881,7 +881,7 @@ inline void ZAMainApp::SetServerIniFile(const CString& value)
 
 //## Get and Set Operations for Class Attributes (inline)
 
-inline ZBCltServer& ZAMainApp::GetServer()
+inline PSS_CltServer& ZAMainApp::GetServer()
 {
     //## begin ZAMainApp::GetServer%36643CEB0064.get preserve=no
     return m_Server;

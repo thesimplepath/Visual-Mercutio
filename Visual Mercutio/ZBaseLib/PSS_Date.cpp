@@ -71,10 +71,21 @@ const PSS_Date& PSS_Date::operator = (const CTime& other)
     return *this;
 }
 //---------------------------------------------------------------------------
+CArchive& operator << (CArchive& ar, const PSS_Date& date)
+{
+    ar << WORD(date.GetYear());
+    ar << WORD(date.GetMonth());
+    ar << WORD(date.GetDay());
+    ar << WORD(date.GetHour());
+    ar << WORD(date.GetMinute());
+    ar << WORD(date.GetSecond());
+    return ar;
+}
+//---------------------------------------------------------------------------
 #ifdef _WIN32
-    CArchive& AFXAPI operator << (CArchive& ar, COleDateTime time)
+    CArchive& AFXAPI operator << (CArchive& ar, const COleDateTime& time)
 #else
-    CArchive& AFXAPI operator << (CArchive& ar, CTime time)
+    CArchive& AFXAPI operator << (CArchive& ar, const CTime& time)
 #endif
 {
     ar << WORD(time.GetYear());

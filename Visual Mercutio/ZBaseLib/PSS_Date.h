@@ -150,10 +150,11 @@
         *@param time - date and time
         *@return archive, to allow operator to be chained with other items, e.g a >> b >> c
         */
+        AFX_EXT_API friend CArchive& operator << (CArchive& ar, const PSS_Date& date);
         #ifdef _WIN32
-            friend CArchive& AFXAPI operator << (CArchive& ar, COleDateTime time);
+            friend CArchive& AFXAPI operator << (CArchive& ar, const COleDateTime& time);
         #else
-            friend CArchive& AFXAPI operator << (CArchive& ar, CTime time);
+            friend CArchive& AFXAPI operator << (CArchive& ar, const CTime& time);
         #endif
 
         /**

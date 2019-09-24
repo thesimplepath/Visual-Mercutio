@@ -99,13 +99,11 @@ CArchive& operator >> (CArchive& ar, ZBResources& ActivityResource)
   //## end ZBResources::operator >>%927742723.body
 }
 
-CArchive& operator << (CArchive& ar, ZBResources& ActivityResource)
+CArchive& operator << (CArchive& ar, const ZBResources& ActivityResource)
 {
-  //## begin ZBResources::operator <<%927742724.body preserve=yes
-       ar << (WORD)ActivityResource.m_UserType;
-    ActivityResource.m_UserArray.Serialize( ar );
+    ar << WORD(ActivityResource.m_UserType);
+    const_cast<ZBResources&>(ActivityResource).m_UserArray.Serialize(ar);
     return ar;
-  //## end ZBResources::operator <<%927742724.body
 }
 
 void ZBResources::AddUser (const CString UserName)

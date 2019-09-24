@@ -12,7 +12,7 @@
 // processsoft
 #include "zBaseLib\ZDirectory.h"
 #include "zBaseLib\PSS_File.h"
-#include "zBaseLib\ZBServer.h"
+#include "zBaseLib\PSS_Server.h"
 #include "zBaseLib\ZILog.h"
 #include "zConversion\PSS_StringTools.h"
 #include "zModel\ProcGraphModelMdl.h"
@@ -87,18 +87,18 @@ bool PSS_SoapPublishModelGenerateFiles::OnStart()
         return false;
 
     // publish the home image file, if it exists
-    if (PSS_File::Exist(ZDirectory::NormalizeDirectory(m_pInfo->GetpServer()->GetSystemDirectory()) + _T("\\") + g_HomeImageFile))
+    if (PSS_File::Exist(ZDirectory::NormalizeDirectory(m_pInfo->GetServer()->GetSystemDirectory()) + _T("\\") + g_HomeImageFile))
         if (!m_PubFile.Add(PSS_SoapData_File(PSS_SoapData_File::IE_DM_PublicFolder,
                                              1,
-                                             (const char*)m_pInfo->GetpServer()->GetSystemDirectory(),
+                                             (const char*)m_pInfo->GetServer()->GetSystemDirectory(),
                                              (const char*)g_HomeImageFile)))
             TRACE(_T("Problem publishing the Home image file\n"));
 
     // publish the parent image file, if it exists
-    if (PSS_File::Exist(ZDirectory::NormalizeDirectory(m_pInfo->GetpServer()->GetSystemDirectory()) + _T("\\") + g_ParentImageFile))
+    if (PSS_File::Exist(ZDirectory::NormalizeDirectory(m_pInfo->GetServer()->GetSystemDirectory()) + _T("\\") + g_ParentImageFile))
         if (!m_PubFile.Add(PSS_SoapData_File(PSS_SoapData_File::IE_DM_PublicFolder,
                                              1,
-                                             (const char*)m_pInfo->GetpServer()->GetSystemDirectory(),
+                                             (const char*)m_pInfo->GetServer()->GetSystemDirectory(),
                                              (const char*)g_ParentImageFile)))
             TRACE(_T("Problem publishing the Parent image file\n"));
 

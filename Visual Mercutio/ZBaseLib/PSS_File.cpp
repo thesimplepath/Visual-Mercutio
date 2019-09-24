@@ -64,21 +64,21 @@ int PSS_File::operator!=(const PSS_File& other) const
     return m_FileName != other.m_FileName;
 }
 //---------------------------------------------------------------------------
-CArchive& operator >> (CArchive& ar, PSS_File& File)
+CArchive& operator >> (CArchive& ar, PSS_File& file)
 {
-    ar >> File.m_FileName;
+    ar >> file.m_FileName;
 
     WORD value;
     ar >> value;
-    File.m_AttachementType = PSS_File::IEAttachementType(value);
+    file.m_AttachementType = PSS_File::IEAttachementType(value);
 
     // build completely all file components
-    File.Rebuild();
+    file.Rebuild();
 
     return ar;
 }
 //---------------------------------------------------------------------------
-CArchive& operator << (CArchive& ar, PSS_File& file)
+CArchive& operator << (CArchive& ar, const PSS_File& file)
 {
     ar << file.m_FileName;
     ar << WORD(file.m_AttachementType);

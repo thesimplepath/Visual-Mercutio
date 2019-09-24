@@ -78,7 +78,7 @@ class AFX_EXT_CLASS PSS_TemplateFile : public CObject
         *@param file - file
         *@return archive, to allow operator to be chained with other items, e.g a << b << c
         */
-        AFX_EXT_API friend CArchive& operator << (CArchive& ar, PSS_TemplateFile& templateFile);
+        AFX_EXT_API friend CArchive& operator << (CArchive& ar, const PSS_TemplateFile& templateFile);
 
         /**
         * Creates the object

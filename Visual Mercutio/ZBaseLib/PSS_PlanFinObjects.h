@@ -46,7 +46,7 @@
 #include "PSS_PLFNString.h"
 #include "PSS_PLFNGraphic.h"
 #include "PSS_Formula.h"
-#include "ZBPoint.h"
+#include "PSS_Point.h"
 #include "PSS_Date.h"
 
 #ifdef _ZBASELIBEXPORT
@@ -341,8 +341,8 @@ class AFX_EXT_CLASS PSS_PLFNLine : public PSS_PLFNGraphic
         virtual void DrawObject(CDC* pDC, ZIView* pView);
 
     private:
-        ZBPoint m_StartPoint;
-        ZBPoint m_EndPoint;
+        PSS_Point m_StartPoint;
+        PSS_Point m_EndPoint;
 };
 
 //---------------------------------------------------------------------------

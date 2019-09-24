@@ -10,7 +10,7 @@
 #include "zProperty\ZBPropertyObserverMsg.h"
 #include "zProperty\ZBPropertyItemObserverMsg.h"
 #include "zBaseLib\ZBToolbarObserverMsg.h"
-#include "zBaseLib\ZBKeyboardObserverMsg.h"
+#include "zBaseLib\PSS_KeyboardObserverMsg.h"
 
 #include "zPtyMgrRes.h"
 
@@ -27,19 +27,19 @@ static char THIS_FILE[] = __FILE__;
 
 //////////////////////////////////////////////////////////////////////
 // Constant definition
-static bool        gInMoveSplitterMode    = false;
-static int        gMaxLeft            = 0;
-static int        gMaxRight            = 0;
+static bool        gInMoveSplitterMode = false;
+static int        gMaxLeft = 0;
+static int        gMaxRight = 0;
 
-static CRect     gInitialRect    ( 0, 0, 0, 0 );
-static CPoint     gInitialPoint    ( 0, 0 );
-static CPoint     gLastPoint        ( 0, 0 );
+static CRect     gInitialRect(0, 0, 0, 0);
+static CPoint     gInitialPoint(0, 0);
+static CPoint     gLastPoint(0, 0);
 
 #define PROPERTY_LEFT_BORDER    16
 
-IMPLEMENT_DYNAMIC( ZCPropertyListCtrl, CDragListBox )
+IMPLEMENT_DYNAMIC(ZCPropertyListCtrl, CDragListBox)
 
-BEGIN_MESSAGE_MAP( ZCPropertyListCtrl, CDragListBox )
+BEGIN_MESSAGE_MAP(ZCPropertyListCtrl, CDragListBox)
     //{{AFX_MSG_MAP(ZCPropertyListCtrl)
     ON_WM_CREATE()
     ON_WM_LBUTTONDOWN()
@@ -55,84 +55,84 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // ZCPropertyListCtrl
 
-ZCPropertyListCtrl::ZCPropertyListCtrl( LPCTSTR pIniFile /*= NULL*/ )
-    : m_pPropertyItemManager        ( NULL ),
-      m_pWndInPlaceControl            ( NULL ),
-      m_nSelectedItem                ( -1 ),
-      m_pCurrentProperties            ( NULL ),
-      m_IniFile                        ( _T( "" ) ),
-      m_IniFileLoaded                ( false ),
-      m_SplitterX                    ( 100 ),
-      m_pSrcDragPropertyItem        ( NULL ),
-      m_SrcDragPropertyItemIndex    ( -1 ),
-      m_ListInReadOnly                ( false )
+ZCPropertyListCtrl::ZCPropertyListCtrl(LPCTSTR pIniFile /*= NULL*/)
+    : m_pPropertyItemManager(NULL),
+    m_pWndInPlaceControl(NULL),
+    m_nSelectedItem(-1),
+    m_pCurrentProperties(NULL),
+    m_IniFile(_T("")),
+    m_IniFileLoaded(false),
+    m_SplitterX(100),
+    m_pSrcDragPropertyItem(NULL),
+    m_SrcDragPropertyItemIndex(-1),
+    m_ListInReadOnly(false)
 {
     m_pPropertyItemManager = new ZBPropertyItemManager;
 
     // If an ini file pointer is defined
-    if ( pIniFile )
+    if (pIniFile)
     {
         m_IniFile = pIniFile;
-        m_pPropertyItemManager->LoadStateFromIniFile( m_IniFile );
+        m_pPropertyItemManager->LoadStateFromIniFile(m_IniFile);
         m_IniFileLoaded = true;
     }
 
     HINSTANCE hInstResource;
 
-    hInstResource = AfxFindResourceHandle( MAKEINTRESOURCE( IDC_SPLITTER_H ),
-                                           RT_GROUP_CURSOR );
+    hInstResource = AfxFindResourceHandle(MAKEINTRESOURCE(IDC_SPLITTER_H),
+                                          RT_GROUP_CURSOR);
 
     // Load icon resource
-    m_hcurSplitter = (HCURSOR)::LoadImage( hInstResource, MAKEINTRESOURCE( IDC_SPLITTER_H ), IMAGE_CURSOR, 0, 0, 0 );    
+    m_hcurSplitter = (HCURSOR)::LoadImage(hInstResource, MAKEINTRESOURCE(IDC_SPLITTER_H), IMAGE_CURSOR, 0, 0, 0);
 }
 
 ZCPropertyListCtrl::~ZCPropertyListCtrl()
 {
     // Before destroying this class, saves information to the inifile
     // if there is one defined
-    if ( !m_IniFile.IsEmpty() )
+    if (!m_IniFile.IsEmpty())
     {
-        m_pPropertyItemManager->SaveStateToIniFile( m_IniFile );
+        m_pPropertyItemManager->SaveStateToIniFile(m_IniFile);
     }
 
-    if ( m_pPropertyItemManager )
+    if (m_pPropertyItemManager)
     {
         delete m_pPropertyItemManager;
         m_pPropertyItemManager = NULL;
     }
 
-    if ( m_pWndInPlaceControl )
+    if (m_pWndInPlaceControl)
     {
         delete m_pWndInPlaceControl;
         m_pWndInPlaceControl = NULL;
     }
 
     // Destroy the cursor (if any)
-    if ( m_hcurSplitter != NULL )
+    if (m_hcurSplitter != NULL)
     {
-        ::DestroyCursor( m_hcurSplitter );
+        ::DestroyCursor(m_hcurSplitter);
     }
 }
 
-void ZCPropertyListCtrl::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
+void ZCPropertyListCtrl::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
 {
-    if ( pMsg && ISA( pMsg, ZBPropertyObserverMsg ) )
+    if (pMsg && ISA(pMsg, ZBPropertyObserverMsg))
     {
 
-        if ( ( (ZBPropertyObserverMsg*)pMsg )->GetpProperties() && m_pPropertyItemManager )
+        if (((ZBPropertyObserverMsg*)pMsg)->GetpProperties() && m_pPropertyItemManager)
         {
-            Initialize( ( (ZBPropertyObserverMsg*)pMsg )->GetpProperties() );
+            Initialize(((ZBPropertyObserverMsg*)pMsg)->GetpProperties());
         }
         else
         {
             Empty();
         }
     }
-    else if ( pMsg && ISA( pMsg, ZBKeyboardObserverMsg ) )
+    else if (pMsg && ISA(pMsg, PSS_KeyboardObserverMsg))
     {
-        if ( dynamic_cast<ZBKeyboardObserverMsg*>( pMsg )->GetMessageID() == WM_KEYPRESSED_EDIT )
+        if (dynamic_cast<PSS_KeyboardObserverMsg*>(pMsg)->GetMessageID() == WM_KEYPRESSED_EDIT)
         {
-            switch( dynamic_cast<ZBKeyboardObserverMsg*>( pMsg )->GetKey() )
+            switch (dynamic_cast<PSS_KeyboardObserverMsg*>(pMsg)->GetKey())
             {
                 case VK_ESCAPE:
                 {
@@ -149,7 +149,7 @@ void ZCPropertyListCtrl::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
                     return;
                 }
 
-                case ( VK_SHIFT|VK_TAB ):
+                case (VK_SHIFT | VK_TAB):
                 {
                     // Edit previous item
                     EditPreviousItem();
@@ -163,9 +163,9 @@ void ZCPropertyListCtrl::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
             }
         }
     }
-    else if ( pMsg && ISA( pMsg, ZBToolbarObserverMsg ) )
+    else if (pMsg && ISA(pMsg, ZBToolbarObserverMsg))
     {
-        switch( dynamic_cast<ZBToolbarObserverMsg*>( pMsg )->GetMessageID() )
+        switch (dynamic_cast<ZBToolbarObserverMsg*>(pMsg)->GetMessageID())
         {
             case WM_VALUESAVED_EDIT:
             {
@@ -194,30 +194,30 @@ void ZCPropertyListCtrl::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
     }
 }
 
-void ZCPropertyListCtrl::LoadStateFromIniFile( const CString IniFile )
+void ZCPropertyListCtrl::LoadStateFromIniFile(const CString IniFile)
 {
     // If an ini file is not empty
-    if ( !IniFile.IsEmpty() )
+    if (!IniFile.IsEmpty())
     {
-        if ( m_IniFile != IniFile )
+        if (m_IniFile != IniFile)
         {
             m_IniFile = IniFile;
-            m_pPropertyItemManager->LoadStateFromIniFile( m_IniFile );
+            m_pPropertyItemManager->LoadStateFromIniFile(m_IniFile);
             m_IniFileLoaded = true;
         }
     }
 }
 
-void ZCPropertyListCtrl::Initialize( ZIProperties* pProperties /*= NULL*/, LPCTSTR pIniFile /*= NULL*/ )
+void ZCPropertyListCtrl::Initialize(ZIProperties* pProperties /*= NULL*/, LPCTSTR pIniFile /*= NULL*/)
 {
     // Check if the value has changed, 
     // then request the control to save its value
-    if ( m_pWndInPlaceControl && m_pWndInPlaceControl->GetHasChanged() )
+    if (m_pWndInPlaceControl && m_pWndInPlaceControl->GetHasChanged())
     {
         m_pWndInPlaceControl->SaveValue();
     }
 
-    if ( pProperties )
+    if (pProperties)
     {
         m_pCurrentProperties = pProperties;
     }
@@ -227,20 +227,20 @@ void ZCPropertyListCtrl::Initialize( ZIProperties* pProperties /*= NULL*/, LPCTS
     m_pPropertyItemManager->UpdatePropertyData();
 
     // Then fill the property set with properties
-    m_pPropertyItemManager->UpdateControlData( m_pCurrentProperties );
+    m_pPropertyItemManager->UpdateControlData(m_pCurrentProperties);
 
-    if ( m_pPropertyItemManager )
+    if (m_pPropertyItemManager)
     {
-        m_pPropertyItemManager->SetPropertyListCtrl( this );
+        m_pPropertyItemManager->SetPropertyListCtrl(this);
     }
 
     // If an ini file pointer is defined
-    if ( pIniFile )
+    if (pIniFile)
     {
-        if ( m_IniFile != pIniFile )
+        if (m_IniFile != pIniFile)
         {
             m_IniFile = pIniFile;
-            m_pPropertyItemManager->LoadStateFromIniFile( m_IniFile );
+            m_pPropertyItemManager->LoadStateFromIniFile(m_IniFile);
             m_IniFileLoaded = true;
         }
     }
@@ -248,11 +248,11 @@ void ZCPropertyListCtrl::Initialize( ZIProperties* pProperties /*= NULL*/, LPCTS
     Refresh();
 }
 
-void ZCPropertyListCtrl::Initialize( ZBPropertySet& PropSet, LPCTSTR pIniFile /*= NULL*/ )
+void ZCPropertyListCtrl::Initialize(ZBPropertySet& PropSet, LPCTSTR pIniFile /*= NULL*/)
 {
     // Check if the value has changed, 
     // then request the control to save its value
-    if ( m_pWndInPlaceControl && m_pWndInPlaceControl->GetHasChanged() )
+    if (m_pWndInPlaceControl && m_pWndInPlaceControl->GetHasChanged())
     {
         m_pWndInPlaceControl->SaveValue();
     }
@@ -262,20 +262,20 @@ void ZCPropertyListCtrl::Initialize( ZBPropertySet& PropSet, LPCTSTR pIniFile /*
     m_pPropertyItemManager->UpdatePropertyData();
 
     // Then fill the property set with properties
-    m_pPropertyItemManager->UpdateControlData( PropSet );
+    m_pPropertyItemManager->UpdateControlData(PropSet);
 
-    if ( m_pPropertyItemManager )
+    if (m_pPropertyItemManager)
     {
-        m_pPropertyItemManager->SetPropertyListCtrl( this );
+        m_pPropertyItemManager->SetPropertyListCtrl(this);
     }
 
     // If an ini file pointer is defined
-    if ( pIniFile )
+    if (pIniFile)
     {
-        if ( m_IniFile != pIniFile )
+        if (m_IniFile != pIniFile)
         {
             m_IniFile = pIniFile;
-            m_pPropertyItemManager->LoadStateFromIniFile( m_IniFile );
+            m_pPropertyItemManager->LoadStateFromIniFile(m_IniFile);
             m_IniFileLoaded = true;
         }
     }
@@ -283,48 +283,48 @@ void ZCPropertyListCtrl::Initialize( ZBPropertySet& PropSet, LPCTSTR pIniFile /*
     Refresh();
 }
 
-void ZCPropertyListCtrl::Refresh( bool DeleteEditCtrl /*= true*/, bool ReloadControlData /*= false*/ )
+void ZCPropertyListCtrl::Refresh(bool DeleteEditCtrl /*= true*/, bool ReloadControlData /*= false*/)
 {
     // JMR-MODIF - Le 9 juin 2005 - Sauvegarde la valeur de l'emplacement de l'affichage avant le
     // rafraîchissement.
-    int iIndex                    = GetTopIndex();
-    int nPreviousSelectedItem    = -1;
+    int iIndex = GetTopIndex();
+    int nPreviousSelectedItem = -1;
 
     // Save the selected item
-    if ( !DeleteEditCtrl )
+    if (!DeleteEditCtrl)
     {
-        nPreviousSelectedItem    = m_nSelectedItem;
+        nPreviousSelectedItem = m_nSelectedItem;
     }
 
     // Reset the content
-    ResetContent( DeleteEditCtrl );
+    ResetContent(DeleteEditCtrl);
 
-    if ( ReloadControlData )
+    if (ReloadControlData)
     {
         // Then fill the property set with properties
-        m_pPropertyItemManager->UpdateControlData( m_pCurrentProperties );
+        m_pPropertyItemManager->UpdateControlData(m_pCurrentProperties);
     }
 
     int nItem = 0;
 
     // Run through all items
-    ZBItemCategoryIterator i( &m_pPropertyItemManager->GetItemCategorySet() );
+    ZBItemCategoryIterator i(&m_pPropertyItemManager->GetItemCategorySet());
 
     // RS-MODIF 08.08.2005: correction affichage attribut dynamique temps
     //for ( ZBPropertyItemCategory* pPropertyItemTab = i.GetFirst(); pPropertyItemTab; pPropertyItemTab = i.GetNext() )
 
     ZBPropertyItemCategory* pPropertyItemTab;
 
-    for ( pPropertyItemTab = i.GetFirst(); pPropertyItemTab; pPropertyItemTab = i.GetNext() )
+    for (pPropertyItemTab = i.GetFirst(); pPropertyItemTab; pPropertyItemTab = i.GetNext())
     {
-        if ( pPropertyItemTab->GetEnabled() )
+        if (pPropertyItemTab->GetEnabled())
         {
-            InsertPropertyItem( pPropertyItemTab, nItem );
+            InsertPropertyItem(pPropertyItemTab, nItem);
 
             // Do the expand only if children are visible
-            if ( pPropertyItemTab->GetChildrenVisible() )
+            if (pPropertyItemTab->GetChildrenVisible())
             {
-                DoExpand( pPropertyItemTab, nItem );
+                DoExpand(pPropertyItemTab, nItem);
             }
 
             nItem++;
@@ -332,12 +332,12 @@ void ZCPropertyListCtrl::Refresh( bool DeleteEditCtrl /*= true*/, bool ReloadCon
     }
 
     // If necessary to redisplay the edit control
-    if ( !DeleteEditCtrl )
+    if (!DeleteEditCtrl)
     {
         m_nSelectedItem = nPreviousSelectedItem;
 
         // Sets the current selection
-        SetCurSel( nPreviousSelectedItem );
+        SetCurSel(nPreviousSelectedItem);
     }
 
     // Redraw the complete list control
@@ -345,9 +345,9 @@ void ZCPropertyListCtrl::Refresh( bool DeleteEditCtrl /*= true*/, bool ReloadCon
 
     // JMR-MODIF - Le 9 juin 2005 - Replace la position courante de l'affichage à l'emplacement choisi par
     // l'utilisateur.
-    if ( iIndex <= GetCount() && iIndex > GetTopIndex() )
+    if (iIndex <= GetCount() && iIndex > GetTopIndex())
     {
-        SetTopIndex( iIndex );
+        SetTopIndex(iIndex);
     }
 }
 
@@ -358,7 +358,7 @@ void ZCPropertyListCtrl::Empty()
     m_pPropertyItemManager->UpdatePropertyData();
 
     // Reset the content
-    ResetContent( true );
+    ResetContent(true);
 
     // And finally empty the property manager
     m_pPropertyItemManager->Empty();
@@ -368,12 +368,12 @@ void ZCPropertyListCtrl::EditNextItem()
 {
     int nCount = GetCount();
 
-    if ( nCount > 0 )
+    if (nCount > 0)
     {
         int nPreviousItem = GetCurSel();
         int nItem;
 
-        if ( nPreviousItem >= ( nCount - 1 ) )
+        if (nPreviousItem >= (nCount - 1))
         {
             nItem = 0;
         }
@@ -383,10 +383,10 @@ void ZCPropertyListCtrl::EditNextItem()
         }
 
         // Edit the item
-        CreateInPlaceControl( nItem, nPreviousItem );
+        CreateInPlaceControl(nItem, nPreviousItem);
 
         // Move the current selection
-        SetCurSel( nItem );
+        SetCurSel(nItem);
     }
 }
 
@@ -394,12 +394,12 @@ void ZCPropertyListCtrl::EditPreviousItem()
 {
     int nCount = GetCount();
 
-    if ( nCount > 0 )
+    if (nCount > 0)
     {
         int nPreviousItem = GetCurSel();
         int nItem;
 
-        if ( nPreviousItem <= 0 )
+        if (nPreviousItem <= 0)
         {
             nItem = nCount - 1;
         }
@@ -409,10 +409,10 @@ void ZCPropertyListCtrl::EditPreviousItem()
         }
 
         // Edit the item
-        CreateInPlaceControl( nItem, nPreviousItem );
+        CreateInPlaceControl(nItem, nPreviousItem);
 
         // Move the current selection
-        SetCurSel( nItem );
+        SetCurSel(nItem);
     }
 }
 
@@ -420,38 +420,38 @@ ZBPropertyItem* ZCPropertyListCtrl::GetCurrentPropertyItem()
 {
     int nItem = GetCurSel();
 
-    if ( nItem >= 0 )
+    if (nItem >= 0)
     {
-        return GetPropertyItem( nItem );
+        return GetPropertyItem(nItem);
     }
 
     return NULL;
 }
 
-ZBPropertyItem* ZCPropertyListCtrl::GetPropertyItem( int nIndex )
+ZBPropertyItem* ZCPropertyListCtrl::GetPropertyItem(int nIndex)
 {
-    return nIndex >= 0 && nIndex < GetCount() ? reinterpret_cast<ZBPropertyItem*>( GetItemData( nIndex ) ) : NULL;
+    return nIndex >= 0 && nIndex < GetCount() ? reinterpret_cast<ZBPropertyItem*>(GetItemData(nIndex)) : NULL;
 }
 
-void ZCPropertyListCtrl::DeletePropertyItem( ZBPropertyItem* pPropertyItem )
+void ZCPropertyListCtrl::DeletePropertyItem(ZBPropertyItem* pPropertyItem)
 {
     int Count = GetCount();
 
-    for ( int i = 0; i < Count; ++i )
+    for (int i = 0; i < Count; ++i)
     {
-        ZBPropertyItem* pProp = reinterpret_cast<ZBPropertyItem*>( GetItemData( i ) );
+        ZBPropertyItem* pProp = reinterpret_cast<ZBPropertyItem*>(GetItemData(i));
 
-        if ( pProp == pPropertyItem )
+        if (pProp == pPropertyItem)
         {
-            DeletePropertyItem( i );
+            DeletePropertyItem(i);
             break;
         }
     }
 }
 
-void ZCPropertyListCtrl::SetPropertyItemManager( ZBPropertyItemManager* pPropertyItemManager )
+void ZCPropertyListCtrl::SetPropertyItemManager(ZBPropertyItemManager* pPropertyItemManager)
 {
-    if ( m_pPropertyItemManager )
+    if (m_pPropertyItemManager)
     {
         delete m_pPropertyItemManager;
     }
@@ -462,15 +462,15 @@ void ZCPropertyListCtrl::SetPropertyItemManager( ZBPropertyItemManager* pPropert
     Initialize();
 }
 
-void ZCPropertyListCtrl::GetItemValueRect( CRect& rect )
+void ZCPropertyListCtrl::GetItemValueRect(CRect& rect)
 {
-    rect.left     = m_SplitterX + 3;
-    rect.bottom    -= 1;
+    rect.left = m_SplitterX + 3;
+    rect.bottom -= 1;
 }
 
 void ZCPropertyListCtrl::NoInPlaceControl()
 {
-    if ( m_pWndInPlaceControl )
+    if (m_pWndInPlaceControl)
     {
         // Before deleting the control,
         // Detach observer on edit control
@@ -483,9 +483,9 @@ void ZCPropertyListCtrl::NoInPlaceControl()
     }
 }
 
-void ZCPropertyListCtrl::ResetContent( bool DeleteEditCtrl /*= true*/ )
+void ZCPropertyListCtrl::ResetContent(bool DeleteEditCtrl /*= true*/)
 {
-    if ( DeleteEditCtrl )
+    if (DeleteEditCtrl)
     {
         NoInPlaceControl();
     }
@@ -499,305 +499,305 @@ void ZCPropertyListCtrl::PreSubclassWindow()
 {
     CDragListBox::PreSubclassWindow();
 
-    ModifyStyle( 0, LBS_OWNERDRAWFIXED | LBS_NOINTEGRALHEIGHT | LBS_NOTIFY );
+    ModifyStyle(0, LBS_OWNERDRAWFIXED | LBS_NOINTEGRALHEIGHT | LBS_NOTIFY);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // ZCPropertyListCtrl message handlers
 
-int ZCPropertyListCtrl::OnCreate( LPCREATESTRUCT lpCreateStruct )
+int ZCPropertyListCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-    if ( CDragListBox::OnCreate( lpCreateStruct ) == -1 )
+    if (CDragListBox::OnCreate(lpCreateStruct) == -1)
     {
         return -1;
     }
-    
+
     // Create the caption font.
-    if ( !m_Font.CreateFont( 15,
-                             6,
-                             0,
-                             0,
-                             FW_NORMAL,
-                             0,
-                             0,
-                             0,
-                             ANSI_CHARSET,
-                             OUT_TT_PRECIS,
-                             CLIP_DEFAULT_PRECIS,
-                             PROOF_QUALITY,
-                             0,
-                             _T( "Tahoma" ) ) )
+    if (!m_Font.CreateFont(15,
+                           6,
+                           0,
+                           0,
+                           FW_NORMAL,
+                           0,
+                           0,
+                           0,
+                           ANSI_CHARSET,
+                           OUT_TT_PRECIS,
+                           CLIP_DEFAULT_PRECIS,
+                           PROOF_QUALITY,
+                           0,
+                           _T("Tahoma")))
     {
-        TRACE0( _T( "Unable to create caption font.\n" ) );
+        TRACE0(_T("Unable to create caption font.\n"));
         return -1;
     }
 
     // Create the bold caption font.
-    if ( !m_FontBold.CreateFont( 15,
-                                 6,
-                                 0,
-                                 0,
-                                 FW_BOLD,
-                                 0,
-                                 0,
-                                 0,
-                                 ANSI_CHARSET,
-                                 OUT_TT_PRECIS,
-                                 CLIP_DEFAULT_PRECIS,
-                                 PROOF_QUALITY,
-                                 0,
-                                 _T( "Tahoma" ) ) )
+    if (!m_FontBold.CreateFont(15,
+                               6,
+                               0,
+                               0,
+                               FW_BOLD,
+                               0,
+                               0,
+                               0,
+                               ANSI_CHARSET,
+                               OUT_TT_PRECIS,
+                               CLIP_DEFAULT_PRECIS,
+                               PROOF_QUALITY,
+                               0,
+                               _T("Tahoma")))
     {
-        TRACE0( _T( "Unable to create caption font.\n" ) );
+        TRACE0(_T("Unable to create caption font.\n"));
         return -1;
     }
 
     return 0;
 }
 
-void ZCPropertyListCtrl::DrawItem( LPDRAWITEMSTRUCT lpDrawItemStruct )
+void ZCPropertyListCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 {
 #if 1
-    if( lpDrawItemStruct->itemAction & ODA_FOCUS )
+    if (lpDrawItemStruct->itemAction & ODA_FOCUS)
     {
         return;
     }
 #endif
 
     ZBPropertyItem* pPropertyItem = (ZBPropertyItem*)lpDrawItemStruct->itemData;
-    ASSERT( pPropertyItem != NULL );
+    ASSERT(pPropertyItem != NULL);
 
     CDC dc;
-    dc.Attach( lpDrawItemStruct->hDC );
+    dc.Attach(lpDrawItemStruct->hDC);
 
     CRect rect;
-    GetClientRect( rect );
+    GetClientRect(rect);
 
     int nLeftBorder = rect.left + PROPERTY_LEFT_BORDER;
 
     // + / -
-    bool bTabItem = ToBool( ISA( pPropertyItem,ZBPropertyItemCategory ) );
+    bool bTabItem = ToBool(ISA(pPropertyItem, ZBPropertyItemCategory));
 
-    if( bTabItem )
+    if (bTabItem)
     {
-        CRect rcSign( lpDrawItemStruct->rcItem );
+        CRect rcSign(lpDrawItemStruct->rcItem);
         rcSign.right = nLeftBorder;
 
-        rcSign.DeflateRect( 4, 4 );
+        rcSign.DeflateRect(4, 4);
 
-        rcSign.right    += 1;
-        rcSign.bottom    += 1;
+        rcSign.right += 1;
+        rcSign.bottom += 1;
 
-        dc.FillRect( rcSign, CBrush::FromHandle( (HBRUSH)GetStockObject( WHITE_BRUSH ) ) );
-        dc.FrameRect( rcSign, CBrush::FromHandle( (HBRUSH)GetStockObject( BLACK_BRUSH ) ) );
-        
-        CPoint ptCenter( rcSign.CenterPoint() );
+        dc.FillRect(rcSign, CBrush::FromHandle((HBRUSH)GetStockObject(WHITE_BRUSH)));
+        dc.FrameRect(rcSign, CBrush::FromHandle((HBRUSH)GetStockObject(BLACK_BRUSH)));
+
+        CPoint ptCenter(rcSign.CenterPoint());
 
         // Minus
-        dc.MoveTo( ptCenter.x - 2, ptCenter.y );
-        dc.LineTo( ptCenter.x + 3, ptCenter.y );
+        dc.MoveTo(ptCenter.x - 2, ptCenter.y);
+        dc.LineTo(ptCenter.x + 3, ptCenter.y);
 
-        if( !static_cast<ZBPropertyItemCategory*>( pPropertyItem )->GetChildrenVisible() )
+        if (!static_cast<ZBPropertyItemCategory*>(pPropertyItem)->GetChildrenVisible())
         {
             // Plus
-            dc.MoveTo( ptCenter.x, ptCenter.y - 2 );
-            dc.LineTo( ptCenter.x, ptCenter.y + 3 );
+            dc.MoveTo(ptCenter.x, ptCenter.y - 2);
+            dc.LineTo(ptCenter.x, ptCenter.y + 3);
         }
     }
 
-    CPen pen( PS_SOLID, 1, RGB( 198, 198, 198 ) );
-    CPen* pOldPen = dc.SelectObject( &pen );
+    CPen pen(PS_SOLID, 1, RGB(198, 198, 198));
+    CPen* pOldPen = dc.SelectObject(&pen);
 
-    dc.MoveTo( nLeftBorder, rect.top );
-    dc.LineTo( nLeftBorder, rect.bottom );
+    dc.MoveTo(nLeftBorder, rect.top);
+    dc.LineTo(nLeftBorder, rect.bottom);
 
-    rect         = lpDrawItemStruct->rcItem;
-    rect.left    += PROPERTY_LEFT_BORDER;
+    rect = lpDrawItemStruct->rcItem;
+    rect.left += PROPERTY_LEFT_BORDER;
 
     int nBottom = rect.bottom - 1;
 
-    dc.MoveTo( nLeftBorder, nBottom );
-    dc.LineTo( rect.right, nBottom );
+    dc.MoveTo(nLeftBorder, nBottom);
+    dc.LineTo(rect.right, nBottom);
 
     nLeftBorder = m_SplitterX;
 
-    dc.MoveTo( nLeftBorder, rect.top );
-    dc.LineTo( nLeftBorder, nBottom );
+    dc.MoveTo(nLeftBorder, rect.top);
+    dc.LineTo(nLeftBorder, nBottom);
 
-    rect.left    += 1;
+    rect.left += 1;
     rect.bottom -= 1;
-    rect.right     = nLeftBorder;
+    rect.right = nLeftBorder;
 
     int nCrBackground;
     int nCrText;
     // JMR-MODIF - Le 23 février 2006 - Changement de la couleur par défaut des propriétés ReadOnly.
 //    int nCrTextReadOnly;
 
-    if ( ( lpDrawItemStruct->itemAction | ODA_SELECT ) && ( lpDrawItemStruct->itemState & ODS_SELECTED ) )
+    if ((lpDrawItemStruct->itemAction | ODA_SELECT) && (lpDrawItemStruct->itemState & ODS_SELECTED))
     {
-        nCrBackground    = COLOR_HIGHLIGHT;
-        nCrText            = COLOR_HIGHLIGHTTEXT;
+        nCrBackground = COLOR_HIGHLIGHT;
+        nCrText = COLOR_HIGHLIGHTTEXT;
         // JMR-MODIF - Le 23 février 2006 - Changement de la couleur par défaut des propriétés ReadOnly.
 //        nCrTextReadOnly    = COLOR_GRAYTEXT;
     }
     else
     {
-        nCrBackground    = COLOR_WINDOW;
-        nCrText            = COLOR_WINDOWTEXT;
+        nCrBackground = COLOR_WINDOW;
+        nCrText = COLOR_WINDOWTEXT;
         // JMR-MODIF - Le 23 février 2006 - Changement de la couleur par défaut des propriétés ReadOnly.
 //        nCrTextReadOnly    = COLOR_GRAYTEXT;
     }
 
-    COLORREF crBackground    = ::GetSysColor( nCrBackground );
-    COLORREF crText            = ::GetSysColor( nCrText );
+    COLORREF crBackground = ::GetSysColor(nCrBackground);
+    COLORREF crText = ::GetSysColor(nCrText);
     // JMR-MODIF - Le 23 février 2006 - Changement de la couleur par défaut des propriétés ReadOnly.
 //    COLORREF crTextReadOnly    = ::GetSysColor( nCrTextReadOnly );
-    COLORREF crTextReadOnly    = COLOR_READONLY;//::GetSysColor( nCrTextReadOnly );
+    COLORREF crTextReadOnly = COLOR_READONLY;//::GetSysColor( nCrTextReadOnly );
 
-    dc.FillSolidRect( rect, crBackground );
-    COLORREF crOldBkColor    = dc.SetBkColor( crBackground );
-    COLORREF crOldTextColor    = dc.SetTextColor( ( pPropertyItem->CanBeEdited() ) ? crText : crTextReadOnly );
+    dc.FillSolidRect(rect, crBackground);
+    COLORREF crOldBkColor = dc.SetBkColor(crBackground);
+    COLORREF crOldTextColor = dc.SetTextColor((pPropertyItem->CanBeEdited()) ? crText : crTextReadOnly);
 
-    rect.left    += 3;
-    rect.right    -= 3;
+    rect.left += 3;
+    rect.right -= 3;
 
     CFont* pOldFont = NULL;
     CFont fontLabel;
 
-    if ( bTabItem )
+    if (bTabItem)
     {
-        pOldFont = dc.SelectObject( &m_FontBold );
+        pOldFont = dc.SelectObject(&m_FontBold);
     }
     else
     {
-        pOldFont = dc.SelectObject( &m_Font );
+        pOldFont = dc.SelectObject(&m_Font);
     }
 
     // Draw the title
-    dc.DrawText( pPropertyItem->GetName(), &rect, DT_SINGLELINE | DT_VCENTER );
+    dc.DrawText(pPropertyItem->GetName(), &rect, DT_SINGLELINE | DT_VCENTER);
 
 
     // If not selected, draw the value
-    if ( !( lpDrawItemStruct->itemState & ODS_SELECTED ) || !pPropertyItem->CanBeEdited() )
+    if (!(lpDrawItemStruct->itemState & ODS_SELECTED) || !pPropertyItem->CanBeEdited())
     {
         rect = lpDrawItemStruct->rcItem;
-        GetItemValueRect( rect );
-        pPropertyItem->DrawValue( &dc, rect );
+        GetItemValueRect(rect);
+        pPropertyItem->DrawValue(&dc, rect);
     }
 
-    dc.SelectObject( pOldPen );
-    dc.SetTextColor( crOldTextColor );
-    dc.SetBkColor( crOldBkColor );
+    dc.SelectObject(pOldPen);
+    dc.SetTextColor(crOldTextColor);
+    dc.SetBkColor(crOldBkColor);
 
-    if ( pOldFont != NULL )
+    if (pOldFont != NULL)
     {
-        dc.SelectObject( pOldFont );
+        dc.SelectObject(pOldFont);
     }
 
     dc.Detach();
 }
 
-void ZCPropertyListCtrl::DoCollapse( ZBPropertyItemCategory* pPropertyItemTab, int nItem )
+void ZCPropertyListCtrl::DoCollapse(ZBPropertyItemCategory* pPropertyItemTab, int nItem)
 {
-    ASSERT( pPropertyItemTab->GetChildrenVisible() );
+    ASSERT(pPropertyItemTab->GetChildrenVisible());
 
     nItem++;
 
-    for( int nNumber = pPropertyItemTab->GetNumberEnabledItems(); nNumber > 0; nNumber-- )
+    for (int nNumber = pPropertyItemTab->GetNumberEnabledItems(); nNumber > 0; nNumber--)
     {
-        DeleteString( nItem );
+        DeleteString(nItem);
     }
 
-    pPropertyItemTab->SetChildrenVisible( false );
+    pPropertyItemTab->SetChildrenVisible(false);
 }
 
-void ZCPropertyListCtrl::DoExpand( ZBPropertyItemCategory* pPropertyItemTab, int& nItem )
+void ZCPropertyListCtrl::DoExpand(ZBPropertyItemCategory* pPropertyItemTab, int& nItem)
 {
     // Now run through category's elements
-    ZBPropertyItemIterator i( &pPropertyItemTab->GetPropertyItemSet() );
+    ZBPropertyItemIterator i(&pPropertyItemTab->GetPropertyItemSet());
 
-    for ( ZBPropertyItem* pPropertyItem = i.GetFirst(); pPropertyItem; pPropertyItem = i.GetNext() )
+    for (ZBPropertyItem* pPropertyItem = i.GetFirst(); pPropertyItem; pPropertyItem = i.GetNext())
     {
-        if ( pPropertyItem->GetEnabled() )
+        if (pPropertyItem->GetEnabled())
         {
-            InsertPropertyItem( pPropertyItem, ++nItem );
+            InsertPropertyItem(pPropertyItem, ++nItem);
         }
     }
 
     pPropertyItemTab->SetChildrenVisible();
 }
 
-void ZCPropertyListCtrl::DoCollapseExpand( int nItem, ZBPropertyItem* pPropertyItem )
-{    
-    if( pPropertyItem == NULL )
+void ZCPropertyListCtrl::DoCollapseExpand(int nItem, ZBPropertyItem* pPropertyItem)
+{
+    if (pPropertyItem == NULL)
     {
-        pPropertyItem = GetPropertyItem( nItem );
+        pPropertyItem = GetPropertyItem(nItem);
     }
 
-    if( pPropertyItem == NULL )
+    if (pPropertyItem == NULL)
     {
         return;
     }
 
-    if( pPropertyItem->IsKindOf( RUNTIME_CLASS( ZBPropertyItemCategory ) ) )
+    if (pPropertyItem->IsKindOf(RUNTIME_CLASS(ZBPropertyItemCategory)))
     {
-        if( SetCurrentData() )
+        if (SetCurrentData())
         {
             NoInPlaceControl();
         }
 
-        ZBPropertyItemCategory* pPropertyItemTab = static_cast<ZBPropertyItemCategory*>( pPropertyItem );
+        ZBPropertyItemCategory* pPropertyItemTab = static_cast<ZBPropertyItemCategory*>(pPropertyItem);
 
-        if( pPropertyItemTab->GetChildrenVisible() )
+        if (pPropertyItemTab->GetChildrenVisible())
         {
-            DoCollapse( pPropertyItemTab, nItem );
+            DoCollapse(pPropertyItemTab, nItem);
         }
         else
         {
-            DoExpand( pPropertyItemTab, nItem );
+            DoExpand(pPropertyItemTab, nItem);
         }
 
         // We need to save the collapsed and expand attribute
-        SavePropertyState( pPropertyItemTab );
+        SavePropertyState(pPropertyItemTab);
     }
 }
 
-void ZCPropertyListCtrl::OnLButtonDblClk( UINT nFlags, CPoint point )
+void ZCPropertyListCtrl::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
-    CDragListBox::OnLButtonDblClk( nFlags, point );
+    CDragListBox::OnLButtonDblClk(nFlags, point);
 
-    DoCollapseExpand( GetCurSel() );
+    DoCollapseExpand(GetCurSel());
 }
 
-BOOL ZCPropertyListCtrl::PreTranslateMessage( MSG* pMsg )
+BOOL ZCPropertyListCtrl::PreTranslateMessage(MSG* pMsg)
 {
-    if( pMsg->message == WM_KEYDOWN )
+    if (pMsg->message == WM_KEYDOWN)
     {
-        int nItem    = GetCurSel();
-        char nChar    = char( pMsg->wParam );
-        bool bDone    = true;
+        int nItem = GetCurSel();
+        char nChar = char(pMsg->wParam);
+        bool bDone = true;
 
-        ZBPropertyItem* pPropertyItem = GetPropertyItem( nItem );
+        ZBPropertyItem* pPropertyItem = GetPropertyItem(nItem);
 
-        if( pPropertyItem != NULL )
+        if (pPropertyItem != NULL)
         {
-            if( pPropertyItem->IsKindOf( RUNTIME_CLASS( ZBPropertyItemCategory ) ) )
+            if (pPropertyItem->IsKindOf(RUNTIME_CLASS(ZBPropertyItemCategory)))
             {
                 bool bChildrenVisible = static_cast<ZBPropertyItemCategory*>(pPropertyItem)->GetChildrenVisible();
 
-                switch( nChar )
+                switch (nChar)
                 {
                     case VK_RETURN:
                     {
-                        DoCollapseExpand( nItem, pPropertyItem );
+                        DoCollapseExpand(nItem, pPropertyItem);
                         break;
                     }
 
                     case VK_ADD:
                     {
-                        if( !bChildrenVisible )
+                        if (!bChildrenVisible)
                         {
-                            DoExpand( (ZBPropertyItemCategory*)pPropertyItem, nItem );
+                            DoExpand((ZBPropertyItemCategory*)pPropertyItem, nItem);
                         }
 
                         break;
@@ -805,9 +805,9 @@ BOOL ZCPropertyListCtrl::PreTranslateMessage( MSG* pMsg )
 
                     case VK_SUBTRACT:
                     {
-                        if( bChildrenVisible )
+                        if (bChildrenVisible)
                         {
-                            DoCollapse( (ZBPropertyItemCategory*)pPropertyItem, nItem );
+                            DoCollapse((ZBPropertyItemCategory*)pPropertyItem, nItem);
                         }
 
                         break;
@@ -815,7 +815,7 @@ BOOL ZCPropertyListCtrl::PreTranslateMessage( MSG* pMsg )
 
                     case VK_TAB:
                     {
-                        if ( GetKeyState( VK_SHIFT ) & 0x80000000 )
+                        if (GetKeyState(VK_SHIFT) & 0x80000000)
                         {
                             // Edit previous item
                             EditPreviousItem();
@@ -837,11 +837,11 @@ BOOL ZCPropertyListCtrl::PreTranslateMessage( MSG* pMsg )
             }
             else
             {
-                switch( nChar )
+                switch (nChar)
                 {
                     case VK_TAB:
                     {
-                        if ( GetKeyState( VK_SHIFT ) & 0x80000000 )
+                        if (GetKeyState(VK_SHIFT) & 0x80000000)
                         {
                             // Edit previous item
                             EditPreviousItem();
@@ -857,9 +857,9 @@ BOOL ZCPropertyListCtrl::PreTranslateMessage( MSG* pMsg )
 
                     case VK_RETURN:
                     {
-                        if( m_pWndInPlaceControl != NULL )
+                        if (m_pWndInPlaceControl != NULL)
                         {
-                            dynamic_cast<CWnd*>( m_pWndInPlaceControl )->SetFocus();
+                            dynamic_cast<CWnd*>(m_pWndInPlaceControl)->SetFocus();
                         }
 
                         break;
@@ -877,15 +877,15 @@ BOOL ZCPropertyListCtrl::PreTranslateMessage( MSG* pMsg )
             bDone = false;
         }
 
-        if( bDone )
+        if (bDone)
         {
             return TRUE;
         }
         else
         {
-            if( GetFocus() == this && IsCharAlpha( nChar ) )
+            if (GetFocus() == this && IsCharAlpha(nChar))
             {
-                if( LookupPropertyItem( nChar ) )
+                if (LookupPropertyItem(nChar))
                 {
                     OnSelChange();
                 }
@@ -895,19 +895,19 @@ BOOL ZCPropertyListCtrl::PreTranslateMessage( MSG* pMsg )
         }
     }
 
-    return CDragListBox::PreTranslateMessage( pMsg );
+    return CDragListBox::PreTranslateMessage(pMsg);
 }
 
-int ZCPropertyListCtrl::FindPropertyItem( char nStartChar, int nFromIndex, int nCount )
+int ZCPropertyListCtrl::FindPropertyItem(char nStartChar, int nFromIndex, int nCount)
 {
-    const CString strStartChar( nStartChar );
+    const CString strStartChar(nStartChar);
 
-    while( nCount-- )
+    while (nCount--)
     {
-        ZBPropertyItem* pPropertyItem = reinterpret_cast<ZBPropertyItem*>( GetItemData( nFromIndex ) );
-        ASSERT( pPropertyItem != NULL );
+        ZBPropertyItem* pPropertyItem = reinterpret_cast<ZBPropertyItem*>(GetItemData(nFromIndex));
+        ASSERT(pPropertyItem != NULL);
 
-        if( pPropertyItem->GetName().Left( 1 ).CompareNoCase( strStartChar ) == 0 )
+        if (pPropertyItem->GetName().Left(1).CompareNoCase(strStartChar) == 0)
         {
             return nFromIndex;
         }
@@ -918,29 +918,29 @@ int ZCPropertyListCtrl::FindPropertyItem( char nStartChar, int nFromIndex, int n
     return -1;
 }
 
-bool ZCPropertyListCtrl::LookupPropertyItem( char nStartChar )
+bool ZCPropertyListCtrl::LookupPropertyItem(char nStartChar)
 {
     int nCount = GetCount();
 
-    if( nCount )
+    if (nCount)
     {
         int nCurrItem = GetCurSel() + 1;
 
-        if( nCurrItem == nCount )
+        if (nCurrItem == nCount)
         {
             nCurrItem = 0;
         }
 
-        int nFindIndex = FindPropertyItem( nStartChar, nCurrItem, nCount - nCurrItem );
+        int nFindIndex = FindPropertyItem(nStartChar, nCurrItem, nCount - nCurrItem);
 
-        if( nFindIndex == -1 && nCurrItem > 0 )
+        if (nFindIndex == -1 && nCurrItem > 0)
         {
-            nFindIndex = FindPropertyItem( nStartChar, 0, nCurrItem );
+            nFindIndex = FindPropertyItem(nStartChar, 0, nCurrItem);
         }
 
-        if( nFindIndex != -1 )
+        if (nFindIndex != -1)
         {
-            SetCurSel( nFindIndex );
+            SetCurSel(nFindIndex);
             return true;
         }
     }
@@ -950,23 +950,23 @@ bool ZCPropertyListCtrl::LookupPropertyItem( char nStartChar )
 
 bool ZCPropertyListCtrl::SetCurrentData()
 {
-    if( m_pWndInPlaceControl != NULL && m_nSelectedItem != -1 )
+    if (m_pWndInPlaceControl != NULL && m_nSelectedItem != -1)
     {
-        ZBPropertyItem* pPropertyItemEdited = GetPropertyItem( m_nSelectedItem );
+        ZBPropertyItem* pPropertyItemEdited = GetPropertyItem(m_nSelectedItem);
 
-        if ( pPropertyItemEdited != NULL )
+        if (pPropertyItemEdited != NULL)
         {
-            pPropertyItemEdited->SetData( m_pWndInPlaceControl->GetEditText() );
+            pPropertyItemEdited->SetData(m_pWndInPlaceControl->GetEditText());
 
             bool bRefresh = false;
 
-            m_pPropertyItemManager->OnDataChanged( pPropertyItemEdited, this, m_nSelectedItem, bRefresh );
+            m_pPropertyItemManager->OnDataChanged(pPropertyItemEdited, this, m_nSelectedItem, bRefresh);
 
             // If the control need to be refreshed
-            if ( bRefresh )
+            if (bRefresh)
             {
                 // Force the control list to reload values
-                Refresh( true, true );
+                Refresh(true, true);
             }
             else
             {
@@ -982,9 +982,9 @@ bool ZCPropertyListCtrl::SetCurrentData()
     return false;
 }
 
-afx_msg LONG ZCPropertyListCtrl::OnKeyPressed( WPARAM wParam, LPARAM lParam )
+afx_msg LONG ZCPropertyListCtrl::OnKeyPressed(WPARAM wParam, LPARAM lParam)
 {
-    switch( wParam )
+    switch (wParam)
     {
         case VK_ESCAPE:
         {
@@ -997,7 +997,7 @@ afx_msg LONG ZCPropertyListCtrl::OnKeyPressed( WPARAM wParam, LPARAM lParam )
         case VK_TAB:
         {
             // Edit next item
-            if ( !m_ListInReadOnly )
+            if (!m_ListInReadOnly)
             {
                 EditNextItem();
             }
@@ -1005,10 +1005,10 @@ afx_msg LONG ZCPropertyListCtrl::OnKeyPressed( WPARAM wParam, LPARAM lParam )
             return 1;
         }
 
-        case ( VK_SHIFT | VK_TAB ):
+        case (VK_SHIFT | VK_TAB):
         {
             // Edit previous item
-            if ( !m_ListInReadOnly )
+            if (!m_ListInReadOnly)
             {
                 EditPreviousItem();
             }
@@ -1029,56 +1029,56 @@ void ZCPropertyListCtrl::OnSelChange()
 {
     int nItem = GetCurSel();
 
-    if ( m_nSelectedItem != nItem && !m_ListInReadOnly )
+    if (m_nSelectedItem != nItem && !m_ListInReadOnly)
     {
-        CreateInPlaceControl( nItem, nItem );
+        CreateInPlaceControl(nItem, nItem);
     }
 }
 
 void ZCPropertyListCtrl::DetachObserverForEditCtrl()
 {
     // If a previous edit control exists, remove it as an observer.
-    if ( m_pWndInPlaceControl )
+    if (m_pWndInPlaceControl)
     {
         m_pWndInPlaceControl->DetachAllObservers();
-        DetachObserver( m_pWndInPlaceControl );
+        DetachObserver(m_pWndInPlaceControl);
     }
 }
 
-void ZCPropertyListCtrl::CreateInPlaceControl( int nItem, int nPreviousItem /*= -1*/ )
+void ZCPropertyListCtrl::CreateInPlaceControl(int nItem, int nPreviousItem /*= -1*/)
 {
     ZBPropertyItem* pPreviousPropertyItem = NULL;
 
-    if ( nPreviousItem != -1 )
+    if (nPreviousItem != -1)
     {
-        pPreviousPropertyItem = GetPropertyItem( nPreviousItem );
+        pPreviousPropertyItem = GetPropertyItem(nPreviousItem);
     }
 
     CRect rect;
 
-    GetItemRect( nItem, rect );
-    GetItemValueRect( rect );
+    GetItemRect(nItem, rect);
+    GetItemValueRect(rect);
 
     // Save the value if necessary when deleted
-    if ( m_pWndInPlaceControl )
+    if (m_pWndInPlaceControl)
     {
         // Assigns the control size to the property item
-        if ( m_pWndInPlaceControl->GetSize().cx != 0 &&
-             m_pWndInPlaceControl->GetSize().cy != 0 &&
-             pPreviousPropertyItem != NULL )
+        if (m_pWndInPlaceControl->GetSize().cx != 0 &&
+            m_pWndInPlaceControl->GetSize().cy != 0 &&
+            pPreviousPropertyItem != NULL)
         {
-            pPreviousPropertyItem->SetSize( m_pWndInPlaceControl->GetSize() );
+            pPreviousPropertyItem->SetSize(m_pWndInPlaceControl->GetSize());
         }
 
-        if ( m_pWndInPlaceControl->GetExtendedSize().cx != 0 &&
-             m_pWndInPlaceControl->GetExtendedSize().cy != 0 &&
-             pPreviousPropertyItem != NULL )
+        if (m_pWndInPlaceControl->GetExtendedSize().cx != 0 &&
+            m_pWndInPlaceControl->GetExtendedSize().cy != 0 &&
+            pPreviousPropertyItem != NULL)
         {
-            pPreviousPropertyItem->SetExtendedSize( m_pWndInPlaceControl->GetExtendedSize() );
+            pPreviousPropertyItem->SetExtendedSize(m_pWndInPlaceControl->GetExtendedSize());
         }
 
         // Request the manager to save the property state
-        SavePropertyState( pPreviousPropertyItem );
+        SavePropertyState(pPreviousPropertyItem);
 
         // save the control value
         m_pWndInPlaceControl->SaveValue();
@@ -1088,81 +1088,81 @@ void ZCPropertyListCtrl::CreateInPlaceControl( int nItem, int nPreviousItem /*= 
     DetachObserverForEditCtrl();
 
     // Get the requested property item
-    ZBPropertyItem* pPropertyItem = GetPropertyItem( nItem );
-    ASSERT( pPropertyItem != NULL );
+    ZBPropertyItem* pPropertyItem = GetPropertyItem(nItem);
+    ASSERT(pPropertyItem != NULL);
 
-    if ( pPropertyItem->CanBeEdited() )
+    if (pPropertyItem->CanBeEdited())
     {
         // First, retreive the property state
-        _ZBPropertyState* pPropState = GetPropertyState( pPropertyItem );
+        _ZBPropertyState* pPropState = GetPropertyState(pPropertyItem);
 
-        if ( pPropState                                &&
-             pPropState->GetExtendedSize().cx != 0    &&
-             pPropState->GetExtendedSize().cy != 0 )
+        if (pPropState                                &&
+            pPropState->GetExtendedSize().cx != 0 &&
+            pPropState->GetExtendedSize().cy != 0)
         {
-            pPropertyItem->CreateInPlaceControl( this, rect, m_pWndInPlaceControl, pPropState->GetExtendedSize() );
+            pPropertyItem->CreateInPlaceControl(this, rect, m_pWndInPlaceControl, pPropState->GetExtendedSize());
         }
         else
         {
-            pPropertyItem->CreateInPlaceControl( this, rect, m_pWndInPlaceControl );
+            pPropertyItem->CreateInPlaceControl(this, rect, m_pWndInPlaceControl);
         }
 
         // Notify windows about editing properties
-        AfxGetMainWnd()->SendMessageToDescendants( UM_START_PROPERTY_EDITION, 0, (LPARAM)NULL );
+        AfxGetMainWnd()->SendMessageToDescendants(UM_START_PROPERTY_EDITION, 0, (LPARAM)NULL);
     }
     else
     {
-        pPropertyItem->DestroyInPlaceControl( m_pWndInPlaceControl );
+        pPropertyItem->DestroyInPlaceControl(m_pWndInPlaceControl);
     }
 
     // If the edit control exists,
     // set observers
-    if ( m_pWndInPlaceControl )
+    if (m_pWndInPlaceControl)
     {
-        m_pWndInPlaceControl->AttachObserver( this );
-        AttachObserver( m_pWndInPlaceControl );
+        m_pWndInPlaceControl->AttachObserver(this);
+        AttachObserver(m_pWndInPlaceControl);
     }
 
     // Redraw the old selected item
-    if ( m_nSelectedItem != nItem )
+    if (m_nSelectedItem != nItem)
     {
-        RedrawItem( m_nSelectedItem );
+        RedrawItem(m_nSelectedItem);
     }
 
     // Saves the selected item
     m_nSelectedItem = nItem;
-    SetCurSel( m_nSelectedItem );
+    SetCurSel(m_nSelectedItem);
 
-    if ( m_pWndInPlaceControl )
+    if (m_pWndInPlaceControl)
     {
         // Sets the focus to the newly created control
-        dynamic_cast<CWnd*>( m_pWndInPlaceControl )->SetFocus();
+        dynamic_cast<CWnd*>(m_pWndInPlaceControl)->SetFocus();
     }
-    
-    // Notify all observers
-    ZBProperty* pProperty = m_pPropertyItemManager->GetCorrespondingProperty( pPropertyItem );
-    ZBPropertyItemObserverMsg Msg( pProperty );
 
     // Notify all observers
-    NotifyAllObservers( &Msg );
+    ZBProperty* pProperty = m_pPropertyItemManager->GetCorrespondingProperty(pPropertyItem);
+    ZBPropertyItemObserverMsg Msg(pProperty);
+
+    // Notify all observers
+    NotifyAllObservers(&Msg);
 }
 
-void ZCPropertyListCtrl::ShowInPlaceControl( bool bShow )
+void ZCPropertyListCtrl::ShowInPlaceControl(bool bShow)
 {
-    if( m_pWndInPlaceControl )
+    if (m_pWndInPlaceControl)
     {
-        dynamic_cast<CWnd*>( m_pWndInPlaceControl )->ShowWindow( ( bShow == true ) ? SW_SHOW : SW_HIDE );
+        dynamic_cast<CWnd*>(m_pWndInPlaceControl)->ShowWindow((bShow == true) ? SW_SHOW : SW_HIDE);
     }
 }
 
-void ZCPropertyListCtrl::OnKillFocus( CWnd* pNewWnd )
+void ZCPropertyListCtrl::OnKillFocus(CWnd* pNewWnd)
 {
-    CDragListBox::OnKillFocus( pNewWnd );
+    CDragListBox::OnKillFocus(pNewWnd);
 }
 
 void ZCPropertyListCtrl::RedrawAll()
 {
-    ShowInPlaceControl( false );
+    ShowInPlaceControl(false);
 
     // Try to call the invalidation window method
     Invalidate();
@@ -1170,51 +1170,51 @@ void ZCPropertyListCtrl::RedrawAll()
     ShowInPlaceControl();
 }
 
-void ZCPropertyListCtrl::RedrawItem( int nItem )
+void ZCPropertyListCtrl::RedrawItem(int nItem)
 {
-    ZBPropertyItem* pPropertyItem = GetPropertyItem( nItem );
+    ZBPropertyItem* pPropertyItem = GetPropertyItem(nItem);
 
-    if ( pPropertyItem && !ISA( pPropertyItem, ZBPropertyItemCategory ) )
+    if (pPropertyItem && !ISA(pPropertyItem, ZBPropertyItemCategory))
     {
         CRect rect;
 
         CDC* pDC = GetDC();
 
-        if ( !pDC )
+        if (!pDC)
         {
             return;
         }
 
-        CFont* pOldFont = pDC->SelectObject( &m_Font );
+        CFont* pOldFont = pDC->SelectObject(&m_Font);
 
         COLORREF crBkColor = pDC->GetBkColor();
 
-        GetItemRect( nItem, rect );
-        GetItemValueRect( rect );
+        GetItemRect(nItem, rect);
+        GetItemValueRect(rect);
 
-        rect.DeflateRect( 1, 1 );
+        rect.DeflateRect(1, 1);
 
-        pDC->FillSolidRect( &rect, crBkColor );
+        pDC->FillSolidRect(&rect, crBkColor);
 
-        rect.InflateRect( 1, 1 );
+        rect.InflateRect(1, 1);
 
         // JMR-MODIF - Le 23 février 2006 - Changement de la couleur par défaut des propriétés ReadOnly.
 /*        COLORREF crOldTextColor =
             pDC->SetTextColor( ( pPropertyItem->CanBeEdited() ) ? ::GetSysColor( COLOR_WINDOWTEXT ) : ::GetSysColor( COLOR_GRAYTEXT ) );
 */
         COLORREF crOldTextColor =
-            pDC->SetTextColor( ( pPropertyItem->CanBeEdited() ) ? ::GetSysColor( COLOR_WINDOWTEXT ) : COLOR_READONLY );
+            pDC->SetTextColor((pPropertyItem->CanBeEdited()) ? ::GetSysColor(COLOR_WINDOWTEXT) : COLOR_READONLY);
 
-        pPropertyItem->DrawValue( pDC, rect );
+        pPropertyItem->DrawValue(pDC, rect);
 
-        pDC->SetTextColor( crOldTextColor );
+        pDC->SetTextColor(crOldTextColor);
 
-        if ( pOldFont != NULL )
+        if (pOldFont != NULL)
         {
-            pDC->SelectObject( pOldFont );
+            pDC->SelectObject(pOldFont);
         }
 
-        ReleaseDC( pDC );
+        ReleaseDC(pDC);
     }
 }
 //---------------------------------------------------------------------------
@@ -1226,13 +1226,13 @@ void ZCPropertyListCtrl::CheckState()
 //---------------------------------------------------------------------------
 bool ZCPropertyListCtrl::IsListInPhase()
 {
-          int nItem  = 0;
+    int nItem = 0;
     const int nCount = GetCount();
 
     // run trough the item list and check simulatenously the property item manager
     // run through all items
     ZBItemCategoryIterator  i(&m_pPropertyItemManager->GetItemCategorySet());
-    ZBPropertyItemCategory* pPropertyItemTab = i.GetFirst(); 
+    ZBPropertyItemCategory* pPropertyItemTab = i.GetFirst();
     int                     index = 0;
 
     for (int nIndex = 0; (nIndex < nCount) && pPropertyItemTab; ++nIndex, pPropertyItemTab = i.GetNext())
@@ -1300,29 +1300,29 @@ bool ZCPropertyListCtrl::IsListInPhase()
     return true;
 }
 //---------------------------------------------------------------------------
-void ZCPropertyListCtrl::OnMouseMove( UINT nFlags, CPoint point )
+void ZCPropertyListCtrl::OnMouseMove(UINT nFlags, CPoint point)
 {
     // Tests if we are in splitter moving mode
-    if ( gInMoveSplitterMode )
+    if (gInMoveSplitterMode)
     {
         CDC* pDC = GetDC();
 
-        if ( !pDC )
+        if (!pDC)
         {
             return;
         }
 
         // Converts the point
-        CPoint pt( point );
+        CPoint pt(point);
 
         // Check the maximum and the minimum
-        if ( gMaxLeft != 0 && gMaxRight != 0 )
+        if (gMaxLeft != 0 && gMaxRight != 0)
         {
-            if ( pt.x > gMaxRight )
+            if (pt.x > gMaxRight)
             {
                 pt.x = gMaxRight;
             }
-            else if ( pt.x < gMaxLeft )
+            else if (pt.x < gMaxLeft)
             {
                 pt.x = gMaxLeft;
             }
@@ -1335,130 +1335,130 @@ void ZCPropertyListCtrl::OnMouseMove( UINT nFlags, CPoint point )
         Invalidate();
 
         // JMR-MODIF - Le 14 février 2006 - Ajout du code pour le nettoyage du Device Context.
-        ReleaseDC( pDC );
+        ReleaseDC(pDC);
 
         return;
     }
     else
     {
         CRect rect;
-        GetClientRect( rect );
+        GetClientRect(rect);
 
-        rect.left    = m_SplitterX - 2;
-        rect.right    = m_SplitterX + 2;
+        rect.left = m_SplitterX - 2;
+        rect.right = m_SplitterX + 2;
 
         // Test if the cursor is on the splitter
-        if ( rect.PtInRect( point ) )
+        if (rect.PtInRect(point))
         {
-            ::SetCursor( m_hcurSplitter );
+            ::SetCursor(m_hcurSplitter);
             return;
         }
     }
 
-    CDragListBox::OnMouseMove( nFlags, point );
+    CDragListBox::OnMouseMove(nFlags, point);
 }
 
-void ZCPropertyListCtrl::OnLButtonDown( UINT nFlags, CPoint point )
+void ZCPropertyListCtrl::OnLButtonDown(UINT nFlags, CPoint point)
 {
-    if( point.x <= PROPERTY_LEFT_BORDER )
+    if (point.x <= PROPERTY_LEFT_BORDER)
     {
-        CDragListBox::OnLButtonDown( nFlags, point );
-        DoCollapseExpand( GetCurSel() );
+        CDragListBox::OnLButtonDown(nFlags, point);
+        DoCollapseExpand(GetCurSel());
 
         return;
     }
     else
     {
         CRect rect;
-        GetClientRect( rect );
+        GetClientRect(rect);
 
-        rect.left    = m_SplitterX - 2;
-        rect.right    = m_SplitterX + 2;
+        rect.left = m_SplitterX - 2;
+        rect.right = m_SplitterX + 2;
 
         // Test if the cursor is on the splitter
-        if ( rect.PtInRect( point ) )
+        if (rect.PtInRect(point))
         {
             gInMoveSplitterMode = true;
 
-            GetClientRect( gInitialRect );
-            gInitialRect.DeflateRect( 2, 2 );
+            GetClientRect(gInitialRect);
+            gInitialRect.DeflateRect(2, 2);
 
-            gInitialPoint    = point;
-            gLastPoint.x    = 0;
-            gLastPoint.y    = 0;
+            gInitialPoint = point;
+            gLastPoint.x = 0;
+            gLastPoint.y = 0;
 
             // Calculates the max in x
-            gMaxRight        = gInitialRect.right-5;
-            gMaxLeft        = gInitialRect.left+PROPERTY_LEFT_BORDER+5;
+            gMaxRight = gInitialRect.right - 5;
+            gMaxLeft = gInitialRect.left + PROPERTY_LEFT_BORDER + 5;
 
             // Hide the edition control
-            ShowInPlaceControl( false );
+            ShowInPlaceControl(false);
 
             // Capture the cursor in the window
-            ::SetCursor( m_hcurSplitter );
+            ::SetCursor(m_hcurSplitter);
             SetCapture();
         }
         else
         {
-            CDragListBox::OnLButtonDown( nFlags, point );
+            CDragListBox::OnLButtonDown(nFlags, point);
         }
     }
 }
 
-void ZCPropertyListCtrl::OnLButtonUp( UINT nFlags, CPoint point )
+void ZCPropertyListCtrl::OnLButtonUp(UINT nFlags, CPoint point)
 {
     // Tests if we were in splitter moving mode
-    if ( gInMoveSplitterMode )
+    if (gInMoveSplitterMode)
     {
         // Release the cursor capture
         ReleaseCapture();
 
         // Converts the point
-        CPoint pt( point );
+        CPoint pt(point);
 
         // Check the maximum and the minimum
-        if ( gMaxLeft != 0 && gMaxRight != 0 )
+        if (gMaxLeft != 0 && gMaxRight != 0)
         {
-            if ( pt.x > gMaxRight )
+            if (pt.x > gMaxRight)
             {
                 pt.x = gMaxRight;
             }
-            else if ( pt.x < gMaxLeft )
+            else if (pt.x < gMaxLeft)
             {
                 pt.x = gMaxLeft;
             }
         }
 
         // Saves the splitter position
-        m_SplitterX            = pt.x;
+        m_SplitterX = pt.x;
 
         // Reset flags and value
         gInMoveSplitterMode = false;
-        gMaxLeft            = 0;
-        gMaxRight            = 0;
+        gMaxLeft = 0;
+        gMaxRight = 0;
 
         // Redraw the entire control
         Invalidate();
 
         // Unselect the item
-        SetCurSel( -1 );
+        SetCurSel(-1);
     }
 
-    CDragListBox::OnLButtonUp( nFlags, point );
+    CDragListBox::OnLButtonUp(nFlags, point);
 }
 
-BOOL ZCPropertyListCtrl::BeginDrag( CPoint pt )
+BOOL ZCPropertyListCtrl::BeginDrag(CPoint pt)
 {
-    if ( m_ListInReadOnly )
+    if (m_ListInReadOnly)
     {
         return FALSE;
     }
 
-    m_SrcDragPropertyItemIndex    = ItemFromPt( pt );
-    m_pSrcDragPropertyItem        = GetPropertyItem( m_SrcDragPropertyItemIndex );
+    m_SrcDragPropertyItemIndex = ItemFromPt(pt);
+    m_pSrcDragPropertyItem = GetPropertyItem(m_SrcDragPropertyItemIndex);
 
-    if ( ( !m_pSrcDragPropertyItem || !m_pSrcDragPropertyItem->IsEnabledDragNDrop() ) &&
-         !ISA( m_pSrcDragPropertyItem, ZBPropertyItemCategory ) )
+    if ((!m_pSrcDragPropertyItem || !m_pSrcDragPropertyItem->IsEnabledDragNDrop()) &&
+        !ISA(m_pSrcDragPropertyItem, ZBPropertyItemCategory))
     {
         m_pSrcDragPropertyItem = NULL;
         return FALSE;
@@ -1469,45 +1469,45 @@ BOOL ZCPropertyListCtrl::BeginDrag( CPoint pt )
     return TRUE;
 }
 
-void ZCPropertyListCtrl::Dropped( int nSrcIndex, CPoint pt )
+void ZCPropertyListCtrl::Dropped(int nSrcIndex, CPoint pt)
 {
-    if ( m_ListInReadOnly )
+    if (m_ListInReadOnly)
     {
         return;
     }
 
-    int Index = ItemFromPt( pt );
+    int Index = ItemFromPt(pt);
 
-    if ( Index == m_SrcDragPropertyItemIndex )
+    if (Index == m_SrcDragPropertyItemIndex)
     {
         return;
     }
 
-    ZBPropertyItem* pDstPropertyItem = GetPropertyItem( ( m_SrcDragPropertyItemIndex < Index ) ? Index-1 : Index );
+    ZBPropertyItem* pDstPropertyItem = GetPropertyItem((m_SrcDragPropertyItemIndex < Index) ? Index - 1 : Index);
 
     // If it is the same index, or NULL, or disabled drag & drop or a category, do nothing
-    if ( m_pSrcDragPropertyItem == pDstPropertyItem        ||
-         m_pSrcDragPropertyItem == NULL                    ||
-         pDstPropertyItem == NULL                        ||
-         !m_pSrcDragPropertyItem->IsEnabledDragNDrop()    ||
-         ISA( m_pSrcDragPropertyItem, ZBPropertyItemCategory ) )
+    if (m_pSrcDragPropertyItem == pDstPropertyItem ||
+        m_pSrcDragPropertyItem == NULL ||
+        pDstPropertyItem == NULL ||
+        !m_pSrcDragPropertyItem->IsEnabledDragNDrop() ||
+        ISA(m_pSrcDragPropertyItem, ZBPropertyItemCategory))
     {
-        Refresh( false, false );
+        Refresh(false, false);
         return;
     }
 
     // Notify the property manager about the move
-    if ( m_pPropertyItemManager->OnDropInternalPropertyItem( m_pSrcDragPropertyItem,
-                                                             pDstPropertyItem,
-                                                             ( m_SrcDragPropertyItemIndex < Index ) ) )
+    if (m_pPropertyItemManager->OnDropInternalPropertyItem(m_pSrcDragPropertyItem,
+                                                           pDstPropertyItem,
+                                                           (m_SrcDragPropertyItemIndex < Index)))
     {
-        Refresh( true, false );
+        Refresh(true, false);
     }
     else
     {
-        if ( m_pSrcDragPropertyItem || m_pSrcDragPropertyItem->IsEnabledDragNDrop() )
+        if (m_pSrcDragPropertyItem || m_pSrcDragPropertyItem->IsEnabledDragNDrop())
         {
-            Refresh( false, false );
+            Refresh(false, false);
         }
     }
 }

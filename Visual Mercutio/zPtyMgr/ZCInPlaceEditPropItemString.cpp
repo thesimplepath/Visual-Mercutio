@@ -7,7 +7,7 @@
 #include "zBaseLib\ZUStringFormater.h"
 
 // Observer message classes
-#include "zBaseLib\ZBKeyboardObserverMsg.h"
+#include "zBaseLib\PSS_KeyboardObserverMsg.h"
 #include "zBaseLib\ZBToolbarObserverMsg.h"
 
 #ifdef _DEBUG

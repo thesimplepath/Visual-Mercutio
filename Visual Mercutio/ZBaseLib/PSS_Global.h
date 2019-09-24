@@ -26,7 +26,7 @@
 // forward class declarations
 class ZDDocument;
 class PSS_ProcessModelDocTmpl;
-class ZBServer;
+class PSS_Server;
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -99,7 +99,7 @@ class AFX_EXT_CLASS PSS_Global
         *@param fileDirectory - file directory
         *@param eventDirectory - event directory
         */
-        static void Initialize(ZBServer*         pServer,
+        static void Initialize(PSS_Server*       pServer,
                                IEApplicationType appType,
                                BOOL              isFormDesigner,
                                BOOL              showAnimation,
@@ -122,7 +122,7 @@ class AFX_EXT_CLASS PSS_Global
         * Gets the server
         *@return the server
         */
-        static inline ZBServer* GetServer();
+        static inline PSS_Server* GetServer();
 
         /**
         * Reads historic value methods from file
@@ -782,7 +782,7 @@ class AFX_EXT_CLASS PSS_Global
         static CMultiDocTemplate*       m_pReportDocTemplate;
         static PSS_ProcessModelDocTmpl* m_pProcessModelDocumentTemplate;
         static ZUser*                   m_ConnectedUser;
-        static ZBServer*                m_pServer;
+        static PSS_Server*              m_pServer;
         static PSS_HistoricValueManager m_HistoricValueManager;
         static PSS_TemplateManager      m_TemplateManager;
         static PSS_TemplateManager      m_ProcessTemplateManager;
@@ -859,7 +859,7 @@ class AFX_EXT_CLASS PSS_Global
 //---------------------------------------------------------------------------
 // PSS_Global
 //---------------------------------------------------------------------------
-ZBServer* PSS_Global::GetServer()
+PSS_Server* PSS_Global::GetServer()
 {
     return m_pServer;
 }

@@ -86,7 +86,7 @@ PSS_DocTemplateEx*            PSS_Global::m_pProcessDocTemplate              = N
 CMultiDocTemplate*            PSS_Global::m_pReportDocTemplate               = NULL;
 PSS_ProcessModelDocTmpl*      PSS_Global::m_pProcessModelDocumentTemplate    = NULL;
 ZUser*                        PSS_Global::m_ConnectedUser                    = NULL;
-ZBServer*                     PSS_Global::m_pServer                          = NULL;
+PSS_Server*                   PSS_Global::m_pServer                          = NULL;
 PSS_HistoricValueManager      PSS_Global::m_HistoricValueManager;
 PSS_TemplateManager           PSS_Global::m_TemplateManager;
 PSS_TemplateManager           PSS_Global::m_ProcessTemplateManager;
@@ -143,7 +143,7 @@ const PSS_Global& PSS_Global::operator = (const PSS_Global& other)
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-void PSS_Global::Initialize(ZBServer*         pServer,
+void PSS_Global::Initialize(PSS_Server*       pServer,
                             IEApplicationType appType,
                             BOOL              isFormDesigner,
                             BOOL              showAnimation,

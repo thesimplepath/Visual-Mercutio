@@ -48,7 +48,7 @@ public:
 
     // Serialization
     AFX_EXT_API friend CArchive& operator >> ( CArchive& ar, _ZBPropertyAttribute& src );
-    AFX_EXT_API friend CArchive& operator << ( CArchive& ar, _ZBPropertyAttribute& src );
+    AFX_EXT_API friend CArchive& operator << ( CArchive& ar, const _ZBPropertyAttribute& src );
 
 private:
 
@@ -177,7 +177,7 @@ public:
 
     // Serialization
     AFX_EXT_API friend CArchive& operator >> ( CArchive& ar, ZBPropertyAttributes& src );
-    AFX_EXT_API friend CArchive& operator << ( CArchive& ar, ZBPropertyAttributes& src );
+    AFX_EXT_API friend CArchive& operator << ( CArchive& ar, const ZBPropertyAttributes& src );
 
 private:
 

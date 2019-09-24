@@ -97,7 +97,7 @@ class AFX_EXT_CLASS PSS_MailUser : public CObject
         *@param user - mail user
         *@return archive, to allow operator to be chained with other items, e.g a << b << c
         */
-        friend CArchive& operator << (CArchive& ar, PSS_MailUser& user);
+        friend CArchive& operator << (CArchive& ar, const PSS_MailUser& user);
 
         /**
         * Clones the object

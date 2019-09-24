@@ -1,12 +1,12 @@
 /****************************************************************************
- * ==> PSS_TemplateFile ----------------------------------------------------*
+ * ==> PSS_Notes -----------------------------------------------------------*
  ****************************************************************************
- * Description : Provides a template file                                   *
+ * Description : Provides the notes                                         *
  * Developer   : Processsoft                                                *
  ****************************************************************************/
 
 #include <StdAfx.h>
-#include "PSS_TemplateFile.h"
+#include "PSS_Notes.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -14,78 +14,83 @@
 #endif
 
 //---------------------------------------------------------------------------
-// Dynamic construction
+// Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_TemplateFile, CObject, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_Notes, CObject, g_DefVersion)
 //---------------------------------------------------------------------------
-// PSS_TemplateFile
+// PSS_Notes
 //---------------------------------------------------------------------------
-PSS_TemplateFile::PSS_TemplateFile(const CString& fileName) :
+PSS_Notes::PSS_Notes(const CString& comment, const CString& userName) :
     CObject(),
-    m_Persistent(FALSE)
-{
-    Create(fileName);
-}
+    m_UserName(userName),
+    m_Comment(comment)
+{}
 //---------------------------------------------------------------------------
-PSS_TemplateFile::PSS_TemplateFile(const PSS_TemplateFile& other) :
-    CObject(),
-    m_Persistent(FALSE)
+PSS_Notes::PSS_Notes(const PSS_Notes& other) :
+    CObject()
 {
     *this = other;
 }
 //---------------------------------------------------------------------------
-PSS_TemplateFile::~PSS_TemplateFile()
+PSS_Notes::~PSS_Notes()
 {}
 //---------------------------------------------------------------------------
-const PSS_TemplateFile& PSS_TemplateFile::operator = (const PSS_TemplateFile& other)
+const PSS_Notes& PSS_Notes::operator = (const PSS_Notes& other)
 {
-    m_Stamp      = other.m_Stamp;
-    m_FileName   = other.m_FileName;
-    m_Persistent = other.m_Persistent;
+    m_UserName = other.m_UserName;
+    m_Comment  = other.m_Comment;
 
     return *this;
 }
 //---------------------------------------------------------------------------
-CArchive& operator >> (CArchive& ar, PSS_TemplateFile& templateFile)
+CArchive& operator >> (CArchive& ar, PSS_Notes& notes)
 {
-    ar >> templateFile.m_FileName;
-    ar >> templateFile.m_Stamp;
+    ar >> notes.m_UserName;
+    ar >> notes.m_Comment;
 
     return ar;
 }
 //---------------------------------------------------------------------------
-CArchive& operator << (CArchive& ar, const PSS_TemplateFile& templateFile)
+CArchive& operator << (CArchive& ar, const PSS_Notes& notes)
 {
-    ar << templateFile.m_FileName;
-    ar << templateFile.m_Stamp;
+    ar << notes.m_UserName;
+    ar << notes.m_Comment;
 
     return ar;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_TemplateFile::Create(const CString& fileName)
+PSS_Notes* PSS_Notes::Clone() const
 {
-    // save the file name
-    m_FileName = fileName;
-
-    if (!m_Stamp.ReadFromFile(m_FileName))
-        return FALSE;
-
-    return m_Persistent = (m_Stamp.GetInternalVersion() != -1 && m_Stamp.GetFileType() == PSS_Stamp::IE_FD_TemplateType);
+    return new PSS_Notes(*this);
 }
 //---------------------------------------------------------------------------
-PSS_TemplateFile* PSS_TemplateFile::Clone()
+void PSS_Notes::ClearNotes()
 {
-    std::unique_ptr< PSS_TemplateFile> pTemplateFile(new PSS_TemplateFile(*this));
-    return pTemplateFile.release();
+    ClearUserName();
+    ClearComment();
 }
 //---------------------------------------------------------------------------
-void PSS_TemplateFile::Serialize(CArchive& ar)
+void PSS_Notes::ClearUserName()
+{
+    m_UserName.Empty();
+}
+//---------------------------------------------------------------------------
+void PSS_Notes::ClearComment()
+{
+    m_Comment.Empty();
+}
+//---------------------------------------------------------------------------
+CString PSS_Notes::GetFormattedNotes(CRect* pRect)
+{
+    return m_UserName + "\r\n" + m_Comment;
+}
+//---------------------------------------------------------------------------
+void PSS_Notes::Serialize(CArchive& ar)
 {
     if (ar.IsStoring())
         // write the elements
         ar << *this;
     else
-        // read the elements
         ar >> *this;
 }
 //---------------------------------------------------------------------------

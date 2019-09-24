@@ -36,8 +36,8 @@ class PSS_FieldColumn;
 
 // processsoft
 #include "PSS_MathParser.h"
-#include "ZBNotes.h"
-#include "ZBRect.h"
+#include "PSS_Notes.h"
+#include "PSS_Rect.h"
 #include "PSS_Style.h"
 #include "PSS_Font.h"
 #include "PSS_Border.h"
@@ -642,7 +642,7 @@ class AFX_EXT_CLASS PSS_PlanFinObject : public PSS_FormulaObjectParser
         * Gets the notes
         *@return the notes
         */
-        virtual inline ZBNotes* GetNotes() const;
+        virtual inline PSS_Notes* GetNotes() const;
 
         /**
         * Checks if the field is a member of a multi-column field
@@ -854,9 +854,9 @@ class AFX_EXT_CLASS PSS_PlanFinObject : public PSS_FormulaObjectParser
     protected:
         static CStringArray m_FormatChoice;
         static char         m_FormatBuffer[300];
-        ZBNotes*            m_pNotes;
+        PSS_Notes*          m_pNotes;
         EFormatType         m_FormatType;
-        ZBRect              m_ObjectRect;
+        PSS_Rect            m_ObjectRect;
         BOOL                m_IsEmpty;
 
         /**
@@ -1147,7 +1147,7 @@ void PSS_PlanFinObject::ClearNotes()
         m_pNotes->ClearNotes();
 }
 //---------------------------------------------------------------------------
-ZBNotes* PSS_PlanFinObject::GetNotes() const
+PSS_Notes* PSS_PlanFinObject::GetNotes() const
 {
     return m_pNotes;
 }

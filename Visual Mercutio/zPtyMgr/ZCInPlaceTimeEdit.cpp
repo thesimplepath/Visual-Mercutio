@@ -11,8 +11,8 @@
 #include "zProperty\ZBPropertyItem.h"
 
 #include "zBaseLib\ZBToolbarObserverMsg.h"
-#include "zBaseLib\ZBKeyboardObserverMsg.h"
-#include "zBaseLib\ZBMenuObserverMsg.h"
+#include "zBaseLib\PSS_KeyboardObserverMsg.h"
+#include "zBaseLib\PSS_MenuObserverMsg.h"
 
 
 #ifdef _DEBUG

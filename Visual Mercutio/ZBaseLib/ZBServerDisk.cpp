@@ -12,7 +12,7 @@
 // Class ZBServerDisk 
 
 
-ZBServerDisk::ZBServerDisk ( ZBServer* pServer /*= NULL*/, const CString EmptyImageServerIniFile /*= ""*/ )
+ZBServerDisk::ZBServerDisk (PSS_Server* pServer /*= NULL*/, const CString EmptyImageServerIniFile /*= ""*/ )
 : m_pServer(pServer), m_EmptyImageServerIniFile(EmptyImageServerIniFile)
 {
     m_ServerCreationStart.LoadString( IDS_SERVERCREATIONSTART );
@@ -29,7 +29,7 @@ ZBServerDisk::~ZBServerDisk()
 {
 }
 
-void ZBServerDisk::Initialize( ZBServer* pServer, const CString EmptyImageServerIniFile /*= ""*/ )
+void ZBServerDisk::Initialize(PSS_Server* pServer, const CString EmptyImageServerIniFile /*= ""*/ )
 {
     m_pServer = pServer;
     m_EmptyImageServerIniFile = EmptyImageServerIniFile;
@@ -85,7 +85,7 @@ bool ZBServerDisk::CreateServer()
 }
 
 
-bool ZBServerDisk::CopyServer( ZBServer& SourceServer )
+bool ZBServerDisk::CopyServer(PSS_Server& SourceServer )
 {
     if (!m_pServer)
         return false;
@@ -103,7 +103,7 @@ bool ZBServerDisk::CopyServer( ZBServer& SourceServer )
 }
 
 
-bool ZBServerDisk::CopyServerDirectory( ZBServer& SourceServer )
+bool ZBServerDisk::CopyServerDirectory(PSS_Server& SourceServer )
 {
     if (!m_pServer)
         return false;

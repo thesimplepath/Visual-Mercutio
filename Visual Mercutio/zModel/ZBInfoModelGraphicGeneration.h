@@ -20,7 +20,7 @@
 // Forward class declaration
 class ZDProcessGraphModelMdl;
 class ZDProcessGraphModelController;
-class ZBServer;
+class PSS_Server;
 
 #ifdef _ZMODELEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -48,7 +48,7 @@ public:
                                   const                                CString ImageFilename    = _T( "" ),
                                   const                                CString HyperLink        = _T( "" ),
                                   CDC*                                pDC                        = NULL,
-                                  ZBServer*                            pServer                    = NULL);
+                                 PSS_Server*                          pServer                    = NULL);
 
     virtual ~ZBInfoModelGraphicGeneration();
 
@@ -84,8 +84,8 @@ public:
     CDC* GetpDC() const;
     void SetpDC( CDC* value );
 
-    ZBServer* GetpServer() const;
-    void SetpServer( ZBServer* value );
+    PSS_Server* GetServer() const;
+    void SetServer(PSS_Server* value );
 
 private:
 
@@ -106,7 +106,7 @@ private:
 
     ZDProcessGraphModelController*    m_pCtlr;
 
-    ZBServer*                        m_pServer;
+    PSS_Server*                        m_pServer;
 };
 
 inline ZDProcessGraphModelMdl* ZBInfoModelGraphicGeneration::GetpModel() const
@@ -213,12 +213,12 @@ inline void ZBInfoModelGraphicGeneration::SetpDC( CDC* value )
     m_pDC = value;
 }
 
-inline ZBServer* ZBInfoModelGraphicGeneration::GetpServer() const
+inline PSS_Server* ZBInfoModelGraphicGeneration::GetServer() const
 {
     return m_pServer;
 }
 
-inline void ZBInfoModelGraphicGeneration::SetpServer( ZBServer* value )
+inline void ZBInfoModelGraphicGeneration::SetServer(PSS_Server* value )
 {
     m_pServer = value;
 }

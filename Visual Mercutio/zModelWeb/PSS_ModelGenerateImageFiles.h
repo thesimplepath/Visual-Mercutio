@@ -23,7 +23,7 @@
 
 // processsoft
 #include "zBaseLib\ZDirectory.h"
-#include "zBaseLib\ZBKeepStringUsage.h"
+#include "zBaseLib\PSS_KeepStringUsage.h"
 #include "zConversion\PSS_StringTools.h"
 #include "zProperty\ZBPropertyAttributes.h"
 #include "zModel\ZUModelNavigation.h"
@@ -59,7 +59,7 @@ class PSS_HtmlFile;
 * Navigates through the processes and generates the images files
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, public ZBKeepStringUsage
+class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public ZUModelNavigation, public PSS_KeepStringUsage
 {
     public:
         /**

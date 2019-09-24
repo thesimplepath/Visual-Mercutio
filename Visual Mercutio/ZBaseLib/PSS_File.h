@@ -103,7 +103,7 @@ class AFX_EXT_CLASS PSS_File : public CObject
         *@param file - file
         *@return archive, to allow operator to be chained with other items, e.g a >> b >> c
         */
-        AFX_EXT_API friend CArchive& operator >> (CArchive& ar, PSS_File& File);
+        AFX_EXT_API friend CArchive& operator >> (CArchive& ar, PSS_File& file);
 
         /**
         * Stores the file to the archive
@@ -111,7 +111,7 @@ class AFX_EXT_CLASS PSS_File : public CObject
         *@param file - file
         *@return archive, to allow operator to be chained with other items, e.g a << b << c
         */
-        AFX_EXT_API friend CArchive& operator << (CArchive& ar, PSS_File& File);
+        AFX_EXT_API friend CArchive& operator << (CArchive& ar, const PSS_File& file);
 
         /**
         * Rebuilds the file name

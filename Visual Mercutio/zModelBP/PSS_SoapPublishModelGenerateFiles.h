@@ -22,7 +22,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZBKeepStringUsage.h"
+#include "zBaseLib\PSS_KeepStringUsage.h"
 #include "zModel\ZUModelNavigation.h"
 #include "zModelWeb\PSS_PublishModelGenerateDialog.h"
 #include "zSOAP\PSS_SoapPublisher_File.h"
@@ -45,7 +45,7 @@ class ZBInfoModelGraphicGeneration;
 * Publish the model generated files to Messenger through a SOAP protocol
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_SoapPublishModelGenerateFiles : public ZUModelNavigation, public ZBKeepStringUsage
+class AFX_EXT_CLASS PSS_SoapPublishModelGenerateFiles : public ZUModelNavigation, public PSS_KeepStringUsage
 {
     public:
         /**

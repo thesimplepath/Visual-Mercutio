@@ -156,7 +156,7 @@ CArchive& AFXAPI operator << (CArchive& ar, const PSS_HistoricValueManager& hist
     return ar;
 }
 //---------------------------------------------------------------------------
-CArchive& AFXAPI operator>>(CArchive& ar, PSS_HistoricValueManager& historicManager)
+CArchive& AFXAPI operator >> (CArchive& ar, PSS_HistoricValueManager& historicManager)
 {
     int count;
     ar >> count;
@@ -174,7 +174,7 @@ CArchive& AFXAPI operator>>(CArchive& ar, PSS_HistoricValueManager& historicMana
 }
 //---------------------------------------------------------------------------
 #ifdef _DEBUG
-    CDumpContext& AFXAPI operator<<(CDumpContext& dc, const PSS_HistoricValueManager& historicManager)
+    CDumpContext& AFXAPI operator << (CDumpContext& dc, const PSS_HistoricValueManager& historicManager)
     {
         dc << "\nZBHistoricValueManager Object:";
         dc << "\n\tCount = " << (long)historicManager.GetCount();

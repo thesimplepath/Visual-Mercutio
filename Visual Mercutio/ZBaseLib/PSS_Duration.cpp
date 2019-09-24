@@ -150,7 +150,7 @@ CArchive& AFXAPI operator << (CArchive& ar, const PSS_Duration& duration)
     return ar;
 }
 //---------------------------------------------------------------------------
-CArchive& AFXAPI operator>>(CArchive& ar, PSS_Duration& duration)
+CArchive& AFXAPI operator >> (CArchive& ar, PSS_Duration& duration)
 {
     long status;
     ar >> status;

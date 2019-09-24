@@ -100,7 +100,7 @@ CArchive& operator >> (CArchive& ar, PSS_FileBuffer& fileBuffer)
     return ar;
 }
 //---------------------------------------------------------------------------
-CArchive& operator << (CArchive& ar, PSS_FileBuffer fileBuffer)
+CArchive& operator << (CArchive& ar, const PSS_FileBuffer& fileBuffer)
 {
     ar << fileBuffer.m_File;
     ar << fileBuffer.m_Size;

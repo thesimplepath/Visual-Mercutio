@@ -29,7 +29,7 @@ ZBInfoModelGraphicGeneration::ZBInfoModelGraphicGeneration( ZDProcessGraphModelM
                                                             const CString ImageFilename                /*= ""*/,
                                                             const CString HyperLink                    /*= ""*/,
                                                             CDC* pDC                                /*= NULL*/,
-                                                            ZBServer* pServer                        /*= NULL*/)
+                                                           PSS_Server* pServer                        /*= NULL*/)
     : m_pModel                ( pModel ),
       m_pCtlr                ( pCtlr ),
       m_URLName                ( URLName ),

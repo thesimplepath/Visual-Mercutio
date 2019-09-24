@@ -220,8 +220,8 @@ const PSS_PLFNLine& PSS_PLFNLine::operator = (const PSS_PLFNLine* pOther)
 
     if (!pOther)
     {
-        m_StartPoint = ZBPoint(0, 0);
-        m_EndPoint   = ZBPoint(0, 0);
+        m_StartPoint = PSS_Point(0, 0);
+        m_EndPoint   = PSS_Point(0, 0);
     }
     else
     {

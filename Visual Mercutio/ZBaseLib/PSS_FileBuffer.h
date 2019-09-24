@@ -89,7 +89,7 @@ class AFX_EXT_CLASS PSS_FileBuffer : public CObject
         *@param file - file
         *@return archive, to allow operator to be chained with other items, e.g a << b << c
         */
-        AFX_EXT_API friend CArchive& operator << (CArchive& ar, PSS_FileBuffer fileBuffer);
+        AFX_EXT_API friend CArchive& operator << (CArchive& ar, const PSS_FileBuffer& fileBuffer);
 
         /**
         * Creates the buffer from a file

@@ -2035,7 +2035,7 @@ BOOL ZAMainApp::OpenServerSession()
     // Open the server session
     switch (GetServer().OpenSession(GetServerIniFile()))
     {
-        case _SRV_NOTFOUND:
+        case M_Srv_NotFound:
         {
             // The server cannot be found,
             // asks the user to select another one
@@ -2060,14 +2060,14 @@ BOOL ZAMainApp::OpenServerSession()
             break;
         }
 
-        case _SRV_EMPTYSTRUCT:
-        case _SRV_MOVED:
-        case _SRV_CORRUPTED:
+        case M_Srv_EmptyStruct:
+        case M_Srv_Moved:
+        case M_Srv_Corrupted:
         {
             // Check if we need to force the network connection and
             // if the selection of the server succeed.
             if (ForceNetworkConnection() &&
-                GetServer().OpenSessionForceNetwork(GetServerIniFile()) == _SRV_SUCCESS)
+                GetServer().OpenSessionForceNetwork(GetServerIniFile()) == M_Srv_Success)
             {
                 break;
             }
@@ -2101,7 +2101,7 @@ BOOL ZAMainApp::OpenServerSession()
             }
 
             // Check if can be opened
-            if (GetServer().OpenSession(GetServerIniFile()) != _SRV_SUCCESS)
+            if (GetServer().OpenSession(GetServerIniFile()) != M_Srv_Success)
             {
                 // The server cannot be reached
                 ZIMessage Message;
@@ -2130,7 +2130,7 @@ BOOL ZAMainApp::OpenServerSession()
         }
 
         // Server is open with sucess
-        case _SRV_SUCCESS:
+        case M_Srv_Success:
         {
             // Notify about the server opening
             OnServerHasBeenOpened();
