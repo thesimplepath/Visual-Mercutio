@@ -876,19 +876,19 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBServerDisk.cpp">
+    <ClCompile Include="PSS_ServerDisk.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBSmartString.cpp">
+    <ClCompile Include="PSS_SmartString.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBStringFormat.cpp">
+    <ClCompile Include="PSS_StringFormat.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1468,9 +1468,9 @@
     <ClInclude Include="PSS_Rect.h" />
     <ClInclude Include="PSS_RegisterSetup.h" />
     <ClInclude Include="PSS_Server.h" />
-    <ClInclude Include="ZBServerDisk.h" />
-    <ClInclude Include="ZBSmartString.h" />
-    <ClInclude Include="ZBStringFormat.h" />
+    <ClInclude Include="PSS_ServerDisk.h" />
+    <ClInclude Include="PSS_SmartString.h" />
+    <ClInclude Include="PSS_StringFormat.h" />
     <ClInclude Include="ZBTimeSpan.H" />
     <ClInclude Include="ZBTokenizer.h" />
     <ClInclude Include="ZBToolbarObserverMsg.h" />

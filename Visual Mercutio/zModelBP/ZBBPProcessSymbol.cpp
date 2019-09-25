@@ -1461,7 +1461,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
                                                m_Rules.GetRuleName(i),
                                                ZBProperty::PT_EDIT_MENU,
                                                true,
-                                               ZBStringFormat(ZBStringFormat::General),
+                                               PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                                NULL,
                                                &gRulesMenu);
 
@@ -1504,7 +1504,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
                                            GetRiskName(i),
                                            ZBProperty::PT_EDIT_MENU,
                                            true,
-                                           ZBStringFormat(ZBStringFormat::General),
+                                           PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                            NULL,
                                            &gRiskMenu);
 
@@ -1594,7 +1594,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
                                GetRiskUE(i),
                                ZBProperty::PT_EDIT_NUMBER,
                                true,
-                               ZBStringFormat(ZBStringFormat::Currency, true, 2, CurrencySymbol));
+                               PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, CurrencySymbol));
 
         PropSet.Add(pRisk);
 
@@ -1610,7 +1610,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
                                GetRiskPOA(i),
                                ZBProperty::PT_EDIT_NUMBER,
                                true,
-                               ZBStringFormat(ZBStringFormat::Currency, true, 2, CurrencySymbol));
+                               PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, CurrencySymbol));
 
         PropSet.Add(pRisk);
 
@@ -1626,7 +1626,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
                                (GetRiskAction(i) == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo(),
                                ZBProperty::PT_COMBO_STRING_READONLY,
                                TRUE,
-                               ZBStringFormat(ZBStringFormat::General),
+                               PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                PSS_Global::GetArrayYesNo());
 
         PropSet.Add(pRisk);
@@ -1715,7 +1715,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
                                                   myCurNode->GetPrestationName(),
                                                   ZBProperty::PT_EDIT_MENU,
                                                   true,
-                                                  ZBStringFormat(ZBStringFormat::General),
+                                                  PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                                   NULL,
                                                   &gPrestationsMenu);
 
@@ -1736,7 +1736,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
                                       PercentageActivity,
                                       ZBProperty::PT_EDIT_NUMBER,
                                       true,
-                                      ZBStringFormat(ZBStringFormat::Percentage));
+                                      PSS_StringFormat(PSS_StringFormat::IE_FT_Percentage));
 
         PropSet.Add(pPrestations);
 
@@ -1758,7 +1758,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
                                           myPropPrestProcessValue,
                                           ZBProperty::PT_EDIT_NUMBER_READONLY,
                                           true,
-                                          ZBStringFormat(ZBStringFormat::Accounting, false, 0));
+                                          PSS_StringFormat(PSS_StringFormat::IE_FT_Accounting, false, 0));
 
             PropSet.Add(pPrestations);
         }
@@ -1811,7 +1811,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
                                                  HourPerDay, DayPerWeek, DayPerMonth, DayPerYear),
                                       ZBProperty::PT_EDIT_DURATION_READONLY,
                                       true,
-                                      ZBStringFormat(ZBStringFormat::Duration7));
+                                      PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7));
         }
 
         PropSet.Add(pSimProp);
@@ -1825,7 +1825,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
                                   (double)GetProcessCostForecast(),
                                   ZBProperty::PT_EDIT_NUMBER_READONLY,
                                   true,
-                                  ZBStringFormat(ZBStringFormat::Currency, true, 2, CurrencySymbol));
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, CurrencySymbol));
 
         PropSet.Add(pSimProp);
 
@@ -1838,7 +1838,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
                                   (double)GetProcessCost(),
                                   ZBProperty::PT_EDIT_NUMBER_READONLY,
                                   true,
-                                  ZBStringFormat(ZBStringFormat::Currency, true, 2, CurrencySymbol));
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, CurrencySymbol));
 
         PropSet.Add(pSimProp);
 
@@ -1851,7 +1851,7 @@ bool ZBBPProcessSymbol::FillProperties(ZBPropertySet&    PropSet,
                                   m_SumOfDeliveries,
                                   ZBProperty::PT_EDIT_NUMBER_READONLY,
                                   true,
-                                  ZBStringFormat(ZBStringFormat::Accounting, false, 0));
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_Accounting, false, 0));
 
         PropSet.Add(pSimProp);
 
@@ -1880,7 +1880,7 @@ PSS_Duration((double)m_WorkloadByDeliveries,
            DayPerYear),
                                   ZBProperty::PT_EDIT_DURATION_READONLY,
                                   true,
-                                  ZBStringFormat(ZBStringFormat::Duration7));
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7));
 
         PropSet.Add(pSimProp);
 
@@ -1932,7 +1932,7 @@ PSS_Duration((double)m_WorkloadByDeliveries,
                                                GetDeliveryName(i),
                                                ZBProperty::PT_EDIT_MENU,
                                                true,
-                                               ZBStringFormat(ZBStringFormat::General),
+                                               PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                                NULL,
                                                &gDeliveriesMenu);
 
@@ -1969,7 +1969,7 @@ PSS_Duration((double)m_WorkloadByDeliveries,
                                        Quantity,
                                        ZBProperty::PT_EDIT_NUMBER_READONLY,
                                        true,
-                                       ZBStringFormat(ZBStringFormat::Accounting, false, 0));
+                                       PSS_StringFormat(PSS_StringFormat::IE_FT_Accounting, false, 0));
 
             PropSet.Add(pDelivery);
 
@@ -1986,7 +1986,7 @@ PSS_Duration((double)m_WorkloadByDeliveries,
                                        Percentage,
                                        ZBProperty::PT_EDIT_NUMBER_READONLY,
                                        true,
-                                       ZBStringFormat(ZBStringFormat::Percentage));
+                                       PSS_StringFormat(PSS_StringFormat::IE_FT_Percentage));
 
             PropSet.Add(pDelivery);
         }

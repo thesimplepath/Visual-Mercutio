@@ -15,7 +15,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseLib\ZBStringFormat.h"
+#include "zBaseLib\PSS_StringFormat.h"
 #include "zBaseLib\PSS_Date.h"
 #include "zBaseLib\ZBTimeSpan.h"
 #include "zBaseLib\PSS_Duration.h"
@@ -39,7 +39,7 @@
 
 class AFX_EXT_CLASS ZBProperty : public CObject
 {
-    DECLARE_SERIAL( ZBProperty )
+    DECLARE_SERIAL(ZBProperty)
 
 public:
 
@@ -91,252 +91,252 @@ public:
 public:
 
     // Constructors for String
-    ZBProperty( const CString    Category                = _T( "" ),
-                int                CategoryID                = -1,
-                const CString    Label                    = _T( "" ),
-                int                ItemID                    = -1,
-                const CString    Description                = _T( "" ),
-                CString            Value                    = _T( "" ),
-                PropertyType    PTType                    = PT_EDIT_STRING,
-                bool            Enable                    = true,
-                ZBStringFormat&    ft                        = ZBStringFormat( ZBStringFormat::General ),
-                CStringArray*    pArrayOfValues            = NULL,
-                CMenu*            pMenu                    = NULL,
-                bool            SaveState                = true,
-                bool            SaveStatePerProperty    = true );
+    ZBProperty(const CString    Category = _T(""),
+               int                CategoryID = -1,
+               const CString    Label = _T(""),
+               int                ItemID = -1,
+               const CString    Description = _T(""),
+               CString            Value = _T(""),
+               PropertyType    PTType = PT_EDIT_STRING,
+               bool            Enable = true,
+               PSS_StringFormat&    ft = PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+               CStringArray*    pArrayOfValues = NULL,
+               CMenu*            pMenu = NULL,
+               bool            SaveState = true,
+               bool            SaveStatePerProperty = true);
 
-    ZBProperty( const UINT        CategoryResID,
-                int                CategoryID,
-                const UINT        LabelResID,
-                int                ItemID,
-                const UINT        DescriptionResID,
-                CString            Value,
-                PropertyType    PTType                    = PT_EDIT_STRING,
-                bool            Enable                    = true,
-                ZBStringFormat&    ft                        = ZBStringFormat( ZBStringFormat::General ),
-                CStringArray*    pArrayOfValues            = NULL,
-                CMenu*            pMenu                    = NULL,
-                bool            SaveState                = true,
-                bool            SaveStatePerProperty    = true );
+    ZBProperty(const UINT        CategoryResID,
+               int                CategoryID,
+               const UINT        LabelResID,
+               int                ItemID,
+               const UINT        DescriptionResID,
+               CString            Value,
+               PropertyType    PTType = PT_EDIT_STRING,
+               bool            Enable = true,
+               PSS_StringFormat&    ft = PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+               CStringArray*    pArrayOfValues = NULL,
+               CMenu*            pMenu = NULL,
+               bool            SaveState = true,
+               bool            SaveStatePerProperty = true);
 
     // Constructors for double
-    ZBProperty( const CString    Category,
-                int                CategoryID,
-                const CString    Label,
-                int                ItemID,
-                const CString    Description,
-                double            Value,
-                PropertyType    PTType                    = PT_EDIT_NUMBER,
-                bool            Enable                    = true,
-                ZBStringFormat&    ft                        = ZBStringFormat( ZBStringFormat::General ),
-                CStringArray*    pArrayOfValues            = NULL,
-                CMenu*            pMenu                    = NULL,
-                bool            SaveState                = true,
-                bool            SaveStatePerProperty    = true );
+    ZBProperty(const CString    Category,
+               int                CategoryID,
+               const CString    Label,
+               int                ItemID,
+               const CString    Description,
+               double            Value,
+               PropertyType    PTType = PT_EDIT_NUMBER,
+               bool            Enable = true,
+               PSS_StringFormat&    ft = PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+               CStringArray*    pArrayOfValues = NULL,
+               CMenu*            pMenu = NULL,
+               bool            SaveState = true,
+               bool            SaveStatePerProperty = true);
 
-    ZBProperty( const UINT        CategoryResID,
-                int                CategoryID,
-                const UINT        LabelResID,
-                int                ItemID,
-                const UINT        DescriptionResID,
-                double            Value,
-                PropertyType    PTType                    = PT_EDIT_NUMBER,
-                bool            Enable                    = true,
-                ZBStringFormat&    ft                        = ZBStringFormat( ZBStringFormat::General ),
-                CStringArray*    pArrayOfValues            = NULL,
-                CMenu*            pMenu                    = NULL,
-                bool            SaveState                = true,
-                bool            SaveStatePerProperty    = true );
+    ZBProperty(const UINT        CategoryResID,
+               int                CategoryID,
+               const UINT        LabelResID,
+               int                ItemID,
+               const UINT        DescriptionResID,
+               double            Value,
+               PropertyType    PTType = PT_EDIT_NUMBER,
+               bool            Enable = true,
+               PSS_StringFormat&    ft = PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+               CStringArray*    pArrayOfValues = NULL,
+               CMenu*            pMenu = NULL,
+               bool            SaveState = true,
+               bool            SaveStatePerProperty = true);
 
     // Constructors for float
-    ZBProperty( const CString    Category,
-                int                CategoryID,
-                const CString    Label,
-                int                ItemID,
-                const CString    Description,
-                float            Value,
-                PropertyType    PTType                    = PT_EDIT_NUMBER,
-                bool            Enable                    = true,
-                ZBStringFormat&    ft                        = ZBStringFormat( ZBStringFormat::General ),
-                CStringArray*    pArrayOfValues            = NULL,
-                CMenu*            pMenu                    = NULL,
-                bool            SaveState                = true,
-                bool            SaveStatePerProperty    = true );
+    ZBProperty(const CString    Category,
+               int                CategoryID,
+               const CString    Label,
+               int                ItemID,
+               const CString    Description,
+               float            Value,
+               PropertyType    PTType = PT_EDIT_NUMBER,
+               bool            Enable = true,
+               PSS_StringFormat&    ft = PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+               CStringArray*    pArrayOfValues = NULL,
+               CMenu*            pMenu = NULL,
+               bool            SaveState = true,
+               bool            SaveStatePerProperty = true);
 
-    ZBProperty( const UINT        CategoryResID,
-                int                CategoryID,
-                const UINT        LabelResID,
-                int                ItemID,
-                const UINT        DescriptionResID,
-                float            Value,
-                PropertyType    PTType                    = PT_EDIT_NUMBER,
-                bool            Enable                    = true,
-                ZBStringFormat&    ft                        = ZBStringFormat( ZBStringFormat::General ),
-                CStringArray*    pArrayOfValues            = NULL,
-                CMenu*            pMenu                    = NULL,
-                bool            SaveState                = true,
-                bool            SaveStatePerProperty    = true );
+    ZBProperty(const UINT        CategoryResID,
+               int                CategoryID,
+               const UINT        LabelResID,
+               int                ItemID,
+               const UINT        DescriptionResID,
+               float            Value,
+               PropertyType    PTType = PT_EDIT_NUMBER,
+               bool            Enable = true,
+               PSS_StringFormat&    ft = PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+               CStringArray*    pArrayOfValues = NULL,
+               CMenu*            pMenu = NULL,
+               bool            SaveState = true,
+               bool            SaveStatePerProperty = true);
 
     // Constructors for ZBDate
-    ZBProperty( const CString    Category,
-                int                CategoryID,
-                const CString    Label,
-                int                ItemID,
-                const CString    Description,
+    ZBProperty(const CString    Category,
+               int                CategoryID,
+               const CString    Label,
+               int                ItemID,
+               const CString    Description,
                PSS_Date&            Value,
-                PropertyType    PTType                    = PT_EDIT_DATE,
-                bool            Enable                    = true,
-                ZBStringFormat&    ft                        = ZBStringFormat( ZBStringFormat::Date ),
-                CStringArray*    pArrayOfValues            = NULL,
-                CMenu*            pMenu                    = NULL,
-                bool            SaveState                = true,
-                bool            SaveStatePerProperty    = true );
+               PropertyType    PTType = PT_EDIT_DATE,
+               bool            Enable = true,
+               PSS_StringFormat&    ft = PSS_StringFormat(PSS_StringFormat::IE_FT_Date),
+               CStringArray*    pArrayOfValues = NULL,
+               CMenu*            pMenu = NULL,
+               bool            SaveState = true,
+               bool            SaveStatePerProperty = true);
 
-    ZBProperty( const UINT        CategoryResID,
-                int                CategoryID,
-                const UINT        LabelResID,
-                int                ItemID,
-                const UINT        DescriptionResID,
+    ZBProperty(const UINT        CategoryResID,
+               int                CategoryID,
+               const UINT        LabelResID,
+               int                ItemID,
+               const UINT        DescriptionResID,
                PSS_Date&            Value,
-                PropertyType    PTType                    = PT_EDIT_DATE,
-                bool            Enable                    = true,
-                ZBStringFormat&    ft                        = ZBStringFormat( ZBStringFormat::Date ),
-                CStringArray*    pArrayOfValues            = NULL,
-                CMenu*            pMenu                    = NULL,
-                bool            SaveState                = true,
-                bool            SaveStatePerProperty    = true );
+               PropertyType    PTType = PT_EDIT_DATE,
+               bool            Enable = true,
+               PSS_StringFormat&    ft = PSS_StringFormat(PSS_StringFormat::IE_FT_Date),
+               CStringArray*    pArrayOfValues = NULL,
+               CMenu*            pMenu = NULL,
+               bool            SaveState = true,
+               bool            SaveStatePerProperty = true);
 
     // Constructors for ZBTimeSpan
-    ZBProperty( const CString    Category,
-                int                CategoryID,
-                const CString    Label,
-                int                ItemID,
-                const CString    Description,
-                ZBTimeSpan&        Value,
-                //RS-MODIF 08.08.2005 suppression confusions PT_EDIT_TIME et PT_EDIT_TIMESPAN
-                //PropertyType    PTType                    = PT_EDIT_TIMESPAN,
-                PropertyType    PTType                    = PT_EDIT_TIME,
-                bool            Enable                    = true,
-                ZBStringFormat&    ft                        = ZBStringFormat( ZBStringFormat::Time1 ),
-                CStringArray*    pArrayOfValues            = NULL,
-                CMenu*            pMenu                    = NULL,
-                bool            SaveState                = true,
-                bool            SaveStatePerProperty    = true );
+    ZBProperty(const CString    Category,
+               int                CategoryID,
+               const CString    Label,
+               int                ItemID,
+               const CString    Description,
+               ZBTimeSpan&        Value,
+               //RS-MODIF 08.08.2005 suppression confusions PT_EDIT_TIME et PT_EDIT_TIMESPAN
+               //PropertyType    PTType                    = PT_EDIT_TIMESPAN,
+               PropertyType    PTType = PT_EDIT_TIME,
+               bool            Enable = true,
+               PSS_StringFormat&    ft = PSS_StringFormat(PSS_StringFormat::IE_FT_Time1),
+               CStringArray*    pArrayOfValues = NULL,
+               CMenu*            pMenu = NULL,
+               bool            SaveState = true,
+               bool            SaveStatePerProperty = true);
 
-    ZBProperty( const UINT        CategoryResID,
-                int                CategoryID,
-                const UINT        LabelResID,
-                int                ItemID,
-                const UINT        DescriptionResID,
-                ZBTimeSpan&        Value,
-                //RS-MODIF 08.08.2005 suppression confusions PT_EDIT_TIME et PT_EDIT_TIMESPAN
-                //PropertyType    PTType                    = PT_EDIT_TIMESPAN,
-                PropertyType    PTType                    = PT_EDIT_TIME,
-                bool            Enable                    = true,
-                ZBStringFormat&    ft                        = ZBStringFormat( ZBStringFormat::Time1 ),
-                CStringArray*    pArrayOfValues            = NULL,
-                CMenu*            pMenu                    = NULL,
-                bool            SaveState                = true,
-                bool            SaveStatePerProperty    = true );
+    ZBProperty(const UINT        CategoryResID,
+               int                CategoryID,
+               const UINT        LabelResID,
+               int                ItemID,
+               const UINT        DescriptionResID,
+               ZBTimeSpan&        Value,
+               //RS-MODIF 08.08.2005 suppression confusions PT_EDIT_TIME et PT_EDIT_TIMESPAN
+               //PropertyType    PTType                    = PT_EDIT_TIMESPAN,
+               PropertyType    PTType = PT_EDIT_TIME,
+               bool            Enable = true,
+               PSS_StringFormat&    ft = PSS_StringFormat(PSS_StringFormat::IE_FT_Time1),
+               CStringArray*    pArrayOfValues = NULL,
+               CMenu*            pMenu = NULL,
+               bool            SaveState = true,
+               bool            SaveStatePerProperty = true);
 
     // Constructors for ZBDuration
-    ZBProperty( const CString    Category,
-                int                CategoryID,
-                const CString    Label,
-                int                ItemID,
-                const CString    Description,
+    ZBProperty(const CString    Category,
+               int                CategoryID,
+               const CString    Label,
+               int                ItemID,
+               const CString    Description,
                PSS_Duration&        Value,
-                PropertyType    PTType                    = PT_EDIT_DURATION,
-                bool            Enable                    = true,
-                ZBStringFormat&    ft                        = ZBStringFormat( ZBStringFormat::Duration ),
-                CStringArray*    pArrayOfValues            = NULL,
-                CMenu*            pMenu                    = NULL,
-                bool            SaveState                = true,
-                bool            SaveStatePerProperty    = true );
+               PropertyType    PTType = PT_EDIT_DURATION,
+               bool            Enable = true,
+               PSS_StringFormat&    ft = PSS_StringFormat(PSS_StringFormat::IE_FT_Duration),
+               CStringArray*    pArrayOfValues = NULL,
+               CMenu*            pMenu = NULL,
+               bool            SaveState = true,
+               bool            SaveStatePerProperty = true);
 
-    ZBProperty( const UINT        CategoryResID,
-                int                CategoryID,
-                const UINT        LabelResID,
-                int                ItemID,
-                const UINT        DescriptionResID,
+    ZBProperty(const UINT        CategoryResID,
+               int                CategoryID,
+               const UINT        LabelResID,
+               int                ItemID,
+               const UINT        DescriptionResID,
                PSS_Duration&        Value,
-                PropertyType    PTType                    = PT_EDIT_DURATION,
-                bool            Enable                    = true,
-                ZBStringFormat&    ft                        = ZBStringFormat( ZBStringFormat::Duration ),
-                CStringArray*    pArrayOfValues            = NULL,
-                CMenu*            pMenu                    = NULL,
-                bool            SaveState                = true,
-                bool            SaveStatePerProperty    = true );
+               PropertyType    PTType = PT_EDIT_DURATION,
+               bool            Enable = true,
+               PSS_StringFormat&    ft = PSS_StringFormat(PSS_StringFormat::IE_FT_Duration),
+               CStringArray*    pArrayOfValues = NULL,
+               CMenu*            pMenu = NULL,
+               bool            SaveState = true,
+               bool            SaveStatePerProperty = true);
 
     virtual ~ZBProperty();
 
     // Allow copy constructor and assignement operator
-    ZBProperty( const ZBProperty& src )
+    ZBProperty(const ZBProperty& src)
     {
         *this = src;
     }
 
-    ZBProperty& operator=( const ZBProperty& src );
+    ZBProperty& operator=(const ZBProperty& src);
 
     /* Create a duplicate copy of this object. */
     virtual ZBProperty* Dup() const
     {
-        return ( new ZBProperty( *this ) );
+        return (new ZBProperty(*this));
     }
 
     CString GetCategory() const;
-    void SetCategory( CString value );
+    void SetCategory(CString value);
 
     int GetCategoryID() const;
-    void SetCategoryID( int value );
+    void SetCategoryID(int value);
 
     bool IsDynamic() const;
-    void SetDynamic( bool value = true );
+    void SetDynamic(bool value = true);
 
     CString GetLabel() const;
-    void SetLabel( CString value );
+    void SetLabel(CString value);
 
     int GetItemID() const;
-    void SetItemID( int value );
+    void SetItemID(int value);
 
     CString GetDescription() const;
-    void SetDescription( CString value );
+    void SetDescription(CString value);
 
     CString GetValueString() const;
-    void SetValueString( CString value );
+    void SetValueString(CString value);
 
     double GetValueDouble() const;
-    void SetValueDouble( double value );
+    void SetValueDouble(double value);
 
     float GetValueFloat() const;
-    void SetValueFloat( float value );
+    void SetValueFloat(float value);
 
     PSS_Date GetValueDate() const;
-    void SetValueDate(PSS_Date& value );
+    void SetValueDate(PSS_Date& value);
 
     ZBTimeSpan GetValueTimeSpan() const;
-    void SetValueTimeSpan( ZBTimeSpan& value );
+    void SetValueTimeSpan(ZBTimeSpan& value);
 
     PSS_Duration GetValueDuration() const;
-    void SetValueDuration(PSS_Duration& value );
+    void SetValueDuration(PSS_Duration& value);
 
     bool GetEnable() const;
-    void SetEnable( bool value );
+    void SetEnable(bool value);
 
     bool GetSaveState() const;
-    void SetSaveState( bool value );
+    void SetSaveState(bool value);
 
     bool GetSaveStatePerProperty() const;
-    void SetSaveStatePerProperty( bool value );
+    void SetSaveStatePerProperty(bool value);
 
-    ZBStringFormat& GetStringFormat();
-    void SetStringFormat( ZBStringFormat& value );
+    PSS_StringFormat& GetStringFormat();
+    void SetStringFormat(PSS_StringFormat& value);
 
     CStringArray* GetpArrayOfValues() const;
-    void SetpArrayOfValues( CStringArray* value );
+    void SetpArrayOfValues(CStringArray* value);
 
     CMenu* GetpMenu() const;
-    void SetpMenu( CMenu* value );
+    void SetpMenu(CMenu* value);
 
     PropertyType GetPTType() const;
 
@@ -346,19 +346,19 @@ public:
 
     // Has changed flag
     bool GetHasChanged() const;
-    void SetHasChanged( bool value );
+    void SetHasChanged(bool value);
 
     bool IsEnabledDragNDrop() const;
-    void EnableDragNDrop( bool value = true );
+    void EnableDragNDrop(bool value = true);
 
     int GetItemOrder() const;
-    void SetItemOrder( int value );
-    
+    void SetItemOrder(int value);
+
     int GetCategoryOrder() const;
-    void SetCategoryOrder( int value );
+    void SetCategoryOrder(int value);
 
     // Serialize the property object
-    virtual void Serialize( CArchive& ar );
+    virtual void Serialize(CArchive& ar);
 
 private:
 
@@ -371,7 +371,7 @@ private:
     PSS_Date                m_dtValue;
     ZBTimeSpan            m_tsValue;
     PSS_Duration            m_durationValue;
-    ZBStringFormat        m_ft;
+    PSS_StringFormat        m_ft;
 
     CStringArray*        m_pArrayOfValues;
 
@@ -404,7 +404,7 @@ inline CString ZBProperty::GetCategory() const
     return m_Category;
 }
 
-inline void ZBProperty::SetCategory( CString value )
+inline void ZBProperty::SetCategory(CString value)
 {
     m_Category = value;
 }
@@ -414,7 +414,7 @@ inline int ZBProperty::GetCategoryID() const
     return m_CategoryID;
 }
 
-inline void ZBProperty::SetCategoryID( int value )
+inline void ZBProperty::SetCategoryID(int value)
 {
     m_CategoryID = value;
 }
@@ -424,7 +424,7 @@ inline bool ZBProperty::IsDynamic() const
     return m_Dynamic;
 }
 
-inline void ZBProperty::SetDynamic( bool value /*= true*/ )
+inline void ZBProperty::SetDynamic(bool value /*= true*/)
 {
     m_Dynamic = value;
 }
@@ -434,7 +434,7 @@ inline CString ZBProperty::GetLabel() const
     return m_Label;
 }
 
-inline void ZBProperty::SetLabel( CString value )
+inline void ZBProperty::SetLabel(CString value)
 {
     m_Label = value;
 }
@@ -444,7 +444,7 @@ inline int ZBProperty::GetItemID() const
     return m_ItemID;
 }
 
-inline void ZBProperty::SetItemID( int value )
+inline void ZBProperty::SetItemID(int value)
 {
     m_ItemID = value;
 }
@@ -454,7 +454,7 @@ inline CString ZBProperty::GetDescription() const
     return m_Description;
 }
 
-inline void ZBProperty::SetDescription( CString value )
+inline void ZBProperty::SetDescription(CString value)
 {
     m_Description = value;
 }
@@ -464,10 +464,10 @@ inline CString ZBProperty::GetValueString() const
     return m_sValue;
 }
 
-inline void ZBProperty::SetValueString( CString value )
+inline void ZBProperty::SetValueString(CString value)
 {
-    m_sValue        = value;
-    m_ValueType        = PT_STRING;
+    m_sValue = value;
+    m_ValueType = PT_STRING;
 }
 
 inline double ZBProperty::GetValueDouble() const
@@ -475,10 +475,10 @@ inline double ZBProperty::GetValueDouble() const
     return m_dValue;
 }
 
-inline void ZBProperty::SetValueDouble( double value )
+inline void ZBProperty::SetValueDouble(double value)
 {
-    m_dValue        = value;
-    m_ValueType        = PT_DOUBLE;
+    m_dValue = value;
+    m_ValueType = PT_DOUBLE;
 }
 
 inline float ZBProperty::GetValueFloat() const
@@ -486,10 +486,10 @@ inline float ZBProperty::GetValueFloat() const
     return m_fValue;
 }
 
-inline void ZBProperty::SetValueFloat( float value )
+inline void ZBProperty::SetValueFloat(float value)
 {
-    m_fValue        = value;
-    m_ValueType        = PT_FLOAT;
+    m_fValue = value;
+    m_ValueType = PT_FLOAT;
 }
 
 inline PSS_Date ZBProperty::GetValueDate() const
@@ -497,16 +497,16 @@ inline PSS_Date ZBProperty::GetValueDate() const
     return m_dtValue;
 }
 
-inline void ZBProperty::SetValueDate(PSS_Date& value )
+inline void ZBProperty::SetValueDate(PSS_Date& value)
 {
-    m_dtValue        = value;
-    m_ValueType        = PT_DATE;
+    m_dtValue = value;
+    m_ValueType = PT_DATE;
 }
 
-inline void ZBProperty::SetValueTimeSpan( ZBTimeSpan& value )
+inline void ZBProperty::SetValueTimeSpan(ZBTimeSpan& value)
 {
-    m_tsValue        = value;
-    m_ValueType        = PT_TIMESPAN;
+    m_tsValue = value;
+    m_ValueType = PT_TIMESPAN;
 }
 
 inline ZBTimeSpan ZBProperty::GetValueTimeSpan() const
@@ -514,10 +514,10 @@ inline ZBTimeSpan ZBProperty::GetValueTimeSpan() const
     return m_tsValue;
 }
 
-inline void ZBProperty::SetValueDuration(PSS_Duration& value )
+inline void ZBProperty::SetValueDuration(PSS_Duration& value)
 {
-    m_durationValue    = value;
-    m_ValueType        = PT_DURATION;
+    m_durationValue = value;
+    m_ValueType = PT_DURATION;
 }
 
 inline PSS_Duration ZBProperty::GetValueDuration() const
@@ -530,17 +530,17 @@ inline bool ZBProperty::GetEnable() const
     return m_Enable;
 }
 
-inline void ZBProperty::SetEnable( bool value )
+inline void ZBProperty::SetEnable(bool value)
 {
     m_Enable = value;
 }
 
-inline ZBStringFormat& ZBProperty::GetStringFormat()
+inline PSS_StringFormat& ZBProperty::GetStringFormat()
 {
     return m_ft;
 }
 
-inline void ZBProperty::SetStringFormat( ZBStringFormat& value )
+inline void ZBProperty::SetStringFormat(PSS_StringFormat& value)
 {
     m_ft = value;
 }
@@ -550,7 +550,7 @@ inline CStringArray* ZBProperty::GetpArrayOfValues() const
     return m_pArrayOfValues;
 }
 
-inline void ZBProperty::SetpArrayOfValues( CStringArray *value )
+inline void ZBProperty::SetpArrayOfValues(CStringArray *value)
 {
     m_pArrayOfValues = value;
 }
@@ -560,14 +560,14 @@ inline CMenu* ZBProperty::GetpMenu() const
     return m_pMenu;
 }
 
-inline void ZBProperty::SetpMenu( CMenu *value )
+inline void ZBProperty::SetpMenu(CMenu *value)
 {
     m_pMenu = value;
 }
 
 inline bool ZBProperty::HasValueList() const
 {
-    return ( m_pArrayOfValues && m_pArrayOfValues->GetSize() > 0 ) ? true : false;
+    return (m_pArrayOfValues && m_pArrayOfValues->GetSize() > 0) ? true : false;
 }
 
 inline ZBProperty::PropertyType    ZBProperty::GetPTType() const
@@ -585,7 +585,7 @@ inline bool ZBProperty::GetHasChanged() const
     return m_HasChanged;
 }
 
-inline void ZBProperty::SetHasChanged( bool value )
+inline void ZBProperty::SetHasChanged(bool value)
 {
     m_HasChanged = value;
 }
@@ -595,7 +595,7 @@ inline bool ZBProperty::GetSaveState() const
     return m_SaveState;
 }
 
-inline void ZBProperty::SetSaveState( bool value )
+inline void ZBProperty::SetSaveState(bool value)
 {
     m_SaveState = value;
 }
@@ -605,7 +605,7 @@ inline bool ZBProperty::GetSaveStatePerProperty() const
     return m_SaveStatePerProperty;
 }
 
-inline void ZBProperty::SetSaveStatePerProperty( bool value )
+inline void ZBProperty::SetSaveStatePerProperty(bool value)
 {
     m_SaveStatePerProperty = value;
 }
@@ -615,7 +615,7 @@ inline bool ZBProperty::IsEnabledDragNDrop() const
     return m_EnableDragNDrop;
 }
 
-inline void ZBProperty::EnableDragNDrop( bool value /*= true*/ )
+inline void ZBProperty::EnableDragNDrop(bool value /*= true*/)
 {
     m_EnableDragNDrop = value;
 }
@@ -625,7 +625,7 @@ inline int ZBProperty::GetItemOrder() const
     return m_ItemOrder;
 }
 
-inline void ZBProperty::SetItemOrder( int value )
+inline void ZBProperty::SetItemOrder(int value)
 {
     m_ItemOrder = value;
 }
@@ -635,7 +635,7 @@ inline int ZBProperty::GetCategoryOrder() const
     return m_CategoryOrder;
 }
 
-inline void ZBProperty::SetCategoryOrder( int value )
+inline void ZBProperty::SetCategoryOrder(int value)
 {
     m_CategoryOrder = value;
 }

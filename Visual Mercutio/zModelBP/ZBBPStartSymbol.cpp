@@ -496,7 +496,7 @@ bool ZBBPStartSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /
                                                m_Rules.GetRuleName(i),
                                                ZBProperty::PT_EDIT_MENU,
                                                true,
-                                               ZBStringFormat(ZBStringFormat::General),
+                                               PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                                NULL,
                                                &gRulesMenu);
 
@@ -539,7 +539,7 @@ bool ZBBPStartSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /
                                            GetRiskName(i),
                                            ZBProperty::PT_EDIT_MENU,
                                            true,
-                                           ZBStringFormat(ZBStringFormat::General),
+                                           PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                            NULL,
                                            &gRiskMenu);
 
@@ -629,7 +629,7 @@ bool ZBBPStartSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /
                                GetRiskUE(i),
                                ZBProperty::PT_EDIT_NUMBER,
                                true,
-                               ZBStringFormat(ZBStringFormat::Currency, true, 2, CurrencySymbol));
+                               PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, CurrencySymbol));
 
         PropSet.Add(pRisk);
 
@@ -645,7 +645,7 @@ bool ZBBPStartSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /
                                GetRiskPOA(i),
                                ZBProperty::PT_EDIT_NUMBER,
                                true,
-                               ZBStringFormat(ZBStringFormat::Currency, true, 2, CurrencySymbol));
+                               PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, CurrencySymbol));
 
         PropSet.Add(pRisk);
 
@@ -661,7 +661,7 @@ bool ZBBPStartSymbol::FillProperties(ZBPropertySet& PropSet, bool NumericValue /
                                (GetRiskAction(i) == true) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo(),
                                ZBProperty::PT_COMBO_STRING_READONLY,
                                TRUE,
-                               ZBStringFormat(ZBStringFormat::General),
+                               PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                PSS_Global::GetArrayYesNo());
 
         PropSet.Add(pRisk);

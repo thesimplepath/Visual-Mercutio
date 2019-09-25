@@ -193,7 +193,7 @@ ZBProperty* ZBDynamicPropertiesManager::RegisterProperty( const CString         
                                                           const CString                Item,
                                                           const CString                Description,
                                                           ZBProperty::PropertyType    DataType,
-                                                          ZBStringFormat&            ft,
+                                                         PSS_StringFormat&            ft,
                                                           CRuntimeClass*            pSelectableClass /*= NULL*/)
 {
     int CategoryID    = RetreiveCategoryID( Category );
@@ -218,7 +218,7 @@ ZBProperty* ZBDynamicPropertiesManager::RegisterProperty( const CString         
                                                           const CString                Item,
                                                           const CString                Description,
                                                           ZBProperty::PropertyType    DataType,
-                                                          ZBStringFormat&            ft,
+                                                         PSS_StringFormat&            ft,
                                                           const CString                SymbolName,
                                                           int                        RefNumber )
 {
@@ -460,7 +460,7 @@ ZBProperty* ZBDynamicPropertiesManager::CreateProperty( const CString           
                                                         int                            ItemID,
                                                         const CString                Description,
                                                         ZBProperty::PropertyType    DataType,
-                                                        ZBStringFormat&                ft )
+                                                       PSS_StringFormat&                ft )
 {
     ZBProperty* pProp = NULL;
 
@@ -498,7 +498,7 @@ ZBProperty* ZBDynamicPropertiesManager::CreateProperty( const CString           
                                     dt,
                                     DataType,
                                     true, // Enable
-                                    ZBStringFormat( ZBStringFormat::Date ) );
+                                   PSS_StringFormat(PSS_StringFormat::IE_FT_Date ) );
             break;
         }
 
@@ -517,7 +517,7 @@ ZBProperty* ZBDynamicPropertiesManager::CreateProperty( const CString           
                                     ts,
                                     DataType,
                                     true, // Enable
-                                    ZBStringFormat( ZBStringFormat::Time1 ) );
+                                   PSS_StringFormat(PSS_StringFormat::IE_FT_Time1 ) );
             break;
         }
 
@@ -534,7 +534,7 @@ ZBProperty* ZBDynamicPropertiesManager::CreateProperty( const CString           
                                     dr,
                                     DataType,
                                     true, // Enable
-                                    ZBStringFormat( ZBStringFormat::Duration7 ) );
+                                   PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7 ) );
             break;
         }
 

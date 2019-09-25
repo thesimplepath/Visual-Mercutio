@@ -17,7 +17,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseLib\ZBStringFormat.h"
+#include "zBaseLib\PSS_StringFormat.h"
 #include "ZBProperty.h"
 
 //////////////////////////////////////////////////////////////////////
@@ -128,14 +128,14 @@ public:
                                   const CString                Item,
                                   const CString                Description,
                                   ZBProperty::PropertyType    DataType,
-                                  ZBStringFormat&            ft,
+                                 PSS_StringFormat&            ft,
                                   CRuntimeClass*            pSelectableClass    = NULL);
 
     ZBProperty* RegisterProperty( const CString                Category,
                                   const CString                Item,
                                   const CString                Description,
                                   ZBProperty::PropertyType    DataType,
-                                  ZBStringFormat&            ft,
+                                 PSS_StringFormat&            ft,
                                   const CString                SymbolName,
                                   int                        RefNumber);
 
@@ -218,7 +218,7 @@ private:
                                 int                            ItemID,
                                 const CString                Description,
                                 ZBProperty::PropertyType    DataType,
-                                ZBStringFormat&                ft );
+                               PSS_StringFormat&                ft );
 
     _ZBDynamicPropertyInfo* FindPropertyCategory( const CString Category );
     _ZBDynamicPropertyInfo* FindPropertyCategory( int CategoryID );

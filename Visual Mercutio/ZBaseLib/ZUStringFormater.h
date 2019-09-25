@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZBStringFormat.h"
+#include "PSS_StringFormat.h"
 #include "PSS_Date.h"
 #include "ZBTimeSpan.h"
 #include "PSS_Duration.h"
@@ -44,25 +44,25 @@ public:
     virtual ~ZUStringFormatter();
 
     // Convert value to string 
-    static CString    GetFormattedBuffer( int value, ZBStringFormat::FormatType sf = ZBStringFormat::General, bool UseSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
-    static CString    GetFormattedBuffer( unsigned int value, ZBStringFormat::FormatType sf = ZBStringFormat::General, bool UseSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
-    static CString    GetFormattedBuffer( short value, ZBStringFormat::FormatType sf = ZBStringFormat::General, bool UseSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
-    static CString    GetFormattedBuffer( float value, ZBStringFormat::FormatType sf = ZBStringFormat::General, size_t DecimalPlace = 0, bool UseSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
-    static CString    GetFormattedBuffer( long value, ZBStringFormat::FormatType sf = ZBStringFormat::General, size_t DecimalPlace = 0, bool UseSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
-    static CString    GetFormattedBuffer( double value, ZBStringFormat::FormatType sf = ZBStringFormat::General, size_t DecimalPlace = 0, bool UseSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
-    static CString    GetFormattedBuffer( PSS_Date& value, ZBStringFormat::FormatType sf = ZBStringFormat::Date, LCID lcid = ::GetUserDefaultLCID() );
-    static CString    GetFormattedBuffer( ZBTimeSpan& value, ZBStringFormat::FormatType sf = ZBStringFormat::Time, LCID lcid = ::GetUserDefaultLCID() );
-    static CString    GetFormattedBuffer(PSS_Duration& value, ZBStringFormat::FormatType sf = ZBStringFormat::Duration, LCID lcid = ::GetUserDefaultLCID() );
+    static CString    GetFormattedBuffer( int value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IE_FT_General, bool UseSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
+    static CString    GetFormattedBuffer( unsigned int value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IE_FT_General, bool UseSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
+    static CString    GetFormattedBuffer( short value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IE_FT_General, bool UseSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
+    static CString    GetFormattedBuffer( float value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IE_FT_General, size_t DecimalPlace = 0, bool UseSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
+    static CString    GetFormattedBuffer( long value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IE_FT_General, size_t DecimalPlace = 0, bool UseSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
+    static CString    GetFormattedBuffer( double value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IE_FT_General, size_t DecimalPlace = 0, bool UseSeparator = false, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
+    static CString    GetFormattedBuffer( PSS_Date& value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IE_FT_Date, LCID lcid = ::GetUserDefaultLCID() );
+    static CString    GetFormattedBuffer( ZBTimeSpan& value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IE_FT_Time, LCID lcid = ::GetUserDefaultLCID() );
+    static CString    GetFormattedBuffer(PSS_Duration& value, PSS_StringFormat::IEFormatType sf = PSS_StringFormat::IE_FT_Duration, LCID lcid = ::GetUserDefaultLCID() );
 
-    static CString    GetFormattedBuffer( int value, ZBStringFormat& fmt );
-    static CString    GetFormattedBuffer( unsigned int value, ZBStringFormat& fmt );
-    static CString    GetFormattedBuffer( short value, ZBStringFormat& fmt );
-    static CString    GetFormattedBuffer( float value, ZBStringFormat& fmt );
-    static CString    GetFormattedBuffer( long value, ZBStringFormat& fmt );
-    static CString    GetFormattedBuffer( double value, ZBStringFormat& fmt );
-    static CString    GetFormattedBuffer(PSS_Date& value, ZBStringFormat& fmt );
-    static CString    GetFormattedBuffer( ZBTimeSpan& value, ZBStringFormat& fmt );
-    static CString    GetFormattedBuffer(PSS_Duration& value, ZBStringFormat& fmt );
+    static CString    GetFormattedBuffer( int value, PSS_StringFormat& fmt );
+    static CString    GetFormattedBuffer( unsigned int value, PSS_StringFormat& fmt );
+    static CString    GetFormattedBuffer( short value, PSS_StringFormat& fmt );
+    static CString    GetFormattedBuffer( float value, PSS_StringFormat& fmt );
+    static CString    GetFormattedBuffer( long value, PSS_StringFormat& fmt );
+    static CString    GetFormattedBuffer( double value, PSS_StringFormat& fmt );
+    static CString    GetFormattedBuffer(PSS_Date& value, PSS_StringFormat& fmt );
+    static CString    GetFormattedBuffer( ZBTimeSpan& value, PSS_StringFormat& fmt );
+    static CString    GetFormattedBuffer(PSS_Duration& value, PSS_StringFormat& fmt );
 
     // Convert value to custom string 
     static CString    GetCustomFormattedBuffer( int value, LPCTSTR custom, LCID lcid = ::GetUserDefaultLCID() );
@@ -76,15 +76,15 @@ public:
     static CString    GetCustomFormattedBuffer(PSS_Duration& value, LPCTSTR custom, LCID lcid = ::GetUserDefaultLCID() );
 
     // Convert string to value
-    static bool ConvertFormattedBuffer( const CString buffer, int& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
-    static bool    ConvertFormattedBuffer( const CString buffer, unsigned int& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
-    static bool    ConvertFormattedBuffer( const CString buffer, short& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
-    static bool    ConvertFormattedBuffer( const CString buffer, float& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
-    static bool    ConvertFormattedBuffer( const CString buffer, long& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
-    static bool    ConvertFormattedBuffer( const CString buffer, double& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
-    static bool    ConvertFormattedBuffer( const CString buffer, PSS_Date& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
-    static bool    ConvertFormattedBuffer( const CString buffer, ZBTimeSpan& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
-    static bool    ConvertFormattedBuffer( const CString buffer, PSS_Duration& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
+    static bool ConvertFormattedBuffer( const CString buffer, int& value, PSS_StringFormat::IEFormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
+    static bool    ConvertFormattedBuffer( const CString buffer, unsigned int& value, PSS_StringFormat::IEFormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
+    static bool    ConvertFormattedBuffer( const CString buffer, short& value, PSS_StringFormat::IEFormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
+    static bool    ConvertFormattedBuffer( const CString buffer, float& value, PSS_StringFormat::IEFormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
+    static bool    ConvertFormattedBuffer( const CString buffer, long& value, PSS_StringFormat::IEFormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
+    static bool    ConvertFormattedBuffer( const CString buffer, double& value, PSS_StringFormat::IEFormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
+    static bool    ConvertFormattedBuffer( const CString buffer, PSS_Date& value, PSS_StringFormat::IEFormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
+    static bool    ConvertFormattedBuffer( const CString buffer, ZBTimeSpan& value, PSS_StringFormat::IEFormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
+    static bool    ConvertFormattedBuffer( const CString buffer, PSS_Duration& value, PSS_StringFormat::IEFormatType& sf, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
 
     static bool ConvertFormattedBuffer( const CString buffer, int& value, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
     static bool    ConvertFormattedBuffer( const CString buffer, unsigned int& value, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
@@ -96,15 +96,15 @@ public:
     static bool    ConvertFormattedBuffer( const CString buffer, ZBTimeSpan& value, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
     static bool    ConvertFormattedBuffer( const CString buffer, PSS_Duration& value, LPCTSTR pCurrency = NULL, LCID lcid = ::GetUserDefaultLCID() );
 
-    static bool ConvertFormattedBuffer( const CString buffer, int& value, ZBStringFormat& fmt );
-    static bool    ConvertFormattedBuffer( const CString buffer, unsigned int& value, ZBStringFormat& fmt );
-    static bool    ConvertFormattedBuffer( const CString buffer, short& value, ZBStringFormat& fmt );
-    static bool    ConvertFormattedBuffer( const CString buffer, float& value, ZBStringFormat& fmt );
-    static bool    ConvertFormattedBuffer( const CString buffer, long& value, ZBStringFormat& fmt );
-    static bool    ConvertFormattedBuffer( const CString buffer, double& value, ZBStringFormat& fmt );
-    static bool    ConvertFormattedBuffer( const CString buffer, PSS_Date& value, ZBStringFormat& fmt );
-    static bool    ConvertFormattedBuffer( const CString buffer, ZBTimeSpan& value, ZBStringFormat& fmt );
-    static bool    ConvertFormattedBuffer( const CString buffer, PSS_Duration& value, ZBStringFormat& fmt );
+    static bool ConvertFormattedBuffer( const CString buffer, int& value, PSS_StringFormat& fmt );
+    static bool    ConvertFormattedBuffer( const CString buffer, unsigned int& value, PSS_StringFormat& fmt );
+    static bool    ConvertFormattedBuffer( const CString buffer, short& value, PSS_StringFormat& fmt );
+    static bool    ConvertFormattedBuffer( const CString buffer, float& value, PSS_StringFormat& fmt );
+    static bool    ConvertFormattedBuffer( const CString buffer, long& value, PSS_StringFormat& fmt );
+    static bool    ConvertFormattedBuffer( const CString buffer, double& value, PSS_StringFormat& fmt );
+    static bool    ConvertFormattedBuffer( const CString buffer, PSS_Date& value, PSS_StringFormat& fmt );
+    static bool    ConvertFormattedBuffer( const CString buffer, ZBTimeSpan& value, PSS_StringFormat& fmt );
+    static bool    ConvertFormattedBuffer( const CString buffer, PSS_Duration& value, PSS_StringFormat& fmt );
 
 
     // Convert custom string to value
@@ -122,8 +122,8 @@ public:
 private:
     static void ReplaceDecimalPoint( CString& Buffer, LCID lcid );
     static CString RemoveTrailingZero( CString Buffer, LCID lcid, LPCTSTR pEndSymbol = NULL );
-    static CString ConvertBufferToAmountBuffer( CString Buffer, ZBStringFormat::FormatType sf, LPCTSTR pCurrency, LCID lcid );
-    static bool ConvertBufferToNumber( CString sValue, double& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency, LCID lcid );
+    static CString ConvertBufferToAmountBuffer( CString Buffer, PSS_StringFormat::IEFormatType sf, LPCTSTR pCurrency, LCID lcid );
+    static bool ConvertBufferToNumber( CString sValue, double& value, PSS_StringFormat::IEFormatType& sf, LPCTSTR pCurrency, LCID lcid );
 };
 
 #endif // !defined(AFX_ZUStringFormater_H__0F9D664A_F3FB_4639_8738_B4525329F5F6__INCLUDED_)

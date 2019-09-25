@@ -138,7 +138,7 @@ bool ZBExtAppPropertyMgr::FillProperties(ZBPropertySet&    PropSet,
                                  CommandTitle,
                                  ZBProperty::PT_EDIT_MENU,
                                  SystemIsEnabled,
-                                 ZBStringFormat(ZBStringFormat::General),
+                                 PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                  NULL,
                                  &gExtAppsMenu);
 
@@ -384,7 +384,7 @@ bool ZBExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet&    PropSet,
                                      PSS_Global::GetJobPriorityString(GetPriorityLevel(i)),
                                      ZBProperty::PT_COMBO_STRING_READONLY,
                                      SystemIsEnabled,
-                                     ZBStringFormat(ZBStringFormat::General),
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                      PSS_Global::GetArrayJobPriority());
         }
 
@@ -414,7 +414,7 @@ bool ZBExtAppPropertyMgr::FillPropertiesMessenger(ZBPropertySet&    PropSet,
                                      PSS_Global::GetWindowModeString(GetWindowStartMode(i)),
                                      ZBProperty::PT_COMBO_STRING_READONLY,
                                      SystemIsEnabled,
-                                     ZBStringFormat(ZBStringFormat::General),
+                                     PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                      PSS_Global::GetArrayWindowMode());
         }
 

@@ -9,7 +9,7 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -18,8 +18,7 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 ZUStringFormatter::ZUStringFormatter()
-{
-}
+{}
 
 ZUStringFormatter::~ZUStringFormatter()
 {
@@ -28,58 +27,58 @@ ZUStringFormatter::~ZUStringFormatter()
 
 
 // Convert value to string 
-CString    ZUStringFormatter::GetFormattedBuffer( int value, ZBStringFormat::FormatType sf /*= ZBStringFormat::General*/, bool UseSeparator /*= false*/, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+CString    ZUStringFormatter::GetFormattedBuffer(int value, PSS_StringFormat::IEFormatType sf /*= ZBStringFormat::General*/, bool UseSeparator /*= false*/, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     CString s;
-    if (sf == ZBStringFormat::Percentage)
-        s.Format( "%d%c", value*100, '%' );
+    if (sf == PSS_StringFormat::IE_FT_Percentage)
+        s.Format("%d%c", value * 100, '%');
     else
-        s.Format( "%d", value );
-    return (UseSeparator || 
-            sf == ZBStringFormat::Accounting ||
-            sf == ZBStringFormat::Accounting1) ? ConvertBufferToAmountBuffer( s, sf, pCurrency, lcid ) : s;
+        s.Format("%d", value);
+    return (UseSeparator ||
+            sf == PSS_StringFormat::IE_FT_Accounting ||
+            sf == PSS_StringFormat::IE_FT_Accounting1) ? ConvertBufferToAmountBuffer(s, sf, pCurrency, lcid) : s;
 }
 
-CString    ZUStringFormatter::GetFormattedBuffer( unsigned int value, ZBStringFormat::FormatType sf /*= ZBStringFormat::General*/, bool UseSeparator /*= false*/, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+CString    ZUStringFormatter::GetFormattedBuffer(unsigned int value, PSS_StringFormat::IEFormatType sf /*= ZBStringFormat::General*/, bool UseSeparator /*= false*/, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     CString s;
-    if (sf == ZBStringFormat::Percentage)
-        s.Format( "%u%c", value*100, '%' );
+    if (sf == PSS_StringFormat::IE_FT_Percentage)
+        s.Format("%u%c", value * 100, '%');
     else
-        s.Format( "%u", value );
-    return (UseSeparator || 
-            sf == ZBStringFormat::Accounting ||
-            sf == ZBStringFormat::Accounting1) ? ConvertBufferToAmountBuffer( s, sf, pCurrency, lcid ) : s;
+        s.Format("%u", value);
+    return (UseSeparator ||
+            sf == PSS_StringFormat::IE_FT_Accounting ||
+            sf == PSS_StringFormat::IE_FT_Accounting1) ? ConvertBufferToAmountBuffer(s, sf, pCurrency, lcid) : s;
 }
 
-CString    ZUStringFormatter::GetFormattedBuffer( short value, ZBStringFormat::FormatType sf /*= ZBStringFormat::General*/, bool UseSeparator /*= false*/, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+CString    ZUStringFormatter::GetFormattedBuffer(short value, PSS_StringFormat::IEFormatType sf /*= ZBStringFormat::General*/, bool UseSeparator /*= false*/, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     CString s;
-    if (sf == ZBStringFormat::Percentage)
-        s.Format( "%d%c", value*100, '%' );
+    if (sf == PSS_StringFormat::IE_FT_Percentage)
+        s.Format("%d%c", value * 100, '%');
     else
-        s.Format( "%d", value );
-    return (UseSeparator || 
-            sf == ZBStringFormat::Accounting ||
-            sf == ZBStringFormat::Accounting1) ? ConvertBufferToAmountBuffer( s, sf, pCurrency, lcid ) : s;
+        s.Format("%d", value);
+    return (UseSeparator ||
+            sf == PSS_StringFormat::IE_FT_Accounting ||
+            sf == PSS_StringFormat::IE_FT_Accounting1) ? ConvertBufferToAmountBuffer(s, sf, pCurrency, lcid) : s;
 }
 
-CString    ZUStringFormatter::GetFormattedBuffer( float value, ZBStringFormat::FormatType sf /*= ZBStringFormat::General*/, size_t DecimalPlace /*= 0*/, bool UseSeparator /*= false*/, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+CString    ZUStringFormatter::GetFormattedBuffer(float value, PSS_StringFormat::IEFormatType sf /*= ZBStringFormat::General*/, size_t DecimalPlace /*= 0*/, bool UseSeparator /*= false*/, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     CString s;
-    if (sf == ZBStringFormat::Percentage)
+    if (sf == PSS_StringFormat::IE_FT_Percentage)
     {
         if (DecimalPlace == -1)
         {
             // Maximum of 5 decimals Prb. with the rounding between float and double
-            s.Format( "%.5lf%c", (double)(value*100), '%' );
-            ReplaceDecimalPoint( s, lcid );
-            s = RemoveTrailingZero( s, lcid, "%" );
+            s.Format("%.5lf%c", (double)(value * 100), '%');
+            ReplaceDecimalPoint(s, lcid);
+            s = RemoveTrailingZero(s, lcid, "%");
         }
         else
         {
-            s.Format( "%.*lf%c", DecimalPlace, (double)(value*100), '%' );
-            ReplaceDecimalPoint( s, lcid );
+            s.Format("%.*lf%c", DecimalPlace, (double)(value * 100), '%');
+            ReplaceDecimalPoint(s, lcid);
         }
     }
     else
@@ -87,37 +86,37 @@ CString    ZUStringFormatter::GetFormattedBuffer( float value, ZBStringFormat::F
         if (DecimalPlace == -1)
         {
             // Maximum of 5 decimals Prb. with the rounding between float and double
-            s.Format( "%.5lf", (double)value );
-            ReplaceDecimalPoint( s, lcid );
-            s = RemoveTrailingZero( s, lcid );
+            s.Format("%.5lf", (double)value);
+            ReplaceDecimalPoint(s, lcid);
+            s = RemoveTrailingZero(s, lcid);
         }
         else
         {
-            s.Format( "%.*lf", DecimalPlace, (double)value );
-            ReplaceDecimalPoint( s, lcid );
+            s.Format("%.*lf", DecimalPlace, (double)value);
+            ReplaceDecimalPoint(s, lcid);
         }
     }
-    return (UseSeparator || 
-            sf == ZBStringFormat::Accounting ||
-            sf == ZBStringFormat::Accounting1) ? ConvertBufferToAmountBuffer( s, sf, pCurrency, lcid ) : s;
+    return (UseSeparator ||
+            sf == PSS_StringFormat::IE_FT_Accounting ||
+            sf == PSS_StringFormat::IE_FT_Accounting1) ? ConvertBufferToAmountBuffer(s, sf, pCurrency, lcid) : s;
 }
 
-CString    ZUStringFormatter::GetFormattedBuffer( long value, ZBStringFormat::FormatType sf /*= ZBStringFormat::General*/, size_t DecimalPlace /*= 0*/, bool UseSeparator /*= false*/, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+CString    ZUStringFormatter::GetFormattedBuffer(long value, PSS_StringFormat::IEFormatType sf /*= ZBStringFormat::General*/, size_t DecimalPlace /*= 0*/, bool UseSeparator /*= false*/, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     CString s;
-    if (sf == ZBStringFormat::Percentage)
+    if (sf == PSS_StringFormat::IE_FT_Percentage)
     {
         if (DecimalPlace == -1)
         {
             // Maximum of 5 decimals Prb. with the rounding between long and double
-            s.Format( "%.5lf%c", (double)(value*100), '%' );
-            ReplaceDecimalPoint( s, lcid );
-            s = RemoveTrailingZero( s, lcid, "%" );
+            s.Format("%.5lf%c", (double)(value * 100), '%');
+            ReplaceDecimalPoint(s, lcid);
+            s = RemoveTrailingZero(s, lcid, "%");
         }
         else
         {
-            s.Format( "%.*lf%c", DecimalPlace, (double)(value*100), '%' );
-            ReplaceDecimalPoint( s, lcid );
+            s.Format("%.*lf%c", DecimalPlace, (double)(value * 100), '%');
+            ReplaceDecimalPoint(s, lcid);
         }
     }
     else
@@ -125,194 +124,194 @@ CString    ZUStringFormatter::GetFormattedBuffer( long value, ZBStringFormat::Fo
         if (DecimalPlace == -1)
         {
             // Maximum of 5 decimals Prb. with the rounding between float and double
-            s.Format( "%.5lf", (double)value );
-            ReplaceDecimalPoint( s, lcid );
-            s = RemoveTrailingZero( s, lcid );
+            s.Format("%.5lf", (double)value);
+            ReplaceDecimalPoint(s, lcid);
+            s = RemoveTrailingZero(s, lcid);
         }
         else
         {
-            s.Format( "%.*lf", DecimalPlace, (double)value );
-            ReplaceDecimalPoint( s, lcid );
+            s.Format("%.*lf", DecimalPlace, (double)value);
+            ReplaceDecimalPoint(s, lcid);
         }
     }
-    return (UseSeparator || 
-            sf == ZBStringFormat::Accounting ||
-            sf == ZBStringFormat::Accounting1) ? ConvertBufferToAmountBuffer( s, sf, pCurrency, lcid ) : s;
+    return (UseSeparator ||
+            sf == PSS_StringFormat::IE_FT_Accounting ||
+            sf == PSS_StringFormat::IE_FT_Accounting1) ? ConvertBufferToAmountBuffer(s, sf, pCurrency, lcid) : s;
 }
 
-CString    ZUStringFormatter::GetFormattedBuffer( double value, ZBStringFormat::FormatType sf /*= ZBStringFormat::General*/, size_t DecimalPlace /*= 0*/, bool UseSeparator /*= false*/, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+CString    ZUStringFormatter::GetFormattedBuffer(double value, PSS_StringFormat::IEFormatType sf /*= ZBStringFormat::General*/, size_t DecimalPlace /*= 0*/, bool UseSeparator /*= false*/, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     CString s;
-    if (sf == ZBStringFormat::Percentage)
+    if (sf == PSS_StringFormat::IE_FT_Percentage)
     {
         if (DecimalPlace == -1)
         {
-            s.Format( "%lf%c", value*100, '%' );
-            ReplaceDecimalPoint( s, lcid );
-            s = RemoveTrailingZero( s, lcid, "%" );
+            s.Format("%lf%c", value * 100, '%');
+            ReplaceDecimalPoint(s, lcid);
+            s = RemoveTrailingZero(s, lcid, "%");
         }
         else
         {
-            s.Format( "%.*lf%c", DecimalPlace, value*100, '%' );
-            ReplaceDecimalPoint( s, lcid );
+            s.Format("%.*lf%c", DecimalPlace, value * 100, '%');
+            ReplaceDecimalPoint(s, lcid);
         }
     }
     else
     {
         if (DecimalPlace == -1)
         {
-            s.Format( "%lf", value );
-            ReplaceDecimalPoint( s, lcid );
-            s = RemoveTrailingZero( s, lcid );
+            s.Format("%lf", value);
+            ReplaceDecimalPoint(s, lcid);
+            s = RemoveTrailingZero(s, lcid);
         }
         else
         {
-            s.Format( "%.*lf", DecimalPlace, value );
-            ReplaceDecimalPoint( s, lcid );
+            s.Format("%.*lf", DecimalPlace, value);
+            ReplaceDecimalPoint(s, lcid);
         }
     }
-    return (UseSeparator || 
-            sf == ZBStringFormat::Accounting ||
-            sf == ZBStringFormat::Accounting1) ? ConvertBufferToAmountBuffer( s, sf, pCurrency, lcid ) : s;
+    return (UseSeparator ||
+            sf == PSS_StringFormat::IE_FT_Accounting ||
+            sf == PSS_StringFormat::IE_FT_Accounting1) ? ConvertBufferToAmountBuffer(s, sf, pCurrency, lcid) : s;
 }
 
-CString    ZUStringFormatter::GetFormattedBuffer(PSS_Date& value, ZBStringFormat::FormatType sf /*= ZBStringFormat::Date*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+CString    ZUStringFormatter::GetFormattedBuffer(PSS_Date& value, PSS_StringFormat::IEFormatType sf /*= ZBStringFormat::Date*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
-    CString DateStr = PSS_Global::GetDateSeparator( lcid );
+    CString DateStr = PSS_Global::GetDateSeparator(lcid);
     char DateSep = (DateStr.IsEmpty()) ? '/' : DateStr.GetAt(0);
-    CString TimeStr = PSS_Global::GetTimeSeparator( lcid );
+    CString TimeStr = PSS_Global::GetTimeSeparator(lcid);
     char TimeSep = (TimeStr.IsEmpty()) ? ':' : TimeStr.GetAt(0);
 
     CString s;
     switch (sf)
     {
-        case ZBStringFormat::DateTime:    // dd/mm/yy hour:min
+        case PSS_StringFormat::IE_FT_DateTime:    // dd/mm/yy hour:min
         {
-            s.Format( "%d%c%d%c%d %d%c%d", 
-                        value.GetDay(), DateSep,
-                        value.GetMonth(), DateSep,
-                        value.GetYear(), 
-                        value.GetHour(), TimeSep,
-                        value.GetMinute() 
-                    );
+            s.Format("%d%c%d%c%d %d%c%d",
+                     value.GetDay(), DateSep,
+                     value.GetMonth(), DateSep,
+                     value.GetYear(),
+                     value.GetHour(), TimeSep,
+                     value.GetMinute()
+            );
             break;
         }
-        case ZBStringFormat::DateTime1:    // dd/mm/yy hour:min:sec
+        case PSS_StringFormat::IE_FT_DateTime1:    // dd/mm/yy hour:min:sec
         {
-            s.Format( "%d%c%d%c%d %d%c%d%c%d", 
-                        value.GetDay(), DateSep,
-                        value.GetMonth(), DateSep,
-                        value.GetYear(), 
-                        value.GetHour(), TimeSep,
-                        value.GetMinute(), TimeSep,
-                        value.GetSecond()
-                    );
+            s.Format("%d%c%d%c%d %d%c%d%c%d",
+                     value.GetDay(), DateSep,
+                     value.GetMonth(), DateSep,
+                     value.GetYear(),
+                     value.GetHour(), TimeSep,
+                     value.GetMinute(), TimeSep,
+                     value.GetSecond()
+            );
             break;
         }
-        case ZBStringFormat::DateTime2:    // dd/mth/yy hour:min
+        case PSS_StringFormat::IE_FT_DateTime2:    // dd/mth/yy hour:min
         {
-            s.Format( "%d%c%s%c%d %d%c%d", 
-                        value.GetDay(), DateSep,
-                        (const char*)PSS_Global::GetShortMonth( value.GetMonth(), lcid ), DateSep,
-                        value.GetYear(), 
-                        value.GetHour(), TimeSep,
-                        value.GetMinute() 
-                    );
+            s.Format("%d%c%s%c%d %d%c%d",
+                     value.GetDay(), DateSep,
+                     (const char*)PSS_Global::GetShortMonth(value.GetMonth(), lcid), DateSep,
+                     value.GetYear(),
+                     value.GetHour(), TimeSep,
+                     value.GetMinute()
+            );
             break;
         }
-        case ZBStringFormat::DateTime3:    // dd/mth/yy hour:min:sec
+        case PSS_StringFormat::IE_FT_DateTime3:    // dd/mth/yy hour:min:sec
         {
-            s.Format( "%d%c%s%c%d %d%c%d%c%d", 
-                        value.GetDay(), DateSep,
-                        (const char*)PSS_Global::GetShortMonth( value.GetMonth(), lcid ), DateSep,
-                        value.GetYear(), 
-                        value.GetHour(), TimeSep,
-                        value.GetMinute(), TimeSep,
-                        value.GetSecond()
-                    );
+            s.Format("%d%c%s%c%d %d%c%d%c%d",
+                     value.GetDay(), DateSep,
+                     (const char*)PSS_Global::GetShortMonth(value.GetMonth(), lcid), DateSep,
+                     value.GetYear(),
+                     value.GetHour(), TimeSep,
+                     value.GetMinute(), TimeSep,
+                     value.GetSecond()
+            );
             break;
         }
-        case ZBStringFormat::DateTime4:    // dd-mth-yy hour:min
+        case PSS_StringFormat::IE_FT_DateTime4:    // dd-mth-yy hour:min
         {
-            s.Format( "%d-%s-%d %d%c%d", 
-                        value.GetDay(), 
-                        (const char*)PSS_Global::GetShortMonth( value.GetMonth(), lcid ),
-                        value.GetYear(), 
-                        value.GetHour(), TimeSep,
-                        value.GetMinute() 
-                    );
+            s.Format("%d-%s-%d %d%c%d",
+                     value.GetDay(),
+                     (const char*)PSS_Global::GetShortMonth(value.GetMonth(), lcid),
+                     value.GetYear(),
+                     value.GetHour(), TimeSep,
+                     value.GetMinute()
+            );
             break;
         }
-        case ZBStringFormat::DateTime5:    // dd-mth-yy hour::min::sec
+        case PSS_StringFormat::IE_FT_DateTime5:    // dd-mth-yy hour::min::sec
         {
-            s.Format( "%d-%s-%d %d%c%d%c%d", 
-                        value.GetDay(), 
-                        (const char*)PSS_Global::GetShortMonth( value.GetMonth(), lcid ),
-                        value.GetYear(), 
-                        value.GetHour(), TimeSep,
-                        value.GetMinute(), TimeSep,
-                        value.GetSecond()
-                    );
+            s.Format("%d-%s-%d %d%c%d%c%d",
+                     value.GetDay(),
+                     (const char*)PSS_Global::GetShortMonth(value.GetMonth(), lcid),
+                     value.GetYear(),
+                     value.GetHour(), TimeSep,
+                     value.GetMinute(), TimeSep,
+                     value.GetSecond()
+            );
             break;
         }
-        case ZBStringFormat::Date:        // dd/mm/yy
+        case PSS_StringFormat::IE_FT_Date:        // dd/mm/yy
         {
-            s.Format( "%d%c%d%c%d", 
-                        value.GetDay(), DateSep,
-                        value.GetMonth(), DateSep,
-                        value.GetYear()
-                    );
+            s.Format("%d%c%d%c%d",
+                     value.GetDay(), DateSep,
+                     value.GetMonth(), DateSep,
+                     value.GetYear()
+            );
             break;
         }
-        case ZBStringFormat::Date1:        // dd/mth/yy
+        case PSS_StringFormat::IE_FT_Date1:        // dd/mth/yy
         {
-            s.Format( "%d%c%s%c%d", 
-                        value.GetDay(), DateSep,
-                        (const char*)PSS_Global::GetShortMonth( value.GetMonth(), lcid ), DateSep,
-                        value.GetYear()
-                    );
+            s.Format("%d%c%s%c%d",
+                     value.GetDay(), DateSep,
+                     (const char*)PSS_Global::GetShortMonth(value.GetMonth(), lcid), DateSep,
+                     value.GetYear()
+            );
             break;
         }
-        case ZBStringFormat::Date2:        // mth-yy
+        case PSS_StringFormat::IE_FT_Date2:        // mth-yy
         {
-            s.Format( "%s-%d", 
-                        (const char*)PSS_Global::GetShortMonth( value.GetMonth(), lcid ),
-                        value.GetYear()
-                    );
+            s.Format("%s-%d",
+                (const char*)PSS_Global::GetShortMonth(value.GetMonth(), lcid),
+                     value.GetYear()
+            );
             break;
         }
-        case ZBStringFormat::Date3:        // month-yy
+        case PSS_StringFormat::IE_FT_Date3:        // month-yy
         {
-            s.Format( "%s-%d", 
-                        (const char*)PSS_Global::GetFullMonth( value.GetMonth(), lcid ),
-                        value.GetYear()
-                    );
+            s.Format("%s-%d",
+                (const char*)PSS_Global::GetFullMonth(value.GetMonth(), lcid),
+                     value.GetYear()
+            );
             break;
         }
-        case ZBStringFormat::Date4:        // month dd, yy
+        case PSS_StringFormat::IE_FT_Date4:        // month dd, yy
         {
-            s.Format( "%s %d, %d", 
-                        (const char*)PSS_Global::GetFullMonth( value.GetMonth(), lcid ),
-                        value.GetDay(),
-                        value.GetYear()
-                    );
+            s.Format("%s %d, %d",
+                (const char*)PSS_Global::GetFullMonth(value.GetMonth(), lcid),
+                     value.GetDay(),
+                     value.GetYear()
+            );
             break;
         }
-        case ZBStringFormat::Time:        // hour:min
+        case PSS_StringFormat::IE_FT_Time:        // hour:min
         {
-            s.Format( "%d%c%d%", 
-                        value.GetHour(), TimeSep,
-                        value.GetMinute()
-                    );
+            s.Format("%d%c%d%",
+                     value.GetHour(), TimeSep,
+                     value.GetMinute()
+            );
             break;
         }
-        case ZBStringFormat::Time1:        // hour:min:sec
+        case PSS_StringFormat::IE_FT_Time1:        // hour:min:sec
         {
-            s.Format( "%d%c%d%c%d", 
-                        value.GetHour(), TimeSep,
-                        value.GetMinute(), TimeSep,
-                        value.GetSecond()
-                    );
+            s.Format("%d%c%d%c%d",
+                     value.GetHour(), TimeSep,
+                     value.GetMinute(), TimeSep,
+                     value.GetSecond()
+            );
             break;
         }
         default:
@@ -321,48 +320,48 @@ CString    ZUStringFormatter::GetFormattedBuffer(PSS_Date& value, ZBStringFormat
     return s;
 }
 
-CString    ZUStringFormatter::GetFormattedBuffer( ZBTimeSpan& value, ZBStringFormat::FormatType sf /*= ZBStringFormat::Time*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+CString    ZUStringFormatter::GetFormattedBuffer(ZBTimeSpan& value, PSS_StringFormat::IEFormatType sf /*= ZBStringFormat::Time*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
-    CString TimeStr = PSS_Global::GetTimeSeparator( lcid );
+    CString TimeStr = PSS_Global::GetTimeSeparator(lcid);
     char TimeSep = (TimeStr.IsEmpty()) ? ':' : TimeStr.GetAt(0);
 
     CString s;
     switch (sf)
     {
-        case ZBStringFormat::Time:        // hour:min
+        case PSS_StringFormat::IE_FT_Time:        // hour:min
         {
-            s.Format( "%02d%c%02d%", 
-                        value.GetHours(), TimeSep,
-                        value.GetMinutes()
-                    );
+            s.Format("%02d%c%02d%",
+                     value.GetHours(), TimeSep,
+                     value.GetMinutes()
+            );
             break;
         }
-        case ZBStringFormat::Time1:        // hour:min:sec
+        case PSS_StringFormat::IE_FT_Time1:        // hour:min:sec
         {
-            s.Format( "%02d%c%02d%c%02d", 
-                        value.GetHours(), TimeSep,
-                        value.GetMinutes(), TimeSep,
-                        value.GetSeconds()
-                    );
+            s.Format("%02d%c%02d%c%02d",
+                     value.GetHours(), TimeSep,
+                     value.GetMinutes(), TimeSep,
+                     value.GetSeconds()
+            );
             break;
         }
-        case ZBStringFormat::Time2:        // days-hour:min
+        case PSS_StringFormat::IE_FT_Time2:        // days-hour:min
         {
-            s.Format( "%d-%02d%c%02d", 
-                        value.GetDays(), 
-                        value.GetHours(), TimeSep,
-                        value.GetMinutes()
-                    );
+            s.Format("%d-%02d%c%02d",
+                     value.GetDays(),
+                     value.GetHours(), TimeSep,
+                     value.GetMinutes()
+            );
             break;
         }
-        case ZBStringFormat::Time3:        // days-hour:min:sec
+        case PSS_StringFormat::IE_FT_Time3:        // days-hour:min:sec
         {
-            s.Format( "%d-%02d%c%02d%c%02d", 
-                        value.GetDays(), 
-                        value.GetHours(), TimeSep,
-                        value.GetMinutes(), TimeSep,
-                        value.GetSeconds()
-                    );
+            s.Format("%d-%02d%c%02d%c%02d",
+                     value.GetDays(),
+                     value.GetHours(), TimeSep,
+                     value.GetMinutes(), TimeSep,
+                     value.GetSeconds()
+            );
             break;
         }
         default:
@@ -372,157 +371,157 @@ CString    ZUStringFormatter::GetFormattedBuffer( ZBTimeSpan& value, ZBStringFor
 }
 
 
-CString    ZUStringFormatter::GetFormattedBuffer(PSS_Duration& value, ZBStringFormat::FormatType sf /*= ZBStringFormat::Duration*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+CString    ZUStringFormatter::GetFormattedBuffer(PSS_Duration& value, PSS_StringFormat::IEFormatType sf /*= ZBStringFormat::Duration*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
-    CString TimeStr = PSS_Global::GetTimeSeparator( lcid );
+    CString TimeStr = PSS_Global::GetTimeSeparator(lcid);
     char TimeSep = (TimeStr.IsEmpty()) ? ':' : TimeStr.GetAt(0);
 
     CString s;
     switch (sf)
     {
-        case ZBStringFormat::Duration:        // days-hour:min
+        case PSS_StringFormat::IE_FT_Duration:        // days-hour:min
         {
-            s.Format( "%d-%02d%c%02d", 
-                        value.GetDays(), 
-                        value.GetHours(), TimeSep,
-                        value.GetMinutes()
-                    );
+            s.Format("%d-%02d%c%02d",
+                     value.GetDays(),
+                     value.GetHours(), TimeSep,
+                     value.GetMinutes()
+            );
             break;
         }
-        case ZBStringFormat::Duration1:        // days-hour:min:sec
+        case PSS_StringFormat::IE_FT_Duration1:        // days-hour:min:sec
         {
-            s.Format( "%d-%02d%c%02d%c%02d", 
-                        value.GetDays(), 
-                        value.GetHours(), TimeSep,
-                        value.GetMinutes(), TimeSep,
-                        value.GetSeconds()
-                    );
+            s.Format("%d-%02d%c%02d%c%02d",
+                     value.GetDays(),
+                     value.GetHours(), TimeSep,
+                     value.GetMinutes(), TimeSep,
+                     value.GetSeconds()
+            );
             break;
         }
-        case ZBStringFormat::Duration2:        // nnd hour:min
+        case PSS_StringFormat::IE_FT_Duration2:        // nnd hour:min
         {
-            s.Format( "%d%s %02d%c%02d%c%02d", 
-                        value.GetDays(), 
-                        (const char*)PSS_Global::GetDayShortPrefix( lcid ),
-                        value.GetHours(), TimeSep,
-                        value.GetMinutes(), TimeSep,
-                        value.GetSeconds()
-                    );
+            s.Format("%d%s %02d%c%02d%c%02d",
+                     value.GetDays(),
+                     (const char*)PSS_Global::GetDayShortPrefix(lcid),
+                     value.GetHours(), TimeSep,
+                     value.GetMinutes(), TimeSep,
+                     value.GetSeconds()
+            );
             break;
         }
-        case ZBStringFormat::Duration3:        // nnd hour:min:sec
+        case PSS_StringFormat::IE_FT_Duration3:        // nnd hour:min:sec
         {
-            s.Format( "%d%s %02d%c%02d%c%02d", 
-                        value.GetDays(), 
-                        (const char*)PSS_Global::GetDayShortPrefix( lcid ),
-                        value.GetHours(), TimeSep,
-                        value.GetMinutes(), TimeSep,
-                        value.GetSeconds()
-                    );
+            s.Format("%d%s %02d%c%02d%c%02d",
+                     value.GetDays(),
+                     (const char*)PSS_Global::GetDayShortPrefix(lcid),
+                     value.GetHours(), TimeSep,
+                     value.GetMinutes(), TimeSep,
+                     value.GetSeconds()
+            );
             break;
         }
-        case ZBStringFormat::Duration4:        // nn days hour:min
+        case PSS_StringFormat::IE_FT_Duration4:        // nn days hour:min
         {
-            s.Format( "%d %s %02d%c%02d%c%02d", 
-                        value.GetDays(), 
-                        (const char*)PSS_Global::GetDayPrefix( lcid ),
-                        value.GetHours(), TimeSep,
-                        value.GetMinutes(), TimeSep,
-                        value.GetSeconds()
-                    );
+            s.Format("%d %s %02d%c%02d%c%02d",
+                     value.GetDays(),
+                     (const char*)PSS_Global::GetDayPrefix(lcid),
+                     value.GetHours(), TimeSep,
+                     value.GetMinutes(), TimeSep,
+                     value.GetSeconds()
+            );
             break;
         }
-        case ZBStringFormat::Duration5:        // nn days hour:min:sec
+        case PSS_StringFormat::IE_FT_Duration5:        // nn days hour:min:sec
         {
-            s.Format( "%d%s %02d%c%02d%c%02d", 
-                        value.GetDays(),
-                        (const char*)PSS_Global::GetDayShortPrefix( lcid ),
-                        value.GetHours(), TimeSep,
-                        value.GetMinutes(), TimeSep,
-                        value.GetSeconds()
-                    );
+            s.Format("%d%s %02d%c%02d%c%02d",
+                     value.GetDays(),
+                     (const char*)PSS_Global::GetDayShortPrefix(lcid),
+                     value.GetHours(), TimeSep,
+                     value.GetMinutes(), TimeSep,
+                     value.GetSeconds()
+            );
             break;
         }
-        case ZBStringFormat::Duration6:        // nnd ##:##:##
+        case PSS_StringFormat::IE_FT_Duration6:        // nnd ##:##:##
         {
             if (value.GetSeconds() > 0)
             {
-                s.Format( "%d%s %02d%c%02d%c%02d", 
-                            value.GetDays(),
-                            (const char*)PSS_Global::GetDayShortPrefix( lcid ),
-                            value.GetHours(), TimeSep,
-                            value.GetMinutes(), TimeSep,
-                            value.GetSeconds()
-                        );
+                s.Format("%d%s %02d%c%02d%c%02d",
+                         value.GetDays(),
+                         (const char*)PSS_Global::GetDayShortPrefix(lcid),
+                         value.GetHours(), TimeSep,
+                         value.GetMinutes(), TimeSep,
+                         value.GetSeconds()
+                );
             }
             else
-            if (value.GetMinutes() > 0)
-            {
-                s.Format( "%d%s %02d%c%02d", 
-                            value.GetDays(),
-                            (const char*)PSS_Global::GetDayShortPrefix( lcid ),
-                            value.GetHours(), TimeSep,
-                            value.GetMinutes()
+                if (value.GetMinutes() > 0)
+                {
+                    s.Format("%d%s %02d%c%02d",
+                             value.GetDays(),
+                             (const char*)PSS_Global::GetDayShortPrefix(lcid),
+                             value.GetHours(), TimeSep,
+                             value.GetMinutes()
+                    );
+                }
+                else
+                    if (value.GetHours() > 0)
+                    {
+                        s.Format("%d%s %02d%s",
+                                 value.GetDays(),
+                                 (const char*)PSS_Global::GetDayShortPrefix(lcid),
+                                 value.GetHours(),
+                                 (const char*)PSS_Global::GetHourShortPrefix(lcid)
                         );
-            }
-            else
-            if (value.GetHours() > 0)
-            {
-                s.Format( "%d%s %02d%s", 
-                            value.GetDays(),
-                            (const char*)PSS_Global::GetDayShortPrefix( lcid ),
-                            value.GetHours(),
-                            (const char*)PSS_Global::GetHourShortPrefix( lcid )
+                    }
+                    else
+                    {
+                        s.Format("%d%s",
+                                 value.GetDays(),
+                                 (const char*)PSS_Global::GetDayShortPrefix(lcid)
                         );
-            }
-            else
-            {
-                s.Format( "%d%s", 
-                            value.GetDays(),
-                            (const char*)PSS_Global::GetDayShortPrefix( lcid )
-                        );
-            }
+                    }
             break;
         }
-        case ZBStringFormat::Duration7:        // nn days ##:##:##
+        case PSS_StringFormat::IE_FT_Duration7:        // nn days ##:##:##
         {
             if (value.GetSeconds() > 0)
             {
-                s.Format( "%d %s %02d%c%02d%c%02d", 
-                            value.GetDays(),
-                            (const char*)PSS_Global::GetDayPrefix( lcid ),
-                            value.GetHours(), TimeSep,
-                            value.GetMinutes(), TimeSep,
-                            value.GetSeconds()
-                        );
+                s.Format("%d %s %02d%c%02d%c%02d",
+                         value.GetDays(),
+                         (const char*)PSS_Global::GetDayPrefix(lcid),
+                         value.GetHours(), TimeSep,
+                         value.GetMinutes(), TimeSep,
+                         value.GetSeconds()
+                );
             }
             else
-            if (value.GetMinutes() > 0)
-            {
-                s.Format( "%d %s %02d%c%02d", 
-                            value.GetDays(),
-                            (const char*)PSS_Global::GetDayPrefix( lcid ),
-                            value.GetHours(), TimeSep,
-                            value.GetMinutes()
+                if (value.GetMinutes() > 0)
+                {
+                    s.Format("%d %s %02d%c%02d",
+                             value.GetDays(),
+                             (const char*)PSS_Global::GetDayPrefix(lcid),
+                             value.GetHours(), TimeSep,
+                             value.GetMinutes()
+                    );
+                }
+                else
+                    if (value.GetHours() > 0)
+                    {
+                        s.Format("%d %s %02d %s",
+                                 value.GetDays(),
+                                 (const char*)PSS_Global::GetDayPrefix(lcid),
+                                 value.GetHours(),
+                                 (const char*)PSS_Global::GetHourPrefix(lcid)
                         );
-            }
-            else
-            if (value.GetHours() > 0)
-            {
-                s.Format( "%d %s %02d %s", 
-                            value.GetDays(),
-                            (const char*)PSS_Global::GetDayPrefix( lcid ),
-                            value.GetHours(),
-                            (const char*)PSS_Global::GetHourPrefix( lcid )
+                    }
+                    else
+                    {
+                        s.Format("%d %s",
+                                 value.GetDays(),
+                                 (const char*)PSS_Global::GetDayPrefix(lcid)
                         );
-            }
-            else
-            {
-                s.Format( "%d %s", 
-                            value.GetDays(),
-                            (const char*)PSS_Global::GetDayPrefix( lcid )
-                        );
-            }
+                    }
         }
         default:
             break;
@@ -530,162 +529,162 @@ CString    ZUStringFormatter::GetFormattedBuffer(PSS_Duration& value, ZBStringFo
     return s;
 }
 
-CString    ZUStringFormatter::GetFormattedBuffer( int value, ZBStringFormat& fmt )
+CString    ZUStringFormatter::GetFormattedBuffer(int value, PSS_StringFormat& fmt)
 {
-    return ZUStringFormatter::GetFormattedBuffer( value, fmt.Getft(), fmt.GetUseSeparator(), (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.Getlcid() );
+    return ZUStringFormatter::GetFormattedBuffer(value, fmt.GetFormatType(), fmt.GetUseSeparator(), (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.GetLCID());
 }
 
-CString    ZUStringFormatter::GetFormattedBuffer( unsigned int value, ZBStringFormat& fmt )
+CString    ZUStringFormatter::GetFormattedBuffer(unsigned int value, PSS_StringFormat& fmt)
 {
-    return ZUStringFormatter::GetFormattedBuffer( value, fmt.Getft(), fmt.GetUseSeparator(), (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.Getlcid() );
+    return ZUStringFormatter::GetFormattedBuffer(value, fmt.GetFormatType(), fmt.GetUseSeparator(), (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.GetLCID());
 }
 
-CString    ZUStringFormatter::GetFormattedBuffer( short value, ZBStringFormat& fmt )
+CString    ZUStringFormatter::GetFormattedBuffer(short value, PSS_StringFormat& fmt)
 {
-    return ZUStringFormatter::GetFormattedBuffer( value, fmt.Getft(), fmt.GetUseSeparator(), (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.Getlcid() );
+    return ZUStringFormatter::GetFormattedBuffer(value, fmt.GetFormatType(), fmt.GetUseSeparator(), (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.GetLCID());
 }
 
-CString    ZUStringFormatter::GetFormattedBuffer( float value, ZBStringFormat& fmt )
+CString    ZUStringFormatter::GetFormattedBuffer(float value, PSS_StringFormat& fmt)
 {
-    return ZUStringFormatter::GetFormattedBuffer( value, fmt.Getft(), fmt.GetDecimalPlace(), fmt.GetUseSeparator(), (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.Getlcid() );
+    return ZUStringFormatter::GetFormattedBuffer(value, fmt.GetFormatType(), fmt.GetDecimalPlace(), fmt.GetUseSeparator(), (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.GetLCID());
 }
 
-CString    ZUStringFormatter::GetFormattedBuffer( long value, ZBStringFormat& fmt )
+CString    ZUStringFormatter::GetFormattedBuffer(long value, PSS_StringFormat& fmt)
 {
-    return ZUStringFormatter::GetFormattedBuffer( value, fmt.Getft(), fmt.GetDecimalPlace(), fmt.GetUseSeparator(), (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.Getlcid() );
+    return ZUStringFormatter::GetFormattedBuffer(value, fmt.GetFormatType(), fmt.GetDecimalPlace(), fmt.GetUseSeparator(), (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.GetLCID());
 }
 
-CString    ZUStringFormatter::GetFormattedBuffer( double value, ZBStringFormat& fmt )
+CString    ZUStringFormatter::GetFormattedBuffer(double value, PSS_StringFormat& fmt)
 {
-    return ZUStringFormatter::GetFormattedBuffer( value, fmt.Getft(), fmt.GetDecimalPlace(), fmt.GetUseSeparator(), (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.Getlcid() );
+    return ZUStringFormatter::GetFormattedBuffer(value, fmt.GetFormatType(), fmt.GetDecimalPlace(), fmt.GetUseSeparator(), (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.GetLCID());
 }
 
-CString    ZUStringFormatter::GetFormattedBuffer(PSS_Date& value, ZBStringFormat& fmt )
+CString    ZUStringFormatter::GetFormattedBuffer(PSS_Date& value, PSS_StringFormat& fmt)
 {
-    return ZUStringFormatter::GetFormattedBuffer( value, fmt.Getft(), fmt.Getlcid() );
+    return ZUStringFormatter::GetFormattedBuffer(value, fmt.GetFormatType(), fmt.GetLCID());
 }
 
-CString    ZUStringFormatter::GetFormattedBuffer( ZBTimeSpan& value, ZBStringFormat& fmt )
+CString    ZUStringFormatter::GetFormattedBuffer(ZBTimeSpan& value, PSS_StringFormat& fmt)
 {
-    return ZUStringFormatter::GetFormattedBuffer( value, fmt.Getft(), fmt.Getlcid() );
+    return ZUStringFormatter::GetFormattedBuffer(value, fmt.GetFormatType(), fmt.GetLCID());
 }
 
-CString    ZUStringFormatter::GetFormattedBuffer(PSS_Duration& value, ZBStringFormat& fmt )
+CString    ZUStringFormatter::GetFormattedBuffer(PSS_Duration& value, PSS_StringFormat& fmt)
 {
-    return ZUStringFormatter::GetFormattedBuffer( value, fmt.Getft(), fmt.Getlcid() );
+    return ZUStringFormatter::GetFormattedBuffer(value, fmt.GetFormatType(), fmt.GetLCID());
 }
 
 // Convert value to custom string 
-CString    ZUStringFormatter::GetCustomFormattedBuffer( int value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+CString    ZUStringFormatter::GetCustomFormattedBuffer(int value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     return _T("");
 }
 
-CString    ZUStringFormatter::GetCustomFormattedBuffer( unsigned int value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+CString    ZUStringFormatter::GetCustomFormattedBuffer(unsigned int value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     return _T("");
 }
 
-CString    ZUStringFormatter::GetCustomFormattedBuffer( short value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+CString    ZUStringFormatter::GetCustomFormattedBuffer(short value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     return _T("");
 }
 
-CString    ZUStringFormatter::GetCustomFormattedBuffer( float value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+CString    ZUStringFormatter::GetCustomFormattedBuffer(float value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     return _T("");
 }
 
-CString    ZUStringFormatter::GetCustomFormattedBuffer( long value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+CString    ZUStringFormatter::GetCustomFormattedBuffer(long value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     return _T("");
 }
 
-CString    ZUStringFormatter::GetCustomFormattedBuffer( double value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+CString    ZUStringFormatter::GetCustomFormattedBuffer(double value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     return _T("");
 }
 
-CString    ZUStringFormatter::GetCustomFormattedBuffer(PSS_Date& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+CString    ZUStringFormatter::GetCustomFormattedBuffer(PSS_Date& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     return _T("");
 }
 
-CString    ZUStringFormatter::GetCustomFormattedBuffer( ZBTimeSpan& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+CString    ZUStringFormatter::GetCustomFormattedBuffer(ZBTimeSpan& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     return _T("");
 }
 
-CString    ZUStringFormatter::GetCustomFormattedBuffer(PSS_Duration& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+CString    ZUStringFormatter::GetCustomFormattedBuffer(PSS_Duration& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     return _T("");
 }
 
 // Convert string to value
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, int& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, int& value, PSS_StringFormat::IEFormatType& sf, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     double dValue;
-    bool RetValue = ZUStringFormatter::ConvertBufferToNumber( buffer, dValue, sf, pCurrency, lcid );
+    bool RetValue = ZUStringFormatter::ConvertBufferToNumber(buffer, dValue, sf, pCurrency, lcid);
     // Only if no error
     if (RetValue)
         value = (int)dValue;
     return RetValue;
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, unsigned int& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, unsigned int& value, PSS_StringFormat::IEFormatType& sf, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     double dValue;
-    bool RetValue = ZUStringFormatter::ConvertBufferToNumber( buffer, dValue, sf, pCurrency, lcid );
+    bool RetValue = ZUStringFormatter::ConvertBufferToNumber(buffer, dValue, sf, pCurrency, lcid);
     // Only if no error
     if (RetValue)
         value = (unsigned int)dValue;
     return RetValue;
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, short& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, short& value, PSS_StringFormat::IEFormatType& sf, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     double dValue;
-    bool RetValue = ZUStringFormatter::ConvertBufferToNumber( buffer, dValue, sf, pCurrency, lcid );
+    bool RetValue = ZUStringFormatter::ConvertBufferToNumber(buffer, dValue, sf, pCurrency, lcid);
     // Only if no error
     if (RetValue)
         value = (short)dValue;
     return RetValue;
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, float& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, float& value, PSS_StringFormat::IEFormatType& sf, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     double dValue;
-    bool RetValue = ZUStringFormatter::ConvertBufferToNumber( buffer, dValue, sf, pCurrency, lcid );
+    bool RetValue = ZUStringFormatter::ConvertBufferToNumber(buffer, dValue, sf, pCurrency, lcid);
     // Only if no error
     if (RetValue)
         value = (float)dValue;
     return RetValue;
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, long& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, long& value, PSS_StringFormat::IEFormatType& sf, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     double dValue;
-    bool RetValue = ZUStringFormatter::ConvertBufferToNumber( buffer, dValue, sf, pCurrency, lcid );
+    bool RetValue = ZUStringFormatter::ConvertBufferToNumber(buffer, dValue, sf, pCurrency, lcid);
     // Only if no error
     if (RetValue)
         value = (long)dValue;
     return RetValue;
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, double& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, double& value, PSS_StringFormat::IEFormatType& sf, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
-    return ZUStringFormatter::ConvertBufferToNumber( buffer, value, sf, pCurrency, lcid );
+    return ZUStringFormatter::ConvertBufferToNumber(buffer, value, sf, pCurrency, lcid);
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, PSS_Date& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, PSS_Date& value, PSS_StringFormat::IEFormatType& sf, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     // RS-MODIF 05.08.2005 implémentation pour gestion de date
     // Convert a date
 
     // Retreive the separators
-    CString DecimalStr = PSS_Global::GetDecimalSeparator( lcid );
+    CString DecimalStr = PSS_Global::GetDecimalSeparator(lcid);
     char DecimalSep = (DecimalStr.IsEmpty()) ? '.' : DecimalStr.GetAt(0);
-    CString TimeStr = PSS_Global::GetTimeSeparator( lcid );
+    CString TimeStr = PSS_Global::GetTimeSeparator(lcid);
     char TimeSep = (TimeStr.IsEmpty()) ? '.' : TimeStr.GetAt(0);
 
     // Now parse the string
@@ -695,7 +694,7 @@ bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, PSS_Date& 
 
     // First, check if only a number without any prefix
     bool PrefixFound = false;
-    for (; *pBuffer ; ++pBuffer)
+    for (; *pBuffer; ++pBuffer)
     {
         // If it is a digit, copy the chars into the digit array
         if (isdigit(*pBuffer) || *pBuffer == DecimalSep)
@@ -708,15 +707,15 @@ bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, PSS_Date& 
             break;
         }
     }
-    
+
     *pTempDigit = 0x00; // End of string
-        
+
     value = szTempDigit;
 
     return true;
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, ZBTimeSpan& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, ZBTimeSpan& value, PSS_StringFormat::IEFormatType& sf, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     // RS-MODIF 08.08.2005 implémentation pour gestion de temps
     // Convert a time
@@ -725,7 +724,7 @@ bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, ZBTimeSpan
     // Retreive the separators
     //CString DecimalStr = PSS_Global::GetDecimalSeparator( lcid );
     //char DecimalSep = (DecimalStr.IsEmpty()) ? '.' : DecimalStr.GetAt(0);
-    CString TimeStr = PSS_Global::GetTimeSeparator( lcid );
+    CString TimeStr = PSS_Global::GetTimeSeparator(lcid);
     char TimeSep = (TimeStr.IsEmpty()) ? '.' : TimeStr.GetAt(0);
 
     // Now parse the string
@@ -738,7 +737,7 @@ bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, ZBTimeSpan
     int sec = 0;
     bool hourset = false; // check if hours has already been registered
 
-    for (; *pBuffer ; ++pBuffer)
+    for (; *pBuffer; ++pBuffer)
     {
         // If it is a digit, copy the chars into the digit array
         if (isdigit(*pBuffer))
@@ -750,31 +749,31 @@ bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, ZBTimeSpan
             *pTempDigit = 0x00; // End of string
             if (!hourset)
             {
-            hour = atoi(szTempDigit);
-            hourset = true;
+                hour = atoi(szTempDigit);
+                hourset = true;
             }
             else min = atoi(szTempDigit);
             pTempDigit = szTempDigit; // reset temp string
         }
     }
-    
+
     *pTempDigit = 0x00; // End of string
     sec = atoi(szTempDigit);
-        
-    value.SetDateTimeSpan(day,hour,min,sec);
+
+    value.SetDateTimeSpan(day, hour, min, sec);
 
     return true;
 }
 
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, PSS_Duration& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, PSS_Duration& value, PSS_StringFormat::IEFormatType& sf, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     // Convert a duration
 
     // Retreive the separators
-    CString DecimalStr = PSS_Global::GetDecimalSeparator( lcid );
+    CString DecimalStr = PSS_Global::GetDecimalSeparator(lcid);
     char DecimalSep = (DecimalStr.IsEmpty()) ? '.' : DecimalStr.GetAt(0);
-    CString TimeStr = PSS_Global::GetTimeSeparator( lcid );
+    CString TimeStr = PSS_Global::GetTimeSeparator(lcid);
     char TimeSep = (TimeStr.IsEmpty()) ? '.' : TimeStr.GetAt(0);
 
     // Now parse the string
@@ -784,7 +783,7 @@ bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, PSS_Durati
 
     // First, check if only a number without any prefix
     bool PrefixFound = false;
-    for (; *pBuffer ; ++pBuffer)
+    for (; *pBuffer; ++pBuffer)
     {
         // If it is a digit, copy the chars into the digit array
         if (isdigit(*pBuffer) || *pBuffer == DecimalSep)
@@ -802,7 +801,7 @@ bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, PSS_Durati
     {
         *pTempDigit = 0x00; // End of string
         // Convert and assigns the value
-        double dValue = atof( szTempDigit );
+        double dValue = atof(szTempDigit);
         value = dValue;
         // OK, valid
         return true;
@@ -811,14 +810,14 @@ bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, PSS_Durati
     // Otherwise, we have prefix to process
 
     // Retreive all prefixes function of the lang id
-    CString MonthPrefix = PSS_Global::GetMonthPrefix( lcid );
-    CString MonthShortPrefix = PSS_Global::GetMonthShortPrefix( lcid );
-    CString WeekPrefix = PSS_Global::GetWeekPrefix( lcid );
-    CString WeekShortPrefix = PSS_Global::GetWeekShortPrefix( lcid );
-    CString DayPrefix = PSS_Global::GetDayPrefix( lcid );
-    CString DayShortPrefix = PSS_Global::GetDayShortPrefix( lcid );
-    CString HourPrefix = PSS_Global::GetHourPrefix( lcid );
-    CString HourShortPrefix = PSS_Global::GetHourShortPrefix( lcid );
+    CString MonthPrefix = PSS_Global::GetMonthPrefix(lcid);
+    CString MonthShortPrefix = PSS_Global::GetMonthShortPrefix(lcid);
+    CString WeekPrefix = PSS_Global::GetWeekPrefix(lcid);
+    CString WeekShortPrefix = PSS_Global::GetWeekShortPrefix(lcid);
+    CString DayPrefix = PSS_Global::GetDayPrefix(lcid);
+    CString DayShortPrefix = PSS_Global::GetDayShortPrefix(lcid);
+    CString HourPrefix = PSS_Global::GetHourPrefix(lcid);
+    CString HourShortPrefix = PSS_Global::GetHourShortPrefix(lcid);
 
     // Alpha buffer used to save prefixes
     char szTempAlpha[100];
@@ -843,7 +842,7 @@ bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, PSS_Durati
     bool HourDone = false;
     bool MinuteDone = false;
 
-    for (; *pBuffer ; ++pBuffer)
+    for (; *pBuffer; ++pBuffer)
     {
         // If it is a digit, copy the chars into the digit array
         if (isdigit(*pBuffer) || *pBuffer == DecimalSep)
@@ -857,54 +856,54 @@ bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, PSS_Durati
                 *pTempAlpha++ = 0x00;
 
                 // Before taking other values, Convert the previous saved value first.
-                long lValue = atol( szTempDigit );
+                long lValue = atol(szTempDigit);
                 // Check what prefix is concerned
-                if (MonthPrefix.CompareNoCase( szTempAlpha ) == 0)
+                if (MonthPrefix.CompareNoCase(szTempAlpha) == 0)
                 {
                     Month = (int)lValue;
                 }
                 else
-                if (WeekPrefix.CompareNoCase( szTempAlpha ) == 0)
-                {
-                    Week = (int)lValue;
-                }
-                else
-                if (DayPrefix.CompareNoCase( szTempAlpha ) == 0)
-                {
-                    lDays = lValue;
-                }
-                else
-                if (HourPrefix.CompareNoCase( szTempAlpha ) == 0)
-                {
-                    nHours = lValue;
-                    HourDone = true;
-                }
-                else
-                if (MonthShortPrefix.CompareNoCase( szTempAlpha ) == 0)
-                {
-                    Month = (int)lValue;
-                }
-                else
-                if (WeekShortPrefix.CompareNoCase( szTempAlpha ) == 0)
-                {
-                    Week = (int)lValue;
-                }
-                else
-                if (DayShortPrefix.CompareNoCase( szTempAlpha ) == 0)
-                {
-                    lDays = lValue;
-                }
-                else
-                if (HourShortPrefix.CompareNoCase( szTempAlpha ) == 0)
-                {
-                    nHours = lValue;
-                    HourDone = true;
-                }
-                else
-                {
-                    // Unknown prefix, ignore
-                    lDays = 0;
-                }
+                    if (WeekPrefix.CompareNoCase(szTempAlpha) == 0)
+                    {
+                        Week = (int)lValue;
+                    }
+                    else
+                        if (DayPrefix.CompareNoCase(szTempAlpha) == 0)
+                        {
+                            lDays = lValue;
+                        }
+                        else
+                            if (HourPrefix.CompareNoCase(szTempAlpha) == 0)
+                            {
+                                nHours = lValue;
+                                HourDone = true;
+                            }
+                            else
+                                if (MonthShortPrefix.CompareNoCase(szTempAlpha) == 0)
+                                {
+                                    Month = (int)lValue;
+                                }
+                                else
+                                    if (WeekShortPrefix.CompareNoCase(szTempAlpha) == 0)
+                                    {
+                                        Week = (int)lValue;
+                                    }
+                                    else
+                                        if (DayShortPrefix.CompareNoCase(szTempAlpha) == 0)
+                                        {
+                                            lDays = lValue;
+                                        }
+                                        else
+                                            if (HourShortPrefix.CompareNoCase(szTempAlpha) == 0)
+                                            {
+                                                nHours = lValue;
+                                                HourDone = true;
+                                            }
+                                            else
+                                            {
+                                                // Unknown prefix, ignore
+                                                lDays = 0;
+                                            }
                 // Before continuing, reset the alpha counter
                 AlphaCounter = 0;
                 // And the start of pointer buffer
@@ -915,88 +914,88 @@ bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, PSS_Durati
             ++DigitCounter;
         }
         else
-        // If we have a space
-        if (*pBuffer == ' ')
-        {
-            // Do nothing, just skip it
-        }
-        else
-        // If we have a standard day separator
-        if (*pBuffer == '-')
-        {
-            // Then we must have digit in the array
-            if (DigitCounter > 0)
+            // If we have a space
+            if (*pBuffer == ' ')
             {
-                // Sets end of string for digit.
-                *pTempDigit++ = 0x00;
-                // Converts the string to number and assigns it to days
-                lDays = atol( szTempDigit );
-                // Sets the sequence flag
-                DayDone = true;
+                // Do nothing, just skip it
             }
-            // Sets the start of pointer buffer
-            pTempDigit = szTempDigit;
-            // Reset the digit counter to zero
-            DigitCounter = 0;
-        }
-        else
-        // If we have a standard time separator
-        if (*pBuffer == TimeSep)
-        {
-            // Then we must have digit in the array
-            if (DigitCounter > 0)
-            {
-                // Sets end of string for digit.
-                *pTempDigit++ = 0x00;
-                // Converts the string to number and assigns it to an int value
-                int iValue = atoi( szTempDigit );
-                // Now check to wich value it is destinated
-                // If hour and minute done, then it is seconds
-                if (HourDone && MinuteDone)
+            else
+                // If we have a standard day separator
+                if (*pBuffer == '-')
                 {
-                    nSeconds = iValue;
+                    // Then we must have digit in the array
+                    if (DigitCounter > 0)
+                    {
+                        // Sets end of string for digit.
+                        *pTempDigit++ = 0x00;
+                        // Converts the string to number and assigns it to days
+                        lDays = atol(szTempDigit);
+                        // Sets the sequence flag
+                        DayDone = true;
+                    }
+                    // Sets the start of pointer buffer
+                    pTempDigit = szTempDigit;
+                    // Reset the digit counter to zero
+                    DigitCounter = 0;
                 }
                 else
-                // If only hour done, then it is minutes
-                if (HourDone)
-                {
-                    nMinutes = iValue;
-                    // Sets the sequence flag
-                    MinuteDone = true;
-                }
-                else
-                // Otherwise, it is hours
-                {
-                    nHours = iValue;
-                    // Sets the sequence flag
-                    HourDone = true;
-                }
-            }
-            // Sets the start of pointer buffer
-            pTempDigit = szTempDigit;
-            // Reset the digit counter to zero
-            DigitCounter = 0;
-        }
-        else
-        // Otherwise, any other char must be copied into the alpha array
+                    // If we have a standard time separator
+                    if (*pBuffer == TimeSep)
+                    {
+                        // Then we must have digit in the array
+                        if (DigitCounter > 0)
+                        {
+                            // Sets end of string for digit.
+                            *pTempDigit++ = 0x00;
+                            // Converts the string to number and assigns it to an int value
+                            int iValue = atoi(szTempDigit);
+                            // Now check to wich value it is destinated
+                            // If hour and minute done, then it is seconds
+                            if (HourDone && MinuteDone)
+                            {
+                                nSeconds = iValue;
+                            }
+                            else
+                                // If only hour done, then it is minutes
+                                if (HourDone)
+                                {
+                                    nMinutes = iValue;
+                                    // Sets the sequence flag
+                                    MinuteDone = true;
+                                }
+                                else
+                                    // Otherwise, it is hours
+                                {
+                                    nHours = iValue;
+                                    // Sets the sequence flag
+                                    HourDone = true;
+                                }
+                        }
+                        // Sets the start of pointer buffer
+                        pTempDigit = szTempDigit;
+                        // Reset the digit counter to zero
+                        DigitCounter = 0;
+                    }
+                    else
+                        // Otherwise, any other char must be copied into the alpha array
 
-        {
-            // But before copy the char, check if we have the alpha counter
-            // to zero and the digit counter greather to zero
-            // If it is the case, that means we are changing from digit to alpha.
-            if (DigitCounter > 0 && AlphaCounter == 0)
-            {
-                // Sets end of string for digit.
-                *pTempDigit++ = 0x00;
-                // Reset the digit counter to zero
-                DigitCounter = 0;
-                // And the start of pointer buffer
-                pTempDigit = szTempDigit;
-            }
-            // Then copy the alpha char to the buffer and increment the counter
-            *pTempAlpha++ = *pBuffer;
-            ++AlphaCounter;
-        }
+                    {
+                        // But before copy the char, check if we have the alpha counter
+                        // to zero and the digit counter greather to zero
+                        // If it is the case, that means we are changing from digit to alpha.
+                        if (DigitCounter > 0 && AlphaCounter == 0)
+                        {
+                            // Sets end of string for digit.
+                            *pTempDigit++ = 0x00;
+                            // Reset the digit counter to zero
+                            DigitCounter = 0;
+                            // And the start of pointer buffer
+                            pTempDigit = szTempDigit;
+                        }
+                        // Then copy the alpha char to the buffer and increment the counter
+                        *pTempAlpha++ = *pBuffer;
+                        ++AlphaCounter;
+                    }
     }
     // Now we've running all the string.
     // We need to determine what is the last digit
@@ -1007,92 +1006,92 @@ bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, PSS_Durati
         // Sets end of string for alpha.
         *pTempAlpha++ = 0x00;
         // Convert the previous saved value first.
-        long lValue = atol( szTempDigit );
+        long lValue = atol(szTempDigit);
         // Check what prefix is concerned
-        if (MonthPrefix.CompareNoCase( szTempAlpha ) == 0)
+        if (MonthPrefix.CompareNoCase(szTempAlpha) == 0)
         {
             Month = (int)lValue;
         }
         else
-        if (WeekPrefix.CompareNoCase( szTempAlpha ) == 0)
-        {
-            Week = (int)lValue;
-        }
-        else
-        if (DayPrefix.CompareNoCase( szTempAlpha ) == 0)
-        {
-            lDays = lValue;
-        }
-        else
-        if (HourPrefix.CompareNoCase( szTempAlpha ) == 0)
-        {
-            nHours = lValue;
-        }
-        else
-        if (MonthShortPrefix.CompareNoCase( szTempAlpha ) == 0)
-        {
-            Month = (int)lValue;
-        }
-        else
-        if (WeekShortPrefix.CompareNoCase( szTempAlpha ) == 0)
-        {
-            Week = (int)lValue;
-        }
-        else
-        if (DayShortPrefix.CompareNoCase( szTempAlpha ) == 0)
-        {
-            lDays = lValue;
-        }
-        else
-        if (HourShortPrefix.CompareNoCase( szTempAlpha ) == 0)
-        {
-            nHours = lValue;
-        }
-        else
-        {
-            // Unknown prefix, ignore
-            lDays = 0;
-        }
+            if (WeekPrefix.CompareNoCase(szTempAlpha) == 0)
+            {
+                Week = (int)lValue;
+            }
+            else
+                if (DayPrefix.CompareNoCase(szTempAlpha) == 0)
+                {
+                    lDays = lValue;
+                }
+                else
+                    if (HourPrefix.CompareNoCase(szTempAlpha) == 0)
+                    {
+                        nHours = lValue;
+                    }
+                    else
+                        if (MonthShortPrefix.CompareNoCase(szTempAlpha) == 0)
+                        {
+                            Month = (int)lValue;
+                        }
+                        else
+                            if (WeekShortPrefix.CompareNoCase(szTempAlpha) == 0)
+                            {
+                                Week = (int)lValue;
+                            }
+                            else
+                                if (DayShortPrefix.CompareNoCase(szTempAlpha) == 0)
+                                {
+                                    lDays = lValue;
+                                }
+                                else
+                                    if (HourShortPrefix.CompareNoCase(szTempAlpha) == 0)
+                                    {
+                                        nHours = lValue;
+                                    }
+                                    else
+                                    {
+                                        // Unknown prefix, ignore
+                                        lDays = 0;
+                                    }
     }
     else
-    if (DigitCounter > 0 && AlphaCounter == 0)
-    {
-        // Sets end of string for digit.
-        *pTempDigit++ = 0x00;
-        // Converts the string to number and assigns it to an int value
-        int iValue = atoi( szTempDigit );
-        // Now check to wich value it is destinated
-        // If hour and minute done, then it is seconds
-        if (HourDone && MinuteDone)
+        if (DigitCounter > 0 && AlphaCounter == 0)
         {
-            nSeconds = iValue;
+            // Sets end of string for digit.
+            *pTempDigit++ = 0x00;
+            // Converts the string to number and assigns it to an int value
+            int iValue = atoi(szTempDigit);
+            // Now check to wich value it is destinated
+            // If hour and minute done, then it is seconds
+            if (HourDone && MinuteDone)
+            {
+                nSeconds = iValue;
+            }
+            else
+                // If only hour done, then it is minutes
+                if (HourDone)
+                {
+                    nMinutes = iValue;
+                }
+                else
+                    // Otherwise, it is hours
+                {
+                    nHours = iValue;
+                }
         }
         else
-        // If only hour done, then it is minutes
-        if (HourDone)
         {
-            nMinutes = iValue;
+            // Problem
+            return false;
         }
-        else
-        // Otherwise, it is hours
-        {
-            nHours = iValue;
-        }
-    }
-    else
-    {
-        // Problem
-        return false;
-    }
 
     // Sets the duration
-    value.SetDuration( lDays, nHours, nMinutes, nSeconds );
+    value.SetDuration(lDays, nHours, nMinutes, nSeconds);
 
     // Now check if months and weeks are to be added
     if (Month > 0)
-        value.AddMonth( Month );
+        value.AddMonth(Month);
     if (Week > 0)
-        value.AddWeek( Week );
+        value.AddWeek(Week);
 
     return true;
 }
@@ -1100,207 +1099,207 @@ bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, PSS_Durati
 
 
 ////////////////////////////////////////////////////////////
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, int& value, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, int& value, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
-    ZBStringFormat::FormatType sf;
-    return ZUStringFormatter::ConvertFormattedBuffer( buffer, value, sf, pCurrency, lcid );
+    PSS_StringFormat::IEFormatType sf;
+    return ZUStringFormatter::ConvertFormattedBuffer(buffer, value, sf, pCurrency, lcid);
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, unsigned int& value, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, unsigned int& value, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
-    ZBStringFormat::FormatType sf;
-    return ZUStringFormatter::ConvertFormattedBuffer( buffer, value, sf, pCurrency, lcid );
+    PSS_StringFormat::IEFormatType sf;
+    return ZUStringFormatter::ConvertFormattedBuffer(buffer, value, sf, pCurrency, lcid);
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, short& value, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, short& value, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
-    ZBStringFormat::FormatType sf;
-    return ZUStringFormatter::ConvertFormattedBuffer( buffer, value, sf, pCurrency, lcid );
+    PSS_StringFormat::IEFormatType sf;
+    return ZUStringFormatter::ConvertFormattedBuffer(buffer, value, sf, pCurrency, lcid);
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, float& value, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, float& value, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
-    ZBStringFormat::FormatType sf;
-    return ZUStringFormatter::ConvertFormattedBuffer( buffer, value, sf, pCurrency, lcid );
+    PSS_StringFormat::IEFormatType sf;
+    return ZUStringFormatter::ConvertFormattedBuffer(buffer, value, sf, pCurrency, lcid);
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, long& value, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, long& value, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
-    ZBStringFormat::FormatType sf;
-    return ZUStringFormatter::ConvertFormattedBuffer( buffer, value, sf, pCurrency, lcid );
+    PSS_StringFormat::IEFormatType sf;
+    return ZUStringFormatter::ConvertFormattedBuffer(buffer, value, sf, pCurrency, lcid);
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, double& value, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, double& value, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
-    ZBStringFormat::FormatType sf;
-    return ZUStringFormatter::ConvertFormattedBuffer( buffer, value, sf, pCurrency, lcid );
+    PSS_StringFormat::IEFormatType sf;
+    return ZUStringFormatter::ConvertFormattedBuffer(buffer, value, sf, pCurrency, lcid);
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, PSS_Date& value, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, PSS_Date& value, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
-    ZBStringFormat::FormatType sf;
-    return ZUStringFormatter::ConvertFormattedBuffer( buffer, value, sf, pCurrency, lcid );
+    PSS_StringFormat::IEFormatType sf;
+    return ZUStringFormatter::ConvertFormattedBuffer(buffer, value, sf, pCurrency, lcid);
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, ZBTimeSpan& value, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, ZBTimeSpan& value, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
-    ZBStringFormat::FormatType sf;
-    return ZUStringFormatter::ConvertFormattedBuffer( buffer, value, sf, pCurrency, lcid );
+    PSS_StringFormat::IEFormatType sf;
+    return ZUStringFormatter::ConvertFormattedBuffer(buffer, value, sf, pCurrency, lcid);
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, PSS_Duration& value, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, PSS_Duration& value, LPCTSTR pCurrency /*= NULL*/, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
-    ZBStringFormat::FormatType sf;
-    return ZUStringFormatter::ConvertFormattedBuffer( buffer, value, sf, pCurrency, lcid );
+    PSS_StringFormat::IEFormatType sf;
+    return ZUStringFormatter::ConvertFormattedBuffer(buffer, value, sf, pCurrency, lcid);
 }
 
 ////////////////////////////////////////////////////////////
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, int& value, ZBStringFormat& fmt )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, int& value, PSS_StringFormat& fmt)
 {
-    ZBStringFormat::FormatType ft = fmt.Getft();
-    bool RetValue = ZUStringFormatter::ConvertFormattedBuffer( buffer, value, ft, (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.Getlcid() );
-    fmt.Setft( ft );
+    PSS_StringFormat::IEFormatType ft = fmt.GetFormatType();
+    bool RetValue = ZUStringFormatter::ConvertFormattedBuffer(buffer, value, ft, (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.GetLCID());
+    fmt.SetFormatType(ft);
     return RetValue;
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, unsigned int& value, ZBStringFormat& fmt )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, unsigned int& value, PSS_StringFormat& fmt)
 {
-    ZBStringFormat::FormatType ft = fmt.Getft();
-    bool RetValue = ZUStringFormatter::ConvertFormattedBuffer( buffer, value, ft, (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.Getlcid() );
-    fmt.Setft( ft );
+    PSS_StringFormat::IEFormatType ft = fmt.GetFormatType();
+    bool RetValue = ZUStringFormatter::ConvertFormattedBuffer(buffer, value, ft, (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.GetLCID());
+    fmt.SetFormatType(ft);
     return RetValue;
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, short& value, ZBStringFormat& fmt )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, short& value, PSS_StringFormat& fmt)
 {
-    ZBStringFormat::FormatType ft = fmt.Getft();
-    bool RetValue = ZUStringFormatter::ConvertFormattedBuffer( buffer, value, ft, (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.Getlcid() );
-    fmt.Setft( ft );
+    PSS_StringFormat::IEFormatType ft = fmt.GetFormatType();
+    bool RetValue = ZUStringFormatter::ConvertFormattedBuffer(buffer, value, ft, (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.GetLCID());
+    fmt.SetFormatType(ft);
     return RetValue;
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, float& value, ZBStringFormat& fmt )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, float& value, PSS_StringFormat& fmt)
 {
-    ZBStringFormat::FormatType ft = fmt.Getft();
-    bool RetValue = ZUStringFormatter::ConvertFormattedBuffer( buffer, value, ft, (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.Getlcid() );
-    fmt.Setft( ft );
+    PSS_StringFormat::IEFormatType ft = fmt.GetFormatType();
+    bool RetValue = ZUStringFormatter::ConvertFormattedBuffer(buffer, value, ft, (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.GetLCID());
+    fmt.SetFormatType(ft);
     return RetValue;
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, long& value, ZBStringFormat& fmt )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, long& value, PSS_StringFormat& fmt)
 {
-    ZBStringFormat::FormatType ft = fmt.Getft();
-    bool RetValue = ZUStringFormatter::ConvertFormattedBuffer( buffer, value, ft, (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.Getlcid() );
-    fmt.Setft( ft );
+    PSS_StringFormat::IEFormatType ft = fmt.GetFormatType();
+    bool RetValue = ZUStringFormatter::ConvertFormattedBuffer(buffer, value, ft, (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.GetLCID());
+    fmt.SetFormatType(ft);
     return RetValue;
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, double& value, ZBStringFormat& fmt )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, double& value, PSS_StringFormat& fmt)
 {
-    ZBStringFormat::FormatType ft = fmt.Getft();
-    bool RetValue = ZUStringFormatter::ConvertFormattedBuffer( buffer, value, ft, (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.Getlcid() );
-    fmt.Setft( ft );
+    PSS_StringFormat::IEFormatType ft = fmt.GetFormatType();
+    bool RetValue = ZUStringFormatter::ConvertFormattedBuffer(buffer, value, ft, (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.GetLCID());
+    fmt.SetFormatType(ft);
     return RetValue;
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, PSS_Date& value, ZBStringFormat& fmt )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, PSS_Date& value, PSS_StringFormat& fmt)
 {
-    ZBStringFormat::FormatType ft = fmt.Getft();
-    bool RetValue = ZUStringFormatter::ConvertFormattedBuffer( buffer, value, ft, (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.Getlcid() );
-    fmt.Setft( ft );
+    PSS_StringFormat::IEFormatType ft = fmt.GetFormatType();
+    bool RetValue = ZUStringFormatter::ConvertFormattedBuffer(buffer, value, ft, (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.GetLCID());
+    fmt.SetFormatType(ft);
     return RetValue;
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, ZBTimeSpan& value, ZBStringFormat& fmt )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, ZBTimeSpan& value, PSS_StringFormat& fmt)
 {
-    ZBStringFormat::FormatType ft = fmt.Getft();
-    bool RetValue = ZUStringFormatter::ConvertFormattedBuffer( buffer, value, ft, (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.Getlcid() );
-    fmt.Setft( ft );
+    PSS_StringFormat::IEFormatType ft = fmt.GetFormatType();
+    bool RetValue = ZUStringFormatter::ConvertFormattedBuffer(buffer, value, ft, (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.GetLCID());
+    fmt.SetFormatType(ft);
     return RetValue;
 }
 
-bool ZUStringFormatter::ConvertFormattedBuffer( const CString buffer, PSS_Duration& value, ZBStringFormat& fmt )
+bool ZUStringFormatter::ConvertFormattedBuffer(const CString buffer, PSS_Duration& value, PSS_StringFormat& fmt)
 {
-    ZBStringFormat::FormatType ft = fmt.Getft();
-    bool RetValue = ZUStringFormatter::ConvertFormattedBuffer( buffer, value, ft, (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.Getlcid() );
-    fmt.Setft( ft );
+    PSS_StringFormat::IEFormatType ft = fmt.GetFormatType();
+    bool RetValue = ZUStringFormatter::ConvertFormattedBuffer(buffer, value, ft, (fmt.GetCurrency().IsEmpty()) ? NULL : (const char*)fmt.GetCurrency(), fmt.GetLCID());
+    fmt.SetFormatType(ft);
     return RetValue;
 }
 
 
 
 // Convert custom string to value
-bool ZUStringFormatter::ConvertCustomFormattedBuffer( const CString buffer, int& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertCustomFormattedBuffer(const CString buffer, int& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     // Not implemented
     return false;
 }
 
-bool ZUStringFormatter::ConvertCustomFormattedBuffer( const CString buffer, unsigned int& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertCustomFormattedBuffer(const CString buffer, unsigned int& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     // Not implemented
     return false;
 }
 
-bool ZUStringFormatter::ConvertCustomFormattedBuffer( const CString buffer, short& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertCustomFormattedBuffer(const CString buffer, short& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     // Not implemented
     return false;
 }
 
-bool ZUStringFormatter::ConvertCustomFormattedBuffer( const CString buffer, float& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertCustomFormattedBuffer(const CString buffer, float& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     // Not implemented
     return false;
 }
 
-bool ZUStringFormatter::ConvertCustomFormattedBuffer( const CString buffer, long& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertCustomFormattedBuffer(const CString buffer, long& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     // Not implemented
     return false;
 }
 
-bool ZUStringFormatter::ConvertCustomFormattedBuffer( const CString buffer, double& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertCustomFormattedBuffer(const CString buffer, double& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     // Not implemented
     return false;
 }
 
-bool ZUStringFormatter::ConvertCustomFormattedBuffer( const CString buffer, PSS_Date& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertCustomFormattedBuffer(const CString buffer, PSS_Date& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     // Not implemented
     return false;
 }
 
-bool ZUStringFormatter::ConvertCustomFormattedBuffer( const CString buffer, ZBTimeSpan& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertCustomFormattedBuffer(const CString buffer, ZBTimeSpan& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     // Not implemented
     return false;
 }
 
-bool ZUStringFormatter::ConvertCustomFormattedBuffer( const CString buffer, PSS_Duration& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/ )
+bool ZUStringFormatter::ConvertCustomFormattedBuffer(const CString buffer, PSS_Duration& value, LPCTSTR custom, LCID lcid /*= ::GetUserDefaultLCID()*/)
 {
     // Not implemented
     return false;
 }
 
 
-void ZUStringFormatter::ReplaceDecimalPoint( CString& Buffer, LCID lcid )
+void ZUStringFormatter::ReplaceDecimalPoint(CString& Buffer, LCID lcid)
 {
     // Nothing to do
     if (Buffer.IsEmpty())
         return;
 
     // Retreive decimal separator
-    CString DecimalStr = PSS_Global::GetDecimalSeparator( lcid );
+    CString DecimalStr = PSS_Global::GetDecimalSeparator(lcid);
     char DecimalSep = (DecimalStr.IsEmpty()) ? '.' : DecimalStr.GetAt(0);
     // Nothing to replace
     if (DecimalSep == '.')
         return;
 
     // Detect the decimal point char
-    int DecimalPointPosition = Buffer.Find( '.' );
+    int DecimalPointPosition = Buffer.Find('.');
     // If found, replace
     if (DecimalPointPosition != -1)
         Buffer.SetAt(DecimalPointPosition, DecimalSep);
@@ -1308,33 +1307,33 @@ void ZUStringFormatter::ReplaceDecimalPoint( CString& Buffer, LCID lcid )
 
 
 
-CString ZUStringFormatter::RemoveTrailingZero( CString Buffer, LCID lcid, LPCTSTR pEndSymbol /*= NULL*/ )
+CString ZUStringFormatter::RemoveTrailingZero(CString Buffer, LCID lcid, LPCTSTR pEndSymbol /*= NULL*/)
 {
     char  szBuffer[500];
     char* pFinal = szBuffer;
 
     // Retreive decimal separator
-    CString DecimalStr = PSS_Global::GetDecimalSeparator( lcid );
+    CString DecimalStr = PSS_Global::GetDecimalSeparator(lcid);
     char DecimalSep = (DecimalStr.IsEmpty()) ? '.' : DecimalStr.GetAt(0);
 
 
     int EndSymbolPosition = -1;
     // Detect the currency symbol
     if (pEndSymbol && strlen(pEndSymbol) > 0 &&
-        (EndSymbolPosition=Buffer.Find( pEndSymbol )) != -1)
+        (EndSymbolPosition = Buffer.Find(pEndSymbol)) != -1)
     {
         // Now remove the currency symbol
-        CString sNewValue = Buffer.Left( EndSymbolPosition );
-        int SizeRight = Buffer.GetLength() - EndSymbolPosition - strlen( pEndSymbol );
+        CString sNewValue = Buffer.Left(EndSymbolPosition);
+        int SizeRight = Buffer.GetLength() - EndSymbolPosition - strlen(pEndSymbol);
         if (SizeRight > 0)
-            sNewValue += Buffer.Right( SizeRight );
+            sNewValue += Buffer.Right(SizeRight);
         // Now copy the new unformatted buffer to sValue
         Buffer = sNewValue;
     }
 
     int    Len = Buffer.GetLength();
-    char* p = Buffer.GetBuffer( Len + 1 );
-    int    Count=0;
+    char* p = Buffer.GetBuffer(Len + 1);
+    int    Count = 0;
 
     // Check if the number string is too long
     // Maximum is 500 for a number
@@ -1357,12 +1356,12 @@ CString ZUStringFormatter::RemoveTrailingZero( CString Buffer, LCID lcid, LPCTST
         *pFinal++ = *p++;
         // Keep the last non zero position
         // Initialize it on the decimal separator
-        char* pLastZeroPosition = pFinal-1;
+        char* pLastZeroPosition = pFinal - 1;
 
         while (*p)
         {
             if (*p != '0')
-                pLastZeroPosition = pFinal+1;
+                pLastZeroPosition = pFinal + 1;
             *pFinal++ = *p++;
         }
 
@@ -1384,14 +1383,14 @@ CString ZUStringFormatter::RemoveTrailingZero( CString Buffer, LCID lcid, LPCTST
 
 }
 
-CString ZUStringFormatter::ConvertBufferToAmountBuffer( CString Buffer, ZBStringFormat::FormatType sf, LPCTSTR pCurrency, LCID lcid )
+CString ZUStringFormatter::ConvertBufferToAmountBuffer(CString Buffer, PSS_StringFormat::IEFormatType sf, LPCTSTR pCurrency, LCID lcid)
 {
     char  szBuffer[500];
     char* pFinal = szBuffer;
 
     int    Len = Buffer.GetLength();
-    char* p = Buffer.GetBuffer( Len + 1 );
-    int    Count=0;
+    char* p = Buffer.GetBuffer(Len + 1);
+    int    Count = 0;
 
     // Check if the number string is too long
     // Maximum is 500 for a number
@@ -1400,9 +1399,9 @@ CString ZUStringFormatter::ConvertBufferToAmountBuffer( CString Buffer, ZBString
         return _T("#too long");
     }
 
-    CString ThousandStr = PSS_Global::GetThousandSeparator( lcid );
+    CString ThousandStr = PSS_Global::GetThousandSeparator(lcid);
     char ThousandSep = (ThousandStr.IsEmpty()) ? '\'' : ThousandStr.GetAt(0);
-    CString DecimalStr = PSS_Global::GetDecimalSeparator( lcid );
+    CString DecimalStr = PSS_Global::GetDecimalSeparator(lcid);
     char DecimalSep = (DecimalStr.IsEmpty()) ? '.' : DecimalStr.GetAt(0);
 
     // If negative sign, copy it and move forward
@@ -1414,13 +1413,13 @@ CString ZUStringFormatter::ConvertBufferToAmountBuffer( CString Buffer, ZBString
 
     // Until the end of the string or
     // when encounter the decimal point
-    for (; *p && (*p != DecimalSep) ; ++Count)
+    for (; *p && (*p != DecimalSep); ++Count)
     {
         // Add the char ' every 3 digits
         // calculate if we are on a third
         // digit by substracting the i from
         // the length
-        if (Count > 0 && ( (Len-Count) % 3) == 0)
+        if (Count > 0 && ((Len - Count) % 3) == 0)
             *pFinal++ = ThousandSep;
         *pFinal++ = *p++;
     }
@@ -1451,7 +1450,7 @@ CString ZUStringFormatter::ConvertBufferToAmountBuffer( CString Buffer, ZBString
 
 
 
-bool ZUStringFormatter::ConvertBufferToNumber( CString sValue, double& value, ZBStringFormat::FormatType& sf, LPCTSTR pCurrency, LCID lcid )
+bool ZUStringFormatter::ConvertBufferToNumber(CString sValue, double& value, PSS_StringFormat::IEFormatType& sf, LPCTSTR pCurrency, LCID lcid)
 {
 
     if (sValue.IsEmpty())
@@ -1460,9 +1459,9 @@ bool ZUStringFormatter::ConvertBufferToNumber( CString sValue, double& value, ZB
         return true;
     }
     // Retreive the separators
-    CString ThousandStr = PSS_Global::GetThousandSeparator( lcid );
+    CString ThousandStr = PSS_Global::GetThousandSeparator(lcid);
     char ThousandSep = (ThousandStr.IsEmpty()) ? '\'' : ThousandStr.GetAt(0);
-    CString DecimalStr = PSS_Global::GetDecimalSeparator( lcid );
+    CString DecimalStr = PSS_Global::GetDecimalSeparator(lcid);
     char DecimalSep = (DecimalStr.IsEmpty()) ? '.' : DecimalStr.GetAt(0);
 
 
@@ -1475,53 +1474,53 @@ bool ZUStringFormatter::ConvertBufferToNumber( CString sValue, double& value, ZB
     // If the char % is present the char '
     // can't be present at the same time
     int    PercPosition;
-    if ((PercPosition=sValue.Find( '%' )) != -1)
+    if ((PercPosition = sValue.Find('%')) != -1)
     {
         // Test if at the same time we have the thousand separator char
-        if (sValue.Find( ThousandSep ) != -1)
+        if (sValue.Find(ThousandSep) != -1)
         {
             // Don't assign the value and return false
             return false;
         }
         // Replace the percentage sign by a space
-        sValue.SetAt( PercPosition, ' ' );
+        sValue.SetAt(PercPosition, ' ');
         // Calculates and assigns the value
-        value = atof( (const char*)sValue ) / (double)100;
+        value = atof((const char*)sValue) / (double)100;
         // Sets the right format
-        sf = ZBStringFormat::Percentage;
+        sf = PSS_StringFormat::IE_FT_Percentage;
         return true;
     }
-    
+
     int CurrencyPosition = -1;
     // Detect the currency symbol
     if (pCurrency && strlen(pCurrency) > 0 &&
-        (CurrencyPosition=sValue.Find( pCurrency )) != -1)
+        (CurrencyPosition = sValue.Find(pCurrency)) != -1)
     {
         // Now remove the currency symbol
-        CString sNewValue = sValue.Left( CurrencyPosition );
-        int SizeRight = sValue.GetLength() - CurrencyPosition - strlen( pCurrency );
+        CString sNewValue = sValue.Left(CurrencyPosition);
+        int SizeRight = sValue.GetLength() - CurrencyPosition - strlen(pCurrency);
         if (SizeRight > 0)
-            sNewValue += sValue.Right( SizeRight );
+            sNewValue += sValue.Right(SizeRight);
         // And set the currency format
-        sf = ZBStringFormat::Currency;
+        sf = PSS_StringFormat::IE_FT_Currency;
         // Now copy the new unformatted buffer to sValue
         sValue = sNewValue;
         // Continue the test to check if amount
     }
 
     // Test if we have the thousand separator char
-    int DecimalPosition = sValue.Find( DecimalSep );
+    int DecimalPosition = sValue.Find(DecimalSep);
 
     int ThousandPosition;
     // Test if we have the thousand separator char
-    if ((ThousandPosition=sValue.Find( ThousandSep )) != -1)
+    if ((ThousandPosition = sValue.Find(ThousandSep)) != -1)
     {
         // Remove the thousand separator char
         const char*    pBuffer = (const char*)sValue;
         char szTemp[500];
         char* pTemp = szTemp;
 
-        for (int i = 0; *pBuffer ; ++pBuffer)
+        for (int i = 0; *pBuffer; ++pBuffer)
         {
             if (*pBuffer != ThousandSep)
                 *pTemp++ = *pBuffer;
@@ -1533,13 +1532,13 @@ bool ZUStringFormatter::ConvertBufferToNumber( CString sValue, double& value, ZB
     }
 
     // Convert the value
-    value = atof( (const char*)sValue );
+    value = atof((const char*)sValue);
     // If thousand found, sets the amount format
     // But, if currency found, don't change the currency format
-    if (ThousandPosition != -1 && 
+    if (ThousandPosition != -1 &&
         CurrencyPosition == -1)
     {
-        sf = ZBStringFormat::Accounting;
+        sf = PSS_StringFormat::IE_FT_Accounting;
     }
 
 

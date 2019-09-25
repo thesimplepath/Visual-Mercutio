@@ -888,7 +888,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                                m_Rules.GetRuleName(i),
                                                ZBProperty::PT_EDIT_MENU,
                                                true,
-                                               ZBStringFormat(ZBStringFormat::General),
+                                               PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                                NULL,
                                                &gRulesMenu);
 
@@ -952,7 +952,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                                GetRuleAt(i),
                                                ZBProperty::PT_EDIT_INTELI,
                                                true, // Enable
-                                               ZBStringFormat(ZBStringFormat::General),
+                                               PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                                pArrayOfValues);
 
         pRuleList->EnableDragNDrop();
@@ -973,7 +973,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                                _T(""),
                                                ZBProperty::PT_EDIT_INTELI,
                                                false, // Disable
-                                               ZBStringFormat(ZBStringFormat::General),
+                                               PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                                pArrayOfValues);
 
         pRuleList->EnableDragNDrop();
@@ -1014,7 +1014,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                            GetRiskName(i),
                                            ZBProperty::PT_EDIT_MENU,
                                            true,
-                                           ZBStringFormat(ZBStringFormat::General),
+                                           PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                            NULL,
                                            &gRiskMenu);
 
@@ -1109,7 +1109,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                GetRiskUE(i),
                                ZBProperty::PT_EDIT_NUMBER,
                                true,
-                               ZBStringFormat(ZBStringFormat::Currency, true, 2, currencySymbol));
+                               PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol));
 
         propSet.Add(pRisk);
 
@@ -1126,7 +1126,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                GetRiskPOA(i),
                                ZBProperty::PT_EDIT_NUMBER,
                                true,
-                               ZBStringFormat(ZBStringFormat::Currency, true, 2, currencySymbol));
+                               PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol));
 
         propSet.Add(pRisk);
 
@@ -1143,7 +1143,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                (GetRiskAction(i) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo()),
                                ZBProperty::PT_COMBO_STRING_READONLY,
                                TRUE,
-                               ZBStringFormat(ZBStringFormat::General),
+                               PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                PSS_Global::GetArrayYesNo());
 
         propSet.Add(pRisk);
@@ -1182,7 +1182,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                                GetTaskAt(i),
                                                ZBProperty::PT_EDIT_INTELI,
                                                true, // Enable
-                                               ZBStringFormat(ZBStringFormat::General),
+                                               PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                                pArrayOfValues);
 
         pTaskList->EnableDragNDrop();
@@ -1204,7 +1204,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                                _T(""),
                                                ZBProperty::PT_EDIT_INTELI,
                                                false, // Disable
-                                               ZBStringFormat(ZBStringFormat::General),
+                                               PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                                pArrayOfValues);
 
         pTaskList->EnableDragNDrop();
@@ -1243,7 +1243,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                               GetDecisionAt(i),
                                               ZBProperty::PT_EDIT_INTELI,
                                               true, // Enable
-                                              ZBStringFormat(ZBStringFormat::General),
+                                              PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                               pArrayOfValues);
 
         pDecList->EnableDragNDrop();
@@ -1264,7 +1264,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                               _T(""),
                                               ZBProperty::PT_EDIT_INTELI,
                                               false, // Disable
-                                              ZBStringFormat(ZBStringFormat::General),
+                                              PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                               pArrayOfValues);
 
         pDecList->EnableDragNDrop();
@@ -1311,7 +1311,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                                  GetMultiplier(),
                                                  ZBProperty::PT_EDIT_NUMBER,
                                                  true,
-                                                 ZBStringFormat(ZBStringFormat::Accounting, true, -1));
+                                                 PSS_StringFormat(PSS_StringFormat::IE_FT_Accounting, true, -1));
 
         propSet.Add(pMultiplier);
 
@@ -1342,7 +1342,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                                 dayPerYear),
                                    ZBProperty::PT_EDIT_DURATION,
                                    true,
-                                   ZBStringFormat(ZBStringFormat::Duration7));
+                                   PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7));
 
         propSet.Add(pTime);
 
@@ -1356,7 +1356,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                             GetUnitaryCost(),
                                             ZBProperty::PT_EDIT_NUMBER,
                                             true,
-                                            ZBStringFormat(ZBStringFormat::Currency, true, 2, currencySymbol));
+                                            PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol));
 
         propSet.Add(pPrice);
 
@@ -1387,7 +1387,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                                               dayPerYear),
                                                  ZBProperty::PT_EDIT_DURATION_READONLY,
                                                  true,
-                                                 ZBStringFormat(ZBStringFormat::Duration7));
+                                                 PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7));
 
         propSet.Add(pProcessingDuration);
 
@@ -1418,7 +1418,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                                                  dayPerYear),
                                                     ZBProperty::PT_EDIT_DURATION_READONLY,
                                                     true,
-                                                    ZBStringFormat(ZBStringFormat::Duration7));
+                                                    PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7));
 
         propSet.Add(pProcessingDurationMax);
 
@@ -1434,7 +1434,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                                unitCost,
                                                ZBProperty::PT_EDIT_NUMBER_READONLY,
                                                true,
-                                               ZBStringFormat(ZBStringFormat::Currency, true, 2, currencySymbol));
+                                               PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol));
 
         propSet.Add(pUnitCost);
 
@@ -1451,7 +1451,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                               double(GetUnitDoubleValidationType()),
                                               ZBProperty::PT_EDIT_NUMBER,
                                               false, // Disabled
-                                              ZBStringFormat(ZBStringFormat::General));
+                                              PSS_StringFormat(PSS_StringFormat::IE_FT_General));
         else
             // FIXME translate comments
             // Propriété "Double validation" du groupe "Unité de traitement"
@@ -1463,7 +1463,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                               GetUnitDoubleValidationTypeString(GetUnitDoubleValidationType()),
                                               ZBProperty::PT_COMBO_STRING_READONLY,
                                               false, // Disabled
-                                              ZBStringFormat(ZBStringFormat::General),
+                                              PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                               &m_UnitDoubleValidationTypeArray);
 
         propSet.Add(pUnitDoubleValid);
@@ -1533,7 +1533,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                                       GetCombinationName(i),
                                                       ZBProperty::PT_EDIT_MENU,
                                                       true,
-                                                      ZBStringFormat(ZBStringFormat::General),
+                                                      PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                                       NULL,
                                                       &gCombinationMenu);
 
@@ -1569,7 +1569,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                           maxPercent,
                                           ZBProperty::PT_EDIT_NUMBER_READONLY,
                                           true,
-                                          ZBStringFormat(ZBStringFormat::Percentage));
+                                          PSS_StringFormat(PSS_StringFormat::IE_FT_Percentage));
 
             propSet.Add(pCombination);
 
@@ -1605,7 +1605,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                               dValue,
                                               ZBProperty::PT_EDIT_NUMBER_READONLY,
                                               true,
-                                              ZBStringFormat(ZBStringFormat::Accounting, true, 0));
+                                              PSS_StringFormat(PSS_StringFormat::IE_FT_Accounting, true, 0));
 
         propSet.Add(pSimProp);
 
@@ -1619,7 +1619,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                   double(GetProcedureCost()),
                                   ZBProperty::PT_EDIT_NUMBER_READONLY,
                                   true,
-                                  ZBStringFormat(ZBStringFormat::Currency, true, 2, currencySymbol));
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol));
 
         propSet.Add(pSimProp);
 
@@ -1648,7 +1648,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                                    dayPerYear),
                                       ZBProperty::PT_EDIT_DURATION_READONLY,
                                       true,
-                                      ZBStringFormat(ZBStringFormat::Duration7));
+                                      PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7));
 
         propSet.Add(pSimProp);
 
@@ -1662,7 +1662,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                   double(GetProcedureCostForecast()),
                                   ZBProperty::PT_EDIT_NUMBER_READONLY,
                                   true,
-                                  ZBStringFormat(ZBStringFormat::Currency, true, 2, currencySymbol));
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol));
 
         propSet.Add(pSimProp);
 
@@ -1691,7 +1691,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                                    dayPerYear),
                                       ZBProperty::PT_EDIT_DURATION_READONLY,
                                       true,
-                                      ZBStringFormat(ZBStringFormat::Duration7));
+                                      PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7));
 
         propSet.Add(pSimProp);
 
@@ -1705,7 +1705,7 @@ bool ZBBPProcedureSymbol::FillProperties(ZBPropertySet& propSet, bool numericVal
                                   GetProcedureCostPerActivity(),
                                   ZBProperty::PT_EDIT_NUMBER_READONLY,
                                   true,
-                                  ZBStringFormat(ZBStringFormat::Currency, true, 2, currencySymbol));
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol));
 
         propSet.Add(pSimProp);
     }

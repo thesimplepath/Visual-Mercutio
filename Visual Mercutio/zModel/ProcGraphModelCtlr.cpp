@@ -2169,7 +2169,7 @@ void ZDProcessGraphModelController::OnDynamicAttributesAdd()
     }
 
     ZBProperty*        pProperty = NULL;
-    ZBStringFormat    ft;
+    PSS_StringFormat    ft;
 
     switch (dlg.GetVisibility())
     {
@@ -2270,7 +2270,7 @@ void ZDProcessGraphModelController::OnDynamicAttributesDuplicate()
     int                SymbolRef = -1;
     ZBProperty*        pSrcProperty = NULL;
     ZBProperty*        pDestProperty = NULL;
-    ZBStringFormat    ft;
+    PSS_StringFormat    ft;
     ZBPropertySet    PropSet;
     CStringArray    m_PropList;
 

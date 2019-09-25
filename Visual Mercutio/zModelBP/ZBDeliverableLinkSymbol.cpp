@@ -2302,7 +2302,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                                m_Rules.GetRuleName(i),
                                                ZBProperty::PT_EDIT_MENU,
                                                true,
-                                               ZBStringFormat(ZBStringFormat::General),
+                                               PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                                NULL,
                                                &gRulesMenu);
 
@@ -2368,7 +2368,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                                GetRuleAt(i),
                                                ZBProperty::PT_EDIT_INTELI,
                                                true, // Enable
-                                               ZBStringFormat(ZBStringFormat::General),
+                                               PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                                pArrayOfValues);
 
         pRuleList->EnableDragNDrop();
@@ -2390,7 +2390,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                                _T(""),
                                                ZBProperty::PT_EDIT_INTELI,
                                                false, // Disable
-                                               ZBStringFormat(ZBStringFormat::General),
+                                               PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                                pArrayOfValues);
 
         pRuleList->EnableDragNDrop();
@@ -2436,7 +2436,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                            GetRiskName(i),
                                            ZBProperty::PT_EDIT_MENU,
                                            true,
-                                           ZBStringFormat(ZBStringFormat::General),
+                                           PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                            NULL,
                                            &gRiskMenu);
 
@@ -2531,7 +2531,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                GetRiskUE(i),
                                ZBProperty::PT_EDIT_NUMBER,
                                true,
-                               ZBStringFormat(ZBStringFormat::Currency, true, 2, currencySymbol));
+                               PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol));
 
         propSet.Add(pRisk);
 
@@ -2548,7 +2548,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                GetRiskPOA(i),
                                ZBProperty::PT_EDIT_NUMBER,
                                true,
-                               ZBStringFormat(ZBStringFormat::Currency, true, 2, currencySymbol));
+                               PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol));
 
         propSet.Add(pRisk);
 
@@ -2565,7 +2565,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                (GetRiskAction(i) ? PSS_Global::GetYesFromArrayYesNo() : PSS_Global::GetNoFromArrayYesNo()),
                                ZBProperty::PT_COMBO_STRING_READONLY,
                                TRUE,
-                               ZBStringFormat(ZBStringFormat::General),
+                               PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                PSS_Global::GetArrayYesNo());
 
         propSet.Add(pRisk);
@@ -2604,7 +2604,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                                GetTextItemAt(i),
                                                ZBProperty::PT_EDIT_INTELI,
                                                true, // Enable
-                                               ZBStringFormat(ZBStringFormat::General),
+                                               PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                                pArrayOfValues);
 
         pTextList->EnableDragNDrop();
@@ -2626,7 +2626,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                                _T(""),
                                                ZBProperty::PT_EDIT_INTELI,
                                                false, // Disable
-                                               ZBStringFormat(ZBStringFormat::General),
+                                               PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                                pArrayOfValues);
 
         pTextList->EnableDragNDrop();
@@ -2688,7 +2688,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                                 dayPerYear),
                                    ZBProperty::PT_EDIT_DURATION,
                                    true,
-                                   ZBStringFormat(ZBStringFormat::Duration7));
+                                   PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7));
 
         propSet.Add(pTime);
     }
@@ -2704,7 +2704,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                              GetOutWorkloadPercent(),
                                              ZBProperty::PT_EDIT_NUMBER,
                                              true, // Enable
-                                             ZBStringFormat(ZBStringFormat::Percentage));
+                                             PSS_StringFormat(PSS_StringFormat::IE_FT_Percentage));
 
     propSet.Add(pOutPercent);
 
@@ -2721,7 +2721,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                             GetUnitaryCost(),
                                             ZBProperty::PT_EDIT_NUMBER,
                                             true,
-                                            ZBStringFormat(ZBStringFormat::Currency, true, 2, currencySymbol));
+                                            PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol));
 
         propSet.Add(pPrice);
 
@@ -2752,7 +2752,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                                         dayPerYear),
                                            ZBProperty::PT_EDIT_DURATION_READONLY,
                                            true,
-                                           ZBStringFormat(ZBStringFormat::Duration7));
+                                           PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7));
 
         propSet.Add(pCaseDuration);
 
@@ -2783,7 +2783,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                                            dayPerYear),
                                               ZBProperty::PT_EDIT_DURATION_READONLY,
                                               true,
-                                              ZBStringFormat(ZBStringFormat::Duration7));
+                                              PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7));
 
         propSet.Add(pCaseDurationMax);
 
@@ -2814,7 +2814,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                                           dayPerYear),
                                              ZBProperty::PT_EDIT_DURATION,
                                              true,
-                                             ZBStringFormat(ZBStringFormat::Duration7));
+                                             PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7));
 
         propSet.Add(pTargetDuration);
 
@@ -2845,7 +2845,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                                              dayPerYear),
                                                 ZBProperty::PT_EDIT_DURATION,
                                                 true,
-                                                ZBStringFormat(ZBStringFormat::Duration7));
+                                                PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7));
 
         propSet.Add(pGreenLineDuration);
     }
@@ -2860,7 +2860,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                           GetQuantityYear(),
                                           ZBProperty::PT_EDIT_EXTENDED,
                                           true,
-                                          ZBStringFormat(ZBStringFormat::Accounting, true, 0));    // depends on display detail
+                                          PSS_StringFormat(PSS_StringFormat::IE_FT_Accounting, true, 0));    // depends on display detail
 
     propSet.Add(pPropQty);
 
@@ -2886,7 +2886,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   true, // Enable
-                                  ZBStringFormat(ZBStringFormat::General),
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                   PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
@@ -2913,7 +2913,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   true, // Enable
-                                  ZBStringFormat(ZBStringFormat::General),
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                   PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
@@ -2954,7 +2954,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
-                                  ZBStringFormat(ZBStringFormat::General),
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                   PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
@@ -2994,7 +2994,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
-                                  ZBStringFormat(ZBStringFormat::General),
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                   PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
@@ -3034,7 +3034,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
-                                  ZBStringFormat(ZBStringFormat::General),
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                   PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
@@ -3074,7 +3074,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
-                                  ZBStringFormat(ZBStringFormat::General),
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                   PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
@@ -3114,7 +3114,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
-                                  ZBStringFormat(ZBStringFormat::General),
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                   PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
@@ -3154,7 +3154,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
-                                  ZBStringFormat(ZBStringFormat::General),
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                   PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
@@ -3194,7 +3194,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
-                                  ZBStringFormat(ZBStringFormat::General),
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                   PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
@@ -3234,7 +3234,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
-                                  ZBStringFormat(ZBStringFormat::General),
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                   PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
@@ -3274,7 +3274,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
-                                  ZBStringFormat(ZBStringFormat::General),
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                   PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
@@ -3314,7 +3314,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
-                                  ZBStringFormat(ZBStringFormat::General),
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                   PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
@@ -3354,7 +3354,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
-                                  ZBStringFormat(ZBStringFormat::General),
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                   PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
@@ -3394,7 +3394,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   sValue,
                                   ZBProperty::PT_COMBO_STRING_READONLY,
                                   false, // don't display detail
-                                  ZBStringFormat(ZBStringFormat::General),
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                   PSS_Global::GetArrayYesNo());
 
     propSet.Add(pPropQty);
@@ -3415,7 +3415,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                   double(GetCost()),
                                   ZBProperty::PT_EDIT_NUMBER_READONLY,
                                   true,
-                                  ZBStringFormat(ZBStringFormat::Currency, true, 2, currencySymbol));
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol));
 
         propSet.Add(pSimProp);
 
@@ -3433,7 +3433,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                                dayPerYear),
                                   ZBProperty::PT_EDIT_DURATION_READONLY,
                                   true,
-                                  ZBStringFormat(ZBStringFormat::Duration7));
+                                  PSS_StringFormat(PSS_StringFormat::IE_FT_Duration7));
 
         propSet.Add(pSimProp);
 
@@ -3477,7 +3477,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                                unitCost,
                                                ZBProperty::PT_EDIT_NUMBER_READONLY,
                                                false,
-                                               ZBStringFormat(ZBStringFormat::Currency, true, 2, currencySymbol),
+                                               PSS_StringFormat(PSS_StringFormat::IE_FT_Currency, true, 2, currencySymbol),
                                                false);
         propSet.Add(pUnitCost);
     }
@@ -3506,7 +3506,7 @@ bool ZBDeliverableLinkSymbol::FillProperties(ZBPropertySet& propSet, bool numeri
                                           GetUnitDoubleValidationTypeString(GetUnitDoubleValidationType()),
                                           ZBProperty::PT_COMBO_STRING_READONLY,
                                           true,
-                                          ZBStringFormat(ZBStringFormat::General),
+                                          PSS_StringFormat(PSS_StringFormat::IE_FT_General),
                                           &m_UnitDoubleValidationTypeArray);
 
     propSet.Add(pUnitDoubleValid);

@@ -16,8 +16,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 #include "zBaseLib\PSS_TypedPtrList.h"
-#include "zBaseLib\ZBSmartString.h"
-#include "zBaseLib\ZBStringFormat.h"
+#include "zBaseLib\PSS_SmartString.h"
+#include "zBaseLib\PSS_StringFormat.h"
 #include "zBaseLib\ZUStringFormater.h"
 #include "zBaseLib\PSS_Duration.h"
 #include "zBaseLib\PSS_Date.h"
@@ -145,8 +145,8 @@ public:
     {
     };
 
-    ZBStringFormat& GetStringFormat();
-    void SetStringFormat( ZBStringFormat& value );
+    PSS_StringFormat& GetStringFormat();
+    void SetStringFormat(PSS_StringFormat& value );
 
     bool IsEnabledDragNDrop() const;
     void EnableDragNDrop( bool value = true );
@@ -177,7 +177,7 @@ private:
     bool                    m_ReadOnly;
     bool                    m_CanBeEdited;
     bool                    m_HasChanged;
-    ZBStringFormat            m_ft;
+    PSS_StringFormat            m_ft;
 
     bool                    m_SaveState;
     bool                    m_SaveStatePerProperty;
@@ -247,19 +247,19 @@ inline void ZBPropertyItem::SetPropertyID( int nPropertyID )
     m_PropertyID = nPropertyID;
 }
 
-inline ZBStringFormat& ZBPropertyItem::GetStringFormat()
+inline PSS_StringFormat& ZBPropertyItem::GetStringFormat()
 {
     return m_ft;
 }
 
-inline void ZBPropertyItem::SetStringFormat( ZBStringFormat& value )
+inline void ZBPropertyItem::SetStringFormat(PSS_StringFormat& value )
 {
     m_ft = value;
 }
 
 inline void ZBPropertyItem::SetData( const CString sText )
 {
-    switch( m_Type )
+    switch ( m_Type )
     {
         case PI_STRING:
         {

@@ -88,7 +88,7 @@ bool ZBExtFilePropertyMgr::FillProperties( ZBPropertySet&    PropSet,
                                                    GetFileTitle( i ),
                                                    ZBProperty::PT_EDIT_MENU,
                                                    true,
-                                                   ZBStringFormat( ZBStringFormat::General ),
+                                                  PSS_StringFormat(PSS_StringFormat::IE_FT_General ),
                                                    NULL,
                                                    &gExtFilesMenu );
 
@@ -223,7 +223,7 @@ bool ZBExtFilePropertyMgr::FillPropertiesMessenger( ZBPropertySet&    PropSet,
                                           PSS_Global::GetInsertionTypeString( GetInsertionType( i ) ),
                                            ZBProperty::PT_COMBO_STRING_READONLY,
                                            true,
-                                           ZBStringFormat( ZBStringFormat::General ),
+                                          PSS_StringFormat(PSS_StringFormat::IE_FT_General ),
                                           PSS_Global::GetArrayInsertionType() );
         }
 
@@ -253,7 +253,7 @@ bool ZBExtFilePropertyMgr::FillPropertiesMessenger( ZBPropertySet&    PropSet,
                                               PSS_Global::GetActivationTypeString( GetActivationType( i ) ),
                                                ZBProperty::PT_COMBO_STRING_READONLY,
                                                true,
-                                               ZBStringFormat( ZBStringFormat::General ),
+                                              PSS_StringFormat(PSS_StringFormat::IE_FT_General ),
                                               PSS_Global::GetArrayActivationType() );
         }
 
