@@ -35,14 +35,14 @@ BEGIN_MESSAGE_MAP(ZCInPlaceTimeEdit, PSS_SearchEdit)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-BOOL ZCInPlaceTimeEdit::PreTranslateMessage(MSG* pMsg) 
+BOOL ZCInPlaceTimeEdit::PreTranslateMessage(MSG* pMsg)
 {
-    if(pMsg->message == WM_KEYDOWN)
+    if (pMsg->message == WM_KEYDOWN)
     {
-         CWnd* pOwner = GetOwner();
+        CWnd* pOwner = GetOwner();
         WPARAM nChar = pMsg->wParam;
 
-        switch(nChar)
+        switch (nChar)
         {
             case VK_DELETE:
             {
@@ -57,13 +57,13 @@ BOOL ZCInPlaceTimeEdit::PreTranslateMessage(MSG* pMsg)
                 // Notify observers
                 if (GetParent() && ISA(GetParent(), ZCPropertyListCtrl))
                 {
-                    GetParent()->PostMessage( WM_KEYPRESSED_EDIT, pMsg->wParam );
+                    GetParent()->PostMessage(WM_KEYPRESSED_EDIT, pMsg->wParam);
                     return TRUE;
                 }
 
-//                ZBKeyboardObserverMsg Msg( WM_KEYPRESSED_EDIT, pMsg->wParam ); 
-//                NotifyAllObservers( &Msg );
-//                return TRUE;
+                //                ZBKeyboardObserverMsg Msg( WM_KEYPRESSED_EDIT, pMsg->wParam ); 
+                //                NotifyAllObservers( &Msg );
+                //                return TRUE;
             }
             case VK_RETURN:
             case VK_TAB:
@@ -74,7 +74,7 @@ BOOL ZCInPlaceTimeEdit::PreTranslateMessage(MSG* pMsg)
                 // Notify observers
                 if (GetParent() && ISA(GetParent(), ZCPropertyListCtrl))
                 {
-                    GetParent()->PostMessage( WM_KEYPRESSED_EDIT, (GetKeyState(VK_SHIFT) & 0x80000000) ? (VK_SHIFT|pMsg->wParam) : pMsg->wParam );
+                    GetParent()->PostMessage(WM_KEYPRESSED_EDIT, (GetKeyState(VK_SHIFT) & 0x80000000) ? (VK_SHIFT | pMsg->wParam) : pMsg->wParam);
                     return TRUE;
                 }
                 // Notify observers
@@ -86,7 +86,7 @@ BOOL ZCInPlaceTimeEdit::PreTranslateMessage(MSG* pMsg)
                 ;
         }
     }
-    
+
     return PSS_SearchEdit::PreTranslateMessage(pMsg);
 }
 
@@ -98,15 +98,15 @@ void ZCInPlaceTimeEdit::SetEditText(const CString& strText)
         SetWindowText(strText);
 }
 
-void ZCInPlaceTimeEdit::SetEditText(ZBTimeSpan& TimeValue)
+void ZCInPlaceTimeEdit::SetEditText(PSS_TimeSpan& TimeValue)
 {
     // Sets the duration value
     m_TimeValue = TimeValue;
     // Build the string
     CString strInitText;
     // Format the value function of the string format specified
-    strInitText = ZUStringFormatter::GetFormattedBuffer( (ZBTimeSpan&)m_TimeValue, m_pItem->GetStringFormat() );
-    SetEditText( strInitText );
+    strInitText = ZUStringFormatter::GetFormattedBuffer((PSS_TimeSpan&)m_TimeValue, m_pItem->GetStringFormat());
+    SetEditText(strInitText);
 }
 
 CString ZCInPlaceTimeEdit::GetEditText() const
@@ -119,15 +119,15 @@ CString ZCInPlaceTimeEdit::GetEditText() const
 
 
 BOOL ZCInPlaceTimeEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, CRect& rect, DWORD exDwStyle /*= 0"*/)
-{    
+{
     m_pItem = pItem;
 
-    BOOL rValue = Create(WS_CHILD|WS_VISIBLE|ES_AUTOHSCROLL|ES_LEFT|exDwStyle, rect, pWndParent, 1);
-    SetEditText( strInitText );    
+    BOOL rValue = Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 1);
+    SetEditText(strInitText);
     // Saves the initial value
     m_strInitialValueText = strInitText;
     // Reset the has changed value
-    SetHasChanged( false );
+    SetHasChanged(false);
     // Sets the type
     m_type = ZIInPlaceEdit::IPE_STRING;
     // Sets the current selection to all
@@ -135,16 +135,16 @@ BOOL ZCInPlaceTimeEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, const C
     return rValue;
 }
 
-BOOL ZCInPlaceTimeEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, ZBTimeSpan& TimeInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle /*= 0"*/)
+BOOL ZCInPlaceTimeEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, PSS_TimeSpan& TimeInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle /*= 0"*/)
 {
     m_pItem = pItem;
 
-    BOOL rValue = Create(WS_CHILD|WS_VISIBLE|ES_AUTOHSCROLL|ES_LEFT|exDwStyle, rect, pWndParent, 1);
-    SetEditText( (ZBTimeSpan&)TimeInitValue );    
+    BOOL rValue = Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 1);
+    SetEditText((PSS_TimeSpan&)TimeInitValue);
     // Saves the initial value
     m_InitialTimeValue = TimeInitValue;
     // Reset the has changed value
-    SetHasChanged( false );
+    SetHasChanged(false);
     // Sets the type
     m_type = ZIInPlaceEdit::IPE_TIME;
     // Sets the current selection to all
@@ -152,7 +152,7 @@ BOOL ZCInPlaceTimeEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, ZBTimeS
     return rValue;
 }
 
-bool ZCInPlaceTimeEdit::IsEditCtrlHit( CPoint point ) const
+bool ZCInPlaceTimeEdit::IsEditCtrlHit(CPoint point) const
 {
     CRect rect;
     GetClientRect(rect);
@@ -172,7 +172,7 @@ void ZCInPlaceTimeEdit::SaveValue()
         {
             CString ProposedValue = GetEditText();
             // If correct, process the data
-            if (m_pItem) 
+            if (m_pItem)
             {
                 bool ConversionCorrect = true;
                 switch (GetEditType())
@@ -185,9 +185,9 @@ void ZCInPlaceTimeEdit::SaveValue()
                     case ZIInPlaceEdit::IPE_TIME:
                     {
                         // Check the conversion
-                        ZBTimeSpan value;
+                        PSS_TimeSpan value;
 
-                        ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer( ProposedValue, (ZBTimeSpan&)value, m_pItem->GetStringFormat() );
+                        ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer(ProposedValue, (PSS_TimeSpan&)value, m_pItem->GetStringFormat());
                         if (!ConversionCorrect)
                             ZCInPlaceTimeEdit::CancelEdit();
                         break;
@@ -200,8 +200,8 @@ void ZCInPlaceTimeEdit::SaveValue()
                     // Set the has changed flag for the property item
                     m_pItem->SetHasChanged();
                     // Notify observers for value changed
-                    ZBToolbarObserverMsg Msg( WM_VALUESAVED_EDIT );
-                    NotifyAllObservers( &Msg );
+                    ZBToolbarObserverMsg Msg(WM_VALUESAVED_EDIT);
+                    NotifyAllObservers(&Msg);
                     // Reset the change flag
                     m_HasChanged = false;
                     // OK
@@ -225,20 +225,20 @@ void ZCInPlaceTimeEdit::CancelEdit()
         case ZIInPlaceEdit::IPE_STRING:
         {
             // Set back the initial value
-            SetEditText( m_strInitialValueText );
+            SetEditText(m_strInitialValueText);
             break;
         }
         case ZIInPlaceEdit::IPE_TIME:
         {
             // Set back the initial duration value
-            SetEditText( (ZBTimeSpan&)m_InitialTimeValue );
+            SetEditText((PSS_TimeSpan&)m_InitialTimeValue);
             break;
         }
     }
     // Set the focus to properties control
     SetFocus();
     // Reset the has changed value
-    SetHasChanged( false );
+    SetHasChanged(false);
 }
 
 
@@ -246,7 +246,7 @@ void ZCInPlaceTimeEdit::CancelEdit()
 /////////////////////////////////////////////////////////////////////////////
 // ZCInPlaceDateEdit message handlers
 
-void ZCInPlaceTimeEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void ZCInPlaceTimeEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
     // Sets the has changed flag
     m_HasChanged = true;
@@ -255,9 +255,8 @@ void ZCInPlaceTimeEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
     PSS_SearchEdit::OnChar(nChar, nRepCnt, nFlags);
 }
 
-void ZCInPlaceTimeEdit::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
-{
-}
+void ZCInPlaceTimeEdit::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
+{}
 
 void ZCInPlaceTimeEdit::OnExtendedCommand()
 {
@@ -277,22 +276,22 @@ void ZCInPlaceTimeEdit::OnExtendedCommand()
             // Change the window text to the proposed value
 
             // Check the conversion
-            ZBTimeSpan value;
-            bool ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer( ProposedValue, (ZBTimeSpan&)value, pItem->GetStringFormat() );
+            PSS_TimeSpan value;
+            bool ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer(ProposedValue, (PSS_TimeSpan&)value, pItem->GetStringFormat());
             if (ConversionCorrect)
             {
 
                 // Format the value function of the string format specified
-                ProposedValue = ZUStringFormatter::GetFormattedBuffer( (ZBTimeSpan&)value, pItem->GetStringFormat() );
-                SetEditText( ProposedValue );
+                ProposedValue = ZUStringFormatter::GetFormattedBuffer((PSS_TimeSpan&)value, pItem->GetStringFormat());
+                SetEditText(ProposedValue);
                 // Set the has changed value
-                SetHasChanged( true );
+                SetHasChanged(true);
             }
         }
     }
 }
 
-int ZCInPlaceTimeEdit::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int ZCInPlaceTimeEdit::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     DoCreateButton(FALSE);
 
@@ -307,7 +306,7 @@ int ZCInPlaceTimeEdit::OnCreate(LPCREATESTRUCT lpCreateStruct)
     ASSERT(pParent != NULL);
 
     CFont* pFont = pParent->GetFont();
-    DWORD dwStyle = WS_CHILD|WS_VISIBLE|ES_AUTOHSCROLL;
+    DWORD dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL;
     if (m_IsReadOnly)
         dwStyle |= ES_READONLY;
     SetFont(pFont);

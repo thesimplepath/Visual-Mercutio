@@ -10,7 +10,7 @@
 #include "PSS_FLFDataFeed.h"
 
 // processsoft
-#include "ZBTokenizer.h"
+#include "PSS_Tokenizer.h"
 
 //---------------------------------------------------------------------------
 // PSS_FLFDataFeed
@@ -24,7 +24,7 @@ PSS_FLFDataFeed::~PSS_FLFDataFeed()
 //---------------------------------------------------------------------------
 BOOL PSS_FLFDataFeed::ProcessLine(const CString& line)
 {
-    ZBTokenizer tokenizer;
+    PSS_Tokenizer tokenizer;
 
     // the received line is exactly the same as the exported one
     switch (GetSeparatorType())

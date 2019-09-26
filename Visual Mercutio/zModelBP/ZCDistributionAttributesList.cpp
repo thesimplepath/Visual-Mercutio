@@ -31,7 +31,7 @@ static char THIS_FILE[] = __FILE__;
 IMPLEMENT_DYNAMIC(ZCDistributionAttributesList, CListCtrl)
 
 
-BEGIN_MESSAGE_MAP(ZCDistributionAttributesList, ZVTreeListCtrl)
+BEGIN_MESSAGE_MAP(ZCDistributionAttributesList, PSS_TreeListCtrl)
     //{{AFX_MSG_MAP(ZCDistributionAttributesList)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()

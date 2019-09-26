@@ -9,7 +9,7 @@
 #include "stdafx.h"
 #include "ZBBPDeliveriesProp.h"
 
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 #include "zBaseLib\PSS_BaseDocument.h"
 
@@ -120,7 +120,7 @@ BOOL ZBBPDeliveriesProperties::IsEqual( ZBBPDeliveriesProperties* pProp )
 // Cette fonction permet de déterminer si un livrable donné se trouve dans la liste des livrables de la livraison.
 bool ZBBPDeliveriesProperties::IsDeliverableInDelivery( LPCTSTR lpszValue )
 {
-    ZBTokenizer token;    // Initialize the token with ; as separator
+    PSS_Tokenizer token;    // Initialize the token with ; as separator
 
     CString str = token.GetFirstToken( lpszValue );
     

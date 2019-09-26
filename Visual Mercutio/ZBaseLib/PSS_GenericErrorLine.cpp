@@ -9,7 +9,7 @@
 #include "PSS_GenericErrorLine.h"
 
 // processsoft
-#include "ZBTokenizer.h"
+#include "PSS_Tokenizer.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -42,7 +42,7 @@ PSS_GenericErrorLine& PSS_GenericErrorLine::operator = (const PSS_GenericErrorLi
 //---------------------------------------------------------------------------
 void PSS_GenericErrorLine::BuildString()
 {
-    ZBTokenizer tokenizer(';');
+    PSS_Tokenizer tokenizer(';');
 
     // add the error type
     tokenizer.AddToken(!GetErrorType() ? "warning" : "error");
@@ -62,7 +62,7 @@ void PSS_GenericErrorLine::BuildString()
 //---------------------------------------------------------------------------
 void PSS_GenericErrorLine::Parse()
 {
-    ZBTokenizer tokenizer(';');
+    PSS_Tokenizer tokenizer(';');
 
     // extract the type
     const CString typeStr = tokenizer.GetFirstToken((const char*)this);

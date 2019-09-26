@@ -8,7 +8,7 @@
 #include "stdafx.h"
 #include "ZVAddRemoveCombinationDeliverableDlg.h"
 
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -54,7 +54,7 @@ void ZVAddRemoveCombinationDeliverableDlg::DoDataExchange( CDataExchange* pDX )
 void ZVAddRemoveCombinationDeliverableDlg::StringToListBox( const CString Deliv, CListBox& LB )
 {
     // Initialize the token with ; as separator
-    ZBTokenizer token;
+    PSS_Tokenizer token;
 
     CString str = token.GetFirstToken( Deliv );
     
@@ -72,7 +72,7 @@ void ZVAddRemoveCombinationDeliverableDlg::StringToListBox( const CString Deliv,
 void ZVAddRemoveCombinationDeliverableDlg::ListBoxToString( CListBox& LB, CString& Deliv )
 {
     // Initialize the token with ; as separator
-    ZBTokenizer token;
+    PSS_Tokenizer token;
     CString str;
 
     // Run through the list box elements and build the string

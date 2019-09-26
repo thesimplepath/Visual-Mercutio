@@ -16,7 +16,7 @@
 #include "ZBSymbol.h"
 #include "ZBLinkSymbol.h"
 
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -63,7 +63,7 @@ bool ZUExtractModelLogicalPrestationsAssigned::OnSymbol( ZBSymbol* pSymbol )
 {
     if ( pSymbol->HasPrestations() )
     {
-        ZBTokenizer aToken = pSymbol->GetPrestationsList();
+        PSS_Tokenizer aToken = pSymbol->GetPrestationsList();
 
         for ( size_t i = 0; i < aToken.GetTokenCount(); i++ )
         {

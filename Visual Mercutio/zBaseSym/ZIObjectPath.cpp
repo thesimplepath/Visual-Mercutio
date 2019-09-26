@@ -4,7 +4,7 @@
 
 #include "stdafx.h"
 #include "ZIObjectPath.h"
-#include "ZBaseLib\ZBTokenizer.h"
+#include "ZBaseLib\PSS_Tokenizer.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -41,6 +41,6 @@ void ZIObjectPath::AddMemberToPath( const CString Member )
 
 CString ZIObjectPath::GetRootMember()
 {
-    ZBTokenizer    Tokenizer( ObjectSeparatorChar );
+    PSS_Tokenizer    Tokenizer( ObjectSeparatorChar );
     return Tokenizer.GetFirstToken(m_ObjectPath);
 }

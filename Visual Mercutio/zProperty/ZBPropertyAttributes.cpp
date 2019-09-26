@@ -4,7 +4,7 @@
 #include "ZBPropertyAttributes.h"
 
 // ZBTokenizer
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 // ZUStringFormater
 #include "zBaseLib\ZUStringFormater.h"
@@ -259,7 +259,7 @@ bool ZBPropertyAttributes::Match( ZBPropertySet&    PropSet,
             {
                 // RS-MODIF 15.08.05 cast implicite pour obtenir le bon lien objet
                 //Value = ZUStringFormatter::GetFormattedBuffer( pProp->GetValueTimeSpan(), pProp->GetStringFormat() );
-                Value = ZUStringFormatter::GetFormattedBuffer( (ZBTimeSpan&)pProp->GetValueTimeSpan(),
+                Value = ZUStringFormatter::GetFormattedBuffer( (PSS_TimeSpan&)pProp->GetValueTimeSpan(),
                                                                pProp->GetStringFormat() );
                 break;
             }
@@ -326,7 +326,7 @@ CString ZBPropertyAttributes::GetString( ZBPropertySet* pPropSet, bool KeepOnlyN
         return _T( "" );
     }
 
-    ZBTokenizer token( '\n' );
+    PSS_Tokenizer token( '\n' );
 
     ZBPropertyIterator i(pPropSet);
     ZBProperty* pProp;
@@ -375,7 +375,7 @@ CString ZBPropertyAttributes::GetString( ZBPropertySet* pPropSet, bool KeepOnlyN
             {
                 // RS-MODIF 15.08.05 cast implicite pour obtenir le bon lien objet
                 //Value += ZUStringFormatter::GetFormattedBuffer( pProp->GetValueTimeSpan(), pProp->GetStringFormat() );
-                Value += ZUStringFormatter::GetFormattedBuffer( (ZBTimeSpan&)pProp->GetValueTimeSpan(),
+                Value += ZUStringFormatter::GetFormattedBuffer( (PSS_TimeSpan&)pProp->GetValueTimeSpan(),
                                                                 pProp->GetStringFormat() );
                 break;
             }
@@ -472,7 +472,7 @@ bool ZBPropertyAttributes::LoadStateFromIniFile( const CString IniFile, int Obje
         ++Idx;
 
         CString str;
-        ZBTokenizer token;
+        PSS_Tokenizer token;
 
         // Extract the category ID
         str = token.GetFirstToken( Line );
@@ -526,7 +526,7 @@ bool ZBPropertyAttributes::SaveStateToIniFile( const CString IniFile, int Object
     {
         // Format the key
         KeyName.Format( _T( "%s%d" ), (const char*)_PropertyAttributeStateEntityName, Idx );
-        ZBTokenizer token;
+        PSS_Tokenizer token;
 
         // Build the string
         token.AddToken( pAtt->GetCategoryID() );

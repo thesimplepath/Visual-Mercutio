@@ -9,7 +9,7 @@
 #include "stdafx.h"
 #include "ZVChooseMainDeliverable.h"
 
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -52,7 +52,7 @@ void ZVChooseMainDeliverable::DoDataExchange( CDataExchange* pDX )
 
 void ZVChooseMainDeliverable::StringToListBox( const CString Deliv, CListBox& LB )
 {
-    ZBTokenizer token;    // Initialize the token with ; as separator
+    PSS_Tokenizer token;    // Initialize the token with ; as separator
 
     CString str = token.GetFirstToken( Deliv );
 

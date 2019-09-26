@@ -34,7 +34,7 @@
 
 //## begin module%334FC4630320.additionalDeclarations preserve=yes
 #include "PSS_PlanFinObject.h"
-#include "ZIDropScrollView.h"
+#include "PSS_DropScrollView.h"
 
 class ZDDocument;
 
@@ -69,13 +69,13 @@ enum    ViewType { UnknownView,
 //## Persistence: Transient
 //## Cardinality/Multiplicity: n
 
-class AFX_EXT_CLASS ZIView : public ZIDropScrollView
+class AFX_EXT_CLASS ZIView : public PSS_DropScrollView
 {
   //## begin ZIView%334FC46002A6.initialDeclarations preserve=yes
     DECLARE_DYNCREATE(ZIView)
     public:
     // Inherited feature
-        typedef ZIDropScrollView inherited;
+        typedef PSS_DropScrollView inherited;
     //## end ZIView%334FC46002A6.initialDeclarations
 
   public:

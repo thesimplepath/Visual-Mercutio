@@ -30,7 +30,7 @@
 #include "zBaseLib\ZMessage.h"
 #include "zBaseLib\PSS_MsgBox.h"
 
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -194,7 +194,7 @@ BOOL ZActivity::TemplateExist(const CString& TemplateName)
 
 CString ZActivity::BuildTemplateListString(const char SeparatorChar /*= ';'*/)
 {
-    ZBTokenizer    Tokenizer(SeparatorChar);
+    PSS_Tokenizer    Tokenizer(SeparatorChar);
     for (size_t i = 0; i < GetTemplateCount(); ++i)
         Tokenizer.AddToken(GetTemplateAt(i));
     return Tokenizer.GetString();
@@ -439,7 +439,7 @@ void ZActivity::SetDefaultProperty()
 
 CString ZActivity::GetActivityTypeKeyString()
 {
-    ZBTokenizer    Tokenizer(';');
+    PSS_Tokenizer    Tokenizer(';');
 
     if (ActivityIsAttribution())
         Tokenizer.AddToken(ActivityTypeAttributionKey);
@@ -470,7 +470,7 @@ CString ZActivity::GetActivityTypeKeyString()
 
 void ZActivity::SetActivityTypeFromKeyString(const CString KeyString)
 {
-    ZBTokenizer    Tokenizer(';');
+    PSS_Tokenizer    Tokenizer(';');
     // Run through key string
     CString    Token = Tokenizer.GetFirstToken(KeyString);
     while (!Token.IsEmpty())

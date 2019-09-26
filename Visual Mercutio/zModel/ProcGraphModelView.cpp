@@ -48,13 +48,13 @@ BOOL PSS_MvcScrollView::Create(LPCTSTR            lpszClassName,
 {
     SetContainer(NULL);
 
-    BOOL bSuccess = ZIDropScrollView::Create(lpszClassName,
-                                             lpszWindowName,
-                                             dwStyle,
-                                             rect,
-                                             pParentWnd,
-                                             nID,
-                                             pContext);
+    BOOL bSuccess = PSS_DropScrollView::Create(lpszClassName,
+                                               lpszWindowName,
+                                               dwStyle,
+                                               rect,
+                                               pParentWnd,
+                                               nID,
+                                               pContext);
 
     if (bSuccess)
     {
@@ -87,7 +87,7 @@ void PSS_MvcScrollView::OnInitialUpdate()
 {
     // construct the viewport in your derived class constructor
     // and delete it in the destructor
-    ZIDropScrollView::OnInitialUpdate();
+    PSS_DropScrollView::OnInitialUpdate();
 
     // viewport initialization
     CRect r;
@@ -112,7 +112,7 @@ BOOL PSS_MvcScrollView::OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDL
 
     if (!bHandled)
     {
-        bHandled = ZIDropScrollView::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
+        bHandled = PSS_DropScrollView::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
     }
 
     return bHandled;
@@ -134,7 +134,7 @@ BOOL PSS_MvcScrollView::OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRE
 
     if (!bHandled)
     {
-        bHandled = ZIDropScrollView::OnWndMsg(message, wParam, lParam, pResult);
+        bHandled = PSS_DropScrollView::OnWndMsg(message, wParam, lParam, pResult);
     }
 
     // handle messages here that could cause scrolling
@@ -451,9 +451,9 @@ CSize PSS_MvcScrollView::SetLogScaling(float fScaleWidth, float fScaleHeight)
 /////////////////////////////////////////////////////////////////////////////
 // ZIProcessGraphModelView
 
-IMPLEMENT_DYNCREATE(ZIProcessGraphModelView, ZIDropScrollView)
+IMPLEMENT_DYNCREATE(ZIProcessGraphModelView, PSS_DropScrollView)
 
-BEGIN_MESSAGE_MAP(ZIProcessGraphModelView, ZIDropScrollView)
+BEGIN_MESSAGE_MAP(ZIProcessGraphModelView, PSS_DropScrollView)
     //{{AFX_MSG_MAP(ZIProcessGraphModelView)
     ON_WM_CREATE()
     ON_WM_SIZE()
@@ -493,7 +493,7 @@ BOOL ZIProcessGraphModelView::PreCreateWindow(CREATESTRUCT& cs)
     // Modify the Window class or styles here by modifying
     // the CREATESTRUCT cs
 
-    return ZIDropScrollView::PreCreateWindow(cs);
+    return PSS_DropScrollView::PreCreateWindow(cs);
 }
 
 ZDProcessGraphModelController* ZIProcessGraphModelView::GetModelController()
@@ -652,7 +652,7 @@ void ZIProcessGraphModelView::OnDrawPan(CDC* pDC)
 
 int ZIProcessGraphModelView::OnCreate(LPCREATESTRUCT lpcs)
 {
-    if (ZIDropScrollView::OnCreate(lpcs) == -1)
+    if (PSS_DropScrollView::OnCreate(lpcs) == -1)
     {
         return -1;
     }
@@ -892,7 +892,7 @@ void ZIProcessGraphModelView::OnExportModelToImageFile()
 
 void ZIProcessGraphModelView::OnSize(UINT nType, int cx, int cy)
 {
-    ZIDropScrollView::OnSize(nType, cx, cy);
+    PSS_DropScrollView::OnSize(nType, cx, cy);
 
     if (GetViewport() && GetViewport()->GetWnd())
     {

@@ -24,7 +24,7 @@
 #include "ZAConst.h"
 
 #include "zBaseLib\ZUStringFormater.h"
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 #include "zConversion\PSS_StringTools.h"
 

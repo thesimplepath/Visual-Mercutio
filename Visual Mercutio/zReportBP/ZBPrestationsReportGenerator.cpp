@@ -698,7 +698,7 @@ void _ZBPrestationsDatas::Associate( ZBBPProcessSymbol* Process )
     }
 
     // Obtient la liste des prestations contenues dans le processus à associer.
-    ZBTokenizer m_PrestationsList = Process->GetPrestationsList();
+    PSS_Tokenizer m_PrestationsList = Process->GetPrestationsList();
 
     // Recherche si la prestation courante est contenue dans ce processus.
     for ( size_t i = 0; i < m_PrestationsList.GetTokenCount(); i++ )

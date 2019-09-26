@@ -3,7 +3,7 @@
 #include <StdAfx.h>
 
 #include "UserQueueManager.h"
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -72,7 +72,7 @@ ZBEventActivity* ZBUserQueueManager::DispatchToUserQueue( const CString Filename
 BOOL    ZBUserQueueManager::CheckDirectory( ZBEventActivity& EventActivity )
 {
     // For multi-user mode, run through all senders
-    ZBTokenizer    Tokenizer( ';' );
+    PSS_Tokenizer    Tokenizer( ';' );
     CString    Token = Tokenizer.GetFirstToken( EventActivity.GetSender() );
     while (!Token.IsEmpty())
     {
@@ -97,7 +97,7 @@ BOOL    ZBUserQueueManager::CheckDirectory( ZBEventActivity& EventActivity )
 BOOL    ZBUserQueueManager::ForwardToUserQueue( ZBEventActivity& EventActivity )
 {
     // For multi-user mode, run through all receivers
-    ZBTokenizer    Tokenizer( ';' );
+    PSS_Tokenizer    Tokenizer( ';' );
     CString    Token = Tokenizer.GetFirstToken( EventActivity.GetReceiver() );
     while (!Token.IsEmpty())
     {
@@ -114,7 +114,7 @@ BOOL    ZBUserQueueManager::RemoveAssociatedEventFromUserQueue( ZBEventActivity&
 {
     ZBEventActivity*    pEventActivity = NULL;
     // For multi-user mode, run through all senders
-    ZBTokenizer    Tokenizer( ';' );
+    PSS_Tokenizer    Tokenizer( ';' );
     CString    Token = Tokenizer.GetFirstToken( EventActivity.GetSender() );
     while (!Token.IsEmpty())
     {
@@ -143,7 +143,7 @@ BOOL    ZBUserQueueManager::RemoveAssociatedEventFromUserQueue( ZBEventActivity&
 BOOL    ZBUserQueueManager::RemoveEventFromUserQueue( ZBEventActivity& EventActivity, CString User )
 {
     // For multi-user mode, run through all users
-    ZBTokenizer    Tokenizer( ';' );
+    PSS_Tokenizer    Tokenizer( ';' );
     CString    Token = Tokenizer.GetFirstToken( User );
     while (!Token.IsEmpty())
     {
@@ -157,7 +157,7 @@ BOOL    ZBUserQueueManager::RemoveEventFromUserQueue( ZBEventActivity& EventActi
 BOOL    ZBUserQueueManager::RemoveEventFromReceiverQueue( ZBEventActivity& EventActivity )
 {
     // For multi-user mode, run through all receiver
-    ZBTokenizer    Tokenizer( ';' );
+    PSS_Tokenizer    Tokenizer( ';' );
     CString    Token = Tokenizer.GetFirstToken( EventActivity.GetReceiver() );
     while (!Token.IsEmpty())
     {
@@ -171,7 +171,7 @@ BOOL    ZBUserQueueManager::RemoveEventFromReceiverQueue( ZBEventActivity& Event
 BOOL    ZBUserQueueManager::RemoveEventFromSenderQueue( ZBEventActivity& EventActivity )
 {
     // For multi-user mode, run through all senders
-    ZBTokenizer    Tokenizer( ';' );
+    PSS_Tokenizer    Tokenizer( ';' );
     CString    Token = Tokenizer.GetFirstToken( EventActivity.GetSender() );
     while (!Token.IsEmpty())
     {
@@ -191,7 +191,7 @@ BOOL    ZBUserQueueManager::RemoveFromUserQueue( ZBEventActivity& EventActivity,
 BOOL    ZBUserQueueManager::ProceedDeleteMessage( ZBEventActivity& EventActivity )
 {
     // For multi-user mode, run through all senders
-    ZBTokenizer    Tokenizer( ';' );
+    PSS_Tokenizer    Tokenizer( ';' );
     CString    Token = Tokenizer.GetFirstToken( EventActivity.GetReceiver() );
     while (!Token.IsEmpty())
     {

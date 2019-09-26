@@ -2043,7 +2043,7 @@ void ZVPublishProcessReport::GenerateSection( ZBPropertySet& PropSet )
 
             case ZBProperty::PT_TIMESPAN:
             {
-                Value = ZUStringFormatter::GetFormattedBuffer( (ZBTimeSpan&)pProp->GetValueTimeSpan(),
+                Value = ZUStringFormatter::GetFormattedBuffer( (PSS_TimeSpan&)pProp->GetValueTimeSpan(),
                                                                pProp->GetStringFormat() );
                 break;
             }

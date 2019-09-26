@@ -32,7 +32,7 @@
 #include "ZBDeliverableLinkSymbol.h"
 
 // JMR-MODIF - Le 9 janvier 2006 - Ajout de l'en-tête pour la prise en charge des Tokens.
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 // JMR-MODIF - Le 13 février 2006 - Ajout de la déclaration pour les boîtes de dialogue des livraisons.
 #include "ZVAddRemoveDeliveryDeliverablesDlg.h"
@@ -193,9 +193,9 @@ bool ZBBPProcessSymbol::CreateSymbolProperties()
 }
 
 // JMR-MODIF - Le 20 février 2006 - Obtention des noms de toutes les prestations contenues dans ce processus.
-ZBTokenizer ZBBPProcessSymbol::GetPrestationsList()
+PSS_Tokenizer ZBBPProcessSymbol::GetPrestationsList()
 {
-    ZBTokenizer aToken(_T(""));
+    PSS_Tokenizer aToken(_T(""));
 
     POSITION    myPos = m_PrestProperties.GetHeadPosition();
     int            i = 0;
@@ -808,8 +808,8 @@ void ZBBPProcessSymbol::OnDeliverableNameChange(CString OldName, CString NewName
 {
     for (int i = 0; i < GetDeliveriesCount(); i++)
     {
-        ZBTokenizer m_OldDeliverablesList(GetDeliveryDeliverables(i));
-        ZBTokenizer m_NewDeliverablesList(_T(""));
+        PSS_Tokenizer m_OldDeliverablesList(GetDeliveryDeliverables(i));
+        PSS_Tokenizer m_NewDeliverablesList(_T(""));
 
         for (size_t j = 0; j < m_OldDeliverablesList.GetTokenCount(); j++)
         {
@@ -929,7 +929,7 @@ float ZBBPProcessSymbol::FindQuantity(const CString Main, ZDProcessGraphModelMdl
 int ZBBPProcessSymbol::GetDeliverablesInChildPages(CString& DeliverablesList)
 {
     int            Counter = 0;
-    ZBTokenizer    Token;
+    PSS_Tokenizer    Token;
 
     // Obtient le contrôleur de modèles du processus.
     ZDProcessGraphModelMdlBP* m_RootChldModel = dynamic_cast<ZDProcessGraphModelMdlBP*>(m_pModel);
@@ -1073,9 +1073,9 @@ CString ZBBPProcessSymbol::GetAvailableDeliverables(ZBPropertySet& PropSet)
         }
     }
 
-    ZBTokenizer srcToken(DeliverableList);
-    ZBTokenizer cmpToken(AttribuedDeliverables);
-    ZBTokenizer rstToken(_T(""));
+    PSS_Tokenizer srcToken(DeliverableList);
+    PSS_Tokenizer cmpToken(AttribuedDeliverables);
+    PSS_Tokenizer rstToken(_T(""));
 
     // Compare la liste des livrables déjà attribués avec la liste de tous les livrables contenus dans
     // les pages enfants du processus. Ceux qui ne figurent pas dans la liste des livrables attribués
@@ -1117,9 +1117,9 @@ CString ZBBPProcessSymbol::CheckDeliverables(int Index)
 
     GetDeliverablesInChildPages(m_ChildPageList);
 
-    ZBTokenizer m_DeliverablesListFromDelivery(m_DeliveryList);
-    ZBTokenizer m_DeliverablesListFromChildPages(m_ChildPageList);
-    ZBTokenizer m_DeliverablesList(_T(""));
+    PSS_Tokenizer m_DeliverablesListFromDelivery(m_DeliveryList);
+    PSS_Tokenizer m_DeliverablesListFromChildPages(m_ChildPageList);
+    PSS_Tokenizer m_DeliverablesList(_T(""));
 
     for (size_t i = 0; i < m_DeliverablesListFromDelivery.GetTokenCount(); i++)
     {
@@ -1155,7 +1155,7 @@ CString ZBBPProcessSymbol::CheckMainDeliverable(int Index)
     }
 
     CString Result = _T("");
-    ZBTokenizer cmpToken(m_Main);
+    PSS_Tokenizer cmpToken(m_Main);
 
     // Compare si le livrable principal se trouve toujours dans la liste des livrables de la livraison.
     // Retourne une nouvelle valeur pour le champ "Principal" si le livrable principal précédemment sélectionné

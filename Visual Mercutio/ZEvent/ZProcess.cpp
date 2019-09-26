@@ -27,7 +27,7 @@
 #include "ActEvent.h"
 #include "zRes32\ZRes.h"
 
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 #include "zBaseLib\ZMessage.h"
 #include "zBaseLib\PSS_MsgBox.h"
@@ -169,7 +169,7 @@ void ZProcess::FillAuthUser (CString UserDelimiter)
       // First remove all users
     m_AuthorizedUser.RemoveAll();
     // Parse the user delimiter string
-    ZBTokenizer    Tokenizer( ';' );
+    PSS_Tokenizer    Tokenizer( ';' );
     CString    Token = Tokenizer.GetFirstToken( UserDelimiter );
     while (!Token.IsEmpty())
     {

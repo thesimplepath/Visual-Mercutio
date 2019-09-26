@@ -6,11 +6,10 @@
 // **********************************************************************************************************************
 
 #include <StdAfx.h>
-
 #include "ZITreeCtl.h"
 
-#include "ZIDropView.h"
-#include "ZIDropScrollView.h"
+#include "PSS_DropView.h"
+#include "PSS_DropScrollView.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -378,21 +377,21 @@ void ZITreeCtrl::OnButtonUp( CPoint point )
         ASSERT ( pDropWnd );
 
         // if window accepts drop of symbol
-        if ( ( ISA( pDropWnd, ZIDropView ) && ( (ZIDropView*)pDropWnd )->AcceptDrop() ) ||
-             ( ISA( pDropWnd, ZIDropScrollView ) && ( (ZIDropScrollView*)pDropWnd )->AcceptDrop() ) )
+        if ( ( ISA( pDropWnd, PSS_DropView ) && ( (PSS_DropView*)pDropWnd )->AcceptDrop() ) ||
+             ( ISA( pDropWnd, PSS_DropScrollView ) && ( (PSS_DropScrollView*)pDropWnd )->AcceptDrop() ) )
         {
             // convert from screen coordinates to drop target client coordinates
             pDropWnd->ScreenToClient ( &pt );
 
             if ( m_pDragObj )
             {
-                if ( ISA( pDropWnd, ZIDropView ) )
+                if ( ISA( pDropWnd, PSS_DropView ) )
                 {
-                    ( (ZIDropView*)pDropWnd )->DropItem( m_pDragObj, pt );
+                    ( (PSS_DropView*)pDropWnd )->DropItem( m_pDragObj, pt );
                 }
-                else if ( ISA( pDropWnd, ZIDropScrollView ) )
+                else if ( ISA( pDropWnd, PSS_DropScrollView ) )
                 {
-                    ( (ZIDropScrollView*)pDropWnd )->DropItem( m_pDragObj, pt );
+                    ( (PSS_DropScrollView*)pDropWnd )->DropItem( m_pDragObj, pt );
                 }
             }
         }
@@ -477,15 +476,15 @@ void ZITreeCtrl::OnMouseMove( UINT nFlags, CPoint point )
         pDropWnd->ScreenToClient ( &pt );
 
         // if window accepts drop of symbol
-        if ( ( ISA( pDropWnd, ZIDropView ) && ( (ZIDropView*)pDropWnd )->AcceptDrop() ) ||
-             ( ISA( pDropWnd, ZIDropScrollView ) && ( (ZIDropScrollView*)pDropWnd )->AcceptDrop() ) )
+        if ( ( ISA( pDropWnd, PSS_DropView ) && ( (PSS_DropView*)pDropWnd )->AcceptDrop() ) ||
+             ( ISA( pDropWnd, PSS_DropScrollView ) && ( (PSS_DropScrollView*)pDropWnd )->AcceptDrop() ) )
         {
             if ( m_pDragObj )
             {
                 // If do accept drop
-                if ( (ISA( pDropWnd, ZIDropView ) && ( (ZIDropView*)pDropWnd )->AcceptDropItem( m_pDragObj, pt ) ) ||
-                     (ISA( pDropWnd, ZIDropScrollView ) &&
-                     ( (ZIDropScrollView*)pDropWnd )->AcceptDropItem( m_pDragObj, pt ) ) )
+                if ( (ISA( pDropWnd, PSS_DropView ) && ( (PSS_DropView*)pDropWnd )->AcceptDropItem( m_pDragObj, pt ) ) ||
+                     (ISA( pDropWnd, PSS_DropScrollView ) &&
+                     ( (PSS_DropScrollView*)pDropWnd )->AcceptDropItem( m_pDragObj, pt ) ) )
                 {
                     // change the drag image
                     // JMR-MODIF - Le 2 juin 2005 - Suppression de la macro VERIFY, car il semble que SetDragCursorImage

@@ -173,14 +173,14 @@ void PSS_BaseDocument::WriteFileStamp(CArchive& archive, PSS_FolderStamp& stamp)
 #ifdef _DEBUG
     void PSS_BaseDocument::AssertValid() const
     {
-        CTreeView::AssertValid();
+        CDocument::AssertValid();
     }
 #endif
 //---------------------------------------------------------------------------
 #ifdef _DEBUG
     void PSS_BaseDocument::Dump(CDumpContext& dc) const
     {
-        CTreeView::Dump(dc);
+        CDocument::Dump(dc);
     }
 #endif
 //---------------------------------------------------------------------------

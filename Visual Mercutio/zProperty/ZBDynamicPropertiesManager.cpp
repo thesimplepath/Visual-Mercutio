@@ -507,7 +507,7 @@ ZBProperty* ZBDynamicPropertiesManager::CreateProperty( const CString           
         case ZBProperty::PT_EDIT_TIME:
         case ZBProperty::PT_EDIT_TIME_READONLY:
         {
-            ZBTimeSpan ts;
+            PSS_TimeSpan ts;
 
             pProp = new ZBProperty( Category,
                                     CategoryID,

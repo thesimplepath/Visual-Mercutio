@@ -33,7 +33,7 @@
 
 #include "zBaseLib\ZISubject.h"
 #include "zBaseLib\ZIObserver.h"
-#include "zBaseLib\ZVTreeListCtrl.h"
+#include "zBaseLib\PSS_TreeListCtrl.h"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -59,7 +59,7 @@ class ZBUserGroupEntity;
 
 
 
-class AFX_EXT_CLASS ZCDistributionAttributesList : public ZVTreeListCtrl, public ZISubject, public ZIObserver  
+class AFX_EXT_CLASS ZCDistributionAttributesList : public PSS_TreeListCtrl, public ZISubject, public ZIObserver  
 {
 
     DECLARE_DYNAMIC(ZCDistributionAttributesList)

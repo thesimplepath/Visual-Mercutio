@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_MsgBox.h"
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
@@ -106,8 +106,8 @@ void PSS_SelectResourcesDialog::OnOK()
 
     m_UserListString.Empty();
 
-    CString     text;
-    ZBTokenizer tokenizer(';');
+    CString       text;
+    PSS_Tokenizer tokenizer(';');
 
     // build the user string
     for (int index = 0; index < count; ++index)

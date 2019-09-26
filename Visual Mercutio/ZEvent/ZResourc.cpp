@@ -30,7 +30,7 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 #include "ZProcess.h"
 
@@ -275,7 +275,7 @@ BOOL ZBResources::FillPersonArray (ZProcess* pMainProcess, PSS_UserManager& User
 BOOL ZBResources::AddUsers (CString DelimiterString)
 {
     // Run through the user delimiter string and build the person
-    ZBTokenizer    Tokenizer( ';' );
+    PSS_Tokenizer    Tokenizer( ';' );
     CString    Token = Tokenizer.GetFirstToken( DelimiterString );
     while (!Token.IsEmpty())
     {

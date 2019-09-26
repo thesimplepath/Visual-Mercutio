@@ -69,7 +69,7 @@ void PSS_SoapPublishPrestations::PublishPrestations(ZBLogicalPrestationsEntity* 
 
     #ifdef _DEBUG
         CString s;
-        s.Format(_T(" Prestation = %s\n"), (const char*)p_Prestations->GetEntityName());
+        s.Format(_T(" Prestation = %s\n"), (const char*)pPrestations->GetEntityName());
         TRACE(s);
     #endif
 

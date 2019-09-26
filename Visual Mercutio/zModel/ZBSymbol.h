@@ -34,7 +34,7 @@
 #include "zModel\ZVSymbolAttributes.h"
 
 // JMR-MODIF - Le 20 février 2006 - Ajout de l'en-tête pour la prise en charge des Tokens.
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 //////////////////////////////////////////////////////////////////////
 // Forward declaration
@@ -482,9 +482,9 @@ public:
         return false;
     }
 
-    virtual ZBTokenizer GetPrestationsList()
+    virtual PSS_Tokenizer GetPrestationsList()
     {
-        ZBTokenizer aToken( _T( "" ) );
+        PSS_Tokenizer aToken( _T( "" ) );
         return aToken;
     }
 

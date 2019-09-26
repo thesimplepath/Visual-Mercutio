@@ -26,12 +26,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBTimeSpan.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZBTokenizer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZBToolbarObserverMsg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -96,12 +90,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="zidialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZIDropScrollView.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZIDropView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZIEmptyView.cpp">
@@ -201,9 +189,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZVSpanWnd.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVTreeListCtrl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PSS_StatusBar.cpp">
@@ -602,6 +587,21 @@
     <ClCompile Include="PSS_StringFormat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_TimeSpan.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_TreeListCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_Tokenizer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_DropScrollView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_DropView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -718,12 +718,6 @@
     <ClInclude Include="zBaseLib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZBTimeSpan.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBTokenizer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZBToolbarObserverMsg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -788,12 +782,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="zidialog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZIDropScrollView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZIDropView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZIEmptyView.h">
@@ -893,9 +881,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZVSpanWnd.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVTreeListCtrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_StatusBar.h">
@@ -1295,6 +1280,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_StringFormat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_TimeSpan.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_TreeListCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_Tokenizer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_DropScrollView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_DropView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

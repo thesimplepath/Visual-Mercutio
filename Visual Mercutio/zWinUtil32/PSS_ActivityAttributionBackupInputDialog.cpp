@@ -9,7 +9,7 @@
 #include "PSS_ActivityAttributionInputBackupDialog.h"
 
 // processsoft
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_InputValue.h"
 #include "PSS_SelectResourcesDialog.h"
@@ -97,8 +97,8 @@ void PSS_ActivityAttributionInputBackupDialog::OnAddUser()
 
     if (selectResourcesDialog.DoModal() == IDOK && !selectResourcesDialog.GetUserListString().IsEmpty())
     {
-        ZBTokenizer tokenizer(';');
-        CString     token = tokenizer.GetFirstToken(selectResourcesDialog.GetUserListString());
+        PSS_Tokenizer tokenizer(';');
+        CString       token = tokenizer.GetFirstToken(selectResourcesDialog.GetUserListString());
 
         // parse the user delimiter string
         while (!token.IsEmpty())

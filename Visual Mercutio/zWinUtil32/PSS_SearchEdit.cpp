@@ -66,7 +66,7 @@ BOOL PSS_SearchEditButton::Create(PSS_SearchEdit* pWnd,
                                   bool            noNotify,
                                   bool            resize)
 {
-    ASSERT(eType != -1);
+    ASSERT(type != -1);
     ASSERT_VALID(pWnd);
 
     // assign values
@@ -225,7 +225,7 @@ void PSS_SearchEditButton::OnClicked()
 
         case IE_T_Popup:
         {
-            ASSERT(m_nMenu != -1 || m_pMenu);
+            ASSERT(m_Menu != -1 || m_pMenu);
             SetState(TRUE);
 
             CRect rc;

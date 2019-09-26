@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\ZUSystemOption.h"
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 #include "zProperty\zBPropertyAttributes.h"
 #include "PSS_PublishModelWelcomeDialog.h"
 #include "PSS_PublishModelSelDirDialog.h"
@@ -274,8 +274,8 @@ bool PSS_PublishModel::LoadAttributesFromIniFile()
 
         ++index;
 
-        CString     str;
-        ZBTokenizer token;
+        CString       str;
+        PSS_Tokenizer token;
 
         // extract the category ID
         str = token.GetFirstToken(line);
@@ -323,7 +323,8 @@ bool PSS_PublishModel::SaveAttributesToIniFile()
     {
         // format the key
         keyName.Format(_T("%s%d"), _T("_PropertyDefaultAttributeSaveStateWeb"), index);
-        ZBTokenizer token;
+
+        PSS_Tokenizer token;
 
         // build the string
         token.AddToken(pAtt->GetCategoryID());

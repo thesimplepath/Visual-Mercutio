@@ -29,7 +29,7 @@
 #include "zBaseLib\ZILog.h"
 #include "zModel\ZBGenericSymbolErrorLine.h"
 
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 #include "zModelBPRes.h"
 
@@ -574,7 +574,7 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol( ZBBPProcedureSymbol* pSymbo
         for ( int i = 0; i < CombCounter; ++i )
         {
             // Check if the master exists in the list of deliverables
-            ZBTokenizer token( EnteringUpDeliverables );
+            PSS_Tokenizer token( EnteringUpDeliverables );
             CString Master = pSymbol->GetCombinationMaster( i );
 
             if ( !Master.IsEmpty() && !token.TokenExist( Master ) )
@@ -594,7 +594,7 @@ bool ZUCheckSymbolConsistency::CheckProcedureSymbol( ZBBPProcedureSymbol* pSymbo
 
             // Now, run through all combination's deliverables
             // and check that all deliverables are attached
-            ZBTokenizer token2;
+            PSS_Tokenizer token2;
             CString DelivComb =  token2.GetFirstToken( pSymbol->GetCombinationDeliverables( i ) );
 
             while ( !DelivComb.IsEmpty() )

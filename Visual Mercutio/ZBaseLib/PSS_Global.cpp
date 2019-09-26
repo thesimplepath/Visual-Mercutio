@@ -12,7 +12,7 @@
 #include "ZDHistoricValueDocument.h"
 #include "PSS_DocTemplateEx.h"
 #include "PSS_ProcessModelDocTmpl.h"
-#include "ZBTokenizer.h"
+#include "PSS_Tokenizer.h"
 #include "PSS_FileDialog.h"
 
 // resources
@@ -740,7 +740,7 @@ const CString PSS_Global::GetThousandSeparator(LCID lcid)
 void PSS_Global::FillArray(const CString& str, CStringArray& strArray)
 {
     // initialize the token setting ; as separator
-    ZBTokenizer token(str);
+    PSS_Tokenizer token(str);
     token.FillArray(strArray);
 }
 //---------------------------------------------------------------------------

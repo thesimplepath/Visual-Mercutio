@@ -208,10 +208,10 @@ bool ZBDurationRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
     }
 
 #ifdef _DEBUG
-    if ( pState && pState->GetpSymbol() && ISA( pState->GetpSymbol(), ZBSymbol ) )
+    if ( pState && pState->GetSymbol() && ISA( pState->GetSymbol(), ZBSymbol ) )
     {
         TRACE1( _T( "OnNextSymbolAfterMoveForward: symbol in the stack is %s\n" ),
-                dynamic_cast<ZBSymbol*>( pState->GetpSymbol() )->GetSymbolName() );
+                dynamic_cast<ZBSymbol*>( pState->GetSymbol() )->GetSymbolName() );
     }
 #endif
 
@@ -221,7 +221,7 @@ bool ZBDurationRecalculationAutomate::OnNextSymbolAfterMoveForward(PSS_StateObje
     if ( pState && pState->GetSymbol() && ISA( pState->GetSymbol(), ZBBPProcedureSymbol ) )
     {
         TRACE1( _T( "OnNextSymbolAfterMoveForward: current Procedure is %s\n" ),
-                    dynamic_cast<ZBSymbol*>( pState->GetpSymbol() )->GetSymbolName() );
+                    dynamic_cast<ZBSymbol*>( pState->GetSymbol() )->GetSymbolName() );
 
         // Normally we should have at least one link only
         if ( pState->GetStateLinkCount() == 0 )
@@ -261,10 +261,10 @@ bool ZBDurationRecalculationAutomate::OnBeforeMoveForward(PSS_StateObject*  pSta
     }
 
 #ifdef _DEBUG
-    if ( pState && pState->GetpSymbol() && ISA( pState->GetpSymbol(), ZBSymbol ) )
+    if ( pState && pState->GetSymbol() && ISA( pState->GetSymbol(), ZBSymbol ) )
     {
         TRACE1( _T( "OnBeforeMoveForward: symbol in the stack is %s\n" ),
-                dynamic_cast<ZBSymbol*>( pState->GetpSymbol() )->GetSymbolName() );
+                dynamic_cast<ZBSymbol*>( pState->GetSymbol() )->GetSymbolName() );
     }
 #endif
 

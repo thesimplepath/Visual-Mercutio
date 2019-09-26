@@ -1229,7 +1229,7 @@ void PSS_PlanFinObject::Serialize(CArchive& ar)
         ar >> str;
         SetObjectName(str);
 
-        ASSERT(!m_strObjName.IsEmpty());
+        ASSERT(!GetObjectName().IsEmpty());
 
         PSS_BaseDocument* pBaseDoc = dynamic_cast<PSS_BaseDocument*>(ar.m_pDocument);
         WORD              wValue;

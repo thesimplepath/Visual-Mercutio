@@ -49,9 +49,9 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 10 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_DYNCREATE(ZIView, ZIDropScrollView)
+IMPLEMENT_DYNCREATE(ZIView, PSS_DropScrollView)
 
-BEGIN_MESSAGE_MAP(ZIView, ZIDropScrollView)
+BEGIN_MESSAGE_MAP(ZIView, PSS_DropScrollView)
     //{{AFX_MSG_MAP(ZIView)
     ON_WM_LBUTTONDOWN()
     ON_WM_LBUTTONUP()
@@ -59,8 +59,8 @@ BEGIN_MESSAGE_MAP(ZIView, ZIDropScrollView)
     ON_WM_SETCURSOR()
     ON_WM_VSCROLL()
     ON_WM_HSCROLL()
-    ON_COMMAND(ID_FILE_PRINT, ZIDropScrollView::OnFilePrint)
-    ON_COMMAND(ID_FILE_PRINT_PREVIEW, ZIDropScrollView::OnFilePrintPreview)
+    ON_COMMAND(ID_FILE_PRINT, PSS_DropScrollView::OnFilePrint)
+    ON_COMMAND(ID_FILE_PRINT_PREVIEW, PSS_DropScrollView::OnFilePrintPreview)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 //## end module%334FC46302F9.additionalDeclarations
@@ -137,7 +137,7 @@ void ZIView::Initialize()
 void ZIView::OnInitialUpdate()
 {
     //## begin ZIView::OnInitialUpdate%832201961.body preserve=yes
-    ZIDropScrollView::OnInitialUpdate();
+    PSS_DropScrollView::OnInitialUpdate();
 
     Initialize();
     //## end ZIView::OnInitialUpdate%832201961.body
@@ -187,7 +187,7 @@ void ZIView::SetLogicalCoordinates(CDC* pDC)
 void ZIView::OnPrepareDC(CDC* pDC, CPrintInfo* pInfo)
 {
     //## begin ZIView::OnPrepareDC%832201965.body preserve=yes
-    ZIDropScrollView::OnPrepareDC(pDC, pInfo);
+    PSS_DropScrollView::OnPrepareDC(pDC, pInfo);
     SetLogicalCoordinates(pDC);
     //## end ZIView::OnPrepareDC%832201965.body
 }
@@ -654,7 +654,7 @@ void ZIView::OnLButtonUp(UINT nFlags, CPoint point)
 
 void ZIView::OnKillFocus(CWnd* pNewWnd)
 {
-    ZIDropScrollView::OnKillFocus(pNewWnd);
+    PSS_DropScrollView::OnKillFocus(pNewWnd);
 
     // Stop the choose object mode if started
     m_bChooseObjectMode = FALSE;
@@ -672,7 +672,7 @@ BOOL ZIView::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
 
         // Search wich element is selected
         if ((obj = ((ZDDocument*)pDoc)->GetHead()) == NULL)
-            return ZIDropScrollView::OnSetCursor(pWnd, nHitTest, message);
+            return PSS_DropScrollView::OnSetCursor(pWnd, nHitTest, message);
 
         do
         {
@@ -687,7 +687,7 @@ BOOL ZIView::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
         while ((obj = ((ZDDocument*)pDoc)->GetNext()) != NULL);
     }
 
-    return ZIDropScrollView::OnSetCursor(pWnd, nHitTest, message);
+    return PSS_DropScrollView::OnSetCursor(pWnd, nHitTest, message);
 }
 
 void ZIView::SetScrollSizes()
@@ -706,12 +706,12 @@ void ZIView::SetScrollSizes()
     CSize    LineSize((int)((double)m_LineSize.cx * (double)((double)GetZoomPercentage() / (double)100)),
         (int)((double)m_LineSize.cy * (double)((double)GetZoomPercentage() / (double)100)));
 
-    ZIDropScrollView::SetScrollSizes(MM_TEXT, TotalSize, PageSize, LineSize);
+    PSS_DropScrollView::SetScrollSizes(MM_TEXT, TotalSize, PageSize, LineSize);
 }
 
 void ZIView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
-    ZIDropScrollView::OnVScroll(nSBCode, nPos, pScrollBar);
+    PSS_DropScrollView::OnVScroll(nSBCode, nPos, pScrollBar);
 
     // If the view ZIViewScroll is present, 
     // Send message to synchronize the scroll bars
@@ -721,7 +721,7 @@ void ZIView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 
 void ZIView::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
-    ZIDropScrollView::OnHScroll(nSBCode, nPos, pScrollBar);
+    PSS_DropScrollView::OnHScroll(nSBCode, nPos, pScrollBar);
 
     // If the view ZIViewScroll is present, 
     // Send message to synchronize the scroll bars

@@ -14,7 +14,7 @@
 #include "zModel\ProcGraphModelDoc.h"
 #include "zProperty\ZBDynamicPropertiesManager.h"
 
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 #include "zBaseLib\PSS_MsgBox.h"
 
@@ -342,7 +342,7 @@ BOOL ZVDynamicAttributesCreationS2::OnInitDialog()
     CString strValues;
 
     // Fill combo-boxes
-    ZBTokenizer token;
+    PSS_Tokenizer token;
 
     // Data type combo.
     strValues.LoadString(IDS_PROPTYPE_LIST);

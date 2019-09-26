@@ -9,7 +9,7 @@
 #include "PSS_UserExport.h"
 
 // processsoft
-#include "ZBTokenizer.h"
+#include "PSS_Tokenizer.h"
 
 //---------------------------------------------------------------------------
 // PSS_UserExport
@@ -41,8 +41,8 @@ const PSS_UserExport& PSS_UserExport::operator = (const PSS_UserExport& other)
 //---------------------------------------------------------------------------
 CString PSS_UserExport::GetExportedLine(CObject* pObj)
 {
-    ZUser*      pUser = (ZUser*)pObj;
-    ZBTokenizer tokenizer;
+    ZUser*        pUser = (ZUser*)pObj;
+    PSS_Tokenizer tokenizer;
 
     switch (GetSeparatorType())
     {
@@ -79,7 +79,7 @@ CString PSS_UserExport::GetExportedLine(CObject* pObj)
 BOOL PSS_UserExport::ProcessLine(const CString& line)
 {
     // the line we received is exactly the same we exported
-    ZBTokenizer tokenizer;
+    PSS_Tokenizer tokenizer;
 
     switch (GetSeparatorType())
     {
@@ -123,7 +123,7 @@ BOOL PSS_UserExport::ProcessLine(const CString& line)
 //---------------------------------------------------------------------------
 CString PSS_UserExport::GetHeaderLine()
 {
-    ZBTokenizer tokenizer;
+    PSS_Tokenizer tokenizer;
 
     switch (GetSeparatorType())
     {

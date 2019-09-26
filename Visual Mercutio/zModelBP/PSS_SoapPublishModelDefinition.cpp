@@ -135,7 +135,7 @@ int PSS_SoapPublishModelDefinition::GetParentSymbolReference(ZBSymbol*          
 //---------------------------------------------------------------------------
 bool PSS_SoapPublishModelDefinition::OnStart()
 {
-    if (!m_pClass);
+    if (!m_pClass)
         return false;
 
     // get the document and Messenger address to publish to

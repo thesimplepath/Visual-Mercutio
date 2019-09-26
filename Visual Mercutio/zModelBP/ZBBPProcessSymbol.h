@@ -206,7 +206,7 @@ public:
         return true;
     }
 
-    virtual ZBTokenizer GetPrestationsList();
+    virtual PSS_Tokenizer GetPrestationsList();
 
     void OnDelCurrentPrestation( ZBProperty&    Property,
                                  CString&        value,

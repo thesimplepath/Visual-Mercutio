@@ -21,7 +21,7 @@
 #include <Foundation\MVC\MvcWrapper.h>
 
 // processsoft
-#include "zBaseLib\ZIDropScrollView.h"
+#include "zBaseLib\PSS_DropScrollView.h"
 #include "zBaseLib\PSS_DocumentPageSetup.h"
 #include "ProcGraphModelVp.h"
 
@@ -45,7 +45,7 @@ class ZDProcessGraphModelController;
 *@note See the MvcForm sample for a demonstration of this class
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_MvcScrollView : public ZIDropScrollView, public MvcWrapper_T<ZIProcessGraphModelViewport>
+class PSS_MvcScrollView : public PSS_DropScrollView, public MvcWrapper_T<ZIProcessGraphModelViewport>
 {
 public:
 

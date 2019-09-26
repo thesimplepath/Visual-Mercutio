@@ -1554,7 +1554,7 @@ void ZAApp::SetVisualToolObject(const CString& sClassName)
 // Cette fonction effectue les opérations nécessaires à  la création d'un nouveau modèle
 ZDProcessGraphModelDoc* ZAApp::FileNewModel()
 {
-    ASSERT(PSS_Global::GetpProcessModelDocumentTemplate() != NULL);
+    ASSERT(PSS_Global::GetProcessModelDocumentTemplate() != NULL);
 
     CWaitCursor Cursor;
 
@@ -2520,7 +2520,7 @@ void ZAApp::OnUpdateFileNewModel(CCmdUI* pCmdUI)
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Ouvrir un modèle".
 void ZAApp::OnFileOpenModel()
 {
-    ASSERT(PSS_Global::GetpProcessModelDocumentTemplate() != NULL);
+    ASSERT(PSS_Global::GetProcessModelDocumentTemplate() != NULL);
 
     // Prompt the user (with all document templates)
     CString newName;
@@ -3252,7 +3252,7 @@ void ZAApp::OnUpdateSymbolReassignRules(CCmdUI* pCmdUI)
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport de contrôle".
 void ZAApp::OnGenerateCheckReport()
 {
-    ASSERT(PSS_Global::GetpReportDocumentTemplate() != NULL);
+    ASSERT(PSS_Global::GetReportDocumentTemplate() != NULL);
 
 #ifdef _DEBUG
     COleDateTime start = COleDateTime::GetCurrentTime();
@@ -3321,7 +3321,7 @@ void ZAApp::OnUpdateGenerateCheckReport(CCmdUI* pCmdUI)
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Mercutio".
 void ZAApp::OnGenerateMercutioReport()
 {
-    ASSERT(PSS_Global::GetpReportDocumentTemplate() != NULL);
+    ASSERT(PSS_Global::GetReportDocumentTemplate() != NULL);
 
 #ifdef _DEBUG
     COleDateTime start = COleDateTime::GetCurrentTime();
@@ -3417,7 +3417,7 @@ void ZAApp::OnUpdateGenerateMercutioReport(CCmdUI* pCmdUI)
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Conceptor".
 void ZAApp::OnGenerateConceptorReport()
 {
-    ASSERT(PSS_Global::GetpReportDocumentTemplate() != NULL);
+    ASSERT(PSS_Global::GetReportDocumentTemplate() != NULL);
 
 #ifdef _DEBUG
     COleDateTime start = COleDateTime::GetCurrentTime();
@@ -3501,7 +3501,7 @@ void ZAApp::OnUpdateGenerateConceptorReport(CCmdUI* pCmdUI)
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Sesterces".
 void ZAApp::OnGenerateSesterceReport()
 {
-    ASSERT(PSS_Global::GetpReportDocumentTemplate() != NULL);
+    ASSERT(PSS_Global::GetReportDocumentTemplate() != NULL);
 
 #ifdef _DEBUG
     COleDateTime start = COleDateTime::GetCurrentTime();
@@ -3569,7 +3569,7 @@ void ZAApp::OnUpdateGenerateSesterceReport(CCmdUI* pCmdUI)
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Sesterces Unités".
 void ZAApp::OnGenerateSesterceUnitReport()
 {
-    ASSERT(PSS_Global::GetpReportDocumentTemplate() != NULL);
+    ASSERT(PSS_Global::GetReportDocumentTemplate() != NULL);
 
 #ifdef _DEBUG
     COleDateTime start = COleDateTime::GetCurrentTime();
@@ -3633,7 +3633,7 @@ void ZAApp::OnGenerateSesterceUnitReport()
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Sesterces Consolidé".
 void ZAApp::OnGenerateSesterceConsolidatedReport()
 {
-    ASSERT(PSS_Global::GetpReportDocumentTemplate() != NULL);
+    ASSERT(PSS_Global::GetReportDocumentTemplate() != NULL);
 
 #ifdef _DEBUG
     COleDateTime start = COleDateTime::GetCurrentTime();
@@ -3698,7 +3698,7 @@ void ZAApp::OnGenerateSesterceConsolidatedReport()
 // Cette fonction est appelée lorsque l'utilisateur choisit l'entrée "Générer le rapport Prestations".
 void ZAApp::OnGeneratePrestationsReport()
 {
-    ASSERT(PSS_Global::GetpReportDocumentTemplate() != NULL);
+    ASSERT(PSS_Global::GetReportDocumentTemplate() != NULL);
 
 #ifdef _DEBUG
     COleDateTime start = COleDateTime::GetCurrentTime();

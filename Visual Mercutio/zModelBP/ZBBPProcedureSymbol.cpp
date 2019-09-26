@@ -23,7 +23,7 @@
 #include "ZVChooseMasterDeliverable.h"
 
 // Global for zBaseLib
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 #include "zBaseLib\PSS_Global.h"
 #include "zBaseLib\ZBToolbarObserverMsg.h"
 #include "zBaseLib\PSS_MsgBox.h"
@@ -216,7 +216,7 @@ void ZBBPProcedureSymbol::SetRuleList(const CString Value)
 
 bool ZBBPProcedureSymbol::RuleExist(const CString Value)
 {
-    ZBTokenizer token(GetRuleList());    // Initialize the token with the task list
+    PSS_Tokenizer token(GetRuleList());    // Initialize the token with the task list
                                         // and with the default ; as separator
 
     return (token.TokenExist(Value) == TRUE) ? true : false;
@@ -224,7 +224,7 @@ bool ZBBPProcedureSymbol::RuleExist(const CString Value)
 
 void ZBBPProcedureSymbol::AddRule(const CString Value)
 {
-    ZBTokenizer token(GetRuleList());    // Initialize the token with the task list
+    PSS_Tokenizer token(GetRuleList());    // Initialize the token with the task list
                                         // and with the default ; as separator
 
     // If the new task has been added correctly,
@@ -243,7 +243,7 @@ void ZBBPProcedureSymbol::AddRule(const CString Value)
 
 void ZBBPProcedureSymbol::RemoveRule(const CString Value)
 {
-    ZBTokenizer token(GetRuleList());    // Initialize the token with the task list
+    PSS_Tokenizer token(GetRuleList());    // Initialize the token with the task list
                                         // and with the default ; as separator
 
     // If the new task has been removed correctly,
@@ -256,7 +256,7 @@ void ZBBPProcedureSymbol::RemoveRule(const CString Value)
 
 CString ZBBPProcedureSymbol::GetRuleAt(size_t Index)
 {
-    ZBTokenizer token(GetRuleList());    // Initialize the token with the task list
+    PSS_Tokenizer token(GetRuleList());    // Initialize the token with the task list
                                         // and with the default ; as separator
     CString Value;
 
@@ -271,7 +271,7 @@ CString ZBBPProcedureSymbol::GetRuleAt(size_t Index)
 
 size_t ZBBPProcedureSymbol::GetRuleCount() const
 {
-    ZBTokenizer token(GetRuleList());    // Initialize the token with the task list
+    PSS_Tokenizer token(GetRuleList());    // Initialize the token with the task list
                                         // and with the default ; as separator
 
     return token.GetTokenCount();
@@ -303,7 +303,7 @@ void ZBBPProcedureSymbol::SetTaskList(const CString Value)
 
 bool ZBBPProcedureSymbol::TaskExist(const CString Value)
 {
-    ZBTokenizer token(GetTaskList());    // Initialize the token with the task list
+    PSS_Tokenizer token(GetTaskList());    // Initialize the token with the task list
                                         // and with the default ; as separator
 
     return (token.TokenExist(Value) == TRUE) ? true : false;
@@ -311,7 +311,7 @@ bool ZBBPProcedureSymbol::TaskExist(const CString Value)
 
 void ZBBPProcedureSymbol::AddTask(const CString Value)
 {
-    ZBTokenizer token(GetTaskList());    // Initialize the token with the task list
+    PSS_Tokenizer token(GetTaskList());    // Initialize the token with the task list
                                         // and with the default ; as separator
 
     // If the new task has been added correctly,
@@ -330,7 +330,7 @@ void ZBBPProcedureSymbol::AddTask(const CString Value)
 
 void ZBBPProcedureSymbol::RemoveTask(const CString Value)
 {
-    ZBTokenizer token(GetTaskList());    // Initialize the token with the task list
+    PSS_Tokenizer token(GetTaskList());    // Initialize the token with the task list
                                         // and with the default ; as separator
 
     // If the new task has been removed correctly,
@@ -343,7 +343,7 @@ void ZBBPProcedureSymbol::RemoveTask(const CString Value)
 
 CString ZBBPProcedureSymbol::GetTaskAt(size_t Index)
 {
-    ZBTokenizer token(GetTaskList());    // Initialize the token with the task list
+    PSS_Tokenizer token(GetTaskList());    // Initialize the token with the task list
                                         // and with the default ; as separator
 
     CString Value;
@@ -359,7 +359,7 @@ CString ZBBPProcedureSymbol::GetTaskAt(size_t Index)
 
 size_t ZBBPProcedureSymbol::GetTaskCount() const
 {
-    ZBTokenizer token(GetTaskList());    // Initialize the token with the task list
+    PSS_Tokenizer token(GetTaskList());    // Initialize the token with the task list
                                         // and with the default ; as separator
 
     return token.GetTokenCount();
@@ -391,7 +391,7 @@ void ZBBPProcedureSymbol::SetDecisionList(const CString Value)
 
 bool ZBBPProcedureSymbol::DecisionExist(const CString Value)
 {
-    ZBTokenizer token(GetDecisionList());    // Initialize the token with the decision list
+    PSS_Tokenizer token(GetDecisionList());    // Initialize the token with the decision list
                                             // and with the default ; as separator
 
     return (token.TokenExist(Value) == TRUE) ? true : false;
@@ -399,7 +399,7 @@ bool ZBBPProcedureSymbol::DecisionExist(const CString Value)
 
 void ZBBPProcedureSymbol::AddDecision(const CString Value)
 {
-    ZBTokenizer token(GetDecisionList());    // Initialize the token with the decision list
+    PSS_Tokenizer token(GetDecisionList());    // Initialize the token with the decision list
                                             // and with the default ; as separator
 
     // If the new decision has been added correctly,
@@ -418,7 +418,7 @@ void ZBBPProcedureSymbol::AddDecision(const CString Value)
 
 void ZBBPProcedureSymbol::RemoveDecision(const CString Value)
 {
-    ZBTokenizer token(GetDecisionList());    // Initialize the token with the decision list
+    PSS_Tokenizer token(GetDecisionList());    // Initialize the token with the decision list
                                             // and with the default ; as separator
 
     // If the new decision has been removed correctly,
@@ -431,7 +431,7 @@ void ZBBPProcedureSymbol::RemoveDecision(const CString Value)
 
 CString ZBBPProcedureSymbol::GetDecisionAt(size_t Index)
 {
-    ZBTokenizer token(GetDecisionList());    // Initialize the token with the decision list
+    PSS_Tokenizer token(GetDecisionList());    // Initialize the token with the decision list
                                             // and with the default ; as separator
 
     CString Value;
@@ -447,7 +447,7 @@ CString ZBBPProcedureSymbol::GetDecisionAt(size_t Index)
 
 size_t ZBBPProcedureSymbol::GetDecisionCount() const
 {
-    ZBTokenizer token(GetDecisionList());    // Initialize the token with the decision list
+    PSS_Tokenizer token(GetDecisionList());    // Initialize the token with the decision list
                                             // and with the default ; as separator
 
     return token.GetTokenCount();
@@ -549,7 +549,7 @@ void ZBBPProcedureSymbol::CheckInitialCombination()
         {
             // If there is only one deliverable
             // then sets automatically the master
-            ZBTokenizer token(EnteringDeliverables);
+            PSS_Tokenizer token(EnteringDeliverables);
 
             if (token.GetTokenCount() == 1)
             {
@@ -2940,7 +2940,7 @@ int ZBBPProcedureSymbol::GetEnteringUpDeliverable(CString& EnteringDeliverables)
     // Keep only deliverable symbols
     if (GetEnteringUpDeliverable(Edges) > 0)
     {
-        ZBTokenizer token;    // Initialize the token with ; as separator
+        PSS_Tokenizer token;    // Initialize the token with ; as separator
 
         for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
         {
@@ -3024,7 +3024,7 @@ int ZBBPProcedureSymbol::GetLeavingDownDeliverable(CString& LeavingDeliverables)
 
     if (GetLeavingDownDeliverable(Edges) > 0)
     {
-        ZBTokenizer token;    // Initialize the token with ; as separator
+        PSS_Tokenizer token;    // Initialize the token with ; as separator
 
         for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
         {
@@ -3108,7 +3108,7 @@ int     ZBBPProcedureSymbol::GetLeavingRightDeliverable(CString& LeavingDelivera
 
     if (GetLeavingRightDeliverable(Edges) > 0)
     {
-        ZBTokenizer token;    // Initialize the token with ; as separator
+        PSS_Tokenizer token;    // Initialize the token with ; as separator
 
         for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
         {
@@ -3192,7 +3192,7 @@ int     ZBBPProcedureSymbol::GetLeavingLeftDeliverable(CString& LeavingDeliverab
 
     if (GetLeavingLeftDeliverable(Edges) > 0)
     {
-        ZBTokenizer token;    // Initialize the token with ; as separator
+        PSS_Tokenizer token;    // Initialize the token with ; as separator
 
         for (int nEdgeIdx = 0; nEdgeIdx < Edges.GetSize(); ++nEdgeIdx)
         {

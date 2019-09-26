@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "ZCProcessModelTree.h"
 
-#include "zBaseLib\ZIDropView.h"
+#include "zBaseLib\PSS_DropView.h"
 #include "ZBSymbol.h"
 #include "ZBLinkSymbol.h"
 

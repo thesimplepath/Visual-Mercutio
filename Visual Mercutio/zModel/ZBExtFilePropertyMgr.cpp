@@ -6,7 +6,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_Global.h"
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 #include "zBaseLib\ZNetResourceWrapper.h"
 #include "zBaseLib\PSS_TemplateFile.h"
 #include "zBaseLib\PSS_File.h"

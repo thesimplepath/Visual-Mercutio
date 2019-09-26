@@ -70,8 +70,9 @@ bool PSS_SoapPublishModelGenerateFiles::OnStart()
     // create the window for file generation feedback
     m_FileGenerateWindow.Create();
 
-    // get the temp directory
     char tempDir[512];
+
+    // get the temp directory
     ::GetWindowsDirectory(tempDir, sizeof(tempDir));
     m_TargetDirectory = ZDirectory::NormalizeDirectory(tempDir) + _T("\\tempPSS");
 
@@ -164,11 +165,11 @@ bool PSS_SoapPublishModelGenerateFiles::PublishModel(ZDProcessGraphModelMdl* pMo
     if (!pVp)
         return false;
 
-    // export the model to the image filename
-    const CString imageFilename = BuildModelImageFilename(pModel);
+    // export the model to the image file name
+    const CString imageFileName = BuildModelImageFilename(pModel);
 
-    // refresh Setup Copyfile Window
-    m_FileGenerateWindow.SetDestination(imageFilename);
+    // refresh the setup copy file window
+    m_FileGenerateWindow.SetDestination(imageFileName);
     m_FileGenerateWindow.UpdateWindow();
 
     MSG msg;
@@ -182,24 +183,24 @@ bool PSS_SoapPublishModelGenerateFiles::PublishModel(ZDProcessGraphModelMdl* pMo
     }
 
     // check if the image was already generated to avoid generating it twice
-    if (!StringAlreadyGenerated(imageFilename))
+    if (!StringAlreadyGenerated(imageFileName))
         // generate the file
-        if (pVp->ExportModelToImageFile(imageFilename, *pDC))
+        if (pVp->ExportModelToImageFile(imageFileName, *pDC))
         {
-            PSS_File file(imageFilename);
+            PSS_File file(imageFileName);
 
             // publish the file name
             if (!m_PubFile.Add(PSS_SoapData_File(PSS_SoapData_File::IE_DM_PublicFolder,
                                                     1,
                                                     (const char*)m_TargetDirectory,
                                                     (const char*)file.GetFileName())))
-                TRACE1(_T("Problem publishing the file %s\n"), (const char*)ImageFilename);
+                TRACE1(_T("Problem publishing the file %s\n"), (const char*)imageFileName);
         }
         else
-            TRACE1(_T("Problem exporting the file %s\n"), (const char*)ImageFilename);
+            TRACE1(_T("Problem exporting the file %s\n"), (const char*)imageFileName);
 
     // create the html page
-    CreateHtmlPage(pModel, imageFilename);
+    CreateHtmlPage(pModel, imageFileName);
 
     return true;
 }
@@ -209,12 +210,12 @@ CString PSS_SoapPublishModelGenerateFiles::BuildModelImageFilename(ZDProcessGrap
     if (!pModel)
         return _T("");
 
-    // build the filename using the full object path
-    CString Filename  = ZDirectory::NormalizeDirectory(m_TargetDirectory) + _T("\\");
-    Filename         += ParseModelName(pModel->GetAbsolutePath());
-    Filename         += _T(".jpg");
+    // build the file name using the full object path
+    CString fileName  = ZDirectory::NormalizeDirectory(m_TargetDirectory) + _T("\\");
+    fileName         += ParseModelName(pModel->GetAbsolutePath());
+    fileName         += _T(".jpg");
 
-    return Filename;
+    return fileName;
 }
 //---------------------------------------------------------------------------
 CString PSS_SoapPublishModelGenerateFiles::BuildModelHTMLFilename(ZDProcessGraphModelMdl* pModel)
@@ -222,12 +223,12 @@ CString PSS_SoapPublishModelGenerateFiles::BuildModelHTMLFilename(ZDProcessGraph
     if (!pModel)
         return _T("");
 
-    // build the filename using the full object path
-    CString Filename  = ZDirectory::NormalizeDirectory(m_TargetDirectory) + _T("\\");
-    Filename         += ParseModelName(pModel->GetAbsolutePath());
-    Filename         += _T(".htm");
+    // build the file name using the full object path
+    CString fileName  = ZDirectory::NormalizeDirectory(m_TargetDirectory) + _T("\\");
+    fileName         += ParseModelName(pModel->GetAbsolutePath());
+    fileName         += _T(".htm");
 
-    return Filename;
+    return fileName;
 }
 //---------------------------------------------------------------------------
 CString PSS_SoapPublishModelGenerateFiles::ParseModelName(const CString& modelName)
@@ -243,7 +244,7 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(ZDProcessGraphModelMdl* p
     const CString  htmlFileName = BuildModelHTMLFilename(pModel);
           PSS_File rootHtmlFile(m_RootHtmlFileName);
 
-    // refresh Setup Copyfile Window
+    // refresh the setup copy file window
     m_FileGenerateWindow.SetDestination(htmlFileName);
     m_FileGenerateWindow.UpdateWindow();
 
@@ -270,8 +271,8 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(ZDProcessGraphModelMdl* p
 
     // write header
     s.Format(IDS_SOAPMODELGENHTML_1,
-             (const char*)pModel->GetAbsolutePath(),                     // model path
-             (const char*)PSS_Date::GetToday().GetStandardFormattedDate()); // current date
+             (const char*)pModel->GetAbsolutePath(),
+             (const char*)PSS_Date::GetToday().GetStandardFormattedDate());
 
     htmlFile << s;
 
@@ -284,10 +285,10 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(ZDProcessGraphModelMdl* p
 
     // write the ref to root
     s.Format(IDS_SOAPMODELGENHTML_7,
-             (const char*)rootHtmlFile.GetFileName(), // root filename
-             (const char*)g_HomeImageFile,            // logo filename
-             (const char*)rootHtmlFile.GetFileName(), // root filename
-             (const char*)m_RootName);                // root name
+             (const char*)rootHtmlFile.GetFileName(),
+             (const char*)g_HomeImageFile,
+             (const char*)rootHtmlFile.GetFileName(),
+             (const char*)m_RootName);
 
     htmlFile << s;
 
@@ -300,10 +301,10 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(ZDProcessGraphModelMdl* p
         const CString  ParentName         = pModel->GetParent()->GetAbsolutePath();
 
         s.Format(IDS_SOAPMODELGENHTML_11,
-                 (const char*)parentHtmlFile.GetFileName(), // root filename
-                 (const char*)g_ParentImageFile,            // logo filename
-                 (const char*)parentHtmlFile.GetFileName(), // root filename
-                 (const char*)ParentName);                  // root name
+                 (const char*)parentHtmlFile.GetFileName(),
+                 (const char*)g_ParentImageFile,
+                 (const char*)parentHtmlFile.GetFileName(),
+                 (const char*)ParentName);
 
         htmlFile << s;
     }
@@ -324,13 +325,11 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(ZDProcessGraphModelMdl* p
     // write the hotspot table header
     PSS_File image(imageFileName);
 
-    s.Format(IDS_SOAPMODELGENHTML_2,
-             (const char*)pModel->GetAbsolutePath(), // object name
-             (const char*)image.GetFileName());      // image file
+    s.Format(IDS_SOAPMODELGENHTML_2, (const char*)pModel->GetAbsolutePath(), (const char*)image.GetFileName());
 
     htmlFile << s;
 
-    // write all hot spots. Run throught the model elements and write the hotspot entities
+    // write all hot spots. Iterate throught the model elements and write the hotspot entities
     CString symbolHtmlFileName;
     CRect   symbolCoordinates;
 
@@ -349,7 +348,7 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(ZDProcessGraphModelMdl* p
         // has a sub-model defined?
         if (pCompSym && pCompSym->GetChildModel())
         {
-            // get the html filename for the reference
+            // get the html file name for the reference
             symbolHtmlFileName = BuildModelHTMLFilename(dynamic_cast<ZDProcessGraphModelMdl*>(pCompSym->GetChildModel()));
 
             PSS_File symbol(symbolHtmlFileName);
@@ -371,18 +370,18 @@ bool PSS_SoapPublishModelGenerateFiles::CreateHtmlPage(ZDProcessGraphModelMdl* p
 
         ZBBPStartSymbol* pStartCompSym = dynamic_cast<ZBBPStartSymbol*>(pComp);
 
-        // if it is a start symbol, then create the hot spot for starting a new process
+        // if it's a start symbol, create the hot spot for starting a new process
         if (pStartCompSym)
         {
             // get the symbol position
             symbolCoordinates = pComp->GetBaseRgn().GetBounds();
 
             s.Format(IDS_SOAPMODELGENHTML_17,
-                        symbolCoordinates.left,
-                        symbolCoordinates.top,
-                        symbolCoordinates.right,
-                        symbolCoordinates.bottom,
-                        pStartCompSym->GetSymbolReferenceNumber());
+                     symbolCoordinates.left,
+                     symbolCoordinates.top,
+                     symbolCoordinates.right,
+                     symbolCoordinates.bottom,
+                     pStartCompSym->GetSymbolReferenceNumber());
 
             htmlFile << s;
         }

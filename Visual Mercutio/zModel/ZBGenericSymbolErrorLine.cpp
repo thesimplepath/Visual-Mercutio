@@ -3,7 +3,7 @@
 
 #include "stdafx.h"
 #include "ZBGenericSymbolErrorLine.h"
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -68,7 +68,7 @@ ZBGenericSymbolErrorLine& ZBGenericSymbolErrorLine::operator=( const ZBGenericSy
 
 void ZBGenericSymbolErrorLine::BuildString()
 {
-    ZBTokenizer Tokenizer( ';' );
+    PSS_Tokenizer Tokenizer( ';' );
 
     // Add the error type
     if ( GetErrorType() == -1 )
@@ -120,7 +120,7 @@ void ZBGenericSymbolErrorLine::BuildString()
 
 void ZBGenericSymbolErrorLine::Parse()
 {
-    ZBTokenizer Tokenizer( ';' );
+    PSS_Tokenizer Tokenizer( ';' );
 
     // Extract the type
     CString TypeStr = Tokenizer.GetFirstToken( GetBuffer( GetLength() + 1 ) );

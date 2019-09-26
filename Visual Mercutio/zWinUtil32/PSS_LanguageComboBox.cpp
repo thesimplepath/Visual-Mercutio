@@ -9,7 +9,7 @@
 #include "PSS_LanguageComboBox.h"
 
 // processsoft
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 #include "zRes32\zRes.h"
 
 #ifdef _DEBUG
@@ -52,7 +52,7 @@ int PSS_LanguageComboBox::Initialize ()
     languages.LoadString(IDS_LANGUAGE_LIST);
 
     // initialize the token with ; as separator
-    ZBTokenizer token;
+    PSS_Tokenizer token;
 
     // get the first available language
     CString language = token.GetFirstToken(languages);

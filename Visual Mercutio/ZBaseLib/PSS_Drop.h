@@ -52,7 +52,7 @@ class AFX_EXT_CLASS PSS_Drop
         *@param pt - drop point in pixels
         *@return true on success, otherwise false
         */
-        virtual bool DropItem(CObject* pObj, CPoint pt) = 0;
+        virtual bool DropItem(CObject* pObj, const CPoint& point) = 0;
 
         /**
         * Checks if the item may be droped
@@ -60,7 +60,7 @@ class AFX_EXT_CLASS PSS_Drop
         *@param pt - drop point in pixels
         *@return true if the item may be dropped, otherwise false
         */
-        virtual bool AcceptDropItem(CObject* pObj, CPoint pt) = 0;
+        virtual bool AcceptDropItem(CObject* pObj, const CPoint& point) = 0;
 };
 
 #endif

@@ -9,7 +9,7 @@
 #include "stdafx.h"
 #include "ZBBPRulesProp.h"
 
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 #include "zBaseLib\PSS_BaseDocument.h"
 

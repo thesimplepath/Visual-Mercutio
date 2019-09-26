@@ -15,7 +15,7 @@
 #include "ZBLanguageProp.h"
 #include "ZBBasicModelProp.h"
 #include "zModelRes.h"
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 #include "ZUODSymbolManipulator.h"
 

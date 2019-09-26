@@ -15,7 +15,7 @@
 
 #include "ZBBPCombinationProp.h"
 
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -211,7 +211,7 @@ bool ZBProcCombinations::AddCombinationDeliverable( size_t Index, CString Value 
 {
     CString Deliverables = GetCombinationDeliverables( Index );
 
-    ZBTokenizer token;    // Initialize the token with ; as separator
+    PSS_Tokenizer token;    // Initialize the token with ; as separator
 
     CString str = token.GetFirstToken( Deliverables );
     bool Found = false;
@@ -248,8 +248,8 @@ bool ZBProcCombinations::RemoveCombinationDeliverable( size_t Index, CString Val
 {
     CString Deliverables = GetCombinationDeliverables( Index );
 
-    ZBTokenizer srcToken;    // Initialize the source token with ; as separator
-    ZBTokenizer dstToken;    // Initialize the destination token with ; as separator
+    PSS_Tokenizer srcToken;    // Initialize the source token with ; as separator
+    PSS_Tokenizer dstToken;    // Initialize the destination token with ; as separator
 
     CString str = srcToken.GetFirstToken( Deliverables );
     bool Found = false;
@@ -363,8 +363,8 @@ CString ZBProcCombinations::GetAvailableDeliverables( const CString AllDeliverab
     CString AllocatedDeliverables = GetAllocatedDeliverables();
 
     // Now run through all deliverables and check wich one is available
-    ZBTokenizer srcToken;    // Initialize the source token with ; as separator
-    ZBTokenizer dstToken;    // Initialize the destination token with ; as separator
+    PSS_Tokenizer srcToken;    // Initialize the source token with ; as separator
+    PSS_Tokenizer dstToken;    // Initialize the destination token with ; as separator
 
     CString str = srcToken.GetFirstToken( AllDeliverables );
 
@@ -388,7 +388,7 @@ CString ZBProcCombinations::GetAvailableDeliverables( const CString AllDeliverab
 
 CString ZBProcCombinations::GetAllocatedDeliverables() const
 {
-    ZBTokenizer token;    // Initialize the token with ; as separator
+    PSS_Tokenizer token;    // Initialize the token with ; as separator
 
     // Run through the set and build the string
     ZBBPCombinationPropertiesIterator i( &m_Set );
@@ -405,7 +405,7 @@ CString ZBProcCombinations::GetAllocatedDeliverables() const
 
 bool ZBProcCombinations::IsDeliverableInString( const CString Deliverables, const CString Value ) const
 {
-    ZBTokenizer token;    // Initialize the token with ; as separator
+    PSS_Tokenizer token;    // Initialize the token with ; as separator
 
     CString str = token.GetFirstToken( Deliverables );
 

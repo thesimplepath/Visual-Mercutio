@@ -6,7 +6,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_Date.h"
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 ZUActivityLogFile::ZUActivityLogFile (CString LogFileName)
   : m_LogFileName(LogFileName), m_IsOpen(FALSE)
@@ -138,7 +138,7 @@ BOOL ZUActivityLogFile::AppendToLog (ZBEventActivity& EventActivity)
     PSS_Date    CurrentDate = PSS_Date::GetToday();
     CString    Line;
 
-    ZBTokenizer    Tokenizer( '\t' );
+    PSS_Tokenizer    Tokenizer( '\t' );
 
     // The current date
     Tokenizer.AddToken( CurrentDate.GetStandardFormattedDate() );

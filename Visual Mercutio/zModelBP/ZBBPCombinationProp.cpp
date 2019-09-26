@@ -14,7 +14,7 @@
 
 #include "ZBBPCombinationProp.h"
 
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 #include "zBaseLib\PSS_BaseDocument.h"
 
@@ -139,7 +139,7 @@ BOOL ZBBPCombinationProperties::IsEqual( ZBBPCombinationProperties* pProp )
 
 bool ZBBPCombinationProperties::IsDeliverableInCombination( LPCTSTR lpszValue )
 {
-    ZBTokenizer token;    // Initialize the token with ; as separator
+    PSS_Tokenizer token;    // Initialize the token with ; as separator
 
     CString str = token.GetFirstToken( lpszValue );
     

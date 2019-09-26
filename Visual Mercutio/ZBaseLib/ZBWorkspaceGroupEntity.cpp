@@ -6,7 +6,7 @@
 #include "ZBWorkspaceGroupEntity.h"
 #include "ZBWorkspaceFileEntity.h"
 
-#include "ZBTokenizer.h"
+#include "PSS_Tokenizer.h"
 
 #include "zBaseLibRes.h"
 
@@ -112,7 +112,7 @@ void ZBWorkspaceGroupEntity::GetExtensionList(CString& Extensions)
     Extensions.Empty();
 
     // Initialize the token class with the separator char
-    ZBTokenizer Token(';');
+    PSS_Tokenizer Token(';');
 
     // Just add all elments
     int Count = m_ExtensionList.GetSize();
@@ -132,7 +132,7 @@ bool ZBWorkspaceGroupEntity::ParseExtension(const CString Extensions, CStringArr
     ExtensionArray.RemoveAll();
 
     // Initialize the token class with the separator char
-    ZBTokenizer Token(';');
+    PSS_Tokenizer Token(';');
 
     CString sExt = Token.GetFirstToken(Extensions);
 

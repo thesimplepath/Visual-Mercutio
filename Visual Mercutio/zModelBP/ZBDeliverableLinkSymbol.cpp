@@ -36,7 +36,7 @@
 
 #include "ZVEqualizeQuantityDlg.h"
 
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 // JMR-MODIF - Le 13 juin 2007 - Ajout de l'en-tête ZVRiskOptionsDlg.h
 #include "ZVRiskOptionsDlg.h"
@@ -2016,7 +2016,7 @@ void ZBDeliverableLinkSymbol::OnDelCurrentRisk(ZBProperty&        Property,
 
 bool ZBDeliverableLinkSymbol::RuleExist(const CString Value)
 {
-    ZBTokenizer token(GetRuleList());    // Initialize the token with the task list
+    PSS_Tokenizer token(GetRuleList());    // Initialize the token with the task list
                                         // and with the default ; as separator
 
     return (token.TokenExist(Value) == TRUE) ? true : false;
@@ -2024,7 +2024,7 @@ bool ZBDeliverableLinkSymbol::RuleExist(const CString Value)
 
 void ZBDeliverableLinkSymbol::AddRule(const CString Value)
 {
-    ZBTokenizer token(GetRuleList());    // Initialize the token with the task list
+    PSS_Tokenizer token(GetRuleList());    // Initialize the token with the task list
                                         // and with the default ; as separator
 
     // If the new task has been added correctly,
@@ -2043,7 +2043,7 @@ void ZBDeliverableLinkSymbol::AddRule(const CString Value)
 
 void ZBDeliverableLinkSymbol::RemoveRule(const CString Value)
 {
-    ZBTokenizer token(GetRuleList());    // Initialize the token with the task list
+    PSS_Tokenizer token(GetRuleList());    // Initialize the token with the task list
                                         // and with the default ; as separator
 
     // If the new task has been removed correctly,
@@ -2058,7 +2058,7 @@ void ZBDeliverableLinkSymbol::RemoveRule(const CString Value)
 
 bool ZBDeliverableLinkSymbol::TextItemExist(const CString Value)
 {
-    ZBTokenizer token(GetTextItemList());    // Initialize the token with the list
+    PSS_Tokenizer token(GetTextItemList());    // Initialize the token with the list
                                             // and with the default ; as separator
 
     return (token.TokenExist(Value) == TRUE) ? true : false;
@@ -2066,7 +2066,7 @@ bool ZBDeliverableLinkSymbol::TextItemExist(const CString Value)
 
 void ZBDeliverableLinkSymbol::AddTextItem(const CString Value)
 {
-    ZBTokenizer token(GetTextItemList());    // Initialize the token with the list
+    PSS_Tokenizer token(GetTextItemList());    // Initialize the token with the list
                                             // and with the default ; as separator
 
     // If the new task has been added correctly,
@@ -2085,7 +2085,7 @@ void ZBDeliverableLinkSymbol::AddTextItem(const CString Value)
 
 void ZBDeliverableLinkSymbol::RemoveTextItem(const CString Value)
 {
-    ZBTokenizer token(GetTextItemList());    // Initialize the token with the list
+    PSS_Tokenizer token(GetTextItemList());    // Initialize the token with the list
                                             // and with the default ; as separator
 
     // If the new task has been removed correctly,
@@ -4338,7 +4338,7 @@ CString ZBDeliverableLinkSymbol::GetTextItemList() const
 
 CString ZBDeliverableLinkSymbol::GetTextItemAt(size_t Index)
 {
-    ZBTokenizer token(GetTextItemList());    // Initialize the token with the list
+    PSS_Tokenizer token(GetTextItemList());    // Initialize the token with the list
                                             // and with the default ; as separator
 
     CString Value;
@@ -4354,7 +4354,7 @@ CString ZBDeliverableLinkSymbol::GetTextItemAt(size_t Index)
 
 size_t ZBDeliverableLinkSymbol::GetTextItemCount() const
 {
-    ZBTokenizer token(GetTextItemList());    // Initialize the token with the list
+    PSS_Tokenizer token(GetTextItemList());    // Initialize the token with the list
                                             // and with the default ; as separator
 
     return token.GetTokenCount();
@@ -4400,7 +4400,7 @@ CString ZBDeliverableLinkSymbol::GetRuleList() const
 
 CString ZBDeliverableLinkSymbol::GetRuleAt(size_t Index)
 {
-    ZBTokenizer token(GetRuleList());    // Initialize the token with the task list
+    PSS_Tokenizer token(GetRuleList());    // Initialize the token with the task list
                                         // and with the default ; as separator
     CString Value;
 
@@ -4415,7 +4415,7 @@ CString ZBDeliverableLinkSymbol::GetRuleAt(size_t Index)
 
 size_t ZBDeliverableLinkSymbol::GetRuleCount() const
 {
-    ZBTokenizer token(GetRuleList());    // Initialize the token with the task list
+    PSS_Tokenizer token(GetRuleList());    // Initialize the token with the task list
                                         // and with the default ; as separator
     return token.GetTokenCount();
 }

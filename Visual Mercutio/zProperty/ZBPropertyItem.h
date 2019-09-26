@@ -21,7 +21,7 @@
 #include "zBaseLib\ZUStringFormater.h"
 #include "zBaseLib\PSS_Duration.h"
 #include "zBaseLib\PSS_Date.h"
-#include "zBaseLib\ZBTimeSpan.h"
+#include "zBaseLib\PSS_TimeSpan.h"
 #include "zProperty\ZIInPlaceEdit.h"
 
 #ifdef _ZPROPERTYEXPORT
@@ -133,8 +133,8 @@ public:
 
     // RS-MODIF 08.08.2005 ajout de l'attribut dynamique "temps"
     // Set and get data for time
-    virtual void SetData( ZBTimeSpan& Value );
-    virtual ZBTimeSpan GetDataTime() const;
+    virtual void SetData(PSS_TimeSpan& Value );
+    virtual PSS_TimeSpan GetDataTime() const;
 
     // Set and get for array of strings
     virtual void SetData( CStringArray* values )
@@ -167,7 +167,7 @@ protected:
     PSS_Duration                m_durationValue;
     PSS_Date                    m_dateValue;
     //RS-MODIF 08.08.2005 ajout de l'attribut dynamique "temps"
-    ZBTimeSpan                m_timeValue;
+    PSS_TimeSpan                m_timeValue;
 
 private:
 
@@ -318,9 +318,9 @@ inline void ZBPropertyItem::SetData( const CString sText )
         // RS-MODIF 08.08.2005 ajout attribut dynamique "temps"
         case PI_TIME:
         {
-            ZBTimeSpan value;
+            PSS_TimeSpan value;
 
-            if ( ZUStringFormatter::ConvertFormattedBuffer( sText, (ZBTimeSpan&)value, GetStringFormat() ) )
+            if ( ZUStringFormatter::ConvertFormattedBuffer( sText, (PSS_TimeSpan&)value, GetStringFormat() ) )
             {
                 m_timeValue = value;
             }
@@ -371,7 +371,7 @@ inline void ZBPropertyItem::SetData(PSS_Date& Value )
 
 
 //RS-MODIF 08.08.2005 ajout de l'attribut dynamique "temps"
-inline void ZBPropertyItem::SetData( ZBTimeSpan& Value )
+inline void ZBPropertyItem::SetData(PSS_TimeSpan& Value )
 {
     m_Type            = PI_TIME;
     m_timeValue        = Value;
@@ -383,7 +383,7 @@ inline PSS_Date ZBPropertyItem::GetDataDate() const
 };
 
 //RS-MODIF 08.08.2005 ajout de l'attribut dynamique "temps"
-inline ZBTimeSpan ZBPropertyItem::GetDataTime() const
+inline PSS_TimeSpan ZBPropertyItem::GetDataTime() const
 {
     return m_timeValue;
 };
@@ -431,7 +431,7 @@ inline CString ZBPropertyItem::GetData() const
         case PI_TIME:
         {
             // Format the value function of the string format specified
-            sText = ZUStringFormatter::GetFormattedBuffer( (ZBTimeSpan&)m_timeValue,
+            sText = ZUStringFormatter::GetFormattedBuffer( (PSS_TimeSpan&)m_timeValue,
                                                            const_cast<ZBPropertyItem*>(this)->GetStringFormat() );
             break;
         }

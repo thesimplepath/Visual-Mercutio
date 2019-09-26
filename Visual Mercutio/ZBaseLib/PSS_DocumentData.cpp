@@ -23,7 +23,7 @@
 #include "PSS_FieldColumn.h"
 #include "PSS_FileBuffer.h"
 #include "PSS_FieldRepository.h"
-#include "ZBTokenizer.h"
+#include "PSS_Tokenizer.h"
 #include "PSS_MsgBox.h"
 #include "PSS_ObjectUtility.h"
 #include "ZIView.h"
@@ -207,9 +207,9 @@ BOOL PSS_DocumentData::CheckMultiColumnMemberField(PSS_PlanFinObject* pObj)
     if (!pObj)
         return FALSE;
 
-          ZBTokenizer tokenizer('.');
-    const CString     fieldName = tokenizer.GetFirstToken(pObj->GetObjectName());
-    const CString     member    = tokenizer.GetNextToken();
+          PSS_Tokenizer tokenizer('.');
+    const CString       fieldName = tokenizer.GetFirstToken(pObj->GetObjectName());
+    const CString       member    = tokenizer.GetNextToken();
 
     // if no member, next field
     if (member.IsEmpty())
@@ -1263,7 +1263,7 @@ void PSS_DocumentData::PropagateFieldValue(PSS_PlanFinObject* pObj)
     // Extract also the value row number
     if (pObj->IsMemberOfMultiColumn())
     {
-        ZBTokenizer tokenizer('.');
+        PSS_Tokenizer tokenizer('.');
 
         // get field name
         fieldName = tokenizer.GetFirstToken(pObj->GetObjectName());
@@ -1319,8 +1319,8 @@ void PSS_DocumentData::PropagateFieldValue(PSS_PlanFinObject* pObj)
                     // check for other multi-column field
                     if (pTempObj->IsMemberOfMultiColumn() && rowValue != -1)
                     {
-                        ZBTokenizer tokenizer('.');
-                        const CString     currentFieldName = tokenizer.GetFirstToken(pTempObj->GetObjectName());
+                              PSS_Tokenizer tokenizer('.');
+                        const CString       currentFieldName = tokenizer.GetFirstToken(pTempObj->GetObjectName());
 
                         // same field name?
                         if (fieldName == currentFieldName)
@@ -1362,7 +1362,7 @@ void PSS_DocumentData::PropagateFieldValue(PSS_PlanFinObject* pObj)
 
     m_pDocument->FieldHasBeenModified();
 
-    // Generate a WM_PAINT message
+    // generate a WM_PAINT message
     pView->UpdateWindow();
 }
 //---------------------------------------------------------------------------

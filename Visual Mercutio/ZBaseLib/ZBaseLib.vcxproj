@@ -894,13 +894,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBTimeSpan.CPP">
+    <ClCompile Include="PSS_TimeSpan.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBTokenizer.cpp">
+    <ClCompile Include="PSS_Tokenizer.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1043,13 +1043,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZIDropScrollView.cpp">
+    <ClCompile Include="PSS_DropScrollView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZIDropView.cpp">
+    <ClCompile Include="PSS_DropView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1267,7 +1267,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZVTreeListCtrl.cpp">
+    <ClCompile Include="PSS_TreeListCtrl.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1471,8 +1471,8 @@
     <ClInclude Include="PSS_ServerDisk.h" />
     <ClInclude Include="PSS_SmartString.h" />
     <ClInclude Include="PSS_StringFormat.h" />
-    <ClInclude Include="ZBTimeSpan.H" />
-    <ClInclude Include="ZBTokenizer.h" />
+    <ClInclude Include="PSS_TimeSpan.h" />
+    <ClInclude Include="PSS_Tokenizer.h" />
     <ClInclude Include="ZBToolbarObserverMsg.h" />
     <ClInclude Include="ZBWorkspaceEntity.h" />
     <ClInclude Include="ZBWorkspaceEnv.h" />
@@ -1496,8 +1496,8 @@
     <ClInclude Include="ZGTrace.H" />
     <ClInclude Include="zidialog.h" />
     <ClInclude Include="PSS_Drop.h" />
-    <ClInclude Include="ZIDropScrollView.h" />
-    <ClInclude Include="ZIDropView.h" />
+    <ClInclude Include="PSS_DropScrollView.h" />
+    <ClInclude Include="PSS_DropView.h" />
     <ClInclude Include="ZIEmptyView.h" />
     <ClInclude Include="ZIErrorLine.h" />
     <ClInclude Include="ZIHtmlView.h" />
@@ -1536,7 +1536,7 @@
     <ClInclude Include="ZVOutputView.h" />
     <ClInclude Include="ZVSpanView.h" />
     <ClInclude Include="ZVSpanWnd.h" />
-    <ClInclude Include="ZVTreeListCtrl.h" />
+    <ClInclude Include="PSS_TreeListCtrl.h" />
     <ClInclude Include="PSS_WorkspaceFilePropertiesDlg.h" />
     <ClInclude Include="PSS_WorkspaceGroupNameDlg.h" />
     <ClInclude Include="PSS_WorkspaceRenameGroupNameDlg.h" />

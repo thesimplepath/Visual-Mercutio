@@ -9,7 +9,7 @@
 #include "PSS_EventActivityOverviewCtrl.h"
 
 // processsoft
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 // resources
 #ifndef _WIN32

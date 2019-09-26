@@ -28,7 +28,7 @@
 #include "zReport\zReportRes.h"
 
 #include "zBaseLib\PSS_Global.h"
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 #include "zModel\ProcGraphModelDoc.h"
 #include "zModel\ZBLogicalPrestationsEntity.h"

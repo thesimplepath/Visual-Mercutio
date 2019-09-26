@@ -21,7 +21,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_WizardDialog.h"
 

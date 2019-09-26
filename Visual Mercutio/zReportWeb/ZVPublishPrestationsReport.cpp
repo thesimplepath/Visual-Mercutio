@@ -192,7 +192,7 @@ void ZVPublishPrestationsReport::ExploreProcessHierarchy( CString               
                                         ExploreProcessHierarchy( PrestationName, m_ChildModel );
                                     }
 
-                                    ZBTokenizer m_PrestationsList = m_Process->GetPrestationsList();
+                                    PSS_Tokenizer m_PrestationsList = m_Process->GetPrestationsList();
 
                                     for ( size_t k = 0; k < m_PrestationsList.GetTokenCount(); k++ )
                                     {

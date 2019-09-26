@@ -21,7 +21,7 @@
 #include "zModel\ZBSymbol.h"
 #include "zModel\ZBLinkSymbol.h"
 
-#include "zBaseLib\ZBTokenizer.h"
+#include "zBaseLib\PSS_Tokenizer.h"
 
 
 #ifdef _DEBUG
@@ -135,7 +135,7 @@ int ZCInputAttributesList::Refresh ()
         // Data type combo.
         strValues.LoadString( IDS_PROPTYPE_LIST );
         // Retreive the right type string
-        ZBTokenizer token( strValues );
+        PSS_Tokenizer token( strValues );
 
         CString s;
         int Index = -1;

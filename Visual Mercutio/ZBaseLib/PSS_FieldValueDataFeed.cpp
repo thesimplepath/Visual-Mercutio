@@ -9,7 +9,7 @@
 #include "PSS_FieldValueDataFeed.h"
 
 // processsoft
-#include "ZBTokenizer.h"
+#include "PSS_Tokenizer.h"
 #include "PSS_ObjectUtility.h"
 
 //---------------------------------------------------------------------------
@@ -76,7 +76,7 @@ CString PSS_FieldValueDataFeed::GetExportedLine(CObject* pObj) const
         return "";
 
     PSS_HistoryField* pObjectHistory = m_pSourceFieldRepository->FindFieldHistory(pObjectDefinition->GetFieldName());
-    ZBTokenizer       tokenizer;
+    PSS_Tokenizer     tokenizer;
 
     switch (GetSeparatorType())
     {

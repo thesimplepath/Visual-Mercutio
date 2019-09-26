@@ -17,7 +17,7 @@
 
 #include "zBaseLib\PSS_StringFormat.h"
 #include "zBaseLib\PSS_Date.h"
-#include "zBaseLib\ZBTimeSpan.h"
+#include "zBaseLib\PSS_TimeSpan.h"
 #include "zBaseLib\PSS_Duration.h"
 
 #ifdef _ZPROPERTYEXPORT
@@ -212,7 +212,7 @@ public:
                const CString    Label,
                int                ItemID,
                const CString    Description,
-               ZBTimeSpan&        Value,
+               PSS_TimeSpan&        Value,
                //RS-MODIF 08.08.2005 suppression confusions PT_EDIT_TIME et PT_EDIT_TIMESPAN
                //PropertyType    PTType                    = PT_EDIT_TIMESPAN,
                PropertyType    PTType = PT_EDIT_TIME,
@@ -228,7 +228,7 @@ public:
                const UINT        LabelResID,
                int                ItemID,
                const UINT        DescriptionResID,
-               ZBTimeSpan&        Value,
+               PSS_TimeSpan&        Value,
                //RS-MODIF 08.08.2005 suppression confusions PT_EDIT_TIME et PT_EDIT_TIMESPAN
                //PropertyType    PTType                    = PT_EDIT_TIMESPAN,
                PropertyType    PTType = PT_EDIT_TIME,
@@ -314,8 +314,8 @@ public:
     PSS_Date GetValueDate() const;
     void SetValueDate(PSS_Date& value);
 
-    ZBTimeSpan GetValueTimeSpan() const;
-    void SetValueTimeSpan(ZBTimeSpan& value);
+    PSS_TimeSpan GetValueTimeSpan() const;
+    void SetValueTimeSpan(PSS_TimeSpan& value);
 
     PSS_Duration GetValueDuration() const;
     void SetValueDuration(PSS_Duration& value);
@@ -369,7 +369,7 @@ private:
     PropertyType        m_PTType;
     PropertyValueType    m_ValueType;
     PSS_Date                m_dtValue;
-    ZBTimeSpan            m_tsValue;
+    PSS_TimeSpan            m_tsValue;
     PSS_Duration            m_durationValue;
     PSS_StringFormat        m_ft;
 
@@ -503,13 +503,13 @@ inline void ZBProperty::SetValueDate(PSS_Date& value)
     m_ValueType = PT_DATE;
 }
 
-inline void ZBProperty::SetValueTimeSpan(ZBTimeSpan& value)
+inline void ZBProperty::SetValueTimeSpan(PSS_TimeSpan& value)
 {
     m_tsValue = value;
     m_ValueType = PT_TIMESPAN;
 }
 
-inline ZBTimeSpan ZBProperty::GetValueTimeSpan() const
+inline PSS_TimeSpan ZBProperty::GetValueTimeSpan() const
 {
     return m_tsValue;
 }
@@ -640,4 +640,4 @@ inline void ZBProperty::SetCategoryOrder(int value)
     m_CategoryOrder = value;
 }
 
-#endif // !defined(AFX_ZBPROPERTY_H__DB8536DE_36AB_4B13_94D5_CFF9BB4FE4E3__INCLUDED_)
+#endif
