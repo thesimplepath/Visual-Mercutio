@@ -35,49 +35,49 @@ class ZDProcessGraphModelMdl;
 
 class AFX_EXT_CLASS ZBBPDoorSymbol : public ZBSymbol
 {
-    DECLARE_SERIAL( ZBBPDoorSymbol )
+    DECLARE_SERIAL(ZBBPDoorSymbol)
 
 public:
 
-    ZBBPDoorSymbol( const CString Name = _T( "" ) );
+    ZBBPDoorSymbol(const CString Name = _T(""));
     virtual ~ZBBPDoorSymbol();
 
     /* Copy constructor. */
-    ZBBPDoorSymbol( const ZBBPDoorSymbol& src );
+    ZBBPDoorSymbol(const ZBBPDoorSymbol& src);
 
     /* Assignment operator. */
-    ZBBPDoorSymbol& operator=( const ZBBPDoorSymbol& src );
+    ZBBPDoorSymbol& operator=(const ZBBPDoorSymbol& src);
 
     /* Create a duplicate copy of this object. */
     virtual CODComponent* Dup() const;
 
     // Copy the definition only
-    virtual void CopySymbolDefinitionFrom( CODSymbolComponent& src );
+    virtual void CopySymbolDefinitionFrom(CODSymbolComponent& src);
 
     // Return the model door
     ZDProcessGraphModelMdl* GetModelDoor();
 
     // Set a new model to the door
-    bool SetDoorModel( ZDProcessGraphModelMdl* pModel );
+    bool SetDoorModel(ZDProcessGraphModelMdl* pModel);
 
     // Recalculate the door reference for a given twin door name
-    void RecalculateTwinDoorReference( ZDProcessGraphModelMdl* pRootModel );
+    void RecalculateTwinDoorReference(ZDProcessGraphModelMdl* pRootModel);
 
     int GetTwinDoorReferenceNumber() const
     {
         return m_TwinDoorRefNumber;
     }
 
-    void SetTwinDoorReferenceNumber( int RefNumber );
-    void RemoveTwinDoorSymbol( bool RemoveTwin = true );
-    void AssignTwinDoorSymbol( ZBBPDoorSymbol* pDoor );
+    void SetTwinDoorReferenceNumber(int RefNumber);
+    void RemoveTwinDoorSymbol(bool RemoveTwin = true);
+    void AssignTwinDoorSymbol(ZBBPDoorSymbol* pDoor);
 
     ZBBPDoorSymbol* GetTwinDoorSymbol() const
     {
         return m_pTwinDoorSymbol;
     }
 
-    void SetTwinDoorSymbol( ZBBPDoorSymbol* pDoor )
+    void SetTwinDoorSymbol(ZBBPDoorSymbol* pDoor)
     {
         m_pTwinDoorSymbol = pDoor;
     }
@@ -87,10 +87,10 @@ public:
 
     //////////////////////////////////////////////////////////////////////
     // Call-back on symbols
-    virtual void OnSymbolNameChanged( CODComponent& Comp, const CString OldName );
+    virtual void OnSymbolNameChanged(CODComponent& Comp, const CString OldName);
 
     // Update mecanism for symbol change
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     ///////////////////////////////////////////////////////
     // Basic Symbol methods
@@ -130,34 +130,37 @@ public:
     }
 
     // Call by the controller when a tooltip is required
-    virtual bool OnToolTip( CString& ToolTipText, CPoint point, ToolTipMode ToolTip = NormalToolTip );
+    virtual bool OnToolTip(CString& ToolTipText, CPoint point, ToolTipMode ToolTip = NormalToolTip);
 
     // Drag and drop methods
-    virtual bool AcceptDropItem( CObject* pObj, CPoint pt );
-    virtual bool DropItem( CObject* pObj, CPoint pt );
+    virtual bool AcceptDropItem(CObject* pObj, CPoint pt);
+    virtual bool DropItem(CObject* pObj, CPoint pt);
 
     /* Creates the symbol component. */
-    BOOL Create( const CString Name = _T( "" ) );
+    BOOL Create(const CString Name = _T(""));
 
-    /* Called after the object is created and on the desk 
+    /* Called after the object is created and on the desk
        return true if the object can be created or false if the
        object must be destroyed immediatly */
-    virtual bool OnPostCreation( CODModel* pModel = NULL, CODController* pCtrl = NULL );
+    virtual bool OnPostCreation(CODModel* pModel = NULL, CODController* pCtrl = NULL);
 
     /* Called before the object is deleted
        return true if the object can be deleted */
-    virtual bool OnPreDelete( CODModel* pModel = NULL, CODController* pCtrl = NULL );
+    virtual bool OnPreDelete(CODModel* pModel = NULL, CODController* pCtrl = NULL);
 
     /* Called after the double click occured on the object */
-    virtual void OnPostDoubleClick( CODModel* pModel = NULL, CODController* pCtrl = NULL );
+    virtual void OnPostDoubleClick(CODModel* pModel = NULL, CODController* pCtrl = NULL);
 
-    bool GetDisplayPreview() const { return m_DisplayPreview; };
-    void SetDisplayPreview( bool value )
+    bool GetDisplayPreview() const
+    {
+        return m_DisplayPreview;
+    };
+    void SetDisplayPreview(bool value)
     {
         m_DisplayPreview = value;
     }
 
-    virtual void OnDraw( CDC* pDC );
+    virtual void OnDraw(CDC* pDC);
 
     ULONG STDMETHODCALLTYPE AddRef()
     {
@@ -176,7 +179,7 @@ public:
     }
 
     /* Serializes the symbol. */
-    virtual void Serialize( CArchive& ar );
+    virtual void Serialize(CArchive& ar);
 
     virtual int GetRightSubMenu() const;
     virtual int GetIconIndex() const;
@@ -207,7 +210,7 @@ inline int ZBBPDoorSymbol::GetRightSubMenu() const
 
 inline int ZBBPDoorSymbol::GetIconIndex() const
 {
-    return ( IsLocal() ) ? 8 : 16;
+    return (IsLocal()) ? 8 : 16;
 }
 
-#endif // !defined(AFX_ZBBPDoorSymbol_H__D6010BE6_7C2A_47FF_857B_0C64A020F48F__INCLUDED_)
+#endif

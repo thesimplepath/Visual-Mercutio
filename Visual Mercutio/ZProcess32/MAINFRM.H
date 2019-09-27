@@ -9,7 +9,7 @@
 #include "zWinUtil32\PSS_ProjectBar.h"
 #include "zTip\PSS_TipOfDayBar.h"
 #include "zTip\PSS_HelpContextBar.h"
-#include "zBaseLib\ZISubject.h"
+#include "zBaseLib\PSS_Subject.h"
 #include "ZVProcessWorkspace.h"
 #include "ZVOutputWorkspace.h"
 #include "ZVPropertiesWorkspace.h"

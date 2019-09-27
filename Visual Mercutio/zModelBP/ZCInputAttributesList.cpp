@@ -43,32 +43,31 @@ END_MESSAGE_MAP()
 
 #include "zRes32\ZRes.h"
 
-static int _gInputAttributesColText[] = {    IDS_NOCOLUMNHEADER, 
+static int _gInputAttributesColText[] = {IDS_NOCOLUMNHEADER,
                                             IDS_INPUTATTRIB_NAME_COLUMN,
-                                            IDS_INPUTATTRIB_FLAG_COLUMN, 
-                                            IDS_INPUTATTRIB_DEFVALUE_COLUMN, 
-                                            IDS_INPUTATTRIB_ATTACHEDSYMBOL_COLUMN };
-static int _gInputAttributesColSize[] = {    60,
-                                            120, 
-                                            100, 
+                                            IDS_INPUTATTRIB_FLAG_COLUMN,
+                                            IDS_INPUTATTRIB_DEFVALUE_COLUMN,
+                                            IDS_INPUTATTRIB_ATTACHEDSYMBOL_COLUMN};
+static int _gInputAttributesColSize[] = {60,
+                                            120,
                                             100,
-                                            60 };
+                                            100,
+                                            60};
 
-ZCInputAttributesList::ZCInputAttributesList ()
-: m_pInputManager(NULL), 
-  m_pPropManager(NULL),
-  m_pComp(NULL),
-  m_pDoc(NULL),
-  m_ShowAll(false),
-  m_SymbolRef(-1),
-  m_ColumnsBuilt(FALSE)
-{
-}
+ZCInputAttributesList::ZCInputAttributesList()
+    : m_pInputManager(NULL),
+    m_pPropManager(NULL),
+    m_pComp(NULL),
+    m_pDoc(NULL),
+    m_ShowAll(false),
+    m_SymbolRef(-1),
+    m_ColumnsBuilt(FALSE)
+{}
 
 
 ZCInputAttributesList::~ZCInputAttributesList()
 {
-    DeleteAllItems( TRUE );
+    DeleteAllItems(TRUE);
 }
 
 
@@ -77,18 +76,18 @@ void    ZCInputAttributesList::BuildColumns()
     if (m_ColumnsBuilt)
         return;
     // Load images
-    ZIListCtrl::LoadImageList( IDB_IL_INPUTATTRIBUTELIST, 17, 1, RGB( 255, 255, 255 ) );
+    ZIListCtrl::LoadImageList(IDB_IL_INPUTATTRIBUTELIST, 17, 1, RGB(255, 255, 255));
     SetImageList(m_pImageList, LVSIL_SMALL);    /* set extended stlyes*/
 
-    ZIListCtrl::BuildColumns(5, _gInputAttributesColSize, _gInputAttributesColText );
-    ZIListCtrl::SetFullRowSelect( TRUE );
-    ZIListCtrl::EnableSort( TRUE );
+    ZIListCtrl::BuildColumns(5, _gInputAttributesColSize, _gInputAttributesColText);
+    ZIListCtrl::SetFullRowSelect(TRUE);
+    ZIListCtrl::EnableSort(TRUE);
 
     m_ColumnsBuilt = TRUE;
 }
 
-int ZCInputAttributesList::Initialize (ZBInputAttributeManager* pInputManager, ZBDynamicPropertiesManager* pPropManager, 
-                                       bool ShowAll /*= false*/, int SymbolRef /*= -1*/)
+int ZCInputAttributesList::Initialize(ZBInputAttributeManager* pInputManager, ZBDynamicPropertiesManager* pPropManager,
+                                      bool ShowAll /*= false*/, int SymbolRef /*= -1*/)
 {
     m_pInputManager = pInputManager;
     m_pPropManager = pPropManager;
@@ -99,7 +98,7 @@ int ZCInputAttributesList::Initialize (ZBInputAttributeManager* pInputManager, Z
     return ZCInputAttributesList::Refresh();
 }
 
-int ZCInputAttributesList::Refresh ()
+int ZCInputAttributesList::Refresh()
 {
     DeleteAllItems();
 
@@ -113,29 +112,29 @@ int ZCInputAttributesList::Refresh ()
     {
         // Check if necessary to display
         if (m_ShowAll == false &&
-            m_SymbolRef != -1 && 
+            m_SymbolRef != -1 &&
             pInputAttrib->GetSymbolRef() != m_SymbolRef)
             continue;
 
         // Add the symbol type icon
-        InsertItem( LVIF_IMAGE | LVIF_PARAM, LineCounter, 
-                    NULL,
-                    0, 0, 
-                    (pInputAttrib->GetSymbolRef() == -1) ? 0 : 1, 
-                    (LPARAM)pInputAttrib);
+        InsertItem(LVIF_IMAGE | LVIF_PARAM, LineCounter,
+                   NULL,
+                   0, 0,
+                   (pInputAttrib->GetSymbolRef() == -1) ? 0 : 1,
+                   (LPARAM)pInputAttrib);
         ColumnCounter = 1;
 
-        ZBProperty* pProp = (m_pPropManager) ? m_pPropManager->GetPropertyItem( pInputAttrib->GetCategoryID(), pInputAttrib->GetItemID() ) : NULL;
-            
-        SetItem( LineCounter, ColumnCounter++, LVIF_TEXT,
-                 (pProp) ? pProp->GetLabel() : _T(""),
-                 0, 0, 0, 0 );
+        ZBProperty* pProp = (m_pPropManager) ? m_pPropManager->GetPropertyItem(pInputAttrib->GetCategoryID(), pInputAttrib->GetItemID()) : NULL;
+
+        SetItem(LineCounter, ColumnCounter++, LVIF_TEXT,
+            (pProp) ? pProp->GetLabel() : _T(""),
+                0, 0, 0, 0);
 
         CString strValues;
         // Data type combo.
-        strValues.LoadString( IDS_PROPTYPE_LIST );
+        strValues.LoadString(IDS_PROPTYPE_LIST);
         // Retreive the right type string
-        PSS_Tokenizer token( strValues );
+        PSS_Tokenizer token(strValues);
 
         CString s;
         int Index = -1;
@@ -176,42 +175,42 @@ int ZCInputAttributesList::Refresh ()
                 default: break;
             }
             if (Index >= 0)
-                token.GetTokenAt( Index, s );
+                token.GetTokenAt(Index, s);
         }
         else
         {
             s = _T("#err");
         }
 
-        SetItem( LineCounter, ColumnCounter++, LVIF_TEXT,
-                 s,
-                 0, 0, 0, 0 );
+        SetItem(LineCounter, ColumnCounter++, LVIF_TEXT,
+                s,
+                0, 0, 0, 0);
 
-        SetItem( LineCounter, ColumnCounter++, LVIF_TEXT,
-                 pInputAttrib->GetDefaultValue(),
-                 0, 0, 0, 0 );
+        SetItem(LineCounter, ColumnCounter++, LVIF_TEXT,
+                pInputAttrib->GetDefaultValue(),
+                0, 0, 0, 0);
 
         if (pInputAttrib->GetSymbolRef() != -1)
         {
-            CODComponentSet* pSet = m_pDoc->GetModel()->FindSymbolByRefNumber( pInputAttrib->GetSymbolRef() );
+            CODComponentSet* pSet = m_pDoc->GetModel()->FindSymbolByRefNumber(pInputAttrib->GetSymbolRef());
             if (pSet && pSet->GetSize() > 0)
             {
-                SetItem( LineCounter, ColumnCounter++, LVIF_TEXT,
-                         dynamic_cast<ZIBasicSymbol*>(pSet->GetAt(0))->GetSymbolName(),
-                         0, 0, 0, 0 );
+                SetItem(LineCounter, ColumnCounter++, LVIF_TEXT,
+                        dynamic_cast<ZIBasicSymbol*>(pSet->GetAt(0))->GetSymbolName(),
+                        0, 0, 0, 0);
             }
             else
             {
-                SetItem( LineCounter, ColumnCounter++, LVIF_TEXT,
-                         _T(""),
-                         0, 0, 0, 0 );
+                SetItem(LineCounter, ColumnCounter++, LVIF_TEXT,
+                        _T(""),
+                        0, 0, 0, 0);
             }
         }
         else
         {
-            SetItem( LineCounter, ColumnCounter++, LVIF_TEXT,
-                     _T(""),
-                     0, 0, 0, 0 );
+            SetItem(LineCounter, ColumnCounter++, LVIF_TEXT,
+                    _T(""),
+                    0, 0, 0, 0);
         }
         // Increment Line counter
         ++LineCounter;
@@ -230,27 +229,27 @@ ZBInputAttribute*    ZCInputAttributesList::GetSelectedInputAttribute()
 {
     int    Index;
     POSITION pos = GetFirstSelectedItemPosition();
-    if (pos != NULL)     
+    if (pos != NULL)
     {
-        Index = GetNextSelectedItem( pos );
-        CObject* pObj = (CObject*)GetItemData( Index );
-        if (pObj && ISA(pObj,ZBInputAttribute))
+        Index = GetNextSelectedItem(pos);
+        CObject* pObj = (CObject*)GetItemData(Index);
+        if (pObj && ISA(pObj, ZBInputAttribute))
             return dynamic_cast<ZBInputAttribute*>(pObj);
     }
     return NULL;
 }
 
 
-void ZCInputAttributesList::DocumentActivated( ZDProcessGraphModelDoc* pDoc )
+void ZCInputAttributesList::DocumentActivated(ZDProcessGraphModelDoc* pDoc)
 {
     m_pDoc = pDoc;
     if (!pDoc)
         Empty();
 
-    if (!pDoc->GetModel() || !ISA(pDoc->GetModel(),ZDProcessGraphModelMdlBP) ||
+    if (!pDoc->GetModel() || !ISA(pDoc->GetModel(), ZDProcessGraphModelMdlBP) ||
         !dynamic_cast<ZDProcessGraphModelMdlBP*>(pDoc->GetModel())->GetInputAttributes())
     {
-        Initialize( NULL, NULL );
+        Initialize(NULL, NULL);
         return;
     }
 
@@ -260,56 +259,53 @@ void ZCInputAttributesList::DocumentActivated( ZDProcessGraphModelDoc* pDoc )
         HasChanged = true;
 
     if (pDoc->GetModel() &&
-        ISA(pDoc->GetModel(),ZDProcessGraphModelMdlBP) &&
-//        dynamic_cast<ZDProcessGraphModelMdlBP*>(pDoc->GetModel())->GetInputAttributes() &&
+        ISA(pDoc->GetModel(), ZDProcessGraphModelMdlBP) &&
+        //        dynamic_cast<ZDProcessGraphModelMdlBP*>(pDoc->GetModel())->GetInputAttributes() &&
         dynamic_cast<ZDProcessGraphModelMdlBP*>(pDoc->GetModel())->GetInputAttributes() != m_pInputManager)
         HasChanged = true;
 
     if (HasChanged)
-        Initialize( dynamic_cast<ZDProcessGraphModelMdlBP*>(pDoc->GetModel())->GetInputAttributes(), pDoc->GetDynamicPropertiesManager() );
+        Initialize(dynamic_cast<ZDProcessGraphModelMdlBP*>(pDoc->GetModel())->GetInputAttributes(), pDoc->GetDynamicPropertiesManager());
 
 
 
 }
 
 
-void ZCInputAttributesList::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
+void ZCInputAttributesList::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
-    if (pMsg && ISA(pMsg,ZBSymbolObserverMsg))
+    if (pMsg && ISA(pMsg, ZBSymbolObserverMsg))
     {
         if (dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetActionType() == ZBSymbolObserverMsg::ElementSelected)
         {
             m_pComp = dynamic_cast<ZBSymbolObserverMsg*>(pMsg)->GetpElement();
             if (m_pComp &&
-                (ISA(m_pComp,ZBSymbol) || ISA(m_pComp,ZBLinkSymbol)))
-                SetSymbolRef( dynamic_cast<ZIBasicSymbol*>(m_pComp)->GetSymbolReferenceNumber() );
+                (ISA(m_pComp, ZBSymbol) || ISA(m_pComp, ZBLinkSymbol)))
+                SetSymbolRef(dynamic_cast<ZIBasicSymbol*>(m_pComp)->GetSymbolReferenceNumber());
             else
-                SetSymbolRef( -1 );
+                SetSymbolRef(-1);
         }
     }
     else
-    // Check about document close
-    if (pMsg && ISA(pMsg, PSS_DocumentObserverMsg) &&
-        ISA(dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument(),ZDProcessGraphModelDoc))
-    {
-        switch (dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetMessageID())
+        // Check about document close
+        if (pMsg && ISA(pMsg, PSS_DocumentObserverMsg) &&
+            ISA(dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument(), ZDProcessGraphModelDoc))
         {
-            case UM_REFRESHDOCUMENT:
-            case UM_OPENDOCUMENT: break;
-
-            case UM_CLOSEDOCUMENT:
+            switch (dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetMessageID())
             {
-                Empty();
-                break;
-            }
-            case UM_FRAMEHASBEENACTIVATED:
-            {
-                DocumentActivated( dynamic_cast<ZDProcessGraphModelDoc*>( dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument() ) );
-            }
+                case UM_REFRESHDOCUMENT:
+                case UM_OPENDOCUMENT: break;
 
+                case UM_CLOSEDOCUMENT:
+                {
+                    Empty();
+                    break;
+                }
+                case UM_FRAMEHASBEENACTIVATED:
+                {
+                    DocumentActivated(dynamic_cast<ZDProcessGraphModelDoc*>(dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetDocument()));
+                }
+
+            }
         }
-    }
-
-
 }
-

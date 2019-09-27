@@ -17,11 +17,12 @@
 //---------------------------------------------------------------------------
 // Dynamic construction
 //---------------------------------------------------------------------------
-IMPLEMENT_DYNAMIC(PSS_KeyboardObserverMsg, ZIObserverMsg)
+IMPLEMENT_DYNAMIC(PSS_KeyboardObserverMsg, PSS_ObserverMsg)
 //---------------------------------------------------------------------------
 // PSS_KeyboardObserverMsg
 //---------------------------------------------------------------------------
 PSS_KeyboardObserverMsg::PSS_KeyboardObserverMsg(UINT messageID, UINT key) :
+    PSS_ObserverMsg(),
     m_MessageID(messageID),
     m_Key(key)
 {}

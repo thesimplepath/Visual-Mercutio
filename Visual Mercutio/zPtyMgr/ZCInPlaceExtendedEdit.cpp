@@ -6,7 +6,7 @@
 
 #include "zProperty\ZBPropertyItem.h"
 
-#include "zBaseLib\ZBToolbarObserverMsg.h"
+#include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zBaseLib\PSS_KeyboardObserverMsg.h"
 #include "zBaseLib\PSS_MenuObserverMsg.h"
 
@@ -32,37 +32,36 @@ BEGIN_MESSAGE_MAP(ZCInPlaceExtendedEdit, PSS_SearchEdit)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZCInPlaceExtendedEdit::ZCInPlaceExtendedEdit( bool IsReadOnly /*= false*/ )
-    : ZIInPlaceEdit( _T( "" ), IsReadOnly )
-{
-}
+ZCInPlaceExtendedEdit::ZCInPlaceExtendedEdit(bool IsReadOnly /*= false*/)
+    : ZIInPlaceEdit(_T(""), IsReadOnly)
+{}
 
-BOOL ZCInPlaceExtendedEdit::PreTranslateMessage( MSG* pMsg )
+BOOL ZCInPlaceExtendedEdit::PreTranslateMessage(MSG* pMsg)
 {
-    if( pMsg->message == WM_KEYDOWN )
+    if (pMsg->message == WM_KEYDOWN)
     {
         CWnd* pOwner = GetOwner();
         WPARAM nChar = pMsg->wParam;
 
-        switch( nChar )
+        switch (nChar)
         {
             case VK_DELETE:
             {
-                SetHasChanged( true );
+                SetHasChanged(true);
                 break;
             }
 
             case VK_ESCAPE:
             {
-                ::PeekMessage( pMsg, NULL, NULL, NULL, PM_REMOVE );
+                ::PeekMessage(pMsg, NULL, NULL, NULL, PM_REMOVE);
 
                 // First, cancel the edit
                 CancelEdit();
 
                 // Notify observers
-                if ( GetParent() && ISA( GetParent(), ZCPropertyListCtrl ) )
+                if (GetParent() && ISA(GetParent(), ZCPropertyListCtrl))
                 {
-                    GetParent()->PostMessage( WM_KEYPRESSED_EDIT, pMsg->wParam );
+                    GetParent()->PostMessage(WM_KEYPRESSED_EDIT, pMsg->wParam);
                     return TRUE;
                 }
             }
@@ -70,13 +69,13 @@ BOOL ZCInPlaceExtendedEdit::PreTranslateMessage( MSG* pMsg )
             case VK_RETURN:
             case VK_TAB:
             {
-                ::PeekMessage( pMsg, NULL, NULL, NULL, PM_REMOVE );
+                ::PeekMessage(pMsg, NULL, NULL, NULL, PM_REMOVE);
 
                 // Notify observers
-                if ( GetParent() && ISA( GetParent(), ZCPropertyListCtrl ) )
+                if (GetParent() && ISA(GetParent(), ZCPropertyListCtrl))
                 {
-                    GetParent()->PostMessage( WM_KEYPRESSED_EDIT,
-                                              ( GetKeyState( VK_SHIFT ) & 0x80000000) ? ( VK_SHIFT | pMsg->wParam ) : pMsg->wParam );
+                    GetParent()->PostMessage(WM_KEYPRESSED_EDIT,
+                        (GetKeyState(VK_SHIFT) & 0x80000000) ? (VK_SHIFT | pMsg->wParam) : pMsg->wParam);
                     return TRUE;
                 }
             }
@@ -87,21 +86,21 @@ BOOL ZCInPlaceExtendedEdit::PreTranslateMessage( MSG* pMsg )
             }
         }
     }
-    
-    return PSS_SearchEdit::PreTranslateMessage( pMsg );
+
+    return PSS_SearchEdit::PreTranslateMessage(pMsg);
 }
 
-void ZCInPlaceExtendedEdit::SetEditText( const CString& strText )
+void ZCInPlaceExtendedEdit::SetEditText(const CString& strText)
 {
     m_strText = strText;
 
-    if ( ::IsWindow( GetSafeHwnd() ) )
+    if (::IsWindow(GetSafeHwnd()))
     {
-        SetWindowText( strText );
+        SetWindowText(strText);
     }
 }
 
-void ZCInPlaceExtendedEdit::SetEditText( double dValue )
+void ZCInPlaceExtendedEdit::SetEditText(double dValue)
 {
     // Sets the double value
     m_dValue = dValue;
@@ -110,11 +109,11 @@ void ZCInPlaceExtendedEdit::SetEditText( double dValue )
     CString strInitText;
 
     // Format the value function of the string format specified
-    strInitText = ZUStringFormatter::GetFormattedBuffer( m_dValue, m_pItem->GetStringFormat() );
-    SetEditText( strInitText );
+    strInitText = ZUStringFormatter::GetFormattedBuffer(m_dValue, m_pItem->GetStringFormat());
+    SetEditText(strInitText);
 }
 
-void ZCInPlaceExtendedEdit::SetEditText( float fValue )
+void ZCInPlaceExtendedEdit::SetEditText(float fValue)
 {
     // Sets the float value
     m_fValue = fValue;
@@ -123,45 +122,45 @@ void ZCInPlaceExtendedEdit::SetEditText( float fValue )
     CString strInitText;
 
     // Format the value function of the string format specified
-    strInitText = ZUStringFormatter::GetFormattedBuffer( m_fValue, m_pItem->GetStringFormat() );
-    SetEditText( strInitText );
+    strInitText = ZUStringFormatter::GetFormattedBuffer(m_fValue, m_pItem->GetStringFormat());
+    SetEditText(strInitText);
 }
 
 CString ZCInPlaceExtendedEdit::GetEditText() const
 {
     CString strText;
 
-    if ( ::IsWindow( GetSafeHwnd() ) )
+    if (::IsWindow(GetSafeHwnd()))
     {
-        GetWindowText( strText );
+        GetWindowText(strText);
     }
 
     return strText;
 }
 
-BOOL ZCInPlaceExtendedEdit::InitializeInPlaceEditCtrl( ZBPropertyItem*    pItem,
-                                                       const CString&    strInitText,
-                                                       CWnd*            pWndParent,
-                                                       CRect&            rect,
-                                                       DWORD            exDwStyle /*= 0"*/ )
-{    
+BOOL ZCInPlaceExtendedEdit::InitializeInPlaceEditCtrl(ZBPropertyItem*    pItem,
+                                                      const CString&    strInitText,
+                                                      CWnd*            pWndParent,
+                                                      CRect&            rect,
+                                                      DWORD            exDwStyle /*= 0"*/)
+{
     m_pItem = pItem;
 
     DWORD dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle;
 
-    if ( m_IsReadOnly )
+    if (m_IsReadOnly)
     {
         dwStyle |= ES_READONLY;
     }
 
-    BOOL rValue = Create( dwStyle, rect, pWndParent, 1 );
-    SetEditText( strInitText );
+    BOOL rValue = Create(dwStyle, rect, pWndParent, 1);
+    SetEditText(strInitText);
 
     // Saves the initial value
     m_strInitialValueText = strInitText;
 
     // Reset the has changed value
-    SetHasChanged( false );
+    SetHasChanged(false);
 
     // Sets the type
     m_type = ZIInPlaceEdit::IPE_STRING;
@@ -172,29 +171,29 @@ BOOL ZCInPlaceExtendedEdit::InitializeInPlaceEditCtrl( ZBPropertyItem*    pItem,
     return rValue;
 }
 
-BOOL ZCInPlaceExtendedEdit::InitializeInPlaceEditCtrl( ZBPropertyItem*    pItem,
-                                                       double            dInitValue,
-                                                       CWnd*            pWndParent,
-                                                       CRect&            rect,
-                                                       DWORD            exDwStyle /*= 0"*/ )
+BOOL ZCInPlaceExtendedEdit::InitializeInPlaceEditCtrl(ZBPropertyItem*    pItem,
+                                                      double            dInitValue,
+                                                      CWnd*            pWndParent,
+                                                      CRect&            rect,
+                                                      DWORD            exDwStyle /*= 0"*/)
 {
     m_pItem = pItem;
 
     DWORD dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle;
 
-    if ( m_IsReadOnly )
+    if (m_IsReadOnly)
     {
         dwStyle |= ES_READONLY;
     }
 
-    BOOL rValue = Create( dwStyle, rect, pWndParent, 1 );
-    SetEditText( dInitValue );
+    BOOL rValue = Create(dwStyle, rect, pWndParent, 1);
+    SetEditText(dInitValue);
 
     // Saves the initial value
     m_dInitialValue = dInitValue;
 
     // Reset the has changed value
-    SetHasChanged( false );
+    SetHasChanged(false);
 
     // Sets the type
     m_type = ZIInPlaceEdit::IPE_DOUBLE;
@@ -205,29 +204,29 @@ BOOL ZCInPlaceExtendedEdit::InitializeInPlaceEditCtrl( ZBPropertyItem*    pItem,
     return rValue;
 }
 
-BOOL ZCInPlaceExtendedEdit::InitializeInPlaceEditCtrl( ZBPropertyItem*    pItem,
-                                                       float            fInitValue,
-                                                       CWnd*            pWndParent,
-                                                       CRect&            rect,
-                                                       DWORD            exDwStyle /*= 0"*/ )
+BOOL ZCInPlaceExtendedEdit::InitializeInPlaceEditCtrl(ZBPropertyItem*    pItem,
+                                                      float            fInitValue,
+                                                      CWnd*            pWndParent,
+                                                      CRect&            rect,
+                                                      DWORD            exDwStyle /*= 0"*/)
 {
     m_pItem = pItem;
 
     DWORD dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle;
 
-    if ( m_IsReadOnly )
+    if (m_IsReadOnly)
     {
         dwStyle |= ES_READONLY;
     }
 
-    BOOL rValue = Create( dwStyle, rect, pWndParent, 1 );
-    SetEditText( fInitValue );
+    BOOL rValue = Create(dwStyle, rect, pWndParent, 1);
+    SetEditText(fInitValue);
 
     // Saves the initial value
     m_fInitialValue = fInitValue;
 
     // Reset the has changed value
-    SetHasChanged( false );
+    SetHasChanged(false);
 
     // Sets the type
     m_type = ZIInPlaceEdit::IPE_FLOAT;
@@ -238,30 +237,30 @@ BOOL ZCInPlaceExtendedEdit::InitializeInPlaceEditCtrl( ZBPropertyItem*    pItem,
     return rValue;
 }
 
-bool ZCInPlaceExtendedEdit::IsEditCtrlHit( CPoint point ) const
+bool ZCInPlaceExtendedEdit::IsEditCtrlHit(CPoint point) const
 {
     CRect rect;
-    GetClientRect( rect );
+    GetClientRect(rect);
 
-    ClientToScreen( &rect );
+    ClientToScreen(&rect);
 
-    return ( rect.PtInRect( point ) ) ? true : false;
+    return (rect.PtInRect(point)) ? true : false;
 }
 
 void ZCInPlaceExtendedEdit::SaveValue()
 {
-    if ( GetHasChanged() )
+    if (GetHasChanged())
     {
-        if ( GetParent() && ISA( GetParent(), ZCPropertyListCtrl ) )
+        if (GetParent() && ISA(GetParent(), ZCPropertyListCtrl))
         {
             CString ProposedValue = GetEditText();
 
             // If correct, process the data
-            if ( m_pItem )
+            if (m_pItem)
             {
                 bool ConversionCorrect = true;
 
-                switch ( GetEditType() )
+                switch (GetEditType())
                 {
                     case ZIInPlaceEdit::IPE_STRING:
                     {
@@ -273,11 +272,11 @@ void ZCInPlaceExtendedEdit::SaveValue()
                     {
                         // Check the conversion
                         double value;
-                        ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer( ProposedValue,
-                                                                                       value,
-                                                                                       m_pItem->GetStringFormat() );
+                        ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer(ProposedValue,
+                                                                                      value,
+                                                                                      m_pItem->GetStringFormat());
 
-                        if ( !ConversionCorrect )
+                        if (!ConversionCorrect)
                         {
                             ZCInPlaceExtendedEdit::CancelEdit();
                         }
@@ -289,11 +288,11 @@ void ZCInPlaceExtendedEdit::SaveValue()
                     {
                         // Check the conversion
                         float value;
-                        ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer( ProposedValue,
-                                                                                       value,
-                                                                                       m_pItem->GetStringFormat() );
+                        ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer(ProposedValue,
+                                                                                      value,
+                                                                                      m_pItem->GetStringFormat());
 
-                        if ( !ConversionCorrect )
+                        if (!ConversionCorrect)
                         {
                             ZCInPlaceExtendedEdit::CancelEdit();
                         }
@@ -303,16 +302,16 @@ void ZCInPlaceExtendedEdit::SaveValue()
                 }
 
                 // Now, if conversion correct and check value, save the edit value
-                if ( ConversionCorrect &&
-                     dynamic_cast<ZCPropertyListCtrl*>( GetParent() )->CheckCurrentPropertyData( m_pItem,
-                                                                                                 ProposedValue ) )
+                if (ConversionCorrect &&
+                    dynamic_cast<ZCPropertyListCtrl*>(GetParent())->CheckCurrentPropertyData(m_pItem,
+                                                                                             ProposedValue))
                 {
                     // Set the has changed flag for the property item
                     m_pItem->SetHasChanged();
 
                     // Notify observers for value changed
-                    ZBToolbarObserverMsg Msg( WM_VALUESAVED_EDIT );
-                    NotifyAllObservers( &Msg );
+                    PSS_ToolbarObserverMsg msg(WM_VALUESAVED_EDIT);
+                    NotifyAllObservers(&msg);
 
                     // Reset the change flag
                     m_HasChanged = false;
@@ -324,7 +323,7 @@ void ZCInPlaceExtendedEdit::SaveValue()
 
             // Otherwise, not correct
             // Change the window text to the proposed value
-            SetEditText( ProposedValue );
+            SetEditText(ProposedValue);
         }
     }
 
@@ -335,26 +334,26 @@ void ZCInPlaceExtendedEdit::SaveValue()
 
 void ZCInPlaceExtendedEdit::CancelEdit()
 {
-    switch ( GetEditType() )
+    switch (GetEditType())
     {
         case ZIInPlaceEdit::IPE_STRING:
         {
             // Set back the initial value
-            SetEditText( m_strInitialValueText );
+            SetEditText(m_strInitialValueText);
             break;
         }
 
         case ZIInPlaceEdit::IPE_DOUBLE:
         {
             // Set back the initial double value
-            SetEditText( m_dInitialValue );
+            SetEditText(m_dInitialValue);
             break;
         }
 
         case ZIInPlaceEdit::IPE_FLOAT:
         {
             // Set back the initial float value
-            SetEditText( m_fInitialValue );
+            SetEditText(m_fInitialValue);
             break;
         }
     }
@@ -363,31 +362,30 @@ void ZCInPlaceExtendedEdit::CancelEdit()
     SetFocus();
 
     // Reset the has changed value
-    SetHasChanged( false );
+    SetHasChanged(false);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // ZCInPlaceExtendedEdit message handlers
 
-void ZCInPlaceExtendedEdit::OnChar( UINT nChar, UINT nRepCnt, UINT nFlags )
+void ZCInPlaceExtendedEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
     // Sets the has changed flag
     m_HasChanged = true;
 
     // Call the base function
-    PSS_SearchEdit::OnChar( nChar, nRepCnt, nFlags );
+    PSS_SearchEdit::OnChar(nChar, nRepCnt, nFlags);
 }
 
-void ZCInPlaceExtendedEdit::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
-{
-}
+void ZCInPlaceExtendedEdit::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
+{}
 
 void ZCInPlaceExtendedEdit::OnExtendedCommand()
 {
     // Process Extended
-    if ( GetParent() && ISA( GetParent(), ZCPropertyListCtrl ) )
+    if (GetParent() && ISA(GetParent(), ZCPropertyListCtrl))
     {
-        ZBPropertyItem* pItem = dynamic_cast<ZCPropertyListCtrl*>( GetParent() )->GetCurrentPropertyItem();
+        ZBPropertyItem* pItem = dynamic_cast<ZCPropertyListCtrl*>(GetParent())->GetCurrentPropertyItem();
 
         CString ProposedValue = GetEditText();
 
@@ -397,25 +395,25 @@ void ZCInPlaceExtendedEdit::OnExtendedCommand()
         // If correct, process the data
         bool Refresh = false;
 
-        if ( pItem &&
-             dynamic_cast<ZCPropertyListCtrl*>( GetParent() )->ProcessExtendedCurrentPropertyData( pItem,
-                                                                                                   ProposedValue,
-                                                                                                   Refresh ) )
+        if (pItem &&
+            dynamic_cast<ZCPropertyListCtrl*>(GetParent())->ProcessExtendedCurrentPropertyData(pItem,
+                                                                                               ProposedValue,
+                                                                                               Refresh))
         {
             // Change the window text to the proposed value
-            SetEditText( ProposedValue );
+            SetEditText(ProposedValue);
 
             // Set the has changed value
-            SetHasChanged( true );
+            SetHasChanged(true);
 
             // Set the focus to the edit
             SetFocus();
 
             // If the control need to be refreshed
-            if ( Refresh )
+            if (Refresh)
             {
                 // Force the control list to reload values
-                dynamic_cast<ZCPropertyListCtrl*>( GetParent() )->Refresh( true, true );
+                dynamic_cast<ZCPropertyListCtrl*>(GetParent())->Refresh(true, true);
             }
         }
     }
@@ -429,31 +427,31 @@ int ZCInPlaceExtendedEdit::OnCreate(LPCREATESTRUCT lpCreateStruct)
         return -1;
 
     CRect rect;
-    GetClientRect( rect );
-    rect.DeflateRect( 0, 1 );
+    GetClientRect(rect);
+    rect.DeflateRect(0, 1);
 
     CWnd* pParent = GetParent();
-    ASSERT( pParent != NULL );
+    ASSERT(pParent != NULL);
 
     CFont* pFont = pParent->GetFont();
     DWORD dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL;
 
-    if ( m_IsReadOnly )
+    if (m_IsReadOnly)
     {
         dwStyle |= ES_READONLY;
     }
 
-    SetFont( pFont );
+    SetFont(pFont);
 
     return 0;
 }
 
-BOOL ZCInPlaceExtendedEdit::OnEraseBkgnd( CDC* /*pDC*/ )
+BOOL ZCInPlaceExtendedEdit::OnEraseBkgnd(CDC* /*pDC*/)
 {
     return TRUE;
 }
 
-void ZCInPlaceExtendedEdit::OnSetFocus( CWnd* pOldWnd )
+void ZCInPlaceExtendedEdit::OnSetFocus(CWnd* pOldWnd)
 {
     PSS_SearchEdit::OnSetFocus(pOldWnd);
 }

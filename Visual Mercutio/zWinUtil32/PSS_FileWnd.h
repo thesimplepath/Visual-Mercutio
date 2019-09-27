@@ -26,8 +26,8 @@
 #endif
 
 // processsoft
-#include "zBaseLib\ZISubject.h"
-#include "zBaseLib\ZIObserver.h"
+#include "zBaseLib\PSS_Subject.h"
+#include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\PSS_FlatButton.h"
 #include "PSS_DirTreeCtrl.h"
 #include "PSS_SearchEdit.h"
@@ -50,7 +50,7 @@
 * File window button toolbar
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_FileWndButtonToolBar : public CStatic, public ZISubject
+class PSS_FileWndButtonToolBar : public CStatic, public PSS_Subject
 {
     public:
         /**
@@ -93,7 +93,7 @@ class PSS_FileWndButtonToolBar : public CStatic, public ZISubject
 * File window
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_FileWnd : public CWnd, public ZISubject, public ZIObserver
+class AFX_EXT_CLASS PSS_FileWnd : public CWnd, public PSS_Subject, public PSS_Observer
 {
     DECLARE_DYNCREATE(PSS_FileWnd)
 
@@ -106,7 +106,7 @@ class AFX_EXT_CLASS PSS_FileWnd : public CWnd, public ZISubject, public ZIObserv
         *@param pSubject - subject
         *@param pMSg - message
         */
-        virtual void OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg);
+        virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     private:
         PSS_SearchEdit           m_FileName;

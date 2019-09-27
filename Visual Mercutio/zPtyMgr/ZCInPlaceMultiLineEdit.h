@@ -44,7 +44,7 @@ protected:
     DECLARE_DYNAMIC(ZCInPlaceMultiLineEdit)
 
 public:
-    ZCInPlaceMultiLineEdit( bool IsReadOnly = false );
+    ZCInPlaceMultiLineEdit(bool IsReadOnly = false);
     virtual ~ZCInPlaceMultiLineEdit();
 
     // Operations
@@ -62,7 +62,7 @@ public:
     virtual CString GetEditText() const;
 
     // ZIObserver OnUpdate call-back function
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     // Call when requires to process the extended command
     virtual void OnExtendedCommand();
@@ -70,8 +70,8 @@ public:
     // ZCMultiLineEdit call-back. Used to trap when the edit has changed using the extended edit
     virtual void    OnEditTextChanged();
 
-    bool IsEditCtrlHit( CPoint point ) const;
-    bool IsEditButtonCtrlHit( CPoint point ) const;
+    bool IsEditCtrlHit(CPoint point) const;
+    bool IsEditButtonCtrlHit(CPoint point) const;
 
     // Virtual function to cancel and save the edition
     virtual void CancelEdit();
@@ -107,14 +107,6 @@ private:
 };
 
 inline ZCInPlaceMultiLineEdit::~ZCInPlaceMultiLineEdit()
-{
-}
+{}
 
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(_ZCInPlaceMultiLineEdit_H__)
-
-
+#endif

@@ -47,8 +47,8 @@ protected:
     DECLARE_DYNAMIC(ZCInPlaceTimeEdit)
 
 public:
-    ZCInPlaceTimeEdit( bool IsReadOnly = false );
-    ZCInPlaceTimeEdit(PSS_TimeSpan& TimeInitValue, bool IsReadOnly = false );
+    ZCInPlaceTimeEdit(bool IsReadOnly = false);
+    ZCInPlaceTimeEdit(PSS_TimeSpan& TimeInitValue, bool IsReadOnly = false);
     virtual ~ZCInPlaceTimeEdit();
 
     // Operations
@@ -63,13 +63,13 @@ public:
     virtual CString GetEditText() const;
 
     // ZIObserver OnUpdate call-back function
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     // Call when requires to process the extended command
     virtual void OnExtendedCommand();
 
-    bool IsEditCtrlHit( CPoint point ) const;
-    bool IsEditButtonCtrlHit( CPoint point ) const;
+    bool IsEditCtrlHit(CPoint point) const;
+    bool IsEditButtonCtrlHit(CPoint point) const;
 
     // Virtual function to cancel and save the edition
     virtual void CancelEdit();
@@ -98,25 +98,15 @@ protected:
 private:
 };
 
-inline ZCInPlaceTimeEdit::ZCInPlaceTimeEdit( bool IsReadOnly /*= false*/ )
-: ZIInPlaceEdit((double)0, IsReadOnly)
-{
-}
+inline ZCInPlaceTimeEdit::ZCInPlaceTimeEdit(bool IsReadOnly /*= false*/)
+    : ZIInPlaceEdit((double)0, IsReadOnly)
+{}
 
-inline ZCInPlaceTimeEdit::ZCInPlaceTimeEdit(PSS_TimeSpan& TimeInitValue, bool IsReadOnly /*= false*/ )
-: ZIInPlaceEdit(TimeInitValue, IsReadOnly)
-{
-}
+inline ZCInPlaceTimeEdit::ZCInPlaceTimeEdit(PSS_TimeSpan& TimeInitValue, bool IsReadOnly /*= false*/)
+    : ZIInPlaceEdit(TimeInitValue, IsReadOnly)
+{}
 
 inline ZCInPlaceTimeEdit::~ZCInPlaceTimeEdit()
-{
-}
+{}
 
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(_ZCInPlaceDateEdit_H__)
-
-
+#endif

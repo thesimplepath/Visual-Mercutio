@@ -37,31 +37,31 @@ class ZIProperties;
 /////////////////////////////////////////////////////////////////////////////
 // ZCPropertyListCtrl
 
-class AFX_EXT_CLASS ZCPropertyListCtrl : public CDragListBox, public ZISubject, public ZIObserver
+class AFX_EXT_CLASS ZCPropertyListCtrl : public CDragListBox, public PSS_Subject, public PSS_Observer
 {
     friend class ZBPropertyItemManager;
 
-    DECLARE_DYNAMIC( ZCPropertyListCtrl )
+    DECLARE_DYNAMIC(ZCPropertyListCtrl)
 
-    ZCPropertyListCtrl( const ZCPropertyListCtrl& d );
-    ZCPropertyListCtrl& operator=( const ZCPropertyListCtrl& d );
+    ZCPropertyListCtrl(const ZCPropertyListCtrl& d);
+    ZCPropertyListCtrl& operator=(const ZCPropertyListCtrl& d);
 
 public:
 
-    ZCPropertyListCtrl( LPCTSTR pIniFile = NULL );
+    ZCPropertyListCtrl(LPCTSTR pIniFile = NULL);
 
     // Initialization function
-    void Initialize( ZIProperties* pProperties = NULL, LPCTSTR pIniFile = NULL );
-    void Initialize( ZBPropertySet& PropSet, LPCTSTR pIniFile = NULL );
-    void LoadStateFromIniFile( const CString IniFile );
-    void Refresh( bool DeleteEditCtrl = true, bool ReloadControlData = false  );
+    void Initialize(ZIProperties* pProperties = NULL, LPCTSTR pIniFile = NULL);
+    void Initialize(ZBPropertySet& PropSet, LPCTSTR pIniFile = NULL);
+    void LoadStateFromIniFile(const CString IniFile);
+    void Refresh(bool DeleteEditCtrl = true, bool ReloadControlData = false);
     void Empty();
 
-    void SetDisplayType( PropertyDisplayType tp )
+    void SetDisplayType(PropertyDisplayType tp)
     {
-        if ( m_pPropertyItemManager )
+        if (m_pPropertyItemManager)
         {
-            m_pPropertyItemManager->SetDisplayType( tp );
+            m_pPropertyItemManager->SetDisplayType(tp);
         }
     };
 
@@ -70,41 +70,41 @@ public:
         return m_ListInReadOnly;
     };
 
-    void SetListInReadOnly( bool value = true )
+    void SetListInReadOnly(bool value = true)
     {
         m_ListInReadOnly = value;
     };
 
     // Observer call back
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     // Attributes
-    ZBPropertyItemCategory* GetCategoryTab( int nIndex ) const
+    ZBPropertyItemCategory* GetCategoryTab(int nIndex) const
     {
-        if ( m_pPropertyItemManager )
+        if (m_pPropertyItemManager)
         {
-            return m_pPropertyItemManager->GetCategoryTab( nIndex );
+            return m_pPropertyItemManager->GetCategoryTab(nIndex);
         }
 
         return NULL;
     };
 
     // Operations
-    ZBPropertyItemCategory* AddNewTab( LPCTSTR pStrTabName )
+    ZBPropertyItemCategory* AddNewTab(LPCTSTR pStrTabName)
     {
-        if ( m_pPropertyItemManager )
+        if (m_pPropertyItemManager)
         {
-            return m_pPropertyItemManager->AddNewTab( pStrTabName );
+            return m_pPropertyItemManager->AddNewTab(pStrTabName);
         }
 
         return NULL;
     };
 
-    ZBProperty* GetCorrespondingProperty( ZBPropertyItem* pPropertyItem )
+    ZBProperty* GetCorrespondingProperty(ZBPropertyItem* pPropertyItem)
     {
-        if ( m_pPropertyItemManager )
+        if (m_pPropertyItemManager)
         {
-            return m_pPropertyItemManager->GetCorrespondingProperty( pPropertyItem );
+            return m_pPropertyItemManager->GetCorrespondingProperty(pPropertyItem);
         }
 
         return NULL;
@@ -113,71 +113,71 @@ public:
     // Operations
     void CheckState();
 
-    virtual void OnDataChanged( ZBPropertyItem* pPropertyItem, int nIndex, bool& Refresh )
+    virtual void OnDataChanged(ZBPropertyItem* pPropertyItem, int nIndex, bool& Refresh)
     {
-        if ( m_pPropertyItemManager )
+        if (m_pPropertyItemManager)
         {
-            m_pPropertyItemManager->OnDataChanged( pPropertyItem, this, nIndex, Refresh );
+            m_pPropertyItemManager->OnDataChanged(pPropertyItem, this, nIndex, Refresh);
         }
     };
-    
-    virtual bool UpdateControlData( const ZIProperties* pData )
-    {
-        if ( m_pPropertyItemManager )
-        {
-            return m_pPropertyItemManager->UpdateControlData( pData );
-        }
 
-        return false;
-    };
-
-    virtual bool UpdatePropertyData( ZBPropertyItem* pPropertyItem = NULL ) const
+    virtual bool UpdateControlData(const ZIProperties* pData)
     {
-        if ( m_pPropertyItemManager )
+        if (m_pPropertyItemManager)
         {
-            return m_pPropertyItemManager->UpdatePropertyData( pPropertyItem );
+            return m_pPropertyItemManager->UpdateControlData(pData);
         }
 
         return false;
     };
 
-    virtual bool CheckCurrentPropertyData( ZBPropertyItem* pPropertyItem, CString& ProposedValue )
+    virtual bool UpdatePropertyData(ZBPropertyItem* pPropertyItem = NULL) const
     {
-        if ( m_pPropertyItemManager )
+        if (m_pPropertyItemManager)
         {
-            return m_pPropertyItemManager->CheckCurrentPropertyData( pPropertyItem, ProposedValue );
+            return m_pPropertyItemManager->UpdatePropertyData(pPropertyItem);
+        }
+
+        return false;
+    };
+
+    virtual bool CheckCurrentPropertyData(ZBPropertyItem* pPropertyItem, CString& ProposedValue)
+    {
+        if (m_pPropertyItemManager)
+        {
+            return m_pPropertyItemManager->CheckCurrentPropertyData(pPropertyItem, ProposedValue);
         }
 
         // In this case return true, assuming all values entered are correct
         return true;
     };
 
-    virtual bool ProcessExtendedCurrentPropertyData( ZBPropertyItem*    pPropertyItem,
-                                                     CString&            ProposedValue,
-                                                     bool&                Refresh )
+    virtual bool ProcessExtendedCurrentPropertyData(ZBPropertyItem*    pPropertyItem,
+                                                    CString&            ProposedValue,
+                                                    bool&                Refresh)
     {
-        if ( m_pPropertyItemManager )
+        if (m_pPropertyItemManager)
         {
-            return m_pPropertyItemManager->ProcessExtendedCurrentPropertyData( pPropertyItem,
-                                                                               ProposedValue,
-                                                                               Refresh );
+            return m_pPropertyItemManager->ProcessExtendedCurrentPropertyData(pPropertyItem,
+                                                                              ProposedValue,
+                                                                              Refresh);
         }
 
         // In this case return false, nothing has been processed, therefore nothing has changed
         return false;
     };
 
-    virtual bool ProcessMenuCommandCurrentPropertyData( int                MenuCommand,
-                                                        ZBPropertyItem*    pPropertyItem,
-                                                        CString&        ProposedValue,
-                                                        bool&            Refresh )
+    virtual bool ProcessMenuCommandCurrentPropertyData(int                MenuCommand,
+                                                       ZBPropertyItem*    pPropertyItem,
+                                                       CString&        ProposedValue,
+                                                       bool&            Refresh)
     {
-        if ( m_pPropertyItemManager )
+        if (m_pPropertyItemManager)
         {
-            return m_pPropertyItemManager->ProcessMenuCommandCurrentPropertyData( MenuCommand,
-                                                                                  pPropertyItem,
-                                                                                  ProposedValue,
-                                                                                  Refresh );
+            return m_pPropertyItemManager->ProcessMenuCommandCurrentPropertyData(MenuCommand,
+                                                                                 pPropertyItem,
+                                                                                 ProposedValue,
+                                                                                 Refresh);
         }
 
         // In this case return true, assuming all values entered are correct
@@ -186,66 +186,66 @@ public:
 
     /////////////////////////////////////////////////////////////////////////////
     // Property state management methods
-    bool SavePropertyState( ZBPropertyItem* pPropertyItem )
+    bool SavePropertyState(ZBPropertyItem* pPropertyItem)
     {
-        if ( m_pPropertyItemManager )
+        if (m_pPropertyItemManager)
         {
-            return m_pPropertyItemManager->SavePropertyState( pPropertyItem );
+            return m_pPropertyItemManager->SavePropertyState(pPropertyItem);
         }
 
         // fail
         return false;
     };
 
-    bool SetPropertyStateToProperty( ZBPropertyItem* pPropertyItem )
+    bool SetPropertyStateToProperty(ZBPropertyItem* pPropertyItem)
     {
-        if ( m_pPropertyItemManager )
+        if (m_pPropertyItemManager)
         {
-            return m_pPropertyItemManager->SetPropertyStateToProperty( pPropertyItem );
+            return m_pPropertyItemManager->SetPropertyStateToProperty(pPropertyItem);
         }
 
         // fail
         return false;
     };
 
-    _ZBPropertyState* GetPropertyState( ZBPropertyItem* pPropertyItem )
+    _ZBPropertyState* GetPropertyState(ZBPropertyItem* pPropertyItem)
     {
-        if ( m_pPropertyItemManager )
+        if (m_pPropertyItemManager)
         {
-            return m_pPropertyItemManager->GetPropertyState( pPropertyItem );
+            return m_pPropertyItemManager->GetPropertyState(pPropertyItem);
         }
 
         // fail
         return NULL;
     };
 
-    bool SavePropertyState( ZBPropertyItemCategory* pPropertyCategoryItem )
+    bool SavePropertyState(ZBPropertyItemCategory* pPropertyCategoryItem)
     {
-        if ( m_pPropertyItemManager )
+        if (m_pPropertyItemManager)
         {
-            return m_pPropertyItemManager->SavePropertyState( pPropertyCategoryItem );
+            return m_pPropertyItemManager->SavePropertyState(pPropertyCategoryItem);
         }
 
         // fail
         return false;
     };
 
-    bool SetPropertyStateToProperty( ZBPropertyItemCategory* pPropertyCategoryItem )
+    bool SetPropertyStateToProperty(ZBPropertyItemCategory* pPropertyCategoryItem)
     {
-        if ( m_pPropertyItemManager )
+        if (m_pPropertyItemManager)
         {
-            return m_pPropertyItemManager->SetPropertyStateToProperty( pPropertyCategoryItem );
+            return m_pPropertyItemManager->SetPropertyStateToProperty(pPropertyCategoryItem);
         }
 
         // fail
         return false;
     };
 
-    _ZBPropertyState* GetPropertyCategoryState( ZBPropertyItemCategory* pPropertyCategoryItem )
+    _ZBPropertyState* GetPropertyCategoryState(ZBPropertyItemCategory* pPropertyCategoryItem)
     {
-        if ( m_pPropertyItemManager )
+        if (m_pPropertyItemManager)
         {
-            return m_pPropertyItemManager->GetPropertyCategoryState( pPropertyCategoryItem );
+            return m_pPropertyItemManager->GetPropertyCategoryState(pPropertyCategoryItem);
         }
 
         // fail
@@ -253,46 +253,46 @@ public:
     };
 
     // Attributes
-    void SetPropertyItemManager( ZBPropertyItemManager* pPropertyItemManager );
+    void SetPropertyItemManager(ZBPropertyItemManager* pPropertyItemManager);
 
     // Return the current property item element
     ZBPropertyItem* GetCurrentPropertyItem();
-    ZBPropertyItem* GetPropertyItem( int nIndex );
+    ZBPropertyItem* GetPropertyItem(int nIndex);
 
     // Operations
-    void InsertPropertyItem( ZBPropertyItem* pPropertyItem, int nIndex = 0 );
-    void DeletePropertyItem( ZBPropertyItem* pPropertyItem );
-    void DeletePropertyItem( int nIndex );
-    void ResetContent( bool DeleteEditCtrl = true );
-    void ShowInPlaceControl( bool bShow = true );
+    void InsertPropertyItem(ZBPropertyItem* pPropertyItem, int nIndex = 0);
+    void DeletePropertyItem(ZBPropertyItem* pPropertyItem);
+    void DeletePropertyItem(int nIndex);
+    void ResetContent(bool DeleteEditCtrl = true);
+    void ShowInPlaceControl(bool bShow = true);
     void RedrawAll();
 
 protected:
 
     // Call-back for drag&drop operation
-    virtual BOOL BeginDrag( CPoint pt );
-    virtual void Dropped( int nSrcIndex, CPoint pt );
+    virtual BOOL BeginDrag(CPoint pt);
+    virtual void Dropped(int nSrcIndex, CPoint pt);
 
     void DetachObserverForEditCtrl();
-    void CreateInPlaceControl( int nItem, int nPreviousItem = -1 );
+    void CreateInPlaceControl(int nItem, int nPreviousItem = -1);
     void EditNextItem();
     void EditPreviousItem();
 
-    void DoCollapse( ZBPropertyItemCategory* pPropertyItemTab, int nItem );
-    void DoExpand( ZBPropertyItemCategory* pPropertyItemTab, int& nItem );
+    void DoCollapse(ZBPropertyItemCategory* pPropertyItemTab, int nItem);
+    void DoExpand(ZBPropertyItemCategory* pPropertyItemTab, int& nItem);
 
-    void DoCollapseExpand( int nItem, ZBPropertyItem* pPropertyItem = NULL );
+    void DoCollapseExpand(int nItem, ZBPropertyItem* pPropertyItem = NULL);
 
-    void GetItemValueRect( CRect& rect );
+    void GetItemValueRect(CRect& rect);
     bool SetCurrentData();
 
     void NoInPlaceControl();
 
     bool IsListInPhase();
-    bool LookupPropertyItem( char nStartChar );
-    int FindPropertyItem( char nStartChar, int nFromIndex, int nCount );
+    bool LookupPropertyItem(char nStartChar);
+    int FindPropertyItem(char nStartChar, int nFromIndex, int nCount);
 
-    void RedrawItem( int nItem );
+    void RedrawItem(int nItem);
 
     // Overrides
     // ClassWizard generated virtual function overrides
@@ -315,7 +315,7 @@ public:
 
     virtual ~ZCPropertyListCtrl();
 
-// Generated message map functions
+    // Generated message map functions
 protected:
 
     //{{AFX_MSG(ZCPropertyListCtrl)
@@ -331,7 +331,7 @@ protected:
 
     DECLARE_MESSAGE_MAP()
 
-// Data
+    // Data
 private:
 
     int                        m_nSelectedItem;
@@ -354,27 +354,24 @@ private:
     bool                    m_ListInReadOnly;
 };
 
-inline void ZCPropertyListCtrl::InsertPropertyItem( ZBPropertyItem* pPropertyItem, int nIndex )
+inline void ZCPropertyListCtrl::InsertPropertyItem(ZBPropertyItem* pPropertyItem, int nIndex)
 {
-    ASSERT( pPropertyItem != NULL );
-    InsertString( nIndex, (LPCTSTR)pPropertyItem );
+    ASSERT(pPropertyItem != NULL);
+    InsertString(nIndex, (LPCTSTR)pPropertyItem);
 }
 
-inline void ZCPropertyListCtrl::DeletePropertyItem( int nIndex )
+inline void ZCPropertyListCtrl::DeletePropertyItem(int nIndex)
 {
-    ASSERT( nIndex >= 0 );
-    DeleteString( nIndex );
+    ASSERT(nIndex >= 0);
+    DeleteString(nIndex);
 }
 
-inline void ZCPropertyListCtrl::MeasureItem( LPMEASUREITEMSTRUCT /*lpMeasureItemStruct*/ )
-{
-}
+inline void ZCPropertyListCtrl::MeasureItem(LPMEASUREITEMSTRUCT /*lpMeasureItemStruct*/)
+{}
 
-inline int ZCPropertyListCtrl::CompareItem( LPCOMPAREITEMSTRUCT /*lpCompareItemStruct*/ )
+inline int ZCPropertyListCtrl::CompareItem(LPCOMPAREITEMSTRUCT /*lpCompareItemStruct*/)
 {
     return 0;
 }
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-#endif // !defined(_ZCPropertyListCtrl_H__)
+#endif

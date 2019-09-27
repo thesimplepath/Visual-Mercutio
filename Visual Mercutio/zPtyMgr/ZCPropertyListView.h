@@ -15,11 +15,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-#include "zBaseLib\ZIObserver.h"
+// processsoft
+#include "zBaseLib\PSS_Observer.h"
 #include "ZCPropertyListCtrl.h"
-
-
 
 #ifdef _ZPTYMGREXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -34,17 +32,17 @@
 /////////////////////////////////////////////////////////////////////////////
 // ZCPropertyListView view
 
-class AFX_EXT_CLASS ZCPropertyListView : public CView, public ZIObserver
+class AFX_EXT_CLASS ZCPropertyListView : public CView, public PSS_Observer
 {
 protected:
     ZCPropertyListView();           // protected constructor used by dynamic creation
     DECLARE_DYNCREATE(ZCPropertyListView)
 
-// Operations
+    // Operations
 public:
 
     // Observer call back
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     // Attributes
     void SetPropertyItemManager(ZBPropertyItemManager* pPropertyItemManager)
@@ -73,10 +71,10 @@ public:
         m_listctrl.Refresh();
     };
 
-// Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(ZCPropertyListView)
-    protected:
+    // Overrides
+        // ClassWizard generated virtual function overrides
+        //{{AFX_VIRTUAL(ZCPropertyListView)
+protected:
     virtual void OnDraw(CDC* pDC);      // overridden to draw this view
     //}}AFX_VIRTUAL
 
@@ -100,9 +98,4 @@ protected:
 
 };
 
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(_ZCPROPERTYLISTVIEW_H__)
+#endif

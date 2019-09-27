@@ -17,26 +17,26 @@
 //---------------------------------------------------------------------------
 // Dynamic construction
 //---------------------------------------------------------------------------
-IMPLEMENT_DYNAMIC(PSS_DocumentObserverMsg, ZIObserverMsg)
+IMPLEMENT_DYNAMIC(PSS_DocumentObserverMsg, PSS_ObserverMsg)
 //---------------------------------------------------------------------------
 // PSS_DocumentObserverMsg
 //---------------------------------------------------------------------------
 PSS_DocumentObserverMsg::PSS_DocumentObserverMsg(UINT messageID, CDocument* pDoc) :
-    ZIObserverMsg(),
+    PSS_ObserverMsg(),
     m_MessageID(messageID),
     m_pDoc(pDoc),
     m_pView(NULL)
 {}
 //---------------------------------------------------------------------------
 PSS_DocumentObserverMsg::PSS_DocumentObserverMsg(UINT messageID, CView* pView) :
-    ZIObserverMsg(),
+    PSS_ObserverMsg(),
     m_MessageID(messageID),
     m_pView(pView),
     m_pDoc(NULL)
 {}
 //---------------------------------------------------------------------------
 PSS_DocumentObserverMsg::PSS_DocumentObserverMsg(UINT messageID, CDocument* pDoc, CView* pView) :
-    ZIObserverMsg(),
+    PSS_ObserverMsg(),
     m_MessageID(messageID),
     m_pDoc(pDoc),
     m_pView(pView)

@@ -19,12 +19,10 @@ static char THIS_FILE[] = __FILE__;
 IMPLEMENT_DYNCREATE(ZCPropertyListView, CView)
 
 ZCPropertyListView::ZCPropertyListView()
-{
-}
+{}
 
 ZCPropertyListView::~ZCPropertyListView()
-{
-}
+{}
 
 
 BEGIN_MESSAGE_MAP(ZCPropertyListView, CView)
@@ -60,27 +58,27 @@ void ZCPropertyListView::Dump(CDumpContext& dc) const
 
 
 
-void ZCPropertyListView::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
+void ZCPropertyListView::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
-    m_listctrl.OnUpdate( pSubject, pMsg );
+    m_listctrl.OnUpdate(pSubject, pMsg);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // ZCPropertyListView message handlers
 
-int ZCPropertyListView::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int ZCPropertyListView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (CView::OnCreate(lpCreateStruct) == -1)
         return -1;
-    
-    m_listctrl.Create(WS_CHILD|WS_VISIBLE|WS_VSCROLL|WS_HSCROLL|LBS_NOINTEGRALHEIGHT, CRect(0,0,0,0), this, 1); 
-    
+
+    m_listctrl.Create(WS_CHILD | WS_VISIBLE | WS_VSCROLL | WS_HSCROLL | LBS_NOINTEGRALHEIGHT, CRect(0, 0, 0, 0), this, 1);
+
     return 0;
 }
 
-void ZCPropertyListView::OnSize(UINT nType, int cx, int cy) 
+void ZCPropertyListView::OnSize(UINT nType, int cx, int cy)
 {
     CView::OnSize(nType, cx, cy);
-    
-    m_listctrl.MoveWindow(0, 0, cx, cy);     
+
+    m_listctrl.MoveWindow(0, 0, cx, cy);
 }

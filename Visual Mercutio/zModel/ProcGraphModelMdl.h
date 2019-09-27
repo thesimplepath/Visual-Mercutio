@@ -15,7 +15,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseLib\ZISubject.h"
+#include "zBaseLib\PSS_Subject.h"
 #include "zBaseSym\ZIObjectPath.h"
 #include "zProperty\ZIProperties.h"
 #include "zBaseSym\ZIBasicSymbolAcceptVisitor.h"
@@ -85,7 +85,7 @@ typedef CCArray_T<ZDProcessGraphPage*,ZDProcessGraphPage*> ZBProcessGraphPageSet
 typedef Iterator_T<ZDProcessGraphPage*> ZBProcessGraphPageIterator;
 
 class AFX_EXT_CLASS ZDProcessGraphModelMdl : public CODModel,
-                                             public ZISubject,
+                                             public PSS_Subject,
                                              public ZIObjectPath,
                                              public ZIProperties,
                                              public ZINavigableModel,

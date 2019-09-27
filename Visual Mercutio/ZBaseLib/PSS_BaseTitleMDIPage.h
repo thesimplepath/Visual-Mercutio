@@ -17,8 +17,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZISubject.h"
-#include "ZIObserver.h"
+#include "PSS_Subject.h"
+#include "PSS_Observer.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -35,8 +35,8 @@
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
 class AFX_EXT_CLASS PSS_BaseTitleMDIPage : public SECMDIChildWnd,
-                                           public ZISubject,
-                                           public ZIObserver
+                                           public PSS_Subject,
+                                           public PSS_Observer
 {
     DECLARE_DYNCREATE(PSS_BaseTitleMDIPage)
 
@@ -58,7 +58,7 @@ class AFX_EXT_CLASS PSS_BaseTitleMDIPage : public SECMDIChildWnd,
         *@param pSubject - subject
         *@param pMSg - message
         */
-        virtual void OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg);
+        virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     protected:
         CString m_TemplateDef;

@@ -18,8 +18,8 @@
 
 #include "Define.h"
 
-#include "zBaseLib\ZISubject.h"
-#include "zBaseLib\ZIObserver.h"
+#include "zBaseLib\PSS_Subject.h"
+#include "zBaseLib\PSS_Observer.h"
 
 #include "ProcGraphModelMdl.h"
 #include "ZBUnitManager.h"
@@ -57,12 +57,12 @@ class ZBDynamicPropertiesManager;
 // JMR-MODIF - Le 28 septembre 2005 - Ajout des décorations unicode _T(), nettoyage du code inutile.(En commentaires)
 
 class AFX_EXT_CLASS ZDProcessGraphModelDoc : public PSS_BaseDocument,
-                                             public ZISubject,
-                                             public ZIObserver
+    public PSS_Subject,
+    public PSS_Observer
 {
 public:
 
-    DECLARE_SERIAL( ZDProcessGraphModelDoc )
+    DECLARE_SERIAL(ZDProcessGraphModelDoc)
 
     // Inherited feature
     typedef PSS_BaseDocument inherited;
@@ -71,15 +71,15 @@ public:
     ZDProcessGraphModelDoc();
     virtual ~ZDProcessGraphModelDoc();
 
-    virtual void PreCloseFrame( CFrameWnd* pFrame );
+    virtual void PreCloseFrame(CFrameWnd* pFrame);
 
-    virtual void Initialize( ZILog*                pOutputLog,
-                             ZILog*                pAnalyzerLog,
-                             ZILog*                pSearchLog,
-                             ZILog*                pWorflowLog,
-                             ZUUserManager*        pUserManager,
-                             ZUMail*            pMail,
-                             ZDTemplateManager*    pTemplateManager );
+    virtual void Initialize(ZILog*                pOutputLog,
+                            ZILog*                pAnalyzerLog,
+                            ZILog*                pSearchLog,
+                            ZILog*                pWorflowLog,
+                            ZUUserManager*        pUserManager,
+                            ZUMail*            pMail,
+                            ZDTemplateManager*    pTemplateManager);
 
     // JMR-MODIF - Le 29 septembre 2005 - Ajout de la fonction IsClosing.
     BOOL IsClosing();
@@ -108,49 +108,49 @@ public:
     // User def guid management methods
     bool HasUserDefAssigned() const
     {
-        return ( m_UserDefGUID.IsEmpty() ) ? false : true;
+        return (m_UserDefGUID.IsEmpty()) ? false : true;
     }
 
     CString    GetUserDefGUID() const;
-    void    AssignUserDefGUID( const CString value );
+    void    AssignUserDefGUID(const CString value);
     bool    AssignCurrentUserDefGUID();
-    void    ReassignUnit( ZILog* pLog = NULL );
+    void    ReassignUnit(ZILog* pLog = NULL);
 
     // System def guid management methods
     bool HasSystemDefAssigned() const
     {
-        return ( m_SystemDefGUID.IsEmpty() ) ? false : true;
+        return (m_SystemDefGUID.IsEmpty()) ? false : true;
     }
 
     CString    GetSystemDefGUID() const;
-    void    AssignSystemDefGUID( const CString value );
+    void    AssignSystemDefGUID(const CString value);
     bool    AssignCurrentSystemDefGUID();
-    void    ReassignSystem( ZILog* pLog = NULL );
+    void    ReassignSystem(ZILog* pLog = NULL);
 
     // ********************************************************************************
     // JMR-MODIF - Le 26 janvier 2006 - Ajout de l'infrastructure pour les prestations.
     bool HasPrestationsDefsAssigned() const
     {
-        return ( m_PrestationsDefGUID.IsEmpty() ) ? false : true;
+        return (m_PrestationsDefGUID.IsEmpty()) ? false : true;
     }
 
     CString    GetPrestationsDefGUID() const;
-    void    AssignPrestationsDefGUID( const CString value );
+    void    AssignPrestationsDefGUID(const CString value);
     bool    AssignCurrentPrestationsDefGUID();
-    void    ReassignPrestations( ZILog* pLog = NULL );
+    void    ReassignPrestations(ZILog* pLog = NULL);
     // ********************************************************************************
 
     // ********************************************************************************
     // JMR-MODIF - Le 19 novembre 2006 - Ajout de l'infrastructure pour les règles.
     bool HasRulesDefsAssigned() const
     {
-        return ( m_RulesDefGUID.IsEmpty() ) ? false : true;
+        return (m_RulesDefGUID.IsEmpty()) ? false : true;
     }
 
     CString    GetRulesDefGUID() const;
-    void    AssignRulesDefGUID( const CString value );
+    void    AssignRulesDefGUID(const CString value);
     bool    AssignCurrentRulesDefGUID();
-    void    ReassignRules( ZILog* pLog = NULL );
+    void    ReassignRules(ZILog* pLog = NULL);
     // ********************************************************************************
 
     // Page unit functions
@@ -159,13 +159,13 @@ public:
         return m_PageUnits;
     }
 
-    virtual void            SetPageUnits( ZBPageUnits& value );
-    virtual void            SetPageUnits( CODRuler& value );
+    virtual void            SetPageUnits(ZBPageUnits& value);
+    virtual void            SetPageUnits(CODRuler& value);
 
     // Unit functions
-    bool    InsertUnit( const CString Filename );
+    bool    InsertUnit(const CString Filename);
     bool    LoadAllUnits();
-    bool    LoadUnit( const CString Filename, ZDProcessGraphModelMdl& Model );
+    bool    LoadUnit(const CString Filename, ZDProcessGraphModelMdl& Model);
 
     bool IsUnit()
     {
@@ -174,7 +174,7 @@ public:
 
     bool HasUnit() const
     {
-        return ( m_pUnitManager != NULL ) ? true : false;
+        return (m_pUnitManager != NULL) ? true : false;
     }
 
     // Notation functions
@@ -185,7 +185,7 @@ public:
 
     void SetNotation(EModelNotation value)
     {
-        GetModel()->SetNotation( value );
+        GetModel()->SetNotation(value);
     }
 
     bool IsModelInABCNotation() const
@@ -209,7 +209,7 @@ public:
     }
 
     // JMR-MODIF - Le 5 novembre 2006 - Ajout du paramètre ModelIsClean.
-    bool CheckModelWorkflow( BOOL ModelIsClean );
+    bool CheckModelWorkflow(BOOL ModelIsClean);
     bool GenerateModelWorkflow();
     void DeleteWorkflowDefinition();
 
@@ -218,47 +218,50 @@ public:
         return m_BrowseInSameWindow;
     }
 
-    void SetBrowseInSameWindow( bool value )
+    void SetBrowseInSameWindow(bool value)
     {
-        m_BrowseInSameWindow = value; 
+        m_BrowseInSameWindow = value;
     }
 
     CString        GetWorkflowFilename() const;
     void        ClearWorkflowFilename();
-    void        SetWorkflowFilename( CString value );
+    void        SetWorkflowFilename(CString value);
 
     PSS_Date*        GetWorkflowLastUpdateDate();
-    void        SetWorkflowLastUpdateDate(PSS_Date value );
+    void        SetWorkflowLastUpdateDate(PSS_Date value);
 
     bool        GetCheckConsistency() const;
-    void        SetCheckConsistency( bool value );
+    void        SetCheckConsistency(bool value);
 
     bool        GetIntegrateCostSimulation() const;
-    void        SetIntegrateCostSimulation( bool value );
+    void        SetIntegrateCostSimulation(bool value);
 
-    bool        GetUseWorkflow() const { return m_UseWorkflow; };
-    void        SetUseWorkflow( bool value );
+    bool        GetUseWorkflow() const
+    {
+        return m_UseWorkflow;
+    };
+    void        SetUseWorkflow(bool value);
 
     int            GetHourPerDay() const;
-    void        SetHourPerDay( int value );
+    void        SetHourPerDay(int value);
 
     int            GetDayPerWeek() const;
-    void        SetDayPerWeek( int value );
+    void        SetDayPerWeek(int value);
 
     int            GetDayPerMonth() const;
-    void        SetDayPerMonth( int value );
+    void        SetDayPerMonth(int value);
 
     int            GetDayPerYear() const;
-    void        SetDayPerYear( int value );
+    void        SetDayPerYear(int value);
 
     CString        GetCurrencySymbol() const;
-    void        SetCurrencySymbol( CString value );
+    void        SetCurrencySymbol(CString value);
 
     bool        GetSaveModelInWorkflow() const;
-    void        SetSaveModelInWorkflow( bool value );
+    void        SetSaveModelInWorkflow(bool value);
 
     bool        GetShowPageBorder() const;
-    void        SetShowPageBorder( bool value );
+    void        SetShowPageBorder(bool value);
 
     const ELanguage GetLanguage()
     {
@@ -278,7 +281,7 @@ public:
         return b_IsReadOnly;
     }
 
-    void SetReadOnly( BOOL Value )
+    void SetReadOnly(BOOL Value)
     {
         b_IsReadOnly = Value;
     }
@@ -315,9 +318,9 @@ public:
         return GetModel()->GetMainUserGroup();
     }
 
-    void AssignMainUserGroup( ZBUserGroupEntity* pMainUserGroup )
+    void AssignMainUserGroup(ZBUserGroupEntity* pMainUserGroup)
     {
-        GetModel()->AssignMainUserGroup( pMainUserGroup );
+        GetModel()->AssignMainUserGroup(pMainUserGroup);
     }
 
     ///////////////////////////////////////////////////////
@@ -327,9 +330,9 @@ public:
         return GetModel()->GetMainLogicalSystem();
     }
 
-    void AssignMainLogicalSystem( ZBLogicalSystemEntity* pMainLogicalSystem )
+    void AssignMainLogicalSystem(ZBLogicalSystemEntity* pMainLogicalSystem)
     {
-        GetModel()->AssignMainLogicalSystem( pMainLogicalSystem );
+        GetModel()->AssignMainLogicalSystem(pMainLogicalSystem);
     }
 
     ///////////////////////////////////////////////////////
@@ -339,9 +342,9 @@ public:
         return GetModel()->GetMainLogicalPrestations();
     }
 
-    void AssignMainLogicalPrestations( ZBLogicalPrestationsEntity* pMainLogicalPrestations )
+    void AssignMainLogicalPrestations(ZBLogicalPrestationsEntity* pMainLogicalPrestations)
     {
-        GetModel()->AssignMainLogicalPrestations( pMainLogicalPrestations );
+        GetModel()->AssignMainLogicalPrestations(pMainLogicalPrestations);
     }
 
     ///////////////////////////////////////////////////////
@@ -351,9 +354,9 @@ public:
         return GetModel()->GetMainLogicalRules();
     }
 
-    void AssignMainLogicalRules( ZBLogicalRulesEntity* pMainLogicalRules )
+    void AssignMainLogicalRules(ZBLogicalRulesEntity* pMainLogicalRules)
     {
-        GetModel()->AssignMainLogicalRules( pMainLogicalRules );
+        GetModel()->AssignMainLogicalRules(pMainLogicalRules);
     }
 
     // Implementation for ZIModelDocument interface
@@ -361,19 +364,19 @@ public:
     // Gets a pointer to the model of the canvas.
     ZDProcessGraphModelMdl* GetModel();
     ZDProcessGraphModelMdl* GetModelConst() const;
-    void SetNewModel( ZDProcessGraphModelMdl* pModel );
+    void SetNewModel(ZDProcessGraphModelMdl* pModel);
 
     virtual CDocTemplate* GetDocTemplate() const;
-    virtual void SetModifiedFlag( BOOL bModified = TRUE );
+    virtual void SetModifiedFlag(BOOL bModified = TRUE);
 
     // Printer functions
     PSS_DocumentPageSetup* GetPrinterPageSize();
 
     // View functions
     ZIProcessGraphModelView* GetFirstModelView();
-    virtual CView* FindView( const CString Name );
-    virtual CView* ActivateView( const CString Name );
-    CView*    SwitchView( CView* pNewView, size_t Index = 0 );
+    virtual CView* FindView(const CString Name);
+    virtual CView* ActivateView(const CString Name);
+    CView*    SwitchView(CView* pNewView, size_t Index = 0);
 
     // Determines if the canvas has been modified.
     virtual BOOL IsModified();
@@ -394,37 +397,37 @@ public:
         return m_DynamicPropertiesManager != NULL;
     }
 
-    void AllocatePropertiesManager( bool DeleteFirst = false );
+    void AllocatePropertiesManager(bool DeleteFirst = false);
 
     /////////////////////////////////////////////////////////
     // Operations
 
     // Observer call back
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZDProcessGraphModelDoc)
-    public:
+public:
     virtual BOOL OnNewDocument();
     virtual void DeleteContents();
     virtual void OnCloseDocument();
     virtual BOOL OnOpenDocument(LPCTSTR lpszPathName);
-    virtual BOOL OnSaveDocument (const char* pszPathName);
+    virtual BOOL OnSaveDocument(const char* pszPathName);
     //}}AFX_VIRTUAL
 
     // JMR-MODIF - Le 9 juillet 2006 - Surcharge de la fonction DoFileSave.
     BOOL DoFileSave();
 
     // JMR-MODIF - Le 27 avril 2006 - Ajout de la fonction SetFileReadOnly.
-    BOOL SetFileReadOnly( const char* pszPathName, BOOL Value );
+    BOOL SetFileReadOnly(const char* pszPathName, BOOL Value);
 
     // Reader and Writer methods
     // These methods don't use the standard MVC framework
-    bool ReadFromFile( const CString Filename );
-    bool SaveToFile( const CString Filename );
+    bool ReadFromFile(const CString Filename);
+    bool SaveToFile(const CString Filename);
 
-    virtual void Serialize( CArchive& ar );
+    virtual void Serialize(CArchive& ar);
 
     ////////////////////////////////////////////////////////////
     // Implementation
@@ -432,11 +435,11 @@ public:
 #ifdef _DEBUG
 
     virtual void AssertValid() const;
-    virtual void Dump( CDumpContext& dc ) const;
+    virtual void Dump(CDumpContext& dc) const;
 
 #endif
 
-// Generated message map functions
+    // Generated message map functions
 protected:
 
     //{{AFX_MSG(ZDProcessGraphModelDoc)
@@ -522,7 +525,7 @@ inline CString ZDProcessGraphModelDoc::GetUserDefGUID() const
     return m_UserDefGUID;
 }
 
-inline void ZDProcessGraphModelDoc::AssignUserDefGUID( const CString value )
+inline void ZDProcessGraphModelDoc::AssignUserDefGUID(const CString value)
 {
     m_UserDefGUID = value;
 }
@@ -532,7 +535,7 @@ inline CString ZDProcessGraphModelDoc::GetSystemDefGUID() const
     return m_SystemDefGUID;
 }
 
-inline void ZDProcessGraphModelDoc::AssignSystemDefGUID( const CString value )
+inline void ZDProcessGraphModelDoc::AssignSystemDefGUID(const CString value)
 {
     m_SystemDefGUID = value;
 }
@@ -544,7 +547,7 @@ inline CString ZDProcessGraphModelDoc::GetPrestationsDefGUID() const
 }
 
 // JMR-MODIF - Le 26 janvier 2006 - Ajout de la fonction AssignPrestationsDefGUID.
-inline void ZDProcessGraphModelDoc::AssignPrestationsDefGUID( const CString value )
+inline void ZDProcessGraphModelDoc::AssignPrestationsDefGUID(const CString value)
 {
     m_PrestationsDefGUID = value;
 }
@@ -556,34 +559,34 @@ inline CString ZDProcessGraphModelDoc::GetRulesDefGUID() const
 }
 
 // JMR-MODIF - Le 19 novembre 2006 - Ajout de la fonction AssignRulesDefGUID.
-inline void ZDProcessGraphModelDoc::AssignRulesDefGUID( const CString value )
+inline void ZDProcessGraphModelDoc::AssignRulesDefGUID(const CString value)
 {
     m_RulesDefGUID = value;
 }
 
 inline CString ZDProcessGraphModelDoc::GetWorkflowFilename() const
 {
-    return ( m_pWorkflowDefinition ) ? m_pWorkflowDefinition->GetWorkflowFilename() : _T( "" );
+    return (m_pWorkflowDefinition) ? m_pWorkflowDefinition->GetWorkflowFilename() : _T("");
 }
 
-inline void ZDProcessGraphModelDoc::SetWorkflowFilename( CString value )
+inline void ZDProcessGraphModelDoc::SetWorkflowFilename(CString value)
 {
-    if ( m_pWorkflowDefinition )
+    if (m_pWorkflowDefinition)
     {
-        m_pWorkflowDefinition->SetWorkflowFilename( value );
+        m_pWorkflowDefinition->SetWorkflowFilename(value);
     }
 }
 
 inline PSS_Date* ZDProcessGraphModelDoc::GetWorkflowLastUpdateDate()
 {
-    return ( m_pWorkflowDefinition ) ? &m_pWorkflowDefinition->GetWorkflowLastUpdateDate() : NULL;
+    return (m_pWorkflowDefinition) ? &m_pWorkflowDefinition->GetWorkflowLastUpdateDate() : NULL;
 }
 
-inline void ZDProcessGraphModelDoc::SetWorkflowLastUpdateDate(PSS_Date value )
+inline void ZDProcessGraphModelDoc::SetWorkflowLastUpdateDate(PSS_Date value)
 {
-    if ( m_pWorkflowDefinition )
+    if (m_pWorkflowDefinition)
     {
-        m_pWorkflowDefinition->SetWorkflowLastUpdateDate( value );
+        m_pWorkflowDefinition->SetWorkflowLastUpdateDate(value);
     }
 }
 
@@ -592,14 +595,14 @@ inline bool ZDProcessGraphModelDoc::GetCheckConsistency() const
     return m_CheckConsistency;
 }
 
-inline void ZDProcessGraphModelDoc::SetCheckConsistency( bool value )
+inline void ZDProcessGraphModelDoc::SetCheckConsistency(bool value)
 {
     m_CheckConsistency = value;
 }
 
 inline bool ZDProcessGraphModelDoc::GetSaveModelInWorkflow() const
 {
-    return ( m_pWorkflowDefinition ) ? m_pWorkflowDefinition->GetSaveModelInWorkflow() : false;
+    return (m_pWorkflowDefinition) ? m_pWorkflowDefinition->GetSaveModelInWorkflow() : false;
 }
 
 inline bool ZDProcessGraphModelDoc::GetIntegrateCostSimulation() const
@@ -607,7 +610,7 @@ inline bool ZDProcessGraphModelDoc::GetIntegrateCostSimulation() const
     return m_IntegrateCostSimulation;
 }
 
-inline void ZDProcessGraphModelDoc::SetIntegrateCostSimulation( bool value )
+inline void ZDProcessGraphModelDoc::SetIntegrateCostSimulation(bool value)
 {
     m_IntegrateCostSimulation = value;
 }
@@ -617,7 +620,7 @@ inline int ZDProcessGraphModelDoc::GetHourPerDay() const
     return m_HourPerDay;
 }
 
-inline void ZDProcessGraphModelDoc::SetHourPerDay( int value )
+inline void ZDProcessGraphModelDoc::SetHourPerDay(int value)
 {
     m_HourPerDay = value;
 }
@@ -627,7 +630,7 @@ inline int ZDProcessGraphModelDoc::GetDayPerWeek() const
     return m_DayPerWeek;
 }
 
-inline void ZDProcessGraphModelDoc::SetDayPerWeek( int value )
+inline void ZDProcessGraphModelDoc::SetDayPerWeek(int value)
 {
     m_DayPerWeek = value;
 }
@@ -637,7 +640,7 @@ inline int ZDProcessGraphModelDoc::GetDayPerMonth() const
     return m_DayPerMonth;
 }
 
-inline void ZDProcessGraphModelDoc::SetDayPerMonth( int value )
+inline void ZDProcessGraphModelDoc::SetDayPerMonth(int value)
 {
     m_DayPerMonth = value;
 }
@@ -647,7 +650,7 @@ inline int ZDProcessGraphModelDoc::GetDayPerYear() const
     return m_DayPerYear;
 }
 
-inline void ZDProcessGraphModelDoc::SetDayPerYear( int value )
+inline void ZDProcessGraphModelDoc::SetDayPerYear(int value)
 {
     m_DayPerYear = value;
 }
@@ -657,7 +660,7 @@ inline bool ZDProcessGraphModelDoc::GetShowPageBorder() const
     return m_ShowPageBorder;
 }
 
-inline void ZDProcessGraphModelDoc::SetShowPageBorder( bool value )
+inline void ZDProcessGraphModelDoc::SetShowPageBorder(bool value)
 {
     m_ShowPageBorder = value;
 }
@@ -667,22 +670,22 @@ inline CString ZDProcessGraphModelDoc::GetCurrencySymbol() const
     return m_CurrencySymbol;
 }
 
-inline void ZDProcessGraphModelDoc::SetCurrencySymbol( CString value )
+inline void ZDProcessGraphModelDoc::SetCurrencySymbol(CString value)
 {
     m_CurrencySymbol = value;
 }
 
-inline void ZDProcessGraphModelDoc::SetSaveModelInWorkflow( bool value )
+inline void ZDProcessGraphModelDoc::SetSaveModelInWorkflow(bool value)
 {
-    if ( m_pWorkflowDefinition )
+    if (m_pWorkflowDefinition)
     {
-        m_pWorkflowDefinition->SetSaveModelInWorkflow( value );
+        m_pWorkflowDefinition->SetSaveModelInWorkflow(value);
     }
 }
 
 inline void ZDProcessGraphModelDoc::ClearWorkflowFilename()
 {
-    if ( m_pWorkflowDefinition )
+    if (m_pWorkflowDefinition)
     {
         m_pWorkflowDefinition->ClearWorkflowFilename();
     }
@@ -693,25 +696,20 @@ inline CDocTemplate* ZDProcessGraphModelDoc::GetDocTemplate() const
     return PSS_BaseDocument::GetDocTemplate();
 }
 
-inline void ZDProcessGraphModelDoc::SetModifiedFlag( BOOL bModified /*= TRUE*/ )
+inline void ZDProcessGraphModelDoc::SetModifiedFlag(BOOL bModified /*= TRUE*/)
 {
-    PSS_BaseDocument::SetModifiedFlag( bModified );
+    PSS_BaseDocument::SetModifiedFlag(bModified);
 }
 
 // Gets a pointer to the model of the canvas.
 inline ZDProcessGraphModelMdl* ZDProcessGraphModelDoc::GetModel()
 {
-    return ( m_pModel ) ? m_pModel : &m_EmptyModel;
+    return (m_pModel) ? m_pModel : &m_EmptyModel;
 }
 
 inline ZDProcessGraphModelMdl* ZDProcessGraphModelDoc::GetModelConst() const
 {
-    return const_cast<ZDProcessGraphModelMdl*>( ( m_pModel ) ? m_pModel : &m_EmptyModel );
+    return const_cast<ZDProcessGraphModelMdl*>((m_pModel) ? m_pModel : &m_EmptyModel);
 }
 
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_OBJECTIVDOC_H__037E37C0_6ACE_4FB6_B930_41786C8809CE__INCLUDED_)
+#endif

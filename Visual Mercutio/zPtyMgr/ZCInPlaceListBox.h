@@ -46,7 +46,7 @@ public:
     _ZCInPlaceEdit();
     virtual ~_ZCInPlaceEdit();
 
-    void SetOwnerListBox( ZCInPlaceListBox* pOwnerList )
+    void SetOwnerListBox(ZCInPlaceListBox* pOwnerList)
     {
         m_pOwnerList = pOwnerList;
     };
@@ -84,7 +84,7 @@ public:
     _ZCInPlaceListBox();
     virtual ~_ZCInPlaceListBox();
 
-    void SetOwnerListBox( ZCInPlaceListBox* pOwnerList )
+    void SetOwnerListBox(ZCInPlaceListBox* pOwnerList)
     {
         m_pOwnerList = pOwnerList;
     };
@@ -127,7 +127,7 @@ protected:
     DECLARE_DYNAMIC(ZCInPlaceListBox)
 
 public:
-    ZCInPlaceListBox( bool IsReadOnly = false );
+    ZCInPlaceListBox(bool IsReadOnly = false);
     virtual ~ZCInPlaceListBox();
 
     // Attributes
@@ -146,23 +146,23 @@ public:
     virtual CString GetEditText() const;
 
     // ZIObserver OnUpdate call-back function
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     int SetCurSel(int nSelect, bool bSendSetData = true);
     int SetCurSel(const CString Value, bool bSendSetData = true);
 
     int AddString(LPCTSTR pStrText, DWORD nData = 0);
 
-    bool IsEditCtrlHit( CPoint point ) const;
-    bool IsEditButtonCtrlHit( CPoint point ) const;
+    bool IsEditCtrlHit(CPoint point) const;
+    bool IsEditButtonCtrlHit(CPoint point) const;
 
     void ResetContent();
     void ResetListBoxHeight();
 
     // Called by the edit child control when a key is pressed
-    void NotifyEditKeyPressed( UINT nChar );
+    void NotifyEditKeyPressed(UINT nChar);
     // Called by the listbox child control when something has to be done
-    void NotifiyListBoxAction( UINT nAction );
+    void NotifiyListBoxAction(UINT nAction);
 
     // Virtual function to cancel and save the edition
     virtual void CancelEdit();
@@ -195,8 +195,8 @@ protected:
 
     void HideListBox();
     void SetFocusToEdit();
-    void MoveSelection( UINT Key );
-    
+    void MoveSelection(UINT Key);
+
     // Data
 private:
     static int    m_nButtonDx;
@@ -209,8 +209,7 @@ private:
 };
 
 inline ZCInPlaceListBox::~ZCInPlaceListBox()
-{
-}
+{}
 
 inline int ZCInPlaceListBox::GetCurrentSelection() const
 {
@@ -222,9 +221,4 @@ inline DWORD ZCInPlaceListBox::GetDWordData() const
     return m_nCurrentSelection != -1 ? m_wndList.GetItemData(m_nCurrentSelection) : 0;
 }
 
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(_ZCInPlaceListBox_H__)
+#endif

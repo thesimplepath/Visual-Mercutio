@@ -21,8 +21,8 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseLib\ZISubject.h"
-#include "zBaseLib\ZIObserver.h"
+#include "zBaseLib\PSS_Subject.h"
+#include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\ZITreeCtl.h"
 
 // Forward class declaration
@@ -52,8 +52,8 @@ public:
     };
 
     _ZInternalRulesTreeData();
-    _ZInternalRulesTreeData( ZBLogicalRulesEntity* pRule );
-    _ZInternalRulesTreeData( CString Str );
+    _ZInternalRulesTreeData(ZBLogicalRulesEntity* pRule);
+    _ZInternalRulesTreeData(CString Str);
     ~_ZInternalRulesTreeData();
 
     // Data member
@@ -66,21 +66,21 @@ public:
 // ZCRulesTreeCtrl window
 
 class AFX_EXT_CLASS ZCRulesTreeCtrl : public ZITreeCtrl,
-                                      public ZISubject,
-                                      public ZIObserver
+    public PSS_Subject,
+    public PSS_Observer
 {
-// Construction / Destruction
+    // Construction / Destruction
 public:
 
-    ZCRulesTreeCtrl( const CString            RootName            = _T( "" ),
-                     ZBLogicalRulesEntity*    pLogicalRuleRoot    = NULL );
+    ZCRulesTreeCtrl(const CString            RootName = _T(""),
+                    ZBLogicalRulesEntity*    pLogicalRuleRoot = NULL);
 
     virtual ~ZCRulesTreeCtrl();
 
     //////////////////////////////////////////////////////////////////
     // Operations
 
-    void Initialize( const CString RootName, ZBLogicalRulesEntity* pLogicalRulesRoot );
+    void Initialize(const CString RootName, ZBLogicalRulesEntity* pLogicalRulesRoot);
 
     // JMR-MODIF - Le 30 août 2005 - Ajout de la fonction Release.
     void Release();
@@ -92,11 +92,11 @@ public:
     ZBLogicalRulesEntity* GetSelectedLogicalRuleOwner();
     bool IsRootSelected() const;
 
-    void AddRule( ZBLogicalRulesEntity* pLogicalRule,
-                  ZBLogicalRulesEntity* pParentLogicalRule = NULL );
+    void AddRule(ZBLogicalRulesEntity* pLogicalRule,
+                 ZBLogicalRulesEntity* pParentLogicalRule = NULL);
 
-    void RemoveRule( ZBLogicalRulesEntity* pLogicalRule );
-    void ModifyRule( ZBLogicalRulesEntity* pLogicalRule );
+    void RemoveRule(ZBLogicalRulesEntity* pLogicalRule);
+    void ModifyRule(ZBLogicalRulesEntity* pLogicalRule);
 
     virtual void OnNewRule();
     virtual void OnDeleteRule();
@@ -111,24 +111,24 @@ public:
 
     ////////////////////////////////////////////////////////////////////
     // ZIObserver call back
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     ////////////////////////////////////////////////////////////////////
     // Context menu function
-    virtual int HasContextMenu( CWnd* pWnd, CPoint point );
-    virtual void DisplayContextMenu( CWnd* pWnd, CPoint point );
+    virtual int HasContextMenu(CWnd* pWnd, CPoint point);
+    virtual void DisplayContextMenu(CWnd* pWnd, CPoint point);
 
-// Overrides
+    // Overrides
 protected:
 
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZCRulesTreeCtrl)
     virtual BOOL DestroyWindow();
-//    virtual void OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHndler);
-    //}}AFX_VIRTUAL
+    //    virtual void OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHndler);
+        //}}AFX_VIRTUAL
 
-    // Generated message map functions
-    //{{AFX_MSG(ZCRulesTreeCtrl)
+        // Generated message map functions
+        //{{AFX_MSG(ZCRulesTreeCtrl)
     afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
     afx_msg void OnLButtonDblClk(UINT nFlags, CPoint pt);
     afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
@@ -139,7 +139,7 @@ protected:
     DECLARE_MESSAGE_MAP()
 
     virtual int GetIndexOfNoDropImage() const;
-    virtual CObject* GetDragObject( HTREEITEM DragItem );
+    virtual CObject* GetDragObject(HTREEITEM DragItem);
 
 private:
 
@@ -148,22 +148,22 @@ private:
     void DestroyTree();
     void EmptyDataSet();
 
-    void ProcessLogicalRulesGroup( ZBLogicalRulesEntity* pLogicalRule, HTREEITEM hParentTreeItem );
+    void ProcessLogicalRulesGroup(ZBLogicalRulesEntity* pLogicalRule, HTREEITEM hParentTreeItem);
 
-    HTREEITEM AddTypeItem( const CString Name, int IconIndex, HTREEITEM hParentTreeItem = NULL );
-    HTREEITEM AddLogicalRuleItem( ZBLogicalRulesEntity* pLogicalRule, HTREEITEM hParentTreeItem );
-    BOOL ModifyLogicalRuleItem( ZBLogicalRulesEntity* pLogicalRule, HTREEITEM hItem );
+    HTREEITEM AddTypeItem(const CString Name, int IconIndex, HTREEITEM hParentTreeItem = NULL);
+    HTREEITEM AddLogicalRuleItem(ZBLogicalRulesEntity* pLogicalRule, HTREEITEM hParentTreeItem);
+    BOOL ModifyLogicalRuleItem(ZBLogicalRulesEntity* pLogicalRule, HTREEITEM hItem);
 
-    ZBRulesEntity*            _GetRuleEntity( HTREEITEM hItem );
-    ZBLogicalRulesEntity*    _GetLogicalRule( HTREEITEM hItem );
-    ZBLogicalRulesEntity*    _GetOwnerRule( HTREEITEM hItem );
+    ZBRulesEntity*            _GetRuleEntity(HTREEITEM hItem);
+    ZBLogicalRulesEntity*    _GetLogicalRule(HTREEITEM hItem);
+    ZBLogicalRulesEntity*    _GetOwnerRule(HTREEITEM hItem);
 
-    _ZInternalRulesTreeData* FindElementFromDataSet( ZBRulesEntity* pEntity );
-    _ZInternalRulesTreeData* FindElementFromDataSet( ZBLogicalRulesEntity* pLogicalRule );
-    _ZInternalRulesTreeData* FindElementFromDataSet( CString Str );
+    _ZInternalRulesTreeData* FindElementFromDataSet(ZBRulesEntity* pEntity);
+    _ZInternalRulesTreeData* FindElementFromDataSet(ZBLogicalRulesEntity* pLogicalRule);
+    _ZInternalRulesTreeData* FindElementFromDataSet(CString Str);
 
-    _ZInternalRulesTreeData* AddDataToSet( ZBLogicalRulesEntity* pLogicalRule );
-    _ZInternalRulesTreeData* AddDataToSet( CString Str );
+    _ZInternalRulesTreeData* AddDataToSet(ZBLogicalRulesEntity* pLogicalRule);
+    _ZInternalRulesTreeData* AddDataToSet(CString Str);
 
 private:
 
@@ -189,8 +189,4 @@ inline int ZCRulesTreeCtrl::GetIndexOfNoDropImage() const
     return 2;
 }
 
-/////////////////////////////////////////////////////////////////////////////
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZCRulesTreeCtrl_H__2F41F061_F558_4A24_BDE9_D472E36F653E__INCLUDED_)
+#endif

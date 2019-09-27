@@ -6,7 +6,7 @@
 // processsoft
 #include "zMediator\PSS_Application.h"
 #include "zBaseLib\ZUFloatingToolbar.h"
-#include "zBaseLib\ZBToolbarObserverMsg.h"
+#include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zBaseLib\PSS_FileDialog.h"
 #include "zModel\ProcGraphModelVp.h"
 #include "zModel\ZBLinkSymbol.h"
@@ -1254,8 +1254,8 @@ void ZDProcessGraphModelControllerBP::OnCheckModel()
         if ( pDoc->GetCheckConsistency() )
         {
             // Asks to activate the output symbol log tab
-            ZBToolbarObserverMsg Msg( UM_ACTIVATE_LOGSYMBOL_TAB );
-            pDoc->NotifyAllObservers( &Msg );
+            PSS_ToolbarObserverMsg msg( UM_ACTIVATE_LOGSYMBOL_TAB );
+            pDoc->NotifyAllObservers( &msg );
 
             CWaitCursor wait;
 
@@ -1290,8 +1290,8 @@ void ZDProcessGraphModelControllerBP::OnRecalculateModelParameters()
     if ( pDoc->GetIntegrateCostSimulation() )
     {
         // Asks to activate the output analyzer log tab
-        ZBToolbarObserverMsg Msg( UM_ACTIVATE_LOGANALYZER_TAB );
-        pDoc->NotifyAllObservers( &Msg );
+        PSS_ToolbarObserverMsg msg( UM_ACTIVATE_LOGANALYZER_TAB );
+        pDoc->NotifyAllObservers( &msg );
 
         CWaitCursor wait;
 
@@ -1346,8 +1346,8 @@ void ZDProcessGraphModelControllerBP::OnRecalculateModelDurations()
     if ( pDoc->GetIntegrateCostSimulation() )
     {
         // Asks to activate the output analyzer log tab
-        ZBToolbarObserverMsg Msg( UM_ACTIVATE_LOGANALYZER_TAB );
-        pDoc->NotifyAllObservers( &Msg );
+        PSS_ToolbarObserverMsg msg( UM_ACTIVATE_LOGANALYZER_TAB );
+        pDoc->NotifyAllObservers( &msg );
 
         CWaitCursor wait;
 

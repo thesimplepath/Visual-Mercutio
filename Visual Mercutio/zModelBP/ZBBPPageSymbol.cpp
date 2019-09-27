@@ -269,7 +269,7 @@ void ZBBPPageSymbol::OnPageNameChanged(ZDProcessGraphPage* pPage, const CString 
     }
 }
 
-void ZBBPPageSymbol::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
+void ZBBPPageSymbol::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
     ZBSymbol* pSymbol = static_cast<ZBSymbol*>(pSubject);
 

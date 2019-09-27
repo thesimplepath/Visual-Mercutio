@@ -9,7 +9,7 @@
 #include "PSS_FileWnd.h"
 
 // processsoft
-#include "zBaseLib\ZBToolbarObserverMsg.h"
+#include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zRes32\ZRes.h"
 
 #ifdef _DEBUG
@@ -115,14 +115,14 @@ int PSS_FileWndButtonToolBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 //---------------------------------------------------------------------------
 void PSS_FileWndButtonToolBar::OnStopFileButton()
 {
-    ZBToolbarObserverMsg Msg(UM_STOPFILE);
-    NotifyAllObservers(&Msg);
+    PSS_ToolbarObserverMsg msg(UM_STOPFILE);
+    NotifyAllObservers(&msg);
 }
 //---------------------------------------------------------------------------
 void PSS_FileWndButtonToolBar::OnRefreshFileButton()
 {
-    ZBToolbarObserverMsg Msg(UM_REFRESHFILE);
-    NotifyAllObservers(&Msg);
+    PSS_ToolbarObserverMsg msg(UM_REFRESHFILE);
+    NotifyAllObservers(&msg);
 }
 //---------------------------------------------------------------------------
 // Dynamic construction
@@ -150,9 +150,9 @@ PSS_FileWnd::PSS_FileWnd()
 PSS_FileWnd::~PSS_FileWnd()
 {}
 //---------------------------------------------------------------------------
-void PSS_FileWnd::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
+void PSS_FileWnd::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
-    ZBToolbarObserverMsg* pObserverMsg = dynamic_cast<ZBToolbarObserverMsg*>(pMsg);
+    PSS_ToolbarObserverMsg* pObserverMsg = dynamic_cast<PSS_ToolbarObserverMsg*>(pMsg);
 
     if (pObserverMsg)
         switch (pObserverMsg->GetMessageID())

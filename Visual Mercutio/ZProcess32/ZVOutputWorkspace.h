@@ -8,8 +8,8 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "zBaseLib\ZISubject.h"
-#include "zBaseLib\ZIObserver.h"
+#include "zBaseLib\PSS_Subject.h"
+#include "zBaseLib\PSS_Observer.h"
 #include "zModel\ZVOutputSymbolLogView.h"
 #include "zModel\ZVOutputSearchView.h"
 #include "zModel\ZVOutputAnalyzerLogView.h"
@@ -19,16 +19,16 @@
 
 ////////////////////////////////////////////////////////////////
 // Tab Index constant definition
-const int def_SymbolLogTabIndex        = 0;
-const int def_SearchLogTabIndex        = 1;
-const int def_AnalyzerLogTabIndex    = 2;
-const int def_WkfLogTabIndex        = 3;
+const int def_SymbolLogTabIndex = 0;
+const int def_SearchLogTabIndex = 1;
+const int def_AnalyzerLogTabIndex = 2;
+const int def_WkfLogTabIndex = 3;
 
 class ZVOutputWorkspace : public SECControlBar,
-                          public ZISubject,
-                          public ZIObserver
+    public PSS_Subject,
+    public PSS_Observer
 {
-    DECLARE_DYNAMIC( ZVOutputWorkspace )
+    DECLARE_DYNAMIC(ZVOutputWorkspace)
 
 public:
 
@@ -41,7 +41,7 @@ public:
     void Release();
 
     void LogClearOutput();
-    void LogAddLine( const CString Line );
+    void LogAddLine(const CString Line);
 
     ///////////////////////////////////////////////////////////
     // Output Symbol log
@@ -52,16 +52,14 @@ public:
 
     void ActivateSymbolLogTab()
     {
-        m_wndTab.ActivateTab( def_SymbolLogTabIndex );
+        m_wndTab.ActivateTab(def_SymbolLogTabIndex);
     }
 
     void ShowSymbolLogTab()
-    {
-    }
+    {}
 
     void HideSymbolLogTab()
-    {
-    }
+    {}
 
     ///////////////////////////////////////////////////////////
     // Output Search log
@@ -73,16 +71,14 @@ public:
 
     void ActivateSearchLogTab()
     {
-        m_wndTab.ActivateTab( def_SearchLogTabIndex );
+        m_wndTab.ActivateTab(def_SearchLogTabIndex);
     }
 
     void ShowSearchLogTab()
-    {
-    }
+    {}
 
     void HideSearchLogTab()
-    {
-    }
+    {}
 
     ///////////////////////////////////////////////////////////
     // Output Analyzer log
@@ -94,16 +90,14 @@ public:
 
     void ActivateAnalyzerLogTab()
     {
-        m_wndTab.ActivateTab( def_AnalyzerLogTabIndex );
+        m_wndTab.ActivateTab(def_AnalyzerLogTabIndex);
     }
 
     void ShowAnalyzerLogTab()
-    {
-    }
+    {}
 
     void HideAnalyzerLogTab()
-    {
-    }
+    {}
 
     ///////////////////////////////////////////////////////////
     // Output Workflow log
@@ -115,31 +109,29 @@ public:
 
     void ActivateWorkflowLogTab()
     {
-        m_wndTab.ActivateTab( def_WkfLogTabIndex );
+        m_wndTab.ActivateTab(def_WkfLogTabIndex);
     }
 
     void ShowWorkflowLogTab()
-    {
-    }
+    {}
 
     void HideWorkflowLogTab()
-    {
-    }
+    {}
 
     // Observer call back
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
 public:
 
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZVOutputWorkspace)
-    public:
+public:
     //}}AFX_VIRTUAL
 
-    virtual void OnUpdateCmdUI( CFrameWnd* pTarget, BOOL bDisableIfNoHndler );
-    virtual void OnExtendContextMenu( CMenu* pMenu );
+    virtual void OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHndler);
+    virtual void OnExtendContextMenu(CMenu* pMenu);
 
-// Generated message map functions
+    // Generated message map functions
 protected:
 
     //{{AFX_MSG(ZVOutputWorkspace)

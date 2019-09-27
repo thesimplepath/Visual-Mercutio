@@ -22,8 +22,8 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseLib\ZISubject.h"
-#include "zBaseLib\ZIObserver.h"
+#include "zBaseLib\PSS_Subject.h"
+#include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\ZITreeCtl.h"
 
 // Forward class declaration
@@ -53,8 +53,8 @@ public:
     };
 
     _ZInternalPrestationsTreeData();
-    _ZInternalPrestationsTreeData( ZBLogicalPrestationsEntity* pPrestation );
-    _ZInternalPrestationsTreeData( CString Str );
+    _ZInternalPrestationsTreeData(ZBLogicalPrestationsEntity* pPrestation);
+    _ZInternalPrestationsTreeData(CString Str);
     ~_ZInternalPrestationsTreeData();
 
     // Data member
@@ -67,21 +67,21 @@ public:
 // ZCPrestationsTreeCtrl window
 
 class AFX_EXT_CLASS ZCPrestationsTreeCtrl : public ZITreeCtrl,
-                                            public ZISubject,
-                                            public ZIObserver
+    public PSS_Subject,
+    public PSS_Observer
 {
-// Construction / Destruction
+    // Construction / Destruction
 public:
 
-    ZCPrestationsTreeCtrl( const CString                RootName                = _T( "" ),
-                           ZBLogicalPrestationsEntity*    pLogicalPrestationRoot    = NULL );
+    ZCPrestationsTreeCtrl(const CString                RootName = _T(""),
+                          ZBLogicalPrestationsEntity*    pLogicalPrestationRoot = NULL);
 
     virtual ~ZCPrestationsTreeCtrl();
 
     //////////////////////////////////////////////////////////////////
     // Operations
 
-    void Initialize( const CString RootName, ZBLogicalPrestationsEntity* pLogicalPrestationsRoot );
+    void Initialize(const CString RootName, ZBLogicalPrestationsEntity* pLogicalPrestationsRoot);
 
     // JMR-MODIF - Le 30 août 2005 - Ajout de la fonction Release.
     void Release();
@@ -93,11 +93,11 @@ public:
     ZBLogicalPrestationsEntity* GetSelectedLogicalPrestationOwner();
     bool IsRootSelected() const;
 
-    void AddPrestation( ZBLogicalPrestationsEntity* pLogicalPrestation,
-                        ZBLogicalPrestationsEntity* pParentLogicalPrestation = NULL );
+    void AddPrestation(ZBLogicalPrestationsEntity* pLogicalPrestation,
+                       ZBLogicalPrestationsEntity* pParentLogicalPrestation = NULL);
 
-    void RemovePrestation( ZBLogicalPrestationsEntity* pLogicalPrestation );
-    void ModifyPrestation( ZBLogicalPrestationsEntity* pLogicalPrestation );
+    void RemovePrestation(ZBLogicalPrestationsEntity* pLogicalPrestation);
+    void ModifyPrestation(ZBLogicalPrestationsEntity* pLogicalPrestation);
 
     virtual void OnNewPrestation();
     virtual void OnDeletePrestation();
@@ -112,24 +112,24 @@ public:
 
     ////////////////////////////////////////////////////////////////////
     // ZIObserver call back
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     ////////////////////////////////////////////////////////////////////
     // Context menu function
-    virtual int HasContextMenu( CWnd* pWnd, CPoint point );
-    virtual void DisplayContextMenu( CWnd* pWnd, CPoint point );
+    virtual int HasContextMenu(CWnd* pWnd, CPoint point);
+    virtual void DisplayContextMenu(CWnd* pWnd, CPoint point);
 
-// Overrides
+    // Overrides
 protected:
 
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZCPrestationsTreeCtrl)
     virtual BOOL DestroyWindow();
-//    virtual void OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHndler);
-    //}}AFX_VIRTUAL
+    //    virtual void OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHndler);
+        //}}AFX_VIRTUAL
 
-    // Generated message map functions
-    //{{AFX_MSG(ZCPrestationsTreeCtrl)
+        // Generated message map functions
+        //{{AFX_MSG(ZCPrestationsTreeCtrl)
     afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
     afx_msg void OnLButtonDblClk(UINT nFlags, CPoint pt);
     afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
@@ -140,7 +140,7 @@ protected:
     DECLARE_MESSAGE_MAP()
 
     virtual int GetIndexOfNoDropImage() const;
-    virtual CObject* GetDragObject( HTREEITEM DragItem );
+    virtual CObject* GetDragObject(HTREEITEM DragItem);
 
 private:
 
@@ -149,22 +149,22 @@ private:
     void DestroyTree();
     void EmptyDataSet();
 
-    void ProcessLogicalPrestationsGroup( ZBLogicalPrestationsEntity* pLogicalPrestation, HTREEITEM hParentTreeItem );
+    void ProcessLogicalPrestationsGroup(ZBLogicalPrestationsEntity* pLogicalPrestation, HTREEITEM hParentTreeItem);
 
-    HTREEITEM AddTypeItem( const CString Name, int IconIndex, HTREEITEM hParentTreeItem = NULL );
-    HTREEITEM AddLogicalPrestationItem( ZBLogicalPrestationsEntity* pLogicalPrestation, HTREEITEM hParentTreeItem );
-    BOOL ModifyLogicalPrestationItem( ZBLogicalPrestationsEntity* pLogicalPrestation, HTREEITEM hItem );
+    HTREEITEM AddTypeItem(const CString Name, int IconIndex, HTREEITEM hParentTreeItem = NULL);
+    HTREEITEM AddLogicalPrestationItem(ZBLogicalPrestationsEntity* pLogicalPrestation, HTREEITEM hParentTreeItem);
+    BOOL ModifyLogicalPrestationItem(ZBLogicalPrestationsEntity* pLogicalPrestation, HTREEITEM hItem);
 
-    ZBPrestationsEntity*        _GetPrestationEntity( HTREEITEM hItem );
-    ZBLogicalPrestationsEntity*    _GetLogicalPrestation( HTREEITEM hItem );
-    ZBLogicalPrestationsEntity*    _GetOwnerPrestation( HTREEITEM hItem );
+    ZBPrestationsEntity*        _GetPrestationEntity(HTREEITEM hItem);
+    ZBLogicalPrestationsEntity*    _GetLogicalPrestation(HTREEITEM hItem);
+    ZBLogicalPrestationsEntity*    _GetOwnerPrestation(HTREEITEM hItem);
 
-    _ZInternalPrestationsTreeData* FindElementFromDataSet( ZBPrestationsEntity* pEntity );
-    _ZInternalPrestationsTreeData* FindElementFromDataSet( ZBLogicalPrestationsEntity* pLogicalPrestation );
-    _ZInternalPrestationsTreeData* FindElementFromDataSet( CString Str );
+    _ZInternalPrestationsTreeData* FindElementFromDataSet(ZBPrestationsEntity* pEntity);
+    _ZInternalPrestationsTreeData* FindElementFromDataSet(ZBLogicalPrestationsEntity* pLogicalPrestation);
+    _ZInternalPrestationsTreeData* FindElementFromDataSet(CString Str);
 
-    _ZInternalPrestationsTreeData* AddDataToSet( ZBLogicalPrestationsEntity* pLogicalPrestation );
-    _ZInternalPrestationsTreeData* AddDataToSet( CString Str );
+    _ZInternalPrestationsTreeData* AddDataToSet(ZBLogicalPrestationsEntity* pLogicalPrestation);
+    _ZInternalPrestationsTreeData* AddDataToSet(CString Str);
 
 private:
 
@@ -190,8 +190,4 @@ inline int ZCPrestationsTreeCtrl::GetIndexOfNoDropImage() const
     return 2;
 }
 
-/////////////////////////////////////////////////////////////////////////////
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZCPrestationsTreeCtrl_H__2F41F061_F558_4A24_BDE9_D472E36F653E__INCLUDED_)
+#endif

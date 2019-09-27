@@ -40,7 +40,7 @@
 #include "PSS_PaintOperations.h"
 
 #include "PSS_FieldObserverMsg.h"
-#include "ZISubject.h"
+#include "PSS_Subject.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -238,7 +238,7 @@ PSS_PlanFinObject* ZIView::ActiveSelectedObject(CPoint& point, BOOL bAutoReset)
                 {
                     obj->SelectObject(this, pDC, TRUE);
                     PSS_FieldObserverMsg msg(UM_NOTIFY_OBJECTSELECTED, obj);
-                    dynamic_cast<ZISubject*>(AfxGetMainWnd())->NotifyAllObservers(&msg);
+                    dynamic_cast<PSS_Subject*>(AfxGetMainWnd())->NotifyAllObservers(&msg);
                 }
 
                 ReturnedObject = obj;            // Assign the current 

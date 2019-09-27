@@ -18,7 +18,7 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZCPropertyDescription
 
-BEGIN_MESSAGE_MAP( ZCPropertyDescription, CStatic )
+BEGIN_MESSAGE_MAP(ZCPropertyDescription, CStatic)
     //{{AFX_MSG_MAP(ZCPropertyDescription)
     ON_WM_PAINT()
     ON_WM_CREATE()
@@ -27,31 +27,30 @@ END_MESSAGE_MAP()
 
 ZCPropertyDescription::ZCPropertyDescription()
 {
-    m_crBackground = ::GetSysColor( COLOR_MENU );
-    m_crText = ::GetSysColor( COLOR_WINDOWTEXT );
+    m_crBackground = ::GetSysColor(COLOR_MENU);
+    m_crText = ::GetSysColor(COLOR_WINDOWTEXT);
 }
 
 ZCPropertyDescription::~ZCPropertyDescription()
-{
-}
+{}
 
-void ZCPropertyDescription::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
+void ZCPropertyDescription::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
     if (!pMsg)
     {
         return;
     }
 
-    if ( ISA( pMsg, ZBPropertyItemObserverMsg ) )
+    if (ISA(pMsg, ZBPropertyItemObserverMsg))
     {
-        ZBProperty* pProp = ( (ZBPropertyItemObserverMsg*)pMsg )->GetpProperty();
+        ZBProperty* pProp = ((ZBPropertyItemObserverMsg*)pMsg)->GetpProperty();
 
-        if ( pProp )
+        if (pProp)
         {
-            UpdateControlData( pProp );
+            UpdateControlData(pProp);
         }
     }
-    else if ( ISA( pMsg, ZBPropertyObserverMsg ) )
+    else if (ISA(pMsg, ZBPropertyObserverMsg))
     {
         EmptyControlData();
     }
@@ -65,7 +64,7 @@ void ZCPropertyDescription::EmptyControlData()
     Invalidate();
 }
 
-void ZCPropertyDescription::UpdateControlData( ZBProperty* pProp )
+void ZCPropertyDescription::UpdateControlData(ZBProperty* pProp)
 {
     // Update data members
     m_Title = pProp->GetLabel();
@@ -76,50 +75,50 @@ void ZCPropertyDescription::UpdateControlData( ZBProperty* pProp )
 /////////////////////////////////////////////////////////////////////////////
 // ZCPropertyDescription message handlers
 
-int ZCPropertyDescription::OnCreate( LPCREATESTRUCT lpCreateStruct )
+int ZCPropertyDescription::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-    if ( CStatic::OnCreate(lpCreateStruct) == -1 )
+    if (CStatic::OnCreate(lpCreateStruct) == -1)
     {
         return -1;
     }
 
     // Create the caption font.
-    if ( !m_Font.CreateFont( 14,
-                              6,
-                              0,
-                              0,
-                              FW_NORMAL,
-                              0,
-                              0,
-                              0,
-                              ANSI_CHARSET,
-                              OUT_TT_PRECIS,
-                              CLIP_DEFAULT_PRECIS,
-                              PROOF_QUALITY,
-                              0,
-                              _T( "Tahoma" ) ) )
+    if (!m_Font.CreateFont(14,
+                           6,
+                           0,
+                           0,
+                           FW_NORMAL,
+                           0,
+                           0,
+                           0,
+                           ANSI_CHARSET,
+                           OUT_TT_PRECIS,
+                           CLIP_DEFAULT_PRECIS,
+                           PROOF_QUALITY,
+                           0,
+                           _T("Tahoma")))
     {
-        TRACE0( _T( "Unable to create caption font.\n" ) );
+        TRACE0(_T("Unable to create caption font.\n"));
         return -1;
     }
 
     // Create the caption font.
-    if ( !m_FontBold.CreateFont( 14,
-                                 6,
-                                 0,
-                                 0,
-                                 FW_BOLD,
-                                 0,
-                                 0,
-                                 0,
-                                 ANSI_CHARSET,
-                                 OUT_TT_PRECIS,
-                                 CLIP_DEFAULT_PRECIS,
-                                 PROOF_QUALITY,
-                                 0,
-                                 _T( "Tahoma" ) ) )
+    if (!m_FontBold.CreateFont(14,
+                               6,
+                               0,
+                               0,
+                               FW_BOLD,
+                               0,
+                               0,
+                               0,
+                               ANSI_CHARSET,
+                               OUT_TT_PRECIS,
+                               CLIP_DEFAULT_PRECIS,
+                               PROOF_QUALITY,
+                               0,
+                               _T("Tahoma")))
     {
-        TRACE0( _T( "Unable to create caption font.\n" ) );
+        TRACE0(_T("Unable to create caption font.\n"));
         return -1;
     }
 
@@ -129,39 +128,39 @@ int ZCPropertyDescription::OnCreate( LPCREATESTRUCT lpCreateStruct )
 void ZCPropertyDescription::OnPaint()
 {
     // Device context for painting
-    CPaintDC dc( this );
+    CPaintDC dc(this);
 
     CFont* pOldFont = NULL;
 
     // Get the rect area
     CRect rect;
-    GetClientRect( rect );
+    GetClientRect(rect);
 
-    dc.FillSolidRect( rect, m_crBackground );
+    dc.FillSolidRect(rect, m_crBackground);
 
-    COLORREF crOldBkColor    = dc.SetBkColor( m_crBackground );
-    COLORREF crOldTextColor    = dc.SetTextColor( m_crText );
+    COLORREF crOldBkColor = dc.SetBkColor(m_crBackground);
+    COLORREF crOldTextColor = dc.SetTextColor(m_crText);
 
     // Draw the rectangle
-    CRect BorderRect( rect );
-    BorderRect.DeflateRect( 2, 2 );
-    dc.FrameRect( BorderRect, CBrush::FromHandle( (HBRUSH)GetStockObject( BLACK_BRUSH ) ) );
+    CRect BorderRect(rect);
+    BorderRect.DeflateRect(2, 2);
+    dc.FrameRect(BorderRect, CBrush::FromHandle((HBRUSH)GetStockObject(BLACK_BRUSH)));
 
     // Draw the title
-    CRect TitleRect( rect.left + 4, rect.top + 4, rect.right - 4, rect.top + 20 );
-    pOldFont = dc.SelectObject( &m_FontBold );
-    dc.DrawText( m_Title, &TitleRect, DT_SINGLELINE | DT_LEFT | DT_TOP );
+    CRect TitleRect(rect.left + 4, rect.top + 4, rect.right - 4, rect.top + 20);
+    pOldFont = dc.SelectObject(&m_FontBold);
+    dc.DrawText(m_Title, &TitleRect, DT_SINGLELINE | DT_LEFT | DT_TOP);
 
     // Draw the description
-    CRect DescriptionRect( rect.left + 4, rect.top + 25, rect.right - 4, rect.bottom - 4 );
-    pOldFont = dc.SelectObject( &m_Font );
-    dc.DrawText( m_Description, &DescriptionRect, DT_WORDBREAK | DT_LEFT );
+    CRect DescriptionRect(rect.left + 4, rect.top + 25, rect.right - 4, rect.bottom - 4);
+    pOldFont = dc.SelectObject(&m_Font);
+    dc.DrawText(m_Description, &DescriptionRect, DT_WORDBREAK | DT_LEFT);
 
-    dc.SetTextColor( crOldTextColor );
-    dc.SetBkColor( crOldBkColor );
+    dc.SetTextColor(crOldTextColor);
+    dc.SetBkColor(crOldBkColor);
 
-    if( pOldFont != NULL )
+    if (pOldFont != NULL)
     {
-        dc.SelectObject( pOldFont );
+        dc.SelectObject(pOldFont);
     }
 }

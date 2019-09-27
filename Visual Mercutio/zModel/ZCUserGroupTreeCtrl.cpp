@@ -25,15 +25,15 @@ static char THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 11 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (en commentaires)
 
-const int _UserGroupRootTreeItem    = 0;
-const int _UserGroupTreeItem        = 1;
-const int _UserRoleAdminTreeItem    = 2;
-const int _UserRoleTreeItem            = 3;
+const int _UserGroupRootTreeItem = 0;
+const int _UserGroupTreeItem = 1;
+const int _UserRoleAdminTreeItem = 2;
+const int _UserRoleTreeItem = 3;
 
 /////////////////////////////////////////////////////////////////////////////
 // ZCUserGroupTreeCtrl
 
-BEGIN_MESSAGE_MAP( ZCUserGroupTreeCtrl, ZITreeCtrl )
+BEGIN_MESSAGE_MAP(ZCUserGroupTreeCtrl, ZITreeCtrl)
     //{{AFX_MSG_MAP(ZCUserGroupTreeCtrl)
     ON_WM_CREATE()
     ON_WM_LBUTTONDBLCLK()
@@ -44,14 +44,13 @@ BEGIN_MESSAGE_MAP( ZCUserGroupTreeCtrl, ZITreeCtrl )
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZCUserGroupTreeCtrl::ZCUserGroupTreeCtrl( const CString            RootName /*= _T( "" )*/,
-                                          ZBUserGroupEntity*    pUserGroupRoot /*= NULL*/ )
-    : m_RootName            ( RootName ),
-      m_pUserGroupRoot        ( pUserGroupRoot ),
-      m_hUserGroupRoot        ( NULL ),
-      m_HasBeenInitialized    ( false )
-{
-}
+ZCUserGroupTreeCtrl::ZCUserGroupTreeCtrl(const CString            RootName /*= _T( "" )*/,
+                                         ZBUserGroupEntity*    pUserGroupRoot /*= NULL*/)
+    : m_RootName(RootName),
+    m_pUserGroupRoot(pUserGroupRoot),
+    m_hUserGroupRoot(NULL),
+    m_HasBeenInitialized(false)
+{}
 
 ZCUserGroupTreeCtrl::~ZCUserGroupTreeCtrl()
 {
@@ -59,10 +58,10 @@ ZCUserGroupTreeCtrl::~ZCUserGroupTreeCtrl()
     Release();
 }
 
-void ZCUserGroupTreeCtrl::Initialize( const CString RootName, ZBUserGroupEntity* pUserGroupRoot )
+void ZCUserGroupTreeCtrl::Initialize(const CString RootName, ZBUserGroupEntity* pUserGroupRoot)
 {
-    m_RootName            = RootName;
-    m_pUserGroupRoot    = pUserGroupRoot;
+    m_RootName = RootName;
+    m_pUserGroupRoot = pUserGroupRoot;
 
     DestroyTree();
     LoadTree();
@@ -89,16 +88,16 @@ void ZCUserGroupTreeCtrl::Refresh()
 BOOL ZCUserGroupTreeCtrl::DestroyWindow()
 {
     DestroyTree();
-    
+
     return CWnd::DestroyWindow();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // ZCUserGroupTreeCtrl message handlers
 
-int ZCUserGroupTreeCtrl::OnCreate( LPCREATESTRUCT lpCreateStruct )
+int ZCUserGroupTreeCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-    if ( ZITreeCtrl::OnCreate( lpCreateStruct ) == -1 )
+    if (ZITreeCtrl::OnCreate(lpCreateStruct) == -1)
     {
         return -1;
     }
@@ -108,21 +107,21 @@ int ZCUserGroupTreeCtrl::OnCreate( LPCREATESTRUCT lpCreateStruct )
     return 0;
 }
 
-void ZCUserGroupTreeCtrl::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
+void ZCUserGroupTreeCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
-    if ( pMsg && ISA( pMsg, ZBUserGroupObserverMsg ) )
+    if (pMsg && ISA(pMsg, ZBUserGroupObserverMsg))
     {
-        switch ( dynamic_cast<ZBUserGroupObserverMsg*>( pMsg )->GetMessageID() )
+        switch (dynamic_cast<ZBUserGroupObserverMsg*>(pMsg)->GetMessageID())
         {
             case UM_INITUSERGROUP:
             {
-                if ( dynamic_cast<ZBUserGroupObserverMsg*>( pMsg )->GetpEntity() &&
-                     ISA( dynamic_cast<ZBUserGroupObserverMsg*>( pMsg )->GetpEntity(), ZBUserGroupEntity ) )
+                if (dynamic_cast<ZBUserGroupObserverMsg*>(pMsg)->GetpEntity() &&
+                    ISA(dynamic_cast<ZBUserGroupObserverMsg*>(pMsg)->GetpEntity(), ZBUserGroupEntity))
                 {
                     ZBUserGroupEntity* pGroup =
-                        dynamic_cast<ZBUserGroupEntity*>( dynamic_cast<ZBUserGroupObserverMsg*>( pMsg )->GetpEntity() );
+                        dynamic_cast<ZBUserGroupEntity*>(dynamic_cast<ZBUserGroupObserverMsg*>(pMsg)->GetpEntity());
 
-                    Initialize( dynamic_cast<ZBUserGroupObserverMsg*>( pMsg )->GetRootName(), pGroup );
+                    Initialize(dynamic_cast<ZBUserGroupObserverMsg*>(pMsg)->GetRootName(), pGroup);
                 }
                 break;
             }
@@ -136,12 +135,12 @@ void ZCUserGroupTreeCtrl::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
     }
 }
 
-void ZCUserGroupTreeCtrl::OnContextMenu( CWnd* pWnd, CPoint point )
+void ZCUserGroupTreeCtrl::OnContextMenu(CWnd* pWnd, CPoint point)
 {
-    DisplayContextMenu( pWnd, point );
+    DisplayContextMenu(pWnd, point);
 }
 
-void ZCUserGroupTreeCtrl::OnItemExpanded( LPNMHDR pnmhdr, LRESULT *pLResult )
+void ZCUserGroupTreeCtrl::OnItemExpanded(LPNMHDR pnmhdr, LRESULT *pLResult)
 {
     NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pnmhdr;
 
@@ -159,38 +158,38 @@ void ZCUserGroupTreeCtrl::OnUgpNewGroup()
     bool IsSesterces = false;
 
     ZDProcessGraphModelDoc* test =
-        (ZDProcessGraphModelDoc*)( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame()->GetActiveDocument();
+        (ZDProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
 
-    if ( test != NULL )
+    if (test != NULL)
     {
-        if ( test->GetIntegrateCostSimulation() ) IsSesterces = true;
+        if (test->GetIntegrateCostSimulation()) IsSesterces = true;
     }
 
     // If a group selected
-    if ( pGroup != NULL )
+    if (pGroup != NULL)
     {
-        ASSERT( m_pUserGroupRoot != NULL );
+        ASSERT(m_pUserGroupRoot != NULL);
 
         // Asks for the name
         // RS-MODIF 12.12.04
-        ZVUserGroupInfoDlg dlg( IDS_UGP_NEWGROUP_T,
-                                pGroup,
-                                _T( "" ),
-                                _T( "" ),
-                                0,                // Name, description, cost
-                                !IsSesterces );    // is not a role,but if sesterces is not activated we deactivate
+        ZVUserGroupInfoDlg dlg(IDS_UGP_NEWGROUP_T,
+                               pGroup,
+                               _T(""),
+                               _T(""),
+                               0,                // Name, description, cost
+                               !IsSesterces);    // is not a role,but if sesterces is not activated we deactivate
 
-        if ( dlg.DoModal() == IDOK )
+        if (dlg.DoModal() == IDOK)
         {
-            ZBUserGroupEntity* pNewGroup = m_pUserGroupRoot->AddGroup( dlg.GetName(),
-                                                                       dlg.GetDescription(),
-                                                                       dlg.GetCost(),
-                                                                       pGroup );
+            ZBUserGroupEntity* pNewGroup = m_pUserGroupRoot->AddGroup(dlg.GetName(),
+                                                                      dlg.GetDescription(),
+                                                                      dlg.GetCost(),
+                                                                      pGroup);
 
-            if ( pNewGroup )
+            if (pNewGroup)
             {
                 // Now, add the file from the tree
-                ZCUserGroupTreeCtrl::AddGroup( pNewGroup, pGroup );
+                ZCUserGroupTreeCtrl::AddGroup(pNewGroup, pGroup);
 
                 // Modified
                 m_pUserGroupRoot->SetModifiedFlag();
@@ -201,22 +200,22 @@ void ZCUserGroupTreeCtrl::OnUgpNewGroup()
 
 void ZCUserGroupTreeCtrl::OnUgpDeleteGroup()
 {
-    if ( IsRootSelected() )
+    if (IsRootSelected())
     {
         return;
     }
 
     ZBUserGroupEntity* pGroup = GetSelectedGroup();
 
-    if ( pGroup != NULL && pGroup != m_pUserGroupRoot )
+    if (pGroup != NULL && pGroup != m_pUserGroupRoot)
     {
-        ASSERT( m_pUserGroupRoot != NULL );
+        ASSERT(m_pUserGroupRoot != NULL);
 
         // Remove group from the workspace
-        m_pUserGroupRoot->RemoveGroup( pGroup );
+        m_pUserGroupRoot->RemoveGroup(pGroup);
 
         // Now delete the group name from the tree
-        ZCUserGroupTreeCtrl::RemoveGroup( pGroup );
+        ZCUserGroupTreeCtrl::RemoveGroup(pGroup);
 
         // Modified
         m_pUserGroupRoot->SetModifiedFlag();
@@ -226,7 +225,7 @@ void ZCUserGroupTreeCtrl::OnUgpDeleteGroup()
 // Cette fonction permet de renommer un groupe, et mets à jour tous les objets concernés.
 void ZCUserGroupTreeCtrl::OnUgpRenameGroup()
 {
-    if ( IsRootSelected() )
+    if (IsRootSelected())
     {
         return;
     }
@@ -235,11 +234,11 @@ void ZCUserGroupTreeCtrl::OnUgpRenameGroup()
     bool IsSesterces = false;
 
     ZDProcessGraphModelDoc* test =
-        (ZDProcessGraphModelDoc*)( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame()->GetActiveDocument();
+        (ZDProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
 
-    if ( test != NULL )
+    if (test != NULL)
     {
-        if ( test->GetIntegrateCostSimulation() )
+        if (test->GetIntegrateCostSimulation())
         {
             IsSesterces = true;
         }
@@ -247,26 +246,26 @@ void ZCUserGroupTreeCtrl::OnUgpRenameGroup()
 
     ZBUserGroupEntity* pGroup = GetSelectedGroup();
 
-    if ( pGroup != NULL )
+    if (pGroup != NULL)
     {
-        ASSERT( m_pUserGroupRoot != NULL );
+        ASSERT(m_pUserGroupRoot != NULL);
 
-        ZVUserGroupInfoDlg dlg( IDS_UGP_RENAMEGROUP_T, 
-                                ( pGroup->GetParent() && ISA( pGroup->GetParent(), ZBUserGroupEntity ) ) ? dynamic_cast<ZBUserGroupEntity*>( pGroup->GetParent() ) : pGroup,
-                                pGroup->GetEntityName(), 
-                                pGroup->GetEntityDescription(), 
-                                pGroup->GetEntityCost(),
-                                // RS-MODIF 12.12.04 only if sesterces activated
-                                !IsSesterces );
+        ZVUserGroupInfoDlg dlg(IDS_UGP_RENAMEGROUP_T,
+            (pGroup->GetParent() && ISA(pGroup->GetParent(), ZBUserGroupEntity)) ? dynamic_cast<ZBUserGroupEntity*>(pGroup->GetParent()) : pGroup,
+                               pGroup->GetEntityName(),
+                               pGroup->GetEntityDescription(),
+                               pGroup->GetEntityCost(),
+                               // RS-MODIF 12.12.04 only if sesterces activated
+                               !IsSesterces);
 
-        if ( dlg.DoModal() == IDOK )
+        if (dlg.DoModal() == IDOK)
         {
-            pGroup->SetEntityName( dlg.GetName() );
-            pGroup->SetEntityDescription( dlg.GetDescription() );
-            pGroup->SetEntityCost( dlg.GetCost() );
+            pGroup->SetEntityName(dlg.GetName());
+            pGroup->SetEntityDescription(dlg.GetDescription());
+            pGroup->SetEntityCost(dlg.GetCost());
 
             // Now modify the group name
-            ZCUserGroupTreeCtrl::ModifyGroup( pGroup );
+            ZCUserGroupTreeCtrl::ModifyGroup(pGroup);
 
             // Modified
             m_pUserGroupRoot->SetModifiedFlag();
@@ -279,28 +278,28 @@ void ZCUserGroupTreeCtrl::OnUgpAddRole()
     ZBUserGroupEntity* pGroup = GetSelectedGroup();
 
     // If a group selected
-    if ( pGroup != NULL )
+    if (pGroup != NULL)
     {
         // Asks for the name
-        ZVUserGroupInfoDlg dlg( IDS_UGP_NEWROLE_T,
-                                pGroup, 
-                                _T( "" ),
-                                _T( "" ),
-                                0,        // Name, description, cost
-                                true );    // Is a role
+        ZVUserGroupInfoDlg dlg(IDS_UGP_NEWROLE_T,
+                               pGroup,
+                               _T(""),
+                               _T(""),
+                               0,        // Name, description, cost
+                               true);    // Is a role
 
-        if ( dlg.DoModal() == IDOK )
+        if (dlg.DoModal() == IDOK)
         {
-            ASSERT( m_pUserGroupRoot != NULL );
+            ASSERT(m_pUserGroupRoot != NULL);
 
             // Add the role to the group
-            ZBUserRoleEntity* pRole = m_pUserGroupRoot->AddRole( dlg.GetName(), dlg.GetDescription(), pGroup );
+            ZBUserRoleEntity* pRole = m_pUserGroupRoot->AddRole(dlg.GetName(), dlg.GetDescription(), pGroup);
 
             // Modified
             m_pUserGroupRoot->SetModifiedFlag();
 
             // Now, add the file from the tree
-            ZCUserGroupTreeCtrl::AddRole( pRole, GetSelectedGroup() );
+            ZCUserGroupTreeCtrl::AddRole(pRole, GetSelectedGroup());
         }
     }
 }
@@ -309,18 +308,18 @@ void ZCUserGroupTreeCtrl::OnUgpDeleteRole()
 {
     ZBUserRoleEntity* pRole = GetSelectedRole();
 
-    if ( pRole != NULL )
+    if (pRole != NULL)
     {
-        ASSERT( m_pUserGroupRoot != NULL );
+        ASSERT(m_pUserGroupRoot != NULL);
 
         // Remove file from the workspace
-        m_pUserGroupRoot->RemoveRole( pRole );
+        m_pUserGroupRoot->RemoveRole(pRole);
 
         // Modified
         m_pUserGroupRoot->SetModifiedFlag();
 
         // Now, remove the file from the tree
-        ZCUserGroupTreeCtrl::RemoveRole( pRole );
+        ZCUserGroupTreeCtrl::RemoveRole(pRole);
     }
 }
 
@@ -328,24 +327,24 @@ void ZCUserGroupTreeCtrl::OnUgpRenameRole()
 {
     ZBUserRoleEntity* pRole = GetSelectedRole();
 
-    if ( pRole != NULL )
+    if (pRole != NULL)
     {
-        ASSERT( m_pUserGroupRoot != NULL );
+        ASSERT(m_pUserGroupRoot != NULL);
 
-        ZVUserGroupInfoDlg dlg( IDS_UGP_RENAMEROLE_T, 
-                                ( pRole->GetParent() && ISA( pRole->GetParent(), ZBUserGroupEntity ) ) ? dynamic_cast<ZBUserGroupEntity*>( pRole->GetParent() ) : m_pUserGroupRoot,
-                                pRole->GetEntityName(),
-                                pRole->GetEntityDescription(),
-                                0,
-                                true ); // Is a role
+        ZVUserGroupInfoDlg dlg(IDS_UGP_RENAMEROLE_T,
+            (pRole->GetParent() && ISA(pRole->GetParent(), ZBUserGroupEntity)) ? dynamic_cast<ZBUserGroupEntity*>(pRole->GetParent()) : m_pUserGroupRoot,
+                               pRole->GetEntityName(),
+                               pRole->GetEntityDescription(),
+                               0,
+                               true); // Is a role
 
-        if ( dlg.DoModal() == IDOK )
+        if (dlg.DoModal() == IDOK)
         {
-            pRole->SetEntityName( dlg.GetName() );
-            pRole->SetEntityDescription( dlg.GetDescription() );
+            pRole->SetEntityName(dlg.GetName());
+            pRole->SetEntityDescription(dlg.GetDescription());
 
             // Now modify the role name
-            ZCUserGroupTreeCtrl::ModifyRole( pRole );
+            ZCUserGroupTreeCtrl::ModifyRole(pRole);
 
             // Modified
             m_pUserGroupRoot->SetModifiedFlag();
@@ -357,29 +356,29 @@ void ZCUserGroupTreeCtrl::OnUgpMove()
 {
     ZBUserEntity* pEntity = GetSelectedEntity();
 
-    if ( pEntity != NULL )
+    if (pEntity != NULL)
     {
         // JMR-MODIF - Le 27 février 2006 - La ligne ci-dessous ne sert à rien => Supprimée.
 //        ZBUserGroupEntity* pGroup = GetSelectedGroup();
 
-        ASSERT( m_pUserGroupRoot != NULL );
+        ASSERT(m_pUserGroupRoot != NULL);
 
-        ZVSelectUserGroupDlg dlg( IDS_UGP_MOVE_T,
-                                  m_pUserGroupRoot,
-                                  true,                // AllowGroupSelection 
-                                  false );            // AllowRoleSelection
+        ZVSelectUserGroupDlg dlg(IDS_UGP_MOVE_T,
+                                 m_pUserGroupRoot,
+                                 true,                // AllowGroupSelection 
+                                 false);            // AllowRoleSelection
 
-        if ( dlg.DoModal() == IDOK )
+        if (dlg.DoModal() == IDOK)
         {
             // If we have selected an entity
             // and if it is not the same
-            if ( dlg.GetSelectedUserEntity() && 
-                 dlg.GetSelectedUserEntity() != pEntity &&
-                 ISA( dlg.GetSelectedUserEntity(), ZBUserGroupEntity ) )
+            if (dlg.GetSelectedUserEntity() &&
+                dlg.GetSelectedUserEntity() != pEntity &&
+                ISA(dlg.GetSelectedUserEntity(), ZBUserGroupEntity))
             {
                 // Move the element
                 // Assigns the new parent
-                dynamic_cast<ZBUserGroupEntity*>(dlg.GetSelectedUserEntity())->MoveEntity( pEntity );
+                dynamic_cast<ZBUserGroupEntity*>(dlg.GetSelectedUserEntity())->MoveEntity(pEntity);
 
                 // Modified
                 m_pUserGroupRoot->SetModifiedFlag();
@@ -399,38 +398,38 @@ void ZCUserGroupTreeCtrl::OnUgpProperties()
     bool IsSesterces = false;
 
     ZDProcessGraphModelDoc* test =
-        (ZDProcessGraphModelDoc*)( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame()->GetActiveDocument();
+        (ZDProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
 
-    if ( test != NULL )
+    if (test != NULL)
     {
-        if ( test->GetIntegrateCostSimulation() )
+        if (test->GetIntegrateCostSimulation())
         {
             IsSesterces = true;
         }
     }
 
-    if ( pEntity != NULL )
+    if (pEntity != NULL)
     {
         ZBUserGroupEntity* pGroup = GetSelectedGroup();
-        ASSERT( m_pUserGroupRoot != NULL );
+        ASSERT(m_pUserGroupRoot != NULL);
 
-        ZVUserGroupInfoDlg dlg( IDS_UGP_PROPERTY_T,
-                                ( pEntity->GetParent() && ISA( pEntity->GetParent(), ZBUserGroupEntity ) ) ? dynamic_cast<ZBUserGroupEntity*>( pEntity->GetParent() ) : m_pUserGroupRoot,
-                                pEntity->GetEntityName(),
-                                pEntity->GetEntityDescription(),
-                                ( pGroup != NULL ) ? pGroup->GetEntityCost() : 0,
-                                // RS-MODIF 12.12.04, is not a role only if it is a group and sesterces activated
-                                ( pGroup != NULL ) ? !IsSesterces : true,
-                                //( pGroup != NULL ) ? false : true,    // If it is a role
-                                true );                                    // ModifyMode
+        ZVUserGroupInfoDlg dlg(IDS_UGP_PROPERTY_T,
+            (pEntity->GetParent() && ISA(pEntity->GetParent(), ZBUserGroupEntity)) ? dynamic_cast<ZBUserGroupEntity*>(pEntity->GetParent()) : m_pUserGroupRoot,
+                               pEntity->GetEntityName(),
+                               pEntity->GetEntityDescription(),
+                               (pGroup != NULL) ? pGroup->GetEntityCost() : 0,
+                               // RS-MODIF 12.12.04, is not a role only if it is a group and sesterces activated
+                               (pGroup != NULL) ? !IsSesterces : true,
+                               //( pGroup != NULL ) ? false : true,    // If it is a role
+                               true);                                    // ModifyMode
 
-        if ( dlg.DoModal() == IDOK )
+        if (dlg.DoModal() == IDOK)
         {
-            pEntity->SetEntityDescription( dlg.GetDescription() );
+            pEntity->SetEntityDescription(dlg.GetDescription());
 
-            if ( pGroup != NULL )
+            if (pGroup != NULL)
             {
-                pGroup->SetEntityCost( dlg.GetCost() );
+                pGroup->SetEntityCost(dlg.GetCost());
             }
 
             // Modified
@@ -441,15 +440,15 @@ void ZCUserGroupTreeCtrl::OnUgpProperties()
 
 void ZCUserGroupTreeCtrl::OnCollapseBranch()
 {
-    CollapseBranch( GetSelectedItem(), TRUE );
+    CollapseBranch(GetSelectedItem(), TRUE);
 }
 
 void ZCUserGroupTreeCtrl::OnExpandBranch()
 {
-    ExpandBranch( GetSelectedItem(), TRUE );
+    ExpandBranch(GetSelectedItem(), TRUE);
 }
 
-void ZCUserGroupTreeCtrl::OnLButtonDblClk( UINT nFlags, CPoint point )
+void ZCUserGroupTreeCtrl::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
     // Display the properties
     ZCUserGroupTreeCtrl::OnUgpProperties();
@@ -457,9 +456,9 @@ void ZCUserGroupTreeCtrl::OnLButtonDblClk( UINT nFlags, CPoint point )
 
 void ZCUserGroupTreeCtrl::EmptyDataSet()
 {
-    _ZInternalUserGroupTreeDataIterator i( &m_DataSet );
+    _ZInternalUserGroupTreeDataIterator i(&m_DataSet);
 
-    for ( _ZInternalUserGroupTreeData* pElement = i.GetFirst(); pElement != NULL; pElement = i.GetNext() )
+    for (_ZInternalUserGroupTreeData* pElement = i.GetFirst(); pElement != NULL; pElement = i.GetNext())
     {
         delete pElement;
     }
@@ -469,9 +468,9 @@ void ZCUserGroupTreeCtrl::EmptyDataSet()
 
 void ZCUserGroupTreeCtrl::CreateTree()
 {
-    if ( m_HasBeenInitialized == false )
+    if (m_HasBeenInitialized == false)
     {
-        VERIFY( m_SubMenu.LoadMenu( IDR_USERGROUP_SUBMENUS ) );
+        VERIFY(m_SubMenu.LoadMenu(IDR_USERGROUP_SUBMENUS));
 
         // Sets styles
         HasButtons();
@@ -480,7 +479,7 @@ void ZCUserGroupTreeCtrl::CreateTree()
         ShowSelectionAlways();
 
         // Load images
-        LoadImageList( IDB_IL_USERGROUP, 17, 1, RGB( 255, 255, 255 ) );
+        LoadImageList(IDB_IL_USERGROUP, 17, 1, RGB(255, 255, 255));
 
         m_HasBeenInitialized = true;
     }
@@ -494,22 +493,22 @@ void ZCUserGroupTreeCtrl::LoadTree()
     CreateTree();
 
     // No user group, do nothing
-    if ( !m_pUserGroupRoot )
+    if (!m_pUserGroupRoot)
     {
         return;
     }
 
-    m_hUserGroupRoot = AddTypeItem ( m_RootName, _UserGroupRootTreeItem );
+    m_hUserGroupRoot = AddTypeItem(m_RootName, _UserGroupRootTreeItem);
 
-    ProcessGroup( m_pUserGroupRoot, m_hUserGroupRoot );
+    ProcessGroup(m_pUserGroupRoot, m_hUserGroupRoot);
 
     // Expand the root
-    ExpandRoot( TRUE );
+    ExpandRoot(TRUE);
 }
 
 void ZCUserGroupTreeCtrl::DestroyTree()
 {
-    if ( ::IsWindow( GetSafeHwnd() ) )
+    if (::IsWindow(GetSafeHwnd()))
     {
         DeleteAllItems();
     }
@@ -518,137 +517,137 @@ void ZCUserGroupTreeCtrl::DestroyTree()
     EmptyDataSet();
 }
 
-void ZCUserGroupTreeCtrl::ProcessGroup( ZBUserGroupEntity* pGroup, HTREEITEM hParentTreeItem )
+void ZCUserGroupTreeCtrl::ProcessGroup(ZBUserGroupEntity* pGroup, HTREEITEM hParentTreeItem)
 {
     // RS-MODIF 20.12.04 test if we use Messenger
     bool IsMessenger = true;
 
     ZDProcessGraphModelDoc* test =
-        (ZDProcessGraphModelDoc*)( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame()->GetActiveDocument();
+        (ZDProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
 
-    if ( test != NULL )
+    if (test != NULL)
     {
-        if ( !test->GetUseWorkflow() )
+        if (!test->GetUseWorkflow())
         {
             IsMessenger = false;
         }
     }
 
     // First, add the item
-    HTREEITEM hGroupItem = AddGroupItem ( pGroup, hParentTreeItem );
+    HTREEITEM hGroupItem = AddGroupItem(pGroup, hParentTreeItem);
 
-    if ( pGroup->ContainEntity() )
+    if (pGroup->ContainEntity())
     {
         int Count = pGroup->GetEntityCount();
 
-        for ( int i = 0; i < Count; ++i )
+        for (int i = 0; i < Count; ++i)
         {
-            ZBUserEntity* pEntity = pGroup->GetEntityAt( i );
+            ZBUserEntity* pEntity = pGroup->GetEntityAt(i);
 
-            if ( !pEntity )
+            if (!pEntity)
             {
                 continue;
             }
 
-            if ( ISA( pEntity, ZBUserGroupEntity ) )
+            if (ISA(pEntity, ZBUserGroupEntity))
             {
-                ProcessGroup( dynamic_cast<ZBUserGroupEntity*>( pEntity ), hGroupItem );
+                ProcessGroup(dynamic_cast<ZBUserGroupEntity*>(pEntity), hGroupItem);
             }
 
             // RS-MODIF 20.12.04 only if Messenger roles are displayed
             //if (ISA(pEntity,ZBUserRoleEntity))
-            if ( ISA( pEntity, ZBUserRoleEntity ) && IsMessenger )
+            if (ISA(pEntity, ZBUserRoleEntity) && IsMessenger)
             {
-                ProcessRole( dynamic_cast<ZBUserRoleEntity*>( pEntity ), hGroupItem );
+                ProcessRole(dynamic_cast<ZBUserRoleEntity*>(pEntity), hGroupItem);
             }
         }
     }
 }
 
-void ZCUserGroupTreeCtrl::ProcessRole( ZBUserRoleEntity* pRole, HTREEITEM hParentTreeItem )
+void ZCUserGroupTreeCtrl::ProcessRole(ZBUserRoleEntity* pRole, HTREEITEM hParentTreeItem)
 {
     // First, add the item
-    HTREEITEM hFileItem = AddRoleItem ( pRole, hParentTreeItem );
+    HTREEITEM hFileItem = AddRoleItem(pRole, hParentTreeItem);
 }
 
-HTREEITEM ZCUserGroupTreeCtrl::AddTypeItem ( const CString Name, int IconIndex, HTREEITEM hParentTreeItem /*= NULL*/ )
+HTREEITEM ZCUserGroupTreeCtrl::AddTypeItem(const CString Name, int IconIndex, HTREEITEM hParentTreeItem /*= NULL*/)
 {
     TV_INSERTSTRUCT curTreeItem;
 
-    curTreeItem.hParent                = hParentTreeItem; 
-    curTreeItem.hInsertAfter        = TVI_LAST ;
-    curTreeItem.item.iImage            = IconIndex;
-    curTreeItem.item.iSelectedImage    = IconIndex;
-    curTreeItem.item.pszText        = (char*)( (const char*)Name );
-    curTreeItem.item.lParam            = (LPARAM)AddDataToSet( Name );    // Represent a selectable item
-    curTreeItem.item.mask            = TVIF_IMAGE | TVIF_TEXT | TVIF_SELECTEDIMAGE | TVIF_PARAM;
+    curTreeItem.hParent = hParentTreeItem;
+    curTreeItem.hInsertAfter = TVI_LAST;
+    curTreeItem.item.iImage = IconIndex;
+    curTreeItem.item.iSelectedImage = IconIndex;
+    curTreeItem.item.pszText = (char*)((const char*)Name);
+    curTreeItem.item.lParam = (LPARAM)AddDataToSet(Name);    // Represent a selectable item
+    curTreeItem.item.mask = TVIF_IMAGE | TVIF_TEXT | TVIF_SELECTEDIMAGE | TVIF_PARAM;
 
-    return InsertItem( &curTreeItem );
+    return InsertItem(&curTreeItem);
 }
 
-HTREEITEM ZCUserGroupTreeCtrl::AddGroupItem( ZBUserGroupEntity* pGroup, HTREEITEM hParentTreeItem )
+HTREEITEM ZCUserGroupTreeCtrl::AddGroupItem(ZBUserGroupEntity* pGroup, HTREEITEM hParentTreeItem)
 {
-    if ( !pGroup )
+    if (!pGroup)
     {
         return NULL;
     }
 
     TV_INSERTSTRUCT curTreeItem;
 
-    curTreeItem.hParent                = hParentTreeItem; 
-    curTreeItem.hInsertAfter        = TVI_LAST;
-    curTreeItem.item.iImage            = _UserGroupTreeItem;
-    curTreeItem.item.iSelectedImage    = _UserGroupTreeItem;
-    curTreeItem.item.pszText        = (char*)( (const char*)pGroup->GetEntityName() );
-    curTreeItem.item.lParam            = (LPARAM)AddDataToSet( pGroup );    // Represent a selectable item
-    curTreeItem.item.mask            = TVIF_IMAGE | TVIF_TEXT | TVIF_SELECTEDIMAGE | TVIF_PARAM;
+    curTreeItem.hParent = hParentTreeItem;
+    curTreeItem.hInsertAfter = TVI_LAST;
+    curTreeItem.item.iImage = _UserGroupTreeItem;
+    curTreeItem.item.iSelectedImage = _UserGroupTreeItem;
+    curTreeItem.item.pszText = (char*)((const char*)pGroup->GetEntityName());
+    curTreeItem.item.lParam = (LPARAM)AddDataToSet(pGroup);    // Represent a selectable item
+    curTreeItem.item.mask = TVIF_IMAGE | TVIF_TEXT | TVIF_SELECTEDIMAGE | TVIF_PARAM;
 
-    return InsertItem( &curTreeItem );
+    return InsertItem(&curTreeItem);
 }
 
-BOOL ZCUserGroupTreeCtrl::ModifyGroupItem ( ZBUserGroupEntity* pGroup, HTREEITEM hItem )
+BOOL ZCUserGroupTreeCtrl::ModifyGroupItem(ZBUserGroupEntity* pGroup, HTREEITEM hItem)
 {
-    if ( !pGroup )
+    if (!pGroup)
     {
         return FALSE;
     }
 
-    return SetItemText( hItem, (char*)( (const char*)pGroup->GetEntityName() ) );
+    return SetItemText(hItem, (char*)((const char*)pGroup->GetEntityName()));
 }
 
-HTREEITEM ZCUserGroupTreeCtrl::AddRoleItem ( ZBUserRoleEntity* pRole, HTREEITEM hParentTreeItem )
+HTREEITEM ZCUserGroupTreeCtrl::AddRoleItem(ZBUserRoleEntity* pRole, HTREEITEM hParentTreeItem)
 {
-    if ( !pRole )
+    if (!pRole)
     {
         return NULL;
     }
 
     TV_INSERTSTRUCT curTreeItem;
 
-    curTreeItem.hParent                = hParentTreeItem; 
-    curTreeItem.hInsertAfter        = TVI_LAST;
-    curTreeItem.item.iImage            = _UserRoleTreeItem;
-    curTreeItem.item.iSelectedImage    = _UserRoleTreeItem;
-    curTreeItem.item.pszText        = (char*)( (const char*)pRole->GetEntityName() );
-    curTreeItem.item.lParam            = (LPARAM)AddDataToSet( pRole );    // Represent a selectable item
-    curTreeItem.item.mask            = TVIF_IMAGE | TVIF_TEXT | TVIF_SELECTEDIMAGE | TVIF_PARAM;
+    curTreeItem.hParent = hParentTreeItem;
+    curTreeItem.hInsertAfter = TVI_LAST;
+    curTreeItem.item.iImage = _UserRoleTreeItem;
+    curTreeItem.item.iSelectedImage = _UserRoleTreeItem;
+    curTreeItem.item.pszText = (char*)((const char*)pRole->GetEntityName());
+    curTreeItem.item.lParam = (LPARAM)AddDataToSet(pRole);    // Represent a selectable item
+    curTreeItem.item.mask = TVIF_IMAGE | TVIF_TEXT | TVIF_SELECTEDIMAGE | TVIF_PARAM;
 
-    return InsertItem( &curTreeItem );
+    return InsertItem(&curTreeItem);
 }
 
-BOOL ZCUserGroupTreeCtrl::ModifyRoleItem ( ZBUserRoleEntity* pRole, HTREEITEM hItem )
+BOOL ZCUserGroupTreeCtrl::ModifyRoleItem(ZBUserRoleEntity* pRole, HTREEITEM hItem)
 {
-    if ( !pRole )
+    if (!pRole)
     {
         return FALSE;
     }
 
-    return SetItemText( hItem, (char*)( (const char*)pRole->GetEntityName() ) );
+    return SetItemText(hItem, (char*)((const char*)pRole->GetEntityName()));
 }
 
-void ZCUserGroupTreeCtrl::AddGroup( ZBUserGroupEntity* pGroup, ZBUserGroupEntity* pParentGroup /*= NULL*/ )
+void ZCUserGroupTreeCtrl::AddGroup(ZBUserGroupEntity* pGroup, ZBUserGroupEntity* pParentGroup /*= NULL*/)
 {
-    if ( !m_hUserGroupRoot || !pGroup )
+    if (!m_hUserGroupRoot || !pGroup)
     {
         return;
     }
@@ -656,77 +655,77 @@ void ZCUserGroupTreeCtrl::AddGroup( ZBUserGroupEntity* pGroup, ZBUserGroupEntity
     HTREEITEM hParentTreeItem = m_hUserGroupRoot;
 
     // Find the tree item for the parent
-    if ( pParentGroup )
+    if (pParentGroup)
     {
         // Find the model
         _ZInternalUserGroupTreeData* pData;
-        pData = FindElementFromDataSet( pParentGroup );
+        pData = FindElementFromDataSet(pParentGroup);
 
-        if ( pData )
+        if (pData)
         {
             // From item, in fact from root
-            hParentTreeItem = FindItemData( pData, (HTREEITEM)NULL );
+            hParentTreeItem = FindItemData(pData, (HTREEITEM)NULL);
         }
 
         // If not found, set the root as parent
-        if ( !hParentTreeItem )
+        if (!hParentTreeItem)
         {
             hParentTreeItem = m_hUserGroupRoot;
         }
     }
 
     // Insert the group in the tree
-    AddGroupItem( pGroup, hParentTreeItem );
+    AddGroupItem(pGroup, hParentTreeItem);
 
     // Expand the parent. Unless, if he has no childs, they are not visible
-    ExpandBranch( hParentTreeItem );
+    ExpandBranch(hParentTreeItem);
 }
 
-void ZCUserGroupTreeCtrl::RemoveGroup( ZBUserGroupEntity* pGroup )
+void ZCUserGroupTreeCtrl::RemoveGroup(ZBUserGroupEntity* pGroup)
 {
-    if ( !m_hUserGroupRoot || !pGroup )
+    if (!m_hUserGroupRoot || !pGroup)
     {
         return;
     }
 
-    _ZInternalUserGroupTreeData* pData = FindElementFromDataSet( pGroup );
+    _ZInternalUserGroupTreeData* pData = FindElementFromDataSet(pGroup);
 
-    if ( pData )
+    if (pData)
     {
         // From item, in fact from root
-        HTREEITEM hItem = FindItemData( pData, NULL );
+        HTREEITEM hItem = FindItemData(pData, NULL);
 
-        if ( hItem )
+        if (hItem)
         {
-            DeleteItem( hItem );
+            DeleteItem(hItem);
         }
     }
 }
 
-void ZCUserGroupTreeCtrl::ModifyGroup( ZBUserGroupEntity* pGroup )
+void ZCUserGroupTreeCtrl::ModifyGroup(ZBUserGroupEntity* pGroup)
 {
-    if ( !m_hUserGroupRoot || !pGroup )
+    if (!m_hUserGroupRoot || !pGroup)
     {
         return;
     }
 
-    _ZInternalUserGroupTreeData* pData = FindElementFromDataSet( pGroup );
+    _ZInternalUserGroupTreeData* pData = FindElementFromDataSet(pGroup);
 
-    if ( pData )
+    if (pData)
     {
         // From item, in fact from root
-        HTREEITEM hItem = FindItemData( pData, NULL );
+        HTREEITEM hItem = FindItemData(pData, NULL);
 
-        if ( hItem )
+        if (hItem)
         {
-            ModifyGroupItem( pGroup, hItem );
+            ModifyGroupItem(pGroup, hItem);
         }
     }
 }
 
-void ZCUserGroupTreeCtrl::AddRole( ZBUserRoleEntity* pRole, ZBUserGroupEntity* pParentGroup )
+void ZCUserGroupTreeCtrl::AddRole(ZBUserRoleEntity* pRole, ZBUserGroupEntity* pParentGroup)
 {
-    if ( !m_hUserGroupRoot || !pRole || !pParentGroup )
+    if (!m_hUserGroupRoot || !pRole || !pParentGroup)
     {
         return;
     }
@@ -734,90 +733,90 @@ void ZCUserGroupTreeCtrl::AddRole( ZBUserRoleEntity* pRole, ZBUserGroupEntity* p
     HTREEITEM hParentTreeItem = m_hUserGroupRoot;
 
     // Find the tree item for the parent
-    if ( pParentGroup )
+    if (pParentGroup)
     {
         // Find the model
         _ZInternalUserGroupTreeData* pData;
-        pData = FindElementFromDataSet( pParentGroup );
+        pData = FindElementFromDataSet(pParentGroup);
 
-        if ( pData )
+        if (pData)
         {
-            hParentTreeItem = FindItemData( pData, (HTREEITEM)NULL ); // From item, in fact from root
+            hParentTreeItem = FindItemData(pData, (HTREEITEM)NULL); // From item, in fact from root
         }
 
         // If not found, set the root as parent
-        if ( !hParentTreeItem )
+        if (!hParentTreeItem)
         {
             hParentTreeItem = m_hUserGroupRoot;
         }
     }
 
     // Insert the file item in the tree
-    AddRoleItem( pRole, hParentTreeItem );
+    AddRoleItem(pRole, hParentTreeItem);
 
     // Expand the parent. Unless, if he has no childs, they are not visible
-    ExpandBranch( hParentTreeItem );
+    ExpandBranch(hParentTreeItem);
 }
 
-void ZCUserGroupTreeCtrl::RemoveRole( ZBUserRoleEntity* pRole )
+void ZCUserGroupTreeCtrl::RemoveRole(ZBUserRoleEntity* pRole)
 {
-    if ( !m_hUserGroupRoot || !pRole )
+    if (!m_hUserGroupRoot || !pRole)
     {
         return;
     }
 
-    _ZInternalUserGroupTreeData* pData = FindElementFromDataSet( pRole );
+    _ZInternalUserGroupTreeData* pData = FindElementFromDataSet(pRole);
 
-    if ( pData )
+    if (pData)
     {
         // From item, in fact from root
-        HTREEITEM hItem = FindItemData( pData, NULL );
+        HTREEITEM hItem = FindItemData(pData, NULL);
 
-        if ( hItem )
+        if (hItem)
         {
-            DeleteItem( hItem );
+            DeleteItem(hItem);
         }
     }
 }
 
-void ZCUserGroupTreeCtrl::ModifyRole( ZBUserRoleEntity* pRole )
+void ZCUserGroupTreeCtrl::ModifyRole(ZBUserRoleEntity* pRole)
 {
-    if ( !m_hUserGroupRoot || !pRole )
+    if (!m_hUserGroupRoot || !pRole)
     {
         return;
     }
 
-    _ZInternalUserGroupTreeData* pData = FindElementFromDataSet( pRole );
+    _ZInternalUserGroupTreeData* pData = FindElementFromDataSet(pRole);
 
-    if ( pData )
+    if (pData)
     {
         // From item, in fact from root
-        HTREEITEM hItem = FindItemData( pData, NULL );
+        HTREEITEM hItem = FindItemData(pData, NULL);
 
-        if ( hItem )
+        if (hItem)
         {
-            ModifyRoleItem( pRole, hItem );
+            ModifyRoleItem(pRole, hItem);
         }
     }
 }
 
 ZBUserEntity* ZCUserGroupTreeCtrl::GetSelectedEntity()
 {
-    return _GetEntity( GetSelectedItem() );
+    return _GetEntity(GetSelectedItem());
 }
 
-ZBUserEntity* ZCUserGroupTreeCtrl::_GetEntity( HTREEITEM hItem )
+ZBUserEntity* ZCUserGroupTreeCtrl::_GetEntity(HTREEITEM hItem)
 {
-    if ( hItem )
+    if (hItem)
     {
-        _ZInternalUserGroupTreeData* pObj = (_ZInternalUserGroupTreeData*)GetItemData( hItem );
+        _ZInternalUserGroupTreeData* pObj = (_ZInternalUserGroupTreeData*)GetItemData(hItem);
 
-        if ( pObj != NULL && pObj->m_dtp == _ZInternalUserGroupTreeData::wktp_Group )
+        if (pObj != NULL && pObj->m_dtp == _ZInternalUserGroupTreeData::wktp_Group)
         {
             return pObj->m_pGroup;
         }
 
-        if ( pObj != NULL && pObj->m_dtp == _ZInternalUserGroupTreeData::wktp_Role )
+        if (pObj != NULL && pObj->m_dtp == _ZInternalUserGroupTreeData::wktp_Role)
         {
             return pObj->m_pRole;
         }
@@ -828,16 +827,16 @@ ZBUserEntity* ZCUserGroupTreeCtrl::_GetEntity( HTREEITEM hItem )
 
 ZBUserGroupEntity* ZCUserGroupTreeCtrl::GetSelectedGroup()
 {
-    return _GetGroup( GetSelectedItem() );
+    return _GetGroup(GetSelectedItem());
 }
 
-ZBUserGroupEntity* ZCUserGroupTreeCtrl::_GetGroup( HTREEITEM hItem )
+ZBUserGroupEntity* ZCUserGroupTreeCtrl::_GetGroup(HTREEITEM hItem)
 {
-    if ( hItem )
+    if (hItem)
     {
-        _ZInternalUserGroupTreeData* pObj = (_ZInternalUserGroupTreeData*)GetItemData( hItem );
+        _ZInternalUserGroupTreeData* pObj = (_ZInternalUserGroupTreeData*)GetItemData(hItem);
 
-        if ( pObj != NULL && pObj->m_dtp == _ZInternalUserGroupTreeData::wktp_Group )
+        if (pObj != NULL && pObj->m_dtp == _ZInternalUserGroupTreeData::wktp_Group)
         {
             return pObj->m_pGroup;
         }
@@ -848,16 +847,16 @@ ZBUserGroupEntity* ZCUserGroupTreeCtrl::_GetGroup( HTREEITEM hItem )
 
 ZBUserRoleEntity* ZCUserGroupTreeCtrl::GetSelectedRole()
 {
-    return _GetRole( GetSelectedItem() );
+    return _GetRole(GetSelectedItem());
 }
 
-ZBUserRoleEntity* ZCUserGroupTreeCtrl::_GetRole( HTREEITEM hItem )
+ZBUserRoleEntity* ZCUserGroupTreeCtrl::_GetRole(HTREEITEM hItem)
 {
-    if ( hItem )
+    if (hItem)
     {
-        _ZInternalUserGroupTreeData* pObj = (_ZInternalUserGroupTreeData*)GetItemData( hItem );
+        _ZInternalUserGroupTreeData* pObj = (_ZInternalUserGroupTreeData*)GetItemData(hItem);
 
-        if ( pObj != NULL && pObj->m_dtp == _ZInternalUserGroupTreeData::wktp_Role )
+        if (pObj != NULL && pObj->m_dtp == _ZInternalUserGroupTreeData::wktp_Role)
         {
             return pObj->m_pRole;
         }
@@ -868,32 +867,32 @@ ZBUserRoleEntity* ZCUserGroupTreeCtrl::_GetRole( HTREEITEM hItem )
 
 ZBUserGroupEntity* ZCUserGroupTreeCtrl::GetSelectedOwnerGroup()
 {
-    return _GetOwnerGroup( GetSelectedItem() );
+    return _GetOwnerGroup(GetSelectedItem());
 }
 
-ZBUserGroupEntity* ZCUserGroupTreeCtrl::_GetOwnerGroup( HTREEITEM hItem )
+ZBUserGroupEntity* ZCUserGroupTreeCtrl::_GetOwnerGroup(HTREEITEM hItem)
 {
-    if ( hItem )
+    if (hItem)
     {
-        ZBUserGroupEntity* pGroup = _GetGroup( hItem );
+        ZBUserGroupEntity* pGroup = _GetGroup(hItem);
 
-        if ( pGroup )
+        if (pGroup)
         {
             // If a parent defined
-            if ( pGroup->GetParent() && ISA( pGroup->GetParent(), ZBUserGroupEntity ) )
+            if (pGroup->GetParent() && ISA(pGroup->GetParent(), ZBUserGroupEntity))
             {
-                return dynamic_cast<ZBUserGroupEntity*>( pGroup->GetParent() );
+                return dynamic_cast<ZBUserGroupEntity*>(pGroup->GetParent());
             }
 
             return pGroup;
         }
 
         // Now, try to check if a file is selected
-        ZBUserRoleEntity* pRole = _GetRole( hItem );
+        ZBUserRoleEntity* pRole = _GetRole(hItem);
 
-        if ( pRole && pRole->GetParent() && ISA( pRole->GetParent(), ZBUserGroupEntity ) )
+        if (pRole && pRole->GetParent() && ISA(pRole->GetParent(), ZBUserGroupEntity))
         {
-            return dynamic_cast<ZBUserGroupEntity*>( pRole->GetParent() );
+            return dynamic_cast<ZBUserGroupEntity*>(pRole->GetParent());
         }
     }
 
@@ -902,7 +901,7 @@ ZBUserGroupEntity* ZCUserGroupTreeCtrl::_GetOwnerGroup( HTREEITEM hItem )
 
 bool ZCUserGroupTreeCtrl::IsRootSelected() const
 {
-    if ( GetSelectedItem() && ( GetSelectedItem() == GetRootItem() ) )
+    if (GetSelectedItem() && (GetSelectedItem() == GetRootItem()))
     {
         return true;
     }
@@ -910,31 +909,31 @@ bool ZCUserGroupTreeCtrl::IsRootSelected() const
     return false;
 }
 
-int ZCUserGroupTreeCtrl::HasContextMenu( CWnd* pWnd, CPoint point )
+int ZCUserGroupTreeCtrl::HasContextMenu(CWnd* pWnd, CPoint point)
 {
     // Now display the right sub-menu
     int        IdMenu = -1;
     UINT    Flags;
-    CPoint    pt        ( point );
-    ScreenToClient    ( &pt );
+    CPoint    pt(point);
+    ScreenToClient(&pt);
 
-    HTREEITEM hItem = HitTest( pt, &Flags );
+    HTREEITEM hItem = HitTest(pt, &Flags);
 
-    if ( ( hItem != NULL ) && ( TVHT_ONITEM & Flags ) )
+    if ((hItem != NULL) && (TVHT_ONITEM & Flags))
     {
-        if ( hItem == GetRootItem() )
+        if (hItem == GetRootItem())
         {
             IdMenu = 0;
         }
-        else if ( _GetGroup( hItem ) == m_pUserGroupRoot )
+        else if (_GetGroup(hItem) == m_pUserGroupRoot)
         {
             IdMenu = 1;
         }
-        else if ( _GetGroup( hItem ) )
+        else if (_GetGroup(hItem))
         {
             IdMenu = 2;
         }
-        else if ( _GetRole( hItem ) )
+        else if (_GetRole(hItem))
         {
             IdMenu = 3;
         }
@@ -943,48 +942,48 @@ int ZCUserGroupTreeCtrl::HasContextMenu( CWnd* pWnd, CPoint point )
     return IdMenu;
 }
 
-void ZCUserGroupTreeCtrl::DisplayContextMenu( CWnd* pWnd, CPoint point )
+void ZCUserGroupTreeCtrl::DisplayContextMenu(CWnd* pWnd, CPoint point)
 {
-    int IdMenu = HasContextMenu( pWnd, point );
+    int IdMenu = HasContextMenu(pWnd, point);
 
-    if ( IdMenu == -1 )
+    if (IdMenu == -1)
     {
         return;
     }
 
-    CMenu* pPopup = m_SubMenu.GetSubMenu( IdMenu );
+    CMenu* pPopup = m_SubMenu.GetSubMenu(IdMenu);
 
-    ASSERT( pPopup != NULL );
+    ASSERT(pPopup != NULL);
 
     CWnd* pWndPopupOwner = this;
 
-    while ( pWndPopupOwner->GetStyle() & WS_CHILD )
+    while (pWndPopupOwner->GetStyle() & WS_CHILD)
     {
         pWndPopupOwner = pWndPopupOwner->GetParent();
     }
 
     // And test the hit. 
     UINT    uFlags;
-    CPoint    pt        ( point );
-    ScreenToClient    ( &pt );
-    HTREEITEM hItem = HitTest( pt, &uFlags );
+    CPoint    pt(point);
+    ScreenToClient(&pt);
+    HTREEITEM hItem = HitTest(pt, &uFlags);
 
-    if ( ( hItem != NULL ) && ( TVHT_ONITEM & uFlags ) )
+    if ((hItem != NULL) && (TVHT_ONITEM & uFlags))
     {
-        Select( hItem, TVGN_CARET );
-        pPopup->TrackPopupMenu( TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, pWndPopupOwner );
+        Select(hItem, TVGN_CARET);
+        pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, pWndPopupOwner);
     }
 }
 
-CObject* ZCUserGroupTreeCtrl::GetDragObject( HTREEITEM DragItem )
+CObject* ZCUserGroupTreeCtrl::GetDragObject(HTREEITEM DragItem)
 {
-    _ZInternalUserGroupTreeData* pObj = (_ZInternalUserGroupTreeData*)GetItemData( DragItem );
+    _ZInternalUserGroupTreeData* pObj = (_ZInternalUserGroupTreeData*)GetItemData(DragItem);
 
-    if ( pObj != NULL && pObj->m_dtp == _ZInternalUserGroupTreeData::wktp_Group )
+    if (pObj != NULL && pObj->m_dtp == _ZInternalUserGroupTreeData::wktp_Group)
     {
         return pObj->m_pGroup;
     }
-    else if ( pObj != NULL && pObj->m_dtp == _ZInternalUserGroupTreeData::wktp_Role )
+    else if (pObj != NULL && pObj->m_dtp == _ZInternalUserGroupTreeData::wktp_Role)
     {
         return pObj->m_pRole;
     }
@@ -997,56 +996,56 @@ CObject* ZCUserGroupTreeCtrl::GetDragObject( HTREEITEM DragItem )
 
 _ZInternalUserGroupTreeData::_ZInternalUserGroupTreeData()
 {
-    m_dtp        = wktp_Unknown; 
-    m_pGroup    = NULL;
-    m_pRole        = NULL;
+    m_dtp = wktp_Unknown;
+    m_pGroup = NULL;
+    m_pRole = NULL;
 
     m_Str.Empty();
 }
 
-_ZInternalUserGroupTreeData::_ZInternalUserGroupTreeData( ZBUserGroupEntity* pGroup )
+_ZInternalUserGroupTreeData::_ZInternalUserGroupTreeData(ZBUserGroupEntity* pGroup)
 {
-    m_dtp        = wktp_Group; 
-    m_pGroup    = pGroup;
-    m_pRole        = NULL;
+    m_dtp = wktp_Group;
+    m_pGroup = pGroup;
+    m_pRole = NULL;
 
     m_Str.Empty();
 }
 
-_ZInternalUserGroupTreeData::_ZInternalUserGroupTreeData( ZBUserRoleEntity* pRole )
+_ZInternalUserGroupTreeData::_ZInternalUserGroupTreeData(ZBUserRoleEntity* pRole)
 {
-    m_dtp        = wktp_Role; 
-    m_pRole        = pRole;
-    m_pGroup    = NULL;
+    m_dtp = wktp_Role;
+    m_pRole = pRole;
+    m_pGroup = NULL;
 
     m_Str.Empty();
 }
 
-_ZInternalUserGroupTreeData::_ZInternalUserGroupTreeData( CString Str )
+_ZInternalUserGroupTreeData::_ZInternalUserGroupTreeData(CString Str)
 {
-    m_dtp        = wktp_String; 
-    m_Str        = Str;
-    m_pGroup    = NULL;
-    m_pRole        = NULL;
+    m_dtp = wktp_String;
+    m_Str = Str;
+    m_pGroup = NULL;
+    m_pRole = NULL;
 }
 
 _ZInternalUserGroupTreeData::~_ZInternalUserGroupTreeData()
 {
     // In the destructor, just reset all values
-    m_dtp        = wktp_Unknown; 
-    m_pGroup    = NULL;
-    m_pRole        = NULL;
+    m_dtp = wktp_Unknown;
+    m_pGroup = NULL;
+    m_pRole = NULL;
 
     m_Str.Empty();
 }
 
-_ZInternalUserGroupTreeData* ZCUserGroupTreeCtrl::FindElementFromDataSet( ZBUserGroupEntity* pGroup )
+_ZInternalUserGroupTreeData* ZCUserGroupTreeCtrl::FindElementFromDataSet(ZBUserGroupEntity* pGroup)
 {
-    _ZInternalUserGroupTreeDataIterator i( &m_DataSet );
+    _ZInternalUserGroupTreeDataIterator i(&m_DataSet);
 
-    for ( _ZInternalUserGroupTreeData* pElement = i.GetFirst(); pElement != NULL; pElement = i.GetNext() )
+    for (_ZInternalUserGroupTreeData* pElement = i.GetFirst(); pElement != NULL; pElement = i.GetNext())
     {
-        if ( pElement->m_dtp == _ZInternalUserGroupTreeData::wktp_Group && pElement->m_pGroup == pGroup )
+        if (pElement->m_dtp == _ZInternalUserGroupTreeData::wktp_Group && pElement->m_pGroup == pGroup)
         {
             return pElement;
         }
@@ -1055,13 +1054,13 @@ _ZInternalUserGroupTreeData* ZCUserGroupTreeCtrl::FindElementFromDataSet( ZBUser
     return NULL;
 }
 
-_ZInternalUserGroupTreeData* ZCUserGroupTreeCtrl::FindElementFromDataSet( ZBUserRoleEntity* pRole )
+_ZInternalUserGroupTreeData* ZCUserGroupTreeCtrl::FindElementFromDataSet(ZBUserRoleEntity* pRole)
 {
-    _ZInternalUserGroupTreeDataIterator i( &m_DataSet );
+    _ZInternalUserGroupTreeDataIterator i(&m_DataSet);
 
-    for ( _ZInternalUserGroupTreeData* pElement = i.GetFirst(); pElement != NULL; pElement = i.GetNext() )
+    for (_ZInternalUserGroupTreeData* pElement = i.GetFirst(); pElement != NULL; pElement = i.GetNext())
     {
-        if ( pElement->m_dtp == _ZInternalUserGroupTreeData::wktp_Role && pElement->m_pRole == pRole )
+        if (pElement->m_dtp == _ZInternalUserGroupTreeData::wktp_Role && pElement->m_pRole == pRole)
         {
             return pElement;
         }
@@ -1070,13 +1069,13 @@ _ZInternalUserGroupTreeData* ZCUserGroupTreeCtrl::FindElementFromDataSet( ZBUser
     return NULL;
 }
 
-_ZInternalUserGroupTreeData* ZCUserGroupTreeCtrl::FindElementFromDataSet( CString Str )
+_ZInternalUserGroupTreeData* ZCUserGroupTreeCtrl::FindElementFromDataSet(CString Str)
 {
-    _ZInternalUserGroupTreeDataIterator i( &m_DataSet );
+    _ZInternalUserGroupTreeDataIterator i(&m_DataSet);
 
-    for ( _ZInternalUserGroupTreeData* pElement = i.GetFirst(); pElement != NULL; pElement = i.GetNext() )
+    for (_ZInternalUserGroupTreeData* pElement = i.GetFirst(); pElement != NULL; pElement = i.GetNext())
     {
-        if ( pElement->m_dtp == _ZInternalUserGroupTreeData::wktp_String && pElement->m_Str == Str )
+        if (pElement->m_dtp == _ZInternalUserGroupTreeData::wktp_String && pElement->m_Str == Str)
         {
             return pElement;
         }
@@ -1085,66 +1084,66 @@ _ZInternalUserGroupTreeData* ZCUserGroupTreeCtrl::FindElementFromDataSet( CStrin
     return NULL;
 }
 
-_ZInternalUserGroupTreeData* ZCUserGroupTreeCtrl::AddDataToSet( ZBUserGroupEntity* pGroup )
+_ZInternalUserGroupTreeData* ZCUserGroupTreeCtrl::AddDataToSet(ZBUserGroupEntity* pGroup)
 {
-    _ZInternalUserGroupTreeData* pData = new _ZInternalUserGroupTreeData( pGroup );
-    m_DataSet.Add( pData );
+    _ZInternalUserGroupTreeData* pData = new _ZInternalUserGroupTreeData(pGroup);
+    m_DataSet.Add(pData);
 
     return pData;
 }
 
-_ZInternalUserGroupTreeData* ZCUserGroupTreeCtrl::AddDataToSet( ZBUserRoleEntity* pRole )
+_ZInternalUserGroupTreeData* ZCUserGroupTreeCtrl::AddDataToSet(ZBUserRoleEntity* pRole)
 {
-    _ZInternalUserGroupTreeData* pData = new _ZInternalUserGroupTreeData( pRole );
-    m_DataSet.Add( pData );
+    _ZInternalUserGroupTreeData* pData = new _ZInternalUserGroupTreeData(pRole);
+    m_DataSet.Add(pData);
 
     return pData;
 }
 
-_ZInternalUserGroupTreeData* ZCUserGroupTreeCtrl::AddDataToSet( CString Str )
+_ZInternalUserGroupTreeData* ZCUserGroupTreeCtrl::AddDataToSet(CString Str)
 {
-    _ZInternalUserGroupTreeData* pData = new _ZInternalUserGroupTreeData( Str );
-    m_DataSet.Add( pData );
+    _ZInternalUserGroupTreeData* pData = new _ZInternalUserGroupTreeData(Str);
+    m_DataSet.Add(pData);
 
     return pData;
 }
 
 bool ZCUserGroupTreeCtrl::CanUgpNewGroup()
 {
-    return ( GetSelectedGroup() != NULL ) ? true : false;
+    return (GetSelectedGroup() != NULL) ? true : false;
 }
 
 bool ZCUserGroupTreeCtrl::CanUgpDeleteGroup()
 {
-    return ( GetSelectedGroup() != NULL && GetSelectedGroup() != m_pUserGroupRoot ) ? true : false;
+    return (GetSelectedGroup() != NULL && GetSelectedGroup() != m_pUserGroupRoot) ? true : false;
 }
 
 bool ZCUserGroupTreeCtrl::CanUgpRenameGroup()
 {
-    return ( GetSelectedGroup() != NULL ) ? true : false;
+    return (GetSelectedGroup() != NULL) ? true : false;
 }
 
 bool ZCUserGroupTreeCtrl::CanUgpAddRole()
 {
-    return ( GetSelectedGroup() != NULL ) ? true : false;
+    return (GetSelectedGroup() != NULL) ? true : false;
 }
 
 bool ZCUserGroupTreeCtrl::CanUgpDeleteRole()
 {
-    return ( GetSelectedRole() != NULL ) ? true : false;
+    return (GetSelectedRole() != NULL) ? true : false;
 }
 
 bool ZCUserGroupTreeCtrl::CanUgpRenameRole()
 {
-    return ( GetSelectedRole() != NULL ) ? true : false;
+    return (GetSelectedRole() != NULL) ? true : false;
 }
 
 bool ZCUserGroupTreeCtrl::CanUgpMove()
 {
-    return ( GetSelectedEntity() != NULL || IsRootSelected() ) ? true : false;
+    return (GetSelectedEntity() != NULL || IsRootSelected()) ? true : false;
 }
 
 bool ZCUserGroupTreeCtrl::CanUgpProperties()
 {
-    return ( GetSelectedEntity() != NULL || IsRootSelected() ) ? true : false;
+    return (GetSelectedEntity() != NULL || IsRootSelected()) ? true : false;
 }

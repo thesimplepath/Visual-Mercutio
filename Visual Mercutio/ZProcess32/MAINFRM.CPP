@@ -1064,7 +1064,7 @@ void ZIMainFrame::OnUpdatePage(CCmdUI *pCmdUI)
 
 afx_msg LRESULT ZIMainFrame::OnDocumentLoaded(WPARAM wParam, LPARAM lParam)
 {
-    ZIObserverMsg* pMsg = (ZIObserverMsg*)lParam;
+    PSS_ObserverMsg* pMsg = (PSS_ObserverMsg*)lParam;
 
     if (pMsg && ISA(pMsg, ZBDocObserverMsg))
     {

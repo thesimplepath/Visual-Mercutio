@@ -13,8 +13,8 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseLib\ZISubject.h"
-#include "zBaseLib\ZIObserver.h"
+#include "zBaseLib\PSS_Subject.h"
+#include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\ZITreeCtl.h"
 
 // Forward class declaration
@@ -46,8 +46,8 @@ public:
     };
 
     _ZInternalLogicalSystemTreeData();
-    _ZInternalLogicalSystemTreeData( ZBLogicalSystemEntity* pLogicalSystem );
-    _ZInternalLogicalSystemTreeData( CString Str );
+    _ZInternalLogicalSystemTreeData(ZBLogicalSystemEntity* pLogicalSystem);
+    _ZInternalLogicalSystemTreeData(CString Str);
     ~_ZInternalLogicalSystemTreeData();
 
     // Data member
@@ -60,19 +60,19 @@ public:
 // ZCLogicalSystemTreeCtrl window
 
 class AFX_EXT_CLASS ZCLogicalSystemTreeCtrl : public ZITreeCtrl,
-                                              public ZISubject,
-                                              public ZIObserver
+    public PSS_Subject,
+    public PSS_Observer
 {
-// Construction / Destruction
+    // Construction / Destruction
 public:
 
-    ZCLogicalSystemTreeCtrl( const CString RootName = _T( "" ), ZBLogicalSystemEntity* pLogicalSystemRoot = NULL );
+    ZCLogicalSystemTreeCtrl(const CString RootName = _T(""), ZBLogicalSystemEntity* pLogicalSystemRoot = NULL);
     virtual ~ZCLogicalSystemTreeCtrl();
 
     //////////////////////////////////////////////////////////////////
     // Operations
 
-    void Initialize( const CString RootName, ZBLogicalSystemEntity* pLogicalSystemRoot );
+    void Initialize(const CString RootName, ZBLogicalSystemEntity* pLogicalSystemRoot);
 
     // JMR-MODIF - Le 30 août 2005 - Ajout de la fonction Release.
     void Release();
@@ -84,9 +84,9 @@ public:
     ZBLogicalSystemEntity* GetSelectedLogicalSystemOwner();
     bool IsRootSelected() const;
 
-    void AddLogicalSystem( ZBLogicalSystemEntity* pLogicalSystem, ZBLogicalSystemEntity* pParentLogicalSystem = NULL );
-    void RemoveLogicalSystem( ZBLogicalSystemEntity* pLogicalSystem );
-    void ModifyLogicalSystem( ZBLogicalSystemEntity* pLogicalSystem );
+    void AddLogicalSystem(ZBLogicalSystemEntity* pLogicalSystem, ZBLogicalSystemEntity* pParentLogicalSystem = NULL);
+    void RemoveLogicalSystem(ZBLogicalSystemEntity* pLogicalSystem);
+    void ModifyLogicalSystem(ZBLogicalSystemEntity* pLogicalSystem);
 
     virtual void OnNewLogicalSystem();
     virtual void OnDeleteLogicalSystem();
@@ -102,24 +102,24 @@ public:
 
     ////////////////////////////////////////////////////////////////////
     // ZIObserver call back
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     ////////////////////////////////////////////////////////////////////
     // Context menu function
-    virtual int HasContextMenu( CWnd* pWnd, CPoint point );
-    virtual void DisplayContextMenu( CWnd* pWnd, CPoint point );
+    virtual int HasContextMenu(CWnd* pWnd, CPoint point);
+    virtual void DisplayContextMenu(CWnd* pWnd, CPoint point);
 
-// Overrides
+    // Overrides
 protected:
 
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZCLogicalSystemTreeCtrl)
     virtual BOOL DestroyWindow();
-//    virtual void OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHndler);
-    //}}AFX_VIRTUAL
+    //    virtual void OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHndler);
+        //}}AFX_VIRTUAL
 
-    // Generated message map functions
-    //{{AFX_MSG(ZCLogicalSystemTreeCtrl)
+        // Generated message map functions
+        //{{AFX_MSG(ZCLogicalSystemTreeCtrl)
     afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
     afx_msg void OnLButtonDblClk(UINT nFlags, CPoint pt);
     afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
@@ -130,7 +130,7 @@ protected:
     DECLARE_MESSAGE_MAP()
 
     virtual int GetIndexOfNoDropImage() const;
-    virtual CObject* GetDragObject( HTREEITEM DragItem );
+    virtual CObject* GetDragObject(HTREEITEM DragItem);
 
 private:
 
@@ -139,22 +139,22 @@ private:
     void DestroyTree();
     void EmptyDataSet();
 
-    void ProcessLogicalSystemGroup( ZBLogicalSystemEntity* pLogicalSystem, HTREEITEM hParentTreeItem );
+    void ProcessLogicalSystemGroup(ZBLogicalSystemEntity* pLogicalSystem, HTREEITEM hParentTreeItem);
 
-    HTREEITEM AddTypeItem ( const CString Name, int IconIndex, HTREEITEM hParentTreeItem = NULL );
-    HTREEITEM AddLogicalSystemItem ( ZBLogicalSystemEntity* pLogicalSystem, HTREEITEM hParentTreeItem );
-    BOOL ModifyLogicalSystemItem ( ZBLogicalSystemEntity* pLogicalSystem, HTREEITEM hItem );
+    HTREEITEM AddTypeItem(const CString Name, int IconIndex, HTREEITEM hParentTreeItem = NULL);
+    HTREEITEM AddLogicalSystemItem(ZBLogicalSystemEntity* pLogicalSystem, HTREEITEM hParentTreeItem);
+    BOOL ModifyLogicalSystemItem(ZBLogicalSystemEntity* pLogicalSystem, HTREEITEM hItem);
 
-    ZBSystemEntity*            _GetSystemEntity( HTREEITEM hItem );
-    ZBLogicalSystemEntity*    _GetLogicalSystem( HTREEITEM hItem );
-    ZBLogicalSystemEntity*    _GetOwnerSystem( HTREEITEM hItem );
+    ZBSystemEntity*            _GetSystemEntity(HTREEITEM hItem);
+    ZBLogicalSystemEntity*    _GetLogicalSystem(HTREEITEM hItem);
+    ZBLogicalSystemEntity*    _GetOwnerSystem(HTREEITEM hItem);
 
-    _ZInternalLogicalSystemTreeData* FindElementFromDataSet( ZBSystemEntity* pEntity );
-    _ZInternalLogicalSystemTreeData* FindElementFromDataSet( ZBLogicalSystemEntity* pLogicalSystem );
-    _ZInternalLogicalSystemTreeData* FindElementFromDataSet( CString Str );
+    _ZInternalLogicalSystemTreeData* FindElementFromDataSet(ZBSystemEntity* pEntity);
+    _ZInternalLogicalSystemTreeData* FindElementFromDataSet(ZBLogicalSystemEntity* pLogicalSystem);
+    _ZInternalLogicalSystemTreeData* FindElementFromDataSet(CString Str);
 
-    _ZInternalLogicalSystemTreeData* AddDataToSet( ZBLogicalSystemEntity* pLogicalSystem );
-    _ZInternalLogicalSystemTreeData* AddDataToSet( CString Str );
+    _ZInternalLogicalSystemTreeData* AddDataToSet(ZBLogicalSystemEntity* pLogicalSystem);
+    _ZInternalLogicalSystemTreeData* AddDataToSet(CString Str);
 
 private:
 
@@ -180,8 +180,4 @@ inline int ZCLogicalSystemTreeCtrl::GetIndexOfNoDropImage() const
     return 2;
 }
 
-/////////////////////////////////////////////////////////////////////////////
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZCLogicalSystemTreeCtrl_H__2F41F061_F558_4A24_BDE9_D472E36F653E__INCLUDED_)
+#endif

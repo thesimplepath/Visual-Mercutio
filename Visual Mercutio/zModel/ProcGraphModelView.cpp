@@ -939,7 +939,7 @@ afx_msg LRESULT ZIProcessGraphModelView::OnRefreshSymbol(WPARAM wParam, LPARAM l
         return 0;
     }
 
-    ZIObserverMsg* pMsg = (ZIObserverMsg*)lParam;
+    PSS_ObserverMsg* pMsg = (PSS_ObserverMsg*)lParam;
 
     if (pMsg && ISA(pMsg, ZBModelObserverMsg) && ZIProcessGraphModelViewport::GetModelController())
     {
@@ -962,7 +962,7 @@ afx_msg LRESULT ZIProcessGraphModelView::OnRefreshSymbolSet(WPARAM wParam, LPARA
         return 0;
     }
 
-    ZIObserverMsg* pMsg = (ZIObserverMsg*)lParam;
+    PSS_ObserverMsg* pMsg = (PSS_ObserverMsg*)lParam;
 
     if (pMsg && ISA(pMsg, ZBModelObserverMsg) && ZIProcessGraphModelViewport::GetModelController())
     {
@@ -985,7 +985,7 @@ afx_msg LRESULT ZIProcessGraphModelView::OnBrowseSymbol(WPARAM wParam, LPARAM lP
         return 0;
     }
 
-    ZIObserverMsg* pMsg = (ZIObserverMsg*)lParam;
+    PSS_ObserverMsg* pMsg = (PSS_ObserverMsg*)lParam;
 
     if (pMsg && ISA(pMsg, ZBModelObserverMsg) && ZIProcessGraphModelViewport::GetModelController())
     {
@@ -1010,7 +1010,7 @@ afx_msg LRESULT ZIProcessGraphModelView::OnOpenModelPage(WPARAM wParam, LPARAM l
         return 0;
     }
 
-    ZIObserverMsg* pMsg = (ZIObserverMsg*)lParam;
+    PSS_ObserverMsg* pMsg = (PSS_ObserverMsg*)lParam;
 
     if (pMsg && ISA(pMsg, ZBModelObserverMsg) && ZIProcessGraphModelViewport::GetModelController())
     {
@@ -1045,7 +1045,7 @@ afx_msg LRESULT ZIProcessGraphModelView::OnEnsureVisibleSymbol(WPARAM wParam, LP
         return 0;
     }
 
-    ZIObserverMsg* pMsg = (ZIObserverMsg*)lParam;
+    PSS_ObserverMsg* pMsg = (PSS_ObserverMsg*)lParam;
 
     if (pMsg && ISA(pMsg, ZBModelObserverMsg) && ZIProcessGraphModelViewport::GetModelController())
     {

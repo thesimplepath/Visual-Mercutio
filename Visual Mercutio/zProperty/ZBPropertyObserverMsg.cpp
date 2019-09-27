@@ -12,20 +12,17 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
-IMPLEMENT_DYNAMIC(ZBPropertyObserverMsg, ZIObserverMsg)
+IMPLEMENT_DYNAMIC(ZBPropertyObserverMsg, PSS_ObserverMsg)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBPropertyObserverMsg::ZBPropertyObserverMsg(ZIProperties* pProperties /*= NULL*/)
-: m_pProperties(pProperties)
-{
-
-}
+ZBPropertyObserverMsg::ZBPropertyObserverMsg(ZIProperties* pProperties /*= NULL*/) :
+    PSS_ObserverMsg(),
+    m_pProperties(pProperties)
+{}
 
 
 ZBPropertyObserverMsg::~ZBPropertyObserverMsg()
-{
-
-}
+{}

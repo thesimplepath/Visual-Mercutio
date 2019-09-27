@@ -43,7 +43,7 @@ protected:
     DECLARE_DYNAMIC(ZCInPlaceExtendedEdit)
 
 public:
-    ZCInPlaceExtendedEdit( bool IsReadOnly = false );
+    ZCInPlaceExtendedEdit(bool IsReadOnly = false);
     virtual ~ZCInPlaceExtendedEdit();
 
     // Operations
@@ -60,13 +60,13 @@ public:
     virtual CString GetEditText() const;
 
     // ZIObserver OnUpdate call-back function
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     // Call when requires to process the extended command
     virtual void OnExtendedCommand();
 
-    bool IsEditCtrlHit( CPoint point ) const;
-    bool IsEditButtonCtrlHit( CPoint point ) const;
+    bool IsEditCtrlHit(CPoint point) const;
+    bool IsEditButtonCtrlHit(CPoint point) const;
 
     // Virtual function to cancel and save the edition
     virtual void CancelEdit();
@@ -96,14 +96,6 @@ private:
 };
 
 inline ZCInPlaceExtendedEdit::~ZCInPlaceExtendedEdit()
-{
-}
+{}
 
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(_ZCInPlaceExtendedEdit_H__)
-
-
+#endif

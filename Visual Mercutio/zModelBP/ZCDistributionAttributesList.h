@@ -31,8 +31,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 
-#include "zBaseLib\ZISubject.h"
-#include "zBaseLib\ZIObserver.h"
+#include "zBaseLib\PSS_Subject.h"
+#include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\PSS_TreeListCtrl.h"
 
 
@@ -59,13 +59,13 @@ class ZBUserGroupEntity;
 
 
 
-class AFX_EXT_CLASS ZCDistributionAttributesList : public PSS_TreeListCtrl, public ZISubject, public ZIObserver  
+class AFX_EXT_CLASS ZCDistributionAttributesList : public PSS_TreeListCtrl, public PSS_Subject, public PSS_Observer
 {
 
     DECLARE_DYNAMIC(ZCDistributionAttributesList)
 
 public:
-    ZCDistributionAttributesList ();
+    ZCDistributionAttributesList();
     virtual ~ZCDistributionAttributesList();
 
     ZBDistributionAttribute* GetSelectedDistributionAttribute();
@@ -73,29 +73,29 @@ public:
     ZBDistributionRule*    GetSelectedDistributionRule();
 
 
-    int    Initialize (ZBDistributionAttributeManager* pDistributionManager, 
-                    ZBDynamicPropertiesManager* pPropManager, 
-                    ZBUserGroupEntity* pMainUserGroup,
-                    ZBDistributionAttribute* pDistributionAttribute = NULL,
-                    bool ShowAll = false, int SymbolRef = -1);
-    void  ShowAll( bool value = true, bool bRefresh = true )
+    int    Initialize(ZBDistributionAttributeManager* pDistributionManager,
+                      ZBDynamicPropertiesManager* pPropManager,
+                      ZBUserGroupEntity* pMainUserGroup,
+                      ZBDistributionAttribute* pDistributionAttribute = NULL,
+                      bool ShowAll = false, int SymbolRef = -1);
+    void  ShowAll(bool value = true, bool bRefresh = true)
     {
-      m_ShowAll = value;
-      if (bRefresh)
-          Refresh();
+        m_ShowAll = value;
+        if (bRefresh)
+            Refresh();
     };
-    void  SetSymbolRef( int value, bool bRefresh = true )
+    void  SetSymbolRef(int value, bool bRefresh = true)
     {
-      m_SymbolRef = value;
-      if (bRefresh)
-          Refresh();
+        m_SymbolRef = value;
+        if (bRefresh)
+            Refresh();
     };
-    int    Refresh ();
+    int    Refresh();
     void    Empty();
 
 
     // Observer call back
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZCDistributionAttributesList)
@@ -109,8 +109,8 @@ private:
     const    ZCDistributionAttributesList & operator=(const ZCDistributionAttributesList &right);
 
     void    BuildColumns();
-    void    DocumentActivated( ZDProcessGraphModelDoc* pDoc );
-    int        InsertDistributionAttribute( ZBDistributionAttribute* pDistributionAttribute, int Level );
+    void    DocumentActivated(ZDProcessGraphModelDoc* pDoc);
+    int        InsertDistributionAttribute(ZBDistributionAttribute* pDistributionAttribute, int Level);
 
 private: //## implementation
     ZBDistributionAttribute* m_pDistributionAttribute;

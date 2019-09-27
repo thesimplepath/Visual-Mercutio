@@ -7,7 +7,7 @@
 
 #include "zProperty\ZBPropertyItem.h"
 
-#include "zBaseLib\ZBToolbarObserverMsg.h"
+#include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zBaseLib\PSS_KeyboardObserverMsg.h"
 #include "zBaseLib\PSS_MenuObserverMsg.h"
 
@@ -200,8 +200,8 @@ void ZCInPlaceDateEdit::SaveValue()
                     // Set the has changed flag for the property item
                     m_pItem->SetHasChanged();
                     // Notify observers for value changed
-                    ZBToolbarObserverMsg Msg(WM_VALUESAVED_EDIT);
-                    NotifyAllObservers(&Msg);
+                    PSS_ToolbarObserverMsg msg(WM_VALUESAVED_EDIT);
+                    NotifyAllObservers(&msg);
                     // Reset the change flag
                     m_HasChanged = false;
                     // OK
@@ -254,7 +254,7 @@ void ZCInPlaceDateEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
     PSS_SearchEdit::OnChar(nChar, nRepCnt, nFlags);
 }
 
-void ZCInPlaceDateEdit::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
+void ZCInPlaceDateEdit::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {}
 
 void ZCInPlaceDateEdit::OnExtendedCommand()

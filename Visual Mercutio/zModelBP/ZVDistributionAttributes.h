@@ -16,8 +16,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 
-#include "zBaseLib\ZISubject.h"
-#include "zBaseLib\ZIObserver.h"
+#include "zBaseLib\PSS_Subject.h"
+#include "zBaseLib\PSS_Observer.h"
 #include "ZCDistributionAttributesList.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -39,13 +39,13 @@ class ZDProcessGraphModelDoc;
 /////////////////////////////////////////////////////////////////////////////
 // _ZVFlatToolBarDistributionAttribs window
 
-class _ZVFlatToolBarDistributionAttribs : public CStatic, public ZISubject
+class _ZVFlatToolBarDistributionAttribs : public CStatic, public PSS_Subject
 {
-// Construction
+    // Construction
 public:
     _ZVFlatToolBarDistributionAttribs();
 
-// Attributes
+    // Attributes
 private:
     CCJFlatButton    m_RefreshButton;
     CCJFlatButton    m_AddDistributionAttribButton;
@@ -55,15 +55,15 @@ private:
     CImageList        m_ImageList;
     CToolTipCtrl    m_tooltip;
 
-// Operations
+    // Operations
 public:
 
-// Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(_ZVFlatToolBarDistributionAttribs)
-    public:
+    // Overrides
+        // ClassWizard generated virtual function overrides
+        //{{AFX_VIRTUAL(_ZVFlatToolBarDistributionAttribs)
+public:
     virtual BOOL PreTranslateMessage(MSG* pMsg);
-    protected:
+protected:
     virtual void PreSubclassWindow();
     //}}AFX_VIRTUAL
 
@@ -90,7 +90,7 @@ protected:
 /////////////////////////////////////////////////////////////////////////////
 // ZVDistributionAttributes view
 
-class AFX_EXT_CLASS ZVDistributionAttributes : public CWnd, public ZISubject, public ZIObserver
+class AFX_EXT_CLASS ZVDistributionAttributes : public CWnd, public PSS_Subject, public PSS_Observer
 {
 
 public:
@@ -99,26 +99,26 @@ public:
     virtual ~ZVDistributionAttributes();
 
     // Observer call back
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     // Operations
-    void Initialize(ZBDistributionAttributeManager* pDistributionManager, 
-                    ZBDynamicPropertiesManager* pPropManager, 
+    void Initialize(ZBDistributionAttributeManager* pDistributionManager,
+                    ZBDynamicPropertiesManager* pPropManager,
                     ZBUserGroupEntity* pMainUserGroup,
                     ZBDistributionAttribute* pDistributionAttribute = NULL,
                     bool ShowAll = false, int SymbolRef = -1)
     {
-        m_listctrl.Initialize(pDistributionManager, pPropManager, 
+        m_listctrl.Initialize(pDistributionManager, pPropManager,
                               pMainUserGroup, pDistributionAttribute,
                               ShowAll, SymbolRef);
     };
-    void ShowAll( bool value = true, bool bRefresh = true )
+    void ShowAll(bool value = true, bool bRefresh = true)
     {
-        m_listctrl.ShowAll( value, bRefresh );
+        m_listctrl.ShowAll(value, bRefresh);
     };
-    void SetSymbolRef( int value, bool bRefresh = true )
+    void SetSymbolRef(int value, bool bRefresh = true)
     {
-        m_listctrl.SetSymbolRef( value, bRefresh );
+        m_listctrl.SetSymbolRef(value, bRefresh);
     };
 
     void Refresh();
@@ -163,9 +163,4 @@ private:
 
 };
 
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(_ZVDistributionAttributes_H__)
+#endif

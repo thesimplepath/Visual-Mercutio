@@ -906,7 +906,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBToolbarObserverMsg.cpp">
+    <ClCompile Include="PSS_ToolbarObserverMsg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1097,19 +1097,19 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZIObserver.cpp">
+    <ClCompile Include="PSS_Observer.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZIObserverMsg.cpp">
+    <ClCompile Include="PSS_ObserverMsg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZISubject.cpp">
+    <ClCompile Include="PSS_Subject.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1473,7 +1473,7 @@
     <ClInclude Include="PSS_StringFormat.h" />
     <ClInclude Include="PSS_TimeSpan.h" />
     <ClInclude Include="PSS_Tokenizer.h" />
-    <ClInclude Include="ZBToolbarObserverMsg.h" />
+    <ClInclude Include="PSS_ToolbarObserverMsg.h" />
     <ClInclude Include="ZBWorkspaceEntity.h" />
     <ClInclude Include="ZBWorkspaceEnv.h" />
     <ClInclude Include="ZBWorkspaceFileEntity.h" />
@@ -1505,9 +1505,9 @@
     <ClInclude Include="ZILog.h" />
     <ClInclude Include="ZIntelliListBox.h" />
     <ClInclude Include="ZIntelliMultiLineBox.h" />
-    <ClInclude Include="ZIObserver.h" />
-    <ClInclude Include="ZIObserverMsg.h" />
-    <ClInclude Include="ZISubject.h" />
+    <ClInclude Include="PSS_Observer.h" />
+    <ClInclude Include="PSS_ObserverMsg.h" />
+    <ClInclude Include="PSS_Subject.h" />
     <ClInclude Include="ZIToolTip.h" />
     <ClInclude Include="zitreectl.h" />
     <ClInclude Include="ZITreeView.h" />

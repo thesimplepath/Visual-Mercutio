@@ -31,8 +31,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 
-#include "zBaseLib\ZISubject.h"
-#include "zBaseLib\ZIObserver.h"
+#include "zBaseLib\PSS_Subject.h"
+#include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\ZIListCtrl.h"
 
 
@@ -56,37 +56,37 @@ class ZDProcessGraphModelDoc;
 
 
 
-class AFX_EXT_CLASS ZCInputAttributesList : public ZIListCtrl, public ZISubject, public ZIObserver  
+class AFX_EXT_CLASS ZCInputAttributesList : public ZIListCtrl, public PSS_Subject, public PSS_Observer
 {
 
     DECLARE_DYNAMIC(ZCInputAttributesList)
 
 public:
-    ZCInputAttributesList ();
+    ZCInputAttributesList();
     virtual ~ZCInputAttributesList();
 
     ZBInputAttribute* GetSelectedInputAttribute();
 
 
-    int    Initialize (ZBInputAttributeManager* pInputManager, ZBDynamicPropertiesManager* pPropManager, bool ShowAll = false, int SymbolRef = -1);
-    void  ShowAll( bool value = true, bool bRefresh = true )
+    int    Initialize(ZBInputAttributeManager* pInputManager, ZBDynamicPropertiesManager* pPropManager, bool ShowAll = false, int SymbolRef = -1);
+    void  ShowAll(bool value = true, bool bRefresh = true)
     {
-      m_ShowAll = value;
-      if (bRefresh)
-          Refresh();
+        m_ShowAll = value;
+        if (bRefresh)
+            Refresh();
     };
-    void  SetSymbolRef( int value, bool bRefresh = true )
+    void  SetSymbolRef(int value, bool bRefresh = true)
     {
-      m_SymbolRef = value;
-      if (bRefresh)
-          Refresh();
+        m_SymbolRef = value;
+        if (bRefresh)
+            Refresh();
     };
-    int    Refresh ();
+    int    Refresh();
     void    Empty();
 
 
     // Observer call back
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZCInputAttributesList)
@@ -100,7 +100,7 @@ private:
     const    ZCInputAttributesList & operator=(const ZCInputAttributesList &right);
 
     void    BuildColumns();
-    void    DocumentActivated( ZDProcessGraphModelDoc* pDoc );
+    void    DocumentActivated(ZDProcessGraphModelDoc* pDoc);
 
 private: //## implementation
     ZBInputAttributeManager*    m_pInputManager;
@@ -112,7 +112,4 @@ private: //## implementation
     ZDProcessGraphModelDoc*    m_pDoc;
 };
 
-//#undef  AFX_DATA
-//#define AFX_DATA
-
-#endif      // ZCInputAttributesList_h
+#endif

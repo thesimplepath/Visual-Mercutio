@@ -38,8 +38,8 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // ZCWorkspaceTreeCtrl
 
-ZCWorkspaceTreeCtrl::ZCWorkspaceTreeCtrl(const CString RootName /*= ""*/, ZBWorkspaceEnv* pWorkspaceEnv /*= NULL*/)
-    : m_RootName(RootName),
+ZCWorkspaceTreeCtrl::ZCWorkspaceTreeCtrl(const CString RootName /*= ""*/, ZBWorkspaceEnv* pWorkspaceEnv /*= NULL*/) :
+    m_RootName(RootName),
     m_pWorkspaceEnv(pWorkspaceEnv),
     m_hRootWorkspaceEnv(NULL)
 {}
@@ -60,7 +60,7 @@ void ZCWorkspaceTreeCtrl::Refresh()
     LoadTree();
 }
 
-void ZCWorkspaceTreeCtrl::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
+void ZCWorkspaceTreeCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
     if (pMsg && ISA(pMsg, ZBWorkspaceObserverMsg))
     {

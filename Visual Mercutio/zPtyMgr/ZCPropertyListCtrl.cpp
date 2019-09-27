@@ -9,7 +9,7 @@
 // Observer message classes
 #include "zProperty\ZBPropertyObserverMsg.h"
 #include "zProperty\ZBPropertyItemObserverMsg.h"
-#include "zBaseLib\ZBToolbarObserverMsg.h"
+#include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zBaseLib\PSS_KeyboardObserverMsg.h"
 
 #include "zPtyMgrRes.h"
@@ -114,7 +114,7 @@ ZCPropertyListCtrl::~ZCPropertyListCtrl()
     }
 }
 
-void ZCPropertyListCtrl::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
+void ZCPropertyListCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
     if (pMsg && ISA(pMsg, ZBPropertyObserverMsg))
     {
@@ -163,9 +163,9 @@ void ZCPropertyListCtrl::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
             }
         }
     }
-    else if (pMsg && ISA(pMsg, ZBToolbarObserverMsg))
+    else if (pMsg && ISA(pMsg, PSS_ToolbarObserverMsg))
     {
-        switch (dynamic_cast<ZBToolbarObserverMsg*>(pMsg)->GetMessageID())
+        switch (dynamic_cast<PSS_ToolbarObserverMsg*>(pMsg)->GetMessageID())
         {
             case WM_VALUESAVED_EDIT:
             {

@@ -984,7 +984,7 @@ BOOL ZDProcessGraphModelDoc::IsModified()
 /////////////////////////////////////////////////////////////////////////////
 // ZDProcessGraphModelDoc commands
 
-void ZDProcessGraphModelDoc::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
+void ZDProcessGraphModelDoc::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
     // Forward the message to the controller
     if (GetFirstModelView() && GetFirstModelView()->GetModelController())

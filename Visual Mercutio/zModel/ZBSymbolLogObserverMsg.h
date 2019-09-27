@@ -16,7 +16,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseLib\ZIObserverMsg.h"
+#include "zBaseLib\PSS_ObserverMsg.h"
 #include "ZBGenericSymbolErrorLine.h"
 
 #ifdef _ZMODELEXPORT
@@ -31,7 +31,7 @@
 
 // JMR-MODIF - Le 6 août 2007 - Ajout des décorations unicode _T(), nettoyage du code inutile. (En commentaires)
 
-class AFX_EXT_CLASS ZBSymbolLogObserverMsg : public ZIObserverMsg
+class AFX_EXT_CLASS ZBSymbolLogObserverMsg : public PSS_ObserverMsg
 {
     DECLARE_DYNAMIC( ZBSymbolLogObserverMsg )
 

@@ -18,8 +18,8 @@
 
 
 
-#include "zBaseLib\ZISubject.h"
-#include "zBaseLib\ZIObserver.h"
+#include "zBaseLib\PSS_Subject.h"
+#include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\ZITreeCtl.h"
 #include "zProperty\ZIProperties.h"
 
@@ -47,9 +47,12 @@ class _ZBPropertyAttribute;
 class _ZInternalPropertyTreeData : public CObject
 {
 public:
-    enum UserGroupTreeDataType { patp_Category, 
-                                 patp_Item, 
-                                 patp_Unknown };
+    enum UserGroupTreeDataType
+    {
+        patp_Category,
+        patp_Item,
+        patp_Unknown
+    };
 
     _ZInternalPropertyTreeData();
     _ZInternalPropertyTreeData(_ZBPropertyAttribute* pPropAttribute);
@@ -64,16 +67,16 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // ZCSymbolAttributesTreeCtrl window
 
-class AFX_EXT_CLASS ZCSymbolAttributesTreeCtrl : public ZITreeCtrl, public ZISubject, public ZIObserver
+class AFX_EXT_CLASS ZCSymbolAttributesTreeCtrl : public ZITreeCtrl, public PSS_Subject, public PSS_Observer
 {
-// Construction
+    // Construction
 public:
-    ZCSymbolAttributesTreeCtrl(ZBPropertyAttributes* pPropAttributes = NULL, 
+    ZCSymbolAttributesTreeCtrl(ZBPropertyAttributes* pPropAttributes = NULL,
                                ZBPropertySet* pPropSet = NULL);
 
     virtual ~ZCSymbolAttributesTreeCtrl();
 
-// Operations
+    // Operations
 public:
     void Initialize();
     void Initialize(ZBPropertyAttributes* pPropAttributes, ZBPropertySet* pPropSet);
@@ -83,12 +86,12 @@ public:
 
     ////////////////////////////////////////////////////////////////////
     // ZIObserver call back
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
 protected:
-// Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(ZCSymbolAttributesTreeCtrl)
+    // Overrides
+        // ClassWizard generated virtual function overrides
+        //{{AFX_VIRTUAL(ZCSymbolAttributesTreeCtrl)
     virtual BOOL DestroyWindow();
     //}}AFX_VIRTUAL
 
@@ -106,7 +109,7 @@ protected:
 
 protected:
     virtual int GetIndexOfNoDropImage() const;
-    virtual CObject* GetDragObject( HTREEITEM DragItem );
+    virtual CObject* GetDragObject(HTREEITEM DragItem);
 
 private:
     bool                 m_HasBeenInitialized;
@@ -117,13 +120,13 @@ private:
     void DestroyTree();
 
 
-  private:
+private:
 
-    bool ProcessProperty( ZBProperty* pProp );
-    HTREEITEM GetParentProperty( ZBProperty* pProp );
-    void CheckAttribute( _ZBPropertyAttribute* pAttribute );
+    bool ProcessProperty(ZBProperty* pProp);
+    HTREEITEM GetParentProperty(ZBProperty* pProp);
+    void CheckAttribute(_ZBPropertyAttribute* pAttribute);
 
-    HTREEITEM AddPropertyItem (const CString Label, int Category, int Item = -1, HTREEITEM hParentTreeItem = NULL);
+    HTREEITEM AddPropertyItem(const CString Label, int Category, int Item = -1, HTREEITEM hParentTreeItem = NULL);
 
 
     void EmptyDataSet();
@@ -133,10 +136,10 @@ private:
     _ZInternalPropertyTreeData* AddDataToSet(int Category, int Item = -1);
     _ZInternalPropertyTreeData* AddDataToSet(_ZBPropertyAttribute* pPropAttribute);
 
-  private:
+private:
     //@type ZBProcessGraphPageSet | An array of _ZInternalPropertyTreeData pointers.
     //@iex typedef CCArray_T<_ZInternalPropertyTreeData*,_ZInternalPropertyTreeData*> _ZInternalPropertyTreeDataSet;
-    typedef sfl::CCArray_T<_ZInternalPropertyTreeData*,_ZInternalPropertyTreeData*> _ZInternalPropertyTreeDataSet;
+    typedef sfl::CCArray_T<_ZInternalPropertyTreeData*, _ZInternalPropertyTreeData*> _ZInternalPropertyTreeDataSet;
 
     //@type _ZInternalPropertyTreeDataIterator | An iterator for _ZInternalPropertyTreeDataSet collections.
     //@iex typedef Iterator_T<_ZInternalPropertyTreeData*> _ZInternalPropertyTreeDataIterator;
@@ -156,9 +159,4 @@ inline int ZCSymbolAttributesTreeCtrl::GetIndexOfNoDropImage() const
     return 4;
 }
 
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZCSymbolAttributesTreeCtrl_H__2F41F061_F558_4A24_BDE9_D472E36F653E__INCLUDED_)
+#endif

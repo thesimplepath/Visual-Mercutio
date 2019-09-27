@@ -15,8 +15,8 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseLib\ZISubject.h"
-#include "zBaseLib\ZIObserver.h"
+#include "zBaseLib\PSS_Subject.h"
+#include "zBaseLib\PSS_Observer.h"
 #include "ZCPropertyListCtrl.h"
 #include "ZCPropertyDescription.h"
 
@@ -35,24 +35,23 @@
 /////////////////////////////////////////////////////////////////////////////
 // _ZIFlatToolBar window
 
-class _ZIFlatToolBar : public CStatic,
-                       public ZISubject
+class _ZIFlatToolBar : public CStatic, public PSS_Subject
 {
-// Construction / Destruction
+    // Construction / Destruction
 public:
 
     _ZIFlatToolBar();
     virtual ~_ZIFlatToolBar();
 
-// Operations
+    // Operations
 public:
 
     // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(_ZIFlatToolBar)
-    public:
+public:
     virtual BOOL PreTranslateMessage(MSG* pMsg);
-    protected:
+protected:
     virtual void PreSubclassWindow();
     //}}AFX_VIRTUAL
 
@@ -68,7 +67,7 @@ protected:
     //}}AFX_MSG
     DECLARE_MESSAGE_MAP()
 
-// Attributes
+    // Attributes
 private:
 
     CCJFlatButton    m_RefreshButton;
@@ -85,22 +84,20 @@ private:
 /////////////////////////////////////////////////////////////////////////////
 // ZVProperties view
 
-class AFX_EXT_CLASS ZVProperties : public CWnd,
-                                   public ZISubject,
-                                   public ZIObserver
+class AFX_EXT_CLASS ZVProperties : public CWnd, public PSS_Subject, public PSS_Observer
 {
 private:
 
-    DECLARE_DYNCREATE( ZVProperties )
+    DECLARE_DYNCREATE(ZVProperties)
 
 private:
 
     enum ZPropertiesView
     {
-        AllTypes    = 0,
-        StaticType    = 1,
-        DynamicType    = 2,
-        None        = 3
+        AllTypes = 0,
+        StaticType = 1,
+        DynamicType = 2,
+        None = 3
     };
 
 public:
@@ -111,28 +108,28 @@ public:
 public:
 
     // Observer call back
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     // Attributes
-    void SetPropertyItemManager( ZBPropertyItemManager* pPropertyItemManager )
+    void SetPropertyItemManager(ZBPropertyItemManager* pPropertyItemManager)
     {
-        m_listctrl.SetPropertyItemManager( pPropertyItemManager );
+        m_listctrl.SetPropertyItemManager(pPropertyItemManager);
     }
 
-    void LoadStateFromIniFile( const CString IniFile )
+    void LoadStateFromIniFile(const CString IniFile)
     {
-        m_listctrl.LoadStateFromIniFile( IniFile );
+        m_listctrl.LoadStateFromIniFile(IniFile);
     }
 
-    ZBPropertyItem* GetPropertyItem( int nIndex )
+    ZBPropertyItem* GetPropertyItem(int nIndex)
     {
-        return m_listctrl.GetPropertyItem( nIndex );
+        return m_listctrl.GetPropertyItem(nIndex);
     }
 
     // Operations
-    void InsertPropertyItem( ZBPropertyItem* pPropertyItem, int nIndex = 0 )
+    void InsertPropertyItem(ZBPropertyItem* pPropertyItem, int nIndex = 0)
     {
-        m_listctrl.InsertPropertyItem( pPropertyItem, nIndex );
+        m_listctrl.InsertPropertyItem(pPropertyItem, nIndex);
     }
 
     void ResetContent()
@@ -140,9 +137,9 @@ public:
         m_listctrl.ResetContent();
     }
 
-    void ShowInPlaceControl( bool bShow = true )
+    void ShowInPlaceControl(bool bShow = true)
     {
-        m_listctrl.ShowInPlaceControl( bShow );
+        m_listctrl.ShowInPlaceControl(bShow);
     }
 
     void Refresh()
@@ -155,7 +152,7 @@ public:
         OnEmptyControl();
     }
 
-// Generated message map functions
+    // Generated message map functions
 protected:
 
     //{{AFX_MSG(ZVProperties)
@@ -170,7 +167,7 @@ protected:
     void OnRefresh();
     void OnEmptyControl();
 
-    void SwitchToView( ZVProperties::ZPropertiesView View = AllTypes );
+    void SwitchToView(ZVProperties::ZPropertiesView View = AllTypes);
     void RefreshCurrentView();
     void ShowAllTypes();
     void ShowStaticType();
@@ -185,8 +182,4 @@ private:
     ZPropertiesView            m_CurrentView;
 };
 
-/////////////////////////////////////////////////////////////////////////////
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(_ZVPROPERTIES_H__)
+#endif

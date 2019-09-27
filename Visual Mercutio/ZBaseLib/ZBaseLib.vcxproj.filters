@@ -26,9 +26,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBToolbarObserverMsg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZBWorkspaceEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -111,15 +108,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZIntelliMultiLineBox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZIObserver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZIObserverMsg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZISubject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZIToolTip.cpp">
@@ -602,6 +590,18 @@
     <ClCompile Include="PSS_DropView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_ObserverMsg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ToolbarObserverMsg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_Observer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_Subject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -718,9 +718,6 @@
     <ClInclude Include="zBaseLib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZBToolbarObserverMsg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZBWorkspaceEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -803,15 +800,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZIntelliMultiLineBox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZIObserver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZIObserverMsg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZISubject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZIToolTip.h">
@@ -1295,6 +1283,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_DropView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ObserverMsg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ToolbarObserverMsg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_Observer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_Subject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -17,11 +17,12 @@
 //---------------------------------------------------------------------------
 // Dynamic construction
 //---------------------------------------------------------------------------
-IMPLEMENT_DYNAMIC(PSS_MenuObserverMsg, ZIObserverMsg)
+IMPLEMENT_DYNAMIC(PSS_MenuObserverMsg, PSS_ObserverMsg)
 //---------------------------------------------------------------------------
 // PSS_MenuObserverMsg
 //---------------------------------------------------------------------------
 PSS_MenuObserverMsg::PSS_MenuObserverMsg(int commandID) :
+    PSS_ObserverMsg(),
     m_CommandID(commandID)
 {}
 //---------------------------------------------------------------------------

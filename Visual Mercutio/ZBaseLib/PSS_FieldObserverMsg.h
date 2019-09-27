@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZIObserverMsg.h"
+#include "PSS_ObserverMsg.h"
 
 // class name mapping
 #ifndef PSS_PlanFinObject
@@ -45,7 +45,7 @@ class PSS_PlanFinObject;
 * Field observer message
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_FieldObserverMsg : public ZIObserverMsg  
+class AFX_EXT_CLASS PSS_FieldObserverMsg : public PSS_ObserverMsg  
 {
     DECLARE_DYNAMIC(PSS_FieldObserverMsg)
 

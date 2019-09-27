@@ -13,8 +13,8 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseLib\ZISubject.h"
-#include "zBaseLib\ZIObserver.h"
+#include "zBaseLib\PSS_Subject.h"
+#include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\ZITreeCtl.h"
 
 // Forward class declaration
@@ -61,7 +61,7 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // ZCUserGroupTreeCtrl window
 
-class AFX_EXT_CLASS ZCUserGroupTreeCtrl : public ZITreeCtrl, public ZISubject, public ZIObserver
+class AFX_EXT_CLASS ZCUserGroupTreeCtrl : public ZITreeCtrl, public PSS_Subject, public PSS_Observer
 {
 // Construction
 public:
@@ -109,7 +109,7 @@ public:
 
     ////////////////////////////////////////////////////////////////////
     // ZIObserver call back
-    virtual void        OnUpdate                ( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void        OnUpdate                ( PSS_Subject* pSubject, PSS_ObserverMsg* pMsg );
 
     ////////////////////////////////////////////////////////////////////
     // Context menu function

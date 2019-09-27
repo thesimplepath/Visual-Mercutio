@@ -13,7 +13,7 @@
 #pragma once
 #endif // _MSC_VER >= 1000
 
-// Change the definition of AFX_EXT... to make it import
+ // Change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -23,8 +23,8 @@
 
 // processsoft
 #include "zBaseLib\PSS_Date.h"
-#include "zBaseLib\ZISubject.h"
-#include "zBaseLib\ZIObserver.h"
+#include "zBaseLib\PSS_Subject.h"
+#include "zBaseLib\PSS_Observer.h"
 #include "ZBSymbol.h"
 #include "ZBLinkSymbol.h"
 #include "ZVDynamicAttributesDuplication.h"
@@ -47,11 +47,11 @@ class ZDProcessGraphPage;
 
 // JMR-MODIF - Le 16 mai 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-class AFX_EXT_CLASS ZDProcessGraphModelController : public CODController, public ZISubject, public ZIObserver
+class AFX_EXT_CLASS ZDProcessGraphModelController : public CODController, public PSS_Subject, public PSS_Observer
 {
 public:
 
-    ZDProcessGraphModelController( ZIProcessGraphModelViewport* pViewport );
+    ZDProcessGraphModelController(ZIProcessGraphModelViewport* pViewport);
 
     virtual void OnInitialUpdate();
 
@@ -66,70 +66,70 @@ public:
     void                                    RefreshModelTree();
 
     virtual CMenu*                            CreateContextMenu();
-    
-    virtual ZIProcessGraphModelViewport*    BrowseModel( ZDProcessGraphModelMdl* pModel,
-                                                         ZDProcessGraphModelMdl* pParentModel );
 
-    virtual ZIProcessGraphModelViewport*    CreateViewFromModel( ZDProcessGraphModelMdl* pModel,
-                                                                 ZDProcessGraphModelMdl* pParentModel );
+    virtual ZIProcessGraphModelViewport*    BrowseModel(ZDProcessGraphModelMdl* pModel,
+                                                        ZDProcessGraphModelMdl* pParentModel);
 
-    virtual ZIProcessGraphModelViewport*    OpenSymbol( CODComponent* pComp );
-    virtual ZIProcessGraphModelViewport*    EnsureSymbolVisible( CODComponent* pComp );
-    virtual ZIProcessGraphModelViewport*    BrowseLocalSymbol( CODComponent* pComp );
+    virtual ZIProcessGraphModelViewport*    CreateViewFromModel(ZDProcessGraphModelMdl* pModel,
+                                                                ZDProcessGraphModelMdl* pParentModel);
 
-    virtual ZIProcessGraphModelViewport*    OpenPage( ZDProcessGraphPage* pPage );
+    virtual ZIProcessGraphModelViewport*    OpenSymbol(CODComponent* pComp);
+    virtual ZIProcessGraphModelViewport*    EnsureSymbolVisible(CODComponent* pComp);
+    virtual ZIProcessGraphModelViewport*    BrowseLocalSymbol(CODComponent* pComp);
 
-    virtual bool                            DropItemToModel( CObject* pObj, CPoint pt );
-    virtual bool                            AcceptDropItemToModel( CObject* pObj, CPoint pt );
+    virtual ZIProcessGraphModelViewport*    OpenPage(ZDProcessGraphPage* pPage);
 
-    virtual bool                            DropItem( CObject* pObj, CPoint pt );
-    virtual bool                            AcceptDropItem( CObject* pObj, CPoint pt );
+    virtual bool                            DropItemToModel(CObject* pObj, CPoint pt);
+    virtual bool                            AcceptDropItemToModel(CObject* pObj, CPoint pt);
 
-    void                                    EditName( CODComponent* pCompToEdit );
-    void                                    EditComment( CODComponent* pCompToEdit );
+    virtual bool                            DropItem(CObject* pObj, CPoint pt);
+    virtual bool                            AcceptDropItem(CObject* pObj, CPoint pt);
+
+    void                                    EditName(CODComponent* pCompToEdit);
+    void                                    EditComment(CODComponent* pCompToEdit);
 
     // Call back for Zoom In&Out
     virtual void                            ViewZoomIn();
     virtual void                            ViewZoomOut();
 
     // Call by the controller when a tooltip is required
-    virtual bool                            OnToolTip( CString&                    ToolTipText,
-                                                       CPoint                    point,
-                                                       ZBSymbol::ToolTipMode    ToolTip = ZBSymbol::NormalToolTip );
+    virtual bool                            OnToolTip(CString&                    ToolTipText,
+                                                      CPoint                    point,
+                                                      ZBSymbol::ToolTipMode    ToolTip = ZBSymbol::NormalToolTip);
 
     // Drawing functions
-    void                                    ReDrawComponent( CODComponent& Comp );
-    void                                    ReDrawComponentSet( CODComponentSet& Set );
+    void                                    ReDrawComponent(CODComponent& Comp);
+    void                                    ReDrawComponentSet(CODComponentSet& Set);
 
     // Selection functions
     void                                    SelectAllComponents();
     void                                    UnselectAllComponents();
-    void                                    SelectComponent( CODComponent& Comp );
-    void                                    SelectComponentSet( CODComponentSet& Set );
-    void                                    UnselectComponent( CODComponent& Comp );
-    void                                    UnselectComponentSet( CODComponentSet& Set );
-    bool                                    IsComponentSelected( CODComponent& Comp );
+    void                                    SelectComponent(CODComponent& Comp);
+    void                                    SelectComponentSet(CODComponentSet& Set);
+    void                                    UnselectComponent(CODComponent& Comp);
+    void                                    UnselectComponentSet(CODComponentSet& Set);
+    bool                                    IsComponentSelected(CODComponent& Comp);
 
     bool                                    BrowseInSameWindow() const;
-    void                                    SetBrowseInSameWindow( bool value );
+    void                                    SetBrowseInSameWindow(bool value);
 
     // Insert a new symbol on the model
-    CODComponent*                            InsertSymbol( CODComponent* pComp,
+    CODComponent*                            InsertSymbol(CODComponent* pComp,
                                                           UINT nFlags,
                                                           CPoint ptDev,
-                                                          bool IncludePostCreation );
+                                                          bool IncludePostCreation);
 
-    CODComponent*                            InsertSymbol( UINT nFlags, CPoint ptDev, bool IncludePostCreation);
+    CODComponent*                            InsertSymbol(UINT nFlags, CPoint ptDev, bool IncludePostCreation);
 
     // Delete a symbol or symbol sets from the model
-    void                                    DeleteComponents( CODComponentSet* pCompSet );
-    void                                    DeleteComponent( CODComponent* pComp );
+    void                                    DeleteComponents(CODComponentSet* pCompSet);
+    void                                    DeleteComponent(CODComponent* pComp);
 
     // JMR-MODIF - Le 17 septembre 2006 - Ajout de la fonction ValidateCutCopyOperations.
     BOOL                                    ValidateCutCopyOperations();
 
     // JMR-MODIF - Le 17 septembre 2006 - Ajout de la fonction FilterSelection.
-    BOOL                                    FilterSelection( BOOL ModifyFlag = FALSE );
+    BOOL                                    FilterSelection(BOOL ModifyFlag = FALSE);
 
     // JMR-MODIF - Le 24 décembre 2006 - Ajout de la fonction RefreshSelectionProperties.
     void                                    RefreshSelectionProperties();
@@ -141,37 +141,37 @@ public:
     void                                    ReleaseClipboard();
 
     // JMR-MODIF - Le 20 juillet 2005 - Ajout de la fonction SetImage et ClearImage.
-    void                                    SetImage    ( CString Filename, BOOL IsLogo );
-    void                                    ClearImage    ();
+    void                                    SetImage(CString Filename, BOOL IsLogo);
+    void                                    ClearImage();
 
     // JMR-MODIF - Le 7 octobre 2005 - Ajout de la fonction AskImageFilename.
-    BOOL                                    AskImageFilename( CString& Filename );
+    BOOL                                    AskImageFilename(CString& Filename);
 
     // Animation functions
-    void    AnimateNode( IODNode& Node, bool UseColor = false, COLORREF col = -1, size_t AnimateCounter = 4 );
-    void    AnimateNodes( CODNodeArray& Nodes, bool UseColor = false, COLORREF col = -1, size_t AnimateCounter = 4 );
-    void    AnimateEdge( IODEdge& Edge, bool UseColor = false, COLORREF col = -1, size_t AnimateCounter = 4 );
-    void    AnimateEdges( CODEdgeArray& Edges, bool UseColor = false, COLORREF col = -1, size_t AnimateCounter = 4 );
+    void    AnimateNode(IODNode& Node, bool UseColor = false, COLORREF col = -1, size_t AnimateCounter = 4);
+    void    AnimateNodes(CODNodeArray& Nodes, bool UseColor = false, COLORREF col = -1, size_t AnimateCounter = 4);
+    void    AnimateEdge(IODEdge& Edge, bool UseColor = false, COLORREF col = -1, size_t AnimateCounter = 4);
+    void    AnimateEdges(CODEdgeArray& Edges, bool UseColor = false, COLORREF col = -1, size_t AnimateCounter = 4);
 
-    void    AnimateSymbol( CODSymbolComponent&    Symbol,
-                           bool                    UseColor        = false,
-                           COLORREF                col                = -1,
-                           size_t                AnimateCounter    = 4 );
+    void    AnimateSymbol(CODSymbolComponent&    Symbol,
+                          bool                    UseColor = false,
+                          COLORREF                col = -1,
+                          size_t                AnimateCounter = 4);
 
-    void    AnimateSymbols( CODComponentSet&    Set,
-                            bool                UseColor        = false,
-                            COLORREF            col                = -1,
-                            size_t                AnimateCounter    = 4 );
+    void    AnimateSymbols(CODComponentSet&    Set,
+                           bool                UseColor = false,
+                           COLORREF            col = -1,
+                           size_t                AnimateCounter = 4);
 
-    void    AnimateLink( CODLinkComponent&    Link,
-                         bool                UseColor        = false,
-                         COLORREF            col                = -1,
-                         size_t                AnimateCounter    = 4 );
+    void    AnimateLink(CODLinkComponent&    Link,
+                        bool                UseColor = false,
+                        COLORREF            col = -1,
+                        size_t                AnimateCounter = 4);
 
-    void    AnimateLinks( CODComponentSet&    Set,
-                          bool                UseColor        = false,
-                          COLORREF            col                = -1,
-                          size_t            AnimateCounter    = 4 );
+    void    AnimateLinks(CODComponentSet&    Set,
+                         bool                UseColor = false,
+                         COLORREF            col = -1,
+                         size_t            AnimateCounter = 4);
 
     // Overrides
     // ClassWizard generated virtual function overrides
@@ -183,52 +183,52 @@ public:
     virtual void                            OnAdviseStartPropertyEdition();
 
     // Observer call back
-    virtual void                            OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void                            OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     /* Called whenever the selection changes. */
-    virtual void                            OnSelectionChange( CODComponentSet* pChangedSet );
+    virtual void                            OnSelectionChange(CODComponentSet* pChangedSet);
 
     //@cmember
     /* Creates and executes a delete command. */
-    virtual CODDeleteCommand*                ExecuteDeleteCommand( CODComponentSet* pCompSet );
+    virtual CODDeleteCommand*                ExecuteDeleteCommand(CODComponentSet* pCompSet);
 
     /* Creates and executes an insert command for a single component. */
-    virtual CODInsertCommand*                ExecuteInsertCommand( CODComponent*    pComp,
-                                                                  const BOOL    bAllowDuplicates = TRUE );
+    virtual CODInsertCommand*                ExecuteInsertCommand(CODComponent*    pComp,
+                                                                  const BOOL    bAllowDuplicates = TRUE);
 
     //@cmember
     /* Creates and executes an insert command for a set of components. */
-    virtual CODInsertCommand*                ExecuteInsertCommand( CODComponentSet*    pCompSet,
-                                                                  const BOOL        bAllowDuplicates = TRUE );
+    virtual CODInsertCommand*                ExecuteInsertCommand(CODComponentSet*    pCompSet,
+                                                                  const BOOL        bAllowDuplicates = TRUE);
 
     //@cmember
     /* Creates and executes a link command. */
-    virtual CODLinkCommand*                    ExecuteLinkCommand( const CODPointArray&    pointArray,
-                                                                CODPortComponent*        pSourcePort,
-                                                                CODPortComponent*        pTargetPort,
-                                                                CODEndpoint*            pSourceEndpoint = NULL,
-                                                                CODEndpoint*            pTargetEndpoint = NULL );
+    virtual CODLinkCommand*                    ExecuteLinkCommand(const CODPointArray&    pointArray,
+                                                                  CODPortComponent*        pSourcePort,
+                                                                  CODPortComponent*        pTargetPort,
+                                                                  CODEndpoint*            pSourceEndpoint = NULL,
+                                                                  CODEndpoint*            pTargetEndpoint = NULL);
 
     //@cmember
     /* Creates and executes a link command. */
-    virtual CODLinkCommand*                    ExecuteLinkCommand( CODLinkComponent*        pLinkComp,
-                                                                const CODPointArray&    pointArray,
-                                                                CODPortComponent*        pSourcePort,
-                                                                CODPortComponent*        pTargetPort );
+    virtual CODLinkCommand*                    ExecuteLinkCommand(CODLinkComponent*        pLinkComp,
+                                                                  const CODPointArray&    pointArray,
+                                                                  CODPortComponent*        pSourcePort,
+                                                                  CODPortComponent*        pTargetPort);
 
     //@cmember
     /* Creates and executes a link command. */
-    virtual CODLinkCommand*                    ExecuteLinkCommand( CODLinkComponent* pLinkComp,
-                                                                CODPortComponent* pSourcePort,
-                                                                CODPortComponent* pTargetPort );
+    virtual CODLinkCommand*                    ExecuteLinkCommand(CODLinkComponent* pLinkComp,
+                                                                  CODPortComponent* pSourcePort,
+                                                                  CODPortComponent* pTargetPort);
 
     // Return true if the objects contained in the pCompSet can be duplicated
-    virtual bool CanDuplicateObject( CODComponentSet* pCompSet )
+    virtual bool CanDuplicateObject(CODComponentSet* pCompSet)
     {
         return true;
     }
 
-// Implementation
+    // Implementation
 protected:
 
     virtual ~ZDProcessGraphModelController();
@@ -306,42 +306,41 @@ protected:
     DECLARE_MESSAGE_MAP()
 
     // Advise observers on symbol selection
-    void                                    NotifySymbolSelected( CODComponent* pComp );
+    void                                    NotifySymbolSelected(CODComponent* pComp);
 
     /* Begin editing the text component at the given point. */
-    virtual BOOL                            StartTextEdit( UINT nFlags, CPoint ptDev );
+    virtual BOOL                            StartTextEdit(UINT nFlags, CPoint ptDev);
 
     /* Finish text component editing. */
-    virtual void                            EndTextEdit( UINT nFlags, CPoint ptDev );
+    virtual void                            EndTextEdit(UINT nFlags, CPoint ptDev);
 
     /* Called to insert a symbol. */
-    virtual void                            InsertSymbol( UINT nFlags, CPoint ptDev );
+    virtual void                            InsertSymbol(UINT nFlags, CPoint ptDev);
 
     /* Called when the link is complete. */
-    virtual void                            EndLink( UINT nFlags, CPoint ptDev );
+    virtual void                            EndLink(UINT nFlags, CPoint ptDev);
 
     /* Called by the controller, once the symbol has been completely
        added and the name edited. */
-    virtual void                            OnSymbolAdded( CODComponentSet* pCompSet );
+    virtual void                            OnSymbolAdded(CODComponentSet* pCompSet);
 
     /* Called by the controller, once the symbol has been completely
        duplicated. */
-    virtual void                            OnSymbolDuplicated( CODComponentSet* pCompSet );
+    virtual void                            OnSymbolDuplicated(CODComponentSet* pCompSet);
 
 
-    virtual void                            OnPostCutPasteOperation( CODComponentSet* pCompSet )
-    {
-    };
+    virtual void                            OnPostCutPasteOperation(CODComponentSet* pCompSet)
+    {};
 
     void                                    AssignSymbolHit();
     void                                    AssignLabelHit();
 
-    void                                    DetermineReferencedSymbol( CODComponentSet* pCompSet );
+    void                                    DetermineReferencedSymbol(CODComponentSet* pCompSet);
 
-    void                                    RemoveReferenceSymbol( CODComponentSet* pCompSet );
+    void                                    RemoveReferenceSymbol(CODComponentSet* pCompSet);
 
-    ZIProcessGraphModelViewport*            BrowseSymbolModel( ZBSymbol* pSymbol );
-    ZIProcessGraphModelViewport*            BrowseLinkSymbolModel( ZBLinkSymbol* pSymbol );
+    ZIProcessGraphModelViewport*            BrowseSymbolModel(ZBSymbol* pSymbol);
+    ZIProcessGraphModelViewport*            BrowseLinkSymbolModel(ZBLinkSymbol* pSymbol);
 
 protected:
 
@@ -349,14 +348,14 @@ protected:
     void                                    ClearSelectionToSet();
     void                                    CopySelectionToSet();
     void                                    ClearSymbolAddedSet();
-    void                                    CopySymbolToSymbolAddedSet( CODComponent* pComp );
-    void                                    CopySymbolsToSymbolAddedSet( CODComponentSet* pCompSet );
+    void                                    CopySymbolToSymbolAddedSet(CODComponent* pComp);
+    void                                    CopySymbolsToSymbolAddedSet(CODComponentSet* pCompSet);
 
-    void                                    CopyToClipboardSet( CODComponentSet* pCompSet );
+    void                                    CopyToClipboardSet(CODComponentSet* pCompSet);
     void                                    EmptyClipboardSet();
-    void                                    StoreComponentsToSet( const CODComponentSet& setComponents );
+    void                                    StoreComponentsToSet(const CODComponentSet& setComponents);
 
-    virtual void                            ApplyFormatToSymbol( CODComponent* pComp );
+    virtual void                            ApplyFormatToSymbol(CODComponent* pComp);
 
 private:
 
@@ -443,26 +442,23 @@ inline void ZDProcessGraphModelController::ClearSymbolAddedSet()
     m_setSymbolAddedSet.RemoveAll();
 }
 
-inline void ZDProcessGraphModelController::CopySymbolToSymbolAddedSet( CODComponent* pComp )
+inline void ZDProcessGraphModelController::CopySymbolToSymbolAddedSet(CODComponent* pComp)
 {
-    m_setSymbolAddedSet.Add( pComp );
+    m_setSymbolAddedSet.Add(pComp);
 }
 
-inline void ZDProcessGraphModelController::CopySymbolsToSymbolAddedSet( CODComponentSet* pCompSet )
+inline void ZDProcessGraphModelController::CopySymbolsToSymbolAddedSet(CODComponentSet* pCompSet)
 {
-    if ( pCompSet )
+    if (pCompSet)
     {
         // Copy all pointers
-        CODComponentIterator i( pCompSet );
+        CODComponentIterator i(pCompSet);
 
-        for ( CODComponent* pComp = i.GetFirst(); pComp != NULL; pComp = i.GetNext() )
+        for (CODComponent* pComp = i.GetFirst(); pComp != NULL; pComp = i.GetNext())
         {
-            CopySymbolToSymbolAddedSet( pComp );
+            CopySymbolToSymbolAddedSet(pComp);
         }
     }
 }
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ProcGraphModelCtlr_H__80924751_0CFB_414E_B0E6_5F13173E43F9__INCLUDED_)
+#endif

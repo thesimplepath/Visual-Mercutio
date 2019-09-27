@@ -82,12 +82,12 @@ public:
     virtual void SaveValue();
 
     // ZIObserver OnUpdate call-back function
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZCInPlaceEdit)
-    public:
+public:
     virtual BOOL PreTranslateMessage(MSG* pMsg);
     //}}AFX_VIRTUAL
 
@@ -108,27 +108,22 @@ protected:
 
 inline ZCInPlaceEdit::ZCInPlaceEdit()
     : ZIInPlaceEdit()
-{
-}
+{}
 
 inline ZCInPlaceEdit::ZCInPlaceEdit(const CString& strInitText, bool IsReadOnly /*= false*/)
     : ZIInPlaceEdit(strInitText, IsReadOnly)
-{
-}
+{}
 
 inline ZCInPlaceEdit::ZCInPlaceEdit(double dInitValue, bool IsReadOnly /*= false*/)
     : ZIInPlaceEdit(dInitValue, IsReadOnly)
-{
-}
+{}
 
 inline ZCInPlaceEdit::ZCInPlaceEdit(float fInitValue, bool IsReadOnly /*= false*/)
     : ZIInPlaceEdit(fInitValue, IsReadOnly)
-{
-}
+{}
 
 inline ZCInPlaceEdit::~ZCInPlaceEdit()
-{
-}
+{}
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -146,7 +141,7 @@ public:
     ~ZCInPlaceEditPropItemString();
 
     // ZIObserver OnUpdate call-back function
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0);
 
@@ -159,14 +154,12 @@ protected:
 
 };
 
-inline ZCInPlaceEditPropItemString::ZCInPlaceEditPropItemString(const CString srtInitText /*= ""*/, bool IsReadOnly /*= false*/) 
+inline ZCInPlaceEditPropItemString::ZCInPlaceEditPropItemString(const CString srtInitText /*= ""*/, bool IsReadOnly /*= false*/)
     : ZCInPlaceEdit(srtInitText, IsReadOnly)
-{
-}
+{}
 
-inline ZCInPlaceEditPropItemString::~ZCInPlaceEditPropItemString() 
-{
-}
+inline ZCInPlaceEditPropItemString::~ZCInPlaceEditPropItemString()
+{}
 
 
 
@@ -181,12 +174,12 @@ protected:
     DECLARE_DYNAMIC(ZCInPlaceEditPropItemNumber)
 
 public:
-    ZCInPlaceEditPropItemNumber(double Value = 0, bool IsReadOnly = false );
-    ZCInPlaceEditPropItemNumber(float Value, bool IsReadOnly = false );
+    ZCInPlaceEditPropItemNumber(double Value = 0, bool IsReadOnly = false);
+    ZCInPlaceEditPropItemNumber(float Value, bool IsReadOnly = false);
     ~ZCInPlaceEditPropItemNumber();
 
     // ZIObserver OnUpdate call-back function
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, double dInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0);
     virtual BOOL InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, float fInitValue, CWnd* pWndParent, CRect& rect, DWORD exDwStyle = 0);
@@ -202,25 +195,15 @@ protected:
 private:
 };
 
-inline ZCInPlaceEditPropItemNumber::ZCInPlaceEditPropItemNumber(double Value /*= 0*/, bool IsReadOnly /*= false*/ ) 
+inline ZCInPlaceEditPropItemNumber::ZCInPlaceEditPropItemNumber(double Value /*= 0*/, bool IsReadOnly /*= false*/)
     : ZCInPlaceEdit(Value, IsReadOnly)
-{
-}
+{}
 
-inline ZCInPlaceEditPropItemNumber::ZCInPlaceEditPropItemNumber(float Value, bool IsReadOnly /*= false*/ ) 
+inline ZCInPlaceEditPropItemNumber::ZCInPlaceEditPropItemNumber(float Value, bool IsReadOnly /*= false*/)
     : ZCInPlaceEdit(Value, IsReadOnly)
-{
-}
+{}
 
-inline ZCInPlaceEditPropItemNumber::~ZCInPlaceEditPropItemNumber() 
-{
-}
+inline ZCInPlaceEditPropItemNumber::~ZCInPlaceEditPropItemNumber()
+{}
 
-
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-
-#endif // !defined(_ZCINPLACEEDITPROPITEMSTRING_H__)
+#endif

@@ -1478,7 +1478,7 @@ void ZBSymbol::RemoveReferenceSymbol()
     m_pReference = NULL;
 }
 
-void ZBSymbol::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
+void ZBSymbol::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
     if (pSubject && pSubject != this && pMsg && ISA(pMsg, ZBSymbolObserverMsg))
     {

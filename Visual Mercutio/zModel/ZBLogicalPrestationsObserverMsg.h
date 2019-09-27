@@ -21,7 +21,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseLib\ZIObserverMsg.h"
+#include "zBaseLib\PSS_ObserverMsg.h"
 
 // Forward declarations
 class ZBPrestationsEntity;
@@ -41,7 +41,7 @@ const int UM_REFRESHPRESTATIONS    = 401;
 const int UM_CLEARPRESTATIONS    = 402;
 const int UM_CLOSEPRESTATIONS    = 403;
 
-class AFX_EXT_CLASS ZBLogicalPrestationsObserverMsg : public ZIObserverMsg
+class AFX_EXT_CLASS ZBLogicalPrestationsObserverMsg : public PSS_ObserverMsg
 {
     DECLARE_DYNAMIC( ZBLogicalPrestationsObserverMsg )
 

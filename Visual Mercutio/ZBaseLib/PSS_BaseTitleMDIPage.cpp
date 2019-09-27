@@ -58,7 +58,7 @@ void PSS_BaseTitleMDIPage::ActivateFrame(int cmdShow)
         SECMDIChildWnd::ActivateFrame(cmdShow);
 }
 //---------------------------------------------------------------------------
-void PSS_BaseTitleMDIPage::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
+void PSS_BaseTitleMDIPage::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {}
 //---------------------------------------------------------------------------
 void PSS_BaseTitleMDIPage::OnUpdateFrameTitle(BOOL addToTitle)

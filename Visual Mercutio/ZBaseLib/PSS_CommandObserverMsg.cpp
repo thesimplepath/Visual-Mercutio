@@ -17,11 +17,12 @@
 //---------------------------------------------------------------------------
 // Dynamic construction
 //---------------------------------------------------------------------------
-IMPLEMENT_DYNAMIC(PSS_CommandObserverMsg, ZIObserverMsg)
+IMPLEMENT_DYNAMIC(PSS_CommandObserverMsg, PSS_ObserverMsg)
 //---------------------------------------------------------------------------
 // PSS_CommandObserverMsg
 //---------------------------------------------------------------------------
 PSS_CommandObserverMsg::PSS_CommandObserverMsg(int commandID) :
+    PSS_ObserverMsg(),
     m_CommandID(commandID)
 {}
 //---------------------------------------------------------------------------

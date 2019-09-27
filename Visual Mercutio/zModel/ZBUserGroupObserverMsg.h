@@ -17,7 +17,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseLib\ZIObserverMsg.h"
+#include "zBaseLib\PSS_ObserverMsg.h"
 
 // forward declarations
 class ZBUserEntity;
@@ -39,7 +39,7 @@ const int UM_REFRESHUSERGROUP        = 101;
 const int UM_CLEARUSERGROUP            = 102;
 const int UM_CLOSEUSERGROUP            = 103;
 
-class AFX_EXT_CLASS ZBUserGroupObserverMsg : public ZIObserverMsg  
+class AFX_EXT_CLASS ZBUserGroupObserverMsg : public PSS_ObserverMsg
 {
     DECLARE_DYNAMIC( ZBUserGroupObserverMsg )
 

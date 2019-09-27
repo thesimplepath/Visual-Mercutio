@@ -6,7 +6,7 @@
 
 #include "zProperty\ZBPropertyItem.h"
 
-#include "zBaseLib\ZBToolbarObserverMsg.h"
+#include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zBaseLib\PSS_KeyboardObserverMsg.h"
 
 #ifdef _DEBUG
@@ -287,8 +287,8 @@ void ZCInPlaceListBox::NotifyEditKeyPressed(UINT nChar)
             CancelEdit();
 
             // Notify observers
-            PSS_KeyboardObserverMsg Msg(WM_KEYPRESSED_EDIT, nChar);
-            NotifyAllObservers(&Msg);
+            PSS_KeyboardObserverMsg msg(WM_KEYPRESSED_EDIT, nChar);
+            NotifyAllObservers(&msg);
 
             return;
         }
@@ -301,8 +301,8 @@ void ZCInPlaceListBox::NotifyEditKeyPressed(UINT nChar)
             SaveValue();
 
             // Notify observers
-            PSS_KeyboardObserverMsg Msg(WM_KEYPRESSED_EDIT, nChar);
-            NotifyAllObservers(&Msg);
+            PSS_KeyboardObserverMsg msg(WM_KEYPRESSED_EDIT, nChar);
+            NotifyAllObservers(&msg);
 
             return;
         }
@@ -346,7 +346,7 @@ void ZCInPlaceListBox::NotifiyListBoxAction(UINT nAction)
     }
 }
 
-void ZCInPlaceListBox::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
+void ZCInPlaceListBox::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {}
 
 /////////////////////////////////////////////////////////////////////////////
@@ -502,8 +502,8 @@ void ZCInPlaceListBox::SaveValue()
             m_pItem->SetHasChanged();
 
             // Notify observers for value changed
-            ZBToolbarObserverMsg Msg(WM_VALUESAVED_EDIT);
-            NotifyAllObservers(&Msg);
+            PSS_ToolbarObserverMsg msg(WM_VALUESAVED_EDIT);
+            NotifyAllObservers(&msg);
         }
         else
         {
@@ -621,8 +621,8 @@ int ZCInPlaceListBox::SetCurSel(int nSelect, bool bSendSetData /*= true*/)
         if (bSendSetData)
         {
             // Notify observers for value changed
-            ZBToolbarObserverMsg Msg(WM_VALUESAVED_EDIT);
-            NotifyAllObservers(&Msg);
+            PSS_ToolbarObserverMsg msg(WM_VALUESAVED_EDIT);
+            NotifyAllObservers(&msg);
         }
     }
 

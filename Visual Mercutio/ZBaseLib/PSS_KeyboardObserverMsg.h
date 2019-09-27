@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZIObserverMsg.h"
+#include "PSS_ObserverMsg.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -37,7 +37,7 @@
 * Keyboard observer message
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_KeyboardObserverMsg : public ZIObserverMsg
+class AFX_EXT_CLASS PSS_KeyboardObserverMsg : public PSS_ObserverMsg
 {
     DECLARE_DYNAMIC(PSS_KeyboardObserverMsg)
 

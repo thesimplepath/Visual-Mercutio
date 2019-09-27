@@ -25,7 +25,7 @@
 // Global for zBaseLib
 #include "zBaseLib\PSS_Tokenizer.h"
 #include "zBaseLib\PSS_Global.h"
-#include "zBaseLib\ZBToolbarObserverMsg.h"
+#include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_DrawFunctions.h"
 
@@ -494,7 +494,7 @@ CString ZBBPProcedureSymbol::GetRuleNameByGUID(ZBLogicalRulesEntity* p_Rule, CSt
     return _T("");
 }
 
-void ZBBPProcedureSymbol::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
+void ZBBPProcedureSymbol::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
     // Call the base class method
     ZBSymbol::OnUpdate(pSubject, pMsg);

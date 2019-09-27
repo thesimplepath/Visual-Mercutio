@@ -8,24 +8,20 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
-IMPLEMENT_DYNAMIC(ZBPropertyItemObserverMsg, ZIObserverMsg)
+IMPLEMENT_DYNAMIC(ZBPropertyItemObserverMsg, PSS_ObserverMsg)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBPropertyItemObserverMsg::ZBPropertyItemObserverMsg(ZBProperty* pProperty /*= NULL*/)
-: m_pProperty(pProperty)
-{
-
-}
-
+ZBPropertyItemObserverMsg::ZBPropertyItemObserverMsg(ZBProperty* pProperty) :
+    PSS_ObserverMsg(),
+    m_pProperty(pProperty)
+{}
 
 ZBPropertyItemObserverMsg::~ZBPropertyItemObserverMsg()
-{
-
-}
+{}

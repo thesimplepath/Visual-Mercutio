@@ -19,8 +19,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZISubject.h"
-#include "zBaseLib\ZIObserver.h"
+#include "zBaseLib\PSS_Subject.h"
+#include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\PSS_Duration.h"
 #include "zBaseLib\PSS_Date.h"
 #include "zBaseLib\PSS_TimeSpan.h"
@@ -40,7 +40,7 @@ class ZBPropertyItem;
 
 
 
-class AFX_EXT_CLASS ZIInPlaceEdit : public ZISubject, public ZIObserver  
+class AFX_EXT_CLASS ZIInPlaceEdit : public PSS_Subject, public PSS_Observer
 {
 public:
     enum InPlaceEditType
@@ -62,7 +62,7 @@ public:
     ZIInPlaceEdit(PSS_Date& DateInitValue, bool IsReadOnly = false);
     //RS-MODIF 08.08.2005 ajout de l'attribut dynamique "temps"
     ZIInPlaceEdit(PSS_TimeSpan& TimeInitValue, bool IsReadOnly = false);
-    
+
 
     virtual ~ZIInPlaceEdit();
 
@@ -98,44 +98,36 @@ public:
     {
         return FALSE;
     };
-    virtual void SetNewPropertyItem( ZBPropertyItem* pItem )
+    virtual void SetNewPropertyItem(ZBPropertyItem* pItem)
     {
         m_pItem = pItem;
     };
     // Initialize the edit text value
     virtual void SetEditText(const CString& strText)
-    {
-    };
+    {};
     virtual void SetEditText(double dValue)
-    {
-    };
+    {};
     virtual void SetEditText(float fValue)
-    {
-    };
+    {};
     virtual void SetEditText(PSS_Duration& DurationValue)
-    {
-    };
+    {};
     virtual void SetEditText(PSS_Date& DateValue)
-    {
-    };
+    {};
     //RS-MODIF 08.08.2005 ajout de l'attribut dynamique "temps"
     virtual void SetEditText(PSS_TimeSpan& TimeValue)
-    {
-    };
+    {};
     virtual CString GetEditText() const
     {
         return _T("");
     };
     // Virtual function to cancel and save the edition
     virtual void CancelEdit()
-    {
-    };
+    {};
     virtual void SaveValue()
-    {
-    };
+    {};
 
     // ZIObserver OnUpdate call-back function
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
     {
         // Does nothing
     };
@@ -143,12 +135,12 @@ public:
     // Returns the size of the edit
     virtual CSize GetSize() const
     {
-        return CSize(0,0);
+        return CSize(0, 0);
     };
     // Returns the extended size of the edit
     virtual CSize GetExtendedSize() const
     {
-        return CSize(0,0);
+        return CSize(0, 0);
     };
     // Returns true if the edit has a value that has changed
     bool GetHasChanged() const
@@ -157,7 +149,7 @@ public:
     };
 
 protected:
-    void SetHasChanged( bool value )
+    void SetHasChanged(bool value)
     {
         m_HasChanged = value;
     };
@@ -166,7 +158,7 @@ protected:
     {
         return m_IsReadOnly;
     };
-    void SetIsReadOnly( bool value )
+    void SetIsReadOnly(bool value)
     {
         m_IsReadOnly = value;
     };
@@ -261,4 +253,4 @@ inline ZIInPlaceEdit::~ZIInPlaceEdit()
 
 }
 
-#endif // !defined(_ZIINPLACEEDIT_H__)
+#endif

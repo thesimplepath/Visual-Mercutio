@@ -8,7 +8,7 @@
 #endif // _MSC_VER > 1000
 
 #ifdef _AFXEXT
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -18,11 +18,11 @@
 #endif
 
 #include "ZILog.h"
-#include "ZISubject.h"
-#include "ZIObserver.h"
+#include "PSS_Subject.h"
+#include "PSS_Observer.h"
 
 #ifdef _ZBASELIBEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
+// put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -36,15 +36,15 @@
 /////////////////////////////////////////////////////////////////////////////
 // _ZVOutputViewListBox window
 
-class _ZVOutputViewListBox : public CListBox, public ZISubject
+class _ZVOutputViewListBox : public CListBox, public PSS_Subject
 {
-// Construction
+    // Construction
 public:
 
     _ZVOutputViewListBox();
     virtual ~_ZVOutputViewListBox();
 
-// Operations
+    // Operations
 public:
 
     // Overrides
@@ -55,20 +55,20 @@ public:
 // Implementation
 public:
 
-    virtual BOOL _ZVOutputViewListBox::OnCmdMsg( UINT                    nID,
-                                                 int                    nCode,
-                                                 void*                    pExtra,
-                                                 AFX_CMDHANDLERINFO*    pHandlerInfo )
+    virtual BOOL _ZVOutputViewListBox::OnCmdMsg(UINT                    nID,
+                                                int                    nCode,
+                                                void*                    pExtra,
+                                                AFX_CMDHANDLERINFO*    pHandlerInfo)
     {
-        return CListBox::OnCmdMsg( nID, nCode, pExtra, pHandlerInfo );
+        return CListBox::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
     }
 
-    virtual BOOL _ZVOutputViewListBox::OnWndMsg( UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult )
+    virtual BOOL _ZVOutputViewListBox::OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
     {
-        return CListBox::OnWndMsg( message, wParam, lParam, pResult );
+        return CListBox::OnWndMsg(message, wParam, lParam, pResult);
     }
 
-// Generated message map functions
+    // Generated message map functions
 protected:
 
     //{{AFX_MSG(_ZVOutputViewListBox)
@@ -84,13 +84,13 @@ protected:
 // ZVOutputView view
 
 class AFX_EXT_CLASS ZVOutputView : public CWnd,
-                                   public ZILog,        // Implement the log interface
-                                   public ZISubject,    // Implement the subject interface
-                                   public ZIObserver    // Implement the observer interface
+    public ZILog,
+    public PSS_Subject,
+    public PSS_Observer
 {
 public:
 
-    DECLARE_DYNAMIC( ZVOutputView )
+    DECLARE_DYNAMIC(ZVOutputView)
 
     // Protected constructor used by dynamic creation
     ZVOutputView();
@@ -110,7 +110,7 @@ public:
     virtual void ClearLog()
     {
         // JMR-MODIF - Le 29 septembre 2005 - Contrôle que m_List existe avant de tenter de l'utiliser.
-        if ( m_List == NULL )
+        if (m_List == NULL)
         {
             return;
         }
@@ -121,19 +121,19 @@ public:
         UpdateWindow();
     }
 
-    virtual void AddLine( const CString Line )
+    virtual void AddLine(const CString Line)
     {
         // JMR-MODIF - Le 29 septembre 2005 - Contrôle que m_List existe avant de tenter de l'utiliser.
-        if ( m_List == NULL )
+        if (m_List == NULL)
         {
             return;
         }
 
-        m_List->AddString( Line );
+        m_List->AddString(Line);
 
-        if ( m_SelectLast )
+        if (m_SelectLast)
         {
-            m_List->SelectString( -1, Line );
+            m_List->SelectString(-1, Line);
         }
 
         // Immediate update
@@ -143,7 +143,7 @@ public:
     virtual size_t GetCount() const
     {
         // JMR-MODIF - Le 29 septembre 2005 - Contrôle que m_List existe avant de tenter de l'utiliser.
-        if ( m_List == NULL )
+        if (m_List == NULL)
         {
             return 0;
         }
@@ -151,16 +151,16 @@ public:
         return m_List->GetCount();
     }
 
-    virtual CString GetLineAt( size_t Index ) const
+    virtual CString GetLineAt(size_t Index) const
     {
         // JMR-MODIF - Le 29 septembre 2005 - Contrôle que m_List existe avant de tenter de l'utiliser.
-        if ( m_List == NULL )
+        if (m_List == NULL)
         {
-            return _T( "" );
+            return _T("");
         }
 
         CString s;
-        m_List->GetText( Index, s );
+        m_List->GetText(Index, s);
 
         return s;
     }
@@ -168,49 +168,49 @@ public:
     virtual int GetCurrentSelection() const
     {
         // JMR-MODIF - Le 29 septembre 2005 - Contrôle que m_List existe avant de tenter de l'utiliser.
-        if ( m_List == NULL )
+        if (m_List == NULL)
         {
             return -1;
         }
 
-        return ( m_List->GetCurSel() != LB_ERR ) ? m_List->GetCurSel() : -1;
+        return (m_List->GetCurSel() != LB_ERR) ? m_List->GetCurSel() : -1;
     }
 
-    virtual void SetCurrentSelection( size_t Index )
+    virtual void SetCurrentSelection(size_t Index)
     {
         // JMR-MODIF - Le 29 septembre 2005 - Contrôle que m_List existe avant de tenter de l'utiliser.
-        if ( m_List == NULL )
+        if (m_List == NULL)
         {
             return;
         }
 
-        m_List->SetCurSel( Index );
+        m_List->SetCurSel(Index);
     }
 
     virtual void ClearCurrentSelection()
     {
         // JMR-MODIF - Le 29 septembre 2005 - Contrôle que m_List existe avant de tenter de l'utiliser.
-        if ( m_List == NULL )
+        if (m_List == NULL)
         {
             return;
         }
 
-        m_List->SetCurSel( -1 );
+        m_List->SetCurSel(-1);
     }
 
-    virtual int GetCurrentItem( CString& s ) const
+    virtual int GetCurrentItem(CString& s) const
     {
         // JMR-MODIF - Le 29 septembre 2005 - Contrôle que m_List existe avant de tenter de l'utiliser.
-        if ( m_List == NULL )
+        if (m_List == NULL)
         {
             return 0;
         }
 
         int i = m_List->GetCurSel();
 
-        if ( i != LB_ERR )
+        if (i != LB_ERR)
         {
-            m_List->GetText( i, s );
+            m_List->GetText(i, s);
         }
 
         return i;
@@ -221,7 +221,7 @@ public:
         return m_IsInDebugMode;
     }
 
-    virtual void SetDebugMode( bool value = true )
+    virtual void SetDebugMode(bool value = true)
     {
         m_IsInDebugMode = value;
     }
@@ -231,14 +231,14 @@ public:
         return m_SelectLast;
     }
 
-    virtual void SetSelectLast( bool value = true )
+    virtual void SetSelectLast(bool value = true)
     {
         m_SelectLast = value;
     }
 
     ///////////////////////////////////////////////////////////////////
     // ZIObserver method
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
 protected:
 
@@ -275,8 +275,4 @@ private:
     bool                    m_SelectLast;
 };
 
-/////////////////////////////////////////////////////////////////////////////
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVOUTPUTVIEW_H__34183E9D_2920_4176_B402_7CD142E62933__INCLUDED_)
+#endif

@@ -20,7 +20,8 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "ZIObserverMsg.h"
+// processsoft
+#include "PSS_ObserverMsg.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -36,7 +37,7 @@
 * Document observer message
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_DocumentObserverMsg : public ZIObserverMsg
+class AFX_EXT_CLASS PSS_DocumentObserverMsg : public PSS_ObserverMsg
 {
     DECLARE_DYNAMIC(PSS_DocumentObserverMsg)
 

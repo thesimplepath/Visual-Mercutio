@@ -19,8 +19,8 @@
 #include "zBaseSym\ZIBasicSymbol.h"
 #include "zBaseSym\ZIObjectPath.h"
 #include "zProperty\ZIProperties.h"
-#include "zBaseLib\ZISubject.h"
-#include "zBaseLib\ZIObserver.h"
+#include "zBaseLib\PSS_Subject.h"
+#include "zBaseLib\PSS_Observer.h"
 #include "zBaseSym\ZIBasicSymbolAcceptVisitor.h"
 #include "zBaseSym\ZIBasicSymbolVisitor.h"
 #include "zBaseLib\ZIToolTip.h"
@@ -54,18 +54,18 @@ class ZBPropertyAttributes;
 // JMR-MODIF - Le 28 septembre 2005 - Ajout de la décoration unicode _T( ), suppression du code inutilisé.
 
 class AFX_EXT_CLASS ZBLinkSymbol : public CODLinkComponent,
-                                   public ZIBasicSymbol,
-                                   public ZIObjectPath,
-                                   public ZIProperties,
-                                   public ZBExtAppPropertyMgr,
-                                   public ZBExtFilePropertyMgr,
-                                   public ZVSymbolAttributes,
-                                   public ZIBasicSymbolAcceptVisitor,
-                                   public ZISubject,
-                                   public ZIObserver,
-                                   public ZIToolTip
+    public ZIBasicSymbol,
+    public ZIObjectPath,
+    public ZIProperties,
+    public ZBExtAppPropertyMgr,
+    public ZBExtFilePropertyMgr,
+    public ZVSymbolAttributes,
+    public ZIBasicSymbolAcceptVisitor,
+    public PSS_Subject,
+    public PSS_Observer,
+    public ZIToolTip
 {
-    DECLARE_SERIAL( ZBLinkSymbol )
+    DECLARE_SERIAL(ZBLinkSymbol)
 
 public:
 
@@ -73,10 +73,10 @@ public:
     virtual ~ZBLinkSymbol();
 
     /* Copy constructor. */
-    ZBLinkSymbol( const ZBLinkSymbol& src );
+    ZBLinkSymbol(const ZBLinkSymbol& src);
 
     /* Assignment operator. */
-    ZBLinkSymbol& operator=( const ZBLinkSymbol& src );
+    ZBLinkSymbol& operator=(const ZBLinkSymbol& src);
 
     /* Create a duplicate copy of this object. */
     virtual CODComponent* Dup() const;
@@ -87,14 +87,14 @@ public:
         return -1;
     };
 
-    virtual BOOL OnConnectionMove( CODConnection* pConnection );
+    virtual BOOL OnConnectionMove(CODConnection* pConnection);
 
     virtual void OnMove();
 
     // Creates the link symbol 
-    BOOL Create( int nStyle = -1, int nPointSize = -1, COLORREF crColor = -1, int bTransparent = -1 );
-    BOOL CreateOrthogonal( int nStyle = -1, int nPointSize = -1, COLORREF crColor = -1, int bTransparent = -1 );
-    BOOL SetLineProperty( int nStyle, int nPointSize = -1, COLORREF crColor = -1, int bTransparent = -1 );
+    BOOL Create(int nStyle = -1, int nPointSize = -1, COLORREF crColor = -1, int bTransparent = -1);
+    BOOL CreateOrthogonal(int nStyle = -1, int nPointSize = -1, COLORREF crColor = -1, int bTransparent = -1);
+    BOOL SetLineProperty(int nStyle, int nPointSize = -1, COLORREF crColor = -1, int bTransparent = -1);
 
     //////////////////////////////////////////////////////////////////////
     // Attributes management methods
@@ -103,59 +103,58 @@ public:
         return true;
     };
 
-    virtual bool OnFillDefaultAttributes( ZBPropertyAttributes* pAttributes );
-    virtual bool OnChangeAttributes( ZBPropertyAttributes* pAttributes );
-    virtual CString GetAttributeString( ZBPropertyAttributes* pAttributes ) const;
-    virtual void RefreshAttributeAreaText( bool Redraw = false );
+    virtual bool OnFillDefaultAttributes(ZBPropertyAttributes* pAttributes);
+    virtual bool OnChangeAttributes(ZBPropertyAttributes* pAttributes);
+    virtual CString GetAttributeString(ZBPropertyAttributes* pAttributes) const;
+    virtual void RefreshAttributeAreaText(bool Redraw = false);
 
     bool GetDisplayTitleText() const;
-    void SetDisplayTitleText( bool value );
+    void SetDisplayTitleText(bool value);
 
     ///////////////////////////////////////////////////////
     // Basic Symbol methods
 
     // Create the symbol itself
-    BOOL Create( UINT nID, HINSTANCE hInst, const CString Name = _T( "" ) );
+    BOOL Create(UINT nID, HINSTANCE hInst, const CString Name = _T(""));
 
-    ZBSymbolEdit* CreateEditText( const CString AreaName, const CString EditName, CODComponent* pParent = NULL );
-    ZBSymbolEdit* CreateAndReplaceEditText( const CString EditName, CODComponent* pParent = NULL );
+    ZBSymbolEdit* CreateEditText(const CString AreaName, const CString EditName, CODComponent* pParent = NULL);
+    ZBSymbolEdit* CreateAndReplaceEditText(const CString EditName, CODComponent* pParent = NULL);
 
     virtual CString GetSymbolComment();
-    virtual BOOL SetSymbolComment( const CString value );
+    virtual BOOL SetSymbolComment(const CString value);
 
     virtual CString GetSymbolName();
-    virtual BOOL SetSymbolName( const CString value );
+    virtual BOOL SetSymbolName(const CString value);
 
     // JMR-MODIF - Le 27 mars 2006 - Ajout de la fonction virtuelle OnSymbolNameChange.
-    virtual void OnSymbolNameChange( CString OldName, CString NewName )
-    {
-    }
+    virtual void OnSymbolNameChange(CString OldName, CString NewName)
+    {}
 
     virtual int GetSymbolReferenceNumber();
     virtual CString GetSymbolReferenceNumberStr();
-    virtual BOOL SetSymbolReferenceNumber( int value );
-    virtual BOOL SetSymbolReferenceNumberStr( const CString value );
+    virtual BOOL SetSymbolReferenceNumber(int value);
+    virtual BOOL SetSymbolReferenceNumberStr(const CString value);
 
-    virtual bool Match( const CString            What,
-                        ZBPropertyAttributes*    pPropAttributes    = NULL,
-                        bool                    CaseSensitive    = false,
-                        bool                    PartialSearch    = false );
+    virtual bool Match(const CString            What,
+                       ZBPropertyAttributes*    pPropAttributes = NULL,
+                       bool                    CaseSensitive = false,
+                       bool                    PartialSearch = false);
 
     // Unit retreival methods
-    CString RetreiveUnitGUID( const CString Name, bool& Error ) const;
-    CString RetreiveUnitName( const CString GUID, bool& Error ) const;
-    CString RetreiveUnitDescription( const CString GUID, bool& Error ) const;
-    float RetreiveUnitCost( const CString GUID, bool& Error ) const;
+    CString RetreiveUnitGUID(const CString Name, bool& Error) const;
+    CString RetreiveUnitName(const CString GUID, bool& Error) const;
+    CString RetreiveUnitDescription(const CString GUID, bool& Error) const;
+    float RetreiveUnitCost(const CString GUID, bool& Error) const;
 
     // Logical system retreival methods
-    CString RetreiveLogicalSystemGUID( const CString Name, bool& Error ) const;
-    CString RetreiveLogicalSystemName( const CString GUID, bool& Error ) const;
-    CString RetreiveLogicalSystemDescription( const CString GUID, bool& Error ) const;
+    CString RetreiveLogicalSystemGUID(const CString Name, bool& Error) const;
+    CString RetreiveLogicalSystemName(const CString GUID, bool& Error) const;
+    CString RetreiveLogicalSystemDescription(const CString GUID, bool& Error) const;
 
     virtual void EditSymbolName();
 
     // Check if the new name is a valid one
-    virtual bool IsNewNameValid( const CString value ) const;
+    virtual bool IsNewNameValid(const CString value) const;
 
     // Return the Edit Box area
     virtual CODComponent* GetEditBoxArea()
@@ -203,13 +202,13 @@ public:
     };
 
     // Copy the definition only
-    virtual void CopySymbolDefinitionFrom( CODSymbolComponent& src );
+    virtual void CopySymbolDefinitionFrom(CODSymbolComponent& src);
 
     virtual CString GetNameOfReference() const;
-    virtual void SetNameOfReference( CString value );
+    virtual void SetNameOfReference(CString value);
 
     virtual bool IsLocal() const;
-    virtual void SetIsLocal( bool value = true );
+    virtual void SetIsLocal(bool value = true);
 
     // JMR-MODIF - Le 22 mars 2006 - Fonction permettant de définir si le symbole est générique.
     virtual BOOL IsGeneric()
@@ -221,7 +220,7 @@ public:
     // JMR-MODIF - Le 29 juillet 2007 - Ajout des fonctions concernant les risques.
 
     CString GetRiskLevel();
-    void SetRiskLevel( CString Level );
+    void SetRiskLevel(CString Level);
     // ****************************************************************************
 
     //////////////////////////////////////////////////////////////////////
@@ -244,9 +243,9 @@ public:
         return false;
     };
 
-    virtual void DisplayNameArea( bool value = true )
+    virtual void DisplayNameArea(bool value = true)
     {
-        ZVSymbolAttributes::DisplayNameArea( value );
+        ZVSymbolAttributes::DisplayNameArea(value);
     };
 
     virtual bool IsNameAreaVisible() const
@@ -254,9 +253,9 @@ public:
         return ZVSymbolAttributes::IsNameAreaVisible();
     };
 
-    virtual void DisplayDescriptionArea( bool value = true )
+    virtual void DisplayDescriptionArea(bool value = true)
     {
-        ZVSymbolAttributes::DisplayDescriptionArea( value );
+        ZVSymbolAttributes::DisplayDescriptionArea(value);
     };
 
     virtual bool IsDescriptionsAreaVisible() const
@@ -264,9 +263,9 @@ public:
         return ZVSymbolAttributes::IsDescriptionsAreaVisible();
     };
 
-    virtual void DisplayAttributeArea( bool value = true )
+    virtual void DisplayAttributeArea(bool value = true)
     {
-        ZVSymbolAttributes::DisplayAttributeArea( value );
+        ZVSymbolAttributes::DisplayAttributeArea(value);
     };
 
     virtual bool IsAttributeAreaVisible() const
@@ -282,44 +281,44 @@ public:
         return true;
     };
 
-    virtual bool OnMouseMove( UINT nFlags, CPoint point, CODController& Ctrl )
+    virtual bool OnMouseMove(UINT nFlags, CPoint point, CODController& Ctrl)
     {
-        return ZVSymbolAttributes::OnMouseMove( nFlags, point, Ctrl );
+        return ZVSymbolAttributes::OnMouseMove(nFlags, point, Ctrl);
     };
 
-    virtual bool OnLButtonDown( UINT nFlags, CPoint point, CODController& Ctrl )
+    virtual bool OnLButtonDown(UINT nFlags, CPoint point, CODController& Ctrl)
     {
-        return ZVSymbolAttributes::OnLButtonDown( nFlags, point, Ctrl );
+        return ZVSymbolAttributes::OnLButtonDown(nFlags, point, Ctrl);
     };
 
-    virtual bool OnLButtonUp( UINT nFlags, CPoint point, CODController& Ctrl )
+    virtual bool OnLButtonUp(UINT nFlags, CPoint point, CODController& Ctrl)
     {
-        return ZVSymbolAttributes::OnLButtonUp( nFlags, point, Ctrl );
+        return ZVSymbolAttributes::OnLButtonUp(nFlags, point, Ctrl);
     };
 
-    virtual bool OnLButtonDblClk( UINT nFlags, CPoint point, CODController& Ctrl )
-    {
-        return false;
-    };
-
-    virtual bool OnRButtonDown( UINT nFlags, CPoint point, CODController& Ctrl )
+    virtual bool OnLButtonDblClk(UINT nFlags, CPoint point, CODController& Ctrl)
     {
         return false;
     };
 
-    virtual bool OnRButtonUp( UINT nFlags, CPoint point, CODController& Ctrl )
+    virtual bool OnRButtonDown(UINT nFlags, CPoint point, CODController& Ctrl)
+    {
+        return false;
+    };
+
+    virtual bool OnRButtonUp(UINT nFlags, CPoint point, CODController& Ctrl)
     {
         return false;
     };
 
     // Show the symbol in error
-    virtual void ShowInError( bool value = true );
+    virtual void ShowInError(bool value = true);
 
     // Apply the format coming from another object
-    virtual void ApplyFormatFromObject( CODSymbolComponent&    Object,
-                                        bool                Font    = true,
-                                        bool                Fill    = true,
-                                        bool                Line    = true );
+    virtual void ApplyFormatFromObject(CODSymbolComponent&    Object,
+                                       bool                Font = true,
+                                       bool                Fill = true,
+                                       bool                Line = true);
 
     // Used to find the local symbol of this reference
     virtual CODComponent* GetLocalSymbol();
@@ -329,12 +328,12 @@ public:
 
     virtual bool IsReferenced() const;
     virtual bool IsReferenceValid() const;
-    virtual void AssignReferenceSymbol( CODSymbolComponent* pReference );
+    virtual void AssignReferenceSymbol(CODSymbolComponent* pReference);
     virtual void RemoveReferenceSymbol();
     virtual CODSymbolComponent* GetSymbolReference() const;
 
     // Return true if the symbol can contain a child model
-    virtual bool CanContainChildModel() const 
+    virtual bool CanContainChildModel() const
     {
         return false;
     };
@@ -363,14 +362,14 @@ public:
     virtual CODModel* GetRootModel();
 
     // Set the model modified flag to the specified value
-    virtual void SetModifiedFlag( BOOL Value = TRUE );
+    virtual void SetModifiedFlag(BOOL Value = TRUE);
 
-    /* Called after the object is created and on the desk 
+    /* Called after the object is created and on the desk
        return true if the object can be created or false if the
        object must be destroyed immediatly */
-    virtual bool OnPostCreation( CODModel* pModel = NULL, CODController* pCtrl = NULL )
+    virtual bool OnPostCreation(CODModel* pModel = NULL, CODController* pCtrl = NULL)
     {
-        if ( !InitializeAttributeAreas () )
+        if (!InitializeAttributeAreas())
         {
             return false;
         }
@@ -383,14 +382,14 @@ public:
 
     /* Called before the object is deleted
        return true if the object can be deleted */
-    virtual bool OnPreDelete( CODModel* pModel = NULL, CODController* pCtrl = NULL )
+    virtual bool OnPreDelete(CODModel* pModel = NULL, CODController* pCtrl = NULL)
     {
         // The default is to return true
         return true;
     };
 
     /* Called after the double click occured on the object */
-    virtual void OnPostDoubleClick( CODModel* pModel = NULL, CODController* pCtrl = NULL )
+    virtual void OnPostDoubleClick(CODModel* pModel = NULL, CODController* pCtrl = NULL)
     {
         // Does nothing in the base class method
     };
@@ -398,9 +397,9 @@ public:
     virtual void CalculateAbsolutePath()
     {
         // If no path defined
-        if ( GetAbsolutePath().IsEmpty() )
+        if (GetAbsolutePath().IsEmpty())
         {
-            AddMemberToPath( GetSymbolName() );
+            AddMemberToPath(GetSymbolName());
         }
     };
 
@@ -411,16 +410,16 @@ public:
     void AdjustLinePath();
 
     // Drag and drop methods
-    virtual bool AcceptDropItem( CObject* pObj, CPoint pt )
+    virtual bool AcceptDropItem(CObject* pObj, CPoint pt)
     {
-        return ( AcceptExtApp()  && ZBExtAppPropertyMgr::AcceptDropItem ( pObj, pt ) ) ||
-               ( AcceptExtFile() && ZBExtFilePropertyMgr::AcceptDropItem( pObj, pt ) );
+        return (AcceptExtApp() && ZBExtAppPropertyMgr::AcceptDropItem(pObj, pt)) ||
+            (AcceptExtFile() && ZBExtFilePropertyMgr::AcceptDropItem(pObj, pt));
     };
 
-    virtual bool DropItem( CObject* pObj, CPoint pt )
+    virtual bool DropItem(CObject* pObj, CPoint pt)
     {
-        return ( ( AcceptExtApp()  && ZBExtAppPropertyMgr::AcceptDropItem ( pObj, pt ) ) ? ZBExtAppPropertyMgr::DropItem ( pObj, pt ) : false ) ||
-               ( ( AcceptExtFile() && ZBExtFilePropertyMgr::AcceptDropItem( pObj, pt ) ) ? ZBExtFilePropertyMgr::DropItem( pObj, pt ) : false );
+        return ((AcceptExtApp() && ZBExtAppPropertyMgr::AcceptDropItem(pObj, pt)) ? ZBExtAppPropertyMgr::DropItem(pObj, pt) : false) ||
+            ((AcceptExtFile() && ZBExtFilePropertyMgr::AcceptDropItem(pObj, pt)) ? ZBExtFilePropertyMgr::DropItem(pObj, pt) : false);
     };
 
     // External file and external application methods
@@ -429,9 +428,9 @@ public:
         return false;
     };
 
-    virtual bool DoInsertExtApp( bool DisplayDialog = true )
+    virtual bool DoInsertExtApp(bool DisplayDialog = true)
     {
-        return ZBExtAppPropertyMgr::DoInsertExtApp( DisplayDialog );
+        return ZBExtAppPropertyMgr::DoInsertExtApp(DisplayDialog);
     };
 
     virtual bool AcceptExtFile() const
@@ -439,9 +438,9 @@ public:
         return false;
     };
 
-    virtual bool DoInsertExtFile( bool DisplayDialog = true )
+    virtual bool DoInsertExtFile(bool DisplayDialog = true)
     {
-        return ZBExtFilePropertyMgr::DoInsertExtFile( DisplayDialog );
+        return ZBExtFilePropertyMgr::DoInsertExtFile(DisplayDialog);
     };
 
     //////////////////////////////////////////////////////////////////////
@@ -453,12 +452,12 @@ public:
 
     virtual CString GetUnitName() const
     {
-        return _T( "" );
+        return _T("");
     };
 
     virtual CString GetUnitGUID() const
     {
-        return _T( "" );
+        return _T("");
     };
 
     ///////////////////////////////////////////////////////
@@ -471,44 +470,44 @@ public:
     };
 
     // Call to retreive properties for the object
-    virtual bool FillProperties( ZBPropertySet& PropSet, bool NumericValue = false, bool GroupValue = false );
+    virtual bool FillProperties(ZBPropertySet& PropSet, bool NumericValue = false, bool GroupValue = false);
 
     // Call to save new changes to object's properties
-    virtual bool SaveProperties( ZBPropertySet& PropSet );
+    virtual bool SaveProperties(ZBPropertySet& PropSet);
 
     // Called to retreive a property for the object
-    virtual bool FillProperty( ZBProperty& Property );
+    virtual bool FillProperty(ZBProperty& Property);
 
     // Called to save a property for the object
-    virtual bool SaveProperty( ZBProperty& Property );
+    virtual bool SaveProperty(ZBProperty& Property);
 
     // Called to check the property value
-    virtual bool CheckPropertyValue( ZBProperty& Property, CString& value, ZBPropertySet& Properties );
+    virtual bool CheckPropertyValue(ZBProperty& Property, CString& value, ZBPropertySet& Properties);
 
     // Called to process the extended input for the property value
-    virtual bool ProcessExtendedInput( ZBProperty&        Property,
-                                       CString&            value,
-                                       ZBPropertySet&    Properties,
-                                       bool&            Refresh );
+    virtual bool ProcessExtendedInput(ZBProperty&        Property,
+                                      CString&            value,
+                                      ZBPropertySet&    Properties,
+                                      bool&            Refresh);
 
     // Called to process the a menu command for the property value
-    virtual bool ProcessMenuCommand( int            MenuCommand,
-                                     ZBProperty&    Property,
-                                     CString&        value,
-                                     ZBPropertySet&    Properties,
-                                     bool&            Refresh );
+    virtual bool ProcessMenuCommand(int            MenuCommand,
+                                    ZBProperty&    Property,
+                                    CString&        value,
+                                    ZBPropertySet&    Properties,
+                                    bool&            Refresh);
 
     // Called before the property changed
-    virtual bool OnPrePropertyChanged( CString NewValue, ZBProperty& Property, ZBPropertySet& Properties );
+    virtual bool OnPrePropertyChanged(CString NewValue, ZBProperty& Property, ZBPropertySet& Properties);
 
     // Called after the property changed
-    virtual bool OnPostPropertyChanged( ZBProperty& Property, ZBPropertySet& Properties, bool& Refresh );
+    virtual bool OnPostPropertyChanged(ZBProperty& Property, ZBPropertySet& Properties, bool& Refresh);
 
     // Called when an internal drag&drop of property occured
-    virtual bool OnDropInternalPropertyItem( ZBProperty&    SrcProperty,
-                                             ZBProperty&    DstProperty,
-                                             bool            Top2Down,
-                                             ZBPropertySet&    Properties );
+    virtual bool OnDropInternalPropertyItem(ZBProperty&    SrcProperty,
+                                            ZBProperty&    DstProperty,
+                                            bool            Top2Down,
+                                            ZBPropertySet&    Properties);
 
     // Call to create the properties
     virtual bool CreateSymbolProperties();
@@ -526,36 +525,33 @@ public:
 
     //////////////////////////////////////////////////////////////////////
     // Call-back on symbols
-    virtual void OnSymbolNameChanged( CODComponent& Comp, const CString OldName )
-    {
-    };
+    virtual void OnSymbolNameChanged(CODComponent& Comp, const CString OldName)
+    {};
 
-    virtual void OnPageNameChanged( ZDProcessGraphPage* pPage, const CString OldName )
-    {
-    };
+    virtual void OnPageNameChanged(ZDProcessGraphPage* pPage, const CString OldName)
+    {};
 
-    virtual void OnUserEntityChanged( ZBUserEntity* pUserEntity, const CString OldName )
-    {
-    };
+    virtual void OnUserEntityChanged(ZBUserEntity* pUserEntity, const CString OldName)
+    {};
 
     //////////////////////////////////////////////////////////////////////
     // ZIBasicSymbolAcceptVisitor methods
 
     /* AcceptVisitor method let the object be visited
        by concreted derived ZIBasicSymbolVisitor classes */
-    virtual bool AcceptVisitor( ZIBasicSymbolVisitor& Visitor )
+    virtual bool AcceptVisitor(ZIBasicSymbolVisitor& Visitor)
     {
-        return Visitor.Visit( *this );
+        return Visitor.Visit(*this);
     };
 
     /* Serializes the symbol. */
-    virtual void Serialize( CArchive& ar );
+    virtual void Serialize(CArchive& ar);
 
     // Update mecanism for symbol change
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     // Call by the controller when a tooltip is required
-    virtual bool OnToolTip( CString& ToolTipText, CPoint point, ToolTipMode ToolTip = NormalToolTip );
+    virtual bool OnToolTip(CString& ToolTipText, CPoint point, ToolTipMode ToolTip = NormalToolTip);
 
     /////////////////////////////////////////////////////////////////////////////
     // Following and Entering link methods
@@ -564,51 +560,51 @@ public:
     virtual CODSymbolComponent* GetEnteringSymbol();
 
     // JMR-MODIF - Le 22 juillet 2007 - Ajout de la fonction UpdateGraphicFromRisk.
-    void UpdateGraphicFromRisk( COLORREF Color, BOOL Italic );
+    void UpdateGraphicFromRisk(COLORREF Color, BOOL Italic);
 
     // Get and Set the current line color
-    virtual void SetCurrentLineColor( COLORREF value );
+    virtual void SetCurrentLineColor(COLORREF value);
     virtual COLORREF GetCurrentLineColor() const
     {
         return m_CurrentLineColor;
     };
 
     // Get and Set the current line width
-    virtual void SetCurrentLineWidth( int value );
+    virtual void SetCurrentLineWidth(int value);
     virtual int GetCurrentLineWidth() const
     {
         return m_CurrentLineWidth;
     };
 
     // Get and Set the current line style.
-    virtual void SetCurrentLineStyle( int value );
+    virtual void SetCurrentLineStyle(int value);
     virtual int GetCurrentLineStyle() const
     {
         return m_CurrentLineStyle;
     };
 
     // Get and Set the initial line style.
-    virtual void SetInitialLineStyle ( int value );
+    virtual void SetInitialLineStyle(int value);
     virtual int GetInitialLineStyle() const
     {
         return m_InitialLineStyle;
     };
 
     // Get and Set the current label color
-    virtual void SetCurrentLabelColor( COLORREF value );
+    virtual void SetCurrentLabelColor(COLORREF value);
     virtual COLORREF GetCurrentLabelColor() const
     {
         return m_CurrentLabelLineColor;
     };
 
     COLORREF    GetInitialLineColor() const;
-    void        SetInitialLineColor( COLORREF value );
+    void        SetInitialLineColor(COLORREF value);
     int            GetInitialLineWidth() const;
-    void        SetInitialLineWidth( int value );
+    void        SetInitialLineWidth(int value);
     COLORREF    GetInitialLabelLineColor() const;
-    void        SetInitialLabelLineColor( COLORREF value );
+    void        SetInitialLabelLineColor(COLORREF value);
     int            GetInitialLabelLineWidth() const;
-    void        SetInitialLabelLineWidth( int value );
+    void        SetInitialLabelLineWidth(int value);
 
     // ******************************************************************************************************
     // JMR-MODIF - Le 7 février 2006 - Ajout des fonctions permettant de déterminer si l'objet a été copié.
@@ -624,7 +620,7 @@ public:
     // POUR UN BUT PRECIS, QUI EST LE NETTOYAGE DE LA MEMOIRE, ET UNE MODIFICATION INADAPTEE RISQUE DE
     // DESTABILISER LE PROGRAMME.
 
-    void SetIsCopy( BOOL Value = TRUE )
+    void SetIsCopy(BOOL Value = TRUE)
     {
         m_IsCopy = Value;
     }
@@ -646,9 +642,9 @@ protected:
         return ZVSymbolAttributes::GetpEditBoxArea();
     };
 
-    virtual void SetpEditBoxArea( CODComponent* value )
+    virtual void SetpEditBoxArea(CODComponent* value)
     {
-        ZVSymbolAttributes::SetpEditBoxArea( value );
+        ZVSymbolAttributes::SetpEditBoxArea(value);
     };
 
     virtual CODTextComponent* GetpNameEditText()
@@ -656,9 +652,9 @@ protected:
         return ZVSymbolAttributes::GetpNameEditText();
     };
 
-    virtual void SetpNameEditText( CODTextComponent* value )
+    virtual void SetpNameEditText(CODTextComponent* value)
     {
-        ZVSymbolAttributes::SetpNameEditText( value );
+        ZVSymbolAttributes::SetpNameEditText(value);
     };
 
     virtual CODTextComponent* GetpCommentEditText()
@@ -666,9 +662,9 @@ protected:
         return ZVSymbolAttributes::GetpCommentEditText();
     };
 
-    virtual void SetpCommentEditText( CODTextComponent* value )
+    virtual void SetpCommentEditText(CODTextComponent* value)
     {
-        ZVSymbolAttributes::SetpCommentEditText( value );
+        ZVSymbolAttributes::SetpCommentEditText(value);
     };
 
     virtual CODLineComponent* GetpSplitter1()
@@ -676,9 +672,9 @@ protected:
         return ZVSymbolAttributes::GetpSplitter1();
     };
 
-    virtual void SetpSplitter1( CODLineComponent* value )
+    virtual void SetpSplitter1(CODLineComponent* value)
     {
-        ZVSymbolAttributes::SetpSplitter1( value );
+        ZVSymbolAttributes::SetpSplitter1(value);
     };
 
     virtual CODLineComponent* GetpSplitter2()
@@ -686,9 +682,9 @@ protected:
         return ZVSymbolAttributes::GetpSplitter2();
     };
 
-    virtual void SetpSplitter2( CODLineComponent* value )
+    virtual void SetpSplitter2(CODLineComponent* value)
     {
-        ZVSymbolAttributes::SetpSplitter2( value );
+        ZVSymbolAttributes::SetpSplitter2(value);
     };
 
 protected:
@@ -732,7 +728,7 @@ private:
 };
 
 // Call by the controller when a tooltip is required
-inline bool ZBLinkSymbol::OnToolTip( CString& ToolTipText, CPoint point, ToolTipMode ToolTip /*= NormalToolTip*/ )
+inline bool ZBLinkSymbol::OnToolTip(CString& ToolTipText, CPoint point, ToolTipMode ToolTip /*= NormalToolTip*/)
 {
     return false;
 }
@@ -742,12 +738,12 @@ inline CString ZBLinkSymbol::GetNameOfReference() const
     return m_NameOfReference;
 }
 
-inline void ZBLinkSymbol::SetNameOfReference( CString value )
+inline void ZBLinkSymbol::SetNameOfReference(CString value)
 {
     m_NameOfReference = value;
 }
 
-inline bool ZBLinkSymbol::IsLocal() const 
+inline bool ZBLinkSymbol::IsLocal() const
 {
     return m_IsLocal;
 }
@@ -759,7 +755,7 @@ inline bool ZBLinkSymbol::IsReferenced() const
 
 inline bool ZBLinkSymbol::IsReferenceValid() const
 {
-    return ( !m_NameOfReference.IsEmpty() && m_pReference != NULL );
+    return (!m_NameOfReference.IsEmpty() && m_pReference != NULL);
 }
 
 inline CODSymbolComponent* ZBLinkSymbol::GetSymbolReference() const
@@ -787,4 +783,4 @@ inline int ZBLinkSymbol::GetInitialLabelLineWidth() const
     return m_InitialLabelLineWidth;
 }
 
-#endif // !defined(AFX_ZBLINKSYMBOL_H__E3F0977D_D63F_41AF_8667_2F903330AC3A__INCLUDED_)
+#endif

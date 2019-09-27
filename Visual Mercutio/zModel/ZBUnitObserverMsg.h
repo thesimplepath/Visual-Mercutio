@@ -18,7 +18,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 
-#include "zBaseLib\ZIObserverMsg.h"
+#include "zBaseLib\PSS_ObserverMsg.h"
 
 // forward declarations
 class ZBSymbol;
@@ -39,7 +39,7 @@ class ZBUnitManager;
 //#define AFX_DATA AFX_EXT_CLASS
 
 
-class AFX_EXT_CLASS ZBUnitObserverMsg : public ZIObserverMsg  
+class AFX_EXT_CLASS ZBUnitObserverMsg : public PSS_ObserverMsg  
 {
     DECLARE_DYNAMIC(ZBUnitObserverMsg)
 public:

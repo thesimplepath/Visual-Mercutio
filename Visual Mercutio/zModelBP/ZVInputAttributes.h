@@ -16,8 +16,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 
-#include "zBaseLib\ZISubject.h"
-#include "zBaseLib\ZIObserver.h"
+#include "zBaseLib\PSS_Subject.h"
+#include "zBaseLib\PSS_Observer.h"
 #include "ZCInputAttributesList.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -39,13 +39,13 @@ class ZDProcessGraphModelDoc;
 /////////////////////////////////////////////////////////////////////////////
 // _ZVFlatToolBarInputAttributes window
 
-class _ZVFlatToolBarInputAttributes : public CStatic, public ZISubject
+class _ZVFlatToolBarInputAttributes : public CStatic, public PSS_Subject
 {
-// Construction
+    // Construction
 public:
     _ZVFlatToolBarInputAttributes();
 
-// Attributes
+    // Attributes
 private:
     CCJFlatButton    m_RefreshButton;
     CCJFlatButton    m_AddInputAttributeButton;
@@ -57,15 +57,15 @@ private:
     CImageList        m_ImageList;
     CToolTipCtrl    m_tooltip;
 
-// Operations
+    // Operations
 public:
 
-// Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(_ZVFlatToolBarInputAttributes)
-    public:
+    // Overrides
+        // ClassWizard generated virtual function overrides
+        //{{AFX_VIRTUAL(_ZVFlatToolBarInputAttributes)
+public:
     virtual BOOL PreTranslateMessage(MSG* pMsg);
-    protected:
+protected:
     virtual void PreSubclassWindow();
     //}}AFX_VIRTUAL
 
@@ -94,7 +94,7 @@ protected:
 /////////////////////////////////////////////////////////////////////////////
 // ZVInputAttributes view
 
-class AFX_EXT_CLASS ZVInputAttributes : public CWnd, public ZISubject, public ZIObserver
+class AFX_EXT_CLASS ZVInputAttributes : public CWnd, public PSS_Subject, public PSS_Observer
 {
 
 public:
@@ -103,23 +103,23 @@ public:
     virtual ~ZVInputAttributes();
 
     // Observer call back
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     // Operations
     void Initialize(ZBInputAttributeManager* pInputManager, ZBDynamicPropertiesManager* pPropManager)
     {
         m_listctrl.Initialize(pInputManager, pPropManager);
     };
-    void ShowAll( bool value = true, bool bRefresh = true )
+    void ShowAll(bool value = true, bool bRefresh = true)
     {
         CWaitCursor    Cursor;
         if (::IsWindow(m_listctrl.GetSafeHwnd()))
-            m_listctrl.ShowAll( value, bRefresh );
+            m_listctrl.ShowAll(value, bRefresh);
     };
-    void SetSymbolRef( int value, bool bRefresh = true )
+    void SetSymbolRef(int value, bool bRefresh = true)
     {
         if (::IsWindow(m_listctrl.GetSafeHwnd()))
-            m_listctrl.SetSymbolRef( value, bRefresh );
+            m_listctrl.SetSymbolRef(value, bRefresh);
     };
 
     void Refresh();
@@ -153,9 +153,4 @@ private:
 
 };
 
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(_ZVInputAttributes_H__)
+#endif

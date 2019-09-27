@@ -18,7 +18,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 
-#include "zBaseLib\ZIObserverMsg.h"
+#include "zBaseLib\PSS_ObserverMsg.h"
 
 // forward declarations
 class ZIProperties;
@@ -38,7 +38,7 @@ class ZIProperties;
 //#define AFX_DATA AFX_EXT_CLASS
 
 
-class AFX_EXT_CLASS ZBPropertyObserverMsg : public ZIObserverMsg  
+class AFX_EXT_CLASS ZBPropertyObserverMsg : public PSS_ObserverMsg  
 {
     DECLARE_DYNAMIC(ZBPropertyObserverMsg)
 public:

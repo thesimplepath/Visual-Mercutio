@@ -25,8 +25,8 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "zBaseLib\ZISubject.h"
-#include "zBaseLib\ZIObserver.h"
+#include "zBaseLib\PSS_Subject.h"
+#include "zBaseLib\PSS_Observer.h"
 #include "zModel\ZCUserGroupTreeCtrl.h"
 
 // JMR-MODIF - Le 14 juin 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
@@ -34,9 +34,9 @@
 /////////////////////////////////////////////////////////////////////////////
 // _ZIUserGroupFlatToolBar window
 
-class _ZIUserGroupFlatToolBar : public CStatic, public ZISubject
+class _ZIUserGroupFlatToolBar : public CStatic, public PSS_Subject
 {
-// Construction / destruction
+    // Construction / destruction
 public:
 
     _ZIUserGroupFlatToolBar();
@@ -44,15 +44,15 @@ public:
 
     virtual void RefreshButtonNow();
 
-// Operations
+    // Operations
 public:
 
     // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(_ZIUserGroupFlatToolBar)
-    public:
+public:
     virtual BOOL PreTranslateMessage(MSG* pMsg);
-    protected:
+protected:
     virtual void PreSubclassWindow();
     //}}AFX_VIRTUAL
 
@@ -74,7 +74,7 @@ protected:
 
     DECLARE_MESSAGE_MAP()
 
-// Attributes
+    // Attributes
 private:
 
     CCJFlatButton    m_RefreshButton;
@@ -94,11 +94,11 @@ private:
 /////////////////////////////////////////////////////////////////////////////
 // ZVUserGroup view
 
-class ZVUserGroup : public CWnd, public ZISubject, public ZIObserver
+class ZVUserGroup : public CWnd, public PSS_Subject, public PSS_Observer
 {
 public:
 
-    DECLARE_DYNCREATE( ZVUserGroup )
+    DECLARE_DYNCREATE(ZVUserGroup)
 
     // Protected constructor used by dynamic creation
     ZVUserGroup();
@@ -106,12 +106,12 @@ public:
     virtual ~ZVUserGroup();
 
     // Observer call back
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     ////////////////////////////////////////////////////////////////////
     // Context menu function
-    int HasContextMenu( CWnd* pWnd, CPoint point );
-    void DisplayContextMenu( CWnd* pWnd, CPoint point );
+    int HasContextMenu(CWnd* pWnd, CPoint point);
+    void DisplayContextMenu(CWnd* pWnd, CPoint point);
 
     ////////////////////////////////////////////////////////////////////
     // Group functions
@@ -152,9 +152,4 @@ private:
     COLORREF                    m_clrBtnFace;
 };
 
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVUserGroup_H__B9410245_8299_4908_8E68_3CF603C57BE0__INCLUDED_)
+#endif

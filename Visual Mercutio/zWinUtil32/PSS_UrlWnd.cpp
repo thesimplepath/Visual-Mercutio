@@ -9,7 +9,7 @@
 #include "PSS_UrlWnd.h"
 
 // processsoft
-#include "zBaseLib\ZBToolbarObserverMsg.h"
+#include "zBaseLib\PSS_ToolbarObserverMsg.h"
 
 // resources
 #include "zRes32\zRes.h"
@@ -57,8 +57,8 @@ void PSS_UrlWndAddressIntelliEdit::SetParent(CWnd* pParent)
 //---------------------------------------------------------------------------
 void PSS_UrlWndAddressIntelliEdit::OnEnter()
 {
-    ZBToolbarObserverMsg Msg(UM_GOWEB);
-    NotifyAllObservers(&Msg);
+    PSS_ToolbarObserverMsg msg(UM_GOWEB);
+    NotifyAllObservers(&msg);
 }
 //---------------------------------------------------------------------------
 // Message map
@@ -162,26 +162,26 @@ int PSS_UrlWndButtonToolBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 //---------------------------------------------------------------------------
 void PSS_UrlWndButtonToolBar::OnStopWebButton()
 {
-    ZBToolbarObserverMsg Msg(UM_STOPWEB);
-    NotifyAllObservers(&Msg);
+    PSS_ToolbarObserverMsg msg(UM_STOPWEB);
+    NotifyAllObservers(&msg);
 }
 //---------------------------------------------------------------------------
 void PSS_UrlWndButtonToolBar::OnRefreshWebButton()
 {
-    ZBToolbarObserverMsg Msg(UM_REFRESHWEB);
-    NotifyAllObservers(&Msg);
+    PSS_ToolbarObserverMsg msg(UM_REFRESHWEB);
+    NotifyAllObservers(&msg);
 }
 //---------------------------------------------------------------------------
 void PSS_UrlWndButtonToolBar::OnPrevWebButton()
 {
-    ZBToolbarObserverMsg Msg(UM_PREVWEB);
-    NotifyAllObservers(&Msg);
+    PSS_ToolbarObserverMsg msg(UM_PREVWEB);
+    NotifyAllObservers(&msg);
 }
 //---------------------------------------------------------------------------
 void PSS_UrlWndButtonToolBar::OnNextWebButton()
 {
-    ZBToolbarObserverMsg Msg(UM_NEXTWEB);
-    NotifyAllObservers(&Msg);
+    PSS_ToolbarObserverMsg msg(UM_NEXTWEB);
+    NotifyAllObservers(&msg);
 }
 //---------------------------------------------------------------------------
 // Dynamic construction
@@ -280,9 +280,9 @@ int PSS_UrlWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
     return 0;
 }
 //---------------------------------------------------------------------------
-void PSS_UrlWnd::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
+void PSS_UrlWnd::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
-    ZBToolbarObserverMsg* pToolbarObsMsg = dynamic_cast<ZBToolbarObserverMsg*>(pMsg);
+    PSS_ToolbarObserverMsg* pToolbarObsMsg = dynamic_cast<PSS_ToolbarObserverMsg*>(pMsg);
 
     if (pToolbarObsMsg)
         switch (pToolbarObsMsg->GetMessageID())

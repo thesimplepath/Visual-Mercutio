@@ -15,14 +15,13 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-
-#include "zBaseLib\ZIObserver.h"
+// processsoft
+#include "zBaseLib\PSS_Observer.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // Forward declaration
 class ZBProperty;
-class ZIObserverMsg;
+class PSS_ObserverMsg;
 
 
 
@@ -40,23 +39,23 @@ class ZIObserverMsg;
 /////////////////////////////////////////////////////////////////////////////
 // ZCPropertyDescription window
 
-class AFX_EXT_CLASS ZCPropertyDescription : public CStatic, public ZIObserver
+class AFX_EXT_CLASS ZCPropertyDescription : public CStatic, public PSS_Observer
 {
-// Construction
+    // Construction
 public:
     ZCPropertyDescription();
 
-// Operations
+    // Operations
 public:
     // Observer call back
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
-// Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(ZCPropertyDescription)
-    //}}AFX_VIRTUAL
+    // Overrides
+        // ClassWizard generated virtual function overrides
+        //{{AFX_VIRTUAL(ZCPropertyDescription)
+        //}}AFX_VIRTUAL
 
-// Implementation
+    // Implementation
 public:
     virtual ~ZCPropertyDescription();
 
@@ -86,9 +85,4 @@ private:
 
 };
 
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(_ZCPROPERTYDESCRIPTION_H__)
+#endif

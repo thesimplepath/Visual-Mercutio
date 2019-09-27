@@ -17,12 +17,12 @@
 //---------------------------------------------------------------------------
 // Dynamic construction
 //---------------------------------------------------------------------------
-IMPLEMENT_DYNAMIC(PSS_FieldObserverMsg, ZIObserverMsg)
+IMPLEMENT_DYNAMIC(PSS_FieldObserverMsg, PSS_ObserverMsg)
 //---------------------------------------------------------------------------
 // PSS_FieldObserverMsg
 //---------------------------------------------------------------------------
 PSS_FieldObserverMsg::PSS_FieldObserverMsg(UINT messageID, PSS_PlanFinObject* pObject) :
-    ZIObserverMsg(),
+    PSS_ObserverMsg(),
     m_MessageID(messageID),
     m_pObject(pObject)
 {}

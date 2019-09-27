@@ -8,8 +8,8 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "zBaseLib\ZISubject.h"
-#include "zBaseLib\ZIObserver.h"
+#include "zBaseLib\PSS_Subject.h"
+#include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\ZCWorkspaceTreeCtrl.h"
 #include "zWinUtil32\PSS_FormTemplateTreeCtrl.h"
 #include "zWinUtil32\PSS_FileWnd.h"
@@ -27,26 +27,26 @@
 // La liste ci-dessous représente l'ordre d'affichage des formulaires. On peut tout à fait réorganiser cette liste,
 // à condition que la valeur des index reste logique et consécutive. Par exemple, si on définit un ordre illogique
 // comme : 0-1-2-3-5-6-7-8, le programme va se planter.
-const int def_WorkspaceTabIndex        = 0;
-const int def_ModelDocumentTabIndex    = 1;
-const int def_UserTabIndex            = 2;
-const int def_LogicalSystemTabIndex    = 3;
-const int def_PrestationsTabIndex    = 4;        // JMR-MODIF - Le 11 octobre 2005 - Ajout de la constante de formulaire.
-const int def_RulesTabIndex            = 5;        // JMR-MODIF - Le 13 novembre 2006 - Ajout de la constante de formulaire.
-const int def_FileTabIndex            = 6;
+const int def_WorkspaceTabIndex = 0;
+const int def_ModelDocumentTabIndex = 1;
+const int def_UserTabIndex = 2;
+const int def_LogicalSystemTabIndex = 3;
+const int def_PrestationsTabIndex = 4;        // JMR-MODIF - Le 11 octobre 2005 - Ajout de la constante de formulaire.
+const int def_RulesTabIndex = 5;        // JMR-MODIF - Le 13 novembre 2006 - Ajout de la constante de formulaire.
+const int def_FileTabIndex = 6;
 
 // JMR-MODIF - Le 13 novembre 2006 - Ces deux formulaires ne sont pas inclus dans cette version. Pour les utiliser,
 // il faut leur attribuer une valeur valide (par exemple, le dernier numéro attribué ci-dessus incrémenté de 1), et
 // décommenter la variable de définition des variables _DISPLAY_SCRIPTOR et / ou _DISPLAY_WEBVIEW dans le fichier
 // ZVProcessWorkspace.cpp.
-const int def_FormTemplateTabIndex    = -1;
-const int def_WebTabIndex            = -1;
+const int def_FormTemplateTabIndex = -1;
+const int def_WebTabIndex = -1;
 
 class ZVProcessWorkspace : public SECControlBar,
-                           public ZISubject,
-                           public ZIObserver
+                           public PSS_Subject,
+                           public PSS_Observer
 {
-    DECLARE_DYNAMIC( ZVProcessWorkspace )
+    DECLARE_DYNAMIC(ZVProcessWorkspace)
 
 public:
 
@@ -58,8 +58,8 @@ public:
     // JMR-MODIF - Le 30 août 2005 - Ajout de la fonction Release.
     void Release();
 
-    void InitializeModelDocumentTree( ZBModelSet* pModelSet );
-    void InitializeModelUnitTree( ZBModelSet* pModelSet );
+    void InitializeModelDocumentTree(ZBModelSet* pModelSet);
+    void InitializeModelUnitTree(ZBModelSet* pModelSet);
 
     void RefreshModelDocumentTree();
     void RefreshModelUnitTree();
@@ -67,24 +67,24 @@ public:
     void EmptyModelDocumentTree();
     void EmptyModelUnitTree();
 
-    void AddModelDocument( ZDProcessGraphModelMdl* pModel );
-    void RemoveModelDocument( ZDProcessGraphModelMdl* pModel );
+    void AddModelDocument(ZDProcessGraphModelMdl* pModel);
+    void RemoveModelDocument(ZDProcessGraphModelMdl* pModel);
 
-    void AddModelDocumentSet( ZBModelSet* pModelSet );
-    void RemoveModelDocumentSet( ZBModelSet* pModelSet );
+    void AddModelDocumentSet(ZBModelSet* pModelSet);
+    void RemoveModelDocumentSet(ZBModelSet* pModelSet);
 
-    void AddModelDocumentSymbol( CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel = NULL );
-    void RemoveModelDocumentSymbol( CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel = NULL );
-    void ModifyModelDocumentSymbol( CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel = NULL );
+    void AddModelDocumentSymbol(CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel = NULL);
+    void RemoveModelDocumentSymbol(CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel = NULL);
+    void ModifyModelDocumentSymbol(CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel = NULL);
 
-    void AddModelUnit( ZDProcessGraphModelMdl* pModel );
-    void RemoveModelUnit( ZDProcessGraphModelMdl* pModel );
+    void AddModelUnit(ZDProcessGraphModelMdl* pModel);
+    void RemoveModelUnit(ZDProcessGraphModelMdl* pModel);
 
-    void AddModelUnitSet( ZBModelSet* pModelSet );
-    void RemoveModelUnitSet( ZBModelSet* pModelSet );
+    void AddModelUnitSet(ZBModelSet* pModelSet);
+    void RemoveModelUnitSet(ZBModelSet* pModelSet);
 
-    void AddModelUnitSymbol( CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel = NULL );
-    void RemoveModelUnitSymbol( CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel = NULL );
+    void AddModelUnitSymbol(CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel = NULL);
+    void RemoveModelUnitSymbol(CODSymbolComponent* pSymbol, ZDProcessGraphModelMdl* pModel = NULL);
 
     ///////////////////////////////////////////////////////////
     // Workspace methods
@@ -92,17 +92,17 @@ public:
 
     void ActivateWorkspaceTab()
     {
-        m_wndTab.ActivateTab( def_WorkspaceTabIndex );
+        m_wndTab.ActivateTab(def_WorkspaceTabIndex);
     };
 
     void ShowWorkspaceTab()
     {
-        m_wndTab.EnableTab( def_WorkspaceTabIndex, TRUE );
+        m_wndTab.EnableTab(def_WorkspaceTabIndex, TRUE);
     };
 
     void HideWorkspaceTab()
     {
-        m_wndTab.EnableTab( def_WorkspaceTabIndex, FALSE );
+        m_wndTab.EnableTab(def_WorkspaceTabIndex, FALSE);
     };
 
     ///////////////////////////////////////////////////////////
@@ -111,17 +111,17 @@ public:
 
     void ActivateModelDocumentTab()
     {
-        m_wndTab.ActivateTab( def_ModelDocumentTabIndex );
+        m_wndTab.ActivateTab(def_ModelDocumentTabIndex);
     };
 
     void ShowModelDocumentTab()
     {
-        m_wndTab.EnableTab( def_ModelDocumentTabIndex, TRUE );
+        m_wndTab.EnableTab(def_ModelDocumentTabIndex, TRUE);
     };
 
     void HideModelDocumentTab()
     {
-        m_wndTab.EnableTab( def_ModelDocumentTabIndex, FALSE );
+        m_wndTab.EnableTab(def_ModelDocumentTabIndex, FALSE);
     };
 
     ///////////////////////////////////////////////////////////
@@ -130,17 +130,17 @@ public:
 
     void ActivateFormTemplateTab()
     {
-        m_wndTab.ActivateTab( def_FormTemplateTabIndex );
+        m_wndTab.ActivateTab(def_FormTemplateTabIndex);
     };
 
     void ShowFormTemplateTab()
     {
-        m_wndTab.EnableTab( def_FormTemplateTabIndex, TRUE );
+        m_wndTab.EnableTab(def_FormTemplateTabIndex, TRUE);
     };
 
     void HideFormTemplateTab()
     {
-        m_wndTab.EnableTab( def_FormTemplateTabIndex, FALSE );
+        m_wndTab.EnableTab(def_FormTemplateTabIndex, FALSE);
     };
 
     ///////////////////////////////////////////////////////////
@@ -149,17 +149,17 @@ public:
 
     void ActivateUserTab()
     {
-        m_wndTab.ActivateTab( def_UserTabIndex );
+        m_wndTab.ActivateTab(def_UserTabIndex);
     };
 
     void ShowUserTab()
     {
-        m_wndTab.EnableTab( def_UserTabIndex, TRUE );
+        m_wndTab.EnableTab(def_UserTabIndex, TRUE);
     };
 
     void HideUserTab()
     {
-        m_wndTab.EnableTab( def_UserTabIndex, FALSE );
+        m_wndTab.EnableTab(def_UserTabIndex, FALSE);
     };
 
     ///////////////////////////////////////////////////////////
@@ -168,17 +168,17 @@ public:
 
     void ActivateLogicalSystemTab()
     {
-        m_wndTab.ActivateTab( def_LogicalSystemTabIndex );
+        m_wndTab.ActivateTab(def_LogicalSystemTabIndex);
     };
 
     void ShowLogicalSystemTab()
     {
-        m_wndTab.EnableTab( def_LogicalSystemTabIndex, TRUE );
+        m_wndTab.EnableTab(def_LogicalSystemTabIndex, TRUE);
     };
 
     void HideLogicalSystemTab()
     {
-        m_wndTab.EnableTab( def_LogicalSystemTabIndex, FALSE );
+        m_wndTab.EnableTab(def_LogicalSystemTabIndex, FALSE);
     };
 
     ///////////////////////////////////////////////////////////
@@ -187,17 +187,17 @@ public:
 
     void ActivateFileTab()
     {
-        m_wndTab.ActivateTab( def_FileTabIndex );
+        m_wndTab.ActivateTab(def_FileTabIndex);
     };
 
     void ShowFileTab()
     {
-        m_wndTab.EnableTab( def_FileTabIndex, TRUE );
+        m_wndTab.EnableTab(def_FileTabIndex, TRUE);
     };
 
     void HideFileTab()
     {
-        m_wndTab.EnableTab( def_FileTabIndex, FALSE );
+        m_wndTab.EnableTab(def_FileTabIndex, FALSE);
     };
 
     ///////////////////////////////////////////////////////////
@@ -206,17 +206,17 @@ public:
 
     void ActivateWebTab()
     {
-        m_wndTab.ActivateTab( def_WebTabIndex );
+        m_wndTab.ActivateTab(def_WebTabIndex);
     };
 
     void ShowWebTab()
     {
-        m_wndTab.EnableTab( def_WebTabIndex, TRUE );
+        m_wndTab.EnableTab(def_WebTabIndex, TRUE);
     };
 
     void HideWebTab()
     {
-        m_wndTab.EnableTab( def_WebTabIndex, FALSE );
+        m_wndTab.EnableTab(def_WebTabIndex, FALSE);
     };
 
     ///////////////////////////////////////////////////////////////////////////
@@ -225,17 +225,17 @@ public:
 
     void ActivatePrestationsTab()
     {
-        m_wndTab.ActivateTab( def_PrestationsTabIndex );
+        m_wndTab.ActivateTab(def_PrestationsTabIndex);
     };
 
     void ShowPrestationsTab()
     {
-        m_wndTab.EnableTab( def_PrestationsTabIndex, TRUE );
+        m_wndTab.EnableTab(def_PrestationsTabIndex, TRUE);
     };
 
     void HidePrestationsTab()
     {
-        m_wndTab.EnableTab( def_PrestationsTabIndex, FALSE );
+        m_wndTab.EnableTab(def_PrestationsTabIndex, FALSE);
     };
 
     ///////////////////////////////////////////////////////////////////////////
@@ -244,22 +244,22 @@ public:
 
     void ActivateRulesTab()
     {
-        m_wndTab.ActivateTab( def_RulesTabIndex );
+        m_wndTab.ActivateTab(def_RulesTabIndex);
     };
 
     void ShowRulesTab()
     {
-        m_wndTab.EnableTab( def_RulesTabIndex, TRUE );
+        m_wndTab.EnableTab(def_RulesTabIndex, TRUE);
     };
 
     void HideRulesTab()
     {
-        m_wndTab.EnableTab( def_RulesTabIndex, FALSE );
+        m_wndTab.EnableTab(def_RulesTabIndex, FALSE);
     };
 
     ///////////////////////////////////////////////////////////
     // ZIObserver call-back method
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
 public:
 
@@ -281,23 +281,23 @@ protected:
     afx_msg void OnListGetDispInfoFileView(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnListGetDispInfoUserView(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnListGetDispInfoWebView(NMHDR* pNMHDR, LRESULT* pResult);
-    afx_msg LRESULT OnInitializeModelDocument( WPARAM wParam, LPARAM lParam );
-    afx_msg LRESULT OnModelDocumentHasChanged( WPARAM wParam, LPARAM lParam );
-    afx_msg LRESULT OnInitializeModelUnit( WPARAM wParam, LPARAM lParam );
-    afx_msg LRESULT OnModelUnitHasChanged( WPARAM wParam, LPARAM lParam );
-    afx_msg LRESULT OnAddModelDocument( WPARAM wParam, LPARAM lParam );
-    afx_msg LRESULT OnRemoveModelDocument( WPARAM wParam, LPARAM lParam );
-    afx_msg LRESULT OnAddModelUnit( WPARAM wParam, LPARAM lParam );
-    afx_msg LRESULT OnRemoveModelUnit( WPARAM wParam, LPARAM lParam );
-    afx_msg LRESULT OnAddModelDocumentSymbol( WPARAM wParam, LPARAM lParam );
-    afx_msg LRESULT OnRemoveModelDocumentSymbol( WPARAM wParam, LPARAM lParam );
-    afx_msg LRESULT OnModifyModelDocumentSymbol( WPARAM wParam, LPARAM lParam );
-    afx_msg LRESULT OnAddModelUnitSymbol( WPARAM wParam, LPARAM lParam );
-    afx_msg LRESULT OnRemoveModelUnitSymbol( WPARAM wParam, LPARAM lParam );
-    afx_msg LRESULT OnModifyModelUnitSymbol( WPARAM wParam, LPARAM lParam );
-    afx_msg LRESULT OnCloseDocumentModelTree( WPARAM wParam, LPARAM lParam );
-    afx_msg LRESULT OnCloseUnitModelTree( WPARAM wParam, LPARAM lParam );
-    afx_msg LRESULT OnDocumentHasBeenSelected( WPARAM wParam, LPARAM lParam );
+    afx_msg LRESULT OnInitializeModelDocument(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnModelDocumentHasChanged(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnInitializeModelUnit(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnModelUnitHasChanged(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnAddModelDocument(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnRemoveModelDocument(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnAddModelUnit(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnRemoveModelUnit(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnAddModelDocumentSymbol(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnRemoveModelDocumentSymbol(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnModifyModelDocumentSymbol(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnAddModelUnitSymbol(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnRemoveModelUnitSymbol(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnModifyModelUnitSymbol(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnCloseDocumentModelTree(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnCloseUnitModelTree(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnDocumentHasBeenSelected(WPARAM wParam, LPARAM lParam);
     //}}AFX_MSG
     DECLARE_MESSAGE_MAP()
 
@@ -365,4 +365,4 @@ inline ZVRules* ZVProcessWorkspace::GetRulesView()
     return &m_RulesView;
 }
 
-#endif // !defined(AFX_ZVPROCESSWORKSPACE_H__8CD08B10_53ED_438C_82AD_1E04FE3C6282__INCLUDED_)
+#endif

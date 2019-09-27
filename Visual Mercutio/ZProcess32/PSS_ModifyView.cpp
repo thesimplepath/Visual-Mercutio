@@ -1001,7 +1001,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 
         PSS_FieldObserverMsg msg(UM_NOTIFY_POINTEROBJSELECTED, m_pOldPointerSelectedObj);
 
-        ZISubject* pSubject = dynamic_cast<ZISubject*>(AfxGetMainWnd());
+        PSS_Subject* pSubject = dynamic_cast<PSS_Subject*>(AfxGetMainWnd());
 
         if (pSubject)
             pSubject->NotifyAllObservers(&msg);

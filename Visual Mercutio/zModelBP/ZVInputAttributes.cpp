@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ZVInputAttributes.h"
 
-#include "zBaseLib\ZBToolbarObserverMsg.h"
+#include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
 
 #include "zModel\ProcGraphModelDoc.h"
@@ -171,39 +171,39 @@ void _ZVFlatToolBarInputAttributes::PreSubclassWindow()
 
 void _ZVFlatToolBarInputAttributes::OnRefreshButton()
 {
-    ZBToolbarObserverMsg    Msg(UM_REFRESH);
-    NotifyAllObservers(&Msg);
+    PSS_ToolbarObserverMsg    msg(UM_REFRESH);
+    NotifyAllObservers(&msg);
 }
 
 void _ZVFlatToolBarInputAttributes::OnAddInputAttributeButton()
 {
-    ZBToolbarObserverMsg    Msg(UM_ADDINPUTATTRIBUTE);
-    NotifyAllObservers(&Msg);
+    PSS_ToolbarObserverMsg    msg(UM_ADDINPUTATTRIBUTE);
+    NotifyAllObservers(&msg);
 }
 
 void _ZVFlatToolBarInputAttributes::OnDeleteInputAttributeButton()
 {
-    ZBToolbarObserverMsg    Msg(UM_DELETEINPUTATTRIBUTE);
-    NotifyAllObservers(&Msg);
+    PSS_ToolbarObserverMsg    msg(UM_DELETEINPUTATTRIBUTE);
+    NotifyAllObservers(&msg);
 }
 
 
 void _ZVFlatToolBarInputAttributes::OnModifyInputAttributeButton()
 {
-    ZBToolbarObserverMsg    Msg(UM_MODIFYINPUTATTRIBUTE);
-    NotifyAllObservers(&Msg);
+    PSS_ToolbarObserverMsg    msg(UM_MODIFYINPUTATTRIBUTE);
+    NotifyAllObservers(&msg);
 }
 
 void _ZVFlatToolBarInputAttributes::OnShowSymbolAttributeButton()
 {
-    ZBToolbarObserverMsg    Msg(UM_SHOWSYMBOLATTRIBUTE);
-    NotifyAllObservers(&Msg);
+    PSS_ToolbarObserverMsg    msg(UM_SHOWSYMBOLATTRIBUTE);
+    NotifyAllObservers(&msg);
 }
 
 void _ZVFlatToolBarInputAttributes::OnShowAllAttributeButton()
 {
-    ZBToolbarObserverMsg    Msg(UM_SHOWALLATTRIBUTE);
-    NotifyAllObservers(&Msg);
+    PSS_ToolbarObserverMsg    msg(UM_SHOWALLATTRIBUTE);
+    NotifyAllObservers(&msg);
 }
 
 
@@ -240,7 +240,7 @@ ZVInputAttributes::~ZVInputAttributes()
 {}
 
 
-void ZVInputAttributes::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
+void ZVInputAttributes::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
     // Forward the message to the property control
     m_listctrl.OnUpdate(pSubject, pMsg);
@@ -256,9 +256,9 @@ void ZVInputAttributes::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
         }
     }
     else
-        if (pMsg && ISA(pMsg, ZBToolbarObserverMsg))
+        if (pMsg && ISA(pMsg, PSS_ToolbarObserverMsg))
         {
-            switch (dynamic_cast<ZBToolbarObserverMsg*>(pMsg)->GetMessageID())
+            switch (dynamic_cast<PSS_ToolbarObserverMsg*>(pMsg)->GetMessageID())
             {
                 case UM_REFRESH:
                 {

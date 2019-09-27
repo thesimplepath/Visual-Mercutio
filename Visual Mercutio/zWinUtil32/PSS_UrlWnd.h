@@ -26,8 +26,8 @@
 #endif
 
 // processsoft
-#include "zBaseLib\ZISubject.h"
-#include "zBaseLib\ZIObserver.h"
+#include "zBaseLib\PSS_Subject.h"
+#include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\PSS_FlatButton.h"
 #include "zBaseLib\ZCIntelliEdit.h"
 #include "zWeb\PSS_WebBrowser.h"
@@ -50,7 +50,7 @@
 * Url window address intellisense edit box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_UrlWndAddressIntelliEdit : public ZCIntelliEdit, public ZISubject
+class PSS_UrlWndAddressIntelliEdit : public ZCIntelliEdit, public PSS_Subject
 {
     public:
         /**
@@ -87,7 +87,7 @@ class PSS_UrlWndAddressIntelliEdit : public ZCIntelliEdit, public ZISubject
 * Url window button toolbar
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_UrlWndButtonToolBar : public CStatic, public ZISubject
+class PSS_UrlWndButtonToolBar : public CStatic, public PSS_Subject
 {
     public:
         /**
@@ -134,7 +134,7 @@ class PSS_UrlWndButtonToolBar : public CStatic, public ZISubject
 * Url window
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_UrlWnd : public CWnd, public ZISubject, public ZIObserver
+class AFX_EXT_CLASS PSS_UrlWnd : public CWnd, public PSS_Subject, public PSS_Observer
 {
     DECLARE_DYNCREATE(PSS_UrlWnd)
 
@@ -154,7 +154,7 @@ class AFX_EXT_CLASS PSS_UrlWnd : public CWnd, public ZISubject, public ZIObserve
         /// Generated message map functions
         //{{AFX_MSG(ZVURLWnd)
         afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-        virtual void OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg);
+        virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
         afx_msg void OnSize(UINT nType, int cx, int cy);
         afx_msg void OnPaint();
         afx_msg void OnGo();

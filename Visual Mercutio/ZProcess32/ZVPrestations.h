@@ -13,8 +13,8 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "zBaseLib\ZISubject.h"
-#include "zBaseLib\ZIObserver.h"
+#include "zBaseLib\PSS_Subject.h"
+#include "zBaseLib\PSS_Observer.h"
 
 #include "zModel\ZCPrestationsTreeCtrl.h"
 
@@ -22,15 +22,15 @@
 // _ZIPrestationsFlatToolBar window
 
 class _ZIPrestationsFlatToolBar : public CStatic,
-                                  public ZISubject
+                                  public PSS_Subject
 {
-// Construction / Destruction
+    // Construction / Destruction
 public:
 
     _ZIPrestationsFlatToolBar();
     virtual ~_ZIPrestationsFlatToolBar();
 
-// Attributes
+    // Attributes
 private:
 
     CCJFlatButton    m_RefreshButton;
@@ -43,15 +43,15 @@ private:
     CImageList        m_ImageList;
     CToolTipCtrl    m_tooltip;
 
-// Operations
+    // Operations
 public:
 
     // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(_ZIPrestationsFlatToolBar)
-    public:
+public:
     virtual BOOL PreTranslateMessage(MSG* pMsg);
-    protected:
+protected:
     virtual void PreSubclassWindow();
     //}}AFX_VIRTUAL
 
@@ -74,12 +74,12 @@ protected:
 // ZVPrestations view
 
 class ZVPrestations : public CWnd,
-                      public ZISubject,
-                      public ZIObserver
+                      public PSS_Subject,
+                      public PSS_Observer
 {
 public:
 
-    DECLARE_DYNCREATE( ZVPrestations )
+    DECLARE_DYNCREATE(ZVPrestations)
 
     ZVPrestations();
     virtual ~ZVPrestations();
@@ -88,12 +88,12 @@ public:
     void Release();
 
     // Observer call back
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     ////////////////////////////////////////////////////////////////////
     // Context menu function
-    int HasContextMenu( CWnd* pWnd, CPoint point );
-    void DisplayContextMenu( CWnd* pWnd, CPoint point );
+    int HasContextMenu(CWnd* pWnd, CPoint point);
+    void DisplayContextMenu(CWnd* pWnd, CPoint point);
 
     ////////////////////////////////////////////////////////////////////
     // Group functions
@@ -109,7 +109,7 @@ public:
     bool CanDeletePrestation();
     bool CanProperties();
 
-// Generated message map functions
+    // Generated message map functions
 protected:
 
     //{{AFX_MSG(ZVPrestations)
@@ -126,8 +126,4 @@ private:
     COLORREF                        m_clrBtnFace;
 };
 
-/////////////////////////////////////////////////////////////////////////////
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVPrestations_H__B9410245_8299_4908_8E68_3CF603C57BE0__INCLUDED_)
+#endif

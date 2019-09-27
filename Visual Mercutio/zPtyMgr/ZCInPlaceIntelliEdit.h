@@ -43,7 +43,7 @@ protected:
     DECLARE_DYNAMIC(ZCInPlaceIntelliEdit)
 
 public:
-    ZCInPlaceIntelliEdit( bool IsReadOnly = false );
+    ZCInPlaceIntelliEdit(bool IsReadOnly = false);
     virtual ~ZCInPlaceIntelliEdit();
 
     // Operations
@@ -60,7 +60,7 @@ public:
     virtual CString GetEditText() const;
 
     // ZIObserver OnUpdate call-back function
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     // Call when requires to process the extended command
     virtual void OnExtendedCommand();
@@ -68,8 +68,8 @@ public:
     // ZCIntelliEdit call-back. Used to trap when the user selects and item from the list of values
     virtual void    OnItemSelectedFromList();
 
-    bool IsEditCtrlHit( CPoint point ) const;
-    bool IsEditButtonCtrlHit( CPoint point ) const;
+    bool IsEditCtrlHit(CPoint point) const;
+    bool IsEditButtonCtrlHit(CPoint point) const;
 
     // Virtual function to cancel and save the edition
     virtual void CancelEdit();
@@ -105,14 +105,6 @@ private:
 };
 
 inline ZCInPlaceIntelliEdit::~ZCInPlaceIntelliEdit()
-{
-}
+{}
 
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(_ZCInPlaceIntelliEdit_H__)
-
-
+#endif

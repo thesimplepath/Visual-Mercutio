@@ -18,7 +18,7 @@
 
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
-#include "zBaseLib\ZBToolbarObserverMsg.h"
+#include "zBaseLib\PSS_ToolbarObserverMsg.h"
 
 // FileDlg
 #include "zBaseLib\PSS_FileDialog.h"
@@ -4860,7 +4860,7 @@ void ZDProcessGraphModelController::OnFindSymbol()
             pLog = dynamic_cast<ZDProcessGraphModelDoc*>(pModel->GetDocument())->GetSearchOutputLog();
 
             // Asks to activate the search log tab
-            ZBToolbarObserverMsg Msg(UM_ACTIVATE_LOGSEARCH_TAB);
+            PSS_ToolbarObserverMsg Msg(UM_ACTIVATE_LOGSEARCH_TAB);
             dynamic_cast<ZDProcessGraphModelDoc*>(pModel->GetDocument())->NotifyAllObservers(&Msg);
         }
 
@@ -5244,7 +5244,7 @@ void ZDProcessGraphModelController::OnAdviseStartPropertyEdition()
     return;
 }
 
-void ZDProcessGraphModelController::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
+void ZDProcessGraphModelController::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
     if (pMsg && ISA(pMsg, ZBSymbolLogObserverMsg))
     {

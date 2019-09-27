@@ -239,7 +239,7 @@ void ZBBPDoorSymbol::OnSymbolNameChanged(CODComponent& Comp, const CString OldNa
     }
 }
 
-void ZBBPDoorSymbol::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
+void ZBBPDoorSymbol::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
     ZBSymbol* pSymbol = static_cast<ZBSymbol*>(pSubject);
 

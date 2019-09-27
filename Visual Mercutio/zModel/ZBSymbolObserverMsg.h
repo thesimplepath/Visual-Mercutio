@@ -17,10 +17,8 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-#include "zBaseLib\ZIObserverMsg.h"
-
-
+// processsoft
+#include "zBaseLib\PSS_ObserverMsg.h"
 
 #ifdef _ZMODELEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -36,7 +34,7 @@
 //#define AFX_DATA AFX_EXT_CLASS
 
 
-class AFX_EXT_CLASS ZBSymbolObserverMsg : public ZIObserverMsg  
+class AFX_EXT_CLASS ZBSymbolObserverMsg : public PSS_ObserverMsg  
 {
     DECLARE_DYNAMIC(ZBSymbolObserverMsg)
 public:

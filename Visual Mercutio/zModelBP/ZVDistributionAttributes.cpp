@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ZVDistributionAttributes.h"
 
-#include "zBaseLib\ZBToolbarObserverMsg.h"
+#include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zBaseLib\PSS_DocumentObserverMsg.h"
 
 #include "zModel\ProcGraphModelDoc.h"
@@ -150,27 +150,27 @@ void _ZVFlatToolBarDistributionAttribs::PreSubclassWindow()
 
 void _ZVFlatToolBarDistributionAttribs::OnRefreshButton()
 {
-    ZBToolbarObserverMsg    Msg(UM_REFRESH);
-    NotifyAllObservers(&Msg);
+    PSS_ToolbarObserverMsg    msg(UM_REFRESH);
+    NotifyAllObservers(&msg);
 }
 
 void _ZVFlatToolBarDistributionAttribs::OnAddDistributionAttribButton()
 {
-    ZBToolbarObserverMsg    Msg(UM_ADDDISTRIBUTIONATTRIBUTE);
-    NotifyAllObservers(&Msg);
+    PSS_ToolbarObserverMsg    msg(UM_ADDDISTRIBUTIONATTRIBUTE);
+    NotifyAllObservers(&msg);
 }
 
 void _ZVFlatToolBarDistributionAttribs::OnDeleteDistributionAttribButton()
 {
-    ZBToolbarObserverMsg    Msg(UM_DELETEDISTRIBUTIONATTRIBUTE);
-    NotifyAllObservers(&Msg);
+    PSS_ToolbarObserverMsg    msg(UM_DELETEDISTRIBUTIONATTRIBUTE);
+    NotifyAllObservers(&msg);
 }
 
 
 void _ZVFlatToolBarDistributionAttribs::OnModifyDistributionAttribButton()
 {
-    ZBToolbarObserverMsg    Msg(UM_MODIFYDISTRIBUTIONATTRIBUTE);
-    NotifyAllObservers(&Msg);
+    PSS_ToolbarObserverMsg    msg(UM_MODIFYDISTRIBUTIONATTRIBUTE);
+    NotifyAllObservers(&msg);
 }
 
 
@@ -205,7 +205,7 @@ ZVDistributionAttributes::~ZVDistributionAttributes()
 {}
 
 
-void ZVDistributionAttributes::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
+void ZVDistributionAttributes::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
     // Forward the message to the property control
     m_listctrl.OnUpdate(pSubject, pMsg);
@@ -218,9 +218,9 @@ void ZVDistributionAttributes::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg
         }
     }
     else
-        if (pMsg && ISA(pMsg, ZBToolbarObserverMsg))
+        if (pMsg && ISA(pMsg, PSS_ToolbarObserverMsg))
         {
-            switch (dynamic_cast<ZBToolbarObserverMsg*>(pMsg)->GetMessageID())
+            switch (dynamic_cast<PSS_ToolbarObserverMsg*>(pMsg)->GetMessageID())
             {
                 case UM_REFRESH:
                 {

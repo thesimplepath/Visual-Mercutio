@@ -299,7 +299,7 @@ void PSS_BaseMDIPage::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pD
 
     // send a message to the shema view to specify that current schema has changed
     PSS_CommandObserverMsg msg(UM_DEFAULTSCHEMAHASCHANGED);
-    dynamic_cast<ZISubject*>(AfxGetMainWnd())->NotifyAllObservers(&msg);
+    dynamic_cast<PSS_Subject*>(AfxGetMainWnd())->NotifyAllObservers(&msg);
 }
 //---------------------------------------------------------------------------
 void PSS_BaseMDIPage::OnViewFullScreen()
@@ -380,7 +380,7 @@ afx_msg void PSS_BaseMDIPage::OnSchemaChange()
 
         // send a message to the shema view to specify that current schema has changed
         PSS_CommandObserverMsg msg(UM_DEFAULTSCHEMAHASCHANGED);
-        dynamic_cast<ZISubject*>(AfxGetMainWnd())->NotifyAllObservers(&msg);
+        dynamic_cast<PSS_Subject*>(AfxGetMainWnd())->NotifyAllObservers(&msg);
 
         // redraw all views
         pDocument->UpdateAllViews(NULL);

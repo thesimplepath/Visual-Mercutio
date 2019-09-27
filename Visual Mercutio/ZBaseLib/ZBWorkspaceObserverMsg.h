@@ -17,7 +17,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "ZIObserverMsg.h"
+#include "PSS_ObserverMsg.h"
 
 // forward declarations
 class ZBWorkspaceEnv;
@@ -43,7 +43,7 @@ const int UM_ADDWORKSPACE_ENTITY    = 104;
 const int UM_MODIFYWORKSPACE_ENTITY = 105;
 const int UM_REMOVEWORKSPACE_ENTITY = 106;
 
-class AFX_EXT_CLASS ZBWorkspaceObserverMsg : public ZIObserverMsg  
+class AFX_EXT_CLASS ZBWorkspaceObserverMsg : public PSS_ObserverMsg  
 {
     DECLARE_DYNAMIC( ZBWorkspaceObserverMsg )
 

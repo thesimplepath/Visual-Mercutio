@@ -13,8 +13,8 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "zBaseLib\ZISubject.h"
-#include "zBaseLib\ZIObserver.h"
+#include "zBaseLib\PSS_Subject.h"
+#include "zBaseLib\PSS_Observer.h"
 
 #include "zModel\ZCRulesTreeCtrl.h"
 
@@ -22,7 +22,7 @@
 // _ZIRulesFlatToolBar window
 
 class _ZIRulesFlatToolBar : public CStatic,
-                            public ZISubject
+                            public PSS_Subject
 {
 // Construction / Destruction
 public:
@@ -74,8 +74,8 @@ protected:
 // ZVRules view
 
 class ZVRules : public CWnd,
-                public ZISubject,
-                public ZIObserver
+                public PSS_Subject,
+                public PSS_Observer
 {
 public:
 
@@ -87,7 +87,7 @@ public:
     void Release();
 
     // Observer call back
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate( PSS_Subject* pSubject, PSS_ObserverMsg* pMsg );
 
     ////////////////////////////////////////////////////////////////////
     // Context menu function
@@ -125,8 +125,4 @@ private:
     COLORREF            m_clrBtnFace;
 };
 
-/////////////////////////////////////////////////////////////////////////////
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVRules_H__B9410245_8299_4908_8E68_3CF603C57BE0__INCLUDED_)
+#endif

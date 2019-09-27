@@ -16,7 +16,7 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -27,9 +27,9 @@ static char THIS_FILE[]=__FILE__;
 #define IDC_INPUTATTRIBUTEVIEW                104
 #define IDC_DISTRIBUTIONATTRIBUTEVIEW        105
 
-IMPLEMENT_DYNAMIC( ZVPropertiesWorkspace, SECControlBar )
+IMPLEMENT_DYNAMIC(ZVPropertiesWorkspace, SECControlBar)
 
-BEGIN_MESSAGE_MAP( ZVPropertiesWorkspace, SECControlBar )
+BEGIN_MESSAGE_MAP(ZVPropertiesWorkspace, SECControlBar)
     //{{AFX_MSG_MAP(ZVPropertiesWorkspace)
     ON_WM_CREATE()
     ON_WM_SIZE()
@@ -44,30 +44,27 @@ END_MESSAGE_MAP()
 
 ZVPropertiesWorkspace::ZVPropertiesWorkspace()
     : SECControlBar()
-{
-}
+{}
 
 ZVPropertiesWorkspace::~ZVPropertiesWorkspace()
-{
-}
+{}
 
 // JMR-MODIF - Le 30 août 2005 - Ajout de la fonction Release pour permettre un nettoyage de la mémoire.
 void ZVPropertiesWorkspace::Release()
-{
-}
+{}
 
-int ZVPropertiesWorkspace::OnCreate( LPCREATESTRUCT lpCreateStruct )
+int ZVPropertiesWorkspace::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-    if ( SECControlBar::OnCreate( lpCreateStruct ) == -1 )
+    if (SECControlBar::OnCreate(lpCreateStruct) == -1)
     {
         return -1;
     }
 
     CRect rc;
-    GetClientRect( &rc );
+    GetClientRect(&rc);
 
     BOOL rtn_val;
-    rtn_val = m_wndTab.Create( this );
+    rtn_val = m_wndTab.Create(this);
 
     // Note: OT 5.0 and earlier would stretch a 32x32 icon resource down to
     // 16x16. 5.1 and above defaults to native 16x16 sized icons, when available
@@ -76,47 +73,47 @@ int ZVPropertiesWorkspace::OnCreate( LPCREATESTRUCT lpCreateStruct )
     // stretch down, but at least we are loading the images of interest)
 
     // Symbol Properties
-    m_PropertyView.Create( NULL,
-                           NULL,
-                           WS_CHILD | WS_VISIBLE,
-                           CRect( 0, 0, 0, 0 ),
-                           &m_wndTab,
-                           IDC_PROPERTIESVIEW );
+    m_PropertyView.Create(NULL,
+                          NULL,
+                          WS_CHILD | WS_VISIBLE,
+                          CRect(0, 0, 0, 0),
+                          &m_wndTab,
+                          IDC_PROPERTIESVIEW);
 
     CString s;
-    s.LoadString( IDS_PROPERTYWKS_PROP );
-    m_wndTab.AddTab( &m_PropertyView, s );
-    m_wndTab.SetTabIcon( 0, IDI_IL_PROPERTIESVIEW );
-    
-    // Input attributes    view
-    m_InputAttributeView.Create( NULL,
-                                 NULL,
-                                 WS_CHILD | WS_VISIBLE,
-                                 CRect( 0, 0, 0, 0 ),
-                                 &m_wndTab,
-                                 IDC_INPUTATTRIBUTEVIEW );
+    s.LoadString(IDS_PROPERTYWKS_PROP);
+    m_wndTab.AddTab(&m_PropertyView, s);
+    m_wndTab.SetTabIcon(0, IDI_IL_PROPERTIESVIEW);
 
-    s.LoadString( IDS_INPUTATTRIBUTEWKS_PROP );
-    m_wndTab.AddTab( &m_InputAttributeView, s );
-    m_wndTab.SetTabIcon( 1, IDI_IL_INPUTATTRIBUTEVIEW );
+    // Input attributes    view
+    m_InputAttributeView.Create(NULL,
+                                NULL,
+                                WS_CHILD | WS_VISIBLE,
+                                CRect(0, 0, 0, 0),
+                                &m_wndTab,
+                                IDC_INPUTATTRIBUTEVIEW);
+
+    s.LoadString(IDS_INPUTATTRIBUTEWKS_PROP);
+    m_wndTab.AddTab(&m_InputAttributeView, s);
+    m_wndTab.SetTabIcon(1, IDI_IL_INPUTATTRIBUTEVIEW);
 
     // Distribution attributes view
-    m_DistributionAttributeView.Create( NULL,
-                                        NULL,
-                                        WS_CHILD | WS_VISIBLE,
-                                        CRect( 0, 0, 0, 0 ),
-                                        &m_wndTab,
-                                        IDC_DISTRIBUTIONATTRIBUTEVIEW );
+    m_DistributionAttributeView.Create(NULL,
+                                       NULL,
+                                       WS_CHILD | WS_VISIBLE,
+                                       CRect(0, 0, 0, 0),
+                                       &m_wndTab,
+                                       IDC_DISTRIBUTIONATTRIBUTEVIEW);
 
-    s.LoadString( IDS_DISTRIBUTIONATTRIBUTEWKS_PROP );
-    m_wndTab.AddTab( &m_DistributionAttributeView, s );
-    m_wndTab.SetTabIcon( 2, IDI_IL_DISTRIBATTRIBUTEVIEW );
+    s.LoadString(IDS_DISTRIBUTIONATTRIBUTEWKS_PROP);
+    m_wndTab.AddTab(&m_DistributionAttributeView, s);
+    m_wndTab.SetTabIcon(2, IDI_IL_DISTRIBATTRIBUTEVIEW);
 
-    m_PanView.Create( rc, 
-                      &m_wndTab, 
-                      IDC_PANVIEW );
+    m_PanView.Create(rc,
+                     &m_wndTab,
+                     IDC_PANVIEW);
 
-    s.LoadString( IDS_PROPERTYWKS_PANVIEW );
+    s.LoadString(IDS_PROPERTYWKS_PANVIEW);
 
     /* Don't add the pan view for the SR1
     m_wndTab.AddTab(&m_PanView, s);
@@ -129,43 +126,43 @@ int ZVPropertiesWorkspace::OnCreate( LPCREATESTRUCT lpCreateStruct )
 void ZVPropertiesWorkspace::Initialize()
 {
     // Set the first active view
-    m_wndTab.ActivateTab( 0 );
-    m_wndTab.ScrollToTab( 0 );
+    m_wndTab.ActivateTab(0);
+    m_wndTab.ScrollToTab(0);
 
     // Set observers
-    if ( GetPropertyView() )
+    if (GetPropertyView())
     {
-        GetPropertyView()->AttachObserver( this );
+        GetPropertyView()->AttachObserver(this);
     }
 
-    if ( GetInputAttributeView() )
+    if (GetInputAttributeView())
     {
-        GetInputAttributeView()->AttachObserver( this );
+        GetInputAttributeView()->AttachObserver(this);
     }
 
-    if ( GetDistributionAttributeView() )
+    if (GetDistributionAttributeView())
     {
-        GetDistributionAttributeView()->AttachObserver( this );
+        GetDistributionAttributeView()->AttachObserver(this);
     }
 }
 
-void ZVPropertiesWorkspace::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
+void ZVPropertiesWorkspace::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
     // Call the OnUpdate method for all components
-    GetPropertyView()->OnUpdate( pSubject, pMsg );
-    GetInputAttributeView()->OnUpdate( pSubject, pMsg );
-    GetDistributionAttributeView()->OnUpdate( pSubject, pMsg );
+    GetPropertyView()->OnUpdate(pSubject, pMsg);
+    GetInputAttributeView()->OnUpdate(pSubject, pMsg);
+    GetDistributionAttributeView()->OnUpdate(pSubject, pMsg);
 
     // Check about frame activated
     // Set the right view to the pan window
-    if ( pMsg && ISA( pMsg, PSS_DocumentObserverMsg ) )
+    if (pMsg && ISA(pMsg, PSS_DocumentObserverMsg))
     {
-        switch ( dynamic_cast<PSS_DocumentObserverMsg*>( pMsg )->GetMessageID() )
+        switch (dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetMessageID())
         {
             case UM_FRAMEHASBEENACTIVATED:
             {
-                if ( dynamic_cast<PSS_DocumentObserverMsg*>( pMsg )->GetView() &&
-                     ISA( dynamic_cast<PSS_DocumentObserverMsg*>( pMsg )->GetView(), ZVSpanView ) )
+                if (dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetView() &&
+                    ISA(dynamic_cast<PSS_DocumentObserverMsg*>(pMsg)->GetView(), ZVSpanView))
                 {
                     /* Don't add the pan view for the SR1
                     m_PanView.AssignPanView
@@ -181,50 +178,50 @@ void ZVPropertiesWorkspace::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
     bool IsMessenger = false;
 
     ZDProcessGraphModelDoc* test =
-        (ZDProcessGraphModelDoc*)( (CFrameWnd*)AfxGetMainWnd() )->GetActiveFrame()->GetActiveDocument();
+        (ZDProcessGraphModelDoc*)((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument();
 
-    if ( test != NULL )
+    if (test != NULL)
     {
-        if ( test->GetUseWorkflow() )
+        if (test->GetUseWorkflow())
         {
             IsMessenger = true;
         }
     }
 
-    if ( IsMessenger )
+    if (IsMessenger)
     {
-        m_wndTab.EnableTab( 1, TRUE );
-        m_wndTab.EnableTab( 2, TRUE );
+        m_wndTab.EnableTab(1, TRUE);
+        m_wndTab.EnableTab(2, TRUE);
     }
     else
     {
-        m_wndTab.ActivateTab( 0 );
-        m_wndTab.EnableTab( 1, FALSE );
-        m_wndTab.EnableTab( 2, FALSE );
+        m_wndTab.ActivateTab(0);
+        m_wndTab.EnableTab(1, FALSE);
+        m_wndTab.EnableTab(2, FALSE);
     }
 }
 
-afx_msg LRESULT ZVPropertiesWorkspace::OnInitializeModelDocument( WPARAM wParam, LPARAM lParam )
+afx_msg LRESULT ZVPropertiesWorkspace::OnInitializeModelDocument(WPARAM wParam, LPARAM lParam)
 {
-    if ( !::IsWindow( GetSafeHwnd() ) )
+    if (!::IsWindow(GetSafeHwnd()))
     {
         return 1;
     }
 
-    ZIObserverMsg* pMsg = (ZIObserverMsg*)lParam;
+    PSS_ObserverMsg* pMsg = (PSS_ObserverMsg*)lParam;
 
-    if ( pMsg && ISA( pMsg, ZBDocObserverMsg ) )
+    if (pMsg && ISA(pMsg, ZBDocObserverMsg))
     {
         ZBDocObserverMsg* pDocMsg = (ZBDocObserverMsg*)pMsg;
 
-        if ( pDocMsg->GetpDoc() )
+        if (pDocMsg->GetpDoc())
         {
             // Notify all document's observers about the frame activation
-            PSS_DocumentObserverMsg Msg( UM_FRAMEHASBEENACTIVATED,
-                                       pDocMsg->GetpDoc(),
-                                       NULL );
+            PSS_DocumentObserverMsg Msg(UM_FRAMEHASBEENACTIVATED,
+                                        pDocMsg->GetpDoc(),
+                                        NULL);
 
-            ( (ZDProcessGraphModelDoc*)pDocMsg->GetpDoc() )->NotifyAllObservers( &Msg );
+            ((ZDProcessGraphModelDoc*)pDocMsg->GetpDoc())->NotifyAllObservers(&Msg);
         }
     }
 
@@ -234,34 +231,33 @@ afx_msg LRESULT ZVPropertiesWorkspace::OnInitializeModelDocument( WPARAM wParam,
 /////////////////////////////////////////////////////////////////////////////
 // ZVPropertiesWorkspace message handlers
 
-void ZVPropertiesWorkspace::OnSize( UINT nType, int cx, int cy )
+void ZVPropertiesWorkspace::OnSize(UINT nType, int cx, int cy)
 {
     CRect rectInside;
-    GetInsideRect( rectInside );
+    GetInsideRect(rectInside);
 
-    ::SetWindowPos( m_wndTab.m_hWnd,
-                    NULL,
-                    rectInside.left,
-                    rectInside.top,
-                    rectInside.Width(),
-                    rectInside.Height(),
-                    SWP_NOZORDER | SWP_NOACTIVATE );
+    ::SetWindowPos(m_wndTab.m_hWnd,
+                   NULL,
+                   rectInside.left,
+                   rectInside.top,
+                   rectInside.Width(),
+                   rectInside.Height(),
+                   SWP_NOZORDER | SWP_NOACTIVATE);
 
-    SECControlBar::OnSize( nType, cx, cy );
+    SECControlBar::OnSize(nType, cx, cy);
 }
 
-void ZVPropertiesWorkspace::OnExtendContextMenu( CMenu* pMenu )
-{
-}
+void ZVPropertiesWorkspace::OnExtendContextMenu(CMenu* pMenu)
+{}
 
-void ZVPropertiesWorkspace::OnUpdateCmdUI( CFrameWnd* pTarget, BOOL bDisableIfNoHndler )
+void ZVPropertiesWorkspace::OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHndler)
 {
     pTarget;            // UNUSED
     bDisableIfNoHndler;    // UNUSED
 }
 
 // List control is querying for subitem text...
-void ZVPropertiesWorkspace::OnListGetDispInfo( NMHDR* pNMHDR, LRESULT* pResult )
+void ZVPropertiesWorkspace::OnListGetDispInfo(NMHDR* pNMHDR, LRESULT* pResult)
 {
     LV_DISPINFO* lvdi;
     lvdi = (LV_DISPINFO*)pNMHDR;

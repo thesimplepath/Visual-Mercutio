@@ -8,7 +8,7 @@
 
 #include "zProperty\ZBPropertyItem.h"
 
-#include "zBaseLib\ZBToolbarObserverMsg.h"
+#include "zBaseLib\PSS_ToolbarObserverMsg.h"
 #include "zBaseLib\PSS_KeyboardObserverMsg.h"
 #include "zBaseLib\PSS_MenuObserverMsg.h"
 
@@ -25,10 +25,10 @@ static char THIS_FILE[] = __FILE__;
 IMPLEMENT_DYNAMIC(ZCInPlaceMultiLineEdit, CEdit)
 
 
-ZCInPlaceMultiLineEdit::ZCInPlaceMultiLineEdit(bool IsReadOnly /*= false*/ )
-: ZIInPlaceEdit(_T(""), IsReadOnly)
+ZCInPlaceMultiLineEdit::ZCInPlaceMultiLineEdit(bool IsReadOnly /*= false*/)
+    : ZIInPlaceEdit(_T(""), IsReadOnly)
 {
-    
+
 }
 
 
@@ -42,14 +42,14 @@ BEGIN_MESSAGE_MAP(ZCInPlaceMultiLineEdit, ZCMultiLineEdit)
 END_MESSAGE_MAP()
 
 
-BOOL ZCInPlaceMultiLineEdit::PreTranslateMessage(MSG* pMsg) 
+BOOL ZCInPlaceMultiLineEdit::PreTranslateMessage(MSG* pMsg)
 {
-    if(pMsg->message == WM_KEYDOWN)
+    if (pMsg->message == WM_KEYDOWN)
     {
-         CWnd* pOwner = GetOwner();
+        CWnd* pOwner = GetOwner();
         WPARAM nChar = pMsg->wParam;
 
-        switch(nChar)
+        switch (nChar)
         {
             case VK_DELETE:
             {
@@ -64,7 +64,7 @@ BOOL ZCInPlaceMultiLineEdit::PreTranslateMessage(MSG* pMsg)
                 // Notify observers
                 if (GetParent() && ISA(GetParent(), ZCPropertyListCtrl))
                 {
-                    GetParent()->PostMessage( WM_KEYPRESSED_EDIT, pMsg->wParam );
+                    GetParent()->PostMessage(WM_KEYPRESSED_EDIT, pMsg->wParam);
                     return TRUE;
                 }
                 // Notify observers
@@ -81,7 +81,7 @@ BOOL ZCInPlaceMultiLineEdit::PreTranslateMessage(MSG* pMsg)
                 // Notify observers
                 if (GetParent() && ISA(GetParent(), ZCPropertyListCtrl))
                 {
-                    GetParent()->PostMessage( WM_KEYPRESSED_EDIT, (GetKeyState(VK_SHIFT) & 0x80000000) ? (VK_SHIFT|pMsg->wParam) : pMsg->wParam );
+                    GetParent()->PostMessage(WM_KEYPRESSED_EDIT, (GetKeyState(VK_SHIFT) & 0x80000000) ? (VK_SHIFT | pMsg->wParam) : pMsg->wParam);
                     return TRUE;
                 }
                 // Notify observers
@@ -93,7 +93,7 @@ BOOL ZCInPlaceMultiLineEdit::PreTranslateMessage(MSG* pMsg)
                 ;
         }
     }
-    
+
     return ZCMultiLineEdit::PreTranslateMessage(pMsg);
 }
 
@@ -118,8 +118,8 @@ void ZCInPlaceMultiLineEdit::SetEditText(double dValue)
     // Build the string
     CString strInitText;
     // Format the value function of the string format specified
-    strInitText = ZUStringFormatter::GetFormattedBuffer( m_dValue, m_pItem->GetStringFormat() );
-    SetEditText( strInitText );
+    strInitText = ZUStringFormatter::GetFormattedBuffer(m_dValue, m_pItem->GetStringFormat());
+    SetEditText(strInitText);
 }
 
 void ZCInPlaceMultiLineEdit::SetEditText(float fValue)
@@ -129,8 +129,8 @@ void ZCInPlaceMultiLineEdit::SetEditText(float fValue)
     // Build the string
     CString strInitText;
     // Format the value function of the string format specified
-    strInitText = ZUStringFormatter::GetFormattedBuffer( m_fValue, m_pItem->GetStringFormat() );
-    SetEditText( strInitText );
+    strInitText = ZUStringFormatter::GetFormattedBuffer(m_fValue, m_pItem->GetStringFormat());
+    SetEditText(strInitText);
 }
 
 CString ZCInPlaceMultiLineEdit::GetEditText() const
@@ -143,14 +143,14 @@ CString ZCInPlaceMultiLineEdit::GetEditText() const
 
 
 BOOL ZCInPlaceMultiLineEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, CRect& rect, DWORD exDwStyle /*= 0"*/)
-{    
+{
     m_pItem = pItem;
-    BOOL rValue = ZCMultiLineEdit::Create(WS_CHILD|WS_VISIBLE|ES_AUTOHSCROLL|ES_LEFT|exDwStyle, rect, pWndParent, 0);
-    SetEditText( strInitText );    
+    BOOL rValue = ZCMultiLineEdit::Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 0);
+    SetEditText(strInitText);
     // Saves the initial value
     m_strInitialValueText = strInitText;
     // Reset the has changed value
-    SetHasChanged( false );
+    SetHasChanged(false);
     // Sets the type
     m_type = ZIInPlaceEdit::IPE_STRING;
     // Sets the current selection to all
@@ -162,12 +162,12 @@ BOOL ZCInPlaceMultiLineEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, do
 {
     m_pItem = pItem;
 
-    BOOL rValue = ZCMultiLineEdit::Create(WS_CHILD|WS_VISIBLE|ES_MULTILINE|ES_AUTOHSCROLL|ES_LEFT|exDwStyle, rect, pWndParent, 0);
-    SetEditText( dInitValue );    
+    BOOL rValue = ZCMultiLineEdit::Create(WS_CHILD | WS_VISIBLE | ES_MULTILINE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 0);
+    SetEditText(dInitValue);
     // Saves the initial value
     m_dInitialValue = dInitValue;
     // Reset the has changed value
-    SetHasChanged( false );
+    SetHasChanged(false);
     // Sets the type
     m_type = ZIInPlaceEdit::IPE_DOUBLE;
     // Sets the current selection to all
@@ -178,12 +178,12 @@ BOOL ZCInPlaceMultiLineEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, fl
 {
     m_pItem = pItem;
 
-    BOOL rValue = ZCMultiLineEdit::Create(WS_CHILD|WS_VISIBLE|ES_MULTILINE|ES_AUTOHSCROLL|ES_LEFT|exDwStyle, rect, pWndParent, 0);
-    SetEditText( fInitValue );    
+    BOOL rValue = ZCMultiLineEdit::Create(WS_CHILD | WS_VISIBLE | ES_MULTILINE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 0);
+    SetEditText(fInitValue);
     // Saves the initial value
     m_fInitialValue = fInitValue;
     // Reset the has changed value
-    SetHasChanged( false );
+    SetHasChanged(false);
     // Sets the type
     m_type = ZIInPlaceEdit::IPE_FLOAT;
     // Sets the current selection to all
@@ -191,7 +191,7 @@ BOOL ZCInPlaceMultiLineEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, fl
     return rValue;
 }
 
-bool ZCInPlaceMultiLineEdit::IsEditCtrlHit( CPoint point ) const
+bool ZCInPlaceMultiLineEdit::IsEditCtrlHit(CPoint point) const
 {
     CRect rect;
     GetClientRect(rect);
@@ -211,7 +211,7 @@ void ZCInPlaceMultiLineEdit::SaveValue()
         {
             CString ProposedValue = GetEditText();
             // If correct, process the data
-            if (m_pItem) 
+            if (m_pItem)
             {
                 bool ConversionCorrect = true;
                 switch (GetEditType())
@@ -225,7 +225,7 @@ void ZCInPlaceMultiLineEdit::SaveValue()
                     {
                         // Check the conversion
                         double value;
-                        ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer( ProposedValue, value, m_pItem->GetStringFormat() );
+                        ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer(ProposedValue, value, m_pItem->GetStringFormat());
                         if (!ConversionCorrect)
                             ZCInPlaceMultiLineEdit::CancelEdit();
                         break;
@@ -234,7 +234,7 @@ void ZCInPlaceMultiLineEdit::SaveValue()
                     {
                         // Check the conversion
                         float value;
-                        ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer( ProposedValue, value, m_pItem->GetStringFormat() );
+                        ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer(ProposedValue, value, m_pItem->GetStringFormat());
                         if (!ConversionCorrect)
                             ZCInPlaceMultiLineEdit::CancelEdit();
                         break;
@@ -247,8 +247,8 @@ void ZCInPlaceMultiLineEdit::SaveValue()
                     // Set the has changed flag for the property item
                     m_pItem->SetHasChanged();
                     // Notify observers for value changed
-                    ZBToolbarObserverMsg Msg( WM_VALUESAVED_EDIT );
-                    NotifyAllObservers( &Msg );
+                    PSS_ToolbarObserverMsg msg(WM_VALUESAVED_EDIT);
+                    NotifyAllObservers(&msg);
                     // Reset the change flag
                     m_HasChanged = false;
                     // OK
@@ -272,26 +272,26 @@ void ZCInPlaceMultiLineEdit::CancelEdit()
         case ZIInPlaceEdit::IPE_STRING:
         {
             // Set back the initial value
-            SetEditText( m_strInitialValueText );
+            SetEditText(m_strInitialValueText);
             break;
         }
         case ZIInPlaceEdit::IPE_DOUBLE:
         {
             // Set back the initial double value
-            SetEditText( m_dInitialValue );
+            SetEditText(m_dInitialValue);
             break;
         }
         case ZIInPlaceEdit::IPE_FLOAT:
         {
             // Set back the initial float value
-            SetEditText( m_fInitialValue );
+            SetEditText(m_fInitialValue);
             break;
         }
     }
     // Set the focus to properties control
     SetFocus();
     // Reset the has changed value
-    SetHasChanged( false );
+    SetHasChanged(false);
 }
 
 
@@ -299,17 +299,16 @@ void ZCInPlaceMultiLineEdit::CancelEdit()
 /////////////////////////////////////////////////////////////////////////////
 // ZCInPlaceMultiLineEdit message handlers
 
-void ZCInPlaceMultiLineEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void ZCInPlaceMultiLineEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
     // Sets the has changed flag
-    m_HasChanged = true;    
+    m_HasChanged = true;
     // Call the base function
     ZCMultiLineEdit::OnChar(nChar, nRepCnt, nFlags);
 }
 
-void ZCInPlaceMultiLineEdit::OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg )
-{
-}
+void ZCInPlaceMultiLineEdit::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
+{}
 
 void ZCInPlaceMultiLineEdit::OnExtendedCommand()
 {
@@ -328,22 +327,22 @@ void ZCInPlaceMultiLineEdit::OnExtendedCommand()
             // Change the window text to the proposed value
             SetEditText(ProposedValue);
             // Set the has changed value
-            SetHasChanged( true );
+            SetHasChanged(true);
             // If the control need to be refreshed
             if (Refresh)
             {
                 // Force the control list to reload values
-                dynamic_cast<ZCPropertyListCtrl*>(GetParent())->Refresh( true, true );
+                dynamic_cast<ZCPropertyListCtrl*>(GetParent())->Refresh(true, true);
             }
         }
     }
 }
 
-int ZCInPlaceMultiLineEdit::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int ZCInPlaceMultiLineEdit::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-    if(ZCMultiLineEdit::OnCreate(lpCreateStruct) == -1)
+    if (ZCMultiLineEdit::OnCreate(lpCreateStruct) == -1)
         return -1;
-    
+
     CRect rect;
     GetClientRect(rect);
     rect.DeflateRect(0, 1);
@@ -352,7 +351,7 @@ int ZCInPlaceMultiLineEdit::OnCreate(LPCREATESTRUCT lpCreateStruct)
     ASSERT(pParent != NULL);
 
     CFont* pFont = pParent->GetFont();
-    DWORD dwStyle = WS_CHILD|WS_VISIBLE|ES_AUTOHSCROLL;
+    DWORD dwStyle = WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL;
     if (m_IsReadOnly)
         dwStyle |= ES_READONLY;
     SetFont(pFont);
@@ -362,12 +361,10 @@ int ZCInPlaceMultiLineEdit::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 BOOL ZCInPlaceMultiLineEdit::OnEraseBkgnd(CDC* /*pDC*/)
 {
-    return TRUE;    
+    return TRUE;
 }
 
-void ZCInPlaceMultiLineEdit::OnSetFocus(CWnd* pOldWnd) 
+void ZCInPlaceMultiLineEdit::OnSetFocus(CWnd* pOldWnd)
 {
     ZCMultiLineEdit::OnSetFocus(pOldWnd);
-    
 }
-

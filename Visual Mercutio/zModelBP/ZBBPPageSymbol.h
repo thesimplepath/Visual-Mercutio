@@ -36,18 +36,18 @@ class ZDProcessGraphModelMdl;
 
 class AFX_EXT_CLASS ZBBPPageSymbol : public ZBSymbol
 {
-    DECLARE_SERIAL( ZBBPPageSymbol )
+    DECLARE_SERIAL(ZBBPPageSymbol)
 
 public:
 
-    ZBBPPageSymbol( const CString Name = _T( "" ) );
+    ZBBPPageSymbol(const CString Name = _T(""));
     virtual ~ZBBPPageSymbol();
 
     /* Copy constructor. */
-    ZBBPPageSymbol( const ZBBPPageSymbol& src );
+    ZBBPPageSymbol(const ZBBPPageSymbol& src);
 
     /* Assignment operator. */
-    ZBBPPageSymbol& operator=( const ZBBPPageSymbol& src );
+    ZBBPPageSymbol& operator=(const ZBBPPageSymbol& src);
 
     /* Create a duplicate copy of this object. */
     virtual CODComponent* Dup() const;
@@ -62,26 +62,26 @@ public:
     ZDProcessGraphModelMdl* GetModelPage();
 
     // Set a new model to the page
-    bool SetPageModel( ZDProcessGraphModelMdl* pModel );
+    bool SetPageModel(ZDProcessGraphModelMdl* pModel);
 
     // Used to recalculate the twin page reference serialized by its reference number
-    void RecalculateTwinPageReference( ZDProcessGraphModelMdl* pRootModel );
+    void RecalculateTwinPageReference(ZDProcessGraphModelMdl* pRootModel);
 
     int GetTwinPageReferenceNumber() const
     {
         return m_TwinPageRefNumber;
     }
 
-    void SetTwinPageReferenceNumber( int RefNumber );
-    void RemoveTwinPageSymbol( bool RemoveTwin = true );
-    void AssignTwinPageSymbol( ZBBPPageSymbol* pPage );
+    void SetTwinPageReferenceNumber(int RefNumber);
+    void RemoveTwinPageSymbol(bool RemoveTwin = true);
+    void AssignTwinPageSymbol(ZBBPPageSymbol* pPage);
 
     ZBBPPageSymbol* GetTwinPageSymbol() const
     {
         return m_pTwinPageSymbol;
     }
 
-    void SetTwinPageSymbol( ZBBPPageSymbol* pPage )
+    void SetTwinPageSymbol(ZBBPPageSymbol* pPage)
     {
         m_pTwinPageSymbol = pPage;
     }
@@ -99,16 +99,16 @@ public:
 
     //////////////////////////////////////////////////////////////////////
     // Call-back on symbols
-    virtual void OnPageNameChanged( ZDProcessGraphPage* pPage, const CString OldName );
+    virtual void OnPageNameChanged(ZDProcessGraphPage* pPage, const CString OldName);
 
     // Update mecanism for symbol change
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     ///////////////////////////////////////////////////////
     // Basic Symbol methods
 
     // Copy the definition only
-    virtual void CopySymbolDefinitionFrom( CODSymbolComponent& src );
+    virtual void CopySymbolDefinitionFrom(CODSymbolComponent& src);
 
     // The comment can be edited
     virtual bool CommentTextEditReadOnly() const
@@ -137,33 +137,33 @@ public:
     }
 
     // Call by the controller when a tooltip is required
-    virtual bool OnToolTip( CString& ToolTipText, CPoint point, ToolTipMode ToolTip = NormalToolTip );
+    virtual bool OnToolTip(CString& ToolTipText, CPoint point, ToolTipMode ToolTip = NormalToolTip);
 
     // Drag and drop methods
-    virtual bool AcceptDropItem( CObject* pObj, CPoint pt );
-    virtual bool DropItem( CObject* pObj, CPoint pt );
+    virtual bool AcceptDropItem(CObject* pObj, CPoint pt);
+    virtual bool DropItem(CObject* pObj, CPoint pt);
 
     /* Creates the symbol component. */
-    BOOL Create( const CString Name = _T( "" ) );
+    BOOL Create(const CString Name = _T(""));
 
-    /* Called after the object is created and on the desk 
+    /* Called after the object is created and on the desk
        return true if the object can be created or false if the
        object must be destroyed immediatly */
-    virtual bool OnPostCreation( CODModel* pModel = NULL, CODController* pCtrl = NULL );
+    virtual bool OnPostCreation(CODModel* pModel = NULL, CODController* pCtrl = NULL);
 
     /* Called before the object is deleted
        return true if the object can be deleted */
-    virtual bool OnPreDelete( CODModel* pModel = NULL, CODController* pCtrl = NULL );
+    virtual bool OnPreDelete(CODModel* pModel = NULL, CODController* pCtrl = NULL);
 
     /* Called after the double click occured on the object */
-    virtual void OnPostDoubleClick( CODModel* pModel = NULL, CODController* pCtrl = NULL );
+    virtual void OnPostDoubleClick(CODModel* pModel = NULL, CODController* pCtrl = NULL);
 
     bool GetDisplayPreview() const
     {
         return m_DisplayPreview;
     }
 
-    void SetDisplayPreview( bool value )
+    void SetDisplayPreview(bool value)
     {
         m_DisplayPreview = value;
     }
@@ -178,10 +178,10 @@ public:
     }
 
     // Call to retreive properties for the object
-    virtual bool FillProperties( ZBPropertySet& PropSet, bool NumericValue = false, bool GroupValue = false );
+    virtual bool FillProperties(ZBPropertySet& PropSet, bool NumericValue = false, bool GroupValue = false);
 
     // Call to save new changes to object's properties
-    virtual bool SaveProperties( ZBPropertySet& PropSet );
+    virtual bool SaveProperties(ZBPropertySet& PropSet);
 
     // Call to create the properties
     virtual bool CreateSymbolProperties();
@@ -212,10 +212,10 @@ public:
     }
 
     // Creation of a new child model
-    virtual BOOL CreateEmptyChildModel( CODModel* pParent );
+    virtual BOOL CreateEmptyChildModel(CODModel* pParent);
 
     /* Serializes the symbol. */
-    virtual void Serialize( CArchive& ar );
+    virtual void Serialize(CArchive& ar);
 
     virtual int GetRightSubMenu() const;
     virtual int GetIconIndex() const;
@@ -255,7 +255,7 @@ inline int ZBBPPageSymbol::GetRightSubMenu() const
 
 inline int ZBBPPageSymbol::GetIconIndex() const
 {
-    return ( IsLocal() ) ? 7 : 15;
+    return (IsLocal()) ? 7 : 15;
 }
 
-#endif // !defined(AFX_ZBBPPageSymbol_H__D6010BE6_7C2A_47FF_857B_0C64A020F48F__INCLUDED_)
+#endif

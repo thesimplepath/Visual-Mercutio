@@ -44,7 +44,7 @@ protected:
     DECLARE_DYNAMIC(ZCInPlaceSearchEdit)
 
 public:
-    ZCInPlaceSearchEdit( bool IsReadOnly = false );
+    ZCInPlaceSearchEdit(bool IsReadOnly = false);
     virtual ~ZCInPlaceSearchEdit();
 
     // Operations
@@ -61,13 +61,13 @@ public:
     virtual CString GetEditText() const;
 
     // ZIObserver OnUpdate call-back function
-    virtual void OnUpdate( ZISubject* pSubject, ZIObserverMsg* pMsg );
+    virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     // Call when the menu command is selected
-    virtual void OnMenuCommand( int MenuCommand );
+    virtual void OnMenuCommand(int MenuCommand);
 
-    bool IsEditCtrlHit( CPoint point ) const;
-    bool IsEditButtonCtrlHit( CPoint point ) const;
+    bool IsEditCtrlHit(CPoint point) const;
+    bool IsEditButtonCtrlHit(CPoint point) const;
 
     // Virtual function to cancel and save the edition
     virtual void CancelEdit();
@@ -99,14 +99,6 @@ private:
 };
 
 inline ZCInPlaceSearchEdit::~ZCInPlaceSearchEdit()
-{
-}
+{}
 
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(_ZCInPlaceSearchEdit_H__)
-
-
+#endif

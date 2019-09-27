@@ -451,7 +451,7 @@ void ZBLinkSymbol::OnMove()
     AdjustLinePath();
 }
 
-void ZBLinkSymbol::OnUpdate(ZISubject* pSubject, ZIObserverMsg* pMsg)
+void ZBLinkSymbol::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
     if (pSubject && pSubject != this && pMsg && ISA(pMsg, ZBSymbolObserverMsg))
     {

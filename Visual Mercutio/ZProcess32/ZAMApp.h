@@ -63,7 +63,7 @@ extern "C" {
 
 #endif
 
-#include "zBaseLib\ZISubject.h"
+#include "zBaseLib\PSS_Subject.h"
 
 // ZBServer
 #include "zBaseLib\PSS_Server.h"
@@ -98,7 +98,7 @@ using namespace sfl;
 
 // JMR-MODIF - Le 31 décembre 2006 - Modification de la hiérarchie de classes pour la prise en charge par le médiateur.
 class ZAMainApp : public PSS_SingleInstanceApplication,
-    public ZISubject,
+    public PSS_Subject,
     public ZTTemplateDocument<_TemplateFunctionNoopAccessor>
 {
     DECLARE_DYNAMIC(ZAMainApp)
