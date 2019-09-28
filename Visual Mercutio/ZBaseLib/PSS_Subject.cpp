@@ -43,6 +43,9 @@ void PSS_Subject::AttachObserver(PSS_Observer* pObserver)
         if (m_Observers[i] == pObserver)
             return;
 
+    // notify the observer that the subject is attaching it
+    pObserver->OnSubjectAttaching(this);
+
     // add observer only if still not registered
     m_Observers.push_back(pObserver);
 }
@@ -60,6 +63,9 @@ void PSS_Subject::DetachObserver(PSS_Observer* pObserver)
         // found observer to detach?
         if (m_Observers[i] == pObserver)
         {
+            // notify the observer that the subject is detaching it
+            pObserver->OnSubjectDetaching(this);
+
             // detach it
             m_Observers.erase(m_Observers.begin() + i);
             return;
@@ -70,7 +76,13 @@ void PSS_Subject::DetachAllObservers()
 {
     // iterate through registered observers and detach each of them
     while (m_Observers.size())
+    {
+        // notify the observer that the subject is detaching it
+        m_Observers[0]->OnSubjectDetaching(this);
+
+        // detach it
         m_Observers.erase(m_Observers.begin());
+    }
 }
 //---------------------------------------------------------------------------
 void PSS_Subject::NotifyAllObservers(PSS_ObserverMsg* pMsg)
@@ -87,6 +99,7 @@ void PSS_Subject::NotifyAllObservers(PSS_ObserverMsg* pMsg)
         if (!pObserver)
             continue;
  
+        // notify the observer about the message
         pObserver->OnUpdate(this, pMsg);
     }
 }

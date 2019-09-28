@@ -54,11 +54,9 @@ class ZBDynamicPropertiesManager;
 #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 28 septembre 2005 - Ajout des décorations unicode _T(), nettoyage du code inutile.(En commentaires)
-
 class AFX_EXT_CLASS ZDProcessGraphModelDoc : public PSS_BaseDocument,
-    public PSS_Subject,
-    public PSS_Observer
+                                             public PSS_Subject,
+                                             public PSS_Observer
 {
 public:
 

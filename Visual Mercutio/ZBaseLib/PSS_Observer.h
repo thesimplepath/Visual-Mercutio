@@ -50,7 +50,21 @@ class AFX_EXT_CLASS PSS_Observer
         */
         virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg) = 0;
 
+        /**
+        * Called when the observer is attached to the subject
+        *@param pSubject - subject which attached the observer
+        */
+        virtual void OnSubjectAttaching(PSS_Subject* pSubject);
+
+        /**
+        * Called when the observer is detached from the subject
+        *@param pSubject - subject which detached the observer
+        */
+        virtual void OnSubjectDetaching(PSS_Subject* pSubject);
+
     protected:
+        std::vector<PSS_Subject*> m_Subjects;
+
         PSS_Observer();
 };
 

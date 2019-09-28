@@ -61,7 +61,9 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // ZCUserGroupTreeCtrl window
 
-class AFX_EXT_CLASS ZCUserGroupTreeCtrl : public ZITreeCtrl, public PSS_Subject, public PSS_Observer
+class AFX_EXT_CLASS ZCUserGroupTreeCtrl : public ZITreeCtrl,
+                                          public PSS_Subject,
+                                          public PSS_Observer
 {
 // Construction
 public:

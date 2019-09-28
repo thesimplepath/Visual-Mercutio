@@ -283,6 +283,10 @@ void ZBLinkSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
 // we need to attach the object to the subject
 void ZBLinkSymbol::AssignReferenceSymbol(CODSymbolComponent* pReference)
 {
+    // todo -cCheck -oJean: on 26.09.2019, check if this modification is valid, revert it otherwise
+    // remove previous reference before assigning the new one
+    RemoveReferenceSymbol();
+
     m_pReference = pReference;
 
     if (m_pReference && ISA(m_pReference, ZBLinkSymbol))
@@ -296,7 +300,8 @@ void ZBLinkSymbol::AssignReferenceSymbol(CODSymbolComponent* pReference)
         // And attach this to the source reference
         dynamic_cast<ZBLinkSymbol*>(m_pReference)->AttachObserver(this);
     }
-    else RemoveReferenceSymbol();
+    // todo -cCheck -oJean: on 26.09.2019, check if this modification is valid, revert it otherwise
+    //REM else RemoveReferenceSymbol();
 }
 
 void ZBLinkSymbol::ApplyFormatFromObject(CODSymbolComponent&    Object,

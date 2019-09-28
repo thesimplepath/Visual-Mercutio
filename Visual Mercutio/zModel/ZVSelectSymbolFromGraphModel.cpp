@@ -111,6 +111,12 @@ ZVSelectSymbolFromGraphModel::ZVSelectSymbolFromGraphModel(ZDProcessGraphModelMd
 
     m_Title.LoadString(nIDResTitle);
 }
+ZVSelectSymbolFromGraphModel::~ZVSelectSymbolFromGraphModel()
+{
+    // todo -cCheck -oJean: on 26.09.2019, check if this modification is valid, revert it otherwise
+    m_FlatToolBar.DetachObserver(this);
+    m_wndModelGraph.DetachObserver(this);
+}
 
 void ZVSelectSymbolFromGraphModel::DoDataExchange(CDataExchange* pDX)
 {

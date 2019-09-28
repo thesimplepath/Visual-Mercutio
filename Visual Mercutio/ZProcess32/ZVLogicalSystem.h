@@ -87,8 +87,8 @@ protected:
 // ZVLogicalSystem view
 
 class ZVLogicalSystem : public CWnd,
-    public PSS_Subject,
-    public PSS_Observer
+                        public PSS_Subject,
+                        public PSS_Observer
 {
 public:
 

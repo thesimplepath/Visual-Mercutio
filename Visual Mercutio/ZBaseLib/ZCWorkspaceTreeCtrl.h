@@ -19,11 +19,16 @@
 #include "PSS_Observer.h"
 #include "ZITreeCtl.h"
 
-// Forward class declaration
+// class name mapping
+#ifndef PSS_WorkspaceEntity
+    #define PSS_WorkspaceEntity ZBWorkspaceEntity
+#endif
+
+// forward class declaration
 class ZBWorkspaceEnv;
 class ZBWorkspaceFileEntity;
 class ZBWorkspaceGroupEntity;
-class ZBWorkspaceEntity;
+class PSS_WorkspaceEntity;
 
 #ifdef _ZBASELIBEXPORT
 // Put the values back to make AFX_EXT_CLASS export again
@@ -69,7 +74,9 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // ZCWorkspaceTreeCtrl window
 
-class AFX_EXT_CLASS ZCWorkspaceTreeCtrl : public ZITreeCtrl, public PSS_Subject, public PSS_Observer
+class AFX_EXT_CLASS ZCWorkspaceTreeCtrl : public ZITreeCtrl,
+                                          public PSS_Subject,
+                                          public PSS_Observer
 {
     // Construction / destruction
 public:
@@ -88,7 +95,7 @@ public:
         return (m_DataSet.GetSize() > 0) ? true : false;
     };
 
-    ZBWorkspaceEntity* GetSelectedEntity();
+    PSS_WorkspaceEntity* GetSelectedEntity();
     ZBWorkspaceGroupEntity* GetSelectedGroup();
     ZBWorkspaceFileEntity* GetSelectedFile();
     ZBWorkspaceGroupEntity* GetSelectedOwnerGroup();
@@ -157,14 +164,14 @@ private:
     void ProcessWorkspaceEnv(ZBWorkspaceEnv* pWorkspaceEnv, HTREEITEM hParentTreeItem);
     void ProcessGroup(ZBWorkspaceGroupEntity* pGroup, HTREEITEM hParentTreeItem);
     void ProcessFile(ZBWorkspaceFileEntity* pFile, HTREEITEM hParentTreeItem);
-    void ModifyEntity(ZBWorkspaceEntity* pEntity);
+    void ModifyEntity(PSS_WorkspaceEntity* pEntity);
 
     HTREEITEM AddTypeItem(const CString Name, int IconIndex, HTREEITEM hParentTreeItem = NULL);
     HTREEITEM AddGroupItem(ZBWorkspaceGroupEntity* pGroup, HTREEITEM hParentTreeItem);
     HTREEITEM AddFileItem(ZBWorkspaceFileEntity* pFile, HTREEITEM hParentTreeItem);
-    BOOL ModifyItem(ZBWorkspaceEntity* pEntity, HTREEITEM hItem);
+    BOOL ModifyItem(PSS_WorkspaceEntity* pEntity, HTREEITEM hItem);
 
-    ZBWorkspaceEntity* _GetEntity(HTREEITEM hItem);
+    PSS_WorkspaceEntity* _GetEntity(HTREEITEM hItem);
     ZBWorkspaceGroupEntity* _GetGroup(HTREEITEM hItem);
     ZBWorkspaceFileEntity* _GetFile(HTREEITEM hItem);
     ZBWorkspaceGroupEntity* _GetOwnerGroup(HTREEITEM hItem);
@@ -179,7 +186,7 @@ private:
 
     void EmptyDataSet();
 
-    _ZInternalWksTreeData* FindElementFromDataSet(ZBWorkspaceEntity* pEntity);
+    _ZInternalWksTreeData* FindElementFromDataSet(PSS_WorkspaceEntity* pEntity);
     _ZInternalWksTreeData* FindElementFromDataSet(ZBWorkspaceEnv* pWorkspaceEnv);
     _ZInternalWksTreeData* FindElementFromDataSet(ZBWorkspaceGroupEntity* pGroup);
     _ZInternalWksTreeData* FindElementFromDataSet(ZBWorkspaceFileEntity* pFile);

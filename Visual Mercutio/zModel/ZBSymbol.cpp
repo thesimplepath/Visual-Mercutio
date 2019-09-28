@@ -1447,6 +1447,9 @@ void ZBSymbol::OnDeleteSymbol()
 // we need to attach the object to the subject
 void ZBSymbol::AssignReferenceSymbol(CODSymbolComponent* pReference)
 {
+    // todo -cCheck -oJean: on 26.09.2019, check if this modification is valid, revert it otherwise
+    RemoveReferenceSymbol();
+
     m_pReference = pReference;
 
     if (m_pReference && ISA(m_pReference, ZBSymbol))
@@ -1460,10 +1463,13 @@ void ZBSymbol::AssignReferenceSymbol(CODSymbolComponent* pReference)
         // And attach this to the source reference
         dynamic_cast<ZBSymbol*>(m_pReference)->AttachObserver(this);
     }
+    // todo -cCheck -oJean: on 26.09.2019, check if this modification is valid, revert it otherwise
+    /*
     else
     {
         RemoveReferenceSymbol();
     }
+    */
 }
 
 // When we deattach a reference to a symbol,

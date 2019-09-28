@@ -54,16 +54,16 @@ class ZBPropertyAttributes;
 // JMR-MODIF - Le 28 septembre 2005 - Ajout de la décoration unicode _T( ), suppression du code inutilisé.
 
 class AFX_EXT_CLASS ZBLinkSymbol : public CODLinkComponent,
-    public ZIBasicSymbol,
-    public ZIObjectPath,
-    public ZIProperties,
-    public ZBExtAppPropertyMgr,
-    public ZBExtFilePropertyMgr,
-    public ZVSymbolAttributes,
-    public ZIBasicSymbolAcceptVisitor,
-    public PSS_Subject,
-    public PSS_Observer,
-    public ZIToolTip
+                                   public ZIBasicSymbol,
+                                   public ZIObjectPath,
+                                   public ZIProperties,
+                                   public ZBExtAppPropertyMgr,
+                                   public ZBExtFilePropertyMgr,
+                                   public ZVSymbolAttributes,
+                                   public ZIBasicSymbolAcceptVisitor,
+                                   public PSS_Subject,
+                                   public PSS_Observer,
+                                   public ZIToolTip
 {
     DECLARE_SERIAL(ZBLinkSymbol)
 

@@ -98,8 +98,8 @@ using namespace sfl;
 
 // JMR-MODIF - Le 31 décembre 2006 - Modification de la hiérarchie de classes pour la prise en charge par le médiateur.
 class ZAMainApp : public PSS_SingleInstanceApplication,
-    public PSS_Subject,
-    public ZTTemplateDocument<_TemplateFunctionNoopAccessor>
+                  public PSS_Subject,
+                  public ZTTemplateDocument<_TemplateFunctionNoopAccessor>
 {
     DECLARE_DYNAMIC(ZAMainApp)
     typedef ZTTemplateDocument<_TemplateFunctionNoopAccessor> _ThisClass;

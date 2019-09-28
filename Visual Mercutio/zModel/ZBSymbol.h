@@ -55,17 +55,17 @@ class ZBPropertyAttributes;
 
 // Each symbol implement the subject and observer interface
 class AFX_EXT_CLASS ZBSymbol : public CODSymbolComponent,
-    public ZIBasicSymbol,
-    public ZIObjectPath,
-    public ZINavigableSymbol,
-    public ZIProperties,
-    public ZBExtAppPropertyMgr,
-    public ZBExtFilePropertyMgr,
-    public ZVSymbolAttributes,
-    public ZIBasicSymbolAcceptVisitor,
-    public PSS_Subject,
-    public PSS_Observer,
-    public ZIToolTip
+                               public ZIBasicSymbol,
+                               public ZIObjectPath,
+                               public ZINavigableSymbol,
+                               public ZIProperties,
+                               public ZBExtAppPropertyMgr,
+                               public ZBExtFilePropertyMgr,
+                               public ZVSymbolAttributes,
+                               public ZIBasicSymbolAcceptVisitor,
+                               public PSS_Subject,
+                               public PSS_Observer,
+                               public ZIToolTip
 {
     DECLARE_SERIAL(ZBSymbol)
 

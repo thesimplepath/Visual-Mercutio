@@ -57,7 +57,14 @@ ZBBPDoorSymbol::ZBBPDoorSymbol(const CString Name /*= ""*/)
 }
 
 ZBBPDoorSymbol::~ZBBPDoorSymbol()
-{}
+{
+    // todo -cCheck -oJean: on 26.09.2019, check if this modification is valid, revert it otherwise
+    if (m_pTwinDoorSymbol)
+    {
+        m_pTwinDoorSymbol->DetachObserver(this);
+        DetachObserver(m_pTwinDoorSymbol);
+    }
+}
 
 ZBBPDoorSymbol::ZBBPDoorSymbol(const ZBBPDoorSymbol& src)
 {
@@ -66,12 +73,26 @@ ZBBPDoorSymbol::ZBBPDoorSymbol(const ZBBPDoorSymbol& src)
 
 ZBBPDoorSymbol& ZBBPDoorSymbol::operator=(const ZBBPDoorSymbol& src)
 {
+    // todo -cCheck -oJean: on 26.09.2019, check if this modification is valid, revert it otherwise
+    if (m_pTwinDoorSymbol)
+    {
+        m_pTwinDoorSymbol->DetachObserver(this);
+        DetachObserver(m_pTwinDoorSymbol);
+    }
+
     // Call the base class assignement operator
     ZBSymbol::operator=((const ZBSymbol&)src);
 
     m_DisplayPreview = src.m_DisplayPreview;
     m_TwinDoorRefNumber = src.m_TwinDoorRefNumber;
     m_pTwinDoorSymbol = src.m_pTwinDoorSymbol;
+
+    // todo -cCheck -oJean: on 26.09.2019, check if this modification is valid, revert it otherwise
+    if (m_pTwinDoorSymbol)
+    {
+        AttachObserver(m_pTwinDoorSymbol);
+        m_pTwinDoorSymbol->AttachObserver(this);
+    }
 
     return *this;
 }
@@ -124,13 +145,27 @@ void ZBBPDoorSymbol::RecalculateTwinDoorReference(ZDProcessGraphModelMdl* pRootM
         // If it is a door symbol
         if (pSet->GetAt(0) && ISA(pSet->GetAt(0), ZBBPDoorSymbol))
         {
+            // todo -cCheck -oJean: on 26.09.2019, check if this modification is valid, revert it otherwise
+            if (m_pTwinDoorSymbol)
+            {
+                m_pTwinDoorSymbol->DetachObserver(this);
+                DetachObserver(m_pTwinDoorSymbol);
+            }
+
             m_pTwinDoorSymbol = dynamic_cast<ZBBPDoorSymbol*>(pSet->GetAt(0));
+
+            if (!m_pTwinDoorSymbol)
+                return;
 
             // Check if the door name is correct,
             // then empty the twin door name
             if (m_pTwinDoorSymbol->GetTwinDoorReferenceNumber() == GetSymbolReferenceNumber())
             {
             }
+
+            // todo -cCheck -oJean: on 26.09.2019, check if this modification is valid, revert it otherwise
+            AttachObserver(m_pTwinDoorSymbol);
+            m_pTwinDoorSymbol->AttachObserver(this);
         }
     }
 }
@@ -186,8 +221,18 @@ void ZBBPDoorSymbol::RemoveTwinDoorSymbol(bool RemoveTwin /*= true*/)
 
 void ZBBPDoorSymbol::AssignTwinDoorSymbol(ZBBPDoorSymbol* pDoor)
 {
+    // todo -cCheck -oJean: on 26.09.2019, check if this modification is valid, revert it otherwise
+    if (m_pTwinDoorSymbol)
+    {
+        m_pTwinDoorSymbol->DetachObserver(this);
+        DetachObserver(m_pTwinDoorSymbol);
+    }
+
     // Assign the twin door symbol
     m_pTwinDoorSymbol = pDoor;
+
+    if (!pDoor)
+        return;
 
     // Sets our twin door name to him
     SetTwinDoorReferenceNumber(pDoor->GetSymbolReferenceNumber());
@@ -196,7 +241,7 @@ void ZBBPDoorSymbol::AssignTwinDoorSymbol(ZBBPDoorSymbol* pDoor)
     pDoor->SetTwinDoorReferenceNumber(GetSymbolReferenceNumber());
     pDoor->SetTwinDoorSymbol(this);
 
-    // And attach this to the source reference
+    // attach this to the source reference
     AttachObserver(pDoor);
     pDoor->AttachObserver(this);
 }
@@ -300,6 +345,13 @@ void ZBBPDoorSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
 
     if (ISA((&src), ZBBPDoorSymbol))
     {
+        // todo -cCheck -oJean: on 26.09.2019, check if this modification is valid, revert it otherwise
+        if (m_pTwinDoorSymbol)
+        {
+            m_pTwinDoorSymbol->DetachObserver(this);
+            DetachObserver(m_pTwinDoorSymbol);
+        }
+
         m_DisplayPreview = ((ZBBPDoorSymbol&)src).m_DisplayPreview;
         m_CommentRect = ((ZBBPDoorSymbol&)src).m_CommentRect;
         m_SubModelPathName = ((ZBBPDoorSymbol&)src).m_SubModelPathName;
@@ -307,6 +359,13 @@ void ZBBPDoorSymbol::CopySymbolDefinitionFrom(CODSymbolComponent& src)
         // The twin door name saves the name of the other door
         m_TwinDoorRefNumber = ((ZBBPDoorSymbol&)src).m_TwinDoorRefNumber;
         m_pTwinDoorSymbol = ((ZBBPDoorSymbol&)src).m_pTwinDoorSymbol;
+
+        // todo -cCheck -oJean: on 26.09.2019, check if this modification is valid, revert it otherwise
+        if (m_pTwinDoorSymbol)
+        {
+            AttachObserver(m_pTwinDoorSymbol);
+            m_pTwinDoorSymbol->AttachObserver(this);
+        }
     }
 }
 

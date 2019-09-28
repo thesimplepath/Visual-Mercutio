@@ -56,9 +56,10 @@ class ZDProcessGraphModelDoc;
 
 
 
-class AFX_EXT_CLASS ZCInputAttributesList : public ZIListCtrl, public PSS_Subject, public PSS_Observer
+class AFX_EXT_CLASS ZCInputAttributesList : public ZIListCtrl,
+                                            public PSS_Subject,
+                                            public PSS_Observer
 {
-
     DECLARE_DYNAMIC(ZCInputAttributesList)
 
 public:

@@ -25,8 +25,8 @@ const int def_AnalyzerLogTabIndex = 2;
 const int def_WkfLogTabIndex = 3;
 
 class ZVOutputWorkspace : public SECControlBar,
-    public PSS_Subject,
-    public PSS_Observer
+                          public PSS_Subject,
+                          public PSS_Observer
 {
     DECLARE_DYNAMIC(ZVOutputWorkspace)
 

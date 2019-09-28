@@ -23,14 +23,14 @@ static char THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 18 avril 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL(ZBWorkspaceFileEntity, ZBWorkspaceEntity, g_DefVersion)
+IMPLEMENT_SERIAL(ZBWorkspaceFileEntity, PSS_WorkspaceEntity, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBWorkspaceFileEntity::ZBWorkspaceFileEntity(const CString Name /*= ""*/, ZBWorkspaceEntity* pParent /*= NULL*/)
-    : ZBWorkspaceEntity(Name, pParent)
+ZBWorkspaceFileEntity::ZBWorkspaceFileEntity(const CString Name /*= ""*/, PSS_WorkspaceEntity* pParent /*= NULL*/)
+    : PSS_WorkspaceEntity(Name, pParent)
 {
     m_File.SetCompleteFileName(Name);
     SetEntityName(m_File.GetFileTitle() + m_File.GetFileExt());
@@ -131,7 +131,7 @@ void ZBWorkspaceFileEntity::Dump(CDumpContext& dc) const
 
 void ZBWorkspaceFileEntity::Serialize(CArchive& ar)
 {
-    ZBWorkspaceEntity::Serialize(ar);
+    PSS_WorkspaceEntity::Serialize(ar);
 
     if (ar.IsStoring())
     {

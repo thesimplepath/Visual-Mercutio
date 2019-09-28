@@ -153,7 +153,7 @@ void ZCWorkspaceTreeCtrl::ProcessWorkspaceEnv(ZBWorkspaceEnv* pWorkspaceEnv, HTR
 
         for (int i = 0; i < Count; ++i)
         {
-            ZBWorkspaceEntity* pEntity = pWorkspaceEnv->GetEntityAt(i);
+            PSS_WorkspaceEntity* pEntity = pWorkspaceEnv->GetEntityAt(i);
 
             if (!pEntity)
             {
@@ -184,7 +184,7 @@ void ZCWorkspaceTreeCtrl::ProcessGroup(ZBWorkspaceGroupEntity* pGroup, HTREEITEM
 
         for (int i = 0; i < Count; ++i)
         {
-            ZBWorkspaceEntity* pEntity = pGroup->GetEntityAt(i);
+            PSS_WorkspaceEntity* pEntity = pGroup->GetEntityAt(i);
 
             if (!pEntity)
             {
@@ -268,7 +268,7 @@ HTREEITEM ZCWorkspaceTreeCtrl::AddFileItem(ZBWorkspaceFileEntity* pFile, HTREEIT
     return InsertItem(&curTreeItem);
 }
 
-BOOL ZCWorkspaceTreeCtrl::ModifyItem(ZBWorkspaceEntity* pEntity, HTREEITEM hItem)
+BOOL ZCWorkspaceTreeCtrl::ModifyItem(PSS_WorkspaceEntity* pEntity, HTREEITEM hItem)
 {
     if (!pEntity)
     {
@@ -381,7 +381,7 @@ void ZCWorkspaceTreeCtrl::AddFile(ZBWorkspaceFileEntity* pFile, ZBWorkspaceGroup
     }
 }
 
-void ZCWorkspaceTreeCtrl::ModifyEntity(ZBWorkspaceEntity* pEntity)
+void ZCWorkspaceTreeCtrl::ModifyEntity(PSS_WorkspaceEntity* pEntity)
 {
     if (!m_hRootWorkspaceEnv || !pEntity)
     {
@@ -429,12 +429,12 @@ void ZCWorkspaceTreeCtrl::ModifyFile(ZBWorkspaceFileEntity* pFile)
     ModifyEntity(pFile);
 }
 
-ZBWorkspaceEntity* ZCWorkspaceTreeCtrl::GetSelectedEntity()
+PSS_WorkspaceEntity* ZCWorkspaceTreeCtrl::GetSelectedEntity()
 {
     return _GetEntity(GetSelectedItem());
 }
 
-ZBWorkspaceEntity* ZCWorkspaceTreeCtrl::_GetEntity(HTREEITEM hItem)
+PSS_WorkspaceEntity* ZCWorkspaceTreeCtrl::_GetEntity(HTREEITEM hItem)
 {
     if (hItem)
     {
@@ -769,7 +769,7 @@ void ZCWorkspaceTreeCtrl::EmptyDataSet()
     m_DataSet.RemoveAll();
 }
 
-_ZInternalWksTreeData* ZCWorkspaceTreeCtrl::FindElementFromDataSet(ZBWorkspaceEntity* pEntity)
+_ZInternalWksTreeData* ZCWorkspaceTreeCtrl::FindElementFromDataSet(PSS_WorkspaceEntity* pEntity)
 {
     _ZInternalWksTreeDataIterator i(&m_DataSet);
 
@@ -1104,7 +1104,7 @@ void ZCWorkspaceTreeCtrl::OnWksProperties()
 {
     if (GetSelectedEntity() != NULL)
     {
-        if (GetSelectedEntity()->DisplayProperties())
+        if (GetSelectedEntity()->PropertiesVisible())
         {
             ModifyEntity(GetSelectedEntity());
 

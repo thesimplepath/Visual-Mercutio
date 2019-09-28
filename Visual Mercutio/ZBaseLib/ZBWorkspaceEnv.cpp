@@ -22,7 +22,7 @@ IMPLEMENT_SERIAL(ZBWorkspaceEnv, ZBWorkspaceGroupEntity, g_DefVersion)
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBWorkspaceEnv::ZBWorkspaceEnv( const CString Name /*= ""*/, ZBWorkspaceEntity* pParent /*= NULL*/ )
+ZBWorkspaceEnv::ZBWorkspaceEnv( const CString Name /*= ""*/, PSS_WorkspaceEntity* pParent /*= NULL*/ )
     : ZBWorkspaceGroupEntity( Name, pParent ),
       m_bModified            ( FALSE )
 {

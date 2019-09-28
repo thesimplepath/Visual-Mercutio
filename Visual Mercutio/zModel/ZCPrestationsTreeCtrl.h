@@ -67,8 +67,8 @@ public:
 // ZCPrestationsTreeCtrl window
 
 class AFX_EXT_CLASS ZCPrestationsTreeCtrl : public ZITreeCtrl,
-    public PSS_Subject,
-    public PSS_Observer
+                                            public PSS_Subject,
+                                            public PSS_Observer
 {
     // Construction / Destruction
 public:

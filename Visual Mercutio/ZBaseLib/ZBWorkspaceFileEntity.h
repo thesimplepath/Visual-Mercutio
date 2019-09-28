@@ -6,11 +6,10 @@
 #define AFX_ZBWORKSPACEFILEENTITY_H__D0AD894D_7827_44C4_90DC_EE82005CFD7B__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -18,21 +17,18 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-
-#include "ZBWorkspaceEntity.h"
-// File
+// processsoft
 #include "PSS_File.h"
-
+#include "PSS_WorkspaceEntity.h"
 
 #ifdef _ZBASELIBEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 //#undef  AFX_DATA
@@ -40,11 +36,11 @@
 
 
 
-class AFX_EXT_CLASS ZBWorkspaceFileEntity : public ZBWorkspaceEntity  
+class AFX_EXT_CLASS ZBWorkspaceFileEntity : public PSS_WorkspaceEntity
 {
     DECLARE_SERIAL(ZBWorkspaceFileEntity)
 public:
-    ZBWorkspaceFileEntity(const CString Name = "", ZBWorkspaceEntity* pParent = NULL);
+    ZBWorkspaceFileEntity(const CString Name = "", PSS_WorkspaceEntity* pParent = NULL);
     virtual ~ZBWorkspaceFileEntity();
 
     virtual bool HasFilename() const
@@ -91,4 +87,4 @@ private:
     PSS_File m_File;
 };
 
-#endif // !defined(AFX_ZBWORKSPACEFILEENTITY_H__D0AD894D_7827_44C4_90DC_EE82005CFD7B__INCLUDED_)
+#endif

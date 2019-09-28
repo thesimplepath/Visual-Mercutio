@@ -67,7 +67,9 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // ZCSymbolAttributesTreeCtrl window
 
-class AFX_EXT_CLASS ZCSymbolAttributesTreeCtrl : public ZITreeCtrl, public PSS_Subject, public PSS_Observer
+class AFX_EXT_CLASS ZCSymbolAttributesTreeCtrl : public ZITreeCtrl,
+                                                 public PSS_Subject,
+                                                 public PSS_Observer
 {
     // Construction
 public:

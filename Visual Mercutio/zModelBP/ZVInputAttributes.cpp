@@ -237,7 +237,11 @@ ZVInputAttributes::ZVInputAttributes()
 {}
 
 ZVInputAttributes::~ZVInputAttributes()
-{}
+{
+    // todo -cCheck -oJean: on 26.09.2019, check if this modification is valid, revert it otherwise
+    m_FlatToolBar.DetachObserver(this);
+    m_listctrl.DetachObserver(this);
+}
 
 
 void ZVInputAttributes::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)

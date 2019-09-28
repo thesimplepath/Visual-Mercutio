@@ -59,7 +59,9 @@ class ZBUserGroupEntity;
 
 
 
-class AFX_EXT_CLASS ZCDistributionAttributesList : public PSS_TreeListCtrl, public PSS_Subject, public PSS_Observer
+class AFX_EXT_CLASS ZCDistributionAttributesList : public PSS_TreeListCtrl,
+                                                   public PSS_Subject,
+                                                   public PSS_Observer
 {
 
     DECLARE_DYNAMIC(ZCDistributionAttributesList)

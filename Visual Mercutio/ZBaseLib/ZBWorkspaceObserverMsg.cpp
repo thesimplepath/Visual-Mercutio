@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include "ZBWorkspaceObserverMsg.h"
 
-#include "ZBWorkspaceEntity.h"
+#include "PSS_WorkspaceEntity.h"
 #include "ZBWorkspaceEnv.h"
 
 #ifdef _DEBUG

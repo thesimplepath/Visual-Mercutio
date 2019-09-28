@@ -283,6 +283,8 @@ public:
                                  bool                        EnableNavigate = true,
                                  CWnd*                        pParent = NULL);
 
+    virtual ~ZVSelectSymbolFromGraphModel();
+
     CODSymbolComponent* GetSelectedSymbol()
     {
         return m_pSelectedSymbol;

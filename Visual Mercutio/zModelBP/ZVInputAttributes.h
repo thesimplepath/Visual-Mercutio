@@ -94,7 +94,9 @@ protected:
 /////////////////////////////////////////////////////////////////////////////
 // ZVInputAttributes view
 
-class AFX_EXT_CLASS ZVInputAttributes : public CWnd, public PSS_Subject, public PSS_Observer
+class AFX_EXT_CLASS ZVInputAttributes : public CWnd,
+                                        public PSS_Subject,
+                                        public PSS_Observer
 {
 
 public:

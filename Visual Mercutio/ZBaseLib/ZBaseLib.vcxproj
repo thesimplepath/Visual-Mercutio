@@ -912,7 +912,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBWorkspaceEntity.cpp">
+    <ClCompile Include="PSS_WorkspaceEntity.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1474,7 +1474,7 @@
     <ClInclude Include="PSS_TimeSpan.h" />
     <ClInclude Include="PSS_Tokenizer.h" />
     <ClInclude Include="PSS_ToolbarObserverMsg.h" />
-    <ClInclude Include="ZBWorkspaceEntity.h" />
+    <ClInclude Include="PSS_WorkspaceEntity.h" />
     <ClInclude Include="ZBWorkspaceEnv.h" />
     <ClInclude Include="ZBWorkspaceFileEntity.h" />
     <ClInclude Include="ZBWorkspaceGroupEntity.h" />

@@ -25,20 +25,20 @@ static char THIS_FILE[] = __FILE__;
 
 ZBWorkspaceEntitySet ZBWorkspaceGroupEntity::m_FindSet;
 
-IMPLEMENT_SERIAL(ZBWorkspaceGroupEntity, ZBWorkspaceEntity, g_DefVersion)
+IMPLEMENT_SERIAL(ZBWorkspaceGroupEntity, PSS_WorkspaceEntity, g_DefVersion)
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBWorkspaceGroupEntity::ZBWorkspaceGroupEntity(const CString Name /*= ""*/, ZBWorkspaceEntity* pParent /*= NULL*/)
-    : ZBWorkspaceEntity(Name, pParent)
+ZBWorkspaceGroupEntity::ZBWorkspaceGroupEntity(const CString name, PSS_WorkspaceEntity* pParent) :
+    PSS_WorkspaceEntity(name, pParent)
 {}
 
-ZBWorkspaceGroupEntity::ZBWorkspaceGroupEntity(const CString        Name,
+ZBWorkspaceGroupEntity::ZBWorkspaceGroupEntity(const CString        name,
                                                CStringArray*        pExtensionList,
-                                               ZBWorkspaceEntity*    pParent            /*= NULL*/)
-    : ZBWorkspaceEntity(Name, pParent)
+                                               PSS_WorkspaceEntity* pParent) :
+    PSS_WorkspaceEntity(name, pParent)
 {
     if (pExtensionList)
     {
@@ -56,7 +56,7 @@ void ZBWorkspaceGroupEntity::RemoveAllEntities()
     // Sets the iterator to the right entity set
     ZBWorkspaceEntityIterator i(&m_EntitySet);
 
-    for (ZBWorkspaceEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext())
+    for (PSS_WorkspaceEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext())
     {
         delete pEnv;
     }
@@ -268,7 +268,7 @@ bool ZBWorkspaceGroupEntity::RemoveGroup(ZBWorkspaceGroupEntity* pGroup)
     // Sets the iterator to the right entity set
     ZBWorkspaceEntityIterator i(&m_EntitySet);
 
-    for (ZBWorkspaceEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext())
+    for (PSS_WorkspaceEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext())
     {
         if (pEnv == pGroup && ISA(pEnv, ZBWorkspaceGroupEntity))
         {
@@ -365,7 +365,7 @@ void ZBWorkspaceGroupEntity::_FindGroup(const CString Name, bool Deeper /*= fals
     // Sets the iterator to the right entity set
     ZBWorkspaceEntityIterator i(&m_EntitySet);
 
-    for (ZBWorkspaceEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext())
+    for (PSS_WorkspaceEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext())
     {
         if (ISA(pEnv, ZBWorkspaceGroupEntity))
         {
@@ -401,7 +401,7 @@ ZBWorkspaceGroupEntity* ZBWorkspaceGroupEntity::_FindFirstGroup(const CString Na
 {
     ZBWorkspaceEntityIterator i(&m_EntitySet);
 
-    for (ZBWorkspaceEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext())
+    for (PSS_WorkspaceEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext())
     {
         if (ISA(pEnv, ZBWorkspaceGroupEntity))
         {
@@ -434,7 +434,7 @@ bool ZBWorkspaceGroupEntity::GroupExist(const CString Name, bool Deeper /*= fals
     // Sets the iterator to the right entity set
     ZBWorkspaceEntityIterator i(&m_EntitySet);
 
-    for (ZBWorkspaceEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext())
+    for (PSS_WorkspaceEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext())
     {
         if (ISA(pEnv, ZBWorkspaceGroupEntity))
         {
@@ -522,7 +522,7 @@ bool ZBWorkspaceGroupEntity::RemoveFile(ZBWorkspaceFileEntity* pFile)
     // Sets the iterator to the right entity set
     ZBWorkspaceEntityIterator i(&m_EntitySet);
 
-    for (ZBWorkspaceEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext())
+    for (PSS_WorkspaceEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext())
     {
         if (ISA(pEnv, ZBWorkspaceFileEntity) && dynamic_cast<ZBWorkspaceFileEntity*>(pEnv) == pFile)
         {
@@ -554,7 +554,7 @@ bool ZBWorkspaceGroupEntity::RemoveFile(const CString Filename)
     // Sets the iterator to the right entity set
     ZBWorkspaceEntityIterator i(&m_EntitySet);
 
-    for (ZBWorkspaceEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext())
+    for (PSS_WorkspaceEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext())
     {
         if (ISA(pEnv, ZBWorkspaceFileEntity) &&
             dynamic_cast<ZBWorkspaceFileEntity*>(pEnv)->GetFilename() == Filename)
@@ -601,7 +601,7 @@ void ZBWorkspaceGroupEntity::RecalculateParent()
     // Sets the iterator to the right entity set
     ZBWorkspaceEntityIterator i(&m_EntitySet);
 
-    for (ZBWorkspaceEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext())
+    for (PSS_WorkspaceEntity* pEnv = i.GetFirst(); pEnv != NULL; pEnv = i.GetNext())
     {
         // Set the parent pointer
         pEnv->SetParent(this);
@@ -656,7 +656,7 @@ void ZBWorkspaceGroupEntity::Dump(CDumpContext& dc) const
 
 void ZBWorkspaceGroupEntity::Serialize(CArchive& ar)
 {
-    ZBWorkspaceEntity::Serialize(ar);
+    PSS_WorkspaceEntity::Serialize(ar);
 
     // If something else to serialize, do it below
     if (ar.IsStoring())
@@ -666,7 +666,7 @@ void ZBWorkspaceGroupEntity::Serialize(CArchive& ar)
 
         for (int nIdx = 0; nIdx < (int)GetEntityCount(); nIdx++)
         {
-            ZBWorkspaceEntity* pEntity = GetEntityAt(nIdx);
+            PSS_WorkspaceEntity* pEntity = GetEntityAt(nIdx);
             ar << pEntity;
         }
     }
@@ -678,7 +678,7 @@ void ZBWorkspaceGroupEntity::Serialize(CArchive& ar)
         RemoveAllEntities();
 
         int nCount;
-        ZBWorkspaceEntity* pEntity;
+        PSS_WorkspaceEntity* pEntity;
 
         ar >> nCount;
 

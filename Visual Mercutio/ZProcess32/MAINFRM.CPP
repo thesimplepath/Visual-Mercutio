@@ -1083,9 +1083,9 @@ afx_msg LRESULT ZIMainFrame::OnDocumentLoaded(WPARAM wParam, LPARAM lParam)
                                            GetOutputWorkspace()->GetLogAnalyzerView(),
                                            GetOutputWorkspace()->GetLogSearchView(),
                                            GetOutputWorkspace()->GetLogWorkflowView(),
-                                           NULL,        // User manager
-                                           NULL,        // Mail
-                                           NULL);        // Template manager
+                                           NULL,
+                                           NULL,
+                                           NULL);
         }
     }
 

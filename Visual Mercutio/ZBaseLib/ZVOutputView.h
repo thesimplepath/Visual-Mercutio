@@ -84,9 +84,9 @@ protected:
 // ZVOutputView view
 
 class AFX_EXT_CLASS ZVOutputView : public CWnd,
-    public ZILog,
-    public PSS_Subject,
-    public PSS_Observer
+                                   public ZILog,
+                                   public PSS_Subject,
+                                   public PSS_Observer
 {
 public:
 

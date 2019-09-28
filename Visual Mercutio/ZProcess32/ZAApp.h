@@ -55,7 +55,7 @@ public:
 
     ZBGridAppAdapter();
     virtual ~ZBGridAppAdapter();
-    virtual CDocTemplate* GetDocTemplate( CRuntimeClass* pViewClass, CRuntimeClass* pDocClass );
+    virtual CDocTemplate* GetDocTemplate(CRuntimeClass* pViewClass, CRuntimeClass* pDocClass);
 
 protected:
 
@@ -64,12 +64,9 @@ protected:
 
 class ZAApp : public ZAMainApp, public ZBGridAppAdapter
 {
-    //## begin ZAApp%36441921033A.initialDeclarations preserve=yes
-    public:
+    DECLARE_DYNAMIC(ZAApp)
 
-    DECLARE_DYNAMIC( ZAApp )
-
-    // Inherited feature
+public:
     typedef ZAMainApp inherited;
 
     ZIMainFrame*            GetMainFrame();
@@ -85,7 +82,7 @@ class ZAApp : public ZAMainApp, public ZBGridAppAdapter
     bool                     WorkspaceEnvironmentExist();
     bool                    IsWorkspaceEnvironmentLoaded();
     bool                    IsWorkspaceEnvironmentModified();
-    bool                    CloseCurrentWorkspace( bool AskClosingDocument = false );
+    bool                    CloseCurrentWorkspace(bool AskClosingDocument = false);
     bool                    CloseCurrentAndAllocateNewWorkspace();
     bool                    SaveCurrentWorkspace();
 
@@ -161,7 +158,7 @@ class ZAApp : public ZAMainApp, public ZBGridAppAdapter
     // View functions
     ZIView* GetMainView()
     {
-        return ( GetActiveDocument() ) ? GetActiveDocument()->GetMainView() : NULL;
+        return (GetActiveDocument()) ? GetActiveDocument()->GetMainView() : NULL;
     }
 
     virtual void RefreshCurrentSchema()
@@ -205,13 +202,13 @@ class ZAApp : public ZAMainApp, public ZBGridAppAdapter
 
     virtual BOOL ExitAppl();
 
-    virtual void SetVisualToolObject( const CString& sClassName );
+    virtual void SetVisualToolObject(const CString& sClassName);
 
     // Get the global ini file. This function is pure virtual.
-    virtual CString GetGlobalIniFile ();
+    virtual CString GetGlobalIniFile();
 
     // Set the global ini file. This function is virtual.
-    virtual void SetGlobalIniFile( CString& value );
+    virtual void SetGlobalIniFile(CString& value);
 
     CString GetWorkspaceFilename() const
     {
@@ -225,10 +222,10 @@ class ZAApp : public ZAMainApp, public ZBGridAppAdapter
     }
 
 public:
-    
+
     //## Constructors (generated)
     ZAApp();
-    
+
     //## Destructor (generated)
     ~ZAApp();
 
@@ -236,7 +233,7 @@ public:
     void Release();
 
     // JMR-MODIF - Le 29 juillet 2007 - Cette fonction permet de mettre à jour le dernier fichier chargé.
-    void UpdateLastLoadedFile(const CString& filename )
+    void UpdateLastLoadedFile(const CString& filename)
     {
         SetLastLoadedFile(filename);
     }
@@ -249,7 +246,7 @@ public:
     // Return the application registry key
     virtual CString GetApplicationRegistryKey() const
     {
-        return _T( "SOFTWARE\\ProcessSoft\\Mercutio - Conceptor" );
+        return _T("SOFTWARE\\ProcessSoft\\Mercutio - Conceptor");
     }
 
     //## Operation: InitInstance%910434301
@@ -260,7 +257,7 @@ public:
 
     //## Operation: IsCursorCapturedValid%910434304
     //    Check if the cursor capture still valid.
-    virtual BOOL IsCursorCapturedValid( const CPoint& point, ZIView* pView );
+    virtual BOOL IsCursorCapturedValid(const CPoint& point, ZIView* pView);
 
     //## Operation: GetCurrentDocument%910434306
     //    Returns the current document pointer.
@@ -271,7 +268,7 @@ public:
     //    When the drawing function draw with red
     //    color fields that have changed
     //    When this function is calle
-    virtual BOOL OnIdle( LONG lCount );
+    virtual BOOL OnIdle(LONG lCount);
 
     //## Operation: ZAGetApp%910716403
     //    Return the pointer to the global application.
@@ -285,8 +282,8 @@ public:
     //    Load the application options.
     virtual BOOL SaveApplicationOptions();
 
-    CDocument* OpenWorkspaceFile( LPCSTR Filename );
-    void SaveWorkspaceFile( LPCSTR Filename );
+    CDocument* OpenWorkspaceFile(LPCSTR Filename);
+    void SaveWorkspaceFile(LPCSTR Filename);
 
     // JMR-MODIF - Le 28 décembre 2006 - Ajout des fonctions DoRefreshProperties et DoRefreshSymbolsAndProperties.
     void DoRefreshProperties();
@@ -296,8 +293,8 @@ protected:
 
     /////////////////////////////////////////////////////////////////////////////
     // Additional Template operations
-    virtual CDocument*    OnOpenAdditionalTemplateFile( LPCSTR Filename );
-    virtual void        OnSaveAdditionalTemplateFile( LPCSTR Filename );
+    virtual CDocument*    OnOpenAdditionalTemplateFile(LPCSTR Filename);
+    virtual void        OnSaveAdditionalTemplateFile(LPCSTR Filename);
 
     // Register the additional template not covered by CDocTemplate
     virtual bool OnRegisterAdditionalTemplate();
@@ -434,23 +431,23 @@ protected:
     DECLARE_MESSAGE_MAP()
 
     bool LoadUserGroupFile();
-    bool SaveUserGroupFile( bool AskBeforeSave = true );
+    bool SaveUserGroupFile(bool AskBeforeSave = true);
 
     bool LoadLogicalSystemFile();
-    bool SaveLogicalSystemFile( bool AskBeforeSave = true );
+    bool SaveLogicalSystemFile(bool AskBeforeSave = true);
 
     // JMR-MODIF - Le 7 octobre 2005 - Ajout des fonctions LoadPrestationsFile et SavePrestationsFile.
     bool LoadPrestationsFile();
-    bool SavePrestationsFile( bool AskBeforeSave = true );
+    bool SavePrestationsFile(bool AskBeforeSave = true);
 
     // JMR-MODIF - Le 15 novembre 2006 - Ajout des fonctions LoadRulesFile et SaveRulesFile.
     bool LoadRulesFile();
-    bool SaveRulesFile( bool AskBeforeSave = true );
+    bool SaveRulesFile(bool AskBeforeSave = true);
 
 private:
 
-    ZAApp( const ZAApp &right );
-    const ZAApp & operator=( const ZAApp &right );
+    ZAApp(const ZAApp &right);
+    const ZAApp & operator=(const ZAApp &right);
 
 private:
 
@@ -497,7 +494,7 @@ private:
 inline CString ZAApp::GetApplicationName() const
 {
     //## begin ZAApp::GetApplicationName%910434300.body preserve=yes
-    return( _T( "ProcessSoft-Conceptor" ) );
+    return(_T("ProcessSoft-Conceptor"));
     //## end ZAApp::GetApplicationName%910434300.body
 }
 
@@ -516,10 +513,9 @@ inline ZAApp* ZAApp::ZAGetApp()
 }
 
 //## begin module%364419D90317.epilog preserve=yes
-inline void ZAApp::SetGlobalIniFile ( CString& value )
+inline void ZAApp::SetGlobalIniFile(CString& value)
 {
     m_GlobalIniFile = value;
 }
 
-//## end module%364419D90317.epilog
 #endif
