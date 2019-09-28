@@ -1221,7 +1221,7 @@ CString ZAApp::GetGlobalIniFile()
 
 // ******************************************** Obtention du pointeur *******************************************
 
-ZBWorkspaceEnv* ZAApp::GetCurrentWorkspaceEnvironment()
+PSS_WorkspaceEnv* ZAApp::GetCurrentWorkspaceEnvironment()
 {
     return (m_pWorkspaceEnvDocument) ? &m_pWorkspaceEnvDocument->GetWorkspaceEnvironment() : NULL;
 }
@@ -1330,7 +1330,7 @@ CDocument* ZAApp::OpenWorkspaceFile(LPCSTR Filename)
         return NULL;
     }
 
-    ZBWorkspaceEnv* pEnv = GetCurrentWorkspaceEnvironment();
+    PSS_WorkspaceEnv* pEnv = GetCurrentWorkspaceEnvironment();
 
     if (!pEnv)
     {
@@ -2387,7 +2387,7 @@ void ZAApp::OnNewWorkspace()
             }
         }
 
-        ZBWorkspaceEnv* pEnv = GetCurrentWorkspaceEnvironment();
+        PSS_WorkspaceEnv* pEnv = GetCurrentWorkspaceEnvironment();
 
         if (pEnv)
         {

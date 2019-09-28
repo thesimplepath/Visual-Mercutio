@@ -3,7 +3,8 @@
 #include "stdafx.h"
 #include "ZCWorkspaceTreeCtrl.h"
 
-#include "ZBWorkspaceEnv.h"
+// processsoft
+#include "PSS_WorkspaceEnv.h"
 #include "ZBWorkspaceFileEntity.h"
 #include "ZBWorkspaceGroupEntity.h"
 #include "ZBWorkspaceObserverMsg.h"
@@ -38,7 +39,7 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // ZCWorkspaceTreeCtrl
 
-ZCWorkspaceTreeCtrl::ZCWorkspaceTreeCtrl(const CString RootName /*= ""*/, ZBWorkspaceEnv* pWorkspaceEnv /*= NULL*/) :
+ZCWorkspaceTreeCtrl::ZCWorkspaceTreeCtrl(const CString RootName /*= ""*/, PSS_WorkspaceEnv* pWorkspaceEnv /*= NULL*/) :
     m_RootName(RootName),
     m_pWorkspaceEnv(pWorkspaceEnv),
     m_hRootWorkspaceEnv(NULL)
@@ -47,7 +48,7 @@ ZCWorkspaceTreeCtrl::ZCWorkspaceTreeCtrl(const CString RootName /*= ""*/, ZBWork
 ZCWorkspaceTreeCtrl::~ZCWorkspaceTreeCtrl()
 {}
 
-void ZCWorkspaceTreeCtrl::Initialize(const CString RootName, ZBWorkspaceEnv* pWorkspaceEnv)
+void ZCWorkspaceTreeCtrl::Initialize(const CString RootName, PSS_WorkspaceEnv* pWorkspaceEnv)
 {
     m_RootName = RootName;
     m_pWorkspaceEnv = pWorkspaceEnv;
@@ -145,7 +146,7 @@ void ZCWorkspaceTreeCtrl::LoadTree()
     ExpandRoot(TRUE);
 }
 
-void ZCWorkspaceTreeCtrl::ProcessWorkspaceEnv(ZBWorkspaceEnv* pWorkspaceEnv, HTREEITEM hParentTreeItem)
+void ZCWorkspaceTreeCtrl::ProcessWorkspaceEnv(PSS_WorkspaceEnv* pWorkspaceEnv, HTREEITEM hParentTreeItem)
 {
     if (pWorkspaceEnv->ContainEntity())
     {
@@ -663,7 +664,7 @@ _ZInternalWksTreeData::_ZInternalWksTreeData()
     m_Str.Empty();
 }
 
-_ZInternalWksTreeData::_ZInternalWksTreeData(ZBWorkspaceEnv* pWorkspaceEnv)
+_ZInternalWksTreeData::_ZInternalWksTreeData(PSS_WorkspaceEnv* pWorkspaceEnv)
 {
     m_dtp = wktp_WorkspaceEnv;
     m_pWorkspaceEnv = pWorkspaceEnv;
@@ -786,7 +787,7 @@ _ZInternalWksTreeData* ZCWorkspaceTreeCtrl::FindElementFromDataSet(PSS_Workspace
     return NULL;
 }
 
-_ZInternalWksTreeData* ZCWorkspaceTreeCtrl::FindElementFromDataSet(ZBWorkspaceEnv* pWorkspaceEnv)
+_ZInternalWksTreeData* ZCWorkspaceTreeCtrl::FindElementFromDataSet(PSS_WorkspaceEnv* pWorkspaceEnv)
 {
     _ZInternalWksTreeDataIterator i(&m_DataSet);
 
@@ -847,7 +848,7 @@ _ZInternalWksTreeData* ZCWorkspaceTreeCtrl::FindElementFromDataSet(CString Str)
     return NULL;
 }
 
-_ZInternalWksTreeData* ZCWorkspaceTreeCtrl::AddDataToSet(ZBWorkspaceEnv* pWorkspaceEnv)
+_ZInternalWksTreeData* ZCWorkspaceTreeCtrl::AddDataToSet(PSS_WorkspaceEnv* pWorkspaceEnv)
 {
     _ZInternalWksTreeData* pData = new _ZInternalWksTreeData(pWorkspaceEnv);
     m_DataSet.Add(pData);

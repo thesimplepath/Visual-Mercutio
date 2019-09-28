@@ -5,8 +5,9 @@
 #include "stdafx.h"
 #include "ZBWorkspaceObserverMsg.h"
 
+// processsoft
 #include "PSS_WorkspaceEntity.h"
-#include "ZBWorkspaceEnv.h"
+#include "PSS_WorkspaceEnv.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -20,21 +21,21 @@ IMPLEMENT_DYNAMIC(ZBWorkspaceObserverMsg, PSS_ObserverMsg)
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZBWorkspaceObserverMsg::ZBWorkspaceObserverMsg(UINT MessageID /*= 0*/, ZBWorkspaceEnv* pEnv /*= NULL*/) :
+ZBWorkspaceObserverMsg::ZBWorkspaceObserverMsg(UINT MessageID, PSS_WorkspaceEnv* pEnv) :
     PSS_ObserverMsg(),
     m_MessageID(MessageID),
     m_pEnv(pEnv),
     m_pEntity(NULL)
 {}
 
-ZBWorkspaceObserverMsg::ZBWorkspaceObserverMsg(UINT MessageID, ZBWorkspaceEnv* pEnv, ZBWorkspaceEntity* pEntity) :
+ZBWorkspaceObserverMsg::ZBWorkspaceObserverMsg(UINT MessageID, PSS_WorkspaceEnv* pEnv, PSS_WorkspaceEntity* pEntity) :
     PSS_ObserverMsg(),
     m_MessageID(MessageID),
     m_pEnv(pEnv),
     m_pEntity(pEntity)
 {}
 
-ZBWorkspaceObserverMsg::ZBWorkspaceObserverMsg(UINT MessageID, ZBWorkspaceEntity* pEntity) :
+ZBWorkspaceObserverMsg::ZBWorkspaceObserverMsg(UINT MessageID, PSS_WorkspaceEntity* pEntity) :
     PSS_ObserverMsg(),
     m_MessageID(MessageID),
     m_pEnv(NULL),

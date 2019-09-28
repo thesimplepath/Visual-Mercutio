@@ -2,12 +2,10 @@
 #define AFX_ZDWORKSPACEENVDOCUMENT_H__6325FCF2_2A96_4A88_81CB_EEF32C4B5FE9__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-// ZDWorkspaceEnvDocument.h : header file
-//
+    #pragma once
+#endif
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -15,12 +13,11 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-#include "ZBWorkspaceEnv.h"
-
+// processsoft
+#include "PSS_WorkspaceEnv.h"
 
 #ifdef _ZBASELIBEXPORT
-//put the values back to make AFX_EXT_CLASS export again
+// put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -47,7 +44,7 @@ public:
     bool ReadFromFile( const CString Filename );
     bool SaveToFile( const CString Filename );
 
-    ZBWorkspaceEnv& GetWorkspaceEnvironment()
+    PSS_WorkspaceEnv& GetWorkspaceEnvironment()
     {
         return m_WorkspaceEnvironment;
     };
@@ -87,11 +84,8 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-    ZBWorkspaceEnv    m_WorkspaceEnvironment;
-    bool            m_IsLoaded;
+    PSS_WorkspaceEnv m_WorkspaceEnvironment;
+    bool             m_IsLoaded;
 };
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZDWORKSPACEENVDOCUMENT_H__6325FCF2_2A96_4A88_81CB_EEF32C4B5FE9__INCLUDED_)
+#endif

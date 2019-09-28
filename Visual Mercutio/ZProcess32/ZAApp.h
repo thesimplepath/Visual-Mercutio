@@ -14,6 +14,11 @@
 #ifndef ZAApp_h
 #define ZAApp_h 1
 
+// class name mapping
+#ifndef PSS_WorkspaceEnv
+    #define PSS_WorkspaceEnv ZBWorkspaceEnv
+#endif
+
 // ZAMApp
 #include "ZAMApp.h"
 
@@ -27,7 +32,7 @@ class ZVOutputWorkspace;
 class ZVProcessWorkspace;
 class ZVPropertiesWorkspace;
 class ZDWorkspaceEnvDocument;
-class ZBWorkspaceEnv;
+class PSS_WorkspaceEnv;
 class ZDProcessGraphModelDoc;
 class ZBWorkspaceWizardTemplateMg;
 class ZDUserEntityDocument;
@@ -78,7 +83,7 @@ public:
     PSS_TipOfDayBar* GetwndTipOfDayBar();
 
     // Workspace functions
-    ZBWorkspaceEnv*            GetCurrentWorkspaceEnvironment();
+    PSS_WorkspaceEnv*            GetCurrentWorkspaceEnvironment();
     bool                     WorkspaceEnvironmentExist();
     bool                    IsWorkspaceEnvironmentLoaded();
     bool                    IsWorkspaceEnvironmentModified();

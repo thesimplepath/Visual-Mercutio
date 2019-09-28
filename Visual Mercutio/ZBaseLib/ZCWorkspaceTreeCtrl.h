@@ -15,17 +15,21 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
 #include "PSS_Subject.h"
 #include "PSS_Observer.h"
 #include "ZITreeCtl.h"
 
 // class name mapping
+#ifndef PSS_WorkspaceEnv
+    #define PSS_WorkspaceEnv ZBWorkspaceEnv
+#endif
 #ifndef PSS_WorkspaceEntity
     #define PSS_WorkspaceEntity ZBWorkspaceEntity
 #endif
 
 // forward class declaration
-class ZBWorkspaceEnv;
+class PSS_WorkspaceEnv;
 class ZBWorkspaceFileEntity;
 class ZBWorkspaceGroupEntity;
 class PSS_WorkspaceEntity;
@@ -57,7 +61,7 @@ public:
     };
 
     _ZInternalWksTreeData();
-    _ZInternalWksTreeData(ZBWorkspaceEnv* pWorkspaceEnv);
+    _ZInternalWksTreeData(PSS_WorkspaceEnv* pWorkspaceEnv);
     _ZInternalWksTreeData(ZBWorkspaceGroupEntity* pGroup);
     _ZInternalWksTreeData(ZBWorkspaceFileEntity* pFile);
     _ZInternalWksTreeData(CString Str);
@@ -65,7 +69,7 @@ public:
 
     // Data member
     WksTreeDataType            m_dtp;
-    ZBWorkspaceEnv*            m_pWorkspaceEnv;
+    PSS_WorkspaceEnv*            m_pWorkspaceEnv;
     ZBWorkspaceGroupEntity*    m_pGroup;
     ZBWorkspaceFileEntity*    m_pFile;
     CString                    m_Str;
@@ -81,13 +85,13 @@ class AFX_EXT_CLASS ZCWorkspaceTreeCtrl : public ZITreeCtrl,
     // Construction / destruction
 public:
 
-    ZCWorkspaceTreeCtrl(const CString RootName = _T(""), ZBWorkspaceEnv* pWorkspaceEnv = NULL);
+    ZCWorkspaceTreeCtrl(const CString RootName = _T(""), PSS_WorkspaceEnv* pWorkspaceEnv = NULL);
     virtual ~ZCWorkspaceTreeCtrl();
 
     // Operations
 public:
 
-    void Initialize(const CString RootName, ZBWorkspaceEnv* pWorkspaceEnv);
+    void Initialize(const CString RootName, PSS_WorkspaceEnv* pWorkspaceEnv);
     void Refresh();
 
     bool HasItems() const
@@ -161,7 +165,7 @@ private:
 
 private:
 
-    void ProcessWorkspaceEnv(ZBWorkspaceEnv* pWorkspaceEnv, HTREEITEM hParentTreeItem);
+    void ProcessWorkspaceEnv(PSS_WorkspaceEnv* pWorkspaceEnv, HTREEITEM hParentTreeItem);
     void ProcessGroup(ZBWorkspaceGroupEntity* pGroup, HTREEITEM hParentTreeItem);
     void ProcessFile(ZBWorkspaceFileEntity* pFile, HTREEITEM hParentTreeItem);
     void ModifyEntity(PSS_WorkspaceEntity* pEntity);
@@ -187,12 +191,12 @@ private:
     void EmptyDataSet();
 
     _ZInternalWksTreeData* FindElementFromDataSet(PSS_WorkspaceEntity* pEntity);
-    _ZInternalWksTreeData* FindElementFromDataSet(ZBWorkspaceEnv* pWorkspaceEnv);
+    _ZInternalWksTreeData* FindElementFromDataSet(PSS_WorkspaceEnv* pWorkspaceEnv);
     _ZInternalWksTreeData* FindElementFromDataSet(ZBWorkspaceGroupEntity* pGroup);
     _ZInternalWksTreeData* FindElementFromDataSet(ZBWorkspaceFileEntity* pFile);
     _ZInternalWksTreeData* FindElementFromDataSet(CString Str);
 
-    _ZInternalWksTreeData* AddDataToSet(ZBWorkspaceEnv* pWorkspaceEnv);
+    _ZInternalWksTreeData* AddDataToSet(PSS_WorkspaceEnv* pWorkspaceEnv);
     _ZInternalWksTreeData* AddDataToSet(ZBWorkspaceGroupEntity* pGroup);
     _ZInternalWksTreeData* AddDataToSet(ZBWorkspaceFileEntity* pFile);
     _ZInternalWksTreeData* AddDataToSet(CString Str);
@@ -217,7 +221,7 @@ private:
 
     HTREEITEM                    m_hRootWorkspaceEnv;
     CString                        m_RootName;
-    ZBWorkspaceEnv*                m_pWorkspaceEnv;
+    PSS_WorkspaceEnv*                m_pWorkspaceEnv;
     CMenu                        m_SubMenu;
 };
 
