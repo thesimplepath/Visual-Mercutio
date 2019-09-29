@@ -1,58 +1,87 @@
-// ZBWorkspaceFileEntity.cpp: implementation of the ZBWorkspaceFileEntity class.
-//
-//////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_WorkspaceFileEntity ---------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a workspace file entity                           *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
 #include "ZBWorkspaceFileEntity.h"
 
+// processsoft
 #include "ZBWorkspaceGroupEntity.h"
 #include "PSS_WorkspaceFilePropertiesDlg.h"
-
 #include "ZUFileLauncher.h"
-
 #include "PSS_FileDialog.h"
-
-#include "zBaseLibRes.h"
 #include "PSS_MsgBox.h"
 
+// resources
+#include "zBaseLibRes.h"
+
 #ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
 #endif
 
-// JMR-MODIF - Le 18 avril 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-IMPLEMENT_SERIAL(ZBWorkspaceFileEntity, PSS_WorkspaceEntity, g_DefVersion)
-
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
-
-ZBWorkspaceFileEntity::ZBWorkspaceFileEntity(const CString Name /*= ""*/, PSS_WorkspaceEntity* pParent /*= NULL*/)
-    : PSS_WorkspaceEntity(Name, pParent)
+//---------------------------------------------------------------------------
+// Serialization
+//---------------------------------------------------------------------------
+IMPLEMENT_SERIAL(PSS_WorkspaceFileEntity, PSS_WorkspaceEntity, g_DefVersion)
+//---------------------------------------------------------------------------
+// PSS_WorkspaceFileEntity
+//---------------------------------------------------------------------------
+PSS_WorkspaceFileEntity::PSS_WorkspaceFileEntity(const CString& name, PSS_WorkspaceEntity* pParent) :
+    PSS_WorkspaceEntity(name, pParent)
 {
-    m_File.SetCompleteFileName(Name);
+    m_File.SetCompleteFileName(name);
     SetEntityName(m_File.GetFileTitle() + m_File.GetFileExt());
 }
-
-ZBWorkspaceFileEntity::~ZBWorkspaceFileEntity()
+//---------------------------------------------------------------------------
+PSS_WorkspaceFileEntity::~PSS_WorkspaceFileEntity()
 {}
-
-HICON ZBWorkspaceFileEntity::GetFilenameIcon() const
+//---------------------------------------------------------------------------
+bool PSS_WorkspaceFileEntity::HasFileName() const
 {
-    int IconIndex = const_cast<PSS_File&>(m_File).GetIconIndex();
-
-    if (IconIndex < 0)
-    {
-        return NULL;
-    }
-
-    return ::ExtractIcon(::AfxGetInstanceHandle(), GetFilename(), IconIndex);
+    return !const_cast<PSS_File&>(m_File).GetCompleteFileName().IsEmpty();
 }
+//---------------------------------------------------------------------------
+CString PSS_WorkspaceFileEntity::GetFileName() const
+{
+    return const_cast<PSS_File&>(m_File).GetCompleteFileName();
+}
+//---------------------------------------------------------------------------
+void PSS_WorkspaceFileEntity::SetFileName(const CString& value)
+{
+    m_File.SetCompleteFileName(value);
+}
+//---------------------------------------------------------------------------
+CString PSS_WorkspaceFileEntity::GetFileTitle() const
+{
+    return const_cast<PSS_File&>(m_File).GetFileName();
+}
+//---------------------------------------------------------------------------
+CString PSS_WorkspaceFileEntity::GetFilePath() const
+{
+    return const_cast<PSS_File&>(m_File).GetFilePath();
+}
+//---------------------------------------------------------------------------
+CString PSS_WorkspaceFileEntity::GetFileExt() const
+{
+    return const_cast<PSS_File&>(m_File).GetFileExt();
+}
+//---------------------------------------------------------------------------
+HICON PSS_WorkspaceFileEntity::GetFileNameIcon() const
+{
+    const int iconIndex = const_cast<PSS_File&>(m_File).GetIconIndex();
 
-// Cette fonction est appelée lorsqu'un fichier associé au projet doit être ouvert.
-bool ZBWorkspaceFileEntity::OpenFile()
+    if (iconIndex < 0)
+        return NULL;
+
+    return ::ExtractIcon(::AfxGetInstanceHandle(), GetFileName(), iconIndex);
+}
+//---------------------------------------------------------------------------
+bool PSS_WorkspaceFileEntity::OpenFile()
 {
     if (!m_File.Exist())
     {
@@ -63,84 +92,71 @@ bool ZBWorkspaceFileEntity::OpenFile()
             CString title;
             VERIFY(title.LoadString(IDS_WORKSPACE_FILESELECT_T));
 
-            // Set the "*.*" files filter
-            CString strFilter;
-            VERIFY(strFilter.LoadString(AFX_IDS_ALLFILTER));
+            // set the "*.*" files filter
+            CString filters;
+            VERIFY(filters.LoadString(AFX_IDS_ALLFILTER));
 
-            strFilter += (char)'\0';            // Next string please
-            strFilter += _T("*.*");
-            strFilter += (char)'\0';            // Last string
+            filters += char('\0');
+            filters +=   _T("*.*");
+            filters += char('\0');
 
-            PSS_FileDialog fileDialog(title, strFilter, 1);
+            PSS_FileDialog fileDialog(title, filters, 1);
 
             if (fileDialog.DoModal() == IDOK)
-            {
-                // Assigns the new file name
+                // assigns the new file name
                 m_File.SetCompleteFileName(fileDialog.GetFileName());
-            }
             else
-            {
                 return false;
-            }
         }
         else
-        {
             return false;
-        }
     }
 
-    // Launch the file
+    // launch the file
     ZUFileLauncher fl;
 
-    return (fl.Launch(m_File.GetCompleteFileName()) == TRUE) ? true : false;
+    return fl.Launch(m_File.GetCompleteFileName());
 }
-
-bool ZBWorkspaceFileEntity::DisplayProperties()
+//---------------------------------------------------------------------------
+bool PSS_WorkspaceFileEntity::PropertiesVisible()
 {
-    PSS_WorkspaceFilePropertiesDlg dlg((GetParent() && ISA(GetParent(), ZBWorkspaceGroupEntity)) ? dynamic_cast<ZBWorkspaceGroupEntity*>(GetParent()) : NULL,
-                                  GetEntityName(),
-                                  GetFilename());
+    PSS_WorkspaceFilePropertiesDlg dlg(dynamic_cast<ZBWorkspaceGroupEntity*>(GetParent()),
+                                       GetEntityName(),
+                                       GetFileName());
 
     if (dlg.DoModal() == IDOK)
     {
         SetEntityName(dlg.GetFileTitle());
-        SetFilename(dlg.GetFileName());
+        SetFileName(dlg.GetFileName());
         return true;
     }
 
     return false;
 }
-
-/////////////////////////////////////////////////////////////////////////////
-// ZBWorkspaceFileEntity diagnostics
-
+//---------------------------------------------------------------------------
 #ifdef _DEBUG
-void ZBWorkspaceFileEntity::AssertValid() const
-{
-    ZBWorkspaceEntity::AssertValid();
-}
-
-void ZBWorkspaceFileEntity::Dump(CDumpContext& dc) const
-{
-    ZBWorkspaceEntity::Dump(dc);
-}
-#endif //_DEBUG
-
-/////////////////////////////////////////////////////////////////////////////
-// ZBWorkspaceFileEntity serialization
-
-void ZBWorkspaceFileEntity::Serialize(CArchive& ar)
+    void PSS_WorkspaceFileEntity::AssertValid() const
+    {
+        PSS_WorkspaceEntity::AssertValid();
+    }
+#endif
+//---------------------------------------------------------------------------
+#ifdef _DEBUG
+    void PSS_WorkspaceFileEntity::Dump(CDumpContext& dc) const
+    {
+        PSS_WorkspaceEntity::Dump(dc);
+    }
+#endif
+//---------------------------------------------------------------------------
+void PSS_WorkspaceFileEntity::Serialize(CArchive& ar)
 {
     PSS_WorkspaceEntity::Serialize(ar);
 
     if (ar.IsStoring())
-    {
-        // Write the elements
+        // write the elements
         ar << m_File;
-    }
     else
-    {
-        // Read the elements
+        // read the elements
         ar >> m_File;
-    }
 }
+//---------------------------------------------------------------------------

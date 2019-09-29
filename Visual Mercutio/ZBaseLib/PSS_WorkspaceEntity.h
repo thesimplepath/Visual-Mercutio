@@ -160,7 +160,7 @@ class AFX_EXT_CLASS PSS_WorkspaceEntity : public CObject
         * Checks if a file name is defined
         *@return true if a file name is defined, otherwise false
         */
-        virtual bool HasFilename() const;
+        virtual bool HasFileName() const;
 
         /**
         * Gets the file name

@@ -90,7 +90,7 @@ bool PSS_WorkspaceEntity::ContainThisExtension(const CString& extension)
     return false;
 }
 //---------------------------------------------------------------------------
-bool PSS_WorkspaceEntity::HasFilename() const
+bool PSS_WorkspaceEntity::HasFileName() const
 {
     return false;
 }
