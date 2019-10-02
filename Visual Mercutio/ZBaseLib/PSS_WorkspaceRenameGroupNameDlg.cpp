@@ -9,7 +9,7 @@
 #include "PSS_WorkspaceRenameGroupNameDlg.h"
 
 // processsoft
-#include "ZBWorkspaceGroupEntity.h"
+#include "PSS_WorkspaceGroupEntity.h"
 #include "PSS_MsgBox.h"
 
 #ifdef _DEBUG
@@ -28,9 +28,9 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_WorkspaceRenameGroupNameDlg
 //---------------------------------------------------------------------------
-PSS_WorkspaceRenameGroupNameDlg::PSS_WorkspaceRenameGroupNameDlg(const CString&          groupName,
-                                                                 ZBWorkspaceGroupEntity* pParentGroup,
-                                                                 CWnd*                   pParent) :
+PSS_WorkspaceRenameGroupNameDlg::PSS_WorkspaceRenameGroupNameDlg(const CString&            groupName,
+                                                                 PSS_WorkspaceGroupEntity* pParentGroup,
+                                                                 CWnd*                     pParent) :
     CDialog(PSS_WorkspaceRenameGroupNameDlg::IDD, pParent),
     m_pParentGroup(pParentGroup),
     m_GroupName(groupName)

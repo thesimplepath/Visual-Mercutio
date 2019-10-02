@@ -135,19 +135,19 @@ class AFX_EXT_CLASS PSS_WorkspaceEntity : public CObject
         * Sets the extension list
         *@param extensionArray - the extension array to set
         */
-        virtual void SetExtensionList(CStringArray& extensionArray);
+        virtual void SetExtensionList(const CStringArray& extensionArray);
 
         /**
         * Sets the extension list
         *@param extensions - the extensions to set
         */
-        virtual void SetExtensionList(const CString Extensions);
+        virtual void SetExtensionList(const CString& extensions);
 
         /**
         * Adds elements to the extension list
         *@param extensionArray - the extension array containing the elements to set
         */
-        virtual void AddElementToExtensionList(CStringArray& extensionArray);
+        virtual void AddElementToExtensionList(const CStringArray& extensionArray);
 
         /**
         * Checks if an extension is contained in the list

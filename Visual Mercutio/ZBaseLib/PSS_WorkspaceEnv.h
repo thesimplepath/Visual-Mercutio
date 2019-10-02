@@ -26,7 +26,7 @@
 #endif
 
 // processsoft
-#include "ZBWorkspaceGroupEntity.h"
+#include "PSS_WorkspaceGroupEntity.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -42,7 +42,7 @@
 * Workspace environment
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_WorkspaceEnv : public ZBWorkspaceGroupEntity
+class AFX_EXT_CLASS PSS_WorkspaceEnv : public PSS_WorkspaceGroupEntity
 {
     DECLARE_SERIAL(PSS_WorkspaceEnv)
 

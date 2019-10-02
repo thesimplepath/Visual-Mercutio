@@ -5,9 +5,9 @@
 
 // processsoft
 #include "PSS_WorkspaceEnv.h"
-#include "ZBWorkspaceFileEntity.h"
-#include "ZBWorkspaceGroupEntity.h"
-#include "ZBWorkspaceObserverMsg.h"
+#include "PSS_WorkspaceFileEntity.h"
+#include "PSS_WorkspaceGroupEntity.h"
+#include "PSS_WorkspaceObserverMsg.h"
 
 #include "zBaseLibRes.h"
 #include "PSS_FileDialog.h"
@@ -63,14 +63,14 @@ void ZCWorkspaceTreeCtrl::Refresh()
 
 void ZCWorkspaceTreeCtrl::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
-    if (pMsg && ISA(pMsg, ZBWorkspaceObserverMsg))
+    if (pMsg && ISA(pMsg, PSS_WorkspaceObserverMsg))
     {
-        switch (dynamic_cast<ZBWorkspaceObserverMsg*>(pMsg)->GetMessageID())
+        switch (dynamic_cast<PSS_WorkspaceObserverMsg*>(pMsg)->GetMessageID())
         {
             case UM_INITWORKSPACE:
             {
-                Initialize(dynamic_cast<ZBWorkspaceObserverMsg*>(pMsg)->GetpEnv()->GetEntityName(),
-                           dynamic_cast<ZBWorkspaceObserverMsg*>(pMsg)->GetpEnv());
+                Initialize(dynamic_cast<PSS_WorkspaceObserverMsg*>(pMsg)->GetEnv()->GetEntityName(),
+                           dynamic_cast<PSS_WorkspaceObserverMsg*>(pMsg)->GetEnv());
                 break;
             }
 
@@ -161,20 +161,20 @@ void ZCWorkspaceTreeCtrl::ProcessWorkspaceEnv(PSS_WorkspaceEnv* pWorkspaceEnv, H
                 continue;
             }
 
-            if (ISA(pEntity, ZBWorkspaceGroupEntity))
+            if (ISA(pEntity, PSS_WorkspaceGroupEntity))
             {
-                ProcessGroup(dynamic_cast<ZBWorkspaceGroupEntity*>(pEntity), hParentTreeItem);
+                ProcessGroup(dynamic_cast<PSS_WorkspaceGroupEntity*>(pEntity), hParentTreeItem);
             }
 
-            if (ISA(pEntity, ZBWorkspaceFileEntity))
+            if (ISA(pEntity, PSS_WorkspaceFileEntity))
             {
-                ProcessFile(dynamic_cast<ZBWorkspaceFileEntity*>(pEntity), hParentTreeItem);
+                ProcessFile(dynamic_cast<PSS_WorkspaceFileEntity*>(pEntity), hParentTreeItem);
             }
         }
     }
 }
 
-void ZCWorkspaceTreeCtrl::ProcessGroup(ZBWorkspaceGroupEntity* pGroup, HTREEITEM hParentTreeItem)
+void ZCWorkspaceTreeCtrl::ProcessGroup(PSS_WorkspaceGroupEntity* pGroup, HTREEITEM hParentTreeItem)
 {
     // First, add the item
     HTREEITEM hGroupItem = AddGroupItem(pGroup, hParentTreeItem);
@@ -192,20 +192,20 @@ void ZCWorkspaceTreeCtrl::ProcessGroup(ZBWorkspaceGroupEntity* pGroup, HTREEITEM
                 continue;
             }
 
-            if (ISA(pEntity, ZBWorkspaceGroupEntity))
+            if (ISA(pEntity, PSS_WorkspaceGroupEntity))
             {
-                ProcessGroup(dynamic_cast<ZBWorkspaceGroupEntity*>(pEntity), hGroupItem);
+                ProcessGroup(dynamic_cast<PSS_WorkspaceGroupEntity*>(pEntity), hGroupItem);
             }
 
-            if (ISA(pEntity, ZBWorkspaceFileEntity))
+            if (ISA(pEntity, PSS_WorkspaceFileEntity))
             {
-                ProcessFile(dynamic_cast<ZBWorkspaceFileEntity*>(pEntity), hGroupItem);
+                ProcessFile(dynamic_cast<PSS_WorkspaceFileEntity*>(pEntity), hGroupItem);
             }
         }
     }
 }
 
-void ZCWorkspaceTreeCtrl::ProcessFile(ZBWorkspaceFileEntity* pFile, HTREEITEM hParentTreeItem)
+void ZCWorkspaceTreeCtrl::ProcessFile(PSS_WorkspaceFileEntity* pFile, HTREEITEM hParentTreeItem)
 {
     // First, add the item
     HTREEITEM hFileItem = AddFileItem(pFile, hParentTreeItem);
@@ -228,7 +228,7 @@ HTREEITEM ZCWorkspaceTreeCtrl::AddTypeItem(const CString    Name,
     return InsertItem(&curTreeItem);
 }
 
-HTREEITEM ZCWorkspaceTreeCtrl::AddGroupItem(ZBWorkspaceGroupEntity* pGroup, HTREEITEM hParentTreeItem)
+HTREEITEM ZCWorkspaceTreeCtrl::AddGroupItem(PSS_WorkspaceGroupEntity* pGroup, HTREEITEM hParentTreeItem)
 {
     if (!pGroup)
     {
@@ -249,7 +249,7 @@ HTREEITEM ZCWorkspaceTreeCtrl::AddGroupItem(ZBWorkspaceGroupEntity* pGroup, HTRE
 }
 
 
-HTREEITEM ZCWorkspaceTreeCtrl::AddFileItem(ZBWorkspaceFileEntity* pFile, HTREEITEM hParentTreeItem)
+HTREEITEM ZCWorkspaceTreeCtrl::AddFileItem(PSS_WorkspaceFileEntity* pFile, HTREEITEM hParentTreeItem)
 {
     if (!pFile)
     {
@@ -279,7 +279,7 @@ BOOL ZCWorkspaceTreeCtrl::ModifyItem(PSS_WorkspaceEntity* pEntity, HTREEITEM hIt
     return SetItemText(hItem, (char*)((const char*)pEntity->GetEntityName()));
 }
 
-void ZCWorkspaceTreeCtrl::AddGroup(ZBWorkspaceGroupEntity* pGroup, ZBWorkspaceGroupEntity* pParentGroup /*= NULL*/)
+void ZCWorkspaceTreeCtrl::AddGroup(PSS_WorkspaceGroupEntity* pGroup, PSS_WorkspaceGroupEntity* pParentGroup /*= NULL*/)
 {
     if (!m_hRootWorkspaceEnv || !pGroup)
     {
@@ -317,7 +317,7 @@ void ZCWorkspaceTreeCtrl::AddGroup(ZBWorkspaceGroupEntity* pGroup, ZBWorkspaceGr
     }
 }
 
-void ZCWorkspaceTreeCtrl::RemoveGroup(ZBWorkspaceGroupEntity* pGroup)
+void ZCWorkspaceTreeCtrl::RemoveGroup(PSS_WorkspaceGroupEntity* pGroup)
 {
     if (!m_hRootWorkspaceEnv || !pGroup)
     {
@@ -339,12 +339,12 @@ void ZCWorkspaceTreeCtrl::RemoveGroup(ZBWorkspaceGroupEntity* pGroup)
     }
 }
 
-void ZCWorkspaceTreeCtrl::ModifyGroup(ZBWorkspaceGroupEntity* pGroup)
+void ZCWorkspaceTreeCtrl::ModifyGroup(PSS_WorkspaceGroupEntity* pGroup)
 {
     ModifyEntity(pGroup);
 }
 
-void ZCWorkspaceTreeCtrl::AddFile(ZBWorkspaceFileEntity* pFile, ZBWorkspaceGroupEntity* pParentGroup)
+void ZCWorkspaceTreeCtrl::AddFile(PSS_WorkspaceFileEntity* pFile, PSS_WorkspaceGroupEntity* pParentGroup)
 {
     if (!m_hRootWorkspaceEnv || !pFile || !pParentGroup)
     {
@@ -403,7 +403,7 @@ void ZCWorkspaceTreeCtrl::ModifyEntity(PSS_WorkspaceEntity* pEntity)
     }
 }
 
-void ZCWorkspaceTreeCtrl::RemoveFile(ZBWorkspaceFileEntity* pFile)
+void ZCWorkspaceTreeCtrl::RemoveFile(PSS_WorkspaceFileEntity* pFile)
 {
     if (!m_hRootWorkspaceEnv || !pFile)
     {
@@ -425,7 +425,7 @@ void ZCWorkspaceTreeCtrl::RemoveFile(ZBWorkspaceFileEntity* pFile)
     }
 }
 
-void ZCWorkspaceTreeCtrl::ModifyFile(ZBWorkspaceFileEntity* pFile)
+void ZCWorkspaceTreeCtrl::ModifyFile(PSS_WorkspaceFileEntity* pFile)
 {
     ModifyEntity(pFile);
 }
@@ -460,12 +460,12 @@ PSS_WorkspaceEntity* ZCWorkspaceTreeCtrl::_GetEntity(HTREEITEM hItem)
     return NULL;
 }
 
-ZBWorkspaceGroupEntity* ZCWorkspaceTreeCtrl::GetSelectedGroup()
+PSS_WorkspaceGroupEntity* ZCWorkspaceTreeCtrl::GetSelectedGroup()
 {
     return _GetGroup(GetSelectedItem());
 }
 
-ZBWorkspaceGroupEntity* ZCWorkspaceTreeCtrl::_GetGroup(HTREEITEM hItem)
+PSS_WorkspaceGroupEntity* ZCWorkspaceTreeCtrl::_GetGroup(HTREEITEM hItem)
 {
     if (hItem)
     {
@@ -480,12 +480,12 @@ ZBWorkspaceGroupEntity* ZCWorkspaceTreeCtrl::_GetGroup(HTREEITEM hItem)
     return NULL;
 }
 
-ZBWorkspaceFileEntity* ZCWorkspaceTreeCtrl::GetSelectedFile()
+PSS_WorkspaceFileEntity* ZCWorkspaceTreeCtrl::GetSelectedFile()
 {
     return _GetFile(GetSelectedItem());
 }
 
-ZBWorkspaceFileEntity* ZCWorkspaceTreeCtrl::_GetFile(HTREEITEM hItem)
+PSS_WorkspaceFileEntity* ZCWorkspaceTreeCtrl::_GetFile(HTREEITEM hItem)
 {
     if (hItem)
     {
@@ -500,34 +500,34 @@ ZBWorkspaceFileEntity* ZCWorkspaceTreeCtrl::_GetFile(HTREEITEM hItem)
     return NULL;
 }
 
-ZBWorkspaceGroupEntity* ZCWorkspaceTreeCtrl::GetSelectedOwnerGroup()
+PSS_WorkspaceGroupEntity* ZCWorkspaceTreeCtrl::GetSelectedOwnerGroup()
 {
     return _GetOwnerGroup(GetSelectedItem());
 }
 
-ZBWorkspaceGroupEntity* ZCWorkspaceTreeCtrl::_GetOwnerGroup(HTREEITEM hItem)
+PSS_WorkspaceGroupEntity* ZCWorkspaceTreeCtrl::_GetOwnerGroup(HTREEITEM hItem)
 {
     if (hItem)
     {
-        ZBWorkspaceGroupEntity* pGroup = _GetGroup(hItem);
+        PSS_WorkspaceGroupEntity* pGroup = _GetGroup(hItem);
 
         if (pGroup)
         {
             // If a parent defined
-            if (pGroup->GetParent() && ISA(pGroup->GetParent(), ZBWorkspaceGroupEntity))
+            if (pGroup->GetParent() && ISA(pGroup->GetParent(), PSS_WorkspaceGroupEntity))
             {
-                return dynamic_cast<ZBWorkspaceGroupEntity*>(pGroup->GetParent());
+                return dynamic_cast<PSS_WorkspaceGroupEntity*>(pGroup->GetParent());
             }
 
             return pGroup;
         }
 
         // Now, try to check if a file is selected
-        ZBWorkspaceFileEntity* pFile = _GetFile(hItem);
+        PSS_WorkspaceFileEntity* pFile = _GetFile(hItem);
 
-        if (pFile && pFile->GetParent() && ISA(pFile->GetParent(), ZBWorkspaceGroupEntity))
+        if (pFile && pFile->GetParent() && ISA(pFile->GetParent(), PSS_WorkspaceGroupEntity))
         {
-            return dynamic_cast<ZBWorkspaceGroupEntity*>(pFile->GetParent());
+            return dynamic_cast<PSS_WorkspaceGroupEntity*>(pFile->GetParent());
         }
     }
 
@@ -674,7 +674,7 @@ _ZInternalWksTreeData::_ZInternalWksTreeData(PSS_WorkspaceEnv* pWorkspaceEnv)
     m_Str.Empty();
 }
 
-_ZInternalWksTreeData::_ZInternalWksTreeData(ZBWorkspaceGroupEntity* pGroup)
+_ZInternalWksTreeData::_ZInternalWksTreeData(PSS_WorkspaceGroupEntity* pGroup)
 {
     m_dtp = wktp_Group;
     m_pGroup = pGroup;
@@ -684,7 +684,7 @@ _ZInternalWksTreeData::_ZInternalWksTreeData(ZBWorkspaceGroupEntity* pGroup)
     m_Str.Empty();
 }
 
-_ZInternalWksTreeData::_ZInternalWksTreeData(ZBWorkspaceFileEntity* pFile)
+_ZInternalWksTreeData::_ZInternalWksTreeData(PSS_WorkspaceFileEntity* pFile)
 {
     m_dtp = wktp_File;
     m_pFile = pFile;
@@ -714,7 +714,7 @@ _ZInternalWksTreeData::~_ZInternalWksTreeData()
     m_Str.Empty();
 }
 
-ZBWorkspaceGroupEntity* ZCWorkspaceTreeCtrl::GetFileBestGroup(const CString Filename) const
+PSS_WorkspaceGroupEntity* ZCWorkspaceTreeCtrl::GetFileBestGroup(const CString Filename) const
 {
     PSS_File file(Filename);
     CString ext = file.GetFileExt();
@@ -742,14 +742,14 @@ ZBWorkspaceGroupEntity* ZCWorkspaceTreeCtrl::GetFileBestGroup(const CString File
     return NULL;
 }
 
-ZBWorkspaceFileEntity* ZCWorkspaceTreeCtrl::GetFileEntity(const CString Filename) const
+PSS_WorkspaceFileEntity* ZCWorkspaceTreeCtrl::GetFileEntity(const CString Filename) const
 {
     _ZInternalWksTreeDataIterator i(&m_DataSet);
 
     for (_ZInternalWksTreeData* pElement = i.GetFirst(); pElement != NULL; pElement = i.GetNext())
     {
         if (pElement->m_dtp == _ZInternalWksTreeData::wktp_File &&
-            pElement->m_pFile->GetFilename().CompareNoCase(Filename) == 0)
+            pElement->m_pFile->GetFileName().CompareNoCase(Filename) == 0)
         {
             return pElement->m_pFile;
         }
@@ -803,7 +803,7 @@ _ZInternalWksTreeData* ZCWorkspaceTreeCtrl::FindElementFromDataSet(PSS_Workspace
     return NULL;
 }
 
-_ZInternalWksTreeData* ZCWorkspaceTreeCtrl::FindElementFromDataSet(ZBWorkspaceGroupEntity* pGroup)
+_ZInternalWksTreeData* ZCWorkspaceTreeCtrl::FindElementFromDataSet(PSS_WorkspaceGroupEntity* pGroup)
 {
     _ZInternalWksTreeDataIterator i(&m_DataSet);
 
@@ -818,7 +818,7 @@ _ZInternalWksTreeData* ZCWorkspaceTreeCtrl::FindElementFromDataSet(ZBWorkspaceGr
     return NULL;
 }
 
-_ZInternalWksTreeData* ZCWorkspaceTreeCtrl::FindElementFromDataSet(ZBWorkspaceFileEntity* pFile)
+_ZInternalWksTreeData* ZCWorkspaceTreeCtrl::FindElementFromDataSet(PSS_WorkspaceFileEntity* pFile)
 {
     _ZInternalWksTreeDataIterator i(&m_DataSet);
 
@@ -856,7 +856,7 @@ _ZInternalWksTreeData* ZCWorkspaceTreeCtrl::AddDataToSet(PSS_WorkspaceEnv* pWork
     return pData;
 }
 
-_ZInternalWksTreeData* ZCWorkspaceTreeCtrl::AddDataToSet(ZBWorkspaceGroupEntity* pGroup)
+_ZInternalWksTreeData* ZCWorkspaceTreeCtrl::AddDataToSet(PSS_WorkspaceGroupEntity* pGroup)
 {
     _ZInternalWksTreeData* pData = new _ZInternalWksTreeData(pGroup);
     m_DataSet.Add(pData);
@@ -864,7 +864,7 @@ _ZInternalWksTreeData* ZCWorkspaceTreeCtrl::AddDataToSet(ZBWorkspaceGroupEntity*
     return pData;
 }
 
-_ZInternalWksTreeData* ZCWorkspaceTreeCtrl::AddDataToSet(ZBWorkspaceFileEntity* pFile)
+_ZInternalWksTreeData* ZCWorkspaceTreeCtrl::AddDataToSet(PSS_WorkspaceFileEntity* pFile)
 {
     _ZInternalWksTreeData* pData = new _ZInternalWksTreeData(pFile);
     m_DataSet.Add(pData);
@@ -880,7 +880,7 @@ _ZInternalWksTreeData* ZCWorkspaceTreeCtrl::AddDataToSet(CString Str)
     return pData;
 }
 
-bool ZCWorkspaceTreeCtrl::DeleteElementFromDataSet(ZBWorkspaceGroupEntity* pGroup)
+bool ZCWorkspaceTreeCtrl::DeleteElementFromDataSet(PSS_WorkspaceGroupEntity* pGroup)
 {
     _ZInternalWksTreeDataIterator i(&m_DataSet);
 
@@ -898,7 +898,7 @@ bool ZCWorkspaceTreeCtrl::DeleteElementFromDataSet(ZBWorkspaceGroupEntity* pGrou
     return false;
 }
 
-bool ZCWorkspaceTreeCtrl::DeleteElementFromDataSet(ZBWorkspaceFileEntity* pFile)
+bool ZCWorkspaceTreeCtrl::DeleteElementFromDataSet(PSS_WorkspaceFileEntity* pFile)
 {
     _ZInternalWksTreeDataIterator i(&m_DataSet);
 
@@ -939,7 +939,7 @@ bool ZCWorkspaceTreeCtrl::DeleteElementFromDataSet(CString Str)
 
 void ZCWorkspaceTreeCtrl::OnWksNewGroup()
 {
-    ZBWorkspaceGroupEntity* pGroup = GetSelectedGroup();
+    PSS_WorkspaceGroupEntity* pGroup = GetSelectedGroup();
 
     // If the root is selected, set the group as the environment
     if (IsRootSelected())
@@ -957,9 +957,9 @@ void ZCWorkspaceTreeCtrl::OnWksNewGroup()
 
         if (dlg.DoModal() == IDOK)
         {
-            ZBWorkspaceGroupEntity* pNewGroup = m_pWorkspaceEnv->AddGroup(dlg.GetGroupName(),
-                                                                          dlg.GetExtensions(),
-                                                                          pGroup);
+            PSS_WorkspaceGroupEntity* pNewGroup = m_pWorkspaceEnv->AddGroup(dlg.GetGroupName(),
+                                                                            dlg.GetExtensions(),
+                                                                            pGroup);
 
             if (pNewGroup)
             {
@@ -980,7 +980,7 @@ void ZCWorkspaceTreeCtrl::OnWksDeleteGroup()
         return;
     }
 
-    ZBWorkspaceGroupEntity* pGroup = GetSelectedGroup();
+    PSS_WorkspaceGroupEntity* pGroup = GetSelectedGroup();
 
     if (pGroup != NULL)
     {
@@ -1004,14 +1004,14 @@ void ZCWorkspaceTreeCtrl::OnWksRenameGroup()
         return;
     }
 
-    ZBWorkspaceGroupEntity* pGroup = GetSelectedGroup();
+    PSS_WorkspaceGroupEntity* pGroup = GetSelectedGroup();
 
     if (pGroup != NULL)
     {
         ASSERT(m_pWorkspaceEnv != NULL);
 
         PSS_WorkspaceRenameGroupNameDlg dlg(pGroup->GetEntityName(),
-            (pGroup->GetParent() && ISA(pGroup->GetParent(), ZBWorkspaceGroupEntity)) ? dynamic_cast<ZBWorkspaceGroupEntity*>(pGroup->GetParent()) : NULL);
+            (pGroup->GetParent() && ISA(pGroup->GetParent(), PSS_WorkspaceGroupEntity)) ? dynamic_cast<PSS_WorkspaceGroupEntity*>(pGroup->GetParent()) : NULL);
 
         if (dlg.DoModal() == IDOK)
         {
@@ -1055,8 +1055,8 @@ void ZCWorkspaceTreeCtrl::OnWksAddFile()
             else
             {
                 // Add file to the workspace
-                ZBWorkspaceFileEntity* pFile = m_pWorkspaceEnv->AddFile(fileDialog.GetFileName(),
-                                                                        GetSelectedGroup());
+                PSS_WorkspaceFileEntity* pFile = m_pWorkspaceEnv->AddFile(fileDialog.GetFileName(),
+                                                                          GetSelectedGroup());
 
                 // Now, add the file from the tree
                 ZCWorkspaceTreeCtrl::AddFile(pFile, GetSelectedGroup());
@@ -1070,7 +1070,7 @@ void ZCWorkspaceTreeCtrl::OnWksAddFile()
 
 void ZCWorkspaceTreeCtrl::OnWksDeleteFile()
 {
-    ZBWorkspaceFileEntity* pFile = GetSelectedFile();
+    PSS_WorkspaceFileEntity* pFile = GetSelectedFile();
 
     if (pFile != NULL)
     {
@@ -1117,14 +1117,14 @@ void ZCWorkspaceTreeCtrl::OnWksProperties()
 
 void ZCWorkspaceTreeCtrl::OnAddFileToProject(const CString Filename)
 {
-    ZBWorkspaceGroupEntity* pGroup = GetFileBestGroup(Filename);
+    PSS_WorkspaceGroupEntity* pGroup = GetFileBestGroup(Filename);
 
     if (pGroup)
     {
         ASSERT(m_pWorkspaceEnv != NULL);
 
         // Add file to the workspace
-        ZBWorkspaceFileEntity* pFile = m_pWorkspaceEnv->AddFile(Filename, pGroup);
+        PSS_WorkspaceFileEntity* pFile = m_pWorkspaceEnv->AddFile(Filename, pGroup);
 
         // Modified
         m_pWorkspaceEnv->SetModifiedFlag();

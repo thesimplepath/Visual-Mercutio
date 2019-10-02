@@ -3,7 +3,9 @@
 
 #include "stdafx.h"
 #include "ZVSpanView.h"
-#include "ZVSpanWnd.h"
+
+// processsoft
+#include "PSS_SpanWnd.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -61,7 +63,7 @@ ZVSpanView::~ZVSpanView()
 }
 
 
-void ZVSpanView::AssignSpanWnd( ZVSpanWnd *pWnd )
+void ZVSpanView::AssignSpanWnd( PSS_SpanWnd *pWnd )
 {
     if (pWnd == m_pOverview)
         return;

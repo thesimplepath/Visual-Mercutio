@@ -20,11 +20,16 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// class name mapping
+#ifndef PSS_WorkspaceGroupEntity
+    #define PSS_WorkspaceGroupEntity ZBWorkspaceGroupEntity
+#endif
+
 // resources
 #include "zBaseLibRes.h"
 
 // forward class declaration
-class ZBWorkspaceGroupEntity;
+class PSS_WorkspaceGroupEntity;
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -49,7 +54,7 @@ class PSS_WorkspaceRenameGroupNameDlg : public CDialog
         *@param pParentGroup - parent group, can be NULL
         *@param pParent - parent window, can be NULL
         */
-        PSS_WorkspaceRenameGroupNameDlg(const CString& groupName, ZBWorkspaceGroupEntity* pParentGroup = NULL, CWnd* pParent = NULL);
+        PSS_WorkspaceRenameGroupNameDlg(const CString& groupName, PSS_WorkspaceGroupEntity* pParentGroup = NULL, CWnd* pParent = NULL);
 
         /**
         * Gets the group name
@@ -79,8 +84,8 @@ class PSS_WorkspaceRenameGroupNameDlg : public CDialog
             IDD = IDD_WKS_RENAMEGROUP
         };
 
-        ZBWorkspaceGroupEntity* m_pParentGroup;
-        CString                 m_GroupName;
+        PSS_WorkspaceGroupEntity* m_pParentGroup;
+        CString                   m_GroupName;
 };
 
 //---------------------------------------------------------------------------

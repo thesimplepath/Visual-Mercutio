@@ -26,15 +26,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZBWorkspaceFileEntity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZBWorkspaceGroupEntity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZBWorkspaceObserverMsg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZBWorkspaceWizardTemplateItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -168,9 +159,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZVSpanView.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVSpanWnd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PSS_StatusBar.cpp">
@@ -602,6 +590,18 @@
     <ClCompile Include="PSS_WorkspaceEnv.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_WorkspaceFileEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_WorkspaceGroupEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_SpanWnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_WorkspaceObserverMsg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -716,15 +716,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="zBaseLib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBWorkspaceFileEntity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBWorkspaceGroupEntity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBWorkspaceObserverMsg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZBWorkspaceWizardTemplateItem.h">
@@ -860,9 +851,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZVSpanView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVSpanWnd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_StatusBar.h">
@@ -1295,6 +1283,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_WorkspaceEnv.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_WorkspaceFileEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_WorkspaceGroupEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_SpanWnd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_WorkspaceObserverMsg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

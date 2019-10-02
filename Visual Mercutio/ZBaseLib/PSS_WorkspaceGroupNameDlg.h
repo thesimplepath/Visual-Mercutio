@@ -20,11 +20,16 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// class name mapping
+#ifndef PSS_WorkspaceGroupEntity
+    #define PSS_WorkspaceGroupEntity ZBWorkspaceGroupEntity
+#endif
+
 // resources
 #include "zBaseLibRes.h"
 
 // forward class declaration
-class ZBWorkspaceGroupEntity;
+class PSS_WorkspaceGroupEntity;
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -50,10 +55,10 @@ class PSS_WorkspaceGroupNameDlg : public CDialog
         *@param extensionList - extension list
         *@param pParent - parent window, can be NULL
         */
-        PSS_WorkspaceGroupNameDlg(ZBWorkspaceGroupEntity* pRootGroup    = NULL,
-                                  const CString&          groupName     = "",
-                                  const CString&          extensionList = "",
-                                  CWnd*                   pParent       = NULL);
+        PSS_WorkspaceGroupNameDlg(PSS_WorkspaceGroupEntity* pRootGroup    = NULL,
+                                  const CString&            groupName     = "",
+                                  const CString&            extensionList = "",
+                                  CWnd*                     pParent       = NULL);
 
         /**
         * Gets the extensions
@@ -89,10 +94,10 @@ class PSS_WorkspaceGroupNameDlg : public CDialog
             IDD = IDD_WKS_NEWGROUP
         };
 
-        ZBWorkspaceGroupEntity* m_pRootGroup;
-        CString                 m_Extensions;
-        CString                 m_GroupName;
-        bool                    m_Modify;
+        PSS_WorkspaceGroupEntity* m_pRootGroup;
+        CString                   m_Extensions;
+        CString                   m_GroupName;
+        bool                      m_Modify;
 };
 
 //---------------------------------------------------------------------------

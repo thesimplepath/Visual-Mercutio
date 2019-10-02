@@ -10,7 +10,7 @@
 
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
-#include "zBaseLib\ZVSpanWnd.h"
+#include "zBaseLib\PSS_SpanWnd.h"
 #include "zModelBP\ZVInputAttributes.h"
 #include "zModelBP\ZVDistributionAttributes.h"
 
@@ -35,7 +35,7 @@ public:
     ZVProperties*                GetPropertyView();
     ZVInputAttributes*            GetInputAttributeView();
     ZVDistributionAttributes*    GetDistributionAttributeView();
-    ZVSpanWnd*                    GetPanView();
+    PSS_SpanWnd*                  GetPanView();
 
     virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
@@ -64,7 +64,7 @@ private:
     ZVProperties                m_PropertyView;
     ZVInputAttributes            m_InputAttributeView;
     ZVDistributionAttributes    m_DistributionAttributeView;
-    ZVSpanWnd                    m_PanView;
+    PSS_SpanWnd                  m_PanView;
     SEC3DTabWnd                    m_wndTab;
 };
 
@@ -83,7 +83,7 @@ inline ZVDistributionAttributes* ZVPropertiesWorkspace::GetDistributionAttribute
     return &m_DistributionAttributeView;
 }
 
-inline ZVSpanWnd* ZVPropertiesWorkspace::GetPanView()
+inline PSS_SpanWnd* ZVPropertiesWorkspace::GetPanView()
 {
     return &m_PanView;
 }

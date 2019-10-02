@@ -20,11 +20,16 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// class name mapping
+#ifndef PSS_WorkspaceGroupEntity
+    #define PSS_WorkspaceGroupEntity ZBWorkspaceGroupEntity
+#endif
+
 // resources
 #include "zBaseLibRes.h"
 
 // forward class declaration
-class ZBWorkspaceGroupEntity;
+class PSS_WorkspaceGroupEntity;
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -50,10 +55,10 @@ class PSS_WorkspaceFilePropertiesDlg : public CDialog
         *@param completeFileName - complete file name
         *@param pParent - parent window, can be NULL
         */
-        PSS_WorkspaceFilePropertiesDlg(ZBWorkspaceGroupEntity* pRootGroup       = NULL,
-                                       const CString&          title            = "",
-                                       const CString&          completeFileName = "",
-                                       CWnd*                   pParent          = NULL);
+        PSS_WorkspaceFilePropertiesDlg(PSS_WorkspaceGroupEntity* pRootGroup       = NULL,
+                                       const CString&            title            = "",
+                                       const CString&            completeFileName = "",
+                                       CWnd*                     pParent          = NULL);
 
         /**
         * Gets the file title

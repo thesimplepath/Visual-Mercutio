@@ -21,12 +21,12 @@
 //---------------------------------------------------------------------------
 // Serialization
 //---------------------------------------------------------------------------
-IMPLEMENT_SERIAL(PSS_WorkspaceEnv, ZBWorkspaceGroupEntity, g_DefVersion)
+IMPLEMENT_SERIAL(PSS_WorkspaceEnv, PSS_WorkspaceGroupEntity, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_WorkspaceEnv
 //---------------------------------------------------------------------------
 PSS_WorkspaceEnv::PSS_WorkspaceEnv(const CString& name, PSS_WorkspaceEntity* pParent) :
-    ZBWorkspaceGroupEntity(name, pParent),
+    PSS_WorkspaceGroupEntity(name, pParent),
     m_Modified(FALSE)
 {}
 //---------------------------------------------------------------------------
@@ -47,7 +47,7 @@ void PSS_WorkspaceEnv::SetOpenedFiles(CStringArray& openedFiles)
 //---------------------------------------------------------------------------
 void PSS_WorkspaceEnv::Serialize(CArchive& ar)
 {
-    ZBWorkspaceGroupEntity::Serialize(ar);
+    PSS_WorkspaceGroupEntity::Serialize(ar);
 
     // serialize the opened file array
     m_OpenedFileArray.Serialize(ar);

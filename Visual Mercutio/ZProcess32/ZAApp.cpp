@@ -12,7 +12,7 @@
 #include "zBaseLib\PSS_BaseMDIPage.h"
 #include "zBaseLib\ZILog.h"
 #include "zBaseLib\ZDWorkspaceEnvDocument.h"
-#include "zBaseLib\ZBWorkspaceObserverMsg.h"
+#include "zBaseLib\PSS_WorkspaceObserverMsg.h"
 #include "zBaseLib\ZBWorkspaceWizardTemplateMg.h"
 #include "zBaseLib\PSS_ObjectUtility.h"
 #include "zBaseLib\ZUFloatingToolbar.h"
@@ -1307,8 +1307,8 @@ bool ZAApp::CloseCurrentWorkspace(bool AskClosingDocument /*= false*/)
         m_pWorkspaceEnvDocument = NULL;
 
         // Notify observers about the workspace closing
-        ZBWorkspaceObserverMsg Msg(UM_CLOSEWORKSPACE);
-        NotifyAllObservers(&Msg);
+        PSS_WorkspaceObserverMsg msg(UM_CLOSEWORKSPACE);
+        NotifyAllObservers(&msg);
     }
 
     return true;
@@ -1342,8 +1342,8 @@ CDocument* ZAApp::OpenWorkspaceFile(LPCSTR Filename)
     m_WorkspaceFilename = Filename;
 
     // Notify observers about the workspace initialisation
-    ZBWorkspaceObserverMsg Msg(UM_INITWORKSPACE, pEnv);
-    NotifyAllObservers(&Msg);
+    PSS_WorkspaceObserverMsg msg(UM_INITWORKSPACE, pEnv);
+    NotifyAllObservers(&msg);
 
     return m_pWorkspaceEnvDocument;
 }
@@ -2425,8 +2425,8 @@ void ZAApp::OnNewWorkspace()
             pEnv->AddGroup(s, &a);
 
             // Notify observers about the workspace initialisation
-            ZBWorkspaceObserverMsg Msg(UM_INITWORKSPACE, pEnv);
-            NotifyAllObservers(&Msg);
+            PSS_WorkspaceObserverMsg msg(UM_INITWORKSPACE, pEnv);
+            NotifyAllObservers(&msg);
         }
 
         // Set the workspace filename

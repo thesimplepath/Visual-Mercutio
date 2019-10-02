@@ -7,7 +7,7 @@
 #include "zModel\ProcGraphModelDoc.h"
 #include "zModel\ZBUnitObserverMsg.h"
 #include "zModel\ZBDocObserverMsg.h"
-#include "zBaseLib\ZBWorkspaceObserverMsg.h"
+#include "zBaseLib\PSS_WorkspaceObserverMsg.h"
 #include "zModel\ZBLogicalSystemObserverMsg.h"
 #include "Resource.h"
 
@@ -294,9 +294,9 @@ void ZVProcessWorkspace::OnContextMenu(CWnd* pWnd, CPoint point)
 
 void ZVProcessWorkspace::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
 {
-    if (pMsg && ISA(pMsg, ZBWorkspaceObserverMsg))
+    if (pMsg && ISA(pMsg, PSS_WorkspaceObserverMsg))
     {
-        switch (dynamic_cast<ZBWorkspaceObserverMsg*>(pMsg)->GetMessageID())
+        switch (dynamic_cast<PSS_WorkspaceObserverMsg*>(pMsg)->GetMessageID())
         {
             case UM_INITWORKSPACE:
             {

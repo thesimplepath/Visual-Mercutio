@@ -9,7 +9,7 @@
 #include "PSS_WorkspaceGroupNameDlg.h"
 
 // processsoft
-#include "ZBWorkspaceGroupEntity.h"
+#include "PSS_WorkspaceGroupEntity.h"
 #include "PSS_MsgBox.h"
 
 #ifdef _DEBUG
@@ -28,10 +28,10 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_WorkspaceGroupNameDlg
 //---------------------------------------------------------------------------
-PSS_WorkspaceGroupNameDlg::PSS_WorkspaceGroupNameDlg(ZBWorkspaceGroupEntity* pRootGroup,
-                                                     const CString&          groupName,
-                                                     const CString&          extensionList,
-                                                     CWnd*                   pParent) :
+PSS_WorkspaceGroupNameDlg::PSS_WorkspaceGroupNameDlg(PSS_WorkspaceGroupEntity* pRootGroup,
+                                                     const CString&            groupName,
+                                                     const CString&            extensionList,
+                                                     CWnd*                     pParent) :
     CDialog(PSS_WorkspaceGroupNameDlg::IDD, pParent),
     m_pRootGroup(pRootGroup),
     m_Extensions(extensionList),

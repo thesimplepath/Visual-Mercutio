@@ -7,7 +7,7 @@
 
 #include "ProcGraphModelDoc.h"
 #include "ProcGraphModelView.h"
-#include "zBaseLib\ZVSpanWnd.h"
+#include "zBaseLib\PSS_SpanWnd.h"
 
 #include "ZBModelObserverMsg.h"
 

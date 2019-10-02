@@ -76,13 +76,13 @@ CStringArray* PSS_WorkspaceEntity::GetExtensionList()
 void PSS_WorkspaceEntity::GetExtensionList(CString& Extensions)
 {}
 //---------------------------------------------------------------------------
-void PSS_WorkspaceEntity::SetExtensionList(CStringArray& extensionArray)
+void PSS_WorkspaceEntity::SetExtensionList(const CStringArray& extensionArray)
 {}
 //---------------------------------------------------------------------------
-void PSS_WorkspaceEntity::SetExtensionList(const CString Extensions)
+void PSS_WorkspaceEntity::SetExtensionList(const CString& Extensions)
 {}
 //---------------------------------------------------------------------------
-void PSS_WorkspaceEntity::AddElementToExtensionList(CStringArray& extensionArray)
+void PSS_WorkspaceEntity::AddElementToExtensionList(const CStringArray& extensionArray)
 {}
 //---------------------------------------------------------------------------
 bool PSS_WorkspaceEntity::ContainThisExtension(const CString& extension)

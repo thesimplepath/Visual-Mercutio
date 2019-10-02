@@ -30,10 +30,10 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_WorkspaceFilePropertiesDlg
 //---------------------------------------------------------------------------
-PSS_WorkspaceFilePropertiesDlg::PSS_WorkspaceFilePropertiesDlg(ZBWorkspaceGroupEntity* pRootGroup,
-                                                               const CString&          title,
-                                                               const CString&          completeFileName,
-                                                               CWnd*                   pParent) :
+PSS_WorkspaceFilePropertiesDlg::PSS_WorkspaceFilePropertiesDlg(PSS_WorkspaceGroupEntity* pRootGroup,
+                                                               const CString&            title,
+                                                               const CString&            completeFileName,
+                                                               CWnd*                     pParent) :
     CDialog(PSS_WorkspaceFilePropertiesDlg::IDD, pParent),
     m_FileTitle(title),
     m_FileName(completeFileName)
