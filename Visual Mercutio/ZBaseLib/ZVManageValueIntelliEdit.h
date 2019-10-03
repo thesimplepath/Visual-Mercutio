@@ -1,54 +1,68 @@
-#if !defined(AFX_ZVMANAGEVALUEINTELLIEDIT_H__C6635087_7F55_439F_8F26_19B0ADA01219__INCLUDED_)
-#define AFX_ZVMANAGEVALUEINTELLIEDIT_H__C6635087_7F55_439F_8F26_19B0ADA01219__INCLUDED_
+/****************************************************************************
+ * ==> PSS_ManageValueIntelliEditDlg ---------------------------------------*
+ ****************************************************************************
+ * Description : Provides a manage intelligent edit value dialog box        *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
+
+#ifndef PSS_ManageValueIntelliEditDlgH
+#define PSS_ManageValueIntelliEditDlgH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-// ZVManageValueIntelliEdit.h : header file
-//
+    #pragma once
+#endif
 
-/////////////////////////////////////////////////////////////////////////////
-// ZVManageValueIntelliEdit dialog
+// change the definition of AFX_EXT... to make it import
+#undef AFX_EXT_CLASS
+#undef AFX_EXT_API
+#undef AFX_EXT_DATA
+#define AFX_EXT_CLASS AFX_CLASS_IMPORT
+#define AFX_EXT_API AFX_API_IMPORT
+#define AFX_EXT_DATA AFX_DATA_IMPORT
 
-class ZVManageValueIntelliEdit : public CDialog
+#ifdef _ZBASELIBEXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
+#endif
+
+/**
+* Manage intelligent edit value dialog box
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class PSS_ManageValueIntelliEditDlg : public CDialog
 {
-// Construction
-public:
-    ZVManageValueIntelliEdit(CStringArray* pArrayOfValues, CWnd* pParent = NULL);   // standard constructor
+    public:
+        /**
+        * Constructor
+        *@param pArrayOfValues - array of values
+        *@param pParent - parent window, can be NULL
+        */
+        PSS_ManageValueIntelliEditDlg(CStringArray* pArrayOfValues, CWnd* pParent = NULL);
 
-private:
-// Dialog Data
-    //{{AFX_DATA(ZVManageValueIntelliEdit)
-//    enum { IDD = IDD_MGVALUE_INTELLI };
-    CListBox    m_Values;
-    //}}AFX_DATA
-
-
-// Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(ZVManageValueIntelliEdit)
     protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
+        /// ClassWizard generated virtual function overrides
+        //{{AFX_VIRTUAL(ZVManageValueIntelliEdit)
+        virtual void DoDataExchange(CDataExchange* pDX);
+        //}}AFX_VIRTUAL
 
-// Implementation
-protected:
+        /// Generated message map functions
+        //{{AFX_MSG(ZVManageValueIntelliEdit)
+        afx_msg void OnAddvalue();
+        afx_msg void OnDelvalue();
+        afx_msg void OnSelchangeValues();
+        virtual BOOL OnInitDialog();
+        virtual void OnOK();
+        //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
 
-    // Generated message map functions
-    //{{AFX_MSG(ZVManageValueIntelliEdit)
-    afx_msg void OnAddvalue();
-    afx_msg void OnDelvalue();
-    afx_msg void OnSelchangeValues();
-    virtual BOOL OnInitDialog();
-    virtual void OnOK();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
-
-private:
-    CStringArray* m_pArrayOfValues;
+    private:
+        CStringArray* m_pArrayOfValues;
+        CListBox      m_Values;
 };
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZVMANAGEVALUEINTELLIEDIT_H__C6635087_7F55_439F_8F26_19B0ADA01219__INCLUDED_)
+#endif

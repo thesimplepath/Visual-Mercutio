@@ -1,54 +1,73 @@
-// ZVManageValueIntelliEdit.cpp : implementation file
-//
+/****************************************************************************
+ * ==> PSS_ManageValueIntelliEditDlg ---------------------------------------*
+ ****************************************************************************
+ * Description : Provides a manage intelligent edit value dialog box        *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
 #include "ZVManageValueIntelliEdit.h"
 
+// processsoft
 #include "PSS_InputValue.h"
 
+// resources
 #include "zBaseLib\zBaseLibRes.h"
 #include "zRes32\zRes.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
-BEGIN_MESSAGE_MAP(ZVManageValueIntelliEdit, CDialog)
-    //{{AFX_MSG_MAP(ZVManageValueIntelliEdit)
+//---------------------------------------------------------------------------
+// Message map
+//---------------------------------------------------------------------------
+BEGIN_MESSAGE_MAP(PSS_ManageValueIntelliEditDlg, CDialog)
+    //{{AFX_MSG_MAP(PSS_ManageValueIntelliEditDlg)
     ON_BN_CLICKED(IDC_ADDVALUE, OnAddvalue)
     ON_BN_CLICKED(IDC_DELVALUE, OnDelvalue)
     ON_LBN_SELCHANGE(IDC_VALUES, OnSelchangeValues)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// ZVManageValueIntelliEdit dialog
-
-
-ZVManageValueIntelliEdit::ZVManageValueIntelliEdit(CStringArray* pArrayOfValues, CWnd* pParent /*=NULL*/)
-: CDialog(IDD_MGVALUE_INTELLI, pParent), // ZVManageValueIntelliEdit::IDD, pParent), 
-  m_pArrayOfValues(pArrayOfValues)
-{
-    //{{AFX_DATA_INIT(ZVManageValueIntelliEdit)
-        // NOTE: the ClassWizard will add member initialization here
-    //}}AFX_DATA_INIT
-}
-
-
-void ZVManageValueIntelliEdit::DoDataExchange(CDataExchange* pDX)
+//---------------------------------------------------------------------------
+// PSS_ManageValueIntelliEditDlg
+//---------------------------------------------------------------------------
+PSS_ManageValueIntelliEditDlg::PSS_ManageValueIntelliEditDlg(CStringArray* pArrayOfValues, CWnd* pParent) :
+    CDialog(IDD_MGVALUE_INTELLI, pParent),
+    m_pArrayOfValues(pArrayOfValues)
+{}
+//---------------------------------------------------------------------------
+void PSS_ManageValueIntelliEditDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(ZVManageValueIntelliEdit)
+
+    //{{AFX_DATA_MAP(PSS_ManageValueIntelliEditDlg)
     DDX_Control(pDX, IDC_VALUES, m_Values);
     //}}AFX_DATA_MAP
 }
+//---------------------------------------------------------------------------
+BOOL PSS_ManageValueIntelliEditDlg::OnInitDialog()
+{
+    CDialog::OnInitDialog();
 
-/////////////////////////////////////////////////////////////////////////////
-// ZVManageValueIntelliEdit message handlers
+    // fill the list box
+    if (!m_pArrayOfValues)
+        return TRUE;
 
-void ZVManageValueIntelliEdit::OnAddvalue() 
+    m_Values.ResetContent();
+
+    std::size_t count = m_pArrayOfValues->GetSize();
+
+    for (std::size_t i = 0; i < count; ++i)
+        m_Values.AddString(m_pArrayOfValues->GetAt(i));
+
+    // return TRUE unless the focus is set to a control. NOTE OCX property pages should return FALSE
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+void PSS_ManageValueIntelliEditDlg::OnAddvalue()
 {
     PSS_InputValue inputValue(IDS_INSERTVALUE_INTELLI);
 
@@ -57,51 +76,38 @@ void ZVManageValueIntelliEdit::OnAddvalue()
 
     OnSelchangeValues();
 }
-
-void ZVManageValueIntelliEdit::OnDelvalue() 
+//---------------------------------------------------------------------------
+void PSS_ManageValueIntelliEditDlg::OnDelvalue()
 {
-    int CurSel = m_Values.GetCurSel();
-    ASSERT( CurSel != LB_ERR );
-    m_Values.DeleteString( CurSel );
+    const int curSel = m_Values.GetCurSel();
+    ASSERT(curSel != LB_ERR);
+    m_Values.DeleteString(curSel);
 }
-
-void ZVManageValueIntelliEdit::OnSelchangeValues() 
+//---------------------------------------------------------------------------
+void PSS_ManageValueIntelliEditDlg::OnSelchangeValues()
 {
     if (GetDlgItem(IDC_DELVALUE))
-        GetDlgItem(IDC_DELVALUE)->EnableWindow( m_Values.GetCurSel() != LB_ERR );
+        GetDlgItem(IDC_DELVALUE)->EnableWindow(m_Values.GetCurSel() != LB_ERR);
 }
-
-BOOL ZVManageValueIntelliEdit::OnInitDialog() 
-{
-    CDialog::OnInitDialog();
-    
-    
-    // Fill the list box
-    if (!m_pArrayOfValues)
-        return TRUE;
-    m_Values.ResetContent();
-    for (size_t i = 0; i < (size_t)m_pArrayOfValues->GetSize(); ++i)
-        m_Values.AddString( m_pArrayOfValues->GetAt(i) );
-
-    return TRUE;  // return TRUE unless you set the focus to a control
-                  // EXCEPTION: OCX Property Pages should return FALSE
-}
-
-void ZVManageValueIntelliEdit::OnOK() 
+//---------------------------------------------------------------------------
+void PSS_ManageValueIntelliEditDlg::OnOK()
 {
     if (m_pArrayOfValues)
     {
-        CString s;
-        // Remove all elements
+        // remove all elements
         m_pArrayOfValues->RemoveAll();
-        // Copy listbox elements to array
-        int Count = m_Values.GetCount();
-        for (int i=0; i < Count; ++i)
+
+        CString   str;
+        const int count = m_Values.GetCount();
+
+        // copy listbox elements to array
+        for (int i = 0; i < count; ++i)
         {
-            m_Values.GetText( i, s );
-            m_pArrayOfValues->Add( s );
+            m_Values.GetText(i, str);
+            m_pArrayOfValues->Add(str);
         }
     }
-    
+
     CDialog::OnOK();
 }
+//---------------------------------------------------------------------------
