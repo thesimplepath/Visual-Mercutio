@@ -18,6 +18,9 @@
 #ifndef PSS_WorkspaceEnv
     #define PSS_WorkspaceEnv ZBWorkspaceEnv
 #endif
+#ifndef PSS_WorkspaceWizardTemplateManager
+    #define PSS_WorkspaceWizardTemplateManager ZBWorkspaceWizardTemplateMg
+#endif
 
 // ZAMApp
 #include "ZAMApp.h"
@@ -34,7 +37,7 @@ class ZVPropertiesWorkspace;
 class ZDWorkspaceEnvDocument;
 class PSS_WorkspaceEnv;
 class ZDProcessGraphModelDoc;
-class ZBWorkspaceWizardTemplateMg;
+class PSS_WorkspaceWizardTemplateManager;
 class ZDUserEntityDocument;
 class ZBUserGroupEntity;
 class ZDLogicalSystemDocument;
@@ -468,7 +471,7 @@ private:
 
     ZDWorkspaceEnvDocument*            m_pWorkspaceEnvDocument;
 
-    ZBWorkspaceWizardTemplateMg*    m_pWorkspaceTemplateManager;
+    PSS_WorkspaceWizardTemplateManager* m_pWorkspaceTemplateManager;
 
     ZDUserEntityDocument*            m_pUserEntityDocument;
 

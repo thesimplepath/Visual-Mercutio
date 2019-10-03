@@ -8,6 +8,11 @@
     #pragma once
 #endif
 
+// class name mapping
+#ifndef PSS_WorkspaceWizardTemplateManager
+    #define PSS_WorkspaceWizardTemplateManager ZBWorkspaceWizardTemplateMg
+#endif
+
 // processsoft
 #include "zBaseLib\PSS_WizardDialog.h"
 #include "zWinUtil32\PSS_SearchEdit.h"
@@ -17,16 +22,16 @@
 #include "Resource.h"
 
 // forward class declaration
-class ZBWorkspaceWizardTemplateMg;
+class PSS_WorkspaceWizardTemplateManager;
 
 class ZVWorkspaceCreationWizard
 {
 public:
 
-    ZVWorkspaceCreationWizard( ZBWorkspaceWizardTemplateMg*    pWorkspaceTemplateManager    = NULL,
-                               const CString                InitialDirectory            = _T( "" ),
-                               const CString                WorkspaceExtension            = _T( "" ),
-                               bool                            Modify                        = false );
+    ZVWorkspaceCreationWizard(PSS_WorkspaceWizardTemplateManager* pWorkspaceTemplateManager = NULL,
+                              const CString                InitialDirectory = _T(""),
+                              const CString                WorkspaceExtension = _T(""),
+                              bool                            Modify = false);
 
     virtual ~ZVWorkspaceCreationWizard();
 
@@ -49,13 +54,13 @@ public:
 
 private:
 
-    CString                            m_InitialDirectory;
-    bool                            m_Modify;
-    CString                            m_WorkspaceName;
-    CString                            m_Directory;
-    CString                            m_WorkspaceFilename;
-    CString                            m_WorkspaceExtension;
-    ZBWorkspaceWizardTemplateMg*    m_pWorkspaceTemplateManager;
+    CString                             m_InitialDirectory;
+    bool                                m_Modify;
+    CString                             m_WorkspaceName;
+    CString                             m_Directory;
+    CString                             m_WorkspaceFilename;
+    CString                             m_WorkspaceExtension;
+    PSS_WorkspaceWizardTemplateManager* m_pWorkspaceTemplateManager;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -63,14 +68,14 @@ private:
 
 class ZVWorkspaceStart : public PSS_WizardDialog
 {
-// Construction
+    // Construction
 public:
 
     // Standard constructor
-    ZVWorkspaceStart( const CString    InitialDirectory    = _T( "" ),
-                      const CString    WorkspaceExtension    = _T( "" ),
-                      bool            Modify                = false,
-                      CWnd*            pParent                = NULL);
+    ZVWorkspaceStart(const CString    InitialDirectory = _T(""),
+                     const CString    WorkspaceExtension = _T(""),
+                     bool            Modify = false,
+                     CWnd*            pParent = NULL);
 
     CString GetWorkspaceName() const
     {
@@ -81,7 +86,7 @@ public:
     {
         return m_DirectoryStr;
     };
-    
+
     CString GetWorkspaceFilename() const
     {
         return m_WorkspaceFilename;
@@ -91,7 +96,10 @@ private:
 
     // Dialog Data
     //{{AFX_DATA(ZVWorkspaceStart)
-    enum { IDD = IDD_WZ_WORKSPACE_START };
+    enum
+    {
+        IDD = IDD_WZ_WORKSPACE_START
+    };
     PSS_SearchEdit m_Directory;
     CString        m_WorkspaceName;
     //}}AFX_DATA
@@ -99,7 +107,7 @@ private:
     // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZVWorkspaceStart)
-    protected:
+protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     //}}AFX_VIRTUAL
 
@@ -135,12 +143,12 @@ private:
 
 class ZVWorkspaceTemplate : public PSS_WizardDialog
 {
-// Construction
+    // Construction
 public:
 
     // Standard constructor
-    ZVWorkspaceTemplate( ZBWorkspaceWizardTemplateMg*    pWorkspaceTemplateManager    = NULL,
-                         CWnd*                            pParent                        = NULL);
+    ZVWorkspaceTemplate(PSS_WorkspaceWizardTemplateManager* pWorkspaceTemplateManager = NULL,
+                        CWnd*                               pParent = NULL);
 
     /**
     * Dialog resources
@@ -156,7 +164,7 @@ public:
     // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZVWorkspaceTemplate)
-    protected:
+protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     //}}AFX_VIRTUAL
 
@@ -180,8 +188,8 @@ private:
 
 private:
 
-    CString                            m_WorkspaceExtension;
-    ZBWorkspaceWizardTemplateMg*    m_pWorkspaceTemplateManager;
+    PSS_WorkspaceWizardTemplateManager* m_pWorkspaceTemplateManager;
+    CString                             m_WorkspaceExtension;
 };
 
-#endif // !defined(AFX_ZVWORKSPACECREATIONWIZARD_H__5DA4C599_18FB_4411_B32C_FA6E5C4462DB__INCLUDED_)
+#endif

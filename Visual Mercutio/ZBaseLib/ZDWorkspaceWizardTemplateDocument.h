@@ -3,11 +3,9 @@
 
 #if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
-// ZDWorkspaceWizardTemplateDocument.h : header file
-//
+#endif
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -15,12 +13,11 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-#include "ZBWorkspaceWizardTemplateMg.h"
-
+// processsoft
+#include "PSS_WorkspaceWizardTemplateManager.h"
 
 #ifdef _ZBASELIBEXPORT
-//put the values back to make AFX_EXT_CLASS export again
+// put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -42,12 +39,12 @@ public:
     ZDWorkspaceWizardTemplateDocument();           // protected constructor used by dynamic creation
     virtual ~ZDWorkspaceWizardTemplateDocument();
 
-// Operations
+    // Operations
 public:
-    bool ReadFromFile( const CString Filename );
-    bool SaveToFile( const CString Filename );
+    bool ReadFromFile(const CString Filename);
+    bool SaveToFile(const CString Filename);
 
-    ZBWorkspaceWizardTemplateMg& GetWorkspaceTemplates()
+    PSS_WorkspaceWizardTemplateManager& GetWorkspaceTemplates()
     {
         return m_WorkspaceTemplates;
     };
@@ -56,12 +53,12 @@ public:
         return m_IsLoaded;
     };
 
-// Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(ZDWorkspaceWizardTemplateDocument)
-    public:
+    // Overrides
+        // ClassWizard generated virtual function overrides
+        //{{AFX_VIRTUAL(ZDWorkspaceWizardTemplateDocument)
+public:
     virtual void Serialize(CArchive& ar);   // overridden for document i/o
-    protected:
+protected:
     virtual BOOL OnNewDocument();
     //}}AFX_VIRTUAL
 
@@ -80,11 +77,8 @@ protected:
     DECLARE_MESSAGE_MAP()
 
 private:
-    ZBWorkspaceWizardTemplateMg    m_WorkspaceTemplates;
-    bool                        m_IsLoaded;
+    PSS_WorkspaceWizardTemplateManager m_WorkspaceTemplates;
+    bool                               m_IsLoaded;
 };
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZDWORKSPACEWIZARDTEMPLATEDOCUMENT_H__DE01D157_C8C5_4B20_BF67_C3ED34217103__INCLUDED_)
+#endif

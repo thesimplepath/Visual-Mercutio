@@ -4,10 +4,11 @@
 
 #include "stdafx.h"
 #include "ZVWorkspaceCreationWizard.h"
-#include "zBaseLib\ZBWorkspaceWizardTemplateMg.h"
 
+// processsoft
 #include "zBaseLib\PSS_File.h"
 #include "zBaseLib\ZDirectory.h"
+#include "zBaseLib\PSS_WorkspaceWizardTemplateManager.h"
 #include "zBaseLib\PSS_MsgBox.h"
 
 #ifdef _DEBUG
@@ -22,7 +23,7 @@ static char THIS_FILE[] = __FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-ZVWorkspaceCreationWizard::ZVWorkspaceCreationWizard(ZBWorkspaceWizardTemplateMg*    pWorkspaceTemplateManager    /*= NULL*/,
+ZVWorkspaceCreationWizard::ZVWorkspaceCreationWizard(PSS_WorkspaceWizardTemplateManager* pWorkspaceTemplateManager    /*= NULL*/,
                                                      const CString                    InitialDirectory            /*= ""*/,
                                                      const CString                    WorkspaceExtension            /*= ""*/,
                                                      bool                            Modify                        /*= false*/)
@@ -244,8 +245,8 @@ BEGIN_MESSAGE_MAP(ZVWorkspaceTemplate, PSS_WizardDialog)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-ZVWorkspaceTemplate::ZVWorkspaceTemplate(ZBWorkspaceWizardTemplateMg*    pWorkspaceTemplateManager    /*= NULL*/,
-                                         CWnd*                            pParent                        /*= NULL*/) :
+ZVWorkspaceTemplate::ZVWorkspaceTemplate(PSS_WorkspaceWizardTemplateManager* pWorkspaceTemplateManager,
+                                         CWnd*                               pParent) :
     PSS_WizardDialog(ZVWorkspaceTemplate::IDD,
                      IDB_WZBMP1,
                      0,
@@ -292,7 +293,7 @@ BOOL ZVWorkspaceTemplate::OnInitDialog()
 void ZVWorkspaceTemplate::SelChanged()
 {
 
-    ZBWorkspaceWizardTemplateItem* pItem = m_TemplateList.GetSelectedItem();
+    PSS_WorkspaceWizardTemplateItem* pItem = m_TemplateList.GetSelectedItem();
 
     if (pItem)
     {

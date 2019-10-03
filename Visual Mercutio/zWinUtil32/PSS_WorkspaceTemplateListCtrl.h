@@ -16,12 +16,17 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// class name mapping
+#ifndef PSS_WorkspaceWizardTemplateManager
+    #define PSS_WorkspaceWizardTemplateManager ZBWorkspaceWizardTemplateMg
+#endif
+
 // processsoft
+#include "zBaseLib\PSS_WorkspaceWizardTemplateItem.h"
 #include "zBaseLib\ZIListCtrl.h"
-#include "zBaseLib\ZBWorkspaceWizardTemplateItem.h"
 
 // forward class declaration
-class ZBWorkspaceWizardTemplateMg;
+class PSS_WorkspaceWizardTemplateManager;
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -44,7 +49,7 @@ class AFX_EXT_CLASS PSS_WorkspaceTemplateListCtrl : public ZIListCtrl
         * constructor
         *@param pWorkspaceTemplateManager - workspace template manager, can be NULL
         */
-        PSS_WorkspaceTemplateListCtrl(ZBWorkspaceWizardTemplateMg* pWorkspaceTemplateManager = NULL);
+        PSS_WorkspaceTemplateListCtrl(PSS_WorkspaceWizardTemplateManager* pWorkspaceTemplateManager = NULL);
 
         virtual ~PSS_WorkspaceTemplateListCtrl();
 
@@ -55,15 +60,15 @@ class AFX_EXT_CLASS PSS_WorkspaceTemplateListCtrl : public ZIListCtrl
         *@return workspace wizard template item instance
         */
         #ifdef _WIN32
-            AFX_EXT_API friend ZBWorkspaceWizardTemplateItem& operator >> (ZBWorkspaceWizardTemplateItem& left,
-                                                                           PSS_WorkspaceTemplateListCtrl& listCtrl);
+            AFX_EXT_API friend PSS_WorkspaceWizardTemplateItem& operator >> (PSS_WorkspaceWizardTemplateItem& left,
+                                                                             PSS_WorkspaceTemplateListCtrl&   listCtrl);
         #endif
 
         /**
         * Initializes the workspace template list control
         *@param pWorkspaceTemplateManager - workspace template manager
         */
-        virtual void Initialize(ZBWorkspaceWizardTemplateMg* pWorkspaceTemplateManager);
+        virtual void Initialize(PSS_WorkspaceWizardTemplateManager* pWorkspaceTemplateManager);
 
         /**
         * Refreshes the control
@@ -74,7 +79,7 @@ class AFX_EXT_CLASS PSS_WorkspaceTemplateListCtrl : public ZIListCtrl
         * Gets the selected item
         *@return the selected item, NULL if no selection or on error
         */
-        virtual ZBWorkspaceWizardTemplateItem* GetSelectedItem() const;
+        virtual PSS_WorkspaceWizardTemplateItem* GetSelectedItem() const;
 
       protected:
         /// ClassWizard generated message map functions
@@ -83,8 +88,8 @@ class AFX_EXT_CLASS PSS_WorkspaceTemplateListCtrl : public ZIListCtrl
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZBWorkspaceWizardTemplateMg* m_pWorkspaceTemplateManager;
-        BOOL                         m_ColumnsHasBeenBuilt;
+        PSS_WorkspaceWizardTemplateManager* m_pWorkspaceTemplateManager;
+        BOOL                                m_ColumnsHasBeenBuilt;
 
         /**
         * Copy constructor

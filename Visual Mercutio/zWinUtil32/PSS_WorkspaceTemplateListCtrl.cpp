@@ -9,7 +9,7 @@
 #include "PSS_WorkspaceTemplateListCtrl.h"
 
 // processsoft
-#include "zBaseLib\ZBWorkspaceWizardTemplateMg.h"
+#include "zBaseLib\PSS_WorkspaceWizardTemplateManager.h"
 
 // resources
 #include "zWinUtil32Res.h"
@@ -44,7 +44,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_WorkspaceTemplateListCtrl
 //---------------------------------------------------------------------------
-PSS_WorkspaceTemplateListCtrl::PSS_WorkspaceTemplateListCtrl(ZBWorkspaceWizardTemplateMg* pWorkspaceTemplateManager) :
+PSS_WorkspaceTemplateListCtrl::PSS_WorkspaceTemplateListCtrl(PSS_WorkspaceWizardTemplateManager* pWorkspaceTemplateManager) :
     m_pWorkspaceTemplateManager(pWorkspaceTemplateManager),
     m_ColumnsHasBeenBuilt(FALSE)
 {}
@@ -62,7 +62,7 @@ const PSS_WorkspaceTemplateListCtrl& PSS_WorkspaceTemplateListCtrl::operator = (
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-ZBWorkspaceWizardTemplateItem& operator >> (ZBWorkspaceWizardTemplateItem& left, PSS_WorkspaceTemplateListCtrl& listCtrl)
+PSS_WorkspaceWizardTemplateItem& operator >> (PSS_WorkspaceWizardTemplateItem& left, PSS_WorkspaceTemplateListCtrl& listCtrl)
 {
     int    Index = listCtrl.GetItemCount();
     int    ImageIndex = 1;
@@ -77,7 +77,7 @@ ZBWorkspaceWizardTemplateItem& operator >> (ZBWorkspaceWizardTemplateItem& left,
     return left;
 }
 //---------------------------------------------------------------------------
-void PSS_WorkspaceTemplateListCtrl::Initialize(ZBWorkspaceWizardTemplateMg* pWorkspaceTemplateManager)
+void PSS_WorkspaceTemplateListCtrl::Initialize(PSS_WorkspaceWizardTemplateManager* pWorkspaceTemplateManager)
 {
     m_pWorkspaceTemplateManager = pWorkspaceTemplateManager;
     Refresh();
@@ -95,19 +95,19 @@ void PSS_WorkspaceTemplateListCtrl::Refresh()
     if (!m_pWorkspaceTemplateManager)
         return;
 
-    ZBWorkspaceWizardTemplateItemIterator it(m_pWorkspaceTemplateManager->GetTemplateItemSet());
+    PSS_WorkspaceWizardTemplateItemIterator it(m_pWorkspaceTemplateManager->GetTemplateItemSet());
 
     // iterate through the template item list
-    for (ZBWorkspaceWizardTemplateItem* pItem = it.GetFirst(); pItem; pItem = it.GetNext())
+    for (PSS_WorkspaceWizardTemplateItem* pItem = it.GetFirst(); pItem; pItem = it.GetNext())
         *pItem >> *this;
 }
 //---------------------------------------------------------------------------
-ZBWorkspaceWizardTemplateItem* PSS_WorkspaceTemplateListCtrl::GetSelectedItem() const
+PSS_WorkspaceWizardTemplateItem* PSS_WorkspaceTemplateListCtrl::GetSelectedItem() const
 {
     POSITION pPos = GetFirstSelectedItemPosition();
 
     if (pPos)
-        return (ZBWorkspaceWizardTemplateItem*)GetItemData(GetNextSelectedItem(pPos));
+        return (PSS_WorkspaceWizardTemplateItem*)GetItemData(GetNextSelectedItem(pPos));
 
     return NULL;
 }

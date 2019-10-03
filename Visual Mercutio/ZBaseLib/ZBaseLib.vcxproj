@@ -942,13 +942,13 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBWorkspaceWizardTemplateItem.cpp">
+    <ClCompile Include="PSS_WorkspaceWizardTemplateItem.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZBWorkspaceWizardTemplateMg.cpp">
+    <ClCompile Include="PSS_WorkspaceWizardTemplateManager.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1479,8 +1479,8 @@
     <ClInclude Include="PSS_WorkspaceFileEntity.h" />
     <ClInclude Include="PSS_WorkspaceGroupEntity.h" />
     <ClInclude Include="PSS_WorkspaceObserverMsg.h" />
-    <ClInclude Include="ZBWorkspaceWizardTemplateItem.h" />
-    <ClInclude Include="ZBWorkspaceWizardTemplateMg.h" />
+    <ClInclude Include="PSS_WorkspaceWizardTemplateItem.h" />
+    <ClInclude Include="PSS_WorkspaceWizardTemplateManager.h" />
     <ClInclude Include="zcgridctrl.h" />
     <ClInclude Include="ZCIntelliEdit.h" />
     <ClInclude Include="ZCMultiLineEdit.h" />

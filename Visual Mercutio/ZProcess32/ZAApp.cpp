@@ -13,7 +13,7 @@
 #include "zBaseLib\ZILog.h"
 #include "zBaseLib\ZDWorkspaceEnvDocument.h"
 #include "zBaseLib\PSS_WorkspaceObserverMsg.h"
-#include "zBaseLib\ZBWorkspaceWizardTemplateMg.h"
+#include "zBaseLib\PSS_WorkspaceWizardTemplateManager.h"
 #include "zBaseLib\PSS_ObjectUtility.h"
 #include "zBaseLib\ZUFloatingToolbar.h"
 #include "zWinUtil32\PSS_NewFormDialog.h"
@@ -528,23 +528,23 @@ BOOL ZAApp::PostInitAppl()
 
     // Initialize the workspace template manager 
     // It is done manually, since a template manager tool is written
-    m_pWorkspaceTemplateManager = new ZBWorkspaceWizardTemplateMg;
+    m_pWorkspaceTemplateManager = new PSS_WorkspaceWizardTemplateManager();
     ASSERT(m_pWorkspaceTemplateManager != NULL);
 
-    ZBWorkspaceWizardTemplateItem* pTmpItem0 =
-        new ZBWorkspaceWizardTemplateItem(_T("Projet vide"),
-                                          _T("Ce projet ne contient aucun document. Uniquement la structure des dossiers"));
+    PSS_WorkspaceWizardTemplateItem* pTmpItem0 =
+        new PSS_WorkspaceWizardTemplateItem(_T("Projet vide"),
+                                            _T("Ce projet ne contient aucun document. Uniquement la structure des dossiers"));
 
     m_pWorkspaceTemplateManager->AddTemplateItem(pTmpItem0);
 
-    ZBWorkspaceWizardTemplateItem* pTmpItem1 =
-        new ZBWorkspaceWizardTemplateItem(_T("Projet de base"), _T("Ce projet inclus uniquement un modèle"));
+    PSS_WorkspaceWizardTemplateItem* pTmpItem1 =
+        new PSS_WorkspaceWizardTemplateItem(_T("Projet de base"), _T("Ce projet inclus uniquement un modèle"));
 
     m_pWorkspaceTemplateManager->AddTemplateItem(pTmpItem1);
 
-    ZBWorkspaceWizardTemplateItem* pTmpItem2 =
-        new ZBWorkspaceWizardTemplateItem(_T("Projet Sesterce"),
-                                          _T("Ce projet inclus uniquement un modèle et un rapport Sesterce de base"));
+    PSS_WorkspaceWizardTemplateItem* pTmpItem2 =
+        new PSS_WorkspaceWizardTemplateItem(_T("Projet Sesterce"),
+                                            _T("Ce projet inclus uniquement un modèle et un rapport Sesterce de base"));
 
     m_pWorkspaceTemplateManager->AddTemplateItem(pTmpItem2);
 
