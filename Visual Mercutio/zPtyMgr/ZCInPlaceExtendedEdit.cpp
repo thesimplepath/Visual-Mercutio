@@ -109,7 +109,7 @@ void ZCInPlaceExtendedEdit::SetEditText(double dValue)
     CString strInitText;
 
     // Format the value function of the string format specified
-    strInitText = ZUStringFormatter::GetFormattedBuffer(m_dValue, m_pItem->GetStringFormat());
+    strInitText = PSS_StringFormatter::GetFormattedBuffer(m_dValue, m_pItem->GetStringFormat());
     SetEditText(strInitText);
 }
 
@@ -122,7 +122,7 @@ void ZCInPlaceExtendedEdit::SetEditText(float fValue)
     CString strInitText;
 
     // Format the value function of the string format specified
-    strInitText = ZUStringFormatter::GetFormattedBuffer(m_fValue, m_pItem->GetStringFormat());
+    strInitText = PSS_StringFormatter::GetFormattedBuffer(m_fValue, m_pItem->GetStringFormat());
     SetEditText(strInitText);
 }
 
@@ -272,9 +272,9 @@ void ZCInPlaceExtendedEdit::SaveValue()
                     {
                         // Check the conversion
                         double value;
-                        ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer(ProposedValue,
-                                                                                      value,
-                                                                                      m_pItem->GetStringFormat());
+                        ConversionCorrect = PSS_StringFormatter::ConvertFormattedBuffer(ProposedValue,
+                                                                                        value,
+                                                                                        m_pItem->GetStringFormat());
 
                         if (!ConversionCorrect)
                         {
@@ -288,9 +288,9 @@ void ZCInPlaceExtendedEdit::SaveValue()
                     {
                         // Check the conversion
                         float value;
-                        ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer(ProposedValue,
-                                                                                      value,
-                                                                                      m_pItem->GetStringFormat());
+                        ConversionCorrect = PSS_StringFormatter::ConvertFormattedBuffer(ProposedValue,
+                                                                                        value,
+                                                                                        m_pItem->GetStringFormat());
 
                         if (!ConversionCorrect)
                         {

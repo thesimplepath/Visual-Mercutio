@@ -102,7 +102,7 @@ void ZCInPlaceDateEdit::SetEditText(PSS_Date& DateValue)
     // Build the string
     CString strInitText;
     // Format the value function of the string format specified
-    strInitText = ZUStringFormatter::GetFormattedBuffer((PSS_Date&)m_DateValue, m_pItem->GetStringFormat());
+    strInitText = PSS_StringFormatter::GetFormattedBuffer((PSS_Date&)m_DateValue, m_pItem->GetStringFormat());
     SetEditText(strInitText);
 }
 
@@ -187,7 +187,7 @@ void ZCInPlaceDateEdit::SaveValue()
 
                         PSS_Date value;
 
-                        ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer(ProposedValue, (PSS_Date&)value, m_pItem->GetStringFormat());
+                        ConversionCorrect = PSS_StringFormatter::ConvertFormattedBuffer(ProposedValue, (PSS_Date&)value, m_pItem->GetStringFormat());
                         if (!ConversionCorrect)
                             ZCInPlaceDateEdit::CancelEdit();
                         break;
@@ -278,12 +278,12 @@ void ZCInPlaceDateEdit::OnExtendedCommand()
             // RS-MODIF 05.08.2005: édition de date
             //ZBDuration value;
             PSS_Date value;
-            bool ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer(ProposedValue, (PSS_Date&)value, pItem->GetStringFormat());
+            bool ConversionCorrect = PSS_StringFormatter::ConvertFormattedBuffer(ProposedValue, (PSS_Date&)value, pItem->GetStringFormat());
             if (ConversionCorrect)
             {
 
                 // Format the value function of the string format specified
-                ProposedValue = ZUStringFormatter::GetFormattedBuffer((PSS_Date&)value, pItem->GetStringFormat());
+                ProposedValue = PSS_StringFormatter::GetFormattedBuffer((PSS_Date&)value, pItem->GetStringFormat());
                 SetEditText(ProposedValue);
                 // Set the has changed value
                 SetHasChanged(true);

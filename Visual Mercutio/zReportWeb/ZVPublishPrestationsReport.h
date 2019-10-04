@@ -23,7 +23,7 @@
 
 #include "ZAConst.h"
 
-#include "zBaseLib\ZUStringFormater.h"
+#include "zBaseLib\PSS_StringFormatter.h"
 #include "zBaseLib\PSS_Tokenizer.h"
 
 #include "zConversion\PSS_StringTools.h"
@@ -108,4 +108,4 @@ private:
     PSS_PublishModelGenerateDialog        m_FileGenerateWindow;
 };
 
-#endif // !defined(AFX_ZVPUBLISHPRESTATIONSREPORT_H__2911BA6F_30D8_459C_9B9A_A644F79B704F__INCLUDED_)
+#endif

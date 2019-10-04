@@ -1,12 +1,18 @@
-#if !defined(AFX_SUPERGRIDCTRL_H__C6DF1701_806D_11D2_9A94_002018026B76__INCLUDED_)
-#define AFX_SUPERGRIDCTRL_H__C6DF1701_806D_11D2_9A94_002018026B76__INCLUDED_
+/****************************************************************************
+ * ==> PSS_GridCtrl --------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a grid controller                                 *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
+
+#ifndef PSS_GridCtrlH
+#define PSS_GridCtrlH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-// ZCGridCtrl.h : header file
-//
-//change the definition of AFX_EXT... to make it import
+    #pragma once
+#endif
+
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -14,11 +20,25 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-
+// mfc
 #include <afxtempl.h>
 
-class CItemInfo //should have called this LV_INSERTITEM ..what ever
+#ifdef _ZBASELIBEXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
+#endif
+
+/**
+* Grid controller item info
+*@note Should have called this LV_INSERTITEM ..what ever
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class CItemInfo
 {
 public:
     CItemInfo():m_bCheck(0),m_iImage((const int)-1),m_lParam(NULL),m_clf((COLORREF)-1){};
@@ -194,33 +214,20 @@ private:
     COLORREF m_clf;
 };
 
-
-#ifdef _ZBASELIBEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
-#endif
-
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// ZCGridCtrl 
-//
-/////////////////////////////////////////////////////////////////////////////
+/**
+* Grid controller
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
 class AFX_EXT_CLASS ZCGridCtrl : public CListCtrl
 {
-// Construction
 public:
     ZCGridCtrl();
+    virtual ~ZCGridCtrl();
+
 protected:
     //nested class forward decl.
     class CTreeItem;
+
 public:
     // Overrides
     //MUST override this to make a copy of CItemInfo..see the CMySuperGrid.cpp for implementation
@@ -365,9 +372,7 @@ public:
     protected:
     virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
     //}}AFX_VIRTUAL
-// Implementation
-public:
-    virtual ~ZCGridCtrl();
+
 protected:
     //given the rootptr it returns the rootindex.
     int GetRootIndex(CTreeItem * lpRoot);

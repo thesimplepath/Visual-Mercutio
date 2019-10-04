@@ -12,7 +12,7 @@
 // processsoft
 #include "zBaseLib\PSS_Server.h"
 #include "zBaseLib\PSS_File.h"
-#include "zBaseLib\ZUStringFormater.h"
+#include "zBaseLib\PSS_StringFormatter.h"
 #include "zBaseLib\PSS_Global.h"
 #include "zModel\ProcGraphModelMdl.h"
 #include "zModel\ProcGraphModelVp.h"
@@ -2498,13 +2498,13 @@ bool PSS_ModelGenerateImageFiles::GeneratePropertyPage(ZIProperties* pProperties
             // get the formatted value
             switch (pProp->GetPTValueType())
             {
-                case ZBProperty::PT_DOUBLE:   value = ZUStringFormatter::GetFormattedBuffer(pProp->GetValueDouble(),                pProp->GetStringFormat()); break;
-                case ZBProperty::PT_FLOAT:    value = ZUStringFormatter::GetFormattedBuffer(pProp->GetValueFloat(),                 pProp->GetStringFormat()); break;
-                case ZBProperty::PT_DATE:     value = ZUStringFormatter::GetFormattedBuffer((PSS_Date&)pProp->GetValueDate(),         pProp->GetStringFormat()); break;
-                case ZBProperty::PT_TIMESPAN: value = ZUStringFormatter::GetFormattedBuffer((PSS_TimeSpan&)pProp->GetValueTimeSpan(), pProp->GetStringFormat()); break;
-                case ZBProperty::PT_DURATION: value = ZUStringFormatter::GetFormattedBuffer((PSS_Duration&)pProp->GetValueDuration(), pProp->GetStringFormat()); break;
-                case ZBProperty::PT_STRING:   value = pProp->GetValueString();                                                                                 break;
-                default:                                                                                                                                       break;
+                case ZBProperty::PT_DOUBLE:   value = PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueDouble(),                  pProp->GetStringFormat()); break;
+                case ZBProperty::PT_FLOAT:    value = PSS_StringFormatter::GetFormattedBuffer(pProp->GetValueFloat(),                   pProp->GetStringFormat()); break;
+                case ZBProperty::PT_DATE:     value = PSS_StringFormatter::GetFormattedBuffer((PSS_Date&)pProp->GetValueDate(),         pProp->GetStringFormat()); break;
+                case ZBProperty::PT_TIMESPAN: value = PSS_StringFormatter::GetFormattedBuffer((PSS_TimeSpan&)pProp->GetValueTimeSpan(), pProp->GetStringFormat()); break;
+                case ZBProperty::PT_DURATION: value = PSS_StringFormatter::GetFormattedBuffer((PSS_Duration&)pProp->GetValueDuration(), pProp->GetStringFormat()); break;
+                case ZBProperty::PT_STRING:   value = pProp->GetValueString();                                                                                     break;
+                default:                                                                                                                                           break;
             }
 
             // remove empty spaces from properties
@@ -2707,7 +2707,7 @@ CString PSS_ModelGenerateImageFiles::BuildSymbolPropertyHTMLFileName(ZIBasicSymb
     ASSERT(m_pInfo);
 
     // build the file name using the full object path + the symbol name and the reference number to avoid collision
-    CString fileName  = ZDirectory::NormalizeDirectory(m_pInfo->GetURLName() ) + _T("\\");
+    CString fileName  = ZDirectory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\");
             fileName += _T("prp_");
 
     if (!prefix.IsEmpty())

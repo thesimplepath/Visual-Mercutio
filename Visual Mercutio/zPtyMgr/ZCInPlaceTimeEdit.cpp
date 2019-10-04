@@ -105,7 +105,7 @@ void ZCInPlaceTimeEdit::SetEditText(PSS_TimeSpan& TimeValue)
     // Build the string
     CString strInitText;
     // Format the value function of the string format specified
-    strInitText = ZUStringFormatter::GetFormattedBuffer((PSS_TimeSpan&)m_TimeValue, m_pItem->GetStringFormat());
+    strInitText = PSS_StringFormatter::GetFormattedBuffer((PSS_TimeSpan&)m_TimeValue, m_pItem->GetStringFormat());
     SetEditText(strInitText);
 }
 
@@ -187,7 +187,7 @@ void ZCInPlaceTimeEdit::SaveValue()
                         // Check the conversion
                         PSS_TimeSpan value;
 
-                        ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer(ProposedValue, (PSS_TimeSpan&)value, m_pItem->GetStringFormat());
+                        ConversionCorrect = PSS_StringFormatter::ConvertFormattedBuffer(ProposedValue, (PSS_TimeSpan&)value, m_pItem->GetStringFormat());
                         if (!ConversionCorrect)
                             ZCInPlaceTimeEdit::CancelEdit();
                         break;
@@ -277,12 +277,12 @@ void ZCInPlaceTimeEdit::OnExtendedCommand()
 
             // Check the conversion
             PSS_TimeSpan value;
-            bool ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer(ProposedValue, (PSS_TimeSpan&)value, pItem->GetStringFormat());
+            bool ConversionCorrect = PSS_StringFormatter::ConvertFormattedBuffer(ProposedValue, (PSS_TimeSpan&)value, pItem->GetStringFormat());
             if (ConversionCorrect)
             {
 
                 // Format the value function of the string format specified
-                ProposedValue = ZUStringFormatter::GetFormattedBuffer((PSS_TimeSpan&)value, pItem->GetStringFormat());
+                ProposedValue = PSS_StringFormatter::GetFormattedBuffer((PSS_TimeSpan&)value, pItem->GetStringFormat());
                 SetEditText(ProposedValue);
                 // Set the has changed value
                 SetHasChanged(true);

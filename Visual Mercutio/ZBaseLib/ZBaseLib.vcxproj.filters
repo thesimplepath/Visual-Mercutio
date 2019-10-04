@@ -137,16 +137,10 @@
     <ClCompile Include="ZUser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZUStringFormater.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZUSystemOption.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZVDocumentPageSetupDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZVManageValueIntelliEdit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZVOutputView.cpp">
@@ -602,6 +596,12 @@
     <ClCompile Include="PSS_WorkspaceWizardTemplateManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_ManageValueIntelliEditDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_StringFormatter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -829,16 +829,10 @@
     <ClInclude Include="ZUser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZUStringFormater.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZUSystemOption.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZVDocumentPageSetupDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZVManageValueIntelliEdit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZVOutputView.h">
@@ -1295,6 +1289,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_WorkspaceWizardTemplateManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ManageValueIntelliEditDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_StringFormatter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

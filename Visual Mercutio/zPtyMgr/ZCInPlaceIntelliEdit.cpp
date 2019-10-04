@@ -118,7 +118,7 @@ void ZCInPlaceIntelliEdit::SetEditText(double dValue)
     // Build the string
     CString strInitText;
     // Format the value function of the string format specified
-    strInitText = ZUStringFormatter::GetFormattedBuffer(m_dValue, m_pItem->GetStringFormat());
+    strInitText = PSS_StringFormatter::GetFormattedBuffer(m_dValue, m_pItem->GetStringFormat());
     SetEditText(strInitText);
 }
 
@@ -129,7 +129,7 @@ void ZCInPlaceIntelliEdit::SetEditText(float fValue)
     // Build the string
     CString strInitText;
     // Format the value function of the string format specified
-    strInitText = ZUStringFormatter::GetFormattedBuffer(m_fValue, m_pItem->GetStringFormat());
+    strInitText = PSS_StringFormatter::GetFormattedBuffer(m_fValue, m_pItem->GetStringFormat());
     SetEditText(strInitText);
 }
 
@@ -226,7 +226,7 @@ void ZCInPlaceIntelliEdit::SaveValue()
                     {
                         // Check the conversion
                         double value;
-                        ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer(ProposedValue, value, m_pItem->GetStringFormat());
+                        ConversionCorrect = PSS_StringFormatter::ConvertFormattedBuffer(ProposedValue, value, m_pItem->GetStringFormat());
                         if (!ConversionCorrect)
                             ZCInPlaceIntelliEdit::CancelEdit();
                         break;
@@ -235,7 +235,7 @@ void ZCInPlaceIntelliEdit::SaveValue()
                     {
                         // Check the conversion
                         float value;
-                        ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer(ProposedValue, value, m_pItem->GetStringFormat());
+                        ConversionCorrect = PSS_StringFormatter::ConvertFormattedBuffer(ProposedValue, value, m_pItem->GetStringFormat());
                         if (!ConversionCorrect)
                             ZCInPlaceIntelliEdit::CancelEdit();
                         break;

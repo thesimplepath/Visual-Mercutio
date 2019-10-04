@@ -1217,7 +1217,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZUStringFormater.cpp">
+    <ClCompile Include="PSS_StringFormatter.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1243,7 +1243,7 @@
     </ClCompile>
     <ClCompile Include="PSS_DocumentPageSetup.cpp" />
     <ClCompile Include="ZVDocumentPageSetupDlg.cpp" />
-    <ClCompile Include="ZVManageValueIntelliEdit.cpp">
+    <ClCompile Include="PSS_ManageValueIntelliEditDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1526,13 +1526,13 @@
     <ClInclude Include="PSS_GUID.h" />
     <ClInclude Include="zumail.h" />
     <ClInclude Include="ZUser.h" />
-    <ClInclude Include="ZUStringFormater.h" />
+    <ClInclude Include="PSS_StringFormatter.h" />
     <ClInclude Include="ZUSystemOption.h" />
     <ClInclude Include="PSS_BasicScrollView.h" />
     <ClInclude Include="PSS_BasicView.h" />
     <ClInclude Include="PSS_DocumentPageSetup.h" />
     <ClInclude Include="ZVDocumentPageSetupDlg.h" />
-    <ClInclude Include="ZVManageValueIntelliEdit.h" />
+    <ClInclude Include="PSS_ManageValueIntelliEditDlg.h" />
     <ClInclude Include="ZVOutputView.h" />
     <ClInclude Include="ZVSpanView.h" />
     <ClInclude Include="PSS_SpanWnd.h" />

@@ -105,7 +105,7 @@ void ZCInPlaceDurationEdit::SetEditText(PSS_Duration& DurationValue)
     // Build the string
     CString strInitText;
     // Format the value function of the string format specified
-    strInitText = ZUStringFormatter::GetFormattedBuffer((PSS_Duration&)m_DurationValue, m_pItem->GetStringFormat());
+    strInitText = PSS_StringFormatter::GetFormattedBuffer((PSS_Duration&)m_DurationValue, m_pItem->GetStringFormat());
     SetEditText(strInitText);
 }
 
@@ -186,7 +186,7 @@ void ZCInPlaceDurationEdit::SaveValue()
                     {
                         // Check the conversion
                         PSS_Duration value;
-                        ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer(ProposedValue, (PSS_Duration&)value, m_pItem->GetStringFormat());
+                        ConversionCorrect = PSS_StringFormatter::ConvertFormattedBuffer(ProposedValue, (PSS_Duration&)value, m_pItem->GetStringFormat());
                         if (!ConversionCorrect)
                             ZCInPlaceDurationEdit::CancelEdit();
                         break;
@@ -276,7 +276,7 @@ void ZCInPlaceDurationEdit::OnExtendedCommand()
 
             // Check the conversion
             PSS_Duration value;
-            bool ConversionCorrect = ZUStringFormatter::ConvertFormattedBuffer(ProposedValue, (PSS_Duration&)value, pItem->GetStringFormat());
+            bool ConversionCorrect = PSS_StringFormatter::ConvertFormattedBuffer(ProposedValue, (PSS_Duration&)value, pItem->GetStringFormat());
             if (ConversionCorrect)
             {
 
@@ -286,7 +286,7 @@ void ZCInPlaceDurationEdit::OnExtendedCommand()
                 // Sets the new duration
                 value.SetDuration(Dlg.GetDays(), Dlg.GetHours(), Dlg.GetMinutes(), Dlg.GetSeconds());
                 // Format the value function of the string format specified
-                ProposedValue = ZUStringFormatter::GetFormattedBuffer((PSS_Duration&)value, pItem->GetStringFormat());
+                ProposedValue = PSS_StringFormatter::GetFormattedBuffer((PSS_Duration&)value, pItem->GetStringFormat());
                 SetEditText(ProposedValue);
                 // Set the has changed value
                 SetHasChanged(true);
