@@ -1,58 +1,49 @@
-// ZNetResourceWrapper.cpp: implementation of the ZNetResourceWrapper class.
-//
-//////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_NetResourceWrapper ----------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a net resource wrapper                            *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
 #include "ZNetResourceWrapper.h"
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
 #endif
 
-IMPLEMENT_DYNAMIC( ZNetResourceWrapper, CObject )
-
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
-
-ZNetResourceWrapper::ZNetResourceWrapper( const CString    Filename,
-                                          NETRESOURCE*    pNetResource    /*= NULL*/,
-                                          bool            IsDirectory        /*= false*/ )
-    : m_IsDirectory    ( IsDirectory ),
-      m_pNetResource( pNetResource ),
-      m_Filename    ( Filename )
+//---------------------------------------------------------------------------
+// Serialization
+//---------------------------------------------------------------------------
+IMPLEMENT_DYNAMIC(PSS_NetResourceWrapper, CObject)
+//---------------------------------------------------------------------------
+// PSS_NetResourceWrapper
+//---------------------------------------------------------------------------
+PSS_NetResourceWrapper::PSS_NetResourceWrapper(const CString& fileName, NETRESOURCE* pNetResource, bool isDir) :
+    CObject(),
+    m_pNetResource(pNetResource),
+    m_FileName(fileName),
+    m_IsDir(IsDir)
+{}
+//---------------------------------------------------------------------------
+PSS_NetResourceWrapper::~PSS_NetResourceWrapper()
 {
-}
-
-ZNetResourceWrapper::~ZNetResourceWrapper()
-{
-    if ( m_pNetResource )
+    if (m_pNetResource)
     {
-        delete [] ( m_pNetResource->lpLocalName );
-        ( m_pNetResource->lpLocalName ) = NULL;
-
-        delete [] ( m_pNetResource->lpRemoteName );
-        ( m_pNetResource->lpRemoteName ) = NULL;
-
-        delete [] ( m_pNetResource->lpComment );
-        ( m_pNetResource->lpComment ) = NULL;
-
-        delete [] ( m_pNetResource->lpProvider );
-        ( m_pNetResource->lpProvider ) = NULL;
-
-        delete m_pNetResource;
+        delete[] m_pNetResource->lpLocalName;
+        delete[] m_pNetResource->lpRemoteName;
+        delete[] m_pNetResource->lpComment;
+        delete[] m_pNetResource->lpProvider;
+        delete   m_pNetResource;
     }
-
-    m_pNetResource = NULL;
 }
-
-void ZNetResourceWrapper::Initialize( const CString    Filename,
-                                      NETRESOURCE*    pNetResource    /*= NULL*/,
-                                      bool            IsDirectory        /*= false*/ )
+//---------------------------------------------------------------------------
+void PSS_NetResourceWrapper::Initialize(const CString& fileName, NETRESOURCE* pNetResource, bool isDir)
 {
-    m_Filename        = Filename;
-    m_pNetResource    = pNetResource;
-    m_IsDirectory    = IsDirectory;
+    m_pNetResource = pNetResource;
+    m_FileName     = fileName;
+    m_IsDir        = isDir;
 }
+//---------------------------------------------------------------------------

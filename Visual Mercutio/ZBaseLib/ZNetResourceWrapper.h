@@ -1,15 +1,18 @@
-// ZNetResourceWrapper.h: interface for the ZNetResourceWrapper class.
-//
-//////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_NetResourceWrapper ----------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a net resource wrapper                            *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_ZNetResourceWrapper_H__1CCBD68E_888A_4F9A_BF26_94A6A95935FF__INCLUDED_)
-#define AFX_ZNetResourceWrapper_H__1CCBD68E_888A_4F9A_BF26_94A6A95935FF__INCLUDED_
+#ifndef PSS_NetResourceWrapperH
+#define PSS_NetResourceWrapperH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -18,55 +21,94 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 #ifdef _ZBASELIBEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-
-class AFX_EXT_CLASS ZNetResourceWrapper : public CObject 
+/**
+* Net resource wrapper
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_NetResourceWrapper : public CObject
 {
-    DECLARE_DYNAMIC( ZNetResourceWrapper )
+    DECLARE_DYNAMIC(PSS_NetResourceWrapper)
 
-public:
+    public:
+        /**
+        * Constructor
+        *@param fileName - file name
+        *@param pNetResource - net resource
+        *@param isDir - if true, the net resource is a directory
+        */
+        PSS_NetResourceWrapper(const CString& fileName, NETRESOURCE* pNetResource = NULL, bool isDir = false);
 
-    // Constructors
-    ZNetResourceWrapper( const CString Filename, NETRESOURCE* pNetResource = NULL, bool IsDirectory = false );
-    virtual ~ZNetResourceWrapper();
+        virtual ~PSS_NetResourceWrapper();
 
-    void Initialize( const CString Filename, NETRESOURCE* pNetResource = NULL, bool IsDirectory = false );
+        /**
+        * Initializes the class
+        *@param fileName - file name
+        *@param pNetResource - net resource
+        *@param isDir - if true, the net resource is a directory
+        */
+        virtual void Initialize(const CString& fileName, NETRESOURCE* pNetResource = NULL, bool isDir = false);
 
-    NETRESOURCE* GetNetResource()
-    {
-        return m_pNetResource;
-    };
+        /**
+        * Gets the native net resource
+        *@return the native net resource, NULL on error
+        */
+        virtual inline NETRESOURCE* GetNetResource();
 
-    CString GetFilename() const
-    {
-        return m_Filename;
-    };
+        /**
+        * Gets the file name
+        *@return the file name
+        */
+        virtual inline CString GetFileName() const;
 
-    bool IsDirectory() const
-    {
-        return m_IsDirectory;
-    };
+        /**
+        * Gets if the net resource is a directory
+        *@return true if the net resource is a directory, otherwise false
+        */
+        virtual inline bool IsDir() const;
 
-    bool IsFile() const
-    {
-        return m_IsDirectory == false;
-    };
+        /**
+        * Gets if the net resource is a file
+        *@return true if the net resource is a file, otherwise false
+        */
+        virtual inline bool IsFile() const;
 
-private:
-
-    CString            m_Filename;
-    NETRESOURCE*    m_pNetResource;
-    bool            m_IsDirectory;
+    private:
+        NETRESOURCE* m_pNetResource;
+        CString      m_FileName;
+        bool         m_IsDir;
 };
+
+//---------------------------------------------------------------------------
+// PSS_NetResourceWrapper
+//---------------------------------------------------------------------------
+NETRESOURCE* PSS_NetResourceWrapper::GetNetResource()
+{
+    return m_pNetResource;
+}
+//---------------------------------------------------------------------------
+CString PSS_NetResourceWrapper::GetFileName() const
+{
+    return m_FileName;
+}
+//---------------------------------------------------------------------------
+bool PSS_NetResourceWrapper::IsDir() const
+{
+    return m_IsDir;
+}
+//---------------------------------------------------------------------------
+bool PSS_NetResourceWrapper::IsFile() const
+{
+    return !m_IsDir;
+}
+//---------------------------------------------------------------------------
 
 #endif
