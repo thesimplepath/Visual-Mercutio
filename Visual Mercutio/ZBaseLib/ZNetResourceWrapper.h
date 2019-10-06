@@ -69,4 +69,4 @@ private:
     bool            m_IsDirectory;
 };
 
-#endif // !defined(AFX_ZNetResourceWrapper_H__1CCBD68E_888A_4F9A_BF26_94A6A95935FF__INCLUDED_)
+#endif

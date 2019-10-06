@@ -1,90 +1,102 @@
-// ZNetResource.cpp: implementation of the ZNetResource class.
-//
-//////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_NetResource -----------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a net resource                                    *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
 #include "ZNetResource.h"
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
 #endif
 
-IMPLEMENT_DYNAMIC(ZNetResource, CObject)
-
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
-
-ZNetResource::ZNetResource(NETRESOURCE* pNetResource /*= NULL*/, bool IsDirectory /*= false*/)
-: m_IsDirectory(IsDirectory)
+//---------------------------------------------------------------------------
+// Serialization
+//---------------------------------------------------------------------------
+IMPLEMENT_DYNAMIC(PSS_NetResource, CObject)
+//---------------------------------------------------------------------------
+// PSS_NetResource
+//---------------------------------------------------------------------------
+PSS_NetResource::PSS_NetResource(NETRESOURCE* pNetResource, bool isDirectory) :
+    CObject(),
+    m_Scope(0),
+    m_Type(0),
+    m_DisplayType(0),
+    m_Usage(0),
+    m_IsDirectory(isDirectory)
 {
     *this = *pNetResource;
 }
-
-ZNetResource::ZNetResource(ZNetResource& NetResource, bool IsDirectory /*= false*/)
-: m_IsDirectory(IsDirectory)
+//---------------------------------------------------------------------------
+PSS_NetResource::PSS_NetResource(const PSS_NetResource& netResource, bool isDirectory) :
+    CObject(),
+    m_Scope(0),
+    m_Type(0),
+    m_DisplayType(0),
+    m_Usage(0),
+    m_IsDirectory(isDirectory)
 {
-    *this = NetResource;
+    *this = netResource;
 }
-
-const ZNetResource& ZNetResource::operator=(const ZNetResource &right)
+//---------------------------------------------------------------------------
+PSS_NetResource::~PSS_NetResource()
+{}
+//---------------------------------------------------------------------------
+const PSS_NetResource& PSS_NetResource::operator = (const PSS_NetResource& other)
 {
-    m_Scope = right.m_Scope; 
-    m_Type = right.m_Type; 
-    m_DisplayType = right.m_DisplayType; 
-    m_Usage = right.m_Usage; 
-    m_LocalName = right.m_LocalName; 
-    m_RemoteName = right.m_RemoteName; 
-    m_Comment = right.m_Comment; 
-    m_Provider = right.m_Provider; 
-    m_IsDirectory = right.m_IsDirectory;
+    m_LocalName   = other.m_LocalName;
+    m_RemoteName  = other.m_RemoteName;
+    m_Comment     = other.m_Comment;
+    m_Provider    = other.m_Provider;
+    m_Scope       = other.m_Scope;
+    m_Type        = other.m_Type;
+    m_DisplayType = other.m_DisplayType;
+    m_Usage       = other.m_Usage;
+    m_IsDirectory = other.m_IsDirectory;
     return *this;
 }
-
-const ZNetResource& ZNetResource::operator=(const NETRESOURCE &right)
+//---------------------------------------------------------------------------
+const PSS_NetResource& PSS_NetResource::operator = (const NETRESOURCE& other)
 {
-    m_Scope = right.dwScope; 
-    m_Type = right.dwType; 
-    m_DisplayType = right.dwDisplayType; 
-    m_Usage = right.dwUsage; 
-    m_LocalName = right.lpLocalName; 
-    m_RemoteName = right.lpRemoteName; 
-    m_Comment = right.lpComment; 
-    m_Provider = right.lpProvider; 
+    m_LocalName   = other.lpLocalName;
+    m_RemoteName  = other.lpRemoteName;
+    m_Comment     = other.lpComment;
+    m_Provider    = other.lpProvider;
+    m_Scope       = other.dwScope;
+    m_Type        = other.dwType;
+    m_DisplayType = other.dwDisplayType;
+    m_Usage       = other.dwUsage;
     return *this;
 }
-
-
-NETRESOURCE*    ZNetResource::GetNetResourceObject()
+//---------------------------------------------------------------------------
+void PSS_NetResource::Initialize(NETRESOURCE& netResource, bool isDirectory)
 {
-    NETRESOURCE*    pNetResource = new NETRESOURCE;
-    pNetResource->dwScope = m_Scope;
-    pNetResource->dwType = m_Type;
+    *this = netResource;
+    m_IsDirectory = isDirectory;
+}
+//---------------------------------------------------------------------------
+PSS_NetResource* PSS_NetResource::Clone() const
+{
+    return new PSS_NetResource(*this);
+}
+//---------------------------------------------------------------------------
+NETRESOURCE* PSS_NetResource::GetNetResourceObject()
+{
+    std::unique_ptr<NETRESOURCE> pNetResource(new NETRESOURCE());
+    pNetResource->dwScope       = m_Scope;
+    pNetResource->dwType        = m_Type;
     pNetResource->dwDisplayType = m_DisplayType;
-    pNetResource->dwUsage = m_Usage;
-    _tcscpy( pNetResource->lpLocalName, m_LocalName );
-    _tcscpy( pNetResource->lpRemoteName, m_RemoteName );
-    _tcscpy( pNetResource->lpComment, m_Comment );
-    _tcscpy( pNetResource->lpProvider, m_Provider ); 
-    return pNetResource;
+    pNetResource->dwUsage       = m_Usage;
+
+    _tcscpy(pNetResource->lpLocalName,  m_LocalName);
+    _tcscpy(pNetResource->lpRemoteName, m_RemoteName);
+    _tcscpy(pNetResource->lpComment,    m_Comment);
+    _tcscpy(pNetResource->lpProvider,   m_Provider);
+
+    return pNetResource.release();
 }
-
-ZNetResource*    ZNetResource::Clone()
-{
-    ZNetResource*    pNewResource = new ZNetResource( *this );
-    return pNewResource;
-}
-
-ZNetResource::~ZNetResource()
-{
-
-}
-
-
-void ZNetResource::Initialize( NETRESOURCE& NetResource, bool IsDirectory /*= false*/ )
-{
-    *this = NetResource;
-    m_IsDirectory = IsDirectory;
-}
+//---------------------------------------------------------------------------
