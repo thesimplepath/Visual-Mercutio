@@ -954,7 +954,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="zcgridctrl.cpp">
+    <ClCompile Include="PSS_GridCtrl.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1163,19 +1163,19 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZNetResource.cpp">
+    <ClCompile Include="PSS_NetResource.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZNetResourceManager.cpp">
+    <ClCompile Include="PSS_NetResourceManager.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZNetResourceWrapper.cpp">
+    <ClCompile Include="PSS_NetResourceWrapper.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1481,7 +1481,7 @@
     <ClInclude Include="PSS_WorkspaceObserverMsg.h" />
     <ClInclude Include="PSS_WorkspaceWizardTemplateItem.h" />
     <ClInclude Include="PSS_WorkspaceWizardTemplateManager.h" />
-    <ClInclude Include="zcgridctrl.h" />
+    <ClInclude Include="PSS_GridCtrl.h" />
     <ClInclude Include="ZCIntelliEdit.h" />
     <ClInclude Include="ZCMultiLineEdit.h" />
     <ClInclude Include="ZConfigW.h" />
@@ -1516,9 +1516,9 @@
     <ClInclude Include="ZLVCombo.h" />
     <ClInclude Include="ZLVEdit.h" />
     <ClInclude Include="ZMessage.h" />
-    <ClInclude Include="ZNetResource.h" />
-    <ClInclude Include="ZNetResourceManager.h" />
-    <ClInclude Include="ZNetResourceWrapper.h" />
+    <ClInclude Include="PSS_NetResource.h" />
+    <ClInclude Include="PSS_NetResourceManager.h" />
+    <ClInclude Include="PSS_NetResourceWrapper.h" />
     <ClInclude Include="ZNetWork.h" />
     <ClInclude Include="PSS_TypedPtrList.h" />
     <ClInclude Include="ZUFileLauncher.h" />

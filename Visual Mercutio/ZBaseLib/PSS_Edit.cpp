@@ -170,9 +170,9 @@ void PSS_Edit::CreateSpecialHelp(BOOL designer)
     if (m_pEditedObj->IsKindOf(RUNTIME_CLASS(PSS_PLFNTime)))
     {
         if (designer)
-            m_pSpecialHelp = new PSS_SpecialHelpDateDesignerWnd;
+            m_pSpecialHelp = new PSS_SpecialHelpDateDesignerWnd();
         else
-            m_pSpecialHelp = new PSS_SpecialHelpDateWnd;
+            m_pSpecialHelp = new PSS_SpecialHelpDateWnd();
     }
     else
     {
@@ -183,21 +183,21 @@ void PSS_Edit::CreateSpecialHelp(BOOL designer)
             if (pLong->GetAssociations().GetCount())
             {
                 if (designer)
-                    m_pSpecialHelp = new PSS_SpecialHelpNumberScenarioDesignerWnd;
+                    m_pSpecialHelp = new PSS_SpecialHelpNumberScenarioDesignerWnd();
                 else
-                    m_pSpecialHelp = new PSS_SpecialHelpNumberScenarioWnd;
+                    m_pSpecialHelp = new PSS_SpecialHelpNumberScenarioWnd();
             }
             else
             if (designer)
-                m_pSpecialHelp = new PSS_SpecialHelpNumberDesignerWnd;
+                m_pSpecialHelp = new PSS_SpecialHelpNumberDesignerWnd();
             else
-                m_pSpecialHelp = new PSS_SpecialHelpNumberWnd;
+                m_pSpecialHelp = new PSS_SpecialHelpNumberWnd();
         }
         else
         if (designer)
-            m_pSpecialHelp = new PSS_SpecialHelpDefaultDesignerWnd;
+            m_pSpecialHelp = new PSS_SpecialHelpDefaultDesignerWnd();
         else
-            m_pSpecialHelp = new PSS_SpecialHelpDefaultWnd;
+            m_pSpecialHelp = new PSS_SpecialHelpDefaultWnd();
     }
 
     // create the special helper
@@ -1224,7 +1224,7 @@ void PSS_MaskEdit::OnKillFocus(CWnd* pNewWnd)
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_MultiColumnEdit, ZCGridCtrl)
+BEGIN_MESSAGE_MAP(PSS_MultiColumnEdit, PSS_GridCtrl)
     //{{AFX_MSG_MAP(PSS_MultiColumnEdit)
     ON_WM_KILLFOCUS()
     ON_WM_CHAR()
@@ -1235,7 +1235,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 PSS_MultiColumnEdit::PSS_MultiColumnEdit() :
     PSS_Edit(),
-    ZCGridCtrl(),
+    PSS_GridCtrl(),
     m_Cx(0),
     m_Edit(-1),
     m_ColumnsBuilt(FALSE),
@@ -1277,7 +1277,7 @@ void PSS_MultiColumnEdit::Create(BOOL                 designerMode,
     if (!m_ReadOnly)
         style |= LVS_EDITLABELS;
 
-    if (!ZCGridCtrl::Create(style, m_Rect, pParentWnd, 0))
+    if (!PSS_GridCtrl::Create(style, m_Rect, pParentWnd, 0))
         return;
 
     // set the extended styles
@@ -1373,12 +1373,12 @@ void PSS_MultiColumnEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
             return;
     }
 
-    ZCGridCtrl::OnChar(nChar, nRepCnt, nFlags);
+    PSS_GridCtrl::OnChar(nChar, nRepCnt, nFlags);
 }
 //---------------------------------------------------------------------------
 void PSS_MultiColumnEdit::OnKillFocus(CWnd* pNewWnd)
 {
-    ZCGridCtrl::OnKillFocus(pNewWnd);
+    PSS_GridCtrl::OnKillFocus(pNewWnd);
 
     // only if not editing
     if (!m_StartEditCell)
@@ -1459,8 +1459,8 @@ void PSS_MultiColumnEdit::FillControl()
         CStringArray values;
         pMultiColumn->GetRowValues(values, i);
 
-        std::size_t item      = 0;
-        CItemInfo*  pItemInfo = new CItemInfo();
+        std::unique_ptr<PSS_GridCtrl::IItemInfo> pItemInfo(new PSS_GridCtrl::IItemInfo());
+        std::size_t                              item = 0;
 
         // sdd item text
         pItemInfo->SetItemText(values.GetAt(item));
@@ -1470,7 +1470,8 @@ void PSS_MultiColumnEdit::FillControl()
         for (++item; item < valueCount; ++item)
             pItemInfo->SetSubItemText(item - 1, values.GetAt(item), -1);
 
-        InsertRootItem(pItemInfo);
+        InsertRootItem(pItemInfo.get());
+        pItemInfo.release();
     }
 }
 //---------------------------------------------------------------------------

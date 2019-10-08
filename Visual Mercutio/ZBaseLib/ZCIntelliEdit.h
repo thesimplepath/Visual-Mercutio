@@ -1,13 +1,18 @@
-#if !defined(AFX_ZCINTELLIEDIT_H__63999555_6224_42B8_92C9_2440F93DDB78__INCLUDED_)
-#define AFX_ZCINTELLIEDIT_H__63999555_6224_42B8_92C9_2440F93DDB78__INCLUDED_
+/****************************************************************************
+ * ==> PSS_IntelliEdit -----------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides an intellisense edit box                          *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
+
+#ifndef PSS_IntelliEditH
+#define PSS_IntelliEditH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-// ZCIntelliEdit.h : header file
-//
+    #pragma once
+#endif
 
-//change the definition of AFX_EXT... to make it import
+ // change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -15,52 +20,51 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
+// processsoft
 #include "ZIntelliListBox.h"
 #include "PSS_DragEdit.h"
 
-
-/////////////////////////////////////////////////////////////////////////////
-// Forward declaration
-class    ZCIntelliEdit;
-
+// forward class declaration
+class ZCIntelliEdit;
 
 #ifdef _ZBASELIBEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
-
-
-class ZIntelliEditButton : public CButton 
+/**
+* Intellisense edit button
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class ZIntelliEditButton : public CButton
 {
 public:
     ZIntelliEditButton();
 
-public:
     UINT GetNextID(CWnd* pWnd) const;
-    virtual BOOL Create(ZCIntelliEdit* pEdit, CStringArray* pArrayOfValues, CSize* pSize = NULL );
+    virtual BOOL Create(ZCIntelliEdit* pEdit, CStringArray* pArrayOfValues, CSize* pSize = NULL);
     virtual ~ZIntelliEditButton();
-    CWnd*    GetListBoxWnd() const { return (CWnd*)&m_ListBoxOfValues; };
-    void    SetArrayOfValues( CStringArray* pArrayOfValues, bool Reload = true );
+    CWnd*    GetListBoxWnd() const
+    {
+        return (CWnd*)&m_ListBoxOfValues;
+    };
+    void    SetArrayOfValues(CStringArray* pArrayOfValues, bool Reload = true);
     void    ReloadListOfValues();
 
-    void    SetListBoxSize( CSize sz )
+    void    SetListBoxSize(CSize sz)
     {
         m_Size = sz;
-//        CalculateSizeAndPosition();
+        //        CalculateSizeAndPosition();
     };
     int        GetListBoxCurSel();
-    void    GetListBoxTextCurSel( CString& Text );
-    void    SetListBoxCurSel( int CurSel );
-    void    ListBoxSelectString( LPCTSTR lpszItem, int nStartAfter = -1 );
+    void    GetListBoxTextCurSel(CString& Text);
+    void    SetListBoxCurSel(int CurSel);
+    void    ListBoxSelectString(LPCTSTR lpszItem, int nStartAfter = -1);
     bool    IsFloatingListIsVisible() const;
     void    ShowListBox();
     void    HideListBox();
@@ -69,7 +73,7 @@ public:
 
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(ZIntelliEditButton)
-    public:
+public:
     virtual BOOL PreTranslateMessage(MSG* pMsg);
     //}}AFX_VIRTUAL
 
@@ -99,6 +103,9 @@ private:
 
 };
 
+//---------------------------------------------------------------------------
+// PSS_IntelliEditBtn
+//---------------------------------------------------------------------------
 inline bool ZIntelliEditButton::IsFloatingListIsVisible() const
 {
     if (!::IsWindow(m_ListBoxOfValues.GetSafeHwnd()) || !m_ListBoxOfValues.IsWindowVisible())
@@ -113,25 +120,25 @@ inline int    ZIntelliEditButton::GetListBoxCurSel()
     return m_ListBoxOfValues.GetCurSel();
 }
 
-inline void    ZIntelliEditButton::SetListBoxCurSel( int CurSel )
+inline void    ZIntelliEditButton::SetListBoxCurSel(int CurSel)
 {
     if (!IsFloatingListIsVisible())
         return;
-    m_ListBoxOfValues.SetCurSel( CurSel );
+    m_ListBoxOfValues.SetCurSel(CurSel);
 }
 
-inline void    ZIntelliEditButton::GetListBoxTextCurSel( CString& Text )
+inline void    ZIntelliEditButton::GetListBoxTextCurSel(CString& Text)
 {
     int    CurSel = GetListBoxCurSel();
     if (CurSel == LB_ERR)
         Text = "";
     else
-        m_ListBoxOfValues.GetText( CurSel, Text );
+        m_ListBoxOfValues.GetText(CurSel, Text);
 }
 
-inline void    ZIntelliEditButton::ListBoxSelectString( LPCTSTR lpszItem, int nStartAfter )
+inline void    ZIntelliEditButton::ListBoxSelectString(LPCTSTR lpszItem, int nStartAfter)
 {
-    m_ListBoxOfValues.SelectString( nStartAfter, lpszItem );
+    m_ListBoxOfValues.SelectString(nStartAfter, lpszItem);
 }
 
 
@@ -139,42 +146,40 @@ inline void    ZIntelliEditButton::ShowListBox()
 {
     if (!::IsWindow(m_ListBoxOfValues.GetSafeHwnd()))
         return;
-    m_ListBoxOfValues.ShowWindow( SW_SHOW );
+    m_ListBoxOfValues.ShowWindow(SW_SHOW);
 }
 
 inline void    ZIntelliEditButton::HideListBox()
 {
     if (!::IsWindow(m_ListBoxOfValues.GetSafeHwnd()))
         return;
-    m_ListBoxOfValues.ShowWindow( SW_HIDE );
+    m_ListBoxOfValues.ShowWindow(SW_HIDE);
 }
 
-/////////////////////////////////////////////////////////////////////////////
-// ZCIntelliEdit window
-
+/**
+* Intellisense edit box
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
 class AFX_EXT_CLASS ZCIntelliEdit : public PSS_DragEdit
 {
-// Construction
 public:
-    ZCIntelliEdit( CStringArray* pArrayOfValues = NULL, CSize* pSize = NULL );
+    ZCIntelliEdit(CStringArray* pArrayOfValues = NULL, CSize* pSize = NULL);
 
-// Attributes
-public:
-
-// Operations
-public:
-    void    Initialize(    CStringArray* pArrayOfValues, CSize* pSize = NULL );
+    void    Initialize(CStringArray* pArrayOfValues, CSize* pSize = NULL);
     void    Initialize();
-    void    SetArrayOfValues( CStringArray* pArrayOfValues, bool Reload = true );
+    void    SetArrayOfValues(CStringArray* pArrayOfValues, bool Reload = true);
     void    ReloadListOfValues();
 
     CSize    GetExtendedSize() const
     {
         return m_Size;
     };
-    virtual void OnExtendedSizeHasChanged( int cx, int cy );
+    virtual void OnExtendedSizeHasChanged(int cx, int cy);
 
-    bool    HasFocus() const { return m_HasFocus; };
+    bool    HasFocus() const
+    {
+        return m_HasFocus;
+    };
 
     bool    IsFloatingListIsVisible() const;
     void    ShowListBox();
@@ -185,17 +190,23 @@ public:
     void    HideHistoryListBox();
 
     // This function allows derived class to permit or not the typed char.
-    virtual bool    ValidateChar(UINT nChar, const CString EditText) const { return true; };
-    virtual void    OnItemSelectedFromList() {};
-    virtual void    OnEnter() {};
-    virtual void    OnEscape() {};
+    virtual bool    ValidateChar(UINT nChar, const CString EditText) const
+    {
+        return true;
+    };
+    virtual void    OnItemSelectedFromList()
+    {};
+    virtual void    OnEnter()
+    {};
+    virtual void    OnEscape()
+    {};
 
-// Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(ZCIntelliEdit)
-    public:
+    // Overrides
+        // ClassWizard generated virtual function overrides
+        //{{AFX_VIRTUAL(ZCIntelliEdit)
+public:
     virtual BOOL PreTranslateMessage(MSG* pMsg);
-    protected:
+protected:
     virtual void PreSubclassWindow();
     //}}AFX_VIRTUAL
 
@@ -215,25 +226,25 @@ protected:
 
     DECLARE_MESSAGE_MAP()
 
-    virtual void DestroyEdit( );
+    virtual void DestroyEdit();
 
 protected:
     ZIntelliEditButton    m_Button;
     CStringArray*        m_pArrayOfValues;
 
 private:
-    int        BuildSimilarList( CString EditText );
-    bool    CompareSimilar( CString PartialText, CString FullText );
+    int        BuildSimilarList(CString EditText);
+    bool    CompareSimilar(CString PartialText, CString FullText);
     void    CalculateSizeAndPosition();
     int        GetListBoxCurSel();
-    void    GetListBoxTextCurSel( CString& Text );
-    void    SetListBoxCurSel( int CurSel );
-    void    ListBoxSelectString( LPCTSTR lpszItem, int nStartAfter = -1 );
+    void    GetListBoxTextCurSel(CString& Text);
+    void    SetListBoxCurSel(int CurSel);
+    void    ListBoxSelectString(LPCTSTR lpszItem, int nStartAfter = -1);
 
     int        GetHistoryListBoxCurSel();
-    void    GetHistoryListBoxTextCurSel( CString& Text );
-    void    SetHistoryListBoxCurSel( int CurSel );
-    void    HistoryListBoxSelectString( LPCTSTR lpszItem, int nStartAfter = -1 );
+    void    GetHistoryListBoxTextCurSel(CString& Text);
+    void    SetHistoryListBoxCurSel(int CurSel);
+    void    HistoryListBoxSelectString(LPCTSTR lpszItem, int nStartAfter = -1);
 
 private:
     ZIntelliListBox    m_ListBoxOfValues;
@@ -245,10 +256,9 @@ private:
 
 };
 
-
-////////////////////////////////////////////////////////////////////////////
-
-
+//---------------------------------------------------------------------------
+// PSS_IntelliEdit
+//---------------------------------------------------------------------------
 inline int    ZCIntelliEdit::GetListBoxCurSel()
 {
     if (!IsFloatingListIsVisible())
@@ -256,25 +266,25 @@ inline int    ZCIntelliEdit::GetListBoxCurSel()
     return m_ListBoxOfValues.GetCurSel();
 }
 
-inline void    ZCIntelliEdit::SetListBoxCurSel( int CurSel )
+inline void    ZCIntelliEdit::SetListBoxCurSel(int CurSel)
 {
     if (!IsFloatingListIsVisible())
         return;
-    m_ListBoxOfValues.SetCurSel( CurSel );
+    m_ListBoxOfValues.SetCurSel(CurSel);
 }
 
-inline void    ZCIntelliEdit::GetListBoxTextCurSel( CString& Text )
+inline void    ZCIntelliEdit::GetListBoxTextCurSel(CString& Text)
 {
     int    CurSel = GetListBoxCurSel();
     if (CurSel == LB_ERR)
         Text = "";
     else
-        m_ListBoxOfValues.GetText( CurSel, Text );
+        m_ListBoxOfValues.GetText(CurSel, Text);
 }
 
-inline void    ZCIntelliEdit::ListBoxSelectString( LPCTSTR lpszItem, int nStartAfter )
+inline void    ZCIntelliEdit::ListBoxSelectString(LPCTSTR lpszItem, int nStartAfter)
 {
-    m_ListBoxOfValues.SelectString( nStartAfter, lpszItem );
+    m_ListBoxOfValues.SelectString(nStartAfter, lpszItem);
 }
 
 
@@ -289,14 +299,14 @@ inline void    ZCIntelliEdit::ShowListBox()
 {
     if (!::IsWindow(m_ListBoxOfValues.GetSafeHwnd()))
         return;
-    m_ListBoxOfValues.ShowWindow( SW_SHOW );
+    m_ListBoxOfValues.ShowWindow(SW_SHOW);
 }
 
 inline void    ZCIntelliEdit::HideListBox()
 {
     if (!::IsWindow(m_ListBoxOfValues.GetSafeHwnd()))
         return;
-    m_ListBoxOfValues.ShowWindow( SW_HIDE );
+    m_ListBoxOfValues.ShowWindow(SW_HIDE);
 }
 
 
@@ -312,19 +322,19 @@ inline int    ZCIntelliEdit::GetHistoryListBoxCurSel()
     return m_Button.GetListBoxCurSel();
 }
 
-inline void    ZCIntelliEdit::SetHistoryListBoxCurSel( int CurSel )
+inline void    ZCIntelliEdit::SetHistoryListBoxCurSel(int CurSel)
 {
-    m_Button.SetListBoxCurSel( CurSel );
+    m_Button.SetListBoxCurSel(CurSel);
 }
 
-inline void    ZCIntelliEdit::GetHistoryListBoxTextCurSel( CString& Text )
+inline void    ZCIntelliEdit::GetHistoryListBoxTextCurSel(CString& Text)
 {
     m_Button.GetListBoxTextCurSel(Text);
 }
 
-inline void    ZCIntelliEdit::HistoryListBoxSelectString( LPCTSTR lpszItem, int nStartAfter )
+inline void    ZCIntelliEdit::HistoryListBoxSelectString(LPCTSTR lpszItem, int nStartAfter)
 {
-    m_Button.ListBoxSelectString( lpszItem, nStartAfter );
+    m_Button.ListBoxSelectString(lpszItem, nStartAfter);
 }
 
 
@@ -343,8 +353,4 @@ inline void    ZCIntelliEdit::HideHistoryListBox()
     m_Button.HideListBox();
 }
 
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZCINTELLIEDIT_H__63999555_6224_42B8_92C9_2440F93DDB78__INCLUDED_)
+#endif

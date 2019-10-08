@@ -27,7 +27,7 @@
 // JMR-MODIF - Le 21 août 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
 //## begin module%366D71A502F0.additionalDeclarations preserve=yes
-HANDLE ZUNetwork::m_hInstMNet[MAX_MNETS] = { NULL };
+HANDLE ZUNetwork::m_hInstMNet[MAX_MNETS] = {NULL};
 
 #ifndef ORD_MNETNETWORKENUM
 #define ORD_MNETNETWORKENUM        33
@@ -50,14 +50,14 @@ HANDLE ZUNetwork::m_hInstMNet[MAX_MNETS] = { NULL };
 #define MNM_NET_PRIMARY            0x0001    // Network is primary network (Windows network)
 #endif
 
-typedef HANDLE    (WINAPI *LPMNETGETLASTTARGET)    ();
-typedef WORD    (WINAPI *LPMNETSETNEXTTARGET)    ( HANDLE        hNetwork );
-typedef WORD    (WINAPI *LPMNETNETWORKENUM)        ( HANDLE FAR*    hNetwork );
-typedef WORD    (WINAPI *LPMNETGETNETINFO)        ( HANDLE        hNetwork,
-                                                  WORD*            lpwNetInfo,
-                                                  LPSTR            lpszButton,
-                                                  LPINT            lpcbButton,
-                                                  HANDLE*        lphInstance );
+typedef HANDLE(WINAPI *LPMNETGETLASTTARGET)    ();
+typedef WORD(WINAPI *LPMNETSETNEXTTARGET)    (HANDLE        hNetwork);
+typedef WORD(WINAPI *LPMNETNETWORKENUM)        (HANDLE FAR*    hNetwork);
+typedef WORD(WINAPI *LPMNETGETNETINFO)        (HANDLE        hNetwork,
+                                               WORD*            lpwNetInfo,
+                                               LPSTR            lpszButton,
+                                               LPINT            lpcbButton,
+                                               HANDLE*        lphInstance);
 
 //## end module%366D71A502F0.additionalDeclarations
 
@@ -80,10 +80,10 @@ HANDLE ZUNetwork::m_hInstWFWDriver = 0;
 //## end ZUNetwork::hInstWFWDriver%366D7D0C00DB.attr
 
 ZUNetwork::ZUNetwork()
-    //## begin ZUNetwork::ZUNetwork%.hasinit preserve=no
-    //## end ZUNetwork::ZUNetwork%.hasinit
-    //## begin ZUNetwork::ZUNetwork%.initialization preserve=yes
-    //## end ZUNetwork::ZUNetwork%.initialization
+//## begin ZUNetwork::ZUNetwork%.hasinit preserve=no
+//## end ZUNetwork::ZUNetwork%.hasinit
+//## begin ZUNetwork::ZUNetwork%.initialization preserve=yes
+//## end ZUNetwork::ZUNetwork%.initialization
 {
     //## begin ZUNetwork::ZUNetwork%.body preserve=yes
     //## end ZUNetwork::ZUNetwork%.body
@@ -96,23 +96,23 @@ ZUNetwork::~ZUNetwork()
 }
 
 //## Other Operations (implementation)
-bool ZUNetwork::GetNetworkDrives( CStringArray& DriveArray )
+bool ZUNetwork::GetNetworkDrives(CStringArray& DriveArray)
 {
     //## begin ZUNetwork::GetNetworkDrives%947664380.body preserve=yes
     char DriveLetter[5];
 
-    for( int iDrive = 0 ; iDrive < 26 ; iDrive++ )
+    for (int iDrive = 0; iDrive < 26; iDrive++)
     {
-        sprintf( DriveLetter, _T( "%c:" ), _T( 'A' ) + iDrive );
+        sprintf(DriveLetter, _T("%c:"), _T('A') + iDrive);
 
-        UINT RetValue = GetDriveType( DriveLetter );
+        UINT RetValue = GetDriveType(DriveLetter);
 
-        if ( RetValue != DRIVE_REMOVABLE    &&
-             RetValue != DRIVE_FIXED        &&
-             RetValue != DRIVE_CDROM        &&
-             RetValue != DRIVE_RAMDISK )
+        if (RetValue != DRIVE_REMOVABLE &&
+            RetValue != DRIVE_FIXED &&
+            RetValue != DRIVE_CDROM &&
+            RetValue != DRIVE_RAMDISK)
         {
-            DriveArray.Add( DriveLetter );
+            DriveArray.Add(DriveLetter);
         }
     }
 
@@ -120,40 +120,40 @@ bool ZUNetwork::GetNetworkDrives( CStringArray& DriveArray )
     //## end ZUNetwork::GetNetworkDrives%947664380.body
 }
 
-bool ZUNetwork::Map( CString UNC, CString Local, bool CanSpecifyUsername )
+bool ZUNetwork::Map(CString UNC, CString Local, bool CanSpecifyUsername)
 {
     //## begin ZUNetwork::Map%947664376.body preserve=yes
     DWORD        Result;
     NETRESOURCE    NetResource;
 
     // Initialize the network resource structure
-    NetResource.dwType            = RESOURCETYPE_DISK;
-    NetResource.lpLocalName        = ( Local.IsEmpty() ) ? NULL : Local.GetBuffer( Local.GetLength() );
-    NetResource.lpRemoteName    = UNC.GetBuffer( UNC.GetLength() );
-    NetResource.lpProvider        = NULL;
+    NetResource.dwType = RESOURCETYPE_DISK;
+    NetResource.lpLocalName = (Local.IsEmpty()) ? NULL : Local.GetBuffer(Local.GetLength());
+    NetResource.lpRemoteName = UNC.GetBuffer(UNC.GetLength());
+    NetResource.lpProvider = NULL;
 
-    Result = WNetAddConnection2( &NetResource,    // pointer of the network resource structure
-                                 NULL,            // password
-                                 NULL,            // username
-                                 0 );            // not remembered, otherwise, specify CONNECT_UPDATE_PROFILE
+    Result = WNetAddConnection2(&NetResource,    // pointer of the network resource structure
+                                NULL,            // password
+                                NULL,            // username
+                                0);            // not remembered, otherwise, specify CONNECT_UPDATE_PROFILE
 
     UNC.ReleaseBuffer();
     Local.ReleaseBuffer();
 
     // Try again by asking the username and the password
-    if ( Result != WN_SUCCESS && CanSpecifyUsername == true )
+    if (Result != WN_SUCCESS && CanSpecifyUsername == true)
     {
         // Initialize the network resource structure
-        NetResource.dwType            = RESOURCETYPE_DISK;
-        NetResource.lpLocalName        = ( Local.IsEmpty() ) ? NULL : Local.GetBuffer( Local.GetLength() );
-        NetResource.lpRemoteName    = UNC.GetBuffer( UNC.GetLength() );
-        NetResource.lpProvider        = NULL;
+        NetResource.dwType = RESOURCETYPE_DISK;
+        NetResource.lpLocalName = (Local.IsEmpty()) ? NULL : Local.GetBuffer(Local.GetLength());
+        NetResource.lpRemoteName = UNC.GetBuffer(UNC.GetLength());
+        NetResource.lpProvider = NULL;
 
-        Result = WNetAddConnection3( ::GetDesktopWindow(),
-                                     &NetResource,        // pointer of the network resource structure
-                                     _T( "" ),            // empty string to let user enter a password
-                                     _T( "" ),            // empty string to let user enter another username
-                                     0 );                // not remembered, otherwise, specify CONNECT_UPDATE_PROFILE
+        Result = WNetAddConnection3(::GetDesktopWindow(),
+                                    &NetResource,        // pointer of the network resource structure
+                                    _T(""),            // empty string to let user enter a password
+                                    _T(""),            // empty string to let user enter another username
+                                    0);                // not remembered, otherwise, specify CONNECT_UPDATE_PROFILE
 
         UNC.ReleaseBuffer();
         Local.ReleaseBuffer();
@@ -163,36 +163,36 @@ bool ZUNetwork::Map( CString UNC, CString Local, bool CanSpecifyUsername )
     //## end ZUNetwork::Map%947664376.body
 }
 
-CString ZUNetwork::GetMap( CString Local )
+CString ZUNetwork::GetMap(CString Local)
 {
     //## begin ZUNetwork::GetMap%947664377.body preserve=yes
     DWORD        Result;
     char        Buffer[500];
     DWORD        Size = 500;
 
-    Result = WNetGetConnection( Local.GetBuffer( Local.GetLength() ),    // network device name
-                                Buffer,                                    // buffer
-                                &Size );                                // buffer size
+    Result = WNetGetConnection(Local.GetBuffer(Local.GetLength()),    // network device name
+                               Buffer,                                    // buffer
+                               &Size);                                // buffer size
 
     Local.ReleaseBuffer();
 
-    if ( Result == WN_SUCCESS )
+    if (Result == WN_SUCCESS)
     {
         return Buffer;
     }
 
-    return _T( "" );
+    return _T("");
     //## end ZUNetwork::GetMap%947664377.body
 }
 
-BOOL ZUNetwork::RemoveConnection( CString Connection )
+BOOL ZUNetwork::RemoveConnection(CString Connection)
 {
     //## begin ZUNetwork::RemoveConnection%947664378.body preserve=yes
     DWORD Result;
 
-    Result = WNetCancelConnection2 ( Connection.GetBuffer( Connection.GetLength() ),    // Network device name to disconnect either local or remote name
-                                     CONNECT_UPDATE_PROFILE,                            // Should or not update the profile, 0 if not necessary to update the user profile
-                                     TRUE );                                            // Force disconnection even if files are open
+    Result = WNetCancelConnection2(Connection.GetBuffer(Connection.GetLength()),    // Network device name to disconnect either local or remote name
+                                   CONNECT_UPDATE_PROFILE,                            // Should or not update the profile, 0 if not necessary to update the user profile
+                                   TRUE);                                            // Force disconnection even if files are open
 
     Connection.ReleaseBuffer();
 
@@ -200,7 +200,7 @@ BOOL ZUNetwork::RemoveConnection( CString Connection )
     //## end ZUNetwork::RemoveConnection%947664378.body
 }
 
-bool ZUNetwork::OpenConnection( CString Path, HWND hwndOwner, bool Temporarily, bool Interactive )
+bool ZUNetwork::OpenConnection(CString Path, HWND hwndOwner, bool Temporarily, bool Interactive)
 {
     //## begin ZUNetwork::OpenConnection%945889219.body preserve=yes
     NETRESOURCE    NetResource;
@@ -209,29 +209,29 @@ bool ZUNetwork::OpenConnection( CString Path, HWND hwndOwner, bool Temporarily, 
     DWORD        Result;
 
     // Initialize the network resource structure
-    NetResource.dwScope            = RESOURCE_GLOBALNET;
-    NetResource.dwType            = RESOURCETYPE_DISK;
-    NetResource.dwDisplayType    = RESOURCEDISPLAYTYPE_GENERIC;
-    NetResource.dwUsage            = RESOURCEUSAGE_NOLOCALDEVICE;
-    NetResource.lpLocalName        = NULL;
-    NetResource.lpRemoteName    = Path.GetBuffer( Path.GetLength() );
-    NetResource.lpComment        = _T( "" );
-    NetResource.lpProvider        = NULL;
+    NetResource.dwScope = RESOURCE_GLOBALNET;
+    NetResource.dwType = RESOURCETYPE_DISK;
+    NetResource.dwDisplayType = RESOURCEDISPLAYTYPE_GENERIC;
+    NetResource.dwUsage = RESOURCEUSAGE_NOLOCALDEVICE;
+    NetResource.lpLocalName = NULL;
+    NetResource.lpRemoteName = Path.GetBuffer(Path.GetLength());
+    NetResource.lpComment = _T("");
+    NetResource.lpProvider = NULL;
 
     // If no owner, assigns the desktop window handle
-    if ( hwndOwner == NULL )
+    if (hwndOwner == NULL)
     {
         hwndOwner = ::GetDesktopWindow();
     }
 
-    DWORD dwRet = WNetUseConnection( hwndOwner,                                    // hwndOwner
-                                     &NetResource,                                // lpNetResource,
-                                     NULL,                                        // lpPassword
-                                     NULL,                                        // lpUserID
-                                     CONNECT_TEMPORARY | CONNECT_INTERACTIVE,    // dwFlags,
-                                     AccessName,                                // lpAccessName
-                                     &AccessNameBufferSize,                        // lpBufferSize
-                                     &Result );                                    // lpResult
+    DWORD dwRet = WNetUseConnection(hwndOwner,                                    // hwndOwner
+                                    &NetResource,                                // lpNetResource,
+                                    NULL,                                        // lpPassword
+                                    NULL,                                        // lpUserID
+                                    CONNECT_TEMPORARY | CONNECT_INTERACTIVE,    // dwFlags,
+                                    AccessName,                                // lpAccessName
+                                    &AccessNameBufferSize,                        // lpBufferSize
+                                    &Result);                                    // lpResult
 
     Path.ReleaseBuffer();
 
@@ -239,48 +239,48 @@ bool ZUNetwork::OpenConnection( CString Path, HWND hwndOwner, bool Temporarily, 
     //## end ZUNetwork::OpenConnection%945889219.body
 }
 
-bool ZUNetwork::EnumConnections( ZNetResourceManager& ResourceManager )
+bool ZUNetwork::EnumConnections(PSS_NetResourceManager& ResourceManager)
 {
     //## begin ZUNetwork::EnumConnections%947664379.body preserve=yes
-    return EnumConnect( NULL, ResourceManager );
+    return EnumConnect(NULL, ResourceManager);
     //## end ZUNetwork::EnumConnections%947664379.body
 }
 
-bool ZUNetwork::GetFreeConnections( CStringArray& FreeConnectionArray )
+bool ZUNetwork::GetFreeConnections(CStringArray& FreeConnectionArray)
 {
     //## begin ZUNetwork::GetFreeConnections%947664375.body preserve=yes
-    ZNetResourceManager ResourceManager;
+    PSS_NetResourceManager ResourceManager;
 
-    if ( !EnumConnections( ResourceManager ) )
+    if (!EnumConnections(ResourceManager))
     {
         return false;
     }
 
     CStringArray DriveArray;
 
-    if ( !GetNetworkDrives( DriveArray ) )
+    if (!GetNetworkDrives(DriveArray))
     {
         return false;
     }
 
     // Now run through drives letter and try to locate
     // if already mapped
-    for ( size_t i = 0; i < DriveArray.GetSize(); ++i )
+    for (size_t i = 0; i < DriveArray.GetSize(); ++i)
     {
         bool Found = false;
 
-        for ( size_t ri = 0; ri < ResourceManager.GetNetResourceCount(); ++ri )
+        for (size_t ri = 0; ri < ResourceManager.GetNetResourceCount(); ++ri)
         {
-            if ( DriveArray.GetAt( i ).CompareNoCase( ResourceManager.GetNetResourceAt( ri )->GetLocalName() ) == 0 )
+            if (DriveArray.GetAt(i).CompareNoCase(ResourceManager.GetNetResourceAt(ri)->GetLocalName()) == 0)
             {
                 Found = true;
                 break;
             }
         }
 
-        if ( Found == false )
+        if (Found == false)
         {
-            FreeConnectionArray.Add( DriveArray.GetAt( i ) );
+            FreeConnectionArray.Add(DriveArray.GetAt(i));
         }
     }
 
@@ -288,31 +288,31 @@ bool ZUNetwork::GetFreeConnections( CStringArray& FreeConnectionArray )
     //## end ZUNetwork::GetFreeConnections%947664375.body
 }
 
-CString ZUNetwork::GetUNC( const CString value )
+CString ZUNetwork::GetUNC(const CString value)
 {
     //## begin ZUNetwork::GetUNC%945619906.body preserve=yes
     // Size of Buffer
-    DWORD                    cbBuff    = 1000;
+    DWORD                    cbBuff = 1000;
 
     // Buffer to receive information
     TCHAR                    szBuff[1000];
-    REMOTE_NAME_INFO*        prni    = (REMOTE_NAME_INFO*)&szBuff;
+    REMOTE_NAME_INFO*        prni = (REMOTE_NAME_INFO*)&szBuff;
 
     // Pointers to head of buffer
-    UNIVERSAL_NAME_INFO*    puni    = (UNIVERSAL_NAME_INFO*)&szBuff;
+    UNIVERSAL_NAME_INFO*    puni = (UNIVERSAL_NAME_INFO*)&szBuff;
     DWORD                    res;
 
-    if ( ( res = WNetGetUniversalName( (LPTSTR)( (const char*)value ),
-                                       UNIVERSAL_NAME_INFO_LEVEL,
-                                       (LPVOID)&szBuff,                    // Structure is written to this block of memory
-                                       &cbBuff ) ) != NO_ERROR )
+    if ((res = WNetGetUniversalName((LPTSTR)((const char*)value),
+                                    UNIVERSAL_NAME_INFO_LEVEL,
+                                    (LPVOID)&szBuff,                    // Structure is written to this block of memory
+                                    &cbBuff)) != NO_ERROR)
     {
         char Buffer[100];
 
         // If it fails print the error
-        sprintf( Buffer, _T( "Error: %ld\n\n" ), res );
+        sprintf(Buffer, _T("Error: %ld\n\n"), res);
 
-        return _T( "" );
+        return _T("");
     }
 
     // Using the pointer to the REMOTE_NAME_INFO_LEVEL structure
@@ -326,20 +326,20 @@ CString ZUNetwork::GetNetworkErrorMessage()
     INT         nBuffSize = 100;
     WORD        nError;
     CString        Error;
-    
+
     // Calling GetNetworkErrorNo at this point I am assuming that
     // a network error has indeed occured.
-    switch ( nError = GetNetworkErrorNo() )
+    switch (nError = GetNetworkErrorNo())
     {
         // Success!
         case WN_SUCCESS:
         {
-            return _T( "" );
+            return _T("");
         }
 
         case WN_NOT_SUPPORTED:
         {
-            Error.LoadString( IDS_NOT_SUPPORTED );
+            Error.LoadString(IDS_NOT_SUPPORTED);
             break;
         }
 
@@ -347,181 +347,181 @@ CString ZUNetwork::GetNetworkErrorMessage()
         {
             DWORD wRetCode;
 
-#ifndef _WIN32
+        #ifndef _WIN32
             // First see if this is a driver specific error.  Then use Winnet.h
-            wRetCode = WNetGetErrorText( nError, Error.GetBufferSetLength( nBuffSize ), &nBuffSize );
-#else
+            wRetCode = WNetGetErrorText(nError, Error.GetBufferSetLength(nBuffSize), &nBuffSize);
+        #else
             char szNameBuf[200];
-            WNetGetLastError( &wRetCode,
-                              Error.GetBufferSetLength( nBuffSize ),
-                              nBuffSize,
-                              szNameBuf,
-                              sizeof( szNameBuf ) );
-#endif
+            WNetGetLastError(&wRetCode,
+                             Error.GetBufferSetLength(nBuffSize),
+                             nBuffSize,
+                             szNameBuf,
+                             sizeof(szNameBuf));
+        #endif
 
             Error.ReleaseBuffer();
 
-            if ( wRetCode != WN_SUCCESS )
+            if (wRetCode != WN_SUCCESS)
             {
-                switch ( nError )
+                switch (nError)
                 {
                     case WN_SUCCESS:
                     {
-                        Error.LoadString( IDS_SUCCESS );
+                        Error.LoadString(IDS_SUCCESS);
                         break;
                     }
 
                     case WN_NOT_SUPPORTED:
                     {
-                        Error.LoadString( IDS_NOT_SUPPORTED );
+                        Error.LoadString(IDS_NOT_SUPPORTED);
                         break;
                     }
 
                     case WN_NET_ERROR:
                     {
-                        Error.LoadString( IDS_NET_ERROR );
+                        Error.LoadString(IDS_NET_ERROR);
                         break;
                     }
 
                     case WN_MORE_DATA:
                     {
-                        Error.LoadString( IDS_MORE_DATA );
+                        Error.LoadString(IDS_MORE_DATA);
                         break;
                     }
 
                     case WN_BAD_POINTER:
                     {
-                        Error.LoadString( IDS_BAD_POINTER );
+                        Error.LoadString(IDS_BAD_POINTER);
                         break;
                     }
 
                     case WN_BAD_VALUE:
                     {
-                        Error.LoadString( IDS_BAD_VALUE );
+                        Error.LoadString(IDS_BAD_VALUE);
                         break;
                     }
 
                     case WN_BAD_PASSWORD:
                     {
-                        Error.LoadString( IDS_BAD_PASSWORD );
+                        Error.LoadString(IDS_BAD_PASSWORD);
                         break;
                     }
 
                     case WN_ACCESS_DENIED:
                     {
-                        Error.LoadString( IDS_ACCESS_DENIED );
+                        Error.LoadString(IDS_ACCESS_DENIED);
                         break;
                     }
 
                     case WN_FUNCTION_BUSY:
                     {
-                        Error.LoadString( IDS_FUNCTION_BUSY );
+                        Error.LoadString(IDS_FUNCTION_BUSY);
                         break;
                     }
 
-#ifndef _WIN32
+                #ifndef _WIN32
                     case WN_WINDOWS_ERROR:
                     {
-                        Error.LoadString( IDS_WINDOWS_ERROR );
+                        Error.LoadString(IDS_WINDOWS_ERROR);
                         break;
                     }
-#endif
+                #endif
 
                     case WN_BAD_USER:
                     {
-                        Error.LoadString( IDS_BAD_USER );
+                        Error.LoadString(IDS_BAD_USER);
                         break;
                     }
 
                     case WN_OUT_OF_MEMORY:
                     {
-                        Error.LoadString( IDS_OUT_OF_MEMORY );
+                        Error.LoadString(IDS_OUT_OF_MEMORY);
                         break;
                     }
 
                     case WN_CANCEL:
                     {
-                        Error.LoadString( IDS_CANCEL );
+                        Error.LoadString(IDS_CANCEL);
                         break;
                     }
 
                     case WN_NOT_CONNECTED:
                     {
-                        Error.LoadString( IDS_NOT_CONNECTED );
+                        Error.LoadString(IDS_NOT_CONNECTED);
                         break;
                     }
 
                     case WN_OPEN_FILES:
                     {
-                        Error.LoadString( IDS_OPEN_FILES );
+                        Error.LoadString(IDS_OPEN_FILES);
                         break;
                     }
 
                     case WN_BAD_NETNAME:
                     {
-                        Error.LoadString( IDS_BAD_NETNAME );
+                        Error.LoadString(IDS_BAD_NETNAME);
                         break;
                     }
 
                     case WN_BAD_LOCALNAME:
                     {
-                        Error.LoadString( IDS_BAD_LOCALNAME );
+                        Error.LoadString(IDS_BAD_LOCALNAME);
                         break;
                     }
 
-#ifndef _WIN32
+                #ifndef _WIN32
                     case WN_BAD_JOBID:
                     {
-                        Error.LoadString( IDS_BAD_JOBID );
+                        Error.LoadString(IDS_BAD_JOBID);
                         break;
                     }
 
                     case WN_JOB_NOT_FOUND:
                     {
-                        Error.LoadString( IDS_JOB_NOT_FOUND );
+                        Error.LoadString(IDS_JOB_NOT_FOUND);
                         break;
                     }
 
                     case WN_JOB_NOT_HELD:
                     {
-                        Error.LoadString( IDS_JOB_NOT_HELD );
+                        Error.LoadString(IDS_JOB_NOT_HELD);
                         break;
                     }
 
                     case WN_BAD_QUEUE:
                     {
-                        Error.LoadString( IDS_BAD_QUEUE );
+                        Error.LoadString(IDS_BAD_QUEUE);
                         break;
                     }
 
                     case WN_BAD_FILE_HANDLE:
                     {
-                        Error.LoadString( IDS_BAD_FILE_HANDLE );
+                        Error.LoadString(IDS_BAD_FILE_HANDLE);
                         break;
                     }
 
                     case WN_CANT_SET_COPIES:
                     {
-                        Error.LoadString( IDS_CANT_SET_COPIES );
+                        Error.LoadString(IDS_CANT_SET_COPIES);
                         break;
                     }
 
                     case WN_ALREADY_LOCKED:
                     {
-                        Error.LoadString( IDS_ALREADY_LOCKED );
+                        Error.LoadString(IDS_ALREADY_LOCKED);
                         break;
                     }
-#endif
+                #endif
 
                     case WN_ALREADY_CONNECTED:
                     {
-                        Error.LoadString( IDS_ALREADY_CONNECTED );
+                        Error.LoadString(IDS_ALREADY_CONNECTED);
                         break;
                     }
 
                     default:
                     {
-                        Error.LoadString( IDS_UNKNOWN_ERROR_CODE );
+                        Error.LoadString(IDS_UNKNOWN_ERROR_CODE);
                         break;
                     }
                 } // switch (nError)
@@ -545,83 +545,83 @@ CString ZUNetwork::GetUserName()
     szUser[0] = 0;
 
 #ifndef _WIN32
-    static BOOL    notfirst    = FALSE;
-    HANDLE         hNetwork    = 0;
+    static BOOL    notfirst = FALSE;
+    HANDLE         hNetwork = 0;
     INT            nBuffSize;
 
-    nBuffSize = sizeof( szUser );
+    nBuffSize = sizeof(szUser);
 
     // Deal with windows for workgroups multinet
-    if ( MNetDetect() )
+    if (MNetDetect())
     {
         // Write message to the windebug
-        TRACE( _T( " Multinet detected in GetUser" ) );
+        TRACE(_T(" Multinet detected in GetUser"));
 
-        if ( hNetwork != 0 )
+        if (hNetwork != 0)
         {
             // Write message to the windebug
-            TRACE( _T( " MNetGetlastTarget returned with handle %u" ), (LPINT)hNetwork );
+            TRACE(_T(" MNetGetlastTarget returned with handle %u"), (LPINT)hNetwork);
 
-            if ( notfirst )
+            if (notfirst)
             {
                 hNetwork = GetLastTargetHandle();
-                SetNextTargetHandle( hNetwork );
+                SetNextTargetHandle(hNetwork);
             }
             else
             {
                 // Write message to the windebug
-                TRACE0( _T( " First time through -- don't believe WFW" ) );
+                TRACE0(_T(" First time through -- don't believe WFW"));
 
-                if ( NetworkEnumAll() )
+                if (NetworkEnumAll())
                 {
                     // Write message to the windebug
-                    TRACE1( _T( " MNetNetworkEnum returned %d Multinets, setting first as target" ), m_MNets );
-    
+                    TRACE1(_T(" MNetNetworkEnum returned %d Multinets, setting first as target"), m_MNets);
+
                     notfirst = TRUE;
 
-                    if ( m_Primary != 0 )
+                    if (m_Primary != 0)
                     {
-                        SetNextTargetHandle( m_Primary );
+                        SetNextTargetHandle(m_Primary);
                     }
                     else
                     {
-                        SetNextTargetHandle( m_hInstMNet[0] );
+                        SetNextTargetHandle(m_hInstMNet[0]);
                     }
                 }
                 else
                 {
-                    TRACE0( _T( " MNetNetworkEnum returned No Multinets--strange response" ) );
+                    TRACE0(_T(" MNetNetworkEnum returned No Multinets--strange response"));
                 }
             }
         }
         else
         {
             // Write message to the windebug
-            TRACE0( _T( " MNetGetLastTarget returned a NULL handle" ) );
+            TRACE0(_T(" MNetGetLastTarget returned a NULL handle"));
 
-            if ( NetworkEnumAll() )
+            if (NetworkEnumAll())
             {
                 // Write message to the windebug
-                TRACE0( _T( " MNetNetworkEnum returned Multinets, setting first as target" ) );
+                TRACE0(_T(" MNetNetworkEnum returned Multinets, setting first as target"));
 
-                if ( m_Primary != 0 )
+                if (m_Primary != 0)
                 {
-                    SetNextTargetHandle( m_Primary );
+                    SetNextTargetHandle(m_Primary);
                 }
                 else
                 {
-                    SetNextTargetHandle( m_hInstMNet[0] );
+                    SetNextTargetHandle(m_hInstMNet[0]);
                 }
             }
             else
             {
                 // Write message to the windebug
-                TRACE0( _T( " MNetNetworkEnum returned No Multinets--strange response" ) );
+                TRACE0(_T(" MNetNetworkEnum returned No Multinets--strange response"));
             }
         }
     }        // end of Multinet detect code
 
-    switch ( WNetGetUser( (LPSTR) szUser, (LPINT) &nBuffSize ) )
+    switch (WNetGetUser((LPSTR)szUser, (LPINT)&nBuffSize))
     {
         case WN_SUCCESS:
         {
@@ -655,9 +655,9 @@ CString ZUNetwork::GetUserName()
         }
     }
 #else
-    DWORD SizeBuffer = sizeof( szUser );
+    DWORD SizeBuffer = sizeof(szUser);
 
-    switch ( WNetGetUser( NULL, (LPSTR)szUser, &SizeBuffer ) )
+    switch (WNetGetUser(NULL, (LPSTR)szUser, &SizeBuffer))
     {
         case NO_ERROR:
         {
@@ -692,7 +692,7 @@ CString ZUNetwork::GetUserName()
     }
 #endif
 
-    return ( bRetValue ) ? szUser : _T( "" );
+    return (bRetValue) ? szUser : _T("");
     //## end ZUNetwork::GetUserName%913142851.body
 }
 
@@ -706,13 +706,13 @@ BOOL ZUNetwork::MNetDetect()
     WORD        nIndex;
 
     // First time, so we must determine
-    if ( iMultinet == -1 )
+    if (iMultinet == -1)
     {
         /* Query net version type */
-        nIndex = WNetGetCaps (WNNC_NET_TYPE);
+        nIndex = WNetGetCaps(WNNC_NET_TYPE);
 
         // Is MultiNet bit set ??
-        if ( nIndex & WNNC_NET_MultiNet )
+        if (nIndex & WNNC_NET_MultiNet)
         {
             iMultinet = 1;
         }
@@ -722,7 +722,7 @@ BOOL ZUNetwork::MNetDetect()
         }
     }
 
-    if ( iMultinet == 1 )
+    if (iMultinet == 1)
     {
         bRetVal = TRUE;
     }
@@ -742,24 +742,24 @@ BOOL ZUNetwork::WFWDetect()
     WORD        nIndex;
 
     // First time, so we must determine
-    if ( WFWnet == -1 )
+    if (WFWnet == -1)
     {
         WFWnet = 0;
 
         // Query net version type
-        nIndex = WNetGetCaps( WNNC_NET_TYPE );
+        nIndex = WNetGetCaps(WNNC_NET_TYPE);
 
         // Is MultiNet bit set ??
-        if ( nIndex & WNNC_NET_MultiNet )
+        if (nIndex & WNNC_NET_MultiNet)
         {
-            if ( nIndex & WNNC_SUBNET_WinWorkgroups )
+            if (nIndex & WNNC_SUBNET_WinWorkgroups)
             {
                 WFWnet = 1;
             }
         }
     }
 
-    if ( WFWnet == 1 )
+    if (WFWnet == 1)
     {
         bRetVal = TRUE;
     }
@@ -774,10 +774,10 @@ HANDLE ZUNetwork::GetWFWNetDriverHandle()
     //## begin ZUNetwork::GetWFWNetDriverHandle%913142854.body preserve=yes
 
 #ifndef _WIN32
-    HANDLE hinst    = 0;
-    hinst            = (HINSTANCE)WNetGetCaps( (WORD)0xffff );
+    HANDLE hinst = 0;
+    hinst = (HINSTANCE)WNetGetCaps((WORD)0xffff);
 
-    if ( hinst != 0 )
+    if (hinst != 0)
     {
         m_hInstWFWDriver = hinst;
     }
@@ -796,17 +796,17 @@ HANDLE ZUNetwork::GetLastTargetHandle()
     LPMNETGETLASTTARGET lpMNetGetLastTarget;
     HANDLE hlast = NULL;
 
-    if ( m_hInstWFWDriver == 0 )
+    if (m_hInstWFWDriver == 0)
     {
         m_hInstWFWDriver = GetWFWNetDriverHandle();
     }
 
-    if ( m_hInstWFWDriver != 0 )
+    if (m_hInstWFWDriver != 0)
     {
-        lpMNetGetLastTarget = (LPMNETGETLASTTARGET)GetProcAddress( (HINSTANCE)m_hInstWFWDriver,
-                                                                   (LPCSTR)MAKEINTRESOURCE( ORD_MNETGETLASTTARGET ) );
+        lpMNetGetLastTarget = (LPMNETGETLASTTARGET)GetProcAddress((HINSTANCE)m_hInstWFWDriver,
+            (LPCSTR)MAKEINTRESOURCE(ORD_MNETGETLASTTARGET));
 
-        if ( lpMNetGetLastTarget != NULL )
+        if (lpMNetGetLastTarget != NULL)
         {
             hlast = (*lpMNetGetLastTarget)();
         }
@@ -816,24 +816,24 @@ HANDLE ZUNetwork::GetLastTargetHandle()
     //## end ZUNetwork::GetLastTargetHandle%913142855.body
 }
 
-WORD ZUNetwork::SetNextTargetHandle( HANDLE hNetwork )
+WORD ZUNetwork::SetNextTargetHandle(HANDLE hNetwork)
 {
     //## begin ZUNetwork::SetNextTargetHandle%913142856.body preserve=yes
     // Pointer to MNet function
     LPMNETSETNEXTTARGET lpMNetSetNextTarget;
     WORD retval = WN_BAD_VALUE;
 
-    if ( m_hInstWFWDriver == 0 )
+    if (m_hInstWFWDriver == 0)
     {
         m_hInstWFWDriver = GetWFWNetDriverHandle();
     }
 
-    if ( m_hInstWFWDriver != 0 )
+    if (m_hInstWFWDriver != 0)
     {
-        lpMNetSetNextTarget = (LPMNETSETNEXTTARGET)GetProcAddress( (HINSTANCE)m_hInstWFWDriver,
-                                                                   (LPCSTR)MAKEINTRESOURCE( ORD_MNETSETNEXTTARGET ) );
+        lpMNetSetNextTarget = (LPMNETSETNEXTTARGET)GetProcAddress((HINSTANCE)m_hInstWFWDriver,
+            (LPCSTR)MAKEINTRESOURCE(ORD_MNETSETNEXTTARGET));
 
-        if ( lpMNetSetNextTarget != NULL )
+        if (lpMNetSetNextTarget != NULL)
         {
             retval = (*lpMNetSetNextTarget)(hNetwork);
         }
@@ -853,78 +853,78 @@ BOOL ZUNetwork::NetworkEnumAll()
 
     // Pointer to MNet function
     LPMNETGETNETINFO    lpMNetGetNetInfo;
-    WORD                NetInfo            = 0;
-    char                szButton[80]    = _T( "empty" );
+    WORD                NetInfo = 0;
+    char                szButton[80] = _T("empty");
     char                szBuffer2[100];
-    int                    cbButton        = 80;
-    HANDLE                hInstance        = NULL;
+    int                    cbButton = 80;
+    HANDLE                hInstance = NULL;
     WORD                errinfo;
-    BOOL                retval            = FALSE;
+    BOOL                retval = FALSE;
     int                    i;
 
     // Initialize our MNet array
-    for ( i = 0; i < MAX_MNETS; i++ )
+    for (i = 0; i < MAX_MNETS; i++)
     {
         m_hInstMNet[i++] = NULL;
     }
 
     i = 0;
 
-    if ( m_hInstWFWDriver == 0 )
+    if (m_hInstWFWDriver == 0)
     {
         m_hInstWFWDriver = GetWFWNetDriverHandle();
     }
 
-    if ( m_hInstWFWDriver != 0 )
+    if (m_hInstWFWDriver != 0)
     {
-        lpMNetNetworkEnum = (LPMNETNETWORKENUM)GetProcAddress( (HINSTANCE)m_hInstWFWDriver,
-                                                               (LPCSTR)MAKEINTRESOURCE( ORD_MNETNETWORKENUM ) );
+        lpMNetNetworkEnum = (LPMNETNETWORKENUM)GetProcAddress((HINSTANCE)m_hInstWFWDriver,
+            (LPCSTR)MAKEINTRESOURCE(ORD_MNETNETWORKENUM));
 
-        if ( lpMNetNetworkEnum != NULL )
+        if (lpMNetNetworkEnum != NULL)
         {
-            err = (*lpMNetNetworkEnum)( &hNetwork );
+            err = (*lpMNetNetworkEnum)(&hNetwork);
 
-            if ( hNetwork != 0 )
+            if (hNetwork != 0)
             {
                 m_hInstMNet[i++] = hNetwork;
-                lpMNetGetNetInfo = (LPMNETGETNETINFO)GetProcAddress( (HINSTANCE)m_hInstWFWDriver,
-                                                                     (LPCSTR) MAKEINTRESOURCE( ORD_MNETGETNETINFO ) );
+                lpMNetGetNetInfo = (LPMNETGETNETINFO)GetProcAddress((HINSTANCE)m_hInstWFWDriver,
+                    (LPCSTR)MAKEINTRESOURCE(ORD_MNETGETNETINFO));
 
-                if ( lpMNetGetNetInfo != NULL )
+                if (lpMNetGetNetInfo != NULL)
                 {
                     // Write message to the windebug
-                    wsprintf( (LPSTR)szBuffer2,
-                              (LPSTR)_T( " Debug: values before call Handle: %u, NetInfo: %u, Text: %s, Button Text length: %u, DLL handle: %u" ),
-                              (LPINT)&hNetwork,
-                              (LPINT)&NetInfo,
-                              (LPSTR)szButton,
-                              (LPINT)&cbButton,
-                              (LPINT)&hInstance );
+                    wsprintf((LPSTR)szBuffer2,
+                        (LPSTR)_T(" Debug: values before call Handle: %u, NetInfo: %u, Text: %s, Button Text length: %u, DLL handle: %u"),
+                             (LPINT)&hNetwork,
+                             (LPINT)&NetInfo,
+                             (LPSTR)szButton,
+                             (LPINT)&cbButton,
+                             (LPINT)&hInstance);
 
-                    TRACE1( _T( "%s" ), szBuffer2 );
+                    TRACE1(_T("%s"), szBuffer2);
 
-                    errinfo = (*lpMNetGetNetInfo)( (HANDLE)hNetwork,
-                                                   (WORD *)&NetInfo,
-                                                   (LPSTR)szButton,
-                                                   (LPINT)&cbButton,
-                                                   (HANDLE*)&hInstance );
+                    errinfo = (*lpMNetGetNetInfo)((HANDLE)hNetwork,
+                        (WORD *)&NetInfo,
+                                                  (LPSTR)szButton,
+                                                  (LPINT)&cbButton,
+                                                  (HANDLE*)&hInstance);
 
-                    if ( errinfo == WN_SUCCESS )
+                    if (errinfo == WN_SUCCESS)
                     {
                         // Write message to the windebug
-                        TRACE0( _T( " MNetGetInfo returned valid information" ) );
+                        TRACE0(_T(" MNetGetInfo returned valid information"));
 
-                        wsprintf( (LPSTR)szBuffer2,
-                                  (LPSTR)_T( " Handle: %u, NetInfo: %u, Text: %s, Button Text length: %u, DLL handle: %u" ),
-                                  (LPINT)&hNetwork,
-                                  (LPINT)&NetInfo,
-                                  (LPSTR)szButton,
-                                  (LPINT)&cbButton,
-                                  (LPINT)&hInstance );
+                        wsprintf((LPSTR)szBuffer2,
+                            (LPSTR)_T(" Handle: %u, NetInfo: %u, Text: %s, Button Text length: %u, DLL handle: %u"),
+                                 (LPINT)&hNetwork,
+                                 (LPINT)&NetInfo,
+                                 (LPSTR)szButton,
+                                 (LPINT)&cbButton,
+                                 (LPINT)&hInstance);
 
-                        TRACE1( _T( "%s" ),szBuffer2 );
+                        TRACE1(_T("%s"), szBuffer2);
 
-                        if ( NetInfo == MNM_NET_PRIMARY )
+                        if (NetInfo == MNM_NET_PRIMARY)
                         {
                             m_Primary = hNetwork;
                         }
@@ -932,53 +932,53 @@ BOOL ZUNetwork::NetworkEnumAll()
                     else
                     {
                         // Write message to the windebug
-                        TRACE0( _T( " MNetGetInfo returned invalid information" ) );
+                        TRACE0(_T(" MNetGetInfo returned invalid information"));
                     }
                 }
 
-                while ( err != WN_BAD_VALUE && i < MAX_MNETS )
+                while (err != WN_BAD_VALUE && i < MAX_MNETS)
                 {
-                    err = (*lpMNetNetworkEnum)( &hNetwork );
+                    err = (*lpMNetNetworkEnum)(&hNetwork);
 
-                    if ( hNetwork != 0 )
+                    if (hNetwork != 0)
                     {
                         m_hInstMNet[i++] = hNetwork;
 
-                        if ( lpMNetGetNetInfo != NULL )
+                        if (lpMNetGetNetInfo != NULL)
                         {
                             // Write message to the windebug
-                            wsprintf( (LPSTR)szBuffer2,
-                                      (LPSTR)_T( " Debug: values before call Handle: %u, NetInfo: %u, Text: %s, Button Text length: %u, DLL handle: %u" ),
-                                      (LPINT)&hNetwork,
-                                      (LPINT)&NetInfo,
-                                      (LPSTR)szButton,
-                                      (LPINT)&cbButton,
-                                      (LPINT)&hInstance );
+                            wsprintf((LPSTR)szBuffer2,
+                                (LPSTR)_T(" Debug: values before call Handle: %u, NetInfo: %u, Text: %s, Button Text length: %u, DLL handle: %u"),
+                                     (LPINT)&hNetwork,
+                                     (LPINT)&NetInfo,
+                                     (LPSTR)szButton,
+                                     (LPINT)&cbButton,
+                                     (LPINT)&hInstance);
 
-                            TRACE1( _T( "%s" ), szBuffer2 );
+                            TRACE1(_T("%s"), szBuffer2);
 
-                            errinfo = (*lpMNetGetNetInfo)( (HANDLE)hNetwork,
-                                                           (WORD *)&NetInfo,
-                                                           (LPSTR)szButton,
-                                                           (LPINT)&cbButton,
-                                                           (HANDLE *)&hInstance );
+                            errinfo = (*lpMNetGetNetInfo)((HANDLE)hNetwork,
+                                (WORD *)&NetInfo,
+                                                          (LPSTR)szButton,
+                                                          (LPINT)&cbButton,
+                                                          (HANDLE *)&hInstance);
 
-                            if ( errinfo == WN_SUCCESS )
+                            if (errinfo == WN_SUCCESS)
                             {
                                 // Write message to the windebug
-                                TRACE0( _T( " MNetGetInfo returned valid information" ) );
+                                TRACE0(_T(" MNetGetInfo returned valid information"));
 
-                                wsprintf( (LPSTR)szBuffer2,
-                                          (LPSTR)_T( " Handle: %u, NetInfo: %u, Text: %s, Button Text length: %u, DLL handle: %u" ),
-                                          (LPINT)&hNetwork,
-                                          (LPINT)&NetInfo,
-                                          (LPSTR)szButton,
-                                          (LPINT)&cbButton,
-                                          (LPINT)&hInstance );
+                                wsprintf((LPSTR)szBuffer2,
+                                    (LPSTR)_T(" Handle: %u, NetInfo: %u, Text: %s, Button Text length: %u, DLL handle: %u"),
+                                         (LPINT)&hNetwork,
+                                         (LPINT)&NetInfo,
+                                         (LPSTR)szButton,
+                                         (LPINT)&cbButton,
+                                         (LPINT)&hInstance);
 
-                                TRACE1( _T( "%s" ), szBuffer2 );
+                                TRACE1(_T("%s"), szBuffer2);
 
-                                if ( NetInfo == MNM_NET_PRIMARY )
+                                if (NetInfo == MNM_NET_PRIMARY)
                                 {
                                     m_Primary = hNetwork;
                                 }
@@ -990,9 +990,9 @@ BOOL ZUNetwork::NetworkEnumAll()
         }
 
         /* Did we find some networks ? */
-        for ( i = 0; i < MAX_MNETS; i++ )
+        for (i = 0; i < MAX_MNETS; i++)
         {
-            if ( m_hInstMNet[i] != 0 )
+            if (m_hInstMNet[i] != 0)
             {
                 m_MNets++;
                 retval = TRUE;
@@ -1004,7 +1004,7 @@ BOOL ZUNetwork::NetworkEnumAll()
     //## end ZUNetwork::NetworkEnumAll%913142857.body
 }
 
-bool ZUNetwork::EnumConnect( LPNETRESOURCE lpnr, ZNetResourceManager& ResourceManager )
+bool ZUNetwork::EnumConnect(LPNETRESOURCE lpnr, PSS_NetResourceManager& ResourceManager)
 {
     //## begin ZUNetwork::EnumConnect%947664374.body preserve=yes
     DWORD dwResult, dwResultEnum;
@@ -1015,65 +1015,65 @@ bool ZUNetwork::EnumConnect( LPNETRESOURCE lpnr, ZNetResourceManager& ResourceMa
     DWORD i;
 
     // Call the WNetOpenEnum function to begin the enumeration.
-    dwResult = WNetOpenEnum( RESOURCE_CONNECTED,    // All network resources
-                             RESOURCETYPE_ANY,        // All resources
-                             0,                        // Enumerate all resources
-                             lpnr,                    // NULL first time the function is called
-                             &hEnum );                // Handle to the resource
+    dwResult = WNetOpenEnum(RESOURCE_CONNECTED,    // All network resources
+                            RESOURCETYPE_ANY,        // All resources
+                            0,                        // Enumerate all resources
+                            lpnr,                    // NULL first time the function is called
+                            &hEnum);                // Handle to the resource
 
-    if ( dwResult != NO_ERROR )
+    if (dwResult != NO_ERROR)
     {
         // Process errors with an application-defined error handler.
         return false;
     }
 
     // Call the GlobalAlloc function to allocate resources.
-    lpnrLocal = (LPNETRESOURCE)GlobalAlloc( GPTR, cbBuffer );
+    lpnrLocal = (LPNETRESOURCE)GlobalAlloc(GPTR, cbBuffer);
 
     do
     {
         // Initialize the buffer.
-        ZeroMemory( lpnrLocal, cbBuffer );
+        ZeroMemory(lpnrLocal, cbBuffer);
 
         // Call the WNetEnumResource function to continue the enumeration.
-        dwResultEnum = WNetEnumResource( hEnum,            // Resource handle
-                                         &cEntries,        // Defined locally as -1
-                                         lpnrLocal,        // LPNETRESOURCE
-                                         &cbBuffer );    // Buffer size
+        dwResultEnum = WNetEnumResource(hEnum,            // Resource handle
+                                        &cEntries,        // Defined locally as -1
+                                        lpnrLocal,        // LPNETRESOURCE
+                                        &cbBuffer);    // Buffer size
 
-        // If the call succeeds, loop through the structures.
-        if ( dwResultEnum == NO_ERROR )
+       // If the call succeeds, loop through the structures.
+        if (dwResultEnum == NO_ERROR)
         {
-            for( i = 0; i < cEntries; i++ )
+            for (i = 0; i < cEntries; i++)
             {
-                ResourceManager.AddNetResource( &lpnrLocal[i] );
+                ResourceManager.AddNetResource(&lpnrLocal[i]);
 
                 // If the NETRESOURCE structure represents a container resource,
                 // call the EnumerateFunc function recursively.
-                if ( RESOURCEUSAGE_CONTAINER == ( lpnrLocal[i].dwUsage & RESOURCEUSAGE_CONTAINER ) )
+                if (RESOURCEUSAGE_CONTAINER == (lpnrLocal[i].dwUsage & RESOURCEUSAGE_CONTAINER))
                 {
-                    if( !EnumConnect( &lpnrLocal[i], ResourceManager ) )
+                    if (!EnumConnect(&lpnrLocal[i], ResourceManager))
                     {
-                        TRACE( _T( "EnumerateFunc returned FALSE." ) );
+                        TRACE(_T("EnumerateFunc returned FALSE."));
                     }
                 }
             }
         }
         // Process errors.
-        else if ( dwResultEnum != ERROR_NO_MORE_ITEMS )
+        else if (dwResultEnum != ERROR_NO_MORE_ITEMS)
         {
             break;
         }
     }
-    while( dwResultEnum != ERROR_NO_MORE_ITEMS );
+    while (dwResultEnum != ERROR_NO_MORE_ITEMS);
 
     // Call the GlobalFree function to free the memory.
-    GlobalFree( (HGLOBAL)lpnrLocal );
+    GlobalFree((HGLOBAL)lpnrLocal);
 
     // Call WNetCloseEnum to end the enumeration.
-    dwResult = WNetCloseEnum( hEnum );
+    dwResult = WNetCloseEnum(hEnum);
 
-    if( dwResult != NO_ERROR )
+    if (dwResult != NO_ERROR)
     {
         // Process errors.
         return false;

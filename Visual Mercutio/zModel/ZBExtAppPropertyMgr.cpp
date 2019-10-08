@@ -12,7 +12,7 @@
 #include "zBaseLib\PSS_Global.h"
 #include "zBaseLib\PSS_Tokenizer.h"
 
-#include "zBaseLib\ZNetResourceWrapper.h"
+#include "zBaseLib\PSS_NetResourceWrapper.h"
 #include "zBaseLib\PSS_TemplateFile.h"
 #include "zBaseLib\PSS_File.h"
 
@@ -600,14 +600,14 @@ bool ZBExtAppPropertyMgr::DoInsertExtApp(bool displayDialog)
 bool ZBExtAppPropertyMgr::AcceptDropItem(CObject* pObj, CPoint pt)
 {
     // Accept drop of file executable only
-    if (pObj && (ISA(pObj, ZNetResourceWrapper) &&
-                 !((ZNetResourceWrapper*)pObj)->GetFilename().IsEmpty() && ((ZNetResourceWrapper*)pObj)->IsFile()) ||
+    if (pObj && (ISA(pObj, PSS_NetResourceWrapper) &&
+                 !((PSS_NetResourceWrapper*)pObj)->GetFileName().IsEmpty() && ((PSS_NetResourceWrapper*)pObj)->IsFile()) ||
         ISA(pObj, ZBSystemEntity))        // If a system entity
     {
         // If it is a file, check what kind of file
-        if (ISA(pObj, ZNetResourceWrapper))
+        if (ISA(pObj, PSS_NetResourceWrapper))
         {
-            PSS_File file(((ZNetResourceWrapper*)pObj)->GetFilename());
+            PSS_File file(((PSS_NetResourceWrapper*)pObj)->GetFileName());
 
             if ((file.GetFileExt().CompareNoCase(_T(".exe")) == 0 ||
                  file.GetFileExt().CompareNoCase(_T(".com")) == 0 ||
@@ -629,14 +629,14 @@ bool ZBExtAppPropertyMgr::AcceptDropItem(CObject* pObj, CPoint pt)
 bool ZBExtAppPropertyMgr::DropItem(CObject* pObj, CPoint pt)
 {
     // Accept drop of file executable only
-    if (pObj && (ISA(pObj, ZNetResourceWrapper) &&
-                 !((ZNetResourceWrapper*)pObj)->GetFilename().IsEmpty() && ((ZNetResourceWrapper*)pObj)->IsFile()) ||
+    if (pObj && (ISA(pObj, PSS_NetResourceWrapper) &&
+                 !((PSS_NetResourceWrapper*)pObj)->GetFileName().IsEmpty() && ((PSS_NetResourceWrapper*)pObj)->IsFile()) ||
         ISA(pObj, ZBSystemEntity))        // If a system entity
     {
         // If it is a file, check what kind of file
-        if (ISA(pObj, ZNetResourceWrapper))
+        if (ISA(pObj, PSS_NetResourceWrapper))
         {
-            PSS_File file(((ZNetResourceWrapper*)pObj)->GetFilename());
+            PSS_File file(((PSS_NetResourceWrapper*)pObj)->GetFileName());
 
             // Add a new external application
             // First, check if there is an empty one.
@@ -656,10 +656,10 @@ bool ZBExtAppPropertyMgr::DropItem(CObject* pObj, CPoint pt)
                 }
                 else
                 {
-                    SetCommandTitle(Idx, ((ZNetResourceWrapper*)pObj)->GetFilename());
+                    SetCommandTitle(Idx, ((PSS_NetResourceWrapper*)pObj)->GetFileName());
                 }
 
-                SetCommandLine(Idx, ((ZNetResourceWrapper*)pObj)->GetFilename());
+                SetCommandLine(Idx, ((PSS_NetResourceWrapper*)pObj)->GetFileName());
                 SetCommandParameters(Idx, _T(""));
                 SetCommandStartupDirectory(Idx, file.GetFilePath());
                 SetPriorityLevel(Idx, THREAD_PRIORITY_NORMAL);

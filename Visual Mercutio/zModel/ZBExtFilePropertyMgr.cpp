@@ -7,7 +7,7 @@
 // processsoft
 #include "zBaseLib\PSS_Global.h"
 #include "zBaseLib\PSS_Tokenizer.h"
-#include "zBaseLib\ZNetResourceWrapper.h"
+#include "zBaseLib\PSS_NetResourceWrapper.h"
 #include "zBaseLib\PSS_TemplateFile.h"
 #include "zBaseLib\PSS_File.h"
 #include "zWinUtil32\PSS_ReferenceFileDialog.h"
@@ -20,7 +20,7 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -35,32 +35,30 @@ static CMenu gExtFilesMenu;
 //////////////////////////////////////////////////////////////////////
 
 ZBExtFilePropertyMgr::ZBExtFilePropertyMgr()
-{
-}
+{}
 
 ZBExtFilePropertyMgr::~ZBExtFilePropertyMgr()
-{
-}
+{}
 
-ZBExtFilePropertyMgr::ZBExtFilePropertyMgr( const ZBExtFilePropertyMgr& src )
+ZBExtFilePropertyMgr::ZBExtFilePropertyMgr(const ZBExtFilePropertyMgr& src)
 {
     *this = src;
 }
 
-ZBExtFilePropertyMgr& ZBExtFilePropertyMgr::operator=( const ZBExtFilePropertyMgr& src )
+ZBExtFilePropertyMgr& ZBExtFilePropertyMgr::operator=(const ZBExtFilePropertyMgr& src)
 {
     m_ExternalFiles = src.m_ExternalFiles;
     return *this;
 }
 
-bool ZBExtFilePropertyMgr::FillProperties( ZBPropertySet&    PropSet,
-                                           bool                NumericValue    /*= false*/,
-                                           bool                GroupValue        /*= false*/)
-{    
+bool ZBExtFilePropertyMgr::FillProperties(ZBPropertySet&    PropSet,
+                                          bool                NumericValue    /*= false*/,
+                                          bool                GroupValue        /*= false*/)
+{
     // If the menu is not loaded, load it
-    if ( gExtFilesMenu.GetSafeHmenu() == NULL )
+    if (gExtFilesMenu.GetSafeHmenu() == NULL)
     {
-        gExtFilesMenu.LoadMenu( IDR_EXTFILES_MENU );
+        gExtFilesMenu.LoadMenu(IDR_EXTFILES_MENU);
     }
 
     // Run through all combination properties
@@ -68,45 +66,45 @@ bool ZBExtFilePropertyMgr::FillProperties( ZBPropertySet&    PropSet,
     CString    PropTitle;
     CString    PropName;
     CString    PropDesc;
-    size_t    Count                = GetExtFileCount();
+    size_t    Count = GetExtFileCount();
 
-    PropTitle.LoadString( IDS_ZS_BP_PROP_EXTFILE_TITLE );
+    PropTitle.LoadString(IDS_ZS_BP_PROP_EXTFILE_TITLE);
 
-    for ( size_t i = 0; i < Count; ++i )
+    for (size_t i = 0; i < Count; ++i)
     {
-        FinalPropTitle.Format( _T( "%s (%d)" ), PropTitle, i + 1 );
+        FinalPropTitle.Format(_T("%s (%d)"), PropTitle, i + 1);
 
-        PropName.LoadString( IDS_Z_FILE_TITLE_NAME );
-        PropDesc.LoadString( IDS_Z_FILE_TITLE_DESC );
+        PropName.LoadString(IDS_Z_FILE_TITLE_NAME);
+        PropDesc.LoadString(IDS_Z_FILE_TITLE_DESC);
 
         // Propriété "Titre lien" du groupe "Lien externe"
-        ZBProperty* pCombination = new ZBProperty( FinalPropTitle,
-                                                   ( GroupValue == true ) ? ZS_BP_PROP_EXTFILE : ( ZS_BP_PROP_EXTFILE + i ),
-                                                   PropName,
-                                                   ( GroupValue == true ) ? Z_FILE_TITLE : ( Z_FILE_TITLE + ( i * 40 ) ),
-                                                   PropDesc,
-                                                   GetFileTitle( i ),
-                                                   ZBProperty::PT_EDIT_MENU,
-                                                   true,
-                                                  PSS_StringFormat(PSS_StringFormat::IE_FT_General ),
-                                                   NULL,
-                                                   &gExtFilesMenu );
+        ZBProperty* pCombination = new ZBProperty(FinalPropTitle,
+            (GroupValue == true) ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
+                                                  PropName,
+                                                  (GroupValue == true) ? Z_FILE_TITLE : (Z_FILE_TITLE + (i * 40)),
+                                                  PropDesc,
+                                                  GetFileTitle(i),
+                                                  ZBProperty::PT_EDIT_MENU,
+                                                  true,
+                                                  PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                                  NULL,
+                                                  &gExtFilesMenu);
 
-        PropSet.Add( pCombination );
+        PropSet.Add(pCombination);
 
-        PropName.LoadString( IDS_Z_FILE_NAME_NAME );
-        PropDesc.LoadString( IDS_Z_FILE_NAME_DESC );
+        PropName.LoadString(IDS_Z_FILE_NAME_NAME);
+        PropDesc.LoadString(IDS_Z_FILE_NAME_DESC);
 
         // Propriété "Lien" du groupe "Lien externe"
-        pCombination = new ZBProperty( FinalPropTitle,
-                                       ( GroupValue == true ) ? ZS_BP_PROP_EXTFILE : ( ZS_BP_PROP_EXTFILE + i ),
-                                       PropName,
-                                       ( GroupValue == true ) ? Z_FILE_NAME : ( Z_FILE_NAME + ( i * 40 ) ),
-                                       PropDesc,
-                                       GetFilename( i ),
-                                       ZBProperty::PT_EDIT_EXTENDED );
+        pCombination = new ZBProperty(FinalPropTitle,
+            (GroupValue == true) ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
+                                      PropName,
+                                      (GroupValue == true) ? Z_FILE_NAME : (Z_FILE_NAME + (i * 40)),
+                                      PropDesc,
+                                      GetFilename(i),
+                                      ZBProperty::PT_EDIT_EXTENDED);
 
-        PropSet.Add( pCombination );
+        PropSet.Add(pCombination);
 
         // RS-MODIF appears only if messenger activated (call to next function)
         /*
@@ -174,14 +172,14 @@ bool ZBExtFilePropertyMgr::FillProperties( ZBPropertySet&    PropSet,
 }
 
 // RS-MODIF 11.12.04 fill properties only for Messenger
-bool ZBExtFilePropertyMgr::FillPropertiesMessenger( ZBPropertySet&    PropSet,
-                                                    bool            NumericValue    /*= false*/,
-                                                    bool            GroupValue        /*= false*/ )
-{    
+bool ZBExtFilePropertyMgr::FillPropertiesMessenger(ZBPropertySet&    PropSet,
+                                                   bool            NumericValue    /*= false*/,
+                                                   bool            GroupValue        /*= false*/)
+{
     // If the menu is not loaded, load it
-    if ( gExtFilesMenu.GetSafeHmenu() == NULL )
+    if (gExtFilesMenu.GetSafeHmenu() == NULL)
     {
-        gExtFilesMenu.LoadMenu( IDR_EXTFILES_MENU );
+        gExtFilesMenu.LoadMenu(IDR_EXTFILES_MENU);
     }
 
     // Run through all combination properties
@@ -189,128 +187,128 @@ bool ZBExtFilePropertyMgr::FillPropertiesMessenger( ZBPropertySet&    PropSet,
     CString    PropTitle;
     CString    PropName;
     CString    PropDesc;
-    size_t    Count            = GetExtFileCount();
+    size_t    Count = GetExtFileCount();
 
-    PropTitle.LoadString( IDS_ZS_BP_PROP_EXTFILE_TITLE );
+    PropTitle.LoadString(IDS_ZS_BP_PROP_EXTFILE_TITLE);
 
-    for ( size_t i = 0; i < Count; ++i )
+    for (size_t i = 0; i < Count; ++i)
     {
-        FinalPropTitle.Format( _T( "%s (%d)" ), PropTitle, i + 1 );
+        FinalPropTitle.Format(_T("%s (%d)"), PropTitle, i + 1);
 
         ZBProperty* pCombination;
 
-        PropName.LoadString( IDS_Z_INSERTION_TYPE_NAME );
-        PropDesc.LoadString( IDS_Z_INSERTION_TYPE_DESC );
+        PropName.LoadString(IDS_Z_INSERTION_TYPE_NAME);
+        PropDesc.LoadString(IDS_Z_INSERTION_TYPE_DESC);
 
         // Propriété "Mode d'insertion" du groupe "Lien externe"
-        if ( NumericValue )
+        if (NumericValue)
         {
-            pCombination = new ZBProperty( FinalPropTitle,
-                                           ( GroupValue == true ) ? ZS_BP_PROP_EXTFILE : ( ZS_BP_PROP_EXTFILE + i ),
-                                           PropName,
-                                           ( GroupValue == true ) ? Z_INSERTION_TYPE : ( Z_INSERTION_TYPE + ( i * 40 ) ),
-                                           PropDesc,
-                                           (double)GetInsertionType( i ),
-                                           ZBProperty::PT_EDIT_NUMBER );
+            pCombination = new ZBProperty(FinalPropTitle,
+                (GroupValue == true) ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
+                                          PropName,
+                                          (GroupValue == true) ? Z_INSERTION_TYPE : (Z_INSERTION_TYPE + (i * 40)),
+                                          PropDesc,
+                                          (double)GetInsertionType(i),
+                                          ZBProperty::PT_EDIT_NUMBER);
         }
         else
         {
-            pCombination = new ZBProperty( FinalPropTitle,
-                                           ( GroupValue == true ) ? ZS_BP_PROP_EXTFILE : ( ZS_BP_PROP_EXTFILE + i ),
-                                           PropName,
-                                           ( GroupValue == true ) ? Z_INSERTION_TYPE : ( Z_INSERTION_TYPE + ( i * 40 ) ),
-                                           PropDesc,
-                                          PSS_Global::GetInsertionTypeString( GetInsertionType( i ) ),
-                                           ZBProperty::PT_COMBO_STRING_READONLY,
-                                           true,
-                                          PSS_StringFormat(PSS_StringFormat::IE_FT_General ),
-                                          PSS_Global::GetArrayInsertionType() );
+            pCombination = new ZBProperty(FinalPropTitle,
+                (GroupValue == true) ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
+                                          PropName,
+                                          (GroupValue == true) ? Z_INSERTION_TYPE : (Z_INSERTION_TYPE + (i * 40)),
+                                          PropDesc,
+                                          PSS_Global::GetInsertionTypeString(GetInsertionType(i)),
+                                          ZBProperty::PT_COMBO_STRING_READONLY,
+                                          true,
+                                          PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                          PSS_Global::GetArrayInsertionType());
         }
 
-        PropSet.Add( pCombination );
+        PropSet.Add(pCombination);
 
-        PropName.LoadString( IDS_Z_ACTIVATION_TYPE_NAME );
-        PropDesc.LoadString( IDS_Z_ACTIVATION_TYPE_DESC );
+        PropName.LoadString(IDS_Z_ACTIVATION_TYPE_NAME);
+        PropDesc.LoadString(IDS_Z_ACTIVATION_TYPE_DESC);
 
         // Propriété "Mode d'activation" du groupe "Lien externe"
-        if ( NumericValue )
+        if (NumericValue)
         {
-                pCombination = new ZBProperty( FinalPropTitle,
-                                               ( GroupValue == true ) ? ZS_BP_PROP_EXTFILE : ( ZS_BP_PROP_EXTFILE + i ),
-                                               PropName,
-                                               ( GroupValue == true ) ? Z_ACTIVATION_TYPE : ( Z_ACTIVATION_TYPE + ( i * 40 ) ),
-                                               PropDesc,
-                                               (double)GetActivationType( i ),
-                                               ZBProperty::PT_EDIT_NUMBER);
+            pCombination = new ZBProperty(FinalPropTitle,
+                (GroupValue == true) ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
+                                          PropName,
+                                          (GroupValue == true) ? Z_ACTIVATION_TYPE : (Z_ACTIVATION_TYPE + (i * 40)),
+                                          PropDesc,
+                                          (double)GetActivationType(i),
+                                          ZBProperty::PT_EDIT_NUMBER);
         }
         else
         {
-                pCombination = new ZBProperty( FinalPropTitle,
-                                               ( GroupValue == true ) ? ZS_BP_PROP_EXTFILE : ( ZS_BP_PROP_EXTFILE + i ),
-                                               PropName,
-                                               ( GroupValue == true ) ? Z_ACTIVATION_TYPE : ( Z_ACTIVATION_TYPE + ( i * 40 ) ),
-                                               PropDesc,
-                                              PSS_Global::GetActivationTypeString( GetActivationType( i ) ),
-                                               ZBProperty::PT_COMBO_STRING_READONLY,
-                                               true,
-                                              PSS_StringFormat(PSS_StringFormat::IE_FT_General ),
-                                              PSS_Global::GetArrayActivationType() );
+            pCombination = new ZBProperty(FinalPropTitle,
+                (GroupValue == true) ? ZS_BP_PROP_EXTFILE : (ZS_BP_PROP_EXTFILE + i),
+                                          PropName,
+                                          (GroupValue == true) ? Z_ACTIVATION_TYPE : (Z_ACTIVATION_TYPE + (i * 40)),
+                                          PropDesc,
+                                          PSS_Global::GetActivationTypeString(GetActivationType(i)),
+                                          ZBProperty::PT_COMBO_STRING_READONLY,
+                                          true,
+                                          PSS_StringFormat(PSS_StringFormat::IE_FT_General),
+                                          PSS_Global::GetArrayActivationType());
         }
 
-        PropSet.Add( pCombination );
+        PropSet.Add(pCombination);
     }
 
     return true;
 }
 
-bool ZBExtFilePropertyMgr::SaveProperties( ZBPropertySet& PropSet )
+bool ZBExtFilePropertyMgr::SaveProperties(ZBPropertySet& PropSet)
 {
     // Now run through the list of data and fill the property set of external files
-    ZBPropertyIterator i( &PropSet );
+    ZBPropertyIterator i(&PropSet);
     ZBProperty* pProp;
 
-    for ( pProp = i.GetFirst(); pProp; pProp = i.GetNext() )
+    for (pProp = i.GetFirst(); pProp; pProp = i.GetNext())
     {
-        if ( pProp->GetCategoryID() >= ZS_BP_PROP_EXTFILE &&
-             pProp->GetCategoryID() <= ( ZS_BP_PROP_EXTFILE + (int)GetExtFileCount() ) )
+        if (pProp->GetCategoryID() >= ZS_BP_PROP_EXTFILE &&
+            pProp->GetCategoryID() <= (ZS_BP_PROP_EXTFILE + (int)GetExtFileCount()))
         {
-            SaveProperty( *pProp );
+            SaveProperty(*pProp);
         }
     }
 
     return true;
 }
 
-bool ZBExtFilePropertyMgr::SaveProperty( ZBProperty& Property )
+bool ZBExtFilePropertyMgr::SaveProperty(ZBProperty& Property)
 {
-    if ( Property.GetCategoryID() >= ZS_BP_PROP_EXTFILE &&
-         Property.GetCategoryID() <= ( ZS_BP_PROP_EXTFILE + (int)GetExtFileCount() ) )
+    if (Property.GetCategoryID() >= ZS_BP_PROP_EXTFILE &&
+        Property.GetCategoryID() <= (ZS_BP_PROP_EXTFILE + (int)GetExtFileCount()))
     {
         int i = Property.GetCategoryID() - ZS_BP_PROP_EXTFILE;
 
-        switch( Property.GetItemID() - ( i * 40 ) )
+        switch (Property.GetItemID() - (i * 40))
         {
             case Z_FILE_TITLE:
             {
-                SetFileTitle( i, Property.GetValueString() );
+                SetFileTitle(i, Property.GetValueString());
                 break;
             }
 
             case Z_FILE_NAME:
             {
-                SetFilename( i, Property.GetValueString() );
+                SetFilename(i, Property.GetValueString());
                 break;
             }
 
             case Z_INSERTION_TYPE:
             {
-                SetInsertionType( i, PSS_Global::GetInsertionType( Property.GetValueString() ) );
+                SetInsertionType(i, PSS_Global::GetInsertionType(Property.GetValueString()));
                 break;
             }
 
             case Z_ACTIVATION_TYPE:
             {
-                SetActivationType( i, PSS_Global::GetActivationType( Property.GetValueString() ) );
+                SetActivationType(i, PSS_Global::GetActivationType(Property.GetValueString()));
                 break;
             }
         }
@@ -319,13 +317,13 @@ bool ZBExtFilePropertyMgr::SaveProperty( ZBProperty& Property )
     return true;
 }
 
-bool ZBExtFilePropertyMgr::ProcessExtendedInput( ZBProperty&    Property,
-                                                 CString&        value,
-                                                 ZBPropertySet&    Properties,
-                                                 bool&            Refresh )
+bool ZBExtFilePropertyMgr::ProcessExtendedInput(ZBProperty&    Property,
+                                                CString&        value,
+                                                ZBPropertySet&    Properties,
+                                                bool&            Refresh)
 {
-    if ( Property.GetCategoryID() >= ZS_BP_PROP_EXTFILE &&
-         Property.GetCategoryID() <= ( ZS_BP_PROP_EXTFILE + (int)GetExtFileCount() ) )
+    if (Property.GetCategoryID() >= ZS_BP_PROP_EXTFILE &&
+        Property.GetCategoryID() <= (ZS_BP_PROP_EXTFILE + (int)GetExtFileCount()))
     {
         int i = Property.GetCategoryID() - ZS_BP_PROP_EXTFILE;
 
@@ -339,9 +337,9 @@ bool ZBExtFilePropertyMgr::ProcessExtendedInput( ZBProperty&    Property,
             value = refFileDlg.GetReference();
             PSS_File file(refFileDlg.GetReference());
 
-            if ( file.Exist() )
+            if (file.Exist())
             {
-                SetFileTitle( i, file.GetDisplayName() );
+                SetFileTitle(i, file.GetDisplayName());
             }
             else
             {
@@ -360,26 +358,26 @@ bool ZBExtFilePropertyMgr::ProcessExtendedInput( ZBProperty&    Property,
     return false;
 }
 
-bool ZBExtFilePropertyMgr::ProcessMenuCommand( int                MenuCommand,
-                                               ZBProperty&        Property,
-                                               CString&            value,
-                                               ZBPropertySet&    Properties,
-                                               bool&            Refresh )
+bool ZBExtFilePropertyMgr::ProcessMenuCommand(int                MenuCommand,
+                                              ZBProperty&        Property,
+                                              CString&            value,
+                                              ZBPropertySet&    Properties,
+                                              bool&            Refresh)
 {
-    if ( Property.GetCategoryID() >= ZS_BP_PROP_EXTFILE &&
-         Property.GetCategoryID() <= ( ZS_BP_PROP_EXTFILE + (int)GetExtFileCount() ) )
+    if (Property.GetCategoryID() >= ZS_BP_PROP_EXTFILE &&
+        Property.GetCategoryID() <= (ZS_BP_PROP_EXTFILE + (int)GetExtFileCount()))
     {
-        switch( MenuCommand )
+        switch (MenuCommand)
         {
             case ID_ADD_NEWEXTFILE:
             {
-                OnAddNewExtFile( Property, value, Properties, Refresh );
+                OnAddNewExtFile(Property, value, Properties, Refresh);
                 break;
             }
 
             case ID_DEL_CURRENTEXTFILE:
             {
-                OnDelCurrentExtFile( Property, value, Properties, Refresh );
+                OnDelCurrentExtFile(Property, value, Properties, Refresh);
                 break;
             }
 
@@ -393,14 +391,14 @@ bool ZBExtFilePropertyMgr::ProcessMenuCommand( int                MenuCommand,
     return false;
 }
 
-bool ZBExtFilePropertyMgr::DoInsertExtFile( bool DisplayDialog /*= true*/ )
+bool ZBExtFilePropertyMgr::DoInsertExtFile(bool DisplayDialog /*= true*/)
 {
     int Idx = AddNewExtFile();
 
     // Add a new external file
-    if ( Idx >= 0 )
+    if (Idx >= 0)
     {
-        if ( DisplayDialog )
+        if (DisplayDialog)
         {
             // call the dialog
             PSS_ReferenceFileDialog refFileDlg(GetFilename(Idx),
@@ -411,9 +409,9 @@ bool ZBExtFilePropertyMgr::DoInsertExtFile( bool DisplayDialog /*= true*/ )
             {
                 PSS_File file(refFileDlg.GetReference());
 
-                if ( file.Exist() )
+                if (file.Exist())
                 {
-                    SetFileTitle( Idx, file.GetDisplayName() );
+                    SetFileTitle(Idx, file.GetDisplayName());
                 }
                 else
                 {
@@ -433,28 +431,28 @@ bool ZBExtFilePropertyMgr::DoInsertExtFile( bool DisplayDialog /*= true*/ )
 }
 
 // Drag and drop methods
-bool ZBExtFilePropertyMgr::AcceptDropItem( CObject* pObj, CPoint pt )
+bool ZBExtFilePropertyMgr::AcceptDropItem(CObject* pObj, CPoint pt)
 {
     // Accept drop of file, scriptor template file and URL only
-    if ( pObj && ISA( pObj, PSS_TemplateFile) ||
-         ( ISA( pObj, ZNetResourceWrapper ) && !( (ZNetResourceWrapper*)pObj )->GetFilename().IsEmpty() &&
-         ( (ZNetResourceWrapper*)pObj )->IsFile() ) )
+    if (pObj && ISA(pObj, PSS_TemplateFile) ||
+        (ISA(pObj, PSS_NetResourceWrapper) && !((PSS_NetResourceWrapper*)pObj)->GetFileName().IsEmpty() &&
+        ((PSS_NetResourceWrapper*)pObj)->IsFile()))
     {
         // If is a template, check if we accept external file
-        if ( ISA( pObj, PSS_TemplateFile) )
+        if (ISA(pObj, PSS_TemplateFile))
         {
             return true;
         }
 
         // If it is a file, check what kind of file
-        if ( ISA( pObj, ZNetResourceWrapper ) )
+        if (ISA(pObj, PSS_NetResourceWrapper))
         {
             // If an executable, not allowed
-            PSS_File file( ( (ZNetResourceWrapper*)pObj )->GetFilename() );
+            PSS_File file(((PSS_NetResourceWrapper*)pObj)->GetFileName());
 
-            if ( file.GetFileExt().CompareNoCase( _T( ".exe" ) ) == 0 ||
-                 file.GetFileExt().CompareNoCase( _T( ".com" ) ) == 0 ||
-                 file.GetFileExt().CompareNoCase( _T( ".bat" ) ) == 0 )
+            if (file.GetFileExt().CompareNoCase(_T(".exe")) == 0 ||
+                file.GetFileExt().CompareNoCase(_T(".com")) == 0 ||
+                file.GetFileExt().CompareNoCase(_T(".bat")) == 0)
             {
                 return false;
             }
@@ -467,50 +465,50 @@ bool ZBExtFilePropertyMgr::AcceptDropItem( CObject* pObj, CPoint pt )
     return false;
 }
 
-bool ZBExtFilePropertyMgr::DropItem( CObject* pObj, CPoint pt )
+bool ZBExtFilePropertyMgr::DropItem(CObject* pObj, CPoint pt)
 {
-    if ( pObj && ISA( pObj, PSS_TemplateFile) ||
-         ( ISA( pObj, ZNetResourceWrapper ) && !( (ZNetResourceWrapper*)pObj )->GetFilename().IsEmpty() &&
-         ( (ZNetResourceWrapper*)pObj )->IsFile() ) )
+    if (pObj && ISA(pObj, PSS_TemplateFile) ||
+        (ISA(pObj, PSS_NetResourceWrapper) && !((PSS_NetResourceWrapper*)pObj)->GetFileName().IsEmpty() &&
+        ((PSS_NetResourceWrapper*)pObj)->IsFile()))
     {
         // Add a new external file
         // First, check if there is an empty one.
         // If there is, use it
         int Idx = LocateFirstEmptyExtFile();
 
-        if ( Idx == -1 )
+        if (Idx == -1)
         {
             Idx = AddNewExtFile();
         }
 
         // If is a template, add it
-        if ( Idx >= 0 && ISA( pObj, PSS_TemplateFile) )
+        if (Idx >= 0 && ISA(pObj, PSS_TemplateFile))
         {
-            SetFileTitle( Idx, ( (PSS_TemplateFile*)pObj )->GetTitle() );
-            SetFilename( Idx, ( (PSS_TemplateFile*)pObj )->GetFileName() );
-            SetInsertionType( Idx, 0 );
-            SetActivationType( Idx, 0 );
+            SetFileTitle(Idx, ((PSS_TemplateFile*)pObj)->GetTitle());
+            SetFilename(Idx, ((PSS_TemplateFile*)pObj)->GetFileName());
+            SetInsertionType(Idx, 0);
+            SetActivationType(Idx, 0);
 
             return true;
         }
 
         // If it is a file, add it
-        if ( Idx >= 0 && ISA( pObj, ZNetResourceWrapper ) )
+        if (Idx >= 0 && ISA(pObj, PSS_NetResourceWrapper))
         {
-            PSS_File file( ( (ZNetResourceWrapper*)pObj )->GetFilename() );
+            PSS_File file(((PSS_NetResourceWrapper*)pObj)->GetFileName());
 
-            if ( file.Exist() )
+            if (file.Exist())
             {
-                SetFileTitle( Idx, file.GetDisplayName() );
+                SetFileTitle(Idx, file.GetDisplayName());
             }
             else
             {
-                SetFileTitle( Idx, ( (ZNetResourceWrapper*)pObj )->GetFilename() );
+                SetFileTitle(Idx, ((PSS_NetResourceWrapper*)pObj)->GetFileName());
             }
 
-            SetFilename( Idx, ( (ZNetResourceWrapper*)pObj )->GetFilename() );
-            SetInsertionType( Idx, 0 );
-            SetActivationType( Idx, 0 );
+            SetFilename(Idx, ((PSS_NetResourceWrapper*)pObj)->GetFileName());
+            SetInsertionType(Idx, 0);
+            SetActivationType(Idx, 0);
 
             return true;
         }
@@ -519,14 +517,14 @@ bool ZBExtFilePropertyMgr::DropItem( CObject* pObj, CPoint pt )
     return false;
 }
 
-void ZBExtFilePropertyMgr::Serialize( CArchive& ar )
+void ZBExtFilePropertyMgr::Serialize(CArchive& ar)
 {
-    if ( ar.IsStoring() )
+    if (ar.IsStoring())
     {
         // Before storing elements,
         // removes all empty elements
         RemoveAllEmptyExtFiles();
     }
 
-    m_ExternalFiles.Serialize( ar );
+    m_ExternalFiles.Serialize(ar);
 }

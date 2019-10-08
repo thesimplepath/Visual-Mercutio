@@ -217,7 +217,7 @@ BOOL PSS_DirTreeCtrl::OnSelchangedTree(NMHDR* pNMHDR, LRESULT* pResult)
 
     // disable search on workstation roots
     m_IsValid = !((GetItemData(pNMTreeView->itemNew.hItem) &&
-            ((ZNetResourceWrapper*)GetItemData(pNMTreeView->itemNew.hItem))->GetNetResource()) ||
+            ((PSS_NetResourceWrapper*)GetItemData(pNMTreeView->itemNew.hItem))->GetNetResource()) ||
                     pNMTreeView->itemNew.hItem == m_hNetworkRoot);
 
     *pResult = 0;
@@ -235,7 +235,7 @@ CString PSS_DirTreeCtrl::GetItemPath(HTREEITEM hItem)
     do
     {
         // end with a share name
-        NETRESOURCE* pNetResource = ((ZNetResourceWrapper*)GetItemData(hItem))->GetNetResource();
+        NETRESOURCE* pNetResource = ((PSS_NetResourceWrapper*)GetItemData(hItem))->GetNetResource();
 
         if (pNetResource)
         {
@@ -262,7 +262,7 @@ bool PSS_DirTreeCtrl::PopulateTree(const CString& path, HTREEITEM hParent)
     if (hParent == m_hNetworkRoot)
         childrenAdded = EnumNetwork(hParent);
     else
-    if (GetItemData(hParent) && ((ZNetResourceWrapper*)GetItemData(hParent))->GetNetResource())
+    if (GetItemData(hParent) && ((PSS_NetResourceWrapper*)GetItemData(hParent))->GetNetResource())
         // network item (search deep in the network)
         childrenAdded = EnumNetwork(hParent);
     else
@@ -322,7 +322,7 @@ bool PSS_DirTreeCtrl::EnumNetwork(HTREEITEM hParent)
     bool childrenAdded = false;
 
     // check if the item already has a network resource and use it
-    NETRESOURCE* pNetResource = ((ZNetResourceWrapper*)GetItemData(hParent))->GetNetResource();
+    NETRESOURCE* pNetResource = ((PSS_NetResourceWrapper*)GetItemData(hParent))->GetNetResource();
 
     DWORD         result;
     HANDLE        hEnum;
@@ -430,7 +430,7 @@ HTREEITEM PSS_DirTreeCtrl::InsertPathItem(HTREEITEM      hParent,
     insertStruct.itemex.mask      = TVIF_IMAGE | TVIF_TEXT | TVIF_CHILDREN | TVIF_SELECTEDIMAGE | TVIF_PARAM;
     insertStruct.itemex.iImage    = imageIndex;
     insertStruct.itemex.cChildren = 1;
-    insertStruct.itemex.lParam    = LPARAM(new ZNetResourceWrapper(fullName, pNetResource, true));
+    insertStruct.itemex.lParam    = LPARAM(new PSS_NetResourceWrapper(fullName, pNetResource, true));
     insertStruct.itemex.pszText   = formattedText.GetBuffer(formattedText.GetLength());
     formattedText.ReleaseBuffer();
 
@@ -458,7 +458,7 @@ HTREEITEM PSS_DirTreeCtrl::InsertFileItem(HTREEITEM      hParent,
     insertStruct.hInsertAfter   = TVI_LAST;
     insertStruct.itemex.mask    = TVIF_IMAGE | TVIF_TEXT | TVIF_SELECTEDIMAGE | TVIF_PARAM;
     insertStruct.itemex.iImage  = imageIndex;
-    insertStruct.itemex.lParam  = LPARAM(new ZNetResourceWrapper(fullName, pNetResource, false));
+    insertStruct.itemex.lParam  = LPARAM(new PSS_NetResourceWrapper(fullName, pNetResource, false));
     insertStruct.itemex.pszText = formattedText.GetBuffer(formattedText.GetLength());
     formattedText.ReleaseBuffer();
 
@@ -493,7 +493,7 @@ void PSS_DirTreeCtrl::ClearNetRessources()
         HTREEITEM hParentItem  = GetParentItem(hItemCur);
 
         // get item data to check if lparam is deleted
-        ZNetResourceWrapper* pNetResource = (ZNetResourceWrapper*)(GetItemData(hItemCur));
+        PSS_NetResourceWrapper* pNetResource = (PSS_NetResourceWrapper*)(GetItemData(hItemCur));
 
         if (pNetResource)
             delete pNetResource;

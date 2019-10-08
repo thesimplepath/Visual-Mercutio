@@ -26,9 +26,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="zcgridctrl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZCIntelliEdit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -111,15 +108,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZMessage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZNetResource.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZNetResourceManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZNetResourceWrapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZNetwork.cpp">
@@ -602,6 +590,18 @@
     <ClCompile Include="PSS_StringFormatter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_GridCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_NetResourceWrapper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_NetResourceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_NetResource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -718,9 +718,6 @@
     <ClInclude Include="zBaseLib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="zcgridctrl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZCIntelliEdit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -803,15 +800,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZMessage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZNetResource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZNetResourceManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZNetResourceWrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZNetWork.h">
@@ -1295,6 +1283,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_StringFormatter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_GridCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_NetResourceWrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_NetResourceManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_NetResource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

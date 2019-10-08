@@ -1,5 +1,9 @@
-// ZCIntelliEdit.cpp : implementation file
-//
+/****************************************************************************
+ * ==> PSS_IntelliEdit -----------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides an intellisense edit box                          *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
 #include "ZCIntelliEdit.h"
@@ -8,19 +12,19 @@
 #include "PSS_ManageValueIntelliEditDlg.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
-
+//---------------------------------------------------------------------------
+// Global variables
+//---------------------------------------------------------------------------
 static bool gInMoveOfListBox = false;
 static bool gInOnClicked = false;
-
-/////////////////////////////////////////////////////////////////////////////
-// ZIntelliEditButton class
-/////////////////////////////////////////////////////////////////////////////
-
+//---------------------------------------------------------------------------
+// PSS_IntelliEditButton
+//---------------------------------------------------------------------------
 ZIntelliEditButton::ZIntelliEditButton()
     : m_pArrayOfValues(NULL),
     m_Size(0, 0),

@@ -19,7 +19,7 @@
 // processsoft
 #include "PSS_FieldRepository.h"
 #include "PSS_MaskEditBase.h"
-#include "ZCGridCtrl.h"
+#include "PSS_GridCtrl.h"
 #include "PSS_DragEdit.h"
 #include "ZCIntelliEdit.h"
 #include "PSS_SpecialHelpWnd.h"
@@ -815,7 +815,7 @@ void PSS_MaskEdit::MapWindowPoints(CWnd* pWndTo, LPRECT pRect)
 * Multi-coluns edit component
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_MultiColumnEdit : public ZCGridCtrl, public PSS_Edit
+class AFX_EXT_CLASS PSS_MultiColumnEdit : public PSS_GridCtrl, public PSS_Edit
 {
     public:
         PSS_MultiColumnEdit();
@@ -904,12 +904,12 @@ class AFX_EXT_CLASS PSS_MultiColumnEdit : public ZCGridCtrl, public PSS_Edit
 //---------------------------------------------------------------------------
 BOOL PSS_MultiColumnEdit::IsWindowVisible()
 {
-    return (::IsWindow(GetSafeHwnd()) && ZCGridCtrl::IsWindowVisible());
+    return (::IsWindow(GetSafeHwnd()) && PSS_GridCtrl::IsWindowVisible());
 }
 //---------------------------------------------------------------------------
 void PSS_MultiColumnEdit::MapWindowPoints(CWnd* pwndTo, LPRECT lpRect)
 {
-    ZCGridCtrl::MapWindowPoints(pwndTo, lpRect);
+    PSS_GridCtrl::MapWindowPoints(pwndTo, lpRect);
 }
 //---------------------------------------------------------------------------
 
