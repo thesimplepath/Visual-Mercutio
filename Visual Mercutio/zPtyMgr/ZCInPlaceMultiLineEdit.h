@@ -3,11 +3,9 @@
 
 #if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
-// _ZCInPlaceMultiLineEdit_H.h : header file
-//
+#endif
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -15,27 +13,25 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
+// processsoft
+#include "zBaseLib\PSS_MultiLineEdit.h"
 #include "zProperty\ZIInPlaceEdit.h"
-#include "zBaseLib\ZCMultiLineEdit.h"
-
-
 
 #ifdef _ZPTYMGREXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
 
 /////////////////////////////////////////////////////////////////////////////
 // ZCInPlaceMultiLineEdit
 
-class AFX_EXT_CLASS ZCInPlaceMultiLineEdit : public ZCMultiLineEdit, public ZIInPlaceEdit
+class AFX_EXT_CLASS ZCInPlaceMultiLineEdit : public PSS_MultiLineEdit, public ZIInPlaceEdit
 {
     ZCInPlaceMultiLineEdit(const ZCInPlaceMultiLineEdit& d);
     ZCInPlaceMultiLineEdit operator=(const ZCInPlaceMultiLineEdit& d);
@@ -80,7 +76,7 @@ public:
     // Returns the extended size of the edit
     virtual CSize GetExtendedSize() const
     {
-        return ZCMultiLineEdit::GetExtendedSize();
+        return PSS_MultiLineEdit::GetExtendedSize();
     };
 
 private:

@@ -40,6 +40,7 @@ END_MESSAGE_MAP()
 // PSS_IntelliEditBtn
 //---------------------------------------------------------------------------
 PSS_IntelliEditBtn::PSS_IntelliEditBtn() :
+    CButton(),
     m_pEdit(NULL),
     m_pArrayOfValues(NULL),
     m_Size(0, 0),
@@ -315,6 +316,7 @@ END_MESSAGE_MAP()
 // PSS_IntelliEdit
 //---------------------------------------------------------------------------
 PSS_IntelliEdit::PSS_IntelliEdit(CStringArray* pArrayOfValues, CSize* pSize) :
+    PSS_DragEdit(),
     m_pArrayOfValues(pArrayOfValues),
     m_Size(0, 0),
     m_ListBoxHeight(200),

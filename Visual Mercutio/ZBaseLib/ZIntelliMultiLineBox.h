@@ -2,33 +2,31 @@
 #define AFX__ZCInternalMultiLineEdit_H__85036D1D_E0AF_4249_9C4A_469775DEE39B__INCLUDED_
 
 #if _MSC_VER > 1000
-    #pragma once
+#pragma once
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// Forward class declaration
+// forward class declaration
 class ZIntelliMultiLineBox;
-class ZCMultiLineEdit;
-
+class PSS_MultiLineEdit;
 
 /////////////////////////////////////////////////////////////////////////////
 // _ZCInternalMultiLineEdit window
 
 class _ZCInternalMultiLineEdit : public CEdit
 {
-// Construction
+    // Construction
 public:
-    _ZCInternalMultiLineEdit(ZCMultiLineEdit* pEditCtrl = NULL, ZIntelliMultiLineBox* pParent = NULL);
+    _ZCInternalMultiLineEdit(PSS_MultiLineEdit* pEditCtrl = NULL, ZIntelliMultiLineBox* pParent = NULL);
 
 
-// Operations
+    // Operations
 public:
-    void    SetEditControl( ZCMultiLineEdit* pEditCtrl, ZIntelliMultiLineBox* pParent = NULL );
+    void    SetEditControl(PSS_MultiLineEdit* pEditCtrl, ZIntelliMultiLineBox* pParent = NULL);
 
-// Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(_ZCInternalMultiLineEdit)
-    public:
+    // Overrides
+        // ClassWizard generated virtual function overrides
+        //{{AFX_VIRTUAL(_ZCInternalMultiLineEdit)
+public:
     virtual BOOL PreTranslateMessage(MSG* pMsg);
     //}}AFX_VIRTUAL
 
@@ -47,8 +45,8 @@ private:
     void    TranslateSelectionToEditControl();
 
 private:
-    ZCMultiLineEdit*        m_pEditCtrl;
-    ZIntelliMultiLineBox*    m_pParent;
+    PSS_MultiLineEdit*    m_pEditCtrl;
+    ZIntelliMultiLineBox* m_pParent;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -56,13 +54,13 @@ private:
 
 class ZIntelliMultiLineBox : public CWnd
 {
-  DECLARE_DYNAMIC(ZIntelliMultiLineBox);
-// Construction
+    DECLARE_DYNAMIC(ZIntelliMultiLineBox);
+    // Construction
 public:
-    ZIntelliMultiLineBox(ZCMultiLineEdit* pEditCtrl = NULL, CSize* pSize = NULL);
-    BOOL     Create( ZCMultiLineEdit* pEditCtrl, CSize* pSize = NULL );      // create the intelli multi line edit window
-    
-    void    SetEditControl( ZCMultiLineEdit* pEditCtrl, CSize* pSize = NULL );
+    ZIntelliMultiLineBox(PSS_MultiLineEdit* pEditCtrl = NULL, CSize* pSize = NULL);
+    BOOL     Create(PSS_MultiLineEdit* pEditCtrl, CSize* pSize = NULL);      // create the intelli multi line edit window
+
+    void    SetEditControl(PSS_MultiLineEdit* pEditCtrl, CSize* pSize = NULL);
 
     // CEdit wrapper functions
     BOOL CanUndo() const
@@ -91,7 +89,7 @@ public:
     };
     void GetSel(int& nStartChar, int& nEndChar) const
     {
-        m_Edit.GetSel(nStartChar,nEndChar);
+        m_Edit.GetSel(nStartChar, nEndChar);
     };
     HLOCAL GetHandle() const
     {
@@ -104,7 +102,7 @@ public:
 #if (WINVER >= 0x400)
     void SetMargins(UINT nLeft, UINT nRight)
     {
-        m_Edit.SetMargins(nLeft,nRight);
+        m_Edit.SetMargins(nLeft, nRight);
     };
     DWORD GetMargins() const
     {
@@ -163,11 +161,11 @@ public:
     };
     void LineScroll(int nLines, int nChars = 0)
     {
-        m_Edit.LineScroll(nLines,nChars);
+        m_Edit.LineScroll(nLines, nChars);
     };
     void ReplaceSel(LPCTSTR lpszNewText, BOOL bCanUndo = FALSE)
     {
-        m_Edit.ReplaceSel(lpszNewText,bCanUndo);
+        m_Edit.ReplaceSel(lpszNewText, bCanUndo);
     };
     void SetPasswordChar(TCHAR ch)
     {
@@ -183,11 +181,11 @@ public:
     };
     void SetSel(DWORD dwSelection, BOOL bNoScroll = FALSE)
     {
-        m_Edit.SetSel(dwSelection,bNoScroll);
+        m_Edit.SetSel(dwSelection, bNoScroll);
     };
     void SetSel(int nStartChar, int nEndChar, BOOL bNoScroll = FALSE)
     {
-        m_Edit.SetSel(nStartChar,nEndChar,bNoScroll);
+        m_Edit.SetSel(nStartChar, nEndChar, bNoScroll);
     };
     BOOL SetTabStops(int nTabStops, LPINT rgTabStops)
     {
@@ -237,13 +235,13 @@ public:
     };
 
 
-// Implementation
+    // Implementation
 public:
     virtual ~ZIntelliMultiLineBox();
 
-// Attributes
-private:  
-      static CString near m_strClassName;  // colorselection window class name
+    // Attributes
+private:
+    static CString near m_strClassName;  // colorselection window class name
 protected:
     // Generated message map functions
     //{{AFX_MSG(ZIntelliMultiLineBox)
@@ -259,7 +257,7 @@ private:
 
 private:
     _ZCInternalMultiLineEdit m_Edit;
-    ZCMultiLineEdit* m_pEditCtrl;
+    PSS_MultiLineEdit* m_pEditCtrl;
     CSize m_Size;
     int    m_MultiLineEditBoxHeight;
 

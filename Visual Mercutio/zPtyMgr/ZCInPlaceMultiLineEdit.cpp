@@ -32,7 +32,7 @@ ZCInPlaceMultiLineEdit::ZCInPlaceMultiLineEdit(bool IsReadOnly /*= false*/)
 }
 
 
-BEGIN_MESSAGE_MAP(ZCInPlaceMultiLineEdit, ZCMultiLineEdit)
+BEGIN_MESSAGE_MAP(ZCInPlaceMultiLineEdit, PSS_MultiLineEdit)
     //{{AFX_MSG_MAP(ZCInPlaceMultiLineEdit)
     ON_WM_CREATE()
     ON_WM_ERASEBKGND()
@@ -94,7 +94,7 @@ BOOL ZCInPlaceMultiLineEdit::PreTranslateMessage(MSG* pMsg)
         }
     }
 
-    return ZCMultiLineEdit::PreTranslateMessage(pMsg);
+    return PSS_MultiLineEdit::PreTranslateMessage(pMsg);
 }
 
 void ZCInPlaceMultiLineEdit::OnEditTextChanged()
@@ -108,7 +108,7 @@ void ZCInPlaceMultiLineEdit::SetEditText(const CString& strText)
     m_strText = strText;
 
     if (::IsWindow(GetSafeHwnd()))
-        ZCMultiLineEdit::SetEditText(strText);
+        PSS_MultiLineEdit::SetEditText(strText);
 }
 
 void ZCInPlaceMultiLineEdit::SetEditText(double dValue)
@@ -145,7 +145,7 @@ CString ZCInPlaceMultiLineEdit::GetEditText() const
 BOOL ZCInPlaceMultiLineEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, const CString& strInitText, CWnd* pWndParent, CRect& rect, DWORD exDwStyle /*= 0"*/)
 {
     m_pItem = pItem;
-    BOOL rValue = ZCMultiLineEdit::Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 0);
+    BOOL rValue = PSS_MultiLineEdit::Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 0);
     SetEditText(strInitText);
     // Saves the initial value
     m_strInitialValueText = strInitText;
@@ -162,7 +162,7 @@ BOOL ZCInPlaceMultiLineEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, do
 {
     m_pItem = pItem;
 
-    BOOL rValue = ZCMultiLineEdit::Create(WS_CHILD | WS_VISIBLE | ES_MULTILINE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 0);
+    BOOL rValue = PSS_MultiLineEdit::Create(WS_CHILD | WS_VISIBLE | ES_MULTILINE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 0);
     SetEditText(dInitValue);
     // Saves the initial value
     m_dInitialValue = dInitValue;
@@ -178,7 +178,7 @@ BOOL ZCInPlaceMultiLineEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, fl
 {
     m_pItem = pItem;
 
-    BOOL rValue = ZCMultiLineEdit::Create(WS_CHILD | WS_VISIBLE | ES_MULTILINE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 0);
+    BOOL rValue = PSS_MultiLineEdit::Create(WS_CHILD | WS_VISIBLE | ES_MULTILINE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 0);
     SetEditText(fInitValue);
     // Saves the initial value
     m_fInitialValue = fInitValue;
@@ -304,7 +304,7 @@ void ZCInPlaceMultiLineEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
     // Sets the has changed flag
     m_HasChanged = true;
     // Call the base function
-    ZCMultiLineEdit::OnChar(nChar, nRepCnt, nFlags);
+    PSS_MultiLineEdit::OnChar(nChar, nRepCnt, nFlags);
 }
 
 void ZCInPlaceMultiLineEdit::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
@@ -340,7 +340,7 @@ void ZCInPlaceMultiLineEdit::OnExtendedCommand()
 
 int ZCInPlaceMultiLineEdit::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-    if (ZCMultiLineEdit::OnCreate(lpCreateStruct) == -1)
+    if (PSS_MultiLineEdit::OnCreate(lpCreateStruct) == -1)
         return -1;
 
     CRect rect;
@@ -366,5 +366,5 @@ BOOL ZCInPlaceMultiLineEdit::OnEraseBkgnd(CDC* /*pDC*/)
 
 void ZCInPlaceMultiLineEdit::OnSetFocus(CWnd* pOldWnd)
 {
-    ZCMultiLineEdit::OnSetFocus(pOldWnd);
+    PSS_MultiLineEdit::OnSetFocus(pOldWnd);
 }
