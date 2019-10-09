@@ -27,7 +27,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_FlatButton.h"
-#include "zBaseLib\ZCIntelliEdit.h"
+#include "zBaseLib\PSS_IntelliEdit.h"
 #include "zWeb\PSS_WebBrowser.h"
 
 // resources
@@ -50,7 +50,7 @@
 * Address intellisense edit box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_AddressIntelliEdit : public ZCIntelliEdit
+class PSS_AddressIntelliEdit : public PSS_IntelliEdit
 {
     public:
         /**

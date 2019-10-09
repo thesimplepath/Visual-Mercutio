@@ -21,7 +21,7 @@
 #include "PSS_MaskEditBase.h"
 #include "PSS_GridCtrl.h"
 #include "PSS_DragEdit.h"
-#include "ZCIntelliEdit.h"
+#include "PSS_IntelliEdit.h"
 #include "PSS_SpecialHelpWnd.h"
 
 // forward classes declaration
@@ -504,7 +504,7 @@ void PSS_TimeEdit::MapWindowPoints(CWnd* pwndTo, LPRECT lpRect)
 * Historic edit component
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_StrEditHistoric : public ZCIntelliEdit, public PSS_Edit
+class AFX_EXT_CLASS PSS_StrEditHistoric : public PSS_IntelliEdit, public PSS_Edit
 {
     public:
         /**
@@ -581,12 +581,12 @@ int PSS_StrEditHistoric::GetMaxChar() const
 //---------------------------------------------------------------------------
 BOOL PSS_StrEditHistoric::IsWindowVisible()
 {
-    return (::IsWindow(GetSafeHwnd()) && ZCIntelliEdit::IsWindowVisible());
+    return (::IsWindow(GetSafeHwnd()) && PSS_IntelliEdit::IsWindowVisible());
 }
 //---------------------------------------------------------------------------
 void PSS_StrEditHistoric::MapWindowPoints(CWnd* pwndTo, LPRECT lpRect)
 {
-    ZCIntelliEdit::MapWindowPoints(pwndTo, lpRect);
+    PSS_IntelliEdit::MapWindowPoints(pwndTo, lpRect);
 }
 //---------------------------------------------------------------------------
 
@@ -594,7 +594,7 @@ void PSS_StrEditHistoric::MapWindowPoints(CWnd* pwndTo, LPRECT lpRect)
 * Numeric historic edit component
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_NumEditHistoric : public ZCIntelliEdit, public PSS_Edit
+class AFX_EXT_CLASS PSS_NumEditHistoric : public PSS_IntelliEdit, public PSS_Edit
 {
     public:
         PSS_NumEditHistoric();
@@ -652,12 +652,12 @@ class AFX_EXT_CLASS PSS_NumEditHistoric : public ZCIntelliEdit, public PSS_Edit
 //---------------------------------------------------------------------------
 BOOL PSS_NumEditHistoric::IsWindowVisible()
 {
-    return (::IsWindow(GetSafeHwnd()) && ZCIntelliEdit::IsWindowVisible());
+    return (::IsWindow(GetSafeHwnd()) && PSS_IntelliEdit::IsWindowVisible());
 }
 //---------------------------------------------------------------------------
 void PSS_NumEditHistoric::MapWindowPoints(CWnd* pWndTo, LPRECT pRect)
 {
-    ZCIntelliEdit::MapWindowPoints(pWndTo, pRect);
+    PSS_IntelliEdit::MapWindowPoints(pWndTo, pRect);
 }
 //---------------------------------------------------------------------------
 
@@ -665,7 +665,7 @@ void PSS_NumEditHistoric::MapWindowPoints(CWnd* pWndTo, LPRECT pRect)
 * Field name edit component
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_FieldNameEdit : public ZCIntelliEdit, public PSS_Edit
+class AFX_EXT_CLASS PSS_FieldNameEdit : public PSS_IntelliEdit, public PSS_Edit
 {
     public:
         /**
@@ -731,12 +731,12 @@ class AFX_EXT_CLASS PSS_FieldNameEdit : public ZCIntelliEdit, public PSS_Edit
 //---------------------------------------------------------------------------
 BOOL PSS_FieldNameEdit::IsWindowVisible()
 {
-    return (::IsWindow(GetSafeHwnd()) && ZCIntelliEdit::IsWindowVisible());
+    return (::IsWindow(GetSafeHwnd()) && PSS_IntelliEdit::IsWindowVisible());
 }
 //---------------------------------------------------------------------------
 void PSS_FieldNameEdit::MapWindowPoints(CWnd* pWndTo, LPRECT pRect)
 {
-    ZCIntelliEdit::MapWindowPoints(pWndTo, pRect);
+    PSS_IntelliEdit::MapWindowPoints(pWndTo, pRect);
 }
 //---------------------------------------------------------------------------
 

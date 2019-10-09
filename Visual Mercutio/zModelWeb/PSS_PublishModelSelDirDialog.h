@@ -14,7 +14,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_WizardDialog.h"
-#include "zBaseLib\ZCIntelliEdit.h"
+#include "zBaseLib\PSS_IntelliEdit.h"
 #include "zWinUtil32\PSS_DirTreeCtrl.h"
 
 // resources
@@ -65,7 +65,7 @@ class PSS_PublishModelSelDirDialog : public PSS_WizardDialog
         };
 
         PSS_DirTreeCtrl m_DirTreeCtrl;
-        ZCIntelliEdit   m_CbDirectory;
+        PSS_IntelliEdit m_CbDirectory;
 
         /// ClassWizard generated virtual function overrides
         //{{AFX_VIRTUAL(PSS_PublishModelSelDirDialog)

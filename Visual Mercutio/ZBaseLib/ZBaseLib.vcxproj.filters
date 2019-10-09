@@ -26,9 +26,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZCIntelliEdit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZCMultiLineEdit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -602,6 +599,9 @@
     <ClCompile Include="PSS_NetResource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_IntelliEdit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -716,9 +716,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="zBaseLib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZCIntelliEdit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZCMultiLineEdit.h">
@@ -1295,6 +1292,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_NetResource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_IntelliEdit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

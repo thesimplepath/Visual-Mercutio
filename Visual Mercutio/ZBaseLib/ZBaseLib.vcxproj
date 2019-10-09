@@ -960,7 +960,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZCIntelliEdit.cpp">
+    <ClCompile Include="PSS_IntelliEdit.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1482,7 +1482,7 @@
     <ClInclude Include="PSS_WorkspaceWizardTemplateItem.h" />
     <ClInclude Include="PSS_WorkspaceWizardTemplateManager.h" />
     <ClInclude Include="PSS_GridCtrl.h" />
-    <ClInclude Include="ZCIntelliEdit.h" />
+    <ClInclude Include="PSS_IntelliEdit.h" />
     <ClInclude Include="ZCMultiLineEdit.h" />
     <ClInclude Include="ZConfigW.h" />
     <ClInclude Include="ZCWorkspaceTreeCtrl.h" />

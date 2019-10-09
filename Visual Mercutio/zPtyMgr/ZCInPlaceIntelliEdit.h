@@ -15,9 +15,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
+// processsoft
+#include "zBaseLib\PSS_IntelliEdit.h"
 #include "zProperty\ZIInPlaceEdit.h"
-#include "zBaseLib\ZCIntelliEdit.h"
 
 
 #ifdef _ZPTYMGREXPORT
@@ -34,7 +34,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // ZCInPlaceIntelliEdit
 
-class AFX_EXT_CLASS ZCInPlaceIntelliEdit : public ZCIntelliEdit, public ZIInPlaceEdit
+class AFX_EXT_CLASS ZCInPlaceIntelliEdit : public PSS_IntelliEdit, public ZIInPlaceEdit
 {
     ZCInPlaceIntelliEdit(const ZCInPlaceIntelliEdit& d);
     ZCInPlaceIntelliEdit operator=(const ZCInPlaceIntelliEdit& d);
@@ -78,7 +78,7 @@ public:
     // Returns the extended size of the edit
     virtual CSize GetExtendedSize() const
     {
-        return ZCIntelliEdit::GetExtendedSize();
+        return PSS_IntelliEdit::GetExtendedSize();
     };
 
 private:

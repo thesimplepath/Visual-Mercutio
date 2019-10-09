@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ZIntelliListBox.h"
 
-#include "ZCIntelliEdit.h"
+#include "PSS_IntelliEdit.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -15,16 +15,14 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZIntelliListBox
 
-ZIntelliListBox::ZIntelliListBox(ZCIntelliEdit* pEditCtrl /*= NULL*/)
-: m_pEditCtrl(pEditCtrl), m_CurrentSelectionOnDown(-1)
-{
-}
+ZIntelliListBox::ZIntelliListBox(PSS_IntelliEdit* pEditCtrl /*= NULL*/)
+    : m_pEditCtrl(pEditCtrl), m_CurrentSelectionOnDown(-1)
+{}
 
 ZIntelliListBox::~ZIntelliListBox()
-{
-}
+{}
 
-void ZIntelliListBox::SetEditControl( ZCIntelliEdit* pEditCtrl )
+void ZIntelliListBox::SetEditControl(PSS_IntelliEdit* pEditCtrl)
 {
     m_pEditCtrl = pEditCtrl;
 }
@@ -37,10 +35,10 @@ void ZIntelliListBox::TranslateSelectionToEditControl()
         if (CurSel != LB_ERR)
         {
             CString    Text;
-            GetText( CurSel, Text );
-            m_pEditCtrl->SetWindowText( Text );
-            m_pEditCtrl->SetSel( Text.GetLength(), Text.GetLength() );
-            ShowWindow( SW_HIDE );
+            GetText(CurSel, Text);
+            m_pEditCtrl->SetWindowText(Text);
+            m_pEditCtrl->SetSel(Text.GetLength(), Text.GetLength());
+            ShowWindow(SW_HIDE);
             m_pEditCtrl->SetFocus();
             // Call the notification call-back
             m_pEditCtrl->OnItemSelectedFromList();
@@ -61,20 +59,20 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // ZIntelliListBox message handlers
 
-BOOL ZIntelliListBox::PreTranslateMessage(MSG* pMsg) 
+BOOL ZIntelliListBox::PreTranslateMessage(MSG* pMsg)
 {
-//    CWnd                    *pWnd;
-//    int                     hittest;
+    //    CWnd                    *pWnd;
+    //    int                     hittest;
 
     if (pMsg->message == WM_KEYDOWN)
     {
-        if (GetFocus()==this)
+        if (GetFocus() == this)
         {
             switch (pMsg->wParam)
             {
                 case VK_ESCAPE:
                 {
-                    ShowWindow( SW_HIDE );
+                    ShowWindow(SW_HIDE);
                     if (m_pEditCtrl)
                         m_pEditCtrl->SetFocus();
                     return TRUE;
@@ -93,48 +91,47 @@ BOOL ZIntelliListBox::PreTranslateMessage(MSG* pMsg)
 }
 
 
-void ZIntelliListBox::OnMouseMove(UINT nFlags, CPoint point) 
+void ZIntelliListBox::OnMouseMove(UINT nFlags, CPoint point)
 {
     BOOL    bOutside;
-    UINT    Index = ItemFromPoint( point, bOutside );
+    UINT    Index = ItemFromPoint(point, bOutside);
 
     CListBox::OnMouseMove(nFlags, point);
 
     if (bOutside == FALSE)
     {
-        SetCurSel( Index );
+        SetCurSel(Index);
     }
 }
 
-void ZIntelliListBox::OnLButtonDown(UINT nFlags, CPoint point) 
+void ZIntelliListBox::OnLButtonDown(UINT nFlags, CPoint point)
 {
-    m_CurrentSelectionOnDown = GetCurSel();    
+    m_CurrentSelectionOnDown = GetCurSel();
     CListBox::OnLButtonDown(nFlags, point);
 }
 
-void ZIntelliListBox::OnLButtonUp(UINT nFlags, CPoint point) 
+void ZIntelliListBox::OnLButtonUp(UINT nFlags, CPoint point)
 {
     CListBox::OnLButtonUp(nFlags, point);
     // Check if the selection on the up is the same as on the down
     // if not, do not translate to edit control
-    int    CurSel = GetCurSel();    
+    int    CurSel = GetCurSel();
     if (CurSel != LB_ERR && CurSel == m_CurrentSelectionOnDown)
         TranslateSelectionToEditControl();
 }
 
-void ZIntelliListBox::OnLButtonDblClk(UINT nFlags, CPoint point) 
+void ZIntelliListBox::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
     CListBox::OnLButtonDblClk(nFlags, point);
     TranslateSelectionToEditControl();
 
 }
 
-void ZIntelliListBox::OnSize(UINT nType, int cx, int cy) 
+void ZIntelliListBox::OnSize(UINT nType, int cx, int cy)
 {
     CListBox::OnSize(nType, cx, cy);
 
     if (m_pEditCtrl)
-        m_pEditCtrl->OnExtendedSizeHasChanged( cx,cy );
-    
-}
+        m_pEditCtrl->OnExtendedSizeHasChanged(cx, cy);
 
+}

@@ -32,7 +32,7 @@ ZCInPlaceIntelliEdit::ZCInPlaceIntelliEdit(bool IsReadOnly /*= false*/)
 }
 
 
-BEGIN_MESSAGE_MAP(ZCInPlaceIntelliEdit, ZCIntelliEdit)
+BEGIN_MESSAGE_MAP(ZCInPlaceIntelliEdit, PSS_IntelliEdit)
     //{{AFX_MSG_MAP(ZCInPlaceIntelliEdit)
     ON_WM_CREATE()
     ON_WM_ERASEBKGND()
@@ -94,7 +94,7 @@ BOOL ZCInPlaceIntelliEdit::PreTranslateMessage(MSG* pMsg)
         }
     }
 
-    return ZCIntelliEdit::PreTranslateMessage(pMsg);
+    return PSS_IntelliEdit::PreTranslateMessage(pMsg);
 }
 
 void ZCInPlaceIntelliEdit::OnItemSelectedFromList()
@@ -146,7 +146,7 @@ BOOL ZCInPlaceIntelliEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, cons
 {
     m_pItem = pItem;
 
-    BOOL rValue = ZCIntelliEdit::Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 0);
+    BOOL rValue = PSS_IntelliEdit::Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 0);
     SetEditText(strInitText);
     // Saves the initial value
     m_strInitialValueText = strInitText;
@@ -163,7 +163,7 @@ BOOL ZCInPlaceIntelliEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, doub
 {
     m_pItem = pItem;
 
-    BOOL rValue = ZCIntelliEdit::Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 0);
+    BOOL rValue = PSS_IntelliEdit::Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 0);
     SetEditText(dInitValue);
     // Saves the initial value
     m_dInitialValue = dInitValue;
@@ -179,7 +179,7 @@ BOOL ZCInPlaceIntelliEdit::InitializeInPlaceEditCtrl(ZBPropertyItem* pItem, floa
 {
     m_pItem = pItem;
 
-    BOOL rValue = ZCIntelliEdit::Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 0);
+    BOOL rValue = PSS_IntelliEdit::Create(WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | exDwStyle, rect, pWndParent, 0);
     SetEditText(fInitValue);
     // Saves the initial value
     m_fInitialValue = fInitValue;
@@ -305,7 +305,7 @@ void ZCInPlaceIntelliEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
     // Sets the has changed flag
     m_HasChanged = true;
     // Call the base function
-    ZCIntelliEdit::OnChar(nChar, nRepCnt, nFlags);
+    PSS_IntelliEdit::OnChar(nChar, nRepCnt, nFlags);
 }
 
 void ZCInPlaceIntelliEdit::OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg)
@@ -341,7 +341,7 @@ void ZCInPlaceIntelliEdit::OnExtendedCommand()
 
 int ZCInPlaceIntelliEdit::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-    if (ZCIntelliEdit::OnCreate(lpCreateStruct) == -1)
+    if (PSS_IntelliEdit::OnCreate(lpCreateStruct) == -1)
         return -1;
 
     CRect rect;
@@ -367,7 +367,7 @@ BOOL ZCInPlaceIntelliEdit::OnEraseBkgnd(CDC* /*pDC*/)
 
 void ZCInPlaceIntelliEdit::OnSetFocus(CWnd* pOldWnd)
 {
-    ZCIntelliEdit::OnSetFocus(pOldWnd);
+    PSS_IntelliEdit::OnSetFocus(pOldWnd);
 
 }
 

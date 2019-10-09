@@ -17,9 +17,10 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
+#include "zBaseLib\PSS_IntelliEdit.h"
 #include "zBaseLib\PSS_WizardDialog.h"
 #include "zModelBP\zModelBPRes.h"
-#include "zBaseLib\ZCIntelliEdit.h"
 
 //////////////////////////////////////////////////////////////////////
 // Forward class declaration
@@ -105,12 +106,11 @@ public:
     };
 
 private:
-
     // Dialog Data
     //{{AFX_DATA(ZVPublishToMessengerStart)
     enum { IDD = IDD_WZ_PUBLISHTOMESSENGER_START };
-    ZCIntelliEdit    m_MessengerAddressEdit;
-    ZCIntelliEdit    m_MessengerAliasEdit;
+    PSS_IntelliEdit m_MessengerAddressEdit;
+    PSS_IntelliEdit m_MessengerAliasEdit;
     BOOL            m_IncludeModel;
     BOOL            m_IncludeGroups;
     BOOL            m_IncludeSystems;

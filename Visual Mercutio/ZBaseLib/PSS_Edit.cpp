@@ -710,7 +710,7 @@ void PSS_TimeEdit::OnKillFocus(CWnd* pNewWnd)
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_StrEditHistoric, ZCIntelliEdit)
+BEGIN_MESSAGE_MAP(PSS_StrEditHistoric, PSS_IntelliEdit)
     //{{AFX_MSG_MAP(PSS_StrEditHistoric)
     ON_WM_CHAR()
     ON_WM_KILLFOCUS()
@@ -721,7 +721,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 PSS_StrEditHistoric::PSS_StrEditHistoric(int maxChar) :
     PSS_Edit(),
-    ZCIntelliEdit(),
+    PSS_IntelliEdit(),
     m_MaxChar(maxChar)
 {}
 //---------------------------------------------------------------------------
@@ -753,10 +753,10 @@ void PSS_StrEditHistoric::Create(BOOL                 designerMode,
 
     DWORD style = WS_CHILD | WS_VISIBLE | ES_AUTOVSCROLL | ES_AUTOHSCROLL;
 
-    if (!ZCIntelliEdit::Create(style, m_Rect, pParentWnd, 0))
+    if (!PSS_IntelliEdit::Create(style, m_Rect, pParentWnd, 0))
         return;
 
-    ZCIntelliEdit::Initialize(GetArrayOfValues());
+    PSS_IntelliEdit::Initialize(GetArrayOfValues());
 
     CString str = m_pEditedObj->GetFormattedObject();
     SetWindowText(str);
@@ -834,12 +834,12 @@ void PSS_StrEditHistoric::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
         }
     }
 
-    ZCIntelliEdit::OnChar(nChar, nRepCnt, nFlags);
+    PSS_IntelliEdit::OnChar(nChar, nRepCnt, nFlags);
 }
 //---------------------------------------------------------------------------
 void PSS_StrEditHistoric::OnKillFocus(CWnd* pNewWnd)
 {
-    ZCIntelliEdit::OnKillFocus(pNewWnd);
+    PSS_IntelliEdit::OnKillFocus(pNewWnd);
 
     if (!HasFocus())
         DestroyEdit();
@@ -847,7 +847,7 @@ void PSS_StrEditHistoric::OnKillFocus(CWnd* pNewWnd)
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_NumEditHistoric, ZCIntelliEdit)
+BEGIN_MESSAGE_MAP(PSS_NumEditHistoric, PSS_IntelliEdit)
     //{{AFX_MSG_MAP(PSS_NumEditHistoric)
     ON_WM_CHAR()
     ON_WM_KILLFOCUS()
@@ -858,7 +858,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 PSS_NumEditHistoric::PSS_NumEditHistoric() :
     PSS_Edit(),
-    ZCIntelliEdit()
+    PSS_IntelliEdit()
 {}
 //---------------------------------------------------------------------------
 PSS_NumEditHistoric::~PSS_NumEditHistoric()
@@ -889,10 +889,10 @@ void PSS_NumEditHistoric::Create(BOOL                 designerMode,
 
     DWORD style = WS_CHILD | WS_VISIBLE | ES_AUTOVSCROLL | ES_AUTOHSCROLL;
 
-    if (!ZCIntelliEdit::Create(style, m_Rect, pParentWnd, 0))
+    if (!PSS_IntelliEdit::Create(style, m_Rect, pParentWnd, 0))
         return;
 
-    ZCIntelliEdit::Initialize(GetArrayOfValues());
+    PSS_IntelliEdit::Initialize(GetArrayOfValues());
 
     CString str = m_pEditedObj->GetFormattedObject();
     SetWindowText(str);
@@ -969,12 +969,12 @@ void PSS_NumEditHistoric::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
     if (!::isdigit(nChar) && nChar != '.' && nChar != ',' && nChar != '\'' && nChar != '%' && nChar != 0x08)
         return;
 
-    ZCIntelliEdit::OnChar(nChar, nRepCnt, nFlags);
+    PSS_IntelliEdit::OnChar(nChar, nRepCnt, nFlags);
 }
 //---------------------------------------------------------------------------
 void PSS_NumEditHistoric::OnKillFocus(CWnd* pNewWnd)
 {
-    ZCIntelliEdit::OnKillFocus(pNewWnd);
+    PSS_IntelliEdit::OnKillFocus(pNewWnd);
 
     if (!HasFocus())
         DestroyEdit();
@@ -982,7 +982,7 @@ void PSS_NumEditHistoric::OnKillFocus(CWnd* pNewWnd)
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_FieldNameEdit, ZCIntelliEdit)
+BEGIN_MESSAGE_MAP(PSS_FieldNameEdit, PSS_IntelliEdit)
     //{{AFX_MSG_MAP(PSS_FieldNameEdit)
     ON_WM_CHAR()
     ON_WM_KILLFOCUS()
@@ -993,7 +993,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 PSS_FieldNameEdit::PSS_FieldNameEdit(int maxChar) :
     PSS_Edit(),
-    ZCIntelliEdit(),
+    PSS_IntelliEdit(),
     m_MaxChar(maxChar)
 {}
 //---------------------------------------------------------------------------
@@ -1025,10 +1025,10 @@ void PSS_FieldNameEdit::Create(BOOL                 designerMode,
 
     DWORD style = WS_CHILD | WS_VISIBLE | ES_AUTOVSCROLL | ES_AUTOHSCROLL;
 
-    if (!ZCIntelliEdit::Create(style, m_Rect, pParentWnd, 0))
+    if (!PSS_IntelliEdit::Create(style, m_Rect, pParentWnd, 0))
         return;
 
-    ZCIntelliEdit::Initialize(pDoc->GetObjectFieldNameArray());
+    PSS_IntelliEdit::Initialize(pDoc->GetObjectFieldNameArray());
 
     SetWindowText(m_pEditedObj->GetObjectName());
     SetSel(0, -1);
@@ -1087,12 +1087,12 @@ void PSS_FieldNameEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
             return;
     }
 
-    ZCIntelliEdit::OnChar(nChar, nRepCnt, nFlags);
+    PSS_IntelliEdit::OnChar(nChar, nRepCnt, nFlags);
 }
 //---------------------------------------------------------------------------
 void PSS_FieldNameEdit::OnKillFocus(CWnd* pNewWnd)
 {
-    ZCIntelliEdit::OnKillFocus(pNewWnd);
+    PSS_IntelliEdit::OnKillFocus(pNewWnd);
 
     // check if the control still have the focus, if not, destroy the edit
     if (!HasFocus())

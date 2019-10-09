@@ -19,7 +19,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_AddressIntelliEdit, ZCIntelliEdit)
+BEGIN_MESSAGE_MAP(PSS_AddressIntelliEdit, PSS_IntelliEdit)
     //{{AFX_MSG_MAP(PSS_AddressIntelliEdit)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -27,7 +27,7 @@ END_MESSAGE_MAP()
 // PSS_AddressIntelliEdit
 //---------------------------------------------------------------------------
 PSS_AddressIntelliEdit::PSS_AddressIntelliEdit(CWnd* pParent, CStringArray* pArrayOfValues) :
-    ZCIntelliEdit(pArrayOfValues),
+    PSS_IntelliEdit(pArrayOfValues),
     m_pParent(pParent)
 {}
 //---------------------------------------------------------------------------

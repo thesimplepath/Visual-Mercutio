@@ -35,7 +35,7 @@ const int IDC_URLWND_WEBBROWSER  = 403;
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_UrlWndAddressIntelliEdit, ZCIntelliEdit)
+BEGIN_MESSAGE_MAP(PSS_UrlWndAddressIntelliEdit, PSS_IntelliEdit)
     //{{AFX_MSG_MAP(PSS_UrlWndAddressIntelliEdit)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -43,7 +43,7 @@ END_MESSAGE_MAP()
 // PSS_UrlWndAddressIntelliEdit
 //---------------------------------------------------------------------------
 PSS_UrlWndAddressIntelliEdit::PSS_UrlWndAddressIntelliEdit(CWnd* pParent, CStringArray* pArrayOfValues) :
-    ZCIntelliEdit(pArrayOfValues),
+    PSS_IntelliEdit(pArrayOfValues),
     m_pParent(pParent)
 {}
 //---------------------------------------------------------------------------

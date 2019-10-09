@@ -29,7 +29,7 @@
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\PSS_FlatButton.h"
-#include "zBaseLib\ZCIntelliEdit.h"
+#include "zBaseLib\PSS_IntelliEdit.h"
 #include "zWeb\PSS_WebBrowser.h"
 
 // resources
@@ -50,7 +50,7 @@
 * Url window address intellisense edit box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class PSS_UrlWndAddressIntelliEdit : public ZCIntelliEdit, public PSS_Subject
+class PSS_UrlWndAddressIntelliEdit : public PSS_IntelliEdit, public PSS_Subject
 {
     public:
         /**
