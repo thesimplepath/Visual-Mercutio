@@ -17,6 +17,9 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// forward class declarations
+class PSS_WindowConfiguration;
+
 #ifdef _ZBASELIBEXPORT
 //put the values back to make AFX_EXT_CLASS export again
 #undef AFX_EXT_CLASS
@@ -31,31 +34,30 @@
 
 class _ToolbarData
 {
-    public:
+public:
 
-    _ToolbarData( CString Name, UINT nIDToolBar, CFrameWnd* pFrame, EModelNotation Notation )
+    _ToolbarData(CString Name, UINT nIDToolBar, CFrameWnd* pFrame, EModelNotation Notation)
     {
-        m_Name            = Name;
-        m_nIDToolBar    = nIDToolBar;
-        m_pBar            = NULL;
-        m_pFrame        = pFrame;
-        m_Notation        = Notation;
-        m_bReloaded        = false;
+        m_Name = Name;
+        m_nIDToolBar = nIDToolBar;
+        m_pBar = NULL;
+        m_pFrame = pFrame;
+        m_Notation = Notation;
+        m_bReloaded = false;
     };
 
-    _ToolbarData( CString Name, CControlBar* pBar, CFrameWnd* pFrame, EModelNotation Notation )
+    _ToolbarData(CString Name, CControlBar* pBar, CFrameWnd* pFrame, EModelNotation Notation)
     {
-        m_Name            = Name;
-        m_nIDToolBar    = -1;
-        m_pBar            = pBar;
-        m_pFrame        = pFrame;
-        m_Notation        = Notation;
-        m_bReloaded        = false;
+        m_Name = Name;
+        m_nIDToolBar = -1;
+        m_pBar = pBar;
+        m_pFrame = pFrame;
+        m_Notation = Notation;
+        m_bReloaded = false;
     };
 
     virtual ~_ToolbarData()
-    {
-    };
+    {};
 
 public:
 
@@ -71,29 +73,28 @@ class _MenubarData
 {
 public:
 
-    _MenubarData( CString Name, UINT nIDRes, CFrameWnd* pFrame, EModelNotation Notation )
+    _MenubarData(CString Name, UINT nIDRes, CFrameWnd* pFrame, EModelNotation Notation)
     {
-        m_Name            = Name;
-        m_nIDRes        = nIDRes;
-        m_pMenu            = NULL;
-        m_pFrame        = pFrame;
-        m_Notation        = Notation;
-        m_bReloaded        = false;
+        m_Name = Name;
+        m_nIDRes = nIDRes;
+        m_pMenu = NULL;
+        m_pFrame = pFrame;
+        m_Notation = Notation;
+        m_bReloaded = false;
     };
 
-    _MenubarData( CString Name, CMenu* pMenu, CFrameWnd* pFrame, EModelNotation Notation )
+    _MenubarData(CString Name, CMenu* pMenu, CFrameWnd* pFrame, EModelNotation Notation)
     {
-        m_Name            = Name;
-        m_nIDRes        = -1;
-        m_pMenu            = pMenu;
-        m_pFrame        = pFrame;
-        m_Notation        = Notation;
-        m_bReloaded        = false;
+        m_Name = Name;
+        m_nIDRes = -1;
+        m_pMenu = pMenu;
+        m_pFrame = pFrame;
+        m_Notation = Notation;
+        m_bReloaded = false;
     };
 
     virtual ~_MenubarData()
-    {
-    };
+    {};
 
 public:
 
@@ -104,9 +105,6 @@ public:
     EModelNotation    m_Notation;
     bool            m_bReloaded;
 };
-
-// Forward declaration
-class ZAWindowConfiguration;
 
 /////////////////////////////////////////////////////////////////////////////
 // scope symbols in stingray foundation library
@@ -129,16 +127,16 @@ typedef CCArray_T<_MenubarData*, _MenubarData*> ZBMenubarSet;
 //@iex typedef Iterator_T<_MenubarData*> ZBMenubarIterator;
 typedef Iterator_T<_MenubarData*> ZBMenubarIterator;
 
-class AFX_EXT_CLASS ZUFloatingToolbar  
+class AFX_EXT_CLASS ZUFloatingToolbar
 {
 public:
 
     ZUFloatingToolbar();
     virtual ~ZUFloatingToolbar();
 
-    static void Initialize( ZAWindowConfiguration*    pWndConf,
-                            SECToolBarManager*        pToolBarManager,
-                            SECMenuBar*                pMenuBarManager );
+    static void Initialize(PSS_WindowConfiguration*    pWndConf,
+                           SECToolBarManager*        pToolBarManager,
+                           SECMenuBar*                pMenuBarManager);
 
     // JMR-MODIF - Le 31 août 2005 - Ajout de la fonction Release.
     static void Release();
@@ -153,20 +151,20 @@ public:
         return m_pMenuBarManager;
     };
 
-    static bool RegisterToolbar( CString Name, UINT nIDToolBar, CFrameWnd* pFrame, EModelNotation Notation );
-    static bool UnRegisterToolbar( UINT nIDToolBar );
+    static bool RegisterToolbar(CString Name, UINT nIDToolBar, CFrameWnd* pFrame, EModelNotation Notation);
+    static bool UnRegisterToolbar(UINT nIDToolBar);
 
-    static bool RegisterToolbar( CString Name, CControlBar* pBar, CFrameWnd* pFrame, EModelNotation Notation );
-    static bool UnRegisterToolbar( CControlBar* pBar );
+    static bool RegisterToolbar(CString Name, CControlBar* pBar, CFrameWnd* pFrame, EModelNotation Notation);
+    static bool UnRegisterToolbar(CControlBar* pBar);
 
-    static bool RegisterMenubar( CString Name, UINT nIDRes, CFrameWnd* pFrame, EModelNotation Notation );
-    static bool RegisterAndLoadMenubar( CString Name, UINT nIDRes, CFrameWnd* pFrame, EModelNotation Notation );
-    static bool UnRegisterMenubar( UINT nIDRes );
-    
-    static bool RegisterMenubar( CString Name, CMenu* pMenu, CFrameWnd* pFrame, EModelNotation Notation );
-    static bool UnRegisterMenubar( CMenu* pMenu );
+    static bool RegisterMenubar(CString Name, UINT nIDRes, CFrameWnd* pFrame, EModelNotation Notation);
+    static bool RegisterAndLoadMenubar(CString Name, UINT nIDRes, CFrameWnd* pFrame, EModelNotation Notation);
+    static bool UnRegisterMenubar(UINT nIDRes);
 
-    static bool SwitchContext( EModelNotation Notation );
+    static bool RegisterMenubar(CString Name, CMenu* pMenu, CFrameWnd* pFrame, EModelNotation Notation);
+    static bool UnRegisterMenubar(CMenu* pMenu);
+
+    static bool SwitchContext(EModelNotation Notation);
 
     static void ReloadBarState();
     static void ReloadBarState(const CString Name);
@@ -174,25 +172,24 @@ public:
 
 private:
 
-    static bool HideToolbars( EModelNotation Notation );
-    static bool ShowToolbars( EModelNotation Notation );
-    static bool ToolbarExist( CString Name );
-    static bool ToolbarExist( UINT nIDToolBar );
-    static bool ToolbarExist( CControlBar* pBar );
-    static bool MenubarExist( CString Name );
-    static bool MenubarExist( UINT nIDRes );
-    static bool MenubarExist( CMenu* pMenu );
-    static bool HideMenubars( EModelNotation Notation );
-    static bool ShowMenubars( EModelNotation Notation );
+    static bool HideToolbars(EModelNotation Notation);
+    static bool ShowToolbars(EModelNotation Notation);
+    static bool ToolbarExist(CString Name);
+    static bool ToolbarExist(UINT nIDToolBar);
+    static bool ToolbarExist(CControlBar* pBar);
+    static bool MenubarExist(CString Name);
+    static bool MenubarExist(UINT nIDRes);
+    static bool MenubarExist(CMenu* pMenu);
+    static bool HideMenubars(EModelNotation Notation);
+    static bool ShowMenubars(EModelNotation Notation);
 
 private:
-
-    static ZBToolbarSet                m_ToolbarSet;
-    static ZBMenubarSet                m_MenubarSet;
-    static EModelNotation            m_CurrentNotation;
-    static ZAWindowConfiguration*    m_pWndConf;
-    static SECToolBarManager*        m_pToolBarManager;
-    static SECMenuBar*                m_pMenuBarManager;
+    static ZBToolbarSet             m_ToolbarSet;
+    static ZBMenubarSet             m_MenubarSet;
+    static EModelNotation           m_CurrentNotation;
+    static PSS_WindowConfiguration* m_pWndConf;
+    static SECToolBarManager*       m_pToolBarManager;
+    static SECMenuBar*              m_pMenuBarManager;
 };
 
-#endif // !defined(AFX_ZUFLOATINGTOOLBAR_H__4BAA50CE_E692_42F1_AEC1_4AA59689C308__INCLUDED_)
+#endif

@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZConfigW.h"
+#include "zBaseLib\PSS_WindowConfiguration.h"
 #include "PSS_StatusBar.h"
 #include "PSS_PaletteBar.h"
 
@@ -169,7 +169,7 @@ class AFX_EXT_CLASS PSS_BaseMainFrame : public SECMDIFrameWnd
         * Gets the window configuration
         *@return the window configuration
         */
-        virtual inline ZAWindowConfiguration& GetWindowConfiguration();
+        virtual inline PSS_WindowConfiguration& GetWindowConfiguration();
 
         /**
         * Asserts the class validity
@@ -245,9 +245,9 @@ class AFX_EXT_CLASS PSS_BaseMainFrame : public SECMDIFrameWnd
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZAWindowConfiguration m_WindowConfiguration;
-        SECFullScreenView     m_FSView;
-        bool                  m_SaveBarStateHasBeenInitialized;
+        PSS_WindowConfiguration m_WindowConfiguration;
+        SECFullScreenView       m_FSView;
+        bool                    m_SaveBarStateHasBeenInitialized;
 };
 
 //---------------------------------------------------------------------------
@@ -279,7 +279,7 @@ BOOL PSS_BaseMainFrame::IsFullScreen()
     return m_FSView.GetFSMode();
 }
 //---------------------------------------------------------------------------
-ZAWindowConfiguration& PSS_BaseMainFrame::GetWindowConfiguration()
+PSS_WindowConfiguration& PSS_BaseMainFrame::GetWindowConfiguration()
 {
     return m_WindowConfiguration;
 }

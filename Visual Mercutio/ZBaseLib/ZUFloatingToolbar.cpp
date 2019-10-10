@@ -6,11 +6,11 @@
 
 // processsoft
 #include "PSS_BaseMainFrame.h"
-#include "zConfigW.h"
+#include "PSS_WindowConfiguration.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -18,51 +18,49 @@ static char THIS_FILE[]=__FILE__;
 
 //////////////////////////////////////////////////////////////////////
 // Static internal variable initialization
-ZBToolbarSet                ZUFloatingToolbar::m_ToolbarSet;
-ZBMenubarSet                ZUFloatingToolbar::m_MenubarSet;
-ZAWindowConfiguration*        ZUFloatingToolbar::m_pWndConf            = NULL;
-SECToolBarManager*            ZUFloatingToolbar::m_pToolBarManager    = NULL;
-SECMenuBar*                    ZUFloatingToolbar::m_pMenuBarManager    = NULL;
-EModelNotation                ZUFloatingToolbar::m_CurrentNotation    = E_MN_Unknown;
+ZBToolbarSet             ZUFloatingToolbar::m_ToolbarSet;
+ZBMenubarSet             ZUFloatingToolbar::m_MenubarSet;
+PSS_WindowConfiguration* ZUFloatingToolbar::m_pWndConf = NULL;
+SECToolBarManager*       ZUFloatingToolbar::m_pToolBarManager = NULL;
+SECMenuBar*              ZUFloatingToolbar::m_pMenuBarManager = NULL;
+EModelNotation           ZUFloatingToolbar::m_CurrentNotation = E_MN_Unknown;
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
 ZUFloatingToolbar::ZUFloatingToolbar()
-{
-}
+{}
 
 ZUFloatingToolbar::~ZUFloatingToolbar()
-{
-}
+{}
 
-void ZUFloatingToolbar::Initialize( ZAWindowConfiguration*    pWndConf,
-                                    SECToolBarManager*        pToolBarManager,
-                                    SECMenuBar*                pMenuBarManager)
+void ZUFloatingToolbar::Initialize(PSS_WindowConfiguration*    pWndConf,
+                                   SECToolBarManager*        pToolBarManager,
+                                   SECMenuBar*                pMenuBarManager)
 {
-    m_pWndConf            = pWndConf;
-    m_pToolBarManager    = pToolBarManager;
-    m_pMenuBarManager    = pMenuBarManager;
+    m_pWndConf = pWndConf;
+    m_pToolBarManager = pToolBarManager;
+    m_pMenuBarManager = pMenuBarManager;
 }
 
 // JMR-MODIF - Le 31 août 2005 - Ajout de la fonction Release, pour permettre le nettoyage des ressources utilisées.
 void ZUFloatingToolbar::Release()
 {
-    ZBToolbarIterator i( &m_ToolbarSet );
+    ZBToolbarIterator i(&m_ToolbarSet);
     _ToolbarData* pTbData;
 
-    for ( pTbData = i.GetFirst(); pTbData != NULL; pTbData = i.GetNext() )
+    for (pTbData = i.GetFirst(); pTbData != NULL; pTbData = i.GetNext())
     {
         delete pTbData;
     }
 
     m_ToolbarSet.RemoveAll();
 
-    ZBMenubarIterator j( &m_MenubarSet );
+    ZBMenubarIterator j(&m_MenubarSet);
     _MenubarData* pMbData;
 
-    for ( pMbData = j.GetFirst(); pMbData != NULL; pMbData = j.GetNext() )
+    for (pMbData = j.GetFirst(); pMbData != NULL; pMbData = j.GetNext())
     {
         delete pMbData;
     }
@@ -70,41 +68,41 @@ void ZUFloatingToolbar::Release()
     m_MenubarSet.RemoveAll();
 }
 
-bool ZUFloatingToolbar::RegisterToolbar( CString Name, UINT nIDToolBar, CFrameWnd* pFrame, EModelNotation Notation )
+bool ZUFloatingToolbar::RegisterToolbar(CString Name, UINT nIDToolBar, CFrameWnd* pFrame, EModelNotation Notation)
 {
     // Check existence of toolbar
-    if ( ToolbarExist( nIDToolBar ) )
+    if (ToolbarExist(nIDToolBar))
     {
         return true;
     }
 
     int ActSize = m_ToolbarSet.GetSize();
 
-    m_ToolbarSet.Add( new _ToolbarData( Name, nIDToolBar, pFrame, Notation ) );
+    m_ToolbarSet.Add(new _ToolbarData(Name, nIDToolBar, pFrame, Notation));
 
-    return ( m_ToolbarSet.GetSize() > ActSize ) ? true : false;
+    return (m_ToolbarSet.GetSize() > ActSize) ? true : false;
 }
 
-bool ZUFloatingToolbar::UnRegisterToolbar( UINT nIDToolBar )
+bool ZUFloatingToolbar::UnRegisterToolbar(UINT nIDToolBar)
 {
-    ZBToolbarIterator i( &m_ToolbarSet );
+    ZBToolbarIterator i(&m_ToolbarSet);
     _ToolbarData* pData;
 
-    for ( pData = i.GetFirst(); pData != NULL; pData = i.GetNext() )
+    for (pData = i.GetFirst(); pData != NULL; pData = i.GetNext())
     {
-        if ( pData->m_nIDToolBar == nIDToolBar )
+        if (pData->m_nIDToolBar == nIDToolBar)
         {
             SECCustomToolBar* pTb = NULL;
 
-            if ( m_pToolBarManager )
+            if (m_pToolBarManager)
             {
-                pTb = m_pToolBarManager->ToolBarFromID( nIDToolBar );
+                pTb = m_pToolBarManager->ToolBarFromID(nIDToolBar);
             }
 
             // If toolbar found, hide the control bar
-            if ( pTb )
+            if (pTb)
             {
-                pData->m_pFrame->ShowControlBar( pTb, FALSE, FALSE );
+                pData->m_pFrame->ShowControlBar(pTb, FALSE, FALSE);
             }
 
             // Then remove the control bar from the set
@@ -120,32 +118,32 @@ bool ZUFloatingToolbar::UnRegisterToolbar( UINT nIDToolBar )
     return false;
 }
 
-bool ZUFloatingToolbar::RegisterToolbar( CString Name, CControlBar* pBar, CFrameWnd* pFrame, EModelNotation Notation )
+bool ZUFloatingToolbar::RegisterToolbar(CString Name, CControlBar* pBar, CFrameWnd* pFrame, EModelNotation Notation)
 {
     // Check existence of toolbar
-    if ( ToolbarExist( Name ) )
+    if (ToolbarExist(Name))
     {
         return true;
     }
 
     int ActSize = m_ToolbarSet.GetSize();
 
-    m_ToolbarSet.Add( new _ToolbarData( Name, pBar, pFrame, Notation ) );
+    m_ToolbarSet.Add(new _ToolbarData(Name, pBar, pFrame, Notation));
 
-    return ( m_ToolbarSet.GetSize() > ActSize ) ? true : false;
+    return (m_ToolbarSet.GetSize() > ActSize) ? true : false;
 }
 
-bool ZUFloatingToolbar::UnRegisterToolbar( CControlBar* pBar )
+bool ZUFloatingToolbar::UnRegisterToolbar(CControlBar* pBar)
 {
-    ZBToolbarIterator i( &m_ToolbarSet );
+    ZBToolbarIterator i(&m_ToolbarSet);
     _ToolbarData* pData;
 
-    for ( pData = i.GetFirst(); pData != NULL; pData = i.GetNext() )
+    for (pData = i.GetFirst(); pData != NULL; pData = i.GetNext())
     {
-        if ( pData->m_pBar == pBar )
+        if (pData->m_pBar == pBar)
         {
             // First, hide the control bar
-            pData->m_pFrame->ShowControlBar( pData->m_pBar, FALSE, FALSE );
+            pData->m_pFrame->ShowControlBar(pData->m_pBar, FALSE, FALSE);
 
             // Then remove the control bar from the set
             i.Remove();
@@ -160,29 +158,29 @@ bool ZUFloatingToolbar::UnRegisterToolbar( CControlBar* pBar )
     return false;
 }
 
-bool ZUFloatingToolbar::RegisterMenubar( CString Name, CMenu* pMenu, CFrameWnd* pFrame, EModelNotation Notation )
+bool ZUFloatingToolbar::RegisterMenubar(CString Name, CMenu* pMenu, CFrameWnd* pFrame, EModelNotation Notation)
 {
     // Check existence of toolbar
-    if ( MenubarExist( Name ) )
+    if (MenubarExist(Name))
     {
         return true;
     }
 
     int ActSize = m_MenubarSet.GetSize();
 
-    m_MenubarSet.Add( new _MenubarData( Name, pMenu, pFrame, Notation ) );
+    m_MenubarSet.Add(new _MenubarData(Name, pMenu, pFrame, Notation));
 
-    return ( m_MenubarSet.GetSize() > ActSize ) ? true : false;
+    return (m_MenubarSet.GetSize() > ActSize) ? true : false;
 }
 
-bool ZUFloatingToolbar::UnRegisterMenubar( CMenu* pMenu )
+bool ZUFloatingToolbar::UnRegisterMenubar(CMenu* pMenu)
 {
-    ZBMenubarIterator i( &m_MenubarSet );
+    ZBMenubarIterator i(&m_MenubarSet);
     _MenubarData* pData;
 
-    for ( pData = i.GetFirst(); pData != NULL; pData = i.GetNext() )
+    for (pData = i.GetFirst(); pData != NULL; pData = i.GetNext())
     {
-        if ( pData->m_pMenu == pMenu )
+        if (pData->m_pMenu == pMenu)
         {
             // First, hide the menu bar
             // Then remove the menu bar from the set
@@ -198,47 +196,47 @@ bool ZUFloatingToolbar::UnRegisterMenubar( CMenu* pMenu )
     return false;
 }
 
-bool ZUFloatingToolbar::RegisterMenubar( CString Name, UINT nIDRes, CFrameWnd* pFrame, EModelNotation Notation )
+bool ZUFloatingToolbar::RegisterMenubar(CString Name, UINT nIDRes, CFrameWnd* pFrame, EModelNotation Notation)
 {
     // Check existence of toolbar
-    if ( MenubarExist( Name ) )
+    if (MenubarExist(Name))
     {
         return true;
     }
 
     int ActSize = m_MenubarSet.GetSize();
 
-    if ( pFrame && ISA( pFrame, PSS_BaseMainFrame) )
+    if (pFrame && ISA(pFrame, PSS_BaseMainFrame))
     {
         // Used to load additional menu
-        dynamic_cast<PSS_BaseMainFrame*>( pFrame )->LoadAdditionalMenus( 1, nIDRes );
+        dynamic_cast<PSS_BaseMainFrame*>(pFrame)->LoadAdditionalMenus(1, nIDRes);
     }
 
     // Add the menu to the internal array
-    m_MenubarSet.Add( new _MenubarData( Name, nIDRes, pFrame, Notation ) );
+    m_MenubarSet.Add(new _MenubarData(Name, nIDRes, pFrame, Notation));
 
-    return ( m_MenubarSet.GetSize() > ActSize ) ? true : false;
+    return (m_MenubarSet.GetSize() > ActSize) ? true : false;
 }
 
-bool ZUFloatingToolbar::RegisterAndLoadMenubar( CString Name, UINT nIDRes, CFrameWnd* pFrame, EModelNotation Notation )
+bool ZUFloatingToolbar::RegisterAndLoadMenubar(CString Name, UINT nIDRes, CFrameWnd* pFrame, EModelNotation Notation)
 {
-    if ( pFrame && ISA( pFrame, PSS_BaseMainFrame) )
+    if (pFrame && ISA(pFrame, PSS_BaseMainFrame))
     {
-        dynamic_cast<PSS_BaseMainFrame*>( pFrame )->LoadMenuBar( nIDRes );
-        return ZUFloatingToolbar::RegisterMenubar( Name, nIDRes, pFrame, Notation );
+        dynamic_cast<PSS_BaseMainFrame*>(pFrame)->LoadMenuBar(nIDRes);
+        return ZUFloatingToolbar::RegisterMenubar(Name, nIDRes, pFrame, Notation);
     }
 
     return false;
 }
 
-bool ZUFloatingToolbar::UnRegisterMenubar( UINT nIDRes )
+bool ZUFloatingToolbar::UnRegisterMenubar(UINT nIDRes)
 {
-    ZBMenubarIterator i( &m_MenubarSet );
+    ZBMenubarIterator i(&m_MenubarSet);
     _MenubarData* pData;
 
-    for ( pData = i.GetFirst(); pData != NULL; pData = i.GetNext() )
+    for (pData = i.GetFirst(); pData != NULL; pData = i.GetNext())
     {
-        if ( pData->m_nIDRes == nIDRes )
+        if (pData->m_nIDRes == nIDRes)
         {
             // First, hide the menu bar
             // Then remove the menu bar from the set
@@ -254,33 +252,33 @@ bool ZUFloatingToolbar::UnRegisterMenubar( UINT nIDRes )
     return false;
 }
 
-bool ZUFloatingToolbar::SwitchContext( EModelNotation Notation )
+bool ZUFloatingToolbar::SwitchContext(EModelNotation Notation)
 {
     // If we already are in the current notation,
     // do nothing
-    if ( m_CurrentNotation != Notation )
+    if (m_CurrentNotation != Notation)
     {
         // First, hide all toolbars from the current notation
-        if ( !HideToolbars( m_CurrentNotation ) )
+        if (!HideToolbars(m_CurrentNotation))
         {
             return false;
         }
 
         // First, hide all menu bars from the current notation
-        if ( !HideMenubars( m_CurrentNotation ) )
+        if (!HideMenubars(m_CurrentNotation))
         {
             return false;
         }
 
         // Then show all toolbars of the new notation
-        if ( !ShowToolbars( Notation ) )
+        if (!ShowToolbars(Notation))
         {
             return false;
         }
     }
 
     // Then show all menu bars of the new notation
-    if ( !ShowMenubars( Notation ) )
+    if (!ShowMenubars(Notation))
     {
         return false;
     }
@@ -290,14 +288,14 @@ bool ZUFloatingToolbar::SwitchContext( EModelNotation Notation )
     return true;
 }
 
-bool ZUFloatingToolbar::ToolbarExist( CString Name )
+bool ZUFloatingToolbar::ToolbarExist(CString Name)
 {
-    ZBToolbarIterator i( &m_ToolbarSet );
+    ZBToolbarIterator i(&m_ToolbarSet);
     _ToolbarData* pData;
 
-    for ( pData = i.GetFirst(); pData != NULL; pData = i.GetNext() )
+    for (pData = i.GetFirst(); pData != NULL; pData = i.GetNext())
     {
-        if ( pData->m_Name == Name )
+        if (pData->m_Name == Name)
         {
             return true;
         }
@@ -306,14 +304,14 @@ bool ZUFloatingToolbar::ToolbarExist( CString Name )
     return false;
 }
 
-bool ZUFloatingToolbar::ToolbarExist( UINT nIDToolBar )
+bool ZUFloatingToolbar::ToolbarExist(UINT nIDToolBar)
 {
-    ZBToolbarIterator i( &m_ToolbarSet );
+    ZBToolbarIterator i(&m_ToolbarSet);
     _ToolbarData* pData;
 
-    for ( pData = i.GetFirst(); pData != NULL; pData = i.GetNext() )
+    for (pData = i.GetFirst(); pData != NULL; pData = i.GetNext())
     {
-        if ( pData->m_nIDToolBar == nIDToolBar )
+        if (pData->m_nIDToolBar == nIDToolBar)
         {
             return true;
         }
@@ -322,14 +320,14 @@ bool ZUFloatingToolbar::ToolbarExist( UINT nIDToolBar )
     return false;
 }
 
-bool ZUFloatingToolbar::ToolbarExist( CControlBar* pBar )
+bool ZUFloatingToolbar::ToolbarExist(CControlBar* pBar)
 {
-    ZBToolbarIterator i( &m_ToolbarSet );
+    ZBToolbarIterator i(&m_ToolbarSet);
     _ToolbarData* pData;
 
-    for ( pData = i.GetFirst(); pData != NULL; pData = i.GetNext() )
+    for (pData = i.GetFirst(); pData != NULL; pData = i.GetNext())
     {
-        if ( pData->m_pBar == pBar )
+        if (pData->m_pBar == pBar)
         {
             return true;
         }
@@ -338,14 +336,14 @@ bool ZUFloatingToolbar::ToolbarExist( CControlBar* pBar )
     return false;
 }
 
-bool ZUFloatingToolbar::MenubarExist( CString Name )
+bool ZUFloatingToolbar::MenubarExist(CString Name)
 {
-    ZBMenubarIterator i( &m_MenubarSet );
+    ZBMenubarIterator i(&m_MenubarSet);
     _MenubarData* pData;
 
-    for ( pData = i.GetFirst(); pData != NULL; pData = i.GetNext() )
+    for (pData = i.GetFirst(); pData != NULL; pData = i.GetNext())
     {
-        if ( pData->m_Name == Name )
+        if (pData->m_Name == Name)
         {
             return true;
         }
@@ -354,14 +352,14 @@ bool ZUFloatingToolbar::MenubarExist( CString Name )
     return false;
 }
 
-bool ZUFloatingToolbar::MenubarExist( UINT nIDRes )
+bool ZUFloatingToolbar::MenubarExist(UINT nIDRes)
 {
-    ZBMenubarIterator i( &m_MenubarSet );
+    ZBMenubarIterator i(&m_MenubarSet);
     _MenubarData* pData;
 
-    for ( pData = i.GetFirst(); pData != NULL; pData = i.GetNext() )
+    for (pData = i.GetFirst(); pData != NULL; pData = i.GetNext())
     {
-        if ( pData->m_nIDRes == nIDRes )
+        if (pData->m_nIDRes == nIDRes)
         {
             return true;
         }
@@ -370,14 +368,14 @@ bool ZUFloatingToolbar::MenubarExist( UINT nIDRes )
     return false;
 }
 
-bool ZUFloatingToolbar::MenubarExist( CMenu* pMenu )
+bool ZUFloatingToolbar::MenubarExist(CMenu* pMenu)
 {
-    ZBMenubarIterator i( &m_MenubarSet );
+    ZBMenubarIterator i(&m_MenubarSet);
     _MenubarData* pData;
 
-    for ( pData = i.GetFirst(); pData != NULL; pData = i.GetNext() )
+    for (pData = i.GetFirst(); pData != NULL; pData = i.GetNext())
     {
-        if ( pData->m_pMenu == pMenu )
+        if (pData->m_pMenu == pMenu)
         {
             return true;
         }
@@ -386,33 +384,33 @@ bool ZUFloatingToolbar::MenubarExist( CMenu* pMenu )
     return false;
 }
 
-bool ZUFloatingToolbar::HideToolbars( EModelNotation Notation )
+bool ZUFloatingToolbar::HideToolbars(EModelNotation Notation)
 {
-    ZBToolbarIterator i( &m_ToolbarSet );
+    ZBToolbarIterator i(&m_ToolbarSet);
     _ToolbarData* pData;
 
-    for ( pData = i.GetFirst(); pData != NULL; pData = i.GetNext() )
+    for (pData = i.GetFirst(); pData != NULL; pData = i.GetNext())
     {
-        if ( pData->m_Notation == Notation )
+        if (pData->m_Notation == Notation)
         {
-            if ( pData->m_pBar )
+            if (pData->m_pBar)
             {
                 // hide the control bar
-                pData->m_pFrame->ShowControlBar( pData->m_pBar, FALSE, TRUE );
+                pData->m_pFrame->ShowControlBar(pData->m_pBar, FALSE, TRUE);
             }
             else
             {
                 SECCustomToolBar* pTb = NULL;
 
-                if ( m_pToolBarManager )
+                if (m_pToolBarManager)
                 {
-                    pTb = m_pToolBarManager->ToolBarFromID( pData->m_nIDToolBar );
+                    pTb = m_pToolBarManager->ToolBarFromID(pData->m_nIDToolBar);
                 }
 
                 // If toolbar found, hide the control bar
-                if ( pTb )
+                if (pTb)
                 {
-                    pData->m_pFrame->ShowControlBar( pTb, FALSE, FALSE );
+                    pData->m_pFrame->ShowControlBar(pTb, FALSE, FALSE);
                 }
             }
         }
@@ -421,33 +419,33 @@ bool ZUFloatingToolbar::HideToolbars( EModelNotation Notation )
     return true;
 }
 
-bool ZUFloatingToolbar::ShowToolbars( EModelNotation Notation )
+bool ZUFloatingToolbar::ShowToolbars(EModelNotation Notation)
 {
-    ZBToolbarIterator i( &m_ToolbarSet );
+    ZBToolbarIterator i(&m_ToolbarSet);
     _ToolbarData* pData;
 
-    for ( pData = i.GetFirst(); pData != NULL; pData = i.GetNext() )
+    for (pData = i.GetFirst(); pData != NULL; pData = i.GetNext())
     {
-        if ( pData->m_Notation == Notation )
+        if (pData->m_Notation == Notation)
         {
-            if ( pData->m_pBar )
+            if (pData->m_pBar)
             {
                 // Show the control bar
-                pData->m_pFrame->ShowControlBar( pData->m_pBar, TRUE, TRUE );
+                pData->m_pFrame->ShowControlBar(pData->m_pBar, TRUE, TRUE);
             }
             else
             {
                 SECCustomToolBar* pTb = NULL;
 
-                if ( m_pToolBarManager )
+                if (m_pToolBarManager)
                 {
-                    pTb = m_pToolBarManager->ToolBarFromID( pData->m_nIDToolBar );
+                    pTb = m_pToolBarManager->ToolBarFromID(pData->m_nIDToolBar);
                 }
 
                 // If toolbar found, hide the control bar
-                if ( pTb )
+                if (pTb)
                 {
-                    pData->m_pFrame->ShowControlBar( pTb, TRUE, TRUE );
+                    pData->m_pFrame->ShowControlBar(pTb, TRUE, TRUE);
                 }
             }
         }
@@ -456,20 +454,20 @@ bool ZUFloatingToolbar::ShowToolbars( EModelNotation Notation )
     return true;
 }
 
-bool ZUFloatingToolbar::HideMenubars( EModelNotation Notation )
+bool ZUFloatingToolbar::HideMenubars(EModelNotation Notation)
 {
-    ZBMenubarIterator i( &m_MenubarSet );
+    ZBMenubarIterator i(&m_MenubarSet);
     _MenubarData* pData;
 
-    for ( pData = i.GetFirst(); pData != NULL; pData = i.GetNext() )
+    for (pData = i.GetFirst(); pData != NULL; pData = i.GetNext())
     {
-        if ( pData->m_Notation == Notation )
+        if (pData->m_Notation == Notation)
         {
-            if ( pData->m_nIDRes == -1 )
+            if (pData->m_nIDRes == -1)
             {
                 // First, hide the control bar
                 pData->m_pFrame->Invalidate();
-                pData->m_pFrame->SetMenu( NULL );
+                pData->m_pFrame->SetMenu(NULL);
                 pData->m_pFrame->RecalcLayout();    // Position and size everything
                 pData->m_pFrame->UpdateWindow();
             }
@@ -479,31 +477,31 @@ bool ZUFloatingToolbar::HideMenubars( EModelNotation Notation )
     return true;
 }
 
-bool ZUFloatingToolbar::ShowMenubars(EModelNotation Notation )
+bool ZUFloatingToolbar::ShowMenubars(EModelNotation Notation)
 {
-    ZBMenubarIterator i( &m_MenubarSet );
+    ZBMenubarIterator i(&m_MenubarSet);
     _MenubarData* pData;
 
-    for ( pData = i.GetFirst(); pData != NULL; pData = i.GetNext() )
+    for (pData = i.GetFirst(); pData != NULL; pData = i.GetNext())
     {
-        if ( pData->m_Notation == Notation )
+        if (pData->m_Notation == Notation)
         {
-            if ( pData->m_nIDRes == -1 )
+            if (pData->m_nIDRes == -1)
             {
                 pData->m_pFrame->Invalidate();
-                pData->m_pFrame->SetMenu( pData->m_pMenu );
+                pData->m_pFrame->SetMenu(pData->m_pMenu);
                 pData->m_pFrame->DrawMenuBar();
                 pData->m_pFrame->RecalcLayout();    // Position and size everything
                 pData->m_pFrame->UpdateWindow();
             }
             else
             {
-                ASSERT( pData->m_pFrame != NULL );
-                ASSERT_KINDOF( SECMDIFrameWnd, pData->m_pFrame );
+                ASSERT(pData->m_pFrame != NULL);
+                ASSERT_KINDOF(SECMDIFrameWnd, pData->m_pFrame);
                 SECMDIFrameWnd* pMainWnd = (SECMDIFrameWnd*)pData->m_pFrame;
 
                 // Update the menubar, if any
-                pMainWnd->ActivateMenu( pData->m_nIDRes );
+                pMainWnd->ActivateMenu(pData->m_nIDRes);
             }
         }
     }
@@ -513,57 +511,57 @@ bool ZUFloatingToolbar::ShowMenubars(EModelNotation Notation )
 
 void ZUFloatingToolbar::ReloadBarState()
 {
-    if ( !m_pWndConf )
+    if (!m_pWndConf)
     {
         return;
     }
 
-    ZBToolbarIterator i( &m_ToolbarSet );
+    ZBToolbarIterator i(&m_ToolbarSet);
     _ToolbarData* pData;
 
-    for ( pData = i.GetFirst(); pData != NULL; pData = i.GetNext() )
+    for (pData = i.GetFirst(); pData != NULL; pData = i.GetNext())
     {
-        if ( pData->m_pBar )
+        if (pData->m_pBar)
         {
-            m_pWndConf->RestoreWindowPosition( pData->m_pBar, pData->m_Name, TRUE );
+            m_pWndConf->RestoreWindowPosition(pData->m_pBar, pData->m_Name, TRUE);
         }
     }
 }
 
-void ZUFloatingToolbar::ReloadBarState( const CString Name )
+void ZUFloatingToolbar::ReloadBarState(const CString Name)
 {
-    if ( !m_pWndConf )
+    if (!m_pWndConf)
     {
         return;
     }
 
-    ZBToolbarIterator i( &m_ToolbarSet );
+    ZBToolbarIterator i(&m_ToolbarSet);
     _ToolbarData* pData;
 
-    for ( pData = i.GetFirst(); pData != NULL; pData = i.GetNext() )
+    for (pData = i.GetFirst(); pData != NULL; pData = i.GetNext())
     {
-        if ( pData->m_pBar && pData->m_Name == Name )
+        if (pData->m_pBar && pData->m_Name == Name)
         {
-            m_pWndConf->RestoreWindowPosition( pData->m_pBar, pData->m_Name, TRUE );
+            m_pWndConf->RestoreWindowPosition(pData->m_pBar, pData->m_Name, TRUE);
         }
     }
 }
 
 void ZUFloatingToolbar::SaveBarState()
 {
-    if ( !m_pWndConf )
+    if (!m_pWndConf)
     {
         return;
     }
 
-    ZBToolbarIterator i( &m_ToolbarSet );
+    ZBToolbarIterator i(&m_ToolbarSet);
     _ToolbarData* pData;
 
-    for ( pData = i.GetFirst(); pData != NULL; pData = i.GetNext() )
+    for (pData = i.GetFirst(); pData != NULL; pData = i.GetNext())
     {
-        if ( pData->m_pBar )
+        if (pData->m_pBar)
         {
-            m_pWndConf->SaveWindowPosition( pData->m_pBar, pData->m_Name, TRUE );
+            m_pWndConf->SaveWindowPosition(pData->m_pBar, pData->m_Name, TRUE);
         }
     }
 }
