@@ -978,7 +978,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZCWorkspaceTreeCtrl.cpp">
+    <ClCompile Include="PSS_WorkspaceTreeCtrl.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1485,7 +1485,7 @@
     <ClInclude Include="PSS_IntelliEdit.h" />
     <ClInclude Include="PSS_MultiLineEdit.h" />
     <ClInclude Include="PSS_WindowConfiguration.h" />
-    <ClInclude Include="ZCWorkspaceTreeCtrl.h" />
+    <ClInclude Include="PSS_WorkspaceTreeCtrl.h" />
     <ClInclude Include="ZDDoc.h" />
     <ClInclude Include="ZDHistoricValueDocument.h" />
     <ClInclude Include="ZDIB.h" />

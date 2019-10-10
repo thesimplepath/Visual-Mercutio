@@ -5,12 +5,12 @@
 #define AFX_ZVPROCESSWORKSPACE_H__8CD08B10_53ED_438C_82AD_1E04FE3C6282__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_Observer.h"
-#include "zBaseLib\ZCWorkspaceTreeCtrl.h"
+#include "zBaseLib\PSS_WorkspaceTreeCtrl.h"
 #include "zWinUtil32\PSS_FormTemplateTreeCtrl.h"
 #include "zWinUtil32\PSS_FileWnd.h"
 #include "zWinUtil32\PSS_UrlWnd.h"
@@ -88,7 +88,7 @@ public:
 
     ///////////////////////////////////////////////////////////
     // Workspace methods
-    ZCWorkspaceTreeCtrl* GetWorkspaceView();
+    PSS_WorkspaceTreeCtrl* GetWorkspaceView();
 
     void ActivateWorkspaceTab()
     {
@@ -307,9 +307,9 @@ private:
 
     SEC3DTabWnd                m_wndTab;
 
-    ZCWorkspaceTreeCtrl        m_WorkspaceView;
-    ZCProcessModelDocument    m_ProcessModelView;
-    PSS_FormTemplateTreeCtrl  m_FormTemplateView;
+    PSS_WorkspaceTreeCtrl    m_WorkspaceView;
+    ZCProcessModelDocument   m_ProcessModelView;
+    PSS_FormTemplateTreeCtrl m_FormTemplateView;
     ZVUserGroup                m_UserView;
     ZVLogicalSystem            m_LogicalSystemView;
     ZVPrestations            m_PrestationsView;    // JMR-MODIF - Le 11 octobre 2005 - Ajout variable m_PrestationsView.
@@ -328,7 +328,7 @@ inline PSS_FormTemplateTreeCtrl* ZVProcessWorkspace::GetFormTemplateView()
     return &m_FormTemplateView;
 }
 
-inline ZCWorkspaceTreeCtrl* ZVProcessWorkspace::GetWorkspaceView()
+inline PSS_WorkspaceTreeCtrl* ZVProcessWorkspace::GetWorkspaceView()
 {
     return &m_WorkspaceView;
 }

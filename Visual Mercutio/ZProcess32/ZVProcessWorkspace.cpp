@@ -229,7 +229,7 @@ void ZVProcessWorkspace::OnContextMenu(CWnd* pWnd, CPoint point)
     {
         if (GetWorkspaceView()->HasContextMenu(pWnd, point) != -1)
         {
-            GetWorkspaceView()->DisplayContextMenu(pWnd, point);
+            GetWorkspaceView()->ShowContextMenu(pWnd, point);
 
             // Done
             return;
