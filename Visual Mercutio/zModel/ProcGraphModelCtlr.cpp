@@ -5312,9 +5312,7 @@ void ZDProcessGraphModelController::OnUpdate(PSS_Subject* pSubject, PSS_Observer
     }
 }
 
-bool ZDProcessGraphModelController::OnToolTip(CString&                    ToolTipText,
-                                              CPoint                    point,
-                                              ZBSymbol::IEToolTipMode    ToolTip)
+bool ZDProcessGraphModelController::OnToolTip(CString& toolTipText, const CPoint& point, ZBSymbol::IEToolTipMode mode)
 {
     CPoint pt(point);
     VpDPtoLP(&pt);
@@ -5322,19 +5320,13 @@ bool ZDProcessGraphModelController::OnToolTip(CString&                    ToolTi
 
     // If a label, reassign the hit symbol
     if (pCompHit && ISA(pCompHit, CODLabelComponent))
-    {
-        pCompHit =
-            reinterpret_cast<CODSymbolComponent*>(reinterpret_cast<CODLabelComponent*>(pCompHit)->GetOwner());
-    }
+        pCompHit = reinterpret_cast<CODSymbolComponent*>(reinterpret_cast<CODLabelComponent*>(pCompHit)->GetOwner());
 
     if (pCompHit && ISA(pCompHit, ZBSymbol))
-    {
-        return ((ZBSymbol*)pCompHit)->OnToolTip(ToolTipText, pt, ToolTip);
-    }
-    else if (pCompHit && ISA(pCompHit, ZBLinkSymbol))
-    {
-        return ((ZBLinkSymbol*)pCompHit)->OnToolTip(ToolTipText, pt, ToolTip);
-    }
+        return ((ZBSymbol*)pCompHit)->OnToolTip(toolTipText, pt, mode);
+    else
+    if (pCompHit && ISA(pCompHit, ZBLinkSymbol))
+        return ((ZBLinkSymbol*)pCompHit)->OnToolTip(toolTipText, pt, mode);
 
     return false;
 }

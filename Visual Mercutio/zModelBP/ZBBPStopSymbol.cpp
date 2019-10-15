@@ -3,7 +3,7 @@
 
 #include "stdafx.h"
 #include "zBaseSym\zBaseSymRes.h"
-#include "zModelBP\ZBBPStopSymbol.h"
+#include "ZBBPStopSymbol.h"
 
 // JMR-MODIF - Le 26 mai 2005 - Définition de _ZMODELEXPORT, pour éviter une erreur interne du compilateur.
 #define _ZMODELEXPORT
@@ -1184,14 +1184,14 @@ bool ZBBPStopSymbol::OnDropInternalPropertyItem(ZBProperty&    SrcProperty,
     return false;
 }
 
-bool ZBBPStopSymbol::OnToolTip(CString& ToolTipText, CPoint point, PSS_ToolTip::IEToolTipMode ToolTip)
+bool ZBBPStopSymbol::OnToolTip(CString& toolTipText, const CPoint& point, PSS_ToolTip::IEToolTipMode mode)
 {
-    ToolTipText.Format(IDS_FS_BPSTOP_TOOLTIP,
+    toolTipText.Format(IDS_FS_BPSTOP_TOOLTIP,
         (const char*)GetSymbolName(),
                        (const char*)GetSymbolComment(),
                        (const char*)GetSymbolReferenceNumberStr());
 
-    if (ToolTip == ZBSymbol::IE_TT_Design)
+    if (mode == ZBSymbol::IE_TT_Design)
     {
         // From now do nothing,
         // need to implement the result of the control checking

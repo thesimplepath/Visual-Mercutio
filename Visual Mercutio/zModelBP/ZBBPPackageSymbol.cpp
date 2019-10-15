@@ -2,13 +2,15 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
-#include "zBaseSym\zBaseSymRes.h"
 #include "ZBBPPackageSymbol.h"
 
+// processsoft
+#include "zBaseLib\PSS_File.h"
+#include "zBaseSym\zBaseSymRes.h"
 #include "zModel\ProcGraphModelDoc.h"
 #include "ProcGraphModelMdlBP.h"
-#include "zBaseLib\PSS_File.h"
 
+// resources
 #include "zModelBPRes.h"
 #include "zBaseLib\PSS_DrawFunctions.h"
 
@@ -258,15 +260,15 @@ BOOL ZBBPPackageSymbol::OnDoubleClick()
 }
 
 
-bool ZBBPPackageSymbol::OnToolTip( CString& ToolTipText, CPoint point, PSS_ToolTip::IEToolTipMode ToolTip)
+bool ZBBPPackageSymbol::OnToolTip(CString& toolTipText, const CPoint& point, PSS_ToolTip::IEToolTipMode mode)
 {
-    ToolTipText.Format( IDS_FS_BPPACKAGE_TOOLTIP, 
-                            (const char*)GetSymbolName());
+    toolTipText.Format(IDS_FS_BPPACKAGE_TOOLTIP, (const char*)GetSymbolName());
+
     if (IsLinkedToFilename())
     {
         CString LinkToFile;
         LinkToFile.Format( IDS_FS_BPPACKAGE_LINKTF_TOOLTIP, m_FilenameLinkedTo );
-        ToolTipText += LinkToFile;
+        toolTipText += LinkToFile;
     }
     return true;
 }

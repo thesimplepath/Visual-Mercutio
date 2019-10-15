@@ -92,10 +92,14 @@ public:
     virtual void                            ViewZoomIn();
     virtual void                            ViewZoomOut();
 
-    // Call by the controller when a tooltip is required
-    virtual bool                            OnToolTip(CString&                    ToolTipText,
-                                                      CPoint                    point,
-                                                      ZBSymbol::IEToolTipMode    ToolTip = ZBSymbol::IE_TT_Normal);
+    /**
+    * Called when a tooltip is required
+    *@param[in, out] toolTipText - tooltip text, formatted tooltip text on function ends
+    *@param point - hit point
+    *@param mode - tooltip mode
+    *@return true if tooltip can be shown, otherwise false
+    */
+    virtual bool OnToolTip(CString& toolTipText, const CPoint& point, ZBSymbol::IEToolTipMode mode = ZBSymbol::IE_TT_Normal);
 
     // Drawing functions
     void                                    ReDrawComponent(CODComponent& Comp);

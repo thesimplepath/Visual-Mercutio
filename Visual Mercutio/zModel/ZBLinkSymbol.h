@@ -550,8 +550,14 @@ public:
     // Update mecanism for symbol change
     virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
-    // Call by the controller when a tooltip is required
-    virtual bool OnToolTip(CString& ToolTipText, CPoint point, PSS_ToolTip::IEToolTipMode ToolTip = PSS_ToolTip::IE_TT_Normal);
+    /**
+    * Called when a tooltip is required
+    *@param[in, out] toolTipText - tooltip text, formatted tooltip text on function ends
+    *@param point - hit point
+    *@param mode - tooltip mode
+    *@return true if tooltip can be shown, otherwise false
+    */
+    virtual bool OnToolTip(CString& toolTipText, const CPoint& point, PSS_ToolTip::IEToolTipMode mode = PSS_ToolTip::IE_TT_Normal);
 
     /////////////////////////////////////////////////////////////////////////////
     // Following and Entering link methods
@@ -727,8 +733,7 @@ private:
     BOOL                    m_IsCopy;
 };
 
-// Call by the controller when a tooltip is required
-inline bool ZBLinkSymbol::OnToolTip(CString& ToolTipText, CPoint point, PSS_ToolTip::IEToolTipMode ToolTip)
+inline bool ZBLinkSymbol::OnToolTip(CString& toolTipText, const CPoint& point, PSS_ToolTip::IEToolTipMode mode)
 {
     return false;
 }

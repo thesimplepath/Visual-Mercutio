@@ -662,19 +662,19 @@ BOOL ZBBPPageSymbol::OnDoubleClick()
     return TRUE;
 }
 
-bool ZBBPPageSymbol::OnToolTip(CString& ToolTipText, CPoint point, PSS_ToolTip::IEToolTipMode ToolTip)
+bool ZBBPPageSymbol::OnToolTip(CString& toolTipText, const CPoint& point, PSS_ToolTip::IEToolTipMode mode)
 {
     if (GetPage() && GetPage()->GetPageName())
     {
-        ToolTipText.Format(IDS_FS_BPPAGE_TOOLTIP,
+        toolTipText.Format(IDS_FS_BPPAGE_TOOLTIP,
             (const char*)GetPage()->GetPageName());
     }
     else
     {
-        ToolTipText.LoadString(IDS_FS_BPPAGE_ERR_TOOLTIP);
+        toolTipText.LoadString(IDS_FS_BPPAGE_ERR_TOOLTIP);
     }
 
-    if (ToolTip == ZBSymbol::IE_TT_Design)
+    if (mode == ZBSymbol::IE_TT_Design)
     {
         // From now do nothing,
         // need to implement the result of the control checking

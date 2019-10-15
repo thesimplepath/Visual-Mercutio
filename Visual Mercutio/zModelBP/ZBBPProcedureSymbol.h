@@ -137,8 +137,14 @@ public:
     virtual bool OnChangeAttributes(ZBPropertyAttributes* pAttributes);
     virtual CString GetAttributeString(ZBPropertyAttributes* pAttributes) const;
 
-    // Call by the controller when a tooltip is required
-    virtual bool OnToolTip(CString& ToolTipText, CPoint point, PSS_ToolTip::IEToolTipMode ToolTip = PSS_ToolTip::IE_TT_Normal);
+    /**
+    * Called when a tooltip is required
+    *@param[in, out] toolTipText - tooltip text, formatted tooltip text on function ends
+    *@param point - hit point
+    *@param mode - tooltip mode
+    *@return true if tooltip can be shown, otherwise false
+    */
+    virtual bool OnToolTip(CString& toolTipText, const CPoint& point, PSS_ToolTip::IEToolTipMode mode = PSS_ToolTip::IE_TT_Normal);
 
     // Drag and drop methods
     virtual bool AcceptDropItem(CObject* pObj, CPoint pt);

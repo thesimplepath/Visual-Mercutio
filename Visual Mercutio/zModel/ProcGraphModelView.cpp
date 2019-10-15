@@ -873,7 +873,7 @@ BOOL ZIProcessGraphModelView::OnToolTipNeedText(UINT id, NMHDR * pNMHDR, LRESULT
         if (ZIProcessGraphModelViewport::GetModelController() &&
             ZIProcessGraphModelViewport::GetModelController()->OnToolTip(m_StrToolTip,
                                                                          CursorPos,
-                                                                         (PSS_Global::GetType() == PSS_Global::IE_AT_Process) ? ZBSymbol::DesignToolTip : ZBSymbol::NormalToolTip))
+                                                                         (PSS_Global::GetType() == PSS_Global::IE_AT_Process) ? ZBSymbol::IE_TT_Design : ZBSymbol::IE_TT_Normal))
         {
             pTTT->hinst = NULL;
             pTTT->lpszText = m_StrToolTip.GetBuffer(m_StrToolTip.GetLength() + 1);

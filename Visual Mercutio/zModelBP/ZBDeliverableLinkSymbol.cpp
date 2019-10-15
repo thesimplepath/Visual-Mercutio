@@ -1244,36 +1244,34 @@ bool ZBDeliverableLinkSymbol::OnDropInternalPropertyItem(ZBProperty&        SrcP
     return ::SwapInternalPropertyItem(SrcProperty, DstProperty, Top2Down, Properties, ZS_BP_PROP_TEXTITEMLIST);
 }
 
-bool ZBDeliverableLinkSymbol::OnToolTip(CString&        ToolTipText,
-                                        CPoint            point,
-                                        PSS_ToolTip::IEToolTipMode    ToolTip)
+bool ZBDeliverableLinkSymbol::OnToolTip(CString& toolTipText, const CPoint& point, PSS_ToolTip::IEToolTipMode mode)
 {
-    ToolTipText.Format(IDS_FS_BPDELIVERABLE_TOOLTIP,
+    toolTipText.Format(IDS_FS_BPDELIVERABLE_TOOLTIP,
         (const char*)GetSymbolName(),
                        (const char*)GetSymbolComment(),
                        (const char*)GetSymbolReferenceNumberStr());
 
-    if (ToolTip == PSS_ToolTip::IE_TT_Design)
+    if (mode == PSS_ToolTip::IE_TT_Design)
     {
         bool bNotConnectedFollowing = (GetFollowingSymbol() == NULL);
         bool bNotConnectedEntering = (GetEnteringSymbol() == NULL);
 
         if (bNotConnectedFollowing || bNotConnectedEntering)
         {
-            ToolTipText += _T("\n");
+            toolTipText += _T("\n");
 
             if (bNotConnectedEntering)
             {
                 CString s;
                 s.LoadString(IDS_FS_BPDELIVERABLE_MISSING_INCONX_TOOLTIP);
-                ToolTipText += (s + _T("\n"));
+                toolTipText += (s + _T("\n"));
             }
 
             if (bNotConnectedFollowing)
             {
                 CString s;
                 s.LoadString(IDS_FS_BPDELIVERABLE_MISSING_OUTCONX_TOOLTIP);
-                ToolTipText += s;
+                toolTipText += s;
             }
         }
     }

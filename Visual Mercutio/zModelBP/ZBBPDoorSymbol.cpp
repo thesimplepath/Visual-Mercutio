@@ -579,21 +579,20 @@ BOOL ZBBPDoorSymbol::OnDoubleClick()
     return TRUE;
 }
 
-bool ZBBPDoorSymbol::OnToolTip(CString& ToolTipText, CPoint point, PSS_ToolTip::IEToolTipMode ToolTip)
+bool ZBBPDoorSymbol::OnToolTip(CString& toolTipText, const CPoint& point, PSS_ToolTip::IEToolTipMode mode)
 {
     // If a model is defined
     if (m_pModel && ISA(m_pModel, ZDProcessGraphModelMdl))
     {
-        ToolTipText.Format(IDS_FS_BPDOOR_TOOLTIP,
+        toolTipText.Format(IDS_FS_BPDOOR_TOOLTIP,
             (const char*)(reinterpret_cast<ZDProcessGraphModelMdl*>(m_pModel)->GetModelName()));
     }
-    else ToolTipText.LoadString(IDS_FS_BPDOOR_ERR_TOOLTIP);
+    else
+        toolTipText.LoadString(IDS_FS_BPDOOR_ERR_TOOLTIP);
 
-    if (ToolTip == ZBSymbol::IE_TT_Design)
+    if (mode == ZBSymbol::IE_TT_Design)
     {
-        // From now do nothing,
-        // need to implement the result of the control checking
-        // TODO
+        // todo -cFeature -oJean: do nothing for now, need to implement the result of the control checking
     }
 
     return true;
