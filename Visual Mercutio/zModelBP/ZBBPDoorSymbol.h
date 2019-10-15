@@ -130,7 +130,7 @@ public:
     }
 
     // Call by the controller when a tooltip is required
-    virtual bool OnToolTip(CString& ToolTipText, CPoint point, ToolTipMode ToolTip = NormalToolTip);
+    virtual bool OnToolTip(CString& ToolTipText, CPoint point, PSS_ToolTip::IEToolTipMode ToolTip = PSS_ToolTip::IE_TT_Normal);
 
     // Drag and drop methods
     virtual bool AcceptDropItem(CObject* pObj, CPoint pt);

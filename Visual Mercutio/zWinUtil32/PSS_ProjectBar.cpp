@@ -62,7 +62,7 @@ int PSS_ProjectBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 //---------------------------------------------------------------------------
 afx_msg LRESULT PSS_ProjectBar::OnDocumentHasBeenSelected(WPARAM wParam, LPARAM lParam)
 {
-    ZDDocument* pDoc = (ZDDocument*)lParam;
+    PSS_Document* pDoc = (PSS_Document*)lParam;
 
     if (pDoc)
         m_ProjectWindowCtrl.Initialize(pDoc, m_VisibleOnly);

@@ -10,7 +10,7 @@
 
 // processsoft
 #include "PSS_BaseMainFrame.h"
-#include "ZDDoc.h"
+#include "PSS_Document.h"
 #include "PSS_DocumentData.h"
 #include "ZIView.h"
 #include "PSS_Global.h"
@@ -350,7 +350,7 @@ afx_msg void PSS_BaseMDIPage::OnZoomChange()
     ASSERT(pDrop);
     ASSERT(pDrop->IsKindOf(RUNTIME_CLASS(CWnd)));
 
-    ZDDocument* pDocument = dynamic_cast<ZDDocument*>(GetActiveDocument());
+    PSS_Document* pDocument = dynamic_cast<PSS_Document*>(GetActiveDocument());
 
     if (pDocument)
     {
@@ -367,7 +367,7 @@ afx_msg void PSS_BaseMDIPage::OnSchemaChange()
     ASSERT(pDrop);
     ASSERT(pDrop->IsKindOf(RUNTIME_CLASS(CWnd)));
 
-    ZDDocument* pDocument = dynamic_cast<ZDDocument*>(GetActiveDocument());
+    PSS_Document* pDocument = dynamic_cast<PSS_Document*>(GetActiveDocument());
 
     if (pDocument)
     {
@@ -394,14 +394,14 @@ afx_msg void PSS_BaseMDIPage::OnFileChange()
     ASSERT( pDrop != NULL );
     ASSERT( pDrop->IsKindOf( RUNTIME_CLASS( CWnd ) ) );
 
-    if ( GetActiveDocument() && ISA( GetActiveDocument(), ZDDocument ) )
+    if ( GetActiveDocument() && ISA( GetActiveDocument(), PSS_Document) )
     {
         // Assign the new zoom percentage
         if ( pDrop->GetCurSel() != CB_ERR )
         {
             CWaitCursor    Cursor;
-            ( (ZDDocument*)GetActiveDocument() )->ChangeCurrentFile ( pDrop->GetCurSel() );
-            ( (ZDDocument*)GetActiveDocument() )->UpdateAllViews( NULL );
+            ( (PSS_Document*)GetActiveDocument() )->ChangeCurrentFile ( pDrop->GetCurSel() );
+            ( (PSS_Document*)GetActiveDocument() )->UpdateAllViews( NULL );
         }
     }
 }
@@ -411,7 +411,7 @@ afx_msg LONG PSS_BaseMDIPage::OnFileListChanged(UINT message, LONG lParam)
     if (!::IsWindow(m_FileList.GetSafeHwnd()))
         return 0;
 
-    ZDDocument* pDocument = dynamic_cast<ZDDocument*>(GetActiveDocument());
+    PSS_Document* pDocument = dynamic_cast<PSS_Document*>(GetActiveDocument());
 
     if (!pDocument)
         pDocument = PSS_Global::GetCurrentDocumentForSerialization();
@@ -445,7 +445,7 @@ afx_msg LONG PSS_BaseMDIPage::OnSetDefaultFile(UINT message, LONG wParam)
 
     if (message == 1)
     {
-        ZDDocument* pDocument = dynamic_cast<ZDDocument*>(GetActiveDocument());
+        PSS_Document* pDocument = dynamic_cast<PSS_Document*>(GetActiveDocument());
 
         if (pDocument)
         {
@@ -473,7 +473,7 @@ afx_msg LONG PSS_BaseMDIPage::OnSetDefaultFileOpen(WPARAM wParam, LPARAM lParam)
 
     if (wParam == 1)
     {
-        ZDDocument* pDocument = dynamic_cast<ZDDocument*>(GetActiveDocument());
+        PSS_Document* pDocument = dynamic_cast<PSS_Document*>(GetActiveDocument());
 
         if (pDocument)
         {
@@ -509,7 +509,7 @@ afx_msg LONG PSS_BaseMDIPage::OnSchemaHasChanged(UINT message, LONG wParam)
     if (!::IsWindow(m_Schema.GetSafeHwnd()))
         return 0;
 
-    ZDDocument* pDocument = dynamic_cast<ZDDocument*>(GetActiveDocument());
+    PSS_Document* pDocument = dynamic_cast<PSS_Document*>(GetActiveDocument());
 
     if (!pDocument)
         pDocument = PSS_Global::GetCurrentDocumentForSerialization();
@@ -535,7 +535,7 @@ afx_msg LONG PSS_BaseMDIPage::OnSchemaHasChanged(UINT message, LONG wParam)
 //---------------------------------------------------------------------------
 afx_msg LONG PSS_BaseMDIPage::OnNavigateURL(WPARAM wParam, LPARAM lParam)
 {
-    ZDDocument* pDocument = dynamic_cast<ZDDocument*>(GetActiveDocument());
+    PSS_Document* pDocument = dynamic_cast<PSS_Document*>(GetActiveDocument());
 
     if (pDocument)
     {

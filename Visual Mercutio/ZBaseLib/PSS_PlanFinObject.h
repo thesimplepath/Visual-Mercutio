@@ -26,12 +26,15 @@
 #include <Math.h>
 
 // class name mapping
+#ifndef PSS_Document
+    #define PSS_Document ZDDocument
+#endif
 #ifndef PSS_FieldColumn
     #define PSS_FieldColumn ZBFieldColumn
 #endif
 
 class ZIView;
-class ZDDocument;
+class PSS_Document;
 class PSS_FieldColumn;
 
 // processsoft
@@ -246,7 +249,7 @@ class AFX_EXT_CLASS PSS_PlanFinObject : public PSS_FormulaObjectParser
         * Recalculates the object
         *@param pDoc - document
         */
-        virtual inline void Recalculate(ZDDocument* pDoc);
+        virtual inline void Recalculate(PSS_Document* pDoc);
 
         /**
         * Gets the object value
@@ -461,7 +464,7 @@ class AFX_EXT_CLASS PSS_PlanFinObject : public PSS_FormulaObjectParser
         *@param pDoc - document
         *@return the document justification
         */
-        virtual inline UINT GetJustify(ZDDocument* pDoc) const;
+        virtual inline UINT GetJustify(PSS_Document* pDoc) const;
 
         /**
         * Sets the document justification
@@ -536,7 +539,7 @@ class AFX_EXT_CLASS PSS_PlanFinObject : public PSS_FormulaObjectParser
         *@note After having set the angle, if it has changed, call the OnAngleChanged function to alert the object
         *      that his angle has changed
         */
-        virtual inline void SetAngle(int angle, ZDDocument* pDoc);
+        virtual inline void SetAngle(int angle, PSS_Document* pDoc);
 
         /**
         * Gets the rotated text extents
@@ -863,13 +866,13 @@ class AFX_EXT_CLASS PSS_PlanFinObject : public PSS_FormulaObjectParser
         * Called when the angle has changed
         *@param pDoc - document
         */
-        virtual void OnAngleChanged(ZDDocument* pDoc);
+        virtual void OnAngleChanged(PSS_Document* pDoc);
 
         /**
         * Rotates the current font
         *@param pDoc - document
         */
-        virtual void RotateFont(ZDDocument* pDoc);
+        virtual void RotateFont(PSS_Document* pDoc);
 
         /**
         * Draws the right corner
@@ -965,7 +968,7 @@ void PSS_PlanFinObject::SetFormatType(EFormatType type)
     m_FormatType = type;
 }
 //---------------------------------------------------------------------------
-void PSS_PlanFinObject::Recalculate(ZDDocument* pDoc)
+void PSS_PlanFinObject::Recalculate(PSS_Document* pDoc)
 {}
 //---------------------------------------------------------------------------
 double PSS_PlanFinObject::GetValue() const
@@ -1069,7 +1072,7 @@ const char* PSS_PlanFinObject::GetFormattedBuffer() const
     return m_FormatBuffer;
 }
 //---------------------------------------------------------------------------
-UINT PSS_PlanFinObject::GetJustify(ZDDocument* pDoc) const
+UINT PSS_PlanFinObject::GetJustify(PSS_Document* pDoc) const
 {
     return DT_LEFT | DT_BOTTOM | DT_SINGLELINE;
 }
@@ -1092,7 +1095,7 @@ const int PSS_PlanFinObject::GetAngle() const
     return m_Angle;
 }
 //---------------------------------------------------------------------------
-void PSS_PlanFinObject::SetAngle(int angle, ZDDocument* pDoc)
+void PSS_PlanFinObject::SetAngle(int angle, PSS_Document* pDoc)
 {
     if (angle == m_Angle)
         return;

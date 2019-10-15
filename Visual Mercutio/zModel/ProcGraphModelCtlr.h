@@ -95,7 +95,7 @@ public:
     // Call by the controller when a tooltip is required
     virtual bool                            OnToolTip(CString&                    ToolTipText,
                                                       CPoint                    point,
-                                                      ZBSymbol::ToolTipMode    ToolTip = ZBSymbol::NormalToolTip);
+                                                      ZBSymbol::IEToolTipMode    ToolTip = ZBSymbol::IE_TT_Normal);
 
     // Drawing functions
     void                                    ReDrawComponent(CODComponent& Comp);

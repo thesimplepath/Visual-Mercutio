@@ -91,7 +91,7 @@ class AFX_EXT_CLASS PSS_PLFNAscii : public PSS_PlanFinObject
         *@param pDoc - document
         *@return the justify layout
         */
-        virtual UINT GetJustify(ZDDocument* pDoc) const;
+        virtual UINT GetJustify(PSS_Document* pDoc) const;
 
         /**
         * Sets the justify layout

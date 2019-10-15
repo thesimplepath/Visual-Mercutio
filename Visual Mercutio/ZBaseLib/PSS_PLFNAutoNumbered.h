@@ -157,7 +157,7 @@ class AFX_EXT_CLASS PSS_PLFNAutoNumbered : public PSS_PlanFinObject
         *@param pDoc - document
         *@return the document justification
         */
-        virtual inline UINT GetJustify(ZDDocument* pDoc) const;
+        virtual inline UINT GetJustify(PSS_Document* pDoc) const;
 
         /**
         * Sets the document justification
@@ -336,7 +336,7 @@ UINT PSS_PLFNAutoNumbered::GetPropertyTabs() const
     return (g_PropertyGeneralPage | g_PropertySizePage | g_PropertyNumberedPage);
 }
 //---------------------------------------------------------------------------
-UINT PSS_PLFNAutoNumbered::GetJustify(ZDDocument* pDoc) const
+UINT PSS_PLFNAutoNumbered::GetJustify(PSS_Document* pDoc) const
 {
     if (m_pObject)
         return m_pObject->GetJustify(pDoc);

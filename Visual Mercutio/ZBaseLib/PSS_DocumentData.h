@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // old class name mapping. This is required to maintain the compatibility with the files serialized before the class renaming
-#ifndef PSS_DocumentData 
+#ifndef PSS_DocumentData
     #define PSS_DocumentData ZDDocumentData
 #endif
 
@@ -29,6 +29,9 @@
 #include "ZUFileLauncher.h"
 
 // class name mapping
+#ifndef PSS_Document
+    #define PSS_Document ZDDocument
+#endif
 #ifndef PSS_FileBuffer
     #define PSS_FileBuffer ZBFileBuffer
 #endif
@@ -40,7 +43,7 @@
 #endif
 
 // forward class declarations
-class ZDDocument;
+class PSS_Document;
 class PSS_FileBuffer;
 class PSS_PlanFinObject;
 class PSS_FieldRepository;
@@ -72,7 +75,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         * Constructor
         *@param pDocument - document, can be NULL
         */
-        PSS_DocumentData(ZDDocument* pDocument = NULL);
+        PSS_DocumentData(PSS_Document* pDocument = NULL);
 
         /**
         * Copy constructor
@@ -690,13 +693,13 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         * Gets the document
         *@return the document
         */
-        virtual inline ZDDocument* GetDocument();
+        virtual inline PSS_Document* GetDocument();
 
         /**
         * Sets the document
         *@param pDocument - document
         */
-        virtual inline void SetDocument(ZDDocument* pDocument);
+        virtual inline void SetDocument(PSS_Document* pDocument);
 
         /**
         * Gets the font manager
@@ -854,7 +857,7 @@ class AFX_EXT_CLASS PSS_DocumentData : public CObject
         virtual bool FieldNameExistInObjectArray(const CString& fieldName);
 
     private:
-        ZDDocument*        m_pDocument;
+        PSS_Document*      m_pDocument;
         PSS_FileBuffer*    m_pFileBuffer;
         PSS_Stamp          m_Stamp;
         PSS_SchemaManager  m_Schema;
@@ -1092,12 +1095,12 @@ PSS_SchemaManager& PSS_DocumentData::GetSchema()
     return m_Schema;
 }
 //---------------------------------------------------------------------------
-ZDDocument* PSS_DocumentData::GetDocument()
+PSS_Document* PSS_DocumentData::GetDocument()
 {
     return m_pDocument;
 }
 //---------------------------------------------------------------------------
-void PSS_DocumentData::SetDocument(ZDDocument* pDocument)
+void PSS_DocumentData::SetDocument(PSS_Document* pDocument)
 {
     m_pDocument = pDocument;
 }

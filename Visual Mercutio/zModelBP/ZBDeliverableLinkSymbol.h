@@ -172,7 +172,7 @@ public:
     virtual bool OnPreDelete( CODModel* pModel = NULL, CODController* pCtrl = NULL );
 
     // Call by the controller when a tooltip is required
-    virtual bool OnToolTip( CString& ToolTipText, CPoint point, ToolTipMode ToolTip = NormalToolTip );
+    virtual bool OnToolTip( CString& ToolTipText, CPoint point, PSS_ToolTip::IEToolTipMode ToolTip = PSS_ToolTip::IE_TT_Normal);
 
     virtual BOOL OnDoubleClick()
     {

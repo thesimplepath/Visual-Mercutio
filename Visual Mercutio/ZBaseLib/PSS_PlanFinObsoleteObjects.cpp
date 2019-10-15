@@ -11,8 +11,8 @@
 
 // processsoft
 #include "PSS_DrawFunctions.h"
+#include "PSS_Document.h"
 #include "ZIView.h"
-#include "ZDDoc.h"
 
 // windows
 #include <float.h>
@@ -414,7 +414,7 @@ CString PSS_PLFNCalculated::GetFormattedObject()
     return GetFormattedBuffer();
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNCalculated::Recalculate(ZDDocument* pDoc)
+void PSS_PLFNCalculated::Recalculate(PSS_Document* pDoc)
 {
     if (!pDoc)
         return;

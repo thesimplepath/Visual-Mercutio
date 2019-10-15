@@ -34,6 +34,9 @@
 #endif
 
 // class name mapping
+#ifndef PSS_Document
+    #define PSS_Document ZDDocument
+#endif
 #ifndef PSS_DocumentData
     #define PSS_DocumentData ZDDocumentData
 #endif
@@ -42,7 +45,7 @@
 #endif
 
 // forward classes definition
-class ZDDocument;
+class PSS_Document;
 class PSS_DocumentData;
 class PSS_PlanFinObject;
 
@@ -72,7 +75,7 @@ class AFX_EXT_CLASS PSS_Formula : public CObject
         *@param[in, out] doc - document in which formula should be attached
         *@param formula - formula
         */
-        PSS_Formula(ZDDocument& doc, const CString& formula);
+        PSS_Formula(PSS_Document& doc, const CString& formula);
 
         /**
         * Copy constructor

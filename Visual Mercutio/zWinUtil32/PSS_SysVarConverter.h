@@ -18,7 +18,7 @@
 
 // processsoft
 #include "zEvent\ZProcess.h"
-#include "zBaseLib\ZDDoc.h"
+#include "zBaseLib\PSS_Document.h"
 
 #ifdef _ZWINUTIL32EXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -57,7 +57,7 @@ class AFX_EXT_CLASS PSS_SysVarConverter
         *@param pDoc - document
         *@param pProcess - process
         */
-        PSS_SysVarConverter(ZDDocument* pDoc = NULL, ZProcess* pProcess = NULL);
+        PSS_SysVarConverter(PSS_Document* pDoc = NULL, ZProcess* pProcess = NULL);
 
         virtual ~PSS_SysVarConverter();
 
@@ -66,7 +66,7 @@ class AFX_EXT_CLASS PSS_SysVarConverter
         *@param pDoc - document
         *@param pProcess - process
         */
-        virtual void Initialize(ZDDocument* pDoc = NULL, ZProcess* pProcess = NULL);
+        virtual void Initialize(PSS_Document* pDoc = NULL, ZProcess* pProcess = NULL);
 
         /**
         * Parses the line and replace keywords with its value
@@ -76,8 +76,8 @@ class AFX_EXT_CLASS PSS_SysVarConverter
         virtual CString Parse(const CString& line);
 
     private:
-        ZDDocument* m_pDoc;
-        ZProcess*   m_pProcess;
+        PSS_Document* m_pDoc;
+        ZProcess*     m_pProcess;
 
         /**
         * Copy constructor

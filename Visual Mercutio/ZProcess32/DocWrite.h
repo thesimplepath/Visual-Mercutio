@@ -15,13 +15,13 @@
 #define DocWrite_h 1
 
 // ZDDocument
-#include "zBaseLib\ZDDoc.h"
+#include "zBaseLib\PSS_Document.h"
 
 // JMR-MODIF - Le 11 mai 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
 // Class ZDDocumentReadWrite
 
-class ZDDocumentReadWrite : public ZDDocument
+class ZDDocumentReadWrite : public PSS_Document
 {
     DECLARE_SERIAL( ZDDocumentReadWrite )
 
@@ -29,7 +29,7 @@ class ZDDocumentReadWrite : public ZDDocument
 public:
 
     // Inherited feature
-    typedef ZDDocument inherited;
+    typedef PSS_Document inherited;
 //## end ZDDocumentReadWrite%35CC443703C5.initialDeclarations
 
 public:

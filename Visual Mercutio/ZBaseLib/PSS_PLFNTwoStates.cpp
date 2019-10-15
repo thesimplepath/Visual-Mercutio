@@ -10,7 +10,7 @@
 #include "PSS_PLFNTwoStates.h"
 
 // processsoft
-#include "ZDDoc.h"
+#include "PSS_Document.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -165,7 +165,7 @@ void PSS_PLFNTwoStates::Serialize(CArchive& ar)
         ar >> wValue;
         m_CheckState = wValue;
 
-        ZDDocument* pDoc = dynamic_cast<ZDDocument*>(ar.m_pDocument);
+        PSS_Document* pDoc = dynamic_cast<PSS_Document*>(ar.m_pDocument);
 
         if (pDoc && pDoc->GetDocumentStamp().GetInternalVersion() >= 5)
         {

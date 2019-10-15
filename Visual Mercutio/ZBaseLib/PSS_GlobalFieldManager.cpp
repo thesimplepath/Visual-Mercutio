@@ -121,7 +121,7 @@ const CStringArray& PSS_GlobalFieldManager::GetFieldNameArray()
     return m_FieldNameArray;
 }
 //---------------------------------------------------------------------------
-void PSS_GlobalFieldManager::CopyFieldDefinition(const CString& name, PSS_PlanFinObject* pObj, ZDDocument* pDoc)
+void PSS_GlobalFieldManager::CopyFieldDefinition(const CString& name, PSS_PlanFinObject* pObj, PSS_Document* pDoc)
 {
     PSS_FieldObjectDefinition* pObjectDef = FindField(name);
 

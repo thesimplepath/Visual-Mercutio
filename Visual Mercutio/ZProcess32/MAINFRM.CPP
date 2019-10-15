@@ -937,14 +937,14 @@ void ZIMainFrame::ViewZoomIn()
 {
     CDocument* pDoc = GetActiveDocument();
 
-    if (pDoc && ISA(pDoc, ZDDocument))
+    if (pDoc && ISA(pDoc, PSS_Document))
     {
-        int Zoom = ((ZDDocument*)pDoc)->GetMainView()->GetZoomPercentage() + 25;
+        int Zoom = ((PSS_Document*)pDoc)->GetMainView()->GetZoomPercentage() + 25;
 
         Zoom = __min(400, Zoom);
 
-        ((ZDDocument*)pDoc)->GetMainView()->SetZoomPercentage(Zoom);
-        ((ZDDocument*)pDoc)->UpdateAllViews(NULL);
+        ((PSS_Document*)pDoc)->GetMainView()->SetZoomPercentage(Zoom);
+        ((PSS_Document*)pDoc)->UpdateAllViews(NULL);
     }
 }
 
@@ -952,14 +952,14 @@ void ZIMainFrame::ViewZoomOut()
 {
     CDocument* pDoc = GetActiveDocument();
 
-    if (pDoc && ISA(pDoc, ZDDocument))
+    if (pDoc && ISA(pDoc, PSS_Document))
     {
-        int Zoom = ((ZDDocument*)pDoc)->GetMainView()->GetZoomPercentage() - 25;
+        int Zoom = ((PSS_Document*)pDoc)->GetMainView()->GetZoomPercentage() - 25;
 
         Zoom = __max(25, Zoom);
 
-        ((ZDDocument*)pDoc)->GetMainView()->SetZoomPercentage(Zoom);
-        ((ZDDocument*)pDoc)->UpdateAllViews(NULL);
+        ((PSS_Document*)pDoc)->GetMainView()->SetZoomPercentage(Zoom);
+        ((PSS_Document*)pDoc)->UpdateAllViews(NULL);
     }
 }
 

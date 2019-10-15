@@ -8,7 +8,7 @@
 #include <StdAfx.h>
 #include "PSS_PLFNMaskString.h"
 
-#include "ZDDoc.h"
+#include "PSS_Document.h"
 #include "ZIView.h"
 #include "PSS_MaskEditBase.h"
 

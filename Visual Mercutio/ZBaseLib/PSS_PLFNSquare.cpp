@@ -9,7 +9,7 @@
 #include "PSS_PLFNSquare.h"
 
 // processsoft
-#include "ZDDoc.h"
+#include "PSS_Document.h"
 #include "PSS_PaintResources.h"
 
 #ifdef _DEBUG

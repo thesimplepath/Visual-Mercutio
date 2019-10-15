@@ -1775,8 +1775,8 @@ BOOL ZAMainApp::IsCursorCapturedValid(const CPoint& point, ZIView* pView)
         return FALSE;
     }
 
-    BOOL        bCaptureValid = TRUE;
-    ZDDocument*    pDoc = pView->GetDocument();
+    BOOL          bCaptureValid = TRUE;
+    PSS_Document* pDoc = pView->GetDocument();
 
     // No document, not a valid capture
     if (!pDoc)

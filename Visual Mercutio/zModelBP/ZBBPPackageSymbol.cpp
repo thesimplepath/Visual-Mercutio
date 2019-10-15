@@ -258,7 +258,7 @@ BOOL ZBBPPackageSymbol::OnDoubleClick()
 }
 
 
-bool ZBBPPackageSymbol::OnToolTip( CString& ToolTipText, CPoint point, ToolTipMode ToolTip /*= NormalToolTip*/ )
+bool ZBBPPackageSymbol::OnToolTip( CString& ToolTipText, CPoint point, PSS_ToolTip::IEToolTipMode ToolTip)
 {
     ToolTipText.Format( IDS_FS_BPPACKAGE_TOOLTIP, 
                             (const char*)GetSymbolName());

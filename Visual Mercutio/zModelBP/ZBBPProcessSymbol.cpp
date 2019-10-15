@@ -2444,14 +2444,14 @@ BOOL ZBBPProcessSymbol::OnDoubleClick()
     return TRUE;
 }
 
-bool ZBBPProcessSymbol::OnToolTip(CString& ToolTipText, CPoint point, ToolTipMode ToolTip /*= NormalToolTip*/)
+bool ZBBPProcessSymbol::OnToolTip(CString& ToolTipText, CPoint point, PSS_ToolTip::IEToolTipMode ToolTip)
 {
     ToolTipText.Format(IDS_FS_BPPROCESS_TOOLTIP,
         (const char*)GetSymbolName(),
                        (const char*)GetSymbolComment(),
                        (const char*)GetSymbolReferenceNumberStr());
 
-    if (ToolTip == ZBSymbol::DesignToolTip)
+    if (ToolTip == ZBSymbol::IE_TT_Design)
     {
         // From now do nothing,
         // need to implement the result of the control checking

@@ -12,7 +12,7 @@
 #include <Limits.h>
 
 // processsoft
-#include "ZDDoc.h"
+#include "PSS_Document.h"
 #include "PSS_DocumentData.h"
 #include "PSS_Global.h"
 
@@ -68,7 +68,7 @@ void PSS_BaseTitleMDIPage::OnUpdateFrameTitle(BOOL addToTitle)
     if (!addToTitle)
         return;
 
-    ZDDocument* pDocument = dynamic_cast<ZDDocument*>(GetActiveDocument());
+    PSS_Document* pDocument = dynamic_cast<PSS_Document*>(GetActiveDocument());
 
     if (!pDocument)
         return;

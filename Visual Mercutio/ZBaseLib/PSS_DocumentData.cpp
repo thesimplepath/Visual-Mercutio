@@ -24,10 +24,10 @@
 #include "PSS_FileBuffer.h"
 #include "PSS_FieldRepository.h"
 #include "PSS_Tokenizer.h"
-#include "PSS_MsgBox.h"
 #include "PSS_ObjectUtility.h"
+#include "PSS_Document.h"
 #include "ZIView.h"
-#include "ZDDoc.h"
+#include "PSS_MsgBox.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -41,7 +41,7 @@ IMPLEMENT_SERIAL(PSS_DocumentData, CObject, g_DefVersion)
 //---------------------------------------------------------------------------
 // PSS_DocumentData
 //---------------------------------------------------------------------------
-PSS_DocumentData::PSS_DocumentData(ZDDocument* pDocument) :
+PSS_DocumentData::PSS_DocumentData(PSS_Document* pDocument) :
     CObject(),
     m_CurrentPage(1),
     m_EndCalculateTime(CTime::GetCurrentTime()),

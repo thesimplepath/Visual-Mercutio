@@ -17,12 +17,15 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // class name mapping
+#ifndef PSS_Document
+    #define PSS_Document ZDDocument
+#endif
 #ifndef PSS_DocumentData
     #define PSS_DocumentData ZDDocumentData
 #endif
 
 // forward class declaration
-class ZDDocument;
+class PSS_Document;
 class PSS_DocumentData;
 class ZITreeCtrl;
 
@@ -49,7 +52,7 @@ class AFX_EXT_CLASS PSS_ProjectTree
         *@param pDoc - document, can be NULL
         *@param visibleOnly - visible only
         */
-        PSS_ProjectTree(ZITreeCtrl* pTreeCtrl = NULL, ZDDocument* pDoc = NULL, BOOL visibleOnly = TRUE);
+        PSS_ProjectTree(ZITreeCtrl* pTreeCtrl = NULL, PSS_Document* pDoc = NULL, BOOL visibleOnly = TRUE);
 
         virtual ~PSS_ProjectTree();
 
@@ -59,7 +62,7 @@ class AFX_EXT_CLASS PSS_ProjectTree
         *@param pDoc - document, can be NULL
         *@param visibleOnly - visible only
         */
-        void Initialize(ZITreeCtrl* pTreeCtrl, ZDDocument* pDoc, BOOL OnlyVisible = TRUE);
+        void Initialize(ZITreeCtrl* pTreeCtrl, PSS_Document* pDoc, BOOL OnlyVisible = TRUE);
 
         /**
         * Empties the tree
@@ -89,12 +92,12 @@ class AFX_EXT_CLASS PSS_ProjectTree
         void OnFileListChanged();
 
     protected:
-        ZDDocument* m_pDoc;
-        ZITreeCtrl* m_pTreeCtrl;
-        CString     m_InternalDocumentType;
-        CString     m_ExternalDocumentType;
-        BOOL        m_VisibleOnly;
-        BOOL        m_HasBeenInitialized;
+        PSS_Document* m_pDoc;
+        ZITreeCtrl*   m_pTreeCtrl;
+        CString       m_InternalDocumentType;
+        CString       m_ExternalDocumentType;
+        BOOL          m_VisibleOnly;
+        BOOL          m_HasBeenInitialized;
 
         /**
         * Adds a document type item

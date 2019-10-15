@@ -11,7 +11,7 @@
  // processsoft
 #include "PSS_PLFNAutoNumbered.h"
 #include "PSS_PLFNTwoStates.h"
-#include "ZDDoc.h"
+#include "PSS_Document.h"
 #include "PSS_DocumentData.h"
 #include "PSS_MsgBox.h"
 
@@ -19,7 +19,7 @@
 // PSS_DocumentExport
 //---------------------------------------------------------------------------
 PSS_DocumentExport::PSS_DocumentExport(const CString&                fileName,
-                                       ZDDocument*                   pDoc,
+                                       PSS_Document*                 pDoc,
                                        BOOL                          generateHeader,
                                        ESynchronizationSeparatorType separatorType,
                                        const CString&                schema,

@@ -62,9 +62,9 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 11 mai 2006 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-IMPLEMENT_SERIAL(ZDDocumentReadWrite, ZDDocument, g_DefVersion)
+IMPLEMENT_SERIAL(ZDDocumentReadWrite, PSS_Document, g_DefVersion)
 
-BEGIN_MESSAGE_MAP(ZDDocumentReadWrite, ZDDocument)
+BEGIN_MESSAGE_MAP(ZDDocumentReadWrite, PSS_Document)
     //{{AFX_MSG_MAP(ZDDocumentReadWrite)
     ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateFileSave)
     ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_AS, OnUpdateFileSaveAs)
@@ -135,7 +135,7 @@ BOOL ZDDocumentReadWrite::OnNewDocument()
 
 BOOL ZDDocumentReadWrite::OnOpenDocument(const char* pszPathName)
 {
-    return ZDDocument::OnOpenDocument(pszPathName);
+    return PSS_Document::OnOpenDocument(pszPathName);
 }
 
 BOOL ZDDocumentReadWrite::OnSaveDocument(const char* pszPathName)
@@ -622,7 +622,7 @@ void ZDDocumentReadWrite::OnPageDelete()
 
 void ZDDocumentReadWrite::OnInsertNewPage()
 {
-    SetMaxPage(GetMaxPage() + 1);
+    SetPageCount(GetPageCount() + 1);
     UpdateAllViews(NULL);
 }
 

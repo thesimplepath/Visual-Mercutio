@@ -20,8 +20,13 @@
 #include "zBaseLib\ZITreeCtl.h"
 #include "PSS_ProjectTree.h"
 
+// class name mapping
+#ifndef PSS_Document
+    #define PSS_Document ZDDocument
+#endif
+
 // forward class declaration
-class ZDDocument;
+class PSS_Document;
 class PSS_DocumentData;
 
 #ifdef _ZWINUTIL32EXPORT
@@ -46,7 +51,7 @@ class AFX_EXT_CLASS PSS_ProjectWindowTreeCtrl : public ZITreeCtrl
         *@param pDoc - document
         *@param visibleOnly - visible only
         */
-        PSS_ProjectWindowTreeCtrl(ZDDocument* pDoc = NULL, BOOL visibleOnly = TRUE);
+        PSS_ProjectWindowTreeCtrl(PSS_Document* pDoc = NULL, BOOL visibleOnly = TRUE);
 
         virtual ~PSS_ProjectWindowTreeCtrl();
 
@@ -56,7 +61,7 @@ class AFX_EXT_CLASS PSS_ProjectWindowTreeCtrl : public ZITreeCtrl
         *@param visibleOnly - visible only
         */
         virtual void Initialize();
-        virtual void Initialize(ZDDocument* pDoc, BOOL visibleOnly = TRUE);
+        virtual void Initialize(PSS_Document* pDoc, BOOL visibleOnly = TRUE);
 
         /**
         * Empties the window tree
@@ -86,7 +91,7 @@ class AFX_EXT_CLASS PSS_ProjectWindowTreeCtrl : public ZITreeCtrl
         DECLARE_MESSAGE_MAP()
 
     private:
-        ZDDocument*     m_pDoc;
+        PSS_Document*   m_pDoc;
         PSS_ProjectTree m_ProjectTree;
         BOOL            m_VisibleOnly;
 

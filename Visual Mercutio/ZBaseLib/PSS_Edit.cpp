@@ -10,7 +10,7 @@
 
 // processsoft
 #include "PSS_PlanFinObjects.h"
-#include "ZDDoc.h"
+#include "PSS_Document.h"
 #include "PSS_PLFNMaskString.h"
 #include "PSS_PLFNMultiColumn.h"
 #include "ToolBarx.h"
@@ -51,7 +51,7 @@ PSS_Edit::~PSS_Edit()
 void PSS_Edit::PreCreateEdit(BOOL                 designerMode,
                              CWnd*                pParentWnd,
                              CDC*                 pDC,
-                             ZDDocument*          pDoc,
+                             PSS_Document*        pDoc,
                              PSS_PlanFinObject*   pEditedObj,
                              PSS_FieldRepository* pFieldRepository,
                              BOOL                 autoCalculateOption,
@@ -234,7 +234,7 @@ PSS_StrEdit::~PSS_StrEdit()
 void PSS_StrEdit::Create(BOOL                 designerMode,
                          CWnd*                pParentWnd,
                          CDC*                 pDC,
-                         ZDDocument*          pDoc,
+                         PSS_Document*        pDoc,
                          PSS_PlanFinObject*   pEditedObj,
                          PSS_FieldRepository* pFieldRepository,
                          BOOL                 autoCalculateOption,
@@ -376,7 +376,7 @@ PSS_NumEdit::~PSS_NumEdit()
 void PSS_NumEdit::Create(BOOL                 designerMode,
                          CWnd*                pParentWnd,
                          CDC*                 pDC,
-                         ZDDocument*          pDoc,
+                         PSS_Document*        pDoc,
                          PSS_PlanFinObject*   pEditedObj,
                          PSS_FieldRepository* pFieldRepository,
                          BOOL                 autoCalculateOption,
@@ -516,7 +516,7 @@ PSS_CalcEdit::~PSS_CalcEdit()
 void PSS_CalcEdit::Create(BOOL                 designerMode,
                           CWnd*                pParentWnd,
                           CDC*                 pDC,
-                          ZDDocument*          pDoc,
+                          PSS_Document*        pDoc,
                           PSS_PlanFinObject*   pEditedObj,
                           PSS_FieldRepository* pFieldRepository,
                           BOOL                 autoCalculateOption,
@@ -587,7 +587,7 @@ PSS_TimeEdit::~PSS_TimeEdit()
 void PSS_TimeEdit::Create(BOOL                 designerMode,
                           CWnd*                pParentWnd,
                           CDC*                 pDC,
-                          ZDDocument*          pDoc,
+                          PSS_Document*        pDoc,
                           PSS_PlanFinObject*   pEditedObj,
                           PSS_FieldRepository* pFieldRepository,
                           BOOL                 autoCalculateOption,
@@ -736,7 +736,7 @@ PSS_StrEditHistoric::~PSS_StrEditHistoric()
 void PSS_StrEditHistoric::Create(BOOL                 designerMode,
                                  CWnd*                pParentWnd,
                                  CDC*                 pDC,
-                                 ZDDocument*          pDoc,
+                                 PSS_Document*        pDoc,
                                  PSS_PlanFinObject*   pEditedObj,
                                  PSS_FieldRepository* pFieldRepository,
                                  BOOL                 autoCalculateOption,
@@ -872,7 +872,7 @@ PSS_NumEditHistoric::~PSS_NumEditHistoric()
 void PSS_NumEditHistoric::Create(BOOL                 designerMode,
                                  CWnd*                pParentWnd,
                                  CDC*                 pDC,
-                                 ZDDocument*          pDoc,
+                                 PSS_Document*        pDoc,
                                  PSS_PlanFinObject*   pEditedObj,
                                  PSS_FieldRepository* pFieldRepository,
                                  BOOL                 autoCalculateOption,
@@ -1008,7 +1008,7 @@ PSS_FieldNameEdit::~PSS_FieldNameEdit()
 void PSS_FieldNameEdit::Create(BOOL                 designerMode,
                                CWnd*                pParentWnd,
                                CDC*                 pDC,
-                               ZDDocument*          pDoc,
+                               PSS_Document*        pDoc,
                                PSS_PlanFinObject*   pEditedObj,
                                PSS_FieldRepository* pFieldRepository,
                                BOOL                 autoCalculateOption,
@@ -1126,7 +1126,7 @@ PSS_MaskEdit::~PSS_MaskEdit()
 void PSS_MaskEdit::Create(BOOL                 designerMode,
                           CWnd*                pParentWnd,
                           CDC*                 pDC,
-                          ZDDocument*          pDoc,
+                          PSS_Document*        pDoc,
                           PSS_PlanFinObject*   pEditedObj,
                           PSS_FieldRepository* pFieldRepository,
                           BOOL                 autoCalculateOption,
@@ -1253,7 +1253,7 @@ PSS_MultiColumnEdit::~PSS_MultiColumnEdit()
 void PSS_MultiColumnEdit::Create(BOOL                 designerMode,
                                  CWnd*                pParentWnd,
                                  CDC*                 pDC,
-                                 ZDDocument*          pDoc,
+                                 PSS_Document*        pDoc,
                                  PSS_PlanFinObject*   pEditedObj,
                                  PSS_FieldRepository* pFieldRepository,
                                  BOOL                 autoCalculateOption,

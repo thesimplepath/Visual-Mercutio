@@ -11,7 +11,7 @@
  // processsoft
 #include "PSS_DrawFunctions.h"
 #include "PSS_Bitmap.h"
-#include "ZDDoc.h"
+#include "PSS_Document.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -237,7 +237,7 @@ void PSS_PLFNBitmap::Serialize(CArchive& ar)
         m_Bitmap.Attach(m_hBitmap);
         m_Bitmap.DDBToDIB(BI_RGB, NULL);
 
-        if (((ZDDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
+        if (((PSS_Document*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
         {
             WORD wValue;
             ar >> wValue;

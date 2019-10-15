@@ -23,8 +23,13 @@
 #include "PSS_DocTemplateEx.h"
 #include "PSS_HistoricValueManager.h"
 
+// class name mapping
+#ifndef PSS_Document
+    #define PSS_Document ZDDocument
+#endif
+
 // forward class declarations
-class ZDDocument;
+class PSS_Document;
 class PSS_ProcessModelDocTmpl;
 class PSS_Server;
 
@@ -176,13 +181,13 @@ class AFX_EXT_CLASS PSS_Global
         * Gets the current document for serialization
         *@return the current document for serialization
         */
-        static inline ZDDocument* GetCurrentDocumentForSerialization();
+        static inline PSS_Document* GetCurrentDocumentForSerialization();
 
         /**
         * Sets the current document for serialization
         *@param value - the current document for serialization
         */
-        static inline void SetCurrentDocumentForSerialization(ZDDocument* value);
+        static inline void SetCurrentDocumentForSerialization(PSS_Document* value);
 
         /**
         * Opens the file in silent mode
@@ -776,7 +781,7 @@ class AFX_EXT_CLASS PSS_Global
 
     private:
         static CWnd*                    m_pModalDialogCWnd;
-        static ZDDocument*              m_pCurrentDocumentForSerialization;
+        static PSS_Document*            m_pCurrentDocumentForSerialization;
         static PSS_DocTemplateEx*       m_pDocTemplate;
         static PSS_DocTemplateEx*       m_pProcessDocTemplate;
         static CMultiDocTemplate*       m_pReportDocTemplate;
@@ -894,12 +899,12 @@ void PSS_Global::SetType(IEApplicationType value)
     m_AppType = value;
 }
 //---------------------------------------------------------------------------
-ZDDocument* PSS_Global::GetCurrentDocumentForSerialization()
+PSS_Document* PSS_Global::GetCurrentDocumentForSerialization()
 {
     return m_pCurrentDocumentForSerialization;
 }
 //---------------------------------------------------------------------------
-void PSS_Global::SetCurrentDocumentForSerialization(ZDDocument* value)
+void PSS_Global::SetCurrentDocumentForSerialization(PSS_Document* value)
 {
     m_pCurrentDocumentForSerialization = value;
 }

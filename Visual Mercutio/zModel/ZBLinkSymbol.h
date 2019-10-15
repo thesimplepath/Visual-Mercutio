@@ -23,7 +23,7 @@
 #include "zBaseLib\PSS_Observer.h"
 #include "zBaseSym\ZIBasicSymbolAcceptVisitor.h"
 #include "zBaseSym\ZIBasicSymbolVisitor.h"
-#include "zBaseLib\ZIToolTip.h"
+#include "zBaseLib\PSS_ToolTip.h"
 
 // ZBPropertyAttributes
 #include "zProperty\ZBPropertyAttributes.h"
@@ -63,7 +63,7 @@ class AFX_EXT_CLASS ZBLinkSymbol : public CODLinkComponent,
                                    public ZIBasicSymbolAcceptVisitor,
                                    public PSS_Subject,
                                    public PSS_Observer,
-                                   public ZIToolTip
+                                   public PSS_ToolTip
 {
     DECLARE_SERIAL(ZBLinkSymbol)
 
@@ -551,7 +551,7 @@ public:
     virtual void OnUpdate(PSS_Subject* pSubject, PSS_ObserverMsg* pMsg);
 
     // Call by the controller when a tooltip is required
-    virtual bool OnToolTip(CString& ToolTipText, CPoint point, ToolTipMode ToolTip = NormalToolTip);
+    virtual bool OnToolTip(CString& ToolTipText, CPoint point, PSS_ToolTip::IEToolTipMode ToolTip = PSS_ToolTip::IE_TT_Normal);
 
     /////////////////////////////////////////////////////////////////////////////
     // Following and Entering link methods
@@ -728,7 +728,7 @@ private:
 };
 
 // Call by the controller when a tooltip is required
-inline bool ZBLinkSymbol::OnToolTip(CString& ToolTipText, CPoint point, ToolTipMode ToolTip /*= NormalToolTip*/)
+inline bool ZBLinkSymbol::OnToolTip(CString& ToolTipText, CPoint point, PSS_ToolTip::IEToolTipMode ToolTip)
 {
     return false;
 }

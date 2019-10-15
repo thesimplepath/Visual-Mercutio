@@ -449,7 +449,7 @@ class AFX_EXT_CLASS PSS_PLFNStatic : public PSS_PLFNText
         * Called When the angle has changed
         *@param pDoc - document
         */
-        virtual void OnAngleChanged(ZDDocument* pDoc);
+        virtual void OnAngleChanged(PSS_Document* pDoc);
 };
 
 //---------------------------------------------------------------------------
@@ -827,7 +827,7 @@ class AFX_EXT_CLASS PSS_PLFNLong : public PSS_PLFNAscii
         * Recalculates its own value
         *@param pDoc - owning document
         */
-        virtual void Recalculate(ZDDocument* pDoc);
+        virtual void Recalculate(PSS_Document* pDoc);
 
         /**
         * Checks if value is rounded

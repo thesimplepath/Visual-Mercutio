@@ -125,7 +125,7 @@ public:
     // Call-back on symbols
 
     // Called by the controller when a tooltip is required
-    virtual bool OnToolTip( CString& ToolTipText, CPoint point, ToolTipMode ToolTip = NormalToolTip );
+    virtual bool OnToolTip( CString& ToolTipText, CPoint point, PSS_ToolTip::IEToolTipMode ToolTip = PSS_ToolTip::IE_TT_Normal);
 
     //////////////////////////////////////////////////////////////////////
     // Area state methods

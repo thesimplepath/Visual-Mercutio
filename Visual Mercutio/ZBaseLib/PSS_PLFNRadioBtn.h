@@ -94,7 +94,7 @@ class AFX_EXT_CLASS PSS_PLFNRadioBtn : public PSS_PLFNTwoStates
         *@param pDC - device context to draw to
         *@param pDoc - document
         */
-        virtual void EditObject(CWnd* pParentWnd, CDC* pDC, ZDDocument* pDoc);
+        virtual void EditObject(CWnd* pParentWnd, CDC* pDC, PSS_Document* pDoc);
 
         /**
         * Checks if this object is selected

@@ -908,7 +908,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
 #if defined(_ZDESIGNER) || defined(_ZSCRIPTOR)
     void PSS_ModifyView::OnSubmenu1Unselectobject()
     {
-        ZDDocument* pDoc = GetDocument();
+        PSS_Document* pDoc = GetDocument();
         ASSERT(pDoc);
         PSS_PlanFinObject* pObj;
 
@@ -1033,7 +1033,7 @@ void PSS_ModifyView::OnMouseMove(UINT nFlags, CPoint point)
         ASSERT(pDC);
         OnPrepareDC(pDC);
 
-        ZDDocument* pDoc = GetDocument();
+        PSS_Document* pDoc = GetDocument();
         ASSERT(pDoc);
 
         PSS_PlanFinObject* pObj;

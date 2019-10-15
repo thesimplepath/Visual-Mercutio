@@ -9,7 +9,7 @@
 #include "PSS_PLFNCheckBtn.h"
 
 // processsoft
-#include "ZDDoc.h"
+#include "PSS_Document.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -152,7 +152,7 @@ void PSS_PLFNCheckBtn::DrawObject(CDC* pDC, ZIView* pView)
     PSS_PlanFinObject::DrawObject(pDC, pView);
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNCheckBtn::EditObject(CWnd* pParentWnd, CDC* pDC, ZDDocument* pDoc)
+void PSS_PLFNCheckBtn::EditObject(CWnd* pParentWnd, CDC* pDC, PSS_Document* pDoc)
 {
     SetCheckState(!GetCheckState());
 

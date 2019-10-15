@@ -579,7 +579,7 @@ BOOL ZBBPDoorSymbol::OnDoubleClick()
     return TRUE;
 }
 
-bool ZBBPDoorSymbol::OnToolTip(CString& ToolTipText, CPoint point, ToolTipMode ToolTip /*= NormalToolTip*/)
+bool ZBBPDoorSymbol::OnToolTip(CString& ToolTipText, CPoint point, PSS_ToolTip::IEToolTipMode ToolTip)
 {
     // If a model is defined
     if (m_pModel && ISA(m_pModel, ZDProcessGraphModelMdl))
@@ -589,7 +589,7 @@ bool ZBBPDoorSymbol::OnToolTip(CString& ToolTipText, CPoint point, ToolTipMode T
     }
     else ToolTipText.LoadString(IDS_FS_BPDOOR_ERR_TOOLTIP);
 
-    if (ToolTip == ZBSymbol::DesignToolTip)
+    if (ToolTip == ZBSymbol::IE_TT_Design)
     {
         // From now do nothing,
         // need to implement the result of the control checking

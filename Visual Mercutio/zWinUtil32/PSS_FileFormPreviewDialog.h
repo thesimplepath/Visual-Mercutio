@@ -22,7 +22,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_ReadView.h"
-#include "zBaseLib\ZDDoc.h"
+#include "zBaseLib\PSS_Document.h"
 #include "zBaseLib\PSS_DocTemplateEx.h"
 
 // resources
@@ -137,7 +137,7 @@ class AFX_EXT_CLASS PSS_FileFormPreviewDialog : public CDialog
         CCreateContext     m_Context;
         PSS_ReadView*      m_pView;
         CFrameWnd*         m_pFrameWindow;
-        ZDDocument*        m_pDocument;
+        PSS_Document*      m_pDocument;
         PSS_DocTemplateEx* m_pDocTemplate;
         CString            m_FileName;
 

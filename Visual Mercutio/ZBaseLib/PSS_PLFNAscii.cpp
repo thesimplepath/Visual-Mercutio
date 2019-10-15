@@ -9,7 +9,7 @@
 #include "PSS_PLFNAscii.h"
 
 // processsoft
-#include "ZDDoc.h"
+#include "PSS_Document.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -84,7 +84,7 @@ PSS_PlanFinObject* PSS_PLFNAscii::Clone() const
     return new PSS_PLFNAscii(*this);
 }
 //---------------------------------------------------------------------------
-UINT PSS_PLFNAscii::GetJustify(ZDDocument* pDoc) const
+UINT PSS_PLFNAscii::GetJustify(PSS_Document* pDoc) const
 {
     if (m_Justify != g_NoAlignement)
         return m_Justify;

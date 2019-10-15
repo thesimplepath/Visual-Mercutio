@@ -662,7 +662,7 @@ BOOL ZBBPPageSymbol::OnDoubleClick()
     return TRUE;
 }
 
-bool ZBBPPageSymbol::OnToolTip(CString& ToolTipText, CPoint point, ToolTipMode ToolTip /*= NormalToolTip*/)
+bool ZBBPPageSymbol::OnToolTip(CString& ToolTipText, CPoint point, PSS_ToolTip::IEToolTipMode ToolTip)
 {
     if (GetPage() && GetPage()->GetPageName())
     {
@@ -674,7 +674,7 @@ bool ZBBPPageSymbol::OnToolTip(CString& ToolTipText, CPoint point, ToolTipMode T
         ToolTipText.LoadString(IDS_FS_BPPAGE_ERR_TOOLTIP);
     }
 
-    if (ToolTip == ZBSymbol::DesignToolTip)
+    if (ToolTip == ZBSymbol::IE_TT_Design)
     {
         // From now do nothing,
         // need to implement the result of the control checking

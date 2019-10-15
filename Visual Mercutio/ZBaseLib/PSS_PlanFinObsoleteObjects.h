@@ -390,7 +390,7 @@ class AFX_EXT_CLASS PSS_PLFNCalculated : public PSS_PLFNLong
         * Recalculates the object content
         *@param pDoc - document
         */
-        virtual void Recalculate(ZDDocument* pDoc);
+        virtual void Recalculate(PSS_Document* pDoc);
 
         /**
         * Serializes the class content to an archive

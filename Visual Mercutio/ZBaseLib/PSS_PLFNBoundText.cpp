@@ -9,8 +9,8 @@
 #include "PSS_PLFNBoundText.h"
 
 // processsoft
+#include "PSS_Document.h"
 #include "ZIView.h"
-#include "ZDDoc.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -267,7 +267,7 @@ void PSS_PLFNBoundText::Serialize(CArchive& ar)
     else
     {
         // read the elements
-        if (((ZDDocument*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
+        if (((PSS_Document*)ar.m_pDocument)->GetDocumentStamp().GetInternalVersion() >= 5)
         {
             ar >> m_Hanging;
 

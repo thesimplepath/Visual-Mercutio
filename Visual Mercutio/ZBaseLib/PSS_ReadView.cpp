@@ -57,7 +57,7 @@ const PSS_ReadView& PSS_ReadView::operator = (const PSS_ReadView& other)
 //---------------------------------------------------------------------------
 void PSS_ReadView::OnDraw(CDC* pDC)
 {
-    ZDDocument* pDoc = GetDocument();
+    PSS_Document* pDoc = GetDocument();
 
     if (!pDoc || !pDoc->GetActiveDocumentData())
         return;
@@ -96,7 +96,7 @@ BOOL PSS_ReadView::OnPreparePrinting(CPrintInfo* pInfo)
             }
     #endif
 
-    pInfo->SetMaxPage(GetDocument()->GetMaxPage());
+    pInfo->SetMaxPage(GetDocument()->GetPageCount());
     return(DoPreparePrinting(pInfo));
 }
 //---------------------------------------------------------------------------
@@ -311,7 +311,7 @@ void PSS_ReadView::OnViewZoomIn()
     // set the new zoom percentage
     SetZoomPercentage(currentZoom);
 
-    ((ZDDocument*)GetDocument())->UpdateAllViews(NULL);
+    ((PSS_Document*)GetDocument())->UpdateAllViews(NULL);
 }
 //---------------------------------------------------------------------------
 void PSS_ReadView::OnViewZoomOut()
@@ -321,7 +321,7 @@ void PSS_ReadView::OnViewZoomOut()
     // set the new zoom percentage
     SetZoomPercentage(currentZoom);
 
-    ((ZDDocument*)GetDocument())->UpdateAllViews(NULL);
+    ((PSS_Document*)GetDocument())->UpdateAllViews(NULL);
 }
 //---------------------------------------------------------------------------
 void PSS_ReadView::OnUpdateViewZoomIn(CCmdUI* pCmdUI)

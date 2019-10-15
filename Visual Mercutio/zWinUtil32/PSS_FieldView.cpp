@@ -38,6 +38,7 @@ END_MESSAGE_MAP()
 // PSS_FieldView
 //---------------------------------------------------------------------------
 PSS_FieldView::PSS_FieldView() :
+    ZITreeView(),
     m_pDoc(NULL),
     m_pFieldRepository(NULL)
 {}
@@ -45,7 +46,7 @@ PSS_FieldView::PSS_FieldView() :
 PSS_FieldView::~PSS_FieldView()
 {}
 //---------------------------------------------------------------------------
-void PSS_FieldView::Initialize(ZDDocument* pDoc, PSS_FieldRepository* pFieldRepository)
+void PSS_FieldView::Initialize(PSS_Document* pDoc, PSS_FieldRepository* pFieldRepository)
 {
     m_pDoc             = pDoc;
     m_pFieldRepository = pFieldRepository;
@@ -103,7 +104,7 @@ afx_msg LRESULT PSS_FieldView::OnDocumentHasBeenSelected(WPARAM wParam, LPARAM l
     if (!::IsWindow(GetSafeHwnd()))
         return 1;
 
-    m_pDoc = (ZDDocument*)lParam;
+    m_pDoc = (PSS_Document*)lParam;
 
     if (m_pDoc)
         m_FieldTree.Initialize((ZITreeCtrl*)&GetTreeCtrl(), m_pDoc, m_pFieldRepository);

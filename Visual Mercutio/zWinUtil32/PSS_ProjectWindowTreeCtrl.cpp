@@ -9,7 +9,7 @@
 #include "PSS_ProjectWindowTreeCtrl.h"
 
 // processsoft
-#include "zBaseLib\ZDDoc.h"
+#include "zBaseLib\PSS_Document.h"
 
 // resources
 #ifndef _WIN32
@@ -36,7 +36,7 @@ END_MESSAGE_MAP()
 //---------------------------------------------------------------------------
 // PSS_ProjectWindowTreeCtrl
 //---------------------------------------------------------------------------
-PSS_ProjectWindowTreeCtrl::PSS_ProjectWindowTreeCtrl(ZDDocument* pDoc, BOOL visibleOnly) :
+PSS_ProjectWindowTreeCtrl::PSS_ProjectWindowTreeCtrl(PSS_Document* pDoc, BOOL visibleOnly) :
     ZITreeCtrl(),
     m_pDoc(pDoc),
     m_VisibleOnly(visibleOnly)
@@ -60,7 +60,7 @@ void PSS_ProjectWindowTreeCtrl::Initialize()
     m_ProjectTree.Initialize(this, m_pDoc, m_VisibleOnly);
 }
 //---------------------------------------------------------------------------
-void PSS_ProjectWindowTreeCtrl::Initialize(ZDDocument* pDoc, BOOL visibleOnly)
+void PSS_ProjectWindowTreeCtrl::Initialize(PSS_Document* pDoc, BOOL visibleOnly)
 {
     m_pDoc        = pDoc;
     m_VisibleOnly = visibleOnly;

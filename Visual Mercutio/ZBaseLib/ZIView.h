@@ -36,7 +36,12 @@
 #include "PSS_PlanFinObject.h"
 #include "PSS_DropScrollView.h"
 
-class ZDDocument;
+// class name mapping
+#ifndef PSS_Document
+    #define PSS_Document ZDDocument
+#endif
+
+class PSS_Document;
 
 #ifdef _ZBASELIBEXPORT
 //put the values back to make AFX_EXT_CLASS export again
@@ -92,7 +97,7 @@ class AFX_EXT_CLASS ZIView : public PSS_DropScrollView
 
       //## Operation: GetDocument%832201964
       //    Return a cast document pointer.
-      ZDDocument* GetDocument ();
+      PSS_Document* GetDocument ();
 
       //## Operation: OnPrepareDC%832201965
       virtual void OnPrepareDC (CDC* pDC, CPrintInfo* pInfo = NULL);
@@ -114,7 +119,7 @@ class AFX_EXT_CLASS ZIView : public PSS_DropScrollView
       BOOL GetRectOfSelectedObject (CRect& rect);
 
       //## Operation: DeselectAllObject%832201976
-      void DeselectAllObject (CWnd* pWnd, CDC* pDC, ZDDocument* pDoc);
+      void DeselectAllObject (CWnd* pWnd, CDC* pDC, PSS_Document* pDoc);
 
       //## Operation: ClientToDoc%832637469
       //    Converts the client screen coordinates to document
@@ -331,10 +336,10 @@ class AFX_EXT_CLASS ZIView : public PSS_DropScrollView
 
 
 //## Other Operations (inline)
-inline ZDDocument* ZIView::GetDocument ()
+inline PSS_Document* ZIView::GetDocument ()
 {
   //## begin ZIView::GetDocument%832201964.body preserve=yes
-      return (ZDDocument*)CView::GetDocument();
+      return (PSS_Document*)CView::GetDocument();
   //## end ZIView::GetDocument%832201964.body
 }
 

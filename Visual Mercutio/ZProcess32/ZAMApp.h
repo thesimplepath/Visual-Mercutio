@@ -22,7 +22,7 @@
 #error include 'stdafx.h' before including this file for PCH
 #endif
 
-#include "zBaseLib\ZDDoc.h"
+#include "zBaseLib\PSS_Document.h"
 #include "mainfrm.h"
 #include "PSS_ModifyView.h"
 #include "planfin.hdf"
@@ -525,7 +525,7 @@ public:
     CDocument* GetActiveCDocument();
 
     // Return the casted active document.
-    ZDDocument* GetActiveDocument();
+    PSS_Document* GetActiveDocument();
 
     // Return the casted active base document.
     PSS_BaseDocument* GetActiveBaseDocument();
@@ -564,11 +564,11 @@ public:
 
     //## Operation: SetCurrentDocument%910434288
     // Sets the current document.
-    void SetCurrentDocument(ZDDocument* pDoc);
+    void SetCurrentDocument(PSS_Document* pDoc);
 
     //## Operation: GetCurrentDocument%910434289
     // Returns the current document pointer.
-    ZDDocument* GetCurrentDocument() const;
+    PSS_Document* GetCurrentDocument() const;
 
     //## Operation: GetServerIniFile%912537579
     // Get the global ini file. This function is pure virtual.
@@ -705,7 +705,7 @@ protected:
 
 protected:
 
-    ZDDocument*            m_pCurrentDocument;
+    PSS_Document*            m_pCurrentDocument;
 
     PSS_PlanFinObject*     m_pOldSelectedObj;
 
@@ -796,15 +796,15 @@ inline CDocument* ZAMainApp::GetActiveCDocument()
     return NULL;
 }
 
-inline ZDDocument* ZAMainApp::GetActiveDocument()
+inline PSS_Document* ZAMainApp::GetActiveDocument()
 {
     //## begin ZAMainApp::GetActiveDocument%853735838.body preserve=yes
     if (AfxGetMainWnd() &&
         ((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame() &&
         ((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument() &&
-        ISA(((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument(), ZDDocument))
+        ISA(((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument(), PSS_Document))
     {
-        return (ZDDocument*)(((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument());
+        return (PSS_Document*)(((CFrameWnd*)AfxGetMainWnd())->GetActiveFrame()->GetActiveDocument());
     }
 
     return NULL;
@@ -853,17 +853,17 @@ inline PSS_FieldRepository* ZAMainApp::GetFieldRepository()
     //## end ZAMainApp::GetFieldRepository%910104706.body
 }
 
-inline void ZAMainApp::SetCurrentDocument(ZDDocument* pDoc)
+inline void ZAMainApp::SetCurrentDocument(PSS_Document* pDoc)
 {
     //## begin ZAMainApp::SetCurrentDocument%910434288.body preserve=yes
     m_pCurrentDocument = pDoc;
     //## end ZAMainApp::SetCurrentDocument%910434288.body
 }
 
-inline ZDDocument* ZAMainApp::GetCurrentDocument() const
+inline PSS_Document* ZAMainApp::GetCurrentDocument() const
 {
     //## begin ZAMainApp::GetCurrentDocument%910434289.body preserve=yes
-    return (ZDDocument*)m_pCurrentDocument;
+    return (PSS_Document*)m_pCurrentDocument;
     //## end ZAMainApp::GetCurrentDocument%910434289.body
 }
 

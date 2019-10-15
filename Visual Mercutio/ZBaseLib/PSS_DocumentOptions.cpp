@@ -9,7 +9,7 @@
 #include "PSS_DocumentOptions.h"
 
  // processsoft
-#include "ZDDoc.h"
+#include "PSS_Document.h"
 
  //---------------------------------------------------------------------------
  // PSS_DocumentOptions

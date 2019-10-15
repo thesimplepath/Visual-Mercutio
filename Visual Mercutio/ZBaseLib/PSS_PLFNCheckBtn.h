@@ -94,7 +94,7 @@ class AFX_EXT_CLASS PSS_PLFNCheckBtn : public PSS_PLFNTwoStates
         *@param pDC - device context
         *@param pDoc - document
         */
-        void EditObject(CWnd* pParentWnd, CDC* pDC, ZDDocument* pDoc);
+        void EditObject(CWnd* pParentWnd, CDC* pDC, PSS_Document* pDoc);
 
         /**
         * Checks if this object is selected

@@ -9,7 +9,7 @@
 #include "PSS_PLFNString.h"
 
 // processsoft
-#include "ZDDoc.h"
+#include "PSS_Document.h"
 #include "ZIView.h"
 
 #ifdef _DEBUG

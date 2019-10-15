@@ -9,7 +9,7 @@
 #include "PSS_PLFNRadioBtn.h"
 
 // processsoft
-#include "ZDDoc.h"
+#include "PSS_Document.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -150,7 +150,7 @@ void PSS_PLFNRadioBtn::DrawObject(CDC* pDC, ZIView* pView)
     PSS_PlanFinObject::DrawObject(pDC, pView);
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNRadioBtn::EditObject(CWnd* pParentWnd, CDC* pDC, ZDDocument* pDoc)
+void PSS_PLFNRadioBtn::EditObject(CWnd* pParentWnd, CDC* pDC, PSS_Document* pDoc)
 {
     // get the group number. If greather than zero, iterate through all elments and reset all values
     // belonging to the same group
@@ -159,7 +159,7 @@ void PSS_PLFNRadioBtn::EditObject(CWnd* pParentWnd, CDC* pDC, ZDDocument* pDoc)
         PSS_PlanFinObject* pObj;
 
         // search wich element is selected
-        if ((pObj = ((ZDDocument*)pDoc)->GetHead()) != NULL)
+        if ((pObj = ((PSS_Document*)pDoc)->GetHead()) != NULL)
             do
             {
                 // is in the same group?
@@ -176,7 +176,7 @@ void PSS_PLFNRadioBtn::EditObject(CWnd* pParentWnd, CDC* pDC, ZDDocument* pDoc)
                     }
                 }
             }
-            while ((pObj = ((ZDDocument*)pDoc)->GetNext()) != NULL);
+            while ((pObj = ((PSS_Document*)pDoc)->GetNext()) != NULL);
     }
 
     SetCheckState(!GetCheckState());

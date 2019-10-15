@@ -19,8 +19,13 @@
 // processsoft
 #include "PSS_Export.h"
 
+// class name mapping
+#ifndef PSS_Document
+    #define PSS_Document ZDDocument
+#endif
+
 // forward class declarations
-class ZDDocument;
+class PSS_Document;
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -51,7 +56,7 @@ class AFX_EXT_CLASS PSS_DocumentExport : public PSS_Export
         *@param pStatusBar - status bar, can be NULL
         */
         PSS_DocumentExport(const CString&                fileName        = "",
-                           ZDDocument*                   pDoc            = NULL,
+                           PSS_Document*                 pDoc            = NULL,
                            BOOL                          generateHeader  = FALSE,
                            ESynchronizationSeparatorType separatorType   = E_SS_Automatic,
                            const CString&                schema          = g_OriginalSchema,
@@ -73,7 +78,7 @@ class AFX_EXT_CLASS PSS_DocumentExport : public PSS_Export
         *@param pStatusBar - status bar, can be NULL
         */
         virtual inline void Create(const CString&                fileName,
-                                   ZDDocument*                   pDoc,
+                                   PSS_Document*                 pDoc,
                                    BOOL                          generateHeader  = FALSE,
                                    ESynchronizationSeparatorType separatorType   = E_SS_Automatic,
                                    const CString&                schema          = g_OriginalSchema,
@@ -157,8 +162,8 @@ class AFX_EXT_CLASS PSS_DocumentExport : public PSS_Export
         virtual BOOL DoExportLoop();
 
     protected:
-        ZDDocument* m_pDoc;
-        int         m_ObjectCounter;
+        PSS_Document* m_pDoc;
+        int           m_ObjectCounter;
 
         /**
         * Gets the object counter
@@ -188,7 +193,7 @@ class AFX_EXT_CLASS PSS_DocumentExport : public PSS_Export
 // PSS_DocumentExport
 //---------------------------------------------------------------------------
 void PSS_DocumentExport::Create(const CString&                fileName,
-                                ZDDocument*                   pDoc,
+                                PSS_Document*                 pDoc,
                                 BOOL                          generateHeader,
                                 ESynchronizationSeparatorType separatorType,
                                 const CString&                schema,

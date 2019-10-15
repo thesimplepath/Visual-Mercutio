@@ -1246,14 +1246,14 @@ bool ZBDeliverableLinkSymbol::OnDropInternalPropertyItem(ZBProperty&        SrcP
 
 bool ZBDeliverableLinkSymbol::OnToolTip(CString&        ToolTipText,
                                         CPoint            point,
-                                        ToolTipMode    ToolTip        /*= NormalToolTip*/)
+                                        PSS_ToolTip::IEToolTipMode    ToolTip)
 {
     ToolTipText.Format(IDS_FS_BPDELIVERABLE_TOOLTIP,
         (const char*)GetSymbolName(),
                        (const char*)GetSymbolComment(),
                        (const char*)GetSymbolReferenceNumberStr());
 
-    if (ToolTip == ZIToolTip::DesignToolTip)
+    if (ToolTip == PSS_ToolTip::IE_TT_Design)
     {
         bool bNotConnectedFollowing = (GetFollowingSymbol() == NULL);
         bool bNotConnectedEntering = (GetEnteringSymbol() == NULL);

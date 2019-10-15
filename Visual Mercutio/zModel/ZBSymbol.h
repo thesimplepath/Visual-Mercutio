@@ -27,7 +27,7 @@
 #include "zBaseLib\PSS_Observer.h"
 #include "zBaseSym\ZIBasicSymbolAcceptVisitor.h"
 #include "zBaseSym\ZIBasicSymbolVisitor.h"
-#include "zBaseLib\ZIToolTip.h"
+#include "zBaseLib\PSS_ToolTip.h"
 
 #include "zModel\ZBExtAppPropertyMgr.h"
 #include "zModel\ZBExtFilePropertyMgr.h"
@@ -65,7 +65,7 @@ class AFX_EXT_CLASS ZBSymbol : public CODSymbolComponent,
                                public ZIBasicSymbolAcceptVisitor,
                                public PSS_Subject,
                                public PSS_Observer,
-                               public ZIToolTip
+                               public PSS_ToolTip
 {
     DECLARE_SERIAL(ZBSymbol)
 
@@ -439,7 +439,7 @@ public:
     }
 
     // Call by the controller when a tooltip is required
-    virtual bool OnToolTip(CString& ToolTipText, CPoint point, ToolTipMode ToolTip = NormalToolTip);
+    virtual bool OnToolTip(CString& ToolTipText, CPoint point, PSS_ToolTip::IEToolTipMode ToolTip = PSS_ToolTip::IE_TT_Normal);
 
     // Drag and drop methods
     virtual bool AcceptDropItem(CObject* pObj, CPoint pt)
@@ -916,7 +916,7 @@ inline int ZBSymbol::GetInitialLabelLineWidth() const
 }
 
 // Call by the controller when a tooltip is required
-inline bool ZBSymbol::OnToolTip(CString& ToolTipText, CPoint point, ToolTipMode ToolTip /*= NormalToolTip*/)
+inline bool ZBSymbol::OnToolTip(CString& ToolTipText, CPoint point, PSS_ToolTip::IEToolTipMode ToolTip)
 {
     return false;
 }

@@ -10,8 +10,8 @@
 #include "PSS_VisualTool.h"
 
 // processsoft
-#include "ZDDoc.h"
 #include "PSS_Global.h"
+#include "PSS_Document.h"
 
 //---------------------------------------------------------------------------
 // Global variables
@@ -120,7 +120,7 @@ void PSS_VisualToolEdit::OnLButtonDown(ZIView* pView, UINT flags, const CPoint& 
     CPoint local = point;
     pView->ClientToDoc(local);
 
-    ZDDocument* pDoc = pView->GetDocument();
+    PSS_Document* pDoc = pView->GetDocument();
     ASSERT(pDoc);
 
     PSS_PlanFinObject* pObj;
@@ -213,7 +213,7 @@ void PSS_VisualToolEdit::OnMouseMove(ZIView* pView, UINT flags, const CPoint& po
 
         if (PSS_Global::ShowAnimation())
         {
-            ZDDocument* pDoc = pView->GetDocument();
+            PSS_Document* pDoc = pView->GetDocument();
             ASSERT(pDoc);
 
             PSS_PlanFinObject* pObj;
@@ -360,7 +360,7 @@ void PSS_VisualToolObjectCreator::OnLButtonUp(ZIView* pView, UINT flags, const C
             CreateObject(rect);
         }
 
-        ZDDocument* pDoc = pView->GetDocument();
+        PSS_Document* pDoc = pView->GetDocument();
         ASSERT(pDoc);
 
         // the position have changed

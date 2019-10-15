@@ -73,7 +73,7 @@ BOOL ZDPointerDlg::OnInitDialog()
 
 int ZDPointerDlg::DoModal()
 {
-    ZDDocument*    pDoc = ZAApp::ZAGetApp()->GetActiveDocument();
+    PSS_Document*    pDoc = ZAApp::ZAGetApp()->GetActiveDocument();
     ASSERT( pDoc );
 
     m_PointerWindow.AssignMessageWnd( AfxGetMainWnd() );

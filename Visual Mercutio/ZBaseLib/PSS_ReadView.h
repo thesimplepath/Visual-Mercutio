@@ -17,8 +17,8 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
+#include "PSS_Document.h"
 #include "ZIView.h"
-#include "ZDDoc.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -47,7 +47,7 @@ class AFX_EXT_CLASS PSS_ReadView : public ZIView
         * Gets the document
         *@return the document
         */
-        virtual inline ZDDocument* GetDocument();
+        virtual inline PSS_Document* GetDocument();
 
     protected:
         virtual ~PSS_ReadView();
@@ -128,9 +128,9 @@ class AFX_EXT_CLASS PSS_ReadView : public ZIView
 //---------------------------------------------------------------------------
 // PSS_ReadView
 //---------------------------------------------------------------------------
-ZDDocument* PSS_ReadView::GetDocument()
+PSS_Document* PSS_ReadView::GetDocument()
 {
-    return (ZDDocument*)CView::GetDocument();
+    return (PSS_Document*)CView::GetDocument();
 }
 //---------------------------------------------------------------------------
 UINT PSS_ReadView::GetRightPopupMenuID()

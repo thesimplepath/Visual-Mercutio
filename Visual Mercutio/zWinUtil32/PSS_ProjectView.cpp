@@ -95,7 +95,7 @@ afx_msg LRESULT PSS_ProjectView::OnDocumentHasBeenSelected(WPARAM wParam, LPARAM
     if (!::IsWindow(GetSafeHwnd()))
         return 1;
 
-    ZDDocument* pDoc = (ZDDocument*)lParam;
+    PSS_Document* pDoc = (PSS_Document*)lParam;
 
     if (pDoc)
         m_ProjectTree.Initialize((ZITreeCtrl*)&GetTreeCtrl(), pDoc, m_VisibleOnly);

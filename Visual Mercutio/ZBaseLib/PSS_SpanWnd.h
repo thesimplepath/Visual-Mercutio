@@ -22,7 +22,7 @@
 
  // class name mapping
 #ifndef PSS_SpanView
-    //#define PSS_SpanView ZVSpanView
+    #define PSS_SpanView ZVSpanView
 #endif
 
 // forward class declaration

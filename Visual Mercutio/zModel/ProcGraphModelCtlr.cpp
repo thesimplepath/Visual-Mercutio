@@ -5314,7 +5314,7 @@ void ZDProcessGraphModelController::OnUpdate(PSS_Subject* pSubject, PSS_Observer
 
 bool ZDProcessGraphModelController::OnToolTip(CString&                    ToolTipText,
                                               CPoint                    point,
-                                              ZBSymbol::ToolTipMode    ToolTip /*= ZBSymbol::NormalToolTip*/)
+                                              ZBSymbol::IEToolTipMode    ToolTip)
 {
     CPoint pt(point);
     VpDPtoLP(&pt);

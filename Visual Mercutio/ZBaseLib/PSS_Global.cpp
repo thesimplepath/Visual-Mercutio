@@ -31,7 +31,7 @@ UINT g_LongDayOfWeek[] =
     LOCALE_SDAYNAME5,
     LOCALE_SDAYNAME6  // saturday
 };
-
+//---------------------------------------------------------------------------
 UINT g_ShortDayOfWeek[] =
 {
     LOCALE_SABBREVDAYNAME7, // sunday
@@ -42,7 +42,7 @@ UINT g_ShortDayOfWeek[] =
     LOCALE_SABBREVDAYNAME5,
     LOCALE_SABBREVDAYNAME6  // saturday
 };
-
+//---------------------------------------------------------------------------
 UINT g_LongMonths[] =
 {
     LOCALE_SMONTHNAME1,  // long name for January
@@ -59,7 +59,7 @@ UINT g_LongMonths[] =
     LOCALE_SMONTHNAME12, // long name for December
     LOCALE_SMONTHNAME13  // long name for 13th month (if exists)
 };
-
+//---------------------------------------------------------------------------
 UINT g_ShortMonths[] =
 {
     LOCALE_SABBREVMONTHNAME1,  // abreviated name for January
@@ -80,7 +80,7 @@ UINT g_ShortMonths[] =
 // Application global variables
 //---------------------------------------------------------------------------
 CWnd*                         PSS_Global::m_pModalDialogCWnd                 = NULL;
-ZDDocument*                   PSS_Global::m_pCurrentDocumentForSerialization = NULL;
+PSS_Document*                 PSS_Global::m_pCurrentDocumentForSerialization = NULL;
 PSS_DocTemplateEx*            PSS_Global::m_pDocTemplate                     = NULL;
 PSS_DocTemplateEx*            PSS_Global::m_pProcessDocTemplate              = NULL;
 CMultiDocTemplate*            PSS_Global::m_pReportDocTemplate               = NULL;

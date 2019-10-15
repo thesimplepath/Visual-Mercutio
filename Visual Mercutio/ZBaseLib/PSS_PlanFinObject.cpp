@@ -9,8 +9,8 @@
 #include "PSS_PlanFinObject.h"
 
 // processsoft
+#include "PSS_Document.h"
 #include "ZIView.h"
-#include "ZDDoc.h"
 #include "PSS_DrawFunctions.h"
 #include "PSS_PaintResources.h"
 
@@ -984,7 +984,7 @@ void PSS_PlanFinObject::SizePositionHasChanged()
 //---------------------------------------------------------------------------
 PSS_Font* PSS_PlanFinObject::GetFont(ZIView* pView)
 {
-    ZDDocument* pDoc = pView->GetDocument();
+    PSS_Document* pDoc = pView->GetDocument();
 
     if (pDoc)
     {
@@ -1004,7 +1004,7 @@ PSS_Font* PSS_PlanFinObject::GetFont(ZIView* pView)
 //---------------------------------------------------------------------------
 COLORREF PSS_PlanFinObject::GetColor(ZIView* pView)
 {
-    ZDDocument* pDoc = pView->GetDocument();
+    PSS_Document* pDoc = pView->GetDocument();
 
     if (pDoc)
     {
@@ -1173,7 +1173,7 @@ void PSS_PlanFinObject::DeleteNotes()
 //---------------------------------------------------------------------------
 void PSS_PlanFinObject::Serialize(CArchive& ar)
 {
-    ZDDocument* pDoc = dynamic_cast<ZDDocument*>(ar.m_pDocument);
+    PSS_Document* pDoc = dynamic_cast<PSS_Document*>(ar.m_pDocument);
 
     // increment the element counter
     if (pDoc)
@@ -1339,12 +1339,12 @@ void PSS_PlanFinObject::Serialize(CArchive& ar)
     }
 #endif
 //---------------------------------------------------------------------------
-void PSS_PlanFinObject::OnAngleChanged(ZDDocument* pDoc)
+void PSS_PlanFinObject::OnAngleChanged(PSS_Document* pDoc)
 {
     // does nothing. Each object must implement themselve this method
 }
 //---------------------------------------------------------------------------
-void PSS_PlanFinObject::RotateFont(ZDDocument* pDoc)
+void PSS_PlanFinObject::RotateFont(PSS_Document* pDoc)
 {
     if (pDoc)
     {

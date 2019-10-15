@@ -24,8 +24,13 @@
 #include "PSS_IntelliEdit.h"
 #include "PSS_SpecialHelpWnd.h"
 
+// class name mapping
+#ifndef PSS_Document
+    #define PSS_Document ZDDocument
+#endif
+
 // forward classes declaration
-class ZDDocument;
+class PSS_Document;
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -61,7 +66,7 @@ class AFX_EXT_CLASS PSS_Edit
         virtual void PreCreateEdit(BOOL                 designerMode,
                                    CWnd*                pParentWnd,
                                    CDC*                 pDC,
-                                   ZDDocument*          pDoc,
+                                   PSS_Document*        pDoc,
                                    PSS_PlanFinObject*   pEditedObj,
                                    PSS_FieldRepository* pFieldRepository    = NULL,
                                    BOOL                 autoCalculateOption = FALSE,
@@ -81,7 +86,7 @@ class AFX_EXT_CLASS PSS_Edit
         virtual void Create(BOOL                 designerMode,
                             CWnd*                pParentWnd,
                             CDC*                 pDC,
-                            ZDDocument*          pDoc,
+                            PSS_Document*        pDoc,
                             PSS_PlanFinObject*   pEditedObj,
                             PSS_FieldRepository* pFieldRepository    = NULL,
                             BOOL                 autoCalculateOption = FALSE,
@@ -142,7 +147,7 @@ class AFX_EXT_CLASS PSS_Edit
         CWnd*                m_pParentWnd;
         PSS_SpecialHelpWnd*  m_pSpecialHelp;
         PSS_PlanFinObject*   m_pEditedObj;
-        ZDDocument*          m_pDoc;
+        PSS_Document*        m_pDoc;
         PSS_FieldRepository* m_pFieldRepository;
         CRect                m_Rect;
         BOOL                 m_Save;
@@ -237,7 +242,7 @@ class AFX_EXT_CLASS PSS_StrEdit : public PSS_DragEdit, public PSS_Edit
         virtual void Create(BOOL                 designerMode,
                             CWnd*                pParentWnd,
                             CDC*                 pDC,
-                            ZDDocument*          pDoc,
+                            PSS_Document*        pDoc,
                             PSS_PlanFinObject*   pEditedObj,
                             PSS_FieldRepository* pFieldRepository    = NULL,
                             BOOL                 autoCalculateOption = FALSE,
@@ -312,7 +317,7 @@ class AFX_EXT_CLASS PSS_NumEdit : public PSS_DragEdit, public PSS_Edit
         virtual void Create(BOOL                 designerMode,
                             CWnd*                pParentWnd,
                             CDC*                 pDC,
-                            ZDDocument*          pDoc,
+                            PSS_Document*        pDoc,
                             PSS_PlanFinObject*   pEditedObj,
                             PSS_FieldRepository* pFieldRepository    = NULL,
                             BOOL                 autoCalculateOption = FALSE,
@@ -383,7 +388,7 @@ class AFX_EXT_CLASS PSS_CalcEdit : public PSS_DragEdit, public PSS_Edit
         virtual void Create(BOOL                 designerMode,
                             CWnd*                pParentWnd,
                             CDC*                 pDC,
-                            ZDDocument*          pDoc,
+                            PSS_Document*        pDoc,
                             PSS_PlanFinObject*   pEditedObj,
                             PSS_FieldRepository* pFieldRepository    = NULL,
                             BOOL                 autoCalculateOption = FALSE,
@@ -453,7 +458,7 @@ class AFX_EXT_CLASS PSS_TimeEdit : public PSS_DragEdit, public PSS_Edit
         virtual void Create(BOOL                 designerMode,
                             CWnd*                pParentWnd,
                             CDC*                 pDC,
-                            ZDDocument*          pDoc,
+                            PSS_Document*        pDoc,
                             PSS_PlanFinObject*   pEditedObj,
                             PSS_FieldRepository* pFieldRepository    = NULL,
                             BOOL                 autoCalculateOption = FALSE,
@@ -529,7 +534,7 @@ class AFX_EXT_CLASS PSS_StrEditHistoric : public PSS_IntelliEdit, public PSS_Edi
         virtual void Create(BOOL                 designerMode,
                             CWnd*                pParentWnd,
                             CDC*                 pDC,
-                            ZDDocument*          pDoc,
+                            PSS_Document*        pDoc,
                             PSS_PlanFinObject*   pEditedObj,
                             PSS_FieldRepository* pFieldRepository    = NULL,
                             BOOL                 autoCalculateOption = FALSE,
@@ -614,7 +619,7 @@ class AFX_EXT_CLASS PSS_NumEditHistoric : public PSS_IntelliEdit, public PSS_Edi
         virtual void Create(BOOL                 designerMode,
                             CWnd*                pParentWnd,
                             CDC*                 pDC,
-                            ZDDocument*          pDoc,
+                            PSS_Document*        pDoc,
                             PSS_PlanFinObject*   pEditedObj,
                             PSS_FieldRepository* pFieldRepository    = NULL,
                             BOOL                 autoCalculateOption = FALSE,
@@ -690,7 +695,7 @@ class AFX_EXT_CLASS PSS_FieldNameEdit : public PSS_IntelliEdit, public PSS_Edit
         virtual void Create(BOOL                 designerMode,
                             CWnd*                pParentWnd,
                             CDC*                 pDC,
-                            ZDDocument*          pDoc,
+                            PSS_Document*        pDoc,
                             PSS_PlanFinObject*   pEditedObj,
                             PSS_FieldRepository* pFieldRepository    = NULL,
                             BOOL                 autoCalculateOption = FALSE,
@@ -764,7 +769,7 @@ class AFX_EXT_CLASS PSS_MaskEdit : public PSS_MaskEditBase, public PSS_Edit
         virtual void Create(BOOL                 designerMode,
                             CWnd*                pParentWnd,
                             CDC*                 pDC,
-                            ZDDocument*          pDoc,
+                            PSS_Document*        pDoc,
                             PSS_PlanFinObject*   pEditedObj,
                             PSS_FieldRepository* pFieldRepository    = NULL,
                             BOOL                 autoCalculateOption = FALSE,
@@ -835,7 +840,7 @@ class AFX_EXT_CLASS PSS_MultiColumnEdit : public PSS_GridCtrl, public PSS_Edit
         virtual void Create(BOOL                 designerMode,
                             CWnd*                pParentWnd,
                             CDC*                 pDC,
-                            ZDDocument*          pDoc,
+                            PSS_Document*        pDoc,
                             PSS_PlanFinObject*   pEditedObj,
                             PSS_FieldRepository* pFieldRepository    = NULL,
                             BOOL                 autoCalculateOption = FALSE,

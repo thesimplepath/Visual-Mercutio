@@ -27,7 +27,7 @@
 //## end module%3365108E0302.declarations
 
 //## begin module%3365108E0302.additionalDeclarations preserve=yes
-#include "ZDDoc.h"
+#include "PSS_Document.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -94,7 +94,7 @@ ZIViewCode::~ZIViewCode()
 void ZIViewCode::OnDraw(CDC* pDC)
 {
     //## begin ZIViewCode::OnDraw%862261465.body preserve=yes
-    ZDDocument*    pDoc = GetDocument();
+    PSS_Document*    pDoc = GetDocument();
     ASSERT(pDoc);
     int                iPage;
     PSS_PlanFinObject  *obj;
@@ -182,7 +182,7 @@ BOOL ZIViewCode::OnPreparePrinting(CPrintInfo* pInfo)
 {
     //## begin ZIViewCode::OnPreparePrinting%901710586.body preserve=yes
         // Do not check for evaluation version
-    pInfo->SetMaxPage(GetDocument()->GetMaxPage());
+    pInfo->SetMaxPage(GetDocument()->GetPageCount());
     return(DoPreparePrinting(pInfo));
     //## end ZIViewCode::OnPreparePrinting%901710586.body
 }

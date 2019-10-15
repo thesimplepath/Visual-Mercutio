@@ -181,7 +181,7 @@ class AFX_EXT_CLASS PSS_FieldRepository
         *@param pObj - object
         *@param pDoc - document
         */
-        virtual inline void CopyFieldDefinition(const CString& name, PSS_PlanFinObject* pObj, ZDDocument* pDoc);
+        virtual inline void CopyFieldDefinition(const CString& name, PSS_PlanFinObject* pObj, PSS_Document* pDoc);
 
         /**
         * Checks if field repository is valid
@@ -337,7 +337,7 @@ const CStringArray& PSS_FieldRepository::GetFieldNameArray()
     return m_GlobalFieldManager->GetFieldNameArray();
 }
 //---------------------------------------------------------------------------
-void PSS_FieldRepository::CopyFieldDefinition(const CString& name, PSS_PlanFinObject* pObj, ZDDocument* pDoc)
+void PSS_FieldRepository::CopyFieldDefinition(const CString& name, PSS_PlanFinObject* pObj, PSS_Document* pDoc)
 {
     if (m_GlobalFieldManager)
         m_GlobalFieldManager->CopyFieldDefinition(name, pObj, pDoc);

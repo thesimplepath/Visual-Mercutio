@@ -295,7 +295,7 @@ BOOL PSS_FileFormPreviewDialog::OnInitDialog()
 
     // set silent mode before opening the file
     PSS_Global::SetOpenFileInSilentMode();
-    m_pDocument = (ZDDocument*)m_pDocTemplate->OpenDocumentFile((const char*)m_FileName, FALSE);
+    m_pDocument = (PSS_Document*)m_pDocTemplate->OpenDocumentFile((const char*)m_FileName, FALSE);
 
     // set back silent mode after having opened the file
     PSS_Global::SetOpenFileInSilentMode(FALSE);

@@ -9,7 +9,7 @@
 #include "PSS_PLFNText.h"
 
 // processsoft
-#include "ZDDoc.h"
+#include "PSS_Document.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE

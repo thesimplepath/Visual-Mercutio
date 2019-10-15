@@ -11,7 +11,7 @@
 //---------------------------------------------------------------------------
 // PSS_SysVarConverter
 //---------------------------------------------------------------------------
-PSS_SysVarConverter::PSS_SysVarConverter(ZDDocument* pDoc, ZProcess* pProcess) :
+PSS_SysVarConverter::PSS_SysVarConverter(PSS_Document* pDoc, ZProcess* pProcess) :
     m_pDoc(pDoc),
     m_pProcess(pProcess) 
 {}
@@ -29,7 +29,7 @@ const PSS_SysVarConverter& PSS_SysVarConverter::operator = (const PSS_SysVarConv
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-void PSS_SysVarConverter::Initialize(ZDDocument* pDoc, ZProcess* pProcess)
+void PSS_SysVarConverter::Initialize(PSS_Document* pDoc, ZProcess* pProcess)
 {
     m_pDoc     = pDoc;
     m_pProcess = pProcess;

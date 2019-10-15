@@ -26,9 +26,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZDDoc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZDHistoricValueDocument.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -74,9 +71,6 @@
     <ClCompile Include="ZIntelliMultiLineBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZIToolTip.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="zitreectl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -87,9 +81,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZIViewCd.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZLVCombo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZLVEdit.cpp">
@@ -602,6 +593,15 @@
     <ClCompile Include="PSS_WorkspaceTreeCtrl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_Document.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ToolTip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_ListViewCombo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -718,9 +718,6 @@
     <ClInclude Include="zBaseLib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZDDoc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZDHistoricValueDocument.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -766,9 +763,6 @@
     <ClInclude Include="ZIntelliMultiLineBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZIToolTip.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="zitreectl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -779,9 +773,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZIViewCd.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZLVCombo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZLVEdit.h">
@@ -1295,6 +1286,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_WorkspaceTreeCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_Document.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ListViewCombo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_ToolTip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

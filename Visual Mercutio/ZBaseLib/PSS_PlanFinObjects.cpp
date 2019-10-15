@@ -12,7 +12,7 @@
 #include <float.h>
 
 // processsoft
-#include "ZDDoc.h"
+#include "PSS_Document.h"
 #include "ZIView.h"
 #include "PSS_MathParser.h"
 #include "PSS_DrawFunctions.h"
@@ -404,7 +404,7 @@ void PSS_PLFNStatic::DrawObject(CDC* pDC, ZIView* pView)
     PSS_PlanFinObject::DrawObject(pDC, pView);
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNStatic::OnAngleChanged(ZDDocument* pDoc)
+void PSS_PLFNStatic::OnAngleChanged(PSS_Document* pDoc)
 {
     // rotate the font
     RotateFont(pDoc);
@@ -1017,7 +1017,7 @@ void PSS_PLFNLong::SetFormatWithChoice(const CString& value)
         }
 }
 //---------------------------------------------------------------------------
-void PSS_PLFNLong::Recalculate(ZDDocument* pDoc)
+void PSS_PLFNLong::Recalculate(PSS_Document* pDoc)
 {
     if (!pDoc)
         return;

@@ -3810,7 +3810,7 @@ void ZAApp::OnHelpSupport()
     // Standard print setup command
     CWinApp::OnFilePrintSetup();
 
-    ZDDocument *pDoc = GetActiveDocument();
+    PSS_Document *pDoc = GetActiveDocument();
     // If the page size has changed, recalculate the page
     if (pDoc)
     {

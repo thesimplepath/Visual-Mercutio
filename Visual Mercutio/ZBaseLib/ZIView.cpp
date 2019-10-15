@@ -31,7 +31,7 @@
 #include "PSS_PLFNCheckBtn.h"
 #include "PSS_PLFNRadioBtn.h"
 #include "PSS_MsgBox.h"
-#include "ZDDoc.h"
+#include "PSS_Document.h"
 
 // PaintRes
 #include "PSS_PaintResources.h"
@@ -195,7 +195,7 @@ void ZIView::OnPrepareDC(CDC* pDC, CPrintInfo* pInfo)
 PSS_PlanFinObject* ZIView::ActiveSelectedObject(CPoint& point, BOOL bAutoReset)
 {
     //## begin ZIView::ActiveSelectedObject%832201974.body preserve=yes
-    ZDDocument*    pDoc = GetDocument();
+    PSS_Document*    pDoc = GetDocument();
     ASSERT(pDoc);
     PSS_PlanFinObject*    obj;
     PSS_PlanFinObject*    ReturnedObject = NULL;
@@ -261,7 +261,7 @@ PSS_PlanFinObject* ZIView::ActiveSelectedObject(CPoint& point, BOOL bAutoReset)
 void ZIView::SelectObjectInRect(const CRect& rect, CWnd* pWnd, CDC* pDC)
 {
     //## begin ZIView::SelectObjectInRect%832201975.body preserve=yes
-    ZDDocument* pDoc = GetDocument();
+    PSS_Document* pDoc = GetDocument();
     ASSERT(pDoc);
 
     PSS_PlanFinObject *obj;
@@ -304,7 +304,7 @@ void ZIView::SelectObjectInRect(const CRect& rect, CWnd* pWnd, CDC* pDC)
 BOOL ZIView::GetRectOfSelectedObject(CRect& rect)
 {
     //## begin ZIView::GetRectOfSelectedObject%832201973.body preserve=yes
-    ZDDocument* pDoc = GetDocument();
+    PSS_Document* pDoc = GetDocument();
     ASSERT(pDoc);
 
     PSS_PlanFinObject  *obj;
@@ -335,7 +335,7 @@ BOOL ZIView::GetRectOfSelectedObject(CRect& rect)
     //## end ZIView::GetRectOfSelectedObject%832201973.body
 }
 
-void ZIView::DeselectAllObject(CWnd* pWnd, CDC* pDC, ZDDocument* pDoc)
+void ZIView::DeselectAllObject(CWnd* pWnd, CDC* pDC, PSS_Document* pDoc)
 {
     //## begin ZIView::DeselectAllObject%832201976.body preserve=yes
     PSS_PlanFinObject  *obj;
@@ -400,7 +400,7 @@ void ZIView::DocToClient(CRect& rect)
 PSS_PlanFinObject* ZIView::FindHitObject(CPoint& point)
 {
     //## begin ZIView::FindHitObject%837834739.body preserve=yes
-    ZDDocument* pDoc = GetDocument();
+    PSS_Document* pDoc = GetDocument();
     ASSERT(pDoc);
 
     PSS_PlanFinObject *obj;
@@ -461,7 +461,7 @@ PSS_PlanFinObject* ZIView::ChooseObject()
 CObArray& ZIView::GetArrayOfSelectedObject()
 {
     //## begin ZIView::GetArrayOfSelectedObject%863883947.body preserve=yes
-    ZDDocument* pDoc = GetDocument();
+    PSS_Document* pDoc = GetDocument();
     ASSERT(pDoc);
 
     // Remove all elements
@@ -671,7 +671,7 @@ BOOL ZIView::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
         PSS_PlanFinObject *obj;
 
         // Search wich element is selected
-        if ((obj = ((ZDDocument*)pDoc)->GetHead()) == NULL)
+        if ((obj = ((PSS_Document*)pDoc)->GetHead()) == NULL)
             return PSS_DropScrollView::OnSetCursor(pWnd, nHitTest, message);
 
         do
@@ -684,7 +684,7 @@ BOOL ZIView::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
                         return TRUE;
             }
         }
-        while ((obj = ((ZDDocument*)pDoc)->GetNext()) != NULL);
+        while ((obj = ((PSS_Document*)pDoc)->GetNext()) != NULL);
     }
 
     return PSS_DropScrollView::OnSetCursor(pWnd, nHitTest, message);
