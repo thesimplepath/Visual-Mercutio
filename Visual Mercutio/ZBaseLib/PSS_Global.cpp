@@ -9,7 +9,7 @@
 #include "PSS_Global.h"
 
 // processsoft
-#include "ZDHistoricValueDocument.h"
+#include "PSS_HistoricValueDocument.h"
 #include "PSS_DocTemplateEx.h"
 #include "PSS_ProcessModelDocTmpl.h"
 #include "PSS_Tokenizer.h"
@@ -253,7 +253,7 @@ void PSS_Global::Release()
 //---------------------------------------------------------------------------
 bool PSS_Global::ReadFromFileHistoricValue(const CString& fileName)
 {
-    ZDHistoricValueDocument doc;
+    PSS_HistoricValueDocument doc;
 
     // copy the manager
     if (doc.ReadFromFile(fileName))
@@ -267,7 +267,7 @@ bool PSS_Global::ReadFromFileHistoricValue(const CString& fileName)
 //---------------------------------------------------------------------------
 bool PSS_Global::SaveToFileHistoricValue(const CString& fileName)
 {
-    ZDHistoricValueDocument doc;
+    PSS_HistoricValueDocument doc;
 
     // copy the manager
     doc.GetHistoricValueManager() = m_HistoricValueManager;
