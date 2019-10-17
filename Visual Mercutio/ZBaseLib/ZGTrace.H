@@ -1,63 +1,60 @@
-//---------------------------------------------------------------------------
-// Author    : Dominique Aigroz
-// Filename  : ZGTrace.h
-// Created   : october 2002
-// -------------------------------------------------------------------------
+/****************************************************************************
+ * ==> PSS_Trace -----------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides several trace functions for debugging             *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(__ZGTRACE_H)
-#define __ZGTRACE_H
+#ifndef PSS_TraceH
+#define PSS_TraceH
 
-// If enable trace is defined
+// if enable trace is defined
 #ifdef _ENABLETRACE
+    #ifndef _DEBUG
+        // for global APIs
+        #ifndef AFX_API_EXPORT
+            #define AFX_API_EXPORT __declspec(dllexport)
+        #endif
 
-#ifndef _DEBUG
+        #ifndef AFX_API_IMPORT
+            #define AFX_API_IMPORT __declspec(dllimport)
+        #endif
 
-// For global APIs
-#ifndef AFX_API_EXPORT
-    #define AFX_API_EXPORT __declspec(dllexport)
+        // change the definition of AFX_EXT... to make it import
+        #undef AFX_EXT_API
+        #define AFX_EXT_API AFX_API_IMPORT
+            #ifdef _ZBASELIBEXPORT
+                // put the values back to make AFX_EXT_CLASS export again
+                #undef AFX_EXT_API
+                #define AFX_EXT_API AFX_API_EXPORT
+            #endif
+
+            #ifdef __cplusplus
+                extern "C"
+                {
+            #endif
+                    /**
+                    * Traces a debug message
+                    *@param pMsg - message to trace
+                    *@param ... - additional values
+                    */
+                    AFX_EXT_API void ZGTrace (const PSTR pMsg, ...);
+                    AFX_EXT_API void ZGTraceT(const PSTR pMsg, ...);
+            #ifdef __cplusplus
+                }
+            #endif
+
+            #ifdef TRACE
+                #undef TRACE
+            #endif
+
+            #define TRACE(xxx) ZGTrace(xxx)
+
+            #ifdef TRACET
+                #undef TRACET
+            #endif
+
+            #define TRACET( xxx ) ZGTraceT( xxx )
+        #endif
+    #endif
 #endif
-
-#ifndef AFX_API_IMPORT
-    #define AFX_API_IMPORT __declspec(dllimport)
-#endif
-
-// Change the definition of AFX_EXT... to make it import
-#undef AFX_EXT_API
-#define AFX_EXT_API AFX_API_IMPORT
-
-#ifdef _ZBASELIBEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_API
-#define AFX_EXT_API AFX_API_EXPORT
-#endif
-
-// JMR-MODIF - Le 27 juin 2007 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-AFX_EXT_API void ZGTrace( const PSTR ref, ... );
-AFX_EXT_API void ZGTraceT( const PSTR ref, ... );
-
-#ifdef __cplusplus
-}
-#endif
-
-#ifdef TRACE
-#undef TRACE
-#endif
-
-#define TRACE( xxx ) ZGTrace( xxx )
-
-#ifdef TRACET
-#undef TRACET
-#endif
-
-#define TRACET( xxx ) ZGTraceT( xxx )
-
-#endif // Not in _DEBUG
-
-#endif // _ENABLETRACE
-
-#endif  // __ZGTRACE_H

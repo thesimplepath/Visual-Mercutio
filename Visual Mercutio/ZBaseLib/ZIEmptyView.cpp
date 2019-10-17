@@ -1,61 +1,59 @@
-// ZIEmptyView.cpp : implementation file
-//
+/****************************************************************************
+ * ==> PSS_EmptyView -------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides an empty form view                                *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
 #include "ZIEmptyView.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// ZIEmptyView
-
-IMPLEMENT_DYNCREATE(ZIEmptyView, CFormView)
-
-ZIEmptyView::ZIEmptyView()
-    : CFormView(ZIEmptyView::IDD)
-{
-    //{{AFX_DATA_INIT(ZIEmptyView)
-        // NOTE: the ClassWizard will add member initialization here
-    //}}AFX_DATA_INIT
-}
-
-ZIEmptyView::~ZIEmptyView()
-{
-}
-
-void ZIEmptyView::DoDataExchange(CDataExchange* pDX)
-{
-    CFormView::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(ZIEmptyView)
-        // NOTE: the ClassWizard will add DDX and DDV calls here
-    //}}AFX_DATA_MAP
-}
-
-
-BEGIN_MESSAGE_MAP(ZIEmptyView, CFormView)
-    //{{AFX_MSG_MAP(ZIEmptyView)
-        // NOTE - the ClassWizard will add and remove mapping macros here.
+//---------------------------------------------------------------------------
+// Dynamic creation
+//---------------------------------------------------------------------------
+IMPLEMENT_DYNCREATE(PSS_EmptyView, CFormView)
+//---------------------------------------------------------------------------
+// Message map
+//---------------------------------------------------------------------------
+BEGIN_MESSAGE_MAP(PSS_EmptyView, CFormView)
+    //{{AFX_MSG_MAP(PSS_EmptyView)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
+//---------------------------------------------------------------------------
+// PSS_EmptyView
+//---------------------------------------------------------------------------
+PSS_EmptyView::PSS_EmptyView() :
+    CFormView(PSS_EmptyView::IDD)
+{}
+//---------------------------------------------------------------------------
+PSS_EmptyView::~PSS_EmptyView()
+{}
+//---------------------------------------------------------------------------
+void PSS_EmptyView::DoDataExchange(CDataExchange* pDX)
+{
+    CFormView::DoDataExchange(pDX);
 
-/////////////////////////////////////////////////////////////////////////////
-// ZIEmptyView diagnostics
-
+    //{{AFX_DATA_MAP(PSS_EmptyView)
+    //}}AFX_DATA_MAP
+}
+//---------------------------------------------------------------------------
 #ifdef _DEBUG
-void ZIEmptyView::AssertValid() const
-{
-    CFormView::AssertValid();
-}
-
-void ZIEmptyView::Dump(CDumpContext& dc) const
-{
-    CFormView::Dump(dc);
-}
-#endif //_DEBUG
-
-/////////////////////////////////////////////////////////////////////////////
-// ZIEmptyView message handlers
+    void PSS_EmptyView::AssertValid() const
+    {
+        CFormView::AssertValid();
+    }
+#endif
+//---------------------------------------------------------------------------
+#ifdef _DEBUG
+    void PSS_EmptyView::Dump(CDumpContext& dc) const
+    {
+        CFormView::Dump(dc);
+    }
+#endif
+//---------------------------------------------------------------------------
