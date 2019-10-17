@@ -26,9 +26,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZDIB.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ZDirectory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -602,6 +599,9 @@
     <ClCompile Include="PSS_HistoricValueDocument.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_DIBitmap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -716,9 +716,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="zBaseLib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZDIB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZDirectory.h">
@@ -1295,6 +1292,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_HistoricValueDocument.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_DIBitmap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

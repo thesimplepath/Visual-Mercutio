@@ -53,7 +53,7 @@ class AFX_EXT_CLASS PSS_PreviewBitmapForm : public PSS_AbstractPreviewForm
         virtual void DrawPreview(CDC* pDC, int x, int y, int width, int height);
 
     private:
-        ZDIB m_Dib;
+        PSS_DIBitmap m_Dib;
 };
 
 /**
