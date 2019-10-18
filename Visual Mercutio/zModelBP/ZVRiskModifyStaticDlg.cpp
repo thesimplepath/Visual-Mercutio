@@ -10,12 +10,11 @@
 #include "stdafx.h"
 #include "ZVRiskModifyStaticDlg.h"
 
-#include "ZVRiskNewFileDlg.h"
-
-#include "zBaseLib\ZDTextFile.h"
+// processsoft
 #include "zBaseLib\PSS_File.h"
-
+#include "zBaseLib\PSS_TextFile.h"
 #include "zBaseLib\PSS_MsgBox.h"
+#include "ZVRiskNewFileDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -76,7 +75,7 @@ BOOL ZVRiskModifyStaticDlg::OnInitDialog()
 {
     CDialog::OnInitDialog();
 
-    ZDTextFile p_File;
+    PSS_TextFile p_File;
 
     if (p_File.OpenRead(m_Filename) == TRUE)
     {
@@ -196,7 +195,7 @@ void ZVRiskModifyStaticDlg::OnBnClickedOk()
         CFile::Remove(m_Filename);
     }
 
-    ZDTextFile p_NewFile;
+    PSS_TextFile p_NewFile;
 
     p_NewFile.OpenWrite(m_Filename);
 

@@ -1002,26 +1002,26 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZDirectory.cpp">
+    <ClCompile Include="PSS_Directory.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZDTextFile.cpp" />
-    <ClCompile Include="ZDWorkspaceEnvDocument.cpp">
+    <ClCompile Include="PSS_TextFile.cpp" />
+    <ClCompile Include="PSS_WorkspaceEnvDocument.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZDWorkspaceWizardTemplateDocument.cpp">
+    <ClCompile Include="PSS_WorkspaceWizardTemplateDocument.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZGTrace.c">
+    <ClCompile Include="PSS_Trace.c">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -1055,7 +1055,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZIEmptyView.cpp">
+    <ClCompile Include="PSS_EmptyView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1489,16 +1489,16 @@
     <ClInclude Include="PSS_Document.h" />
     <ClInclude Include="PSS_HistoricValueDocument.h" />
     <ClInclude Include="PSS_DIBitmap.h" />
-    <ClInclude Include="ZDirectory.h" />
-    <ClInclude Include="ZDTextFile.h" />
-    <ClInclude Include="ZDWorkspaceEnvDocument.h" />
-    <ClInclude Include="ZDWorkspaceWizardTemplateDocument.h" />
-    <ClInclude Include="ZGTrace.H" />
+    <ClInclude Include="PSS_Directory.h" />
+    <ClInclude Include="PSS_TextFile.h" />
+    <ClInclude Include="PSS_WorkspaceEnvDocument.h" />
+    <ClInclude Include="PSS_WorkspaceWizardTemplateDocument.h" />
+    <ClInclude Include="PSS_Trace.h" />
     <ClInclude Include="zidialog.h" />
     <ClInclude Include="PSS_Drop.h" />
     <ClInclude Include="PSS_DropScrollView.h" />
     <ClInclude Include="PSS_DropView.h" />
-    <ClInclude Include="ZIEmptyView.h" />
+    <ClInclude Include="PSS_EmptyView.h" />
     <ClInclude Include="ZIErrorLine.h" />
     <ClInclude Include="ZIHtmlView.h" />
     <ClInclude Include="zilistctrl.h" />

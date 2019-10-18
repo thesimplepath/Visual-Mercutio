@@ -10,7 +10,7 @@
 
  // processsoft
 #include "PSS_File.h"
-#include "ZDirectory.h"
+#include "PSS_Directory.h"
 #include "ZNetWork.h"
 
 //---------------------------------------------------------------------------
@@ -148,7 +148,7 @@ BOOL PSS_Server::CreateEmptyServerObject(BOOL           isLocalServer,
                                          BOOL           keepHistoryOnProcess)
 {
     // if no root directory
-    const CString root = ZDirectory::NormalizeDirectory(rootPath);
+    const CString root = PSS_Directory::NormalizeDirectory(rootPath);
 
     if (root.IsEmpty())
         return FALSE;
@@ -195,18 +195,18 @@ BOOL PSS_Server::CheckStructure()
     }
 
     // check if the ini file dir exists
-    if (!ZDirectory::Exist(file.GetFilePath()))
+    if (!PSS_Directory::Exist(file.GetFilePath()))
         return M_Srv_Corrupted;
 
     // check if the root path defined in the init is the same as the root path
-    const CString dir1(ZDirectory::NormalizeDirectory(m_ServerOptions.GetRootPath()));
-    const CString dir2(ZDirectory::NormalizeDirectory(file.GetFilePath()));
+    const CString dir1(PSS_Directory::NormalizeDirectory(m_ServerOptions.GetRootPath()));
+    const CString dir2(PSS_Directory::NormalizeDirectory(file.GetFilePath()));
 
     if (dir1.CompareNoCase(dir2) != 0)
         return M_Srv_Moved;
 
     // check if the root path defined in the init exists
-    if (!ZDirectory::Exist(m_ServerOptions.GetRootPath()))
+    if (!PSS_Directory::Exist(m_ServerOptions.GetRootPath()))
         return M_Srv_Moved;
 
     return M_Srv_Success;

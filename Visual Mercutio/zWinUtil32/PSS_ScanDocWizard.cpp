@@ -10,7 +10,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_File.h"
-#include "zBaseLib\ZDirectory.h"
+#include "zBaseLib\PSS_Directory.h"
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zWeb\PSS_FilePreviewDlg.h"
 #include "PSS_ScanWelcomeDialog.h"
@@ -121,7 +121,7 @@ BOOL PSS_ScanDocWizard::ProcessSelection()
             PSS_File fileSelected(scanContinueSelectDialog.GetFileName());
 
             // change de directory to prevent the user to select the same
-            ZDirectory::ChangeCurrentDirectory(fileSelected.GetFilePath());
+            PSS_Directory::ChangeCurrentDirectory(fileSelected.GetFilePath());
 
             // reset the flag for first time
             firstTime = false;

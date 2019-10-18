@@ -94,17 +94,17 @@ bool PSS_ModelGenerateImageFiles::OnStart()
     m_FileGenerateWindow.Create();
 
     // create the image directory
-    m_ImageDirectory = ZDirectory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\images");
-    ZDirectory::CreateDirectory(m_ImageDirectory);
+    m_ImageDirectory = PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\images");
+    PSS_Directory::CreateDirectory(m_ImageDirectory);
 
-    if (!ZDirectory::Exist(m_ImageDirectory))
+    if (!PSS_Directory::Exist(m_ImageDirectory))
         return false;
 
     // create the image directory
-    m_IncludeDirectory = ZDirectory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\includes");
-    ZDirectory::CreateDirectory(m_IncludeDirectory);
+    m_IncludeDirectory = PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\includes");
+    PSS_Directory::CreateDirectory(m_IncludeDirectory);
 
-    if (!ZDirectory::Exist(m_IncludeDirectory))
+    if (!PSS_Directory::Exist(m_IncludeDirectory))
         return false;
     
     // get the web directory
@@ -115,30 +115,30 @@ bool PSS_ModelGenerateImageFiles::OnStart()
     {
         if (m_pInfo->GetImageFilename().IsEmpty())
         {
-            ZDirectory::CopyFileFromToDirectory(webDir, m_ImageDirectory, g_LogoImageFile);
+            PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory, g_LogoImageFile);
             m_InternalLogoFileName.Empty();
         }
         else
         {
             PSS_File file(m_pInfo->GetImageFilename());
             m_InternalLogoFileName = file.GetFileName();
-            ZDirectory::CopyFileFromToDirectory(file.GetFilePath(), m_ImageDirectory, m_InternalLogoFileName);
+            PSS_Directory::CopyFileFromToDirectory(file.GetFilePath(), m_ImageDirectory, m_InternalLogoFileName);
         }
 
-        ZDirectory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_HomeImageFile);
-        ZDirectory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_ParentImageFile);
-        ZDirectory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_PrinterImageFile);
-        ZDirectory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_1pTransImageFile);
-        ZDirectory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_MinusImageFile);
-        ZDirectory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_PlusImageFile);
-        ZDirectory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_UsersImageFile);
-        ZDirectory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_LogicalSystemImageFile);
-        ZDirectory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_LogicalPrestationsImageFile);
-        ZDirectory::CopyFileFromToDirectory(webDir, m_IncludeDirectory, g_TreeCSSFile);
-        ZDirectory::CopyFileFromToDirectory(webDir, m_IncludeDirectory, g_TreeJSFile);
-        ZDirectory::CopyFileFromToDirectory(webDir, m_IncludeDirectory, g_AJLibJSFile);
-        ZDirectory::CopyFileFromToDirectory(webDir, m_IncludeDirectory, g_AJPopupJSFile);
-        ZDirectory::CopyFileFromToDirectory(webDir, m_IncludeDirectory, g_AJPopupCSSFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_HomeImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_ParentImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_PrinterImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_1pTransImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_MinusImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_PlusImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_UsersImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_LogicalSystemImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_ImageDirectory,   g_LogicalPrestationsImageFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_IncludeDirectory, g_TreeCSSFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_IncludeDirectory, g_TreeJSFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_IncludeDirectory, g_AJLibJSFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_IncludeDirectory, g_AJPopupJSFile);
+        PSS_Directory::CopyFileFromToDirectory(webDir, m_IncludeDirectory, g_AJPopupCSSFile);
     }
 
     if (!GenerateIndexPage(m_pModel))
@@ -2557,7 +2557,7 @@ CString PSS_ModelGenerateImageFiles::BuildModelImageFileName(ZDProcessGraphModel
         return _T("");
 
     // build the FileName using the full object path
-    CString fileName  = ZDirectory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\");
+    CString fileName  = PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\");
             fileName += ParseModelName(pModel->GetAbsolutePath());
             fileName += _T(".jpg");
 
@@ -2570,7 +2570,7 @@ CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileName(ZDProcessGraphModelM
         return _T("");
 
     // build the FileName using the full object path
-    CString fileName = ZDirectory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\");
+    CString fileName = PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\");
 
     if (!prefix.IsEmpty())
         fileName += prefix;
@@ -2587,7 +2587,7 @@ CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameForPrinter(ZDProcessG
         return _T("");
 
     // build the FileName using the full object path
-    CString fileName  = ZDirectory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\");
+    CString fileName  = PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\");
             fileName += ParseModelName(pModel->GetAbsolutePath());
             fileName += _T("_prt");
             fileName += _T(".htm");
@@ -2600,7 +2600,7 @@ CString PSS_ModelGenerateImageFiles::BuildHTMLFileNameLogicalSystem(ZBSystemEnti
     if (!pSystemEntity)
         return _T("");
 
-    CString fileName = ZDirectory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\");
+    CString fileName = PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\");
     CString entityString;
 
     do
@@ -2624,7 +2624,7 @@ CString PSS_ModelGenerateImageFiles::BuildHTMLFileNameLogicalPrestations(ZBPrest
     if (!pPrestationsEntity)
         return _T("");
 
-    CString fileName = ZDirectory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\");
+    CString fileName = PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\");
     CString entityString;
 
     do
@@ -2648,7 +2648,7 @@ CString PSS_ModelGenerateImageFiles::BuildHTMLFileNameUser(ZBUserEntity* pUserEn
     if (!pUserEntity)
         return _T("");
 
-    CString fileName = ZDirectory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\");
+    CString fileName = PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\");
     CString entityString;
 
     do
@@ -2707,7 +2707,7 @@ CString PSS_ModelGenerateImageFiles::BuildSymbolPropertyHTMLFileName(ZIBasicSymb
     ASSERT(m_pInfo);
 
     // build the file name using the full object path + the symbol name and the reference number to avoid collision
-    CString fileName  = ZDirectory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\");
+    CString fileName  = PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\");
             fileName += _T("prp_");
 
     if (!prefix.IsEmpty())

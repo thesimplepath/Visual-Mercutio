@@ -3,7 +3,7 @@
 
 #include "stdafx.h"
 #include "ZIUnitInfo.h"
-#include "zBaseLib\ZDirectory.h"
+#include "zBaseLib\PSS_Directory.h"
 #include "Resource.h"
 
 #ifdef _DEBUG
@@ -64,7 +64,7 @@ void ZIUnitInfo::OnOK()
         if (m_UnitName.IsEmpty())
             return;
         m_UnitDirectory.GetWindowText( m_Directory );
-        m_Directory = ZDirectory::NormalizeDirectory( m_Directory );
+        m_Directory = PSS_Directory::NormalizeDirectory( m_Directory );
     }    
     CDialog::OnOK();
 }

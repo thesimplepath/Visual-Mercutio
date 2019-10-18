@@ -9,7 +9,7 @@
 #include "PSS_PublishModelSelDirDialog.h"
 
 // processsoft
-#include "zBaseLib\ZDirectory.h"
+#include "zBaseLib\PSS_Directory.h"
 #include "zBaseLib\PSS_MsgBox.h"
 
 // resources
@@ -125,7 +125,7 @@ void PSS_PublishModelSelDirDialog::OnOK()
     UpdateData(TRUE);
     m_CbDirectory.GetWindowText(m_Directory);
 
-    if (!ZDirectory::Exist(m_Directory))
+    if (!PSS_Directory::Exist(m_Directory))
     {
         PSS_MsgBox mBox;
 
@@ -134,10 +134,10 @@ void PSS_PublishModelSelDirDialog::OnOK()
             return;
 
         // try to create it
-        ZDirectory::CreateDirectory(m_Directory);
+        PSS_Directory::CreateDirectory(m_Directory);
 
         // if still not created, show an error message
-        if (!ZDirectory::Exist(m_Directory))
+        if (!PSS_Directory::Exist(m_Directory))
         {
             PSS_MsgBox mBox;
             mBox.Show(IDS_DIR_FAILCREATE, MB_OK);

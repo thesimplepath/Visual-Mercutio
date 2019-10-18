@@ -64,7 +64,7 @@
 #include <WinSpool.h>
 #endif
 
-#include "zBaseLib\ZDirectory.h"
+#include "zBaseLib\PSS_Directory.h"
 
 #include "zSplash\PSS_SplashController.h"
 
@@ -453,7 +453,7 @@ BOOL ZAMainApp::InitInstance()
                                                                    szSubDirectoryNameEntry,
                                                                    _T(""));
 
-        const CString serverDirectory = ZDirectory::NormalizeDirectory(GetApplicationDir()) + _T("\\") + subDirectory;
+        const CString serverDirectory = PSS_Directory::NormalizeDirectory(GetApplicationDir()) + _T("\\") + subDirectory;
         const CString serverIniFile = GetServer().CreateInitialEnvironment(serverDirectory);
 
         // then asks the server to create an initial environement
@@ -821,7 +821,7 @@ CString ZAMainApp::GetApplicationDir() const
         if (GetModuleFileName(hInstance, lpszModule, _MAX_PATH))
         {
             PSS_File File(lpszModule);
-            appDir = ZDirectory::NormalizeDirectory(File.GetFilePath());
+            appDir = PSS_Directory::NormalizeDirectory(File.GetFilePath());
         }
 
         delete[]lpszModule;
@@ -2019,7 +2019,7 @@ BOOL ZAMainApp::ChooseServer()
         registry.CreateEntry(HKEY_LOCAL_MACHINE,
                              REGKEY_SCRIPTORROOT,
                              REGKEY_SERVERPATH,
-                             ZDirectory::NormalizeDirectory(selectLocalServer.GetServerDirectory()));
+                             PSS_Directory::NormalizeDirectory(selectLocalServer.GetServerDirectory()));
 
         registry.CreateEntry(HKEY_LOCAL_MACHINE, REGKEY_SCRIPTORROOT, REGKEY_SERVERINI, GetServerIniFile());
     #endif

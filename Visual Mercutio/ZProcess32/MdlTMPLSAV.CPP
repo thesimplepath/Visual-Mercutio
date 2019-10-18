@@ -4,7 +4,7 @@
 #include "MdlTmplSav.h"
 #include "zBaseLib\PSS_MsgBox.h"
 
-#include "zBaseLib\ZDirectory.h"
+#include "zBaseLib\PSS_Directory.h"
 #include "zBaseLib\PSS_File.h"
 #include "Resource.h"
 
@@ -87,7 +87,7 @@ void ZIModelTemplateCopyDlg::OnOK()
     UpdateData(TRUE);
 
     m_ModelDirectory.GetWindowText(m_Directory);
-    m_Directory = ZDirectory::NormalizeDirectory(m_Directory);
+    m_Directory = PSS_Directory::NormalizeDirectory(m_Directory);
 
     if (m_Directory.IsEmpty())
     {

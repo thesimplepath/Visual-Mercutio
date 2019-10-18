@@ -9,7 +9,7 @@
 #include "PSS_ResourceManager.h"
 
 // processsoft
-#include "zBaseLib\zDirectory.h"
+#include "zBaseLib\PSS_Directory.h"
 #include "PSS_ModuleVersion.h"
 
 #ifdef _DEBUG
@@ -65,7 +65,7 @@ bool PSS_ResourceManager::LoadFromDirectory(const CString& dir)
 {
     CStringArray fileArray;
 
-    if (ZDirectory::FindFile(_T("*.dll"), dir, fileArray, false) <= 0)
+    if (PSS_Directory::FindFile(_T("*.dll"), dir, fileArray, false) <= 0)
         return true;
 
     // iterate through the file array and process each file

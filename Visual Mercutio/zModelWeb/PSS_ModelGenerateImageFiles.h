@@ -22,7 +22,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZDirectory.h"
+#include "zBaseLib\PSS_Directory.h"
 #include "zBaseLib\PSS_KeepStringUsage.h"
 #include "zConversion\PSS_StringTools.h"
 #include "zProperty\ZBPropertyAttributes.h"
@@ -511,7 +511,7 @@ CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameMainFrame(ZDProcessGr
 CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameIndex() const
 {
     // build the main index html FileName 
-    return ZDirectory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\index.htm");
+    return PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\index.htm");
 }
 //---------------------------------------------------------------------------
 CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameIndex(ZDProcessGraphModelMdl* pModel) const
@@ -522,13 +522,13 @@ CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameIndex(ZDProcessGraphM
 CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameBanner() const
 {
     // build the main banner html FileName 
-    return ZDirectory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\banner.htm");
+    return PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\banner.htm");
 }
 //---------------------------------------------------------------------------
 CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameUserMainFrame() const
 {
     // build the main index html FileName 
-    return ZDirectory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\users_mainframe.htm");
+    return PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\users_mainframe.htm");
 }
 //---------------------------------------------------------------------------
 CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameUnit(ZDProcessGraphModelMdl* pModel) const
@@ -549,35 +549,35 @@ CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNamePrestations(ZDProcess
 CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameSystemMainFrame() const
 {
     // build the main index html FileName 
-    return ZDirectory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\system_mainframe.htm");
+    return PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\system_mainframe.htm");
 }
 //---------------------------------------------------------------------------
 CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNamePrestationsMainFrame() const
 {
-    return ZDirectory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\prestations_mainframe.htm");
+    return PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\prestations_mainframe.htm");
 }
 //---------------------------------------------------------------------------
 CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameEmptyUser() const
 {
     // build the main index html FileName 
-    return ZDirectory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\empty_users.htm");
+    return PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\empty_users.htm");
 }
 //---------------------------------------------------------------------------
 CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameEmptySystem() const
 {
     // build the main index html FileName 
-    return ZDirectory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\empty_system.htm");
+    return PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\empty_system.htm");
 }
 //---------------------------------------------------------------------------
 CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameEmptyPrestations() const
 {
-    return ZDirectory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\empty_prestations.htm");
+    return PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\empty_prestations.htm");
 }
 //---------------------------------------------------------------------------
 CString PSS_ModelGenerateImageFiles::BuildModelHTMLFileNameEmptyPropertyPage() const
 {
     // Build the main index html FileName 
-    return ZDirectory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\empty_prp.htm");
+    return PSS_Directory::NormalizeDirectory(m_pInfo->GetURLName()) + _T("\\empty_prp.htm");
 }
 //---------------------------------------------------------------------------
 

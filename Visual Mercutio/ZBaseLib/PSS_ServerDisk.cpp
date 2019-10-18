@@ -10,7 +10,7 @@
 
 // processsoft
 #include "PSS_File.h"
-#include "ZDirectory.h"
+#include "PSS_Directory.h"
 
 //---------------------------------------------------------------------------
 // PSS_ServerDisk
@@ -117,7 +117,7 @@ bool PSS_ServerDisk::DeleteServer(bool checkStructure)
         return false;
 
     // delete the server structure
-    if (!ZDirectory::DeleteDirectory(m_pServer->GetRootPath(), TRUE, TRUE))
+    if (!PSS_Directory::DeleteDirectory(m_pServer->GetRootPath(), TRUE, TRUE))
         return false;
 
     return true;
@@ -126,8 +126,8 @@ bool PSS_ServerDisk::DeleteServer(bool checkStructure)
 bool PSS_ServerDisk::CreateServerDirectoryStructure()
 {
     // create the root directory
-    if (!ZDirectory::Exist(m_pServer->GetRootPath()) &&
-        !ZDirectory::CreateDirectory(m_pServer->GetRootPath()))
+    if (!PSS_Directory::Exist(m_pServer->GetRootPath()) &&
+        !PSS_Directory::CreateDirectory(m_pServer->GetRootPath()))
     {
         CString text;
         text.Format(IDS_SERVERCREATIONDIRFAIL, m_pServer->GetRootPath());
@@ -136,8 +136,8 @@ bool PSS_ServerDisk::CreateServerDirectoryStructure()
     }
 
     // create the forms template directory
-    if (!ZDirectory::Exist(m_pServer->GetTemplateDirectory()) &&
-        !ZDirectory::CreateDirectory(m_pServer->GetTemplateDirectory()))
+    if (!PSS_Directory::Exist(m_pServer->GetTemplateDirectory()) &&
+        !PSS_Directory::CreateDirectory(m_pServer->GetTemplateDirectory()))
     {
         CString text;
         text.Format(IDS_SERVERCREATIONDIRFAIL, m_pServer->GetTemplateDirectory());
@@ -146,8 +146,8 @@ bool PSS_ServerDisk::CreateServerDirectoryStructure()
     }
 
     // create the process template directory
-    if (!ZDirectory::Exist(m_pServer->GetProcessTemplateDirectory()) &&
-        !ZDirectory::CreateDirectory(m_pServer->GetProcessTemplateDirectory()))
+    if (!PSS_Directory::Exist(m_pServer->GetProcessTemplateDirectory()) &&
+        !PSS_Directory::CreateDirectory(m_pServer->GetProcessTemplateDirectory()))
     {
         CString text;
         text.Format(IDS_SERVERCREATIONDIRFAIL, m_pServer->GetProcessTemplateDirectory());
@@ -156,8 +156,8 @@ bool PSS_ServerDisk::CreateServerDirectoryStructure()
     }
 
     // create the user file directory
-    if (!ZDirectory::Exist(m_pServer->GetFileDirectory()) &&
-        !ZDirectory::CreateDirectory(m_pServer->GetFileDirectory()))
+    if (!PSS_Directory::Exist(m_pServer->GetFileDirectory()) &&
+        !PSS_Directory::CreateDirectory(m_pServer->GetFileDirectory()))
     {
         CString text;
         text.Format(IDS_SERVERCREATIONDIRFAIL, m_pServer->GetFileDirectory());
@@ -166,8 +166,8 @@ bool PSS_ServerDisk::CreateServerDirectoryStructure()
     }
 
     // create the sytem directory
-    if (!ZDirectory::Exist(m_pServer->GetSystemDirectory()) &&
-        !ZDirectory::CreateDirectory(m_pServer->GetSystemDirectory()))
+    if (!PSS_Directory::Exist(m_pServer->GetSystemDirectory()) &&
+        !PSS_Directory::CreateDirectory(m_pServer->GetSystemDirectory()))
     {
         CString text;
         text.Format(IDS_SERVERCREATIONDIRFAIL, m_pServer->GetSystemDirectory());
@@ -176,8 +176,8 @@ bool PSS_ServerDisk::CreateServerDirectoryStructure()
     }
 
     // create the log directory
-    if (!ZDirectory::Exist(m_pServer->GetLogDirectory()) &&
-        !ZDirectory::CreateDirectory(m_pServer->GetLogDirectory()))
+    if (!PSS_Directory::Exist(m_pServer->GetLogDirectory()) &&
+        !PSS_Directory::CreateDirectory(m_pServer->GetLogDirectory()))
     {
         CString text;
         text.Format(IDS_SERVERCREATIONDIRFAIL, m_pServer->GetLogDirectory());
@@ -186,8 +186,8 @@ bool PSS_ServerDisk::CreateServerDirectoryStructure()
     }
 
     // create the event directory
-    if (!ZDirectory::Exist(m_pServer->GetEventDirectory()) &&
-        !ZDirectory::CreateDirectory(m_pServer->GetEventDirectory()))
+    if (!PSS_Directory::Exist(m_pServer->GetEventDirectory()) &&
+        !PSS_Directory::CreateDirectory(m_pServer->GetEventDirectory()))
     {
         CString text;
         text.Format(IDS_SERVERCREATIONDIRFAIL, m_pServer->GetEventDirectory());
@@ -196,8 +196,8 @@ bool PSS_ServerDisk::CreateServerDirectoryStructure()
     }
 
     // create the user directory
-    if (!ZDirectory::Exist(m_pServer->GetUserDirectory()) &&
-        !ZDirectory::CreateDirectory(m_pServer->GetUserDirectory()))
+    if (!PSS_Directory::Exist(m_pServer->GetUserDirectory()) &&
+        !PSS_Directory::CreateDirectory(m_pServer->GetUserDirectory()))
     {
         CString text;
         text.Format(IDS_SERVERCREATIONDIRFAIL, m_pServer->GetUserDirectory());
@@ -220,6 +220,6 @@ bool PSS_ServerDisk::CopyServerDirectory(PSS_Server& SourceServer)
             return false;
 
     // copy all files, from all sub-directory
-    return ZDirectory::CopyAllFileFromToDirectory(SourceServer.GetRootPath(), m_pServer->GetRootPath(), TRUE, TRUE, TRUE);
+    return PSS_Directory::CopyAllFilesFromToDirectory(SourceServer.GetRootPath(), m_pServer->GetRootPath(), TRUE, TRUE, TRUE);
 }
 //---------------------------------------------------------------------------

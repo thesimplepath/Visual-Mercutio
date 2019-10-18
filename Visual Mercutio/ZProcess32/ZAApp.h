@@ -34,7 +34,7 @@ class ZIMainFrame;
 class ZVOutputWorkspace;
 class ZVProcessWorkspace;
 class ZVPropertiesWorkspace;
-class ZDWorkspaceEnvDocument;
+class PSS_WorkspaceEnvDocument;
 class PSS_WorkspaceEnv;
 class ZDProcessGraphModelDoc;
 class PSS_WorkspaceWizardTemplateManager;
@@ -469,7 +469,7 @@ private:
     CString                            m_RulesFilename;
     CString                            m_GlobalHistoricValueFilename;
 
-    ZDWorkspaceEnvDocument*            m_pWorkspaceEnvDocument;
+    PSS_WorkspaceEnvDocument*          m_pWorkspaceEnvDocument;
 
     PSS_WorkspaceWizardTemplateManager* m_pWorkspaceTemplateManager;
 

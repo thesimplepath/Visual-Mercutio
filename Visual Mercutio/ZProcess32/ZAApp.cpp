@@ -6,12 +6,12 @@
 #include "zBaseLib\PSS_MsgBox.h"
 #include "zBaseLib\ZMessage.h"
 #include "zBaseLib\PSS_VisualTool.h"
-#include "zBaseLib\ZDirectory.h"
+#include "zBaseLib\PSS_Directory.h"
 #include "zBaseLib\PSS_ObjectUtility.h"
 #include "zBaseLib\PSS_FileDialog.h"
 #include "zBaseLib\PSS_BaseMDIPage.h"
 #include "zBaseLib\ZILog.h"
-#include "zBaseLib\ZDWorkspaceEnvDocument.h"
+#include "zBaseLib\PSS_WorkspaceEnvDocument.h"
 #include "zBaseLib\PSS_WorkspaceObserverMsg.h"
 #include "zBaseLib\PSS_WorkspaceWizardTemplateManager.h"
 #include "zBaseLib\PSS_ObjectUtility.h"
@@ -478,7 +478,7 @@ BOOL ZAApp::InitAppl()
     // Creation of Visual Tools
     static PSS_VisualToolEdit VisualToolEdit;
 
-    PSS_ResourceManager::LoadFromDirectory(ZDirectory::NormalizeDirectory(GetApplicationDir()) + _T("\\resdll"));
+    PSS_ResourceManager::LoadFromDirectory(PSS_Directory::NormalizeDirectory(GetApplicationDir()) + _T("\\resdll"));
     PSS_ResourceManager::ChangeLanguage(E_LN_French);
 
     // No errors
@@ -665,7 +665,7 @@ BOOL ZAApp::PostInitAppl()
     // Set to the model directory
     if (!GetModelTemplateDirectory().IsEmpty())
     {
-        ZDirectory::ChangeCurrentDirectory(GetModelTemplateDirectory());
+        PSS_Directory::ChangeCurrentDirectory(GetModelTemplateDirectory());
     }
 
     return TRUE;
@@ -1241,7 +1241,7 @@ bool ZAApp::CloseCurrentAndAllocateNewWorkspace()
     }
 
     // Allocate a new workspace
-    m_pWorkspaceEnvDocument = new ZDWorkspaceEnvDocument();
+    m_pWorkspaceEnvDocument = new PSS_WorkspaceEnvDocument();
 
     return (m_pWorkspaceEnvDocument != NULL) ? true : false;
 }
@@ -2303,7 +2303,7 @@ CString ZAApp::OnBuildHelpFilename()
         {
             PSS_File File(lpszModule);
 
-            HelpFile = ZDirectory::NormalizeDirectory(File.GetFilePath()) + _T("\\zConceptor.chm");
+            HelpFile = PSS_Directory::NormalizeDirectory(File.GetFilePath()) + _T("\\zConceptor.chm");
         }
 
         delete[]lpszModule;
@@ -2366,7 +2366,7 @@ void ZAApp::OnNewWorkspace()
             if (pNewFile)
             {
                 // Set the filename
-                ModelFilename = ZDirectory::NormalizeDirectory(WksCreation.GetDirectory()) + _T("\\");
+                ModelFilename  = PSS_Directory::NormalizeDirectory(WksCreation.GetDirectory()) + _T("\\");
                 ModelFilename += WksCreation.GetWorkspaceName();
                 ModelFilename += g_ModelExtension;
 

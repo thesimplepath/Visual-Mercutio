@@ -1,11 +1,12 @@
 // Source file: ActEvtManager.cpp
 
 #include <StdAfx.h>
-
 #include "ActEvtManager.h"
-#include "ActEvtFl.h"
-#include "zBaseLib\ZDirectory.h"
+
+// processsoft
+#include "zBaseLib\PSS_Directory.h"
 #include "zBaseLib\PSS_File.h"
+#include "ActEvtFl.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -66,12 +67,12 @@ ZBEvent*    ZBActivityEventManager::LoadEventFromFile( const CString Filename )
     if (pEvent)
     {
         PSS_File File(Filename);
-        CString    Path = ZDirectory::NormalizeDirectory( File.GetFilePath() );
+        CString    Path = PSS_Directory::NormalizeDirectory( File.GetFilePath() );
         // If are not in root directory
         if (Path.CompareNoCase( GetRootDirectory() ) != 0)
         {
             // Set the user queue name
-            pEvent->SetUserQueue( ZDirectory::GetShortDirectoryName( Path ) );
+            pEvent->SetUserQueue(PSS_Directory::GetShortDirectoryName( Path ) );
         }
     }
     return pEvent;

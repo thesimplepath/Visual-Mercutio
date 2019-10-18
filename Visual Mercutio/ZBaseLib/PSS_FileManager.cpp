@@ -9,9 +9,12 @@
 #include <StdAfx.h>
 #include "PSS_FileManager.h"
 
+// windows
 #include <dos.h>
 #include <direct.h>
-#include "ZDirectory.h"
+
+// processsoft
+#include "PSS_Directory.h"
 
 #ifdef _DEBUG
     #undef THIS_FILE
@@ -201,7 +204,7 @@ CString PSS_FileManager::GetTemporaryFileName(const CString& path, const CString
         char currentDir[300];
 
         ::GetCurrentDirectory(sizeof(currentDir), currentDir);
-        const CString filePath = ZDirectory::NormalizeDirectory(path);
+        const CString filePath = PSS_Directory::NormalizeDirectory(path);
         ::SetCurrentDirectory(filePath);
     #endif
 

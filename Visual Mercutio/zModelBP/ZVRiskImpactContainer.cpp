@@ -10,7 +10,8 @@
 #include "stdafx.h"
 #include "ZVRiskImpactContainer.h"
 
-#include "zBaseLib\ZDTextFile.h"
+// processsoft
+#include "zBaseLib\PSS_TextFile.h"
 
 // Constructeur de la classe ZVRiskImpactContainer.
 ZVRiskImpactContainer::ZVRiskImpactContainer()
@@ -33,7 +34,7 @@ BOOL ZVRiskImpactContainer::LoadFile( CString Filename )
 
     m_Filename = Filename;
 
-    ZDTextFile p_File;
+    PSS_TextFile p_File;
 
     if ( p_File.OpenRead( m_Filename ) == FALSE )
     {

@@ -9,7 +9,7 @@
 #include "PSS_ServerOptions.h"
 
 // processsoft
-#include "zBaseLib\ZDirectory.h"
+#include "PSS_Directory.h"
 
 //---------------------------------------------------------------------------
 // PSS_ServerOptions
@@ -53,7 +53,7 @@ BOOL PSS_ServerOptions::CreateEmptyServerOption(const CString& rootPath,
                                                 const BOOL     keepHistoryOnProcess)
 {
     // if no root directory
-    const CString root = ZDirectory::NormalizeDirectory(rootPath);
+    const CString root = PSS_Directory::NormalizeDirectory(rootPath);
 
     if (root.IsEmpty())
         return FALSE;
@@ -81,17 +81,17 @@ BOOL PSS_ServerOptions::LoadOption()
 {
     SetRootPath(m_Option.ReadOption(szRootEntry, _T("")));
 
-    m_TemplateDirectory         = ZDirectory::NormalizeDirectory(m_Option.ReadOption(szTemplateDirEntry,             _T("")), true);
-    m_FileDirectory             = ZDirectory::NormalizeDirectory(m_Option.ReadOption(szFileDirEntry,                 _T("")), true);
-    m_ProcessTemplateDirectory  = ZDirectory::NormalizeDirectory(m_Option.ReadOption(szProcessTemplateDirEntry,      _T("")), true);
-    m_ModelTemplateDirectory    = ZDirectory::NormalizeDirectory(m_Option.ReadOption(szModelTemplateDirEntry,        _T("")), true);
-    m_ModelUnitDirectory        = ZDirectory::NormalizeDirectory(m_Option.ReadOption(szModelUnitDirEntry,            _T("")), true);
-    m_GlobalFieldNameRepository =                                m_Option.ReadOption(szGlobalFieldRepositoryEntry,   _T(""));
-    m_UseFolderNameAsFile       =                                m_Option.ReadOption(szUseFolderNameAsFilename,      1);
-    m_StoreUserFileByUser       =                                m_Option.ReadOption(szStoreUserFileByUser,          0);
-    m_UseLogTextFile            =                                m_Option.ReadOption(szUseLogTextFile,               1);
-    m_UseLogDatabaseFile        =                                m_Option.ReadOption(szUseLogDatabaseFile,           0);
-    m_KeepHistoryOnProcess      =                                m_Option.ReadOption(szKeepHistoryProcessOnDatabase, 1);
+    m_TemplateDirectory         = PSS_Directory::NormalizeDirectory(m_Option.ReadOption(szTemplateDirEntry,             _T("")), true);
+    m_FileDirectory             = PSS_Directory::NormalizeDirectory(m_Option.ReadOption(szFileDirEntry,                 _T("")), true);
+    m_ProcessTemplateDirectory  = PSS_Directory::NormalizeDirectory(m_Option.ReadOption(szProcessTemplateDirEntry,      _T("")), true);
+    m_ModelTemplateDirectory    = PSS_Directory::NormalizeDirectory(m_Option.ReadOption(szModelTemplateDirEntry,        _T("")), true);
+    m_ModelUnitDirectory        = PSS_Directory::NormalizeDirectory(m_Option.ReadOption(szModelUnitDirEntry,            _T("")), true);
+    m_GlobalFieldNameRepository =                                   m_Option.ReadOption(szGlobalFieldRepositoryEntry,   _T(""));
+    m_UseFolderNameAsFile       =                                   m_Option.ReadOption(szUseFolderNameAsFilename,      1);
+    m_StoreUserFileByUser       =                                   m_Option.ReadOption(szStoreUserFileByUser,          0);
+    m_UseLogTextFile            =                                   m_Option.ReadOption(szUseLogTextFile,               1);
+    m_UseLogDatabaseFile        =                                   m_Option.ReadOption(szUseLogDatabaseFile,           0);
+    m_KeepHistoryOnProcess      =                                   m_Option.ReadOption(szKeepHistoryProcessOnDatabase, 1);
 
     return TRUE;
 }
@@ -121,7 +121,7 @@ void PSS_ServerOptions::SetRootPath(const CString& value)
     if (m_RootPath.IsEmpty())
         return;
 
-    ZDirectory::NormalizeDirectory(m_RootPath);
+    PSS_Directory::NormalizeDirectory(m_RootPath);
 
     // build directories
     m_SystemDirectory            = m_RootPath        + _T("\\System");

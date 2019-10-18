@@ -26,25 +26,7 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZDirectory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZDTextFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZDWorkspaceEnvDocument.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZDWorkspaceWizardTemplateDocument.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZGTrace.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="zidialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZIEmptyView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZIErrorLine.cpp">
@@ -602,6 +584,24 @@
     <ClCompile Include="PSS_DIBitmap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_EmptyView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_Trace.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_Directory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_TextFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_WorkspaceEnvDocument.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PSS_WorkspaceWizardTemplateDocument.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -718,25 +718,7 @@
     <ClInclude Include="zBaseLib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZDirectory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZDTextFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZDWorkspaceEnvDocument.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZDWorkspaceWizardTemplateDocument.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZGTrace.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="zidialog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZIEmptyView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZIErrorLine.h">
@@ -1295,6 +1277,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_DIBitmap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_EmptyView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_Trace.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_Directory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_TextFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_WorkspaceEnvDocument.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_WorkspaceWizardTemplateDocument.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

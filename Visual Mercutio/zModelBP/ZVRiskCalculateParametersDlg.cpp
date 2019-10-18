@@ -11,10 +11,10 @@
 
 // processsoft
 #include "zMediator\PSS_Application.h"
-#include "zBaseLib\ZDTextFile.h"
 #include "zBaseLib\PSS_File.h"
-#include "zBaseLib\PSS_MsgBox.h"
+#include "zBaseLib\PSS_TextFile.h"
 #include "zBaseLib\ZUSystemOption.h"
+#include "zBaseLib\PSS_MsgBox.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW

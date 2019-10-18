@@ -1,9 +1,10 @@
 // Source file: EventManager.cpp
 
 #include <StdAfx.h>
-
 #include "EventManager.h"
-#include "zBaseLib\ZDirectory.h"
+
+// processsoft
+#include "zBaseLib\PSS_Directory.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -26,8 +27,8 @@ ZBEventManager::~ZBEventManager()
 
 BOOL    ZBEventManager::Initialize( const CString Directory )
 {
-    m_RootDirectory = ZDirectory::NormalizeDirectory( Directory );
-    return ZDirectory::Exist( m_RootDirectory );
+    m_RootDirectory = PSS_Directory::NormalizeDirectory( Directory );
+    return PSS_Directory::Exist( m_RootDirectory );
 }
 
 BOOL    ZBEventManager::LoadFromDirectory( BOOL ClearAllFirst, BOOL IncludeSubDirectory )
@@ -41,7 +42,7 @@ BOOL    ZBEventManager::LoadFromDirectory( BOOL ClearAllFirst, BOOL IncludeSubDi
 
 BOOL    ZBEventManager::LoadFromDirectory( const CString Directory, BOOL ClearAllFirst, BOOL IncludeSubDirectory )
 {
-    m_RootDirectory = ZDirectory::NormalizeDirectory( Directory );
+    m_RootDirectory = PSS_Directory::NormalizeDirectory( Directory );
     return LoadFromDirectory( ClearAllFirst, IncludeSubDirectory );
 }
 

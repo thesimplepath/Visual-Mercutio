@@ -10,7 +10,7 @@
 #include "PSS_SoapPublishModelGenerateFiles.h"
 
 // processsoft
-#include "zBaseLib\ZDirectory.h"
+#include "zBaseLib\PSS_Directory.h"
 #include "zBaseLib\PSS_File.h"
 #include "zBaseLib\PSS_Server.h"
 #include "zBaseLib\ZILog.h"
@@ -74,21 +74,21 @@ bool PSS_SoapPublishModelGenerateFiles::OnStart()
 
     // get the temp directory
     ::GetWindowsDirectory(tempDir, sizeof(tempDir));
-    m_TargetDirectory = ZDirectory::NormalizeDirectory(tempDir) + _T("\\tempPSS");
+    m_TargetDirectory = PSS_Directory::NormalizeDirectory(tempDir) + _T("\\tempPSS");
 
     // create it if still not exists
-    ZDirectory::CreateDirectory(m_TargetDirectory);
+    PSS_Directory::CreateDirectory(m_TargetDirectory);
 
     // temp dir still not exists?
-    if (!ZDirectory::Exist(m_TargetDirectory))
+    if (!PSS_Directory::Exist(m_TargetDirectory))
         return false;
 
     // change the current directory
-    if (!ZDirectory::ChangeCurrentDirectory(m_TargetDirectory))
+    if (!PSS_Directory::ChangeCurrentDirectory(m_TargetDirectory))
         return false;
 
     // publish the home image file, if it exists
-    if (PSS_File::Exist(ZDirectory::NormalizeDirectory(m_pInfo->GetServer()->GetSystemDirectory()) + _T("\\") + g_HomeImageFile))
+    if (PSS_File::Exist(PSS_Directory::NormalizeDirectory(m_pInfo->GetServer()->GetSystemDirectory()) + _T("\\") + g_HomeImageFile))
         if (!m_PubFile.Add(PSS_SoapData_File(PSS_SoapData_File::IE_DM_PublicFolder,
                                              1,
                                              (const char*)m_pInfo->GetServer()->GetSystemDirectory(),
@@ -96,7 +96,7 @@ bool PSS_SoapPublishModelGenerateFiles::OnStart()
             TRACE(_T("Problem publishing the Home image file\n"));
 
     // publish the parent image file, if it exists
-    if (PSS_File::Exist(ZDirectory::NormalizeDirectory(m_pInfo->GetServer()->GetSystemDirectory()) + _T("\\") + g_ParentImageFile))
+    if (PSS_File::Exist(PSS_Directory::NormalizeDirectory(m_pInfo->GetServer()->GetSystemDirectory()) + _T("\\") + g_ParentImageFile))
         if (!m_PubFile.Add(PSS_SoapData_File(PSS_SoapData_File::IE_DM_PublicFolder,
                                              1,
                                              (const char*)m_pInfo->GetServer()->GetSystemDirectory(),
@@ -119,7 +119,7 @@ bool PSS_SoapPublishModelGenerateFiles::OnStart()
 bool PSS_SoapPublishModelGenerateFiles::OnFinish()
 {
     // clean the directory used to generate the files
-    ZDirectory::DeleteDirectory(m_TargetDirectory, TRUE, TRUE);
+    PSS_Directory::DeleteDirectory(m_TargetDirectory, TRUE, TRUE);
 
     // hide the feedback dialog
     m_FileGenerateWindow.ShowWindow(SW_HIDE);
@@ -211,7 +211,7 @@ CString PSS_SoapPublishModelGenerateFiles::BuildModelImageFilename(ZDProcessGrap
         return _T("");
 
     // build the file name using the full object path
-    CString fileName  = ZDirectory::NormalizeDirectory(m_TargetDirectory) + _T("\\");
+    CString fileName  = PSS_Directory::NormalizeDirectory(m_TargetDirectory) + _T("\\");
     fileName         += ParseModelName(pModel->GetAbsolutePath());
     fileName         += _T(".jpg");
 
@@ -224,7 +224,7 @@ CString PSS_SoapPublishModelGenerateFiles::BuildModelHTMLFilename(ZDProcessGraph
         return _T("");
 
     // build the file name using the full object path
-    CString fileName  = ZDirectory::NormalizeDirectory(m_TargetDirectory) + _T("\\");
+    CString fileName  = PSS_Directory::NormalizeDirectory(m_TargetDirectory) + _T("\\");
     fileName         += ParseModelName(pModel->GetAbsolutePath());
     fileName         += _T(".htm");
 

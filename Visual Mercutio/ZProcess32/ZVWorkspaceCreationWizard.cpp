@@ -7,7 +7,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_File.h"
-#include "zBaseLib\ZDirectory.h"
+#include "zBaseLib\PSS_Directory.h"
 #include "zBaseLib\PSS_WorkspaceWizardTemplateManager.h"
 #include "zBaseLib\PSS_MsgBox.h"
 
@@ -105,14 +105,14 @@ bool ZVWorkspaceStart::Validate()
     m_Directory.GetWindowText(m_DirectoryStr);
 
     // Normalize the directory
-    ZDirectory::NormalizeDirectory(m_DirectoryStr);
+    PSS_Directory::NormalizeDirectory(m_DirectoryStr);
 
     // Build the workspace filename
-    m_WorkspaceFilename = ZDirectory::NormalizeDirectory(m_DirectoryStr) + _T("\\");
+    m_WorkspaceFilename = PSS_Directory::NormalizeDirectory(m_DirectoryStr) + _T("\\");
     m_WorkspaceFilename += m_WorkspaceName;
     m_WorkspaceFilename += m_WorkspaceExtension;
 
-    if (!ZDirectory::Exist(m_DirectoryStr))
+    if (!PSS_Directory::Exist(m_DirectoryStr))
     {
         // Asks the user to create the directory
         PSS_MsgBox mBox;
@@ -123,10 +123,10 @@ bool ZVWorkspaceStart::Validate()
         }
 
         // Then, try to create it
-        ZDirectory::CreateDirectory(m_DirectoryStr);
+        PSS_Directory::CreateDirectory(m_DirectoryStr);
 
         // If is still not created, error message
-        if (!ZDirectory::Exist(m_DirectoryStr))
+        if (!PSS_Directory::Exist(m_DirectoryStr))
         {
             PSS_MsgBox mBox;
             mBox.Show(IDS_WKSPACE_DIR_FAILCREATE, MB_OK);
@@ -167,7 +167,7 @@ BOOL ZVWorkspaceStart::OnInitDialog()
 {
     PSS_WizardDialog::OnInitDialog();
 
-    ZDirectory::NormalizeDirectory(m_InitialDirectory);
+    PSS_Directory::NormalizeDirectory(m_InitialDirectory);
     m_InitialDirectory += _T("\\");
     m_Directory.SetWindowText(m_InitialDirectory);
 
