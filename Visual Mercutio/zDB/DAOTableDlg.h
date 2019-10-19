@@ -16,7 +16,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZBaseLib\ZIDialog.h"
+#include "ZBaseLib\PSS_Dialog.h"
 #include "DAOTableLst.h"
 
 // resources
@@ -38,7 +38,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // ZDAOTableDlg dialog
 
-class AFX_EXT_CLASS ZDAOTableDlg : public ZIDialog
+class AFX_EXT_CLASS ZDAOTableDlg : public PSS_Dialog
 {
 // Construction
 public:

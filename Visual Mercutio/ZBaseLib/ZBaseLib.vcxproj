@@ -1031,7 +1031,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="zidialog.cpp">
+    <ClCompile Include="PSS_Dialog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1494,7 +1494,7 @@
     <ClInclude Include="PSS_WorkspaceEnvDocument.h" />
     <ClInclude Include="PSS_WorkspaceWizardTemplateDocument.h" />
     <ClInclude Include="PSS_Trace.h" />
-    <ClInclude Include="zidialog.h" />
+    <ClInclude Include="PSS_Dialog.h" />
     <ClInclude Include="PSS_Drop.h" />
     <ClInclude Include="PSS_DropScrollView.h" />
     <ClInclude Include="PSS_DropView.h" />

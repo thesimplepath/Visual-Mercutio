@@ -19,7 +19,7 @@
 
 
 
-#include "zBaseLib\ZIDialog.h"
+#include "zBaseLib\PSS_Dialog.h"
 #include "zModelRes.h"
 
 // ZCSymbolAttributesTreeCtrl
@@ -47,7 +47,7 @@ class ZBPropertyAttributes;
 /////////////////////////////////////////////////////////////////////////////
 // ZVFindSymbolExtDlg dialog
 
-class AFX_EXT_CLASS ZVFindSymbolExtDlg : public ZIDialog
+class AFX_EXT_CLASS ZVFindSymbolExtDlg : public PSS_Dialog
 {
 // Construction
 public:

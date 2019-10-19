@@ -52,7 +52,7 @@ const UINT g_SymbolID[] =
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_SysVarDialog, ZIDialog)
+BEGIN_MESSAGE_MAP(PSS_SysVarDialog, PSS_Dialog)
     //{{AFX_MSG_MAP(PSS_SysVarDialog)
     ON_LBN_SELCHANGE(IDC_SYSTEMVARLIST, OnSelchangeSystemVarlist)
     //}}AFX_MSG_MAP
@@ -61,7 +61,7 @@ END_MESSAGE_MAP()
 // PSS_SysVarDialog
 //---------------------------------------------------------------------------
 PSS_SysVarDialog::PSS_SysVarDialog(CWnd* pParent) :
-    ZIDialog(PSS_SysVarDialog::IDD, TRUE, pParent)
+    PSS_Dialog(PSS_SysVarDialog::IDD, TRUE, pParent)
 {}
 //---------------------------------------------------------------------------
 void PSS_SysVarDialog::DoDataExchange(CDataExchange* pDX)
@@ -75,7 +75,7 @@ void PSS_SysVarDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_SysVarDialog::OnInitDialog()
 {
-    ZIDialog::OnInitDialog();
+    PSS_Dialog::OnInitDialog();
     
     std::size_t index = 0;
 
@@ -107,6 +107,6 @@ void PSS_SysVarDialog::OnOK()
     if (curSel != LB_ERR)
         m_Keyword = g_Symbol[curSel];
 
-    ZIDialog::OnOK();
+    PSS_Dialog::OnOK();
 }
 //---------------------------------------------------------------------------

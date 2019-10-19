@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZIDialog.h"
+#include "zBaseLib\PSS_Dialog.h"
 #include "zEvent\ActEvent.h"
 #include "PSS_HoverButton.h"
 
@@ -46,7 +46,7 @@
 * Confirm delete message dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_ConfirmDeleteMessageDialog : public ZIDialog
+class AFX_EXT_CLASS PSS_ConfirmDeleteMessageDialog : public PSS_Dialog
 {
     public:
         /**

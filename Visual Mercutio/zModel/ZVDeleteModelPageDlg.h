@@ -15,12 +15,13 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
+// processsoft
+#include "zBaseLib\PSS_Dialog.h"
 #include "ObjectCollections.h"
-
-#include "zBaseLib\ZIDialog.h"
-#include "zModelRes.h"
 #include "ZCProcessModelTree.h"
+
+// resources
+#include "zModelRes.h"
 
 // Forward declaration
 class ZDProcessGraphModelMdl;
@@ -44,7 +45,7 @@ class ZDProcessGraphModelMdl;
 /////////////////////////////////////////////////////////////////////////////
 // ZVDeleteModelPageDlg dialog
 
-class AFX_EXT_CLASS ZVDeleteModelPageDlg : public ZIDialog
+class AFX_EXT_CLASS ZVDeleteModelPageDlg : public PSS_Dialog
 {
 // Construction
 public:

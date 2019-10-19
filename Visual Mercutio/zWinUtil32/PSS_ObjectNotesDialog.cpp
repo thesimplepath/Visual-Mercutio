@@ -17,7 +17,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_ObjectNotesDialog, ZIDialog)
+BEGIN_MESSAGE_MAP(PSS_ObjectNotesDialog, PSS_Dialog)
     //{{AFX_MSG_MAP(PSS_ObjectNotesDialog)
     ON_BN_CLICKED(IDC_DELETENOTES, OnDeleteNotes)
     ON_EN_CHANGE(IDC_NOTESEDIT, OnChangeNotesEdit)
@@ -29,7 +29,7 @@ END_MESSAGE_MAP()
 PSS_ObjectNotesDialog::PSS_ObjectNotesDialog(const CString& comment,
                                              const CString& userName,
                                              CWnd*          pParent) :
-    ZIDialog(PSS_ObjectNotesDialog::IDD, TRUE, pParent),
+    PSS_Dialog(PSS_ObjectNotesDialog::IDD, TRUE, pParent),
     m_UserName(userName),
     m_Comment(comment)
 {
@@ -39,7 +39,7 @@ PSS_ObjectNotesDialog::PSS_ObjectNotesDialog(const CString& comment,
 //---------------------------------------------------------------------------
 void PSS_ObjectNotesDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIDialog::DoDataExchange(pDX);
+    PSS_Dialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_ObjectNotesDialog)
     DDX_Text(pDX, IDC_NOTESEDIT, m_Comment);
@@ -48,7 +48,7 @@ void PSS_ObjectNotesDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_ObjectNotesDialog::OnInitDialog()
 {
-    ZIDialog::OnInitDialog();
+    PSS_Dialog::OnInitDialog();
 
     if (!m_UserName.IsEmpty())
     {
@@ -90,7 +90,7 @@ void PSS_ObjectNotesDialog::OnOK()
         EndDialog(IDC_DELETENOTES);
         return;
     }
-    
-    ZIDialog::OnOK();
+
+    PSS_Dialog::OnOK();
 }
 //---------------------------------------------------------------------------

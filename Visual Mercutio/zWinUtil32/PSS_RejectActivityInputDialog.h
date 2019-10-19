@@ -29,7 +29,7 @@
 #endif
 
 // processsoft
-#include "zBaseLib\ZIDialog.h"
+#include "zBaseLib\PSS_Dialog.h"
 
 // resources
 #ifndef _WIN32
@@ -52,7 +52,7 @@
 * Reject activity input dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_RejectActivityInputDialog : public ZIDialog
+class AFX_EXT_CLASS PSS_RejectActivityInputDialog : public PSS_Dialog
 {
     public:
         /**

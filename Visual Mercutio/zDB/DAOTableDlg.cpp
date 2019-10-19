@@ -15,13 +15,13 @@ static char THIS_FILE[] = __FILE__;
 
 
 ZDAOTableDlg::ZDAOTableDlg(CWnd* pParent /*=NULL*/)
-    : ZIDialog(ZDAOTableDlg::IDD, TRUE, pParent)
+    : PSS_Dialog(ZDAOTableDlg::IDD, TRUE, pParent)
 {
     m_TableName = _T("");
 }
 
 ZDAOTableDlg::ZDAOTableDlg(CDaoDatabase* pDB, CWnd* pParent /*=NULL*/)
-    : ZIDialog(ZDAOTableDlg::IDD, TRUE, pParent)
+    : PSS_Dialog(ZDAOTableDlg::IDD, TRUE, pParent)
 {
     m_pDB = pDB;
     m_TableName = _T("");
@@ -32,14 +32,13 @@ ZDAOTableDlg::ZDAOTableDlg(CDaoDatabase* pDB, CWnd* pParent /*=NULL*/)
 
 void ZDAOTableDlg::DoDataExchange(CDataExchange* pDX)
 {
-    ZIDialog::DoDataExchange(pDX);
+    PSS_Dialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(ZDAOTableDlg)
     DDX_Control(pDX, IDC_LISTBOX, m_ListBox);
     //}}AFX_DATA_MAP
 }
 
-
-BEGIN_MESSAGE_MAP(ZDAOTableDlg, ZIDialog)
+BEGIN_MESSAGE_MAP(ZDAOTableDlg, PSS_Dialog)
     //{{AFX_MSG_MAP(ZDAOTableDlg)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -50,8 +49,8 @@ END_MESSAGE_MAP()
 
 BOOL ZDAOTableDlg::OnInitDialog() 
 {
-    ZIDialog::OnInitDialog();
-    
+    PSS_Dialog::OnInitDialog();
+
     m_ListBox.Initialize( m_pDB );
     
     return TRUE;  // return TRUE unless you set the focus to a control
@@ -61,7 +60,5 @@ BOOL ZDAOTableDlg::OnInitDialog()
 void ZDAOTableDlg::OnOK() 
 {
     m_TableName = m_ListBox.GetSelectedTable();
-    ZIDialog::OnOK();
-
+    PSS_Dialog::OnOK();
 }
-

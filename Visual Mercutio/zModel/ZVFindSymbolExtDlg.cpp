@@ -20,7 +20,7 @@ static char THIS_FILE[] = __FILE__;
 ZVFindSymbolExtDlg::ZVFindSymbolExtDlg(ZBPropertyAttributes* pPropAttributes /*=NULL*/, 
                                        ZBPropertySet* pPropSet /*=NULL*/,
                                        CWnd* pParent /*=NULL*/)
-: ZIDialog(ZVFindSymbolExtDlg::IDD, TRUE, pParent),
+: PSS_Dialog(ZVFindSymbolExtDlg::IDD, TRUE, pParent),
   m_pPropAttributes(pPropAttributes),
   m_pPropSet(pPropSet)
       
@@ -43,7 +43,8 @@ void ZVFindSymbolExtDlg::CheckControlState()
 
 void ZVFindSymbolExtDlg::DoDataExchange(CDataExchange* pDX)
 {
-    ZIDialog::DoDataExchange(pDX);
+    PSS_Dialog::DoDataExchange(pDX);
+
     //{{AFX_DATA_MAP(ZVFindSymbolExtDlg)
     DDX_Control(pDX, IDC_ATTRIBUTE_TREE, m_AttributeText);
     DDX_Check(pDX, IDC_INALLMODELS, m_InAllModels);
@@ -54,7 +55,7 @@ void ZVFindSymbolExtDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(ZVFindSymbolExtDlg, ZIDialog)
+BEGIN_MESSAGE_MAP(ZVFindSymbolExtDlg, PSS_Dialog)
     //{{AFX_MSG_MAP(ZVFindSymbolExtDlg)
     ON_EN_CHANGE(IDC_SYMBOLNAME, OnChangeSymbolName)
     //}}AFX_MSG_MAP
@@ -65,8 +66,8 @@ END_MESSAGE_MAP()
 
 BOOL ZVFindSymbolExtDlg::OnInitDialog() 
 {
-    ZIDialog::OnInitDialog();
-    
+    PSS_Dialog::OnInitDialog();
+
     // Initialize the attribute tree control
     m_AttributeText.Initialize( m_pPropAttributes,m_pPropSet );
 
@@ -94,6 +95,6 @@ void ZVFindSymbolExtDlg::OnChangeSymbolName()
 void ZVFindSymbolExtDlg::OnOK() 
 {
     m_AttributeText.FillCorrespondingCheckedItems();
-    
-    ZIDialog::OnOK();
+
+    PSS_Dialog::OnOK();
 }

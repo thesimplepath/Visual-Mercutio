@@ -15,7 +15,7 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 // JMR-MODIF - Le 9 décembre 2007 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
 
-BEGIN_MESSAGE_MAP(ZIModelTemplateCopyDlg, CDialog)
+BEGIN_MESSAGE_MAP(ZIModelTemplateCopyDlg, PSS_Dialog)
     //{{AFX_MSG_MAP(ZIModelTemplateCopyDlg)
     ON_EN_CHANGE(IDC_TITLE, OnChangeTitle)
     ON_BN_CLICKED(ID_DONTSAVE, OnDontSave)
@@ -30,7 +30,7 @@ ZIModelTemplateCopyDlg::ZIModelTemplateCopyDlg(CString            FileExtension,
                                                PSS_FolderStamp*    pFolderStamp,
                                                BOOL            AllowReplace    /*= FALSE*/,
                                                CWnd*            pParent            /*= NULL*/)
-    : ZIDialog(ZIModelTemplateCopyDlg::IDD, TRUE, pParent),
+    : PSS_Dialog(ZIModelTemplateCopyDlg::IDD, TRUE, pParent),
     m_FileExtension(FileExtension),
     m_Directory(Directory),
     m_pFolderStamp(pFolderStamp),
@@ -69,7 +69,7 @@ ZIModelTemplateCopyDlg::ZIModelTemplateCopyDlg(CString            FileExtension,
 
 void ZIModelTemplateCopyDlg::DoDataExchange(CDataExchange* pDX)
 {
-    ZIDialog::DoDataExchange(pDX);
+    PSS_Dialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(ZIModelTemplateCopyDlg)
     DDX_Control(pDX, IDC_MODELDIR, m_ModelDirectory);
@@ -163,7 +163,7 @@ void ZIModelTemplateCopyDlg::OnOK()
 
 BOOL ZIModelTemplateCopyDlg::OnInitDialog()
 {
-    ZIDialog::OnInitDialog();
+    PSS_Dialog::OnInitDialog();
 
     m_ModelDirectory.SetWindowText(m_Directory);
 
@@ -194,5 +194,5 @@ void ZIModelTemplateCopyDlg::OnChangeTitle()
 
 void ZIModelTemplateCopyDlg::OnDontSave()
 {
-    ZIDialog::EndDialog(ID_DONTSAVE);
+    PSS_Dialog::EndDialog(ID_DONTSAVE);
 }

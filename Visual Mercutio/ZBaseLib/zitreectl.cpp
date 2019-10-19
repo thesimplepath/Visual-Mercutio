@@ -1,33 +1,31 @@
-// **********************************************************************************************************************
-// *                                                Classe ZITreeCtrl                                                    *
-// **********************************************************************************************************************
-// *                                                   DESCRIPTION                                                        *
-// * Cette classe mets à disposition du logiciel un contrôle de type Tree View, avec toutes les ressources associées.    *
-// **********************************************************************************************************************
+/****************************************************************************
+ * ==> PSS_TreeCtrl --------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a generic tree controller                         *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include <StdAfx.h>
 #include "ZITreeCtl.h"
 
+// processsoft
 #include "PSS_DropView.h"
 #include "PSS_DropScrollView.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+    #define new DEBUG_NEW
+    #undef THIS_FILE
+    static char THIS_FILE[] = __FILE__;
 #endif
 
-// JMR-MODIF - Le 12 octobre 2005 - Ajout des décorations unicode _T( ), nettoyage du code inutile. (En commentaires)
-
-IMPLEMENT_DYNAMIC( ZITreeCtrl, CTreeCtrl )
-
-// **********************************************************************************************************************
-// *                                Table de mappage des messages de la classe ZITreeCtrl                                *
-// **********************************************************************************************************************
-// *                                                   DESCRIPTION                                                        *
-// * Cette fonction organise la distribution des messages nécessaires au bon fonctionnement des classes MFC.            *
-// **********************************************************************************************************************
-BEGIN_MESSAGE_MAP( ZITreeCtrl, CTreeCtrl )
+//---------------------------------------------------------------------------
+// Dynamic creation
+//---------------------------------------------------------------------------
+IMPLEMENT_DYNAMIC(ZITreeCtrl, CTreeCtrl)
+//---------------------------------------------------------------------------
+// Message map
+//---------------------------------------------------------------------------
+BEGIN_MESSAGE_MAP(ZITreeCtrl, CTreeCtrl)
     //{{AFX_MSG_MAP(ZITreeCtrl)
     ON_NOTIFY_REFLECT(TVN_ENDLABELEDIT, OnEndLabelEdit)
     ON_NOTIFY_REFLECT(TVN_BEGINDRAG, OnBeginDrag)
@@ -37,20 +35,16 @@ BEGIN_MESSAGE_MAP( ZITreeCtrl, CTreeCtrl )
     ON_WM_DESTROY()
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-// **********************************************************************************************************************
-// *                                       Constructeur de la classe ZITreeCtrl                                            *
-// **********************************************************************************************************************
-// *                                                   DESCRIPTION                                                        *
-// * Cette fonction prend en charge l'initialisation des ressources pour permettre l'utilisation de l'objet.            *
-// **********************************************************************************************************************
-ZITreeCtrl::ZITreeCtrl()
-    : m_bDragging    ( FALSE ),
-      m_pImageList    ( NULL ),
-      m_pDragImage    ( NULL ),
-      m_pDragObj    ( NULL )
-{
-}
+//---------------------------------------------------------------------------
+// PSS_TreeCtrl
+//---------------------------------------------------------------------------
+ZITreeCtrl::ZITreeCtrl() :
+    CTreeCtrl(),
+    m_bDragging(FALSE),
+    m_pImageList(NULL),
+    m_pDragImage(NULL),
+    m_pDragObj(NULL)
+{}
 
 // **********************************************************************************************************************
 // *                                        Destructeur de la classe ZITreeCtrl                                            *
@@ -61,7 +55,7 @@ ZITreeCtrl::ZITreeCtrl()
 ZITreeCtrl::~ZITreeCtrl()
 {
     // JMR-MODIF - Le 31 août 2005 - Teste si m_pImageList a bien été détruit. Sinon, nettoie la mémoire.
-    if ( m_pImageList )
+    if (m_pImageList)
     {
         m_pImageList->DeleteImageList();
         delete m_pImageList;
@@ -71,52 +65,52 @@ ZITreeCtrl::~ZITreeCtrl()
     _EmptySaveStateDataSet();
 }
 
-void ZITreeCtrl::ExpandRoot( BOOL Deep )
+void ZITreeCtrl::ExpandRoot(BOOL Deep)
 {
-    ExpandBranch( GetRootItem(), Deep );
+    ExpandBranch(GetRootItem(), Deep);
 }
 
-void ZITreeCtrl::ExpandBranch( HTREEITEM hTreeItem, BOOL Deep )
+void ZITreeCtrl::ExpandBranch(HTREEITEM hTreeItem, BOOL Deep)
 {
-    if ( hTreeItem && ItemHasChildren( hTreeItem ) )
+    if (hTreeItem && ItemHasChildren(hTreeItem))
     {
-        Expand( hTreeItem, TVE_EXPAND );
+        Expand(hTreeItem, TVE_EXPAND);
 
-        if ( Deep )
+        if (Deep)
         {
-            hTreeItem = GetChildItem( hTreeItem );
+            hTreeItem = GetChildItem(hTreeItem);
 
             do
             {
-                ExpandBranch( hTreeItem, Deep );
+                ExpandBranch(hTreeItem, Deep);
             }
-            while( ( hTreeItem = GetNextSiblingItem( hTreeItem ) ) != NULL );
+            while ((hTreeItem = GetNextSiblingItem(hTreeItem)) != NULL);
         }
     }
 
-    EnsureVisible( GetSelectedItem() );
+    EnsureVisible(GetSelectedItem());
 }
 
-void ZITreeCtrl::CollapseRoot( BOOL Deep )
+void ZITreeCtrl::CollapseRoot(BOOL Deep)
 {
-    CollapseBranch( GetRootItem(), Deep );
+    CollapseBranch(GetRootItem(), Deep);
 }
 
-void ZITreeCtrl::CollapseBranch( HTREEITEM hTreeItem, BOOL Deep )
+void ZITreeCtrl::CollapseBranch(HTREEITEM hTreeItem, BOOL Deep)
 {
-    if (hTreeItem && ItemHasChildren( hTreeItem ))
+    if (hTreeItem && ItemHasChildren(hTreeItem))
     {
-        Expand( hTreeItem, TVE_COLLAPSE );
+        Expand(hTreeItem, TVE_COLLAPSE);
 
-        if ( Deep )
+        if (Deep)
         {
-            hTreeItem = GetChildItem( hTreeItem );
+            hTreeItem = GetChildItem(hTreeItem);
 
             do
             {
-                CollapseBranch( hTreeItem, Deep );
+                CollapseBranch(hTreeItem, Deep);
             }
-            while( ( hTreeItem = GetNextSiblingItem( hTreeItem ) ) != NULL );
+            while ((hTreeItem = GetNextSiblingItem(hTreeItem)) != NULL);
         }
     }
 }
@@ -136,9 +130,9 @@ void ZITreeCtrl::CollapseBranch( HTREEITEM hTreeItem, BOOL Deep )
 // *                      Microsoft, concernant la classe CImageList.                                                    *
 // * -> COLORREF crMask    : Clé de couleur pour le masque; La couleur spécifiée ici sera transparente lors de l'affichage.*
 // **********************************************************************************************************************
-void ZITreeCtrl::LoadImageList( UINT nID, int cx, int Grow, COLORREF crMask )
+void ZITreeCtrl::LoadImageList(UINT nID, int cx, int Grow, COLORREF crMask)
 {
-    if ( m_pImageList )
+    if (m_pImageList)
     {
         m_pImageList->DeleteImageList();
         delete m_pImageList;
@@ -146,9 +140,9 @@ void ZITreeCtrl::LoadImageList( UINT nID, int cx, int Grow, COLORREF crMask )
     }
 
     m_pImageList = new CImageList();
-    m_pImageList->Create( nID, cx, Grow, crMask );
+    m_pImageList->Create(nID, cx, Grow, crMask);
 
-    SetImageList( m_pImageList, TVSIL_NORMAL );
+    SetImageList(m_pImageList, TVSIL_NORMAL);
 }
 
 // **********************************************************************************************************************
@@ -167,28 +161,28 @@ void ZITreeCtrl::LoadImageList( UINT nID, int cx, int Grow, COLORREF crMask )
 // * -> int cx            : Largeur, en pixels, de chaque image.                                                            *
 // * -> int cy            : Hauteur, en pixels, de chaque image.                                                            *
 // **********************************************************************************************************************
-void ZITreeCtrl::LoadImageList( UINT nIDStart, UINT nIDEnd, UINT nFlags, int cx, int cy )
+void ZITreeCtrl::LoadImageList(UINT nIDStart, UINT nIDEnd, UINT nFlags, int cx, int cy)
 {
     CBitmap bitmap;
 
     m_pImageList = new CImageList();
-    m_pImageList->Create( cx, cy, nFlags, 2, 2 );
+    m_pImageList->Create(cx, cy, nFlags, 2, 2);
 
     // If nIDEnd is zero assigns to start
-    if ( !nIDEnd )
+    if (!nIDEnd)
     {
         nIDEnd = nIDStart;
     }
 
     // Load bitmaps
-    for ( UINT nID = nIDStart; nID <= nIDEnd; ++nID )
+    for (UINT nID = nIDStart; nID <= nIDEnd; ++nID)
     {
-        bitmap.LoadBitmap( nID );
-        m_pImageList->Add( &bitmap, static_cast<COLORREF>(NULL) );
+        bitmap.LoadBitmap(nID);
+        m_pImageList->Add(&bitmap, static_cast<COLORREF>(NULL));
         bitmap.DeleteObject();
     }
 
-    SetImageList( m_pImageList, TVSIL_NORMAL );
+    SetImageList(m_pImageList, TVSIL_NORMAL);
 }
 
 // **********************************************************************************************************************
@@ -207,28 +201,28 @@ void ZITreeCtrl::LoadImageList( UINT nIDStart, UINT nIDEnd, UINT nFlags, int cx,
 // * -> int cy            : Hauteur, en pixels, de chaque image.                                                            *
 // * -> COLORREF crMask    : Clé de couleur pour le masque; La couleur spécifiée ici sera transparente lors de l'affichage.*
 // **********************************************************************************************************************
-void ZITreeCtrl::LoadImageListMasked( UINT nIDStart, UINT nIDEnd, int cx, int cy, COLORREF crMask )
+void ZITreeCtrl::LoadImageListMasked(UINT nIDStart, UINT nIDEnd, int cx, int cy, COLORREF crMask)
 {
     CBitmap bitmap;
 
     m_pImageList = new CImageList();
-    m_pImageList->Create( cx, cy, ILC_MASK, 2, 2 );
+    m_pImageList->Create(cx, cy, ILC_MASK, 2, 2);
 
     // If nIDEnd is zero assigns to start
-    if ( !nIDEnd )
+    if (!nIDEnd)
     {
         nIDEnd = nIDStart;
     }
 
     // Load bitmaps
-    for ( UINT nID = nIDStart; nID <= nIDEnd; ++nID )
+    for (UINT nID = nIDStart; nID <= nIDEnd; ++nID)
     {
-        bitmap.LoadBitmap( nID );
-        m_pImageList->Add( &bitmap, crMask );
+        bitmap.LoadBitmap(nID);
+        m_pImageList->Add(&bitmap, crMask);
         bitmap.DeleteObject();
     }
 
-    SetImageList( m_pImageList, TVSIL_NORMAL );
+    SetImageList(m_pImageList, TVSIL_NORMAL);
 }
 
 // **********************************************************************************************************************
@@ -240,7 +234,7 @@ void ZITreeCtrl::LoadImageListMasked( UINT nIDStart, UINT nIDEnd, int cx, int cy
 // *                                                   PARAMETRES                                                        *
 // * -> BOOL DeleteImageList    : Drapeau déterminant si la liste d'images doit aussi être détruite.                    *
 // **********************************************************************************************************************
-void ZITreeCtrl::DeleteAllItems( BOOL DeleteImageList )
+void ZITreeCtrl::DeleteAllItems(BOOL DeleteImageList)
 {
     // JMR-MODIF - Le 31 août 2005 - Nettoyage de l'objet m_pImageList directement plutôt qu'en utilisant son
     // pointeur par copie.
@@ -258,9 +252,9 @@ void ZITreeCtrl::DeleteAllItems( BOOL DeleteImageList )
     //    }
     //}
 
-    if ( DeleteImageList )
+    if (DeleteImageList)
     {
-        if ( m_pImageList )
+        if (m_pImageList)
         {
             m_pImageList->DeleteImageList();
             delete m_pImageList;
@@ -276,55 +270,55 @@ void ZITreeCtrl::DeleteAllItems( BOOL DeleteImageList )
 // ZITreeCtrl message handlers
 void ZITreeCtrl::OnDestroy()
 {
-    DeleteAllItems( TRUE );
+    DeleteAllItems(TRUE);
     CTreeCtrl::OnDestroy();
 }
 
-void ZITreeCtrl::SetNewStyle( long lStyleMask, BOOL bSetBits )
+void ZITreeCtrl::SetNewStyle(long lStyleMask, BOOL bSetBits)
 {
     long lStyleOld;
 
-    lStyleOld  =  GetWindowLong( m_hWnd, GWL_STYLE );
+    lStyleOld = GetWindowLong(m_hWnd, GWL_STYLE);
     lStyleOld &= ~lStyleMask;
 
-    if ( bSetBits )
+    if (bSetBits)
     {
         lStyleOld |= lStyleMask;
     }
 
-    SetWindowLong( m_hWnd, GWL_STYLE, lStyleOld );
-    SetWindowPos( NULL, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER );
+    SetWindowLong(m_hWnd, GWL_STYLE, lStyleOld);
+    SetWindowPos(NULL, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER);
 }
 
-void ZITreeCtrl::OnEndLabelEdit( LPNMHDR pnmhdr, LRESULT *pLResult )
+void ZITreeCtrl::OnEndLabelEdit(LPNMHDR pnmhdr, LRESULT *pLResult)
 {
     TV_DISPINFO *ptvinfo;
     ptvinfo = (TV_DISPINFO *)pnmhdr;
 
-    if ( ptvinfo->item.pszText != NULL )
+    if (ptvinfo->item.pszText != NULL)
     {
         ptvinfo->item.mask = TVIF_TEXT;
-        SetItem( &ptvinfo->item );
+        SetItem(&ptvinfo->item);
     }
 
     *pLResult = TRUE;
 }
 
-BOOL ZITreeCtrl::IsChildNodeOf( HTREEITEM hitemChild, HTREEITEM hitemSuspectedParent )
+BOOL ZITreeCtrl::IsChildNodeOf(HTREEITEM hitemChild, HTREEITEM hitemSuspectedParent)
 {
     do
     {
-        if ( hitemChild == hitemSuspectedParent )
+        if (hitemChild == hitemSuspectedParent)
         {
             break;
         }
     }
-    while ( ( hitemChild = GetParentItem( hitemChild ) ) != NULL );
+    while ((hitemChild = GetParentItem(hitemChild)) != NULL);
 
-    return ( hitemChild != NULL );
+    return (hitemChild != NULL);
 }
 
-BOOL ZITreeCtrl::TransferItem( HTREEITEM hitemDrag, HTREEITEM hitemDrop )
+BOOL ZITreeCtrl::TransferItem(HTREEITEM hitemDrag, HTREEITEM hitemDrop)
 {
     TV_INSERTSTRUCT        tvstruct;
     TCHAR                sztBuffer[50];
@@ -332,110 +326,110 @@ BOOL ZITreeCtrl::TransferItem( HTREEITEM hitemDrag, HTREEITEM hitemDrop )
     HTREEITEM            hFirstChild;
 
     // avoid an infinite recursion situation
-    tvstruct.item.hItem            = hitemDrag;
-    tvstruct.item.cchTextMax    = 49;
-    tvstruct.item.pszText        = sztBuffer;
-    tvstruct.item.mask            = TVIF_CHILDREN | TVIF_HANDLE | TVIF_IMAGE | TVIF_SELECTEDIMAGE | TVIF_TEXT;
+    tvstruct.item.hItem = hitemDrag;
+    tvstruct.item.cchTextMax = 49;
+    tvstruct.item.pszText = sztBuffer;
+    tvstruct.item.mask = TVIF_CHILDREN | TVIF_HANDLE | TVIF_IMAGE | TVIF_SELECTEDIMAGE | TVIF_TEXT;
 
     // get information of the dragged element
-    GetItem( &tvstruct.item );
+    GetItem(&tvstruct.item);
 
-    tvstruct.hParent            = hitemDrop;
-    tvstruct.hInsertAfter        = TVI_SORT;
-    tvstruct.item.mask            = TVIF_IMAGE | TVIF_SELECTEDIMAGE | TVIF_TEXT;
-    hNewItem                    = InsertItem( &tvstruct );
+    tvstruct.hParent = hitemDrop;
+    tvstruct.hInsertAfter = TVI_SORT;
+    tvstruct.item.mask = TVIF_IMAGE | TVIF_SELECTEDIMAGE | TVIF_TEXT;
+    hNewItem = InsertItem(&tvstruct);
 
-    while ( ( hFirstChild = GetChildItem( hitemDrag ) ) != NULL )
+    while ((hFirstChild = GetChildItem(hitemDrag)) != NULL)
     {
-        TransferItem( hFirstChild, hNewItem );    // recursively transfer all the items
-        DeleteItem( hFirstChild );                // delete the first child and all its children
+        TransferItem(hFirstChild, hNewItem);    // recursively transfer all the items
+        DeleteItem(hFirstChild);                // delete the first child and all its children
     }
 
     return TRUE;
 }
 
-void ZITreeCtrl::OnButtonUp( CPoint point )
+void ZITreeCtrl::OnButtonUp(CPoint point)
 {
-    if ( m_bDragging )
+    if (m_bDragging)
     {
         // End dragging
-        VERIFY ( m_pDragImage->DragLeave ( GetDesktopWindow () ) );
-        m_pDragImage->EndDrag ();
+        VERIFY(m_pDragImage->DragLeave(GetDesktopWindow()));
+        m_pDragImage->EndDrag();
 
         // Show the cursor again
-        ShowCursor( TRUE );
+        ShowCursor(TRUE);
 
         // stop intercepting all mouse messages
-        VERIFY ( ::ReleaseCapture () );
+        VERIFY(::ReleaseCapture());
         m_bDragging = FALSE;
 
-        CPoint pt ( point );
-        ClientToScreen ( &pt );
+        CPoint pt(point);
+        ClientToScreen(&pt);
 
         // get the CWnd pointer of the window that is under the mouse cursor
-        CWnd* pDropWnd = WindowFromPoint ( pt );
-        ASSERT ( pDropWnd );
+        CWnd* pDropWnd = WindowFromPoint(pt);
+        ASSERT(pDropWnd);
 
         // if window accepts drop of symbol
-        if ( ( ISA( pDropWnd, PSS_DropView ) && ( (PSS_DropView*)pDropWnd )->AcceptDrop() ) ||
-             ( ISA( pDropWnd, PSS_DropScrollView ) && ( (PSS_DropScrollView*)pDropWnd )->AcceptDrop() ) )
+        if ((ISA(pDropWnd, PSS_DropView) && ((PSS_DropView*)pDropWnd)->AcceptDrop()) ||
+            (ISA(pDropWnd, PSS_DropScrollView) && ((PSS_DropScrollView*)pDropWnd)->AcceptDrop()))
         {
             // convert from screen coordinates to drop target client coordinates
-            pDropWnd->ScreenToClient ( &pt );
+            pDropWnd->ScreenToClient(&pt);
 
-            if ( m_pDragObj )
+            if (m_pDragObj)
             {
-                if ( ISA( pDropWnd, PSS_DropView ) )
+                if (ISA(pDropWnd, PSS_DropView))
                 {
-                    ( (PSS_DropView*)pDropWnd )->DropItem( m_pDragObj, pt );
+                    ((PSS_DropView*)pDropWnd)->DropItem(m_pDragObj, pt);
                 }
-                else if ( ISA( pDropWnd, PSS_DropScrollView ) )
+                else if (ISA(pDropWnd, PSS_DropScrollView))
                 {
-                    ( (PSS_DropScrollView*)pDropWnd )->DropItem( m_pDragObj, pt );
+                    ((PSS_DropScrollView*)pDropWnd)->DropItem(m_pDragObj, pt);
                 }
             }
         }
     }
 }
 
-void ZITreeCtrl::OnRButtonUp( UINT nFlags, CPoint point )
+void ZITreeCtrl::OnRButtonUp(UINT nFlags, CPoint point)
 {
-    OnButtonUp( point );
-    CTreeCtrl::OnRButtonUp( nFlags, point );
+    OnButtonUp(point);
+    CTreeCtrl::OnRButtonUp(nFlags, point);
 }
 
-void ZITreeCtrl::OnBeginDrag( LPNMHDR pnmhdr, LRESULT *pLResult )
+void ZITreeCtrl::OnBeginDrag(LPNMHDR pnmhdr, LRESULT *pLResult)
 {
-    m_hDragItem = ( (NM_TREEVIEW *)pnmhdr )->itemNew.hItem;
+    m_hDragItem = ((NM_TREEVIEW *)pnmhdr)->itemNew.hItem;
     int nSelectedImage;
-    GetItemImage( m_hDragItem, m_DragImageIndex, nSelectedImage );
+    GetItemImage(m_hDragItem, m_DragImageIndex, nSelectedImage);
 
     // create a drag image
-    m_pDragImage = GetImageList( LVSIL_NORMAL );
+    m_pDragImage = GetImageList(LVSIL_NORMAL);
 
-    if ( !m_pDragImage )
+    if (!m_pDragImage)
     {
-        m_pDragImage = GetImageList( LVSIL_SMALL );
+        m_pDragImage = GetImageList(LVSIL_SMALL);
     }
 
-    ASSERT ( m_pDragImage );
+    ASSERT(m_pDragImage);
 
     // Changes the cursor to the drag image (DragMove() is still required in OnMouseMove()
-    VERIFY ( m_pDragImage->BeginDrag ( m_DragImageIndex, CPoint ( 0, 0 ) ) );
-    VERIFY ( m_pDragImage->DragEnter ( GetDesktopWindow (), ( (NM_TREEVIEW *)pnmhdr )->ptDrag ) );
+    VERIFY(m_pDragImage->BeginDrag(m_DragImageIndex, CPoint(0, 0)));
+    VERIFY(m_pDragImage->DragEnter(GetDesktopWindow(), ((NM_TREEVIEW *)pnmhdr)->ptDrag));
 
     // Set dragging flag
     m_bDragging = TRUE;
-    m_pDropWnd    = this;
+    m_pDropWnd = this;
 
     // Set the drag object
-    m_pDragObj = GetDragObject( m_hDragItem );
+    m_pDragObj = GetDragObject(m_hDragItem);
 
     // Hide the cursor
-    ShowCursor( FALSE );
+    ShowCursor(FALSE);
 
     // capture all mouse messages
-    SetCapture ();
+    SetCapture();
 }
 
 // **********************************************************************************************************************
@@ -447,25 +441,25 @@ void ZITreeCtrl::OnBeginDrag( LPNMHDR pnmhdr, LRESULT *pLResult )
 // * reprend l'icône de l'objet, soit une icône "opération impossible" est affichée, soit le curseur est réaffiché avec    *
 // * son image d'origine.                                                                                                *
 // **********************************************************************************************************************
-void ZITreeCtrl::OnMouseMove( UINT nFlags, CPoint point )
+void ZITreeCtrl::OnMouseMove(UINT nFlags, CPoint point)
 {
-    if ( m_bDragging )
+    if (m_bDragging)
     {
-        CPoint pt ( point );
-        ClientToScreen ( &pt );
+        CPoint pt(point);
+        ClientToScreen(&pt);
 
         // move the drag image
-        VERIFY ( m_pDragImage->DragMove ( pt ) );
+        VERIFY(m_pDragImage->DragMove(pt));
 
         // unlock window updates
-        VERIFY ( m_pDragImage->DragShowNolock ( FALSE ) );
+        VERIFY(m_pDragImage->DragShowNolock(FALSE));
 
         // get the CWnd pointer of the window that is under the mouse cursor
-        CWnd* pDropWnd = WindowFromPoint ( pt );
-        ASSERT ( pDropWnd );
+        CWnd* pDropWnd = WindowFromPoint(pt);
+        ASSERT(pDropWnd);
 
         // if we drag outside current window
-        if ( pDropWnd != m_pDropWnd )
+        if (pDropWnd != m_pDropWnd)
         {
         }
 
@@ -473,174 +467,174 @@ void ZITreeCtrl::OnMouseMove( UINT nFlags, CPoint point )
         m_pDropWnd = pDropWnd;
 
         // convert from screen coordinates to drop target client coordinates
-        pDropWnd->ScreenToClient ( &pt );
+        pDropWnd->ScreenToClient(&pt);
 
         // if window accepts drop of symbol
-        if ( ( ISA( pDropWnd, PSS_DropView ) && ( (PSS_DropView*)pDropWnd )->AcceptDrop() ) ||
-             ( ISA( pDropWnd, PSS_DropScrollView ) && ( (PSS_DropScrollView*)pDropWnd )->AcceptDrop() ) )
+        if ((ISA(pDropWnd, PSS_DropView) && ((PSS_DropView*)pDropWnd)->AcceptDrop()) ||
+            (ISA(pDropWnd, PSS_DropScrollView) && ((PSS_DropScrollView*)pDropWnd)->AcceptDrop()))
         {
-            if ( m_pDragObj )
+            if (m_pDragObj)
             {
                 // If do accept drop
-                if ( (ISA( pDropWnd, PSS_DropView ) && ( (PSS_DropView*)pDropWnd )->AcceptDropItem( m_pDragObj, pt ) ) ||
-                     (ISA( pDropWnd, PSS_DropScrollView ) &&
-                     ( (PSS_DropScrollView*)pDropWnd )->AcceptDropItem( m_pDragObj, pt ) ) )
+                if ((ISA(pDropWnd, PSS_DropView) && ((PSS_DropView*)pDropWnd)->AcceptDropItem(m_pDragObj, pt)) ||
+                    (ISA(pDropWnd, PSS_DropScrollView) &&
+                    ((PSS_DropScrollView*)pDropWnd)->AcceptDropItem(m_pDragObj, pt)))
                 {
                     // change the drag image
                     // JMR-MODIF - Le 2 juin 2005 - Suppression de la macro VERIFY, car il semble que SetDragCursorImage
                     // puisse parfois retourner FALSE.
-                    /*VERIFY*/ ( m_pDragImage->SetDragCursorImage ( m_DragImageIndex, CPoint( 0, 0 ) ) );
+                    /*VERIFY*/ (m_pDragImage->SetDragCursorImage(m_DragImageIndex, CPoint(0, 0)));
                 }
                 else
                 {
                     // change the drag image to impossible
                     // JMR-MODIF - Le 2 juin 2005 - Suppression de la macro VERIFY, car il semble que SetDragCursorImage
                     // puisse parfois retourner FALSE.
-                    /*VERIFY*/ ( m_pDragImage->SetDragCursorImage ( GetIndexOfNoDropImage(), CPoint( 0, 0 ) ) );
+                    /*VERIFY*/ (m_pDragImage->SetDragCursorImage(GetIndexOfNoDropImage(), CPoint(0, 0)));
                 }
             }
         }
 
         // lock window updates
-        VERIFY ( m_pDragImage->DragShowNolock ( TRUE ) );
+        VERIFY(m_pDragImage->DragShowNolock(TRUE));
     }
 
-    CTreeCtrl::OnMouseMove( nFlags, point );
+    CTreeCtrl::OnMouseMove(nFlags, point);
 }
 
-void ZITreeCtrl::OnLButtonUp( UINT nFlags, CPoint point )
+void ZITreeCtrl::OnLButtonUp(UINT nFlags, CPoint point)
 {
-    OnButtonUp( point );
-    CTreeCtrl::OnLButtonUp( nFlags, point );
+    OnButtonUp(point);
+    CTreeCtrl::OnLButtonUp(nFlags, point);
 }
 
-HTREEITEM ZITreeCtrl::FindItem( CString Label, HTREEITEM hStartItem )
+HTREEITEM ZITreeCtrl::FindItem(CString Label, HTREEITEM hStartItem)
 {
     // If hItem is NULL, start search from root item.
-    if ( hStartItem == NULL )
+    if (hStartItem == NULL)
     {
-        hStartItem = (HTREEITEM)SendMessage( TVM_GETNEXTITEM, TVGN_ROOT, 0 );
+        hStartItem = (HTREEITEM)SendMessage(TVM_GETNEXTITEM, TVGN_ROOT, 0);
     }
 
-    while ( hStartItem != NULL )
+    while (hStartItem != NULL)
     {
         char szBuffer[_MAX_FNAME + 1];
         TV_ITEM item;
 
-        item.hItem        = hStartItem;
-        item.mask        = TVIF_TEXT | TVIF_CHILDREN;
-        item.pszText    = szBuffer;
-        item.cchTextMax    = _MAX_FNAME;
-        SendMessage( TVM_GETITEM, 0, (LPARAM)&item );
+        item.hItem = hStartItem;
+        item.mask = TVIF_TEXT | TVIF_CHILDREN;
+        item.pszText = szBuffer;
+        item.cchTextMax = _MAX_FNAME;
+        SendMessage(TVM_GETITEM, 0, (LPARAM)&item);
 
         // Did we find it?
-        if ( lstrcmp( szBuffer, (const char*)Label ) == 0 )
+        if (lstrcmp(szBuffer, (const char*)Label) == 0)
         {
             return hStartItem;
         }
 
         // Check whether we have child items.
-        if ( item.cChildren )
+        if (item.cChildren)
         {
             // Recursively traverse child items.
             HTREEITEM hItemFound;
             HTREEITEM hItemChild;
 
-            hItemChild = (HTREEITEM)SendMessage( TVM_GETNEXTITEM, TVGN_CHILD, (LPARAM)hStartItem );
-            hItemFound = FindItem( Label, hItemChild );
+            hItemChild = (HTREEITEM)SendMessage(TVM_GETNEXTITEM, TVGN_CHILD, (LPARAM)hStartItem);
+            hItemFound = FindItem(Label, hItemChild);
 
             // Did we find it?
-            if ( hItemFound != NULL )
+            if (hItemFound != NULL)
             {
                 return hItemFound;
             }
         }
 
         // Go to next sibling item.
-        hStartItem = (HTREEITEM)SendMessage( TVM_GETNEXTITEM, TVGN_NEXT, (LPARAM)hStartItem );
+        hStartItem = (HTREEITEM)SendMessage(TVM_GETNEXTITEM, TVGN_NEXT, (LPARAM)hStartItem);
     }
 
     // Not found.
     return NULL;
 }
 
-HTREEITEM ZITreeCtrl::FindItemData( void* pData, HTREEITEM hStartItem )
+HTREEITEM ZITreeCtrl::FindItemData(void* pData, HTREEITEM hStartItem)
 {
     // If hItem is NULL, start search from root item.
-    if ( hStartItem == NULL )
+    if (hStartItem == NULL)
     {
-        hStartItem = (HTREEITEM)SendMessage( TVM_GETNEXTITEM, TVGN_ROOT, 0 );
+        hStartItem = (HTREEITEM)SendMessage(TVM_GETNEXTITEM, TVGN_ROOT, 0);
     }
 
-    while ( hStartItem != NULL )
+    while (hStartItem != NULL)
     {
         char szBuffer[_MAX_FNAME + 1];
         TV_ITEM item;
 
-        item.hItem        = hStartItem;
-        item.mask        = TVIF_TEXT | TVIF_PARAM | TVIF_CHILDREN;
-        item.pszText    = szBuffer;
-        item.cchTextMax    = _MAX_FNAME;
-        GetItem( &item );
+        item.hItem = hStartItem;
+        item.mask = TVIF_TEXT | TVIF_PARAM | TVIF_CHILDREN;
+        item.pszText = szBuffer;
+        item.cchTextMax = _MAX_FNAME;
+        GetItem(&item);
 
         // Did we find it?
-        if ( (void*)item.lParam == pData )
+        if ((void*)item.lParam == pData)
         {
             return hStartItem;
         }
 
         // Check whether we have child items.
-        if ( item.cChildren )
+        if (item.cChildren)
         {
             // Recursively traverse child items.
             HTREEITEM hItemFound;
             HTREEITEM hItemChild;
 
-            hItemChild = (HTREEITEM)SendMessage( TVM_GETNEXTITEM, TVGN_CHILD, (LPARAM)hStartItem );
-            hItemFound = FindItemData( pData, hItemChild );
+            hItemChild = (HTREEITEM)SendMessage(TVM_GETNEXTITEM, TVGN_CHILD, (LPARAM)hStartItem);
+            hItemFound = FindItemData(pData, hItemChild);
 
             // Did we find it?
-            if ( hItemFound != NULL )
+            if (hItemFound != NULL)
             {
                 return hItemFound;
             }
         }
 
         // Go to next sibling item.
-        hStartItem = (HTREEITEM)SendMessage( TVM_GETNEXTITEM, TVGN_NEXT, (LPARAM)hStartItem );
+        hStartItem = (HTREEITEM)SendMessage(TVM_GETNEXTITEM, TVGN_NEXT, (LPARAM)hStartItem);
     }
 
     // Not found.
     return NULL;
 }
 
-int    ZITreeCtrl::GetSelectItemPosition( HTREEITEM hParentItem )
+int    ZITreeCtrl::GetSelectItemPosition(HTREEITEM hParentItem)
 {
     HTREEITEM hSelected = GetSelectedItem();
 
-    if ( hParentItem == NULL )
+    if (hParentItem == NULL)
     {
         hParentItem = GetRootItem();
     }
 
-    if ( hSelected )
+    if (hSelected)
     {
         HTREEITEM hPos;
 
-        if ( hParentItem )
+        if (hParentItem)
         {
-            hPos = GetChildItem( hParentItem );
+            hPos = GetChildItem(hParentItem);
             int Index = 0;
 
-            while ( hPos )
+            while (hPos)
             {
-                if ( hPos == hSelected )
+                if (hPos == hSelected)
                 {
                     return Index;
                 }
 
                 ++Index;
-                hPos = CTreeCtrl::GetNextItem( hPos, TVGN_NEXT );
+                hPos = CTreeCtrl::GetNextItem(hPos, TVGN_NEXT);
             }
         }
     }
@@ -654,11 +648,11 @@ BOOL ZITreeCtrl::IsSelectedItemRootItem()
     return hSelected && hSelected == GetRootItem();
 }
 
-BOOL ZITreeCtrl::IsRootItemName ( const CString Name )
+BOOL ZITreeCtrl::IsRootItemName(const CString Name)
 {
     HTREEITEM    hRoot = GetRootItem();
 
-    if ( hRoot && GetItemText( hRoot ) == Name )
+    if (hRoot && GetItemText(hRoot) == Name)
     {
         return TRUE;
     }
@@ -666,34 +660,34 @@ BOOL ZITreeCtrl::IsRootItemName ( const CString Name )
     return FALSE;
 }
 
-BOOL ZITreeCtrl::IsLastItemName ( const CString Name )
+BOOL ZITreeCtrl::IsLastItemName(const CString Name)
 {
     return FALSE;
 }
 
-BOOL ZITreeCtrl::ItemNameExist ( const CString Name )
+BOOL ZITreeCtrl::ItemNameExist(const CString Name)
 {
-    return FindItem( Name, NULL ) != NULL;
+    return FindItem(Name, NULL) != NULL;
 }
 
-CString ZITreeCtrl::GetNameSelectedItem ()
+CString ZITreeCtrl::GetNameSelectedItem()
 {
     HTREEITEM hSelected = GetSelectedItem();
 
-    if ( hSelected )
+    if (hSelected)
     {
-        return GetItemText( hSelected );
+        return GetItemText(hSelected);
     }
 
-    return _T( "" );
+    return _T("");
 }
 
-BOOL ZITreeCtrl::SelectItemName ( const CString Name )
+BOOL ZITreeCtrl::SelectItemName(const CString Name)
 {
-    HTREEITEM hItemToSelect = FindItem( Name, (HTREEITEM)NULL );
+    HTREEITEM hItemToSelect = FindItem(Name, (HTREEITEM)NULL);
 
-    if ( hItemToSelect )
-        return SelectItem( hItemToSelect );
+    if (hItemToSelect)
+        return SelectItem(hItemToSelect);
 
     return FALSE;
 }
@@ -702,31 +696,31 @@ BOOL ZITreeCtrl::SelectItemName ( const CString Name )
 // Returns      - Last item
 // hItem        - Node identifying the branch. NULL will 
 //                return the last item in outine
-HTREEITEM ZITreeCtrl::GetLastItem( HTREEITEM hItem )
+HTREEITEM ZITreeCtrl::GetLastItem(HTREEITEM hItem)
 {
     // Last child of the last child of the last child ...
     HTREEITEM htiNext;
 
-    if ( hItem == NULL )
+    if (hItem == NULL)
     {
         // Get the last item at the top level
         htiNext = CTreeCtrl::GetRootItem();
 
-        while ( htiNext )
+        while (htiNext)
         {
             hItem = htiNext;
-            htiNext = CTreeCtrl::GetNextSiblingItem( htiNext );
+            htiNext = CTreeCtrl::GetNextSiblingItem(htiNext);
         }
     }
 
-    while ( CTreeCtrl::ItemHasChildren( hItem ) )
+    while (CTreeCtrl::ItemHasChildren(hItem))
     {
-        htiNext = CTreeCtrl::GetChildItem( hItem );
+        htiNext = CTreeCtrl::GetChildItem(hItem);
 
-        while ( htiNext )
+        while (htiNext)
         {
             hItem = htiNext;
-            htiNext = CTreeCtrl::GetNextSiblingItem( htiNext );
+            htiNext = CTreeCtrl::GetNextSiblingItem(htiNext);
         }
     }
 
@@ -736,22 +730,22 @@ HTREEITEM ZITreeCtrl::GetLastItem( HTREEITEM hItem )
 // GetNextItem  - Get next item as if outline was completely expanded
 // Returns      - The item immediately below the reference item
 // hItem        - The reference item
-HTREEITEM ZITreeCtrl::GetNextItem( HTREEITEM hItem )
+HTREEITEM ZITreeCtrl::GetNextItem(HTREEITEM hItem)
 {
     HTREEITEM hti;
 
-    if ( CTreeCtrl::ItemHasChildren( hItem ) )
+    if (CTreeCtrl::ItemHasChildren(hItem))
     {
         // Return first child
-        return CTreeCtrl::GetChildItem( hItem );
+        return CTreeCtrl::GetChildItem(hItem);
     }
     else
     {
         // return next sibling item
         // Go up the tree to find a parent's sibling if needed.
-        while ( ( hti = CTreeCtrl::GetNextSiblingItem( hItem ) ) == NULL )
+        while ((hti = CTreeCtrl::GetNextSiblingItem(hItem)) == NULL)
         {
-            if ( ( hItem = CTreeCtrl::GetParentItem( hItem ) ) == NULL )
+            if ((hItem = CTreeCtrl::GetParentItem(hItem)) == NULL)
             {
                 return NULL;
             }
@@ -764,19 +758,19 @@ HTREEITEM ZITreeCtrl::GetNextItem( HTREEITEM hItem )
 // GetNextItem  - Get previous item as if outline was completely expanded
 // Returns              - The item immediately above the reference item
 // hItem                - The reference item
-HTREEITEM ZITreeCtrl::GetPrevItem( HTREEITEM hItem )
+HTREEITEM ZITreeCtrl::GetPrevItem(HTREEITEM hItem)
 {
     HTREEITEM hti;
 
-    hti = CTreeCtrl::GetPrevSiblingItem( hItem );
+    hti = CTreeCtrl::GetPrevSiblingItem(hItem);
 
-    if ( hti == NULL )
+    if (hti == NULL)
     {
-        hti = CTreeCtrl::GetParentItem( hItem );
+        hti = CTreeCtrl::GetParentItem(hItem);
     }
     else
     {
-        hti = GetLastItem( hti );
+        hti = GetLastItem(hti);
     }
 
     return hti;
@@ -790,80 +784,80 @@ HTREEITEM ZITreeCtrl::GetPrevItem( HTREEITEM hItem )
 // bWholeWord        - True if search should match whole words
 // hItem        - Item to start searching from. NULL for
 //                - currently selected item
-HTREEITEM ZITreeCtrl::FindItem( CString str,
-                                BOOL bCaseSensitive    /*= FALSE*/,
-                                BOOL bDownDir        /*= TRUE*/,
-                                BOOL bWholeWord        /*= FALSE*/,
-                                HTREEITEM hItem        /*= NULL*/ )
+HTREEITEM ZITreeCtrl::FindItem(CString str,
+                               BOOL bCaseSensitive    /*= FALSE*/,
+                               BOOL bDownDir        /*= TRUE*/,
+                               BOOL bWholeWord        /*= FALSE*/,
+                               HTREEITEM hItem        /*= NULL*/)
 {
     int lenSearchStr = str.GetLength();
 
-    if ( lenSearchStr == 0 )
+    if (lenSearchStr == 0)
     {
         return NULL;
     }
 
     HTREEITEM htiSel = hItem ? hItem : CTreeCtrl::GetSelectedItem();
-    HTREEITEM htiCur = bDownDir ? GetNextItem( htiSel ) : GetPrevItem( htiSel );
+    HTREEITEM htiCur = bDownDir ? GetNextItem(htiSel) : GetPrevItem(htiSel);
 
     CString sSearch = str;
 
-    if ( htiCur == NULL )
+    if (htiCur == NULL)
     {
-        if ( bDownDir )
+        if (bDownDir)
         {
             htiCur = CTreeCtrl::GetRootItem();
         }
         else
         {
-            htiCur = GetLastItem( NULL );
+            htiCur = GetLastItem(NULL);
         }
     }
 
-    if( !bCaseSensitive )
+    if (!bCaseSensitive)
     {
         sSearch.MakeLower();
     }
 
-    while ( htiCur && htiCur != htiSel )
+    while (htiCur && htiCur != htiSel)
     {
-        CString sItemText = CTreeCtrl::GetItemText( htiCur );
+        CString sItemText = CTreeCtrl::GetItemText(htiCur);
 
-        if ( !bCaseSensitive )
+        if (!bCaseSensitive)
         {
             sItemText.MakeLower();
         }
 
         int n;
 
-        while ( ( n = sItemText.Find( sSearch ) ) != -1 )
+        while ((n = sItemText.Find(sSearch)) != -1)
         {
             // Search string found
-            if ( bWholeWord )
+            if (bWholeWord)
             {
                 // Check preceding char
-                if ( n != 0 )
+                if (n != 0)
                 {
-                    if ( isalpha( sItemText[n - 1] ) || sItemText[n - 1] == '_' )
+                    if (isalpha(sItemText[n - 1]) || sItemText[n - 1] == '_')
                     {
                         // Not whole word
-                        sItemText = sItemText.Right( sItemText.GetLength() - n - lenSearchStr );
+                        sItemText = sItemText.Right(sItemText.GetLength() - n - lenSearchStr);
                         continue;
                     }
                 }
 
                 // Check succeeding char
-                if ( sItemText.GetLength() > n + lenSearchStr &&
-                     ( isalpha( sItemText[n + lenSearchStr] ) ||
-                     sItemText[n + lenSearchStr] == '_' ) )
+                if (sItemText.GetLength() > n + lenSearchStr &&
+                    (isalpha(sItemText[n + lenSearchStr]) ||
+                     sItemText[n + lenSearchStr] == '_'))
                 {
                     // Not whole word
-                    sItemText = sItemText.Right( sItemText.GetLength() - n - sSearch.GetLength() );
+                    sItemText = sItemText.Right(sItemText.GetLength() - n - sSearch.GetLength());
                     continue;
                 }
             }
-            
-            if ( IsFindValid( htiCur ) )
+
+            if (IsFindValid(htiCur))
             {
                 return htiCur;
             }
@@ -873,17 +867,17 @@ HTREEITEM ZITreeCtrl::FindItem( CString str,
             }
         }
 
-        htiCur = bDownDir ? GetNextItem( htiCur ) : GetPrevItem( htiCur );
+        htiCur = bDownDir ? GetNextItem(htiCur) : GetPrevItem(htiCur);
 
-        if ( htiCur == NULL )
+        if (htiCur == NULL)
         {
-            if ( bDownDir )
+            if (bDownDir)
             {
                 htiCur = CTreeCtrl::GetRootItem();
             }
             else
             {
-                htiCur = GetLastItem( NULL );
+                htiCur = GetLastItem(NULL);
             }
         }
     }
@@ -895,7 +889,7 @@ HTREEITEM ZITreeCtrl::FindItem( CString str,
 //                  function to filter the result of FindItem
 // Returns    - True if item matches the criteria
 // Arg        - Handle of the item
-BOOL ZITreeCtrl::IsFindValid( HTREEITEM )
+BOOL ZITreeCtrl::IsFindValid(HTREEITEM)
 {
     return TRUE;
 }
@@ -904,68 +898,68 @@ void ZITreeCtrl::SaveCollapsedState()
 {
     _EmptySaveStateDataSet();
 
-    _SaveCollapsedState( GetRootItem() );
+    _SaveCollapsedState(GetRootItem());
 }
 
-void ZITreeCtrl::_SaveCollapsedState( HTREEITEM hTreeItem )
+void ZITreeCtrl::_SaveCollapsedState(HTREEITEM hTreeItem)
 {
-    if ( hTreeItem && ItemHasChildren( hTreeItem ) )
+    if (hTreeItem && ItemHasChildren(hTreeItem))
     {
         // Retreive the item text
-        CString sItemText = CTreeCtrl::GetItemText( hTreeItem );
-        _ZTreeData* pObj = _AddSaveStateDataToSet( sItemText );
+        CString sItemText = CTreeCtrl::GetItemText(hTreeItem);
+        _ZTreeData* pObj = _AddSaveStateDataToSet(sItemText);
 
         // If exist, sets the collapsed state
-        if ( pObj != NULL )
+        if (pObj != NULL)
         {
-            pObj->SetCollapsed( ( GetItemState( hTreeItem, TVIS_EXPANDED ) & TVIS_EXPANDED ) ? false : true );
+            pObj->SetCollapsed((GetItemState(hTreeItem, TVIS_EXPANDED) & TVIS_EXPANDED) ? false : true);
         }
 
-        hTreeItem = GetChildItem( hTreeItem );
+        hTreeItem = GetChildItem(hTreeItem);
 
         do
         {
-            _SaveCollapsedState( hTreeItem );
+            _SaveCollapsedState(hTreeItem);
         }
-        while( ( hTreeItem = GetNextSiblingItem( hTreeItem ) ) != NULL );
+        while ((hTreeItem = GetNextSiblingItem(hTreeItem)) != NULL);
     }
 }
 
 void ZITreeCtrl::RestoreCollapsedStateToTreeCtrl()
 {
-    _RestoreCollapsedStateToTreeCtrl( GetRootItem() );
+    _RestoreCollapsedStateToTreeCtrl(GetRootItem());
 }
 
-void ZITreeCtrl::_RestoreCollapsedStateToTreeCtrl( HTREEITEM hTreeItem )
+void ZITreeCtrl::_RestoreCollapsedStateToTreeCtrl(HTREEITEM hTreeItem)
 {
-    if ( hTreeItem && ItemHasChildren( hTreeItem ) )
+    if (hTreeItem && ItemHasChildren(hTreeItem))
     {
         // Retreive the item text
-        CString sItemText = CTreeCtrl::GetItemText( hTreeItem );
+        CString sItemText = CTreeCtrl::GetItemText(hTreeItem);
 
         // Retreive the data object
-        _ZTreeData*    pObj = _FindElementFromSaveStateDataSet( sItemText );
+        _ZTreeData*    pObj = _FindElementFromSaveStateDataSet(sItemText);
 
         // If exist, sets the previously saved state
-        if ( pObj != NULL )
+        if (pObj != NULL)
         {
-            Expand( hTreeItem, ( pObj->IsCollapsed() ) ? TVE_COLLAPSE : TVE_EXPAND );
+            Expand(hTreeItem, (pObj->IsCollapsed()) ? TVE_COLLAPSE : TVE_EXPAND);
         }
 
-        hTreeItem = GetChildItem( hTreeItem );
+        hTreeItem = GetChildItem(hTreeItem);
 
         do
         {
-            _RestoreCollapsedStateToTreeCtrl( hTreeItem );
+            _RestoreCollapsedStateToTreeCtrl(hTreeItem);
         }
-        while( ( hTreeItem = GetNextSiblingItem( hTreeItem ) ) != NULL );
+        while ((hTreeItem = GetNextSiblingItem(hTreeItem)) != NULL);
     }
 }
 
-_ZTreeData::_ZTreeData( CString Str )
+_ZTreeData::_ZTreeData(CString Str)
 {
-    m_Str        = Str;
-    m_Collapsed    = false;
+    m_Str = Str;
+    m_Collapsed = false;
 }
 
 _ZTreeData::~_ZTreeData()
@@ -977,9 +971,9 @@ _ZTreeData::~_ZTreeData()
 
 void ZITreeCtrl::_EmptySaveStateDataSet()
 {
-    _ZTreeDataIterator i( &m_TreeDataSet );
+    _ZTreeDataIterator i(&m_TreeDataSet);
 
-    for ( _ZTreeData* pElement = i.GetFirst(); pElement != NULL; pElement = i.GetNext() )
+    for (_ZTreeData* pElement = i.GetFirst(); pElement != NULL; pElement = i.GetNext())
     {
         delete pElement;
     }
@@ -987,13 +981,13 @@ void ZITreeCtrl::_EmptySaveStateDataSet()
     m_TreeDataSet.RemoveAll();
 }
 
-_ZTreeData* ZITreeCtrl::_FindElementFromSaveStateDataSet( CString Str )
+_ZTreeData* ZITreeCtrl::_FindElementFromSaveStateDataSet(CString Str)
 {
-    _ZTreeDataIterator i( &m_TreeDataSet );
+    _ZTreeDataIterator i(&m_TreeDataSet);
 
-    for ( _ZTreeData* pElement = i.GetFirst(); pElement != NULL; pElement = i.GetNext() )
+    for (_ZTreeData* pElement = i.GetFirst(); pElement != NULL; pElement = i.GetNext())
     {
-        if ( pElement->m_Str == Str )
+        if (pElement->m_Str == Str)
         {
             return pElement;
         }
@@ -1002,20 +996,20 @@ _ZTreeData* ZITreeCtrl::_FindElementFromSaveStateDataSet( CString Str )
     return NULL;
 }
 
-_ZTreeData* ZITreeCtrl::_AddSaveStateDataToSet( CString Str )
+_ZTreeData* ZITreeCtrl::_AddSaveStateDataToSet(CString Str)
 {
-    _ZTreeData* pData = new _ZTreeData( Str );
-    m_TreeDataSet.Add( pData );
+    _ZTreeData* pData = new _ZTreeData(Str);
+    m_TreeDataSet.Add(pData);
     return pData;
 }
 
-bool ZITreeCtrl::_DeleteElementFromSaveStateDataSet( CString Str )
+bool ZITreeCtrl::_DeleteElementFromSaveStateDataSet(CString Str)
 {
-    _ZTreeDataIterator i( &m_TreeDataSet );
+    _ZTreeDataIterator i(&m_TreeDataSet);
 
-    for ( _ZTreeData* pElement = i.GetFirst(); pElement != NULL; pElement = i.GetNext() )
+    for (_ZTreeData* pElement = i.GetFirst(); pElement != NULL; pElement = i.GetNext())
     {
-        if ( pElement->m_Str == Str )
+        if (pElement->m_Str == Str)
         {
             delete pElement;
             i.Remove();

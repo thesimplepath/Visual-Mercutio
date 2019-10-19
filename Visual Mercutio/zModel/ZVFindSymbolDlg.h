@@ -19,7 +19,7 @@
 
 
 
-#include "zBaseLib\ZIDialog.h"
+#include "zBaseLib\PSS_Dialog.h"
 #include "zModelRes.h"
 
 #include "ZCSymbolList.h"
@@ -45,7 +45,7 @@ class ZDProcessGraphModelMdl;
 /////////////////////////////////////////////////////////////////////////////
 // ZVFindSymbolDlg dialog
 
-class AFX_EXT_CLASS ZVFindSymbolDlg : public ZIDialog
+class AFX_EXT_CLASS ZVFindSymbolDlg : public PSS_Dialog
 {
 // Construction
 public:

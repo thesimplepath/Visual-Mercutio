@@ -18,7 +18,7 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 
 ZIImportProcess::ZIImportProcess(CString File, BOOL Import, CWnd* pParent /*=NULL*/)
-    : ZIDialog(ZIImportProcess::IDD, TRUE, pParent),
+    : PSS_Dialog(ZIImportProcess::IDD, TRUE, pParent),
     m_Import(Import), m_InitialFile(File)
 {
     //{{AFX_DATA_INIT(ZIImportProcess)
@@ -28,7 +28,7 @@ ZIImportProcess::ZIImportProcess(CString File, BOOL Import, CWnd* pParent /*=NUL
 
 void ZIImportProcess::DoDataExchange(CDataExchange* pDX)
 {
-    ZIDialog::DoDataExchange(pDX);
+    PSS_Dialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(ZIImportProcess)
     DDX_Text(pDX, IDC_FILETOIMPORT, m_File);
     //}}AFX_DATA_MAP
@@ -76,12 +76,12 @@ void ZIImportProcess::OnOK()
         mBox.Show(IDS_FILENAMEMISSING, MB_OK);
         return;
     }
-    ZIDialog::OnOK();
+    PSS_Dialog::OnOK();
 }
 
 BOOL ZIImportProcess::OnInitDialog()
 {
-    ZIDialog::OnInitDialog();
+    PSS_Dialog::OnInitDialog();
 
     if (m_Import == FALSE)
     {

@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZIDialog.h"
+#include "zBaseLib\PSS_Dialog.h"
 #include "zBaseLib\PSS_FolderStamp.h"
 #include "PSS_FolderInfoCtrl.h"
 
@@ -38,7 +38,7 @@
 * Folder info dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_FolderInfoDialog : public ZIDialog
+class AFX_EXT_CLASS PSS_FolderInfoDialog : public PSS_Dialog
 {
     public:
         /**

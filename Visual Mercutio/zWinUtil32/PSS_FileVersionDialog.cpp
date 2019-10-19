@@ -17,7 +17,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_FileVersionDialog, ZIDialog)
+BEGIN_MESSAGE_MAP(PSS_FileVersionDialog, PSS_Dialog)
     //{{AFX_MSG_MAP(PSS_FileVersionDialog)
     ON_NOTIFY(UDN_DELTAPOS, IDC_FILEVERSION_SPIN, OnDeltaposFileversionSpin)
     ON_EN_CHANGE(IDC_FILEVERSION, OnChangeFileVersion)
@@ -27,13 +27,13 @@ END_MESSAGE_MAP()
 // PSS_FileVersionDialog
 //---------------------------------------------------------------------------
 PSS_FileVersionDialog::PSS_FileVersionDialog(long fileVersion, CWnd* pParent) :
-    ZIDialog(PSS_FileVersionDialog::IDD, TRUE, pParent),
+    PSS_Dialog(PSS_FileVersionDialog::IDD, TRUE, pParent),
     m_FileVersion(fileVersion)
 {}
 //---------------------------------------------------------------------------
 void PSS_FileVersionDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIDialog::DoDataExchange(pDX);
+    PSS_Dialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_FileVersionDialog)
     DDX_Control(pDX, IDC_FILEVERSION_SPIN, m_FileVersionSpin);
@@ -43,8 +43,8 @@ void PSS_FileVersionDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_FileVersionDialog::OnInitDialog()
 {
-    ZIDialog::OnInitDialog();
-    
+    PSS_Dialog::OnInitDialog();
+
     m_FileVersionSpin.SetRange(0, UD_MAXVAL);
     m_FileVersionSpin.SetPos(m_FileVersion);
 

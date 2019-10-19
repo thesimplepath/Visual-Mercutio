@@ -17,7 +17,7 @@
 
 #include "ObjectCollections.h"
 
-#include "zBaseLib\ZIDialog.h"
+#include "zBaseLib\PSS_Dialog.h"
 #include "zModelRes.h"
 #include "ZCProcessModelTree.h"
 
@@ -36,7 +36,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // ZVInsertModelNewPageDlg dialog
 
-class AFX_EXT_CLASS ZVInsertModelNewPageDlg : public ZIDialog
+class AFX_EXT_CLASS ZVInsertModelNewPageDlg : public PSS_Dialog
 {
 // Construction
 public:

@@ -19,7 +19,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_WelcomeDialog, CDialog)
+BEGIN_MESSAGE_MAP(PSS_WelcomeDialog, PSS_Dialog)
     //{{AFX_MSG_MAP(PSS_WelcomeDialog)
     ON_BN_CLICKED(ID_WELCOME_LASTFILE, OnWelcomeLastFile)
     ON_WM_PAINT()
@@ -34,7 +34,7 @@ PSS_WelcomeDialog::PSS_WelcomeDialog(UINT                   id,
                                      PSS_ApplicationOption* pAppOptions,
                                      BOOL                   enableMoveToGeneral,
                                      CWnd*                  pParent) :
-    ZIDialog(id, TRUE, pParent),
+    PSS_Dialog(id, TRUE, pParent),
     m_BitmapID(bitmapID),
     m_pAppOptions(pAppOptions),
     m_EnableMoveToGeneral(enableMoveToGeneral)
@@ -56,7 +56,7 @@ void PSS_WelcomeDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_WelcomeDialog::OnInitDialog()
 {
-    ZIDialog::OnInitDialog();
+    PSS_Dialog::OnInitDialog();
 
     m_HyperLink.SetURL(_T("http://www.processsoft.com"));
 
@@ -82,7 +82,7 @@ void PSS_WelcomeDialog::OnPaint()
 //---------------------------------------------------------------------------
 HBRUSH PSS_WelcomeDialog::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
-    return ZIDialog::OnCtlColor(pDC, pWnd, nCtlColor);
+    return PSS_Dialog::OnCtlColor(pDC, pWnd, nCtlColor);
 }
 //---------------------------------------------------------------------------
 void PSS_WelcomeDialog::OnCancel()

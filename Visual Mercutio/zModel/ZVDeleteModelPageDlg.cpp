@@ -19,7 +19,7 @@ static char THIS_FILE[] = __FILE__;
 
 
 ZVDeleteModelPageDlg::ZVDeleteModelPageDlg(ZDProcessGraphModelMdl* pModel, ZBRuntimeClassSet* pSet /*= NULL*/, CWnd* pParent /*=NULL*/)
-    : ZIDialog(ZVDeleteModelPageDlg::IDD, TRUE, pParent),
+    : PSS_Dialog(ZVDeleteModelPageDlg::IDD, TRUE, pParent),
       m_pModel(pModel),
       m_pSelectedPage(NULL),
       m_pRootPage(NULL),
@@ -33,7 +33,7 @@ ZVDeleteModelPageDlg::ZVDeleteModelPageDlg(ZDProcessGraphModelMdl* pModel, ZBRun
 
 void ZVDeleteModelPageDlg::DoDataExchange(CDataExchange* pDX)
 {
-    ZIDialog::DoDataExchange(pDX);
+    PSS_Dialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(ZVDeleteModelPageDlg)
     DDX_Control(pDX, IDC_EXISTINGPROCESS, m_SymbolTree);
     DDX_Text(pDX, IDC_PAGENAME, m_PageName);
@@ -41,7 +41,7 @@ void ZVDeleteModelPageDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(ZVDeleteModelPageDlg, ZIDialog)
+BEGIN_MESSAGE_MAP(ZVDeleteModelPageDlg, PSS_Dialog)
     //{{AFX_MSG_MAP(ZVDeleteModelPageDlg)
     ON_NOTIFY(TVN_SELCHANGED, IDC_EXISTINGPROCESS, OnSelchangedSymboltree)
     //}}AFX_MSG_MAP
@@ -54,7 +54,7 @@ void ZVDeleteModelPageDlg::OnOK()
 {
     // TODO: Add extra validation here
     
-    ZIDialog::OnOK();
+    PSS_Dialog::OnOK();
 }
 
 void ZVDeleteModelPageDlg::OnSelchangedSymboltree(NMHDR* pNMHDR, LRESULT* pResult) 
@@ -84,7 +84,7 @@ void ZVDeleteModelPageDlg::OnSelchangedSymboltree(NMHDR* pNMHDR, LRESULT* pResul
 
 BOOL ZVDeleteModelPageDlg::OnInitDialog() 
 {
-    ZIDialog::OnInitDialog();
+    PSS_Dialog::OnInitDialog();
     
     if (m_pModel)
     {

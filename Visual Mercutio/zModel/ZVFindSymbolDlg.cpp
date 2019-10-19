@@ -16,7 +16,7 @@ static char THIS_FILE[] = __FILE__;
 
 
 ZVFindSymbolDlg::ZVFindSymbolDlg(ZDProcessGraphModelMdl& Mdl, UINT nIDRes, CWnd* pParent /*=NULL*/)
-    : ZIDialog(ZVFindSymbolDlg::IDD, TRUE, pParent),
+    : PSS_Dialog(ZVFindSymbolDlg::IDD, TRUE, pParent),
       m_Model(Mdl),
       m_pSymbol(NULL),
       m_nIDRes(nIDRes)
@@ -42,7 +42,7 @@ void ZVFindSymbolDlg::CheckControlState()
 
 void ZVFindSymbolDlg::DoDataExchange(CDataExchange* pDX)
 {
-    ZIDialog::DoDataExchange(pDX);
+    PSS_Dialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(ZVFindSymbolDlg)
     DDX_Control(pDX, IDC_FINDRESULT_LIST, m_ResultList);
     DDX_Text(pDX, IDC_SYMBOLNAME, m_SymbolName);
@@ -53,7 +53,7 @@ void ZVFindSymbolDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(ZVFindSymbolDlg, ZIDialog)
+BEGIN_MESSAGE_MAP(ZVFindSymbolDlg, PSS_Dialog)
     //{{AFX_MSG_MAP(ZVFindSymbolDlg)
     ON_BN_CLICKED(IDC_FIND, OnFind)
     ON_BN_CLICKED(IDC_BROWSE, OnBrowse)
@@ -68,8 +68,8 @@ END_MESSAGE_MAP()
 
 BOOL ZVFindSymbolDlg::OnInitDialog() 
 {
-    ZIDialog::OnInitDialog();
-    
+    PSS_Dialog::OnInitDialog();
+
     m_ResultList.Initialize( NULL, m_nIDRes );
     CheckControlState();
     

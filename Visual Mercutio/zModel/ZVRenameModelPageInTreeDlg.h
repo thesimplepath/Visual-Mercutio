@@ -22,7 +22,7 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-#include "zBaseLib\ZIDialog.h"
+#include "zBaseLib\PSS_Dialog.h"
 
 #include "zModelRes.h"
 
@@ -44,7 +44,7 @@ class ZDProcessGraphModelMdl;
 /////////////////////////////////////////////////////////////////////////////
 // ZVRenameModelPageInTreeDlg dialog
 
-class AFX_EXT_CLASS ZVRenameModelPageInTreeDlg : public ZIDialog
+class AFX_EXT_CLASS ZVRenameModelPageInTreeDlg : public PSS_Dialog
 {
 // Construction
 public:

@@ -19,7 +19,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_RejectActivityInputDialog, ZIDialog)
+BEGIN_MESSAGE_MAP(PSS_RejectActivityInputDialog, PSS_Dialog)
     //{{AFX_MSG_MAP(PSS_RejectActivityInputDialog)
     ON_CBN_SELCHANGE(IDC_REJECTCATEGORY, OnSelChangeRejectCategory)
     //}}AFX_MSG_MAP
@@ -28,13 +28,13 @@ END_MESSAGE_MAP()
 // PSS_RejectActivityInputDialog
 //---------------------------------------------------------------------------
 PSS_RejectActivityInputDialog::PSS_RejectActivityInputDialog(CStringArray* pArray, CWnd* pParent) :
-    ZIDialog(PSS_RejectActivityInputDialog::IDD, TRUE, pParent),
+    PSS_Dialog(PSS_RejectActivityInputDialog::IDD, TRUE, pParent),
     m_pArray(pArray)
 {}
 //---------------------------------------------------------------------------
 void PSS_RejectActivityInputDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIDialog::DoDataExchange(pDX);
+    PSS_Dialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_RejectActivityInputDialog)
     DDX_Control(pDX, IDC_REJECTCATEGORY, m_RejectCategory);
@@ -44,7 +44,7 @@ void PSS_RejectActivityInputDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_RejectActivityInputDialog::OnInitDialog()
 {
-    ZIDialog::OnInitDialog();
+    PSS_Dialog::OnInitDialog();
 
     if (m_pArray)
     {

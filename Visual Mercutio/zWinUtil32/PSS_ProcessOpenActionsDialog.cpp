@@ -22,7 +22,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_ProcessOpenActionsDialog, ZIDialog)
+BEGIN_MESSAGE_MAP(PSS_ProcessOpenActionsDialog, PSS_Dialog)
     //{{AFX_MSG_MAP(PSS_ProcessOpenActionsDialog)
     ON_BN_CLICKED(IDC_VISUALIZE, OnViewCommand)
     ON_BN_CLICKED(IDC_CANCELCOMMAND, OnCancelCommand)
@@ -35,7 +35,7 @@ END_MESSAGE_MAP()
 PSS_ProcessOpenActionsDialog::PSS_ProcessOpenActionsDialog(const CString& fileName,
                                                            const CString& activityName,
                                                            CWnd*          pParent) :
-    ZIDialog(PSS_ProcessOpenActionsDialog::IDD, TRUE, pParent),
+    PSS_Dialog(PSS_ProcessOpenActionsDialog::IDD, TRUE, pParent),
     m_FileName(fileName),
     m_ActivityName(activityName)
 {}
@@ -53,7 +53,7 @@ void PSS_ProcessOpenActionsDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_ProcessOpenActionsDialog::OnInitDialog()
 {
-    ZIDialog::OnInitDialog();
+    PSS_Dialog::OnInitDialog();
 
     if (GetDlgItem(IDC_OPENADMIN_TEXT))
     {

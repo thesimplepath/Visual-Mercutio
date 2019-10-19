@@ -32,7 +32,7 @@ const int UM_GO_UP = 20001;
 /////////////////////////////////////////////////////////////////////////////
 // ZVSelectSymbolFromGraphModel dialog
 
-BEGIN_MESSAGE_MAP(ZVSelectSymbolFromGraphModel, ZIDialog)
+BEGIN_MESSAGE_MAP(ZVSelectSymbolFromGraphModel, PSS_Dialog)
     //{{AFX_MSG_MAP(ZVSelectSymbolFromGraphModel)
     ON_WM_SIZE()
     //}}AFX_MSG_MAP
@@ -43,7 +43,7 @@ ZVSelectSymbolFromGraphModel::ZVSelectSymbolFromGraphModel(ZDProcessGraphModelMd
                                                            int                        SelectableItem    /*= Selectable_All*/,
                                                            bool                    EnableNavigate    /*= true*/,
                                                            CWnd*                    pParent            /*= NULL*/)
-    : ZIDialog(IDD_SELECTSYMBOL_GRAPH, TRUE, pParent),
+    : PSS_Dialog(IDD_SELECTSYMBOL_GRAPH, TRUE, pParent),
     m_pModel(pModel),
     m_pSelectedSymbol(NULL),
     m_Title(Title),
@@ -61,7 +61,7 @@ ZVSelectSymbolFromGraphModel::ZVSelectSymbolFromGraphModel(ZDProcessGraphModelMd
                                                            CRuntimeClass*            pSelectableClass,
                                                            bool                    EnableNavigate        /*= true*/,
                                                            CWnd*                    pParent                /*= NULL*/)
-    : ZIDialog(IDD_SELECTSYMBOL_GRAPH, TRUE, pParent),
+    : PSS_Dialog(IDD_SELECTSYMBOL_GRAPH, TRUE, pParent),
     m_pModel(pModel),
     m_pSelectedSymbol(NULL),
     m_Title(Title),
@@ -79,7 +79,7 @@ ZVSelectSymbolFromGraphModel::ZVSelectSymbolFromGraphModel(ZDProcessGraphModelMd
                                                            int                        SelectableItem    /*= Selectable_All*/,
                                                            bool                    EnableNavigate    /*= true*/,
                                                            CWnd*                    pParent            /*= NULL*/)
-    : ZIDialog(IDD_SELECTSYMBOL_GRAPH, TRUE, pParent),
+    : PSS_Dialog(IDD_SELECTSYMBOL_GRAPH, TRUE, pParent),
     m_pModel(pModel),
     m_pSelectedSymbol(NULL),
     m_EnableNavigate(EnableNavigate),
@@ -98,7 +98,7 @@ ZVSelectSymbolFromGraphModel::ZVSelectSymbolFromGraphModel(ZDProcessGraphModelMd
                                                            CRuntimeClass*            pSelectableClass,
                                                            bool                    EnableNavigate        /*= true*/,
                                                            CWnd*                    pParent                /*= NULL*/)
-    : ZIDialog(IDD_SELECTSYMBOL_GRAPH, TRUE, pParent),
+    : PSS_Dialog(IDD_SELECTSYMBOL_GRAPH, TRUE, pParent),
     m_pModel(pModel),
     m_pSelectedSymbol(NULL),
     m_EnableNavigate(EnableNavigate),
@@ -120,7 +120,7 @@ ZVSelectSymbolFromGraphModel::~ZVSelectSymbolFromGraphModel()
 
 void ZVSelectSymbolFromGraphModel::DoDataExchange(CDataExchange* pDX)
 {
-    ZIDialog::DoDataExchange(pDX);
+    PSS_Dialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(ZVSelectSymbolFromGraphModel)
     DDX_Text(pDX, IDC_SYMBOLPATH, m_SymbolPath);
@@ -248,12 +248,12 @@ void ZVSelectSymbolFromGraphModel::OnOK()
 {
     // TODO: Add extra validation here
 
-    ZIDialog::OnOK();
+    PSS_Dialog::OnOK();
 }
 
 BOOL ZVSelectSymbolFromGraphModel::OnInitDialog()
 {
-    ZIDialog::OnInitDialog();
+    PSS_Dialog::OnInitDialog();
 
     // Create the flat toolbar
     reinterpret_cast<CStatic&>(m_FlatToolBar).Create(_T(""),
@@ -296,7 +296,7 @@ BOOL ZVSelectSymbolFromGraphModel::OnInitDialog()
 
 void ZVSelectSymbolFromGraphModel::OnSize(UINT nType, int cx, int cy)
 {
-    ZIDialog::OnSize(nType, cx, cy);
+    PSS_Dialog::OnSize(nType, cx, cy);
     MoveControls(cx, cy);
 
 }

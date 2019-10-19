@@ -17,7 +17,7 @@
 #include "Views\OdRulerWrapper.h"
 
 // processsoft
-#include "zBaseLib\ZIDialog.h"
+#include "zBaseLib\PSS_Dialog.h"
 #include "zBaseLib\PSS_Observer.h"
 #include "zBaseLib\PSS_Subject.h"
 #include "zBaseLib\PSS_ObserverMsg.h"
@@ -254,7 +254,7 @@ private:
 /////////////////////////////////////////////////////////////////////////////
 // ZVSelectSymbolFromGraphModel dialog
 
-class AFX_EXT_CLASS ZVSelectSymbolFromGraphModel : public ZIDialog, public PSS_Observer
+class AFX_EXT_CLASS ZVSelectSymbolFromGraphModel : public PSS_Dialog, public PSS_Observer
 {
     // Construction
 public:

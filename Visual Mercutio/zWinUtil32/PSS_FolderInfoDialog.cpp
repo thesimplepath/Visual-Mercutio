@@ -20,7 +20,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_FolderInfoDialog, ZIDialog)
+BEGIN_MESSAGE_MAP(PSS_FolderInfoDialog, PSS_Dialog)
     //{{AFX_MSG_MAP(PSS_FolderInfoDialog)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -28,7 +28,7 @@ END_MESSAGE_MAP()
 // PSS_FolderInfoDialog
 //---------------------------------------------------------------------------
 PSS_FolderInfoDialog::PSS_FolderInfoDialog(PSS_FolderStamp* pFolderStamp, BOOL readOnly, CWnd* pParent) :
-    ZIDialog(PSS_FolderInfoDialog::IDD, TRUE, pParent),
+    PSS_Dialog(PSS_FolderInfoDialog::IDD, TRUE, pParent),
     m_pFolderStamp(pFolderStamp),
     m_ReadOnly(readOnly)
 {
@@ -41,7 +41,7 @@ PSS_FolderInfoDialog::PSS_FolderInfoDialog(PSS_FolderStamp* pFolderStamp, BOOL r
 //---------------------------------------------------------------------------
 void PSS_FolderInfoDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIDialog::DoDataExchange(pDX);
+    PSS_Dialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_FolderInfoDialog)
     DDX_Text(pDX, IDC_FOLDERNAME,        m_FolderName);
@@ -54,7 +54,7 @@ void PSS_FolderInfoDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_FolderInfoDialog::OnInitDialog()
 {
-    ZIDialog::OnInitDialog();
+    PSS_Dialog::OnInitDialog();
     
     if (m_ReadOnly)
     {
@@ -93,6 +93,6 @@ void PSS_FolderInfoDialog::OnOK()
         m_pFolderStamp->SetFolderDescription(m_FolderDescription);
     }
 
-    ZIDialog::OnOK();
+    PSS_Dialog::OnOK();
 }
 //---------------------------------------------------------------------------

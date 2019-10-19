@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZIDialog.h"
+#include "zBaseLib\PSS_Dialog.h"
 #include "PSS_UserTreeCtrl.h"
 
 // resources
@@ -45,7 +45,7 @@
 * Select resources dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_SelectResourcesDialog : public ZIDialog
+class AFX_EXT_CLASS PSS_SelectResourcesDialog : public PSS_Dialog
 {
     public:
         /**

@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZIDialog.h"
+#include "zBaseLib\PSS_Dialog.h"
 
 // resources
 #include "zWinUtil32Res.h"
@@ -40,7 +40,7 @@
 * Object notes dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_ObjectNotesDialog : public ZIDialog
+class AFX_EXT_CLASS PSS_ObjectNotesDialog : public PSS_Dialog
 {
     public:
         /**

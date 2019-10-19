@@ -25,7 +25,7 @@ END_MESSAGE_MAP()
 // PSS_CalendarWindowDialog
 //---------------------------------------------------------------------------
 PSS_ConfirmDeleteMessageDialog::PSS_ConfirmDeleteMessageDialog(ZBEventActivity& eventActivity, CWnd* pParent) :
-    ZIDialog(PSS_ConfirmDeleteMessageDialog::IDD, TRUE, pParent),
+    PSS_Dialog(PSS_ConfirmDeleteMessageDialog::IDD, TRUE, pParent),
     m_ActivityName(eventActivity.GetActivityName()),
     m_Message(eventActivity.GetComments()),
     m_ProcessName(eventActivity.GetProcessName()),

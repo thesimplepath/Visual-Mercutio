@@ -35,7 +35,7 @@ extern AFX_EXTENSION_MODULE g_zBaseLibDLL;
 //## end module%36DEE3DE0256.includes
 
 // ZIDialog
-#include "ZIDialog.h"
+#include "PSS_Dialog.h"
 //## begin module%36DEE3DE0256.declarations preserve=no
 //## end module%36DEE3DE0256.declarations
 
@@ -66,35 +66,32 @@ extern AFX_EXTENSION_MODULE g_zBaseLibDLL;
 //## Persistence: Transient
 //## Cardinality/Multiplicity: n
 
-class AFX_EXT_CLASS ZIMessage : public ZIDialog  //## Inherits: <unnamed>%36DEE3C50200
+class AFX_EXT_CLASS ZIMessage : public PSS_Dialog
 {
-  //## begin ZIMessage%36DEE2420330.initialDeclarations preserve=yes
-  //## end ZIMessage%36DEE2420330.initialDeclarations
-
-  public:
+public:
     //## Constructors (specified)
       //## Operation: ZIMessage%920577013
       //    Constructs a Message Window.
-      ZIMessage (CWnd* pWnd = NULL);
+    ZIMessage(CWnd* pWnd = NULL);
 
     //## Destructor (generated)
-      ~ZIMessage();
+    ~ZIMessage();
 
 
     //## Other Operations (specified)
       //## Operation: DisplayMessage%920577014
       //    Display the message
-      void DisplayMessage (const CString Text, CString Title = "", UINT IDBitmap = 0);
+    void DisplayMessage(const CString Text, CString Title = "", UINT IDBitmap = 0);
 
-      //## Operation: DisplayMessage%920577015
-      //    Display the message
-      void DisplayMessage (UINT IDText, UINT IDTitle = 0, UINT IDBitmap = 0);
+    //## Operation: DisplayMessage%920577015
+    //    Display the message
+    void DisplayMessage(UINT IDText, UINT IDTitle = 0, UINT IDBitmap = 0);
 
     // Additional Public Declarations
       //## begin ZIMessage%36DEE2420330.public preserve=yes
       //## end ZIMessage%36DEE2420330.public
 
-  protected:
+protected:
     // Additional Protected Declarations
       //## begin ZIMessage%36DEE2420330.protected preserve=yes
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
@@ -112,59 +109,62 @@ class AFX_EXT_CLASS ZIMessage : public ZIDialog  //## Inherits: <unnamed>%36DEE3
     //}}AFX_MSG
     DECLARE_MESSAGE_MAP()
 
-      //## end ZIMessage%36DEE2420330.protected
-  private:
+    //## end ZIMessage%36DEE2420330.protected
+private:
     //## Constructors (generated)
-      ZIMessage(const ZIMessage &right);
+    ZIMessage(const ZIMessage &right);
 
     //## Assignment Operation (generated)
-      const ZIMessage & operator=(const ZIMessage &right);
+    const ZIMessage & operator=(const ZIMessage &right);
 
     // Data Members for Class Attributes
 
       //## Attribute: Text%36DEE4BF0231
       //## begin ZIMessage::Text%36DEE4BF0231.attr preserve=no  public: CString {U} 
-      CString m_Text;
-      //## end ZIMessage::Text%36DEE4BF0231.attr
+    CString m_Text;
+    //## end ZIMessage::Text%36DEE4BF0231.attr
 
-      //## Attribute: Title%36DEE4E402A3
-      //## begin ZIMessage::Title%36DEE4E402A3.attr preserve=no  public: CString {U} 
-      CString m_Title;
-      //## end ZIMessage::Title%36DEE4E402A3.attr
+    //## Attribute: Title%36DEE4E402A3
+    //## begin ZIMessage::Title%36DEE4E402A3.attr preserve=no  public: CString {U} 
+    CString m_Title;
+    //## end ZIMessage::Title%36DEE4E402A3.attr
 
-      //## Attribute: IDBitmap%36DEE4F100DF
-      //## begin ZIMessage::IDBitmap%36DEE4F100DF.attr preserve=no  public: UINT {U} 0
-      UINT m_IDBitmap;
-      //## end ZIMessage::IDBitmap%36DEE4F100DF.attr
+    //## Attribute: IDBitmap%36DEE4F100DF
+    //## begin ZIMessage::IDBitmap%36DEE4F100DF.attr preserve=no  public: UINT {U} 0
+    UINT m_IDBitmap;
+    //## end ZIMessage::IDBitmap%36DEE4F100DF.attr
 
-      //## Attribute: hInst%36DEF4480140
-      //## begin ZIMessage::hInst%36DEF4480140.attr preserve=no  public: HINSTANCE {U} 0
-      HINSTANCE m_hInst;
-      //## end ZIMessage::hInst%36DEF4480140.attr
+    //## Attribute: hInst%36DEF4480140
+    //## begin ZIMessage::hInst%36DEF4480140.attr preserve=no  public: HINSTANCE {U} 0
+    HINSTANCE m_hInst;
+    //## end ZIMessage::hInst%36DEF4480140.attr
 
-      //## Attribute: TextFont%36DEF76E03CA
-      //## begin ZIMessage::TextFont%36DEF76E03CA.attr preserve=no  public: CFont {U} 
-      CFont m_TextFont;
-      //## end ZIMessage::TextFont%36DEF76E03CA.attr
+    //## Attribute: TextFont%36DEF76E03CA
+    //## begin ZIMessage::TextFont%36DEF76E03CA.attr preserve=no  public: CFont {U} 
+    CFont m_TextFont;
+    //## end ZIMessage::TextFont%36DEF76E03CA.attr
 
-      //## Attribute: TitleFont%36DEF7810309
-      //## begin ZIMessage::TitleFont%36DEF7810309.attr preserve=no  public: CFont {U} 
-      CFont m_TitleFont;
-      //## end ZIMessage::TitleFont%36DEF7810309.attr
+    //## Attribute: TitleFont%36DEF7810309
+    //## begin ZIMessage::TitleFont%36DEF7810309.attr preserve=no  public: CFont {U} 
+    CFont m_TitleFont;
+    //## end ZIMessage::TitleFont%36DEF7810309.attr
 
-    // Additional Private Declarations
-      //## begin ZIMessage%36DEE2420330.private preserve=yes
-      //## end ZIMessage%36DEE2420330.private
+  // Additional Private Declarations
+    //## begin ZIMessage%36DEE2420330.private preserve=yes
+    //## end ZIMessage%36DEE2420330.private
 
-  private: //## implementation
-    // Additional Implementation Declarations
-      //## begin ZIMessage%36DEE2420330.implementation preserve=yes
+private: //## implementation
+  // Additional Implementation Declarations
+    //## begin ZIMessage%36DEE2420330.implementation preserve=yes
 
     void CloseWindow();
-      
+
     // Dialog Data
     //{{AFX_DATA(ZIMessage)
-    enum { IDD = IDD_MESSAGEDLG };
+    enum
+    {
+        IDD = IDD_MESSAGEDLG
+    };
     PSS_FlatButton m_CloseButton;
     CStatic        m_icnApp;
     //}}AFX_DATA
@@ -174,18 +174,7 @@ class AFX_EXT_CLASS ZIMessage : public ZIDialog  //## Inherits: <unnamed>%36DEE3
     UINT    m_uTimerID;
     HICON    m_pIcon[NUMBER_OF_MESSAGE_ICON];
 
-      //## end ZIMessage%36DEE2420330.implementation
+    //## end ZIMessage%36DEE2420330.implementation
 };
-
-//## begin ZIMessage%36DEE2420330.postscript preserve=yes
-#undef  AFX_DATA
-#define AFX_DATA
-//## end ZIMessage%36DEE2420330.postscript
-
-// Class ZIMessage 
-
-//## begin module%36DEE3DE0256.epilog preserve=yes
-//## end module%36DEE3DE0256.epilog
-
 
 #endif

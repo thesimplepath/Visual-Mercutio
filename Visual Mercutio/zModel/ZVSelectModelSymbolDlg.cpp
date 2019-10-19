@@ -21,7 +21,7 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZVSelectModelSymbolDlg dialog
 
-BEGIN_MESSAGE_MAP( ZVSelectModelSymbolDlg, ZIDialog )
+BEGIN_MESSAGE_MAP( ZVSelectModelSymbolDlg, PSS_Dialog)
     //{{AFX_MSG_MAP(ZVSelectModelSymbolDlg)
     ON_WM_CONTEXTMENU()
     ON_NOTIFY(TVN_SELCHANGED, IDC_SYMBOLTREE, OnSelchangedSymboltree)
@@ -33,7 +33,7 @@ ZVSelectModelSymbolDlg::ZVSelectModelSymbolDlg( ZDProcessGraphModelMdl*    pMode
                                                 int                        SelectableItem    /*= Selectable_All*/,
                                                 ZBRuntimeClassSet*        pSet            /*= NULL*/,
                                                 CWnd*                    pParent            /*=NULL*/ )
-    : ZIDialog            ( ZVSelectModelSymbolDlg::IDD, TRUE, pParent ),
+    : PSS_Dialog( ZVSelectModelSymbolDlg::IDD, TRUE, pParent ),
       m_pModel            ( pModel ),
       m_pSelectedModel    ( NULL ),
       m_pSelectedSymbol    ( NULL ),
@@ -54,7 +54,7 @@ ZVSelectModelSymbolDlg::ZVSelectModelSymbolDlg( ZDProcessGraphModelMdl*    pMode
                                                 CRuntimeClass*            pSelectableClass,
                                                 ZBRuntimeClassSet*        pSet                /*= NULL*/,
                                                 CWnd*                    pParent                /*=NULL*/ )
-    : ZIDialog            ( ZVSelectModelSymbolDlg::IDD, TRUE, pParent ),
+    : PSS_Dialog( ZVSelectModelSymbolDlg::IDD, TRUE, pParent ),
       m_pModel            ( pModel ),
       m_pSelectedModel    ( NULL ),
       m_pSelectedSymbol    ( NULL ),
@@ -75,7 +75,7 @@ ZVSelectModelSymbolDlg::ZVSelectModelSymbolDlg( ZDProcessGraphModelMdl*    pMode
                                                 int                        SelectableItem    /*= Selectable_All*/,
                                                 ZBRuntimeClassSet*        pSet            /*= NULL*/,
                                                 CWnd*                    pParent            /*=NULL*/ )
-    : ZIDialog                ( ZVSelectModelSymbolDlg::IDD, TRUE, pParent ),
+    : PSS_Dialog( ZVSelectModelSymbolDlg::IDD, TRUE, pParent ),
       m_pModel                ( pModel ),
       m_pSelectedModel        ( NULL ),
       m_pSelectedSymbol        ( NULL ),
@@ -96,7 +96,7 @@ ZVSelectModelSymbolDlg::ZVSelectModelSymbolDlg( ZDProcessGraphModelMdl*    pMode
                                                 CRuntimeClass*            pSelectableClass,
                                                 ZBRuntimeClassSet*        pSet                /*= NULL*/,
                                                 CWnd*                    pParent                /*=NULL*/ )
-    : ZIDialog            ( ZVSelectModelSymbolDlg::IDD, TRUE, pParent ),
+    : PSS_Dialog( ZVSelectModelSymbolDlg::IDD, TRUE, pParent ),
       m_pModel            ( pModel ),
       m_pSelectedModel    ( NULL ),
       m_pSelectedSymbol    ( NULL ),
@@ -114,7 +114,8 @@ ZVSelectModelSymbolDlg::ZVSelectModelSymbolDlg( ZDProcessGraphModelMdl*    pMode
 
 void ZVSelectModelSymbolDlg::DoDataExchange( CDataExchange* pDX )
 {
-    ZIDialog::DoDataExchange( pDX );
+    PSS_Dialog::DoDataExchange( pDX );
+
     //{{AFX_DATA_MAP(ZVSelectModelSymbolDlg)
     DDX_Control(pDX, IDC_SYMBOLTREE, m_SymbolTree);
     DDX_Text(pDX, IDC_SYMBOLPATH, m_SymbolPath);
@@ -250,7 +251,7 @@ void ZVSelectModelSymbolDlg::OnOK()
 
     UpdateData( FALSE );
 
-    ZIDialog::OnOK();
+    PSS_Dialog::OnOK();
 }
 
 void ZVSelectModelSymbolDlg::OnSelchangedSymboltree( NMHDR* pNMHDR, LRESULT* pResult )
@@ -395,7 +396,7 @@ void ZVSelectModelSymbolDlg::OnContextMenu( CWnd* pWnd, CPoint point )
 
 BOOL ZVSelectModelSymbolDlg::OnInitDialog()
 {
-    ZIDialog::OnInitDialog();
+    PSS_Dialog::OnInitDialog();
 
     if ( m_pModel )
     {

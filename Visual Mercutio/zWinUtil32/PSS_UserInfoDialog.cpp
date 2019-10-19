@@ -20,7 +20,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_UserInfoDialog, ZIDialog)
+BEGIN_MESSAGE_MAP(PSS_UserInfoDialog, PSS_Dialog)
     //{{AFX_MSG_MAP(PSS_UserInfoDialog)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -28,7 +28,7 @@ END_MESSAGE_MAP()
 // PSS_UserInfoDialog
 //---------------------------------------------------------------------------
 PSS_UserInfoDialog::PSS_UserInfoDialog(ZUser& user, bool creationMode, CWnd* pParent) :
-    ZIDialog(PSS_UserInfoDialog::IDD, TRUE, pParent),
+    PSS_Dialog(PSS_UserInfoDialog::IDD, TRUE, pParent),
     m_User(user),
     m_CreationMode(creationMode)
 {
@@ -58,7 +58,7 @@ void PSS_UserInfoDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_UserInfoDialog::OnInitDialog()
 {
-    ZIDialog::OnInitDialog();
+    PSS_Dialog::OnInitDialog();
 
     if (!m_CreationMode && GetDlgItem(IDOK))
     {
@@ -87,6 +87,6 @@ void PSS_UserInfoDialog::OnOK()
     m_User.SetResponsible(m_Responsible);
     m_User.SetAdministrator(m_Admin);
 
-    ZIDialog::OnOK();
+    PSS_Dialog::OnOK();
 }
 //---------------------------------------------------------------------------

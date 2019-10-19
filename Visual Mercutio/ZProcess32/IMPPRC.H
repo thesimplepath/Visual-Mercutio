@@ -1,13 +1,13 @@
 // impprc.h : header file
 //
 
-#include "zBaseLib\ZIDialog.h"
+#include "zBaseLib\PSS_Dialog.h"
 #include "resource.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // ZIImportProcess dialog
 
-class ZIImportProcess : public ZIDialog
+class ZIImportProcess : public PSS_Dialog
 {
 // Construction
 public:

@@ -17,7 +17,9 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZIDialog.h"
+#include "PSS_Dialog.h"
+
+// resources
 #include "zRes32\ZRes.h"
 
 #ifdef _ZBASELIBEXPORT
@@ -34,7 +36,7 @@
 * Input value
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_InputValue : public ZIDialog
+class AFX_EXT_CLASS PSS_InputValue : public PSS_Dialog
 {
     public:
         /**

@@ -23,7 +23,7 @@ const int g_WhiteBoxHeight = 60;
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_WizardDialog, ZIDialog)
+BEGIN_MESSAGE_MAP(PSS_WizardDialog, PSS_Dialog)
     //{{AFX_MSG_MAP(PSS_WizardDialog)
     ON_WM_PAINT()
     //}}AFX_MSG_MAP
@@ -40,7 +40,7 @@ PSS_WizardDialog::PSS_WizardDialog(UINT           id,
                                    BOOL           autoCenter,
                                    BOOL           standalone,
                                    CWnd*          pParent) :
-    ZIDialog(id, autoCenter, pParent),
+    PSS_Dialog(id, autoCenter, pParent),
     m_hInst(NULL),
     m_hIcon(NULL),
     m_TitleWindow(titleWindow),
@@ -63,7 +63,7 @@ PSS_WizardDialog::PSS_WizardDialog(UINT  id,
                                    BOOL  autoCenter,
                                    BOOL  standalone,
                                    CWnd* pParent) :
-    ZIDialog(id, autoCenter, pParent),
+    PSS_Dialog(id, autoCenter, pParent),
     m_hInst(NULL),
     m_hIcon(NULL),
     m_ID(id),
@@ -90,7 +90,7 @@ PSS_WizardDialog::PSS_WizardDialog(UINT           id,
                                    BOOL           autoCenter,
                                    BOOL           standalone,
                                    CWnd*          pParent) :
-    ZIDialog(id, autoCenter, backCol, staticCol, editCol, pParent),
+    PSS_Dialog(id, autoCenter, backCol, staticCol, editCol, pParent),
     m_hInst(NULL),
     m_hIcon(NULL),
     m_TitleWindow(titleWindow),
@@ -116,7 +116,7 @@ PSS_WizardDialog::PSS_WizardDialog(UINT     id,
                                    BOOL     autoCenter,
                                    BOOL     standalone,
                                    CWnd*    pParent) :
-    ZIDialog(id, autoCenter, backCol, staticCol, editCol, pParent),
+    PSS_Dialog(id, autoCenter, backCol, staticCol, editCol, pParent),
     m_hInst(NULL),
     m_hIcon(NULL),
     m_ID(id),
@@ -149,7 +149,7 @@ BOOL PSS_WizardDialog::Create(UINT           id,
     m_IconID      = iconID;
     m_Standalone  = standalone;
 
-    ZIDialog::Create(id, autoCenter, pParent);
+    PSS_Dialog::Create(id, autoCenter, pParent);
     return TRUE;
 }
 //---------------------------------------------------------------------------
@@ -168,12 +168,11 @@ BOOL PSS_WizardDialog::Create(UINT  id,
     m_IconID     = iconID;
     m_Standalone = standalone;
 
-    m_TitleWindow.LoadString(titleWindowID),
-    m_TitleWizard.LoadString(titleWizardID),
-    m_TextWizard.LoadString (textWizardID),
+    m_TitleWindow.LoadString(titleWindowID);
+    m_TitleWizard.LoadString(titleWizardID);
+    m_TextWizard.LoadString(textWizardID);
 
-    ZIDialog::Create(id, autoCenter, pParent);
-
+    PSS_Dialog::Create(id, autoCenter, pParent);
     return TRUE;
 }
 //---------------------------------------------------------------------------
@@ -198,8 +197,7 @@ BOOL PSS_WizardDialog::Create(UINT           id,
     m_IconID      = iconID;
     m_Standalone  = standalone;
 
-    ZIDialog::Create(id, autoCenter, backCol, staticCol, editCol, pParent);
-
+    PSS_Dialog::Create(id, autoCenter, backCol, staticCol, editCol, pParent);
     return TRUE;
 }
 //---------------------------------------------------------------------------
@@ -221,12 +219,11 @@ BOOL PSS_WizardDialog::Create(UINT     id,
     m_IconID     = iconID;
     m_Standalone = standalone;
 
-    m_TitleWindow.LoadString(titleWindowID),
-    m_TitleWizard.LoadString(titleWizardID),
-    m_TextWizard.LoadString (textWizardID),
+    m_TitleWindow.LoadString(titleWindowID);
+    m_TitleWizard.LoadString(titleWizardID);
+    m_TextWizard.LoadString(textWizardID);
 
-    ZIDialog::Create(id, autoCenter, backCol, staticCol, editCol, pParent);
-
+    PSS_Dialog::Create(id, autoCenter, backCol, staticCol, editCol, pParent);
     return TRUE;
 }
 //---------------------------------------------------------------------------
@@ -253,7 +250,7 @@ void PSS_WizardDialog::SetWizardBodyText(UINT id)
 //---------------------------------------------------------------------------
 void PSS_WizardDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIDialog::DoDataExchange(pDX);
+    PSS_Dialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_WizardDialog)
     //}}AFX_DATA_MAP
@@ -353,7 +350,7 @@ BOOL PSS_WizardDialog::OnInitDialog()
     // find resources
     m_hInst = AfxFindResourceHandle(MAKEINTRESOURCE(m_BitmapID), RT_BITMAP);
 
-    ZIDialog::OnInitDialog();
+    PSS_Dialog::OnInitDialog();
 
     GetClientRect(&m_DialogRect);
 

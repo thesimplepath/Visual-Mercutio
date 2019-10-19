@@ -22,7 +22,7 @@ static char THIS_FILE[] = __FILE__;
 
 
 ZVInsertLinkModelPageDlg::ZVInsertLinkModelPageDlg(ZDProcessGraphModelMdl* pModel, const CString NewPageName /*= ""*/, CStringArray* pArrayPageName /*= NULL*/, ZBRuntimeClassSet* pSet /*= NULL*/, CWnd* pParent /*=NULL*/)
-    : ZIDialog(ZVInsertLinkModelPageDlg::IDD, TRUE, pParent),
+    : PSS_Dialog(ZVInsertLinkModelPageDlg::IDD, TRUE, pParent),
     m_pModel(pModel),
     m_pArrayPageName(pArrayPageName),
     m_pParentModel(NULL),
@@ -37,7 +37,7 @@ ZVInsertLinkModelPageDlg::ZVInsertLinkModelPageDlg(ZDProcessGraphModelMdl* pMode
 
 void ZVInsertLinkModelPageDlg::DoDataExchange(CDataExchange* pDX)
 {
-    ZIDialog::DoDataExchange(pDX);
+    PSS_Dialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(ZVInsertLinkModelPageDlg)
     DDX_Control(pDX, IDC_EXISTINGPROCESS, m_SymbolTree);
     DDX_Control(pDX, IDC_EXISTINGPAGES, m_ExistingPages);
@@ -47,7 +47,7 @@ void ZVInsertLinkModelPageDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(ZVInsertLinkModelPageDlg, ZIDialog)
+BEGIN_MESSAGE_MAP(ZVInsertLinkModelPageDlg, PSS_Dialog)
     //{{AFX_MSG_MAP(ZVInsertLinkModelPageDlg)
     ON_NOTIFY(TVN_SELCHANGED, IDC_EXISTINGPROCESS, OnSelchangedSymboltree)
     ON_NOTIFY(TVN_SELCHANGED, IDC_EXISTINGPAGES, OnSelchangedExistingPagetree)
@@ -117,7 +117,7 @@ void ZVInsertLinkModelPageDlg::OnOK()
             }
         }
     }
-    ZIDialog::OnOK();
+    PSS_Dialog::OnOK();
 }
 
 void ZVInsertLinkModelPageDlg::OnInsLink()
@@ -153,7 +153,7 @@ void ZVInsertLinkModelPageDlg::OnSelchangedExistingPagetree(NMHDR* pNMHDR, LRESU
 
 BOOL ZVInsertLinkModelPageDlg::OnInitDialog()
 {
-    ZIDialog::OnInitDialog();
+    PSS_Dialog::OnInitDialog();
 
     if (m_pModel)
     {

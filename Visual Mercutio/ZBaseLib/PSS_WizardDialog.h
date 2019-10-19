@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "ZIDialog.h"
+#include "PSS_Dialog.h"
 
 // resources
 #include "zWinUtil32\zWinUtil32Res.h"
@@ -36,7 +36,7 @@
 * Wizard dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_WizardDialog : public ZIDialog
+class AFX_EXT_CLASS PSS_WizardDialog : public PSS_Dialog
 {
     public:
         /**

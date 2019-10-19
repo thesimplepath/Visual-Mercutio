@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZIDialog.h"
+#include "zBaseLib\PSS_Dialog.h"
 
 // resources
 #include "zWinUtil32\zWinUtil32Res.h"
@@ -40,46 +40,46 @@
 * File version dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_FileVersionDialog : public ZIDialog
+class AFX_EXT_CLASS PSS_FileVersionDialog : public PSS_Dialog
 {
-public:
-    /**
-    * Dialog resources
-    */
-    enum
-    {
-        IDD = IDD_FILEVERSION
-    };
+    public:
+        /**
+        * Dialog resources
+        */
+        enum
+        {
+            IDD = IDD_FILEVERSION
+        };
 
-    CSpinButtonCtrl m_FileVersionSpin;
-    long            m_FileVersion;
+        CSpinButtonCtrl m_FileVersionSpin;
+        long            m_FileVersion;
 
-    /**
-    * Constructor
-    *@param fileVersion - file version
-    *@param pParent - parent window, can be NULL
-    */
-    PSS_FileVersionDialog(long fileVersion = 0, CWnd* pParent = NULL);
+        /**
+        * Constructor
+        *@param fileVersion - file version
+        *@param pParent - parent window, can be NULL
+        */
+        PSS_FileVersionDialog(long fileVersion = 0, CWnd* pParent = NULL);
 
-    /**
-    * Gets the file version
-    *@return the file version
-    */
-    virtual inline long GetFileVersion() const;
+        /**
+        * Gets the file version
+        *@return the file version
+        */
+        virtual inline long GetFileVersion() const;
 
-protected:
-    /// ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(PSS_FileVersionDialog)
-    virtual void DoDataExchange(CDataExchange* pDX);
-    //}}AFX_VIRTUAL
+    protected:
+        /// ClassWizard generated virtual function overrides
+        //{{AFX_VIRTUAL(PSS_FileVersionDialog)
+        virtual void DoDataExchange(CDataExchange* pDX);
+        //}}AFX_VIRTUAL
 
-    /// Generated message map functions
-    //{{AFX_MSG(PSS_FileVersionDialog)
-    virtual BOOL OnInitDialog();
-    afx_msg void OnDeltaposFileversionSpin(NMHDR* pNMHDR, LRESULT* pResult);
-    afx_msg void OnChangeFileVersion();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+        /// Generated message map functions
+        //{{AFX_MSG(PSS_FileVersionDialog)
+        virtual BOOL OnInitDialog();
+        afx_msg void OnDeltaposFileversionSpin(NMHDR* pNMHDR, LRESULT* pResult);
+        afx_msg void OnChangeFileVersion();
+        //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
 };
 
 //---------------------------------------------------------------------------

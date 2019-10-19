@@ -21,7 +21,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_SelectResourcesDialog, ZIDialog)
+BEGIN_MESSAGE_MAP(PSS_SelectResourcesDialog, PSS_Dialog)
     //{{AFX_MSG_MAP(PSS_SelectResourcesDialog)
     ON_BN_CLICKED(IDC_ADDRESOURCE, OnAddResource)
     ON_BN_CLICKED(IDC_REMOVERESOURCE, OnRemoveResource)
@@ -33,13 +33,14 @@ END_MESSAGE_MAP()
 // PSS_SelectResourcesDialog
 //---------------------------------------------------------------------------
 PSS_SelectResourcesDialog::PSS_SelectResourcesDialog(PSS_UserManager& userManager, CWnd* pParent) :
-    ZIDialog(PSS_SelectResourcesDialog::IDD, TRUE, pParent),
+    PSS_Dialog(PSS_SelectResourcesDialog::IDD, TRUE, pParent),
     m_UserManager(userManager)
 {}
 //---------------------------------------------------------------------------
 void PSS_SelectResourcesDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIDialog::DoDataExchange(pDX);
+    PSS_Dialog::DoDataExchange(pDX);
+
     //{{AFX_DATA_MAP(ZVChooseResources)
     DDX_Control(pDX, IDC_RESOURCE_TREE, m_ResourceTree);
     DDX_Control(pDX, IDC_RESOURCE_LIST, m_ResourceList);
@@ -48,7 +49,7 @@ void PSS_SelectResourcesDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_SelectResourcesDialog::OnInitDialog()
 {
-    ZIDialog::OnInitDialog();
+    PSS_Dialog::OnInitDialog();
 
     m_ResourceTree.Initialize(&m_UserManager);
     CheckControlState();
@@ -118,7 +119,7 @@ void PSS_SelectResourcesDialog::OnOK()
 
     m_UserListString = tokenizer.GetString();
 
-    ZIDialog::OnOK();
+    PSS_Dialog::OnOK();
 }
 //---------------------------------------------------------------------------
 void PSS_SelectResourcesDialog::CheckControlState()

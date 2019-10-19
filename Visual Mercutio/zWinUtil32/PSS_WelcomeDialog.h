@@ -17,7 +17,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZIDialog.h"
+#include "zBaseLib\PSS_Dialog.h"
 #include "zBaseLib\PSS_ApplicationOption.h"
 #include "PSS_HoverButton.h"
 
@@ -39,7 +39,7 @@
 * Welcome dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_WelcomeDialog : public ZIDialog
+class AFX_EXT_CLASS PSS_WelcomeDialog : public PSS_Dialog
 {
     public:
         /**
@@ -77,7 +77,7 @@ class AFX_EXT_CLASS PSS_WelcomeDialog : public ZIDialog
         virtual void DoDataExchange(CDataExchange* pDX);
 
         // Generated message map functions
-        //{{AFX_MSG(ZIWelcomeDialog)
+        //{{AFX_MSG(PSS_WelcomeDialog)
         virtual BOOL OnInitDialog();
         afx_msg void OnWelcomeLastFile();
         afx_msg void OnPaint();

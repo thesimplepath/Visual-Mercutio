@@ -24,7 +24,7 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZVRenameModelPageDlg dialog
 
-BEGIN_MESSAGE_MAP(ZVRenameModelPageDlg, ZIDialog)
+BEGIN_MESSAGE_MAP(ZVRenameModelPageDlg, PSS_Dialog)
     //{{AFX_MSG_MAP(ZVRenameModelPageDlg)
     ON_NOTIFY(TVN_SELCHANGED, IDC_EXISTINGPROCESS, OnSelchangedSymboltree)
     //}}AFX_MSG_MAP
@@ -35,7 +35,7 @@ ZVRenameModelPageDlg::ZVRenameModelPageDlg(ZDProcessGraphModelMdl*    pModel,
                                            ZDProcessGraphPage*        pPageToRename    /*= NULL*/,
                                            ZBRuntimeClassSet*        pSet            /*= NULL*/,
                                            CWnd*                    pParent            /*= NULL*/)
-    : ZIDialog(ZVRenameModelPageDlg::IDD, TRUE, pParent),
+    : PSS_Dialog(ZVRenameModelPageDlg::IDD, TRUE, pParent),
     m_pModel(pModel),
     m_pArrayPageName(pArrayPageName),
     m_pSelectedPage(NULL),
@@ -55,7 +55,7 @@ ZVRenameModelPageDlg::ZVRenameModelPageDlg(ZDProcessGraphModelMdl*    pModel,
 
 void ZVRenameModelPageDlg::DoDataExchange(CDataExchange* pDX)
 {
-    ZIDialog::DoDataExchange(pDX);
+    PSS_Dialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(ZVRenameModelPageDlg)
     DDX_Control(pDX, IDC_EXISTINGPROCESS, m_SymbolTree);
@@ -68,7 +68,7 @@ void ZVRenameModelPageDlg::DoDataExchange(CDataExchange* pDX)
 
 BOOL ZVRenameModelPageDlg::OnInitDialog()
 {
-    ZIDialog::OnInitDialog();
+    PSS_Dialog::OnInitDialog();
 
     if (m_pModel)
     {
@@ -150,5 +150,5 @@ void ZVRenameModelPageDlg::OnOK()
         }
     }
 
-    ZIDialog::OnOK();
+    PSS_Dialog::OnOK();
 }

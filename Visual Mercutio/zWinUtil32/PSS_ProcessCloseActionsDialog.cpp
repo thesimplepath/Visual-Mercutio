@@ -27,7 +27,7 @@ const UINT g_AbortCommandID   = 16;
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_ProcessCloseActionsDialog, ZIDialog)
+BEGIN_MESSAGE_MAP(PSS_ProcessCloseActionsDialog, PSS_Dialog)
     //{{AFX_MSG_MAP(PSS_ProcessCloseActionsDialog)
     ON_BN_CLICKED(IDC_ACCEPTCOMMAND, OnAcceptCommand)
     ON_BN_CLICKED(IDC_REJECTCOMMAND, OnRejectCommand)
@@ -45,7 +45,7 @@ PSS_ProcessCloseActionsDialog::PSS_ProcessCloseActionsDialog(BOOL  sendCommand,
                                                              BOOL  acceptRejectCommand,
                                                              BOOL  suspendCommand,
                                                              CWnd* pParent) :
-    ZIDialog(PSS_ProcessCloseActionsDialog::IDD, TRUE, pParent),
+    PSS_Dialog(PSS_ProcessCloseActionsDialog::IDD, TRUE, pParent),
     m_SendCommand(sendCommand),
     m_AcceptRejectCommand(acceptRejectCommand),
     m_SuspendCommand(suspendCommand)
@@ -68,7 +68,7 @@ void PSS_ProcessCloseActionsDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_ProcessCloseActionsDialog::OnInitDialog()
 {
-    ZIDialog::OnInitDialog();
+    PSS_Dialog::OnInitDialog();
 
     if (!m_SendCommand)
     {

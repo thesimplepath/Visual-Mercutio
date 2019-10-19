@@ -3,7 +3,7 @@
 #include "Resource.h"
 
 #include "zWinUtil32\PSS_SearchEdit.h"
-#include "zBaseLib\ZIDialog.h"
+#include "zBaseLib\PSS_Dialog.h"
 
 #include "zBaseLib\PSS_FolderStamp.h"
 
@@ -12,7 +12,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // ZIModelTemplateCopyDlg dialog
 
-class ZIModelTemplateCopyDlg : public ZIDialog
+class ZIModelTemplateCopyDlg : public PSS_Dialog
 {
 // Construction
 public:

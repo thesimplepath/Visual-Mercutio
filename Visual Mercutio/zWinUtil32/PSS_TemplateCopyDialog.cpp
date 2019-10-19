@@ -19,7 +19,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_TemplateCopyDialog, CDialog)
+BEGIN_MESSAGE_MAP(PSS_TemplateCopyDialog, PSS_Dialog)
     //{{AFX_MSG_MAP(PSS_TemplateCopyDialog)
     ON_EN_CHANGE(IDC_TITLE, OnChangeTitle)
     //}}AFX_MSG_MAP
@@ -32,7 +32,7 @@ PSS_TemplateCopyDialog::PSS_TemplateCopyDialog(PSS_TemplateManager* pTemplateMan
                                                PSS_FolderStamp*     pFolderStamp,
                                                BOOL                 allowReplace,
                                                CWnd*                pParent) :
-    ZIDialog(PSS_TemplateCopyDialog::IDD, TRUE, pParent),
+    PSS_Dialog(PSS_TemplateCopyDialog::IDD, TRUE, pParent),
     m_pTemplateManager(pTemplateManager), 
     m_pFolderStamp(pFolderStamp),
     m_FileExtension(fileExtension),
@@ -54,7 +54,7 @@ PSS_TemplateCopyDialog::PSS_TemplateCopyDialog(PSS_TemplateManager* pTemplateMan
 //---------------------------------------------------------------------------
 void PSS_TemplateCopyDialog::DoDataExchange(CDataExchange* pDX)
 {
-    ZIDialog::DoDataExchange(pDX);
+    PSS_Dialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_TemplateCopyDialog)
     DDX_Control(pDX, IDC_TEMPLATEDIR, m_TemplateDirList);
@@ -66,7 +66,7 @@ void PSS_TemplateCopyDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_TemplateCopyDialog::OnInitDialog()
 {
-    ZIDialog::OnInitDialog();
+    PSS_Dialog::OnInitDialog();
 
     #ifdef _WIN32
         m_TemplateDirList.Initialize(m_pTemplateManager, TRUE);

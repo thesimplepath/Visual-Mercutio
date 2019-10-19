@@ -31,7 +31,7 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
 
-BEGIN_MESSAGE_MAP(ZIMessage, ZIDialog)
+BEGIN_MESSAGE_MAP(ZIMessage, PSS_Dialog)
     //{{AFX_MSG_MAP(ZIMessage)
     ON_WM_TIMER()
     ON_WM_PAINT()
@@ -58,7 +58,7 @@ ZIMessage::ZIMessage (CWnd* pWnd)
       : m_IDBitmap(0), m_hInst(0)
   //## end ZIMessage::ZIMessage%920577013.hasinit
   //## begin ZIMessage::ZIMessage%920577013.initialization preserve=yes
-  , ZIDialog(ZIMessage::IDD)
+  , PSS_Dialog(ZIMessage::IDD)
   //## end ZIMessage::ZIMessage%920577013.initialization
 {
   //## begin ZIMessage::ZIMessage%920577013.body preserve=yes
@@ -149,7 +149,7 @@ void ZIMessage::DoDataExchange(CDataExchange* pDX)
 
 BOOL ZIMessage::OnInitDialog()
 {
-    ZIDialog::OnInitDialog();
+    PSS_Dialog::OnInitDialog();
     
     m_CloseButton.SetIcon(IDI_CLOSEWINDOW);
     m_CloseButton.SetBtnCursor( IDC_CLOSEWINDOW );
@@ -246,13 +246,13 @@ void ZIMessage::CloseWindow()
 
 void ZIMessage::OnLButtonDown(UINT nFlags, CPoint point)
 {
-    ZIDialog::OnLButtonDown(nFlags, point);
+    PSS_Dialog::OnLButtonDown(nFlags, point);
     CloseWindow();
 }
 
 void ZIMessage::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
-    ZIDialog::OnLButtonDblClk(nFlags, point);
+    PSS_Dialog::OnLButtonDblClk(nFlags, point);
     CloseWindow();
 }
 
@@ -296,7 +296,7 @@ void ZIMessage::OnTimer(UINT nIDEvent)
 
 void ZIMessage::OnMouseMove(UINT nFlags, CPoint point) 
 {
-    ZIDialog::OnMouseMove(nFlags, point);
+    PSS_Dialog::OnMouseMove(nFlags, point);
     return;    
     // Convert the cursor point
 //    ScreenToClient(&point);
@@ -309,7 +309,7 @@ void ZIMessage::OnMouseMove(UINT nFlags, CPoint point)
         m_CloseButton.GetClientRect( ClientRect );
         if (!ClientRect.PtInRect(point))
         {
-            ZIDialog::OnMouseMove(nFlags, point);
+            PSS_Dialog::OnMouseMove(nFlags, point);
             // Set the capture
             SetCapture();
             if (GetCursor() !=  m_Cursor)

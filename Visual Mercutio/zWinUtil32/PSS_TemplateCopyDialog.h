@@ -18,7 +18,7 @@
 
 // processsoft
 #include "zBaseLib\PSS_TemplateManager.h"
-#include "zBaseLib\ZIDialog.h"
+#include "zBaseLib\PSS_Dialog.h"
 #include "PSS_TemplateTreeCtrl.h"
 
 // resources
@@ -38,7 +38,7 @@
 * Template copy dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_TemplateCopyDialog : public ZIDialog
+class AFX_EXT_CLASS PSS_TemplateCopyDialog : public PSS_Dialog
 {
 public:
     /**

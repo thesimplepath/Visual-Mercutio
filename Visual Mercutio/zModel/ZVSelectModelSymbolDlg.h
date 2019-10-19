@@ -17,7 +17,7 @@
 
 #include "ObjectCollections.h"
 
-#include "zBaseLib\ZIDialog.h"
+#include "zBaseLib\PSS_Dialog.h"
 #include "zModelRes.h"
 #include "ZDefinitionSelectable.h"
 #include "ZCProcessModelTree.h"
@@ -40,7 +40,7 @@ class ZDProcessGraphModelMdl;
 /////////////////////////////////////////////////////////////////////////////
 // ZVSelectModelSymbolDlg dialog
 
-class AFX_EXT_CLASS ZVSelectModelSymbolDlg : public ZIDialog
+class AFX_EXT_CLASS ZVSelectModelSymbolDlg : public PSS_Dialog
 {
 // Construction
 public:

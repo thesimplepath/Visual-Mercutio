@@ -16,7 +16,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_UserListDialog, CDialog)
+BEGIN_MESSAGE_MAP(PSS_UserListDialog, PSS_Dialog)
     //{{AFX_MSG_MAP(PSS_UserListDialog)
     ON_LBN_SELCHANGE(IDC_LIST_OF_USERS, OnSelChangeListOfUsers)
     ON_LBN_DBLCLK(IDC_LIST_OF_USERS, OnDblclkListOfUsers)
@@ -26,7 +26,7 @@ END_MESSAGE_MAP()
 // PSS_UserListDialog
 //---------------------------------------------------------------------------
 PSS_UserListDialog::PSS_UserListDialog(PSS_UserManager& userManager, CWnd* pParent) :
-    ZIDialog(PSS_UserListDialog::IDD, TRUE, pParent),
+    PSS_Dialog(PSS_UserListDialog::IDD, TRUE, pParent),
     m_IsAdministrator(FALSE),
     m_UserManager(userManager),
     m_pUser(NULL)
@@ -34,7 +34,7 @@ PSS_UserListDialog::PSS_UserListDialog(PSS_UserManager& userManager, CWnd* pPare
 //---------------------------------------------------------------------------
 void PSS_UserListDialog::DoDataExchange(CDataExchange* pDX)
 {
-    CDialog::DoDataExchange(pDX);
+    PSS_Dialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(PSS_UserListDialog)
     DDX_Control(pDX, IDOK,                 m_InsertButton);
@@ -49,7 +49,7 @@ void PSS_UserListDialog::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_UserListDialog::OnInitDialog()
 {
-    ZIDialog::OnInitDialog();
+    PSS_Dialog::OnInitDialog();
     
     LoadSource();
     CheckControlState();

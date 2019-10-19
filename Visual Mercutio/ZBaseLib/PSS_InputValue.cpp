@@ -16,7 +16,7 @@
 //---------------------------------------------------------------------------
 // Message map
 //---------------------------------------------------------------------------
-BEGIN_MESSAGE_MAP(PSS_InputValue, ZIDialog)
+BEGIN_MESSAGE_MAP(PSS_InputValue, PSS_Dialog)
     //{{AFX_MSG_MAP(PSS_InputValue)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -24,13 +24,13 @@ END_MESSAGE_MAP()
 // PSS_InputValue
 //---------------------------------------------------------------------------
 PSS_InputValue::PSS_InputValue(const CString& title, const CString& value, CWnd* pParent) :
-    ZIDialog(PSS_InputValue::IDD, TRUE, pParent),
+    PSS_Dialog(PSS_InputValue::IDD, TRUE, pParent),
     m_Title(title),
     m_Value(value)
 {}
 //---------------------------------------------------------------------------
 PSS_InputValue::PSS_InputValue(UINT titleID, const CString& value, CWnd* pParent) :
-    ZIDialog(PSS_InputValue::IDD, TRUE, pParent),
+    PSS_Dialog(PSS_InputValue::IDD, TRUE, pParent),
     m_Value(value)
 {
     m_Title.LoadString(titleID);
@@ -47,7 +47,7 @@ void PSS_InputValue::DoDataExchange(CDataExchange* pDX)
 //---------------------------------------------------------------------------
 BOOL PSS_InputValue::OnInitDialog()
 {
-    ZIDialog::OnInitDialog();
+    PSS_Dialog::OnInitDialog();
 
     if (!m_Title.IsEmpty())
         SetWindowText(m_Title);

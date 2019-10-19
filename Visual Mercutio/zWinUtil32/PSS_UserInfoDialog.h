@@ -21,7 +21,7 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 // processsoft
-#include "zBaseLib\ZIDialog.h"
+#include "zBaseLib\PSS_Dialog.h"
 #include "zBaseLib\ZUser.h"
 
 // resources
@@ -41,7 +41,7 @@
 * User info dialog box
 *@author Dominique Aigroz, Jean-Milost Reymond
 */
-class AFX_EXT_CLASS PSS_UserInfoDialog : public ZIDialog
+class AFX_EXT_CLASS PSS_UserInfoDialog : public PSS_Dialog
 {
     public:
         /**

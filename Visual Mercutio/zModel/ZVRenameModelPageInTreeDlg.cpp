@@ -22,7 +22,7 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // ZVRenameModelPageInTreeDlg dialog
 
-BEGIN_MESSAGE_MAP(ZVRenameModelPageInTreeDlg, ZIDialog)
+BEGIN_MESSAGE_MAP(ZVRenameModelPageInTreeDlg, PSS_Dialog)
     //{{AFX_MSG_MAP(ZVRenameModelPageInTreeDlg)
     //}}AFX_MSG_MAP
     ON_EN_CHANGE(IDC_PAGENAME, OnEnChangePagename)
@@ -31,7 +31,7 @@ END_MESSAGE_MAP()
 ZVRenameModelPageInTreeDlg::ZVRenameModelPageInTreeDlg(CString                    ProposedName    /*= _T( "" )*/,
                                                        CStringArray*            pArrayPageName    /*= NULL*/,
                                                        CWnd*                    pParent            /*= NULL*/)
-    : ZIDialog(ZVRenameModelPageInTreeDlg::IDD, TRUE, pParent),
+    : PSS_Dialog(ZVRenameModelPageInTreeDlg::IDD, TRUE, pParent),
     m_pArrayPageName(pArrayPageName),
     m_PageName(ProposedName)
 {
@@ -41,7 +41,7 @@ ZVRenameModelPageInTreeDlg::ZVRenameModelPageInTreeDlg(CString                  
 
 void ZVRenameModelPageInTreeDlg::DoDataExchange(CDataExchange* pDX)
 {
-    ZIDialog::DoDataExchange(pDX);
+    PSS_Dialog::DoDataExchange(pDX);
 
     //{{AFX_DATA_MAP(ZVRenameModelPageInTreeDlg)
     //}}AFX_DATA_MAP
@@ -52,7 +52,7 @@ void ZVRenameModelPageInTreeDlg::DoDataExchange(CDataExchange* pDX)
 
 BOOL ZVRenameModelPageInTreeDlg::OnInitDialog()
 {
-    ZIDialog::OnInitDialog();
+    PSS_Dialog::OnInitDialog();
 
     if (GetDlgItem(IDC_PAGENAME))
     {
@@ -88,7 +88,7 @@ void ZVRenameModelPageInTreeDlg::OnOK()
         }
     }
 
-    ZIDialog::OnOK();
+    PSS_Dialog::OnOK();
 }
 
 void ZVRenameModelPageInTreeDlg::OnEnChangePagename()
