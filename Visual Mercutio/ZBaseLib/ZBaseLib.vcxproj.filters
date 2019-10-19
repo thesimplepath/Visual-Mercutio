@@ -29,9 +29,6 @@
     <ClCompile Include="ZIErrorLine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZIHtmlView.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="zilistctrl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -602,6 +599,9 @@
     <ClCompile Include="PSS_Dialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PSS_HtmlView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\clicktoc.cur">
@@ -719,9 +719,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZIErrorLine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZIHtmlView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="zilistctrl.h">
@@ -1295,6 +1292,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PSS_Dialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PSS_HtmlView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -21,7 +21,7 @@
 #include "PSS_PLFNAutoNumbered.h"
 #include "PSS_MsgBox.h"
 #include "ZIView.h"
-#include "ZIHtmlView.h"
+#include "PSS_HtmlView.h"
 #include "PSS_Edit.h"
 #include "PSS_DocumentExport.h"
 #include "PSS_Global.h"
@@ -136,14 +136,14 @@ int PSS_Document::NextVisibleDocumentAvailable(std::size_t documentIndex) const
     return -1;
 }
 //---------------------------------------------------------------------------
-ZIHtmlView* PSS_Document::GetHtmlView()
+PSS_HtmlView* PSS_Document::GetHtmlView()
 {
     POSITION pPos  = GetFirstViewPosition();
     CView*   pView = GetNextView(pPos);
 
     while (pView)
     {
-        ZIHtmlView* pHtmlView = dynamic_cast<ZIHtmlView*>(pView);
+        PSS_HtmlView* pHtmlView = dynamic_cast<PSS_HtmlView*>(pView);
 
         if (pHtmlView)
             return pHtmlView;

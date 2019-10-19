@@ -19,7 +19,7 @@
 // processsoft
 #include "PSS_Splitter.h"
 #include "PSS_BaseTitleMDIPage.h"
-#include "ZIHtmlView.h"
+#include "PSS_HtmlView.h"
 
 #ifdef _ZBASELIBEXPORT
     // put the values back to make AFX_EXT_CLASS export again
@@ -91,7 +91,7 @@ class AFX_EXT_CLASS PSS_BaseMDIPage : public PSS_BaseTitleMDIPage
         virtual inline void SetShowOnlyHtmlView(BOOL value);
 
     protected:
-        ZIHtmlView*     m_pHtmlView;
+        PSS_HtmlView*   m_pHtmlView;
         CCJToolBar      m_ToolBar;
         CCJFlatComboBox m_Percentage;
         CCJFlatComboBox m_FileList;

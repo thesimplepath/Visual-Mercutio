@@ -1067,7 +1067,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
     </ClCompile>
-    <ClCompile Include="ZIHtmlView.cpp">
+    <ClCompile Include="PSS_HtmlView.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -1500,7 +1500,7 @@
     <ClInclude Include="PSS_DropView.h" />
     <ClInclude Include="PSS_EmptyView.h" />
     <ClInclude Include="ZIErrorLine.h" />
-    <ClInclude Include="ZIHtmlView.h" />
+    <ClInclude Include="PSS_HtmlView.h" />
     <ClInclude Include="zilistctrl.h" />
     <ClInclude Include="ZILog.h" />
     <ClInclude Include="ZIntelliListBox.h" />

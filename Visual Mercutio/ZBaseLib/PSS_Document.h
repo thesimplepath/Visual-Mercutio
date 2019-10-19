@@ -39,8 +39,8 @@
 #endif
 
 // forward class declaration
-class ZIHtmlView;
 class ZIView;
+class PSS_HtmlView;
 class PSS_Edit;
 class PSS_DocumentExport;
 class PSS_DocumentData;
@@ -149,7 +149,7 @@ class AFX_EXT_CLASS PSS_Document : public PSS_BaseDocument
         * Gets the html view
         *@return the html view
         */
-        virtual ZIHtmlView* GetHtmlView();
+        virtual PSS_HtmlView* GetHtmlView();
 
         /**
         * Initializes all the associations

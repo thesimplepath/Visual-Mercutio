@@ -539,7 +539,7 @@ afx_msg LONG PSS_BaseMDIPage::OnNavigateURL(WPARAM wParam, LPARAM lParam)
 
     if (pDocument)
     {
-        ZIHtmlView* pHtmlView = pDocument->GetHtmlView();
+        PSS_HtmlView* pHtmlView = pDocument->GetHtmlView();
 
         if (pHtmlView)
             pHtmlView->Navigate((const char*)lParam, FALSE);
