@@ -1,13 +1,18 @@
-#if !defined(AFX_ZIHtmlView_H__674DDCC6_D6E4_11D3_96BF_0000B45D7C6F__INCLUDED_)
-#define AFX_ZIHtmlView_H__674DDCC6_D6E4_11D3_96BF_0000B45D7C6F__INCLUDED_
+/****************************************************************************
+ * ==> PSS_HtmlView --------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides an html view                                      *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
+
+#ifndef PSS_HtmlViewH
+#define PSS_HtmlViewH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-// ZIHtmlView.h : header file
-//
+    #pragma once
+#endif
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -15,81 +20,101 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
-
-/////////////////////////////////////////////////////////////////////////////
-// ZIHtmlView html view
-
+// mfc
 #ifndef __AFXEXT_H__
-#include <afxext.h>
+    #include <afxext.h>
 #endif
 #include <afxhtml.h>
 
-
 #ifdef _ZBASELIBEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
-//#undef  AFX_DATA
-//#define AFX_DATA AFX_EXT_CLASS
 
-class AFX_EXT_CLASS ZIHtmlView : public CHtmlView
+/**
+* Html view
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_HtmlView : public CHtmlView
 {
-public:
-    ZIHtmlView();           // protected constructor used by dynamic creation
-    DECLARE_DYNCREATE(ZIHtmlView)
+    DECLARE_DYNCREATE(PSS_HtmlView)
 
-// html Data
-public:
-    //{{AFX_DATA(ZIHtmlView)
-        // NOTE: the ClassWizard will add data members here
-    //}}AFX_DATA
+    public:
+        PSS_HtmlView();
 
-// Attributes
-public:
+        /**
+        * Navigates to an url
+        *@param resID - url resource identifier
+        *@param flags - flags
+        *@param pTargetFrameName - target frame name
+        */
+        virtual void Navigate(UINT resID, DWORD flags = 0, LPCTSTR pTargetFrameName = NULL);
 
-// Operations
-public:
-    void Navigate(UINT nResID, DWORD dwFlags = 0, LPCTSTR lpszTargetFrameName = NULL);
-    void Navigate(LPCTSTR lpszURL, BOOL bRes, DWORD dwFlags = 0, LPCTSTR lpszTargetFrameName = NULL);
-    const CString GetCurrentURL() const { return m_strURL; };
+        /**
+        * Navigates to an url
+        *@param pURL - url to navigate to
+        *@param res - if TRUE, the url points to a resource
+        *@param flags - flags
+        *@param pTargetFrameName - target frame name
+        */
+        virtual void Navigate(LPCTSTR pURL, BOOL res, DWORD flags = 0, LPCTSTR pTargetFrameName = NULL);
 
-// Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(ZIHtmlView)
+        /**
+        * Gets the current url
+        *@return the current url
+        */
+        virtual inline const CString GetCurrentURL() const;
+
     protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
+        // ClassWizard generated virtual function overrides
+        //{{AFX_VIRTUAL(PSS_HtmlView)
+        virtual void DoDataExchange(CDataExchange* pDX);
+        //}}AFX_VIRTUAL
 
-// Implementation
-protected:
-    virtual ~ZIHtmlView();
+        /// Generated message map functions
+        //{{AFX_MSG(PSS_HtmlView)
+        //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
 
-    void    ResourceToURL(LPCTSTR lpszURL);
+        virtual ~PSS_HtmlView();
 
-#ifdef _DEBUG
-    virtual void AssertValid() const;
-    virtual void Dump(CDumpContext& dc) const;
-#endif
+        /**
+        * Gets an url from a resource
+        *@param pUrl - url pointing to the resource to get
+        */
+        virtual void ResourceToURL(LPCTSTR pUrl);
 
-    // Generated message map functions
-    //{{AFX_MSG(ZIHtmlView)
-        // NOTE - the ClassWizard will add and remove member functions here.
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+        /**
+        * Asserts the class validity
+        */
+        #ifdef _DEBUG
+            virtual void AssertValid() const;
+        #endif
 
-private:
-    CString m_strURL;
+        /**
+        * Dumps the class content
+        *@param dc - dump context
+        */
+        #ifdef _DEBUG
+            virtual void Dump(CDumpContext& dc) const;
+        #endif
 
+    private:
+        CString m_URL;
 };
 
-/////////////////////////////////////////////////////////////////////////////
+//---------------------------------------------------------------------------
+// PSS_HtmlView
+//---------------------------------------------------------------------------
+const CString PSS_HtmlView::GetCurrentURL() const
+{
+    return m_URL;
+}
+//---------------------------------------------------------------------------
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ZIHtmlView_H__674DDCC6_D6E4_11D3_96BF_0000B45D7C6F__INCLUDED_)
+#endif
