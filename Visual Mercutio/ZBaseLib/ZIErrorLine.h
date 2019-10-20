@@ -1,14 +1,18 @@
-// ZIErrorLine.h: interface for the ZIErrorLine class.
-//////////////////////////////////////////////////////////////////////
+/****************************************************************************
+ * ==> PSS_ErrorLine -------------------------------------------------------*
+ ****************************************************************************
+ * Description : Provides an error line for logger                          *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_ZIERRORLINE_H__2C224866_0F00_4FFF_8BC0_DFDCA073C4A5__INCLUDED_)
-#define AFX_ZIERRORLINE_H__2C224866_0F00_4FFF_8BC0_DFDCA073C4A5__INCLUDED_
+#ifndef PSS_ErrorLineH
+#define PSS_ErrorLineH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-// Change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -17,267 +21,444 @@
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
 #ifdef _ZBASELIBEXPORT
-// Put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-// JMR-MODIF - Le 11 octobre 2006 - Ajout des décorations unicode _T(), nettoyage du code inutile. (En commentaires)
-
-class AFX_EXT_CLASS ZIErrorLine : public CString
+/**
+* Error line for logger
+*@author Dominique Aigroz, Jean-Milost Reymond
+*/
+class AFX_EXT_CLASS PSS_ErrorLine : public CString
 {
-public:
+    public:
+        /**
+        * Constructor
+        *@param message - message
+        *@param line - line number
+        *@param error - error code
+        *@param type - error type
+        */
+        PSS_ErrorLine(const CString& message = _T(""),
+                      int            line    = -1,
+                      int            error   = -1,
+                      int            type    = -1);
 
-    ZIErrorLine( const CString    message        = _T( "" ),
-                 int            line        = -1,
-                 int            error        = -1,
-                 int            type        = -1 );
+        /**
+        * Constructor
+        *@param messageID - message identifier in resources
+        *@param line - line number
+        *@param error - error code
+        *@param type - error type
+        */
+        PSS_ErrorLine(UINT messageID,
+                      int  line  = -1,
+                      int  error = -1,
+                      int  type  = -1);
 
-    ZIErrorLine( UINT            nIDSmessage,
-                 int            line        = -1,
-                 int            error        = -1,
-                 int            type        = -1 );
+        /**
+        * Constructor
+        *@param string - string containing the error message
+        */
+        inline PSS_ErrorLine(const CString& string);
 
-    virtual ~ZIErrorLine()
-    {
-        // Do nothing in the destructor
-    };
+        /**
+        * Constructor
+        *@param ch - char
+        *@param repeat - number of occurrences the char should be repeated
+        */
+        inline PSS_ErrorLine(TCHAR ch, int repeat = 1);
 
-    ZIErrorLine& operator=( const ZIErrorLine& src );
+        /**
+        * Constructor
+        *@param pString - ANSI string containing the error message (convert to TCHAR)
+        */
+        inline PSS_ErrorLine(LPCSTR pString);
 
-    /////////////////////////////////////////////////////////
-    // standard member accessors
-    virtual int GetLineNumber() const
-    {
-        return m_LineNumber;
-    };
+        /**
+        * Constructor
+        *@param pString - Unicode string containing the error message (convert to TCHAR)
+        */
+        inline PSS_ErrorLine(LPCWSTR pString);
 
-    virtual void SetLineNumber( int line )
-    {
-        m_LineNumber = line;
-        BuildString();
-    };
+        /**
+        * Constructor
+        *@param pCh - subset of characters from an ANSI string (converts to TCHAR)
+        *@param length - char subset length
+        */
+        inline PSS_ErrorLine(LPCSTR pCh, int length);
 
-    virtual int GetErrorNumber() const
-    {
-        return m_ErrorNumber;
-    };
+        /**
+        * Constructor
+        *@param pCh - subset of characters from an Unicode string (converts to TCHAR)
+        *@param length - char subset length
+        */
+        inline PSS_ErrorLine(LPCWSTR pCh, int length);
 
-    virtual void SetErrorNumber( int error )
-    {
-        m_ErrorNumber = error;
-        BuildString();
-    };
+        /**
+        * Constructor
+        *@param pCh - unsigned characters array
+        */
+        inline PSS_ErrorLine(const unsigned char* pCh);
 
-    virtual CString GetErrorMessage() const
-    {
-        return m_ErrorMessage;
-    };
+        /**
+        * Copy constructor
+        *@param other - other object to copy from
+        */
+        inline PSS_ErrorLine(const PSS_ErrorLine& other);
 
-    virtual void SetErrorMessage( const CString& message )
-    {
-        m_ErrorMessage = message;
-        BuildString();
-    };
+        virtual inline ~PSS_ErrorLine();
 
-    virtual int GetErrorType() const
-    {
-        return m_ErrorType;
-    };
+        /**
+        * Copy operator
+        *@param other - other object to copy from
+        *@return copy of itself
+        */
+        PSS_ErrorLine& operator = (const PSS_ErrorLine& src);
 
-    virtual void SetErrorType( int type )
-    {
-        m_ErrorType = type;
-        BuildString();
-    };
+        /**
+        * Ref-counted copy operator from another CString
+        *@param other - other object to copy from
+        *@return copy of itself
+        */
+        inline const PSS_ErrorLine& operator = (const CString& other);
 
-    /////////////////////////////////////////////////////////
-    // Copy constructors, assignment operators
+        /**
+        * Assignment operator, sets the string content to a single character
+        *@param ch - char to set
+        *@return copy of itself
+        */
+        inline const PSS_ErrorLine& operator = (TCHAR ch);
 
-    // Copy constructor
-    ZIErrorLine( const ZIErrorLine& genericErrorLineSrc )
-        : CString( genericErrorLineSrc )
-    {
-        *this = genericErrorLineSrc;
-    };
+        /**
+        * Assignment operator, sets the string content to a single character
+        *@param ch - char to set
+        *@return copy of itself
+        */
+        #ifdef _UNICODE
+            inline const PSS_ErrorLine& operator = (char ch);
+        #endif
 
-    // Copy constructor
-    ZIErrorLine( const CString& stringSrc )
-        : CString( stringSrc )
-    {
-        Parse();
-    };
+        /**
+        * Copy operator, copies the string content from an ANSI string (converts to TCHAR)
+        *@param pString - string to copy from
+        *@return copy of itself
+        */
+        inline const PSS_ErrorLine& operator = (LPCSTR pString);
 
-    // From a single character
-    ZIErrorLine( TCHAR ch, int nRepeat = 1 )
-        : CString( ch, nRepeat )
-    {
-        Parse();
-    };
+        /**
+        * Copy operator, copies the string content from an Unicode string (converts to TCHAR)
+        *@param pString - string to copy from
+        *@return copy of itself
+        */
+        inline const PSS_ErrorLine& operator = (LPCWSTR pString);
 
-    // From an ANSI string (converts to TCHAR)
-    ZIErrorLine( LPCSTR lpsz )
-        : CString( lpsz )
-    {
-        Parse();
-    };
+        /**
+        * Copy operator, copies the string content from unsigned chars
+        *@param pString - string to copy from
+        *@return copy of itself
+        */
+        inline const PSS_ErrorLine& operator = (const unsigned char* pString);
 
-    // From a UNICODE string (converts to TCHAR)
-    ZIErrorLine( LPCWSTR lpsz )
-        : CString( lpsz )
-    {
-        Parse();
-    };
+        /**
+        * Concatenation operator from another CString
+        *@param string - string to concatenate from
+        *@return copy of itself
+        */
+        inline const PSS_ErrorLine& operator += (const CString& string);
 
-    // Subset of characters from an ANSI string (converts to TCHAR)
-    ZIErrorLine( LPCSTR lpch, int nLength )
-        : CString( lpch, nLength )
-    {
-        Parse();
-    };
+        /**
+        * Concatenation operator, concatenates a single character
+        *@param ch - character to concatenate
+        *@return copy of itself
+        */
+        inline const PSS_ErrorLine& operator += (TCHAR ch);
 
-    // Subset of characters from a UNICODE string (converts to TCHAR)
-    ZIErrorLine( LPCWSTR lpch, int nLength )
-        : CString( lpch, nLength )
-    {
-        Parse();
-    };
+        /**
+        * Concatenation operator, concatenates an ANSI character after converting it to TCHAR
+        *@param ch - character to concatenate
+        *@return copy of itself
+        */
+        #ifdef _UNICODE
+            inline const PSS_ErrorLine& operator += (char ch);
+        #endif
 
-    // From unsigned characters
-    ZIErrorLine( const unsigned char* psz )
-        : CString( psz )
-    {
-        Parse();
-    };
+        /**
+        * Concatenation operator, concatenates an Unicode character after converting it to TCHAR
+        *@param pString - string to concatenate
+        *@return copy of itself
+        */
+        inline const PSS_ErrorLine& operator += (LPCTSTR pString);
 
-    ///////////////////////////////////
-    // Operators
+        /**
+        * Gets the error message
+        *@return the error message
+        */
+        virtual inline CString GetErrorMessage() const;
 
-    // Ref-counted copy from another CString
-    const ZIErrorLine& operator=( const CString& stringSrc )
-    {
-        dynamic_cast<CString&>(*this) = CString::operator=( stringSrc );
-        Parse();
+        /**
+        * Sets the error message
+        *@param message - the error message
+        */
+        virtual inline void SetErrorMessage(const CString& message);
 
-        return *this;
-    };
+        /**
+        * Gets the line number
+        *@return the line number
+        */
+        virtual inline int GetLineNumber() const;
 
-    // Set string content to single character
-    const ZIErrorLine& operator=( TCHAR ch )
-    {
-        dynamic_cast<CString&>(*this) = CString::operator=( ch );
-        Parse();
+        /**
+        * Sets the line number
+        *@param line - the line number
+        */
+        virtual inline void SetLineNumber(int line);
 
-        return *this;
-    };
+        /**
+        * Gets the error number
+        *@return the error number
+        */
+        virtual inline int GetErrorNumber() const;
 
-#ifdef _UNICODE
-    const ZIErrorLine& operator=( char ch )
-    {
-        dynamic_cast<CString&>(*this) = CString::operator=( ch );
-        Parse();
+        /**
+        * Sets the error number
+        *@param error - the error number
+        */
+        virtual inline void SetErrorNumber(int error);
 
-        return *this;
-    };
-#endif
+        /**
+        * Gets the error type
+        *@return the error type
+        */
+        virtual inline int GetErrorType() const;
 
-    // Copy string content from ANSI string (converts to TCHAR)
-    const ZIErrorLine& operator=( LPCSTR lpsz )
-    {
-        dynamic_cast<CString&>(*this) = CString::operator=( lpsz );
-        Parse();
+        /**
+        * Sets the error type
+        *@param type - the error type
+        */
+        virtual inline void SetErrorType(int type);
 
-        return *this;
-    };
+    protected:
+        /**
+        * Builds the error string
+        */
+        virtual inline void BuildString();
 
-    // Copy string content from UNICODE string (converts to TCHAR)
-    const ZIErrorLine& operator=( LPCWSTR lpsz )
-    {
-        dynamic_cast<CString&>(*this) = CString::operator=( lpsz );
-        Parse();
+        /**
+        * Parses the error string
+        */
+        virtual inline void Parse();
 
-        return *this;
-    };
+        /**
+        * Assigns the string without parsing it again. Typically used in BuildString function
+        *@param str - string to assign
+        */
+        virtual inline void AssignString(const CString& str);
 
-    // Copy string content from unsigned chars
-    const ZIErrorLine& operator=( const unsigned char* psz )
-    {
-        dynamic_cast<CString&>(*this) = CString::operator=( psz );
-        Parse();
-
-        return *this;
-    };
-
-    ////////////////////////
-    // String concatenation
-
-    // Concatenate from another CString
-    const ZIErrorLine& operator+=( const CString& string )
-    {
-        dynamic_cast<CString&>(*this) = CString::operator=( string );
-        Parse();
-
-        return *this;
-    };
-
-    // Concatenate a single character
-    const ZIErrorLine& operator+=( TCHAR ch )
-    {
-        dynamic_cast<CString&>(*this) = CString::operator=( ch );
-        Parse();
-
-        return *this;
-    };
-
-#ifdef _UNICODE
-    // Concatenate an ANSI character after converting it to TCHAR
-    const ZIErrorLine& operator+=( char ch )
-    {
-        dynamic_cast<CString&>(*this) = CString::operator=( ch );
-        Parse();
-
-        return *this;
-    };
-#endif
-
-    // Concatenate a UNICODE character after converting it to TCHAR
-    const ZIErrorLine& operator+=( LPCTSTR lpsz )
-    {
-        dynamic_cast<CString&>(*this) = CString::operator=( lpsz );
-        Parse();
-
-        return *this;
-    };
-
-protected:
-
-    virtual void BuildString()
-    {
-        // Do nothing
-    };
-
-    virtual void Parse()
-    {
-        // Do nothing
-    };
-
-    // AssignString let assigning the string without parsing
-    // it again. Typically used in BuildString function
-    void AssignString( const CString str )
-    {
-        dynamic_cast<CString&>(*this) = CString::operator=( str );
-    }
-
-private:
-
-    int        m_LineNumber;
-    int        m_ErrorNumber;
-    CString    m_ErrorMessage;
-    int        m_ErrorType;
+    private:
+        CString m_ErrorMessage;
+        int     m_LineNumber;
+        int     m_ErrorNumber;
+        int     m_ErrorType;
 };
 
-#endif // !defined(AFX_ZIERRORLINE_H__2C224866_0F00_4FFF_8BC0_DFDCA073C4A5__INCLUDED_)
+//---------------------------------------------------------------------------
+// PSS_ErrorLine
+//---------------------------------------------------------------------------
+PSS_ErrorLine::PSS_ErrorLine(const CString& string) :
+    CString(string)
+{
+    Parse();
+}
+//---------------------------------------------------------------------------
+PSS_ErrorLine::PSS_ErrorLine(TCHAR ch, int repeat) :
+    CString(ch, repeat)
+{
+    Parse();
+}
+//---------------------------------------------------------------------------
+PSS_ErrorLine::PSS_ErrorLine(LPCSTR pString) :
+    CString(pString)
+{
+    Parse();
+}
+//---------------------------------------------------------------------------
+PSS_ErrorLine::PSS_ErrorLine(LPCWSTR pString) :
+    CString(pString)
+{
+    Parse();
+}
+//---------------------------------------------------------------------------
+PSS_ErrorLine::PSS_ErrorLine(LPCSTR pCh, int length) :
+    CString(pCh, length)
+{
+    Parse();
+}
+//---------------------------------------------------------------------------
+PSS_ErrorLine::PSS_ErrorLine(LPCWSTR pCh, int length) :
+    CString(pCh, length)
+{
+    Parse();
+}
+//---------------------------------------------------------------------------
+PSS_ErrorLine::PSS_ErrorLine(const unsigned char* pCh) :
+    CString(pCh)
+{
+    Parse();
+}
+//---------------------------------------------------------------------------
+PSS_ErrorLine::PSS_ErrorLine(const PSS_ErrorLine& other) :
+    CString(other)
+{
+    *this = other;
+}
+//---------------------------------------------------------------------------
+PSS_ErrorLine::~PSS_ErrorLine()
+{}
+//---------------------------------------------------------------------------
+const PSS_ErrorLine& PSS_ErrorLine::operator = (const CString& other)
+{
+    dynamic_cast<CString&>(*this) = CString::operator = (other);
+    Parse();
+
+    return *this;
+};
+//---------------------------------------------------------------------------
+const PSS_ErrorLine& PSS_ErrorLine::operator = (TCHAR ch)
+{
+    dynamic_cast<CString&>(*this) = CString::operator = (ch);
+    Parse();
+
+    return *this;
+}
+//---------------------------------------------------------------------------
+#ifdef _UNICODE
+    const PSS_ErrorLine& PSS_ErrorLine::operator = (char ch)
+    {
+        dynamic_cast<CString&>(*this) = CString::operator = (ch);
+        Parse();
+
+        return *this;
+    }
+#endif
+//---------------------------------------------------------------------------
+const PSS_ErrorLine& PSS_ErrorLine::operator = (LPCSTR pString)
+{
+    dynamic_cast<CString&>(*this) = CString::operator = (pString);
+    Parse();
+
+    return *this;
+}
+//---------------------------------------------------------------------------
+const PSS_ErrorLine& PSS_ErrorLine::operator = (LPCWSTR pString)
+{
+    dynamic_cast<CString&>(*this) = CString::operator = (pString);
+    Parse();
+
+    return *this;
+}
+//---------------------------------------------------------------------------
+const PSS_ErrorLine& PSS_ErrorLine::operator = (const unsigned char* pString)
+{
+    dynamic_cast<CString&>(*this) = CString::operator = (pString);
+    Parse();
+
+    return *this;
+}
+//---------------------------------------------------------------------------
+const PSS_ErrorLine& PSS_ErrorLine::operator += (const CString& string)
+{
+    dynamic_cast<CString&>(*this) = CString::operator = (string);
+    Parse();
+
+    return *this;
+}
+//---------------------------------------------------------------------------
+const PSS_ErrorLine& PSS_ErrorLine::operator += (TCHAR ch)
+{
+    dynamic_cast<CString&>(*this) = CString::operator = (ch);
+    Parse();
+
+    return *this;
+}
+//---------------------------------------------------------------------------
+#ifdef _UNICODE
+    const PSS_ErrorLine& PSS_ErrorLine::operator += (char ch)
+    {
+        dynamic_cast<CString&>(*this) = CString::operator = (ch);
+        Parse();
+
+        return *this;
+    }
+#endif
+//---------------------------------------------------------------------------
+const PSS_ErrorLine& PSS_ErrorLine::operator += (LPCTSTR pString)
+{
+    dynamic_cast<CString&>(*this) = CString::operator = (pString);
+    Parse();
+
+    return *this;
+}
+//---------------------------------------------------------------------------
+CString PSS_ErrorLine::GetErrorMessage() const
+{
+    return m_ErrorMessage;
+}
+//---------------------------------------------------------------------------
+void PSS_ErrorLine::SetErrorMessage(const CString& message)
+{
+    m_ErrorMessage = message;
+    BuildString();
+}
+//---------------------------------------------------------------------------
+int PSS_ErrorLine::GetLineNumber() const
+{
+    return m_LineNumber;
+}
+//---------------------------------------------------------------------------
+void PSS_ErrorLine::SetLineNumber(int line)
+{
+    m_LineNumber = line;
+    BuildString();
+}
+//---------------------------------------------------------------------------
+int PSS_ErrorLine::GetErrorNumber() const
+{
+    return m_ErrorNumber;
+}
+//---------------------------------------------------------------------------
+void PSS_ErrorLine::SetErrorNumber(int error)
+{
+    m_ErrorNumber = error;
+    BuildString();
+}
+//---------------------------------------------------------------------------
+int PSS_ErrorLine::GetErrorType() const
+{
+    return m_ErrorType;
+}
+//---------------------------------------------------------------------------
+void PSS_ErrorLine::SetErrorType(int type)
+{
+    m_ErrorType = type;
+    BuildString();
+}
+//---------------------------------------------------------------------------
+void PSS_ErrorLine::BuildString()
+{}
+//---------------------------------------------------------------------------
+void PSS_ErrorLine::Parse()
+{}
+//---------------------------------------------------------------------------
+void PSS_ErrorLine::AssignString(const CString& str)
+{
+    dynamic_cast<CString&>(*this) = CString::operator = (str);
+}
+//---------------------------------------------------------------------------
+
+#endif

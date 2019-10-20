@@ -734,5 +734,3 @@ void ZVSpanView::Dump(CDumpContext& dc) const
     CScrollView::Dump(dc);
 }
 #endif //_DEBUG
-
-

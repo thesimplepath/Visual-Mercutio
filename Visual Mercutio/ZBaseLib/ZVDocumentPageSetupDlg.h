@@ -1,17 +1,18 @@
-// **********************************************************************************************************
-// *                                        Classe ZVDocumentPageSetupDlg                                    *
-// **********************************************************************************************************
-// * Cette classe mets à disposition la boîte de dialogue pour la sélection du format de page.                *
-// **********************************************************************************************************
+/****************************************************************************
+ * ==> PSS_DocumentPageSetupDlg --------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a document page setup dialog box                  *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
-#if !defined(AFX_ZVDOCUMENTPAGESETUPDLG_H__12BA3983_74D2_4165_9560_7CAC5F01222B__INCLUDED_)
-#define AFX_ZVDOCUMENTPAGESETUPDLG_H__12BA3983_74D2_4165_9560_7CAC5F01222B__INCLUDED_
+#ifndef PSS_DocumentPageSetupDlgH
+#define PSS_DocumentPageSetupDlgH
 
 #if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+    #pragma once
+#endif
 
-//change the definition of AFX_EXT... to make it import
+// change the definition of AFX_EXT... to make it import
 #undef AFX_EXT_CLASS
 #undef AFX_EXT_API
 #undef AFX_EXT_DATA
@@ -19,67 +20,113 @@
 #define AFX_EXT_API AFX_API_IMPORT
 #define AFX_EXT_DATA AFX_DATA_IMPORT
 
+// processsoft
 #include "Define.h"
-#include "zBaseLibRes.h"
 #include "PSS_WizardDialog.h"
 
+// resources
+#include "zBaseLibRes.h"
+
 #ifdef _ZBASELIBEXPORT
-//put the values back to make AFX_EXT_CLASS export again
-#undef AFX_EXT_CLASS
-#undef AFX_EXT_API
-#undef AFX_EXT_DATA
-#define AFX_EXT_CLASS AFX_CLASS_EXPORT
-#define AFX_EXT_API AFX_API_EXPORT
-#define AFX_EXT_DATA AFX_DATA_EXPORT
+    // put the values back to make AFX_EXT_CLASS export again
+    #undef AFX_EXT_CLASS
+    #undef AFX_EXT_API
+    #undef AFX_EXT_DATA
+    #define AFX_EXT_CLASS AFX_CLASS_EXPORT
+    #define AFX_EXT_API AFX_API_EXPORT
+    #define AFX_EXT_DATA AFX_DATA_EXPORT
 #endif
 
-class AFX_EXT_CLASS ZVDocumentPageSetupDlg : public PSS_WizardDialog
+class AFX_EXT_CLASS PSS_DocumentPageSetupDlg : public PSS_WizardDialog
 {
-    DECLARE_DYNAMIC( ZVDocumentPageSetupDlg )
+    DECLARE_DYNAMIC(PSS_DocumentPageSetupDlg)
 
-private:
+    public:
+        /**
+        * Dialog box resources
+        */
+        enum
+        {
+            IDD = IDD_WZ_DOCUMENT_PAGESETUP
+        };
 
-    CSize                                m_PaperSize;
+        /**
+        * Constructor
+        *@param pParent - parent window, can be NULL
+        */
+        PSS_DocumentPageSetupDlg(CWnd* pParent = NULL);
 
-    short                                m_StandardSize;
-    short                                m_Orientation;
+        virtual ~PSS_DocumentPageSetupDlg();
 
-    CString                                sBkGndName;
+        /**
+        * Gets the background file name
+        *@return the background file name
+        */
+        virtual CString GetBackgroundFileName() const;
 
-    void        UpdateDatas                ();
+        /**
+        * Gets the paper size
+        *@return the paper size
+        */
+        virtual CSize GetPaperSize() const;
 
-public:
+        /**
+        * Sets the paper size
+        *@param paperSize - the paper size
+        */
+        virtual void SetPaperSize(const CSize& paperSize);
 
-    ZVDocumentPageSetupDlg( CWnd* pParent = NULL );
-    ~ZVDocumentPageSetupDlg();
+        /**
+        * Gets the standard size
+        *@return the standard size
+        */
+        virtual short GetStandardSize() const;
 
-    CString        GetBackGroundFilename    ();
+        /**
+        * Sets the standard size
+        *@param standardSize - the standard size
+        */
+        virtual void SetStandardSize(short standardSize);
 
-    CSize        GetPaperSize            ();
+        /**
+        * Gets the orientation
+        *@return the orientation
+        */
+        virtual short GetOrientation() const;
 
-    short        GetStandardSize            ();
-    short        GetOrientation            ();
+        /**
+        * Sets the orientation
+        *@param orientation - the orientation
+        */
+        virtual void SetOrientation(short orientation);
 
-    void        SetPaperSize            ( CSize PaperSize );
-    void        SetStandardSize            ( short StandardSize );
-    void        SetOrientation            ( short Orientation );
+    protected:
+        /**
+        * DDX/DDV support
+        *@param pDX - DDX/DDV data
+        */
+        virtual void DoDataExchange(CDataExchange* pDX);
 
-    // Données de boîte de dialogue
-    enum { IDD = IDD_WZ_DOCUMENT_PAGESETUP };
+        /// Generated message map
+        //{{AFX_MSG(PSS_DocumentPageSetupDlg)
+        virtual BOOL OnInitDialog();
+        afx_msg void OnBnClickedPortrait();
+        afx_msg void OnBnClickedLandscape();
+        afx_msg void OnBnClickedBtOpenfile();
+        afx_msg void OnEnChangeEditFilename();
+        //}}AFX_MSG
+        DECLARE_MESSAGE_MAP()
 
-protected:
+    private:
+        CString m_BgName;
+        CSize   m_PaperSize;
+        short   m_StandardSize;
+        short   m_Orientation;
 
-    virtual void DoDataExchange( CDataExchange* pDX );    // Prise en charge DDX/DDV
-
-    DECLARE_MESSAGE_MAP()
-
-public:
-
-    afx_msg void OnBnClickedPortrait();
-    afx_msg void OnBnClickedLandscape();
-    virtual BOOL OnInitDialog();
-    afx_msg void OnBnClickedBtOpenfile();
-    afx_msg void OnEnChangeEditFilename();
+        /**
+        * Updates the data
+        */
+        void UpdateDatas();
 };
 
-#endif // !defined(AFX_ZVDOCUMENTPAGESETUPDLG_H__12BA3983_74D2_4165_9560_7CAC5F01222B__INCLUDED_)
+#endif

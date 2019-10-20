@@ -1,121 +1,103 @@
-// **********************************************************************************************************
-// *                                        Classe ZVDocumentPageSetupDlg                                    *
-// **********************************************************************************************************
-// * Cette classe mets à disposition la boîte de dialogue pour la sélection du format de page.                *
-// **********************************************************************************************************
+/****************************************************************************
+ * ==> PSS_DocumentPageSetupDlg --------------------------------------------*
+ ****************************************************************************
+ * Description : Provides a document page setup dialog box                  *
+ * Developer   : Processsoft                                                *
+ ****************************************************************************/
 
 #include "stdafx.h"
 #include "ZVDocumentPageSetupDlg.h"
 
-// **********************************************************************************************************
-// *                                             Mappage des messages                                        *
-// **********************************************************************************************************
+#ifdef _DEBUG
+    #undef THIS_FILE
+    static char BASED_CODE THIS_FILE[] = __FILE__;
+#endif
 
-IMPLEMENT_DYNAMIC(ZVDocumentPageSetupDlg, PSS_WizardDialog)
-
-BEGIN_MESSAGE_MAP(ZVDocumentPageSetupDlg, PSS_WizardDialog)
+ //---------------------------------------------------------------------------
+ // Dynamic creation
+ //---------------------------------------------------------------------------
+IMPLEMENT_DYNAMIC(PSS_DocumentPageSetupDlg, PSS_WizardDialog)
+//---------------------------------------------------------------------------
+// Message map
+//---------------------------------------------------------------------------
+BEGIN_MESSAGE_MAP(PSS_DocumentPageSetupDlg, PSS_WizardDialog)
     ON_BN_CLICKED(IDC_PORTRAIT, OnBnClickedPortrait)
     ON_BN_CLICKED(IDC_LANDSCAPE, OnBnClickedLandscape)
     ON_BN_CLICKED(IDC_BT_OPENFILE, OnBnClickedBtOpenfile)
     ON_EN_CHANGE(IDC_EDIT_FILENAME, OnEnChangeEditFilename)
 END_MESSAGE_MAP()
-
-// **********************************************************************************************************
-// *                                        Constructeur(s) et destructeur                                    *
-// **********************************************************************************************************
-
-// Constructeur par défaut de la classe ZVDocumentPageSetupDlg.
-ZVDocumentPageSetupDlg::ZVDocumentPageSetupDlg(CWnd* pParent /*=NULL*/) :
-    PSS_WizardDialog(ZVDocumentPageSetupDlg::IDD,
+//---------------------------------------------------------------------------
+// PSS_DocumentPageSetupDlg
+//---------------------------------------------------------------------------
+PSS_DocumentPageSetupDlg::PSS_DocumentPageSetupDlg(CWnd* pParent) :
+    PSS_WizardDialog(PSS_DocumentPageSetupDlg::IDD,
                      IDB_WZBMP1,
                      0,
                      0,
                      IDS_WZ_PAGESETUP_S,
-                     IDS_WZ_PAGESETUP_T)
-{
-    m_PaperSize = g_DefaultPaperSize;
-    m_StandardSize = g_DefaultStandardSize;
-    m_Orientation = g_DefaultOrientation;
-
-    sBkGndName = _T("");
-}
-
-// Destructeur de la classe ZVDocumentPageSetupDlg.
-ZVDocumentPageSetupDlg::~ZVDocumentPageSetupDlg()
+                     IDS_WZ_PAGESETUP_T),
+    m_PaperSize(g_DefaultPaperSize),
+    m_StandardSize(g_DefaultStandardSize),
+    m_Orientation(g_DefaultOrientation)
 {}
-
-// **********************************************************************************************************
-// *                             Fonction protégées de la classe ZVDocumentPageSetupDlg                        *
-// **********************************************************************************************************
-
-void ZVDocumentPageSetupDlg::DoDataExchange(CDataExchange* pDX)
+//---------------------------------------------------------------------------
+PSS_DocumentPageSetupDlg::~PSS_DocumentPageSetupDlg()
+{}
+//---------------------------------------------------------------------------
+CString PSS_DocumentPageSetupDlg::GetBackgroundFileName() const
 {
-    CDialog::DoDataExchange(pDX);
+    return m_BgName;
 }
-
-// **********************************************************************************************************
-// *                             Fonction publiques de la classe ZVDocumentPageSetupDlg                        *
-// **********************************************************************************************************
-
-// Cette fonction permet de mettre à jour les boutons du formulaire.
-void ZVDocumentPageSetupDlg::UpdateDatas()
-{
-    if (m_Orientation == DMORIENT_PORTRAIT)
-    {
-        CheckDlgButton(IDC_PORTRAIT, TRUE);
-        CheckDlgButton(IDC_LANDSCAPE, FALSE);
-    }
-    else
-    {
-        CheckDlgButton(IDC_PORTRAIT, FALSE);
-        CheckDlgButton(IDC_LANDSCAPE, TRUE);
-    }
-}
-
-// Cette fonction permet de définir la dimension du papier.
-void ZVDocumentPageSetupDlg::SetPaperSize(CSize PaperSize)
-{
-    m_PaperSize = PaperSize;
-}
-
-// Cette fonction permet de définir la taille standard du papier.
-void ZVDocumentPageSetupDlg::SetStandardSize(short StandardSize)
-{
-    m_StandardSize = StandardSize;
-}
-
-// Cette fonction permet de définir l'orientation du papier.
-void ZVDocumentPageSetupDlg::SetOrientation(short Orientation)
-{
-    m_Orientation = Orientation;
-}
-
-// Cette fonction retourne la dimension du papier.
-CSize ZVDocumentPageSetupDlg::GetPaperSize()
+//---------------------------------------------------------------------------
+CSize PSS_DocumentPageSetupDlg::GetPaperSize() const
 {
     return m_PaperSize;
 }
-
-// Cette fonction retourne la taille standard du papier.
-short ZVDocumentPageSetupDlg::GetStandardSize()
+//---------------------------------------------------------------------------
+void PSS_DocumentPageSetupDlg::SetPaperSize(const CSize& paperSize)
+{
+    m_PaperSize = paperSize;
+}
+//---------------------------------------------------------------------------
+short PSS_DocumentPageSetupDlg::GetStandardSize() const
 {
     return m_StandardSize;
 }
-
-// Cette fonction retourne l'orientation du papier.
-short ZVDocumentPageSetupDlg::GetOrientation()
+//---------------------------------------------------------------------------
+void PSS_DocumentPageSetupDlg::SetStandardSize(short standardSize)
+{
+    m_StandardSize = standardSize;
+}
+//---------------------------------------------------------------------------
+short PSS_DocumentPageSetupDlg::GetOrientation() const
 {
     return m_Orientation;
 }
-
-// Cette fonction retourne le nom de la trame de fond choisie par l'utilisateur.
-CString ZVDocumentPageSetupDlg::GetBackGroundFilename()
+//---------------------------------------------------------------------------
+void PSS_DocumentPageSetupDlg::SetOrientation(short orientation)
 {
-    return sBkGndName;
+    m_Orientation = orientation;
 }
+//---------------------------------------------------------------------------
+void PSS_DocumentPageSetupDlg::DoDataExchange(CDataExchange* pDX)
+{
+    CDialog::DoDataExchange(pDX);
+}
+//---------------------------------------------------------------------------
+BOOL PSS_DocumentPageSetupDlg::OnInitDialog()
+{
+    PSS_WizardDialog::OnInitDialog();
 
-// Cette fonction est appelée lorsque l'utilisateur clique sur le bouton Portrait.
-void ZVDocumentPageSetupDlg::OnBnClickedPortrait()
+    UpdateDatas();
+
+    CWnd* m_pFilenameTxtBox = GetDlgItem(IDC_EDIT_FILENAME);
+    m_pFilenameTxtBox->SetWindowText(_T(""));
+
+    // return TRUE unless the focus is set to a control
+    return TRUE;
+}
+//---------------------------------------------------------------------------
+void PSS_DocumentPageSetupDlg::OnBnClickedPortrait()
 {
     if (m_Orientation == DMORIENT_LANDSCAPE)
     {
@@ -128,12 +110,11 @@ void ZVDocumentPageSetupDlg::OnBnClickedPortrait()
 
     m_Orientation = DMORIENT_PORTRAIT;
 
-    CheckDlgButton(IDC_PORTRAIT, TRUE);
+    CheckDlgButton(IDC_PORTRAIT,  TRUE);
     CheckDlgButton(IDC_LANDSCAPE, FALSE);
 }
-
-// Cette fonction est appelée lorsque l'utilisateur clique sur le bouton Paysage.
-void ZVDocumentPageSetupDlg::OnBnClickedLandscape()
+//---------------------------------------------------------------------------
+void PSS_DocumentPageSetupDlg::OnBnClickedLandscape()
 {
     if (m_Orientation == DMORIENT_PORTRAIT)
     {
@@ -146,50 +127,49 @@ void ZVDocumentPageSetupDlg::OnBnClickedLandscape()
 
     m_Orientation = DMORIENT_LANDSCAPE;
 
-    CheckDlgButton(IDC_PORTRAIT, FALSE);
+    CheckDlgButton(IDC_PORTRAIT,  FALSE);
     CheckDlgButton(IDC_LANDSCAPE, TRUE);
 }
-
-// Cette fonction est appelée lorsque l'utilisateur clique sur le bouton de sélection d'un fichier.
-void ZVDocumentPageSetupDlg::OnBnClickedBtOpenfile()
+//---------------------------------------------------------------------------
+void PSS_DocumentPageSetupDlg::OnBnClickedBtOpenfile()
 {
-    CString FiltersJpg = _T("Images au format jpeg (*.jpg)|*.jpg|");
-    CString FiltersGif = _T("Images au format gif (*.gif)|*.gif|");
-    CString FiltersPcx = _T("Images au format pcx (*.pcx)|*.pcx|");
-    CString FiltersDib = _T("Images au format dib (*.dib)|*.dib|");
-    CString FiltersTga = _T("Images au format tga (*.tga)|*.tga|");
-    CString FiltersTif = _T("Images au format tif (*.tif)|*.tif|");
+    const CString filterJpg = _T("Images au format jpeg (*.jpg)|*.jpg|");
+    const CString filterGif = _T("Images au format gif (*.gif)|*.gif|");
+    const CString filterPcx = _T("Images au format pcx (*.pcx)|*.pcx|");
+    const CString filterDib = _T("Images au format dib (*.dib)|*.dib|");
+    const CString filterTga = _T("Images au format tga (*.tga)|*.tga|");
+    const CString filterTif = _T("Images au format tif (*.tif)|*.tif|");
 
-    CString Filters = FiltersJpg + FiltersGif + FiltersPcx + FiltersDib + FiltersTga + FiltersTif + _T("|");
+    const CString filters = filterJpg + filterGif + filterPcx + filterDib + filterTga + filterTif + _T("|");
 
-    CFileDialog m_FileDialog(TRUE, NULL, NULL, OFN_OVERWRITEPROMPT, Filters);
+    CFileDialog m_FileDialog(TRUE, NULL, NULL, OFN_OVERWRITEPROMPT, filters);
 
     if (m_FileDialog.DoModal() == IDOK)
     {
-        sBkGndName = m_FileDialog.GetPathName();
+        m_BgName = m_FileDialog.GetPathName();
 
         CWnd* m_pFilenameTxtBox = GetDlgItem(IDC_EDIT_FILENAME);
-        m_pFilenameTxtBox->SetWindowText(sBkGndName);
+        m_pFilenameTxtBox->SetWindowText(m_BgName);
     }
 }
-
-// Cette fonction est appelée lorsque l'utilisateur change de texte de la boîte d'édition du nom de fichier.
-void ZVDocumentPageSetupDlg::OnEnChangeEditFilename()
+//---------------------------------------------------------------------------
+void PSS_DocumentPageSetupDlg::OnEnChangeEditFilename()
 {
     CWnd* m_pFilenameTxtBox = GetDlgItem(IDC_EDIT_FILENAME);
-    m_pFilenameTxtBox->GetWindowText(sBkGndName);
+    m_pFilenameTxtBox->GetWindowText(m_BgName);
 }
-
-// Cette fonction est appelée lorsque la boîte de dialogue s'initialise.
-BOOL ZVDocumentPageSetupDlg::OnInitDialog()
+//---------------------------------------------------------------------------
+void PSS_DocumentPageSetupDlg::UpdateDatas()
 {
-    PSS_WizardDialog::OnInitDialog();
-
-    UpdateDatas();
-
-    CWnd* m_pFilenameTxtBox = GetDlgItem(IDC_EDIT_FILENAME);
-    m_pFilenameTxtBox->SetWindowText(_T(""));
-
-    return TRUE;  // return TRUE unless you set the focus to a control
-    // EXCEPTION : les pages de propriétés OCX devraient retourner FALSE
+    if (m_Orientation == DMORIENT_PORTRAIT)
+    {
+        CheckDlgButton(IDC_PORTRAIT,  TRUE);
+        CheckDlgButton(IDC_LANDSCAPE, FALSE);
+    }
+    else
+    {
+        CheckDlgButton(IDC_PORTRAIT,  FALSE);
+        CheckDlgButton(IDC_LANDSCAPE, TRUE);
+    }
 }
+//---------------------------------------------------------------------------
